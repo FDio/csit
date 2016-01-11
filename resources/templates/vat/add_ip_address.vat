@@ -1,0 +1,1 @@
+sw_interface_add_del_address sw_if_index {sw_if_index} {address}/{prefix_length}

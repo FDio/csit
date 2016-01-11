@@ -1,0 +1,27 @@
+# STEPS TO START DEVELOPING TESTS LOCALLY
+ - install virtualenv
+ - generate environment using virtualenv:
+    # cd $ROOT
+    # virtualenv env
+    # source env/bin/activate
+ - install python requirements for this project by executing:
+    # pip install -r requirements.txt
+ - make sure user mentioned in topology.py has NOPASSWD sudo access to
+    vpe_api_test
+
+
+ Done.
+
+# STEPS TO START THE TESTS
+export PYTHONPATH=.
+
+# create topology, edit ip addresses
+cp topologies/available/topology.yaml.example topologies/available/topology.yaml
+ln -s ../available/topology.yaml topologies/enabled/topology.yaml
+
+pybot -L TRACE -v TOPOLOGY_PATH:topologies/enabled/topology.yaml tests
+ or
+./main.py -t topologies/enabled/topology.yaml -i test_tag
+ or
+./main.py
+
