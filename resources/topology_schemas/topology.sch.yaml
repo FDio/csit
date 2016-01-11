@@ -1,0 +1,113 @@
+# Copyright (c) 2016 Cisco and/or its affiliates.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at:
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# This file defines yaml schema for topolgy yaml.
+
+schema;topology_metadata_map:
+  type: map
+  mapping:
+    version:
+      type: any
+    schema:
+      required: yes
+      type: seq
+      sequence:
+        - type: str
+          unique: True
+    tags:
+      include: list_tags
+    check_script:
+      type: str
+    start_script:
+      type: str
+
+
+schema;list_tags:
+  type: seq
+  sequence:
+    - type: str
+      unique: True
+
+schema;type_interfaces:
+  type: map
+  mapping: &type_interface_mapping
+    regex;(port\d+): &type_interface_mapping_port
+      type: map
+      mapping: &type_interface_mapping_port_mapping
+        name:
+          type: str
+        pci_address:
+          type: str
+          pattern: "[0-9a-f]{4}:[0-9a-f]{2}:[0-9a-f]{2}\\.\\d{1}"
+        mac_address:
+          type: str
+          pattern: "[0-9a-f]{2}(:[0-9a-f]{2}){5}"
+        link:
+          type: str
+          required: yes
+        driver: &type_interface_mapping_driver
+          type: str
+
+schema;type_interface_tg: &type_interface_tg
+  type: map
+  mapping:
+    <<: *type_interface_mapping
+    regex;(port\d+):
+      <<: *type_interface_mapping_port
+      mapping:
+        <<: *type_interface_mapping_port_mapping
+        driver:
+          <<: *type_interface_mapping_driver
+          required: yes
+
+schema;type_node: &type_node
+  type: map
+  mapping: &type_node_mapping
+    type: &type_node_mapping_type
+      required: yes
+      type: str
+    host:
+      required: yes
+      type: str
+    port:
+      type: int
+    username:
+      type: str
+    password:
+      type: str
+    priv_key:
+      type: str
+    interfaces:
+      type: map
+      mapping:
+        <<: *type_interface_mapping
+
+schema;type_tg:
+  type: map
+  mapping:
+    <<: *type_node_mapping
+    type:
+      <<: *type_node_mapping_type
+      enum: [TG]
+    interfaces:
+      <<: *type_interface_tg
+
+schema;type_dut:
+  type: map
+  mapping:
+    <<: *type_node_mapping
+    type:
+      <<: *type_node_mapping_type
+      enum: [DUT]
+
+# vim: sw=2:sts=2
