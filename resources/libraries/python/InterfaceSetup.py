@@ -1,0 +1,152 @@
+# Copyright (c) 2016 Cisco and/or its affiliates.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at:
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+"""Interface setup library."""
+
+from ssh import SSH
+
+
+class InterfaceSetup(object):
+    """Interface setup utilities."""
+
+    __UDEV_IF_RULES_FILE = '/etc/udev/rules.d/10-network.rules'
+
+    def __init__(self):
+        pass
+
+    @staticmethod
+    def tg_set_interface_driver(node, pci_addr, driver):
+        """Set interface driver on the TG node.
+
+        :param node: Node to set interface driver on (must be TG node).
+        :param interface: Interface name.
+        :param driver: Driver name.
+        :type node: dict
+        :type interface: str
+        :type driver: str
+        """
+        old_driver = InterfaceSetup.tg_get_interface_driver(node, pci_addr)
+        if old_driver == driver:
+            return
+
+        ssh = SSH()
+        ssh.connect(node)
+
+        # Unbind from current driver
+        if old_driver is not None:
+            cmd = 'sh -c "echo {0} > /sys/bus/pci/drivers/{1}/unbind"'.format(
+                pci_addr, old_driver)
+            (ret_code, _, _) = ssh.exec_command_sudo(cmd)
+            if int(ret_code) != 0:
+                raise Exception("'{0}' failed on '{1}'".format(cmd,
+                                                               node['host']))
+
+        # Bind to the new driver
+        cmd = 'sh -c "echo {0} > /sys/bus/pci/drivers/{1}/bind"'.format(
+            pci_addr, driver)
+        (ret_code, _, _) = ssh.exec_command_sudo(cmd)
+        if int(ret_code) != 0:
+            raise Exception("'{0}' failed on '{1}'".format(cmd, node['host']))
+
+    @staticmethod
+    def tg_get_interface_driver(node, pci_addr):
+        """Get interface driver from the TG node.
+
+        :param node: Node to get interface driver on (must be TG node).
+        :param interface: Interface name.
+        :type node: dict
+        :type interface: str
+        :return: Interface driver or None if not found.
+        :rtype: str
+
+        .. note::
+            # lspci -vmmks 0000:00:05.0
+            Slot:   00:05.0
+            Class:  Ethernet controller
+            Vendor: Red Hat, Inc
+            Device: Virtio network device
+            SVendor:        Red Hat, Inc
+            SDevice:        Device 0001
+            PhySlot:        5
+            Driver: virtio-pci
+        """
+        ssh = SSH()
+        ssh.connect(node)
+
+        cmd = 'lspci -vmmks {0}'.format(pci_addr)
+
+        (ret_code, stdout, _) = ssh.exec_command(cmd)
+        if int(ret_code) != 0:
+            raise Exception("'{0}' failed on '{1}'".format(cmd, node['host']))
+
+        for line in stdout.splitlines():
+            if len(line) == 0:
+                continue
+            (name, value) = line.split("\t", 1)
+            if name == 'Driver:':
+                return value
+
+        return None
+
+    @staticmethod
+    def tg_set_interfaces_udev_rules(node):
+        """Set udev rules for interfaces.
+
+        Create udev rules file in /etc/udev/rules.d where are rules for each
+        interface used by TG node, based on MAC interface has specific name.
+        So after unbind and bind again to kernel driver interface has same
+        name as before. This must be called after TG has set name for each
+        port in topology dictionary.
+        udev rule example
+        SUBSYSTEM=="net", ACTION=="add", ATTR{address}=="52:54:00:e1:8a:0f",
+        NAME="eth1"
+
+        :param node: Node to set udev rules on (must be TG node).
+        :type node: dict
+        """
+        ssh = SSH()
+        ssh.connect(node)
+
+        cmd = 'rm -f {0}'.format(InterfaceSetup.__UDEV_IF_RULES_FILE)
+        (ret_code, _, _) = ssh.exec_command_sudo(cmd)
+        if int(ret_code) != 0:
+            raise Exception("'{0}' failed on '{1}'".format(cmd, node['host']))
+
+        for if_k, if_v in node['interfaces'].items():
+            if if_k == 'mgmt':
+                continue
+            rule = 'SUBSYSTEM==\\"net\\", ACTION==\\"add\\", ATTR{address}' + \
+                '==\\"' + if_v['mac_address'] + '\\", NAME=\\"' + \
+                if_v['name'] + '\\"'
+            cmd = 'sh -c "echo \'{0}\' >> {1}"'.format(
+                rule, InterfaceSetup.__UDEV_IF_RULES_FILE)
+            (ret_code, _, _) = ssh.exec_command_sudo(cmd)
+            if int(ret_code) != 0:
+                raise Exception("'{0}' failed on '{1}'".format(cmd,
+                                                               node['host']))
+
+        cmd = '/etc/init.d/udev restart'
+        ssh.exec_command_sudo(cmd)
+
+    @staticmethod
+    def tg_set_interfaces_default_driver(node):
+        """Set interfaces default driver specified in topology yaml file.
+
+        :param node: Node to setup interfaces driver on (must be TG node).
+        :type node: dict
+        """
+        for if_k, if_v in node['interfaces'].items():
+            if if_k == 'mgmt':
+                continue
+            InterfaceSetup.tg_set_interface_driver(node, if_v['pci_address'],
+                                                   if_v['driver'])
