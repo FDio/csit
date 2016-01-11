@@ -1,0 +1,105 @@
+# Copyright (c) 2016 Cisco and/or its affiliates.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at:
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+"""VPP counters utilities library."""
+
+import time
+from topology import NodeType, Topology
+from VatExecutor import VatExecutor, VatTerminal
+from robot.api import logger
+
+
+class VppCounters(object):
+    """VPP counters utilities."""
+
+    def __init__(self):
+        self._stats_table = None
+
+    def vpp_nodes_clear_interface_counters(self, nodes):
+        """Clear interface counters on all VPP nodes in topology.
+
+           :param nodes: Nodes in topology.
+           :type nodes: dict
+        """
+        for node in nodes.values():
+            if node['type'] == NodeType.DUT:
+                self.vpp_clear_interface_counters(node)
+
+    @staticmethod
+    def vpp_clear_interface_counters(node):
+        """Clear interface counters on VPP node.
+
+           :param node: Node to clear interface counters on.
+           :type node: dict
+        """
+        vat = VatExecutor()
+        vat.execute_script('clear_interface.vat', node)
+        vat.script_should_have_passed()
+
+    def vpp_dump_stats_table(self, node):
+        """Dump stats table on VPP node.
+
+           :param node: Node to dump stats table on.
+           :type node: dict
+           :return: Stats table.
+        """
+        vat = VatTerminal(node)
+        vat.vat_terminal_exec_cmd('want_stats enable')
+        for _ in range(0, 12):
+            stats_table = vat.vat_terminal_exec_cmd('dump_stats_table')
+            if_counters = stats_table['interface_counters']
+            if len(if_counters) > 0:
+                self._stats_table = stats_table
+                vat.vat_terminal_close()
+                return stats_table
+            time.sleep(1)
+
+        vat.vat_terminal_close()
+        return None
+
+    def vpp_get_ipv4_interface_counter(self, node, interface):
+        return self.vpp_get_ipv46_interface_counter(node, interface, False)
+
+    def vpp_get_ipv6_interface_counter(self, node, interface):
+        return self.vpp_get_ipv46_interface_counter(node, interface, True)
+
+    def vpp_get_ipv46_interface_counter(self, node, interface, is_ipv6=True):
+        """Return interface IPv4/IPv6 counter
+
+           :param node: Node to get interface IPv4/IPv6 counter on.
+           :param interface: Interface name.
+           :type node: dict
+           :type interface: str
+           :return: Interface IPv4/IPv6 counter.
+           :param is_ipv6: specify IP version
+           :type is_ipv6: bool
+           :rtype: int
+        """
+        version = 'ip6' if is_ipv6 else 'ip4'
+        topo = Topology()
+        if_index = topo.get_interface_sw_index(node, interface)
+        if if_index is None:
+            logger.trace('{i} sw_index not found.'.format(i=interface))
+            return 0
+
+        if_counters = self._stats_table.get('interface_counters')
+        if if_counters is None or len(if_counters) == 0:
+            logger.trace('No interface counters.')
+            return 0
+        for counter in if_counters:
+            if counter['vnet_counter_type'] == version:
+                data = counter['data']
+                return data[if_index]
+        logger.trace('{i} {v} counter not found.'.format(i=interface,
+                                                         v=version))
+        return 0
