@@ -195,7 +195,7 @@ class Topology(object):
 
         interface_dict = {}
         list_mac_address = self.convert_mac_to_number_list(mac_address)
-        logger.trace(list_mac_address.__str__())
+        logger.trace(str(list_mac_address))
         for interface in interfaces_list:
             # TODO: create vat json integrity checking and move there
             if "l2_address" not in interface:
@@ -254,6 +254,9 @@ class Topology(object):
             if_mac = ifc['mac_address']
             interface_dict = self._extract_vpp_interface_by_mac(interface_list,
                                                                 if_mac)
+            if not interface_dict:
+                raise Exception('Interface {0} not found by MAC {1}'.
+                        format(ifc, if_mac))
             ifc['name'] = interface_dict["interface_name"]
             ifc['vpp_sw_index'] = interface_dict["sw_if_index"]
 
@@ -323,7 +326,7 @@ class Topology(object):
         This method updates the topology dictionary by querying interface lists
         of all nodes mentioned in the topology dictionary.
         It does this by dumping interface list to json output from all devices
-        using vpe_api_test, and pairing known information from topology
+        using vpp_api_test, and pairing known information from topology
         (mac address/pci address of interface) to state from VPP.
         For TG/linux nodes add interface name only.
         """
