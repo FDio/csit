@@ -23,7 +23,6 @@
 | ...         | AND          | Vpp nodes ra supress link layer | ${nodes}
 | ...         | AND          | Vpp nodes setup ipv6 routing | ${nodes} | ${nodes_ipv6_addr}
 | ...         | AND          | Setup all TGs before traffic script
-| Suite Teardown | Clear ipv6 on all dut in topology | ${nodes} | ${nodes_ipv6_addr}
 | Test Setup | Clear interface counters on all vpp nodes in topology | ${nodes}
 
 *** Test Cases ***
