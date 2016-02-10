@@ -232,6 +232,7 @@ class RxQueue(PacketVerifier):
             return None
 
         pkt = self._sock.recv(0x7fff)
+        pkt_pad = auto_pad(pkt)
         print 'Received packet on {0} of len {1}'.format(self._ifname, len(pkt))
         Ether(pkt).show2()
         print
@@ -241,7 +242,7 @@ class RxQueue(PacketVerifier):
                 # Auto pad all packets in ignore list
                 ignore[i] = auto_pad(ig_pkt)
             for ig_pkt in ignore:
-                if ig_pkt == pkt:
+                if ig_pkt == pkt_pad:
                     # Found the packet in ignore list, get another one
                     # TODO: subtract timeout - time_spent in here
                     ignore.remove(ig_pkt)

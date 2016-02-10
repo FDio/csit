@@ -20,6 +20,20 @@ class DUTSetup(object):
     def __init__(self):
         pass
 
+    def start_vpp_service_on_all_duts(self, nodes):
+        """Start up the VPP service on all nodes."""
+        ssh = SSH()
+        for node in nodes.values():
+            if node['type'] == NodeType.DUT:
+                ssh.connect(node)
+                (ret_code, stdout, stderr) = \
+                        ssh.exec_command_sudo('service vpp restart')
+                if 0 != int(ret_code):
+                    logger.debug('stdout: {0}'.format(stdout))
+                    logger.debug('stderr: {0}'.format(stderr))
+                    raise Exception('DUT {0} failed to start VPP service'.
+                            format(node['host']))
+
     def setup_all_duts(self, nodes):
         """Prepare all DUTs in given topology for test execution."""
         for node in nodes.values():
@@ -35,7 +49,7 @@ class DUTSetup(object):
                 Constants.REMOTE_FW_DIR, Constants.RESOURCES_LIB_SH))
         logger.trace(stdout)
         if 0 != int(ret_code):
-            logger.error('DUT {0} setup script failed: "{1}"'.
+            logger.debug('DUT {0} setup script failed: "{1}"'.
                     format(node['host'], stdout + stderr))
             raise Exception('DUT test setup script failed at node {}'.
                     format(node['host']))
