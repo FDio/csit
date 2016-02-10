@@ -30,8 +30,8 @@ def check_ttl(ttl_begin, ttl_end, ttl_diff):
 
 
 def ckeck_packets_equal(pkt_send, pkt_recv):
-    pkt_send_raw = str(pkt_send)
-    pkt_recv_raw = str(pkt_recv)
+    pkt_send_raw = auto_pad(pkt_send)
+    pkt_recv_raw = auto_pad(pkt_recv)
     if pkt_send_raw != pkt_recv_raw:
         print "Sent:     {}".format(pkt_send_raw.encode('hex'))
         print "Received: {}".format(pkt_recv_raw.encode('hex'))
@@ -72,20 +72,21 @@ if dst_if_defined and (src_if_name == dst_if_name):
     raise Exception("Source interface name equals destination interface name")
 
 src_if = Interface(src_if_name)
-src_if.send_pkt(create_gratuitous_arp_request(src_mac, src_ip))
+src_if.send_pkt(str(create_gratuitous_arp_request(src_mac, src_ip)))
 if dst_if_defined:
     dst_if = Interface(dst_if_name)
-    dst_if.send_pkt(create_gratuitous_arp_request(dst_mac, dst_ip))
+    dst_if.send_pkt(str(create_gratuitous_arp_request(dst_mac, dst_ip)))
 
-pkt_req_send = auto_pad(Ether(src=src_mac, dst=first_hop_mac) /
-                        IP(src=src_ip, dst=dst_ip) /
-                        ICMP())
-pkt_req_send = Ether(pkt_req_send)
+pkt_req_send = (Ether(src=src_mac, dst=first_hop_mac) /
+                      IP(src=src_ip, dst=dst_ip) /
+                      ICMP())
 src_if.send_pkt(pkt_req_send)
 
 if dst_if_defined:
     try:
         pkt_req_recv = dst_if.recv_pkt()
+        if pkt_req_recv is None:
+            raise Exception('Timeout waiting for packet')
     except:
         src_if.close()
         if dst_if_defined:
@@ -98,14 +99,15 @@ if dst_if_defined:
     del pkt_req_send_mod[IP].chksum  # update checksum
     ckeck_packets_equal(pkt_req_send_mod[IP], pkt_req_recv[IP])
 
-    pkt_resp_send = auto_pad(Ether(src=dst_mac, dst=pkt_req_recv.src) /
-                             IP(src=dst_ip, dst=src_ip) /
-                             ICMP(type=0))  # echo-reply
-    pkt_resp_send = Ether(pkt_resp_send)
+    pkt_resp_send = (Ether(src=dst_mac, dst=pkt_req_recv.src) /
+                           IP(src=dst_ip, dst=src_ip) /
+                           ICMP(type=0))  # echo-reply
     dst_if.send_pkt(pkt_resp_send)
 
 try:
     pkt_resp_recv = src_if.recv_pkt()
+    if pkt_resp_recv is None:
+        raise Exception('Timeout waiting for packet')
 except:
     src_if.close()
     if dst_if_defined:
