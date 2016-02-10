@@ -74,7 +74,7 @@ class VatExecutor(object):
         logger.trace("stdout: '{0}'".format(self._stdout))
         logger.trace("stderr: '{0}'".format(self._stderr))
 
-        # TODO: download vpe_api_test output file
+        # TODO: download vpn_api_test output file
         # self._delete_files(node, remote_file_path, remote_file_out)
 
     def execute_script_json_out(self, vat_name, node, timeout=10,):
