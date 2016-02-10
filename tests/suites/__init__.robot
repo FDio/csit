@@ -16,5 +16,6 @@
 | Library | resources/libraries/python/SetupFramework.py
 | Library | resources.libraries.python.topology.Topology
 | Suite Setup | Run Keywords | Setup Framework | ${nodes}
+| ...         | AND          | Start VPP Service On All DUTs | ${nodes}
 | ...         | AND          | Update All Interface Data On All Nodes | ${nodes}
 
