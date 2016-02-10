@@ -106,6 +106,11 @@ if dst_if_defined:
 
 try:
     pkt_resp_recv = src_if.recv_pkt()
+    print
+    print "XXXXXXx received"
+    print Ether(pkt_resp_recv).show2()
+    print "XXXXXXx received"
+    print
 except:
     src_if.close()
     if dst_if_defined:
