@@ -177,6 +177,12 @@ class IPv6Setup(object):
             raise Exception('VPP sw_interface_set_flags failed on {h}'.format(
                 h=node['host']))
 
+        cmd_input = 'exec show int'
+        (ret_code, stdout, stderr) = ssh.exec_command_sudo(cmd, cmd_input)
+        logger.error('XXXX ret: {0}'.format(ret_code))
+        logger.error('XXX stdout: {0}'.format(stdout))
+        logger.error('XXX stderr: {1}'.format(stderr))
+
     @staticmethod
     def vpp_del_if_ipv6_addr(node, interface, addr, prefix):
         """Delete IPv6 address on VPP.
