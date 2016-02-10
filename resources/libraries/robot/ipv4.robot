@@ -51,6 +51,7 @@
 | | Setup IPv4 adresses on all DUT nodes in topology | ${nodes} | ${nodes_ipv4_addr}
 | | Setup ARP on all DUTs | ${nodes}
 | | Routes are set up for IPv4 testing
+| | Sleep | 10
 
 | TG interface "${tg_port}" can route to node "${node}" interface "${port}" "${hops}" hops away using IPv4
 | | Node "${nodes['TG']}" interface "${tg_port}" can route to node "${node}" interface "${port}" "${hops}" hops away using IPv4
@@ -70,7 +71,7 @@
 | # TODO: end_size is currently minimum MTU size for Ethernet minus IPv4 and
 | # ICMP echo header size (1500 - 20 - 8),
 | # MTU info is not in VAT sw_interface_dump output
-| | ${args}= | Set Variable | ${args} --start_size 0 --end_size 1472 --step 1
+| | ${args}= | Set Variable | ${args} --start_size 1 --end_size 1472 --step 1
 | | Run Traffic Script On Node | ipv4_sweep_ping.py | ${src_node} | ${args}
 
 | Send ARP request and validate response

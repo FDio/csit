@@ -28,5 +28,6 @@
 | | ${dut1}= | Set Variable | ${nodes['DUT1']}
 | | ${dut2}= | Set Variable | ${nodes['DUT2']}
 | | ${tg_links}= | Get traffic links between TG "${tg}" and DUT1 "${dut1}" and DUT2 "${dut2}"
+| | Sleep | 10 | Work around VPP interface up taking too long.
 | | Send traffic on node "${nodes['TG']}" from link "${tg_links[0]}" to link "${tg_links[1]}"
 
