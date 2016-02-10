@@ -151,6 +151,7 @@
 | | [Documentation] | Setup IPv6 address on all DUTs
 | | [Arguments] | ${nodes} | ${nodes_addr}
 | | Setup all DUTs before test
+| | Sleep | 10
 | | Nodes Setup Ipv6 Addresses | ${nodes} | ${nodes_addr}
 
 | Clear ipv6 on all dut in topology
