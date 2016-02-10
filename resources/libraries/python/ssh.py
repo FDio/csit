@@ -11,6 +11,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 import paramiko
+from paramiko import RSAKey
+import StringIO
 from scp import SCPClient
 from time import time
 from robot.api import logger
@@ -28,8 +30,6 @@ class SSH(object):
     __existing_connections = {}
 
     def __init__(self):
-        self._ssh = paramiko.SSHClient()
-        self._ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
         self._hostname = None
 
     def _node_hash(self, node):
@@ -42,14 +42,29 @@ class SSH(object):
         """
         self._hostname = node['host']
         node_hash = self._node_hash(node)
-        if node_hash in self.__existing_connections:
-            self._ssh = self.__existing_connections[node_hash]
+        if node_hash in SSH.__existing_connections:
+            self._ssh = SSH.__existing_connections[node_hash]
+            logger.warn('reusing ssh: {0}'.format(self._ssh))
         else:
             start = time()
+            pkey = None
+            if 'priv_key' in node:
+                pkey = RSAKey.from_private_key(
+                        StringIO.StringIO(node['priv_key']))
+
+            self._ssh = paramiko.SSHClient()
+            self._ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+
             self._ssh.connect(node['host'], username=node['username'],
-                              password=node['password'])
-            self.__existing_connections[node_hash] = self._ssh
+                              password=node.get('password'), pkey=pkey)
+
+            SSH.__existing_connections[node_hash] = self._ssh
+
             logger.trace('connect took {} seconds'.format(time() - start))
+            logger.warn('new ssh: {0}'.format(self._ssh))
+
+        logger.warn('Connect peer: {0}'.format(self._ssh.get_transport().getpeername()))
+        logger.warn('Connections: {0}'.format(str(SSH.__existing_connections)))
 
     def exec_command(self, cmd, timeout=10):
         """Execute SSH command on a new channel on the connected Node.
@@ -101,7 +116,7 @@ class SSH(object):
             >>> #Execute command without input (sudo -S cmd)
             >>> ssh.exex_command_sudo("ifconfig eth0 down")
             >>> #Execute command with input (sudo -S cmd <<< "input")
-            >>> ssh.exex_command_sudo("vpe_api_test", "dump_interface_table")
+            >>> ssh.exex_command_sudo("vpp_api_test", "dump_interface_table")
         """
         if cmd_input is None:
             command = 'sudo -S {c}'.format(c=cmd)
@@ -229,7 +244,7 @@ def exec_cmd_no_error(node, cmd, timeout=None, sudo=False):
 
     Returns (stdout, stderr).
     """
-    (rc, stdout, stderr) = exec_cmd(node,cmd, timeout=timeout, sudo=sudo)
+    (rc, stdout, stderr) = exec_cmd(node, cmd, timeout=timeout, sudo=sudo)
     assert_equal(rc, 0, 'Command execution failed: "{}"\n{}'.
                  format(cmd, stderr))
     return (stdout, stderr)

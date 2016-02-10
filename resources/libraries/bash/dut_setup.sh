@@ -28,12 +28,18 @@ echo
 cat /proc/meminfo
 
 echo
-echo See vpe process
+echo See vpp process
 echo
-ps aux | grep vpe
+ps aux | grep vpp
 
 echo
 echo See free memory
 echo
 free -m
 
+
+echo QQQQ
+sudo dmidecode
+
+
+sudo vpp_api_test <<< "exec trace add dpdk-input 100"
