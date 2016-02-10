@@ -51,6 +51,7 @@
 | | Setup IPv4 adresses on all DUT nodes in topology | ${nodes} | ${nodes_ipv4_addr}
 | | Setup ARP on all DUTs | ${nodes}
 | | Routes are set up for IPv4 testing
+| | Sleep | 10
 
 | TG interface "${tg_port}" can route to node "${node}" interface "${port}" "${hops}" hops away using IPv4
 | | Node "${nodes['TG']}" interface "${tg_port}" can route to node "${node}" interface "${port}" "${hops}" hops away using IPv4
