@@ -17,7 +17,6 @@
 | Test Setup | Setup all DUTs before test
 | Library | resources.libraries.python.topology.Topology
 | Variables | resources/libraries/python/topology.py
-| Force Tags | 3_NODE_DOUBLE_LINK_TOPO
 | Suite Setup | Setup all TGs before traffic script
 
 *** Test Cases ***
