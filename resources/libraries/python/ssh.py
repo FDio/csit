@@ -11,6 +11,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 import paramiko
+from paramiko import RSAKey
+import StringIO
 from scp import SCPClient
 from time import time
 from robot.api import logger
@@ -46,8 +48,12 @@ class SSH(object):
             self._ssh = self.__existing_connections[node_hash]
         else:
             start = time()
+            pkey = None
+            if 'priv_key' in node:
+                pkey = RSAKey.from_private_key(
+                        StringIO.StringIO(node['priv_key']))
             self._ssh.connect(node['host'], username=node['username'],
-                              password=node['password'])
+                              password=node.get('password'), pkey=pkey)
             self.__existing_connections[node_hash] = self._ssh
             logger.trace('connect took {} seconds'.format(time() - start))
 
@@ -101,7 +107,7 @@ class SSH(object):
             >>> #Execute command without input (sudo -S cmd)
             >>> ssh.exex_command_sudo("ifconfig eth0 down")
             >>> #Execute command with input (sudo -S cmd <<< "input")
-            >>> ssh.exex_command_sudo("vpe_api_test", "dump_interface_table")
+            >>> ssh.exex_command_sudo("vpp_api_test", "dump_interface_table")
         """
         if cmd_input is None:
             command = 'sudo -S {c}'.format(c=cmd)
