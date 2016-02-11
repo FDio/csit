@@ -1,10 +1,12 @@
 #!/bin/sh
 
+TREX_VERSION="1.91"
+
 TREX_DOWNLOAD_REPO="https://github.com/cisco-system-traffic-generator/trex-core/archive/"
-TREX_DOWNLOAD_PACKAGE="v1.88.zip"
+TREX_DOWNLOAD_PACKAGE="v${TREX_VERSION}.zip"
 TREX_PACKAGE_URL="${TREX_DOWNLOAD_REPO}${TREX_DOWNLOAD_PACKAGE}"
 TARGET_DIR="/opt/"
-TREX_DIR="trex-core-1.88/"
+TREX_DIR="trex-core-${TREX_VERSION}/"
 TREX_INSTALL_DIR="${TARGET_DIR}${TREX_DIR}"
 
 if test "$(id -u)" -ne 0

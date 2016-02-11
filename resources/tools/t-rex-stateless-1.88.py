@@ -13,7 +13,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""This script uses T-REX stateless API to drive t-rex instance.
+"""This script uses T-REX stateless API to drive t-rex process.
+
+!!! OUTDATED 1.88 T-REX STATELESS API, USE WITH CAUTION !!!
 
 Requirements:
 - T-REX: https://github.com/cisco-system-traffic-generator/trex-core 
@@ -37,15 +39,15 @@ Functionality:
 1. Configure traffic on running T-REX instance
 2. Clear statistics on all ports
 3. Ctart traffic with specified duration
-4. Print statistics to stdout
+4. Print statistics
 
 """
 
 
 import sys, getopt
-sys.path.insert(0, "/opt/trex-core-1.91/scripts/automation/trex_control_plane/stl/")
+sys.path.insert(0, "/opt/trex-core-1.88/scripts/api/stl/")
 
-from trex_stl_lib.api import *
+from trex_stl_api import *
 
 import dpkt
 import json
@@ -64,42 +66,69 @@ def create_packets(traffic_options, frame_size=64):
         print "Packet min. size is 64B"
         sys.exit(2)
 
-    fsize_no_fcs = frame_size - 4 # no FCS
+    # build A side packet
+    pkt_a = STLPktBuilder()
 
-    #p1_src_mac = traffic_options['p1_src_mac']
-    #p1_dst_mac = traffic_options['p1_dst_mac']
+    pkt_a.add_pkt_layer("l2", dpkt.ethernet.Ethernet())
+    pkt_a.add_pkt_layer("l3_ip", dpkt.ip.IP())
+    pkt_a.add_pkt_layer("l4_udp", dpkt.udp.UDP())
+    pkt_a.set_pkt_payload(generate_payload(frame_size -
+                                           pkt_a.get_packet_length()))
+    pkt_a.set_layer_attr("l3_ip", "len", len(pkt_a.get_layer('l3_ip')))
+
+    # build B side packet
+    pkt_b = pkt_a.clone()
+
+    p1_src_mac = traffic_options['p1_src_mac']
+    p1_dst_mac = traffic_options['p1_dst_mac']
     p1_src_start_ip = traffic_options['p1_src_start_ip']
     p1_src_end_ip = traffic_options['p1_src_end_ip']
     p1_dst_start_ip = traffic_options['p1_dst_start_ip']
-    #p1_dst_end_ip = traffic_options['p1_dst_end_ip']
-    #p2_src_mac = traffic_options['p2_src_mac']
-    #p2_dst_mac = traffic_options['p2_dst_mac']
+    p1_dst_end_ip = traffic_options['p1_dst_end_ip']
+    p2_src_mac = traffic_options['p2_src_mac']
+    p2_dst_mac = traffic_options['p2_dst_mac']
     p2_src_start_ip = traffic_options['p2_src_start_ip']
     p2_src_end_ip = traffic_options['p2_src_end_ip']
     p2_dst_start_ip = traffic_options['p2_dst_start_ip']
-    #p2_dst_end_ip = traffic_options['p2_dst_end_ip']
+    p2_dst_end_ip = traffic_options['p2_dst_end_ip']
 
-    base_pkt_a = Ether()/IP(src=p1_src_start_ip, dst=p1_dst_start_ip)/UDP(dport=12, sport=1025, chksum=0)
-    base_pkt_b = Ether()/IP(src=p2_src_start_ip, dst=p2_dst_start_ip)/UDP(dport=12, sport=1025, chksum=0)
+    pkt_a.set_eth_layer_addr(layer_name="l2",
+                             attr="src",
+                             mac_addr=p1_src_mac)
+    pkt_a.set_eth_layer_addr(layer_name="l2",
+                             attr="dst",
+                             mac_addr=p1_dst_mac)
+    pkt_b.set_eth_layer_addr(layer_name="l2",
+                             attr="src",
+                             mac_addr=p2_src_mac)
+    pkt_b.set_eth_layer_addr(layer_name="l2",
+                             attr="dst",
+                             mac_addr=p2_dst_mac)
 
-    vm1 = CTRexScRaw([STLVmTupleGen(ip_min=p1_src_start_ip, ip_max=p1_src_end_ip,
-                                    name="tuple"), # define tuple gen
+    # set IP range for pkt and split it by multiple cores
+    pkt_a.set_vm_ip_range(ip_layer_name="l3_ip",
+                          ip_field="src",
+                          ip_start=p1_src_start_ip, ip_end=p1_src_end_ip,
+                          operation="inc",
+                          split=True)
 
-                      STLVmWrFlowVar(fv_name="tuple.ip", pkt_offset="IP.src"), # write ip to packet IP.src
-                      STLVmFixIpv4(offset="IP"),                               # fix checksum
-                     ]
-                     , split_by_field="tuple") # split to cores base on the tuple generator
- 
-    vm2 = CTRexScRaw([STLVmTupleGen(ip_min=p2_src_start_ip, ip_max=p2_src_end_ip,
-                                    name="tuple"), # define tuple gen
+    pkt_a.set_vm_ip_range(ip_layer_name="l3_ip",
+                          ip_field="dst",
+                          ip_start=p1_dst_start_ip, ip_end=p1_dst_end_ip,
+                          operation="inc")
 
-                      STLVmWrFlowVar(fv_name="tuple.ip", pkt_offset="IP.src"), # write ip to packet IP.src
-                      STLVmFixIpv4(offset="IP"),                               # fix checksum
-                     ]
-                     , split_by_field="tuple") # split to cores base on the tuple generator
 
-    pkt_a = STLPktBuilder(pkt=base_pkt_a/generate_payload(fsize_no_fcs-len(base_pkt_a)), vm=vm1)
-    pkt_b = STLPktBuilder(pkt=base_pkt_b/generate_payload(fsize_no_fcs-len(base_pkt_b)), vm=vm2)
+    # build B side packet
+    pkt_b.set_vm_ip_range(ip_layer_name="l3_ip",
+                          ip_field="src",
+                          ip_start=p2_src_start_ip, ip_end=p2_src_end_ip,
+                          operation="inc",
+                          split=True)
+
+    pkt_b.set_vm_ip_range(ip_layer_name="l3_ip",
+                          ip_field="dst",
+                          ip_start=p2_dst_start_ip, ip_end=p2_dst_end_ip,
+                          operation="inc")
 
     return(pkt_a, pkt_b)
 
@@ -118,9 +147,9 @@ def simple_burst(pkt_a, pkt_b, duration=10, rate="1mpps",
         s1 = STLStream(packet=pkt_a,
                        mode=STLTXCont(pps=100))
 
-        # second stream with a phase of 10ns (inter stream gap)
+        # second stream with a phase of 1ms (inter stream gap)
         s2 = STLStream(packet=pkt_b,
-                       isg=10.0,
+                       isg=1000,
                        mode=STLTXCont(pps=100))
 
 
@@ -140,12 +169,13 @@ def simple_burst(pkt_a, pkt_b, duration=10, rate="1mpps",
             c.start(ports=[0, 1], mult=rate, duration=warmup_time)
             c.wait_on_traffic(ports=[0, 1])
             stats = c.get_stats()
-            print stats
             print "#####warmup statistics#####"
-            print json.dumps(stats, indent=4,
+            print json.dumps(stats["port 0"], indent=4,
                              separators=(',', ': '), sort_keys=True)
-            lost_a = stats[0]["opackets"] - stats[1]["ipackets"]
-            lost_b = stats[1]["opackets"] - stats[0]["ipackets"]
+            print json.dumps(stats["port 1"], indent=4,
+                             separators=(',', ': '), sort_keys=True)
+            lost_a = stats["port 0"]["opackets"] - stats["port 1"]["ipackets"]
+            lost_b = stats["port 1"]["opackets"] - stats["port 0"]["ipackets"]
 
             print "\npackets lost from 0 --> 1:   {0} pkts".format(lost_a)
             print "packets lost from 1 --> 0:   {0} pkts".format(lost_b)
@@ -164,14 +194,16 @@ def simple_burst(pkt_a, pkt_b, duration=10, rate="1mpps",
         stats = c.get_stats()
 
         print "#####statistics#####"
-        print json.dumps(stats, indent=4,
+        print json.dumps(stats["port 0"], indent=4,
+                         separators=(',', ': '), sort_keys=True)
+        print json.dumps(stats["port 1"], indent=4,
                          separators=(',', ': '), sort_keys=True)
 
-        lost_a = stats[0]["opackets"] - stats[1]["ipackets"]
-        lost_b = stats[1]["opackets"] - stats[0]["ipackets"]
+        lost_a = stats["port 0"]["opackets"] - stats["port 1"]["ipackets"]
+        lost_b = stats["port 1"]["opackets"] - stats["port 0"]["ipackets"]
 
-        total_sent = stats[0]["opackets"] + stats[1]["opackets"]
-        total_rcvd = stats[0]["ipackets"] + stats[1]["ipackets"]
+        total_sent = stats["port 0"]["opackets"] + stats["port 1"]["opackets"]
+        total_rcvd = stats["port 0"]["ipackets"] + stats["port 1"]["ipackets"]
 
         print "\npackets lost from 0 --> 1:   {0} pkts".format(lost_a)
         print "packets lost from 1 --> 0:   {0} pkts".format(lost_b)
@@ -243,12 +275,12 @@ def main(argv):
             _frame_size = int(arg)
         elif opt == '-r':
             _rate = arg
-        elif opt.startswith("--p"):
+        elif opt.startswith( "--p" ):
             _traffic_options[opt[2:]] = arg
 
     print _traffic_options
-    if len(_traffic_options) != 6:
-        print "Supported only: src_start_ip, src_end_ip, dst_start_ip"
+    if len(_traffic_options) != 12:
+        print "Expected all 12 traffic options"
         print_help()
         sys.exit(2)
 
