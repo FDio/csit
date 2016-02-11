@@ -1,5 +1,5 @@
 #!/bin/bash
-set -euf -o pipefail
+#set -euf -o pipefail
 
 #git clone ssh://rotterdam-jobbuilder@gerrit.fd.io:29418/vpp
 #
@@ -20,9 +20,6 @@ set -euf -o pipefail
 #ping 10.30.51.25 -w 3 || true
 #ping 10.30.51.26 -w 3 || true
 #ping 10.30.51.24 -w 3 || true
-
-
-exit 0
 
 #IFS=',' read -ra ADDR <<< "${JCLOUDS_IPS}"
 #
@@ -49,5 +46,11 @@ exit 0
 #done
 
 
+virtualenv env
+. env/bin/activate
 
+echo pip install
+pip install -r requirements.txt
+
+PYTHONPATH=`pwd` pybot -L TRACE -v TOPOLOGY_PATH:topologies/available/lf_testbed2.yaml tests
 
