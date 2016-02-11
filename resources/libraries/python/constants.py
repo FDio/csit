@@ -16,4 +16,4 @@ class Constants(object):
     RESOURCES_LIB_SH = 'resources/libraries/bash'
     RESOURCES_TPL_VAT = 'resources/templates/vat'
     #OpenVPP VAT binary name
-    VAT_BIN_NAME = 'vpe_api_test'
+    VAT_BIN_NAME = 'vpp_api_test'
