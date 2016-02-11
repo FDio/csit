@@ -43,6 +43,8 @@ class TrafficGenerator(object):
         :return: nothing
         """
 
+        trex_path = "/opt/trex-core-1.88"
+
         if node['type'] != NodeType.TG:
             raise Exception('Node type is not a TG')
         if node['subtype'] == NodeSubTypeTG.TREX:
@@ -50,11 +52,19 @@ class TrafficGenerator(object):
             ssh.connect(node)
 
             (ret, stdout, stderr) = ssh.exec_command(
-                "sh -c 'cd /opt/trex-core-1.88/scripts/ && "
-                "--bind=igb_uio {0} {1}".format(interface1, interface2))
+                "sh -c 'cd {0}/scripts/ && sudo modprobe uio && "
+                "sudo insmod ./ko/src/igb_uio.ko'".\
+                format(trex_path, interface1, interface2))
+
             (ret, stdout, stderr) = ssh.exec_command(
-                "sh -c 'cd /opt/trex-core-1.88/scripts/ && "
-                "sudo nohup ./t-rex-64 -i -c 4 --iom 0 > /dev/null 2>&1 &'")
+                "sh -c 'cd {0}/scripts/ && "
+                "./dpdk_nic_bind.py --bind=igb_uio {1} {2}'".\
+                format(trex_path, interface1, interface2))
+
+            (ret, stdout, stderr) = ssh.exec_command(
+                "sh -c 'cd {0}/scripts/ && "
+                "sudo nohup ./t-rex-64 -i -c 4 --iom 0 > /dev/null 2>&1 &'").\
+                format(trex_path)
 
     @staticmethod
     def teardown_traffic_generator(node):
