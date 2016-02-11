@@ -18,7 +18,7 @@ from robot.api import logger
 from resources.libraries.python.ssh import SSH
 from resources.libraries.python.topology import NodeType
 from resources.libraries.python.topology import NodeSubTypeTG
-from resources.libraries.python.topology import Topology
+#from resources.libraries.python.topology import Topology
 
 __all__ = ['TrafficGenerator']
 
@@ -43,6 +43,8 @@ class TrafficGenerator(object):
         :return: nothing
         """
 
+        trex_path = "/opt/trex-core-1.91"
+
         if node['type'] != NodeType.TG:
             raise Exception('Node type is not a TG')
         if node['subtype'] == NodeSubTypeTG.TREX:
@@ -50,11 +52,14 @@ class TrafficGenerator(object):
             ssh.connect(node)
 
             (ret, stdout, stderr) = ssh.exec_command(
-                "sh -c 'cd /opt/trex-core-1.88/scripts/ && "
-                "--bind=igb_uio {0} {1}".format(interface1, interface2))
+                "sh -c 'cd {0}/scripts/ && sudo modprobe uio && "
+                "sudo insmod ./ko/src/igb_uio.ko'"\
+                .format(trex_path))
+
             (ret, stdout, stderr) = ssh.exec_command(
-                "sh -c 'cd /opt/trex-core-1.88/scripts/ && "
-                "sudo nohup ./t-rex-64 -i -c 4 --iom 0 > /dev/null 2>&1 &'")
+                "sh -c 'cd {0}/scripts/ && "
+                "sudo nohup ./t-rex-64 -i -c 4 --iom 0 > /dev/null 2>&1 &'"\
+                .format(trex_path))
 
     @staticmethod
     def teardown_traffic_generator(node):
@@ -101,15 +106,15 @@ class TrafficGenerator(object):
         ssh = SSH()
         ssh.connect(node)
 
-        tg_port3_src_mac = Topology.get_interface_mac_by_port_key(node, "port3")
-        _, adj_int = Topology.\
-            get_adjacent_node_and_interface_by_key(nodes_info, node, "port3")
-        tg_port3_dst_mac = adj_int['mac_address']
+        #tg_port3_src_mac = Topology.get_interface_mac_by_port_key(node, "port3")
+        #_, adj_int = Topology.\
+        #    get_adjacent_node_and_interface_by_key(nodes_info, node, "port3")
+        #tg_port3_dst_mac = adj_int['mac_address']
 
-        tg_port5_src_mac = Topology.get_interface_mac_by_port_key(node, "port5")
-        _, adj_int = Topology.\
-            get_adjacent_node_and_interface_by_key(nodes_info, node, "port5")
-        tg_port5_dst_mac = adj_int['mac_address']
+        #tg_port5_src_mac = Topology.get_interface_mac_by_port_key(node, "port5")
+        #_, adj_int = Topology.\
+        #    get_adjacent_node_and_interface_by_key(nodes_info, node, "port5")
+        #tg_port5_dst_mac = adj_int['mac_address']
 
 
         if node['subtype'] == NodeSubTypeTG.TREX:
@@ -117,39 +122,37 @@ class TrafficGenerator(object):
                 (ret, stdout, stderr) = ssh.exec_command(
                     "sh -c '/tmp/openvpp-testing/resources/tools/t-rex-stateless.py "
                     "-d {0} -r {1}% -s {2} "
-                    "--p1_src_mac 52:00:00:00:00:01 "
-                    "--p1_dst_mac 52:00:00:00:00:02 "
+                    #"--p1_src_mac 52:00:00:00:00:01 "
+                    #"--p1_dst_mac 52:00:00:00:00:02 "
                     "--p1_src_start_ip 10.10.10.1 "
-                    "--p1_src_end_ip 10.10.10.254 "
+                    #"--p1_src_end_ip 10.10.10.254 "
                     "--p1_dst_start_ip 20.20.20.1 "
-                    "--p1_dst_end_ip 20.20.20.254 "
-                    "--p2_src_mac 52:00:00:00:00:02 "
-                    "--p2_dst_mac 52:00:00:00:00:01 "
+                    #"--p1_dst_end_ip 20.20.20.254 "
+                    #"--p2_src_mac 52:00:00:00:00:02 "
+                    #"--p2_dst_mac 52:00:00:00:00:01 "
                     "--p2_src_start_ip 20.20.20.1 "
-                    "--p2_src_end_ip 20.20.20.254 "
-                    "--p2_dst_start_ip 10.10.10.1 "
-                    "--p2_dst_end_ip 10.10.10.254'".\
+                    #"--p2_src_end_ip 20.20.20.254 "
+                    "--p2_dst_start_ip 10.10.10.1'".\
+                    #"--p2_dst_end_ip 10.10.10.254'".\
                     format(duration, rate, framesize), timeout=int(duration)+60)
             elif traffic_type in ["3-node-IPv4"]:
                 (ret, stdout, stderr) = ssh.exec_command(
                     "sh -c '/tmp/openvpp-testing/resources/tools/t-rex-stateless.py "
                     "-d {0} -r {1}% -s {2} "
-                    "--p1_src_mac {3} "
-                    "--p1_dst_mac {4} "
+                    #"--p1_src_mac {3} "
+                    #"--p1_dst_mac {4} "
                     "--p1_src_start_ip 10.10.10.2 "
-                    "--p1_src_end_ip 10.10.10.254 "
+                    #"--p1_src_end_ip 10.10.10.254 "
                     "--p1_dst_start_ip 20.20.20.2 "
-                    "--p1_dst_end_ip 20.20.20.2 "
-                    "--p2_src_mac {5} "
-                    "--p2_dst_mac {6} "
+                    #"--p1_dst_end_ip 20.20.20.2 "
+                    #"--p2_src_mac {5} "
+                    #"--p2_dst_mac {6} "
                     "--p2_src_start_ip 20.20.20.2 "
-                    "--p2_src_end_ip 20.20.20.254 "
-                    "--p2_dst_start_ip 10.10.10.2 "
-                    "--p2_dst_end_ip 10.10.10.2'".\
-                    format(duration, rate, framesize,\
-                           tg_port3_src_mac, tg_port3_dst_mac,\
-                           tg_port5_src_mac, tg_port5_dst_mac),\
-                           timeout=int(duration)+60)
+                    #"--p2_src_end_ip 20.20.20.254 "
+                    "--p2_dst_start_ip 10.10.10.2'".\
+                    #"--p2_dst_end_ip 10.10.10.2'".\
+                    format(duration, rate, framesize),\
+                    timeout=int(duration)+60)
             else:
                 raise NotImplementedError('Unsupported traffic type')
 
