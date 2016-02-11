@@ -101,7 +101,7 @@ class SSH(object):
             >>> #Execute command without input (sudo -S cmd)
             >>> ssh.exex_command_sudo("ifconfig eth0 down")
             >>> #Execute command with input (sudo -S cmd <<< "input")
-            >>> ssh.exex_command_sudo("vpe_api_test", "dump_interface_table")
+            >>> ssh.exex_command_sudo("vpp_api_test", "dump_interface_table")
         """
         if cmd_input is None:
             command = 'sudo -S {c}'.format(c=cmd)
