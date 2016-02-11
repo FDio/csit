@@ -13,22 +13,22 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Traffic script for IPv6 sweep ping."""
+"""Traffic script for IPv4 sweep ping."""
 
 import sys
 import logging
 import os
 logging.getLogger("scapy.runtime").setLevel(logging.ERROR)
-from resources.libraries.python.PacketVerifier import RxQueue, TxQueue
+from resources.libraries.python.PacketVerifier import RxQueue, TxQueue,\
+    auto_pad, create_gratuitous_arp_request
 from resources.libraries.python.TrafficScriptArg import TrafficScriptArg
-from scapy.layers.inet6 import IPv6, ICMPv6ND_NA, ICMPv6NDOptDstLLAddr
-from scapy.layers.inet6 import ICMPv6EchoRequest, ICMPv6EchoReply
-from scapy.all import Ether
+from scapy.layers.inet import IP, ICMP
+from scapy.all import Ether, Raw
 
 
 def main():
-    # start_size - start size of the ICMPv6 echo data
-    # end_size - end size of the ICMPv6 echo data
+    # start_size - start size of the ICMPv4 echo data
+    # end_size - end size of the ICMPv4 echo data
     # step - increment step
     args = TrafficScriptArg(['src_mac', 'dst_mac', 'src_ip', 'dst_ip',
                              'start_size', 'end_size', 'step'])
@@ -47,22 +47,18 @@ def main():
     # generate some random data buffer
     data = bytearray(os.urandom(end_size))
 
-    # send ICMPv6 neighbor advertisement message
     sent_packets = []
-    pkt_send = (Ether(src=src_mac, dst=dst_mac) /
-                      IPv6(src=src_ip, dst=dst_ip) /
-                      ICMPv6ND_NA(tgt=src_ip, R=0) /
-                      ICMPv6NDOptDstLLAddr(lladdr=src_mac))
+    pkt_send = create_gratuitous_arp_request(src_mac, src_ip)
     sent_packets.append(pkt_send)
     txq.send(pkt_send)
 
-    # send ICMPv6 echo request with incremented data length and receive ICMPv6
+    # send ICMP echo request with incremented data length and receive ICMP
     # echo reply
     for echo_seq in range(start_size, end_size+1, step):
-        pkt_send = (Ether(src=src_mac, dst=dst_mac) /
-                          IPv6(src=src_ip, dst=dst_ip) /
-                          ICMPv6EchoRequest(id=echo_id, seq=echo_seq,
-                                            data=data[0:echo_seq]))
+        pkt_send = auto_pad(Ether(src=src_mac, dst=dst_mac) /
+                            IP(src=src_ip, dst=dst_ip) /
+                            ICMP(id=echo_id, seq=echo_seq) /
+                            Raw(load=data[0:echo_seq]))
         sent_packets.append(pkt_send)
         txq.send(pkt_send)
 
@@ -70,38 +66,44 @@ def main():
         if ether is None:
             rxq._proc.terminate()
             raise RuntimeError(
-                'ICMPv6 echo reply seq {0} Rx timeout'.format(echo_seq))
+                'ICMP echo reply seq {0} Rx timeout'.format(echo_seq))
 
-        if not ether.haslayer(IPv6):
+        if not ether.haslayer(IP):
             rxq._proc.terminate()
             raise RuntimeError(
-                'Unexpected packet with no IPv6 received {0}'.format(
+                'Unexpected packet with no IPv4 received {0}'.format(
                     ether.__repr__()))
 
-        ipv6 = ether['IPv6']
+        ipv4 = ether['IP']
 
-        if not ipv6.haslayer(ICMPv6EchoReply):
+        if not ipv4.haslayer(ICMP):
             rxq._proc.terminate()
             raise RuntimeError(
-                'Unexpected packet with no IPv6 ICMP received {0}'.format(
-                    ipv6.__repr__()))
+                'Unexpected packet with no ICMP received {0}'.format(
+                    ipv4.__repr__()))
 
-        icmpv6 = ipv6['ICMPv6 Echo Reply']
+        icmpv4 = ipv4['ICMP']
 
-        if icmpv6.id != echo_id or icmpv6.seq != echo_seq:
+        if icmpv4.id != echo_id or icmpv4.seq != echo_seq:
             rxq._proc.terminate()
             raise RuntimeError(
-                'Invalid ICMPv6 echo reply received ID {0} seq {1} should be ' +
-                'ID {2} seq {3}, {0}'.format(icmpv6.id, icmpv6.seq, echo_id,
+                'Invalid ICMP echo reply received ID {0} seq {1} should be ' +
+                'ID {2} seq {3}, {0}'.format(icmpv4.id, icmpv4.seq, echo_id,
                                              echo_seq))
 
-        cksum = icmpv6.cksum
-        del icmpv6.cksum
-        tmp = ICMPv6EchoReply(str(icmpv6))
-        if tmp.cksum != cksum:
+        chksum = icmpv4.chksum
+        del icmpv4.chksum
+        tmp = ICMP(str(icmpv4))
+        if tmp.chksum != chksum:
             rxq._proc.terminate()
             raise RuntimeError(
-                'Invalid checksum {0} should be {1}'.format(cksum, tmp.cksum))
+                'Invalid checksum {0} should be {1}'.format(chksum, tmp.chksum))
+        recv_payload_len = ipv4.len - 20 - 8
+        load = tmp['Raw'].load[0:recv_payload_len]
+        if load != data[0:echo_seq]:
+            rxq._proc.terminate()
+            raise RuntimeError(
+                'Received ICMP payload does not match sent payload')
 
     rxq._proc.terminate()
     sys.exit(0)

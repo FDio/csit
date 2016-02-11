@@ -365,19 +365,25 @@ class Topology(object):
         return None
 
     @staticmethod
-    def get_adjacent_interface(node, interface_name):
-        """Get interface adjacent to specified interface on local network.
+    def get_adjacent_node_and_interface(nodes_info, node, interface_name):
+        """Get node and interface adjacent to specified interface
+        on local network.
 
-           :param node: Node that contains specified interface.
-           :param interface_name: Interface name.
-           :type node: dict
-           :type interface_name: str
-           :return: Return interface or None if not found.
-           :rtype: dict
+        :param nodes_info: Dictionary containing information on all nodes
+        in topology.
+        :param node: Node that contains specified interface.
+        :param interface_name: Interface name.
+        :type nodes_info: dict
+        :type node: dict
+        :type interface_name: str
+        :return: Return (node, interface info) tuple or None if not found.
+        :rtype: (dict, dict)
         """
         link_name = None
         # get link name where the interface belongs to
-        for _, port_data in node['interfaces'].iteritems():
+        for port_name, port_data in node['interfaces'].iteritems():
+            if port_name == 'mgmt':
+                continue
             if port_data['name'] == interface_name:
                 link_name = port_data['link']
                 break
@@ -386,7 +392,7 @@ class Topology(object):
             return None
 
         # find link
-        for _, node_data in DICT__nodes.iteritems():
+        for node_data in nodes_info.values():
             # skip self
             if node_data['host'] == node['host']:
                 continue
@@ -395,7 +401,7 @@ class Topology(object):
                 if 'link' not in interface_data:
                     continue
                 if interface_data['link'] == link_name:
-                    return node_data['interfaces'][interface]
+                    return node_data, node_data['interfaces'][interface]
 
     @staticmethod
     def get_interface_pci_addr(node, interface):
@@ -537,3 +543,44 @@ class Topology(object):
         if not interfaces:
             raise RuntimeError('No engress interface for nodes')
         return interfaces[0]
+
+    @keyword('Get link data useful in circular topology test from tg "${tgen}"'
+             ' dut1 "${dut1}" dut2 "${dut2}"')
+    def get_links_dict_from_nodes(self, tgen, dut1, dut2):
+        """Returns link combinations used in tests in circular topology.
+
+        For the time being it returns links from the Node path:
+        TG->DUT1->DUT2->TG
+        :param tg: traffic generator node data
+        :param dut1: DUT1 node data
+        :param dut2: DUT2 node data
+        :type tg: dict
+        :type dut1: dict
+        :type dut2: dict
+        :return: dictionary of possible link combinations
+        the naming convention until changed to something more general is
+        implemented is this:
+        DUT1_DUT2_LINK: link name between DUT! and DUT2
+        DUT1_TG_LINK: link name between DUT1 and TG
+        DUT2_TG_LINK: link name between DUT2 and TG
+        TG_TRAFFIC_LINKS: list of link names that generated traffic is sent
+        to and from
+        DUT1_BD_LINKS: list of link names that will be connected by the bridge
+        domain on DUT1
+        DUT2_BD_LINKS: list of link names that will be connected by the bridge
+        domain on DUT2
+        """
+        # TODO: replace with generic function.
+        dut1_dut2_link = self.get_first_active_connecting_link(dut1, dut2)
+        dut1_tg_link = self.get_first_active_connecting_link(dut1, tgen)
+        dut2_tg_link = self.get_first_active_connecting_link(dut2, tgen)
+        tg_traffic_links = [dut1_tg_link, dut2_tg_link]
+        dut1_bd_links = [dut1_dut2_link, dut1_tg_link]
+        dut2_bd_links = [dut1_dut2_link, dut2_tg_link]
+        topology_links = {'DUT1_DUT2_LINK': dut1_dut2_link,
+                          'DUT1_TG_LINK': dut1_tg_link,
+                          'DUT2_TG_LINK': dut2_tg_link,
+                          'TG_TRAFFIC_LINKS': tg_traffic_links,
+                          'DUT1_BD_LINKS': dut1_bd_links,
+                          'DUT2_BD_LINKS': dut2_bd_links}
+        return topology_links

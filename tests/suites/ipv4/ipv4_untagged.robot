@@ -12,10 +12,12 @@
 # limitations under the License.
 
 *** Settings ***
+| Documentation | TODO: rewrite with generic path keywords
 | Library | resources.libraries.python.topology.Topology
 | Resource | resources/libraries/robot/default.robot
 | Resource | resources/libraries/robot/ipv4.robot
 | Suite Setup | Run Keywords | Setup all DUTs before test
+| ...         | AND          | Setup all TGs before traffic script
 | ...         | AND          | Update All Interface Data On All Nodes | ${nodes}
 | ...         | AND          | Setup nodes for IPv4 testing
 | Test Setup | Clear interface counters on all vpp nodes in topology | ${nodes}
@@ -56,3 +58,11 @@
 | | Vpp dump stats table | ${nodes['DUT2']}
 | | Check ipv4 interface counter | ${nodes['DUT2']} | ${nodes['DUT2']['interfaces']['port3']['name']} | ${1}
 | | Check ipv4 interface counter | ${nodes['DUT2']} | ${nodes['DUT2']['interfaces']['port1']['name']} | ${1}
+
+| VPP can process ICMP echo request from min to max packet size with 1B increment
+| | Ipv4 icmp echo sweep | ${nodes['TG']} | ${nodes['DUT1']}
+| | ...                  | ${nodes['TG']['interfaces']['port3']['name']}
+| | ...                  | ${nodes['DUT1']['interfaces']['port1']['name']}
+
+| VPP responds to ARP request
+| | Send ARP request and validate response | ${nodes['TG']} | ${nodes['DUT1']}

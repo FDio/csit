@@ -45,6 +45,7 @@ class IPv4Node(object):
     @abstractmethod
     def set_ip(self, interface, address, prefix_length):
         """Configure IPv4 address on interface
+
         :param interface: interface name
         :param address:
         :param prefix_length:
@@ -58,6 +59,7 @@ class IPv4Node(object):
     @abstractmethod
     def set_interface_state(self, interface, state):
         """Set interface state
+
         :param interface: interface name string
         :param state: one of following values: "up" or "down"
         :return: nothing
@@ -67,6 +69,7 @@ class IPv4Node(object):
     @abstractmethod
     def set_route(self, network, prefix_length, gateway, interface):
         """Configure IPv4 route
+
         :param network: network IPv4 address
         :param prefix_length: mask length
         :param gateway: IPv4 address of the gateway
@@ -82,6 +85,7 @@ class IPv4Node(object):
     @abstractmethod
     def unset_route(self, network, prefix_length, gateway, interface):
         """Remove specified IPv4 route
+
         :param network: network IPv4 address
         :param prefix_length: mask length
         :param gateway: IPv4 address of the gateway
@@ -97,6 +101,7 @@ class IPv4Node(object):
     @abstractmethod
     def flush_ip_addresses(self, interface):
         """Flush all IPv4 addresses from specified interface
+
         :param interface: interface name
         :type interface: str
         :return: nothing
@@ -106,6 +111,7 @@ class IPv4Node(object):
     @abstractmethod
     def ping(self, destination_address, source_interface):
         """Send an ICMP request to destination node
+
         :param destination_address: address to send the ICMP request
         :param source_interface:
         :type destination_address: str
@@ -167,6 +173,7 @@ class Dut(IPv4Node):
 
     def get_sw_if_index(self, interface):
         """Get sw_if_index of specified interface from current node
+
         :param interface: interface name
         :type interface: str
         :return: sw_if_index of 'int' type
@@ -175,6 +182,7 @@ class Dut(IPv4Node):
 
     def exec_vat(self, script, **args):
         """Wrapper for VAT executor.
+
         :param script: script to execute
         :param args: parameters to the script
         :type script: str
@@ -183,6 +191,20 @@ class Dut(IPv4Node):
         """
         # TODO: check return value
         VatExecutor.cmd_from_template(self.node_info, script, **args)
+
+    def set_arp(self, interface, ip_address, mac_address):
+        """Set entry in ARP cache.
+
+        :param interface: Interface name.
+        :param ip_address: IP address.
+        :param mac_address: MAC address.
+        :type interface: str
+        :type ip_address: str
+        :type mac_address: str
+        """
+        self.exec_vat('add_ip_neighbor.vat',
+                      sw_if_index=self.get_sw_if_index(interface),
+                      ip_address=ip_address, mac_address=mac_address)
 
     def set_ip(self, interface, address, prefix_length):
         self.exec_vat('add_ip_address.vat',
@@ -224,6 +246,7 @@ class Dut(IPv4Node):
 
 def get_node(node_info):
     """Creates a class instance derived from Node based on type.
+
     :param node_info: dictionary containing information on nodes in topology
     :return: Class instance that is derived from Node
     """
@@ -238,6 +261,7 @@ def get_node(node_info):
 
 def get_node_hostname(node_info):
     """Get string identifying specifed node.
+
     :param node_info: Node in the topology.
     :type node_info: Dict
     :return: String identifying node.
@@ -264,8 +288,32 @@ class IPv4Util(object):
     topology_helper = None
 
     @staticmethod
+    def setup_arp_on_all_duts(nodes_info):
+        """For all DUT nodes extract MAC and IP addresses of adjacent interfaces
+        from topology and use them to setup ARP entries.
+
+        :param nodes_info: Dictionary containing information on all nodes
+        in topology.
+        :type nodes_info: dict
+        """
+        for node in nodes_info.values():
+            if node['type'] == NodeType.TG:
+                continue
+            for interface, interface_data in node['interfaces'].iteritems():
+                if interface == 'mgmt':
+                    continue
+                interface_name = interface_data['name']
+                adj_node, adj_int = Topology.\
+                    get_adjacent_node_and_interface(nodes_info, node,
+                                                    interface_name)
+                ip_address = IPv4Util.get_ip_addr(adj_node, adj_int['name'])
+                mac_address = adj_int['mac_address']
+                get_node(node).set_arp(interface_name, ip_address, mac_address)
+
+    @staticmethod
     def next_address(subnet):
         """Get next unused IPv4 address from a subnet
+
         :param subnet: holds available IPv4 addresses
         :return: tuple (ipv4_address, prefix_length)
         """
@@ -281,6 +329,7 @@ class IPv4Util(object):
     @staticmethod
     def next_network(nodes_addr):
         """Get next unused network from dictionary
+
         :param nodes_addr: dictionary of available networks
         :return: dictionary describing an IPv4 subnet with addresses
         """
@@ -290,7 +339,9 @@ class IPv4Util(object):
 
     @staticmethod
     def configure_ipv4_addr_on_node(node, nodes_addr):
-        """Configure IPv4 address for all interfaces on a node in topology
+        """Configure IPv4 address for all non-management interfaces
+        on a node in topology.
+
         :param node: dictionary containing information about node
         :param nodes_addr: dictionary containing IPv4 addresses
         :return:
@@ -305,16 +356,20 @@ class IPv4Util(object):
             network = IPv4Util.topology_helper[interface_data['link']]
             address, prefix = IPv4Util.next_address(network)
 
-            get_node(node).set_ip(interface_data['name'], address, prefix)
+            if node['type'] != NodeType.TG:
+                get_node(node).set_ip(interface_data['name'], address, prefix)
+                get_node(node).set_interface_state(interface_data['name'], 'up')
+
             key = (get_node_hostname(node), interface_data['name'])
             IPv4Util.ADDRESSES[key] = address
             IPv4Util.PREFIXES[key] = prefix
             IPv4Util.SUBNETS[key] = network['subnet']
 
     @staticmethod
-    def nodes_setup_ipv4_addresses(nodes_info, nodes_addr):
+    def dut_nodes_setup_ipv4_addresses(nodes_info, nodes_addr):
         """Configure IPv4 addresses on all non-management interfaces for each
-        node in nodes_info
+        node in nodes_info if node type is not traffic generator
+
         :param nodes_info: dictionary containing information on all nodes
         in topology
         :param nodes_addr: dictionary containing IPv4 addresses
@@ -323,16 +378,17 @@ class IPv4Util(object):
         IPv4Util.topology_helper = {}
         # make a deep copy of nodes_addr because of modifications
         nodes_addr_copy = copy.deepcopy(nodes_addr)
-        for _, node in nodes_info.iteritems():
+        for node in nodes_info.values():
             IPv4Util.configure_ipv4_addr_on_node(node, nodes_addr_copy)
 
     @staticmethod
     def nodes_clear_ipv4_addresses(nodes):
         """Clear all addresses from all nodes in topology
+
         :param nodes: dictionary containing information on all nodes
         :return: nothing
         """
-        for _, node in nodes.iteritems():
+        for node in nodes.values():
             for interface, interface_data in node['interfaces'].iteritems():
                 if interface == 'mgmt':
                     continue
@@ -343,6 +399,7 @@ class IPv4Util(object):
     @keyword('Node "${node}" interface "${interface}" is in "${state}" state')
     def set_interface_state(node, interface, state):
         """See IPv4Node.set_interface_state for more information.
+
         :param node:
         :param interface:
         :param state:
@@ -357,6 +414,7 @@ class IPv4Util(object):
              '"${address}" with prefix length "${prefix_length}"')
     def set_interface_address(node, interface, address, length):
         """See IPv4Node.set_ip for more information.
+
         :param node:
         :param interface:
         :param address:
@@ -387,6 +445,7 @@ class IPv4Util(object):
              '"${gateway}"')
     def set_route(node, network, prefix_length, interface, gateway):
         """See IPv4Node.set_route for more information.
+
         :param node:
         :param network:
         :param prefix_length:
@@ -407,6 +466,7 @@ class IPv4Util(object):
              '"${gateway}"')
     def unset_route(node, network, prefix_length, interface, gateway):
         """See IPv4Node.unset_route for more information.
+
         :param node:
         :param network:
         :param prefix_length:
@@ -417,12 +477,15 @@ class IPv4Util(object):
         get_node(node).unset_route(network, prefix_length, gateway, interface)
 
     @staticmethod
-    @keyword('After ping is sent from node "${src_node}" interface '
-             '"${src_port}" with destination IPv4 address of node '
-             '"${dst_node}" interface "${dst_port}" a ping response arrives '
-             'and TTL is decreased by "${ttl_dec}"')
-    def send_ping(src_node, src_port, dst_node, dst_port, hops):
+    @keyword('After ping is sent in topology "${nodes_info}" from node '
+             '"${src_node}" interface "${src_port}" with destination IPv4 '
+             'address of node "${dst_node}" interface "${dst_port}" a ping '
+             'response arrives and TTL is decreased by "${hops}"')
+    def send_ping(nodes_info, src_node, src_port, dst_node, dst_port, hops):
         """Send IPv4 ping and wait for response.
+
+        :param nodes_info: Dictionary containing information on all nodes
+        in topology.
         :param src_node: Source node.
         :param src_port: Source interface.
         :param dst_node: Destination node.
@@ -438,7 +501,8 @@ class IPv4Util(object):
         src_mac = Topology.get_interface_mac(src_node, src_port)
         if dst_node['type'] == NodeType.TG:
             dst_mac = Topology.get_interface_mac(src_node, src_port)
-        adj_int = Topology.get_adjacent_interface(src_node, src_port)
+        _, adj_int = Topology.\
+            get_adjacent_node_and_interface(nodes_info, src_node, src_port)
         first_hop_mac = adj_int['mac_address']
         src_ip = IPv4Util.get_ip_addr(src_node, src_port)
         dst_ip = IPv4Util.get_ip_addr(dst_node, dst_port)
@@ -454,6 +518,7 @@ class IPv4Util(object):
     @keyword('Get IPv4 address of node "${node}" interface "${port}"')
     def get_ip_addr(node, port):
         """Get IPv4 address configured on specified interface
+
         :param node: node dictionary
         :param port: interface name
         :return: IPv4 address of specified interface as a 'str' type
@@ -466,6 +531,7 @@ class IPv4Util(object):
     @keyword('Get IPv4 address prefix of node "${node}" interface "${port}"')
     def get_ip_addr_prefix(node, port):
         """ Get IPv4 address prefix for specified interface.
+
         :param node: Node dictionary.
         :param port: Interface name.
         """
@@ -477,6 +543,7 @@ class IPv4Util(object):
     @keyword('Get IPv4 subnet of node "${node}" interface "${port}"')
     def get_ip_addr_subnet(node, port):
         """ Get IPv4 subnet of specified interface.
+
         :param node: Node dictionary.
         :param port: Interface name.
         """
@@ -488,6 +555,7 @@ class IPv4Util(object):
     @keyword('Flush IPv4 addresses "${port}" "${node}"')
     def flush_ip_addresses(port, node):
         """See IPv4Node.flush_ip_addresses for more information.
+
         :param port:
         :param node:
         :return:

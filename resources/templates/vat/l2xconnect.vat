@@ -1,6 +1,0 @@
-exec set interface state TenGigabitEthernet84/0/0 up
-exec set interface state TenGigabitEthernet84/0/1 up
-exec set interface l2 xconnect TenGigabitEthernet84/0/0 TenGigabitEthernet84/0/1
-exec set interface l2 xconnect TenGigabitEthernet84/0/1 TenGigabitEthernet84/0/0
-quit
-

@@ -19,9 +19,9 @@
 from ipaddress import IPv4Network
 
 # Default list of IPv4 subnets
-IPV4_NETWORKS = ['192.168.1.0/24',
-                 '192.168.2.0/24',
-                 '192.168.3.0/24']
+IPV4_NETWORKS = ['20.20.20.0/24',
+                 '10.10.10.0/24',
+                 '1.1.1.0/30']
 
 
 class IPv4NetworkGenerator(object):

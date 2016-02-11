@@ -18,6 +18,7 @@
 | Library | resources.libraries.python.topology.Topology
 | Variables | resources/libraries/python/topology.py
 | Force Tags | 3_NODE_DOUBLE_LINK_TOPO
+| Suite Setup | Setup all TGs before traffic script
 
 *** Test Cases ***
 
@@ -36,4 +37,14 @@
 | | ${dut1}= | Set Variable | ${nodes['DUT1']}
 | | ${dut2}= | Set Variable | ${nodes['DUT2']}
 | | ${tg_links}= | Setup TG "${tg}" DUT1 "${dut1}" and DUT2 "${dut2}" for 3 node l2 bridge domain test
+| | Sleep | 5 | Workaround for interface still in down state after vpp restart
+| | Send traffic on node "${nodes['TG']}" from link "${tg_links[0]}" to link "${tg_links[1]}"
+
+| Vpp forwards packets via L2 bridge domain in circular topology with static L2FIB entries
+| | [Tags] | 3_NODE_DOUBLE_LINK_TOPO
+| | ${tg}= | Set Variable | ${nodes['TG']}
+| | ${dut1}= | Set Variable | ${nodes['DUT1']}
+| | ${dut2}= | Set Variable | ${nodes['DUT2']}
+| | ${tg_links}= | Setup TG "${tg}" DUT1 "${dut1}" and DUT2 "${dut2}" for 3 node static l2fib test
+| | Sleep | 5 | Workaround for interface still in down state after vpp restart
 | | Send traffic on node "${nodes['TG']}" from link "${tg_links[0]}" to link "${tg_links[1]}"

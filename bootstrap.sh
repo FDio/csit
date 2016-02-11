@@ -9,18 +9,20 @@ set -euf -o pipefail
 #
 #ls -la
 
-set -x
+#set -x
+#
+#ping 10.30.51.17 -w 3 || true
+#ping 10.30.51.18 -w 3 || true
+#ping 10.30.51.16 -w 3 || true
+#ping 10.30.51.21 -w 3 || true
+#ping 10.30.51.22 -w 3 || true
+#ping 10.30.51.20 -w 3 || true
+#ping 10.30.51.25 -w 3 || true
+#ping 10.30.51.26 -w 3 || true
+#ping 10.30.51.24 -w 3 || true
 
-ping 10.30.51.17 -w 3 || true
-ping 10.30.51.18 -w 3 || true
-ping 10.30.51.16 -w 3 || true
-ping 10.30.51.21 -w 3 || true
-ping 10.30.51.22 -w 3 || true
-ping 10.30.51.20 -w 3 || true
-ping 10.30.51.25 -w 3 || true
-ping 10.30.51.26 -w 3 || true
-ping 10.30.51.24 -w 3 || true
 
+exit 0
 
 #IFS=',' read -ra ADDR <<< "${JCLOUDS_IPS}"
 #

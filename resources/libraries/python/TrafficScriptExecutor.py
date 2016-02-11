@@ -70,8 +70,8 @@ class TrafficScriptExecutor(object):
     def traffic_script_gen_arg(rx_if, tx_if, src_mac, dst_mac, src_ip, dst_ip):
         """Generate traffic script basic arguments string.
 
-           :param rx_if: Interface that sends traffic.
-           :param tx_if: Interface that receives traffic.
+           :param rx_if: Interface that receives traffic.
+           :param tx_if: Interface that sends traffic.
            :param src_mac: Source MAC address.
            :param dst_mac: Destination MAC address.
            :param src_ip: Source IP address.

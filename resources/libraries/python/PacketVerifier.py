@@ -188,7 +188,7 @@ def packet_reader(interface_name, queue):
 
     buf = ""
     while True:
-        recvd = sock.recv(1500)
+        recvd = sock.recv(1514)
         buf = buf + recvd
 
         pkt = extract_one_packet(buf)
@@ -285,11 +285,7 @@ class Interface(object):
         self.txq.send(pkt)
 
     def recv_pkt(self, timeout=3):
-        while True:
-            pkt = self.rxq.recv(timeout, self.sent_packets)
-            # TODO: FIX FOLLOWING: DO NOT SKIP RARP IN ALL TESTS!!!
-            if pkt.type != 32821:  # Skip RARP packets
-                return pkt
+        return self.rxq.recv(timeout, self.sent_packets)
 
     def close(self):
         self.rxq._proc.terminate()

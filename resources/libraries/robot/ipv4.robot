@@ -13,15 +13,16 @@
 *** Settings ***
 | Resource | resources/libraries/robot/default.robot
 | Resource | resources/libraries/robot/counters.robot
-| Library | resources/libraries/python/IPv4Util.py
+| Library | resources.libraries.python.IPv4Util
+| Library | resources.libraries.python.TrafficScriptExecutor
 | Variables | resources/libraries/python/IPv4NodeAddress.py
 
 *** Keywords ***
 
-| Setup IPv4 adresses on all nodes in topology
+| Setup IPv4 adresses on all DUT nodes in topology
 | | [Documentation] | Setup IPv4 address on all DUTs and TG in topology
 | | [Arguments] | ${nodes} | ${nodes_addr}
-| | Nodes setup IPv4 addresses | ${nodes} | ${nodes_addr}
+| | DUT nodes setup IPv4 addresses | ${nodes} | ${nodes_addr}
 
 | Interfaces needed for IPv4 testing are in "${state}" state
 | | Node "${nodes['DUT1']}" interface "${nodes['DUT1']['interfaces']['port1']['name']}" is in "${state}" state
@@ -41,11 +42,41 @@
 
 | Setup nodes for IPv4 testing
 | | Interfaces needed for IPv4 testing are in "up" state
-| | Setup IPv4 adresses on all nodes in topology | ${nodes} | ${nodes_ipv4_addr}
+| | Setup IPv4 adresses on all DUT nodes in topology | ${nodes} | ${nodes_ipv4_addr}
+| | Setup ARP on all DUTs | ${nodes}
 | | Routes are set up for IPv4 testing
 
 | TG interface "${tg_port}" can route to node "${node}" interface "${port}" "${hops}" hops away using IPv4
 | | Node "${nodes['TG']}" interface "${tg_port}" can route to node "${node}" interface "${port}" "${hops}" hops away using IPv4
 
 | Node "${from_node}" interface "${from_port}" can route to node "${to_node}" interface "${to_port}" "${hops}" hops away using IPv4
-| | After ping is sent from node "${from_node}" interface "${from_port}" with destination IPv4 address of node "${to_node}" interface "${to_port}" a ping response arrives and TTL is decreased by "${hops}"
+| | After ping is sent in topology "${nodes}" from node "${from_node}" interface "${from_port}" with destination IPv4 address of node "${to_node}" interface "${to_port}" a ping response arrives and TTL is decreased by "${hops}"
+
+| Ipv4 icmp echo sweep
+| | [Documentation] | Type of the src_node must be TG and dst_node must be DUT
+| | [Arguments] | ${src_node} | ${dst_node} | ${src_port} | ${dst_port}
+| | ${src_ip}= | Get IPv4 address of node "${src_node}" interface "${src_port}"
+| | ${dst_ip}= | Get IPv4 address of node "${dst_node}" interface "${dst_port}"
+| | ${src_mac}= | Get Interface Mac | ${src_node} | ${src_port}
+| | ${dst_mac}= | Get Interface Mac | ${dst_node} | ${dst_port}
+| | ${args}= | Traffic Script Gen Arg | ${src_port} | ${src_port} | ${src_mac}
+| |          | ...                    | ${dst_mac} | ${src_ip} | ${dst_ip}
+| # TODO: end_size is currently minimum MTU size for Ethernet minus IPv4 and
+| # ICMP echo header size (1500 - 20 - 8),
+| # MTU info is not in VAT sw_interface_dump output
+| | ${args}= | Set Variable | ${args} --start_size 0 --end_size 1472 --step 1
+| | Run Traffic Script On Node | ipv4_sweep_ping.py | ${src_node} | ${args}
+
+| Send ARP request and validate response
+| | [Arguments] | ${tg_node} | ${vpp_node}
+| | ${link_name}= | Get first active connecting link between node "${tg_node}" and "${vpp_node}"
+| | ${src_if}= | Get interface by link name | ${tg_node} | ${link_name}
+| | ${dst_if}= | Get interface by link name | ${vpp_node} | ${link_name}
+| | ${src_ip}= | Get IPv4 address of node "${tg_node}" interface "${src_if}"
+| | ${dst_ip}= | Get IPv4 address of node "${vpp_node}" interface "${dst_if}"
+| | ${src_mac}= | Get node link mac | ${tg_node} | ${link_name}
+| | ${dst_mac}= | Get node link mac | ${vpp_node} | ${link_name}
+| | ${args}= | Traffic Script Gen Arg | ${src_if} | ${src_if} | ${src_mac}
+| |          | ...                    | ${dst_mac} | ${src_ip} | ${dst_ip}
+| | Run Traffic Script On Node | arp_request.py | ${tg_node} | ${args}
+

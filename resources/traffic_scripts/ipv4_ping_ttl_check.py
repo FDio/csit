@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from scapy.all import *
+from scapy.all import Ether, IP, ICMP
 from resources.libraries.python.PacketVerifier \
     import Interface, create_gratuitous_arp_request, auto_pad
 from optparse import OptionParser
@@ -25,8 +25,8 @@ def check_ttl(ttl_begin, ttl_end, ttl_diff):
         if dst_if_defined:
             dst_if.close()
         raise Exception(
-            "TTL changed from {} to {} but decrease by {} expected")\
-            .format(ttl_begin, ttl_end, hops)
+            "TTL changed from {} to {} but decrease by {} expected"
+            .format(ttl_begin, ttl_end, hops))
 
 
 def ckeck_packets_equal(pkt_send, pkt_recv):
