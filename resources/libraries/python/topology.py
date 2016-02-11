@@ -315,7 +315,7 @@ class Topology(object):
         This method updates the topology dictionary by querying interface lists
         of all nodes mentioned in the topology dictionary.
         It does this by dumping interface list to json output from all devices
-        using vpe_api_test, and pairing known information from topology
+        using vpp_api_test, and pairing known information from topology
         (mac address/pci address of interface) to state from VPP.
         For TG/linux nodes add interface name only.
         """
