@@ -1,0 +1,6 @@
+sw_interface_set_flags TenGigabitEthernet84/0/1 admin-up link-up
+sw_interface_set_flags TenGigabitEthernet84/0/0 admin-up link-up
+bridge_domain_add_del bd_id 1 flood 1 uu-flood 1 forward 1 learn 1 arp-term 0
+sw_interface_set_l2_bridge TenGigabitEthernet84/0/1 bd_id 1 shg 0  enable
+sw_interface_set_l2_bridge TenGigabitEthernet84/0/0 bd_id 1 shg 0  enable
+exec trace add dpdk-input 100

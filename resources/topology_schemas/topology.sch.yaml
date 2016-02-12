@@ -99,6 +99,8 @@ schema;type_tg:
     type:
       <<: *type_node_mapping_type
       enum: [TG]
+    subtype:
+      type: str
     interfaces:
       <<: *type_interface_tg
 

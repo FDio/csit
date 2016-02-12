@@ -17,6 +17,7 @@
 | Library | resources.libraries.python.CrossConnectSetup
 | Library | resources.libraries.python.topology.Topology
 | Library | resources.libraries.python.TrafficScriptExecutor
+| Library | resources.libraries.python.IPv4Util
 | Variables | resources/libraries/python/constants.py
 
 *** Keywords ***
@@ -46,5 +47,13 @@
 | | ${dst_ip}= | Set Variable | 192.168.100.2
 | | ${src_mac}= | Get Node Link Mac | ${node} | ${link1}
 | | ${dst_mac}= | Get Node Link Mac | ${node} | ${link2}
-| | ${args}= | Traffic Script Gen Arg | ${src_port} | ${src_port} | ${src_mac} | ${dst_mac} | ${src_ip} | ${dst_ip}
+| | ${args}= | Traffic Script Gen Arg | ${dst_port} | ${src_port} | ${src_mac} | ${dst_mac} | ${src_ip} | ${dst_ip}
 | | Run Traffic Script On Node | send_ip_icmp.py | ${node} | ${args}
+
+
+| Interfaces on all DUTs are in "${state}" state
+| | Node "${nodes['DUT1']}" interface "${nodes['DUT1']['interfaces']['port1']['name']}" is in "${state}" state
+| | Node "${nodes['DUT1']}" interface "${nodes['DUT1']['interfaces']['port3']['name']}" is in "${state}" state
+| | Node "${nodes['DUT2']}" interface "${nodes['DUT2']['interfaces']['port1']['name']}" is in "${state}" state
+| | Node "${nodes['DUT2']}" interface "${nodes['DUT2']['interfaces']['port3']['name']}" is in "${state}" state
+

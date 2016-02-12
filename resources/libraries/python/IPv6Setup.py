@@ -248,42 +248,33 @@ class IPv6Setup(object):
                 self.vpp_ra_supress_link_layer(node, if_name)
 
     @staticmethod
-    def vpp_ipv6_route_add(node, link, interface, nodes_addr):
-        """Setup IPv6 route on the VPP node.
+    def get_link_address(link, nodes_addr):
+        """Get link IPv6 address.
 
-           :param node: Node to add route on.
-           :param link: Route to following link.
-           :param interface: Route output interface.
-           :param nodes_addr: Available nodes IPv6 adresses.
-           :type node: dict
-           :type link: str
-           :type interface: str
-           :type nodes_addr: dict
+        :param link: Link name.
+        :param nodes_addr: Available nodes IPv6 adresses.
+        :type link: str
+        :type nodes_addr: dict
+        :return: Link IPv6 address.
+        :rtype: str
         """
-        ssh = SSH()
-        ssh.connect(node)
-
-        # Get route destination address from link name
         net = nodes_addr.get(link)
         if net is None:
-            raise ValueError('No network for link "{0}"'.format(link))
-        dst_net = '{0}/{1}'.format(net['net_addr'], net['prefix'])
+            raise ValueError('Link "{0}" address not found'.format(link))
+        return net.get('net_addr')
 
-        # Get next-hop address
-        nh_addr = None
-        for net in nodes_addr.values():
-            for port in net['ports'].values():
-                if port['if'] == interface and port['node'] == node['host']:
-                    for nh in net['ports'].values():
-                        if nh['if'] != interface and nh['node'] != node['host']:
-                            nh_addr = nh['addr']
-        if nh_addr is None:
-            raise Exception('next-hop not found')
+    @staticmethod
+    def get_link_prefix(link, nodes_addr):
+        """Get link IPv6 address prefix.
 
-        cmd_input = 'ip_add_del_route {0} via {1} {2} resolve-attempts 10'. \
-            format(dst_net, nh_addr, interface)
-        (ret_code, _, _) = ssh.exec_command_sudo(Constants.VAT_BIN_NAME,
-                                                 cmd_input)
-        if int(ret_code) != 0:
-            raise Exception("'{0}' failed on {1}".format(cmd_input,
-                                                         node['host']))
+        :param link: Link name.
+        :param nodes_addr: Available nodes IPv6 adresses.
+        :type link: str
+        :type nodes_addr: dict
+        :return: Link IPv6 address prefix.
+        :rtype: int
+        """
+        net = nodes_addr.get(link)
+        if net is None:
+            raise ValueError('Link "{0}" address not found'.format(link))
+        return net.get('prefix')

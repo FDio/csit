@@ -16,9 +16,9 @@
 | Resource | resources/libraries/robot/default.robot
 | Resource | resources/libraries/robot/l2_xconnect.robot
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO
-| Test Setup | Setup all DUTs before test
-| Suite Setup | Setup all TGs before traffic script
-
+| Suite Setup | Run Keywords | Setup all DUTs before test
+| ...         | AND          | Setup all TGs before traffic script
+| ...         | AND          | Interfaces on all DUTs are in "up" state
 
 *** Test Cases ***
 

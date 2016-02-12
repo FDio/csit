@@ -20,9 +20,9 @@
 *** Keywords ***
 
 | Setup IPv4 adresses on all DUT nodes in topology
-| | [Documentation] | Setup IPv4 address on all DUTs and TG in topology
+| | [Documentation] | Setup IPv4 address on all DUTs in topology
 | | [Arguments] | ${nodes} | ${nodes_addr}
-| | DUT nodes setup IPv4 addresses | ${nodes} | ${nodes_addr}
+| | DUT Nodes setup IPv4 addresses | ${nodes} | ${nodes_addr}
 
 | Interfaces needed for IPv4 testing are in "${state}" state
 | | Node "${nodes['DUT1']}" interface "${nodes['DUT1']['interfaces']['port1']['name']}" is in "${state}" state
@@ -39,6 +39,12 @@
 | | ${subnet} = | Get IPv4 subnet of node "${nodes['DUT1']}" interface "${nodes['DUT1']['interfaces']['port1']['name']}"
 | | ${prefix_length} = | Get IPv4 address prefix of node "${nodes['DUT1']}" interface "${nodes['DUT1']['interfaces']['port1']['name']}"
 | | Node "${nodes['DUT2']}" routes to IPv4 network "${subnet}" with prefix length "${prefix_length}" using interface "${nodes['DUT2']['interfaces']['port3']['name']}" via "${gateway}"
+
+| Setup DUT nodes for IPv4 testing
+| | Interfaces needed for IPv4 testing are in "up" state
+| | Setup IPv4 adresses on all DUT nodes in topology | ${nodes} | ${nodes_ipv4_addr}
+| | Setup ARP on all DUTs | ${nodes}
+| | Routes are set up for IPv4 testing
 
 | Setup nodes for IPv4 testing
 | | Interfaces needed for IPv4 testing are in "up" state

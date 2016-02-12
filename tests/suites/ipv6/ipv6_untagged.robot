@@ -34,11 +34,12 @@
 | | Ipv6 icmp echo sweep | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes_ipv6_addr}
 
 | TG can route to first DUT egress interface
-| | Ipv6 tg to dut1 egress | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes_ipv6_addr}
+| | Ipv6 tg to dut1 egress | ${nodes['TG']} | ${nodes['DUT1']} |
+| | ...                    | ${nodes['DUT2']} | ${nodes_ipv6_addr}
 
 | TG can route to second DUT through first DUT
-| | Ipv6 tg to dut2 via dut1 | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']}
-| | ...                      | ${nodes_ipv6_addr}
+| | Ipv6 tg to dut2 via dut1 | ${nodes['TG']} | ${nodes['DUT1']}
+| | ...                      | ${nodes['DUT2']} | ${nodes_ipv6_addr}
 
 | TG can route to second DUT egress interface through first DUT
 | | Ipv6 tg to dut2 egress via dut1 | ${nodes['TG']} | ${nodes['DUT1']}

@@ -43,6 +43,14 @@ class NodeType(object):
     # Traffic Generator (this node has traffic generator on it)
     TG = 'TG'
 
+class NodeSubTypeTG(object):
+    #T-Rex traffic generator
+    TREX = 'TREX'
+    # Moongen
+    MOONGEN = 'MOONGEN'
+    #IxNetwork
+    IXNET = 'IXNET'
+
 DICT__nodes = load_topo_from_yaml()
 
 
@@ -346,6 +354,22 @@ class Topology(object):
         return None
 
     @staticmethod
+    def get_interface_mac_by_port_key(node, port_key):
+        """Get MAC address for the interface based on port key.
+
+        :param node: Node to get interface mac on.
+        :param port_key: Dictionary key name of interface.
+        :type node: dict
+        :type port_key: str
+        :return: Return MAC or None if not found.
+        """
+        for port_name, port_data in node['interfaces'].iteritems():
+            if port_name == port_key:
+                return port_data['mac_address']
+
+        return None
+
+    @staticmethod
     def get_interface_mac(node, interface):
         """Get MAC address for the interface.
 
@@ -363,6 +387,45 @@ class Topology(object):
                 return port.get('mac_address')
 
         return None
+
+    @staticmethod
+    def get_adjacent_node_and_interface_by_key(nodes_info, node, port_key):
+        """Get node and interface adjacent to specified interface
+        on local network.
+
+        :param nodes_info: Dictionary containing information on all nodes
+        in topology.
+        :param node: Node that contains specified interface.
+        :param port_key: Interface port key.
+        :type nodes_info: dict
+        :type node: dict
+        :type port_key: str
+        :return: Return (node, interface info) tuple or None if not found.
+        :rtype: (dict, dict)
+        """
+        link_name = None
+       # get link name where the interface belongs to
+        for port_name, port_data in node['interfaces'].iteritems():
+            if port_name == 'mgmt':
+                continue
+            if port_name == port_key:
+                link_name = port_data['link']
+                break
+
+        if link_name is None: 
+            return None
+
+        # find link
+        for node_data in nodes_info.values():
+            # skip self
+            if node_data['host'] == node['host']:
+                continue
+            for interface, interface_data \
+                    in node_data['interfaces'].iteritems():
+                if 'link' not in interface_data:
+                    continue
+                if interface_data['link'] == link_name:
+                    return node_data, node_data['interfaces'][interface]
 
     @staticmethod
     def get_adjacent_node_and_interface(nodes_info, node, interface_name):
