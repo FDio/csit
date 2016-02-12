@@ -68,12 +68,10 @@ def main():
 
         ether = rxq.recv(ignore=sent_packets)
         if ether is None:
-            rxq._proc.terminate()
             raise RuntimeError(
                 'ICMPv6 echo reply seq {0} Rx timeout'.format(echo_seq))
 
         if not ether.haslayer(IPv6):
-            rxq._proc.terminate()
             raise RuntimeError(
                 'Unexpected packet with no IPv6 received {0}'.format(
                     ether.__repr__()))
@@ -81,7 +79,6 @@ def main():
         ipv6 = ether['IPv6']
 
         if not ipv6.haslayer(ICMPv6EchoReply):
-            rxq._proc.terminate()
             raise RuntimeError(
                 'Unexpected packet with no IPv6 ICMP received {0}'.format(
                     ipv6.__repr__()))
@@ -89,7 +86,6 @@ def main():
         icmpv6 = ipv6['ICMPv6 Echo Reply']
 
         if icmpv6.id != echo_id or icmpv6.seq != echo_seq:
-            rxq._proc.terminate()
             raise RuntimeError(
                 'Invalid ICMPv6 echo reply received ID {0} seq {1} should be ' +
                 'ID {2} seq {3}, {0}'.format(icmpv6.id, icmpv6.seq, echo_id,
@@ -99,11 +95,9 @@ def main():
         del icmpv6.cksum
         tmp = ICMPv6EchoReply(str(icmpv6))
         if tmp.cksum != cksum:
-            rxq._proc.terminate()
             raise RuntimeError(
                 'Invalid checksum {0} should be {1}'.format(cksum, tmp.cksum))
 
-    rxq._proc.terminate()
     sys.exit(0)
 
 if __name__ == "__main__":

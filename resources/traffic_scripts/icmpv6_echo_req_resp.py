@@ -73,13 +73,9 @@ def main():
     # receive ICMPv6 echo request on second TG interface
     ether = dst_rxq.recv(2, dst_sent_packets)
     if ether is None:
-        src_rxq._proc.terminate()
-        dst_rxq._proc.terminate()
         raise RuntimeError('ICMPv6 echo reply Rx timeout')
 
     if not ether.haslayer(IPv6):
-        src_rxq._proc.terminate()
-        dst_rxq._proc.terminate()
         raise RuntimeError('Unexpected packet with no IPv6 received {0}'.format(
             ether.__repr__()))
 
@@ -87,15 +83,11 @@ def main():
 
     # verify hop limit processing
     if ipv6.hlim != (hop_limit - hop_num):
-        src_rxq._proc.terminate()
-        dst_rxq._proc.terminate()
         raise RuntimeError(
             'Invalid hop limit {0} should be {1}'.format(ipv6.hlim,
                                                          hop_limit - hop_num))
 
     if not ipv6.haslayer(ICMPv6EchoRequest):
-        src_rxq._proc.terminate()
-        dst_rxq._proc.terminate()
         raise RuntimeError(
             'Unexpected packet with no IPv6 ICMP received {0}'.format(
                 ipv6.__repr__()))
@@ -104,8 +96,6 @@ def main():
 
     # check identifier and sequence number
     if icmpv6.id != echo_id or icmpv6.seq != echo_seq:
-        src_rxq._proc.terminate()
-        dst_rxq._proc.terminate()
         raise RuntimeError(
             'Invalid ICMPv6 echo reply received ID {0} seq {1} should be ' +
             'ID {2} seq {3}'.format(icmpv6.id, icmpv6.seq, echo_id, echo_seq))
@@ -115,8 +105,6 @@ def main():
     del icmpv6.cksum
     tmp = ICMPv6EchoRequest(str(icmpv6))
     if tmp.cksum != cksum:
-        src_rxq._proc.terminate()
-        dst_rxq._proc.terminate()
         raise RuntimeError(
             'Invalid checksum {0} should be {1}'.format(cksum, tmp.cksum))
 
@@ -130,13 +118,9 @@ def main():
     # receive ICMPv6 echo reply on first TG interface
     ether = src_rxq.recv(2, src_sent_packets)
     if ether is None:
-        src_rxq._proc.terminate()
-        dst_rxq._proc.terminate()
         raise RuntimeError('ICMPv6 echo reply Rx timeout')
 
     if not ether.haslayer(IPv6):
-        src_rxq._proc.terminate()
-        dst_rxq._proc.terminate()
         raise RuntimeError('Unexpected packet with no IPv6 received {0}'.format(
             ether.__repr__()))
 
@@ -144,15 +128,11 @@ def main():
 
     # verify hop limit processing
     if ipv6.hlim != (hop_limit - hop_num):
-        src_rxq._proc.terminate()
-        dst_rxq._proc.terminate()
         raise RuntimeError(
             'Invalid hop limit {0} should be {1}'.format(ipv6.hlim,
                                                          hop_limit - hop_num))
 
     if not ipv6.haslayer(ICMPv6EchoReply):
-        src_rxq._proc.terminate()
-        dst_rxq._proc.terminate()
         raise RuntimeError(
             'Unexpected packet with no IPv6 ICMP received {0}'.format(
                 ipv6.__repr__()))
@@ -161,8 +141,6 @@ def main():
 
     # check identifier and sequence number
     if icmpv6.id != echo_id or icmpv6.seq != echo_seq:
-        src_rxq._proc.terminate()
-        dst_rxq._proc.terminate()
         raise RuntimeError(
             'Invalid ICMPv6 echo reply received ID {0} seq {1} should be ' +
             'ID {2} seq {3}'.format(icmpv6.id, icmpv6.seq, echo_id, echo_seq))
@@ -172,13 +150,9 @@ def main():
     del icmpv6.cksum
     tmp = ICMPv6EchoReply(str(icmpv6))
     if tmp.cksum != cksum:
-        src_rxq._proc.terminate()
-        dst_rxq._proc.terminate()
         raise RuntimeError(
             'Invalid checksum {0} should be {1}'.format(cksum, tmp.cksum))
 
-    src_rxq._proc.terminate()
-    dst_rxq._proc.terminate()
     sys.exit(0)
 
 if __name__ == "__main__":
