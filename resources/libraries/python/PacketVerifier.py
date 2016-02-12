@@ -60,11 +60,11 @@
       seq       = 0x0
     ###[ Padding ]###
       load = 'RT\x00\xca]\x0b\xaa\xbb\xcc\xdd\xee\xff\x08\x06\x00\x01\x08\x00'
-    >>> rxq._proc.terminate()
 """
 
 
 import socket
+import select
 import os
 import time
 from multiprocessing import Queue, Process
@@ -186,18 +186,9 @@ def packet_reader(interface_name, queue):
     sock = socket.socket(socket.AF_PACKET, socket.SOCK_RAW, ETH_P_ALL)
     sock.bind((interface_name, ETH_P_ALL))
 
-    buf = ""
     while True:
-        recvd = sock.recv(1514)
-        buf = buf + recvd
-
-        pkt = extract_one_packet(buf)
-        while pkt is not None:
-            if pkt is None:
-                break
-            queue.put(pkt)
-            buf = buf[len(pkt):]
-            pkt = extract_one_packet(buf)
+        pkt = sock.recv(0x7fff)
+        queue.put(pkt)
 
 
 class RxQueue(PacketVerifier):
@@ -213,12 +204,12 @@ class RxQueue(PacketVerifier):
     def __init__(self, interface_name):
         PacketVerifier.__init__(self, interface_name)
 
-        self._queue = Queue()
-        self._proc = Process(target=packet_reader, args=(interface_name,
-                                                         self._queue))
-        self._proc.daemon = True
-        self._proc.start()
-        time.sleep(2)
+        #self._queue = Queue()
+        #self._proc = Process(target=packet_reader, args=(interface_name,
+        #                                                 self._queue))
+        #self._proc.daemon = True
+        #self._proc.start()
+        #time.sleep(2)
 
     def recv(self, timeout=3, ignore=None):
         """Read next received packet.
@@ -234,7 +225,12 @@ class RxQueue(PacketVerifier):
         :rtype: scapy.Ether
         """
 
-        pkt = self._queue.get(True, timeout=timeout)
+        #pkt = self._queue.get(True, timeout=timeout)
+        (rlist, _, _) = select.select([self._sock], [], [], timeout)
+        if self._sock not in rlist:
+            return None
+
+        pkt = self._sock.recv(0x7fff)
 
         if ignore is not None:
             for i, ig_pkt in enumerate(ignore):
@@ -267,9 +263,7 @@ class TxQueue(PacketVerifier):
         :param pkt: Packet to send.
         :type pkt: string or scapy Packet derivative.
         """
-        if isinstance(pkt, Packet):
-            pkt = str(pkt)
-        pkt = auto_pad(pkt)
+        pkt = auto_pad(str(pkt))
         self._sock.send(pkt)
 
 
@@ -277,8 +271,8 @@ class Interface(object):
     def __init__(self, if_name):
         self.if_name = if_name
         self.sent_packets = []
-        self.txq = TxQueue(if_name)
         self.rxq = RxQueue(if_name)
+        self.txq = TxQueue(if_name)
 
     def send_pkt(self, pkt):
         self.sent_packets.append(pkt)
@@ -288,7 +282,8 @@ class Interface(object):
         return self.rxq.recv(timeout, self.sent_packets)
 
     def close(self):
-        self.rxq._proc.terminate()
+        #self.rxq._proc.terminate()
+        pass
 
 
 def create_gratuitous_arp_request(src_mac, src_ip):

@@ -64,12 +64,10 @@ def main():
 
         ether = rxq.recv(ignore=sent_packets)
         if ether is None:
-            rxq._proc.terminate()
             raise RuntimeError(
                 'ICMP echo reply seq {0} Rx timeout'.format(echo_seq))
 
         if not ether.haslayer(IP):
-            rxq._proc.terminate()
             raise RuntimeError(
                 'Unexpected packet with no IPv4 received {0}'.format(
                     ether.__repr__()))
@@ -77,7 +75,6 @@ def main():
         ipv4 = ether['IP']
 
         if not ipv4.haslayer(ICMP):
-            rxq._proc.terminate()
             raise RuntimeError(
                 'Unexpected packet with no ICMP received {0}'.format(
                     ipv4.__repr__()))
@@ -85,7 +82,6 @@ def main():
         icmpv4 = ipv4['ICMP']
 
         if icmpv4.id != echo_id or icmpv4.seq != echo_seq:
-            rxq._proc.terminate()
             raise RuntimeError(
                 'Invalid ICMP echo reply received ID {0} seq {1} should be ' +
                 'ID {2} seq {3}, {0}'.format(icmpv4.id, icmpv4.seq, echo_id,
@@ -95,17 +91,14 @@ def main():
         del icmpv4.chksum
         tmp = ICMP(str(icmpv4))
         if tmp.chksum != chksum:
-            rxq._proc.terminate()
             raise RuntimeError(
                 'Invalid checksum {0} should be {1}'.format(chksum, tmp.chksum))
         recv_payload_len = ipv4.len - 20 - 8
         load = tmp['Raw'].load[0:recv_payload_len]
         if load != data[0:echo_seq]:
-            rxq._proc.terminate()
             raise RuntimeError(
                 'Received ICMP payload does not match sent payload')
 
-    rxq._proc.terminate()
     sys.exit(0)
 
 if __name__ == "__main__":

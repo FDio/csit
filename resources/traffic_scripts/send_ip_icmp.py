@@ -47,24 +47,20 @@ def main():
     sent_packets.append(pkt_raw)
     txq.send(pkt_raw)
 
-    ether = rxq.recv(1)
+    ether = rxq.recv(10)
 
     # Check whether received packet contains layers Ether, IP and ICMP
     if ether is None:
-        rxq._proc.terminate()
         raise RuntimeError('ICMPv6 echo reply Rx timeout')
 
     if not ether.haslayer(IP):
-        rxq._proc.terminate()
         raise RuntimeError(
             'Not an IP packet received {0}'.format(ether.__repr__()))
 
     if not ether.haslayer(ICMP):
-        rxq._proc.terminate()
         raise RuntimeError(
             'Not an ICMP packet received {0}'.format(ether.__repr__()))
 
-    rxq._proc.terminate()
     sys.exit(0)
 
 if __name__ == "__main__":

@@ -49,18 +49,15 @@ def main():
     # receive ICMPv6 neighbor advertisement message
     ether = rxq.recv(2, sent_packets)
     if ether is None:
-        rxq._proc.terminate()
         raise RuntimeError('ICMPv6 echo reply Rx timeout')
 
     if not ether.haslayer(IPv6):
-        rxq._proc.terminate()
         raise RuntimeError('Unexpected packet with no IPv6 received {0}'.format(
             ether.__repr__()))
 
     ipv6 = ether['IPv6']
 
     if not ipv6.haslayer(ICMPv6ND_NA):
-        rxq._proc.terminate()
         raise RuntimeError(
             'Unexpected packet with no ICMPv6 ND-NA received {0}'.format(
                 ipv6.__repr__()))
@@ -69,12 +66,10 @@ def main():
 
     # verify target address
     if icmpv6_na.tgt != dst_ip:
-        rxq._proc.terminate()
         raise RuntimeError('Invalid target address {0} should be {1}'.format(
             icmpv6_na.tgt, dst_ip))
 
     if not icmpv6_na.haslayer(ICMPv6NDOptDstLLAddr):
-        rxq._proc.terminate()
         raise RuntimeError(
             'Missing Destination Link-Layer Address option in ICMPv6 ' +
             'Neighbor Advertisement {0}'.format(icmpv6_na.__repr__()))
@@ -84,7 +79,6 @@ def main():
 
     # verify destination link-layer address field
     if dst_ll_addr.lladdr != dst_mac:
-        rxq._proc.terminate()
         raise RuntimeError('Invalid lladdr {0} should be {1}'.format(
             dst_ll_addr.lladdr, dst_mac))
 
@@ -93,11 +87,9 @@ def main():
     del icmpv6_na.cksum
     tmp = ICMPv6ND_NA(str(icmpv6_na))
     if tmp.cksum != cksum:
-        rxq._proc.terminate()
         raise RuntimeError(
             'Invalid checksum {0} should be {1}'.format(cksum, tmp.cksum))
 
-    rxq._proc.terminate()
     sys.exit(0)
 
 if __name__ == "__main__":
