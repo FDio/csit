@@ -86,6 +86,7 @@ class PacketVerifier(object):
         self._sock = socket.socket(socket.AF_PACKET, socket.SOCK_RAW,
                                    ETH_P_ALL)
         self._sock.bind((interface_name, ETH_P_ALL))
+        self._ifname = interface_name
 
 
 def extract_one_packet(buf):
@@ -231,6 +232,9 @@ class RxQueue(PacketVerifier):
             return None
 
         pkt = self._sock.recv(0x7fff)
+        print 'Received packet on {0} of len {1}'.format(self._ifname, len(pkt))
+        Ether(pkt).show2()
+        print
 
         if ignore is not None:
             for i, ig_pkt in enumerate(ignore):
@@ -263,6 +267,11 @@ class TxQueue(PacketVerifier):
         :param pkt: Packet to send.
         :type pkt: string or scapy Packet derivative.
         """
+        print 'Sending packet out of {0} of len {1}'.format(self._ifname,
+                                                            len(pkt))
+        Ether(str(pkt)).show2()
+        print
+
         pkt = auto_pad(str(pkt))
         self._sock.send(pkt)
 
