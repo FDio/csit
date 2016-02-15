@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9af53d3f_62c118e4",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-02-15T14:41:55Z",
+      "side": 1,
+      "message": "delete",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 57
+      },
+      "revId": "c9724709924bae332c0f9f399d9f3efb9825df4c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9af53d3f_42b6148c",
+        "filename": "resources/tools/t-rex-stateless-1.88.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-02-15T14:41:55Z",
+      "side": 1,
+      "message": "Please add comment where this script is being executed, what it does.",
+      "revId": "c9724709924bae332c0f9f399d9f3efb9825df4c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9af53d3f_22bb1074",
+        "filename": "resources/tools/t-rex-stateless.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-02-15T14:41:55Z",
+      "side": 1,
+      "message": "Pleas add module docstring : where is this executed, what it does.",
+      "revId": "c9724709924bae332c0f9f399d9f3efb9825df4c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
