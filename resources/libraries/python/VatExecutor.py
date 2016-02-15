@@ -193,5 +193,5 @@ class VatTerminal(object):
         ret = []
         for line_tmpl in cmd_template:
             vat_cmd = line_tmpl.format(**args)
-            ret.append(self.vat_terminal_exec_cmd(vat_cmd))
+            ret.append(self.vat_terminal_exec_cmd(vat_cmd.replace('\n', '')))
         return ret
