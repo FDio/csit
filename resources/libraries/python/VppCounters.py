@@ -36,6 +36,36 @@ class VppCounters(object):
                 self.vpp_clear_interface_counters(node)
 
     @staticmethod
+    def vpp_show_errors_verbose(node):
+        """Run "show errors verbose" debug CLI command
+
+        :param node: Node to run command on
+        :type node: dict
+        """
+        vat = VatExecutor()
+        vat.execute_script("show_errors_verbose.vat", node, json_out=False)
+
+    @staticmethod
+    def vpp_show_runtime_verbose(node):
+        """Run "show runtime" debug CLI command
+
+        :param node: Node to run command on
+        :type node: dict
+        """
+        vat = VatExecutor()
+        vat.execute_script("show_runtime_verbose.vat", node, json_out=False)
+
+    @staticmethod
+    def vpp_show_hardware_detail(node):
+        """Run "show hardware-interfaces detail" debug CLI command
+
+        :param node: Node to run command on
+        :type node: dict
+        """
+        vat = VatExecutor()
+        vat.execute_script("show_hardware_detail.vat", node, json_out=False)
+
+    @staticmethod
     def vpp_clear_interface_counters(node):
         """Clear interface counters on VPP node.
 
