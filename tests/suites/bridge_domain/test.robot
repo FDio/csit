@@ -14,10 +14,12 @@
 | Resource | resources/libraries/robot/default.robot
 | Resource | resources/libraries/robot/interfaces.robot
 | Resource | resources/libraries/robot/bridge_domain.robot
-| Test Setup | Setup all DUTs before test
 | Library | resources.libraries.python.topology.Topology
+| Library | resources.libraries.python.NodePath
 | Variables | resources/libraries/python/topology.py
 | Suite Setup | Setup all TGs before traffic script
+| Test Setup | Setup all DUTs before test
+| Force Tags | 3_NODE_DOUBLE_LINK_TOPO
 
 *** Test Cases ***
 
@@ -26,24 +28,44 @@
 
 | Vpp forwards packets via L2 bridge domain 2 ports
 | | [Tags] | 3_NODE_DOUBLE_LINK_TOPO
-| | ${TG_DUT_links}= | Get active links connecting "${nodes['TG']}" and "${nodes['DUT1']}"
-| | Setup l2 bridge on node "${nodes['DUT1']}" via links "${TG_DUT_links}"
-| | Send traffic on node "${nodes['TG']}" from link "${TG_DUT_links[0]}" to link "${TG_DUT_links[1]}"
+| | Append Nodes | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
+| | Compute Path | ${FALSE}
+| | ${src_if} | ${tmp}= | First Interface
+| | ${dst_if} | ${tmp}= | Last Interface
+| | ${bd_if1} | ${tmp}= | First Ingress Interface
+| | ${bd_if2} | ${tmp}= | Last Egress Interface
+| | Vpp l2bd forwarding setup | ${nodes['DUT1']} | ${bd_if1} | ${bd_if2}
+| | Send and receive traffic | ${nodes['TG']} | ${src_if} | ${dst_if}
 
 | Vpp forwards packets via L2 bridge domain in circular topology
-| | [Tags] | 3_NODE_DOUBLE_LINK_TOPO
-| | ${tg}= | Set Variable | ${nodes['TG']}
-| | ${dut1}= | Set Variable | ${nodes['DUT1']}
-| | ${dut2}= | Set Variable | ${nodes['DUT2']}
-| | ${tg_links}= | Setup TG "${tg}" DUT1 "${dut1}" and DUT2 "${dut2}" for 3 node l2 bridge domain test
-| | Sleep | 10 | Workaround for interface still in down state after vpp restart
-| | Send traffic on node "${nodes['TG']}" from link "${tg_links[0]}" to link "${tg_links[1]}"
+| | [Tags] | 3_NODE_SINGLE_LINK_TOPO
+| | Append Nodes | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']}
+| | ...          | ${nodes['TG']}
+| | Compute Path
+| | ${src_if} | ${tg}= | Next Interface
+| | ${dut1_if1} | ${dut1}= | Next Interface
+| | ${dut1_if2} | ${dut1}= | Next Interface
+| | ${dut2_if1} | ${dut2}= | Next Interface
+| | ${dut2_if2} | ${dut2}= | Next Interface
+| | ${dst_if} | ${tg}= | Next Interface
+| | Vpp l2bd forwarding setup | ${dut1} | ${dut1_if1} | ${dut1_if2}
+| | Vpp l2bd forwarding setup | ${dut2} | ${dut2_if1} | ${dut2_if2}
+| | Send and receive traffic | ${tg} | ${src_if} | ${dst_if}
 
 | Vpp forwards packets via L2 bridge domain in circular topology with static L2FIB entries
-| | [Tags] | 3_NODE_DOUBLE_LINK_TOPO
-| | ${tg}= | Set Variable | ${nodes['TG']}
-| | ${dut1}= | Set Variable | ${nodes['DUT1']}
-| | ${dut2}= | Set Variable | ${nodes['DUT2']}
-| | ${tg_links}= | Setup TG "${tg}" DUT1 "${dut1}" and DUT2 "${dut2}" for 3 node static l2fib test
-| | Sleep | 10 | Workaround for interface still in down state after vpp restart
-| | Send traffic on node "${nodes['TG']}" from link "${tg_links[0]}" to link "${tg_links[1]}"
+| | [Tags] | 3_NODE_SINGLE_LINK_TOPO
+| | Append Nodes | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']}
+| | ...          | ${nodes['TG']}
+| | Compute Path
+| | ${src_if} | ${tg}= | Next Interface
+| | ${dut1_if1} | ${dut1}= | Next Interface
+| | ${dut1_if2} | ${dut1}= | Next Interface
+| | ${dut2_if1} | ${dut2}= | Next Interface
+| | ${dut2_if2} | ${dut2}= | Next Interface
+| | ${dst_if} | ${tg}= | Next Interface
+| | ${mac}= | Get Interface Mac | ${tg} | ${dst_if}
+| | Vpp l2bd forwarding setup | ${dut1} | ${dut1_if1} | ${dut1_if2} | ${FALSE}
+| | ...                       | ${mac}
+| | Vpp l2bd forwarding setup | ${dut2} | ${dut2_if1} | ${dut2_if2} | ${FALSE}
+| | ...                       | ${mac}
+| | Send and receive traffic | ${tg} | ${src_if} | ${dst_if}
