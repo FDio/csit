@@ -33,5 +33,5 @@ unzip ${WORKING_DIR}/${TREX_DOWNLOAD_PACKAGE} -d ${TARGET_DIR}
 test $? -eq 0 || exit 1
 
 cd ${TREX_INSTALL_DIR}/linux_dpdk/ && ./b configure && ./b build || exit 1
-cd ${TREX_INSTALL_DIR}/scripts/ko/src && make || exit 1
+cd ${TREX_INSTALL_DIR}/scripts/ko/src && make && make install || exit 1
 

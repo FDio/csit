@@ -51,13 +51,14 @@ class TrafficGenerator(object):
             ssh.connect(node)
 
             (ret, stdout, stderr) = ssh.exec_command(
-                "sh -c 'cd {0}/scripts/ && sudo modprobe uio && "
-                "sudo insmod ./ko/src/igb_uio.ko'"\
+                "sh -c 'cd {0}/scripts/ && "
+                "sudo ./trex-cfg'"\
                 .format(trex_path))
 
             (ret, stdout, stderr) = ssh.exec_command(
                 "sh -c 'cd {0}/scripts/ && "
-                "sudo nohup ./t-rex-64 -i -c 4 --iom 0 > /dev/null 2>&1 &'"\
+                "sudo nohup ./t-rex-64 -i -c 4 --iom 0 > /dev/null 2>&1 &'"
+                "> /dev/null"\
                 .format(trex_path))
 
     @staticmethod
