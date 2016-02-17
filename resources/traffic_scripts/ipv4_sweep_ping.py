@@ -93,8 +93,11 @@ def main():
         if tmp.chksum != chksum:
             raise RuntimeError(
                 'Invalid checksum {0} should be {1}'.format(chksum, tmp.chksum))
-        recv_payload_len = ipv4.len - 20 - 8
-        load = tmp['Raw'].load[0:recv_payload_len]
+
+        if 'Raw' in icmpv4:
+            load = icmpv4['Raw'].load
+        else:
+            load = []
         if load != data[0:echo_seq]:
             raise RuntimeError(
                 'Received ICMP payload does not match sent payload')
