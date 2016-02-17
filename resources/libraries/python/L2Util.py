@@ -25,25 +25,21 @@ class L2Util(object):
         pass
 
     @staticmethod
-    @keyword('Setup static L2FIB entry on node "${node}" for MAC "${dst_mac}"'
-             ' link "${link}" pair on bd_index "${bd_id}"')
-    def static_l2_fib_entry_via_links(node, dst_mac, link, bd_id):
-        """ Creates a static fib entry on a vpp node
+    def vpp_add_l2fib_entry(node, mac, interface, bd_id):
+        """ Creates a static L2FIB entry on a vpp node.
 
-        :param node: node where we wish to add the static fib entry
-        :param dst_mac: destination mac address in the entry
-        :param link: link name of the node destination interface
-        :param bd_id: l2 bridge domain id
+        :param node: Node to add L2FIB entry on.
+        :param mac: Destination mac address.
+        :param interface: Interface name.
+        :param bd_id: Bridge domain id.
         :type node: dict
-        :type dst_mac: str
-        :type link: str
-        :type bd_id: str
+        :type mac: str
+        :type interface: str
+        :type bd_id: int
         """
-        topology = Topology()
-        interface_name = topology.get_interface_by_link_name(node, link)
-        sw_if_index = topology.get_interface_sw_index(node, interface_name)
+        sw_if_index = Topology.get_interface_sw_index(node, interface)
         VatExecutor.cmd_from_template(node, "add_l2_fib_entry.vat",
-                                      mac=dst_mac, bd=bd_id,
+                                      mac=mac, bd=bd_id,
                                       interface=sw_if_index)
 
     @staticmethod
@@ -117,3 +113,26 @@ class L2Util(object):
         bd_dict['bd_id'] = bd_id
         return bd_dict
 
+    @staticmethod
+    def vpp_add_l2_bridge_domain(node, bd_id, port_1, port_2, learn=True):
+        """Add L2 bridge domain with 2 interfaces to the VPP node.
+
+        :param node: Node to add L2BD on.
+        :param bd_id: Bridge domain ID.
+        :param port_1: First interface name added to L2BD.
+        :param port_2: Second interface name addded to L2BD.
+        :param learn: Enable/disable MAC learn.
+        :type node: dict
+        :type bd_id: int
+        :type interface1: str
+        :type interface2: str
+        :type learn: bool
+        """
+        sw_if_index1 = Topology.get_interface_sw_index(node, port_1)
+        sw_if_index2 = Topology.get_interface_sw_index(node, port_2)
+        VatExecutor.cmd_from_template(node,
+                                      'l2_bridge_domain.vat',
+                                      sw_if_id1=sw_if_index1,
+                                      sw_if_id2=sw_if_index2,
+                                      bd_id=bd_id,
+                                      learn=int(learn))
