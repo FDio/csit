@@ -17,7 +17,7 @@
 | Library | resources.libraries.python.CrossConnectSetup
 | Library | resources.libraries.python.topology.Topology
 | Library | resources.libraries.python.TrafficScriptExecutor
-| Library | resources.libraries.python.IPv4Util
+| Library | resources.libraries.python.InterfaceUtil.InterfaceUtil
 | Variables | resources/libraries/python/constants.py
 
 *** Keywords ***
@@ -52,8 +52,7 @@
 
 
 | Interfaces on all DUTs are in "${state}" state
-| | Node "${nodes['DUT1']}" interface "${nodes['DUT1']['interfaces']['port1']['name']}" is in "${state}" state
-| | Node "${nodes['DUT1']}" interface "${nodes['DUT1']['interfaces']['port3']['name']}" is in "${state}" state
-| | Node "${nodes['DUT2']}" interface "${nodes['DUT2']['interfaces']['port1']['name']}" is in "${state}" state
-| | Node "${nodes['DUT2']}" interface "${nodes['DUT2']['interfaces']['port3']['name']}" is in "${state}" state
-
+| | Set interface state | ${nodes['DUT1']} | ${nodes['DUT1']['interfaces']['port1']['name']} | ${state}
+| | Set interface state | ${nodes['DUT1']} | ${nodes['DUT1']['interfaces']['port3']['name']} | ${state}
+| | Set interface state | ${nodes['DUT2']} | ${nodes['DUT2']['interfaces']['port1']['name']} | ${state}
+| | Set interface state | ${nodes['DUT2']} | ${nodes['DUT2']['interfaces']['port3']['name']} | ${state}

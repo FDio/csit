@@ -647,3 +647,20 @@ class Topology(object):
                           'DUT1_BD_LINKS': dut1_bd_links,
                           'DUT2_BD_LINKS': dut2_bd_links}
         return topology_links
+
+    @staticmethod
+    def is_tg_node(node):
+        """Find out whether the node is TG
+
+        :param node: node to examine
+        :return: True if node is type of TG; False otherwise
+        """
+        return node['type'] == NodeType.TG
+
+    @staticmethod
+    def get_node_hostname(node):
+        """
+        :param node: node dictionary
+        :return: host name as 'str' type
+        """
+        return node['host']

@@ -18,6 +18,8 @@
 """
 from ipaddress import IPv4Network
 
+from resources.libraries.python.topology import Topology
+
 # Default list of IPv4 subnets
 IPV4_NETWORKS = ['20.20.20.0/24',
                  '10.10.10.0/24',
@@ -34,14 +36,14 @@ class IPv4NetworkGenerator(object):
         self._networks = list()
         for network in networks:
             net = IPv4Network(unicode(network))
-            subnet, _ = network.split('/')
-            self._networks.append((net, subnet))
+            self._networks.append(net)
         if len(self._networks) == 0:
             raise Exception('No IPv4 networks')
 
     def next_network(self):
         """
         :return: next network in form (IPv4Network, subnet)
+        :raises: StopIteration if there are no more elements.
         """
         if len(self._networks):
             return self._networks.pop()
@@ -49,56 +51,44 @@ class IPv4NetworkGenerator(object):
             raise StopIteration()
 
 
-def get_variables(networks=IPV4_NETWORKS[:]):
+def get_variables(nodes, networks=IPV4_NETWORKS[:]):
+    """Special robot framework method that returns dictionary nodes_ipv4_addr,
+       mapping of node and interface name to IPv4 adddress.
+
+       :param nodes: Nodes of the test topology.
+       :param networks: list of available IPv4 networks
+       :type nodes: dict
+       :type networks: list
+
+       .. note::
+           Robot framework calls it automatically.
     """
-    Create dictionary of IPv4 addresses generated from provided subnet list.
+    topo = Topology()
+    links = topo.get_links(nodes)
 
-    Example of returned dictionary:
-        network = {
-        'NET1': {
-            'subnet': '192.168.1.0',
-            'prefix': 24,
-            'port1': {
-                'addr': '192.168.1.1',
-            },
-            'port2': {
-                'addr': '192.168.1.0',
-            },
-        },
-        'NET2': {
-            'subnet': '192.168.2.0',
-            'prefix': 24,
-            'port1': {
-                'addr': '192.168.2.1',
-            },
-            'port2': {
-                'addr': '192.168.2.2',
-            },
-        },
-    }
+    if len(links) > len(networks):
+        raise Exception('Not enough available IPv4 networks for topology.')
 
-    This function is called by RobotFramework automatically.
+    ip4_n = IPv4NetworkGenerator(networks)
 
-    :param networks: list of subnets in form a.b.c.d/length
-    :return: Dictionary of IPv4 addresses
-    """
-    net_object = IPv4NetworkGenerator(networks)
+    nets = {}
 
-    network = {}
-    interface_count_per_node = 2
+    for link in links:
+        ip4_net = ip4_n.next_network()
+        net_hosts = ip4_net.hosts()
+        port_idx = 0
+        ports = {}
+        for node in nodes.values():
+            if_name = topo.get_interface_by_link_name(node, link)
+            if if_name is not None:
+                port = {'addr': str(next(net_hosts)),
+                        'node': node['host'],
+                        'if': if_name}
+                port_idx += 1
+                port_id = 'port{0}'.format(port_idx)
+                ports.update({port_id: port})
+        nets.update({link: {'net_addr': str(ip4_net.network_address),
+                            'prefix': ip4_net.prefixlen,
+                            'ports': ports}})
 
-    for subnet_num in range(len(networks)):
-        net, net_str = net_object.next_network()
-        key = 'NET{}'.format(subnet_num + 1)
-        network[key] = {
-            'subnet': net_str,
-            'prefix': net.prefixlen,
-        }
-        hosts = net.hosts()
-        for port_num in range(interface_count_per_node):
-            port = 'port{}'.format(port_num + 1)
-            network[key][port] = {
-                'addr': str(next(hosts)),
-            }
-
-    return {'DICT__nodes_ipv4_addr': network}
+    return {'DICT__nodes_ipv4_addr': nets}

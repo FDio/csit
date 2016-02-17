@@ -16,7 +16,7 @@
 from scapy.all import Ether, IP, ICMP
 from resources.libraries.python.PacketVerifier \
     import Interface, create_gratuitous_arp_request, auto_pad
-from optparse import OptionParser
+from resources.libraries.python.TrafficScriptArg import TrafficScriptArg
 
 
 def check_ttl(ttl_begin, ttl_end, ttl_diff):
@@ -45,28 +45,19 @@ def ckeck_packets_equal(pkt_send, pkt_recv):
         raise Exception("Sent packet doesn't match received packet")
 
 
-parser = OptionParser()
-parser.add_option("--src_if", dest="src_if")
-parser.add_option("--dst_if", dest="dst_if")  # optional
-parser.add_option("--src_mac", dest="src_mac")
-parser.add_option("--first_hop_mac", dest="first_hop_mac")
-parser.add_option("--dst_mac", dest="dst_mac")  # optional
-parser.add_option("--src_ip", dest="src_ip")
-parser.add_option("--dst_ip", dest="dst_ip")
-parser.add_option("--hops", dest="hops")  # optional
-# If one of 'dst_if', 'dst_mac' and 'hops' is specified all must be specified.
-(opts, args) = parser.parse_args()
-src_if_name = opts.src_if
-dst_if_name = opts.dst_if
-dst_if_defined = True
-if dst_if_name is None:
-    dst_if_defined = False
-src_mac = opts.src_mac
-first_hop_mac = opts.first_hop_mac
-dst_mac = opts.dst_mac
-src_ip = opts.src_ip
-dst_ip = opts.dst_ip
-hops = int(opts.hops)
+args = TrafficScriptArg(['src_mac', 'dst_mac', 'src_ip', 'dst_ip',
+                         'hops', 'first_hop_mac', 'is_dst_defined'])
+
+src_if_name = args.get_arg('tx_if')
+dst_if_name = args.get_arg('rx_if')
+dst_if_defined = True if args.get_arg('is_dst_defined') == 'True' else False
+
+src_mac = args.get_arg('src_mac')
+first_hop_mac = args.get_arg('first_hop_mac')
+dst_mac = args.get_arg('dst_mac')
+src_ip = args.get_arg('src_ip')
+dst_ip = args.get_arg('dst_ip')
+hops = int(args.get_arg('hops'))
 
 if dst_if_defined and (src_if_name == dst_if_name):
     raise Exception("Source interface name equals destination interface name")
