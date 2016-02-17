@@ -142,3 +142,35 @@ class IPv4Util(object):
         :return:
         """
         get_node(node).flush_ip_addresses(port)
+
+    @staticmethod
+    def get_link_address(link, nodes_addr):
+        """Get link IPv4 address.
+
+        :param link: Link name.
+        :param nodes_addr: Available nodes IPv4 adresses.
+        :type link: str
+        :type nodes_addr: dict
+        :return: Link IPv4 address.
+        :rtype: str
+        """
+        net = nodes_addr.get(link)
+        if net is None:
+            raise ValueError('Link "{0}" address not found'.format(link))
+        return net.get('net_addr')
+
+    @staticmethod
+    def get_link_prefix(link, nodes_addr):
+        """Get link IPv4 address prefix.
+
+        :param link: Link name.
+        :param nodes_addr: Available nodes IPv4 adresses.
+        :type link: str
+        :type nodes_addr: dict
+        :return: Link IPv4 address prefix.
+        :rtype: int
+        """
+        net = nodes_addr.get(link)
+        if net is None:
+            raise ValueError('Link "{0}" address not found'.format(link))
+        return net.get('prefix')
