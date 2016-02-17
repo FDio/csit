@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9af53d3f_45e85e7c",
+        "filename": "tests/suites/bridge_domain/test.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-02-17T14:19:39Z",
+      "side": 1,
+      "message": "I think we should split this to setup and packet send..",
+      "range": {
+        "startLine": 30,
+        "startChar": 8,
+        "endLine": 30,
+        "endChar": 34
+      },
+      "revId": "c41b7059d662d50937fe919903bcc87beb7a5354",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9af53d3f_65f36274",
+        "filename": "tests/suites/bridge_domain/test.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-02-17T14:19:39Z",
+      "side": 1,
+      "message": "Change this to single link topo please.",
+      "range": {
+        "startLine": 33,
+        "startChar": 13,
+        "endLine": 33,
+        "endChar": 36
+      },
+      "revId": "c41b7059d662d50937fe919903bcc87beb7a5354",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
