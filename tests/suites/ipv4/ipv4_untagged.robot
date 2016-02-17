@@ -12,52 +12,69 @@
 # limitations under the License.
 
 *** Settings ***
-| Documentation | TODO: rewrite with generic path keywords
 | Library | resources.libraries.python.topology.Topology
+| Library | resources.libraries.python.NodePath
 | Resource | resources/libraries/robot/default.robot
 | Resource | resources/libraries/robot/ipv4.robot
 | Suite Setup | Run Keywords | Setup all DUTs before test
 | ...         | AND          | Setup all TGs before traffic script
 | ...         | AND          | Update All Interface Data On All Nodes | ${nodes}
-| ...         | AND          | Setup nodes for IPv4 testing
+| ...         | AND          | Setup DUT nodes for IPv4 testing
 | Test Setup | Clear interface counters on all vpp nodes in topology | ${nodes}
 
 *** Test Cases ***
 
 | VPP replies to ICMPv4 echo request
-| | TG interface "${nodes['TG']['interfaces']['port3']['name']}" can route to node "${nodes['DUT1']}" interface "${nodes['DUT1']['interfaces']['port1']['name']}" "0" hops away using IPv4
-| | Vpp dump stats table | ${nodes['DUT1']}
-| | Check ipv4 interface counter | ${nodes['DUT1']} | ${nodes['DUT1']['interfaces']['port1']['name']} | ${1}
+| | Append Nodes | ${nodes['TG']} | ${nodes['DUT1']}
+| | Compute Path
+| | ${src_port} | ${src_node}= | First Interface
+| | ${dst_port} | ${dst_node}= | Last Interface
+| | ${hops}= | Set Variable | ${0}
+| | Node "${src_node}" interface "${src_port}" can route to node "${dst_node}" interface "${dst_port}" ${hops} hops away using IPv4
 
 | TG can route to DUT egress interface
-| | TG interface "${nodes['TG']['interfaces']['port3']['name']}" can route to node "${nodes['DUT1']}" interface "${nodes['DUT1']['interfaces']['port3']['name']}" "0" hops away using IPv4
-| | Vpp dump stats table | ${nodes['DUT1']}
-| | Check ipv4 interface counter | ${nodes['DUT1']} | ${nodes['DUT1']['interfaces']['port1']['name']} | ${1}
+| | Append Nodes | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']}
+| | Compute Path
+| | ${src_port} | ${src_node}= | First Interface
+| | ${dst_port} | ${dst_node}= | Last Egress Interface
+| | ${hops}= | Set Variable | ${0}
+| | Node "${src_node}" interface "${src_port}" can route to node "${dst_node}" interface "${dst_port}" ${hops} hops away using IPv4
 
 | TG can route to DUT2 through DUT1
-| | TG interface "${nodes['TG']['interfaces']['port3']['name']}" can route to node "${nodes['DUT2']}" interface "${nodes['DUT2']['interfaces']['port3']['name']}" "1" hops away using IPv4
-| | Vpp dump stats table | ${nodes['DUT1']}
-| | Check ipv4 interface counter | ${nodes['DUT1']} | ${nodes['DUT1']['interfaces']['port1']['name']} | ${1}
-| | Check ipv4 interface counter | ${nodes['DUT1']} | ${nodes['DUT1']['interfaces']['port3']['name']} | ${1}
-| | Vpp dump stats table | ${nodes['DUT2']}
-| | Check ipv4 interface counter | ${nodes['DUT2']} | ${nodes['DUT2']['interfaces']['port3']['name']} | ${1}
+| | Append Nodes | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']}
+| | Compute Path
+| | ${src_port} | ${src_node}= | First Interface
+| | ${dst_port} | ${dst_node}= | Last Interface
+| | ${hops}= | Set Variable | ${1}
+| | Node "${src_node}" interface "${src_port}" can route to node "${dst_node}" interface "${dst_port}" ${hops} hops away using IPv4
 
 | TG can route to DUT2 egress interface through DUT1
-| | TG interface "${nodes['TG']['interfaces']['port3']['name']}" can route to node "${nodes['DUT2']}" interface "${nodes['DUT2']['interfaces']['port1']['name']}" "1" hops away using IPv4
-| | Vpp dump stats table | ${nodes['DUT1']}
-| | Check ipv4 interface counter | ${nodes['DUT1']} | ${nodes['DUT1']['interfaces']['port1']['name']} | ${1}
-| | Check ipv4 interface counter | ${nodes['DUT1']} | ${nodes['DUT1']['interfaces']['port3']['name']} | ${1}
-| | Vpp dump stats table | ${nodes['DUT2']}
-| | Check ipv4 interface counter | ${nodes['DUT2']} | ${nodes['DUT2']['interfaces']['port3']['name']} | ${1}
+| | Append Nodes | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
+| | Compute Path
+| | ${src_port} | ${src_node}= | First Interface
+| | ${dst_port} | ${dst_node}= | Last Egress Interface
+| | ${hops}= | Set Variable | ${1}
+| | Node "${src_node}" interface "${src_port}" can route to node "${dst_node}" interface "${dst_port}" ${hops} hops away using IPv4
 
 | TG can route to TG through DUT1 and DUT2
-| | TG interface "${nodes['TG']['interfaces']['port3']['name']}" can route to node "${nodes['TG']}" interface "${nodes['TG']['interfaces']['port5']['name']}" "2" hops away using IPv4
-| | Vpp dump stats table | ${nodes['DUT1']}
-| | Check ipv4 interface counter | ${nodes['DUT1']} | ${nodes['DUT1']['interfaces']['port1']['name']} | ${1}
-| | Check ipv4 interface counter | ${nodes['DUT1']} | ${nodes['DUT1']['interfaces']['port3']['name']} | ${1}
-| | Vpp dump stats table | ${nodes['DUT2']}
-| | Check ipv4 interface counter | ${nodes['DUT2']} | ${nodes['DUT2']['interfaces']['port3']['name']} | ${1}
-| | Check ipv4 interface counter | ${nodes['DUT2']} | ${nodes['DUT2']['interfaces']['port1']['name']} | ${1}
+| | Append Nodes | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
+| | Compute Path
+| | ${src_port} | ${src_node}= | First Interface
+| | ${dst_port} | ${dst_node}= | Last Interface
+| | ${hops}= | Set Variable | ${2}
+| | Node "${src_node}" interface "${src_port}" can route to node "${dst_node}" interface "${dst_port}" ${hops} hops away using IPv4
+| | ${port} | ${node}= | Next Interface
+| | ${port} | ${node}= | Next Interface
+| | ${exp_counter_val}= | ${1}
+| | Vpp dump stats table | ${node}
+| | Check ipv4 interface counter | ${node} | ${port} | ${exp_counter_val}
+| | ${port} | ${node}= | Next Interface
+| | Check ipv4 interface counter | ${node} | ${port} | ${exp_counter_val}
+| | ${port} | ${node}= | Next Interface
+| | Vpp dump stats table | ${node}
+| | Check ipv4 interface counter | ${node} | ${port} | ${exp_counter_val}
+| | ${port} | ${node}= | Next Interface
+| | Check ipv4 interface counter | ${node} | ${port} | ${exp_counter_val}
 
 | VPP can process ICMP echo request from min to max packet size with 1B increment
 | | Ipv4 icmp echo sweep | ${nodes['TG']} | ${nodes['DUT1']}
