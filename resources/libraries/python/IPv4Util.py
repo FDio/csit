@@ -57,46 +57,6 @@ class IPv4Util(object):
                                  gateway, interface)
 
     @staticmethod
-    @keyword('After ping is sent in topology "${nodes_info}" from node '
-             '"${src_node}" interface "${src_port}" "${src_ip}" with '
-             'destination IPv4 address "${dst_ip}" of node "${dst_node}" '
-             'interface "${dst_port}" a ping response arrives and TTL is '
-             'decreased by "${hops}"')
-    def send_ping(nodes_info, src_node, src_port, src_ip, dst_ip, dst_node,
-                  dst_port, hops):
-        """Send IPv4 ping and wait for response.
-
-        :param nodes_info: Dictionary containing information on all nodes
-        in topology.
-        :param src_node: Source node.
-        :param src_port: Source interface.
-        :param src_ip: Source ipv4 address.
-        :param dst_ip: Destination ipv4 address.
-        :param dst_node: Destination node.
-        :param dst_port: Destination interface.
-        :param hops: Number of hops between src_node and dst_node.
-        """
-        log.debug('After ping is sent from node "{}" interface "{}" '
-                  'with destination IPv4 address of node "{}" interface "{}" '
-                  'a ping response arrives and TTL is decreased by "${}"'.
-                  format(Topology.get_node_hostname(src_node), src_port,
-                         Topology.get_node_hostname(dst_node), dst_port, hops))
-        dst_mac = None
-        src_mac = Topology.get_interface_mac(src_node, src_port)
-        if dst_node['type'] == NodeType.TG:
-            dst_mac = Topology.get_interface_mac(src_node, src_port)
-        _, adj_int = Topology.\
-            get_adjacent_node_and_interface(nodes_info, src_node, src_port)
-        first_hop_mac = adj_int['mac_address']
-        args = '--src_if "{}" --src_mac "{}" --first_hop_mac "{}" ' \
-               '--src_ip "{}" --dst_ip "{}" --hops "{}"'\
-            .format(src_port, src_mac, first_hop_mac, src_ip, dst_ip, hops)
-        if dst_node['type'] == NodeType.TG:
-            args += ' --dst_if "{}" --dst_mac "{}"'.format(dst_port, dst_mac)
-        TrafficScriptExecutor.run_traffic_script_on_node(
-            "ipv4_ping_ttl_check.py", src_node, args)
-
-    @staticmethod
     @keyword('Get IPv4 address prefix of node "${node}" interface "${port}" '
              'from "${nodes_addr}"')
     def get_ip_addr_prefix_length(node, port, nodes_addr):
