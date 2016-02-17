@@ -15,6 +15,8 @@
 | Resource | resources/libraries/robot/counters.robot
 | Library | resources.libraries.python.IPv4Util.IPv4Util
 | Library | resources.libraries.python.IPv4Setup.IPv4Setup
+| Library | resources.libraries.python.NodePath
+| Library | resources.libraries.python.Routing
 | Library | resources.libraries.python.TrafficScriptExecutor
 | Variables | resources/libraries/python/IPv4NodeAddress.py | ${nodes}
 
@@ -26,30 +28,35 @@
 | | VPP nodes setup ipv4 addresses | ${nodes} | ${nodes_addr}
 
 | Routes are set up for IPv4 testing
-| | ${gateway}= | Get IPv4 address of node "${nodes['DUT2']}" interface "${nodes['DUT2']['interfaces']['port3']['name']}" from "${nodes_ipv4_addr}"
-| | ${subnet} = | Get IPv4 subnet of node "${nodes['DUT2']}" interface "${nodes['DUT2']['interfaces']['port1']['name']}" from "${nodes_ipv4_addr}"
-| | ${prefix_length} = | Get IPv4 address prefix of node "${nodes['DUT2']}" interface "${nodes['DUT2']['interfaces']['port1']['name']}" from "${nodes_ipv4_addr}"
-| | Node "${nodes['DUT1']}" routes to IPv4 network "${subnet}" with prefix length "${prefix_length}" using interface "${nodes['DUT1']['interfaces']['port3']['name']}" via "${gateway}"
-| | ${gateway} = | Get IPv4 address of node "${nodes['DUT1']}" interface "${nodes['DUT1']['interfaces']['port3']['name']}" from "${nodes_ipv4_addr}"
-| | ${subnet} = | Get IPv4 subnet of node "${nodes['DUT1']}" interface "${nodes['DUT1']['interfaces']['port1']['name']}" from "${nodes_ipv4_addr}"
-| | ${prefix_length} = | Get IPv4 address prefix of node "${nodes['DUT1']}" interface "${nodes['DUT1']['interfaces']['port1']['name']}" from "${nodes_ipv4_addr}"
-| | Node "${nodes['DUT2']}" routes to IPv4 network "${subnet}" with prefix length "${prefix_length}" using interface "${nodes['DUT2']['interfaces']['port3']['name']}" via "${gateway}"
+| | [Documentation] | Setup routing on all VPP nodes required for IPv4 tests
+| | [Arguments] | ${nodes} | ${nodes_addr}
+| | Append Nodes | ${nodes['DUT1']} | ${nodes['DUT2']}
+| | Compute Path
+| | ${tg}= | Set Variable | ${nodes['TG']}
+| | ${dut1_if} | ${dut1}= | First Interface
+| | ${dut2_if} | ${dut2}= | Last Interface
+| | ${dut1_if_addr}= | Get IPv4 address of node "${dut1}" interface "${dut1_if}" from "${nodes_addr}"
+| | ${dut2_if_addr}= | Get IPv4 address of node "${dut2}" interface "${dut2_if}" from "${nodes_addr}"
+| | @{tg_dut1_links}= | Get active links connecting "${tg}" and "${dut1}"
+| | @{tg_dut2_links}= | Get active links connecting "${tg}" and "${dut2}"
+| | :FOR | ${link} | IN | @{tg_dut1_links}
+| | | ${net}= | Get Link Address | ${link} | ${nodes_addr}
+| | | ${prefix}= | Get Link Prefix | ${link} | ${nodes_addr}
+| | | Vpp Route Add | ${dut2} | ${net} | ${prefix} | ${dut1_if_addr} | ${dut2_if}
+| | :FOR | ${link} | IN | @{tg_dut2_links}
+| | | ${net}= | Get Link Address | ${link} | ${nodes_addr}
+| | | ${prefix}= | Get Link Prefix | ${link} | ${nodes_addr}
+| | | Vpp Route Add | ${dut1} | ${net} | ${prefix} | ${dut2_if_addr} | ${dut1_if}
 
 | Setup DUT nodes for IPv4 testing
-| | Interfaces needed for IPv4 testing are in "up" state
-| | Setup IPv4 adresses on all DUT nodes in topology | ${nodes} | ${nodes_ipv4_addr}
-| | Setup ARP on all DUTs | ${nodes}
-| | Routes are set up for IPv4 testing
-
-| Setup nodes for IPv4 testing
 | | Setup IPv4 adresses on all DUT nodes in topology | ${nodes} | ${nodes_ipv4_addr}
 | | Setup ARP on all DUTs | ${nodes} | ${nodes_ipv4_addr}
-| | Routes are set up for IPv4 testing
+| | Routes are set up for IPv4 testing | ${nodes} | ${nodes_ipv4_addr}
 
 | TG interface "${tg_port}" can route to node "${node}" interface "${port}" "${hops}" hops away using IPv4
 | | Node "${nodes['TG']}" interface "${tg_port}" can route to node "${node}" interface "${port}" "${hops}" hops away using IPv4
 
-| Node "${from_node}" interface "${from_port}" can route to node "${to_node}" interface "${to_port}" "${hops}" hops away using IPv4
+| Node "${from_node}" interface "${from_port}" can route to node "${to_node}" interface "${to_port}" ${hops} hops away using IPv4
 | | ${src_ip}= | Get IPv4 address of node "${from_node}" interface "${from_port}" from "${nodes_ipv4_addr}"
 | | ${dst_ip}= | Get IPv4 address of node "${to_node}" interface "${to_port}" from "${nodes_ipv4_addr}"
 | | ${src_mac}= | Get interface mac | ${from_node} | ${from_port}
