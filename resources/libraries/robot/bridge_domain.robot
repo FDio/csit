@@ -12,58 +12,27 @@
 # limitations under the License.
 
 *** Settings ***
-| Library | resources.libraries.python.VatExecutor
-| Library | resources.libraries.python.VatConfigGenerator
 | Library | resources.libraries.python.topology.Topology
 | Library | resources.libraries.python.TrafficScriptExecutor
 | Library | resources.libraries.python.L2Util
-| Variables | resources/libraries/python/constants.py
-
-*** Variables ***
-| ${VAT_BD_TEMPLATE} | ${Constants.RESOURCES_TPL_VAT}/l2_bridge_domain.vat
-| ${VAT_BD_STATIC_TPL} | ${Constants.RESOURCES_TPL_VAT}/l2_bridge_domain_static.vat
-| ${VAT_BD_GEN_FILE} | ${Constants.RESOURCES_TPL_VAT}/l2_bridge_domain_gen.vat
-| ${VAT_BD_REMOTE_PATH} | ${Constants.REMOTE_FW_DIR}/${Constants.RESOURCES_TPL_VAT}/l2_bridge_domain_gen.vat
 
 *** Keywords ***
-| Setup l2 bridge on node "${node}" via links "${link_names}"
-| | ${interface_config}= | Get Interfaces By Link Names | ${node} | ${link_names}
-| | ${commands}= | Generate Vat Config File | ${VAT_BD_TEMPLATE} | ${interface_config} | ${VAT_BD_GEN_FILE}
-| | Copy Config To Remote | ${node} | ${VAT_BD_GEN_FILE} | ${VAT_BD_REMOTE_PATH}
-# TODO: will be removed once v4 is merged to master.
-| | Execute Script | l2_bridge_domain_gen.vat | ${node} | json_out=False
-| | Script Should Have Passed
+| Vpp l2bd forwarding setup
+| | [Documentation] | Setup BD between 2 interfaces on VPP node and if learning
+| | ...             | is off set static L2FIB entry on second interface
+| | [Arguments] | ${node} | ${if1} | ${if2} | ${learn}=${TRUE} | ${mac}=${EMPTY}
+| | Vpp Add L2 Bridge Domain | ${node} | ${1} | ${if1} | ${if2} | ${learn}
+| | Run Keyword If | ${learn} == ${FALSE}
+| | ... | Vpp Add L2fib Entry | ${node} | ${mac} | ${if2} | ${1}
+| | Sleep | 5 | # Wait some time after interface is set up
 
-| Setup l2 bridge with static fib on node "${node}" via links "${link_names}" on bd with index "${bd_id}"
-| | ${vat_template_dict}= | Create dict used in bridge domain template file for node "${node}" with links "${link_names}" and bd_id "${bd_id}"
-| | ${commands}= | Generate Vat Config File | ${VAT_BD_STATIC_TPL} | ${vat_template_dict} | ${VAT_BD_GEN_FILE}
-| | Copy Config To Remote | ${node} | ${VAT_BD_GEN_FILE} | ${VAT_BD_REMOTE_PATH}
-# TODO: will be removed once v4 is merged to master.
-| | Execute Script | l2_bridge_domain_gen.vat | ${node} | json_out=False
-| | Script Should Have Passed
-
-| Send traffic on node "${node}" from link "${link1}" to link "${link2}"
-| | ${src_port}= | Get Interface By Link Name | ${node} | ${link1}
-| | ${dst_port}= | Get Interface By Link Name | ${node} | ${link2}
+| Send and receive traffic
+| | [Documentation] | Send traffic from source interface to destination interface
+| | [Arguments] | ${tg_node} | ${src_int} | ${dst_int}
+| | ${src_mac}= | Get Interface Mac | ${tg_node} | ${src_int}
+| | ${dst_mac}= | Get Interface Mac | ${tg_node} | ${dst_int}
 | | ${src_ip}= | Set Variable | 192.168.100.1
 | | ${dst_ip}= | Set Variable | 192.168.100.2
-| | ${src_mac}= | Get Node Link Mac | ${node} | ${link1}
-| | ${dst_mac}= | Get Node Link Mac | ${node} | ${link2}
-| | ${args}= | Traffic Script Gen Arg | ${dst_port} | ${src_port} | ${src_mac} | ${dst_mac} | ${src_ip} | ${dst_ip}
-| | Run Traffic Script On Node | send_ip_icmp.py | ${node} | ${args}
-
-| Setup TG "${tg}" DUT1 "${dut1}" and DUT2 "${dut2}" for 3 node l2 bridge domain test
-| | ${topology_links}= | Get link data useful in circular topology test from tg "${tg}" dut1 "${dut1}" dut2 "${dut2}"
-| | Setup l2 bridge on node "${dut1}" via links "${topology_links['DUT1_BD_LINKS']}"
-| | Setup l2 bridge on node "${dut2}" via links "${topology_links['DUT2_BD_LINKS']}"
-| | [Return] | ${topology_links['TG_TRAFFIC_LINKS']}
-
-| Setup TG "${tg}" DUT1 "${dut1}" and DUT2 "${dut2}" for 3 node static l2fib test
-| | ${topology_links}= | Get link data useful in circular topology test from tg "${tg}" dut1 "${dut1}" dut2 "${dut2}"
-| | ${dst_mac}= | Get Node Link Mac | ${tg} | ${topology_links["DUT2_TG_LINK"]}
-| | ${bd_index}= | Set Variable | 1
-| | Setup l2 bridge with static fib on node "${dut1}" via links "${topology_links['DUT1_BD_LINKS']}" on bd with index "${bd_index}"
-| | Setup static L2FIB entry on node "${dut1}" for MAC "${dst_mac}" link "${topology_links['DUT1_DUT2_LINK']}" pair on bd_index "${bd_index}"
-| | Setup l2 bridge with static fib on node "${dut2}" via links "${topology_links['DUT2_BD_LINKS']}" on bd with index "${bd_index}"
-| | Setup static L2FIB entry on node "${dut2}" for MAC "${dst_mac}" link "${topology_links['DUT2_TG_LINK']}" pair on bd_index "${bd_index}"
-| | [Return] | ${topology_links["TG_TRAFFIC_LINKS"]}
+| | ${args}= | Traffic Script Gen Arg | ${dst_int} | ${src_int} | ${src_mac}
+| |          | ...                    | ${dst_mac} | ${src_ip} | ${dst_ip}
+| | Run Traffic Script On Node | send_ip_icmp.py | ${tg_node} | ${args}

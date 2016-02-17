@@ -115,6 +115,10 @@ class NodePath(object):
                 l_set = set(links).intersection(self._links)
             else:
                 l_set = set(links).difference(self._links)
+                if not l_set:
+                    raise RuntimeError(
+                        'No free link between {0} and {1}, all links already ' +
+                        'used'.format(node1['host'], node2['host']))
 
             if not l_set:
                 link = links.pop()
