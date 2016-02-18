@@ -32,5 +32,4 @@ virtualenv env
 echo pip install
 pip install -r requirements.txt
 
-PYTHONPATH=`pwd` pybot -L TRACE -v TOPOLOGY_PATH:topologies/available/virl.yaml --exclude PERFTEST tests || true
-
+PYTHONPATH=`pwd` pybot -L TRACE -v TOPOLOGY_PATH:topologies/available/virl.yaml --include VM_ENV --include 3_NODE_SINGLE_LINK_TOPO tests

@@ -16,7 +16,7 @@
 | Resource | resources/libraries/robot/default.robot
 | Resource | resources/libraries/robot/l2_xconnect.robot
 | Library | resources.libraries.python.NodePath
-| Force Tags | 3_NODE_SINGLE_LINK_TOPO
+| Force Tags | 3_NODE_SINGLE_LINK_TOPO | HW_ENV | VM_ENV
 | Test Setup | Setup all DUTs before test
 | Suite Setup | Setup all TGs before traffic script
 
@@ -24,7 +24,6 @@
 *** Test Cases ***
 
 | Vpp forwards packets via L2 xconnect in circular topology
-| | [Tags] | 3_NODE_SINGLE_LINK_TOPO
 | | Append Nodes | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | Compute Path
 | | ${src_if} | ${tg}= | Next Interface

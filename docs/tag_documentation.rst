@@ -23,8 +23,18 @@ Topology TAGs
     3 nodes connected in a circular topology with two links interconnecting
     the devices.
 
+3_NODE_SINGLE_LINK_TOPO
+    3 nodes connected in a circular topoloty with at least one link
+    interconnecting devices.
+
 Objective TAGs
 --------------
 
 Environment TAGs
 ----------------
+
+HW_ENV
+    DUTs and TGs are running on bare metal.
+
+VM_ENV
+    DUTs and TGs are running in virtual environment.
