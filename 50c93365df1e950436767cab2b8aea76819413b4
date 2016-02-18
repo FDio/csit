@@ -22,6 +22,30 @@
       "revId": "50c93365df1e950436767cab2b8aea76819413b4",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9af53d3f_084b8b2c",
+        "filename": "tests/suites/bridge_domain/test.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-02-18T09:54:11Z",
+      "side": 1,
+      "message": "we can do this",
+      "parentUuid": "9af53d3f_88379bb0",
+      "range": {
+        "startLine": 32,
+        "startChar": 19,
+        "endLine": 32,
+        "endChar": 26
+      },
+      "revId": "50c93365df1e950436767cab2b8aea76819413b4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
