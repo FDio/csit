@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9af53d3f_28cf6fb2",
+        "filename": "resources/libraries/robot/l2_xconnect.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-02-18T09:25:31Z",
+      "side": 1,
+      "message": "Remove, you do not use NodePath here",
+      "revId": "c76d4077566d45515e6dcfb0b8dedd920a940dd0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9af53d3f_08c4ab90",
+        "filename": "tests/suites/l2_xconnect/l2_xconnect_untagged.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-02-18T09:25:31Z",
+      "side": 1,
+      "message": "add | Library | resources.libraries.python.NodePath",
+      "revId": "c76d4077566d45515e6dcfb0b8dedd920a940dd0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
