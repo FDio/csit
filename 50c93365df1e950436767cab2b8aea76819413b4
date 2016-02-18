@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9af53d3f_88379bb0",
+        "filename": "tests/suites/bridge_domain/test.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-02-18T09:37:32Z",
+      "side": 1,
+      "message": "could we do always_same_link \u003d ${FALSE}, to improve readability?",
+      "range": {
+        "startLine": 32,
+        "startChar": 19,
+        "endLine": 32,
+        "endChar": 26
+      },
+      "revId": "50c93365df1e950436767cab2b8aea76819413b4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
