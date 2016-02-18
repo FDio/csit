@@ -110,7 +110,7 @@ class TrafficGenerator(object):
             if traffic_type in ["3-node-xconnect", "3-node-bridge"]:
                 (ret, stdout, stderr) = ssh.exec_command(
                     "sh -c '/tmp/openvpp-testing/resources/tools/t-rex-stateless.py "
-                    "-d {0} -r {1}% -s {2} "
+                    "-d {0} -r {1} -s {2} "
                     "--p1_src_start_ip 10.10.10.1 "
                     "--p1_src_end_ip 10.10.10.254 "
                     "--p1_dst_start_ip 20.20.20.1 "
@@ -121,7 +121,7 @@ class TrafficGenerator(object):
             elif traffic_type in ["3-node-IPv4"]:
                 (ret, stdout, stderr) = ssh.exec_command(
                     "sh -c '/tmp/openvpp-testing/resources/tools/t-rex-stateless.py "
-                    "-d {0} -r {1}% -s {2} "
+                    "-d {0} -r {1} -s {2} "
                     "--p1_src_start_ip 10.10.10.2 "
                     "--p1_src_end_ip 10.10.10.254 "
                     "--p1_dst_start_ip 20.20.20.2 "
