@@ -14,12 +14,12 @@
 | Resource | resources/libraries/robot/default.robot
 | Resource | resources/libraries/robot/interfaces.robot
 | Resource | resources/libraries/robot/bridge_domain.robot
+| Force Tags | HW_ENV | VM_ENV
 | Library | resources.libraries.python.topology.Topology
 | Library | resources.libraries.python.NodePath
 | Variables | resources/libraries/python/topology.py
 | Suite Setup | Setup all TGs before traffic script
 | Test Setup | Setup all DUTs before test
-| Force Tags | 3_NODE_DOUBLE_LINK_TOPO
 
 *** Test Cases ***
 

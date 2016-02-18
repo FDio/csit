@@ -17,7 +17,7 @@
 | Resource | resources/libraries/robot/ipv4.robot
 | Library | resources/libraries/python/TrafficGenerator.py
 | Library | resources/libraries/python/CrossConnectSetup.py
-| Force Tags | topo-3node | PERFTEST
+| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV
 | Test Setup | Setup all DUTs before test
 | Suite Setup | Initialize traffic generator | ${nodes['TG']}
 | ... | ${nodes['TG']['interfaces']['port3']['pci_address']}

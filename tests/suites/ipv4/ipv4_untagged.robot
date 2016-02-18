@@ -16,6 +16,7 @@
 | Library | resources.libraries.python.topology.Topology
 | Resource | resources/libraries/robot/default.robot
 | Resource | resources/libraries/robot/ipv4.robot
+| Force Tags | HW_ENV | VM_ENV
 | Suite Setup | Run Keywords | Setup all DUTs before test
 | ...         | AND          | Setup all TGs before traffic script
 | ...         | AND          | Update All Interface Data On All Nodes | ${nodes}
@@ -25,6 +26,7 @@
 *** Test Cases ***
 
 | VPP replies to ICMPv4 echo request
+| | [Tags] | 3_NODE_SINGLE_LINK_TOPO
 | | TG interface "${nodes['TG']['interfaces']['port3']['name']}" can route to node "${nodes['DUT1']}" interface "${nodes['DUT1']['interfaces']['port1']['name']}" "0" hops away using IPv4
 | | Vpp dump stats table | ${nodes['DUT1']}
 | | Check ipv4 interface counter | ${nodes['DUT1']} | ${nodes['DUT1']['interfaces']['port1']['name']} | ${1}
@@ -35,6 +37,7 @@
 | | Check ipv4 interface counter | ${nodes['DUT1']} | ${nodes['DUT1']['interfaces']['port1']['name']} | ${1}
 
 | TG can route to DUT2 through DUT1
+| | [Tags] | 3_NODE_SINGLE_LINK_TOPO
 | | TG interface "${nodes['TG']['interfaces']['port3']['name']}" can route to node "${nodes['DUT2']}" interface "${nodes['DUT2']['interfaces']['port3']['name']}" "1" hops away using IPv4
 | | Vpp dump stats table | ${nodes['DUT1']}
 | | Check ipv4 interface counter | ${nodes['DUT1']} | ${nodes['DUT1']['interfaces']['port1']['name']} | ${1}
@@ -43,6 +46,7 @@
 | | Check ipv4 interface counter | ${nodes['DUT2']} | ${nodes['DUT2']['interfaces']['port3']['name']} | ${1}
 
 | TG can route to DUT2 egress interface through DUT1
+| | [Tags] | 3_NODE_SINGLE_LINK_TOPO
 | | TG interface "${nodes['TG']['interfaces']['port3']['name']}" can route to node "${nodes['DUT2']}" interface "${nodes['DUT2']['interfaces']['port1']['name']}" "1" hops away using IPv4
 | | Vpp dump stats table | ${nodes['DUT1']}
 | | Check ipv4 interface counter | ${nodes['DUT1']} | ${nodes['DUT1']['interfaces']['port1']['name']} | ${1}
@@ -51,6 +55,7 @@
 | | Check ipv4 interface counter | ${nodes['DUT2']} | ${nodes['DUT2']['interfaces']['port3']['name']} | ${1}
 
 | TG can route to TG through DUT1 and DUT2
+| | [Tags] | 3_NODE_SINGLE_LINK_TOPO
 | | TG interface "${nodes['TG']['interfaces']['port3']['name']}" can route to node "${nodes['TG']}" interface "${nodes['TG']['interfaces']['port5']['name']}" "2" hops away using IPv4
 | | Vpp dump stats table | ${nodes['DUT1']}
 | | Check ipv4 interface counter | ${nodes['DUT1']} | ${nodes['DUT1']['interfaces']['port1']['name']} | ${1}
@@ -60,9 +65,11 @@
 | | Check ipv4 interface counter | ${nodes['DUT2']} | ${nodes['DUT2']['interfaces']['port1']['name']} | ${1}
 
 | VPP can process ICMP echo request from min to max packet size with 1B increment
+| | [Tags] | 3_NODE_SINGLE_LINK_TOPO
 | | Ipv4 icmp echo sweep | ${nodes['TG']} | ${nodes['DUT1']}
 | | ...                  | ${nodes['TG']['interfaces']['port3']['name']}
 | | ...                  | ${nodes['DUT1']['interfaces']['port1']['name']}
 
 | VPP responds to ARP request
+| | [Tags] | 3_NODE_SINGLE_LINK_TOPO
 | | Send ARP request and validate response | ${nodes['TG']} | ${nodes['DUT1']}
