@@ -148,7 +148,6 @@ class SSH(object):
             with timeout(time_out, exception=RuntimeError):
                 while not buf.endswith(':~$ '):
                     if chan.recv_ready():
-                        buf = chan.recv(4096)
         except RuntimeError:
             raise Exception('Open interactive terminal timeout.')
         return chan
@@ -180,6 +179,7 @@ class SSH(object):
                 while not buf.endswith(prompt):
                     if chan.recv_ready():
                         buf += chan.recv(4096)
+                        logger.trace('{0}'.format(buf))
         except RuntimeError:
             raise Exception("Exec '{c}' timeout.".format(c=cmd))
         tmp = buf.replace(cmd.replace('\n', ''), '')
