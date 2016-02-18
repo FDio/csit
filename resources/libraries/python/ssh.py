@@ -180,6 +180,7 @@ class SSH(object):
                 while not buf.endswith(prompt):
                     if chan.recv_ready():
                         buf += chan.recv(4096)
+                        logger.trace('{0}'.format(buf))
         except RuntimeError:
             raise Exception("Exec '{c}' timeout.".format(c=cmd))
         tmp = buf.replace(cmd.replace('\n', ''), '')
