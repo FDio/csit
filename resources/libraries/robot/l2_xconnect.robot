@@ -17,42 +17,22 @@
 | Library | resources.libraries.python.CrossConnectSetup
 | Library | resources.libraries.python.topology.Topology
 | Library | resources.libraries.python.TrafficScriptExecutor
-| Library | resources.libraries.python.InterfaceUtil.InterfaceUtil
 | Variables | resources/libraries/python/constants.py
 
 *** Keywords ***
 
-| L2 setup xconnect on DUTs
+| L2 setup xconnect on DUT
 | | [Documentation] | Setup Bidirectional Cross Connect on DUTs
-# TODO: rewrite with dynamic path selection
-| | Vpp Setup Bidirectional Cross Connect | ${nodes['DUT1']}
-| | ... | ${nodes['DUT1']['interfaces']['port1']['name']}
-| | ... | ${nodes['DUT1']['interfaces']['port3']['name']}
-| | Vpp Setup Bidirectional Cross Connect | ${nodes['DUT2']}
-| | ... | ${nodes['DUT2']['interfaces']['port1']['name']}
-| | ... | ${nodes['DUT2']['interfaces']['port3']['name']}
+| | [Arguments] | ${node} | ${if1} | ${if2} |
+| | Vpp Setup Bidirectional Cross Connect | ${node} | ${if1} | ${if2}
 
-
-| Get traffic links between TG "${tg}" and DUT1 "${dut1}" and DUT2 "${dut2}"
-| | ${DUT1_TG_link}= | Get first active connecting link between node "${dut1}" and "${tg}"
-| | ${DUT2_TG_link}= | Get first active connecting link between node "${dut2}" and "${tg}"
-| | ${tg_traffic_links}= | Create List | ${DUT1_TG_link} | ${DUT2_TG_link}
-| | [Return] | ${tg_traffic_links}
-
-
-| Send traffic on node "${node}" from link "${link1}" to link "${link2}"
-| | ${src_port}= | Get Interface By Link Name | ${node} | ${link1}
-| | ${dst_port}= | Get Interface By Link Name | ${node} | ${link2}
+| Send and receive traffic
+| | [Documentation] | Send traffic from source interface to destination interface
+| | [Arguments] | ${tg_node} | ${src_int} | ${dst_int}
+| | ${src_mac}= | Get Interface Mac | ${tg_node} | ${src_int}
+| | ${dst_mac}= | Get Interface Mac | ${tg_node} | ${dst_int}
 | | ${src_ip}= | Set Variable | 192.168.100.1
 | | ${dst_ip}= | Set Variable | 192.168.100.2
-| | ${src_mac}= | Get Node Link Mac | ${node} | ${link1}
-| | ${dst_mac}= | Get Node Link Mac | ${node} | ${link2}
-| | ${args}= | Traffic Script Gen Arg | ${dst_port} | ${src_port} | ${src_mac} | ${dst_mac} | ${src_ip} | ${dst_ip}
-| | Run Traffic Script On Node | send_ip_icmp.py | ${node} | ${args}
-
-
-| Interfaces on all DUTs are in "${state}" state
-| | Set interface state | ${nodes['DUT1']} | ${nodes['DUT1']['interfaces']['port1']['name']} | ${state}
-| | Set interface state | ${nodes['DUT1']} | ${nodes['DUT1']['interfaces']['port3']['name']} | ${state}
-| | Set interface state | ${nodes['DUT2']} | ${nodes['DUT2']['interfaces']['port1']['name']} | ${state}
-| | Set interface state | ${nodes['DUT2']} | ${nodes['DUT2']['interfaces']['port3']['name']} | ${state}
+| | ${args}= | Traffic Script Gen Arg | ${dst_int} | ${src_int} | ${src_mac}
+| |          | ...                    | ${dst_mac} | ${src_ip} | ${dst_ip}
+| | Run Traffic Script On Node | send_ip_icmp.py | ${tg_node} | ${args}
