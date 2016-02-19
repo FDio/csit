@@ -1,6 +1,0 @@
-sw_interface_set_flags {interface1} admin-up link-up
-sw_interface_set_flags {interface2} admin-up link-up
-bridge_domain_add_del bd_id {bd_id} flood 1 uu-flood 1 forward 1 learn 0 arp-term 0
-sw_interface_set_l2_bridge {interface1} bd_id {bd_id} shg 0  enable
-sw_interface_set_l2_bridge {interface2} bd_id {bd_id} shg 0  enable
-exec trace add dpdk-input 100
