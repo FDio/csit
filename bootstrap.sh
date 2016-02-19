@@ -32,10 +32,13 @@ virtualenv env
 echo pip install
 pip install -r requirements.txt
 
-PYTHONPATH=`pwd` pybot -L TRACE \
-    -v TOPOLOGY_PATH:topologies/available/virl.yaml \
-    --include vm_env \
-    --include 3_NODE_SINGLE_LINK_TOPO \
-    --exclude 3_node_double_link_topoNOT3_node_single_link_topo \
-    --exclude PERFTEST \
-    tests/
+#PYTHONPATH=`pwd` pybot -L TRACE \
+#    -v TOPOLOGY_PATH:topologies/available/virl.yaml \
+#    --include vm_env \
+#    --include 3_NODE_SINGLE_LINK_TOPO \
+#    --exclude 3_node_double_link_topoNOT3_node_single_link_topo \
+#    --exclude PERFTEST \
+#    tests/
+
+#PYTHONPATH=`pwd` pybot -L TRACE -v TOPOLOGY_PATH:topologies/available/lf_testbed2.yaml -s performance tests || true
+PYTHONPATH=`pwd` pybot -L TRACE -v TOPOLOGY_PATH:topologies/available/lf_testbed2-710-520.yaml -s performance tests || true
