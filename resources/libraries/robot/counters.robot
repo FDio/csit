@@ -37,3 +37,11 @@
 | | [Arguments] | ${node} | ${interface} | ${value}
 | | ${ipv4_counter}= | Vpp get ipv4 interface counter | ${node} | ${interface}
 | | Should Be Equal | ${ipv4_counter} | ${value}
+
+| Vpp show stats
+| | [Documentation] | Show [error, hardware, interface] stats
+| | [Arguments] | ${node}
+| | Vpp Dump Stats Table | ${node}
+| | Vpp Show Errors Verbose | ${node}
+| | Vpp Show Hardware Detail | ${node}
+| | Vpp Show Runtime Verbose | ${node}
