@@ -37,9 +37,9 @@ class InterfaceUtil(object):
         """
         if node['type'] == NodeType.DUT:
             if state == 'up':
-                state = 'admin-up link-up'
+                state = 'admin-up'
             elif state == 'down':
-                state = 'admin-down link-down'
+                state = 'admin-down'
             else:
                 raise Exception('Unexpected interface state: {}'.format(state))
 
