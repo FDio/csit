@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9af53d3f_93122cb3",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-02-19T13:36:43Z",
+      "side": 1,
+      "message": "To be conformant with Python, I _think_ we probably should use ValueError built-in exception for this.",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 79
+      },
+      "revId": "5e093c693f4d5c285f459548d031b1abfd4b344e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
