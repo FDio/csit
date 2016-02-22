@@ -14,6 +14,8 @@
 """Interface setup library."""
 
 from ssh import SSH
+from robot.api.deco import keyword
+from resources.libraries.python.VatExecutor import VatExecutor
 
 
 class InterfaceSetup(object):
@@ -21,18 +23,15 @@ class InterfaceSetup(object):
 
     __UDEV_IF_RULES_FILE = '/etc/udev/rules.d/10-network.rules'
 
-    def __init__(self):
-        pass
-
     @staticmethod
     def tg_set_interface_driver(node, pci_addr, driver):
         """Set interface driver on the TG node.
 
         :param node: Node to set interface driver on (must be TG node).
-        :param interface: Interface name.
+        :param pci_addr: PCI address of the interface.
         :param driver: Driver name.
         :type node: dict
-        :type interface: str
+        :type pci_addr: str
         :type driver: str
         """
         old_driver = InterfaceSetup.tg_get_interface_driver(node, pci_addr)
@@ -63,9 +62,9 @@ class InterfaceSetup(object):
         """Get interface driver from the TG node.
 
         :param node: Node to get interface driver on (must be TG node).
-        :param interface: Interface name.
+        :param pci_addr: PCI address of the interface.
         :type node: dict
-        :type interface: str
+        :type pci_addr: str
         :return: Interface driver or None if not found.
         :rtype: str
 
@@ -150,3 +149,36 @@ class InterfaceSetup(object):
                 continue
             InterfaceSetup.tg_set_interface_driver(node, if_v['pci_address'],
                                                    if_v['driver'])
+
+    @staticmethod
+    @keyword('Create VXLAN interface on "${DUT}" with VNI "${VNI}"'
+             ' from "${SRC_IP}" to "${DST_IP}"')
+    def create_vxlan_interface(node, vni, source_ip, destination_ip):
+        """Create VXLAN interface and return index of created interface
+
+        Executes "vxlan_add_del_tunnel src {src} dst {dst} vni {vni}" VAT
+        command on the node.
+
+        :param node: Node where to create VXLAN interface
+        :param vni: VXLAN Network Identifier
+        :param source_ip: Source IP of a VXLAN Tunnel End Point
+        :param destination_ip: Destination IP of a VXLAN Tunnel End Point
+        :type node: dict
+        :type vni: int
+        :type source_ip: str
+        :type destination_ip: str
+        :return: SW IF INDEX of created interface
+        :rtype: int
+        """
+
+        output = VatExecutor.cmd_from_template(node, "vxlan_create.vat",
+                                               src=source_ip,
+                                               dst=destination_ip,
+                                               vni=vni)
+        output = output[0]
+
+        if output["retval"] == 0:
+            return output["sw_if_index"]
+        else:
+            raise RuntimeError('Unable to create VXLAN interface on node {}'.\
+                               format(node))
