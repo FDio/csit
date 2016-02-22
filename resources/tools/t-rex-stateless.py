@@ -79,8 +79,8 @@ def create_packets(traffic_options, frame_size=64):
     p2_dst_start_ip = traffic_options['p2_dst_start_ip']
     #p2_dst_end_ip = traffic_options['p2_dst_end_ip']
 
-    base_pkt_a = Ether()/IP(src=p1_src_start_ip, dst=p1_dst_start_ip)/UDP(dport=12, sport=1025, chksum=0)
-    base_pkt_b = Ether()/IP(src=p2_src_start_ip, dst=p2_dst_start_ip)/UDP(dport=12, sport=1025, chksum=0)
+    base_pkt_a = Ether()/IP(src=p1_src_start_ip, dst=p1_dst_start_ip)
+    base_pkt_b = Ether()/IP(src=p2_src_start_ip, dst=p2_dst_start_ip)
 
     vm1 = CTRexScRaw([STLVmTupleGen(ip_min=p1_src_start_ip, ip_max=p1_src_end_ip,
                                     name="tuple"), # define tuple gen
