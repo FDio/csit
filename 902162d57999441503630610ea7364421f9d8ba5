@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9af53d3f_ee5aaf4f",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-02-22T20:54:09Z",
+      "side": 1,
+      "message": "Sorry, I haven\u0027t noticed this earlier, but the .format() is going to get called on \u0027waiting...\u0027 string, and not the whole string as you expect. dot operator has greater priority. Either add the string addition before .format to parenthesis, or split the string using \\",
+      "range": {
+        "startLine": 89,
+        "startChar": 29,
+        "endLine": 90,
+        "endChar": 59
+      },
+      "revId": "902162d57999441503630610ea7364421f9d8ba5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
