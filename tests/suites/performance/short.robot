@@ -25,29 +25,30 @@
 | ... | ${nodes['TG']['interfaces']['port3']['pci_address']}
 | ... | ${nodes['TG']['interfaces']['port5']['pci_address']}
 | Suite Teardown | Teardown traffic generator | ${nodes['TG']}
+| Test Teardown  | Run Keyword If Test Failed | Show statistics on all DUTs
 
 *** Test Cases ***
-| VPP passes 64B frames through L2 cross connect at 3.5mpps in 3-node topology
+| 2core VPP passes 64B frames through L2 cross connect at 3.5mpps in 3-node topology
 | | Given L2 xconnect initialized in a 3-node circular topology
 | | Then Traffic should pass with no loss | 10 | 3.5mpps | 64 | 3-node-xconnect
 
-| VPP passes 1518B frames through L2 cross connect at 10gbps in 3-node topology
+| 2core VPP passes 1518B frames through L2 cross connect at 10gbps in 3-node topology
 | | Given L2 xconnect initialized in a 3-node circular topology
 | | Then Traffic should pass with no loss | 10 | 10gbps | 1518 | 3-node-xconnect
 
-| VPP passes 9000B frames through L2 cross connect at 10gbps in 3-node topology
+| 2core VPP passes 9000B frames through L2 cross connect at 10gbps in 3-node topology
 | | Given L2 xconnect initialized in a 3-node circular topology
 | | Then Traffic should pass with no loss | 10 | 10gbps | 9000 | 3-node-xconnect
 
-| VPP passes 64B frames through bridge domain at 3.5mpps in 3-node topology
+| 2core VPP passes 64B frames through bridge domain at 3.5mpps in 3-node topology
 | | Given L2 bridge domain initialized in a 3-node circular topology
 | | Then Traffic should pass with no loss | 10 | 3.5mpps | 64 | 3-node-bridge
 
-| VPP passes 1518B frames through bridge domain at 10gbps in 3-node topology
+| 2core VPP passes 1518B frames through bridge domain at 10gbps in 3-node topology
 | | Given L2 bridge domain initialized in a 3-node circular topology
 | | Then Traffic should pass with no loss | 10 | 10gbps | 1518 | 3-node-bridge
 
-| VPP passes 9000B frames through bridge domain at 10gbps in 3-node topology
+| 2core VPP passes 9000B frames through bridge domain at 10gbps in 3-node topology
 | | Given L2 bridge domain initialized in a 3-node circular topology
 | | Then Traffic should pass with no loss | 10 | 10gbps | 9000 | 3-node-bridge
 
@@ -86,6 +87,7 @@
 | | ${dst_if} | ${tg}= | Next Interface
 | | Vpp l2bd forwarding setup | ${dut1} | ${dut1_if1} | ${dut1_if2}
 | | Vpp l2bd forwarding setup | ${dut2} | ${dut2_if1} | ${dut2_if2}
+| | Sleep | 10 | Wait for interfaces initialization
 
 | L2 xconnect initialized in a 3-node circular topology
 | | Append Nodes | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']}
@@ -99,14 +101,15 @@
 | | ${dst_if} | ${tg}= | Next Interface
 | | L2 setup xconnect on DUT | ${dut1} | ${dut1_if1} | ${dut1_if2}
 | | L2 setup xconnect on DUT | ${dut2} | ${dut2_if1} | ${dut2_if2}
+| | Sleep | 10 | Wait for interfaces initialization
 
 | Traffic should pass with no loss
 | | [Arguments] | ${duration} | ${rate} | ${framesize} | ${topology_type}
 | | Send traffic on | ${nodes} | ${duration}
 | | ...             | ${rate} | ${framesize} | ${topology_type}
-| | Show statistics on all DUTs
 | | No traffic loss occured
 
 | Show statistics on all DUTs
+| | Sleep | 10 | Waiting for statistics to be collected
 | | Vpp show stats | ${nodes['DUT1']}
 | | Vpp show stats | ${nodes['DUT2']}
