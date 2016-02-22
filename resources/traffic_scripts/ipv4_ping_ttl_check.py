@@ -23,7 +23,7 @@ def check_ttl(ttl_begin, ttl_end, ttl_diff):
     if ttl_begin != ttl_end + ttl_diff:
         raise Exception(
             "TTL changed from {} to {} but decrease by {} expected"
-            .format(ttl_begin, ttl_end, hops))
+            .format(ttl_begin, ttl_end, ttl_diff))
 
 
 def ckeck_packets_equal(pkt_send, pkt_recv):
@@ -39,57 +39,62 @@ def ckeck_packets_equal(pkt_send, pkt_recv):
         raise Exception("Sent packet doesn't match received packet")
 
 
-args = TrafficScriptArg(['src_mac', 'dst_mac', 'src_ip', 'dst_ip',
-                         'hops', 'first_hop_mac', 'is_dst_tg'])
+def main():
+    args = TrafficScriptArg(['src_mac', 'dst_mac', 'src_ip', 'dst_ip',
+                             'hops', 'first_hop_mac', 'is_dst_tg'])
 
-src_if_name = args.get_arg('tx_if')
-dst_if_name = args.get_arg('rx_if')
-is_dst_tg = True if args.get_arg('is_dst_tg') == 'True' else False
+    src_if_name = args.get_arg('tx_if')
+    dst_if_name = args.get_arg('rx_if')
+    is_dst_tg = True if args.get_arg('is_dst_tg') == 'True' else False
 
-src_mac = args.get_arg('src_mac')
-first_hop_mac = args.get_arg('first_hop_mac')
-dst_mac = args.get_arg('dst_mac')
-src_ip = args.get_arg('src_ip')
-dst_ip = args.get_arg('dst_ip')
-hops = int(args.get_arg('hops'))
+    src_mac = args.get_arg('src_mac')
+    first_hop_mac = args.get_arg('first_hop_mac')
+    dst_mac = args.get_arg('dst_mac')
+    src_ip = args.get_arg('src_ip')
+    dst_ip = args.get_arg('dst_ip')
+    hops = int(args.get_arg('hops'))
 
-if is_dst_tg and (src_if_name == dst_if_name):
-    raise Exception("Source interface name equals destination interface name")
+    if is_dst_tg and (src_if_name == dst_if_name):
+        raise Exception("Source interface name equals destination interface name")
 
-src_if = Interface(src_if_name)
-src_if.send_pkt(str(create_gratuitous_arp_request(src_mac, src_ip)))
-if is_dst_tg:
-    dst_if = Interface(dst_if_name)
-    dst_if.send_pkt(str(create_gratuitous_arp_request(dst_mac, dst_ip)))
+    src_if = Interface(src_if_name)
+    src_if.send_pkt(str(create_gratuitous_arp_request(src_mac, src_ip)))
+    if is_dst_tg:
+        dst_if = Interface(dst_if_name)
+        dst_if.send_pkt(str(create_gratuitous_arp_request(dst_mac, dst_ip)))
 
-pkt_req_send = (Ether(src=src_mac, dst=first_hop_mac) /
-                      IP(src=src_ip, dst=dst_ip) /
-                      ICMP())
-src_if.send_pkt(pkt_req_send)
+    pkt_req_send = (Ether(src=src_mac, dst=first_hop_mac) /
+                    IP(src=src_ip, dst=dst_ip) /
+                    ICMP())
+    src_if.send_pkt(pkt_req_send)
 
-if is_dst_tg:
-    pkt_req_recv = dst_if.recv_pkt()
-    if pkt_req_recv is None:
+    if is_dst_tg:
+        pkt_req_recv = dst_if.recv_pkt()
+        if pkt_req_recv is None:
+            raise Exception('Timeout waiting for packet')
+
+        check_ttl(pkt_req_send[IP].ttl, pkt_req_recv[IP].ttl, hops)
+        pkt_req_send_mod = pkt_req_send.copy()
+        pkt_req_send_mod[IP].ttl = pkt_req_recv[IP].ttl
+        del pkt_req_send_mod[IP].chksum  # update checksum
+        ckeck_packets_equal(pkt_req_send_mod[IP], pkt_req_recv[IP])
+
+        pkt_resp_send = (Ether(src=dst_mac, dst=pkt_req_recv.src) /
+                         IP(src=dst_ip, dst=src_ip) /
+                         ICMP(type=0))  # echo-reply
+        dst_if.send_pkt(pkt_resp_send)
+
+    pkt_resp_recv = src_if.recv_pkt()
+    if pkt_resp_recv is None:
         raise Exception('Timeout waiting for packet')
 
-    check_ttl(pkt_req_send[IP].ttl, pkt_req_recv[IP].ttl, hops)
-    pkt_req_send_mod = pkt_req_send.copy()
-    pkt_req_send_mod[IP].ttl = pkt_req_recv[IP].ttl
-    del pkt_req_send_mod[IP].chksum  # update checksum
-    ckeck_packets_equal(pkt_req_send_mod[IP], pkt_req_recv[IP])
+    if is_dst_tg:
+        check_ttl(pkt_resp_send[IP].ttl, pkt_resp_recv[IP].ttl, hops)
+        pkt_resp_send_mod = pkt_resp_send.copy()
+        pkt_resp_send_mod[IP].ttl = pkt_resp_recv[IP].ttl
+        del pkt_resp_send_mod[IP].chksum  # update checksum
+        ckeck_packets_equal(pkt_resp_send_mod[IP], pkt_resp_recv[IP])
 
-    pkt_resp_send = (Ether(src=dst_mac, dst=pkt_req_recv.src) /
-                           IP(src=dst_ip, dst=src_ip) /
-                           ICMP(type=0))  # echo-reply
-    dst_if.send_pkt(pkt_resp_send)
 
-pkt_resp_recv = src_if.recv_pkt()
-if pkt_resp_recv is None:
-    raise Exception('Timeout waiting for packet')
-
-if is_dst_tg:
-    check_ttl(pkt_resp_send[IP].ttl, pkt_resp_recv[IP].ttl, hops)
-    pkt_resp_send_mod = pkt_resp_send.copy()
-    pkt_resp_send_mod[IP].ttl = pkt_resp_recv[IP].ttl
-    del pkt_resp_send_mod[IP].chksum  # update checksum
-    ckeck_packets_equal(pkt_resp_send_mod[IP], pkt_resp_recv[IP])
+if __name__ == "__main__":
+    main()
