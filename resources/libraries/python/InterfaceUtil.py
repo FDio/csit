@@ -13,9 +13,11 @@
 
 """Interface util library"""
 
+from time import time, sleep
+from robot.api import logger
 from resources.libraries.python.ssh import exec_cmd_no_error
 from resources.libraries.python.topology import NodeType, Topology
-from resources.libraries.python.VatExecutor import VatExecutor
+from resources.libraries.python.VatExecutor import VatExecutor, VatTerminal
 
 
 class InterfaceUtil(object):
@@ -41,7 +43,7 @@ class InterfaceUtil(object):
             elif state == 'down':
                 state = 'admin-down'
             else:
-                raise Exception('Unexpected interface state: {}'.format(state))
+                raise ValueError('Unexpected interface state: {}'.format(state))
 
             sw_if_index = Topology.get_interface_sw_index(node, interface)
             VatExecutor.cmd_from_template(node, 'set_if_state.vat',
@@ -52,3 +54,68 @@ class InterfaceUtil(object):
             exec_cmd_no_error(node, cmd, sudo=True)
         else:
             raise Exception('Unknown NodeType: "{}"'.format(node['type']))
+
+    @staticmethod
+    def vpp_node_interfaces_ready_wait(node, timeout=10):
+        """Wait until all interfaces with admin-up are in link-up state.
+
+        :param node: Node to wait on.
+        :param timeout: Waiting timeout in seconds (optional, default 10s)
+        :type node: dict
+        :type timeout: int
+        :raises: RuntimeError if the timeout period value has elapsed.
+        """
+        if_ready = False
+        vat = VatTerminal(node)
+        not_ready = []
+        start = time()
+        while if_ready != True:
+            out = vat.vat_terminal_exec_cmd('sw_interface_dump')
+            if time() - start > timeout:
+                for interface in out:
+                    if interface.get('admin_up_down') == 1:
+                        if interface.get('link_up_down') != 1:
+                            logger.debug('{0} link-down'.format(
+                                interface.get('interface_name')))
+                raise RuntimeError('timeout, not up {0}'.format(not_ready))
+            not_ready = []
+            for interface in out:
+                if interface.get('admin_up_down') == 1:
+                    if interface.get('link_up_down') != 1:
+                        not_ready.append(interface.get('interface_name'))
+            if not not_ready:
+                if_ready = True
+            else:
+                logger.debug('Interfaces still in link-down state: {0}, ' \
+                             'waiting...'.format(not_ready))
+                sleep(1)
+        vat.vat_terminal_close()
+
+    @staticmethod
+    def vpp_nodes_interfaces_ready_wait(nodes, timeout=10):
+        """Wait until all interfaces with admin-up are in link-up state for
+        listed nodes.
+
+        :param nodes: List of nodes to wait on.
+        :param timeout: Seconds to wait per node for all interfaces to come up.
+        :type node: list
+        :type timeout: int
+        :raises: RuntimeError if the timeout period value has elapsed.
+        """
+        for node in nodes:
+            InterfaceUtil.vpp_node_interfaces_ready_wait(node, timeout)
+
+    @staticmethod
+    def all_vpp_interfaces_ready_wait(nodes, timeout=10):
+        """Wait until all interfaces with admin-up are in link-up state for all
+        nodes in the topology.
+
+        :param nodes: Nodes in the topology.
+        :param timeout: Seconds to wait per node for all interfaces to come up.
+        :type node: dict
+        :type timeout: int
+        :raises: RuntimeError if the timeout period value has elapsed.
+        """
+        for node in nodes.values():
+            if node['type'] == NodeType.DUT:
+                InterfaceUtil.vpp_node_interfaces_ready_wait(node, timeout)

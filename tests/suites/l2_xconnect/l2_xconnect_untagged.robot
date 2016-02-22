@@ -15,6 +15,7 @@
 
 | Resource | resources/libraries/robot/default.robot
 | Resource | resources/libraries/robot/l2_xconnect.robot
+| Library | resources.libraries.python.InterfaceUtil
 | Library | resources.libraries.python.NodePath
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | HW_ENV | VM_ENV
 | Test Setup | Setup all DUTs before test
@@ -34,5 +35,5 @@
 | | ${dst_if} | ${tg}= | Next Interface
 | | L2 setup xconnect on DUT | ${dut1} | ${dut1_if1} | ${dut1_if2}
 | | L2 setup xconnect on DUT | ${dut2} | ${dut2_if1} | ${dut2_if2}
-| | Sleep | 10 | Work around VPP interface up taking too long.
+| | All Vpp Interfaces Ready Wait | ${nodes}
 | | Send and receive traffic | ${tg} | ${src_if} | ${dst_if}
