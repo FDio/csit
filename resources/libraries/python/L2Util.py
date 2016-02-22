@@ -11,7 +11,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""L2 bridge domain utilities Library."""
+"""L2 Utilities Library."""
 
 from robot.api.deco import keyword
 from resources.libraries.python.topology import Topology
@@ -19,14 +19,11 @@ from resources.libraries.python.VatExecutor import VatExecutor
 
 
 class L2Util(object):
-    """Utilities for l2 bridge domain configuration"""
-
-    def __init__(self):
-        pass
+    """Utilities for l2 configuration"""
 
     @staticmethod
     def vpp_add_l2fib_entry(node, mac, interface, bd_id):
-        """ Creates a static L2FIB entry on a vpp node.
+        """ Create a static L2FIB entry on a vpp node.
 
         :param node: Node to add L2FIB entry on.
         :param mac: Destination mac address.
@@ -43,58 +40,78 @@ class L2Util(object):
                                       interface=sw_if_index)
 
     @staticmethod
-    @keyword('Setup l2 bridge domain with id "${bd_id}" flooding "${flood}" '
-             'forwarding "${forward}" learning "${learn}" and arp termination '
-             '"${arp_term}" on vpp node "${node}"')
-    def setup_vpp_l2_bridge_domain(node, bd_id, flood, forward, learn,
-                                   arp_term):
-        """Create a l2 bridge domain on the chosen vpp node
+    def create_l2_bd(node, bd_id, flood=1, uu_flood=1, forward=1, learn=1,
+                     arp_term=0):
+        """Create a l2 bridge domain on the chosen VPP node
 
-        Executes "bridge_domain_add_del bd_id {bd_id} flood {flood} uu-flood 1
+        Execute "bridge_domain_add_del bd_id {bd_id} flood {flood} uu-flood 1
         forward {forward} learn {learn} arp-term {arp_term}" VAT command on
         the node.
-        For the moment acts as a placeholder
+
         :param node: node where we wish to crate the l2 bridge domain
-        :param bd_id: bridge domain id
+        :param bd_id: bridge domain index number
         :param flood: enable flooding
+        :param uu_flood: enable uu_flood
         :param forward: enable forwarding
         :param learn: enable mac address learning to fib
         :param arp_term: enable arp_termination
-        :type node: str
-        :type bd_id: str
+        :type node: dict
+        :type bd_id: int
         :type flood: bool
+        :type uu_flood: bool
         :type forward: bool
         :type learn: bool
         :type arp_term:bool
-        :return:
         """
-        pass
+        VatExecutor.cmd_from_template(node, "l2_bd_create.vat",
+                                      bd_id=bd_id, flood=flood,
+                                      uu_flood=uu_flood, forward=forward,
+                                      learn=learn, arp_term=arp_term)
 
-    @keyword('Add interface "${interface}" to l2 bridge domain with index '
-             '"${bd_id}" and shg "${shg}" on vpp node "${node}"')
-    def add_interface_to_l2_bd(self, node, interface, bd_id, shg):
-        """Adds interface to l2 bridge domain.
+    @staticmethod
+    def add_interface_to_l2_bd(node, interface, bd_id, shg=0):
+        """Add a interface to the l2 bridge domain.
 
-        Executes the "sw_interface_set_l2_bridge {interface1} bd_id {bd_id}
-         shg {shg} enable" VAT command on the given node.
-        For the moment acts as a placeholder
-        :param node: node where we want to execute the command that does this.
-        :param interface:
-        :param bd_id:
-        :param shg:
+        Get SW IF ID and add it to the bridge domain.
+
+        :param node: node where we want to execute the command that does this
+        :param interface: interface name
+        :param bd_id: bridge domain index number to add Interface name to
+        :param shg: split horizon group
         :type node: dict
         :type interface: str
-        :type bd_id: str
-        :type shg: str
+        :type bd_id: int
+        :type shg: int
+        """
+        sw_if_index = Topology.get_interface_sw_index(node, interface)
+        L2Util.add_sw_if_index_to_l2_bd(node, sw_if_index, bd_id, shg)
+
+    @staticmethod
+    def add_sw_if_index_to_l2_bd(node, sw_if_index, bd_id, shg=0):
+        """Add interface with sw_if_index to l2 bridge domain.
+
+        Execute the "sw_interface_set_l2_bridge sw_if_index {sw_if_index}
+        bd_id {bd_id} shg {shg} enable" VAT command on the given node.
+
+        :param node: node where we want to execute the command that does this
+        :param sw_if_index: interface index
+        :param bd_id: bridge domain index number to add SW IF ID to
+        :param shg: split horizon group
+        :type node: dict
+        :type sw_if_index: int
+        :type bd_id: int
+        :type shg: int
         :return:
         """
-        pass
+        VatExecutor.cmd_from_template(node, "l2_bd_add_sw_if_index.vat",
+                                      bd_id=bd_id, sw_if_index=sw_if_index,
+                                      shg=shg)
 
     @staticmethod
     @keyword('Create dict used in bridge domain template file for node '
              '"${node}" with links "${link_names}" and bd_id "${bd_id}"')
     def create_bridge_domain_vat_dict(node, link_names, bd_id):
-        """Creates dictionary that can be used in l2 bridge domain template.
+        """Create dictionary that can be used in l2 bridge domain template.
 
         :param node: node data dictionary
         :param link_names: list of names of links the bridge domain should be
@@ -107,7 +124,7 @@ class L2Util(object):
         The resulting dictionary looks like this:
         'interface1': interface name of first interface
         'interface2': interface name of second interface
-        'bd_id': bridge domian index
+        'bd_id': bridge domain index
         """
         bd_dict = Topology().get_interfaces_by_link_names(node, link_names)
         bd_dict['bd_id'] = bd_id
@@ -120,12 +137,12 @@ class L2Util(object):
         :param node: Node to add L2BD on.
         :param bd_id: Bridge domain ID.
         :param port_1: First interface name added to L2BD.
-        :param port_2: Second interface name addded to L2BD.
+        :param port_2: Second interface name added to L2BD.
         :param learn: Enable/disable MAC learn.
         :type node: dict
         :type bd_id: int
-        :type interface1: str
-        :type interface2: str
+        :type port_1: str
+        :type port_2: str
         :type learn: bool
         """
         sw_if_index1 = Topology.get_interface_sw_index(node, port_1)
