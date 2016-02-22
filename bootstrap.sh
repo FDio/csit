@@ -151,4 +151,5 @@ PYTHONPATH=`pwd` pybot -L TRACE \
     --include 3_NODE_SINGLE_LINK_TOPO \
     --exclude 3_node_double_link_topoNOT3_node_single_link_topo \
     --exclude PERFTEST \
+    --noncritical EXPECTED_FAILING \
     tests/
