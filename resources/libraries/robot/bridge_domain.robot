@@ -15,6 +15,7 @@
 | Library | resources.libraries.python.topology.Topology
 | Library | resources.libraries.python.TrafficScriptExecutor
 | Library | resources.libraries.python.L2Util
+| Library | resources.libraries.python.InterfaceUtil
 
 *** Keywords ***
 | Vpp l2bd forwarding setup
@@ -24,7 +25,7 @@
 | | Vpp Add L2 Bridge Domain | ${node} | ${1} | ${if1} | ${if2} | ${learn}
 | | Run Keyword If | ${learn} == ${FALSE}
 | | ... | Vpp Add L2fib Entry | ${node} | ${mac} | ${if2} | ${1}
-| | Sleep | 5 | # Wait some time after interface is set up
+| | All Vpp Interfaces Ready Wait | ${nodes}
 
 | Send and receive traffic
 | | [Documentation] | Send traffic from source interface to destination interface

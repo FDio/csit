@@ -19,6 +19,7 @@
 | Library | resources/libraries/python/TrafficScriptExecutor.py
 | Library | resources/libraries/python/NodePath.py
 | Library | resources/libraries/python/Routing.py
+| Library | resources/libraries/python/InterfaceUtil.py
 | Library | resources.libraries.python.topology.Topology
 | Resource | resources/libraries/robot/default.robot
 | Resource | resources/libraries/robot/counters.robot
@@ -152,7 +153,7 @@
 | | [Arguments] | ${nodes} | ${nodes_addr}
 | | Setup all DUTs before test
 | | Nodes Setup Ipv6 Addresses | ${nodes} | ${nodes_addr}
-| | Sleep | 10
+| | All Vpp Interfaces Ready Wait | ${nodes}
 
 | Clear ipv6 on all dut in topology
 | | [Documentation] | Remove IPv6 address on all DUTs
