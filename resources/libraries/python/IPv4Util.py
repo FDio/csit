@@ -36,6 +36,23 @@ class IPv4Util(object):
         get_node(node).arp_ping(ip_address, interface)
 
     @staticmethod
+    @keyword('Node "${node}" interface "${port}" has IPv4 address "${address}"'
+             ' with prefix length "${prefix_length}"')
+    def set_interface_address(node, interface, address, length):
+        """See IPv4Node.set_ip for more information.
+
+        :param node:
+        :param interface:
+        :param address:
+        :param length:
+        :return:
+        """
+        log.debug('Node {} interface {} has IPv4 address {} with prefix '
+                  'length {}'.format(Topology.get_node_hostname(node),
+                                     interface, address, length))
+        get_node(node).set_ip(interface, address, int(length))
+
+    @staticmethod
     @keyword('Node "${node}" routes to IPv4 network "${network}" with prefix '
              'length "${prefix_length}" using interface "${interface}" via '
              '"${gateway}"')

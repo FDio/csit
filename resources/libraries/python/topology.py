@@ -61,9 +61,6 @@ class Topology(object):
     the used topology.
     """
 
-    def __init__(self):
-        pass
-
     @staticmethod
     def get_node_by_hostname(nodes, hostname):
         """Get node from nodes of the topology by hostname.
