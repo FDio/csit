@@ -291,10 +291,6 @@ class Interface(object):
     def recv_pkt(self, timeout=3):
         return self.rxq.recv(timeout, self.sent_packets)
 
-    def close(self):
-        #self.rxq._proc.terminate()
-        pass
-
 
 def create_gratuitous_arp_request(src_mac, src_ip):
     """Creates scapy representation of gratuitous ARP request"""

@@ -101,8 +101,6 @@ def arp_request_test():
 
     except RuntimeError as ex:
         print 'Error occurred: {}'.format(ex)
-    finally:
-        interface.close()
 
     return test_passed
 
