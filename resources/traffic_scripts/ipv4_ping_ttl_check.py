@@ -21,7 +21,7 @@ from resources.libraries.python.TrafficScriptArg import TrafficScriptArg
 
 def check_ttl(ttl_begin, ttl_end, ttl_diff):
     if ttl_begin != ttl_end + ttl_diff:
-        raise Exception(
+        raise RuntimeError(
             "TTL changed from {} to {} but decrease by {} expected"
             .format(ttl_begin, ttl_end, ttl_diff))
 
@@ -33,10 +33,10 @@ def ckeck_packets_equal(pkt_send, pkt_recv):
         print "Sent:     {}".format(pkt_send_raw.encode('hex'))
         print "Received: {}".format(pkt_recv_raw.encode('hex'))
         print "Sent:"
-        Ether(pkt_send_raw).show2()
+        pkt_send.show2()
         print "Received:"
-        Ether(pkt_recv_raw).show2()
-        raise Exception("Sent packet doesn't match received packet")
+        pkt_recv.show2()
+        raise RuntimeError("Sent packet doesn't match received packet")
 
 
 def main():
@@ -55,7 +55,8 @@ def main():
     hops = int(args.get_arg('hops'))
 
     if is_dst_tg and (src_if_name == dst_if_name):
-        raise Exception("Source interface name equals destination interface name")
+        raise RuntimeError(
+            "Source interface name equals destination interface name")
 
     src_if = Interface(src_if_name)
     src_if.send_pkt(str(create_gratuitous_arp_request(src_mac, src_ip)))
@@ -71,7 +72,7 @@ def main():
     if is_dst_tg:
         pkt_req_recv = dst_if.recv_pkt()
         if pkt_req_recv is None:
-            raise Exception('Timeout waiting for packet')
+            raise RuntimeError('Timeout waiting for packet')
 
         check_ttl(pkt_req_send[IP].ttl, pkt_req_recv[IP].ttl, hops)
         pkt_req_send_mod = pkt_req_send.copy()
@@ -86,7 +87,7 @@ def main():
 
     pkt_resp_recv = src_if.recv_pkt()
     if pkt_resp_recv is None:
-        raise Exception('Timeout waiting for packet')
+        raise RuntimeError('Timeout waiting for packet')
 
     if is_dst_tg:
         check_ttl(pkt_resp_send[IP].ttl, pkt_resp_recv[IP].ttl, hops)
@@ -94,6 +95,50 @@ def main():
         pkt_resp_send_mod[IP].ttl = pkt_resp_recv[IP].ttl
         del pkt_resp_send_mod[IP].chksum  # update checksum
         ckeck_packets_equal(pkt_resp_send_mod[IP], pkt_resp_recv[IP])
+
+    if not pkt_resp_recv.haslayer(IP):
+        raise RuntimeError('Received packet does not contain IPv4 header: {}'.
+                           format(pkt_resp_recv.__repr__()))
+
+    if pkt_resp_recv[IP].src != pkt_req_send[IP].dst:
+        raise RuntimeError(
+            'Received IPv4 packet contains wrong src IP address, '
+            '{} instead of {}'.format(pkt_resp_recv[IP].src,
+                                      pkt_req_send[IP].dst))
+
+    if pkt_resp_recv[IP].dst != pkt_req_send[IP].src:
+        raise RuntimeError(
+            'Received IPv4 packet contains wrong dst IP address, '
+            '{} instead of {}'.format(pkt_resp_recv[IP].dst,
+                                      pkt_req_send[IP].src))
+
+    # verify IPv4 checksum
+    copy = pkt_resp_recv.copy()
+    chksum = copy[IP].chksum
+    del copy[IP].chksum
+    tmp = IP(str(copy[IP]))
+    if tmp.chksum != chksum:
+        raise RuntimeError('Received IPv4 packet contains invalid checksum, '
+                           '{} instead of {}'.format(chksum, tmp.chksum))
+
+    if not pkt_resp_recv[IP].haslayer(ICMP):
+        raise RuntimeError(
+            'Received IPv4 packet does not contain ICMP header: {}'.
+            format(pkt_resp_recv[IP].__repr__()))
+
+    # verify ICMP checksum
+    copy = pkt_resp_recv.copy()
+    chksum = copy[IP][ICMP].chksum
+    del copy[IP][ICMP].chksum
+    tmp = ICMP(str(copy[IP][ICMP]))
+    if tmp.chksum != chksum:
+        raise RuntimeError('Received ICMP packet contains invalid checksum, '
+                           '{} instead of {}'.format(chksum, tmp.chksum))
+
+    pkt_req_send_mod = pkt_req_send.copy()
+    pkt_req_send_mod[IP][ICMP].type = pkt_resp_recv[IP][ICMP].type
+    del pkt_req_send_mod[IP][ICMP].chksum  # update checksum
+    ckeck_packets_equal(pkt_req_send_mod[IP][ICMP], pkt_resp_recv[IP][ICMP])
 
 
 if __name__ == "__main__":
