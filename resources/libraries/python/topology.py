@@ -61,9 +61,6 @@ class Topology(object):
     the used topology.
     """
 
-    def __init__(self):
-        pass
-
     @staticmethod
     def get_node_by_hostname(nodes, hostname):
         """Get node from nodes of the topology by hostname.
@@ -662,8 +659,10 @@ class Topology(object):
 
     @staticmethod
     def get_node_hostname(node):
-        """
-        :param node: node dictionary
-        :return: host name as 'str' type
+        """Returns host (hostname/ip address) of the node.
+
+        :param node: Node.
+        :type node: dict
+        :return: host as 'str' type
         """
         return node['host']
