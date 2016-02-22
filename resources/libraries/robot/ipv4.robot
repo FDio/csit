@@ -67,7 +67,7 @@
 | | ${args}= | Traffic Script Gen Arg | ${to_port} | ${from_port} | ${src_mac}
 | |          | ...                    | ${dst_mac} | ${src_ip} | ${dst_ip}
 | | ${args}= | Catenate | ${args} | --hops ${hops} | --first_hop_mac ${adj_int['mac_address']}
-| |          | ...      | --is_dst_defined ${is_dst_tg}
+| |          | ...      | --is_dst_tg ${is_dst_tg}
 | | Run Traffic Script On Node | ipv4_ping_ttl_check.py | ${from_node} | ${args}
 
 | Ipv4 icmp echo sweep

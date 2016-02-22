@@ -21,9 +21,6 @@ from resources.libraries.python.TrafficScriptArg import TrafficScriptArg
 
 def check_ttl(ttl_begin, ttl_end, ttl_diff):
     if ttl_begin != ttl_end + ttl_diff:
-        src_if.close()
-        if dst_if_defined:
-            dst_if.close()
         raise Exception(
             "TTL changed from {} to {} but decrease by {} expected"
             .format(ttl_begin, ttl_end, hops))
@@ -39,18 +36,15 @@ def ckeck_packets_equal(pkt_send, pkt_recv):
         Ether(pkt_send_raw).show2()
         print "Received:"
         Ether(pkt_recv_raw).show2()
-        src_if.close()
-        if dst_if_defined:
-            dst_if.close()
         raise Exception("Sent packet doesn't match received packet")
 
 
 args = TrafficScriptArg(['src_mac', 'dst_mac', 'src_ip', 'dst_ip',
-                         'hops', 'first_hop_mac', 'is_dst_defined'])
+                         'hops', 'first_hop_mac', 'is_dst_tg'])
 
 src_if_name = args.get_arg('tx_if')
 dst_if_name = args.get_arg('rx_if')
-dst_if_defined = True if args.get_arg('is_dst_defined') == 'True' else False
+is_dst_tg = True if args.get_arg('is_dst_tg') == 'True' else False
 
 src_mac = args.get_arg('src_mac')
 first_hop_mac = args.get_arg('first_hop_mac')
@@ -59,12 +53,12 @@ src_ip = args.get_arg('src_ip')
 dst_ip = args.get_arg('dst_ip')
 hops = int(args.get_arg('hops'))
 
-if dst_if_defined and (src_if_name == dst_if_name):
+if is_dst_tg and (src_if_name == dst_if_name):
     raise Exception("Source interface name equals destination interface name")
 
 src_if = Interface(src_if_name)
 src_if.send_pkt(str(create_gratuitous_arp_request(src_mac, src_ip)))
-if dst_if_defined:
+if is_dst_tg:
     dst_if = Interface(dst_if_name)
     dst_if.send_pkt(str(create_gratuitous_arp_request(dst_mac, dst_ip)))
 
@@ -73,16 +67,10 @@ pkt_req_send = (Ether(src=src_mac, dst=first_hop_mac) /
                       ICMP())
 src_if.send_pkt(pkt_req_send)
 
-if dst_if_defined:
-    try:
-        pkt_req_recv = dst_if.recv_pkt()
-        if pkt_req_recv is None:
-            raise Exception('Timeout waiting for packet')
-    except:
-        src_if.close()
-        if dst_if_defined:
-            dst_if.close()
-        raise
+if is_dst_tg:
+    pkt_req_recv = dst_if.recv_pkt()
+    if pkt_req_recv is None:
+        raise Exception('Timeout waiting for packet')
 
     check_ttl(pkt_req_send[IP].ttl, pkt_req_recv[IP].ttl, hops)
     pkt_req_send_mod = pkt_req_send.copy()
@@ -95,23 +83,13 @@ if dst_if_defined:
                            ICMP(type=0))  # echo-reply
     dst_if.send_pkt(pkt_resp_send)
 
-try:
-    pkt_resp_recv = src_if.recv_pkt()
-    if pkt_resp_recv is None:
-        raise Exception('Timeout waiting for packet')
-except:
-    src_if.close()
-    if dst_if_defined:
-        dst_if.close()
-    raise
+pkt_resp_recv = src_if.recv_pkt()
+if pkt_resp_recv is None:
+    raise Exception('Timeout waiting for packet')
 
-if dst_if_defined:
+if is_dst_tg:
     check_ttl(pkt_resp_send[IP].ttl, pkt_resp_recv[IP].ttl, hops)
     pkt_resp_send_mod = pkt_resp_send.copy()
     pkt_resp_send_mod[IP].ttl = pkt_resp_recv[IP].ttl
     del pkt_resp_send_mod[IP].chksum  # update checksum
     ckeck_packets_equal(pkt_resp_send_mod[IP], pkt_resp_recv[IP])
-
-src_if.close()
-if dst_if_defined:
-    dst_if.close()
