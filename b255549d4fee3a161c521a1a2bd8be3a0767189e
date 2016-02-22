@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9af53d3f_8e8fa323",
+        "filename": "docs/tag_documentation.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-02-22T07:04:47Z",
+      "side": 1,
+      "message": "I think this should be \"with one link\" only, since IPv4/6 tests have default only 3 available IP networks and if there is more than 1 link configured in topology YAML file test suites setup will fail due to lack of available networks.",
+      "revId": "b255549d4fee3a161c521a1a2bd8be3a0767189e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
