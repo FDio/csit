@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9af53d3f_99880b24",
+        "filename": "resources/traffic_scripts/ipv4_ping_ttl_check.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-02-23T14:18:11Z",
+      "side": 1,
+      "message": ".lower() \u003d\u003d \u0027true\u0027 would cover usage problems.",
+      "range": {
+        "startLine": 48,
+        "startChar": 24,
+        "endLine": 48,
+        "endChar": 59
+      },
+      "revId": "8e33ddbb20c70764500ffb81037c7bc0bb53b370",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
