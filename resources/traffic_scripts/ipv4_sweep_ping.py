@@ -20,7 +20,7 @@ import logging
 import os
 logging.getLogger("scapy.runtime").setLevel(logging.ERROR)
 from resources.libraries.python.PacketVerifier import RxQueue, TxQueue,\
-    auto_pad, create_gratuitous_arp_request, checksum_equal
+    create_gratuitous_arp_request, checksum_equal
 from resources.libraries.python.TrafficScriptArg import TrafficScriptArg
 from scapy.layers.inet import IP, ICMP
 from scapy.all import Ether, Raw
@@ -55,10 +55,10 @@ def main():
     # send ICMP echo request with incremented data length and receive ICMP
     # echo reply
     for echo_seq in range(start_size, end_size+1, step):
-        pkt_send = auto_pad(Ether(src=src_mac, dst=dst_mac) /
-                            IP(src=src_ip, dst=dst_ip) /
-                            ICMP(id=echo_id, seq=echo_seq) /
-                            Raw(load=data[0:echo_seq]))
+        pkt_send = (Ether(src=src_mac, dst=dst_mac) /
+                    IP(src=src_ip, dst=dst_ip) /
+                    ICMP(id=echo_id, seq=echo_seq) /
+                    Raw(load=data[0:echo_seq]))
         sent_packets.append(pkt_send)
         txq.send(pkt_send)
 
@@ -97,7 +97,7 @@ def main():
         if 'Raw' in icmpv4:
             load = icmpv4['Raw'].load
         else:
-            load = []
+            load = ""
         if load != data[0:echo_seq]:
             raise RuntimeError(
                 'Received ICMP payload does not match sent payload')
