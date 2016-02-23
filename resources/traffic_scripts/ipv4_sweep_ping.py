@@ -97,7 +97,7 @@ def main():
         if 'Raw' in icmpv4:
             load = icmpv4['Raw'].load
         else:
-            load = []
+            load = ""
         if load != data[0:echo_seq]:
             raise RuntimeError(
                 'Received ICMP payload does not match sent payload')

@@ -80,10 +80,11 @@
 | | ${dst_mac}= | Get Interface Mac | ${dst_node} | ${dst_port}
 | | ${args}= | Traffic Script Gen Arg | ${src_port} | ${src_port} | ${src_mac}
 | |          | ...                    | ${dst_mac} | ${src_ip} | ${dst_ip}
-| # TODO: end_size is currently minimum MTU size for Ethernet minus IPv4 and
-| # ICMP echo header size (1500 - 20 - 8),
-| # MTU info is not in VAT sw_interface_dump output
-| | ${args}= | Set Variable | ${args} --start_size 1 --end_size 1472 --step 1
+| | # end_size is interface MTU minus size of Ethernet header,
+| | # Ethernet frame CRC, IPv4 header and ICMPv4 header
+| | ${mtu}= | Get Interface MTU | ${dst_node} | ${dst_port}
+| | ${max}= | Evaluate | ${mtu} - 14 - 4 - 20 - 8
+| | ${args}= | Set Variable | ${args} --start_size 0 --end_size ${max} --step 1
 | | Run Traffic Script On Node | ipv4_sweep_ping.py | ${src_node} | ${args}
 
 | Send ARP request and validate response
