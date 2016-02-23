@@ -34,8 +34,8 @@ class TrafficGenerator(object):
     def initialize_traffic_generator(node, interface1, interface2):
         """TG initialization
         :param node: Traffic generator node
-        :param interface1: PCI address of first interface
-        :param interface2: PCI address of second interface
+        :param interface1: interface name of first interface
+        :param interface2: interface name of second interface
         :type node: dict
         :type interface1: str
         :type interface2: str
@@ -54,12 +54,17 @@ class TrafficGenerator(object):
                 "sh -c 'cd {0}/scripts/ && "
                 "sudo ./trex-cfg'"\
                 .format(trex_path))
+            if int(ret) != 0:
+                logger.error('trex-cfg failed: {0}'.format(stdout + stderr))
+                raise RuntimeError('trex-cfg failed')
 
-            (ret, stdout, stderr) = ssh.exec_command(
+            (ret, _, _) = ssh.exec_command(
                 "sh -c 'cd {0}/scripts/ && "
                 "sudo nohup ./t-rex-64 -i -c 4 --iom 0 > /dev/null 2>&1 &'"
                 "> /dev/null"\
                 .format(trex_path))
+            if int(ret) != 0:
+                raise RuntimeError('t-rex-64 startup failed')
 
     @staticmethod
     def teardown_traffic_generator(node):
