@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9af53d3f_19f99bc8",
+        "filename": "resources/libraries/python/topology.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 662,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-02-23T13:00:32Z",
+      "side": 1,
+      "message": "Missing method description",
+      "revId": "45c04380d6265c22a309b0b04c11030d8b67e68f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
