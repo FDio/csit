@@ -97,7 +97,7 @@ def main():
     # check identifier and sequence number
     if icmpv6.id != echo_id or icmpv6.seq != echo_seq:
         raise RuntimeError(
-            'Invalid ICMPv6 echo reply received ID {0} seq {1} should be ' +
+            'Invalid ICMPv6 echo reply received ID {0} seq {1} should be ' \
             'ID {2} seq {3}'.format(icmpv6.id, icmpv6.seq, echo_id, echo_seq))
 
     # verify checksum
@@ -142,7 +142,7 @@ def main():
     # check identifier and sequence number
     if icmpv6.id != echo_id or icmpv6.seq != echo_seq:
         raise RuntimeError(
-            'Invalid ICMPv6 echo reply received ID {0} seq {1} should be ' +
+            'Invalid ICMPv6 echo reply received ID {0} seq {1} should be ' \
             'ID {2} seq {3}'.format(icmpv6.id, icmpv6.seq, echo_id, echo_seq))
 
     # verify checksum
