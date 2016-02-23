@@ -257,6 +257,7 @@ class Topology(object):
                         format(ifc, if_mac))
             ifc['name'] = interface_dict["interface_name"]
             ifc['vpp_sw_index'] = interface_dict["sw_if_index"]
+            ifc['mtu'] = interface_dict["mtu"]
 
     def update_vpp_interface_data_on_node(self, node):
         """Update vpp generated interface data for a given node in DICT__nodes
@@ -351,6 +352,27 @@ class Topology(object):
                 continue
             if port_name == interface:
                 return port.get('vpp_sw_index')
+
+        return None
+
+    @staticmethod
+    def get_interface_mtu(node, interface):
+        """Get interface MTU.
+
+        Returns physical layer MTU (max. size of Ethernet frame).
+        :param node: Node to get interface MTU on.
+        :param interface: Interface name.
+        :type node: dict
+        :type interface: str
+        :return: MTU or None if not found.
+        :rtype: int
+        """
+        for port in node['interfaces'].values():
+            port_name = port.get('name')
+            if port_name is None:
+                continue
+            if port_name == interface:
+                return port.get('mtu')
 
         return None
 
