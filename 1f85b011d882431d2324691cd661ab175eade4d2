@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9af53d3f_59aba389",
+        "filename": "resources/libraries/robot/vxlan.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-02-23T14:00:58Z",
+      "side": 1,
+      "message": "use \"| | All Vpp Interfaces Ready Wait | ${nodes}\" from resources.libraries.python.InterfaceUtil instead of Sleep\n\nsee https://gerrit.fd.io/r/#/c/372/4",
+      "revId": "1f85b011d882431d2324691cd661ab175eade4d2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
