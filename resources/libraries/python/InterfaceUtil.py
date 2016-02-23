@@ -53,7 +53,32 @@ class InterfaceUtil(object):
             cmd = 'ip link set {} {}'.format(interface, state)
             exec_cmd_no_error(node, cmd, sudo=True)
         else:
-            raise Exception('Unknown NodeType: "{}"'.format(node['type']))
+            raise Exception('Node {} has unknown NodeType: "{}"'.
+                            format(node['host'], node['type']))
+
+    @staticmethod
+    def set_interface_ethernet_mtu(node, interface, mtu):
+        """Set Ethernet MTU for specified interface.
+
+        Function can be used only for TGs.
+
+        :param node: node where the interface is
+        :param interface: interface name
+        :param mtu: MTU to set
+        :type node: dict
+        :type interface: str
+        :type mtu: int
+        :return: nothing
+        """
+        if node['type'] == NodeType.DUT:
+            ValueError('Node {}: Setting Ethernet MTU for interface '
+                       'on DUT nodes not supported', node['host'])
+        elif node['type'] == NodeType.TG:
+            cmd = 'ip link set {} mtu {}'.format(interface, mtu)
+            exec_cmd_no_error(node, cmd, sudo=True)
+        else:
+            raise ValueError('Node {} has unknown NodeType: "{}"'.
+                             format(node['host'], node['type']))
 
     @staticmethod
     def vpp_node_interfaces_ready_wait(node, timeout=10):
