@@ -84,8 +84,10 @@
 | VPP can process ICMP echo request from min to max packet size with 1B increment
 | | [Tags] | 3_NODE_SINGLE_LINK_TOPO
 | | Ipv4 icmp echo sweep | ${nodes['TG']} | ${nodes['DUT1']}
-| | ...                  | ${nodes['TG']['interfaces']['port3']['name']}
-| | ...                  | ${nodes['DUT1']['interfaces']['port1']['name']}
+
+| VPP can process ICMP echo request from min to max packet size for jumbo frames with 10B increment
+| | [Tags] | 3_NODE_SINGLE_LINK_TOPO
+| | Ipv4 icmp echo sweep with jumbo frames | ${nodes['TG']} | ${nodes['DUT1']}
 
 | VPP responds to ARP request
 | | [Tags] | 3_NODE_SINGLE_LINK_TOPO

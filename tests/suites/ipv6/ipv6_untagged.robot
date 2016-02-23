@@ -35,6 +35,10 @@
 | | [Tags] | 3_NODE_SINGLE_LINK_TOPO
 | | Ipv6 icmp echo sweep | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes_ipv6_addr}
 
+| VPP can process ICMPv6 echo request from min to max packet size for jumbo frames with 10B increment
+| | [Tags] | 3_NODE_SINGLE_LINK_TOPO
+| | Ipv6 icmp echo sweep with jumbo frames | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes_ipv6_addr}
+
 | TG can route to first DUT egress interface
 | | [Tags] | 3_NODE_SINGLE_LINK_TOPO
 | | Ipv6 tg to dut1 egress | ${nodes['TG']} | ${nodes['DUT1']} |

@@ -56,6 +56,29 @@ class InterfaceUtil(object):
             raise Exception('Unknown NodeType: "{}"'.format(node['type']))
 
     @staticmethod
+    def set_interface_ethernet_mtu(node, interface, mtu):
+        """Set Ethernet MTU for specified interface.
+
+        Function can be used only for TGs.
+
+        :param node: node where the interface is
+        :param interface: interface name
+        :param mtu: MTU to set
+        :type node: dict
+        :type interface: str
+        :type mtu: int
+        :return: nothing
+        """
+        if node['type'] == NodeType.DUT:
+            Exception(
+                'Setting Ethernet MTU for interface on DUT node not supported')
+        elif node['type'] == NodeType.TG:
+            cmd = 'ip link set {} mtu {}'.format(interface, mtu)
+            exec_cmd_no_error(node, cmd, sudo=True)
+        else:
+            raise Exception('Unknown NodeType: "{}"'.format(node['type']))
+
+    @staticmethod
     def vpp_node_interfaces_ready_wait(node, timeout=10):
         """Wait until all interfaces with admin-up are in link-up state.
 
