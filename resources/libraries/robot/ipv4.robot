@@ -73,18 +73,20 @@
 
 | Ipv4 icmp echo sweep
 | | [Documentation] | Type of the src_node must be TG and dst_node must be DUT
-| | [Arguments] | ${src_node} | ${dst_node} | ${src_port} | ${dst_port}
+| | [Arguments] | ${src_node} | ${dst_node} | ${start_size} | ${end_size} | ${step}
+| | Append Nodes | ${src_node} | ${dst_node}
+| | Compute Path
+| | ${src_port} | ${src_node}= | First Interface
+| | ${dst_port} | ${dst_node}= | Last Interface
 | | ${src_ip}= | Get IPv4 address of node "${src_node}" interface "${src_port}" from "${nodes_ipv4_addr}"
 | | ${dst_ip}= | Get IPv4 address of node "${dst_node}" interface "${dst_port}" from "${nodes_ipv4_addr}"
 | | ${src_mac}= | Get Interface Mac | ${src_node} | ${src_port}
 | | ${dst_mac}= | Get Interface Mac | ${dst_node} | ${dst_port}
 | | ${args}= | Traffic Script Gen Arg | ${src_port} | ${src_port} | ${src_mac}
 | |          | ...                    | ${dst_mac} | ${src_ip} | ${dst_ip}
-| # TODO: end_size is currently minimum MTU size for Ethernet minus IPv4 and
-| # ICMP echo header size (1500 - 20 - 8),
-| # MTU info is not in VAT sw_interface_dump output
-| | ${args}= | Set Variable | ${args} --start_size 1 --end_size 1472 --step 1
-| | Run Traffic Script On Node | ipv4_sweep_ping.py | ${src_node} | ${args}
+| | ${args}= | Set Variable
+| | ... | ${args} --start_size ${start_size} --end_size ${end_size} --step ${step}
+| | Run Traffic Script On Node | ipv4_sweep_ping.py | ${src_node} | ${args} | ${20}
 
 | Send ARP request and validate response
 | | [Arguments] | ${tg_node} | ${vpp_node}
