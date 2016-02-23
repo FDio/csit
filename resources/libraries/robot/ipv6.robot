@@ -42,7 +42,7 @@
 | | Run Traffic Script On Node | icmpv6_echo.py | ${tg_node} | ${args}
 | | Vpp dump stats | ${dst_node}
 | | ${ipv6_counter}= | Vpp get interface ipv6 counter | ${dst_node} | ${dst_port}
-| | Should Be Equal | ${ipv6_counter} | ${2} | #ICMPv6 neighbor advertisment + ICMPv6 echo request
+| | Should Be Equal | ${ipv6_counter} | ${2} | #ICMPv6 neighbor advertisement + ICMPv6 echo request
 
 | Ipv6 icmp echo sweep
 | | [Documentation] | Type of the src_node must be TG and dst_node must be DUT
@@ -57,10 +57,41 @@
 | | ${dst_mac}= | Get Interface Mac | ${dst_node} | ${dst_port}
 | | ${args}= | Traffic Script Gen Arg | ${src_port} | ${src_port} | ${src_mac}
 | |          | ...                    | ${dst_mac} | ${src_ip} | ${dst_ip}
-| # TODO: end_size is currently minimum MTU size for IPv6 minus IPv6 and ICMPv6
-| # echo header size, MTU info is not in VAT sw_interface_dump output
-| | ${args}= | Set Variable | ${args} --start_size 0 --end_size 1232 --step 1
+| | # end_size is standard MTU for Ethernet minus IPv6 and ICMPv6 echo header size
+| | # (1500 - 40 - 8)
+| | ${args}= | Set Variable | ${args} --start_size 0 --end_size 1452 --step 1
 | | Run Traffic Script On Node | ipv6_sweep_ping.py | ${tg_node} | ${args} | ${20}
+
+| Ipv6 icmp echo sweep with jumbo frames
+| | [Documentation] | Type of the src_node must be TG and dst_node must be DUT
+| | [Arguments] | ${tg_node} | ${dut_node} | ${nodes_addr}
+| | Append Nodes | ${tg_node} | ${dut_node}
+| | Compute Path
+| | ${src_port} | ${src_node}= | First Interface
+| | ${dst_port} | ${dst_node}= | Last Interface
+| | Ipv6 icmp echo sweep with jumbo frames between ports | ${src_node} | ${src_port}
+| | ...                                                  | ${dst_node} | ${dst_port}
+| | ...                                                  | ${nodes_addr}
+
+| Ipv6 icmp echo sweep with jumbo frames between ports
+| | [Arguments] | ${src_node} | ${src_port} | ${dst_node} | ${dst_port} | ${nodes_addr}
+| | [Teardown] | Set Interface Ethernet MTU | ${src_node} | ${src_port} | ${1500}
+| | ${src_ip}= | Get Node Port Ipv6 Address | ${src_node} | ${src_port} | ${nodes_addr}
+| | ${dst_ip}= | Get Node Port Ipv6 Address | ${dst_node} | ${dst_port} | ${nodes_addr}
+| | ${src_mac}= | Get Interface Mac | ${src_node} | ${src_port}
+| | ${dst_mac}= | Get Interface Mac | ${dst_node} | ${dst_port}
+| | ${args}= | Traffic Script Gen Arg | ${src_port} | ${src_port} | ${src_mac}
+| |          | ...                    | ${dst_mac} | ${src_ip} | ${dst_ip}
+| | # get physical layer MTU (max. size of Ethernet frame)
+| | ${mtu}= | Get Interface MTU | ${dst_node} | ${dst_port}
+| | # Ethernet MTU is physical layer MTU minus size of Ethernet header and FCS
+| | ${eth_mtu}= | Evaluate | ${mtu} - 14 - 4
+| | Set Interface Ethernet MTU | ${src_node} | ${src_port} | ${eth_mtu}
+| | # ICMPv6 payload size is Ethernet payload size minus size of IPv6 header and ICMPv6 header
+| | ${start_size}= | Evaluate | 1500 - 40 - 8
+| | ${end_size}= | Evaluate | ${eth_mtu} - 40 - 8
+| | ${args}= | Set Variable | ${args} --start_size ${start_size} --end_size ${end_size} --step 10
+| | Run Traffic Script On Node | ipv6_sweep_ping.py | ${src_node} | ${args} | ${20}
 
 | Ipv6 tg to dut1 egress
 | | [Documentation] | Send traffic from TG to first DUT egress interface

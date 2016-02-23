@@ -14,6 +14,7 @@
 *** Settings ***
 | Library | resources.libraries.python.topology.Topology
 | Library | resources.libraries.python.NodePath
+| Library | resources.libraries.python.Traces
 | Resource | resources/libraries/robot/default.robot
 | Resource | resources/libraries/robot/ipv4.robot
 | Force Tags | HW_ENV | VM_ENV
@@ -22,6 +23,7 @@
 | ...         | AND          | Update All Interface Data On All Nodes | ${nodes}
 | ...         | AND          | Setup DUT nodes for IPv4 testing
 | Test Setup | Clear interface counters on all vpp nodes in topology | ${nodes}
+| Test Teardown | Run Keyword If Test Failed | Show packet trace on all DUTs | ${nodes}
 
 *** Test Cases ***
 
@@ -81,11 +83,13 @@
 | | ${port} | ${node}= | Next Interface
 | | Check ipv4 interface counter | ${node} | ${port} | ${exp_counter_val}
 
-| VPP can process ICMP echo request from min to max packet size with 1B increment
+| VPP can process ICMP echo request from min to 1500B packet size with 1B increment
 | | [Tags] | 3_NODE_SINGLE_LINK_TOPO
 | | Ipv4 icmp echo sweep | ${nodes['TG']} | ${nodes['DUT1']}
-| | ...                  | ${nodes['TG']['interfaces']['port3']['name']}
-| | ...                  | ${nodes['DUT1']['interfaces']['port1']['name']}
+
+| VPP can process ICMP echo request from 1500B to max packet size with 10B increment
+| | [Tags] | 3_NODE_SINGLE_LINK_TOPO
+| | Ipv4 icmp echo sweep with jumbo frames | ${nodes['TG']} | ${nodes['DUT1']}
 
 | VPP responds to ARP request
 | | [Tags] | 3_NODE_SINGLE_LINK_TOPO

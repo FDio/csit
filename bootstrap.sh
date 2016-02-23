@@ -166,4 +166,5 @@ PYTHONPATH=`pwd` pybot -L TRACE \
     --exclude 3_node_double_link_topoNOT3_node_single_link_topo \
     --exclude PERFTEST \
     --noncritical EXPECTED_FAILING \
+    -t "VPP can process ICMP echo request from 1500B to max packet size with 10B increment" \
     tests/

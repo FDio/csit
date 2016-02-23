@@ -15,6 +15,7 @@
 
 *** Settings ***
 | Documentation | IPv6 untagged test suite
+| Library | resources.libraries.python.Traces
 | Resource | resources/libraries/robot/ipv6.robot
 | Resource | resources/libraries/robot/counters.robot
 | Resource | resources/libraries/robot/default.robot
@@ -25,15 +26,20 @@
 | ...         | AND          | Vpp nodes setup ipv6 routing | ${nodes} | ${nodes_ipv6_addr}
 | ...         | AND          | Setup all TGs before traffic script
 | Test Setup | Clear interface counters on all vpp nodes in topology | ${nodes}
+| Test Teardown | Run Keyword If Test Failed | Show packet trace on all DUTs | ${nodes}
 
 *** Test Cases ***
 | VPP replies to ICMPv6 echo request
 | | [Tags] | 3_NODE_SINGLE_LINK_TOPO
 | | Ipv6 icmp echo | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes_ipv6_addr}
 
-| VPP can process ICMPv6 echo request from min to max packet size with 1B increment
+| VPP can process ICMPv6 echo request from min to 1500B packet size with 1B increment
 | | [Tags] | 3_NODE_SINGLE_LINK_TOPO
 | | Ipv6 icmp echo sweep | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes_ipv6_addr}
+
+| VPP can process ICMPv6 echo request from 1500B to max packet size with 10B increment
+| | [Tags] | 3_NODE_SINGLE_LINK_TOPO
+| | Ipv6 icmp echo sweep with jumbo frames | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes_ipv6_addr}
 
 | TG can route to first DUT egress interface
 | | [Tags] | 3_NODE_SINGLE_LINK_TOPO
