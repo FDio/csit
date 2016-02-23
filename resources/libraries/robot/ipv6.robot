@@ -14,12 +14,12 @@
 """IPv6 keywords"""
 
 *** Settings ***
-| Library | resources/libraries/python/IPv6Util.py
-| Library | resources/libraries/python/IPv6Setup.py
-| Library | resources/libraries/python/TrafficScriptExecutor.py
-| Library | resources/libraries/python/NodePath.py
-| Library | resources/libraries/python/Routing.py
-| Library | resources/libraries/python/InterfaceUtil.py
+| Library | resources.libraries.python.IPv6Util
+| Library | resources.libraries.python.IPv6Setup
+| Library | resources.libraries.python.TrafficScriptExecutor
+| Library | resources.libraries.python.NodePath
+| Library | resources.libraries.python.Routing
+| Library | resources.libraries.python.InterfaceUtil
 | Library | resources.libraries.python.topology.Topology
 | Resource | resources/libraries/robot/default.robot
 | Resource | resources/libraries/robot/counters.robot
@@ -42,12 +42,13 @@
 | | Run Traffic Script On Node | icmpv6_echo.py | ${tg_node} | ${args}
 | | Vpp dump stats | ${dst_node}
 | | ${ipv6_counter}= | Vpp get interface ipv6 counter | ${dst_node} | ${dst_port}
-| | Should Be Equal | ${ipv6_counter} | ${2} | #ICMPv6 neighbor advertisment + ICMPv6 echo request
+| | Should Be Equal | ${ipv6_counter} | ${2} | #ICMPv6 neighbor advertisement + ICMPv6 echo request
 
 | Ipv6 icmp echo sweep
 | | [Documentation] | Type of the src_node must be TG and dst_node must be DUT
-| | [Arguments] | ${tg_node} | ${dut_node} | ${nodes_addr}
-| | Append Nodes | ${tg_node} | ${dut_node}
+| | [Arguments] | ${src_node} | ${dst_node} | ${start_size} | ${end_size}
+| | ... | ${step} | ${nodes_addr}
+| | Append Nodes | ${src_node} | ${dst_node}
 | | Compute Path
 | | ${src_port} | ${src_node}= | First Interface
 | | ${dst_port} | ${dst_node}= | Last Interface
@@ -57,10 +58,9 @@
 | | ${dst_mac}= | Get Interface Mac | ${dst_node} | ${dst_port}
 | | ${args}= | Traffic Script Gen Arg | ${src_port} | ${src_port} | ${src_mac}
 | |          | ...                    | ${dst_mac} | ${src_ip} | ${dst_ip}
-| # TODO: end_size is currently minimum MTU size for IPv6 minus IPv6 and ICMPv6
-| # echo header size, MTU info is not in VAT sw_interface_dump output
-| | ${args}= | Set Variable | ${args} --start_size 0 --end_size 1232 --step 1
-| | Run Traffic Script On Node | ipv6_sweep_ping.py | ${tg_node} | ${args} | ${20}
+| | ${args}= | Set Variable
+| | ... | ${args} --start_size ${start_size} --end_size ${end_size} --step ${step}
+| | Run Traffic Script On Node | ipv6_sweep_ping.py | ${src_node} | ${args} | ${20}
 
 | Ipv6 tg to dut1 egress
 | | [Documentation] | Send traffic from TG to first DUT egress interface
