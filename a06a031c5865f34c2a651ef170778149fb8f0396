@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9af53d3f_19d19bfb",
+        "filename": "bootstrap.sh",
+        "patchSetId": 16
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 74
+      },
+      "writtenOn": "2016-02-23T14:42:25Z",
+      "side": 1,
+      "message": "|| exit 1",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 76,
+        "endChar": 162
+      },
+      "revId": "a06a031c5865f34c2a651ef170778149fb8f0396",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
