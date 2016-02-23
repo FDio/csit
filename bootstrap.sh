@@ -142,7 +142,7 @@ if [ "$?" -ne "0" ]; then
     exit ${retval}
 fi
 
-if [[ ! "${VIRL_SID}" =~ session-[a-zA-Z0-9]{6} ]]; then
+if [[ ! "${VIRL_SID}" =~ session-[a-zA-Z0-9_]{6} ]]; then
     echo "No VIRL session ID reported."
     exit 127
 fi
@@ -173,9 +173,8 @@ pip install -r requirements.txt
 
 PYTHONPATH=`pwd` pybot -L TRACE \
     -v TOPOLOGY_PATH:topologies/enabled/topology.yaml \
-    --include vm_env \
-    --include 3_NODE_SINGLE_LINK_TOPO \
     --exclude 3_node_double_link_topoNOT3_node_single_link_topo \
+    --include VM_ENV \
     --exclude PERFTEST \
     --noncritical EXPECTED_FAILING \
     tests/

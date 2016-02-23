@@ -16,7 +16,7 @@
 | Resource | resources/libraries/robot/default.robot
 | Resource | resources/libraries/robot/vxlan.robot
 | Resource | resources/libraries/robot/l2_traffic.robot
-| Force Tags | 3_NODE_SINGLE_LINK_TOPO | EXPECTED_FAILING
+| Force Tags | 3_NODE_SINGLE_LINK_TOPO | EXPECTED_FAILING | VM_ENV | HW_ENV
 | Suite Setup | Run Keywords | Setup all DUTs before test
 | ...         | AND          | Setup all TGs before traffic script
 | ...         | AND          | Setup VXLAN tunnel on nodes | ${nodes['TG']}
