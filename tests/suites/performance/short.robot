@@ -20,11 +20,9 @@
 | Library | resources.libraries.python.TrafficGenerator
 | Library | resources.libraries.python.NodePath
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV
+| Suite Setup | 3-node Performance Suite Setup
+| Suite Teardown | 3-node Performance Suite Teardown
 | Test Setup | Setup all DUTs before test
-| Suite Setup | Initialize traffic generator | ${nodes['TG']}
-| ... | ${nodes['TG']['interfaces']['port3']['pci_address']}
-| ... | ${nodes['TG']['interfaces']['port5']['pci_address']}
-| Suite Teardown | Teardown traffic generator | ${nodes['TG']}
 | Test Teardown  | Run Keyword If Test Failed | Show statistics on all DUTs
 
 *** Test Cases ***
@@ -67,38 +65,42 @@
 
 *** Keywords ***
 
+| 3-node Topology Variables Setup
+| | Append Nodes | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']}
+| | ...          | ${nodes['TG']}
+| | Compute Path
+| | ${tg_if1} | ${tg}= | Next Interface
+| | ${dut1_if1} | ${dut1}= | Next Interface
+| | ${dut1_if2} | ${dut1}= | Next Interface
+| | ${dut2_if1} | ${dut2}= | Next Interface
+| | ${dut2_if2} | ${dut2}= | Next Interface
+| | ${tg_if2} | ${tg}= | Next Interface
+| | Set Suite Variable | ${tg}
+| | Set Suite Variable | ${tg_if1}
+| | Set Suite Variable | ${tg_if2}
+| | Set Suite Variable | ${dut1}
+| | Set Suite Variable | ${dut1_if1}
+| | Set Suite Variable | ${dut1_if2}
+| | Set Suite Variable | ${dut2}
+| | Set Suite Variable | ${dut2_if1}
+| | Set Suite Variable | ${dut2_if2}
 
-| L2 xconnect initialized in a 3-node topology
-| | Interfaces on all DUTs are in "up" state
-| | L2 setup xconnect on DUTs
+| 3-node Performance Suite Setup
+| | 3-node Topology Variables Setup
+| | Initialize traffic generator | ${tg} | ${tg_if1} | ${tg_if2}
+
+| 3-node Performance Suite Teardown
+| | Teardown traffic generator | ${tg}
 
 | IPv4 forwarding initialized in a 3-node topology
 | | Setup nodes for IPv4 testing
 
 | L2 bridge domain initialized in a 3-node circular topology
-| | Append Nodes | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']}
-| | ...          | ${nodes['TG']}
-| | Compute Path
-| | ${src_if} | ${tg}= | Next Interface
-| | ${dut1_if1} | ${dut1}= | Next Interface
-| | ${dut1_if2} | ${dut1}= | Next Interface
-| | ${dut2_if1} | ${dut2}= | Next Interface
-| | ${dut2_if2} | ${dut2}= | Next Interface
-| | ${dst_if} | ${tg}= | Next Interface
 | | Vpp l2bd forwarding setup | ${dut1} | ${dut1_if1} | ${dut1_if2}
 | | Vpp l2bd forwarding setup | ${dut2} | ${dut2_if1} | ${dut2_if2}
 | | Sleep | 10 | Wait for interfaces initialization
 
 | L2 xconnect initialized in a 3-node circular topology
-| | Append Nodes | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']}
-| | ...          | ${nodes['TG']}
-| | Compute Path
-| | ${src_if} | ${tg}= | Next Interface
-| | ${dut1_if1} | ${dut1}= | Next Interface
-| | ${dut1_if2} | ${dut1}= | Next Interface
-| | ${dut2_if1} | ${dut2}= | Next Interface
-| | ${dut2_if2} | ${dut2}= | Next Interface
-| | ${dst_if} | ${tg}= | Next Interface
 | | L2 setup xconnect on DUT | ${dut1} | ${dut1_if1} | ${dut1_if2}
 | | L2 setup xconnect on DUT | ${dut2} | ${dut2_if1} | ${dut2_if2}
 | | Sleep | 10 | Wait for interfaces initialization
@@ -111,5 +113,5 @@
 
 | Show statistics on all DUTs
 | | Sleep | 10 | Waiting for statistics to be collected
-| | Vpp show stats | ${nodes['DUT1']}
-| | Vpp show stats | ${nodes['DUT2']}
+| | Vpp show stats | ${dut1}
+| | Vpp show stats | ${dut2}
