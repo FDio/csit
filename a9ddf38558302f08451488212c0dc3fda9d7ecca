@@ -1,0 +1,141 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9af53d3f_d961f3d4",
+        "filename": "resources/libraries/python/L2Util.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-02-23T07:30:06Z",
+      "side": 1,
+      "message": "You created too long keywords, you can\u0027t wrap it in robot file",
+      "revId": "a9ddf38558302f08451488212c0dc3fda9d7ecca",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9af53d3f_b95e2f11",
+        "filename": "resources/libraries/python/topology.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 666,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-02-23T07:30:06Z",
+      "side": 1,
+      "message": "node.get(\u0027host\u0027)",
+      "revId": "a9ddf38558302f08451488212c0dc3fda9d7ecca",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9af53d3f_59a5e302",
+        "filename": "resources/libraries/robot/vxlan.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-02-23T07:30:06Z",
+      "side": 1,
+      "message": "I don\u0027t think those empty lines inside keyword is good idea",
+      "revId": "a9ddf38558302f08451488212c0dc3fda9d7ecca",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9af53d3f_79a0a7f4",
+        "filename": "resources/libraries/robot/vxlan.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-02-23T07:30:06Z",
+      "side": 1,
+      "message": "Is this all necessary?",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 41
+      },
+      "revId": "a9ddf38558302f08451488212c0dc3fda9d7ecca",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9af53d3f_39aa1fd5",
+        "filename": "resources/libraries/robot/vxlan.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-02-23T07:30:06Z",
+      "side": 1,
+      "message": "too long",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 197
+      },
+      "revId": "a9ddf38558302f08451488212c0dc3fda9d7ecca",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9af53d3f_19af5be5",
+        "filename": "resources/libraries/robot/vxlan.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-02-23T07:30:06Z",
+      "side": 1,
+      "message": "If you use sleep write why",
+      "revId": "a9ddf38558302f08451488212c0dc3fda9d7ecca",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9af53d3f_f9ab97d4",
+        "filename": "resources/libraries/robot/vxlan.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-02-23T07:30:06Z",
+      "side": 1,
+      "message": "I think there should be some sleep after interface state is changed",
+      "range": {
+        "startLine": 64,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 50
+      },
+      "revId": "a9ddf38558302f08451488212c0dc3fda9d7ecca",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
