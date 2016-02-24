@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "9af53d3f_f91cb715",
+        "filename": "resources/libraries/python/topology.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 662,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-02-24T16:48:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9af53d3f_19f99bc8",
+      "revId": "45c04380d6265c22a309b0b04c11030d8b67e68f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9af53d3f_d90213b4",
         "filename": "resources/libraries/robot/vxlan.robot",
         "patchSetId": 2
@@ -30,6 +48,30 @@
       "writtenOn": "2016-02-23T13:04:52Z",
       "side": 1,
       "message": "Again, is this all necessary? Why you set variables as suite variable when you use it only in this keyword?",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 41
+      },
+      "revId": "45c04380d6265c22a309b0b04c11030d8b67e68f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9af53d3f_992c8b4c",
+        "filename": "resources/libraries/robot/vxlan.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-02-24T16:48:22Z",
+      "side": 1,
+      "message": "varibles ${tgs_to_dut1} and ${tgs_to_dut2} are used in testcase, other variables can be used for check counters in future tests",
+      "parentUuid": "9af53d3f_d90213b4",
       "range": {
         "startLine": 39,
         "startChar": 0,
