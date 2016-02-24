@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9af53d3f_79366705",
+        "filename": "resources/tools/virl/bin/start-testcase",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-02-24T10:06:50Z",
+      "side": 1,
+      "message": "Please add the copyright header. Copy one from existing python sources.",
+      "revId": "6a4399b2e067f247442caa3c91ee42f960745cc4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9af53d3f_593ba3eb",
+        "filename": "resources/tools/virl/bin/stop-testcase",
+        "patchSetId": 2
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-02-24T10:06:50Z",
+      "side": 1,
+      "message": "Please add the copyright header.",
+      "revId": "6a4399b2e067f247442caa3c91ee42f960745cc4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
