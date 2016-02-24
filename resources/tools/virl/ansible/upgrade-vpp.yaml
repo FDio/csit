@@ -1,0 +1,12 @@
+---
+- hosts: sut
+  remote_user: cisco
+  sudo: yes
+
+  tasks:
+  - name: Stop qn service
+    service: name=qn state=stopped
+  - name: Uninstall VPE
+    apt: name=vpe state=absent purge=yes
+  - name: Upgrade debian packages
+    shell: dpkg -i /scratch/vpp/*deb
