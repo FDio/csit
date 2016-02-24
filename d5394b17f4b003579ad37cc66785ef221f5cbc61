@@ -163,6 +163,30 @@
     },
     {
       "key": {
+        "uuid": "9af53d3f_b419967b",
+        "filename": "resources/libraries/robot/vxlan.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-02-24T11:24:11Z",
+      "side": 1,
+      "message": "You use only ${tgs_to_dut1} and ${tgs_to_dut2}.",
+      "parentUuid": "9af53d3f_74042e15",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 41
+      },
+      "revId": "d5394b17f4b003579ad37cc66785ef221f5cbc61",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9af53d3f_1413a25d",
         "filename": "tests/suites/vxlan/vxlan_untagged.robot",
         "patchSetId": 6
