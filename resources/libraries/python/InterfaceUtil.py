@@ -80,6 +80,9 @@ class InterfaceUtil(object):
                 raise RuntimeError('timeout, not up {0}'.format(not_ready))
             not_ready = []
             for interface in out:
+                # Check only HW interfaces, skip tunnel interfaces
+                if interface.get('l2_address_length') == 0:
+                    continue
                 if interface.get('admin_up_down') == 1:
                     if interface.get('link_up_down') != 1:
                         not_ready.append(interface.get('interface_name'))
