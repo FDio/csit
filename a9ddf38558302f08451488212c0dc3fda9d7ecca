@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9af53d3f_39e21f04",
+        "filename": "resources/libraries/python/IPv4Util.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-02-24T16:48:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9af53d3f_f992779e",
+      "range": {
+        "startLine": 44,
+        "startChar": 8,
+        "endLine": 47,
+        "endChar": 22
+      },
+      "revId": "a9ddf38558302f08451488212c0dc3fda9d7ecca",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9af53d3f_d98fb374",
         "filename": "resources/libraries/python/IPv4Util.py",
         "patchSetId": 1
@@ -53,6 +77,30 @@
       "writtenOn": "2016-02-23T09:25:52Z",
       "side": 1,
       "message": "remove trailing white spaces",
+      "range": {
+        "startLine": 174,
+        "startChar": 72,
+        "endLine": 174,
+        "endChar": 73
+      },
+      "revId": "a9ddf38558302f08451488212c0dc3fda9d7ecca",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9af53d3f_59dde341",
+        "filename": "resources/libraries/python/InterfaceSetup.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-02-24T16:48:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9af53d3f_99e92b1d",
       "range": {
         "startLine": 174,
         "startChar": 72,
