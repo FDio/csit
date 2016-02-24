@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9af53d3f_743c2e94",
+        "filename": "resources/libraries/robot/ipv6.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-02-24T16:51:21Z",
+      "side": 1,
+      "message": "typo advertisement",
+      "range": {
+        "startLine": 45,
+        "startChar": 64,
+        "endLine": 45,
+        "endChar": 76
+      },
+      "revId": "c1ec124f4fe0a53834c58ac9d800a5e1c54021f6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
