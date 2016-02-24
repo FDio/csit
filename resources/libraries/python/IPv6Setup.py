@@ -17,7 +17,7 @@ from ssh import SSH
 from ipaddress import IPv6Network
 from topology import NodeType, Topology
 from constants import Constants
-from VatExecutor import VatTerminal
+from VatExecutor import VatTerminal, VatExecutor
 from robot.api import logger
 
 
@@ -213,16 +213,11 @@ class IPv6Setup(object):
            :type node: dict
            :type interface: str
         """
-        ssh = SSH()
-        ssh.connect(node)
-
-        cmd = '{c}'.format(c=Constants.VAT_BIN_NAME)
-        cmd_input = 'exec ip6 nd {0} ra-surpress-link-layer'.format(
-            interface)
-        (ret_code, _, _) = ssh.exec_command_sudo(cmd, cmd_input)
-        if int(ret_code) != 0:
-            raise Exception("'{0}' failed on {1}".format(cmd_input,
-                                                         node['host']))
+        sw_if_index = Topology.get_interface_sw_index(node, interface)
+        VatExecutor.cmd_from_template(node,
+                                      'sw_interface_ip6nd_ra_config.vat',
+                                      sw_if_id=sw_if_index,
+                                      param='surpress')
 
     def vpp_all_ra_supress_link_layer(self, nodes):
         """Supress ICMPv6 router advertisement message for link scope address
