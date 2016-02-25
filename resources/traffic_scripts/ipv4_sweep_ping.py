@@ -20,7 +20,7 @@ import logging
 import os
 logging.getLogger("scapy.runtime").setLevel(logging.ERROR)
 from resources.libraries.python.PacketVerifier import RxQueue, TxQueue,\
-    auto_pad, create_gratuitous_arp_request
+    auto_pad, create_gratuitous_arp_request, checksum_equal
 from resources.libraries.python.TrafficScriptArg import TrafficScriptArg
 from scapy.layers.inet import IP, ICMP
 from scapy.all import Ether, Raw
@@ -90,7 +90,7 @@ def main():
         chksum = icmpv4.chksum
         del icmpv4.chksum
         tmp = ICMP(str(icmpv4))
-        if tmp.chksum != chksum:
+        if not checksum_equal(tmp.chksum, chksum):
             raise RuntimeError(
                 'Invalid checksum {0} should be {1}'.format(chksum, tmp.chksum))
 

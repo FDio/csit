@@ -73,7 +73,7 @@ from scapy.all import Ether, ARP, Packet
 from scapy.layers.inet6 import IPv6
 
 __all__ = ['RxQueue', 'TxQueue', 'Interface', 'create_gratuitous_arp_request',
-           'auto_pad']
+           'auto_pad', 'checksum_equal']
 
 # TODO: http://stackoverflow.com/questions/320232/ensuring-subprocesses-are-dead-on-exiting-python-program
 
@@ -305,3 +305,25 @@ def auto_pad(packet):
         padded += ('\0' * (60 - len(padded)))
     return padded
 
+
+def checksum_equal(chksum1, chksum2):
+    """Compares two checksums in one's complement notation.
+
+    Checksums to be compared are calculated as 16 bit one's complement of the
+    one's complement sum of 16 bit words of some buffer.
+    In one's complement notation 0x0000 (positive zero) and 0xFFFF
+    (negative zero) are equivalent.
+
+    :param chksum1: First checksum.
+    :param chksum2: Second checksum.
+    :type chksum1: uint16
+    :type chksum2: uint16
+
+    :return: True if checksums are equivalent, False otherwise.
+    :rtype: boolean
+    """
+    if chksum1 == 0xFFFF:
+        chksum1 = 0
+    if chksum2 == 0xFFFF:
+        chksum2 = 0
+    return chksum1 == chksum2
