@@ -27,13 +27,14 @@
 | Vpp forwards packets via L2 xconnect in circular topology
 | | Append Nodes | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | Compute Path
-| | ${src_if} | ${tg}= | Next Interface
+| | ${tg_if1} | ${tg}= | Next Interface
 | | ${dut1_if1} | ${dut1}= | Next Interface
 | | ${dut1_if2} | ${dut1}= | Next Interface
 | | ${dut2_if1} | ${dut2}= | Next Interface
 | | ${dut2_if2} | ${dut2}= | Next Interface
-| | ${dst_if} | ${tg}= | Next Interface
+| | ${tg_if2} | ${tg}= | Next Interface
 | | L2 setup xconnect on DUT | ${dut1} | ${dut1_if1} | ${dut1_if2}
 | | L2 setup xconnect on DUT | ${dut2} | ${dut2_if1} | ${dut2_if2}
 | | All Vpp Interfaces Ready Wait | ${nodes}
-| | Send and receive traffic | ${tg} | ${src_if} | ${dst_if}
+| | Send and receive traffic | ${tg} | ${tg_if1} | ${tg_if2}
+| | Send and receive traffic | ${tg} | ${tg_if2} | ${tg_if1}
