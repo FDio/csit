@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9af53d3f_74654e44",
+        "filename": "resources/traffic_scripts/ipv4_ping_ttl_check.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-02-25T18:02:08Z",
+      "side": 1,
+      "message": "This is not necessary inside parentheses.",
+      "parentUuid": "9af53d3f_99ddab17",
+      "range": {
+        "startLine": 105,
+        "startChar": 59,
+        "endLine": 105,
+        "endChar": 66
+      },
+      "revId": "2ef6215063293320f9f3c89b4836c3afde6c50e2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9af53d3f_79e2e7d6",
         "filename": "resources/traffic_scripts/ipv4_ping_ttl_check.py",
         "patchSetId": 1
