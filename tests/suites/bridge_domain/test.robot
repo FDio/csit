@@ -30,42 +30,45 @@
 | | [Tags] | 3_NODE_DOUBLE_LINK_TOPO
 | | Append Nodes | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | Compute Path | always_same_link=${FALSE}
-| | ${src_if} | ${tmp}= | First Interface
-| | ${dst_if} | ${tmp}= | Last Interface
+| | ${tg_if1} | ${tmp}= | First Interface
+| | ${tg_if2} | ${tmp}= | Last Interface
 | | ${bd_if1} | ${tmp}= | First Ingress Interface
 | | ${bd_if2} | ${tmp}= | Last Egress Interface
 | | Vpp l2bd forwarding setup | ${nodes['DUT1']} | ${bd_if1} | ${bd_if2}
-| | Send and receive traffic | ${nodes['TG']} | ${src_if} | ${dst_if}
+| | Send and receive traffic | ${nodes['TG']} | ${tg_if1} | ${tg_if2}
+| | Send and receive traffic | ${nodes['TG']} | ${tg_if2} | ${tg_if1}
 
 | Vpp forwards packets via L2 bridge domain in circular topology
 | | [Tags] | 3_NODE_SINGLE_LINK_TOPO
 | | Append Nodes | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']}
 | | ...          | ${nodes['TG']}
 | | Compute Path
-| | ${src_if} | ${tg}= | Next Interface
+| | ${tg_if1} | ${tg}= | Next Interface
 | | ${dut1_if1} | ${dut1}= | Next Interface
 | | ${dut1_if2} | ${dut1}= | Next Interface
 | | ${dut2_if1} | ${dut2}= | Next Interface
 | | ${dut2_if2} | ${dut2}= | Next Interface
-| | ${dst_if} | ${tg}= | Next Interface
+| | ${tg_if2} | ${tg}= | Next Interface
 | | Vpp l2bd forwarding setup | ${dut1} | ${dut1_if1} | ${dut1_if2}
 | | Vpp l2bd forwarding setup | ${dut2} | ${dut2_if1} | ${dut2_if2}
-| | Send and receive traffic | ${tg} | ${src_if} | ${dst_if}
+| | Send and receive traffic | ${tg} | ${tg_if1} | ${tg_if2}
+| | Send and receive traffic | ${tg} | ${tg_if2} | ${tg_if1}
 
 | Vpp forwards packets via L2 bridge domain in circular topology with static L2FIB entries
 | | [Tags] | 3_NODE_SINGLE_LINK_TOPO
 | | Append Nodes | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']}
 | | ...          | ${nodes['TG']}
 | | Compute Path
-| | ${src_if} | ${tg}= | Next Interface
+| | ${tg_if1} | ${tg}= | Next Interface
 | | ${dut1_if1} | ${dut1}= | Next Interface
 | | ${dut1_if2} | ${dut1}= | Next Interface
 | | ${dut2_if1} | ${dut2}= | Next Interface
 | | ${dut2_if2} | ${dut2}= | Next Interface
-| | ${dst_if} | ${tg}= | Next Interface
-| | ${mac}= | Get Interface Mac | ${tg} | ${dst_if}
+| | ${tg_if2} | ${tg}= | Next Interface
+| | ${mac}= | Get Interface Mac | ${tg} | ${tg_if2}
 | | Vpp l2bd forwarding setup | ${dut1} | ${dut1_if1} | ${dut1_if2} | ${FALSE}
 | | ...                       | ${mac}
 | | Vpp l2bd forwarding setup | ${dut2} | ${dut2_if1} | ${dut2_if2} | ${FALSE}
 | | ...                       | ${mac}
-| | Send and receive traffic | ${tg} | ${src_if} | ${dst_if}
+| | Send and receive traffic | ${tg} | ${tg_if1} | ${tg_if2}
+| | Send and receive traffic | ${tg} | ${tg_if2} | ${tg_if1}
