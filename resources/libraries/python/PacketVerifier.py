@@ -73,7 +73,7 @@ from scapy.all import Ether, ARP, Packet
 from scapy.layers.inet6 import IPv6
 
 __all__ = ['RxQueue', 'TxQueue', 'Interface', 'create_gratuitous_arp_request',
-           'auto_pad']
+           'auto_pad', 'checksum_equal']
 
 # TODO: http://stackoverflow.com/questions/320232/ensuring-subprocesses-are-dead-on-exiting-python-program
 
@@ -304,4 +304,12 @@ def auto_pad(packet):
     if len(padded) < 60:
         padded += ('\0' * (60 - len(padded)))
     return padded
+
+
+def checksum_equal(chksum1, chksum2):
+    if chksum1 == 0xFFFF:
+        chksum1 = 0
+    if chksum2 == 0xFFFF:
+        chksum2 = 0
+    return chksum1 == chksum2
 

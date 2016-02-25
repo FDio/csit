@@ -15,7 +15,7 @@
 
 from scapy.all import Ether, IP, ICMP
 from resources.libraries.python.PacketVerifier \
-    import Interface, create_gratuitous_arp_request, auto_pad
+    import Interface, create_gratuitous_arp_request, auto_pad, checksum_equal
 from resources.libraries.python.TrafficScriptArg import TrafficScriptArg
 
 
