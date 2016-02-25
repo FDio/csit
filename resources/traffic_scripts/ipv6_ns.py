@@ -18,7 +18,8 @@
 import sys
 import logging
 logging.getLogger("scapy.runtime").setLevel(logging.ERROR)
-from resources.libraries.python.PacketVerifier import RxQueue, TxQueue
+from resources.libraries.python.PacketVerifier import RxQueue, TxQueue,\
+    checksum_equal
 from resources.libraries.python.TrafficScriptArg import TrafficScriptArg
 from scapy.layers.inet6 import IPv6, ICMPv6ND_NA, ICMPv6ND_NS
 from scapy.layers.inet6 import ICMPv6NDOptDstLLAddr, ICMPv6NDOptSrcLLAddr
@@ -86,7 +87,7 @@ def main():
     cksum = icmpv6_na.cksum
     del icmpv6_na.cksum
     tmp = ICMPv6ND_NA(str(icmpv6_na))
-    if tmp.cksum != cksum:
+    if not checksum_equal(tmp.cksum, cksum):
         raise RuntimeError(
             'Invalid checksum {0} should be {1}'.format(cksum, tmp.cksum))
 
