@@ -79,10 +79,12 @@ def create_env_directory_at_node(node):
     (ret_code, stdout, stderr) = ssh.exec_command(
             'cd {0} && rm -rf env && virtualenv env && '
             '. env/bin/activate && '
-            'pip install -r requirements.txt'.format(con.REMOTE_FW_DIR))
+            'pip install -r requirements.txt'.format(con.REMOTE_FW_DIR), timeout=100)
     if 0 != ret_code:
         logger.error('Virtualenv creation error: {0}'.format(stdout + stderr))
         raise Exception('Virtualenv setup failed')
+    else:
+        logger.console('Virtualenv created on {0}'.format(node['host']))
 
 def install_dependencies(node):
     """TEMPORARY FUNCTION TO INSTALL DEPENDENCIES ON NODES BEFORE THE VIRL
