@@ -87,7 +87,7 @@
 
 | 3-node Performance Suite Setup
 | | 3-node Topology Variables Setup
-| | Initialize traffic generator | ${tg} | ${tg_if1} | ${tg_if2}
+| | Initialize traffic generator | ${tg} | ${tg_if1} | ${tg_if2} | L2
 
 | 3-node Performance Suite Teardown
 | | Teardown traffic generator | ${tg}

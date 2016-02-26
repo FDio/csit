@@ -18,6 +18,7 @@ from robot.api import logger
 from resources.libraries.python.ssh import SSH
 from resources.libraries.python.topology import NodeType
 from resources.libraries.python.topology import NodeSubTypeTG
+from resources.libraries.python.topology import Topology
 
 __all__ = ['TrafficGenerator']
 
@@ -29,26 +30,68 @@ class TrafficGenerator(object):
         self._loss = None
         self._sent = None
         self._received = None
+        #T-REX interface order mapping
+        self._ifaces_reordered = 0
 
-    @staticmethod
-    def initialize_traffic_generator(node, interface1, interface2):
+    def initialize_traffic_generator(self, node, interface1, interface2, test_type):
         """TG initialization
         :param node: Traffic generator node
         :param interface1: interface name of first interface
         :param interface2: interface name of second interface
+        :test_type: 'L2' or 'L3' - src/dst MAC address
         :type node: dict
         :type interface1: str
         :type interface2: str
+        :type test_type: str
         :return: nothing
         """
 
         trex_path = "/opt/trex-core-1.91"
+
+        topo = Topology()
 
         if node['type'] != NodeType.TG:
             raise Exception('Node type is not a TG')
         if node['subtype'] == NodeSubTypeTG.TREX:
             ssh = SSH()
             ssh.connect(node)
+
+            iface1_pci = topo.get_interface_pci_addr(node, interface1)
+            iface2_pci = topo.get_interface_pci_addr(node, interface2)
+            iface1_mac = topo.get_interface_mac(node, interface1)
+            iface2_mac = topo.get_interface_mac(node, interface2)
+            if min(iface1_pci, iface2_pci) != iface1_pci:
+                iface1_mac, iface2_mac = iface2_mac, iface1_mac
+                iface1_pci, iface2_pci = iface2_pci, iface1_pci
+                self._ifaces_reordered = 1
+
+            iface1_mac_hex = "0x"+iface1_mac.replace(":", ",0x")
+            iface2_mac_hex = "0x"+iface2_mac.replace(":", ",0x")
+
+            if test_type == 'L2':
+                (ret, stdout, stderr) = ssh.exec_command(
+                    "sudo sh -c 'cat << EOF > /etc/trex_cfg.yaml\n"
+                    "- port_limit      : 2\n"
+                    "  version         : 2\n"
+                    "  interfaces      : [\"{}\",\"{}\"]\n"
+                    "  port_info       :\n"
+                    "          - dest_mac        :   [{}]\n"
+                    "            src_mac         :   [{}]\n"
+                    "          - dest_mac        :   [{}]\n"
+                    "            src_mac         :   [{}]\n"
+                    "EOF'"\
+                    .format(iface1_pci, iface2_pci,
+                            iface2_mac_hex, iface1_mac_hex,
+                            iface1_mac_hex, iface2_mac_hex))
+                if int(ret) != 0:
+                    logger.error("failed to create t-rex config: {}"\
+                    .format(stdout + stderr))
+                    raise RuntimeError('trex config generation error')
+            elif test_type == 'L3':
+                raise NotImplementedError("L3 test_type not supported")
+            else:
+                raise Exception("test_type unknown")
+
 
             (ret, stdout, stderr) = ssh.exec_command(
                 "sh -c 'cd {0}/scripts/ && "
@@ -114,7 +157,7 @@ class TrafficGenerator(object):
         if node['subtype'] == NodeSubTypeTG.TREX:
             if traffic_type in ["3-node-xconnect", "3-node-bridge"]:
                 (ret, stdout, stderr) = ssh.exec_command(
-                    "sh -c '/tmp/openvpp-testing/resources/tools/t-rex-stateless.py "
+                    "sh -c '/tmp/openvpp-testing/resources/tools/t-rex/t-rex-stateless.py "
                     "-d {0} -r {1} -s {2} "
                     "--p1_src_start_ip 10.10.10.1 "
                     "--p1_src_end_ip 10.10.10.254 "
@@ -125,7 +168,7 @@ class TrafficGenerator(object):
                     format(duration, rate, framesize), timeout=int(duration)+60)
             elif traffic_type in ["3-node-IPv4"]:
                 (ret, stdout, stderr) = ssh.exec_command(
-                    "sh -c '/tmp/openvpp-testing/resources/tools/t-rex-stateless.py "
+                    "sh -c '/tmp/openvpp-testing/resources/tools/t-rex/t-rex-stateless.py "
                     "-d {0} -r {1} -s {2} "
                     "--p1_src_start_ip 10.10.10.2 "
                     "--p1_src_end_ip 10.10.10.254 "
