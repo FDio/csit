@@ -14,7 +14,7 @@
 *** Settings ***
 
 | Library | resources.libraries.python.VatExecutor
-| Library | resources.libraries.python.CrossConnectSetup
+| Library | resources.libraries.python.L2Util
 | Library | resources.libraries.python.topology.Topology
 | Library | resources.libraries.python.TrafficScriptExecutor
 | Variables | resources/libraries/python/constants.py
