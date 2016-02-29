@@ -15,7 +15,7 @@
 
 from scapy.all import Ether, IP, ICMP
 from resources.libraries.python.PacketVerifier \
-    import Interface, create_gratuitous_arp_request, auto_pad
+    import Interface, create_gratuitous_arp_request, auto_pad, checksum_equal
 from resources.libraries.python.TrafficScriptArg import TrafficScriptArg
 
 
@@ -117,7 +117,7 @@ def main():
     chksum = copy[IP].chksum
     del copy[IP].chksum
     tmp = IP(str(copy[IP]))
-    if tmp.chksum != chksum:
+    if not checksum_equal(tmp.chksum, chksum):
         raise RuntimeError('Received IPv4 packet contains invalid checksum, '
                            '{} instead of {}'.format(chksum, tmp.chksum))
 
@@ -131,7 +131,7 @@ def main():
     chksum = copy[IP][ICMP].chksum
     del copy[IP][ICMP].chksum
     tmp = ICMP(str(copy[IP][ICMP]))
-    if tmp.chksum != chksum:
+    if not checksum_equal(tmp.chksum, chksum):
         raise RuntimeError('Received ICMP packet contains invalid checksum, '
                            '{} instead of {}'.format(chksum, tmp.chksum))
 
