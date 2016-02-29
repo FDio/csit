@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7afa4931_bebdf904",
+        "filename": "resources/libraries/python/L2Util.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-02-29T15:31:28Z",
+      "side": 1,
+      "message": "You can use import in one row: from resources.libraries.python.VatExecutor import VatExecutor, VatTerminal",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 62
+      },
+      "revId": "031c5155dddfae6c2539c848404aad08cce2ae2e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
