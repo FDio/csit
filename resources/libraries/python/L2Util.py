@@ -15,7 +15,7 @@
 
 from robot.api.deco import keyword
 from resources.libraries.python.topology import Topology
-from resources.libraries.python.VatExecutor import VatExecutor
+from resources.libraries.python.VatExecutor import VatExecutor, VatTerminal
 
 
 class L2Util(object):
@@ -153,3 +153,25 @@ class L2Util(object):
                                       sw_if_id2=sw_if_index2,
                                       bd_id=bd_id,
                                       learn=int(learn))
+
+    @staticmethod
+    def vpp_setup_bidirectional_cross_connect(node, interface1, interface2):
+        """Create bidirectional cross-connect between 2 interfaces on vpp node.
+
+        :param node: Node to add bidirectional cross-connect
+        :param interface1: first interface
+        :param interface2: second interface
+        :type node: dict
+        :type interface1: str
+        :type interface2: str
+        """
+        sw_iface1 = Topology().get_interface_sw_index(node, interface1)
+        sw_iface2 = Topology().get_interface_sw_index(node, interface2)
+        vat = VatTerminal(node)
+        vat.vat_terminal_exec_cmd_from_template('l2_xconnect.vat',
+                                                interface1=sw_iface1,
+                                                interface2=sw_iface2)
+        vat.vat_terminal_exec_cmd_from_template('l2_xconnect.vat',
+                                                interface1=sw_iface2,
+                                                interface2=sw_iface1)
+        vat.vat_terminal_close()
