@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7afa4931_de92059f",
+        "filename": "resources/libraries/python/L2Util.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-02-29T14:18:11Z",
+      "side": 1,
+      "message": "better and faster is:\n vat \u003d VatTerminal(node)\n vat.vat_terminal_exec_cmd_from_template()\n vat.vat_terminal_exec_cmd_from_template()\n vat.vat_terminal_close()\nbecause with your current code you open and close VAT terminal twice",
+      "range": {
+        "startLine": 170,
+        "startChar": 0,
+        "endLine": 175,
+        "endChar": 59
+      },
+      "revId": "a4c5b9e2501d5bb43cf77cfe40ba6150d9aa78ad",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
