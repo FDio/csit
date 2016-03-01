@@ -1,3 +1,1 @@
-sw_interface_set_flags sw_if_index {interface1} admin-up
-sw_interface_set_flags sw_if_index {interface2} admin-up
 sw_interface_set_l2_xconnect rx_sw_if_index {interface1} tx_sw_if_index {interface2}
