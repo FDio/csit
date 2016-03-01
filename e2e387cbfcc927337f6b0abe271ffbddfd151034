@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7afa4931_be4859cd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-01T12:52:01Z",
+      "side": 1,
+      "message": "http://chris.beams.io/posts/git-commit/",
+      "revId": "e2e387cbfcc927337f6b0abe271ffbddfd151034",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
