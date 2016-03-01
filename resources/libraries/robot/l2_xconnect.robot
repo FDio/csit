@@ -13,9 +13,12 @@
 
 *** Settings ***
 | Library | resources.libraries.python.L2Util
+| Library | resources.libraries.python.InterfaceUtil
 
 *** Keywords ***
 | L2 setup xconnect on DUT
 | | [Documentation] | Setup Bidirectional Cross Connect on DUTs
 | | [Arguments] | ${node} | ${if1} | ${if2} |
+| | Set Interface State | ${node} | ${if1} | up
+| | Set Interface State | ${node} | ${if2} | up
 | | Vpp Setup Bidirectional Cross Connect | ${node} | ${if1} | ${if2}
