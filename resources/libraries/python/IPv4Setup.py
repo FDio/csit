@@ -238,7 +238,11 @@ class IPv4Setup(object):
            :param nodes_addr: Available nodes IPv4 adresses.
            :type nodes: dict
            :type nodes_addr: dict
+           :return: affected interfaces as list of (node, interface) tuples
+           :rtype: list
         """
+
+        interfaces = []
         for net in nodes_addr.values():
             for port in net['ports'].values():
                 host = port.get('node')
@@ -251,7 +255,9 @@ class IPv4Setup(object):
                 if node['type'] != NodeType.DUT:
                     continue
                 get_node(node).set_ip(port['if'], port['addr'], net['prefix'])
-                InterfaceUtil.set_interface_state(node, port['if'], 'up')
+                interfaces.append((node, port['if']))
+
+        return interfaces
 
     @staticmethod
     @keyword('Get IPv4 address of node "${node}" interface "${port}" '
