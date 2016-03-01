@@ -21,7 +21,7 @@ from IPv6Setup import IPv6Networks
 from topology import Topology
 
 # Default list of available IPv6 networks
-IPV6_NETWORKS = ['db01::/64', 'db02::/64', 'db03::/64']
+IPV6_NETWORKS = ['3ffe:{0:04x}::/64'.format(i) for i in range(1, 100)]
 
 
 def get_variables(nodes, networks=IPV6_NETWORKS):
