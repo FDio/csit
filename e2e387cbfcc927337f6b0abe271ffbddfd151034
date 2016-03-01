@@ -16,6 +16,29 @@
       "revId": "e2e387cbfcc927337f6b0abe271ffbddfd151034",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7afa4931_3e8329ce",
+        "filename": "resources/libraries/robot/l2_xconnect.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-03-01T14:21:12Z",
+      "side": 1,
+      "message": "It will be in merge conflict with change https://gerrit.fd.io/r/442 where CrossConnectSetup is going to be removed and Vpp Setup Bidirectional Cross Connect method will be moved to L2Util.",
+      "range": {
+        "startLine": 17,
+        "startChar": 2,
+        "endLine": 17,
+        "endChar": 56
+      },
+      "revId": "e2e387cbfcc927337f6b0abe271ffbddfd151034",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
