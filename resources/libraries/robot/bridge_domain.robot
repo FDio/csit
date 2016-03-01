@@ -22,6 +22,8 @@
 | | [Documentation] | Setup BD between 2 interfaces on VPP node and if learning
 | | ...             | is off set static L2FIB entry on second interface
 | | [Arguments] | ${node} | ${if1} | ${if2} | ${learn}=${TRUE} | ${mac}=${EMPTY}
+| | Set Interface State | ${node} | ${if1} | up
+| | Set Interface State | ${node} | ${if2} | up
 | | Vpp Add L2 Bridge Domain | ${node} | ${1} | ${if1} | ${if2} | ${learn}
 | | Run Keyword If | ${learn} == ${FALSE}
 | | ... | Vpp Add L2fib Entry | ${node} | ${mac} | ${if2} | ${1}

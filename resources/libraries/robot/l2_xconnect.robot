@@ -17,6 +17,7 @@
 | Library | resources.libraries.python.CrossConnectSetup
 | Library | resources.libraries.python.topology.Topology
 | Library | resources.libraries.python.TrafficScriptExecutor
+| Library | resources.libraries.python.InterfaceUtil
 | Variables | resources/libraries/python/constants.py
 
 *** Keywords ***
@@ -24,6 +25,8 @@
 | L2 setup xconnect on DUT
 | | [Documentation] | Setup Bidirectional Cross Connect on DUTs
 | | [Arguments] | ${node} | ${if1} | ${if2} |
+| | Set Interface State | ${node} | ${if1} | up
+| | Set Interface State | ${node} | ${if2} | up
 | | Vpp Setup Bidirectional Cross Connect | ${node} | ${if1} | ${if2}
 
 | Send and receive traffic
