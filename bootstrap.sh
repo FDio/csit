@@ -2,7 +2,7 @@
 
 set -x
 
-#sudo apt-get -y install libpython2.7-dev
+sudo apt-get -y install libpython2.7-dev virtualenv
 
 #VIRL_VMS="10.30.51.53,10.30.51.51,10.30.51.52"
 #IFS=',' read -ra ADDR <<< "${VIRL_VMS}"
@@ -68,12 +68,18 @@ chmod 600 priv_key
 # Temporarily download VPP packages from nexus.fd.io
 
 rm -f *.deb
-wget -q "https://nexus.fd.io/service/local/repositories/fd.io.dev/content/io/fd/vpp/vpp/1.0.0-185~gca0f3b3_amd64/vpp-1.0.0-185~gca0f3b3_amd64.deb" || exit
-wget -q "https://nexus.fd.io/service/local/repositories/fd.io.dev/content/io/fd/vpp/vpp-dbg/1.0.0-185~gca0f3b3_amd64/vpp-dbg-1.0.0-185~gca0f3b3_amd64.deb" || exit
-wget -q "https://nexus.fd.io/service/local/repositories/fd.io.dev/content/io/fd/vpp/vpp-dev/1.0.0-185~gca0f3b3_amd64/vpp-dev-1.0.0-185~gca0f3b3_amd64.deb" || exit
-wget -q "https://nexus.fd.io/service/local/repositories/fd.io.dev/content/io/fd/vpp/vpp-dpdk-dev/1.0.0-185~gca0f3b3_amd64/vpp-dpdk-dev-1.0.0-185~gca0f3b3_amd64.deb" || exit
-wget -q "https://nexus.fd.io/service/local/repositories/fd.io.dev/content/io/fd/vpp/vpp-dpdk-dkms/1.0.0-185~gca0f3b3_amd64/vpp-dpdk-dkms-1.0.0-185~gca0f3b3_amd64.deb" || exit
-wget -q "https://nexus.fd.io/service/local/repositories/fd.io.dev/content/io/fd/vpp/vpp-lib/1.0.0-185~gca0f3b3_amd64/vpp-lib-1.0.0-185~gca0f3b3_amd64.deb" || exit
+if [ "${#}" -ne "0" ]; then
+    echo "let's use the parameters"
+    arr=(${@})
+    echo ${arr[0]}
+else
+    wget -q "https://nexus.fd.io/service/local/repositories/fd.io.dev/content/io/fd/vpp/vpp/1.0.0-185~gca0f3b3_amd64/vpp-1.0.0-185~gca0f3b3_amd64.deb" || exit
+    wget -q "https://nexus.fd.io/service/local/repositories/fd.io.dev/content/io/fd/vpp/vpp-dbg/1.0.0-185~gca0f3b3_amd64/vpp-dbg-1.0.0-185~gca0f3b3_amd64.deb" || exit
+    wget -q "https://nexus.fd.io/service/local/repositories/fd.io.dev/content/io/fd/vpp/vpp-dev/1.0.0-185~gca0f3b3_amd64/vpp-dev-1.0.0-185~gca0f3b3_amd64.deb" || exit
+    wget -q "https://nexus.fd.io/service/local/repositories/fd.io.dev/content/io/fd/vpp/vpp-dpdk-dev/1.0.0-185~gca0f3b3_amd64/vpp-dpdk-dev-1.0.0-185~gca0f3b3_amd64.deb" || exit
+    wget -q "https://nexus.fd.io/service/local/repositories/fd.io.dev/content/io/fd/vpp/vpp-dpdk-dkms/1.0.0-185~gca0f3b3_amd64/vpp-dpdk-dkms-1.0.0-185~gca0f3b3_amd64.deb" || exit
+    wget -q "https://nexus.fd.io/service/local/repositories/fd.io.dev/content/io/fd/vpp/vpp-lib/1.0.0-185~gca0f3b3_amd64/vpp-lib-1.0.0-185~gca0f3b3_amd64.deb" || exit
+fi
 
 VPP_DEBS=(*.deb)
 echo ${VPP_DEBS[@]}
