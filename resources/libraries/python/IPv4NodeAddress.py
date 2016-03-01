@@ -21,9 +21,7 @@ from ipaddress import IPv4Network
 from resources.libraries.python.topology import Topology
 
 # Default list of IPv4 subnets
-IPV4_NETWORKS = ['20.20.20.0/24',
-                 '10.10.10.0/24',
-                 '1.1.1.0/30']
+IPV4_NETWORKS = ['192.168.{}.0/24'.format(i) for i in range(1, 100)]
 
 
 class IPv4NetworkGenerator(object):
