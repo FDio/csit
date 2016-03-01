@@ -1,5 +1,10 @@
 #!/bin/bash
 
+set -x
+
+sudo apt-get -y update
+sudo apt-get -y install libpython2.7-dev python-virtualenv
+
 virtualenv env
 . env/bin/activate
 
