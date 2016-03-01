@@ -57,12 +57,15 @@ class IPv6Setup(object):
 
     def nodes_setup_ipv6_addresses(self, nodes, nodes_addr):
         """Setup IPv6 addresses on all VPP nodes in topology.
-
+            Returns list of affected interfaces as (node, interface).
            :param nodes: Nodes of the test topology.
            :param nodes_addr: Available nodes IPv6 adresses.
            :type nodes: dict
            :type nodes_addr: dict
         """
+
+        interfaces = []
+
         for net in nodes_addr.values():
             for port in net['ports'].values():
                 host = port.get('node')
@@ -76,6 +79,9 @@ class IPv6Setup(object):
                     self.vpp_set_if_ipv6_addr(node, port['if'], port['addr'],
                                               net['prefix'])
 
+                    interfaces.append((node, port['if']))
+
+        return interfaces
     def nodes_clear_ipv6_addresses(self, nodes, nodes_addr):
         """Remove IPv6 addresses from all VPP nodes in topology.
 
@@ -166,9 +172,6 @@ class IPv6Setup(object):
                                                 sw_if_index=sw_if_index,
                                                 address=addr,
                                                 prefix_length=prefix)
-        vat.vat_terminal_exec_cmd_from_template('set_if_state.vat',
-                                                sw_if_index=sw_if_index,
-                                                state='admin-up')
         vat.vat_terminal_close()
 
         ssh = SSH()

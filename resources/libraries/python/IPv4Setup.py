@@ -233,12 +233,14 @@ class IPv4Setup(object):
     @staticmethod
     def vpp_nodes_setup_ipv4_addresses(nodes, nodes_addr):
         """Setup IPv4 addresses on all VPP nodes in topology.
-
+            Returns list of affected interfaces as (node, interface).
            :param nodes: Nodes of the test topology.
            :param nodes_addr: Available nodes IPv4 adresses.
            :type nodes: dict
            :type nodes_addr: dict
         """
+
+        interfaces = []
         for net in nodes_addr.values():
             for port in net['ports'].values():
                 host = port.get('node')
@@ -251,7 +253,9 @@ class IPv4Setup(object):
                 if node['type'] != NodeType.DUT:
                     continue
                 get_node(node).set_ip(port['if'], port['addr'], net['prefix'])
-                InterfaceUtil.set_interface_state(node, port['if'], 'up')
+                interfaces.append((node, port['if']))
+
+        return interfaces
 
     @staticmethod
     @keyword('Get IPv4 address of node "${node}" interface "${port}" '
