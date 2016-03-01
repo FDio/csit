@@ -2,7 +2,15 @@
 
 set -x
 
-#sudo apt-get -y install libpython2.7-dev
+echo | sudo tee -a /etc/hostname
+echo "127.0.0.1 `cat /etc/hostname` " | sudo tee -a /etc/hosts
+
+cat /etc/hostname
+cat /etc/hosts
+
+export DEBIAN_FRONTEND=noninteractive
+sudo apt-get -y update
+sudo apt-get -y install libpython2.7-dev python-virtualenv
 
 #VIRL_VMS="10.30.51.53,10.30.51.51,10.30.51.52"
 #IFS=',' read -ra ADDR <<< "${VIRL_VMS}"
@@ -68,12 +76,18 @@ chmod 600 priv_key
 # Temporarily download VPP packages from nexus.fd.io
 
 rm -f *.deb
-wget -q "https://nexus.fd.io/service/local/repositories/fd.io.dev/content/io/fd/vpp/vpp/1.0.0-185~gca0f3b3_amd64/vpp-1.0.0-185~gca0f3b3_amd64.deb" || exit
-wget -q "https://nexus.fd.io/service/local/repositories/fd.io.dev/content/io/fd/vpp/vpp-dbg/1.0.0-185~gca0f3b3_amd64/vpp-dbg-1.0.0-185~gca0f3b3_amd64.deb" || exit
-wget -q "https://nexus.fd.io/service/local/repositories/fd.io.dev/content/io/fd/vpp/vpp-dev/1.0.0-185~gca0f3b3_amd64/vpp-dev-1.0.0-185~gca0f3b3_amd64.deb" || exit
-wget -q "https://nexus.fd.io/service/local/repositories/fd.io.dev/content/io/fd/vpp/vpp-dpdk-dev/1.0.0-185~gca0f3b3_amd64/vpp-dpdk-dev-1.0.0-185~gca0f3b3_amd64.deb" || exit
-wget -q "https://nexus.fd.io/service/local/repositories/fd.io.dev/content/io/fd/vpp/vpp-dpdk-dkms/1.0.0-185~gca0f3b3_amd64/vpp-dpdk-dkms-1.0.0-185~gca0f3b3_amd64.deb" || exit
-wget -q "https://nexus.fd.io/service/local/repositories/fd.io.dev/content/io/fd/vpp/vpp-lib/1.0.0-185~gca0f3b3_amd64/vpp-lib-1.0.0-185~gca0f3b3_amd64.deb" || exit
+if [ "${#}" -ne "0" ]; then
+    echo "let's use the parameters"
+    arr=(${@})
+    echo ${arr[0]}
+else
+    wget -q "https://nexus.fd.io/service/local/repositories/fd.io.dev/content/io/fd/vpp/vpp/1.0.0-185~gca0f3b3_amd64/vpp-1.0.0-185~gca0f3b3_amd64.deb" || exit
+    wget -q "https://nexus.fd.io/service/local/repositories/fd.io.dev/content/io/fd/vpp/vpp-dbg/1.0.0-185~gca0f3b3_amd64/vpp-dbg-1.0.0-185~gca0f3b3_amd64.deb" || exit
+    wget -q "https://nexus.fd.io/service/local/repositories/fd.io.dev/content/io/fd/vpp/vpp-dev/1.0.0-185~gca0f3b3_amd64/vpp-dev-1.0.0-185~gca0f3b3_amd64.deb" || exit
+    wget -q "https://nexus.fd.io/service/local/repositories/fd.io.dev/content/io/fd/vpp/vpp-dpdk-dev/1.0.0-185~gca0f3b3_amd64/vpp-dpdk-dev-1.0.0-185~gca0f3b3_amd64.deb" || exit
+    wget -q "https://nexus.fd.io/service/local/repositories/fd.io.dev/content/io/fd/vpp/vpp-dpdk-dkms/1.0.0-185~gca0f3b3_amd64/vpp-dpdk-dkms-1.0.0-185~gca0f3b3_amd64.deb" || exit
+    wget -q "https://nexus.fd.io/service/local/repositories/fd.io.dev/content/io/fd/vpp/vpp-lib/1.0.0-185~gca0f3b3_amd64/vpp-lib-1.0.0-185~gca0f3b3_amd64.deb" || exit
+fi
 
 VPP_DEBS=(*.deb)
 echo ${VPP_DEBS[@]}
@@ -99,57 +113,57 @@ if [ "${result}" -ne "0" ]; then
     exit ${result}
 fi
 
-# Start a simulation on VIRL server
-echo "Starting simulation on VIRL server"
-
-function stop_virl_simulation {
-    ssh -i priv_key -o StrictHostKeyChecking=no ${VIRL_USERNAME}@${VIRL_SERVER}\
-        "/home/jenkins-in/testcase-infra/bin/stop-testcase ${VIRL_SID}"
-}
-
-VIRL_SID=$(ssh -i priv_key -o StrictHostKeyChecking=no \
-    ${VIRL_USERNAME}@${VIRL_SERVER} \
-    "/home/jenkins-in/testcase-infra/bin/start-testcase simple-ring ${VPP_DEBS_FULL[@]}")
-retval=$?
-if [ "$?" -ne "0" ]; then
-    echo "VIRL simulation start failed"
-    exit ${retval}
-fi
-
-if [ "x${VIRL_SID}" == "x" ]; then
-    echo "No VIRL session ID reported."
-    exit 127
-fi
-
-# Upon script exit, cleanup the simulation execution
-trap stop_virl_simulation EXIT
-echo ${VIRL_SID}
-
-ssh_do ${VIRL_USERNAME}@${VIRL_SERVER} cat /scratch/${VIRL_SID}/topology.yaml
-
-# Download the topology file from virl session
-scp -i ${VIRL_PKEY} -o StrictHostKeyChecking=no \
-    ${VIRL_USERNAME}@${VIRL_SERVER}:/scratch/${VIRL_SID}/topology.yaml \
-    topologies/enabled/topology.yaml
-
-retval=$?
-if [ "$?" -ne "0" ]; then
-    echo "Failed to copy topology file from VIRL simulation"
-    exit ${retval}
-fi
-
-
-virtualenv env
-. env/bin/activate
-
-echo pip install
-pip install -r requirements.txt
-
-PYTHONPATH=`pwd` pybot -L TRACE \
-    -v TOPOLOGY_PATH:topologies/enabled/topology.yaml \
-    --include vm_env \
-    --include 3_NODE_SINGLE_LINK_TOPO \
-    --exclude 3_node_double_link_topoNOT3_node_single_link_topo \
-    --exclude PERFTEST \
-    --noncritical EXPECTED_FAILING \
-    tests/
+## Start a simulation on VIRL server
+#echo "Starting simulation on VIRL server"
+#
+#function stop_virl_simulation {
+#    ssh -i priv_key -o StrictHostKeyChecking=no ${VIRL_USERNAME}@${VIRL_SERVER}\
+#        "/home/jenkins-in/testcase-infra/bin/stop-testcase ${VIRL_SID}"
+#}
+#
+#VIRL_SID=$(ssh -i priv_key -o StrictHostKeyChecking=no \
+#    ${VIRL_USERNAME}@${VIRL_SERVER} \
+#    "/home/jenkins-in/testcase-infra/bin/start-testcase simple-ring ${VPP_DEBS_FULL[@]}")
+#retval=$?
+#if [ "$?" -ne "0" ]; then
+#    echo "VIRL simulation start failed"
+#    exit ${retval}
+#fi
+#
+#if [ "x${VIRL_SID}" == "x" ]; then
+#    echo "No VIRL session ID reported."
+#    exit 127
+#fi
+#
+## Upon script exit, cleanup the simulation execution
+#trap stop_virl_simulation EXIT
+#echo ${VIRL_SID}
+#
+#ssh_do ${VIRL_USERNAME}@${VIRL_SERVER} cat /scratch/${VIRL_SID}/topology.yaml
+#
+## Download the topology file from virl session
+#scp -i ${VIRL_PKEY} -o StrictHostKeyChecking=no \
+#    ${VIRL_USERNAME}@${VIRL_SERVER}:/scratch/${VIRL_SID}/topology.yaml \
+#    topologies/enabled/topology.yaml
+#
+#retval=$?
+#if [ "$?" -ne "0" ]; then
+#    echo "Failed to copy topology file from VIRL simulation"
+#    exit ${retval}
+#fi
+#
+#
+#virtualenv env
+#. env/bin/activate
+#
+#echo pip install
+#pip install -r requirements.txt
+#
+#PYTHONPATH=`pwd` pybot -L TRACE \
+#    -v TOPOLOGY_PATH:topologies/enabled/topology.yaml \
+#    --include vm_env \
+#    --include 3_NODE_SINGLE_LINK_TOPO \
+#    --exclude 3_node_double_link_topoNOT3_node_single_link_topo \
+#    --exclude PERFTEST \
+#    --noncritical EXPECTED_FAILING \
+#    tests/
