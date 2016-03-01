@@ -152,7 +152,9 @@
 | | [Documentation] | Setup IPv6 address on all DUTs
 | | [Arguments] | ${nodes} | ${nodes_addr}
 | | Setup all DUTs before test
-| | Nodes Setup Ipv6 Addresses | ${nodes} | ${nodes_addr}
+| | ${interfaces}= | Nodes Setup Ipv6 Addresses | ${nodes} | ${nodes_addr}
+| | :FOR | ${interface} | IN | @{interfaces}
+| | | Set Interface State | @{interface} | up
 | | All Vpp Interfaces Ready Wait | ${nodes}
 
 | Clear ipv6 on all dut in topology

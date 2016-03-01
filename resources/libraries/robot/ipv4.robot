@@ -26,7 +26,9 @@
 | Setup IPv4 adresses on all DUT nodes in topology
 | | [Documentation] | Setup IPv4 address on all DUTs in topology
 | | [Arguments] | ${nodes} | ${nodes_addr}
-| | VPP nodes setup ipv4 addresses | ${nodes} | ${nodes_addr}
+| | ${interfaces}= | VPP nodes setup ipv4 addresses | ${nodes} | ${nodes_addr}
+| | :FOR | ${interface} | IN | @{interfaces}
+| | | Set Interface State | @{interface} | up
 
 | Routes are set up for IPv4 testing
 | | [Documentation] | Setup routing on all VPP nodes required for IPv4 tests
