@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7afa4931_3efe896c",
+        "filename": "resources/libraries/robot/ipv4.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-03-01T06:46:58Z",
+      "side": 1,
+      "message": "Split to two tests, because this will take long time to execute\nfrom min to 1500B with 1B increment\nfrom 1500B to max with 10B increment",
+      "revId": "975e5c7e74d1ea589c6a7224b55fe1cb5f45f2b5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7afa4931_1e03cd74",
+        "filename": "resources/libraries/robot/ipv6.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-03-01T06:46:58Z",
+      "side": 1,
+      "message": "Split to two tests as described in IPv4 test",
+      "revId": "975e5c7e74d1ea589c6a7224b55fe1cb5f45f2b5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
