@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "7afa4931_21cf88b2",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-03-02T06:50:30Z",
+      "side": 1,
+      "message": "It is better to pass it to the method as an (optional) parameter.\nInformation like this should be kept in a configuration file to be easily changed if necessary.",
+      "range": {
+        "startLine": 66,
+        "startChar": 20,
+        "endLine": 66,
+        "endChar": 41
+      },
+      "revId": "b80f425641aa4880475829a42c529ac051295bd0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7afa4931_9ea6bd52",
         "filename": "tests/suites/performance/short_bridge_domain.robot",
         "patchSetId": 3
