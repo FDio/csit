@@ -158,6 +158,30 @@
     },
     {
       "key": {
+        "uuid": "7afa4931_e11c0016",
+        "filename": "resources/libraries/robot/ipv4.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-03-02T11:17:28Z",
+      "side": 1,
+      "message": "ok",
+      "parentUuid": "7afa4931_c10224b4",
+      "range": {
+        "startLine": 92,
+        "startChar": 0,
+        "endLine": 120,
+        "endChar": 75
+      },
+      "revId": "f5a14ce8d63ab17d51b7c8b22522e682a4c0b04e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7afa4931_81d09c54",
         "filename": "resources/libraries/robot/ipv6.robot",
         "patchSetId": 4
@@ -193,6 +217,30 @@
       "side": 1,
       "message": "I split the KW in two because I wanted to set interface MTU back to 1500 in teardown, but to do that I needed to know port name which is not known from the start and is only retrieved after \"Compute Path\" is executed.",
       "parentUuid": "7afa4931_81d09c54",
+      "range": {
+        "startLine": 65,
+        "startChar": 0,
+        "endLine": 94,
+        "endChar": 83
+      },
+      "revId": "f5a14ce8d63ab17d51b7c8b22522e682a4c0b04e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7afa4931_c1190424",
+        "filename": "resources/libraries/robot/ipv6.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-03-02T11:17:28Z",
+      "side": 1,
+      "message": "ok",
+      "parentUuid": "7afa4931_a1ff18aa",
       "range": {
         "startLine": 65,
         "startChar": 0,
