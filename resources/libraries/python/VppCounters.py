@@ -83,19 +83,16 @@ class VppCounters(object):
            :type node: dict
            :return: Stats table.
         """
-        vat = VatTerminal(node)
-        vat.vat_terminal_exec_cmd('want_stats enable')
-        for _ in range(0, 12):
-            stats_table = vat.vat_terminal_exec_cmd('dump_stats_table')
-            if_counters = stats_table['interface_counters']
-            if len(if_counters) > 0:
-                self._stats_table = stats_table
-                vat.vat_terminal_close()
-                return stats_table
-            time.sleep(1)
-
-        vat.vat_terminal_close()
-        return None
+        with VatTerminal(node) as vat:
+            vat.vat_terminal_exec_cmd('want_stats enable')
+            for _ in range(0, 12):
+                stats_table = vat.vat_terminal_exec_cmd('dump_stats_table')
+                if_counters = stats_table['interface_counters']
+                if len(if_counters) > 0:
+                    self._stats_table = stats_table
+                    return stats_table
+                time.sleep(1)
+            return None
 
     def vpp_get_ipv4_interface_counter(self, node, interface):
         return self.vpp_get_ipv46_interface_counter(node, interface, False)
