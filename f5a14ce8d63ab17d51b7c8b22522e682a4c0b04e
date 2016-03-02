@@ -111,6 +111,29 @@
     },
     {
       "key": {
+        "uuid": "7afa4931_41b4d4f1",
+        "filename": "resources/libraries/robot/ipv4.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-02T14:27:43Z",
+      "side": 1,
+      "message": "This is a little bit confusing. I see two KWs with the same name, but this one has \"between ports\" added. No Ducumentation in this KW, leaving reader the documentation in the above KW, which doesn\u0027t talk about the difference. Please provide more info here.",
+      "range": {
+        "startLine": 102,
+        "startChar": 1,
+        "endLine": 102,
+        "endChar": 54
+      },
+      "revId": "f5a14ce8d63ab17d51b7c8b22522e682a4c0b04e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7afa4931_a1e39832",
         "filename": "resources/libraries/robot/ipv4.robot",
         "patchSetId": 4
@@ -170,6 +193,30 @@
       "side": 1,
       "message": "ok",
       "parentUuid": "7afa4931_c10224b4",
+      "range": {
+        "startLine": 92,
+        "startChar": 0,
+        "endLine": 120,
+        "endChar": 75
+      },
+      "revId": "f5a14ce8d63ab17d51b7c8b22522e682a4c0b04e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7afa4931_61091095",
+        "filename": "resources/libraries/robot/ipv4.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-02T14:27:43Z",
+      "side": 1,
+      "message": "If the only difference between these two KWs is the fact that this KW sets the MTU, take the MTU setup out to test case setup and teardown instead of KW.",
+      "parentUuid": "7afa4931_e11c0016",
       "range": {
         "startLine": 92,
         "startChar": 0,
