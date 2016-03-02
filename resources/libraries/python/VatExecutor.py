@@ -34,7 +34,6 @@ def cleanup_vat_json_output(json_output):
 
 
 class VatExecutor(object):
-
     def __init__(self):
         self._stdout = None
         self._stderr = None
@@ -77,11 +76,12 @@ class VatExecutor(object):
         # TODO: download vpp_api_test output file
         # self._delete_files(node, remote_file_path, remote_file_out)
 
-    def execute_script_json_out(self, vat_name, node, timeout=10,):
+    def execute_script_json_out(self, vat_name, node, timeout=10):
         self.execute_script(vat_name, node, timeout, json_out=True)
         self._stdout = cleanup_vat_json_output(self._stdout)
 
-    def _delete_files(self, node, *files):
+    @staticmethod
+    def _delete_files(node, *files):
         ssh = SSH()
         ssh.connect(node)
         files = " ".join([str(x) for x in files])
@@ -111,16 +111,14 @@ class VatExecutor(object):
     def cmd_from_template(node, vat_template_file, **vat_args):
         """Execute VAT script on specified node. This method supports
          script templates with parameters
-        :param node: node in topology on witch the scrtipt is executed
+        :param node: node in topology on witch the script is executed
         :param vat_template_file: template file of VAT script
         :param vat_args: arguments to the template file
         :return: list of json objects returned by VAT
         """
-        vat = VatTerminal(node)
-        ret = vat.vat_terminal_exec_cmd_from_template(vat_template_file,
-                                                      **vat_args)
-        vat.vat_terminal_close()
-        return ret
+        with VatTerminal(node) as vat:
+            return vat.vat_terminal_exec_cmd_from_template(vat_template_file,
+                                                           **vat_args)
 
     @staticmethod
     def copy_config_to_remote(node, local_path, remote_path):
@@ -158,6 +156,12 @@ class VatTerminal(object):
             'sudo -S {vat} json'.format(vat=Constants.VAT_BIN_NAME),
             self.__VAT_PROMPT)
 
+    def __enter__(self):
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        self.vat_terminal_close()
+
     def vat_terminal_exec_cmd(self, cmd):
         """Execute command on the opened VAT terminal.
 
@@ -165,11 +169,11 @@ class VatTerminal(object):
 
            :return: Command output in python representation of JSON format.
         """
-        logger.debug("Executing command in VAT terminal: {}".format(cmd));
+        logger.debug("Executing command in VAT terminal: {}".format(cmd))
         out = self._ssh.interactive_terminal_exec_command(self._tty,
                                                           cmd,
                                                           self.__VAT_PROMPT)
-        logger.debug("VAT output: {}".format(out));
+        logger.debug("VAT output: {}".format(out))
         json_out = json.loads(out)
         return json_out
 
