@@ -12,9 +12,9 @@
 # limitations under the License.
 
 *** Settings ***
-
 | Resource | resources/libraries/robot/default.robot
 | Resource | resources/libraries/robot/l2_xconnect.robot
+| Resource | resources/libraries/robot/send_traffic.robot
 | Library | resources.libraries.python.InterfaceUtil
 | Library | resources.libraries.python.NodePath
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | HW_ENV | VM_ENV
@@ -23,7 +23,6 @@
 
 
 *** Test Cases ***
-
 | Vpp forwards packets via L2 xconnect in circular topology
 | | Append Nodes | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | Compute Path

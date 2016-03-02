@@ -14,8 +14,8 @@
 *** Settings ***
 | Documentation | VXLAN tunnel untagged traffic tests
 | Resource | resources/libraries/robot/default.robot
-| Resource | resources/libraries/robot/bridge_domain.robot
 | Resource | resources/libraries/robot/vxlan.robot
+| Resource | resources/libraries/robot/send_traffic.robot
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | EXPECTED_FAILING
 | Suite Setup | Run Keywords | Setup all DUTs before test
 | ...         | AND          | Setup all TGs before traffic script

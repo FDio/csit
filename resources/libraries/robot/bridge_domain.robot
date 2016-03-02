@@ -12,8 +12,6 @@
 # limitations under the License.
 
 *** Settings ***
-| Library | resources.libraries.python.topology.Topology
-| Library | resources.libraries.python.TrafficScriptExecutor
 | Library | resources.libraries.python.L2Util
 | Library | resources.libraries.python.InterfaceUtil
 
@@ -26,14 +24,3 @@
 | | Run Keyword If | ${learn} == ${FALSE}
 | | ... | Vpp Add L2fib Entry | ${node} | ${mac} | ${if2} | ${1}
 | | All Vpp Interfaces Ready Wait | ${nodes}
-
-| Send and receive traffic
-| | [Documentation] | Send traffic from source interface to destination interface
-| | [Arguments] | ${tg_node} | ${src_int} | ${dst_int}
-| | ${src_mac}= | Get Interface Mac | ${tg_node} | ${src_int}
-| | ${dst_mac}= | Get Interface Mac | ${tg_node} | ${dst_int}
-| | ${src_ip}= | Set Variable | 192.168.100.1
-| | ${dst_ip}= | Set Variable | 192.168.100.2
-| | ${args}= | Traffic Script Gen Arg | ${dst_int} | ${src_int} | ${src_mac}
-| |          | ...                    | ${dst_mac} | ${src_ip} | ${dst_ip}
-| | Run Traffic Script On Node | send_ip_icmp.py | ${tg_node} | ${args}
