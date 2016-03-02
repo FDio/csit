@@ -29,17 +29,16 @@ class Routing(object):
         :param prefix_len: Route destination network prefix length.
         :param gateway: Route gateway address.
         :param interface: Route interface.
-        :type node: str
+        :type node: dict
         :type network: str
         :type prefix_len: int
         :type gateway: str
         :type interface: str
         """
         sw_if_index = Topology.get_interface_sw_index(node, interface)
-        vat = VatTerminal(node)
-        vat.vat_terminal_exec_cmd_from_template('add_route.vat',
-                                                network=network,
-                                                prefix_length=prefix_len,
-                                                gateway=gateway,
-                                                sw_if_index=sw_if_index)
-        vat.vat_terminal_close()
+        with VatTerminal(node) as vat:
+            vat.vat_terminal_exec_cmd_from_template('add_route.vat',
+                                                    network=network,
+                                                    prefix_length=prefix_len,
+                                                    gateway=gateway,
+                                                    sw_if_index=sw_if_index)
