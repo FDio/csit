@@ -10,19 +10,20 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
 *** Settings ***
 | Resource | resources/libraries/robot/default.robot
 | Resource | resources/libraries/robot/interfaces.robot
 | Resource | resources/libraries/robot/bridge_domain.robot
-| Force Tags | HW_ENV | VM_ENV
+| Resource | resources/libraries/robot/send_traffic.robot
 | Library | resources.libraries.python.topology.Topology
 | Library | resources.libraries.python.NodePath
 | Variables | resources/libraries/python/topology.py
+| Force Tags | HW_ENV | VM_ENV
 | Suite Setup | Setup all TGs before traffic script
 | Test Setup | Setup all DUTs before test
 
 *** Test Cases ***
-
 | VPP reports interfaces
 | | VPP reports interfaces on | ${nodes['DUT1']}
 
