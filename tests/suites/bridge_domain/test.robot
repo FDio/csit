@@ -10,19 +10,20 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
 *** Settings ***
 | Resource | resources/libraries/robot/default.robot
 | Resource | resources/libraries/robot/interfaces.robot
 | Resource | resources/libraries/robot/bridge_domain.robot
-| Force Tags | HW_ENV | VM_ENV
+| Resource | resources/libraries/robot/l2_traffic.robot
 | Library | resources.libraries.python.topology.Topology
 | Library | resources.libraries.python.NodePath
 | Variables | resources/libraries/python/topology.py
+| Force Tags | HW_ENV | VM_ENV
 | Suite Setup | Setup all TGs before traffic script
 | Test Setup | Setup all DUTs before test
 
 *** Test Cases ***
-
 | VPP reports interfaces
 | | VPP reports interfaces on | ${nodes['DUT1']}
 
@@ -35,8 +36,8 @@
 | | ${bd_if1} | ${tmp}= | First Ingress Interface
 | | ${bd_if2} | ${tmp}= | Last Egress Interface
 | | Vpp l2bd forwarding setup | ${nodes['DUT1']} | ${bd_if1} | ${bd_if2}
-| | Send and receive traffic | ${nodes['TG']} | ${tg_if1} | ${tg_if2}
-| | Send and receive traffic | ${nodes['TG']} | ${tg_if2} | ${tg_if1}
+| | Send and receive ICMPv4 | ${nodes['TG']} | ${tg_if1} | ${tg_if2}
+| | Send and receive ICMPv4 | ${nodes['TG']} | ${tg_if2} | ${tg_if1}
 
 | Vpp forwards packets via L2 bridge domain in circular topology
 | | [Tags] | 3_NODE_SINGLE_LINK_TOPO
@@ -51,8 +52,8 @@
 | | ${tg_if2} | ${tg}= | Next Interface
 | | Vpp l2bd forwarding setup | ${dut1} | ${dut1_if1} | ${dut1_if2}
 | | Vpp l2bd forwarding setup | ${dut2} | ${dut2_if1} | ${dut2_if2}
-| | Send and receive traffic | ${tg} | ${tg_if1} | ${tg_if2}
-| | Send and receive traffic | ${tg} | ${tg_if2} | ${tg_if1}
+| | Send and receive ICMPv4 | ${tg} | ${tg_if1} | ${tg_if2}
+| | Send and receive ICMPv4 | ${tg} | ${tg_if2} | ${tg_if1}
 
 | Vpp forwards packets via L2 bridge domain in circular topology with static L2FIB entries
 | | [Tags] | 3_NODE_SINGLE_LINK_TOPO
@@ -70,5 +71,5 @@
 | | ...                       | ${mac}
 | | Vpp l2bd forwarding setup | ${dut2} | ${dut2_if1} | ${dut2_if2} | ${FALSE}
 | | ...                       | ${mac}
-| | Send and receive traffic | ${tg} | ${tg_if1} | ${tg_if2}
-| | Send and receive traffic | ${tg} | ${tg_if2} | ${tg_if1}
+| | Send and receive ICMPv4 | ${tg} | ${tg_if1} | ${tg_if2}
+| | Send and receive ICMPv4 | ${tg} | ${tg_if2} | ${tg_if1}
