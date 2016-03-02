@@ -66,30 +66,29 @@ class InterfaceUtil(object):
         :raises: RuntimeError if the timeout period value has elapsed.
         """
         if_ready = False
-        vat = VatTerminal(node)
-        not_ready = []
-        start = time()
-        while if_ready != True:
-            out = vat.vat_terminal_exec_cmd('sw_interface_dump')
-            if time() - start > timeout:
+        with VatTerminal(node) as vat:
+            not_ready = []
+            start = time()
+            while not if_ready:
+                out = vat.vat_terminal_exec_cmd('sw_interface_dump')
+                if time() - start > timeout:
+                    for interface in out:
+                        if interface.get('admin_up_down') == 1:
+                            if interface.get('link_up_down') != 1:
+                                logger.debug('{0} link-down'.format(
+                                    interface.get('interface_name')))
+                    raise RuntimeError('timeout, not up {0}'.format(not_ready))
+                not_ready = []
                 for interface in out:
                     if interface.get('admin_up_down') == 1:
                         if interface.get('link_up_down') != 1:
-                            logger.debug('{0} link-down'.format(
-                                interface.get('interface_name')))
-                raise RuntimeError('timeout, not up {0}'.format(not_ready))
-            not_ready = []
-            for interface in out:
-                if interface.get('admin_up_down') == 1:
-                    if interface.get('link_up_down') != 1:
-                        not_ready.append(interface.get('interface_name'))
-            if not not_ready:
-                if_ready = True
-            else:
-                logger.debug('Interfaces still in link-down state: {0}, ' \
-                             'waiting...'.format(not_ready))
-                sleep(1)
-        vat.vat_terminal_close()
+                            not_ready.append(interface.get('interface_name'))
+                if not not_ready:
+                    if_ready = True
+                else:
+                    logger.debug('Interfaces still in link-down state: {0}, '
+                                 'waiting...'.format(not_ready))
+                    sleep(1)
 
     @staticmethod
     def vpp_nodes_interfaces_ready_wait(nodes, timeout=10):
@@ -98,7 +97,7 @@ class InterfaceUtil(object):
 
         :param nodes: List of nodes to wait on.
         :param timeout: Seconds to wait per node for all interfaces to come up.
-        :type node: list
+        :type nodes: list
         :type timeout: int
         :raises: RuntimeError if the timeout period value has elapsed.
         """
@@ -112,7 +111,7 @@ class InterfaceUtil(object):
 
         :param nodes: Nodes in the topology.
         :param timeout: Seconds to wait per node for all interfaces to come up.
-        :type node: dict
+        :type nodes: dict
         :type timeout: int
         :raises: RuntimeError if the timeout period value has elapsed.
         """
