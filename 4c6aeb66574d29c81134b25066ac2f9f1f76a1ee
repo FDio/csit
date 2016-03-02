@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7afa4931_a1edd8f1",
+        "filename": "resources/libraries/python/L2Util.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-02T11:56:00Z",
+      "side": 1,
+      "message": "Create bidirectional cross-connect...",
+      "revId": "4c6aeb66574d29c81134b25066ac2f9f1f76a1ee",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
