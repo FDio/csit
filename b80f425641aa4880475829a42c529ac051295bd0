@@ -71,6 +71,23 @@
     },
     {
       "key": {
+        "uuid": "7afa4931_0196cc94",
+        "filename": "tests/suites/performance/short_bridge_domain.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-03-02T06:32:03Z",
+      "side": 1,
+      "message": "Use KW \"All Vpp Interfaces Ready Wait\" instead of sleep",
+      "revId": "b80f425641aa4880475829a42c529ac051295bd0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7afa4931_7e63f11a",
         "filename": "tests/suites/performance/short_ipv4.robot",
         "patchSetId": 3
@@ -203,6 +220,23 @@
         "endLine": 37,
         "endChar": 9
       },
+      "revId": "b80f425641aa4880475829a42c529ac051295bd0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7afa4931_e192c09e",
+        "filename": "tests/suites/performance/short_xconnect.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-03-02T06:32:03Z",
+      "side": 1,
+      "message": "Use KW \"All Vpp Interfaces Ready Wait\" or something else from InterfaceUtil.py",
       "revId": "b80f425641aa4880475829a42c529ac051295bd0",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
