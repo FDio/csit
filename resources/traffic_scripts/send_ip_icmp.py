@@ -40,8 +40,8 @@ def main():
 
     # Create empty ip ICMP packet and add padding before sending
     pkt_raw = Ether(src=src_mac, dst=dst_mac) / \
-                    IP(src=src_ip, dst=dst_ip) / \
-                    ICMP()
+              IP(src=src_ip, dst=dst_ip) / \
+              ICMP()
 
     # Send created packet on one interface and receive on the other
     sent_packets.append(pkt_raw)
@@ -51,7 +51,7 @@ def main():
 
     # Check whether received packet contains layers Ether, IP and ICMP
     if ether is None:
-        raise RuntimeError('ICMPv6 echo reply Rx timeout')
+        raise RuntimeError('ICMP echo Rx timeout')
 
     if not ether.haslayer(IP):
         raise RuntimeError(
