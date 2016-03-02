@@ -161,15 +161,14 @@ class IPv6Setup(object):
            :type prefix: str
         """
         sw_if_index = Topology.get_interface_sw_index(node, interface)
-        vat = VatTerminal(node)
-        vat.vat_terminal_exec_cmd_from_template('add_ip_address.vat',
-                                                sw_if_index=sw_if_index,
-                                                address=addr,
-                                                prefix_length=prefix)
-        vat.vat_terminal_exec_cmd_from_template('set_if_state.vat',
-                                                sw_if_index=sw_if_index,
-                                                state='admin-up')
-        vat.vat_terminal_close()
+        with VatTerminal(node) as vat:
+            vat.vat_terminal_exec_cmd_from_template('add_ip_address.vat',
+                                                    sw_if_index=sw_if_index,
+                                                    address=addr,
+                                                    prefix_length=prefix)
+            vat.vat_terminal_exec_cmd_from_template('set_if_state.vat',
+                                                    sw_if_index=sw_if_index,
+                                                    state='admin-up')
 
         ssh = SSH()
         ssh.connect(node)
@@ -194,15 +193,14 @@ class IPv6Setup(object):
            :type prefix: str
         """
         sw_if_index = Topology.get_interface_sw_index(node, interface)
-        vat = VatTerminal(node)
-        vat.vat_terminal_exec_cmd_from_template('del_ip_address.vat',
-                                                sw_if_index=sw_if_index,
-                                                address=addr,
-                                                prefix_length=prefix)
-        vat.vat_terminal_exec_cmd_from_template('set_if_state.vat',
-                                                sw_if_index=sw_if_index,
-                                                state='admin-down')
-        vat.vat_terminal_close()
+        with VatTerminal(node) as vat:
+            vat.vat_terminal_exec_cmd_from_template('del_ip_address.vat',
+                                                    sw_if_index=sw_if_index,
+                                                    address=addr,
+                                                    prefix_length=prefix)
+            vat.vat_terminal_exec_cmd_from_template('set_if_state.vat',
+                                                    sw_if_index=sw_if_index,
+                                                    state='admin-down')
 
     @staticmethod
     def vpp_ra_supress_link_layer(node, interface):

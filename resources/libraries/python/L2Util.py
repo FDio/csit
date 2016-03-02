@@ -167,11 +167,10 @@ class L2Util(object):
         """
         sw_iface1 = Topology().get_interface_sw_index(node, interface1)
         sw_iface2 = Topology().get_interface_sw_index(node, interface2)
-        vat = VatTerminal(node)
-        vat.vat_terminal_exec_cmd_from_template('l2_xconnect.vat',
-                                                interface1=sw_iface1,
-                                                interface2=sw_iface2)
-        vat.vat_terminal_exec_cmd_from_template('l2_xconnect.vat',
-                                                interface1=sw_iface2,
-                                                interface2=sw_iface1)
-        vat.vat_terminal_close()
+        with VatTerminal(node) as vat:
+            vat.vat_terminal_exec_cmd_from_template('l2_xconnect.vat',
+                                                    interface1=sw_iface1,
+                                                    interface2=sw_iface2)
+            vat.vat_terminal_exec_cmd_from_template('l2_xconnect.vat',
+                                                    interface1=sw_iface2,
+                                                    interface2=sw_iface1)
