@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7afa4931_41829401",
+        "filename": "resources/libraries/robot/send_traffic.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-03-02T12:20:06Z",
+      "side": 1,
+      "message": "remove, not used",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 53
+      },
+      "revId": "04105bf750c9906433c07e54beb87824d5fe841c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
