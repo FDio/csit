@@ -18,6 +18,7 @@ from time import time
 from robot.api import logger
 from interruptingcow import timeout
 from robot.utils.asserts import assert_equal, assert_not_equal
+from socket import timeout as socket_timeout
 
 __all__ = ["exec_cmd", "exec_cmd_no_error"]
 
@@ -72,7 +73,7 @@ class SSH(object):
         Returns (return_code, stdout, stderr).
         """
         logger.trace('exec_command on {0}: {1}'
-                .format(self._ssh.get_transport().getpeername(), cmd))
+                     .format(self._ssh.get_transport().getpeername(), cmd))
         start = time()
         chan = self._ssh.get_transport().open_session()
         if timeout is not None:
@@ -84,22 +85,33 @@ class SSH(object):
 
         stdout = ""
         while True:
-            buf = chan.recv(self.__MAX_RECV_BUF)
-            stdout += buf
-            if not buf:
+            try:
+                buf = chan.recv(self.__MAX_RECV_BUF)
+                stdout += buf
+                if not buf:
+                    break
+            except socket_timeout:
+                logger.trace('Channels stdout timeout occurred')
                 break
 
         stderr = ""
         while True:
-            buf = chan.recv_stderr(self.__MAX_RECV_BUF)
-            stderr += buf
-            if not buf:
+            try:
+                buf = chan.recv_stderr(self.__MAX_RECV_BUF)
+                stderr += buf
+                if not buf:
+                    break
+            except socket_timeout:
+                logger.trace('Channels stderr timeout occurred')
                 break
 
         return_code = chan.recv_exit_status()
         logger.trace('chan_recv/_stderr took {} seconds'.format(time()-end))
 
-        return (return_code, stdout, stderr)
+        logger.trace('return RC {}'.format(return_code))
+        logger.trace('return STDOUT {}'.format(stdout))
+        logger.trace('return STDERR {}'.format(stderr))
+        return return_code, stdout, stderr
 
     def exec_command_sudo(self, cmd, cmd_input=None, timeout=10):
         """Execute SSH command with sudo on a new channel on the connected Node.
