@@ -18,6 +18,7 @@ from time import time
 from robot.api import logger
 from interruptingcow import timeout
 from robot.utils.asserts import assert_equal, assert_not_equal
+import socket
 
 __all__ = ["exec_cmd", "exec_cmd_no_error"]
 
@@ -84,16 +85,23 @@ class SSH(object):
 
         stdout = ""
         while True:
-            buf = chan.recv(self.__MAX_RECV_BUF)
-            stdout += buf
-            if not buf:
+            try:
+                buf = chan.recv(self.__MAX_RECV_BUF)
+                stdout += buf
+                if not buf:
+                    break
+            except socket.timeout:
                 break
+
 
         stderr = ""
         while True:
-            buf = chan.recv_stderr(self.__MAX_RECV_BUF)
-            stderr += buf
-            if not buf:
+            try:
+                buf = chan.recv_stderr(self.__MAX_RECV_BUF)
+                stderr += buf
+                if not buf:
+                    break
+            except socket.timeout:
                 break
 
         return_code = chan.recv_exit_status()

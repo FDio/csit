@@ -13,19 +13,9 @@
 # limitations under the License.
 
 echo
-echo Restart VPP
-echo
-sudo -S service vpp restart
-
-echo
 echo List vpp packages
 echo
 dpkg -l vpp\*
-
-echo
-echo List /proc/meminfo
-echo
-cat /proc/meminfo
 
 echo
 echo See vpp process
@@ -33,12 +23,40 @@ echo
 ps aux | grep vpp
 
 echo
+echo Cat /etc/vpp/startup.conf
+echo
+cat /etc/vpp/startup.conf
+
+echo
+echo Restart VPP
+echo
+sudo -S service vpp restart
+
+echo
+echo List /proc/meminfo
+echo
+cat /proc/meminfo
+
+echo
 echo See free memory
 echo
 free -m
+
+echo
+echo See vpp process
+echo
+ps aux | grep vpp
 
 echo UUID
 sudo dmidecode | grep UUID
 
 echo Add dpdk-input trace
+#TODO: VAT bin from constants
 sudo vpp_api_test <<< "exec trace add dpdk-input 100"
+RESULT=$?
+if [ $RESULT -ne 0 ]; then
+  echo
+  echo "/var/log/syslog"
+  sudo tail -n 200 /var/log/syslog
+  exit $RESULT
+fi
