@@ -48,6 +48,7 @@ class DUTSetup(object):
             ssh.exec_command('sudo -Sn bash {0}/{1}/dut_setup.sh'.format(
                 Constants.REMOTE_FW_DIR, Constants.RESOURCES_LIB_SH))
         logger.trace(stdout)
+        logger.trace(stderr)
         if 0 != int(ret_code):
             logger.debug('DUT {0} setup script failed: "{1}"'.
                     format(node['host'], stdout + stderr))
