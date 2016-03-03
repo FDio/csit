@@ -13,19 +13,9 @@
 # limitations under the License.
 
 echo
-echo Restart VPP
-echo
-sudo -S service vpp restart
-
-echo
 echo List vpp packages
 echo
 dpkg -l vpp\*
-
-echo
-echo List /proc/meminfo
-echo
-cat /proc/meminfo
 
 echo
 echo See vpp process
@@ -33,9 +23,24 @@ echo
 ps aux | grep vpp
 
 echo
+echo Restart VPP
+echo
+sudo -S service vpp restart
+
+echo
+echo List /proc/meminfo
+echo
+cat /proc/meminfo
+
+echo
 echo See free memory
 echo
 free -m
+
+echo
+echo See vpp process
+echo
+ps aux | grep vpp
 
 echo UUID
 sudo dmidecode | grep UUID
