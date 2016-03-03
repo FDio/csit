@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7afa4931_e173e0e5",
+        "filename": "resources/libraries/python/IPv6NodesAddr.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-03-03T07:43:07Z",
+      "side": 1,
+      "message": "mixing lowercase with uppercase",
+      "range": {
+        "startLine": 24,
+        "startChar": 18,
+        "endLine": 24,
+        "endChar": 30
+      },
+      "revId": "1fa98d2e2e2e4a6ae7784b9fda5c3c906bc11a13",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
