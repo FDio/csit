@@ -84,16 +84,23 @@ class SSH(object):
 
         stdout = ""
         while True:
-            buf = chan.recv(self.__MAX_RECV_BUF)
-            stdout += buf
-            if not buf:
+            try:
+                buf = chan.recv(self.__MAX_RECV_BUF)
+                stdout += buf
+                if not buf:
+                    break
+            except timeout:
                 break
+
 
         stderr = ""
         while True:
-            buf = chan.recv_stderr(self.__MAX_RECV_BUF)
-            stderr += buf
-            if not buf:
+            try:
+                buf = chan.recv_stderr(self.__MAX_RECV_BUF)
+                stderr += buf
+                if not buf:
+                    break
+            except timeout:
                 break
 
         return_code = chan.recv_exit_status()
