@@ -89,16 +89,15 @@ chmod 600 priv_key
 
 rm -f *.deb
 if [ "${#}" -ne "0" ]; then
-    echo "let's use the parameters"
     arr=(${@})
     echo ${arr[0]}
 else
-    wget -q "https://nexus.fd.io/service/local/repositories/fd.io.dev/content/io/fd/vpp/vpp/1.0.0-185~gca0f3b3_amd64/vpp-1.0.0-185~gca0f3b3_amd64.deb" || exit
-    wget -q "https://nexus.fd.io/service/local/repositories/fd.io.dev/content/io/fd/vpp/vpp-dbg/1.0.0-185~gca0f3b3_amd64/vpp-dbg-1.0.0-185~gca0f3b3_amd64.deb" || exit
-    wget -q "https://nexus.fd.io/service/local/repositories/fd.io.dev/content/io/fd/vpp/vpp-dev/1.0.0-185~gca0f3b3_amd64/vpp-dev-1.0.0-185~gca0f3b3_amd64.deb" || exit
-    wget -q "https://nexus.fd.io/service/local/repositories/fd.io.dev/content/io/fd/vpp/vpp-dpdk-dev/1.0.0-185~gca0f3b3_amd64/vpp-dpdk-dev-1.0.0-185~gca0f3b3_amd64.deb" || exit
-    wget -q "https://nexus.fd.io/service/local/repositories/fd.io.dev/content/io/fd/vpp/vpp-dpdk-dkms/1.0.0-185~gca0f3b3_amd64/vpp-dpdk-dkms-1.0.0-185~gca0f3b3_amd64.deb" || exit
-    wget -q "https://nexus.fd.io/service/local/repositories/fd.io.dev/content/io/fd/vpp/vpp-lib/1.0.0-185~gca0f3b3_amd64/vpp-lib-1.0.0-185~gca0f3b3_amd64.deb" || exit
+    wget -q "https://nexus.fd.io/service/local/repositories/fd.io.dev/content/io/fd/vpp/vpp/1.0.0-213~g2df2e3d_amd64/vpp-1.0.0-213~g2df2e3d_amd64.deb" || exit
+    wget -q "https://nexus.fd.io/service/local/repositories/fd.io.dev/content/io/fd/vpp/vpp-dbg/1.0.0-213~g2df2e3d_amd64/vpp-dbg-1.0.0-213~g2df2e3d_amd64.deb" || exit
+    wget -q "https://nexus.fd.io/service/local/repositories/fd.io.dev/content/io/fd/vpp/vpp-dev/1.0.0-213~g2df2e3d_amd64/vpp-dev-1.0.0-213~g2df2e3d_amd64.deb" || exit
+    wget -q "https://nexus.fd.io/service/local/repositories/fd.io.dev/content/io/fd/vpp/vpp-dpdk-dev/1.0.0-213~g2df2e3d_amd64/vpp-dpdk-dev-1.0.0-213~g2df2e3d_amd64.deb" || exit
+    wget -q "https://nexus.fd.io/service/local/repositories/fd.io.dev/content/io/fd/vpp/vpp-dpdk-dkms/1.0.0-213~g2df2e3d_amd64/vpp-dpdk-dkms-1.0.0-213~g2df2e3d_amd64.deb" || exit
+    wget -q "https://nexus.fd.io/service/local/repositories/fd.io.dev/content/io/fd/vpp/vpp-lib/1.0.0-213~g2df2e3d_amd64/vpp-lib-1.0.0-213~g2df2e3d_amd64.deb" || exit
 fi
 
 VPP_DEBS=(*.deb)
@@ -129,8 +128,9 @@ fi
 echo "Starting simulation on VIRL server"
 
 function stop_virl_simulation {
-    ssh -i priv_key -o StrictHostKeyChecking=no ${VIRL_USERNAME}@${VIRL_SERVER}\
-        "/home/jenkins-in/testcase-infra/bin/stop-testcase ${VIRL_SID}"
+    echo
+#    ssh -i priv_key -o StrictHostKeyChecking=no ${VIRL_USERNAME}@${VIRL_SERVER}\
+#        "/home/jenkins-in/testcase-infra/bin/stop-testcase ${VIRL_SID}"
 }
 
 VIRL_SID=$(ssh -i priv_key -o StrictHostKeyChecking=no \
