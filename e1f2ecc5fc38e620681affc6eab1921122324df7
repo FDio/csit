@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "7afa4931_a44a86aa",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-03-04T15:22:42Z",
+      "side": 1,
+      "message": "Move Send and receive traffic KWs to standalone file. ?",
+      "parentUuid": "7afa4931_e43bee36",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 51
+      },
+      "revId": "e1f2ecc5fc38e620681affc6eab1921122324df7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7afa4931_8412eab2",
         "filename": "resources/libraries/robot/send_traffic.robot",
         "patchSetId": 3
@@ -36,6 +60,24 @@
       "writtenOn": "2016-03-04T12:08:23Z",
       "side": 1,
       "message": "rename the file to something more descriptive. Why do we have this here, and then in v4 and v6 are some more? Is this supposed to be used by ALL TCs ?",
+      "revId": "e1f2ecc5fc38e620681affc6eab1921122324df7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7afa4931_04db7aee",
+        "filename": "resources/libraries/robot/send_traffic.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-03-04T15:22:42Z",
+      "side": 1,
+      "message": "These KWs supposed to be used by TCs which send data through L2 network. In data field of the ethernet frame it could be ARP, IPv4, IPv6 or anything else.",
+      "parentUuid": "7afa4931_8412eab2",
       "revId": "e1f2ecc5fc38e620681affc6eab1921122324df7",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
@@ -65,6 +107,30 @@
     },
     {
       "key": {
+        "uuid": "7afa4931_e4d76ebe",
+        "filename": "resources/libraries/robot/send_traffic.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-03-04T15:22:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7afa4931_2411d6ac",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 26
+      },
+      "revId": "e1f2ecc5fc38e620681affc6eab1921122324df7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7afa4931_6417dea4",
         "filename": "resources/libraries/robot/send_traffic.robot",
         "patchSetId": 3
@@ -76,6 +142,30 @@
       "writtenOn": "2016-03-04T12:08:23Z",
       "side": 1,
       "message": "Aren\u0027t these IPs in colision with automatic IP settings?",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 45
+      },
+      "revId": "e1f2ecc5fc38e620681affc6eab1921122324df7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7afa4931_64f35e74",
+        "filename": "resources/libraries/robot/send_traffic.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-03-04T15:22:42Z",
+      "side": 1,
+      "message": "Network should pass frames through the network based on L2 headers only.",
+      "parentUuid": "7afa4931_6417dea4",
       "range": {
         "startLine": 25,
         "startChar": 0,
