@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7afa4931_44fe226d",
+        "filename": "resources/libraries/robot/ipv4.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-04T10:42:01Z",
+      "side": 1,
+      "message": "Could you please take this teardown out of this KW, and do setup/cleanup in the testcase itself?",
+      "range": {
+        "startLine": 104,
+        "startChar": 0,
+        "endLine": 104,
+        "endChar": 81
+      },
+      "revId": "9d6c6020ad73db2b9039640879740d50ea04d4c7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7afa4931_24031675",
+        "filename": "resources/libraries/robot/ipv6.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-04T10:42:01Z",
+      "side": 1,
+      "message": "as in v4, please take out teardown out of KWs.",
+      "range": {
+        "startLine": 78,
+        "startChar": 0,
+        "endLine": 78,
+        "endChar": 81
+      },
+      "revId": "9d6c6020ad73db2b9039640879740d50ea04d4c7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7afa4931_04f81a7b",
+        "filename": "tests/suites/ipv4/ipv4_untagged.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-04T10:42:01Z",
+      "side": 1,
+      "message": "Please add documentation with reason why this is cannot be run reliably on VM_ENV.",
+      "range": {
+        "startLine": 92,
+        "startChar": 0,
+        "endLine": 92,
+        "endChar": 36
+      },
+      "revId": "9d6c6020ad73db2b9039640879740d50ea04d4c7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7afa4931_e4f40e89",
+        "filename": "tests/suites/ipv6/ipv6_untagged.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-04T10:42:01Z",
+      "side": 1,
+      "message": "Please add documentation why this cannot be run on VM_ENV reliably.",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 36
+      },
+      "revId": "9d6c6020ad73db2b9039640879740d50ea04d4c7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
