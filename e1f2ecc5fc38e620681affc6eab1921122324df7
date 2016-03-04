@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7afa4931_e43bee36",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-04T12:08:23Z",
+      "side": 1,
+      "message": "Move L2 send and receive traffic KSs....",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 51
+      },
+      "revId": "e1f2ecc5fc38e620681affc6eab1921122324df7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7afa4931_8412eab2",
+        "filename": "resources/libraries/robot/send_traffic.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-04T12:08:23Z",
+      "side": 1,
+      "message": "rename the file to something more descriptive. Why do we have this here, and then in v4 and v6 are some more? Is this supposed to be used by ALL TCs ?",
+      "revId": "e1f2ecc5fc38e620681affc6eab1921122324df7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7afa4931_2411d6ac",
+        "filename": "resources/libraries/robot/send_traffic.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-04T12:08:23Z",
+      "side": 1,
+      "message": "Since you are going to share this between different TCs/suites, add more description to the name of the KW, e.g. Send and receive L2 traffic.",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 26
+      },
+      "revId": "e1f2ecc5fc38e620681affc6eab1921122324df7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7afa4931_6417dea4",
+        "filename": "resources/libraries/robot/send_traffic.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-04T12:08:23Z",
+      "side": 1,
+      "message": "Aren\u0027t these IPs in colision with automatic IP settings?",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 45
+      },
+      "revId": "e1f2ecc5fc38e620681affc6eab1921122324df7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
