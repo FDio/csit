@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7afa4931_64cc7e36",
+        "filename": "resources/libraries/python/IPv4Setup.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-03-04T14:28:23Z",
+      "side": 1,
+      "message": "return value and rtype is missing",
+      "range": {
+        "startLine": 235,
+        "startChar": 11,
+        "endLine": 235,
+        "endChar": 61
+      },
+      "revId": "ef78b7afa5e636bca29f9541e2555903b117002c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7afa4931_44d182cc",
+        "filename": "resources/libraries/python/IPv6Setup.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-03-04T14:28:23Z",
+      "side": 1,
+      "message": "Return value and rtype is messing.",
+      "range": {
+        "startLine": 59,
+        "startChar": 11,
+        "endLine": 59,
+        "endChar": 60
+      },
+      "revId": "ef78b7afa5e636bca29f9541e2555903b117002c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
