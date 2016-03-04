@@ -19,6 +19,23 @@
     },
     {
       "key": {
+        "uuid": "7afa4931_a13038e9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-04T12:09:15Z",
+      "side": 1,
+      "message": "Wrap lines to match",
+      "revId": "e2e387cbfcc927337f6b0abe271ffbddfd151034",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7afa4931_3e8329ce",
         "filename": "resources/libraries/robot/l2_xconnect.robot",
         "patchSetId": 1
