@@ -1,0 +1,222 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7afa4931_a4a9667d",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-04T10:12:41Z",
+      "side": 1,
+      "message": "Could you please add somewhere also placeholder for heapsize configuration? It\u0027ll help immensely in my Vagrant environment testing (DUTs can have WAY lower memory requirements).",
+      "revId": "a92b6fdfbccd20825784897c224d51971d7a6396",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7afa4931_e4c64e49",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-04T10:12:41Z",
+      "side": 1,
+      "message": "I\u0027d change this line to:\nAdd PCI device configuration for node.",
+      "range": {
+        "startLine": 67,
+        "startChar": 0,
+        "endLine": 67,
+        "endChar": 34
+      },
+      "revId": "a92b6fdfbccd20825784897c224d51971d7a6396",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7afa4931_84b66adb",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-04T10:12:41Z",
+      "side": 1,
+      "message": "Please add an empty line between this line and parameters.",
+      "revId": "a92b6fdfbccd20825784897c224d51971d7a6396",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7afa4931_64bb5ec5",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-04T10:12:41Z",
+      "side": 1,
+      "message": "please convert the order to:\nparam\npara\ntype\ntype\nreturn",
+      "range": {
+        "startLine": 68,
+        "startChar": 6,
+        "endLine": 74,
+        "endChar": 24
+      },
+      "revId": "a92b6fdfbccd20825784897c224d51971d7a6396",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7afa4931_44b062dd",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-04T10:12:41Z",
+      "side": 1,
+      "message": "Please change to ValueError, also for other occurences.",
+      "range": {
+        "startLine": 77,
+        "startChar": 18,
+        "endLine": 77,
+        "endChar": 27
+      },
+      "revId": "a92b6fdfbccd20825784897c224d51971d7a6396",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7afa4931_24b556cd",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-04T10:12:41Z",
+      "side": 1,
+      "message": "RuntimeError",
+      "range": {
+        "startLine": 93,
+        "startChar": 22,
+        "endLine": 93,
+        "endChar": 31
+      },
+      "revId": "a92b6fdfbccd20825784897c224d51971d7a6396",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7afa4931_c4c35237",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-04T10:12:41Z",
+      "side": 1,
+      "message": "Please change to something similar as:\n\"\"\"Generate and apply VPP configuration for node.\n\nUse data from calls to this class to form a startup.conf file and replace /etc/vpp/startup.conf with it on node.\n....\n\"\"\"",
+      "range": {
+        "startLine": 153,
+        "startChar": 11,
+        "endLine": 154,
+        "endChar": 44
+      },
+      "revId": "a92b6fdfbccd20825784897c224d51971d7a6396",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7afa4931_a4c0462b",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-04T10:12:41Z",
+      "side": 1,
+      "message": "Please, change to RuntimeException",
+      "range": {
+        "startLine": 212,
+        "startChar": 18,
+        "endLine": 212,
+        "endChar": 27
+      },
+      "revId": "a92b6fdfbccd20825784897c224d51971d7a6396",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7afa4931_84dd4a17",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-04T10:12:41Z",
+      "side": 1,
+      "message": "Please use VatTerminal or VatExecutor, it\u0027s our standard way of executing VPP commands. CLI commands can be executed using exec prefix.",
+      "range": {
+        "startLine": 223,
+        "startChar": 0,
+        "endLine": 224,
+        "endChar": 32
+      },
+      "revId": "a92b6fdfbccd20825784897c224d51971d7a6396",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7afa4931_44e742e5",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-04T10:12:41Z",
+      "side": 1,
+      "message": "I think you can fit this on one line.",
+      "range": {
+        "startLine": 228,
+        "startChar": 0,
+        "endLine": 229,
+        "endChar": 41
+      },
+      "revId": "a92b6fdfbccd20825784897c224d51971d7a6396",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
