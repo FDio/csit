@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7afa4931_249e7657",
+        "filename": "bootstrap.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-04T09:52:59Z",
+      "side": 1,
+      "message": "please remove this line, that\u0027s my debugging remnant. Should have added XXX or something, but this got pass my fingers.",
+      "range": {
+        "startLine": 80,
+        "startChar": 0,
+        "endLine": 80,
+        "endChar": 35
+      },
+      "revId": "185e85f91f5e3cd898370c7a57e87df8b1b1ce6d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
