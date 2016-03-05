@@ -79,7 +79,8 @@ def create_env_directory_at_node(node):
     (ret_code, stdout, stderr) = ssh.exec_command(
             'cd {0} && rm -rf env && virtualenv env && '
             '. env/bin/activate && '
-            'pip install -r requirements.txt'.format(con.REMOTE_FW_DIR), timeout=100)
+            'pip install -r requirements.txt'.format(con.REMOTE_FW_DIR),
+                                                     timeout=100)
     if 0 != ret_code:
         logger.error('Virtualenv creation error: {0}'.format(stdout + stderr))
         raise Exception('Virtualenv setup failed')
@@ -107,7 +108,7 @@ def setup_node(args):
     install_dependencies(node)
     if node['type'] == NodeType.TG:
         create_env_directory_at_node(node)
-
+    logger.console('Setup node {0} done'.format(node['host']))
 
 def delete_local_tarball(tarball):
     call(shlex.split('sh -c "rm {0} > /dev/null 2>&1"'.format(tarball)))
@@ -151,3 +152,5 @@ class SetupFramework(object):
         BuiltIn().set_log_level(log_level)
         logger.trace('Test framework copied to all topology nodes')
         delete_local_tarball(tarball)
+        logger.console('All nodes are ready')
+
