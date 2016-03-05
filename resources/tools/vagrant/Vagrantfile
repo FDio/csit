@@ -1,0 +1,85 @@
+# Copyright (c) 2016 Cisco and/or its affiliates.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at:
+
+#     http://www.apache.org/licenses/LICENSE-2.0
+
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+# -*- mode: ruby -*-
+# vi: set ts=2 sw=2 sts=2 et ft=ruby :
+
+$user_addition = <<-SHELL
+  sudo deluser csit
+  sudo adduser --disabled-password --gecos "" csit
+  echo csit:csit | sudo chpasswd
+  sudo adduser csit vagrant
+  id csit
+SHELL
+
+$install_prereqs = <<-SHELL
+ sudo apt-get -y update
+ sudo apt-get -y -f install
+ sudo apt-get -y install python-virtualenv python-dev iproute2 debhelper dkms
+ sudo update-alternatives --install /bin/sh sh /bin/bash 100
+SHELL
+
+$install_vpp = <<-SHELL
+ sudo apt-get -y purge vpp\*
+ cd /vagrant
+ sudo dpkg -i *.deb
+SHELL
+
+
+def add_tg(config, name, mgmt_ip, net1, net2)
+  config.vm.define name do |node|
+    node.vm.box = "puppetlabs/ubuntu-14.04-64-nocm"
+    node.vm.hostname = name
+    node.vm.provision "shell", inline: $user_addition
+    node.vm.provision "shell", inline: $install_prereqs
+    node.vm.provision "shell", inline: $install_vpp
+
+    node.vm.network "private_network", ip: mgmt_ip
+    node.vm.network "private_network", type: "dhcp", auto_config: false,
+        virtualbox__intnet: net1
+    node.vm.network "private_network", type: "dhcp", auto_config: false,
+        virtualbox__intnet: net2
+    node.vm.provider "virtualbox" do |vb|
+      # Lower to reasonable number after VPP can start with socket-mem < 1024
+      vb.memory = "3072"
+      vb.customize ["modifyvm", :id, "--nicpromisc3", "allow-all"]
+      vb.customize ["modifyvm", :id, "--nicpromisc4", "allow-all"]
+    end
+  end
+
+end
+
+Vagrant.configure(2) do |config|
+  config.vm.define "tg" do |tg|
+    tg.vm.box = "puppetlabs/ubuntu-14.04-64-nocm"
+    tg.vm.hostname = "tg"
+
+    tg.vm.provision "shell", inline: $user_addition
+    tg.vm.provision "shell", inline: $install_prereqs
+    tg.vm.network "private_network", ip: '192.168.255.250/24'
+    tg.vm.network "private_network", type: "dhcp", auto_config: false,
+        virtualbox__intnet: "tg_dut1"
+    tg.vm.network "private_network", type: "dhcp", auto_config: false,
+        virtualbox__intnet: "tg_dut2"
+    tg.vm.provider "virtualbox" do |vb|
+      vb.memory = "2048"
+      vb.customize ["modifyvm", :id, "--nicpromisc3", "allow-all"]
+      vb.customize ["modifyvm", :id, "--nicpromisc4", "allow-all"]
+    end
+
+  end
+
+  add_tg(config, "dut1", "192.168.255.101/24", "tg_dut1", "dut1_dut2")
+  add_tg(config, "dut2", "192.168.255.102/24", "tg_dut2", "dut1_dut2")
+end
+
