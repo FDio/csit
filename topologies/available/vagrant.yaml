@@ -1,0 +1,60 @@
+---
+metadata:
+  version: 0.1
+  schema:
+    - resources/topology_schemas/3_node_topology.sch.yaml
+    - resources/topology_schemas/topology.sch.yaml
+  tags: [vagrant, 3-node]
+
+nodes:
+  TG:
+    type: TG
+    host: "192.168.255.100"
+    port: 22
+    username: csit
+    password: csit
+    interfaces:
+      port3:
+        mac_address: ""
+        pci_address: "0000:00:09.0"
+        link: link1
+        driver: e1000
+      port5:
+        mac_address: ""
+        pci_address: "0000:00:0a.0"
+        link: link2
+        driver: e1000
+  DUT1:
+    type: DUT
+    host: "192.168.255.101"
+    port: 22
+    username: csit
+    password: csit
+    interfaces:
+      port1:
+        mac_address: ""
+        pci_address: "0000:00:09.0"
+        link: link1
+        driver: e1000
+      port3:
+        mac_address: ""
+        pci_address: "0000:00:0a.0"
+        link: link3
+        driver: e1000
+  DUT2:
+    type: DUT
+    host: "192.168.255.102"
+    port: 22
+    username: csit
+    password: csit
+    interfaces:
+      port1:
+        mac_address: ""
+        pci_address: "0000:00:09.0"
+        link: link2
+        driver: e1000
+      port3:
+        mac_address: ""
+        pci_address: "0000:00:0a.0"
+        link: link3
+        driver: e1000

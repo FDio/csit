@@ -10,6 +10,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+import socket
 import paramiko
 from paramiko import RSAKey
 import StringIO
@@ -95,11 +96,17 @@ class SSH(object):
             self._ssh.get_transport().getpeername(), end-start))
 
         stdout = ""
-        while True:
-            buf = chan.recv(self.__MAX_RECV_BUF)
-            stdout += buf
-            if not buf:
-                break
+        try:
+            while True:
+                buf = chan.recv(self.__MAX_RECV_BUF)
+                stdout += buf
+                if not buf:
+                    break
+        except socket.timeout:
+            logger.error('Caught timeout exception, current contents '
+                         'of buffer: {0}'.format(stdout))
+            raise
+
 
         stderr = ""
         while True:
