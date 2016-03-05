@@ -12,6 +12,7 @@
 # limitations under the License.
 
 import shlex
+import re
 from subprocess import Popen, PIPE, call
 from multiprocessing import Pool
 from tempfile import NamedTemporaryFile
@@ -100,11 +101,35 @@ def install_dependencies(node):
                 format(stdout + stderr))
         raise Exception('Virtualenv setup failed')
 
+def gather_macs(node):
+    """Get MAC addresses of topology nodes based on ports PCI addresses."""
+    logger.console('Getting MAC addresses for node {0}'.format(node['host']))
+    ssh = SSH()
+    ssh.connect(node)
+    for port in node['interfaces'].values():
+        pci = port['pci_address']
+        cmd = 'cat /sys/devices/pci*/*{0}*/net/*/address'.\
+            format(pci)
+        (ret_code, mac_addr, stderr) = ssh.exec_command(cmd)
+        mac_addr = mac_addr.strip()
+        if 0 != ret_code:
+            raise RuntimeException('Failed to extract mac address of port {0}'.\
+                                   format(pci))
+        pattern = re.compile("^([0-9A-Fa-f]{2}:){5}[0-9A-Fa-f]{2}$")
+        if not pattern.match(mac_addr):
+            raise Exception('MAC address read from {0} is in bad format "{1}"'.\
+                    format(pci, mac_addr))
+        port['mac_address'] = mac_addr
+        logger.console('{0} pci {1} mac {2}'.format(node['host'], pci,
+                                                    mac_addr))
+
+
 def setup_node(args):
     tarball, remote_tarball, node = args
+    gather_macs(node)
     copy_tarball_to_node(tarball, node)
     extract_tarball_at_node(remote_tarball, node)
-    install_dependencies(node)
+    #install_dependencies(node)
     if node['type'] == NodeType.TG:
         create_env_directory_at_node(node)
 
