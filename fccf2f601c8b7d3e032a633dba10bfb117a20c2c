@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7afa4931_073ffc26",
+        "filename": "resources/libraries/python/IPv4Setup.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-03-07T09:23:53Z",
+      "side": 1,
+      "message": "Use set instead of setup (setup means complete preparation of interface, i.e. including change of admin-state to up)",
+      "range": {
+        "startLine": 234,
+        "startChar": 18,
+        "endLine": 234,
+        "endChar": 23
+      },
+      "revId": "fccf2f601c8b7d3e032a633dba10bfb117a20c2c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7afa4931_273af836",
+        "filename": "resources/libraries/python/IPv6Setup.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-03-07T09:23:53Z",
+      "side": 1,
+      "message": "Use set instead of setup (setup means complete preparation of interfaces, i.e. including change of admin-state to up)",
+      "range": {
+        "startLine": 58,
+        "startChar": 14,
+        "endLine": 58,
+        "endChar": 19
+      },
+      "revId": "fccf2f601c8b7d3e032a633dba10bfb117a20c2c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7afa4931_e73bf036",
+        "filename": "resources/libraries/robot/l2_xconnect.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-03-07T09:23:53Z",
+      "side": 1,
+      "message": "Will be in merge confilct with change: https://gerrit.fd.io/r/458\nPlease, use dependancy on this change.",
+      "range": {
+        "startLine": 32,
+        "startChar": 1,
+        "endLine": 41,
+        "endChar": 71
+      },
+      "revId": "fccf2f601c8b7d3e032a633dba10bfb117a20c2c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
