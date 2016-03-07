@@ -68,6 +68,30 @@
       "revId": "5531df9dd987ee9754bd75730eb311285b91b9f7",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7afa4931_27ec38c7",
+        "filename": "resources/libraries/robot/l2_traffic.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-03-07T07:13:04Z",
+      "side": 1,
+      "message": "ICMPv4 echo",
+      "parentUuid": "7afa4931_a7728847",
+      "range": {
+        "startLine": 21,
+        "startChar": 27,
+        "endLine": 21,
+        "endChar": 31
+      },
+      "revId": "5531df9dd987ee9754bd75730eb311285b91b9f7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
