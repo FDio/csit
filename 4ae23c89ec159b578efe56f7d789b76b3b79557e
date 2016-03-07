@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7afa4931_c71fd4b6",
+        "filename": "resources/libraries/python/IPv4Setup.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-03-07T09:54:12Z",
+      "side": 1,
+      "message": "Set",
+      "range": {
+        "startLine": 235,
+        "startChar": 11,
+        "endLine": 235,
+        "endChar": 16
+      },
+      "revId": "4ae23c89ec159b578efe56f7d789b76b3b79557e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7afa4931_a71cc8c2",
+        "filename": "resources/libraries/python/IPv6Setup.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-03-07T09:54:12Z",
+      "side": 1,
+      "message": "Set",
+      "range": {
+        "startLine": 59,
+        "startChar": 11,
+        "endLine": 59,
+        "endChar": 16
+      },
+      "revId": "4ae23c89ec159b578efe56f7d789b76b3b79557e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
