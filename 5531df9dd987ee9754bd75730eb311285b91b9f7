@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "7afa4931_e78530ae",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 4
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-03-07T12:10:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7afa4931_878f8c23",
+      "range": {
+        "startLine": 7,
+        "startChar": 21,
+        "endLine": 7,
+        "endChar": 22
+      },
+      "revId": "5531df9dd987ee9754bd75730eb311285b91b9f7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7afa4931_c7759433",
         "filename": "resources/libraries/robot/l2_traffic.robot",
         "patchSetId": 4
@@ -36,6 +60,30 @@
       "writtenOn": "2016-03-05T23:47:51Z",
       "side": 1,
       "message": "types",
+      "range": {
+        "startLine": 15,
+        "startChar": 58,
+        "endLine": 15,
+        "endChar": 62
+      },
+      "revId": "5531df9dd987ee9754bd75730eb311285b91b9f7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7afa4931_27a43856",
+        "filename": "resources/libraries/robot/l2_traffic.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-03-07T12:10:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7afa4931_c7759433",
       "range": {
         "startLine": 15,
         "startChar": 58,
@@ -83,6 +131,54 @@
       "side": 1,
       "message": "ICMPv4 echo",
       "parentUuid": "7afa4931_a7728847",
+      "range": {
+        "startLine": 21,
+        "startChar": 27,
+        "endLine": 21,
+        "endChar": 31
+      },
+      "revId": "5531df9dd987ee9754bd75730eb311285b91b9f7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7afa4931_07893cca",
+        "filename": "resources/libraries/robot/l2_traffic.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-03-07T12:10:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7afa4931_a7728847",
+      "range": {
+        "startLine": 21,
+        "startChar": 27,
+        "endLine": 21,
+        "endChar": 31
+      },
+      "revId": "5531df9dd987ee9754bd75730eb311285b91b9f7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7afa4931_479f4404",
+        "filename": "resources/libraries/robot/l2_traffic.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-03-07T12:10:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7afa4931_27ec38c7",
       "range": {
         "startLine": 21,
         "startChar": 27,
