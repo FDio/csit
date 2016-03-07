@@ -16,6 +16,24 @@
       "revId": "23d12ed302d7e645455ba3effb4df952aa86fdf1",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7afa4931_92ffcc01",
+        "filename": "bootstrap-multilink.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-07T14:29:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7afa4931_c7059415",
+      "revId": "23d12ed302d7e645455ba3effb4df952aa86fdf1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
