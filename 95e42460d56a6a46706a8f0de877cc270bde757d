@@ -36,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "7afa4931_12685cb9",
+        "filename": "resources/libraries/robot/ipv6.robot",
+        "patchSetId": 8
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 175
+      },
+      "writtenOn": "2016-03-07T14:58:23Z",
+      "side": 1,
+      "message": "this line is unbreakable",
+      "parentUuid": "7afa4931_c79234f6",
+      "revId": "95e42460d56a6a46706a8f0de877cc270bde757d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7afa4931_87bc2c6e",
         "filename": "tests/suites/ipv4/ipv4_untagged.robot",
         "patchSetId": 8
