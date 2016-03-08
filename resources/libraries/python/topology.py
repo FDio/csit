@@ -346,6 +346,8 @@ class Topology(object):
         :type interface: str
         :return: Return sw_index or None if not found.
         """
+        if isinstance(interface, int):
+            return interface
         for port in node['interfaces'].values():
             port_name = port.get('name')
             if port_name == interface:

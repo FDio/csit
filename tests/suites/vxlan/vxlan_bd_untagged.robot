@@ -21,6 +21,7 @@
 | ...         | AND          | Setup all TGs before traffic script
 | ...         | AND          | Setup VXLAN tunnel on nodes | ${nodes['TG']}
 |             | ...          | ${nodes['DUT1']} | ${nodes['DUT2']} | ${23}
+|             | ...          | Setup DUT for VXLAN using BD
 
 *** Test Cases ***
 | VPP can encapsulate L2 in VXLAN over V4
