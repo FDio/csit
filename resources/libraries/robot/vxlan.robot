@@ -15,6 +15,7 @@
 | Library  | Collections
 | Resource | resources/libraries/robot/default.robot
 | Resource | resources/libraries/robot/bridge_domain.robot
+| Resource | resources/libraries/robot/l2_xconnect.robot
 | Library  | resources.libraries.python.L2Util
 | Library  | resources.libraries.python.IPUtil
 | Library  | resources.libraries.python.IPv4Util
@@ -27,7 +28,7 @@
 
 *** Keywords ***
 | Setup VXLAN tunnel on nodes
-| | [Arguments] | ${TG} | ${DUT1} | ${DUT2} | ${VNI}
+| | [Arguments] | ${TG} | ${DUT1} | ${DUT2} | ${VNI} | ${KW}
 | | Append Nodes | ${TG} | ${DUT1} | ${DUT2} | ${TG}
 | | Compute Path
 | | ${tgs_to_dut1} | ${tg}= | Next Interface
@@ -48,16 +49,16 @@
 | | Set Suite Variable | ${duts_ip_address_prefix} | 24
 | | Set Interface State | ${TG} | ${tgs_to_dut1} | up
 | | Set Interface State | ${TG} | ${tgs_to_dut2} | up
-| | Setup DUT for VXLAN | ${DUT1} | ${VNI} | ${dut1s_ip_address} | ${dut2s_ip_address}
+| | Run Keyword | ${KW} | ${DUT1} | ${VNI} | ${dut1s_ip_address} | ${dut2s_ip_address}
 | | ...                 | ${dut1s_to_tg} | ${dut1s_to_dut2} | ${dut1s_ip_address} | ${duts_ip_address_prefix}
-| | Setup DUT for VXLAN | ${DUT2} | ${VNI} | ${dut2s_ip_address} | ${dut1s_ip_address}
+| | Run Keyword | ${KW} | ${DUT2} | ${VNI} | ${dut2s_ip_address} | ${dut1s_ip_address}
 | | ...                 | ${dut2s_to_tg} | ${dut2s_to_dut1} | ${dut2s_ip_address} | ${duts_ip_address_prefix}
 | | @{test_nodes}= | Create list | ${DUT1} | ${DUT2}
 | | Vpp Nodes Interfaces Ready Wait | ${test_nodes}
 # ip arp table must be filled on both nodes with neighbors address
 | | VPP IP Probe | ${DUT1} | ${dut1s_to_dut2} | ${dut2s_ip_address}
 
-| Setup DUT for VXLAN
+| Setup DUT for VXLAN using BD
 | | [Arguments] | ${DUT} | ${VNI} | ${SRC_IP} | ${DST_IP} | ${INGRESS} | ${EGRESS} | ${IP} | ${PREFIX}
 | | Set Interface State | ${DUT} | ${EGRESS} | up
 | | Set Interface State | ${DUT} | ${INGRESS} | up
@@ -66,3 +67,11 @@
 | | Create L2 BD | ${DUT} | ${VNI}
 | | Add sw if index To L2 BD | ${DUT} | ${vxlan_if_index} | ${VNI}
 | | Add Interface To L2 BD | ${DUT} | ${INGRESS} | ${VNI}
+
+| Setup DUT for VXLAN using xconnect
+| | [Arguments] | ${DUT} | ${VNI} | ${SRC_IP} | ${DST_IP} | ${INGRESS} | ${EGRESS} | ${IP} | ${PREFIX}
+| | Set Interface State | ${DUT} | ${EGRESS} | up
+| | Set Interface State | ${DUT} | ${INGRESS} | up
+| | Node "${DUT}" interface "${EGRESS}" has IPv4 address "${IP}" with prefix length "${PREFIX}"
+| | ${vxlan_if_index}= | Create VXLAN interface on "${DUT}" with VNI "${VNI}" from "${SRC_IP}" to "${DST_IP}"
+| | L2 setup xconnect on DUT | ${DUT} | ${INGRESS} | ${vxlan_if_index}
