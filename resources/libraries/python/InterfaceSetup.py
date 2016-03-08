@@ -151,8 +151,6 @@ class InterfaceSetup(object):
                                                    if_v['driver'])
 
     @staticmethod
-    @keyword('Create VXLAN interface on "${DUT}" with VNI "${VNI}"'
-             ' from "${SRC_IP}" to "${DST_IP}"')
     def create_vxlan_interface(node, vni, source_ip, destination_ip):
         """Create VXLAN interface and return index of created interface
 
