@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7afa4931_f2505060",
+        "filename": "resources/libraries/bash/dut_setup.sh",
+        "patchSetId": 20
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-08T16:31:01Z",
+      "side": 1,
+      "message": "nice",
+      "range": {
+        "startLine": 59,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 34
+      },
+      "revId": "68e73d5249a75120b93cd6dd7cc451cc5d67ce0a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7afa4931_d24d54c6",
+        "filename": "resources/libraries/python/ssh.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-08T16:31:01Z",
+      "side": 1,
+      "message": "Log something. You are hiding the timeout, so at least print timeout waiting for response. This is so because, timeout-ing while waiting for result is different than getting the channel closed and empty result.",
+      "range": {
+        "startLine": 94,
+        "startChar": 16,
+        "endLine": 94,
+        "endChar": 21
+      },
+      "revId": "68e73d5249a75120b93cd6dd7cc451cc5d67ce0a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7afa4931_b24ac8aa",
+        "filename": "resources/libraries/python/ssh.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-08T16:31:01Z",
+      "side": 1,
+      "message": "as above.",
+      "range": {
+        "startLine": 105,
+        "startChar": 0,
+        "endLine": 105,
+        "endChar": 21
+      },
+      "revId": "68e73d5249a75120b93cd6dd7cc451cc5d67ce0a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
