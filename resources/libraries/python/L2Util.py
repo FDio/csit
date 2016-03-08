@@ -165,8 +165,17 @@ class L2Util(object):
         :type interface1: str
         :type interface2: str
         """
-        sw_iface1 = Topology().get_interface_sw_index(node, interface1)
-        sw_iface2 = Topology().get_interface_sw_index(node, interface2)
+
+        try:
+            sw_iface1 = int(interface1)
+        except ValueError:
+            sw_iface1 = Topology().get_interface_sw_index(node, interface1)
+
+        try:
+            sw_iface2 = int(interface2)
+        except ValueError:
+            sw_iface2 = Topology().get_interface_sw_index(node, interface2)
+
         with VatTerminal(node) as vat:
             vat.vat_terminal_exec_cmd_from_template('l2_xconnect.vat',
                                                     interface1=sw_iface1,

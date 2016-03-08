@@ -20,8 +20,16 @@
 | Suite Setup | Run Keywords | Setup all DUTs before test
 | ...         | AND          | Setup all TGs before traffic script
 | ...         | AND          | Setup VXLAN tunnel on nodes | ${nodes['TG']}
-|             | ...          | ${nodes['DUT1']} | ${nodes['DUT2']} | ${23}
+|             | ...          | ${nodes['DUT1']} | ${nodes['DUT2']} | ${VNI}
+
+*** Variables ***
+| ${VNI}= | 23
 
 *** Test Cases ***
 | VPP can encapsulate L2 in VXLAN over V4
+| | Setup DUT for VXLAN using BD | ${nodes['DUT1']} | ${23} | ${dut1s_to_tg}
+| | ...                          | ${vxlan_dut1}
+| | Setup DUT for VXLAN using BD | ${nodes['DUT2']} | ${23} | ${dut2s_to_tg}
+| | ...                          | ${vxlan_dut2}
 | | Send and receive ICMPv4 | ${nodes['TG']} | ${tgs_to_dut1} | ${tgs_to_dut2}
+| | Send and receive ICMPv4 | ${nodes['TG']} | ${tgs_to_dut2} | ${tgs_to_dut1}

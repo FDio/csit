@@ -30,10 +30,10 @@ class InterfaceUtil(object):
         Function can be used for DUTs as well as for TGs.
 
         :param node: node where the interface is
-        :param interface: interface name
+        :param interface: interface name or sw index
         :param state: one of 'up' or 'down'
         :type node: dict
-        :type interface: str
+        :type interface: str or int
         :type state: str
         :return: nothing
         """
@@ -45,7 +45,11 @@ class InterfaceUtil(object):
             else:
                 raise ValueError('Unexpected interface state: {}'.format(state))
 
-            sw_if_index = Topology.get_interface_sw_index(node, interface)
+            try:
+                sw_if_index = int(interface)
+            except ValueError:
+                sw_if_index = Topology.get_interface_sw_index(node, interface)
+
             VatExecutor.cmd_from_template(node, 'set_if_state.vat',
                                           sw_if_index=sw_if_index, state=state)
 
