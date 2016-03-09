@@ -14,13 +14,43 @@
 """Performance testing traffic generator library."""
 
 from robot.api import logger
+from robot.libraries.BuiltIn import BuiltIn
+from robot.api.deco import keyword
 
 from resources.libraries.python.ssh import SSH
 from resources.libraries.python.topology import NodeType
 from resources.libraries.python.topology import NodeSubTypeTG
 from resources.libraries.python.topology import Topology
+from resources.libraries.python.DropRateSearch import DropRateSearch
 
-__all__ = ['TrafficGenerator']
+__all__ = ['TrafficGenerator', 'TGDropRateSearchImpl']
+
+class TGDropRateSearchImpl(DropRateSearch):
+    """Drop Rate Search implementation"""
+
+    def __init__(self):
+        super(TGDropRateSearchImpl, self).__init__()
+
+    def measure_loss(self, rate, frame_size, loss_acceptance,
+                     loss_acceptance_type, traffic_type):
+
+        tg_instance = BuiltIn().get_library_instance('resources.libraries.python.TrafficGenerator')
+
+        if tg_instance._node['subtype'] is None:
+            raise Exception('TG subtype not defined')
+        elif tg_instance._node['subtype'] == NodeSubTypeTG.TREX:
+            unit_rate = str(rate) + self.get_rate_type_str()
+            tg_instance.trex_stateless_remote_exec(self.get_duration(), unit_rate,
+                                                   frame_size, traffic_type)
+
+            #TODO:getters for tg_instance and loss_acceptance_type
+            logger.trace("comparing: {} < {} ".format(tg_instance._loss, loss_acceptance))
+            if float(tg_instance._loss) > float(loss_acceptance):
+                return False
+            else:
+                return True
+        else:
+            raise NotImplementedError("TG subtype not supported")
 
 class TrafficGenerator(object):
     """Traffic Generator"""
@@ -32,6 +62,7 @@ class TrafficGenerator(object):
         self._loss = None
         self._sent = None
         self._received = None
+        self._node = None
         #T-REX interface order mapping
         self._ifaces_reordered = 0
 
@@ -69,6 +100,8 @@ class TrafficGenerator(object):
 
         if tg_node['type'] != NodeType.TG:
             raise Exception('Node type is not a TG')
+        self._node = tg_node
+
         if tg_node['subtype'] == NodeSubTypeTG.TREX:
             ssh = SSH()
             ssh.connect(tg_node)
@@ -103,6 +136,7 @@ class TrafficGenerator(object):
                 "- port_limit      : 2\n"
                 "  version         : 2\n"
                 "  interfaces      : [\"{}\",\"{}\"]\n"
+                "  port_bandwidth_gb : 10\n"
                 "  port_info       :\n"
                 "          - dest_mac        :   [{}]\n"
                 "            src_mac         :   [{}]\n"
@@ -152,6 +186,66 @@ class TrafficGenerator(object):
                 logger.error('pkill t-rex failed: {0}'.format(stdout + stderr))
                 raise RuntimeError('pkill t-rex failed')
 
+    def trex_stateless_remote_exec(self, duration, rate, framesize,
+                                   traffic_type):
+        """Execute stateless script on remote node over ssh
+        :param node: remote node
+        :param traffic_type: Traffic profile
+        :type node: dict
+        :type traffic_type: str
+        """
+        ssh = SSH()
+        ssh.connect(self._node)
+
+        _p0 = 1
+        _p1 = 2
+
+        if self._ifaces_reordered != 0:
+            _p0, _p1 = _p1, _p0
+
+        if traffic_type in ["3-node-xconnect", "3-node-bridge"]:
+            (ret, stdout, stderr) = ssh.exec_command(
+                "sh -c '/tmp/openvpp-testing/resources/tools/t-rex/"
+                "t-rex-stateless.py "
+                "-d {0} -r {1} -s {2} "
+                "--p{3}_src_start_ip 10.10.10.1 "
+                "--p{3}_src_end_ip 10.10.10.254 "
+                "--p{3}_dst_start_ip 20.20.20.1 "
+                "--p{4}_src_start_ip 20.20.20.1 "
+                "--p{4}_src_end_ip 20.20.20.254 "
+                "--p{4}_dst_start_ip 10.10.10.1'".\
+                format(duration, rate, framesize, _p0, _p1),\
+                timeout=int(duration)+60)
+        elif traffic_type in ["3-node-IPv4"]:
+            (ret, stdout, stderr) = ssh.exec_command(
+                "sh -c '/tmp/openvpp-testing/resources/tools/t-rex/"
+                "t-rex-stateless.py "
+                "-d {0} -r {1} -s {2} "
+                "--p{3}_src_start_ip 10.10.10.2 "
+                "--p{3}_src_end_ip 10.10.10.254 "
+                "--p{3}_dst_start_ip 20.20.20.2 "
+                "--p{4}_src_start_ip 20.20.20.2 "
+                "--p{4}_src_end_ip 20.20.20.254 "
+                "--p{4}_dst_start_ip 10.10.10.2'".\
+                format(duration, rate, framesize, _p0, _p1),\
+                timeout=int(duration)+60)
+        else:
+            raise NotImplementedError('Unsupported traffic type')
+
+        logger.trace(ret)
+        logger.trace(stdout)
+        logger.trace(stderr)
+
+        for line in stdout.splitlines():
+            pass
+
+        self._result = line
+        logger.info('TrafficGen result: {0}'.format(self._result))
+
+        self._received = self._result.split(', ')[1].split('=')[1]
+        self._sent = self._result.split(', ')[2].split('=')[1]
+        self._loss = self._result.split(', ')[3].split('=')[1]
+
     def send_traffic_on(self, nodes_info, duration, rate,
                         framesize, traffic_type):
         """Send traffic from all configured interfaces on TG
@@ -177,61 +271,11 @@ class TrafficGenerator(object):
 
         if node['subtype'] is None:
             raise Exception('TG subtype not defined')
-
-        ssh = SSH()
-        ssh.connect(node)
-
-        if node['subtype'] == NodeSubTypeTG.TREX:
-
-            _p0 = 1
-            _p1 = 2
-
-            if self._ifaces_reordered != 0:
-                _p0, _p1 = _p1, _p0
-
-            if traffic_type in ["3-node-xconnect", "3-node-bridge"]:
-                (ret, stdout, stderr) = ssh.exec_command(
-                    "sh -c '/tmp/openvpp-testing/resources/tools/t-rex/"
-                    "t-rex-stateless.py "
-                    "-d {0} -r {1} -s {2} "
-                    "--p{3}_src_start_ip 10.10.10.1 "
-                    "--p{3}_src_end_ip 10.10.10.254 "
-                    "--p{3}_dst_start_ip 20.20.20.1 "
-                    "--p{4}_src_start_ip 20.20.20.1 "
-                    "--p{4}_src_end_ip 20.20.20.254 "
-                    "--p{4}_dst_start_ip 10.10.10.1'".\
-                    format(duration, rate, framesize, _p0, _p1),\
-                    timeout=int(duration)+60)
-            elif traffic_type in ["3-node-IPv4"]:
-                (ret, stdout, stderr) = ssh.exec_command(
-                    "sh -c '/tmp/openvpp-testing/resources/tools/t-rex/"
-                    "t-rex-stateless.py "
-                    "-d {0} -r {1} -s {2} "
-                    "--p{3}_src_start_ip 10.10.10.2 "
-                    "--p{3}_src_end_ip 10.10.10.254 "
-                    "--p{3}_dst_start_ip 20.20.20.2 "
-                    "--p{4}_src_start_ip 20.20.20.2 "
-                    "--p{4}_src_end_ip 20.20.20.254 "
-                    "--p{4}_dst_start_ip 10.10.10.2'".\
-                    format(duration, rate, framesize, _p0, _p1),\
-                    timeout=int(duration)+60)
-            else:
-                raise NotImplementedError('Unsupported traffic type')
-
+        elif node['subtype'] == NodeSubTypeTG.TREX:
+            self.trex_stateless_remote_exec(duration, rate, framesize,
+                                            traffic_type)
         else:
             raise NotImplementedError("TG subtype not supported")
-
-        logger.trace(ret)
-        logger.trace(stdout)
-        logger.trace(stderr)
-
-        for line in stdout.splitlines():
-            pass
-
-        self._result = line
-        logger.info('TrafficGen result: {0}'.format(self._result))
-
-        self._loss = self._result.split(', ')[3].split('=')[1]
 
         return self._result
 
