@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7afa4931_4d5885fa",
+        "filename": "resources/libraries/robot/qemu.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-03-09T12:10:40Z",
+      "side": 1,
+      "message": "We can save some comparison actions:\n| Exist QEMU Build List\n| | [Documentation] | Return PASS if variable QEMU_BUILD exist, otherwise return FAIL\n| | [Return] | ${ret}\n| | ${ret} | ${tmp}\u003d  | Run Keyword And Ignore Error\n| | ... | Variable Should Exist | @{QEMU_BUILD}\n\n| Is QEMU Ready\n| | [Documentation] | Check if QEMU was built on the node before. Return PASS or FAIL.\n| | [Arguments] | ${node}\n| | [Return] | ${ret}\n| | ${ret}\u003d | Exist QEMU Build List\n| | Return From Keyword If | ${ret} \u003d\u003d \"FAIL\" | \"FAIL\"\n| | ${ret} | ${tmp}\u003d  | Run Keyword And Ignore Error\n| | ... | Should Contain | ${QEMU_BUILD} | ${node[\u0027host\u0027]}\n\n| QEMU Is Ready\n| | [Documentation] | Add node to the list of nodes with builded QEMU\n| | [Arguments] | ${node}\n| | ${ret}\u003d | Exist QEMU Build List\n| | Run Keyword If | ${ret} \u003d\u003d \"PASS\"\n| | ... | Append To List | ${QEMU_BUILD} | ${node[\u0027host\u0027]}\n| | ... | ELSE | Set Global Variable | @{QEMU_BUILD} | ${node[\u0027host\u0027]}\n\n| Build QEMU on Node\n| | [Documentation] | Build QEMU from sources on the Node\n| | [Arguments] | ${node}\n| | ${ready}\u003d | Is QEMU Ready | ${node}\n| | Return From Keyword If | ${ready} \u003d\u003d \"PASS\"\n| | Build QEMU | ${node}\n| | QEMU Is Ready | ${node}\n\nBut if you want to keep boolean type of return values we can use following:\n| Exist QEMU Build List\n| | [Documentation] | Return TRUE if variable QEMU_BUILD exist, otherwise return FALSE\n| | [Return] | ${FALSE}\n| | ${ret} | ${tmp}\u003d  | Run Keyword And Ignore Error\n| | ... | Variable Should Exist | @{QEMU_BUILD}\n| | Run Keyword If | \"${ret}\" \u003d\u003d \"PASS\" | Return From Keyword |${TRUE}\n\n| Is QEMU Ready\n| | [Documentation] | Check if QEMU was built on the node before. Return TRUE or FALSE.\n| | [Arguments] | ${node}\n| | [Return] | ${FALSE}\n| | ${ret}\u003d | Exist QEMU Build List\n| | Run Keyword Unless | ${ret} | Return From Keyword | ${FALSE}\n| | ${ret} | ${tmp}\u003d | Run Keyword And Ignore Error\n| | ... | Should Contain | ${QEMU_BUILD} | ${node[\u0027host\u0027]}\n| | Run Keyword If | \"${ret}\" \u003d\u003d \"PASS\" | Return From Keyword | ${TRUE}\n\n| QEMU Is Ready\n| | [Documentation] | Add node to the list of nodes with builded QEMU\n| | [Arguments] | ${node}\n| | ${ret}\u003d | Exist QEMU Build List\n| | Run Keyword If | ${ret}\n| | ... | Append To List | ${QEMU_BUILD} | ${node[\u0027host\u0027]}\n| | ... | ELSE | Set Global Variable | @{QEMU_BUILD} | ${node[\u0027host\u0027]}\n\n| Build QEMU on Node\n| | [Documentation] | Build QEMU from sources on the Node\n| | [Arguments] | ${node}\n| | ${ready}\u003d | Is QEMU Ready | ${node}\n| | Return From Keyword If | ${ready}\n| | Build QEMU | ${node}\n| | QEMU Is Ready | ${node}",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 27
+      },
+      "revId": "9341b59c7efcdca16f27d809eede1da7d60b9cac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
