@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "7afa4931_6deea124",
+        "filename": "resources/libraries/bash/qemu_build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-03-09T08:11:17Z",
+      "side": 1,
+      "message": "qemu will be run from this folder as root (for some reasons) and it can left here some file created by root",
+      "parentUuid": "7afa4931_0daf1de5",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 4
+      },
+      "revId": "83495fb3501929ed2ef8688b12d4641f58ce84d9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7afa4931_adb5c932",
         "filename": "resources/libraries/bash/qemu_build.sh",
         "patchSetId": 1
@@ -94,6 +118,30 @@
     },
     {
       "key": {
+        "uuid": "7afa4931_8de9ed1c",
+        "filename": "resources/libraries/bash/qemu_build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-03-09T08:11:17Z",
+      "side": 1,
+      "message": "url will not be changed anymore",
+      "parentUuid": "7afa4931_cdb8152d",
+      "range": {
+        "startLine": 20,
+        "startChar": 5,
+        "endLine": 20,
+        "endChar": 61
+      },
+      "revId": "83495fb3501929ed2ef8688b12d4641f58ce84d9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7afa4931_8d820d51",
         "filename": "resources/libraries/bash/qemu_build.sh",
         "patchSetId": 1
@@ -128,6 +176,24 @@
       "writtenOn": "2016-03-09T07:50:46Z",
       "side": 1,
       "message": "add also logger.trace(stderr).\nI think it\u0027ll be better trace stdout, stderr and rc before return in exec_command",
+      "revId": "83495fb3501929ed2ef8688b12d4641f58ce84d9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7afa4931_ad8ca980",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-03-09T08:11:17Z",
+      "side": 1,
+      "message": "stdetrr is logged below if rc is non-zero (in case of error)",
+      "parentUuid": "7afa4931_ed92b19e",
       "revId": "83495fb3501929ed2ef8688b12d4641f58ce84d9",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
