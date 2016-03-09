@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7afa4931_cd0255b4",
+        "filename": "resources/libraries/robot/vxlan.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-03-09T12:54:13Z",
+      "side": 1,
+      "message": "wrap lines, max 80 char in line",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 77,
+        "endChar": 70
+      },
+      "revId": "9c0dd43e5b319e1d6d512844321f97e5f1b54fa2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
