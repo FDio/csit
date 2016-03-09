@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "7afa4931_4ddd2542",
+        "filename": "resources/libraries/python/topology.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 350,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-03-09T13:30:15Z",
+      "side": 1,
+      "message": "Please, add the comment there that it is just workaround for vxlan (sw_if_index is returned instead of the if name when vxlan is created)",
+      "range": {
+        "startLine": 349,
+        "startChar": 8,
+        "endLine": 350,
+        "endChar": 28
+      },
+      "revId": "9c0dd43e5b319e1d6d512844321f97e5f1b54fa2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7afa4931_cd0255b4",
         "filename": "resources/libraries/robot/vxlan.robot",
         "patchSetId": 3
@@ -18,6 +41,29 @@
         "startChar": 0,
         "endLine": 77,
         "endChar": 70
+      },
+      "revId": "9c0dd43e5b319e1d6d512844321f97e5f1b54fa2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7afa4931_ede3d103",
+        "filename": "tests/suites/vxlan/vxlan_bd_untagged.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-03-09T13:30:15Z",
+      "side": 1,
+      "message": "Please, add there traffic test in opposite direction as it is bi-directional topology.",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 77
       },
       "revId": "9c0dd43e5b319e1d6d512844321f97e5f1b54fa2",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
