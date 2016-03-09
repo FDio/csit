@@ -18,7 +18,7 @@
 | Resource | resources/libraries/robot/counters.robot
 | Library | resources.libraries.python.TrafficGenerator
 | Library | resources.libraries.python.NodePath
-| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV
+| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | PERFTEST_SHORT
 | Suite Setup | 3-node Performance Suite Setup
 | Suite Teardown | 3-node Performance Suite Teardown
 | Test Setup | Setup all DUTs before test
@@ -56,7 +56,7 @@
 
 | Traffic should pass with no loss
 | | [Arguments] | ${duration} | ${rate} | ${framesize} | ${topology_type}
-| | Send traffic on | ${nodes} | ${duration}
+| | Send traffic on | ${tg} | ${duration}
 | | ...             | ${rate} | ${framesize} | ${topology_type}
 | | No traffic loss occured
 
