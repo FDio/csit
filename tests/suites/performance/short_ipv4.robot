@@ -22,7 +22,7 @@
 | Library | resources.libraries.python.InterfaceUtil
 | Library | resources.libraries.python.IPv4Setup.Dut | ${nodes['DUT1']} | WITH NAME | dut1_v4
 | Library | resources.libraries.python.IPv4Setup.Dut | ${nodes['DUT2']} | WITH NAME | dut2_v4
-| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV
+| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | PERFTEST_SHORT
 | Suite Setup | 3-node Performance Suite Setup
 | Suite Teardown | 3-node Performance Suite Teardown
 | Test Setup | Setup all DUTs before test
@@ -78,7 +78,7 @@
 
 | Traffic should pass with no loss
 | | [Arguments] | ${duration} | ${rate} | ${framesize} | ${topology_type}
-| | Send traffic on | ${nodes} | ${duration}
+| | Send traffic on | ${tg} | ${duration}
 | | ...             | ${rate} | ${framesize} | ${topology_type}
 | | No traffic loss occured
 
