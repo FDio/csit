@@ -158,7 +158,7 @@ def simple_burst(pkt_a, pkt_b, duration=10, rate="1mpps",
         c.start(ports=[0, 1], mult=rate, duration=duration)
 
         # block until done
-        c.wait_on_traffic(ports=[0, 1])
+        c.wait_on_traffic(ports=[0, 1], timeout=(duration+30))
 
         # read the stats after the test
         stats = c.get_stats()
