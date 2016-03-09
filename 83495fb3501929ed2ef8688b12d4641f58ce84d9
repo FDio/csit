@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7afa4931_edabd1d4",
+        "filename": "resources/libraries/bash/qemu_build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-03-09T07:50:46Z",
+      "side": 1,
+      "message": "parametrize paths and urls",
+      "range": {
+        "startLine": 18,
+        "startChar": 12,
+        "endLine": 18,
+        "endChar": 27
+      },
+      "revId": "83495fb3501929ed2ef8688b12d4641f58ce84d9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7afa4931_0daf1de5",
+        "filename": "resources/libraries/bash/qemu_build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-03-09T07:50:46Z",
+      "side": 1,
+      "message": "Why sudo?",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 4
+      },
+      "revId": "83495fb3501929ed2ef8688b12d4641f58ce84d9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7afa4931_adb5c932",
+        "filename": "resources/libraries/bash/qemu_build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-03-09T07:50:46Z",
+      "side": 1,
+      "message": "wget -q might be better in script",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 4
+      },
+      "revId": "83495fb3501929ed2ef8688b12d4641f58ce84d9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7afa4931_cdb8152d",
+        "filename": "resources/libraries/bash/qemu_build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-03-09T07:50:46Z",
+      "side": 1,
+      "message": "parametrize paths and urls",
+      "range": {
+        "startLine": 20,
+        "startChar": 5,
+        "endLine": 20,
+        "endChar": 61
+      },
+      "revId": "83495fb3501929ed2ef8688b12d4641f58ce84d9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7afa4931_8d820d51",
+        "filename": "resources/libraries/bash/qemu_build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-03-09T07:50:46Z",
+      "side": 1,
+      "message": "make -j`nproc` || exit",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 14
+      },
+      "revId": "83495fb3501929ed2ef8688b12d4641f58ce84d9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7afa4931_ed92b19e",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-03-09T07:50:46Z",
+      "side": 1,
+      "message": "add also logger.trace(stderr).\nI think it\u0027ll be better trace stdout, stderr and rc before return in exec_command",
+      "revId": "83495fb3501929ed2ef8688b12d4641f58ce84d9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
