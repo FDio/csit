@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7afa4931_6d946137",
+        "filename": "resources/libraries/python/NonDropRateSearch.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 74
+      },
+      "writtenOn": "2016-03-09T15:13:36Z",
+      "side": 1,
+      "message": "if min_rate \u003c\u003d 0",
+      "revId": "8a7b55cd0e2e64951c53f384ae3f17d306591782",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
