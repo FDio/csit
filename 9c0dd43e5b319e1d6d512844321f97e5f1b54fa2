@@ -49,6 +49,76 @@
     },
     {
       "key": {
+        "uuid": "7afa4931_cda93526",
+        "filename": "resources/libraries/python/topology.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 350,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-10T14:14:34Z",
+      "side": 1,
+      "message": "I don\u0027t think this code should be at all. The function clearly says get interface index for interface name, the type is string too. This just doesn\u0027t make sense. The caller code probably needs changing.",
+      "parentUuid": "7afa4931_6d17c1a4",
+      "range": {
+        "startLine": 349,
+        "startChar": 8,
+        "endLine": 350,
+        "endChar": 28
+      },
+      "revId": "9c0dd43e5b319e1d6d512844321f97e5f1b54fa2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7afa4931_4d6d2504",
+        "filename": "resources/libraries/robot/vxlan.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-10T14:14:34Z",
+      "side": 1,
+      "message": "Remove this part from arguments. See below why.",
+      "range": {
+        "startLine": 31,
+        "startChar": 52,
+        "endLine": 31,
+        "endChar": 60
+      },
+      "revId": "9c0dd43e5b319e1d6d512844321f97e5f1b54fa2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7afa4931_6d68e1f5",
+        "filename": "resources/libraries/robot/vxlan.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-10T14:14:34Z",
+      "side": 1,
+      "message": "Lines 62-66 are identical to lines 72-76. Do not copy code if not necessary.\n\nCreate one separate KW that creates VTEP (vxlan tunnel endpoint), and return its if index. Then use this index in further setup.",
+      "range": {
+        "startLine": 63,
+        "startChar": 0,
+        "endLine": 66,
+        "endChar": 109
+      },
+      "revId": "9c0dd43e5b319e1d6d512844321f97e5f1b54fa2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7afa4931_cd0255b4",
         "filename": "resources/libraries/robot/vxlan.robot",
         "patchSetId": 3
@@ -88,6 +158,29 @@
         "startChar": 0,
         "endLine": 28,
         "endChar": 77
+      },
+      "revId": "9c0dd43e5b319e1d6d512844321f97e5f1b54fa2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7afa4931_2d72d9e5",
+        "filename": "tests/suites/vxlan/vxlan_xconnect_untagged.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-10T14:14:34Z",
+      "side": 1,
+      "message": "try thinking about how to make this nicer. In general, do not use numeric constants like this. Try to create a variable with name, assign your number to it, and then use the variable here. From readers perspective, it should be clear that this is VNI, but from ${24} I have no clue what it is.",
+      "range": {
+        "startLine": 23,
+        "startChar": 69,
+        "endLine": 23,
+        "endChar": 74
       },
       "revId": "9c0dd43e5b319e1d6d512844321f97e5f1b54fa2",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
