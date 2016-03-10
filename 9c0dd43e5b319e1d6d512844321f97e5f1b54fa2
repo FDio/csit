@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "7afa4931_6d17c1a4",
+        "filename": "resources/libraries/python/topology.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 350,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-03-10T06:15:37Z",
+      "side": 1,
+      "message": "I would not call it \"workaround for vxlan\" since vpe_api_test json output return always sw_if_index when you create some interface (e.g. create_vhost_user_if return sw_if_index too)",
+      "parentUuid": "7afa4931_4ddd2542",
+      "range": {
+        "startLine": 349,
+        "startChar": 8,
+        "endLine": 350,
+        "endChar": 28
+      },
+      "revId": "9c0dd43e5b319e1d6d512844321f97e5f1b54fa2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7afa4931_cd0255b4",
         "filename": "resources/libraries/robot/vxlan.robot",
         "patchSetId": 3
