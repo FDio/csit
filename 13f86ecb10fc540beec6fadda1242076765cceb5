@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7afa4931_ade1499c",
+        "filename": "resources/libraries/python/ssh.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-10T11:53:29Z",
+      "side": 1,
+      "message": "from socket import timeout.",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 13
+      },
+      "revId": "13f86ecb10fc540beec6fadda1242076765cceb5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7afa4931_6df34174",
+        "filename": "resources/libraries/python/ssh.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-10T11:53:29Z",
+      "side": 1,
+      "message": "except timeout",
+      "range": {
+        "startLine": 93,
+        "startChar": 19,
+        "endLine": 93,
+        "endChar": 25
+      },
+      "revId": "13f86ecb10fc540beec6fadda1242076765cceb5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7afa4931_8dee8d8a",
+        "filename": "resources/libraries/python/ssh.py",
+        "patchSetId": 22
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-10T11:53:29Z",
+      "side": 1,
+      "message": "except timeout",
+      "range": {
+        "startLine": 104,
+        "startChar": 0,
+        "endLine": 104,
+        "endChar": 34
+      },
+      "revId": "13f86ecb10fc540beec6fadda1242076765cceb5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
