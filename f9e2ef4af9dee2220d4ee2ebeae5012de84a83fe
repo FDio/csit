@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7afa4931_98ffed01",
+        "filename": "resources/tools/virl/bin/kill-idle-testcases",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-10T21:04:32Z",
+      "side": 1,
+      "message": "I was thinking about this functionality, and you did it. Thanks! :)",
+      "revId": "f9e2ef4af9dee2220d4ee2ebeae5012de84a83fe",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
