@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7afa4931_6dcc6136",
+        "filename": "resources/libraries/bash/qemu_build.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-10T11:51:25Z",
+      "side": 1,
+      "message": "check results of commands for errors. Don\u0027t be too paranoid, just wget/tar/config/build",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 4
+      },
+      "revId": "4ab462a8ab5eac4e4c3cdf30ee3bd282052b7f62",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7afa4931_4dd1a5cc",
+        "filename": "resources/libraries/robot/qemu.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-10T11:51:25Z",
+      "side": 1,
+      "message": "Please rename to something like QEMU Is Ready on Node",
+      "range": {
+        "startLine": 36,
+        "startChar": 2,
+        "endLine": 36,
+        "endChar": 15
+      },
+      "revId": "4ab462a8ab5eac4e4c3cdf30ee3bd282052b7f62",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7afa4931_2dd659c6",
+        "filename": "resources/libraries/robot/qemu.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-10T11:51:25Z",
+      "side": 1,
+      "message": "Please add doc. on the mechanics of sharing of the QEMU_BUILD through global variable scope.\n\nQuestion, wouldn\u0027t it be easier to just rely on QEMU_BUILD always being list?",
+      "range": {
+        "startLine": 45,
+        "startChar": 22,
+        "endLine": 45,
+        "endChar": 57
+      },
+      "revId": "4ab462a8ab5eac4e4c3cdf30ee3bd282052b7f62",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
