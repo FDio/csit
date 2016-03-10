@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7afa4931_f80f112d",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 311,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-10T21:18:15Z",
+      "side": 1,
+      "message": "both of these should provide timeout IIRC.\nWe could also provide a call in some util lib to check vpp state ( ps | grep vpp  comes to mind).",
+      "range": {
+        "startLine": 311,
+        "startChar": 17,
+        "endLine": 311,
+        "endChar": 40
+      },
+      "revId": "5fbbffd70f3b03b1778d31173065d86bfcc9a975",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
