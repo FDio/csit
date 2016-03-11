@@ -12,7 +12,7 @@
 # limitations under the License.
 
 *** Settings ***
-| Documentation | VXLAN tunnel over untagged IPv4 traffic tests using bridge domain.
+| Documentation | VXLAN tunnel over Dot1Q tagged IPv4 traffic tests using bridge domain.
 | Resource | resources/libraries/robot/default.robot
 | Resource | resources/libraries/robot/vxlan.robot
 | Resource | resources/libraries/robot/l2_traffic.robot
@@ -22,13 +22,14 @@
 | ...         | AND          | Setup all TGs before traffic script
 | ...         | AND          | Prepare VXLAN tunnel test environment on nodes
 |             | ...          | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']}
-|             | ...          | ${VNI} | BID=${VNI}
+|             | ...          | ${VNI} | BID=${VNI} | VLANID=${VLAN}
 | Suite Teardown | Show Packet Trace on All DUTs | ${nodes}
 
 *** Variables ***
 | ${VNI}= | 23
+| ${VLAN}= | 10
 
 *** Test Cases ***
-| VPP can pass IPv4 bidirectionally through VXLAN
+| VPP can encapsulate L2 in VXLAN over IPv4 over Dot1Q
 | | Send and receive ICMPv4 | ${nodes['TG']} | ${tgs_to_dut1} | ${tgs_to_dut2}
 | | Send and receive ICMPv4 | ${nodes['TG']} | ${tgs_to_dut2} | ${tgs_to_dut1}
