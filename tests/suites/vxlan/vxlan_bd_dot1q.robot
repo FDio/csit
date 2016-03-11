@@ -12,7 +12,7 @@
 # limitations under the License.
 
 *** Settings ***
-| Documentation | VXLAN tunnel over untagged IPv4 traffic tests using bridge domain.
+| Documentation | VXLAN tunnel over Dot1Q tagged IPv4 traffic tests using bridge domain.
 | Resource | resources/libraries/robot/default.robot
 | Resource | resources/libraries/robot/vxlan.robot
 | Resource | resources/libraries/robot/l2_traffic.robot
@@ -24,12 +24,13 @@
 
 *** Variables ***
 | ${VNI}= | 23
+| ${VLAN}= | 10
 
 *** Test Cases ***
-| VPP can pass IPv4 bidirectionally through VXLAN
+| VPP can encapsulate L2 in VXLAN over IPv4 over Dot1Q
 | | Given Prepare VXLAN tunnel test environment on nodes
-| | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']}
-| | ... | ${VNI} | BID=${VNI}
+| | ...          | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']}
+| | ...          | ${VNI} | BID=${VNI} | VLANID=${VLAN}
 | | Then Send and receive ICMPv4 bidirectionally | ${nodes['TG']} | ${tgs_to_dut1}
 | | ...                                          | ${tgs_to_dut2}
 
@@ -37,8 +38,11 @@
 | Prepare VXLAN tunnel test environment on DUT
 | | [Arguments] | ${DUT} | ${VNI} | ${SRC_IP} | ${DST_IP} | ${INGRESS}
 | | ...         | ${EGRESS} | ${IP} | ${PREFIX} | ${IP2} | ${BID} | ${VLANID}
-| | Set Interface Address | ${DUT} | ${EGRESS} | ${IP} | ${PREFIX}
-| | VPP IP Probe | ${DUT} | ${EGRESS} | ${IP2}
+| | ${VLAN_INT_NAME} | ${VLAN_INT_INDEX}= | Create Vlan Subinterface
+| |                  | ...                | ${DUT} | ${EGRESS} | ${VLANID}
+| | Set Interface State | ${DUT} | ${VLAN_INT_INDEX} | up
+| | Set Interface Address | ${DUT} | ${VLAN_INT_INDEX} | ${IP} | ${PREFIX}
+| | VPP IP Probe | ${DUT} | ${VLAN_INT_NAME} | ${IP2}
 | | ${vxlan_if_index}= | Create VXLAN interface | ${DUT} | ${VNI} | ${SRC_IP}
 | | ...                | ${DST_IP}
 | | Vpp Add L2 Bridge Domain | ${DUT} | ${VNI} | ${INGRESS} | ${vxlan_if_index}
