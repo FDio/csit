@@ -166,20 +166,22 @@ class Topology(object):
 
     @staticmethod
     def get_interface_sw_index(node, interface):
-        """Get VPP sw_index for the interface.
+        """Get VPP sw_if_index for the interface.
 
-        :param node: Node to get interface sw_index on.
-        :param interface: Interface name.
+        :param node: Node to get interface sw_if_index on.
+        :param interface: Interface identifier.
         :type node: dict
-        :type interface: str
-        :return: Return sw_index or None if not found.
+        :type interface: str or int
+        :return: Return sw_if_index or None if not found.
         """
-        for port in node['interfaces'].values():
-            port_name = port.get('name')
-            if port_name == interface:
-                return port.get('vpp_sw_index')
-
-        return None
+        try:
+            return int(interface)
+        except ValueError:
+            for port in node['interfaces'].values():
+                port_name = port.get('name')
+                if port_name == interface:
+                    return port.get('vpp_sw_index')
+            return None
 
     @staticmethod
     def get_interface_mtu(node, interface):
