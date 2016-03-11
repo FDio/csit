@@ -358,10 +358,8 @@ class InterfaceUtil(object):
         :type node: dict
         """
         for if_k, if_v in node['interfaces'].items():
-            if if_k == 'mgmt':
-                continue
-                InterfaceUtil.tg_set_interface_driver(node, if_v['pci_address'],
-                                                   if_v['driver'])
+            InterfaceUtil.tg_set_interface_driver(node, if_v['pci_address'],
+                                                  if_v['driver'])
 
     @staticmethod
     def _update_vpp_interface_data_from_json(node, interface_dump_json):
@@ -461,6 +459,38 @@ class InterfaceUtil(object):
                 InterfaceUtil.update_vpp_interface_data_on_node(node_data)
             elif node_data['type'] == NodeType.TG:
                 InterfaceUtil.update_tg_interface_data_on_node(node_data)
+
+    @staticmethod
+    def create_vlan_subinterface(node, interface, vlan):
+        """Create VLAN subinterface on node.
+
+        :param node: Node to add VLAN subinterface on.
+        :param interface: Interface name on which create VLAN subinterface.
+        :param vlan: VLAN ID of the subinterface to be created
+        :type node: dict
+        :type interface: str
+        :type vlan: int
+        :return: name and index of created subinterface
+        :rtype: tuple
+        """
+        sw_if_index = Topology.get_interface_sw_index(node, interface)
+
+        output = VatExecutor.cmd_from_template(node, "create_vlan_subif.vat",
+                                               sw_if_index=sw_if_index,
+                                               vlan=vlan)
+        if output[0]["retval"] == 0:
+            sw_subif_index = output[0]["sw_if_index"]
+            logger.trace('VLAN subinterface with sw_index {} and VLAN ID {} '
+                         'created on node {}'.format(sw_subif_index,
+                                                     vlan, node['host']))
+        else:
+            raise RuntimeError('Unable to create VLAN subinterface on node {}'
+                               .format(node['host']))
+
+        with VatTerminal(node, False) as vat:
+            vat.vat_terminal_exec_cmd('exec show interfaces')
+
+        return '{}.{}'.format(interface, vlan), sw_subif_index
 
     @staticmethod
     def create_vxlan_interface(node, vni, source_ip, destination_ip):
