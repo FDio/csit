@@ -10,14 +10,15 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 from robot.api import logger
 from topology import NodeType
 from ssh import SSH
 from constants import Constants
 
-
 class DUTSetup(object):
+
+    def __init__(self):
+        pass
 
     def start_vpp_service_on_all_duts(self, nodes):
         """Start up the VPP service on all nodes."""
@@ -47,7 +48,6 @@ class DUTSetup(object):
             ssh.exec_command('sudo -Sn bash {0}/{1}/dut_setup.sh'.format(
                 Constants.REMOTE_FW_DIR, Constants.RESOURCES_LIB_SH))
         logger.trace(stdout)
-        logger.trace(stderr)
         if 0 != int(ret_code):
             logger.debug('DUT {0} setup script failed: "{1}"'.
                     format(node['host'], stdout + stderr))
