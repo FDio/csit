@@ -12,7 +12,7 @@
 # limitations under the License.
 
 *** Settings ***
-| Documentation | VXLAN tunnel over untagged IPv4 traffic tests using bridge domain.
+| Documentation | VXLAN tunnel over Dot1Q tagged IPv4 traffic tests using bridge domain.
 | Resource | resources/libraries/robot/default.robot
 | Resource | resources/libraries/robot/vxlan.robot
 | Resource | resources/libraries/robot/l2_traffic.robot
@@ -25,14 +25,19 @@
 *** Variables ***
 | ${VNI}= | 23
 | ${BID}= | 23
+| ${VLAN}= | 10
 
 *** Test Cases ***
-| VPP can pass IPv4 bidirectionally through VXLAN
+| VPP can encapsulate L2 in VXLAN over IPv4 over Dot1Q
 | | Given Path for VXLAN testing is set
 | | ...   | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']}
 | | And   Interfaces in path are up
-| | And   IP addresses are set on interfaces | ${dut1} | ${dut1s_to_dut2} | ${NONE}
-| |       ...                                | ${dut2} | ${dut2s_to_dut1} | ${NONE}
+| | And   Vlan interfaces for VXLAN are created | ${VLAN}
+| |       ...                                   | ${dut1} | ${dut1s_to_dut2}
+| |       ...                                   | ${dut2} | ${dut2s_to_dut1}
+| | And   IP addresses are set on interfaces
+| |       ...         | ${dut1} | ${dut1s_vlan_name} | ${dut1s_vlan_index}
+| |       ...         | ${dut2} | ${dut2s_vlan_name} | ${dut2s_vlan_index}
 | | ${dut1s_vxlan}= | When Create VXLAN interface     | ${dut1} | ${VNI}
 | |                 | ...  | ${dut1s_ip_address} | ${dut2s_ip_address}
 | |                   And  Interfaces are added to BD | ${dut1} | ${BID}
