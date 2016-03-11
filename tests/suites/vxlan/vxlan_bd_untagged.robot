@@ -12,24 +12,34 @@
 # limitations under the License.
 
 *** Settings ***
-| Documentation | VXLAN tunnel untagged traffic tests using bridge domain.
+| Documentation | VXLAN tunnel over untagged IPv4 traffic tests using bridge domain.
 | Resource | resources/libraries/robot/default.robot
 | Resource | resources/libraries/robot/vxlan.robot
 | Resource | resources/libraries/robot/l2_traffic.robot
+| Library  | resources.libraries.python.Trace
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | VM_ENV | HW_ENV
-| Suite Setup | Run Keywords | Setup all DUTs before test
-| ...         | AND          | Setup all TGs before traffic script
-| ...         | AND          | Setup VXLAN tunnel on nodes | ${nodes['TG']}
-|             | ...          | ${nodes['DUT1']} | ${nodes['DUT2']} | ${VNI}
+| Test Setup | Run Keywords | Setup all DUTs before test
+| ...        | AND          | Setup all TGs before traffic script
+| Test Teardown | Show Packet Trace on All DUTs | ${nodes}
 
 *** Variables ***
 | ${VNI}= | 23
 
 *** Test Cases ***
-| VPP can encapsulate L2 in VXLAN over V4
-| | Setup DUT for VXLAN using BD | ${nodes['DUT1']} | ${23} | ${dut1s_to_tg}
-| | ...                          | ${vxlan_dut1}
-| | Setup DUT for VXLAN using BD | ${nodes['DUT2']} | ${23} | ${dut2s_to_tg}
-| | ...                          | ${vxlan_dut2}
-| | Send and receive ICMPv4 | ${nodes['TG']} | ${tgs_to_dut1} | ${tgs_to_dut2}
-| | Send and receive ICMPv4 | ${nodes['TG']} | ${tgs_to_dut2} | ${tgs_to_dut1}
+| VPP can pass IPv4 bidirectionally through VXLAN
+| | Given VXLAN tunnel test environment initialized on nodes
+| | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']}
+| | ... | ${VNI} | BID=${VNI}
+| | Then Send and receive ICMPv4 bidirectionally | ${nodes['TG']} | ${tgs_to_dut1}
+| | ...                                          | ${tgs_to_dut2}
+
+*** Keywords ***
+| Suite specific VXLAN tunnel test environment setup on DUT
+| | [Arguments] | ${DUT} | ${VNI} | ${SRC_IP} | ${DST_IP} | ${INGRESS}
+| | ...         | ${EGRESS} | ${IP} | ${PREFIX} | ${IP2} | ${BID} | ${VLANID}
+| | Set Interface Address | ${DUT} | ${EGRESS} | ${IP} | ${PREFIX}
+| | VPP IP Probe | ${DUT} | ${EGRESS} | ${IP2}
+| | ${vxlan_if_index}= | Create VXLAN interface | ${DUT} | ${VNI} | ${SRC_IP}
+| | ...                | ${DST_IP}
+| | Vpp Add L2 Bridge Domain | ${DUT} | ${VNI} | ${INGRESS} | ${vxlan_if_index}
+| | [Return] | ${vxlan_if_index}
