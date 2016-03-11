@@ -27,3 +27,11 @@
 | | ${args}= | Traffic Script Gen Arg | ${dst_int} | ${src_int} | ${src_mac}
 | |          | ...                    | ${dst_mac} | ${src_ip} | ${dst_ip}
 | | Run Traffic Script On Node | send_ip_icmp.py | ${tg_node} | ${args}
+
+| Send and receive ICMPv4 bidirectionally
+| | [Documentation] | Send ICMPv4 echo request from both directions,
+| | ...             | from interface1 to interface2 and
+| | ...             | from interface2 to interface1.
+| | [Arguments] | ${tg_node} | ${int1} | ${int2}
+| | Send and receive ICMPv4 | ${tg_node} | ${int1} | ${int2}
+| | Send and receive ICMPv4 | ${tg_node} | ${int2} | ${int1}
