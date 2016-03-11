@@ -12,10 +12,9 @@
 # limitations under the License.
 
 """Interface setup library."""
-
 from ssh import SSH
-from robot.api.deco import keyword
-from resources.libraries.python.VatExecutor import VatExecutor
+from robot.api import logger
+from resources.libraries.python.VatExecutor import VatExecutor, VatTerminal
 
 
 class InterfaceSetup(object):
@@ -151,8 +150,6 @@ class InterfaceSetup(object):
                                                    if_v['driver'])
 
     @staticmethod
-    @keyword('Create VXLAN interface on "${DUT}" with VNI "${VNI}"'
-             ' from "${SRC_IP}" to "${DST_IP}"')
     def create_vxlan_interface(node, vni, source_ip, destination_ip):
         """Create VXLAN interface and return index of created interface
 
@@ -182,3 +179,52 @@ class InterfaceSetup(object):
         else:
             raise RuntimeError('Unable to create VXLAN interface on node {}'.\
                                format(node))
+
+    @staticmethod
+    def create_vlan_subinterface(node, interface, vlan):
+        """TBD
+
+        :param node: Node to add subinterface on.
+        :param interface: TBD
+        :param vlan: TBD
+        :type node: dict
+        :type interface: str or int
+        :type vlan: int
+        :return: name and index of created subinterface
+        :rtype: tuple
+        """
+
+        def _get_interface_sw_index(node, interface):
+            # TODO: refactor Topology.get_interface_sw_index
+            try:
+                return int(interface)
+            except ValueError:
+                for port in node['interfaces'].values():
+                    port_name = port.get('name')
+                    if port_name == interface:
+                        return port.get('vpp_sw_index')
+                return None
+        sw_if_index = _get_interface_sw_index(node, interface)
+
+        output = VatExecutor.cmd_from_template(node, "add_vlan_subif.vat",
+                                               sw_if_index=sw_if_index,
+                                               vlan=vlan)
+        output = output[0]
+
+        if output["retval"] == 0:
+            sw_subif_index = output["sw_if_index"]
+            logger.trace('Created subif with index {}'.format(sw_subif_index))
+        else:
+            raise RuntimeError('Unable to create VLAN subinterface on node {}'
+                               .format(node))
+
+        with VatTerminal(node, False) as vat:
+            vat.vat_terminal_exec_cmd('exec show interfaces')
+
+        return '{}.{}'.format(interface, vlan), sw_subif_index
+
+    @staticmethod
+    def show_traces(node):
+        with VatTerminal(node, False) as vat:
+            vat.vat_terminal_exec_cmd('exec show trace')
+            vat.vat_terminal_exec_cmd('exec show interfaces')
