@@ -36,8 +36,6 @@ class IPv4Util(object):
         get_node(node).arp_ping(ip_address, interface)
 
     @staticmethod
-    @keyword('Node "${node}" interface "${port}" has IPv4 address "${address}"'
-             ' with prefix length "${prefix_length}"')
     def set_interface_address(node, interface, address, length):
         """See IPv4Node.set_ip for more information.
 
