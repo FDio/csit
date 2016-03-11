@@ -12,10 +12,9 @@
 # limitations under the License.
 
 """Interface setup library."""
-
 from ssh import SSH
-from robot.api.deco import keyword
-from resources.libraries.python.VatExecutor import VatExecutor
+from robot.api import logger
+from resources.libraries.python.VatExecutor import VatExecutor, VatTerminal
 
 
 class InterfaceSetup(object):
@@ -180,3 +179,43 @@ class InterfaceSetup(object):
         else:
             raise RuntimeError('Unable to create VXLAN interface on node {}'.\
                                format(node))
+
+    @staticmethod
+    def create_vlan_subinterface(node, interface, vlan):
+        """Create VLAN sub interface on node.
+
+        :param node: Node to add subinterface on.
+        :param interface: Interface name on which create vlan subinterface.
+        :param vlan: Create subinterface with VLAN ID
+        :type node: dict
+        :type interface: str or int
+        :type vlan: int
+        :return: name and index of created subinterface
+        :rtype: tuple
+        """
+
+        def _get_interface_sw_index(node, interface):
+            try:
+                return int(interface)
+            except ValueError:
+                for port in node['interfaces'].values():
+                    port_name = port.get('name')
+                    if port_name == interface:
+                        return port.get('vpp_sw_index')
+                return None
+        sw_if_index = _get_interface_sw_index(node, interface)
+
+        output = VatExecutor.cmd_from_template(node, "add_vlan_subif.vat",
+                                               sw_if_index=sw_if_index,
+                                               vlan=vlan)
+        if output[0]["retval"] == 0:
+            sw_subif_index = output[0]["sw_if_index"]
+            logger.trace('Created subif with index {}'.format(sw_subif_index))
+        else:
+            raise RuntimeError('Unable to create VLAN subinterface on node {}'
+                               .format(node['host']))
+
+        with VatTerminal(node, False) as vat:
+            vat.vat_terminal_exec_cmd('exec show interfaces')
+
+        return '{}.{}'.format(interface, vlan), sw_subif_index
