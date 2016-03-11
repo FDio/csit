@@ -12,22 +12,34 @@
 # limitations under the License.
 
 *** Settings ***
-| Documentation | VXLAN tunnel untagged traffic tests using xconnect.
+| Documentation | VXLAN tunnel over untagged IPv4 traffic tests using xconnect.
 | Resource | resources/libraries/robot/default.robot
 | Resource | resources/libraries/robot/vxlan.robot
 | Resource | resources/libraries/robot/l2_traffic.robot
+| Library  | resources.libraries.python.Trace
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | VM_ENV | HW_ENV
-| Suite Setup | Run Keywords | Setup all DUTs before test
-| ...         | AND          | Setup all TGs before traffic script
-| ...         | AND          | Setup VXLAN tunnel on nodes | ${nodes['TG']}
-|             | ...          | ${nodes['DUT1']} | ${nodes['DUT2']} | ${VNI}
+| Test Setup | Run Keywords | Setup all DUTs before test
+| ...        | AND          | Setup all TGs before traffic script
+| Test Teardown | Show Packet Trace on All DUTs | ${nodes}
 
 *** Variables ***
 | ${VNI}= | 24
 
 *** Test Cases ***
-| VPP can pass IPv4 bidirectionally through VXLAN tunnel using l2-xconnect
-| | L2 setup xconnect on DUT | ${nodes['DUT1']} | ${dut1s_to_tg} | ${vxlan_dut1}
-| | L2 setup xconnect on DUT | ${nodes['DUT2']} | ${dut2s_to_tg} | ${vxlan_dut2}
-| | Send and receive ICMPv4 | ${nodes['TG']} | ${tgs_to_dut1} | ${tgs_to_dut2}
-| | Send and receive ICMPv4 | ${nodes['TG']} | ${tgs_to_dut2} | ${tgs_to_dut1}
+| VPP can pass IPv4 bidirectionally through VXLAN
+| | Given Prepare VXLAN tunnel test environment on nodes
+| | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']}
+| | ... | ${VNI}
+| | Then Send and receive ICMPv4 bidirectionally | ${nodes['TG']} | ${tgs_to_dut1}
+| | ...                                          | ${tgs_to_dut2}
+
+*** Keywords ***
+| Prepare VXLAN tunnel test environment on DUT
+| | [Arguments] | ${DUT} | ${VNI} | ${SRC_IP} | ${DST_IP} | ${INGRESS}
+| | ...         | ${EGRESS} | ${IP} | ${PREFIX} | ${IP2} | ${BID} | ${VLANID}
+| | Set Interface Address | ${DUT} | ${EGRESS} | ${IP} | ${PREFIX}
+| | VPP IP Probe | ${DUT} | ${EGRESS} | ${IP2}
+| | ${vxlan_if_index}= | Create VXLAN interface | ${DUT} | ${VNI} | ${SRC_IP}
+| | ...                | ${DST_IP}
+| | L2 setup xconnect on DUT | ${DUT} | ${INGRESS} | ${vxlan_if_index}
+| | [Return] | ${vxlan_if_index}
