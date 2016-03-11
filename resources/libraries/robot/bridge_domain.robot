@@ -26,3 +26,9 @@
 | | Run Keyword If | ${learn} == ${FALSE}
 | | ... | Vpp Add L2fib Entry | ${node} | ${mac} | ${if2} | ${1}
 | | All Vpp Interfaces Ready Wait | ${nodes}
+
+| L2 Setup Bridge Domain on DUT
+| | [Arguments] | ${node} | ${BID} | ${int1} | ${int2}
+| | Create L2 BD | ${node} | ${BID}
+| | Add Interface To L2 BD | ${node} | ${int1} | ${BID}
+| | Add Interface To L2 BD | ${node} | ${int2} | ${BID}
