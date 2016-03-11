@@ -22,6 +22,30 @@
       "revId": "cc808b1433cc7a5604c0eacecba5652ed3a89e34",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7afa4931_b847494b",
+        "filename": "resources/libraries/robot/qemu.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-03-11T12:16:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7afa4931_4d440574",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 23
+      },
+      "revId": "cc808b1433cc7a5604c0eacecba5652ed3a89e34",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
