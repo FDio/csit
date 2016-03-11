@@ -25,6 +25,29 @@
     },
     {
       "key": {
+        "uuid": "7afa4931_d85455cc",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-11T15:15:20Z",
+      "side": 1,
+      "message": "Use isinstance to identify string, and use get_interface_sw_index to extract int. Else use the interface int directly.\nThis will get rid of the try block altogether.",
+      "range": {
+        "startLine": 48,
+        "startChar": 12,
+        "endLine": 51,
+        "endChar": 78
+      },
+      "revId": "bceb6e80fb5c8ad5f61038def30d7027273c1ff6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7afa4931_58ca85a2",
         "filename": "resources/libraries/python/L2Util.py",
         "patchSetId": 8
@@ -64,6 +87,29 @@
         "startChar": 9,
         "endLine": 166,
         "endChar": 29
+      },
+      "revId": "bceb6e80fb5c8ad5f61038def30d7027273c1ff6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7afa4931_385d79ea",
+        "filename": "resources/libraries/python/L2Util.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-11T15:15:20Z",
+      "side": 1,
+      "message": "Get rid of the try block by using isinstance",
+      "range": {
+        "startLine": 169,
+        "startChar": 8,
+        "endLine": 172,
+        "endChar": 75
       },
       "revId": "bceb6e80fb5c8ad5f61038def30d7027273c1ff6",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
