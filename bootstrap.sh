@@ -172,8 +172,5 @@ pip install -r requirements.txt
 
 PYTHONPATH=`pwd` pybot -L TRACE \
     -v TOPOLOGY_PATH:topologies/enabled/topology.yaml \
-    --exclude 3_node_double_link_topoNOT3_node_single_link_topo \
-    --include VM_ENV \
-    --exclude PERFTEST \
-    --noncritical EXPECTED_FAILING \
+    --include VLAN \
     tests/

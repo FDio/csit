@@ -348,12 +348,14 @@ class Topology(object):
         :type interface: str
         :return: Return sw_index or None if not found.
         """
-        for port in node['interfaces'].values():
-            port_name = port.get('name')
-            if port_name == interface:
-                return port.get('vpp_sw_index')
-
-        return None
+        try:
+            return int(interface)
+        except ValueError:
+            for port in node['interfaces'].values():
+                port_name = port.get('name')
+                if port_name == interface:
+                    return port.get('vpp_sw_index')
+            return None
 
     @staticmethod
     def get_interface_mtu(node, interface):

@@ -79,3 +79,21 @@
 | | ${vxlan_if_index}= | Create VXLAN interface | ${DUT} | ${VNI} | ${SRC_IP}
 | | ...                                         | ${DST_IP}
 | | [Return] | ${vxlan_if_index}
+
+| Setup DUT for VXLAN using BD with VLAN
+| | [Arguments] | ${DUT} | ${VNI} | ${SRC_IP} | ${DST_IP} | ${INGRESS}
+| | ...         | ${EGRESS} | ${IP} | ${PREFIX}
+| | Set Interface State | ${DUT} | ${INGRESS} | up
+| | Set Interface State | ${DUT} | ${EGRESS} | up
+| | ${EGRESS_VLAN_NAME} | ${EGRESS_VLAN_INDEX}= | Create Vlan Subinterface
+| | ...                                         | ${DUT} | ${EGRESS} | ${10}
+#| | update vpp interface data on node | ${DUT}
+| | Set Interface State | ${DUT} | ${EGRESS_VLAN_INDEX} | up
+| | Set Interface Address | ${DUT} | ${EGRESS_VLAN_INDEX} | ${IP} | ${PREFIX}
+| | ${vxlan_if_index}= | Create VXLAN interface | ${DUT} | ${VNI} | ${SRC_IP}
+| | ...                                         | ${DST_IP}
+| | Create L2 BD | ${DUT} | ${VNI}
+| | Add sw if index To L2 BD | ${DUT} | ${vxlan_if_index} | ${VNI}
+| | Add Interface To L2 BD | ${DUT} | ${INGRESS} | ${VNI}
+#| | Sleep | 5
+| | VPP IP Probe | ${DUT} | ${EGRESS_VLAN_NAME} | ${IP}
