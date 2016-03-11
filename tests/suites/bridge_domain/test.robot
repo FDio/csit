@@ -34,8 +34,7 @@
 | | ${bd_if1} | ${tmp}= | First Ingress Interface
 | | ${bd_if2} | ${tmp}= | Last Egress Interface
 | | Vpp l2bd forwarding setup | ${nodes['DUT1']} | ${bd_if1} | ${bd_if2}
-| | Send and receive ICMPv4 | ${nodes['TG']} | ${tg_if1} | ${tg_if2}
-| | Send and receive ICMPv4 | ${nodes['TG']} | ${tg_if2} | ${tg_if1}
+| | Send and receive ICMPv4 bidirectionally | ${nodes['TG']} | ${tg_if1} | ${tg_if2}
 
 | Vpp forwards packets via L2 bridge domain in circular topology
 | | [Tags] | 3_NODE_SINGLE_LINK_TOPO
@@ -50,8 +49,7 @@
 | | ${tg_if2} | ${tg}= | Next Interface
 | | Vpp l2bd forwarding setup | ${dut1} | ${dut1_if1} | ${dut1_if2}
 | | Vpp l2bd forwarding setup | ${dut2} | ${dut2_if1} | ${dut2_if2}
-| | Send and receive ICMPv4 | ${tg} | ${tg_if1} | ${tg_if2}
-| | Send and receive ICMPv4 | ${tg} | ${tg_if2} | ${tg_if1}
+| | Send and receive ICMPv4 bidirectionally | ${tg} | ${tg_if1} | ${tg_if2}
 
 | Vpp forwards packets via L2 bridge domain in circular topology with static L2FIB entries
 | | [Tags] | 3_NODE_SINGLE_LINK_TOPO
@@ -69,5 +67,4 @@
 | | ...                       | ${mac}
 | | Vpp l2bd forwarding setup | ${dut2} | ${dut2_if1} | ${dut2_if2} | ${FALSE}
 | | ...                       | ${mac}
-| | Send and receive ICMPv4 | ${tg} | ${tg_if1} | ${tg_if2}
-| | Send and receive ICMPv4 | ${tg} | ${tg_if2} | ${tg_if1}
+| | Send and receive ICMPv4 bidirectionally | ${tg} | ${tg_if1} | ${tg_if2}
