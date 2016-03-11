@@ -142,18 +142,25 @@ class VatTerminal(object):
     """VAT interactive terminal
 
        :param node: Node to open VAT terminal on.
+       :param json_param: Defines if outputs from VAT are in JSON format.
+       Default is True.
+       :type node: dict
+       :type json_param: bool
+
     """
 
     __VAT_PROMPT = "vat# "
     __LINUX_PROMPT = ":~$ "
 
-    def __init__(self, node):
+    def __init__(self, node, json_param=True):
+        json_text = ' json' if json_param else ''
+        self.json = json_param
         self._ssh = SSH()
         self._ssh.connect(node)
         self._tty = self._ssh.interactive_terminal_open()
         self._ssh.interactive_terminal_exec_command(
             self._tty,
-            'sudo -S {vat} json'.format(vat=Constants.VAT_BIN_NAME),
+            'sudo -S {}{}'.format(Constants.VAT_BIN_NAME, json_text),
             self.__VAT_PROMPT)
 
     def __enter__(self):
@@ -167,15 +174,19 @@ class VatTerminal(object):
 
            :param cmd: Command to be executed.
 
-           :return: Command output in python representation of JSON format.
+           :return: Command output in python representation of JSON format or
+           None if not in JSON mode.
         """
         logger.debug("Executing command in VAT terminal: {}".format(cmd))
         out = self._ssh.interactive_terminal_exec_command(self._tty,
                                                           cmd,
                                                           self.__VAT_PROMPT)
         logger.debug("VAT output: {}".format(out))
-        json_out = json.loads(out)
-        return json_out
+        if self.json:
+            json_out = json.loads(out)
+            return json_out
+        else:
+            return None
 
     def vat_terminal_close(self):
         """Close VAT terminal."""
