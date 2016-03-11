@@ -147,13 +147,15 @@ class VatTerminal(object):
     __VAT_PROMPT = "vat# "
     __LINUX_PROMPT = ":~$ "
 
-    def __init__(self, node):
+    def __init__(self, node, json=True):
+        json_text = ' json' if json else ''
+        self.json = json
         self._ssh = SSH()
         self._ssh.connect(node)
         self._tty = self._ssh.interactive_terminal_open()
         self._ssh.interactive_terminal_exec_command(
             self._tty,
-            'sudo -S {vat} json'.format(vat=Constants.VAT_BIN_NAME),
+            'sudo -S {}{}'.format(Constants.VAT_BIN_NAME, json_text),
             self.__VAT_PROMPT)
 
     def __enter__(self):
@@ -174,8 +176,11 @@ class VatTerminal(object):
                                                           cmd,
                                                           self.__VAT_PROMPT)
         logger.debug("VAT output: {}".format(out))
-        json_out = json.loads(out)
-        return json_out
+        if self.json:
+            json_out = json.loads(out)
+            return json_out
+        else:
+            return None
 
     def vat_terminal_close(self):
         """Close VAT terminal."""

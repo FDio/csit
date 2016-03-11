@@ -12,20 +12,23 @@
 # limitations under the License.
 
 *** Settings ***
-| Documentation | VXLAN tunnel untagged traffic tests using xconnect.
+| Documentation | Dot1Q tagged VXLAN tunnel traffic tests using bridge domain.
 | Resource | resources/libraries/robot/default.robot
 | Resource | resources/libraries/robot/vxlan.robot
 | Resource | resources/libraries/robot/l2_traffic.robot
-| Force Tags | 3_NODE_SINGLE_LINK_TOPO | VM_ENV | HW_ENV
+| Force Tags | 3_NODE_SINGLE_LINK_TOPO | VM_ENV | HW_ENV | VLAN
 | Suite Setup | Run Keywords | Setup all DUTs before test
 | ...         | AND          | Setup all TGs before traffic script
 | ...         | AND          | Setup VXLAN tunnel on nodes | ${nodes['TG']}
 |             | ...          | ${nodes['DUT1']} | ${nodes['DUT2']} | ${VNI}
+|             | ...          | ${BID}=${VNI} | ${VLANID}=${VLAN}
+| Suite Teardown | Run Keywords | Show Packet Trace on All DUTs | ${nodes}
 
 *** Variables ***
-| ${VNI}= | 24
+| ${VNI}= | 23
+| ${VLAN}= | 10
 
 *** Test Cases ***
-| VPP can pass IPv4 bidirectionally through VXLAN tunnel using l2-xconnect
+| VPP can encapsulate L2 in VXLAN over V4
 | | Send and receive ICMPv4 | ${nodes['TG']} | ${tgs_to_dut1} | ${tgs_to_dut2}
 | | Send and receive ICMPv4 | ${nodes['TG']} | ${tgs_to_dut2} | ${tgs_to_dut1}

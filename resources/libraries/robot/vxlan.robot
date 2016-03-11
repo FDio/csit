@@ -28,7 +28,7 @@
 
 *** Keywords ***
 | Setup VXLAN tunnel on nodes
-| | [Arguments] | ${TG} | ${DUT1} | ${DUT2} | ${VNI}
+| | [Arguments] | ${TG} | ${DUT1} | ${DUT2} | ${VNI} | ${BID}=${NONE} | ${VLANID}=${NONE}
 | | Append Nodes | ${TG} | ${DUT1} | ${DUT2} | ${TG}
 | | Compute Path
 | | ${tgs_to_dut1} | ${tg}= | Next Interface
@@ -43,7 +43,6 @@
 | | Set Suite Variable | ${dut2s_to_tg}
 | | Set Suite Variable | ${dut1s_to_dut2}
 | | Set Suite Variable | ${dut2s_to_dut1}
-# TODO: replace with address generator
 | | Set Suite Variable | ${dut1s_ip_address} | 172.16.0.1
 | | Set Suite Variable | ${dut2s_ip_address} | 172.16.0.2
 | | Set Suite Variable | ${duts_ip_address_prefix} | 24
@@ -52,30 +51,27 @@
 | | ${vxlan_dut1}= | Setup VXLAN on DUT | ${DUT1} | ${VNI} | ${dut1s_ip_address}
 | | ...                                 | ${dut2s_ip_address} | ${dut1s_to_tg}
 | | ...                                 | ${dut1s_to_dut2} | ${dut1s_ip_address}
-| | ...                                 | ${duts_ip_address_prefix}
+| | ...                                 | ${duts_ip_address_prefix} | ${BID} | ${VLANID}
 | | Set Suite Variable | ${vxlan_dut1}
 | | ${vxlan_dut2}= | Setup VXLAN on DUT | ${DUT2} | ${VNI} | ${dut2s_ip_address}
 | | ...                                 | ${dut1s_ip_address} | ${dut2s_to_tg}
 | | ...                                 | ${dut2s_to_dut1} | ${dut2s_ip_address}
-| | ...                                 | ${duts_ip_address_prefix}
+| | ...                                 | ${duts_ip_address_prefix} | ${BID} | ${VLANID}
 | | Set Suite Variable | ${vxlan_dut2}
-| | @{test_nodes}= | Create list | ${DUT1} | ${DUT2}
-| | Vpp Nodes Interfaces Ready Wait | ${test_nodes}
-# ip arp table must be filled on both nodes with neighbors address
-| | VPP IP Probe | ${DUT1} | ${dut1s_to_dut2} | ${dut2s_ip_address}
 
-| Setup DUT for VXLAN using BD
-| | [Arguments] | ${DUT} | ${VNI} | ${INGRESS} | ${vxlan_if_index}
-| | Create L2 BD | ${DUT} | ${VNI}
-| | Add sw if index To L2 BD | ${DUT} | ${vxlan_if_index} | ${VNI}
-| | Add Interface To L2 BD | ${DUT} | ${INGRESS} | ${VNI}
 
 | Setup VXLAN on DUT
 | | [Arguments] | ${DUT} | ${VNI} | ${SRC_IP} | ${DST_IP} | ${INGRESS}
-| | ...         | ${EGRESS} | ${IP} | ${PREFIX}
+| | ...         | ${EGRESS} | ${IP} | ${PREFIX} | ${BID} | ${VLANID}
 | | Set Interface State | ${DUT} | ${EGRESS} | up
 | | Set Interface State | ${DUT} | ${INGRESS} | up
-| | Set Interface Address | ${DUT} | ${EGRESS} | ${IP} | ${PREFIX}
+| | Vpp Node Interfaces Ready Wait | ${DUT}
+| | ${EGRESS_INT_NAME} | ${EGRESS_INT_INDEX}= | Run Keyword If | ${VLANID} == ${NONE} | Return Interface and Index | ${EGRESS}
+| | ...                |                      | ELSE | Create Vlan Subinterface | ${DUT} | ${EGRESS} | ${VLANID}
+| | Set Interface Index Address | ${DUT} | ${EGRESS_INT_INDEX} | ${IP} | ${PREFIX}
+| | VPP IP Probe | ${DUT} | ${EGRESS_INT_NAME} | ${IP}
 | | ${vxlan_if_index}= | Create VXLAN interface | ${DUT} | ${VNI} | ${SRC_IP}
 | | ...                                         | ${DST_IP}
+| | Run Keyword If | ${BID} == ${NONE} | L2 setup xconnect on DUT | ${DUT} | ${INGRESS} | ${vxlan_if_index}
+| | ELSE | L2 Setup Bridge Domain on DUT | ${DUT} | ${VNI} | ${INGRESS} | ${vxlan_if_index}
 | | [Return] | ${vxlan_if_index}
