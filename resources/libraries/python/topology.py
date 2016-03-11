@@ -339,21 +339,37 @@ class Topology(object):
                 self.update_tg_interface_data_on_node(node_data)
 
     @staticmethod
-    def get_interface_sw_index(node, interface):
-        """Get VPP sw_index for the interface.
+    def return_interface_and_sw_index(node, interface):
+        """Return interface name and sw_index in tuple
 
         :param node: Node to get interface sw_index on.
         :param interface: Interface name.
         :type node: dict
         :type interface: str
+        :return: interface name and sw_index.
+        :rtype: tuple
+        """
+        index = Topology.get_interface_sw_index(node, interface)
+        return interface, index
+
+    @staticmethod
+    def get_interface_sw_index(node, interface):
+        """Get VPP sw_index for the interface.
+
+        :param node: Node to get interface sw_index on.
+        :param interface: Interface identifier.
+        :type node: dict
+        :type interface: str
         :return: Return sw_index or None if not found.
         """
-        for port in node['interfaces'].values():
-            port_name = port.get('name')
-            if port_name == interface:
-                return port.get('vpp_sw_index')
-
-        return None
+        try:
+            return int(interface)
+        except ValueError:
+            for port in node['interfaces'].values():
+                port_name = port.get('name')
+                if port_name == interface:
+                    return port.get('vpp_sw_index')
+            return None
 
     @staticmethod
     def get_interface_mtu(node, interface):
