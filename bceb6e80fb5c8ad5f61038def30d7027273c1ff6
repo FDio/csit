@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7afa4931_38cfb9b2",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-03-11T14:11:15Z",
+      "side": 1,
+      "message": "add if there as the parameter is sw_if_index",
+      "range": {
+        "startLine": 33,
+        "startChar": 46,
+        "endLine": 33,
+        "endChar": 47
+      },
+      "revId": "bceb6e80fb5c8ad5f61038def30d7027273c1ff6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7afa4931_58ca85a2",
+        "filename": "resources/libraries/python/L2Util.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-03-11T14:11:15Z",
+      "side": 1,
+      "message": "add \u0027or sw_if_index\u0027",
+      "range": {
+        "startLine": 162,
+        "startChar": 9,
+        "endLine": 163,
+        "endChar": 43
+      },
+      "revId": "bceb6e80fb5c8ad5f61038def30d7027273c1ff6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7afa4931_78d54142",
+        "filename": "resources/libraries/python/L2Util.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-03-11T14:11:15Z",
+      "side": 1,
+      "message": "Missing info that it could be also int when sw_if_index is used\n-\u003e but we moved the workaround from one file (topology.py) to other two files (L2Util.py and InterfaceSetup.py)...",
+      "range": {
+        "startLine": 165,
+        "startChar": 9,
+        "endLine": 166,
+        "endChar": 29
+      },
+      "revId": "bceb6e80fb5c8ad5f61038def30d7027273c1ff6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
