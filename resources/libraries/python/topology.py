@@ -42,6 +42,8 @@ class NodeType(object):
     DUT = 'DUT'
     # Traffic Generator (this node has traffic generator on it)
     TG = 'TG'
+    # Virtual Machine (this node running on DUT node)
+    VM = 'VM'
 
 
 class NodeSubTypeTG(object):
