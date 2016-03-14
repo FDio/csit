@@ -56,7 +56,8 @@ class SSH(object):
             self._ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 
             self._ssh.connect(node['host'], username=node['username'],
-                              password=node.get('password'), pkey=pkey)
+                              password=node.get('password'), pkey=pkey,
+                              port=node['port'])
 
             SSH.__existing_connections[node_hash] = self._ssh
 
