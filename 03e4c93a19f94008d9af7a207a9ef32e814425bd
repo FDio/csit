@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7afa4931_d8ac558f",
+        "filename": "resources/libraries/python/DropRateSearch.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-03-14T10:09:44Z",
+      "side": 1,
+      "message": "There should be empty line between brief explanation and parameters.",
+      "revId": "03e4c93a19f94008d9af7a207a9ef32e814425bd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
