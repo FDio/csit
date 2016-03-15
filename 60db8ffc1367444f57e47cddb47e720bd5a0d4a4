@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7afa4931_53f3860a",
+        "filename": "tests/suites/performance/long_bridge_domain.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-15T14:42:54Z",
+      "side": 1,
+      "message": "Maybe since you are using \"Given\" on line 30, add \"Then\" in this line?",
+      "revId": "60db8ffc1367444f57e47cddb47e720bd5a0d4a4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
