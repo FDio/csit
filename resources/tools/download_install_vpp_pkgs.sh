@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Copyright (c) 2016 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,7 +13,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-set -x
+set -ex
+
+trap 'rm -f *.deb.md5; exit' EXIT
+trap 'rm -f *.deb.md5;rm -f *.deb; exit' ERR
 
 URL="https://nexus.fd.io/service/local/artifact/maven/content"
 VER="RELEASE"
@@ -36,5 +39,9 @@ for MD5FILE in *.md5; do
     md5sum -c ${MD5FILE} || exit
 done
 
-echo sudo dpkg -i *.deb
-
+if [ "$1" != "--skip-install" ]; then
+    echo Installing VPP
+    sudo dpkg -i *.deb
+else
+    echo VPP Installation skipped
+fi
