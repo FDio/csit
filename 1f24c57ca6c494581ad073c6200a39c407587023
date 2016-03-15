@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7afa4931_7387a262",
+        "filename": "resources/libraries/python/DropRateSearch.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-15T14:42:54Z",
+      "side": 1,
+      "message": "upper case pls.\neverywhere :)",
+      "range": {
+        "startLine": 23,
+        "startChar": 4,
+        "endLine": 23,
+        "endChar": 12
+      },
+      "revId": "1f24c57ca6c494581ad073c6200a39c407587023",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7afa4931_13961e95",
+        "filename": "resources/libraries/python/DropRateSearch.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-15T14:42:54Z",
+      "side": 1,
+      "message": "ValueError",
+      "range": {
+        "startLine": 202,
+        "startChar": 18,
+        "endLine": 202,
+        "endChar": 27
+      },
+      "revId": "1f24c57ca6c494581ad073c6200a39c407587023",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7afa4931_d38f9674",
+        "filename": "resources/libraries/python/DropRateSearch.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-15T14:42:54Z",
+      "side": 1,
+      "message": "can\u0027t start_rate be equal to rate_min ?",
+      "range": {
+        "startLine": 214,
+        "startChar": 29,
+        "endLine": 214,
+        "endChar": 31
+      },
+      "revId": "1f24c57ca6c494581ad073c6200a39c407587023",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7afa4931_f392929e",
+        "filename": "resources/libraries/python/DropRateSearch.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-15T14:42:54Z",
+      "side": 1,
+      "message": "ValueError",
+      "range": {
+        "startLine": 215,
+        "startChar": 18,
+        "endLine": 215,
+        "endChar": 27
+      },
+      "revId": "1f24c57ca6c494581ad073c6200a39c407587023",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7afa4931_b38c0a81",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-15T14:42:54Z",
+      "side": 1,
+      "message": "Please add documentation why you are doing this here instead of instantiating TrafGen the normal way.",
+      "range": {
+        "startLine": 37,
+        "startChar": 8,
+        "endLine": 37,
+        "endChar": 99
+      },
+      "revId": "1f24c57ca6c494581ad073c6200a39c407587023",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7afa4931_93e90e1d",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-15T14:42:54Z",
+      "side": 1,
+      "message": "please consider using stdout.splitlines()[-1]",
+      "range": {
+        "startLine": 240,
+        "startChar": 8,
+        "endLine": 241,
+        "endChar": 16
+      },
+      "revId": "1f24c57ca6c494581ad073c6200a39c407587023",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7afa4931_73ee8224",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-15T14:42:54Z",
+      "side": 1,
+      "message": "I think we should accept the given node directly istead of relying on the name of the node here in the library.",
+      "range": {
+        "startLine": 268,
+        "startChar": 7,
+        "endLine": 268,
+        "endChar": 31
+      },
+      "revId": "1f24c57ca6c494581ad073c6200a39c407587023",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
