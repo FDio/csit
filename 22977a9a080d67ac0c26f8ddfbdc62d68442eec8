@@ -1,0 +1,205 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7afa4931_13af3ee5",
+        "filename": "bootstrap-vpp-build-test.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-15T14:06:26Z",
+      "side": 1,
+      "message": "could this be done in the get_vpp_build_urls.py?",
+      "range": {
+        "startLine": 95,
+        "startChar": 11,
+        "endLine": 95,
+        "endChar": 66
+      },
+      "revId": "22977a9a080d67ac0c26f8ddfbdc62d68442eec8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7afa4931_73a0c2f4",
+        "filename": "bootstrap-vpp-build-test.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-15T14:06:26Z",
+      "side": 1,
+      "message": "use curl or wget.",
+      "range": {
+        "startLine": 96,
+        "startChar": 4,
+        "endLine": 96,
+        "endChar": 7
+      },
+      "revId": "22977a9a080d67ac0c26f8ddfbdc62d68442eec8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7afa4931_33aa3ad5",
+        "filename": "bootstrap-vpp-build-test.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-15T14:06:26Z",
+      "side": 1,
+      "message": "Get URLs of the latest...",
+      "range": {
+        "startLine": 98,
+        "startChar": 6,
+        "endLine": 98,
+        "endChar": 18
+      },
+      "revId": "22977a9a080d67ac0c26f8ddfbdc62d68442eec8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7afa4931_53a5c602",
+        "filename": "bootstrap-vpp-build-test.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-15T14:06:26Z",
+      "side": 1,
+      "message": "typo, I think you wanted to leave the first \"/\" out.",
+      "range": {
+        "startLine": 99,
+        "startChar": 11,
+        "endLine": 99,
+        "endChar": 12
+      },
+      "revId": "22977a9a080d67ac0c26f8ddfbdc62d68442eec8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7afa4931_f3abb2d4",
+        "filename": "bootstrap-vpp-build-test.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-15T14:06:26Z",
+      "side": 1,
+      "message": "drop the -r recursive parameter.",
+      "range": {
+        "startLine": 105,
+        "startChar": 8,
+        "endLine": 105,
+        "endChar": 9
+      },
+      "revId": "22977a9a080d67ac0c26f8ddfbdc62d68442eec8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7afa4931_b3b52a33",
+        "filename": "bootstrap-vpp-build-test.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-15T14:06:26Z",
+      "side": 1,
+      "message": "You delete the URLs here, but it would help to cat the file for debugging purposes.",
+      "range": {
+        "startLine": 106,
+        "startChar": 11,
+        "endLine": 106,
+        "endChar": 25
+      },
+      "revId": "22977a9a080d67ac0c26f8ddfbdc62d68442eec8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7afa4931_d3b8b62c",
+        "filename": "bootstrap-vpp-build-test.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-15T14:06:26Z",
+      "side": 1,
+      "message": "drop the -r recursive parameter.",
+      "range": {
+        "startLine": 106,
+        "startChar": 8,
+        "endLine": 106,
+        "endChar": 9
+      },
+      "revId": "22977a9a080d67ac0c26f8ddfbdc62d68442eec8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7afa4931_13685eb9",
+        "filename": "bootstrap-vpp-build-test.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-15T14:06:26Z",
+      "side": 1,
+      "message": "drop the -r recursive flag.",
+      "range": {
+        "startLine": 195,
+        "startChar": 4,
+        "endLine": 195,
+        "endChar": 5
+      },
+      "revId": "22977a9a080d67ac0c26f8ddfbdc62d68442eec8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7afa4931_939b4ec9",
+        "filename": "resources/tools/vpp_build_test/get_vpp_build_urls.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-15T14:06:26Z",
+      "side": 1,
+      "message": "use \"main\" construct. Look for pylint warnings this file brings in.",
+      "revId": "22977a9a080d67ac0c26f8ddfbdc62d68442eec8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
