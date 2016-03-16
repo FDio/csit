@@ -1,0 +1,124 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7afa4931_5399466d",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-16T15:26:11Z",
+      "side": 1,
+      "message": "if this param is not used, something happens. Could you please describe what?",
+      "range": {
+        "startLine": 125,
+        "startChar": 54,
+        "endLine": 125,
+        "endChar": 62
+      },
+      "revId": "ddf5ddf1ad0a22034aac08a0df3d98757ddd1b51",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7afa4931_73944237",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-16T15:26:11Z",
+      "side": 1,
+      "message": "missing type for mac.",
+      "revId": "ddf5ddf1ad0a22034aac08a0df3d98757ddd1b51",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7afa4931_d3755633",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-16T15:26:11Z",
+      "side": 1,
+      "message": "this is cool! Will help debugging too. Could you please add some documentation here?",
+      "range": {
+        "startLine": 142,
+        "startChar": 34,
+        "endLine": 142,
+        "endChar": 65
+      },
+      "revId": "ddf5ddf1ad0a22034aac08a0df3d98757ddd1b51",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7afa4931_339eba57",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-16T15:26:11Z",
+      "side": 1,
+      "message": "Add please what VM on what node.",
+      "range": {
+        "startLine": 212,
+        "startChar": 36,
+        "endLine": 212,
+        "endChar": 58
+      },
+      "revId": "ddf5ddf1ad0a22034aac08a0df3d98757ddd1b51",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7afa4931_13a3be9f",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-16T15:26:11Z",
+      "side": 1,
+      "message": "What VM what node.",
+      "revId": "ddf5ddf1ad0a22034aac08a0df3d98757ddd1b51",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7afa4931_d3ac368f",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 347,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-16T15:26:11Z",
+      "side": 1,
+      "message": "this kills all qemu processes on the machine. Please add a TODO to add PID storage so that we can kill specific PIDs when qemu_kill() is called.",
+      "revId": "ddf5ddf1ad0a22034aac08a0df3d98757ddd1b51",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
