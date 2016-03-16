@@ -86,25 +86,10 @@ def create_env_directory_at_node(node):
     else:
         logger.console('Virtualenv created on {0}'.format(node['host']))
 
-def install_dependencies(node):
-    """TEMPORARY FUNCTION TO INSTALL DEPENDENCIES ON NODES BEFORE THE VIRL
-    HOSTS HAVE ALL PREREQUISITES INSTALLED"""
-    logger.console('Installing prerequisites on {0}'.format(node['host']))
-    ssh = SSH()
-    ssh.connect(node)
-    (ret_code, stdout, stderr) = ssh.exec_command(
-            'sudo apt-get -y update; ' \
-            'sudo apt-get -y install python-virtualenv python-dev', timeout=120)
-    if 0 != ret_code:
-        logger.error('Failed to install prerequisites: {0}'.
-                format(stdout + stderr))
-        raise Exception('Virtualenv setup failed')
-
 def setup_node(args):
     tarball, remote_tarball, node = args
     copy_tarball_to_node(tarball, node)
     extract_tarball_at_node(remote_tarball, node)
-    install_dependencies(node)
     if node['type'] == NodeType.TG:
         create_env_directory_at_node(node)
 
