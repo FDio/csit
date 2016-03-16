@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7afa4931_935eaee8",
+        "filename": "resources/libraries/python/InterfaceSetup.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-03-16T06:34:59Z",
+      "side": 1,
+      "message": "replace TBD",
+      "range": {
+        "startLine": 185,
+        "startChar": 1,
+        "endLine": 189,
+        "endChar": 24
+      },
+      "revId": "bcf9b09dabe85a1e263005ee0e30ec18fd5d6f28",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7afa4931_736322b2",
+        "filename": "resources/libraries/python/InterfaceSetup.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-03-16T06:34:59Z",
+      "side": 1,
+      "message": "there is get_interface_sw_index in topology.py",
+      "range": {
+        "startLine": 197,
+        "startChar": 12,
+        "endLine": 197,
+        "endChar": 35
+      },
+      "revId": "bcf9b09dabe85a1e263005ee0e30ec18fd5d6f28",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7afa4931_335d9aea",
+        "filename": "resources/libraries/python/InterfaceSetup.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-03-16T06:34:59Z",
+      "side": 1,
+      "message": "if out[0].get(\u0027retval\u0027) \u003d\u003d 0:\n    sw_subif_index \u003d out[0].get(\u0027sw_if_index\u0027)",
+      "range": {
+        "startLine": 211,
+        "startChar": 8,
+        "endLine": 214,
+        "endChar": 50
+      },
+      "revId": "bcf9b09dabe85a1e263005ee0e30ec18fd5d6f28",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7afa4931_13729e7c",
+        "filename": "resources/libraries/python/InterfaceSetup.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-03-16T06:34:59Z",
+      "side": 1,
+      "message": "I think log node[\u0027host\u0027] is sufficient",
+      "range": {
+        "startLine": 218,
+        "startChar": 39,
+        "endLine": 218,
+        "endChar": 43
+      },
+      "revId": "bcf9b09dabe85a1e263005ee0e30ec18fd5d6f28",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7afa4931_f36e1296",
+        "filename": "resources/libraries/python/VatExecutor.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-03-16T06:34:59Z",
+      "side": 1,
+      "message": "update return since you change code",
+      "range": {
+        "startLine": 172,
+        "startChar": 11,
+        "endLine": 172,
+        "endChar": 75
+      },
+      "revId": "bcf9b09dabe85a1e263005ee0e30ec18fd5d6f28",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
