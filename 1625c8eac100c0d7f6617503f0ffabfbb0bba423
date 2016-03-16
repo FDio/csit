@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "7afa4931_33e23a04",
+        "filename": "resources/libraries/python/VatExecutor.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-03-16T09:50:06Z",
+      "side": 1,
+      "message": "if not in Json mode",
+      "range": {
+        "startLine": 173,
+        "startChar": 16,
+        "endLine": 173,
+        "endChar": 36
+      },
+      "revId": "1625c8eac100c0d7f6617503f0ffabfbb0bba423",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7afa4931_73d8c253",
         "filename": "resources/libraries/robot/bridge_domain.robot",
         "patchSetId": 12
