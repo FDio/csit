@@ -25,6 +25,23 @@
     },
     {
       "key": {
+        "uuid": "7afa4931_d39e7663",
+        "filename": "resources/libraries/python/topology.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 342,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-16T14:28:36Z",
+      "side": 1,
+      "message": "docstring\u0027s missing.",
+      "revId": "1625c8eac100c0d7f6617503f0ffabfbb0bba423",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7afa4931_73d8c253",
         "filename": "resources/libraries/robot/bridge_domain.robot",
         "patchSetId": 12
@@ -42,6 +59,86 @@
         "endLine": 34,
         "endChar": 55
       },
+      "revId": "1625c8eac100c0d7f6617503f0ffabfbb0bba423",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7afa4931_9388ee23",
+        "filename": "resources/libraries/robot/vxlan.robot",
+        "patchSetId": 12
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-16T14:28:36Z",
+      "side": 1,
+      "message": "this shouldn\u0027t be here. See commend for Setup VXLAN on DUT",
+      "range": {
+        "startLine": 31,
+        "startChar": 52,
+        "endLine": 32,
+        "endChar": 35
+      },
+      "revId": "1625c8eac100c0d7f6617503f0ffabfbb0bba423",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7afa4931_b39bea71",
+        "filename": "resources/libraries/robot/vxlan.robot",
+        "patchSetId": 12
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-16T14:28:36Z",
+      "side": 1,
+      "message": "No.\n\nYou\u0027ve changed what this KW do from \"Set up a VXLAN\" to  care about Bridge domain, and care about vlans. REmove the code, create separate KW for interconnecting of VXLAN and BD in your case.",
+      "range": {
+        "startLine": 66,
+        "startChar": 2,
+        "endLine": 66,
+        "endChar": 20
+      },
+      "revId": "1625c8eac100c0d7f6617503f0ffabfbb0bba423",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7afa4931_738d6231",
+        "filename": "resources/templates/vat/add_vlan_subif.vat",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-16T14:28:36Z",
+      "side": 1,
+      "message": "rename file to create_vlan_subif",
+      "revId": "1625c8eac100c0d7f6617503f0ffabfbb0bba423",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7afa4931_53826601",
+        "filename": "tests/suites/vxlan/vxlan_xconnect_untagged.robot",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-16T14:28:36Z",
+      "side": 1,
+      "message": "You see, compare vxlan_xconnect_unt and vxlan_bd_untagged. The only difference is some 3 letter parameter to Setup VXLAN tunnel on nodes. Test case looks the same, and the suite setup param is such a small thing to notice. We\u0027ve hidden too much.",
       "revId": "1625c8eac100c0d7f6617503f0ffabfbb0bba423",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
