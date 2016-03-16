@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7afa4931_73d8c253",
+        "filename": "resources/libraries/robot/bridge_domain.robot",
+        "patchSetId": 12
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-03-16T09:47:31Z",
+      "side": 1,
+      "message": "this is similar to code above except set interface state",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 55
+      },
+      "revId": "1625c8eac100c0d7f6617503f0ffabfbb0bba423",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
