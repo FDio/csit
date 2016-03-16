@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7afa4931_53ab8689",
+        "filename": "tests/suites/performance/long_bridge_domain.robot",
+        "patchSetId": 8
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-16T14:15:50Z",
+      "side": 1,
+      "message": "could you please add Documentation with what this file tests? The \"long_\" part is of importance.",
+      "revId": "a3bd227f2f59ee7bcc6feda88bfe95e57a2d6f60",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
