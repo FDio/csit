@@ -16,6 +16,10 @@
 from robot.api.deco import keyword
 from resources.libraries.python.topology import Topology
 from resources.libraries.python.VatExecutor import VatExecutor, VatTerminal
+from resources.libraries.python.parsers.JsonParser import JsonParser
+from robot.api import logger
+from ssh import SSH
+
 
 
 class L2Util(object):
@@ -38,6 +42,52 @@ class L2Util(object):
         VatExecutor.cmd_from_template(node, "add_l2_fib_entry.vat",
                                       mac=mac, bd=bd_id,
                                       interface=sw_if_index)
+
+    @staticmethod
+    def vpp_clear_l2fib_table(node):
+        """ Clear a entire L2FIB table on a vpp node.
+
+        :param node: Node to add L2FIB entry on.
+        :type node: dict
+        """
+        VatExecutor.cmd_from_template(node, "clear_l2fib.vat")
+
+    @staticmethod
+    def vpp_dump_bridge_domain(node):
+        """ Dump bridge domains on vpp node.
+
+        :param node: Node to add L2FIB entry on.
+        :type node: dict
+        """
+        with VatTerminal(node) as vat:
+	  out = vat.vat_terminal_exec_cmd_from_template("dump_bridge_domain.vat")
+        for bd in out[0]:
+            bridge_id = bd['bd_id']
+        return bridge_id
+
+    @staticmethod
+    def vpp_verify_l2fib_table(node, bridge_id, entries):
+        """ Read a entire L2FIB table size on a vpp node.
+
+        :param node: Node to add L2FIB entry on.
+        :param entries: number of entries to verify against the value from vpp
+        :type node: dict
+        :type entries: str
+        """
+        ssh = SSH()
+        ssh.connect(node)
+        (ret_code, stdout, stderr) = \
+                   ssh.exec_command_sudo('vppctl show l2fib')
+        if 0 != int(ret_code):
+	  logger.debug('stdout: {0}'.format(stdout))
+	  logger.debug('stderr: {0}'.format(stderr))
+          raise Exception('DUT {0} failed to execute "vppctl show l2fib" command'.
+                            format(node['host']))
+        logger.debug('stdout: {0}'.format(stdout))
+        l2fib_split = stdout.split()
+        if int(l2fib_split[0]) != int(entries):
+           raise RuntimeError(
+               'L2FIB actual table size ({0}) not correctly updated to {1} value'.format(l2fib_split[0], entries))
 
     @staticmethod
     def create_l2_bd(node, bd_id, flood=1, uu_flood=1, forward=1, learn=1,

@@ -27,3 +27,15 @@
 | | ${args}= | Traffic Script Gen Arg | ${dst_int} | ${src_int} | ${src_mac}
 | |          | ...                    | ${dst_mac} | ${src_ip} | ${dst_ip}
 | | Run Traffic Script On Node | send_ip_icmp.py | ${tg_node} | ${args}
+
+
+| Fill l2fib table
+| | [Documentation] | Send packet(s) from source interface while changing source MAC addresses
+| | [Arguments] | ${tg_node} | ${src_int} | ${dst_int} | ${pkt_count}
+| | ${src_mac}= | Get Interface Mac | ${tg_node} | ${src_int}
+| | ${dst_mac}= | Get Interface Mac | ${tg_node} | ${dst_int}
+| | ${src_ip}= | Set Variable | 192.168.100.1
+| | ${dst_ip}= | Set Variable | 192.168.100.2
+| | ${args}= | Traffic Script Gen Arg With Count | ${dst_int} | ${src_int} | ${src_mac}
+| |          | ...                    | ${dst_mac} | ${src_ip} | ${dst_ip} | ${pkt_count}
+| | Run Traffic Script On Node | fill_l2fib.py | ${tg_node} | ${args} | 20

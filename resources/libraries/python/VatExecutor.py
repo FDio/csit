@@ -162,7 +162,7 @@ class VatTerminal(object):
     def __exit__(self, exc_type, exc_val, exc_tb):
         self.vat_terminal_close()
 
-    def vat_terminal_exec_cmd(self, cmd):
+    def vat_terminal_exec_cmd(self, cmd, timeout=10):
         """Execute command on the opened VAT terminal.
 
            :param cmd: Command to be executed.
@@ -172,8 +172,8 @@ class VatTerminal(object):
         logger.debug("Executing command in VAT terminal: {}".format(cmd))
         out = self._ssh.interactive_terminal_exec_command(self._tty,
                                                           cmd,
-                                                          self.__VAT_PROMPT)
-        logger.debug("VAT output: {}".format(out))
+                                                          self.__VAT_PROMPT, time_out=timeout)
+        logger.debug("VAT output: {0}".format(out))
         json_out = json.loads(out)
         return json_out
 
@@ -184,7 +184,7 @@ class VatTerminal(object):
                                                     self.__LINUX_PROMPT)
         self._ssh.interactive_terminal_close(self._tty)
 
-    def vat_terminal_exec_cmd_from_template(self, vat_template_file, **args):
+    def vat_terminal_exec_cmd_from_template(self, vat_template_file, timeout=10, **args):
         """Execute VAT script from a file.
         :param vat_template_file: template file name of a VAT script
         :param args: dictionary of parameters for VAT script
@@ -197,5 +197,5 @@ class VatTerminal(object):
         ret = []
         for line_tmpl in cmd_template:
             vat_cmd = line_tmpl.format(**args)
-            ret.append(self.vat_terminal_exec_cmd(vat_cmd.replace('\n', '')))
+            ret.append(self.vat_terminal_exec_cmd(vat_cmd.replace('\n', ''), timeout=timeout))
         return ret
