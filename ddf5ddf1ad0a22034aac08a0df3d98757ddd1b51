@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5af74547_1dcf53b2",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-03-17T07:47:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7afa4931_5399466d",
+      "range": {
+        "startLine": 125,
+        "startChar": 54,
+        "endLine": 125,
+        "endChar": 62
+      },
+      "revId": "ddf5ddf1ad0a22034aac08a0df3d98757ddd1b51",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7afa4931_73944237",
         "filename": "resources/libraries/python/QemuUtils.py",
         "patchSetId": 1
@@ -42,6 +66,24 @@
     },
     {
       "key": {
+        "uuid": "5af74547_fdc38788",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-03-17T07:47:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7afa4931_73944237",
+      "revId": "ddf5ddf1ad0a22034aac08a0df3d98757ddd1b51",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7afa4931_d3755633",
         "filename": "resources/libraries/python/QemuUtils.py",
         "patchSetId": 1
@@ -53,6 +95,30 @@
       "writtenOn": "2016-03-16T15:26:11Z",
       "side": 1,
       "message": "this is cool! Will help debugging too. Could you please add some documentation here?",
+      "range": {
+        "startLine": 142,
+        "startChar": 34,
+        "endLine": 142,
+        "endChar": 65
+      },
+      "revId": "ddf5ddf1ad0a22034aac08a0df3d98757ddd1b51",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5af74547_ddc0cb7e",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-03-17T07:47:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7afa4931_d3755633",
       "range": {
         "startLine": 142,
         "startChar": 34,
@@ -88,6 +154,30 @@
     },
     {
       "key": {
+        "uuid": "5af74547_bdbdff04",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-03-17T07:47:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7afa4931_339eba57",
+      "range": {
+        "startLine": 212,
+        "startChar": 36,
+        "endLine": 212,
+        "endChar": 58
+      },
+      "revId": "ddf5ddf1ad0a22034aac08a0df3d98757ddd1b51",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7afa4931_13a3be9f",
         "filename": "resources/libraries/python/QemuUtils.py",
         "patchSetId": 1
@@ -99,6 +189,24 @@
       "writtenOn": "2016-03-16T15:26:11Z",
       "side": 1,
       "message": "What VM what node.",
+      "revId": "ddf5ddf1ad0a22034aac08a0df3d98757ddd1b51",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5af74547_9dba4309",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-03-17T07:47:06Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7afa4931_13a3be9f",
       "revId": "ddf5ddf1ad0a22034aac08a0df3d98757ddd1b51",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
@@ -133,6 +241,24 @@
       "writtenOn": "2016-03-17T07:14:01Z",
       "side": 1,
       "message": "I have this idea to store PID after QEMU start but this is little bit tricky when you want kill QEMU in start phase (e.g. when waiting for Vhost socket) there are 3 QEMU processes because we daemonize QEMU.",
+      "parentUuid": "7afa4931_d3ac368f",
+      "revId": "ddf5ddf1ad0a22034aac08a0df3d98757ddd1b51",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5af74547_7d3777b1",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 347,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-03-17T07:47:06Z",
+      "side": 1,
+      "message": "Done",
       "parentUuid": "7afa4931_d3ac368f",
       "revId": "ddf5ddf1ad0a22034aac08a0df3d98757ddd1b51",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
