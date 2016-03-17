@@ -11,6 +11,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+*** Variables ***
+| ${MAX_L2FIB_SIZE}= | 65536
+
 *** Settings ***
 | Resource | resources/libraries/robot/default.robot
 | Resource | resources/libraries/robot/interfaces.robot
@@ -73,3 +76,46 @@
 | | ...                       | ${mac}
 | | Send and receive ICMPv4 | ${tg} | ${tg_if1} | ${tg_if2}
 | | Send and receive ICMPv4 | ${tg} | ${tg_if2} | ${tg_if1}
+
+| Sends 1 packet via L2 BD in circular topology to modify L2FIB table and verify the table
+| | [Tags] | 3_NODE_SINGLE_LINK_TOPO
+| | Append Nodes | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
+| | Compute Path
+| | ${tg_if1} | ${tg}= | Next Interface
+| | ${dut1_if1} | ${dut1}= | Next Interface
+| | ${dut1_if2} | ${dut1}= | Next Interface
+| | ${tg_if2} | ${tg}= | Next Interface
+| | Vpp l2bd forwarding setup | ${dut1} | ${dut1_if1} | ${dut1_if2}
+| | Vpp clear l2fib table | ${dut1}
+| | Fill l2fib table | ${tg} | ${tg_if1} | ${tg_if2} | 1
+| | ${bridge_ip} | Vpp dump bridge domain | ${dut1}
+| | Vpp verify l2fib table | ${dut1} | ${bridge_ip} | 1
+
+| Sends 65536 packet via L2 BD in circular topology to modify L2FIB table and verify the table
+| | [Tags] | 3_NODE_SINGLE_LINK_TOPO
+| | Append Nodes | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
+| | Compute Path
+| | ${tg_if1} | ${tg}= | Next Interface
+| | ${dut1_if1} | ${dut1}= | Next Interface
+| | ${dut1_if2} | ${dut1}= | Next Interface
+| | ${tg_if2} | ${tg}= | Next Interface
+| | Vpp l2bd forwarding setup | ${dut1} | ${dut1_if1} | ${dut1_if2}
+| | Vpp clear l2fib table | ${dut1}
+| | Fill l2fib table | ${tg} | ${tg_if1} | ${tg_if2} | ${MAX_L2FIB_SIZE}
+| | ${bridge_ip} | Vpp dump bridge domain | ${dut1}
+| | Vpp verify l2fib table | ${dut1} | ${bridge_ip} | ${MAX_L2FIB_SIZE}
+
+| Sends 65537 packet via L2 BD in circular topology to modify L2FIB table and verify the table
+| | [Tags] | 3_NODE_SINGLE_LINK_TOPO
+| | Append Nodes | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
+| | Compute Path
+| | ${tg_if1} | ${tg}= | Next Interface
+| | ${dut1_if1} | ${dut1}= | Next Interface
+| | ${dut1_if2} | ${dut1}= | Next Interface
+| | ${tg_if2} | ${tg}= | Next Interface
+| | Vpp l2bd forwarding setup | ${dut1} | ${dut1_if1} | ${dut1_if2}
+| | Vpp clear l2fib table | ${dut1}
+| | ${cnt}= | Evaluate | ${MAX_L2FIB_SIZE} + 1
+| | Fill l2fib table | ${tg} | ${tg_if1} | ${tg_if2} | ${cnt}
+| | ${bridge_ip} | Vpp dump bridge domain | ${dut1}
+| | Vpp verify l2fib table | ${dut1} | ${bridge_ip} | ${MAX_L2FIB_SIZE}

@@ -88,4 +88,32 @@ class TrafficScriptExecutor(object):
         args = '--rx_if {0} --tx_if {1} --src_mac {2} --dst_mac {3} --src_ip' \
             ' {4} --dst_ip {5}'.format(rx_if, tx_if, src_mac, dst_mac, src_ip,
                                        dst_ip)
+	logger.trace("{}".format(args))
+        return args
+
+    @staticmethod
+    def traffic_script_gen_arg_with_count(rx_if, tx_if, src_mac, dst_mac, src_ip, dst_ip, pkt_count):
+        """Generate traffic script basic arguments string.
+
+           :param rx_if: Interface that receives traffic.
+           :param tx_if: Interface that sends traffic.
+           :param src_mac: Source MAC address.
+           :param dst_mac: Destination MAC address.
+           :param src_ip: Source IP address.
+           :param dst_ip: Destination IP address.
+           :param pkt_count: count of packets to send
+           :type rx_if: str
+           :type tx_if: str
+           :type src_mac: str
+           :type dst_mac: str
+           :type src_ip: str
+           :type dst_ip: str
+           :type pkt_count: str
+           :return: Traffic script arguments string.
+           :rtype: str
+        """
+        args = '--rx_if {0} --tx_if {1} --src_mac {2} --dst_mac {3} --src_ip' \
+            ' {4} --dst_ip {5} --pkt_count {6}'.format(rx_if, tx_if, src_mac, dst_mac, src_ip,
+                                       dst_ip, pkt_count)
+	logger.trace("{}".format(args))
         return args
