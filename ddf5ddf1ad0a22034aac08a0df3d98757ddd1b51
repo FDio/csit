@@ -119,6 +119,24 @@
       "revId": "ddf5ddf1ad0a22034aac08a0df3d98757ddd1b51",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5af74547_9de36333",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 347,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-03-17T07:14:01Z",
+      "side": 1,
+      "message": "I have this idea to store PID after QEMU start but this is little bit tricky when you want kill QEMU in start phase (e.g. when waiting for Vhost socket) there are 3 QEMU processes because we daemonize QEMU.",
+      "parentUuid": "7afa4931_d3ac368f",
+      "revId": "ddf5ddf1ad0a22034aac08a0df3d98757ddd1b51",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
