@@ -67,6 +67,17 @@ class SSH(object):
                 format(self._ssh.get_transport().getpeername()))
         logger.debug('Connections: {0}'.format(str(SSH.__existing_connections)))
 
+    def disconnect(self, node):
+        """Close SSH connection to the node.
+
+        :param node: The node to disconnect from.
+        :type node: dict
+        """
+        node_hash = self._node_hash(node)
+        if node_hash in SSH.__existing_connections:
+            ssh = SSH.__existing_connections.pop(node_hash)
+            ssh.close()
+
     def exec_command(self, cmd, timeout=10):
         """Execute SSH command on a new channel on the connected Node.
 
