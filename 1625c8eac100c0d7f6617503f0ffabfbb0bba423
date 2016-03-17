@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5af74547_7da1b7a8",
+        "filename": "resources/libraries/python/VatExecutor.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-03-17T14:19:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7afa4931_33e23a04",
+      "range": {
+        "startLine": 173,
+        "startChar": 16,
+        "endLine": 173,
+        "endChar": 36
+      },
+      "revId": "1625c8eac100c0d7f6617503f0ffabfbb0bba423",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7afa4931_d39e7663",
         "filename": "resources/libraries/python/topology.py",
         "patchSetId": 12
@@ -42,6 +66,24 @@
     },
     {
       "key": {
+        "uuid": "5af74547_dd220b01",
+        "filename": "resources/libraries/python/topology.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 342,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-03-17T14:19:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7afa4931_d39e7663",
+      "revId": "1625c8eac100c0d7f6617503f0ffabfbb0bba423",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7afa4931_73d8c253",
         "filename": "resources/libraries/robot/bridge_domain.robot",
         "patchSetId": 12
@@ -53,6 +95,30 @@
       "writtenOn": "2016-03-16T09:47:31Z",
       "side": 1,
       "message": "this is similar to code above except set interface state",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 55
+      },
+      "revId": "1625c8eac100c0d7f6617503f0ffabfbb0bba423",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5af74547_9dc48360",
+        "filename": "resources/libraries/robot/bridge_domain.robot",
+        "patchSetId": 12
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-03-17T14:19:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7afa4931_73d8c253",
       "range": {
         "startLine": 30,
         "startChar": 0,
@@ -122,6 +188,24 @@
       "writtenOn": "2016-03-16T14:28:36Z",
       "side": 1,
       "message": "rename file to create_vlan_subif",
+      "revId": "1625c8eac100c0d7f6617503f0ffabfbb0bba423",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5af74547_5da6fbc2",
+        "filename": "resources/templates/vat/add_vlan_subif.vat",
+        "patchSetId": 12
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-03-17T14:19:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7afa4931_738d6231",
       "revId": "1625c8eac100c0d7f6617503f0ffabfbb0bba423",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
