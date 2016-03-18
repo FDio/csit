@@ -58,6 +58,8 @@ class DropRateSearch(object):
         self._rate_start = 100
         #step of the linear search, unit: RateType (self._rate_type)
         self._rate_linear_step = 10
+        #last rate of the binary search, unit: RateType (self._rate_type)
+        self._last_binary_rate = 0
         #linear search direction, permitted values: SearchDirection
         self._search_linear_direction = SearchDirection.TOP_DOWN
         #upper limit of search, unit: RateType (self._rate_type)
@@ -73,7 +75,7 @@ class DropRateSearch(object):
         #size of frames to send
         self._frame_size = "64"
         #binary convergence criterium type is self._rate_type
-        self._binary_convergence_threshhold = "0.01"
+        self._binary_convergence_threshold = 100000
         #numbers of traffic runs during one rate step
         self._max_attempts = 1
 
@@ -96,7 +98,7 @@ class DropRateSearch(object):
         :type loss_acceptance: float
         :type loss_acceptance_type: LossAcceptanceType
         :type traffic_type: str
-        :return: drop threshhold exceeded? (True/False)
+        :return: drop threshold exceeded? (True/False)
         :rtype bool
         """
         pass
@@ -185,6 +187,23 @@ class DropRateSearch(object):
         :rtype: int
         """
         return self._duration
+
+    def set_binary_convergence_threshold(self, convergence):
+        """Set convergence for binary search
+
+        :param convergence: treshold value number
+        :type convergence: float
+        :return: nothing
+        """
+        self._binary_convergence_threshold = float(convergence)
+
+    def get_binary_convergence_threshold(self):
+        """Get convergence for binary search
+
+        :return: treshold value number
+        :return: float
+        """
+        return self._binary_convergence_threshold
 
     def get_rate_type_str(self):
         """Return rate type representation
@@ -294,8 +313,54 @@ class DropRateSearch(object):
         elif self._search_result in [SearchResults.SUCCESS, SearchResults.SUSPICIOUS]:
             return self._search_result_rate
 
-    def binary_search(self):
-        raise NotImplementedError
+    def binary_search(self, b_min, b_max, traffic_type):
+        """Binary search of rate with loss below acceptance criteria
+
+        :param b_min: min range rate
+        :param b_max: max range rate
+        :param traffic_type: traffic profile
+        :type b_min: float
+        :type b_max: float
+        :param traffic_type: str
+        :return: nothing
+        """
+
+        if not self._rate_min <= float(b_min) <= self._rate_max:
+            raise ValueError("Min rate is not in min,max range")
+        if not self._rate_min <= float(b_max) <= self._rate_max:
+            raise ValueError("Max rate is not in min,max range")
+        if float(b_max) < float(b_min):
+            raise ValueError("Max rate is greater then min rate")
+
+        #binary search
+        # rate is half of interval + start of interval
+        rate = ((float(b_max) - float(b_min)) / 2) + float(b_min)
+        # rate diff with previous run
+        rate_diff = abs(self._last_binary_rate - rate)
+
+        # convergence criterium
+        if float(rate_diff) < float(self._binary_convergence_threshold):
+            if not self._search_result_rate:
+                self._search_result = SearchResults.FAILURE
+            else:
+                self._search_result = SearchResults.SUCCESS
+            return
+
+        self._last_binary_rate = rate
+
+        res = self.measure_loss(rate, self._frame_size,
+                                self._loss_acceptance,
+                                self._loss_acceptance_type,
+                                traffic_type)
+        #loss occured and it was above acceptance criteria
+        if res == False:
+            self.binary_search(b_min, rate, traffic_type)
+        #there was no loss / loss below acceptance criteria
+        elif res == True:
+            self._search_result_rate = rate
+            self.binary_search(rate, b_max, traffic_type)
+        else:
+            raise RuntimeError("Unknown search result")
 
     def combined_search(self):
         raise NotImplementedError
