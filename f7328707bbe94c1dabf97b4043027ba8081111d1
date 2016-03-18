@@ -1,0 +1,257 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5af74547_20aae4d4",
+        "filename": "resources/libraries/python/InterfaceSetup.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-03-18T12:07:31Z",
+      "side": 1,
+      "message": "Use the same name: subinterface",
+      "range": {
+        "startLine": 185,
+        "startChar": 23,
+        "endLine": 185,
+        "endChar": 36
+      },
+      "revId": "f7328707bbe94c1dabf97b4043027ba8081111d1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5af74547_a0b5d432",
+        "filename": "resources/libraries/python/InterfaceSetup.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-03-18T12:07:31Z",
+      "side": 1,
+      "message": "Add type of subinterface there: VLAN",
+      "range": {
+        "startLine": 187,
+        "startChar": 32,
+        "endLine": 187,
+        "endChar": 33
+      },
+      "revId": "f7328707bbe94c1dabf97b4043027ba8081111d1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5af74547_40f3b00a",
+        "filename": "resources/libraries/python/InterfaceSetup.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-03-18T12:07:31Z",
+      "side": 1,
+      "message": "Better would be: VLAN ID of subinterface to be created",
+      "range": {
+        "startLine": 189,
+        "startChar": 21,
+        "endLine": 189,
+        "endChar": 53
+      },
+      "revId": "f7328707bbe94c1dabf97b4043027ba8081111d1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5af74547_20f8a4e4",
+        "filename": "resources/libraries/python/InterfaceSetup.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-03-18T12:07:31Z",
+      "side": 1,
+      "message": "What about to move method update_tg_interface_data_on_node from topoogy.py to TGSetup.py? Then we could remove import of InterfaceSetup from topology.py and then import Topology class to InterfaceSetup.py and use it\u0027s method get_interface_sw_index instead of creation of the copy of this method there...",
+      "range": {
+        "startLine": 197,
+        "startChar": 8,
+        "endLine": 206,
+        "endChar": 62
+      },
+      "revId": "f7328707bbe94c1dabf97b4043027ba8081111d1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5af74547_e0d99c84",
+        "filename": "resources/libraries/python/InterfaceSetup.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-03-18T12:07:31Z",
+      "side": 1,
+      "message": "Please,use: VLAN subinterface with index {} crated on node {}.",
+      "range": {
+        "startLine": 213,
+        "startChar": 26,
+        "endLine": 213,
+        "endChar": 50
+      },
+      "revId": "f7328707bbe94c1dabf97b4043027ba8081111d1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5af74547_e0f51ccc",
+        "filename": "resources/libraries/python/topology.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 342,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-03-18T12:07:31Z",
+      "side": 1,
+      "message": "Better to use sw_index\nBut, please, consider to move this KW to some robot resource file. Python libraries should implement only basic KWs like get, set, check and KWs with difficult or impossible implementation in robot resource file.",
+      "range": {
+        "startLine": 342,
+        "startChar": 29,
+        "endLine": 342,
+        "endChar": 34
+      },
+      "revId": "f7328707bbe94c1dabf97b4043027ba8081111d1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5af74547_c0190024",
+        "filename": "resources/libraries/robot/vxlan.robot",
+        "patchSetId": 13
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-03-18T12:07:31Z",
+      "side": 1,
+      "message": "Please, align corresponding pipes for better readibility.",
+      "range": {
+        "startLine": 73,
+        "startChar": 0,
+        "endLine": 74,
+        "endChar": 76
+      },
+      "revId": "f7328707bbe94c1dabf97b4043027ba8081111d1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5af74547_a016f4ef",
+        "filename": "resources/libraries/robot/vxlan.robot",
+        "patchSetId": 13
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-03-18T12:07:31Z",
+      "side": 1,
+      "message": "Please, align corresponding pipes for better readibility.",
+      "range": {
+        "startLine": 80,
+        "startChar": 0,
+        "endLine": 82,
+        "endChar": 29
+      },
+      "revId": "f7328707bbe94c1dabf97b4043027ba8081111d1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5af74547_20e2e403",
+        "filename": "tests/suites/vxlan/vxlan_bd_dot1q.robot",
+        "patchSetId": 13
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-03-18T12:07:31Z",
+      "side": 1,
+      "message": "It is bad idea to hide this test specific settings to suite setup. Better is to use following construction of test case:\nGiven VXLAN tunnel test environment with BD initialized on nodes\nThen VPP can encapsulate L2 in VXLAN over IPv4 over Dot1Q\n\nwhere VXLAN tunnel test environment with BD initialized on nodes\u0027 and \u0027VPP can encapsulate L2 in VXLAN over IPv4 over Dot1Q\u0027 are user keywords defined in the test case.",
+      "range": {
+        "startLine": 23,
+        "startChar": 14,
+        "endLine": 25,
+        "endChar": 67
+      },
+      "revId": "f7328707bbe94c1dabf97b4043027ba8081111d1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5af74547_40ddf041",
+        "filename": "tests/suites/vxlan/vxlan_bd_untagged.robot",
+        "patchSetId": 13
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-03-18T12:07:31Z",
+      "side": 1,
+      "message": "It is bad idea to hide this test specific settings to suite setup. Better is to use following construction of test case:\nGiven VXLAN tunnel test environment with BD initialized on nodes\nThen Traffic can pass IPv4 bidiriectionally trough VXLAN\n\nwhere \u0027VXLAN tunnel test environment with BD initialized on nodes\u0027 and \u0027Traffic can pass IPv4 bidiriectionally trough VXLAN\u0027 are user keywords defined in the test case.",
+      "range": {
+        "startLine": 23,
+        "startChar": 31,
+        "endLine": 25,
+        "endChar": 50
+      },
+      "revId": "f7328707bbe94c1dabf97b4043027ba8081111d1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5af74547_00e7e813",
+        "filename": "tests/suites/vxlan/vxlan_xconnect_untagged.robot",
+        "patchSetId": 13
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-03-18T12:07:31Z",
+      "side": 1,
+      "message": "It is bad idea to hide this test specific settings to suite setup. Better is to use following construction of test case:\nGiven VXLAN tunnel test environment with x-connect initialized on nodes\nThen Traffic can pass IPv4 bidiriectionally trough VXLAN\n\nwhere \u0027VXLAN tunnel test environment with x-connect initialized on nodes\u0027 and \u0027Traffic can pass IPv4 bidiriectionally trough VXLAN\u0027 are user keywords defined in the test case.",
+      "range": {
+        "startLine": 23,
+        "startChar": 14,
+        "endLine": 25,
+        "endChar": 37
+      },
+      "revId": "f7328707bbe94c1dabf97b4043027ba8081111d1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
