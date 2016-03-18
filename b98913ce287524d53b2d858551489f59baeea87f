@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5af74547_dd5a0b50",
+        "filename": "tests/suites/bridge_domain/test.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 84
+      },
+      "writtenOn": "2016-03-18T08:20:34Z",
+      "side": 1,
+      "message": "License should be on top of file.\nPlease return separating pipes.",
+      "revId": "b98913ce287524d53b2d858551489f59baeea87f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
