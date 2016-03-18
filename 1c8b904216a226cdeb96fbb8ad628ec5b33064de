@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5af74547_c0e460ae",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-03-18T16:30:01Z",
+      "side": 1,
+      "message": "There should be 0.",
+      "range": {
+        "startLine": 181,
+        "startChar": 55,
+        "endLine": 181,
+        "endChar": 56
+      },
+      "revId": "1c8b904216a226cdeb96fbb8ad628ec5b33064de",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
