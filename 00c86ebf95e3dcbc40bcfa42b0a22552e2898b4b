@@ -1,0 +1,389 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5af74547_e3abe6d4",
+        "filename": "resources/libraries/python/L2Util.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-18T22:40:28Z",
+      "side": 1,
+      "message": "please use resources.libraries.python in newly added imports.",
+      "range": {
+        "startLine": 21,
+        "startChar": 5,
+        "endLine": 21,
+        "endChar": 8
+      },
+      "revId": "00c86ebf95e3dcbc40bcfa42b0a22552e2898b4b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5af74547_a3b5de32",
+        "filename": "resources/libraries/python/L2Util.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-18T22:40:28Z",
+      "side": 1,
+      "message": "redundant white space char.\nFix all occurrences please.",
+      "range": {
+        "startLine": 48,
+        "startChar": 11,
+        "endLine": 48,
+        "endChar": 12
+      },
+      "revId": "00c86ebf95e3dcbc40bcfa42b0a22552e2898b4b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5af74547_8382e250",
+        "filename": "resources/libraries/python/L2Util.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-18T22:40:28Z",
+      "side": 1,
+      "message": "\"Clear entire\"...",
+      "range": {
+        "startLine": 48,
+        "startChar": 18,
+        "endLine": 48,
+        "endChar": 20
+      },
+      "revId": "00c86ebf95e3dcbc40bcfa42b0a22552e2898b4b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5af74547_2381ce4a",
+        "filename": "resources/libraries/python/L2Util.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-18T22:40:28Z",
+      "side": 1,
+      "message": "please describe what this function returns. I can see BD id, but which one ?",
+      "revId": "00c86ebf95e3dcbc40bcfa42b0a22552e2898b4b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5af74547_437cda72",
+        "filename": "resources/libraries/python/L2Util.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-18T22:40:28Z",
+      "side": 1,
+      "message": "remove all indent tabs from your diff please - use only spaces.",
+      "range": {
+        "startLine": 63,
+        "startChar": 0,
+        "endLine": 63,
+        "endChar": 1
+      },
+      "revId": "00c86ebf95e3dcbc40bcfa42b0a22552e2898b4b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5af74547_c38fca74",
+        "filename": "resources/libraries/python/L2Util.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-18T22:40:28Z",
+      "side": 1,
+      "message": "looks like that this function really verifies table size. Could you please rename the function accordingly?",
+      "range": {
+        "startLine": 69,
+        "startChar": 8,
+        "endLine": 69,
+        "endChar": 30
+      },
+      "revId": "00c86ebf95e3dcbc40bcfa42b0a22552e2898b4b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5af74547_0396d294",
+        "filename": "resources/libraries/python/L2Util.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-18T22:40:28Z",
+      "side": 1,
+      "message": "RuntimeError",
+      "range": {
+        "startLine": 84,
+        "startChar": 16,
+        "endLine": 84,
+        "endChar": 25
+      },
+      "revId": "00c86ebf95e3dcbc40bcfa42b0a22552e2898b4b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5af74547_e392c69e",
+        "filename": "resources/libraries/python/L2Util.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-18T22:40:28Z",
+      "side": 1,
+      "message": "wrap the line please.",
+      "range": {
+        "startLine": 90,
+        "startChar": 97,
+        "endLine": 90,
+        "endChar": 102
+      },
+      "revId": "00c86ebf95e3dcbc40bcfa42b0a22552e2898b4b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5af74547_a38cbe80",
+        "filename": "resources/libraries/python/TrafficScriptExecutor.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-18T22:40:28Z",
+      "side": 1,
+      "message": "Robot framework logs return values if I remember correctly. If yes, this is redundant. If not, then ignore me.",
+      "range": {
+        "startLine": 91,
+        "startChar": 0,
+        "endLine": 91,
+        "endChar": 32
+      },
+      "revId": "00c86ebf95e3dcbc40bcfa42b0a22552e2898b4b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5af74547_83e9c21c",
+        "filename": "resources/libraries/python/TrafficScriptExecutor.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-18T22:40:28Z",
+      "side": 1,
+      "message": "wrap please.",
+      "range": {
+        "startLine": 95,
+        "startChar": 99,
+        "endLine": 95,
+        "endChar": 101
+      },
+      "revId": "00c86ebf95e3dcbc40bcfa42b0a22552e2898b4b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5af74547_63eeb624",
+        "filename": "resources/libraries/python/TrafficScriptExecutor.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-18T22:40:28Z",
+      "side": 1,
+      "message": "too much copy-pasted code and documentation for one more parameter. Either make these two functions call one, or append pkt_count to the line just as other test cases do",
+      "range": {
+        "startLine": 95,
+        "startChar": 90,
+        "endLine": 95,
+        "endChar": 99
+      },
+      "revId": "00c86ebf95e3dcbc40bcfa42b0a22552e2898b4b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5af74547_6387d662",
+        "filename": "resources/templates/vat/clear_l2fib.vat",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-18T22:40:28Z",
+      "side": 1,
+      "message": "please ask devs if there is VPP API alternative.",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 16
+      },
+      "revId": "00c86ebf95e3dcbc40bcfa42b0a22552e2898b4b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5af74547_43f3ba0a",
+        "filename": "resources/traffic_scripts/fill_l2fib.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-18T22:40:28Z",
+      "side": 1,
+      "message": "this is probably left over.",
+      "range": {
+        "startLine": 48,
+        "startChar": 18,
+        "endLine": 48,
+        "endChar": 26
+      },
+      "revId": "00c86ebf95e3dcbc40bcfa42b0a22552e2898b4b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5af74547_03ddb270",
+        "filename": "tests/suites/bridge_domain/test.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-18T22:40:28Z",
+      "side": 1,
+      "message": "s",
+      "range": {
+        "startLine": 94,
+        "startChar": 20,
+        "endLine": 94,
+        "endChar": 21
+      },
+      "revId": "00c86ebf95e3dcbc40bcfa42b0a22552e2898b4b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5af74547_e3d9a684",
+        "filename": "tests/suites/bridge_domain/test.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-18T22:40:28Z",
+      "side": 1,
+      "message": "VPP\u0027s L2FIB table size, instead of fix number.\n\nThat\u0027s if we can extract the size. Ask the devs please.",
+      "range": {
+        "startLine": 94,
+        "startChar": 8,
+        "endLine": 94,
+        "endChar": 13
+      },
+      "revId": "00c86ebf95e3dcbc40bcfa42b0a22552e2898b4b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5af74547_c3e6aa44",
+        "filename": "tests/suites/bridge_domain/test.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-18T22:40:28Z",
+      "side": 1,
+      "message": "This isn\u0027t circular topology, but that is ok.\nYou have to change the TAG above to DOUBLE LINK topo for these tests though.\n\nThat, OR change to real circular topology, i.e. tg-\u003edut1-\u003edut2-\u003etg.",
+      "range": {
+        "startLine": 96,
+        "startChar": 0,
+        "endLine": 96,
+        "endChar": 69
+      },
+      "revId": "00c86ebf95e3dcbc40bcfa42b0a22552e2898b4b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5af74547_a3e39e32",
+        "filename": "tests/suites/bridge_domain/test.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-18T22:40:28Z",
+      "side": 1,
+      "message": "Also, I\u0027ve just noticed. These test cases in this file, even the ones that were here before, break the concept of how we write test cases.\n\nWe should strive to write the testcases in these files in such a way that it is readable be a non-technical manager, in plain(ish) English, and list these details in resources/libraries/robot/* files.",
+      "range": {
+        "startLine": 98,
+        "startChar": 4,
+        "endLine": 106,
+        "endChar": 71
+      },
+      "revId": "00c86ebf95e3dcbc40bcfa42b0a22552e2898b4b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
