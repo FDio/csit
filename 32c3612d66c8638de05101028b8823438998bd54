@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5af74547_833782b0",
+        "filename": "resources/libraries/python/DropRateSearch.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-18T22:58:21Z",
+      "side": 1,
+      "message": "Binary",
+      "range": {
+        "startLine": 318,
+        "startChar": 13,
+        "endLine": 318,
+        "endChar": 15
+      },
+      "revId": "32c3612d66c8638de05101028b8823438998bd54",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
