@@ -12,6 +12,7 @@
 # limitations under the License.
 *** Settings ***
 | Resource | resources/libraries/robot/performance.robot
+| Library | resources.libraries.python.InterfaceUtil
 | Library | resources.libraries.python.NodePath
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | PERFTEST_LONG
 | Suite Setup | 3-node Performance Suite Setup | L2
@@ -21,32 +22,32 @@
 | Documentation | Throughput search suite (long running test suite based on RFC2544).
 
 *** Test Cases ***
-| Find NDR by using linear search and 64B frames through bridge domain in 3-node topology
+| Find NDR by using linear search and 64B frames through L2 cross connect in 3-node topology
 | | ${framesize}= | Set Variable | 64
 | | ${start_rate}= | Set Variable | 5000000
 | | ${step_rate}= | Set Variable | 100000
 | | ${min_rate}= | Set Variable | 100000
 | | ${max_rate}= | Set Variable | 14880952
-| | Given L2 bridge domain initialized in a 3-node circular topology
+| | Given L2 xconnect initialized in a 3-node circular topology
 | | Then Find NDR using linear search and pps | ${framesize} | ${start_rate} | ${step_rate}
-| | ...                                       | 3-node-bridge | ${min_rate} | ${max_rate}
+| | ...                                       | 3-node-xconnect | ${min_rate} | ${max_rate}
 
-| Find NDR by using linear search and 1518B frames through bridge domain in 3-node topology
+| Find NDR by using linear search and 1518B frames through L2 cross connect in 3-node topology
 | | ${framesize}= | Set Variable | 1518
 | | ${start_rate}= | Set Variable | 812743
 | | ${step_rate}= | Set Variable | 10000
 | | ${min_rate}= | Set Variable | 10000
 | | ${max_rate}= | Set Variable | 812743
-| | Given L2 bridge domain initialized in a 3-node circular topology
+| | Given L2 xconnect initialized in a 3-node circular topology
 | | Then Find NDR using linear search and pps | ${framesize} | ${start_rate} | ${step_rate}
-| | ...                                       | 3-node-bridge | ${min_rate} | ${max_rate}
+| | ...                                       | 3-node-xconnect | ${min_rate} | ${max_rate}
 
-| Find NDR by using linear search and 9000B frames through bridge domain in 3-node topology
+| Find NDR by using linear search and 9000B frames through L2 cross connect in 3-node topology
 | | ${framesize}= | Set Variable | 9000
 | | ${start_rate}= | Set Variable | 138580
 | | ${step_rate}= | Set Variable | 5000
 | | ${min_rate}= | Set Variable | 5000
 | | ${max_rate}= | Set Variable | 138580
-| | Given L2 bridge domain initialized in a 3-node circular topology
+| | Given L2 xconnect initialized in a 3-node circular topology
 | | Then Find NDR using linear search and pps | ${framesize} | ${start_rate} | ${step_rate}
-| | ...                                       | 3-node-bridge | ${min_rate} | ${max_rate}
+| | ...                                       | 3-node-xconnect | ${min_rate} | ${max_rate}

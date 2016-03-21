@@ -15,6 +15,7 @@
 | Variables | resources/libraries/python/topology.py
 | Library | resources/libraries/python/DUTSetup.py
 | Library | resources/libraries/python/TGSetup.py
+| Library | Collections
 
 *** Keywords ***
 | Setup all DUTs before test
@@ -24,3 +25,10 @@
 | Setup all TGs before traffic script
 | | [Documentation] | Prepare all TGs before traffic scripts execution
 | | All TGs Set Interface Default Driver | ${nodes}
+
+| Show statistics on all DUTs
+| | [Documentation] | Show VPP statistics on all DUTs after the test failed
+| | Sleep | 10 | Waiting for statistics to be collected
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | Vpp show stats | ${nodes['${dut}']}
