@@ -17,26 +17,32 @@
 | Resource | resources/libraries/robot/performance.robot
 | Resource | resources/libraries/robot/counters.robot
 | Library | resources.libraries.python.TrafficGenerator
+| Library | resources.libraries.python.TrafficGenerator.TGDropRateSearchImpl
 | Library | resources.libraries.python.InterfaceUtil
 | Library | resources.libraries.python.NodePath
-| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | PERFTEST_SHORT
+| Library | resources.libraries.python.InterfaceUtil
+| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | PERFTEST_LONG
 | Suite Setup | 3-node Performance Suite Setup
 | Suite Teardown | 3-node Performance Suite Teardown
 | Test Setup | Setup all DUTs before test
 | Test Teardown  | Run Keyword If Test Failed | Show statistics on all DUTs
+| Documentation | Throughput search suite (long running test suite based on RFC2544).
 
 *** Test Cases ***
-| 1core VPP passes 64B frames through L2 cross connect at 3.5mpps in 3-node topology
+| Find NDR by using linear search and 64B frames through L2 cross connect in 3-node topology
 | | Given L2 xconnect initialized in a 3-node circular topology
-| | Then Traffic should pass with no loss | 10 | 3.5mpps | 64 | 3-node-xconnect
+| | Then Find NDR using linear search and pps | 64 | 5000000 | 100000
+| | ...                                       | 3-node-xconnect | 100000 | 14880952
 
-| 1core VPP passes 1518B frames through L2 cross connect at 10gbps in 3-node topology
+| Find NDR by using linear search and 1518B frames through L2 cross connect in 3-node topology
 | | Given L2 xconnect initialized in a 3-node circular topology
-| | Then Traffic should pass with no loss | 10 | 10gbps | 1518 | 3-node-xconnect
+| | Then Find NDR using linear search and pps | 1518 | 812743 | 10000
+| | ...                                       | 3-node-xconnect | 10000 | 812743
 
-| 1core VPP passes 9000B frames through L2 cross connect at 10gbps in 3-node topology
+| Find NDR by using linear search and 9000B frames through L2 cross connect in 3-node topology
 | | Given L2 xconnect initialized in a 3-node circular topology
-| | Then Traffic should pass with no loss | 10 | 10gbps | 9000 | 3-node-xconnect
+| | Then Find NDR using linear search and pps | 9000 | 138580 | 5000
+| | ...                                       | 3-node-xconnect | 5000 | 138580
 
 *** Keywords ***
 
