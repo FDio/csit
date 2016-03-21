@@ -35,3 +35,67 @@
 | | Set Suite Variable | ${dut2_if1}
 | | Set Suite Variable | ${dut2_if2}
 
+| IPv4 forwarding initialized in a 3-node circular topology
+| | [Documentation] | Custom setup of IPv4 addresses on all DUT nodes and TG
+| | Set Interface State | ${dut1} | ${dut1_if1} | up
+| | Set Interface State | ${dut1} | ${dut1_if2} | up
+| | Set Interface State | ${dut2} | ${dut2_if1} | up
+| | Set Interface State | ${dut2} | ${dut2_if2} | up
+| | ${tg1_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
+| | ${tg1_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
+| | ${dut1_if1_mac}= | Get Interface MAC | ${dut1} | ${dut1_if1}
+| | ${dut1_if2_mac}= | Get Interface MAC | ${dut1} | ${dut1_if2}
+| | ${dut2_if1_mac}= | Get Interface MAC | ${dut2} | ${dut1_if1}
+| | ${dut2_if2_mac}= | Get Interface MAC | ${dut2} | ${dut1_if2}
+| | dut1_v4.set_arp | ${dut1_if1} | 10.10.10.2 | ${tg1_if1_mac}
+| | dut1_v4.set_arp | ${dut1_if2} | 1.1.1.2 | ${dut2_if1_mac}
+| | dut2_v4.set_arp | ${dut2_if1} | 1.1.1.1 | ${dut1_if2_mac}
+| | dut2_v4.set_arp | ${dut2_if2} | 20.20.20.2 | ${tg1_if2_mac}
+| | dut1_v4.set_ip | ${dut1_if1} | 10.10.10.1 | 24
+| | dut1_v4.set_ip | ${dut1_if2} | 1.1.1.1 | 30
+| | dut2_v4.set_ip | ${dut2_if1} | 1.1.1.2 | 30
+| | dut2_v4.set_ip | ${dut2_if2} | 20.20.20.1 | 24
+| | dut1_v4.set_route | 20.20.20.0 | 24 | 1.1.1.2 | ${dut1_if2}
+| | dut2_v4.set_route | 10.10.10.0 | 24 | 1.1.1.1 | ${dut2_if1}
+| | All Vpp Interfaces Ready Wait | ${nodes}
+
+| L2 xconnect initialized in a 3-node circular topology
+| | [Documentation] | Custom setup of L2 xconnect topology
+| | L2 setup xconnect on DUT | ${dut1} | ${dut1_if1} | ${dut1_if2}
+| | L2 setup xconnect on DUT | ${dut2} | ${dut2_if1} | ${dut2_if2}
+| | All Vpp Interfaces Ready Wait | ${nodes}
+
+| L2 bridge domain initialized in a 3-node circular topology
+| | [Documentation] | Custom setup of L2 bridge topology
+| | Vpp l2bd forwarding setup | ${dut1} | ${dut1_if1} | ${dut1_if2}
+| | Vpp l2bd forwarding setup | ${dut2} | ${dut2_if1} | ${dut2_if2}
+| | All Vpp Interfaces Ready Wait | ${nodes}
+
+| 3-node Performance Suite Setup
+| | 3-node circular Topology Variables Setup
+| | [Arguments] | ${topology_type}
+| | Initialize traffic generator | ${tg} | ${tg_if1} | ${tg_if2}
+| | ...                          | ${dut1} | ${dut1_if1} | ${dut1_if2}
+| | ...                          | ${dut2} | ${dut2_if1} | ${dut2_if2}
+| | ...                          | ${topology_type}
+
+| 3-node Performance Suite Teardown
+| | Teardown traffic generator | ${tg}
+
+| Find NDR using linear search and pps
+| | [Arguments] | ${framesize} | ${start_rate} | ${step_rate}
+| | ...         | ${topology_type} | ${min_rate} | ${max_rate}
+| | Set Duration | 60
+| | Set Search Rate Boundaries | ${max_rate} | ${min_rate}
+| | Set Search Linear Step | ${step_rate}
+| | Set Search Frame Size | ${framesize}
+| | Set Search Rate Type pps
+| | Linear Search | ${start_rate} | ${topology_type}
+| | ${result_rate}= | Verify Search Result
+| | Set Test Message | FINAL_RATE: ${result_rate} pps
+
+| Traffic should pass with no loss
+| | [Arguments] | ${duration} | ${rate} | ${framesize} | ${topology_type}
+| | Send traffic on | ${tg} | ${duration}
+| | ...             | ${rate} | ${framesize} | ${topology_type}
+| | No traffic loss occured
