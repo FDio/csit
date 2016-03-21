@@ -1,0 +1,216 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a045101_dc6e8d96",
+        "filename": "resources/libraries/python/HTTPRequests.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-21T21:58:50Z",
+      "side": 1,
+      "message": "Please consider renaming to HTTPRequest.",
+      "range": {
+        "startLine": 52,
+        "startChar": 6,
+        "endLine": 52,
+        "endChar": 18
+      },
+      "revId": "85f001419d712fff88a3f2fa434a5502b62ba990",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_1c5d15ea",
+        "filename": "resources/libraries/python/HTTPRequests.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-21T21:58:50Z",
+      "side": 1,
+      "message": "URL path...",
+      "range": {
+        "startLine": 144,
+        "startChar": 21,
+        "endLine": 144,
+        "endChar": 67
+      },
+      "revId": "85f001419d712fff88a3f2fa434a5502b62ba990",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_fc714978",
+        "filename": "resources/libraries/python/HTTPRequests.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-21T21:58:50Z",
+      "side": 1,
+      "message": "these requests look very much alike. Please think how to lower the amount of copy-pasted code.\n\nKudos to you, for nice documentation!",
+      "range": {
+        "startLine": 257,
+        "startChar": 8,
+        "endLine": 257,
+        "endChar": 14
+      },
+      "revId": "85f001419d712fff88a3f2fa434a5502b62ba990",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_bc6bc184",
+        "filename": "resources/libraries/python/HoneycombSetup.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-21T21:58:50Z",
+      "side": 1,
+      "message": "while I value your attempt at getting a reasonable error in the logs, i must say I fear that this approach would lead to enormous source files. It is user\u0027s responsibility to have those settings configured for honeycomb nodes, so if they are missing from topology yaml, it\u0027s an KeyError.\n\nFurthermore, I think we\u0027ve talked about putting honeycomb related settings to separate block, didn\u0027t we?",
+      "range": {
+        "startLine": 76,
+        "startChar": 0,
+        "endLine": 77,
+        "endChar": 80
+      },
+      "revId": "85f001419d712fff88a3f2fa434a5502b62ba990",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_3c0fb1e3",
+        "filename": "resources/libraries/python/HoneycombSetup.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-21T21:58:50Z",
+      "side": 1,
+      "message": "{0}",
+      "revId": "85f001419d712fff88a3f2fa434a5502b62ba990",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_1c14f5f3",
+        "filename": "resources/libraries/python/HoneycombSetup.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-21T21:58:50Z",
+      "side": 1,
+      "message": "{0}",
+      "revId": "85f001419d712fff88a3f2fa434a5502b62ba990",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_fcf829c6",
+        "filename": "resources/libraries/python/HoneycombSetup.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-21T21:58:50Z",
+      "side": 1,
+      "message": "looks like we have a naming terminology clash. Please make it more explicitly obvious you are talking about ODL\u0027s topology, preferably use different name here, or in :param nodes: docstring line below.",
+      "range": {
+        "startLine": 210,
+        "startChar": 27,
+        "endLine": 210,
+        "endChar": 35
+      },
+      "revId": "85f001419d712fff88a3f2fa434a5502b62ba990",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_7c0539c1",
+        "filename": "resources/libraries/python/constants.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-21T21:58:50Z",
+      "side": 1,
+      "message": "for future, do not mix in one commit whitespace changes and code changes. It confuses reader in future.",
+      "revId": "85f001419d712fff88a3f2fa434a5502b62ba990",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_9c680589",
+        "filename": "resources/libraries/python/constants.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-21T21:58:50Z",
+      "side": 1,
+      "message": "remove trailing slash, update your code accordingly.",
+      "range": {
+        "startLine": 29,
+        "startChar": 71,
+        "endLine": 29,
+        "endChar": 72
+      },
+      "revId": "85f001419d712fff88a3f2fa434a5502b62ba990",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_5c0a7dd3",
+        "filename": "resources/libraries/python/constants.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-21T21:58:50Z",
+      "side": 1,
+      "message": "This belongs to some HTTP related lib.",
+      "range": {
+        "startLine": 35,
+        "startChar": 6,
+        "endLine": 35,
+        "endChar": 15
+      },
+      "revId": "85f001419d712fff88a3f2fa434a5502b62ba990",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
