@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5af74547_a3027e09",
+        "filename": "resources/libraries/python/HTTPRequests.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-03-21T12:34:11Z",
+      "side": 1,
+      "message": "we use \"param, param, type, type\" order",
+      "range": {
+        "startLine": 30,
+        "startChar": 8,
+        "endLine": 34,
+        "endChar": 34
+      },
+      "revId": "67644090f43ec5a4c2ebc715ec3f3ba50c63514a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5af74547_c61c786d",
+        "filename": "resources/libraries/python/HTTPRequests.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-03-21T12:34:11Z",
+      "side": 1,
+      "message": "add all new HC stuff in node to topology.sch.yaml",
+      "range": {
+        "startLine": 103,
+        "startChar": 49,
+        "endLine": 103,
+        "endChar": 63
+      },
+      "revId": "67644090f43ec5a4c2ebc715ec3f3ba50c63514a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5af74547_66048415",
+        "filename": "resources/libraries/python/HoneycombSetup.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-03-21T12:34:11Z",
+      "side": 1,
+      "message": "add some comment for those magic numbers",
+      "range": {
+        "startLine": 154,
+        "startChar": 36,
+        "endLine": 154,
+        "endChar": 57
+      },
+      "revId": "67644090f43ec5a4c2ebc715ec3f3ba50c63514a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5af74547_4609882b",
+        "filename": "resources/libraries/python/HoneycombSetup.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-03-21T12:34:11Z",
+      "side": 1,
+      "message": "used several times, may be define as constant",
+      "range": {
+        "startLine": 183,
+        "startChar": 40,
+        "endLine": 183,
+        "endChar": 60
+      },
+      "revId": "67644090f43ec5a4c2ebc715ec3f3ba50c63514a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5af74547_260e7c35",
+        "filename": "resources/libraries/python/constants.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-03-21T12:34:11Z",
+      "side": 1,
+      "message": "there should not be blank line at end of file",
+      "revId": "67644090f43ec5a4c2ebc715ec3f3ba50c63514a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5af74547_0613805d",
+        "filename": "resources/templates/honeycomb/add_vpp_to_topology.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-03-21T12:34:11Z",
+      "side": 1,
+      "message": "move to new line",
+      "range": {
+        "startLine": 8,
+        "startChar": 87,
+        "endLine": 8,
+        "endChar": 94
+      },
+      "revId": "67644090f43ec5a4c2ebc715ec3f3ba50c63514a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
