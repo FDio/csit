@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5af74547_066820b9",
+        "filename": "resources/libraries/python/InterfaceSetup.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-03-21T16:34:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5af74547_20aae4d4",
+      "range": {
+        "startLine": 185,
+        "startChar": 23,
+        "endLine": 185,
+        "endChar": 36
+      },
+      "revId": "f7328707bbe94c1dabf97b4043027ba8081111d1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5af74547_a0b5d432",
         "filename": "resources/libraries/python/InterfaceSetup.py",
         "patchSetId": 13
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "5af74547_c66118d5",
+        "filename": "resources/libraries/python/InterfaceSetup.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-03-21T16:34:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5af74547_a0b5d432",
+      "range": {
+        "startLine": 187,
+        "startChar": 32,
+        "endLine": 187,
+        "endChar": 33
+      },
+      "revId": "f7328707bbe94c1dabf97b4043027ba8081111d1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5af74547_40f3b00a",
         "filename": "resources/libraries/python/InterfaceSetup.py",
         "patchSetId": 13
@@ -59,6 +107,30 @@
       "writtenOn": "2016-03-18T12:07:31Z",
       "side": 1,
       "message": "Better would be: VLAN ID of subinterface to be created",
+      "range": {
+        "startLine": 189,
+        "startChar": 21,
+        "endLine": 189,
+        "endChar": 53
+      },
+      "revId": "f7328707bbe94c1dabf97b4043027ba8081111d1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5af74547_e66414e7",
+        "filename": "resources/libraries/python/InterfaceSetup.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-03-21T16:34:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5af74547_40f3b00a",
       "range": {
         "startLine": 189,
         "startChar": 21,
@@ -141,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "5af74547_a65e0c11",
+        "filename": "resources/libraries/python/InterfaceSetup.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-03-21T16:34:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5af74547_e0d99c84",
+      "range": {
+        "startLine": 213,
+        "startChar": 26,
+        "endLine": 213,
+        "endChar": 50
+      },
+      "revId": "f7328707bbe94c1dabf97b4043027ba8081111d1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5af74547_037c921f",
         "filename": "resources/libraries/python/VatExecutor.py",
         "patchSetId": 13
@@ -175,6 +271,30 @@
       "writtenOn": "2016-03-18T12:07:31Z",
       "side": 1,
       "message": "Better to use sw_index\nBut, please, consider to move this KW to some robot resource file. Python libraries should implement only basic KWs like get, set, check and KWs with difficult or impossible implementation in robot resource file.",
+      "range": {
+        "startLine": 342,
+        "startChar": 29,
+        "endLine": 342,
+        "endChar": 34
+      },
+      "revId": "f7328707bbe94c1dabf97b4043027ba8081111d1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5af74547_66a004f5",
+        "filename": "resources/libraries/python/topology.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 342,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-03-21T16:34:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5af74547_e0f51ccc",
       "range": {
         "startLine": 342,
         "startChar": 29,
