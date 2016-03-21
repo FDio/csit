@@ -10,10 +10,24 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
+
 class Constants(object):
-    #OpenVPP testing directory location at topology nodes
+    # OpenVPP testing directory location at topology nodes
     REMOTE_FW_DIR = '/tmp/openvpp-testing'
+
+    # shell scripts location
     RESOURCES_LIB_SH = 'resources/libraries/bash'
+
+    # vat templates location
     RESOURCES_TPL_VAT = 'resources/templates/vat'
-    #OpenVPP VAT binary name
+
+    # OpenVPP VAT binary name
     VAT_BIN_NAME = 'vpp_api_test'
+
+    # Honeycomb directory location at topology nodes:
+    REMOTE_HC_DIR = '/home/lab/honeycomb/v3po/karaf/target/assembly/bin/'
+
+    # Honeycomb templates location
+    RESOURCES_TPL_HC = 'resources/templates/honeycomb'
+
