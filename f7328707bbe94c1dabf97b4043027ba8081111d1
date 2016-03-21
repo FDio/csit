@@ -94,6 +94,30 @@
     },
     {
       "key": {
+        "uuid": "5af74547_23878e11",
+        "filename": "resources/libraries/python/InterfaceSetup.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-03-21T08:20:45Z",
+      "side": 1,
+      "message": "I think this is good idea and then  update_vpp_interface_data_on_node should be moved to DUTSetup.py too",
+      "parentUuid": "5af74547_20f8a4e4",
+      "range": {
+        "startLine": 197,
+        "startChar": 8,
+        "endLine": 206,
+        "endChar": 62
+      },
+      "revId": "f7328707bbe94c1dabf97b4043027ba8081111d1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5af74547_e0d99c84",
         "filename": "resources/libraries/python/InterfaceSetup.py",
         "patchSetId": 13
@@ -110,6 +134,29 @@
         "startChar": 26,
         "endLine": 213,
         "endChar": 50
+      },
+      "revId": "f7328707bbe94c1dabf97b4043027ba8081111d1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5af74547_037c921f",
+        "filename": "resources/libraries/python/VatExecutor.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-03-21T08:20:45Z",
+      "side": 1,
+      "message": "JSON",
+      "range": {
+        "startLine": 173,
+        "startChar": 26,
+        "endLine": 173,
+        "endChar": 30
       },
       "revId": "f7328707bbe94c1dabf97b4043027ba8081111d1",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
