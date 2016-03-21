@@ -1,0 +1,1 @@
+/restconf/operational/v3po:vpp-state/version
