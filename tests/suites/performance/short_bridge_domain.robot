@@ -45,22 +45,3 @@
 | | ...                          | ${dut1} | ${dut1_if1} | ${dut1_if2}
 | | ...                          | ${dut2} | ${dut2_if1} | ${dut2_if2}
 | | ...                          | L2
-
-| 3-node Performance Suite Teardown
-| | Teardown traffic generator | ${tg}
-
-| L2 bridge domain initialized in a 3-node circular topology
-| | Vpp l2bd forwarding setup | ${dut1} | ${dut1_if1} | ${dut1_if2}
-| | Vpp l2bd forwarding setup | ${dut2} | ${dut2_if1} | ${dut2_if2}
-| | All Vpp Interfaces Ready Wait | ${nodes}
-
-| Traffic should pass with no loss
-| | [Arguments] | ${duration} | ${rate} | ${framesize} | ${topology_type}
-| | Send traffic on | ${tg} | ${duration}
-| | ...             | ${rate} | ${framesize} | ${topology_type}
-| | No traffic loss occured
-
-| Show statistics on all DUTs
-| | Sleep | 10 | Waiting for statistics to be collected
-| | Vpp show stats | ${dut1}
-| | Vpp show stats | ${dut2}

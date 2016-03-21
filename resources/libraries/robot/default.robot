@@ -24,3 +24,8 @@
 | Setup all TGs before traffic script
 | | [Documentation] | Prepare all TGs before traffic scripts execution
 | | All TGs Set Interface Default Driver | ${nodes}
+
+| Show statistics on all DUTs
+| | Sleep | 10 | Waiting for statistics to be collected
+| | Vpp show stats | ${dut1}
+| | Vpp show stats | ${dut2}
