@@ -318,6 +318,30 @@
     },
     {
       "key": {
+        "uuid": "5af74547_c3ac6a8f",
+        "filename": "resources/templates/vat/clear_l2fib.vat",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-03-21T08:36:04Z",
+      "side": 1,
+      "message": "l2_fib_clear_table",
+      "parentUuid": "5af74547_6387d662",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 16
+      },
+      "revId": "00c86ebf95e3dcbc40bcfa42b0a22552e2898b4b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5af74547_e3cac66d",
         "filename": "resources/traffic_scripts/fill_l2fib.py",
         "patchSetId": 2
