@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5af74547_63bb56c5",
+        "filename": "bootstrap-vpp-build-test.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-03-21T08:44:21Z",
+      "side": 1,
+      "message": "The jenkins job fails while archiving the artifacts. There is no output.xml. Use:\nrebot --output output.xml ./log_test_set1.xml ./log_test_set2.xml ./log_test_set3.xml\nto generate output.xml",
+      "range": {
+        "startLine": 183,
+        "startChar": 0,
+        "endLine": 183,
+        "endChar": 65
+      },
+      "revId": "df5694bf26cbe8c9acbd024ed81c4c0b98caa8be",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5af74547_43b05add",
+        "filename": "bootstrap.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-03-21T08:44:21Z",
+      "side": 1,
+      "message": "The jenkins job fails while archiving the artifacts. There is no output.xml. Use: rebot --output output.xml ./log_test_set1.xml ./log_test_set2.xml ./log_test_set3.xml to generate output.xml",
+      "range": {
+        "startLine": 183,
+        "startChar": 0,
+        "endLine": 183,
+        "endChar": 65
+      },
+      "revId": "df5694bf26cbe8c9acbd024ed81c4c0b98caa8be",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
