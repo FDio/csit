@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a045101_7c4d3972",
+        "filename": "resources/libraries/python/DropRateSearch.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 333,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-03-21T16:18:16Z",
+      "side": 1,
+      "message": "Based on the condition there should be:\n\"Min rate is greater then max rate\"",
+      "range": {
+        "startLine": 333,
+        "startChar": 30,
+        "endLine": 333,
+        "endChar": 63
+      },
+      "revId": "059bd08ec30a10dd8e103c54f6c67c43b1040f1f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
