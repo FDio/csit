@@ -1,0 +1,1 @@
+/restconf/config/network-topology:network-topology/topology/topology-netconf

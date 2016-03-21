@@ -70,6 +70,18 @@ schema;type_interface_tg: &type_interface_tg
           <<: *type_interface_mapping_driver
           required: yes
 
+schema;type_honeycomb: &type_honeycomb
+  type: map
+  mapping: &type_honeycomb_mapping
+    honeycomb_user:
+      type: str
+    honeycomb_passwd:
+      type: str
+    honeycomb_port:
+      type: int
+    netconf_port:
+      type: int
+
 schema;type_node: &type_node
   type: map
   mapping: &type_node_mapping
@@ -108,6 +120,7 @@ schema;type_dut:
   type: map
   mapping:
     <<: *type_node_mapping
+    <<: *type_honeycomb_mapping
     type:
       <<: *type_node_mapping_type
       enum: [DUT]
