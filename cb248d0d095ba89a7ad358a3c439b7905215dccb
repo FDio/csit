@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5af74547_2372eee5",
+        "filename": "resources/libraries/python/DropRateSearch.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-03-21T11:11:03Z",
+      "side": 1,
+      "message": "should be :rtype",
+      "range": {
+        "startLine": 204,
+        "startChar": 8,
+        "endLine": 204,
+        "endChar": 15
+      },
+      "revId": "cb248d0d095ba89a7ad358a3c439b7905215dccb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5af74547_436dfa03",
+        "filename": "resources/libraries/python/DropRateSearch.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 324,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-03-21T11:11:03Z",
+      "side": 1,
+      "message": "should be :type",
+      "range": {
+        "startLine": 324,
+        "startChar": 8,
+        "endLine": 324,
+        "endChar": 14
+      },
+      "revId": "cb248d0d095ba89a7ad358a3c439b7905215dccb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
