@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "3a045101_bc54e1ca",
+        "filename": "tests/suites/performance/long_ipv4.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-21T21:12:27Z",
+      "side": 1,
+      "message": "I find these performance suites kind off polluted with unnecessary code that could have been moved to separate files. Please give it a think of a place where you could move those KWs from this file.",
+      "revId": "2dd27adcc74229b07b9057c1d164482a6c586914",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a045101_9cb5a533",
         "filename": "tests/suites/performance/long_ipv4.robot",
         "patchSetId": 1
@@ -19,6 +36,24 @@
     },
     {
       "key": {
+        "uuid": "3a045101_fc4a6926",
+        "filename": "tests/suites/performance/long_ipv4.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-21T21:12:27Z",
+      "side": 1,
+      "message": "Please add Documentation why we are not using the setup KW from v4 functional.",
+      "parentUuid": "3a045101_9cb5a533",
+      "revId": "2dd27adcc74229b07b9057c1d164482a6c586914",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a045101_7c82d953",
         "filename": "tests/suites/performance/long_xconnect.robot",
         "patchSetId": 1
@@ -30,6 +65,24 @@
       "writtenOn": "2016-03-21T17:42:30Z",
       "side": 1,
       "message": "please move this keyword to performance.robot library and adjust short_xconnect.robot",
+      "revId": "2dd27adcc74229b07b9057c1d164482a6c586914",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_dc47ad1c",
+        "filename": "tests/suites/performance/long_xconnect.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-21T21:12:27Z",
+      "side": 1,
+      "message": "Couldn\u0027t we use the setup KW from functional ?",
+      "parentUuid": "3a045101_7c82d953",
       "revId": "2dd27adcc74229b07b9057c1d164482a6c586914",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
