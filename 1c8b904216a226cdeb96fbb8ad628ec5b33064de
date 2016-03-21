@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5af74547_83b662db",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-03-21T08:46:02Z",
+      "side": 1,
+      "message": "Current code is only for one QEMU instance on one host.",
+      "parentUuid": "5af74547_80ee588a",
+      "range": {
+        "startLine": 126,
+        "startChar": 17,
+        "endLine": 126,
+        "endChar": 52
+      },
+      "revId": "1c8b904216a226cdeb96fbb8ad628ec5b33064de",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5af74547_c0e460ae",
         "filename": "resources/libraries/python/QemuUtils.py",
         "patchSetId": 2
@@ -59,6 +83,30 @@
       "writtenOn": "2016-03-18T16:33:43Z",
       "side": 1,
       "message": "-hda should be in self._qemu_opt[\u0027disk_image\u0027] with image name and other disk settings like -snapshot",
+      "range": {
+        "startLine": 311,
+        "startChar": 35,
+        "endLine": 311,
+        "endChar": 43
+      },
+      "revId": "1c8b904216a226cdeb96fbb8ad628ec5b33064de",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5af74547_03ca524f",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 311,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-03-21T08:46:02Z",
+      "side": 1,
+      "message": "-snapshot is not really required now",
+      "parentUuid": "5af74547_60f34c74",
       "range": {
         "startLine": 311,
         "startChar": 35,
