@@ -13,12 +13,16 @@
 *** Settings ***
 | Resource | resources/libraries/robot/default.robot
 | Resource | resources/libraries/robot/interfaces.robot
-| Resource | resources/libraries/robot/bridge_domain.robot
+| Resource | resources/libraries/robot/ipv4.robot
 | Resource | resources/libraries/robot/performance.robot
 | Resource | resources/libraries/robot/counters.robot
+| Library | resources.libraries.python.topology.Topology
 | Library | resources.libraries.python.TrafficGenerator
 | Library | resources.libraries.python.TrafficGenerator.TGDropRateSearchImpl
 | Library | resources.libraries.python.NodePath
+| Library | resources.libraries.python.InterfaceUtil
+| Library | resources.libraries.python.IPv4Setup.Dut | ${nodes['DUT1']} | WITH NAME | dut1_v4
+| Library | resources.libraries.python.IPv4Setup.Dut | ${nodes['DUT2']} | WITH NAME | dut2_v4
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | PERFTEST_LONG
 | Suite Setup | 3-node Performance Suite Setup
 | Suite Teardown | 3-node Performance Suite Teardown
@@ -27,20 +31,20 @@
 | Documentation | Throughput search suite (long running test suite based on RFC2544).
 
 *** Test Cases ***
-| Find NDR by using linear search and 64B frames through bridge domain in 3-node topology
-| | Given L2 bridge domain initialized in a 3-node circular topology
+| Find NDR by using linear search and 64B frames through IPv4 forwarding in 3-node topology
+| | Given IPv4 forwarding initialized in a 3-node circular topology
 | | Then Find NDR using linear search and pps | 64 | 5000000 | 100000
-| | ...                                       | 3-node-bridge | 100000 | 14880952
+| | ...                                       | 3-node-IPv4 | 100000 | 14880952
 
-| Find NDR by using linear search and 1518B frames through bridge domain in 3-node topology
-| | Given L2 bridge domain initialized in a 3-node circular topology
+| Find NDR by using linear search and 1518B frames through IPv4 forwarding in 3-node topology
+| | Given IPv4 forwarding initialized in a 3-node circular topology
 | | Then Find NDR using linear search and pps | 1518 | 812743 | 10000
-| | ...                                       | 3-node-bridge | 10000 | 812743
+| | ...                                       | 3-node-IPv4 | 10000 | 812743
 
-| Find NDR by using linear search and 9000B frames through bridge domain in 3-node topology
-| | Given L2 bridge domain initialized in a 3-node circular topology
+| Find NDR by using linear search and 9000B frames through IPv4 forwarding in 3-node topology
+| | Given IPv4 forwarding initialized in a 3-node circular topology
 | | Then Find NDR using linear search and pps | 9000 | 138580 | 5000
-| | ...                                       | 3-node-bridge | 5000 | 138580
+| | ...                                       | 3-node-IPv4 | 5000 | 138580
 
 
 *** Keywords ***
@@ -50,14 +54,32 @@
 | | Initialize traffic generator | ${tg} | ${tg_if1} | ${tg_if2}
 | | ...                          | ${dut1} | ${dut1_if1} | ${dut1_if2}
 | | ...                          | ${dut2} | ${dut2_if1} | ${dut2_if2}
-| | ...                          | L2
+| | ...                          | L3
 
 | 3-node Performance Suite Teardown
 | | Teardown traffic generator | ${tg}
 
-| L2 bridge domain initialized in a 3-node circular topology
-| | Vpp l2bd forwarding setup | ${dut1} | ${dut1_if1} | ${dut1_if2}
-| | Vpp l2bd forwarding setup | ${dut2} | ${dut2_if1} | ${dut2_if2}
+| IPv4 forwarding initialized in a 3-node circular topology
+| | Set Interface State | ${dut1} | ${dut1_if1} | up
+| | Set Interface State | ${dut1} | ${dut1_if2} | up
+| | Set Interface State | ${dut2} | ${dut2_if1} | up
+| | Set Interface State | ${dut2} | ${dut2_if2} | up
+| | ${tg1_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
+| | ${tg1_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
+| | ${dut1_if1_mac}= | Get Interface MAC | ${dut1} | ${dut1_if1}
+| | ${dut1_if2_mac}= | Get Interface MAC | ${dut1} | ${dut1_if2}
+| | ${dut2_if1_mac}= | Get Interface MAC | ${dut2} | ${dut1_if1}
+| | ${dut2_if2_mac}= | Get Interface MAC | ${dut2} | ${dut1_if2}
+| | dut1_v4.set_arp | ${dut1_if1} | 10.10.10.2 | ${tg1_if1_mac}
+| | dut1_v4.set_arp | ${dut1_if2} | 1.1.1.2 | ${dut2_if1_mac}
+| | dut2_v4.set_arp | ${dut2_if1} | 1.1.1.1 | ${dut1_if2_mac}
+| | dut2_v4.set_arp | ${dut2_if2} | 20.20.20.2 | ${tg1_if2_mac}
+| | dut1_v4.set_ip | ${dut1_if1} | 10.10.10.1 | 24
+| | dut1_v4.set_ip | ${dut1_if2} | 1.1.1.1 | 30
+| | dut2_v4.set_ip | ${dut2_if1} | 1.1.1.2 | 30
+| | dut2_v4.set_ip | ${dut2_if2} | 20.20.20.1 | 24
+| | dut1_v4.set_route | 20.20.20.0 | 24 | 1.1.1.2 | ${dut1_if2}
+| | dut2_v4.set_route | 10.10.10.0 | 24 | 1.1.1.1 | ${dut2_if1}
 | | All Vpp Interfaces Ready Wait | ${nodes}
 
 | Find NDR using linear search and pps

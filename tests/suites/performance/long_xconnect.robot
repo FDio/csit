@@ -13,13 +13,15 @@
 *** Settings ***
 | Resource | resources/libraries/robot/default.robot
 | Resource | resources/libraries/robot/interfaces.robot
-| Resource | resources/libraries/robot/bridge_domain.robot
+| Resource | resources/libraries/robot/l2_xconnect.robot
 | Resource | resources/libraries/robot/performance.robot
 | Resource | resources/libraries/robot/counters.robot
 | Library | resources.libraries.python.TrafficGenerator
 | Library | resources.libraries.python.TrafficGenerator.TGDropRateSearchImpl
+| Library | resources.libraries.python.InterfaceUtil
 | Library | resources.libraries.python.NodePath
-| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | PERFTEST_LONG
+| Library | resources.libraries.python.InterfaceUtil
+| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV| PERFTEST_LONG
 | Suite Setup | 3-node Performance Suite Setup
 | Suite Teardown | 3-node Performance Suite Teardown
 | Test Setup | Setup all DUTs before test
@@ -27,21 +29,20 @@
 | Documentation | Throughput search suite (long running test suite based on RFC2544).
 
 *** Test Cases ***
-| Find NDR by using linear search and 64B frames through bridge domain in 3-node topology
-| | Given L2 bridge domain initialized in a 3-node circular topology
+| Find NDR by using linear search and 64B frames through L2 cross connect in 3-node topology
+| | Given L2 xconnect initialized in a 3-node circular topology
 | | Then Find NDR using linear search and pps | 64 | 5000000 | 100000
-| | ...                                       | 3-node-bridge | 100000 | 14880952
+| | ...                                       | 3-node-xconnect | 100000 | 14880952
 
-| Find NDR by using linear search and 1518B frames through bridge domain in 3-node topology
-| | Given L2 bridge domain initialized in a 3-node circular topology
+| Find NDR by using linear search and 1518B frames through L2 cross connect in 3-node topology
+| | Given L2 xconnect initialized in a 3-node circular topology
 | | Then Find NDR using linear search and pps | 1518 | 812743 | 10000
-| | ...                                       | 3-node-bridge | 10000 | 812743
+| | ...                                       | 3-node-xconnect | 10000 | 812743
 
-| Find NDR by using linear search and 9000B frames through bridge domain in 3-node topology
-| | Given L2 bridge domain initialized in a 3-node circular topology
+| Find NDR by using linear search and 9000B frames through L2 cross connect in 3-node topology
+| | Given L2 xconnect initialized in a 3-node circular topology
 | | Then Find NDR using linear search and pps | 9000 | 138580 | 5000
-| | ...                                       | 3-node-bridge | 5000 | 138580
-
+| | ...                                       | 3-node-xconnect | 5000 | 138580
 
 *** Keywords ***
 
@@ -55,9 +56,9 @@
 | 3-node Performance Suite Teardown
 | | Teardown traffic generator | ${tg}
 
-| L2 bridge domain initialized in a 3-node circular topology
-| | Vpp l2bd forwarding setup | ${dut1} | ${dut1_if1} | ${dut1_if2}
-| | Vpp l2bd forwarding setup | ${dut2} | ${dut2_if1} | ${dut2_if2}
+| L2 xconnect initialized in a 3-node circular topology
+| | L2 setup xconnect on DUT | ${dut1} | ${dut1_if1} | ${dut1_if2}
+| | L2 setup xconnect on DUT | ${dut2} | ${dut2_if1} | ${dut2_if2}
 | | All Vpp Interfaces Ready Wait | ${nodes}
 
 | Find NDR using linear search and pps
