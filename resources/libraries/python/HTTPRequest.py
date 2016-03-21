@@ -1,0 +1,310 @@
+# Copyright (c) 2016 Cisco and/or its affiliates.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at:
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+
+from robot.api import logger
+import requests
+from requests.auth import HTTPBasicAuth
+from robot.api.deco import keyword
+
+
+class HTTPRequestError(Exception):
+    """Exception raised by HTTPRequest objects."""
+
+    def __init__(self, msg, enable_logging=True):
+        """Sets the exception message and enables / disables logging
+
+        It is not wanted to log errors when using these keywords together
+        with keywords like "Wait until keyword succeeds".
+
+        :param msg: Message to be displayed and logged
+        :param enable_logging: When True, logging is enabled, otherwise
+        logging is disabled.
+        :type msg: str
+        :type enable_logging: bool
+        """
+
+        self._msg = msg
+        self._repr_msg = self.__module__ + '.' + \
+            self.__class__.__name__ + ": " + self._msg
+
+        if enable_logging:
+            logger.error(self._msg)
+            logger.debug(self._repr_msg)
+
+    def __repr__(self):
+        return repr(self._repr_msg)
+
+    def __str__(self):
+        return str(self._repr_msg)
+
+
+class HTTPCodes(object):
+    # HTTP status codes
+    OK = 200
+    UNAUTHORIZED = 401
+    FORBIDDEN = 403
+    NOT_FOUND = 404
+    SERVICE_UNAVAILABLE = 503
+
+
+class HTTPRequest(object):
+    """A class implementing HTTP requests."""
+
+    def __init__(self):
+        pass
+
+    @staticmethod
+    @keyword(name="Create Full Url")
+    def create_full_url(ip, port, path):
+        """Creates full url including IP, port, and path to data.
+
+        :param ip: Server IP
+        :param port: Communication port
+        :param path: Path to data
+        :type ip: str
+        :type port: str or int
+        :type path: str
+        :return: full url
+        :rtype: str
+        """
+        return "http://{ip}:{port}{path}".format(ip=ip, port=port, path=path)
+
+    @staticmethod
+    @keyword(name="HTTP Get")
+    def get(node, path, headers=None, timeout=10, enable_logging=True):
+        """Sends a GET request and returns the response and status code.
+
+        :param node: honeycomb node
+        :param path: URL path, e.g. /index.html
+        :param headers: Dictionary of HTTP Headers to send with the Request.
+        :param timeout: How long to wait for the server to send data before
+        giving up, as a float, or a (connect timeout, read timeout) tuple.
+        :param enable_logging: used to suppress errors when checking
+        honeycomb state during suite setup and teardown
+        :param enable_logging: When True, logging is enabled, otherwise
+        logging is disabled.
+        :type node: dict
+        :type path: str
+        :type headers: dict
+        :type timeout: float or tuple
+        :type enable_logging: bool
+        :return: Status code and content of response
+        :rtype: tuple
+        :raises HTTPRequestError: If
+        1. it is not possible to connect
+        2. invalid HTTP response comes from server
+        3. request exceeded the configured number of maximum re-directions
+        4. request timed out
+        5. there is any other unexpected HTTP request exception
+        """
+        url = HTTPRequest.create_full_url(node['host'],
+                                           node['honeycomb']['honeycomb_port'],
+                                           path)
+        try:
+            auth = HTTPBasicAuth(node['honeycomb']['honeycomb_user'],
+                                 node['honeycomb']['honeycomb_passwd'])
+            r = requests.get(url=url,
+                             auth=auth,
+                             headers=headers,
+                             timeout=timeout)
+
+            return r.status_code, r.content
+
+        except requests.ConnectionError as err:
+            # Switching the logging on / off is needed only for
+            # "requests.ConnectionError"
+            if enable_logging:
+                raise HTTPRequestError("Not possible to connect to {0}\n".
+                                       format(url) + repr(err))
+            else:
+                raise HTTPRequestError("Not possible to connect to {0}\n".
+                                       format(url) + repr(err),
+                                       enable_logging=False)
+        except requests.HTTPError as err:
+            raise HTTPRequestError("Invalid HTTP response from {0}\n".
+                                   format(url) + repr(err))
+        except requests.TooManyRedirects as err:
+            raise HTTPRequestError("Request exceeded the configured number "
+                                   "of maximum re-directions\n" + repr(err))
+        except requests.Timeout as err:
+            raise HTTPRequestError("Request timed out. Timeout is set to "
+                                   "{0}\n".format(timeout) + repr(err))
+        except requests.RequestException as err:
+            raise HTTPRequestError("Unexpected HTTP request exception.\n" +
+                                   repr(err))
+
+    @staticmethod
+    @keyword(name="HTTP Put")
+    def put(node, path, headers=None, payload=None, timeout=10):
+        """Sends a PUT request and returns the response and status code.
+
+        :param node: honeycomb node
+        :param path: URL path, e.g. /index.html
+        :param headers: Dictionary of HTTP Headers to send with the Request.
+        :param payload: Dictionary, bytes, or file-like object to send in
+        the body of the Request.
+        :param timeout: How long to wait for the server to send data before
+        giving up, as a float, or a (connect timeout, read timeout) tuple.
+        :type node: dict
+        :type path: str
+        :type headers: dict
+        :type payload: dict, bytes, or file-like object
+        :type timeout: float or tuple
+        :return: Status code and content of response
+        :rtype: tuple
+        :raises HTTPRequestError: If
+        1. it is not possible to connect
+        2. invalid HTTP response comes from server
+        3. request exceeded the configured number of maximum re-directions
+        4. request timed out
+        5. there is any other unexpected HTTP request exception
+        """
+
+        url = HTTPRequest.create_full_url(node['host'],
+                                           node['honeycomb']['honeycomb_port'],
+                                           path)
+        try:
+            auth = HTTPBasicAuth(node['honeycomb']['honeycomb_user'],
+                                 node['honeycomb']['honeycomb_passwd'])
+            r = requests.put(url=url,
+                             auth=auth,
+                             headers=headers,
+                             data=payload,
+                             timeout=timeout)
+
+            return r.status_code, r.content
+
+        except requests.ConnectionError as err:
+            raise HTTPRequestError("Not possible to connect to {0}\n".
+                                   format(url) + repr(err))
+        except requests.HTTPError as err:
+            raise HTTPRequestError("Invalid HTTP response from {0}\n".
+                                   format(url) + repr(err))
+        except requests.TooManyRedirects as err:
+            raise HTTPRequestError("Request exceeded the configured number "
+                                   "of maximum re-directions\n" + repr(err))
+        except requests.Timeout as err:
+            raise HTTPRequestError("Request timed out. Timeout is set to "
+                                   "{0}\n".format(timeout) + repr(err))
+        except requests.RequestException as err:
+            raise HTTPRequestError("Unexpected HTTP request exception.\n" +
+                                   repr(err))
+
+    @staticmethod
+    @keyword(name="HTTP Post")
+    def post(node, path, headers=None, payload=None, json=None, timeout=10):
+        """Sends a POST request and returns the response and status code.
+
+        :param node: honeycomb node
+        :param path: URL path, e.g. /index.html
+        :param headers: Dictionary of HTTP Headers to send with the Request.
+        :param payload: Dictionary, bytes, or file-like object to send in
+        the body of the Request.
+        :param json: json data to send in the body of the Request
+        :param timeout: How long to wait for the server to send data before
+        giving up, as a float, or a (connect timeout, read timeout) tuple.
+        :type node: dict
+        :type path: str
+        :type headers: dict
+        :type payload: dict, bytes, or file-like object
+        :type json: str
+        :type timeout: float or tuple
+        :return: Status code and content of response
+        :rtype: tuple
+        :raises HTTPRequestError: If
+        1. it is not possible to connect
+        2. invalid HTTP response comes from server
+        3. request exceeded the configured number of maximum re-directions
+        4. request timed out
+        5. there is any other unexpected HTTP request exception
+        """
+
+        url = HTTPRequest.create_full_url(node['host'],
+                                           node['honeycomb']['honeycomb_port'],
+                                           path)
+        try:
+            auth = HTTPBasicAuth(node['honeycomb']['honeycomb_user'],
+                                 node['honeycomb']['honeycomb_passwd'])
+            r = requests.post(url=url,
+                              auth=auth,
+                              headers=headers,
+                              data=payload,
+                              json=json,
+                              timeout=timeout)
+
+            return r.status_code, r.content
+
+        except requests.ConnectionError as err:
+            raise HTTPRequestError("Not possible to connect to {0}\n".
+                                   format(url) + repr(err))
+        except requests.HTTPError as err:
+            raise HTTPRequestError("Invalid HTTP response from {0}\n".
+                                   format(url) + repr(err))
+        except requests.TooManyRedirects as err:
+            raise HTTPRequestError("Request exceeded the configured number "
+                                   "of maximum re-directions\n" + repr(err))
+        except requests.Timeout as err:
+            raise HTTPRequestError("Request timed out. Timeout is set to "
+                                   "{0}\n".format(timeout) + repr(err))
+        except requests.RequestException as err:
+            raise HTTPRequestError("Unexpected HTTP request exception.\n" +
+                                   repr(err))
+
+    @staticmethod
+    @keyword(name="HTTP Delete")
+    def delete(node, path, timeout=10):
+        """Sends a DELETE request and returns the response and status code.
+
+        :param node: honeycomb node
+        :param path: URL path, e.g. /index.html
+        :param timeout: How long to wait for the server to send data before
+        giving up, as a float, or a (connect timeout, read timeout) tuple.
+        :type node: dict
+        :type path: str
+        :type timeout: float or tuple
+        :return: Status code and content of response
+        :rtype: tuple
+        :raises HTTPRequestError: If
+        1. it is not possible to connect
+        2. invalid HTTP response comes from server
+        3. request exceeded the configured number of maximum re-directions
+        4. request timed out
+        5. there is any other unexpected HTTP request exception
+        """
+
+        url = HTTPRequest.create_full_url(node['host'],
+                                           node['honeycomb']['honeycomb_port'],
+                                           path)
+        try:
+            auth = HTTPBasicAuth(node['honeycomb']['honeycomb_user'],
+                                 node['honeycomb']['honeycomb_passwd'])
+            r = requests.post(url=url, auth=auth, timeout=timeout)
+
+            return r.status_code, r.content
+
+        except requests.ConnectionError as err:
+            raise HTTPRequestError("Not possible to connect to {0}\n".
+                                   format(url) + repr(err))
+        except requests.HTTPError as err:
+            raise HTTPRequestError("Invalid HTTP response from {0}\n".
+                                   format(url) + repr(err))
+        except requests.TooManyRedirects as err:
+            raise HTTPRequestError("Request exceeded the configured number "
+                                   "of maximum re-directions\n" + repr(err))
+        except requests.Timeout as err:
+            raise HTTPRequestError("Request timed out. Timeout is set to "
+                                   "{0}\n".format(timeout) + repr(err))
+        except requests.RequestException as err:
+            raise HTTPRequestError("Unexpected HTTP request exception.\n" +
+                                   repr(err))
