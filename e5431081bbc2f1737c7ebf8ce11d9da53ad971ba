@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5af74547_0326d216",
+        "filename": "resources/libraries/python/DropRateSearch.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 74
+      },
+      "writtenOn": "2016-03-21T09:54:04Z",
+      "side": 1,
+      "message": "please remove logger, we would like to keep this module robot independent. If you need logging please add new abstract logging method.",
+      "revId": "e5431081bbc2f1737c7ebf8ce11d9da53ad971ba",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5af74547_c34d8ac6",
+        "filename": "resources/libraries/python/DropRateSearch.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 74
+      },
+      "writtenOn": "2016-03-21T09:54:04Z",
+      "side": 1,
+      "message": "Is _rate_binary_step a step ?\nI\u0027d rather call it _rate_binary_rate or last_rate.",
+      "range": {
+        "startLine": 340,
+        "startChar": 29,
+        "endLine": 340,
+        "endChar": 46
+      },
+      "revId": "e5431081bbc2f1737c7ebf8ce11d9da53ad971ba",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5af74547_a34a7eaa",
+        "filename": "resources/libraries/python/DropRateSearch.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 344,
+      "author": {
+        "id": 74
+      },
+      "writtenOn": "2016-03-21T09:54:04Z",
+      "side": 1,
+      "message": "remove, or add self.log method, please",
+      "revId": "e5431081bbc2f1737c7ebf8ce11d9da53ad971ba",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
