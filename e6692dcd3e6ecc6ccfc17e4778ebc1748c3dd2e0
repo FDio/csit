@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a045101_bc762105",
+        "filename": "resources/topology_schemas/topology.sch.yaml",
+        "patchSetId": 3
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-03-22T10:46:35Z",
+      "side": 1,
+      "message": "We\u0027ve discussed about putting honeycomb stuff to separate block.",
+      "revId": "e6692dcd3e6ecc6ccfc17e4778ebc1748c3dd2e0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
