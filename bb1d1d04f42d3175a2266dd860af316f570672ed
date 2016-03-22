@@ -1,0 +1,182 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a045101_7f264bbc",
+        "filename": "resources/libraries/python/HoneycombSetup.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-03-22T16:37:24Z",
+      "side": 1,
+      "message": "missing  \"\"\" closing the doc string here",
+      "revId": "bb1d1d04f42d3175a2266dd860af316f570672ed",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_5f2b8f82",
+        "filename": "resources/libraries/python/HoneycombSetup.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-03-22T16:37:24Z",
+      "side": 1,
+      "message": "Correct sentence is:\nHoneycomb was successfully stopped on node {0}",
+      "range": {
+        "startLine": 118,
+        "startChar": 29,
+        "endLine": 118,
+        "endChar": 75
+      },
+      "revId": "bb1d1d04f42d3175a2266dd860af316f570672ed",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_3f20c39a",
+        "filename": "resources/libraries/python/HoneycombSetup.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-03-22T16:37:24Z",
+      "side": 1,
+      "message": "Please, use brackets there: \"Node(s)\" as there could be only one node.",
+      "range": {
+        "startLine": 121,
+        "startChar": 38,
+        "endLine": 121,
+        "endChar": 39
+      },
+      "revId": "bb1d1d04f42d3175a2266dd860af316f570672ed",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_1f2507ab",
+        "filename": "resources/libraries/python/HoneycombSetup.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-03-22T16:37:24Z",
+      "side": 1,
+      "message": "Please, add there information on what node it happened.",
+      "range": {
+        "startLine": 161,
+        "startChar": 77,
+        "endLine": 161,
+        "endChar": 78
+      },
+      "revId": "bb1d1d04f42d3175a2266dd860af316f570672ed",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_ff393bd9",
+        "filename": "resources/libraries/python/HoneycombSetup.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-03-22T16:37:24Z",
+      "side": 1,
+      "message": "Please, add there information on what node it happened.",
+      "range": {
+        "startLine": 190,
+        "startChar": 69,
+        "endLine": 190,
+        "endChar": 70
+      },
+      "revId": "bb1d1d04f42d3175a2266dd860af316f570672ed",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_df367fe7",
+        "filename": "resources/libraries/python/HoneycombSetup.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-03-22T16:37:24Z",
+      "side": 1,
+      "message": "Please, add there information on what node it happened.",
+      "range": {
+        "startLine": 193,
+        "startChar": 69,
+        "endLine": 193,
+        "endChar": 70
+      },
+      "revId": "bb1d1d04f42d3175a2266dd860af316f570672ed",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_3fa56304",
+        "filename": "resources/libraries/robot/honeycomb.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-03-22T16:37:24Z",
+      "side": 1,
+      "message": "What about \"check\" instead of \"report\" as you really check it and the report is not written...",
+      "range": {
+        "startLine": 66,
+        "startChar": 12,
+        "endLine": 66,
+        "endChar": 18
+      },
+      "revId": "bb1d1d04f42d3175a2266dd860af316f570672ed",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_1faaa7d4",
+        "filename": "tests/suites/honeycomb/sanity.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-03-22T16:37:24Z",
+      "side": 1,
+      "message": "\"Check\" if proposal is accepted (see line 66 in honeycomb.py).",
+      "range": {
+        "startLine": 42,
+        "startChar": 14,
+        "endLine": 42,
+        "endChar": 20
+      },
+      "revId": "bb1d1d04f42d3175a2266dd860af316f570672ed",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
