@@ -53,7 +53,7 @@ class InterfaceUtil(object):
             VatExecutor.cmd_from_template(node, 'set_if_state.vat',
                                           sw_if_index=sw_if_index, state=state)
 
-        elif node['type'] == NodeType.TG:
+        elif node['type'] == NodeType.TG or node['type'] == NodeType.VM:
             cmd = 'ip link set {} {}'.format(interface, state)
             exec_cmd_no_error(node, cmd, sudo=True)
         else:
