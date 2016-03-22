@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a045101_bfb8532b",
+        "filename": "resources/libraries/robot/l2_traffic.robot",
+        "patchSetId": 15
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-03-22T17:06:12Z",
+      "side": 1,
+      "message": "Please, use following to avoid discrepances:\n- instead of \"source\" and \"destination\" interface use TG_if1 and TG_if2\n- accordingly change if variable names - instead ${src_int} and ${dst_int} use ${tg_if1} and ${tg_if2}",
+      "range": {
+        "startLine": 33,
+        "startChar": 22,
+        "endLine": 34,
+        "endChar": 69
+      },
+      "revId": "82aa06bb9537582f0c6cf6bb7a85b4d25ab1b175",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
