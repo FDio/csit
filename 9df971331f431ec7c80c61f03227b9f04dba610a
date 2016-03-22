@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a045101_9cd7e5ed",
+        "filename": "resources/libraries/robot/default.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-03-22T09:48:41Z",
+      "side": 1,
+      "message": "Sorry, that I didn\u0027t put following comments in previous review...\n1. Please, add the documentation part to this KW.\n2. We shoud impelment it in more general way - we should use input parametr ${nodes} to get a list of nodes and use FOR loop to go through all of defined nodes (see KWs above).",
+      "range": {
+        "startLine": 28,
+        "startChar": 2,
+        "endLine": 28,
+        "endChar": 29
+      },
+      "revId": "9df971331f431ec7c80c61f03227b9f04dba610a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
