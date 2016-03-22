@@ -25,6 +25,23 @@
     },
     {
       "key": {
+        "uuid": "3a045101_bf6173d5",
+        "filename": "resources/libraries/python/L2Util.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-03-22T15:59:45Z",
+      "side": 1,
+      "message": "PEP 8: too many blank lines.",
+      "revId": "00c86ebf95e3dcbc40bcfa42b0a22552e2898b4b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5af74547_a3b5de32",
         "filename": "resources/libraries/python/L2Util.py",
         "patchSetId": 2
@@ -150,6 +167,29 @@
         "startChar": 8,
         "endLine": 69,
         "endChar": 30
+      },
+      "revId": "00c86ebf95e3dcbc40bcfa42b0a22552e2898b4b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_9f5eb711",
+        "filename": "resources/libraries/python/L2Util.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-03-22T15:59:45Z",
+      "side": 1,
+      "message": "Missing parameter in docstring.",
+      "range": {
+        "startLine": 69,
+        "startChar": 37,
+        "endLine": 69,
+        "endChar": 46
       },
       "revId": "00c86ebf95e3dcbc40bcfa42b0a22552e2898b4b",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
@@ -341,6 +381,57 @@
     },
     {
       "key": {
+        "uuid": "3a045101_1f73c7b2",
+        "filename": "resources/libraries/python/VatExecutor.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-03-22T15:59:45Z",
+      "side": 1,
+      "message": "Line too long (94/80) (line-too-long)",
+      "revId": "00c86ebf95e3dcbc40bcfa42b0a22552e2898b4b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_ff67fbe8",
+        "filename": "resources/libraries/python/VatExecutor.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-03-22T15:59:45Z",
+      "side": 1,
+      "message": "Line too long (89/80) (line-too-long)",
+      "revId": "00c86ebf95e3dcbc40bcfa42b0a22552e2898b4b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_df643fe7",
+        "filename": "resources/libraries/python/VatExecutor.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-03-22T15:59:45Z",
+      "side": 1,
+      "message": "Line too long (94/80) (line-too-long)",
+      "revId": "00c86ebf95e3dcbc40bcfa42b0a22552e2898b4b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5af74547_6387d662",
         "filename": "resources/templates/vat/clear_l2fib.vat",
         "patchSetId": 2
@@ -388,6 +479,23 @@
     },
     {
       "key": {
+        "uuid": "3a045101_5f794f92",
+        "filename": "resources/traffic_scripts/fill_l2fib.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-03-22T15:59:45Z",
+      "side": 1,
+      "message": "Use 4 space indentation",
+      "revId": "00c86ebf95e3dcbc40bcfa42b0a22552e2898b4b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5af74547_8674309d",
         "filename": "resources/traffic_scripts/fill_l2fib.py",
         "patchSetId": 2
@@ -427,6 +535,29 @@
         "startChar": 0,
         "endLine": 28,
         "endChar": 1
+      },
+      "revId": "00c86ebf95e3dcbc40bcfa42b0a22552e2898b4b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_3f6e83ca",
+        "filename": "resources/traffic_scripts/fill_l2fib.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-03-22T15:59:45Z",
+      "side": 1,
+      "message": "It is correct use broadcast mac address as a source? Better use constant 0x00 for first 8bits.",
+      "range": {
+        "startLine": 30,
+        "startChar": 12,
+        "endLine": 30,
+        "endChar": 38
       },
       "revId": "00c86ebf95e3dcbc40bcfa42b0a22552e2898b4b",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
