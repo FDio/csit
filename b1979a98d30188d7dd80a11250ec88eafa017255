@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a045101_dc1c4d16",
+        "filename": "resources/libraries/python/VatExecutor.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-03-22T07:12:54Z",
+      "side": 1,
+      "message": "JSON",
+      "range": {
+        "startLine": 173,
+        "startChar": 26,
+        "endLine": 173,
+        "endChar": 30
+      },
+      "revId": "b1979a98d30188d7dd80a11250ec88eafa017255",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_bc198124",
+        "filename": "tests/suites/vxlan/vxlan_bd_untagged.robot",
+        "patchSetId": 14
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-03-22T07:12:54Z",
+      "side": 1,
+      "message": "There is too much copy paste code as in vxlan_bd_dot1q.robot",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 32
+      },
+      "revId": "b1979a98d30188d7dd80a11250ec88eafa017255",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_9c16c5f0",
+        "filename": "tests/suites/vxlan/vxlan_xconnect_untagged.robot",
+        "patchSetId": 14
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-03-22T07:12:54Z",
+      "side": 1,
+      "message": "Agian, there is too much copy paste code as in vxlan_bd_dot1q.robot and vxlan_bd_untagged.robot",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 32
+      },
+      "revId": "b1979a98d30188d7dd80a11250ec88eafa017255",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
