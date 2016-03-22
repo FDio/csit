@@ -16,7 +16,7 @@
 from robot.api.deco import keyword
 from resources.libraries.python.topology import Topology
 from resources.libraries.python.VatExecutor import VatExecutor, VatTerminal
-
+from resources.libraries.python.ssh import exec_cmd_no_error
 
 class L2Util(object):
     """Utilities for l2 configuration"""
@@ -27,14 +27,17 @@ class L2Util(object):
 
         :param node: Node to add L2FIB entry on.
         :param mac: Destination mac address.
-        :param interface: Interface name.
+        :param interface: Interface name or sw_if_index.
         :param bd_id: Bridge domain id.
         :type node: dict
         :type mac: str
-        :type interface: str
+        :type interface: str or int
         :type bd_id: int
         """
-        sw_if_index = Topology.get_interface_sw_index(node, interface)
+        if isinstance(interface, basestring):
+            sw_if_index = Topology.get_interface_sw_index(node, interface)
+        else:
+            sw_if_index = interface
         VatExecutor.cmd_from_template(node, "add_l2_fib_entry.vat",
                                       mac=mac, bd=bd_id,
                                       interface=sw_if_index)
@@ -183,3 +186,23 @@ class L2Util(object):
             vat.vat_terminal_exec_cmd_from_template('l2_xconnect.vat',
                                                     interface1=sw_iface2,
                                                     interface2=sw_iface1)
+
+    @staticmethod
+    def linux_add_bridge(node, br_name, if_1, if_2):
+        """Bridge two interfaces on linux node.
+
+        :param node: Node to add bridge on.
+        :param br_name: Bridge name.
+        :param if_1: First interface to be added to the bridge.
+        :param if_2: Second interface to be added to the bridge.
+        :type node: dict
+        :type br_name: str
+        :type if_1: str
+        :type if_2: str
+        """
+        cmd = 'brctl addbr {0}'.format(br_name)
+        exec_cmd_no_error(node, cmd, sudo=True)
+        cmd = 'brctl addif {0} {1}'.format(br_name, if_1)
+        exec_cmd_no_error(node, cmd, sudo=True)
+        cmd = 'brctl addif {0} {1}'.format(br_name, if_2)
+        exec_cmd_no_error(node, cmd, sudo=True)
