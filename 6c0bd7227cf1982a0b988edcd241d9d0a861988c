@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a045101_3c99f16e",
+        "filename": "resources/libraries/robot/performance.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-03-22T09:23:31Z",
+      "side": 1,
+      "message": "Please, move this KW to default.robot file as this KW should be used in teardown of every test case.",
+      "range": {
+        "startLine": 87,
+        "startChar": 2,
+        "endLine": 87,
+        "endChar": 29
+      },
+      "revId": "6c0bd7227cf1982a0b988edcd241d9d0a861988c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
