@@ -14,7 +14,7 @@
 """TG Setup library."""
 
 from topology import NodeType
-from InterfaceSetup import InterfaceSetup
+from InterfaceUtil import InterfaceUtil
 
 
 class TGSetup(object):
@@ -29,4 +29,4 @@ class TGSetup(object):
         """
         for node in nodes.values():
             if node['type'] == NodeType.TG:
-                InterfaceSetup.tg_set_interfaces_default_driver(node)
+                InterfaceUtil.tg_set_interfaces_default_driver(node)
