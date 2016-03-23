@@ -14,15 +14,13 @@
 *** Settings ***
 | Library  | Collections
 | Resource | resources/libraries/robot/default.robot
+| Resource | resources/libraries/robot/interfaces.robot
 | Resource | resources/libraries/robot/bridge_domain.robot
 | Resource | resources/libraries/robot/l2_xconnect.robot
 | Library  | resources.libraries.python.L2Util
 | Library  | resources.libraries.python.IPUtil
 | Library  | resources.libraries.python.IPv4Util
 | Library  | resources.libraries.python.IPv4Setup
-| Library  | resources.libraries.python.InterfaceSetup
-| Library  | resources.libraries.python.InterfaceUtil
-| Library  | resources.libraries.python.topology.Topology
 | Library  | resources.libraries.python.NodePath
 
 
