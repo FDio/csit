@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3a045101_5cccbd35",
+        "filename": "resources/libraries/python/HTTPRequests.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-03-23T11:57:09Z",
+      "side": 1,
+      "message": "This is not about loglevel for pybot. It enables/disables logging in specific situations when we expect error and do not want it in log.",
+      "parentUuid": "3a045101_5c7efde5",
+      "range": {
+        "startLine": 41,
+        "startChar": 8,
+        "endLine": 41,
+        "endChar": 25
+      },
+      "revId": "85f001419d712fff88a3f2fa434a5502b62ba990",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a045101_dc6e8d96",
         "filename": "resources/libraries/python/HTTPRequests.py",
         "patchSetId": 2
