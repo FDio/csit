@@ -14,9 +14,6 @@
 """Defines nodes and topology structure."""
 
 from resources.libraries.python.parsers.JsonParser import JsonParser
-from resources.libraries.python.VatExecutor import VatExecutor
-from resources.libraries.python.ssh import SSH
-from resources.libraries.python.InterfaceSetup import InterfaceSetup
 from robot.api import logger
 from robot.libraries.BuiltIn import BuiltIn
 from robot.api.deco import keyword
@@ -183,7 +180,8 @@ class Topology(object):
             list_mac.append(int(num, 16))
         return list_mac
 
-    def _extract_vpp_interface_by_mac(self, interfaces_list, mac_address):
+    @staticmethod
+    def _extract_vpp_interface_by_mac(interfaces_list, mac_address):
         """Return interface dictionary from interface_list by mac address.
 
         Extracts interface dictionary from all of the interfaces in interfaces
@@ -194,7 +192,7 @@ class Topology(object):
         """
 
         interface_dict = {}
-        list_mac_address = self.convert_mac_to_number_list(mac_address)
+        list_mac_address = Topology.convert_mac_to_number_list(mac_address)
         logger.trace(str(list_mac_address))
         for interface in interfaces_list:
             # TODO: create vat json integrity checking and move there
@@ -216,7 +214,8 @@ class Topology(object):
                 break
         return interface_dict
 
-    def vpp_interface_name_from_json_by_mac(self, json_data, mac_address):
+    @staticmethod
+    def vpp_interface_name_from_json_by_mac(json_data, mac_address):
         """Return vpp interface name string from VAT interface dump json output
 
         Extracts the name given to an interface by VPP.
@@ -229,114 +228,12 @@ class Topology(object):
         whose vpp name we wish to discover.
         :return: string vpp interface name
         """
-
         interfaces_list = JsonParser().parse_data(json_data)
         # TODO: checking if json data is parsed correctly
-        interface_dict = self._extract_vpp_interface_by_mac(interfaces_list,
-                                                            mac_address)
+        interface_dict = Topology._extract_vpp_interface_by_mac(interfaces_list,
+                                                                mac_address)
         interface_name = interface_dict["interface_name"]
         return interface_name
-
-    def _update_node_interface_data_from_json(self, node, interface_dump_json):
-        """Update node vpp data in node__DICT from json interface dump.
-
-        This method updates vpp interface names and sw indexexs according to
-        interface mac addresses found in interface_dump_json
-        :param node: node dictionary
-        :param interface_dump_json: json output from dump_interface_list VAT
-        command
-        """
-
-        interface_list = JsonParser().parse_data(interface_dump_json)
-        for ifc in node['interfaces'].values():
-            if 'link' not in ifc:
-                continue
-            if_mac = ifc['mac_address']
-            interface_dict = self._extract_vpp_interface_by_mac(interface_list,
-                                                                if_mac)
-            if not interface_dict:
-                raise Exception('Interface {0} not found by MAC {1}'.
-                        format(ifc, if_mac))
-            ifc['name'] = interface_dict["interface_name"]
-            ifc['vpp_sw_index'] = interface_dict["sw_if_index"]
-            ifc['mtu'] = interface_dict["mtu"]
-
-    def update_vpp_interface_data_on_node(self, node):
-        """Update vpp generated interface data for a given node in DICT__nodes
-
-        Updates interface names, software index numbers and any other details
-        generated specifically by vpp that are unknown before testcase run.
-        :param node: Node selected from DICT__nodes
-        """
-
-        vat_executor = VatExecutor()
-        vat_executor.execute_script_json_out("dump_interfaces.vat", node)
-        interface_dump_json = vat_executor.get_script_stdout()
-        self._update_node_interface_data_from_json(node,
-                                                   interface_dump_json)
-
-    @staticmethod
-    def update_tg_interface_data_on_node(node):
-        """Update interface name for TG/linux node in DICT__nodes
-
-        :param node: Node selected from DICT__nodes.
-        :type node: dict
-
-        .. note::
-            # for dev in `ls /sys/class/net/`;
-            > do echo "\"`cat /sys/class/net/$dev/address`\": \"$dev\""; done
-            "52:54:00:9f:82:63": "eth0"
-            "52:54:00:77:ae:a9": "eth1"
-            "52:54:00:e1:8a:0f": "eth2"
-            "00:00:00:00:00:00": "lo"
-
-        .. todo:: parse lshw -json instead
-        """
-        # First setup interface driver specified in yaml file
-        InterfaceSetup.tg_set_interfaces_default_driver(node)
-
-        # Get interface names
-        ssh = SSH()
-        ssh.connect(node)
-
-        cmd = 'for dev in `ls /sys/class/net/`; do echo "\\"`cat ' \
-              '/sys/class/net/$dev/address`\\": \\"$dev\\""; done;'
-
-        (ret_code, stdout, _) = ssh.exec_command(cmd)
-        if int(ret_code) != 0:
-            raise Exception('Get interface name and MAC failed')
-        tmp = "{" + stdout.rstrip().replace('\n', ',') + "}"
-        interfaces = JsonParser().parse_data(tmp)
-        for if_k, if_v in node['interfaces'].items():
-            if if_k == 'mgmt':
-                continue
-            name = interfaces.get(if_v['mac_address'])
-            if name is None:
-                continue
-            if_v['name'] = name
-
-        # Set udev rules for interfaces
-        InterfaceSetup.tg_set_interfaces_udev_rules(node)
-
-    def update_all_interface_data_on_all_nodes(self, nodes):
-        """Update interface names on all nodes in DICT__nodes
-
-        :param nodes: Nodes in the topology.
-        :type nodes: dict
-
-        This method updates the topology dictionary by querying interface lists
-        of all nodes mentioned in the topology dictionary.
-        It does this by dumping interface list to json output from all devices
-        using vpp_api_test, and pairing known information from topology
-        (mac address/pci address of interface) to state from VPP.
-        For TG/linux nodes add interface name only.
-        """
-
-        for node_data in nodes.values():
-            if node_data['type'] == NodeType.DUT:
-                self.update_vpp_interface_data_on_node(node_data)
-            elif node_data['type'] == NodeType.TG:
-                self.update_tg_interface_data_on_node(node_data)
 
     @staticmethod
     def get_interface_sw_index(node, interface):
