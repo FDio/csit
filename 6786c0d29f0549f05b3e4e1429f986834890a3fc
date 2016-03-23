@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a045101_bff053ca",
+        "filename": "resources/libraries/python/HoneycombSetup.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-03-23T11:19:21Z",
+      "side": 1,
+      "message": "Please, for all sentences use correct english syntax:\nnoun - verb - adverb\n\nIn this case:\n\u0027Honeycomb is still running on node {0}\u0027",
+      "range": {
+        "startLine": 191,
+        "startChar": 46,
+        "endLine": 192,
+        "endChar": 54
+      },
+      "revId": "6786c0d29f0549f05b3e4e1429f986834890a3fc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
