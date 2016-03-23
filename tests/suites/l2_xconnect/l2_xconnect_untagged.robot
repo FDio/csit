@@ -15,7 +15,7 @@
 | Resource | resources/libraries/robot/default.robot
 | Resource | resources/libraries/robot/l2_xconnect.robot
 | Resource | resources/libraries/robot/l2_traffic.robot
-| Library | resources.libraries.python.InterfaceUtil
+| Resource | resources/libraries/robot/interfaces.robot
 | Library | resources.libraries.python.NodePath
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | HW_ENV | VM_ENV
 | Test Setup | Setup all DUTs before test
