@@ -13,8 +13,9 @@
 
 *** Settings ***
 | Variables | resources/libraries/python/topology.py
-| Library | resources/libraries/python/DUTSetup.py
-| Library | resources/libraries/python/TGSetup.py
+| Library | resources.libraries.python.topology.Topology
+| Library | resources.libraries.python.DUTSetup
+| Library | resources.libraries.python.TGSetup
 
 *** Keywords ***
 | Setup all DUTs before test
