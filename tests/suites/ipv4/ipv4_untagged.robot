@@ -13,6 +13,7 @@
 
 *** Settings ***
 | Library | resources.libraries.python.topology.Topology
+| Library | resources.libraries.python.InterfaceSetup
 | Library | resources.libraries.python.NodePath
 | Library | resources.libraries.python.Trace
 | Resource | resources/libraries/robot/default.robot

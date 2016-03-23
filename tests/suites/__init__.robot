@@ -15,7 +15,7 @@
 | Resource | resources/libraries/robot/default.robot
 | Library | resources/libraries/python/SetupFramework.py
 | Library | resources.libraries.python.topology.Topology
+| Library | resources.libraries.python.InterfaceSetup
 | Suite Setup | Run Keywords | Setup Framework | ${nodes}
 | ...         | AND          | Setup All DUTs | ${nodes}
 | ...         | AND          | Update All Interface Data On All Nodes | ${nodes}
-
