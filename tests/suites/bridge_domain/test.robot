@@ -16,9 +16,7 @@
 | Resource | resources/libraries/robot/interfaces.robot
 | Resource | resources/libraries/robot/bridge_domain.robot
 | Resource | resources/libraries/robot/l2_traffic.robot
-| Library | resources.libraries.python.topology.Topology
 | Library | resources.libraries.python.NodePath
-| Variables | resources/libraries/python/topology.py
 | Force Tags | HW_ENV | VM_ENV
 | Suite Setup | Setup all TGs before traffic script
 | Test Setup | Setup all DUTs before test
