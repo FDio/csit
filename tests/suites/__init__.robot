@@ -13,9 +13,8 @@
 
 *** Settings ***
 | Resource | resources/libraries/robot/default.robot
-| Library | resources/libraries/python/SetupFramework.py
-| Library | resources.libraries.python.topology.Topology
+| Resource | resources/libraries/robot/interfaces.robot
+| Library | resources.libraries.python.SetupFramework
 | Suite Setup | Run Keywords | Setup Framework | ${nodes}
 | ...         | AND          | Setup All DUTs | ${nodes}
 | ...         | AND          | Update All Interface Data On All Nodes | ${nodes}
-
