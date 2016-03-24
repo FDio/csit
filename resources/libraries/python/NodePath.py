@@ -13,7 +13,7 @@
 
 """Path utilities library for nodes in the topology."""
 
-from topology import Topology
+from resources.libraries.python.topology import Topology
 
 
 class NodePath(object):
@@ -108,16 +108,13 @@ class NodePath(object):
                 raise RuntimeError('No link between {0} and {1}'.format(
                     node1['host'], node2['host']))
 
-            link = None
-            l_set = set()
-
             if always_same_link:
                 l_set = set(links).intersection(self._links)
             else:
                 l_set = set(links).difference(self._links)
                 if not l_set:
                     raise RuntimeError(
-                        'No free link between {0} and {1}, all links already ' \
+                        'No free link between {0} and {1}, all links already '
                         'used'.format(node1['host'], node2['host']))
 
             if not l_set:
@@ -143,7 +140,7 @@ class NodePath(object):
         .. note:: Call compute_path before.
         """
         if not self._path_iter:
-            return (None, None)
+            return None, None
         else:
             return self._path_iter.pop()
 

@@ -13,16 +13,16 @@
 
 """Defines nodes and topology structure."""
 
+from yaml import load
 from robot.api import logger
 from robot.libraries.BuiltIn import BuiltIn
 from robot.api.deco import keyword
-from yaml import load
 
 __all__ = ["DICT__nodes", 'Topology']
 
 
 def load_topo_from_yaml():
-    """Load topology from file defined in "${TOPOLOGY_PATH}" variable
+    """Load topology from file defined in "${TOPOLOGY_PATH}" variable.
 
     :return: nodes from loaded topology
     """
@@ -33,7 +33,7 @@ def load_topo_from_yaml():
 
 
 class NodeType(object):
-    """Defines node types used in topology dictionaries"""
+    """Defines node types used in topology dictionaries."""
     # Device Under Test (this node has VPP running on it)
     DUT = 'DUT'
     # Traffic Generator (this node has traffic generator on it)
@@ -43,7 +43,7 @@ class NodeType(object):
 
 
 class NodeSubTypeTG(object):
-    #T-Rex traffic generator
+    # T-Rex traffic generator
     TREX = 'TREX'
     # Moongen
     MOONGEN = 'MOONGEN'
@@ -54,7 +54,7 @@ DICT__nodes = load_topo_from_yaml()
 
 
 class Topology(object):
-    """Topology data manipulation and extraction methods
+    """Topology data manipulation and extraction methods.
 
     Defines methods used for manipulation and extraction of data from
     the used topology.
@@ -98,14 +98,13 @@ class Topology(object):
 
     @staticmethod
     def _get_interface_by_key_value(node, key, value):
-        """Return node interface name according to key and value
+        """Return node interface name according to key and value.
 
-        :param node: :param node: the node dictionary
+        :param node: the node dictionary
         :param key: key by which to select the interface.
         :param value: value that should be found using the key.
         :return:
         """
-
         interfaces = node['interfaces']
         retval = None
         for interface in interfaces.values():
@@ -119,19 +118,18 @@ class Topology(object):
     def get_interface_by_link_name(self, node, link_name):
         """Return interface name of link on node.
 
-        This method returns the interface name asociated with a given link
+        This method returns the interface name associated with a given link
         for a given node.
         :param link_name: name of the link that a interface is connected to.
         :param node: the node topology dictionary
         :return: interface name of the interface connected to the given link
         """
-
         return self._get_interface_by_key_value(node, "link", link_name)
 
     def get_interfaces_by_link_names(self, node, link_names):
-        """Return dictionary of dicitonaries {"interfaceN", interface name}.
+        """Return dictionary of dictionaries {"interfaceN", interface name}.
 
-        This method returns the interface names asociated with given links
+        This method returns the interface names associated with given links
         for a given node.
         :param link_names: list of names of the link that a interface is
         connected to.
@@ -139,7 +137,6 @@ class Topology(object):
         :return: dictionary of interface names that are connected to the given
         links
         """
-
         retval = {}
         interface_key_tpl = "interface{}"
         interface_number = 1
@@ -153,13 +150,12 @@ class Topology(object):
     def get_interface_by_sw_index(self, node, sw_index):
         """Return interface name of link on node.
 
-        This method returns the interface name asociated with a software index
-        assigned to the interface by vpp for a given node.
+        This method returns the interface name associated with a software
+        interface index assigned to the interface by vpp for a given node.
         :param sw_index: sw_index of the link that a interface is connected to.
         :param node: the node topology dictionary
         :return: interface name of the interface connected to the given link
         """
-
         return self._get_interface_by_key_value(node, "vpp_sw_index", sw_index)
 
     @staticmethod
@@ -341,7 +337,7 @@ class Topology(object):
 
     @staticmethod
     def get_node_link_mac(node, link_name):
-        """Return interface mac address by link name
+        """Return interface mac address by link name.
 
         :param node: Node to get interface sw_index on
         :param link_name: link name
@@ -356,7 +352,7 @@ class Topology(object):
 
     @staticmethod
     def _get_node_active_link_names(node):
-        """Return list of link names that are other than mgmt links
+        """Return list of link names that are other than mgmt links.
 
         :param node: node topology dictionary
         :return: list of strings that represent link names occupied by the node
@@ -372,7 +368,7 @@ class Topology(object):
 
     @keyword('Get active links connecting "${node1}" and "${node2}"')
     def get_active_connecting_links(self, node1, node2):
-        """Return list of link names that connect together node1 and node2
+        """Return list of link names that connect together node1 and node2.
 
         :param node1: node topology dictionary
         :param node2: node topology dictionary
@@ -399,7 +395,6 @@ class Topology(object):
         :return: name of link connecting the two nodes together
         :raises: RuntimeError
         """
-
         connecting_links = self.get_active_connecting_links(node1, node2)
         if len(connecting_links) == 0:
             raise RuntimeError("No links connecting the nodes were found")
@@ -493,9 +488,10 @@ class Topology(object):
 
     @staticmethod
     def is_tg_node(node):
-        """Find out whether the node is TG
+        """Find out whether the node is TG.
 
-        :param node: node to examine
+        :param node: Node to examine.
+        :type node: dict
         :return: True if node is type of TG; False otherwise
         """
         return node['type'] == NodeType.TG

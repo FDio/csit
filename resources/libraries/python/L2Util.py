@@ -14,6 +14,7 @@
 """L2 Utilities Library."""
 
 from robot.api.deco import keyword
+
 from resources.libraries.python.topology import Topology
 from resources.libraries.python.VatExecutor import VatExecutor, VatTerminal
 from resources.libraries.python.ssh import exec_cmd_no_error
