@@ -11,13 +11,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Used to parse Json files or Json data strings to dictionaries"""
+"""Used to parse JSON files or JSON data strings to dictionaries"""
 
 import json
 
 
 class JsonParser(object):
-    """Parses Json data string or files containing Json data strings"""
+    """Parses JSON data string or files containing JSON data strings"""
     def __init__(self):
         pass
 
@@ -26,8 +26,8 @@ class JsonParser(object):
         """Return list parsed from json data string.
 
         Translates json data into list of values/dictionaries/lists
-        :param json_data: data in json format
-        :return: json data parsed as python list
+        :param json_data: Data in json format.
+        :return: JSON data parsed as python list.
         """
         parsed_data = json.loads(json_data)
         return parsed_data
@@ -37,8 +37,8 @@ class JsonParser(object):
 
         Translates json data found in file into list of
         values/dictionaries/lists
-        :param json_file: file with json type data
-        :return: json data parsed as python list
+        :param json_file: File with json type data.
+        :return: JSON data parsed as python list.
         """
         input_data = open(json_file).read()
         parsed_data = self.parse_data(input_data)

@@ -13,9 +13,10 @@
 
 """Robot framework variable file.
 
-   Create dictionary variable nodes_ipv4_addr of IPv4 addresses from
-   available networks.
+Create dictionary variable nodes_ipv4_addr of IPv4 addresses from
+available networks.
 """
+
 from ipaddress import IPv4Network
 
 from resources.libraries.python.topology import Topology
@@ -28,8 +29,9 @@ class IPv4NetworkGenerator(object):
     """IPv4 network generator."""
     def __init__(self, networks):
         """
-        :param networks: list of strings containing IPv4 subnet
+        :param networks: List of strings containing IPv4 subnet
         with prefix length
+        :type networks: list
         """
         self._networks = list()
         for network in networks:
@@ -51,15 +53,15 @@ class IPv4NetworkGenerator(object):
 
 def get_variables(nodes, networks=IPV4_NETWORKS[:]):
     """Special robot framework method that returns dictionary nodes_ipv4_addr,
-       mapping of node and interface name to IPv4 adddress.
+    mapping of node and interface name to IPv4 address.
 
-       :param nodes: Nodes of the test topology.
-       :param networks: list of available IPv4 networks
-       :type nodes: dict
-       :type networks: list
+    :param nodes: Nodes of the test topology.
+    :param networks: List of available IPv4 networks.
+    :type nodes: dict
+    :type networks: list
 
-       .. note::
-           Robot framework calls it automatically.
+    .. note::
+       Robot framework calls it automatically.
     """
     topo = Topology()
     links = topo.get_links(nodes)
