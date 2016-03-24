@@ -1,0 +1,228 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a045101_1f174753",
+        "filename": "resources/libraries/python/InterfaceSetup.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-24T12:28:28Z",
+      "side": 1,
+      "message": "This isn\u0027t really Setup. It\u0027s utility. Did we agree on joining *Util and *Setup already?",
+      "range": {
+        "startLine": 184,
+        "startChar": 8,
+        "endLine": 184,
+        "endChar": 46
+      },
+      "revId": "749b7feecc9b6df46e72778a3d32b26b31d7b494",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_df08bf2f",
+        "filename": "resources/libraries/python/InterfaceSetup.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-24T12:28:28Z",
+      "side": 1,
+      "message": "VPP",
+      "revId": "749b7feecc9b6df46e72778a3d32b26b31d7b494",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_bf05f315",
+        "filename": "resources/libraries/python/InterfaceSetup.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-24T12:28:28Z",
+      "side": 1,
+      "message": "this method is static, and yet is prefixed with \"_\".\nUpdate the name from update_node to update_vpp to emphasize this is for VPP nodes only.",
+      "range": {
+        "startLine": 247,
+        "startChar": 8,
+        "endLine": 247,
+        "endChar": 45
+      },
+      "revId": "749b7feecc9b6df46e72778a3d32b26b31d7b494",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_9f02370a",
+        "filename": "resources/libraries/python/InterfaceSetup.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-24T12:28:28Z",
+      "side": 1,
+      "message": "shouldn\u0027t all interfaces have link in them except mgmt interface? We do not care for mgmt if, so why not check that?",
+      "range": {
+        "startLine": 258,
+        "startChar": 0,
+        "endLine": 258,
+        "endChar": 33
+      },
+      "revId": "749b7feecc9b6df46e72778a3d32b26b31d7b494",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_82ff7e01",
+        "filename": "resources/libraries/python/InterfaceSetup.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-24T12:28:28Z",
+      "side": 1,
+      "message": "should be get. And is prefixed with underscore. Please refactor. This is either meant to be hidden or not. If not, no reason to have underscore there.",
+      "range": {
+        "startLine": 261,
+        "startChar": 39,
+        "endLine": 261,
+        "endChar": 46
+      },
+      "revId": "749b7feecc9b6df46e72778a3d32b26b31d7b494",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_62047215",
+        "filename": "resources/libraries/python/InterfaceSetup.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-24T12:28:28Z",
+      "side": 1,
+      "message": "doesn\u0027t this fit on one line?",
+      "range": {
+        "startLine": 265,
+        "startChar": 24,
+        "endLine": 265,
+        "endChar": 44
+      },
+      "revId": "749b7feecc9b6df46e72778a3d32b26b31d7b494",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_22254aab",
+        "filename": "resources/libraries/python/topology.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-24T12:28:28Z",
+      "side": 1,
+      "message": "this is the problem of staticness and putting underscore there.\n\nSince you\u0027ve started this cleanup, you ought to do it properly.\n\nThe reason we put underscore as prefix in methods is to mark them as private. Since you are using this method out of scope of this object, then you should drop the private marker too. It kinda highlights the dependency problem. Think longer about whether we need this method here. If yes, try to come up with better object model to solve the dependency issue.",
+      "range": {
+        "startLine": 183,
+        "startChar": 5,
+        "endLine": 183,
+        "endChar": 17
+      },
+      "revId": "749b7feecc9b6df46e72778a3d32b26b31d7b494",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_a2303ae9",
+        "filename": "resources/libraries/python/topology.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-24T12:28:28Z",
+      "side": 1,
+      "message": "this FN is definitely a utility function - has nothing to do with topology per se, it\u0027s more of a string translation function. Think about where to fit these methods.",
+      "range": {
+        "startLine": 195,
+        "startChar": 36,
+        "endLine": 195,
+        "endChar": 62
+      },
+      "revId": "749b7feecc9b6df46e72778a3d32b26b31d7b494",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_62523215",
+        "filename": "tests/suites/__init__.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-24T12:28:28Z",
+      "side": 1,
+      "message": "probably should go to default.robot",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 53
+      },
+      "revId": "749b7feecc9b6df46e72778a3d32b26b31d7b494",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_824d3e75",
+        "filename": "tests/suites/ipv4/ipv4_untagged.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-24T12:28:28Z",
+      "side": 1,
+      "message": "probably should go to default.robot",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 53
+      },
+      "revId": "749b7feecc9b6df46e72778a3d32b26b31d7b494",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
