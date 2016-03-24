@@ -46,6 +46,13 @@ class LossAcceptanceType(Enum):
     FRAMES = 1
     PERCENTAGE = 2
 
+@unique
+class SearchResultType(Enum):
+    """Type of search result evaluation"""
+
+    BEST_OF_N = 1
+    WORST_OF_N = 2
+
 class DropRateSearch(object):
     """Abstract class with search algorithm implementation"""
 
@@ -78,6 +85,8 @@ class DropRateSearch(object):
         self._binary_convergence_threshold = 100000
         #numbers of traffic runs during one rate step
         self._max_attempts = 1
+        #type of search result evaluation, unit: SearchResultType
+        self._search_result_type = SearchResultType.BEST_OF_N
 
         #result of search
         self._search_result = None
@@ -220,6 +229,80 @@ class DropRateSearch(object):
         else:
             raise ValueError("RateType unknown")
 
+    def set_max_attempts(self, max_attempts):
+        """Set maximum number of traffic runs during one rate step
+
+        :param max_attempts: number of traffic runs
+        :type max_attempts: int
+        :return: nothing
+        """
+        if int(max_attempts) > 0:
+            self._max_attempts = int(max_attempts)
+        else:
+            raise ValueError("Max attempt must by greater then zero")
+
+    def get_max_attempts(self):
+        """Return maximum number of traffic runs during one rate step
+
+        :return: number of traffic runs
+        :rtype: int
+        """
+        return self._max_attempts
+
+    def set_search_result_type_best_of_n(self):
+        """Set type of search result evaluation to Best of N
+
+        :return: nothing
+        """
+        self._set_search_result_type(SearchResultType.BEST_OF_N)
+
+    def set_search_result_type_worst_of_n(self):
+        """Set type of search result evaluation to Worst of N
+
+        :return: nothing
+        """
+        self._set_search_result_type(SearchResultType.WORST_OF_N)
+
+    def _set_search_result_type(self, search_type):
+        """Set type of search result evaluation to one of SearchResultType
+
+        :param search_type: type of search result evaluation to set
+        :type search_type: SearchResultType
+        :return: nothing
+        """
+        if search_type not in SearchResultType:
+            raise Exception("search_type unknown: {}".format(search_type))
+        else:
+            self._search_result_type = search_type
+
+    def _get_best_of_n(self, res_list):
+        """Return best result of N traffic runs
+
+        :param res_list: list of return values from all runs at one rate step
+        :type res_list: list
+        :return: True if at least one run is True, False otherwise
+        :rtype: boolean
+        """
+        #Return True if any element of the iterable is True.
+        if any(res_list):
+            return True
+        else:
+            return False
+
+    def _get_worst_of_n(self, res_list):
+        """Return worst result of N traffic runs
+
+        :param res_list: list of return values from all runs at one rate step
+        :type res_list: list
+        :return: False if at least one run is False, True otherwise
+        :rtype: boolean
+        """
+        #Return False if not all elements of the iterable are True.
+        if not all(res_list):
+            return False
+        else:
+            return True
+
     def linear_search(self, start_rate, traffic_type):
         """Linear search of rate with loss below acceptance criteria
 
@@ -239,10 +322,20 @@ class DropRateSearch(object):
 
         #linear search
         while True:
-            res = self.measure_loss(rate, self._frame_size,
-                                    self._loss_acceptance,
-                                    self._loss_acceptance_type,
-                                    traffic_type)
+            res = []
+            for n in range(self._max_attempts):
+                res.append(self.measure_loss(rate, self._frame_size,
+                                             self._loss_acceptance,
+                                             self._loss_acceptance_type,
+                                             traffic_type))
+
+            if self._search_result_type == SearchResultType.BEST_OF_N:
+                res = self._get_best_of_n(res)
+            elif self._search_result_type == SearchResultType.WORST_OF_N:
+                res = self._get_worst_of_n(res)
+            else:
+                raise ValueError("Unknown search result type")
+
             if self._search_linear_direction == SearchDirection.BOTTOM_UP:
                 #loss occured and it was above acceptance criteria
                 if res == False:
@@ -348,10 +441,20 @@ class DropRateSearch(object):
 
         self._last_binary_rate = rate
 
-        res = self.measure_loss(rate, self._frame_size,
-                                self._loss_acceptance,
-                                self._loss_acceptance_type,
-                                traffic_type)
+        res = []
+        for n in range(self._max_attempts):
+            res.append(self.measure_loss(rate, self._frame_size,
+                                         self._loss_acceptance,
+                                         self._loss_acceptance_type,
+                                         traffic_type))
+
+        if self._search_result_type == SearchResultType.BEST_OF_N:
+            res = self._get_best_of_n(res)
+        elif self._search_result_type == SearchResultType.WORST_OF_N:
+            res = self._get_worst_of_n(res)
+        else:
+            raise ValueError("Unknown search result type")
+
         #loss occured and it was above acceptance criteria
         if res == False:
             self.binary_search(b_min, rate, traffic_type)
