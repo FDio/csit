@@ -183,3 +183,39 @@ class L2Util(object):
             vat.vat_terminal_exec_cmd_from_template('l2_xconnect.vat',
                                                     interface1=sw_iface2,
                                                     interface2=sw_iface1)
+
+    @staticmethod
+    def create_subinterface(node, interface, sub_id):
+        from robot.api import logger
+
+        if isinstance(interface, basestring):
+            sw_if_index = Topology().get_interface_sw_index(node, interface)
+        else:
+            sw_if_index = interface
+
+        output = VatExecutor.cmd_from_template(node, "create_sub_interface.vat",
+                                               sw_if_index=sw_if_index,
+                                               sub_id=sub_id)
+
+        if output[0]["retval"] == 0:
+            sw_subif_index = output[0]["sw_if_index"]
+            logger.trace('Created subif with index {}'.format(sw_subif_index))
+        else:
+            raise RuntimeError('Unable to create VLAN subinterface on node {}'
+                               .format(node['host']))
+
+        with VatTerminal(node, False) as vat:
+            vat.vat_terminal_exec_cmd('exec show interfaces')
+
+        return '{}.{}'.format(interface, sub_id), sw_subif_index
+
+    @staticmethod
+    def l2_tag_rewrite_pop2(node, interface):
+
+        if isinstance(interface, basestring):
+            sw_if_index = Topology().get_interface_sw_index(node, interface)
+        else:
+            sw_if_index = interface
+
+        output = VatExecutor.cmd_from_template(node, "l2_tag_rewrite_pop2.vat",
+                                               sw_if_index=sw_if_index)
