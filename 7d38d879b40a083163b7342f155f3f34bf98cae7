@@ -16,6 +16,24 @@
       "revId": "7d38d879b40a083163b7342f155f3f34bf98cae7",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_82dd3e17",
+        "filename": "resources/libraries/python/SetupFramework.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-03-24T17:25:14Z",
+      "side": 1,
+      "message": "PEP 8: line too long 85 \u003e 80",
+      "parentUuid": "3a045101_02a36e9f",
+      "revId": "7d38d879b40a083163b7342f155f3f34bf98cae7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
