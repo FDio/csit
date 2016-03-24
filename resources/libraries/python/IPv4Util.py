@@ -15,11 +15,7 @@
 
 from robot.api import logger as log
 from robot.api.deco import keyword
-
 from resources.libraries.python.topology import Topology
-from resources.libraries.python.topology import NodeType
-from resources.libraries.python.TrafficScriptExecutor\
-    import TrafficScriptExecutor
 from resources.libraries.python.IPv4Setup import get_node
 
 
@@ -36,22 +32,22 @@ class IPv4Util(object):
         get_node(node).arp_ping(ip_address, interface)
 
     @staticmethod
-    def set_interface_address(node, interface, address, length):
+    def set_interface_address(node, interface, address, prefix_length):
         """See IPv4Node.set_ip for more information.
 
         :param node: Node where IP address should be set to.
         :param interface: Interface name
         :param address: IP address
-        :param length: prefix length
+        :param prefix_length: prefix length
         :type node: dict
         :type interface: str
         :type address: str
-        :type length: int
+        :type prefix_length: int
         """
         log.debug('Node {} interface {} has IPv4 address {} with prefix '
                   'length {}'.format(Topology.get_node_hostname(node),
-                                     interface, address, length))
-        get_node(node).set_ip(interface, address, int(length))
+                                     interface, address, prefix_length))
+        get_node(node).set_ip(interface, address, int(prefix_length))
 
     @staticmethod
     @keyword('Node "${node}" routes to IPv4 network "${network}" with prefix '
@@ -60,12 +56,16 @@ class IPv4Util(object):
     def set_route(node, network, prefix_length, interface, gateway):
         """See IPv4Node.set_route for more information.
 
-        :param node:
-        :param network:
-        :param prefix_length:
-        :param interface:
-        :param gateway:
-        :return:
+        :param node: Node where IP address should be set to.
+        :param network: IP network.
+        :param prefix_length: Prefix length.
+        :param interface: Interface name.
+        :param gateway: Gateway.
+        :type node: dict
+        :type network: str
+        :type prefix_length: int
+        :type interface: str
+        :type gateway: str
         """
         log.debug('Node {} routes to network {} with prefix length {} '
                   'via {} interface {}'.format(Topology.get_node_hostname(node),
@@ -82,7 +82,12 @@ class IPv4Util(object):
 
         :param node: Node dictionary.
         :param port: Interface name.
+        :param nodes_addr: Available nodes IPv4 addresses.
+        :type node: dict
+        :type port: str
+        :type nodes_addr: dict
         :return: IPv4 prefix length
+        :rtype: int
         """
         for net in nodes_addr.values():
             for p in net['ports'].values():
@@ -100,7 +105,12 @@ class IPv4Util(object):
 
         :param node: Node dictionary.
         :param port: Interface name.
-        :return: IPv4 subnet of 'str' type
+        :param nodes_addr: Available nodes IPv4 addresses.
+        :type node: dict
+        :type port: int
+        :type nodes_addr: dict
+        :return: IPv4 subnet
+        :rtype: str
         """
         for net in nodes_addr.values():
             for p in net['ports'].values():
@@ -126,7 +136,7 @@ class IPv4Util(object):
         """Get link IPv4 address.
 
         :param link: Link name.
-        :param nodes_addr: Available nodes IPv4 adresses.
+        :param nodes_addr: Available nodes IPv4 addresses.
         :type link: str
         :type nodes_addr: dict
         :return: Link IPv4 address.
@@ -142,7 +152,7 @@ class IPv4Util(object):
         """Get link IPv4 address prefix.
 
         :param link: Link name.
-        :param nodes_addr: Available nodes IPv4 adresses.
+        :param nodes_addr: Available nodes IPv4 addresses.
         :type link: str
         :type nodes_addr: dict
         :return: Link IPv4 address prefix.

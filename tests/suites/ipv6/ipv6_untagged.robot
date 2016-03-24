@@ -23,7 +23,7 @@
 | Variables | resources/libraries/python/IPv6NodesAddr.py | ${nodes}
 | Force Tags | HW_ENV
 | Suite Setup | Run Keywords | Setup ipv6 to all dut in topology | ${nodes} | ${nodes_ipv6_addr}
-| ...         | AND          | Vpp nodes ra supress link layer | ${nodes}
+| ...         | AND          | Vpp nodes ra suppress link layer | ${nodes}
 | ...         | AND          | Vpp nodes setup ipv6 routing | ${nodes} | ${nodes_ipv6_addr}
 | ...         | AND          | Setup all TGs before traffic script
 | Test Setup | Clear interface counters on all vpp nodes in topology | ${nodes}

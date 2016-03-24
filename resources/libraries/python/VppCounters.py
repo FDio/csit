@@ -28,8 +28,8 @@ class VppCounters(object):
     def vpp_nodes_clear_interface_counters(self, nodes):
         """Clear interface counters on all VPP nodes in topology.
 
-           :param nodes: Nodes in topology.
-           :type nodes: dict
+        :param nodes: Nodes in topology.
+        :type nodes: dict
         """
         for node in nodes.values():
             if node['type'] == NodeType.DUT:
@@ -69,8 +69,8 @@ class VppCounters(object):
     def vpp_clear_interface_counters(node):
         """Clear interface counters on VPP node.
 
-           :param node: Node to clear interface counters on.
-           :type node: dict
+        :param node: Node to clear interface counters on.
+        :type node: dict
         """
         vat = VatExecutor()
         vat.execute_script('clear_interface.vat', node)
@@ -79,9 +79,9 @@ class VppCounters(object):
     def vpp_dump_stats_table(self, node):
         """Dump stats table on VPP node.
 
-           :param node: Node to dump stats table on.
-           :type node: dict
-           :return: Stats table.
+        :param node: Node to dump stats table on.
+        :type node: dict
+        :return: Stats table.
         """
         with VatTerminal(node) as vat:
             vat.vat_terminal_exec_cmd('want_stats enable')
@@ -103,14 +103,14 @@ class VppCounters(object):
     def vpp_get_ipv46_interface_counter(self, node, interface, is_ipv6=True):
         """Return interface IPv4/IPv6 counter
 
-           :param node: Node to get interface IPv4/IPv6 counter on.
-           :param interface: Interface name.
-           :type node: dict
-           :type interface: str
-           :return: Interface IPv4/IPv6 counter.
-           :param is_ipv6: specify IP version
-           :type is_ipv6: bool
-           :rtype: int
+        :param node: Node to get interface IPv4/IPv6 counter on.
+        :param interface: Interface name.
+        :type node: dict
+        :type interface: str
+        :return: Interface IPv4/IPv6 counter.
+        :param is_ipv6: specify IP version
+        :type is_ipv6: bool
+        :rtype: int
         """
         version = 'ip6' if is_ipv6 else 'ip4'
         topo = Topology()

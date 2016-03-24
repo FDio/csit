@@ -186,6 +186,7 @@ class VatTerminal(object):
 
     def vat_terminal_exec_cmd_from_template(self, vat_template_file, **args):
         """Execute VAT script from a file.
+
         :param vat_template_file: template file name of a VAT script
         :param args: dictionary of parameters for VAT script
         :return: list of json objects returned by VAT

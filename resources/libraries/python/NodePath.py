@@ -108,16 +108,13 @@ class NodePath(object):
                 raise RuntimeError('No link between {0} and {1}'.format(
                     node1['host'], node2['host']))
 
-            link = None
-            l_set = set()
-
             if always_same_link:
                 l_set = set(links).intersection(self._links)
             else:
                 l_set = set(links).difference(self._links)
                 if not l_set:
                     raise RuntimeError(
-                        'No free link between {0} and {1}, all links already ' \
+                        'No free link between {0} and {1}, all links already '
                         'used'.format(node1['host'], node2['host']))
 
             if not l_set:

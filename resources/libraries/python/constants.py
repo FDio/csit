@@ -10,10 +10,12 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
+
 class Constants(object):
-    #OpenVPP testing directory location at topology nodes
+    # OpenVPP testing directory location at topology nodes
     REMOTE_FW_DIR = '/tmp/openvpp-testing'
     RESOURCES_LIB_SH = 'resources/libraries/bash'
     RESOURCES_TPL_VAT = 'resources/templates/vat'
-    #OpenVPP VAT binary name
+    # OpenVPP VAT binary name
     VAT_BIN_NAME = 'vpp_api_test'

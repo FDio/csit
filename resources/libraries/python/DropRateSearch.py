@@ -16,12 +16,14 @@
 from abc import ABCMeta, abstractmethod
 from enum import Enum, unique
 
+
 @unique
 class SearchDirection(Enum):
     """Direction of linear search"""
 
     TOP_DOWN = 1
     BOTTOM_UP = 2
+
 
 @unique
 class SearchResults(Enum):
@@ -31,6 +33,7 @@ class SearchResults(Enum):
     FAILURE = 2
     SUSPICIOUS = 3
 
+
 @unique
 class RateType(Enum):
     """Type of rate units"""
@@ -39,6 +42,7 @@ class RateType(Enum):
     PACKETS_PER_SECOND = 2
     BITS_PER_SECOND = 3
 
+
 @unique
 class LossAcceptanceType(Enum):
     """Type of the loss acceptance criteria"""
@@ -46,40 +50,41 @@ class LossAcceptanceType(Enum):
     FRAMES = 1
     PERCENTAGE = 2
 
+
 class DropRateSearch(object):
     """Abstract class with search algorithm implementation"""
 
     __metaclass__ = ABCMeta
 
     def __init__(self):
-        #duration of traffic run (binary, linear)
+        # duration of traffic run (binary, linear)
         self._duration = 60
-        #initial start rate (binary, linear)
+        # initial start rate (binary, linear)
         self._rate_start = 100
-        #step of the linear search, unit: RateType (self._rate_type)
+        # step of the linear search, unit: RateType (self._rate_type)
         self._rate_linear_step = 10
-        #last rate of the binary search, unit: RateType (self._rate_type)
+        # last rate of the binary search, unit: RateType (self._rate_type)
         self._last_binary_rate = 0
-        #linear search direction, permitted values: SearchDirection
+        # linear search direction, permitted values: SearchDirection
         self._search_linear_direction = SearchDirection.TOP_DOWN
-        #upper limit of search, unit: RateType (self._rate_type)
+        # upper limit of search, unit: RateType (self._rate_type)
         self._rate_max = 100
-        #lower limit of search, unit: RateType (self._rate_type)
+        # lower limit of search, unit: RateType (self._rate_type)
         self._rate_min = 1
-        #permitted values: RateType
+        # permitted values: RateType
         self._rate_type = RateType.PERCENTAGE
-        #accepted loss during search, units: LossAcceptanceType
+        # accepted loss during search, units: LossAcceptanceType
         self._loss_acceptance = 0
-        #permitted values: LossAcceptanceType
+        # permitted values: LossAcceptanceType
         self._loss_acceptance_type = LossAcceptanceType.FRAMES
-        #size of frames to send
+        # size of frames to send
         self._frame_size = "64"
-        #binary convergence criterium type is self._rate_type
+        # binary convergence criterium type is self._rate_type
         self._binary_convergence_threshold = 100000
-        #numbers of traffic runs during one rate step
+        # numbers of traffic runs during one rate step
         self._max_attempts = 1
 
-        #result of search
+        # result of search
         self._search_result = None
         self._search_result_rate = None
 
@@ -229,25 +234,24 @@ class DropRateSearch(object):
         :param traffic_type: str
         :return: nothing
         """
-
         if not self._rate_min <= float(start_rate) <= self._rate_max:
             raise ValueError("Start rate is not in min,max range")
 
         rate = float(start_rate)
-        #the last but one step
+        # the last but one step
         prev_rate = None
 
-        #linear search
+        # linear search
         while True:
             res = self.measure_loss(rate, self._frame_size,
                                     self._loss_acceptance,
                                     self._loss_acceptance_type,
                                     traffic_type)
             if self._search_linear_direction == SearchDirection.BOTTOM_UP:
-                #loss occured and it was above acceptance criteria
-                if res == False:
-                    #if this is first run then we didn't find drop rate
-                    if prev_rate == None:
+                # loss occurred and it was above acceptance criteria
+                if not res:
+                    # if this is first run then we didn't find drop rate
+                    if prev_rate is None:
                         self._search_result = SearchResults.FAILURE
                         self._search_result_rate = None
                         return
@@ -256,13 +260,13 @@ class DropRateSearch(object):
                         self._search_result = SearchResults.SUCCESS
                         self._search_result_rate = prev_rate
                         return
-                #there was no loss / loss below acceptance criteria
-                elif res == True:
+                # there was no loss / loss below acceptance criteria
+                elif res:
                     prev_rate = rate
                     rate += self._rate_linear_step
                     if rate > self._rate_max:
                         if prev_rate != self._rate_max:
-                            #one last step with rate set to _rate_max
+                            # one last step with rate set to _rate_max
                             rate = self._rate_max
                             continue
                         else:
@@ -275,13 +279,13 @@ class DropRateSearch(object):
                     raise RuntimeError("Unknown search result")
 
             elif self._search_linear_direction == SearchDirection.TOP_DOWN:
-                #loss occured, decrease rate
-                if res == False:
+                # loss occurred, decrease rate
+                if not res:
                     prev_rate = rate
                     rate -= self._rate_linear_step
                     if rate < self._rate_min:
                         if prev_rate != self._rate_min:
-                            #one last step with rate set to _rate_min
+                            # one last step with rate set to _rate_min
                             rate = self._rate_min
                             continue
                         else:
@@ -290,8 +294,8 @@ class DropRateSearch(object):
                             return
                     else:
                         continue
-                #no loss => non/partial drop rate found
-                elif res == True:
+                # no loss => non/partial drop rate found
+                elif res:
                     self._search_result = SearchResults.SUCCESS
                     self._search_result_rate = rate
                     return
@@ -310,7 +314,8 @@ class DropRateSearch(object):
         """
         if self._search_result == SearchResults.FAILURE:
             raise Exception('Search FAILED')
-        elif self._search_result in [SearchResults.SUCCESS, SearchResults.SUSPICIOUS]:
+        elif self._search_result in [SearchResults.SUCCESS,
+                                     SearchResults.SUSPICIOUS]:
             return self._search_result_rate
 
     def binary_search(self, b_min, b_max, traffic_type):
@@ -324,7 +329,6 @@ class DropRateSearch(object):
         :type traffic_type: str
         :return: nothing
         """
-
         if not self._rate_min <= float(b_min) <= self._rate_max:
             raise ValueError("Min rate is not in min,max range")
         if not self._rate_min <= float(b_max) <= self._rate_max:
@@ -332,13 +336,13 @@ class DropRateSearch(object):
         if float(b_max) < float(b_min):
             raise ValueError("Min rate is greater then max rate")
 
-        #binary search
-        #rate is half of interval + start of interval
+        # binary search
+        # rate is half of interval + start of interval
         rate = ((float(b_max) - float(b_min)) / 2) + float(b_min)
-        #rate diff with previous run
+        # rate diff with previous run
         rate_diff = abs(self._last_binary_rate - rate)
 
-        #convergence criterium
+        # convergence criterium
         if float(rate_diff) < float(self._binary_convergence_threshold):
             if not self._search_result_rate:
                 self._search_result = SearchResults.FAILURE
@@ -352,11 +356,11 @@ class DropRateSearch(object):
                                 self._loss_acceptance,
                                 self._loss_acceptance_type,
                                 traffic_type)
-        #loss occured and it was above acceptance criteria
-        if res == False:
+        # loss occured and it was above acceptance criteria
+        if not res:
             self.binary_search(b_min, rate, traffic_type)
-        #there was no loss / loss below acceptance criteria
-        elif res == True:
+        # there was no loss / loss below acceptance criteria
+        elif res:
             self._search_result_rate = rate
             self.binary_search(rate, b_max, traffic_type)
         else:

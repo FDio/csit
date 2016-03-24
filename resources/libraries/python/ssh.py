@@ -10,6 +10,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
 import paramiko
 from paramiko import RSAKey
 import StringIO
@@ -17,7 +18,7 @@ from scp import SCPClient
 from time import time
 from robot.api import logger
 from interruptingcow import timeout
-from robot.utils.asserts import assert_equal, assert_not_equal
+from robot.utils.asserts import assert_equal
 
 __all__ = ["exec_cmd", "exec_cmd_no_error"]
 
@@ -30,9 +31,10 @@ class SSH(object):
     __existing_connections = {}
 
     def __init__(self):
-        pass
+        self._ssh = None
 
-    def _node_hash(self, node):
+    @staticmethod
+    def _node_hash(node):
         return hash(frozenset([node['host'], node['port']]))
 
     def connect(self, node):
@@ -64,7 +66,7 @@ class SSH(object):
             logger.debug('new ssh: {0}'.format(self._ssh))
 
         logger.debug('Connect peer: {0}'.
-                format(self._ssh.get_transport().getpeername()))
+                     format(self._ssh.get_transport().getpeername()))
         logger.debug('Connections: {0}'.format(str(SSH.__existing_connections)))
 
     def disconnect(self, node):
@@ -168,7 +170,8 @@ class SSH(object):
             raise Exception('Open interactive terminal timeout.')
         return chan
 
-    def interactive_terminal_exec_command(self, chan, cmd, prompt,
+    @staticmethod
+    def interactive_terminal_exec_command(chan, cmd, prompt,
                                           time_out=10):
         """Execute command on interactive terminal.
 
@@ -200,7 +203,8 @@ class SSH(object):
         tmp = buf.replace(cmd.replace('\n', ''), '')
         return tmp.replace(prompt, '')
 
-    def interactive_terminal_close(self, chan):
+    @staticmethod
+    def interactive_terminal_close(chan):
         """Close interactive terminal SSH channel.
 
            :param: chan: SSH channel to be closed.
@@ -252,7 +256,8 @@ def exec_cmd(node, cmd, timeout=None, sudo=False):
         logger.error(e)
         return None
 
-    return (ret_code, stdout, stderr)
+    return ret_code, stdout, stderr
+
 
 def exec_cmd_no_error(node, cmd, timeout=None, sudo=False):
     """Convenience function to ssh/exec/return out & err.
@@ -263,4 +268,4 @@ def exec_cmd_no_error(node, cmd, timeout=None, sudo=False):
     (rc, stdout, stderr) = exec_cmd(node, cmd, timeout=timeout, sudo=sudo)
     assert_equal(rc, 0, 'Command execution failed: "{}"\n{}'.
                  format(cmd, stderr))
-    return (stdout, stderr)
+    return stdout, stderr

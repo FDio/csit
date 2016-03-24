@@ -20,7 +20,6 @@ from robot.api.deco import keyword
 
 import resources.libraries.python.ssh as ssh
 from resources.libraries.python.Routing import Routing
-from resources.libraries.python.InterfaceUtil import InterfaceUtil
 from resources.libraries.python.topology import NodeType, Topology
 from resources.libraries.python.VatExecutor import VatExecutor
 
@@ -193,8 +192,8 @@ class Dut(IPv4Node):
 
     def set_route(self, network, prefix_length, gateway, interface):
         Routing.vpp_route_add(self.node_info,
-                      network=network, prefix_len=prefix_length,
-                      gateway=gateway, interface=interface)
+                              network=network, prefix_len=prefix_length,
+                              gateway=gateway, interface=interface)
 
     def unset_route(self, network, prefix_length, gateway, interface):
         self.exec_vat('del_route.vat', network=network,
@@ -234,12 +233,12 @@ class IPv4Setup(object):
     def vpp_nodes_set_ipv4_addresses(nodes, nodes_addr):
         """Set IPv4 addresses on all VPP nodes in topology.
 
-           :param nodes: Nodes of the test topology.
-           :param nodes_addr: Available nodes IPv4 adresses.
-           :type nodes: dict
-           :type nodes_addr: dict
-           :return: affected interfaces as list of (node, interface) tuples
-           :rtype: list
+        :param nodes: Nodes of the test topology.
+        :param nodes_addr: Available nodes IPv4 addresses.
+        :type nodes: dict
+        :type nodes_addr: dict
+        :return: affected interfaces as list of (node, interface) tuples
+        :rtype: list
         """
 
         interfaces = []
@@ -266,7 +265,7 @@ class IPv4Setup(object):
         """Return IPv4 address of the node port.
         :param node: Node in the topology.
         :param interface: Interface name of the node.
-        :param nodes_addr: Nodes IPv4 adresses.
+        :param nodes_addr: Nodes IPv4 addresses.
         :type node: dict
         :type interface: str
         :type nodes_addr: dict
@@ -295,7 +294,7 @@ class IPv4Setup(object):
 
         :param nodes_info: Dictionary containing information on all nodes
         in topology.
-        :param nodes_addr: Nodes IPv4 adresses.
+        :param nodes_addr: Nodes IPv4 addresses.
         :type nodes_info: dict
         :type nodes_addr: dict
         """
@@ -303,8 +302,6 @@ class IPv4Setup(object):
             if node['type'] == NodeType.TG:
                 continue
             for interface, interface_data in node['interfaces'].iteritems():
-                if interface == 'mgmt':
-                    continue
                 interface_name = interface_data['name']
                 adj_node, adj_int = Topology.\
                     get_adjacent_node_and_interface(nodes_info, node,

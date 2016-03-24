@@ -79,12 +79,14 @@ def create_env_directory_at_node(node):
     (ret_code, stdout, stderr) = ssh.exec_command(
             'cd {0} && rm -rf env && virtualenv env && '
             '. env/bin/activate && '
-            'pip install -r requirements.txt'.format(con.REMOTE_FW_DIR), timeout=100)
+            'pip install -r requirements.txt'.format(con.REMOTE_FW_DIR),
+            timeout=100)
     if 0 != ret_code:
         logger.error('Virtualenv creation error: {0}'.format(stdout + stderr))
         raise Exception('Virtualenv setup failed')
     else:
         logger.console('Virtualenv created on {0}'.format(node['host']))
+
 
 def setup_node(args):
     tarball, remote_tarball, node = args
@@ -109,7 +111,8 @@ class SetupFramework(object):
     def __init__(self):
         pass
 
-    def setup_framework(self, nodes):
+    @staticmethod
+    def setup_framework(nodes):
         """Pack the whole directory and extract in temp on each node."""
 
         tarball = pack_framework_dir()
@@ -118,7 +121,7 @@ class SetupFramework(object):
         logger.trace(msg)
         remote_tarball = "/tmp/{0}".format(basename(tarball))
 
-        # Turn off loggining since we use multiprocessing
+        # Turn off logging since we use multiprocessing
         log_level = BuiltIn().set_log_level('NONE')
         params = ((tarball, remote_tarball, node) for node in nodes.values())
         pool = Pool(processes=len(nodes))
@@ -132,7 +135,7 @@ class SetupFramework(object):
 
         logger.info('Results: {0}'.format(result.get()))
 
-        # Turn on loggining
+        # Turn on logging
         BuiltIn().set_log_level(log_level)
         logger.trace('Test framework copied to all topology nodes')
         delete_local_tarball(tarball)
