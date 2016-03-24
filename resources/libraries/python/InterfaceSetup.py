@@ -13,8 +13,7 @@
 
 """Interface setup library."""
 
-from ssh import SSH
-from robot.api.deco import keyword
+from resources.libraries.python.ssh import SSH
 from resources.libraries.python.VatExecutor import VatExecutor
 
 
@@ -122,8 +121,6 @@ class InterfaceSetup(object):
             raise Exception("'{0}' failed on '{1}'".format(cmd, node['host']))
 
         for if_k, if_v in node['interfaces'].items():
-            if if_k == 'mgmt':
-                continue
             rule = 'SUBSYSTEM==\\"net\\", ACTION==\\"add\\", ATTR{address}' + \
                 '==\\"' + if_v['mac_address'] + '\\", NAME=\\"' + \
                 if_v['name'] + '\\"'
@@ -145,8 +142,6 @@ class InterfaceSetup(object):
         :type node: dict
         """
         for if_k, if_v in node['interfaces'].items():
-            if if_k == 'mgmt':
-                continue
             InterfaceSetup.tg_set_interface_driver(node, if_v['pci_address'],
                                                    if_v['driver'])
 
@@ -168,7 +163,6 @@ class InterfaceSetup(object):
         :return: SW IF INDEX of created interface
         :rtype: int
         """
-
         output = VatExecutor.cmd_from_template(node, "vxlan_create.vat",
                                                src=source_ip,
                                                dst=destination_ip,

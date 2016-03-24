@@ -14,7 +14,8 @@
 """IPv6 utilities library."""
 
 import re
-from ssh import SSH
+
+from resources.libraries.python.ssh import SSH
 
 
 class IPv6Util(object):
@@ -58,7 +59,7 @@ class IPv6Util(object):
         """Send IPv6 ping to the node port.
 
            Args:
-              nodes_ip (Dict): Nodes IPv6 adresses.
+              nodes_ip (Dict): Nodes IPv6 addresses.
               src_node (Dict): Node where ping run.
               dst_node (Dict): Destination node.
               port (str): Port on the destination node.
@@ -79,7 +80,7 @@ class IPv6Util(object):
            Args:
                node (Dict): Node in the topology.
                interface (str): Interface name of the node.
-               nodes_addr (Dict): Nodes IPv6 adresses.
+               nodes_addr (Dict): Nodes IPv6 addresses.
 
            Returns:
                IPv6 address string.

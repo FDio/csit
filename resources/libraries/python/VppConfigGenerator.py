@@ -13,14 +13,14 @@
 
 """VPP Configuration File Generator library"""
 
+import re
+import time
+
 from robot.api import logger
 
 from resources.libraries.python.ssh import SSH
 from resources.libraries.python.topology import NodeType
 from resources.libraries.python.topology import Topology
-
-import re
-import time
 
 __all__ = ['VppConfigGenerator']
 
@@ -72,7 +72,7 @@ class VppConfigGenerator(object):
         If none given, all PCI devices for this node as per topology will be
         added.
         :type node: dict
-        :type pci_device: string
+        :type pci_device: str
         :return: nothing
         """
         if node['type'] != NodeType.DUT:
@@ -89,20 +89,20 @@ class VppConfigGenerator(object):
             # Specific device was given.
             hostname = Topology.get_node_hostname(node)
 
-            pattern = re.compile("^[0-9A-Fa-f]{4}:[0-9A-Fa-f]{2}:"\
-                "[0-9A-Fa-f]{2}\\.[0-9A-Fa-f]$")
+            pattern = re.compile("^[0-9A-Fa-f]{4}:[0-9A-Fa-f]{2}:"
+                                 "[0-9A-Fa-f]{2}\\.[0-9A-Fa-f]$")
             if not pattern.match(pci_device):
-                raise ValueError('PCI address {} to be added to host {} '\
-                    'is not in valid format xxxx:xx:xx.x'.\
-                    format(pci_device, hostname))
+                raise ValueError('PCI address {} to be added to host {} '
+                                 'is not in valid format xxxx:xx:xx.x'.
+                                 format(pci_device, hostname))
 
-            if not hostname in self._nodeconfig:
+            if hostname not in self._nodeconfig:
                 self._nodeconfig[hostname] = {}
-            if not 'pci_addrs' in self._nodeconfig[hostname]:
+            if 'pci_addrs' not in self._nodeconfig[hostname]:
                 self._nodeconfig[hostname]['pci_addrs'] = []
             self._nodeconfig[hostname]['pci_addrs'].append(pci_device)
-            logger.debug('Adding PCI device {1} to {0}'.format(hostname,\
-               pci_device))
+            logger.debug('Adding PCI device {1} to {0}'.format(hostname,
+                                                               pci_device))
 
     def add_cpu_config(self, node, cpu_config):
         """Add CPU configuration for node.
@@ -110,19 +110,19 @@ class VppConfigGenerator(object):
         :param node: DUT node
         :param cpu_config: CPU configuration option, as a string
         :type node: dict
-        :type cpu_config: string
+        :type cpu_config: str
         :return: nothing
         """
         if node['type'] != NodeType.DUT:
             raise ValueError('Node type is not a DUT')
         hostname = Topology.get_node_hostname(node)
-        if not hostname in self._nodeconfig:
+        if hostname not in self._nodeconfig:
             self._nodeconfig[hostname] = {}
-        if not 'cpu_config' in self._nodeconfig[hostname]:
+        if 'cpu_config' not in self._nodeconfig[hostname]:
             self._nodeconfig[hostname]['cpu_config'] = []
         self._nodeconfig[hostname]['cpu_config'].append(cpu_config)
-        logger.debug('Adding {} to hostname {} CPU config'.format(hostname, \
-            cpu_config))
+        logger.debug('Adding {} to hostname {} CPU config'.format(hostname,
+                                                                  cpu_config))
 
     def add_socketmem_config(self, node, socketmem_config):
         """Add Socket Memory configuration for node.
@@ -130,17 +130,17 @@ class VppConfigGenerator(object):
         :param node: DUT node
         :param socketmem_config: Socket Memory configuration option, as a string
         :type node: dict
-        :type cpu_config: string
+        :type socketmem_config: str
         :return: nothing
         """
         if node['type'] != NodeType.DUT:
             raise ValueError('Node type is not a DUT')
         hostname = Topology.get_node_hostname(node)
-        if not hostname in self._nodeconfig:
+        if hostname not in self._nodeconfig:
             self._nodeconfig[hostname] = {}
         self._nodeconfig[hostname]['socketmem_config'] = socketmem_config
-        logger.debug('Setting hostname {} Socket Memory config to {}'.\
-            format(hostname, socketmem_config))
+        logger.debug('Setting hostname {} Socket Memory config to {}'.
+                     format(hostname, socketmem_config))
 
     def add_heapsize_config(self, node, heapsize_config):
         """Add Heap Size configuration for node.
@@ -148,17 +148,17 @@ class VppConfigGenerator(object):
         :param node: DUT node
         :param heapsize_config: Heap Size configuration, as a string
         :type node: dict
-        :type cpu_config: string
+        :type heapsize_config: string
         :return: nothing
         """
         if node['type'] != NodeType.DUT:
             raise ValueError('Node type is not a DUT')
         hostname = Topology.get_node_hostname(node)
-        if not hostname in self._nodeconfig:
+        if hostname not in self._nodeconfig:
             self._nodeconfig[hostname] = {}
         self._nodeconfig[hostname]['heapsize_config'] = heapsize_config
-        logger.debug('Setting hostname {} Heap Size config to {}'.\
-            format(hostname, heapsize_config))
+        logger.debug('Setting hostname {} Heap Size config to {}'.
+                     format(hostname, heapsize_config))
 
     def remove_all_pci_devices(self, node):
         """Remove PCI device configuration from node.
@@ -172,8 +172,8 @@ class VppConfigGenerator(object):
         hostname = Topology.get_node_hostname(node)
         if hostname in self._nodeconfig:
             self._nodeconfig[hostname]['pci_addrs'] = []
-        logger.debug('Clearing all PCI devices for hostname {}.'.\
-            format(hostname))
+        logger.debug('Clearing all PCI devices for hostname {}.'.
+                     format(hostname))
 
     def remove_all_cpu_config(self, node):
         """Remove CPU configuration from node.
@@ -187,8 +187,8 @@ class VppConfigGenerator(object):
         hostname = Topology.get_node_hostname(node)
         if hostname in self._nodeconfig:
             self._nodeconfig[hostname]['cpu_config'] = []
-        logger.debug('Clearing all CPU config for hostname {}.'.\
-            format(hostname))
+        logger.debug('Clearing all CPU config for hostname {}.'.
+                     format(hostname))
 
     def remove_socketmem_config(self, node):
         """Remove Socket Memory configuration from node.
@@ -202,8 +202,8 @@ class VppConfigGenerator(object):
         hostname = Topology.get_node_hostname(node)
         if hostname in self._nodeconfig:
             self._nodeconfig[hostname].pop('socketmem_config', None)
-        logger.debug('Clearing Socket Memory config for hostname {}.'.\
-            format(hostname))
+        logger.debug('Clearing Socket Memory config for hostname {}.'.
+                     format(hostname))
 
     def remove_heapsize_config(self, node):
         """Remove Heap Size configuration from node.
@@ -217,8 +217,8 @@ class VppConfigGenerator(object):
         hostname = Topology.get_node_hostname(node)
         if hostname in self._nodeconfig:
             self._nodeconfig[hostname].pop('heapsize_config', None)
-        logger.debug('Clearing Heap Size config for hostname {}.'.\
-            format(hostname))
+        logger.debug('Clearing Heap Size config for hostname {}.'.
+                     format(hostname))
 
     def apply_config(self, node, waittime=5, retries=12):
         """Generate and apply VPP configuration for node.
@@ -263,8 +263,8 @@ class VppConfigGenerator(object):
                                                socketmemconfig=socketmemconfig,
                                                heapsizeconfig=heapsizeconfig)
 
-        logger.debug('Writing VPP config to host {}: "{}"'.format(hostname,\
-               vppconfig))
+        logger.debug('Writing VPP config to host {}: "{}"'.format(hostname,
+                                                                  vppconfig))
 
         ssh = SSH()
         ssh.connect(node)
@@ -273,16 +273,16 @@ class VppConfigGenerator(object):
         # a sudo'd outut ("sudo echo xxx > /path/to/file") does not
         # work on most platforms...
         (ret, stdout, stderr) = \
-            ssh.exec_command('echo "{0}" | sudo tee {1}'.\
-            format(vppconfig, VPP_CONFIG_FILENAME))
+            ssh.exec_command('echo "{0}" | sudo tee {1}'.
+                             format(vppconfig, VPP_CONFIG_FILENAME))
 
         if ret != 0:
-            logger.debug('Writing config file failed to node {}'.\
-                format(hostname))
+            logger.debug('Writing config file failed to node {}'.
+                         format(hostname))
             logger.debug('stdout: {}'.format(stdout))
             logger.debug('stderr: {}'.format(stderr))
-            raise RuntimeError('Writing config file failed to node {}'.\
-                format(hostname))
+            raise RuntimeError('Writing config file failed to node {}'.
+                               format(hostname))
 
         # Instead of restarting, we'll do separate start and stop
         # actions. This way we don't care whether VPP was running
@@ -291,12 +291,12 @@ class VppConfigGenerator(object):
         (ret, stdout, stderr) = \
             ssh.exec_command('sudo initctl start {}'.format(VPP_SERVICE_NAME))
         if ret != 0:
-            logger.debug('Restarting VPP failed on node {}'.\
-                format(hostname))
+            logger.debug('Restarting VPP failed on node {}'.
+                         format(hostname))
             logger.debug('stdout: {}'.format(stdout))
             logger.debug('stderr: {}'.format(stderr))
-            raise RuntimeError('Restarting VPP failed on node {}'.\
-                format(hostname))
+            raise RuntimeError('Restarting VPP failed on node {}'.
+                               format(hostname))
 
         # Sleep <waittime> seconds, up to <retry> times,
         # and verify if VPP is running.
@@ -316,16 +316,16 @@ class VppConfigGenerator(object):
             # healthy or not, or a call that waits (up to a defined length
             # of time) and returns immediately if VPP is or becomes healthy.
             (ret, stdout, stderr) = \
-                ssh.exec_command('echo show hardware-interfaces | '\
-                    'nc 0 5002')
+                ssh.exec_command('echo show hardware-interfaces | '
+                                 'nc 0 5002')
 
             if ret == 0:
                 vpp_is_running = True
             else:
-                logger.debug('VPP not yet running, {} retries left'.\
-                    format(retries_left))
+                logger.debug('VPP not yet running, {} retries left'.
+                             format(retries_left))
         if retries_left == 0:
-            raise RuntimeError('VPP failed to restart on node {}'.\
-                format(hostname))
-        logger.debug('VPP interfaces found on node {}'.\
-           format(stdout))
+            raise RuntimeError('VPP failed to restart on node {}'.
+                               format(hostname))
+        logger.debug('VPP interfaces found on node {}'.
+                     format(stdout))
