@@ -14,6 +14,7 @@
 """L2 Utilities Library."""
 
 from robot.api.deco import keyword
+
 from resources.libraries.python.topology import Topology
 from resources.libraries.python.VatExecutor import VatExecutor, VatTerminal
 from resources.libraries.python.ssh import exec_cmd_no_error
@@ -52,13 +53,13 @@ class L2Util(object):
         forward {forward} learn {learn} arp-term {arp_term}" VAT command on
         the node.
 
-        :param node: node where we wish to crate the l2 bridge domain
-        :param bd_id: bridge domain index number
-        :param flood: enable flooding
-        :param uu_flood: enable uu_flood
-        :param forward: enable forwarding
-        :param learn: enable mac address learning to fib
-        :param arp_term: enable arp_termination
+        :param node: Node where we wish to crate the l2 bridge domain.
+        :param bd_id: Bridge domain index number.
+        :param flood: Enable flooding.
+        :param uu_flood: Enable uu_flood.
+        :param forward: Enable forwarding.
+        :param learn: Enable mac address learning to fib.
+        :param arp_term: Enable arp_termination.
         :type node: dict
         :type bd_id: int
         :type flood: bool
@@ -78,10 +79,10 @@ class L2Util(object):
 
         Get SW IF ID and add it to the bridge domain.
 
-        :param node: node where we want to execute the command that does this
-        :param interface: interface name
-        :param bd_id: bridge domain index number to add Interface name to
-        :param shg: split horizon group
+        :param node: Node where we want to execute the command that does this.
+        :param interface: Interface name.
+        :param bd_id: Bridge domain index number to add Interface name to.
+        :param shg: Split horizon group.
         :type node: dict
         :type interface: str
         :type bd_id: int
@@ -97,10 +98,10 @@ class L2Util(object):
         Execute the "sw_interface_set_l2_bridge sw_if_index {sw_if_index}
         bd_id {bd_id} shg {shg} enable" VAT command on the given node.
 
-        :param node: node where we want to execute the command that does this
-        :param sw_if_index: interface index
-        :param bd_id: bridge domain index number to add SW IF ID to
-        :param shg: split horizon group
+        :param node: Node where we want to execute the command that does this.
+        :param sw_if_index: Interface index.
+        :param bd_id: Bridge domain index number to add SW IF ID to.
+        :param shg: Split horizon group.
         :type node: dict
         :type sw_if_index: int
         :type bd_id: int
@@ -117,18 +118,20 @@ class L2Util(object):
     def create_bridge_domain_vat_dict(node, link_names, bd_id):
         """Create dictionary that can be used in l2 bridge domain template.
 
-        :param node: node data dictionary
-        :param link_names: list of names of links the bridge domain should be
-        connecting
-        :param bd_id: bridge domain index number
-        :type node: dict
-        :type link_names: list
-        :return: dictionary used to generate l2 bridge domain VAT configuration
-        from template file
         The resulting dictionary looks like this:
         'interface1': interface name of first interface
         'interface2': interface name of second interface
         'bd_id': bridge domain index
+
+        :param node: Node data dictionary.
+        :param link_names: List of names of links the bridge domain should be
+        connecting.
+        :param bd_id: Bridge domain index number.
+        :type node: dict
+        :type link_names: list
+        :return: Dictionary used to generate l2 bridge domain VAT configuration
+        from template file.
+        :rtype: dict
         """
         bd_dict = Topology().get_interfaces_by_link_names(node, link_names)
         bd_dict['bd_id'] = bd_id
@@ -162,9 +165,9 @@ class L2Util(object):
     def vpp_setup_bidirectional_cross_connect(node, interface1, interface2):
         """Create bidirectional cross-connect between 2 interfaces on vpp node.
 
-        :param node: Node to add bidirectional cross-connect
-        :param interface1: first interface name or sw_if_index
-        :param interface2: second interface name or sw_if_index
+        :param node: Node to add bidirectional cross-connect.
+        :param interface1: First interface name or sw_if_index.
+        :param interface2: Second interface name or sw_if_index.
         :type node: dict
         :type interface1: str or int
         :type interface2: str or int
