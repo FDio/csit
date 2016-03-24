@@ -12,34 +12,37 @@
 # limitations under the License.
 
 from robot.api import logger
-from topology import NodeType
-from ssh import SSH
-from constants import Constants
+
+from resources.libraries.python.topology import NodeType
+from resources.libraries.python.ssh import SSH
+from resources.libraries.python.constants import Constants
 
 
 class DUTSetup(object):
-
-    def start_vpp_service_on_all_duts(self, nodes):
+    @staticmethod
+    def start_vpp_service_on_all_duts(nodes):
         """Start up the VPP service on all nodes."""
         ssh = SSH()
         for node in nodes.values():
             if node['type'] == NodeType.DUT:
                 ssh.connect(node)
                 (ret_code, stdout, stderr) = \
-                        ssh.exec_command_sudo('service vpp restart')
+                    ssh.exec_command_sudo('service vpp restart')
                 if 0 != int(ret_code):
                     logger.debug('stdout: {0}'.format(stdout))
                     logger.debug('stderr: {0}'.format(stderr))
                     raise Exception('DUT {0} failed to start VPP service'.
-                            format(node['host']))
+                                    format(node['host']))
 
-    def setup_all_duts(self, nodes):
+    @staticmethod
+    def setup_all_duts(nodes):
         """Prepare all DUTs in given topology for test execution."""
         for node in nodes.values():
             if node['type'] == NodeType.DUT:
-                self.setup_dut(node)
+                DUTSetup.setup_dut(node)
 
-    def setup_dut(self, node):
+    @staticmethod
+    def setup_dut(node):
         ssh = SSH()
         ssh.connect(node)
 
@@ -50,6 +53,6 @@ class DUTSetup(object):
         logger.trace(stderr)
         if 0 != int(ret_code):
             logger.debug('DUT {0} setup script failed: "{1}"'.
-                    format(node['host'], stdout + stderr))
+                         format(node['host'], stdout + stderr))
             raise Exception('DUT test setup script failed at node {}'.
-                    format(node['host']))
+                            format(node['host']))
