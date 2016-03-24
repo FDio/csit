@@ -320,14 +320,13 @@ class DropRateSearch(object):
         else:
             raise ValueError("Unknown search result type")
 
-
     def linear_search(self, start_rate, traffic_type):
         """Linear search of rate with loss below acceptance criteria.
 
         :param start_rate: Initial rate.
         :param traffic_type: Traffic profile.
         :type start_rate: float
-        :param traffic_type: str
+        :type traffic_type: str
         :return: nothing
         """
 

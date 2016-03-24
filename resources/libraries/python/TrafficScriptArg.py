@@ -23,7 +23,7 @@ class TrafficScriptArg(object):
     and '--rx_if'. You can provide more arguments. All arguments have string
     representation of the value.
 
-    :param more_args: List of aditional arguments (optional).
+    :param more_args: List of additional arguments (optional).
     :type more_args: list
 
     :Example:

@@ -14,28 +14,28 @@
 """IPv6 utilities library."""
 
 import re
-from ssh import SSH
+
+from resources.libraries.python.ssh import SSH
 
 
 class IPv6Util(object):
     """IPv6 utilities"""
 
-    def __init__(self):
-        pass
-
     @staticmethod
     def ipv6_ping(src_node, dst_addr, count=3, data_size=56, timeout=1):
         """IPv6 ping.
 
-           Args:
-              src_node (Dict): Node where ping run.
-              dst_addr (str): Destination IPv6 address.
-              count (Optional[int]): Number of echo requests.
-              data_size (Optional[int]): Number of the data bytes.
-              timeout (Optional[int]): Time to wait for a response, in seconds.
-
-           Returns:
-              Number of lost packets.
+        :param src_node: Node where ping run.
+        :param dst_addr: Destination IPv6 address.
+        :param count: Number of echo requests. (Optional)
+        :param data_size: Number of the data bytes. (Optional)
+        :param timeout: Time to wait for a response, in seconds. (Optional)
+        :type src_node: dict
+        :type dst_addr: str
+        :type count: int
+        :type data_size: int
+        :type timeout: int
+        :return: Number of lost packets.
         """
         ssh = SSH()
         ssh.connect(src_node)
@@ -57,17 +57,22 @@ class IPv6Util(object):
                        size=56, timeout=1):
         """Send IPv6 ping to the node port.
 
-           Args:
-              nodes_ip (Dict): Nodes IPv6 adresses.
-              src_node (Dict): Node where ping run.
-              dst_node (Dict): Destination node.
-              port (str): Port on the destination node.
-              cnt (Optional[int]): Number of echo requests.
-              size (Optional[int]): Number of the data bytes.
-              timeout (Optional[int]): Time to wait for a response, in seconds.
-
-           Returns:
-              Number of lost packets.
+        :param nodes_ip: Nodes IPv6 addresses.
+        :param src_node: Node where ping run.
+        :param dst_node: Destination node.
+        :param port: Port on the destination node.
+        :param cnt: Number of echo requests. (Optional)
+        :param size: Number of the data bytes. (Optional)
+        :param timeout: Time to wait for a response, in seconds. (Optional)
+        :type nodes_ip: dict
+        :type src_node: dict
+        :type dst_node: dict
+        :type port: str
+        :type cnt: int
+        :type size: int
+        :type timeout: int
+        :return: Number of lost packets.
+        :rtype: int
         """
         dst_ip = IPv6Util.get_node_port_ipv6_address(dst_node, port, nodes_ip)
         return IPv6Util.ipv6_ping(src_node, dst_ip, cnt, size, timeout)
@@ -76,13 +81,13 @@ class IPv6Util(object):
     def get_node_port_ipv6_address(node, interface, nodes_addr):
         """Return IPv6 address of the node port.
 
-           Args:
-               node (Dict): Node in the topology.
-               interface (str): Interface name of the node.
-               nodes_addr (Dict): Nodes IPv6 adresses.
-
-           Returns:
-               IPv6 address string.
+        :param node: Node in the topology.
+        :param interface: Interface name of the node.
+        :param nodes_addr: Nodes IPv6 addresses.
+        :type node: dict
+        :type interface: str
+        :type nodes_addr: dict
+        :return: IPv6 address string.
         """
         for net in nodes_addr.values():
             for port in net['ports'].values():

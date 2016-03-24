@@ -36,9 +36,9 @@ class InterfaceUtil(object):
 
         Function can be used for DUTs as well as for TGs.
 
-        :param node: node where the interface is
-        :param interface: interface name or sw_if_index
-        :param state: one of 'up' or 'down'
+        :param node: Node where the interface is.
+        :param interface: Interface name or sw_if_index.
+        :param state: One of 'up' or 'down'.
         :type node: dict
         :type interface: str or int
         :type state: str
@@ -73,9 +73,9 @@ class InterfaceUtil(object):
 
         Function can be used only for TGs.
 
-        :param node: node where the interface is
-        :param interface: interface name
-        :param mtu: MTU to set
+        :param node: Node where the interface is.
+        :param interface: Interface name.
+        :param mtu: MTU to set.
         :type node: dict
         :type interface: str
         :type mtu: int
@@ -97,7 +97,7 @@ class InterfaceUtil(object):
 
         Function can be used only for TGs.
 
-        :param node: node where to set default MTU
+        :param node: Node where to set default MTU.
         :type node: dict
         :return: nothing
         """
@@ -109,7 +109,7 @@ class InterfaceUtil(object):
         """Wait until all interfaces with admin-up are in link-up state.
 
         :param node: Node to wait on.
-        :param timeout: Waiting timeout in seconds (optional, default 10s)
+        :param timeout: Waiting timeout in seconds (optional, default 10s).
         :type node: dict
         :type timeout: int
         :raises: RuntimeError if the timeout period value has elapsed.
@@ -172,6 +172,7 @@ class InterfaceUtil(object):
         """Get all interface data from a VPP node. If a name or
         sw_interface_index is provided, return only data for the matching
         interface.
+
         :param node: VPP node to get interface data from.
         :param interface: Numeric index or name string of a specific interface.
         :type node: dict
@@ -333,7 +334,7 @@ class InterfaceUtil(object):
         devices using vpp_api_test, and pairing known information from topology
         (mac address/pci address of interface) to state from VPP.
 
-        :param node: Node selected from DICT__nodes
+        :param node: Node selected from DICT__nodes.
         :type node: dict
         """
         vat_executor = VatExecutor()

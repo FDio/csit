@@ -16,7 +16,7 @@ nodes. All tasks required to be run before the actual tests are started is
 supposed to end up here.
 """
 
-import shlex
+from shlex import split
 from subprocess import Popen, PIPE, call
 from multiprocessing import Pool
 from tempfile import NamedTemporaryFile
@@ -31,6 +31,7 @@ from resources.libraries.python.topology import NodeType
 
 __all__ = ["SetupFramework"]
 
+
 def pack_framework_dir():
     """Pack the testing WS into temp file, return its name."""
 
@@ -39,7 +40,7 @@ def pack_framework_dir():
     tmpfile.close()
 
     proc = Popen(
-        shlex.split("tar --exclude-vcs -zcf {0} .".format(file_name)),
+        split("tar --exclude-vcs -zcf {0} .".format(file_name)),
         stdout=PIPE, stderr=PIPE)
     (stdout, stderr) = proc.communicate()
 
@@ -56,8 +57,8 @@ def pack_framework_dir():
 def copy_tarball_to_node(tarball, node):
     """Copy tarball file from local host to remote node.
 
-    :param tarball: path to tarball to upload
-    :param node: dictionary created from topology
+    :param tarball: Path to tarball to upload.
+    :param node: Dictionary created from topology.
     :type tarball: string
     :type node: dict
     :return: nothing
@@ -74,8 +75,8 @@ def extract_tarball_at_node(tarball, node):
 
     Extracts tarball using tar on given node to specific CSIT loocation.
 
-    :param tarball: path to tarball to upload
-    :param node: dictionary created from topology
+    :param tarball: Path to tarball to upload.
+    :param node: Dictionary created from topology.
     :type tarball: string
     :type node: dict
     :return: nothing
@@ -102,13 +103,14 @@ def create_env_directory_at_node(node):
     ssh.connect(node)
     (ret_code, stdout, stderr) = ssh.exec_command(
         'cd {0} && rm -rf env && virtualenv env && . env/bin/activate && '
-        'pip install -r requirements.txt'.format(con.REMOTE_FW_DIR),
-                                                 timeout=100)
+        'pip install -r requirements.txt'
+        .format(con.REMOTE_FW_DIR), timeout=100)
     if 0 != ret_code:
         logger.error('Virtualenv creation error: {0}'.format(stdout + stderr))
         raise Exception('Virtualenv setup failed')
     else:
         logger.console('Virtualenv created on {0}'.format(node['host']))
+
 
 def setup_node(args):
     """Run all set-up methods for a node.
@@ -116,7 +118,7 @@ def setup_node(args):
     This method is used as map_async parameter. It receives tuple with all
     parameters as passed to map_async function.
 
-    :param args: all parameters needed to setup one node
+    :param args: All parameters needed to setup one node.
     :type args: tuple
     :return: nothing
     """
@@ -127,14 +129,16 @@ def setup_node(args):
         create_env_directory_at_node(node)
     logger.console('Setup of node {0} done'.format(node['host']))
 
+
 def delete_local_tarball(tarball):
     """Delete local tarball to prevent disk pollution.
 
-    :param tarball: path to tarball to upload
+    :param tarball: Path to tarball to upload.
     :type tarball: string
     :return: nothing
     """
-    call(shlex.split('sh -c "rm {0} > /dev/null 2>&1"'.format(tarball)))
+    call(split('sh -c "rm {0} > /dev/null 2>&1"'.format(tarball)))
+
 
 class SetupFramework(object): # pylint: disable=too-few-public-methods
     """Setup suite run on topology nodes.
@@ -143,9 +147,6 @@ class SetupFramework(object): # pylint: disable=too-few-public-methods
     them. This class packs the whole testing directory and copies it over
     to all nodes in topology under /tmp/
     """
-
-    def __init__(self):
-        pass
 
     @staticmethod
     def setup_framework(nodes):
@@ -157,7 +158,7 @@ class SetupFramework(object): # pylint: disable=too-few-public-methods
         logger.trace(msg)
         remote_tarball = "/tmp/{0}".format(basename(tarball))
 
-        # Turn off loggining since we use multiprocessing
+        # Turn off logging since we use multiprocessing
         log_level = BuiltIn().set_log_level('NONE')
         params = ((tarball, remote_tarball, node) for node in nodes.values())
         pool = Pool(processes=len(nodes))
@@ -171,7 +172,7 @@ class SetupFramework(object): # pylint: disable=too-few-public-methods
 
         logger.info('Results: {0}'.format(result.get()))
 
-        # Turn on loggining
+        # Turn on logging
         BuiltIn().set_log_level(log_level)
         logger.trace('Test framework copied to all topology nodes')
         delete_local_tarball(tarball)
