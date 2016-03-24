@@ -14,7 +14,9 @@
 """Interface util library"""
 
 from time import time, sleep
+
 from robot.api import logger
+
 from resources.libraries.python.ssh import exec_cmd_no_error
 from resources.libraries.python.topology import NodeType, Topology
 from resources.libraries.python.VatExecutor import VatExecutor, VatTerminal

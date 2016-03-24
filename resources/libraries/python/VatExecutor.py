@@ -10,10 +10,14 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-from ssh import SSH
-from robot.api import logger
-from constants import Constants
+
 import json
+
+from robot.api import logger
+
+from resources.libraries.python.ssh import SSH
+from resources.libraries.python.constants import Constants
+
 
 __all__ = ['VatExecutor']
 
@@ -43,8 +47,8 @@ class VatExecutor(object):
         """Copy local_path script to node, execute it and return result.
 
         :param vat_name: name of the vat script file. Only the file name of
-            the script is required, the resources path is prepended
-            automatically.
+        the script is required, the resources path is prepended
+        automatically.
         :param node: node to execute the VAT script on.
         :param timeout: seconds to allow the script to run.
         :param json_out: require json output.
@@ -110,7 +114,8 @@ class VatExecutor(object):
     @staticmethod
     def cmd_from_template(node, vat_template_file, **vat_args):
         """Execute VAT script on specified node. This method supports
-         script templates with parameters
+        script templates with parameters.
+
         :param node: node in topology on witch the script is executed
         :param vat_template_file: template file of VAT script
         :param vat_args: arguments to the template file
@@ -120,28 +125,28 @@ class VatExecutor(object):
             return vat.vat_terminal_exec_cmd_from_template(vat_template_file,
                                                            **vat_args)
 
-    @staticmethod
-    def copy_config_to_remote(node, local_path, remote_path):
-        # TODO: will be removed once v4 is merged to master.
-        """Copies vat configuration file to node
-
-        :param node: Remote node on which to copy the VAT configuration file
-        :param local_path: path of the VAT script on local device that launches
-        test cases.
-        :param remote_path: path on remote node where to copy the VAT
-        configuration script file
-        """
-        ssh = SSH()
-        ssh.connect(node)
-        logger.trace("Removing old file {}".format(remote_path))
-        ssh.exec_command_sudo("rm -f {}".format(remote_path))
-        ssh.scp(local_path, remote_path)
+    # @staticmethod
+    # def copy_config_to_remote(node, local_path, remote_path):
+    #     # TODO: will be removed once v4 is merged to master.
+    #     """Copies vat configuration file to node.
+    #
+    #     :param node: Remote node on which to copy the VAT configuration file
+    #     :param local_path: path of the VAT script on local device that launches
+    #     test cases.
+    #     :param remote_path: path on remote node where to copy the VAT
+    #     configuration script file
+    #     """
+    #     ssh = SSH()
+    #     ssh.connect(node)
+    #     logger.trace("Removing old file {}".format(remote_path))
+    #     ssh.exec_command_sudo("rm -f {}".format(remote_path))
+    #     ssh.scp(local_path, remote_path)
 
 
 class VatTerminal(object):
-    """VAT interactive terminal
+    """VAT interactive terminal.
 
-       :param node: Node to open VAT terminal on.
+    :param node: Node to open VAT terminal on.
     """
 
     __VAT_PROMPT = "vat# "
@@ -165,9 +170,8 @@ class VatTerminal(object):
     def vat_terminal_exec_cmd(self, cmd):
         """Execute command on the opened VAT terminal.
 
-           :param cmd: Command to be executed.
-
-           :return: Command output in python representation of JSON format.
+        :param cmd: Command to be executed.
+        :return: Command output in python representation of JSON format.
         """
         logger.debug("Executing command in VAT terminal: {}".format(cmd))
         out = self._ssh.interactive_terminal_exec_command(self._tty,
@@ -186,6 +190,7 @@ class VatTerminal(object):
 
     def vat_terminal_exec_cmd_from_template(self, vat_template_file, **args):
         """Execute VAT script from a file.
+
         :param vat_template_file: template file name of a VAT script
         :param args: dictionary of parameters for VAT script
         :return: list of json objects returned by VAT

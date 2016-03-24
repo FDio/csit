@@ -17,10 +17,7 @@ from robot.api import logger
 
 
 class VatConfigGenerator(object):
-    """Generates VAT configuration scripts from VAT script template files.
-    """
-    def __init__(self):
-        pass
+    """Generates VAT configuration scripts from VAT script template files."""
 
     @staticmethod
     def generate_vat_config_file(template_file, env_var_dict, out_file):

@@ -15,7 +15,6 @@
 
 from robot.api import logger
 from robot.libraries.BuiltIn import BuiltIn
-from robot.api.deco import keyword
 
 from resources.libraries.python.ssh import SSH
 from resources.libraries.python.topology import NodeType
@@ -25,8 +24,9 @@ from resources.libraries.python.DropRateSearch import DropRateSearch
 
 __all__ = ['TrafficGenerator', 'TGDropRateSearchImpl']
 
+
 class TGDropRateSearchImpl(DropRateSearch):
-    """Drop Rate Search implementation"""
+    """Drop Rate Search implementation."""
 
     def __init__(self):
         super(TGDropRateSearchImpl, self).__init__()
@@ -34,8 +34,8 @@ class TGDropRateSearchImpl(DropRateSearch):
     def measure_loss(self, rate, frame_size, loss_acceptance,
                      loss_acceptance_type, traffic_type):
 
-        #we need instance of TrafficGenerator instantiated by Robot Framework
-        #to be able to use trex_stateless_remote_exec method
+        # we need instance of TrafficGenerator instantiated by Robot Framework
+        # to be able to use trex_stateless_remote_exec method
         tg_instance = BuiltIn().get_library_instance('resources.libraries.python.TrafficGenerator')
 
         if tg_instance._node['subtype'] is None:
@@ -45,7 +45,7 @@ class TGDropRateSearchImpl(DropRateSearch):
             tg_instance.trex_stateless_remote_exec(self.get_duration(), unit_rate,
                                                    frame_size, traffic_type)
 
-            #TODO:getters for tg_instance and loss_acceptance_type
+            # TODO: getters for tg_instance and loss_acceptance_type
             logger.trace("comparing: {} < {} ".format(tg_instance._loss, loss_acceptance))
             if float(tg_instance._loss) > float(loss_acceptance):
                 return False
@@ -54,10 +54,11 @@ class TGDropRateSearchImpl(DropRateSearch):
         else:
             raise NotImplementedError("TG subtype not supported")
 
-class TrafficGenerator(object):
-    """Traffic Generator"""
 
-    #use one instance of TrafficGenerator for all tests in test suite
+class TrafficGenerator(object):
+    """Traffic Generator."""
+
+    # use one instance of TrafficGenerator for all tests in test suite
     ROBOT_LIBRARY_SCOPE = 'TEST SUITE'
 
     def __init__(self):
@@ -66,14 +67,15 @@ class TrafficGenerator(object):
         self._sent = None
         self._received = None
         self._node = None
-        #T-REX interface order mapping
+        # T-REX interface order mapping
         self._ifaces_reordered = 0
 
     def initialize_traffic_generator(self, tg_node, tg_if1, tg_if2,
                                      dut1_node, dut1_if1, dut1_if2,
                                      dut2_node, dut2_if1, dut2_if2,
                                      test_type):
-        """TG initialization
+        """TG initialization.
+
         :param tg_node: Traffic generator node
         :param tg_if1: TG - name of first interface
         :param tg_if2: TG - name of second interface
@@ -96,7 +98,6 @@ class TrafficGenerator(object):
         :type test_type: str
         :return: nothing
         """
-
         trex_path = "/opt/trex-core-1.91"
 
         topo = Topology()
@@ -172,12 +173,12 @@ class TrafficGenerator(object):
 
     @staticmethod
     def teardown_traffic_generator(node):
-        """TG teardown
+        """TG teardown.
+
         :param node: Traffic generator node
         :type node: dict
         :return: nothing
         """
-
         if node['type'] != NodeType.TG:
             raise Exception('Node type is not a TG')
         if node['subtype'] == NodeSubTypeTG.TREX:
@@ -191,11 +192,9 @@ class TrafficGenerator(object):
 
     def trex_stateless_remote_exec(self, duration, rate, framesize,
                                    traffic_type):
-        """Execute stateless script on remote node over ssh
+        """Execute stateless script on remote node over ssh.
 
-        :param node: remote node
         :param traffic_type: Traffic profile
-        :type node: dict
         :type traffic_type: str
         """
         ssh = SSH()
@@ -240,7 +239,7 @@ class TrafficGenerator(object):
         logger.trace(stdout)
         logger.trace(stderr)
 
-        #last line from console output
+        # last line from console output
         line = stdout.splitlines()[-1]
 
         self._result = line
@@ -252,7 +251,8 @@ class TrafficGenerator(object):
 
     def send_traffic_on(self, node, duration, rate,
                         framesize, traffic_type):
-        """Send traffic from all configured interfaces on TG
+        """Send traffic from all configured interfaces on TG.
+
         :param node: Dictionary containing TG information
         :param duration: Duration of test traffic generation in seconds
         :param rate: Offered load per interface (e.g. 1%, 3gbps, 4mpps, ...)
@@ -266,7 +266,6 @@ class TrafficGenerator(object):
         :return: TG output
         :rtype: str
         """
-
         if node['type'] != NodeType.TG:
             raise Exception('Node type is not a TG')
 
@@ -281,10 +280,10 @@ class TrafficGenerator(object):
         return self._result
 
     def no_traffic_loss_occured(self):
-        """Fail is loss occured in traffic run
+        """Fail is loss occured in traffic run.
+
         :return: nothing
         """
-
         if self._loss is None:
             raise Exception('The traffic generation has not been issued')
         if self._loss != '0':
