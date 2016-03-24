@@ -14,6 +14,7 @@
 """L2 Utilities Library."""
 
 from robot.api.deco import keyword
+from robot.api import logger
 from resources.libraries.python.topology import Topology
 from resources.libraries.python.VatExecutor import VatExecutor, VatTerminal
 from resources.libraries.python.ssh import exec_cmd_no_error
@@ -186,6 +187,68 @@ class L2Util(object):
             vat.vat_terminal_exec_cmd_from_template('l2_xconnect.vat',
                                                     interface1=sw_iface2,
                                                     interface2=sw_iface1)
+
+    @staticmethod
+    def create_subinterface(node, interface, sub_id, outer_vlan_id,
+                            inner_vlan_id, type):
+        """
+        Create sub-interface on node.
+        :param node: Node to add sub-interface.
+        :param interface: Interface name on which create sub-interface.
+        :param sub_id: ID of the sub-interface to be created.
+        :param outer_vlan_id: ID outer vlan
+        :param inner_vlan_id: ID inner vlan
+        :param type: type of sub-interface
+        :type node: dict
+        :type interface: str
+        :type sub_id: int
+        :type outer_vlan_id: int
+        :type inner_vlan_id: int
+        :type type: str
+        :return: name and index of created sub-interface
+        :rtype: tuple
+        """
+
+        if isinstance(interface, basestring):
+            sw_if_index = Topology().get_interface_sw_index(node, interface)
+        else:
+            sw_if_index = interface
+
+        output = VatExecutor.cmd_from_template(node, "create_sub_interface.vat",
+                                               sw_if_index=sw_if_index,
+                                               sub_id=sub_id,
+                                               outer_vlan_id=outer_vlan_id,
+                                               inner_vlan_id=inner_vlan_id,
+                                               type=type)
+
+        if output[0]["retval"] == 0:
+            sw_subif_index = output[0]["sw_if_index"]
+            logger.trace('Created subinterface with index {}'.format(sw_subif_index))
+        else:
+            raise RuntimeError('Unable to create subinterface on node {}'
+                               .format(node['host']))
+
+        with VatTerminal(node, False) as vat:
+            vat.vat_terminal_exec_cmd('exec show interfaces')
+
+        return '{}.{}'.format(interface, sub_id), sw_subif_index
+
+    @staticmethod
+    def l2_tag_rewrite_pop_2_tags(node, interface):
+        """
+        Rewrite tags in frame.
+        :param node: Node to rewrite tags
+        :param interface: Interface on which rewrite tags.
+        """
+
+        if isinstance(interface, basestring):
+            sw_if_index = Topology().get_interface_sw_index(node, interface)
+        else:
+            sw_if_index = interface
+
+        with VatTerminal(node) as vat:
+            vat.vat_terminal_exec_cmd_from_template("l2_tag_rewrite_pop2.vat",
+                                                    sw_if_index=sw_if_index)
 
     @staticmethod
     def linux_add_bridge(node, br_name, if_1, if_2):
