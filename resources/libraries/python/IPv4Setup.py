@@ -16,11 +16,11 @@
 from socket import inet_ntoa
 from struct import pack
 from abc import ABCMeta, abstractmethod
+
 from robot.api.deco import keyword
 
-import resources.libraries.python.ssh as ssh
+from resources.libraries.python.ssh import exec_cmd_no_error
 from resources.libraries.python.Routing import Routing
-from resources.libraries.python.InterfaceUtil import InterfaceUtil
 from resources.libraries.python.topology import NodeType, Topology
 from resources.libraries.python.VatExecutor import VatExecutor
 
@@ -39,11 +39,11 @@ class IPv4Node(object):
 
     @abstractmethod
     def set_ip(self, interface, address, prefix_length):
-        """Configure IPv4 address on interface
+        """Configure IPv4 address on interface.
 
-        :param interface: interface name
-        :param address:
-        :param prefix_length:
+        :param interface: Interface name.
+        :param address: IPv4 address.
+        :param prefix_length: IPv4 prefix length.
         :type interface: str
         :type address: str
         :type prefix_length: int
@@ -53,12 +53,12 @@ class IPv4Node(object):
 
     @abstractmethod
     def set_route(self, network, prefix_length, gateway, interface):
-        """Configure IPv4 route
+        """Configure IPv4 route.
 
-        :param network: network IPv4 address
-        :param prefix_length: mask length
-        :param gateway: IPv4 address of the gateway
-        :param interface: interface name
+        :param network: Network IPv4 address.
+        :param prefix_length: IPv4 prefix length.
+        :param gateway: IPv4 address of the gateway.
+        :param interface: Interface name.
         :type network: str
         :type prefix_length: int
         :type gateway: str
@@ -69,12 +69,12 @@ class IPv4Node(object):
 
     @abstractmethod
     def unset_route(self, network, prefix_length, gateway, interface):
-        """Remove specified IPv4 route
+        """Remove specified IPv4 route.
 
-        :param network: network IPv4 address
-        :param prefix_length: mask length
-        :param gateway: IPv4 address of the gateway
-        :param interface: interface name
+        :param network: Network IPv4 address.
+        :param prefix_length: IPv4 prefix length.
+        :param gateway: IPv4 address of the gateway.
+        :param interface: Interface name.
         :type network: str
         :type prefix_length: int
         :type gateway: str
@@ -85,9 +85,9 @@ class IPv4Node(object):
 
     @abstractmethod
     def flush_ip_addresses(self, interface):
-        """Flush all IPv4 addresses from specified interface
+        """Flush all IPv4 addresses from specified interface.
 
-        :param interface: interface name
+        :param interface: Interface name.
         :type interface: str
         :return: nothing
         """
@@ -95,10 +95,10 @@ class IPv4Node(object):
 
     @abstractmethod
     def ping(self, destination_address, source_interface):
-        """Send an ICMP request to destination node
+        """Send an ICMP request to destination node.
 
-        :param destination_address: address to send the ICMP request
-        :param source_interface:
+        :param destination_address: Address to send the ICMP request.
+        :param source_interface: Source interface name.
         :type destination_address: str
         :type source_interface: str
         :return: nothing
@@ -112,10 +112,10 @@ class Tg(IPv4Node):
         super(Tg, self).__init__(node_info)
 
     def _execute(self, cmd):
-        return ssh.exec_cmd_no_error(self.node_info, cmd)
+        return exec_cmd_no_error(self.node_info, cmd)
 
     def _sudo_execute(self, cmd):
-        return ssh.exec_cmd_no_error(self.node_info, cmd, sudo=True)
+        return exec_cmd_no_error(self.node_info, cmd, sudo=True)
 
     def set_ip(self, interface, address, prefix_length):
         cmd = 'ip -4 addr flush dev {}'.format(interface)
@@ -152,19 +152,19 @@ class Dut(IPv4Node):
         super(Dut, self).__init__(node_info)
 
     def get_sw_if_index(self, interface):
-        """Get sw_if_index of specified interface from current node
+        """Get sw_if_index of specified interface from current node.
 
-        :param interface: interface name
+        :param interface: Interface name.
         :type interface: str
-        :return: sw_if_index of 'int' type
+        :return: sw_if_index of 'int' type.
         """
         return Topology().get_interface_sw_index(self.node_info, interface)
 
     def exec_vat(self, script, **args):
         """Wrapper for VAT executor.
 
-        :param script: script to execute
-        :param args: parameters to the script
+        :param script: Script to execute.
+        :param args: Parameters to the script.
         :type script: str
         :type args: dict
         :return: nothing
@@ -193,8 +193,8 @@ class Dut(IPv4Node):
 
     def set_route(self, network, prefix_length, gateway, interface):
         Routing.vpp_route_add(self.node_info,
-                      network=network, prefix_len=prefix_length,
-                      gateway=gateway, interface=interface)
+                              network=network, prefix_len=prefix_length,
+                              gateway=gateway, interface=interface)
 
     def unset_route(self, network, prefix_length, gateway, interface):
         self.exec_vat('del_route.vat', network=network,
@@ -215,8 +215,9 @@ class Dut(IPv4Node):
 def get_node(node_info):
     """Creates a class instance derived from Node based on type.
 
-    :param node_info: dictionary containing information on nodes in topology
-    :return: Class instance that is derived from Node
+    :param node_info: Dictionary containing information on nodes in topology.
+    :type node_info: dict
+    :return: Class instance that is derived from Node.
     """
     if node_info['type'] == NodeType.TG:
         return Tg(node_info)
@@ -234,14 +235,13 @@ class IPv4Setup(object):
     def vpp_nodes_set_ipv4_addresses(nodes, nodes_addr):
         """Set IPv4 addresses on all VPP nodes in topology.
 
-           :param nodes: Nodes of the test topology.
-           :param nodes_addr: Available nodes IPv4 adresses.
-           :type nodes: dict
-           :type nodes_addr: dict
-           :return: affected interfaces as list of (node, interface) tuples
-           :rtype: list
+        :param nodes: Nodes of the test topology.
+        :param nodes_addr: Available nodes IPv4 addresses.
+        :type nodes: dict
+        :type nodes_addr: dict
+        :return: Affected interfaces as list of (node, interface) tuples.
+        :rtype: list
         """
-
         interfaces = []
         for net in nodes_addr.values():
             for port in net['ports'].values():
@@ -264,13 +264,15 @@ class IPv4Setup(object):
              'from "${nodes_addr}"')
     def get_ip_addr(node, interface, nodes_addr):
         """Return IPv4 address of the node port.
+
         :param node: Node in the topology.
         :param interface: Interface name of the node.
-        :param nodes_addr: Nodes IPv4 adresses.
+        :param nodes_addr: Nodes IPv4 addresses.
         :type node: dict
         :type interface: str
         :type nodes_addr: dict
-        :return: IPv4 address string
+        :return: IPv4 address.
+        :rtype: str
         """
         for net in nodes_addr.values():
             for port in net['ports'].values():
@@ -295,7 +297,7 @@ class IPv4Setup(object):
 
         :param nodes_info: Dictionary containing information on all nodes
         in topology.
-        :param nodes_addr: Nodes IPv4 adresses.
+        :param nodes_addr: Nodes IPv4 addresses.
         :type nodes_info: dict
         :type nodes_addr: dict
         """
@@ -303,8 +305,6 @@ class IPv4Setup(object):
             if node['type'] == NodeType.TG:
                 continue
             for interface, interface_data in node['interfaces'].iteritems():
-                if interface == 'mgmt':
-                    continue
                 interface_name = interface_data['name']
                 adj_node, adj_int = Topology.\
                     get_adjacent_node_and_interface(nodes_info, node,

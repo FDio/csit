@@ -14,9 +14,11 @@
 """VPP counters utilities library."""
 
 import time
-from topology import NodeType, Topology
-from VatExecutor import VatExecutor, VatTerminal
+
 from robot.api import logger
+
+from resources.libraries.python.topology import NodeType, Topology
+from resources.libraries.python.VatExecutor import VatExecutor, VatTerminal
 
 
 class VppCounters(object):
@@ -28,8 +30,8 @@ class VppCounters(object):
     def vpp_nodes_clear_interface_counters(self, nodes):
         """Clear interface counters on all VPP nodes in topology.
 
-           :param nodes: Nodes in topology.
-           :type nodes: dict
+        :param nodes: Nodes in topology.
+        :type nodes: dict
         """
         for node in nodes.values():
             if node['type'] == NodeType.DUT:
@@ -37,9 +39,9 @@ class VppCounters(object):
 
     @staticmethod
     def vpp_show_errors_verbose(node):
-        """Run "show errors verbose" debug CLI command
+        """Run "show errors verbose" debug CLI command.
 
-        :param node: Node to run command on
+        :param node: Node to run command on.
         :type node: dict
         """
         vat = VatExecutor()
@@ -47,9 +49,9 @@ class VppCounters(object):
 
     @staticmethod
     def vpp_show_runtime_verbose(node):
-        """Run "show runtime" debug CLI command
+        """Run "show runtime" debug CLI command.
 
-        :param node: Node to run command on
+        :param node: Node to run command on.
         :type node: dict
         """
         vat = VatExecutor()
@@ -57,9 +59,9 @@ class VppCounters(object):
 
     @staticmethod
     def vpp_show_hardware_detail(node):
-        """Run "show hardware-interfaces detail" debug CLI command
+        """Run "show hardware-interfaces detail" debug CLI command.
 
-        :param node: Node to run command on
+        :param node: Node to run command on.
         :type node: dict
         """
         vat = VatExecutor()
@@ -69,8 +71,8 @@ class VppCounters(object):
     def vpp_clear_interface_counters(node):
         """Clear interface counters on VPP node.
 
-           :param node: Node to clear interface counters on.
-           :type node: dict
+        :param node: Node to clear interface counters on.
+        :type node: dict
         """
         vat = VatExecutor()
         vat.execute_script('clear_interface.vat', node)
@@ -79,9 +81,9 @@ class VppCounters(object):
     def vpp_dump_stats_table(self, node):
         """Dump stats table on VPP node.
 
-           :param node: Node to dump stats table on.
-           :type node: dict
-           :return: Stats table.
+        :param node: Node to dump stats table on.
+        :type node: dict
+        :return: Stats table.
         """
         with VatTerminal(node) as vat:
             vat.vat_terminal_exec_cmd('want_stats enable')
@@ -101,16 +103,16 @@ class VppCounters(object):
         return self.vpp_get_ipv46_interface_counter(node, interface, True)
 
     def vpp_get_ipv46_interface_counter(self, node, interface, is_ipv6=True):
-        """Return interface IPv4/IPv6 counter
+        """Return interface IPv4/IPv6 counter.
 
-           :param node: Node to get interface IPv4/IPv6 counter on.
-           :param interface: Interface name.
-           :type node: dict
-           :type interface: str
-           :return: Interface IPv4/IPv6 counter.
-           :param is_ipv6: specify IP version
-           :type is_ipv6: bool
-           :rtype: int
+        :param node: Node to get interface IPv4/IPv6 counter on.
+        :param interface: Interface name.
+        :param is_ipv6: Specify IP version.
+        :type node: dict
+        :type interface: str
+        :type is_ipv6: bool
+        :return: Interface IPv4/IPv6 counter.
+        :rtype: int
         """
         version = 'ip6' if is_ipv6 else 'ip4'
         topo = Topology()

@@ -51,7 +51,7 @@ class HoneycombError(Exception):
         with keywords like "Wait until keyword succeeds". So you can disable
         logging by setting enable_logging to False.
 
-        :param msg: Message to be displayed and logged
+        :param msg: Message to be displayed and logged.
         :param enable_logging: When True, logging is enabled, otherwise
         logging is disabled.
         :type msg: str
@@ -117,7 +117,7 @@ class HoneycombUtil(object):
 
         :param response: JSON formatted string.
         :param path: Path to navigate down the data structure.
-        :type response: string
+        :type response: str
         :type path: tuple
         :return: JSON dictionary/list tree.
         :rtype: list

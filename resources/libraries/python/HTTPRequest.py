@@ -108,7 +108,7 @@ class HTTPRequest(object):
         :type ip_addr: str
         :type port: str or int
         :type path: str
-        :return: full url
+        :return: Full url.
         :rtype: str
         """
         return "http://{ip}:{port}{path}".format(ip=ip_addr, port=port,
@@ -155,7 +155,7 @@ class HTTPRequest(object):
         :type path: str
         :type enable_logging: bool
         :type kwargs: dict
-        :return: Status code and content of response
+        :return: Status code and content of response.
         :rtype: tuple
         :raises HTTPRequestError: If
         1. it is not possible to connect,
