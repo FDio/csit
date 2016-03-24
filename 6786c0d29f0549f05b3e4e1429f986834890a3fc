@@ -2,6 +2,132 @@
   "comments": [
     {
       "key": {
+        "uuid": "3a045101_02412e39",
+        "filename": "resources/libraries/python/HTTPRequest.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-24T16:05:02Z",
+      "side": 1,
+      "message": "no need to create keyword for method with the same name.",
+      "range": {
+        "startLine": 68,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 36
+      },
+      "revId": "6786c0d29f0549f05b3e4e1429f986834890a3fc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_62791293",
+        "filename": "resources/libraries/python/HoneycombSetup.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-24T16:05:02Z",
+      "side": 1,
+      "message": "resources.libraries.python.\n\nupdate everywhere please.",
+      "range": {
+        "startLine": 16,
+        "startChar": 5,
+        "endLine": 16,
+        "endChar": 13
+      },
+      "revId": "6786c0d29f0549f05b3e4e1429f986834890a3fc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_426e16cb",
+        "filename": "resources/libraries/python/HoneycombSetup.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-24T16:05:02Z",
+      "side": 1,
+      "message": "... and please sort your imports to match PEP8 recommendations.",
+      "revId": "6786c0d29f0549f05b3e4e1429f986834890a3fc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_82741e9d",
+        "filename": "resources/libraries/python/HoneycombSetup.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-24T16:05:02Z",
+      "side": 1,
+      "message": "Missing module docstring.",
+      "revId": "6786c0d29f0549f05b3e4e1429f986834890a3fc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_c26106d5",
+        "filename": "resources/libraries/python/HoneycombSetup.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-24T16:05:02Z",
+      "side": 1,
+      "message": "Could you please reformat this to fill the line ?",
+      "range": {
+        "startLine": 149,
+        "startChar": 0,
+        "endLine": 149,
+        "endChar": 52
+      },
+      "revId": "6786c0d29f0549f05b3e4e1429f986834890a3fc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_c25466cc",
+        "filename": "resources/libraries/python/HoneycombSetup.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-24T16:05:02Z",
+      "side": 1,
+      "message": "be consistent where you put whitespaces. Either at the end or at the beginning. I personally like them at the end of line if possible.",
+      "range": {
+        "startLine": 159,
+        "startChar": 36,
+        "endLine": 159,
+        "endChar": 38
+      },
+      "revId": "6786c0d29f0549f05b3e4e1429f986834890a3fc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a045101_bff053ca",
         "filename": "resources/libraries/python/HoneycombSetup.py",
         "patchSetId": 6
@@ -42,6 +168,383 @@
         "startChar": 46,
         "endLine": 192,
         "endChar": 54
+      },
+      "revId": "6786c0d29f0549f05b3e4e1429f986834890a3fc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_c20226b4",
+        "filename": "resources/libraries/python/HoneycombSetup.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-24T16:05:02Z",
+      "side": 1,
+      "message": "missing dot at the end of the sentence.",
+      "revId": "6786c0d29f0549f05b3e4e1429f986834890a3fc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_e21c0216",
+        "filename": "resources/libraries/python/HoneycombSetup.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-24T16:05:02Z",
+      "side": 1,
+      "message": "please leave format on the same line, and add the rest on the next line.",
+      "revId": "6786c0d29f0549f05b3e4e1429f986834890a3fc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_a2ff1aaa",
+        "filename": "resources/libraries/python/HoneycombSetup.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-24T16:05:02Z",
+      "side": 1,
+      "message": "why do we do xml parsin of the file? Do we want to catch possible xml problems soon in the run? If that\u0027s not the case, just replace this with simpler read just as above.",
+      "range": {
+        "startLine": 265,
+        "startChar": 0,
+        "endLine": 266,
+        "endChar": 56
+      },
+      "revId": "6786c0d29f0549f05b3e4e1429f986834890a3fc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_222b0a32",
+        "filename": "resources/libraries/python/HoneycombSetup.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-24T16:05:02Z",
+      "side": 1,
+      "message": "please think about putting this whole code with the try block within a new function.",
+      "revId": "6786c0d29f0549f05b3e4e1429f986834890a3fc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_623112a2",
+        "filename": "resources/libraries/python/HoneycombSetup.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-24T16:05:02Z",
+      "side": 1,
+      "message": "Why don\u0027t you use name of the node ?",
+      "range": {
+        "startLine": 277,
+        "startChar": 0,
+        "endLine": 277,
+        "endChar": 55
+      },
+      "revId": "6786c0d29f0549f05b3e4e1429f986834890a3fc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_4226166a",
+        "filename": "resources/libraries/python/HoneycombSetup.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-24T16:05:02Z",
+      "side": 1,
+      "message": "isn\u0027t honeycomb_ prefix redundant, since we\u0027ve moved the honeycomb related settings into sub-item in topology entry?",
+      "range": {
+        "startLine": 281,
+        "startChar": 60,
+        "endLine": 281,
+        "endChar": 76
+      },
+      "revId": "6786c0d29f0549f05b3e4e1429f986834890a3fc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_02200e48",
+        "filename": "resources/libraries/python/HoneycombSetup.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 297,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-24T16:05:02Z",
+      "side": 1,
+      "message": "Please consider leaving .format at the end of the line, and indent the parameters accordingly.",
+      "revId": "6786c0d29f0549f05b3e4e1429f986834890a3fc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_c2190624",
+        "filename": "resources/libraries/python/HoneycombUtil.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-24T16:05:02Z",
+      "side": 1,
+      "message": "resources.libraries.python, fix all occurences please.",
+      "range": {
+        "startLine": 18,
+        "startChar": 5,
+        "endLine": 18,
+        "endChar": 14
+      },
+      "revId": "6786c0d29f0549f05b3e4e1429f986834890a3fc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_a216faef",
+        "filename": "resources/libraries/python/HoneycombUtil.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-24T16:05:02Z",
+      "side": 1,
+      "message": "I think this could fit on one line..",
+      "revId": "6786c0d29f0549f05b3e4e1429f986834890a3fc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_82d3fe37",
+        "filename": "resources/libraries/robot/honeycomb.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-24T16:05:02Z",
+      "side": 1,
+      "message": "This import is part of suite setup. You should not need to include this here.",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 52
+      },
+      "revId": "6786c0d29f0549f05b3e4e1429f986834890a3fc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_62d8f253",
+        "filename": "resources/libraries/robot/honeycomb.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-24T16:05:02Z",
+      "side": 1,
+      "message": "why the trailing underscores?",
+      "revId": "6786c0d29f0549f05b3e4e1429f986834890a3fc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_02e7ee13",
+        "filename": "resources/libraries/robot/honeycomb.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-24T16:05:02Z",
+      "side": 1,
+      "message": "Although this is EXCELLENT documentation, I tend to disagree with keeping this kind of documentation in text. Reason being the code could change, the paths might change, and this will become obsolete. I doubt that everyone else will keep an eye on this text and update it. Therefore please leave this level of detail of documentation for the code itself.",
+      "range": {
+        "startLine": 33,
+        "startChar": 48,
+        "endLine": 33,
+        "endChar": 57
+      },
+      "revId": "6786c0d29f0549f05b3e4e1429f986834890a3fc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_e2e3e203",
+        "filename": "resources/libraries/robot/honeycomb.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-24T16:05:02Z",
+      "side": 1,
+      "message": "same applies here as above.",
+      "revId": "6786c0d29f0549f05b3e4e1429f986834890a3fc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_82badedf",
+        "filename": "resources/libraries/robot/honeycomb.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-24T16:05:02Z",
+      "side": 1,
+      "message": "Does this KW claim and verify if  Honeycomb checks VPP configuration? I think this might be an adept for renaming.",
+      "range": {
+        "startLine": 66,
+        "startChar": 12,
+        "endLine": 66,
+        "endChar": 18
+      },
+      "revId": "6786c0d29f0549f05b3e4e1429f986834890a3fc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_a2eddaf1",
+        "filename": "resources/libraries/robot/honeycomb.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-24T16:05:02Z",
+      "side": 1,
+      "message": "Are the asterisks here for some \"bold\" font formatting in a resulting generated document from these?",
+      "revId": "6786c0d29f0549f05b3e4e1429f986834890a3fc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_62bfd2d1",
+        "filename": "resources/templates/honeycomb/config_topology.hc",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-24T16:05:02Z",
+      "side": 1,
+      "message": "I\u0027d rename this file to *.url instead of .hc",
+      "revId": "6786c0d29f0549f05b3e4e1429f986834890a3fc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_42b4d6f1",
+        "filename": "resources/topology_schemas/topology.sch.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-24T16:05:02Z",
+      "side": 1,
+      "message": "none of these are required? Or is there a problem with sub-node having required?",
+      "revId": "6786c0d29f0549f05b3e4e1429f986834890a3fc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_22b9cae9",
+        "filename": "tests/suites/honeycomb/sanity.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-24T16:05:02Z",
+      "side": 1,
+      "message": "You shouldn\u0027t need this here.",
+      "range": {
+        "startLine": 16,
+        "startChar": 2,
+        "endLine": 16,
+        "endChar": 11
+      },
+      "revId": "6786c0d29f0549f05b3e4e1429f986834890a3fc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_02cece83",
+        "filename": "tests/suites/honeycomb/sanity.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-24T16:05:02Z",
+      "side": 1,
+      "message": "missing tags. Please TAG according to the doc/tags readme. At minimum you need to specify type of topology and ENV (HW/VM) to be executed in virl.\n\nPlease add any new tags to the docs. I doubt we need honeycomb_sanity as a tag, as the whole suite is called sanity.",
+      "range": {
+        "startLine": 41,
+        "startChar": 13,
+        "endLine": 41,
+        "endChar": 29
       },
       "revId": "6786c0d29f0549f05b3e4e1429f986834890a3fc",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
