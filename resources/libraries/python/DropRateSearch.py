@@ -18,14 +18,14 @@ from enum import Enum, unique
 
 @unique
 class SearchDirection(Enum):
-    """Direction of linear search"""
+    """Direction of linear search."""
 
     TOP_DOWN = 1
     BOTTOM_UP = 2
 
 @unique
 class SearchResults(Enum):
-    """Result of the drop rate search"""
+    """Result of the drop rate search."""
 
     SUCCESS = 1
     FAILURE = 2
@@ -33,7 +33,7 @@ class SearchResults(Enum):
 
 @unique
 class RateType(Enum):
-    """Type of rate units"""
+    """Type of rate units."""
 
     PERCENTAGE = 1
     PACKETS_PER_SECOND = 2
@@ -41,13 +41,20 @@ class RateType(Enum):
 
 @unique
 class LossAcceptanceType(Enum):
-    """Type of the loss acceptance criteria"""
+    """Type of the loss acceptance criteria."""
 
     FRAMES = 1
     PERCENTAGE = 2
 
+@unique
+class SearchResultType(Enum):
+    """Type of search result evaluation."""
+
+    BEST_OF_N = 1
+    WORST_OF_N = 2
+
 class DropRateSearch(object):
-    """Abstract class with search algorithm implementation"""
+    """Abstract class with search algorithm implementation."""
 
     __metaclass__ = ABCMeta
 
@@ -78,6 +85,8 @@ class DropRateSearch(object):
         self._binary_convergence_threshold = 100000
         #numbers of traffic runs during one rate step
         self._max_attempts = 1
+        #type of search result evaluation, unit: SearchResultType
+        self._search_result_type = SearchResultType.BEST_OF_N
 
         #result of search
         self._search_result = None
@@ -86,7 +95,7 @@ class DropRateSearch(object):
     @abstractmethod
     def measure_loss(self, rate, frame_size, loss_acceptance,
                      loss_acceptance_type, traffic_type):
-        """Send traffic from TG and measure count of dropped frames
+        """Send traffic from TG and measure count of dropped frames.
 
         :param rate: offered traffic load
         :param frame_size: size of frame
@@ -104,7 +113,7 @@ class DropRateSearch(object):
         pass
 
     def set_search_rate_boundaries(self, max_rate, min_rate):
-        """Set search boundaries: min,max
+        """Set search boundaries: min,max.
 
         :param max_rate: upper value of search boundaries
         :param min_rate: lower value of search boundaries
@@ -121,7 +130,7 @@ class DropRateSearch(object):
             self._rate_min = float(min_rate)
 
     def set_search_linear_step(self, step_rate):
-        """Set step size for linear search
+        """Set step size for linear search.
 
         :param step_rate: linear search step size
         :type step_rate: float
@@ -130,28 +139,28 @@ class DropRateSearch(object):
         self._rate_linear_step = float(step_rate)
 
     def set_search_rate_type_percentage(self):
-        """Set rate type to percentage of linerate
+        """Set rate type to percentage of linerate.
 
         :return: nothing
         """
         self._set_search_rate_type(RateType.PERCENTAGE)
 
     def set_search_rate_type_bps(self):
-        """Set rate type to bits per second
+        """Set rate type to bits per second.
 
         :return: nothing
         """
         self._set_search_rate_type(RateType.BITS_PER_SECOND)
 
     def set_search_rate_type_pps(self):
-        """Set rate type to packets per second
+        """Set rate type to packets per second.
 
         :return: nothing
         """
         self._set_search_rate_type(RateType.PACKETS_PER_SECOND)
 
     def _set_search_rate_type(self, rate_type):
-        """Set rate type to one of RateType-s
+        """Set rate type to one of RateType-s.
 
         :param rate_type: type of rate to set
         :type rate_type: RateType
@@ -163,7 +172,7 @@ class DropRateSearch(object):
             self._rate_type = rate_type
 
     def set_search_frame_size(self, frame_size):
-        """Set size of frames to send
+        """Set size of frames to send.
 
         :param frame_size: size of frames
         :type frame_size: str
@@ -172,7 +181,7 @@ class DropRateSearch(object):
         self._frame_size = frame_size
 
     def set_duration(self, duration):
-        """Set the duration of single traffic run
+        """Set the duration of single traffic run.
 
         :param duration: number of seconds for traffic to run
         :type duration: int
@@ -181,7 +190,7 @@ class DropRateSearch(object):
         self._duration = int(duration)
 
     def get_duration(self):
-        """Return configured duration of single traffic run
+        """Return configured duration of single traffic run.
 
         :return: number of seconds for traffic to run
         :rtype: int
@@ -189,7 +198,7 @@ class DropRateSearch(object):
         return self._duration
 
     def set_binary_convergence_threshold(self, convergence):
-        """Set convergence for binary search
+        """Set convergence for binary search.
 
         :param convergence: treshold value number
         :type convergence: float
@@ -198,7 +207,7 @@ class DropRateSearch(object):
         self._binary_convergence_threshold = float(convergence)
 
     def get_binary_convergence_threshold(self):
-        """Get convergence for binary search
+        """Get convergence for binary search.
 
         :return: treshold value number
         :rtype: float
@@ -206,7 +215,7 @@ class DropRateSearch(object):
         return self._binary_convergence_threshold
 
     def get_rate_type_str(self):
-        """Return rate type representation
+        """Return rate type representation.
 
         :return: string representation of rate type
         :rtype: str
@@ -220,8 +229,92 @@ class DropRateSearch(object):
         else:
             raise ValueError("RateType unknown")
 
+    def set_max_attempts(self, max_attempts):
+        """Set maximum number of traffic runs during one rate step.
+
+        :param max_attempts: number of traffic runs
+        :type max_attempts: int
+        :return: nothing
+        """
+        if int(max_attempts) > 0:
+            self._max_attempts = int(max_attempts)
+        else:
+            raise ValueError("Max attempt must by greater then zero")
+
+    def get_max_attempts(self):
+        """Return maximum number of traffic runs during one rate step.
+
+        :return: number of traffic runs
+        :rtype: int
+        """
+        return self._max_attempts
+
+    def set_search_result_type_best_of_n(self):
+        """Set type of search result evaluation to Best of N.
+
+        :return: nothing
+        """
+        self._set_search_result_type(SearchResultType.BEST_OF_N)
+
+    def set_search_result_type_worst_of_n(self):
+        """Set type of search result evaluation to Worst of N.
+
+        :return: nothing
+        """
+        self._set_search_result_type(SearchResultType.WORST_OF_N)
+
+    def _set_search_result_type(self, search_type):
+        """Set type of search result evaluation to one of SearchResultType.
+
+        :param search_type: type of search result evaluation to set
+        :type search_type: SearchResultType
+        :return: nothing
+        """
+        if search_type not in SearchResultType:
+            raise ValueError("search_type unknown: {}".format(search_type))
+        else:
+            self._search_result_type = search_type
+
+    def _get_best_of_n(self, res_list):
+        """Return best result of N traffic runs.
+
+        :param res_list: list of return values from all runs at one rate step
+        :type res_list: list
+        :return: True if at least one run is True, False otherwise
+        :rtype: boolean
+        """
+        #Return True if any element of the iterable is True.
+        return any(res_list)
+
+    def _get_worst_of_n(self, res_list):
+        """Return worst result of N traffic runs.
+
+        :param res_list: list of return values from all runs at one rate step
+        :type res_list: list
+        :return: False if at least one run is False, True otherwise
+        :rtype: boolean
+        """
+        #Return False if not all elements of the iterable are True.
+        return not all(res_list)
+
+    def _get_result_based_on_search_type(self, res_list):
+        """Return result of search based on search evaluation type.
+
+        :param res_list: list of return values from all runs at one rate step
+        :type res_list: list
+        :return: Boolean based on search result type
+        :rtype: boolean
+        """
+        if self._search_result_type == SearchResultType.BEST_OF_N:
+            return self._get_best_of_n(res_list)
+        elif self._search_result_type == SearchResultType.WORST_OF_N:
+            return self._get_worst_of_n(res_list)
+        else:
+            raise ValueError("Unknown search result type")
+
+
     def linear_search(self, start_rate, traffic_type):
-        """Linear search of rate with loss below acceptance criteria
+        """Linear search of rate with loss below acceptance criteria.
 
         :param start_rate: initial rate
         :param traffic_type: traffic profile
@@ -239,10 +332,15 @@ class DropRateSearch(object):
 
         #linear search
         while True:
-            res = self.measure_loss(rate, self._frame_size,
-                                    self._loss_acceptance,
-                                    self._loss_acceptance_type,
-                                    traffic_type)
+            res = []
+            for n in range(self._max_attempts):
+                res.append(self.measure_loss(rate, self._frame_size,
+                                             self._loss_acceptance,
+                                             self._loss_acceptance_type,
+                                             traffic_type))
+
+            res = self._get_result_based_on_search_type(res)
+
             if self._search_linear_direction == SearchDirection.BOTTOM_UP:
                 #loss occured and it was above acceptance criteria
                 if res == False:
@@ -303,7 +401,7 @@ class DropRateSearch(object):
         raise Exception("Wrong codepath")
 
     def verify_search_result(self):
-        """Fail if search was not successful
+        """Fail if search was not successful.
 
         :return: result rate
         :rtype: float
@@ -314,7 +412,7 @@ class DropRateSearch(object):
             return self._search_result_rate
 
     def binary_search(self, b_min, b_max, traffic_type):
-        """Binary search of rate with loss below acceptance criteria
+        """Binary search of rate with loss below acceptance criteria.
 
         :param b_min: min range rate
         :param b_max: max range rate
@@ -348,10 +446,15 @@ class DropRateSearch(object):
 
         self._last_binary_rate = rate
 
-        res = self.measure_loss(rate, self._frame_size,
-                                self._loss_acceptance,
-                                self._loss_acceptance_type,
-                                traffic_type)
+        res = []
+        for n in range(self._max_attempts):
+            res.append(self.measure_loss(rate, self._frame_size,
+                                         self._loss_acceptance,
+                                         self._loss_acceptance_type,
+                                         traffic_type))
+
+        res = self._get_result_based_on_search_type(res)
+
         #loss occured and it was above acceptance criteria
         if res == False:
             self.binary_search(b_min, rate, traffic_type)
