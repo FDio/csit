@@ -320,14 +320,13 @@ class DropRateSearch(object):
         else:
             raise ValueError("Unknown search result type")
 
-
     def linear_search(self, start_rate, traffic_type):
         """Linear search of rate with loss below acceptance criteria.
 
         :param start_rate: Initial rate.
         :param traffic_type: Traffic profile.
         :type start_rate: float
-        :param traffic_type: str
+        :type traffic_type: str
         :return: nothing
         """
 
@@ -350,7 +349,7 @@ class DropRateSearch(object):
             res = self._get_res_based_on_search_type(res)
 
             if self._search_linear_direction == SearchDirection.BOTTOM_UP:
-                # loss occured and it was above acceptance criteria
+                # loss occurred and it was above acceptance criteria
                 if not res:
                     # if this is first run then we didn't find drop rate
                     if prev_rate is None:
@@ -381,7 +380,7 @@ class DropRateSearch(object):
                     raise RuntimeError("Unknown search result")
 
             elif self._search_linear_direction == SearchDirection.TOP_DOWN:
-                # loss occured, decrease rate
+                # loss occurred, decrease rate
                 if not res:
                     prev_rate = rate
                     rate -= self._rate_linear_step
@@ -464,7 +463,7 @@ class DropRateSearch(object):
 
         res = self._get_res_based_on_search_type(res)
 
-        # loss occured and it was above acceptance criteria
+        # loss occurred and it was above acceptance criteria
         if not res:
             self.binary_search(b_min, rate, traffic_type)
         # there was no loss / loss below acceptance criteria

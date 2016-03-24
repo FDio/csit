@@ -13,9 +13,10 @@
 
 """Traffic script executor library."""
 
-from constants import Constants
-from ssh import SSH
 from robot.api import logger
+
+from resources.libraries.python.constants import Constants
+from resources.libraries.python.ssh import SSH
 
 __all__ = ['TrafficScriptExecutor']
 
@@ -27,10 +28,10 @@ class TrafficScriptExecutor(object):
     def _escape(string):
         """Escape quotation mark and dollar mark for shell command.
 
-           :param string: String to escape.
-           :type string: str
-           :return: Escaped string.
-           :rtype: str
+        :param string: String to escape.
+        :type string: str
+        :return: Escaped string.
+        :rtype: str
         """
         return string.replace('"', '\\"').replace("$", "\\$")
 
@@ -39,14 +40,14 @@ class TrafficScriptExecutor(object):
                                    timeout=10):
         """Run traffic script on the TG node.
 
-           :param script_file_name: Traffic script name
-           :param node: Node to run traffic script on.
-           :param script_args: Traffic scripts arguments.
-           :param timeout: Timeout (optional).
-           :type script_file_name: str
-           :type node: dict
-           :type script_args: str
-           :type timeout: int
+        :param script_file_name: Traffic script name.
+        :param node: Node to run traffic script on.
+        :param script_args: Traffic scripts arguments.
+        :param timeout: Timeout (optional).
+        :type script_file_name: str
+        :type node: dict
+        :type script_args: str
+        :type timeout: int
         """
         logger.trace("{}".format(timeout))
         ssh = SSH()
@@ -70,22 +71,22 @@ class TrafficScriptExecutor(object):
     def traffic_script_gen_arg(rx_if, tx_if, src_mac, dst_mac, src_ip, dst_ip):
         """Generate traffic script basic arguments string.
 
-           :param rx_if: Interface that receives traffic.
-           :param tx_if: Interface that sends traffic.
-           :param src_mac: Source MAC address.
-           :param dst_mac: Destination MAC address.
-           :param src_ip: Source IP address.
-           :param dst_ip: Destination IP address.
-           :type rx_if: str
-           :type tx_if: str
-           :type src_mac: str
-           :type dst_mac: str
-           :type src_ip: str
-           :type dst_ip: str
-           :return: Traffic script arguments string.
-           :rtype: str
+        :param rx_if: Interface that receives traffic.
+        :param tx_if: Interface that sends traffic.
+        :param src_mac: Source MAC address.
+        :param dst_mac: Destination MAC address.
+        :param src_ip: Source IP address.
+        :param dst_ip: Destination IP address.
+        :type rx_if: str
+        :type tx_if: str
+        :type src_mac: str
+        :type dst_mac: str
+        :type src_ip: str
+        :type dst_ip: str
+        :return: Traffic script arguments string.
+        :rtype: str
         """
-        args = '--rx_if {0} --tx_if {1} --src_mac {2} --dst_mac {3} --src_ip' \
-            ' {4} --dst_ip {5}'.format(rx_if, tx_if, src_mac, dst_mac, src_ip,
-                                       dst_ip)
+        args = ('--rx_if {0} --tx_if {1} --src_mac {2} --dst_mac {3} --src_ip'
+                ' {4} --dst_ip {5}').format(rx_if, tx_if, src_mac, dst_mac,
+                                            src_ip, dst_ip)
         return args

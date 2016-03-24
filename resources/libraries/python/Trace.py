@@ -14,6 +14,7 @@
 from resources.libraries.python.VatExecutor import VatExecutor
 from resources.libraries.python.topology import NodeType
 
+
 class Trace(object):
 
     @staticmethod

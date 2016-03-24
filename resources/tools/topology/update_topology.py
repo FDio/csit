@@ -26,12 +26,13 @@ import yaml
 
 from resources.libraries.python.ssh import SSH
 
+
 def load_topology(args):
     """Load topology file referenced to by parameter passed to this script.
 
-    :param args: arguments parsed from commandline
+    :param args: Arguments parsed from commandline.
     :type args: ArgumentParser().parse_args()
-    :return: Python representation of topology yaml
+    :return: Python representation of topology YAML.
     :rtype: dict
     """
     data = None
@@ -45,15 +46,16 @@ def load_topology(args):
 
     return data
 
+
 def ssh_no_error(ssh, cmd):
     """Execute a command over ssh channel, and log and exit if the command
-    fials.
+    fails.
 
-    :param ssh: SSH() object connected to a node
-    :param cmd: Command line to execute on remote node
+    :param ssh: SSH() object connected to a node.
+    :param cmd: Command line to execute on remote node.
     :type ssh: SSH() object
     :type cmd: str
-    :return: stdout from the SSH command
+    :return: stdout from the SSH command.
     :rtype: str
     """
     ret, stdo, stde = ssh.exec_command(cmd)
@@ -65,6 +67,7 @@ def ssh_no_error(ssh, cmd):
 
     return stdo
 
+
 def update_mac_addresses_for_node(node):
     """For given node loop over all ports with PCI address and look for its MAC
     address.
@@ -73,12 +76,13 @@ def update_mac_addresses_for_node(node):
     and binds it to linux kernel driver. After the device is bound to specific
     linux kernel driver the MAC address is extracted from /sys/bus/pci location
     and stored within the node dictionary that was passed to this function.
-    :param node: Node from topology
+
+    :param node: Node from topology.
     :type node: dict
     :return: None
     """
     for port_name, port in node['interfaces'].items():
-        if not port.has_key('driver'):
+        if 'driver' not in port:
             err_msg = '{0} port {1} has no driver element, exiting'.format(
                     node['host'], port_name)
             raise RuntimeError(err_msg)
@@ -101,7 +105,7 @@ def update_mac_addresses_for_node(node):
 
         # Then bind to the 'driver' from topology for given port
         cmd = 'echo {0} | sudo tee /sys/bus/pci/drivers/{1}/bind'.\
-                format(port['pci_address'], port['driver'])
+              format(port['pci_address'], port['driver'])
         ssh_no_error(ssh, cmd)
 
         # Then extract the mac address and store it in the topology
@@ -111,35 +115,35 @@ def update_mac_addresses_for_node(node):
         pattern = re.compile("^([0-9A-Fa-f]{2}:){5}[0-9A-Fa-f]{2}$")
         if not pattern.match(mac):
             raise RuntimeError('MAC address read from host {0} {1} is in '
-                                   'bad format "{2}"'.format(node['host'],
-                                       port['pci_address'], mac))
+                               'bad format "{2}"'
+                               .format(node['host'], port['pci_address'], mac))
         print '{0}: Found MAC address of PCI device {1}: {2}'.format(
                 node['host'], port['pci_address'], mac)
         port['mac_address'] = mac
+
 
 def update_nodes_mac_addresses(topology):
     """Loop over nodes in topology and get mac addresses for all listed ports
     based on PCI addresses.
 
-    :param topology: Topology information with nodes
+    :param topology: Topology information with nodes.
     :type topology: dict
     :return: None
     """
-
     for node in topology['nodes'].values():
         update_mac_addresses_for_node(node)
+
 
 def dump_updated_topology(topology, args):
     """Writes or prints out updated topology file.
 
-    :param topology: Topology information with nodes
-    :param args: arguments parsed from command line
+    :param topology: Topology information with nodes.
+    :param args: Arguments parsed from command line.
     :type topology: dict
     :type args: ArgumentParser().parse_args()
-    :return: 1 if error occured, 0 if successful
+    :return: 1 if error occurred, 0 if successful.
     :rtype: int
     """
-
     if args.output_file:
         if not args.force:
             if os.path.isfile(args.output_file):
@@ -152,6 +156,7 @@ def dump_updated_topology(topology, args):
     else:
         print yaml.dump(topology, default_flow_style=False)
     return 0
+
 
 def main():
     """Main function"""
@@ -172,5 +177,3 @@ def main():
 
 if __name__ == "__main__":
     sys.exit(main())
-
-

@@ -13,8 +13,8 @@
 
 """TG Setup library."""
 
-from topology import NodeType
-from InterfaceUtil import InterfaceUtil
+from resources.libraries.python.topology import NodeType
+from resources.libraries.python.InterfaceUtil import InterfaceUtil
 
 
 class TGSetup(object):

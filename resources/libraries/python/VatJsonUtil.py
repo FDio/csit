@@ -43,7 +43,7 @@ class VatJsonUtil(object):
         """Return interface dictionary from interface_list by MAC address.
 
         Extracts interface dictionary from all of the interfaces in interfaces
-        list parsed from json according to mac_address of the interface.
+        list parsed from JSON according to mac_address of the interface.
 
         :param interfaces_list: Interfaces parsed from JSON.
         :param mac_address: MAC address of interface we are looking for.
@@ -78,7 +78,7 @@ class VatJsonUtil(object):
 
     @staticmethod
     def update_vpp_interface_data_from_json(node, interface_dump_json):
-        """Update vpp node data in node__DICT from json interface dump.
+        """Update vpp node data in node__DICT from JSON interface dump.
 
         This method updates vpp interface names and sw if indexes according to
         interface MAC addresses found in interface_dump_json.

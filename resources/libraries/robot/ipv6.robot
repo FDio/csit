@@ -162,10 +162,10 @@
 | | [Arguments] | ${nodes} | ${nodes_addr}
 | | Nodes Clear Ipv6 Addresses | ${nodes} | ${nodes_addr}
 
-| Vpp nodes ra supress link layer
-| | [Documentation] | Supress ICMPv6 router advertisement message for link scope address
+| Vpp nodes ra suppress link layer
+| | [Documentation] | Suppress ICMPv6 router advertisement message for link scope address
 | | [Arguments] | ${nodes}
-| | Vpp All Ra Supress Link Layer | ${nodes}
+| | Vpp All Ra Suppress Link Layer | ${nodes}
 
 | Vpp nodes setup ipv6 routing
 | | [Documentation] | Setup routing on all VPP nodes required for IPv6 tests

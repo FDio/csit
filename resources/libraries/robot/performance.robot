@@ -145,4 +145,4 @@
 | | [Arguments] | ${duration} | ${rate} | ${framesize} | ${topology_type}
 | | Send traffic on | ${tg} | ${duration}
 | | ...             | ${rate} | ${framesize} | ${topology_type}
-| | No traffic loss occured
+| | No traffic loss occurred

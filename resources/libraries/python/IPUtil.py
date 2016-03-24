@@ -13,24 +13,23 @@
 
 """Common IP utilities library."""
 
-from ssh import SSH
-from constants import Constants
+from resources.libraries.python.ssh import SSH
+from resources.libraries.python.constants import Constants
 
 
 class IPUtil(object):
     """Common IP utilities"""
 
-    def __init__(self):
-        pass
-
     @staticmethod
     def vpp_ip_probe(node, interface, addr):
         """Run ip probe on VPP node.
 
-           Args:
-               node (Dict): VPP node.
-               interface (str): Interface name
-               addr (str): IPv4/IPv6 address
+        :param node: VPP node.
+        :param interface: Interface name.
+        :param addr: IPv4/IPv6 address.
+        :type node: dict
+        :type interface: str
+        :type addr: str
         """
         ssh = SSH()
         ssh.connect(node)

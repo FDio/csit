@@ -13,8 +13,8 @@
 
 """Routing utilities library."""
 
-from VatExecutor import VatTerminal
-from topology import Topology
+from resources.libraries.python.VatExecutor import VatTerminal
+from resources.libraries.python.topology import Topology
 
 
 class Routing(object):

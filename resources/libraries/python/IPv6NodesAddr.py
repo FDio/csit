@@ -13,12 +13,12 @@
 
 """Robot framework variable file.
 
-   Create dictionary variable nodes_ipv6_addr with IPv6 adresses from available
-   networks.
+Create dictionary variable nodes_ipv6_addr with IPv6 addresses from available
+networks.
 """
 
-from IPv6Setup import IPv6Networks
-from topology import Topology
+from resources.libraries.python.IPv6Setup import IPv6Networks
+from resources.libraries.python.topology import Topology
 
 # Default list of available IPv6 networks
 IPV6_NETWORKS = ['3ffe:{0:04x}::/64'.format(i) for i in range(1, 100)]
@@ -26,15 +26,15 @@ IPV6_NETWORKS = ['3ffe:{0:04x}::/64'.format(i) for i in range(1, 100)]
 
 def get_variables(nodes, networks=IPV6_NETWORKS):
     """Special robot framework method that returns dictionary nodes_ipv6_addr,
-       mapping of node and interface name to IPv6 adddress.
+    mapping of node and interface name to IPv6 address.
 
-       :param nodes: Nodes of the test topology.
-       :param networks: list of available IPv6 networks
-       :type nodes: dict
-       :type networks: list
+    :param nodes: Nodes of the test topology.
+    :param networks: List of available IPv6 networks.
+    :type nodes: dict
+    :type networks: list
 
-       .. note::
-           Robot framework calls it automatically.
+    .. note::
+       Robot framework calls it automatically.
     """
     topo = Topology()
     links = topo.get_links(nodes)
