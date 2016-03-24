@@ -63,11 +63,10 @@
 """
 
 
+import os
 import socket
 import select
-import os
-import time
-from multiprocessing import Queue, Process
+
 from scapy.all import ETH_P_IP, ETH_P_IPV6, ETH_P_ALL, ETH_P_ARP
 from scapy.all import Ether, ARP, Packet
 from scapy.layers.inet6 import IPv6
@@ -76,6 +75,7 @@ __all__ = ['RxQueue', 'TxQueue', 'Interface', 'create_gratuitous_arp_request',
            'auto_pad', 'checksum_equal']
 
 # TODO: http://stackoverflow.com/questions/320232/ensuring-subprocesses-are-dead-on-exiting-python-program
+
 
 class PacketVerifier(object):
     """Base class for TX and RX queue objects for packet verifier."""
@@ -178,7 +178,7 @@ def packet_reader(interface_name, queue):
     This function is meant to be run in separate subprocess and is in tight
     loop reading raw packets from interface passed as parameter.
 
-    :param interace_name: Name of interface to read packets from.
+    :param interface_name: Name of interface to read packets from.
     :param queue: Queue in which this function will push incoming packets.
     :type interface_name: string
     :type queue: multiprocessing.Queue
@@ -205,13 +205,6 @@ class RxQueue(PacketVerifier):
     def __init__(self, interface_name):
         PacketVerifier.__init__(self, interface_name)
 
-        #self._queue = Queue()
-        #self._proc = Process(target=packet_reader, args=(interface_name,
-        #                                                 self._queue))
-        #self._proc.daemon = True
-        #self._proc.start()
-        #time.sleep(2)
-
     def recv(self, timeout=3, ignore=None):
         """Read next received packet.
 
@@ -220,7 +213,9 @@ class RxQueue(PacketVerifier):
         arrives in given timeout queue.Empty exception will be risen.
 
         :param timeout: How many seconds to wait for next packet.
+        :param ignore: Packet list that should be ignored.
         :type timeout: int
+        :type ignore: list
 
         :return: Ether() initialized object from packet data.
         :rtype: scapy.Ether
@@ -293,7 +288,7 @@ class Interface(object):
 
 
 def create_gratuitous_arp_request(src_mac, src_ip):
-    """Creates scapy representation of gratuitous ARP request"""
+    """Creates scapy representation of gratuitous ARP request."""
     return (Ether(src=src_mac, dst='ff:ff:ff:ff:ff:ff') /
             ARP(psrc=src_ip, hwsrc=src_mac, pdst=src_ip))
 

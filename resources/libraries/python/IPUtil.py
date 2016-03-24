@@ -13,8 +13,8 @@
 
 """Common IP utilities library."""
 
-from ssh import SSH
-from constants import Constants
+from resources.libraries.python.ssh import SSH
+from resources.libraries.python.constants import Constants
 
 
 class IPUtil(object):

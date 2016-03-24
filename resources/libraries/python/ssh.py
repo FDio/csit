@@ -10,14 +10,16 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
+import StringIO
+from time import time
+from interruptingcow import timeout
+
 import paramiko
 from paramiko import RSAKey
-import StringIO
 from scp import SCPClient
-from time import time
 from robot.api import logger
-from interruptingcow import timeout
-from robot.utils.asserts import assert_equal, assert_not_equal
+from robot.utils.asserts import assert_equal
 
 __all__ = ["exec_cmd", "exec_cmd_no_error"]
 
@@ -30,9 +32,10 @@ class SSH(object):
     __existing_connections = {}
 
     def __init__(self):
-        pass
+        self._ssh = None
 
-    def _node_hash(self, node):
+    @staticmethod
+    def _node_hash(node):
         return hash(frozenset([node['host'], node['port']]))
 
     def connect(self, node):
@@ -64,7 +67,7 @@ class SSH(object):
             logger.debug('new ssh: {0}'.format(self._ssh))
 
         logger.debug('Connect peer: {0}'.
-                format(self._ssh.get_transport().getpeername()))
+                     format(self._ssh.get_transport().getpeername()))
         logger.debug('Connections: {0}'.format(str(SSH.__existing_connections)))
 
     def disconnect(self, node):
@@ -119,20 +122,20 @@ class SSH(object):
     def exec_command_sudo(self, cmd, cmd_input=None, timeout=10):
         """Execute SSH command with sudo on a new channel on the connected Node.
 
-           :param cmd: Command to be executed.
-           :param cmd_input: Input redirected to the command.
-           :param timeout: Timeout.
-           :return: return_code, stdout, stderr
+        :param cmd: Command to be executed.
+        :param cmd_input: Input redirected to the command.
+        :param timeout: Timeout.
+        :return: return_code, stdout, stderr
 
-           :Example:
+        :Example:
 
-            >>> from ssh import SSH
-            >>> ssh = SSH()
-            >>> ssh.connect(node)
-            >>> #Execute command without input (sudo -S cmd)
-            >>> ssh.exec_command_sudo("ifconfig eth0 down")
-            >>> #Execute command with input (sudo -S cmd <<< "input")
-            >>> ssh.exec_command_sudo("vpp_api_test", "dump_interface_table")
+        >>> from ssh import SSH
+        >>> ssh = SSH()
+        >>> ssh.connect(node)
+        >>> #Execute command without input (sudo -S cmd)
+        >>> ssh.exec_command_sudo("ifconfig eth0 down")
+        >>> #Execute command with input (sudo -S cmd <<< "input")
+        >>> ssh.exec_command_sudo("vpp_api_test", "dump_interface_table")
         """
         if cmd_input is None:
             command = 'sudo -S {c}'.format(c=cmd)
@@ -143,15 +146,15 @@ class SSH(object):
     def interactive_terminal_open(self, time_out=10):
         """Open interactive terminal on a new channel on the connected Node.
 
-           :param time_out: Timeout in seconds.
-           :return: SSH channel with opened terminal.
+        :param time_out: Timeout in seconds.
+        :return: SSH channel with opened terminal.
 
-           .. warning:: Interruptingcow is used here, and it uses
-               signal(SIGALRM) to let the operating system interrupt program
-               execution. This has the following limitations: Python signal
-               handlers only apply to the main thread, so you cannot use this
-               from other threads. You must not use this in a program that
-               uses SIGALRM itself (this includes certain profilers)
+        .. warning:: Interruptingcow is used here, and it uses
+           signal(SIGALRM) to let the operating system interrupt program
+           execution. This has the following limitations: Python signal
+           handlers only apply to the main thread, so you cannot use this
+           from other threads. You must not use this in a program that
+           uses SIGALRM itself (this includes certain profilers)
         """
         chan = self._ssh.get_transport().open_session()
         chan.get_pty()
@@ -168,25 +171,26 @@ class SSH(object):
             raise Exception('Open interactive terminal timeout.')
         return chan
 
-    def interactive_terminal_exec_command(self, chan, cmd, prompt,
+    @staticmethod
+    def interactive_terminal_exec_command(chan, cmd, prompt,
                                           time_out=10):
         """Execute command on interactive terminal.
 
-           interactive_terminal_open() method has to be called first!
+        interactive_terminal_open() method has to be called first!
 
-           :param chan: SSH channel with opened terminal.
-           :param cmd: Command to be executed.
-           :param prompt: Command prompt, sequence of characters used to
-               indicate readiness to accept commands.
-           :param time_out: Timeout in seconds.
-           :return: Command output.
+        :param chan: SSH channel with opened terminal.
+        :param cmd: Command to be executed.
+        :param prompt: Command prompt, sequence of characters used to
+        indicate readiness to accept commands.
+        :param time_out: Timeout in seconds.
+        :return: Command output.
 
-           .. warning:: Interruptingcow is used here, and it uses
-               signal(SIGALRM) to let the operating system interrupt program
-               execution. This has the following limitations: Python signal
-               handlers only apply to the main thread, so you cannot use this
-               from other threads. You must not use this in a program that
-               uses SIGALRM itself (this includes certain profilers)
+        .. warning:: Interruptingcow is used here, and it uses
+           signal(SIGALRM) to let the operating system interrupt program
+           execution. This has the following limitations: Python signal
+           handlers only apply to the main thread, so you cannot use this
+           from other threads. You must not use this in a program that
+           uses SIGALRM itself (this includes certain profilers)
         """
         chan.sendall('{c}\n'.format(c=cmd))
         buf = ''
@@ -200,10 +204,11 @@ class SSH(object):
         tmp = buf.replace(cmd.replace('\n', ''), '')
         return tmp.replace(prompt, '')
 
-    def interactive_terminal_close(self, chan):
+    @staticmethod
+    def interactive_terminal_close(chan):
         """Close interactive terminal SSH channel.
 
-           :param: chan: SSH channel to be closed.
+        :param: chan: SSH channel to be closed.
         """
         chan.close()
 
@@ -252,10 +257,12 @@ def exec_cmd(node, cmd, timeout=None, sudo=False):
         logger.error(e)
         return None
 
-    return (ret_code, stdout, stderr)
+    return ret_code, stdout, stderr
+
 
 def exec_cmd_no_error(node, cmd, timeout=None, sudo=False):
     """Convenience function to ssh/exec/return out & err.
+
     Verifies that return code is zero.
 
     Returns (stdout, stderr).
@@ -263,4 +270,4 @@ def exec_cmd_no_error(node, cmd, timeout=None, sudo=False):
     (rc, stdout, stderr) = exec_cmd(node, cmd, timeout=timeout, sudo=sudo)
     assert_equal(rc, 0, 'Command execution failed: "{}"\n{}'.
                  format(cmd, stderr))
-    return (stdout, stderr)
+    return stdout, stderr

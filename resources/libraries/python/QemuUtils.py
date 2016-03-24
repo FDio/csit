@@ -13,10 +13,12 @@
 
 """QEMU utilities library."""
 
+from time import time, sleep
 import json
 import re
-from time import time, sleep
+
 from robot.api import logger
+
 from resources.libraries.python.ssh import SSH
 from resources.libraries.python.constants import Constants
 from resources.libraries.python.topology import NodeType
