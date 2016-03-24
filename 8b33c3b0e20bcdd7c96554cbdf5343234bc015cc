@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a045101_5fc14fe3",
+        "filename": "resources/libraries/robot/performance.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-24T11:22:48Z",
+      "side": 1,
+      "message": "Took me a while to realize dut1_v4 and dut2_v4 are initialized using Library import in the actual test suite, but there is missing link from there to here. Add these two as variables to this KW.",
+      "range": {
+        "startLine": 50,
+        "startChar": 4,
+        "endLine": 50,
+        "endChar": 11
+      },
+      "revId": "8b33c3b0e20bcdd7c96554cbdf5343234bc015cc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_3fb6838b",
+        "filename": "tests/suites/performance/long_xconnect.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-24T11:22:48Z",
+      "side": 1,
+      "message": "duplicate line",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 52
+      },
+      "revId": "8b33c3b0e20bcdd7c96554cbdf5343234bc015cc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_1fbbc773",
+        "filename": "tests/suites/performance/long_xconnect.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-24T11:22:48Z",
+      "side": 1,
+      "message": "Now that the Find NDR KW is moved away, reader has no clue what these parameters represent. Please either add variables section and assign these numbers there, or do it per testcase - depends on how much you can re-use.",
+      "range": {
+        "startLine": 34,
+        "startChar": 8,
+        "endLine": 34,
+        "endChar": 45
+      },
+      "revId": "8b33c3b0e20bcdd7c96554cbdf5343234bc015cc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_ffaffb29",
+        "filename": "tests/suites/performance/long_xconnect.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-24T11:22:48Z",
+      "side": 1,
+      "message": "is this specific for long_xconnect? If not, please move out to lib.",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 32
+      },
+      "revId": "8b33c3b0e20bcdd7c96554cbdf5343234bc015cc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_dfac3f38",
+        "filename": "tests/suites/performance/short_xconnect.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-24T11:22:48Z",
+      "side": 1,
+      "message": "All of the KWs are gone from test files but this one. Is the reason some parameter we pass to the initialize traff gen KW?",
+      "range": {
+        "startLine": 43,
+        "startChar": 1,
+        "endLine": 43,
+        "endChar": 32
+      },
+      "revId": "8b33c3b0e20bcdd7c96554cbdf5343234bc015cc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
