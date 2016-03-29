@@ -14,9 +14,6 @@
 
 set -x
 
-echo | sudo tee -a /etc/hostname
-echo "127.0.0.1 `cat /etc/hostname` " | sudo tee -a /etc/hosts
-
 cat /etc/hostname
 cat /etc/hosts
 
@@ -24,30 +21,11 @@ export DEBIAN_FRONTEND=noninteractive
 sudo apt-get -y update
 sudo apt-get -y install libpython2.7-dev python-virtualenv
 
-#VIRL_VMS="10.30.51.53,10.30.51.51,10.30.51.52"
-#IFS=',' read -ra ADDR <<< "${VIRL_VMS}"
-#
-
 function ssh_do() {
     echo
     echo "### "  ssh $@
     ssh -i priv_key -o StrictHostKeyChecking=no $@
 }
-
-#for addr in "${ADDR[@]}"; do
-#    echo
-#    echo ${addr}
-#    echo
-#
-#    ssh_do cisco@${addr} hostname || true
-#    ssh_do cisco@${addr} "ifconfig -a" || true
-#    ssh_do cisco@${addr} "lspci -Dnn | grep 0200" || true
-#    ssh_do cisco@${addr} "free -m" || true
-#    ssh_do cisco@${addr} "cat /proc/meminfo" || true
-#    ssh_do cisco@${addr} "dpkg -l vpp\*" || true
-#    ssh_do cisco@${addr} "lshw -c network" || true
-#    ssh_do cisco@${addr} "sudo -S sh -c 'echo exec show  hardware | vpp_api_test '"
-#done
 
 VIRL_SERVER=10.30.51.28
 VIRL_USERNAME=jenkins-in
@@ -87,11 +65,11 @@ chmod 600 priv_key
 
 # Temporarily download VPP packages from nexus.fd.io
 
-rm -f *.deb
 if [ "${#}" -ne "0" ]; then
     arr=(${@})
     echo ${arr[0]}
 else
+    rm -f *.deb
     wget -q "https://nexus.fd.io/service/local/repositories/fd.io.dev/content/io/fd/vpp/vpp/1.0.0-229~gb1df169_amd64/vpp-1.0.0-229~gb1df169_amd64.deb" || exit
     wget -q "https://nexus.fd.io/service/local/repositories/fd.io.dev/content/io/fd/vpp/vpp-dbg/1.0.0-229~gb1df169_amd64/vpp-dbg-1.0.0-229~gb1df169_amd64.deb" || exit
     wget -q "https://nexus.fd.io/service/local/repositories/fd.io.dev/content/io/fd/vpp/vpp-dev/1.0.0-229~gb1df169_amd64/vpp-dev-1.0.0-229~gb1df169_amd64.deb" || exit
