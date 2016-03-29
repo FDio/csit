@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "3a045101_05f938c8",
+        "filename": "resources/libraries/python/DropRateSearch.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-03-29T09:09:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a045101_62a6b2c3",
+      "revId": "3e5009777b6b9d6e06e661d44c6943943e7b5afe",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a045101_82889e23",
         "filename": "resources/libraries/python/DropRateSearch.py",
         "patchSetId": 1
@@ -30,6 +48,30 @@
       "writtenOn": "2016-03-24T16:34:22Z",
       "side": 1,
       "message": "Could you please use ValueError?",
+      "range": {
+        "startLine": 274,
+        "startChar": 18,
+        "endLine": 274,
+        "endChar": 27
+      },
+      "revId": "3e5009777b6b9d6e06e661d44c6943943e7b5afe",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_c50230b4",
+        "filename": "resources/libraries/python/DropRateSearch.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-03-29T09:09:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a045101_82889e23",
       "range": {
         "startLine": 274,
         "startChar": 18,
@@ -65,6 +107,30 @@
     },
     {
       "key": {
+        "uuid": "3a045101_a5ff24aa",
+        "filename": "resources/libraries/python/DropRateSearch.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 290,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-03-29T09:09:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a045101_42829601",
+      "range": {
+        "startLine": 287,
+        "startChar": 0,
+        "endLine": 290,
+        "endChar": 24
+      },
+      "revId": "3e5009777b6b9d6e06e661d44c6943943e7b5afe",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a045101_22878a11",
         "filename": "resources/libraries/python/DropRateSearch.py",
         "patchSetId": 1
@@ -88,6 +154,30 @@
     },
     {
       "key": {
+        "uuid": "3a045101_852c284c",
+        "filename": "resources/libraries/python/DropRateSearch.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-03-29T09:09:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a045101_22878a11",
+      "range": {
+        "startLine": 301,
+        "startChar": 0,
+        "endLine": 304,
+        "endChar": 23
+      },
+      "revId": "3e5009777b6b9d6e06e661d44c6943943e7b5afe",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a045101_a2727a47",
         "filename": "resources/libraries/python/DropRateSearch.py",
         "patchSetId": 1
@@ -99,6 +189,30 @@
       "writtenOn": "2016-03-24T16:34:22Z",
       "side": 1,
       "message": "Could you put this block of code into a function, get_result_based_on_search_type, and re-use that?",
+      "range": {
+        "startLine": 451,
+        "startChar": 0,
+        "endLine": 456,
+        "endChar": 58
+      },
+      "revId": "3e5009777b6b9d6e06e661d44c6943943e7b5afe",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_e5f52ccc",
+        "filename": "resources/libraries/python/DropRateSearch.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 456,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-03-29T09:09:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a045101_a2727a47",
       "range": {
         "startLine": 451,
         "startChar": 0,
