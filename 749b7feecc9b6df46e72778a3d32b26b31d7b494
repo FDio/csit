@@ -65,6 +65,30 @@
     },
     {
       "key": {
+        "uuid": "3a045101_6568fcf5",
+        "filename": "resources/libraries/python/InterfaceSetup.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-03-29T15:54:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a045101_bf05f315",
+      "range": {
+        "startLine": 247,
+        "startChar": 8,
+        "endLine": 247,
+        "endChar": 45
+      },
+      "revId": "749b7feecc9b6df46e72778a3d32b26b31d7b494",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a045101_c5f11097",
         "filename": "resources/libraries/python/InterfaceSetup.py",
         "patchSetId": 2
@@ -99,6 +123,30 @@
       "writtenOn": "2016-03-24T12:28:28Z",
       "side": 1,
       "message": "shouldn\u0027t all interfaces have link in them except mgmt interface? We do not care for mgmt if, so why not check that?",
+      "range": {
+        "startLine": 258,
+        "startChar": 0,
+        "endLine": 258,
+        "endChar": 33
+      },
+      "revId": "749b7feecc9b6df46e72778a3d32b26b31d7b494",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_8563081a",
+        "filename": "resources/libraries/python/InterfaceSetup.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-03-29T15:54:22Z",
+      "side": 1,
+      "message": "You\u0027re right. In schema is link required. We don\u0027t have mgmt interface in schema.",
+      "parentUuid": "3a045101_9f02370a",
       "range": {
         "startLine": 258,
         "startChar": 0,
@@ -157,6 +205,30 @@
     },
     {
       "key": {
+        "uuid": "3a045101_2572f4e5",
+        "filename": "resources/libraries/python/InterfaceSetup.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 265,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-03-29T15:54:22Z",
+      "side": 1,
+      "message": "No. 90\u003e80",
+      "parentUuid": "3a045101_62047215",
+      "range": {
+        "startLine": 265,
+        "startChar": 24,
+        "endLine": 265,
+        "endChar": 44
+      },
+      "revId": "749b7feecc9b6df46e72778a3d32b26b31d7b494",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a045101_22254aab",
         "filename": "resources/libraries/python/topology.py",
         "patchSetId": 2
@@ -191,6 +263,30 @@
       "writtenOn": "2016-03-24T12:28:28Z",
       "side": 1,
       "message": "this FN is definitely a utility function - has nothing to do with topology per se, it\u0027s more of a string translation function. Think about where to fit these methods.",
+      "range": {
+        "startLine": 195,
+        "startChar": 36,
+        "endLine": 195,
+        "endChar": 62
+      },
+      "revId": "749b7feecc9b6df46e72778a3d32b26b31d7b494",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_8518a885",
+        "filename": "resources/libraries/python/topology.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-03-29T15:54:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a045101_a2303ae9",
       "range": {
         "startLine": 195,
         "startChar": 36,
@@ -249,6 +345,30 @@
     },
     {
       "key": {
+        "uuid": "3a045101_c5a91026",
+        "filename": "tests/suites/__init__.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-03-29T15:54:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a045101_62523215",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 53
+      },
+      "revId": "749b7feecc9b6df46e72778a3d32b26b31d7b494",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a045101_a57de4b3",
         "filename": "tests/suites/ipv4/ipv4_untagged.robot",
         "patchSetId": 2
@@ -277,6 +397,30 @@
       "writtenOn": "2016-03-24T12:28:28Z",
       "side": 1,
       "message": "probably should go to default.robot",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 53
+      },
+      "revId": "749b7feecc9b6df46e72778a3d32b26b31d7b494",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_a5a60452",
+        "filename": "tests/suites/ipv4/ipv4_untagged.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-03-29T15:54:22Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a045101_824d3e75",
       "range": {
         "startLine": 16,
         "startChar": 0,
