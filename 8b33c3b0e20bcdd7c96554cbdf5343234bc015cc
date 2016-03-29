@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3a045101_0572587c",
+        "filename": "resources/libraries/robot/performance.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-03-29T08:06:10Z",
+      "side": 1,
+      "message": "Passing them as arguments results into error. Not really sure how to pass it correctly.",
+      "parentUuid": "3a045101_5fc14fe3",
+      "range": {
+        "startLine": 50,
+        "startChar": 4,
+        "endLine": 50,
+        "endChar": 11
+      },
+      "revId": "8b33c3b0e20bcdd7c96554cbdf5343234bc015cc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a045101_3fb6838b",
         "filename": "tests/suites/performance/long_xconnect.robot",
         "patchSetId": 4
@@ -36,6 +60,30 @@
       "writtenOn": "2016-03-24T11:22:48Z",
       "side": 1,
       "message": "duplicate line",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 52
+      },
+      "revId": "8b33c3b0e20bcdd7c96554cbdf5343234bc015cc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_6287d262",
+        "filename": "tests/suites/performance/long_xconnect.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-03-29T08:06:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a045101_3fb6838b",
       "range": {
         "startLine": 21,
         "startChar": 0,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "3a045101_255d54ea",
+        "filename": "tests/suites/performance/long_xconnect.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-03-29T08:06:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a045101_1fbbc773",
+      "range": {
+        "startLine": 34,
+        "startChar": 8,
+        "endLine": 34,
+        "endChar": 45
+      },
+      "revId": "8b33c3b0e20bcdd7c96554cbdf5343234bc015cc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a045101_ffaffb29",
         "filename": "tests/suites/performance/long_xconnect.robot",
         "patchSetId": 4
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "3a045101_e2d9a284",
+        "filename": "tests/suites/performance/long_xconnect.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-03-29T08:06:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a045101_ffaffb29",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 32
+      },
+      "revId": "8b33c3b0e20bcdd7c96554cbdf5343234bc015cc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a045101_dfac3f38",
         "filename": "tests/suites/performance/short_xconnect.robot",
         "patchSetId": 4
@@ -105,6 +201,30 @@
       "writtenOn": "2016-03-24T11:22:48Z",
       "side": 1,
       "message": "All of the KWs are gone from test files but this one. Is the reason some parameter we pass to the initialize traff gen KW?",
+      "range": {
+        "startLine": 43,
+        "startChar": 1,
+        "endLine": 43,
+        "endChar": 32
+      },
+      "revId": "8b33c3b0e20bcdd7c96554cbdf5343234bc015cc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_02ddae70",
+        "filename": "tests/suites/performance/short_xconnect.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-03-29T08:06:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a045101_dfac3f38",
       "range": {
         "startLine": 43,
         "startChar": 1,
