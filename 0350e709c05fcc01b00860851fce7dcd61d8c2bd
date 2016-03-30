@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3a045101_30d6b0c6",
+        "filename": "tests/suites/performance/long_bridge_domain.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-03-30T14:34:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a045101_f0f5e8cb",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 53
+      },
+      "revId": "0350e709c05fcc01b00860851fce7dcd61d8c2bd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a045101_1072947c",
         "filename": "tests/suites/performance/long_bridge_domain.robot",
         "patchSetId": 5
@@ -36,6 +60,30 @@
       "writtenOn": "2016-03-30T09:05:54Z",
       "side": 1,
       "message": "What about to import these libraries via performance.robot resource file?",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 76
+      },
+      "revId": "0350e709c05fcc01b00860851fce7dcd61d8c2bd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_d0e42cae",
+        "filename": "tests/suites/performance/long_bridge_domain.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-03-30T14:34:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a045101_1072947c",
       "range": {
         "startLine": 19,
         "startChar": 0,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "3a045101_b0e1a09c",
+        "filename": "tests/suites/performance/long_bridge_domain.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-03-30T14:34:19Z",
+      "side": 1,
+      "message": "As discussed this will be done in separate commit",
+      "parentUuid": "3a045101_104bb42c",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 47
+      },
+      "revId": "0350e709c05fcc01b00860851fce7dcd61d8c2bd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a045101_905ea4e8",
         "filename": "tests/suites/performance/long_ipv4.robot",
         "patchSetId": 5
@@ -82,6 +154,30 @@
       "writtenOn": "2016-03-30T09:05:54Z",
       "side": 1,
       "message": "What about to import this resource file via performance.robot resource file?",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 53
+      },
+      "revId": "0350e709c05fcc01b00860851fce7dcd61d8c2bd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_90eea48a",
+        "filename": "tests/suites/performance/long_ipv4.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-03-30T14:34:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a045101_905ea4e8",
       "range": {
         "startLine": 18,
         "startChar": 0,
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "3a045101_70f31874",
+        "filename": "tests/suites/performance/long_ipv4.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-03-30T14:34:19Z",
+      "side": 1,
+      "message": "As discussed this will be done in separate commit",
+      "parentUuid": "3a045101_d0e66c44",
+      "range": {
+        "startLine": 19,
+        "startChar": 2,
+        "endLine": 19,
+        "endChar": 56
+      },
+      "revId": "0350e709c05fcc01b00860851fce7dcd61d8c2bd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a045101_d0bd4c04",
         "filename": "tests/suites/performance/long_ipv4.robot",
         "patchSetId": 5
@@ -128,6 +248,30 @@
       "writtenOn": "2016-03-30T09:05:54Z",
       "side": 1,
       "message": "What about to import these libraries via performance.robot resource file?",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 76
+      },
+      "revId": "0350e709c05fcc01b00860851fce7dcd61d8c2bd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_50e81c7c",
+        "filename": "tests/suites/performance/long_ipv4.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-03-30T14:34:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a045101_d0bd4c04",
       "range": {
         "startLine": 20,
         "startChar": 0,
@@ -163,6 +307,30 @@
     },
     {
       "key": {
+        "uuid": "3a045101_30ed908c",
+        "filename": "tests/suites/performance/long_ipv4.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-03-30T14:34:19Z",
+      "side": 1,
+      "message": "As discussed this will be done in separate commit",
+      "parentUuid": "3a045101_90d0e454",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 52
+      },
+      "revId": "0350e709c05fcc01b00860851fce7dcd61d8c2bd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a045101_10f974c8",
         "filename": "tests/suites/performance/long_xconnect.robot",
         "patchSetId": 5
@@ -174,6 +342,30 @@
       "writtenOn": "2016-03-30T09:05:54Z",
       "side": 1,
       "message": "What about to import this resource file via performance.robot resource file?",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 53
+      },
+      "revId": "0350e709c05fcc01b00860851fce7dcd61d8c2bd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_1002943e",
+        "filename": "tests/suites/performance/long_xconnect.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-03-30T14:34:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a045101_10f974c8",
       "range": {
         "startLine": 18,
         "startChar": 0,
@@ -209,6 +401,30 @@
     },
     {
       "key": {
+        "uuid": "3a045101_f0fe0838",
+        "filename": "tests/suites/performance/long_xconnect.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-03-30T14:34:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a045101_f06e0896",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 76
+      },
+      "revId": "0350e709c05fcc01b00860851fce7dcd61d8c2bd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a045101_70d55842",
         "filename": "tests/suites/performance/long_xconnect.robot",
         "patchSetId": 5
@@ -220,6 +436,30 @@
       "writtenOn": "2016-03-30T09:05:54Z",
       "side": 1,
       "message": "Probably these two libraries should be imported via default.robot resource file.",
+      "range": {
+        "startLine": 21,
+        "startChar": 2,
+        "endLine": 22,
+        "endChar": 47
+      },
+      "revId": "0350e709c05fcc01b00860851fce7dcd61d8c2bd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_d0fb0c46",
+        "filename": "tests/suites/performance/long_xconnect.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-03-30T14:34:19Z",
+      "side": 1,
+      "message": "As discussed this will be done in separate commit",
+      "parentUuid": "3a045101_70d55842",
       "range": {
         "startLine": 21,
         "startChar": 2,
@@ -255,6 +495,30 @@
     },
     {
       "key": {
+        "uuid": "3a045101_b0f8804a",
+        "filename": "tests/suites/performance/short_bridge_domain.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-03-30T14:34:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a045101_500ffce1",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 53
+      },
+      "revId": "0350e709c05fcc01b00860851fce7dcd61d8c2bd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a045101_d06b0c84",
         "filename": "tests/suites/performance/short_bridge_domain.robot",
         "patchSetId": 5
@@ -266,6 +530,30 @@
       "writtenOn": "2016-03-30T09:05:54Z",
       "side": 1,
       "message": "What about to import this library via performance.robot resource file?",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 55
+      },
+      "revId": "0350e709c05fcc01b00860851fce7dcd61d8c2bd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_909584e6",
+        "filename": "tests/suites/performance/short_bridge_domain.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-03-30T14:34:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a045101_d06b0c84",
       "range": {
         "startLine": 19,
         "startChar": 0,
@@ -301,6 +589,30 @@
     },
     {
       "key": {
+        "uuid": "3a045101_709af815",
+        "filename": "tests/suites/performance/short_bridge_domain.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-03-30T14:34:19Z",
+      "side": 1,
+      "message": "As discussed this will be done in separate commit",
+      "parentUuid": "3a045101_50ca5ca2",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 47
+      },
+      "revId": "0350e709c05fcc01b00860851fce7dcd61d8c2bd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a045101_700af8d3",
         "filename": "tests/suites/performance/short_ipv4.robot",
         "patchSetId": 5
@@ -312,6 +624,30 @@
       "writtenOn": "2016-03-30T09:05:54Z",
       "side": 1,
       "message": "What about to import this resource file via performance.robot resource file?",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 53
+      },
+      "revId": "0350e709c05fcc01b00860851fce7dcd61d8c2bd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_509ffc03",
+        "filename": "tests/suites/performance/short_ipv4.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-03-30T14:34:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a045101_700af8d3",
       "range": {
         "startLine": 18,
         "startChar": 0,
@@ -347,6 +683,30 @@
     },
     {
       "key": {
+        "uuid": "3a045101_30a47056",
+        "filename": "tests/suites/performance/short_ipv4.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-03-30T14:34:19Z",
+      "side": 1,
+      "message": "As discussed this will be done in separate commit",
+      "parentUuid": "3a045101_b0688088",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 56
+      },
+      "revId": "0350e709c05fcc01b00860851fce7dcd61d8c2bd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a045101_703c3894",
         "filename": "tests/suites/performance/short_ipv4.robot",
         "patchSetId": 5
@@ -358,6 +718,30 @@
       "writtenOn": "2016-03-30T09:05:54Z",
       "side": 1,
       "message": "What about to import this library via performance.robot resource file?",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 55
+      },
+      "revId": "0350e709c05fcc01b00860851fce7dcd61d8c2bd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_108974ca",
+        "filename": "tests/suites/performance/short_ipv4.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-03-30T14:34:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a045101_703c3894",
       "range": {
         "startLine": 20,
         "startChar": 0,
@@ -393,6 +777,30 @@
     },
     {
       "key": {
+        "uuid": "3a045101_f085e8ad",
+        "filename": "tests/suites/performance/short_ipv4.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-03-30T14:34:19Z",
+      "side": 1,
+      "message": "As discussed this will be done in separate commit",
+      "parentUuid": "3a045101_f047281c",
+      "range": {
+        "startLine": 20,
+        "startChar": 55,
+        "endLine": 22,
+        "endChar": 52
+      },
+      "revId": "0350e709c05fcc01b00860851fce7dcd61d8c2bd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a045101_301470f4",
         "filename": "tests/suites/performance/short_xconnect.robot",
         "patchSetId": 5
@@ -404,6 +812,30 @@
       "writtenOn": "2016-03-30T09:05:54Z",
       "side": 1,
       "message": "What about to import this resource file via performance.robot resource file?",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 53
+      },
+      "revId": "0350e709c05fcc01b00860851fce7dcd61d8c2bd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_d092ecf5",
+        "filename": "tests/suites/performance/short_xconnect.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-03-30T14:34:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a045101_301470f4",
       "range": {
         "startLine": 18,
         "startChar": 0,
@@ -439,6 +871,30 @@
     },
     {
       "key": {
+        "uuid": "3a045101_b08f60cc",
+        "filename": "tests/suites/performance/short_xconnect.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-03-30T14:34:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a045101_50413c0a",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 55
+      },
+      "revId": "0350e709c05fcc01b00860851fce7dcd61d8c2bd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a045101_d0542ccc",
         "filename": "tests/suites/performance/short_xconnect.robot",
         "patchSetId": 5
@@ -450,6 +906,30 @@
       "writtenOn": "2016-03-30T09:05:54Z",
       "side": 1,
       "message": "These two libraries should be imported via default.robot resource file too.",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 47
+      },
+      "revId": "0350e709c05fcc01b00860851fce7dcd61d8c2bd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_70c1d8e3",
+        "filename": "tests/suites/performance/short_xconnect.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-03-30T14:34:19Z",
+      "side": 1,
+      "message": "As discussed this will be done in separate commit",
+      "parentUuid": "3a045101_d0542ccc",
       "range": {
         "startLine": 20,
         "startChar": 0,
