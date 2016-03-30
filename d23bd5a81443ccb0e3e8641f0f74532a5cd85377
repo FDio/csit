@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a045101_b073e014",
+        "filename": "resources/libraries/python/VatExecutor.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-03-30T13:10:30Z",
+      "side": 1,
+      "message": "there should be empty line between imports",
+      "revId": "d23bd5a81443ccb0e3e8641f0f74532a5cd85377",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_9060e436",
+        "filename": "resources/libraries/python/ssh.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-03-30T13:10:30Z",
+      "side": 1,
+      "message": "3rd party import",
+      "range": {
+        "startLine": 16,
+        "startChar": 5,
+        "endLine": 16,
+        "endChar": 20
+      },
+      "revId": "d23bd5a81443ccb0e3e8641f0f74532a5cd85377",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
