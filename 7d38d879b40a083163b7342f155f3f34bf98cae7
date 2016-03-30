@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "3a045101_b01640f0",
+        "filename": "resources/libraries/python/IPv6Util.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-03-30T10:11:47Z",
+      "side": 1,
+      "message": "PEP 8: Imports should be grouped in the following order:\n    standard library imports\n    related third party imports\n    local application/library specific imports\nYou should put a blank line between each group of imports.",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 9
+      },
+      "revId": "7d38d879b40a083163b7342f155f3f34bf98cae7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a045101_02a36e9f",
         "filename": "resources/libraries/python/SetupFramework.py",
         "patchSetId": 1
