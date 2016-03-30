@@ -68,6 +68,53 @@
       "revId": "135f2add2983caade092beaabd6f88f17377c7a0",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_70943837",
+        "filename": "resources/tools/topo_installation.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-03-30T11:08:33Z",
+      "side": 1,
+      "message": "The directory should already be created by previous call of topo_reservation.py. So we could just check if the required directory is there and create it only in case that it is not there (but based on reservation procedure it should be there...).",
+      "parentUuid": "3a045101_70d8b853",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 67
+      },
+      "revId": "135f2add2983caade092beaabd6f88f17377c7a0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_908fc423",
+        "filename": "resources/tools/topo_installation.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-03-30T11:08:33Z",
+      "side": 1,
+      "message": "of",
+      "range": {
+        "startLine": 49,
+        "startChar": 27,
+        "endLine": 49,
+        "endChar": 29
+      },
+      "revId": "135f2add2983caade092beaabd6f88f17377c7a0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
