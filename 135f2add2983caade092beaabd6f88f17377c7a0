@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3a045101_70bb18c5",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-03-30T11:27:52Z",
+      "side": 1,
+      "message": "Ok",
+      "parentUuid": "3a045101_5026dc69",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 33
+      },
+      "revId": "135f2add2983caade092beaabd6f88f17377c7a0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a045101_90d34438",
         "filename": "resources/tools/topo_installation.py",
         "patchSetId": 2
@@ -36,6 +60,30 @@
       "writtenOn": "2016-03-30T09:58:41Z",
       "side": 1,
       "message": "Add this as a parameter to this script please.",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 41
+      },
+      "revId": "135f2add2983caade092beaabd6f88f17377c7a0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_d0ac2c8f",
+        "filename": "resources/tools/topo_installation.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-03-30T11:27:52Z",
+      "side": 1,
+      "message": "Ok",
+      "parentUuid": "3a045101_90d34438",
       "range": {
         "startLine": 26,
         "startChar": 0,
@@ -95,6 +143,30 @@
     },
     {
       "key": {
+        "uuid": "3a045101_10a3b49f",
+        "filename": "resources/tools/topo_installation.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-03-30T11:27:52Z",
+      "side": 1,
+      "message": "I can do compromise. I can pass it as arg so it will be controlled from bootstrap.sh (more flexible), but there is nothing to check as installation will not be executed if reservation is not successful. And if reservation is successful then workspace (reservation dir) is there. TRAP will then clean it all when bootstrap.sh exits.",
+      "parentUuid": "3a045101_70943837",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 67
+      },
+      "revId": "135f2add2983caade092beaabd6f88f17377c7a0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a045101_908fc423",
         "filename": "resources/tools/topo_installation.py",
         "patchSetId": 2
@@ -106,6 +178,30 @@
       "writtenOn": "2016-03-30T11:08:33Z",
       "side": 1,
       "message": "of",
+      "range": {
+        "startLine": 49,
+        "startChar": 27,
+        "endLine": 49,
+        "endChar": 29
+      },
+      "revId": "135f2add2983caade092beaabd6f88f17377c7a0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_f09f284f",
+        "filename": "resources/tools/topo_installation.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-03-30T11:27:52Z",
+      "side": 1,
+      "message": "Ok",
+      "parentUuid": "3a045101_908fc423",
       "range": {
         "startLine": 49,
         "startChar": 27,
