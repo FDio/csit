@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a045101_6b87ad62",
+        "filename": "resources/libraries/python/IPv6Setup.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-03-30T20:42:29Z",
+      "side": 1,
+      "message": "Correct the word also here.",
+      "range": {
+        "startLine": 215,
+        "startChar": 11,
+        "endLine": 215,
+        "endChar": 18
+      },
+      "revId": "3c25e23df16fc2a7b4adb061d8d74a18f6c4cba8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_4b7cf172",
+        "filename": "resources/libraries/python/topology.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-03-30T20:42:29Z",
+      "side": 1,
+      "message": "sofware interface index",
+      "range": {
+        "startLine": 163,
+        "startChar": 65,
+        "endLine": 163,
+        "endChar": 79
+      },
+      "revId": "3c25e23df16fc2a7b4adb061d8d74a18f6c4cba8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
