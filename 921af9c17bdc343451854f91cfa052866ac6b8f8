@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a045101_309eb057",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-03-30T11:34:13Z",
+      "side": 1,
+      "message": "we agreed to use path always: resources.libraries.python.ssh",
+      "range": {
+        "startLine": 18,
+        "startChar": 5,
+        "endLine": 18,
+        "endChar": 8
+      },
+      "revId": "921af9c17bdc343451854f91cfa052866ac6b8f8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_f0c60849",
+        "filename": "resources/libraries/python/TGSetup.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-03-30T11:34:13Z",
+      "side": 1,
+      "message": "we agreed to use path always",
+      "range": {
+        "startLine": 16,
+        "startChar": 5,
+        "endLine": 17,
+        "endChar": 18
+      },
+      "revId": "921af9c17bdc343451854f91cfa052866ac6b8f8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_d0c30c37",
+        "filename": "resources/libraries/robot/vxlan.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-03-30T11:34:13Z",
+      "side": 1,
+      "message": "This library should be imported via default.robot resource file too.",
+      "range": {
+        "startLine": 24,
+        "startChar": 1,
+        "endLine": 24,
+        "endChar": 48
+      },
+      "revId": "921af9c17bdc343451854f91cfa052866ac6b8f8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_90dd8417",
+        "filename": "tests/suites/bridge_domain/test.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-03-30T11:34:13Z",
+      "side": 1,
+      "message": "This library should be imported via default.robot resource file too.",
+      "range": {
+        "startLine": 19,
+        "startChar": 1,
+        "endLine": 19,
+        "endChar": 47
+      },
+      "revId": "921af9c17bdc343451854f91cfa052866ac6b8f8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_70e2f8d6",
+        "filename": "tests/suites/ipv4/ipv4_untagged.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-03-30T11:34:13Z",
+      "side": 1,
+      "message": "This library should be imported via default.robot resource file too.",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 47
+      },
+      "revId": "921af9c17bdc343451854f91cfa052866ac6b8f8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_50e7fce4",
+        "filename": "tests/suites/l2_xconnect/l2_xconnect_untagged.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-03-30T11:34:13Z",
+      "side": 1,
+      "message": "This library should be imported via default.robot resource file too.",
+      "range": {
+        "startLine": 19,
+        "startChar": 1,
+        "endLine": 19,
+        "endChar": 47
+      },
+      "revId": "921af9c17bdc343451854f91cfa052866ac6b8f8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
