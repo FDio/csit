@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a045101_5026dc69",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-30T09:58:41Z",
+      "side": 1,
+      "message": "do you really need absolute path?\nDon\u0027t rely on the workspace dir name (vpp-verify). That can change any time.\nIf you want to get the debs, pass them as parameters to this script from the jenkins job script, or rely on the script to copy them to the subdir. For example in vpp-csit-functional-virl the jenkins job copies them to csit cloned ws.",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 33
+      },
+      "revId": "135f2add2983caade092beaabd6f88f17377c7a0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_90d34438",
+        "filename": "resources/tools/topo_installation.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-30T09:58:41Z",
+      "side": 1,
+      "message": "Add this as a parameter to this script please.",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 41
+      },
+      "revId": "135f2add2983caade092beaabd6f88f17377c7a0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_70d8b853",
+        "filename": "resources/tools/topo_installation.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-03-30T09:58:41Z",
+      "side": 1,
+      "message": "please do mkdir before this scp please.",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 67
+      },
+      "revId": "135f2add2983caade092beaabd6f88f17377c7a0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
