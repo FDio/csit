@@ -37,3 +37,19 @@ class VhostUser(object):
         else:
             raise RuntimeError('Create Vhost-user interface failed on node '
                                '"{}"'.format(node['host']))
+
+    @staticmethod
+    def get_vhost_user_if_name_by_sock(node, socket):
+        """Get Vhost-user interface name by socket.
+
+        :param node: Node to get Vhost-user interface name on.
+        :param socket: Vhost-user interface socket path.
+        :type node: dict
+        :type socket: str
+        :return: Interface name or None if not found.
+        :rtype: str
+        """
+        for interface in node['interfaces'].values():
+            if interface.get('socket') == socket:
+                return interface.get('name')
+        return None
