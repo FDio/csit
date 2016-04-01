@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a045101_f6916053",
+        "filename": "tests/suites/honeycomb/sanity.robot",
+        "patchSetId": 8
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-04-01T14:26:35Z",
+      "side": 1,
+      "message": "You are missing some tags - topology and ENV are minimum. Go look at docs/tag_documentation.rst\n\nI suspect you need single link topo and can be run on HW ad VM env.",
+      "revId": "505fc94c40f29df46d0fbd7b5ce2addc4b5abdba",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
