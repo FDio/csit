@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a045101_56a5b402",
+        "filename": "tests/suites/l2_xconnect/l2_xconnect_qinq.robot",
+        "patchSetId": 24
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-01T06:49:29Z",
+      "side": 1,
+      "message": "Create KW from this since below is same code",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 61
+      },
+      "revId": "3474ae1df03a0cdcf5fb29b25db51edc8961b238",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
