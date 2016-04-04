@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a045101_d16b0e84",
+        "filename": "resources/libraries/python/L2Util.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-04T13:07:26Z",
+      "side": 1,
+      "message": "use same format - first capital letter and period on the end",
+      "range": {
+        "startLine": 228,
+        "startChar": 1,
+        "endLine": 233,
+        "endChar": 42
+      },
+      "revId": "cd4bcb620ae44c8a4ea54244d84674fabf130a28",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_b1688288",
+        "filename": "tests/suites/l2_xconnect/l2_xconnect_qinq.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-04T13:07:26Z",
+      "side": 1,
+      "message": "move KW to robot library file, there should be only test cases",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 78,
+        "endChar": 71
+      },
+      "revId": "cd4bcb620ae44c8a4ea54244d84674fabf130a28",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
