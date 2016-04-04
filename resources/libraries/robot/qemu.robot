@@ -12,7 +12,7 @@
 # limitations under the License.
 *** Settings ***
 | Library | resources.libraries.python.QemuUtils
-| Library | Collections
+| Library | resources.libraries.python.ssh.SSH
 
 *** Keywords ***
 
@@ -50,3 +50,13 @@
 | | Return From Keyword If | ${ready} == ${TRUE}
 | | Build QEMU | ${node}
 | | Add Node to QEMU Build List | ${node}
+
+| Stop and Clear QEMU
+| | [Documentation] | Stop QEMU, clear used sockets and close SSH connection
+| | [Arguments] | ${vm}
+| | ${ret} | ${status}= | Run Keyword And Ignore Error | Qemu System Status
+| | Run Keyword If | "${ret}" == "FAIL" | Qemu Kill
+| | ... | ELSE IF | "${status}" == "running" | Qemu System Powerdown
+| | ... | ELSE | Qemu Quit
+| | Qemu Clear Socks
+| | Run Keyword If | ${vm} is not None | Disconnect | ${vm}
