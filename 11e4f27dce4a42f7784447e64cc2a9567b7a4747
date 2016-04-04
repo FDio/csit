@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a045101_71179aa4",
+        "filename": "resources/libraries/robot/qemu.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-04-04T16:18:31Z",
+      "side": 1,
+      "message": "${status} | ${value}\u003d will be more appropriate based on RF documentation",
+      "range": {
+        "startLine": 57,
+        "startChar": 4,
+        "endLine": 57,
+        "endChar": 23
+      },
+      "revId": "11e4f27dce4a42f7784447e64cc2a9567b7a4747",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_510c9e94",
+        "filename": "resources/libraries/robot/qemu.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-04-04T16:18:31Z",
+      "side": 1,
+      "message": "consider to add somewhere link/path/URL to the QMP Supported Commands documentation.",
+      "range": {
+        "startLine": 59,
+        "startChar": 35,
+        "endLine": 59,
+        "endChar": 44
+      },
+      "revId": "11e4f27dce4a42f7784447e64cc2a9567b7a4747",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
