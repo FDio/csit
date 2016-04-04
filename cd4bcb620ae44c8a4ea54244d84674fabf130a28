@@ -25,6 +25,52 @@
     },
     {
       "key": {
+        "uuid": "3a045101_113f3627",
+        "filename": "tests/suites/l2_xconnect/l2_xconnect_qinq.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-04-04T15:33:42Z",
+      "side": 1,
+      "message": "Use more appropriate wording for behavior-driven test, e.g.\n\"VLAN interfaces with two tags rewrite initialized on 3-node topology\"",
+      "range": {
+        "startLine": 33,
+        "startChar": 10,
+        "endLine": 33,
+        "endChar": 69
+      },
+      "revId": "cd4bcb620ae44c8a4ea54244d84674fabf130a28",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_313a3237",
+        "filename": "tests/suites/l2_xconnect/l2_xconnect_qinq.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-04-04T15:33:42Z",
+      "side": 1,
+      "message": "Similarly, use e.g. \"Interfaces added to L2-xconnect\"",
+      "range": {
+        "startLine": 34,
+        "startChar": 9,
+        "endLine": 34,
+        "endChar": 38
+      },
+      "revId": "cd4bcb620ae44c8a4ea54244d84674fabf130a28",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a045101_b1688288",
         "filename": "tests/suites/l2_xconnect/l2_xconnect_qinq.robot",
         "patchSetId": 1
@@ -36,6 +82,30 @@
       "writtenOn": "2016-04-04T13:07:26Z",
       "side": 1,
       "message": "move KW to robot library file, there should be only test cases",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 78,
+        "endChar": 71
+      },
+      "revId": "cd4bcb620ae44c8a4ea54244d84674fabf130a28",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_5135be44",
+        "filename": "tests/suites/l2_xconnect/l2_xconnect_qinq.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-04-04T15:33:42Z",
+      "side": 1,
+      "message": "User KWs (\"Setup VLAN interfaces with 2 tags rewite on 3-node topology\" and \" Add interfaces to l2-xconnect\" in this case) specific for the particular test case / test suite can be specified in the test case / test suite file.\n\nKW \"Create subinterface with tag rewrite\" should be moved to appropriate resource file.",
+      "parentUuid": "3a045101_b1688288",
       "range": {
         "startLine": 37,
         "startChar": 0,
