@@ -245,3 +245,26 @@ class L2Util(object):
                     return bridge_domain
 
         return data
+
+    @staticmethod
+    def l2_tag_rewrite(node, interface, tag_rewrite_method):
+        """Rewrite tags in frame.
+
+        :param node: Node to rewrite tags.
+        :param interface: Interface on which rewrite tags.
+        :param tag_rewrite_method: Method of tag rewrite.
+        :type node: dict
+        :type interface: str or int
+        :type tag_rewrite_method : str
+        """
+
+        if isinstance(interface, basestring):
+            sw_if_index = Topology.get_interface_sw_index(node, interface)
+        else:
+            sw_if_index = interface
+
+        with VatTerminal(node) as vat:
+            vat.vat_terminal_exec_cmd_from_template("l2_tag_rewrite.vat",
+                                                    sw_if_index=sw_if_index,
+                                                    tag_rewrite_method=
+                                                    tag_rewrite_method)
