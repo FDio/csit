@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a045101_51ab7e89",
+        "filename": "docs/tag_documentation.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-04-04T13:56:07Z",
+      "side": 1,
+      "message": "DUTs with VPP and capable of running Virtual Machine.",
+      "range": {
+        "startLine": 43,
+        "startChar": 4,
+        "endLine": 43,
+        "endChar": 8
+      },
+      "revId": "df975afbf948d0a5449991db30b3697abab094f8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
