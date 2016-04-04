@@ -38,3 +38,6 @@ HW_ENV
 
 VM_ENV
     DUTs and TGs are running in virtual environment.
+
+VPP_VM_ENV
+    DUTs with VPP and Virtual Machine.
