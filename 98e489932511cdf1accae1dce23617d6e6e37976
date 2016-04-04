@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a045101_b1e1a29c",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 28
+      },
+      "lineNbr": 466,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-04-04T20:22:14Z",
+      "side": 1,
+      "message": "Dot missing at the end of the line.",
+      "range": {
+        "startLine": 466,
+        "startChar": 21,
+        "endLine": 466,
+        "endChar": 62
+      },
+      "revId": "98e489932511cdf1accae1dce23617d6e6e37976",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_91eea68a",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 28
+      },
+      "lineNbr": 480,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-04-04T20:22:14Z",
+      "side": 1,
+      "message": "sw_if_index",
+      "range": {
+        "startLine": 480,
+        "startChar": 49,
+        "endLine": 480,
+        "endChar": 57
+      },
+      "revId": "98e489932511cdf1accae1dce23617d6e6e37976",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_71f31a74",
+        "filename": "resources/libraries/robot/vxlan.robot",
+        "patchSetId": 28
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-04-04T20:22:14Z",
+      "side": 1,
+      "message": "We should avoid to hide hard coded values to KWs. Better to use variables defined in test case file.",
+      "range": {
+        "startLine": 60,
+        "startChar": 46,
+        "endLine": 62,
+        "endChar": 54
+      },
+      "revId": "98e489932511cdf1accae1dce23617d6e6e37976",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_51e81e7c",
+        "filename": "tests/suites/vxlan/vxlan_bd_dot1q.robot",
+        "patchSetId": 28
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-04-04T20:22:14Z",
+      "side": 1,
+      "message": "Line lenght 88 instead of 80.",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 88
+      },
+      "revId": "98e489932511cdf1accae1dce23617d6e6e37976",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_f1fe0a38",
+        "filename": "tests/suites/vxlan/vxlan_bd_dot1q.robot",
+        "patchSetId": 28
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-04-04T20:22:14Z",
+      "side": 1,
+      "message": "What about to cover it by one KW, e.g. (When) VXLAN interfaces created and added to BD?",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 60
+      },
+      "revId": "98e489932511cdf1accae1dce23617d6e6e37976",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_1102963e",
+        "filename": "tests/suites/vxlan/vxlan_bd_untagged.robot",
+        "patchSetId": 28
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-04-04T20:22:14Z",
+      "side": 1,
+      "message": "What about to cover it by one KW, e.g. (When) VXLAN interfaces created and added to BD?",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 60
+      },
+      "revId": "98e489932511cdf1accae1dce23617d6e6e37976",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_31ed928c",
+        "filename": "tests/suites/vxlan/vxlan_xconnect_untagged.robot",
+        "patchSetId": 28
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-04-04T20:22:14Z",
+      "side": 1,
+      "message": "What about to cover it by one KW, e.g. (When) VXLAN interfaces created and added to xconnect?",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 60
+      },
+      "revId": "98e489932511cdf1accae1dce23617d6e6e37976",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
