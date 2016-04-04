@@ -48,7 +48,7 @@ def main():
                 ssh.scp(local_path=deb,remote_path=install_dir)
 
             # Installation of VPP deb packages
-            ret, _, err = ssh.exec_command("dpkg -i {}*.deb".format(install_dir))
+            ret, _, err = ssh.exec_command("sudo dpkg -i {}*.deb".format(install_dir))
             if ret != 0:
                 print("Installation unsuccessful:\n{}".format(err))
                 return ret
