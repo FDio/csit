@@ -82,7 +82,7 @@ class DropRateSearch(object):
         #size of frames to send
         self._frame_size = "64"
         #binary convergence criterium type is self._rate_type
-        self._binary_convergence_threshold = 100000
+        self._binary_convergence_threshold = 5000
         #numbers of traffic runs during one rate step
         self._max_attempts = 1
         #type of search result evaluation, unit: SearchResultType
@@ -333,7 +333,7 @@ class DropRateSearch(object):
         #linear search
         while True:
             res = []
-            for n in range(self._max_attempts):
+            for dummy in range(self._max_attempts):
                 res.append(self.measure_loss(rate, self._frame_size,
                                              self._loss_acceptance,
                                              self._loss_acceptance_type,
@@ -408,7 +408,8 @@ class DropRateSearch(object):
         """
         if self._search_result == SearchResults.FAILURE:
             raise Exception('Search FAILED')
-        elif self._search_result in [SearchResults.SUCCESS, SearchResults.SUSPICIOUS]:
+        elif self._search_result in [SearchResults.SUCCESS,
+                                     SearchResults.SUSPICIOUS]:
             return self._search_result_rate
 
     def binary_search(self, b_min, b_max, traffic_type):
@@ -447,7 +448,7 @@ class DropRateSearch(object):
         self._last_binary_rate = rate
 
         res = []
-        for n in range(self._max_attempts):
+        for dummy in range(self._max_attempts):
             res.append(self.measure_loss(rate, self._frame_size,
                                          self._loss_acceptance,
                                          self._loss_acceptance_type,
@@ -465,5 +466,44 @@ class DropRateSearch(object):
         else:
             raise RuntimeError("Unknown search result")
 
-    def combined_search(self):
-        raise NotImplementedError
+    def combined_search(self, start_rate, traffic_type):
+        """Combined search of rate with loss below acceptance criteria.
+
+        :param start_rate: initial rate
+        :param traffic_type: traffic profile
+        :type start_rate: float
+        :param traffic_type: str
+        :return: nothing
+        """
+
+        self.linear_search(start_rate, traffic_type)
+
+        if self._search_result in [SearchResults.SUCCESS,
+                                   SearchResults.SUSPICIOUS]:
+            b_min = self._search_result_rate
+            b_max = self._search_result_rate + self._rate_linear_step
+
+            #we found max rate by linear search
+            if float(b_min) == self._rate_max:
+                return
+
+            #limiting binary range max value into max range
+            if float(b_max) > self._rate_max:
+                b_max = self._rate_max
+
+            #reset result rate
+            temp_rate = self._search_result_rate
+            self._search_result_rate = None
+
+            #we will use binary search to refine search in one linear step
+            self.binary_search(b_min, b_max, traffic_type)
+
+            #linear and binary search succeed
+            if self._search_result == SearchResults.SUCCESS:
+                return
+            #linear search succeed but binary failed or suspicious
+            else:
+                self._search_result = SearchResults.SUSPICIOUS
+                self._search_result_rate = temp_rate
+        else:
+            raise Exception("Linear search FAILED")
