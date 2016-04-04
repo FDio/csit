@@ -12,10 +12,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+QEMU_BUILD_DIR="/tmp/qemu-2.2.1"
+QEMU_INSTALL_DIR="/opt/qemu"
+
 echo
 echo Downloading QEMU source
 echo
-sudo rm -rf /tmp/qemu-2.2.1
+sudo rm -rf $QEMU_BUILD_DIR
+sudo rm -rf $QEMU_INSTALL_DIR
 cd /tmp
 wget -q http://wiki.qemu-project.org/download/qemu-2.2.1.tar.bz2 || exit
 
@@ -29,10 +33,12 @@ echo
 echo Building QEMU
 echo
 cd qemu-2.2.1
+sudo mkdir $QEMU_INSTALL_DIR
 mkdir build
 cd build
-../configure --target-list=x86_64-softmmu || exit
+../configure --target-list=x86_64-softmmu --prefix=$QEMU_INSTALL_DIR || exit
 make -j`nproc` || exit
+sudo make install || exit
 
 echo
 echo QEMU ready
