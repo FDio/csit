@@ -25,7 +25,7 @@ from resources.libraries.python.topology import NodeType
 class QemuUtils(object):
     """QEMU utilities."""
 
-    __QEMU_BIN = '/tmp/qemu-2.2.1/build/x86_64-softmmu/qemu-system-x86_64'
+    __QEMU_BIN = '/opt/qemu/bin/qemu-system-x86_64'
     # QEMU Machine Protocol socket
     __QMP_SOCK = '/tmp/qmp.sock'
     # QEMU Guest Agent socket
@@ -41,10 +41,14 @@ class QemuUtils(object):
             '-machine pc-1.0,accel=kvm,usb=off,mem-merge=off ' \
             '-net nic,macaddr=52:54:00:00:02:01'
         self._qemu_opt['ssh_fwd_port'] = 10022
+        # Default serial console port
+        self._qemu_opt['serial_port'] = 4556
         # Default 512MB virtual RAM
         self._qemu_opt['mem_size'] = 512
         # Default huge page mount point, required for Vhost-user interfaces.
         self._qemu_opt['huge_mnt'] = '/mnt/huge'
+        # Default image for CSIT virl setup
+        self._qemu_opt['disk_image'] = '/var/lib/vm/vhost-nested.img'
         # VM node info dict
         self._vm_info = {
             'type': NodeType.VM,
@@ -81,6 +85,14 @@ class QemuUtils(object):
         """
         self._qemu_opt['ssh_fwd_port'] = fwd_port
         self._vm_info['port'] = fwd_port
+
+    def qemu_set_serial_port(self, port):
+        """Set serial console port.
+
+        :param port: Serial console port.
+        :type port: int
+        """
+        self._qemu_opt['serial_port'] = port
 
     def qemu_set_mem_size(self, mem_size):
         """Set virtual RAM size.
@@ -241,6 +253,8 @@ class QemuUtils(object):
                 self._qemu_opt['disk_image'], self._node['host']))
         # Create MAC-name dict
         for interface in interfaces:
+            if 'hardware-address' not in interface:
+                continue
             mac_name[interface['hardware-address']] = interface['name']
         # Match interface by MAC and save interface name
         for interface in self._vm_info['interfaces'].values():
@@ -291,7 +305,8 @@ class QemuUtils(object):
 
         :return: VM node info
         :rtype: dict
-        .. note:: First set at least disk image and node to run QEMU on.
+        .. note:: First set at least node to run QEMU on.
+        .. warning:: Starts only one VM on the node.
         """
         # SSH forwarding
         ssh_fwd = '-net user,hostfwd=tcp::{0}-:22'.format(
@@ -303,15 +318,20 @@ class QemuUtils(object):
         self._huge_page_check()
         # Setup QMP via unix socket
         qmp = '-qmp unix:{0},server,nowait'.format(self.__QMP_SOCK)
-        # Setup QGA via chardev (unix socket) and virtio-serial channel
+        # Setup serial console
+        serial = '-chardev socket,host=127.0.0.1,port={0},id=gnc0,server,' \
+            'nowait -device isa-serial,chardev=gnc0'.format(
+            self._qemu_opt.get('serial_port'))
+        # Setup QGA via chardev (unix socket) and isa-serial channel
         qga = '-chardev socket,path=/tmp/qga.sock,server,nowait,id=qga0 ' \
-            '-device virtio-serial ' \
-            '-device virtserialport,chardev=qga0,name=org.qemu.guest_agent.0'
+            '-device isa-serial,chardev=qga0'
+        # Graphic setup
+        graphic = '-monitor none -display none -vga none'
         # Run QEMU
-        cmd = '{0} {1} {2} {3} {4} -hda {5} {6} {7}'.format(
+        cmd = '{0} {1} {2} {3} {4} -hda {5} {6} {7} {8} {9}'.format(
             self.__QEMU_BIN, self._qemu_opt.get('smp'), mem, ssh_fwd,
             self._qemu_opt.get('options'),
-            self._qemu_opt.get('disk_image'), qmp, qga)
+            self._qemu_opt.get('disk_image'), qmp, serial, qga, graphic)
         (ret_code, _, stderr) = self._ssh.exec_command_sudo(cmd, timeout=300)
         if int(ret_code) != 0:
             logger.debug('QEMU start failed {0}'.format(stderr))
@@ -358,12 +378,34 @@ class QemuUtils(object):
 
     def qemu_clear_socks(self):
         """Remove all sockets created by QEMU."""
+        # If serial console port still open kill process
+        cmd = 'fuser -k {}/tcp'.format(self._qemu_opt.get('serial_port'))
+        self._ssh.exec_command_sudo(cmd)
+        # Delete all created sockets
         for sock in self._socks:
             cmd = 'rm -f {}'.format(sock)
             self._ssh.exec_command_sudo(cmd)
 
     def qemu_system_status(self):
         """Return current VM status.
+
+        VM should be in following status:
+
+            - debug: QEMU running on a debugger
+            - finish-migrate: paused to finish the migration process
+            - inmigrate: waiting for an incoming migration
+            - internal-error: internal error has occurred
+            - io-error: the last IOP has failed
+            - paused: paused
+            - postmigrate: paused following a successful migrate
+            - prelaunch: QEMU was started with -S and guest has not started
+            - restore-vm: paused to restore VM state
+            - running: actively running
+            - save-vm: paused to save the VM state
+            - shutdown: shut down (and -no-shutdown is in use)
+            - suspended: suspended (ACPI S3)
+            - watchdog: watchdog action has been triggered
+            - guest-panicked: panicked as a result of guest OS panic
 
         :return: VM status.
         :rtype: str
