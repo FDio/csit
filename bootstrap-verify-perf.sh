@@ -76,7 +76,15 @@ function cancel_reservation {
 # On script exit we cancel the reservation and delete all vpp packages
 trap "cancel_reservation ${WORKING_TOPOLOGY}" EXIT
 
-# run performance test suite
-pybot -L TRACE \
-    -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-    -s performance tests/
+
+if [ ! -z "$TEST_TAG" ]; then
+# run specific performance tests by tag if variable is set
+    pybot -L TRACE \
+        -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+        -i $TEST_TAG tests/
+else
+# run full performance test suite
+    pybot -L TRACE \
+        -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+        -s performance tests/
+fi
