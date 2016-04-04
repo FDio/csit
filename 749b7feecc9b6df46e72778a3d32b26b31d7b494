@@ -42,6 +42,24 @@
     },
     {
       "key": {
+        "uuid": "3a045101_71bb1ac5",
+        "filename": "resources/libraries/python/InterfaceSetup.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-04-04T14:47:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a045101_df08bf2f",
+      "revId": "749b7feecc9b6df46e72778a3d32b26b31d7b494",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a045101_bf05f315",
         "filename": "resources/libraries/python/InterfaceSetup.py",
         "patchSetId": 2
@@ -100,6 +118,30 @@
       "writtenOn": "2016-03-29T14:58:33Z",
       "side": 1,
       "message": "typo: indexes\nplus add if there: sw if indexes",
+      "range": {
+        "startLine": 250,
+        "startChar": 55,
+        "endLine": 250,
+        "endChar": 63
+      },
+      "revId": "749b7feecc9b6df46e72778a3d32b26b31d7b494",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_b1a9a27d",
+        "filename": "resources/libraries/python/InterfaceSetup.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-04-04T14:47:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a045101_c5f11097",
       "range": {
         "startLine": 250,
         "startChar": 55,
@@ -182,6 +224,30 @@
     },
     {
       "key": {
+        "uuid": "3a045101_91b6a6db",
+        "filename": "resources/libraries/python/InterfaceSetup.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-04-04T14:47:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a045101_82ff7e01",
+      "range": {
+        "startLine": 261,
+        "startChar": 39,
+        "endLine": 261,
+        "endChar": 46
+      },
+      "revId": "749b7feecc9b6df46e72778a3d32b26b31d7b494",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a045101_62047215",
         "filename": "resources/libraries/python/InterfaceSetup.py",
         "patchSetId": 2
@@ -240,6 +306,30 @@
       "writtenOn": "2016-03-24T12:28:28Z",
       "side": 1,
       "message": "this is the problem of staticness and putting underscore there.\n\nSince you\u0027ve started this cleanup, you ought to do it properly.\n\nThe reason we put underscore as prefix in methods is to mark them as private. Since you are using this method out of scope of this object, then you should drop the private marker too. It kinda highlights the dependency problem. Think longer about whether we need this method here. If yes, try to come up with better object model to solve the dependency issue.",
+      "range": {
+        "startLine": 183,
+        "startChar": 5,
+        "endLine": 183,
+        "endChar": 17
+      },
+      "revId": "749b7feecc9b6df46e72778a3d32b26b31d7b494",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_d1ac2e8f",
+        "filename": "resources/libraries/python/topology.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-04-04T14:47:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a045101_22254aab",
       "range": {
         "startLine": 183,
         "startChar": 5,
@@ -322,6 +412,30 @@
     },
     {
       "key": {
+        "uuid": "3a045101_11a3b69f",
+        "filename": "tests/suites/__init__.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-04-04T14:47:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a045101_854ae881",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 56
+      },
+      "revId": "749b7feecc9b6df46e72778a3d32b26b31d7b494",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a045101_62523215",
         "filename": "tests/suites/__init__.robot",
         "patchSetId": 2
@@ -380,6 +494,24 @@
       "writtenOn": "2016-03-29T14:58:33Z",
       "side": 1,
       "message": "topology should be imported via default.robot too.",
+      "revId": "749b7feecc9b6df46e72778a3d32b26b31d7b494",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_319eb257",
+        "filename": "tests/suites/ipv4/ipv4_untagged.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-04-04T14:47:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a045101_a57de4b3",
       "revId": "749b7feecc9b6df46e72778a3d32b26b31d7b494",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
