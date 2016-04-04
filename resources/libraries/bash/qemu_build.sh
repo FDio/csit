@@ -16,6 +16,7 @@ echo
 echo Downloading QEMU source
 echo
 sudo rm -rf /tmp/qemu-2.2.1
+sudo rm -rf /opt/qemu
 cd /tmp
 wget -q http://wiki.qemu-project.org/download/qemu-2.2.1.tar.bz2 || exit
 
@@ -29,10 +30,12 @@ echo
 echo Building QEMU
 echo
 cd qemu-2.2.1
+sudo mkdir /opt/qemu
 mkdir build
 cd build
-../configure --target-list=x86_64-softmmu || exit
+../configure --target-list=x86_64-softmmu --prefix=/opt/qemu || exit
 make -j`nproc` || exit
+sudo make install || exit
 
 echo
 echo QEMU ready
