@@ -23,6 +23,8 @@ from yaml import load
 from resources.libraries.python.ssh import SSH
 
 def main():
+    """Copy and installation of VPP packages."""
+
     parser = argparse.ArgumentParser()
     parser.add_argument("-t", "--topo", required=True,
                         help="Topology file")
@@ -45,12 +47,13 @@ def main():
 
             # Copy packages from local path to installation dir
             for deb in packages:
-                ssh.scp(local_path=deb,remote_path=install_dir)
+                ssh.scp(local_path=deb, remote_path=install_dir)
 
             # Installation of VPP deb packages
-            ret, _, err = ssh.exec_command("dpkg -i {}*.deb".format(install_dir))
+            ret, _, err = ssh.exec_command_sudo(
+                "dpkg -i {}*.deb".format(install_dir))
             if ret != 0:
-                print("Installation unsuccessful:\n{}".format(err))
+                print "Installation unsuccessful:\n{}".format(err)
                 return ret
 
 if __name__ == "__main__":
