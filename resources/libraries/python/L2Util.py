@@ -218,3 +218,22 @@ class L2Util(object):
         """
         cmd = 'brctl delbr {0}'.format(br_name)
         exec_cmd_no_error(node, cmd, sudo=True)
+
+    @staticmethod
+    def l2_tag_rewrite_pop_2_tags(node, interface):
+        """Rewrite tags in frame.
+
+        :param node: Node to rewrite tags.
+        :param interface: Interface on which rewrite tags.
+        :type node: dict
+        :type interface: str or int
+        """
+
+        if isinstance(interface, basestring):
+            sw_if_index = Topology.get_interface_sw_index(node, interface)
+        else:
+            sw_if_index = interface
+
+        with VatTerminal(node) as vat:
+            vat.vat_terminal_exec_cmd_from_template("l2_tag_rewrite_pop2.vat",
+                                                    sw_if_index=sw_if_index)
