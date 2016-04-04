@@ -102,6 +102,30 @@
 | | ${result_rate}= | Verify Search Result
 | | Set Test Message | FINAL_RATE: ${result_rate} pps
 
+| Find NDR using binary search and pps
+| | [Arguments] | ${framesize} | ${binary_min} | ${binary_max}
+| | ...         | ${topology_type} | ${min_rate} | ${max_rate} | ${threshold}
+| | Set Duration | 60
+| | Set Search Rate Boundaries | ${max_rate} | ${min_rate}
+| | Set Search Rate Type pps
+| | Set Binary Convergence Threshold | ${threshold}
+| | Binary Search | ${binary_min} | ${binary_max} | ${topology_type}
+| | ${result_rate}= | Verify Search Result
+| | Set Test Message | FINAL_RATE: ${result_rate} pps
+
+| Find NDR using combined search and pps
+| | [Arguments] | ${framesize} | ${start_rate} | ${step_rate}
+| | ...         | ${topology_type} | ${min_rate} | ${max_rate} | ${threshold}
+| | Set Duration | 60
+| | Set Search Rate Boundaries | ${max_rate} | ${min_rate}
+| | Set Search Linear Step | ${step_rate}
+| | Set Search Frame Size | ${framesize}
+| | Set Search Rate Type pps
+| | Set Binary Convergence Threshold | ${threshold}
+| | Combined Search | ${start_rate} | ${topology_type}
+| | ${result_rate}= | Verify Search Result
+| | Set Test Message | FINAL_RATE: ${result_rate} pps
+
 | Traffic should pass with no loss
 | | [Arguments] | ${duration} | ${rate} | ${framesize} | ${topology_type}
 | | Send traffic on | ${tg} | ${duration}
