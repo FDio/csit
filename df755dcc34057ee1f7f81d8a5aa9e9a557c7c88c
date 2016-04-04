@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a045101_f1d72abe",
+        "filename": "resources/libraries/bash/qemu_build.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-04-04T18:53:38Z",
+      "side": 1,
+      "message": "Why the qemu version provided by Carsten is deleted and then downloaded? My understanding was that Carsten provides the correct version and it is not necessary to download and build it again...",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 21
+      },
+      "revId": "df755dcc34057ee1f7f81d8a5aa9e9a557c7c88c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
