@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a045101_e319a123",
+        "filename": "resources/libraries/bash/qemu_build.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-04-05T14:18:44Z",
+      "side": 1,
+      "message": "please move this value to variable at the start of this script. Ditto for the /tmp/qemu-* dir above.",
+      "range": {
+        "startLine": 19,
+        "startChar": 12,
+        "endLine": 19,
+        "endChar": 21
+      },
+      "revId": "c8ff78c579dac8f444b34ae4709a72af968cd605",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_c316a5f1",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-04-05T14:18:44Z",
+      "side": 1,
+      "message": "We need documentation for this. How did this file get there? I think we need a quick write-up in the docs/ section for how we work with Qemu in this framework to facilitate re-usability.",
+      "range": {
+        "startLine": 49,
+        "startChar": 0,
+        "endLine": 49,
+        "endChar": 69
+      },
+      "revId": "c8ff78c579dac8f444b34ae4709a72af968cd605",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_a3d39937",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-04-05T14:18:44Z",
+      "side": 1,
+      "message": "StartS",
+      "revId": "c8ff78c579dac8f444b34ae4709a72af968cd605",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
