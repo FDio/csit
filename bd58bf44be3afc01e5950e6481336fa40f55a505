@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a045101_43cf35b1",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-04-05T13:25:34Z",
+      "side": 1,
+      "message": "from resources.libraries.python.ssh import SSH ?",
+      "range": {
+        "startLine": 18,
+        "startChar": 5,
+        "endLine": 18,
+        "endChar": 8
+      },
+      "revId": "bd58bf44be3afc01e5950e6481336fa40f55a505",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_c3ba250a",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-04-05T13:25:34Z",
+      "side": 1,
+      "message": "since we are already moving stuff around, this really should go to utility class for vpp vat json transformations",
+      "range": {
+        "startLine": 31,
+        "startChar": 8,
+        "endLine": 31,
+        "endChar": 35
+      },
+      "revId": "bd58bf44be3afc01e5950e6481336fa40f55a505",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_a33719b0",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-04-05T13:25:34Z",
+      "side": 1,
+      "message": "this isn\u0027t doing anything with interfaces. It just loops through topology nodes. Make up new topology utility class, and put it there.\n\nApplies to all functions with similar functionality.",
+      "range": {
+        "startLine": 46,
+        "startChar": 8,
+        "endLine": 46,
+        "endChar": 32
+      },
+      "revId": "bd58bf44be3afc01e5950e6481336fa40f55a505",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_833c1d95",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-04-05T13:25:34Z",
+      "side": 1,
+      "message": "as the MAC conversion above. Please refactor some more, and ping me then.",
+      "range": {
+        "startLine": 81,
+        "startChar": 8,
+        "endLine": 81,
+        "endChar": 43
+      },
+      "revId": "bd58bf44be3afc01e5950e6481336fa40f55a505",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
