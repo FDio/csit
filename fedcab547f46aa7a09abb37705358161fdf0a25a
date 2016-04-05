@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a045101_6358f1fa",
+        "filename": "resources/libraries/python/DropRateSearch.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 487,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-04-05T13:46:05Z",
+      "side": 1,
+      "message": "float comparisons are dangerous. Look here: http://stackoverflow.com/questions/5595425/what-is-the-best-way-to-compare-floats-for-almost-equality-in-python",
+      "range": {
+        "startLine": 487,
+        "startChar": 0,
+        "endLine": 487,
+        "endChar": 46
+      },
+      "revId": "fedcab547f46aa7a09abb37705358161fdf0a25a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_435df5e8",
+        "filename": "resources/libraries/python/DropRateSearch.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 494,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-04-05T13:46:05Z",
+      "side": 1,
+      "message": "I believe we tend to add space between \"#\" and first char o f the string.",
+      "range": {
+        "startLine": 494,
+        "startChar": 12,
+        "endLine": 494,
+        "endChar": 13
+      },
+      "revId": "fedcab547f46aa7a09abb37705358161fdf0a25a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
