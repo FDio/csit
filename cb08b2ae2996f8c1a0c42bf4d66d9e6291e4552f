@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a045101_03cb6d73",
+        "filename": "resources/libraries/robot/vlan.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-04-05T14:36:41Z",
+      "side": 1,
+      "message": "I honor you generalizing the setup as much as possible. Although I have to say that you\u0027ll help yourself in longer run if you take these variables out of this RF library and put them to the test suite itself, and pass these to your KWs created in this file. You will re-use the KWs, but will change the variables.",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 25
+      },
+      "revId": "cb08b2ae2996f8c1a0c42bf4d66d9e6291e4552f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_e3c76163",
+        "filename": "resources/libraries/robot/vlan.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-04-05T14:36:41Z",
+      "side": 1,
+      "message": "Set Test Variable",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 35
+      },
+      "revId": "cb08b2ae2996f8c1a0c42bf4d66d9e6291e4552f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_c3c46561",
+        "filename": "resources/libraries/robot/vlan.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-04-05T14:36:41Z",
+      "side": 1,
+      "message": "Please consider renaming to \"Interfaces and VLAN sub-interfaces inter-connected using L2-xconnect\"",
+      "range": {
+        "startLine": 63,
+        "startChar": 2,
+        "endLine": 63,
+        "endChar": 33
+      },
+      "revId": "cb08b2ae2996f8c1a0c42bf4d66d9e6291e4552f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_43b975e8",
+        "filename": "tests/suites/l2_xconnect/l2_xconnect_qinq.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-04-05T14:36:41Z",
+      "side": 1,
+      "message": "And",
+      "range": {
+        "startLine": 28,
+        "startChar": 4,
+        "endLine": 28,
+        "endChar": 7
+      },
+      "revId": "cb08b2ae2996f8c1a0c42bf4d66d9e6291e4552f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_23ce6984",
+        "filename": "tests/suites/l2_xconnect/l2_xconnect_qinq.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-04-05T14:36:41Z",
+      "side": 1,
+      "message": "is this bidirectional?",
+      "range": {
+        "startLine": 29,
+        "startChar": 26,
+        "endLine": 29,
+        "endChar": 32
+      },
+      "revId": "cb08b2ae2996f8c1a0c42bf4d66d9e6291e4552f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
