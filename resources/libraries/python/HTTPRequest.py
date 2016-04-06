@@ -11,69 +11,100 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Implements HTTP requests GET, PUT, POST, DELETE used in communication with
-honeycomb.
+"""Implementation of HTTP requests GET, PUT, POST and DELETE used in
+communication with Honeycomb.
+
+The HTTP requests are implemented in the class HTTPRequest which uses
+requests.request.
 """
+
+from enum import IntEnum, unique
+
+from robot.api.deco import keyword
+from robot.api import logger
 
 from requests import request, RequestException, Timeout, TooManyRedirects, \
     HTTPError, ConnectionError
 from requests.auth import HTTPBasicAuth
 
-from robot.api import logger
-from robot.api.deco import keyword
 
-
-HTTP_CODES = {"OK": 200,
-              "UNAUTHORIZED": 401,
-              "FORBIDDEN": 403,
-              "NOT_FOUND": 404,
-              "SERVICE_UNAVAILABLE": 503}
+@unique
+class HTTPCodes(IntEnum):
+    """HTTP status codes"""
+    OK = 200
+    UNAUTHORIZED = 401
+    FORBIDDEN = 403
+    NOT_FOUND = 404
+    SERVICE_UNAVAILABLE = 503
 
 
 class HTTPRequestError(Exception):
-    """Exception raised by HTTPRequest objects."""
+    """Exception raised by HTTPRequest objects.
 
-    def __init__(self, msg, enable_logging=True):
-        """Sets the exception message and enables / disables logging
+    When raising this exception, put this information to the message in this
+    order:
+    - short description of the encountered problem,
+    - relevant messages if there are any collected, e.g., from caught
+      exception,
+    - relevant data if there are any collected.
+    The logging is performed on two levels: 1. error - short description of the
+    problem; 2. debug - detailed information.
+    """
+
+    def __init__(self, msg, details='', enable_logging=True):
+        """Sets the exception message and enables / disables logging.
 
         It is not wanted to log errors when using these keywords together
-        with keywords like "Wait until keyword succeeds".
+        with keywords like "Wait until keyword succeeds". So you can disable
+        logging by setting enable_logging to False.
 
-        :param msg: Message to be displayed and logged
+        :param msg: Message to be displayed and logged.
         :param enable_logging: When True, logging is enabled, otherwise
         logging is disabled.
         :type msg: str
         :type enable_logging: bool
         """
         super(HTTPRequestError, self).__init__()
-        self._msg = msg
-        self._repr_msg = self.__module__ + '.' + \
-            self.__class__.__name__ + ": " + self._msg
-
+        self._msg = "{0}: {1}".format(self.__class__.__name__, msg)
+        self._details = details
         if enable_logging:
             logger.error(self._msg)
-            logger.debug(self._repr_msg)
+            logger.debug(self._details)
 
     def __repr__(self):
-        return repr(self._repr_msg)
+        return repr(self._msg)
 
     def __str__(self):
-        return str(self._repr_msg)
+        return str(self._msg)
 
 
 class HTTPRequest(object):
-    """A class implementing HTTP requests."""
+    """A class implementing HTTP requests GET, PUT, POST and DELETE used in
+    communication with Honeycomb.
+
+    The communication with Honeycomb and processing of all exceptions is done in
+    the method _http_request which uses requests.request to send requests and
+    receive responses. The received status code and content of response are
+    logged on the debug level.
+    All possible exceptions raised by requests.request are also processed there.
+
+    The other methods (get, put, post and delete) use _http_request to send
+    corresponding request.
+
+    These methods must not be used as keywords in tests. Use keywords
+    implemented in the module HoneycombAPIKeywords instead.
+    """
 
     def __init__(self):
         pass
 
     @staticmethod
     def create_full_url(ip_addr, port, path):
-        """Creates full url including IP, port, and path to data.
+        """Creates full url including host, port, and path to data.
 
-        :param ip_addr: Server IP
-        :param port: Communication port
-        :param path: Path to data
+        :param ip_addr: Server IP.
+        :param port: Communication port.
+        :param path: Path to data.
         :type ip_addr: str
         :type port: str or int
         :type path: str
@@ -85,16 +116,16 @@ class HTTPRequest(object):
 
     @staticmethod
     def _http_request(method, node, path, enable_logging=True, **kwargs):
-        """Sends specified HTTP request and returns status code and
-        response content
+        """Sends specified HTTP request and returns status code and response
+        content.
 
         :param method: The method to be performed on the resource identified by
-        the given request URI
-        :param node: honeycomb node
-        :param path: URL path, e.g. /index.html
-        :param enable_logging: used to suppress errors when checking
-        honeycomb state during suite setup and teardown
-        :param kwargs: named parameters accepted by request.request:
+        the given request URI.
+        :param node: Honeycomb node.
+        :param path: URL path, e.g. /index.html.
+        :param enable_logging: Used to suppress errors when checking Honeycomb
+        state during suite setup and teardown.
+        :param kwargs: Named parameters accepted by request.request:
             params -- (optional) Dictionary or bytes to be sent in the query
             string for the Request.
             data -- (optional) Dictionary, bytes, or file-like object to
@@ -127,11 +158,11 @@ class HTTPRequest(object):
         :return: Status code and content of response
         :rtype: tuple
         :raises HTTPRequestError: If
-        1. it is not possible to connect
-        2. invalid HTTP response comes from server
-        3. request exceeded the configured number of maximum re-directions
-        4. request timed out
-        5. there is any other unexpected HTTP request exception
+        1. it is not possible to connect,
+        2. invalid HTTP response comes from server,
+        3. request exceeded the configured number of maximum re-directions,
+        4. request timed out,
+        5. there is any other unexpected HTTP request exception.
         """
         timeout = kwargs["timeout"]
         url = HTTPRequest.create_full_url(node['host'],
@@ -141,29 +172,30 @@ class HTTPRequest(object):
             auth = HTTPBasicAuth(node['honeycomb']['user'],
                                  node['honeycomb']['passwd'])
             rsp = request(method, url, auth=auth, **kwargs)
+
+            logger.debug("Status code: {0}".format(rsp.status_code))
+            logger.debug("Response: {0}".format(rsp.content))
+
             return rsp.status_code, rsp.content
 
         except ConnectionError as err:
             # Switching the logging on / off is needed only for
             # "requests.ConnectionError"
-            if enable_logging:
-                raise HTTPRequestError("Not possible to connect to {0}\n".
-                                       format(url) + repr(err))
-            else:
-                raise HTTPRequestError("Not possible to connect to {0}\n".
-                                       format(url) + repr(err),
-                                       enable_logging=False)
+            raise HTTPRequestError("Not possible to connect to {0}:{1}.".
+                                   format(node['host'],
+                                          node['honeycomb']['port']),
+                                   repr(err), enable_logging=enable_logging)
         except HTTPError as err:
-            raise HTTPRequestError("Invalid HTTP response from {0}\n".
-                                   format(url) + repr(err))
+            raise HTTPRequestError("Invalid HTTP response from {0}.".
+                                   format(node['host']), repr(err))
         except TooManyRedirects as err:
             raise HTTPRequestError("Request exceeded the configured number "
-                                   "of maximum re-directions\n" + repr(err))
+                                   "of maximum re-directions.", repr(err))
         except Timeout as err:
-            raise HTTPRequestError("Request timed out. Timeout is set to "
-                                   "{0}\n".format(timeout) + repr(err))
+            raise HTTPRequestError("Request timed out. Timeout is set to {0}.".
+                                   format(timeout), repr(err))
         except RequestException as err:
-            raise HTTPRequestError("Unexpected HTTP request exception.\n" +
+            raise HTTPRequestError("Unexpected HTTP request exception.",
                                    repr(err))
 
     @staticmethod
@@ -171,60 +203,38 @@ class HTTPRequest(object):
     def get(node, path, headers=None, timeout=10, enable_logging=True):
         """Sends a GET request and returns the response and status code.
 
-        :param node: honeycomb node
-        :param path: URL path, e.g. /index.html
+        :param node: Honeycomb node.
+        :param path: URL path, e.g. /index.html.
         :param headers: Dictionary of HTTP Headers to send with the Request.
         :param timeout: How long to wait for the server to send data before
         giving up, as a float, or a (connect timeout, read timeout) tuple.
-        :param enable_logging: Used to suppress errors when checking
-        honeycomb state during suite setup and teardown. When True, logging
-        is enabled, otherwise logging is disabled.
+        :param enable_logging: Used to suppress errors when checking Honeycomb
+        state during suite setup and teardown. When True, logging is enabled,
+        otherwise logging is disabled.
         :type node: dict
         :type path: str
         :type headers: dict
         :type timeout: float or tuple
         :type enable_logging: bool
-        :return: Status code and content of response
+        :return: Status code and content of response.
         :rtype: tuple
         """
+
         return HTTPRequest._http_request('GET', node, path,
                                          enable_logging=enable_logging,
                                          headers=headers, timeout=timeout)
 
     @staticmethod
     @keyword(name="HTTP Put")
-    def put(node, path, headers=None, payload=None, timeout=10):
+    def put(node, path, headers=None, payload=None, json=None, timeout=10):
         """Sends a PUT request and returns the response and status code.
 
-        :param node: honeycomb node
-        :param path: URL path, e.g. /index.html
+        :param node: Honeycomb node.
+        :param path: URL path, e.g. /index.html.
         :param headers: Dictionary of HTTP Headers to send with the Request.
         :param payload: Dictionary, bytes, or file-like object to send in
         the body of the Request.
-        :param timeout: How long to wait for the server to send data before
-        giving up, as a float, or a (connect timeout, read timeout) tuple.
-        :type node: dict
-        :type path: str
-        :type headers: dict
-        :type payload: dict, bytes, or file-like object
-        :type timeout: float or tuple
-        :return: Status code and content of response
-        :rtype: tuple
-        """
-        return HTTPRequest._http_request('PUT', node, path, headers=headers,
-                                         data=payload, timeout=timeout)
-
-    @staticmethod
-    @keyword(name="HTTP Post")
-    def post(node, path, headers=None, payload=None, json=None, timeout=10):
-        """Sends a POST request and returns the response and status code.
-
-        :param node: honeycomb node
-        :param path: URL path, e.g. /index.html
-        :param headers: Dictionary of HTTP Headers to send with the Request.
-        :param payload: Dictionary, bytes, or file-like object to send in
-        the body of the Request.
-        :param json: json data to send in the body of the Request
+        :param json: JSON formatted string to send in the body of the Request.
         :param timeout: How long to wait for the server to send data before
         giving up, as a float, or a (connect timeout, read timeout) tuple.
         :type node: dict
@@ -233,7 +243,33 @@ class HTTPRequest(object):
         :type payload: dict, bytes, or file-like object
         :type json: str
         :type timeout: float or tuple
-        :return: Status code and content of response
+        :return: Status code and content of response.
+        :rtype: tuple
+        """
+        return HTTPRequest._http_request('PUT', node, path, headers=headers,
+                                         data=payload, json=json,
+                                         timeout=timeout)
+
+    @staticmethod
+    @keyword(name="HTTP Post")
+    def post(node, path, headers=None, payload=None, json=None, timeout=10):
+        """Sends a POST request and returns the response and status code.
+
+        :param node: Honeycomb node.
+        :param path: URL path, e.g. /index.html.
+        :param headers: Dictionary of HTTP Headers to send with the Request.
+        :param payload: Dictionary, bytes, or file-like object to send in
+        the body of the Request.
+        :param json: JSON formatted string to send in the body of the Request.
+        :param timeout: How long to wait for the server to send data before
+        giving up, as a float, or a (connect timeout, read timeout) tuple.
+        :type node: dict
+        :type path: str
+        :type headers: dict
+        :type payload: dict, bytes, or file-like object
+        :type json: str
+        :type timeout: float or tuple
+        :return: Status code and content of response.
         :rtype: tuple
         """
         return HTTPRequest._http_request('POST', node, path, headers=headers,
@@ -245,14 +281,14 @@ class HTTPRequest(object):
     def delete(node, path, timeout=10):
         """Sends a DELETE request and returns the response and status code.
 
-        :param node: honeycomb node
-        :param path: URL path, e.g. /index.html
+        :param node: Honeycomb node.
+        :param path: URL path, e.g. /index.html.
         :param timeout: How long to wait for the server to send data before
         giving up, as a float, or a (connect timeout, read timeout) tuple.
         :type node: dict
         :type path: str
         :type timeout: float or tuple
-        :return: Status code and content of response
+        :return: Status code and content of response.
         :rtype: tuple
         """
         return HTTPRequest._http_request('DELETE', node, path, timeout=timeout)
