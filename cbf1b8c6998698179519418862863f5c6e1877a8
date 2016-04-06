@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3a045101_061dbb0f",
+        "filename": "resources/libraries/python/SetupFramework.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-04-06T14:44:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5af74547_23a42e56",
+      "range": {
+        "startLine": 111,
+        "startChar": 20,
+        "endLine": 111,
+        "endChar": 39
+      },
+      "revId": "cbf1b8c6998698179519418862863f5c6e1877a8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5af74547_e373e6e5",
         "filename": "resources/tools/topology/update_topology.py",
         "patchSetId": 5
@@ -36,6 +60,30 @@
       "writtenOn": "2016-03-21T12:34:57Z",
       "side": 1,
       "message": "Should be \"file\" I guess.",
+      "range": {
+        "startLine": 30,
+        "startChar": 25,
+        "endLine": 30,
+        "endChar": 26
+      },
+      "revId": "cbf1b8c6998698179519418862863f5c6e1877a8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_e602cfb3",
+        "filename": "resources/tools/topology/update_topology.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-04-06T14:44:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5af74547_e373e6e5",
       "range": {
         "startLine": 30,
         "startChar": 25,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "3a045101_c6ffd3a9",
+        "filename": "resources/tools/topology/update_topology.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-04-06T14:44:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5af74547_433bbaeb",
+      "range": {
+        "startLine": 49,
+        "startChar": 7,
+        "endLine": 49,
+        "endChar": 71
+      },
+      "revId": "cbf1b8c6998698179519418862863f5c6e1877a8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5af74547_8318a285",
         "filename": "resources/tools/topology/update_topology.py",
         "patchSetId": 5
@@ -82,6 +154,30 @@
       "writtenOn": "2016-03-21T12:34:57Z",
       "side": 1,
       "message": "Should be \"addresses\"",
+      "range": {
+        "startLine": 67,
+        "startChar": 15,
+        "endLine": 67,
+        "endChar": 23
+      },
+      "revId": "cbf1b8c6998698179519418862863f5c6e1877a8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_a62cc74b",
+        "filename": "resources/tools/topology/update_topology.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-04-06T14:44:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5af74547_8318a285",
       "range": {
         "startLine": 67,
         "startChar": 15,
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "3a045101_06f6dbd7",
+        "filename": "resources/tools/topology/update_topology.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-04-06T14:44:31Z",
+      "side": 1,
+      "message": "Input value is coming from remote system, not coming in as parameter. Changed to RuntimeException.",
+      "parentUuid": "5af74547_a32b9e93",
+      "range": {
+        "startLine": 112,
+        "startChar": 18,
+        "endLine": 112,
+        "endChar": 27
+      },
+      "revId": "cbf1b8c6998698179519418862863f5c6e1877a8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5af74547_631d9673",
         "filename": "resources/tools/topology/update_topology.py",
         "patchSetId": 5
@@ -128,6 +248,30 @@
       "writtenOn": "2016-03-21T12:34:57Z",
       "side": 1,
       "message": "Should be \"addresses\"",
+      "range": {
+        "startLine": 119,
+        "startChar": 21,
+        "endLine": 119,
+        "endChar": 29
+      },
+      "revId": "cbf1b8c6998698179519418862863f5c6e1877a8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_8631cba4",
+        "filename": "resources/tools/topology/update_topology.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-04-06T14:44:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5af74547_631d9673",
       "range": {
         "startLine": 119,
         "startChar": 21,
@@ -163,6 +307,30 @@
     },
     {
       "key": {
+        "uuid": "3a045101_6626bf6a",
+        "filename": "resources/tools/topology/update_topology.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-04-06T14:44:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5af74547_43129a63",
+      "range": {
+        "startLine": 129,
+        "startChar": 19,
+        "endLine": 129,
+        "endChar": 27
+      },
+      "revId": "cbf1b8c6998698179519418862863f5c6e1877a8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5af74547_23178e53",
         "filename": "resources/tools/topology/update_topology.py",
         "patchSetId": 5
@@ -186,6 +354,30 @@
     },
     {
       "key": {
+        "uuid": "3a045101_462bc330",
+        "filename": "resources/tools/topology/update_topology.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-04-06T14:44:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5af74547_23178e53",
+      "range": {
+        "startLine": 135,
+        "startChar": 39,
+        "endLine": 135,
+        "endChar": 50
+      },
+      "revId": "cbf1b8c6998698179519418862863f5c6e1877a8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5af74547_862670b9",
         "filename": "resources/tools/topology/update_topology.py",
         "patchSetId": 5
@@ -197,6 +389,30 @@
       "writtenOn": "2016-03-21T12:34:57Z",
       "side": 1,
       "message": "Change to \"addresses\" when comment on line 119 is accepted.",
+      "range": {
+        "startLine": 163,
+        "startChar": 21,
+        "endLine": 163,
+        "endChar": 29
+      },
+      "revId": "cbf1b8c6998698179519418862863f5c6e1877a8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_2620b748",
+        "filename": "resources/tools/topology/update_topology.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-04-06T14:44:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5af74547_862670b9",
       "range": {
         "startLine": 163,
         "startChar": 21,
