@@ -18,6 +18,7 @@ from resources.libraries.python.topology import Topology
 from resources.libraries.python.VatExecutor import VatExecutor, VatTerminal
 from resources.libraries.python.ssh import exec_cmd_no_error
 
+
 class L2Util(object):
     """Utilities for l2 configuration"""
 
@@ -218,3 +219,32 @@ class L2Util(object):
         """
         cmd = 'brctl delbr {0}'.format(br_name)
         exec_cmd_no_error(node, cmd, sudo=True)
+
+    @staticmethod
+    def vpp_get_bridge_domain_data(node, bd_id=0):
+        """Get all bridge domain data from a VPP node. If a domain ID number is
+        provided, return only data for the matching bridge domain.
+
+        :param node: VPP node to get bridge domain data from
+        :param bd_id: Numeric ID of a specific bridge domain
+        :return: List of dictionaries containing data for each bridge domain, or
+         a single dictionary for the specified bridge domain
+        :type node: dict
+        :type bd_id: int
+        :rtype: list or dict
+        """
+
+        with VatTerminal(node) as vat:
+            response = vat.vat_terminal_exec_cmd_from_template("l2_bd_dump.vat")
+
+        # response is a nested list like [[bd1, bd2,...]]. This removes the
+        # redundant outer list.
+        [data, ] = response
+
+        if bd_id:
+            for bridge_domain in data:
+                if bridge_domain["bd_id"] == bd_id:
+
+                    return bridge_domain
+
+        return data
