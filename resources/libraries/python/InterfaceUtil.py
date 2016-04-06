@@ -108,29 +108,28 @@ class InterfaceUtil(object):
         :raises: RuntimeError if the timeout period value has elapsed.
         """
         if_ready = False
-        with VatTerminal(node) as vat:
-            not_ready = []
-            start = time()
-            while not if_ready:
-                out = vat.vat_terminal_exec_cmd('sw_interface_dump')
-                if time() - start > timeout:
-                    for interface in out:
-                        if interface.get('admin_up_down') == 1:
-                            if interface.get('link_up_down') != 1:
-                                logger.debug('{0} link-down'.format(
-                                    interface.get('interface_name')))
-                    raise RuntimeError('timeout, not up {0}'.format(not_ready))
-                not_ready = []
+        not_ready = []
+        start = time()
+        while not if_ready:
+            out = InterfaceUtil.vpp_get_interface_data(node)
+            if time() - start > timeout:
                 for interface in out:
                     if interface.get('admin_up_down') == 1:
                         if interface.get('link_up_down') != 1:
-                            not_ready.append(interface.get('interface_name'))
-                if not not_ready:
-                    if_ready = True
-                else:
-                    logger.debug('Interfaces still in link-down state: {0}, '
-                                 'waiting...'.format(not_ready))
-                    sleep(1)
+                            logger.debug('{0} link-down'.format(
+                                interface.get('interface_name')))
+                raise RuntimeError('timeout, not up {0}'.format(not_ready))
+            not_ready = []
+            for interface in out:
+                if interface.get('admin_up_down') == 1:
+                    if interface.get('link_up_down') != 1:
+                        not_ready.append(interface.get('interface_name'))
+            if not not_ready:
+                if_ready = True
+            else:
+                logger.debug('Interfaces still in link-down state: {0}, '
+                             'waiting...'.format(not_ready))
+                sleep(1)
 
     @staticmethod
     def vpp_nodes_interfaces_ready_wait(nodes, timeout=10):
@@ -160,3 +159,35 @@ class InterfaceUtil(object):
         for node in nodes.values():
             if node['type'] == NodeType.DUT:
                 InterfaceUtil.vpp_node_interfaces_ready_wait(node, timeout)
+
+    @staticmethod
+    def vpp_get_interface_data(node, interface=None):
+        """Get all interface data from a VPP node. If a name or
+        sw_interface_index is provided, return only data for the matching
+        interface.
+        :param node: VPP node to get interface data from.
+        :param interface: Numeric index or name string of a specific interface.
+        :type node: dict
+        :type interface: int or str
+        :return: List of dictionaries containing data for each interface, or a
+        single dictionary for the specified interface.
+        :rtype: list or dict
+        """
+        with VatTerminal(node) as vat:
+            response = vat.vat_terminal_exec_cmd_from_template(
+                "interface_dump.vat")
+
+        data = response[0]
+
+        if interface is not None:
+            if isinstance(interface, basestring):
+                sw_if_index = Topology.get_interface_sw_index(node, interface)
+            else:
+                sw_if_index = interface
+
+            for data_if in data:
+                if data_if["sw_if_index"] == sw_if_index:
+
+                    return data_if
+
+        return data
