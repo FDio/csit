@@ -15,19 +15,24 @@
 honeycomb.
 """
 
+from enum import IntEnum, unique
+
+from robot.api.deco import keyword
+from robot.api import logger
+
 from requests import request, RequestException, Timeout, TooManyRedirects, \
     HTTPError, ConnectionError
 from requests.auth import HTTPBasicAuth
 
-from robot.api import logger
-from robot.api.deco import keyword
 
-
-HTTP_CODES = {"OK": 200,
-              "UNAUTHORIZED": 401,
-              "FORBIDDEN": 403,
-              "NOT_FOUND": 404,
-              "SERVICE_UNAVAILABLE": 503}
+@unique
+class HTTPCodes(IntEnum):
+    """HTTP status codes"""
+    OK = 200
+    UNAUTHORIZED = 401
+    FORBIDDEN = 403
+    NOT_FOUND = 404
+    SERVICE_UNAVAILABLE = 503
 
 
 class HTTPRequestError(Exception):
@@ -193,7 +198,7 @@ class HTTPRequest(object):
 
     @staticmethod
     @keyword(name="HTTP Put")
-    def put(node, path, headers=None, payload=None, timeout=10):
+    def put(node, path, headers=None, payload=None, json=None, timeout=10):
         """Sends a PUT request and returns the response and status code.
 
         :param node: honeycomb node
@@ -212,7 +217,8 @@ class HTTPRequest(object):
         :rtype: tuple
         """
         return HTTPRequest._http_request('PUT', node, path, headers=headers,
-                                         data=payload, timeout=timeout)
+                                         data=payload, json=json,
+                                         timeout=timeout)
 
     @staticmethod
     @keyword(name="HTTP Post")

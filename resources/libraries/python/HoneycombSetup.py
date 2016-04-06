@@ -20,9 +20,9 @@ from robot.api import logger
 
 from resources.libraries.python.topology import NodeType
 from resources.libraries.python.ssh import SSH
-from resources.libraries.python.HTTPRequest import HTTPRequest, \
-    HTTPRequestError, HTTP_CODES
-from resources.libraries.python.constants import Constants as C
+from resources.libraries.python.HTTPRequest import HTTPRequest, HTTPCodes, \
+    HTTPRequestError
+from resources.libraries.python.constants import Constants as Const
 
 
 class HoneycombError(Exception):
@@ -67,34 +67,22 @@ class HoneycombSetup(object):
 
         :param nodes: all nodes in topology
         :type nodes: dict
+        :raises HoneycombError: if Honeycomb fails to start.
         """
         logger.console("Starting honeycomb service")
 
+        cmd = os.path.join(Const.REMOTE_HC_DIR, "start")
+
         for node in nodes.values():
             if node['type'] == NodeType.DUT:
-                HoneycombSetup.start_honeycomb(node)
-
-    @staticmethod
-    def start_honeycomb(node):
-        """Start up honeycomb on DUT node.
-
-        :param node: DUT node with honeycomb
-        :type node: dict
-        :return: ret_code, stdout, stderr
-        :rtype: tuple
-        :raises HoneycombError: if Honeycomb fails to start.
-        """
-
-        ssh = SSH()
-        ssh.connect(node)
-        cmd = os.path.join(C.REMOTE_HC_DIR, "start")
-        (ret_code, stdout, stderr) = ssh.exec_command_sudo(cmd)
-        if int(ret_code) != 0:
-            logger.debug('stdout: {0}'.format(stdout))
-            logger.debug('stderr: {0}'.format(stderr))
-            raise HoneycombError('Node {0} failed to start honeycomb'.
-                                 format(node['host']))
-        return ret_code, stdout, stderr
+                ssh = SSH()
+                ssh.connect(node)
+                (ret_code, stdout, stderr) = ssh.exec_command_sudo(cmd)
+                if int(ret_code) != 0:
+                    logger.debug('stdout: {0}'.format(stdout))
+                    logger.debug('stderr: {0}'.format(stderr))
+                    raise HoneycombError('Node {0} failed to start honeycomb'.
+                                         format(node['host']))
 
     @staticmethod
     def stop_honeycomb_on_all_duts(nodes):
@@ -107,13 +95,14 @@ class HoneycombSetup(object):
         :raises HoneycombError: if Honeycomb failed to stop.
         """
         logger.console("Shutting down honeycomb service")
+
+        cmd = os.path.join(Const.REMOTE_HC_DIR, "stop")
         errors = []
+
         for node in nodes.values():
             if node['type'] == NodeType.DUT:
-
                 ssh = SSH()
                 ssh.connect(node)
-                cmd = os.path.join(C.REMOTE_HC_DIR, "stop")
                 (ret_code, stdout, stderr) = ssh.exec_command_sudo(cmd)
                 if int(ret_code) != 0:
                     logger.debug('stdout: {0}'.format(stdout))
@@ -141,23 +130,23 @@ class HoneycombSetup(object):
         :rtype bool
         """
 
-        url_file = os.path.join(C.RESOURCES_TPL_HC, "vpp_version.url")
+        url_file = os.path.join(Const.RESOURCES_TPL_HC, "oper_vpp_version.url")
         with open(url_file) as template:
             data = template.readline()
 
-        expected_status_codes = (HTTP_CODES["UNAUTHORIZED"],
-                                 HTTP_CODES["FORBIDDEN"],
-                                 HTTP_CODES["NOT_FOUND"],
-                                 HTTP_CODES["SERVICE_UNAVAILABLE"])
+        expected_status_codes = (HTTPCodes.UNAUTHORIZED,
+                                 HTTPCodes.FORBIDDEN,
+                                 HTTPCodes.NOT_FOUND,
+                                 HTTPCodes.SERVICE_UNAVAILABLE)
 
         for node in nodes.values():
             if node['type'] == NodeType.DUT:
                 status_code, _ = HTTPRequest.get(node, data, timeout=10,
                                                  enable_logging=False)
-                if status_code == HTTP_CODES["OK"]:
+                if status_code == HTTPCodes.OK:
                     pass
                 elif status_code in expected_status_codes:
-                    if status_code == HTTP_CODES["UNAUTHORIZED"]:
+                    if status_code == HTTPCodes.UNAUTHORIZED:
                         logger.info('Unauthorized. If this triggers keyword '
                                     'timeout, verify honeycomb '
                                     'username and password')
@@ -188,11 +177,11 @@ class HoneycombSetup(object):
                     status_code, _ = HTTPRequest.get(node, '/index.html',
                                                      timeout=5,
                                                      enable_logging=False)
-                    if status_code == HTTP_CODES["OK"]:
+                    if status_code == HTTPCodes.OK:
                         raise HoneycombError('Honeycomb on node {0} is still '
                                              'running'.format(node['host']),
                                              enable_logging=False)
-                    elif status_code == HTTP_CODES["NOT_FOUND"]:
+                    elif status_code == HTTPCodes.NOT_FOUND:
                         raise HoneycombError('Honeycomb on node {0} is shutting'
                                              ' down'.format(node['host']),
                                              enable_logging=False)
@@ -206,13 +195,11 @@ class HoneycombSetup(object):
 
 
     @staticmethod
-    def add_vpp_to_honeycomb_network_topology(nodes, headers):
+    def add_vpp_to_honeycomb_network_topology(nodes):
         """Add vpp node to Honeycomb network topology.
 
         :param nodes: all nodes in test topology
-        :param headers: headers to be used with PUT requests
         :type nodes: dict
-        :type headers: dict
         :return: status code and response from PUT requests
         :rtype: tuple
         :raises HoneycombError: if a node was not added to honeycomb topology
@@ -258,16 +245,18 @@ class HoneycombSetup(object):
         MUST be there as they are replaced by correct values.
         """
 
-        with open(os.path.join(C.RESOURCES_TPL_HC, "config_topology_node.url"))\
-                as template:
+        with open(os.path.join(Const.RESOURCES_TPL_HC,
+                               "config_topology_node.url")) as template:
             path = template.readline()
 
         try:
-            xml_data = ET.parse(os.path.join(C.RESOURCES_TPL_HC,
+            xml_data = ET.parse(os.path.join(Const.RESOURCES_TPL_HC,
                                              "add_vpp_to_topology.xml"))
         except ET.ParseError as err:
             raise HoneycombError(repr(err))
         data = ET.tostring(xml_data.getroot())
+
+        headers = {"Content-Type": "application/xml"}
 
         status_codes = []
         responses = []
@@ -285,7 +274,7 @@ class HoneycombSetup(object):
                         path=path + '/' + node_name,
                         headers=headers,
                         payload=payload)
-                    if status_code != HTTP_CODES["OK"]:
+                    if status_code != HTTPCodes.OK:
                         raise HoneycombError(
                             "VPP {0} was not added to topology. "
                             "Status code: {1}".format(node["host"],
