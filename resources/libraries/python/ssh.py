@@ -140,6 +140,27 @@ class SSH(object):
             command = 'sudo -S {c} <<< "{i}"'.format(c=cmd, i=cmd_input)
         return self.exec_command(command, timeout)
 
+    def exec_command_sudo_log(self, cmd, cmd_input=None, timeout=10):
+        """Execute SSH command with sudo on a new channel on the connected Node
+        and log the return code, stdout and stderr using robot logger.
+
+           :param cmd: Command to be executed.
+           :param cmd_input: Input redirected to the command.
+           :param timeout: Timeout.
+           :type cmd: str
+           :type cmd_input: str
+           :type timeout: int
+           :return: return_code, stdout, stderr
+           :rtype: tuple
+        """
+        ret_code, stdout, stderr = self.exec_command_sudo(cmd, cmd_input,
+                                                          timeout)
+        logger.debug('return code: {0}'.format(ret_code))
+        logger.debug('stdout: {0}'.format(stdout))
+        logger.debug('stderr: {0}'.format(stderr))
+
+        return ret_code, stdout, stderr
+
     def interactive_terminal_open(self, time_out=10):
         """Open interactive terminal on a new channel on the connected Node.
 
