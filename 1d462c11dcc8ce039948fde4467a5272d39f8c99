@@ -25,6 +25,86 @@
     },
     {
       "key": {
+        "uuid": "3a045101_86bb0bc4",
+        "filename": "resources/libraries/python/L2Util.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-04-06T15:59:27Z",
+      "side": 1,
+      "message": "type_subif",
+      "range": {
+        "startLine": 233,
+        "startChar": 15,
+        "endLine": 233,
+        "endChar": 19
+      },
+      "revId": "1d462c11dcc8ce039948fde4467a5272d39f8c99",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_66b0ffdd",
+        "filename": "resources/libraries/python/L2Util.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-04-06T15:59:27Z",
+      "side": 1,
+      "message": "type_subif",
+      "range": {
+        "startLine": 239,
+        "startChar": 14,
+        "endLine": 239,
+        "endChar": 18
+      },
+      "revId": "1d462c11dcc8ce039948fde4467a5272d39f8c99",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_46b503cc",
+        "filename": "resources/libraries/python/L2Util.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-04-06T15:59:27Z",
+      "side": 1,
+      "message": "line too long",
+      "revId": "1d462c11dcc8ce039948fde4467a5272d39f8c99",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_26caf74f",
+        "filename": "resources/libraries/python/L2Util.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-04-06T15:59:27Z",
+      "side": 1,
+      "message": "only 1 line at the end of file",
+      "revId": "1d462c11dcc8ce039948fde4467a5272d39f8c99",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a045101_c6a9137d",
         "filename": "resources/libraries/robot/vlan.robot",
         "patchSetId": 5
@@ -53,6 +133,47 @@
       "writtenOn": "2016-04-06T15:50:41Z",
       "side": 1,
       "message": "consider to rename directory to tagging, file to qinq_xconnect.robot",
+      "revId": "1d462c11dcc8ce039948fde4467a5272d39f8c99",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_e6c3ef36",
+        "filename": "tests/suites/l2_xconnect/l2_xconnect_qinq.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-04-06T15:59:27Z",
+      "side": 1,
+      "message": "sorry, create directory tagging and move file to it.",
+      "parentUuid": "3a045101_e6ac0f8f",
+      "revId": "1d462c11dcc8ce039948fde4467a5272d39f8c99",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_c6c0f32c",
+        "filename": "tests/suites/l2_xconnect/l2_xconnect_qinq.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-04-06T15:59:27Z",
+      "side": 1,
+      "message": "\"|\" is redundant",
+      "range": {
+        "startLine": 33,
+        "startChar": 78,
+        "endLine": 33,
+        "endChar": 80
+      },
       "revId": "1d462c11dcc8ce039948fde4467a5272d39f8c99",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
