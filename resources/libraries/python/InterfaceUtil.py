@@ -160,3 +160,31 @@ class InterfaceUtil(object):
         for node in nodes.values():
             if node['type'] == NodeType.DUT:
                 InterfaceUtil.vpp_node_interfaces_ready_wait(node, timeout)
+
+    @staticmethod
+    def vpp_get_interface_data(node, if_index='', if_name=''):
+        """Get all interface data from a VPP node. If a name or an interface
+        index is provided, return only data for the matching interface.
+
+        :param node: VPP node to get interface data from
+        :param if_index: Numeric index of a specific interface
+        :param if_name: Name string of a specific interface
+        :return: List of dictionaries containing data for each interface, or a
+        single dictionary for the specified interface
+        :type node: dict
+        :type if_index: int or str
+        :type if_name: str
+        :rtype: list or dict
+        """
+
+        with VatTerminal(node) as vat:
+            data = vat.vat_terminal_exec_cmd('sw_interface_dump')
+        logger.debug(data)
+
+        if if_index or if_name:
+            for interface in data:
+                if interface["sw_if_index"] == str(if_index) \
+                        or interface["interface_name"] == if_name:
+                    return interface
+
+        return data
