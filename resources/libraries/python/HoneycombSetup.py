@@ -20,16 +20,17 @@ from robot.api import logger
 
 from resources.libraries.python.topology import NodeType
 from resources.libraries.python.ssh import SSH
-from resources.libraries.python.HTTPRequest import HTTPRequest, \
-    HTTPRequestError, HTTP_CODES
-from resources.libraries.python.constants import Constants as C
+from resources.libraries.python.HTTPRequest import HTTPRequest, HTTPCodes, \
+    HTTPRequestError
+from resources.libraries.python.HoneycombUtil import HoneycombUtil as HcUtil
+from resources.libraries.python.constants import Constants as Const
 
 
 class HoneycombError(Exception):
     """Exception(s) raised by methods working with Honeycomb."""
 
     def __init__(self, msg, enable_logging=True):
-        """Sets the exception message and enables / disables logging
+        """Sets the exception message and enables / disables logging.
 
         It is not wanted to log errors when using these keywords together
         with keywords like "Wait until keyword succeeds".
@@ -65,63 +66,62 @@ class HoneycombSetup(object):
     def start_honeycomb_on_all_duts(nodes):
         """Start honeycomb on all DUT nodes in topology.
 
-        :param nodes: all nodes in topology
+        This keyword starts the honeycomb service on all DUTs. The keyword just
+        starts the honeycomb and does not check its startup state. Use the
+        keyword "Check Honeycomb Startup State" to check if the honeycomb is up
+        and running.
+        Honeycomb must be installed in "/opt" directory, otherwise the start
+        will fail.
+        :param nodes: All nodes in topology.
         :type nodes: dict
+        :raises HoneycombError: If Honeycomb fails to start.
         """
-        logger.console("Starting honeycomb service")
+        logger.console("Starting honeycomb service ...")
+
+        cmd = os.path.join(Const.REMOTE_HC_DIR, "start")
 
         for node in nodes.values():
             if node['type'] == NodeType.DUT:
-                HoneycombSetup.start_honeycomb(node)
-
-    @staticmethod
-    def start_honeycomb(node):
-        """Start up honeycomb on DUT node.
-
-        :param node: DUT node with honeycomb
-        :type node: dict
-        :return: ret_code, stdout, stderr
-        :rtype: tuple
-        :raises HoneycombError: if Honeycomb fails to start.
-        """
-
-        ssh = SSH()
-        ssh.connect(node)
-        cmd = os.path.join(C.REMOTE_HC_DIR, "start")
-        (ret_code, stdout, stderr) = ssh.exec_command_sudo(cmd)
-        if int(ret_code) != 0:
-            logger.debug('stdout: {0}'.format(stdout))
-            logger.debug('stderr: {0}'.format(stderr))
-            raise HoneycombError('Node {0} failed to start honeycomb'.
-                                 format(node['host']))
-        return ret_code, stdout, stderr
+                ssh = SSH()
+                ssh.connect(node)
+                (ret_code, stdout, stderr) = ssh.exec_command_sudo(cmd)
+                if int(ret_code) != 0:
+                    logger.debug('stdout: {0}'.format(stdout))
+                    logger.debug('stderr: {0}'.format(stderr))
+                    raise HoneycombError('Node {0} failed to start honeycomb.'.
+                                         format(node['host']))
+                else:
+                    logger.info("Starting the honeycomb service on node {0} is "
+                                "in progress ...".format(node['host']))
 
     @staticmethod
     def stop_honeycomb_on_all_duts(nodes):
         """Stop the honeycomb service on all DUTs.
 
-        :param nodes: nodes in topology
+        This keyword stops the honeycomb service on all nodes. It just stops the
+        honeycomb and does not check its shutdown state. Use the keyword "Check
+        Honeycomb Shutdown State" to check if honeycomb has stopped.
+        :param nodes: Nodes in topology.
         :type nodes: dict
-        :return: ret_code, stdout, stderr
-        :rtype: tuple
-        :raises HoneycombError: if Honeycomb failed to stop.
+        :raises HoneycombError: If Honeycomb failed to stop.
         """
-        logger.console("Shutting down honeycomb service")
+        logger.console("Shutting down honeycomb service ...")
+
+        cmd = os.path.join(Const.REMOTE_HC_DIR, "stop")
         errors = []
+
         for node in nodes.values():
             if node['type'] == NodeType.DUT:
-
                 ssh = SSH()
                 ssh.connect(node)
-                cmd = os.path.join(C.REMOTE_HC_DIR, "stop")
                 (ret_code, stdout, stderr) = ssh.exec_command_sudo(cmd)
                 if int(ret_code) != 0:
                     logger.debug('stdout: {0}'.format(stdout))
                     logger.debug('stderr: {0}'.format(stderr))
                     errors.append(node['host'])
-                    continue
-                logger.info("Honeycomb was successfully stopped on node {0}.".
-                            format(node['host']))
+                else:
+                    logger.info("Stopping the honeycomb service on node {0} is "
+                                "in progress ...".format(node['host']))
         if errors:
             raise HoneycombError('Node(s) {0} failed to stop honeycomb.'.
                                  format(errors))
@@ -130,42 +130,40 @@ class HoneycombSetup(object):
     def check_honeycomb_startup_state(nodes):
         """Check state of honeycomb service during startup.
 
-        Reads html path from template file vpp_version.url
+        Reads html path from template file oper_vpp_version.url.
 
         Honeycomb node replies with connection refused or the following status
         codes depending on startup progress: codes 200, 401, 403, 404, 503
 
-        :param nodes: nodes in topology
+        :param nodes: Nodes in topology.
         :type nodes: dict
-        :return: True if all GETs returned code 200(OK)
+        :return: True if all GETs returned code 200(OK).
         :rtype bool
         """
 
-        url_file = os.path.join(C.RESOURCES_TPL_HC, "vpp_version.url")
-        with open(url_file) as template:
-            data = template.readline()
-
-        expected_status_codes = (HTTP_CODES["UNAUTHORIZED"],
-                                 HTTP_CODES["FORBIDDEN"],
-                                 HTTP_CODES["NOT_FOUND"],
-                                 HTTP_CODES["SERVICE_UNAVAILABLE"])
+        path = HcUtil.read_path_from_url_file("oper_vpp_version")
+        expected_status_codes = (HTTPCodes.UNAUTHORIZED,
+                                 HTTPCodes.FORBIDDEN,
+                                 HTTPCodes.NOT_FOUND,
+                                 HTTPCodes.SERVICE_UNAVAILABLE)
 
         for node in nodes.values():
             if node['type'] == NodeType.DUT:
-                status_code, _ = HTTPRequest.get(node, data, timeout=10,
+                status_code, _ = HTTPRequest.get(node, path, timeout=10,
                                                  enable_logging=False)
-                if status_code == HTTP_CODES["OK"]:
-                    pass
+                if status_code == HTTPCodes.OK:
+                    logger.info("Honeycomb on node {0} is up and running".
+                                format(node['host']))
                 elif status_code in expected_status_codes:
-                    if status_code == HTTP_CODES["UNAUTHORIZED"]:
+                    if status_code == HTTPCodes.UNAUTHORIZED:
                         logger.info('Unauthorized. If this triggers keyword '
-                                    'timeout, verify honeycomb '
-                                    'username and password')
+                                    'timeout, verify honeycomb username and '
+                                    'password.')
                     raise HoneycombError('Honeycomb on node {0} running but '
                                          'not yet ready.'.format(node['host']),
                                          enable_logging=False)
                 else:
-                    raise HoneycombError('Unexpected return code: {0}'.
+                    raise HoneycombError('Unexpected return code: {0}.'.
                                          format(status_code))
         return True
 
@@ -174,57 +172,65 @@ class HoneycombSetup(object):
         """Check state of honeycomb service during shutdown.
 
         Honeycomb node replies with connection refused or the following status
-        codes depending on shutdown progress: codes 200, 404
+        codes depending on shutdown progress: codes 200, 404.
 
-        :param nodes: nodes in topology
+        :param nodes: Nodes in topology.
         :type nodes: dict
-        :return: True if all GETs fail to connect
+        :return: True if all GETs fail to connect.
         :rtype bool
         """
 
+        cmd = "ps -ef | grep -v grep | grep karaf"
         for node in nodes.values():
             if node['type'] == NodeType.DUT:
                 try:
                     status_code, _ = HTTPRequest.get(node, '/index.html',
                                                      timeout=5,
                                                      enable_logging=False)
-                    if status_code == HTTP_CODES["OK"]:
+                    if status_code == HTTPCodes.OK:
                         raise HoneycombError('Honeycomb on node {0} is still '
-                                             'running'.format(node['host']),
+                                             'running.'.format(node['host']),
                                              enable_logging=False)
-                    elif status_code == HTTP_CODES["NOT_FOUND"]:
+                    elif status_code == HTTPCodes.NOT_FOUND:
                         raise HoneycombError('Honeycomb on node {0} is shutting'
-                                             ' down'.format(node['host']),
+                                             ' down.'.format(node['host']),
                                              enable_logging=False)
                     else:
-                        raise HoneycombError('Unexpected return code: {'
-                                             '0}'.format(status_code))
+                        raise HoneycombError('Unexpected return code: {0}.'.
+                                             format(status_code))
                 except HTTPRequestError:
-                    logger.debug('Connection refused')
-
+                    logger.debug('Connection refused, checking the process '
+                                 'state ...')
+                    ssh = SSH()
+                    ssh.connect(node)
+                    (ret_code, _, _) = ssh.exec_command_sudo(cmd)
+                    if ret_code == 0:
+                        raise HoneycombError('Honeycomb on node {0} is still '
+                                             'running.'.format(node['host']),
+                                             enable_logging=False)
+                    else:
+                        logger.info("Honeycomb on node {0} has stopped".
+                                    format(node['host']))
         return True
 
-
     @staticmethod
-    def add_vpp_to_honeycomb_network_topology(nodes, headers):
+    def add_vpp_to_honeycomb_network_topology(nodes):
         """Add vpp node to Honeycomb network topology.
 
-        :param nodes: all nodes in test topology
-        :param headers: headers to be used with PUT requests
+        :param nodes: All nodes in test topology.
         :type nodes: dict
-        :type headers: dict
-        :return: status code and response from PUT requests
+        :return: Status code and response content from PUT requests.
         :rtype: tuple
-        :raises HoneycombError: if a node was not added to honeycomb topology
+        :raises HoneycombError: If a node was not added to honeycomb topology.
 
-        Reads HTML path from template file config_topology_node.url
+        Reads HTML path from template file config_topology_node.url.
         Path to the node to be added, e.g.:
         ("/restconf/config/network-topology:network-topology"
          "/topology/topology-netconf/node/")
-        There must be "/" at the end, as generated node name is added
-        at the end.
+        There must be "/" at the end, as generated node name is added at the
+        end.
 
-        Reads payload data from template file add_vpp_to_topology.xml
+        Reads payload data from template file add_vpp_to_topology.xml.
         Information about node as XML structure, e.g.:
         <node xmlns="urn:TBD:params:xml:ns:yang:network-topology">
             <node-id>
@@ -258,16 +264,15 @@ class HoneycombSetup(object):
         MUST be there as they are replaced by correct values.
         """
 
-        with open(os.path.join(C.RESOURCES_TPL_HC, "config_topology_node.url"))\
-                as template:
-            path = template.readline()
-
+        path = HcUtil.read_path_from_url_file("config_topology_node")
         try:
-            xml_data = ET.parse(os.path.join(C.RESOURCES_TPL_HC,
+            xml_data = ET.parse(os.path.join(Const.RESOURCES_TPL_HC,
                                              "add_vpp_to_topology.xml"))
         except ET.ParseError as err:
             raise HoneycombError(repr(err))
         data = ET.tostring(xml_data.getroot())
+
+        headers = {"Content-Type": "application/xml"}
 
         status_codes = []
         responses = []
@@ -285,11 +290,11 @@ class HoneycombSetup(object):
                         path=path + '/' + node_name,
                         headers=headers,
                         payload=payload)
-                    if status_code != HTTP_CODES["OK"]:
+                    if status_code != HTTPCodes.OK:
                         raise HoneycombError(
                             "VPP {0} was not added to topology. "
-                            "Status code: {1}".format(node["host"],
-                                                      status_code))
+                            "Status code: {1}.".format(node["host"],
+                                                       status_code))
 
                     status_codes.append(status_code)
                     responses.append(resp)
@@ -297,5 +302,4 @@ class HoneycombSetup(object):
                 except HTTPRequestError as err:
                     raise HoneycombError("VPP {0} was not added to topology.\n"
                                          "{1}".format(node["host"], repr(err)))
-
         return status_codes, responses
