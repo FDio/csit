@@ -160,3 +160,39 @@ class InterfaceUtil(object):
         for node in nodes.values():
             if node['type'] == NodeType.DUT:
                 InterfaceUtil.vpp_node_interfaces_ready_wait(node, timeout)
+
+    @staticmethod
+    def vpp_get_interface_data(node, interface=None):
+        """Get all interface data from a VPP node. If a name or
+        sw_interface_index is provided, return only data for the matching
+        interface.
+        :param node: VPP node to get interface data from.
+        :param interface: Numeric index or name string of a specific interface.
+        :return: List of dictionaries containing data for each interface, or a
+        single dictionary for the specified interface.
+        :type node: dict
+        :type interface: int or str
+        :rtype: list or dict
+        """
+        with VatTerminal(node) as vat:
+            response = vat.vat_terminal_exec_cmd_from_template(
+                "interface_dump.vat")
+
+        # response is a nested list like [[if1, if2,...]]. This removes the
+        # redundant outer list.
+        data = response[0]
+
+        if interface is not None:
+            if isinstance(interface, basestring):
+                sw_if_index = Topology.get_interface_sw_index(node, interface)
+                logger.debug("str {}".format(sw_if_index))
+            else:
+                sw_if_index = interface
+                logger.debug("int {}".format(sw_if_index))
+
+            for data_if in data:
+                if data_if["sw_if_index"] == sw_if_index:
+
+                    return data_if
+
+        return data
