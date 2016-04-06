@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a045101_267c3720",
+        "filename": "resources/libraries/python/L2Util.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-04-06T15:50:41Z",
+      "side": 1,
+      "message": "I think, better place for this is in InterfaceUtil.py",
+      "range": {
+        "startLine": 224,
+        "startChar": 8,
+        "endLine": 224,
+        "endChar": 27
+      },
+      "revId": "1d462c11dcc8ce039948fde4467a5272d39f8c99",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_c6a9137d",
+        "filename": "resources/libraries/robot/vlan.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-04-06T15:50:41Z",
+      "side": 1,
+      "message": "consider to rename to tagging.robot",
+      "revId": "1d462c11dcc8ce039948fde4467a5272d39f8c99",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_e6ac0f8f",
+        "filename": "tests/suites/l2_xconnect/l2_xconnect_qinq.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-04-06T15:50:41Z",
+      "side": 1,
+      "message": "consider to rename directory to tagging, file to qinq_xconnect.robot",
+      "revId": "1d462c11dcc8ce039948fde4467a5272d39f8c99",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_06793b2f",
+        "filename": "tests/suites/l2_xconnect/l2_xconnect_qinq.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-04-06T15:50:41Z",
+      "side": 1,
+      "message": "Send and receive ICMPv4 bidirectionally, from Change-ID 521",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 64
+      },
+      "revId": "1d462c11dcc8ce039948fde4467a5272d39f8c99",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
