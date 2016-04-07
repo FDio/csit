@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a045101_1972bc7c",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-04-07T14:31:29Z",
+      "side": 1,
+      "message": "Please, put dots at the end of sentences.",
+      "range": {
+        "startLine": 169,
+        "startChar": 8,
+        "endLine": 172,
+        "endChar": 53
+      },
+      "revId": "da811fabd08d3288932ab31fe2948ccac6178dec",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_391458f4",
+        "filename": "resources/libraries/python/L2Util.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-04-07T14:31:29Z",
+      "side": 1,
+      "message": "Please, put dots at the end of sentences.",
+      "range": {
+        "startLine": 228,
+        "startChar": 8,
+        "endLine": 231,
+        "endChar": 60
+      },
+      "revId": "da811fabd08d3288932ab31fe2948ccac6178dec",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_19f99cc8",
+        "filename": "resources/libraries/python/L2Util.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-04-07T14:31:29Z",
+      "side": 1,
+      "message": "Please, move this part to next line.",
+      "range": {
+        "startLine": 240,
+        "startChar": 59,
+        "endLine": 240,
+        "endChar": 75
+      },
+      "revId": "da811fabd08d3288932ab31fe2948ccac6178dec",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
