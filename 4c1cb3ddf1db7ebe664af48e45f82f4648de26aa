@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3a045101_9937ecb0",
+        "filename": "resources/libraries/python/SetupFramework.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-04-07T13:57:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a045101_19dd1c71",
+      "range": {
+        "startLine": 75,
+        "startChar": 21,
+        "endLine": 75,
+        "endChar": 25
+      },
+      "revId": "4c1cb3ddf1db7ebe664af48e45f82f4648de26aa",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a045101_f9d95084",
         "filename": "resources/tools/topology/update_topology.py",
         "patchSetId": 9
@@ -36,6 +60,30 @@
       "writtenOn": "2016-04-07T12:21:04Z",
       "side": 1,
       "message": "fails",
+      "range": {
+        "startLine": 50,
+        "startChar": 4,
+        "endLine": 50,
+        "endChar": 9
+      },
+      "revId": "4c1cb3ddf1db7ebe664af48e45f82f4648de26aa",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_793c2094",
+        "filename": "resources/tools/topology/update_topology.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-04-07T13:57:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a045101_f9d95084",
       "range": {
         "startLine": 50,
         "startChar": 4,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "3a045101_5941640a",
+        "filename": "resources/tools/topology/update_topology.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-04-07T13:57:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a045101_d9e69444",
+      "range": {
+        "startLine": 82,
+        "startChar": 59,
+        "endLine": 82,
+        "endChar": 67
+      },
+      "revId": "4c1cb3ddf1db7ebe664af48e45f82f4648de26aa",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a045101_59f3a40a",
         "filename": "resources/tools/topology/update_topology.py",
         "patchSetId": 9
@@ -82,6 +154,30 @@
       "writtenOn": "2016-04-07T10:32:38Z",
       "side": 1,
       "message": "It returns 1 instead of None if the file exists.",
+      "range": {
+        "startLine": 139,
+        "startChar": 13,
+        "endLine": 139,
+        "endChar": 17
+      },
+      "revId": "4c1cb3ddf1db7ebe664af48e45f82f4648de26aa",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_39469824",
+        "filename": "resources/tools/topology/update_topology.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-04-07T13:57:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a045101_59f3a40a",
       "range": {
         "startLine": 139,
         "startChar": 13,
