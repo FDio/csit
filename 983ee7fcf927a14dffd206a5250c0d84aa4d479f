@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a045101_19e75c14",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-04-07T15:35:40Z",
+      "side": 1,
+      "message": "ID of outer VLAN.\nor\nOuter VLAN ID.",
+      "range": {
+        "startLine": 172,
+        "startChar": 30,
+        "endLine": 172,
+        "endChar": 43
+      },
+      "revId": "983ee7fcf927a14dffd206a5250c0d84aa4d479f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_f9e39003",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-04-07T15:35:40Z",
+      "side": 1,
+      "message": "ID of inner VLAN.\nor\nInner VLAN ID.",
+      "range": {
+        "startLine": 173,
+        "startChar": 30,
+        "endLine": 173,
+        "endChar": 43
+      },
+      "revId": "983ee7fcf927a14dffd206a5250c0d84aa4d479f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_d9f0d4cb",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-04-07T15:35:40Z",
+      "side": 1,
+      "message": "Capital T (Type) and dot at the end.",
+      "range": {
+        "startLine": 174,
+        "startChar": 27,
+        "endLine": 174,
+        "endChar": 48
+      },
+      "revId": "983ee7fcf927a14dffd206a5250c0d84aa4d479f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_39b0d8f3",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-04-07T15:35:40Z",
+      "side": 1,
+      "message": "Based on agreement (see CSIT Test Code Guidelines section on CSIT Wiki) we should use condition in following form:\n0 \u003d\u003d output[0][\"retval\"]",
+      "range": {
+        "startLine": 197,
+        "startChar": 11,
+        "endLine": 197,
+        "endChar": 35
+      },
+      "revId": "983ee7fcf927a14dffd206a5250c0d84aa4d479f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_19207c48",
+        "filename": "resources/libraries/python/L2Util.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-04-07T15:35:40Z",
+      "side": 1,
+      "message": "Missing dot at the end of line.",
+      "range": {
+        "startLine": 226,
+        "startChar": 21,
+        "endLine": 226,
+        "endChar": 41
+      },
+      "revId": "983ee7fcf927a14dffd206a5250c0d84aa4d479f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_f91cb015",
+        "filename": "resources/libraries/robot/tagging.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-04-07T15:35:40Z",
+      "side": 1,
+      "message": "Please, add documentation to KW.",
+      "range": {
+        "startLine": 23,
+        "startChar": 2,
+        "endLine": 23,
+        "endChar": 70
+      },
+      "revId": "983ee7fcf927a14dffd206a5250c0d84aa4d479f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_197cfc1f",
+        "filename": "resources/libraries/robot/tagging.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-04-07T15:35:40Z",
+      "side": 1,
+      "message": "Such KWs (no transfer of parameters needed inside the KW)should be implemented as user KWs directly in Test case file.\nIf you want to keep them in resurce file (as general KWs), please, add arguments and documentation part to these KWs.",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 71
+      },
+      "revId": "983ee7fcf927a14dffd206a5250c0d84aa4d479f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
