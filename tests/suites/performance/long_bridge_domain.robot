@@ -13,6 +13,7 @@
 *** Settings ***
 | Resource | resources/libraries/robot/performance.robot
 | Library | resources.libraries.python.NodePath
+| Library | resources.libraries.python.VppConfigGenerator
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | PERFTEST_LONG
 | Suite Setup | 3-node Performance Suite Setup | L2
 | Suite Teardown | 3-node Performance Suite Teardown
@@ -22,6 +23,7 @@
 
 *** Test Cases ***
 | Find NDR by using linear search and 64B frames through bridge domain in 3-node topology
+| | [Tags] | 1_THREAD_NOHTT_RSS_1
 | | ${framesize}= | Set Variable | 64
 | | ${start_rate}= | Set Variable | 5000000
 | | ${step_rate}= | Set Variable | 100000
@@ -32,6 +34,7 @@
 | | ...                                       | 3-node-bridge | ${min_rate} | ${max_rate}
 
 | Find NDR by using linear search and 1518B frames through bridge domain in 3-node topology
+| | [Tags] | 1_THREAD_NOHTT_RSS_1
 | | ${framesize}= | Set Variable | 1518
 | | ${start_rate}= | Set Variable | 812743
 | | ${step_rate}= | Set Variable | 10000
@@ -42,6 +45,7 @@
 | | ...                                       | 3-node-bridge | ${min_rate} | ${max_rate}
 
 | Find NDR by using linear search and 9000B frames through bridge domain in 3-node topology
+| | [Tags] | 1_THREAD_NOHTT_RSS_1
 | | ${framesize}= | Set Variable | 9000
 | | ${start_rate}= | Set Variable | 138580
 | | ${step_rate}= | Set Variable | 5000
@@ -50,3 +54,33 @@
 | | Given L2 bridge domain initialized in a 3-node circular topology
 | | Then Find NDR using linear search and pps | ${framesize} | ${start_rate} | ${step_rate}
 | | ...                                       | 3-node-bridge | ${min_rate} | ${max_rate}
+
+| Find NDR with 2 cores and rss 1 by using linear search and 9000B frames through bridge domain in 3-node topology
+| | [Tags] | 2_THREAD_NOHTT_RSS_1
+| | ${framesize}= | Set Variable | 9000
+| | ${start_rate}= | Set Variable | 138580
+| | ${step_rate}= | Set Variable | 5000
+| | ${min_rate}= | Set Variable | 5000
+| | ${max_rate}= | Set Variable | 138580
+| | ${workers}= | Set Variable | 2
+| | Set '${workers}' worker threads on all DUTs
+| | Given L2 bridge domain initialized in a 3-node circular topology
+| | Then Find NDR using linear search and pps | ${framesize} | ${start_rate} | ${step_rate}
+| | ...                                       | 3-node-bridge | ${min_rate} | ${max_rate}
+
+*** Keywords ***
+| Set '${wt}' worker threads on all DUTs
+| | [Documentation] |  Setup N worker threads in startup configuration of VPP on all DUTs
+| | ${cpu_config}= | Run Keyword If | '${wt}' == '1' | Catenate | main-core | 0 |
+| |                                                  | ...      | corelist-workers | 1
+| | ...            | ELSE IF        | '${wt}' == '2' | Catenate | main-core | 0 |
+| |                                                  | ...      | corelist-workers | 1-2
+| | ...            | ELSE IF        | '${wt}' == '4' | Catenate | main-core | 0 |
+| |                                                  | ...      | corelist-workers | 1-4
+| | ...            | ELSE           | Catenate | main-core | 0 |
+| |                                 | ...      | corelist-workers | 1-4
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | Add cpu config | ${nodes['${dut}']} | ${cpu_config}
+| | | Add pci device | ${nodes['${dut}']}
+#| | | Apply config | ${nodes['${dut}']}

@@ -41,3 +41,40 @@ VM_ENV
 
 VPP_VM_ENV
     DUTs with VPP and capable of running Virtual Machine.
+
+DUT Setup TAGs
+--------------
+
+1_THREAD_NOHTT_RSS_1
+    1 worker thread pinned to dedicated core without use of Hyper-threading
+    technology with 1 thread per interface. Main thread pinned to core 0.
+
+2_THREAD_NOHTT_RSS_1
+    2 worker threads each pinned to dedicated core without use of Hyper-threading
+    technology with 1 thread per interface. Main thread pinned to core 0.
+
+4_THREAD_NOHTT_RSS_2
+    4 worker threads each pinned to dedicated core without use of Hyper-threading
+    technology with 2 threads per interface. Main thread pinned to core 0.
+
+6_THREAD_NOHTT_RSS_3
+    6 worker threads each pinned to dedicated core without use of Hyper-threading
+    technology with 3 threads per interface. Main thread pinned to core 0.
+
+8_THREAD_HTT_RSS_4
+    8 worker threads each pinned to dedicated core without use of Hyper-threading
+    technology with 4 threads per interface. Main thread pinned to core 0.
+
+Performance testing TAGs
+------------------------
+
+PERFTEST
+    All performance test cases.
+
+PERFTEST_SHORT
+    Performance of DUT should pass specific value. Each test case run is
+    executed for 10 seconds.
+
+PERFTEST_LONG
+    Find performance of DUT based on RFC2544 with linear/binary/combined
+    search. Each test case run is executed for 60 seconds.
