@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a045101_59f3a40a",
+        "filename": "resources/tools/topology/update_topology.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-04-07T10:32:38Z",
+      "side": 1,
+      "message": "It returns 1 instead of None if the file exists.",
+      "range": {
+        "startLine": 139,
+        "startChar": 13,
+        "endLine": 139,
+        "endChar": 17
+      },
+      "revId": "4c1cb3ddf1db7ebe664af48e45f82f4648de26aa",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
