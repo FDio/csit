@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a045101_595844fa",
+        "filename": "resources/tools/topology/update_topology.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-04-07T14:19:32Z",
+      "side": 1,
+      "message": "You forgot to delete one t...",
+      "range": {
+        "startLine": 82,
+        "startChar": 59,
+        "endLine": 82,
+        "endChar": 67
+      },
+      "revId": "210ee733f5e0c9384ea6bba750729f8d5cd90215",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
