@@ -15,6 +15,7 @@
 | Variables | resources/libraries/python/topology.py
 | Library | resources/libraries/python/DUTSetup.py
 | Library | resources/libraries/python/TGSetup.py
+| Library | resources/libraries/python/VppConfigGenerator.py
 | Library | Collections
 
 *** Keywords ***
@@ -32,3 +33,36 @@
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | Vpp show stats | ${nodes['${dut}']}
+
+| Setup '${wt}' worker threads and rss '${rss}' without HTT on all DUTs
+| | [Documentation] |  Setup N worker threads and rss M in startup
+| | ...             |  configuration of VPP on all DUTs
+| | ${cpu}= | Run Keyword If | '${wt}' == '1' | Catenate | main-core | 0 |
+| |                                           | ...      | corelist-workers | 1
+| | ...     | ELSE IF        | '${wt}' == '2' | Catenate | main-core | 0 |
+| |                                           | ...      | corelist-workers | 1-2
+| | ...     | ELSE IF        | '${wt}' == '4' | Catenate | main-core | 0 |
+| |                                           | ...      | corelist-workers | 1-4
+| | ...     | ELSE           | Catenate | main-core | 1
+| | ${rss=} | Run Keyword If | '${rss}' == '1' | Catenate | rss | 1
+| | ...     | ELSE IF        | '${rss}' == '2' | Catenate | rss | 2
+| | ...     | ELSE IF        | '${rss}' == '3' | Catenate | rss | 3
+| | ...     | ELSE IF        | '${rss}' == '4' | Catenate | rss | 4
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | Add CPU configuration into startup configuration on DUT | ${nodes['${dut}']}
+| | | ...                                                     | ${cpu}
+| | | Add PCI configuration into startup configuration on DUT | ${nodes['${dut}']}
+#| | |  Apply startup configuration on DUT | ${nodes['${dut}']}
+
+| Add CPU configuration into startup configuration on DUT
+| | [Arguments] | ${node} | ${cpu}
+| | Add cpu config | ${node} | ${cpu}
+
+| Add PCI configuration into startup configuration on DUT
+| | [Arguments] | ${node}
+| | Add pci device | ${node}
+
+| Apply startup configuration on DUT
+| | [Arguments] | ${node}
+| | Add pci device | ${node}

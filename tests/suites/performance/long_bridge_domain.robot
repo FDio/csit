@@ -22,6 +22,7 @@
 
 *** Test Cases ***
 | Find NDR by using linear search and 64B frames through bridge domain in 3-node topology
+| | [Tags] | 1_THREAD_NOHTT_RSS_1
 | | ${framesize}= | Set Variable | 64
 | | ${start_rate}= | Set Variable | 5000000
 | | ${step_rate}= | Set Variable | 100000
@@ -32,6 +33,7 @@
 | | ...                                       | 3-node-bridge | ${min_rate} | ${max_rate}
 
 | Find NDR by using linear search and 1518B frames through bridge domain in 3-node topology
+| | [Tags] | 1_THREAD_NOHTT_RSS_1
 | | ${framesize}= | Set Variable | 1518
 | | ${start_rate}= | Set Variable | 812743
 | | ${step_rate}= | Set Variable | 10000
@@ -42,11 +44,24 @@
 | | ...                                       | 3-node-bridge | ${min_rate} | ${max_rate}
 
 | Find NDR by using linear search and 9000B frames through bridge domain in 3-node topology
+| | [Tags] | 1_THREAD_NOHTT_RSS_1
 | | ${framesize}= | Set Variable | 9000
 | | ${start_rate}= | Set Variable | 138580
 | | ${step_rate}= | Set Variable | 5000
 | | ${min_rate}= | Set Variable | 5000
 | | ${max_rate}= | Set Variable | 138580
+| | Given L2 bridge domain initialized in a 3-node circular topology
+| | Then Find NDR using linear search and pps | ${framesize} | ${start_rate} | ${step_rate}
+| | ...                                       | 3-node-bridge | ${min_rate} | ${max_rate}
+
+| Find NDR with 2 cores and rss 1 by using linear search and 9000B frames through bridge domain in 3-node topology
+| | [Tags] | 2_THREAD_NOHTT_RSS_1
+| | ${framesize}= | Set Variable | 9000
+| | ${start_rate}= | Set Variable | 138580
+| | ${step_rate}= | Set Variable | 5000
+| | ${min_rate}= | Set Variable | 5000
+| | ${max_rate}= | Set Variable | 138580
+| | Setup '2' worker threads and rss '1' without HTT on all DUTs
 | | Given L2 bridge domain initialized in a 3-node circular topology
 | | Then Find NDR using linear search and pps | ${framesize} | ${start_rate} | ${step_rate}
 | | ...                                       | 3-node-bridge | ${min_rate} | ${max_rate}
