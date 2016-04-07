@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a045101_99d00c55",
+        "filename": "resources/libraries/python/HoneycombSetup.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-04-07T14:14:57Z",
+      "side": 1,
+      "message": "What about to log information about successful starting of Honyecomb service on all DUT nodes?",
+      "range": {
+        "startLine": 77,
+        "startChar": 8,
+        "endLine": 77,
+        "endChar": 34
+      },
+      "revId": "c1045bf078745577204cfa8f1d5099b85e281f35",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
