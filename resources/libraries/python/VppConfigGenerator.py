@@ -45,14 +45,15 @@ unix {{
 api-trace {{
   on
 }}
-{{heapsizeconfig}}
+{heapsizeconfig}
 cpu {{
 {cpuconfig}
 }}
 
 dpdk {{
-  socket-mem {{socketmemconfig}}
+  socket-mem {socketmemconfig}
 {pciconfig}
+{rssconfig}
 }}
 """
 # End VPP configuration template.
@@ -160,6 +161,26 @@ class VppConfigGenerator(object):
         logger.debug('Setting hostname {} Heap Size config to {}'.\
             format(hostname, heapsize_config))
 
+    def add_rss_config(self, node, rss_config):
+        """Add RSS configuration for node.
+
+        :param node: DUT node
+        :param rss_config: RSS configuration, as a string
+        :type node: dict
+        :type rss_config: string
+        :return: nothing
+        """
+        if node['type'] != NodeType.DUT:
+            raise ValueError('Node type is not a DUT')
+        hostname = Topology.get_node_hostname(node)
+        if not hostname in self._nodeconfig:
+            self._nodeconfig[hostname] = {}
+        if not 'rss_config' in self._nodeconfig[hostname]:
+            self._nodeconfig[hostname]['rss_config'] = []
+        self._nodeconfig[hostname]['rss_config'].append(rss_config)
+        logger.debug('Setting hostname {} RSS config to {}'.\
+            format(hostname, rss_config))
+
     def remove_all_pci_devices(self, node):
         """Remove PCI device configuration from node.
 
@@ -220,6 +241,21 @@ class VppConfigGenerator(object):
         logger.debug('Clearing Heap Size config for hostname {}.'.\
             format(hostname))
 
+    def remove_rss_config(self, node):
+        """Remove RSS configuration from node.
+
+        :param node: DUT node
+        :type: node: dict
+        :return: nothing
+        """
+        if node['type'] != NodeType.DUT:
+            raise ValueError('Node type is not a DUT')
+        hostname = Topology.get_node_hostname(node)
+        if hostname in self._nodeconfig:
+            self._nodeconfig[hostname]['rss_config'] = []
+        logger.debug('Clearing RSS config for hostname {}.'.\
+            format(hostname))
+
     def apply_config(self, node, waittime=5, retries=12):
         """Generate and apply VPP configuration for node.
 
@@ -242,6 +278,7 @@ class VppConfigGenerator(object):
         pciconfig = ""
         socketmemconfig = DEFAULT_SOCKETMEM_CONFIG
         heapsizeconfig = ""
+        rssconfig = ""
 
         if hostname in self._nodeconfig:
             cfg = self._nodeconfig[hostname]
@@ -258,10 +295,14 @@ class VppConfigGenerator(object):
                 heapsizeconfig = "\nheapsize {}\n".\
                     format(cfg['heapsize_config'])
 
+            if 'rss_config' in cfg:
+                rssconfig = "  " + "\n  ".join(cfg['rss_config'])
+
         vppconfig = VPP_CONFIG_TEMPLATE.format(cpuconfig=cpuconfig,
                                                pciconfig=pciconfig,
                                                socketmemconfig=socketmemconfig,
-                                               heapsizeconfig=heapsizeconfig)
+                                               heapsizeconfig=heapsizeconfig,
+                                               rssconfig=rssconfig)
 
         logger.debug('Writing VPP config to host {}: "{}"'.format(hostname,\
                vppconfig))
