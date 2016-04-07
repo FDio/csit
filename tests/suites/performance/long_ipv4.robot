@@ -21,36 +21,84 @@
 | Suite Setup | 3-node Performance Suite Setup | L3
 | Suite Teardown | 3-node Performance Suite Teardown
 | Test Setup | Setup all DUTs before test
-| Test Teardown  | Run Keyword If Test Failed | Show statistics on all DUTs
-| Documentation | Throughput search suite (long running test suite based on RFC2544).
+| Test Teardown | Run Keywords | Show statistics on all DUTs
+| ...           | AND          | Reset startup configuration of VPP on all DUTs
+| Documentation | Throughput search suite (long running test suite based on
+| ...           | RFC2544).
 
 *** Test Cases ***
 | Find NDR by using linear search and 64B frames through IPv4 forwarding in 3-node topology
+| | [Documentation] | Find NDR by using linear search and 64B frames through
+| | ...             | IPv4 forwarding in 3-node topology
+| | [Tags] | 1_THREAD_NOHTT_RSS_1 | SINGLE_THREAD
 | | ${framesize}= | Set Variable | 64
-| | ${start_rate}= | Set Variable | 5000000
+| | ${start_rate}= | Set Variable | 4500000
 | | ${step_rate}= | Set Variable | 100000
 | | ${min_rate}= | Set Variable | 100000
 | | ${max_rate}= | Set Variable | 14880952
-| | Given IPv4 forwarding initialized in a 3-node circular topology
-| | Then Find NDR using linear search and pps | ${framesize} | ${start_rate} | ${step_rate}
-| | ...                                       | 3-node-IPv4 | ${min_rate} | ${max_rate}
+| | Given Setup '1' worker threads and rss '1' without HTT on all DUTs
+| | AND   IPv4 forwarding initialized in a 3-node circular topology
+| | Then Find NDR using linear search and pps | ${framesize} | ${start_rate}
+| | ...                                       | ${step_rate} | 3-node-IPv4
+| | ...                                       | ${min_rate} | ${max_rate}
 
 | Find NDR by using linear search and 1518B frames through IPv4 forwarding in 3-node topology
+| | [Documentation] | Find NDR by using linear search and 1518B frames through
+| | ...             | IPv4 forwarding in 3-node topology
+| | [Tags] | 1_THREAD_NOHTT_RSS_1 | SINGLE_THREAD
 | | ${framesize}= | Set Variable | 1518
 | | ${start_rate}= | Set Variable | 812743
 | | ${step_rate}= | Set Variable | 10000
 | | ${min_rate}= | Set Variable | 10000
 | | ${max_rate}= | Set Variable | 812743
-| | Given IPv4 forwarding initialized in a 3-node circular topology
-| | Then Find NDR using linear search and pps | ${framesize} | ${start_rate} | ${step_rate}
-| | ...                                       | 3-node-IPv4 | ${min_rate} | ${max_rate}
+| | Given Setup '1' worker threads and rss '1' without HTT on all DUTs
+| | AND   IPv4 forwarding initialized in a 3-node circular topology
+| | Then Find NDR using linear search and pps | ${framesize} | ${start_rate}
+| | ...                                       | ${step_rate} | 3-node-IPv4
+| | ...                                       | ${min_rate} | ${max_rate}
 
 | Find NDR by using linear search and 9000B frames through IPv4 forwarding in 3-node topology
+| | [Documentation] | Find NDR by using linear search and 9000B frames through
+| | ...             | IPv4 forwarding in 3-node topology
+| | [Tags] | 1_THREAD_NOHTT_RSS_1 | SINGLE_THREAD
 | | ${framesize}= | Set Variable | 9000
 | | ${start_rate}= | Set Variable | 138580
 | | ${step_rate}= | Set Variable | 5000
 | | ${min_rate}= | Set Variable | 5000
 | | ${max_rate}= | Set Variable | 138580
-| | Given IPv4 forwarding initialized in a 3-node circular topology
-| | Then Find NDR using linear search and pps | ${framesize} | ${start_rate} | ${step_rate}
-| | ...                                       | 3-node-IPv4 | ${min_rate} | ${max_rate}
+| | Given Setup '1' worker threads and rss '1' without HTT on all DUTs
+| | AND   IPv4 forwarding initialized in a 3-node circular topology
+| | Then Find NDR using linear search and pps | ${framesize} | ${start_rate}
+| | ...                                       | ${step_rate} | 3-node-IPv4
+| | ...                                       | ${min_rate} | ${max_rate}
+
+| Find NDR with 2 cores and rss 1 by using linear search and 64B frames through IPv4 forwarding in 3-node topology
+| | [Documentation] | Find NDR with 2 cores and rss 1 by using linear search
+| | ...             | and 64B frames through IPv4 forwarding in 3-node topology
+| | [Tags] | 2_THREAD_NOHTT_RSS_1 | MULTI_THREAD
+| | ${framesize}= | Set Variable | 64
+| | ${start_rate}= | Set Variable | 9000000
+| | ${step_rate}= | Set Variable | 100000
+| | ${min_rate}= | Set Variable | 100000
+| | ${max_rate}= | Set Variable | 14880952
+| | Given Setup '2' worker threads and rss '1' without HTT on all DUTs
+| | AND   IPv4 forwarding initialized in a 3-node circular topology
+| | Then Find NDR using linear search and pps | ${framesize} | ${start_rate}
+| | ...                                       | ${step_rate} | 3-node-IPv4
+| | ...                                       | ${min_rate} | ${max_rate}
+
+| Find NDR with 4 cores and rss 2 by using linear search and 64B frames through IPv4 forwarding in 3-node topology
+| | [Documentation] | Find NDR with 4 cores and rss 2 by using linear search
+| | ...             | and 64B frames through IPv4 forwarding in 3-node topology
+| | [Tags] | 4_THREAD_NOHTT_RSS_2 | MULTI_THREAD
+| | ${framesize}= | Set Variable | 64
+| | ${start_rate}= | Set Variable | 10000000
+| | ${step_rate}= | Set Variable | 100000
+| | ${min_rate}= | Set Variable | 100000
+| | ${max_rate}= | Set Variable | 14880952
+| | Given Setup '4' worker threads and rss '2' without HTT on all DUTs
+| | AND   IPv4 forwarding initialized in a 3-node circular topology
+| | Then Find NDR using linear search and pps | ${framesize} | ${start_rate}
+| | ...                                       | ${step_rate} | 3-node-IPv4
+| | ...                                       | ${min_rate} | ${max_rate}
+

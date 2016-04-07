@@ -21,26 +21,67 @@
 | Suite Setup | 3-node Performance Suite Setup | L3
 | Suite Teardown | 3-node Performance Suite Teardown
 | Test Setup | Setup all DUTs before test
-| Test Teardown  | Run Keyword If Test Failed | Show statistics on all DUTs
+| Test Teardown | Run Keywords | Show statistics on all DUTs
+| ...           | AND          | Reset startup configuration of VPP on all DUTs
+| Documentation | Minimal throughput acceptance test suite
 
 *** Test Cases ***
 | 1core VPP passes 64B frames through IPv4 forwarding at 3.5mpps in 3-node topology
+| | [Documentation] | 1core VPP should pass 64B frames through IPv4
+| | ...             | forwarding at 3.5mpps in 3-node topology
+| | [Tags] | 1_THREAD_NOHTT_RSS_1 | SINGLE_THREAD
 | | ${framesize}= | Set Variable | 64
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 3.5mpps
-| | Given IPv4 forwarding initialized in a 3-node circular topology
-| | Then Traffic should pass with no loss | ${duration} | ${rate} | ${framesize} | 3-node-IPv4
+| | Given Setup '1' worker threads and rss '1' without HTT on all DUTs
+| | AND   IPv4 forwarding initialized in a 3-node circular topology
+| | Then Traffic should pass with no loss | ${duration} | ${rate}
+| | ...                                   | ${framesize} | 3-node-IPv4
 
 | 1core VPP passes 1518B frames through IPv4 forwarding at 10gbps in 3-node topology
+| | [Documentation] | 1core VPP should pass 1518B frames through IPv4
+| | ...             | forwarding at 10gbps in 3-node topology
+| | [Tags] | 1_THREAD_NOHTT_RSS_1 | SINGLE_THREAD
 | | ${framesize}= | Set Variable | 1518
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 10gbps
-| | Given IPv4 forwarding initialized in a 3-node circular topology
-| | Then Traffic should pass with no loss | ${duration} | ${rate} | ${framesize} | 3-node-IPv4
+| | Given Setup '1' worker threads and rss '1' without HTT on all DUTs
+| | AND   IPv4 forwarding initialized in a 3-node circular topology
+| | Then Traffic should pass with no loss | ${duration} | ${rate}
+| | ...                                   | ${framesize} | 3-node-IPv4
 
 | 1core VPP passes 9000B frames through IPv4 forwarding at 10gbps in 3-node topology
+| | [Documentation] | 1core VPP should pass 9000B frames through IPv4
+| | ...             | forwarding at 10gbps in 3-node topology
+| | [Tags] | 1_THREAD_NOHTT_RSS_1 | SINGLE_THREAD
 | | ${framesize}= | Set Variable | 9000
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 10gbps
-| | Given IPv4 forwarding initialized in a 3-node circular topology
-| | Then Traffic should pass with no loss | ${duration} | ${rate} | ${framesize} | 3-node-IPv4
+| | Given Setup '1' worker threads and rss '1' without HTT on all DUTs
+| | AND   IPv4 forwarding initialized in a 3-node circular topology
+| | Then Traffic should pass with no loss | ${duration} | ${rate}
+| | ...                                   | ${framesize} | 3-node-IPv4
+
+| 2core VPP with rss 1 passes 64B frames through IPv4 forwarding at 8.3mpps in 3-node topology
+| | [Documentation] | 2core VPP with rss 1 should pass 64B frames through
+| | ...             | IPv4 forwarding at 8.3mpps in 3-node topology
+| | [Tags] | 2_THREAD_NOHTT_RSS_1 | MULTI_THREAD
+| | ${framesize}= | Set Variable | 64
+| | ${duration}= | Set Variable | 10
+| | ${rate}= | Set Variable | 8.3mpps
+| | Given Setup '2' worker threads and rss '1' without HTT on all DUTs
+| | AND   IPv4 forwarding initialized in a 3-node circular topology
+| | Then Traffic should pass with no loss | ${duration} | ${rate}
+| | ...                                   | ${framesize} | 3-node-IPv4
+
+| 4core VPP with rss 2 passes 64B frames through IPv4 forwarding at 9.2mpps in 3-node topology
+| | [Documentation] | 4core VPP with rss 2 should pass 64B frames through
+| | ...             | IPv4 forwarding at 9.0mpps in 3-node topology
+| | [Tags] | 4_THREAD_NOHTT_RSS_2 | MULTI_THREAD
+| | ${framesize}= | Set Variable | 64
+| | ${duration}= | Set Variable | 10
+| | ${rate}= | Set Variable | 9.0mpps
+| | Given Setup '2' worker threads and rss '1' without HTT on all DUTs
+| | AND   IPv4 forwarding initialized in a 3-node circular topology
+| | Then Traffic should pass with no loss | ${duration} | ${rate}
+| | ...                                   | ${framesize} | 3-node-IPv4

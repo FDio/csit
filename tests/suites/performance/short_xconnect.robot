@@ -18,26 +18,52 @@
 | Suite Setup | 3-node Performance Suite Setup | L2
 | Suite Teardown | 3-node Performance Suite Teardown
 | Test Setup | Setup all DUTs before test
-| Test Teardown  | Run Keyword If Test Failed | Show statistics on all DUTs
+| Test Teardown | Run Keywords | Show statistics on all DUTs
+| ...           | AND          | Reset startup configuration of VPP on all DUTs
+| Documentation | Minimal throughput acceptance test suite.
 
 *** Test Cases ***
 | 1core VPP passes 64B frames through L2 cross connect at 3.5mpps in 3-node topology
 | | ${framesize}= | Set Variable | 64
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 3.5mpps
-| | Given L2 xconnect initialized in a 3-node circular topology
-| | Then Traffic should pass with no loss | ${duration} | ${rate} | ${framesize} | 3-node-xconnect
+| | Given Setup '1' worker threads and rss '1' without HTT on all DUTs
+| | AND   L2 xconnect initialized in a 3-node circular topology
+| | Then Traffic should pass with no loss | ${duration} | ${rate}
+| | ...                                   | ${framesize} | 3-node-xconnect
 
 | 1core VPP passes 1518B frames through L2 cross connect at 10gbps in 3-node topology
 | | ${framesize}= | Set Variable | 1518
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 10gbps
-| | Given L2 xconnect initialized in a 3-node circular topology
-| | Then Traffic should pass with no loss | ${duration} | ${rate} | ${framesize} | 3-node-xconnect
+| | Given Setup '1' worker threads and rss '1' without HTT on all DUTs
+| | AND   L2 xconnect initialized in a 3-node circular topology
+| | Then Traffic should pass with no loss | ${duration} | ${rate}
+| | ...                                   | ${framesize} | 3-node-xconnect
 
 | 1core VPP passes 9000B frames through L2 cross connect at 10gbps in 3-node topology
 | | ${framesize}= | Set Variable | 9000
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 10gbps
-| | Given L2 xconnect initialized in a 3-node circular topology
-| | Then Traffic should pass with no loss | ${duration} | ${rate} | ${framesize} | 3-node-xconnect
+| | Given Setup '1' worker threads and rss '1' without HTT on all DUTs
+| | AND   L2 xconnect initialized in a 3-node circular topology
+| | Then Traffic should pass with no loss | ${duration} | ${rate}
+| | ...                                   | ${framesize} | 3-node-xconnect
+
+| 2core VPP with rss 1 passes 64B frames through L2 cross connect at 10.0mpps in 3-node topology
+| | ${framesize}= | Set Variable | 64
+| | ${duration}= | Set Variable | 10
+| | ${rate}= | Set Variable | 10.0mpps
+| | Given Setup '2' worker threads and rss '1' without HTT on all DUTs
+| | AND   L2 xconnect initialized in a 3-node circular topology
+| | Then Traffic should pass with no loss | ${duration} | ${rate}
+| | ...                                   | ${framesize} | 3-node-xconnect
+
+| 4core VPP with rss 2 passes 64B frames through L2 cross connect at 10.0mpps in 3-node topology
+| | ${framesize}= | Set Variable | 64
+| | ${duration}= | Set Variable | 10
+| | ${rate}= | Set Variable | 10.0mpps
+| | Given Setup '4' worker threads and rss '2' without HTT on all DUTs
+| | AND   L2 xconnect initialized in a 3-node circular topology
+| | Then Traffic should pass with no loss | ${duration} | ${rate}
+| | ...                                   | ${framesize} | 3-node-xconnect
