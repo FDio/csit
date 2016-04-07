@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a045101_998fec23",
+        "filename": "docs/qemu_vpp_vm",
+        "patchSetId": 5
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-04-07T15:49:42Z",
+      "side": 1,
+      "message": "Please, add licence at the beggining of the file.",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 1
+      },
+      "revId": "e8e415423ed20ab169dcba963d069ffd693fe594",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_b972a847",
+        "filename": "resources/libraries/bash/qemu_build.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-04-07T15:49:42Z",
+      "side": 1,
+      "message": "Please, use variable also here.",
+      "range": {
+        "startLine": 36,
+        "startChar": 11,
+        "endLine": 36,
+        "endChar": 20
+      },
+      "revId": "e8e415423ed20ab169dcba963d069ffd693fe594",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
