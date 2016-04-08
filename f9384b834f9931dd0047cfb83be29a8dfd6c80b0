@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a045101_797e60e6",
+        "filename": "resources/libraries/python/HoneycombSetup.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-08T07:45:19Z",
+      "side": 1,
+      "message": "HC must be installed in /opt otherwise start fail",
+      "range": {
+        "startLine": 73,
+        "startChar": 8,
+        "endLine": 73,
+        "endChar": 67
+      },
+      "revId": "f9384b834f9931dd0047cfb83be29a8dfd6c80b0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
