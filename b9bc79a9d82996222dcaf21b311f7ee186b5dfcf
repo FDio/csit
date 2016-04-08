@@ -1,0 +1,176 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a045101_395fb874",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-04-08T08:26:46Z",
+      "side": 1,
+      "message": "None will be better. local0 is interface with index 0 in debug cli show interfaces.",
+      "range": {
+        "startLine": 165,
+        "startChar": 47,
+        "endLine": 165,
+        "endChar": 48
+      },
+      "revId": "b9bc79a9d82996222dcaf21b311f7ee186b5dfcf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_b94aa8aa",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-04-08T08:26:46Z",
+      "side": 1,
+      "message": "sw interface index",
+      "range": {
+        "startLine": 166,
+        "startChar": 67,
+        "endLine": 167,
+        "endChar": 13
+      },
+      "revId": "b9bc79a9d82996222dcaf21b311f7ee186b5dfcf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_f9503060",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-04-08T08:26:46Z",
+      "side": 1,
+      "message": "remove empty line?",
+      "revId": "b9bc79a9d82996222dcaf21b311f7ee186b5dfcf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_1954fc52",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-04-08T08:26:46Z",
+      "side": 1,
+      "message": "if interface is not None:",
+      "range": {
+        "startLine": 181,
+        "startChar": 8,
+        "endLine": 181,
+        "endChar": 20
+      },
+      "revId": "b9bc79a9d82996222dcaf21b311f7ee186b5dfcf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_79654044",
+        "filename": "resources/libraries/python/L2Util.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-04-08T08:26:46Z",
+      "side": 1,
+      "message": "None as in InterfaceUtil.py ?",
+      "range": {
+        "startLine": 224,
+        "startChar": 47,
+        "endLine": 224,
+        "endChar": 48
+      },
+      "revId": "b9bc79a9d82996222dcaf21b311f7ee186b5dfcf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_99c7ec12",
+        "filename": "resources/libraries/python/L2Util.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-04-08T08:26:46Z",
+      "side": 1,
+      "message": "remove empty line",
+      "revId": "b9bc79a9d82996222dcaf21b311f7ee186b5dfcf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_595a8484",
+        "filename": "resources/libraries/python/L2Util.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-04-08T08:26:46Z",
+      "side": 1,
+      "message": "why not data \u003d vat.vat_terminal_exec_cmd(\u0027bridge_domain_dump\u0027)",
+      "range": {
+        "startLine": 238,
+        "startChar": 12,
+        "endLine": 238,
+        "endChar": 63
+      },
+      "revId": "b9bc79a9d82996222dcaf21b311f7ee186b5dfcf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_99600c37",
+        "filename": "resources/libraries/python/L2Util.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-04-08T08:26:46Z",
+      "side": 1,
+      "message": "data \u003d response[0]",
+      "range": {
+        "startLine": 242,
+        "startChar": 8,
+        "endLine": 242,
+        "endChar": 27
+      },
+      "revId": "b9bc79a9d82996222dcaf21b311f7ee186b5dfcf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
