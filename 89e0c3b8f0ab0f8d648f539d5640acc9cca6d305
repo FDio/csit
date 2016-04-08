@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a045101_7930a056",
+        "filename": "resources/libraries/python/L2Util.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-08T05:30:26Z",
+      "side": 1,
+      "message": "whitespace in the end of line",
+      "range": {
+        "startLine": 240,
+        "startChar": 58,
+        "endLine": 240,
+        "endChar": 59
+      },
+      "revId": "89e0c3b8f0ab0f8d648f539d5640acc9cca6d305",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
