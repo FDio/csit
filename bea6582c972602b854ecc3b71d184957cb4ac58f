@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a045101_3c5c4625",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-04-08T15:02:55Z",
+      "side": 1,
+      "message": "Parentheses are not necessary there.",
+      "range": {
+        "startLine": 186,
+        "startChar": 34,
+        "endLine": 186,
+        "endChar": 36
+      },
+      "revId": "bea6582c972602b854ecc3b71d184957cb4ac58f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_5c571203",
+        "filename": "resources/libraries/python/L2Util.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-04-08T15:02:55Z",
+      "side": 1,
+      "message": "Parentheses are not necessary there.",
+      "range": {
+        "startLine": 233,
+        "startChar": 34,
+        "endLine": 233,
+        "endChar": 36
+      },
+      "revId": "bea6582c972602b854ecc3b71d184957cb4ac58f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_7c52ce14",
+        "filename": "resources/libraries/robot/tagging.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-04-08T15:02:55Z",
+      "side": 1,
+      "message": "Please, add also input parameters descritpion (what it is and what type) to documentation (valid for all KWs).",
+      "range": {
+        "startLine": 24,
+        "startChar": 4,
+        "endLine": 24,
+        "endChar": 68
+      },
+      "revId": "bea6582c972602b854ecc3b71d184957cb4ac58f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
