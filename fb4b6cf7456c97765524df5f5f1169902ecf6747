@@ -22,6 +22,30 @@
       "revId": "fb4b6cf7456c97765524df5f5f1169902ecf6747",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_19b07c8a",
+        "filename": "resources/libraries/python/DropRateSearch.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 517,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-04-08T11:06:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a045101_b91ce8c2",
+      "range": {
+        "startLine": 517,
+        "startChar": 22,
+        "endLine": 517,
+        "endChar": 45
+      },
+      "revId": "fb4b6cf7456c97765524df5f5f1169902ecf6747",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
