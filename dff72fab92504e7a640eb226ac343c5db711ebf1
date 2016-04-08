@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a045101_59128463",
+        "filename": "resources/libraries/python/VatJsonUtil.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-08T12:48:10Z",
+      "side": 1,
+      "message": "MAC address.",
+      "range": {
+        "startLine": 30,
+        "startChar": 28,
+        "endLine": 30,
+        "endChar": 39
+      },
+      "revId": "dff72fab92504e7a640eb226ac343c5db711ebf1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_3917b853",
+        "filename": "resources/libraries/python/VatJsonUtil.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-08T12:48:10Z",
+      "side": 1,
+      "message": "List representation of MAC address.",
+      "range": {
+        "startLine": 32,
+        "startChar": 17,
+        "endLine": 32,
+        "endChar": 51
+      },
+      "revId": "dff72fab92504e7a640eb226ac343c5db711ebf1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_190cfc41",
+        "filename": "resources/libraries/python/VatJsonUtil.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-08T12:48:10Z",
+      "side": 1,
+      "message": "delete if not used",
+      "range": {
+        "startLine": 77,
+        "startChar": 0,
+        "endLine": 100,
+        "endChar": 31
+      },
+      "revId": "dff72fab92504e7a640eb226ac343c5db711ebf1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_f908302f",
+        "filename": "resources/libraries/python/VatJsonUtil.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-08T12:48:10Z",
+      "side": 1,
+      "message": "missing type, use same format as in methods above",
+      "range": {
+        "startLine": 108,
+        "startChar": 9,
+        "endLine": 110,
+        "endChar": 15
+      },
+      "revId": "dff72fab92504e7a640eb226ac343c5db711ebf1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
