@@ -16,6 +16,24 @@
       "revId": "46d551e7e8c31e84f7237c98d3c43d28eca0f4b3",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_79f30074",
+        "filename": "tests/suites/performance/long_bridge_domain.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-04-08T09:14:26Z",
+      "side": 1,
+      "message": "Sure. Done",
+      "parentUuid": "3a045101_59d164cc",
+      "revId": "46d551e7e8c31e84f7237c98d3c43d28eca0f4b3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
