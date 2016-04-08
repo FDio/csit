@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a045101_b91ce8c2",
+        "filename": "resources/libraries/python/DropRateSearch.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 517,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-04-08T07:44:54Z",
+      "side": 1,
+      "message": "Agreed form is: First number to compare.\n- capital first letter\n- dot at the end\n\nPlease, align it in all docstrings in this file.",
+      "range": {
+        "startLine": 517,
+        "startChar": 22,
+        "endLine": 517,
+        "endChar": 45
+      },
+      "revId": "fb4b6cf7456c97765524df5f5f1169902ecf6747",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
