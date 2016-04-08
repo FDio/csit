@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a045101_f92150b5",
+        "filename": "resources/libraries/robot/vxlan.robot",
+        "patchSetId": 32
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-04-08T13:42:21Z",
+      "side": 1,
+      "message": "Please, add also input parameters descritpion (what it is and what type) to documentation (valid for all KWs).",
+      "range": {
+        "startLine": 40,
+        "startChar": 4,
+        "endLine": 40,
+        "endChar": 7
+      },
+      "revId": "250d4eaff330625ad6e9032b80d78038b692669c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_b92bc893",
+        "filename": "resources/libraries/robot/vxlan.robot",
+        "patchSetId": 32
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-04-08T13:42:21Z",
+      "side": 1,
+      "message": "If there are not input parameters requiered but some test case variables are expected it should be mentioned in the documentation + write information which KW should be run before usage of this KW to have these test variables available.",
+      "range": {
+        "startLine": 62,
+        "startChar": 4,
+        "endLine": 62,
+        "endChar": 7
+      },
+      "revId": "250d4eaff330625ad6e9032b80d78038b692669c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
