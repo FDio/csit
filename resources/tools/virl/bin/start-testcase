@@ -261,8 +261,9 @@ def main():
         for key2 in data[session_id][key]:
             topology[key]["nic-"+key2] = data[session_id][key][key2]
             if 'ip-address' in topology[key]["nic-"+key2]:
-                topology[key]["nic-"+key2]['ip-addr'] = re.split('\\/', \
-                    topology[key]["nic-"+key2]['ip-address'])[0]
+                if topology[key]["nic-"+key2]['ip-address'] is not None:
+                    topology[key]["nic-"+key2]['ip-addr'] = re.split('\\/', \
+                        topology[key]["nic-"+key2]['ip-address'])[0]
 
     # Write ansible file
     ansiblehosts = open(os.path.join(scratch_directory, 'ansible-hosts'), 'w')
