@@ -67,9 +67,6 @@ write_files:&#xD;
   permissions: '0755'&#xD;
   content: |-&#xD;
     #!/bin/sh&#xD;
-    ifconfig eth1 up 10.0.0.6 netmask 255.255.255.252&#xD;
-    ifconfig eth2 up 10.0.0.14 netmask 255.255.255.252&#xD;
-
     grep -q nfs_server_scratch /var/lib/cloud/instance/user-data.txt || exit 1
     grep -q nfs_server_common /var/lib/cloud/instance/user-data.txt || exit 1
     nfs_server_scratch=$(grep -E '^nfs_server_scratch:' /var/lib/cloud/instance/user-data.txt | awk '{ print $2 }')
@@ -99,10 +96,10 @@ write_files:&#xD;
 </entry>
             <entry key="Auto-generate config" type="Boolean">false</entry>
         </extensions>
-        <interface id="0" name="eth1" ipv4="10.0.0.6" netPrefixLenV4="30"/>
-        <interface id="1" name="eth2" ipv4="10.0.0.14" netPrefixLenV4="30"/>
+        <interface id="0" name="eth1"/>
+        <interface id="1" name="eth2"/>
     </node>
-    <node name="sut1" type="SIMPLE" subtype="vPP" location="425,26"  vmImage="server-java-nested">
+    <node name="sut1" type="SIMPLE" subtype="vPP" location="425,26" vmImage="server-java-nested">
         <extensions>
             <entry key="config" type="string">#cloud-config
 bootcmd:
@@ -195,8 +192,8 @@ write_files:
     exit 0&#xD;
 </entry>
         </extensions>
-        <interface id="0" name="GigabitEthernet0/4/0" ipv4="10.0.0.9" netPrefixLenV4="30"/>
-        <interface id="1" name="GigabitEthernet0/5/0" ipv4="10.0.0.5" netPrefixLenV4="30"/>
+        <interface id="0" name="GigabitEthernet0/4/0"/>
+        <interface id="1" name="GigabitEthernet0/5/0"/>
     </node>
     <node name="sut2" type="SIMPLE" subtype="vPP" location="748,26" vmImage="server-java-nested">
         <extensions>
@@ -291,8 +288,8 @@ write_files:
     exit 0&#xD;
 </entry>
         </extensions>
-        <interface id="0" name="GigabitEthernet0/4/0" ipv4="10.0.0.13" netPrefixLenV4="30"/>
-        <interface id="1" name="GigabitEthernet0/5/0" ipv4="10.0.0.10" netPrefixLenV4="30"/>
+        <interface id="0" name="GigabitEthernet0/4/0"/>
+        <interface id="1" name="GigabitEthernet0/5/0"/>
     </node>
     <connection dst="/virl:topology/virl:node[1]/virl:interface[2]" src="/virl:topology/virl:node[3]/virl:interface[1]"/>
     <connection dst="/virl:topology/virl:node[2]/virl:interface[2]" src="/virl:topology/virl:node[1]/virl:interface[1]"/>
