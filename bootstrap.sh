@@ -70,12 +70,12 @@ if [ "${#}" -ne "0" ]; then
     echo ${arr[0]}
 else
     rm -f *.deb
-    wget -q "https://nexus.fd.io/service/local/repositories/fd.io.dev/content/io/fd/vpp/vpp/1.0.0-229~gb1df169_amd64/vpp-1.0.0-229~gb1df169_amd64.deb" || exit
-    wget -q "https://nexus.fd.io/service/local/repositories/fd.io.dev/content/io/fd/vpp/vpp-dbg/1.0.0-229~gb1df169_amd64/vpp-dbg-1.0.0-229~gb1df169_amd64.deb" || exit
-    wget -q "https://nexus.fd.io/service/local/repositories/fd.io.dev/content/io/fd/vpp/vpp-dev/1.0.0-229~gb1df169_amd64/vpp-dev-1.0.0-229~gb1df169_amd64.deb" || exit
-    wget -q "https://nexus.fd.io/service/local/repositories/fd.io.dev/content/io/fd/vpp/vpp-dpdk-dev/1.0.0-229~gb1df169_amd64/vpp-dpdk-dev-1.0.0-229~gb1df169_amd64.deb" || exit
-    wget -q "https://nexus.fd.io/service/local/repositories/fd.io.dev/content/io/fd/vpp/vpp-dpdk-dkms/1.0.0-229~gb1df169_amd64/vpp-dpdk-dkms-1.0.0-229~gb1df169_amd64.deb" || exit
-    wget -q "https://nexus.fd.io/service/local/repositories/fd.io.dev/content/io/fd/vpp/vpp-lib/1.0.0-229~gb1df169_amd64/vpp-lib-1.0.0-229~gb1df169_amd64.deb" || exit
+    wget -q "https://nexus.fd.io/service/local/repositories/fd.io.dev/content/io/fd/vpp/vpp/1.0.0-304~gd530445_amd64/vpp-1.0.0-304~gd530445_amd64.deb" || exit
+    wget -q "https://nexus.fd.io/service/local/repositories/fd.io.dev/content/io/fd/vpp/vpp-dbg/1.0.0-304~gd530445_amd64/vpp-dbg-1.0.0-304~gd530445_amd64.deb" || exit
+    wget -q "https://nexus.fd.io/service/local/repositories/fd.io.dev/content/io/fd/vpp/vpp-dev/1.0.0-304~gd530445_amd64/vpp-dev-1.0.0-304~gd530445_amd64.deb" || exit
+    wget -q "https://nexus.fd.io/service/local/repositories/fd.io.dev/content/io/fd/vpp/vpp-dpdk-dev/1.0.0-304~gd530445_amd64/vpp-dpdk-dev-1.0.0-304~gd530445_amd64.deb" || exit
+    wget -q "https://nexus.fd.io/service/local/repositories/fd.io.dev/content/io/fd/vpp/vpp-dpdk-dkms/1.0.0-304~gd530445_amd64/vpp-dpdk-dkms-1.0.0-304~gd530445_amd64.deb" || exit
+    wget -q "https://nexus.fd.io/service/local/repositories/fd.io.dev/content/io/fd/vpp/vpp-lib/1.0.0-304~gd530445_amd64/vpp-lib-1.0.0-304~gd530445_amd64.deb" || exit
 fi
 
 VPP_DEBS=(*.deb)
@@ -112,7 +112,7 @@ function stop_virl_simulation {
 
 VIRL_SID=$(ssh -i priv_key -o StrictHostKeyChecking=no \
     ${VIRL_USERNAME}@${VIRL_SERVER} \
-    "/home/jenkins-in/testcase-infra/bin/start-testcase -c simple-ring ${VPP_DEBS_FULL[@]}")
+    "/home/jenkins-in/testcase-infra/bin/start-testcase -c double-ring-nested ${VPP_DEBS_FULL[@]}")
 retval=$?
 if [ "$?" -ne "0" ]; then
     echo "VIRL simulation start failed"
@@ -150,7 +150,6 @@ pip install -r requirements.txt
 
 PYTHONPATH=`pwd` pybot -L TRACE \
     -v TOPOLOGY_PATH:topologies/enabled/topology.yaml \
-    --exclude 3_node_double_link_topoNOT3_node_single_link_topo \
     --include VM_ENV \
     --exclude PERFTEST \
     --noncritical EXPECTED_FAILING \
