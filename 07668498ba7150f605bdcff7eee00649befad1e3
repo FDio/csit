@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a045101_575feb72",
+        "filename": "resources/libraries/python/VatJsonUtil.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-04-11T14:19:34Z",
+      "side": 1,
+      "message": "Please add more text to this, so that person reading the logs has more clue on what this actually is.",
+      "range": {
+        "startLine": 56,
+        "startChar": 14,
+        "endLine": 56,
+        "endChar": 15
+      },
+      "revId": "07668498ba7150f605bdcff7eee00649befad1e3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
