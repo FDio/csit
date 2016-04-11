@@ -1,0 +1,354 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a045101_b774ef9c",
+        "filename": "docs/qemu_vpp_vm",
+        "patchSetId": 6
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-04-11T11:21:02Z",
+      "side": 1,
+      "message": "have",
+      "revId": "90b171f60943d43bb8bd09123c92374779cf9e18",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_776e67cb",
+        "filename": "docs/qemu_vpp_vm",
+        "patchSetId": 6
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-04-11T11:21:02Z",
+      "side": 1,
+      "message": "Do I have to run it for local testing, out of LF\u0027s VM setup, or is this something general, required for every test suite execution?",
+      "range": {
+        "startLine": 17,
+        "startChar": 39,
+        "endLine": 18,
+        "endChar": 59
+      },
+      "revId": "90b171f60943d43bb8bd09123c92374779cf9e18",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_57736bb1",
+        "filename": "docs/qemu_vpp_vm",
+        "patchSetId": 6
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-04-11T11:21:02Z",
+      "side": 1,
+      "message": "do we verify these requirements somewhere in the code/scripts? Documentation tends to divert from reality rather quickly.",
+      "range": {
+        "startLine": 18,
+        "startChar": 60,
+        "endLine": 19,
+        "endChar": 75
+      },
+      "revId": "90b171f60943d43bb8bd09123c92374779cf9e18",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_3768dfb9",
+        "filename": "docs/qemu_vpp_vm",
+        "patchSetId": 6
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-04-11T11:21:02Z",
+      "side": 1,
+      "message": "qemu",
+      "revId": "90b171f60943d43bb8bd09123c92374779cf9e18",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_1765e3e0",
+        "filename": "docs/qemu_vpp_vm",
+        "patchSetId": 6
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-04-11T11:21:02Z",
+      "side": 1,
+      "message": "change to csit/csit please. We are in the open here :)",
+      "range": {
+        "startLine": 22,
+        "startChar": 19,
+        "endLine": 22,
+        "endChar": 30
+      },
+      "revId": "90b171f60943d43bb8bd09123c92374779cf9e18",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_f76157d4",
+        "filename": "docs/qemu_vpp_vm",
+        "patchSetId": 6
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-04-11T11:21:02Z",
+      "side": 1,
+      "message": "\"management interface type is Intel E1000\".",
+      "range": {
+        "startLine": 23,
+        "startChar": 17,
+        "endLine": 23,
+        "endChar": 54
+      },
+      "revId": "90b171f60943d43bb8bd09123c92374779cf9e18",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_d75e5b12",
+        "filename": "docs/qemu_vpp_vm",
+        "patchSetId": 6
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-04-11T11:21:02Z",
+      "side": 1,
+      "message": "What drives number/type of interfaces in these VMs? Is it qemu command line? If so, please mention link to the script/code that defines the details of the actual VM (pointer to the qemu command line/generator, or the generated qemu command line itself).",
+      "range": {
+        "startLine": 23,
+        "startChar": 57,
+        "endLine": 23,
+        "endChar": 58
+      },
+      "revId": "90b171f60943d43bb8bd09123c92374779cf9e18",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_97a0d3f5",
+        "filename": "docs/qemu_vpp_vm",
+        "patchSetId": 6
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-04-11T11:21:02Z",
+      "side": 1,
+      "message": "Did you make a script to make such naming, or is this standard?",
+      "range": {
+        "startLine": 24,
+        "startChar": 14,
+        "endLine": 24,
+        "endChar": 21
+      },
+      "revId": "90b171f60943d43bb8bd09123c92374779cf9e18",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_77a54703",
+        "filename": "docs/qemu_vpp_vm",
+        "patchSetId": 6
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-04-11T11:21:02Z",
+      "side": 1,
+      "message": "where is this file located, in which host? Is this part of the qemu VM?",
+      "range": {
+        "startLine": 25,
+        "startChar": 2,
+        "endLine": 25,
+        "endChar": 33
+      },
+      "revId": "90b171f60943d43bb8bd09123c92374779cf9e18",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_57aa4bd5",
+        "filename": "docs/qemu_vpp_vm",
+        "patchSetId": 6
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-04-11T11:21:02Z",
+      "side": 1,
+      "message": "why?",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 34
+      },
+      "revId": "90b171f60943d43bb8bd09123c92374779cf9e18",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_9787b361",
+        "filename": "docs/qemu_vpp_vm",
+        "patchSetId": 6
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-04-11T11:21:02Z",
+      "side": 1,
+      "message": "We could add this lib into resource file, and then skip importing the Library again here.",
+      "range": {
+        "startLine": 34,
+        "startChar": 12,
+        "endLine": 34,
+        "endChar": 48
+      },
+      "revId": "90b171f60943d43bb8bd09123c92374779cf9e18",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_777c2773",
+        "filename": "resources/libraries/bash/qemu_build.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-04-11T11:21:02Z",
+      "side": 1,
+      "message": "In other places we use ${ notation, please stick to it :) It\u0027s a good habit to have.",
+      "range": {
+        "startLine": 21,
+        "startChar": 13,
+        "endLine": 21,
+        "endChar": 27
+      },
+      "revId": "90b171f60943d43bb8bd09123c92374779cf9e18",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_57812b49",
+        "filename": "resources/libraries/bash/qemu_build.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-04-11T11:21:02Z",
+      "side": 1,
+      "message": "we miss here -C ${QEMU_BUILD_DIR}",
+      "revId": "90b171f60943d43bb8bd09123c92374779cf9e18",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_37969f95",
+        "filename": "resources/libraries/bash/qemu_build.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-04-11T11:21:02Z",
+      "side": 1,
+      "message": "${QEMU_BUILD_DIR}",
+      "range": {
+        "startLine": 35,
+        "startChar": 3,
+        "endLine": 35,
+        "endChar": 13
+      },
+      "revId": "90b171f60943d43bb8bd09123c92374779cf9e18",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_1793a3a4",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-04-11T11:21:02Z",
+      "side": 1,
+      "message": "I think this should be possible to execute even out of VIRL setup, right? At least it should be.\nWhat does this image contain anyway? Isn\u0027t it the nested vm image? I think description as such should be sufficient.",
+      "range": {
+        "startLine": 48,
+        "startChar": 33,
+        "endLine": 48,
+        "endChar": 37
+      },
+      "revId": "90b171f60943d43bb8bd09123c92374779cf9e18",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_d78c1b82",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-04-11T11:21:02Z",
+      "side": 1,
+      "message": "if you have multiple VMs spun up on the same host, wouldn\u0027t this conflict?",
+      "range": {
+        "startLine": 312,
+        "startChar": 54,
+        "endLine": 312,
+        "endChar": 58
+      },
+      "revId": "90b171f60943d43bb8bd09123c92374779cf9e18",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
