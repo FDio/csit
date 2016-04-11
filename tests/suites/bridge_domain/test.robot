@@ -23,6 +23,7 @@
 
 *** Test Cases ***
 | VPP reports interfaces
+| | [Tags] | 3_NODE_DOUBLE_LINK_TOPO | 3_NODE_SINGLE_LINK_TOPO
 | | VPP reports interfaces on | ${nodes['DUT1']}
 
 | Vpp forwards packets via L2 bridge domain 2 ports
