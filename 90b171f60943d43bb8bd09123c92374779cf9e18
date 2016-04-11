@@ -391,6 +391,30 @@
       "revId": "90b171f60943d43bb8bd09123c92374779cf9e18",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_17d843ee",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-11T14:23:03Z",
+      "side": 1,
+      "message": "yes, but current code is only for one VM per host (there is more stuff as this port number), see warning in docstring",
+      "parentUuid": "3a045101_d78c1b82",
+      "range": {
+        "startLine": 312,
+        "startChar": 54,
+        "endLine": 312,
+        "endChar": 58
+      },
+      "revId": "90b171f60943d43bb8bd09123c92374779cf9e18",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
