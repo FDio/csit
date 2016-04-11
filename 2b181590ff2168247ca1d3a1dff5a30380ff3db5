@@ -1,0 +1,95 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a045101_77e787e5",
+        "filename": "resources/libraries/robot/tagging.robot",
+        "patchSetId": 8
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-04-11T13:34:16Z",
+      "side": 1,
+      "message": "Please add documentation about what this file is about.",
+      "revId": "2b181590ff2168247ca1d3a1dff5a30380ff3db5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_17ce035b",
+        "filename": "resources/libraries/robot/tagging.robot",
+        "patchSetId": 8
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-04-11T13:34:16Z",
+      "side": 1,
+      "message": "these aren\u0027t really arguments, are thy? ${nodes} is a global object, so it does not need to get passed. If you want to pass the variable of a Node to this KW, represent the variables here with simple names, or even better, take the path creation to some separate KW/module; i.e. create simple 3 node circular path, and return the Compute Path product.",
+      "range": {
+        "startLine": 24,
+        "startChar": 18,
+        "endLine": 24,
+        "endChar": 32
+      },
+      "revId": "2b181590ff2168247ca1d3a1dff5a30380ff3db5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_d7ee5bb4",
+        "filename": "resources/libraries/robot/tagging.robot",
+        "patchSetId": 8
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-04-11T13:34:16Z",
+      "side": 1,
+      "message": "This keyword is dependent on the KW above. It depends on certain variables to be present and set to specific values. If you really must use this kind of approach, at least document it thoroughly here. Also, use UPPERCASE for variables that are special. And global variables, that are suite/test specific, and could be problematic to spot in the code indeed are special.",
+      "revId": "2b181590ff2168247ca1d3a1dff5a30380ff3db5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_173cc32e",
+        "filename": "resources/templates/vat/l2_tag_rewrite_pop2.vat",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-04-11T13:34:16Z",
+      "side": 1,
+      "message": "remove pop-2 as name of the file, make the pop-2 as parameter to this VAT command.",
+      "revId": "2b181590ff2168247ca1d3a1dff5a30380ff3db5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_37269f17",
+        "filename": "tests/suites/tagging/qinq_l2_xconnect.robot",
+        "patchSetId": 8
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-04-11T13:34:16Z",
+      "side": 1,
+      "message": "Since you\u0027ve added the documentation, add some more of it. Explain where the VLAN tags are added, and where they are being popped. What is expected to happen to traffic?",
+      "revId": "2b181590ff2168247ca1d3a1dff5a30380ff3db5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
