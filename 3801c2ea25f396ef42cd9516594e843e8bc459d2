@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a045101_17cba373",
+        "filename": "resources/tools/virl/topologies/simple-ring-nested.virl",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-04-11T12:10:42Z",
+      "side": 1,
+      "message": "I\u0027m thinking about if we could have a docs/ entry with this described, or have this no wiki. So that after some time we all know what these files represent and what are the differences.",
+      "revId": "3801c2ea25f396ef42cd9516594e843e8bc459d2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
