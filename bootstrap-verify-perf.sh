@@ -61,7 +61,7 @@ while :; do
 done
 
 function cancel_all {
-    python ${CUR_DIR}/resources/tools/topo_installation.py -c -t $1
+    python ${CUR_DIR}/resources/tools/topo_installation.py -c -d ${INSTALLATION_DIR} -t $1
     python ${CUR_DIR}/resources/tools/topo_reservation.py -c -t $1
 }
 
