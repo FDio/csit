@@ -81,7 +81,7 @@ if [ ! -z "$TEST_TAG" ]; then
 # run specific performance tests by tag if variable is set
     pybot -L TRACE \
         -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-        -i $TEST_TAG tests/
+        -i "${TEST_TAG,,}" tests/
 else
 # run full performance test suite
     pybot -L TRACE \
