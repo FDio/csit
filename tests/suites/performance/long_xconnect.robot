@@ -19,10 +19,19 @@
 | Suite Teardown | 3-node Performance Suite Teardown
 | Test Setup | Setup all DUTs before test
 | Test Teardown  | Run Keyword If Test Failed | Show statistics on all DUTs
-| Documentation | Throughput search suite (long running test suite based on RFC2544).
+| Documentation | *Throughput search suite (based on RFC2544).*
+| ...
+| ... | Test suite uses 3-node topology TG - DUT1 - DUT2 - TG, with one link
+| ... | between nodes. Traffic profile contain 2 L2 streams (1 stream per
+| ... | direction). Packets contain Ethernet header, IPv4 header,
+| ... | IP protocol=61 and random payload. Ethernet header MAC addresses are
+| ... | matching MAC addresses of the TG node.
 
 *** Test Cases ***
 | Find NDR by using linear search and 64B frames through L2 cross connect in 3-node topology
+| | [Documentation]
+| | ... | Find throughput with non drop rate for 64B frames by using
+| | ... | linear search starting at 5Mpps, stepping down with step of 0.1Mpps
 | | ${framesize}= | Set Variable | 64
 | | ${start_rate}= | Set Variable | 5000000
 | | ${step_rate}= | Set Variable | 100000
@@ -33,6 +42,9 @@
 | | ...                                       | 3-node-xconnect | ${min_rate} | ${max_rate}
 
 | Find NDR by using linear search and 1518B frames through L2 cross connect in 3-node topology
+| | [Documentation]
+| | ... | Find throughput with non drop rate for 1518B frames by using
+| | ... | linear search starting at 812,743pps, stepping down with step of 10,000pps
 | | ${framesize}= | Set Variable | 1518
 | | ${start_rate}= | Set Variable | 812743
 | | ${step_rate}= | Set Variable | 10000
@@ -43,6 +55,9 @@
 | | ...                                       | 3-node-xconnect | ${min_rate} | ${max_rate}
 
 | Find NDR by using linear search and 9000B frames through L2 cross connect in 3-node topology
+| | [Documentation]
+| | ... | Find throughput with non drop rate for 9000B frames by using
+| | ... | linear search starting at 138,580pps, stepping down with step 5,000pps
 | | ${framesize}= | Set Variable | 9000
 | | ${start_rate}= | Set Variable | 138580
 | | ${step_rate}= | Set Variable | 5000
