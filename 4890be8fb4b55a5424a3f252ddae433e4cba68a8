@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a045101_f2e60544",
+        "filename": "resources/libraries/robot/default.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-12T05:29:32Z",
+      "side": 1,
+      "message": "replace tab with space",
+      "range": {
+        "startLine": 45,
+        "startChar": 35,
+        "endLine": 45,
+        "endChar": 36
+      },
+      "revId": "4890be8fb4b55a5424a3f252ddae433e4cba68a8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_d2e30932",
+        "filename": "resources/libraries/robot/default.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-12T05:29:32Z",
+      "side": 1,
+      "message": "replace tab with space",
+      "range": {
+        "startLine": 57,
+        "startChar": 35,
+        "endLine": 57,
+        "endChar": 36
+      },
+      "revId": "4890be8fb4b55a5424a3f252ddae433e4cba68a8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
