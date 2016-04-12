@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "3a045101_d21669f1",
+        "filename": "docs/qemu_vpp_vm",
+        "patchSetId": 6
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-12T07:44:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a045101_b774ef9c",
+      "revId": "90b171f60943d43bb8bd09123c92374779cf9e18",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a045101_776e67cb",
         "filename": "docs/qemu_vpp_vm",
         "patchSetId": 6
@@ -30,6 +48,30 @@
       "writtenOn": "2016-04-11T11:21:02Z",
       "side": 1,
       "message": "Do I have to run it for local testing, out of LF\u0027s VM setup, or is this something general, required for every test suite execution?",
+      "range": {
+        "startLine": 17,
+        "startChar": 39,
+        "endLine": 18,
+        "endChar": 59
+      },
+      "revId": "90b171f60943d43bb8bd09123c92374779cf9e18",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_b2d3dd37",
+        "filename": "docs/qemu_vpp_vm",
+        "patchSetId": 6
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-12T07:44:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a045101_776e67cb",
       "range": {
         "startLine": 17,
         "startChar": 39,
@@ -100,6 +142,24 @@
       "writtenOn": "2016-04-11T11:21:02Z",
       "side": 1,
       "message": "qemu",
+      "revId": "90b171f60943d43bb8bd09123c92374779cf9e18",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_92d8e154",
+        "filename": "docs/qemu_vpp_vm",
+        "patchSetId": 6
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-12T07:44:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a045101_3768dfb9",
       "revId": "90b171f60943d43bb8bd09123c92374779cf9e18",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
@@ -187,6 +247,54 @@
       "writtenOn": "2016-04-11T11:21:02Z",
       "side": 1,
       "message": "What drives number/type of interfaces in these VMs? Is it qemu command line? If so, please mention link to the script/code that defines the details of the actual VM (pointer to the qemu command line/generator, or the generated qemu command line itself).",
+      "range": {
+        "startLine": 23,
+        "startChar": 57,
+        "endLine": 23,
+        "endChar": 58
+      },
+      "revId": "90b171f60943d43bb8bd09123c92374779cf9e18",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_52e25904",
+        "filename": "docs/qemu_vpp_vm",
+        "patchSetId": 6
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-12T07:44:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a045101_f76157d4",
+      "range": {
+        "startLine": 23,
+        "startChar": 17,
+        "endLine": 23,
+        "endChar": 54
+      },
+      "revId": "90b171f60943d43bb8bd09123c92374779cf9e18",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_72dd5542",
+        "filename": "docs/qemu_vpp_vm",
+        "patchSetId": 6
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-12T07:44:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a045101_d75e5b12",
       "range": {
         "startLine": 23,
         "startChar": 57,
@@ -293,6 +401,30 @@
     },
     {
       "key": {
+        "uuid": "3a045101_32e7cd14",
+        "filename": "docs/qemu_vpp_vm",
+        "patchSetId": 6
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-12T07:44:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a045101_77a54703",
+      "range": {
+        "startLine": 25,
+        "startChar": 2,
+        "endLine": 25,
+        "endChar": 33
+      },
+      "revId": "90b171f60943d43bb8bd09123c92374779cf9e18",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a045101_57aa4bd5",
         "filename": "docs/qemu_vpp_vm",
         "patchSetId": 6
@@ -304,6 +436,30 @@
       "writtenOn": "2016-04-11T11:21:02Z",
       "side": 1,
       "message": "why?",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 34
+      },
+      "revId": "90b171f60943d43bb8bd09123c92374779cf9e18",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_12e4d10b",
+        "filename": "docs/qemu_vpp_vm",
+        "patchSetId": 6
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-12T07:44:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a045101_57aa4bd5",
       "range": {
         "startLine": 26,
         "startChar": 0,
@@ -386,6 +542,30 @@
     },
     {
       "key": {
+        "uuid": "3a045101_f2f045cb",
+        "filename": "resources/libraries/bash/qemu_build.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-12T07:44:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a045101_777c2773",
+      "range": {
+        "startLine": 21,
+        "startChar": 13,
+        "endLine": 21,
+        "endChar": 27
+      },
+      "revId": "90b171f60943d43bb8bd09123c92374779cf9e18",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a045101_57812b49",
         "filename": "resources/libraries/bash/qemu_build.sh",
         "patchSetId": 6
@@ -432,6 +612,30 @@
       "writtenOn": "2016-04-11T11:21:02Z",
       "side": 1,
       "message": "${QEMU_BUILD_DIR}",
+      "range": {
+        "startLine": 35,
+        "startChar": 3,
+        "endLine": 35,
+        "endChar": 13
+      },
+      "revId": "90b171f60943d43bb8bd09123c92374779cf9e18",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_d2ed49f1",
+        "filename": "resources/libraries/bash/qemu_build.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-12T07:44:43Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a045101_37969f95",
       "range": {
         "startLine": 35,
         "startChar": 3,
