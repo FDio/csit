@@ -51,7 +51,7 @@ def main():
 
             # Installation of VPP deb packages
             ret, _, err = ssh.exec_command_sudo(
-                "dpkg -i {}*.deb".format(install_dir))
+                "dpkg -i {}/*.deb".format(install_dir))
             if ret != 0:
                 print "Installation unsuccessful:\n{}".format(err)
                 return ret
