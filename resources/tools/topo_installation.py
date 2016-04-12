@@ -30,7 +30,7 @@ def main():
                         help="Topology file")
     parser.add_argument("-d", "--directory", required=True,
                         help="Installation directory")
-    parser.add_argument("-p", "--packages", required=True, nargs='*',
+    parser.add_argument("-p", "--packages", required=False, nargs='+',
                         help="Packages paths to copy")
     parser.add_argument("-c", "--cancel", help="Cancel installation",
                         action="store_true")
