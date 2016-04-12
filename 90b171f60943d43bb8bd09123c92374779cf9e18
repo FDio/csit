@@ -65,6 +65,30 @@
     },
     {
       "key": {
+        "uuid": "3a045101_525db9e8",
+        "filename": "docs/qemu_vpp_vm",
+        "patchSetId": 6
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-12T07:30:27Z",
+      "side": 1,
+      "message": "qemu-guest-agent is used during VM startup so you can\u0027t verify it before, qemu start kw end with exception when qemu-guest-agent is missing. When you don\u0027t have ssh you can\u0027t access VM for some TC setting and ssh_exec_command failed. bridge-utils is used in BD tests and if it is not installed TC failed. VittIO is required for Vhost-user interfaces but it is default installed on standard linux distributions.",
+      "parentUuid": "3a045101_57736bb1",
+      "range": {
+        "startLine": 18,
+        "startChar": 60,
+        "endLine": 19,
+        "endChar": 75
+      },
+      "revId": "90b171f60943d43bb8bd09123c92374779cf9e18",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a045101_3768dfb9",
         "filename": "docs/qemu_vpp_vm",
         "patchSetId": 6
@@ -93,6 +117,30 @@
       "writtenOn": "2016-04-11T11:21:02Z",
       "side": 1,
       "message": "change to csit/csit please. We are in the open here :)",
+      "range": {
+        "startLine": 22,
+        "startChar": 19,
+        "endLine": 22,
+        "endChar": 30
+      },
+      "revId": "90b171f60943d43bb8bd09123c92374779cf9e18",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_32722d7d",
+        "filename": "docs/qemu_vpp_vm",
+        "patchSetId": 6
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-12T07:30:27Z",
+      "side": 1,
+      "message": "This one must be done by Carsten, he created VIRL nested topology and VM image. Same is used in all nodes (DUTs and TG) in LF VIRL topology.",
+      "parentUuid": "3a045101_1765e3e0",
       "range": {
         "startLine": 22,
         "startChar": 19,
@@ -174,6 +222,30 @@
     },
     {
       "key": {
+        "uuid": "3a045101_f26ba583",
+        "filename": "docs/qemu_vpp_vm",
+        "patchSetId": 6
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-12T07:30:27Z",
+      "side": 1,
+      "message": "Definitely it is not standard but I have no idea what Carsten do in VM. In ubuntu you can do this by udev rules.",
+      "parentUuid": "3a045101_97a0d3f5",
+      "range": {
+        "startLine": 24,
+        "startChar": 14,
+        "endLine": 24,
+        "endChar": 21
+      },
+      "revId": "90b171f60943d43bb8bd09123c92374779cf9e18",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a045101_77a54703",
         "filename": "docs/qemu_vpp_vm",
         "patchSetId": 6
@@ -231,6 +303,30 @@
       "writtenOn": "2016-04-11T11:21:02Z",
       "side": 1,
       "message": "We could add this lib into resource file, and then skip importing the Library again here.",
+      "range": {
+        "startLine": 34,
+        "startChar": 12,
+        "endLine": 34,
+        "endChar": 48
+      },
+      "revId": "90b171f60943d43bb8bd09123c92374779cf9e18",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_521499f4",
+        "filename": "docs/qemu_vpp_vm",
+        "patchSetId": 6
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-12T07:30:27Z",
+      "side": 1,
+      "message": "It is there already.",
+      "parentUuid": "3a045101_9787b361",
       "range": {
         "startLine": 34,
         "startChar": 12,
