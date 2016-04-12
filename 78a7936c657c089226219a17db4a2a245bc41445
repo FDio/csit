@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3a045101_add38237",
+        "filename": "resources/libraries/python/HTTPRequest.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-04-12T15:24:35Z",
+      "side": 1,
+      "message": "Logging in exceptions was split to two parts - 1. error: Short message describing the error; 2. debug: detailed information.",
+      "parentUuid": "3a045101_f7e6f743",
+      "range": {
+        "startLine": 157,
+        "startChar": 49,
+        "endLine": 157,
+        "endChar": 62
+      },
+      "revId": "78a7936c657c089226219a17db4a2a245bc41445",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a045101_57f80be5",
         "filename": "resources/libraries/python/HTTPRequest.py",
         "patchSetId": 5
@@ -36,6 +60,30 @@
       "writtenOn": "2016-04-11T11:49:51Z",
       "side": 1,
       "message": "raise HTTPRequestError(\"Not possible to connect to {0}.\\n\".format(url) + repr(err), enable_logging\u003denable_logging)",
+      "range": {
+        "startLine": 156,
+        "startChar": 0,
+        "endLine": 161,
+        "endChar": 60
+      },
+      "revId": "78a7936c657c089226219a17db4a2a245bc41445",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_2d209248",
+        "filename": "resources/libraries/python/HTTPRequest.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-04-12T15:24:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a045101_57f80be5",
       "range": {
         "startLine": 156,
         "startChar": 0,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "3a045101_8dd8c654",
+        "filename": "resources/libraries/python/HTTPRequest.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-04-12T15:24:35Z",
+      "side": 1,
+      "message": "All errors are logged if logging is not disabled by enable_logging\u003dFalse.",
+      "parentUuid": "3a045101_37dd7f71",
+      "range": {
+        "startLine": 163,
+        "startChar": 18,
+        "endLine": 163,
+        "endChar": 34
+      },
+      "revId": "78a7936c657c089226219a17db4a2a245bc41445",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a045101_17da8378",
         "filename": "resources/libraries/python/HTTPRequest.py",
         "patchSetId": 5
@@ -82,6 +154,30 @@
       "writtenOn": "2016-04-11T11:49:51Z",
       "side": 1,
       "message": "why do we have to specify \\n here? It\u0027s recurring pattern, so either move it to the constructor handling or, preferably, remove completely.",
+      "range": {
+        "startLine": 167,
+        "startChar": 61,
+        "endLine": 167,
+        "endChar": 63
+      },
+      "revId": "78a7936c657c089226219a17db4a2a245bc41445",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_6ddd7a42",
+        "filename": "resources/libraries/python/HTTPRequest.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-04-12T15:24:35Z",
+      "side": 1,
+      "message": "Done - Logging in exceptions was changed.",
+      "parentUuid": "3a045101_17da8378",
       "range": {
         "startLine": 167,
         "startChar": 61,
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "3a045101_4de2be04",
+        "filename": "resources/libraries/python/HTTPRequest.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 210,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-04-12T15:24:35Z",
+      "side": 1,
+      "message": "XML data can be sent as payload. \nMethod \"HoneycombUtil.put_honeycomb_data\" was changed to be able to send json, xml and plain text.",
+      "parentUuid": "3a045101_d7e3fb31",
+      "range": {
+        "startLine": 210,
+        "startChar": 15,
+        "endLine": 210,
+        "endChar": 42
+      },
+      "revId": "78a7936c657c089226219a17db4a2a245bc41445",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a045101_17c16380",
         "filename": "resources/libraries/python/HoneycombSetup.py",
         "patchSetId": 5
@@ -128,6 +248,30 @@
       "writtenOn": "2016-04-11T11:49:51Z",
       "side": 1,
       "message": "please add ssh.exec_command_sudo_log(), that has the same functionality as this, but adds the logger.debug() lines that you have below on lines 89 and 90. Reason is that we duplicate this everywhere.",
+      "range": {
+        "startLine": 87,
+        "startChar": 49,
+        "endLine": 87,
+        "endChar": 66
+      },
+      "revId": "78a7936c657c089226219a17db4a2a245bc41445",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_2de77214",
+        "filename": "resources/libraries/python/HoneycombSetup.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-04-12T15:24:35Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "3a045101_17c16380",
       "range": {
         "startLine": 87,
         "startChar": 49,
@@ -163,6 +307,30 @@
     },
     {
       "key": {
+        "uuid": "3a045101_0de4b60b",
+        "filename": "resources/libraries/python/HoneycombSetup.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-04-12T15:24:35Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "3a045101_f7bdd703",
+      "range": {
+        "startLine": 110,
+        "startChar": 33,
+        "endLine": 110,
+        "endChar": 46
+      },
+      "revId": "78a7936c657c089226219a17db4a2a245bc41445",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a045101_f70277b3",
         "filename": "resources/libraries/python/HoneycombUtil.py",
         "patchSetId": 5
@@ -180,6 +348,24 @@
     },
     {
       "key": {
+        "uuid": "3a045101_edc74a63",
+        "filename": "resources/libraries/python/HoneycombUtil.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-04-12T15:24:35Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "3a045101_f70277b3",
+      "revId": "78a7936c657c089226219a17db4a2a245bc41445",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a045101_374b3f2d",
         "filename": "resources/libraries/python/HoneycombUtil.py",
         "patchSetId": 5
@@ -191,6 +377,24 @@
       "writtenOn": "2016-04-11T11:49:51Z",
       "side": 1,
       "message": "how ?",
+      "revId": "78a7936c657c089226219a17db4a2a245bc41445",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_edf06acb",
+        "filename": "resources/libraries/python/HoneycombUtil.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-04-12T15:24:35Z",
+      "side": 1,
+      "message": "All comments improved.",
+      "parentUuid": "3a045101_374b3f2d",
       "revId": "78a7936c657c089226219a17db4a2a245bc41445",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
@@ -306,6 +510,30 @@
     },
     {
       "key": {
+        "uuid": "3a045101_cdedaef1",
+        "filename": "resources/libraries/python/HoneycombUtil.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-04-12T15:24:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a045101_f76b9783",
+      "range": {
+        "startLine": 38,
+        "startChar": 54,
+        "endLine": 38,
+        "endChar": 56
+      },
+      "revId": "78a7936c657c089226219a17db4a2a245bc41445",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a045101_b7050fc4",
         "filename": "resources/libraries/python/HoneycombUtil.py",
         "patchSetId": 5
@@ -340,6 +568,30 @@
       "writtenOn": "2016-04-11T11:49:51Z",
       "side": 1,
       "message": "you are not really joining paths here, are you ?",
+      "range": {
+        "startLine": 46,
+        "startChar": 14,
+        "endLine": 46,
+        "endChar": 25
+      },
+      "revId": "78a7936c657c089226219a17db4a2a245bc41445",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_adba62df",
+        "filename": "resources/libraries/python/HoneycombUtil.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-04-12T15:24:35Z",
+      "side": 1,
+      "message": "Yes, I am. However, I re-implemented this part according to other comments.",
+      "parentUuid": "3a045101_770f87e2",
       "range": {
         "startLine": 46,
         "startChar": 14,
@@ -415,6 +667,30 @@
     },
     {
       "key": {
+        "uuid": "3a045101_4db99ee8",
+        "filename": "resources/libraries/python/HoneycombUtil.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-04-12T15:24:35Z",
+      "side": 1,
+      "message": "Logging moved to lower level.",
+      "parentUuid": "3a045101_17f603d8",
+      "range": {
+        "startLine": 113,
+        "startChar": 22,
+        "endLine": 113,
+        "endChar": 28
+      },
+      "revId": "78a7936c657c089226219a17db4a2a245bc41445",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a045101_d7ff7ba9",
         "filename": "resources/libraries/python/HoneycombUtil.py",
         "patchSetId": 5
@@ -426,6 +702,30 @@
       "writtenOn": "2016-04-11T11:49:51Z",
       "side": 1,
       "message": "I think you have to distinguish create from put, and having only \"set\" here is not enough. So I think this should be renamed to put.",
+      "range": {
+        "startLine": 118,
+        "startChar": 8,
+        "endLine": 118,
+        "endChar": 26
+      },
+      "revId": "78a7936c657c089226219a17db4a2a245bc41445",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_6db45af2",
+        "filename": "resources/libraries/python/HoneycombUtil.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-04-12T15:24:35Z",
+      "side": 1,
+      "message": "Done.",
+      "parentUuid": "3a045101_d7ff7ba9",
       "range": {
         "startLine": 118,
         "startChar": 8,
@@ -484,6 +784,30 @@
     },
     {
       "key": {
+        "uuid": "3a045101_2dce5284",
+        "filename": "resources/libraries/python/HoneycombUtil.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-04-12T15:24:35Z",
+      "side": 1,
+      "message": "Logging moved to lower level.",
+      "parentUuid": "3a045101_b72cef4b",
+      "range": {
+        "startLine": 143,
+        "startChar": 0,
+        "endLine": 143,
+        "endChar": 32
+      },
+      "revId": "78a7936c657c089226219a17db4a2a245bc41445",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a045101_7726676a",
         "filename": "resources/libraries/python/HoneycombUtil.py",
         "patchSetId": 5
@@ -495,6 +819,30 @@
       "writtenOn": "2016-04-11T11:49:51Z",
       "side": 1,
       "message": "please be consistent with logging messages.",
+      "range": {
+        "startLine": 163,
+        "startChar": 0,
+        "endLine": 163,
+        "endChar": 49
+      },
+      "revId": "78a7936c657c089226219a17db4a2a245bc41445",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_0dcb9673",
+        "filename": "resources/libraries/python/HoneycombUtil.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-04-12T15:24:35Z",
+      "side": 1,
+      "message": "Logging moved to lower level.",
+      "parentUuid": "3a045101_7726676a",
       "range": {
         "startLine": 163,
         "startChar": 0,
