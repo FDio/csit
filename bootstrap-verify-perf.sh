@@ -19,6 +19,7 @@ TOPOLOGIES="topologies/available/lf_testbed2-710-520.yaml"
 
 # Reservation dir
 RESERVATION_DIR="/tmp/reservation_dir"
+INSTALLATION_DIR="/tmp/install_dir"
 
 # Jenkins VPP deb paths (convert to full path)
 VPP_DEBS="$( readlink -f $@ | tr '\n' ' ' )"
@@ -59,23 +60,24 @@ while :; do
     sleep ${SLEEP_TIME}
 done
 
+function cancel_all {
+    python ${CUR_DIR}/resources/tools/topo_installation.py -c -t $1
+    python ${CUR_DIR}/resources/tools/topo_reservation.py -c -t $1
+}
+
+# On script exit we cancel the reservation and installation and delete all vpp
+# packages
+trap "cancel_all ${WORKING_TOPOLOGY}" EXIT
+
 python ${CUR_DIR}/resources/tools/topo_installation.py -t ${WORKING_TOPOLOGY} \
-                                                       -d ${RESERVATION_DIR} \
+                                                       -d ${INSTALLATION_DIR} \
                                                        -p ${VPP_DEBS}
 if [ $? -eq 0 ]; then
     echo "VPP Installed on hosts from: ${WORKING_TOPOLOGY}"
 else
     echo "Failed to copy vpp deb files to DUTs"
-    exit $?
+    exit 1
 fi
-
-function cancel_reservation {
-    python ${CUR_DIR}/resources/tools/topo_reservation.py -c -t $1
-}
-
-# On script exit we cancel the reservation and delete all vpp packages
-trap "cancel_reservation ${WORKING_TOPOLOGY}" EXIT
-
 
 if [ ! -z "$TEST_TAG" ]; then
 # run specific performance tests by tag if variable is set

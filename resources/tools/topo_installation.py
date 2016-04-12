@@ -30,12 +30,15 @@ def main():
                         help="Topology file")
     parser.add_argument("-d", "--directory", required=True,
                         help="Installation directory")
-    parser.add_argument("-p", "--packages", required=True, nargs='+',
+    parser.add_argument("-p", "--packages", required=False, nargs='+',
                         help="Packages paths to copy")
+    parser.add_argument("-c", "--cancel", help="Cancel installation",
+                        action="store_true")
     args = parser.parse_args()
     topology_file = args.topo
     packages = args.packages
     install_dir = args.directory
+    cancel_installation = args.cancel
 
     work_file = open(topology_file)
     topology = load(work_file.read())['nodes']
@@ -45,16 +48,27 @@ def main():
             ssh = SSH()
             ssh.connect(topology[node])
 
-            # Copy packages from local path to installation dir
-            for deb in packages:
-                ssh.scp(local_path=deb, remote_path=install_dir)
+            if cancel_installation:
+                ret, _, err = ssh.exec_command("rm -r {}".format(install_dir))
+                if ret != 0:
+                    print "Cancel unsuccessful:\n{}".format(err)
+                    return ret
+            else:
+                ret, _, err = ssh.exec_command("mkdir {}".format(install_dir))
+                if ret != 0:
+                    print "Mkdir unsuccessful:\n{}".format(err)
+                    return ret
 
-            # Installation of VPP deb packages
-            ret, _, err = ssh.exec_command_sudo(
-                "dpkg -i {}/*.deb".format(install_dir))
-            if ret != 0:
-                print "Installation unsuccessful:\n{}".format(err)
-                return ret
+                # Copy packages from local path to installation dir
+                for deb in packages:
+                    ssh.scp(local_path=deb, remote_path=install_dir)
+
+                # Installation of VPP deb packages
+                ret, _, err = ssh.exec_command_sudo(
+                    "dpkg -i {}/*.deb".format(install_dir))
+                if ret != 0:
+                    print "Installation unsuccessful:\n{}".format(err)
+                    return ret
 
 if __name__ == "__main__":
     sys.exit(main())
