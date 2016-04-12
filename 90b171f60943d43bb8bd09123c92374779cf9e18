@@ -246,6 +246,30 @@
     },
     {
       "key": {
+        "uuid": "3a045101_923101a5",
+        "filename": "docs/qemu_vpp_vm",
+        "patchSetId": 6
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-12T07:34:54Z",
+      "side": 1,
+      "message": "I think it would be best if we add copy of the VM image created by Carsten to some public place so everyone can use it instead of create own VM image.",
+      "parentUuid": "3a045101_f26ba583",
+      "range": {
+        "startLine": 24,
+        "startChar": 14,
+        "endLine": 24,
+        "endChar": 21
+      },
+      "revId": "90b171f60943d43bb8bd09123c92374779cf9e18",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a045101_77a54703",
         "filename": "docs/qemu_vpp_vm",
         "patchSetId": 6
