@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a045101_32258dc2",
+        "filename": "tests/suites/performance/short_xconnect.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 74
+      },
+      "writtenOn": "2016-04-12T10:18:29Z",
+      "side": 1,
+      "message": "we should expect more than 10mpps",
+      "revId": "add3875db12bc236871012447b504041ac315e8a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
