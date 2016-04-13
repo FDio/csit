@@ -131,6 +131,30 @@
     },
     {
       "key": {
+        "uuid": "3a045101_88367402",
+        "filename": "docs/qemu_vpp_vm",
+        "patchSetId": 6
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-04-13T13:39:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a045101_525db9e8",
+      "range": {
+        "startLine": 18,
+        "startChar": 60,
+        "endLine": 19,
+        "endChar": 75
+      },
+      "revId": "90b171f60943d43bb8bd09123c92374779cf9e18",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a045101_3768dfb9",
         "filename": "docs/qemu_vpp_vm",
         "patchSetId": 6
@@ -378,6 +402,30 @@
     },
     {
       "key": {
+        "uuid": "3a045101_683b28ec",
+        "filename": "docs/qemu_vpp_vm",
+        "patchSetId": 6
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-04-13T13:39:55Z",
+      "side": 1,
+      "message": "Yes, please communicate this with Carsten, and let csit-dev know of the result. Otherwise these tests can\u0027t be run elsewhere but in VIRL in LF.",
+      "parentUuid": "3a045101_923101a5",
+      "range": {
+        "startLine": 24,
+        "startChar": 14,
+        "endLine": 24,
+        "endChar": 21
+      },
+      "revId": "90b171f60943d43bb8bd09123c92374779cf9e18",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a045101_77a54703",
         "filename": "docs/qemu_vpp_vm",
         "patchSetId": 6
@@ -519,6 +567,30 @@
     },
     {
       "key": {
+        "uuid": "3a045101_48406c56",
+        "filename": "docs/qemu_vpp_vm",
+        "patchSetId": 6
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-04-13T13:39:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a045101_521499f4",
+      "range": {
+        "startLine": 34,
+        "startChar": 12,
+        "endLine": 34,
+        "endChar": 48
+      },
+      "revId": "90b171f60943d43bb8bd09123c92374779cf9e18",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a045101_777c2773",
         "filename": "resources/libraries/bash/qemu_build.sh",
         "patchSetId": 6
@@ -595,6 +667,24 @@
       "side": 1,
       "message": "this create /tmp/qemu-2.2.1/qemu-2.2.1",
       "parentUuid": "3a045101_57812b49",
+      "revId": "90b171f60943d43bb8bd09123c92374779cf9e18",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_c8547c23",
+        "filename": "resources/libraries/bash/qemu_build.sh",
+        "patchSetId": 6
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-04-13T13:39:55Z",
+      "side": 1,
+      "message": "Yes, but if you change build_dir above, it will stop working. It would be more clearer if you specify target location explicitly via -C",
+      "parentUuid": "3a045101_f74dd7c5",
       "revId": "90b171f60943d43bb8bd09123c92374779cf9e18",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
@@ -683,6 +773,30 @@
       "side": 1,
       "message": "it is possible if you have image in same location, content of the image is described in doc",
       "parentUuid": "3a045101_1793a3a4",
+      "range": {
+        "startLine": 48,
+        "startChar": 33,
+        "endLine": 48,
+        "endChar": 37
+      },
+      "revId": "90b171f60943d43bb8bd09123c92374779cf9e18",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_a831300d",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-04-13T13:39:55Z",
+      "side": 1,
+      "message": "Right, so then please change text so that it does not point to one type of platform. Something like \"Default image for VM\"",
+      "parentUuid": "3a045101_d74adbab",
       "range": {
         "startLine": 48,
         "startChar": 33,
