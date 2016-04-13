@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a045101_e8e61844",
+        "filename": "resources/libraries/python/ssh.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-13T05:21:35Z",
+      "side": 1,
+      "message": "This is duplicate log. exec_command_sudo call exec_command where is logged same data, only log level is different.",
+      "range": {
+        "startLine": 158,
+        "startChar": 0,
+        "endLine": 160,
+        "endChar": 50
+      },
+      "revId": "ea76b4ff512be1b2770817f6c31c2979d2896ae3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
