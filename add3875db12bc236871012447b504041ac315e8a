@@ -16,6 +16,24 @@
       "revId": "add3875db12bc236871012447b504041ac315e8a",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_c84a3cac",
+        "filename": "tests/suites/performance/short_xconnect.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-04-13T10:50:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a045101_32258dc2",
+      "revId": "add3875db12bc236871012447b504041ac315e8a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
