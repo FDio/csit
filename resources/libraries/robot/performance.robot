@@ -91,6 +91,7 @@
 | | Teardown traffic generator | ${tg}
 
 | Find NDR using linear search and pps
+| | [Documentation] | Find throughput by using RFC2544 linear search
 | | [Arguments] | ${framesize} | ${start_rate} | ${step_rate}
 | | ...         | ${topology_type} | ${min_rate} | ${max_rate}
 | | Set Duration | 60
@@ -99,10 +100,11 @@
 | | Set Search Frame Size | ${framesize}
 | | Set Search Rate Type pps
 | | Linear Search | ${start_rate} | ${topology_type}
-| | ${result_rate}= | Verify Search Result
-| | Set Test Message | FINAL_RATE: ${result_rate} pps
+| | ${rate_per_stream}= | Verify Search Result
+| | Display result of NDR search | ${rate_per_stream} | ${framesize} | 2
 
 | Find NDR using binary search and pps
+| | [Documentation] | Find throughput by using RFC2544 binary search
 | | [Arguments] | ${framesize} | ${binary_min} | ${binary_max}
 | | ...         | ${topology_type} | ${min_rate} | ${max_rate} | ${threshold}
 | | Set Duration | 60
@@ -110,10 +112,12 @@
 | | Set Search Rate Type pps
 | | Set Binary Convergence Threshold | ${threshold}
 | | Binary Search | ${binary_min} | ${binary_max} | ${topology_type}
-| | ${result_rate}= | Verify Search Result
-| | Set Test Message | FINAL_RATE: ${result_rate} pps
+| | ${rate_per_stream}= | Verify Search Result
+| | Display result of NDR search | ${rate_per_stream} | ${framesize} | 2
 
 | Find NDR using combined search and pps
+| | [Documentation] | Find throughput by using RFC2544 combined search
+| | ...             | (linear + binary)
 | | [Arguments] | ${framesize} | ${start_rate} | ${step_rate}
 | | ...         | ${topology_type} | ${min_rate} | ${max_rate} | ${threshold}
 | | Set Duration | 60
@@ -123,8 +127,19 @@
 | | Set Search Rate Type pps
 | | Set Binary Convergence Threshold | ${threshold}
 | | Combined Search | ${start_rate} | ${topology_type}
-| | ${result_rate}= | Verify Search Result
-| | Set Test Message | FINAL_RATE: ${result_rate} pps
+| | ${rate_per_stream}= | Verify Search Result
+| | Display result of NDR search | ${rate_per_stream} | ${framesize} | 2
+
+| Display result of NDR search
+| | [Documentation] | Display result of NDR search in packet per seconds (total
+| | ...             | and per stream) and Gbps
+| | [Arguments] | ${rate_per_stream} | ${framesize} | ${nr_streams}
+| | ${rate_total}= | Evaluate | ${rate_per_stream}*${nr_streams}
+| | ${bandwidth_total}= | Evaluate | ${rate_total}*(${framesize}+20)*8/(10**9)
+| | Set Test Message | FINAL_RATE: ${rate_total} pps
+| | Set Test Message | (${nr_streams}x ${rate_per_stream} pps) | append=yes
+| | Set Test Message | FINAL_BANDWIDTH: ${bandwidth_total} Gbps | append=yes
+
 
 | Traffic should pass with no loss
 | | [Arguments] | ${duration} | ${rate} | ${framesize} | ${topology_type}
