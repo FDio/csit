@@ -23,11 +23,36 @@ HoneycombAPIKeywords instead.
 """
 
 from json import loads
+from enum import Enum, unique
 
 from robot.api import logger
 
 from resources.libraries.python.HTTPRequest import HTTPRequest
 from resources.libraries.python.constants import Constants as Const
+
+
+@unique
+class DataRepresentation(Enum):
+    """Representation of data sent by PUT and POST requests."""
+    NO_DATA = 0
+    JSON = 1
+    XML = 2
+    TXT = 3
+
+
+# Headers used in requests. Key - content representation, value - header.
+HEADERS = {DataRepresentation.NO_DATA:
+               {},  # Must be empty.
+           DataRepresentation.JSON:
+               {"Content-Type": "application/json",
+                "Accept": "text/plain"},
+           DataRepresentation.XML:
+               {"Content-Type": "application/xml",
+                "Accept": "text/plain"},
+           DataRepresentation.TXT:
+               {"Content-Type": "text/plain",
+                "Accept": "text/plain"}
+          }
 
 
 class HoneycombError(Exception):
@@ -166,53 +191,77 @@ class HoneycombUtil(object):
         without extension, not the full path.
         :type node: dict
         :type url_file: str
-        :return: Requested information.
-        :rtype list
+        :return: Status code and content of response.
+        :rtype tuple
         """
 
         path = HoneycombUtil.read_path_from_url_file(url_file)
-        status_code, resp = HTTPRequest.get(node, path)
-        return status_code, resp
+        return HTTPRequest.get(node, path)
 
     @staticmethod
-    def put_honeycomb_data(node, url_file, data, data_representation='json'):
+    def put_honeycomb_data(node, url_file, data,
+                           data_representation=DataRepresentation.JSON):
         """Send configuration data using PUT request and return the status code
-        and response.
+        and response content.
 
         :param node: Honeycomb node.
         :param url_file: URL file. The argument contains only the name of file
         without extension, not the full path.
         :param data: Configuration data to be sent to Honeycomb.
-        :param data_representation: How the data is represented. Supported types
-        of representation are: json, xml and txt.
+        :param data_representation: How the data is represented.
         :type node: dict
         :type url_file: str
         :type data: str
-        :type data_representation: str
+        :type data_representation: DataRepresentation
         :return: Status code and content of response.
         :rtype: tuple
+        :raises HoneycombError: If the given data representation is not defined
+        in HEADERS.
         """
 
-        headers = {'json':
-                       {"Content-Type": "application/json",
-                        'Accept': 'text/plain'},
-                   'xml':
-                       {"Content-Type": "application/xml",
-                        'Accept': 'text/plain'},
-                   'txt':
-                       {"Content-Type": "text/plain",
-                        'Accept': 'text/plain'}
-                  }
         try:
-            header = headers[data_representation]
-        except KeyError as err:
-            raise HoneycombError("Wrong data type: {0}.".
+            header = HEADERS[data_representation]
+        except AttributeError as err:
+            raise HoneycombError("Wrong data representation: {0}.".
                                  format(data_representation), repr(err))
 
         path = HoneycombUtil.read_path_from_url_file(url_file)
-        status_code, resp = HTTPRequest.put(node=node, path=path,
-                                            headers=header, payload=data)
-        return status_code, resp
+        return HTTPRequest.put(node=node, path=path, headers=header,
+                               payload=data)
+
+    @staticmethod
+    def post_honeycomb_data(node, url_file, data=None,
+                            data_representation=DataRepresentation.JSON,
+                            timeout=10):
+        """Send a POST request and return the status code and response content.
+
+        :param node: Honeycomb node.
+        :param url_file: URL file. The argument contains only the name of file
+        without extension, not the full path.
+        :param data: Configuration data to be sent to Honeycomb.
+        :param data_representation: How the data is represented.
+        :param timeout: How long to wait for the server to send data before
+        giving up.
+        :type node: dict
+        :type url_file: str
+        :type data: str
+        :type data_representation: DataRepresentation
+        :type timeout: int
+        :return: Status code and content of response.
+        :rtype: tuple
+        :raises HoneycombError: If the given data representation is not defined
+        in HEADERS.
+        """
+
+        try:
+            header = HEADERS[data_representation]
+        except AttributeError as err:
+            raise HoneycombError("Wrong data representation: {0}.".
+                                 format(data_representation), repr(err))
+
+        path = HoneycombUtil.read_path_from_url_file(url_file)
+        return HTTPRequest.post(node=node, path=path, headers=header,
+                                payload=data, timeout=timeout)
 
     @staticmethod
     def delete_honeycomb_data(node, url_file):
@@ -223,7 +272,7 @@ class HoneycombUtil(object):
         without extension, not the full path.
         :type node: dict
         :type url_file: str
-        :return: Status code and response.
+        :return: Status code and content of response.
         :rtype tuple
         """
 
