@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a045101_eea62153",
+        "filename": "resources/libraries/robot/performance.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-14T13:08:10Z",
+      "side": 1,
+      "message": "Why this change?",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 64
+      },
+      "revId": "4d50231c5cb1181ca2cfa8b5907bb8467a74c7f4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
