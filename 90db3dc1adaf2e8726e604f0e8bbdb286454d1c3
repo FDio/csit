@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a045101_2ed889ee",
+        "filename": "resources/libraries/robot/tagging.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-14T12:07:06Z",
+      "side": 1,
+      "message": "why twice ${TG}? we have only one in topology.",
+      "range": {
+        "startLine": 25,
+        "startChar": 18,
+        "endLine": 25,
+        "endChar": 51
+      },
+      "revId": "90db3dc1adaf2e8726e604f0e8bbdb286454d1c3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_0ee5cda7",
+        "filename": "resources/libraries/robot/tagging.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-14T12:07:06Z",
+      "side": 1,
+      "message": "This KW return nothing, only set test variable",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 70
+      },
+      "revId": "90db3dc1adaf2e8726e604f0e8bbdb286454d1c3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_eee1819b",
+        "filename": "resources/libraries/robot/tagging.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-14T12:07:06Z",
+      "side": 1,
+      "message": "missing *Arguments:* section",
+      "range": {
+        "startLine": 78,
+        "startChar": 4,
+        "endLine": 78,
+        "endChar": 19
+      },
+      "revId": "90db3dc1adaf2e8726e604f0e8bbdb286454d1c3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_4e02b53f",
+        "filename": "resources/libraries/robot/tagging.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-14T12:07:06Z",
+      "side": 1,
+      "message": "missing *Arguments:* section",
+      "range": {
+        "startLine": 104,
+        "startChar": 4,
+        "endLine": 104,
+        "endChar": 21
+      },
+      "revId": "90db3dc1adaf2e8726e604f0e8bbdb286454d1c3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a045101_2eff6936",
+        "filename": "resources/libraries/robot/tagging.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-14T12:07:06Z",
+      "side": 1,
+      "message": "missing *Arguments:* section",
+      "range": {
+        "startLine": 110,
+        "startChar": 4,
+        "endLine": 110,
+        "endChar": 19
+      },
+      "revId": "90db3dc1adaf2e8726e604f0e8bbdb286454d1c3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
