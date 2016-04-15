@@ -30,7 +30,7 @@ virtualenv env
 echo pip install
 pip install -r requirements.txt
 
-#we iterate over available topologies and wait until we reserve topology
+# we iterate over available topologies and wait until we reserve topology
 while :; do
     for TOPOLOGY in ${TOPOLOGIES};
     do
@@ -43,11 +43,11 @@ while :; do
     done
 
     if [ ! -z "${WORKING_TOPOLOGY}" ]; then
-        #exit the infinite while loop if we made a reservation
+        # exit the infinite while loop if we made a reservation
         break
     fi
 
-    #wait 10 - 30 sec. before next try
+    # wait 10 - 30 sec. before next try
     SLEEP_TIME=$[ ( $RANDOM % 20 ) + 10 ]s
     echo "Sleeping ${SLEEP_TIME}"
     sleep ${SLEEP_TIME}
@@ -57,10 +57,46 @@ function cancel_reservation {
     python ${CUR_DIR}/resources/tools/topo_reservation.py -c -t $1
 }
 
-#on script exit we cancel the reservation
+# on script exit we cancel the reservation
 trap "cancel_reservation ${WORKING_TOPOLOGY}" EXIT
 
-#run performance test suite
-pybot -L TRACE \
-    -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-    -s performance tests/
+case "$TEST_TAG" in
+    # run specific performance tests based on jenkins job type variable
+    PERFTEST_LONG )
+        pybot -L TRACE \
+              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+              -i perftest_long \
+              tests/
+        ;;
+    PERFTEST_SHORT )
+        pybot -L TRACE \
+              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+              -i perftest_short \
+              tests/
+        ;;
+    PERFTEST_LONG_BRIDGE )
+        pybot -L TRACE \
+              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+              -s performance.long_bridge_domain \
+              tests/
+        ;;
+    PERFTEST_LONG_IPV4 )
+        pybot -L TRACE \
+              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+              -s performance.long_ipv4 \
+              tests/
+        ;;
+    PERFTEST_LONG_XCONNECT )
+        pybot -L TRACE \
+              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+              -s performance.long_xconnect \
+              tests/
+        ;;
+    * )
+        # run full performance test suite
+        pybot -L TRACE \
+              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+              -s performance \
+              tests/
+esac
+
