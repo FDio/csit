@@ -148,6 +148,17 @@ virtualenv env
 echo pip install
 pip install -r requirements.txt
 
+pykwalify -s resources/topology_schemas/3_node_topology.sch.yaml \
+          -s resources/topology_schemas/topology.sch.yaml \
+          -d topologies/enabled/topology.yaml \
+          -vvv
+
+result=$?
+if [ "${result}" -ne "0" ]; then
+    echo "Topology schema validation failed."
+    echo "However, the tests will start."
+fi
+
 PYTHONPATH=`pwd` pybot -L TRACE \
     -v TOPOLOGY_PATH:topologies/enabled/topology.yaml \
     --include vm_envAND3_node_single_link_topo \
