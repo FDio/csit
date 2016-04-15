@@ -124,10 +124,12 @@ schema;type_dut:
   type: map
   mapping:
     <<: *type_node_mapping
-    honeycomb:
-      <<: *type_honeycomb_mapping
     type:
       <<: *type_node_mapping_type
       enum: [DUT]
+    honeycomb:
+      type: map
+      mapping:
+        <<: *type_honeycomb_mapping
 
 # vim: sw=2:sts=2
