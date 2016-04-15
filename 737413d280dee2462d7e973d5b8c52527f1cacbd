@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a045101_91ab3c89",
+        "filename": "resources/libraries/python/VppCounters.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-15T05:36:13Z",
+      "side": 1,
+      "message": "Specify",
+      "range": {
+        "startLine": 110,
+        "startChar": 24,
+        "endLine": 110,
+        "endChar": 25
+      },
+      "revId": "737413d280dee2462d7e973d5b8c52527f1cacbd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
