@@ -54,9 +54,6 @@ class IPv4Util(object):
         get_node(node).set_ip(interface, address, int(length))
 
     @staticmethod
-    @keyword('Node "${node}" routes to IPv4 network "${network}" with prefix '
-             'length "${prefix_length}" using interface "${interface}" via '
-             '"${gateway}"')
     def set_route(node, network, prefix_length, interface, gateway):
         """See IPv4Node.set_route for more information.
 
