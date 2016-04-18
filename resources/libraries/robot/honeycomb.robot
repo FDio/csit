@@ -24,7 +24,8 @@
 | | ... | - 1. Login to each honeycomb node using ssh
 | | ... | - 2. Startup honeycomb service
 | | ... | - 3. Monitor service startup using HTTP GET request loop
-| | ... | Expected sequence of HTTP replies: connection refused -> 404 -> 401 -> 503 -> 200 (pass)
+| | ... | Expected sequence of HTTP replies:
+| | ... | connection refused -> 404 -> 401 -> 503 or 500 -> 200 (pass)
 | | ... | - 4. Configure honeycomb nodes using HTTP PUT request
 | | ...
 | | ... | _Used global constants and variables:_
@@ -33,9 +34,9 @@
 | | ... | - ${nodes} - dictionary of all nodes in topology.YAML file
 | | ...
 | | Start Honeycomb on all DUTs | ${nodes}
-| | Wait until keyword succeeds | 3min | 10sec | Check honeycomb startup state | ${nodes}
+| | Wait until keyword succeeds | 3min | 10sec
+| | ... | Check honeycomb startup state | ${nodes}
 | | &{Header}= | Create dictionary | Content-Type=application/xml
-| | Add VPP to honeycomb network topology | ${nodes} | ${header}
 
 | Stop honeycomb service
 | | [Documentation] | *Cleanup environment after honeycomb testing*
@@ -44,7 +45,8 @@
 | | ... | - 1. Login to each honeycomb node using ssh
 | | ... | - 2. Stop honeycomb service
 | | ... | - 3. Monitor service shutdown using HTTP GET request loop
-| | ... | Expected sequence of HTTP replies: 200 -> 404 -> connection refused (pass)
+| | ... | Expected sequence of HTTP replies:
+| | ... | 200 -> 404 -> connection refused (pass)
 | | ...
 | | ... | _Used global constants and variables:_
 | | ... | - RESOURCES_TPL_HC - path to honeycomb templates directory
@@ -52,7 +54,8 @@
 | | ... | - ${nodes} - dictionary of all nodes in topology.YAML file
 | | ...
 | | Stop honeycomb on all DUTs | ${nodes}
-| | Wait until keyword succeeds | 1m | 5s | Check honeycomb shutdown state | ${nodes}
+| | Wait until keyword succeeds | 2m | 10s
+| | ... | Check honeycomb shutdown state | ${nodes}
 
 | Honeycomb checks VPP node configuration
 | | [Documentation] | *Check configuration of honeycomb nodes*
