@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa0f191f_7a9539e3",
+        "filename": "resources/libraries/python/IPv4Setup.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-18T12:25:46Z",
+      "side": 1,
+      "message": "missing :rtype:",
+      "revId": "b4cdb0570f817ccb6d0b5e901aaf4495b68dbe4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_5a9a7515",
+        "filename": "resources/libraries/python/VatExecutor.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-18T12:25:46Z",
+      "side": 1,
+      "message": "such.",
+      "range": {
+        "startLine": 28,
+        "startChar": 64,
+        "endLine": 28,
+        "endChar": 68
+      },
+      "revId": "b4cdb0570f817ccb6d0b5e901aaf4495b68dbe4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
