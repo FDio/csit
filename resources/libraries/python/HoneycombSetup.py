@@ -41,24 +41,24 @@ class HoneycombSetup(object):
         pass
 
     @staticmethod
-    def start_honeycomb_on_all_duts(nodes):
-        """Start Honeycomb on all DUT nodes in topology.
+    def start_honeycomb_on_duts(*nodes):
+        """Start Honeycomb on specified DUT nodes.
 
-        This keyword starts the Honeycomb service on all DUTs. The keyword just
-        starts the Honeycomb and does not check its startup state. Use the
-        keyword "Check Honeycomb Startup State" to check if the Honeycomb is up
-        and running.
+        This keyword starts the Honeycomb service on specified DUTs.
+        The keyword just starts the Honeycomb and does not check its startup
+        state. Use the keyword "Check Honeycomb Startup State" to check if the
+        Honeycomb is up and running.
         Honeycomb must be installed in "/opt" directory, otherwise the start
         will fail.
-        :param nodes: All nodes in topology.
-        :type nodes: dict
+        :param nodes: List of nodes to start Honeycomb on.
+        :type nodes: list
         :raises HoneycombError: If Honeycomb fails to start.
         """
         logger.console("Starting Honeycomb service ...")
 
         cmd = "{0}/start".format(Const.REMOTE_HC_DIR)
 
-        for node in nodes.values():
+        for node in nodes:
             if node['type'] == NodeType.DUT:
                 ssh = SSH()
                 ssh.connect(node)
@@ -71,14 +71,15 @@ class HoneycombSetup(object):
                                 "in progress ...".format(node['host']))
 
     @staticmethod
-    def stop_honeycomb_on_all_duts(nodes):
-        """Stop the Honeycomb service on all DUTs.
+    def stop_honeycomb_on_duts(*nodes):
+        """Stop the Honeycomb service on specified DUT nodes.
 
-        This keyword stops the Honeycomb service on all nodes. It just stops the
-        Honeycomb and does not check its shutdown state. Use the keyword "Check
-        Honeycomb Shutdown State" to check if Honeycomb has stopped.
-        :param nodes: Nodes in topology.
-        :type nodes: dict
+        This keyword stops the Honeycomb service on specified nodes. It just
+        stops the Honeycomb and does not check its shutdown state. Use the
+        keyword "Check Honeycomb Shutdown State" to check if Honeycomb has
+        stopped.
+        :param nodes: List of nodes to stop Honeycomb on.
+        :type nodes: list
         :raises HoneycombError: If Honeycomb failed to stop.
         """
         logger.console("Shutting down Honeycomb service ...")
@@ -86,7 +87,7 @@ class HoneycombSetup(object):
         cmd = "{0}/stop".format(Const.REMOTE_HC_DIR)
         errors = []
 
-        for node in nodes.values():
+        for node in nodes:
             if node['type'] == NodeType.DUT:
                 ssh = SSH()
                 ssh.connect(node)
@@ -101,27 +102,27 @@ class HoneycombSetup(object):
                                  format(errors))
 
     @staticmethod
-    def check_honeycomb_startup_state(nodes):
-        """Check state of Honeycomb service during startup.
+    def check_honeycomb_startup_state(*nodes):
+        """Check state of Honeycomb service during startup on specified nodes.
 
         Reads html path from template file oper_vpp_version.url.
 
-        Honeycomb node replies with connection refused or the following status
-        codes depending on startup progress: codes 200, 401, 403, 404, 503
+        Honeycomb nodes reply with connection refused or the following status
+        codes depending on startup progress: codes 200, 401, 403, 404, 500, 503
 
-        :param nodes: Nodes in topology.
-        :type nodes: dict
+        :param nodes: List of DUT nodes starting Honeycomb.
+        :type nodes: list
         :return: True if all GETs returned code 200(OK).
         :rtype bool
         """
-
         path = HcUtil.read_path_from_url_file("oper_vpp_version")
         expected_status_codes = (HTTPCodes.UNAUTHORIZED,
                                  HTTPCodes.FORBIDDEN,
                                  HTTPCodes.NOT_FOUND,
-                                 HTTPCodes.SERVICE_UNAVAILABLE)
+                                 HTTPCodes.SERVICE_UNAVAILABLE,
+                                 HTTPCodes.INTERNAL_SERVER_ERROR)
 
-        for node in nodes.values():
+        for node in nodes:
             if node['type'] == NodeType.DUT:
                 status_code, _ = HTTPRequest.get(node, path, timeout=10,
                                                  enable_logging=False)
@@ -142,20 +143,19 @@ class HoneycombSetup(object):
         return True
 
     @staticmethod
-    def check_honeycomb_shutdown_state(nodes):
-        """Check state of Honeycomb service during shutdown.
+    def check_honeycomb_shutdown_state(*nodes):
+        """Check state of Honeycomb service during shutdown on specified nodes.
 
-        Honeycomb node replies with connection refused or the following status
+        Honeycomb nodes reply with connection refused or the following status
         codes depending on shutdown progress: codes 200, 404.
 
-        :param nodes: Nodes in topology.
-        :type nodes: dict
+        :param nodes: List of DUT nodes stopping Honeycomb.
+        :type nodes: list
         :return: True if all GETs fail to connect.
         :rtype bool
         """
-
         cmd = "ps -ef | grep -v grep | grep karaf"
-        for node in nodes.values():
+        for node in nodes:
             if node['type'] == NodeType.DUT:
                 try:
                     status_code, _ = HTTPRequest.get(node, '/index.html',
@@ -237,7 +237,6 @@ class HoneycombSetup(object):
             {passwd}
         MUST be there as they are replaced by correct values.
         """
-
         path = HcUtil.read_path_from_url_file("config_topology_node")
         try:
             xml_data = ET.parse("{0}/add_vpp_to_topology.xml".
