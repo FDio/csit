@@ -33,3 +33,21 @@
 | | # Ethernet MTU is physical layer MTU minus size of Ethernet header and FCS
 | | ${eth_mtu}= | Evaluate | ${mtu} - 14 - 4
 | | Set Interface Ethernet MTU | ${tg_node} | ${tg_port} | ${eth_mtu}
+
+| Interfaces on all VPP nodes in the path are up
+| | [Documentation] | Wait until all interfaces of the given VPP node
+| | ...             | with admin-up state are in link-up state.
+| | ...
+| | ... | *Arguments:*
+| | ... | - @{node_list} - DUT nodes. Type: list
+| | ...
+| | ... | *Return:*
+| | ... | - No value returned
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Interfaces on all VPP nodes in the path are up \
+| | ... | \| ${nodes['DUT1']} \| ${nodes['DUT2']} \|
+| | [Arguments] | @{node_list}
+| | :FOR | ${node} | IN | @{node_list}
+| |      | VPP Node Interfaces Ready Wait | ${node}
