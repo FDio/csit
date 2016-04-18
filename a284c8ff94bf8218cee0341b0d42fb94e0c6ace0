@@ -1,0 +1,538 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa0f191f_fa714978",
+        "filename": "resources/libraries/python/LispSetup.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-18T07:06:42Z",
+      "side": 1,
+      "message": "missing dot at the end of the method description",
+      "range": {
+        "startLine": 27,
+        "startChar": 11,
+        "endLine": 27,
+        "endChar": 64
+      },
+      "revId": "a284c8ff94bf8218cee0341b0d42fb94e0c6ace0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_3a0fc1e3",
+        "filename": "resources/libraries/python/LispSetup.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-18T07:06:42Z",
+      "side": 1,
+      "message": "VatExecutor.cmd_from_template(node, ...",
+      "range": {
+        "startLine": 33,
+        "startChar": 8,
+        "endLine": 34,
+        "endChar": 52
+      },
+      "revId": "a284c8ff94bf8218cee0341b0d42fb94e0c6ace0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_da6e8596",
+        "filename": "resources/libraries/python/LispSetup.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-18T07:06:42Z",
+      "side": 1,
+      "message": "missing dot at the end of the param description",
+      "range": {
+        "startLine": 41,
+        "startChar": 21,
+        "endLine": 41,
+        "endChar": 46
+      },
+      "revId": "a284c8ff94bf8218cee0341b0d42fb94e0c6ace0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_1a14fdf3",
+        "filename": "resources/libraries/python/LispSetup.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-18T07:06:42Z",
+      "side": 1,
+      "message": "line too long",
+      "range": {
+        "startLine": 106,
+        "startChar": 0,
+        "endLine": 106,
+        "endChar": 82
+      },
+      "revId": "a284c8ff94bf8218cee0341b0d42fb94e0c6ace0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_faf829c6",
+        "filename": "resources/libraries/python/LispSetup.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-18T07:06:42Z",
+      "side": 1,
+      "message": "line too long",
+      "revId": "a284c8ff94bf8218cee0341b0d42fb94e0c6ace0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_9a16cdf0",
+        "filename": "resources/libraries/python/LispSetup.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-18T07:06:42Z",
+      "side": 1,
+      "message": "vpp_ should be better for all methods",
+      "range": {
+        "startLine": 221,
+        "startChar": 9,
+        "endLine": 221,
+        "endChar": 14
+      },
+      "revId": "a284c8ff94bf8218cee0341b0d42fb94e0c6ace0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_ba02b1b2",
+        "filename": "resources/libraries/python/LispSetup.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-18T07:06:42Z",
+      "side": 1,
+      "message": "there should be blank line between brief and detail description",
+      "range": {
+        "startLine": 222,
+        "startChar": 11,
+        "endLine": 223,
+        "endChar": 48
+      },
+      "revId": "a284c8ff94bf8218cee0341b0d42fb94e0c6ace0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_9affedaa",
+        "filename": "resources/libraries/python/LispSetup.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-18T07:06:42Z",
+      "side": 1,
+      "message": "ValueError",
+      "range": {
+        "startLine": 238,
+        "startChar": 18,
+        "endLine": 238,
+        "endChar": 27
+      },
+      "revId": "a284c8ff94bf8218cee0341b0d42fb94e0c6ace0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_7a2c194b",
+        "filename": "resources/libraries/python/LispSetup.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-18T07:06:42Z",
+      "side": 1,
+      "message": "RuntimeError",
+      "range": {
+        "startLine": 248,
+        "startChar": 22,
+        "endLine": 248,
+        "endChar": 31
+      },
+      "revId": "a284c8ff94bf8218cee0341b0d42fb94e0c6ace0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_5a3155a1",
+        "filename": "resources/libraries/python/LispSetup.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-18T07:06:42Z",
+      "side": 1,
+      "message": "line too long",
+      "revId": "a284c8ff94bf8218cee0341b0d42fb94e0c6ace0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_3a26a169",
+        "filename": "resources/libraries/python/LispSetup.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 281,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-18T07:06:42Z",
+      "side": 1,
+      "message": "ValueError",
+      "range": {
+        "startLine": 281,
+        "startChar": 18,
+        "endLine": 281,
+        "endChar": 27
+      },
+      "revId": "a284c8ff94bf8218cee0341b0d42fb94e0c6ace0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_da1c4516",
+        "filename": "resources/libraries/python/LispSetup.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-18T07:06:42Z",
+      "side": 1,
+      "message": "RuntimeError",
+      "range": {
+        "startLine": 291,
+        "startChar": 22,
+        "endLine": 291,
+        "endChar": 31
+      },
+      "revId": "a284c8ff94bf8218cee0341b0d42fb94e0c6ace0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_1a2bdd31",
+        "filename": "resources/libraries/python/LispSetup.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-18T07:06:42Z",
+      "side": 1,
+      "message": "ValueError",
+      "range": {
+        "startLine": 323,
+        "startChar": 18,
+        "endLine": 323,
+        "endChar": 27
+      },
+      "revId": "a284c8ff94bf8218cee0341b0d42fb94e0c6ace0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_fa1f0908",
+        "filename": "resources/libraries/python/LispSetup.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-18T07:06:42Z",
+      "side": 1,
+      "message": "ValueError",
+      "range": {
+        "startLine": 348,
+        "startChar": 18,
+        "endLine": 348,
+        "endChar": 27
+      },
+      "revId": "a284c8ff94bf8218cee0341b0d42fb94e0c6ace0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_7ad3f938",
+        "filename": "resources/libraries/python/LispUtil.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-18T07:06:42Z",
+      "side": 1,
+      "message": "missing dot at the end of the method description",
+      "range": {
+        "startLine": 28,
+        "startChar": 11,
+        "endLine": 28,
+        "endChar": 45
+      },
+      "revId": "a284c8ff94bf8218cee0341b0d42fb94e0c6ace0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_5ad83553",
+        "filename": "resources/libraries/python/LispUtil.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-18T07:06:42Z",
+      "side": 1,
+      "message": "missing dot at the end of the param description",
+      "range": {
+        "startLine": 30,
+        "startChar": 21,
+        "endLine": 30,
+        "endChar": 29
+      },
+      "revId": "a284c8ff94bf8218cee0341b0d42fb94e0c6ace0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_3add8143",
+        "filename": "resources/libraries/python/LispUtil.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-18T07:06:42Z",
+      "side": 1,
+      "message": "missing dot at the end of the return description",
+      "range": {
+        "startLine": 32,
+        "startChar": 16,
+        "endLine": 32,
+        "endChar": 52
+      },
+      "revId": "a284c8ff94bf8218cee0341b0d42fb94e0c6ace0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_9aedadf2",
+        "filename": "resources/libraries/python/LispUtil.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-18T07:06:42Z",
+      "side": 1,
+      "message": "lisp_should_be_equal or return some value",
+      "range": {
+        "startLine": 66,
+        "startChar": 8,
+        "endLine": 66,
+        "endChar": 20
+      },
+      "revId": "a284c8ff94bf8218cee0341b0d42fb94e0c6ace0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_dae32504",
+        "filename": "resources/libraries/python/LispUtil.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-18T07:06:42Z",
+      "side": 1,
+      "message": "update",
+      "range": {
+        "startLine": 67,
+        "startChar": 11,
+        "endLine": 67,
+        "endChar": 23
+      },
+      "revId": "a284c8ff94bf8218cee0341b0d42fb94e0c6ace0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_baf071ca",
+        "filename": "resources/libraries/python/LispUtil.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-18T07:06:42Z",
+      "side": 1,
+      "message": "RuntimeError",
+      "range": {
+        "startLine": 78,
+        "startChar": 18,
+        "endLine": 78,
+        "endChar": 27
+      },
+      "revId": "a284c8ff94bf8218cee0341b0d42fb94e0c6ace0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_1ae2bd03",
+        "filename": "resources/libraries/python/LispUtil.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-18T07:06:42Z",
+      "side": 1,
+      "message": "RuntimeError",
+      "range": {
+        "startLine": 85,
+        "startChar": 22,
+        "endLine": 85,
+        "endChar": 31
+      },
+      "revId": "a284c8ff94bf8218cee0341b0d42fb94e0c6ace0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_5abf15d1",
+        "filename": "resources/libraries/python/LispUtil.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-18T07:06:42Z",
+      "side": 1,
+      "message": "same as above",
+      "range": {
+        "startLine": 88,
+        "startChar": 8,
+        "endLine": 88,
+        "endChar": 32
+      },
+      "revId": "a284c8ff94bf8218cee0341b0d42fb94e0c6ace0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_7abad9e2",
+        "filename": "resources/libraries/python/LispUtil.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-18T07:06:42Z",
+      "side": 1,
+      "message": "RuntimeError",
+      "range": {
+        "startLine": 112,
+        "startChar": 22,
+        "endLine": 112,
+        "endChar": 31
+      },
+      "revId": "a284c8ff94bf8218cee0341b0d42fb94e0c6ace0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_3ab461f1",
+        "filename": "tests/suites/lisp/lisp_untagged.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-18T07:06:42Z",
+      "side": 1,
+      "message": "Behavior-driven style, see https://wiki.fd.io/view/CSIT/Documentation#CSIT_Test_Code_Guidelines",
+      "revId": "a284c8ff94bf8218cee0341b0d42fb94e0c6ace0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
