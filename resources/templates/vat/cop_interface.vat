@@ -1,0 +1,1 @@
+cop_interface_enable_disable sw_if_index {sw_if_index} {state}

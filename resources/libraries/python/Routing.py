@@ -42,3 +42,27 @@ class Routing(object):
                                                     prefix_length=prefix_len,
                                                     gateway=gateway,
                                                     sw_if_index=sw_if_index)
+
+    @staticmethod
+    def add_fib_table(node,network,prefix_len,fib_id,place):
+        """Create new fib table according to ID.
+
+        :param node: Node to add fib on.
+        :param network: Ip address to add to the fib table
+        :param prefix_len: Ip address prefix length.
+        :param fib_id: Fib table id
+        :param place: Possible variants are local, drop.
+        :type node: dict
+        :type network: str
+        :type prefix_len: int
+        :type fib_id: int
+        :type place: str
+        """
+        with VatTerminal(node) as vat:
+            print vat
+            vat.vat_terminal_exec_cmd_from_template('add_fib_table.vat',
+                                                    network=network,
+                                                    prefix_length=prefix_len,
+                                                    fib_number=fib_id,
+                                                    where=place,
+                                                    )
