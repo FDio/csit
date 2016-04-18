@@ -55,16 +55,20 @@ class NodePath(object):
 
     def __init__(self):
         self._nodes = []
+        self._nodes_filter = []
         self._links = []
         self._path = []
         self._path_iter = []
 
-    def append_node(self, node):
+    def append_node(self, node, filter_list=None):
         """Append node to the path.
 
         :param node: Node to append to the path.
+        :param filter_list: Filter criteria list.
         :type node: dict
+        :type filter_list: list of strings
         """
+        self._nodes_filter.append(filter_list)
         self._nodes.append(node)
 
     def append_nodes(self, *nodes):
@@ -81,6 +85,7 @@ class NodePath(object):
     def clear_path(self):
         """Clear path."""
         self._nodes = []
+        self._nodes_filter = []
         self._links = []
         self._path = []
         self._path_iter = []
@@ -96,6 +101,7 @@ class NodePath(object):
         .. note:: First add at least two nodes to the topology.
         """
         nodes = self._nodes
+        nodes_filer = self._nodes_filter
         if len(nodes) < 2:
             raise RuntimeError('Not enough nodes to compute path')
 
@@ -103,7 +109,11 @@ class NodePath(object):
             topo = Topology()
             node1 = nodes[idx]
             node2 = nodes[idx + 1]
-            links = topo.get_active_connecting_links(node1, node2)
+            n1_list = self._nodes_filter[idx]
+            n2_list = self._nodes_filter[idx + 1]
+            links = topo.get_active_connecting_links(node1, node2,
+                                                     filter_list_node1=n1_list,
+                                                     filter_list_node2=n2_list)
             if not links:
                 raise RuntimeError('No link between {0} and {1}'.format(
                     node1['host'], node2['host']))

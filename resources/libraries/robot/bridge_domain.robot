@@ -56,6 +56,17 @@
 | | Set Test Variable | ${tg_node}
 | | Set Test Variable | ${dut_node}
 
+| Vpp l2bd forwarding setup
+| | [Documentation] | Setup BD between 2 interfaces on VPP node and if learning
+| | ...             | is off set static L2FIB entry on second interface
+| | [Arguments] | ${node} | ${if1} | ${if2} | ${learn}=${TRUE} | ${mac}=${EMPTY}
+| | Set Interface State | ${node} | ${if1} | up
+| | Set Interface State | ${node} | ${if2} | up
+| | Vpp Add L2 Bridge Domain | ${node} | ${1} | ${if1} | ${if2} | ${learn}
+| | Run Keyword If | ${learn} == ${FALSE}
+| | ... | Vpp Add L2fib Entry | ${node} | ${mac} | ${if2} | ${1}
+| | All Vpp Interfaces Ready Wait | ${nodes}
+
 | Path for 3-node BD testing is set
 | | [Documentation] | Compute path for bridge domain testing on three given
 | | ...             | nodes and set corresponding test case variables.
