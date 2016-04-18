@@ -313,3 +313,6 @@ class IPv4Setup(object):
                                                    nodes_addr)
                 mac_address = adj_int['mac_address']
                 get_node(node).set_arp(interface_name, ip_address, mac_address)
+    @staticmethod
+    def setup_arp_on_dut(node,interface,ip_address,mac_address):
+        get_node(node).set_arp(interface, ip_address, mac_address)
