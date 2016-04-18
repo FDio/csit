@@ -1,0 +1,943 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa0f191f_9a9b6d72",
+        "filename": "resources/libraries/python/IPv4NodeAddress.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-18T08:54:08Z",
+      "side": 1,
+      "message": "length.",
+      "range": {
+        "startLine": 33,
+        "startChar": 20,
+        "endLine": 33,
+        "endChar": 26
+      },
+      "revId": "6836e2ff4a1052f69950c00d45aca2d3de613935",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_da78c52d",
+        "filename": "resources/libraries/python/IPv4Util.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-18T08:54:08Z",
+      "side": 1,
+      "message": "length.",
+      "range": {
+        "startLine": 90,
+        "startChar": 29,
+        "endLine": 90,
+        "endChar": 35
+      },
+      "revId": "6836e2ff4a1052f69950c00d45aca2d3de613935",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_ba751134",
+        "filename": "resources/libraries/python/IPv4Util.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-18T08:54:08Z",
+      "side": 1,
+      "message": "subnet.",
+      "range": {
+        "startLine": 113,
+        "startChar": 22,
+        "endLine": 113,
+        "endChar": 28
+      },
+      "revId": "6836e2ff4a1052f69950c00d45aca2d3de613935",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_7a8f7924",
+        "filename": "resources/libraries/python/IPv6Setup.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-18T08:54:08Z",
+      "side": 1,
+      "message": "Affected",
+      "range": {
+        "startLine": 66,
+        "startChar": 17,
+        "endLine": 66,
+        "endChar": 25
+      },
+      "revId": "6836e2ff4a1052f69950c00d45aca2d3de613935",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_5a94b536",
+        "filename": "resources/libraries/python/IPv6Setup.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-18T08:54:08Z",
+      "side": 1,
+      "message": "tuples.",
+      "range": {
+        "startLine": 66,
+        "startChar": 66,
+        "endLine": 66,
+        "endChar": 72
+      },
+      "revId": "6836e2ff4a1052f69950c00d45aca2d3de613935",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_3a99016f",
+        "filename": "resources/libraries/python/IPv6Setup.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-18T08:54:08Z",
+      "side": 1,
+      "message": "address.",
+      "range": {
+        "startLine": 215,
+        "startChar": 71,
+        "endLine": 215,
+        "endChar": 78
+      },
+      "revId": "6836e2ff4a1052f69950c00d45aca2d3de613935",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_1a9e3d57",
+        "filename": "resources/libraries/python/IPv6Setup.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-18T08:54:08Z",
+      "side": 1,
+      "message": "topology.",
+      "range": {
+        "startLine": 230,
+        "startChar": 32,
+        "endLine": 230,
+        "endChar": 40
+      },
+      "revId": "6836e2ff4a1052f69950c00d45aca2d3de613935",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_faa26999",
+        "filename": "resources/libraries/python/IPv6Util.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-18T08:54:08Z",
+      "side": 1,
+      "message": ":rtype: int",
+      "revId": "6836e2ff4a1052f69950c00d45aca2d3de613935",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_da9fa54f",
+        "filename": "resources/libraries/python/IPv6Util.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-18T08:54:08Z",
+      "side": 1,
+      "message": ":rtype: str",
+      "revId": "6836e2ff4a1052f69950c00d45aca2d3de613935",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_baacf18d",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 329,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-18T08:54:08Z",
+      "side": 1,
+      "message": "DICT__nodes.",
+      "range": {
+        "startLine": 329,
+        "startChar": 67,
+        "endLine": 329,
+        "endChar": 78
+      },
+      "revId": "6836e2ff4a1052f69950c00d45aca2d3de613935",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_9aa92d7e",
+        "filename": "resources/libraries/python/L2Util.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-18T08:54:08Z",
+      "side": 1,
+      "message": "connecting.",
+      "range": {
+        "startLine": 123,
+        "startChar": 8,
+        "endLine": 123,
+        "endChar": 18
+      },
+      "revId": "6836e2ff4a1052f69950c00d45aca2d3de613935",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_7ab659de",
+        "filename": "resources/libraries/python/L2Util.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-18T08:54:08Z",
+      "side": 1,
+      "message": "Dictionary",
+      "range": {
+        "startLine": 127,
+        "startChar": 17,
+        "endLine": 127,
+        "endChar": 27
+      },
+      "revId": "6836e2ff4a1052f69950c00d45aca2d3de613935",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_5abb95c4",
+        "filename": "resources/libraries/python/L2Util.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-18T08:54:08Z",
+      "side": 1,
+      "message": "file.",
+      "range": {
+        "startLine": 128,
+        "startChar": 22,
+        "endLine": 128,
+        "endChar": 26
+      },
+      "revId": "6836e2ff4a1052f69950c00d45aca2d3de613935",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_3ab0e1dc",
+        "filename": "resources/libraries/python/L2Util.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-18T08:54:08Z",
+      "side": 1,
+      "message": ":rtype: dict",
+      "revId": "6836e2ff4a1052f69950c00d45aca2d3de613935",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_1ab51dcd",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-18T08:54:08Z",
+      "side": 1,
+      "message": "line too long",
+      "revId": "6836e2ff4a1052f69950c00d45aca2d3de613935",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_fac9495b",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-18T08:54:08Z",
+      "side": 1,
+      "message": "line too long",
+      "revId": "6836e2ff4a1052f69950c00d45aca2d3de613935",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_dac68549",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-18T08:54:08Z",
+      "side": 1,
+      "message": "line too long",
+      "revId": "6836e2ff4a1052f69950c00d45aca2d3de613935",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_bac3d137",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-18T08:54:08Z",
+      "side": 1,
+      "message": "\"interface.\" for all",
+      "range": {
+        "startLine": 80,
+        "startChar": 42,
+        "endLine": 80,
+        "endChar": 51
+      },
+      "revId": "6836e2ff4a1052f69950c00d45aca2d3de613935",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_9ac00d2c",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-18T08:54:08Z",
+      "side": 1,
+      "message": "Bytes.",
+      "range": {
+        "startLine": 259,
+        "startChar": 45,
+        "endLine": 259,
+        "endChar": 50
+      },
+      "revId": "6836e2ff4a1052f69950c00d45aca2d3de613935",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_7add3914",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-18T08:54:08Z",
+      "side": 1,
+      "message": "string.",
+      "range": {
+        "startLine": 111,
+        "startChar": 58,
+        "endLine": 111,
+        "endChar": 64
+      },
+      "revId": "6836e2ff4a1052f69950c00d45aca2d3de613935",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_5ae275d6",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-18T08:54:08Z",
+      "side": 1,
+      "message": "string.",
+      "range": {
+        "startLine": 131,
+        "startChar": 74,
+        "endLine": 131,
+        "endChar": 80
+      },
+      "revId": "6836e2ff4a1052f69950c00d45aca2d3de613935",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_3ae7c1e6",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-18T08:54:08Z",
+      "side": 1,
+      "message": "string.",
+      "range": {
+        "startLine": 149,
+        "startChar": 62,
+        "endLine": 149,
+        "endChar": 68
+      },
+      "revId": "6836e2ff4a1052f69950c00d45aca2d3de613935",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_7a04197e",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-18T08:54:08Z",
+      "side": 1,
+      "message": ").",
+      "range": {
+        "startLine": 230,
+        "startChar": 75,
+        "endLine": 230,
+        "endChar": 76
+      },
+      "revId": "6836e2ff4a1052f69950c00d45aca2d3de613935",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_fad029f9",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-18T08:54:08Z",
+      "side": 1,
+      "message": "waiting.",
+      "range": {
+        "startLine": 231,
+        "startChar": 63,
+        "endLine": 231,
+        "endChar": 70
+      },
+      "revId": "6836e2ff4a1052f69950c00d45aca2d3de613935",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_5a095594",
+        "filename": "resources/libraries/python/parsers/JsonParser.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-18T08:54:08Z",
+      "side": 1,
+      "message": "lists.",
+      "range": {
+        "startLine": 28,
+        "startChar": 62,
+        "endLine": 28,
+        "endChar": 67
+      },
+      "revId": "6836e2ff4a1052f69950c00d45aca2d3de613935",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_1a03dd74",
+        "filename": "resources/libraries/python/parsers/JsonParser.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-18T08:54:08Z",
+      "side": 1,
+      "message": "missing :type json_data: and :rtype:",
+      "revId": "6836e2ff4a1052f69950c00d45aca2d3de613935",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_3afea16c",
+        "filename": "resources/libraries/python/parsers/JsonParser.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-18T08:54:08Z",
+      "side": 1,
+      "message": "lists.",
+      "range": {
+        "startLine": 39,
+        "startChar": 28,
+        "endLine": 39,
+        "endChar": 33
+      },
+      "revId": "6836e2ff4a1052f69950c00d45aca2d3de613935",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_faf7098b",
+        "filename": "resources/libraries/python/parsers/JsonParser.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-18T08:54:08Z",
+      "side": 1,
+      "message": "missing :type json_file: and :rtype:",
+      "revId": "6836e2ff4a1052f69950c00d45aca2d3de613935",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_1a3abd36",
+        "filename": "resources/libraries/python/topology.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-18T08:54:08Z",
+      "side": 1,
+      "message": "topology.",
+      "range": {
+        "startLine": 27,
+        "startChar": 31,
+        "endLine": 27,
+        "endChar": 39
+      },
+      "revId": "6836e2ff4a1052f69950c00d45aca2d3de613935",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_3a358146",
+        "filename": "resources/libraries/python/topology.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-18T08:54:08Z",
+      "side": 1,
+      "message": "Nodes",
+      "range": {
+        "startLine": 27,
+        "startChar": 13,
+        "endLine": 27,
+        "endChar": 18
+      },
+      "revId": "6836e2ff4a1052f69950c00d45aca2d3de613935",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_da3b2537",
+        "filename": "resources/libraries/python/topology.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-18T08:54:08Z",
+      "side": 1,
+      "message": "Dictionary",
+      "range": {
+        "startLine": 139,
+        "startChar": 17,
+        "endLine": 139,
+        "endChar": 27
+      },
+      "revId": "6836e2ff4a1052f69950c00d45aca2d3de613935",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_fa3ee928",
+        "filename": "resources/libraries/python/topology.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-18T08:54:08Z",
+      "side": 1,
+      "message": "links.",
+      "range": {
+        "startLine": 140,
+        "startChar": 8,
+        "endLine": 140,
+        "endChar": 13
+      },
+      "revId": "6836e2ff4a1052f69950c00d45aca2d3de613935",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_ba4871cd",
+        "filename": "resources/libraries/python/topology.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-18T08:54:08Z",
+      "side": 1,
+      "message": "missing :rtype:",
+      "revId": "6836e2ff4a1052f69950c00d45aca2d3de613935",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_9a45adb5",
+        "filename": "resources/libraries/python/topology.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-18T08:54:08Z",
+      "side": 1,
+      "message": "Interface",
+      "range": {
+        "startLine": 160,
+        "startChar": 17,
+        "endLine": 160,
+        "endChar": 26
+      },
+      "revId": "6836e2ff4a1052f69950c00d45aca2d3de613935",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_7a12d9b5",
+        "filename": "resources/libraries/python/topology.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 160,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-18T08:54:08Z",
+      "side": 1,
+      "message": "link.",
+      "range": {
+        "startLine": 160,
+        "startChar": 72,
+        "endLine": 160,
+        "endChar": 76
+      },
+      "revId": "6836e2ff4a1052f69950c00d45aca2d3de613935",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_5a1715a4",
+        "filename": "resources/libraries/python/topology.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-18T08:54:08Z",
+      "side": 1,
+      "message": "missing :rtype:",
+      "revId": "6836e2ff4a1052f69950c00d45aca2d3de613935",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_3a0c6194",
+        "filename": "resources/libraries/python/topology.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 351,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-18T08:54:08Z",
+      "side": 1,
+      "message": "MAC address.",
+      "range": {
+        "startLine": 351,
+        "startChar": 17,
+        "endLine": 351,
+        "endChar": 34
+      },
+      "revId": "6836e2ff4a1052f69950c00d45aca2d3de613935",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_1a119dac",
+        "filename": "resources/libraries/python/topology.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 352,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-18T08:54:08Z",
+      "side": 1,
+      "message": "missing :rtype:",
+      "revId": "6836e2ff4a1052f69950c00d45aca2d3de613935",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_fa25c90a",
+        "filename": "resources/libraries/python/topology.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 364,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-18T08:54:08Z",
+      "side": 1,
+      "message": "missing :rtype:",
+      "revId": "6836e2ff4a1052f69950c00d45aca2d3de613935",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_da220501",
+        "filename": "resources/libraries/python/topology.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 383,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-18T08:54:08Z",
+      "side": 1,
+      "message": "missing :rtype:",
+      "revId": "6836e2ff4a1052f69950c00d45aca2d3de613935",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_ba1f51b7",
+        "filename": "resources/libraries/python/topology.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 403,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-18T08:54:08Z",
+      "side": 1,
+      "message": "missing :rtype:",
+      "revId": "6836e2ff4a1052f69950c00d45aca2d3de613935",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_9a1c8dc3",
+        "filename": "resources/libraries/python/topology.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 468,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-18T08:54:08Z",
+      "side": 1,
+      "message": "missing :rtype:",
+      "revId": "6836e2ff4a1052f69950c00d45aca2d3de613935",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_5a7ef5e5",
+        "filename": "resources/libraries/python/topology.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 468,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-18T08:54:08Z",
+      "side": 1,
+      "message": "Dictionary",
+      "range": {
+        "startLine": 468,
+        "startChar": 17,
+        "endLine": 468,
+        "endChar": 27
+      },
+      "revId": "6836e2ff4a1052f69950c00d45aca2d3de613935",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_1a887de6",
+        "filename": "resources/libraries/python/topology.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 502,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-18T08:54:08Z",
+      "side": 1,
+      "message": ",otherwise False.",
+      "range": {
+        "startLine": 502,
+        "startChar": 43,
+        "endLine": 502,
+        "endChar": 60
+      },
+      "revId": "6836e2ff4a1052f69950c00d45aca2d3de613935",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_7a79b9fb",
+        "filename": "resources/libraries/python/topology.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 502,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-18T08:54:08Z",
+      "side": 1,
+      "message": "missing :rtype:",
+      "revId": "6836e2ff4a1052f69950c00d45aca2d3de613935",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
