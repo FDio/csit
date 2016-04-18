@@ -17,11 +17,11 @@ from VatExecutor import VatTerminal
 from topology import Topology
 
 
-class Routing(object):
-    """Routing utilities."""
+class Cop(object):
+    """Cop utilities."""
 
     @staticmethod
-    def vpp_route_add(node, network, prefix_len, gateway, interface):
+    def cop_whitelist_enable_or_disable(node, interface, ipFormat, fib_id):
         """Add route to the VPP node.
 
         :param node: Node to add route on.
@@ -37,19 +37,31 @@ class Routing(object):
         """
         sw_if_index = Topology.get_interface_sw_index(node, interface)
         with VatTerminal(node) as vat:
-            vat.vat_terminal_exec_cmd_from_template('add_route.vat',
-                                                    network=network,
-                                                    prefix_length=prefix_len,
-                                                    gateway=gateway,
-                                                    sw_if_index=sw_if_index)
+            vat.vat_terminal_exec_cmd_from_template('cop_whitelist.vat',
+                                                    sw_if_index=sw_if_index,
+                                                    ip=ipFormat,
+                                                    fib_id=fib_id
+                                                    )
 
     @staticmethod
-    def add_fib_table(node,network,prefix_len,fib_id,place):
+    def cop_interface_enable_or_disable(node, interface, state):
+        """Add route to the VPP node.
+
+        :param node: Node to add route on.
+        :param network: Route destination network address.
+        :param prefix_len: Route destination network prefix length.
+        :param gateway: Route gateway address.
+        :param interface: Route interface.
+        :type node: dict
+        :type network: str
+        :type prefix_len: int
+        :type gateway: str
+        :type interface: str
+        """
+        if state != 'disable':
+            state = ''
+        sw_if_index = Topology.get_interface_sw_index(node, interface)
         with VatTerminal(node) as vat:
-            print vat
-            vat.vat_terminal_exec_cmd_from_template('add_fib_table.vat',
-                                                    network=network,
-                                                    prefix_length=prefix_len,
-                                                    fib_number=fib_id,
-                                                    where=place,
-                                                    )
+            vat.vat_terminal_exec_cmd_from_template('cop_interface.vat',
+                                                    sw_if_index=sw_if_index,
+                                                    state=state)
