@@ -43,6 +43,30 @@
 | | Set Suite Variable | ${dut2_if1}
 | | Set Suite Variable | ${dut2_if2}
 
+| 3-node circular Topology Variables Setup with DUT interface model
+| | [Arguments] | ${iface_model}
+| | ${iface_model_list}= | Create list | ${iface_model}
+| | Append Node | ${nodes['TG']}
+| | Append Node | ${nodes['DUT1']} | filter_list=${iface_model_list}
+| | Append Node | ${nodes['DUT2']} | filter_list=${iface_model_list}
+| | Append Node | ${nodes['TG']}
+| | Compute Path
+| | ${tg_if1} | ${tg}= | Next Interface
+| | ${dut1_if1} | ${dut1}= | Next Interface
+| | ${dut1_if2} | ${dut1}= | Next Interface
+| | ${dut2_if1} | ${dut2}= | Next Interface
+| | ${dut2_if2} | ${dut2}= | Next Interface
+| | ${tg_if2} | ${tg}= | Next Interface
+| | Set Suite Variable | ${tg}
+| | Set Suite Variable | ${tg_if1}
+| | Set Suite Variable | ${tg_if2}
+| | Set Suite Variable | ${dut1}
+| | Set Suite Variable | ${dut1_if1}
+| | Set Suite Variable | ${dut1_if2}
+| | Set Suite Variable | ${dut2}
+| | Set Suite Variable | ${dut2_if1}
+| | Set Suite Variable | ${dut2_if2}
+
 | IPv4 forwarding initialized in a 3-node circular topology
 | | [Documentation] | Custom setup of IPv4 addresses on all DUT nodes and TG
 | | Set Interface State | ${dut1} | ${dut1_if1} | up
@@ -82,6 +106,15 @@
 | 3-node Performance Suite Setup
 | | 3-node circular Topology Variables Setup
 | | [Arguments] | ${topology_type}
+| | Initialize traffic generator | ${tg} | ${tg_if1} | ${tg_if2}
+| | ...                          | ${dut1} | ${dut1_if1} | ${dut1_if2}
+| | ...                          | ${dut2} | ${dut2_if1} | ${dut2_if2}
+| | ...                          | ${topology_type}
+
+3-node Performance Suite Setup with DUT's NIC model
+| | [Arguments] | ${topology_type} | ${nic_model}
+| | 3-node circular Topology Variables Setup with DUT interface model
+| | ... | ${nic_model}
 | | Initialize traffic generator | ${tg} | ${tg_if1} | ${tg_if2}
 | | ...                          | ${dut1} | ${dut1_if1} | ${dut1_if2}
 | | ...                          | ${dut2} | ${dut2_if1} | ${dut2_if2}

@@ -357,35 +357,61 @@ class Topology(object):
         return None
 
     @staticmethod
-    def _get_node_active_link_names(node):
+    def _get_node_active_link_names(node, filter_list=None):
         """Return list of link names that are other than mgmt links
 
         :param node: node topology dictionary
+        :param filter_list: Link filter criteria.
+        :type node: dict
+        :type filter_list: list of strings
         :return: list of strings that represent link names occupied by the node
         """
         interfaces = node['interfaces']
         link_names = []
         for interface in interfaces.values():
             if 'link' in interface:
-                link_names.append(interface['link'])
+                if (filter_list is not None) and ('model' in interface):
+                    for filt in filter_list:
+                        if filt == interface['model']:
+                            link_names.append(interface['link'])
+                elif (filter_list is not None) and ('model' not in interface):
+                    logger.trace("Cannot apply filter on interface: {}" \
+                                 .format(str(interface)))
+                else:
+                    link_names.append(interface['link'])
         if len(link_names) == 0:
             link_names = None
         return link_names
 
     @keyword('Get active links connecting "${node1}" and "${node2}"')
-    def get_active_connecting_links(self, node1, node2):
+    def get_active_connecting_links(self, node1, node2,
+                                    filter_list_node1=None,
+                                    filter_list_node2=None):
         """Return list of link names that connect together node1 and node2
 
         :param node1: node topology dictionary
         :param node2: node topology dictionary
+        :param filter_list_node1: Link filter criteria for node1
+        :param filter_list_node2: Link filter criteria for node2
+        :type node1: dict
+        :type node2: dict
+        :type filter_list1: list of strings
+        :type filter_list2: list of strings
         :return: list of strings that represent connecting link names
         """
 
         logger.trace("node1: {}".format(str(node1)))
         logger.trace("node2: {}".format(str(node2)))
-        node1_links = self._get_node_active_link_names(node1)
-        node2_links = self._get_node_active_link_names(node2)
-        connecting_links = list(set(node1_links).intersection(node2_links))
+        node1_links = self._get_node_active_link_names(node1, filter_list=filter_list_node1)
+        node2_links = self._get_node_active_link_names(node2, filter_list=filter_list_node2)
+
+        connecting_links = None
+        if (node1_links is None):
+            logger.error("Unable to find active links for node1")
+        elif (node2_links is None):
+            logger.error("Unable to find active links for node2")
+        else:
+            connecting_links = list(set(node1_links).intersection(node2_links))
 
         return connecting_links
 
