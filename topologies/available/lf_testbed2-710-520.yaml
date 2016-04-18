@@ -20,11 +20,13 @@ nodes:
         pci_address: "0000:05:00.0"
         link: link1
         driver: i40e
+        model: Intel-X710
       port5:
         mac_address: "3c:fd:fe:9c:ed:5d"
         pci_address: "0000:05:00.1"
         link: link2
         driver: i40e
+        model: Intel-X710
   DUT1:
     type: DUT
     host: "10.30.51.21"
@@ -36,10 +38,12 @@ nodes:
         mac_address: "90:e2:ba:b5:02:b9"
         pci_address: "0000:0a:00.1"
         link: link1
+        model: Intel-X520-DA2
       port3:
         mac_address: "90:e2:ba:b5:02:b8"
         pci_address: "0000:0a:00.0"
         link: link3
+        model: Intel-X520-DA2
   DUT2:
     type: DUT
     host: "10.30.51.22"
@@ -51,7 +55,9 @@ nodes:
         mac_address: "90:e2:ba:b5:01:d8"
         pci_address: "0000:0a:00.0"
         link: link2
+        model: Intel-X520-DA2
       port3:
         mac_address: "90:e2:ba:b5:01:d9"
         pci_address: "0000:0a:00.1"
         link: link3
+        model: Intel-X520-DA2
