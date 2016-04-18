@@ -119,7 +119,8 @@ class HoneycombSetup(object):
         expected_status_codes = (HTTPCodes.UNAUTHORIZED,
                                  HTTPCodes.FORBIDDEN,
                                  HTTPCodes.NOT_FOUND,
-                                 HTTPCodes.SERVICE_UNAVAILABLE)
+                                 HTTPCodes.SERVICE_UNAVAILABLE,
+                                 HTTPCodes.INTERNAL_SERVER_ERROR)
 
         for node in nodes.values():
             if node['type'] == NodeType.DUT:
