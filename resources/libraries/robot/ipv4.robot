@@ -103,3 +103,32 @@
 | |          | ...                    | ${dst_mac} | ${src_ip} | ${dst_ip}
 | | Run Traffic Script On Node | arp_request.py | ${tg_node} | ${args}
 
+| Send Packet And Check Headers
+| | [Documentation] | Sends packet from IP (with source mac) to IP
+| | ... | (with dest mac). There has to be 4 MAC addresses when using 2 node +
+| | ... | xconnect ( one for each eth ).
+| | ... | Example : TG(if1) -> (if1)DUT1(if2) -> (if2)TG
+| | ... | Arguments ( Based on example above ) :
+| | ... | - {tg} : Node to execute scripts on (TG).
+| | ... | - {src_ip} : IP of source interface (TG-if1).
+| | ... | - {dst_ip} : Ip of destination interface (TG-if2).
+| | ... | - {tx_src_port} : Interface of TG-if1.
+| | ... | - {tx_src_mac} : MAC address of TG-if1.
+| | ... | - {tx_dst_mac} : MAC address of DUT-if1.
+| | ... | - {rx_port} : Interface of TG-if1.
+| | ... | - {rx_src_mac} : MAC address of DUT1-if2.
+| | ... | - {rx_dst_mac} : MAC address of TG-if2.
+| | [Arguments] | ${tg} | ${src_ip} | ${dst_ip} | ${tx_src_port} | ${tx_src_mac} | ${tx_dst_mac} | ${rx_port} | ${rx_src_mac} | ${rx_dst_mac}
+| | ${args}= | Catenate | --tg_src_mac | ${tx_src_mac} | --tg_dst_mac | ${rx_dst_mac} | --dut_if1_mac | ${tx_dst_mac} | --dut_if2_mac |
+| | ... | ${rx_src_mac} | --src_ip | ${src_ip} | --dst_ip | ${dst_ip} | --tx_if | ${tx_src_port} | --rx_if | ${rx_port}
+| | Run Traffic Script On Node | send_icmp_check_headers.py | ${tg} | ${args}
+
+| Send packet from Port to Port should failed
+| | [Documentation] | Sends packet from ip (with specified mac) to ip
+| | ... | (with dest mac). Using keyword : Send packet And Check Headers
+| | ... | and subsequently checks the return value
+| | [Arguments] | ${tg} | ${src_ip} | ${dst_ip} | ${tx_src_port} | ${tx_src_mac} | ${tx_dst_mac} | ${rx_port} | ${rx_src_mac} | ${rx_dst_mac}
+| | ${status} | run keyword and return status | Send Packet And Check Headers |
+| | ... | ${tg} | ${src_ip} | ${dst_ip} | ${tx_src_port} | ${tx_src_mac} | ${tx_dst_mac} | ${rx_port} | ${rx_src_mac} | ${rx_dst_mac}
+| | should not be true | ${status}
+
