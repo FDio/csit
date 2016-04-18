@@ -37,7 +37,7 @@ class TrafficScriptExecutor(object):
 
     @staticmethod
     def run_traffic_script_on_node(script_file_name, node, script_args,
-                                   timeout=10):
+                                         timeout=10):
         """Run traffic script on the TG node.
 
         :param script_file_name: Traffic script name.
@@ -56,8 +56,8 @@ class TrafficScriptExecutor(object):
                "export PYTHONPATH=${{PWD}}; " +
                ". ${{PWD}}/env/bin/activate; " +
                "resources/traffic_scripts/{} {}") \
-                  .format(Constants.REMOTE_FW_DIR, script_file_name,
-                          script_args)
+            .format(Constants.REMOTE_FW_DIR, script_file_name,
+                    script_args)
         (ret_code, stdout, stderr) = ssh.exec_command_sudo(
             'sh -c "{}"'.format(TrafficScriptExecutor._escape(cmd)),
             timeout=timeout)
@@ -65,6 +65,8 @@ class TrafficScriptExecutor(object):
         logger.debug("stderr: {}".format(stderr))
         logger.debug("ret_code: {}".format(ret_code))
         if ret_code != 0:
+            if "ICMP echo Rx timeout" in stderr:
+                raise Exception("ICMP echo Rx timeout")
             raise Exception("Traffic script execution failed")
 
     @staticmethod
