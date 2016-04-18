@@ -57,6 +57,10 @@ schema;type_interfaces:
           required: yes
         driver: &type_interface_mapping_driver
           type: str
+        model:
+          type: str
+          enum: [Cisco-VIC-1227, Cisco-VIC-1385, Intel-X520-DA2,
+                 Intel-X710, Intel-XL710]
 
 schema;type_interface_tg: &type_interface_tg
   type: map
