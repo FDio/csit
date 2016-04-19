@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa0f191f_7d4ad384",
+        "filename": "resources/libraries/bash/dut_setup.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-04-19T15:26:27Z",
+      "side": 1,
+      "message": "here could be other usefull commands like cat /proc/meminfo, free, df..",
+      "revId": "4643d8462950b0e9762f07df30613a78135ced99",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
