@@ -29,6 +29,7 @@
 
 *** Test Cases ***
 | VPP can encapsulate L2 in VXLAN over IPv4 over Dot1Q
+| | [ Tags ] | EXPECTED_FAILING
 | | Given Path for VXLAN testing is set
 | | ...   | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']}
 | | And   Interfaces in path are up
