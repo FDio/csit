@@ -94,8 +94,12 @@
 | | ... | ${dut1s_ip_address} | ${duts_ip_address_prefix}
 | | Set Interface Address | ${DUT2} | ${DUT2_INT_INDEX}
 | | ... | ${dut2s_ip_address} | ${duts_ip_address_prefix}
-| | VPP IP Probe | ${DUT1} | ${DUT1_INT_NAME} | ${dut2s_ip_address}
-| | VPP IP Probe | ${DUT2} | ${DUT2_INT_NAME} | ${dut1s_ip_address}
+#| | VPP IP Probe | ${DUT1} | ${DUT1_INT_NAME} | ${dut2s_ip_address}
+#| | VPP IP Probe | ${DUT2} | ${DUT2_INT_NAME} | ${dut1s_ip_address}
+| | ${dut1s_mac_address}= | Get Interface Mac | ${DUT1} | ${dut1s_to_dut2}
+| | ${dut2s_mac_address}= | Get Interface Mac | ${DUT2} | ${dut2s_to_dut1}
+| | Setup Arp On Dut | ${DUT1} | ${DUT1_INT_INDEX} | ${dut2s_ip_address} | ${dut2s_mac_address}
+| | Setup Arp On Dut | ${DUT2} | ${DUT2_INT_INDEX} | ${dut1s_ip_address} | ${dut1s_mac_address}
 
 | VXLAN interface is created
 | | [Arguments] | ${DUT} | ${VNI} | ${SRC_IP} | ${DST_IP}
@@ -107,7 +111,7 @@
 
 | Interfaces are added to xconnect
 | | [Arguments] | ${DUT} | ${INTERFACE_1} | ${INTERFACE_2}
-| |  L2 setup xconnect on DUT | ${DUT} | ${INTERFACE_1} | ${INTERFACE_2}
+| | L2 setup xconnect on DUT | ${DUT} | ${INTERFACE_1} | ${INTERFACE_2}
 
 | Vlan interfaces for VXLAN are created
 | | [Documentation] | *Create VLAN subinterface on interfaces on DUTs with given VLAN ID.*
@@ -125,6 +129,8 @@
 | |                    | ...                  | ${DUT2} | ${INT2} | ${VLAN}
 | | Set Interface State | ${DUT1} | ${dut1s_vlan_index} | up
 | | Set Interface State | ${DUT2} | ${dut2s_vlan_index} | up
+| | Vpp Node Interfaces Ready Wait | ${DUT1}
+| | Vpp Node Interfaces Ready Wait | ${DUT2}
 | | Set Test Variable | ${dut1s_vlan_name}
 | | Set Test Variable | ${dut1s_vlan_index}
 | | Set Test Variable | ${dut2s_vlan_name}
