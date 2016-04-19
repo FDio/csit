@@ -218,6 +218,24 @@
     },
     {
       "key": {
+        "uuid": "fa0f191f_ddac3f38",
+        "filename": "resources/libraries/robot/bridge_domain.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-04-19T15:10:37Z",
+      "side": 1,
+      "message": "is there difference between VPP Nodes Interfaces Ready Wait KW from InterfaceUtil.py?\n\nmissing \"| \"?",
+      "parentUuid": "fa0f191f_dd6e7f96",
+      "revId": "cbfabe5aac200e30e5bd70329a4742e1c5ce4f27",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa0f191f_7d3773b1",
         "filename": "resources/libraries/robot/bridge_domain.robot",
         "patchSetId": 1
