@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa0f191f_9d680789",
+        "filename": "resources/libraries/robot/honeycomb_interfaces.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-19T05:46:10Z",
+      "side": 1,
+      "message": "Is this really necessary?",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 16
+      },
+      "revId": "acf82c495cf0a16c918be3cd9b692d6fd9f7bfd3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_7d0533c1",
+        "filename": "tests/suites/honeycomb/interface_management.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-19T05:46:10Z",
+      "side": 1,
+      "message": "from this I don\u0027t know for which nodes, probably all DUTs",
+      "range": {
+        "startLine": 20,
+        "startChar": 8,
+        "endLine": 20,
+        "endChar": 31
+      },
+      "revId": "acf82c495cf0a16c918be3cd9b692d6fd9f7bfd3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_5d0a6fd3",
+        "filename": "tests/suites/honeycomb/interface_management.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-19T05:46:10Z",
+      "side": 1,
+      "message": "from this I don\u0027t know for which nodes, probably all DUTs",
+      "range": {
+        "startLine": 21,
+        "startChar": 19,
+        "endLine": 21,
+        "endChar": 41
+      },
+      "revId": "acf82c495cf0a16c918be3cd9b692d6fd9f7bfd3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
