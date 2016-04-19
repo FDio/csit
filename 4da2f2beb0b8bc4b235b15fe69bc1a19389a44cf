@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa0f191f_fd7b8327",
+        "filename": "resources/libraries/python/LispSetup.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 349,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-19T08:43:40Z",
+      "side": 1,
+      "message": "ValueError",
+      "range": {
+        "startLine": 349,
+        "startChar": 18,
+        "endLine": 349,
+        "endChar": 27
+      },
+      "revId": "4da2f2beb0b8bc4b235b15fe69bc1a19389a44cf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_dd78bf2d",
+        "filename": "resources/libraries/python/LispUtil.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-19T08:43:40Z",
+      "side": 1,
+      "message": "should be \":return:\" and missing \":rtype:\"",
+      "range": {
+        "startLine": 32,
+        "startChar": 8,
+        "endLine": 32,
+        "endChar": 15
+      },
+      "revId": "4da2f2beb0b8bc4b235b15fe69bc1a19389a44cf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_bd750b34",
+        "filename": "resources/libraries/python/LispUtil.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-19T08:43:40Z",
+      "side": 1,
+      "message": "\"\"\"Fail",
+      "range": {
+        "startLine": 67,
+        "startChar": 8,
+        "endLine": 67,
+        "endChar": 16
+      },
+      "revId": "4da2f2beb0b8bc4b235b15fe69bc1a19389a44cf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_7d8f7324",
+        "filename": "tests/suites/lisp/lisp_untagged.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-19T08:43:40Z",
+      "side": 1,
+      "message": "When",
+      "range": {
+        "startLine": 35,
+        "startChar": 4,
+        "endLine": 35,
+        "endChar": 8
+      },
+      "revId": "4da2f2beb0b8bc4b235b15fe69bc1a19389a44cf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_5d94af36",
+        "filename": "tests/suites/lisp/lisp_untagged.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-19T08:43:40Z",
+      "side": 1,
+      "message": "Then",
+      "range": {
+        "startLine": 36,
+        "startChar": 4,
+        "endLine": 36,
+        "endChar": 8
+      },
+      "revId": "4da2f2beb0b8bc4b235b15fe69bc1a19389a44cf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_9d724748",
+        "filename": "tests/suites/lisp/lisp_untagged.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-19T08:43:40Z",
+      "side": 1,
+      "message": "this should be teardown",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 64
+      },
+      "revId": "4da2f2beb0b8bc4b235b15fe69bc1a19389a44cf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
