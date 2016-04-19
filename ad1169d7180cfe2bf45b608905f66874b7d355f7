@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa0f191f_7d12d3b5",
+        "filename": "resources/libraries/robot/honeycomb.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-04-19T11:23:13Z",
+      "side": 1,
+      "message": "better way will be rename \"Setup Honeycomb service on all DUTs\" KW to \"Setup Honeycomb service DUTs/nodes\" and pass nodes as an argument.",
+      "revId": "ad1169d7180cfe2bf45b608905f66874b7d355f7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_bd486bcd",
+        "filename": "resources/libraries/robot/honeycomb.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-04-19T11:23:13Z",
+      "side": 1,
+      "message": "same as above.",
+      "range": {
+        "startLine": 41,
+        "startChar": 2,
+        "endLine": 41,
+        "endChar": 36
+      },
+      "revId": "ad1169d7180cfe2bf45b608905f66874b7d355f7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_1d1197ac",
+        "filename": "tests/suites/honeycomb/interface_management.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-04-19T11:23:13Z",
+      "side": 1,
+      "message": "given interface is down (set via VAT)\nwhen  set state to up (via Honeycomb)\nthen  state is in up state (Honeycomb)\nand   state is in up state (VAT)\n\nanother tc could be with switched UP DOWN state.",
+      "range": {
+        "startLine": 27,
+        "startChar": 2,
+        "endLine": 27,
+        "endChar": 36
+      },
+      "revId": "ad1169d7180cfe2bf45b608905f66874b7d355f7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
