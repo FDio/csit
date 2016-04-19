@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "fa0f191f_1d9e3757",
+        "filename": "resources/libraries/python/LispSetup.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-19T08:49:40Z",
+      "side": 1,
+      "message": "resources/libraries/python/LispSetup.py:16: [W0403(relative-import), ] Relative import \u0027topology\u0027, should be \u0027resources.libraries.python.topology\u0027\nresources/libraries/python/LispSetup.py:17: [W0403(relative-import), ] Relative import \u0027VatExecutor\u0027, should be \u0027resources.libraries.python.VatExecutor\u0027",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 35
+      },
+      "revId": "4da2f2beb0b8bc4b235b15fe69bc1a19389a44cf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa0f191f_fd7b8327",
         "filename": "resources/libraries/python/LispSetup.py",
         "patchSetId": 2
@@ -18,6 +41,52 @@
         "startChar": 18,
         "endLine": 349,
         "endChar": 27
+      },
+      "revId": "4da2f2beb0b8bc4b235b15fe69bc1a19389a44cf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_fda26399",
+        "filename": "resources/libraries/python/LispUtil.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-19T08:49:40Z",
+      "side": 1,
+      "message": "resources/libraries/python/LispUtil.py:17: [W0403(relative-import), ] Relative import \u0027topology\u0027, should be \u0027resources.libraries.python.topology\u0027\nresources/libraries/python/LispUtil.py:18: [W0403(relative-import), ] Relative import \u0027VatExecutor\u0027, should be \u0027resources.libraries.python.VatExecutor\u0027",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 35
+      },
+      "revId": "4da2f2beb0b8bc4b235b15fe69bc1a19389a44cf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_dd9f9f4f",
+        "filename": "resources/libraries/python/LispUtil.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-19T08:49:40Z",
+      "side": 1,
+      "message": "(object)",
+      "range": {
+        "startLine": 20,
+        "startChar": 14,
+        "endLine": 20,
+        "endChar": 16
       },
       "revId": "4da2f2beb0b8bc4b235b15fe69bc1a19389a44cf",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
@@ -64,6 +133,29 @@
         "startChar": 8,
         "endLine": 67,
         "endChar": 16
+      },
+      "revId": "4da2f2beb0b8bc4b235b15fe69bc1a19389a44cf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_bdaceb8d",
+        "filename": "resources/libraries/python/LispUtil.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-19T08:49:40Z",
+      "side": 1,
+      "message": "method name too long, max 40 chars",
+      "range": {
+        "startLine": 151,
+        "startChar": 8,
+        "endLine": 151,
+        "endChar": 51
       },
       "revId": "4da2f2beb0b8bc4b235b15fe69bc1a19389a44cf",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
