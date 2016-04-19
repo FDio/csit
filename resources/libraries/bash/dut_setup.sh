@@ -12,6 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+set -x
+
 echo
 echo List vpp packages
 echo
@@ -32,6 +34,9 @@ echo Restart VPP
 echo
 sudo -S service vpp restart
 
+echo SLEEP for three seconds, so that VPP is up for sure
+sleep 3
+
 echo
 echo List /proc/meminfo
 echo
@@ -49,6 +54,12 @@ ps aux | grep vpp
 
 echo UUID
 sudo dmidecode | grep UUID
+
+echo lspci -Dnn | grep 0200
+lspci -Dnn
+
+echo tail -n 50 /var/log/syslog for potential VPP errors
+tail -n 50 /var/log/syslog
 
 echo Add dpdk-input trace
 sudo vpp_api_test <<< "exec trace add dpdk-input 100"
