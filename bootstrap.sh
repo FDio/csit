@@ -70,12 +70,12 @@ if [ "${#}" -ne "0" ]; then
     echo ${arr[0]}
 else
     rm -f *.deb
-    wget -q "https://nexus.fd.io/service/local/repositories/fd.io.dev/content/io/fd/vpp/vpp/1.0.0-304~gd530445_amd64/vpp-1.0.0-304~gd530445_amd64.deb" || exit
-    wget -q "https://nexus.fd.io/service/local/repositories/fd.io.dev/content/io/fd/vpp/vpp-dbg/1.0.0-304~gd530445_amd64/vpp-dbg-1.0.0-304~gd530445_amd64.deb" || exit
-    wget -q "https://nexus.fd.io/service/local/repositories/fd.io.dev/content/io/fd/vpp/vpp-dev/1.0.0-304~gd530445_amd64/vpp-dev-1.0.0-304~gd530445_amd64.deb" || exit
-    wget -q "https://nexus.fd.io/service/local/repositories/fd.io.dev/content/io/fd/vpp/vpp-dpdk-dev/1.0.0-304~gd530445_amd64/vpp-dpdk-dev-1.0.0-304~gd530445_amd64.deb" || exit
-    wget -q "https://nexus.fd.io/service/local/repositories/fd.io.dev/content/io/fd/vpp/vpp-dpdk-dkms/1.0.0-304~gd530445_amd64/vpp-dpdk-dkms-1.0.0-304~gd530445_amd64.deb" || exit
-    wget -q "https://nexus.fd.io/service/local/repositories/fd.io.dev/content/io/fd/vpp/vpp-lib/1.0.0-304~gd530445_amd64/vpp-lib-1.0.0-304~gd530445_amd64.deb" || exit
+    wget -q "https://nexus.fd.io/service/local/repositories/fd.io.dev/content/io/fd/vpp/vpp/1.0.0-343~gc02f02d_amd64/vpp-1.0.0-343~gc02f02d_amd64.deb" || exit
+    wget -q "https://nexus.fd.io/service/local/repositories/fd.io.dev/content/io/fd/vpp/vpp-dbg/1.0.0-343~gc02f02d_amd64/vpp-dbg-1.0.0-343~gc02f02d_amd64.deb" || exit
+    wget -q "https://nexus.fd.io/service/local/repositories/fd.io.dev/content/io/fd/vpp/vpp-dev/1.0.0-343~gc02f02d_amd64/vpp-dev-1.0.0-343~gc02f02d_amd64.deb" || exit
+    wget -q "https://nexus.fd.io/service/local/repositories/fd.io.dev/content/io/fd/vpp/vpp-dpdk-dev/1.0.0-343~gc02f02d_amd64/vpp-dpdk-dev-1.0.0-343~gc02f02d_amd64.deb" || exit
+    wget -q "https://nexus.fd.io/service/local/repositories/fd.io.dev/content/io/fd/vpp/vpp-dpdk-dkms/1.0.0-343~gc02f02d_amd64/vpp-dpdk-dkms-1.0.0-343~gc02f02d_amd64.deb" || exit
+    wget -q "https://nexus.fd.io/service/local/repositories/fd.io.dev/content/io/fd/vpp/vpp-lib/1.0.0-343~gc02f02d_amd64/vpp-lib-1.0.0-343~gc02f02d_amd64.deb" || exit
 fi
 
 VPP_DEBS=(*.deb)
