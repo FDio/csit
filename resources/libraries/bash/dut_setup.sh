@@ -12,50 +12,38 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-echo
-echo List vpp packages
-echo
-dpkg -l vpp\*
+function cmd {
+    echo "Executing: $1"
+    eval ${@}
+    echo
+}
 
-echo
-echo See vpp process
-echo
-ps aux | grep vpp
+echo "${0}"
+echo Preparing DUT for test run
 
-echo
-echo See /etc/vpp/startup.conf
-echo
-cat /etc/vpp/startup.conf
+cmd 'dpkg -l vpp\*'
 
-echo
-echo Restart VPP
-echo
-sudo -S service vpp restart
+cmd 'ps aux | grep vpp'
 
-echo
-echo List /proc/meminfo
-echo
-cat /proc/meminfo
+cmd 'cat /etc/vpp/startup.conf'
 
-echo
-echo See free memory
-echo
-free -m
+cmd 'sudo -S service vpp restart'
 
-echo
-echo See vpp process
-echo
-ps aux | grep vpp
+echo SLEEP for three seconds, so that VPP is up for sure
+cmd 'sleep 3'
+
+cmd 'cat /proc/meminfo'
+
+cmd 'free -m'
+
+cmd 'ps aux | grep vpp'
 
 echo UUID
-sudo dmidecode | grep UUID
+cmd 'sudo dmidecode | grep UUID'
 
-echo Add dpdk-input trace
-sudo vpp_api_test <<< "exec trace add dpdk-input 100"
-RESULT=$?
-if [ $RESULT -ne 0 ]; then
-  echo
-  echo See /var/log/syslog
-  sudo tail -n 200 /var/log/syslog
-  exit $RESULT
-fi
+cmd 'lspci -Dnn'
+
+cmd 'tail -n 50 /var/log/syslog'
+
+echo Adding dpdk-input trace
+cmd 'sudo vpp_api_test <<< "exec trace add dpdk-input 100"'
