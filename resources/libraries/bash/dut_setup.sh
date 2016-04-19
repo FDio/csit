@@ -13,7 +13,6 @@
 # limitations under the License.
 
 function cmd {
-    echo
     echo "[Command_start_exec] '$1'"
     echo -n "[Command_outputs] "
     eval ${@}
