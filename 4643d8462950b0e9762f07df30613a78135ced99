@@ -16,6 +16,24 @@
       "revId": "4643d8462950b0e9762f07df30613a78135ced99",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_3d121b63",
+        "filename": "resources/libraries/bash/dut_setup.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-04-19T15:54:02Z",
+      "side": 1,
+      "message": "they are right below... i don\u0027t understand your remark.",
+      "parentUuid": "fa0f191f_7d4ad384",
+      "revId": "4643d8462950b0e9762f07df30613a78135ced99",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
