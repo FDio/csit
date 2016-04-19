@@ -46,5 +46,7 @@
 | |                 | ...  | ${dut2s_ip_address} | ${dut1s_ip_address}
 | |                   And  Interfaces are added to BD | ${dut2} | ${BID}
 | |                   ...  | ${dut2s_to_tg} | ${dut2s_vxlan}
+| | And Vpp Node Interfaces Ready Wait | ${DUT1}
+| | And Vpp Node Interfaces Ready Wait | ${DUT2}
 | | Then Send and receive ICMPv4 bidirectionally
 | | ... | ${tg} | ${tgs_to_dut1} | ${tgs_to_dut2}

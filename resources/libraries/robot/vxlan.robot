@@ -107,7 +107,7 @@
 
 | Interfaces are added to xconnect
 | | [Arguments] | ${DUT} | ${INTERFACE_1} | ${INTERFACE_2}
-| |  L2 setup xconnect on DUT | ${DUT} | ${INTERFACE_1} | ${INTERFACE_2}
+| | L2 setup xconnect on DUT | ${DUT} | ${INTERFACE_1} | ${INTERFACE_2}
 
 | Vlan interfaces for VXLAN are created
 | | [Documentation] | *Create VLAN subinterface on interfaces on DUTs with given VLAN ID.*
@@ -125,6 +125,8 @@
 | |                    | ...                  | ${DUT2} | ${INT2} | ${VLAN}
 | | Set Interface State | ${DUT1} | ${dut1s_vlan_index} | up
 | | Set Interface State | ${DUT2} | ${dut2s_vlan_index} | up
+| | Vpp Node Interfaces Ready Wait | ${DUT1}
+| | Vpp Node Interfaces Ready Wait | ${DUT2}
 | | Set Test Variable | ${dut1s_vlan_name}
 | | Set Test Variable | ${dut1s_vlan_index}
 | | Set Test Variable | ${dut2s_vlan_name}
