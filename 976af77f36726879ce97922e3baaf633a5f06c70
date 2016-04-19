@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa0f191f_ddcaff6d",
+        "filename": "resources/libraries/robot/honeycomb_interfaces.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-19T08:31:23Z",
+      "side": 1,
+      "message": "redundant",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 42,
+        "endChar": 16
+      },
+      "revId": "976af77f36726879ce97922e3baaf633a5f06c70",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_bdc74b64",
+        "filename": "resources/libraries/robot/honeycomb_interfaces.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-19T08:31:23Z",
+      "side": 1,
+      "message": "redundant",
+      "range": {
+        "startLine": 57,
+        "startChar": 1,
+        "endLine": 58,
+        "endChar": 16
+      },
+      "revId": "976af77f36726879ce97922e3baaf633a5f06c70",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_dd91df53",
+        "filename": "tests/suites/honeycomb/interface_management.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-19T08:31:23Z",
+      "side": 1,
+      "message": "Documentation instead of appropriate abstraction level is not good idea, well named keywords should not need extra documentation.",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 60
+      },
+      "revId": "976af77f36726879ce97922e3baaf633a5f06c70",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
