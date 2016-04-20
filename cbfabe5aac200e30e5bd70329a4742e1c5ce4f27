@@ -236,6 +236,24 @@
     },
     {
       "key": {
+        "uuid": "fa0f191f_2011ceac",
+        "filename": "resources/libraries/robot/bridge_domain.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-20T05:24:42Z",
+      "side": 1,
+      "message": "You can\u0027t use it like in example (varargs).",
+      "parentUuid": "fa0f191f_ddac3f38",
+      "revId": "cbfabe5aac200e30e5bd70329a4742e1c5ce4f27",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa0f191f_7d3773b1",
         "filename": "resources/libraries/robot/bridge_domain.robot",
         "patchSetId": 1
