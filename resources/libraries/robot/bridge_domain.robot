@@ -15,6 +15,8 @@
 | Library | resources.libraries.python.L2Util
 | Library | resources.libraries.python.InterfaceUtil
 | Library | resources.libraries.python.NodePath
+| Library | resources.libraries.python.VhostUser
+| Library | resources.libraries.python.QemuUtils
 | Resource | resources/libraries/robot/interfaces.robot
 | Resource | resources/libraries/robot/l2_traffic.robot
 
@@ -168,3 +170,55 @@
 | | ...         | ${vpp_node_if} | ${bd_id}
 | | ${mac}= | Get Interface Mac | ${dest_node} | ${dest_node_if}
 | | Vpp Add L2fib Entry | ${vpp_node} | ${mac} | ${vpp_node_if} | ${bd_id}
+
+| VM for Vhost L2BD forwarding is setup
+| | [Documentation] | Setup QEMU and start VM with two whost interfaces.
+| | ...
+| | ... | *Arguments:*
+| | ... | - ${node} - DUT node to start VM on. Type: dictionary
+| | ... | - ${sock1} - Socket path for first Vhost-User interface. Type: string
+| | ... | - ${sock2} - Socket path for second Vhost-User interface. Type: string
+| | ...
+| | ... | _NOTE:_ This KW sets following test case variable:
+| | ... | -${vm_node} - VM node info. Type: dictionary
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| VM for Vhost L2BD forwarding is setup \| ${nodes['DUT1']} \
+| | ... | \| ${sock1} \| ${sock2}
+| | [Arguments] | ${node} | ${sock1} | ${sock2}
+| | Set Test Variable | ${vm_node} | ${None}
+| | Qemu Set Node | ${node}
+| | Qemu Add Vhost User If | ${sock1}
+| | Qemu Add Vhost User If | ${sock2}
+| | ${vm}= | Qemu Start
+| | ${br}= | Set Variable | br0
+| | ${vhost1}= | Get Vhost User If Name By Sock | ${vm} | ${sock1}
+| | ${vhost2}= | Get Vhost User If Name By Sock | ${vm} | ${sock2}
+| | Linux Add Bridge | ${vm} | ${br} | ${vhost1} | ${vhost2}
+| | Set Interface State | ${vm} | ${vhost1} | up
+| | Set Interface State | ${vm} | ${vhost2} | up
+| | Set Interface State | ${vm} | ${br} | up
+| | Set Test Variable | ${vm_node} | ${vm}
+
+| VPP Vhost interfaces for L2BD forwarding are setup
+| | [Documentation] | Create two Vhost-User interfaces on defined VPP node.
+| | ...
+| | ... | *Arguments:*
+| | ... | - ${node} - DUT node. Type: dictionary
+| | ... | - ${sock1} - Socket path for first Vhost-User interface. Type: string
+| | ... | - ${sock2} - Socket path for second Vhost-User interface. Type: string
+| | ...
+| | ... | _NOTE:_ This KW sets following test case variable:
+| | ... | - ${vhost_if1} - First Vhost-User interface.
+| | ... | - ${vhost_if2} - Second Vhost-User interface.
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| VPP Vhost interfaces for L2BD forwarding are setup \
+| | ... | \| ${nodes['DUT1']} \| ${sock1} \| ${sock2}
+| | [Arguments] | ${node} | ${sock1} | ${sock2}
+| | ${vhost_if1}= | Vpp Create Vhost User Interface | ${node} | ${sock1}
+| | ${vhost_if2}= | Vpp Create Vhost User Interface | ${node} | ${sock2}
+| | Set Test Variable | ${vhost_if1}
+| | Set Test Variable | ${vhost_if2}
