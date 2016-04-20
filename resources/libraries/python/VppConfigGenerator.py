@@ -33,7 +33,7 @@ __all__ = ['VppConfigGenerator']
 #
 VPP_SERVICE_NAME = "vpp"
 VPP_CONFIG_FILENAME = "/etc/vpp/startup.conf"
-DEFAULT_SOCKETMEM_CONFIG = "1024,1024"
+DEFAULT_SOCKETMEM_CONFIG = "1024"
 VPP_CONFIG_TEMPLATE = """
 unix {{
   nodaemon
