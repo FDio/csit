@@ -16,7 +16,7 @@
 """This script uses T-REX stateless API to drive t-rex instance.
 
 Requirements:
-- T-REX: https://github.com/cisco-system-traffic-generator/trex-core 
+- T-REX: https://github.com/cisco-system-traffic-generator/trex-core
  - compiled and running T-REX process (eg. ./t-rex-64 -i -c 4)
  - trex_stl_lib.api library
 - Script must be executed on a node with T-REX instance
@@ -26,7 +26,7 @@ Requirements:
 - port_limit      : 2 # numbers of ports to use
   version         : 2
   interfaces      : ["84:00.0","84:00.1"] # PCI address of interfaces
-  port_info       :  # set eth mac addr 
+  port_info       :  # set eth mac addr
           - dest_mac        :   [0x90,0xe2,0xba,0x1f,0x97,0xd5]  # port 0
             src_mac         :   [0x90,0xe2,0xba,0x1f,0x97,0xd4]
           - dest_mac        :   [0x90,0xe2,0xba,0x1f,0x97,0xd4]  # port 1
@@ -100,6 +100,50 @@ def create_packets(traffic_options, frame_size=64):
 
     pkt_a = STLPktBuilder(pkt=base_pkt_a/generate_payload(fsize_no_fcs-len(base_pkt_a)), vm=vm1)
     pkt_b = STLPktBuilder(pkt=base_pkt_b/generate_payload(fsize_no_fcs-len(base_pkt_b)), vm=vm2)
+
+    return(pkt_a, pkt_b)
+
+def create_packets_v6(traffic_options, frame_size=78):
+
+    if frame_size < 78:
+        print "Packet min. size is 78B"
+        sys.exit(2)
+
+    fsize_no_fcs = frame_size - 4 # no FCS
+
+    #p1_src_mac = traffic_options['p1_src_mac']
+    #p1_dst_mac = traffic_options['p1_dst_mac']
+    p1_src_start_ip = traffic_options['p1_src_start_ip']
+    p1_src_end_ip = traffic_options['p1_src_end_ip']
+    p1_dst_start_ip = traffic_options['p1_dst_start_ip']
+    #p1_dst_end_ip = traffic_options['p1_dst_end_ip']
+    #p2_src_mac = traffic_options['p2_src_mac']
+    #p2_dst_mac = traffic_options['p2_dst_mac']
+    p2_src_start_ip = traffic_options['p2_src_start_ip']
+    p2_src_end_ip = traffic_options['p2_src_end_ip']
+    p2_dst_start_ip = traffic_options['p2_dst_start_ip']
+    #p2_dst_end_ip = traffic_options['p2_dst_end_ip']
+
+    base_pkt_a = Ether()/IPv6(src=p1_src_start_ip, dst=p1_dst_start_ip)
+    base_pkt_b = Ether()/IPv6(src=p2_src_start_ip, dst=p2_dst_start_ip)
+
+#    vm1 = CTRexScRaw([STLVmFlowVar(name="ipv6_src", min_value=1, max_value=3,
+#                                   size=2, op="inc"),
+#                      STLVmWrFlowVar(fv_name="ipv6_src", pkt_offset= 52)
+#                     ]
+#                     , split_by_field="ipv6_src") # split to cores base on the tuple generator
+
+#    vm2 = CTRexScRaw([STLVmFlowVar(name="ipv6_src", min_value=1, max_value=3,
+#                                   size=2, op="inc"),
+#                      STLVmWrFlowVar(fv_name="ipv6_src", pkt_offset= 52)
+#                     ]
+#                     , split_by_field="ipv6_src") # split to cores base on the tuple generator
+
+    pkt_a = STLPktBuilder(pkt=base_pkt_a/generate_payload(fsize_no_fcs-len(base_pkt_a)))
+    pkt_b = STLPktBuilder(pkt=base_pkt_b/generate_payload(fsize_no_fcs-len(base_pkt_b)))
+
+    print pkt_a.dump_pkt(encode=False)
+    print pkt_b.dump_pkt(encode=False)
 
     return(pkt_a, pkt_b)
 
@@ -193,7 +237,8 @@ def simple_burst(pkt_a, pkt_b, duration=10, rate="1mpps",
 def print_help():
 
     print "args: [-h] -d <duration> -s <size of frame in bytes>"+\
-    " [-r] <traffic rate with unit: %, mpps> "+\
+    " [-r] <traffic rate with unit: %, mpps>"+\
+    " [-6] Use of ipv6 "+\
     "--p1_src_mac <port1_src_mac> "+\
     "--p1_dst_mac <port1_dst_mac> "+\
     "--p1_src_start_ip <port1_src_start_ip> "+\
@@ -214,9 +259,10 @@ def main(argv):
     _frame_size = 64
     _rate = '1mpps'
     _traffic_options = {}
+    _use_ipv6 = False
 
     try:
-        opts, args = getopt.getopt(argv, "hd:s:r:o:",
+        opts, args = getopt.getopt(argv, "hd:s:r:6o:",
                                    ["help",
                                     "p1_src_mac=",
                                     "p1_dst_mac=",
@@ -243,6 +289,8 @@ def main(argv):
             _frame_size = int(arg)
         elif opt == '-r':
             _rate = arg
+        elif opt == '-6':
+            _use_ipv6 = True
         elif opt.startswith("--p"):
             _traffic_options[opt[2:]] = arg
 
@@ -252,8 +300,12 @@ def main(argv):
         print_help()
         sys.exit(2)
 
-    pkt_a, pkt_b = create_packets(_traffic_options,
-                                  frame_size=_frame_size)
+    if _use_ipv6:
+        pkt_a, pkt_b = create_packets_v6(_traffic_options,
+                                         frame_size=_frame_size)
+    else:
+        pkt_a, pkt_b = create_packets(_traffic_options,
+                                      frame_size=_frame_size)
 
     simple_burst(pkt_a, pkt_b, duration=_duration, rate=_rate)
 
