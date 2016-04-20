@@ -42,7 +42,9 @@ Functionality:
 """
 
 import json
+import socket
 import string
+import struct
 import sys, getopt
 
 sys.path.insert(0, "/opt/trex-core-2.00/scripts/automation/"+\
@@ -51,11 +53,11 @@ from trex_stl_lib.api import *
 
 
 def generate_payload(length):
-    """Generate random payload.
+    """Generate payload.
 
     :param length: Length of payload.
     :type length: int
-    :return: Payload filled with random chars.
+    :return: Payload filled with chars.
     :rtype string
     """
 
@@ -65,6 +67,27 @@ def generate_payload(length):
         word += string.letters[(i % alphabet_size)]
 
     return word
+
+def get_start_end_ipv6(start_ip, end_ip):
+
+    try:
+        ip1 = socket.inet_pton(socket.AF_INET6, start_ip)
+        ip2 = socket.inet_pton(socket.AF_INET6, end_ip)
+
+        hi1, lo1 = struct.unpack('!QQ', ip1)
+        hi2, lo2 = struct.unpack('!QQ', ip2)
+
+        if ((hi1 << 64) | lo1) > ((hi2 << 64) | lo2):
+            print "IPv6: start_ip is greater then end_ip"
+            sys.exit(2)
+
+        max_p1 = abs(int(lo1) - int(lo2)) + 1
+        base_p1 = lo1
+    except AddressValueError as ex_error:
+        print ex_error
+        sys.exit(2)
+
+    return base_p1, max_p1
 
 def create_packets(traffic_options, frame_size=64):
     """Create two IP packets to be used in stream.
@@ -103,7 +126,6 @@ def create_packets(traffic_options, frame_size=64):
                       STLVmWrFlowVar(fv_name="src", pkt_offset="IP.src"),
                       STLVmFixIpv4(offset="IP"),
                      ], split_by_field="src")
-
     # The following code applies raw instructions to packet (IP src increment).
     # It splits the generated traffic by "ip_src" variable to cores and fix
     # IPv4 header checksum.
@@ -114,6 +136,65 @@ def create_packets(traffic_options, frame_size=64):
                       STLVmWrFlowVar(fv_name="src", pkt_offset="IP.src"),
                       STLVmFixIpv4(offset="IP"),
                      ], split_by_field="src")
+
+    pkt_a = STLPktBuilder(pkt=base_pkt_a/generate_payload(
+        fsize_no_fcs-len(base_pkt_a)), vm=vm1)
+    pkt_b = STLPktBuilder(pkt=base_pkt_b/generate_payload(
+        fsize_no_fcs-len(base_pkt_b)), vm=vm2)
+
+    return(pkt_a, pkt_b)
+
+def create_packets_v6(traffic_options, frame_size=78):
+    """Create two IPv6 packets to be used in stream.
+
+    :param traffic_options: Parameters for packets.
+    :param frame_size: Size of L2 frame.
+    :type traffic_options: List
+    :type frame_size: int
+    :return: Packet instances.
+    :rtype STLPktBuilder
+    """
+
+    if frame_size < 78:
+        print "Packet min. size is 78B"
+        sys.exit(2)
+
+    fsize_no_fcs = frame_size - 4 # no FCS
+
+    p1_src_start_ip = traffic_options['p1_src_start_ip']
+    p1_src_end_ip = traffic_options['p1_src_end_ip']
+    p1_dst_start_ip = traffic_options['p1_dst_start_ip']
+    p2_src_start_ip = traffic_options['p2_src_start_ip']
+    p2_src_end_ip = traffic_options['p2_src_end_ip']
+    p2_dst_start_ip = traffic_options['p2_dst_start_ip']
+
+    base_p1, max_p1 = get_start_end_ipv6(p1_src_start_ip, p1_src_end_ip)
+    base_p2, max_p2 = get_start_end_ipv6(p2_src_start_ip, p2_src_end_ip)
+
+    base_pkt_a = Ether()/IPv6(src=p1_src_start_ip, dst=p1_dst_start_ip)
+    base_pkt_b = Ether()/IPv6(src=p2_src_start_ip, dst=p2_dst_start_ip)
+
+    # The following code applies raw instructions to packet (IP src increment).
+    # It splits the generated traffic by "ip_src" variable to cores
+    vm1 = STLScVmRaw([STLVmFlowVar(name="ipv6_src",
+                                   min_value=base_p1,
+                                   max_value=max_p1+base_p1,
+                                   size=8, op="inc"),
+                      STLVmWrFlowVar(fv_name="ipv6_src", pkt_offset="IPv6.src",
+                                     offset_fixup=8)
+                     ]
+                     , split_by_field="ipv6_src")
+
+    # The following code applies raw instructions to packet (IP src increment).
+    # It splits the generated traffic by "ip_src" variable to cores
+    vm2 = STLScVmRaw([STLVmFlowVar(name="ipv6_src",
+                                   min_value=base_p2,
+                                   max_value=max_p2+base_p2,
+                                   size=8, op="inc"),
+                      STLVmWrFlowVar(fv_name="ipv6_src", pkt_offset="IPv6.src",
+                                     offset_fixup=8)
+                     ]
+                     , split_by_field="ipv6_src")
 
     pkt_a = STLPktBuilder(pkt=base_pkt_a/generate_payload(
         max(0, fsize_no_fcs-len(base_pkt_a))), vm=vm1)
@@ -159,7 +240,6 @@ def simple_burst(pkt_a, pkt_b, duration=10, rate="1mpps", warmup_time=5):
                             isg=10.0,
                             mode=STLTXCont(pps=100))
 
-
         # connect to server
         client.connect()
 
@@ -174,7 +254,7 @@ def simple_burst(pkt_a, pkt_b, duration=10, rate="1mpps", warmup_time=5):
         if warmup_time is not None:
             client.clear_stats()
             client.start(ports=[0, 1], mult=rate, duration=warmup_time)
-            client.wait_on_traffic(ports=[0, 1], timeout=(duration+30))
+            client.wait_on_traffic(ports=[0, 1], timeout=(warmup_time+30))
             stats = client.get_stats()
             print stats
             print "#####warmup statistics#####"
@@ -189,6 +269,10 @@ def simple_burst(pkt_a, pkt_b, duration=10, rate="1mpps", warmup_time=5):
 
         # clear the stats before injecting
         client.clear_stats()
+        total_rcvd = 0
+        total_sent = 0
+        lost_a = 0
+        lost_b = 0
 
         # choose rate and start traffic
         client.start(ports=[0, 1], mult=rate, duration=duration)
@@ -221,12 +305,12 @@ def simple_burst(pkt_a, pkt_b, duration=10, rate="1mpps", warmup_time=5):
         print "rate={0}, totalReceived={1}, totalSent={2}, frameLoss={3}"\
               .format(rate, total_rcvd, total_sent, lost_a+lost_b)
 
-
 def print_help():
     """Print help on stdout."""
 
     print "args: [-h] -d <duration> -s <size of frame in bytes>"+\
     " [-r] <traffic rate with unit: %, mpps> "+\
+    " [-6] Use of ipv6 "+\
     "--p1_src_mac <port1_src_mac> "+\
     "--p1_dst_mac <port1_dst_mac> "+\
     "--p1_src_start_ip <port1_src_start_ip> "+\
@@ -258,9 +342,10 @@ def main(argv):
     _frame_size = 64
     _rate = '1mpps'
     _traffic_options = {}
+    _use_ipv6 = False
 
     try:
-        opts, _ = getopt.getopt(argv, "hd:s:r:o:",
+        opts, _ = getopt.getopt(argv, "hd:s:r:6o:",
                                 ["help",
                                  "p1_src_mac=",
                                  "p1_dst_mac=",
@@ -287,6 +372,8 @@ def main(argv):
             _frame_size = int(arg)
         elif opt == '-r':
             _rate = arg
+        elif opt == '-6':
+            _use_ipv6 = True
         elif opt.startswith("--p"):
             _traffic_options[opt[2:]] = arg
 
@@ -296,8 +383,12 @@ def main(argv):
         print_help()
         sys.exit(1)
 
-    pkt_a, pkt_b = create_packets(_traffic_options,
-                                  frame_size=_frame_size)
+    if _use_ipv6:
+        pkt_a, pkt_b = create_packets_v6(_traffic_options,
+                                         frame_size=_frame_size)
+    else:
+        pkt_a, pkt_b = create_packets(_traffic_options,
+                                      frame_size=_frame_size)
 
     simple_burst(pkt_a, pkt_b, duration=_duration, rate=_rate)
 
