@@ -12,14 +12,18 @@
 # limitations under the License.
 
 *** Settings ***
-| Resource | resources/libraries/robot/default.robot
-| Resource | resources/libraries/robot/interfaces.robot
-| Resource | resources/libraries/robot/l2_xconnect.robot
-| Resource | resources/libraries/robot/ipv4.robot
-| Resource | resources/libraries/robot/bridge_domain.robot
-| Resource | resources/libraries/robot/counters.robot
+| Library | resources.libraries.python.topology.Topology
+| Library | resources.libraries.python.NodePath
+| Library | resources.libraries.python.InterfaceUtil
 | Library | resources.libraries.python.TrafficGenerator
 | Library | resources.libraries.python.TrafficGenerator.TGDropRateSearchImpl
+| Resource | resources/libraries/robot/default.robot
+| Resource | resources/libraries/robot/interfaces.robot
+| Resource | resources/libraries/robot/counters.robot
+| Resource | resources/libraries/robot/bridge_domain.robot
+| Resource | resources/libraries/robot/l2_xconnect.robot
+| Resource | resources/libraries/robot/ipv4.robot
+| Resource | resources/libraries/robot/ipv6.robot
 | Documentation | Performance suite keywords
 
 *** Keywords ***
@@ -95,6 +99,29 @@
 | | dut2_v4.set_route | 10.10.10.0 | 24 | 1.1.1.1 | ${dut2_if1}
 | | All Vpp Interfaces Ready Wait | ${nodes}
 
+| IPv6 forwarding initialized in a 3-node circular topology
+| | [Documentation] | Custom setup of IPv6 topology on all DUT nodes
+| | ${prefix}= | Set Variable | 64
+| | ${tg1_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
+| | ${tg1_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
+| | ${dut1_if2_mac}= | Get Interface MAC | ${dut1} | ${dut1_if2}
+| | ${dut2_if1_mac}= | Get Interface MAC | ${dut2} | ${dut1_if1}
+| | VPP Set If IPv6 Addr | ${dut1} | ${dut1_if1} | 2001:1::1 | ${prefix}
+| | VPP Set If IPv6 Addr | ${dut1} | ${dut1_if2} | 2001:3::1 | ${prefix}
+| | VPP Set If IPv6 Addr | ${dut2} | ${dut2_if1} | 2001:3::2 | ${prefix}
+| | VPP Set If IPv6 Addr | ${dut2} | ${dut2_if2} | 2001:2::1 | ${prefix}
+| | Vpp nodes ra suppress link layer | ${nodes}
+| | Vpp set IPv6 neighbor | ${dut1} | ${dut1_if1} | 2001:1::2
+| | ...                    | ${tg1_if1_mac}
+| | Vpp set IPv6 neighbor | ${dut2} | ${dut2_if2} | 2001:2::2
+| | ...                    | ${tg1_if2_mac}
+| | Vpp set IPv6 neighbor | ${dut1} | ${dut1_if2} | 2001:3::2
+| | ...                    | ${dut2_if1_mac}
+| | Vpp set IPv6 neighbor | ${dut2} | ${dut2_if1} | 2001:3::1
+| | ...                    | ${dut1_if2_mac}
+| | Vpp Route Add | ${dut1} | 2001:2::0 | ${prefix} | 2001:3::2 | ${dut1_if2}
+| | Vpp Route Add | ${dut2} | 2001:1::0 | ${prefix} | 2001:3::1 | ${dut2_if1}
+
 | L2 xconnect initialized in a 3-node circular topology
 | | [Documentation] | Custom setup of L2 xconnect topology
 | | L2 setup xconnect on DUT | ${dut1} | ${dut1_if1} | ${dut1_if2}
@@ -150,6 +177,7 @@
 | | ...         | ${topology_type} | ${min_rate} | ${max_rate} | ${threshold}
 | | Set Duration | 60
 | | Set Search Rate Boundaries | ${max_rate} | ${min_rate}
+| | Set Search Frame Size | ${framesize}
 | | Set Search Rate Type pps
 | | Set Binary Convergence Threshold | ${threshold}
 | | Binary Search | ${binary_min} | ${binary_max} | ${topology_type}
