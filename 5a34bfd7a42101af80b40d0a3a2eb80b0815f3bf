@@ -1,0 +1,406 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa0f191f_03201448",
+        "filename": "resources/libraries/robot/honeycomb_interfaces.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-04-20T13:34:22Z",
+      "side": 1,
+      "message": "create new subdir in lib/robot/ named honeycomb, put this file there and name it interfaces.robot",
+      "revId": "5a34bfd7a42101af80b40d0a3a2eb80b0815f3bf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_c319fc23",
+        "filename": "resources/libraries/robot/honeycomb_interfaces.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-04-20T13:34:22Z",
+      "side": 1,
+      "message": "Am I reading the code below right, that it takes first DUT node from nodes, and first interface from it, and make them as suite variable?\nCouldn\u0027t you just reference them directly? Why make them suite variables instead of returning them?",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 42
+      },
+      "revId": "5a34bfd7a42101af80b40d0a3a2eb80b0815f3bf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_a31608f0",
+        "filename": "resources/libraries/robot/honeycomb_interfaces.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-04-20T13:34:22Z",
+      "side": 1,
+      "message": "you can only change admin state, not oper state of an interface.",
+      "range": {
+        "startLine": 37,
+        "startChar": 55,
+        "endLine": 37,
+        "endChar": 66
+      },
+      "revId": "5a34bfd7a42101af80b40d0a3a2eb80b0815f3bf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_63d8f053",
+        "filename": "resources/libraries/robot/honeycomb_interfaces.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-04-20T13:34:22Z",
+      "side": 1,
+      "message": "... and waits until ALL interfaces\u0027 oper state \u003d\u003d admin state on the node.",
+      "revId": "5a34bfd7a42101af80b40d0a3a2eb80b0815f3bf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_83d30438",
+        "filename": "resources/libraries/robot/honeycomb_interfaces.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-04-20T13:34:22Z",
+      "side": 1,
+      "message": "you passed state to this KW, why not pass node and interface too?",
+      "range": {
+        "startLine": 48,
+        "startChar": 41,
+        "endLine": 48,
+        "endChar": 45
+      },
+      "revId": "5a34bfd7a42101af80b40d0a3a2eb80b0815f3bf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_03e7f413",
+        "filename": "resources/libraries/robot/honeycomb_interfaces.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-04-20T13:34:22Z",
+      "side": 1,
+      "message": "this really should go to interface util, right? It has nothing to do with HC. And I think we already have such KW there.",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 26
+      },
+      "revId": "5a34bfd7a42101af80b40d0a3a2eb80b0815f3bf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_23e2f803",
+        "filename": "resources/libraries/robot/honeycomb_interfaces.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-04-20T13:34:22Z",
+      "side": 1,
+      "message": "admin state",
+      "range": {
+        "startLine": 52,
+        "startChar": 56,
+        "endLine": 52,
+        "endChar": 67
+      },
+      "revId": "5a34bfd7a42101af80b40d0a3a2eb80b0815f3bf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_43ddec41",
+        "filename": "resources/libraries/robot/honeycomb_interfaces.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-04-20T13:34:22Z",
+      "side": 1,
+      "message": "uses VPP binary API",
+      "range": {
+        "startLine": 52,
+        "startChar": 27,
+        "endLine": 52,
+        "endChar": 41
+      },
+      "revId": "5a34bfd7a42101af80b40d0a3a2eb80b0815f3bf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_e3e3e003",
+        "filename": "resources/libraries/robot/honeycomb_interfaces.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-04-20T13:34:22Z",
+      "side": 1,
+      "message": "\"Interface state from Honeycomb should be\"",
+      "range": {
+        "startLine": 66,
+        "startChar": 2,
+        "endLine": 66,
+        "endChar": 39
+      },
+      "revId": "5a34bfd7a42101af80b40d0a3a2eb80b0815f3bf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_c3f0dccb",
+        "filename": "resources/libraries/robot/honeycomb_interfaces.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-04-20T13:34:22Z",
+      "side": 1,
+      "message": "state to expect, right?",
+      "range": {
+        "startLine": 72,
+        "startChar": 0,
+        "endLine": 72,
+        "endChar": 45
+      },
+      "revId": "5a34bfd7a42101af80b40d0a3a2eb80b0815f3bf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_a3ede8f1",
+        "filename": "resources/libraries/robot/honeycomb_interfaces.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-04-20T13:34:22Z",
+      "side": 1,
+      "message": "so this checks oper state - in that case, adapt the name of the KW as such",
+      "range": {
+        "startLine": 78,
+        "startChar": 0,
+        "endLine": 78,
+        "endChar": 80
+      },
+      "revId": "5a34bfd7a42101af80b40d0a3a2eb80b0815f3bf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_83bae4df",
+        "filename": "resources/libraries/robot/honeycomb_interfaces.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-04-20T13:34:22Z",
+      "side": 1,
+      "message": "rename in the same manner as above kw",
+      "range": {
+        "startLine": 82,
+        "startChar": 0,
+        "endLine": 82,
+        "endChar": 33
+      },
+      "revId": "5a34bfd7a42101af80b40d0a3a2eb80b0815f3bf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_63bfd0d1",
+        "filename": "resources/libraries/robot/honeycomb_interfaces.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-04-20T13:34:22Z",
+      "side": 1,
+      "message": "expect",
+      "range": {
+        "startLine": 88,
+        "startChar": 28,
+        "endLine": 88,
+        "endChar": 33
+      },
+      "revId": "5a34bfd7a42101af80b40d0a3a2eb80b0815f3bf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_43b4ccf1",
+        "filename": "tests/suites/honeycomb/interface_management.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-04-20T13:34:22Z",
+      "side": 1,
+      "message": "\"first DUT node\"  really.",
+      "range": {
+        "startLine": 24,
+        "startChar": 49,
+        "endLine": 24,
+        "endChar": 55
+      },
+      "revId": "5a34bfd7a42101af80b40d0a3a2eb80b0815f3bf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_23b9d8e9",
+        "filename": "tests/suites/honeycomb/interface_management.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-04-20T13:34:22Z",
+      "side": 1,
+      "message": "admin state",
+      "range": {
+        "startLine": 28,
+        "startChar": 56,
+        "endLine": 28,
+        "endChar": 67
+      },
+      "revId": "5a34bfd7a42101af80b40d0a3a2eb80b0815f3bf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_03ced483",
+        "filename": "tests/suites/honeycomb/interface_management.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-04-20T13:34:22Z",
+      "side": 1,
+      "message": "use uppercase for tags; document in docs/",
+      "range": {
+        "startLine": 30,
+        "startChar": 13,
+        "endLine": 30,
+        "endChar": 29
+      },
+      "revId": "5a34bfd7a42101af80b40d0a3a2eb80b0815f3bf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_e3cac06d",
+        "filename": "tests/suites/honeycomb/interface_management.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-04-20T13:34:22Z",
+      "side": 1,
+      "message": "why set interface state after test finshes?",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 42
+      },
+      "revId": "5a34bfd7a42101af80b40d0a3a2eb80b0815f3bf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_c3c7bc63",
+        "filename": "tests/suites/honeycomb/interface_management.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-04-20T13:34:22Z",
+      "side": 1,
+      "message": "capitalize to Interface",
+      "range": {
+        "startLine": 32,
+        "startChar": 10,
+        "endLine": 32,
+        "endChar": 19
+      },
+      "revId": "5a34bfd7a42101af80b40d0a3a2eb80b0815f3bf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
