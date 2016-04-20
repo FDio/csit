@@ -1,0 +1,395 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa0f191f_833784b0",
+        "filename": "resources/libraries/robot/lisp.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-20T12:30:01Z",
+      "side": 1,
+      "message": "is prepared",
+      "range": {
+        "startLine": 23,
+        "startChar": 24,
+        "endLine": 23,
+        "endChar": 35
+      },
+      "revId": "e2b9922f1fa6a8350df49103f4adf7a10e93c3df",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_e392c09e",
+        "filename": "resources/libraries/robot/lisp.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-20T12:30:01Z",
+      "side": 1,
+      "message": "| | ... |",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 35
+      },
+      "revId": "e2b9922f1fa6a8350df49103f4adf7a10e93c3df",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_a3ba8808",
+        "filename": "resources/libraries/robot/lisp.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-20T12:30:01Z",
+      "side": 1,
+      "message": "is",
+      "range": {
+        "startLine": 46,
+        "startChar": 24,
+        "endLine": 46,
+        "endChar": 27
+      },
+      "revId": "e2b9922f1fa6a8350df49103f4adf7a10e93c3df",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_c38fbc74",
+        "filename": "resources/libraries/robot/lisp.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-20T12:30:01Z",
+      "side": 1,
+      "message": "\\|",
+      "range": {
+        "startLine": 60,
+        "startChar": 48,
+        "endLine": 60,
+        "endChar": 49
+      },
+      "revId": "e2b9922f1fa6a8350df49103f4adf7a10e93c3df",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_c3bd7c04",
+        "filename": "resources/libraries/robot/lisp.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-20T12:30:01Z",
+      "side": 1,
+      "message": "is",
+      "range": {
+        "startLine": 65,
+        "startChar": 19,
+        "endLine": 65,
+        "endChar": 22
+      },
+      "revId": "e2b9922f1fa6a8350df49103f4adf7a10e93c3df",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_a38cc880",
+        "filename": "resources/libraries/robot/lisp.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-20T12:30:01Z",
+      "side": 1,
+      "message": "\\|",
+      "range": {
+        "startLine": 80,
+        "startChar": 51,
+        "endLine": 80,
+        "endChar": 52
+      },
+      "revId": "e2b9922f1fa6a8350df49103f4adf7a10e93c3df",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_83e9c41c",
+        "filename": "resources/libraries/robot/lisp.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-20T12:30:01Z",
+      "side": 1,
+      "message": "\\|",
+      "range": {
+        "startLine": 101,
+        "startChar": 55,
+        "endLine": 101,
+        "endChar": 56
+      },
+      "revId": "e2b9922f1fa6a8350df49103f4adf7a10e93c3df",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_63eeb024",
+        "filename": "resources/libraries/robot/lisp.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-20T12:30:01Z",
+      "side": 1,
+      "message": "\\|",
+      "range": {
+        "startLine": 119,
+        "startChar": 51,
+        "endLine": 119,
+        "endChar": 52
+      },
+      "revId": "e2b9922f1fa6a8350df49103f4adf7a10e93c3df",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_a3e3a832",
+        "filename": "resources/libraries/robot/lisp.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-20T12:30:01Z",
+      "side": 1,
+      "message": "prepared",
+      "range": {
+        "startLine": 125,
+        "startChar": 59,
+        "endLine": 125,
+        "endChar": 66
+      },
+      "revId": "e2b9922f1fa6a8350df49103f4adf7a10e93c3df",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_43f3ac0a",
+        "filename": "resources/libraries/robot/lisp.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-20T12:30:01Z",
+      "side": 1,
+      "message": "locator_set \\",
+      "range": {
+        "startLine": 141,
+        "startChar": 60,
+        "endLine": 141,
+        "endChar": 71
+      },
+      "revId": "e2b9922f1fa6a8350df49103f4adf7a10e93c3df",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_23f8b8e4",
+        "filename": "resources/libraries/robot/lisp.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-20T12:30:01Z",
+      "side": 1,
+      "message": "... |",
+      "range": {
+        "startLine": 142,
+        "startChar": 4,
+        "endLine": 142,
+        "endChar": 12
+      },
+      "revId": "e2b9922f1fa6a8350df49103f4adf7a10e93c3df",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_83d0a454",
+        "filename": "resources/libraries/robot/lisp.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-20T12:30:01Z",
+      "side": 1,
+      "message": "is prepared",
+      "range": {
+        "startLine": 149,
+        "startChar": 19,
+        "endLine": 149,
+        "endChar": 30
+      },
+      "revId": "e2b9922f1fa6a8350df49103f4adf7a10e93c3df",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_63d59042",
+        "filename": "resources/libraries/robot/lisp.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-20T12:30:01Z",
+      "side": 1,
+      "message": "is set",
+      "range": {
+        "startLine": 172,
+        "startChar": 19,
+        "endLine": 172,
+        "endChar": 26
+      },
+      "revId": "e2b9922f1fa6a8350df49103f4adf7a10e93c3df",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_43ca8ca2",
+        "filename": "resources/libraries/robot/lisp.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-20T12:30:01Z",
+      "side": 1,
+      "message": "is",
+      "range": {
+        "startLine": 190,
+        "startChar": 19,
+        "endLine": 190,
+        "endChar": 22
+      },
+      "revId": "e2b9922f1fa6a8350df49103f4adf7a10e93c3df",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_23cf98b2",
+        "filename": "resources/libraries/robot/lisp.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 248,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-20T12:30:01Z",
+      "side": 1,
+      "message": "is prepared",
+      "range": {
+        "startLine": 248,
+        "startChar": 28,
+        "endLine": 248,
+        "endChar": 39
+      },
+      "revId": "e2b9922f1fa6a8350df49103f4adf7a10e93c3df",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_03c49490",
+        "filename": "resources/libraries/robot/lisp.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-20T12:30:01Z",
+      "side": 1,
+      "message": "is",
+      "range": {
+        "startLine": 273,
+        "startChar": 28,
+        "endLine": 273,
+        "endChar": 31
+      },
+      "revId": "e2b9922f1fa6a8350df49103f4adf7a10e93c3df",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_e3c0807e",
+        "filename": "resources/libraries/robot/lisp.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-20T12:30:01Z",
+      "side": 1,
+      "message": "is",
+      "range": {
+        "startLine": 291,
+        "startChar": 28,
+        "endLine": 291,
+        "endChar": 31
+      },
+      "revId": "e2b9922f1fa6a8350df49103f4adf7a10e93c3df",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
