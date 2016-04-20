@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa0f191f_8079bafe",
+        "filename": "resources/libraries/robot/lisp.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-20T05:37:27Z",
+      "side": 1,
+      "message": "update KW documentation, example here: https://gerrit.fd.io/r/#/c/811/2/resources/libraries/robot/bridge_domain.robot",
+      "revId": "d07f20dcdadfe27cd670aa65f94bc6e7f97bfbfc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_a01cbec2",
+        "filename": "tests/suites/lisp/lisp_untagged.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-20T05:37:27Z",
+      "side": 1,
+      "message": "missing tags(tests won\u0027t be triggered by JJB), probably should be:\n| Force Tags | 3_NODE_SINGLE_LINK_TOPO | 3_NODE_DOUBLE_LINK_TOPO\n| ...        | VM_ENV | HW_ENV",
+      "revId": "d07f20dcdadfe27cd670aa65f94bc6e7f97bfbfc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
