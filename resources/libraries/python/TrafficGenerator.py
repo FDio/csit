@@ -168,7 +168,7 @@ class TrafficGenerator(object):
 
             (ret, _, _) = ssh.exec_command(
                 "sh -c 'cd {0}/scripts/ && "
-                "sudo nohup ./t-rex-64 -i -c 4 --iom 0 > /dev/null 2>&1 &'"
+                "sudo nohup ./t-rex-64 -i -c 4 --iom 0 --ipv6 > /dev/null 2>&1 &'"
                 "> /dev/null"\
                 .format(trex_path))
             if int(ret) != 0:
@@ -233,6 +233,19 @@ class TrafficGenerator(object):
                 "--p{4}_src_start_ip 20.20.20.2 "
                 "--p{4}_src_end_ip 20.20.20.254 "
                 "--p{4}_dst_start_ip 10.10.10.2'".\
+                format(duration, rate, framesize, _p0, _p1),\
+                timeout=int(duration)+60)
+        elif traffic_type in ["3-node-IPv6"]:
+            (ret, stdout, stderr) = ssh.exec_command(
+                "sh -c '/tmp/openvpp-testing/resources/tools/t-rex/"
+                "t-rex-stateless.py "
+                "-d {0} -r {1} -s {2} -6 "
+                "--p{3}_src_start_ip 2001:1::2 "
+                "--p{3}_src_end_ip 2001:1::254 "
+                "--p{3}_dst_start_ip 2001:2::2 "
+                "--p{4}_src_start_ip 2001:2::2 "
+                "--p{4}_src_end_ip 2001:2::254 "
+                "--p{4}_dst_start_ip 2001:1::2'".\
                 format(duration, rate, framesize, _p0, _p1),\
                 timeout=int(duration)+60)
         else:

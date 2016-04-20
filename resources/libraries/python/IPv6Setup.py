@@ -225,9 +225,30 @@ class IPv6Setup(object):
                                       sw_if_id=sw_if_index,
                                       param='surpress')
 
-    def vpp_all_ra_suppress_link_layer(self, nodes):
-        """Suppress ICMPv6 router advertisement message for link scope address
-        on all VPP nodes in the topology.
+    @staticmethod
+    def vpp_set_ipv6_neighbour(node, interface, ipaddr, macaddr):
+        """Set IPv6 neighbor.
+
+           :param node: VPP node.
+           :param interface: Interface name.
+           :param ip_address: IPv6 address.
+           :param mac_address: mac address.
+           :type node: dict
+           :type interface: str
+           :type ip_address: str
+           :type mac_address: str
+        """
+        sw_if_index = Topology.get_interface_sw_index(node, interface)
+        VatExecutor.cmd_from_template(node,
+                                      'add_ip_neighbor.vat',
+                                      sw_if_id=sw_if_index,
+                                      ip_address=ipaddr,
+                                      mac_address=macaddr)
+
+    @staticmethod
+    def vpp_all_ra_supress_link_layer(self, nodes):
+        """Supress ICMPv6 router advertisement message for link scope address
+           on all VPP nodes in the topology
 
         :param nodes: Nodes of the test topology.
         :type nodes: dict
