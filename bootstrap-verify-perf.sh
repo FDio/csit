@@ -133,6 +133,12 @@ case "$TEST_TAG" in
               -s performance.long_ipv4 \
               tests/
         ;;
+    PERFTEST_LONG_IPV6 )
+        pybot -L TRACE \
+              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+              -s performance.long_ipv6 \
+              tests/
+        ;;
     PERFTEST_LONG_XCONNECT )
         pybot -L TRACE \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
