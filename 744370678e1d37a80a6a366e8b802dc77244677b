@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa0f191f_c3b8dc2c",
+        "filename": "resources/libraries/python/topology.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 405,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-20T12:11:07Z",
+      "side": 1,
+      "message": "not needed",
+      "range": {
+        "startLine": 405,
+        "startChar": 62,
+        "endLine": 405,
+        "endChar": 63
+      },
+      "revId": "744370678e1d37a80a6a366e8b802dc77244677b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_a3b5e832",
+        "filename": "resources/libraries/python/topology.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 407,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-20T12:11:07Z",
+      "side": 1,
+      "message": "not needed",
+      "range": {
+        "startLine": 407,
+        "startChar": 62,
+        "endLine": 407,
+        "endChar": 63
+      },
+      "revId": "744370678e1d37a80a6a366e8b802dc77244677b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_8382e450",
+        "filename": "tests/suites/performance/short_xconnect_Intel-X520-DA2.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-20T12:11:07Z",
+      "side": 1,
+      "message": "line too long",
+      "revId": "744370678e1d37a80a6a366e8b802dc77244677b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
