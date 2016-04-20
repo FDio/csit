@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa0f191f_83a1c4ab",
+        "filename": "bootstrap.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-04-20T13:37:24Z",
+      "side": 1,
+      "message": "Add level of debugging here. If this fails, present a big fat warning with what has happened (topology schema validation failed), and echo that we are going to attempt those tests anyway.",
+      "range": {
+        "startLine": 151,
+        "startChar": 0,
+        "endLine": 154,
+        "endChar": 14
+      },
+      "revId": "1617eb5d8a0bc6e0721e7595c9e08ab6a4fa809a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
