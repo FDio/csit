@@ -23,15 +23,15 @@
 | Documentation | Minimal throughput acceptance test cases
 
 *** Test Cases ***
-| 1core VPP passes 64B frames through L2 cross connect at 2x 3.5mpps in 3-node topology
+| 1core VPP passes 64B frames through L2 cross connect at 2x 3.8Mpps in 3-node topology
 | | [Documentation]
 | | ... | VPP with 1 core should pass 64B frames through L2 cross connect
-| | ... | at 2x3.5mpps in 3-node topology
+| | ... | at 2x3.8Mpps in 3-node topology
 | | [Tags] | 1_THREAD_NOHTT_RSS_1 | SINGLE_THREAD
 | | # Variables
 | | ${framesize}= | Set Variable | 64
 | | ${duration}= | Set Variable | 10
-| | ${rate}= | Set Variable | 3.5mpps
+| | ${rate}= | Set Variable | 3.8mpps
 | | # VPP setup
 | | Given Setup '1' worker threads and rss '1' without HTT on all DUTs
 | | AND   L2 xconnect initialized in a 3-node circular topology
@@ -39,10 +39,10 @@
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                   | ${framesize} | 3-node-xconnect
 
-| 1core VPP passes 1518B frames through L2 cross connect at 2x 10gbps in 3-node topology
+| 1core VPP passes 1518B frames through L2 cross connect at 2x 10Gbps in 3-node topology
 | | [Documentation]
 | | ... | VPP with 1 core should pass 1518B frames through L2 cross connect
-| | ... | at 2x10gbps in 3-node topology
+| | ... | at 2x10Gbps in 3-node topology
 | | [Tags] | 1_THREAD_NOHTT_RSS_1 | SINGLE_THREAD
 | | # Variables
 | | ${framesize}= | Set Variable | 1518
@@ -55,10 +55,10 @@
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                   | ${framesize} | 3-node-xconnect
 
-| 1core VPP passes 9000B frames through L2 cross connect at 2x 10gbps in 3-node topology
+| 1core VPP passes 9000B frames through L2 cross connect at 2x 10Gbps in 3-node topology
 | | [Documentation]
 | | ... | VPP with 1 core should pass 9000B frames through L2 cross connect
-| | ... | at 2x10gbps in 3-node topology
+| | ... | at 2x10Gbps in 3-node topology
 | | [Tags] | 1_THREAD_NOHTT_RSS_1 | SINGLE_THREAD
 | | # Variables
 | | ${framesize}= | Set Variable | 9000
@@ -71,15 +71,15 @@
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                   | ${framesize} | 3-node-xconnect
 
-| 2core VPP with rss 1 passes 64B frames through L2 cross connect at 2x 11.0mpps in 3-node topology
+| 2core VPP with rss 1 passes 64B frames through L2 cross connect at 2x 8.3Mpps in 3-node topology
 | | [Documentation]
 | | ... | VPP with 2 cores should pass 64B frames through L2 cross connect
-| | ... | at 2x11.0mpps in 3-node topology
+| | ... | at 2x8.3Mpps in 3-node topology
 | | [Tags] | 2_THREAD_NOHTT_RSS_1 | MULTI_THREAD
 | | # Variables
 | | ${framesize}= | Set Variable | 64
 | | ${duration}= | Set Variable | 10
-| | ${rate}= | Set Variable | 11.0mpps
+| | ${rate}= | Set Variable | 8.3mpps
 | | # VPP setup
 | | Given Setup '2' worker threads and rss '1' without HTT on all DUTs
 | | AND   L2 xconnect initialized in a 3-node circular topology
@@ -87,15 +87,47 @@
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                   | ${framesize} | 3-node-xconnect
 
-| 4core VPP with rss 2 passes 64B frames through L2 cross connect at 2x 11.6mpps in 3-node topology
+| 2core VPP with rss 1 passes 1518B frames through L2 cross connect at 2x 10Gbps in 3-node topology
+| | [Documentation]
+| | ... | VPP with 2 cores should pass 1518B frames through L2 cross connect
+| | ... | at 2x10Gbps in 3-node topology
+| | [Tags] | 2_THREAD_NOHTT_RSS_1 | MULTI_THREAD
+| | # Variables
+| | ${framesize}= | Set Variable | 1518
+| | ${duration}= | Set Variable | 10
+| | ${rate}= | Set Variable | 10gbps
+| | # VPP setup
+| | Given Setup '2' worker threads and rss '1' without HTT on all DUTs
+| | AND   L2 xconnect initialized in a 3-node circular topology
+| | # Sent traffic with specified rate
+| | Then Traffic should pass with no loss | ${duration} | ${rate}
+| | ...                                   | ${framesize} | 3-node-xconnect
+
+| 2core VPP with rss 1 passes 9000B frames through L2 cross connect at 2x 10Gbps in 3-node topology
+| | [Documentation]
+| | ... | VPP with 2 cores should pass 9000B frames through L2 cross connect
+| | ... | at 2x10Gbps in 3-node topology
+| | [Tags] | 2_THREAD_NOHTT_RSS_1 | MULTI_THREAD
+| | # Variables
+| | ${framesize}= | Set Variable | 9000
+| | ${duration}= | Set Variable | 10
+| | ${rate}= | Set Variable | 10gbps
+| | # VPP setup
+| | Given Setup '2' worker threads and rss '1' without HTT on all DUTs
+| | AND   L2 xconnect initialized in a 3-node circular topology
+| | # Sent traffic with specified rate
+| | Then Traffic should pass with no loss | ${duration} | ${rate}
+| | ...                                   | ${framesize} | 3-node-xconnect
+
+| 4core VPP with rss 2 passes 64B frames through L2 cross connect at 2x 9.9Mpps in 3-node topology
 | | [Documentation]
 | | ... | VPP with 4 cores and rss 2 should pass 64B frames through L2 cross
-| | ... | connect at 2x11.6mpps in 3-node topology
+| | ... | connect at 2x9.9Mpps in 3-node topology
 | | # Variables
 | | [Tags] | 4_THREAD_NOHTT_RSS_2 | MULTI_THREAD
 | | ${framesize}= | Set Variable | 64
 | | ${duration}= | Set Variable | 10
-| | ${rate}= | Set Variable | 11.6mpps
+| | ${rate}= | Set Variable | 9.9mpps
 | | # VPP setup
 | | Given Setup '4' worker threads and rss '2' without HTT on all DUTs
 | | AND   L2 xconnect initialized in a 3-node circular topology
@@ -103,3 +135,34 @@
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                   | ${framesize} | 3-node-xconnect
 
+| 4core VPP with rss 2 passes 1518B frames through L2 cross connect at 2x 10Gbps in 3-node topology
+| | [Documentation]
+| | ... | VPP with 4 cores and rss 2 should pass 1518B frames through L2 cross
+| | ... | connect at 2x10Gbps in 3-node topology
+| | [Tags] | 4_THREAD_NOHTT_RSS_2 | MULTI_THREAD
+| | # Variables
+| | ${framesize}= | Set Variable | 1518
+| | ${duration}= | Set Variable | 10
+| | ${rate}= | Set Variable | 10gbps
+| | # VPP setup
+| | Given Setup '4' worker threads and rss '2' without HTT on all DUTs
+| | AND   L2 xconnect initialized in a 3-node circular topology
+| | # Sent traffic with specified rate
+| | Then Traffic should pass with no loss | ${duration} | ${rate}
+| | ...                                   | ${framesize} | 3-node-xconnect
+
+| 4core VPP with rss 2 passes 9000B frames through L2 cross connect at 2x 10Gbps in 3-node topology
+| | [Documentation]
+| | ... | VPP with 4 cores and rss 2 should pass 9000B frames through L2 cross
+| | ... | connect at 2x10Gbps in 3-node topology
+| | [Tags] | 4_THREAD_NOHTT_RSS_2 | MULTI_THREAD
+| | # Variables
+| | ${framesize}= | Set Variable | 9000
+| | ${duration}= | Set Variable | 10
+| | ${rate}= | Set Variable | 10gbps
+| | # VPP setup
+| | Given Setup '4' worker threads and rss '2' without HTT on all DUTs
+| | AND   L2 xconnect initialized in a 3-node circular topology
+| | # Sent traffic with specified rate
+| | Then Traffic should pass with no loss | ${duration} | ${rate}
+| | ...                                   | ${framesize} | 3-node-xconnect
