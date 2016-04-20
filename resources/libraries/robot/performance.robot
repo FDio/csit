@@ -14,10 +14,15 @@
 *** Settings ***
 | Resource | resources/libraries/robot/default.robot
 | Resource | resources/libraries/robot/interfaces.robot
+| Resource | resources/libraries/robot/counters.robot
+| Resource | resources/libraries/robot/bridge_domain.robot
 | Resource | resources/libraries/robot/l2_xconnect.robot
 | Resource | resources/libraries/robot/ipv4.robot
-| Resource | resources/libraries/robot/bridge_domain.robot
-| Resource | resources/libraries/robot/counters.robot
+| Resource | resources/libraries/robot/ipv6.robot
+| Library | resources.libraries.python.topology.Topology
+| Library | resources.libraries.python.NodePath
+| Library | resources.libraries.python.InterfaceUtil
+| Library | resources.libraries.python.IPv6Setup
 | Library | resources.libraries.python.TrafficGenerator
 | Library | resources.libraries.python.TrafficGenerator.TGDropRateSearchImpl
 | Documentation | Performance suite keywords
@@ -66,6 +71,18 @@
 | | dut1_v4.set_route | 20.20.20.0 | 24 | 1.1.1.2 | ${dut1_if2}
 | | dut2_v4.set_route | 10.10.10.0 | 24 | 1.1.1.1 | ${dut2_if1}
 | | All Vpp Interfaces Ready Wait | ${nodes}
+
+| IPv6 forwarding initialized in a 3-node circular topology
+| | [Documentation] | Custom setup of IPv6 addresses on all DUT nodes and TG
+| | ${prefix}= | Set Variable | 64
+| | VPP Set If IPv6 Addr | ${dut1} | ${dut1_if1} | 2001:1::1 | ${prefix}
+| | VPP Set If IPv6 Addr | ${dut1} | ${dut1_if2} | 2001:3::1 | ${prefix}
+| | VPP Set If IPv6 Addr | ${dut2} | ${dut2_if1} | 2001:3::2 | ${prefix}
+| | VPP Set If IPv6 Addr | ${dut2} | ${dut2_if2} | 2001:2::1 | ${prefix}
+#| | Vpp nodes ra supress link layer | ${nodes}
+| | Vpp Route Add | ${dut1} | 2001:2::0 | ${prefix} | 2001:3::2 | ${dut1_if2}
+| | Vpp Route Add | ${dut2} | 2001:1::0 | ${prefix} | 2001:3::1 | ${dut2_if1}
+#| | Vpp nodes setup ipv6 routing | ${nodes} | ${nodes_ipv6_addr}
 
 | L2 xconnect initialized in a 3-node circular topology
 | | [Documentation] | Custom setup of L2 xconnect topology
