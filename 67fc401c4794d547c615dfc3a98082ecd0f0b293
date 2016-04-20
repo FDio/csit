@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa0f191f_a3d728ed",
+        "filename": "tests/suites/bridge_domain/bridge_domain_untagged.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-04-20T15:27:01Z",
+      "side": 1,
+      "message": "This replace Test Teardown \"Show Packet Trace on All DUTs | ${nodes}\" KW from *** Settings *** \n\n| | [Teardown] | Run keywords | Show Packet Trace on All DUTs | AND | Stop and Clear QEMU",
+      "revId": "67fc401c4794d547c615dfc3a98082ecd0f0b293",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_8304247f",
+        "filename": "tests/suites/bridge_domain/bridge_domain_untagged.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-04-20T15:27:01Z",
+      "side": 1,
+      "message": "same as above.",
+      "range": {
+        "startLine": 198,
+        "startChar": 5,
+        "endLine": 198,
+        "endChar": 13
+      },
+      "revId": "67fc401c4794d547c615dfc3a98082ecd0f0b293",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
