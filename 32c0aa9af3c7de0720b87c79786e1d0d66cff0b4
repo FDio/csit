@@ -1,0 +1,84 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa0f191f_ce05a315",
+        "filename": "resources/libraries/python/Cop.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-04-21T15:50:00Z",
+      "side": 1,
+      "message": "be consistent in naming: copt_add_*",
+      "range": {
+        "startLine": 24,
+        "startChar": 8,
+        "endLine": 24,
+        "endChar": 31
+      },
+      "revId": "32c0aa9af3c7de0720b87c79786e1d0d66cff0b4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_69045115",
+        "filename": "resources/libraries/python/Cop.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-04-21T15:50:00Z",
+      "side": 1,
+      "message": "be consistent with naming of arguments - we don\u0027t use camel case, so please use ip_format",
+      "range": {
+        "startLine": 24,
+        "startChar": 49,
+        "endLine": 24,
+        "endChar": 65
+      },
+      "revId": "32c0aa9af3c7de0720b87c79786e1d0d66cff0b4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_ae026f09",
+        "filename": "resources/libraries/python/Cop.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-04-21T15:50:00Z",
+      "side": 1,
+      "message": "missing period.",
+      "revId": "32c0aa9af3c7de0720b87c79786e1d0d66cff0b4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_89ffa501",
+        "filename": "resources/libraries/python/Cop.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-04-21T15:50:00Z",
+      "side": 1,
+      "message": "end the parenthesis here.",
+      "revId": "32c0aa9af3c7de0720b87c79786e1d0d66cff0b4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
