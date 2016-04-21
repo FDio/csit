@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "fa0f191f_cef003cc",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-21T07:34:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa0f191f_c3545ccc",
+      "revId": "d752e0149bebeecc7e605d913dce1cb512ca39dd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa0f191f_636350b2",
         "filename": "resources/libraries/python/IPsecUtil.py",
         "patchSetId": 2
@@ -42,6 +60,30 @@
     },
     {
       "key": {
+        "uuid": "fa0f191f_6ea697c3",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-21T07:34:59Z",
+      "side": 1,
+      "message": "in case of error VAT returns extra line, for example:\n\n{ \"retval\": -7 }\nipsec_spd_add_del error: Invalid value\n\nand it ends with:\n\nValueError: Extra data: line 6 column 1 - line 7 column 1 (char 26 - 66)\n\nso since this return only retval it is not meaningful processed results",
+      "parentUuid": "fa0f191f_636350b2",
+      "range": {
+        "startLine": 74,
+        "startChar": 8,
+        "endLine": 74,
+        "endChar": 37
+      },
+      "revId": "d752e0149bebeecc7e605d913dce1cb512ca39dd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa0f191f_43584cfa",
         "filename": "resources/libraries/python/IPsecUtil.py",
         "patchSetId": 2
@@ -53,6 +95,30 @@
       "writtenOn": "2016-04-20T13:06:05Z",
       "side": 1,
       "message": "Could we use Enum instead of String? That should be easily usable in RF too, iirc.",
+      "range": {
+        "startLine": 103,
+        "startChar": 0,
+        "endLine": 103,
+        "endChar": 64
+      },
+      "revId": "d752e0149bebeecc7e605d913dce1cb512ca39dd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_8ea1ebab",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-21T07:34:59Z",
+      "side": 1,
+      "message": "Python and RF support only enumarate. It only allows us to loop over something and have an automatic counter. In this case you don\u0027t need RF For-in-enumerate loop.",
+      "parentUuid": "fa0f191f_43584cfa",
       "range": {
         "startLine": 103,
         "startChar": 0,
@@ -111,6 +177,30 @@
     },
     {
       "key": {
+        "uuid": "fa0f191f_8eba0be0",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-21T07:34:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa0f191f_0372547c",
+      "range": {
+        "startLine": 151,
+        "startChar": 0,
+        "endLine": 151,
+        "endChar": 27
+      },
+      "revId": "d752e0149bebeecc7e605d913dce1cb512ca39dd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa0f191f_a3728847",
         "filename": "resources/libraries/python/IPsecUtil.py",
         "patchSetId": 2
@@ -134,6 +224,30 @@
     },
     {
       "key": {
+        "uuid": "fa0f191f_aeedcff1",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-21T07:34:59Z",
+      "side": 1,
+      "message": "this style is used everywhere, it is VAT command since it starts with exec, using vat_terminal_exec_cmd takes several lines of code instead of one line",
+      "parentUuid": "fa0f191f_a3728847",
+      "range": {
+        "startLine": 152,
+        "startChar": 28,
+        "endLine": 152,
+        "endChar": 42
+      },
+      "revId": "d752e0149bebeecc7e605d913dce1cb512ca39dd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa0f191f_e36e4096",
         "filename": "resources/templates/vat/ipsec_sad_add_entry.vat",
         "patchSetId": 2
@@ -145,6 +259,24 @@
       "writtenOn": "2016-04-20T13:06:05Z",
       "side": 1,
       "message": "Could we move ipsec_ vat files under templates/var/ipsec/ subdir?",
+      "revId": "d752e0149bebeecc7e605d913dce1cb512ca39dd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_eee3c703",
+        "filename": "resources/templates/vat/ipsec_sad_add_entry.vat",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-21T07:34:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa0f191f_e36e4096",
       "revId": "d752e0149bebeecc7e605d913dce1cb512ca39dd",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
