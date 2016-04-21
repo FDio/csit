@@ -16,13 +16,38 @@ set -x
 
 # Space separated list of available testbeds, described by topology files
 TOPOLOGIES="topologies/available/lf_testbed2-710-520.yaml"
+VPP_STABLE_VER="1.0.0-304~gd530445_amd64"
+VPP_REPO_URL="https://nexus.fd.io/service/local/repositories/fd.io.dev/content/io/fd/vpp"
 
 # Reservation dir
 RESERVATION_DIR="/tmp/reservation_dir"
 INSTALLATION_DIR="/tmp/install_dir"
 
-# Jenkins VPP deb paths (convert to full path)
-VPP_DEBS="$( readlink -f $@ | tr '\n' ' ' )"
+# If we run this script from CSIT jobs we want to use stable vpp version
+if [[ ${JOB_NAME} == csit-* ]] ;
+then
+    mkdir vpp_download
+    cd vpp_download
+    #download vpp build from nexus and set VPP_DEBS variable
+    wget -q "${VPP_REPO_URL}/vpp/${VPP_STABLE_VER}/vpp-${VPP_STABLE_VER}.deb" || exit
+    wget -q "${VPP_REPO_URL}/vpp-dbg/${VPP_STABLE_VER}/vpp-dbg-${VPP_STABLE_VER}.deb" || exit
+    wget -q "${VPP_REPO_URL}/vpp-dev/${VPP_STABLE_VER}/vpp-dev-${VPP_STABLE_VER}.deb" || exit
+    wget -q "${VPP_REPO_URL}/vpp-dpdk-dev/${VPP_STABLE_VER}/vpp-dpdk-dev-${VPP_STABLE_VER}.deb" || exit
+    wget -q "${VPP_REPO_URL}/vpp-dpdk-dkms/${VPP_STABLE_VER}/vpp-dpdk-dkms-${VPP_STABLE_VER}.deb" || exit
+    wget -q "${VPP_REPO_URL}/vpp-lib/${VPP_STABLE_VER}/vpp-lib-${VPP_STABLE_VER}.deb" || exit
+    VPP_DEBS="$( readlink -f *.deb | tr '\n' ' ' )"
+    cd ..
+
+# If we run this script from vpp project we want to use local build
+elif [[ ${JOB_NAME} == vpp-* ]] ;
+then
+    #use local packages provided as argument list
+    # Jenkins VPP deb paths (convert to full path)
+    VPP_DEBS="$( readlink -f $@ | tr '\n' ' ' )"
+else
+    echo "Unable to identify job type based on JOB_NAME variable: ${JOB_NAME}"
+    exit 1
+fi
 
 CUR_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 WORKING_TOPOLOGY=""
@@ -79,14 +104,44 @@ else
     exit 1
 fi
 
-if [ ! -z "$TEST_TAG" ]; then
-# run specific performance tests by tag if variable is set
-    pybot -L TRACE \
-        -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-        -i "${TEST_TAG,,}" tests/
-else
-# run full performance test suite
-    pybot -L TRACE \
-        -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-        -s performance tests/
-fi
+case "$TEST_TAG" in
+    # run specific performance tests based on jenkins job type variable
+    PERFTEST_LONG )
+        pybot -L TRACE \
+              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+              -i perftest_long \
+              tests/
+        ;;
+    PERFTEST_SHORT )
+        pybot -L TRACE \
+              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+              -i perftest_short \
+              tests/
+        ;;
+    PERFTEST_LONG_BRIDGE )
+        pybot -L TRACE \
+              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+              -s performance.long_bridge_domain \
+              tests/
+        ;;
+    PERFTEST_LONG_IPV4 )
+        pybot -L TRACE \
+              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+              -s performance.long_ipv4 \
+              tests/
+        ;;
+    PERFTEST_LONG_XCONNECT )
+        pybot -L TRACE \
+              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+              -s performance.long_xconnect \
+              tests/
+        ;;
+    * )
+        # run full performance test suite and exit on fail
+        pybot --exitonfailure \
+              -L TRACE \
+              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+              -s performance \
+              tests/
+esac
+
