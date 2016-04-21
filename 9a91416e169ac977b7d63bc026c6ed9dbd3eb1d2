@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "fa0f191f_0e54bb52",
+        "filename": "resources/libraries/python/HoneycombAPIKeywords.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-04-21T13:43:30Z",
+      "side": 1,
+      "message": "No, it is necessary to put the whole list of interfaces to Honeycomb, otherwise the others would be deleted.",
+      "parentUuid": "fa0f191f_231438f4",
+      "range": {
+        "startLine": 222,
+        "startChar": 56,
+        "endLine": 222,
+        "endChar": 61
+      },
+      "revId": "9a91416e169ac977b7d63bc026c6ed9dbd3eb1d2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa0f191f_4eb073dd",
         "filename": "resources/libraries/python/HoneycombAPIKeywords.py",
         "patchSetId": 3
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "fa0f191f_4ed193cc",
+        "filename": "resources/libraries/python/HoneycombAPIKeywords.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-04-21T13:43:30Z",
+      "side": 1,
+      "message": "No, from the Honeycomb point of view, we add a bridge domain to interface. It is done on interface configuration page.",
+      "parentUuid": "fa0f191f_4eb073dd",
+      "range": {
+        "startLine": 257,
+        "startChar": 8,
+        "endLine": 257,
+        "endChar": 38
+      },
+      "revId": "9a91416e169ac977b7d63bc026c6ed9dbd3eb1d2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa0f191f_e3f520cc",
         "filename": "resources/libraries/python/HoneycombAPIKeywords.py",
         "patchSetId": 3
@@ -59,6 +107,30 @@
       "writtenOn": "2016-04-20T13:19:46Z",
       "side": 1,
       "message": "please add the parameter\u0027s name too. That way reader can immediately see what True means in this context.",
+      "range": {
+        "startLine": 379,
+        "startChar": 72,
+        "endLine": 379,
+        "endChar": 76
+      },
+      "revId": "9a91416e169ac977b7d63bc026c6ed9dbd3eb1d2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_ee506760",
+        "filename": "resources/libraries/python/HoneycombAPIKeywords.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 379,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-04-21T13:43:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa0f191f_e3f520cc",
       "range": {
         "startLine": 379,
         "startChar": 72,
