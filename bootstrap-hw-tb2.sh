@@ -14,89 +14,17 @@
 
 set -x
 
-# space separated list of available testbeds, described by topology files
-TOPOLOGIES="topologies/available/lf_testbed2-710-520.yaml"
+#TODO: remove this file after changing csit-vpp-verify job configuration
+if [ ! -e bootstrap-verify-perf.sh ]
+then
+    echo 'ERROR: No bootstrap-verify-perf.sh found'
+    exit 1
+fi
 
-CUR_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-WORKING_TOPOLOGY=""
-export PYTHONPATH=${CUR_DIR}
+# make sure that bootstrap-verify-perf.sh is executable
+chmod +x bootstrap-verify-perf.sh
+# run the script
+./bootstrap-verify-perf.sh *.deb
 
-sudo apt-get -y update
-sudo apt-get -y install libpython2.7-dev python-virtualenv
-
-virtualenv env
-. env/bin/activate
-
-echo pip install
-pip install -r requirements.txt
-
-# we iterate over available topologies and wait until we reserve topology
-while :; do
-    for TOPOLOGY in ${TOPOLOGIES};
-    do
-        python ${CUR_DIR}/resources/tools/topo_reservation.py -t ${TOPOLOGY}
-        if [ $? -eq 0 ]; then
-            WORKING_TOPOLOGY=${TOPOLOGY}
-            echo "Reserved: ${WORKING_TOPOLOGY}"
-            break
-        fi
-    done
-
-    if [ ! -z "${WORKING_TOPOLOGY}" ]; then
-        # exit the infinite while loop if we made a reservation
-        break
-    fi
-
-    # wait 10 - 30 sec. before next try
-    SLEEP_TIME=$[ ( $RANDOM % 20 ) + 10 ]s
-    echo "Sleeping ${SLEEP_TIME}"
-    sleep ${SLEEP_TIME}
-done
-
-function cancel_reservation {
-    python ${CUR_DIR}/resources/tools/topo_reservation.py -c -t $1
-}
-
-# on script exit we cancel the reservation
-trap "cancel_reservation ${WORKING_TOPOLOGY}" EXIT
-
-case "$TEST_TAG" in
-    # run specific performance tests based on jenkins job type variable
-    PERFTEST_LONG )
-        pybot -L TRACE \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -i perftest_long \
-              tests/
-        ;;
-    PERFTEST_SHORT )
-        pybot -L TRACE \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -i perftest_short \
-              tests/
-        ;;
-    PERFTEST_LONG_BRIDGE )
-        pybot -L TRACE \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s performance.long_bridge_domain \
-              tests/
-        ;;
-    PERFTEST_LONG_IPV4 )
-        pybot -L TRACE \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s performance.long_ipv4 \
-              tests/
-        ;;
-    PERFTEST_LONG_XCONNECT )
-        pybot -L TRACE \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s performance.long_xconnect \
-              tests/
-        ;;
-    * )
-        # run full performance test suite
-        pybot -L TRACE \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s performance \
-              tests/
-esac
+# vim: ts=4 ts=4 sts=4 et :
 
