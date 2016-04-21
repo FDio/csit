@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "fa0f191f_eec62749",
+        "filename": "resources/libraries/robot/honeycomb_interfaces.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-04-21T09:50:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa0f191f_03201448",
+      "revId": "5a34bfd7a42101af80b40d0a3a2eb80b0815f3bf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa0f191f_c319fc23",
         "filename": "resources/libraries/robot/honeycomb_interfaces.robot",
         "patchSetId": 7
@@ -30,6 +48,30 @@
       "writtenOn": "2016-04-20T13:34:22Z",
       "side": 1,
       "message": "Am I reading the code below right, that it takes first DUT node from nodes, and first interface from it, and make them as suite variable?\nCouldn\u0027t you just reference them directly? Why make them suite variables instead of returning them?",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 42
+      },
+      "revId": "5a34bfd7a42101af80b40d0a3a2eb80b0815f3bf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_ceda4317",
+        "filename": "resources/libraries/robot/honeycomb_interfaces.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-04-21T09:50:59Z",
+      "side": 1,
+      "message": "Removed keyword, defined variables in test case file. \n\nI made them suite variables for convenience, to shorten the argument names and make the test cases easier to read, compared to using direct references. These variables will be reused in almost every keyword throughout the test suite.",
+      "parentUuid": "fa0f191f_c319fc23",
       "range": {
         "startLine": 22,
         "startChar": 0,
@@ -65,6 +107,30 @@
     },
     {
       "key": {
+        "uuid": "fa0f191f_8edd6b17",
+        "filename": "resources/libraries/robot/honeycomb_interfaces.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-04-21T09:50:59Z",
+      "side": 1,
+      "message": "Modified all test case keywords to work with admin-state.",
+      "parentUuid": "fa0f191f_a31608f0",
+      "range": {
+        "startLine": 37,
+        "startChar": 55,
+        "endLine": 37,
+        "endChar": 66
+      },
+      "revId": "5a34bfd7a42101af80b40d0a3a2eb80b0815f3bf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa0f191f_63d8f053",
         "filename": "resources/libraries/robot/honeycomb_interfaces.robot",
         "patchSetId": 7
@@ -76,6 +142,24 @@
       "writtenOn": "2016-04-20T13:34:22Z",
       "side": 1,
       "message": "... and waits until ALL interfaces\u0027 oper state \u003d\u003d admin state on the node.",
+      "revId": "5a34bfd7a42101af80b40d0a3a2eb80b0815f3bf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_aed70fed",
+        "filename": "resources/libraries/robot/honeycomb_interfaces.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-04-21T09:50:59Z",
+      "side": 1,
+      "message": "removed",
+      "parentUuid": "fa0f191f_63d8f053",
       "revId": "5a34bfd7a42101af80b40d0a3a2eb80b0815f3bf",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
@@ -105,6 +189,30 @@
     },
     {
       "key": {
+        "uuid": "fa0f191f_2eec1fc7",
+        "filename": "resources/libraries/robot/honeycomb_interfaces.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-04-21T09:50:59Z",
+      "side": 1,
+      "message": "My intention was to simplify the test case for non-technical readers, by removing the ${node} and ${interface} arguments that would be passed to every keyword.\n\nPerhaps that was simplifying it too much.",
+      "parentUuid": "fa0f191f_83d30438",
+      "range": {
+        "startLine": 48,
+        "startChar": 41,
+        "endLine": 48,
+        "endChar": 45
+      },
+      "revId": "5a34bfd7a42101af80b40d0a3a2eb80b0815f3bf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa0f191f_03e7f413",
         "filename": "resources/libraries/robot/honeycomb_interfaces.robot",
         "patchSetId": 7
@@ -116,6 +224,30 @@
       "writtenOn": "2016-04-20T13:34:22Z",
       "side": 1,
       "message": "this really should go to interface util, right? It has nothing to do with HC. And I think we already have such KW there.",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 26
+      },
+      "revId": "5a34bfd7a42101af80b40d0a3a2eb80b0815f3bf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_0ed15bfb",
+        "filename": "resources/libraries/robot/honeycomb_interfaces.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-04-21T09:50:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa0f191f_03e7f413",
       "range": {
         "startLine": 51,
         "startChar": 0,
@@ -174,6 +306,54 @@
     },
     {
       "key": {
+        "uuid": "fa0f191f_6e09f794",
+        "filename": "resources/libraries/robot/honeycomb_interfaces.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-04-21T09:50:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa0f191f_23e2f803",
+      "range": {
+        "startLine": 52,
+        "startChar": 56,
+        "endLine": 52,
+        "endChar": 67
+      },
+      "revId": "5a34bfd7a42101af80b40d0a3a2eb80b0815f3bf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_8e044b7f",
+        "filename": "resources/libraries/robot/honeycomb_interfaces.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-04-21T09:50:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa0f191f_43ddec41",
+      "range": {
+        "startLine": 52,
+        "startChar": 27,
+        "endLine": 52,
+        "endChar": 41
+      },
+      "revId": "5a34bfd7a42101af80b40d0a3a2eb80b0815f3bf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa0f191f_e3e3e003",
         "filename": "resources/libraries/robot/honeycomb_interfaces.robot",
         "patchSetId": 7
@@ -185,6 +365,30 @@
       "writtenOn": "2016-04-20T13:34:22Z",
       "side": 1,
       "message": "\"Interface state from Honeycomb should be\"",
+      "range": {
+        "startLine": 66,
+        "startChar": 2,
+        "endLine": 66,
+        "endChar": 39
+      },
+      "revId": "5a34bfd7a42101af80b40d0a3a2eb80b0815f3bf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_4efe336d",
+        "filename": "resources/libraries/robot/honeycomb_interfaces.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-04-21T09:50:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa0f191f_e3e3e003",
       "range": {
         "startLine": 66,
         "startChar": 2,
@@ -220,6 +424,30 @@
     },
     {
       "key": {
+        "uuid": "fa0f191f_2e03ff74",
+        "filename": "resources/libraries/robot/honeycomb_interfaces.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-04-21T09:50:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa0f191f_c3f0dccb",
+      "range": {
+        "startLine": 72,
+        "startChar": 0,
+        "endLine": 72,
+        "endChar": 45
+      },
+      "revId": "5a34bfd7a42101af80b40d0a3a2eb80b0815f3bf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa0f191f_a3ede8f1",
         "filename": "resources/libraries/robot/honeycomb_interfaces.robot",
         "patchSetId": 7
@@ -231,6 +459,30 @@
       "writtenOn": "2016-04-20T13:34:22Z",
       "side": 1,
       "message": "so this checks oper state - in that case, adapt the name of the KW as such",
+      "range": {
+        "startLine": 78,
+        "startChar": 0,
+        "endLine": 78,
+        "endChar": 80
+      },
+      "revId": "5a34bfd7a42101af80b40d0a3a2eb80b0815f3bf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_eef4e788",
+        "filename": "resources/libraries/robot/honeycomb_interfaces.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-04-21T09:50:59Z",
+      "side": 1,
+      "message": "This obtains \"Honeycomb operational data\" about the interface, including both admin- and oper- states, ip addresses, subnets, etc.\n\nWe will consider renaming this and other honeycomb API keywords for more clarity, in a separate commit.",
+      "parentUuid": "fa0f191f_a3ede8f1",
       "range": {
         "startLine": 78,
         "startChar": 0,
@@ -266,6 +518,30 @@
     },
     {
       "key": {
+        "uuid": "fa0f191f_cef12397",
+        "filename": "resources/libraries/robot/honeycomb_interfaces.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-04-21T09:50:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa0f191f_83bae4df",
+      "range": {
+        "startLine": 82,
+        "startChar": 0,
+        "endLine": 82,
+        "endChar": 33
+      },
+      "revId": "5a34bfd7a42101af80b40d0a3a2eb80b0815f3bf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa0f191f_63bfd0d1",
         "filename": "resources/libraries/robot/honeycomb_interfaces.robot",
         "patchSetId": 7
@@ -277,6 +553,30 @@
       "writtenOn": "2016-04-20T13:34:22Z",
       "side": 1,
       "message": "expect",
+      "range": {
+        "startLine": 88,
+        "startChar": 28,
+        "endLine": 88,
+        "endChar": 33
+      },
+      "revId": "5a34bfd7a42101af80b40d0a3a2eb80b0815f3bf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_aeeeefb2",
+        "filename": "resources/libraries/robot/honeycomb_interfaces.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-04-21T09:50:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa0f191f_63bfd0d1",
       "range": {
         "startLine": 88,
         "startChar": 28,
@@ -312,6 +612,30 @@
     },
     {
       "key": {
+        "uuid": "fa0f191f_8e2b2beb",
+        "filename": "tests/suites/honeycomb/interface_management.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-04-21T09:50:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa0f191f_43b4ccf1",
+      "range": {
+        "startLine": 24,
+        "startChar": 49,
+        "endLine": 24,
+        "endChar": 55
+      },
+      "revId": "5a34bfd7a42101af80b40d0a3a2eb80b0815f3bf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa0f191f_23b9d8e9",
         "filename": "tests/suites/honeycomb/interface_management.robot",
         "patchSetId": 7
@@ -323,6 +647,30 @@
       "writtenOn": "2016-04-20T13:34:22Z",
       "side": 1,
       "message": "admin state",
+      "range": {
+        "startLine": 28,
+        "startChar": 56,
+        "endLine": 28,
+        "endChar": 67
+      },
+      "revId": "5a34bfd7a42101af80b40d0a3a2eb80b0815f3bf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_6e30d756",
+        "filename": "tests/suites/honeycomb/interface_management.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-04-21T09:50:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa0f191f_23b9d8e9",
       "range": {
         "startLine": 28,
         "startChar": 56,
@@ -358,6 +706,30 @@
     },
     {
       "key": {
+        "uuid": "fa0f191f_ce4803cf",
+        "filename": "tests/suites/honeycomb/interface_management.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-04-21T09:50:59Z",
+      "side": 1,
+      "message": "Placeholder tag, to be replaced once the Honeycomb service is set up for Jenkins verification jobs.",
+      "parentUuid": "fa0f191f_03ced483",
+      "range": {
+        "startLine": 30,
+        "startChar": 13,
+        "endLine": 30,
+        "endChar": 29
+      },
+      "revId": "5a34bfd7a42101af80b40d0a3a2eb80b0815f3bf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa0f191f_e3cac06d",
         "filename": "tests/suites/honeycomb/interface_management.robot",
         "patchSetId": 7
@@ -381,6 +753,30 @@
     },
     {
       "key": {
+        "uuid": "fa0f191f_4e351345",
+        "filename": "tests/suites/honeycomb/interface_management.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-04-21T09:50:59Z",
+      "side": 1,
+      "message": "removed",
+      "parentUuid": "fa0f191f_e3cac06d",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 42
+      },
+      "revId": "5a34bfd7a42101af80b40d0a3a2eb80b0815f3bf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa0f191f_c3c7bc63",
         "filename": "tests/suites/honeycomb/interface_management.robot",
         "patchSetId": 7
@@ -392,6 +788,30 @@
       "writtenOn": "2016-04-20T13:34:22Z",
       "side": 1,
       "message": "capitalize to Interface",
+      "range": {
+        "startLine": 32,
+        "startChar": 10,
+        "endLine": 32,
+        "endChar": 19
+      },
+      "revId": "5a34bfd7a42101af80b40d0a3a2eb80b0815f3bf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_2e3adf36",
+        "filename": "tests/suites/honeycomb/interface_management.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-04-21T09:50:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa0f191f_c3c7bc63",
       "range": {
         "startLine": 32,
         "startChar": 10,
