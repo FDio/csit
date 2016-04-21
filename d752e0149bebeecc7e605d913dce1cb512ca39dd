@@ -84,6 +84,30 @@
     },
     {
       "key": {
+        "uuid": "fa0f191f_0e25dbc1",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-04-21T15:31:24Z",
+      "side": 1,
+      "message": "We have to detect (in the vat exec) if the command succeeded or not. We have to strip {} values, and return at least the retval... -7 means failure, right?",
+      "parentUuid": "fa0f191f_6ea697c3",
+      "range": {
+        "startLine": 74,
+        "startChar": 8,
+        "endLine": 74,
+        "endChar": 37
+      },
+      "revId": "d752e0149bebeecc7e605d913dce1cb512ca39dd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa0f191f_43584cfa",
         "filename": "resources/libraries/python/IPsecUtil.py",
         "patchSetId": 2
@@ -119,6 +143,30 @@
       "side": 1,
       "message": "Python and RF support only enumarate. It only allows us to loop over something and have an automatic counter. In this case you don\u0027t need RF For-in-enumerate loop.",
       "parentUuid": "fa0f191f_43584cfa",
+      "range": {
+        "startLine": 103,
+        "startChar": 0,
+        "endLine": 103,
+        "endChar": 64
+      },
+      "revId": "d752e0149bebeecc7e605d913dce1cb512ca39dd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_ee2187b5",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-04-21T15:31:24Z",
+      "side": 1,
+      "message": "No, I mean, let\u0027s use Enum like in other places in CSIT code, to pass values using Py objects instead of free form text.",
+      "parentUuid": "fa0f191f_8ea1ebab",
       "range": {
         "startLine": 103,
         "startChar": 0,
