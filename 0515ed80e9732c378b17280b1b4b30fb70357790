@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa0f191f_4edd1342",
+        "filename": "tests/suites/performance/long_bridge_domain.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-21T05:57:28Z",
+      "side": 1,
+      "message": "Do not use comments since abstraction level is appropriate.",
+      "revId": "0515ed80e9732c378b17280b1b4b30fb70357790",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
