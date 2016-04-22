@@ -2,6 +2,293 @@
   "comments": [
     {
       "key": {
+        "uuid": "fa0f191f_5457e402",
+        "filename": "resources/libraries/python/Cop.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-04-22T16:51:12Z",
+      "side": 1,
+      "message": "Should be COP in every occurence",
+      "range": {
+        "startLine": 21,
+        "startChar": 7,
+        "endLine": 21,
+        "endChar": 10
+      },
+      "revId": "39ecead27cfe6e192fb519c06fb705a7bfb64bd8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_345c7025",
+        "filename": "resources/libraries/python/Cop.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-04-22T16:51:12Z",
+      "side": 1,
+      "message": "added. \nAdd dot at the end of every parameter documentation",
+      "range": {
+        "startLine": 28,
+        "startChar": 65,
+        "endLine": 28,
+        "endChar": 70
+      },
+      "revId": "39ecead27cfe6e192fb519c06fb705a7bfb64bd8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_f43dd8bc",
+        "filename": "resources/libraries/python/Cop.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-04-22T16:51:12Z",
+      "side": 1,
+      "message": "IP",
+      "range": {
+        "startLine": 29,
+        "startChar": 26,
+        "endLine": 29,
+        "endChar": 28
+      },
+      "revId": "39ecead27cfe6e192fb519c06fb705a7bfb64bd8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_d44ad454",
+        "filename": "resources/libraries/python/Cop.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-04-22T16:51:12Z",
+      "side": 1,
+      "message": "COP on the interface ?",
+      "range": {
+        "startLine": 45,
+        "startChar": 29,
+        "endLine": 45,
+        "endChar": 42
+      },
+      "revId": "39ecead27cfe6e192fb519c06fb705a7bfb64bd8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_14684cb9",
+        "filename": "resources/libraries/python/Cop.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-04-22T16:51:12Z",
+      "side": 1,
+      "message": "invalid input i.e. \"up\", \"delete\" causes \"enable\" interface.\ndocument valid input and raise error if not valid, or refactor state to boolean variable.",
+      "range": {
+        "startLine": 54,
+        "startChar": 11,
+        "endLine": 54,
+        "endChar": 16
+      },
+      "revId": "39ecead27cfe6e192fb519c06fb705a7bfb64bd8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_34aa30d5",
+        "filename": "resources/libraries/python/IPv4Setup.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-04-22T16:51:12Z",
+      "side": 1,
+      "message": "add empty line",
+      "revId": "39ecead27cfe6e192fb519c06fb705a7bfb64bd8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_3481104b",
+        "filename": "resources/libraries/python/IPv4Setup.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-04-22T16:51:12Z",
+      "side": 1,
+      "message": "consider to rename to add_arp_on_dut(...). also there could be delete_arp_on_dut(...) for future purpose.",
+      "range": {
+        "startLine": 317,
+        "startChar": 8,
+        "endLine": 317,
+        "endChar": 24
+      },
+      "revId": "39ecead27cfe6e192fb519c06fb705a7bfb64bd8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_f4ab98d4",
+        "filename": "resources/libraries/python/IPv4Setup.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-04-22T16:51:12Z",
+      "side": 1,
+      "message": "add empty line",
+      "revId": "39ecead27cfe6e192fb519c06fb705a7bfb64bd8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_d4b8942c",
+        "filename": "resources/libraries/python/IPv4Setup.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-04-22T16:51:12Z",
+      "side": 1,
+      "message": "Set ARP cache entrie on DUT node.",
+      "range": {
+        "startLine": 318,
+        "startChar": 11,
+        "endLine": 318,
+        "endChar": 31
+      },
+      "revId": "39ecead27cfe6e192fb519c06fb705a7bfb64bd8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_b45e4011",
+        "filename": "resources/libraries/python/IPv4Setup.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-04-22T16:51:12Z",
+      "side": 1,
+      "message": "IP",
+      "range": {
+        "startLine": 321,
+        "startChar": 27,
+        "endLine": 321,
+        "endChar": 29
+      },
+      "revId": "39ecead27cfe6e192fb519c06fb705a7bfb64bd8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_d461b4d4",
+        "filename": "resources/libraries/python/IPv4Setup.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 321,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-04-22T16:51:12Z",
+      "side": 1,
+      "message": "interface.",
+      "range": {
+        "startLine": 321,
+        "startChar": 45,
+        "endLine": 321,
+        "endChar": 54
+      },
+      "revId": "39ecead27cfe6e192fb519c06fb705a7bfb64bd8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_74a0a8f4",
+        "filename": "resources/libraries/python/IPv4Setup.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-04-22T16:51:12Z",
+      "side": 1,
+      "message": "interface.",
+      "range": {
+        "startLine": 322,
+        "startChar": 47,
+        "endLine": 322,
+        "endChar": 56
+      },
+      "revId": "39ecead27cfe6e192fb519c06fb705a7bfb64bd8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_949b3cc9",
+        "filename": "resources/libraries/python/IPv4Setup.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-04-22T16:51:12Z",
+      "side": 1,
+      "message": "MAC",
+      "range": {
+        "startLine": 322,
+        "startChar": 28,
+        "endLine": 322,
+        "endChar": 31
+      },
+      "revId": "39ecead27cfe6e192fb519c06fb705a7bfb64bd8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa0f191f_94ffbc01",
         "filename": "resources/libraries/python/Routing.py",
         "patchSetId": 5
@@ -18,6 +305,98 @@
         "startChar": 0,
         "endLine": 17,
         "endChar": 29
+      },
+      "revId": "39ecead27cfe6e192fb519c06fb705a7bfb64bd8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_b48c0081",
+        "filename": "resources/libraries/python/Routing.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-04-22T16:51:12Z",
+      "side": 1,
+      "message": "IP",
+      "range": {
+        "startLine": 51,
+        "startChar": 24,
+        "endLine": 51,
+        "endChar": 26
+      },
+      "revId": "39ecead27cfe6e192fb519c06fb705a7bfb64bd8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_94e9fc1c",
+        "filename": "resources/libraries/python/Routing.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-04-22T16:51:12Z",
+      "side": 1,
+      "message": "table.",
+      "range": {
+        "startLine": 51,
+        "startChar": 53,
+        "endLine": 51,
+        "endChar": 58
+      },
+      "revId": "39ecead27cfe6e192fb519c06fb705a7bfb64bd8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_54f3640a",
+        "filename": "resources/libraries/python/Routing.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-04-22T16:51:12Z",
+      "side": 1,
+      "message": "IP",
+      "range": {
+        "startLine": 52,
+        "startChar": 27,
+        "endLine": 52,
+        "endChar": 29
+      },
+      "revId": "39ecead27cfe6e192fb519c06fb705a7bfb64bd8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_74ee6824",
+        "filename": "resources/libraries/python/Routing.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-04-22T16:51:12Z",
+      "side": 1,
+      "message": "ID.",
+      "range": {
+        "startLine": 53,
+        "startChar": 33,
+        "endLine": 53,
+        "endChar": 35
       },
       "revId": "39ecead27cfe6e192fb519c06fb705a7bfb64bd8",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
@@ -42,6 +421,275 @@
         "endLine": 62,
         "endChar": 21
       },
+      "revId": "39ecead27cfe6e192fb519c06fb705a7bfb64bd8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_7431c8a1",
+        "filename": "resources/traffic_scripts/send_icmp_check_headers.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-04-22T16:51:12Z",
+      "side": 1,
+      "message": "FIX PEP8 violations.",
+      "revId": "39ecead27cfe6e192fb519c06fb705a7bfb64bd8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_b4ff60aa",
+        "filename": "tests/suites/cop/cop_whitelist_blacklist.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-04-22T16:51:12Z",
+      "side": 1,
+      "message": "When",
+      "range": {
+        "startLine": 61,
+        "startChar": 4,
+        "endLine": 61,
+        "endChar": 7
+      },
+      "revId": "39ecead27cfe6e192fb519c06fb705a7bfb64bd8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_942c5c4c",
+        "filename": "tests/suites/cop/cop_whitelist_blacklist.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-04-22T16:51:12Z",
+      "side": 1,
+      "message": "Cop",
+      "range": {
+        "startLine": 62,
+        "startChar": 8,
+        "endLine": 62,
+        "endChar": 11
+      },
+      "revId": "39ecead27cfe6e192fb519c06fb705a7bfb64bd8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_f4f5d8cb",
+        "filename": "tests/suites/cop/cop_whitelist_blacklist.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-04-22T16:51:12Z",
+      "side": 1,
+      "message": "When",
+      "range": {
+        "startLine": 71,
+        "startChar": 4,
+        "endLine": 71,
+        "endChar": 7
+      },
+      "revId": "39ecead27cfe6e192fb519c06fb705a7bfb64bd8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_d402d4b3",
+        "filename": "tests/suites/cop/cop_whitelist_blacklist.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-04-22T16:51:12Z",
+      "side": 1,
+      "message": "Cop",
+      "range": {
+        "startLine": 72,
+        "startChar": 8,
+        "endLine": 72,
+        "endChar": 11
+      },
+      "revId": "39ecead27cfe6e192fb519c06fb705a7bfb64bd8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_14f96cc8",
+        "filename": "tests/suites/cop/cop_whitelist_blacklist.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-04-22T16:51:12Z",
+      "side": 1,
+      "message": "create \"Send packet from Port to Port should failed\" KW.\nmaybe test script should exit with specific return value on timeout and check that value.",
+      "range": {
+        "startLine": 73,
+        "startChar": 0,
+        "endLine": 75,
+        "endChar": 48
+      },
+      "revId": "39ecead27cfe6e192fb519c06fb705a7bfb64bd8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_34cfd0b2",
+        "filename": "tests/suites/cop/cop_whitelist_blacklist.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-04-22T16:51:12Z",
+      "side": 1,
+      "message": "Move to ipv4.robot and rename to something like \"Send ICMP and check headers\"",
+      "range": {
+        "startLine": 79,
+        "startChar": 2,
+        "endLine": 79,
+        "endChar": 31
+      },
+      "revId": "39ecead27cfe6e192fb519c06fb705a7bfb64bd8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_3446b024",
+        "filename": "tests/suites/cop/cop_whitelist_blacklist.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-04-22T16:51:12Z",
+      "side": 1,
+      "message": "document each parameter",
+      "revId": "39ecead27cfe6e192fb519c06fb705a7bfb64bd8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_d45414cc",
+        "filename": "tests/suites/cop/cop_whitelist_blacklist.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-04-22T16:51:12Z",
+      "side": 1,
+      "message": "move to cop.robot",
+      "range": {
+        "startLine": 88,
+        "startChar": 2,
+        "endLine": 88,
+        "endChar": 27
+      },
+      "revId": "39ecead27cfe6e192fb519c06fb705a7bfb64bd8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_746308b2",
+        "filename": "tests/suites/cop/cop_whitelist_blacklist.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-04-22T16:51:12Z",
+      "side": 1,
+      "message": "add VPP Node Interfaces Ready Wait | ${dut1}",
+      "revId": "39ecead27cfe6e192fb519c06fb705a7bfb64bd8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_144bac2c",
+        "filename": "tests/suites/cop/cop_whitelist_blacklist.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-04-22T16:51:12Z",
+      "side": 1,
+      "message": "move to given part of testcase",
+      "revId": "39ecead27cfe6e192fb519c06fb705a7bfb64bd8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_f46ef895",
+        "filename": "tests/suites/cop/cop_whitelist_blacklist.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-04-22T16:51:12Z",
+      "side": 1,
+      "message": "move to given part of testcase, create separate KW",
+      "range": {
+        "startLine": 128,
+        "startChar": 0,
+        "endLine": 129,
+        "endChar": 80
+      },
+      "revId": "39ecead27cfe6e192fb519c06fb705a7bfb64bd8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_d46bf483",
+        "filename": "tests/suites/cop/cop_whitelist_blacklist.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-04-22T16:51:12Z",
+      "side": 1,
+      "message": "move to given part of testcase",
       "revId": "39ecead27cfe6e192fb519c06fb705a7bfb64bd8",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
