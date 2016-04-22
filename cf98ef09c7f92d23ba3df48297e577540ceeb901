@@ -22,6 +22,30 @@
       "revId": "cf98ef09c7f92d23ba3df48297e577540ceeb901",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_a99b8971",
+        "filename": "resources/libraries/robot/interfaces.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-04-22T11:38:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa0f191f_ae2b8f93",
+      "range": {
+        "startLine": 51,
+        "startChar": 20,
+        "endLine": 51,
+        "endChar": 25
+      },
+      "revId": "cf98ef09c7f92d23ba3df48297e577540ceeb901",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
