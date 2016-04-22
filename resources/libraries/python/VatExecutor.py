@@ -183,6 +183,21 @@ class VatTerminal(object):
                                                           self.__VAT_PROMPT)
         logger.debug("VAT output: {}".format(out))
         if self.json:
+            obj_start = out.find('{')
+            obj_end = out.rfind('}')
+            array_start = out.find('[')
+            array_end = out.rfind(']')
+
+            if -1 == obj_start and -1 == array_start:
+                raise RuntimeError("No JSON data.")
+
+            if obj_start < array_start or -1 == array_start:
+                start = obj_start
+                end = obj_end + 1
+            else:
+                start = array_start
+                end = array_end + 1
+            out = out[start:end]
             json_out = json.loads(out)
             return json_out
         else:

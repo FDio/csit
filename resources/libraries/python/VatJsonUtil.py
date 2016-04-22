@@ -100,3 +100,26 @@ class VatJsonUtil(object):
             ifc['name'] = interface_dict["interface_name"]
             ifc['vpp_sw_index'] = interface_dict["sw_if_index"]
             ifc['mtu'] = interface_dict["mtu"]
+
+    @staticmethod
+    def verify_vat_retval(vat_out, exp_retval=0, err_msg='VAT cmd failed'):
+        """Verify return value of VAT command.
+
+        VAT command JSON output should be object (dict in python) or array. We
+        are looking for something like this: { "retval": 0 }. Verification is
+        skipped if VAT output does not contain return value element or root
+        elemet is array.
+
+        :param vat_out: VAT command output in python representation of JSON.
+        :param exp_retval: Expected return value (default 0).
+        :err_msg: Message to be displayed in case of error (optional).
+        :type vat_out: dict or list
+        :type exp_retval: int
+        :type err_msg: str
+        :raises RuntimeError: If VAT command return value is incorrect.
+        """
+        if type(vat_out) is dict:
+            retval = vat_out.get('retval')
+            if retval is not None:
+                if retval != exp_retval:
+                    raise RuntimeError(err_msg)
