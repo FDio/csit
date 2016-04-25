@@ -70,7 +70,7 @@
 | | ... | Find throughput with non drop rate for 9000B frames by using
 | | ... | linear search starting at 138,580pps, stepping down with step of
 | | ... | 5,000pps
-| | [Tags] | 1_THREAD_NOHTT_RSS_1 | SINGLE_THREAD
+| | [Tags] | 1_THREAD_NOHTT_RSS_1 | SINGLE_THREAD | THIS
 | | ${framesize}= | Set Variable | 9000
 | | ${start_rate}= | Set Variable | 138580
 | | ${step_rate}= | Set Variable | 5000

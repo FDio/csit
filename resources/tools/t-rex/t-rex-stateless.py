@@ -16,7 +16,7 @@
 """This script uses T-REX stateless API to drive t-rex instance.
 
 Requirements:
-- T-REX: https://github.com/cisco-system-traffic-generator/trex-core 
+- T-REX: https://github.com/cisco-system-traffic-generator/trex-core
  - compiled and running T-REX process (eg. ./t-rex-64 -i -c 4)
  - trex_stl_lib.api library
 - Script must be executed on a node with T-REX instance
@@ -26,7 +26,7 @@ Requirements:
 - port_limit      : 2 # numbers of ports to use
   version         : 2
   interfaces      : ["84:00.0","84:00.1"] # PCI address of interfaces
-  port_info       :  # set eth mac addr 
+  port_info       :  # set eth mac addr
           - dest_mac        :   [0x90,0xe2,0xba,0x1f,0x97,0xd5]  # port 0
             src_mac         :   [0x90,0xe2,0xba,0x1f,0x97,0xd4]
           - dest_mac        :   [0x90,0xe2,0xba,0x1f,0x97,0xd4]  # port 1
@@ -41,24 +41,40 @@ Functionality:
 
 """
 
-
-import sys, getopt
-sys.path.insert(0, "/opt/trex-core-1.91/scripts/automation/trex_control_plane/stl/")
-
-from trex_stl_lib.api import *
-
-import dpkt
 import json
 import string
+import sys, getopt
+
+sys.path.insert(0, "/opt/trex-core-2.00/scripts/automation/trex_control_plane/stl/")
+from trex_stl_lib.api import *
+
 
 def generate_payload(length):
+    """Generate random payload.
+
+    :param length: Length of payload.
+    :type length: int
+    :return: Payload filled with random chars.
+    :rtype string
+    """
+
     word = ''
     alphabet_size = len(string.letters)
     for i in range(length):
         word += string.letters[(i % alphabet_size)]
+
     return word
 
 def create_packets(traffic_options, frame_size=64):
+    """Create two IP packets to be used in stream.
+
+    :param traffic_options: Parameters for packets.
+    :param frame_size: Size of L2 frame.
+    :type traffic_options: List
+    :type frame_size: int
+    :return: Packet instances.
+    :rtype STLPktBuilder
+    """
 
     if frame_size < 64:
         print "Packet min. size is 64B"
@@ -82,32 +98,58 @@ def create_packets(traffic_options, frame_size=64):
     base_pkt_a = Ether()/IP(src=p1_src_start_ip, dst=p1_dst_start_ip, proto=61)
     base_pkt_b = Ether()/IP(src=p2_src_start_ip, dst=p2_dst_start_ip, proto=61)
 
-    vm1 = CTRexScRaw([STLVmTupleGen(ip_min=p1_src_start_ip, ip_max=p1_src_end_ip,
-                                    name="tuple"), # define tuple gen
-
-                      STLVmWrFlowVar(fv_name="tuple.ip", pkt_offset="IP.src"), # write ip to packet IP.src
-                      STLVmFixIpv4(offset="IP"),                               # fix checksum
+    # The following code applies raw instructions to packet (IP src increment).
+    # It splits the generated traffic by "ip_src" variable to cores and fix
+    # IPv4 header checksum.
+    vm1 = STLScVmRaw([STLVmFlowVar(name="src",
+                                   min_value=p1_src_start_ip,
+                                   max_value=p1_src_end_ip,
+                                   size=4, op="inc"),
+                      STLVmWrFlowVar(fv_name="src", pkt_offset="IP.src"),
+                      STLVmFixIpv4(offset="IP"),
                      ]
-                     , split_by_field="tuple") # split to cores base on the tuple generator
+                     , split_by_field="src")
 
-    vm2 = CTRexScRaw([STLVmTupleGen(ip_min=p2_src_start_ip, ip_max=p2_src_end_ip,
-                                    name="tuple"), # define tuple gen
-
-                      STLVmWrFlowVar(fv_name="tuple.ip", pkt_offset="IP.src"), # write ip to packet IP.src
-                      STLVmFixIpv4(offset="IP"),                               # fix checksum
+    # The following code applies raw instructions to packet (IP src increment).
+    # It splits the generated traffic by "ip_src" variable to cores and fix
+    # IPv4 header checksum.
+    vm2 = STLScVmRaw([STLVmFlowVar(name="src",
+                                   min_value=p2_src_start_ip,
+                                   max_value=p2_src_end_ip,
+                                   size=4, op="inc"),
+                      STLVmWrFlowVar(fv_name="src", pkt_offset="IP.src"),
+                      STLVmFixIpv4(offset="IP"),
                      ]
-                     , split_by_field="tuple") # split to cores base on the tuple generator
+                     , split_by_field="src")
 
-    pkt_a = STLPktBuilder(pkt=base_pkt_a/generate_payload(fsize_no_fcs-len(base_pkt_a)), vm=vm1)
-    pkt_b = STLPktBuilder(pkt=base_pkt_b/generate_payload(fsize_no_fcs-len(base_pkt_b)), vm=vm2)
+    pkt_a = STLPktBuilder(pkt=base_pkt_a/generate_payload(
+        fsize_no_fcs-len(base_pkt_a)), vm=vm1)
+    pkt_b = STLPktBuilder(pkt=base_pkt_b/generate_payload(
+        fsize_no_fcs-len(base_pkt_b)), vm=vm2)
 
     return(pkt_a, pkt_b)
 
 def simple_burst(pkt_a, pkt_b, duration=10, rate="1mpps",
                  warmup=True, warmup_time=5):
+    """Run the traffic with specific parameters.
+
+    :param pkt_a: Base packet for stream 1.
+    :param pkt_b: Base packet for stream 2.
+    :param duration: Duration of traffic run in seconds.
+    :param rate: Rate of traffic run [percentage, pps, bps].
+    :param warmup: Use of warmup phase.
+    :param warmup_time: Warm up duration.
+    :type pkt_a: STLPktBuilder
+    :type pkt_b: STLPktBuilder
+    :type duration: int
+    :type rate: string
+    :type warmup: boolean
+    :type warmup_time: int
+    :return: nothing
+    """
 
     # create client
-    c = STLClient()
+    client = STLClient()
     passed = True
 
     try:
@@ -115,31 +157,31 @@ def simple_burst(pkt_a, pkt_b, duration=10, rate="1mpps",
         #c.set_verbose("high")
 
         # create two streams
-        s1 = STLStream(packet=pkt_a,
-                       mode=STLTXCont(pps=100))
+        stream1 = STLStream(packet=pkt_a,
+                            mode=STLTXCont(pps=100))
 
         # second stream with a phase of 10ns (inter stream gap)
-        s2 = STLStream(packet=pkt_b,
-                       isg=10.0,
-                       mode=STLTXCont(pps=100))
+        stream2 = STLStream(packet=pkt_b,
+                            isg=10.0,
+                            mode=STLTXCont(pps=100))
 
 
         # connect to server
-        c.connect()
+        client.connect()
 
         # prepare our ports (my machine has 0 <--> 1 with static route)
-        c.reset(ports=[0, 1])
+        client.reset(ports=[0, 1])
 
         # add both streams to ports
-        c.add_streams(s1, ports=[0])
-        c.add_streams(s2, ports=[1])
+        client.add_streams(stream1, ports=[0])
+        client.add_streams(stream2, ports=[1])
 
         #warmup phase
         if warmup == True:
-            c.clear_stats()
-            c.start(ports=[0, 1], mult=rate, duration=warmup_time)
-            c.wait_on_traffic(ports=[0, 1])
-            stats = c.get_stats()
+            client.clear_stats()
+            client.start(ports=[0, 1], mult=rate, duration=warmup_time)
+            client.wait_on_traffic(ports=[0, 1], timeout=(duration+30))
+            stats = client.get_stats()
             print stats
             print "#####warmup statistics#####"
             print json.dumps(stats, indent=4,
@@ -152,16 +194,16 @@ def simple_burst(pkt_a, pkt_b, duration=10, rate="1mpps",
 
 
         # clear the stats before injecting
-        c.clear_stats()
+        client.clear_stats()
 
         # choose rate and start traffic
-        c.start(ports=[0, 1], mult=rate, duration=duration)
+        client.start(ports=[0, 1], mult=rate, duration=duration)
 
         # block until done
-        c.wait_on_traffic(ports=[0, 1], timeout=(duration+30))
+        client.wait_on_traffic(ports=[0, 1], timeout=(duration+30))
 
         # read the stats after the test
-        stats = c.get_stats()
+        stats = client.get_stats()
 
         print "#####statistics#####"
         print json.dumps(stats, indent=4,
@@ -183,14 +225,15 @@ def simple_burst(pkt_a, pkt_b, duration=10, rate="1mpps",
         else:
             passed = False
 
-    except STLError as e:
+    except STLError as ex_error:
         passed = False
-        print e
+        print ex_error
 
     finally:
-        c.disconnect()
+        client.disconnect()
 
 def print_help():
+    """Print help on stdout."""
 
     print "args: [-h] -d <duration> -s <size of frame in bytes>"+\
     " [-r] <traffic rate with unit: %, mpps> "+\
@@ -209,6 +252,7 @@ def print_help():
 
 
 def main(argv):
+    """Main function."""
 
     _duration = 10
     _frame_size = 64
@@ -216,20 +260,20 @@ def main(argv):
     _traffic_options = {}
 
     try:
-        opts, args = getopt.getopt(argv, "hd:s:r:o:",
-                                   ["help",
-                                    "p1_src_mac=",
-                                    "p1_dst_mac=",
-                                    "p1_src_start_ip=",
-                                    "p1_src_end_ip=",
-                                    "p1_dst_start_ip=",
-                                    "p1_dst_end_ip=",
-                                    "p2_src_mac=",
-                                    "p2_dst_mac=",
-                                    "p2_src_start_ip=",
-                                    "p2_src_end_ip=",
-                                    "p2_dst_start_ip=",
-                                    "p2_dst_end_ip="])
+        opts, _ = getopt.getopt(argv, "hd:s:r:o:",
+                                ["help",
+                                 "p1_src_mac=",
+                                 "p1_dst_mac=",
+                                 "p1_src_start_ip=",
+                                 "p1_src_end_ip=",
+                                 "p1_dst_start_ip=",
+                                 "p1_dst_end_ip=",
+                                 "p2_src_mac=",
+                                 "p2_dst_mac=",
+                                 "p2_src_start_ip=",
+                                 "p2_src_end_ip=",
+                                 "p2_dst_start_ip=",
+                                 "p2_dst_end_ip="])
     except getopt.GetoptError:
         print_help()
         sys.exit(2)
