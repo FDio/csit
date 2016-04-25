@@ -63,6 +63,7 @@
 | | [Documentation] |  Setup worker threads and rss in startup configuration of
 | | ...             |  VPP on all DUTs
 | | [Arguments] | ${cpu} | ${rss}
+| | ${maxtxqueues}= | Catenate | max-tx-queues | 4
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | Add CPU config | ${nodes['${dut}']}
@@ -70,6 +71,8 @@
 | | | Add PCI device | ${nodes['${dut}']}
 | | | Add RSS config | ${nodes['${dut}']}
 | | | ...            | ${rss}
+| | | Add Max TX Queues config | ${nodes['${dut}']}
+| | | ...            | ${maxtxqueues}
 | | | Apply config | ${nodes['${dut}']}
 
 | Reset startup configuration of VPP on all DUTs
@@ -82,6 +85,7 @@
 | | | Remove Socketmem Config | ${nodes['${dut}']}
 | | | Remove Heapsize Config | ${nodes['${dut}']}
 | | | Remove RSS Config | ${nodes['${dut}']}
+| | | Remove Max TX Queues Config | ${nodes['${dut}']}
 | | | Add CPU Config | ${nodes['${dut}']}
 | | | ...            | ${cpu}
 | | | Add PCI Device | ${nodes['${dut}']}
