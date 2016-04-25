@@ -107,7 +107,7 @@ function stop_virl_simulation {
 
 VIRL_SID=$(ssh -i priv_key -o StrictHostKeyChecking=no \
     ${VIRL_USERNAME}@${VIRL_SERVER} \
-    "/home/jenkins-in/testcase-infra/bin/start-testcase -c simple-ring ${VPP_DEBS_FULL[@]}")
+    "/home/jenkins-in/testcase-infra/bin/start-testcase -c double-ring-nested ${VPP_DEBS_FULL[@]}")
 retval=$?
 if [ "$?" -ne "0" ]; then
     echo "VIRL simulation start failed"
@@ -152,8 +152,8 @@ do
     echo ${test_set}. test loop
     PYTHONPATH=`pwd` pybot -L TRACE \
         -v TOPOLOGY_PATH:topologies/enabled/topology.yaml \
-        --exclude 3_node_double_link_topoNOT3_node_single_link_topo \
-        --include VM_ENV \
+        --include vm_envAND3_node_single_link_topo \
+        --include vm_envAND3_node_double_link_topo \
         --exclude PERFTEST \
         --noncritical EXPECTED_FAILING \
         --output log_test_set${test_set} \
