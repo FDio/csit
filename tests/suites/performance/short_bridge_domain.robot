@@ -25,7 +25,7 @@
 | 1core VPP passes 64B frames through bridge domain at 2x 3.2Mpps in 3-node topology
 | | [Documentation]
 | | ... | VPP with 1 core should pass 64B frames through bridge domain
-| | ... | at 2x3.2Mpps in 3-node topology
+| | ... | at 2x 3.2Mpps in 3-node topology
 | | [Tags] | 1_THREAD_NOHTT_RSS_1 | SINGLE_THREAD
 | | ${framesize}= | Set Variable | 64
 | | ${duration}= | Set Variable | 10
@@ -35,27 +35,27 @@
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                   | ${framesize} | 3-node-bridge
 
-| 1core VPP passes 1518B frames through bridge domain at 2x 10Gbps in 3-node topology
+| 1core VPP passes 1518B frames through bridge domain at 2x 812,743pps in 3-node topology
 | | [Documentation]
 | | ... | VPP with 1 core should pass 1518B frames through bridge domain
-| | ... | at 2x10Gbps in 3-node topology
+| | ... | at 2x 812,743pps (2x 10Gbps) in 3-node topology
 | | [Tags] | 1_THREAD_NOHTT_RSS_1 | SINGLE_THREAD
 | | ${framesize}= | Set Variable | 1518
 | | ${duration}= | Set Variable | 10
-| | ${rate}= | Set Variable | 10gbps
+| | ${rate}= | Set Variable | 812743pps
 | | Given Setup '1' worker threads and rss '1' without HTT on all DUTs
 | | AND   L2 bridge domain initialized in a 3-node circular topology
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                   | ${framesize} | 3-node-bridge
 
-| 1core VPP passes 9000B frames through bridge domain at 2x 10Gbps in 3-node topology
+| 1core VPP passes 9000B frames through bridge domain at 2x 138,580pps in 3-node topology
 | | [Documentation]
 | | ... | VPP with 1 core should pass 9000B frames through bridge domain
-| | ... | at 2x10Gbps in 3-node topology
+| | ... | at 2x 138,580pps (2x 10Gbps) in 3-node topology
 | | [Tags] | 1_THREAD_NOHTT_RSS_1 | SINGLE_THREAD
 | | ${framesize}= | Set Variable | 9000
 | | ${duration}= | Set Variable | 10
-| | ${rate}= | Set Variable | 10gbps
+| | ${rate}= | Set Variable | 138580pps
 | | Given Setup '1' worker threads and rss '1' without HTT on all DUTs
 | | AND   L2 bridge domain initialized in a 3-node circular topology
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
@@ -64,7 +64,7 @@
 | 2core VPP with rss 1 passes 64B frames through bridge domain at 2x 6.9Mpps in 3-node topology
 | | [Documentation]
 | | ... | VPP with 2 cores should pass 64B frames through bridge domain
-| | ... | at 2x6.9Mpps in 3-node topology
+| | ... | at 2x 6.9Mpps in 3-node topology
 | | [Tags] | 2_THREAD_NOHTT_RSS_1 | MULTI_THREAD
 | | ${framesize}= | Set Variable | 64
 | | ${duration}= | Set Variable | 10
@@ -74,27 +74,27 @@
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                   | ${framesize} | 3-node-bridge
 
-| 2core VPP with rss 1 passes 1518B frames through bridge domain at 2x 10Gbps in 3-node topology
+| 2core VPP with rss 1 passes 1518B frames through bridge domain at 2x 812,743pps in 3-node topology
 | | [Documentation]
 | | ... | VPP with 2 cores should pass 1518B frames through bridge domain
-| | ... | at 2x10Gbps in 3-node topology
+| | ... | at 2x 812,743pps (2x 10Gbps) in 3-node topology
 | | [Tags] | 2_THREAD_NOHTT_RSS_1 | MULTI_THREAD
 | | ${framesize}= | Set Variable | 1518
 | | ${duration}= | Set Variable | 10
-| | ${rate}= | Set Variable | 10gbps
+| | ${rate}= | Set Variable | 812743pps
 | | Given Setup '2' worker threads and rss '1' without HTT on all DUTs
 | | AND   L2 bridge domain initialized in a 3-node circular topology
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                   | ${framesize} | 3-node-bridge
 
-| 2core VPP with rss 1 passes 9000B frames through bridge domain at 2x 10Gbps in 3-node topology
+| 2core VPP with rss 1 passes 9000B frames through bridge domain at 2x 138,580pps in 3-node topology
 | | [Documentation]
 | | ... | VPP with 2 cores should pass 9000B frames through bridge domain
-| | ... | at 2x10Gbps in 3-node topology
+| | ... | at 2x 138,580pps (2x 10Gbps) in 3-node topology
 | | [Tags] | 2_THREAD_NOHTT_RSS_1 | MULTI_THREAD
 | | ${framesize}= | Set Variable | 9000
 | | ${duration}= | Set Variable | 10
-| | ${rate}= | Set Variable | 10gbps
+| | ${rate}= | Set Variable | 138580pps
 | | Given Setup '2' worker threads and rss '1' without HTT on all DUTs
 | | AND   L2 bridge domain initialized in a 3-node circular topology
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
@@ -103,7 +103,7 @@
 | 4core VPP with rss 2 passes 64B frames through bridge domain at 2x 7.9Mpps in 3-node topology
 | | [Documentation]
 | | ... | VPP with 4 cores and rss 2 should pass 64B frames through bridge
-| | ... | domain at 2x7.9Mpps in 3-node topology
+| | ... | domain at 2x 7.9Mpps in 3-node topology
 | | [Tags] | 4_THREAD_NOHTT_RSS_2 | MULTI_THREAD
 | | ${framesize}= | Set Variable | 64
 | | ${duration}= | Set Variable | 10
@@ -113,27 +113,27 @@
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                   | ${framesize} | 3-node-bridge
 
-| 4core VPP with rss 2 passes 1518B frames through bridge domain at 2x 10Gbps in 3-node topology
+| 4core VPP with rss 2 passes 1518B frames through bridge domain at 2x 812,743pps in 3-node topology
 | | [Documentation]
 | | ... | VPP with 4 cores and rss 2 should pass 1518B frames through bridge
-| | ... | domain at 2x10Gbps in 3-node topology
+| | ... | domain at 2x 812,743pps (2x 10Gbps) in 3-node topology
 | | [Tags] | 4_THREAD_NOHTT_RSS_2 | MULTI_THREAD
 | | ${framesize}= | Set Variable | 1518
 | | ${duration}= | Set Variable | 10
-| | ${rate}= | Set Variable | 10gbps
+| | ${rate}= | Set Variable | 812743pps
 | | Given Setup '4' worker threads and rss '2' without HTT on all DUTs
 | | AND   L2 bridge domain initialized in a 3-node circular topology
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                   | ${framesize} | 3-node-bridge
 
-| 4core VPP with rss 2 passes 9000B frames through bridge domain at 2x 10Gbps in 3-node topology
+| 4core VPP with rss 2 passes 9000B frames through bridge domain at 2x 138,580pps in 3-node topology
 | | [Documentation]
 | | ... | VPP with 4 cores and rss 2should pass 9000B frames through bridge
-| | ... | domain at 2x10Gbps in 3-node topology
+| | ... | domain at 2x 138,580pps (2x 10Gbps) in 3-node topology
 | | [Tags] | 4_THREAD_NOHTT_RSS_2 | MULTI_THREAD
 | | ${framesize}= | Set Variable | 9000
 | | ${duration}= | Set Variable | 10
-| | ${rate}= | Set Variable | 10gbps
+| | ${rate}= | Set Variable | 138580pps
 | | Given Setup '4' worker threads and rss '2' without HTT on all DUTs
 | | AND   L2 bridge domain initialized in a 3-node circular topology
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
