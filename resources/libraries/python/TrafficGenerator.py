@@ -101,7 +101,8 @@ class TrafficGenerator(object):
         :type test_type: str
         :return: nothing
         """
-        trex_path = "/opt/trex-core-1.91"
+
+        trex_path = "/opt/trex-core-2.00"
 
         topo = Topology()
 
@@ -242,15 +243,18 @@ class TrafficGenerator(object):
         logger.trace(stdout)
         logger.trace(stderr)
 
-        # last line from console output
-        line = stdout.splitlines()[-1]
+        if int(ret) != 0:
+            raise RuntimeError('T-rex stateless runtime error')
+        else:
+            # last line from console output
+            line = stdout.splitlines()[-1]
 
-        self._result = line
-        logger.info('TrafficGen result: {0}'.format(self._result))
+            self._result = line
+            logger.info('TrafficGen result: {0}'.format(self._result))
 
-        self._received = self._result.split(', ')[1].split('=')[1]
-        self._sent = self._result.split(', ')[2].split('=')[1]
-        self._loss = self._result.split(', ')[3].split('=')[1]
+            self._received = self._result.split(', ')[1].split('=')[1]
+            self._sent = self._result.split(', ')[2].split('=')[1]
+            self._loss = self._result.split(', ')[3].split('=')[1]
 
     def send_traffic_on(self, node, duration, rate,
                         framesize, traffic_type):
