@@ -108,6 +108,30 @@
     },
     {
       "key": {
+        "uuid": "fa0f191f_af9b8971",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-25T15:07:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa0f191f_0e25dbc1",
+      "range": {
+        "startLine": 74,
+        "startChar": 8,
+        "endLine": 74,
+        "endChar": 37
+      },
+      "revId": "d752e0149bebeecc7e605d913dce1cb512ca39dd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa0f191f_43584cfa",
         "filename": "resources/libraries/python/IPsecUtil.py",
         "patchSetId": 2
@@ -167,6 +191,30 @@
       "side": 1,
       "message": "No, I mean, let\u0027s use Enum like in other places in CSIT code, to pass values using Py objects instead of free form text.",
       "parentUuid": "fa0f191f_8ea1ebab",
+      "range": {
+        "startLine": 103,
+        "startChar": 0,
+        "endLine": 103,
+        "endChar": 64
+      },
+      "revId": "d752e0149bebeecc7e605d913dce1cb512ca39dd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_cf9ebd63",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-25T15:07:02Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa0f191f_ee2187b5",
       "range": {
         "startLine": 103,
         "startChar": 0,
