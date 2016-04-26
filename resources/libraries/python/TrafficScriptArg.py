@@ -21,10 +21,13 @@ class TrafficScriptArg(object):
 
     Parse arguments for traffic script. Default has two arguments '--tx_if'
     and '--rx_if'. You can provide more arguments. All arguments have string
-    representation of the value.
+    representation of the value. You can add also optional arguments. Default
+    value for optional arguments is empty string.
 
     :param more_args: List of additional arguments (optional).
+    :param opt_args: List of optional arguments (optional).
     :type more_args: list
+    :type opt_args: list
 
     :Example:
 
@@ -32,7 +35,7 @@ class TrafficScriptArg(object):
     >>> args = TrafficScriptArg(['src_mac', 'dst_mac', 'src_ip', 'dst_ip'])
     """
 
-    def __init__(self, more_args=None):
+    def __init__(self, more_args=None, opt_args=None):
         parser = argparse.ArgumentParser()
         parser.add_argument("--tx_if", help="interface that sends traffic")
         parser.add_argument("--rx_if", help="interface that receives traffic")
@@ -41,6 +44,11 @@ class TrafficScriptArg(object):
             for arg in more_args:
                 arg_name = '--{0}'.format(arg)
                 parser.add_argument(arg_name)
+
+        if opt_args is not None:
+            for arg in opt_args:
+                arg_name = '--{0}'.format(arg)
+                parser.add_argument(arg_name, nargs='?', default='')
 
         self._parser = parser
         self._args = vars(parser.parse_args())
