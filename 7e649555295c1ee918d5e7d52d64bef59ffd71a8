@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "fa0f191f_61ca25a3",
+        "filename": "resources/libraries/python/Cop.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 365
+      },
+      "writtenOn": "2016-04-26T13:34:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa0f191f_cf923df6",
+      "range": {
+        "startLine": 29,
+        "startChar": 38,
+        "endLine": 29,
+        "endChar": 68
+      },
+      "revId": "7e649555295c1ee918d5e7d52d64bef59ffd71a8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa0f191f_6f369105",
         "filename": "resources/libraries/robot/cop.robot",
         "patchSetId": 6
@@ -36,6 +60,30 @@
       "writtenOn": "2016-04-25T21:45:35Z",
       "side": 1,
       "message": "This should be step of the test case not of the keyword.",
+      "range": {
+        "startLine": 57,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 36
+      },
+      "revId": "7e649555295c1ee918d5e7d52d64bef59ffd71a8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_41cf21b1",
+        "filename": "resources/libraries/robot/cop.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 365
+      },
+      "writtenOn": "2016-04-26T13:34:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa0f191f_6f369105",
       "range": {
         "startLine": 57,
         "startChar": 0,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "fa0f191f_c14a11ac",
+        "filename": "resources/libraries/robot/ipv4.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 365
+      },
+      "writtenOn": "2016-04-26T13:34:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa0f191f_2f409955",
+      "range": {
+        "startLine": 107,
+        "startChar": 4,
+        "endLine": 120,
+        "endChar": 49
+      },
+      "revId": "7e649555295c1ee918d5e7d52d64bef59ffd71a8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa0f191f_4f3bcdeb",
         "filename": "resources/libraries/robot/ipv4.robot",
         "patchSetId": 6
@@ -82,6 +154,30 @@
       "writtenOn": "2016-04-25T21:45:35Z",
       "side": 1,
       "message": "Lines too long. Correct all occurances.",
+      "range": {
+        "startLine": 121,
+        "startChar": 0,
+        "endLine": 123,
+        "endChar": 119
+      },
+      "revId": "7e649555295c1ee918d5e7d52d64bef59ffd71a8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_a195dde5",
+        "filename": "resources/libraries/robot/ipv4.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 365
+      },
+      "writtenOn": "2016-04-26T13:34:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa0f191f_4f3bcdeb",
       "range": {
         "startLine": 121,
         "startChar": 0,
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "fa0f191f_819ad912",
+        "filename": "resources/libraries/robot/ipv4.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 365
+      },
+      "writtenOn": "2016-04-26T13:34:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa0f191f_0f25d5c1",
+      "range": {
+        "startLine": 127,
+        "startChar": 4,
+        "endLine": 129,
+        "endChar": 50
+      },
+      "revId": "7e649555295c1ee918d5e7d52d64bef59ffd71a8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa0f191f_ef2181b5",
         "filename": "tests/suites/cop/cop_whitelist_blacklist.robot",
         "patchSetId": 6
@@ -140,6 +260,30 @@
     },
     {
       "key": {
+        "uuid": "fa0f191f_619fc504",
+        "filename": "tests/suites/cop/cop_whitelist_blacklist.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 365
+      },
+      "writtenOn": "2016-04-26T13:34:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa0f191f_ef2181b5",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 46
+      },
+      "revId": "7e649555295c1ee918d5e7d52d64bef59ffd71a8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa0f191f_cf2ebda5",
         "filename": "tests/suites/cop/cop_whitelist_blacklist.robot",
         "patchSetId": 6
@@ -151,6 +295,30 @@
       "writtenOn": "2016-04-25T21:45:35Z",
       "side": 1,
       "message": "| not required at the end of line. Valid aslo for line 67.",
+      "range": {
+        "startLine": 57,
+        "startChar": 45,
+        "endLine": 57,
+        "endChar": 46
+      },
+      "revId": "7e649555295c1ee918d5e7d52d64bef59ffd71a8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_41a4c156",
+        "filename": "tests/suites/cop/cop_whitelist_blacklist.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 365
+      },
+      "writtenOn": "2016-04-26T13:34:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa0f191f_cf2ebda5",
       "range": {
         "startLine": 57,
         "startChar": 45,
