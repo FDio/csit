@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa0f191f_a19b9dc8",
+        "filename": "resources/tools/t-rex/t-rex-stateless.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-26T06:24:11Z",
+      "side": 1,
+      "message": "line too long",
+      "revId": "9dfc4a4bf520beff31df563c73c3c417d167ff09",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_61a58503",
+        "filename": "resources/tools/t-rex/t-rex-stateless.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-26T06:24:11Z",
+      "side": 1,
+      "message": "this should be one parameter, if None - no warm-up",
+      "range": {
+        "startLine": 133,
+        "startChar": 17,
+        "endLine": 133,
+        "endChar": 43
+      },
+      "revId": "9dfc4a4bf520beff31df563c73c3c417d167ff09",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
