@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "fa0f191f_a12cbd4b",
+        "filename": "resources/libraries/robot/bridge_domain.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-26T08:43:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa0f191f_610fc5e2",
+      "range": {
+        "startLine": 188,
+        "startChar": 13,
+        "endLine": 188,
+        "endChar": 33
+      },
+      "revId": "f68cbc7a3d6eeb73f08b879b756b2c41e6cf6276",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa0f191f_4114c1f4",
         "filename": "tests/suites/bridge_domain/bridge_domain_untagged.robot",
         "patchSetId": 5
@@ -36,6 +60,30 @@
       "writtenOn": "2016-04-26T08:29:32Z",
       "side": 1,
       "message": "Could you, please, remove also this space in your commit? It was my fault but we missed it in the review...\nThe same on line 33.\nThanks!",
+      "range": {
+        "startLine": 32,
+        "startChar": 11,
+        "endLine": 32,
+        "endChar": 12
+      },
+      "revId": "f68cbc7a3d6eeb73f08b879b756b2c41e6cf6276",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa0f191f_c1ffb1a9",
+        "filename": "tests/suites/bridge_domain/bridge_domain_untagged.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-04-26T08:43:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa0f191f_4114c1f4",
       "range": {
         "startLine": 32,
         "startChar": 11,
