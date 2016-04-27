@@ -22,6 +22,32 @@ from yaml import load
 
 from resources.libraries.python.ssh import SSH
 
+def ssh_no_error(ssh, cmd, sudo=False):
+    """Execute a command over ssh channel, and log and exit if the command
+    fails.
+
+    :param ssh: SSH() object connected to a node.
+    :param cmd: Command line to execute on remote node.
+    :type ssh: SSH() object
+    :type cmd: str
+    :return: stdout from the SSH command.
+    :rtype: str
+    """
+
+    if sudo == True:
+        ret, stdo, stde = ssh.exec_command_sudo(cmd)
+    else:
+        ret, stdo, stde = ssh.exec_command(cmd)
+
+    if 0 != ret:
+        print 'Command execution failed: "{}"'.format(cmd)
+        print 'stdout: {0}'.format(stdo)
+        print 'stderr: {0}'.format(stde)
+        raise RuntimeError('Unexpected ssh command failure')
+
+    return stdo
+
+
 def main():
     """Copy and installation of VPP packages."""
 
@@ -43,32 +69,32 @@ def main():
     work_file = open(topology_file)
     topology = load(work_file.read())['nodes']
 
+    ssh = SSH()
     for node in topology:
         if topology[node]['type'] == "DUT":
-            ssh = SSH()
+            print "###TI host: {}".format(topology[node]['host'])
             ssh.connect(topology[node])
 
             if cancel_installation:
-                ret, _, err = ssh.exec_command("rm -r {}".format(install_dir))
-                if ret != 0:
-                    print "Cancel unsuccessful:\n{}".format(err)
-                    return ret
+                #Remove installation directory on DUT
+                cmd = "rm -r {}".format(install_dir)
+                stdout = ssh_no_error(ssh, cmd)
+                print "###TI {}".format(stdout)
             else:
-                ret, _, err = ssh.exec_command("mkdir {}".format(install_dir))
-                if ret != 0:
-                    print "Mkdir unsuccessful:\n{}".format(err)
-                    return ret
+                #Create installation directory on DUT
+                cmd = "mkdir {}".format(install_dir)
+                stdout = ssh_no_error(ssh, cmd)
+                print "###TI {}".format(stdout)
 
                 # Copy packages from local path to installation dir
                 for deb in packages:
+                    print "###TI scp: {}".format(deb)
                     ssh.scp(local_path=deb, remote_path=install_dir)
 
                 # Installation of VPP deb packages
-                ret, _, err = ssh.exec_command_sudo(
-                    "dpkg -i {}/*.deb".format(install_dir))
-                if ret != 0:
-                    print "Installation unsuccessful:\n{}".format(err)
-                    return ret
+                cmd = "dpkg -i --force-all {}/*.deb".format(install_dir)
+                stdout = ssh_no_error(ssh, cmd, sudo=True)
+                print "###TI {}".format(stdout)
 
 if __name__ == "__main__":
     sys.exit(main())
