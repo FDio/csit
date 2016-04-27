@@ -103,14 +103,14 @@
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                   | ${framesize} | 3-node-xconnect
 
-| 4core VPP with rss 2 passes 64B frames through L2 cross connect at 2x 9.9Mpps in 3-node topology
+| 4core VPP with rss 2 passes 64B frames through L2 cross connect at 2x 9.3Mpps in 3-node topology
 | | [Documentation]
 | | ... | VPP with 4 cores and rss 2 should pass 64B frames through L2 cross
-| | ... | connect at 2x9.9Mpps in 3-node topology
+| | ... | connect at 2x9.3Mpps in 3-node topology
 | | [Tags] | 4_THREAD_NOHTT_RSS_2 | MULTI_THREAD
 | | ${framesize}= | Set Variable | 64
 | | ${duration}= | Set Variable | 10
-| | ${rate}= | Set Variable | 9.9mpps
+| | ${rate}= | Set Variable | 9.3mpps
 | | Given Setup '4' worker threads and rss '2' without HTT on all DUTs
 | | AND   L2 xconnect initialized in a 3-node circular topology
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
