@@ -16,14 +16,14 @@ set -x
 
 # Space separated list of available testbeds, described by topology files
 TOPOLOGIES="topologies/available/lf_testbed2-710-520.yaml"
-VPP_STABLE_VER="1.0.0-304~gd530445_amd64"
+VPP_STABLE_VER="1.0.0-369~g106f0ed_amd64"
 VPP_REPO_URL="https://nexus.fd.io/service/local/repositories/fd.io.dev/content/io/fd/vpp"
 
 # Reservation dir
 RESERVATION_DIR="/tmp/reservation_dir"
 INSTALLATION_DIR="/tmp/install_dir"
 
-PYBOT_ARGS=""
+PYBOT_ARGS="--noncritical MULTI_THREAD"
 
 # If we run this script from CSIT jobs we want to use stable vpp version
 if [[ ${JOB_NAME} == csit-* ]] ;
