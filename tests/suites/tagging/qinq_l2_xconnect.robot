@@ -13,6 +13,7 @@
 
 *** Settings ***
 | Resource | resources/libraries/robot/default.robot
+| Resource | resources/libraries/robot/testing_path.robot
 | Resource | resources/libraries/robot/tagging.robot
 | Resource | resources/libraries/robot/l2_traffic.robot
 | Library  | resources.libraries.python.Trace
@@ -29,21 +30,21 @@
 | ${tag_rewrite_method}= | pop-2
 
 *** Test Cases ***
-| VPP can push and pop two VLAN tags to traffic transfering through xconnect
+| VPP can push and pop two VLAN tags to traffic transferring through xconnect
 | | [Documentation] | Push two tags on DUT 1 to traffic sent from TG,
 | | ...             | pop two tags on DUT 2 from this traffic
 | | ...             | and receive untagged traffic on TG.
 | | ...
-| | Given Node path computed for 3-node topology
+| | Given Path for 3-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
-| | And Interfaces in path are up
+| | And Interfaces in 3-node path are up
 | | When VLAN subinterfaces initialized on 3-node topology
-| | ... | ${dut1} | ${dut1_if2} | ${dut2} | ${dut2_if1} | ${subid}
+| | ... | ${dut1_node} | ${dut1_to_dut2} | ${dut2_node} | ${dut2_to_dut1} | ${subid}
 | | ... | ${outer_vlan_id} | ${inner_vlan_id} | ${type_subif}
 | | And L2 tag rewrite pop 2 tags setup on interfaces
-| | ... | ${dut1} | ${subif_index_1} | ${dut2} | ${subif_index_2}
+| | ... | ${dut1_node} | ${subif_index_1} | ${dut2_node} | ${subif_index_2}
 | | ... | ${tag_rewrite_method}
 | | And Interfaces and VLAN sub-interfaces inter-connected using L2-xconnect
-| | ... | ${dut1} | ${dut1_if1} | ${subif_index_1}
-| | ... | ${dut2} | ${dut2_if2} | ${subif_index_2}
-| | Then Send and receive ICMPv4 | ${tg} | ${tg_if1} | ${tg_if2}
+| | ... | ${dut1_node} | ${dut1_to_tg} | ${subif_index_1}
+| | ... | ${dut2_node} | ${dut2_to_tg} | ${subif_index_2}
+| | Then Send and receive ICMPv4 | ${tg_node} | ${tg_to_dut1} | ${tg_to_dut2}

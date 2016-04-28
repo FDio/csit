@@ -14,6 +14,7 @@
 *** Settings ***
 | Documentation | VXLAN tunnel over untagged IPv4 traffic tests using bridge domain.
 | Resource | resources/libraries/robot/default.robot
+| Resource | resources/libraries/robot/testing_path.robot
 | Resource | resources/libraries/robot/vxlan.robot
 | Resource | resources/libraries/robot/l2_traffic.robot
 | Library  | resources.libraries.python.Trace
@@ -28,18 +29,18 @@
 
 *** Test Cases ***
 | VPP can pass IPv4 bidirectionally through VXLAN
-| | Given Path for VXLAN testing is set
-| | ...   | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']}
-| | And   Interfaces in path are up
-| | And   IP addresses are set on interfaces | ${dut1} | ${dut1s_to_dut2} | ${NONE}
-| |       ...                                | ${dut2} | ${dut2s_to_dut1} | ${NONE}
-| | ${dut1s_vxlan}= | When Create VXLAN interface     | ${dut1} | ${VNI}
+| | Given Path for 3-node testing is set
+| | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
+| | And   Interfaces in 3-node path are up
+| | And   IP addresses are set on interfaces | ${dut1_node} | ${dut1_to_dut2} | ${NONE}
+| |       ...                                | ${dut2_node} | ${dut2_to_dut1} | ${NONE}
+| | ${dut1s_vxlan}= | When Create VXLAN interface     | ${dut1_node} | ${VNI}
 | |                 | ...  | ${dut1s_ip_address} | ${dut2s_ip_address}
-| |                   And  Interfaces are added to BD | ${dut1} | ${BID}
-| |                   ...  | ${dut1s_to_tg} | ${dut1s_vxlan}
-| | ${dut2s_vxlan}= | And  Create VXLAN interface     | ${dut2} | ${VNI}
+| |                   And  Interfaces are added to BD | ${dut1_node} | ${BID}
+| |                   ...  | ${dut1_to_tg} | ${dut1s_vxlan}
+| | ${dut2s_vxlan}= | And  Create VXLAN interface     | ${dut2_node} | ${VNI}
 | |                 | ...  | ${dut2s_ip_address} | ${dut1s_ip_address}
-| |                   And  Interfaces are added to BD | ${dut2} | ${BID}
-| |                   ...  | ${dut2s_to_tg} | ${dut2s_vxlan}
+| |                   And  Interfaces are added to BD | ${dut2_node} | ${BID}
+| |                   ...  | ${dut2_to_tg} | ${dut2s_vxlan}
 | | Then Send and receive ICMPv4 bidirectionally
-| | ... | ${tg} | ${tgs_to_dut1} | ${tgs_to_dut2}
+| | ... | ${tg_node} | ${tg_to_dut1} | ${tg_to_dut2}

@@ -21,43 +21,6 @@
 | Resource | resources/libraries/robot/l2_traffic.robot
 
 *** Keywords ***
-| Path for 2-node BD testing is set
-| | [Documentation] | Compute path for bridge domain testing on two given nodes
-| | ...             | and set corresponding test case variables.
-| | ...
-| | ... | *Arguments:*
-| | ... | - ${tg_node} - TG node. Type: dictionary
-| | ... | - ${dut_node} - DUT node. Type: dictionary
-| | ...
-| | ... | *Return:*
-| | ... | - No value returned
-| | ...
-| | ... | _NOTE:_ This KW sets following test case variables:
-| | ... | - ${tg_node} - TG node.
-| | ... | - ${tg_to_dut_if1} - 1st TG interface towards DUT.
-| | ... | - ${tg_to_dut_if2} - 2nd TG interface towards DUT.
-| | ... | - ${dut_node} - DUT node.
-| | ... | - ${dut_to_tg_if1} - 1st DUT interface towards TG.
-| | ... | - ${dut_to_tg_if2} - 2nd DUT interface towards TG.
-| | ...
-| | ... | *Example:*
-| | ...
-| | ... | \| Given Path for 2-node BD testing is set \| ${nodes['TG']} \
-| | ... | \| ${nodes['DUT1']} \|
-| | [Arguments] | ${tg_node} | ${dut_node}
-| | Append Nodes | ${tg_node} | ${dut_node} | ${tg_node}
-| | Compute Path | always_same_link=${FALSE}
-| | ${tg_to_dut_if1} | ${tmp}= | First Interface
-| | ${tg_to_dut_if2} | ${tmp}= | Last Interface
-| | ${dut_to_tg_if1} | ${tmp}= | First Ingress Interface
-| | ${dut_to_tg_if2} | ${tmp}= | Last Egress Interface
-| | Set Test Variable | ${tg_to_dut_if1}
-| | Set Test Variable | ${tg_to_dut_if2}
-| | Set Test Variable | ${dut_to_tg_if1}
-| | Set Test Variable | ${dut_to_tg_if2}
-| | Set Test Variable | ${tg_node}
-| | Set Test Variable | ${dut_node}
-
 | Vpp l2bd forwarding setup
 | | [Documentation] | Setup BD between 2 interfaces on VPP node and if learning
 | | ...             | is off set static L2FIB entry on second interface
@@ -68,52 +31,6 @@
 | | Run Keyword If | ${learn} == ${FALSE}
 | | ... | Vpp Add L2fib Entry | ${node} | ${mac} | ${if2} | ${1}
 | | All Vpp Interfaces Ready Wait | ${nodes}
-
-| Path for 3-node BD testing is set
-| | [Documentation] | Compute path for bridge domain testing on three given
-| | ...             | nodes and set corresponding test case variables.
-| | ...
-| | ... | *Arguments:*
-| | ... | - ${tg_node} - TG node. Type: dictionary
-| | ... | - ${dut1_node} - DUT1 node. Type: dictionary
-| | ... | - ${dut2_node} - DUT2 node. Type: dictionary
-| | ...
-| | ... | *Return:*
-| | ... | - No value returned
-| | ... |
-| | ... | _NOTE:_ This KW sets following test case variables:
-| | ... | - ${tg_node} - TG node.
-| | ... | - ${tg_to_dut1} - TG interface towards DUT1.
-| | ... | - ${tg_to_dut2} - TG interface towards DUT2.
-| | ... | - ${dut1_node} - DUT1 node.
-| | ... | - ${dut1_to_tg} - DUT1 interface towards TG.
-| | ... | - ${dut1_to_dut2} - DUT1 interface towards DUT2.
-| | ... | - ${dut2_node} - DUT2 node.
-| | ... | - ${dut2_to_tg} - DUT2 interface towards TG.
-| | ... | - ${dut2_to_dut1} - DUT2 interface towards DUT1.
-| | ...
-| | ... | *Example:*
-| | ...
-| | ... | \| Given Path for 3-node BD testing is set \| ${nodes['TG']} \
-| | ... | \| ${nodes['DUT1']} \| ${nodes['DUT2']} \|
-| | [Arguments] | ${tg_node} | ${dut1_node} | ${dut2_node}
-| | Append Nodes | ${tg_node} | ${dut1_node} | ${dut2_node} | ${tg_node}
-| | Compute Path
-| | ${tg_to_dut1} | ${tmp}= | Next Interface
-| | ${dut1_to_tg} | ${tmp}= | Next Interface
-| | ${dut1_to_dut2} | ${tmp}= | Next Interface
-| | ${dut2_to_dut1} | ${tmp}= | Next Interface
-| | ${dut2_to_tg} | ${tmp}= | Next Interface
-| | ${tg_to_dut2} | ${tmp}= | Next Interface
-| | Set Test Variable | ${tg_to_dut1}
-| | Set Test Variable | ${dut1_to_tg}
-| | Set Test Variable | ${tg_to_dut2}
-| | Set Test Variable | ${dut2_to_tg}
-| | Set Test Variable | ${dut1_to_dut2}
-| | Set Test Variable | ${dut2_to_dut1}
-| | Set Test Variable | ${tg_node}
-| | Set Test Variable | ${dut1_node}
-| | Set Test Variable | ${dut2_node}
 
 | Bridge domain on DUT node is created
 | | [Documentation] | Create bridge domain on given VPP node with defined
