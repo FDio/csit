@@ -507,3 +507,19 @@ class InterfaceUtil(object):
             vat.vat_terminal_exec_cmd('exec show interfaces')
 
         return '{}.{}'.format(interface, sub_id), sw_subif_index
+
+    @staticmethod
+    def vpp_create_loopback(node):
+        """Create loopback interface on VPP node.
+
+        :param node: Node to create loopback interface on.
+        :type node: dict
+        :return: SW interface index.
+        :rtype: int
+        """
+        out = VatExecutor.cmd_from_template(node, "create_loopback.vat")
+        if out[0].get('retval') == 0:
+            return out[0].get('sw_if_index')
+        else:
+            raise RuntimeError('Create loopback failed on node "{}"'
+                               .format(node['host']))
