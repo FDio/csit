@@ -13,8 +13,6 @@
 
 """Implementation of keywords for Honeycomb setup."""
 
-from xml.etree import ElementTree as ET
-
 from robot.api import logger
 
 from resources.libraries.python.topology import NodeType
@@ -186,93 +184,3 @@ class HoneycombSetup(object):
                         logger.info("Honeycomb on node {0} has stopped".
                                     format(node['host']))
         return True
-
-    @staticmethod
-    def add_vpp_to_honeycomb_network_topology(nodes):
-        """Add vpp node to Honeycomb network topology.
-
-        :param nodes: All nodes in test topology.
-        :type nodes: dict
-        :return: Status code and response content from PUT requests.
-        :rtype: tuple
-        :raises HoneycombError: If a node was not added to Honeycomb topology.
-
-        Reads HTML path from template file config_topology_node.url.
-        Path to the node to be added, e.g.:
-        ("/restconf/config/network-topology:network-topology"
-         "/topology/topology-netconf/node/")
-        There must be "/" at the end, as generated node name is added at the
-        end.
-
-        Reads payload data from template file add_vpp_to_topology.xml.
-        Information about node as XML structure, e.g.:
-        <node xmlns="urn:TBD:params:xml:ns:yang:network-topology">
-            <node-id>
-                {vpp_host}
-            </node-id>
-            <host xmlns="urn:opendaylight:netconf-node-topology">
-                {vpp_ip}
-            </host>
-            <port xmlns="urn:opendaylight:netconf-node-topology">
-                {vpp_port}
-            </port>
-            <username xmlns="urn:opendaylight:netconf-node-topology">
-                {user}
-            </username>
-            <password xmlns="urn:opendaylight:netconf-node-topology">
-                {passwd}
-            </password>
-            <tcp-only xmlns="urn:opendaylight:netconf-node-topology">
-                false
-            </tcp-only>
-            <keepalive-delay xmlns="urn:opendaylight:netconf-node-topology">
-                0
-            </keepalive-delay>
-        </node>
-        NOTE: The placeholders:
-            {vpp_host}
-            {vpp_ip}
-            {vpp_port}
-            {user}
-            {passwd}
-        MUST be there as they are replaced by correct values.
-        """
-        path = HcUtil.read_path_from_url_file("config_topology_node")
-        try:
-            xml_data = ET.parse("{0}/add_vpp_to_topology.xml".
-                                format(Const.RESOURCES_TPL_HC))
-        except ET.ParseError as err:
-            raise HoneycombError(repr(err))
-        data = ET.tostring(xml_data.getroot())
-
-        headers = {"Content-Type": "application/xml"}
-
-        status_codes = []
-        responses = []
-        for node_name, node in nodes.items():
-            if node['type'] == NodeType.DUT:
-                try:
-                    payload = data.format(
-                        vpp_host=node_name,
-                        vpp_ip=node["host"],
-                        vpp_port=node['honeycomb']["netconf_port"],
-                        user=node['honeycomb']["user"],
-                        passwd=node['honeycomb']["passwd"])
-                    status_code, resp = HTTPRequest.put(
-                        node=node,
-                        path="{0}/{1}".format(path, node_name),
-                        headers=headers,
-                        payload=payload)
-                    if status_code != HTTPCodes.OK:
-                        raise HoneycombError(
-                            "VPP {0} was not added to topology. "
-                            "Status code: {1}.".format(node["host"],
-                                                       status_code))
-
-                    status_codes.append(status_code)
-                    responses.append(resp)
-
-                except HTTPRequestError as err:
-                    raise HoneycombError("VPP {0} was not added to topology.".
-                                         format(node["host"]), repr(err))
-        return status_codes, responses

@@ -22,7 +22,7 @@ be used directly in tests. Use keywords implemented in the module
 HoneycombAPIKeywords instead.
 """
 
-from json import loads
+from json import loads, dumps
 from enum import Enum, unique
 
 from robot.api import logger
@@ -42,7 +42,7 @@ class DataRepresentation(Enum):
 
 # Headers used in requests. Key - content representation, value - header.
 HEADERS = {DataRepresentation.NO_DATA:
-               {},  # Must be empty.
+               {},  # It must be empty dictionary.
            DataRepresentation.JSON:
                {"Content-Type": "application/json",
                 "Accept": "text/plain"},
@@ -136,51 +136,153 @@ class HoneycombUtil(object):
         return path
 
     @staticmethod
-    def parse_json_response(response, path=None):
-        """Parse data from response string in JSON format according to given
-        path.
+    def find_item(data, path):
+        """Find a data item (single leaf or sub-tree) in data received from
+        Honeycomb REST API.
 
-        :param response: JSON formatted string.
-        :param path: Path to navigate down the data structure.
-        :type response: str
+        Path format:
+        The path is a tuple with items navigating to requested data. The items
+        can be strings or tuples:
+        - string item represents a dictionary key in data,
+        - tuple item represents list item in data.
+
+        Example:
+        data = \
+        {
+            "interfaces": {
+                "interface": [
+                    {
+                        "name": "GigabitEthernet0/8/0",
+                        "enabled": "true",
+                        "type": "iana-if-type:ethernetCsmacd",
+                    },
+                    {
+                        "name": "local0",
+                        "enabled": "false",
+                        "type": "iana-if-type:ethernetCsmacd",
+                    }
+                ]
+            }
+        }
+
+        path = ("interfaces", ("interface", "name", "local0"), "enabled")
+        This path points to "false".
+
+        The tuple ("interface", "name", "local0") consists of:
+        index 0 - dictionary key pointing to a list,
+        index 1 - key which identifies an item in the list, it is also marked as
+                  the key in corresponding yang file.
+        index 2 - key value.
+
+        :param data: Data received from Honeycomb REST API.
+        :param path: Path to data we want to find.
+        :type data: dict
         :type path: tuple
-        :return: JSON dictionary/list tree.
-        :rtype: list
+        :return: Data represented by path.
+        :rtype: str, dict, or list
+        :raises HoneycombError: If the data has not been found.
         """
-        data = loads(response)
 
-        if path:
-            data = HoneycombUtil._parse_json_tree(data, path)
-            if not isinstance(data, list):
-                data = [data, ]
+        for path_item in path:
+            try:
+                if isinstance(path_item, str):
+                    data = data[path_item]
+                elif isinstance(path_item, tuple):
+                    for data_item in data[path_item[0]]:
+                        if data_item[path_item[1]] == path_item[2]:
+                            data = data_item
+            except KeyError as err:
+                raise HoneycombError("Data not found: {0}".format(err))
 
         return data
 
     @staticmethod
-    def _parse_json_tree(data, path):
-        """Retrieve data addressed by path from python representation of JSON
-        object.
+    def remove_item(data, path):
+        """Remove a data item (single leaf or sub-tree) in data received from
+        Honeycomb REST API.
 
-        :param data: Parsed JSON dictionary tree.
-        :param path: Path to navigate down the dictionary tree.
+        :param data: Data received from Honeycomb REST API.
+        :param path: Path to data we want to remove.
         :type data: dict
         :type path: tuple
-        :return: Data from specified path.
-        :rtype: list, dict or str
+        :return: Original data without removed part.
+        :rtype: dict
         """
 
-        count = 0
-        for key in path:
-            if isinstance(data, dict):
-                data = data[key]
-                count += 1
-            elif isinstance(data, list):
-                result = []
-                for item in data:
-                    result.append(HoneycombUtil._parse_json_tree(item,
-                                                                 path[count:]))
-                    return result
-        return data
+        origin_data = previous_data = data
+        try:
+            for path_item in path:
+                previous_data = data
+                if isinstance(path_item, str):
+                    data = data[path_item]
+                elif isinstance(path_item, tuple):
+                    for data_item in data[path_item[0]]:
+                        if data_item[path_item[1]] == path_item[2]:
+                            data = data_item
+        except KeyError as err:
+            logger.debug("Data not found: {0}".format(err))
+            return origin_data
+
+        if isinstance(path[-1], str):
+            previous_data.pop(path[-1])
+        elif isinstance(path[-1], tuple):
+            previous_data[path[-1][0]].remove(data)
+            if not previous_data[path[-1][0]]:
+                previous_data.pop(path[-1][0])
+
+        return origin_data
+
+    @staticmethod
+    def set_item_value(data, path, new_value):
+        """Set or change the value (single leaf or sub-tree) in data received
+        from Honeycomb REST API.
+
+        If the item is not present in the data structure, it is created.
+
+        :param data: Data received from Honeycomb REST API.
+        :param path: Path to data we want to change or create.
+        :param new_value: The value to be set.
+        :type data: dict
+        :type path: tuple
+        :type new_value: str, dict or list
+        :return: Original data with the new value.
+        :rtype: dict
+        """
+
+        origin_data = data
+        for path_item in path[:-1]:
+            if isinstance(path_item, str):
+                try:
+                    data = data[path_item]
+                except KeyError:
+                    data[path_item] = {}
+                    data = data[path_item]
+            elif isinstance(path_item, tuple):
+                try:
+                    flag = False
+                    index = 0
+                    for data_item in data[path_item[0]]:
+                        if data_item[path_item[1]] == path_item[2]:
+                            data = data[path_item[0]][index]
+                            flag = True
+                            break
+                        index += 1
+                    if not flag:
+                        data[path_item[0]].append({path_item[1]: path_item[2]})
+                        data = data[path_item[0]][-1]
+                except KeyError:
+                    data[path_item] = []
+
+        if not path[-1] in data.keys():
+            data[path[-1]] = {}
+
+        if isinstance(new_value, list) and isinstance(data[path[-1]], list):
+            for value in new_value:
+                data[path[-1]].append(value)
+        else:
+            data[path[-1]] = new_value
+
+        return origin_data
 
     @staticmethod
     def get_honeycomb_data(node, url_file):
@@ -196,7 +298,8 @@ class HoneycombUtil(object):
         """
 
         path = HoneycombUtil.read_path_from_url_file(url_file)
-        return HTTPRequest.get(node, path)
+        status_code, resp = HTTPRequest.get(node, path)
+        return status_code, loads(resp)
 
     @staticmethod
     def put_honeycomb_data(node, url_file, data,
@@ -211,7 +314,7 @@ class HoneycombUtil(object):
         :param data_representation: How the data is represented.
         :type node: dict
         :type url_file: str
-        :type data: str
+        :type data: dict, str
         :type data_representation: DataRepresentation
         :return: Status code and content of response.
         :rtype: tuple
@@ -224,6 +327,8 @@ class HoneycombUtil(object):
         except AttributeError as err:
             raise HoneycombError("Wrong data representation: {0}.".
                                  format(data_representation), repr(err))
+        if data_representation == DataRepresentation.JSON:
+            data = dumps(data)
 
         path = HoneycombUtil.read_path_from_url_file(url_file)
         return HTTPRequest.put(node=node, path=path, headers=header,
@@ -244,7 +349,7 @@ class HoneycombUtil(object):
         giving up.
         :type node: dict
         :type url_file: str
-        :type data: str
+        :type data: dict, str
         :type data_representation: DataRepresentation
         :type timeout: int
         :return: Status code and content of response.
@@ -258,6 +363,8 @@ class HoneycombUtil(object):
         except AttributeError as err:
             raise HoneycombError("Wrong data representation: {0}.".
                                  format(data_representation), repr(err))
+        if data_representation == DataRepresentation.JSON:
+            data = dumps(data)
 
         path = HoneycombUtil.read_path_from_url_file(url_file)
         return HTTPRequest.post(node=node, path=path, headers=header,
