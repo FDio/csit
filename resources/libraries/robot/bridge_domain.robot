@@ -21,43 +21,6 @@
 | Resource | resources/libraries/robot/l2_traffic.robot
 
 *** Keywords ***
-| Path for 2-node BD testing is set
-| | [Documentation] | Compute path for bridge domain testing on two given nodes
-| | ...             | and set corresponding test case variables.
-| | ...
-| | ... | *Arguments:*
-| | ... | - ${tg_node} - TG node. Type: dictionary
-| | ... | - ${dut_node} - DUT node. Type: dictionary
-| | ...
-| | ... | *Return:*
-| | ... | - No value returned
-| | ...
-| | ... | _NOTE:_ This KW sets following test case variables:
-| | ... | - ${tg_node} - TG node.
-| | ... | - ${tg_to_dut_if1} - 1st TG interface towards DUT.
-| | ... | - ${tg_to_dut_if2} - 2nd TG interface towards DUT.
-| | ... | - ${dut_node} - DUT node.
-| | ... | - ${dut_to_tg_if1} - 1st DUT interface towards TG.
-| | ... | - ${dut_to_tg_if2} - 2nd DUT interface towards TG.
-| | ...
-| | ... | *Example:*
-| | ...
-| | ... | \| Given Path for 2-node BD testing is set \| ${nodes['TG']} \
-| | ... | \| ${nodes['DUT1']} \|
-| | [Arguments] | ${tg_node} | ${dut_node}
-| | Append Nodes | ${tg_node} | ${dut_node} | ${tg_node}
-| | Compute Path | always_same_link=${FALSE}
-| | ${tg_to_dut_if1} | ${tmp}= | First Interface
-| | ${tg_to_dut_if2} | ${tmp}= | Last Interface
-| | ${dut_to_tg_if1} | ${tmp}= | First Ingress Interface
-| | ${dut_to_tg_if2} | ${tmp}= | Last Egress Interface
-| | Set Test Variable | ${tg_to_dut_if1}
-| | Set Test Variable | ${tg_to_dut_if2}
-| | Set Test Variable | ${dut_to_tg_if1}
-| | Set Test Variable | ${dut_to_tg_if2}
-| | Set Test Variable | ${tg_node}
-| | Set Test Variable | ${dut_node}
-
 | Vpp l2bd forwarding setup
 | | [Documentation] | Setup BD between 2 interfaces on VPP node and if learning
 | | ...             | is off set static L2FIB entry on second interface
