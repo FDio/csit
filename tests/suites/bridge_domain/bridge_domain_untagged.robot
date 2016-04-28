@@ -31,6 +31,8 @@
 *** Variables ***
 | ${bd_id1}= | 1
 | ${bd_id2}= | 2
+| ${shg1}= | 3
+| ${shg2}= | 4
 | ${sock1}= | /tmp/sock1
 | ${sock2}= | /tmp/sock2
 
@@ -121,6 +123,52 @@
 | | ...                                                | ${dut2_node}
 | | Then Send and receive ICMPv4 bidirectionally | ${tg_node} | ${tg_to_dut1}
 | | ...                                          | ${tg_to_dut2}
+
+| Vpp forwards packets via L2 bridge domain with split-horizon groups set in circular topology
+| | [Documentation] | Create bridge domains (learning enabled) on two VPP nodes,
+| | ...             | add interfaces to each bridge domain where both interfaces
+| | ...             | toward TG are in the same split-horizon group and check
+| | ...             | traffic bidirectionally.
+| | [Tags] | 3_NODE_SINGLE_LINK_TOPO
+| | Given Path for 3-node BD-SHG testing is set | ${nodes['TG']}
+| | ...                                         | ${nodes['DUT1']}
+| | ...                                         | ${nodes['DUT2']}
+| | When Bridge domain on DUT node is created | ${dut1_node} | ${bd_id1}
+| | And Interface is added to bridge domain | ${dut1_node} | ${dut1_to_tg_if1}
+| | ...                                     | ${bd_id1} | ${shg1}
+| | And Interface is added to bridge domain | ${dut1_node} | ${dut1_to_tg_if2}
+| | ...                                     | ${bd_id1} | ${shg1}
+| | And Interface is added to bridge domain | ${dut1_node} | ${dut1_to_dut2}
+| | ...                                     | ${bd_id1}
+| | And Bridge domain on DUT node is created | ${dut2_node} | ${bd_id2}
+| | And Interface is added to bridge domain | ${dut2_node} | ${dut2_to_tg_if1}
+| | ...                                     | ${bd_id2} | ${shg2}
+| | And Interface is added to bridge domain | ${dut2_node} | ${dut2_to_tg_if2}
+| | ...                                     | ${bd_id2} | ${shg2}
+| | And Interface is added to bridge domain | ${dut2_node} | ${dut2_to_dut1}
+| | ...                                     | ${bd_id2}
+| | And Interfaces on all VPP nodes in the path are up | ${dut1_node}
+| | ...                                                | ${dut2_node}
+| | Then Send and receive ICMPv4 bidirectionally | ${tg_node}
+| | ...                                          | ${tg_to_dut1_if1}
+| | ...                                          | ${tg_to_dut2_if1}
+| | And Send and receive ICMPv4 bidirectionally | ${tg_node}
+| | ...                                         | ${tg_to_dut1_if1}
+| | ...                                         | ${tg_to_dut2_if2}
+| | And Send and receive ICMPv4 bidirectionally | ${tg_node}
+| | ...                                         | ${tg_to_dut1_if2}
+| | ...                                         | ${tg_to_dut2_if1}
+| | And Send and receive ICMPv4 bidirectionally | ${tg_node}
+| | ...                                         | ${tg_to_dut1_if2}
+| | ...                                         | ${tg_to_dut2_if2}
+| | And Run Keyword And Expect Error | ICMP echo Rx timeout
+| | ...                              | Send and receive ICMPv4 bidirectionally
+| | | ...                            | ${tg_node} | ${tg_to_dut1_if1}
+| | | ...                            | ${tg_to_dut1_if2}
+| | And Run Keyword And Expect Error | ICMP echo Rx timeout
+| | ...                              | Send and receive ICMPv4 bidirectionally
+| | | ...                            | ${tg_node} | ${tg_to_dut2_if1}
+| | | ...                            | ${tg_to_dut2_if2}
 
 | VPP forwards packets through VM via two L2 bridge domains
 | | [Documentation] | Setup and run VM connected to VPP via Vhost-User
