@@ -103,3 +103,9 @@
 | |          | ...                    | ${dst_mac} | ${src_ip} | ${dst_ip}
 | | Run Traffic Script On Node | arp_request.py | ${tg_node} | ${args}
 
+| IP addresses are set on interfaces
+| | [Documentation] | #TODO: add documentation, find where can be used
+| | [Arguments] | @{args}
+| | :FOR | ${dut} | ${interface} | ${address} | ${prefix} | IN | @{args}
+| | | Set Interface Address | ${dut} | ${interface} | ${address} | ${prefix}
+

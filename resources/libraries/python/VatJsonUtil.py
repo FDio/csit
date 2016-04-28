@@ -102,6 +102,60 @@ class VatJsonUtil(object):
             ifc['mtu'] = interface_dict["mtu"]
 
     @staticmethod
+    def get_interface_sw_index_from_json(interface_dump_json, interface_name):
+        """Get sw_if_index from given JSON output by interface name.
+
+        :param interface_dump_json: JSON output from dump_interface_list VAT
+        command.
+        :param interface_name: Interface name.
+        :type interface_dump_json: str
+        :type interface_name: str
+        :return: Sw_if_index.
+        :rtype: int
+        :raises ValueError: If not found.
+        """
+        logger.trace(interface_dump_json)
+        interface_list = JsonParser().parse_data(interface_dump_json)
+        for interface in interface_list:
+            try:
+                if interface['interface_name'] == interface_name:
+                    index = interface['sw_if_index']
+                    logger.debug('Interface with name {} has sw_if_index {}.'
+                                 .format(interface_name, index))
+                    return index
+            except KeyError:
+                pass
+        raise ValueError('Interface with name {} not found.'
+                         .format(interface_name))
+
+    @staticmethod
+    def get_interface_name_from_json(interface_dump_json, sw_if_index):
+        """Get interface name from given JSON output by sw_if_index.
+
+        :param interface_dump_json: JSON output from dump_interface_list VAT
+        command.
+        :param sw_if_index: Sw_if_index.
+        :type interface_dump_json: str
+        :type sw_if_index: int
+        :return: Interface name.
+        :rtype: str
+        :raises ValueError: If not found.
+        """
+        logger.trace(interface_dump_json)
+        interface_list = JsonParser().parse_data(interface_dump_json)
+        for interface in interface_list:
+            try:
+                if interface['sw_if_index'] == sw_if_index:
+                    interface_name = interface['interface_name']
+                    logger.debug('Interface with name {} has sw_if_index {}.'
+                                 .format(interface_name, sw_if_index))
+                    return interface_name
+            except KeyError:
+                pass
+        raise ValueError('Interface with sw_if_index {} not found.'
+                         .format(sw_if_index))
+
+    @staticmethod
     def verify_vat_retval(vat_out, exp_retval=0, err_msg='VAT cmd failed'):
         """Verify return value of VAT command.
 
