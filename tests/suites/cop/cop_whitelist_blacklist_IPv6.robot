@@ -12,15 +12,13 @@
 # limitations under the License.
 
 *** Settings ***
-| Library | resources.libraries.python.topology.Topology
-| Library | resources.libraries.python.NodePath
 | Library | resources.libraries.python.Trace
 | Resource | resources/libraries/robot/default.robot
 | Resource | resources/libraries/robot/interfaces.robot
 | Resource | resources/libraries/robot/ipv6.robot
 | Resource | resources/libraries/robot/ipv4.robot
 | Resource | resources/libraries/robot/traffic.robot
-| Resource | resources/libraries/robot/cop.robot
+| Resource | resources/libraries/robot/testing_path.robot
 | Resource | resources/libraries/robot/l2_xconnect.robot
 | Variables  | resources/libraries/python/IPv6NodesAddr.py | ${nodes}
 | Force Tags | HW_ENV | VM_ENV | 3_NODE_SINGLE_LINK_TOPO
@@ -64,57 +62,73 @@
 *** Test Cases ***
 | VPP permits packets based on IPv6 src addr
 | | [Documentation] | COP Whitelist test with basic setup.
-| | Given Setup Nodes And Variables | ${tg_node} | ${dut1_node} | ${dut2_node}
-| | And L2 setup xconnect on DUT | ${dut2_node} | ${dut2_if1} | ${dut2_if2}
+| | Given Path for 3-node testing is set
+| | ... | ${tg_node} | ${dut1_node} | ${dut2_node} | ${tg_node}
+| | And Interfaces in 3-node path are up
+| | ${tg_to_dut1_mac}= | And Get interface mac | ${tg_node} | ${tg_to_dut1}
+| | ${tg_to_dut2_mac}= | And Get interface mac | ${tg_node} | ${tg_to_dut2}
+| | ${dut1_to_tg_mac}= | And Get interface mac | ${dut1_node} | ${dut1_to_tg}
+| | ${dut1_to_dut2_mac}= | And Get interface mac | ${dut1_node} | ${dut1_to_dut2}
+| | And L2 setup xconnect on DUT
+| | ... | ${dut2_node} | ${dut2_to_dut1} | ${dut2_to_tg}
 | | And VPP Set IF IPv6 Addr
-| | ... | ${dut1_node} | ${dut1_if1} | ${dut1_if1_ip} | ${ip_prefix}
+| | ... | ${dut1_node} | ${dut1_to_tg} | ${dut1_if1_ip} | ${ip_prefix}
 | | And VPP Set IF IPv6 Addr
-| | ... | ${dut1_node} | ${dut1_if2} | ${dut1_if2_ip} | ${ip_prefix}
+| | ... | ${dut1_node} | ${dut1_to_dut2} | ${dut1_if2_ip} | ${ip_prefix}
 | | And VPP Set IF IPv6 Addr
-| | ... | ${dut2_node} | ${dut2_if1} | ${dut2_if1_ip} | ${ip_prefix}
+| | ... | ${dut2_node} | ${dut2_to_dut1} | ${dut2_if1_ip} | ${ip_prefix}
 | | And VPP Set IF IPv6 Addr
-| | ... | ${dut2_node} | ${dut2_if2} | ${dut2_if2_ip} | ${ip_prefix}
+| | ... | ${dut2_node} | ${dut2_to_tg} | ${dut2_if2_ip} | ${ip_prefix}
 | | And Add Arp On Dut
-| | ... | ${dut1_node} | ${dut1_if1} | ${dut1_if1_ip_GW} | ${tg_if1_mac}
+| | ... | ${dut1_node} | ${dut1_to_tg} | ${dut1_if1_ip_GW} | ${tg_to_dut1_mac}
 | | And Add Arp On Dut
-| | ... | ${dut1_node} | ${dut1_if2} | ${dut1_if2_ip_GW} | ${tg_if2_mac}
+| | ... | ${dut1_node} | ${dut1_to_dut2} | ${dut1_if2_ip_GW} | ${tg_to_dut2_mac}
 | | And Vpp Route Add | ${dut1_node}
-| | ... | ${test_dst_ip} | ${ip_prefix} | ${dut1_if2_ip_GW} | ${dut1_if2}
+| | ... | ${test_dst_ip} | ${ip_prefix} | ${dut1_if2_ip_GW} | ${dut1_to_dut2}
 | | And Vpp All Ra Suppress Link Layer | ${nodes}
 | | And Add fib table | ${dut1_node} | ${cop_dut_ip} | ${ip_prefix} |
 | | ... | ${fib_table_number} | local
-| | When COP Add whitelist Entry | ${dut1_node} | ${dut1_if1} | ip6 |
+| | When COP Add whitelist Entry | ${dut1_node} | ${dut1_to_tg} | ip6 |
 | | ... | ${fib_table_number}
-| | And COP interface enable or disable | ${dut1_node} | ${dut1_if1} | enable
-| | Then Send Packet And Check Headers | ${tg_node} |
-| | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_if1} | ${tg_if1_mac} |
-| | ... | ${dut1_if1_mac} | ${tg_if2} | ${dut1_if2_mac} | ${tg_if2_mac}
+| | And COP interface enable or disable | ${dut1_node} | ${dut1_to_tg} | enable
+| | Then Send Packet And Check Headers | ${tg_node}
+| | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
+| | ... | ${dut1_to_tg_mac} | ${tg_to_dut2} | ${dut1_to_dut2_mac}
+| | ... | ${tg_to_dut2_mac}
 
 
 | VPP drops packets based on IPv6 src addr
 | | [Documentation] | COP blacklist test with basic setup.
-| | Given Setup Nodes And Variables | ${tg_node} | ${dut1_node} | ${dut2_node}
-| | And L2 setup xconnect on DUT | ${dut2_node} | ${dut2_if1} | ${dut2_if2}
+| | Given Path for 3-node testing is set
+| | ... | ${tg_node} | ${dut1_node} | ${dut2_node} | ${tg_node}
+| | And Interfaces in 3-node path are up
+| | ${tg_to_dut1_mac}= | And Get interface mac | ${tg_node} | ${tg_to_dut1}
+| | ${tg_to_dut2_mac}= | And Get interface mac | ${tg_node} | ${tg_to_dut2}
+| | ${dut1_to_tg_mac}= | And Get interface mac | ${dut1_node} | ${dut1_to_tg}
+| | ${dut1_to_dut2_mac}= | And Get interface mac | ${dut1_node} | ${dut1_to_dut2}
+| | And L2 setup xconnect on DUT
+| | ... | ${dut2_node} | ${dut2_to_dut1} | ${dut2_to_tg}
 | | And VPP Set IF IPv6 Addr
-| | ... | ${dut1_node} | ${dut1_if1} | ${dut1_if1_ip} | ${ip_prefix}
+| | ... | ${dut1_node} | ${dut1_to_tg} | ${dut1_if1_ip} | ${ip_prefix}
 | | And VPP Set IF IPv6 Addr
-| | ... | ${dut1_node} | ${dut1_if2} | ${dut1_if2_ip} | ${ip_prefix}
+| | ... | ${dut1_node} | ${dut1_to_dut2} | ${dut1_if2_ip} | ${ip_prefix}
 | | And VPP Set IF IPv6 Addr
-| | ... | ${dut2_node} | ${dut2_if1} | ${dut2_if1_ip} | ${ip_prefix}
+| | ... | ${dut2_node} | ${dut2_to_dut1} | ${dut2_if1_ip} | ${ip_prefix}
 | | And VPP Set IF IPv6 Addr
-| | ... | ${dut2_node} | ${dut2_if2} | ${dut2_if2_ip} | ${ip_prefix}
+| | ... | ${dut2_node} | ${dut2_to_tg} | ${dut2_if2_ip} | ${ip_prefix}
 | | And Add Arp On Dut
-| | ... | ${dut1_node} | ${dut1_if1} | ${dut1_if1_ip_GW} | ${tg_if1_mac}
+| | ... | ${dut1_node} | ${dut1_to_tg} | ${dut1_if1_ip_GW} | ${tg_to_dut1_mac}
 | | And Add Arp On Dut
-| | ... | ${dut1_node} | ${dut1_if2} | ${dut1_if2_ip_GW} | ${tg_if2_mac}
+| | ... | ${dut1_node} | ${dut1_to_dut2} | ${dut1_if2_ip_GW} | ${tg_to_dut2_mac}
 | | And Vpp Route Add | ${dut1_node}
-| | ... | ${test_dst_ip} | ${ip_prefix} | ${dut1_if2_ip_GW} | ${dut1_if2}
+| | ... | ${test_dst_ip} | ${ip_prefix} | ${dut1_if2_ip_GW} | ${dut1_to_dut2}
 | | And Vpp All Ra Suppress Link Layer | ${nodes}
 | | And Add fib table | ${dut1_node}
 | | ... | ${cop_dut_ip} | ${ip_prefix} | ${fib_table_number} | drop
 | | When COP Add whitelist Entry
-| | ... | ${dut1_node} | ${dut1_if1} | ip6 | ${fib_table_number}
-| | And COP interface enable or disable | ${dut1_node} | ${dut1_if1} | enable
-| | Then Send packet from Port to Port should failed | ${tg_node} |
-| | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_if1} | ${tg_if1_mac} |
-| | ... | ${dut1_if1_mac} | ${tg_if2} | ${dut1_if2_mac} | ${tg_if2_mac}
+| | ... | ${dut1_node} | ${dut1_to_tg} | ip6 | ${fib_table_number}
+| | And COP interface enable or disable | ${dut1_node} | ${dut1_to_tg} | enable
+| | Then Send packet from Port to Port should failed | ${tg_node}
+| | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
+| | ... | ${dut1_to_tg_mac} | ${tg_to_dut2} | ${dut1_to_dut2_mac}
+| | ... | ${tg_to_dut2_mac}
