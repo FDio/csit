@@ -563,7 +563,40 @@ class InterfaceUtil(object):
         with VatTerminal(node) as vat:
             vat.vat_terminal_exec_cmd('exec show interfaces')
 
-        return '{}.{}'.format(interface, sub_id), sw_subif_index
+        name = '{}.{}'.format(interface, sub_id)
+        return name, sw_subif_index
+
+    @staticmethod
+    def create_gre_tunnel_interface(node, source_ip, destination_ip):
+        """Create sub-interface on node.
+
+        :param node: Node to add tunnel interface.
+        :param source_ip: Source of the GRE tunnel.
+        :param destination_ip: Destination of the GRE tunnel.
+        :type node: dict
+        :type source_ip: str
+        :type destination_ip: str
+        :return: Name and index of created interface.
+        :rtype: tuple
+        :raises RuntimeError: If unable to create interface.
+        """
+        output = VatExecutor.cmd_from_template(node, "create_gre.vat",
+                                               src=source_ip,
+                                               dst=destination_ip)
+        output = output[0]
+
+        if output["retval"] == 0:
+            sw_if_index = output["sw_if_index"]
+
+            vat_executor = VatExecutor()
+            vat_executor.execute_script_json_out("dump_interfaces.vat", node)
+            interface_dump_json = vat_executor.get_script_stdout()
+            name = VatJsonUtil.get_interface_name_from_json(
+                interface_dump_json, sw_if_index)
+            return name, sw_if_index
+        else:
+            raise RuntimeError('Unable to create GRE tunnel on node {}.'
+                               .format(node))
 
     @staticmethod
     def vpp_create_loopback(node):
