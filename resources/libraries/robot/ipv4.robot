@@ -103,3 +103,22 @@
 | |          | ...                    | ${dst_mac} | ${src_ip} | ${dst_ip}
 | | Run Traffic Script On Node | arp_request.py | ${tg_node} | ${args}
 
+| IP addresses are set on interfaces
+#TODO: find where can be used
+| | [Documentation] | Iterates through @{args} list and Set Interface Address for every (${dut}, ${interface}, ${address}, ${prefix}) tuple
+| | ...
+| | ... | *Arguments:*
+| | ... | - ${dut} - Node where IP address should be set to. Type: dictionary
+| | ... | - ${interface} - Interface name. Type: string
+| | ... | - ${address} - IP address. Type: string
+| | ... | - ${prefix} - Prefix length. Type: integer
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| IP addresses are set on interfaces \
+| | ... | \| ${dut1_node} \| ${dut1_to_dut2} \| 192.168.1.1 \| 24 \|
+| | ... | \| ... \| ${dut1_node} \| ${dut1_to_tg}   \| 192.168.2.1 \| 24 \|
+| | ...
+| | [Arguments] | @{args}
+| | :FOR | ${dut} | ${interface} | ${address} | ${prefix} | IN | @{args}
+| | | Set Interface Address | ${dut} | ${interface} | ${address} | ${prefix}
