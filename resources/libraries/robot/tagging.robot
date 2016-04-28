@@ -20,57 +20,6 @@
 | Library | resources.libraries.python.NodePath
 
 *** Keywords ***
-
-| Node path computed for 3-node topology
-| | [Arguments] | ${TG} | ${DUT1} | ${DUT2} | ${TG}
-| | [Documentation] | *Create interface variables for 3-node topology.*
-| | ...
-| | ... | *Arguments:*
-| | ... | - ${TG} - Node attached to the path. Type: dictionary
-| | ... | - ${DUT1} - Node attached to the path. Type: dictionary
-| | ... | - ${DUT2} - Node attached to the path. Type: dictionary
-| | ...
-| | ... | _Set testcase variables for nodes and interfaces._
-| | ... | - ${tg} - Variable for node in path. Type: dictionary
-| | ... | - ${dut1} - Variable for node in path. Type: dictionary
-| | ... | - ${dut2} - Variable for node in path. Type: dictionary
-| | ... | - ${tg_if1} - First interface of TG node. Type: str
-| | ... | - ${tg_if2} - Second interface of TG node. Type: str
-| | ... | - ${dut1_if1} - First interface of first DUT node. Type: str
-| | ... | - ${dut1_if2} - Second interface of first DUT node. Type: str
-| | ... | - ${dut2_if1} - First interface of second DUT node. Type: str
-| | ... | - ${dut2_if2} - Second interface of second DUT node. Type: str
-| | ...
-| | Append Nodes | ${TG} | ${DUT1} | ${DUT2} | ${TG}
-| | Compute Path
-| | ${tg_if1} | ${tg}= | Next Interface
-| | ${dut1_if1} | ${dut1}= | Next Interface
-| | ${dut1_if2} | ${dut1}= | Next Interface
-| | ${dut2_if1} | ${dut2}= | Next Interface
-| | ${dut2_if2} | ${dut2}= | Next Interface
-| | ${tg_if2} | ${tg}= | Next Interface
-| | Set Test Variable | ${tg}
-| | Set Test Variable | ${tg_if1}
-| | Set Test Variable | ${tg_if2}
-| | Set Test Variable | ${dut1}
-| | Set Test Variable | ${dut1_if1}
-| | Set Test Variable | ${dut1_if2}
-| | Set Test Variable | ${dut2}
-| | Set Test Variable | ${dut2_if1}
-| | Set Test Variable | ${dut2_if2}
-
-| Interfaces in path are up
-| | [Documentation] | *Set UP state on interfaces in path on nodes.*
-| | ...
-| | Set Interface State | ${tg} | ${tg_if1} | up
-| | Set Interface State | ${tg} | ${tg_if2} | up
-| | Set Interface State | ${dut1} | ${dut1_if1} | up
-| | Set Interface State | ${dut1} | ${dut1_if2} | up
-| | Set Interface State | ${dut2} | ${dut2_if1} | up
-| | Set Interface State | ${dut2} | ${dut2_if2} | up
-| | Vpp Node Interfaces Ready Wait | ${dut1}
-| | Vpp Node Interfaces Ready Wait | ${dut2}
-
 | VLAN subinterfaces initialized on 3-node topology
 | | [Arguments] | ${DUT1} | ${INT1} | ${DUT2} | ${INT2} | ${SUB_ID}
 | | ...         | ${OUTER_VLAN_ID} | ${INNER_VLAN_ID} | ${TYPE_SUBIF}

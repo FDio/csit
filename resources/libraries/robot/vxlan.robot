@@ -24,51 +24,6 @@
 | Library  | resources.libraries.python.NodePath
 
 *** Keywords ***
-| Path for VXLAN testing is set
-| | [Documentation] | *Compute path for VXLAN testing on nodes.*
-| | ...
-| | ... | _Set testcase variables with interfaces and nodes:_
-| | ... | - ${tgs_to_dut1}
-| | ... | - ${dut1s_to_tg}
-| | ... | - ${tgs_to_dut2}
-| | ... | - ${dut2s_to_tg}
-| | ... | - ${dut1s_to_dut2}
-| | ... | - ${dut2s_to_dut1}
-| | ... | - ${tg}
-| | ... | - ${dut1}
-| | ... | - ${dut2}
-| | ...
-| | [Arguments] | ${TG} | ${DUT1} | ${DUT2}
-| | Append Nodes | ${TG} | ${DUT1} | ${DUT2} | ${TG}
-| | Compute Path
-| | ${tgs_to_dut1} | ${tg}= | Next Interface
-| | ${dut1s_to_tg} | ${dut1}= | Next Interface
-| | ${dut1s_to_dut2} | ${dut1}= | Next Interface
-| | ${dut2s_to_dut1} | ${dut2}= | Next Interface
-| | ${dut2s_to_tg} | ${dut2}= | Next Interface
-| | ${tgs_to_dut2} | ${tg}= | Next Interface
-| | Set Test Variable | ${tgs_to_dut1}
-| | Set Test Variable | ${dut1s_to_tg}
-| | Set Test Variable | ${tgs_to_dut2}
-| | Set Test Variable | ${dut2s_to_tg}
-| | Set Test Variable | ${dut1s_to_dut2}
-| | Set Test Variable | ${dut2s_to_dut1}
-| | Set Test Variable | ${tg}
-| | Set Test Variable | ${dut1}
-| | Set Test Variable | ${dut2}
-
-| Interfaces in path are up
-| | [Documentation] | *Set UP state on interfaces in path on nodes.*
-| | ...
-| | Set Interface State | ${tg} | ${tgs_to_dut1} | up
-| | Set Interface State | ${tg} | ${tgs_to_dut2} | up
-| | Set Interface State | ${dut1} | ${dut1s_to_tg} | up
-| | Set Interface State | ${dut1} | ${dut1s_to_dut2} | up
-| | Set Interface State | ${dut2} | ${dut2s_to_tg} | up
-| | Set Interface State | ${dut2} | ${dut2s_to_dut1} | up
-| | Vpp Node Interfaces Ready Wait | ${dut1}
-| | Vpp Node Interfaces Ready Wait | ${dut2}
-
 | IP addresses are set on interfaces
 | | [Documentation] | *Set IPv4 addresses on interfaces on DUTs.*
 | | ... | If interface index is None then is determines with Get Interface Sw Index
