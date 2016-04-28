@@ -14,6 +14,7 @@
 *** Settings ***
 | Resource | resources/libraries/robot/default.robot
 | Resource | resources/libraries/robot/bridge_domain.robot
+| Resource | resources/libraries/robot/testing_path.robot
 | Resource | resources/libraries/robot/qemu.robot
 | Library  | resources.libraries.python.Trace
 | Force Tags | HW_ENV | VM_ENV
@@ -45,13 +46,14 @@
 | | ...             | add there two interfaces and check traffic
 | | ...             | bidirectionally.
 | | [Tags] | 3_NODE_DOUBLE_LINK_TOPO
-| | Given Path for 2-node BD testing is set | ${nodes['TG']} | ${nodes['DUT1']}
+| | Given Path for 2-node testing is set
+| | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
+| | And Interfaces in 2-node path are up
 | | When Bridge domain on DUT node is created | ${dut_node} | ${bd_id1}
 | | And Interface is added to bridge domain | ${dut_node} | ${dut_to_tg_if1}
 | | ...                                     | ${bd_id1}
 | | And Interface is added to bridge domain | ${dut_node} | ${dut_to_tg_if2}
 | | ...                                     | ${bd_id1}
-| | And Interfaces on all VPP nodes in the path are up | ${dut_node}
 | | Then Send and receive ICMPv4 bidirectionally | ${tg_node} | ${tg_to_dut_if1}
 | | ...                                     | ${tg_to_dut_if2}
 
@@ -60,8 +62,9 @@
 | | ...             | add two interfaces to each bridge domain and check traffic
 | | ...             | bidirectionally.
 | | [Tags] | 3_NODE_SINGLE_LINK_TOPO
-| | Given Path for 3-node BD testing is set | ${nodes['TG']} | ${nodes['DUT1']}
-| | ...                                     | ${nodes['DUT2']}
+| | Given Path for 3-node testing is set
+| | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
+| | And Interfaces in 3-node path are up
 | | When Bridge domain on DUT node is created | ${dut1_node} | ${bd_id1}
 | | And Interface is added to bridge domain | ${dut1_node} | ${dut1_to_tg}
 | | ...                                     | ${bd_id1}
@@ -72,8 +75,6 @@
 | | ...                                     | ${bd_id2}
 | | And Interface is added to bridge domain | ${dut2_node} | ${dut2_to_dut1}
 | | ...                                     | ${bd_id2}
-| | And Interfaces on all VPP nodes in the path are up | ${dut1_node}
-| | ...                                                | ${dut2_node}
 | | Then Send and receive ICMPv4 bidirectionally | ${tg_node} | ${tg_to_dut1}
 | | ...                                          | ${tg_to_dut2}
 
@@ -83,8 +84,9 @@
 | | ...             | static L2FIB entry on each interface and check traffic
 | | ...             | bidirectionally.
 | | [Tags] | 3_NODE_SINGLE_LINK_TOPO
-| | Given Path for 3-node BD testing is set | ${nodes['TG']} | ${nodes['DUT1']}
-| | ...                                     | ${nodes['DUT2']}
+| | Given Path for 3-node testing is set
+| | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
+| | And Interfaces in 3-node path are up
 | | When Bridge domain on DUT node is created | ${dut1_node} | ${bd_id1}
 | | ...                                       | learn=${FALSE}
 | | And Interface is added to bridge domain | ${dut1_node} | ${dut1_to_tg}
@@ -117,8 +119,6 @@
 | | ...                                                | ${dut2_node}
 | | ...                                                | ${dut2_to_tg}
 | | ...                                                | ${bd_id2}
-| | And Interfaces on all VPP nodes in the path are up | ${dut1_node}
-| | ...                                                | ${dut2_node}
 | | Then Send and receive ICMPv4 bidirectionally | ${tg_node} | ${tg_to_dut1}
 | | ...                                          | ${tg_to_dut2}
 
@@ -127,7 +127,9 @@
 | | ...             | interfaces and check packet forwarding through VM via two
 | | ...             | L2 bridge domains with learning enabled.
 | | [Tags] | 3_NODE_DOUBLE_LINK_TOPO | VPP_VM_ENV
-| | Given Path for 2-node BD testing is set | ${nodes['TG']} | ${nodes['DUT1']}
+| | Given Path for 2-node testing is set
+| | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
+| | And Interfaces in 2-node path are up
 | | When VPP Vhost interfaces for L2BD forwarding are setup | ${dut_node}
 | | ...                                                     | ${sock1}
 | | ...                                                     | ${sock2}
@@ -141,7 +143,6 @@
 | | ...                                     | ${bd_id2}
 | | And Interface is added to bridge domain | ${dut_node} | ${vhost_if2}
 | | ...                                     | ${bd_id2}
-| | And Interfaces on all VPP nodes in the path are up | ${dut_node}
 | | And VM for Vhost L2BD forwarding is setup | ${dut_node} | ${sock1}
 | | ...                                       | ${sock2}
 | | Then Send and receive ICMPv4 bidirectionally | ${tg_node} | ${tg_to_dut_if1}
@@ -155,7 +156,9 @@
 | | ...             | L2 bridge domains with learning disabled (static L2BFIB
 | | ...             | entries).
 | | [Tags] | 3_NODE_DOUBLE_LINK_TOPO | VPP_VM_ENV
-| | Given Path for 2-node BD testing is set | ${nodes['TG']} | ${nodes['DUT1']}
+| | Given Path for 2-node testing is set
+| | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
+| | And Interfaces in 2-node path are up
 | | When VPP Vhost interfaces for L2BD forwarding are setup | ${dut_node}
 | | ...                                                     | ${sock1}
 | | ...                                                     | ${sock2}
@@ -181,7 +184,6 @@
 | | ...                                     | ${bd_id2}
 | | And Interface is added to bridge domain | ${dut_node} | ${vhost_if2}
 | | ...                                     | ${bd_id2}
-| | And Interfaces on all VPP nodes in the path are up | ${dut_node}
 | | And Destination port is added to L2FIB on DUT node | ${tg_node}
 | | ...                                                | ${tg_to_dut_if2}
 | | ...                                                | ${dut_node}
