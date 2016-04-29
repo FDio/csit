@@ -18,6 +18,7 @@ from time import time, sleep
 from robot.api import logger
 
 from resources.libraries.python.ssh import SSH
+from resources.libraries.python.IPUtil import convert_ipv4_netmask_prefix
 from resources.libraries.python.ssh import exec_cmd_no_error
 from resources.libraries.python.topology import NodeType, Topology
 from resources.libraries.python.VatExecutor import VatExecutor, VatTerminal
@@ -198,6 +199,36 @@ class InterfaceUtil(object):
 
                     return data_if
 
+        return data
+
+    @staticmethod
+    def vpp_get_interface_ip_addresses(node, interface, ip_version):
+        """Get list of IP addresses from an interface on a VPP node.
+
+         :param node: VPP node to get data from.
+         :param interface: Name of an interface on the VPP node.
+         :param ip_version: IP protocol version (ipv4 or ipv6).
+         :type node: dict
+         :type interface: str
+         :type ip_version: str
+         :return: List of dictionaries, each containing IP address, subnet
+         prefix length and also the subnet mask for ipv4 addresses.
+         Note: A single interface may have multiple IP addresses assigned.
+         :rtype: list
+        """
+        sw_if_index = Topology.get_interface_sw_index(node, interface)
+
+        with VatTerminal(node) as vat:
+            response = vat.vat_terminal_exec_cmd_from_template(
+                "ip_address_dump.vat", ip_version=ip_version,
+                sw_if_index=sw_if_index)
+
+        data = response[0]
+
+        if ip_version == "ipv4":
+            for item in data:
+                item["netmask"] = convert_ipv4_netmask_prefix(
+                    item["prefix_length"])
         return data
 
     @staticmethod

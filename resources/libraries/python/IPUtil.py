@@ -12,6 +12,7 @@
 # limitations under the License.
 
 """Common IP utilities library."""
+from ipaddress import IPv4Network
 
 from resources.libraries.python.ssh import SSH
 from resources.libraries.python.constants import Constants
@@ -40,3 +41,21 @@ class IPUtil(object):
         if int(ret_code) != 0:
             raise Exception('VPP ip probe {dev} {ip} failed on {h}'.format(
                 dev=interface, ip=addr, h=node['host']))
+
+
+def convert_ipv4_netmask_prefix(netmask):
+    """Convert network mask to equivalent network prefix length or vice versa.
+
+    Example: mask 255.255.0.0 -> prefix length 16
+    :param netmask: network mask or network prefix length.
+    :type netmask: str or int
+    :return: network mask or network prefix length.
+    :rtype: str or int
+    """
+    temp_address = "0.0.0.0"
+    net = IPv4Network(u"{0}/{1}".format(temp_address, netmask), False)
+
+    if isinstance(netmask, int):
+        return net.netmask
+    elif isinstance(netmask, basestring):
+        return net.prefixlen
