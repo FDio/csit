@@ -12,6 +12,7 @@
 # limitations under the License.
 
 """Common IP utilities library."""
+from netaddr.ip import IPNetwork
 
 from resources.libraries.python.ssh import SSH
 from resources.libraries.python.constants import Constants
@@ -40,3 +41,28 @@ class IPUtil(object):
         if int(ret_code) != 0:
             raise Exception('VPP ip probe {dev} {ip} failed on {h}'.format(
                 dev=interface, ip=addr, h=node['host']))
+
+
+def convert_netmask_prefix(subnet, ip_version):
+    """Convert subnet mask to equivalent subnet prefix length or vice versa.
+    Example: mask 255.255.0.0 -> prefix length 16
+    :param subnet: subnet mask or subnet prefix length
+    :param ip_version: IP protocol version (ipv4 or ipv6)
+    :type subnet: str or int
+    :type ip_version: str
+    :return: subnet mask or subnet prefix length
+    :rtype: str or int
+    """
+    ip_version = int(ip_version[-1])
+    if ip_version == 4:
+        temp_address = "192.168.0.2"
+    elif ip_version == 6:
+        temp_address = "0:0:0:0:0:ffff:c0a8:2"
+    else:
+        raise Exception("Allowed IP protocol versions are ipv4 and ipv6.")
+    net = IPNetwork(temp_address, subnet, ip_version)
+
+    if isinstance(subnet, int):
+        return net.netmask
+    elif isinstance(subnet, basestring):
+        return net.prefixlen

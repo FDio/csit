@@ -12,8 +12,19 @@
 # limitations under the License.
 
 *** Variables ***
+# Node and interface to run tests on.
 | ${node}= | ${nodes['DUT1']}
 | ${interface}= | ${node['interfaces'].values()[0]['name']}
+# Configuration which will be set and verified during tests.
+| @{ipv4_address} | 192.168.0.2 | 255.255.255.0
+| @{ipv4_neighbor} | 192.168.0.3 | 08:00:27:c0:5d:37
+| &{ipv4_settings} | enabled=${True} | forwarding=${True} | mtu=9000
+| @{ipv6_address} | 10::10 | 64
+| @{ipv6_neighbor} | 10::11 | 08:00:27:c0:5d:37
+| &{ipv6_settings} | enabled=${True} | forwarding=${True} | mtu=9000
+| ... | dup-addr-detect-transmits=5
+| &{ethernet} | mtu=9000
+| &{routing} | vrf-id=27
 
 *** Settings ***
 | Resource | resources/libraries/robot/default.robot
@@ -27,8 +38,8 @@
 | ... | Test suite uses the first interface of the first DUT node.
 
 *** Test Cases ***
-| Honeycomb modifies interface state
-| | [Documentation] | Check if Honeycomb API can modify the admin state of
+| Honeycomb configures and reads interface state
+| | [Documentation] | Check if Honeycomb API can modify the admin state of\
 | | ... | VPP interfaces.
 | | [Tags] | honeycomb_sanity
 | | Given Interface state is | ${node} | ${interface} | down
@@ -40,3 +51,38 @@
 | | Then Interface state from Honeycomb should be
 | | ... | ${node} | ${interface} | down
 | | And Interface state from VAT should be | ${node} | ${interface} | down
+
+| Honeycomb modifies interface configuration - ipv4
+| | [Documentation] | Check if Honeycomb API can configure interfaces for ipv4.
+| | [Tags] | honeycomb_sanity
+| | When Honeycomb sets interface ipv4 configuration
+| | ... | ${node} | ${interface} | @{ipv4_address} | @{ipv4_neighbor}
+| | ... | ${ipv4_settings}
+| | Then IPv4 config from Honeycomb should be
+| | ... | ${node} | ${interface} | @{ipv4_address} | @{ipv4_neighbor}
+| | ... | ${ipv4_settings}
+| | And IPv4 config from VAT should be
+| | ... | ${node} | ${interface} | @{ipv4_address}
+
+| Honeycomb modifies interface configuration - ipv6
+| | [Documentation] | Check if Honeycomb API can configure interfaces for ipv6.
+| | [Tags] | honeycomb_sanity
+| | When Honeycomb sets interface ipv6 configuration
+| | ... | ${node} | ${interface} | @{ipv6_address} | @{ipv6_neighbor}
+| | ... | ${ipv6_settings}
+| | Then IPv6 config from Honeycomb should be
+| | ... | ${node} | ${interface} | @{ipv6_address} | @{ipv6_neighbor}
+| | ... | ${ipv6_settings}
+| | And IPv6 config from VAT should be
+| | ... | ${node} | ${interface} | @{ipv6_address}
+
+| Honeycomb modifies interface configuration - ethernet,routing
+| | [Documentation] | Check if Honeycomb API can configure interface ethernet\
+| | ... | and routing settings.
+| | [Tags] | honeycomb_sanity
+| | When Honeycomb sets interface ethernet and routing configuration
+| | ... | ${node} | ${interface} | ${ethernet['mtu']} | ${routing['vrf-id']}
+| | Then Interface ethernet and routing configuration from Honeycomb should be
+| | ... | ${node} | ${interface} | ${ethernet['mtu']} | ${routing['vrf-id']}
+| | And Interface ethernet and routing configuration from VAT should be
+| | ... | ${node} | ${interface} | ${ethernet['mtu']} | ${routing['vrf-id']}
