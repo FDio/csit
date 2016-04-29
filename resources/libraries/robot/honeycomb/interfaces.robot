@@ -31,7 +31,7 @@
 | | ... | *Example:*
 | | ...
 | | ... | \| Interface state is \| ${nodes['DUT1']} \| GigabitEthernet0/8/0 \
-| | ... | \| up
+| | ... | \| up \|
 | | [Arguments] | ${node} | ${interface} | ${state}
 | | interfaceCLI.Set interface state | ${node} | ${interface} | ${state}
 
@@ -47,7 +47,7 @@
 | | ... | *Example:*
 | | ...
 | | ... | \| Honeycomb sets interface state \| ${nodes['DUT1']} \
-| | ... | \| GigabitEthernet0/8/0 \| up
+| | ... | \| GigabitEthernet0/8/0 \| up \|
 | | [Arguments] | ${node} | ${interface} | ${state}
 | | interfaceAPI.Set interface state | ${node} | ${interface} | ${state}
 
@@ -63,7 +63,7 @@
 | | ... | *Example:*
 | | ...
 | | ... | \| Interface state from Honeycomb should be \| ${nodes['DUT1']} \
-| | ... | \| GigabitEthernet0/8/0 \| up
+| | ... | \| GigabitEthernet0/8/0 \| up \|
 | | [Arguments] | ${node} | ${interface} | ${state}
 | | ${api_data}= | interfaceAPI.Get interface oper data | ${node} | ${interface}
 | | ${api_state}= | Set Variable | ${api_data['admin-status']}
@@ -84,7 +84,7 @@
 | | ... | *Example:*
 | | ...
 | | ... | \| Interface state from VAT should be \| ${nodes['DUT1']} \
-| | ... | \| GigabitEthernet0/8/0 \| up
+| | ... | \| GigabitEthernet0/8/0 \| up \|
 | | [Arguments] | ${node} | ${interface} | ${state}
 | | ${vat_data}= | InterfaceCLI.VPP get interface data | ${node} | ${interface}
 | | ${vat_state}= | Set Variable if
@@ -109,7 +109,7 @@
 | | ... | \| Honeycomb sets interface ipv4 configuration \| ${nodes['DUT1']} \
 | | ... | \| GigabitEthernet0/8/0 \| 192.168.0.2 \| 255.255.255.0 \
 | | ... | \| 192.168.0.3 \| 08:00:27:c0:5d:37 \
-| | ... | \| ${{enabled=True, mtu=1500}}
+| | ... | \| ${{'enabled': True, 'mtu': 1500}} \|
 | | [Arguments] | ${node} | ${interface} | ${address} | ${netmask}
 | | ... | ${fib_address} | ${fib_mac} | ${settings}
 | | interfaceAPI.Add first ipv4 address
@@ -138,7 +138,7 @@
 | | ... | \| IPv4 config from Honeycomb should be \| ${nodes['DUT1']} \
 | | ... | \| GigabitEthernet0/8/0 \| 192.168.0.2 \| 255.255.255.0 \
 | | ... | \| 192.168.0.3 \| 08:00:27:c0:5d:37 \
-| | ... | \| ${{enabled=True, mtu=1500}}
+| | ... | \| ${{'enabled': True, 'mtu': 1500}} \|
 | | [Arguments] | ${node} | ${interface} | ${address} | ${netmask}
 | | ... | ${fib_address} | ${fib_mac} | ${settings}
 | | ${api_data}= | interfaceAPI.Get interface oper data | ${node} | ${interface}
@@ -170,7 +170,7 @@
 | | ... | \| IPv4 config from Honeycomb should be \| ${nodes['DUT1']} \
 | | ... | \| GigabitEthernet0/8/0 \| 192.168.0.2 \| 255.255.255.0 \
 | | ${vpp_data}= | interfaceCLI.VPP get interface ip addresses
-| | ... | ${node} | ${interface} | ipv4
+| | ... | ${node} | ${interface} | ipv4 \|
 | | Should be equal | ${vpp_data[0]['ip']} | ${address}
 | | Should be equal | ${vpp_data[0]['netmask']} | ${netmask}
 
@@ -191,7 +191,7 @@
 | | ...
 | | ... | \| Honeycomb sets interface ipv6 configuration \| ${nodes['DUT1']} \
 | | ... | \| GigabitEthernet0/8/0 \| 10::10 \| 64
-| | ... | \| 10::11 \| 08:00:27:c0:5d:37 \| ${{enabled=True, mtu=1500}}
+| | ... | \| 10::11 \| 08:00:27:c0:5d:37 \| ${{'enabled': True, 'mtu': 1500}} \|
 | | [Arguments] | ${node} | ${interface} | ${address} | ${prefix}
 | | ... | ${fib_address} | ${fib_mac} | ${settings}
 | | interfaceAPI.Add first ipv6 address
@@ -219,7 +219,7 @@
 | | ...
 | | ... | \| IPv6 config from Honeycomb should be \| ${nodes['DUT1']} \
 | | ... | \| GigabitEthernet0/8/0 \| 10::10 \| 64 \
-| | ... | \| 10::11 \| 08:00:27:c0:5d:37 \| ${{enabled=True, mtu=1500}}
+| | ... | \| 10::11 \| 08:00:27:c0:5d:37 \| ${{'enabled': True, 'mtu': 1500}} \|
 | | [Arguments] | ${node} | ${interface} | ${address} | ${prefix}
 | | ... | ${fib_address} | ${fib_mac} | ${settings}
 | | ${api_data}= | interfaceAPI.Get interface oper data | ${node} | ${interface}
@@ -248,7 +248,7 @@
 | | ... | *Example:*
 | | ...
 | | ... | \| IPv6 config from Honeycomb should be \| ${nodes['DUT1']} \
-| | ... | \| GigabitEthernet0/8/0 \| 10::10 \| 64
+| | ... | \| GigabitEthernet0/8/0 \| 10::10 \| 64 \|
 | | [Arguments] | ${node} | ${interface} | ${address} | ${prefix}
 | | ${vpp_data}= | interfaceCLI.VPP get interface ip addresses
 | | ... | ${node} | ${interface} | ipv6
@@ -269,8 +269,8 @@
 | | ... | *Example:*
 | | ...
 | | ... | \| Honeycomb sets interface ethernet and routing configuration \
-| | ... | \| ${nodes['DUT1']} \| GigabitEthernet0/8/0 \| ${{mtu=1500}} \
-| | ... | \| ${{vrf-if=2}}
+| | ... | \| ${nodes['DUT1']} \| GigabitEthernet0/8/0 \| ${{'mtu': 1500}} \
+| | ... | \| ${{'vrf-if': 2}} \|
 | | [Arguments] | ${node} | ${interface} | ${ethernet} | ${routing}
 | | :FOR | ${key} | IN | @{ethernet.keys()}
 | | | interfaceAPI.Configure interface ethernet
@@ -293,7 +293,7 @@
 | | ...
 | | ... | \| Interface ethernet and routing configuration from Honeycomb \
 | | ... | should be \| ${nodes['DUT1']} \| GigabitEthernet0/8/0 \
-| | ... | \| ${{mtu=1500}} \| ${{vrf-id=2}}
+| | ... | \| ${{'mtu': 1500}} \| ${{'vrf-id': 2}} \|
 | | [Arguments] | ${node} | ${interface} | ${ethernet} | ${routing}
 | | ${api_data}= | interfaceAPI.Get interface oper data | ${node} | ${interface}
 | | :FOR | ${key} | IN | @{ethernet.keys()}
@@ -311,75 +311,12 @@
 | | ... | - mtu - value of maximum transmission unit expected. Type: integer
 | | ... | - vrf-id - ID number of a VPN expected on interface. Type: integer
 | | ...
+| | ... | *Example:*
+| | ...
 | | ... | \| Interface ethernet and routing configuration from VAT \
 | | ... | should be \| ${nodes['DUT1']} \| GigabitEthernet0/8/0 \| ${1500} \
-| | ... | \| ${2}
+| | ... | \| ${2} \|
 | | [Arguments] | ${node} | ${interface} | ${mtu} | ${vrf-id}
 | | ${vat_data}= | InterfaceCLI.VPP get interface data | ${node} | ${interface}
 | | Should be equal | ${vat_data['mtu']} | ${mtu}
 | | Should be equal | ${vat_data['sub_inner_vlan_id']} | ${vrf-id}
-
-| Honeycomb sets interface VxLAN configuration
-| | [Documentation] | Uses Honeycomb API to change VxLAN configuration\
-| | ... | of the specified interface.
-| | ...
-| | ... | *Arguments:*
-| | ... | - node - information about a DUT node. Type: dictionary
-| | ... | - interface - name of an interface on the specified node. Type: string
-| | ... | - vxlan_settings - Configuration data fo VxLAN. Type:dict
-| | ...
-| | ... | *Example:*
-| | ... | \| Honeycomb sets interface VxLAN configuration\
-| | ... | \|${node} \| ${interface} \| &{vxlan_settings}
-| | ...
-| | [Arguments] | ${node} | ${interface} | &{vxlan_settings}
-| | :FOR | ${items} | IN | @{vxlan_settings.items()}
-| | | interfaceAPI.Configure interface vxlan | ${node} | ${interface} | @{items}
-
-| VxLAN configuration from Honeycomb should be
-| | [Documentation] | Retrieves interface VxLAN configuration through Honeycomb\
-| | ... | and compares with state supplied in argument.
-| | ...
-| | ... | *Arguments:*
-| | ... | - node - information about a DUT node. Type: dictionary
-| | ... | - interface - name of an interface on the specified node. Type: string
-| | ... | - vxlan_settings - Configuration data fo VxLAN. Type:dict
-| | ...
-| | ... | *Example:*
-| | ...
-| | ... | \| VxLAN configuration from Honeycomb should be\
-| | ... | \| ${node} \| ${interface} \| &{vxlan_settings}
-| | ...
-| | [Arguments] | ${node} | ${interface} | &{vxlan_settings}
-| | ${api_data}= | interfaceAPI.Get interface cfg data | ${node} | ${interface}
-| | :FOR | ${items} | IN | @{vxlan_settings.items()}
-| | | Should be equal as strings
-| | ... | ${api_data['v3po:vxlan']['@{items}[0]']} | ${items[1]}
-| | ${api_data}= | interfaceAPI.Get interface oper data | ${node} | ${interface}
-| | :FOR | ${items} | IN | @{vxlan_settings.items()}
-| | | Should be equal as strings
-| | ... | ${api_data['v3po:vxlan']['@{items}[0]']} | ${items[1]}
-
-| VxLAN configuration from VAT should be
-| | [Documentation] | Retrieves interface VxLAN configuration through VAT and\
-| | ... | compares with state supplied in argument.
-| | ...
-| | ... | *Arguments:*
-| | ... | - node - information about a DUT node. Type: dictionary
-| | ... | - interface - name of an interface on the specified node. Type: string
-| | ... | - vxlan_settings - Configuration data fo VxLAN. Type:dict
-| | ...
-| | ... | *Example:*
-| | ...
-| | ... | \| VxLAN configuration from Honeycomb should be\
-| | ... | \| ${node} \| ${interface} \| &{vxlan_settings}
-| | ...
-| | [Arguments] | ${node} | ${interface} | &{vxlan_settings}
-| | ${vat_data}= | VxLAN Dump | ${node} | ${interface}
-| | Should be equal as strings
-| | ... | ${vat_data['dst_address']} | ${vxlan_settings['dst']}
-| | Should be equal as strings
-| | ... | ${vat_data['src_address']} | ${vxlan_settings['src']}
-| | Should be equal as strings | ${vat_data['vni']} | ${vxlan_settings['vni']}
-| | Should be equal as strings
-| | ... | ${vat_data['encap-vrf-id']} | ${vxlan_settings['encap_vrf_id']}
