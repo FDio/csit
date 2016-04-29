@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da141535_dfc0b37e",
+        "filename": "resources/libraries/python/IPv4Setup.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 331,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-04-29T13:54:04Z",
+      "side": 1,
+      "message": "What about to sync this method with method setup_arp_on_all_duts (i.e. move corresponding part from setup_arp_on_all_duts to this method)?",
+      "range": {
+        "startLine": 319,
+        "startChar": 4,
+        "endLine": 331,
+        "endChar": 66
+      },
+      "revId": "cd5104d29982abe985b810f005e2f85b0cddae36",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_ff713778",
+        "filename": "resources/libraries/robot/cop.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-04-29T13:54:04Z",
+      "side": 1,
+      "message": "Please, add missing following parts in the documentation:\n- Arguments\n- Return\n- Example\n\nValid for all other KW there.",
+      "range": {
+        "startLine": 24,
+        "startChar": 5,
+        "endLine": 24,
+        "endChar": 18
+      },
+      "revId": "cd5104d29982abe985b810f005e2f85b0cddae36",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_5f0a63d3",
+        "filename": "resources/libraries/robot/cop.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-04-29T13:54:04Z",
+      "side": 1,
+      "message": "We should use arguments to transfer needed values from test case to KW and use only internal variables inside KW.\n\nWith current implementation the KW will fail if will be used in test case with different topology used - e.g- vpp node will not be called DUT1 but SUT1...\n\nValid for all KWs here.",
+      "range": {
+        "startLine": 41,
+        "startChar": 19,
+        "endLine": 42,
+        "endChar": 24
+      },
+      "revId": "cd5104d29982abe985b810f005e2f85b0cddae36",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_3fab2f8b",
+        "filename": "resources/libraries/robot/traffic.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-04-29T13:54:04Z",
+      "side": 1,
+      "message": "Please, use Run Keyword and Expect Error + define expected error message to avoid masking of some other issue that could case the failure:\nRun Keyword And Expect Error | ICMP echo Rx timeout | Send Packet And Check Headers | ....",
+      "range": {
+        "startLine": 100,
+        "startChar": 0,
+        "endLine": 103,
+        "endChar": 34
+      },
+      "revId": "cd5104d29982abe985b810f005e2f85b0cddae36",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_ff8817c8",
+        "filename": "resources/traffic_scripts/send_icmp_check_headers.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-04-29T13:54:04Z",
+      "side": 1,
+      "message": "Please, gorup import base don coding guidelines:\nImports should be grouped in the following order: 1. standard library imports, 2. related third party imports, 3. local application/library specific imports. You should put a blank line between each group of imports\n\n+ add there\nfrom robot.api import logger",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 16
+      },
+      "revId": "cd5104d29982abe985b810f005e2f85b0cddae36",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_7f9527e3",
+        "filename": "resources/traffic_scripts/send_icmp_check_headers.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-04-29T13:54:04Z",
+      "side": 1,
+      "message": "Please, use logger.trace instead of print.\n\nValid for all occurances.",
+      "range": {
+        "startLine": 97,
+        "startChar": 8,
+        "endLine": 97,
+        "endChar": 13
+      },
+      "revId": "cd5104d29982abe985b810f005e2f85b0cddae36",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_5f6823f5",
+        "filename": "tests/suites/cop/cop_whitelist_blacklist.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-04-29T13:54:04Z",
+      "side": 1,
+      "message": "Please, leave only one empty line between variable groups.",
+      "range": {
+        "startLine": 43,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 0
+      },
+      "revId": "cd5104d29982abe985b810f005e2f85b0cddae36",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_df7313e6",
+        "filename": "tests/suites/cop/cop_whitelist_blacklist.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-04-29T13:54:04Z",
+      "side": 1,
+      "message": "Based on comment in resource file - we need to pass arguments from test case to KW when using KWs that need some input data. Test variables should be used in the test case context not in the KW context to have KW independet from given test case and to keep possibilit to use these KWs in other test cases.",
+      "range": {
+        "startLine": 60,
+        "startChar": 3,
+        "endLine": 63,
+        "endChar": 24
+      },
+      "revId": "cd5104d29982abe985b810f005e2f85b0cddae36",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_bf805f8c",
+        "filename": "tests/suites/cop/cop_whitelist_blacklist_IPv6.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-04-29T13:54:04Z",
+      "side": 1,
+      "message": "See cop_whitelist_blacklist.robot for comments.",
+      "range": {
+        "startLine": 63,
+        "startChar": 0,
+        "endLine": 66,
+        "endChar": 24
+      },
+      "revId": "cd5104d29982abe985b810f005e2f85b0cddae36",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
