@@ -18,6 +18,7 @@ from time import time, sleep
 from robot.api import logger
 
 from resources.libraries.python.ssh import SSH
+from resources.libraries.python.IPUtil import convert_netmask_prefix
 from resources.libraries.python.ssh import exec_cmd_no_error
 from resources.libraries.python.topology import NodeType, Topology
 from resources.libraries.python.VatExecutor import VatExecutor, VatTerminal
@@ -198,6 +199,38 @@ class InterfaceUtil(object):
 
                     return data_if
 
+        return data
+
+    @staticmethod
+    def vpp_get_interface_ip_addresses(node, interface, ip_version):
+        """Get list of IP addresses from an interface on a VPP node.
+         :param node: VPP node to get data from.
+         :param interface: Name of an interface on the VPP node.
+         :param ip_version: IP protocol version (ipv4 or ipv6).
+         :type node: dict
+         :type interface: str
+         :type ip_version: str
+         :return: List of dictionaries, each containing IP address, subnet mask
+         and subnet prefix length.
+         NOTE: A single interface may have multiple IP addresses assigned.
+         :rtype: list
+        """
+        with VatTerminal(node) as vat:
+            response = vat.vat_terminal_exec_cmd_from_template(
+                "interface_dump.vat")
+            sw_if_index = None
+            for interface_data in response[0]:
+                if interface_data["interface_name"] == interface:
+                    sw_if_index = interface_data["sw_if_index"]
+
+            response = vat.vat_terminal_exec_cmd_from_template(
+                "ip_address_dump.vat", ip_version=ip_version,
+                sw_if_index=sw_if_index)
+
+        data = response[0]
+        for item in data:
+            item["netmask"] = convert_netmask_prefix(
+                item["prefix_length"], ip_version)
         return data
 
     @staticmethod
