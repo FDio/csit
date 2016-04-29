@@ -18,7 +18,7 @@
 
 *** Keywords ***
 | Setup Honeycomb service on DUTs
-| | [Documentation] | *Setup environment for honeycomb testing*
+| | [Documentation] | *Setup environment for honeycomb testing.*
 | | ...
 | | ... | _Setup steps:_
 | | ... | - 1. Login to each honeycomb node using ssh
@@ -28,10 +28,12 @@
 | | ... | connection refused -> 404 -> 401 -> 503 or 500 -> 200 (pass)
 | | ... | - 4. Configure honeycomb nodes using HTTP PUT request
 | | ...
+| | ... | _Arguments:_
+| | ... | - ${duts} - list of nodes to setup Honeycomb on
+| | ...
 | | ... | _Used global constants and variables:_
 | | ... | - RESOURCES_TPL_HC - path to honeycomb templates directory
 | | ... | - HTTPCodes - HTTP protocol status codes
-| | ... | - ${nodes} - dictionary of all nodes in topology.YAML file
 | | ...
 | | [Arguments] | @{duts}
 | | Start honeycomb on DUTs | @{duts}
@@ -39,7 +41,7 @@
 | | ... | Check honeycomb startup state | @{duts}
 
 | Stop honeycomb service on DUTs
-| | [Documentation] | *Cleanup environment after honeycomb testing*
+| | [Documentation] | *Cleanup environment after honeycomb testing.*
 | | ...
 | | ... | _Teardown steps:_
 | | ... | - 1. Login to each honeycomb node using ssh
@@ -48,10 +50,12 @@
 | | ... | Expected sequence of HTTP replies:
 | | ... | 200 -> 404 -> connection refused (pass)
 | | ...
+| | ... | _Arguments:_
+| | ... | - ${duts} - list of nodes to stop Honeycomb on
+| | ...
 | | ... | _Used global constants and variables:_
 | | ... | - RESOURCES_TPL_HC - path to honeycomb templates directory
 | | ... | - HTTPCodes - HTTP protocol status codes
-| | ... | - ${nodes} - dictionary of all nodes in topology.YAML file
 | | ...
 | | [Arguments] | @{duts}
 | | Stop honeycomb on DUTs | @{duts}
