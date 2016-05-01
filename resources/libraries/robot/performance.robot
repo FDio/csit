@@ -108,8 +108,10 @@
 | | All Vpp Interfaces Ready Wait | ${nodes}
 
 | 3-node Performance Suite Setup
-| | 3-node circular Topology Variables Setup
 | | [Arguments] | ${topology_type}
+| | Reset startup configuration of VPP on all DUTs
+| | Update All Interface Data On All Nodes | ${nodes}
+| | 3-node circular Topology Variables Setup
 | | Initialize traffic generator | ${tg} | ${tg_if1} | ${tg_if2}
 | | ...                          | ${dut1} | ${dut1_if1} | ${dut1_if2}
 | | ...                          | ${dut2} | ${dut2_if1} | ${dut2_if2}
@@ -117,6 +119,8 @@
 
 3-node Performance Suite Setup with DUT's NIC model
 | | [Arguments] | ${topology_type} | ${nic_model}
+| | Reset startup configuration of VPP on all DUTs
+| | Update All Interface Data On All Nodes | ${nodes}
 | | 3-node circular Topology Variables Setup with DUT interface model
 | | ... | ${nic_model}
 | | Initialize traffic generator | ${tg} | ${tg_if1} | ${tg_if2}
