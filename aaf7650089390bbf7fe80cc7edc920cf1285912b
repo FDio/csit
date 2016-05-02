@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da141535_0d95e13f",
+        "filename": "resources/tools/topo_installation.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-05-02T07:39:18Z",
+      "side": 1,
+      "message": "# Remove",
+      "range": {
+        "startLine": 79,
+        "startChar": 16,
+        "endLine": 79,
+        "endChar": 23
+      },
+      "revId": "aaf7650089390bbf7fe80cc7edc920cf1285912b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_ed918d53",
+        "filename": "resources/tools/topo_installation.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-05-02T07:39:18Z",
+      "side": 1,
+      "message": "# Create",
+      "range": {
+        "startLine": 84,
+        "startChar": 16,
+        "endLine": 84,
+        "endChar": 23
+      },
+      "revId": "aaf7650089390bbf7fe80cc7edc920cf1285912b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
