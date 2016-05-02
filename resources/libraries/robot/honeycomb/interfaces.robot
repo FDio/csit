@@ -318,3 +318,68 @@
 | | ${vat_data}= | InterfaceCLI.VPP get interface data | ${node} | ${interface}
 | | Should be equal | ${vat_data['mtu']} | ${mtu}
 | | Should be equal | ${vat_data['sub_inner_vlan_id']} | ${vrf-id}
+
+| Honeycomb sets interface VxLAN configuration
+| | [Documentation] | Uses Honeycomb API to change VxLAN configuration \
+| | ... | of the specified interface.
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - information about a DUT node. Type: dictionary
+| | ... | - interface - name of an interface on the specified node. Type: string
+| | ... | - vxlan_settings - Configuration data for VxLAN. Type: dictionary
+| | ...
+| | ... | *Example:*
+| | ... | \| Honeycomb sets interface VxLAN configuration \
+| | ... | \|${node} \| ${interface} \| &{vxlan_settings} \|
+| | ...
+| | [Arguments] | ${node} | ${interface} | &{vxlan_settings}
+| | :FOR | ${items} | IN | @{vxlan_settings.items()}
+| | | interfaceAPI.Configure interface vxlan | ${node} | ${interface} | @{items}
+
+| VxLAN configuration from Honeycomb should be
+| | [Documentation] | Retrieves interface VxLAN configuration through Honeycomb\
+| | ... | and compares with state supplied in argument.
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - information about a DUT node. Type: dictionary
+| | ... | - interface - name of an interface on the specified node. Type: string
+| | ... | - vxlan_settings - Configuration data for VxLAN. Type: dictionary
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| VxLAN configuration from Honeycomb should be \
+| | ... | \| ${node} \| ${interface} \| &{vxlan_settings} \|
+| | ...
+| | [Arguments] | ${node} | ${interface} | &{vxlan_settings}
+| | ${api_data}= | interfaceAPI.Get interface cfg data | ${node} | ${interface}
+| | :FOR | ${items} | IN | @{vxlan_settings.items()}
+| | | Should be equal as strings
+| | ... | ${api_data['v3po:vxlan']['@{items}[0]']} | ${items[1]}
+| | ${api_data}= | interfaceAPI.Get interface oper data | ${node} | ${interface}
+| | :FOR | ${items} | IN | @{vxlan_settings.items()}
+| | | Should be equal as strings
+| | ... | ${api_data['v3po:vxlan']['@{items}[0]']} | ${items[1]}
+
+| VxLAN configuration from VAT should be
+| | [Documentation] | Retrieves interface VxLAN configuration through VAT and\
+| | ... | compares with state supplied in argument.
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - information about a DUT node. Type: dictionary
+| | ... | - interface - name of an interface on the specified node. Type: string
+| | ... | - vxlan_settings - Configuration data for VxLAN. Type: dictionary
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| VxLAN configuration from Honeycomb should be \
+| | ... | \| ${node} \| ${interface} \| &{vxlan_settings} \|
+| | ...
+| | [Arguments] | ${node} | ${interface} | &{vxlan_settings}
+| | ${vat_data}= | VxLAN Dump | ${node} | ${interface}
+| | Should be equal as strings
+| | ... | ${vat_data['dst_address']} | ${vxlan_settings['dst']}
+| | Should be equal as strings
+| | ... | ${vat_data['src_address']} | ${vxlan_settings['src']}
+| | Should be equal as strings | ${vat_data['vni']} | ${vxlan_settings['vni']}
+| | Should be equal as strings
+| | ... | ${vat_data['encap-vrf-id']} | ${vxlan_settings['encap_vrf_id']}

@@ -25,6 +25,8 @@
 | ... | dup-addr-detect-transmits=5
 | &{ethernet}= | mtu=9000
 | &{routing}= | vrf-id=27
+| &{vxlan_settings}= | src=10.0.1.20 | dst=10.0.3.20 | vni=1000
+| ... | encap-vrf-id=1000
 
 *** Settings ***
 | Resource | resources/libraries/robot/default.robot
@@ -86,3 +88,14 @@
 | | ... | ${node} | ${interface} | ${ethernet} | ${routing}
 | | And Interface ethernet and routing configuration from VAT should be
 | | ... | ${node} | ${interface} | ${ethernet['mtu']} | ${routing['vrf-id']}
+
+| Honeycomb modifies interface configuration - VxLAN
+| | [Documentation] | Check if Honeycomb API can configure interface VxLAN \
+| | ... | settings.
+| | [Tags] | honeycomb_sanity
+| | When Honeycomb sets interface VxLAN configuration
+| | ... | ${node} | ${interface} | &{vxlan_settings}
+| | Then VxLAN configuration from Honeycomb should be
+| | ... | ${node} | ${interface} | &{vxlan_settings}
+| | And VxLAN configuration from VAT should be
+| | ... | ${node} | ${interface} | &{vxlan_settings}
