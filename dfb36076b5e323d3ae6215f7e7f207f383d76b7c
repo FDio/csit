@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "da141535_8d60d136",
+        "filename": "resources/libraries/python/IPUtil.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-02T12:27:48Z",
+      "side": 1,
+      "message": "Please, add empty line before this line.",
+      "range": {
+        "startLine": 48,
+        "startChar": 4,
+        "endLine": 48,
+        "endChar": 49
+      },
+      "revId": "dfb36076b5e323d3ae6215f7e7f207f383d76b7c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_4d5ab984",
+        "filename": "resources/libraries/python/IPUtil.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-02T12:27:48Z",
+      "side": 1,
+      "message": "Missing dots at the end of line.",
+      "range": {
+        "startLine": 49,
+        "startChar": 4,
+        "endLine": 50,
+        "endChar": 57
+      },
+      "revId": "dfb36076b5e323d3ae6215f7e7f207f383d76b7c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da141535_8db691db",
         "filename": "resources/libraries/python/IPUtil.py",
         "patchSetId": 2
@@ -25,6 +71,29 @@
     },
     {
       "key": {
+        "uuid": "da141535_0dd161fb",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-02T12:27:48Z",
+      "side": 1,
+      "message": "Please, add empty line before this line.",
+      "range": {
+        "startLine": 207,
+        "startChar": 9,
+        "endLine": 207,
+        "endChar": 48
+      },
+      "revId": "dfb36076b5e323d3ae6215f7e7f207f383d76b7c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da141535_0d7cc11f",
         "filename": "resources/libraries/python/InterfaceUtil.py",
         "patchSetId": 2
@@ -41,6 +110,121 @@
         "startChar": 9,
         "endLine": 215,
         "endChar": 14
+      },
+      "revId": "dfb36076b5e323d3ae6215f7e7f207f383d76b7c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_cd4da9c6",
+        "filename": "resources/libraries/robot/honeycomb/interfaces.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-02T12:27:48Z",
+      "side": 1,
+      "message": "Please, add also *Example:* part to every KW.",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 7
+      },
+      "revId": "dfb36076b5e323d3ae6215f7e7f207f383d76b7c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_cdfb6946",
+        "filename": "resources/libraries/robot/honeycomb/interfaces.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-02T12:27:48Z",
+      "side": 1,
+      "message": "Such argument (${enabled}) is not defined in [Arguments] part...\nPlus\n- add type of arguments\n- add missing arguments (all arguments needs to be decribed here)\n- arguments decscription should be in the same order as they are listed in argument table",
+      "range": {
+        "startLine": 89,
+        "startChar": 12,
+        "endLine": 89,
+        "endChar": 19
+      },
+      "revId": "dfb36076b5e323d3ae6215f7e7f207f383d76b7c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_cd9249f6",
+        "filename": "resources/libraries/robot/honeycomb/interfaces.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-02T12:27:48Z",
+      "side": 1,
+      "message": "See line 89.",
+      "range": {
+        "startLine": 105,
+        "startChar": 0,
+        "endLine": 110,
+        "endChar": 64
+      },
+      "revId": "dfb36076b5e323d3ae6215f7e7f207f383d76b7c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_8dbc516e",
+        "filename": "resources/libraries/robot/honeycomb/interfaces.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-02T12:27:48Z",
+      "side": 1,
+      "message": "See line 89.",
+      "range": {
+        "startLine": 126,
+        "startChar": 0,
+        "endLine": 131,
+        "endChar": 64
+      },
+      "revId": "dfb36076b5e323d3ae6215f7e7f207f383d76b7c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_6dc1fde3",
+        "filename": "resources/libraries/robot/honeycomb/interfaces.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-02T12:27:48Z",
+      "side": 1,
+      "message": "See line 89.\nValid for all occurences in KWs below.",
+      "range": {
+        "startLine": 144,
+        "startChar": 0,
+        "endLine": 148,
+        "endChar": 66
       },
       "revId": "dfb36076b5e323d3ae6215f7e7f207f383d76b7c",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
