@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da141535_cdac898f",
+        "filename": "resources/libraries/python/HcAPIKwBridgeDomain.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 191
+      },
+      "writtenOn": "2016-05-02T10:09:50Z",
+      "side": 1,
+      "message": "please use another name and description for this and configure_bd functions to distinguish between them clearly",
+      "range": {
+        "startLine": 307,
+        "startChar": 36,
+        "endLine": 307,
+        "endChar": 37
+      },
+      "revId": "d21d3bfe098483b6399bf569299d16b29c3fc350",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
