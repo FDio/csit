@@ -86,3 +86,14 @@
 | | ... | ${node} | ${interface} | ${ethernet} | ${routing}
 | | And Interface ethernet and routing configuration from VAT should be
 | | ... | ${node} | ${interface} | ${ethernet['mtu']} | ${routing['vrf-id']}
+
+| Honeycomb modifies interface configuration - VxLAN
+| | [Documentation] | Check if Honeycomb API can configure interface VxLAN\
+| | ... | settings.
+| | [Tags] | honeycomb_sanity
+| | When Honeycomb sets interface VxLAN configuration
+| | ... | ${node} | ${interface} | &{vxlan_settings}
+| | Then VxLAN configuration from Honeycomb should be
+| | ... | ${node} | ${interface} | &{vxlan_settings}
+| | Then VxLAN configuration from VAT should be
+| | ... | ${node} | ${interface} | &{vxlan_settings}
