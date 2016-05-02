@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da141535_ad727547",
+        "filename": "resources/libraries/robot/testing_path.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-02T10:31:17Z",
+      "side": 1,
+      "message": "I guess it will not be used only for bridge domain tests... \nPlease, replace it by better descrition, e.g. - \"2-node tests (TG \u003d2_links\u003d DUT)\"\nOtherwise it make no sense to remove it from bridge_domain.robot resource file to another extra resource file...",
+      "range": {
+        "startLine": 20,
+        "startChar": 39,
+        "endLine": 20,
+        "endChar": 52
+      },
+      "revId": "c13d5fe237d8cb6664f5215dfb47fae400514c51",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_2d9e6557",
+        "filename": "resources/libraries/robot/testing_path.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-02T10:31:17Z",
+      "side": 1,
+      "message": "We should not import the same argument two times...\nYou can describe the expected topology in the documentation part (TG -DUT- TG, where both TGs are the same TG node) and import the argument only once\nor\nuse two different arguments - tg1_node and tg2_node in expected topology TG1 - DUT - TG2, where TG1 and TG2 can be the same TG node, of course.\nI would say approach two is better as we can use it in general, not only for circular topogy. But you willned to add check if tg1_node and tg´2_node are the same tg_node - if yes, then we shodu avoid to set two different tgX_node test case variables and set only one tg_node test case variable.",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 67
+      },
+      "revId": "c13d5fe237d8cb6664f5215dfb47fae400514c51",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_0da3a19f",
+        "filename": "resources/libraries/robot/testing_path.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-02T10:31:17Z",
+      "side": 1,
+      "message": "Please, see line 26.",
+      "range": {
+        "startLine": 43,
+        "startChar": 33,
+        "endLine": 43,
+        "endChar": 49
+      },
+      "revId": "c13d5fe237d8cb6664f5215dfb47fae400514c51",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_8d8fb123",
+        "filename": "resources/libraries/robot/testing_path.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-02T10:31:17Z",
+      "side": 1,
+      "message": "See ine 20...",
+      "range": {
+        "startLine": 83,
+        "startChar": 39,
+        "endLine": 83,
+        "endChar": 52
+      },
+      "revId": "c13d5fe237d8cb6664f5215dfb47fae400514c51",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_ed9f4d4f",
+        "filename": "resources/libraries/robot/testing_path.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-02T10:31:17Z",
+      "side": 1,
+      "message": "Please, see line 26",
+      "range": {
+        "startLine": 90,
+        "startChar": 0,
+        "endLine": 91,
+        "endChar": 67
+      },
+      "revId": "c13d5fe237d8cb6664f5215dfb47fae400514c51",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_6d945d37",
+        "filename": "resources/libraries/robot/testing_path.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-02T10:31:17Z",
+      "side": 1,
+      "message": "Please, remove BD from KW name.",
+      "range": {
+        "startLine": 109,
+        "startChar": 35,
+        "endLine": 109,
+        "endChar": 37
+      },
+      "revId": "c13d5fe237d8cb6664f5215dfb47fae400514c51",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
