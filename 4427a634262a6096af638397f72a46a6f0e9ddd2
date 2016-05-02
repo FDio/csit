@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da141535_6d30dd56",
+        "filename": "resources/libraries/robot/ipv4.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-05-02T10:44:44Z",
+      "side": 1,
+      "message": "Why adding useless KW?",
+      "revId": "4427a634262a6096af638397f72a46a6f0e9ddd2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_6d09fd94",
+        "filename": "resources/libraries/robot/ipv4.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-05-02T10:44:44Z",
+      "side": 1,
+      "message": "Line too long",
+      "revId": "4427a634262a6096af638397f72a46a6f0e9ddd2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
