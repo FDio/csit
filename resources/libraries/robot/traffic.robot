@@ -105,4 +105,3 @@
 | | Run Keyword And Expect Error | ICMP echo Rx timeout |
 | | ... | Run Traffic Script On Node | send_icmp_check_headers.py
 | | ... | ${tg_node} | ${args}
-l
