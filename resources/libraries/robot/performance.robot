@@ -18,6 +18,8 @@
 | Resource | resources/libraries/robot/ipv4.robot
 | Resource | resources/libraries/robot/bridge_domain.robot
 | Resource | resources/libraries/robot/counters.robot
+| Library | resources.libraries.python.InterfaceUtil
+| Library | resources.libraries.python.NodePath
 | Library | resources.libraries.python.TrafficGenerator
 | Library | resources.libraries.python.TrafficGenerator.TGDropRateSearchImpl
 | Documentation | Performance suite keywords
