@@ -75,6 +75,16 @@
 | | Set Suite Variable | ${dut2_if1}
 | | Set Suite Variable | ${dut2_if2}
 
+| VPP interfaces in path are up
+| | [Documentation] | *Set UP state on VPP interfaces in path on nodes.*
+| | ...
+| | Set Interface State | ${dut1} | ${dut1_if1} | up
+| | Set Interface State | ${dut1} | ${dut1_if2} | up
+| | Set Interface State | ${dut2} | ${dut2_if1} | up
+| | Set Interface State | ${dut2} | ${dut2_if2} | up
+| | Vpp Node Interfaces Ready Wait | ${dut1}
+| | Vpp Node Interfaces Ready Wait | ${dut2}
+
 | IPv4 forwarding initialized in a 3-node circular topology
 | | [Documentation] | Custom setup of IPv4 addresses on all DUT nodes and TG
 | | Set Interface State | ${dut1} | ${dut1_if1} | up
