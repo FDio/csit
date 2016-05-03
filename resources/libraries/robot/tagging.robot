@@ -20,6 +20,7 @@
 | Library | resources.libraries.python.NodePath
 
 *** Keywords ***
+
 | VLAN subinterfaces initialized on 3-node topology
 | | [Arguments] | ${DUT1} | ${INT1} | ${DUT2} | ${INT2} | ${SUB_ID}
 | | ...         | ${OUTER_VLAN_ID} | ${INNER_VLAN_ID} | ${TYPE_SUBIF}
@@ -56,7 +57,41 @@
 | | Set Test Variable | ${subif_name_2}
 | | Set Test Variable | ${subif_index_2}
 
-| L2 tag rewrite pop 2 tags setup on interfaces
+| VLAN dot1q subinterfaces initialized on 3-node topology
+| | [Arguments] | ${DUT1} | ${INT1} | ${DUT2} | ${INT2} | ${SUB_ID}
+| | [Documentation] | *Create two dot1q subinterfaces on DUTs.*
+| | ...
+| | ... | *Arguments:*
+| | ... | - ${DUT1} - Node to add sub-interface.
+| | ... | - ${INT1} - Interface name on which create VLAN sub-interface.
+| | ... | - ${DUT2} - Node to add sub-interface.
+| | ... | - ${INT2} - Interface name on which create VLAN sub-interface.
+| | ... | - ${SUB_ID} - ID of the sub-interface to be created.
+| | ...
+| | ... | _Set testcase variables with name and index of created interfaces:_
+| | ... | - ${subif_name_1}
+| | ... | - ${subif_index_1}
+| | ... | - ${subif_name_2}
+| | ... | - ${subif_index_2}
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| VLAN dot1q subinterfaces initialized on 3-node topology \
+| | ... | \| ${nodes['DUT1']} \| ${dut1_if2} \| ${nodes['DUT2']} \
+| | ... | \| ${dut1_if2} \| 10 \|
+| | ...
+| | ${subif_name_1} | ${subif_index_1}= | Create Vlan Subinterface
+| |                    | ...            | ${DUT1} | ${INT1} | ${SUB_ID}
+| | ${subif_name_2} | ${subif_index_2}= | Create Vlan Subinterface
+| |                    | ...            | ${DUT2} | ${INT2} | ${SUB_ID}
+| | Set Interface State | ${DUT1} | ${subif_index_1} | up
+| | Set Interface State | ${DUT2} | ${subif_index_2} | up
+| | Set Test Variable | ${subif_name_1}
+| | Set Test Variable | ${subif_index_1}
+| | Set Test Variable | ${subif_name_2}
+| | Set Test Variable | ${subif_index_2}
+
+| L2 tag rewrite method setup on interfaces
 | | [Arguments] | ${DUT1} | ${SUB_INT1} | ${DUT2} | ${SUB_INT2}
 | | ...         | ${TAG_REWRITE_METHOD}
 | | [Documentation] | *Setup tag rewrite on sub-interfaces on DUTs.*

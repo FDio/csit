@@ -41,7 +41,7 @@
 | | When VLAN subinterfaces initialized on 3-node topology
 | | ... | ${dut1_node} | ${dut1_to_dut2} | ${dut2_node} | ${dut2_to_dut1} | ${subid}
 | | ... | ${outer_vlan_id} | ${inner_vlan_id} | ${type_subif}
-| | And L2 tag rewrite pop 2 tags setup on interfaces
+| | And L2 tag rewrite method setup on interfaces
 | | ... | ${dut1_node} | ${subif_index_1} | ${dut2_node} | ${subif_index_2}
 | | ... | ${tag_rewrite_method}
 | | And Interfaces and VLAN sub-interfaces inter-connected using L2-xconnect

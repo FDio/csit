@@ -156,6 +156,13 @@ case "$TEST_TAG" in
               -s "performance.Long_Xconnect*" \
               tests/
         ;;
+    PERFTEST_LONG_XCONNECT_DOT1Q )
+        pybot ${PYBOT_ARGS} \
+              -L TRACE \
+              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+              -s "performance.Long_Xconnect_Dot1q*" \
+              tests/
+        ;;
     * )
         # run full performance test suite and exit on fail
         pybot ${PYBOT_ARGS} \
