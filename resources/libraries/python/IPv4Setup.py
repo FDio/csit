@@ -314,3 +314,18 @@ class IPv4Setup(object):
                                                    nodes_addr)
                 mac_address = adj_int['mac_address']
                 get_node(node).set_arp(interface_name, ip_address, mac_address)
+
+    @staticmethod
+    def add_arp_on_dut(node, interface, ip_address, mac_address):
+        """Set ARP cache entree on DUT node.
+
+        :param node: VPP node in the topology.
+        :param interface: Interface name of the node.
+        :param ip_address: IP address of the interface.
+        :param mac_address: MAC address of the interface.
+        :type node: dict
+        :type interface: str
+        :type ip_address: str
+        :type mac_address: str
+        """
+        get_node(node).set_arp(interface, ip_address, mac_address)
