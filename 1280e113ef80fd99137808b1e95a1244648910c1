@@ -22,6 +22,30 @@
       "revId": "1280e113ef80fd99137808b1e95a1244648910c1",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_4e206f9b",
+        "filename": "requirements.txt",
+        "patchSetId": 4
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-05-03T11:47:34Z",
+      "side": 1,
+      "message": "ipaddress doesn\u0027t handle converting ipv6 netmasks into prefixes, only the reverse.",
+      "parentUuid": "da141535_53449c73",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 15
+      },
+      "revId": "1280e113ef80fd99137808b1e95a1244648910c1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
