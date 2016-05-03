@@ -580,3 +580,28 @@ class InterfaceUtil(object):
         else:
             raise RuntimeError('Create loopback failed on node "{}"'
                                .format(node['host']))
+
+    @staticmethod
+    def vpp_enable_input_acl_interface(node, interface, ip_version,
+                                       table_index):
+        """Enable input acl on interface.
+
+        :param node: VPP node to setup interface for input acl.
+        :param interface: Interface to setup input acl.
+        :param ip_version: Version of IP protocol.
+        :param table_index: Classify table index.
+        :type node: dict
+        :type interface: str or int
+        :type ip_version: str
+        :type table_index: int
+        """
+        if isinstance(interface, basestring):
+            sw_if_index = Topology.get_interface_sw_index(node, interface)
+        else:
+            sw_if_index = interface
+
+        with VatTerminal(node) as vat:
+            vat.vat_terminal_exec_cmd_from_template("input_acl_int.vat",
+                                                    sw_if_index=sw_if_index,
+                                                    ip_version=ip_version,
+                                                    table_index=table_index)

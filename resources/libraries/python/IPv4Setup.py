@@ -319,7 +319,7 @@ class IPv4Setup(object):
     def add_arp_on_dut(node, interface, ip_address, mac_address):
         """Set ARP cache entree on DUT node.
 
-        :param node: Node in the topology.
+        :param node: VPP node in the topology.
         :param interface: Interface name of the node.
         :param ip_address: IP address of the interface.
         :param mac_address: MAC address of the interface.
