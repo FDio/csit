@@ -22,6 +22,30 @@
       "revId": "d21d3bfe098483b6399bf569299d16b29c3fc350",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_331128ad",
+        "filename": "resources/libraries/python/HcAPIKwBridgeDomain.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-05-03T07:01:29Z",
+      "side": 1,
+      "message": "_configure_bd will be renamed to _send_bd_configuration\nComments will be improved.",
+      "parentUuid": "da141535_cdac898f",
+      "range": {
+        "startLine": 307,
+        "startChar": 36,
+        "endLine": 307,
+        "endChar": 37
+      },
+      "revId": "d21d3bfe098483b6399bf569299d16b29c3fc350",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
