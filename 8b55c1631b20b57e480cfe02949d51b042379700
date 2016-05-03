@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "da141535_137744d6",
+        "filename": "resources/tools/t-rex/t-rex-stateless.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-05-03T09:17:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_f3fe1038",
+      "range": {
+        "startLine": 74,
+        "startChar": 27,
+        "endLine": 74,
+        "endChar": 28
+      },
+      "revId": "8b55c1631b20b57e480cfe02949d51b042379700",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da141535_d3fb0c46",
         "filename": "resources/tools/t-rex/t-rex-stateless.py",
         "patchSetId": 11
@@ -36,6 +60,30 @@
       "writtenOn": "2016-05-03T08:59:19Z",
       "side": 1,
       "message": "No disabled parts of code should be committed.",
+      "range": {
+        "startLine": 86,
+        "startChar": 4,
+        "endLine": 86,
+        "endChar": 47
+      },
+      "revId": "8b55c1631b20b57e480cfe02949d51b042379700",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_f373b0e5",
+        "filename": "resources/tools/t-rex/t-rex-stateless.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-05-03T09:17:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_d3fb0c46",
       "range": {
         "startLine": 86,
         "startChar": 4,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "da141535_d380ac8d",
+        "filename": "resources/tools/t-rex/t-rex-stateless.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-05-03T09:17:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_b3f8984a",
+      "range": {
+        "startLine": 111,
+        "startChar": 21,
+        "endLine": 112,
+        "endChar": 44
+      },
+      "revId": "8b55c1631b20b57e480cfe02949d51b042379700",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da141535_939594e6",
         "filename": "resources/tools/t-rex/t-rex-stateless.py",
         "patchSetId": 11
@@ -82,6 +154,30 @@
       "writtenOn": "2016-05-03T08:59:19Z",
       "side": 1,
       "message": "],\nsplit_by_field\u003d\"src\")",
+      "range": {
+        "startLine": 123,
+        "startChar": 21,
+        "endLine": 124,
+        "endChar": 43
+      },
+      "revId": "8b55c1631b20b57e480cfe02949d51b042379700",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_b37d38b4",
+        "filename": "resources/tools/t-rex/t-rex-stateless.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-05-03T09:17:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_939594e6",
       "range": {
         "startLine": 123,
         "startChar": 21,
