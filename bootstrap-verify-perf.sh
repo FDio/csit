@@ -25,6 +25,8 @@ INSTALLATION_DIR="/tmp/install_dir"
 
 PYBOT_ARGS="--noncritical MULTI_THREAD"
 
+ARCHIVE_ARTIFACTS=(log.html output.xml report.html output_perf_data.json)
+
 # If we run this script from CSIT jobs we want to use stable vpp version
 if [[ ${JOB_NAME} == csit-* ]] ;
 then
@@ -147,4 +149,19 @@ case "$TEST_TAG" in
               -s performance \
               tests/
 esac
+
+# Pybot output post-processing
+python ${CUR_DIR}/resources/tools/robot_output_parser.py \
+       -i ${CUR_DIR}/output.xml \
+       -o ${CUR_DIR}/output_perf_data.json \
+       -v ${VPP_STABLE_VER}
+if [ ! $? -eq 0 ]; then
+    echo "Parsing ${CUR_DIR}/output.xml failed"
+fi
+
+# Archive artifacts
+mkdir archive
+for i in ${ARCHIVE_ARTIFACTS[@]}; do
+    cp $( readlink -f ${i} | tr '\n' ' ' ) archive/
+done
 
