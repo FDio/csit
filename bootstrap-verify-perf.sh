@@ -127,6 +127,12 @@ case "$TEST_TAG" in
               -s performance.long_bridge_domain \
               tests/
         ;;
+    PERFTEST_LONG_BRIDGE_DOT1Q )
+        pybot -L TRACE \
+              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+              -s performance.long_bridge_domain_dot1q \
+              tests/
+        ;;
     PERFTEST_LONG_IPV4 )
         pybot -L TRACE \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
