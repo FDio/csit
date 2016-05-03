@@ -16,7 +16,7 @@ set -x
 
 # Space separated list of available testbeds, described by topology files
 TOPOLOGIES="topologies/available/lf_testbed2-710-520.yaml"
-VPP_STABLE_VER="1.0.0-304~gd530445_amd64"
+VPP_STABLE_VER="1.0.0-369~g106f0ed_amd64"
 VPP_REPO_URL="https://nexus.fd.io/service/local/repositories/fd.io.dev/content/io/fd/vpp"
 
 # Reservation dir
@@ -24,6 +24,8 @@ RESERVATION_DIR="/tmp/reservation_dir"
 INSTALLATION_DIR="/tmp/install_dir"
 
 PYBOT_ARGS=""
+
+ARCHIVE_ARTIFACTS=(log.html, output.xml, report.html, output_perf_data.json)
 
 # If we run this script from CSIT jobs we want to use stable vpp version
 if [[ ${JOB_NAME} == csit-* ]] ;
@@ -89,13 +91,35 @@ while :; do
 done
 
 function cancel_all {
+    # Cancel the reservation and installation and delete all vpp packages
     python ${CUR_DIR}/resources/tools/topo_installation.py -c -d ${INSTALLATION_DIR} -t $1
     python ${CUR_DIR}/resources/tools/topo_reservation.py -c -t $1
 }
 
-# On script exit we cancel the reservation and installation and delete all vpp
-# packages
-trap "cancel_all ${WORKING_TOPOLOGY}" EXIT
+function process_output {
+    # Output post-processing
+    python ${CUR_DIR}/resources/tools/robot_output_parser.py \
+           -i ${CUR_DIR}/output.xml \
+           -o ${CUR_DIR}/output_perf_data.json \
+           -v ${VPP_STABLE_VER}
+    if [ ! $? -eq 0 ]; then
+        echo "Parsing ${CUR_DIR}/output.xml failed"
+    fi
+
+    mkdir -p archive
+    for i in ${ARCHIVE_ARTIFACTS[@]}; do
+        cp $( readlink -f ${i} | tr '\n' ' ' ) archive/
+    done
+}
+
+function trap_handler {
+    "cancel_all ${WORKING_TOPOLOGY}"
+    process_output
+}
+
+# On script exit we cancel the reservation and installation then process output
+# and copy artifact to archive
+trap trap_handler EXIT
 
 python ${CUR_DIR}/resources/tools/topo_installation.py -t ${WORKING_TOPOLOGY} \
                                                        -d ${INSTALLATION_DIR} \
