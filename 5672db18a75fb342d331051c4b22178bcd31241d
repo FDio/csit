@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da141535_539ffc03",
+        "filename": "resources/libraries/python/VatJsonUtil.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-05-03T09:05:43Z",
+      "side": 1,
+      "message": "It should be lower case.",
+      "range": {
+        "startLine": 113,
+        "startChar": 17,
+        "endLine": 113,
+        "endChar": 18
+      },
+      "revId": "5672db18a75fb342d331051c4b22178bcd31241d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_d392ecf5",
+        "filename": "resources/libraries/python/VatJsonUtil.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-05-03T09:05:43Z",
+      "side": 1,
+      "message": "What is not found?",
+      "range": {
+        "startLine": 115,
+        "startChar": 28,
+        "endLine": 115,
+        "endChar": 41
+      },
+      "revId": "5672db18a75fb342d331051c4b22178bcd31241d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_b38f78cc",
+        "filename": "resources/libraries/python/VatJsonUtil.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-05-03T09:05:43Z",
+      "side": 1,
+      "message": "lower case",
+      "range": {
+        "startLine": 137,
+        "startChar": 28,
+        "endLine": 137,
+        "endChar": 29
+      },
+      "revId": "5672db18a75fb342d331051c4b22178bcd31241d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_93bc746e",
+        "filename": "resources/libraries/python/VatJsonUtil.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-05-03T09:05:43Z",
+      "side": 1,
+      "message": "What is not found?",
+      "range": {
+        "startLine": 142,
+        "startChar": 28,
+        "endLine": 142,
+        "endChar": 41
+      },
+      "revId": "5672db18a75fb342d331051c4b22178bcd31241d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
