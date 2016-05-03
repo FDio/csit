@@ -25,6 +25,8 @@ INSTALLATION_DIR="/tmp/install_dir"
 
 PYBOT_ARGS="--noncritical MULTI_THREAD"
 
+ARCHIVE_ARTIFACTS=(log.html, output.xml, report.html, output_perf_data.json)
+
 # If we run this script from CSIT jobs we want to use stable vpp version
 if [[ ${JOB_NAME} == csit-* ]] ;
 then
@@ -82,19 +84,19 @@ while :; do
         break
     fi
 
-    # Wait 10 - 30 sec. before next try
+    # Wait 10 vbeinfo- 30 sec. before next try
     SLEEP_TIME=$[ ( $RANDOM % 20 ) + 10 ]s
     echo "Sleeping ${SLEEP_TIME}"
     sleep ${SLEEP_TIME}
 done
 
 function cancel_all {
+    # Cancel the reservation and installation and delete all vpp packages
     python ${CUR_DIR}/resources/tools/topo_installation.py -c -d ${INSTALLATION_DIR} -t $1
     python ${CUR_DIR}/resources/tools/topo_reservation.py -c -t $1
 }
 
-# On script exit we cancel the reservation and installation and delete all vpp
-# packages
+# On script exit we cancel the reservation and installation
 trap "cancel_all ${WORKING_TOPOLOGY}" EXIT
 
 python ${CUR_DIR}/resources/tools/topo_installation.py -t ${WORKING_TOPOLOGY} \
@@ -147,4 +149,19 @@ case "$TEST_TAG" in
               -s performance \
               tests/
 esac
+
+# Pybot output post-processing
+python ${CUR_DIR}/resources/tools/robot_output_parser.py \
+       -i ${CUR_DIR}/output.xml \
+       -o ${CUR_DIR}/output_perf_data.json \
+       -v ${VPP_STABLE_VER}
+if [ ! $? -eq 0 ]; then
+    echo "Parsing ${CUR_DIR}/output.xml failed"
+fi
+
+# Archive artifacts
+mkdir archive
+for i in ${ARCHIVE_ARTIFACTS[@]}; do
+    cp $( readlink -f ${i} | tr '\n' ' ' ) archive/
+done
 
