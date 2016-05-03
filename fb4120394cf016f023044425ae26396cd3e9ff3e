@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "da141535_9360f436",
+        "filename": "resources/libraries/robot/bridge_domain.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-03T08:25:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_e8e3bb03",
+      "range": {
+        "startLine": 137,
+        "startChar": 32,
+        "endLine": 137,
+        "endChar": 59
+      },
+      "revId": "fb4120394cf016f023044425ae26396cd3e9ff3e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da141535_88baffdf",
         "filename": "resources/libraries/robot/bridge_domain.robot",
         "patchSetId": 3
@@ -36,6 +60,30 @@
       "writtenOn": "2016-05-02T18:30:43Z",
       "side": 1,
       "message": "one link",
+      "range": {
+        "startLine": 167,
+        "startChar": 36,
+        "endLine": 167,
+        "endChar": 45
+      },
+      "revId": "fb4120394cf016f023044425ae26396cd3e9ff3e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_73656044",
+        "filename": "resources/libraries/robot/bridge_domain.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-03T08:25:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_88baffdf",
       "range": {
         "startLine": 167,
         "startChar": 36,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "da141535_535a5c84",
+        "filename": "resources/libraries/robot/bridge_domain.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-03T08:25:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_88a1dfab",
+      "range": {
+        "startLine": 219,
+        "startChar": 21,
+        "endLine": 219,
+        "endChar": 38
+      },
+      "revId": "fb4120394cf016f023044425ae26396cd3e9ff3e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da141535_28b093f3",
         "filename": "resources/libraries/robot/bridge_domain.robot",
         "patchSetId": 3
@@ -82,6 +154,30 @@
       "writtenOn": "2016-05-02T18:30:43Z",
       "side": 1,
       "message": "Suggest there is no default set to SHG, and instead separate tests are done: i) with SHG set to the same value for different VXLAN tunnels configured with the same BD_ID (no replication of unknown unicast, broadcast and multicast L2 frames), ii) with SHG set to different values for different VXLAN tunnels configured with the same BD_DID (replication of uucast, bcast, mcast).",
+      "range": {
+        "startLine": 228,
+        "startChar": 55,
+        "endLine": 228,
+        "endChar": 63
+      },
+      "revId": "fb4120394cf016f023044425ae26396cd3e9ff3e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_73cc4036",
+        "filename": "resources/libraries/robot/bridge_domain.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-03T08:25:40Z",
+      "side": 1,
+      "message": "0 is the default value of SHG ID defined inside VPP:\nlab@DUT1:~$ sudo vppctl set interface l2 bridge GigabitEthernet0/9/0 1\nlab@DUT1:~$ sudo vppctl set interface l2 bridge GigabitEthernet0/8/0 1           \nlab@DUT1:~$ sudo vppctl set interface l2 bridge GigabitEthernet0/10/0 1\nlab@DUT1:~$ sudo vppctl set interface l2 bridge GigabitEthernet0/11/0 1 1\nlab@DUT1:~$ sudo vppctl show bridge-domain 1 detail\n  ID   Index   Learning   U-Forwrd   UU-Flood   Flooding   ARP-Term     BVI-Intf   \n  1      1        on         on         on         on         off          N/A     \n\n           Interface           Index  SHG  BVI        VLAN-Tag-Rewrite       \n     GigabitEthernet0/9/0        6     0    -               none             \n     GigabitEthernet0/8/0        5     0    -               none             \n     GigabitEthernet0/10/0       7     0    -               none             \n     GigabitEthernet0/11/0       8     1    -               none \n\n- interfaces 0/8/0, 0/9/0 and 0/10/0 have been created without defined shg id in the command and the value is set to 0 - it means that this interface is not a part of any SHG.\nWe need to use this value as default in our KW to be able to correctly handle possbility to ommit or allow setting of SHG ID when it is needed/required for the test.\n\nThis first test case is the basic one to test SHG functionality. Next test cases with VXLAN are comming in the near future - thanks for the pointing to it.",
+      "parentUuid": "da141535_28b093f3",
       "range": {
         "startLine": 228,
         "startChar": 55,
