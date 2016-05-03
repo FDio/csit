@@ -16,6 +16,8 @@
 import re
 
 from resources.libraries.python.ssh import SSH
+from resources.libraries.python.VatExecutor import VatTerminal
+from resources.libraries.python.topology import Topology
 
 
 class IPv6Util(object):
@@ -106,3 +108,23 @@ class IPv6Util(object):
 
         raise Exception('Node {n} port {p} IPv6 address not found.'.format(
             n=node['host'], p=interface))
+
+    @staticmethod
+    def add_ip_neighbor(node, interface, ip_address, mac_address):
+        """Add IP neighbor.
+
+        :param node: Node to add ip neighbor.
+        :param interface: Interface name or sw_if_index.
+        :param ip_address: IP address.
+        :param mac_address: MAC address.
+        """
+        if isinstance(interface, basestring):
+            sw_if_index = Topology.get_interface_sw_index(node, interface)
+        else:
+            sw_if_index = interface
+
+        with VatTerminal(node) as vat:
+            vat.vat_terminal_exec_cmd_from_template("add_ip_neighbor.vat",
+                                                    sw_if_index=sw_if_index,
+                                                    ip_address=ip_address,
+                                                    mac_address=mac_address)
