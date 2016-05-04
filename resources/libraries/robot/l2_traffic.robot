@@ -20,10 +20,9 @@
 | Send and receive ICMPv4
 | | [Documentation] | Send ICMPv4 echo request from source interface to destination interface.
 | | [Arguments] | ${tg_node} | ${src_int} | ${dst_int}
+| | ...         | ${src_ip}=192.168.100.1 | ${dst_ip}=192.168.100.2
 | | ${src_mac}= | Get Interface Mac | ${tg_node} | ${src_int}
 | | ${dst_mac}= | Get Interface Mac | ${tg_node} | ${dst_int}
-| | ${src_ip}= | Set Variable | 192.168.100.1
-| | ${dst_ip}= | Set Variable | 192.168.100.2
 | | ${args}= | Traffic Script Gen Arg | ${dst_int} | ${src_int} | ${src_mac}
 | |          | ...                    | ${dst_mac} | ${src_ip} | ${dst_ip}
 | | Run Traffic Script On Node | send_ip_icmp.py | ${tg_node} | ${args}
@@ -32,6 +31,9 @@
 | | [Documentation] | Send ICMPv4 echo request from both directions,
 | | ...             | from interface1 to interface2 and
 | | ...             | from interface2 to interface1.
-| | [Arguments] | ${tg_node} | ${int1} | ${int2}
-| | Send and receive ICMPv4 | ${tg_node} | ${int1} | ${int2}
-| | Send and receive ICMPv4 | ${tg_node} | ${int2} | ${int1}
+| | [Arguments] | ${tg_node} | ${int1} | ${int2} | ${src_ip}=192.168.100.1
+| | ...         | ${dst_ip}=192.168.100.2
+| | Send and receive ICMPv4 | ${tg_node} | ${int1} | ${int2} | ${src_ip}
+| | ...                     | ${dst_ip}
+| | Send and receive ICMPv4 | ${tg_node} | ${int2} | ${int1} | ${src_ip}
+| | ...                     | ${dst_ip}
