@@ -52,6 +52,7 @@ cpu {{
 
 dpdk {{
   socket-mem {socketmemconfig}
+{txqueuesconfig}
 {pciconfig}
 {rssconfig}
 }}
@@ -182,6 +183,27 @@ class VppConfigGenerator(object):
         logger.debug('Setting hostname {} RSS config to {}'.\
             format(hostname, rss_config))
 
+    def add_max_tx_queues_config(self, node, max_tx_queues_config):
+        """Add Max TX Queues configuration for node.
+
+        :param node: DUT node.
+        :param max_tx_queues_config: Max TX Queues configuration, as a string.
+        :type node: dict
+        :type max_tx_queues_config: str
+        :return: nothing
+        """
+        if node['type'] != NodeType.DUT:
+            raise ValueError('Node type is not a DUT')
+        hostname = Topology.get_node_hostname(node)
+        if not hostname in self._nodeconfig:
+            self._nodeconfig[hostname] = {}
+        if not 'max_tx_queues_config' in self._nodeconfig[hostname]:
+            self._nodeconfig[hostname]['max_tx_queues_config'] = []
+        self._nodeconfig[hostname]['max_tx_queues_config'].append(
+            max_tx_queues_config)
+        logger.debug('Setting hostname {} max_tx_queues config to {}'.\
+            format(hostname, max_tx_queues_config))
+
     def remove_all_pci_devices(self, node):
         """Remove PCI device configuration from node.
 
@@ -257,6 +279,21 @@ class VppConfigGenerator(object):
         logger.debug('Clearing RSS config for hostname {}.'.\
             format(hostname))
 
+    def remove_max_tx_queues_config(self, node):
+        """Remove Max TX Queues configuration from node.
+
+        :param node: DUT node.
+        :type node: dict
+        :return: nothing
+        """
+        if node['type'] != NodeType.DUT:
+            raise ValueError('Node type is not a DUT')
+        hostname = Topology.get_node_hostname(node)
+        if hostname in self._nodeconfig:
+            self._nodeconfig[hostname]['max_tx_queues_config'] = []
+        logger.debug('Clearing Max TX Queues config for hostname {}.'.\
+            format(hostname))
+
     def apply_config(self, node, waittime=5, retries=12):
         """Generate and apply VPP configuration for node.
 
@@ -280,6 +317,7 @@ class VppConfigGenerator(object):
         socketmemconfig = DEFAULT_SOCKETMEM_CONFIG
         heapsizeconfig = ""
         rssconfig = ""
+        txqueuesconfig = ""
 
         if hostname in self._nodeconfig:
             cfg = self._nodeconfig[hostname]
@@ -299,11 +337,16 @@ class VppConfigGenerator(object):
             if 'rss_config' in cfg:
                 rssconfig = "  " + "\n  ".join(cfg['rss_config'])
 
+            if 'max_tx_queues_config' in cfg:
+                txqueuesconfig = "  " + "\n  ".join(
+                    cfg['max_tx_queues_config'])
+
         vppconfig = VPP_CONFIG_TEMPLATE.format(cpuconfig=cpuconfig,
                                                pciconfig=pciconfig,
                                                socketmemconfig=socketmemconfig,
                                                heapsizeconfig=heapsizeconfig,
-                                               rssconfig=rssconfig)
+                                               rssconfig=rssconfig,
+                                               txqueuesconfig=txqueuesconfig)
 
         logger.debug('Writing VPP config to host {}: "{}"'.format(hostname,
                                                                   vppconfig))
