@@ -19,6 +19,13 @@
 | Library | resources.libraries.python.QemuUtils
 | Resource | resources/libraries/robot/interfaces.robot
 | Resource | resources/libraries/robot/l2_traffic.robot
+| Resource | resources/libraries/robot/bridge_domain.robot
+
+*** Variables ***
+| ${bd_id1}= | 1
+| ${bd_id2}= | 2
+| ${sock1}= | /tmp/sock1
+| ${sock2}= | /tmp/sock2
 
 *** Keywords ***
 | Path for 2-node BD testing is set
