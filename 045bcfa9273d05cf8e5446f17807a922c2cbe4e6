@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da141535_a2c71f12",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 13
+      },
+      "writtenOn": "2016-05-04T11:25:34Z",
+      "side": 1,
+      "message": "add JIRA reference.",
+      "revId": "045bcfa9273d05cf8e5446f17807a922c2cbe4e6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
