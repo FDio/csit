@@ -169,10 +169,10 @@
 | | | ...                            | ${tg_node} | ${tg_to_dut2_if1}
 | | | ...                            | ${tg_to_dut2_if2}
 
-| VPP forwards packets through VM via two L2 bridge domains
+| VPP forwards ICMPv4 packets through VM via two L2 bridge domains
 | | [Documentation] | Setup and run VM connected to VPP via Vhost-User
-| | ...             | interfaces and check packet forwarding through VM via two
-| | ...             | L2 bridge domains with learning enabled.
+| | ...             | interfaces and check ICMPv4 packet forwarding through VM
+| | ...             | via two L2 bridge domains with learning enabled.
 | | [Tags] | 3_NODE_DOUBLE_LINK_TOPO | VPP_VM_ENV
 | | Given Path for 2-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
@@ -197,11 +197,39 @@
 | | [Teardown] | Run Keywords | Show Packet Trace on All DUTs | ${nodes}
 | | ...        | AND          | Stop and Clear QEMU | ${dut_node} | ${vm_node}
 
-| VPP forwards packets through VM via two L2 bridge domains with static L2FIB entries
+| VPP forwards ICMPv6 packets through VM via two L2 bridge domains
 | | [Documentation] | Setup and run VM connected to VPP via Vhost-User
-| | ...             | interfaces and check packet forwarding through VM via two
-| | ...             | L2 bridge domains with learning disabled (static L2BFIB
-| | ...             | entries).
+| | ...             | interfaces and check ICMPv6 packet forwarding through VM
+| | ...             | via two L2 bridge domains with learning enabled.
+| | [Tags] | 3_NODE_DOUBLE_LINK_TOPO | VPP_VM_ENV
+| | Given Path for 2-node testing is set
+| | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
+| | And Interfaces in 2-node path are up
+| | When VPP Vhost interfaces for L2BD forwarding are setup | ${dut_node}
+| | ...                                                     | ${sock1}
+| | ...                                                     | ${sock2}
+| | And Bridge domain on DUT node is created | ${dut_node} | ${bd_id1}
+| | And Interface is added to bridge domain | ${dut_node} | ${dut_to_tg_if1}
+| | ...                                     | ${bd_id1}
+| | And Interface is added to bridge domain | ${dut_node} | ${vhost_if1}
+| | ...                                     | ${bd_id1}
+| | And Bridge domain on DUT node is created | ${dut_node} | ${bd_id2}
+| | And Interface is added to bridge domain | ${dut_node} | ${dut_to_tg_if2}
+| | ...                                     | ${bd_id2}
+| | And Interface is added to bridge domain | ${dut_node} | ${vhost_if2}
+| | ...                                     | ${bd_id2}
+| | And VM for Vhost L2BD forwarding is setup | ${dut_node} | ${sock1}
+| | ...                                       | ${sock2}
+| | Then Send and receive ICMPv6 bidirectionally | ${tg_node} | ${tg_to_dut_if1}
+| | ...                                          | ${tg_to_dut_if2}
+| | [Teardown] | Run Keywords | Show Packet Trace on All DUTs | ${nodes}
+| | ...        | AND          | Stop and Clear QEMU | ${dut_node} | ${vm_node}
+
+| VPP forwards ICMPv4 packets through VM via two L2 bridge domains with static L2FIB entries
+| | [Documentation] | Setup and run VM connected to VPP via Vhost-User
+| | ...             | interfaces and check ICMPv4 packet forwarding through VM
+| | ...             | via two L2 bridge domains with learning disabled
+| | ...             | (static L2BFIB entries).
 | | [Tags] | 3_NODE_DOUBLE_LINK_TOPO | VPP_VM_ENV
 | | Given Path for 2-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
@@ -244,6 +272,57 @@
 | | And VM for Vhost L2BD forwarding is setup | ${dut_node} | ${sock1}
 | | ...                                       | ${sock2}
 | | Then Send and receive ICMPv4 bidirectionally | ${tg_node} | ${tg_to_dut_if1}
+| | ...                                          | ${tg_to_dut_if2}
+| | [Teardown] | Run Keywords | Show Packet Trace on All DUTs | ${nodes}
+| | ...        | AND          | Stop and Clear QEMU | ${dut_node} | ${vm_node}
+
+| VPP forwards ICMPv6 packets through VM via two L2 bridge domains with static L2FIB entries
+| | [Documentation] | Setup and run VM connected to VPP via Vhost-User
+| | ...             | interfaces and check ICMPv6 packet forwarding through VM
+| | ...             | via two L2 bridge domains with learning disabled
+| | ...             | (static L2BFIB entries).
+| | [Tags] | 3_NODE_DOUBLE_LINK_TOPO | VPP_VM_ENV
+| | Given Path for 2-node testing is set
+| | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
+| | And Interfaces in 2-node path are up
+| | When VPP Vhost interfaces for L2BD forwarding are setup | ${dut_node}
+| | ...                                                     | ${sock1}
+| | ...                                                     | ${sock2}
+| | And Bridge domain on DUT node is created | ${dut_node} | ${bd_id1}
+| | ...                                      | learn=${FALSE}
+| | And Interface is added to bridge domain | ${dut_node} | ${dut_to_tg_if1}
+| | ...                                     | ${bd_id1}
+| | And Interface is added to bridge domain | ${dut_node} | ${vhost_if1}
+| | ...                                     | ${bd_id1}
+| | And Destination port is added to L2FIB on DUT node | ${tg_node}
+| | ...                                                | ${tg_to_dut_if1}
+| | ...                                                | ${dut_node}
+| | ...                                                | ${dut_to_tg_if1}
+| | ...                                                | ${bd_id1}
+| | And Destination port is added to L2FIB on DUT node | ${tg_node}
+| | ...                                                | ${tg_to_dut_if2}
+| | ...                                                | ${dut_node}
+| | ...                                                | ${vhost_if1}
+| | ...                                                | ${bd_id1}
+| | And Bridge domain on DUT node is created | ${dut_node} | ${bd_id2}
+| | ...                                      | learn=${FALSE}
+| | And Interface is added to bridge domain | ${dut_node} | ${dut_to_tg_if2}
+| | ...                                     | ${bd_id2}
+| | And Interface is added to bridge domain | ${dut_node} | ${vhost_if2}
+| | ...                                     | ${bd_id2}
+| | And Destination port is added to L2FIB on DUT node | ${tg_node}
+| | ...                                                | ${tg_to_dut_if2}
+| | ...                                                | ${dut_node}
+| | ...                                                | ${dut_to_tg_if2}
+| | ...                                                | ${bd_id2}
+| | And Destination port is added to L2FIB on DUT node | ${tg_node}
+| | ...                                                | ${tg_to_dut_if1}
+| | ...                                                | ${dut_node}
+| | ...                                                | ${vhost_if2}
+| | ...                                                | ${bd_id2}
+| | And VM for Vhost L2BD forwarding is setup | ${dut_node} | ${sock1}
+| | ...                                       | ${sock2}
+| | Then Send and receive ICMPv6 bidirectionally | ${tg_node} | ${tg_to_dut_if1}
 | | ...                                          | ${tg_to_dut_if2}
 | | [Teardown] | Run Keywords | Show Packet Trace on All DUTs | ${nodes}
 | | ...        | AND          | Stop and Clear QEMU | ${dut_node} | ${vm_node}
