@@ -1,0 +1,625 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da141535_c2733314",
+        "filename": "resources/libraries/python/LispSetup.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-04T13:16:07Z",
+      "side": 1,
+      "message": "What about to use one method vpp_set_lisp_gpe_iface_state with another input parameter status \u003d up/down ?",
+      "range": {
+        "startLine": 26,
+        "startChar": 3,
+        "endLine": 38,
+        "endChar": 38
+      },
+      "revId": "aabfc43e907adc1847788624382642cdf94d401b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_026a4b1a",
+        "filename": "resources/libraries/python/LispSetup.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-04T13:16:07Z",
+      "side": 1,
+      "message": "Description should be consistend with description in vpp_lisp_gpe_iface_up.",
+      "range": {
+        "startLine": 41,
+        "startChar": 21,
+        "endLine": 41,
+        "endChar": 29
+      },
+      "revId": "aabfc43e907adc1847788624382642cdf94d401b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_a2603f36",
+        "filename": "resources/libraries/python/LispSetup.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-04T13:16:07Z",
+      "side": 1,
+      "message": "Description should be consistend with description in vpp_del_mal_resolve",
+      "range": {
+        "startLine": 59,
+        "startChar": 21,
+        "endLine": 59,
+        "endChar": 46
+      },
+      "revId": "aabfc43e907adc1847788624382642cdf94d401b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_82653b47",
+        "filename": "resources/libraries/python/LispSetup.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-04T13:16:07Z",
+      "side": 1,
+      "message": "LispLocatorSet ? (missing r)",
+      "range": {
+        "startLine": 180,
+        "startChar": 6,
+        "endLine": 180,
+        "endChar": 19
+      },
+      "revId": "aabfc43e907adc1847788624382642cdf94d401b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_625a2785",
+        "filename": "resources/libraries/python/LispSetup.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-04T13:16:07Z",
+      "side": 1,
+      "message": "are two ways",
+      "range": {
+        "startLine": 224,
+        "startChar": 14,
+        "endLine": 224,
+        "endChar": 22
+      },
+      "revId": "aabfc43e907adc1847788624382642cdf94d401b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_425f2373",
+        "filename": "resources/libraries/python/LispSetup.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-04T13:16:07Z",
+      "side": 1,
+      "message": "locators",
+      "range": {
+        "startLine": 225,
+        "startChar": 45,
+        "endLine": 225,
+        "endChar": 52
+      },
+      "revId": "aabfc43e907adc1847788624382642cdf94d401b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_c24a13ac",
+        "filename": "resources/libraries/python/LispSetup.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-04T13:16:07Z",
+      "side": 1,
+      "message": "Please, use imperative form for description.",
+      "range": {
+        "startLine": 226,
+        "startChar": 8,
+        "endLine": 226,
+        "endChar": 41
+      },
+      "revId": "aabfc43e907adc1847788624382642cdf94d401b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_02512b62",
+        "filename": "resources/libraries/python/LispSetup.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-04T13:16:07Z",
+      "side": 1,
+      "message": "once ?",
+      "range": {
+        "startLine": 228,
+        "startChar": 55,
+        "endLine": 228,
+        "endChar": 58
+      },
+      "revId": "aabfc43e907adc1847788624382642cdf94d401b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_22542f53",
+        "filename": "resources/libraries/python/LispSetup.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-04T13:16:07Z",
+      "side": 1,
+      "message": "locator",
+      "range": {
+        "startLine": 230,
+        "startChar": 50,
+        "endLine": 230,
+        "endChar": 56
+      },
+      "revId": "aabfc43e907adc1847788624382642cdf94d401b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_62e8e77c",
+        "filename": "resources/libraries/python/LispSetup.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-04T13:16:07Z",
+      "side": 1,
+      "message": "locator_set_type value:\".format(locator_set_type)",
+      "range": {
+        "startLine": 249,
+        "startChar": 43,
+        "endLine": 249,
+        "endChar": 48
+      },
+      "revId": "aabfc43e907adc1847788624382642cdf94d401b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_82f3fb72",
+        "filename": "resources/libraries/python/LispSetup.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-04T13:16:07Z",
+      "side": 1,
+      "message": "ValueError",
+      "range": {
+        "startLine": 249,
+        "startChar": 22,
+        "endLine": 249,
+        "endChar": 34
+      },
+      "revId": "aabfc43e907adc1847788624382642cdf94d401b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_42ede38a",
+        "filename": "resources/libraries/python/LispSetup.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-04T13:16:07Z",
+      "side": 1,
+      "message": "locator_set_type value:\".format(locator_set_type)",
+      "range": {
+        "startLine": 292,
+        "startChar": 43,
+        "endLine": 292,
+        "endChar": 48
+      },
+      "revId": "aabfc43e907adc1847788624382642cdf94d401b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_c2e1f39b",
+        "filename": "resources/libraries/python/LispSetup.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-04T13:16:07Z",
+      "side": 1,
+      "message": "ValueError",
+      "range": {
+        "startLine": 292,
+        "startChar": 22,
+        "endLine": 292,
+        "endChar": 34
+      },
+      "revId": "aabfc43e907adc1847788624382642cdf94d401b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_829adb12",
+        "filename": "resources/libraries/python/LispSetup.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 406,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-04T13:16:07Z",
+      "side": 1,
+      "message": "What about one method vpp_set_lisp_gpe_interface_state with another input parameter status \u003d up/down ?\nvpp_set_lisp_gpe_interface_state(node, status\u003dup)",
+      "range": {
+        "startLine": 406,
+        "startChar": 12,
+        "endLine": 406,
+        "endChar": 39
+      },
+      "revId": "aabfc43e907adc1847788624382642cdf94d401b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_02224bb9",
+        "filename": "resources/libraries/python/LispUtil.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-04T13:16:07Z",
+      "side": 1,
+      "message": "locator_set_type value:\".format(locator_set_type)",
+      "range": {
+        "startLine": 113,
+        "startChar": 43,
+        "endLine": 113,
+        "endChar": 48
+      },
+      "revId": "aabfc43e907adc1847788624382642cdf94d401b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_22254fc2",
+        "filename": "resources/libraries/python/LispUtil.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-04T13:16:07Z",
+      "side": 1,
+      "message": "ValueError",
+      "range": {
+        "startLine": 113,
+        "startChar": 22,
+        "endLine": 113,
+        "endChar": 34
+      },
+      "revId": "aabfc43e907adc1847788624382642cdf94d401b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_e22e37a5",
+        "filename": "resources/libraries/python/LispUtil.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-04T13:16:07Z",
+      "side": 1,
+      "message": "Please, use imperative form.\nValid for all occurences.",
+      "range": {
+        "startLine": 120,
+        "startChar": 27,
+        "endLine": 120,
+        "endChar": 37
+      },
+      "revId": "aabfc43e907adc1847788624382642cdf94d401b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_42172352",
+        "filename": "resources/libraries/python/LispUtil.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-04T13:16:07Z",
+      "side": 1,
+      "message": "Check (capital C at the beggining)",
+      "range": {
+        "startLine": 249,
+        "startChar": 11,
+        "endLine": 249,
+        "endChar": 16
+      },
+      "revId": "aabfc43e907adc1847788624382642cdf94d401b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_c202130b",
+        "filename": "resources/libraries/robot/lisp.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-04T13:16:07Z",
+      "side": 1,
+      "message": "Please, use variable name dut_node instead of DUT1.\nValid for all occurances.",
+      "range": {
+        "startLine": 27,
+        "startChar": 14,
+        "endLine": 27,
+        "endChar": 18
+      },
+      "revId": "aabfc43e907adc1847788624382642cdf94d401b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_220c2f42",
+        "filename": "resources/libraries/robot/lisp.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-04T13:16:07Z",
+      "side": 1,
+      "message": "will be gerated",
+      "range": {
+        "startLine": 29,
+        "startChar": 36,
+        "endLine": 29,
+        "endChar": 52
+      },
+      "revId": "aabfc43e907adc1847788624382642cdf94d401b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_02092b31",
+        "filename": "resources/libraries/robot/lisp.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-04T13:16:07Z",
+      "side": 1,
+      "message": "generated",
+      "range": {
+        "startLine": 35,
+        "startChar": 40,
+        "endLine": 35,
+        "endChar": 48
+      },
+      "revId": "aabfc43e907adc1847788624382642cdf94d401b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_6520f19b",
+        "filename": "resources/libraries/robot/lisp.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-04T13:16:07Z",
+      "side": 1,
+      "message": "\\|",
+      "range": {
+        "startLine": 38,
+        "startChar": 73,
+        "endLine": 38,
+        "endChar": 74
+      },
+      "revId": "aabfc43e907adc1847788624382642cdf94d401b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_852b0582",
+        "filename": "resources/libraries/robot/lisp.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-04T13:16:07Z",
+      "side": 1,
+      "message": "missing \\| at the end - it is needed at the end of every line in exaple part to correctly generate the documentation file.\nValid for all occurances.",
+      "range": {
+        "startLine": 39,
+        "startChar": 13,
+        "endLine": 39,
+        "endChar": 34
+      },
+      "revId": "aabfc43e907adc1847788624382642cdf94d401b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_450e0d36",
+        "filename": "resources/libraries/robot/lisp.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-04T13:16:07Z",
+      "side": 1,
+      "message": "data that will",
+      "range": {
+        "startLine": 56,
+        "startChar": 57,
+        "endLine": 57,
+        "endChar": 43
+      },
+      "revId": "aabfc43e907adc1847788624382642cdf94d401b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_c519fd7a",
+        "filename": "resources/libraries/robot/lisp.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-04T13:16:07Z",
+      "side": 1,
+      "message": "data that were",
+      "range": {
+        "startLine": 75,
+        "startChar": 57,
+        "endLine": 76,
+        "endChar": 42
+      },
+      "revId": "aabfc43e907adc1847788624382642cdf94d401b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_c530ddea",
+        "filename": "tests/suites/lisp/lisp_untagged.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-04T13:16:07Z",
+      "side": 1,
+      "message": "You can remove this tag as there is already used VPP build supporting the lisp (1.0.0-377) in CSIT job.",
+      "range": {
+        "startLine": 24,
+        "startChar": 26,
+        "endLine": 24,
+        "endChar": 42
+      },
+      "revId": "aabfc43e907adc1847788624382642cdf94d401b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_a54de974",
+        "filename": "tests/suites/lisp/lisp_untagged.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-04T13:16:07Z",
+      "side": 1,
+      "message": "Please, add [Documentation] to every test cases  with short description of the the test case as it will be used in generated documentation of test cases.",
+      "range": {
+        "startLine": 35,
+        "startChar": 2,
+        "endLine": 35,
+        "endChar": 36
+      },
+      "revId": "aabfc43e907adc1847788624382642cdf94d401b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
