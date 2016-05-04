@@ -17,6 +17,94 @@ from resources.libraries.python.topology import NodeType
 from resources.libraries.python.VatExecutor import VatExecutor
 
 
+class Lisp(object):
+    """Class for lisp API."""
+
+    def __init__(self):
+        pass
+
+    @staticmethod
+    def vpp_lisp_enable_disable(node, state):
+        """Enable/Disable lisp in the VPP node in topology.
+
+        :param node: Node of the test topology.
+        :param state: State of the lisp, enable or disable.
+        :type node: dict
+        :type state: str
+        """
+
+        VatExecutor.cmd_from_template(node,
+                                      'lisp/lisp.vat',
+                                      state=state)
+
+
+class LispRemoteMapping(object):
+    """Class for lisp remote mapping API."""
+
+    def __init__(self):
+        pass
+
+    @staticmethod
+    def vpp_add_lisp_remote_mapping(node, vni, deid, deid_prefix, seid,
+                                    seid_prefix, rloc):
+        """Add lisp remote mapping on the VPP node in topology.
+
+        :param node: VPP node.
+        :param vni: Vni.
+        :param deid: Destination eid address.
+        :param deid_predix: Destination eid address prefix_len.
+        :param seid: Source eid address.
+        :param seid_prefix: Source eid address prefix_len.
+        :param rloc: Receiver locator.
+        :type node: dict
+        :type vni: int
+        :type deid: str
+        :type deid_prefix: int
+        :type seid: str
+        :type seid_prefix: int
+        :type rloc: str
+        """
+
+        VatExecutor.cmd_from_template(node,
+                                      'lisp/add_lisp_remote_mapping.vat',
+                                      vni=vni,
+                                      deid=deid,
+                                      deid_prefix=deid_prefix,
+                                      seid=seid,
+                                      seid_prefix=seid_prefix,
+                                      rloc=rloc)
+
+    @staticmethod
+    def vpp_del_lisp_remote_mapping(node, vni, deid, deid_prefix, seid,
+                                    seid_prefix, rloc):
+        """Delete lisp remote mapping on the VPP node in topology.
+
+        :param node: VPP node.
+        :param vni: Vni.
+        :param deid: Destination eid address.
+        :param deid_predix: Destination eid address prefix_len.
+        :param seid: Source eid address.
+        :param seid_prefix: Source eid address prefix_len.
+        :param rloc: Receiver locator.
+        :type node: dict
+        :type vni: int
+        :type deid: str
+        :type deid_prefix: int
+        :type seid: str
+        :type seid_prefix: int
+        :type rloc: str
+        """
+
+        VatExecutor.cmd_from_template(node,
+                                      'lisp/add_lisp_remote_mapping.vat',
+                                      vni=vni,
+                                      deid=deid,
+                                      deid_predix=deid_prefix,
+                                      seid=seid,
+                                      seid_prefix=seid_prefix,
+                                      rloc=rloc)
+
+
 class LispGpeIface(object):
     """Class for Lisp gpe interface API."""
 
@@ -28,7 +116,7 @@ class LispGpeIface(object):
         """Set lisp gpe interface up or down on the VPP node in topology.
 
         :param node: VPP node.
-        :param state: State of the gpe iface, up or down
+        :param state: State of the gpe iface, up or down.
         :type node: dict
         :type state: str
         """
@@ -406,3 +494,16 @@ class LispSetup(object):
 
         lgi = LispGpeIface()
         lgi.vpp_lisp_gpe_iface(node, state)
+
+    @staticmethod
+    def vpp_lisp_state(node, state):
+        """Enable/Disable lisp on VPP node in topology.
+
+        :param node: VPP node.
+        :param state: State of the lisp, enable or disable
+        :type node: dict
+        :type state: str
+        """
+
+        lgi = Lisp()
+        lgi.vpp_lisp_enable_disable(node, state)
