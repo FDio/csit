@@ -16,6 +16,7 @@
 | Resource | resources/libraries/robot/l2_xconnect.robot
 | Resource | resources/libraries/robot/l2_traffic.robot
 | Resource | resources/libraries/robot/interfaces.robot
+| Resource | resources/libraries/robot/bridge_domain.robot
 | Library | resources.libraries.python.NodePath
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | HW_ENV | VM_ENV
 | Test Setup | Setup all DUTs before test
@@ -36,3 +37,38 @@
 | | L2 setup xconnect on DUT | ${dut2} | ${dut2_if1} | ${dut2_if2}
 | | All Vpp Interfaces Ready Wait | ${nodes}
 | | Send and receive ICMPv4 bidirectionally | ${tg} | ${tg_if1} | ${tg_if2}
+
+| VPP forwards ICMPv4 packets through VM via L2 x-connect
+| | [Documentation]
+| | [Tags] | 3_NODE_DOUBLE_LINK_TOPO | VPP_VM_ENV
+| | Given Path for 2-node BD testing is set | ${nodes['TG']} | ${nodes['DUT1']}
+| | When VPP Vhost interfaces for L2BD forwarding are setup | ${dut_node}
+| | ...                                                     | ${sock1}
+| | ...                                                     | ${sock2}
+| | And L2 Setup Xconnect on DUT | ${dut_node} | ${dut1_if1} | ${vhost_if1}
+| | And L2 Setup Xconnect on DUT | ${dut_node} | ${dut1_if2} | ${vhost_if2}
+| | And Interfaces on all VPP nodes in the path are up | ${dut_node}
+| | And VM for Vhost L2BD forwarding is setup | ${dut_node} | ${sock1}
+| | ...                                       | ${sock2}
+| | Then Send and receive ICMPv4 bidirectionally | ${tg_node} | ${tg_to_dut_if1}
+| | ...                                          | ${tg_to_dut_if2}
+| | [Teardown] | Run Keywords | Show Packet Trace on All DUTs | ${nodes}
+| | ...        | AND          | Stop and Clear QEMU | ${dut_node} | ${vm_node}
+
+| VPP forwards ICMPv6 packets through VM via L2 x-connect
+| | [Documentation]
+| | [Tags] | 3_NODE_DOUBLE_LINK_TOPO | VPP_VM_ENV
+| | Given Path for 2-node BD testing is set | ${nodes['TG']} | ${nodes['DUT1']}
+| | When VPP Vhost interfaces for L2BD forwarding are setup | ${dut_node}
+| | ...                                                     | ${sock1}
+| | ...                                                     | ${sock2}
+| | And L2 Setup Xconnect on DUT | ${dut_node} | ${dut1_if1} | ${vhost_if1}
+| | And L2 Setup Xconnect on DUT | ${dut_node} | ${dut1_if2} | ${vhost_if2}
+| | And Interfaces on all VPP nodes in the path are up | ${dut_node}
+| | And VM for Vhost L2BD forwarding is setup | ${dut_node} | ${sock1}
+| | ...                                       | ${sock2}
+| | Then Send and receive ICMPv6 bidirectionally | ${tg_node} | ${tg_to_dut_if1}
+| | ...                                          | ${tg_to_dut_if2}
+| | [Teardown] | Run Keywords | Show Packet Trace on All DUTs | ${nodes}
+| | ...        | AND          | Stop and Clear QEMU | ${dut_node} | ${vm_node}
+
