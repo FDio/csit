@@ -19,9 +19,13 @@
 | Library | resources.libraries.python.LispUtil
 | Resource | resources/libraries/robot/default.robot
 | Resource | resources/libraries/robot/interfaces.robot
-| Resource | resources/libraries/robot/lisp.robot
+| Resource | resources/libraries/robot/lisp/lisp_api.robot
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | 3_NODE_DOUBLE_LINK_TOPO
 | ... | VM_ENV | HW_ENV
+| Test Setup | Run Keywords | Setup all DUTs before test
+| ...        | AND          | Setup all TGs before traffic script
+| ...        | AND          | Update All Interface Data On All Nodes | ${nodes}
+| Test Teardown | Show Packet Trace on All DUTs | ${nodes}
 
 *** Variables ***
 | ${locator_set_num}= | 3

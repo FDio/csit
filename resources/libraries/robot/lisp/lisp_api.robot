@@ -12,11 +12,10 @@
 # limitations under the License.
 
 *** Settings ***
-| Resource | resources/libraries/robot/default.robot
-| Resource | resources/libraries/robot/counters.robot
-| Library | resources.libraries.python.NodePath
-| Library | resources.libraries.python.LispSetup.LispSetup
-| Library | resources.libraries.python.LispUtil
+| Resource | resources/libraries/robot/interfaces.robot
+| Library  | resources.libraries.python.NodePath
+| Library  | resources.libraries.python.LispSetup.LispSetup
+| Library  | resources.libraries.python.LispUtil
 
 *** Keywords ***
 
