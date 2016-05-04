@@ -82,8 +82,8 @@ while :; do
         break
     fi
 
-    # Wait 10 - 30 sec. before next try
-    SLEEP_TIME=$[ ( $RANDOM % 20 ) + 10 ]s
+    # Wait ~3minutes before next try
+    SLEEP_TIME=$[ ( $RANDOM % 20 ) + 180 ]s
     echo "Sleeping ${SLEEP_TIME}"
     sleep ${SLEEP_TIME}
 done
