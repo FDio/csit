@@ -17,13 +17,33 @@
 | Library | resources.libraries.python.TrafficScriptExecutor
 
 *** Keywords ***
-| Send and receive ICMPv4
-| | [Documentation] | Send ICMPv4 echo request from source interface to destination interface.
-| | [Arguments] | ${tg_node} | ${src_int} | ${dst_int}
+| Send and receive ICMPv4/ICMPv6 Packet
+| | [Documentation] | Send ICMPv4 echo request from source interface to
+| | ...             | destination interface.
+| | ...
+| | ... | *Arguments:*
+| | ...
+| | ... | - {tg_node} - TG node. Type: dictionary
+| | ... | - {src_int} - Source interface. Type: string
+| | ... | - {dst_int} - Destination interface. Type: string
+| | ... | - {src_ip} - Source IP address (Optional). Type: string
+| | ... | - {dst_ip} - Destination IP address (Optional). Type: string
+| | ...
+| | ... | *Return:*
+| | ...
+| | ... | - No value returned
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | _NOTE:_ Default IP is IPv4
+| | ...
+| | ... | \| Send and receive ICMPv4/ICMPv6 Packet \| ${nodes['TG']} \
+| | ... | \| ${tg_to_dut_if1} \| ${tg_to_dut_if2} \|
+| | ...
+| | [Arguments] | ${tg_node} | ${src_int} | ${dst_int} |
+| | ... | ${src_ip}=192.168.100.1 | ${dst_ip}=192.168.100.2
 | | ${src_mac}= | Get Interface Mac | ${tg_node} | ${src_int}
 | | ${dst_mac}= | Get Interface Mac | ${tg_node} | ${dst_int}
-| | ${src_ip}= | Set Variable | 192.168.100.1
-| | ${dst_ip}= | Set Variable | 192.168.100.2
 | | ${args}= | Traffic Script Gen Arg | ${dst_int} | ${src_int} | ${src_mac}
 | |          | ...                    | ${dst_mac} | ${src_ip} | ${dst_ip}
 | | Run Traffic Script On Node | send_ip_icmp.py | ${tg_node} | ${args}
@@ -32,6 +52,57 @@
 | | [Documentation] | Send ICMPv4 echo request from both directions,
 | | ...             | from interface1 to interface2 and
 | | ...             | from interface2 to interface1.
-| | [Arguments] | ${tg_node} | ${int1} | ${int2}
-| | Send and receive ICMPv4 | ${tg_node} | ${int1} | ${int2}
-| | Send and receive ICMPv4 | ${tg_node} | ${int2} | ${int1}
+| | ...
+| | ... | *Arguments:*
+| | ...
+| | ... | - {tg_node} - TG node. Type: dictionary
+| | ... | - {src_int} - Source interface. Type: string
+| | ... | - {dst_int} - Destination interface. Type: string
+| | ... | - {src_ip} - Source IP address (Optional). Type: string
+| | ... | - {dst_ip} - Destination IP address (Optional). Type: string
+| | ...
+| | ... | *Return:*
+| | ...
+| | ... | - No value returned
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Send and receive ICMPv4 bidirectionally \| ${nodes['TG']} \
+| | ... | \| ${tg_to_dut_if1} \| ${tg_to_dut_if2} \|
+| | ...
+| | [Arguments] | ${tg_node} | ${int1} | ${int2} | ${src_ip}=192.168.100.1 |
+| | ... | ${dst_ip}=192.168.100.2
+| | Send and receive ICMPv4/ICMPv6 Packet | ${tg_node} | ${int1} | ${int2} |
+| | ... | ${src_ip} | ${dst_ip}
+| | Send and receive ICMPv4/ICMPv6 Packet | ${tg_node} | ${int2} | ${int1} |
+| | ... | ${dst_ip} | ${src_ip}
+
+| Send and receive ICMPv6 bidirectionally
+| | [Documentation] | Send ICMPv6 echo request from both directions,
+| | ...             | from interface1 to interface2 and
+| | ...             | from interface2 to interface1.
+| | ...
+| | ... | *Arguments:*
+| | ...
+| | ... | - {tg_node} - TG node. Type: dictionary
+| | ... | - {src_int} - Source interface. Type: string
+| | ... | - {dst_int} - Destination interface. Type: string
+| | ... | - {src_ip} - Source IP address (Optional). Type: string
+| | ... | - {dst_ip} - Destination IP address (Optional). Type: string
+| | ...
+| | ... | *Return:*
+| | ...
+| | ... | - No value returned
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Send and receive ICMPv6 bidirectionally \| ${nodes['TG']} \
+| | ... | \| ${tg_to_dut_if1} \| ${tg_to_dut_if2} \|
+| | ...
+| | [Arguments] | ${tg_node} | ${int1} | ${int2} | ${src_ip}=3ffe:63::1 |
+| | ... | ${dst_ip}=3ffe:63::2
+| | Send and receive ICMPv4/ICMPv6 Packet | ${tg_node} | ${int1} | ${int2} |
+| | ... | ${src_ip} | ${dst_ip}
+| | Send and receive ICMPv4/ICMPv6 Packet | ${tg_node} | ${int2} | ${int1} |
+| | ... | ${dst_ip} | ${src_ip}
+l

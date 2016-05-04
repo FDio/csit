@@ -46,4 +46,4 @@
 | | And Interfaces and VLAN sub-interfaces inter-connected using L2-xconnect
 | | ... | ${dut1} | ${dut1_if1} | ${subif_index_1}
 | | ... | ${dut2} | ${dut2_if2} | ${subif_index_2}
-| | Then Send and receive ICMPv4 | ${tg} | ${tg_if1} | ${tg_if2}
+| | Then Send and receive ICMPv4/ICMPv6 Packet | ${tg} | ${tg_if1} | ${tg_if2}
