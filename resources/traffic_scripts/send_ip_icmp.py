@@ -16,11 +16,29 @@
 from one interface to the other"""
 
 import sys
+import ipaddress
+
 from resources.libraries.python.PacketVerifier import RxQueue, TxQueue
 from resources.libraries.python.TrafficScriptArg import TrafficScriptArg
 from scapy.layers.inet import ICMP, IP
 from scapy.all import Ether
+from scapy.layers.inet6 import ICMPv6EchoRequest
+from scapy.layers.inet6 import IPv6
 
+def valid_ipv4(ip):
+    try:
+        ipaddress.IPv4Address(unicode(ip))
+        return True
+    except (AttributeError, ipaddress.AddressValueError):
+        return False
+
+
+def valid_ipv6(ip):
+    try:
+        ipaddress.IPv6Address(unicode(ip))
+        return True
+    except (AttributeError, ipaddress.AddressValueError):
+        return False
 
 def main():
     """ Send IP icmp packet from one traffic generator interface to the other"""
@@ -39,9 +57,20 @@ def main():
     sent_packets = []
 
     # Create empty ip ICMP packet and add padding before sending
-    pkt_raw = Ether(src=src_mac, dst=dst_mac) / \
-              IP(src=src_ip, dst=dst_ip) / \
-              ICMP()
+    if valid_ipv4(src_ip):
+        pkt_raw = (Ether(src=src_mac, dst=dst_mac) /
+                   IP(src=src_ip, dst=dst_ip) /
+                   ICMP())
+        ip_format = 'IP'
+    elif valid_ipv6(src_ip):
+        pkt_raw = (Ether(src=src_mac, dst=dst_mac) /
+                   IPv6(src=src_ip, dst=dst_ip) /
+                   ICMPv6EchoRequest())
+        ip_format = 'IPv6'
+    else:
+        raise ValueError(
+            "IP not in correct format"
+        )
 
     # Send created packet on one interface and receive on the other
     sent_packets.append(pkt_raw)
