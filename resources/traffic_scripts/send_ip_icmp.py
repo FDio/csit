@@ -12,18 +12,56 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Traffic script that sends an ip icmp packet
-from one interface to the other"""
+"""Traffic script that sends an IP ICMP packet
+from one interface to the other."""
 
 import sys
-from resources.libraries.python.PacketVerifier import RxQueue, TxQueue
-from resources.libraries.python.TrafficScriptArg import TrafficScriptArg
+import ipaddress
+
 from scapy.layers.inet import ICMP, IP
 from scapy.all import Ether
+from scapy.layers.inet6 import ICMPv6EchoRequest
+from scapy.layers.inet6 import IPv6
+
+from resources.libraries.python.PacketVerifier import RxQueue, TxQueue
+from resources.libraries.python.TrafficScriptArg import TrafficScriptArg
+
+
+def valid_ipv4(ip):
+    """Check IPv4 address and if in correct format
+
+    :param ip: IP address.
+    :type ip: str
+    :return: If correct format return true,otherwise return false.
+    :rtype: bool
+    """
+    try:
+        ipaddress.IPv4Address(unicode(ip))
+        return True
+    except (AttributeError, ipaddress.AddressValueError):
+        return False
+
+
+def valid_ipv6(ip):
+    """Check IPv6 address and if in correct format, return true. Otherwise
+    return false
+
+    :param ip: IP address.
+    :type ip: str
+    :return: If correct format return true,otherwise return false.
+    :rtype: bool
+    """
+    try:
+        ipaddress.IPv6Address(unicode(ip))
+        return True
+    except (AttributeError, ipaddress.AddressValueError):
+        return False
 
 
 def main():
-    """ Send IP icmp packet from one traffic generator interface to the other"""
+    """Send IP ICMPv4/ICMPv6 packet from one traffic generator interface to
+    the other one.
+    """
     args = TrafficScriptArg(['src_mac', 'dst_mac', 'src_ip', 'dst_ip'])
 
     src_mac = args.get_arg('src_mac')
@@ -37,11 +75,23 @@ def main():
     txq = TxQueue(tx_if)
 
     sent_packets = []
-
+    ip_format = ''
+    icmp_format = ''
     # Create empty ip ICMP packet and add padding before sending
-    pkt_raw = Ether(src=src_mac, dst=dst_mac) / \
-              IP(src=src_ip, dst=dst_ip) / \
-              ICMP()
+    if valid_ipv4(src_ip) and valid_ipv4(dst_ip):
+        pkt_raw = (Ether(src=src_mac, dst=dst_mac) /
+                   IP(src=src_ip, dst=dst_ip) /
+                   ICMP())
+        ip_format = 'IP'
+        icmp_format = 'ICMP'
+    elif valid_ipv6(src_ip) and valid_ipv6(dst_ip):
+        pkt_raw = (Ether(src=src_mac, dst=dst_mac) /
+                   IPv6(src=src_ip, dst=dst_ip) /
+                   ICMPv6EchoRequest())
+        ip_format = 'IPv6'
+        icmp_format = 'ICMPv6EchoRequest'
+    else:
+        raise ValueError("IP(s) not in correct format")
 
     # Send created packet on one interface and receive on the other
     sent_packets.append(pkt_raw)
@@ -53,13 +103,13 @@ def main():
     if ether is None:
         raise RuntimeError('ICMP echo Rx timeout')
 
-    if not ether.haslayer(IP):
-        raise RuntimeError(
-            'Not an IP packet received {0}'.format(ether.__repr__()))
+    if not ether.haslayer(ip_format):
+        raise RuntimeError('Not an IP packet received {0}'
+                           .format(ether.__repr__()))
 
-    if not ether.haslayer(ICMP):
-        raise RuntimeError(
-            'Not an ICMP packet received {0}'.format(ether.__repr__()))
+    if not ether.haslayer(icmp_format):
+        raise RuntimeError('Not an ICMP packet received {0}'
+                           .format(ether.__repr__()))
 
     sys.exit(0)
 
