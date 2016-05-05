@@ -46,6 +46,30 @@
       "revId": "1280e113ef80fd99137808b1e95a1244648910c1",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_b8c4f05f",
+        "filename": "requirements.txt",
+        "patchSetId": 4
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-05T09:21:30Z",
+      "side": 1,
+      "message": "Does anybody use ipv6 netmask? Or with netmask do you mean prefix length?",
+      "parentUuid": "da141535_4e206f9b",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 15
+      },
+      "revId": "1280e113ef80fd99137808b1e95a1244648910c1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
