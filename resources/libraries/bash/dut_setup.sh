@@ -32,7 +32,7 @@ cmd 'cat /etc/vpp/startup.conf'
 cmd 'sudo -S service vpp restart'
 
 echo "[Command_desc] SLEEP for three seconds, so that VPP is up for sure"
-cmd 'sleep 3'
+cmd 'sleep 10'
 
 cmd 'cat /proc/meminfo'
 
