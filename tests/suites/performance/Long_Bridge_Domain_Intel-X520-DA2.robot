@@ -14,7 +14,9 @@
 | Resource | resources/libraries/robot/performance.robot
 | Library | resources.libraries.python.NodePath
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | PERFTEST_LONG
-| Suite Setup | 3-node Performance Suite Setup | L2
+| ...        | NIC_Intel-X520-DA2
+| Suite Setup | 3-node Performance Suite Setup with DUT's NIC model
+| ... | L2 | Intel-X520-DA2
 | Suite Teardown | 3-node Performance Suite Teardown
 | Test Setup | Setup all DUTs before test
 | Test Teardown | Run Keyword | Show statistics on all DUTs
