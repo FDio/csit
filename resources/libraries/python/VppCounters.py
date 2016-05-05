@@ -38,6 +38,16 @@ class VppCounters(object):
                 self.vpp_clear_interface_counters(node)
 
     @staticmethod
+    def vpp_show_errors(node):
+        """Run "show errors" debug CLI command.
+
+        :param node: Node to run command on.
+        :type node: dict
+        """
+        vat = VatExecutor()
+        vat.execute_script("show_errors.vat", node, json_out=False)
+
+    @staticmethod
     def vpp_show_errors_verbose(node):
         """Run "show errors verbose" debug CLI command.
 
