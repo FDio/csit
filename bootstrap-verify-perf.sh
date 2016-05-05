@@ -124,19 +124,19 @@ case "$TEST_TAG" in
     PERFTEST_LONG_BRIDGE )
         pybot -L TRACE \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s performance.long_bridge_domain \
+              -s "performance.Long_Bridge_Domain*" \
               tests/
         ;;
     PERFTEST_LONG_IPV4 )
         pybot -L TRACE \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s performance.long_ipv4 \
+              -s "performance.Long_IPv4*" \
               tests/
         ;;
     PERFTEST_LONG_XCONNECT )
         pybot -L TRACE \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s performance.long_xconnect \
+              -s "performance.Long_Xconnect*" \
               tests/
         ;;
     * )
