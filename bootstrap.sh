@@ -70,7 +70,7 @@ if [ "${#}" -ne "0" ]; then
     echo ${arr[0]}
 else
     rm -f *.deb
-    VPP_STABLE_VER="1.0.0-377~g0666dc4_amd64"
+    VPP_STABLE_VER="1.0.0-437~g8f15e92_amd64"
     VPP_REPO_URL="https://nexus.fd.io/service/local/repositories/fd.io.dev/content/io/fd/vpp"
     wget -q "${VPP_REPO_URL}/vpp/${VPP_STABLE_VER}/vpp-${VPP_STABLE_VER}.deb" || exit
     wget -q "${VPP_REPO_URL}/vpp-dbg/${VPP_STABLE_VER}/vpp-dbg-${VPP_STABLE_VER}.deb" || exit
@@ -161,10 +161,22 @@ if [ "${result}" -ne "0" ]; then
     echo "However, the tests will start."
 fi
 
-PYTHONPATH=`pwd` pybot -L TRACE \
-    -v TOPOLOGY_PATH:topologies/enabled/topology.yaml \
-    --include vm_envAND3_node_single_link_topo \
-    --include vm_envAND3_node_double_link_topo \
-    --exclude PERFTEST \
-    --noncritical EXPECTED_FAILING \
-    tests/
+# There are used three iterations of tests there to check
+# the stability and reliability of the results
+for test_set in 1 2 3
+do
+    echo
+    echo ${test_set}. test loop
+    PYTHONPATH=`pwd` pybot -L TRACE \
+        -v TOPOLOGY_PATH:topologies/enabled/topology.yaml \
+        --include vm_envAND3_node_single_link_topo \
+        --include vm_envAND3_node_double_link_topo \
+        --exclude PERFTEST \
+        --noncritical EXPECTED_FAILING \
+        --output log_test_set${test_set} \
+        tests/
+done
+
+rebot --output output.xml ./log_test_set1.xml ./log_test_set2.xml ./log_test_set3.xml
+
+rm -f ./log_test_set1.xml ./log_test_set2.xml ./log_test_set3.xml
