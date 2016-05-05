@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da141535_58e8347c",
+        "filename": "resources/libraries/robot/honeycomb/bridge_domain.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-05T12:15:01Z",
+      "side": 1,
+      "message": "Are these \"\\\" necessary?",
+      "range": {
+        "startLine": 22,
+        "startChar": 74,
+        "endLine": 22,
+        "endChar": 75
+      },
+      "revId": "e19424e67b4a4bdc4bd66a4f83e12add0ef17dc5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_1802bc3e",
+        "filename": "resources/libraries/robot/honeycomb/bridge_domain.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-05T12:15:01Z",
+      "side": 1,
+      "message": "\\| ${nodes[\u0027DUT1\u0027]} \\|",
+      "range": {
+        "startLine": 186,
+        "startChar": 52,
+        "endLine": 186,
+        "endChar": 72
+      },
+      "revId": "e19424e67b4a4bdc4bd66a4f83e12add0ef17dc5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
