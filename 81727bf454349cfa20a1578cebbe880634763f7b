@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da141535_58ab9489",
+        "filename": "resources/libraries/python/IPUtil.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-05T09:21:30Z",
+      "side": 1,
+      "message": "netmask",
+      "range": {
+        "startLine": 46,
+        "startChar": 27,
+        "endLine": 46,
+        "endChar": 33
+      },
+      "revId": "81727bf454349cfa20a1578cebbe880634763f7b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_78a658c3",
+        "filename": "resources/libraries/python/IPUtil.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-05T09:21:30Z",
+      "side": 1,
+      "message": "network prefix length",
+      "range": {
+        "startLine": 47,
+        "startChar": 41,
+        "endLine": 47,
+        "endChar": 61
+      },
+      "revId": "81727bf454349cfa20a1578cebbe880634763f7b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_98a12cac",
+        "filename": "resources/libraries/python/IPUtil.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-05T09:21:30Z",
+      "side": 1,
+      "message": "network mask",
+      "range": {
+        "startLine": 47,
+        "startChar": 15,
+        "endLine": 47,
+        "endChar": 26
+      },
+      "revId": "81727bf454349cfa20a1578cebbe880634763f7b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_38b0e0f3",
+        "filename": "resources/libraries/python/IPUtil.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-05T09:21:30Z",
+      "side": 1,
+      "message": "it makes no sense for IPv6. There is no netmask. https://tools.ietf.org/html/rfc4291#section-2.3",
+      "range": {
+        "startLine": 51,
+        "startChar": 11,
+        "endLine": 51,
+        "endChar": 21
+      },
+      "revId": "81727bf454349cfa20a1578cebbe880634763f7b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
