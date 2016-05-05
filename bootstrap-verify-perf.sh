@@ -110,37 +110,43 @@ fi
 case "$TEST_TAG" in
     # run specific performance tests based on jenkins job type variable
     PERFTEST_LONG )
-        pybot -L TRACE \
+        pybot ${PYBOT_ARGS} \
+              -L TRACE \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -i perftest_long \
               tests/
         ;;
     PERFTEST_SHORT )
-        pybot -L TRACE \
+        pybot ${PYBOT_ARGS} \
+              -L TRACE \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -i perftest_short \
               tests/
         ;;
     PERFTEST_LONG_BRIDGE )
-        pybot -L TRACE \
+        pybot ${PYBOT_ARGS} \
+              -L TRACE \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s "performance.Long_Bridge_Domain*" \
               tests/
         ;;
     PERFTEST_LONG_IPV4 )
-        pybot -L TRACE \
+        pybot ${PYBOT_ARGS} \
+              -L TRACE \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s "performance.Long_IPv4*" \
               tests/
         ;;
     PERFTEST_LONG_IPV6 )
-        pybot -L TRACE \
+        pybot ${PYBOT_ARGS} \
+              -L TRACE \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s "performance.Long_IPv6*" \
               tests/
         ;;
     PERFTEST_LONG_XCONNECT )
-        pybot -L TRACE \
+        pybot ${PYBOT_ARGS} \
+              -L TRACE \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s "performance.Long_Xconnect*" \
               tests/
