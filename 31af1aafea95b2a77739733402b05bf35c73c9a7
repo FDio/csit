@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da141535_fb36e2e6",
+        "filename": "resources/libraries/robot/honeycomb/interfaces.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-05T13:47:41Z",
+      "side": 1,
+      "message": "missing pipe at the end: \\|",
+      "range": {
+        "startLine": 171,
+        "startChar": 66,
+        "endLine": 171,
+        "endChar": 67
+      },
+      "revId": "31af1aafea95b2a77739733402b05bf35c73c9a7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_db331ef5",
+        "filename": "resources/libraries/robot/honeycomb/interfaces.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-05T13:47:41Z",
+      "side": 1,
+      "message": "missing back slach at the end: 64 \\",
+      "range": {
+        "startLine": 193,
+        "startChar": 47,
+        "endLine": 193,
+        "endChar": 49
+      },
+      "revId": "31af1aafea95b2a77739733402b05bf35c73c9a7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_9b4da675",
+        "filename": "tests/suites/honeycomb/interface_management.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-05T13:47:41Z",
+      "side": 1,
+      "message": "based on coding guidelines, please, use assign sing after variable name:\n| @{ipv4_address}\u003d |\n\nValid for all occurences.",
+      "range": {
+        "startLine": 19,
+        "startChar": 2,
+        "endLine": 19,
+        "endChar": 18
+      },
+      "revId": "31af1aafea95b2a77739733402b05bf35c73c9a7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
