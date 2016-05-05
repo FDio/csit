@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da141535_fbaca237",
+        "filename": "resources/libraries/robot/honeycomb/interfaces.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-05T19:51:54Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 173,
+        "startChar": 40,
+        "endLine": 173,
+        "endChar": 42
+      },
+      "revId": "ee1fc9098b242331721a53e6028d77e10568dc2c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_dba9de25",
+        "filename": "resources/libraries/robot/honeycomb/interfaces.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-05T19:51:54Z",
+      "side": 1,
+      "message": "Regarding VxLAN - see commit https://gerrit.fd.io/r/#/c/957",
+      "revId": "ee1fc9098b242331721a53e6028d77e10568dc2c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
