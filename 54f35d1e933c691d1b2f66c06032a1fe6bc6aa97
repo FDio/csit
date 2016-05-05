@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da141535_5b570e03",
+        "filename": "resources/libraries/robot/honeycomb/interfaces.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-05T14:18:52Z",
+      "side": 1,
+      "message": "missing pipe at the end: \\|",
+      "range": {
+        "startLine": 171,
+        "startChar": 66,
+        "endLine": 171,
+        "endChar": 67
+      },
+      "revId": "54f35d1e933c691d1b2f66c06032a1fe6bc6aa97",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_3b5c5a25",
+        "filename": "resources/libraries/robot/honeycomb/interfaces.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-05T14:18:52Z",
+      "side": 1,
+      "message": "Please, remove \\| at the end of the line: ipv4",
+      "range": {
+        "startLine": 173,
+        "startChar": 39,
+        "endLine": 173,
+        "endChar": 42
+      },
+      "revId": "54f35d1e933c691d1b2f66c06032a1fe6bc6aa97",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_1b419639",
+        "filename": "resources/libraries/robot/honeycomb/interfaces.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-05T14:18:52Z",
+      "side": 1,
+      "message": "missing backslash at the end of the line: 64 \\",
+      "range": {
+        "startLine": 193,
+        "startChar": 47,
+        "endLine": 193,
+        "endChar": 49
+      },
+      "revId": "54f35d1e933c691d1b2f66c06032a1fe6bc6aa97",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_fb3dc2bc",
+        "filename": "resources/libraries/robot/honeycomb/interfaces.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-05T14:18:52Z",
+      "side": 1,
+      "message": "Based on example: ${{\u0027mtu\u0027: 1500}\nit should be dictionary.",
+      "range": {
+        "startLine": 266,
+        "startChar": 67,
+        "endLine": 266,
+        "endChar": 74
+      },
+      "revId": "54f35d1e933c691d1b2f66c06032a1fe6bc6aa97",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_bb474a4b",
+        "filename": "resources/libraries/robot/honeycomb/interfaces.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-05T14:18:52Z",
+      "side": 1,
+      "message": "These argument are not listed in Argument part:\n[Arguments] | ${node} | ${interface} | ${ethernet} | ${routing}\nThere is missing description of arguments: ethernet and routing.",
+      "range": {
+        "startLine": 264,
+        "startChar": 10,
+        "endLine": 267,
+        "endChar": 74
+      },
+      "revId": "54f35d1e933c691d1b2f66c06032a1fe6bc6aa97",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_db4afe54",
+        "filename": "resources/libraries/robot/honeycomb/interfaces.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-05T14:18:52Z",
+      "side": 1,
+      "message": "Based on example: ${{\u0027vrf-if\u0027: 2}}\nit should be dictionary.",
+      "range": {
+        "startLine": 267,
+        "startChar": 67,
+        "endLine": 267,
+        "endChar": 74
+      },
+      "revId": "54f35d1e933c691d1b2f66c06032a1fe6bc6aa97",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_9b74869d",
+        "filename": "tests/suites/honeycomb/2 - bridge_domain.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-05T14:18:52Z",
+      "side": 1,
+      "message": "Missing assinge sing after varialbe: ${node}\u003d |\nValid for all occurences.",
+      "range": {
+        "startLine": 15,
+        "startChar": 2,
+        "endLine": 15,
+        "endChar": 10
+      },
+      "revId": "54f35d1e933c691d1b2f66c06032a1fe6bc6aa97",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
