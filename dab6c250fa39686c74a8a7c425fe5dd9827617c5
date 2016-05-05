@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da141535_9b63661a",
+        "filename": "requirements.txt",
+        "patchSetId": 10
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-05T20:15:59Z",
+      "side": 1,
+      "message": "I guess there were some commit conficts - please, solve it.",
+      "range": {
+        "startLine": 10,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 80
+      },
+      "revId": "dab6c250fa39686c74a8a7c425fe5dd9827617c5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
