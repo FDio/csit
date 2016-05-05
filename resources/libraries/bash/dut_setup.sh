@@ -29,10 +29,11 @@ cmd 'ps aux | grep vpp'
 
 cmd 'cat /etc/vpp/startup.conf'
 
-cmd 'sudo -S service vpp restart'
+# cmd 'sudo -S service vpp restart'
+cmd 'sudo restart vpp'
 
 echo "[Command_desc] SLEEP for three seconds, so that VPP is up for sure"
-cmd 'sleep 3'
+cmd 'sleep 10'
 
 cmd 'cat /proc/meminfo'
 
