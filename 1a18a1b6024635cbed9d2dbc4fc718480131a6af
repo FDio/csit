@@ -1,0 +1,602 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da141535_96e21dd4",
+        "filename": "resources/libraries/python/Classify.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-06T11:42:45Z",
+      "side": 1,
+      "message": "Please, use name vpp_add_classify_table or vpp_create_classify_table.",
+      "range": {
+        "startLine": 23,
+        "startChar": 8,
+        "endLine": 23,
+        "endChar": 26
+      },
+      "revId": "1a18a1b6024635cbed9d2dbc4fc718480131a6af",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_76e789e5",
+        "filename": "resources/libraries/python/Classify.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-06T11:42:45Z",
+      "side": 1,
+      "message": "Should be VPP node",
+      "range": {
+        "startLine": 26,
+        "startChar": 21,
+        "endLine": 26,
+        "endChar": 25
+      },
+      "revId": "1a18a1b6024635cbed9d2dbc4fc718480131a6af",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_56ec85c7",
+        "filename": "resources/libraries/python/Classify.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-06T11:42:45Z",
+      "side": 1,
+      "message": "Please, add missing param types.",
+      "range": {
+        "startLine": 29,
+        "startChar": 7,
+        "endLine": 29,
+        "endChar": 11
+      },
+      "revId": "1a18a1b6024635cbed9d2dbc4fc718480131a6af",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_f6da7916",
+        "filename": "resources/libraries/python/Classify.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-06T11:42:45Z",
+      "side": 1,
+      "message": "Please, use name vpp_configure_classify_session.",
+      "range": {
+        "startLine": 47,
+        "startChar": 8,
+        "endLine": 47,
+        "endChar": 24
+      },
+      "revId": "1a18a1b6024635cbed9d2dbc4fc718480131a6af",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_d6d775ec",
+        "filename": "resources/libraries/python/Classify.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-06T11:42:45Z",
+      "side": 1,
+      "message": "VPP node",
+      "range": {
+        "startLine": 51,
+        "startChar": 21,
+        "endLine": 51,
+        "endChar": 25
+      },
+      "revId": "1a18a1b6024635cbed9d2dbc4fc718480131a6af",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_16ce0d5b",
+        "filename": "resources/libraries/python/Classify.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-06T11:42:45Z",
+      "side": 1,
+      "message": "Please, add missing param types.",
+      "range": {
+        "startLine": 59,
+        "startChar": 8,
+        "endLine": 59,
+        "endChar": 11
+      },
+      "revId": "1a18a1b6024635cbed9d2dbc4fc718480131a6af",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_36f8f17b",
+        "filename": "resources/libraries/python/IPv4Setup.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-06T11:42:45Z",
+      "side": 1,
+      "message": "VPP node",
+      "range": {
+        "startLine": 322,
+        "startChar": 21,
+        "endLine": 322,
+        "endChar": 25
+      },
+      "revId": "1a18a1b6024635cbed9d2dbc4fc718480131a6af",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_16f5ed82",
+        "filename": "resources/libraries/python/IPv6Util.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-06T11:42:45Z",
+      "side": 1,
+      "message": "VPP node",
+      "range": {
+        "startLine": 116,
+        "startChar": 21,
+        "endLine": 116,
+        "endChar": 25
+      },
+      "revId": "1a18a1b6024635cbed9d2dbc4fc718480131a6af",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_163ccd2e",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 528,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-06T11:42:45Z",
+      "side": 1,
+      "message": "Please, use name vpp_enable_input_acl_interface",
+      "range": {
+        "startLine": 528,
+        "startChar": 8,
+        "endLine": 528,
+        "endChar": 27
+      },
+      "revId": "1a18a1b6024635cbed9d2dbc4fc718480131a6af",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_563a4537",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 531,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-06T11:42:45Z",
+      "side": 1,
+      "message": "VPP node",
+      "range": {
+        "startLine": 531,
+        "startChar": 21,
+        "endLine": 531,
+        "endChar": 25
+      },
+      "revId": "1a18a1b6024635cbed9d2dbc4fc718480131a6af",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_d64535b4",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 535,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-06T11:42:45Z",
+      "side": 1,
+      "message": "Please, add missing param types.",
+      "range": {
+        "startLine": 535,
+        "startChar": 8,
+        "endLine": 535,
+        "endChar": 11
+      },
+      "revId": "1a18a1b6024635cbed9d2dbc4fc718480131a6af",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_1623ad06",
+        "filename": "resources/libraries/robot/iacl.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-06T11:42:45Z",
+      "side": 1,
+      "message": "Just note - when commit https://gerrit.fd.io/r/#/c/915 is merged this KW can be removed.",
+      "range": {
+        "startLine": 23,
+        "startChar": 2,
+        "endLine": 23,
+        "endChar": 40
+      },
+      "revId": "1a18a1b6024635cbed9d2dbc4fc718480131a6af",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_96c1fde6",
+        "filename": "resources/libraries/robot/iacl.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-06T11:42:45Z",
+      "side": 1,
+      "message": "We should not import the same varialbe two times... One possiblity is to use two different vairables: tg1_node adn tg2_node...",
+      "range": {
+        "startLine": 24,
+        "startChar": 5,
+        "endLine": 24,
+        "endChar": 51
+      },
+      "revId": "1a18a1b6024635cbed9d2dbc4fc718480131a6af",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_3626b117",
+        "filename": "resources/libraries/robot/iacl.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-06T11:42:45Z",
+      "side": 1,
+      "message": "Please, use tg_node, dut1_node and dut2_node insteasd of TG/tg, DUT1/dut1 and DUT2/dut2 to have common naming over all resource files.",
+      "range": {
+        "startLine": 28,
+        "startChar": 12,
+        "endLine": 30,
+        "endChar": 18
+      },
+      "revId": "1a18a1b6024635cbed9d2dbc4fc718480131a6af",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_d61c15c4",
+        "filename": "resources/libraries/robot/iacl.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-06T11:42:45Z",
+      "side": 1,
+      "message": "Just note - when commit https://gerrit.fd.io/r/#/c/915 is merged this KW can be removed.",
+      "range": {
+        "startLine": 73,
+        "startChar": 2,
+        "endLine": 73,
+        "endChar": 27
+      },
+      "revId": "1a18a1b6024635cbed9d2dbc4fc718480131a6af",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_f6e4b9ad",
+        "filename": "resources/libraries/robot/iacl.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-06T11:42:45Z",
+      "side": 1,
+      "message": "Please, use lower-case variable names - valid generaly.",
+      "range": {
+        "startLine": 86,
+        "startChar": 3,
+        "endLine": 87,
+        "endChar": 34
+      },
+      "revId": "1a18a1b6024635cbed9d2dbc4fc718480131a6af",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_d6e1b59b",
+        "filename": "resources/libraries/robot/iacl.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-06T11:42:45Z",
+      "side": 1,
+      "message": "Please, add argument description and example parts to documentation.\n\nValid for all occurences.",
+      "range": {
+        "startLine": 88,
+        "startChar": 5,
+        "endLine": 88,
+        "endChar": 18
+      },
+      "revId": "1a18a1b6024635cbed9d2dbc4fc718480131a6af",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_56a48556",
+        "filename": "resources/libraries/robot/iacl.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-06T11:42:45Z",
+      "side": 1,
+      "message": "Please, use following instead of current implementation:\n| Run Keyword And Expect Error | expected error message, e.g. ICMP echo Rx timeout |\nto avoid hiding some other reason of failure.",
+      "range": {
+        "startLine": 105,
+        "startChar": 3,
+        "endLine": 105,
+        "endChar": 47
+      },
+      "revId": "1a18a1b6024635cbed9d2dbc4fc718480131a6af",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_368911cb",
+        "filename": "resources/libraries/robot/iacl.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-06T11:42:45Z",
+      "side": 1,
+      "message": "Please, see line 105.",
+      "range": {
+        "startLine": 115,
+        "startChar": 4,
+        "endLine": 115,
+        "endChar": 46
+      },
+      "revId": "1a18a1b6024635cbed9d2dbc4fc718480131a6af",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_f69279f5",
+        "filename": "resources/traffic_scripts/send_ip6_icmp.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-06T11:42:45Z",
+      "side": 1,
+      "message": "Please, have a look to https://gerrit.fd.io/r/#/c/987/ where IPv4 and IPv6 ICMP packet send and receive is implemetned in one library file and use this implementation.",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 10
+      },
+      "revId": "1a18a1b6024635cbed9d2dbc4fc718480131a6af",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_d68f75cb",
+        "filename": "tests/suites/ipv4/ipv4_iacl_untagged.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-06T11:42:45Z",
+      "side": 1,
+      "message": "Why this tag?",
+      "range": {
+        "startLine": 30,
+        "startChar": 59,
+        "endLine": 30,
+        "endChar": 62
+      },
+      "revId": "1a18a1b6024635cbed9d2dbc4fc718480131a6af",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_36b0f18a",
+        "filename": "tests/suites/ipv4/ipv4_iacl_untagged.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-06T11:42:45Z",
+      "side": 1,
+      "message": "These varaibles seem to be superfluous/counterproductive - better to use values directly in the tets case so the reading of the test case is easy to perceive.",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 25
+      },
+      "revId": "1a18a1b6024635cbed9d2dbc4fc718480131a6af",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_b6bc016e",
+        "filename": "tests/suites/ipv4/ipv4_iacl_untagged.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-06T11:42:45Z",
+      "side": 1,
+      "message": "Please, use more descritpive documentation.\n\nValid for all occurences.",
+      "range": {
+        "startLine": 51,
+        "startChar": 5,
+        "endLine": 51,
+        "endChar": 18
+      },
+      "revId": "1a18a1b6024635cbed9d2dbc4fc718480131a6af",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_76b6698c",
+        "filename": "tests/suites/ipv6/ipv6_iacl_untagged.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-06T11:42:45Z",
+      "side": 1,
+      "message": "Why thsi tag?",
+      "range": {
+        "startLine": 29,
+        "startChar": 59,
+        "endLine": 29,
+        "endChar": 62
+      },
+      "revId": "1a18a1b6024635cbed9d2dbc4fc718480131a6af",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_56bb6572",
+        "filename": "tests/suites/ipv6/ipv6_iacl_untagged.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-06T11:42:45Z",
+      "side": 1,
+      "message": "These varaibles seem to be superfluous/counterproductive - better to use values directly in the tets case so the reading of the test case is easy to perceive.",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 25
+      },
+      "revId": "1a18a1b6024635cbed9d2dbc4fc718480131a6af",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_16aded31",
+        "filename": "tests/suites/ipv6/ipv6_iacl_untagged.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-06T11:42:45Z",
+      "side": 1,
+      "message": "Please, use more descritpive documentation.\n\nValid for all occurences.",
+      "range": {
+        "startLine": 52,
+        "startChar": 5,
+        "endLine": 52,
+        "endChar": 18
+      },
+      "revId": "1a18a1b6024635cbed9d2dbc4fc718480131a6af",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
