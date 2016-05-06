@@ -188,8 +188,8 @@
 | | ... | frames by using binary search with threshold 5,000pps
 | | [Tags] | 2_THREAD_NOHTT_RSS_1 | MULTI_THREAD
 | | ${framesize}= | Set Variable | 64
-| | ${binary_min}= | Set Variable | 8000000
-| | ${binary_max}= | Set Variable | 9000000
+| | ${binary_min}= | Set Variable | 6000000
+| | ${binary_max}= | Set Variable | 12000000
 | | ${min_rate}= | Set Variable | 100000
 | | ${max_rate}= | Set Variable | 14880952
 | | ${threshold}= | Set Variable | 5000
@@ -206,8 +206,8 @@
 | | ... | frames by using binary search with threshold 5,000pps
 | | [Tags] | 4_THREAD_NOHTT_RSS_2 | MULTI_THREAD
 | | ${framesize}= | Set Variable | 64
-| | ${binary_min}= | Set Variable | 8000000
-| | ${binary_max}= | Set Variable | 10000000
+| | ${binary_min}= | Set Variable | 6000000
+| | ${binary_max}= | Set Variable | 12000000
 | | ${min_rate}= | Set Variable | 100000
 | | ${max_rate}= | Set Variable | 14880952
 | | ${threshold}= | Set Variable | 5000
