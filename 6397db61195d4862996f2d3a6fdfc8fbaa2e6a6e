@@ -1,0 +1,303 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da141535_56b925e8",
+        "filename": "resources/libraries/robot/l2_traffic.robot",
+        "patchSetId": 10
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-06T08:14:45Z",
+      "side": 1,
+      "message": "Please, add argument description and example parts to documentation.",
+      "range": {
+        "startLine": 21,
+        "startChar": 5,
+        "endLine": 21,
+        "endChar": 18
+      },
+      "revId": "6397db61195d4862996f2d3a6fdfc8fbaa2e6a6e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_d6c41561",
+        "filename": "resources/libraries/robot/l2_traffic.robot",
+        "patchSetId": 10
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-06T08:14:45Z",
+      "side": 1,
+      "message": "Based on changed name of the KW there should be ICMPv4/ICMPv6 as both variants are possbile.",
+      "range": {
+        "startLine": 21,
+        "startChar": 27,
+        "endLine": 21,
+        "endChar": 33
+      },
+      "revId": "6397db61195d4862996f2d3a6fdfc8fbaa2e6a6e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_96bfbdd0",
+        "filename": "resources/libraries/robot/l2_traffic.robot",
+        "patchSetId": 10
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-06T08:14:45Z",
+      "side": 1,
+      "message": "Lin too long.",
+      "range": {
+        "startLine": 22,
+        "startChar": 1,
+        "endLine": 22,
+        "endChar": 17
+      },
+      "revId": "6397db61195d4862996f2d3a6fdfc8fbaa2e6a6e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_d69bf570",
+        "filename": "resources/libraries/robot/l2_traffic.robot",
+        "patchSetId": 10
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-06T08:14:45Z",
+      "side": 1,
+      "message": "Add argument description and example part there, please.\n\nValid in case of ICMPv6 KW too.",
+      "range": {
+        "startLine": 30,
+        "startChar": 5,
+        "endLine": 30,
+        "endChar": 18
+      },
+      "revId": "6397db61195d4862996f2d3a6fdfc8fbaa2e6a6e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_96a69dc0",
+        "filename": "resources/libraries/robot/l2_traffic.robot",
+        "patchSetId": 10
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-06T08:14:45Z",
+      "side": 1,
+      "message": "To align with KW Send and receive ICMP Packet please add arguments ip1 nd ip2 with defined default values.\n\nValid in case of ICMPv6 KW too.",
+      "range": {
+        "startLine": 33,
+        "startChar": 5,
+        "endLine": 33,
+        "endChar": 14
+      },
+      "revId": "6397db61195d4862996f2d3a6fdfc8fbaa2e6a6e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_968d7d34",
+        "filename": "resources/libraries/robot/l2_traffic.robot",
+        "patchSetId": 10
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-06T08:14:45Z",
+      "side": 1,
+      "message": "Add ${ip1} and ${ip2} arguments, please.\n\nValid in case of ICMPv6 KW too.",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 65
+      },
+      "revId": "6397db61195d4862996f2d3a6fdfc8fbaa2e6a6e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_16796d2f",
+        "filename": "resources/traffic_scripts/send_ip_icmp.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-06T08:14:45Z",
+      "side": 1,
+      "message": "Import grouping.",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 35
+      },
+      "revId": "6397db61195d4862996f2d3a6fdfc8fbaa2e6a6e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_b68f6123",
+        "filename": "resources/traffic_scripts/send_ip_icmp.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-06T08:14:45Z",
+      "side": 1,
+      "message": "...other one.\"\"\"",
+      "range": {
+        "startLine": 44,
+        "startChar": 72,
+        "endLine": 44,
+        "endChar": 77
+      },
+      "revId": "6397db61195d4862996f2d3a6fdfc8fbaa2e6a6e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_d672d548",
+        "filename": "resources/traffic_scripts/send_ip_icmp.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-06T08:14:45Z",
+      "side": 1,
+      "message": "ICMPv4/ICMPv6",
+      "range": {
+        "startLine": 44,
+        "startChar": 16,
+        "endLine": 44,
+        "endChar": 20
+      },
+      "revId": "6397db61195d4862996f2d3a6fdfc8fbaa2e6a6e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_96945d38",
+        "filename": "resources/traffic_scripts/send_ip_icmp.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-06T08:14:45Z",
+      "side": 1,
+      "message": "What bout to check both addresses (src and dst)?\n\nif valid_ipv4(src_ip) and valid_ipv4(dst_ip):",
+      "range": {
+        "startLine": 61,
+        "startChar": 7,
+        "endLine": 61,
+        "endChar": 25
+      },
+      "revId": "6397db61195d4862996f2d3a6fdfc8fbaa2e6a6e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_569ec557",
+        "filename": "resources/traffic_scripts/send_ip_icmp.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-06T08:14:45Z",
+      "side": 1,
+      "message": "What bout to check both addresses (src and dst)?\n\nelif valid_ipv6(src_ip) and valid_ipv6(dst_ip):",
+      "range": {
+        "startLine": 67,
+        "startChar": 9,
+        "endLine": 67,
+        "endChar": 27
+      },
+      "revId": "6397db61195d4862996f2d3a6fdfc8fbaa2e6a6e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_f675d932",
+        "filename": "resources/traffic_scripts/send_ip_icmp.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-06T08:14:45Z",
+      "side": 1,
+      "message": "\"IP(s)...format.\"",
+      "range": {
+        "startLine": 75,
+        "startChar": 31,
+        "endLine": 75,
+        "endChar": 37
+      },
+      "revId": "6397db61195d4862996f2d3a6fdfc8fbaa2e6a6e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_f6acb98e",
+        "filename": "tests/suites/l2_xconnect/l2_xconnect_untagged.robot",
+        "patchSetId": 10
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-06T08:14:45Z",
+      "side": 1,
+      "message": "Please:\n- add ICMP version to KW\u0027s name: Vpp forwards ICMPv4 packets via L2 xconnect in circular topology\n+ add Documentation part\n\n+ add Vpp forwards ICMPv6 packets via L2 xconnect in circular topology test case.",
+      "range": {
+        "startLine": 32,
+        "startChar": 2,
+        "endLine": 32,
+        "endChar": 59
+      },
+      "revId": "6397db61195d4862996f2d3a6fdfc8fbaa2e6a6e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
