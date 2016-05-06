@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "da141535_3168fbb9",
+        "filename": "resources/libraries/robot/cop.robot",
+        "patchSetId": 12
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-06T13:51:54Z",
+      "side": 1,
+      "message": "remove KW and use Set Interface Address in testcase",
+      "range": {
+        "startLine": 86,
+        "startChar": 2,
+        "endLine": 86,
+        "endChar": 30
+      },
+      "revId": "fbb4b3ff78e73c5e3c7f2648cbd2f1fc113ada90",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da141535_5125afa9",
         "filename": "resources/libraries/robot/cop.robot",
         "patchSetId": 12
@@ -25,6 +48,52 @@
     },
     {
       "key": {
+        "uuid": "da141535_716e73cb",
+        "filename": "resources/libraries/robot/cop.robot",
+        "patchSetId": 12
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-06T13:51:54Z",
+      "side": 1,
+      "message": "remove KW and use Add ARP On Dut in testcase",
+      "range": {
+        "startLine": 107,
+        "startChar": 2,
+        "endLine": 107,
+        "endChar": 18
+      },
+      "revId": "fbb4b3ff78e73c5e3c7f2648cbd2f1fc113ada90",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_1165f7e0",
+        "filename": "resources/libraries/robot/cop.robot",
+        "patchSetId": 12
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-06T13:51:54Z",
+      "side": 1,
+      "message": "remove KW and use Set IPv6 Interface Address in testcase",
+      "range": {
+        "startLine": 128,
+        "startChar": 2,
+        "endLine": 128,
+        "endChar": 30
+      },
+      "revId": "fbb4b3ff78e73c5e3c7f2648cbd2f1fc113ada90",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da141535_f605d914",
         "filename": "resources/libraries/robot/cop.robot",
         "patchSetId": 12
@@ -41,6 +110,166 @@
         "startChar": 63,
         "endLine": 142,
         "endChar": 64
+      },
+      "revId": "fbb4b3ff78e73c5e3c7f2648cbd2f1fc113ada90",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_31afdbe5",
+        "filename": "resources/traffic_scripts/send_icmp_check_headers.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-06T13:51:54Z",
+      "side": 1,
+      "message": "remove line",
+      "revId": "fbb4b3ff78e73c5e3c7f2648cbd2f1fc113ada90",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_f1b8432c",
+        "filename": "resources/traffic_scripts/send_icmp_check_headers.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-06T13:51:54Z",
+      "side": 1,
+      "message": "ICMP",
+      "range": {
+        "startLine": 50,
+        "startChar": 16,
+        "endLine": 50,
+        "endChar": 20
+      },
+      "revId": "fbb4b3ff78e73c5e3c7f2648cbd2f1fc113ada90",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_11acd7ec",
+        "filename": "resources/traffic_scripts/send_icmp_check_headers.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-06T13:51:54Z",
+      "side": 1,
+      "message": "remove first space, add dot at the end.",
+      "revId": "fbb4b3ff78e73c5e3c7f2648cbd2f1fc113ada90",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_b19bebc8",
+        "filename": "resources/traffic_scripts/send_icmp_check_headers.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-06T13:51:54Z",
+      "side": 1,
+      "message": "use \"Not an IP packet received {0}\"",
+      "range": {
+        "startLine": 89,
+        "startChar": 27,
+        "endLine": 89,
+        "endChar": 58
+      },
+      "revId": "fbb4b3ff78e73c5e3c7f2648cbd2f1fc113ada90",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_d1b53f32",
+        "filename": "tests/suites/cop/cop_whitelist_blacklist.robot",
+        "patchSetId": 12
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-06T13:51:54Z",
+      "side": 1,
+      "message": "add empty line",
+      "revId": "fbb4b3ff78e73c5e3c7f2648cbd2f1fc113ada90",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_717c3373",
+        "filename": "tests/suites/cop/cop_whitelist_blacklist.robot",
+        "patchSetId": 12
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-06T13:51:54Z",
+      "side": 1,
+      "message": "its not documented in tag_documentation.rst, IMHO remove it",
+      "range": {
+        "startLine": 24,
+        "startChar": 59,
+        "endLine": 24,
+        "endChar": 62
+      },
+      "revId": "fbb4b3ff78e73c5e3c7f2648cbd2f1fc113ada90",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_f1bde303",
+        "filename": "tests/suites/cop/cop_whitelist_blacklist_IPv6.robot",
+        "patchSetId": 12
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-06T13:51:54Z",
+      "side": 1,
+      "message": "add empty line",
+      "revId": "fbb4b3ff78e73c5e3c7f2648cbd2f1fc113ada90",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_d1badf09",
+        "filename": "tests/suites/cop/cop_whitelist_blacklist_IPv6.robot",
+        "patchSetId": 12
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-06T13:51:54Z",
+      "side": 1,
+      "message": "same as in cop_whitelist_blacklist.robot",
+      "range": {
+        "startLine": 25,
+        "startChar": 59,
+        "endLine": 25,
+        "endChar": 62
       },
       "revId": "fbb4b3ff78e73c5e3c7f2648cbd2f1fc113ada90",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
