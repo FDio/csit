@@ -48,6 +48,23 @@
     },
     {
       "key": {
+        "uuid": "da141535_f6571925",
+        "filename": "resources/libraries/robot/l2_traffic.robot",
+        "patchSetId": 12
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-06T12:40:26Z",
+      "side": 1,
+      "message": "remove line",
+      "revId": "1c57b9728e2b6e2d8164d17fc5ea954aa0c32245",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da141535_16228db9",
         "filename": "tests/suites/tagging/qinq_l2_xconnect.robot",
         "patchSetId": 12
