@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "da141535_7626696a",
+        "filename": "resources/libraries/python/TrafficScriptExecutor.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 365
+      },
+      "writtenOn": "2016-05-06T11:47:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_9b4a4682",
+      "range": {
+        "startLine": 41,
+        "startChar": 44,
+        "endLine": 41,
+        "endChar": 70
+      },
+      "revId": "4ebd855c9eeab6a4796b5f1af4aad4869d46b6bc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da141535_7b4f7293",
         "filename": "resources/libraries/python/TrafficScriptExecutor.py",
         "patchSetId": 11
@@ -36,6 +60,30 @@
       "writtenOn": "2016-05-05T20:55:41Z",
       "side": 1,
       "message": "Please, remove it as return code is not returend.",
+      "range": {
+        "startLine": 51,
+        "startChar": 8,
+        "endLine": 52,
+        "endChar": 19
+      },
+      "revId": "4ebd855c9eeab6a4796b5f1af4aad4869d46b6bc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_562b6530",
+        "filename": "resources/libraries/python/TrafficScriptExecutor.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 365
+      },
+      "writtenOn": "2016-05-06T11:47:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_7b4f7293",
       "range": {
         "startLine": 51,
         "startChar": 8,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "da141535_3620f148",
+        "filename": "resources/libraries/robot/cop.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 365
+      },
+      "writtenOn": "2016-05-06T11:47:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_5b44ae73",
+      "range": {
+        "startLine": 28,
+        "startChar": 12,
+        "endLine": 30,
+        "endChar": 49
+      },
+      "revId": "4ebd855c9eeab6a4796b5f1af4aad4869d46b6bc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da141535_3b49fa8b",
         "filename": "resources/libraries/robot/cop.robot",
         "patchSetId": 11
@@ -82,6 +154,30 @@
       "writtenOn": "2016-05-05T20:55:41Z",
       "side": 1,
       "message": "Better to use: ${nodes[\u0027TG\u0027]} in the example.\nPlease, use equivalents for DUTs.",
+      "range": {
+        "startLine": 38,
+        "startChar": 42,
+        "endLine": 38,
+        "endChar": 47
+      },
+      "revId": "4ebd855c9eeab6a4796b5f1af4aad4869d46b6bc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_161ded0f",
+        "filename": "resources/libraries/robot/cop.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 365
+      },
+      "writtenOn": "2016-05-06T11:47:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_3b49fa8b",
       "range": {
         "startLine": 38,
         "startChar": 42,
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "da141535_f6195923",
+        "filename": "resources/libraries/robot/cop.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 365
+      },
+      "writtenOn": "2016-05-06T11:47:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_1b5e3646",
+      "range": {
+        "startLine": 39,
+        "startChar": 30,
+        "endLine": 39,
+        "endChar": 31
+      },
+      "revId": "4ebd855c9eeab6a4796b5f1af4aad4869d46b6bc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da141535_fb5a624f",
         "filename": "resources/libraries/robot/cop.robot",
         "patchSetId": 11
@@ -128,6 +248,30 @@
       "writtenOn": "2016-05-05T20:55:41Z",
       "side": 1,
       "message": "tg_node",
+      "range": {
+        "startLine": 78,
+        "startChar": 28,
+        "endLine": 78,
+        "endChar": 30
+      },
+      "revId": "4ebd855c9eeab6a4796b5f1af4aad4869d46b6bc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_d61655f1",
+        "filename": "resources/libraries/robot/cop.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 365
+      },
+      "writtenOn": "2016-05-06T11:47:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_fb5a624f",
       "range": {
         "startLine": 78,
         "startChar": 28,
@@ -163,6 +307,30 @@
     },
     {
       "key": {
+        "uuid": "da141535_b6d3e137",
+        "filename": "resources/libraries/robot/cop.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 365
+      },
+      "writtenOn": "2016-05-06T11:47:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_db579e25",
+      "range": {
+        "startLine": 80,
+        "startChar": 28,
+        "endLine": 80,
+        "endChar": 32
+      },
+      "revId": "4ebd855c9eeab6a4796b5f1af4aad4869d46b6bc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da141535_bb54ea21",
         "filename": "resources/libraries/robot/cop.robot",
         "patchSetId": 11
@@ -174,6 +342,30 @@
       "writtenOn": "2016-05-05T20:55:41Z",
       "side": 1,
       "message": "dut2_node",
+      "range": {
+        "startLine": 82,
+        "startChar": 28,
+        "endLine": 82,
+        "endChar": 32
+      },
+      "revId": "4ebd855c9eeab6a4796b5f1af4aad4869d46b6bc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_96d8dd54",
+        "filename": "resources/libraries/robot/cop.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 365
+      },
+      "writtenOn": "2016-05-06T11:47:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_bb54ea21",
       "range": {
         "startLine": 82,
         "startChar": 28,
@@ -209,6 +401,30 @@
     },
     {
       "key": {
+        "uuid": "da141535_f6f039cb",
+        "filename": "resources/libraries/robot/traffic.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 365
+      },
+      "writtenOn": "2016-05-06T11:47:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_7b365205",
+      "range": {
+        "startLine": 40,
+        "startChar": 13,
+        "endLine": 40,
+        "endChar": 15
+      },
+      "revId": "4ebd855c9eeab6a4796b5f1af4aad4869d46b6bc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da141535_5b3b8eeb",
         "filename": "resources/libraries/robot/traffic.robot",
         "patchSetId": 11
@@ -220,6 +436,30 @@
       "writtenOn": "2016-05-05T20:55:41Z",
       "side": 1,
       "message": "missing \\| at the end.\n\nValid for all occurences.",
+      "range": {
+        "startLine": 57,
+        "startChar": 58,
+        "endLine": 57,
+        "endChar": 59
+      },
+      "revId": "4ebd855c9eeab6a4796b5f1af4aad4869d46b6bc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_16e4cd0b",
+        "filename": "resources/libraries/robot/traffic.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 365
+      },
+      "writtenOn": "2016-05-06T11:47:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_5b3b8eeb",
       "range": {
         "startLine": 57,
         "startChar": 58,
@@ -255,6 +495,30 @@
     },
     {
       "key": {
+        "uuid": "da141535_36e7d114",
+        "filename": "resources/libraries/robot/traffic.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 365
+      },
+      "writtenOn": "2016-05-06T11:47:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_9b180686",
+      "range": {
+        "startLine": 104,
+        "startChar": 4,
+        "endLine": 104,
+        "endChar": 32
+      },
+      "revId": "4ebd855c9eeab6a4796b5f1af4aad4869d46b6bc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da141535_5b126e63",
         "filename": "resources/traffic_scripts/send_icmp_check_headers.py",
         "patchSetId": 11
@@ -266,6 +530,30 @@
       "writtenOn": "2016-05-05T20:55:41Z",
       "side": 1,
       "message": "Please, sort imports based on coding guidelines:\nImports should be grouped in the following order: 1. standard library imports, 2. related third party imports, 3. local application/library specific imports.",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 28
+      },
+      "revId": "4ebd855c9eeab6a4796b5f1af4aad4869d46b6bc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_f6c71963",
+        "filename": "resources/traffic_scripts/send_icmp_check_headers.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 365
+      },
+      "writtenOn": "2016-05-06T11:47:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_5b126e63",
       "range": {
         "startLine": 23,
         "startChar": 0,
@@ -301,6 +589,30 @@
     },
     {
       "key": {
+        "uuid": "da141535_d6ed35f1",
+        "filename": "resources/traffic_scripts/send_icmp_check_headers.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 365
+      },
+      "writtenOn": "2016-05-06T11:47:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_db055e15",
+      "range": {
+        "startLine": 79,
+        "startChar": 24,
+        "endLine": 81,
+        "endChar": 9
+      },
+      "revId": "4ebd855c9eeab6a4796b5f1af4aad4869d46b6bc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da141535_3613515e",
         "filename": "resources/traffic_scripts/send_icmp_check_headers.py",
         "patchSetId": 11
@@ -312,6 +624,30 @@
       "writtenOn": "2016-05-05T20:55:41Z",
       "side": 1,
       "message": "Please, use correct alignment:\n\nraise RuntimeError(\"Matching packet unsuccessful: {0}\"\n                   .format(ether.__repr__()))\n\nValid for all occurences.",
+      "range": {
+        "startLine": 100,
+        "startChar": 30,
+        "endLine": 102,
+        "endChar": 13
+      },
+      "revId": "4ebd855c9eeab6a4796b5f1af4aad4869d46b6bc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_36ceb184",
+        "filename": "resources/traffic_scripts/send_icmp_check_headers.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 365
+      },
+      "writtenOn": "2016-05-06T11:47:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_3613515e",
       "range": {
         "startLine": 100,
         "startChar": 30,
@@ -347,6 +683,30 @@
     },
     {
       "key": {
+        "uuid": "da141535_16928d57",
+        "filename": "tests/suites/cop/cop_whitelist_blacklist.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 365
+      },
+      "writtenOn": "2016-05-06T11:47:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_16104d4d",
+      "range": {
+        "startLine": 39,
+        "startChar": 2,
+        "endLine": 41,
+        "endChar": 11
+      },
+      "revId": "4ebd855c9eeab6a4796b5f1af4aad4869d46b6bc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da141535_b62641b9",
         "filename": "tests/suites/cop/cop_whitelist_blacklist_IPv6.robot",
         "patchSetId": 11
@@ -358,6 +718,30 @@
       "writtenOn": "2016-05-05T20:55:41Z",
       "side": 1,
       "message": "Variable names as described in cop_whitelist_blacklist.robot.",
+      "range": {
+        "startLine": 40,
+        "startChar": 2,
+        "endLine": 42,
+        "endChar": 12
+      },
+      "revId": "4ebd855c9eeab6a4796b5f1af4aad4869d46b6bc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_f69ef962",
+        "filename": "tests/suites/cop/cop_whitelist_blacklist_IPv6.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 365
+      },
+      "writtenOn": "2016-05-06T11:47:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_b62641b9",
       "range": {
         "startLine": 40,
         "startChar": 2,
