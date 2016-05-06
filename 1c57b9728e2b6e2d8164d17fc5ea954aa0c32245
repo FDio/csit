@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da141535_763b09ec",
+        "filename": "resources/libraries/robot/l2_traffic.robot",
+        "patchSetId": 12
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-06T12:39:42Z",
+      "side": 1,
+      "message": "Please, change as discussed.",
+      "range": {
+        "startLine": 20,
+        "startChar": 19,
+        "endLine": 20,
+        "endChar": 32
+      },
+      "revId": "1c57b9728e2b6e2d8164d17fc5ea954aa0c32245",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_56400556",
+        "filename": "resources/libraries/robot/l2_traffic.robot",
+        "patchSetId": 12
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-06T12:39:42Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 108,
+        "startChar": 0,
+        "endLine": 108,
+        "endChar": 1
+      },
+      "revId": "1c57b9728e2b6e2d8164d17fc5ea954aa0c32245",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_16228db9",
+        "filename": "tests/suites/tagging/qinq_l2_xconnect.robot",
+        "patchSetId": 12
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-06T12:39:42Z",
+      "side": 1,
+      "message": "as discussed: ICMP",
+      "range": {
+        "startLine": 49,
+        "startChar": 26,
+        "endLine": 49,
+        "endChar": 39
+      },
+      "revId": "1c57b9728e2b6e2d8164d17fc5ea954aa0c32245",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
