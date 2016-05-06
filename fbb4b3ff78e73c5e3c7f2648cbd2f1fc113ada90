@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da141535_5125afa9",
+        "filename": "resources/libraries/robot/cop.robot",
+        "patchSetId": 12
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-06T12:55:56Z",
+      "side": 1,
+      "message": "You should pass all needed arguments to KW or at least mention that these parameteres need to be defined as test case variables by using KW xxx in the argument part of documentation.\n\nValid for all occurences.",
+      "range": {
+        "startLine": 101,
+        "startChar": 5,
+        "endLine": 101,
+        "endChar": 14
+      },
+      "revId": "fbb4b3ff78e73c5e3c7f2648cbd2f1fc113ada90",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_f605d914",
+        "filename": "resources/libraries/robot/cop.robot",
+        "patchSetId": 12
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-06T12:55:56Z",
+      "side": 1,
+      "message": "Please, remove pipe here.",
+      "range": {
+        "startLine": 142,
+        "startChar": 63,
+        "endLine": 142,
+        "endChar": 64
+      },
+      "revId": "fbb4b3ff78e73c5e3c7f2648cbd2f1fc113ada90",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
