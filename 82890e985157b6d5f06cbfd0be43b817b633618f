@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da141535_7158b3fa",
+        "filename": "tests/suites/performance/long_xconnect_dot1q.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 74
+      },
+      "writtenOn": "2016-05-06T13:57:42Z",
+      "side": 1,
+      "message": "64B from and to TG, 68B between DUTs",
+      "revId": "82890e985157b6d5f06cbfd0be43b817b633618f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
