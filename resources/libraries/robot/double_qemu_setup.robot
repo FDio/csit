@@ -56,10 +56,10 @@
 | | ${vhost2}= | Get Vhost User If Name By Sock | ${vm} | ${sock2}
 | | ${vhost3}= | Get Vhost User If Name By Sock | ${vm} | ${sock3}
 | | ${vhost4}= | Get Vhost User If Name By Sock | ${vm} | ${sock4}
-| | Set Interface State | ${vm} | ${vhost1} | up
-| | Set Interface State | ${vm} | ${vhost2} | up
-| | Set Interface State | ${vm} | ${vhost3} | up
-| | Set Interface State | ${vm} | ${vhost4} | up
+| | Set Interface State | ${vm} | ${vhost1} | up | if_type=name
+| | Set Interface State | ${vm} | ${vhost2} | up | if_type=name
+| | Set Interface State | ${vm} | ${vhost3} | up | if_type=name
+| | Set Interface State | ${vm} | ${vhost4} | up | if_type=name
 | | Setup Network Namespace
 | | ... | ${vm} | nmspace1 | ${vhost1} | ${ip1} | ${prefix_length}
 | | Setup Network Namespace
