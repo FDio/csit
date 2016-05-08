@@ -49,8 +49,8 @@
 | | ... | ${dut1s_ip_address} | ${duts_ip_address_prefix}
 | | Set Interface Address | ${DUT2} | ${DUT2_INT_INDEX}
 | | ... | ${dut2s_ip_address} | ${duts_ip_address_prefix}
-| | VPP IP Probe | ${DUT1} | ${DUT1_INT_NAME} | ${dut2s_ip_address}
-| | VPP IP Probe | ${DUT2} | ${DUT2_INT_NAME} | ${dut1s_ip_address}
+| | VPP IP Probe | ${DUT1} | ${DUT1_INT_NAME} | ${dut2s_ip_address} | if_type=name
+| | VPP IP Probe | ${DUT2} | ${DUT2_INT_NAME} | ${dut1s_ip_address} | if_type=name
 
 | VXLAN interface is created
 | | [Arguments] | ${DUT} | ${VNI} | ${SRC_IP} | ${DST_IP}
@@ -74,10 +74,12 @@
 | | ... | - ${dut2s_vlan_index}
 | | ...
 | | [Arguments] | ${VLAN} | ${DUT1} | ${INT1} | ${DUT2} | ${INT2}
+| | ${INT1_NAME}= | Get interface name | ${DUT1} | ${INT1}
+| | ${INT2_NAME}= | Get interface name | ${DUT2} | ${INT2}
 | | ${dut1s_vlan_name} | ${dut1s_vlan_index}= | Create Vlan Subinterface
-| |                    | ...                  | ${DUT1} | ${INT1} | ${VLAN}
+| |                    | ...                  | ${DUT1} | ${INT1_NAME} | ${VLAN}
 | | ${dut2s_vlan_name} | ${dut2s_vlan_index}= | Create Vlan Subinterface
-| |                    | ...                  | ${DUT2} | ${INT2} | ${VLAN}
+| |                    | ...                  | ${DUT2} | ${INT2_NAME} | ${VLAN}
 | | Set Interface State | ${DUT1} | ${dut1s_vlan_index} | up
 | | Set Interface State | ${DUT2} | ${dut2s_vlan_index} | up
 | | Set Test Variable | ${dut1s_vlan_name}
