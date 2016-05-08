@@ -159,10 +159,11 @@
 | | [Arguments] | ${dut_node} | ${interface} | @{vhosts}
 | | Bridge domain on DUT node is created | ${dut_node} | ${bid_b} | learn=${TRUE}
 | | Bridge domain on DUT node is created | ${dut_node} | ${bid_r} | learn=${TRUE}
+| | ${interface_name}= | Get interface name | ${dut_node} | ${interface}
 | | ${vlan1_name} | ${vlan1_index}= | Create Vlan Subinterface
-| | ... | ${dut_node} | ${interface} | ${vlan_blue}
+| | ... | ${dut_node} | ${interface_name} | ${vlan_blue}
 | | ${vlan2_name} | ${vlan2_index}= | Create Vlan Subinterface
-| | ... | ${dut_node} | ${interface} | ${vlan_red}
+| | ... | ${dut_node} | ${interface_name} | ${vlan_red}
 | | L2 Tag Rewrite | ${dut_node} | @{vhosts}[0] | push-1 | ${vlan_blue}
 | | L2 Tag Rewrite | ${dut_node} | @{vhosts}[1] | push-1 | ${vlan_blue}
 | | L2 Tag Rewrite | ${dut_node} | @{vhosts}[2] | push-1 | ${vlan_red}
