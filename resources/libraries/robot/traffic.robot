@@ -59,10 +59,12 @@
 | | [Arguments] | ${tg_node} | ${src_ip} | ${dst_ip} | ${tx_src_port} |
 | | ... | ${tx_src_mac} | ${tx_dst_mac} | ${rx_port} | ${rx_src_mac}
 | | ... | ${rx_dst_mac}
+| | ${tx_port_name}= | Get interface name | ${tg_node} | ${tx_src_port}
+| | ${rx_port_name}= | Get interface name | ${tg_node} | ${rx_port}
 | | ${args}= | Catenate | --tg_src_mac | ${tx_src_mac} | --tg_dst_mac |
 | | ... | ${rx_dst_mac} | --dut_if1_mac | ${tx_dst_mac} | --dut_if2_mac |
 | | ... | ${rx_src_mac} | --src_ip | ${src_ip} | --dst_ip | ${dst_ip} |
-| | ... | --tx_if | ${tx_src_port} | --rx_if | ${rx_port}
+| | ... | --tx_if | ${tx_port_name} | --rx_if | ${rx_port_name}
 | | Run Traffic Script On Node | send_icmp_check_headers.py | ${tg_node} |
 | | ... | ${args}
 
@@ -98,10 +100,12 @@
 | | [Arguments] | ${tg_node} | ${src_ip} | ${dst_ip} | ${tx_src_port} |
 | | ... | ${tx_src_mac} | ${tx_dst_mac} | ${rx_port} | ${rx_src_mac} |
 | | ... | ${rx_dst_mac}
+| | ${tx_port_name}= | Get interface name | ${tg_node} | ${tx_src_port}
+| | ${rx_port_name}= | Get interface name | ${tg_node} | ${rx_port}
 | | ${args}= | Catenate | --tg_src_mac | ${tx_src_mac} | --tg_dst_mac |
 | | ... | ${rx_dst_mac} | --dut_if1_mac | ${tx_dst_mac} | --dut_if2_mac |
 | | ... | ${rx_src_mac} | --src_ip | ${src_ip} | --dst_ip | ${dst_ip} |
-| | ... | --tx_if | ${tx_src_port} | --rx_if | ${rx_port}
+| | ... | --tx_if | ${tx_port_name} | --rx_if | ${rx_port_name}
 | | Run Keyword And Expect Error | ICMP echo Rx timeout |
 | | ... | Run Traffic Script On Node | send_icmp_check_headers.py
 | | ... | ${tg_node} | ${args}
@@ -144,10 +148,12 @@
 | | [Arguments] | ${tg_node} | ${tx_src_ip} | ${tx_dst_ip} | ${tx_port}
 | | ... | ${tx_dst_mac} | ${rx_port} | ${rx_src_mac} | ${rx_arp_src_ip}
 | | ... | ${rx_arp_dst_ip}
+| | ${tx_port_name}= | Get interface name | ${tg_node} | ${tx_port}
+| | ${rx_port_name}= | Get interface name | ${tg_node} | ${rx_port}
 | | ${args}= | Catenate
 | | ... | --tx_dst_mac | ${tx_dst_mac} | --rx_src_mac | ${rx_src_mac}
 | | ... | --tx_src_ip | ${tx_src_ip} | --tx_dst_ip | ${tx_dst_ip}
-| | ... | --tx_if | ${tx_port} | --rx_if | ${rx_port}
+| | ... | --tx_if | ${tx_port_name} | --rx_if | ${rx_port_name}
 | | ... | --rx_arp_src_ip ${rx_arp_src_ip} | --rx_arp_dst_ip ${rx_arp_dst_ip}
 | | Run Traffic Script On Node | send_icmp_check_arp.py | ${tg_node} | ${args}
 
@@ -183,12 +189,14 @@
 | | [Arguments] | ${tg_node} | ${src_ip} | ${dst_ip} | ${tx_port} |
 | | ... | ${tx_mac} | ${rx_port} | ${rx_mac} | ${protocol} | ${source_port}
 | | ... | ${destination_port}
+| | ${tx_port_name}= | Get interface name | ${tg_node} | ${tx_port}
+| | ${rx_port_name}= | Get interface name | ${tg_node} | ${rx_port}
 | | ${args}= | Catenate | --tx_mac | ${tx_mac}
 | | ...                 | --rx_mac | ${rx_mac}
 | | ...                 | --src_ip | ${src_ip}
 | | ...                 | --dst_ip | ${dst_ip}
-| | ...                 | --tx_if | ${tx_port}
-| | ...                 | --rx_if | ${rx_port}
+| | ...                 | --tx_if | ${tx_port_name}
+| | ...                 | --rx_if | ${rx_port_name}
 | | ...                 | --protocol | ${protocol}
 | | ...                 | --source_port | ${source_port}
 | | ...                 | --destination_port | ${destination_port}
@@ -227,12 +235,14 @@
 | | [Arguments] | ${tg_node} | ${src_ip} | ${dst_ip} | ${tx_port} |
 | | ... | ${tx_mac} | ${rx_port} | ${rx_mac} | ${protocol} | ${source_port}
 | | ... | ${destination_port}
+| | ${tx_port_name}= | Get interface name | ${tg_node} | ${tx_port}
+| | ${rx_port_name}= | Get interface name | ${tg_node} | ${rx_port}
 | | ${args}= | Catenate | --tx_mac | ${tx_mac}
 | | ...                 | --rx_mac | ${rx_mac}
 | | ...                 | --src_ip | ${src_ip}
 | | ...                 | --dst_ip | ${dst_ip}
-| | ...                 | --tx_if | ${tx_port}
-| | ...                 | --rx_if | ${rx_port}
+| | ...                 | --tx_if | ${tx_port_name}
+| | ...                 | --rx_if | ${rx_port_name}
 | | ...                 | --protocol | ${protocol}
 | | ...                 | --source_port | ${source_port}
 | | ...                 | --destination_port | ${destination_port}
