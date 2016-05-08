@@ -42,7 +42,8 @@
 | | ... | \| eth2 \| 08:00:27:66:b8:57 \| client-hostname \|
 | | ...
 | | [Arguments] | ${tg_node} | ${interface} | ${src_mac} | ${hostname}=${EMPTY}
-| | ${args}= | Catenate | --rx_if | ${interface} | --rx_src_mac | ${src_mac}
+| | ${interface_name}= | Get interface name | ${tg_node} | ${interface}
+| | ${args}= | Catenate | --rx_if | ${interface_name} | --rx_src_mac | ${src_mac}
 | | ${args}= | Run Keyword If | "${hostname}" == "" | Set Variable | ${args}
 | | ...      | ELSE | Catenate | ${args} | --hostname | ${hostname}
 | | Run Traffic Script On Node | dhcp/check_dhcp_discover.py
@@ -92,7 +93,8 @@
 | | [Arguments] | ${tg_node} | ${tg_interface} | ${server_mac} | ${server_ip}
 | | ... | ${client_mac} | ${client_ip} | ${client_mask}
 | | ... | ${hostname}=${EMPTY} | ${offer_xid}=${EMPTY}
-| | ${args}= | Catenate | --rx_if | ${tg_interface} | --server_mac
+| | ${tg_interface_name}= | Get interface name | ${tg_node} | ${tg_interface}
+| | ${args}= | Catenate | --rx_if | ${tg_interface_name} | --server_mac
 | | ... | ${server_mac} | --server_ip | ${server_ip} | --client_mac
 | | ... | ${client_mac} | --client_ip | ${client_ip} | --client_mask
 | | ... | ${client_mask}
@@ -130,7 +132,8 @@
 | | [Arguments] | ${tg_node} | ${tg_interface}
 | | ... | ${server_mac} | ${server_ip} | ${client_ip} | ${client_mask}
 | | ... | ${lease_time}
-| | ${args}= | Catenate | --rx_if | ${tg_interface}
+| | ${tg_interface_name}= | Get interface name | ${tg_node} | ${tg_interface}
+| | ${args}= | Catenate | --rx_if | ${tg_interface_name}
 | | ... | --server_mac | ${server_mac} | --server_ip | ${server_ip}
 | | ... | --client_ip | ${client_ip} | --client_mask | ${client_mask}
 | | ... | --lease_time | ${lease_time}
