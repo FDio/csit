@@ -38,7 +38,7 @@ class InterfaceUtil(object):
         Function can be used for DUTs as well as for TGs.
 
         :param node: Node where the interface is.
-        :param interface: Interface name or sw_if_index.
+        :param interface: Interface key or sw_if_index.
         :param state: One of 'up' or 'down'.
         :type node: dict
         :type interface: str or int
@@ -62,23 +62,24 @@ class InterfaceUtil(object):
                                           sw_if_index=sw_if_index, state=state)
 
         elif node['type'] == NodeType.TG or node['type'] == NodeType.VM:
-            cmd = 'ip link set {} {}'.format(interface, state)
+            iface_name = Topology.get_interface_name(node, interface)
+            cmd = 'ip link set {} {}'.format(iface_name, state)
             exec_cmd_no_error(node, cmd, sudo=True)
         else:
             raise Exception('Node {} has unknown NodeType: "{}"'.
                             format(node['host'], node['type']))
 
     @staticmethod
-    def set_interface_ethernet_mtu(node, interface, mtu):
+    def set_interface_ethernet_mtu(node, iface_key, mtu):
         """Set Ethernet MTU for specified interface.
 
         Function can be used only for TGs.
 
         :param node: Node where the interface is.
-        :param interface: Interface name.
+        :param interface: Interface key from topology file.
         :param mtu: MTU to set.
         :type node: dict
-        :type interface: str
+        :type iface_key: str
         :type mtu: int
         :return: nothing
         """
@@ -86,7 +87,8 @@ class InterfaceUtil(object):
             ValueError('Node {}: Setting Ethernet MTU for interface '
                        'on DUT nodes not supported', node['host'])
         elif node['type'] == NodeType.TG:
-            cmd = 'ip link set {} mtu {}'.format(interface, mtu)
+            iface_name = Topology.get_interface_name(node, iface_key)
+            cmd = 'ip link set {} mtu {}'.format(iface_name, mtu)
             exec_cmd_no_error(node, cmd, sudo=True)
         else:
             raise ValueError('Node {} has unknown NodeType: "{}"'.
@@ -102,8 +104,8 @@ class InterfaceUtil(object):
         :type node: dict
         :return: nothing
         """
-        for ifc in node['interfaces'].values():
-            InterfaceUtil.set_interface_ethernet_mtu(node, ifc['name'], 1500)
+        for ifc in node['interfaces']:
+            InterfaceUtil.set_interface_ethernet_mtu(node, ifc, 1500)
 
     @staticmethod
     def vpp_node_interfaces_ready_wait(node, timeout=10):
