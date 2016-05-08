@@ -255,7 +255,8 @@ class IPv4Setup(object):
                     continue
                 if node['type'] != NodeType.DUT:
                     continue
-                get_node(node).set_ip(port['if'], port['addr'], net['prefix'])
+                iface_key = topo.get_interface_by_name(node, port['if'])
+                get_node(node).set_ip(iface_key, port['addr'], net['prefix'])
                 interfaces.append((node, port['if']))
 
         return interfaces
@@ -305,11 +306,10 @@ class IPv4Setup(object):
         for node in nodes_info.values():
             if node['type'] == NodeType.TG:
                 continue
-            for interface, interface_data in node['interfaces'].iteritems():
-                interface_name = interface_data['name']
+            for iface_key in node['interfaces'].keys():
+                interface_name = Topology.get_interface_name(node, iface_key)
                 adj_node, adj_int = Topology.\
-                    get_adjacent_node_and_interface(nodes_info, node,
-                                                    interface_name)
+                    get_adjacent_node_and_interface(nodes_info, node, iface_key)
                 ip_address = IPv4Setup.get_ip_addr(adj_node, adj_int['name'],
                                                    nodes_addr)
                 mac_address = adj_int['mac_address']
