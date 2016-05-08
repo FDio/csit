@@ -75,7 +75,9 @@
 | | ...         | ${tx_dst_mac} | ${rx_dst_mac}
 | | ...         | ${inner_src_ip} | ${inner_dst_ip}
 | | ...         | ${outer_src_ip} | ${outer_dst_ip}
-| | ${args}= | Catenate | --tx_if | ${tx_if} | --rx_if | ${rx_if}
+| | ${tx_if_name}= | Get interface name | ${tg_node} | ${tx_if}
+| | ${rx_if_name}= | Get interface name | ${tg_node} | ${rx_if}
+| | ${args}= | Catenate | --tx_if | ${tx_if_name} | --rx_if | ${rx_if_name}
 | | | ... | --tx_dst_mac | ${tx_dst_mac} | --rx_dst_mac | ${rx_dst_mac}
 | | | ... | --inner_src_ip | ${inner_src_ip} | --inner_dst_ip | ${inner_dst_ip}
 | | | ... | --outer_src_ip | ${outer_src_ip} | --outer_dst_ip | ${outer_dst_ip}
@@ -115,7 +117,9 @@
 | | ...         | ${tx_dst_mac} | ${rx_dst_mac}
 | | ...         | ${inner_src_ip} | ${inner_dst_ip}
 | | ...         | ${outer_src_ip} | ${outer_dst_ip}
-| | ${args}= | Catenate | --tx_if | ${tx_if} | --rx_if | ${rx_if}
+| | ${tx_if_name}= | Get interface name | ${tg_node} | ${tx_if}
+| | ${rx_if_name}= | Get interface name | ${tg_node} | ${rx_if}
+| | ${args}= | Catenate | --tx_if | ${tx_if_name} | --rx_if | ${rx_if_name}
 | | | ... | --tx_dst_mac | ${tx_dst_mac} | --rx_dst_mac | ${rx_dst_mac}
 | | | ... | --inner_src_ip | ${inner_src_ip} | --inner_dst_ip | ${inner_dst_ip}
 | | | ... | --outer_src_ip | ${outer_src_ip} | --outer_dst_ip | ${outer_dst_ip}
