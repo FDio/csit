@@ -1,0 +1,79 @@
+---
+- hosts: all
+  remote_user: testuser
+  sudo: yes
+  tasks:
+  - name: copy sudoers file
+    copy: src=files/sudoers dest=/etc/sudoers.d/testuser owner=root group=root mode=660
+  - name: copy hosts file
+    template: src=files/hosts dest=/etc/hosts owner=root group=root mode=644
+  - name: copy hostname file
+    template: src=files/hostname dest=/etc/hostname owner=root group=root mode=644
+  - name: interfaces file
+    template: src=files/interfaces dest=/etc/network/interfaces owner=root group=root mode=644
+  - name: copy ttyS0 file
+    template: src=files/ttyS0 dest=/etc/init/ttyS0.conf owner=root group=root mode=644
+  - name: start ttyS0
+    service: name=ttyS0 state=started
+  - name: copy grub file
+    template: src=files/grub dest=/etc/default/grub owner=root group=root mode=644
+  - name: update grub
+    command: update-grub
+  - name: copy apt sources file
+    template: src=files/apt-sources.list dest=/etc/apt/sources.list
+  - name: update repositories
+    apt: update_cache=yes
+  - name: install git
+    apt: name=git state=present
+  - name: install crudini
+    apt: name=crudini state=present
+  - name: install expect
+    apt: name=expect state=present
+- hosts: virl
+  remote_user: testuser
+  sudo: yes
+  tasks:
+  - name: Add VIRL user
+    user: name=virl shell=/bin/bash comment="VIRL user" password="$6$mJPlK5FKLar6$xxXPP0LRhC7T1yhHtym18Z3nKZweTtfTxzi1WpvVHJ0U/Em1UWcHqfMhRApFp0rsY9jHRuL6FfeFbKPN..uDK."
+  - name: Add VIRL user to sudoers
+    copy: src=files/sudoers_virl dest=/etc/sudoers.d/virl owner=root group=root mode=660
+  - name: Set VIRL user authorized key
+    authorized_key: user=virl key="{{ lookup('file', '/home/testuser/.ssh/id_rsa.pub') }}"
+  - name: install qemu (as a workaround)
+    apt: name=qemu-system-x86 state=present
+- hosts: tg:sut
+  remote_user: testuser
+  sudo: yes
+  tasks:
+  - name: Install cpufrequtils
+    apt: name=cpufrequtils state=present
+  - name: Set cpufrequtils defaults
+    copy: src=files/cpufrequtils dest=/etc/default/cpufrequtils owner=root group=root mode=0644
+  - name: Disable IRQ load balancing
+    copy: src=files/irqbalance dest=/etc/default/irqbalance owner=root group=root mode=0644
+  - name: Disable ondemand
+    shell: update-rc.d ondemand disable
+  - name: Install 4.2 kernel
+    apt: name=linux-generic-lts-xenial state=present
+- hosts: tg
+  remote_user: testuser
+  sudo: yes
+  tasks:
+  - name: Install zlib1g-dev
+    apt: name=zlib1g-dev state=present
+  - name: Install unzip
+    apt: name=unzip state=present
+  - name: pstate parameter
+    lineinfile: dest=/etc/default/grub regexp=^GRUB_CMDLINE_LINUX= line=GRUB_CMDLINE_LINUX="\"intel_pstate=disable\""
+  - name: update grub
+    command: update-grub
+- hosts: sut
+  remote_user: testuser
+  sudo: yes
+  tasks:
+  - name: Install dkms
+    apt: name=dkms state=present
+  - name: isolcpus and pstate parameter
+    lineinfile: dest=/etc/default/grub regexp=^GRUB_CMDLINE_LINUX= line=GRUB_CMDLINE_LINUX="\"isolcpus={{ isolcpus }} intel_pstate=disable\""
+  - name: update grub
+    command: update-grub

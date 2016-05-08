@@ -1,0 +1,109 @@
+---
+- hosts: virl
+  remote_user: virl
+  tasks:
+  - name: install virl-bootstrap
+    git: repo=https://github.com/VIRL-Open/virl-bootstrap.git
+         dest=/home/virl/virl-bootstrap
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=hostname value={{ hostname }}
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=domain_name value=linuxfoundation.org
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=using_dhcp_on_the_public_port value=False
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=public_port value={{ ansible_default_ipv4["interface"] }}
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=Static_IP value={{ ansible_default_ipv4["address"] }}
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=public_network value={{ ansible_default_ipv4["network"] }}
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=public_netmask value={{ ansible_default_ipv4["netmask"] }}
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=public_gateway value={{ ansible_default_ipv4["gateway"] }}
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=proxy value=False
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=ntp_server value=pool.ntp.org
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=first_nameserver value=199.204.44.24
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=second_nameserver value=199.204.47.54
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=salt_master value=us-1.virl.info,us-2.virl.info,us-4.virl.info
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=salt_id value={{ hostname }}
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=salt_domain value=linuxfoundation.org
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=salt_masterless value=false
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=l2_port value={{ ansible_default_ipv4["interface"] }}
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=l2_network value=10.30.51.0/24
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=l2_mask value=255.255.255.0
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=l2_network_gateway value=10.30.51.1
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=l2_start_address value={{ virl_l2_start }}
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=l2_end_address value={{ virl_l2_end }}
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=l2_address value={{ ansible_default_ipv4["address"] }}/24
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=first_flat_nameserver value=199.204.44.24
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=second_flat_nameserver value=199.204.47.54
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=l2_port2_enabled value=True
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=l2_port2 value=dummy0
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=l2_network2 value=172.16.2.0/24
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=l2_mask2 value=255.255.255.0
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=l2_network_gateway2 value=172.16.2.1
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=l2_start_address2 value=172.16.2.50
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=l2_end_address2 value=172.16.2.253
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=l2_address2 value=172.16.2.254/24
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=first_flat2_nameserver value=199.204.44.24
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=second_flat2_nameserver value=199.204.47.54
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=l3_port value=dummy1
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=l3_network value=172.16.3.0/24
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=l3_mask value=255.255.255.0
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=l3_network_gateway value=172.16.3.1
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=l3_floating_start_address value=172.16.3.50
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=l3_floating_end_address value=172.16.3.253
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=l3_address value=172.16.3.254/24
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=first_snat_nameserver value=199.204.44.24
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=second_snat_nameserver value=199.204.47.54
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=ramdisk value=True
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=ank value=19401
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=ank_live value=19402
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=virl_webservices value=19399
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=virl_user_management value=19400
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=virl_apache_port value=80
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=virl_webmux value=19403
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=Start_of_serial_port_range value=17000
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=End_of_serial_port_range value=18000
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=serial_port value=19406
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=vnc_port value=19407
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=location_region value=US
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=vnc value=False
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=guest_account value=True
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=user_list value=tb4-virl:Cisco1234
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=uwmadmin_password value=Cisco1234
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=password value=password
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=mysql_password value=password
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=keystone_service_token value=fkgjhsdflkjh
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=enable_cinder value=True
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=cinder_file value=True
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=cinder_size value=20000
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=cinder_location value=/var/lib/cinder/cinder-volumes.lvm
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=dummy_int value=True
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=this_node_is_the_controller value=True
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=internalnet_controller_hostname value=controller
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=internalnet_controller_IP value=172.16.10.250
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=internalnet_port value=dummy2
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=internalnet_IP value=172.16.10.250
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=internalnet_network value=172.16.10.0
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=internalnet_netmask value=255.255.255.0
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=internalnet_gateway value=172.16.10.1
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=iosv value=True
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=csr1000v value=True
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=iosxrv432 value=False
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=iosxrv52 value=False
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=iosxrv value=True
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=nxosv value=True
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=vpagent value=True
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=iosvl2 value=True
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=asav value=True
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=lxc_server value=True
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=lxc_iperf value=True
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=lxc_routem value=True
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=lxc_ostinato value=True
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=server value=True
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=vmm_mac value=True
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=vmm_win32 value=True
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=vmm_win64 value=True
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=vmm_linux value=True
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=virl_clients value=True
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=ram_overcommit value=2
+  - ini_file: dest=/home/virl/virl-bootstrap/vsettings.ini section=DEFAULT option=web_editor value=True
+  - name: copy vsetting file to /etc
+    sudo: yes
+    shell: cp /home/virl/virl-bootstrap/vsettings.ini /etc/virl.ini
+  - name: copy vinstall bootstrap wrapper script
+    template: src=files/virl/virl-bootstrap-wrapper dest=/home/virl/virl-bootstrap/virl-bootstrap-wrapper owner=virl group=virl mode=775
