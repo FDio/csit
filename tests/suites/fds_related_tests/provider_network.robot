@@ -80,8 +80,8 @@
 | | ... | ${prefix_length}
 | | And Set Interface Address | ${dut2_node} | ${dut2_to_dut1} | ${dut2_if_ip}
 | | ... | ${prefix_length}
-| | And Set Interface State | ${dut1_node} | ${dut1_to_dut2} | up
-| | And Set Interface State | ${dut2_node} | ${dut2_to_dut1} | up
+| | And Set Interface State | ${dut1_node} | ${dut1_to_dut2} | up | if_type=name
+| | And Set Interface State | ${dut2_node} | ${dut2_to_dut1} | up | if_type=name
 | | ${vhost_if1_DUT1}= | And Vpp Create Vhost User Interface
 | | ... | ${dut1_node} | ${sock1}
 | | ${vhost_if2_DUT1}= | And Vpp Create Vhost User Interface
