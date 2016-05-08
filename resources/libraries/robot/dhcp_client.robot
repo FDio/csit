@@ -42,7 +42,8 @@
 | | ... | \| eth2 \| 08:00:27:66:b8:57 \| client-hostname \|
 | | ...
 | | [Arguments] | ${tg_node} | ${interface} | ${src_mac} | ${hostname}=${EMPTY}
-| | ${args}= | Catenate | --rx_if | ${interface} | --rx_src_mac | ${src_mac}
+| | ${interface_name}= | Get interface name | ${tg_node} | ${interface}
+| | ${args}= | Catenate | --rx_if | ${interface_name} | --rx_src_mac | ${src_mac}
 | | ${args}= | Run Keyword If | "${hostname}" == "" | Set Variable | ${args}
 | | ...      | ELSE | Catenate | ${args} | --hostname | ${hostname}
 | | Run Traffic Script On Node | dhcp/check_dhcp_discover.py

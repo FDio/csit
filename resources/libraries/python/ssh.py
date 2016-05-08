@@ -250,7 +250,7 @@ def exec_cmd(node, cmd, timeout=None, sudo=False):
     try:
         ssh.connect(node)
     except Exception, e:
-        logger.error("Failed to connect to node" + e)
+        logger.error("Failed to connect to node" + str(e))
         return None
 
     try:

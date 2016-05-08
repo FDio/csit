@@ -28,7 +28,7 @@
 | | [Arguments] | ${nodes} | ${nodes_addr}
 | | ${interfaces}= | VPP nodes set ipv4 addresses | ${nodes} | ${nodes_addr}
 | | :FOR | ${interface} | IN | @{interfaces}
-| | | Set Interface State | @{interface} | up
+| | | Set Interface State | @{interface} | up | if_type=name
 
 | Routes are set up for IPv4 testing
 | | [Documentation] | Setup routing on all VPP nodes required for IPv4 tests
@@ -67,9 +67,12 @@
 | | ${dst_mac}= | Get interface mac | ${to_node} | ${to_port}
 | | ${is_dst_tg}= | Is TG node | ${to_node}
 | | ${adj_node} | ${adj_int}= | Get adjacent node and interface | ${nodes} | ${from_node} | ${from_port}
-| | ${args}= | Traffic Script Gen Arg | ${to_port} | ${from_port} | ${src_mac}
+| | ${from_port_name}= | Get interface name | ${from_node} | ${from_port}
+| | ${to_port_name}= | Get interface name | ${to_node} | ${to_port}
+| | ${adj_int_mac}= | Get interface MAC | ${adj_node} | ${adj_int}
+| | ${args}= | Traffic Script Gen Arg | ${to_port_name} | ${from_port_name} | ${src_mac}
 | |          | ...                    | ${dst_mac} | ${src_ip} | ${dst_ip}
-| | ${args}= | Catenate | ${args} | --hops ${hops} | --first_hop_mac ${adj_int['mac_address']}
+| | ${args}= | Catenate | ${args} | --hops ${hops} | --first_hop_mac ${adj_int_mac}
 | |          | ...      | --is_dst_tg ${is_dst_tg}
 | | Run Traffic Script On Node | ipv4_ping_ttl_check.py | ${from_node} | ${args}
 
@@ -84,7 +87,8 @@
 | | ${dst_ip}= | Get IPv4 address of node "${dst_node}" interface "${dst_port}" from "${nodes_ipv4_addr}"
 | | ${src_mac}= | Get Interface Mac | ${src_node} | ${src_port}
 | | ${dst_mac}= | Get Interface Mac | ${dst_node} | ${dst_port}
-| | ${args}= | Traffic Script Gen Arg | ${src_port} | ${src_port} | ${src_mac}
+| | ${src_port_name}= | Get interface name | ${src_node} ${src_port}
+| | ${args}= | Traffic Script Gen Arg | ${src_port_name} | ${src_port_name} | ${src_mac}
 | |          | ...                    | ${dst_mac} | ${src_ip} | ${dst_ip}
 | | ${args}= | Set Variable
 | | ... | ${args} --start_size ${start_size} --end_size ${end_size} --step ${step}
@@ -99,7 +103,8 @@
 | | ${dst_ip}= | Get IPv4 address of node "${vpp_node}" interface "${dst_if}" from "${nodes_ipv4_addr}"
 | | ${src_mac}= | Get node link mac | ${tg_node} | ${link_name}
 | | ${dst_mac}= | Get node link mac | ${vpp_node} | ${link_name}
-| | ${args}= | Traffic Script Gen Arg | ${src_if} | ${src_if} | ${src_mac}
+| | ${src_if_name}= | Get interface name | ${tg_node} | ${src_if}
+| | ${args}= | Traffic Script Gen Arg | ${src_if_name} | ${src_if_name} | ${src_mac}
 | |          | ...                    | ${dst_mac} | ${src_ip} | ${dst_ip}
 | | Run Traffic Script On Node | arp_request.py | ${tg_node} | ${args}
 
