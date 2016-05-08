@@ -227,8 +227,8 @@
 | | ${vhost1}= | Get Vhost User If Name By Sock | ${vm} | ${sock1}
 | | ${vhost2}= | Get Vhost User If Name By Sock | ${vm} | ${sock2}
 | | Linux Add Bridge | ${vm} | ${br} | ${vhost1} | ${vhost2}
-| | Set Interface State | ${vm} | ${vhost1} | up
-| | Set Interface State | ${vm} | ${vhost2} | up
+| | Set Interface State | ${vm} | ${vhost1} | up | if_type=name
+| | Set Interface State | ${vm} | ${vhost2} | up | if_type=name
 | | Set Interface State | ${vm} | ${br} | up
 | | Set Test Variable | ${vm_node} | ${vm}
 

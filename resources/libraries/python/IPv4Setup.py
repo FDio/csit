@@ -173,18 +173,18 @@ class Dut(IPv4Node):
         # TODO: check return value
         VatExecutor.cmd_from_template(self.node_info, script, **args)
 
-    def set_arp(self, interface, ip_address, mac_address):
+    def set_arp(self, iface_key, ip_address, mac_address):
         """Set entry in ARP cache.
 
-        :param interface: Interface name.
+        :param iface_key: Interface key.
         :param ip_address: IP address.
         :param mac_address: MAC address.
-        :type interface: str
+        :type iface_key: str
         :type ip_address: str
         :type mac_address: str
         """
         self.exec_vat('add_ip_neighbor.vat',
-                      sw_if_index=self.get_sw_if_index(interface),
+                      sw_if_index=self.get_sw_if_index(iface_key),
                       ip_address=ip_address, mac_address=mac_address)
 
     def set_ip(self, interface, address, prefix_length):
@@ -255,7 +255,8 @@ class IPv4Setup(object):
                     continue
                 if node['type'] != NodeType.DUT:
                     continue
-                get_node(node).set_ip(port['if'], port['addr'], net['prefix'])
+                iface_key = topo.get_interface_by_name(node, port['if'])
+                get_node(node).set_ip(iface_key, port['addr'], net['prefix'])
                 interfaces.append((node, port['if']))
 
         return interfaces
@@ -263,18 +264,19 @@ class IPv4Setup(object):
     @staticmethod
     @keyword('Get IPv4 address of node "${node}" interface "${port}" '
              'from "${nodes_addr}"')
-    def get_ip_addr(node, interface, nodes_addr):
+    def get_ip_addr(node, iface_key, nodes_addr):
         """Return IPv4 address of the node port.
 
         :param node: Node in the topology.
-        :param interface: Interface name of the node.
+        :param iface_key: Interface key of the node.
         :param nodes_addr: Nodes IPv4 addresses.
         :type node: dict
-        :type interface: str
+        :type iface_key: str
         :type nodes_addr: dict
         :return: IPv4 address.
         :rtype: str
         """
+        interface = Topology.get_interface_name(node, iface_key)
         for net in nodes_addr.values():
             for port in net['ports'].values():
                 host = port.get('node')
@@ -305,27 +307,25 @@ class IPv4Setup(object):
         for node in nodes_info.values():
             if node['type'] == NodeType.TG:
                 continue
-            for interface, interface_data in node['interfaces'].iteritems():
-                interface_name = interface_data['name']
+            for iface_key in node['interfaces'].keys():
                 adj_node, adj_int = Topology.\
-                    get_adjacent_node_and_interface(nodes_info, node,
-                                                    interface_name)
+                    get_adjacent_node_and_interface(nodes_info, node, iface_key)
                 ip_address = IPv4Setup.get_ip_addr(adj_node, adj_int['name'],
                                                    nodes_addr)
                 mac_address = adj_int['mac_address']
-                get_node(node).set_arp(interface_name, ip_address, mac_address)
+                get_node(node).set_arp(iface_key, ip_address, mac_address)
 
     @staticmethod
-    def add_arp_on_dut(node, interface, ip_address, mac_address):
+    def add_arp_on_dut(node, iface_key, ip_address, mac_address):
         """Set ARP cache entree on DUT node.
 
         :param node: VPP Node in the topology.
-        :param interface: Interface name of the node.
+        :param iface_key: Interface key.
         :param ip_address: IP address of the interface.
         :param mac_address: MAC address of the interface.
         :type node: dict
-        :type interface: str
+        :type iface_key: str
         :type ip_address: str
         :type mac_address: str
         """
-        get_node(node).set_arp(interface, ip_address, mac_address)
+        get_node(node).set_arp(iface_key, ip_address, mac_address)

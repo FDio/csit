@@ -79,7 +79,8 @@ def get_variables(nodes, networks=IPV4_NETWORKS[:]):
         port_idx = 0
         ports = {}
         for node in nodes.values():
-            if_name = topo.get_interface_by_link_name(node, link)
+            if_key = topo.get_interface_by_link_name(node, link)
+            if_name = topo.get_interface_name(node, if_key)
             if if_name is not None:
                 port = {'addr': str(next(net_hosts)),
                         'node': node['host'],
