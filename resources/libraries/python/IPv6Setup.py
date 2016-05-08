@@ -156,19 +156,20 @@ class IPv6Setup(object):
             raise Exception('TG ifconfig failed')
 
     @staticmethod
-    def vpp_set_if_ipv6_addr(node, interface, addr, prefix):
+    def vpp_set_if_ipv6_addr(node, iface_key, addr, prefix):
         """Set IPv6 address on VPP.
 
         :param node: VPP node.
-        :param interface: Node interface.
+        :param iface_key: Node interface key.
         :param addr: IPv6 address.
         :param prefix: IPv6 address prefix.
         :type node: dict
-        :type interface: str
+        :type iface_key: str
         :type addr: str
         :type prefix: str
         """
-        sw_if_index = Topology.get_interface_sw_index(node, interface)
+        topo = Topology()
+        sw_if_index = Topology.get_interface_sw_index(node, iface_key)
         with VatTerminal(node) as vat:
             vat.vat_terminal_exec_cmd_from_template('add_ip_address.vat',
                                                     sw_if_index=sw_if_index,
@@ -256,11 +257,8 @@ class IPv6Setup(object):
         for node in nodes.values():
             if node['type'] == NodeType.TG:
                 continue
-            for port_k, port_v in node['interfaces'].items():
-                if_name = port_v.get('name')
-                if if_name is None:
-                    continue
-                self.vpp_ra_suppress_link_layer(node, if_name)
+            for port_k in node['interfaces'].keys():
+                self.vpp_ra_suppress_link_layer(node, port_k)
 
     @staticmethod
     def get_link_address(link, nodes_addr):

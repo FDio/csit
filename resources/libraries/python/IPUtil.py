@@ -17,30 +17,32 @@ from ipaddress import IPv4Network
 from resources.libraries.python.ssh import SSH
 from resources.libraries.python.constants import Constants
 
+from resources.libraries.python.topology import Topology
 
 class IPUtil(object):
     """Common IP utilities"""
 
     @staticmethod
-    def vpp_ip_probe(node, interface, addr):
+    def vpp_ip_probe(node, iface_key, addr):
         """Run ip probe on VPP node.
 
         :param node: VPP node.
-        :param interface: Interface name.
+        :param iface_key: Interface key based on topology.
         :param addr: IPv4/IPv6 address.
         :type node: dict
-        :type interface: str
+        :type iface_key: str
         :type addr: str
         """
         ssh = SSH()
         ssh.connect(node)
 
         cmd = "{c}".format(c=Constants.VAT_BIN_NAME)
-        cmd_input = 'exec ip probe {dev} {ip}'.format(dev=interface, ip=addr)
+        iface_name = Topology.get_interface_name(node, iface_key)
+        cmd_input = 'exec ip probe {dev} {ip}'.format(dev=iface_name, ip=addr)
         (ret_code, _, _) = ssh.exec_command_sudo(cmd, cmd_input)
         if int(ret_code) != 0:
             raise Exception('VPP ip probe {dev} {ip} failed on {h}'.format(
-                dev=interface, ip=addr, h=node['host']))
+                dev=iface_name, ip=addr, h=node['host']))
 
 
 def convert_ipv4_netmask_prefix(network):
