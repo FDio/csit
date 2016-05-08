@@ -37,7 +37,8 @@
 | | ${dst_ip}= | Get Node Port Ipv6 Address | ${dst_node} | ${dst_port} | ${nodes_addr}
 | | ${src_mac}= | Get Interface Mac | ${src_node} | ${src_port}
 | | ${dst_mac}= | Get Interface Mac | ${dst_node} | ${dst_port}
-| | ${args}= | Traffic Script Gen Arg | ${src_port} | ${src_port} | ${src_mac}
+| | ${src_port_name}= | Get interface name | ${src_node} | ${src_port}
+| | ${args}= | Traffic Script Gen Arg | ${src_port_name} | ${src_port_name} | ${src_mac}
 | |          | ...                    | ${dst_mac} | ${src_ip} | ${dst_ip}
 | | Run Traffic Script On Node | icmpv6_echo.py | ${tg_node} | ${args}
 | | Vpp dump stats | ${dst_node}
@@ -56,7 +57,8 @@
 | | ${dst_ip}= | Get Node Port Ipv6 Address | ${dst_node} | ${dst_port} | ${nodes_addr}
 | | ${src_mac}= | Get Interface Mac | ${src_node} | ${src_port}
 | | ${dst_mac}= | Get Interface Mac | ${dst_node} | ${dst_port}
-| | ${args}= | Traffic Script Gen Arg | ${src_port} | ${src_port} | ${src_mac}
+| | ${src_port_name}= | Get interface name | ${src_node} | ${src_port}
+| | ${args}= | Traffic Script Gen Arg | ${src_port_name} | ${src_port_name} | ${src_mac}
 | |          | ...                    | ${dst_mac} | ${src_ip} | ${dst_ip}
 | | ${args}= | Set Variable
 | | ...      | ${args} --start_size ${start_size} --end_size ${end_size} --step ${step}
@@ -74,7 +76,8 @@
 | | ${dst_ip}= | Get Node Port Ipv6 Address | ${dst_node} | ${dst_port} | ${nodes_addr}
 | | ${src_mac}= | Get Interface Mac | ${src_node} | ${src_port}
 | | ${dst_mac}= | Get Interface Mac | ${hop_node} | ${hop_port}
-| | ${args}= | Traffic Script Gen Arg | ${src_port} | ${src_port} | ${src_mac}
+| | ${src_port_name}= | Get interface name | ${src_node} | ${src_port}
+| | ${args}= | Traffic Script Gen Arg | ${src_port_name} | ${src_port_name} | ${src_mac}
 | |          | ...                    | ${dst_mac} | ${src_ip} | ${dst_ip}
 | | Run Traffic Script On Node | icmpv6_echo.py | ${tg_node} | ${args}
 
@@ -91,7 +94,8 @@
 | | ${dst_ip}= | Get Node Port Ipv6 Address | ${dst_node} | ${dst_port} | ${nodes_addr}
 | | ${src_mac}= | Get Interface Mac | ${src_node} | ${src_port}
 | | ${dst_mac}= | Get Interface Mac | ${hop_node} | ${hop_port}
-| | ${args}= | Traffic Script Gen Arg | ${src_port} | ${src_port} | ${src_mac}
+| | ${src_port_name}= | Get interface name | ${src_node} | ${src_port}
+| | ${args}= | Traffic Script Gen Arg | ${src_port_name} | ${src_port_name} | ${src_mac}
 | |          | ...                    | ${dst_mac} | ${src_ip} | ${dst_ip}
 | | Run Traffic Script On Node | icmpv6_echo.py | ${tg_node} | ${args}
 
@@ -107,7 +111,8 @@
 | | ${dst_ip}= | Get Node Port Ipv6 Address | ${dst_node} | ${dst_port} | ${nodes_addr}
 | | ${src_mac}= | Get Interface Mac | ${src_node} | ${src_port}
 | | ${dst_mac}= | Get Interface Mac | ${hop_node} | ${hop_port}
-| | ${args}= | Traffic Script Gen Arg | ${src_port} | ${src_port} | ${src_mac}
+| | ${src_port_name}= | Get interface name | ${src_node} | ${src_port}
+| | ${args}= | Traffic Script Gen Arg | ${src_port_name} | ${src_port_name} | ${src_mac}
 | |          | ...                    | ${dst_mac} | ${src_ip} | ${dst_ip}
 | | Run Traffic Script On Node | icmpv6_echo.py | ${tg_node} | ${args}
 
@@ -127,7 +132,9 @@
 | | ${dst_mac}= | Get Interface Mac | ${src_node} | ${dst_port}
 | | ${src_nh_mac}= | Get Interface Mac | ${src_nh_node} | ${src_nh_port}
 | | ${dst_nh_mac}= | Get Interface Mac | ${dst_nh_node} | ${dst_nh_port}
-| | ${args}= | Traffic Script Gen Arg | ${src_port} | ${dst_port} | ${src_mac}
+| | ${src_port_name}= | Get interface name | ${src_node} | ${src_port}
+| | ${dst_port_name}= | Get interface name | ${dst_node} | ${dst_port}
+| | ${args}= | Traffic Script Gen Arg | ${src_port_name} | ${dst_port_name} | ${src_mac}
 | |          | ...                    | ${dst_mac} | ${src_ip} | ${dst_ip}
 | | ${args}= | Catenate | ${args} | --src_nh_mac ${src_nh_mac}
 | |          | ...      | --dst_nh_mac ${dst_nh_mac} | --h_num 2
@@ -144,7 +151,8 @@
 | | ${dst_ip}= | Get Node Port Ipv6 Address | ${dst_node} | ${dst_port} | ${nodes_addr}
 | | ${src_mac}= | Get Interface Mac | ${src_node} | ${src_port}
 | | ${dst_mac}= | Get Interface Mac | ${dst_node} | ${dst_port}
-| | ${args}= | Traffic Script Gen Arg | ${src_port} | ${src_port} | ${src_mac}
+| | ${src_port_name}= | Get interface name | ${src_node} | ${src_port}
+| | ${args}= | Traffic Script Gen Arg | ${src_port_name} | ${src_port_name} | ${src_mac}
 | |          | ...                    | ${dst_mac} | ${src_ip} | ${dst_ip}
 | | Run Traffic Script On Node | ipv6_ns.py | ${src_node} | ${args}
 
