@@ -17,30 +17,42 @@ from ipaddress import IPv4Network
 from resources.libraries.python.ssh import SSH
 from resources.libraries.python.constants import Constants
 
+from resources.libraries.python.topology import Topology
 
 class IPUtil(object):
     """Common IP utilities"""
 
     @staticmethod
-    def vpp_ip_probe(node, interface, addr):
+    def vpp_ip_probe(node, interface, addr, if_type="key"):
         """Run ip probe on VPP node.
 
         :param node: VPP node.
-        :param interface: Interface name.
+        :param interface: Interface key or name.
         :param addr: IPv4/IPv6 address.
+        :param if_type: Interface type
         :type node: dict
         :type interface: str
         :type addr: str
+        :type if_type: str
+        :raises ValueError: If the if_type is unknown.
+        :raises Exception: If vpp probe fails.
         """
         ssh = SSH()
         ssh.connect(node)
 
+        if if_type == "key":
+            iface_name = Topology.get_interface_name(node, interface)
+        elif if_type == "name":
+            iface_name = interface
+        else:
+            raise ValueError("if_type unknown: {}".format(if_type))
+
         cmd = "{c}".format(c=Constants.VAT_BIN_NAME)
-        cmd_input = 'exec ip probe {dev} {ip}'.format(dev=interface, ip=addr)
+        cmd_input = 'exec ip probe {dev} {ip}'.format(dev=iface_name, ip=addr)
         (ret_code, _, _) = ssh.exec_command_sudo(cmd, cmd_input)
         if int(ret_code) != 0:
             raise Exception('VPP ip probe {dev} {ip} failed on {h}'.format(
-                dev=interface, ip=addr, h=node['host']))
+                dev=iface_name, ip=addr, h=node['host']))
 
 
 def convert_ipv4_netmask_prefix(network):

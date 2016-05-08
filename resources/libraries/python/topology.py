@@ -58,8 +58,91 @@ class Topology(object):
     """Topology data manipulation and extraction methods.
 
     Defines methods used for manipulation and extraction of data from
-    the used topology.
+    the active topology.
+
+    "Active topology" contains initially data from the topology file and can be
+    extended with additional data from the DUTs like internal interface indexes
+    or names. Additional data which can be filled to the active topology are
+        - additional internal representation (index, name, ...)
+        - operational data (dynamic ports)
+
+    To access the port data it is recommended to use a port key because the key
+    does not rely on the data retrieved from nodes, this allows to call most of
+    the methods without having filled active topology with internal nodes data.
     """
+
+    @staticmethod
+    def add_new_port(node, ptype):
+        """Add new port to the node to active topology
+
+        :param node: Node to add new port on.
+        :param ptype: Port type, used as key prefix.
+        :type node: dict
+        :type ptype: str
+        :return: Port key or None
+        :rtype: string or None
+        """
+        max_ports = 1000000
+        iface = None
+        for i in range(1, max_ports):
+            if node['interfaces'].get(str(ptype) + str(i)) is None:
+                iface = str(ptype) + str(i)
+                node['interfaces'][iface] = dict()
+                break
+        return iface
+
+    @staticmethod
+    def remove_all_ports(node, ptype):
+        """Remove all ports with ptype as prefix
+
+        :param node: Node to remove ports on.
+        :param: ptype: Port type, used as key prefix.
+        :type node: dict
+        :type ptype: str
+        :return: Nothing
+        """
+        for if_key in list(node['interfaces']):
+            if if_key.startswith(str(ptype)):
+                node['interfaces'].pop(if_key)
+
+    @staticmethod
+    def update_interface_sw_if_index(node, iface_key, sw_if_index):
+        """Update sw_if_index on the interface from the node.
+
+        :param node: Node to update sw_if_index on.
+        :param iface_key: Topology key of the interface.
+        :param sw_if_index: Internal index to store.
+        :type node: dict
+        :type iface_key: str
+        :type sw_if_index: int
+        """
+        node['interfaces'][iface_key]['vpp_sw_index'] = int(sw_if_index)
+
+    @staticmethod
+    def update_interface_mac_address(node, iface_key, mac_address):
+        """Update mac_address on the interface from the node.
+
+        :param node: Node to update MAC on.
+        :param iface_key: Topology key of the interface.
+        :param mac_address: MAC address.
+        :type node: dict
+        :type iface_key: str
+        :type mac_address: str
+        """
+        node['interfaces'][iface_key]['mac_address'] = str(mac_address)
+
+    @staticmethod
+    def update_interface_vhost_socket(node, iface_key, vhost_socket):
+        """Update vhost socket name on the interface from the node.
+
+        :param node: Node to update socket name on.
+        :param iface_key: Topology key of the interface.
+        :param vhost_socket: Path to named socket on node.
+        :type node: dict
+        :type iface_key: str
+        :type vhost_socket: str
+        """
+        node['interfaces'][iface_key]['vhost_socket'] = str(vhost_socket)
 
     @staticmethod
     def get_node_by_hostname(nodes, hostname):
@@ -99,32 +182,69 @@ class Topology(object):
 
     @staticmethod
     def _get_interface_by_key_value(node, key, value):
-        """Return node interface name according to key and value.
+        """Return node interface key from topology file
+        according to key and value.
 
         :param node: The node dictionary.
         :param key: Key by which to select the interface.
         :param value: Value that should be found using the key.
-        :return:
+        :type node: dict
+        :type key: string
+        :type value: string
+        :return: Interface key from topology file
+        :rtype: string
         """
         interfaces = node['interfaces']
         retval = None
-        for interface in interfaces.values():
-            k_val = interface.get(key)
+        for if_key, if_val in interfaces.iteritems():
+            k_val = if_val.get(key)
             if k_val is not None:
                 if k_val == value:
-                    retval = interface['name']
+                    retval = if_key
                     break
         return retval
 
+    def get_interface_by_name(self, node, iface_name):
+        """Return interface key based on name from DUT/TG.
+
+        This method returns interface key based on interface name
+        retrieved from the DUT, or TG.
+
+        :param node: The node topology dictionary.
+        :param iface_name: Interface name (string form).
+        :type node: dict
+        :type iface_name: string
+        :return: Interface key.
+        :rtype: str
+        """
+        return self._get_interface_by_key_value(node, "name", iface_name)
+
+    def get_interface_by_vhost_socket(self, node, vhost_socket):
+        """Return interface key based on socket name.
+
+        This method returns the interface name associated with a given vhost
+        socket name.
+
+        :param node: The node topology dictionary.
+        :param : Name of the vhost user socket.
+        :type node: dict
+        :type iface_name: string
+        :return: Interface key.
+        :rtype: str
+        """
+        return self._get_interface_by_key_value(node, "vhost_socket", vhost_socket)
+
     def get_interface_by_link_name(self, node, link_name):
-        """Return interface name of link on node.
+        """Return interface key of link on node.
 
         This method returns the interface name associated with a given link
         for a given node.
 
-        :param link_name: Name of the link that a interface is connected to.
         :param node: The node topology dictionary.
-        :return: Interface name of the interface connected to the given link.
+        :param link_name: Name of the link that a interface is connected to.
+        :type node: dict
+        :type link_name: string
+        :return: Interface key of the interface connected to the given link.
         :rtype: str
         """
         return self._get_interface_by_key_value(node, "link", link_name)
@@ -135,9 +255,11 @@ class Topology(object):
         This method returns the interface names associated with given links
         for a given node.
 
+        :param node: The node topology directory.
         :param link_names: List of names of the link that a interface is
         connected to.
-        :param node: The node topology directory.
+        :type node: dict
+        :type link_names: list
         :return: Dictionary of interface names that are connected to the given
         links.
         :rtype: dict
@@ -146,7 +268,8 @@ class Topology(object):
         interface_key_tpl = "interface{}"
         interface_number = 1
         for link_name in link_names:
-            interface_name = self.get_interface_by_link_name(node, link_name)
+            interface = self.get_interface_by_link_name(node, link_name)
+            interface_name = self.get_interface_name(node, interface)
             interface_key = interface_key_tpl.format(str(interface_number))
             retval[interface_key] = interface_name
             interface_number += 1
@@ -158,106 +281,105 @@ class Topology(object):
         This method returns the interface name associated with a software
         interface index assigned to the interface by vpp for a given node.
 
-        :param sw_index: Sw_index of the link that a interface is connected to.
         :param node: The node topology dictionary.
+        :param sw_index: Sw_index of the link that a interface is connected to.
+        :type node: dict
+        :type sw_index: int
         :return: Interface name of the interface connected to the given link.
         :rtype: str
         """
         return self._get_interface_by_key_value(node, "vpp_sw_index", sw_index)
 
     @staticmethod
-    def get_interface_sw_index(node, interface):
+    def get_interface_sw_index(node, iface_key):
         """Get VPP sw_if_index for the interface.
 
         :param node: Node to get interface sw_if_index on.
-        :param interface: Interface identifier.
+        :param iface_key: Interface key from topology file, or sw_index.
         :type node: dict
-        :type interface: str or int
+        :type iface_key: str/int
         :return: Return sw_if_index or None if not found.
         """
         try:
-            return int(interface)
-        except ValueError:
-            for port in node['interfaces'].values():
-                port_name = port.get('name')
-                if port_name == interface:
-                    return port.get('vpp_sw_index')
+            if isinstance(iface_key, basestring):
+                return node['interfaces'][iface_key].get('vpp_sw_index')
+            #FIXME: use only iface_key, do not use integer
+            else:
+                return int(iface_key)
+        except (KeyError, ValueError):
             return None
 
     @staticmethod
-    def get_interface_mtu(node, interface):
+    def get_interface_mtu(node, iface_key):
         """Get interface MTU.
 
         Returns physical layer MTU (max. size of Ethernet frame).
         :param node: Node to get interface MTU on.
-        :param interface: Interface name.
+        :param iface_key: Interface key from topology file.
         :type node: dict
-        :type interface: str
+        :type iface_key: str
         :return: MTU or None if not found.
         :rtype: int
         """
-        for port in node['interfaces'].values():
-            port_name = port.get('name')
-            if port_name == interface:
-                return port.get('mtu')
-
-        return None
+        try:
+            return node['interfaces'][iface_key].get('mtu')
+        except KeyError:
+            return None
 
     @staticmethod
-    def get_interface_mac_by_port_key(node, port_key):
-        """Get MAC address for the interface based on port key.
+    def get_interface_name(node, iface_key):
+        """Get interface name (retrieved from DUT/TG).
 
-        :param node: Node to get interface mac on.
-        :param port_key: Dictionary key name of interface.
+        Returns name in string format, retrieved from the node.
+        :param node: Node to get interface name on.
+        :param iface_key: Interface key from topology file.
         :type node: dict
-        :type port_key: str
-        :return: Return MAC or None if not found.
+        :type iface_key: str
+        :return: Interface name or None if not found.
+        :rtype: int
         """
-        for port_name, port_data in node['interfaces'].iteritems():
-            if port_name == port_key:
-                return port_data['mac_address']
-
-        return None
+        try:
+            return node['interfaces'][iface_key].get('name')
+        except KeyError:
+            return None
 
     @staticmethod
-    def get_interface_mac(node, interface):
+    def get_interface_mac(node, iface_key):
         """Get MAC address for the interface.
 
-        :param node: Node to get interface sw_index on.
-        :param interface: Interface name.
+        :param node: Node to get interface mac on.
+        :param iface_key: Interface key from topology file.
         :type node: dict
-        :type interface: str
+        :type iface_key: str
         :return: Return MAC or None if not found.
         """
-        for port in node['interfaces'].values():
-            port_name = port.get('name')
-            if port_name == interface:
-                return port.get('mac_address')
-
-        return None
+        try:
+            return node['interfaces'][iface_key].get('mac_address')
+        except KeyError:
+            return None
 
     @staticmethod
-    def get_adjacent_node_and_interface_by_key(nodes_info, node, port_key):
+    def get_adjacent_node_and_interface(nodes_info, node, iface_key):
         """Get node and interface adjacent to specified interface
         on local network.
 
         :param nodes_info: Dictionary containing information on all nodes
         in topology.
         :param node: Node that contains specified interface.
-        :param port_key: Interface port key.
+        :param iface_key: Interface key from topology file.
         :type nodes_info: dict
         :type node: dict
-        :type port_key: str
-        :return: Return (node, interface info) tuple or None if not found.
-        :rtype: (dict, dict)
+        :type iface_key: str
+        :return: Return (node, interface_key) tuple or None if not found.
+        :rtype: (dict, str)
         """
         link_name = None
         # get link name where the interface belongs to
-        for port_name, port_data in node['interfaces'].iteritems():
-            if port_name == 'mgmt':
+        for if_key, if_val in node['interfaces'].iteritems():
+            if if_key == 'mgmt':
                 continue
-            if port_name == port_key:
-                link_name = port_data['link']
+            if if_key == iface_key:
+                link_name = if_val['link']
                 break
 
         if link_name is None:
@@ -268,79 +390,42 @@ class Topology(object):
             # skip self
             if node_data['host'] == node['host']:
                 continue
-            for interface, interface_data \
+            for if_key, if_val \
                     in node_data['interfaces'].iteritems():
-                if 'link' not in interface_data:
+                if 'link' not in if_val:
                     continue
-                if interface_data['link'] == link_name:
-                    return node_data, node_data['interfaces'][interface]
+                if if_val['link'] == link_name:
+                    return node_data, if_key
 
     @staticmethod
-    def get_adjacent_node_and_interface(nodes_info, node, interface_name):
-        """Get node and interface adjacent to specified interface
-        on local network.
-
-        :param nodes_info: Dictionary containing information on all nodes
-        in topology.
-        :param node: Node that contains specified interface.
-        :param interface_name: Interface name.
-        :type nodes_info: dict
-        :type node: dict
-        :type interface_name: str
-        :return: Return (node, interface info) tuple or None if not found.
-        :rtype: (dict, dict)
-        """
-        link_name = None
-        # get link name where the interface belongs to
-        for port_name, port_data in node['interfaces'].iteritems():
-            if port_data['name'] == interface_name:
-                link_name = port_data['link']
-                break
-
-        if link_name is None:
-            return None
-
-        # find link
-        for node_data in nodes_info.values():
-            # skip self
-            if node_data['host'] == node['host']:
-                continue
-            for interface, interface_data \
-                    in node_data['interfaces'].iteritems():
-                if 'link' not in interface_data:
-                    continue
-                if interface_data['link'] == link_name:
-                    return node_data, node_data['interfaces'][interface]
-
-    @staticmethod
-    def get_interface_pci_addr(node, interface):
+    def get_interface_pci_addr(node, iface_key):
         """Get interface PCI address.
 
         :param node: Node to get interface PCI address on.
-        :param interface: Interface name.
+        :param iface_key: Interface key from topology file.
         :type node: dict
-        :type interface: str
+        :type iface_key: str
         :return: Return PCI address or None if not found.
         """
-        for port in node['interfaces'].values():
-            if interface == port.get('name'):
-                return port.get('pci_address')
-        return None
+        try:
+            return node['interfaces'][iface_key].get('pci_address')
+        except KeyError:
+            return None
 
     @staticmethod
-    def get_interface_driver(node, interface):
+    def get_interface_driver(node, iface_key):
         """Get interface driver.
 
         :param node: Node to get interface driver on.
-        :param interface: Interface name.
+        :param iface_key: Interface key from topology file.
         :type node: dict
-        :type interface: str
+        :type iface_key: str
         :return: Return interface driver or None if not found.
         """
-        for port in node['interfaces'].values():
-            if interface == port.get('name'):
-                return port.get('driver')
-        return None
+        try:
+            return node['interfaces'][iface_key].get('driver')
+        except KeyError:
+            return None
 
     @staticmethod
     def get_node_link_mac(node, link_name):
@@ -442,8 +527,8 @@ class Topology(object):
         else:
             return connecting_links[0]
 
-    @keyword('Get egress interfaces on "${node1}" for link with "${node2}"')
-    def get_egress_interfaces_for_nodes(self, node1, node2):
+    @keyword('Get egress interfaces name on "${node1}" for link with "${node2}"')
+    def get_egress_interfaces_name_for_nodes(self, node1, node2):
         """Get egress interfaces on node1 for link with node2.
 
         :param node1: First node, node to get egress interface on.
@@ -469,19 +554,19 @@ class Topology(object):
             interfaces.append(name)
         return interfaces
 
-    @keyword('Get first egress interface on "${node1}" for link with '
+    @keyword('Get first egress interface name on "${node1}" for link with '
              '"${node2}"')
     def get_first_egress_interface_for_nodes(self, node1, node2):
         """Get first egress interface on node1 for link with node2.
 
-        :param node1: First node, node to get egress interface on.
+        :param node1: First node, node to get egress interface name on.
         :param node2: Second node.
         :type node1: dict
         :type node2: dict
-        :return: Egress interface.
+        :return: Egress interface name.
         :rtype: str
         """
-        interfaces = self.get_egress_interfaces_for_nodes(node1, node2)
+        interfaces = self.get_egress_interfaces_name_for_nodes(node1, node2)
         if not interfaces:
             raise RuntimeError('No egress interface for nodes')
         return interfaces[0]
