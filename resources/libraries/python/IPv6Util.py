@@ -81,18 +81,19 @@ class IPv6Util(object):
         return IPv6Util.ipv6_ping(src_node, dst_ip, cnt, size, timeout)
 
     @staticmethod
-    def get_node_port_ipv6_address(node, interface, nodes_addr):
+    def get_node_port_ipv6_address(node, iface_key, nodes_addr):
         """Return IPv6 address of the node port.
 
         :param node: Node in the topology.
-        :param interface: Interface name of the node.
+        :param iface_key: Interface key of the node.
         :param nodes_addr: Nodes IPv6 addresses.
         :type node: dict
-        :type interface: str
+        :type iface_key: str
         :type nodes_addr: dict
         :return: IPv6 address string.
         :rtype: str
         """
+        interface = Topology.get_interface_name(node, iface_key)
         for net in nodes_addr.values():
             for port in net['ports'].values():
                 host = port.get('node')
