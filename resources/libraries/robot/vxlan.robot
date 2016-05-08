@@ -49,8 +49,8 @@
 | | ... | ${dut1s_ip_address} | ${duts_ip_address_prefix}
 | | Set Interface Address | ${DUT2} | ${DUT2_INT_INDEX}
 | | ... | ${dut2s_ip_address} | ${duts_ip_address_prefix}
-| | VPP IP Probe | ${DUT1} | ${DUT1_INT_NAME} | ${dut2s_ip_address}
-| | VPP IP Probe | ${DUT2} | ${DUT2_INT_NAME} | ${dut1s_ip_address}
+| | VPP IP Probe | ${DUT1} | ${DUT1_INT_NAME} | ${dut2s_ip_address} | if_type=name
+| | VPP IP Probe | ${DUT2} | ${DUT2_INT_NAME} | ${dut1s_ip_address} | if_type=name
 
 | VXLAN interface is created
 | | [Arguments] | ${DUT} | ${VNI} | ${SRC_IP} | ${DST_IP}
