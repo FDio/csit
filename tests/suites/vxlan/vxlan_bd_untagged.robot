@@ -69,8 +69,10 @@
 | | Given Path for 3-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And Interfaces in 3-node path are up
-| | And IP addresses are set on interfaces | ${dut1_node} | ${dut1_to_dut2} | ${NONE}
-| | ...                                    | ${dut2_node} | ${dut2_to_dut1} | ${NONE}
+| | ${dut1_to_dut2_name}= | Get interface name | ${dut1_node} | ${dut1_to_dut2}
+| | ${dut2_to_dut1_name}= | Get interface name | ${dut2_node} | ${dut2_to_dut1}
+| | And IP addresses are set on interfaces | ${dut1_node} | ${dut1_to_dut2_name} | ${NONE}
+| | ...                                    | ${dut2_node} | ${dut2_to_dut1_name} | ${NONE}
 | | ${dut1s_vxlan}= | When Create VXLAN interface     | ${dut1_node} | ${vni_1}
 | |                 | ... | ${dut1s_ip_address} | ${dut2s_ip_address}
 | | And  Interfaces are added to BD | ${dut1_node} | ${bd_id1}
