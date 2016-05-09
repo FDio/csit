@@ -565,6 +565,30 @@
     },
     {
       "key": {
+        "uuid": "da141535_87d54545",
+        "filename": "resources/libraries/robot/iacl.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 84
+      },
+      "writtenOn": "2016-05-09T10:44:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_96c1fde6",
+      "range": {
+        "startLine": 24,
+        "startChar": 5,
+        "endLine": 24,
+        "endChar": 51
+      },
+      "revId": "1a18a1b6024635cbed9d2dbc4fc718480131a6af",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da141535_3626b117",
         "filename": "resources/libraries/robot/iacl.robot",
         "patchSetId": 3
@@ -576,6 +600,30 @@
       "writtenOn": "2016-05-06T11:42:45Z",
       "side": 1,
       "message": "Please, use tg_node, dut1_node and dut2_node insteasd of TG/tg, DUT1/dut1 and DUT2/dut2 to have common naming over all resource files.",
+      "range": {
+        "startLine": 28,
+        "startChar": 12,
+        "endLine": 30,
+        "endChar": 18
+      },
+      "revId": "1a18a1b6024635cbed9d2dbc4fc718480131a6af",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_acc70e12",
+        "filename": "resources/libraries/robot/iacl.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 84
+      },
+      "writtenOn": "2016-05-09T10:44:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_3626b117",
       "range": {
         "startLine": 28,
         "startChar": 12,
@@ -634,6 +682,30 @@
     },
     {
       "key": {
+        "uuid": "da141535_6cd1f6cc",
+        "filename": "resources/libraries/robot/iacl.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 84
+      },
+      "writtenOn": "2016-05-09T10:44:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_f6e4b9ad",
+      "range": {
+        "startLine": 86,
+        "startChar": 3,
+        "endLine": 87,
+        "endChar": 34
+      },
+      "revId": "1a18a1b6024635cbed9d2dbc4fc718480131a6af",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da141535_d6e1b59b",
         "filename": "resources/libraries/robot/iacl.robot",
         "patchSetId": 3
@@ -645,6 +717,30 @@
       "writtenOn": "2016-05-06T11:42:45Z",
       "side": 1,
       "message": "Please, add argument description and example parts to documentation.\n\nValid for all occurences.",
+      "range": {
+        "startLine": 88,
+        "startChar": 5,
+        "endLine": 88,
+        "endChar": 18
+      },
+      "revId": "1a18a1b6024635cbed9d2dbc4fc718480131a6af",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_e733e1f4",
+        "filename": "resources/libraries/robot/iacl.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 84
+      },
+      "writtenOn": "2016-05-09T10:44:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_d6e1b59b",
       "range": {
         "startLine": 88,
         "startChar": 5,
@@ -680,6 +776,30 @@
     },
     {
       "key": {
+        "uuid": "da141535_4725eda9",
+        "filename": "resources/libraries/robot/iacl.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 84
+      },
+      "writtenOn": "2016-05-09T10:44:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_56a48556",
+      "range": {
+        "startLine": 105,
+        "startChar": 3,
+        "endLine": 105,
+        "endChar": 47
+      },
+      "revId": "1a18a1b6024635cbed9d2dbc4fc718480131a6af",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da141535_368911cb",
         "filename": "resources/libraries/robot/iacl.robot",
         "patchSetId": 3
@@ -691,6 +811,30 @@
       "writtenOn": "2016-05-06T11:42:45Z",
       "side": 1,
       "message": "Please, see line 105.",
+      "range": {
+        "startLine": 115,
+        "startChar": 4,
+        "endLine": 115,
+        "endChar": 46
+      },
+      "revId": "1a18a1b6024635cbed9d2dbc4fc718480131a6af",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_273af9cd",
+        "filename": "resources/libraries/robot/iacl.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 84
+      },
+      "writtenOn": "2016-05-09T10:44:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_368911cb",
       "range": {
         "startLine": 115,
         "startChar": 4,
@@ -843,6 +987,30 @@
     },
     {
       "key": {
+        "uuid": "da141535_67ca31a3",
+        "filename": "tests/suites/ipv4/ipv4_iacl_untagged.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 84
+      },
+      "writtenOn": "2016-05-09T10:44:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_b6bc016e",
+      "range": {
+        "startLine": 51,
+        "startChar": 5,
+        "endLine": 51,
+        "endChar": 18
+      },
+      "revId": "1a18a1b6024635cbed9d2dbc4fc718480131a6af",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da141535_76b6698c",
         "filename": "tests/suites/ipv6/ipv6_iacl_untagged.robot",
         "patchSetId": 3
@@ -948,6 +1116,30 @@
       "writtenOn": "2016-05-06T11:42:45Z",
       "side": 1,
       "message": "Please, use more descritpive documentation.\n\nValid for all occurences.",
+      "range": {
+        "startLine": 52,
+        "startChar": 5,
+        "endLine": 52,
+        "endChar": 18
+      },
+      "revId": "1a18a1b6024635cbed9d2dbc4fc718480131a6af",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_47cf2db1",
+        "filename": "tests/suites/ipv6/ipv6_iacl_untagged.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 84
+      },
+      "writtenOn": "2016-05-09T10:44:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_16aded31",
       "range": {
         "startLine": 52,
         "startChar": 5,
