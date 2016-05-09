@@ -214,7 +214,7 @@ class QemuUtils(object):
         logger.trace(stdout)
         if not stdout:
             return {}
-        return json.loads(stdout)
+        return json.loads(stdout.split('\n', 1)[0])
 
     def _wait_until_vm_boot(self, timeout=300):
         """Wait until QEMU VM is booted.
@@ -236,6 +236,9 @@ class QemuUtils(object):
             # Non-error return - VM booted
             elif out.get('return') is not None:
                 break
+            # Skip error and wait
+            elif out.get('error') is not None:
+                sleep(5)
             else:
                 raise RuntimeError('QGA guest-ping unexpected output {}'.format(
                     out))
