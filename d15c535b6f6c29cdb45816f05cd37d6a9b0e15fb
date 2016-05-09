@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da141535_8709c597",
+        "filename": "resources/libraries/python/Routing.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-09T13:06:44Z",
+      "side": 1,
+      "message": "FIB",
+      "range": {
+        "startLine": 48,
+        "startChar": 22,
+        "endLine": 48,
+        "endChar": 25
+      },
+      "revId": "d15c535b6f6c29cdb45816f05cd37d6a9b0e15fb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_67feb16d",
+        "filename": "resources/libraries/robot/cop.robot",
+        "patchSetId": 14
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-09T13:06:44Z",
+      "side": 1,
+      "message": "new line",
+      "revId": "d15c535b6f6c29cdb45816f05cd37d6a9b0e15fb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
