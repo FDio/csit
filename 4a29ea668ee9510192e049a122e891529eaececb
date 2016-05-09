@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "da141535_e79e4163",
+        "filename": "resources/libraries/robot/iacl.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 84
+      },
+      "writtenOn": "2016-05-09T12:23:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_67dd9142",
+      "range": {
+        "startLine": 28,
+        "startChar": 14,
+        "endLine": 28,
+        "endChar": 21
+      },
+      "revId": "4a29ea668ee9510192e049a122e891529eaececb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da141535_e7f081cb",
         "filename": "resources/libraries/robot/iacl.robot",
         "patchSetId": 5
@@ -36,6 +60,30 @@
       "writtenOn": "2016-05-09T12:01:37Z",
       "side": 1,
       "message": "Please, use variable name ${tg_node} instead of ${tg} in every KW and test case.",
+      "range": {
+        "startLine": 59,
+        "startChar": 24,
+        "endLine": 59,
+        "endChar": 29
+      },
+      "revId": "4a29ea668ee9510192e049a122e891529eaececb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_c79b3d71",
+        "filename": "resources/libraries/robot/iacl.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 84
+      },
+      "writtenOn": "2016-05-09T12:23:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_e7f081cb",
       "range": {
         "startLine": 59,
         "startChar": 24,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "da141535_a7884923",
+        "filename": "resources/libraries/robot/iacl.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 84
+      },
+      "writtenOn": "2016-05-09T12:23:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_c7ed7df1",
+      "range": {
+        "startLine": 62,
+        "startChar": 24,
+        "endLine": 62,
+        "endChar": 31
+      },
+      "revId": "4a29ea668ee9510192e049a122e891529eaececb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da141535_a7ba89df",
         "filename": "resources/libraries/robot/iacl.robot",
         "patchSetId": 5
@@ -82,6 +154,30 @@
       "writtenOn": "2016-05-09T12:01:37Z",
       "side": 1,
       "message": "Please, use variable name ${dut2_node} instead of ${dut2} in every KW and test case.",
+      "range": {
+        "startLine": 65,
+        "startChar": 24,
+        "endLine": 65,
+        "endChar": 31
+      },
+      "revId": "4a29ea668ee9510192e049a122e891529eaececb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_878d4534",
+        "filename": "resources/libraries/robot/iacl.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 84
+      },
+      "writtenOn": "2016-05-09T12:23:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_a7ba89df",
       "range": {
         "startLine": 65,
         "startChar": 24,
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "da141535_67823102",
+        "filename": "resources/libraries/robot/iacl.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 84
+      },
+      "writtenOn": "2016-05-09T12:23:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_67b471f2",
+      "range": {
+        "startLine": 86,
+        "startChar": 18,
+        "endLine": 86,
+        "endChar": 24
+      },
+      "revId": "4a29ea668ee9510192e049a122e891529eaececb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da141535_67ab518a",
         "filename": "tests/suites/ipv4/ipv4_iacl_untagged.robot",
         "patchSetId": 5
@@ -140,6 +260,30 @@
     },
     {
       "key": {
+        "uuid": "da141535_47872d10",
+        "filename": "tests/suites/ipv4/ipv4_iacl_untagged.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 84
+      },
+      "writtenOn": "2016-05-09T12:23:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_67ab518a",
+      "range": {
+        "startLine": 45,
+        "startChar": 10,
+        "endLine": 45,
+        "endChar": 17
+      },
+      "revId": "4a29ea668ee9510192e049a122e891529eaececb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da141535_47b04df4",
         "filename": "tests/suites/ipv6/ipv6_iacl_untagged.robot",
         "patchSetId": 5
@@ -151,6 +295,30 @@
       "writtenOn": "2016-05-09T12:01:37Z",
       "side": 1,
       "message": "${dut1_node}\n${dut2_node}\n${tg_node}\nwhere applicable",
+      "range": {
+        "startLine": 47,
+        "startChar": 10,
+        "endLine": 47,
+        "endChar": 17
+      },
+      "revId": "4a29ea668ee9510192e049a122e891529eaececb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_277c3920",
+        "filename": "tests/suites/ipv6/ipv6_iacl_untagged.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 84
+      },
+      "writtenOn": "2016-05-09T12:23:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_47b04df4",
       "range": {
         "startLine": 47,
         "startChar": 10,
