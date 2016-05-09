@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "da141535_6cfe966d",
+        "filename": "resources/libraries/robot/cop.robot",
+        "patchSetId": 12
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 365
+      },
+      "writtenOn": "2016-05-09T08:38:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_3168fbb9",
+      "range": {
+        "startLine": 86,
+        "startChar": 2,
+        "endLine": 86,
+        "endChar": 30
+      },
+      "revId": "fbb4b3ff78e73c5e3c7f2648cbd2f1fc113ada90",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da141535_5125afa9",
         "filename": "resources/libraries/robot/cop.robot",
         "patchSetId": 12
@@ -36,6 +60,30 @@
       "writtenOn": "2016-05-06T12:55:56Z",
       "side": 1,
       "message": "You should pass all needed arguments to KW or at least mention that these parameteres need to be defined as test case variables by using KW xxx in the argument part of documentation.\n\nValid for all occurences.",
+      "range": {
+        "startLine": 101,
+        "startChar": 5,
+        "endLine": 101,
+        "endChar": 14
+      },
+      "revId": "fbb4b3ff78e73c5e3c7f2648cbd2f1fc113ada90",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_cceec2b4",
+        "filename": "resources/libraries/robot/cop.robot",
+        "patchSetId": 12
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 365
+      },
+      "writtenOn": "2016-05-09T08:38:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_5125afa9",
       "range": {
         "startLine": 101,
         "startChar": 5,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "da141535_cc4a42ac",
+        "filename": "resources/libraries/robot/cop.robot",
+        "patchSetId": 12
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 365
+      },
+      "writtenOn": "2016-05-09T08:38:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_716e73cb",
+      "range": {
+        "startLine": 107,
+        "startChar": 2,
+        "endLine": 107,
+        "endChar": 18
+      },
+      "revId": "fbb4b3ff78e73c5e3c7f2648cbd2f1fc113ada90",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da141535_1165f7e0",
         "filename": "resources/libraries/robot/cop.robot",
         "patchSetId": 12
@@ -82,6 +154,30 @@
       "writtenOn": "2016-05-06T13:51:54Z",
       "side": 1,
       "message": "remove KW and use Set IPv6 Interface Address in testcase",
+      "range": {
+        "startLine": 128,
+        "startChar": 2,
+        "endLine": 128,
+        "endChar": 30
+      },
+      "revId": "fbb4b3ff78e73c5e3c7f2648cbd2f1fc113ada90",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_4c03d273",
+        "filename": "resources/libraries/robot/cop.robot",
+        "patchSetId": 12
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 365
+      },
+      "writtenOn": "2016-05-09T08:38:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_1165f7e0",
       "range": {
         "startLine": 128,
         "startChar": 2,
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "da141535_0cf5da82",
+        "filename": "resources/libraries/robot/cop.robot",
+        "patchSetId": 12
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 365
+      },
+      "writtenOn": "2016-05-09T08:38:14Z",
+      "side": 1,
+      "message": "Not needed - kw deleted",
+      "parentUuid": "da141535_f605d914",
+      "range": {
+        "startLine": 142,
+        "startChar": 63,
+        "endLine": 142,
+        "endChar": 64
+      },
+      "revId": "fbb4b3ff78e73c5e3c7f2648cbd2f1fc113ada90",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da141535_31afdbe5",
         "filename": "resources/traffic_scripts/send_icmp_check_headers.py",
         "patchSetId": 12
@@ -128,6 +248,24 @@
       "writtenOn": "2016-05-06T13:51:54Z",
       "side": 1,
       "message": "remove line",
+      "revId": "fbb4b3ff78e73c5e3c7f2648cbd2f1fc113ada90",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_ecdaa616",
+        "filename": "resources/traffic_scripts/send_icmp_check_headers.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 365
+      },
+      "writtenOn": "2016-05-09T08:38:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_31afdbe5",
       "revId": "fbb4b3ff78e73c5e3c7f2648cbd2f1fc113ada90",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
@@ -174,6 +312,48 @@
     },
     {
       "key": {
+        "uuid": "da141535_ac04ae7e",
+        "filename": "resources/traffic_scripts/send_icmp_check_headers.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 365
+      },
+      "writtenOn": "2016-05-09T08:38:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_f1b8432c",
+      "range": {
+        "startLine": 50,
+        "startChar": 16,
+        "endLine": 50,
+        "endChar": 20
+      },
+      "revId": "fbb4b3ff78e73c5e3c7f2648cbd2f1fc113ada90",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_ccd7e2ec",
+        "filename": "resources/traffic_scripts/send_icmp_check_headers.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 365
+      },
+      "writtenOn": "2016-05-09T08:38:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_11acd7ec",
+      "revId": "fbb4b3ff78e73c5e3c7f2648cbd2f1fc113ada90",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da141535_b19bebc8",
         "filename": "resources/traffic_scripts/send_icmp_check_headers.py",
         "patchSetId": 12
@@ -197,6 +377,30 @@
     },
     {
       "key": {
+        "uuid": "da141535_8c09ea97",
+        "filename": "resources/traffic_scripts/send_icmp_check_headers.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 365
+      },
+      "writtenOn": "2016-05-09T08:38:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_b19bebc8",
+      "range": {
+        "startLine": 89,
+        "startChar": 27,
+        "endLine": 89,
+        "endChar": 58
+      },
+      "revId": "fbb4b3ff78e73c5e3c7f2648cbd2f1fc113ada90",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da141535_d1b53f32",
         "filename": "tests/suites/cop/cop_whitelist_blacklist.robot",
         "patchSetId": 12
@@ -208,6 +412,24 @@
       "writtenOn": "2016-05-06T13:51:54Z",
       "side": 1,
       "message": "add empty line",
+      "revId": "fbb4b3ff78e73c5e3c7f2648cbd2f1fc113ada90",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_4cecf2c7",
+        "filename": "tests/suites/cop/cop_whitelist_blacklist.robot",
+        "patchSetId": 12
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 365
+      },
+      "writtenOn": "2016-05-09T08:38:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_d1b53f32",
       "revId": "fbb4b3ff78e73c5e3c7f2648cbd2f1fc113ada90",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
@@ -254,6 +476,24 @@
     },
     {
       "key": {
+        "uuid": "da141535_2cd1befb",
+        "filename": "tests/suites/cop/cop_whitelist_blacklist_IPv6.robot",
+        "patchSetId": 12
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 365
+      },
+      "writtenOn": "2016-05-09T08:38:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_f1bde303",
+      "revId": "fbb4b3ff78e73c5e3c7f2648cbd2f1fc113ada90",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da141535_d1badf09",
         "filename": "tests/suites/cop/cop_whitelist_blacklist_IPv6.robot",
         "patchSetId": 12
@@ -265,6 +505,30 @@
       "writtenOn": "2016-05-06T13:51:54Z",
       "side": 1,
       "message": "same as in cop_whitelist_blacklist.robot",
+      "range": {
+        "startLine": 25,
+        "startChar": 59,
+        "endLine": 25,
+        "endChar": 62
+      },
+      "revId": "fbb4b3ff78e73c5e3c7f2648cbd2f1fc113ada90",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_0ccefa5a",
+        "filename": "tests/suites/cop/cop_whitelist_blacklist_IPv6.robot",
+        "patchSetId": 12
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 365
+      },
+      "writtenOn": "2016-05-09T08:38:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_d1badf09",
       "range": {
         "startLine": 25,
         "startChar": 59,
