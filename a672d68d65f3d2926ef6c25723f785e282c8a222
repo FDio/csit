@@ -1,0 +1,878 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da141535_b182cb50",
+        "filename": "resources/libraries/python/LispSetup.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-09T10:24:48Z",
+      "side": 1,
+      "message": "up or down",
+      "range": {
+        "startLine": 27,
+        "startChar": 34,
+        "endLine": 27,
+        "endChar": 36
+      },
+      "revId": "a672d68d65f3d2926ef6c25723f785e282c8a222",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_3196bb95",
+        "filename": "resources/libraries/python/LispSetup.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-09T10:24:48Z",
+      "side": 1,
+      "message": "Correct order is - first list all parameters and then their types:\n:param node: ...\n:param state: ...\n:type node: ...\n:type state: ...",
+      "range": {
+        "startLine": 29,
+        "startChar": 8,
+        "endLine": 32,
+        "endChar": 27
+      },
+      "revId": "a672d68d65f3d2926ef6c25723f785e282c8a222",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_1193b7a4",
+        "filename": "resources/libraries/python/LispSetup.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-09T10:24:48Z",
+      "side": 1,
+      "message": "ways",
+      "range": {
+        "startLine": 214,
+        "startChar": 22,
+        "endLine": 214,
+        "endChar": 25
+      },
+      "revId": "a672d68d65f3d2926ef6c25723f785e282c8a222",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_f18f2374",
+        "filename": "resources/libraries/python/LispSetup.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 219,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-09T10:24:48Z",
+      "side": 1,
+      "message": "where the locator_set is set ...",
+      "range": {
+        "startLine": 219,
+        "startChar": 8,
+        "endLine": 219,
+        "endChar": 36
+      },
+      "revId": "a672d68d65f3d2926ef6c25723f785e282c8a222",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_d18c1f82",
+        "filename": "resources/libraries/python/LispSetup.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-09T10:24:48Z",
+      "side": 1,
+      "message": "where the locator_set will be set ...",
+      "range": {
+        "startLine": 221,
+        "startChar": 8,
+        "endLine": 221,
+        "endChar": 37
+      },
+      "revId": "a672d68d65f3d2926ef6c25723f785e282c8a222",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_51f80fe5",
+        "filename": "resources/libraries/python/LispSetup.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 240,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-09T10:24:48Z",
+      "side": 1,
+      "message": "It was mentioned to keed word Uknown there:\n\u0027Unknown locator_set_type value:\u0027\n\nSorry for mislead...",
+      "range": {
+        "startLine": 240,
+        "startChar": 33,
+        "endLine": 240,
+        "endChar": 59
+      },
+      "revId": "a672d68d65f3d2926ef6c25723f785e282c8a222",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_31dd9b71",
+        "filename": "resources/libraries/python/LispSetup.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 284,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-09T10:24:48Z",
+      "side": 1,
+      "message": "It was mentioned to keed word Uknown there:\n\u0027Unknown locator_set_type value:\u0027",
+      "range": {
+        "startLine": 284,
+        "startChar": 33,
+        "endLine": 284,
+        "endChar": 59
+      },
+      "revId": "a672d68d65f3d2926ef6c25723f785e282c8a222",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_11da9778",
+        "filename": "resources/libraries/python/LispSetup.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 397,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-09T10:24:48Z",
+      "side": 1,
+      "message": "Please, correct order of the data... (first parameteres, then their types).",
+      "range": {
+        "startLine": 394,
+        "startChar": 7,
+        "endLine": 397,
+        "endChar": 27
+      },
+      "revId": "a672d68d65f3d2926ef6c25723f785e282c8a222",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_d1e3ff31",
+        "filename": "resources/libraries/python/LispUtil.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-09T10:24:48Z",
+      "side": 1,
+      "message": "It was mentioned to keed word Uknown there:\n\u0027Unknown locator_set_type value:\u0027",
+      "range": {
+        "startLine": 113,
+        "startChar": 33,
+        "endLine": 113,
+        "endChar": 59
+      },
+      "revId": "a672d68d65f3d2926ef6c25723f785e282c8a222",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_71caf3a2",
+        "filename": "resources/libraries/robot/lisp.robot",
+        "patchSetId": 16
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-09T10:24:48Z",
+      "side": 1,
+      "message": "generated.",
+      "range": {
+        "startLine": 30,
+        "startChar": 44,
+        "endLine": 30,
+        "endChar": 52
+      },
+      "revId": "a672d68d65f3d2926ef6c25723f785e282c8a222",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_51cfefb0",
+        "filename": "resources/libraries/robot/lisp.robot",
+        "patchSetId": 16
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-09T10:24:48Z",
+      "side": 1,
+      "message": "integer",
+      "range": {
+        "startLine": 30,
+        "startChar": 60,
+        "endLine": 30,
+        "endChar": 63
+      },
+      "revId": "a672d68d65f3d2926ef6c25723f785e282c8a222",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_f1c3a336",
+        "filename": "resources/libraries/robot/lisp.robot",
+        "patchSetId": 16
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-09T10:24:48Z",
+      "side": 1,
+      "message": "Here should be DUT1 as DUT1 is not variable name here but defining node name (key) in variable nodes (what is dictionary):\n${nodes[\u0027DUT1\u0027]}",
+      "range": {
+        "startLine": 39,
+        "startChar": 65,
+        "endLine": 39,
+        "endChar": 73
+      },
+      "revId": "a672d68d65f3d2926ef6c25723f785e282c8a222",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_ec574625",
+        "filename": "resources/libraries/robot/lisp.robot",
+        "patchSetId": 16
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-09T10:24:48Z",
+      "side": 1,
+      "message": "See line 39.",
+      "range": {
+        "startLine": 61,
+        "startChar": 59,
+        "endLine": 61,
+        "endChar": 67
+      },
+      "revId": "a672d68d65f3d2926ef6c25723f785e282c8a222",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_2c0c1e42",
+        "filename": "resources/libraries/robot/lisp.robot",
+        "patchSetId": 16
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-09T10:24:48Z",
+      "side": 1,
+      "message": "This variable is not described in the documentation fo the KW. There are two possibilites:\n1. The cleanest way - put this variable to Arguments so the value is passed from test cases via variable name\n2. Not preffrered one - metnion int he KW documetation that this varaibel needs to be set as test case varaibel by usega KW xy",
+      "range": {
+        "startLine": 64,
+        "startChar": 45,
+        "endLine": 64,
+        "endChar": 66
+      },
+      "revId": "a672d68d65f3d2926ef6c25723f785e282c8a222",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_ec050615",
+        "filename": "resources/libraries/robot/lisp.robot",
+        "patchSetId": 16
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-09T10:24:48Z",
+      "side": 1,
+      "message": "See line 39.",
+      "range": {
+        "startLine": 81,
+        "startChar": 62,
+        "endLine": 81,
+        "endChar": 70
+      },
+      "revId": "a672d68d65f3d2926ef6c25723f785e282c8a222",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_cc02420b",
+        "filename": "resources/libraries/robot/lisp.robot",
+        "patchSetId": 16
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-09T10:24:48Z",
+      "side": 1,
+      "message": "See line 64.",
+      "range": {
+        "startLine": 86,
+        "startChar": 12,
+        "endLine": 86,
+        "endChar": 30
+      },
+      "revId": "a672d68d65f3d2926ef6c25723f785e282c8a222",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_a7ff2901",
+        "filename": "resources/libraries/robot/lisp.robot",
+        "patchSetId": 16
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-09T10:24:48Z",
+      "side": 1,
+      "message": "See line 39.",
+      "range": {
+        "startLine": 103,
+        "startChar": 22,
+        "endLine": 103,
+        "endChar": 30
+      },
+      "revId": "a672d68d65f3d2926ef6c25723f785e282c8a222",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_87042516",
+        "filename": "resources/libraries/robot/lisp.robot",
+        "patchSetId": 16
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-09T10:24:48Z",
+      "side": 1,
+      "message": "See line 64.",
+      "range": {
+        "startLine": 106,
+        "startChar": 47,
+        "endLine": 106,
+        "endChar": 68
+      },
+      "revId": "a672d68d65f3d2926ef6c25723f785e282c8a222",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_470e0d36",
+        "filename": "resources/libraries/robot/lisp.robot",
+        "patchSetId": 16
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-09T10:24:48Z",
+      "side": 1,
+      "message": "See line 39.",
+      "range": {
+        "startLine": 121,
+        "startChar": 63,
+        "endLine": 121,
+        "endChar": 71
+      },
+      "revId": "a672d68d65f3d2926ef6c25723f785e282c8a222",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_2713195e",
+        "filename": "resources/libraries/robot/lisp.robot",
+        "patchSetId": 16
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-09T10:24:48Z",
+      "side": 1,
+      "message": "See line 39.",
+      "range": {
+        "startLine": 144,
+        "startChar": 38,
+        "endLine": 144,
+        "endChar": 46
+      },
+      "revId": "a672d68d65f3d2926ef6c25723f785e282c8a222",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_0710154d",
+        "filename": "resources/libraries/robot/lisp.robot",
+        "patchSetId": 16
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-09T10:24:48Z",
+      "side": 1,
+      "message": "See line 39.",
+      "range": {
+        "startLine": 166,
+        "startChar": 60,
+        "endLine": 166,
+        "endChar": 68
+      },
+      "revId": "a672d68d65f3d2926ef6c25723f785e282c8a222",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_87a0a5f5",
+        "filename": "resources/libraries/robot/lisp.robot",
+        "patchSetId": 16
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-09T10:24:48Z",
+      "side": 1,
+      "message": "requires",
+      "range": {
+        "startLine": 183,
+        "startChar": 26,
+        "endLine": 183,
+        "endChar": 30
+      },
+      "revId": "a672d68d65f3d2926ef6c25723f785e282c8a222",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_872b0582",
+        "filename": "resources/libraries/robot/lisp.robot",
+        "patchSetId": 16
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-09T10:24:48Z",
+      "side": 1,
+      "message": "See line 39.",
+      "range": {
+        "startLine": 187,
+        "startChar": 54,
+        "endLine": 187,
+        "endChar": 62
+      },
+      "revId": "a672d68d65f3d2926ef6c25723f785e282c8a222",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_a79ba9c8",
+        "filename": "resources/libraries/robot/lisp.robot",
+        "patchSetId": 16
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-09T10:24:48Z",
+      "side": 1,
+      "message": "requires",
+      "range": {
+        "startLine": 201,
+        "startChar": 26,
+        "endLine": 201,
+        "endChar": 30
+      },
+      "revId": "a672d68d65f3d2926ef6c25723f785e282c8a222",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_c75e9d12",
+        "filename": "resources/libraries/robot/lisp.robot",
+        "patchSetId": 16
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-09T10:24:48Z",
+      "side": 1,
+      "message": "See line 39.",
+      "range": {
+        "startLine": 207,
+        "startChar": 22,
+        "endLine": 207,
+        "endChar": 30
+      },
+      "revId": "a672d68d65f3d2926ef6c25723f785e282c8a222",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_47aa8dd5",
+        "filename": "resources/libraries/robot/lisp.robot",
+        "patchSetId": 16
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-09T10:24:48Z",
+      "side": 1,
+      "message": "from",
+      "range": {
+        "startLine": 226,
+        "startChar": 46,
+        "endLine": 226,
+        "endChar": 50
+      },
+      "revId": "a672d68d65f3d2926ef6c25723f785e282c8a222",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_67a59103",
+        "filename": "resources/libraries/robot/lisp.robot",
+        "patchSetId": 16
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-09T10:24:48Z",
+      "side": 1,
+      "message": "DUT1",
+      "range": {
+        "startLine": 227,
+        "startChar": 22,
+        "endLine": 227,
+        "endChar": 30
+      },
+      "revId": "a672d68d65f3d2926ef6c25723f785e282c8a222",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_07ac95ec",
+        "filename": "resources/libraries/robot/lisp.robot",
+        "patchSetId": 16
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-09T10:24:48Z",
+      "side": 1,
+      "message": "requires",
+      "range": {
+        "startLine": 241,
+        "startChar": 26,
+        "endLine": 241,
+        "endChar": 30
+      },
+      "revId": "a672d68d65f3d2926ef6c25723f785e282c8a222",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_27af99e5",
+        "filename": "resources/libraries/robot/lisp.robot",
+        "patchSetId": 16
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-09T10:24:48Z",
+      "side": 1,
+      "message": "DUT1",
+      "range": {
+        "startLine": 245,
+        "startChar": 61,
+        "endLine": 245,
+        "endChar": 69
+      },
+      "revId": "a672d68d65f3d2926ef6c25723f785e282c8a222",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_e7b8812c",
+        "filename": "resources/libraries/robot/lisp.robot",
+        "patchSetId": 16
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-09T10:24:48Z",
+      "side": 1,
+      "message": "DUT1",
+      "range": {
+        "startLine": 270,
+        "startChar": 22,
+        "endLine": 270,
+        "endChar": 30
+      },
+      "revId": "a672d68d65f3d2926ef6c25723f785e282c8a222",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_c7b57d32",
+        "filename": "resources/libraries/robot/lisp.robot",
+        "patchSetId": 16
+      },
+      "lineNbr": 287,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-09T10:24:48Z",
+      "side": 1,
+      "message": "requires",
+      "range": {
+        "startLine": 287,
+        "startChar": 26,
+        "endLine": 287,
+        "endChar": 30
+      },
+      "revId": "a672d68d65f3d2926ef6c25723f785e282c8a222",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_a7828950",
+        "filename": "resources/libraries/robot/lisp.robot",
+        "patchSetId": 16
+      },
+      "lineNbr": 292,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-09T10:24:48Z",
+      "side": 1,
+      "message": "DUT1",
+      "range": {
+        "startLine": 292,
+        "startChar": 63,
+        "endLine": 292,
+        "endChar": 71
+      },
+      "revId": "a672d68d65f3d2926ef6c25723f785e282c8a222",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_079375a4",
+        "filename": "resources/libraries/robot/lisp.robot",
+        "patchSetId": 16
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-09T10:24:48Z",
+      "side": 1,
+      "message": "requires",
+      "range": {
+        "startLine": 307,
+        "startChar": 26,
+        "endLine": 307,
+        "endChar": 30
+      },
+      "revId": "a672d68d65f3d2926ef6c25723f785e282c8a222",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_e78f6174",
+        "filename": "resources/libraries/robot/lisp.robot",
+        "patchSetId": 16
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-09T10:24:48Z",
+      "side": 1,
+      "message": "It is not a test case variabel but internal KW\u0027s variable - should not be listed here.",
+      "range": {
+        "startLine": 310,
+        "startChar": 12,
+        "endLine": 310,
+        "endChar": 70
+      },
+      "revId": "a672d68d65f3d2926ef6c25723f785e282c8a222",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_27967995",
+        "filename": "resources/libraries/robot/lisp.robot",
+        "patchSetId": 16
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-09T10:24:48Z",
+      "side": 1,
+      "message": "DUT1",
+      "range": {
+        "startLine": 314,
+        "startChar": 22,
+        "endLine": 314,
+        "endChar": 30
+      },
+      "revId": "a672d68d65f3d2926ef6c25723f785e282c8a222",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_c78c5d82",
+        "filename": "resources/libraries/robot/lisp.robot",
+        "patchSetId": 16
+      },
+      "lineNbr": 329,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-09T10:24:48Z",
+      "side": 1,
+      "message": "requires",
+      "range": {
+        "startLine": 329,
+        "startChar": 26,
+        "endLine": 329,
+        "endChar": 30
+      },
+      "revId": "a672d68d65f3d2926ef6c25723f785e282c8a222",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_a7e9691c",
+        "filename": "resources/libraries/robot/lisp.robot",
+        "patchSetId": 16
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-09T10:24:48Z",
+      "side": 1,
+      "message": "DUT1",
+      "range": {
+        "startLine": 335,
+        "startChar": 22,
+        "endLine": 335,
+        "endChar": 30
+      },
+      "revId": "a672d68d65f3d2926ef6c25723f785e282c8a222",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_87ee6521",
+        "filename": "resources/libraries/robot/lisp.robot",
+        "patchSetId": 16
+      },
+      "lineNbr": 350,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-09T10:24:48Z",
+      "side": 1,
+      "message": "See line 310.",
+      "range": {
+        "startLine": 350,
+        "startChar": 12,
+        "endLine": 350,
+        "endChar": 71
+      },
+      "revId": "a672d68d65f3d2926ef6c25723f785e282c8a222",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
