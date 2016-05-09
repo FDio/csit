@@ -1,0 +1,63 @@
+---
+metadata:
+  version: 0.1
+  schema:
+    - resources/topology_schemas/3_node_topology.sch.yaml
+    - resources/topology_schemas/topology.sch.yaml
+  tags: [hw, 3-node]
+
+nodes:
+  TG:
+    type: TG
+    subtype: TREX
+    host: "10.30.51.16"
+    port: 22
+    username: testuser
+    password: Cisco1234
+    interfaces:
+      port3:
+        mac_address: "3c:fd:fe:9c:ed:a0"
+        pci_address: "0000:05:00.0"
+        link: link1
+        driver: i40e
+        model: Intel-X710
+      port5:
+        mac_address: "3c:fd:fe:9c:ed:a1"
+        pci_address: "0000:05:00.1"
+        link: link2
+        driver: i40e
+        model: Intel-X710
+  DUT1:
+    type: DUT
+    host: "10.30.51.17"
+    port: 22
+    username: testuser
+    password: Cisco1234
+    interfaces:
+      port1:
+        mac_address: "90:e2:ba:b5:0a:2d"
+        pci_address: "0000:0a:00.1"
+        link: link1
+        model: Intel-X520-DA2
+      port3:
+        mac_address: "90:e2:ba:b5:0a:2c"
+        pci_address: "0000:0a:00.0"
+        link: link3
+        model: Intel-X520-DA2
+  DUT2:
+    type: DUT
+    host: "10.30.51.18"
+    port: 22
+    username: testuser
+    password: Cisco1234
+    interfaces:
+      port1:
+        mac_address: "90:e2:ba:b5:12:30"
+        pci_address: "0000:0a:00.0"
+        link: link2
+        model: Intel-X520-DA2
+      port3:
+        mac_address: "90:e2:ba:b5:12:31"
+        pci_address: "0000:0a:00.1"
+        link: link3
+        model: Intel-X520-DA2
