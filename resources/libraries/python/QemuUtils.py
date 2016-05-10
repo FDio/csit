@@ -424,6 +424,25 @@ class QemuUtils(object):
             raise RuntimeError('QEMU query-status failed on {0}, '
                 'error: {1}'.format(self._node['host'], json.dumps(err)))
 
+    def qemu_setup_network_namespace(self,namespace_name,vhost_if,ip_address):
+        (return_code, stdout, stderr) = self._ssh.exec_command_sudo('ifconfig -a')
+        print "Stdout: {0}".format(stdout)
+        print "Stderr: {0}".format(stderr)
+        (return_code, stdout, stderr) = self._ssh.exec_command_sudo('dmesg')
+        print "Stdout: {0}".format(stdout)
+        print "Stderr: {0}".format(stderr)
+        (return_code, stdout, stderr) = self._ssh.exec_command_sudo('ip link list')
+        print "Stdout: {0}".format(stdout)
+        print "Stderr: {0}".format(stderr)
+        self._ssh.exec_command_sudo('ip netns add {0}'.format(namespace_name))
+
+        self._ssh.exec_command_sudo('ip link set {0} netns {1}'.format(vhost_if,namespace_name))
+
+        self._ssh.exec_command_sudo('ip netns exec {0} ip link set {1} up'.format(namespace_name,vhost_if))
+
+        self._ssh.exec_command_sudo('ip netns exec {0} ip addr add {1} dev {2}'.format(namespace_name,ip_address,vhost_if))
+
+
     @staticmethod
     def build_qemu(node):
         """Build QEMU from sources.
