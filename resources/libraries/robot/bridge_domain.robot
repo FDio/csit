@@ -253,3 +253,4 @@
 | | ${vhost_if2}= | Vpp Create Vhost User Interface | ${node} | ${sock2}
 | | Set Test Variable | ${vhost_if1}
 | | Set Test Variable | ${vhost_if2}
+
