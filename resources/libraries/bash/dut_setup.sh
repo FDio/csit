@@ -49,3 +49,5 @@ cmd 'tail -n 50 /var/log/syslog'
 echo "[Command_desc] Adding dpdk-input trace"
 cmd 'sudo vpp_api_test <<< "exec trace add dpdk-input 100"'
 
+echo "[Command_desc] Adding vhost-user-input trace"
+cmd 'sudo vpp_api_test <<< "exec trace add vhost-user-input 100"'
