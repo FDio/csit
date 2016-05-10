@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da141535_6a467525",
+        "filename": "resources/libraries/python/IPv6Setup.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-10T16:30:00Z",
+      "side": 1,
+      "message": "neighbor",
+      "range": {
+        "startLine": 215,
+        "startChar": 21,
+        "endLine": 215,
+        "endChar": 30
+      },
+      "revId": "c5a7e74d1ab2b6b7f4743dd756262b298dcd238f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_0a6c999b",
+        "filename": "resources/libraries/robot/performance.robot",
+        "patchSetId": 15
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-10T16:30:00Z",
+      "side": 1,
+      "message": "neighbor",
+      "range": {
+        "startLine": 114,
+        "startChar": 17,
+        "endLine": 114,
+        "endChar": 26
+      },
+      "revId": "c5a7e74d1ab2b6b7f4743dd756262b298dcd238f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_6ab9d5e8",
+        "filename": "resources/tools/t-rex/t-rex-stateless.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-10T16:30:00Z",
+      "side": 1,
+      "message": "Correct order is - thirst mention all parameters and then their types:\nparam\nparam\ntype\ntype\n...",
+      "range": {
+        "startLine": 75,
+        "startChar": 3,
+        "endLine": 80,
+        "endChar": 14
+      },
+      "revId": "c5a7e74d1ab2b6b7f4743dd756262b298dcd238f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_2acbdd73",
+        "filename": "tests/suites/performance/long_ipv6.robot",
+        "patchSetId": 15
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-10T16:30:00Z",
+      "side": 1,
+      "message": "And\n- all occurences.",
+      "range": {
+        "startLine": 40,
+        "startChar": 4,
+        "endLine": 40,
+        "endChar": 7
+      },
+      "revId": "c5a7e74d1ab2b6b7f4743dd756262b298dcd238f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_8aab0989",
+        "filename": "tests/suites/performance/short_ipv6.robot",
+        "patchSetId": 15
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-10T16:30:00Z",
+      "side": 1,
+      "message": "And\n- all occurences",
+      "range": {
+        "startLine": 32,
+        "startChar": 4,
+        "endLine": 32,
+        "endChar": 7
+      },
+      "revId": "c5a7e74d1ab2b6b7f4743dd756262b298dcd238f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
