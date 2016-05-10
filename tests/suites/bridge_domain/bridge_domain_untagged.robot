@@ -192,6 +192,8 @@
 | | ...                                     | ${bd_id2}
 | | And VM for Vhost L2BD forwarding is setup | ${dut_node} | ${sock1}
 | | ...                                       | ${sock2}
+| | And VM for Vhost L2BD forwarding is setup | ${nodes['DUT2']} | ${sock1}
+| | ...                                       | ${sock2}
 | | Then Send and receive ICMPv4 bidirectionally | ${tg_node} | ${tg_to_dut_if1}
 | | ...                                          | ${tg_to_dut_if2}
 | | [Teardown] | Run Keywords | Show Packet Trace on All DUTs | ${nodes}
