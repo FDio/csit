@@ -12,11 +12,11 @@
 # limitations under the License.
 
 *** Settings ***
-| Library | resources/libraries/python/HoneycombUtil.py
+| Library | resources/libraries/python/honeycomb/HoneycombUtil.py
 | Library | resources.libraries.python.InterfaceUtil
-| ... | WITH NAME | interfaceCLI
-| Library | resources.libraries.python.HcAPIKwInterfaces.InterfaceKeywords
-| ... | WITH NAME | InterfaceAPI
+| ...     | WITH NAME | interfaceCLI
+| Library | resources.libraries.python.honeycomb.HcAPIKwInterfaces.InterfaceKeywords
+| ...     | WITH NAME | InterfaceAPI
 
 *** Keywords ***
 | Interface state is

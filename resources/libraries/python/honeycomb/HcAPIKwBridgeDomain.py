@@ -17,11 +17,12 @@ The keywords make possible to put and get configuration data and to get
 operational data.
 """
 
-
 from resources.libraries.python.HTTPRequest import HTTPCodes
-from resources.libraries.python.HoneycombSetup import HoneycombError
-from resources.libraries.python.HoneycombUtil import HoneycombUtil as HcUtil
-from resources.libraries.python.HoneycombUtil import DataRepresentation
+from resources.libraries.python.honeycomb.HoneycombSetup import HoneycombError
+from resources.libraries.python.honeycomb.HoneycombUtil \
+    import DataRepresentation
+from resources.libraries.python.honeycomb.HoneycombUtil \
+    import HoneycombUtil as HcUtil
 
 
 class BridgeDomainKeywords(object):
