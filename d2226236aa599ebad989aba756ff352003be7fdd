@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "da141535_aa2b6d81",
+        "filename": "resources/libraries/robot/ipv4.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-10T12:44:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_47b5edcb",
+      "range": {
+        "startLine": 108,
+        "startChar": 0,
+        "endLine": 108,
+        "endChar": 21
+      },
+      "revId": "d2226236aa599ebad989aba756ff352003be7fdd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da141535_27caf94f",
         "filename": "resources/libraries/robot/ipv4.robot",
         "patchSetId": 5
@@ -36,6 +60,30 @@
       "writtenOn": "2016-05-09T12:48:02Z",
       "side": 1,
       "message": "Please, use variable name dut_node",
+      "range": {
+        "startLine": 111,
+        "startChar": 14,
+        "endLine": 111,
+        "endChar": 17
+      },
+      "revId": "d2226236aa599ebad989aba756ff352003be7fdd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_ca26a1ba",
+        "filename": "resources/libraries/robot/ipv4.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-10T12:44:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_27caf94f",
       "range": {
         "startLine": 111,
         "startChar": 14,
