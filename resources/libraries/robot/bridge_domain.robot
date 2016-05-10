@@ -253,3 +253,91 @@
 | | ${vhost_if2}= | Vpp Create Vhost User Interface | ${node} | ${sock2}
 | | Set Test Variable | ${vhost_if1}
 | | Set Test Variable | ${vhost_if2}
+
+| VPP 4 Vhosts are created
+| | [Documentation] | Create four Vhost-User interfaces on defined VPP node.
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - DUT node. Type: dictionary
+| | ... | - sock1 - Socket path for first Vhost-User interface. Type: string
+| | ... | - sock2 - Socket path for second Vhost-User interface. Type: string
+| | ... | - sock3 - Socket path for third Vhost-User interface. Type: string
+| | ... | - sock4 - Socket path for forth Vhost-User interface. Type: string
+| | ...
+| | ... | _NOTE:_ This KW sets following test case variable:
+| | ... | - ${vhost_if1} - First Vhost-User interface.
+| | ... | - ${vhost_if2} - Second Vhost-User interface.
+| | ... | - ${vhost_if3} - Third Vhost-User interface.
+| | ... | - ${vhost_if4} - Forth Vhost-User interface.
+| | ...
+| | ... | *Example:*
+| | ... | \| VPP 4 Vhosts are created \| ${nodes['DUT1']} \
+| | ... | \| /tmp/sock1 \| /tmp/sock2 \| /tmp/sock3 \| /tmp/sock4
+| | ...
+| | [Arguments] | ${node} | ${sock1} | ${sock2} | ${sock3} | ${sock4}
+| | ${vhost_if1}= | Vpp Create Vhost User Interface | ${node} | ${sock1}
+| | ${vhost_if2}= | Vpp Create Vhost User Interface | ${node} | ${sock2}
+| | ${vhost_if3}= | Vpp Create Vhost User Interface | ${node} | ${sock3}
+| | ${vhost_if4}= | Vpp Create Vhost User Interface | ${node} | ${sock4}
+| | Set Test Variable | ${vhost_if1}
+| | Set Test Variable | ${vhost_if2}
+| | Set Test Variable | ${vhost_if3}
+| | Set Test Variable | ${vhost_if4}
+
+| Setup QEMU Vhost
+| | [Documentation] | Setup Qemu vhosts.
+| | ...
+| | ... | *Arguments:*
+| | ... | - sock1 - Socket path for first Vhost-User interface. Type: string
+| | ... | - sock2 - Socket path for second Vhost-User interface. Type: string
+| | ... | - sock3 - Socket path for third Vhost-User interface. Type: string
+| | ... | - sock4 - Socket path for forth Vhost-User interface. Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Setup QEMU Vhost \| /tmp/sock1 \| /tmp/sock2 \
+| | ... | \| /tmp/sock3 \| /tmp/sock4
+| | ...
+| | [Arguments] | ${sock1} | ${sock2} | ${sock3} | ${sock4} |
+| | Qemu Add Vhost User If | ${sock1}
+| | Qemu Add Vhost User If | ${sock2}
+| | Qemu Add Vhost User If | ${sock3}
+| | Qemu Add Vhost User If | ${sock4}
+
+| Start QEMU on Dut With Namespace
+| | [Documentation] | Start Qemu on specific node.
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - DUT node. Type: dictionary
+| | ... | - ip1 - Ip address to set for vhost1. Type: string
+| | ... | - ip2 - Ip address to set for vhost2. Type: string
+| | ... | - ip3 - Ip address to set for vhost3. Type: string
+| | ... | - ip4 - Ip address to set for vhost4. Type: string
+| | ... | - vm_name - VM name by which it can be accessed. Type: string
+| | ...
+| | ... | _NOTE:_ This KW sets following test case variable:
+| | ... | - ${${vm_name}} - Created VM is accessible by the name
+| | ... | given as an argument.
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Start QEMU on Dut \| ${nodes['DUT1']} \| 10.0.0.1 \
+| | ... | \| 10.0.0.2 \| 10.0.0.3 \| 10.0.0.4 \| vm_dut1
+| | ...
+| | [Arguments] | ${node} | ${ip1} | ${ip2} | ${ip3} | ${ip4} | ${prefix_length} | ${vm_name} | ${mac}=None
+| | Qemu Set Node | ${node} | ${mac}
+| | ${vm}= | Qemu Start
+| | ${vhost1}= | Get Vhost User If Name By Sock | ${vm} | ${sock1}
+| | ${vhost2}= | Get Vhost User If Name By Sock | ${vm} | ${sock2}
+| | ${vhost3}= | Get Vhost User If Name By Sock | ${vm} | ${sock3}
+| | ${vhost4}= | Get Vhost User If Name By Sock | ${vm} | ${sock4}
+| | Set Interface State | ${vm} | ${vhost1} | up
+| | Set Interface State | ${vm} | ${vhost2} | up
+| | Set Interface State | ${vm} | ${vhost3} | up
+| | Set Interface State | ${vm} | ${vhost4} | up
+| | Setup Network Namespace | ${vm} | nmspace1 | ${vhost1} | ${ip1} | ${prefix_length}
+| | Setup Network Namespace | ${vm} | nmspace2 | ${vhost2} | ${ip2} | ${prefix_length}
+| | Setup Network Namespace | ${vm} | nmspace3 | ${vhost3} | ${ip3} | ${prefix_length}
+| | Setup Network Namespace | ${vm} | nmspace4 | ${vhost4} | ${ip4} | ${prefix_length}
+| |
+| | Set Test Variable | ${${vm_name}} | ${vm}
