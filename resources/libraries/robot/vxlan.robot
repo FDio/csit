@@ -62,7 +62,7 @@
 
 | Interfaces are added to xconnect
 | | [Arguments] | ${DUT} | ${INTERFACE_1} | ${INTERFACE_2}
-| |  L2 setup xconnect on DUT | ${DUT} | ${INTERFACE_1} | ${INTERFACE_2}
+| | L2 setup xconnect on DUT | ${DUT} | ${INTERFACE_1} | ${INTERFACE_2}
 
 | Vlan interfaces for VXLAN are created
 | | [Documentation] | *Create VLAN subinterface on interfaces on DUTs with given VLAN ID.*
