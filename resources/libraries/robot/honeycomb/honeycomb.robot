@@ -12,9 +12,8 @@
 # limitations under the License.
 
 *** Settings ***
-| Library | resources/libraries/python/HoneycombSetup.py
-| Library | resources/libraries/python/HoneycombUtil.py
-| Library | resources/libraries/python/HTTPRequest.py
+| Library | resources/libraries/python/honeycomb/HoneycombSetup.py
+| Library | resources/libraries/python/honeycomb/HoneycombUtil.py
 
 *** Keywords ***
 | Setup Honeycomb service on DUTs

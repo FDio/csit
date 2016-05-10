@@ -13,9 +13,9 @@
 
 *** Settings ***
 | Library | resources.libraries.python.L2Util
-| Library | resources.libraries.python.HcAPIKwBridgeDomain.BridgeDomainKeywords
-| Library | resources.libraries.python.HcAPIKwInterfaces.InterfaceKeywords
-| ... | WITH NAME | InterfaceAPI
+| Library | resources.libraries.python.honeycomb.HcAPIKwBridgeDomain.BridgeDomainKeywords
+| Library | resources.libraries.python.honeycomb.HcAPIKwInterfaces.InterfaceKeywords
+| ...     | WITH NAME | InterfaceAPI
 
 *** Keywords ***
 | Honeycomb creates first L2 bridge domain

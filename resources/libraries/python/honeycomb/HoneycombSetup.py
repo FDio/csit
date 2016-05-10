@@ -15,13 +15,14 @@
 
 from robot.api import logger
 
-from resources.libraries.python.topology import NodeType
-from resources.libraries.python.ssh import SSH
 from resources.libraries.python.HTTPRequest import HTTPRequest, HTTPCodes, \
     HTTPRequestError
-from resources.libraries.python.HoneycombUtil import HoneycombUtil as HcUtil
-from resources.libraries.python.HoneycombUtil import HoneycombError
 from resources.libraries.python.constants import Constants as Const
+from resources.libraries.python.honeycomb.HoneycombUtil import HoneycombError
+from resources.libraries.python.honeycomb.HoneycombUtil \
+    import HoneycombUtil as HcUtil
+from resources.libraries.python.ssh import SSH
+from resources.libraries.python.topology import NodeType
 
 
 class HoneycombSetup(object):
