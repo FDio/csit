@@ -1,0 +1,135 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da141535_8799c470",
+        "filename": "resources/tools/robot_output_parser.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-10T09:02:34Z",
+      "side": 1,
+      "message": "PEP 8: expected 2 blank lines",
+      "revId": "a3d2d03c1c27a438134cc35a24fb76d6eb87a7be",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_67b590cc",
+        "filename": "resources/tools/robot_output_parser.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-10T09:02:34Z",
+      "side": 1,
+      "message": "through",
+      "range": {
+        "startLine": 26,
+        "startChar": 16,
+        "endLine": 26,
+        "endChar": 24
+      },
+      "revId": "a3d2d03c1c27a438134cc35a24fb76d6eb87a7be",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_679eb058",
+        "filename": "resources/tools/robot_output_parser.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-10T09:02:34Z",
+      "side": 1,
+      "message": "PEP 8: expected 2 blank lines",
+      "revId": "a3d2d03c1c27a438134cc35a24fb76d6eb87a7be",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_47a3ac9e",
+        "filename": "resources/tools/robot_output_parser.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-10T09:02:34Z",
+      "side": 1,
+      "message": "PEP 8: expected 2 blank lines",
+      "revId": "a3d2d03c1c27a438134cc35a24fb76d6eb87a7be",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_a7bba8c3",
+        "filename": "resources/tools/robot_output_parser.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-10T09:02:34Z",
+      "side": 1,
+      "message": "PEP 8: missing whitespace around operator",
+      "range": {
+        "startLine": 103,
+        "startChar": 64,
+        "endLine": 103,
+        "endChar": 65
+      },
+      "revId": "a3d2d03c1c27a438134cc35a24fb76d6eb87a7be",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_07adb488",
+        "filename": "resources/tools/robot_output_parser.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-10T09:02:34Z",
+      "side": 1,
+      "message": "PEP 8: expected 2 blank lines",
+      "revId": "a3d2d03c1c27a438134cc35a24fb76d6eb87a7be",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_27a0b88f",
+        "filename": "resources/tools/robot_output_parser.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-10T09:02:34Z",
+      "side": 1,
+      "message": "PEP 8: expected 2 blank lines",
+      "revId": "a3d2d03c1c27a438134cc35a24fb76d6eb87a7be",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
