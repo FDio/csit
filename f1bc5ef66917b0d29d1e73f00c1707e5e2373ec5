@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da141535_0ae7f941",
+        "filename": "tests/suites/ipv4/ipv4_iacl_untagged.robot",
+        "patchSetId": 12
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-10T13:59:46Z",
+      "side": 1,
+      "message": "New requirement:\nwe need a little bit more verbose documentationin test case documentation - an example from BD:\n| | [Documentation] | Create bridge domains (learning enabled) on two VPP nodes,\n| | ...             | add interfaces to each bridge domain where both interfaces\n| | ...             | toward TG are in the same split-horizon group and check\n| | ...             | traffic bidirectionally.",
+      "range": {
+        "startLine": 41,
+        "startChar": 2,
+        "endLine": 41,
+        "endChar": 66
+      },
+      "revId": "f1bc5ef66917b0d29d1e73f00c1707e5e2373ec5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
