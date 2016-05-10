@@ -18,6 +18,7 @@ from robot.api.deco import keyword
 
 from resources.libraries.python.topology import Topology
 from resources.libraries.python.IPv4Setup import get_node
+from resources.libraries.python.ssh import exec_cmd
 
 
 class IPv4Util(object):
@@ -160,3 +161,29 @@ class IPv4Util(object):
         if net is None:
             raise ValueError('Link "{0}" not found'.format(link))
         return net.get('prefix')
+
+    @staticmethod
+    def send_ping_from_node_to_dst(node, destination, namespace=None,
+                                   ping_count=3):
+        """Send a ping from node to destination. Optionally, you can define a
+        namespace from where to send a ping.
+
+        :param node: Node to start ping on.
+        :param destination: IPv4 address where to send ping.
+        :param namespace: Namespace to send ping from.
+        :param ping_count: Number of pings to send.
+        :type node: dict
+        :type destination: str
+        :type namespace: str
+        :type ping_count: int
+
+        """
+        cmd = ''
+        if namespace is not None:
+            cmd = 'ip netns exec {0} ping -c{1} {2}'.format(
+                namespace, ping_count, destination)
+        else:
+            cmd = 'ping -c{0} {1}'.format(ping_count, destination)
+        rc, stdout, stderr = exec_cmd(node, cmd, sudo=True)
+        if rc != 0:
+            raise RuntimeError("Ping Not Successful")
