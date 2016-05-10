@@ -17,7 +17,7 @@ from robot.api.deco import keyword
 
 from resources.libraries.python.topology import Topology
 from resources.libraries.python.VatExecutor import VatExecutor, VatTerminal
-from resources.libraries.python.ssh import exec_cmd_no_error
+from resources.libraries.python.ssh import exec_cmd_no_error, exec_cmd
 
 
 class L2Util(object):
@@ -192,6 +192,29 @@ class L2Util(object):
                                                     interface2=sw_iface1)
 
     @staticmethod
+    def make_ping_from_to(node, destination, namespace=None):
+        """Send a ping from node to destination. Optionally, you can define a
+        namespace from where to send a ping.
+
+        :param node: Node to start ping on.
+        :param destination: IP address where to send ping.
+        :param namespace: Namespace to send ping from.
+        :type node: dict
+        :type destination: str
+        :type namespace: str
+
+        """
+        cmd = ''
+        if namespace is not None:
+            cmd = 'ip netns exec {0} ping -c3 {1}'.format(namespace, destination)
+        else:
+            cmd = 'ping -c10 {0}'.format(destination)
+        rc,stdout,stderr = exec_cmd(node, cmd, sudo=True)
+        if rc != 0:
+            raise RuntimeError("Ping Not Successful")
+
+
+    @staticmethod
     def linux_add_bridge(node, br_name, if_1, if_2):
         """Bridge two interfaces on linux node.
 
@@ -203,6 +226,7 @@ class L2Util(object):
         :type br_name: str
         :type if_1: str
         :type if_2: str
+
         """
         cmd = 'brctl addbr {0}'.format(br_name)
         exec_cmd_no_error(node, cmd, sudo=True)
@@ -211,6 +235,30 @@ class L2Util(object):
         cmd = 'brctl addif {0} {1}'.format(br_name, if_2)
         exec_cmd_no_error(node, cmd, sudo=True)
 
+    @staticmethod
+    def setup_network_namespace(node,namespace_name,vhost_if,ip_address,prefix):
+        """.
+
+        :param node: Node to set namespace on.
+        :param namespace_name: Namespace name.
+        :param vhost_if: Vhost interface name.
+        :param ip_address: IP address for the namespace.
+        :param prefix: IP address prefix length.
+        :type node: dict
+        :type namespace_name: str
+        :type vhost_if: str
+        :type ip_address: str
+        :type prefix: int
+
+        """
+        cmd = ('ip netns add {0}'.format(namespace_name))
+        exec_cmd_no_error(node, cmd, sudo=True)
+
+        cmd = ('ip link set dev {0} up netns {1}'.format(vhost_if,namespace_name))
+        exec_cmd_no_error(node, cmd, sudo=True)
+
+        cmd = ('ip netns exec {0} ip addr add {1}/{2} dev {3}'.format(namespace_name,ip_address,prefix,vhost_if))
+        exec_cmd_no_error(node, cmd, sudo=True)
     @staticmethod
     def linux_del_bridge(node, br_name):
         """Delete bridge from linux node.
