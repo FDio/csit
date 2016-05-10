@@ -21,7 +21,7 @@ from resources.libraries.python.ssh import exec_cmd_no_error
 
 
 class L2Util(object):
-    """Utilities for l2 configuration"""
+    """Utilities for l2 configuration."""
 
     @staticmethod
     def vpp_add_l2fib_entry(node, mac, interface, bd_id):
@@ -203,12 +203,42 @@ class L2Util(object):
         :type br_name: str
         :type if_1: str
         :type if_2: str
+
         """
         cmd = 'brctl addbr {0}'.format(br_name)
         exec_cmd_no_error(node, cmd, sudo=True)
         cmd = 'brctl addif {0} {1}'.format(br_name, if_1)
         exec_cmd_no_error(node, cmd, sudo=True)
         cmd = 'brctl addif {0} {1}'.format(br_name, if_2)
+        exec_cmd_no_error(node, cmd, sudo=True)
+
+    @staticmethod
+    def setup_network_namespace(node, namespace_name, interface_name,
+                                ip_address, prefix):
+        """Setup namespace on given node and attach interface and IP to
+        this namespace Applicable also on TG node.
+
+        :param node: Node to set namespace on.
+        :param namespace_name: Namespace name.
+        :param interface_name: Interface name.
+        :param ip_address: IP address of namespace's interface.
+        :param prefix: IP address prefix length.
+        :type node: dict
+        :type namespace_name: str
+        :type vhost_if: str
+        :type ip_address: str
+        :type prefix: int
+
+        """
+        cmd = ('ip netns add {0}'.format(namespace_name))
+        exec_cmd_no_error(node, cmd, sudo=True)
+
+        cmd = ('ip link set dev {0} up netns {1}'.format(interface_name,
+                                                         namespace_name))
+        exec_cmd_no_error(node, cmd, sudo=True)
+
+        cmd = ('ip netns exec {0} ip addr add {1}/{2} dev {3}'.format(
+            namespace_name, ip_address, prefix, interface_name))
         exec_cmd_no_error(node, cmd, sudo=True)
 
     @staticmethod
@@ -250,17 +280,22 @@ class L2Util(object):
         return data
 
     @staticmethod
-    def l2_tag_rewrite(node, interface, tag_rewrite_method):
+    def l2_tag_rewrite(node, interface, tag_rewrite_method, tag1_id=None):
         """Rewrite tags in frame.
 
         :param node: Node to rewrite tags.
         :param interface: Interface on which rewrite tags.
         :param tag_rewrite_method: Method of tag rewrite.
+        :param tag1_id: Optional tag1 ID for VLAN.
         :type node: dict
         :type interface: str or int
         :type tag_rewrite_method : str
+        :type tag1_id: int
         """
-
+        if tag1_id is None:
+            tag1_id = ''
+        else:
+            tag1_id = 'tag1 {0}'.format(tag1_id)
         if isinstance(interface, basestring):
             sw_if_index = Topology.get_interface_sw_index(node, interface)
         else:
@@ -270,4 +305,5 @@ class L2Util(object):
             vat.vat_terminal_exec_cmd_from_template("l2_tag_rewrite.vat",
                                                     sw_if_index=sw_if_index,
                                                     tag_rewrite_method=
-                                                    tag_rewrite_method)
+                                                    tag_rewrite_method,
+                                                    tag1_optional=tag1_id)
