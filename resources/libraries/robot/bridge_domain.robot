@@ -253,3 +253,74 @@
 | | ${vhost_if2}= | Vpp Create Vhost User Interface | ${node} | ${sock2}
 | | Set Test Variable | ${vhost_if1}
 | | Set Test Variable | ${vhost_if2}
+
+| VPP 4 Vhosts are created
+| | [Documentation] | Create two Vhost-User interfaces on defined VPP node.
+| | ...
+| | ... | *Arguments:*
+| | ... | - ${node} - DUT node. Type: dictionary
+| | ... | - ${sock1} - Socket path for first Vhost-User interface. Type: string
+| | ... | - ${sock2} - Socket path for second Vhost-User interface. Type: string
+| | ... | - ${sock3} - Socket path for third Vhost-User interface. Type: string
+| | ... | - ${sock4} - Socket path for forth Vhost-User interface. Type: string
+| | ...
+| | ... | _NOTE:_ This KW sets following test case variable:
+| | ... | - ${vhost_if1} - First Vhost-User interface.
+| | ... | - ${vhost_if2} - Second Vhost-User interface.
+| | ... | - ${vhost_if3} - Third Vhost-User interface.
+| | ... | - ${vhost_if4} - Forth Vhost-User interface.
+| | ...
+| | ... | *Example:*
+| | ...
+| | [Arguments] | ${node} | ${sock1} | ${sock2} | ${sock3} | ${sock4}
+| | ${vhost_if1}= | Vpp Create Vhost User Interface | ${node} | ${sock1}
+| | ${vhost_if2}= | Vpp Create Vhost User Interface | ${node} | ${sock2}
+| | ${vhost_if3}= | Vpp Create Vhost User Interface | ${node} | ${sock3}
+| | ${vhost_if4}= | Vpp Create Vhost User Interface | ${node} | ${sock4}
+| | Set Test Variable | ${vhost_if1}
+| | Set Test Variable | ${vhost_if2}
+| | Set Test Variable | ${vhost_if3}
+| | Set Test Variable | ${vhost_if4}
+
+| VM for 4 Vhosts are created
+| | [Documentation] | Setup QEMU and start VM with four vhost interfaces.
+| | ...
+| | ... | *Arguments:*
+| | ... | - ${node} - DUT node to start VM on. Type: dictionary
+| | ... | - ${sock1} - Socket path for first Vhost-User interface. Type: string
+| | ... | - ${sock2} - Socket path for second Vhost-User interface. Type: string
+| | ... | - ${sock3} - Socket path for third Vhost-User interface. Type: string
+| | ... | - ${sock4} - Socket path for forth Vhost-User interface. Type: string
+| | ...
+| | ... | _NOTE:_ This KW sets following test case variable:
+| | ... | -${vm_node} - VM node info. Type: dictionary
+| | ...
+| | [Arguments] | ${node} | ${sock1} | ${sock2} | ${sock3} | ${sock4} | ${ip} | ${vm_name}
+| | Set Test Variable | ${${vm_name}} | ${None}
+| | Qemu Set Node | ${node}
+| | ${vm}= | Qemu Start
+| | ${vhost1}= | Get Vhost User If Name By Sock | ${vm} | ${sock1}
+| | ${vhost2}= | Get Vhost User If Name By Sock | ${vm} | ${sock2}
+| | ${vhost3}= | Get Vhost User If Name By Sock | ${vm} | ${sock3}
+| | ${vhost4}= | Get Vhost User If Name By Sock | ${vm} | ${sock4}
+| | Add IP To Interface | ${vm} | ${vhost1} | ${ip}
+#| | Setup Network Namespace | ${vm} | nmspace1 | ${vhost1} | 192.168.0.1
+#| | Setup Network Namespace | ${vm} | nmspace2 | ${vhost2} | 192.168.0.2
+#| | Setup Network Namespace | ${vm} | nmspace3 | ${vhost3} | 192.168.0.3
+#| | Setup Network Namespace | ${vm} | nmspace4 | ${vhost4} | 192.168.0.4
+| | Set Test Variable | ${${vm_name}} | ${vm}
+
+| Setup QEMU Vhost
+| | [Arguments] | ${sock1} | ${sock2} | ${sock3} | ${sock4} |
+| | Qemu Add Vhost User If | ${sock1}
+| | Qemu Add Vhost User If | ${sock2}
+| | Qemu Add Vhost User If | ${sock3}
+| | Qemu Add Vhost User If | ${sock4}
+
+| Start QEMU on Node
+| | [Arguments] | ${node} | ${ip} | ${vm_name}
+| | Qemu Set Node | ${node}
+| | ${vm}= | Qemu Start
+| | ${vhost1}= | Get Vhost User If Name By Sock | ${vm} | ${sock1}
+| | Add IP To Interface | ${vm} | ${vhost1} | ${ip}
+| | Set Test Variable | ${${vm_name}} | ${vm}
