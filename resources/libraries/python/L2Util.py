@@ -192,6 +192,16 @@ class L2Util(object):
                                                     interface2=sw_iface1)
 
     @staticmethod
+    def add_ip_to_interface(node,interface,ip):
+        cmd = 'ifconfig {0} {1}'.format(interface,ip)
+        exec_cmd_no_error(node, cmd, sudo=True)
+
+    @staticmethod
+    def make_ping_from_to(node,destination):
+        cmd = 'ping -c10 {0}'.format(destination)
+        exec_cmd_no_error(node, cmd, sudo=True)
+
+    @staticmethod
     def linux_add_bridge(node, br_name, if_1, if_2):
         """Bridge two interfaces on linux node.
 
@@ -203,12 +213,32 @@ class L2Util(object):
         :type br_name: str
         :type if_1: str
         :type if_2: str
+
         """
         cmd = 'brctl addbr {0}'.format(br_name)
         exec_cmd_no_error(node, cmd, sudo=True)
         cmd = 'brctl addif {0} {1}'.format(br_name, if_1)
         exec_cmd_no_error(node, cmd, sudo=True)
         cmd = 'brctl addif {0} {1}'.format(br_name, if_2)
+        exec_cmd_no_error(node, cmd, sudo=True)
+
+    @staticmethod
+    def setup_network_namespace(node,namespace_name,vhost_if,ip_address):
+        cmd = 'ifconfig -a'
+        exec_cmd_no_error(node, cmd, sudo=True)
+        cmd =  'ip link list'
+        exec_cmd_no_error(node, cmd, sudo=True)
+
+        cmd = ('ip netns add {0}'.format(namespace_name))
+        exec_cmd_no_error(node, cmd, sudo=True)
+
+        cmd = ('ip link set {0} netns {1}'.format(vhost_if,namespace_name))
+        exec_cmd_no_error(node, cmd, sudo=True)
+
+        cmd = ('ip netns exec {0} ip link set {1} up'.format(namespace_name,vhost_if))
+        exec_cmd_no_error(node, cmd, sudo=True)
+
+        cmd = ('ip netns exec {0} ip addr add {1} dev {2}'.format(namespace_name,ip_address,vhost_if))
         exec_cmd_no_error(node, cmd, sudo=True)
 
     @staticmethod
