@@ -19,7 +19,7 @@
 | ${bd2_name}= | bd-02
 | &{bd_settings}= | flood=${True} | forward=${True} | learn=${True}
 | ... | unknown-unicast-flood=${True} | arp-termination=${True}
-| &{if_settings}= | split_horizon_group=1 | bvi=${True}
+| &{if_settings}= | split_horizon_group=${1} | bvi=${True}
 
 *** Settings ***
 | Resource | resources/libraries/robot/default.robot
@@ -53,7 +53,7 @@
 | | Then Honeycomb should show interfaces assigned to bridge domain
 | | ... | ${node} | @{interfaces} | ${bd1_name} | ${if_settings}
 | | And VAT should show interfaces assigned to bridge domain
-| | ... | ${node} | ${0} | @{interfaces}
+| | ... | ${node} | ${0} | @{interfaces} | ${if_settings}
 
 | Honeycomb manages multiple bridge domains on node
 | | [Documentation] | Check if Honeycomb can manage multiple bridge domains on\
