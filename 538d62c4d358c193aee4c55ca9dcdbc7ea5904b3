@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da141535_0dc83373",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 18
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-05-11T13:20:57Z",
+      "side": 1,
+      "message": "If there is a JIRA task related to this commit, add it to commit message.",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 25
+      },
+      "revId": "538d62c4d358c193aee4c55ca9dcdbc7ea5904b3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_2d51b762",
+        "filename": "resources/libraries/python/LispSetup.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-05-11T13:20:57Z",
+      "side": 1,
+      "message": "str or basestring",
+      "range": {
+        "startLine": 32,
+        "startChar": 21,
+        "endLine": 32,
+        "endChar": 27
+      },
+      "revId": "538d62c4d358c193aee4c55ca9dcdbc7ea5904b3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_ed4a9fab",
+        "filename": "resources/libraries/python/LispSetup.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 397,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-05-11T13:20:57Z",
+      "side": 1,
+      "message": "str or basestring",
+      "range": {
+        "startLine": 397,
+        "startChar": 21,
+        "endLine": 397,
+        "endChar": 27
+      },
+      "revId": "538d62c4d358c193aee4c55ca9dcdbc7ea5904b3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_adcca736",
+        "filename": "resources/libraries/robot/lisp.robot",
+        "patchSetId": 18
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-05-11T13:20:57Z",
+      "side": 1,
+      "message": "\\|",
+      "range": {
+        "startLine": 82,
+        "startChar": 70,
+        "endLine": 82,
+        "endChar": 72
+      },
+      "revId": "538d62c4d358c193aee4c55ca9dcdbc7ea5904b3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_8dd1e3cf",
+        "filename": "resources/libraries/robot/lisp.robot",
+        "patchSetId": 18
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-05-11T13:20:57Z",
+      "side": 1,
+      "message": "\\| is missing",
+      "range": {
+        "startLine": 266,
+        "startChar": 35,
+        "endLine": 266,
+        "endChar": 37
+      },
+      "revId": "538d62c4d358c193aee4c55ca9dcdbc7ea5904b3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
