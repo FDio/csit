@@ -82,6 +82,8 @@
 | | | Remove Socketmem Config | ${nodes['${dut}']}
 | | | Remove Heapsize Config | ${nodes['${dut}']}
 | | | Remove RSS Config | ${nodes['${dut}']}
+| | | Remove Max Tx Queues Config | ${nodes['${dut}']}
+| | | Remove No Multi Seg Config | ${nodes['${dut}']}
 | | | Add CPU Config | ${nodes['${dut}']}
 | | | ...            | ${cpu}
 | | | Add PCI Device | ${nodes['${dut}']}
