@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da141535_cd791bfe",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 571,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-11T13:22:22Z",
+      "side": 1,
+      "message": "GRE tunnel interface",
+      "range": {
+        "startLine": 571,
+        "startChar": 18,
+        "endLine": 571,
+        "endChar": 31
+      },
+      "revId": "a89fa75422c5a308243ec290887171da558b8953",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_ad65c746",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 573,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-11T13:22:22Z",
+      "side": 1,
+      "message": "VPP node",
+      "range": {
+        "startLine": 573,
+        "startChar": 21,
+        "endLine": 573,
+        "endChar": 25
+      },
+      "revId": "a89fa75422c5a308243ec290887171da558b8953",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_8d5a0382",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 579,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-11T13:22:22Z",
+      "side": 1,
+      "message": "GRE tunnel interface",
+      "range": {
+        "startLine": 579,
+        "startChar": 43,
+        "endLine": 579,
+        "endChar": 52
+      },
+      "revId": "a89fa75422c5a308243ec290887171da558b8953",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
