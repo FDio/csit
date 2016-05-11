@@ -43,19 +43,22 @@ class IPUtil(object):
                 dev=interface, ip=addr, h=node['host']))
 
 
-def convert_ipv4_netmask_prefix(netmask):
+def convert_ipv4_netmask_prefix(network):
     """Convert network mask to equivalent network prefix length or vice versa.
 
     Example: mask 255.255.0.0 -> prefix length 16
-    :param netmask: network mask or network prefix length.
-    :type netmask: str or int
-    :return: network mask or network prefix length.
+    :param network: Network mask or network prefix length.
+    :type network: str or int
+    :return: Network mask or network prefix length.
     :rtype: str or int
     """
     temp_address = "0.0.0.0"
-    net = IPv4Network(u"{0}/{1}".format(temp_address, netmask), False)
+    net = IPv4Network(u"{0}/{1}".format(temp_address, network), False)
 
-    if isinstance(netmask, int):
+    if isinstance(network, int) and (0 < network < 33):
         return net.netmask
-    elif isinstance(netmask, basestring):
+    elif isinstance(network, basestring):
         return net.prefixlen
+    else:
+        raise Exception("Value {0} is not a valid ipv4 netmask or network"
+                        " prefix length".format(network))
