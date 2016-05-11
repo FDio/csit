@@ -23,7 +23,8 @@
 | ... | L3 | Intel-X520-DA2
 | Suite Teardown | 3-node Performance Suite Teardown
 | Test Setup | Setup all DUTs before test
-| Test Teardown | Run Keyword | Show statistics on all DUTs
+| Test Teardown | Run Keywords | Show statistics on all DUTs
+| ...                          | Remove startup configuration of VPP from all DUTs
 | Documentation | Minimal throughput acceptance test cases
 
 *** Test Cases ***
@@ -35,10 +36,13 @@
 | | ${framesize}= | Set Variable | 64
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 3.5mpps
-| | Given Setup '1' worker threads and rss '1' without HTT on all DUTs
-| | AND   IPv4 forwarding initialized in a 3-node circular topology
-| | Then Traffic should pass with no loss | ${duration} | ${rate}
-| | ...                                   | ${framesize} | 3-node-IPv4
+| | Given Add '1' worker threads and rss '1' without HTT to all DUTs
+| | And   Add all PCI devices to all DUTs
+| | And   Add No Multi Seg to all DUTs
+| | And   Apply startup configuration on all VPP DUTs
+| | And   IPv4 forwarding initialized in a 3-node circular topology
+| | Then  Traffic should pass with no loss | ${duration} | ${rate}
+| | ...                                    | ${framesize} | 3-node-IPv4
 
 | 1core VPP passes 1518B frames through IPv4 forwarding at 2x 812,743pps in 3-node topology
 | | [Documentation]
@@ -48,10 +52,13 @@
 | | ${framesize}= | Set Variable | 1518
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 812743pps
-| | Given Setup '1' worker threads and rss '1' without HTT on all DUTs
-| | AND   IPv4 forwarding initialized in a 3-node circular topology
-| | Then Traffic should pass with no loss | ${duration} | ${rate}
-| | ...                                   | ${framesize} | 3-node-IPv4
+| | Given Add '1' worker threads and rss '1' without HTT to all DUTs
+| | And   Add all PCI devices to all DUTs
+| | And   Add No Multi Seg to all DUTs
+| | And   Apply startup configuration on all VPP DUTs
+| | And   IPv4 forwarding initialized in a 3-node circular topology
+| | Then  Traffic should pass with no loss | ${duration} | ${rate}
+| | ...                                    | ${framesize} | 3-node-IPv4
 
 | 1core VPP passes 9000B frames through IPv4 forwarding at 2x 138,580pps in 3-node topology
 | | [Documentation]
@@ -61,8 +68,10 @@
 | | ${framesize}= | Set Variable | 9000
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 138580pps
-| | Given Setup '1' worker threads and rss '1' without HTT on all DUTs
-| | AND   IPv4 forwarding initialized in a 3-node circular topology
+| | Given Add '1' worker threads and rss '1' without HTT to all DUTs
+| | And   Add all PCI devices to all DUTs
+| | And   Apply startup configuration on all VPP DUTs
+| | And   IPv4 forwarding initialized in a 3-node circular topology
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                   | ${framesize} | 3-node-IPv4
 
@@ -74,8 +83,11 @@
 | | ${framesize}= | Set Variable | 64
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 7.5mpps
-| | Given Setup '2' worker threads and rss '1' without HTT on all DUTs
-| | AND   IPv4 forwarding initialized in a 3-node circular topology
+| | Given Add '2' worker threads and rss '1' without HTT to all DUTs
+| | And   Add all PCI devices to all DUTs
+| | And   Add No Multi Seg to all DUTs
+| | And   Apply startup configuration on all VPP DUTs
+| | And   IPv4 forwarding initialized in a 3-node circular topology
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                   | ${framesize} | 3-node-IPv4
 
@@ -87,8 +99,11 @@
 | | ${framesize}= | Set Variable | 1518
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 812743pps
-| | Given Setup '2' worker threads and rss '1' without HTT on all DUTs
-| | AND   IPv4 forwarding initialized in a 3-node circular topology
+| | Given Add '2' worker threads and rss '1' without HTT to all DUTs
+| | And   Add all PCI devices to all DUTs
+| | And   Add No Multi Seg to all DUTs
+| | And   Apply startup configuration on all VPP DUTs
+| | And   IPv4 forwarding initialized in a 3-node circular topology
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                   | ${framesize} | 3-node-IPv4
 
@@ -100,8 +115,10 @@
 | | ${framesize}= | Set Variable | 9000
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 138580pps
-| | Given Setup '2' worker threads and rss '1' without HTT on all DUTs
-| | AND   IPv4 forwarding initialized in a 3-node circular topology
+| | Given Add '2' worker threads and rss '1' without HTT to all DUTs
+| | And   Add all PCI devices to all DUTs
+| | And   Apply startup configuration on all VPP DUTs
+| | And   IPv4 forwarding initialized in a 3-node circular topology
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                   | ${framesize} | 3-node-IPv4
 
@@ -113,8 +130,11 @@
 | | ${framesize}= | Set Variable | 64
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 7.8mpps
-| | Given Setup '4' worker threads and rss '2' without HTT on all DUTs
-| | AND   IPv4 forwarding initialized in a 3-node circular topology
+| | Given Add '4' worker threads and rss '2' without HTT to all DUTs
+| | And   Add all PCI devices to all DUTs
+| | And   Add No Multi Seg to all DUTs
+| | And   Apply startup configuration on all VPP DUTs
+| | And   IPv4 forwarding initialized in a 3-node circular topology
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                   | ${framesize} | 3-node-IPv4
 
@@ -126,8 +146,11 @@
 | | ${framesize}= | Set Variable | 1518
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 812743pps
-| | Given Setup '4' worker threads and rss '2' without HTT on all DUTs
-| | AND   IPv4 forwarding initialized in a 3-node circular topology
+| | Given Add '4' worker threads and rss '2' without HTT to all DUTs
+| | And   Add all PCI devices to all DUTs
+| | And   Add No Multi Seg to all DUTs
+| | And   Apply startup configuration on all VPP DUTs
+| | And   IPv4 forwarding initialized in a 3-node circular topology
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                   | ${framesize} | 3-node-IPv4
 
@@ -139,7 +162,9 @@
 | | ${framesize}= | Set Variable | 9000
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 138580pps
-| | Given Setup '4' worker threads and rss '2' without HTT on all DUTs
-| | AND   IPv4 forwarding initialized in a 3-node circular topology
+| | Given Add '4' worker threads and rss '2' without HTT to all DUTs
+| | And   Add all PCI devices to all DUTs
+| | And   Apply startup configuration on all VPP DUTs
+| | And   IPv4 forwarding initialized in a 3-node circular topology
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                   | ${framesize} | 3-node-IPv4
