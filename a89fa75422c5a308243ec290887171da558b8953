@@ -68,6 +68,29 @@
       "revId": "a89fa75422c5a308243ec290887171da558b8953",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_6ded6f8b",
+        "filename": "resources/traffic_scripts/send_icmp_check_gre_headers.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-05-11T13:26:57Z",
+      "side": 1,
+      "message": "where GRE encapsulated packet is expected.",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 42
+      },
+      "revId": "a89fa75422c5a308243ec290887171da558b8953",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
