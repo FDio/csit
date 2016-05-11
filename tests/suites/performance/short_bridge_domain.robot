@@ -17,7 +17,8 @@
 | Suite Setup | 3-node Performance Suite Setup | L2
 | Suite Teardown | 3-node Performance Suite Teardown
 | Test Setup | Setup all DUTs before test
-| Test Teardown | Run Keyword | Show statistics on all DUTs
+| Test Teardown | Run Keywords | Show statistics on all DUTs
+| ...                          | Clear startup configuration of VPP on all DUTs
 | Documentation | Minimal throughput acceptance test cases
 
 *** Test Cases ***
@@ -30,9 +31,12 @@
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 3.2mpps
 | | Given Setup '1' worker threads and rss '1' without HTT on all DUTs
-| | AND   L2 bridge domain initialized in a 3-node circular topology
-| | Then Traffic should pass with no loss | ${duration} | ${rate}
-| | ...                                   | ${framesize} | 3-node-bridge
+| | And   Setup PCI device on all DUTs
+| | And   Setup No Multi Seg on all DUTs
+| | And   Startup configuration of VPP is applied on all DUTs
+| | And   L2 bridge domain initialized in a 3-node circular topology
+| | Then  Traffic should pass with no loss | ${duration} | ${rate}
+| | ...                                    | ${framesize} | 3-node-bridge
 
 | 1core VPP passes 1518B frames through bridge domain at 2x 812,743pps in 3-node topology
 | | [Documentation]
@@ -43,7 +47,10 @@
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 812743pps
 | | Given Setup '1' worker threads and rss '1' without HTT on all DUTs
-| | AND   L2 bridge domain initialized in a 3-node circular topology
+| | And   Setup PCI device on all DUTs
+| | And   Setup No Multi Seg on all DUTs
+| | And   Startup configuration of VPP is applied on all DUTs
+| | And   L2 bridge domain initialized in a 3-node circular topology
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                   | ${framesize} | 3-node-bridge
 
@@ -56,7 +63,9 @@
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 138580pps
 | | Given Setup '1' worker threads and rss '1' without HTT on all DUTs
-| | AND   L2 bridge domain initialized in a 3-node circular topology
+| | And   Setup PCI device on all DUTs
+| | And   Startup configuration of VPP is applied on all DUTs
+| | And   L2 bridge domain initialized in a 3-node circular topology
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                   | ${framesize} | 3-node-bridge
 
@@ -69,7 +78,10 @@
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 6.9mpps
 | | Given Setup '2' worker threads and rss '1' without HTT on all DUTs
-| | AND   L2 bridge domain initialized in a 3-node circular topology
+| | And   Setup PCI device on all DUTs
+| | And   Setup No Multi Seg on all DUTs
+| | And   Startup configuration of VPP is applied on all DUTs
+| | And   L2 bridge domain initialized in a 3-node circular topology
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                   | ${framesize} | 3-node-bridge
 
@@ -82,7 +94,10 @@
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 812743pps
 | | Given Setup '2' worker threads and rss '1' without HTT on all DUTs
-| | AND   L2 bridge domain initialized in a 3-node circular topology
+| | And   Setup PCI device on all DUTs
+| | And   Setup No Multi Seg on all DUTs
+| | And   Startup configuration of VPP is applied on all DUTs
+| | And   L2 bridge domain initialized in a 3-node circular topology
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                   | ${framesize} | 3-node-bridge
 
@@ -95,7 +110,9 @@
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 138580pps
 | | Given Setup '2' worker threads and rss '1' without HTT on all DUTs
-| | AND   L2 bridge domain initialized in a 3-node circular topology
+| | And   Setup PCI device on all DUTs
+| | And   Startup configuration of VPP is applied on all DUTs
+| | And   L2 bridge domain initialized in a 3-node circular topology
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                   | ${framesize} | 3-node-bridge
 
@@ -108,7 +125,10 @@
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 7.4mpps
 | | Given Setup '4' worker threads and rss '2' without HTT on all DUTs
-| | AND   L2 bridge domain initialized in a 3-node circular topology
+| | And   Setup PCI device on all DUTs
+| | And   Setup No Multi Seg on all DUTs
+| | And   Startup configuration of VPP is applied on all DUTs
+| | And   L2 bridge domain initialized in a 3-node circular topology
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                   | ${framesize} | 3-node-bridge
 
@@ -121,7 +141,10 @@
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 812743pps
 | | Given Setup '4' worker threads and rss '2' without HTT on all DUTs
-| | AND   L2 bridge domain initialized in a 3-node circular topology
+| | And   Setup PCI device on all DUTs
+| | And   Setup No Multi Seg on all DUTs
+| | And   Startup configuration of VPP is applied on all DUTs
+| | And   L2 bridge domain initialized in a 3-node circular topology
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                   | ${framesize} | 3-node-bridge
 
@@ -134,6 +157,8 @@
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 138580pps
 | | Given Setup '4' worker threads and rss '2' without HTT on all DUTs
-| | AND   L2 bridge domain initialized in a 3-node circular topology
+| | And   Setup PCI device on all DUTs
+| | And   Startup configuration of VPP is applied on all DUTs
+| | And   L2 bridge domain initialized in a 3-node circular topology
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                   | ${framesize} | 3-node-bridge
