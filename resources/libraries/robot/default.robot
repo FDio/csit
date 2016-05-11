@@ -45,7 +45,10 @@
 | | ...     | ELSE IF        | '${m}' == '6' | Catenate | ${cpu} | 1-6
 | | ...     | ELSE           | Fail | Not supported combination
 | | ${rss}= | Catenate | rss | ${n}
+| | Clear VPP startup configuration on all DUTs
 | | Setup worker threads and rss on all DUTs | ${cpu} | ${rss}
+| | Setup PCI device on all DUTs
+| | Apply VPP startup configuration on all DUTs
 
 | Setup '${m}' worker threads and rss '${n}' with HTT on all DUTs
 | | [Documentation] |  Setup M worker threads with HTT and rss N in startup
@@ -57,20 +60,63 @@
 | | ...     | ELSE IF        | '${m}' == '8' | Catenate | ${cpu} | 1-4,10-13
 | | ...     | ELSE           | Fail | Not supported combination
 | | ${rss}= | Catenate | rss | ${n}
+| | Clear VPP startup configuration on all DUTs
 | | Setup worker threads and rss on all DUTs | ${cpu} | ${rss}
+| | Setup PCI device on all DUTs
+| | Apply VPP startup configuration on all DUTs
+
+| Setup '${m}' worker threads and rss '${n}' without HTT without multi-segment on all DUTs
+| | [Documentation] |  Setup M worker threads without HTT and rss N and
+| | ...             |  no-multi-seg in startup configuration of VPP on all DUTs
+| | ${cpu}= | Catenate | main-core | 0 | corelist-workers
+| | ${cpu}= | Run Keyword If | '${m}' == '1' | Catenate | ${cpu} | 1
+| | ...     | ELSE IF        | '${m}' == '2' | Catenate | ${cpu} | 1-2
+| | ...     | ELSE IF        | '${m}' == '4' | Catenate | ${cpu} | 1-4
+| | ...     | ELSE IF        | '${m}' == '6' | Catenate | ${cpu} | 1-6
+| | ...     | ELSE           | Fail | Not supported combination
+| | ${rss}= | Catenate | rss | ${n}
+| | Clear VPP startup configuration on all DUTs
+| | Setup worker threads and rss on all DUTs | ${cpu} | ${rss}
+| | Setup PCI device on all DUTs
+| | Setup No Multi Seg on all DUTs
+| | Apply VPP startup configuration on all DUTs
 
 | Setup worker threads and rss on all DUTs
-| | [Documentation] |  Setup worker threads and rss in startup configuration of
-| | ...             |  VPP on all DUTs
+| | [Documentation] | Setup worker threads and rss in VPP startup configuration
+| | ...             | on all DUTs
 | | [Arguments] | ${cpu} | ${rss}
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | Add CPU config | ${nodes['${dut}']}
 | | | ...            | ${cpu}
-| | | Add PCI device | ${nodes['${dut}']}
 | | | Add RSS config | ${nodes['${dut}']}
 | | | ...            | ${rss}
-| | | Apply config | ${nodes['${dut}']}
+
+| Setup PCI device on all DUTs
+| | [Documentation] | Setup PCI device in VPP startup configuration on all
+| | ...             | DUTs
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | Add PCI device | ${nodes['${dut}']}
+
+| Setup No Multi Seg on all DUTs
+| | [Documentation] | Setup No Multi Seg in VPP startup configuration on all
+| | ...             | DUTs
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | Add No Multi Seg Config | ${nodes['${dut}']}
+
+| Clear VPP startup configuration on all DUTs
+| | [Documentation] | Clear VPP startup configuration on all DUTs
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | Remove All PCI Devices | ${nodes['${dut}']}
+| | | Remove All CPU Config | ${nodes['${dut}']}
+| | | Remove Socketmem Config | ${nodes['${dut}']}
+| | | Remove Heapsize Config | ${nodes['${dut}']}
+| | | Remove RSS Config | ${nodes['${dut}']}
+| | | Remove Max Tx Queues Config | ${nodes['${dut}']}
+| | | Remove No Multi Seg Config | ${nodes['${dut}']}
 
 | Reset startup configuration of VPP on all DUTs
 | | [Documentation] | Reset startup configuration of VPP on all DUTs
@@ -82,8 +128,15 @@
 | | | Remove Socketmem Config | ${nodes['${dut}']}
 | | | Remove Heapsize Config | ${nodes['${dut}']}
 | | | Remove RSS Config | ${nodes['${dut}']}
+| | | Remove Max Tx Queues Config | ${nodes['${dut}']}
+| | | Remove No Multi Seg Config | ${nodes['${dut}']}
 | | | Add CPU Config | ${nodes['${dut}']}
 | | | ...            | ${cpu}
 | | | Add PCI Device | ${nodes['${dut}']}
-| | | Apply Config | ${nodes['${dut}']}
+| Apply VPP startup configuration on all DUTs
 
+| Apply VPP startup configuration on all DUTs
+| | [Documentation] | Apply VPP startup configuration on all DUTs
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | Apply Config | ${nodes['${dut}']}
