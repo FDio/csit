@@ -10,6 +10,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
 *** Settings ***
 | Resource | resources/libraries/robot/performance.robot
 | Library | resources.libraries.python.InterfaceUtil
@@ -20,7 +21,8 @@
 | ... | L2 | Intel-X520-DA2
 | Suite Teardown | 3-node Performance Suite Teardown
 | Test Setup | Setup all DUTs before test
-| Test Teardown | Run Keyword | Show statistics on all DUTs
+| Test Teardown | Run Keywords | Show statistics on all DUTs
+| ...                          | Remove startup configuration of VPP from all DUTs
 | Documentation | *Throughput search suite (based on RFC2544).*
 | ...
 | ... | Test suite uses 3-node topology TG - DUT1 - DUT2 - TG, with one link
@@ -33,18 +35,21 @@
 | Find NDR by using RFC2544 linear search and 64B frames through L2 cross connect in 3-node topology
 | | [Documentation]
 | | ... | Find throughput with non drop rate for 64B frames by using
-| | ... | linear search starting at 5Mpps, stepping down with step of 0.1Mpps
+| | ... | linear search starting at 6.0Mpps, stepping down with step of 0.1Mpps
 | | [Tags] | 1_THREAD_NOHTT_RSS_1 | SINGLE_THREAD
 | | ${framesize}= | Set Variable | 64
-| | ${start_rate}= | Set Variable | 4800000
+| | ${start_rate}= | Set Variable | 6000000
 | | ${step_rate}= | Set Variable | 100000
 | | ${min_rate}= | Set Variable | 100000
 | | ${max_rate}= | Set Variable | 14880952
-| | Given Setup '1' worker threads and rss '1' without HTT on all DUTs
-| | AND   L2 xconnect initialized in a 3-node circular topology
-| | Then Find NDR using linear search and pps | ${framesize} | ${start_rate}
-| | ...                                       | ${step_rate} | 3-node-xconnect
-| | ...                                       | ${min_rate} | ${max_rate}
+| | Given Add '1' worker threads and rss '1' without HTT to all DUTs
+| | And   Add all PCI devices to all DUTs
+| | And   Add No Multi Seg to all DUTs
+| | And   Apply startup configuration on all VPP DUTs
+| | And   L2 xconnect initialized in a 3-node circular topology
+| | Then  Find NDR using linear search and pps | ${framesize} | ${start_rate}
+| | ...                                        | ${step_rate} | 3-node-xconnect
+| | ...                                        | ${min_rate} | ${max_rate}
 
 | Find NDR by using RFC2544 linear search and 1518B frames through L2 cross connect in 3-node topology
 | | [Documentation]
@@ -56,11 +61,14 @@
 | | ${step_rate}= | Set Variable | 10000
 | | ${min_rate}= | Set Variable | 10000
 | | ${max_rate}= | Set Variable | 812743
-| | Given Setup '1' worker threads and rss '1' without HTT on all DUTs
-| | AND   L2 xconnect initialized in a 3-node circular topology
-| | Then Find NDR using linear search and pps | ${framesize} | ${start_rate}
-| | ...                                       | ${step_rate} | 3-node-xconnect
-| | ...                                       | ${min_rate} | ${max_rate}
+| | Given Add '1' worker threads and rss '1' without HTT to all DUTs
+| | And   Add all PCI devices to all DUTs
+| | And   Add No Multi Seg to all DUTs
+| | And   Apply startup configuration on all VPP DUTs
+| | And   L2 xconnect initialized in a 3-node circular topology
+| | Then  Find NDR using linear search and pps | ${framesize} | ${start_rate}
+| | ...                                        | ${step_rate} | 3-node-xconnect
+| | ...                                        | ${min_rate} | ${max_rate}
 
 | Find NDR by using RFC2544 linear search and 9000B frames through L2 cross connect in 3-node topology
 | | [Documentation]
@@ -72,27 +80,32 @@
 | | ${step_rate}= | Set Variable | 5000
 | | ${min_rate}= | Set Variable | 5000
 | | ${max_rate}= | Set Variable | 138580
-| | Given Setup '1' worker threads and rss '1' without HTT on all DUTs
-| | AND   L2 xconnect initialized in a 3-node circular topology
-| | Then Find NDR using linear search and pps | ${framesize} | ${start_rate}
-| | ...                                       | ${step_rate} | 3-node-xconnect
-| | ...                                       | ${min_rate} | ${max_rate}
+| | Given Add '1' worker threads and rss '1' without HTT to all DUTs
+| | And   Add all PCI devices to all DUTs
+| | And   Apply startup configuration on all VPP DUTs
+| | And   L2 xconnect initialized in a 3-node circular topology
+| | Then  Find NDR using linear search and pps | ${framesize} | ${start_rate}
+| | ...                                        | ${step_rate} | 3-node-xconnect
+| | ...                                        | ${min_rate} | ${max_rate}
 
 | Find NDR with 2 cores and rss 1 by using RFC2544 linear search and 64B frames through L2 cross connect in 3-node topology
 | | [Documentation]
 | | ... | Find throughput on 2 cores with non drop rate for 64B frames by using
-| | ... | linear search starting at 8.2Mpps, stepping down with step of 0.1Mpps
+| | ... | linear search starting at 11Mpps, stepping down with step of 0.1Mpps
 | | [Tags] | 2_THREAD_NOHTT_RSS_1 | MULTI_THREAD
 | | ${framesize}= | Set Variable | 64
-| | ${start_rate}= | Set Variable | 12000000
+| | ${start_rate}= | Set Variable | 11000000
 | | ${step_rate}= | Set Variable | 100000
 | | ${min_rate}= | Set Variable | 100000
 | | ${max_rate}= | Set Variable | 14880952
-| | Given Setup '2' worker threads and rss '1' without HTT on all DUTs
-| | AND   L2 xconnect initialized in a 3-node circular topology
-| | Then Find NDR using linear search and pps | ${framesize} | ${start_rate}
-| | ...                                       | ${step_rate} | 3-node-xconnect
-| | ...                                       | ${min_rate} | ${max_rate}
+| | Given Add '2' worker threads and rss '1' without HTT to all DUTs
+| | And   Add all PCI devices to all DUTs
+| | And   Add No Multi Seg to all DUTs
+| | And   Apply startup configuration on all VPP DUTs
+| | And   L2 xconnect initialized in a 3-node circular topology
+| | Then  Find NDR using linear search and pps | ${framesize} | ${start_rate}
+| | ...                                        | ${step_rate} | 3-node-xconnect
+| | ...                                        | ${min_rate} | ${max_rate}
 
 | Find NDR with 2 cores and rss 1 by using RFC2544 linear search and 1518B frames through L2 cross connect in 3-node topology
 | | [Documentation]
@@ -105,11 +118,14 @@
 | | ${step_rate}= | Set Variable | 10000
 | | ${min_rate}= | Set Variable | 10000
 | | ${max_rate}= | Set Variable | 812743
-| | Given Setup '2' worker threads and rss '1' without HTT on all DUTs
-| | AND   L2 xconnect initialized in a 3-node circular topology
-| | Then Find NDR using linear search and pps | ${framesize} | ${start_rate}
-| | ...                                       | ${step_rate} | 3-node-xconnect
-| | ...                                       | ${min_rate} | ${max_rate}
+| | Given Add '2' worker threads and rss '1' without HTT to all DUTs
+| | And   Add all PCI devices to all DUTs
+| | And   Add No Multi Seg to all DUTs
+| | And   Apply startup configuration on all VPP DUTs
+| | And   L2 xconnect initialized in a 3-node circular topology
+| | Then  Find NDR using linear search and pps | ${framesize} | ${start_rate}
+| | ...                                        | ${step_rate} | 3-node-xconnect
+| | ...                                        | ${min_rate} | ${max_rate}
 
 | Find NDR with 2 cores and rss 1 by using RFC2544 linear search and 9000B frames through L2 cross connect in 3-node topology
 | | [Documentation]
@@ -122,28 +138,33 @@
 | | ${step_rate}= | Set Variable | 5000
 | | ${min_rate}= | Set Variable | 5000
 | | ${max_rate}= | Set Variable | 138580
-| | Given Setup '2' worker threads and rss '1' without HTT on all DUTs
-| | AND   L2 xconnect initialized in a 3-node circular topology
-| | Then Find NDR using linear search and pps | ${framesize} | ${start_rate}
-| | ...                                       | ${step_rate} | 3-node-xconnect
-| | ...                                       | ${min_rate} | ${max_rate}
+| | Given Add '2' worker threads and rss '1' without HTT to all DUTs
+| | And   Add all PCI devices to all DUTs
+| | And   Apply startup configuration on all VPP DUTs
+| | And   L2 xconnect initialized in a 3-node circular topology
+| | Then  Find NDR using linear search and pps | ${framesize} | ${start_rate}
+| | ...                                        | ${step_rate} | 3-node-xconnect
+| | ...                                        | ${min_rate} | ${max_rate}
 
 | Find NDR with 4 cores and rss 2 by using RFC2544 linear search and 64B frames through L2 cross connect in 3-node topology
 | | [Documentation]
 | | ... | Find throughput on 4 cores and rss 2 with non drop rate for 64B
-| | ... | frames by using linear search starting at 12.2Mpps, stepping down
+| | ... | frames by using linear search starting at 13.5Mpps, stepping down
 | | ... | with step of 0.1Mpps
 | | [Tags] | 4_THREAD_NOHTT_RSS_2 | MULTI_THREAD
 | | ${framesize}= | Set Variable | 64
-| | ${start_rate}= | Set Variable | 12200000
+| | ${start_rate}= | Set Variable | 13500000
 | | ${step_rate}= | Set Variable | 100000
 | | ${min_rate}= | Set Variable | 100000
 | | ${max_rate}= | Set Variable | 14880952
-| | Given Setup '4' worker threads and rss '2' without HTT on all DUTs
-| | AND   L2 xconnect initialized in a 3-node circular topology
-| | Then Find NDR using linear search and pps | ${framesize} | ${start_rate}
-| | ...                                       | ${step_rate} | 3-node-xconnect
-| | ...                                       | ${min_rate} | ${max_rate}
+| | Given Add '4' worker threads and rss '2' without HTT to all DUTs
+| | And   Add all PCI devices to all DUTs
+| | And   Add No Multi Seg to all DUTs
+| | And   Apply startup configuration on all VPP DUTs
+| | And   L2 xconnect initialized in a 3-node circular topology
+| | Then  Find NDR using linear search and pps | ${framesize} | ${start_rate}
+| | ...                                        | ${step_rate} | 3-node-xconnect
+| | ...                                        | ${min_rate} | ${max_rate}
 
 | Find NDR with 4 cores and rss 2 by using RFC2544 linear search and 1518B frames through L2 cross connect in 3-node topology
 | | [Documentation]
@@ -156,11 +177,14 @@
 | | ${step_rate}= | Set Variable | 10000
 | | ${min_rate}= | Set Variable | 10000
 | | ${max_rate}= | Set Variable | 812743
-| | Given Setup '4' worker threads and rss '2' without HTT on all DUTs
-| | AND   L2 xconnect initialized in a 3-node circular topology
-| | Then Find NDR using linear search and pps | ${framesize} | ${start_rate}
-| | ...                                       | ${step_rate} | 3-node-xconnect
-| | ...                                       | ${min_rate} | ${max_rate}
+| | Given Add '4' worker threads and rss '2' without HTT to all DUTs
+| | And   Add all PCI devices to all DUTs
+| | And   Add No Multi Seg to all DUTs
+| | And   Apply startup configuration on all VPP DUTs
+| | And   L2 xconnect initialized in a 3-node circular topology
+| | Then  Find NDR using linear search and pps | ${framesize} | ${start_rate}
+| | ...                                        | ${step_rate} | 3-node-xconnect
+| | ...                                        | ${min_rate} | ${max_rate}
 
 | Find NDR with 4 cores and rss 2 by using RFC2544 linear search and 9000B frames through L2 cross connect in 3-node topology
 | | [Documentation]
@@ -173,8 +197,10 @@
 | | ${step_rate}= | Set Variable | 5000
 | | ${min_rate}= | Set Variable | 5000
 | | ${max_rate}= | Set Variable | 138580
-| | Given Setup '4' worker threads and rss '2' without HTT on all DUTs
-| | AND   L2 xconnect initialized in a 3-node circular topology
-| | Then Find NDR using linear search and pps | ${framesize} | ${start_rate}
-| | ...                                       | ${step_rate} | 3-node-xconnect
-| | ...                                       | ${min_rate} | ${max_rate}
+| | Given Add '4' worker threads and rss '2' without HTT to all DUTs
+| | And   Add all PCI devices to all DUTs
+| | And   Apply startup configuration on all VPP DUTs
+| | And   L2 xconnect initialized in a 3-node circular topology
+| | Then  Find NDR using linear search and pps | ${framesize} | ${start_rate}
+| | ...                                        | ${step_rate} | 3-node-xconnect
+| | ...                                        | ${min_rate} | ${max_rate}
