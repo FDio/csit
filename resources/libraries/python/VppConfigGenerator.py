@@ -55,6 +55,7 @@ dpdk {{
 {txqueuesconfig}
 {pciconfig}
 {rssconfig}
+{nomultiseg}
 }}
 """
 # End VPP configuration template.
@@ -204,6 +205,25 @@ class VppConfigGenerator(object):
         logger.debug('Setting hostname {} max_tx_queues config to {}'.\
             format(hostname, max_tx_queues_config))
 
+    def add_no_multi_seg_config(self, node):
+        """Add No Multi Seg configuration for node.
+
+        :param node: DUT node.
+        :type node: dict
+        :return: nothing
+        """
+        if node['type'] != NodeType.DUT:
+            raise ValueError('Node type is not a DUT')
+        hostname = Topology.get_node_hostname(node)
+        if not hostname in self._nodeconfig:
+            self._nodeconfig[hostname] = {}
+        if not 'no_multi_seg_config' in self._nodeconfig[hostname]:
+            self._nodeconfig[hostname]['no_multi_seg_config'] = []
+        self._nodeconfig[hostname]['no_multi_seg_config'].append(
+            "no-multi-seg")
+        logger.debug('Setting hostname {} config with {}'.\
+            format(hostname, "no-multi-seg"))
+
     def remove_all_pci_devices(self, node):
         """Remove PCI device configuration from node.
 
@@ -294,6 +314,21 @@ class VppConfigGenerator(object):
         logger.debug('Clearing Max TX Queues config for hostname {}.'.\
             format(hostname))
 
+    def remove_no_multi_seg_config(self, node):
+        """Remove No Multi Seg configuration from node.
+
+        :param node: DUT node.
+        :type node: dict
+        :return: nothing
+        """
+        if node['type'] != NodeType.DUT:
+            raise ValueError('Node type is not a DUT')
+        hostname = Topology.get_node_hostname(node)
+        if hostname in self._nodeconfig:
+            self._nodeconfig[hostname]['no_multi_seg_config'] = []
+        logger.debug('Clearing No Multi Seg config for hostname {}.'.\
+            format(hostname))
+
     def apply_config(self, node, waittime=5, retries=12):
         """Generate and apply VPP configuration for node.
 
@@ -318,6 +353,7 @@ class VppConfigGenerator(object):
         heapsizeconfig = ""
         rssconfig = ""
         txqueuesconfig = ""
+        nomultiseg = ""
 
         if hostname in self._nodeconfig:
             cfg = self._nodeconfig[hostname]
@@ -341,12 +377,16 @@ class VppConfigGenerator(object):
                 txqueuesconfig = "  " + "\n  ".join(
                     cfg['max_tx_queues_config'])
 
+            if 'no_multi_seg_config' in cfg:
+                nomultiseg = "  " + "\n  ".join(cfg['no_multi_seg_config'])
+
         vppconfig = VPP_CONFIG_TEMPLATE.format(cpuconfig=cpuconfig,
                                                pciconfig=pciconfig,
                                                socketmemconfig=socketmemconfig,
                                                heapsizeconfig=heapsizeconfig,
                                                rssconfig=rssconfig,
-                                               txqueuesconfig=txqueuesconfig)
+                                               txqueuesconfig=txqueuesconfig,
+                                               nomultiseg = nomultiseg)
 
         logger.debug('Writing VPP config to host {}: "{}"'.format(hostname,
                                                                   vppconfig))
