@@ -20,7 +20,8 @@
 | ... | L2 | Intel-X520-DA2
 | Suite Teardown | 3-node Performance Suite Teardown
 | Test Setup | Setup all DUTs before test
-| Test Teardown | Run Keyword | Show statistics on all DUTs
+| Test Teardown | Run Keywords | Show statistics on all DUTs
+| ...                          | Clear startup configuration of VPP on all DUTs
 | Documentation | Minimal throughput acceptance test cases
 
 *** Test Cases ***
@@ -33,9 +34,12 @@
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 3.6mpps
 | | Given Setup '1' worker threads and rss '1' without HTT on all DUTs
-| | AND   L2 xconnect initialized in a 3-node circular topology
-| | Then Traffic should pass with no loss | ${duration} | ${rate}
-| | ...                                   | ${framesize} | 3-node-xconnect
+| | And   Setup PCI device on all DUTs
+| | And   Setup No Multi Seg on all DUTs
+| | And   Startup configuration of VPP is applied on all DUTs
+| | And   L2 xconnect initialized in a 3-node circular topology
+| | Then  Traffic should pass with no loss | ${duration} | ${rate}
+| | ...                                    | ${framesize} | 3-node-xconnect
 
 | 1core VPP passes 1518B frames through L2 cross connect at 2x 812,743pps in 3-node topology
 | | [Documentation]
@@ -46,9 +50,12 @@
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 812743pps
 | | Given Setup '1' worker threads and rss '1' without HTT on all DUTs
-| | AND   L2 xconnect initialized in a 3-node circular topology
-| | Then Traffic should pass with no loss | ${duration} | ${rate}
-| | ...                                   | ${framesize} | 3-node-xconnect
+| | And   Setup PCI device on all DUTs
+| | And   Setup No Multi Seg on all DUTs
+| | And   Startup configuration of VPP is applied on all DUTs
+| | And   L2 xconnect initialized in a 3-node circular topology
+| | Then  Traffic should pass with no loss | ${duration} | ${rate}
+| | ...                                    | ${framesize} | 3-node-xconnect
 
 | 1core VPP passes 9000B frames through L2 cross connect at 2x 138,580pps in 3-node topology
 | | [Documentation]
@@ -59,9 +66,11 @@
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 138580pps
 | | Given Setup '1' worker threads and rss '1' without HTT on all DUTs
-| | AND   L2 xconnect initialized in a 3-node circular topology
-| | Then Traffic should pass with no loss | ${duration} | ${rate}
-| | ...                                   | ${framesize} | 3-node-xconnect
+| | And   Setup PCI device on all DUTs
+| | And   Startup configuration of VPP is applied on all DUTs
+| | And   L2 xconnect initialized in a 3-node circular topology
+| | Then  Traffic should pass with no loss | ${duration} | ${rate}
+| | ...                                    | ${framesize} | 3-node-xconnect
 
 | 2core VPP with rss 1 passes 64B frames through L2 cross connect at 2x 8.3Mpps in 3-node topology
 | | [Documentation]
@@ -72,9 +81,12 @@
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 8.3mpps
 | | Given Setup '2' worker threads and rss '1' without HTT on all DUTs
-| | AND   L2 xconnect initialized in a 3-node circular topology
-| | Then Traffic should pass with no loss | ${duration} | ${rate}
-| | ...                                   | ${framesize} | 3-node-xconnect
+| | And   Setup PCI device on all DUTs
+| | And   Setup No Multi Seg on all DUTs
+| | And   Startup configuration of VPP is applied on all DUTs
+| | And   L2 xconnect initialized in a 3-node circular topology
+| | Then  Traffic should pass with no loss | ${duration} | ${rate}
+| | ...                                    | ${framesize} | 3-node-xconnect
 
 | 2core VPP with rss 1 passes 1518B frames through L2 cross connect at 2x 812,743pps in 3-node topology
 | | [Documentation]
@@ -85,9 +97,12 @@
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 812743pps
 | | Given Setup '2' worker threads and rss '1' without HTT on all DUTs
-| | AND   L2 xconnect initialized in a 3-node circular topology
-| | Then Traffic should pass with no loss | ${duration} | ${rate}
-| | ...                                   | ${framesize} | 3-node-xconnect
+| | And   Setup PCI device on all DUTs
+| | And   Setup No Multi Seg on all DUTs
+| | And   Startup configuration of VPP is applied on all DUTs
+| | And   L2 xconnect initialized in a 3-node circular topology
+| | Then  Traffic should pass with no loss | ${duration} | ${rate}
+| | ...                                    | ${framesize} | 3-node-xconnect
 
 | 2core VPP with rss 1 passes 9000B frames through L2 cross connect at 2x 138,580pps in 3-node topology
 | | [Documentation]
@@ -98,9 +113,11 @@
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 138580pps
 | | Given Setup '2' worker threads and rss '1' without HTT on all DUTs
-| | AND   L2 xconnect initialized in a 3-node circular topology
-| | Then Traffic should pass with no loss | ${duration} | ${rate}
-| | ...                                   | ${framesize} | 3-node-xconnect
+| | And   Setup PCI device on all DUTs
+| | And   Startup configuration of VPP is applied on all DUTs
+| | And   L2 xconnect initialized in a 3-node circular topology
+| | Then  Traffic should pass with no loss | ${duration} | ${rate}
+| | ...                                    | ${framesize} | 3-node-xconnect
 
 | 4core VPP with rss 2 passes 64B frames through L2 cross connect at 2x 9.3Mpps in 3-node topology
 | | [Documentation]
@@ -111,9 +128,12 @@
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 9.3mpps
 | | Given Setup '4' worker threads and rss '2' without HTT on all DUTs
-| | AND   L2 xconnect initialized in a 3-node circular topology
-| | Then Traffic should pass with no loss | ${duration} | ${rate}
-| | ...                                   | ${framesize} | 3-node-xconnect
+| | And   Setup PCI device on all DUTs
+| | And   Setup No Multi Seg on all DUTs
+| | And   Startup configuration of VPP is applied on all DUTs
+| | And   L2 xconnect initialized in a 3-node circular topology
+| | Then  Traffic should pass with no loss | ${duration} | ${rate}
+| | ...                                    | ${framesize} | 3-node-xconnect
 
 | 4core VPP with rss 2 passes 1518B frames through L2 cross connect at 2x 812,743pps in 3-node topology
 | | [Documentation]
@@ -124,9 +144,12 @@
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 812743pps
 | | Given Setup '4' worker threads and rss '2' without HTT on all DUTs
-| | AND   L2 xconnect initialized in a 3-node circular topology
-| | Then Traffic should pass with no loss | ${duration} | ${rate}
-| | ...                                   | ${framesize} | 3-node-xconnect
+| | And   Setup PCI device on all DUTs
+| | And   Setup No Multi Seg on all DUTs
+| | And   Startup configuration of VPP is applied on all DUTs
+| | And   L2 xconnect initialized in a 3-node circular topology
+| | Then  Traffic should pass with no loss | ${duration} | ${rate}
+| | ...                                    | ${framesize} | 3-node-xconnect
 
 | 4core VPP with rss 2 passes 9000B frames through L2 cross connect at 2x 138,580pps in 3-node topology
 | | [Documentation]
@@ -137,6 +160,8 @@
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 138580pps
 | | Given Setup '4' worker threads and rss '2' without HTT on all DUTs
-| | AND   L2 xconnect initialized in a 3-node circular topology
-| | Then Traffic should pass with no loss | ${duration} | ${rate}
-| | ...                                   | ${framesize} | 3-node-xconnect
+| | And   Setup PCI device on all DUTs
+| | And   Startup configuration of VPP is applied on all DUTs
+| | And   L2 xconnect initialized in a 3-node circular topology
+| | Then  Traffic should pass with no loss | ${duration} | ${rate}
+| | ...                                    | ${framesize} | 3-node-xconnect
