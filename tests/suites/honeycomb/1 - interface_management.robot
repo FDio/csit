@@ -16,17 +16,18 @@
 | ${node}= | ${nodes['DUT1']}
 | ${interface}= | ${node['interfaces'].values()[0]['name']}
 # Configuration which will be set and verified during tests.
-| @{ipv4_address}= | 192.168.0.2 | 255.255.255.0
-| @{ipv4_neighbor}= | 192.168.0.3 | 08:00:27:c0:5d:37
-| &{ipv4_settings}= | enabled=${True} | forwarding=${True} | mtu=9000
-| @{ipv6_address}= | 10::10 | 64
+| @{ipv4_address_mask}= | 192.168.0.2 | 255.255.255.0
+| @{ipv4_address_prefix}= | 192.168.0.3 | ${16}
+| @{ipv4_neighbor}= | 192.168.0.4 | 08:00:27:c0:5d:37
+| &{ipv4_settings}= | enabled=${True} | forwarding=${True} | mtu=${9000}
+| @{ipv6_address}= | 10::10 | ${64}
 | @{ipv6_neighbor}= | 10::11 | 08:00:27:c0:5d:37
-| &{ipv6_settings}= | enabled=${True} | forwarding=${True} | mtu=9000
-| ... | dup-addr-detect-transmits=5
-| &{ethernet}= | mtu=9000
-| &{routing}= | vrf-id=27
-| &{vxlan_settings}= | src=10.0.1.20 | dst=10.0.3.20 | vni=1000
-| ... | encap-vrf-id=1000
+| &{ipv6_settings}= | enabled=${True} | forwarding=${True} | mtu=${9000}
+| ... | dup-addr-detect-transmits=${5}
+| &{ethernet}= | mtu=${9000}
+| &{routing}= | vrf-id=${27}
+| &{vxlan_settings}= | src=10.0.1.20 | dst=10.0.3.20 | vni=${1000}
+| ... | encap-vrf-id=${1000}
 
 *** Settings ***
 | Resource | resources/libraries/robot/default.robot
@@ -57,13 +58,20 @@
 | | [Documentation] | Check if Honeycomb API can configure interfaces for ipv4.
 | | [Tags] | honeycomb_sanity
 | | When Honeycomb sets interface ipv4 configuration
-| | ... | ${node} | ${interface} | @{ipv4_address} | @{ipv4_neighbor}
+| | ... | ${node} | ${interface} | @{ipv4_address_mask} | @{ipv4_neighbor}
 | | ... | ${ipv4_settings}
 | | Then IPv4 config from Honeycomb should be
-| | ... | ${node} | ${interface} | @{ipv4_address} | @{ipv4_neighbor}
+| | ... | ${node} | ${interface} | @{ipv4_address_mask} | @{ipv4_neighbor}
 | | ... | ${ipv4_settings}
 | | And IPv4 config from VAT should be
-| | ... | ${node} | ${interface} | @{ipv4_address}
+| | ... | ${node} | ${interface} | @{ipv4_address_mask}
+| | When Honeycomb sets interface ipv4 address with prefix
+| | ... | ${node} | ${interface} | @{ipv4_address_prefix}
+| | Then IPv4 config from Honeycomb should be
+| | ... | ${node} | ${interface} | @{ipv4_address_prefix} | @{ipv4_neighbor}
+| | ... | ${ipv4_settings}
+| | And IPv4 config from VAT should be
+| | ... | ${node} | ${interface} | @{ipv4_address_prefix}
 
 | Honeycomb modifies interface configuration - ipv6
 | | [Documentation] | Check if Honeycomb API can configure interfaces for ipv6.
