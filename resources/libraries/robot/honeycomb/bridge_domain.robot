@@ -97,11 +97,14 @@
 | | ... | - interface1, interface2 - names of interfaces to assign to bridge\
 | | ... | domain. Type: string
 | | ... | - bd_name - name of the bridge domain. Type: string
+| | ... | - settings - bridge domain specific interface settings.\
+| | ... | Type: dictionary
 | | ...
 | | ... | *Example:*
 | | ...
 | | ... | \| Honeycomb adds interfaces to bridge domain \| ${nodes['DUT1']} \
-| | ... | \| GigabitEthernet0/8/0 \| GigabitEthernet0/9/0 \| bd-04 \|
+| | ... | \| GigabitEthernet0/8/0 \| GigabitEthernet0/9/0 \| bd-04 \
+| | ... | \| ${{split_horizon_group:2, bvi:False}} \|
 | | [Arguments] | ${node} | ${interface1} | ${interface2} | ${bd_name}
 | | ... | ${settings}
 | | interfaceAPI.Add bridge domain to interface
@@ -118,12 +121,14 @@
 | | ... | - interface1, interface2 - names of interfaces to assign to bridge\
 | | ... | domain. Type: string
 | | ... | - bd_name - name of the bridge domain. Type: string
+| | ... | - settings - bridge domain specific interface settings.\
+| | ... | Type: dictionary
 | | ...
 | | ... | *Example:*
 | | ...
 | | ... | \| Honeycomb should show interfaces assigned to bridge domain \
 | | ... | \| ${nodes['DUT1']} \| GigabitEthernet0/8/0 \| GigabitEthernet0/9/0 \
-| | ... | \| bd-04 \|
+| | ... | \| bd-04 \| ${{split_horizon_group:2, bvi:False}} \|
 | | [Arguments] | ${node} | ${interface1} | ${interface2} | ${bd_name}
 | | ... | ${settings}
 | | ${if1_data}= | interfaceAPI.Get interface oper data
@@ -142,24 +147,29 @@
 | | ...
 | | ... | *Arguments:*
 | | ... | - node - information about a DUT node. Type: dictionary
-| | ... | - interface1, interface2 - names of interfaces to assign to bridge\
-| | ... | domain. Type: string
 | | ... | - index - index of bridge domains on VPP node. Starts from 0,\
 | | ... | new BDs reuse numbers after a bridge domain is removed. Type: int
+| | ... | - interface1, interface2 - names of interfaces to assign to bridge\
+| | ... | domain. Type: string
+| | ... | - settings - bridge domain specific interface settings.\
+| | ... | Type: dictionary
 | | ...
 | | ... | *Example:*
 | | ...
 | | ... | \| VAT should show interfaces assigned to bridge domain \
-| | ... | \| ${nodes['DUT1']} \| GigabitEthernet0/8/0 \| GigabitEthernet0/9/0 \
-| | ... | \| ${4} \|
-| | [Arguments] | ${node} | ${interface1} | ${interface2} | ${index}
+| | ... | \| ${nodes['DUT1']} \| ${4} \| GigabitEthernet0/8/0 \
+| | ... | \| GigabitEthernet0/9/0 \| ${{split_horizon_group:2, bvi:False}} \|
+| | [Arguments] | ${node} | ${index} | ${interface1} | ${interface2}
+| | ... | ${settings}
 | | ${if1_index}= | Get interface sw index | ${node} | ${interface1}
 | | ${if2_index}= | Get interface sw index | ${node} | ${interface2}
 | | ${if_indices}= | Create list | ${if1_index} | ${if2_index}
 | | ${bd_data}= | VPP get bridge domain data | ${node}
-| | ${bd_data}= | Set Variable | ${bd_data[${index}]}
-| | :FOR | ${sw_if_index} | IN | ${bd_data['sw_if']}
-| | | Should contain | ${if_indices} | ${sw_if_index}
+| | ${bd_interfaces}= | Set Variable | ${bd_data[${index}]['sw_if']}
+| | @{bd_interfaces}= | Create List | ${bd_interfaces[0]} | ${bd_interfaces[1]}
+| | :FOR | ${interface} | IN | @{bd_interfaces}
+| | | Should contain | ${if_indices} | ${interface['sw_if_index']}
+| | | Should be equal | ${interface['shg']} | ${settings['split_horizon_group']}
 
 | Honeycomb removes all bridge domains
 | | [Documentation] | Uses Honeycomb API to remove all bridge domains from the \
