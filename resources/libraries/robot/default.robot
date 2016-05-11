@@ -60,20 +60,52 @@
 | | Setup worker threads and rss on all DUTs | ${cpu} | ${rss}
 
 | Setup worker threads and rss on all DUTs
-| | [Documentation] |  Setup worker threads and rss in startup configuration of
-| | ...             |  VPP on all DUTs
+| | [Documentation] | Setup worker threads and rss in VPP startup configuration
+| | ...             | on all DUTs
 | | [Arguments] | ${cpu} | ${rss}
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | Add CPU config | ${nodes['${dut}']}
 | | | ...            | ${cpu}
-| | | Add PCI device | ${nodes['${dut}']}
 | | | Add RSS config | ${nodes['${dut}']}
 | | | ...            | ${rss}
-| | | Apply config | ${nodes['${dut}']}
+
+| Setup PCI device on all DUTs
+| | [Documentation] | Setup PCI device in VPP startup configuration on all
+| | ...             | DUTs
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | Add PCI device | ${nodes['${dut}']}
+
+| Setup No Multi Seg on all DUTs
+| | [Documentation] | Setup No Multi Seg in VPP startup configuration on all
+| | ...             | DUTs
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | Add No Multi Seg Config | ${nodes['${dut}']}
+
+| Setup Max Tx Queues '${m}' on all DUTs
+| | [Documentation] | Setup Max Tx Queues M in VPP startup configuration on all
+| | ...             | DUTs
+| | ${queues}= | Catenate | max-tx-queues | ${m}
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | Add Max Tx Queues Config | ${nodes['${dut}']} | ${queues}
+
+| Clear startup configuration of VPP on all DUTs
+| | [Documentation] | Clear VPP startup configuration on all DUTs
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | Remove All PCI Devices | ${nodes['${dut}']}
+| | | Remove All CPU Config | ${nodes['${dut}']}
+| | | Remove Socketmem Config | ${nodes['${dut}']}
+| | | Remove Heapsize Config | ${nodes['${dut}']}
+| | | Remove RSS Config | ${nodes['${dut}']}
+| | | Remove Max Tx Queues Config | ${nodes['${dut}']}
+| | | Remove No Multi Seg Config | ${nodes['${dut}']}
 
 | Reset startup configuration of VPP on all DUTs
-| | [Documentation] | Reset startup configuration of VPP on all DUTs
+| | [Documentation] | Reset and apply startup configuration of VPP on all DUTs
 | | ${cpu}= | Catenate | main-core | 1
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
@@ -82,8 +114,15 @@
 | | | Remove Socketmem Config | ${nodes['${dut}']}
 | | | Remove Heapsize Config | ${nodes['${dut}']}
 | | | Remove RSS Config | ${nodes['${dut}']}
+| | | Remove Max Tx Queues Config | ${nodes['${dut}']}
+| | | Remove No Multi Seg Config | ${nodes['${dut}']}
 | | | Add CPU Config | ${nodes['${dut}']}
 | | | ...            | ${cpu}
 | | | Add PCI Device | ${nodes['${dut}']}
-| | | Apply Config | ${nodes['${dut}']}
+| | Startup configuration of VPP is applied on all DUTs
 
+| Startup configuration of VPP is applied on all DUTs
+| | [Documentation] | Apply VPP startup configuration on all DUTs
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | Apply Config | ${nodes['${dut}']}
