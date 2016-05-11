@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da141535_aa4fed91",
+        "filename": "tests/suites/l2_xconnect/l2_xconnect_untagged.robot",
+        "patchSetId": 14
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-11T07:48:39Z",
+      "side": 1,
+      "message": "Refactor to Given When Then.",
+      "revId": "1f4e0b7fbfa1b346bccdf138f77d209e28260615",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_ca4a2183",
+        "filename": "tests/suites/l2_xconnect/l2_xconnect_untagged.robot",
+        "patchSetId": 14
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-11T07:48:39Z",
+      "side": 1,
+      "message": "Refactor to Given When Then.",
+      "revId": "1f4e0b7fbfa1b346bccdf138f77d209e28260615",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_ea7de5b2",
+        "filename": "tests/suites/l2_xconnect/l2_xconnect_untagged.robot",
+        "patchSetId": 14
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-11T07:48:39Z",
+      "side": 1,
+      "message": "Isn\u0027t this part of Given section?",
+      "revId": "1f4e0b7fbfa1b346bccdf138f77d209e28260615",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_0a81398f",
+        "filename": "tests/suites/l2_xconnect/l2_xconnect_untagged.robot",
+        "patchSetId": 14
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-11T07:48:39Z",
+      "side": 1,
+      "message": "Same as line 74.",
+      "revId": "1f4e0b7fbfa1b346bccdf138f77d209e28260615",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
