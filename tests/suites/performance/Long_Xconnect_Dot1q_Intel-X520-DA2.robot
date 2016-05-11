@@ -47,8 +47,11 @@
 | | ${step_rate}= | Set Variable | 100000
 | | ${min_rate}= | Set Variable | 100000
 | | ${max_rate}= | Set Variable | 14880952
-| | Given Setup '1' worker threads and rss '1' without HTT on all DUTs
-| | And VPP interfaces in path are up
+| | Given Add '1' worker threads and rss '1' without HTT to all DUTs
+| | And   Add all PCI devices to all DUTs
+| | And   Add No Multi Seg to all DUTs
+| | And   Apply startup configuration on all VPP DUTs
+| | And   VPP interfaces in path are up
 | | When VLAN dot1q subinterfaces initialized on 3-node topology
 | | ... | ${dut1} | ${dut1_if2} | ${dut2} | ${dut2_if1} | ${subid}
 | | And L2 tag rewrite method setup on interfaces
@@ -73,8 +76,11 @@
 | | ${step_rate}= | Set Variable | 10000
 | | ${min_rate}= | Set Variable | 10000
 | | ${max_rate}= | Set Variable | 812743
-| | Given Setup '1' worker threads and rss '1' without HTT on all DUTs
-| | And VPP interfaces in path are up
+| | Given Add '1' worker threads and rss '1' without HTT to all DUTs
+| | And   Add all PCI devices to all DUTs
+| | And   Add No Multi Seg to all DUTs
+| | And   Apply startup configuration on all VPP DUTs
+| | And   VPP interfaces in path are up
 | | When VLAN dot1q subinterfaces initialized on 3-node topology
 | | ... | ${dut1} | ${dut1_if2} | ${dut2} | ${dut2_if1} | ${subid}
 | | And L2 tag rewrite method setup on interfaces
@@ -99,8 +105,10 @@
 | | ${step_rate}= | Set Variable | 5000
 | | ${min_rate}= | Set Variable | 5000
 | | ${max_rate}= | Set Variable | 138580
-| | Given Setup '1' worker threads and rss '1' without HTT on all DUTs
-| | And VPP interfaces in path are up
+| | Given Add '1' worker threads and rss '1' without HTT to all DUTs
+| | And   Add all PCI devices to all DUTs
+| | And   Apply startup configuration on all VPP DUTs
+| | And   VPP interfaces in path are up
 | | When VLAN dot1q subinterfaces initialized on 3-node topology
 | | ... | ${dut1} | ${dut1_if2} | ${dut2} | ${dut2_if1} | ${subid}
 | | And L2 tag rewrite method setup on interfaces
@@ -125,8 +133,11 @@
 | | ${step_rate}= | Set Variable | 100000
 | | ${min_rate}= | Set Variable | 100000
 | | ${max_rate}= | Set Variable | 14880952
-| | Given Setup '2' worker threads and rss '1' without HTT on all DUTs
-| | And VPP interfaces in path are up
+| | Given Add '2' worker threads and rss '1' without HTT to all DUTs
+| | And   Add all PCI devices to all DUTs
+| | And   Add No Multi Seg to all DUTs
+| | And   Apply startup configuration on all VPP DUTs
+| | And   VPP interfaces in path are up
 | | When VLAN dot1q subinterfaces initialized on 3-node topology
 | | ... | ${dut1} | ${dut1_if2} | ${dut2} | ${dut2_if1} | ${subid}
 | | And L2 tag rewrite method setup on interfaces
@@ -151,8 +162,11 @@
 | | ${step_rate}= | Set Variable | 10000
 | | ${min_rate}= | Set Variable | 10000
 | | ${max_rate}= | Set Variable | 812743
-| | Given Setup '2' worker threads and rss '1' without HTT on all DUTs
-| | And VPP interfaces in path are up
+| | Given Add '2' worker threads and rss '1' without HTT to all DUTs
+| | And   Add all PCI devices to all DUTs
+| | And   Add No Multi Seg to all DUTs
+| | And   Apply startup configuration on all VPP DUTs
+| | And   VPP interfaces in path are up
 | | When VLAN dot1q subinterfaces initialized on 3-node topology
 | | ... | ${dut1} | ${dut1_if2} | ${dut2} | ${dut2_if1} | ${subid}
 | | And L2 tag rewrite method setup on interfaces
@@ -177,8 +191,10 @@
 | | ${step_rate}= | Set Variable | 5000
 | | ${min_rate}= | Set Variable | 5000
 | | ${max_rate}= | Set Variable | 138580
-| | Given Setup '2' worker threads and rss '1' without HTT on all DUTs
-| | And VPP interfaces in path are up
+| | Given Add '2' worker threads and rss '1' without HTT to all DUTs
+| | And   Add all PCI devices to all DUTs
+| | And   Apply startup configuration on all VPP DUTs
+| | And   VPP interfaces in path are up
 | | When VLAN dot1q subinterfaces initialized on 3-node topology
 | | ... | ${dut1} | ${dut1_if2} | ${dut2} | ${dut2_if1} | ${subid}
 | | And L2 tag rewrite method setup on interfaces
@@ -203,8 +219,11 @@
 | | ${step_rate}= | Set Variable | 100000
 | | ${min_rate}= | Set Variable | 100000
 | | ${max_rate}= | Set Variable | 14880952
-| | Given Setup '4' worker threads and rss '2' without HTT on all DUTs
-| | And VPP interfaces in path are up
+| | Given Add '4' worker threads and rss '2' without HTT to all DUTs
+| | And   Add all PCI devices to all DUTs
+| | And   Add No Multi Seg to all DUTs
+| | And   Apply startup configuration on all VPP DUTs
+| | And   VPP interfaces in path are up
 | | When VLAN dot1q subinterfaces initialized on 3-node topology
 | | ... | ${dut1} | ${dut1_if2} | ${dut2} | ${dut2_if1} | ${subid}
 | | And L2 tag rewrite method setup on interfaces
@@ -229,8 +248,11 @@
 | | ${step_rate}= | Set Variable | 10000
 | | ${min_rate}= | Set Variable | 10000
 | | ${max_rate}= | Set Variable | 812743
-| | Given Setup '4' worker threads and rss '2' without HTT on all DUTs
-| | And VPP interfaces in path are up
+| | Given Add '4' worker threads and rss '2' without HTT to all DUTs
+| | And   Add all PCI devices to all DUTs
+| | And   Add No Multi Seg to all DUTs
+| | And   Apply startup configuration on all VPP DUTs
+| | And   VPP interfaces in path are up
 | | When VLAN dot1q subinterfaces initialized on 3-node topology
 | | ... | ${dut1} | ${dut1_if2} | ${dut2} | ${dut2_if1} | ${subid}
 | | And L2 tag rewrite method setup on interfaces
@@ -255,8 +277,10 @@
 | | ${step_rate}= | Set Variable | 5000
 | | ${min_rate}= | Set Variable | 5000
 | | ${max_rate}= | Set Variable | 138580
-| | Given Setup '4' worker threads and rss '2' without HTT on all DUTs
-| | And VPP interfaces in path are up
+| | Given Add '4' worker threads and rss '2' without HTT to all DUTs
+| | And   Add all PCI devices to all DUTs
+| | And   Apply startup configuration on all VPP DUTs
+| | And   VPP interfaces in path are up
 | | When VLAN dot1q subinterfaces initialized on 3-node topology
 | | ... | ${dut1} | ${dut1_if2} | ${dut2} | ${dut2_if1} | ${subid}
 | | And L2 tag rewrite method setup on interfaces
