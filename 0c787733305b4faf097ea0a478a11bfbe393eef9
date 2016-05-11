@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da141535_cdd0fb55",
+        "filename": "resources/libraries/robot/tagging.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-05-11T10:42:47Z",
+      "side": 1,
+      "message": "Example is missing.",
+      "range": {
+        "startLine": 135,
+        "startChar": 10,
+        "endLine": 135,
+        "endChar": 28
+      },
+      "revId": "0c787733305b4faf097ea0a478a11bfbe393eef9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
