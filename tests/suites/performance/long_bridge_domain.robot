@@ -17,7 +17,8 @@
 | Suite Setup | 3-node Performance Suite Setup | L2
 | Suite Teardown | 3-node Performance Suite Teardown
 | Test Setup | Setup all DUTs before test
-| Test Teardown | Run Keyword | Show statistics on all DUTs
+| Test Teardown | Run Keywords | Show statistics on all DUTs
+| ...                          | Clear startup configuration of VPP on all DUTs
 | Documentation | *Throughput search suite (based on RFC2544).*
 | ...
 | ... | Test suite uses 3-node topology TG - DUT1 - DUT2 - TG, with one link
@@ -38,10 +39,13 @@
 | | ${min_rate}= | Set Variable | 100000
 | | ${max_rate}= | Set Variable | 14880952
 | | Given Setup '1' worker threads and rss '1' without HTT on all DUTs
-| | AND   L2 bridge domain initialized in a 3-node circular topology
-| | Then Find NDR using linear search and pps | ${framesize} | ${start_rate}
-| | ...                                       | ${step_rate} | 3-node-bridge
-| | ...                                       | ${min_rate} | ${max_rate}
+| | And   Setup PCI device on all DUTs
+| | And   Setup No Multi Seg on all DUTs
+| | And   Startup configuration of VPP is applied on all DUTs
+| | And   L2 bridge domain initialized in a 3-node circular topology
+| | Then  Find NDR using linear search and pps | ${framesize} | ${start_rate}
+| | ...                                        | ${step_rate} | 3-node-bridge
+| | ...                                        | ${min_rate} | ${max_rate}
 
 | Find NDR by using RFC2544 linear search and 1518B frames through bridge domain in 3-node topology
 | | [Documentation]
@@ -55,10 +59,13 @@
 | | ${min_rate}= | Set Variable | 10000
 | | ${max_rate}= | Set Variable | 812743
 | | Given Setup '1' worker threads and rss '1' without HTT on all DUTs
-| | AND   L2 bridge domain initialized in a 3-node circular topology
-| | Then Find NDR using linear search and pps | ${framesize} | ${start_rate}
-| | ...                                       | ${step_rate} | 3-node-bridge
-| | ...                                       | ${min_rate} | ${max_rate}
+| | And   Setup PCI device on all DUTs
+| | And   Setup No Multi Seg on all DUTs
+| | And   Startup configuration of VPP is applied on all DUTs
+| | And   L2 bridge domain initialized in a 3-node circular topology
+| | Then  Find NDR using linear search and pps | ${framesize} | ${start_rate}
+| | ...                                        | ${step_rate} | 3-node-bridge
+| | ...                                        | ${min_rate} | ${max_rate}
 
 | Find NDR by using RFC2544 linear search and 9000B frames through bridge domain in 3-node topology
 | | [Documentation]
@@ -72,8 +79,10 @@
 | | ${min_rate}= | Set Variable | 5000
 | | ${max_rate}= | Set Variable | 138580
 | | Given Setup '1' worker threads and rss '1' without HTT on all DUTs
-| | AND   L2 bridge domain initialized in a 3-node circular topology
-| | Then Find NDR using linear search and pps | ${framesize} | ${start_rate}
+| | And   Setup PCI device on all DUTs
+| | And   Startup configuration of VPP is applied on all DUTs
+| | And   L2 bridge domain initialized in a 3-node circular topology
+| | Then  Find NDR using linear search and pps | ${framesize} | ${start_rate}
 | | ...                                       | ${step_rate} | 3-node-bridge
 | | ...                                       | ${min_rate} | ${max_rate}
 
@@ -88,10 +97,13 @@
 | | ${min_rate}= | Set Variable | 100000
 | | ${max_rate}= | Set Variable | 14880952
 | | Given Setup '2' worker threads and rss '1' without HTT on all DUTs
-| | AND   L2 bridge domain initialized in a 3-node circular topology
-| | Then Find NDR using linear search and pps | ${framesize} | ${start_rate}
-| | ...                                       | ${step_rate} | 3-node-bridge
-| | ...                                       | ${min_rate} | ${max_rate}
+| | And   Setup PCI device on all DUTs
+| | And   Setup No Multi Seg on all DUTs
+| | And   Startup configuration of VPP is applied on all DUTs
+| | And   L2 bridge domain initialized in a 3-node circular topology
+| | Then  Find NDR using linear search and pps | ${framesize} | ${start_rate}
+| | ...                                        | ${step_rate} | 3-node-bridge
+| | ...                                        | ${min_rate} | ${max_rate}
 
 | Find NDR with 2 cores and rss 1 by using RFC2544 linear search and 1518B frames through bridge domain in 3-node topology
 | | [Documentation]
@@ -105,10 +117,13 @@
 | | ${min_rate}= | Set Variable | 10000
 | | ${max_rate}= | Set Variable | 812743
 | | Given Setup '2' worker threads and rss '1' without HTT on all DUTs
-| | AND   L2 bridge domain initialized in a 3-node circular topology
-| | Then Find NDR using linear search and pps | ${framesize} | ${start_rate}
-| | ...                                       | ${step_rate} | 3-node-bridge
-| | ...                                       | ${min_rate} | ${max_rate}
+| | And   Setup PCI device on all DUTs
+| | And   Setup No Multi Seg on all DUTs
+| | And   Startup configuration of VPP is applied on all DUTs
+| | And   L2 bridge domain initialized in a 3-node circular topology
+| | Then  Find NDR using linear search and pps | ${framesize} | ${start_rate}
+| | ...                                        | ${step_rate} | 3-node-bridge
+| | ...                                        | ${min_rate} | ${max_rate}
 
 | Find NDR with 2 cores and rss 1 by using RFC2544 linear search and 9000B frames through bridge domain in 3-node topology
 | | [Documentation]
@@ -122,10 +137,12 @@
 | | ${min_rate}= | Set Variable | 5000
 | | ${max_rate}= | Set Variable | 138580
 | | Given Setup '2' worker threads and rss '1' without HTT on all DUTs
-| | AND   L2 bridge domain initialized in a 3-node circular topology
-| | Then Find NDR using linear search and pps | ${framesize} | ${start_rate}
-| | ...                                       | ${step_rate} | 3-node-bridge
-| | ...                                       | ${min_rate} | ${max_rate}
+| | And   Setup PCI device on all DUTs
+| | And   Startup configuration of VPP is applied on all DUTs
+| | And   L2 bridge domain initialized in a 3-node circular topology
+| | Then  Find NDR using linear search and pps | ${framesize} | ${start_rate}
+| | ...                                        | ${step_rate} | 3-node-bridge
+| | ...                                        | ${min_rate} | ${max_rate}
 
 | Find NDR with 4 cores and rss 2 by using RFC2544 linear search and 64B frames through bridge domain in 3-node topology
 | | [Documentation]
@@ -139,10 +156,13 @@
 | | ${min_rate}= | Set Variable | 100000
 | | ${max_rate}= | Set Variable | 14880952
 | | Given Setup '4' worker threads and rss '2' without HTT on all DUTs
-| | AND   L2 bridge domain initialized in a 3-node circular topology
-| | Then Find NDR using linear search and pps | ${framesize} | ${start_rate}
-| | ...                                       | ${step_rate} | 3-node-bridge
-| | ...                                       | ${min_rate} | ${max_rate}
+| | And   Setup PCI device on all DUTs
+| | And   Setup No Multi Seg on all DUTs
+| | And   Startup configuration of VPP is applied on all DUTs
+| | And   L2 bridge domain initialized in a 3-node circular topology
+| | Then  Find NDR using linear search and pps | ${framesize} | ${start_rate}
+| | ...                                        | ${step_rate} | 3-node-bridge
+| | ...                                        | ${min_rate} | ${max_rate}
 
 | Find NDR with 4 cores and rss 2 by using RFC2544 linear search and 1518B frames through bridge domain in 3-node topology
 | | [Documentation]
@@ -156,10 +176,13 @@
 | | ${min_rate}= | Set Variable | 10000
 | | ${max_rate}= | Set Variable | 812743
 | | Given Setup '4' worker threads and rss '2' without HTT on all DUTs
-| | AND   L2 bridge domain initialized in a 3-node circular topology
-| | Then Find NDR using linear search and pps | ${framesize} | ${start_rate}
-| | ...                                       | ${step_rate} | 3-node-bridge
-| | ...                                       | ${min_rate} | ${max_rate}
+| | And   Setup PCI device on all DUTs
+| | And   Setup No Multi Seg on all DUTs
+| | And   Startup configuration of VPP is applied on all DUTs
+| | And   L2 bridge domain initialized in a 3-node circular topology
+| | Then  Find NDR using linear search and pps | ${framesize} | ${start_rate}
+| | ...                                        | ${step_rate} | 3-node-bridge
+| | ...                                        | ${min_rate} | ${max_rate}
 
 | Find NDR with 4 cores and rss 2 by using RFC2544 linear search and 9000B frames through bridge domain in 3-node topology
 | | [Documentation]
@@ -173,7 +196,9 @@
 | | ${min_rate}= | Set Variable | 5000
 | | ${max_rate}= | Set Variable | 138580
 | | Given Setup '4' worker threads and rss '2' without HTT on all DUTs
-| | AND   L2 bridge domain initialized in a 3-node circular topology
-| | Then Find NDR using linear search and pps | ${framesize} | ${start_rate}
-| | ...                                       | ${step_rate} | 3-node-bridge
-| | ...                                       | ${min_rate} | ${max_rate}
+| | And   Setup PCI device on all DUTs
+| | And   Startup configuration of VPP is applied on all DUTs
+| | And   L2 bridge domain initialized in a 3-node circular topology
+| | Then  Find NDR using linear search and pps | ${framesize} | ${start_rate}
+| | ...                                        | ${step_rate} | 3-node-bridge
+| | ...                                        | ${min_rate} | ${max_rate}
