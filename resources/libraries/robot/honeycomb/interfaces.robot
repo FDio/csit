@@ -120,6 +120,24 @@
 | | | interfaceAPI.Configure interface ipv4
 | | | ... | ${node} | ${interface} | ${key} | ${settings['${key}']}
 
+| When Honeycomb sets interface ipv4 address with prefix
+| | [Documentation] | Uses Honeycomb API to assign an ipv4 address to the\
+| | ... | specified interface. Any existing addresses will be removed.
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - information about a DUT node. Type: dictionary
+| | ... | - interface - name of an interface on the specified node. Type: string
+| | ... | - address - IP address to set. Type: string
+| | ... | - prefix - length of address network prefix. Type: int
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Honeycomb sets interface ipv4 address with prefix \
+| | ... | \| ${nodes['DUT1']} \| GigabitEthernet0/8/0 \| 192.168.0.2 \| 24 \|
+| | [Arguments] | ${node} | ${interface} | ${address} | ${prefix}
+| | interfaceAPI.Add first ipv4 address
+| | ... | ${node} | ${interface} | ${address} | ${prefix}
+
 | IPv4 config from Honeycomb should be
 | | [Documentation] | Retrieves interface ipv4 configuration through Honeycomb\
 | | ... | and compares with state supplied in argument.

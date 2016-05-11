@@ -331,7 +331,7 @@ class InterfaceKeywords(object):
             node, interface, path, value)
 
     @staticmethod
-    def add_first_ipv4_address(node, interface, ip_addr, netmask):
+    def add_first_ipv4_address(node, interface, ip_addr, network):
         """Add the first IPv4 address.
 
         If there are any other addresses configured, they will be removed.
@@ -339,39 +339,51 @@ class InterfaceKeywords(object):
         :param node: Honeycomb node.
         :param interface: The name of interface.
         :param ip_addr: IPv4 address to be set.
-        :param netmask: Netmask.
+        :param network: Netmask or length of network prefix.
         :type node: dict
         :type interface: str
         :type ip_addr: str
-        :type netmask: str
+        :type network: str or int
         :return: Content of response.
         :rtype: bytearray
         """
 
         path = ("interfaces", ("interface", "name", interface), "ietf-ip:ipv4")
-        address = {"address": [{"ip": ip_addr, "netmask": netmask}, ]}
+        if isinstance(network, basestring):
+            address = {"address": [{"ip": ip_addr, "netmask": network}, ]}
+        elif isinstance(network, int) and (0 < network < 33):
+            address = {"address": [{"ip": ip_addr, "prefix-length": network}, ]}
+        else:
+            raise HoneycombError("Value {0} is not a valid netmask or network "
+                                 "prefix length.".format(network))
         return InterfaceKeywords._set_interface_properties(
             node, interface, path, address)
 
     @staticmethod
-    def add_ipv4_address(node, interface, ip_addr, netmask):
+    def add_ipv4_address(node, interface, ip_addr, network):
         """Add IPv4 address.
 
         :param node: Honeycomb node.
         :param interface: The name of interface.
         :param ip_addr: IPv4 address to be set.
-        :param netmask: Netmask.
+        :param network: Netmask or length of network prefix.
         :type node: dict
         :type interface: str
         :type ip_addr: str
-        :type netmask: str
+        :type network: str or int
         :return: Content of response.
         :rtype: bytearray
         """
 
         path = ("interfaces", ("interface", "name", interface), "ietf-ip:ipv4",
                 "address")
-        address = [{"ip": ip_addr, "prefix-length": netmask}, ]
+        if isinstance(network, basestring):
+            address = {"address": [{"ip": ip_addr, "netmask": network}, ]}
+        elif isinstance(network, int) and (0 < network < 33):
+            address = {"address": [{"ip": ip_addr, "prefix-length": network}, ]}
+        else:
+            raise HoneycombError("Value {0} is not a valid netmask or network "
+                                 "prefix length.".format(network))
         return InterfaceKeywords._set_interface_properties(
             node, interface, path, address)
 
