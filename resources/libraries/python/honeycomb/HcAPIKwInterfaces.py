@@ -45,6 +45,7 @@ class InterfaceKeywords(object):
     VXLAN_PARAMS = ("src", "dst", "vni", "encap-vrf-id")
     L2_PARAMS = ("bridge-domain", "split-horizon-group",
                  "bridged-virtual-interface")
+    TAP_PARAMS = ("tap-name", "mac", "device-instance")
 
     def __init__(self):
         pass
@@ -723,3 +724,69 @@ class InterfaceKeywords(object):
                 param)
         return InterfaceKeywords._set_interface_properties(
             node, interface, path, value)
+
+    @staticmethod
+    def create_tap_interface(node, interface, **kwargs):
+        """Create a new TAP interface.
+
+        :param node: Honeycomb node.
+        :param interface: The name of interface.
+        :param kwargs: Parameters and their values. The accepted parameters are
+        defined in InterfaceKeywords.TAP_PARAMS.
+        :type node: dict
+        :type interface: str
+        :type kwargs: dict
+        :return: Content of response.
+        :rtype: bytearray
+        :raises HoneycombError: If the parameter is not valid.
+        """
+
+        new_tap = {
+            "name": interface,
+            "type": "v3po:tap",
+            "v3po:tap": {}
+        }
+        for param, value in kwargs.items():
+            if param not in InterfaceKeywords.TAP_PARAMS:
+                raise HoneycombError("The parameter {0} is invalid.".
+                                     format(param))
+            new_tap["v3po:tap"][param] = value
+
+        path = ("interfaces", "interface")
+        new_tap_structure = [new_tap, ]
+        return InterfaceKeywords._set_interface_properties(
+            node, interface, path, new_tap_structure)
+
+    @staticmethod
+    def configure_interface_tap(node, interface, **kwargs):
+        """Configure TAP on the interface.
+
+        The keyword configures TAP parameters on the given interface. The type
+        of interface must be set to "v3po:tap".
+        The new TAP parameters overwrite the current configuration. If a
+        parameter in new configuration is missing, it is removed from TAP
+        configuration.
+        If the dictionary kwargs is empty, TAP configuration is removed.
+
+        :param node: Honeycomb node.
+        :param interface: The name of interface.
+        :param kwargs: Parameters and their values. The accepted parameters are
+        defined in InterfaceKeywords.TAP_PARAMS.
+        :type node: dict
+        :type interface: str
+        :type kwargs: dict
+        :return: Content of response.
+        :rtype: bytearray
+        :raises HoneycombError: If the parameter is not valid.
+        """
+
+        tap_structure = dict()
+        for param, value in kwargs.items():
+            if param not in InterfaceKeywords.TAP_PARAMS:
+                raise HoneycombError("The parameter {0} is invalid.".
+                                     format(param))
+            tap_structure[param] = value
+
+        path = ("interfaces", ("interface", "name", interface), "v3po:tap")
+        return InterfaceKeywords._set_interface_properties(
+            node, interface, path, tap_structure)
