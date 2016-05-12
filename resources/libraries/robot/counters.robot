@@ -43,6 +43,17 @@
 | | [Arguments] | ${node}
 | | Vpp Dump Stats Table | ${node}
 | | Vpp Show Errors | ${node}
-| | Vpp Show Errors Verbose | ${node}
 | | Vpp Show Hardware Detail | ${node}
-| | Vpp Show Runtime Verbose | ${node}
+| | Vpp Show Runtime | ${node}
+
+| Clear runtime statistics on all DUTs
+| | [Documentation] | Clear VPP runtime statistics on all DUTs
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | Vpp clear runtime | ${nodes['${dut}']}
+
+| Show runtime statistics on all DUTs
+| | [Documentation] | Show VPP runtime statistics on all DUTs
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | Vpp show runtime | ${nodes['${dut}']}
