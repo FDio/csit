@@ -41,11 +41,12 @@ Functionality:
 
 """
 
+import argparse
 import json
 import socket
 import string
 import struct
-import sys, getopt
+import sys
 
 sys.path.insert(0, "/opt/trex-core-2.00/scripts/automation/"+\
                    "trex_control_plane/stl/")
@@ -216,19 +217,21 @@ def create_packets_v6(traffic_options, frame_size=78):
     return(pkt_a, pkt_b)
 
 
-def simple_burst(pkt_a, pkt_b, duration=10, rate="1mpps", warmup_time=5):
+def simple_burst(pkt_a, pkt_b, duration, rate, warmup_time, async_start):
     """Run the traffic with specific parameters.
 
     :param pkt_a: Base packet for stream 1.
     :param pkt_b: Base packet for stream 2.
-    :param duration: Duration of traffic run in seconds.
+    :param duration: Duration of traffic run in seconds (-1=infinite).
     :param rate: Rate of traffic run [percentage, pps, bps].
     :param warmup_time: Warm up duration.
+    :async_start: Start the traffic and exit
     :type pkt_a: STLPktBuilder
     :type pkt_b: STLPktBuilder
     :type duration: int
     :type rate: string
     :type warmup_time: int
+    :type async_start: bool
     :return: nothing
     """
 
@@ -264,7 +267,7 @@ def simple_burst(pkt_a, pkt_b, duration=10, rate="1mpps", warmup_time=5):
         client.add_streams(stream2, ports=[1])
 
         #warmup phase
-        if warmup_time is not None:
+        if warmup_time > 0:
             client.clear_stats()
             client.start(ports=[0, 1], mult=rate, duration=warmup_time)
             client.wait_on_traffic(ports=[0, 1], timeout=(warmup_time+30))
@@ -290,54 +293,37 @@ def simple_burst(pkt_a, pkt_b, duration=10, rate="1mpps", warmup_time=5):
         # choose rate and start traffic
         client.start(ports=[0, 1], mult=rate, duration=duration)
 
-        # block until done
-        client.wait_on_traffic(ports=[0, 1], timeout=(duration+30))
+        if not async_start:
+            # block until done
+            client.wait_on_traffic(ports=[0, 1], timeout=(duration+30))
 
-        # read the stats after the test
-        stats = client.get_stats()
+            # read the stats after the test
+            stats = client.get_stats()
 
-        print "#####statistics#####"
-        print json.dumps(stats, indent=4,
-                         separators=(',', ': '), sort_keys=True)
+            print "#####statistics#####"
+            print json.dumps(stats, indent=4,
+                             separators=(',', ': '), sort_keys=True)
 
-        lost_a = stats[0]["opackets"] - stats[1]["ipackets"]
-        lost_b = stats[1]["opackets"] - stats[0]["ipackets"]
+            lost_a = stats[0]["opackets"] - stats[1]["ipackets"]
+            lost_b = stats[1]["opackets"] - stats[0]["ipackets"]
 
-        total_sent = stats[0]["opackets"] + stats[1]["opackets"]
-        total_rcvd = stats[0]["ipackets"] + stats[1]["ipackets"]
+            total_sent = stats[0]["opackets"] + stats[1]["opackets"]
+            total_rcvd = stats[0]["ipackets"] + stats[1]["ipackets"]
 
-        print "\npackets lost from 0 --> 1:   {0} pkts".format(lost_a)
-        print "packets lost from 1 --> 0:   {0} pkts".format(lost_b)
+            print "\npackets lost from 0 --> 1:   {0} pkts".format(lost_a)
+            print "packets lost from 1 --> 0:   {0} pkts".format(lost_b)
 
     except STLError as ex_error:
         print_error(str(ex_error))
         sys.exit(1)
 
     finally:
-        client.disconnect()
-        print "rate={0}, totalReceived={1}, totalSent={2}, frameLoss={3}"\
-              .format(rate, total_rcvd, total_sent, lost_a+lost_b)
-
-
-def print_help():
-    """Print help on stdout."""
-
-    print "args: [-h] -d <duration> -s <size of frame in bytes>"+\
-    " [-r] <traffic rate with unit: %, mpps> "+\
-    " [-6] Use of ipv6 "+\
-    "--p1_src_mac <port1_src_mac> "+\
-    "--p1_dst_mac <port1_dst_mac> "+\
-    "--p1_src_start_ip <port1_src_start_ip> "+\
-    "--p1_src_end_ip <port1_src_end_ip> "+\
-    "--p1_dst_start_ip <port1_dst_start_ip> "+\
-    "--p1_dst_end_ip <port1_dst_end_ip> "+\
-    "--p2_src_mac <port2_src_mac> "+\
-    "--p2_dst_mac <port2_dst_mac> "+\
-    "--p2_src_start_ip <port2_src_start_ip> "+\
-    "--p2_src_end_ip <port2_src_end_ip> "+\
-    "--p2_dst_start_ip <port2_dst_start_ip> "+\
-    "--p2_dst_end_ip <port2_dst_end_ip>"
-
+        if async_start:
+            client.disconnect(stop_traffic=False, release_ports=True)
+        else:
+            client.disconnect()
+            print "rate={0}, totalReceived={1}, totalSent={2}, frameLoss={3}"\
+                .format(rate, total_rcvd, total_sent, lost_a+lost_b)
 
 def print_error(msg):
     """Print error message on stderr.
@@ -350,53 +336,69 @@ def print_error(msg):
     sys.stderr.write(msg+'\n')
 
 
-def main(argv):
+def main():
     """Main function."""
 
-    _duration = 10
-    _frame_size = 64
-    _rate = '1mpps'
     _traffic_options = {}
+    #default L3 profile is IPv4
     _use_ipv6 = False
+    #default warmup time is 5 seconds
+    _warmup_time = 5
+    #default behaviour of this script is sychronous
+    _async_call = False
 
-    try:
-        opts, _ = getopt.getopt(argv, "hd:s:r:6o:",
-                                ["help",
-                                 "p1_src_mac=",
-                                 "p1_dst_mac=",
-                                 "p1_src_start_ip=",
-                                 "p1_src_end_ip=",
-                                 "p1_dst_start_ip=",
-                                 "p1_dst_end_ip=",
-                                 "p2_src_mac=",
-                                 "p2_dst_mac=",
-                                 "p2_src_start_ip=",
-                                 "p2_src_end_ip=",
-                                 "p2_dst_start_ip=",
-                                 "p2_dst_end_ip="])
-    except getopt.GetoptError:
-        print_help()
-        sys.exit(1)
-    for opt, arg in opts:
-        if opt in ('-h', "--help"):
-            print_help()
-            sys.exit()
-        elif opt == '-d':
-            _duration = int(arg)
-        elif opt == '-s':
-            _frame_size = int(arg)
-        elif opt == '-r':
-            _rate = arg
-        elif opt == '-6':
-            _use_ipv6 = True
-        elif opt.startswith("--p"):
-            _traffic_options[opt[2:]] = arg
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-d", "--duration", required=True, type=int,
+                        help="Duration of traffic run")
+    parser.add_argument("-s", "--frame_size", required=True, type=int,
+                        help="Size of a Frame without padding and IPG")
+    parser.add_argument("-r", "--rate", required=True,
+                        help="Traffic rate with included units (%, pps)")
+    parser.add_argument("-6", "--use_IPv6", action="store_true",
+                        help="Use IPv6 traffic profile instead of IPv4")
+    parser.add_argument("--async", action="store_true",
+                        help="Non-blocking call of the script")
+    parser.add_argument("-w", "--warmup_time", type=int,
+                        help="Traffic warmup time in seconds, 0 = disable")
+#    parser.add_argument("--p1_src_mac",
+#                        help="Port 1 source MAC address")
+#    parser.add_argument("--p1_dst_mac",
+#                        help="Port 1 destination MAC address")
+    parser.add_argument("--p1_src_start_ip", required=True,
+                        help="Port 1 source start IP address")
+    parser.add_argument("--p1_src_end_ip", required=True,
+                        help="Port 1 source end IP address")
+    parser.add_argument("--p1_dst_start_ip", required=True,
+                        help="Port 1 destination start IP address")
+#    parser.add_argument("--p1_dst_end_ip",
+#                        help="Port 1 destination end IP address")
+#    parser.add_argument("--p2_src_mac",
+#                        help="Port 2 source MAC address")
+#    parser.add_argument("--p2_dst_mac",
+#                        help="Port 2 destination MAC address")
+    parser.add_argument("--p2_src_start_ip", required=True,
+                        help="Port 2 source start IP address")
+    parser.add_argument("--p2_src_end_ip", required=True,
+                        help="Port 2 source end IP address")
+    parser.add_argument("--p2_dst_start_ip", required=True,
+                        help="Port 2 destination start IP address")
+#    parser.add_argument("--p2_dst_end_ip",
+#                        help="Port 2 destination end IP address")
 
-    print _traffic_options
-    if len(_traffic_options) != 6:
-        print_error("Supported only: src_start_ip, src_end_ip, dst_start_ip")
-        print_help()
-        sys.exit(1)
+    args = parser.parse_args()
+
+    _duration = args.duration
+    _frame_size = args.frame_size
+    _rate = args.rate
+    _use_ipv6 = args.use_IPv6
+    _async_call = args.async
+
+    if args.warmup_time is not None:
+        _warmup_time = args.warmup_time
+
+    for attr in [a for a in dir(args) if a.startswith('p')]:
+        if getattr(args, attr) is not None:
+            _traffic_options[attr] = getattr(args, attr)
 
     if _use_ipv6:
         pkt_a, pkt_b = create_packets_v6(_traffic_options,
@@ -405,7 +407,7 @@ def main(argv):
         pkt_a, pkt_b = create_packets(_traffic_options,
                                       frame_size=_frame_size)
 
-    simple_burst(pkt_a, pkt_b, duration=_duration, rate=_rate)
+    simple_burst(pkt_a, pkt_b, _duration, _rate, _warmup_time, _async_call)
 
 if __name__ == "__main__":
-    main(sys.argv[1:])
+    sys.exit(main())

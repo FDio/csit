@@ -35,7 +35,7 @@ class TGDropRateSearchImpl(DropRateSearch):
                      loss_acceptance_type, traffic_type):
 
         # we need instance of TrafficGenerator instantiated by Robot Framework
-        # to be able to use trex_stateless_remote_exec method
+        # to be able to use trex_stl-*()
         tg_instance = BuiltIn().get_library_instance(
             'resources.libraries.python.TrafficGenerator')
 
@@ -43,9 +43,9 @@ class TGDropRateSearchImpl(DropRateSearch):
             raise Exception('TG subtype not defined')
         elif tg_instance._node['subtype'] == NodeSubTypeTG.TREX:
             unit_rate = str(rate) + self.get_rate_type_str()
-            tg_instance.trex_stateless_remote_exec(self.get_duration(),
+            tg_instance.trex_stl_start_remote_exec(self.get_duration(),
                                                    unit_rate, frame_size,
-                                                   traffic_type)
+                                                   traffic_type, False)
 
             # TODO: getters for tg_instance and loss_acceptance_type
             logger.trace("comparing: {} < {} ".format(tg_instance._loss,
@@ -73,6 +73,7 @@ class TrafficGenerator(object):
         # T-REX interface order mapping
         self._ifaces_reordered = 0
 
+    #pylint: disable=too-many-arguments, too-many-locals
     def initialize_traffic_generator(self, tg_node, tg_if1, tg_if2,
                                      dut1_node, dut1_if1, dut1_if2,
                                      dut2_node, dut2_if1, dut2_if2,
@@ -194,19 +195,54 @@ class TrafficGenerator(object):
                 logger.error('pkill t-rex failed: {0}'.format(stdout + stderr))
                 raise RuntimeError('pkill t-rex failed')
 
-    def trex_stateless_remote_exec(self, duration, rate, framesize,
-                                   traffic_type):
-        """Execute stateless script on remote node over ssh.
+    @staticmethod
+    def trex_stl_stop_remote_exec(node):
+        """Execute script on remote node over ssh to stop running traffic.
 
+        :param node: T-REX generator node.
+        :type node: dict
+        :return: Nothing
+        """
+        ssh = SSH()
+        ssh.connect(node)
+
+        (ret, stdout, stderr) = ssh.exec_command(
+            "sh -c '/tmp/openvpp-testing/resources/tools/t-rex/"
+            "t-rex-stateless-stop.py'")
+        logger.trace(ret)
+        logger.trace(stdout)
+        logger.trace(stderr)
+
+        if int(ret) != 0:
+            raise RuntimeError('T-rex stateless runtime error')
+
+    def trex_stl_start_remote_exec(self, duration, rate, framesize,
+                                   traffic_type, async_call, warmup_time=5):
+        """Execute script on remote node over ssh to start traffic.
+
+        :param duration: Time expresed in seconds for how long to send traffic.
+        :param rate: Traffic rate expressed with units (pps, %)
+        :param framesize: L2 frame size to send (without padding and IPG).
         :param traffic_type: Traffic profile.
+        :param async_call: If enabled then don't wait for all incomming trafic.
+        :param warmup_time: Warmup time period.
+        :type duration: int
+        :type rate: str
+        :type framesize: int
         :type traffic_type: str
+        :type async_call: bool
+        :type warmup_time: int
+        :return: Nothing
         """
         ssh = SSH()
         ssh.connect(self._node)
 
         _p0 = 1
         _p1 = 2
+        _async = ""
 
+        if async_call:
+            _async = "--async"
         if self._ifaces_reordered != 0:
             _p0, _p1 = _p1, _p0
 
@@ -214,40 +250,43 @@ class TrafficGenerator(object):
             (ret, stdout, stderr) = ssh.exec_command(
                 "sh -c '/tmp/openvpp-testing/resources/tools/t-rex/"
                 "t-rex-stateless.py "
-                "-d {0} -r {1} -s {2} "
+                "--duration={0} -r {1} -s {2} "
                 "--p{3}_src_start_ip 10.10.10.1 "
                 "--p{3}_src_end_ip 10.10.10.254 "
                 "--p{3}_dst_start_ip 20.20.20.1 "
                 "--p{4}_src_start_ip 20.20.20.1 "
                 "--p{4}_src_end_ip 20.20.20.254 "
-                "--p{4}_dst_start_ip 10.10.10.1'".\
-                format(duration, rate, framesize, _p0, _p1),\
+                "--p{4}_dst_start_ip 10.10.10.1 "
+                "{5} --warmup_time={6}'".format(duration, rate, framesize, _p0,
+                                                _p1, _async, warmup_time),
                 timeout=int(duration)+60)
         elif traffic_type in ["3-node-IPv4"]:
             (ret, stdout, stderr) = ssh.exec_command(
                 "sh -c '/tmp/openvpp-testing/resources/tools/t-rex/"
                 "t-rex-stateless.py "
-                "-d {0} -r {1} -s {2} "
+                "--duration={0} -r {1} -s {2} "
                 "--p{3}_src_start_ip 10.10.10.2 "
                 "--p{3}_src_end_ip 10.10.10.254 "
                 "--p{3}_dst_start_ip 20.20.20.2 "
                 "--p{4}_src_start_ip 20.20.20.2 "
                 "--p{4}_src_end_ip 20.20.20.254 "
-                "--p{4}_dst_start_ip 10.10.10.2'".\
-                format(duration, rate, framesize, _p0, _p1),\
+                "--p{4}_dst_start_ip 10.10.10.2 "
+                "{5} --warmup_time={6}'".format(duration, rate, framesize, _p0,
+                                                _p1, _async, warmup_time),
                 timeout=int(duration)+60)
         elif traffic_type in ["3-node-IPv6"]:
             (ret, stdout, stderr) = ssh.exec_command(
                 "sh -c '/tmp/openvpp-testing/resources/tools/t-rex/"
                 "t-rex-stateless.py "
-                "-d {0} -r {1} -s {2} -6 "
+                "--duration={0} -r {1} -s {2} -6 "
                 "--p{3}_src_start_ip 2001:1::2 "
                 "--p{3}_src_end_ip 2001:1::FE "
                 "--p{3}_dst_start_ip 2001:2::2 "
                 "--p{4}_src_start_ip 2001:2::2 "
                 "--p{4}_src_end_ip 2001:2::FE "
-                "--p{4}_dst_start_ip 2001:1::2'".\
-                format(duration, rate, framesize, _p0, _p1),\
+                "--p{4}_dst_start_ip 2001:1::2 "
+                "{5} --warmup_time={6}'".format(duration, rate, framesize, _p0,
+                                                _p1, _async, warmup_time),
                 timeout=int(duration)+60)
         else:
             raise NotImplementedError('Unsupported traffic type')
@@ -258,6 +297,11 @@ class TrafficGenerator(object):
 
         if int(ret) != 0:
             raise RuntimeError('T-rex stateless runtime error')
+        elif async_call:
+            #no result
+            self._received = None
+            self._sent = None
+            self._loss = None
         else:
             # last line from console output
             line = stdout.splitlines()[-1]
@@ -269,16 +313,24 @@ class TrafficGenerator(object):
             self._sent = self._result.split(', ')[2].split('=')[1]
             self._loss = self._result.split(', ')[3].split('=')[1]
 
-    def send_traffic_on(self, node, duration, rate,
-                        framesize, traffic_type):
+    def stop_traffic_on_tg(self):
+        """Stop all traffic on TG
+
+        :return: Nothing
+        """
+        if self._node is None:
+            raise RuntimeError("TG is not set")
+        if self._node['subtype'] == NodeSubTypeTG.TREX:
+            self.trex_stl_stop_remote_exec(self._node)
+
+    def send_traffic_on_tg(self, duration, rate, framesize,
+                           traffic_type, warmup_time=5, async_call=False):
         """Send traffic from all configured interfaces on TG.
 
-        :param node: Dictionary containing TG information.
         :param duration: Duration of test traffic generation in seconds.
         :param rate: Offered load per interface (e.g. 1%, 3gbps, 4mpps, ...).
         :param framesize: Frame size (L2) in Bytes.
         :param traffic_type: Traffic profile.
-        :type node: dict
         :type duration: str
         :type rate: str
         :type framesize: str
@@ -286,14 +338,20 @@ class TrafficGenerator(object):
         :return: TG output.
         :rtype: str
         """
+
+        node = self._node
+        if node is None:
+            raise RuntimeError("TG is not set")
+
         if node['type'] != NodeType.TG:
             raise Exception('Node type is not a TG')
 
         if node['subtype'] is None:
             raise Exception('TG subtype not defined')
         elif node['subtype'] == NodeSubTypeTG.TREX:
-            self.trex_stateless_remote_exec(duration, rate, framesize,
-                                            traffic_type)
+            self.trex_stl_start_remote_exec(duration, rate, framesize,
+                                            traffic_type, async_call,
+                                            warmup_time=warmup_time)
         else:
             raise NotImplementedError("TG subtype not supported")
 
