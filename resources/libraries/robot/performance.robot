@@ -212,6 +212,6 @@
 
 | Traffic should pass with no loss
 | | [Arguments] | ${duration} | ${rate} | ${framesize} | ${topology_type}
-| | Send traffic on | ${tg} | ${duration}
-| | ...             | ${rate} | ${framesize} | ${topology_type}
+| | Send traffic on tg | ${duration} | ${rate} | ${framesize}
+| | ...                | ${topology_type}
 | | No traffic loss occurred
