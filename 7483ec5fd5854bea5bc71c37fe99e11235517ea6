@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da141535_10204cf6",
+        "filename": "resources/libraries/robot/honeycomb/bridge_domain.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-12T08:04:05Z",
+      "side": 1,
+      "message": "Is somewhere documented what values are allowed? In example is SHG and BVI. If is, please put reference here.",
+      "revId": "7483ec5fd5854bea5bc71c37fe99e11235517ea6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_f01cb8c3",
+        "filename": "resources/libraries/robot/honeycomb/bridge_domain.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-12T08:04:05Z",
+      "side": 1,
+      "message": "same as 100",
+      "revId": "7483ec5fd5854bea5bc71c37fe99e11235517ea6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_d079b4fd",
+        "filename": "resources/libraries/robot/honeycomb/bridge_domain.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-12T08:04:05Z",
+      "side": 1,
+      "message": "same as 100.",
+      "revId": "7483ec5fd5854bea5bc71c37fe99e11235517ea6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
