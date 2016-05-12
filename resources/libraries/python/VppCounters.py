@@ -58,8 +58,18 @@ class VppCounters(object):
         vat.execute_script("show_errors_verbose.vat", node, json_out=False)
 
     @staticmethod
+    def vpp_show_runtime(node):
+        """Run "show runtime" CLI command.
+
+        :param node: Node to run command on.
+        :type node: dict
+        """
+        vat = VatExecutor()
+        vat.execute_script("show_runtime.vat", node, json_out=False)
+
+    @staticmethod
     def vpp_show_runtime_verbose(node):
-        """Run "show runtime" debug CLI command.
+        """Run "show runtime verbose" CLI command.
 
         :param node: Node to run command on.
         :type node: dict
@@ -76,6 +86,16 @@ class VppCounters(object):
         """
         vat = VatExecutor()
         vat.execute_script("show_hardware_detail.vat", node, json_out=False)
+
+    @staticmethod
+    def vpp_clear_runtime(node):
+        """Run "clear runtime" CLI command.
+
+        :param node: Node to run command on.
+        :type node: dict
+        """
+        vat = VatExecutor()
+        vat.execute_script("clear_runtime.vat", node, json_out=False)
 
     @staticmethod
     def vpp_clear_interface_counters(node):
