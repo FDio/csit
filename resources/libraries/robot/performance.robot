@@ -162,7 +162,8 @@
 | | [Documentation] | Find throughput by using RFC2544 linear search
 | | [Arguments] | ${framesize} | ${start_rate} | ${step_rate}
 | | ...         | ${topology_type} | ${min_rate} | ${max_rate}
-| | Set Duration | 60
+| | ${duration}= | Set Variable | 60
+| | Set Duration | ${duration}
 | | Set Search Rate Boundaries | ${max_rate} | ${min_rate}
 | | Set Search Linear Step | ${step_rate}
 | | Set Search Frame Size | ${framesize}
@@ -170,12 +171,15 @@
 | | Linear Search | ${start_rate} | ${topology_type}
 | | ${rate_per_stream}= | Verify Search Result
 | | Display result of NDR search | ${rate_per_stream} | ${framesize} | 2
+| | Clear and show runtime stats with running traffic | ${duration}
+| | ...  | ${rate_per_stream}pps | ${framesize} | ${topology_type}
 
 | Find NDR using binary search and pps
 | | [Documentation] | Find throughput by using RFC2544 binary search
 | | [Arguments] | ${framesize} | ${binary_min} | ${binary_max}
 | | ...         | ${topology_type} | ${min_rate} | ${max_rate} | ${threshold}
-| | Set Duration | 60
+| | ${duration}= | Set Variable | 60
+| | Set Duration | ${duration}
 | | Set Search Rate Boundaries | ${max_rate} | ${min_rate}
 | | Set Search Frame Size | ${framesize}
 | | Set Search Rate Type pps
@@ -183,13 +187,16 @@
 | | Binary Search | ${binary_min} | ${binary_max} | ${topology_type}
 | | ${rate_per_stream}= | Verify Search Result
 | | Display result of NDR search | ${rate_per_stream} | ${framesize} | 2
+| | Clear and show runtime stats with running traffic | ${duration}
+| | ...  | ${rate_per_stream}pps | ${framesize} | ${topology_type}
 
 | Find NDR using combined search and pps
 | | [Documentation] | Find throughput by using RFC2544 combined search
 | | ...             | (linear + binary)
 | | [Arguments] | ${framesize} | ${start_rate} | ${step_rate}
 | | ...         | ${topology_type} | ${min_rate} | ${max_rate} | ${threshold}
-| | Set Duration | 60
+| | ${duration}= | Set Variable | 60
+| | Set Duration | ${duration}
 | | Set Search Rate Boundaries | ${max_rate} | ${min_rate}
 | | Set Search Linear Step | ${step_rate}
 | | Set Search Frame Size | ${framesize}
@@ -198,6 +205,8 @@
 | | Combined Search | ${start_rate} | ${topology_type}
 | | ${rate_per_stream}= | Verify Search Result
 | | Display result of NDR search | ${rate_per_stream} | ${framesize} | 2
+| | Clear and show runtime stats with running traffic | ${duration}
+| | ...  | ${rate_per_stream}pps | ${framesize} | ${topology_type}
 
 | Display result of NDR search
 | | [Documentation] | Display result of NDR search in packet per seconds (total
@@ -209,9 +218,19 @@
 | | Set Test Message | (${nr_streams}x ${rate_per_stream} pps) | append=yes
 | | Set Test Message | FINAL_BANDWIDTH: ${bandwidth_total} Gbps | append=yes
 
-
 | Traffic should pass with no loss
 | | [Arguments] | ${duration} | ${rate} | ${framesize} | ${topology_type}
-| | Send traffic on | ${tg} | ${duration}
-| | ...             | ${rate} | ${framesize} | ${topology_type}
+| | Clear and show runtime stats with running traffic | ${duration}
+| | ...  | ${rate} | ${framesize} | ${topology_type}
+| | Send traffic on tg | ${duration} | ${rate} | ${framesize}
+| | ...                | ${topology_type}
 | | No traffic loss occurred
+
+| Clear and show runtime stats with running traffic
+| | [Arguments] | ${duration} | ${rate} | ${framesize} | ${topology_type}
+| | Send traffic on tg | -1 | ${rate} | ${framesize}
+| | ...                | ${topology_type} | warmup_time=0 | async_call=True
+| | Clear runtime statistics on all DUTs
+| | Sleep | ${duration}
+| | Show runtime statistics on all DUTs
+| | Stop traffic on tg
