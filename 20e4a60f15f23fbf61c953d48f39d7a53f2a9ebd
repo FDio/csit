@@ -1,0 +1,485 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da141535_7bdd2942",
+        "filename": "resources/libraries/python/LispSetup.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-12T14:55:17Z",
+      "side": 1,
+      "message": "PEP 8: expected 2 blank lines, found 1",
+      "revId": "20e4a60f15f23fbf61c953d48f39d7a53f2a9ebd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_5bb945e8",
+        "filename": "resources/libraries/python/LispSetup.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-12T14:55:17Z",
+      "side": 1,
+      "message": "PEP 8: multiple spaces after keyword",
+      "range": {
+        "startLine": 39,
+        "startChar": 5,
+        "endLine": 39,
+        "endChar": 7
+      },
+      "revId": "20e4a60f15f23fbf61c953d48f39d7a53f2a9ebd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_5be26504",
+        "filename": "resources/libraries/python/LispSetup.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-12T14:55:17Z",
+      "side": 1,
+      "message": "PEP 8: expected 2 blank lines, found 1",
+      "revId": "20e4a60f15f23fbf61c953d48f39d7a53f2a9ebd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_dbed55f1",
+        "filename": "resources/libraries/python/LispSetup.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-12T14:55:17Z",
+      "side": 1,
+      "message": "PEP 8: expected 1 blank line, found 0",
+      "revId": "20e4a60f15f23fbf61c953d48f39d7a53f2a9ebd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_7bb409f2",
+        "filename": "resources/libraries/python/LispSetup.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-12T14:55:17Z",
+      "side": 1,
+      "message": "PEP 8: multiple spaces after keyword",
+      "range": {
+        "startLine": 72,
+        "startChar": 5,
+        "endLine": 72,
+        "endChar": 7
+      },
+      "revId": "20e4a60f15f23fbf61c953d48f39d7a53f2a9ebd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_bbbaa1df",
+        "filename": "resources/libraries/python/LispSetup.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-12T14:55:17Z",
+      "side": 1,
+      "message": "PEP 8: expected 2 blank lines, found 1",
+      "revId": "20e4a60f15f23fbf61c953d48f39d7a53f2a9ebd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_bbd3c137",
+        "filename": "resources/libraries/python/LispSetup.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-12T14:55:17Z",
+      "side": 1,
+      "message": "address",
+      "range": {
+        "startLine": 88,
+        "startChar": 14,
+        "endLine": 88,
+        "endChar": 20
+      },
+      "revId": "20e4a60f15f23fbf61c953d48f39d7a53f2a9ebd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_9bd8fd54",
+        "filename": "resources/libraries/python/LispSetup.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-12T14:55:17Z",
+      "side": 1,
+      "message": "address",
+      "range": {
+        "startLine": 108,
+        "startChar": 14,
+        "endLine": 108,
+        "endChar": 20
+      },
+      "revId": "20e4a60f15f23fbf61c953d48f39d7a53f2a9ebd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_9bbfddd0",
+        "filename": "resources/libraries/python/LispSetup.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-12T14:55:17Z",
+      "side": 1,
+      "message": "PEP 8: multiple spaces after keyword",
+      "range": {
+        "startLine": 118,
+        "startChar": 6,
+        "endLine": 118,
+        "endChar": 7
+      },
+      "revId": "20e4a60f15f23fbf61c953d48f39d7a53f2a9ebd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_3be7b114",
+        "filename": "resources/libraries/python/LispSetup.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-12T14:55:17Z",
+      "side": 1,
+      "message": "PEP 8: expected 2 blank lines, found 1",
+      "revId": "20e4a60f15f23fbf61c953d48f39d7a53f2a9ebd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_1be4ed0b",
+        "filename": "resources/libraries/python/LispSetup.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-12T14:55:17Z",
+      "side": 1,
+      "message": "PEP 8: expected 2 blank lines, found 1",
+      "revId": "20e4a60f15f23fbf61c953d48f39d7a53f2a9ebd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_fbf019cb",
+        "filename": "resources/libraries/python/LispSetup.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-12T14:55:17Z",
+      "side": 1,
+      "message": "PEP 8: expected 2 blank lines, found 1",
+      "revId": "20e4a60f15f23fbf61c953d48f39d7a53f2a9ebd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_3bce9184",
+        "filename": "resources/libraries/python/LispSetup.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 211,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-12T14:55:17Z",
+      "side": 1,
+      "message": "PEP 8: multiple spaces after keyword",
+      "range": {
+        "startLine": 211,
+        "startChar": 7,
+        "endLine": 211,
+        "endChar": 9
+      },
+      "revId": "20e4a60f15f23fbf61c953d48f39d7a53f2a9ebd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_1bcbcd73",
+        "filename": "resources/libraries/python/LispSetup.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-12T14:55:17Z",
+      "side": 1,
+      "message": "PEP 8: multiple spaces after keyword",
+      "range": {
+        "startLine": 264,
+        "startChar": 7,
+        "endLine": 264,
+        "endChar": 9
+      },
+      "revId": "20e4a60f15f23fbf61c953d48f39d7a53f2a9ebd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_dbff95a9",
+        "filename": "resources/libraries/python/LispUtil.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-12T14:55:17Z",
+      "side": 1,
+      "message": "PEP 8: expected 2 blank lines, found 1",
+      "revId": "20e4a60f15f23fbf61c953d48f39d7a53f2a9ebd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_9b311da5",
+        "filename": "resources/libraries/python/LispUtil.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-12T14:55:17Z",
+      "side": 1,
+      "message": "PEP 8: multiple spaces after keyword",
+      "range": {
+        "startLine": 52,
+        "startChar": 14,
+        "endLine": 52,
+        "endChar": 16
+      },
+      "revId": "20e4a60f15f23fbf61c953d48f39d7a53f2a9ebd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_bb2ce14b",
+        "filename": "resources/libraries/python/LispUtil.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-12T14:55:17Z",
+      "side": 1,
+      "message": "PEP 8: multiple spaces after keyword",
+      "range": {
+        "startLine": 66,
+        "startChar": 14,
+        "endLine": 66,
+        "endChar": 16
+      },
+      "revId": "20e4a60f15f23fbf61c953d48f39d7a53f2a9ebd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_3b20d148",
+        "filename": "resources/libraries/python/LispUtil.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-12T14:55:17Z",
+      "side": 1,
+      "message": "PEP 8: missing whitespace after \u0027:\u0027",
+      "range": {
+        "startLine": 152,
+        "startChar": 28,
+        "endLine": 152,
+        "endChar": 29
+      },
+      "revId": "20e4a60f15f23fbf61c953d48f39d7a53f2a9ebd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_1b1d0d10",
+        "filename": "resources/libraries/python/LispUtil.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-12T14:55:17Z",
+      "side": 1,
+      "message": "PEP 8: missing whitespace after \u0027:\u0027",
+      "range": {
+        "startLine": 190,
+        "startChar": 27,
+        "endLine": 190,
+        "endChar": 28
+      },
+      "revId": "20e4a60f15f23fbf61c953d48f39d7a53f2a9ebd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_7b26496a",
+        "filename": "resources/libraries/python/LispUtil.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-12T14:55:17Z",
+      "side": 1,
+      "message": "PEP 8: multiple spaces after keyword",
+      "range": {
+        "startLine": 221,
+        "startChar": 14,
+        "endLine": 221,
+        "endChar": 16
+      },
+      "revId": "20e4a60f15f23fbf61c953d48f39d7a53f2a9ebd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_fb193923",
+        "filename": "resources/libraries/python/LispUtil.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-12T14:55:17Z",
+      "side": 1,
+      "message": "PEP 8: missing whitespace after \u0027:\u0027",
+      "range": {
+        "startLine": 239,
+        "startChar": 38,
+        "endLine": 239,
+        "endChar": 39
+      },
+      "revId": "20e4a60f15f23fbf61c953d48f39d7a53f2a9ebd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_db1675f1",
+        "filename": "resources/libraries/python/LispUtil.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-12T14:55:17Z",
+      "side": 1,
+      "message": "PEP 8: missing whitespace after \u0027:\u0027",
+      "range": {
+        "startLine": 244,
+        "startChar": 38,
+        "endLine": 244,
+        "endChar": 39
+      },
+      "revId": "20e4a60f15f23fbf61c953d48f39d7a53f2a9ebd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_5b2b8530",
+        "filename": "resources/libraries/python/LispUtil.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-12T14:55:17Z",
+      "side": 1,
+      "message": "PEP 8: multiple spaces after keyword",
+      "range": {
+        "startLine": 247,
+        "startChar": 14,
+        "endLine": 247,
+        "endChar": 16
+      },
+      "revId": "20e4a60f15f23fbf61c953d48f39d7a53f2a9ebd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
