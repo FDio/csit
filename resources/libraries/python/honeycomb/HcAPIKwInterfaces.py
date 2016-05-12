@@ -674,30 +674,38 @@ class InterfaceKeywords(object):
             node, interface, path, value)
 
     @staticmethod
-    def configure_interface_vxlan(node, interface, param, value):
-        """Configure the VxLAN parameters of interface.
+    def configure_interface_vxlan(node, interface, **kwargs):
+        """Configure VxLAN on the interface.
+
+        The keyword configures VxLAN parameters on the given interface. The type
+        of interface must be set to "v3po:vxlan-tunnel".
+        The new VxLAN parameters overwrite the current configuration. If a
+        parameter in new configuration is missing, it is removed from VxLAN
+        configuration.
+        If the dictionary kwargs is empty, VxLAN configuration is removed.
 
         :param node: Honeycomb node.
         :param interface: The name of interface.
-        :param param: Parameter to configure (set, change, remove)
-        :param value: The value of parameter. If None, the parameter will be
-        removed.
+        :param kwargs: Parameters and their values. The accepted parameters are
+        defined in InterfaceKeywords.VXLAN_PARAMS.
         :type node: dict
         :type interface: str
-        :type param: str
-        :type value: str
+        :type kwargs: dict
         :return: Content of response.
         :rtype: bytearray
         :raises HoneycombError: If the parameter is not valid.
         """
 
-        if param not in InterfaceKeywords.VXLAN_PARAMS:
-            raise HoneycombError("The parameter {0} is invalid.".format(param))
+        vx_lan_structure = dict()
+        for param, value in kwargs.items():
+            if param not in InterfaceKeywords.VXLAN_PARAMS:
+                raise HoneycombError("The parameter {0} is invalid.".
+                                     format(param))
+            vx_lan_structure[param] = value
 
-        path = ("interfaces", ("interface", "name", interface), "v3po:vxlan",
-                param)
+        path = ("interfaces", ("interface", "name", interface), "v3po:vxlan")
         return InterfaceKeywords._set_interface_properties(
-            node, interface, path, value)
+            node, interface, path, vx_lan_structure)
 
     @staticmethod
     def configure_interface_l2(node, interface, param, value):
