@@ -159,7 +159,24 @@
 | | Teardown traffic generator | ${tg}
 
 | Find NDR using linear search and pps
-| | [Documentation] | Find throughput by using RFC2544 linear search
+| | [Documentation] | Find throughput by using RFC2544 linear search with
+| | ...             | non drop rate
+| | ...
+| | ... | *Arguments:*
+| | ... | - ${framesize} - L2 Frame Size [B]. Type: string
+| | ... | - ${start_rate} - Initial start rate [pps]. Type: string
+| | ... | - ${step_rate} - Step of linear search [pps]. Type: string
+| | ... | - ${topology_type} - Topology type. Type: string
+| | ... | - ${min_rate} - Lower limit of search [pps]. Type: string
+| | ... | - ${max_rate} - Upper limit of search [pps]. Type: string
+| | ...
+| | ... | *Return:*
+| | ... | - No value returned
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Find NDR using linear search and pps \| 64 \| 5000000 \| \
+| | ... | \| 100000 \| 3-node-IPv4 \| 100000 \| 14880952
 | | [Arguments] | ${framesize} | ${start_rate} | ${step_rate}
 | | ...         | ${topology_type} | ${min_rate} | ${max_rate}
 | | Set Duration | 60
@@ -171,8 +188,63 @@
 | | ${rate_per_stream}= | Verify Search Result
 | | Display result of NDR search | ${rate_per_stream} | ${framesize} | 2
 
+| Find PDR using linear search and pps
+| | [Documentation] | Find throughput by using RFC2544 linear search with
+| | ...             | partial drop rate
+| | ...
+| | ... | *Arguments:*
+| | ... | - ${framesize} - L2 Frame Size [B]. Type: string
+| | ... | - ${start_rate} - Initial start rate [pps]. Type: string
+| | ... | - ${step_rate} - Step of linear search [pps]. Type: string
+| | ... | - ${topology_type} - Topology type. Type: string
+| | ... | - ${min_rate} - Lower limit of search [pps]. Type: string
+| | ... | - ${max_rate} - Upper limit of search [pps]. Type: string
+| | ... | - ${loss_acceptance} - Accepted loss during search. Type: string
+| | ... | - ${loss_acceptance_type} - Percentage or frames. Type: string
+| | ...
+| | ... | *Return:*
+| | ... | - No value returned
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Find PDR using linear search and pps \| 64 \| 5000000 \
+| | ... | \| 100000 \| 3-node-IPv4 \| 100000 \| 14880952 \| 0.5 \| percentage
+| | [Arguments] | ${framesize} | ${start_rate} | ${step_rate}
+| | ...         | ${topology_type} | ${min_rate} | ${max_rate}
+| | ...         | ${loss_acceptance}=0 | ${loss_acceptance_type}='frames'
+| | Set Duration | 60
+| | Set Search Rate Boundaries | ${max_rate} | ${min_rate}
+| | Set Search Linear Step | ${step_rate}
+| | Set Search Frame Size | ${framesize}
+| | Set Search Rate Type pps
+| | Set Loss Acceptance | ${loss_acceptance}
+| | Run Keyword If | '${loss_acceptance_type}' == 'percentage'
+| | ...            | Set Loss Acceptance Type Percentage
+| | Linear Search | ${start_rate} | ${topology_type}
+| | ${rate_per_stream}= | Verify Search Result
+| | Display result of PDR search | ${rate_per_stream} | ${framesize} | 2
+| | ...                          | ${loss_acceptance} | ${loss_acceptance_type}
+
 | Find NDR using binary search and pps
-| | [Documentation] | Find throughput by using RFC2544 binary search
+| | [Documentation] | Find throughput by using RFC2544 binary search with
+| | ...             | non drop rate
+| | ...
+| | ... | *Arguments:*
+| | ... | - ${framesize} - L2 Frame Size [B]. Type: string
+| | ... | - ${binary_min} - Lower boundary of search [pps]. Type: string
+| | ... | - ${binary_max} - Upper boundary of search [pps]. Type: string
+| | ... | - ${topology_type} - Topology type. Type: string
+| | ... | - ${min_rate} - Lower limit of search [pps]. Type: string
+| | ... | - ${max_rate} - Upper limit of search [pps]. Type: string
+| | ... | - ${threshold} - Threshold to stop search [pps]. Type: string
+| | ...
+| | ... | *Return:*
+| | ... | - No value returned
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Find NDR using binary search and pps \| 64 \| 6000000 \
+| | ... | \| 12000000 \| 3-node-IPv4 \| 100000 \| 14880952 \| 50000
 | | [Arguments] | ${framesize} | ${binary_min} | ${binary_max}
 | | ...         | ${topology_type} | ${min_rate} | ${max_rate} | ${threshold}
 | | Set Duration | 60
@@ -184,9 +256,65 @@
 | | ${rate_per_stream}= | Verify Search Result
 | | Display result of NDR search | ${rate_per_stream} | ${framesize} | 2
 
+| Find PDR using binary search and pps
+| | [Documentation] | Find throughput by using RFC2544 binary search with
+| | ...             | partial drop rate
+| | ...
+| | ... | *Arguments:*
+| | ... | - ${framesize} - L2 Frame Size [B]. Type: string
+| | ... | - ${binary_min} - Lower boundary of search [pps]. Type: string
+| | ... | - ${binary_max} - Upper boundary of search [pps]. Type: string
+| | ... | - ${topology_type} - Topology type. Type: string
+| | ... | - ${min_rate} - Lower limit of search [pps]. Type: string
+| | ... | - ${max_rate} - Upper limit of search [pps]. Type: string
+| | ... | - ${threshold} - Threshold to stop search [pps]. Type: string
+| | ... | - ${loss_acceptance} - Accepted loss during search. Type: string
+| | ... | - ${loss_acceptance_type} - Percentage or frames. Type: string
+| | ...
+| | ... | *Return:*
+| | ... | - No value returned
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Find PDR using binary search and pps \| 64 \| 6000000 \
+| | ... | \| 12000000 \| 3-node-IPv4 \| 100000 \| 14880952 \| 50000 \| 0.5 \
+| | ... | \| percentage
+| | [Arguments] | ${framesize} | ${binary_min} | ${binary_max}
+| | ...         | ${topology_type} | ${min_rate} | ${max_rate} | ${threshold}
+| | ...         | ${loss_acceptance}=0 | ${loss_acceptance_type}='frames'
+| | Set Duration | 60
+| | Set Search Rate Boundaries | ${max_rate} | ${min_rate}
+| | Set Search Frame Size | ${framesize}
+| | Set Search Rate Type pps
+| | Set Loss Acceptance | ${loss_acceptance}
+| | Run Keyword If | '${loss_acceptance_type}' == 'percentage'
+| | ...            | Set Loss Acceptance Type Percentage
+| | Set Binary Convergence Threshold | ${threshold}
+| | Binary Search | ${binary_min} | ${binary_max} | ${topology_type}
+| | ${rate_per_stream}= | Verify Search Result
+| | Display result of PDR search | ${rate_per_stream} | ${framesize} | 2
+| | ...                          | ${loss_acceptance} | ${loss_acceptance_type}
+
 | Find NDR using combined search and pps
 | | [Documentation] | Find throughput by using RFC2544 combined search
-| | ...             | (linear + binary)
+| | ...             | (linear + binary) with non drop rate
+| | ...
+| | ... | *Arguments:*
+| | ... | - ${framesize} - L2 Frame Size [B]. Type: string
+| | ... | - ${start_rate} - Initial start rate [pps]. Type: string
+| | ... | - ${step_rate} - Step of linear search [pps]. Type: string
+| | ... | - ${topology_type} - Topology type. Type: string
+| | ... | - ${min_rate} - Lower limit of search [pps]. Type: string
+| | ... | - ${max_rate} - Upper limit of search [pps]. Type: string
+| | ... | - ${threshold} - Threshold to stop search [pps]. Type: string
+| | ...
+| | ... | *Return:*
+| | ... | - No value returned
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Find NDR using combined search and pps \| 64 \| 5000000 \
+| | ... | \| 100000 \| 3-node-IPv4 \| 100000 \| 14880952 \| 5000
 | | [Arguments] | ${framesize} | ${start_rate} | ${step_rate}
 | | ...         | ${topology_type} | ${min_rate} | ${max_rate} | ${threshold}
 | | Set Duration | 60
@@ -199,9 +327,61 @@
 | | ${rate_per_stream}= | Verify Search Result
 | | Display result of NDR search | ${rate_per_stream} | ${framesize} | 2
 
+| Find PDR using combined search and pps
+| | [Documentation] | Find throughput by using RFC2544 combined search
+| | ...             | (linear + binary) with partial drop rate
+| | ...
+| | ... | *Arguments:*
+| | ... | - ${framesize} - L2 Frame Size [B]. Type: string
+| | ... | - ${start_rate} - Initial start rate [pps]. Type: string
+| | ... | - ${step_rate} - Step of linear search [pps]. Type: string
+| | ... | - ${topology_type} - Topology type. Type: string
+| | ... | - ${min_rate} - Lower limit of search [pps]. Type: string
+| | ... | - ${max_rate} - Upper limit of search [pps]. Type: string
+| | ... | - ${threshold} - Threshold to stop search [pps]. Type: string
+| | ... | - ${loss_acceptance} - Accepted loss during search. Type: string
+| | ... | - ${loss_acceptance_type} - Percentage or frames. Type: string
+| | ...
+| | ... | *Return:*
+| | ... | - No value returned
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Find PDR using combined search and pps \| 64 \| 5000000 \
+| | ... | \| 100000 \| 3-node-IPv4 \| 100000 \| 14880952 \| 5000 \| 0.5 \
+| | ... | \| percentage
+| | [Arguments] | ${framesize} | ${start_rate} | ${step_rate}
+| | ...         | ${topology_type} | ${min_rate} | ${max_rate} | ${threshold}
+| | ...         | ${loss_acceptance}=0 | ${loss_acceptance_type}='frames'
+| | Set Duration | 60
+| | Set Search Rate Boundaries | ${max_rate} | ${min_rate}
+| | Set Search Linear Step | ${step_rate}
+| | Set Search Frame Size | ${framesize}
+| | Set Search Rate Type pps
+| | Set Loss Acceptance | ${loss_acceptance}
+| | Run Keyword If | '${loss_acceptance_type}' == 'percentage'
+| | ...            | Set Loss Acceptance Type Percentage
+| | Set Binary Convergence Threshold | ${threshold}
+| | Combined Search | ${start_rate} | ${topology_type}
+| | ${rate_per_stream}= | Verify Search Result
+| | Display result of PDR search | ${rate_per_stream} | ${framesize} | 2
+| | ...                          | ${loss_acceptance} | ${loss_acceptance_type}
+
 | Display result of NDR search
 | | [Documentation] | Display result of NDR search in packet per seconds (total
 | | ...             | and per stream) and Gbps
+| | ...
+| | ... | *Arguments:*
+| | ... | - ${rate_per_stream} - Measured rate per stream [pps]. Type: string
+| | ... | - ${framesize} - L2 Frame Size [B]. Type: string
+| | ... | - ${nr_streams} - Total number of streams. Type: integer
+| | ...
+| | ... | *Return:*
+| | ... | - No value returned
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Display result of NDR search \| 4400000 \| 64 \| 2
 | | [Arguments] | ${rate_per_stream} | ${framesize} | ${nr_streams}
 | | ${rate_total}= | Evaluate | ${rate_per_stream}*${nr_streams}
 | | ${bandwidth_total}= | Evaluate | ${rate_total}*(${framesize}+20)*8/(10**9)
@@ -209,6 +389,33 @@
 | | Set Test Message | (${nr_streams}x ${rate_per_stream} pps) | append=yes
 | | Set Test Message | FINAL_BANDWIDTH: ${bandwidth_total} Gbps | append=yes
 
+| Display result of PDR search
+| | [Documentation] | Display result of PDR search in packet per seconds (total
+| | ...             | and per stream) and Gbps
+| | ...
+| | ... | *Arguments:*
+| | ... | - ${rate_per_stream} - Measured rate per stream [pps]. Type: string
+| | ... | - ${framesize} - L2 Frame Size [B]. Type: string
+| | ... | - ${nr_streams} - Total number of streams. Type: integer
+| | ... | - ${loss_acceptance} - Accepted loss during search. Type: string
+| | ... | - ${loss_acceptance_type} - Percentage or frames. Type: string
+| | ...
+| | ... | *Return:*
+| | ... | - No value returned
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Display result of PDR search \| 4400000 \| 64 \| 2 \| 0.5 \
+| | ... | \| percentage
+| | [Arguments] | ${rate_per_stream} | ${framesize} | ${nr_streams}
+| | ...         | ${loss_acceptance} | ${loss_acceptance_type}
+| | ${rate_total}= | Evaluate | ${rate_per_stream}*${nr_streams}
+| | ${bandwidth_total}= | Evaluate | ${rate_total}*(${framesize}+20)*8/(10**9)
+| | Set Test Message | FINAL_RATE: ${rate_total} pps
+| | Set Test Message | (${nr_streams}x ${rate_per_stream} pps) | append=yes
+| | Set Test Message | FINAL_BANDWIDTH: ${bandwidth_total} Gbps | append=yes
+| | Set Test Message | LOSS_ACCEPTANCE: ${loss_acceptance}${loss_acceptance_type}
+| | ...              | append=yes
 
 | Traffic should pass with no loss
 | | [Arguments] | ${duration} | ${rate} | ${framesize} | ${topology_type}
