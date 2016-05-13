@@ -10,6 +10,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
 *** Settings ***
 | Resource | resources/libraries/robot/performance.robot
 | Library | resources.libraries.python.topology.Topology
@@ -31,8 +32,8 @@
 | 1core VPP passes 64B frames through IPv4 forwarding at 2x 3.5Mpps in 3-node topology
 | | [Documentation]
 | | ... | VPP with 1 core should pass 64B frames through IPv4 forwarding
-| | ... | at 2x 3.5Mpps in 3-node topology
-| | [Tags] | 1_THREAD_NOHTT_RSS_1 | SINGLE_THREAD
+| | ... | at 2x 3.5Mpps in 3-node topology.
+| | [Tags] | 1_THREAD_NOHTT_RSS_1 | SINGLE_THREAD | NDR
 | | ${framesize}= | Set Variable | 64
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 3.5mpps
@@ -47,8 +48,8 @@
 | 1core VPP passes 1518B frames through IPv4 forwarding at 2x 812,743pps in 3-node topology
 | | [Documentation]
 | | ... | VPP with 1 core should pass 1518B frames through IPv4 forwarding
-| | ... | at 2x 812,743pps (2x 10Gbps) in 3-node topology
-| | [Tags] | 1_THREAD_NOHTT_RSS_1 | SINGLE_THREAD
+| | ... | at 2x 812,743pps (2x 10Gbps) in 3-node topology.
+| | [Tags] | 1_THREAD_NOHTT_RSS_1 | SINGLE_THREAD | NDR
 | | ${framesize}= | Set Variable | 1518
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 812743pps
@@ -63,8 +64,8 @@
 | 1core VPP passes 9000B frames through IPv4 forwarding at 2x 138,580pps in 3-node topology
 | | [Documentation]
 | | ... | VPP with 1 core should pass 9000B frames through IPv4 forwarding
-| | ... | at 2x 138,580pps (2x 10Gbps) in 3-node topology
-| | [Tags] | 1_THREAD_NOHTT_RSS_1 | SINGLE_THREAD
+| | ... | at 2x 138,580pps (2x 10Gbps) in 3-node topology.
+| | [Tags] | 1_THREAD_NOHTT_RSS_1 | SINGLE_THREAD | NDR
 | | ${framesize}= | Set Variable | 9000
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 138580pps
@@ -78,8 +79,8 @@
 | 2core VPP with rss 1 passes 64B frames through IPv4 forwarding at 2x 7.5Mpps in 3-node topology
 | | [Documentation]
 | | ... | VPP with 2 cores should pass 64B frames through IPv4 forwarding
-| | ... | at 2x 7.5Mpps (2x 10Gbps) in 3-node topology
-| | [Tags] | 2_THREAD_NOHTT_RSS_1 | MULTI_THREAD
+| | ... | at 2x 7.5Mpps (2x 10Gbps) in 3-node topology.
+| | [Tags] | 2_THREAD_NOHTT_RSS_1 | MULTI_THREAD | NDR
 | | ${framesize}= | Set Variable | 64
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 7.5mpps
@@ -94,8 +95,8 @@
 | 2core VPP with rss 1 passes 1518B frames through IPv4 forwarding at 2x 812,743pps in 3-node topology
 | | [Documentation]
 | | ... | VPP with 2 cores should pass 1518B frames through IPv4 forwarding
-| | ... | at 2x 812,743pps (2x 10Gbps) in 3-node topology
-| | [Tags] | 2_THREAD_NOHTT_RSS_1 | MULTI_THREAD
+| | ... | at 2x 812,743pps (2x 10Gbps) in 3-node topology.
+| | [Tags] | 2_THREAD_NOHTT_RSS_1 | MULTI_THREAD | NDR
 | | ${framesize}= | Set Variable | 1518
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 812743pps
@@ -110,8 +111,8 @@
 | 2core VPP with rss 1 passes 9000B frames through IPv4 forwarding at 2x 138,580pps in 3-node topology
 | | [Documentation]
 | | ... | VPP with 2 cores should pass 9000B frames through IPv4 forwarding
-| | ... | at 2x 138,580pps (2x 10Gbps) in 3-node topology
-| | [Tags] | 2_THREAD_NOHTT_RSS_1 | MULTI_THREAD
+| | ... | at 2x 138,580pps (2x 10Gbps) in 3-node topology.
+| | [Tags] | 2_THREAD_NOHTT_RSS_1 | MULTI_THREAD | NDR
 | | ${framesize}= | Set Variable | 9000
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 138580pps
@@ -125,8 +126,8 @@
 | 4core VPP with rss 2 passes 64B frames through IPv4 forwarding at 2x 7.8Mpps in 3-node topology
 | | [Documentation]
 | | ... | VPP with 4 cores and rss 2 should pass 64B frames through IPv4
-| | ... | forwarding at 2x 7.8Mpps in 3-node topology
-| | [Tags] | 4_THREAD_NOHTT_RSS_2 | MULTI_THREAD
+| | ... | forwarding at 2x 7.8Mpps in 3-node topology.
+| | [Tags] | 4_THREAD_NOHTT_RSS_2 | MULTI_THREAD | NDR
 | | ${framesize}= | Set Variable | 64
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 7.8mpps
@@ -141,8 +142,8 @@
 | 4core VPP with rss 2 passes 1518B frames through IPv4 forwarding at 2x 812,743pps in 3-node topology
 | | [Documentation]
 | | ... | VPP with 4 cores and rss 2 should pass 1518B frames through IPv4
-| | ... | forwarding at 2x 812,743pps (2x 10Gbps) in 3-node topology
-| | [Tags] | 4_THREAD_NOHTT_RSS_2 | MULTI_THREAD
+| | ... | forwarding at 2x 812,743pps (2x 10Gbps) in 3-node topology.
+| | [Tags] | 4_THREAD_NOHTT_RSS_2 | MULTI_THREAD | NDR
 | | ${framesize}= | Set Variable | 1518
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 812743pps
@@ -157,8 +158,8 @@
 | 4core VPP with rss 2 passes 9000B frames through IPv4 forwarding at 2x 138,580pps in 3-node topology
 | | [Documentation]
 | | ... | VPP with 4 cores and rss 2 should pass 9000B frames through IPv4
-| | ... | forwarding at 2x 138,580pps (2x 10Gbps) in 3-node topology
-| | [Tags] | 4_THREAD_NOHTT_RSS_2 | MULTI_THREAD
+| | ... | forwarding at 2x 138,580pps (2x 10Gbps) in 3-node topology.
+| | [Tags] | 4_THREAD_NOHTT_RSS_2 | MULTI_THREAD | NDR
 | | ${framesize}= | Set Variable | 9000
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 138580pps

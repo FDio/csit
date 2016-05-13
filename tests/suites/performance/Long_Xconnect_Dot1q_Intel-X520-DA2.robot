@@ -41,7 +41,7 @@
 | | ... | Find throughput with non drop rate by using binary search with
 | | ... | threshold 0.1Mpps. Frames from and to TG are 64B long. Tagging is
 | | ... | applied between DUTs inserting 4B VLAN ID into a packet header.
-| | [Tags] | 1_THREAD_NOHTT_RSS_1 | SINGLE_THREAD
+| | [Tags] | 1_THREAD_NOHTT_RSS_1 | SINGLE_THREAD | NDR
 | | ${framesize}= | Set Variable | 64
 | | ${min_rate}= | Set Variable | 100000
 | | ${max_rate}= | Set Variable | ${10Ge_linerate_pps_68B}
@@ -66,12 +66,45 @@
 | | ...                                       | ${min_rate} | ${max_rate}
 | | ...                                       | ${threshold}
 
-| Find NDR by using RFC2544 binary search and 1518B frames through VLAN dot1q sub-interfaces inter-connected using L2 cross connect in 3-node topology
+| Find PDR by using RFC2544 binary search and 64B frames through VLAN dot1q sub-interfaces inter-connected using L2 cross connect in 3-node topology
 | | [Documentation]
 | | ... | Find throughput with non drop rate by using binary search with
+| | ... | threshold 0.1Mpps. Frames from and to TG are 64B long. Tagging is
+| | ... | applied between DUTs inserting 4B VLAN ID into a packet header. Loss
+| | ... | acceptance is set to 0.5 percent of transmitted packets.
+| | [Tags] | 1_THREAD_NOHTT_RSS_1 | SINGLE_THREAD | PDR
+| | ${framesize}= | Set Variable | 64
+| | ${min_rate}= | Set Variable | 100000
+| | ${max_rate}= | Set Variable | ${10Ge_linerate_pps_68B}
+| | ${binary_min}= | Set Variable | ${min_rate}
+| | ${binary_max}= | Set Variable | ${max_rate}
+| | ${threshold}= | Set Variable | ${min_rate}
+| | Given Add '1' worker threads and rss '1' without HTT to all DUTs
+| | And   Add all PCI devices to all DUTs
+| | And   Add No Multi Seg to all DUTs
+| | And   Apply startup configuration on all VPP DUTs
+| | And   VPP interfaces in path are up
+| | When VLAN dot1q subinterfaces initialized on 3-node topology
+| | ... | ${dut1} | ${dut1_if2} | ${dut2} | ${dut2_if1} | ${subid}
+| | And L2 tag rewrite method setup on interfaces
+| | ... | ${dut1} | ${subif_index_1} | ${dut2} | ${subif_index_2}
+| | ... | ${tag_rewrite}
+| | And Interfaces and VLAN sub-interfaces inter-connected using L2-xconnect
+| | ... | ${dut1} | ${dut1_if1} | ${subif_index_1}
+| | ... | ${dut2} | ${dut2_if2} | ${subif_index_2}
+| | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
+| | ...                                       | ${binary_max} | 3-node-xconnect
+| | ...                                       | ${min_rate} | ${max_rate}
+| | ...                                       | ${threshold}
+| | ...                                       | ${glob_loss_acceptance}
+| | ...                                       | ${glob_loss_acceptance_type}
+
+| Find NDR by using RFC2544 binary search and 1518B frames through VLAN dot1q sub-interfaces inter-connected using L2 cross connect in 3-node topology
+| | [Documentation]
+| | ... | Find throughput with partial drop rate by using binary search with
 | | ... | threshold 10,000pps. Frames from and to TG are 1518B long. Tagging is
 | | ... | applied between DUTs inserting 4B VLAN ID into a packet header.
-| | [Tags] | 1_THREAD_NOHTT_RSS_1 | SINGLE_THREAD
+| | [Tags] | 1_THREAD_NOHTT_RSS_1 | SINGLE_THREAD | NDR
 | | ${framesize}= | Set Variable | 1518
 | | ${min_rate}= | Set Variable | 10000
 | | ${max_rate}= | Set Variable | ${10Ge_linerate_pps_1522B}
@@ -96,12 +129,45 @@
 | | ...                                       | ${min_rate} | ${max_rate}
 | | ...                                       | ${threshold}
 
+| Find PDR by using RFC2544 binary search and 1518B frames through VLAN dot1q sub-interfaces inter-connected using L2 cross connect in 3-node topology
+| | [Documentation]
+| | ... | Find throughput with non drop rate by using binary search with
+| | ... | threshold 10,000pps. Frames from and to TG are 1518B long. Tagging is
+| | ... | applied between DUTs inserting 4B VLAN ID into a packet header. Loss
+| | ... | acceptance is set to 0.5 percent of transmitted packets.
+| | [Tags] | 1_THREAD_NOHTT_RSS_1 | SINGLE_THREAD | PDR
+| | ${framesize}= | Set Variable | 1518
+| | ${min_rate}= | Set Variable | 10000
+| | ${max_rate}= | Set Variable | ${10Ge_linerate_pps_1522B}
+| | ${binary_min}= | Set Variable | ${min_rate}
+| | ${binary_max}= | Set Variable | ${max_rate}
+| | ${threshold}= | Set Variable | ${min_rate}
+| | Given Add '1' worker threads and rss '1' without HTT to all DUTs
+| | And   Add all PCI devices to all DUTs
+| | And   Add No Multi Seg to all DUTs
+| | And   Apply startup configuration on all VPP DUTs
+| | And   VPP interfaces in path are up
+| | When VLAN dot1q subinterfaces initialized on 3-node topology
+| | ... | ${dut1} | ${dut1_if2} | ${dut2} | ${dut2_if1} | ${subid}
+| | And L2 tag rewrite method setup on interfaces
+| | ... | ${dut1} | ${subif_index_1} | ${dut2} | ${subif_index_2}
+| | ... | ${tag_rewrite}
+| | And Interfaces and VLAN sub-interfaces inter-connected using L2-xconnect
+| | ... | ${dut1} | ${dut1_if1} | ${subif_index_1}
+| | ... | ${dut2} | ${dut2_if2} | ${subif_index_2}
+| | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
+| | ...                                       | ${binary_max} | 3-node-xconnect
+| | ...                                       | ${min_rate} | ${max_rate}
+| | ...                                       | ${threshold}
+| | ...                                       | ${glob_loss_acceptance}
+| | ...                                       | ${glob_loss_acceptance_type}
+
 | Find NDR by using RFC2544 binary search and 9000B frames through VLAN dot1q sub-interfaces inter-connected using L2 cross connect in 3-node topology
 | | [Documentation]
-| | ... | Find throughput with non drop rate by using binary searchwith
+| | ... | Find throughput with non drop rate by using binary search with
 | | ... | threshold 5,000pps. Frames from and to TG are 9000B long. Tagging is
 | | ... | applied between DUTs inserting 4B VLAN ID into a packet header.
-| | [Tags] | 1_THREAD_NOHTT_RSS_1 | SINGLE_THREAD
+| | [Tags] | 1_THREAD_NOHTT_RSS_1 | SINGLE_THREAD | NDR
 | | ${framesize}= | Set Variable | 9000
 | | ${min_rate}= | Set Variable | 5000
 | | ${max_rate}= | Set Variable | ${10Ge_linerate_pps_9004B}
@@ -125,12 +191,44 @@
 | | ...                                       | ${min_rate} | ${max_rate}
 | | ...                                       | ${threshold}
 
+| Find PDR by using RFC2544 binary search and 9000B frames through VLAN dot1q sub-interfaces inter-connected using L2 cross connect in 3-node topology
+| | [Documentation]
+| | ... | Find throughput with partial drop rate by using binary search with
+| | ... | threshold 5,000pps. Frames from and to TG are 9000B long. Tagging is
+| | ... | applied between DUTs inserting 4B VLAN ID into a packet header. Loss
+| | ... | acceptance is set to 0.5 percent of transmitted packets.
+| | [Tags] | 1_THREAD_NOHTT_RSS_1 | SINGLE_THREAD | PDR
+| | ${framesize}= | Set Variable | 9000
+| | ${min_rate}= | Set Variable | 5000
+| | ${max_rate}= | Set Variable | ${10Ge_linerate_pps_9004B}
+| | ${binary_min}= | Set Variable | ${min_rate}
+| | ${binary_max}= | Set Variable | ${max_rate}
+| | ${threshold}= | Set Variable | ${min_rate}
+| | Given Add '1' worker threads and rss '1' without HTT to all DUTs
+| | And   Add all PCI devices to all DUTs
+| | And   Apply startup configuration on all VPP DUTs
+| | And   VPP interfaces in path are up
+| | When VLAN dot1q subinterfaces initialized on 3-node topology
+| | ... | ${dut1} | ${dut1_if2} | ${dut2} | ${dut2_if1} | ${subid}
+| | And L2 tag rewrite method setup on interfaces
+| | ... | ${dut1} | ${subif_index_1} | ${dut2} | ${subif_index_2}
+| | ... | ${tag_rewrite}
+| | And Interfaces and VLAN sub-interfaces inter-connected using L2-xconnect
+| | ... | ${dut1} | ${dut1_if1} | ${subif_index_1}
+| | ... | ${dut2} | ${dut2_if2} | ${subif_index_2}
+| | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
+| | ...                                       | ${binary_max} | 3-node-xconnect
+| | ...                                       | ${min_rate} | ${max_rate}
+| | ...                                       | ${threshold}
+| | ...                                       | ${glob_loss_acceptance}
+| | ...                                       | ${glob_loss_acceptance_type}
+
 | Find NDR with 2 cores and rss 1 by using RFC2544 binary search and 64B frames through VLAN dot1q sub-interfaces inter-connected using L2 cross connect in 3-node topology
 | | [Documentation]
 | | ... | Find throughput on 2 cores with non drop rate by using binary search
 | | ... | with threshold 0.1Mpps. Frames from and to TG are 64B long. Tagging
 | | ... | is applied between DUTs inserting 4B VLAN ID into a packet header.
-| | [Tags] | 2_THREAD_NOHTT_RSS_1 | MULTI_THREAD
+| | [Tags] | 2_THREAD_NOHTT_RSS_1 | MULTI_THREAD | NDR
 | | ${framesize}= | Set Variable | 64
 | | ${min_rate}= | Set Variable | 100000
 | | ${max_rate}= | Set Variable | ${10Ge_linerate_pps_68B}
@@ -154,6 +252,39 @@
 | | ...                                       | ${binary_max} | 3-node-xconnect
 | | ...                                       | ${min_rate} | ${max_rate}
 | | ...                                       | ${threshold}
+
+| Find PDR with 2 cores and rss 1 by using RFC2544 binary search and 64B frames through VLAN dot1q sub-interfaces inter-connected using L2 cross connect in 3-node topology
+| | [Documentation]
+| | ... | Find throughput on 2 cores with partial drop rate by using binary
+| | ... | search with threshold 0.1Mpps. Frames from and to TG are 64B long.
+| | ... | Tagging is applied between DUTs inserting 4B VLAN ID into a packet
+| | ... | header. Loss acceptance is set to 0.5 percent of transmitted packets.
+| | [Tags] | 2_THREAD_NOHTT_RSS_1 | MULTI_THREAD | PDR
+| | ${framesize}= | Set Variable | 64
+| | ${min_rate}= | Set Variable | 100000
+| | ${max_rate}= | Set Variable | ${10Ge_linerate_pps_68B}
+| | ${binary_min}= | Set Variable | ${min_rate}
+| | ${binary_max}= | Set Variable | ${max_rate}
+| | ${threshold}= | Set Variable | ${min_rate}
+| | Given Add '2' worker threads and rss '1' without HTT to all DUTs
+| | And   Add all PCI devices to all DUTs
+| | And   Add No Multi Seg to all DUTs
+| | And   Apply startup configuration on all VPP DUTs
+| | And   VPP interfaces in path are up
+| | When VLAN dot1q subinterfaces initialized on 3-node topology
+| | ... | ${dut1} | ${dut1_if2} | ${dut2} | ${dut2_if1} | ${subid}
+| | And L2 tag rewrite method setup on interfaces
+| | ... | ${dut1} | ${subif_index_1} | ${dut2} | ${subif_index_2}
+| | ... | ${tag_rewrite}
+| | And Interfaces and VLAN sub-interfaces inter-connected using L2-xconnect
+| | ... | ${dut1} | ${dut1_if1} | ${subif_index_1}
+| | ... | ${dut2} | ${dut2_if2} | ${subif_index_2}
+| | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
+| | ...                                       | ${binary_max} | 3-node-xconnect
+| | ...                                       | ${min_rate} | ${max_rate}
+| | ...                                       | ${threshold}
+| | ...                                       | ${glob_loss_acceptance}
+| | ...                                       | ${glob_loss_acceptance_type}
 
 | Find NDR with 2 cores and rss 1 by using RFC2544 binary search and 1518B frames through VLAN dot1q sub-interfaces inter-connected using L2 cross connect in 3-node topology
 | | [Documentation]
@@ -161,7 +292,7 @@
 | | ... | with threshold 10,000pps. Frames from and to TG are 1518B long.
 | | ... | Tagging is applied between DUTs inserting 4B VLAN ID into a packet
 | | ... | header.
-| | [Tags] | 2_THREAD_NOHTT_RSS_1 | MULTI_THREAD
+| | [Tags] | 2_THREAD_NOHTT_RSS_1 | MULTI_THREAD | NDR
 | | ${framesize}= | Set Variable | 1518
 | | ${min_rate}= | Set Variable | 10000
 | | ${max_rate}= | Set Variable | ${10Ge_linerate_pps_1522B}
@@ -186,13 +317,46 @@
 | | ...                                       | ${min_rate} | ${max_rate}
 | | ...                                       | ${threshold}
 
+| Find PDR with 2 cores and rss 1 by using RFC2544 binary search and 1518B frames through VLAN dot1q sub-interfaces inter-connected using L2 cross connect in 3-node topology
+| | [Documentation]
+| | ... | Find throughput on 2 cores with partial drop rate by using binary
+| | ... | search with threshold 10,000pps. Frames from and to TG are 1518B long.
+| | ... | Tagging is applied between DUTs inserting 4B VLAN ID into a packet
+| | ... | header. Loss acceptance is set to 0.5 percent of transmitted packets.
+| | [Tags] | 2_THREAD_NOHTT_RSS_1 | MULTI_THREAD | PDR
+| | ${framesize}= | Set Variable | 1518
+| | ${min_rate}= | Set Variable | 10000
+| | ${max_rate}= | Set Variable | ${10Ge_linerate_pps_1522B}
+| | ${binary_min}= | Set Variable | ${min_rate}
+| | ${binary_max}= | Set Variable | ${max_rate}
+| | ${threshold}= | Set Variable | ${min_rate}
+| | Given Add '2' worker threads and rss '1' without HTT to all DUTs
+| | And   Add all PCI devices to all DUTs
+| | And   Add No Multi Seg to all DUTs
+| | And   Apply startup configuration on all VPP DUTs
+| | And   VPP interfaces in path are up
+| | When VLAN dot1q subinterfaces initialized on 3-node topology
+| | ... | ${dut1} | ${dut1_if2} | ${dut2} | ${dut2_if1} | ${subid}
+| | And L2 tag rewrite method setup on interfaces
+| | ... | ${dut1} | ${subif_index_1} | ${dut2} | ${subif_index_2}
+| | ... | ${tag_rewrite}
+| | And Interfaces and VLAN sub-interfaces inter-connected using L2-xconnect
+| | ... | ${dut1} | ${dut1_if1} | ${subif_index_1}
+| | ... | ${dut2} | ${dut2_if2} | ${subif_index_2}
+| | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
+| | ...                                       | ${binary_max} | 3-node-xconnect
+| | ...                                       | ${min_rate} | ${max_rate}
+| | ...                                       | ${threshold}
+| | ...                                       | ${glob_loss_acceptance}
+| | ...                                       | ${glob_loss_acceptance_type}
+
 | Find NDR with 2 cores and rss 1 by using RFC2544 binary search and 9000B frames through VLAN dot1q sub-interfaces inter-connected using L2 cross connect in 3-node topology
 | | [Documentation]
 | | ... | Find throughput on 2 cores with non drop rate by using binary search
 | | ... | with threshold 5,000pps. Frames from and to TG are 9000B long.
 | | ... | Tagging is applied between DUTs inserting 4B VLAN ID into a packet
 | | ... | header.
-| | [Tags] | 2_THREAD_NOHTT_RSS_1 | MULTI_THREAD
+| | [Tags] | 2_THREAD_NOHTT_RSS_1 | MULTI_THREAD | NDR
 | | ${framesize}= | Set Variable | 9000
 | | ${min_rate}= | Set Variable | 5000
 | | ${max_rate}= | Set Variable | ${10Ge_linerate_pps_9004B}
@@ -216,13 +380,45 @@
 | | ...                                       | ${min_rate} | ${max_rate}
 | | ...                                       | ${threshold}
 
+| Find PDR with 2 cores and rss 1 by using RFC2544 binary search and 9000B frames through VLAN dot1q sub-interfaces inter-connected using L2 cross connect in 3-node topology
+| | [Documentation]
+| | ... | Find throughput on 2 cores with partial drop rate by using binary
+| | ... | search with threshold 5,000pps. Frames from and to TG are 9000B long.
+| | ... | Tagging is applied between DUTs inserting 4B VLAN ID into a packet
+| | ... | header. Loss acceptance is set to 0.5 percent of transmitted packets.
+| | [Tags] | 2_THREAD_NOHTT_RSS_1 | MULTI_THREAD | PDR
+| | ${framesize}= | Set Variable | 9000
+| | ${min_rate}= | Set Variable | 5000
+| | ${max_rate}= | Set Variable | ${10Ge_linerate_pps_9004B}
+| | ${binary_min}= | Set Variable | ${min_rate}
+| | ${binary_max}= | Set Variable | ${max_rate}
+| | ${threshold}= | Set Variable | ${min_rate}
+| | Given Add '2' worker threads and rss '1' without HTT to all DUTs
+| | And   Add all PCI devices to all DUTs
+| | And   Apply startup configuration on all VPP DUTs
+| | And   VPP interfaces in path are up
+| | When VLAN dot1q subinterfaces initialized on 3-node topology
+| | ... | ${dut1} | ${dut1_if2} | ${dut2} | ${dut2_if1} | ${subid}
+| | And L2 tag rewrite method setup on interfaces
+| | ... | ${dut1} | ${subif_index_1} | ${dut2} | ${subif_index_2}
+| | ... | ${tag_rewrite}
+| | And Interfaces and VLAN sub-interfaces inter-connected using L2-xconnect
+| | ... | ${dut1} | ${dut1_if1} | ${subif_index_1}
+| | ... | ${dut2} | ${dut2_if2} | ${subif_index_2}
+| | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
+| | ...                                       | ${binary_max} | 3-node-xconnect
+| | ...                                       | ${min_rate} | ${max_rate}
+| | ...                                       | ${threshold}
+| | ...                                       | ${glob_loss_acceptance}
+| | ...                                       | ${glob_loss_acceptance_type}
+
 | Find NDR with 4 cores and rss 2 by using RFC2544 binary search and 64B frames through VLAN dot1q sub-interfaces inter-connected using L2 cross connect in 3-node topology
 | | [Documentation]
 | | ... | Find throughput on 4 cores and rss 2 with non drop rate by using
 | | ... | binary search with threshold 0.1Mpps. Frames from and to TG are 64B
 | | ... | long. Tagging is applied between DUTs inserting 4B VLAN ID into a
 | | ... | packet header.
-| | [Tags] | 4_THREAD_NOHTT_RSS_2 | MULTI_THREAD
+| | [Tags] | 4_THREAD_NOHTT_RSS_2 | MULTI_THREAD | NDR
 | | ${framesize}= | Set Variable | 64
 | | ${min_rate}= | Set Variable | 100000
 | | ${max_rate}= | Set Variable | ${10Ge_linerate_pps_68B}
@@ -247,13 +443,47 @@
 | | ...                                       | ${min_rate} | ${max_rate}
 | | ...                                       | ${threshold}
 
+| Find PDR with 4 cores and rss 2 by using RFC2544 binary search and 64B frames through VLAN dot1q sub-interfaces inter-connected using L2 cross connect in 3-node topology
+| | [Documentation]
+| | ... | Find throughput on 4 cores and rss 2 with partial drop rate by using
+| | ... | binary search with threshold 0.1Mpps. Frames from and to TG are 64B
+| | ... | long. Tagging is applied between DUTs inserting 4B VLAN ID into a
+| | ... | packet header. Loss acceptance is set to 0.5 percent of transmitted
+| | ... | packets.
+| | [Tags] | 4_THREAD_NOHTT_RSS_2 | MULTI_THREAD | PDR
+| | ${framesize}= | Set Variable | 64
+| | ${min_rate}= | Set Variable | 100000
+| | ${max_rate}= | Set Variable | ${10Ge_linerate_pps_68B}
+| | ${binary_min}= | Set Variable | ${min_rate}
+| | ${binary_max}= | Set Variable | ${max_rate}
+| | ${threshold}= | Set Variable | ${min_rate}
+| | Given Add '4' worker threads and rss '2' without HTT to all DUTs
+| | And   Add all PCI devices to all DUTs
+| | And   Add No Multi Seg to all DUTs
+| | And   Apply startup configuration on all VPP DUTs
+| | And   VPP interfaces in path are up
+| | When VLAN dot1q subinterfaces initialized on 3-node topology
+| | ... | ${dut1} | ${dut1_if2} | ${dut2} | ${dut2_if1} | ${subid}
+| | And L2 tag rewrite method setup on interfaces
+| | ... | ${dut1} | ${subif_index_1} | ${dut2} | ${subif_index_2}
+| | ... | ${tag_rewrite}
+| | And Interfaces and VLAN sub-interfaces inter-connected using L2-xconnect
+| | ... | ${dut1} | ${dut1_if1} | ${subif_index_1}
+| | ... | ${dut2} | ${dut2_if2} | ${subif_index_2}
+| | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
+| | ...                                       | ${binary_max} | 3-node-xconnect
+| | ...                                       | ${min_rate} | ${max_rate}
+| | ...                                       | ${threshold}
+| | ...                                       | ${glob_loss_acceptance}
+| | ...                                       | ${glob_loss_acceptance_type}
+
 | Find NDR with 4 cores and rss 2 by using RFC2544 binary search and 1518B frames through VLAN dot1q sub-interfaces inter-connected using L2 cross connect in 3-node topology
 | | [Documentation]
 | | ... | Find throughput on 4 cores and rss 2 with non drop rate by using
 | | ... | binary search with threshold 10,000pps. Frames from and to TG are
 | | ... | 1518B long. Tagging is applied between DUTs inserting 4B VLAN ID into
 | | ... | a packet header.
-| | [Tags] | 4_THREAD_NOHTT_RSS_2 | MULTI_THREAD
+| | [Tags] | 4_THREAD_NOHTT_RSS_2 | MULTI_THREAD | NDR
 | | ${framesize}= | Set Variable | 1518
 | | ${min_rate}= | Set Variable | 10000
 | | ${max_rate}= | Set Variable | ${10Ge_linerate_pps_1522B}
@@ -278,13 +508,47 @@
 | | ...                                       | ${min_rate} | ${max_rate}
 | | ...                                       | ${threshold}
 
+| Find PDR with 4 cores and rss 2 by using RFC2544 binary search and 1518B frames through VLAN dot1q sub-interfaces inter-connected using L2 cross connect in 3-node topology
+| | [Documentation]
+| | ... | Find throughput on 4 cores and rss 2 with partial drop rate by using
+| | ... | binary search with threshold 10,000pps. Frames from and to TG are
+| | ... | 1518B long. Tagging is applied between DUTs inserting 4B VLAN ID into
+| | ... | a packet header. Loss acceptance is set to 0.5 percent of transmitted
+| | ... | packets.
+| | [Tags] | 4_THREAD_NOHTT_RSS_2 | MULTI_THREAD | PDR
+| | ${framesize}= | Set Variable | 1518
+| | ${min_rate}= | Set Variable | 10000
+| | ${max_rate}= | Set Variable | ${10Ge_linerate_pps_1522B}
+| | ${binary_min}= | Set Variable | ${min_rate}
+| | ${binary_max}= | Set Variable | ${max_rate}
+| | ${threshold}= | Set Variable | ${min_rate}
+| | Given Add '4' worker threads and rss '2' without HTT to all DUTs
+| | And   Add all PCI devices to all DUTs
+| | And   Add No Multi Seg to all DUTs
+| | And   Apply startup configuration on all VPP DUTs
+| | And   VPP interfaces in path are up
+| | When VLAN dot1q subinterfaces initialized on 3-node topology
+| | ... | ${dut1} | ${dut1_if2} | ${dut2} | ${dut2_if1} | ${subid}
+| | And L2 tag rewrite method setup on interfaces
+| | ... | ${dut1} | ${subif_index_1} | ${dut2} | ${subif_index_2}
+| | ... | ${tag_rewrite}
+| | And Interfaces and VLAN sub-interfaces inter-connected using L2-xconnect
+| | ... | ${dut1} | ${dut1_if1} | ${subif_index_1}
+| | ... | ${dut2} | ${dut2_if2} | ${subif_index_2}
+| | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
+| | ...                                       | ${binary_max} | 3-node-xconnect
+| | ...                                       | ${min_rate} | ${max_rate}
+| | ...                                       | ${threshold}
+| | ...                                       | ${glob_loss_acceptance}
+| | ...                                       | ${glob_loss_acceptance_type}
+
 | Find NDR with 4 cores and rss 2 by using RFC2544 binary search and 9000B frames through VLAN dot1q sub-interfaces inter-connected using L2 cross connect in 3-node topology
 | | [Documentation]
 | | ... | Find throughput on 4 cores and rss 2 with non drop rate by using
 | | ... | binary search with threshold 5,000pps. Frames from and to TG are
 | | ... | 9000B long. Tagging is applied between DUTs inserting 4B VLAN ID into
 | | ... | a packet header.
-| | [Tags] | 4_THREAD_NOHTT_RSS_2 | MULTI_THREAD
+| | [Tags] | 4_THREAD_NOHTT_RSS_2 | MULTI_THREAD | NDR
 | | ${framesize}= | Set Variable | 9000
 | | ${min_rate}= | Set Variable | 5000
 | | ${max_rate}= | Set Variable | ${10Ge_linerate_pps_9004B}
@@ -307,3 +571,36 @@
 | | ...                                       | ${binary_max} | 3-node-xconnect
 | | ...                                       | ${min_rate} | ${max_rate}
 | | ...                                       | ${threshold}
+
+| Find PDR with 4 cores and rss 2 by using RFC2544 binary search and 9000B frames through VLAN dot1q sub-interfaces inter-connected using L2 cross connect in 3-node topology
+| | [Documentation]
+| | ... | Find throughput on 4 cores and rss 2 with partial drop rate by using
+| | ... | binary search with threshold 5,000pps. Frames from and to TG are
+| | ... | 9000B long. Tagging is applied between DUTs inserting 4B VLAN ID into
+| | ... | a packet header. Loss acceptance is set to 0.5 percent of transmitted
+| | ... | packets.
+| | [Tags] | 4_THREAD_NOHTT_RSS_2 | MULTI_THREAD | PDR
+| | ${framesize}= | Set Variable | 9000
+| | ${min_rate}= | Set Variable | 5000
+| | ${max_rate}= | Set Variable | ${10Ge_linerate_pps_9004B}
+| | ${binary_min}= | Set Variable | ${min_rate}
+| | ${binary_max}= | Set Variable | ${max_rate}
+| | ${threshold}= | Set Variable | ${min_rate}
+| | Given Add '4' worker threads and rss '2' without HTT to all DUTs
+| | And   Add all PCI devices to all DUTs
+| | And   Apply startup configuration on all VPP DUTs
+| | And   VPP interfaces in path are up
+| | When VLAN dot1q subinterfaces initialized on 3-node topology
+| | ... | ${dut1} | ${dut1_if2} | ${dut2} | ${dut2_if1} | ${subid}
+| | And L2 tag rewrite method setup on interfaces
+| | ... | ${dut1} | ${subif_index_1} | ${dut2} | ${subif_index_2}
+| | ... | ${tag_rewrite}
+| | And Interfaces and VLAN sub-interfaces inter-connected using L2-xconnect
+| | ... | ${dut1} | ${dut1_if1} | ${subif_index_1}
+| | ... | ${dut2} | ${dut2_if2} | ${subif_index_2}
+| | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
+| | ...                                       | ${binary_max} | 3-node-xconnect
+| | ...                                       | ${min_rate} | ${max_rate}
+| | ...                                       | ${threshold}
+| | ...                                       | ${glob_loss_acceptance}
+| | ...                                       | ${glob_loss_acceptance_type}
