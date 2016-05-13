@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da141535_d6f88c4b",
+        "filename": "resources/libraries/python/LispSetup.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-13T11:28:10Z",
+      "side": 1,
+      "message": "PEP 8: multiple spaces after keyword",
+      "range": {
+        "startLine": 123,
+        "startChar": 5,
+        "endLine": 123,
+        "endChar": 7
+      },
+      "revId": "ed6be8bd9c3f75fe431258bdee14d5a6b28a6173",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
