@@ -674,6 +674,70 @@ class InterfaceKeywords(object):
             node, interface, path, value)
 
     @staticmethod
+    def create_vxlan_interface(node, interface, **kwargs):
+        """Create a new VxLAN interface.
+
+        :param node: Honeycomb node.
+        :param interface: The name of interface.
+        :param kwargs: Parameters and their values. The accepted parameters are
+        defined in InterfaceKeywords.VXLAN_PARAMS.
+        :type node: dict
+        :type interface: str
+        :type kwargs: dict
+        :return: Content of response.
+        :rtype: bytearray
+        :raises HoneycombError: If the parameter is not valid.
+        """
+
+        new_vx_lan = {
+            "name": interface,
+            "type": "v3po:vxlan-tunnel",
+            "v3po:vxlan": {}
+        }
+        for param, value in kwargs.items():
+            if param not in InterfaceKeywords.VXLAN_PARAMS:
+                raise HoneycombError("The parameter {0} is invalid.".
+                                     format(param))
+            new_vx_lan["v3po:vxlan"][param] = value
+
+        path = ("interfaces", "interface")
+        vx_lan_structure = [new_vx_lan, ]
+        return InterfaceKeywords._set_interface_properties(
+            node, interface, path, vx_lan_structure)
+
+    @staticmethod
+    def delete_interface(node, interface):
+        """Delete an interface.
+
+        :param node: Honeycomb node.
+        :param interface: The name of interface.
+        :type node: dict
+        :type interface: str
+        :return: Content of response.
+        :rtype: bytearray
+        :raises HoneycombError: If it is not possible to get information about
+        interfaces or it is not possible to delete the interface.
+        """
+
+        path = ("interfaces", ("interface", "name", interface))
+
+        status_code, resp = HcUtil.\
+            get_honeycomb_data(node, "config_vpp_interfaces")
+        if status_code != HTTPCodes.OK:
+            raise HoneycombError(
+                "Not possible to get configuration information about the "
+                "interfaces. Status code: {0}.".format(status_code))
+
+        new_data = HcUtil.remove_item(resp, path)
+        status_code, resp = HcUtil.\
+            put_honeycomb_data(node, "config_vpp_interfaces", new_data)
+        if status_code != HTTPCodes.OK:
+            raise HoneycombError("Not possible to remove interface {0}. "
+                                 "Status code: {1}.".
+                                 format(interface, status_code))
+        return resp
+
+    @staticmethod
     def configure_interface_vxlan(node, interface, **kwargs):
         """Configure VxLAN on the interface.
 

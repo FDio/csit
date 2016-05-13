@@ -494,7 +494,7 @@ class InterfaceUtil(object):
                                .format(node))
 
     @staticmethod
-    def vxlan_dump(node, interface):
+    def vxlan_dump(node, interface=None):
         """Get VxLAN data for the given interface.
 
         :param node: VPP node to get interface data from.
@@ -504,15 +504,20 @@ class InterfaceUtil(object):
         :return: Dictionary containing data for the given VxLAN.
         :rtype dict
         """
-
-        if isinstance(interface, basestring):
+        param = "sw_if_index"
+        if interface is None:
+            param = ''
+            sw_if_index = ''
+        elif isinstance(interface, basestring):
             sw_if_index = Topology.get_interface_sw_index(node, interface)
-        else:
+        elif isinstance(interface, int):
             sw_if_index = interface
+        else:
+            raise Exception("Wrong interface format {0}".format(interface))
 
         with VatTerminal(node) as vat:
             response = vat.vat_terminal_exec_cmd_from_template(
-                "vxlan_dump.vat", sw_if_index=sw_if_index)
+                "vxlan_dump.vat", param=param, sw_if_index=sw_if_index)
 
         for vxlan in response[0]:
             if vxlan["sw_if_index"] == sw_if_index:
