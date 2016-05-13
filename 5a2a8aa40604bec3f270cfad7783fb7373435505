@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da141535_9609f497",
+        "filename": "resources/libraries/python/honeycomb/HcAPIKwInterfaces.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 750,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-05-13T10:42:17Z",
+      "side": 1,
+      "message": "TAP_PARAMS",
+      "range": {
+        "startLine": 750,
+        "startChar": 46,
+        "endLine": 750,
+        "endChar": 58
+      },
+      "revId": "5a2a8aa40604bec3f270cfad7783fb7373435505",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
