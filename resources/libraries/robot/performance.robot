@@ -162,7 +162,7 @@
 | | [Documentation] | Find throughput by using RFC2544 linear search
 | | [Arguments] | ${framesize} | ${start_rate} | ${step_rate}
 | | ...         | ${topology_type} | ${min_rate} | ${max_rate}
-| | ${duration}= | Set Variable | 60
+| | ${duration}= | Set Variable | 10
 | | Set Duration | ${duration}
 | | Set Search Rate Boundaries | ${max_rate} | ${min_rate}
 | | Set Search Linear Step | ${step_rate}
@@ -178,7 +178,7 @@
 | | [Documentation] | Find throughput by using RFC2544 binary search
 | | [Arguments] | ${framesize} | ${binary_min} | ${binary_max}
 | | ...         | ${topology_type} | ${min_rate} | ${max_rate} | ${threshold}
-| | ${duration}= | Set Variable | 60
+| | ${duration}= | Set Variable | 10
 | | Set Duration | ${duration}
 | | Set Search Rate Boundaries | ${max_rate} | ${min_rate}
 | | Set Search Frame Size | ${framesize}
@@ -195,7 +195,7 @@
 | | ...             | (linear + binary)
 | | [Arguments] | ${framesize} | ${start_rate} | ${step_rate}
 | | ...         | ${topology_type} | ${min_rate} | ${max_rate} | ${threshold}
-| | ${duration}= | Set Variable | 60
+| | ${duration}= | Set Variable | 10
 | | Set Duration | ${duration}
 | | Set Search Rate Boundaries | ${max_rate} | ${min_rate}
 | | Set Search Linear Step | ${step_rate}
