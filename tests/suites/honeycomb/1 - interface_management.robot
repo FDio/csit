@@ -14,7 +14,7 @@
 *** Variables ***
 # Node and interface to run tests on.
 | ${node}= | ${nodes['DUT1']}
-| ${interface}= | ${node['interfaces'].values()[0]['name']}
+| ${interface}= | ${node['interfaces']['port1']['name']}
 # Configuration which will be set and verified during tests.
 | @{ipv4_address_mask}= | 192.168.0.2 | 255.255.255.0
 | @{ipv4_address_prefix}= | 192.168.0.3 | ${16}
@@ -31,10 +31,7 @@
 
 *** Settings ***
 | Resource | resources/libraries/robot/default.robot
-| Resource | resources/libraries/robot/honeycomb/honeycomb.robot
 | Resource | resources/libraries/robot/honeycomb/interfaces.robot
-| Suite Setup | Run keywords | Setup all DUTs before test | AND
-| ... | Setup Honeycomb service on DUTs | ${node}
 | Documentation | *Honeycomb interface management test suite.*
 | ...
 | ... | Test suite uses the first interface of the first DUT node.

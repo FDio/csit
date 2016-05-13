@@ -112,7 +112,8 @@
 | | ...
 | | [Arguments] | ${node} | ${interface}
 | | ${api_data}= | interfaceAPI.Get interface oper data | ${node} | ${interface}
-| | Should be empty | ${api_data}
+| | Run keyword and expect error | *KeyError: 'v3po:vxlan' | Set Variable
+| | ... | ${api_data['v3po:vxlan']}
 
 | VxLAN configuration from VAT should be empty
 | | [Documentation] | Attempts to retrieve interface VxLAN configuration\
