@@ -151,6 +151,20 @@ case "$TEST_TAG" in
               -s "performance.Long_Xconnect*" \
               tests/
         ;;
+    PERFTEST_NDR )
+        pybot ${PYBOT_ARGS} \
+              -L TRACE \
+              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+              -s performance -i NDR \
+              tests/
+        ;;
+    PERFTEST_PDR )
+        pybot ${PYBOT_ARGS} \
+              -L TRACE \
+              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+              -s performance -i PDR \
+              tests/
+        ;;
     * )
         # run full performance test suite and exit on fail
         pybot ${PYBOT_ARGS} \

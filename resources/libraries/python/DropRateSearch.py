@@ -135,6 +135,49 @@ class DropRateSearch(object):
             self._rate_max = float(max_rate)
             self._rate_min = float(min_rate)
 
+    def set_loss_acceptance(self, loss_acceptance):
+        """Set loss acceptance treshold for PDR search.
+
+        :param loss_acceptance: Loss acceptance treshold for PDR search.
+        :type loss_acceptance: str
+        :return: nothing
+        """
+        if float(loss_acceptance) < 0:
+            raise ValueError("Loss acceptance must be higher or equal 0")
+        else:
+            self._loss_acceptance = float(loss_acceptance)
+
+    def get_loss_acceptance(self):
+        """Return configured loss acceptance treshold.
+
+        :return: Loss acceptance treshold.
+        :rtype: float
+        """
+        return self._loss_acceptance
+
+    def set_loss_acceptance_type_percentage(self):
+        """Set loss acceptance treshold type to percentage.
+
+        :return: nothing
+        """
+        self._loss_acceptance_type = LossAcceptanceType.PERCENTAGE
+
+    def set_loss_acceptance_type_frames(self):
+        """Set loss acceptance treshold type to frames.
+
+        :return: nothing
+        """
+        self._loss_acceptance_type = LossAcceptanceType.FRAMES
+
+    def loss_acceptance_type_is_percentage(self):
+        """Return true if loss acceptance treshold type is percentage,
+           false otherwise.
+
+        :return: True if loss acceptance treshold type is percentage.
+        :rtype: boolean
+        """
+        return self._loss_acceptance_type == LossAcceptanceType.PERCENTAGE
+
     def set_search_linear_step(self, step_rate):
         """Set step size for linear search.
 
