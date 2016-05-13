@@ -25,10 +25,8 @@
 
 *** Settings ***
 | Resource | resources/libraries/robot/default.robot
-| Resource | resources/libraries/robot/honeycomb/honeycomb.robot
 | Resource | resources/libraries/robot/honeycomb/interfaces.robot
 | Resource | resources/libraries/robot/honeycomb/bridge_domain.robot
-| Suite Teardown | Stop Honeycomb service on DUTs | ${node}
 | Documentation | *Honeycomb bridge domain management test suite.*
 | ...
 | ... | Test suite uses the first two interfaces on the first DUT node.

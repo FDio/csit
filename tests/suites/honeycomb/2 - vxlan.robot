@@ -26,7 +26,6 @@
 
 *** Settings ***
 | Resource | resources/libraries/robot/default.robot
-| Resource | resources/libraries/robot/honeycomb/honeycomb.robot
 | Resource | resources/libraries/robot/honeycomb/interfaces.robot
 | Resource | resources/libraries/robot/honeycomb/vxlan.robot
 # import additional VxLAN settings from resource file
@@ -41,6 +40,7 @@
 | | [Tags] | honeycomb_sanity
 | | Given VxLAN configuration from Honeycomb should be empty
 | | ... | ${node} | ${vx_interface}
+| | And VxLAN configuration from VAT should be empty | ${node}
 | | When Honeycomb sets interface VxLAN configuration
 | | ... | ${node} | ${vx_interface} | ${vxlan_settings}
 | | Then VxLAN configuration from Honeycomb should be
@@ -53,6 +53,8 @@
 | | [Tags] | honeycomb_sanity
 | | Given VxLAN configuration from Honeycomb should be
 | | ... | ${node} | ${vx_interface} | ${vxlan_settings}
+| | And VxLAN configuration from VAT should be
+| | ... | ${node} | ${vxlan_settings}
 | | When Honeycomb removes VxLAN tunnel settings | ${node} | ${vx_interface}
 | | Then VxLAN configuration from Honeycomb should be empty
 | | ... | ${node} | ${vx_interface}
