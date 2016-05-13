@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "da141535_3668e8b9",
+        "filename": "resources/traffic_scripts/send_ip_icmp.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 365
+      },
+      "writtenOn": "2016-05-13T07:36:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_9bd59d45",
+      "range": {
+        "startLine": 15,
+        "startChar": 32,
+        "endLine": 15,
+        "endChar": 39
+      },
+      "revId": "1ff4ffbccff7983d11580000fe3fb23de44341e0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da141535_dbe31532",
         "filename": "resources/traffic_scripts/send_ip_icmp.py",
         "patchSetId": 18
@@ -36,6 +60,30 @@
       "writtenOn": "2016-05-12T13:42:32Z",
       "side": 1,
       "message": "move to :return:",
+      "range": {
+        "startLine": 31,
+        "startChar": 52,
+        "endLine": 32,
+        "endChar": 16
+      },
+      "revId": "1ff4ffbccff7983d11580000fe3fb23de44341e0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_b69bd8c8",
+        "filename": "resources/traffic_scripts/send_ip_icmp.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 365
+      },
+      "writtenOn": "2016-05-13T07:36:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_dbe31532",
       "range": {
         "startLine": 31,
         "startChar": 52,
@@ -65,6 +113,24 @@
     },
     {
       "key": {
+        "uuid": "da141535_d65e4c12",
+        "filename": "resources/traffic_scripts/send_ip_icmp.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 365
+      },
+      "writtenOn": "2016-05-13T07:36:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_7bcac9a2",
+      "revId": "1ff4ffbccff7983d11580000fe3fb23de44341e0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da141535_3bc45191",
         "filename": "resources/traffic_scripts/send_ip_icmp.py",
         "patchSetId": 18
@@ -76,6 +142,30 @@
       "writtenOn": "2016-05-12T13:42:32Z",
       "side": 1,
       "message": "as above",
+      "range": {
+        "startLine": 46,
+        "startChar": 52,
+        "endLine": 47,
+        "endChar": 16
+      },
+      "revId": "1ff4ffbccff7983d11580000fe3fb23de44341e0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_f66150d4",
+        "filename": "resources/traffic_scripts/send_ip_icmp.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 365
+      },
+      "writtenOn": "2016-05-13T07:36:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_3bc45191",
       "range": {
         "startLine": 46,
         "startChar": 52,
@@ -105,6 +195,24 @@
     },
     {
       "key": {
+        "uuid": "da141535_1665e4e0",
+        "filename": "resources/traffic_scripts/send_ip_icmp.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 365
+      },
+      "writtenOn": "2016-05-13T07:36:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_5bcf05b1",
+      "revId": "1ff4ffbccff7983d11580000fe3fb23de44341e0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da141535_bb3741b0",
         "filename": "tests/suites/l2_xconnect/l2_xconnect_untagged.robot",
         "patchSetId": 18
@@ -116,6 +224,30 @@
       "writtenOn": "2016-05-12T13:42:32Z",
       "side": 1,
       "message": "Path for 3-node testing is set KW sets these test variables.",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 34
+      },
+      "revId": "1ff4ffbccff7983d11580000fe3fb23de44341e0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_d6bacc09",
+        "filename": "tests/suites/l2_xconnect/l2_xconnect_untagged.robot",
+        "patchSetId": 18
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 365
+      },
+      "writtenOn": "2016-05-13T07:36:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_bb3741b0",
       "range": {
         "startLine": 29,
         "startChar": 0,
