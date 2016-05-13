@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da141535_b6bcf86d",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 497,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-13T12:10:30Z",
+      "side": 1,
+      "message": "document what is returned if is None",
+      "range": {
+        "startLine": 497,
+        "startChar": 34,
+        "endLine": 497,
+        "endChar": 39
+      },
+      "revId": "3e5202f4b7bb0d3b7aa0c9360bd1782cce0529a6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_76b6608c",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 504,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-13T12:10:30Z",
+      "side": 1,
+      "message": "VxLAN interface?",
+      "range": {
+        "startLine": 504,
+        "startChar": 58,
+        "endLine": 504,
+        "endChar": 63
+      },
+      "revId": "3e5202f4b7bb0d3b7aa0c9360bd1782cce0529a6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
