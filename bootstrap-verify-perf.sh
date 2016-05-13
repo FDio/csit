@@ -161,6 +161,19 @@ case "$TEST_TAG" in
               -L TRACE \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s "performance.Long_Xconnect_Dot1q*" \
+        ;;
+    PERFTEST_NDR )
+        pybot ${PYBOT_ARGS} \
+              -L TRACE \
+              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+              -s performance -i NDR \
+              tests/
+        ;;
+    PERFTEST_PDR )
+        pybot ${PYBOT_ARGS} \
+              -L TRACE \
+              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+              -s performance -i PDR \
               tests/
         ;;
     * )

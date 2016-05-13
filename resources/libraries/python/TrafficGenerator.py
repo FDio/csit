@@ -46,11 +46,16 @@ class TGDropRateSearchImpl(DropRateSearch):
             tg_instance.trex_stl_start_remote_exec(self.get_duration(),
                                                    unit_rate, frame_size,
                                                    traffic_type, False)
+            loss = tg_instance.get_loss()
+            sent = tg_instance.get_sent()
+            if self.loss_acceptance_type_is_percentage():
+                loss = (float(loss) / float(sent)) * 100
 
-            # TODO: getters for tg_instance and loss_acceptance_type
-            logger.trace("comparing: {} < {} ".format(tg_instance._loss,
-                                                      loss_acceptance))
-            if float(tg_instance._loss) > float(loss_acceptance):
+            # TODO: getters for tg_instance
+            logger.trace("comparing: {} < {} {}".format(loss,
+                                                        loss_acceptance,
+                                                        loss_acceptance_type))
+            if float(loss) > float(loss_acceptance):
                 return False
             else:
                 return True
@@ -72,6 +77,30 @@ class TrafficGenerator(object):
         self._node = None
         # T-REX interface order mapping
         self._ifaces_reordered = 0
+
+    def get_loss(self):
+        """Return number of lost packets.
+
+        :return: Number of lost packets.
+        :rtype: str
+        """
+        return self._loss
+
+    def get_sent(self):
+        """Return number of sent packets.
+
+        :return: Number of sent packets.
+        :rtype: str
+        """
+        return self._sent
+
+    def get_received(self):
+        """Return number of received packets.
+
+        :return: Number of received packets.
+        :rtype: str
+        """
+        return self._received
 
     #pylint: disable=too-many-arguments, too-many-locals
     def initialize_traffic_generator(self, tg_node, tg_if1, tg_if2,
@@ -361,7 +390,7 @@ class TrafficGenerator(object):
         return self._result
 
     def no_traffic_loss_occurred(self):
-        """Fail is loss occurred in traffic run.
+        """Fail if loss occurred in traffic run.
 
         :return: nothing
         """
@@ -369,3 +398,23 @@ class TrafficGenerator(object):
             raise Exception('The traffic generation has not been issued')
         if self._loss != '0':
             raise Exception('Traffic loss occurred: {0}'.format(self._loss))
+
+    def partial_traffic_loss_accepted(self, loss_acceptance,
+                                      loss_acceptance_type):
+        """Fail if loss is higher then accepted in traffic run.
+
+        :return: nothing
+        """
+        if self._loss is None:
+            raise Exception('The traffic generation has not been issued')
+
+        if loss_acceptance_type == 'percentage':
+            loss = (float(self._loss) / float(self._sent)) * 100
+        elif loss_acceptance_type == 'frames':
+            loss = float(self._loss)
+        else:
+            raise Exception('Loss acceptance type not supported')
+
+        if loss > float(loss_acceptance):
+            raise Exception("Traffic loss {} above loss acceptance: {}".format(
+                loss, loss_acceptance))

@@ -34,7 +34,7 @@
 | | ... | sub-interfaces inter-connected using L2 cross connect at 2x2.9Mpps in
 | | ... | 3-node topology. Tagging is applied between DUTs inserting 4B VLAN ID
 | | ... | into a packet header.
-| | [Tags] | 1_THREAD_NOHTT_RSS_1 | SINGLE_THREAD
+| | [Tags] | 1_THREAD_NOHTT_RSS_1 | SINGLE_THREAD | NDR
 | | ${framesize}= | Set Variable | 64
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 2.9mpps
@@ -60,7 +60,7 @@
 | | ... | sub-interfaces inter-connected using L2 cross connect at
 | | ... | 2x 720,000pps in 3-node topology. Tagging is applied between DUTs
 | | ... | inserting 4B VLAN ID into a packet header.
-| | [Tags] | 1_THREAD_NOHTT_RSS_1 | SINGLE_THREAD
+| | [Tags] | 1_THREAD_NOHTT_RSS_1 | SINGLE_THREAD | NDR
 | | ${framesize}= | Set Variable | 1518
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 720000pps
@@ -86,7 +86,7 @@
 | | ... | sub-interfaces inter-connected using L2 cross connect at
 | | ... | 2x 120,000pps in 3-node topology. Tagging is applied between DUTs
 | | ... | inserting 4B VLAN ID into a packet header.
-| | [Tags] | 1_THREAD_NOHTT_RSS_1 | SINGLE_THREAD
+| | [Tags] | 1_THREAD_NOHTT_RSS_1 | SINGLE_THREAD | NDR
 | | ${framesize}= | Set Variable | 9000
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 120000pps
@@ -111,7 +111,7 @@
 | | ... | sub-interfaces inter-connected using L2 cross connect at 2x5.8Mpps in
 | | ... | 3-node topology. Tagging is applied between DUTs inserting 4B VLAN ID
 | | ... | into a packet header.
-| | [Tags] | 2_THREAD_NOHTT_RSS_1 | MULTI_THREAD
+| | [Tags] | 2_THREAD_NOHTT_RSS_1 | MULTI_THREAD | NDR
 | | ${framesize}= | Set Variable | 64
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 5.8mpps
@@ -137,7 +137,7 @@
 | | ... | sub-interfaces inter-connected using L2 cross connect at
 | | ... | 2x 720,000pps in 3-node topology. Tagging is applied between DUTs
 | | ... | inserting 4B VLAN ID into a packet header.
-| | [Tags] | 2_THREAD_NOHTT_RSS_1 | MULTI_THREAD
+| | [Tags] | 2_THREAD_NOHTT_RSS_1 | MULTI_THREAD | NDR
 | | ${framesize}= | Set Variable | 1518
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 720000pps
@@ -163,7 +163,7 @@
 | | ... | sub-interfaces inter-connected using L2 cross connect at
 | | ... | 2x 120,000pps in 3-node topology. Tagging is applied between DUTs
 | | ... | inserting 4B VLAN ID into a packet header.
-| | [Tags] | 2_THREAD_NOHTT_RSS_1 | MULTI_THREAD
+| | [Tags] | 2_THREAD_NOHTT_RSS_1 | MULTI_THREAD | NDR
 | | ${framesize}= | Set Variable | 9000
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 120000pps
@@ -188,7 +188,7 @@
 | | ... | sub-interfaces inter-connected using L2 cross connect at 2x9.0Mpps in
 | | ... | 3-node topology. Tagging is applied between DUTs inserting 4B VLAN ID
 | | ... | into a packet header.
-| | [Tags] | 4_THREAD_NOHTT_RSS_2 | MULTI_THREAD
+| | [Tags] | 4_THREAD_NOHTT_RSS_2 | MULTI_THREAD | NDR
 | | ${framesize}= | Set Variable | 64
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 9.0mpps
@@ -214,7 +214,7 @@
 | | ... | dot1q sub-interfaces inter-connected using L2 cross connect at
 | | ... | 2x 720,000pps in 3-node topology. Tagging is applied between DUTs
 | | ... | inserting 4B VLAN ID into a packet header.
-| | [Tags] | 4_THREAD_NOHTT_RSS_2 | MULTI_THREAD
+| | [Tags] | 4_THREAD_NOHTT_RSS_2 | MULTI_THREAD | NDR
 | | ${framesize}= | Set Variable | 1518
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 720000pps
@@ -240,7 +240,7 @@
 | | ... | dot1q sub-interfaces inter-connected using L2 cross connect at
 | | ... | 2x 120,000pps in 3-node topology. Tagging is applied between DUTs
 | | ... | inserting 4B VLAN ID into a packet header.
-| | [Tags] | 4_THREAD_NOHTT_RSS_2 | MULTI_THREAD
+| | [Tags] | 4_THREAD_NOHTT_RSS_2 | MULTI_THREAD | NDR
 | | ${framesize}= | Set Variable | 9000
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 120000pps
