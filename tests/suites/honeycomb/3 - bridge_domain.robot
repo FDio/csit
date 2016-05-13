@@ -12,9 +12,11 @@
 # limitations under the License.
 
 *** Variables ***
+# Node and interfaces to run tests on.
 | ${node}= | ${nodes['DUT1']}
 | @{interfaces}= | ${node['interfaces'].values()[0]['name']}
 | ... | ${node['interfaces'].values()[1]['name']}
+# Configuration which will be set and verified during tests.
 | ${bd1_name}= | bd-01
 | ${bd2_name}= | bd-02
 | &{bd_settings}= | flood=${True} | forward=${True} | learn=${True}
