@@ -162,7 +162,7 @@
 | | [Documentation] | Find throughput by using RFC2544 linear search
 | | [Arguments] | ${framesize} | ${start_rate} | ${step_rate}
 | | ...         | ${topology_type} | ${min_rate} | ${max_rate}
-| | Set Duration | 60
+| | Set Duration | 10
 | | Set Search Rate Boundaries | ${max_rate} | ${min_rate}
 | | Set Search Linear Step | ${step_rate}
 | | Set Search Frame Size | ${framesize}
@@ -175,7 +175,7 @@
 | | [Documentation] | Find throughput by using RFC2544 binary search
 | | [Arguments] | ${framesize} | ${binary_min} | ${binary_max}
 | | ...         | ${topology_type} | ${min_rate} | ${max_rate} | ${threshold}
-| | Set Duration | 60
+| | Set Duration | 10
 | | Set Search Rate Boundaries | ${max_rate} | ${min_rate}
 | | Set Search Frame Size | ${framesize}
 | | Set Search Rate Type pps
@@ -189,7 +189,7 @@
 | | ...             | (linear + binary)
 | | [Arguments] | ${framesize} | ${start_rate} | ${step_rate}
 | | ...         | ${topology_type} | ${min_rate} | ${max_rate} | ${threshold}
-| | Set Duration | 60
+| | Set Duration | 10
 | | Set Search Rate Boundaries | ${max_rate} | ${min_rate}
 | | Set Search Linear Step | ${step_rate}
 | | Set Search Frame Size | ${framesize}
