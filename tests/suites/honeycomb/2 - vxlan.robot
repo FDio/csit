@@ -26,7 +26,6 @@
 
 *** Settings ***
 | Resource | resources/libraries/robot/default.robot
-| Resource | resources/libraries/robot/honeycomb/honeycomb.robot
 | Resource | resources/libraries/robot/honeycomb/interfaces.robot
 | Resource | resources/libraries/robot/honeycomb/vxlan.robot
 # import additional VxLAN settings from resource file

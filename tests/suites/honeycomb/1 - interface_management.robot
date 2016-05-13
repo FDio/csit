@@ -31,10 +31,7 @@
 
 *** Settings ***
 | Resource | resources/libraries/robot/default.robot
-| Resource | resources/libraries/robot/honeycomb/honeycomb.robot
 | Resource | resources/libraries/robot/honeycomb/interfaces.robot
-| Suite Setup | Run keywords | Setup all DUTs before test | AND
-| ... | Setup Honeycomb service on DUTs | ${node}
 | Documentation | *Honeycomb interface management test suite.*
 | ...
 | ... | Test suite uses the first interface of the first DUT node.
