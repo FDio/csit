@@ -14,8 +14,8 @@
 *** Variables ***
 # Node and interfaces to run tests on.
 | ${node}= | ${nodes['DUT1']}
-| @{interfaces}= | ${node['interfaces'].values()[0]['name']}
-| ... | ${node['interfaces'].values()[1]['name']}
+| @{interfaces}= | ${node['interfaces']['port1']['name']}
+| ... | ${node['interfaces']['port3']['name']}
 # Configuration which will be set and verified during tests.
 | ${bd1_name}= | bd-01
 | ${bd2_name}= | bd-02
@@ -25,10 +25,8 @@
 
 *** Settings ***
 | Resource | resources/libraries/robot/default.robot
-| Resource | resources/libraries/robot/honeycomb/honeycomb.robot
 | Resource | resources/libraries/robot/honeycomb/interfaces.robot
 | Resource | resources/libraries/robot/honeycomb/bridge_domain.robot
-| Suite Teardown | Stop Honeycomb service on DUTs | ${node}
 | Documentation | *Honeycomb bridge domain management test suite.*
 | ...
 | ... | Test suite uses the first two interfaces on the first DUT node.

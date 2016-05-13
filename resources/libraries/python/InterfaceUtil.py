@@ -490,7 +490,7 @@ class InterfaceUtil(object):
         if output["retval"] == 0:
             return output["sw_if_index"]
         else:
-            raise RuntimeError('Unable to create VXLAN interface on node {}'
+            raise RuntimeError('Unable to create VXLAN interface on node {0}'
                                .format(node))
 
     @staticmethod
@@ -504,7 +504,7 @@ class InterfaceUtil(object):
         :type interface: int or str
         :return: Dictionary containing data for the given VxLAN interface or if
         interface=None, the list of dictionaries with all VxLAN interfaces.
-        :rtype dict or list
+        :rtype: dict or list
         """
         param = "sw_if_index"
         if interface is None:
@@ -542,6 +542,30 @@ class InterfaceUtil(object):
                 "vhost_user_dump.vat")
 
         return response[0]
+
+    @staticmethod
+    def tap_dump(node, name=None):
+        """Get all TAP interface data from the given node, or data about
+        a specific TAP interface.
+
+        :param node: VPP node to get data from.
+        :param name: Optional name of a specific TAP interface.
+        :type node: dict
+        :type name: str
+        :return: Dictionary of information about a specific TAP interface, or
+        a List of dictionaries containing all TAP data for the given node.
+        :rtype: dict or list
+        """
+        with VatTerminal(node) as vat:
+            response = vat.vat_terminal_exec_cmd_from_template(
+                "tap_dump.vat")
+        if name is None:
+            return response[0]
+        else:
+            for item in response[0]:
+                if name == item['dev_name']:
+                    return item
+            return {}
 
     @staticmethod
     def create_subinterface(node, interface, sub_id, outer_vlan_id,
