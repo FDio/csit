@@ -46,11 +46,16 @@ class TGDropRateSearchImpl(DropRateSearch):
             tg_instance.trex_stateless_remote_exec(self.get_duration(),
                                                    unit_rate, frame_size,
                                                    traffic_type)
+            loss = tg_instance.get_loss()
+            sent = tg_instance.get_sent()
+            if self.loss_acceptance_type_is_percentage():
+                loss = (float(loss) / float(sent)) * 100
 
-            # TODO: getters for tg_instance and loss_acceptance_type
-            logger.trace("comparing: {} < {} ".format(tg_instance._loss,
-                                                      loss_acceptance))
-            if float(tg_instance._loss) > float(loss_acceptance):
+            # TODO: getters for tg_instance
+            logger.trace("comparing: {} < {} {}".format(loss,
+                                                        loss_acceptance
+                                                        loss_acceptance_type))
+            if float(loss) > float(loss_acceptance):
                 return False
             else:
                 return True
@@ -72,6 +77,30 @@ class TrafficGenerator(object):
         self._node = None
         # T-REX interface order mapping
         self._ifaces_reordered = 0
+
+    def get_loss(self):
+        """Return number of packet loss.
+
+        :return: Number of lost packet.
+        :rtype: str
+        """
+        return self._loss
+
+    def get_sent(self):
+        """Return number of sent packets.
+
+        :return: Number of sent packets.
+        :rtype: str
+        """
+        return self._sent
+
+    def get_received(self):
+        """Return number of received packets.
+
+        :return: Number of received packets.
+        :rtype: str
+        """
+        return self._received
 
     def initialize_traffic_generator(self, tg_node, tg_if1, tg_if2,
                                      dut1_node, dut1_if1, dut1_if2,
