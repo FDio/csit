@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da141535_6668e9ba",
+        "filename": "resources/libraries/python/topology.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-16T12:15:06Z",
+      "side": 1,
+      "message": "Missing rtype",
+      "range": {
+        "startLine": 73,
+        "startChar": 8,
+        "endLine": 73,
+        "endChar": 11
+      },
+      "revId": "f501d7ca9bb1956b3339dbe700ecaf7d468e1a7a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
