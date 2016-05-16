@@ -529,6 +529,43 @@ class InterfaceUtil(object):
         return response[0]
 
     @staticmethod
+    def vhost_user_dump(node, interface=None):
+        """Get vhost-user data for the given interface.
+
+        :param node: VPP node to get interface data from.
+        :param interface: Numeric index or name string of a specific interface.
+        If None, information about all vhost-user interfaces is returned.
+        :type node: dict
+        :type interface: int or str
+        :return: Dictionary containing data for the given vhost-user interface
+        or if interface=None, the list of dictionaries with all vhost-user
+        interfaces.
+        :rtype dict or list
+        """
+
+        param = "sw_if_index"
+        if interface is None:
+            param = ''
+            sw_if_index = ''
+        elif isinstance(interface, basestring):
+            sw_if_index = Topology.get_interface_sw_index(node, interface)
+        elif isinstance(interface, int):
+            sw_if_index = interface
+        else:
+            raise Exception("Wrong interface format {0}".format(interface))
+
+        with VatTerminal(node) as vat:
+            response = vat.vat_terminal_exec_cmd_from_template(
+                "vhost_user_dump.vat", param=param, sw_if_index=sw_if_index)
+
+        if sw_if_index:
+            for vhost_user in response[0]:
+                if vhost_user["sw_if_index"] == sw_if_index:
+                    return vhost_user
+            return {}
+        return response[0]
+
+    @staticmethod
     def create_subinterface(node, interface, sub_id, outer_vlan_id,
                             inner_vlan_id, type_subif):
         """Create sub-interface on node.
