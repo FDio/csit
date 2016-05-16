@@ -1,0 +1,112 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da141535_7302ed3f",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-05-16T10:57:21Z",
+      "side": 1,
+      "message": "async_call param documentation",
+      "revId": "b77a3dea24d94db86d2f58e87c99c22a2313ebd9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_d36899f7",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-05-16T10:57:21Z",
+      "side": 1,
+      "message": "\"--async\"",
+      "revId": "b77a3dea24d94db86d2f58e87c99c22a2313ebd9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_53ffe934",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-05-16T10:57:21Z",
+      "side": 1,
+      "message": "Lets keep it space separated?\nand change param of async to \"--async\"",
+      "range": {
+        "startLine": 247,
+        "startChar": 0,
+        "endLine": 247,
+        "endChar": 78
+      },
+      "revId": "b77a3dea24d94db86d2f58e87c99c22a2313ebd9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_33fc753e",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 261,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-05-16T10:57:21Z",
+      "side": 1,
+      "message": "Lets keep it space separated?\nand change param of async to \"--async\"",
+      "revId": "b77a3dea24d94db86d2f58e87c99c22a2313ebd9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_13f9714d",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-05-16T10:57:21Z",
+      "side": 1,
+      "message": "Lets keep it space separated?\nand change param of async to \"--async\"",
+      "revId": "b77a3dea24d94db86d2f58e87c99c22a2313ebd9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_f395dde4",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-05-16T10:57:21Z",
+      "side": 1,
+      "message": "C:314, 0: Wrong continued indentation (add 3 spaces)",
+      "revId": "b77a3dea24d94db86d2f58e87c99c22a2313ebd9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
