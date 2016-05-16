@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "da141535_93f8e1e6",
+        "filename": "resources/traffic_scripts/send_ip_icmp.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 365
+      },
+      "writtenOn": "2016-05-16T06:17:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_a1a030f5",
+      "range": {
+        "startLine": 15,
+        "startChar": 35,
+        "endLine": 15,
+        "endChar": 39
+      },
+      "revId": "8eb6da306a1b6341bfad0648bd716c919c4ca6b0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da141535_01623cd8",
         "filename": "resources/traffic_scripts/send_ip_icmp.py",
         "patchSetId": 19
@@ -36,6 +60,30 @@
       "writtenOn": "2016-05-13T12:55:09Z",
       "side": 1,
       "message": "to the other one.",
+      "range": {
+        "startLine": 16,
+        "startChar": 19,
+        "endLine": 16,
+        "endChar": 32
+      },
+      "revId": "8eb6da306a1b6341bfad0648bd716c919c4ca6b0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_73dd4d70",
+        "filename": "resources/traffic_scripts/send_ip_icmp.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 365
+      },
+      "writtenOn": "2016-05-16T06:17:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_01623cd8",
       "range": {
         "startLine": 16,
         "startChar": 19,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "da141535_53da4979",
+        "filename": "resources/traffic_scripts/send_ip_icmp.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 365
+      },
+      "writtenOn": "2016-05-16T06:17:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_01347cdc",
+      "range": {
+        "startLine": 31,
+        "startChar": 7,
+        "endLine": 31,
+        "endChar": 50
+      },
+      "revId": "8eb6da306a1b6341bfad0648bd716c919c4ca6b0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da141535_c174449e",
         "filename": "resources/traffic_scripts/send_ip_icmp.py",
         "patchSetId": 19
@@ -82,6 +154,30 @@
       "writtenOn": "2016-05-13T12:55:09Z",
       "side": 1,
       "message": "True in case of correct IPv4 address format, otherwise retur false.",
+      "range": {
+        "startLine": 35,
+        "startChar": 13,
+        "endLine": 35,
+        "endChar": 65
+      },
+      "revId": "8eb6da306a1b6341bfad0648bd716c919c4ca6b0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_33e7d542",
+        "filename": "resources/traffic_scripts/send_ip_icmp.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 365
+      },
+      "writtenOn": "2016-05-16T06:17:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_c174449e",
       "range": {
         "startLine": 35,
         "startChar": 13,
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "da141535_13e4d139",
+        "filename": "resources/traffic_scripts/send_ip_icmp.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 365
+      },
+      "writtenOn": "2016-05-16T06:17:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_81576c02",
+      "range": {
+        "startLine": 46,
+        "startChar": 7,
+        "endLine": 47,
+        "endChar": 16
+      },
+      "revId": "8eb6da306a1b6341bfad0648bd716c919c4ca6b0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da141535_816e4cc8",
         "filename": "resources/traffic_scripts/send_ip_icmp.py",
         "patchSetId": 19
@@ -128,6 +248,30 @@
       "writtenOn": "2016-05-13T12:55:09Z",
       "side": 1,
       "message": "True in case of correct IPv6 address format, otherwise retur false.",
+      "range": {
+        "startLine": 51,
+        "startChar": 13,
+        "endLine": 51,
+        "endChar": 66
+      },
+      "revId": "8eb6da306a1b6341bfad0648bd716c919c4ca6b0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_f3d03d55",
+        "filename": "resources/traffic_scripts/send_ip_icmp.py",
+        "patchSetId": 19
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 365
+      },
+      "writtenOn": "2016-05-16T06:17:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_816e4cc8",
       "range": {
         "startLine": 51,
         "startChar": 13,
@@ -163,6 +307,30 @@
     },
     {
       "key": {
+        "uuid": "da141535_b3cac59f",
+        "filename": "tests/suites/l2_xconnect/l2_xconnect_untagged.robot",
+        "patchSetId": 19
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 365
+      },
+      "writtenOn": "2016-05-16T06:17:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_61aa18d6",
+      "range": {
+        "startLine": 35,
+        "startChar": 38,
+        "endLine": 35,
+        "endChar": 44
+      },
+      "revId": "8eb6da306a1b6341bfad0648bd716c919c4ca6b0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da141535_41af14e4",
         "filename": "tests/suites/l2_xconnect/l2_xconnect_untagged.robot",
         "patchSetId": 19
@@ -186,6 +354,30 @@
     },
     {
       "key": {
+        "uuid": "da141535_93cfc1b0",
+        "filename": "tests/suites/l2_xconnect/l2_xconnect_untagged.robot",
+        "patchSetId": 19
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 365
+      },
+      "writtenOn": "2016-05-16T06:17:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_41af14e4",
+      "range": {
+        "startLine": 63,
+        "startChar": 38,
+        "endLine": 63,
+        "endChar": 44
+      },
+      "revId": "8eb6da306a1b6341bfad0648bd716c919c4ca6b0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da141535_21ac20ed",
         "filename": "tests/suites/l2_xconnect/l2_xconnect_untagged.robot",
         "patchSetId": 19
@@ -197,6 +389,30 @@
       "writtenOn": "2016-05-13T12:55:09Z",
       "side": 1,
       "message": "Missing dot at the end: packet.",
+      "range": {
+        "startLine": 82,
+        "startChar": 38,
+        "endLine": 82,
+        "endChar": 44
+      },
+      "revId": "8eb6da306a1b6341bfad0648bd716c919c4ca6b0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_73c42d92",
+        "filename": "tests/suites/l2_xconnect/l2_xconnect_untagged.robot",
+        "patchSetId": 19
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 365
+      },
+      "writtenOn": "2016-05-16T06:17:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_21ac20ed",
       "range": {
         "startLine": 82,
         "startChar": 38,
