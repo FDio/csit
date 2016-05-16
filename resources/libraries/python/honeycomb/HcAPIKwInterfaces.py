@@ -25,6 +25,7 @@ from resources.libraries.python.honeycomb.HoneycombUtil \
     import HoneycombUtil as HcUtil
 
 
+# pylint: disable=too-many-public-methods
 class InterfaceKeywords(object):
     """Keywords for Interface manipulation.
 
