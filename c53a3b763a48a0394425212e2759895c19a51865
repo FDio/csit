@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "da141535_f3c71d11",
+        "filename": "tests/suites/performance/Long_Xconnect_Dot1q_Intel-X520-DA2.robot",
+        "patchSetId": 12
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-05-16T09:36:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_53cb6972",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 16
+      },
+      "revId": "c53a3b763a48a0394425212e2759895c19a51865",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da141535_f3a15daa",
         "filename": "tests/suites/performance/Short_Xconnect_Dot1q_Intel-X520-DA2.robot",
         "patchSetId": 12
@@ -36,6 +60,30 @@
       "writtenOn": "2016-05-16T08:24:55Z",
       "side": 1,
       "message": "Empty line before Settings section is missing.",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 16
+      },
+      "revId": "c53a3b763a48a0394425212e2759895c19a51865",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_b3d1a5cf",
+        "filename": "tests/suites/performance/Short_Xconnect_Dot1q_Intel-X520-DA2.robot",
+        "patchSetId": 12
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-05-16T09:36:03Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_f3a15daa",
       "range": {
         "startLine": 13,
         "startChar": 0,
