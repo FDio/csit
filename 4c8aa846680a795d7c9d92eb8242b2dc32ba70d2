@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "da141535_536a491b",
+        "filename": "resources/tools/robot_output_parser.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-05-16T09:33:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_0d1a7317",
+      "range": {
+        "startLine": 90,
+        "startChar": 26,
+        "endLine": 90,
+        "endChar": 32
+      },
+      "revId": "4c8aa846680a795d7c9d92eb8242b2dc32ba70d2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da141535_2d1d3710",
         "filename": "resources/tools/robot_output_parser.py",
         "patchSetId": 7
@@ -36,6 +60,30 @@
       "writtenOn": "2016-05-11T11:03:09Z",
       "side": 1,
       "message": "JSON",
+      "range": {
+        "startLine": 92,
+        "startChar": 13,
+        "endLine": 92,
+        "endChar": 17
+      },
+      "revId": "4c8aa846680a795d7c9d92eb8242b2dc32ba70d2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_3377d504",
+        "filename": "resources/tools/robot_output_parser.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-05-16T09:33:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_2d1d3710",
       "range": {
         "startLine": 92,
         "startChar": 13,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "da141535_1374d1fb",
+        "filename": "resources/tools/robot_output_parser.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-05-16T09:33:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_4d206b49",
+      "range": {
+        "startLine": 93,
+        "startChar": 12,
+        "endLine": 93,
+        "endChar": 22
+      },
+      "revId": "4c8aa846680a795d7c9d92eb8242b2dc32ba70d2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da141535_6d2b2f31",
         "filename": "resources/tools/robot_output_parser.py",
         "patchSetId": 7
@@ -82,6 +154,30 @@
       "writtenOn": "2016-05-11T11:03:09Z",
       "side": 1,
       "message": "str or basestring",
+      "range": {
+        "startLine": 114,
+        "startChar": 15,
+        "endLine": 114,
+        "endChar": 21
+      },
+      "revId": "4c8aa846680a795d7c9d92eb8242b2dc32ba70d2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_f3603d37",
+        "filename": "resources/tools/robot_output_parser.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-05-16T09:33:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_6d2b2f31",
       "range": {
         "startLine": 114,
         "startChar": 15,
