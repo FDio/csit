@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da141535_53f5a981",
+        "filename": "tests/suites/performance/Long_IPv6_Intel-X520-DA2.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-16T09:13:24Z",
+      "side": 1,
+      "message": "It seems tag Intel-X520-DA2 is missing there...",
+      "range": {
+        "startLine": 15,
+        "startChar": 2,
+        "endLine": 15,
+        "endChar": 12
+      },
+      "revId": "c91f43963dd9abe48bbc1b80aafadac1c4df9d80",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_33f2359b",
+        "filename": "tests/suites/performance/Short_IPv6_Intel-X520-DA2.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-16T09:13:24Z",
+      "side": 1,
+      "message": "Missing tag Intel-X520-DA2?",
+      "range": {
+        "startLine": 15,
+        "startChar": 2,
+        "endLine": 15,
+        "endChar": 12
+      },
+      "revId": "c91f43963dd9abe48bbc1b80aafadac1c4df9d80",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
