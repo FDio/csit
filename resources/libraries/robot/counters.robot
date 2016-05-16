@@ -43,6 +43,5 @@
 | | [Arguments] | ${node}
 | | Vpp Dump Stats Table | ${node}
 | | Vpp Show Errors | ${node}
-| | Vpp Show Errors Verbose | ${node}
 | | Vpp Show Hardware Detail | ${node}
-| | Vpp Show Runtime Verbose | ${node}
+| | Vpp Show Runtime | ${node}

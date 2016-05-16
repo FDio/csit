@@ -58,8 +58,19 @@ class VppCounters(object):
         vat.execute_script("show_errors_verbose.vat", node, json_out=False)
 
     @staticmethod
-    def vpp_show_runtime_verbose(node):
+    def vpp_show_runtime(node):
         """Run "show runtime" debug CLI command.
+
+        :param node: Node to run command on.
+        :type node: dict
+        """
+        vat = VatExecutor()
+        vat.execute_script("show_runtime.vat", node, json_out=False)
+
+
+    @staticmethod
+    def vpp_show_runtime_verbose(node):
+        """Run "show runtime verbose" debug CLI command.
 
         :param node: Node to run command on.
         :type node: dict
