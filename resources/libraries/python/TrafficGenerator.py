@@ -168,6 +168,9 @@ class TrafficGenerator(object):
                 raise RuntimeError('trex-cfg failed')
 
             (ret, _, _) = ssh.exec_command(
+                "sh -c 'pgrep t-rex && sudo pkill t-rex'")
+
+            (ret, _, _) = ssh.exec_command(
                 "sh -c 'cd {0}/scripts/ && "
                 "sudo nohup ./t-rex-64 -i -c 7 --iom 0 > /dev/null 2>&1 &'"
                 "> /dev/null"\
