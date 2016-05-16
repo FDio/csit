@@ -529,6 +529,21 @@ class InterfaceUtil(object):
         return response[0]
 
     @staticmethod
+    def vhost_user_dump(node):
+        """Get vhost-user data for the given node.
+
+        :param node: VPP node to get interface data from.
+        :type node: dict
+        :return: List of dictionaries with all vhost-user interfaces.
+        :rtype: list
+        """
+        with VatTerminal(node) as vat:
+            response = vat.vat_terminal_exec_cmd_from_template(
+                "vhost_user_dump.vat")
+
+        return response[0]
+
+    @staticmethod
     def create_subinterface(node, interface, sub_id, outer_vlan_id,
                             inner_vlan_id, type_subif):
         """Create sub-interface on node.
