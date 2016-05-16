@@ -105,3 +105,38 @@
 | | Run Keyword And Expect Error | ICMP echo Rx timeout |
 | | ... | Run Traffic Script On Node | send_icmp_check_headers.py
 | | ... | ${tg_node} | ${args}
+
+| Send Packet And Check ARP Request
+| | [Documentation] | Sends packet from IP (with source mac) to IP
+| | ...             | (with dest mac).
+| | ...
+| | ... | *Arguments:*
+| | ...
+| | ... | _NOTE:_ Arguments are based on example:
+| | ...             | TG(if1)->(if1)DUT(if2)->TG(if2)
+| | ...
+| | ... | - {tg_node} : Node to execute scripts on (TG). Type: dictionary
+| | ... | - {src_ip} - IP of source interface (TG-if1). Type: int
+| | ... | - {dst_ip} - IP of destination interface (TG-if2). Type: int
+| | ... | - {tx_src_port} - Interface of TG-if1. Type: string
+| | ... | - {tx_src_mac} - MAC address of TG-if1. Type: string
+| | ... | - {rx_port} - Interface of TG-if1. Type: string
+| | ... | - {rx_src_mac} - MAC address of DUT1-if2. Type: string
+| | ... | - {rx_dst_mac} - MAC address of TG-if2. Type: string
+| | ...
+| | ... | *Return:*
+| | ... | - No value returned
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Send Packet And Check ARP Packet \| ${nodes['TG']} \| 16.0.0.1 \
+| | ... | \| 32.0.0.1 \| eth2 \| 08:00:27:cc:4f:54 \
+| | ... | \| eth4 \| 08:00:27:5b:49:dd \| 08:00:27:54:71:02 \|
+| | ...
+| | [Arguments] | ${tg_node} | ${src_ip} | ${dst_ip} | ${tx_src_port} |
+| | ... | ${tx_src_mac} | ${rx_port} | ${rx_src_mac} | ${rx_dst_mac}
+| | ${args}= | Catenate | --tg_src_mac | ${tx_src_mac}
+| | ... | --tg_dst_mac | ${rx_dst_mac} | --dut_if2_mac | ${rx_src_mac}
+| | ... | --src_ip | ${src_ip} | --dst_ip | ${dst_ip}
+| | ... | --tx_if | ${tx_src_port} | --rx_if | ${rx_port}
+| | Run Traffic Script On Node | send_icmp_check_arp.py | ${tg_node} | ${args}
