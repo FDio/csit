@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da141535_647c6121",
+        "filename": "resources/libraries/robot/tagging.robot",
+        "patchSetId": 13
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-17T10:50:17Z",
+      "side": 1,
+      "message": "VLAN sub-interface",
+      "range": {
+        "startLine": 65,
+        "startChar": 34,
+        "endLine": 65,
+        "endChar": 47
+      },
+      "revId": "132af5d05fb165c23d3265b27f6a48d206c7037b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_44795d2e",
+        "filename": "resources/libraries/robot/tagging.robot",
+        "patchSetId": 13
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-17T10:50:17Z",
+      "side": 1,
+      "message": "VLAN sub-interface",
+      "range": {
+        "startLine": 68,
+        "startChar": 53,
+        "endLine": 68,
+        "endChar": 66
+      },
+      "revId": "132af5d05fb165c23d3265b27f6a48d206c7037b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_849e5555",
+        "filename": "tests/suites/performance/Short_Xconnect_Dot1q_Intel-X520-DA2.robot",
+        "patchSetId": 13
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-17T10:50:17Z",
+      "side": 1,
+      "message": "2",
+      "range": {
+        "startLine": 179,
+        "startChar": 44,
+        "endLine": 179,
+        "endChar": 45
+      },
+      "revId": "132af5d05fb165c23d3265b27f6a48d206c7037b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_a4995970",
+        "filename": "tests/suites/performance/Short_Xconnect_Dot1q_Intel-X520-DA2.robot",
+        "patchSetId": 13
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-17T10:50:17Z",
+      "side": 1,
+      "message": "4",
+      "range": {
+        "startLine": 179,
+        "startChar": 17,
+        "endLine": 179,
+        "endChar": 18
+      },
+      "revId": "132af5d05fb165c23d3265b27f6a48d206c7037b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
