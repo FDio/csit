@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da141535_843ad534",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 559,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-17T13:06:51Z",
+      "side": 1,
+      "message": "What these arguments are here for?\n\nYou are getting dump of all vhost user IFs anyway and then searching for required sw_if_index if needed...",
+      "range": {
+        "startLine": 559,
+        "startChar": 39,
+        "endLine": 559,
+        "endChar": 75
+      },
+      "revId": "79c6adf413a48bf9ec2de054edb2f816014d1d24",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_2449c9d0",
+        "filename": "resources/libraries/robot/honeycomb/vhost_user.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-17T13:06:51Z",
+      "side": 1,
+      "message": "Please, use capital letter at the beggining of the KW\u0027s name.",
+      "range": {
+        "startLine": 70,
+        "startChar": 2,
+        "endLine": 70,
+        "endChar": 7
+      },
+      "revId": "79c6adf413a48bf9ec2de054edb2f816014d1d24",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_0446c5bf",
+        "filename": "resources/libraries/robot/honeycomb/vhost_user.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-17T13:06:51Z",
+      "side": 1,
+      "message": "See line 70.",
+      "range": {
+        "startLine": 90,
+        "startChar": 2,
+        "endLine": 90,
+        "endChar": 7
+      },
+      "revId": "79c6adf413a48bf9ec2de054edb2f816014d1d24",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_e412b1b3",
+        "filename": "resources/libraries/robot/honeycomb/vhost_user.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-17T13:06:51Z",
+      "side": 1,
+      "message": "Vhost",
+      "range": {
+        "startLine": 118,
+        "startChar": 2,
+        "endLine": 118,
+        "endChar": 7
+      },
+      "revId": "79c6adf413a48bf9ec2de054edb2f816014d1d24",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_c417ada2",
+        "filename": "resources/libraries/robot/honeycomb/vhost_user.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-17T13:06:51Z",
+      "side": 1,
+      "message": "Vhost",
+      "range": {
+        "startLine": 134,
+        "startChar": 2,
+        "endLine": 134,
+        "endChar": 7
+      },
+      "revId": "79c6adf413a48bf9ec2de054edb2f816014d1d24",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
