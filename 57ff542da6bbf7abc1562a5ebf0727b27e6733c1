@@ -1,0 +1,146 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da141535_3a3c422f",
+        "filename": "resources/libraries/robot/default.robot",
+        "patchSetId": 14
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 74
+      },
+      "writtenOn": "2016-05-18T16:20:47Z",
+      "side": 1,
+      "message": "\"Add all PCI devices to all DUTs\" - it\u0027s what is it really doing",
+      "revId": "57ff542da6bbf7abc1562a5ebf0727b27e6733c1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_1a497ed0",
+        "filename": "resources/libraries/robot/default.robot",
+        "patchSetId": 14
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 74
+      },
+      "writtenOn": "2016-05-18T16:20:47Z",
+      "side": 1,
+      "message": "Add all available PCI devices from topology file for each DUT.",
+      "revId": "57ff542da6bbf7abc1562a5ebf0727b27e6733c1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_fa45aab3",
+        "filename": "resources/libraries/robot/default.robot",
+        "patchSetId": 14
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 74
+      },
+      "writtenOn": "2016-05-18T16:20:47Z",
+      "side": 1,
+      "message": "The name is wrong because it is adding all available devices not a single one. We should have a wrapper function \"Add PCI devices\" which would call \"Add PCI device\"",
+      "revId": "57ff542da6bbf7abc1562a5ebf0727b27e6733c1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_ba1732a3",
+        "filename": "resources/libraries/robot/default.robot",
+        "patchSetId": 14
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 74
+      },
+      "writtenOn": "2016-05-18T16:20:47Z",
+      "side": 1,
+      "message": "the same as above .. Setup would mean that you ADD + APPLY + RESTART. Can we call it \"Add\" if we only generate configuration within CSIT runtime ?",
+      "revId": "57ff542da6bbf7abc1562a5ebf0727b27e6733c1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_9a0c6e96",
+        "filename": "resources/libraries/robot/default.robot",
+        "patchSetId": 14
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 74
+      },
+      "writtenOn": "2016-05-18T16:20:47Z",
+      "side": 1,
+      "message": "Setup -\u003e Add",
+      "revId": "57ff542da6bbf7abc1562a5ebf0727b27e6733c1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_7a119aab",
+        "filename": "resources/libraries/robot/default.robot",
+        "patchSetId": 14
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 74
+      },
+      "writtenOn": "2016-05-18T16:20:47Z",
+      "side": 1,
+      "message": "please use the same naming convention. if \"Remove\" is opposite to \"Add\", then use Remove instead of Clear, Clear is yet another name for Remove which mean confusion what is the \"Clear\" action doing.",
+      "revId": "57ff542da6bbf7abc1562a5ebf0727b27e6733c1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_fa1c8ac3",
+        "filename": "resources/libraries/robot/default.robot",
+        "patchSetId": 14
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 74
+      },
+      "writtenOn": "2016-05-18T16:20:47Z",
+      "side": 1,
+      "message": "please explain what does \"Reset\" mean, or rename it to \"Remove\" if we use \"Remove\"/\"Add\" to call actions which are affecting only instances within CSIT RF runtime.",
+      "range": {
+        "startLine": 108,
+        "startChar": 22,
+        "endLine": 108,
+        "endChar": 27
+      },
+      "revId": "57ff542da6bbf7abc1562a5ebf0727b27e6733c1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_5a3ff625",
+        "filename": "resources/libraries/robot/default.robot",
+        "patchSetId": 14
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 74
+      },
+      "writtenOn": "2016-05-18T16:20:47Z",
+      "side": 1,
+      "message": "I\u0027d rather call it \"Apply startup config on all VPP DUTs\"\nbecause \"Startup configuration of VPP is applied on all DUTs\" would mean that we want to check if the config has been applied which is not what is this keyword doing",
+      "revId": "57ff542da6bbf7abc1562a5ebf0727b27e6733c1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
