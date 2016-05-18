@@ -180,7 +180,7 @@
 | | Set Search Frame Size | ${framesize}
 | | Set Search Rate Type pps
 | | Set Binary Convergence Threshold | ${threshold}
-| | Binary Search | ${binary_min} | ${binary_max} | ${topology_type}
+| | Binary Search | ${binary_min} | ${binary_max} | ${topology_type} | ${TRUE}
 | | ${rate_per_stream}= | Verify Search Result
 | | Display result of NDR search | ${rate_per_stream} | ${framesize} | 2
 
