@@ -68,7 +68,6 @@
 | | ... | ${dut1_to_tg_mac} | ${tg_to_dut2}
 | | ... | ${dut1_to_dut2_mac} | ${tg_to_dut2_mac}
 
-
 | VPP drops packets based on IPv4 destination addresses
 | | [Documentation] | Create classify table on VPP, add destination IP address
 | | ...             | of traffic into table and setup 'deny' traffic
@@ -99,7 +98,6 @@
 | | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
 | | ... | ${dut1_to_tg_mac} | ${tg_to_dut2}
 | | ... | ${dut1_to_dut2_mac} | ${tg_to_dut2_mac}
-
 
 | VPP drops packets based on IPv4 src-addr and dst-addr
 | | [Documentation] | Create classify table on VPP, add source and destination
@@ -138,3 +136,195 @@
 | | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
 | | ... | ${dut1_to_tg_mac} | ${tg_to_dut2}
 | | ... | ${dut1_to_dut2_mac} | ${tg_to_dut2_mac}
+
+| VPP drops packets based on IPv4 TCP src ports
+| | [Documentation] | Create classify table on VPP, add source TCP port
+| | ...             | of traffic into table and setup 'deny' traffic
+| | ...             | and check if traffic is dropped.
+| | Given Path for 3-node testing is set
+| | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
+| | And Interfaces in 3-node path are up
+| | And Set Interface Address | ${dut1_node}
+| | ... | ${dut1_to_tg} | ${dut1_to_tg_ip} | ${prefix_length}
+| | And Set Interface Address | ${dut1_node}
+| | ... | ${dut1_to_dut2} | ${dut1_to_dut2_ip} | ${prefix_length}
+| | ${hex_mask}= | Compute Classify Hex Mask | TCP | source
+| | ${hex_value}= | Compute Classify Hex Value | 80 | 0
+| | ${table_index} | ${skip_n} | ${match_n}= | When Vpp Create Classify Table Hex
+| | ... | ${dut1_node} | ${hex_mask}
+| | And Vpp Configure Classify Session Hex
+| | ... | ${dut1_node} | deny | ${table_index} | ${skip_n} | ${match_n}
+| | ... | ${hex_value}
+| | And Vpp Enable Input Acl Interface
+| | ... | ${dut1_node} | ${dut1_to_tg} | ip4 | ${table_index}
+| | And Add Arp On Dut
+| | ... | ${dut1_node} | ${dut1_to_dut2} | ${dut1_to_dut2_ip_GW}
+| | ... | ${tg_to_dut2_mac}
+| | And Vpp Route Add
+| | ... | ${dut1_node} | ${test_dst_ip} | ${prefix_length}
+| | ... | ${dut1_to_dut2_ip_GW} | ${dut1_to_dut2}
+| | And L2 setup xconnect on DUT
+| | ... | ${dut2_node} | ${dut2_to_dut1} | ${dut2_to_tg}
+| | Then Send TCP or UDP packet should failed | ${tg_node}
+| | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
+| | ... | ${tg_to_dut2} | ${dut1_to_tg_mac} | TCP | 80 | 20
+
+| VPP drops packets based on IPv4 TCP dst ports
+| | [Documentation] | Create classify table on VPP, add destination TCP port
+| | ...             | of traffic into table and setup 'deny' traffic
+| | ...             | and check if traffic is dropped.
+| | Given Path for 3-node testing is set
+| | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
+| | And Interfaces in 3-node path are up
+| | And Set Interface Address | ${dut1_node}
+| | ... | ${dut1_to_tg} | ${dut1_to_tg_ip} | ${prefix_length}
+| | And Set Interface Address | ${dut1_node}
+| | ... | ${dut1_to_dut2} | ${dut1_to_dut2_ip} | ${prefix_length}
+| | ${hex_mask}= | Compute Classify Hex Mask | TCP | destination
+| | ${hex_value}= | Compute Classify Hex Value | 0 | 80
+| | ${table_index} | ${skip_n} | ${match_n}= | When Vpp Create Classify Table Hex
+| | ... | ${dut1_node} | ${hex_mask}
+| | And Vpp Configure Classify Session Hex
+| | ... | ${dut1_node} | deny | ${table_index} | ${skip_n} | ${match_n}
+| | ... | ${hex_value}
+| | And Vpp Enable Input Acl Interface
+| | ... | ${dut1_node} | ${dut1_to_tg} | ip4 | ${table_index}
+| | And Add Arp On Dut
+| | ... | ${dut1_node} | ${dut1_to_dut2} | ${dut1_to_dut2_ip_GW}
+| | ... | ${tg_to_dut2_mac}
+| | And Vpp Route Add
+| | ... | ${dut1_node} | ${test_dst_ip} | ${prefix_length}
+| | ... | ${dut1_to_dut2_ip_GW} | ${dut1_to_dut2}
+| | And L2 setup xconnect on DUT
+| | ... | ${dut2_node} | ${dut2_to_dut1} | ${dut2_to_tg}
+| | Then Send TCP or UDP packet should failed | ${tg_node}
+| | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
+| | ... | ${tg_to_dut2} | ${dut1_to_tg_mac} | TCP | 20 | 80
+
+| VPP drops packets based on IPv4 TCP src + dst ports
+| | [Documentation] | Create classify table on VPP, add source and destination
+| | ...             | TCP port of traffic into table and setup 'deny' traffic
+| | ...             | and check if traffic is dropped.
+| | Given Path for 3-node testing is set
+| | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
+| | And Interfaces in 3-node path are up
+| | And Set Interface Address | ${dut1_node}
+| | ... | ${dut1_to_tg} | ${dut1_to_tg_ip} | ${prefix_length}
+| | And Set Interface Address | ${dut1_node}
+| | ... | ${dut1_to_dut2} | ${dut1_to_dut2_ip} | ${prefix_length}
+| | ${hex_mask}= | Compute Classify Hex Mask | TCP | source + destination
+| | ${hex_value}= | Compute Classify Hex Value | 80 | 20
+| | ${table_index} | ${skip_n} | ${match_n}= | When Vpp Create Classify Table Hex
+| | ... | ${dut1_node} | ${hex_mask}
+| | And Vpp Configure Classify Session Hex
+| | ... | ${dut1_node} | deny | ${table_index} | ${skip_n} | ${match_n}
+| | ... | ${hex_value}
+| | And Vpp Enable Input Acl Interface
+| | ... | ${dut1_node} | ${dut1_to_tg} | ip4 | ${table_index}
+| | And Add Arp On Dut
+| | ... | ${dut1_node} | ${dut1_to_dut2} | ${dut1_to_dut2_ip_GW}
+| | ... | ${tg_to_dut2_mac}
+| | And Vpp Route Add
+| | ... | ${dut1_node} | ${test_dst_ip} | ${prefix_length}
+| | ... | ${dut1_to_dut2_ip_GW} | ${dut1_to_dut2}
+| | And L2 setup xconnect on DUT
+| | ... | ${dut2_node} | ${dut2_to_dut1} | ${dut2_to_tg}
+| | Then Send TCP or UDP packet should failed | ${tg_node}
+| | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
+| | ... | ${tg_to_dut2} | ${dut1_to_tg_mac} | TCP | 80 | 20
+
+| VPP drops packets based on IPv4 UDP src ports
+| | [Documentation] | Create classify table on VPP, add source UDP port
+| | ...             | of traffic into table and setup 'deny' traffic
+| | ...             | and check if traffic is dropped.
+| | Given Path for 3-node testing is set
+| | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
+| | And Interfaces in 3-node path are up
+| | And Set Interface Address | ${dut1_node}
+| | ... | ${dut1_to_tg} | ${dut1_to_tg_ip} | ${prefix_length}
+| | And Set Interface Address | ${dut1_node}
+| | ... | ${dut1_to_dut2} | ${dut1_to_dut2_ip} | ${prefix_length}
+| | ${hex_mask}= | Compute Classify Hex Mask | UDP | source
+| | ${hex_value}= | Compute Classify Hex Value | 80 | 0
+| | ${table_index} | ${skip_n} | ${match_n}= | When Vpp Create Classify Table Hex
+| | ... | ${dut1_node} | ${hex_mask}
+| | And Vpp Configure Classify Session Hex
+| | ... | ${dut1_node} | deny | ${table_index} | ${skip_n} | ${match_n}
+| | ... | ${hex_value}
+| | And Vpp Enable Input Acl Interface
+| | ... | ${dut1_node} | ${dut1_to_tg} | ip4 | ${table_index}
+| | And Add Arp On Dut
+| | ... | ${dut1_node} | ${dut1_to_dut2} | ${dut1_to_dut2_ip_GW}
+| | ... | ${tg_to_dut2_mac}
+| | And Vpp Route Add
+| | ... | ${dut1_node} | ${test_dst_ip} | ${prefix_length}
+| | ... | ${dut1_to_dut2_ip_GW} | ${dut1_to_dut2}
+| | And L2 setup xconnect on DUT
+| | ... | ${dut2_node} | ${dut2_to_dut1} | ${dut2_to_tg}
+| | Then Send TCP or UDP packet should failed | ${tg_node}
+| | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
+| | ... | ${tg_to_dut2} | ${dut1_to_tg_mac} | UDP | 80 | 20
+
+| VPP drops packets based on IPv4 UDP dst ports
+| | [Documentation] | Create classify table on VPP, add destination UDP port
+| | ...             | of traffic into table and setup 'deny' traffic
+| | ...             | and check if traffic is dropped.
+| | Given Path for 3-node testing is set
+| | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
+| | And Interfaces in 3-node path are up
+| | And Set Interface Address | ${dut1_node}
+| | ... | ${dut1_to_tg} | ${dut1_to_tg_ip} | ${prefix_length}
+| | And Set Interface Address | ${dut1_node}
+| | ... | ${dut1_to_dut2} | ${dut1_to_dut2_ip} | ${prefix_length}
+| | ${hex_mask}= | Compute Classify Hex Mask | UDP | destination
+| | ${hex_value}= | Compute Classify Hex Value | 0 | 80
+| | ${table_index} | ${skip_n} | ${match_n}= | When Vpp Create Classify Table Hex
+| | ... | ${dut1_node} | ${hex_mask}
+| | And Vpp Configure Classify Session Hex
+| | ... | ${dut1_node} | deny | ${table_index} | ${skip_n} | ${match_n}
+| | ... | ${hex_value}
+| | And Vpp Enable Input Acl Interface
+| | ... | ${dut1_node} | ${dut1_to_tg} | ip4 | ${table_index}
+| | And Add Arp On Dut
+| | ... | ${dut1_node} | ${dut1_to_dut2} | ${dut1_to_dut2_ip_GW}
+| | ... | ${tg_to_dut2_mac}
+| | And Vpp Route Add
+| | ... | ${dut1_node} | ${test_dst_ip} | ${prefix_length}
+| | ... | ${dut1_to_dut2_ip_GW} | ${dut1_to_dut2}
+| | And L2 setup xconnect on DUT
+| | ... | ${dut2_node} | ${dut2_to_dut1} | ${dut2_to_tg}
+| | Then Send TCP or UDP packet should failed | ${tg_node}
+| | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
+| | ... | ${tg_to_dut2} | ${dut1_to_tg_mac} | UDP | 20 | 80
+
+| VPP drops packets based on IPv4 UDP src + dst ports
+| | [Documentation] | Create classify table on VPP, add source and destination
+| | ...             | UDP port of traffic into table and setup 'deny' traffic
+| | ...             | and check if traffic is dropped.
+| | Given Path for 3-node testing is set
+| | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
+| | And Interfaces in 3-node path are up
+| | And Set Interface Address | ${dut1_node}
+| | ... | ${dut1_to_tg} | ${dut1_to_tg_ip} | ${prefix_length}
+| | And Set Interface Address | ${dut1_node}
+| | ... | ${dut1_to_dut2} | ${dut1_to_dut2_ip} | ${prefix_length}
+| | ${hex_mask}= | Compute Classify Hex Mask | UDP | source + destination
+| | ${hex_value}= | Compute Classify Hex Value | 80 | 20
+| | ${table_index} | ${skip_n} | ${match_n}= | When Vpp Create Classify Table Hex
+| | ... | ${dut1_node} | ${hex_mask}
+| | And Vpp Configure Classify Session Hex
+| | ... | ${dut1_node} | deny | ${table_index} | ${skip_n} | ${match_n}
+| | ... | ${hex_value}
+| | And Vpp Enable Input Acl Interface
+| | ... | ${dut1_node} | ${dut1_to_tg} | ip4 | ${table_index}
+| | And Add Arp On Dut
+| | ... | ${dut1_node} | ${dut1_to_dut2} | ${dut1_to_dut2_ip_GW}
+| | ... | ${tg_to_dut2_mac}
+| | And Vpp Route Add
+| | ... | ${dut1_node} | ${test_dst_ip} | ${prefix_length}
+| | ... | ${dut1_to_dut2_ip_GW} | ${dut1_to_dut2}
+| | And L2 setup xconnect on DUT
+| | ... | ${dut2_node} | ${dut2_to_dut1} | ${dut2_to_tg}
+| | Then Send TCP or UDP packet should failed | ${tg_node}
+| | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
+| | ... | ${tg_to_dut2} | ${dut1_to_tg_mac} | UDP | 80 | 20
