@@ -67,6 +67,8 @@ class TrafficScriptExecutor(object):
         if ret_code != 0:
             if "RuntimeError: ICMP echo Rx timeout" in stderr:
                 raise Exception("ICMP echo Rx timeout")
+            elif "RuntimeError: TCP/UDP Rx timeout" in stderr:
+                raise Exception("TCP/UDP Rx timeout")
             else:
                 raise Exception("Traffic script execution failed")
 
