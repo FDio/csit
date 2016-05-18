@@ -419,15 +419,17 @@ class DropRateSearch(object):
                                      SearchResults.SUSPICIOUS]:
             return self._search_result_rate
 
-    def binary_search(self, b_min, b_max, traffic_type):
+    def binary_search(self, b_min, b_max, traffic_type, skip_max_rate=False):
         """Binary search of rate with loss below acceptance criteria.
 
         :param b_min: Min range rate.
         :param b_max: Max range rate.
         :param traffic_type: Traffic profile.
+        :param skip_max_rate: Start with max rate first
         :type b_min: float
         :type b_max: float
         :type traffic_type: str
+        :type skip_max_rate: bool
         :return: nothing
         """
 
@@ -436,11 +438,15 @@ class DropRateSearch(object):
         if not self._rate_min <= float(b_max) <= self._rate_max:
             raise ValueError("Max rate is not in min,max range")
         if float(b_max) < float(b_min):
-            raise ValueError("Min rate is greater then max rate")
+            raise ValueError("Min rate is greater than max rate")
 
         # binary search
-        # rate is half of interval + start of interval
-        rate = ((float(b_max) - float(b_min)) / 2) + float(b_min)
+        if skip_max_rate:
+            # rate is half of interval + start of interval
+            rate = ((float(b_max) - float(b_min)) / 2) + float(b_min)
+        else:
+            # rate is max of interval
+            rate =  float(b_max)
         # rate diff with previous run
         rate_diff = abs(self._last_binary_rate - rate)
 
@@ -465,11 +471,11 @@ class DropRateSearch(object):
 
         # loss occurred and it was above acceptance criteria
         if not res:
-            self.binary_search(b_min, rate, traffic_type)
+            self.binary_search(b_min, rate, traffic_type, True)
         # there was no loss / loss below acceptance criteria
         else:
             self._search_result_rate = rate
-            self.binary_search(rate, b_max, traffic_type)
+            self.binary_search(rate, b_max, traffic_type, True)
 
     def combined_search(self, start_rate, traffic_type):
         """Combined search of rate with loss below acceptance criteria.
@@ -501,7 +507,7 @@ class DropRateSearch(object):
             self._search_result_rate = None
 
             # we will use binary search to refine search in one linear step
-            self.binary_search(b_min, b_max, traffic_type)
+            self.binary_search(b_min, b_max, traffic_type, True)
 
             # linear and binary search succeed
             if self._search_result == SearchResults.SUCCESS:
