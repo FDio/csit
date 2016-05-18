@@ -27,6 +27,40 @@
 | Documentation | Performance suite keywords
 
 *** Keywords ***
+| Setup performance rate Variables
+| | [Documentation] | Setup performance rates as Suite Variables
+| | ...
+| | ... | _NOTE:_ This KW sets following suite variables:
+| | ... | - ${10Ge_linerate_pps_64B} - Maximum number of packet per second
+| | ... |                              for 10GE with 64B L2 Frame.
+| | ... | - ${10Ge_linerate_pps_68B} - Maximum number of packet per second
+| | ... |                              for 10GE with 68B L2 Frame.
+| | ... | - ${10Ge_linerate_pps_78B} - Maximum number of packet per second
+| | ... |                              for 10GE with 78B L2 Frame.
+| | ... | - ${10Ge_linerate_pps_1518B} - Maximum number of packet per second
+| | ... |                                for 10GE with 1518B L2 Frame.
+| | ... | - ${10Ge_linerate_pps_1522B} - Maximum number of packet per second
+| | ... |                                for 10GE with 1522B L2 Frame.
+| | ... | - ${10Ge_linerate_pps_9000B} - Maximum number of packet per second
+| | ... |                                for 10GE with 9000B L2 Frame.
+| | ... | - ${10Ge_linerate_pps_9004B} - Maximum number of packet per second
+| | ... |                                for 10GE with 9004B L2 Frame.
+| | ...
+| | ${10Ge_linerate_pps_64B}= | Set Variable | 14880952
+| | ${10Ge_linerate_pps_68B}= | Set Variable | 14204545
+| | ${10Ge_linerate_pps_78B}= | Set Variable | 12755102
+| | ${10Ge_linerate_pps_1518B}= | Set Variable | 812743
+| | ${10Ge_linerate_pps_1522B}= | Set Variable | 810635
+| | ${10Ge_linerate_pps_9000B}= | Set Variable | 138580
+| | ${10Ge_linerate_pps_9004B}= | Set Variable | 138519
+| | Set Suite Variable | ${10Ge_linerate_pps_64B}
+| | Set Suite Variable | ${10Ge_linerate_pps_68B}
+| | Set Suite Variable | ${10Ge_linerate_pps_78B}
+| | Set Suite Variable | ${10Ge_linerate_pps_1518B}
+| | Set Suite Variable | ${10Ge_linerate_pps_1522B}
+| | Set Suite Variable | ${10Ge_linerate_pps_9000B}
+| | Set Suite Variable | ${10Ge_linerate_pps_9004B}
+
 | 3-node circular Topology Variables Setup
 | | Append Nodes | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']}
 | | ...          | ${nodes['TG']}
@@ -148,6 +182,7 @@
 | | [Arguments] | ${topology_type}
 | | Setup default startup configuration of VPP on all DUTs
 | | Update All Interface Data On All Nodes | ${nodes}
+| | Setup performance rate Variables
 | | 3-node circular Topology Variables Setup
 | | Initialize traffic generator | ${tg} | ${tg_if1} | ${tg_if2}
 | | ...                          | ${dut1} | ${dut1_if1} | ${dut1_if2}
@@ -158,6 +193,7 @@
 | | [Arguments] | ${topology_type} | ${nic_model}
 | | Setup default startup configuration of VPP on all DUTs
 | | Update All Interface Data On All Nodes | ${nodes}
+| | Setup performance rate Variables
 | | 3-node circular Topology Variables Setup with DUT interface model
 | | ... | ${nic_model}
 | | Initialize traffic generator | ${tg} | ${tg_if1} | ${tg_if2}

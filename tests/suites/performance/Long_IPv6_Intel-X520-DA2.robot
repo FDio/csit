@@ -30,161 +30,171 @@
 | ... | of the TG node.
 
 *** Test Cases ***
-| Find NDR by using RFC2544 linear search and 78B frames through IPv6 forwarding in 3-node topology
+| Find NDR by using RFC2544 binary search and 78B frames through IPv6 forwarding in 3-node topology
 | | [Documentation]
 | | ... | Find throughput with non drop rate for 78B frames by using
-| | ... | linear search starting at 5.0Mpps, stepping down with step of 0.1Mpps
+| | ... | binary search with threshold 0.1Mpps.
 | | [Tags] | 1_THREAD_NOHTT_RSS_1 | SINGLE_THREAD
 | | ${framesize}= | Set Variable | 78
-| | ${start_rate}= | Set Variable | 5000000
-| | ${step_rate}= | Set Variable | 100000
 | | ${min_rate}= | Set Variable | 100000
-| | ${max_rate}= | Set Variable | 12755102
+| | ${max_rate}= | Set Variable | ${10Ge_linerate_pps_78B}
+| | ${binary_min}= | Set Variable | ${min_rate}
+| | ${binary_max}= | Set Variable | ${max_rate}
+| | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '1' worker threads and rss '1' without HTT to all DUTs
 | | And   Add all PCI devices to all DUTs
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
 | | And   IPv6 forwarding initialized in a 3-node circular topology
-| | Then  Find NDR using linear search and pps | ${framesize} | ${start_rate}
-| | ...                                        | ${step_rate} | 3-node-IPv6
-| | ...                                        | ${min_rate} | ${max_rate}
+| | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
+| | ...                                       | ${binary_max} | 3-node-IPv6
+| | ...                                       | ${min_rate} | ${max_rate}
+| | ...                                       | ${threshold}
 
-| Find NDR by using RFC2544 linear search and 1518B frames through IPv6 forwarding in 3-node topology
+| Find NDR by using RFC2544 binary search and 1518B frames through IPv6 forwarding in 3-node topology
 | | [Documentation]
 | | ... | Find throughput with non drop rate for 1518B frames by using
-| | ... | linear search starting at 812,743pps, stepping down with step of
-| | ... | 10,000pps
+| | ... | binary search with threshold 10,000pps.
 | | [Tags] | 1_THREAD_NOHTT_RSS_1 | SINGLE_THREAD
 | | ${framesize}= | Set Variable | 1518
-| | ${start_rate}= | Set Variable | 812743
-| | ${step_rate}= | Set Variable | 10000
 | | ${min_rate}= | Set Variable | 10000
-| | ${max_rate}= | Set Variable | 812743
+| | ${max_rate}= | Set Variable | ${10Ge_linerate_pps_1518B}
+| | ${binary_min}= | Set Variable | ${min_rate}
+| | ${binary_max}= | Set Variable | ${max_rate}
+| | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '1' worker threads and rss '1' without HTT to all DUTs
 | | And   Add all PCI devices to all DUTs
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
 | | And   IPv6 forwarding initialized in a 3-node circular topology
-| | Then  Find NDR using linear search and pps | ${framesize} | ${start_rate}
-| | ...                                        | ${step_rate} | 3-node-IPv6
-| | ...                                        | ${min_rate} | ${max_rate}
+| | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
+| | ...                                       | ${binary_max} | 3-node-IPv6
+| | ...                                       | ${min_rate} | ${max_rate}
+| | ...                                       | ${threshold}
 
-| Find NDR by using RFC2544 linear search and 9000B frames through IPv6 forwarding in 3-node topology
+| Find NDR by using RFC2544 binary search and 9000B frames through IPv6 forwarding in 3-node topology
 | | [Documentation]
 | | ... | Find throughput with non drop rate for 9000B frames by using
-| | ... | linear search starting at 138,580pps, stepping down with step of
-| | ... | 5,000pps
+| | ... | binary search with threshold 5,000pps.
 | | [Tags] | 1_THREAD_NOHTT_RSS_1 | SINGLE_THREAD
 | | ${framesize}= | Set Variable | 9000
-| | ${start_rate}= | Set Variable | 138580
-| | ${step_rate}= | Set Variable | 5000
 | | ${min_rate}= | Set Variable | 5000
-| | ${max_rate}= | Set Variable | 138580
+| | ${max_rate}= | Set Variable | ${10Ge_linerate_pps_9000B}
+| | ${binary_min}= | Set Variable | ${min_rate}
+| | ${binary_max}= | Set Variable | ${max_rate}
+| | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '1' worker threads and rss '1' without HTT to all DUTs
 | | And   Add all PCI devices to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
 | | And   IPv6 forwarding initialized in a 3-node circular topology
-| | Then  Find NDR using linear search and pps | ${framesize} | ${start_rate}
-| | ...                                        | ${step_rate} | 3-node-IPv6
-| | ...                                        | ${min_rate} | ${max_rate}
+| | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
+| | ...                                       | ${binary_max} | 3-node-IPv6
+| | ...                                       | ${min_rate} | ${max_rate}
+| | ...                                       | ${threshold}
 
-| Find NDR with 2 cores and rss 1 by using RFC2544 linear search and 78B frames through IPv6 forwarding in 3-node topology
+| Find NDR with 2 cores and rss 1 by using RFC2544 binary search and 78B frames through IPv6 forwarding in 3-node topology
 | | [Documentation]
 | | ... | Find throughput on 2 cores with non drop rate for 78B frames by using
-| | ... | linear search starting at 9Mpps, stepping down with step of 0.1Mpps
+| | ... | binary search with threshold 0.1Mpps.
 | | [Tags] | 2_THREAD_NOHTT_RSS_1 | MULTI_THREAD
 | | ${framesize}= | Set Variable | 78
-| | ${start_rate}= | Set Variable | 9000000
-| | ${step_rate}= | Set Variable | 100000
 | | ${min_rate}= | Set Variable | 100000
-| | ${max_rate}= | Set Variable | 12755102
+| | ${max_rate}= | Set Variable | ${10Ge_linerate_pps_78B}
+| | ${binary_min}= | Set Variable | ${min_rate}
+| | ${binary_max}= | Set Variable | ${max_rate}
+| | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '2' worker threads and rss '1' without HTT to all DUTs
 | | And   Add all PCI devices to all DUTs
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
 | | And   IPv6 forwarding initialized in a 3-node circular topology
-| | Then  Find NDR using linear search and pps | ${framesize} | ${start_rate}
-| | ...                                        | ${step_rate} | 3-node-IPv6
-| | ...                                        | ${min_rate} | ${max_rate}
+| | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
+| | ...                                       | ${binary_max} | 3-node-IPv6
+| | ...                                       | ${min_rate} | ${max_rate}
+| | ...                                       | ${threshold}
 
-| Find NDR with 2 cores and rss 1 by using RFC2544 linear search and 1518B frames through IPv6 forwarding in 3-node topology
+| Find NDR with 2 cores and rss 1 by using RFC2544 binary search and 1518B frames through IPv6 forwarding in 3-node topology
 | | [Documentation]
 | | ... | Find throughput on 2 cores with non drop rate for 1518B frames by
-| | ... | using linear search starting at 812,743pps, stepping down with step
-| | ... | of 10.000pps
+| | ... | using binary search with threshold 10,000pps.
 | | [Tags] | 2_THREAD_NOHTT_RSS_1 | MULTI_THREAD
 | | ${framesize}= | Set Variable | 1518
-| | ${start_rate}= | Set Variable | 812743
-| | ${step_rate}= | Set Variable | 10000
 | | ${min_rate}= | Set Variable | 10000
-| | ${max_rate}= | Set Variable | 812743
+| | ${max_rate}= | Set Variable | ${10Ge_linerate_pps_1518B}
+| | ${binary_min}= | Set Variable | ${min_rate}
+| | ${binary_max}= | Set Variable | ${max_rate}
+| | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '2' worker threads and rss '1' without HTT to all DUTs
 | | And   Add all PCI devices to all DUTs
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
 | | And   IPv6 forwarding initialized in a 3-node circular topology
-| | Then  Find NDR using linear search and pps | ${framesize} | ${start_rate}
-| | ...                                        | ${step_rate} | 3-node-IPv6
-| | ...                                        | ${min_rate} | ${max_rate}
+| | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
+| | ...                                       | ${binary_max} | 3-node-IPv6
+| | ...                                       | ${min_rate} | ${max_rate}
+| | ...                                       | ${threshold}
 
-| Find NDR with 2 cores and rss 1 by using RFC2544 linear search and 9000B frames through IPv6 forwarding in 3-node topology
+| Find NDR with 2 cores and rss 1 by using RFC2544 binary search and 9000B frames through IPv6 forwarding in 3-node topology
 | | [Documentation]
 | | ... | Find throughput on 2 cores with non drop rate for 9000B frames by
-| | ... | using linear search starting at 138,580pps, stepping down with step
-| | ... | of 5,000pps
+| | ... | using binary search with threshold 5,000pps.
 | | [Tags] | 2_THREAD_NOHTT_RSS_1 | MULTI_THREAD
 | | ${framesize}= | Set Variable | 9000
-| | ${start_rate}= | Set Variable | 138580
-| | ${step_rate}= | Set Variable | 5000
 | | ${min_rate}= | Set Variable | 5000
-| | ${max_rate}= | Set Variable | 138580
+| | ${max_rate}= | Set Variable | ${10Ge_linerate_pps_9000B}
+| | ${binary_min}= | Set Variable | ${min_rate}
+| | ${binary_max}= | Set Variable | ${max_rate}
+| | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '2' worker threads and rss '1' without HTT to all DUTs
 | | And   Add all PCI devices to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
 | | And   IPv6 forwarding initialized in a 3-node circular topology
-| | Then  Find NDR using linear search and pps | ${framesize} | ${start_rate}
-| | ...                                        | ${step_rate} | 3-node-IPv6
-| | ...                                        | ${min_rate} | ${max_rate}
+| | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
+| | ...                                       | ${binary_max} | 3-node-IPv6
+| | ...                                       | ${min_rate} | ${max_rate}
+| | ...                                       | ${threshold}
 
-| Find NDR with 4 cores and rss 2 by using RFC2544 linear search and 78B frames through IPv6 forwarding in 3-node topology
+| Find NDR with 4 cores and rss 2 by using RFC2544 binary search and 78B frames through IPv6 forwarding in 3-node topology
 | | [Documentation]
 | | ... | Find throughput on 4 cores and rss 2 with non drop rate for 78B
-| | ... | frames by using linear search starting at 12.2Mpps, stepping down with
-| | ... | step of 0.1Mpps
+| | ... | frames by using binary search with threshold 0.1Mpps.
 | | [Tags] | 4_THREAD_NOHTT_RSS_2 | MULTI_THREAD
 | | ${framesize}= | Set Variable | 78
-| | ${start_rate}= | Set Variable | 12200000
-| | ${step_rate}= | Set Variable | 100000
 | | ${min_rate}= | Set Variable | 100000
-| | ${max_rate}= | Set Variable | 12755102
+| | ${max_rate}= | Set Variable | ${10Ge_linerate_pps_78B}
+| | ${binary_min}= | Set Variable | ${min_rate}
+| | ${binary_max}= | Set Variable | ${max_rate}
+| | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '4' worker threads and rss '2' without HTT to all DUTs
 | | And   Add all PCI devices to all DUTs
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
 | | And   IPv6 forwarding initialized in a 3-node circular topology
-| | Then  Find NDR using linear search and pps | ${framesize} | ${start_rate}
-| | ...                                        | ${step_rate} | 3-node-IPv6
-| | ...                                        | ${min_rate} | ${max_rate}
+| | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
+| | ...                                       | ${binary_max} | 3-node-IPv6
+| | ...                                       | ${min_rate} | ${max_rate}
+| | ...                                       | ${threshold}
 
-| Find NDR with 4 cores and rss 2 by using RFC2544 linear search and 1518B frames through IPv6 forwarding in 3-node topology
+| Find NDR with 4 cores and rss 2 by using RFC2544 binary search and 1518B frames through IPv6 forwarding in 3-node topology
 | | [Documentation]
 | | ... | Find throughput on 4 cores and rss 2 with non drop rate for 1518B
-| | ... | frames by using linear search starting at 812,743pps, stepping down
-| | ... | with step of 10.000pps
+| | ... | frames by using binary search with threshold 10,000pps.
 | | [Tags] | 4_THREAD_NOHTT_RSS_2 | MULTI_THREAD
 | | ${framesize}= | Set Variable | 1518
-| | ${start_rate}= | Set Variable | 812743
-| | ${step_rate}= | Set Variable | 10000
 | | ${min_rate}= | Set Variable | 10000
-| | ${max_rate}= | Set Variable | 812743
+| | ${max_rate}= | Set Variable | ${10Ge_linerate_pps_1518B}
+| | ${binary_min}= | Set Variable | ${min_rate}
+| | ${binary_max}= | Set Variable | ${max_rate}
+| | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '4' worker threads and rss '2' without HTT to all DUTs
 | | And   Add all PCI devices to all DUTs
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
 | | And   IPv6 forwarding initialized in a 3-node circular topology
-| | Then  Find NDR using linear search and pps | ${framesize} | ${start_rate}
-| | ...                                        | ${step_rate} | 3-node-IPv6
-| | ...                                        | ${min_rate} | ${max_rate}
+| | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
+| | ...                                       | ${binary_max} | 3-node-IPv6
+| | ...                                       | ${min_rate} | ${max_rate}
+| | ...                                       | ${threshold}
 
 | Find NDR with 4 cores and rss 2 by using RFC2544 linear search and 9000B frames through IPv6 forwarding in 3-node topology
 | | [Documentation]
@@ -193,56 +203,17 @@
 | | ... | with step of 5,000pps
 | | [Tags] | 4_THREAD_NOHTT_RSS_2 | MULTI_THREAD
 | | ${framesize}= | Set Variable | 9000
-| | ${start_rate}= | Set Variable | 138580
-| | ${step_rate}= | Set Variable | 5000
 | | ${min_rate}= | Set Variable | 5000
-| | ${max_rate}= | Set Variable | 138580
+| | ${max_rate}= | Set Variable | ${10Ge_linerate_pps_9000B}
+| | ${binary_min}= | Set Variable | ${min_rate}
+| | ${binary_max}= | Set Variable | ${max_rate}
+| | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '4' worker threads and rss '2' without HTT to all DUTs
 | | And   Add all PCI devices to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
 | | And   IPv6 forwarding initialized in a 3-node circular topology
-| | Then  Find NDR using linear search and pps | ${framesize} | ${start_rate}
-| | ...                                        | ${step_rate} | 3-node-IPv6
-| | ...                                        | ${min_rate} | ${max_rate}
+| | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
+| | ...                                       | ${binary_max} | 3-node-IPv6
+| | ...                                       | ${min_rate} | ${max_rate}
+| | ...                                       | ${threshold}
 
-| Find NDR with 2 cores by using RFC2544 binary search and 78B frames through IPv6 forwarding in 3-node topology
-| | [Documentation]
-| | ... | Find throughput on 2 cores with non drop rate for 78B
-| | ... | frames by using binary search with threshold 5,000pps
-| | [Tags] | 2_THREAD_NOHTT_RSS_1 | MULTI_THREAD
-| | ${framesize}= | Set Variable | 78
-| | ${binary_min}= | Set Variable | 5000000
-| | ${binary_max}= | Set Variable | 12000000
-| | ${min_rate}= | Set Variable | 100000
-| | ${max_rate}= | Set Variable | 12755102
-| | ${threshold}= | Set Variable | 5000
-| | Given Add '2' worker threads and rss '1' without HTT to all DUTs
-| | And   Add all PCI devices to all DUTs
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | And   IPv6 forwarding initialized in a 3-node circular topology
-| | Then  Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                        | ${binary_max} | 3-node-IPv6
-| | ...                                        | ${min_rate} | ${max_rate}
-| | ...                                        | ${threshold}
-
-| Find NDR with 4 cores and rss 2 by using RFC2544 binary search and 78B frames through IPv6 forwarding in 3-node topology
-| | [Documentation]
-| | ... | Find throughput on 4 cores and rss 2 with non drop rate for 78B
-| | ... | frames by using binary search with threshold 5,000pps
-| | [Tags] | 4_THREAD_NOHTT_RSS_2 | MULTI_THREAD
-| | ${framesize}= | Set Variable | 78
-| | ${binary_min}= | Set Variable | 6000000
-| | ${binary_max}= | Set Variable | 12000000
-| | ${min_rate}= | Set Variable | 100000
-| | ${max_rate}= | Set Variable | 12755102
-| | ${threshold}= | Set Variable | 5000
-| | Given Add '4' worker threads and rss '2' without HTT to all DUTs
-| | And   Add all PCI devices to all DUTs
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | And   IPv6 forwarding initialized in a 3-node circular topology
-| | Then  Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                        | ${binary_max} | 3-node-IPv6
-| | ...                                        | ${min_rate} | ${max_rate}
-| | ...                                        | ${threshold}
