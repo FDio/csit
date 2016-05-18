@@ -419,15 +419,17 @@ class DropRateSearch(object):
                                      SearchResults.SUSPICIOUS]:
             return self._search_result_rate
 
-    def binary_search(self, b_min, b_max, traffic_type):
+    def binary_search(self, b_min, b_max, traffic_type, start_max=False):
         """Binary search of rate with loss below acceptance criteria.
 
         :param b_min: Min range rate.
         :param b_max: Max range rate.
         :param traffic_type: Traffic profile.
+        :param start_max: Start with max rate first
         :type b_min: float
         :type b_max: float
         :type traffic_type: str
+        :type start_max: boolean
         :return: nothing
         """
 
@@ -435,12 +437,16 @@ class DropRateSearch(object):
             raise ValueError("Min rate is not in min,max range")
         if not self._rate_min <= float(b_max) <= self._rate_max:
             raise ValueError("Max rate is not in min,max range")
-        if float(b_max) < float(b_min):
-            raise ValueError("Min rate is greater then max rate")
+        if float(b_max) <= float(b_min):
+            raise ValueError("Min rate is greater or equal max rate")
 
         # binary search
-        # rate is half of interval + start of interval
-        rate = ((float(b_max) - float(b_min)) / 2) + float(b_min)
+        if start_max:
+            # rate is max of interval
+            rate =  float(b_max)
+        else:
+            # rate is half of interval + start of interval
+            rate = ((float(b_max) - float(b_min)) / 2) + float(b_min)
         # rate diff with previous run
         rate_diff = abs(self._last_binary_rate - rate)
 
