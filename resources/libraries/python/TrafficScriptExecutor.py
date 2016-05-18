@@ -66,11 +66,13 @@ class TrafficScriptExecutor(object):
         logger.debug("ret_code: {}".format(ret_code))
         if ret_code != 0:
             if "RuntimeError: ICMP echo Rx timeout" in stderr:
-                raise Exception("ICMP echo Rx timeout")
+                raise RuntimeError("ICMP echo Rx timeout")
             elif "RuntimeError: DHCP REQUEST Rx timeout" in stderr:
                 raise RuntimeError("DHCP REQUEST Rx timeout")
+            elif "RuntimeError: TCP/UDP Rx timeout" in stderr:
+                raise RuntimeError("TCP/UDP Rx timeout")
             else:
-                raise Exception("Traffic script execution failed")
+                raise RuntimeError("Traffic script execution failed")
 
     @staticmethod
     def traffic_script_gen_arg(rx_if, tx_if, src_mac, dst_mac, src_ip, dst_ip):
