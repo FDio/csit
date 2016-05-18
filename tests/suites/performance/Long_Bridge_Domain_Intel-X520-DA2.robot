@@ -10,6 +10,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
 *** Settings ***
 | Resource | resources/libraries/robot/performance.robot
 | Library | resources.libraries.python.NodePath
@@ -28,154 +29,170 @@
 | ... | IP protocol=61 and random payload. Ethernet header MAC addresses are
 | ... | matching MAC addresses of the TG node.
 
+*** Variables ***
+| ${10GE_LINERATE_PPS_64B}= | 14880952
+| ${10GE_LINERATE_PPS_1518B}= | 812743
+| ${10GE_LINERATE_PPS_9000B}= | 138580
+
 *** Test Cases ***
-| Find NDR by using RFC2544 linear search and 64B frames through bridge domain in 3-node topology
+| Find NDR by using RFC2544 binary search and 64B frames through bridge domain in 3-node topology
 | | [Documentation]
 | | ... | Find throughput with non drop rate for 64B frames by using
-| | ... | linear search starting at 4.1Mpps, stepping down with step of 0.1Mpps
+| | ... | binary search with threshold 0.1Mpps.
 | | [Tags] | 1_THREAD_NOHTT_RSS_1 | SINGLE_THREAD
 | | ${framesize}= | Set Variable | 64
-| | ${start_rate}= | Set Variable | 4100000
-| | ${step_rate}= | Set Variable | 100000
 | | ${min_rate}= | Set Variable | 100000
-| | ${max_rate}= | Set Variable | 14880952
+| | ${max_rate}= | Set Variable | ${10GE_LINERATE_PPS_64B}
+| | ${binary_min}= | Set Variable | ${min_rate}
+| | ${binary_max}= | Set Variable | ${max_rate}
+| | ${threshold}= | Set Variable | ${min_rate}
 | | Given Setup '1' worker threads and rss '1' without HTT on all DUTs
-| | AND   L2 bridge domain initialized in a 3-node circular topology
-| | Then Find NDR using linear search and pps | ${framesize} | ${start_rate}
-| | ...                                       | ${step_rate} | 3-node-bridge
+| | And   L2 bridge domain initialized in a 3-node circular topology
+| | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
+| | ...                                       | ${binary_max} | 3-node-bridge
 | | ...                                       | ${min_rate} | ${max_rate}
+| | ...                                       | ${threshold}
 
-| Find NDR by using RFC2544 linear search and 1518B frames through bridge domain in 3-node topology
+| Find NDR by using RFC2544 binary search and 1518B frames through bridge domain in 3-node topology
 | | [Documentation]
 | | ... | Find throughput with non drop rate for 1518B frames by using
-| | ... | linear search starting at 812,743pps, stepping down with step of
-| | ... | 10,000pps
+| | ... | binary search with threshold 10,000pps.
 | | [Tags] | 1_THREAD_NOHTT_RSS_1 | SINGLE_THREAD
 | | ${framesize}= | Set Variable | 1518
-| | ${start_rate}= | Set Variable | 812743
-| | ${step_rate}= | Set Variable | 10000
 | | ${min_rate}= | Set Variable | 10000
-| | ${max_rate}= | Set Variable | 812743
+| | ${max_rate}= | Set Variable | ${10GE_LINERATE_PPS_1518B}
+| | ${binary_min}= | Set Variable | ${min_rate}
+| | ${binary_max}= | Set Variable | ${max_rate}
+| | ${threshold}= | Set Variable | ${min_rate}
 | | Given Setup '1' worker threads and rss '1' without HTT on all DUTs
-| | AND   L2 bridge domain initialized in a 3-node circular topology
-| | Then Find NDR using linear search and pps | ${framesize} | ${start_rate}
-| | ...                                       | ${step_rate} | 3-node-bridge
+| | And   L2 bridge domain initialized in a 3-node circular topology
+| | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
+| | ...                                       | ${binary_max} | 3-node-bridge
 | | ...                                       | ${min_rate} | ${max_rate}
+| | ...                                       | ${threshold}
 
-| Find NDR by using RFC2544 linear search and 9000B frames through bridge domain in 3-node topology
+| Find NDR by using RFC2544 binary search and 9000B frames through bridge domain in 3-node topology
 | | [Documentation]
 | | ... | Find throughput with non drop rate for 9000B frames by using
-| | ... | linear search starting at 138,580pps, stepping down with step of
-| | ... | 5,000pps
+| | ... | binary search with threshold of 5,000pps.
 | | [Tags] | 1_THREAD_NOHTT_RSS_1 | SINGLE_THREAD
 | | ${framesize}= | Set Variable | 9000
-| | ${start_rate}= | Set Variable | 138580
-| | ${step_rate}= | Set Variable | 5000
 | | ${min_rate}= | Set Variable | 5000
-| | ${max_rate}= | Set Variable | 138580
+| | ${max_rate}= | Set Variable | ${10GE_LINERATE_PPS_9000B}
+| | ${binary_min}= | Set Variable | ${min_rate}
+| | ${binary_max}= | Set Variable | ${max_rate}
+| | ${threshold}= | Set Variable | ${min_rate}
 | | Given Setup '1' worker threads and rss '1' without HTT on all DUTs
-| | AND   L2 bridge domain initialized in a 3-node circular topology
-| | Then Find NDR using linear search and pps | ${framesize} | ${start_rate}
-| | ...                                       | ${step_rate} | 3-node-bridge
+| | And   L2 bridge domain initialized in a 3-node circular topology
+| | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
+| | ...                                       | ${binary_max} | 3-node-bridge
 | | ...                                       | ${min_rate} | ${max_rate}
+| | ...                                       | ${threshold}
 
-| Find NDR with 2 cores and rss 1 by using RFC2544 linear search and 64B frames through bridge domain in 3-node topology
+| Find NDR with 2 cores and rss 1 by using RFC2544 binary search and 64B frames through bridge domain in 3-node topology
 | | [Documentation]
 | | ... | Find throughput on 2 cores with non drop rate for 64B frames by using
-| | ... | linear search starting at 8.2Mpps, stepping down with step of 0.1Mpps
+| | ... | binary search with threshold 0.1Mpps.
 | | [Tags] | 2_THREAD_NOHTT_RSS_1 | MULTI_THREAD
 | | ${framesize}= | Set Variable | 64
-| | ${start_rate}= | Set Variable | 8200000
-| | ${step_rate}= | Set Variable | 100000
 | | ${min_rate}= | Set Variable | 100000
-| | ${max_rate}= | Set Variable | 14880952
+| | ${max_rate}= | Set Variable | ${10GE_LINERATE_PPS_64B}
+| | ${binary_min}= | Set Variable | ${min_rate}
+| | ${binary_max}= | Set Variable | ${max_rate}
+| | ${threshold}= | Set Variable | ${min_rate}
 | | Given Setup '2' worker threads and rss '1' without HTT on all DUTs
-| | AND   L2 bridge domain initialized in a 3-node circular topology
-| | Then Find NDR using linear search and pps | ${framesize} | ${start_rate}
-| | ...                                       | ${step_rate} | 3-node-bridge
+| | And   L2 bridge domain initialized in a 3-node circular topology
+| | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
+| | ...                                       | ${binary_max} | 3-node-bridge
 | | ...                                       | ${min_rate} | ${max_rate}
+| | ...                                       | ${threshold}
 
-| Find NDR with 2 cores and rss 1 by using RFC2544 linear search and 1518B frames through bridge domain in 3-node topology
+| Find NDR with 2 cores and rss 1 by using RFC2544 binary search and 1518B frames through bridge domain in 3-node topology
 | | [Documentation]
 | | ... | Find throughput on 2 cores with non drop rate for 1518B frames by
-| | ... | using linear search starting at 812,743pps, stepping down with step
-| | ... | of 10,000pps
+| | ... | using binary search with threshold 10,000pps.
 | | [Tags] | 2_THREAD_NOHTT_RSS_1 | MULTI_THREAD
 | | ${framesize}= | Set Variable | 1518
-| | ${start_rate}= | Set Variable | 812743
-| | ${step_rate}= | Set Variable | 10000
 | | ${min_rate}= | Set Variable | 10000
-| | ${max_rate}= | Set Variable | 812743
+| | ${max_rate}= | Set Variable | ${10GE_LINERATE_PPS_1518B}
+| | ${binary_min}= | Set Variable | ${min_rate}
+| | ${binary_max}= | Set Variable | ${max_rate}
+| | ${threshold}= | Set Variable | ${min_rate}
 | | Given Setup '2' worker threads and rss '1' without HTT on all DUTs
-| | AND   L2 bridge domain initialized in a 3-node circular topology
-| | Then Find NDR using linear search and pps | ${framesize} | ${start_rate}
-| | ...                                       | ${step_rate} | 3-node-bridge
+| | And   L2 bridge domain initialized in a 3-node circular topology
+| | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
+| | ...                                       | ${binary_max} | 3-node-bridge
 | | ...                                       | ${min_rate} | ${max_rate}
+| | ...                                       | ${threshold}
 
-| Find NDR with 2 cores and rss 1 by using RFC2544 linear search and 9000B frames through bridge domain in 3-node topology
+| Find NDR with 2 cores and rss 1 by using RFC2544 binary search and 9000B frames through bridge domain in 3-node topology
 | | [Documentation]
 | | ... | Find throughput on 2 cores with non drop rate for 9000B frames by
-| | ... | using linear search starting at 138,580pps, stepping down with step
-| | ... | of 5,000pps
+| | ... | using binary search with threshold 5,000pps.
 | | [Tags] | 2_THREAD_NOHTT_RSS_1 | MULTI_THREAD
 | | ${framesize}= | Set Variable | 9000
-| | ${start_rate}= | Set Variable | 138580
-| | ${step_rate}= | Set Variable | 5000
 | | ${min_rate}= | Set Variable | 5000
-| | ${max_rate}= | Set Variable | 138580
+| | ${max_rate}= | Set Variable | ${10GE_LINERATE_PPS_9000B}
+| | ${binary_min}= | Set Variable | ${min_rate}
+| | ${binary_max}= | Set Variable | ${max_rate}
+| | ${threshold}= | Set Variable | ${min_rate}
 | | Given Setup '2' worker threads and rss '1' without HTT on all DUTs
-| | AND   L2 bridge domain initialized in a 3-node circular topology
-| | Then Find NDR using linear search and pps | ${framesize} | ${start_rate}
-| | ...                                       | ${step_rate} | 3-node-bridge
+| | And   L2 bridge domain initialized in a 3-node circular topology
+| | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
+| | ...                                       | ${binary_max} | 3-node-bridge
 | | ...                                       | ${min_rate} | ${max_rate}
+| | ...                                       | ${threshold}
 
-| Find NDR with 4 cores and rss 2 by using RFC2544 linear search and 64B frames through bridge domain in 3-node topology
+| Find NDR with 4 cores and rss 2 by using RFC2544 binary search and 64B frames through bridge domain in 3-node topology
 | | [Documentation]
 | | ... | Find throughput on 4 cores and rss 2 with non drop rate for 64B
-| | ... | frames by using linear search starting at 9.8Mpps, stepping down
-| | ... | with step of 0.1Mpps
+| | ... | frames by using binary search with threshold 0.1Mpps.
 | | [Tags] | 4_THREAD_NOHTT_RSS_2 | MULTI_THREAD
 | | ${framesize}= | Set Variable | 64
-| | ${start_rate}= | Set Variable | 9800000
-| | ${step_rate}= | Set Variable | 100000
 | | ${min_rate}= | Set Variable | 100000
-| | ${max_rate}= | Set Variable | 14880952
+| | ${max_rate}= | Set Variable | ${10GE_LINERATE_PPS_64B}
+| | ${binary_min}= | Set Variable | ${min_rate}
+| | ${binary_max}= | Set Variable | ${max_rate}
+| | ${threshold}= | Set Variable | ${min_rate}
 | | Given Setup '4' worker threads and rss '2' without HTT on all DUTs
-| | AND   L2 bridge domain initialized in a 3-node circular topology
-| | Then Find NDR using linear search and pps | ${framesize} | ${start_rate}
-| | ...                                       | ${step_rate} | 3-node-bridge
+| | And   L2 bridge domain initialized in a 3-node circular topology
+| | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
+| | ...                                       | ${binary_max} | 3-node-bridge
 | | ...                                       | ${min_rate} | ${max_rate}
+| | ...                                       | ${threshold}
 
-| Find NDR with 4 cores and rss 2 by using RFC2544 linear search and 1518B frames through bridge domain in 3-node topology
+| Find NDR with 4 cores and rss 2 by using RFC2544 binary search and 1518B frames through bridge domain in 3-node topology
 | | [Documentation]
 | | ... | Find throughput on 4 cores and rss 2 with non drop rate for 1518B
-| | ... | frames by using linear search starting at 812,743pps, stepping down
-| | ... | with step of 10,000pps
+| | ... | frames by using binary search with threshold 10,000pps.
 | | [Tags] | 4_THREAD_NOHTT_RSS_2 | MULTI_THREAD
 | | ${framesize}= | Set Variable | 1518
-| | ${start_rate}= | Set Variable | 812743
-| | ${step_rate}= | Set Variable | 10000
 | | ${min_rate}= | Set Variable | 10000
-| | ${max_rate}= | Set Variable | 812743
+| | ${max_rate}= | Set Variable | ${10GE_LINERATE_PPS_1518B}
+| | ${binary_min}= | Set Variable | ${min_rate}
+| | ${binary_max}= | Set Variable | ${max_rate}
+| | ${threshold}= | Set Variable | ${min_rate}
 | | Given Setup '4' worker threads and rss '2' without HTT on all DUTs
-| | AND   L2 bridge domain initialized in a 3-node circular topology
-| | Then Find NDR using linear search and pps | ${framesize} | ${start_rate}
-| | ...                                       | ${step_rate} | 3-node-bridge
+| | And   L2 bridge domain initialized in a 3-node circular topology
+| | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
+| | ...                                       | ${binary_max} | 3-node-bridge
 | | ...                                       | ${min_rate} | ${max_rate}
+| | ...                                       | ${threshold}
 
-| Find NDR with 4 cores and rss 2 by using RFC2544 linear search and 9000B frames through bridge domain in 3-node topology
+| Find NDR with 4 cores and rss 2 by using RFC2544 binary search and 9000B frames through bridge domain in 3-node topology
 | | [Documentation]
 | | ... | Find throughput on 4 cores and rss 2 with non drop rate for 9000B
-| | ... | frames by using linear search starting at 138,580pps, stepping
-| | ... | down with step of 5,000pps
+| | ... | frames by using binary search with threshold 5,000pps.
 | | [Tags] | 4_THREAD_NOHTT_RSS_2 | MULTI_THREAD
 | | ${framesize}= | Set Variable | 9000
-| | ${start_rate}= | Set Variable | 138580
-| | ${step_rate}= | Set Variable | 5000
 | | ${min_rate}= | Set Variable | 5000
-| | ${max_rate}= | Set Variable | 138580
+| | ${max_rate}= | Set Variable | ${10GE_LINERATE_PPS_9000B}
+| | ${binary_min}= | Set Variable | ${min_rate}
+| | ${binary_max}= | Set Variable | ${max_rate}
+| | ${threshold}= | Set Variable | ${min_rate}
 | | Given Setup '4' worker threads and rss '2' without HTT on all DUTs
-| | AND   L2 bridge domain initialized in a 3-node circular topology
-| | Then Find NDR using linear search and pps | ${framesize} | ${start_rate}
-| | ...                                       | ${step_rate} | 3-node-bridge
+| | And   L2 bridge domain initialized in a 3-node circular topology
+| | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
+| | ...                                       | ${binary_max} | 3-node-bridge
 | | ...                                       | ${min_rate} | ${max_rate}
+| | ...                                       | ${threshold}
