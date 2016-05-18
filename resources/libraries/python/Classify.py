@@ -33,13 +33,42 @@ class Classify(object):
         :return table_index: Classify table index.
         :return skip_n: Number of skip vectors.
         :return match_n: Number of match vectors.
-        :rtype table_index: int
-        :rtype skip_n: int
-        :rtype match_n: int
+        :rtype: tuple
+        :raises RuntimeError: If VPP can't create table.
         """
         output = VatExecutor.cmd_from_template(node, "classify_add_table.vat",
                                                ip_version=ip_version,
                                                direction=direction)
+
+        if output[0]["retval"] == 0:
+            table_index = output[0]["new_table_index"]
+            skip_n = output[0]["skip_n_vectors"]
+            match_n = output[0]["match_n_vectors"]
+            logger.trace('Classify table with table_index {} created on node {}'
+                         .format(table_index, node['host']))
+        else:
+            raise RuntimeError('Unable to create classify table on node {}'
+                               .format(node['host']))
+
+        return table_index, skip_n, match_n
+
+    @staticmethod
+    def vpp_create_classify_table_hex(node, hex_mask):
+        """Create classify table with hex mask.
+
+        :param node: VPP node to create classify table based on hex mask.
+        :param hex_mask: Classify hex mask.
+        :type node: dict
+        :type hex_mask: str
+        :return table_index: Classify table index.
+        :return skip_n: Number of skip vectors.
+        :return match_n: Number of match vectors.
+        :rtype: tuple
+        :raises RuntimeError: If VPP can't create table.
+        """
+        output = VatExecutor.cmd_from_template(node,
+                                               "classify_add_table_hex.vat",
+                                               hex_mask=hex_mask)
 
         if output[0]["retval"] == 0:
             table_index = output[0]["new_table_index"]
@@ -84,3 +113,107 @@ class Classify(object):
                                                     ip_version=ip_version,
                                                     direction=direction,
                                                     address=address)
+
+    @staticmethod
+    def vpp_configure_classify_session_hex(node, acl_method, table_index,
+                                           skip_n, match_n, hex_value):
+        """Configuration of classify session with hex value.
+
+        :param node: VPP node to setup classify session.
+        :param acl_method: ACL method - deny/permit.
+        :param table_index: Classify table index.
+        :param skip_n: Number of skip vectors based on mask.
+        :param match_n: Number of match vectors based on mask.
+        :param hex_value: Classify hex value.
+        :type node: dict
+        :type acl_method: str
+        :type table_index: int
+        :type skip_n: int
+        :type match_n: int
+        :type hex_value: str
+        """
+        with VatTerminal(node) as vat:
+            vat.vat_terminal_exec_cmd_from_template(
+                "classify_add_session_hex.vat",
+                acl_method=acl_method,
+                table_index=table_index,
+                skip_n=skip_n,
+                match_n=match_n,
+                hex_value=hex_value)
+
+    @staticmethod
+    def compute_classify_hex_mask(ip_version, protocol, direction):
+        """Compute classify hex mask for TCP or UDP packet matching.
+
+        :param ip_version: Version of IP protocol.
+        :param protocol: Type of protocol.
+        :param direction: Traffic direction.
+        :type ip_version: str
+        :type protocol: str
+        :type direction: str
+        :return: Classify hex mask.
+        :rtype : str
+        :raises ValueError: If protocol is not TCP or UDP.
+        :raises ValueError: If direction is not source or destination or
+                            source + destination.
+        """
+        if protocol == 'TCP' or protocol == 'UDP':
+            base_mask = Classify._compute_base_mask(ip_version)
+
+            if direction == 'source':
+                return base_mask + 'FFFF0000'
+            elif direction == 'destination':
+                return base_mask + '0000FFFF'
+            elif direction == 'source + destination':
+                return base_mask + 'FFFFFFFF'
+            else:
+                raise ValueError("Invalid direction!")
+        else:
+            raise ValueError("Invalid protocol!")
+
+    @staticmethod
+    def compute_classify_hex_value(hex_mask, source_port, destination_port):
+        """Compute classify hex value for TCP or UDP packet matching.
+
+        :param hex_mask: Classify hex mask.
+        :param source_port: Source TCP/UDP port.
+        :param destination_port: Destination TCP/UDP port.
+        :type hex_mask: str
+        :type source_port: str
+        :type destination_port: str
+        :return: Classify hex value.
+        :rtype: str
+        """
+        source_port_hex = Classify._port_convert(source_port)
+        destination_port_hex = Classify._port_convert(destination_port)
+
+        return hex_mask[:-8] + source_port_hex + destination_port_hex
+
+    @staticmethod
+    def _port_convert(port):
+        """Convert port number for classify hex table format.
+
+        :param port: TCP/UDP port number.
+        :type port: str
+        :return: TCP/UDP port number in 4-digit hexadecimal format.
+        :rtype: str
+        """
+        return '{0:04x}'.format(int(port))
+
+    @staticmethod
+    def _compute_base_mask(ip_version):
+        """Compute base classify hex mask based on IP version.
+
+        :param ip_version: Version of IP protocol.
+        :type ip_version: str
+        :return: Base hex mask.
+        :rtype: str
+        """
+        if ip_version == 'ip4':
+            return 68 * '0'
+            # base value of classify hex table for IPv4 TCP/UDP ports
+        elif ip_version == 'ip6':
+            return 108 * '0'
+            # base value of classify hex table for IPv6 TCP/UDP ports
+        else:
+            raise ValueError("Invalid IP version!")
