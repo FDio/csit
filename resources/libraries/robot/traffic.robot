@@ -150,3 +150,92 @@
 | | ... | --tx_if | ${tx_port} | --rx_if | ${rx_port}
 | | ... | --rx_arp_src_ip ${rx_arp_src_ip} | --rx_arp_dst_ip ${rx_arp_dst_ip}
 | | Run Traffic Script On Node | send_icmp_check_arp.py | ${tg_node} | ${args}
+
+| Send TCP or UDP packet
+| | [Documentation] | Sends TCP or UDP packet with specified source
+| | ...             | and destination port.
+| | ...
+| | ... | *Arguments:*
+| | ...
+| | ... | _NOTE:_ Arguments are based on topology:
+| | ...             | TG(if1)->(if1)DUT(if2)->TG(if2)
+| | ...
+| | ... | - tg_node - Node to execute scripts on (TG). Type: dictionary
+| | ... | - src_ip - IP of source interface (TG-if1). Type: integer
+| | ... | - dst_ip - IP of destination interface (TG-if2). Type: integer
+| | ... | - tx_port - Source interface (TG-if1). Type: string
+| | ... | - tx_mac - MAC address of source interface (TG-if1). Type: string
+| | ... | - rx_port - Destionation interface (TG-if1). Type: string
+| | ... | - rx_mac - MAC address of destination interface (TG-if1). Type: string
+| | ... | - protocol - Type of protocol. Type: string
+| | ... | - source_port - Source TCP/UDP port. Type: string or integer
+| | ... | - destination_port - Destination TCP/UDP port. Type: string or integer
+| | ...
+| | ... | *Return:*
+| | ... | - No value returned
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Send TCP or UDP packet \| ${nodes['TG']} \
+| | ... | \| 16.0.0.1 \| 32.0.0.1 \| eth2 \| 08:00:27:cc:4f:54 \
+| | ... | \| eth4 \| 08:00:27:c9:6a:d5 \| TCP \| 20 \| 80 \|
+| | ...
+| | [Arguments] | ${tg_node} | ${src_ip} | ${dst_ip} | ${tx_port} |
+| | ... | ${tx_mac} | ${rx_port} | ${rx_mac} | ${protocol} | ${source_port}
+| | ... | ${destination_port}
+| | ${args}= | Catenate | --tx_mac | ${tx_mac}
+| | ...                 | --rx_mac | ${rx_mac}
+| | ...                 | --src_ip | ${src_ip}
+| | ...                 | --dst_ip | ${dst_ip}
+| | ...                 | --tx_if | ${tx_port}
+| | ...                 | --rx_if | ${rx_port}
+| | ...                 | --protocol | ${protocol}
+| | ...                 | --source_port | ${source_port}
+| | ...                 | --destination_port | ${destination_port}
+| | Run Traffic Script On Node | send_tcp_udp.py
+| | ... | ${tg_node} | ${args}
+
+| Send TCP or UDP packet should failed
+| | [Documentation] | Sends TCP or UDP packet with specified source
+| | ...             | and destination port.
+| | ...
+| | ... | *Arguments:*
+| | ...
+| | ... | _NOTE:_ Arguments are based on topology:
+| | ...             | TG(if1)->(if1)DUT(if2)->TG(if2)
+| | ...
+| | ... | - tg_node - Node to execute scripts on (TG). Type: dictionary
+| | ... | - src_ip - IP of source interface (TG-if1). Type: integer
+| | ... | - dst_ip - IP of destination interface (TG-if2). Type: integer
+| | ... | - tx_port - Source interface (TG-if1). Type: string
+| | ... | - tx_mac - MAC address of source interface (TG-if1). Type: string
+| | ... | - rx_port - Destionation interface (TG-if1). Type: string
+| | ... | - rx_mac - MAC address of destination interface (TG-if1). Type: string
+| | ... | - protocol - Type of protocol. Type: string
+| | ... | - source_port - Source TCP/UDP port. Type: string or integer
+| | ... | - destination_port - Destination TCP/UDP port. Type: string or integer
+| | ...
+| | ... | *Return:*
+| | ... | - No value returned
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Send TCP or UDP packet should failed \| ${nodes['TG']} \
+| | ... | \| 16.0.0.1 \| 32.0.0.1 \| eth2 \| 08:00:27:cc:4f:54 \
+| | ... | \| eth4 \| 08:00:27:c9:6a:d5 \| TCP \| 20 \| 80 \|
+| | ...
+| | [Arguments] | ${tg_node} | ${src_ip} | ${dst_ip} | ${tx_port} |
+| | ... | ${tx_mac} | ${rx_port} | ${rx_mac} | ${protocol} | ${source_port}
+| | ... | ${destination_port}
+| | ${args}= | Catenate | --tx_mac | ${tx_mac}
+| | ...                 | --rx_mac | ${rx_mac}
+| | ...                 | --src_ip | ${src_ip}
+| | ...                 | --dst_ip | ${dst_ip}
+| | ...                 | --tx_if | ${tx_port}
+| | ...                 | --rx_if | ${rx_port}
+| | ...                 | --protocol | ${protocol}
+| | ...                 | --source_port | ${source_port}
+| | ...                 | --destination_port | ${destination_port}
+| | Run Keyword And Expect Error | TCP/UDP Rx timeout
+| | ... | Run Traffic Script On Node | send_tcp_udp.py
+| | ... | ${tg_node} | ${args}
