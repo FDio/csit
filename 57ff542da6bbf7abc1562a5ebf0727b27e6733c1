@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "da141535_151dd166",
+        "filename": "resources/libraries/robot/default.robot",
+        "patchSetId": 14
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-05-19T06:48:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_3a3c422f",
+      "revId": "57ff542da6bbf7abc1562a5ebf0727b27e6733c1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da141535_1a497ed0",
         "filename": "resources/libraries/robot/default.robot",
         "patchSetId": 14
@@ -30,6 +48,24 @@
       "writtenOn": "2016-05-18T16:20:47Z",
       "side": 1,
       "message": "Add all available PCI devices from topology file for each DUT.",
+      "revId": "57ff542da6bbf7abc1562a5ebf0727b27e6733c1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_f5193d7a",
+        "filename": "resources/libraries/robot/default.robot",
+        "patchSetId": 14
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-05-19T06:48:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_1a497ed0",
       "revId": "57ff542da6bbf7abc1562a5ebf0727b27e6733c1",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "da141535_9520c19c",
+        "filename": "resources/libraries/robot/default.robot",
+        "patchSetId": 14
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-05-19T06:48:14Z",
+      "side": 1,
+      "message": "The name comes from back-end python library which suppose that with only node param it will add all PCI\u0027s from topo file. If specific PCI address is passed as argument it will add only it. To fix it I would open separate commit as this change is just using it not implementing it.",
+      "parentUuid": "da141535_fa45aab3",
+      "revId": "57ff542da6bbf7abc1562a5ebf0727b27e6733c1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da141535_ba1732a3",
         "filename": "resources/libraries/robot/default.robot",
         "patchSetId": 14
@@ -64,6 +118,24 @@
       "writtenOn": "2016-05-18T16:20:47Z",
       "side": 1,
       "message": "the same as above .. Setup would mean that you ADD + APPLY + RESTART. Can we call it \"Add\" if we only generate configuration within CSIT runtime ?",
+      "revId": "57ff542da6bbf7abc1562a5ebf0727b27e6733c1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_75252daa",
+        "filename": "resources/libraries/robot/default.robot",
+        "patchSetId": 14
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-05-19T06:48:14Z",
+      "side": 1,
+      "message": "Makes sense, done.",
+      "parentUuid": "da141535_ba1732a3",
       "revId": "57ff542da6bbf7abc1562a5ebf0727b27e6733c1",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
@@ -87,6 +159,24 @@
     },
     {
       "key": {
+        "uuid": "da141535_553a29ce",
+        "filename": "resources/libraries/robot/default.robot",
+        "patchSetId": 14
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-05-19T06:48:14Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_9a0c6e96",
+      "revId": "57ff542da6bbf7abc1562a5ebf0727b27e6733c1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da141535_7a119aab",
         "filename": "resources/libraries/robot/default.robot",
         "patchSetId": 14
@@ -98,6 +188,24 @@
       "writtenOn": "2016-05-18T16:20:47Z",
       "side": 1,
       "message": "please use the same naming convention. if \"Remove\" is opposite to \"Add\", then use Remove instead of Clear, Clear is yet another name for Remove which mean confusion what is the \"Clear\" action doing.",
+      "revId": "57ff542da6bbf7abc1562a5ebf0727b27e6733c1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_3537b5e5",
+        "filename": "resources/libraries/robot/default.robot",
+        "patchSetId": 14
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-05-19T06:48:14Z",
+      "side": 1,
+      "message": "makes sense. done",
+      "parentUuid": "da141535_7a119aab",
       "revId": "57ff542da6bbf7abc1562a5ebf0727b27e6733c1",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
@@ -127,6 +235,30 @@
     },
     {
       "key": {
+        "uuid": "da141535_1534b1dc",
+        "filename": "resources/libraries/robot/default.robot",
+        "patchSetId": 14
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-05-19T06:48:14Z",
+      "side": 1,
+      "message": "Purpose of the \"Clear..\" was to just remove all configuration from CSIT runtime (renamed to \"Remove...\").\nApply was supposed to push CSIT runtime to actual VPP startup configuration file and restart VPP.\nReset was supposed to apply some _default_ VPP config.",
+      "parentUuid": "da141535_fa1c8ac3",
+      "range": {
+        "startLine": 108,
+        "startChar": 22,
+        "endLine": 108,
+        "endChar": 27
+      },
+      "revId": "57ff542da6bbf7abc1562a5ebf0727b27e6733c1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da141535_5a3ff625",
         "filename": "resources/libraries/robot/default.robot",
         "patchSetId": 14
@@ -138,6 +270,24 @@
       "writtenOn": "2016-05-18T16:20:47Z",
       "side": 1,
       "message": "I\u0027d rather call it \"Apply startup config on all VPP DUTs\"\nbecause \"Startup configuration of VPP is applied on all DUTs\" would mean that we want to check if the config has been applied which is not what is this keyword doing",
+      "revId": "57ff542da6bbf7abc1562a5ebf0727b27e6733c1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_f5301dea",
+        "filename": "resources/libraries/robot/default.robot",
+        "patchSetId": 14
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-05-19T06:48:14Z",
+      "side": 1,
+      "message": "Depends, back-end python library is really checking it. But it makes sense to rename it.",
+      "parentUuid": "da141535_5a3ff625",
       "revId": "57ff542da6bbf7abc1562a5ebf0727b27e6733c1",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
