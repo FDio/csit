@@ -28,13 +28,6 @@
 | | [Documentation] | Prepare all TGs before traffic scripts execution
 | | All TGs Set Interface Default Driver | ${nodes}
 
-| Show statistics on all DUTs
-| | [Documentation] | Show VPP statistics on all DUTs after the test failed
-| | Sleep | 10 | Waiting for statistics to be collected
-| | ${duts}= | Get Matches | ${nodes} | DUT*
-| | :FOR | ${dut} | IN | @{duts}
-| | | Vpp show stats | ${nodes['${dut}']}
-
 | Setup '${m}' worker threads and rss '${n}' without HTT on all DUTs
 | | [Documentation] |  Setup M worker threads without HTT and rss N in startup
 | | ...             |  configuration of VPP on all DUTs

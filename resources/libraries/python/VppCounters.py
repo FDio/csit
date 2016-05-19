@@ -108,6 +108,28 @@ class VppCounters(object):
         vat.execute_script('clear_interface.vat', node)
         vat.script_should_have_passed()
 
+    @staticmethod
+    def vpp_clear_hardware_counters(node):
+        """Clear interface hardware counters on VPP node.
+
+        :param node: Node to clear hardware counters on.
+        :type node: dict
+        """
+        vat = VatExecutor()
+        vat.execute_script('clear_hardware.vat', node)
+        vat.script_should_have_passed()
+
+    @staticmethod
+    def vpp_clear_errors_counters(node):
+        """Clear errors counters on VPP node.
+
+        :param node: Node to clear errors counters on.
+        :type node: dict
+        """
+        vat = VatExecutor()
+        vat.execute_script('clear_errors.vat', node)
+        vat.script_should_have_passed()
+
     def vpp_dump_stats_table(self, node):
         """Dump stats table on VPP node.
 
