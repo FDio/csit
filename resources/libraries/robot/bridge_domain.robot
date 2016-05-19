@@ -216,7 +216,7 @@
 | | ... | *Example:*
 | | ...
 | | ... | \| VM for Vhost L2BD forwarding is setup \| ${nodes['DUT1']} \
-| | ... | \| /tmp/sock1 \| /tmp/sock2
+| | ... | \| /tmp/sock1 \| /tmp/sock2 \|
 | | [Arguments] | ${node} | ${sock1} | ${sock2}
 | | Set Test Variable | ${vm_node} | ${None}
 | | Qemu Set Node | ${node}
@@ -247,7 +247,7 @@
 | | ... | *Example:*
 | | ...
 | | ... | \| VPP Vhost interfaces for L2BD forwarding are setup \
-| | ... | \| ${nodes['DUT1']} \| /tmp/sock1 \| /tmp/sock2
+| | ... | \| ${nodes['DUT1']} \| /tmp/sock1 \| /tmp/sock2 \|
 | | [Arguments] | ${node} | ${sock1} | ${sock2}
 | | ${vhost_if1}= | Vpp Create Vhost User Interface | ${node} | ${sock1}
 | | ${vhost_if2}= | Vpp Create Vhost User Interface | ${node} | ${sock2}
