@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "da141535_b5e2a5d3",
+        "filename": "resources/libraries/robot/counters.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 74
+      },
+      "writtenOn": "2016-05-19T12:35:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_b594e537",
+      "range": {
+        "startLine": 81,
+        "startChar": 39,
+        "endLine": 81,
+        "endChar": 49
+      },
+      "revId": "92f8ea1e7e5765ebb10ca552c263a32ab16772ea",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da141535_9599e170",
         "filename": "resources/libraries/robot/counters.robot",
         "patchSetId": 2
@@ -36,6 +60,30 @@
       "writtenOn": "2016-05-19T12:21:28Z",
       "side": 1,
       "message": "counters",
+      "range": {
+        "startLine": 87,
+        "startChar": 39,
+        "endLine": 87,
+        "endChar": 49
+      },
+      "revId": "92f8ea1e7e5765ebb10ca552c263a32ab16772ea",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_95e7a1e4",
+        "filename": "resources/libraries/robot/counters.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 74
+      },
+      "writtenOn": "2016-05-19T12:35:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_9599e170",
       "range": {
         "startLine": 87,
         "startChar": 39,
