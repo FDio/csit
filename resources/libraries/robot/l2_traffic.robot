@@ -25,7 +25,7 @@
 | | ${src_ip}= | Set Variable | 192.168.100.1
 | | ${dst_ip}= | Set Variable | 192.168.100.2
 | | ${args}= | Traffic Script Gen Arg | ${dst_int} | ${src_int} | ${src_mac}
-| |          | ...                    | ${dst_mac} | ${src_ip} | ${dst_ip}
+| | | ...                             | ${dst_mac} | ${src_ip} | ${dst_ip}
 | | Run Traffic Script On Node | send_ip_icmp.py | ${tg_node} | ${args}
 
 | Send and receive ICMPv4 bidirectionally
@@ -35,3 +35,22 @@
 | | [Arguments] | ${tg_node} | ${int1} | ${int2}
 | | Send and receive ICMPv4 | ${tg_node} | ${int1} | ${int2}
 | | Send and receive ICMPv4 | ${tg_node} | ${int2} | ${int1}
+
+| Send and receive ICMPv6
+| | [Documentation] | Send ICMPv6 echo request from source interface to destination interface.
+| | [Arguments] | ${tg_node} | ${src_int} | ${dst_int}
+| | ${src_mac}= | Get Interface Mac | ${tg_node} | ${src_int}
+| | ${dst_mac}= | Get Interface Mac | ${tg_node} | ${dst_int}
+| | ${src_ip}= | Set Variable | 3ffe:72::1
+| | ${dst_ip}= | Set Variable | 3ffe:72::2
+| | ${args}= | Traffic Script Gen Arg | ${dst_int} | ${src_int} | ${src_mac}
+| | | ...                             | ${dst_mac} | ${src_ip} | ${dst_ip}
+| | Run Traffic Script On Node | send_ip_icmp.py | ${tg_node} | ${args}
+
+| Send and receive ICMPv6 bidirectionally
+| | [Documentation] | Send ICMPv6 echo request from both directions,
+| | ...             | from interface1 to interface2 and
+| | ...             | from interface2 to interface1.
+| | [Arguments] | ${tg_node} | ${int1} | ${int2}
+| | Send and receive ICMPv6 | ${tg_node} | ${int1} | ${int2}
+| | Send and receive ICMPv6 | ${tg_node} | ${int2} | ${int1}
