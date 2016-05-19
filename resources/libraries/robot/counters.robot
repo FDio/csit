@@ -38,6 +38,13 @@
 | | ${ipv4_counter}= | Vpp get ipv4 interface counter | ${node} | ${interface}
 | | Should Be Equal | ${ipv4_counter} | ${value}
 
+| Show statistics on all DUTs
+| | [Documentation] | Show VPP statistics on all DUTs after the test failed
+| | Sleep | 10 | Waiting for statistics to be collected
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | Vpp show stats | ${nodes['${dut}']}
+
 | Vpp show stats
 | | [Documentation] | Show [error, hardware, interface] stats
 | | [Arguments] | ${node}
@@ -46,13 +53,37 @@
 | | Vpp Show Hardware Detail | ${node}
 | | Vpp Show Runtime | ${node}
 
-| Clear runtime statistics on all DUTs
-| | [Documentation] | Clear VPP runtime statistics on all DUTs
+| Clear all counters on all DUTs
+| | Clear runtime counters on all DUTs
+| | Clear interface counters on all DUTs
+| | Clear hardware counters on all DUTs
+| | Clear errors counters on all DUTs
+
+| Clear runtime counters on all DUTs
+| | [Documentation] | Clear VPP runtime counters on all DUTs
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | Vpp clear runtime | ${nodes['${dut}']}
 
-| Show runtime statistics on all DUTs
+| Clear interface counters on all DUTs
+| | [Documentation] | Clear VPP interface counters on all DUTs
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | Vpp clear interface counters | ${nodes['${dut}']}
+
+| Clear hardware counters on all DUTs
+| | [Documentation] | Clear VPP hardware counters on all DUTs
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | Vpp clear hardware counters | ${nodes['${dut}']}
+
+| Clear errors counters on all DUTs
+| | [Documentation] | Clear VPP errors statistics on all DUTs
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | Vpp clear errors counters | ${nodes['${dut}']}
+
+| Show runtime counters on all DUTs
 | | [Documentation] | Show VPP runtime statistics on all DUTs
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
