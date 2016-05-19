@@ -171,8 +171,9 @@
 | | Linear Search | ${start_rate} | ${topology_type}
 | | ${rate_per_stream}= | Verify Search Result
 | | Display result of NDR search | ${rate_per_stream} | ${framesize} | 2
-| | Clear and show runtime stats with running traffic | ${duration}
-| | ...  | ${rate_per_stream}pps | ${framesize} | ${topology_type}
+| | Traffic should pass with no loss | ${duration} | ${rate_per_stream}pps
+| | ...                              | ${framesize} | ${topology_type}
+| | ...                              | fail_on_loss=${False}
 
 | Find NDR using binary search and pps
 | | [Documentation] | Find throughput by using RFC2544 binary search
@@ -187,8 +188,9 @@
 | | Binary Search | ${binary_min} | ${binary_max} | ${topology_type}
 | | ${rate_per_stream}= | Verify Search Result
 | | Display result of NDR search | ${rate_per_stream} | ${framesize} | 2
-| | Clear and show runtime stats with running traffic | ${duration}
-| | ...  | ${rate_per_stream}pps | ${framesize} | ${topology_type}
+| | Traffic should pass with no loss | ${duration} | ${rate_per_stream}pps
+| | ...                              | ${framesize} | ${topology_type}
+| | ...                              | fail_on_loss=${False}
 
 | Find NDR using combined search and pps
 | | [Documentation] | Find throughput by using RFC2544 combined search
@@ -205,8 +207,9 @@
 | | Combined Search | ${start_rate} | ${topology_type}
 | | ${rate_per_stream}= | Verify Search Result
 | | Display result of NDR search | ${rate_per_stream} | ${framesize} | 2
-| | Clear and show runtime stats with running traffic | ${duration}
-| | ...  | ${rate_per_stream}pps | ${framesize} | ${topology_type}
+| | Traffic should pass with no loss | ${duration} | ${rate_per_stream}pps
+| | ...                              | ${framesize} | ${topology_type}
+| | ...                              | fail_on_loss=${False}
 
 | Display result of NDR search
 | | [Documentation] | Display result of NDR search in packet per seconds (total
@@ -220,17 +223,20 @@
 
 | Traffic should pass with no loss
 | | [Arguments] | ${duration} | ${rate} | ${framesize} | ${topology_type}
-| | Clear and show runtime stats with running traffic | ${duration}
+| | ...         | ${fail_on_loss}=${True}
+| | Clear and show runtime counters with running traffic | ${duration}
 | | ...  | ${rate} | ${framesize} | ${topology_type}
+| | Clear all counters on all DUTs
 | | Send traffic on tg | ${duration} | ${rate} | ${framesize}
-| | ...                | ${topology_type}
-| | No traffic loss occurred
+| | ...                | ${topology_type} | warmup_time=0
+| | Show statistics on all DUTs
+| | Run Keyword If | ${fail_on_loss} | No traffic loss occurred
 
-| Clear and show runtime stats with running traffic
+| Clear and show runtime counters with running traffic
 | | [Arguments] | ${duration} | ${rate} | ${framesize} | ${topology_type}
 | | Send traffic on tg | -1 | ${rate} | ${framesize}
 | | ...                | ${topology_type} | warmup_time=0 | async_call=True
-| | Clear runtime statistics on all DUTs
+| | Clear runtime counters on all DUTs
 | | Sleep | ${duration}
-| | Show runtime statistics on all DUTs
+| | Show runtime counters on all DUTs
 | | Stop traffic on tg
