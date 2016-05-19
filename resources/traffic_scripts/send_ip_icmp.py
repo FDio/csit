@@ -98,7 +98,7 @@ def main():
     sent_packets.append(pkt_raw)
     txq.send(pkt_raw)
 
-    ether = rxq.recv(2)
+    ether = rxq.recv(5)
 
     # Check whether received packet contains layers Ether, IP and ICMP
     if ether is None:
