@@ -29,7 +29,7 @@
 | | ... | *Example:*
 | | ... | \| Honeycomb sets interface VxLAN configuration \
 | | ... | \|${nodes['DUT1']} \| vxlan_01 \| ${{'src':'192.168.0.2',\
-| | ... |  'dst':'192.168.0.3', 'vni':5, 'encap-vrf-id':0}} \|
+| | ... | 'dst':'192.168.0.3', 'vni':5, 'encap-vrf-id':0}} \|
 | | ...
 | | [Arguments] | ${node} | ${interface} | ${settings}
 | | interfaceAPI.Create VxLAN interface | ${node} | ${interface}
@@ -62,7 +62,7 @@
 | | ...
 | | ... | \| VxLAN configuration from Honeycomb should be \
 | | ... | \|${nodes['DUT1']} \| vxlan_01 \| ${{'src':'192.168.0.2',\
-| | ... |  'dst':'192.168.0.3', 'vni':5, 'encap-vrf-id':0}} \|
+| | ... | 'dst':'192.168.0.3', 'vni':5, 'encap-vrf-id':0}} \|
 | | ...
 | | [Arguments] | ${node} | ${interface} | ${settings}
 | | ${api_data}= | interfaceAPI.Get interface oper data | ${node} | ${interface}
@@ -82,7 +82,7 @@
 | | ...
 | | ... | \| VxLAN configuration from Honeycomb should be \
 | | ... | \|${nodes['DUT1']} \| ${{'src':'192.168.0.2',\
-| | ... |  'dst':'192.168.0.3', 'vni':5, 'encap-vrf-id':0}} \|
+| | ... | 'dst':'192.168.0.3', 'vni':5, 'encap-vrf-id':0}} \|
 | | ...
 | | ... | *Note:*
 | | ... | Due to the difficulty of identifying newly created interfaces by name\
@@ -145,7 +145,7 @@
 | | ...
 | | ... | \| Honeycomb fails setting VxLan on different interface type\
 | | ... | \|${nodes['DUT1']} \| GigabitEthernet0/9/0 \| ${{'src':'192.168.0.2',\
-| | ... |  'dst':'192.168.0.3', 'vni':5, 'encap-vrf-id':0}} \|
+| | ... | 'dst':'192.168.0.3', 'vni':5, 'encap-vrf-id':0}} \|
 | | ...
 | | [Arguments] | ${node} | ${interface} | ${settings}
 | | Run Keyword And Expect Error | HoneycombError: * Status code: 500.
