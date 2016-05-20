@@ -343,8 +343,9 @@
 | | Set Search Frame Size | ${framesize}
 | | Set Search Rate Type pps
 | | Linear Search | ${start_rate} | ${topology_type}
-| | ${rate_per_stream}= | Verify Search Result
+| | ${rate_per_stream} | ${latency}= | Verify Search Result
 | | Display result of NDR search | ${rate_per_stream} | ${framesize} | 2
+| | ...                          | ${latency}
 | | Traffic should pass with no loss | ${duration} | ${rate_per_stream}pps
 | | ...                              | ${framesize} | ${topology_type}
 | | ...                              | fail_on_loss=${False}
@@ -383,9 +384,10 @@
 | | Run Keyword If | '${loss_acceptance_type}' == 'percentage'
 | | ...            | Set Loss Acceptance Type Percentage
 | | Linear Search | ${start_rate} | ${topology_type}
-| | ${rate_per_stream}= | Verify Search Result
+| | ${rate_per_stream} | ${latency}= | Verify Search Result
 | | Display result of PDR search | ${rate_per_stream} | ${framesize} | 2
 | | ...                          | ${loss_acceptance} | ${loss_acceptance_type}
+| | ...                          | ${latency}
 | | Traffic should pass with partial loss | ${duration} | ${rate_per_stream}pps
 | | ...                                   | ${framesize} | ${topology_type}
 | | ...                                   | ${loss_acceptance}
@@ -421,8 +423,9 @@
 | | Set Search Rate Type pps
 | | Set Binary Convergence Threshold | ${threshold}
 | | Binary Search | ${binary_min} | ${binary_max} | ${topology_type}
-| | ${rate_per_stream}= | Verify Search Result
+| | ${rate_per_stream} | ${latency}= | Verify Search Result
 | | Display result of NDR search | ${rate_per_stream} | ${framesize} | 2
+| | ...                          | ${latency}
 | | Traffic should pass with no loss | ${duration} | ${rate_per_stream}pps
 | | ...                              | ${framesize} | ${topology_type}
 | | ...                              | fail_on_loss=${False}
@@ -463,9 +466,10 @@
 | | ...            | Set Loss Acceptance Type Percentage
 | | Set Binary Convergence Threshold | ${threshold}
 | | Binary Search | ${binary_min} | ${binary_max} | ${topology_type}
-| | ${rate_per_stream}= | Verify Search Result
+| | ${rate_per_stream} | ${latency}= | Verify Search Result
 | | Display result of PDR search | ${rate_per_stream} | ${framesize} | 2
 | | ...                          | ${loss_acceptance} | ${loss_acceptance_type}
+| | ...                          | ${latency}
 | | Traffic should pass with partial loss | ${duration} | ${rate_per_stream}pps
 | | ...                                   | ${framesize} | ${topology_type}
 | | ...                                   | ${loss_acceptance}
@@ -502,8 +506,9 @@
 | | Set Search Rate Type pps
 | | Set Binary Convergence Threshold | ${threshold}
 | | Combined Search | ${start_rate} | ${topology_type}
-| | ${rate_per_stream}= | Verify Search Result
+| | ${rate_per_stream} | ${latency}= | Verify Search Result
 | | Display result of NDR search | ${rate_per_stream} | ${framesize} | 2
+| | ...                          | ${latency}
 | | Traffic should pass with no loss | ${duration} | ${rate_per_stream}pps
 | | ...                              | ${framesize} | ${topology_type}
 | | ...                              | fail_on_loss=${False}
@@ -546,9 +551,10 @@
 | | ...            | Set Loss Acceptance Type Percentage
 | | Set Binary Convergence Threshold | ${threshold}
 | | Combined Search | ${start_rate} | ${topology_type}
-| | ${rate_per_stream}= | Verify Search Result
+| | ${rate_per_stream} | ${latency}= | Verify Search Result
 | | Display result of PDR search | ${rate_per_stream} | ${framesize} | 2
 | | ...                          | ${loss_acceptance} | ${loss_acceptance_type}
+| | ...                          | ${latency}
 | | Traffic should pass with partial loss | ${duration} | ${rate_per_stream}pps
 | | ...                                   | ${framesize} | ${topology_type}
 | | ...                                   | ${loss_acceptance}
@@ -563,14 +569,17 @@
 | | ... | - ${rate_per_stream} - Measured rate per stream [pps]. Type: string
 | | ... | - ${framesize} - L2 Frame Size [B]. Type: integer
 | | ... | - ${nr_streams} - Total number of streams. Type: integer
+| | ... | - ${latency} - Latency stats. Type: dictionary
 | | ...
 | | ... | *Return:*
 | | ... | - No value returned
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Display result of NDR search \| 4400000 \| 64 \| 2
+| | ... | \| Display result of NDR search \| 4400000 \| 64 \| 2 \
+| | ... | \| (0, 10/10/10) \|
 | | [Arguments] | ${rate_per_stream} | ${framesize} | ${nr_streams}
+| | ...         | ${latency}
 | | ${rate_total}= | Evaluate | ${rate_per_stream}*${nr_streams}
 | | ${bandwidth_total}= | Evaluate | ${rate_total}*(${framesize}+20)*8/(10**9)
 | | Set Test Message | FINAL_RATE: ${rate_total} pps
@@ -578,6 +587,9 @@
 | | ...              | append=yes
 | | Set Test Message | ${\n}FINAL_BANDWIDTH: ${bandwidth_total} Gbps (untagged)
 | | ...              | append=yes
+| | :FOR | ${idx} | ${lat} | IN ENUMERATE | @{latency}
+| | | Set Test Message | ${\n}LATENCY_STREAM_${idx}: ${lat} usec (min/avg/max)
+| | ...                | append=yes
 
 | Display result of PDR search
 | | [Documentation] | Display result of PDR search in packet per seconds (total
@@ -589,6 +601,7 @@
 | | ... | - ${nr_streams} - Total number of streams. Type: integer
 | | ... | - ${loss_acceptance} - Accepted loss during search. Type: float
 | | ... | - ${loss_acceptance_type} - Percentage or frames. Type: string
+| | ... | - ${latency} - Latency stats. Type: dictionary
 | | ...
 | | ... | *Return:*
 | | ... | - No value returned
@@ -596,9 +609,9 @@
 | | ... | *Example:*
 | | ...
 | | ... | \| Display result of PDR search \| 4400000 \| 64 \| 2 \| 0.5 \
-| | ... | \| percentage
+| | ... | \| percentage \| (0, 10/10/10) \|
 | | [Arguments] | ${rate_per_stream} | ${framesize} | ${nr_streams}
-| | ...         | ${loss_acceptance} | ${loss_acceptance_type}
+| | ...         | ${loss_acceptance} | ${loss_acceptance_type} | ${latency}
 | | ${rate_total}= | Evaluate | ${rate_per_stream}*${nr_streams}
 | | ${bandwidth_total}= | Evaluate | ${rate_total}*(${framesize}+20)*8/(10**9)
 | | Set Test Message | FINAL_RATE: ${rate_total} pps
@@ -606,6 +619,9 @@
 | | ...              | append=yes
 | | Set Test Message | ${\n}FINAL_BANDWIDTH: ${bandwidth_total} Gbps (untagged)
 | | ...              | append=yes
+| | :FOR | ${idx} | ${lat} | IN ENUMERATE | @{latency}
+| | | Set Test Message | ${\n}LATENCY_STREAM_${idx}: ${lat} usec (min/avg/max)
+| | ...                | append=yes
 | | Set Test Message | ${\n}LOSS_ACCEPTANCE: ${loss_acceptance} ${loss_acceptance_type}
 | | ...              | append=yes
 
@@ -670,7 +686,8 @@
 | Clear and show runtime counters with running traffic
 | | [Arguments] | ${duration} | ${rate} | ${framesize} | ${topology_type}
 | | Send traffic on tg | -1 | ${rate} | ${framesize}
-| | ...                | ${topology_type} | warmup_time=0 | async_call=True
+| | ...                | ${topology_type} | warmup_time=0 | async_call=${True}
+| | ...                | latency=${False}
 | | Clear runtime counters on all DUTs
 | | Sleep | ${duration}
 | | Show runtime counters on all DUTs
