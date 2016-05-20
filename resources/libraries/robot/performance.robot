@@ -83,6 +83,12 @@
 | | ${dut2_if1} | ${dut2}= | Next Interface
 | | ${dut2_if2} | ${dut2}= | Next Interface
 | | ${tg_if2} | ${tg}= | Next Interface
+| | ${tg1_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
+| | ${tg1_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
+| | ${dut1_if1_mac}= | Get Interface MAC | ${dut1} | ${dut1_if1}
+| | ${dut1_if2_mac}= | Get Interface MAC | ${dut1} | ${dut1_if2}
+| | ${dut2_if1_mac}= | Get Interface MAC | ${dut2} | ${dut2_if1}
+| | ${dut2_if2_mac}= | Get Interface MAC | ${dut2} | ${dut2_if2}
 | | Set Suite Variable | ${tg}
 | | Set Suite Variable | ${tg_if1}
 | | Set Suite Variable | ${tg_if2}
@@ -92,6 +98,12 @@
 | | Set Suite Variable | ${dut2}
 | | Set Suite Variable | ${dut2_if1}
 | | Set Suite Variable | ${dut2_if2}
+| | Set Suite Variable | ${tg1_if1_mac}
+| | Set Suite Variable | ${tg1_if2_mac}
+| | Set Suite Variable | ${dut1_if1_mac}
+| | Set Suite Variable | ${dut1_if2_mac}
+| | Set Suite Variable | ${dut2_if1_mac}
+| | Set Suite Variable | ${dut2_if2_mac}
 
 | 3-node circular Topology Variables Setup with DUT interface model
 | | [Documentation] | Find a path between TG-DUT1-DUT2-TG based on interface
@@ -111,6 +123,12 @@
 | | ${dut2_if1} | ${dut2}= | Next Interface
 | | ${dut2_if2} | ${dut2}= | Next Interface
 | | ${tg_if2} | ${tg}= | Next Interface
+| | ${tg1_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
+| | ${tg1_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
+| | ${dut1_if1_mac}= | Get Interface MAC | ${dut1} | ${dut1_if1}
+| | ${dut1_if2_mac}= | Get Interface MAC | ${dut1} | ${dut1_if2}
+| | ${dut2_if1_mac}= | Get Interface MAC | ${dut2} | ${dut2_if1}
+| | ${dut2_if2_mac}= | Get Interface MAC | ${dut2} | ${dut2_if2}
 | | Set Suite Variable | ${tg}
 | | Set Suite Variable | ${tg_if1}
 | | Set Suite Variable | ${tg_if2}
@@ -120,6 +138,12 @@
 | | Set Suite Variable | ${dut2}
 | | Set Suite Variable | ${dut2_if1}
 | | Set Suite Variable | ${dut2_if2}
+| | Set Suite Variable | ${tg1_if1_mac}
+| | Set Suite Variable | ${tg1_if2_mac}
+| | Set Suite Variable | ${dut1_if1_mac}
+| | Set Suite Variable | ${dut1_if2_mac}
+| | Set Suite Variable | ${dut2_if1_mac}
+| | Set Suite Variable | ${dut2_if2_mac}
 
 | VPP interfaces in path are up
 | | [Documentation] | *Set UP state on VPP interfaces in path on nodes.*
@@ -137,12 +161,6 @@
 | | Set Interface State | ${dut1} | ${dut1_if2} | up
 | | Set Interface State | ${dut2} | ${dut2_if1} | up
 | | Set Interface State | ${dut2} | ${dut2_if2} | up
-| | ${tg1_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
-| | ${tg1_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
-| | ${dut1_if1_mac}= | Get Interface MAC | ${dut1} | ${dut1_if1}
-| | ${dut1_if2_mac}= | Get Interface MAC | ${dut1} | ${dut1_if2}
-| | ${dut2_if1_mac}= | Get Interface MAC | ${dut2} | ${dut1_if1}
-| | ${dut2_if2_mac}= | Get Interface MAC | ${dut2} | ${dut1_if2}
 | | dut1_v4.set_arp | ${dut1_if1} | 10.10.10.2 | ${tg1_if1_mac}
 | | dut1_v4.set_arp | ${dut1_if2} | 1.1.1.2 | ${dut2_if1_mac}
 | | dut2_v4.set_arp | ${dut2_if1} | 1.1.1.1 | ${dut1_if2_mac}
@@ -158,10 +176,6 @@
 | IPv6 forwarding initialized in a 3-node circular topology
 | | [Documentation] | Custom setup of IPv6 topology on all DUT nodes
 | | ${prefix}= | Set Variable | 64
-| | ${tg1_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
-| | ${tg1_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
-| | ${dut1_if2_mac}= | Get Interface MAC | ${dut1} | ${dut1_if2}
-| | ${dut2_if1_mac}= | Get Interface MAC | ${dut2} | ${dut1_if1}
 | | VPP Set If IPv6 Addr | ${dut1} | ${dut1_if1} | 2001:1::1 | ${prefix}
 | | VPP Set If IPv6 Addr | ${dut1} | ${dut1_if2} | 2001:3::1 | ${prefix}
 | | VPP Set If IPv6 Addr | ${dut2} | ${dut2_if1} | 2001:3::2 | ${prefix}
@@ -248,8 +262,9 @@
 | | Set Search Frame Size | ${framesize}
 | | Set Search Rate Type pps
 | | Linear Search | ${start_rate} | ${topology_type}
-| | ${rate_per_stream}= | Verify Search Result
+| | ${rate_per_stream} | ${latency}= | Verify Search Result
 | | Display result of NDR search | ${rate_per_stream} | ${framesize} | 2
+| | ...                          | ${latency}
 | | Traffic should pass with no loss | ${duration} | ${rate_per_stream}pps
 | | ...                              | ${framesize} | ${topology_type}
 | | ...                              | fail_on_loss=${False}
@@ -288,9 +303,10 @@
 | | Run Keyword If | '${loss_acceptance_type}' == 'percentage'
 | | ...            | Set Loss Acceptance Type Percentage
 | | Linear Search | ${start_rate} | ${topology_type}
-| | ${rate_per_stream}= | Verify Search Result
+| | ${rate_per_stream} | ${latency}= | Verify Search Result
 | | Display result of PDR search | ${rate_per_stream} | ${framesize} | 2
 | | ...                          | ${loss_acceptance} | ${loss_acceptance_type}
+| | ...                          | ${latency}
 | | Traffic should pass with partial loss | ${duration} | ${rate_per_stream}pps
 | | ...                                   | ${framesize} | ${topology_type}
 | | ...                                   | ${loss_acceptance}
@@ -326,8 +342,9 @@
 | | Set Search Rate Type pps
 | | Set Binary Convergence Threshold | ${threshold}
 | | Binary Search | ${binary_min} | ${binary_max} | ${topology_type}
-| | ${rate_per_stream}= | Verify Search Result
+| | ${rate_per_stream} | ${latency}= | Verify Search Result
 | | Display result of NDR search | ${rate_per_stream} | ${framesize} | 2
+| | ...                          | ${latency}
 | | Traffic should pass with no loss | ${duration} | ${rate_per_stream}pps
 | | ...                              | ${framesize} | ${topology_type}
 | | ...                              | fail_on_loss=${False}
@@ -368,9 +385,10 @@
 | | ...            | Set Loss Acceptance Type Percentage
 | | Set Binary Convergence Threshold | ${threshold}
 | | Binary Search | ${binary_min} | ${binary_max} | ${topology_type}
-| | ${rate_per_stream}= | Verify Search Result
+| | ${rate_per_stream} | ${latency}= | Verify Search Result
 | | Display result of PDR search | ${rate_per_stream} | ${framesize} | 2
 | | ...                          | ${loss_acceptance} | ${loss_acceptance_type}
+| | ...                          | ${latency}
 | | Traffic should pass with partial loss | ${duration} | ${rate_per_stream}pps
 | | ...                                   | ${framesize} | ${topology_type}
 | | ...                                   | ${loss_acceptance}
@@ -407,8 +425,9 @@
 | | Set Search Rate Type pps
 | | Set Binary Convergence Threshold | ${threshold}
 | | Combined Search | ${start_rate} | ${topology_type}
-| | ${rate_per_stream}= | Verify Search Result
+| | ${rate_per_stream} | ${latency}= | Verify Search Result
 | | Display result of NDR search | ${rate_per_stream} | ${framesize} | 2
+| | ...                          | ${latency}
 | | Traffic should pass with no loss | ${duration} | ${rate_per_stream}pps
 | | ...                              | ${framesize} | ${topology_type}
 | | ...                              | fail_on_loss=${False}
@@ -451,9 +470,10 @@
 | | ...            | Set Loss Acceptance Type Percentage
 | | Set Binary Convergence Threshold | ${threshold}
 | | Combined Search | ${start_rate} | ${topology_type}
-| | ${rate_per_stream}= | Verify Search Result
+| | ${rate_per_stream} | ${latency}= | Verify Search Result
 | | Display result of PDR search | ${rate_per_stream} | ${framesize} | 2
 | | ...                          | ${loss_acceptance} | ${loss_acceptance_type}
+| | ...                          | ${latency}
 | | Traffic should pass with partial loss | ${duration} | ${rate_per_stream}pps
 | | ...                                   | ${framesize} | ${topology_type}
 | | ...                                   | ${loss_acceptance}
@@ -468,6 +488,7 @@
 | | ... | - ${rate_per_stream} - Measured rate per stream [pps]. Type: string
 | | ... | - ${framesize} - L2 Frame Size [B]. Type: integer
 | | ... | - ${nr_streams} - Total number of streams. Type: integer
+| | ... | - ${latency} - Latency stats. Type: dict
 | | ...
 | | ... | *Return:*
 | | ... | - No value returned
@@ -476,11 +497,16 @@
 | | ...
 | | ... | \| Display result of NDR search \| 4400000 \| 64 \| 2
 | | [Arguments] | ${rate_per_stream} | ${framesize} | ${nr_streams}
+| | ...         | ${latency}
 | | ${rate_total}= | Evaluate | ${rate_per_stream}*${nr_streams}
 | | ${bandwidth_total}= | Evaluate | ${rate_total}*(${framesize}+20)*8/(10**9)
 | | Set Test Message | FINAL_RATE: ${rate_total} pps
 | | Set Test Message | (${nr_streams}x ${rate_per_stream} pps) | append=yes
-| | Set Test Message | FINAL_BANDWIDTH: ${bandwidth_total} Gbps | append=yes
+| | Set Test Message | ${\n}FINAL_BANDWIDTH: ${bandwidth_total} Gbps
+| | ...              | append=yes
+| | :FOR | ${idx} | ${lat} | IN ENUMERATE | @{latency}
+| | | Set Test Message | ${\n}LATENCY_STREAM_${idx}: ${lat} usec (min/avg/max)
+| | ...                | append=yes
 
 | Display result of PDR search
 | | [Documentation] | Display result of PDR search in packet per seconds (total
@@ -492,6 +518,7 @@
 | | ... | - ${nr_streams} - Total number of streams. Type: integer
 | | ... | - ${loss_acceptance} - Accepted loss during search. Type: float
 | | ... | - ${loss_acceptance_type} - Percentage or frames. Type: string
+| | ... | - ${latency} - Latency stats. Type: dict
 | | ...
 | | ... | *Return:*
 | | ... | - No value returned
@@ -501,12 +528,16 @@
 | | ... | \| Display result of PDR search \| 4400000 \| 64 \| 2 \| 0.5 \
 | | ... | \| percentage
 | | [Arguments] | ${rate_per_stream} | ${framesize} | ${nr_streams}
-| | ...         | ${loss_acceptance} | ${loss_acceptance_type}
+| | ...         | ${loss_acceptance} | ${loss_acceptance_type} | ${latency}
 | | ${rate_total}= | Evaluate | ${rate_per_stream}*${nr_streams}
 | | ${bandwidth_total}= | Evaluate | ${rate_total}*(${framesize}+20)*8/(10**9)
 | | Set Test Message | FINAL_RATE: ${rate_total} pps
 | | Set Test Message | (${nr_streams}x ${rate_per_stream} pps) | append=yes
-| | Set Test Message | FINAL_BANDWIDTH: ${bandwidth_total} Gbps | append=yes
+| | Set Test Message | ${\n}FINAL_BANDWIDTH: ${bandwidth_total} Gbps
+| | ...              | append=yes
+| | :FOR | ${idx} | ${lat} | IN ENUMERATE | @{latency}
+| | | Set Test Message | ${\n}LATENCY_STREAM_${idx}: ${lat} usec (min/avg/max)
+| | ...                | append=yes
 | | Set Test Message | ${\n}LOSS_ACCEPTANCE: ${loss_acceptance} ${loss_acceptance_type}
 | | ...              | append=yes
 
@@ -571,7 +602,8 @@
 | Clear and show runtime counters with running traffic
 | | [Arguments] | ${duration} | ${rate} | ${framesize} | ${topology_type}
 | | Send traffic on tg | -1 | ${rate} | ${framesize}
-| | ...                | ${topology_type} | warmup_time=0 | async_call=True
+| | ...                | ${topology_type} | warmup_time=0 | async_call=${True}
+| | ...                | latency=${False}
 | | Clear runtime counters on all DUTs
 | | Sleep | ${duration}
 | | Show runtime counters on all DUTs
