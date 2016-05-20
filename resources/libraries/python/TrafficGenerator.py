@@ -132,7 +132,7 @@ class TrafficGenerator(object):
         :return: nothing
         """
 
-        trex_path = "/opt/trex-core-2.00"
+        trex_path = "/opt/trex-core-2.02"
 
         topo = Topology()
 
