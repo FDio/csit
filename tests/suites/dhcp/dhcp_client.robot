@@ -47,3 +47,14 @@
 | |       ... | ${client_hostname}
 | | Then  Check DHCP DISCOVER header | ${tg_node}
 | |       ... | ${tg_to_dut_if1} | ${dut_to_tg_if1_mac} | ${client_hostname}
+
+| VPP sends DHCP REQUEST after OFFER
+| | [Documentation] | Configure DHCP client on interface to TG and check if
+| | ...             | DHCP REQUEST message contains all required fields.
+| | ...
+| | Given Path for 2-node testing is set
+| |       ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
+| | And   Interfaces in 2-node path are up
+| | When  Set DHCP client on Interface | ${dut_node} | ${dut_to_tg_if1}
+| | Then  Check DHCP REQUEST header | ${tg_node}
+| |       ... | ${tg_to_dut_if1} | ${dut_to_tg_if1_mac}
