@@ -39,3 +39,12 @@
 | | ${args}= | Catenate | --rx_if | ${interface} | --rx_src_mac | ${src_mac}
 | | Run Traffic Script On Node | dhcp/check_dhcp_discover.py
 | | ... | ${tg_node} | ${args}
+
+| VPP sends DHCP REQUEST after OFFER
+| | [Documentation] | TBD
+| | ...
+| | ...
+| | [Arguments] | ${tg_node} | ${interface}
+| | ${args}= | Catenate | --rx_if | ${interface}
+| | Run Traffic Script On Node | dhcp/check_dhcp_request.py
+| | ... | ${tg_node} | ${args}
