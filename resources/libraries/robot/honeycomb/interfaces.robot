@@ -334,4 +334,3 @@
 | | [Arguments] | ${node} | ${interface} | ${mtu} | ${vrf-id}
 | | ${vat_data}= | InterfaceCLI.VPP get interface data | ${node} | ${interface}
 | | Should be equal | ${vat_data['mtu']} | ${mtu}
-| | Should be equal | ${vat_data['sub_inner_vlan_id']} | ${vrf-id}

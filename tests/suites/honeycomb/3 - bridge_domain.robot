@@ -42,19 +42,6 @@
 | | And Bridge domain configuration from VAT should be
 | | ... | ${node} | ${0} | ${bd_settings}
 
-| Honeycomb assigns interfaces to bridge domain
-| | [Documentation] | Check if Honeycomb can assign VPP interfaces to an\
-| | ... | existing bridge domain.
-| | [Tags] | honeycomb_sanity
-| | Given Bridge domain configuration from Honeycomb should be
-| | ... | ${node} | ${bd1_name} | ${bd_settings}
-| | When Honeycomb adds interfaces to bridge domain
-| | ... | ${node} | @{interfaces} | ${bd1_name} | ${if_settings}
-| | Then Honeycomb should show interfaces assigned to bridge domain
-| | ... | ${node} | @{interfaces} | ${bd1_name} | ${if_settings}
-| | And VAT should show interfaces assigned to bridge domain
-| | ... | ${node} | ${0} | @{interfaces} | ${if_settings}
-
 | Honeycomb manages multiple bridge domains on node
 | | [Documentation] | Check if Honeycomb can manage multiple bridge domains on\
 | | ... | a single node.
@@ -78,6 +65,31 @@
 | | [Tags] | honeycomb_sanity
 | | Given Bridge domain configuration from Honeycomb should be
 | | ... | ${node} | ${bd1_name} | ${bd_settings}
+| | When Honeycomb removes all bridge domains | ${node}
+| | Then Honeycomb should show no bridge domains | ${node}
+| | And VAT should show no bridge domains | ${node}
+
+| Honeycomb assigns interfaces to bridge domain
+| | [Documentation] | Check if Honeycomb can assign VPP interfaces to an\
+| | ... | existing bridge domain.
+| | [Tags] | honeycomb_sanity
+| | Given Honeycomb creates first l2 bridge domain
+| | ... | ${node} | ${bd1_name} | ${bd_settings}
+| | When Honeycomb adds interfaces to bridge domain
+| | ... | ${node} | @{interfaces} | ${bd1_name} | ${if_settings}
+| | Then Honeycomb should show interfaces assigned to bridge domain
+| | ... | ${node} | @{interfaces} | ${bd1_name} | ${if_settings}
+| | And VAT should show interfaces assigned to bridge domain
+| | ... | ${node} | ${0} | @{interfaces} | ${if_settings}
+
+| Honeycomb removes bridge domain with an interface assigned
+| | [Documentation] | Check if Honeycomb can remove a bridge domain that has an\
+| | ... | interface assigned to it.
+| | [Tags] | honeycomb_sanity
+| | Given Honeycomb should show interfaces assigned to bridge domain
+| | ... | ${node} | @{interfaces} | ${bd1_name} | ${if_settings}
+| | And VAT should show interfaces assigned to bridge domain
+| | ... | ${node} | ${0} | @{interfaces} | ${if_settings}
 | | When Honeycomb removes all bridge domains | ${node}
 | | Then Honeycomb should show no bridge domains | ${node}
 | | And VAT should show no bridge domains | ${node}

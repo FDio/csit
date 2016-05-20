@@ -64,7 +64,7 @@
 | | ... | \| Bridge domain configuration from Honeycomb should be \
 | | ... | \| ${nodes['DUT1']} \| bd-04 \| ${{flood:True,learn:False}} \|
 | | [Arguments] | ${node} | ${bd_name} | ${settings}
-| | ${api_data}= | Get bd cfg data | ${node} | ${bd_name}
+| | ${api_data}= | Get bd oper data | ${node} | ${bd_name}
 | | :FOR | ${key} | IN | @{settings.keys()}
 | | | Should be equal | ${settings['${key}']} | ${api_data['${key}']}
 
@@ -136,10 +136,13 @@
 | | ${if2_data}= | interfaceAPI.Get interface oper data
 | | ... | ${node} | ${interface2}
 | | Should be equal | ${if1_data['v3po:l2']['bridge-domain']}
-| | ... | ${if1_data['v3po:l2']['bridge-domain']} | ${bd_name}
-| | :FOR | ${key} | IN | @{settings.keys()}
-| | | Should be equal | ${if1_data['v3po:l2']['${key}']}
-| | | ... | ${if2_data['v3po:l2']['${key}']} | ${settings['${key}']}
+| | ... | ${if2_data['v3po:l2']['bridge-domain']} | ${bd_name}
+| | Should be equal | ${if1_data['v3po:l2']['split-horizon-group']}
+| | ... | ${if2_data['v3po:l2']['split-horizon-group']}
+| | ... | ${settings['split_horizon_group']}
+| | Should be equal | ${if1_data['v3po:l2']['bridged-virtual-interface']}
+| | ... | ${if2_data['v3po:l2']['bridged-virtual-interface']}
+| | ... | ${settings['bvi']}
 
 | VAT should show interfaces assigned to bridge domain
 | | [Documentation] | Uses VAT to verify interface assignment to\
@@ -195,7 +198,7 @@
 | | ...
 | | ... | \| Honeycomb should show no bridge domains \| ${nodes['DUT1']} \|
 | | [Arguments] | ${node}
-| | ${bd_data} | Get all BDs cfg data | ${node}
+| | ${bd_data}= | Get all BDs oper data | ${node}
 | | Should be empty | ${bd_data}
 
 | VAT should show no bridge domains
