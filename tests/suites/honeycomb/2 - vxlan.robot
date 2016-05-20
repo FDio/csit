@@ -23,6 +23,8 @@
 | ... | encap-vrf-id=${0}
 | &{vxlan_settings_ipv6}= | src=10::10 | dst=10::11 | vni=${88}
 | ... | encap-vrf-id=${0}
+| &{vxlan_settings_ipv6_long}= | src=10:0:0:0:0:0:0:10 | dst=10:0:0:0:0:0:0:11
+| ... | vni=${88} | encap-vrf-id=${0}
 
 *** Settings ***
 | Resource | resources/libraries/robot/default.robot
@@ -60,6 +62,22 @@
 | | ... | ${node} | ${vx_interface}
 | | And VxLAN configuration from VAT should be empty | ${node}
 
+Honeycomb can configure VXLAN tunnel after one has been disabled
+| | [Documentation] | Check if Honeycomb API can configure VxLAN settings again\
+| | ... | after previous settings have been removed.
+| | [Tags] | honeycomb_sanity
+| | [Teardown] | Honeycomb removes VxLAN tunnel settings
+| | ... | ${node} | ${vx_interface}
+| | Given VxLAN configuration from Honeycomb should be empty
+| | ... | ${node} | ${vx_interface}
+| | And VxLAN configuration from VAT should be empty | ${node}
+| | When Honeycomb sets interface VxLAN configuration
+| | ... | ${node} | ${vx_interface} | ${vxlan_settings2}
+| | Then VxLAN configuration from Honeycomb should be
+| | ... | ${node} | ${vx_interface} | ${vxlan_settings2}
+| | And VxLAN configuration from VAT should be
+| | ... | ${node} | ${vxlan_settings2}
+
 | Honeycomb does not set VxLAN configuration on another interface type
 | | [Documentation] | Check if Honeycomb API prevents setting VxLAN\
 | | ... | on incorrect interface.
@@ -90,13 +108,14 @@
 | | [Documentation] | Check if Honeycomb API can configure VxLAN with\
 | | ... | ipv6 settings.
 | | [Tags] | honeycomb_sanity
+| | [Teardown] | Honeycomb removes VxLAN tunnel settings
+| | ... | ${node} | ${vx_interface}
 | | Given VxLAN configuration from Honeycomb should be empty
 | | ... | ${node} | ${vx_interface}
 | | And VxLAN configuration from VAT should be empty | ${node}
 | | When Honeycomb sets interface VxLAN configuration
 | | ... | ${node} | ${vx_interface} | ${vxlan_settings_ipv6}
 | | Then VxLAN configuration from Honeycomb should be
-| | ... | ${node} | ${vx_interface} | ${vxlan_settings_ipv6}
+| | ... | ${node} | ${vx_interface} | ${vxlan_settings_ipv6_long}
 | | And VxLAN configuration from VAT should be
 | | ... | ${node} | ${vxlan_settings_ipv6}
-

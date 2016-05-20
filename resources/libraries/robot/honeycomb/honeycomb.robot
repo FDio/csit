@@ -28,7 +28,7 @@
 | | ... | - 4. Configure honeycomb nodes using HTTP PUT request
 | | ...
 | | ... | _Arguments:_
-| | ... | - ${duts} - list of nodes to setup Honeycomb on
+| | ... | - duts - list of nodes to setup Honeycomb on
 | | ...
 | | ... | _Used global constants and variables:_
 | | ... | - RESOURCES_TPL_HC - path to honeycomb templates directory
@@ -50,7 +50,7 @@
 | | ... | 200 -> 404 -> connection refused (pass)
 | | ...
 | | ... | _Arguments:_
-| | ... | - ${duts} - list of nodes to stop Honeycomb on
+| | ... | - duts - list of nodes to stop Honeycomb on
 | | ...
 | | ... | _Used global constants and variables:_
 | | ... | - RESOURCES_TPL_HC - path to honeycomb templates directory
