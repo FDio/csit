@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da141535_f5f37c71",
+        "filename": "resources/libraries/robot/dhcp_client.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-05-20T12:28:17Z",
+      "side": 1,
+      "message": "Add short description of this module to the \"Settings\" section.",
+      "revId": "09dca46013644895ccd2ccfec894ef357c8a149a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_9502003d",
+        "filename": "resources/libraries/robot/dhcp_client.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-05-20T12:28:17Z",
+      "side": 1,
+      "message": "Full stop at the end.",
+      "range": {
+        "startLine": 22,
+        "startChar": 66,
+        "endLine": 22,
+        "endChar": 72
+      },
+      "revId": "09dca46013644895ccd2ccfec894ef357c8a149a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_d59f5802",
+        "filename": "resources/libraries/robot/dhcp_client.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-05-20T12:28:17Z",
+      "side": 1,
+      "message": "We usually use only name, e.g. tg_node not ${tg_node}.",
+      "range": {
+        "startLine": 25,
+        "startChar": 12,
+        "endLine": 25,
+        "endChar": 22
+      },
+      "revId": "09dca46013644895ccd2ccfec894ef357c8a149a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_75864cbb",
+        "filename": "resources/traffic_scripts/dhcp/check_dhcp_discover.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-05-20T12:28:17Z",
+      "side": 1,
+      "message": "This should fit one line.",
+      "range": {
+        "startLine": 29,
+        "startChar": 4,
+        "endLine": 30,
+        "endChar": 25
+      },
+      "revId": "09dca46013644895ccd2ccfec894ef357c8a149a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_559348fa",
+        "filename": "resources/traffic_scripts/dhcp/check_dhcp_discover.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-05-20T12:28:17Z",
+      "side": 1,
+      "message": "Where do you check hostname?",
+      "range": {
+        "startLine": 95,
+        "startChar": 4,
+        "endLine": 95,
+        "endChar": 20
+      },
+      "revId": "09dca46013644895ccd2ccfec894ef357c8a149a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_3590d4eb",
+        "filename": "resources/traffic_scripts/dhcp/check_dhcp_discover.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-05-20T12:28:17Z",
+      "side": 1,
+      "message": "Where do you check the bootfile?",
+      "range": {
+        "startLine": 97,
+        "startChar": 4,
+        "endLine": 97,
+        "endChar": 20
+      },
+      "revId": "09dca46013644895ccd2ccfec894ef357c8a149a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
