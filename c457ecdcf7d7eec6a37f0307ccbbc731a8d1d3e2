@@ -22,6 +22,30 @@
       "revId": "c457ecdcf7d7eec6a37f0307ccbbc731a8d1d3e2",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_15b710da",
+        "filename": "tests/suites/honeycomb/5 - interface_vhost_user.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-05-20T11:18:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_3573344f",
+      "range": {
+        "startLine": 16,
+        "startChar": 38,
+        "endLine": 16,
+        "endChar": 50
+      },
+      "revId": "c457ecdcf7d7eec6a37f0307ccbbc731a8d1d3e2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
