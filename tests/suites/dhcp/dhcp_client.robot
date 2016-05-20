@@ -15,6 +15,7 @@
 | Resource | resources/libraries/robot/default.robot
 | Resource | resources/libraries/robot/testing_path.robot
 | Resource | resources/libraries/robot/dhcp_client.robot
+| Resource | resources/libraries/robot/ipv4.robot
 | Library | resources.libraries.python.Trace
 | Force Tags | HW_ENV | VM_ENV | 3_NODE_DOUBLE_LINK_TOPO
 | Test Setup | Run Keywords | Setup all DUTs before test
@@ -47,3 +48,15 @@
 | |       ... | ${client_hostname}
 | | Then  Check DHCP DISCOVER header | ${tg_node}
 | |       ... | ${tg_to_dut_if1} | ${dut_to_tg_if1_mac} | ${client_hostname}
+
+| VPP sends DHCP REQUEST after OFFER
+| | [Documentation] | Configure DHCP client on interface to TG and check if
+| | ...             | DHCP REQUEST message contains all required fields.
+| | ...
+| | Given Path for 2-node testing is set
+| |       ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
+| | And   Interfaces in 2-node path are up
+| | And Set Route | ${dut_node} | 255.255.255.255 | 32 | local | 255.255.255.255
+| | When  Set DHCP client on Interface | ${dut_node} | ${dut_to_tg_if1}
+| | Then  Check DHCP REQUEST header | ${tg_node}
+| |       ... | ${tg_to_dut_if1} | ${dut_to_tg_if1_mac}
