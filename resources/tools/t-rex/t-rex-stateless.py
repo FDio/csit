@@ -48,7 +48,7 @@ import string
 import struct
 import sys
 
-sys.path.insert(0, "/opt/trex-core-2.00/scripts/automation/"+\
+sys.path.insert(0, "/opt/trex-core-2.01/scripts/automation/"+\
                    "trex_control_plane/stl/")
 from trex_stl_lib.api import *
 
@@ -137,7 +137,7 @@ def create_packets(traffic_options, frame_size=64):
                                    size=4, op="inc"),
                       STLVmWrFlowVar(fv_name="src", pkt_offset="IP.src"),
                       STLVmFixIpv4(offset="IP"),
-                     ], split_by_field="src")
+                     ], split_by_field="src", cache_size=255)
     # The following code applies raw instructions to packet (IP src increment).
     # It splits the generated traffic by "ip_src" variable to cores and fix
     # IPv4 header checksum.
@@ -147,7 +147,7 @@ def create_packets(traffic_options, frame_size=64):
                                    size=4, op="inc"),
                       STLVmWrFlowVar(fv_name="src", pkt_offset="IP.src"),
                       STLVmFixIpv4(offset="IP"),
-                     ], split_by_field="src")
+                     ], split_by_field="src", cache_size=255)
 
     pkt_a = STLPktBuilder(pkt=base_pkt_a/generate_payload(
         fsize_no_fcs-len(base_pkt_a)), vm=vm1)
@@ -196,7 +196,7 @@ def create_packets_v6(traffic_options, frame_size=78):
                       STLVmWrFlowVar(fv_name="ipv6_src", pkt_offset="IPv6.src",
                                      offset_fixup=8)
                      ]
-                     , split_by_field="ipv6_src")
+                     , split_by_field="ipv6_src", cache_size=255)
 
     # The following code applies raw instructions to packet (IP src increment).
     # It splits the generated traffic by "ip_src" variable to cores
@@ -207,7 +207,7 @@ def create_packets_v6(traffic_options, frame_size=78):
                       STLVmWrFlowVar(fv_name="ipv6_src", pkt_offset="IPv6.src",
                                      offset_fixup=8)
                      ]
-                     , split_by_field="ipv6_src")
+                     , split_by_field="ipv6_src", cache_size=255)
 
     pkt_a = STLPktBuilder(pkt=base_pkt_a/generate_payload(
         max(0, fsize_no_fcs-len(base_pkt_a))), vm=vm1)
