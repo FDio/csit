@@ -51,6 +51,7 @@ import sys
 sys.path.insert(0, "/opt/trex-core-2.01/scripts/automation/"+\
                    "trex_control_plane/stl/")
 from trex_stl_lib.api import *
+from trex_stl_lib.utils import parsing_opts
 
 
 def generate_payload(length):
@@ -217,7 +218,8 @@ def create_packets_v6(traffic_options, frame_size=78):
     return(pkt_a, pkt_b)
 
 
-def simple_burst(pkt_a, pkt_b, duration, rate, warmup_time, async_start):
+def simple_burst(pkt_a, pkt_b, duration, rate, warmup_time, async_start,
+                 latency):
     """Run the traffic with specific parameters.
 
     :param pkt_a: Base packet for stream 1.
@@ -225,13 +227,15 @@ def simple_burst(pkt_a, pkt_b, duration, rate, warmup_time, async_start):
     :param duration: Duration of traffic run in seconds (-1=infinite).
     :param rate: Rate of traffic run [percentage, pps, bps].
     :param warmup_time: Warm up duration.
-    :async_start: Start the traffic and exit
+    :param async_start: Start the traffic and exit.
+    :param latency: With latency stats.
     :type pkt_a: STLPktBuilder
     :type pkt_b: STLPktBuilder
     :type duration: int
     :type rate: string
     :type warmup_time: int
     :type async_start: bool
+    :type latency: bool
     :return: nothing
     """
 
@@ -243,18 +247,42 @@ def simple_burst(pkt_a, pkt_b, duration, rate, warmup_time, async_start):
     lost_a = 0
     lost_b = 0
 
+    # parsing rate
+    mult = parsing_opts.decode_multiplier(rate)
+    if mult['type'] == "pps":
+        mode=STLTXCont(pps=mult['value'])
+    elif mult['type'] == "%":
+        mode=STLTXCont(percentage=mult['value'])
+    elif mult['type'] == "bps":
+        mode=STLTXCont(bps_L2=mult['value'])
+    else:
+        print_error("Rate {} not supported".format(rate))
+        sys.exit(1)
+
     try:
         # turn this off if too many logs
         #client.set_verbose("high")
 
-        # create two streams
-        stream1 = STLStream(packet=pkt_a,
-                            mode=STLTXCont(pps=100))
+        if latency:
+            # create two traffic streams with latency stats
+            stream1 = STLStream(packet=pkt_a,
+                                flow_stats=STLFlowLatencyStats(pg_id=0),
+                                mode=mode)
 
-        # second stream with a phase of 10ns (inter stream gap)
-        stream2 = STLStream(packet=pkt_b,
-                            isg=10.0,
-                            mode=STLTXCont(pps=100))
+            # second traffic stream with a phase of 10ns (inter stream gap)
+            stream2 = STLStream(packet=pkt_b,
+                                isg=10.0,
+                                flow_stats=STLFlowLatencyStats(pg_id=1),
+                                mode=mode)
+        else:
+            # create two traffic streams without latency stats
+            stream1 = STLStream(packet=pkt_a,
+                                mode=mode)
+
+            # second traffic stream with a phase of 10ns (inter stream gap)
+            stream2 = STLStream(packet=pkt_b,
+                                isg=10.0,
+                                mode=mode)
 
         # connect to server
         client.connect()
@@ -262,14 +290,14 @@ def simple_burst(pkt_a, pkt_b, duration, rate, warmup_time, async_start):
         # prepare our ports (my machine has 0 <--> 1 with static route)
         client.reset(ports=[0, 1])
 
-        # add both streams to ports
+        # add all streams to ports
         client.add_streams(stream1, ports=[0])
         client.add_streams(stream2, ports=[1])
 
         #warmup phase
         if warmup_time > 0:
             client.clear_stats()
-            client.start(ports=[0, 1], mult=rate, duration=warmup_time)
+            client.start(ports=[0, 1], duration=warmup_time)
             client.wait_on_traffic(ports=[0, 1], timeout=(warmup_time+30))
             stats = client.get_stats()
             print stats
@@ -291,7 +319,7 @@ def simple_burst(pkt_a, pkt_b, duration, rate, warmup_time, async_start):
         lost_b = 0
 
         # choose rate and start traffic
-        client.start(ports=[0, 1], mult=rate, duration=duration)
+        client.start(ports=[0, 1], duration=duration)
 
         if not async_start:
             # block until done
@@ -346,6 +374,8 @@ def main():
     _warmup_time = 5
     #default behaviour of this script is sychronous
     _async_call = False
+    #default is without latency
+    _latency = False
 
     parser = argparse.ArgumentParser()
     parser.add_argument("-d", "--duration", required=True, type=int,
@@ -358,6 +388,8 @@ def main():
                         help="Use IPv6 traffic profile instead of IPv4")
     parser.add_argument("--async", action="store_true",
                         help="Non-blocking call of the script")
+    parser.add_argument("--latency", action="store_true",
+                        help="Add latency stream")
     parser.add_argument("-w", "--warmup_time", type=int,
                         help="Traffic warmup time in seconds, 0 = disable")
 #    parser.add_argument("--p1_src_mac",
@@ -392,6 +424,12 @@ def main():
     _rate = args.rate
     _use_ipv6 = args.use_IPv6
     _async_call = args.async
+    _latency = args.latency
+
+    # WARNING: Trex limitation to IPv4 only. IPv6 is not yet supported.
+    if _use_ipv6:
+        print_error('IPv6 latency is not supported yet. Running without latency')
+        _latency = False
 
     if args.warmup_time is not None:
         _warmup_time = args.warmup_time
@@ -407,7 +445,8 @@ def main():
         pkt_a, pkt_b = create_packets(_traffic_options,
                                       frame_size=_frame_size)
 
-    simple_burst(pkt_a, pkt_b, _duration, _rate, _warmup_time, _async_call)
+    simple_burst(pkt_a, pkt_b, _duration, _rate, _warmup_time, _async_call,
+                 _latency)
 
 if __name__ == "__main__":
     sys.exit(main())
