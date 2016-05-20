@@ -1,3 +1,4 @@
 # UUID                                                               	Group Name
 #
+0cf23ff5f02892ef250503ffd52a6d7958bf073d                             	Non-Interactive Users
 ldap:cn=fdio-gerrit-csit-committers,ou=Groups,dc=freestandards,dc=org	ldap/fdio-gerrit-csit-committers
