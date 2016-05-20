@@ -20,18 +20,19 @@
 
 *** Keywords ***
 | Check DHCP DISCOVER header
-| | [Documentation] | Check if DHCP message contains all required fields.
+| | [Documentation] | Check if DHCP DISCOVER message contains all required
+| | ... | fields.
 | | ...
 | | ... | *Arguments:*
 | | ... | - tg_node - TG node. Type: dictionary
-| | ... | - interface - TGs interface where listen for DHCP DISCOVER message.
+| | ... | - interface - TG interface where listen for DHCP DISCOVER message.
 | | ... |   Type: string
-| | ... | - src_mac - DHCP clients MAC address. Type: string
-| | ... | - hostname - DHCP clients hostname (Optional, Default="", if not
-| | ... |   specified, the hostneme is not configured). Type: string
+| | ... | - src_mac - DHCP client MAC address. Type: string
+| | ... | - hostname - DHCP client hostname (Optional, Default="", if not
+| | ... |   specified, the hostname is not checked). Type: string
 | | ...
 | | ... | *Return:*
-| | ... | - No value returned
+| | ... | - No value returned.
 | | ...
 | | ... | *Example:*
 | | ...
@@ -41,9 +42,63 @@
 | | ... | \| eth2 \| 08:00:27:66:b8:57 \| client-hostname \|
 | | ...
 | | [Arguments] | ${tg_node} | ${interface} | ${src_mac} | ${hostname}=${EMPTY}
-| | ${args}= | Run Keyword If | "${hostname}" == "" | Catenate
-| |          | ...  | --rx_if | ${interface} | --rx_src_mac | ${src_mac}
-| | ...      | ELSE | Catenate | --rx_if | ${interface} | --rx_src_mac
-| |          | ...  | ${src_mac} | --hostname | ${hostname}
+| | ${args}= | Catenate | --rx_if | ${interface} | --rx_src_mac | ${src_mac}
+| | ${args}= | Run Keyword If | "${hostname}" == "" | Set Variable | ${args}
+| | ...      | ELSE | Catenate | ${args} | --hostname | ${hostname}
 | | Run Traffic Script On Node | dhcp/check_dhcp_discover.py
+| | ... | ${tg_node} | ${args}
+
+
+| Check DHCP REQUEST after OFFER
+| | [Documentation] | Check if DHCP REQUEST message contains all required
+| | ... | fields. DHCP REQUEST should be send by a client after DHCP OFFER
+| | ... | message sent by a server.
+| | ...
+| | ... | *Arguments:*
+| | ... | - tg_node - TG node. Type: dictionary
+| | ... | - tg_interface - TG interface where listen for DHCP DISCOVER,
+| | ... |   send DHCP OFFER and listen for DHCP REQUEST messages. Type: string
+| | ... | - server_mac - DHCP server MAC address. Type: string
+| | ... | - server_ip - DHCP server IP address. Type: string
+| | ... | - client_mac - DHCP client MAC address. Type: string
+| | ... | - client_ip - IP address that should be offered to client.
+| | ... |   Type: string
+| | ... | - client_mask - IP netmask that should be offered to client.
+| | ... |   Type: string
+| | ... | - hostname - DHCP client hostname (Optional, Default="", if not
+| | ... |   specified, the hostname is not checked). Type: string
+| | ... | - offer_xid - Transaction ID (Optional, Default="", if not specified
+| | ... |   xid field in DHCP OFFER is same as in DHCP DISCOVER message).
+| | ... |   Type: integer
+| | ...
+| | ... | *Return:*
+| | ... | - No value returned.
+| | ...
+| | ... | *Raises:*
+| | ... | - DHCP REQUEST Rx timeout - if no DHCP REQUEST is received.
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Check DHCP REQUEST after OFFER \| ${nodes['TG']} \
+| | ... | \| eth2 \| 08:00:27:66:b8:57 \| 192.168.23.1 \
+| | ... | \| 08:00:27:46:2b:4c \| 192.168.23.10 \| 255.255.255.0 \|
+| | ...
+| | ... | \| Run Keyword And Expect Error \| DHCP REQUEST Rx timeout \
+| | ... | \| Check DHCP REQUEST after OFFER \
+| | ... | \| ${nodes['TG']} \| eth2 \| 08:00:27:66:b8:57 \| 192.168.23.1 \
+| | ... | \| 08:00:27:46:2b:4c \| 192.168.23.10 \| 255.255.255.0 \
+| | ... | \| offer_xid=11113333 \|
+| | ...
+| | [Arguments] | ${tg_node} | ${tg_interface} | ${server_mac} | ${server_ip}
+| | ... | ${client_mac} | ${client_ip} | ${client_mask}
+| | ... | ${hostname}=${EMPTY} | ${offer_xid}=${EMPTY}
+| | ${args}= | Catenate | --rx_if | ${tg_interface} | --server_mac
+| | ... | ${server_mac} | --server_ip | ${server_ip} | --client_mac
+| | ... | ${client_mac} | --client_ip | ${client_ip} | --client_mask
+| | ... | ${client_mask}
+| | ${args}= | Run Keyword If | "${hostname}" == "" | Set Variable | ${args}
+| | ...      | ELSE | Catenate | ${args} | --hostname | ${hostname}
+| | ${args}= | Run Keyword If | "${offer_xid}" == "" | Set Variable | ${args}
+| | ...      | ELSE | Catenate | ${args} | --offer_xid | ${offer_xid}
+| | Run Traffic Script On Node | dhcp/check_dhcp_request.py
 | | ... | ${tg_node} | ${args}
