@@ -453,14 +453,14 @@ class DropRateSearch(object):
     def verify_search_result(self):
         """Fail if search was not successful.
 
-        :return: Result rate.
-        :rtype: float
+        :return: Result rate and latency stats.
+        :rtype: tuple
         """
         if self._search_result == SearchResults.FAILURE:
             raise Exception('Search FAILED')
         elif self._search_result in [SearchResults.SUCCESS,
                                      SearchResults.SUSPICIOUS]:
-            return self._search_result_rate
+            return self._search_result_rate, self._latency_stats
 
     def binary_search(self, b_min, b_max, traffic_type, skip_max_rate=False):
         """Binary search of rate with loss below acceptance criteria.
