@@ -46,7 +46,10 @@ class TGDropRateSearchImpl(DropRateSearch):
             unit_rate = str(rate) + self.get_rate_type_str()
             tg_instance.trex_stl_start_remote_exec(self.get_duration(),
                                                    unit_rate, frame_size,
-                                                   traffic_type, False)
+                                                   traffic_type)
+            # Get latency stats from stream
+            self._latency_stats = tg_instance.get_latency()
+
             loss = tg_instance.get_loss()
             sent = tg_instance.get_sent()
             if self.loss_acceptance_type_is_percentage():
@@ -74,6 +77,7 @@ class TrafficGenerator(object):
         self._result = None
         self._loss = None
         self._sent = None
+        self._latency = None
         self._received = None
         self._node = None
         # T-REX interface order mapping
@@ -102,6 +106,14 @@ class TrafficGenerator(object):
         :rtype: str
         """
         return self._received
+
+    def get_latency(self):
+        """Return min/avg/max latency.
+
+        :return: Latency stats.
+        :rtype: list
+        """
+        return self._latency
 
     #pylint: disable=too-many-arguments, too-many-locals
     def initialize_traffic_generator(self, tg_node, tg_if1, tg_if2,
@@ -273,7 +285,8 @@ class TrafficGenerator(object):
             raise RuntimeError('T-rex stateless runtime error')
 
     def trex_stl_start_remote_exec(self, duration, rate, framesize,
-                                   traffic_type, async_call, warmup_time=5):
+                                   traffic_type, async_call=False,
+                                   latency=True, warmup_time=5):
         """Execute script on remote node over ssh to start traffic.
 
         :param duration: Time expresed in seconds for how long to send traffic.
@@ -281,12 +294,14 @@ class TrafficGenerator(object):
         :param framesize: L2 frame size to send (without padding and IPG).
         :param traffic_type: Traffic profile.
         :param async_call: If enabled then don't wait for all incomming trafic.
+        :param latency: With latency measurement.
         :param warmup_time: Warmup time period.
         :type duration: int
         :type rate: str
         :type framesize: int
         :type traffic_type: str
         :type async_call: bool
+        :type latency: bool
         :type warmup_time: int
         :return: Nothing
         """
@@ -295,10 +310,9 @@ class TrafficGenerator(object):
 
         _p0 = 1
         _p1 = 2
-        _async = ""
+        _async = "--async" if async_call else ""
+        _latency = "--latency" if latency else ""
 
-        if async_call:
-            _async = "--async"
         if self._ifaces_reordered != 0:
             _p0, _p1 = _p1, _p0
 
@@ -312,9 +326,10 @@ class TrafficGenerator(object):
                 "--p{5}_src_start_ip 20.20.20.1 "
                 "--p{5}_src_end_ip 20.20.20.254 "
                 "--p{5}_dst_start_ip 10.10.10.1 "
-                "{6} --warmup_time={7}'".format(Constants.REMOTE_FW_DIR,
-                                                duration, rate, framesize, _p0,
-                                                _p1, _async, warmup_time),
+                "{6} {7} --warmup_time={8}'".format(Constants.REMOTE_FW_DIR,
+                                                    duration, rate, framesize,
+                                                    _p0, _p1, _async, _latency,
+                                                    warmup_time),
                 timeout=int(duration)+60)
         elif traffic_type in ["3-node-IPv4"]:
             (ret, stdout, stderr) = ssh.exec_command(
@@ -326,9 +341,10 @@ class TrafficGenerator(object):
                 "--p{5}_src_start_ip 20.20.20.2 "
                 "--p{5}_src_end_ip 20.20.20.254 "
                 "--p{5}_dst_start_ip 10.10.10.2 "
-                "{6} --warmup_time={7}'".format(Constants.REMOTE_FW_DIR,
-                                                duration, rate, framesize, _p0,
-                                                _p1, _async, warmup_time),
+                "{6} {7} --warmup_time={8}'".format(Constants.REMOTE_FW_DIR,
+                                                    duration, rate, framesize,
+                                                    _p0, _p1, _async, _latency,
+                                                    warmup_time),
                 timeout=int(duration)+60)
         elif traffic_type in ["3-node-IPv6"]:
             (ret, stdout, stderr) = ssh.exec_command(
@@ -340,9 +356,10 @@ class TrafficGenerator(object):
                 "--p{5}_src_start_ip 2001:2::2 "
                 "--p{5}_src_end_ip 2001:2::FE "
                 "--p{5}_dst_start_ip 2001:1::2 "
-                "{6} --warmup_time={7}'".format(Constants.REMOTE_FW_DIR,
-                                                duration, rate, framesize, _p0,
-                                                _p1, _async, warmup_time),
+                "{6} {7} --warmup_time={8}'".format(Constants.REMOTE_FW_DIR,
+                                                    duration, rate, framesize,
+                                                    _p0, _p1, _async, _latency,
+                                                    warmup_time),
                 timeout=int(duration)+60)
         else:
             raise NotImplementedError('Unsupported traffic type')
@@ -358,6 +375,7 @@ class TrafficGenerator(object):
             self._received = None
             self._sent = None
             self._loss = None
+            self._latency = None
         else:
             # last line from console output
             line = stdout.splitlines()[-1]
@@ -368,6 +386,9 @@ class TrafficGenerator(object):
             self._received = self._result.split(', ')[1].split('=')[1]
             self._sent = self._result.split(', ')[2].split('=')[1]
             self._loss = self._result.split(', ')[3].split('=')[1]
+            self._latency = []
+            self._latency.append(self._result.split(', ')[4].split('=')[1])
+            self._latency.append(self._result.split(', ')[5].split('=')[1])
 
     def stop_traffic_on_tg(self):
         """Stop all traffic on TG
@@ -380,17 +401,20 @@ class TrafficGenerator(object):
             self.trex_stl_stop_remote_exec(self._node)
 
     def send_traffic_on_tg(self, duration, rate, framesize,
-                           traffic_type, warmup_time=5, async_call=False):
+                           traffic_type, warmup_time=5, async_call=False,
+                           latency=True):
         """Send traffic from all configured interfaces on TG.
 
         :param duration: Duration of test traffic generation in seconds.
         :param rate: Offered load per interface (e.g. 1%, 3gbps, 4mpps, ...).
         :param framesize: Frame size (L2) in Bytes.
         :param traffic_type: Traffic profile.
+        :param latency: With latency measurement.
         :type duration: str
         :type rate: str
         :type framesize: str
         :type traffic_type: str
+        :type latency: bool
         :return: TG output.
         :rtype: str
         """
@@ -406,7 +430,7 @@ class TrafficGenerator(object):
             raise Exception('TG subtype not defined')
         elif node['subtype'] == NodeSubTypeTG.TREX:
             self.trex_stl_start_remote_exec(duration, rate, framesize,
-                                            traffic_type, async_call,
+                                            traffic_type, async_call, latency,
                                             warmup_time=warmup_time)
         else:
             raise NotImplementedError("TG subtype not supported")

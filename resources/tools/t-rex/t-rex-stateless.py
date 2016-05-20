@@ -109,7 +109,7 @@ def create_packets(traffic_options, frame_size=64):
     :type traffic_options: list
     :type frame_size: int
     :return: Packet instances.
-    :rtype STLPktBuilder
+    :rtype Tuple of STLPktBuilder
     """
 
     if frame_size < 64:
@@ -150,11 +150,15 @@ def create_packets(traffic_options, frame_size=64):
                      ], split_by_field="src")
 
     pkt_a = STLPktBuilder(pkt=base_pkt_a/generate_payload(
-        fsize_no_fcs-len(base_pkt_a)), vm=vm1)
+        max(0, fsize_no_fcs-len(base_pkt_a))), vm=vm1)
     pkt_b = STLPktBuilder(pkt=base_pkt_b/generate_payload(
-        fsize_no_fcs-len(base_pkt_b)), vm=vm2)
+        max(0, fsize_no_fcs-len(base_pkt_b))), vm=vm2)
+    lat_a = STLPktBuilder(pkt=base_pkt_a/generate_payload(
+        max(0, fsize_no_fcs-len(base_pkt_a))))
+    lat_b = STLPktBuilder(pkt=base_pkt_b/generate_payload(
+        max(0, fsize_no_fcs-len(base_pkt_b))))
 
-    return(pkt_a, pkt_b)
+    return(pkt_a, pkt_b, lat_a, lat_b)
 
 
 def create_packets_v6(traffic_options, frame_size=78):
@@ -165,7 +169,7 @@ def create_packets_v6(traffic_options, frame_size=78):
     :type traffic_options: List
     :type frame_size: int
     :return: Packet instances.
-    :rtype STLPktBuilder
+    :rtype Tuple of STLPktBuilder
     """
 
     if frame_size < 78:
@@ -213,25 +217,36 @@ def create_packets_v6(traffic_options, frame_size=78):
         max(0, fsize_no_fcs-len(base_pkt_a))), vm=vm1)
     pkt_b = STLPktBuilder(pkt=base_pkt_b/generate_payload(
         max(0, fsize_no_fcs-len(base_pkt_b))), vm=vm2)
+    lat_a = STLPktBuilder(pkt=base_pkt_a/generate_payload(
+        max(0, fsize_no_fcs-len(base_pkt_a))))
+    lat_b = STLPktBuilder(pkt=base_pkt_b/generate_payload(
+        max(0, fsize_no_fcs-len(base_pkt_b))))
 
-    return(pkt_a, pkt_b)
+    return(pkt_a, pkt_b, lat_a, lat_b)
 
 
-def simple_burst(pkt_a, pkt_b, duration, rate, warmup_time, async_start):
+def simple_burst(pkt_a, pkt_b, pkt_lat_a, pkt_lat_b, duration, rate,
+                 warmup_time, async_start, latency):
     """Run the traffic with specific parameters.
 
     :param pkt_a: Base packet for stream 1.
     :param pkt_b: Base packet for stream 2.
+    :param pkt_lat_a: Base packet for latency stream 1.
+    :param pkt_lat_b: Base packet for latency stream 2.
     :param duration: Duration of traffic run in seconds (-1=infinite).
     :param rate: Rate of traffic run [percentage, pps, bps].
     :param warmup_time: Warm up duration.
-    :async_start: Start the traffic and exit
+    :param async_start: Start the traffic and exit.
+    :param latency: With latency stats.
     :type pkt_a: STLPktBuilder
     :type pkt_b: STLPktBuilder
+    :type pkt_lat_a: STLPktBuilder
+    :type pkt_lat_b: STLPktBuilder
     :type duration: int
     :type rate: string
     :type warmup_time: int
     :type async_start: bool
+    :type latency: bool
     :return: nothing
     """
 
@@ -242,19 +257,12 @@ def simple_burst(pkt_a, pkt_b, duration, rate, warmup_time, async_start):
     total_sent = 0
     lost_a = 0
     lost_b = 0
+    lat_a = 'NA'
+    lat_b = 'NA'
 
     try:
         # turn this off if too many logs
         #client.set_verbose("high")
-
-        # create two streams
-        stream1 = STLStream(packet=pkt_a,
-                            mode=STLTXCont(pps=100))
-
-        # second stream with a phase of 10ns (inter stream gap)
-        stream2 = STLStream(packet=pkt_b,
-                            isg=10.0,
-                            mode=STLTXCont(pps=100))
 
         # connect to server
         client.connect()
@@ -262,17 +270,47 @@ def simple_burst(pkt_a, pkt_b, duration, rate, warmup_time, async_start):
         # prepare our ports (my machine has 0 <--> 1 with static route)
         client.reset(ports=[0, 1])
 
-        # add both streams to ports
+        # create two traffic streams without latency stats
+        stream1 = STLStream(packet=pkt_a,
+                            mode=STLTXCont(pps=1000))
+        # second traffic stream with a phase of 10ns (inter stream gap)
+        stream2 = STLStream(packet=pkt_b,
+                            isg=10.0,
+                            mode=STLTXCont(pps=1000))
         client.add_streams(stream1, ports=[0])
         client.add_streams(stream2, ports=[1])
 
+        if latency:
+            # create two traffic streams with latency stats
+            lat_stream1 = STLStream(packet=pkt_lat_a,
+                                    flow_stats=STLFlowLatencyStats(pg_id=0),
+                                    mode=STLTXCont(pps=1000))
+            # second traffic stream with a phase of 10ns (inter stream gap)
+            lat_stream2 = STLStream(packet=pkt_lat_b,
+                                    isg=10.0,
+                                    flow_stats=STLFlowLatencyStats(pg_id=1),
+                                    mode=STLTXCont(pps=1000))
+            client.add_streams(lat_stream1, ports=[0])
+            client.add_streams(lat_stream2, ports=[1])
+
         #warmup phase
         if warmup_time > 0:
+            # clear the stats before injecting
             client.clear_stats()
+
+            # choose rate and start traffic
             client.start(ports=[0, 1], mult=rate, duration=warmup_time)
+
+            # block until done
             client.wait_on_traffic(ports=[0, 1], timeout=(warmup_time+30))
+
+            if client.get_warnings():
+                for warning in client.get_warnings():
+                    print_error(warning)
+
+            # read the stats after the test
             stats = client.get_stats()
-            print stats
+
             print "#####warmup statistics#####"
             print json.dumps(stats, indent=4,
                              separators=(',', ': '), sort_keys=True)
@@ -282,11 +320,8 @@ def simple_burst(pkt_a, pkt_b, duration, rate, warmup_time, async_start):
             print "\npackets lost from 0 --> 1:   {0} pkts".format(lost_a)
             print "packets lost from 1 --> 0:   {0} pkts".format(lost_b)
 
-
         # clear the stats before injecting
         client.clear_stats()
-        total_rcvd = 0
-        total_sent = 0
         lost_a = 0
         lost_b = 0
 
@@ -297,15 +332,28 @@ def simple_burst(pkt_a, pkt_b, duration, rate, warmup_time, async_start):
             # block until done
             client.wait_on_traffic(ports=[0, 1], timeout=(duration+30))
 
+            if client.get_warnings():
+                for warning in client.get_warnings():
+                    print_error(warning)
+
             # read the stats after the test
             stats = client.get_stats()
 
             print "#####statistics#####"
             print json.dumps(stats, indent=4,
                              separators=(',', ': '), sort_keys=True)
-
             lost_a = stats[0]["opackets"] - stats[1]["ipackets"]
             lost_b = stats[1]["opackets"] - stats[0]["ipackets"]
+
+            if latency:
+                lat_a = "/".join((\
+                    str(stats["latency"][0]["latency"]["total_min"]),\
+                    str(stats["latency"][0]["latency"]["average"]),\
+                    str(stats["latency"][0]["latency"]["total_max"])))
+                lat_b = "/".join((\
+                    str(stats["latency"][1]["latency"]["total_min"]),\
+                    str(stats["latency"][1]["latency"]["average"]),\
+                    str(stats["latency"][1]["latency"]["total_max"])))
 
             total_sent = stats[0]["opackets"] + stats[1]["opackets"]
             total_rcvd = stats[0]["ipackets"] + stats[1]["ipackets"]
@@ -322,8 +370,11 @@ def simple_burst(pkt_a, pkt_b, duration, rate, warmup_time, async_start):
             client.disconnect(stop_traffic=False, release_ports=True)
         else:
             client.disconnect()
-            print "rate={0}, totalReceived={1}, totalSent={2}, frameLoss={3}"\
-                .format(rate, total_rcvd, total_sent, lost_a+lost_b)
+            print "rate={0}, totalReceived={1}, totalSent={2}, "\
+                "frameLoss={3}, latencyStream0(usec)={4}, "\
+                "latencyStream1(usec)={5}".format(rate, total_rcvd,\
+                total_sent, lost_a+lost_b, lat_a, lat_b)
+
 
 def print_error(msg):
     """Print error message on stderr.
@@ -336,16 +387,12 @@ def print_error(msg):
     sys.stderr.write(msg+'\n')
 
 
-def main():
-    """Main function."""
+def parse_args():
+    """Parse arguments from cmd line.
 
-    _traffic_options = {}
-    #default L3 profile is IPv4
-    _use_ipv6 = False
-    #default warmup time is 5 seconds
-    _warmup_time = 5
-    #default behaviour of this script is sychronous
-    _async_call = False
+    :return: Parsed arguments.
+    :rtype ArgumentParser
+    """
 
     parser = argparse.ArgumentParser()
     parser.add_argument("-d", "--duration", required=True, type=int,
@@ -355,10 +402,16 @@ def main():
     parser.add_argument("-r", "--rate", required=True,
                         help="Traffic rate with included units (%, pps)")
     parser.add_argument("-6", "--use_IPv6", action="store_true",
+                        default=False,
                         help="Use IPv6 traffic profile instead of IPv4")
     parser.add_argument("--async", action="store_true",
+                        default=False,
                         help="Non-blocking call of the script")
+    parser.add_argument("--latency", action="store_true",
+                        default=False,
+                        help="Add latency stream")
     parser.add_argument("-w", "--warmup_time", type=int,
+                        default=5,
                         help="Traffic warmup time in seconds, 0 = disable")
 #    parser.add_argument("--p1_src_mac",
 #                        help="Port 1 source MAC address")
@@ -385,29 +438,40 @@ def main():
 #    parser.add_argument("--p2_dst_end_ip",
 #                        help="Port 2 destination end IP address")
 
-    args = parser.parse_args()
+    return parser.parse_args()
+
+
+def main():
+    """Main function."""
+
+    args = parse_args()
 
     _duration = args.duration
     _frame_size = args.frame_size
     _rate = args.rate
     _use_ipv6 = args.use_IPv6
     _async_call = args.async
+    _latency = args.latency
+    _warmup_time = args.warmup_time
 
-    if args.warmup_time is not None:
-        _warmup_time = args.warmup_time
-
+    _traffic_options = {}
     for attr in [a for a in dir(args) if a.startswith('p')]:
         if getattr(args, attr) is not None:
             _traffic_options[attr] = getattr(args, attr)
 
     if _use_ipv6:
-        pkt_a, pkt_b = create_packets_v6(_traffic_options,
-                                         frame_size=_frame_size)
-    else:
-        pkt_a, pkt_b = create_packets(_traffic_options,
-                                      frame_size=_frame_size)
+        # WARNING: Trex limitation to IPv4 only. IPv6 is not yet supported.
+        print_error('IPv6 latency is not supported yet. Running without lat.')
+        _latency = False
 
-    simple_burst(pkt_a, pkt_b, _duration, _rate, _warmup_time, _async_call)
+        pkt_a, pkt_b, lat_a, lat_b = create_packets_v6(_traffic_options,
+                                                       frame_size=_frame_size)
+    else:
+        pkt_a, pkt_b, lat_a, lat_b = create_packets(_traffic_options,
+                                                    frame_size=_frame_size)
+
+    simple_burst(pkt_a, pkt_b, lat_a, lat_b, _duration, _rate, _warmup_time,
+                 _async_call, _latency)
 
 if __name__ == "__main__":
     sys.exit(main())
