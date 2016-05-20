@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da141535_95e7a012",
+        "filename": "resources/libraries/robot/counters.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-20T09:02:55Z",
+      "side": 1,
+      "message": "Please, add documentation here, e.g.\nClear runtime, interface, hardware and errors counters on all DUTs.\n(to have description when we start to use testdoc tool to provide test case documentatin files)",
+      "range": {
+        "startLine": 56,
+        "startChar": 2,
+        "endLine": 56,
+        "endChar": 32
+      },
+      "revId": "c0ba5de8742a7a783cb27ca06f0ff3827a1c5f1f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_559fc85f",
+        "filename": "resources/libraries/robot/performance.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-20T09:02:55Z",
+      "side": 1,
+      "message": "I guess it will not work as expected here...\nIf you use ${fail_on_loss}\u003dTrue then you need to use check Run Keyword If | ${fail_on_loss} \u003d\u003d \u0027True\u0027 | No traffic loss occurred\nas the True is not real boolean true... The same in case of False - the boolean false is ${False}.\n\nYou need to use ${fail_on_loss}\u003d${True} and then you can use\n Run Keyword If | ${fail_on_loss} | No traffic loss occurred",
+      "range": {
+        "startLine": 233,
+        "startChar": 21,
+        "endLine": 233,
+        "endChar": 36
+      },
+      "revId": "c0ba5de8742a7a783cb27ca06f0ff3827a1c5f1f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
