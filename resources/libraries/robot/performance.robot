@@ -230,6 +230,7 @@
 | | [Arguments] | ${duration} | ${rate} | ${framesize} | ${topology_type}
 | | Send traffic on tg | -1 | ${rate} | ${framesize}
 | | ...                | ${topology_type} | warmup_time=0 | async_call=True
+| | ...                | latency=True
 | | Clear runtime statistics on all DUTs
 | | Sleep | ${duration}
 | | Show runtime statistics on all DUTs
