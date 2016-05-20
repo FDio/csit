@@ -47,3 +47,21 @@
 | |          | ...  | ${src_mac} | --hostname | ${hostname}
 | | Run Traffic Script On Node | dhcp/check_dhcp_discover.py
 | | ... | ${tg_node} | ${args}
+
+| Check DHCP REQUEST after OFFER
+| | [Documentation] | TBD
+| | ...
+| | ...
+| | [Arguments] | ${tg_node} | ${tg_interface} | ${server_mac} | ${client_mac}
+
+
+| | ${args}= | Catenate |
+| |          | ... | --rx_if | ${tg_interface}
+| |          | ... | --server_mac | ${server_mac}
+| |          | ... | --server_ip | 192.168.23.1
+| |          | ... | --client_mac | ${client_mac}
+| |          | ... | --client_ip | 192.168.23.10
+| |          | ... | --client_mask | 255.255.255.0
+
+| | Run Traffic Script On Node | dhcp/check_dhcp_request.py
+| | ... | ${tg_node} | ${args}
