@@ -56,9 +56,9 @@ def convert_ipv4_netmask_prefix(network):
     net = IPv4Network(u"{0}/{1}".format(temp_address, network), False)
 
     if isinstance(network, int) and (0 < network < 33):
-        return net.netmask
+        return str(net.netmask)
     elif isinstance(network, basestring):
-        return net.prefixlen
+        return int(net.prefixlen)
     else:
         raise Exception("Value {0} is not a valid ipv4 netmask or network"
                         " prefix length".format(network))

@@ -64,7 +64,7 @@
 | | ... | \| Bridge domain configuration from Honeycomb should be \
 | | ... | \| ${nodes['DUT1']} \| bd-04 \| ${{flood:True,learn:False}} \|
 | | [Arguments] | ${node} | ${bd_name} | ${settings}
-| | ${api_data}= | Get bd cfg data | ${node} | ${bd_name}
+| | ${api_data}= | Get bd oper data | ${node} | ${bd_name}
 | | :FOR | ${key} | IN | @{settings.keys()}
 | | | Should be equal | ${settings['${key}']} | ${api_data['${key}']}
 
@@ -195,7 +195,7 @@
 | | ...
 | | ... | \| Honeycomb should show no bridge domains \| ${nodes['DUT1']} \|
 | | [Arguments] | ${node}
-| | ${bd_data} | Get all BDs cfg data | ${node}
+| | ${bd_data} | Get all BDs oper data | ${node}
 | | Should be empty | ${bd_data}
 
 | VAT should show no bridge domains
