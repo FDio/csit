@@ -21,7 +21,8 @@ class Routing(object):
     """Routing utilities."""
 
     @staticmethod
-    def vpp_route_add(node, network, prefix_len, gateway, interface):
+    def vpp_route_add(node, network, prefix_len, gateway=None, interface=None,
+                      use_sw_index=True, resolve_attempts=10):
         """Add route to the VPP node.
 
         :param node: Node to add route on.
@@ -29,19 +30,35 @@ class Routing(object):
         :param prefix_len: Route destination network prefix length.
         :param gateway: Route gateway address.
         :param interface: Route interface.
+        :param use_sw_index: Use sw_if_index in VAT command.
+        :param resolve_attempts: Resolve attempts IP route add parameter.
+        If None, then is not used.
         :type node: dict
         :type network: str
         :type prefix_len: int
         :type gateway: str
         :type interface: str
+        :type use_sw_index: bool
+        :type resolve_attempts: int
         """
-        sw_if_index = Topology.get_interface_sw_index(node, interface)
+        if use_sw_index:
+            int_cmd = ('sw_if_index {}'.
+                       format(Topology.get_interface_sw_index(node, interface)))
+        else:
+            int_cmd = interface
+
+        rap = 'resolve-attempts {}'.format(resolve_attempts) \
+            if resolve_attempts else ''
+
+        via = 'via {}'.format(gateway) if gateway else ''
+
         with VatTerminal(node) as vat:
             vat.vat_terminal_exec_cmd_from_template('add_route.vat',
                                                     network=network,
                                                     prefix_length=prefix_len,
-                                                    gateway=gateway,
-                                                    sw_if_index=sw_if_index)
+                                                    via=via,
+                                                    interface=int_cmd,
+                                                    resolve_attempts=rap)
 
     @staticmethod
     def add_fib_table(node, network, prefix_len, fib_id, place):
