@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da141535_78f52182",
+        "filename": "resources/libraries/python/DropRateSearch.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 422,
+      "author": {
+        "id": 74
+      },
+      "writtenOn": "2016-05-22T19:31:44Z",
+      "side": 1,
+      "message": "I\u0027d prefer to start from the MAX rate by default, thus start_max\u003dFalse could be skip_first_step\u003dFalse or skip_max_rate\u003dFalse.",
+      "revId": "3d87acadff8f63107fa8d6209fc7813065625e9d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
