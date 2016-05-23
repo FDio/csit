@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "da141535_1bef3f89",
+        "filename": "resources/libraries/robot/dhcp_client.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-23T13:12:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_f5f37c71",
+      "revId": "09dca46013644895ccd2ccfec894ef357c8a149a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da141535_9502003d",
         "filename": "resources/libraries/robot/dhcp_client.robot",
         "patchSetId": 3
@@ -30,6 +48,30 @@
       "writtenOn": "2016-05-20T12:28:17Z",
       "side": 1,
       "message": "Full stop at the end.",
+      "range": {
+        "startLine": 22,
+        "startChar": 66,
+        "endLine": 22,
+        "endChar": 72
+      },
+      "revId": "09dca46013644895ccd2ccfec894ef357c8a149a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_3be203a0",
+        "filename": "resources/libraries/robot/dhcp_client.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-23T13:12:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_9502003d",
       "range": {
         "startLine": 22,
         "startChar": 66,
@@ -65,6 +107,30 @@
     },
     {
       "key": {
+        "uuid": "da141535_5be5b7a6",
+        "filename": "resources/libraries/robot/dhcp_client.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-23T13:12:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_d59f5802",
+      "range": {
+        "startLine": 25,
+        "startChar": 12,
+        "endLine": 25,
+        "endChar": 22
+      },
+      "revId": "09dca46013644895ccd2ccfec894ef357c8a149a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da141535_75864cbb",
         "filename": "resources/traffic_scripts/dhcp/check_dhcp_discover.py",
         "patchSetId": 3
@@ -76,6 +142,30 @@
       "writtenOn": "2016-05-20T12:28:17Z",
       "side": 1,
       "message": "This should fit one line.",
+      "range": {
+        "startLine": 29,
+        "startChar": 4,
+        "endLine": 30,
+        "endChar": 25
+      },
+      "revId": "09dca46013644895ccd2ccfec894ef357c8a149a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_bbd613c4",
+        "filename": "resources/traffic_scripts/dhcp/check_dhcp_discover.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-23T13:12:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_75864cbb",
       "range": {
         "startLine": 29,
         "startChar": 4,
@@ -111,6 +201,30 @@
     },
     {
       "key": {
+        "uuid": "da141535_9bdb4fed",
+        "filename": "resources/traffic_scripts/dhcp/check_dhcp_discover.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-23T13:12:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_559348fa",
+      "range": {
+        "startLine": 95,
+        "startChar": 4,
+        "endLine": 95,
+        "endChar": 20
+      },
+      "revId": "09dca46013644895ccd2ccfec894ef357c8a149a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da141535_3590d4eb",
         "filename": "resources/traffic_scripts/dhcp/check_dhcp_discover.py",
         "patchSetId": 3
@@ -122,6 +236,30 @@
       "writtenOn": "2016-05-20T12:28:17Z",
       "side": 1,
       "message": "Where do you check the bootfile?",
+      "range": {
+        "startLine": 97,
+        "startChar": 4,
+        "endLine": 97,
+        "endChar": 20
+      },
+      "revId": "09dca46013644895ccd2ccfec894ef357c8a149a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_7bd87bef",
+        "filename": "resources/traffic_scripts/dhcp/check_dhcp_discover.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-23T13:12:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_3590d4eb",
       "range": {
         "startLine": 97,
         "startChar": 4,
