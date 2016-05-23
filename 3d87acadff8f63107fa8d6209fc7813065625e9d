@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "da141535_7bf63bd9",
+        "filename": "resources/libraries/python/DropRateSearch.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 422,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-05-23T10:15:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_78f52182",
+      "revId": "3d87acadff8f63107fa8d6209fc7813065625e9d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da141535_986d9535",
         "filename": "resources/libraries/python/DropRateSearch.py",
         "patchSetId": 3
@@ -30,6 +48,30 @@
       "writtenOn": "2016-05-23T06:42:03Z",
       "side": 1,
       "message": "bool",
+      "range": {
+        "startLine": 432,
+        "startChar": 25,
+        "endLine": 432,
+        "endChar": 32
+      },
+      "revId": "3d87acadff8f63107fa8d6209fc7813065625e9d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_9bf90fcb",
+        "filename": "resources/libraries/python/DropRateSearch.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 432,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-05-23T10:15:25Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_986d9535",
       "range": {
         "startLine": 432,
         "startChar": 25,
