@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da141535_b85f3972",
+        "filename": "resources/libraries/robot/traffic.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-05-23T07:00:36Z",
+      "side": 1,
+      "message": "Consider using only the name without curly parenthesis.",
+      "range": {
+        "startLine": 118,
+        "startChar": 12,
+        "endLine": 118,
+        "endChar": 21
+      },
+      "revId": "21cf4fdf66b10f42cd353a1565f41d9e0ef81d10",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_d85aed82",
+        "filename": "resources/libraries/robot/traffic.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-05-23T07:00:36Z",
+      "side": 1,
+      "message": "Use hyphen instead of colon.\nCheck everywhere.",
+      "range": {
+        "startLine": 118,
+        "startChar": 22,
+        "endLine": 118,
+        "endChar": 23
+      },
+      "revId": "21cf4fdf66b10f42cd353a1565f41d9e0ef81d10",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
