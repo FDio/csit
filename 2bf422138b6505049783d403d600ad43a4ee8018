@@ -1,0 +1,140 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da141535_1b75ff97",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 12
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 74
+      },
+      "writtenOn": "2016-05-23T10:30:04Z",
+      "side": 1,
+      "message": "do we need these options if we don\u0027t use them ?",
+      "revId": "2bf422138b6505049783d403d600ad43a4ee8018",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_fb792b94",
+        "filename": "resources/libraries/python/DropRateSearch.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 74
+      },
+      "writtenOn": "2016-05-23T10:30:04Z",
+      "side": 1,
+      "message": "Loss acceptance threshold",
+      "revId": "2bf422138b6505049783d403d600ad43a4ee8018",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_bb73b3b0",
+        "filename": "resources/libraries/python/DropRateSearch.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 74
+      },
+      "writtenOn": "2016-05-23T10:30:04Z",
+      "side": 1,
+      "message": "threshold",
+      "revId": "2bf422138b6505049783d403d600ad43a4ee8018",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_9b68efbb",
+        "filename": "resources/libraries/python/DropRateSearch.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 166,
+      "author": {
+        "id": 74
+      },
+      "writtenOn": "2016-05-23T10:30:04Z",
+      "side": 1,
+      "message": "threshold",
+      "revId": "2bf422138b6505049783d403d600ad43a4ee8018",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_7b651be0",
+        "filename": "resources/libraries/python/DropRateSearch.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 74
+      },
+      "writtenOn": "2016-05-23T10:30:04Z",
+      "side": 1,
+      "message": "threshold",
+      "revId": "2bf422138b6505049783d403d600ad43a4ee8018",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_5b6257d9",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 74
+      },
+      "writtenOn": "2016-05-23T10:30:04Z",
+      "side": 1,
+      "message": "packets",
+      "revId": "2bf422138b6505049783d403d600ad43a4ee8018",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_3b5fa310",
+        "filename": "resources/libraries/robot/performance.robot",
+        "patchSetId": 12
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 74
+      },
+      "writtenOn": "2016-05-23T10:30:04Z",
+      "side": 1,
+      "message": "partial drop rate, with PDR threshold 0.5%.",
+      "revId": "2bf422138b6505049783d403d600ad43a4ee8018",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_1b9cdfbf",
+        "filename": "tests/suites/performance/Long_Bridge_Domain_Intel-X520-DA2.robot",
+        "patchSetId": 12
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 74
+      },
+      "writtenOn": "2016-05-23T10:30:04Z",
+      "side": 1,
+      "message": "These are default values for all test, could you please move it to performance.robot and call it \"default\"/\"def\" or \"global\"/\"glob\" ?",
+      "revId": "2bf422138b6505049783d403d600ad43a4ee8018",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
