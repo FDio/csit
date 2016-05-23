@@ -196,6 +196,21 @@ class QemuUtils(object):
                 self._node['host']))
         return json.loads(out_list[2])
 
+    def _qemu_qga_flush(self):
+        """Flush the QGA parser state
+        """
+        qga_cmd = 'printf "\xFF" | sudo -S nc ' \
+            '-q 1 -U ' + self.__QGA_SOCK
+        (ret_code, stdout, stderr) = self._ssh.exec_command(qga_cmd)
+        if 0 != int(ret_code):
+            logger.debug('QGA execute failed {0}'.format(stderr))
+            raise RuntimeError('QGA execute "{0}" failed on {1}'.format(cmd,
+                self._node['host']))
+        logger.trace(stdout)
+        if not stdout:
+            return {}
+        return json.loads(stdout.split('\n', 1)[0])
+
     def _qemu_qga_exec(self, cmd):
         """Execute QGA command.
 
@@ -229,6 +244,7 @@ class QemuUtils(object):
             if time() - start > timeout:
                 raise RuntimeError('timeout, VM {0} not booted on {1}'.format(
                     self._qemu_opt['disk_image'], self._node['host']))
+            self._qemu_qga_flush()
             out = self._qemu_qga_exec('guest-ping')
             # Empty output - VM not booted yet
             if not out:
