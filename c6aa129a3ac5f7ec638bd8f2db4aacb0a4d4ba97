@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da141535_18ef4589",
+        "filename": "resources/libraries/robot/l2_traffic.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-05-23T07:12:53Z",
+      "side": 1,
+      "message": "Description of args is missing.\nExample is missing.",
+      "range": {
+        "startLine": 21,
+        "startChar": 3,
+        "endLine": 21,
+        "endChar": 19
+      },
+      "revId": "c6aa129a3ac5f7ec638bd8f2db4aacb0a4d4ba97",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_78d881ef",
+        "filename": "resources/libraries/robot/l2_traffic.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-05-23T07:12:53Z",
+      "side": 1,
+      "message": "The line is too long.",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 21,
+        "endChar": 94
+      },
+      "revId": "c6aa129a3ac5f7ec638bd8f2db4aacb0a4d4ba97",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_58e5bda6",
+        "filename": "resources/libraries/robot/l2_traffic.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-05-23T07:12:53Z",
+      "side": 1,
+      "message": "The line is too long.\nCheck everywhere.",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 94
+      },
+      "revId": "c6aa129a3ac5f7ec638bd8f2db4aacb0a4d4ba97",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_38e209a0",
+        "filename": "resources/libraries/robot/l2_traffic.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-05-23T07:12:53Z",
+      "side": 1,
+      "message": "Description of args is missing.\nExample is missing.",
+      "range": {
+        "startLine": 40,
+        "startChar": 4,
+        "endLine": 40,
+        "endChar": 19
+      },
+      "revId": "c6aa129a3ac5f7ec638bd8f2db4aacb0a4d4ba97",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_d8e8ad7e",
+        "filename": "resources/libraries/robot/l2_traffic.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-05-23T07:12:53Z",
+      "side": 1,
+      "message": "Description of args is missing.\nExample is missing.",
+      "range": {
+        "startLine": 51,
+        "startChar": 4,
+        "endLine": 51,
+        "endChar": 19
+      },
+      "revId": "c6aa129a3ac5f7ec638bd8f2db4aacb0a4d4ba97",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_b8edf98d",
+        "filename": "resources/traffic_scripts/send_ip_icmp.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-05-23T07:12:53Z",
+      "side": 1,
+      "message": "Documentation is missing.",
+      "range": {
+        "startLine": 30,
+        "startChar": 4,
+        "endLine": 30,
+        "endChar": 14
+      },
+      "revId": "c6aa129a3ac5f7ec638bd8f2db4aacb0a4d4ba97",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_9802353d",
+        "filename": "resources/traffic_scripts/send_ip_icmp.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-05-23T07:12:53Z",
+      "side": 1,
+      "message": "Documentation is missing.",
+      "range": {
+        "startLine": 38,
+        "startChar": 4,
+        "endLine": 38,
+        "endChar": 14
+      },
+      "revId": "c6aa129a3ac5f7ec638bd8f2db4aacb0a4d4ba97",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
