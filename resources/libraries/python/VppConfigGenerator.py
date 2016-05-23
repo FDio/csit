@@ -409,12 +409,9 @@ class VppConfigGenerator(object):
             raise RuntimeError('Writing config file failed to node {}'.
                                format(hostname))
 
-        # Instead of restarting, we'll do separate start and stop
-        # actions. This way we don't care whether VPP was running
-        # to begin with.
-        ssh.exec_command('sudo initctl stop {}'.format(VPP_SERVICE_NAME))
+        # Restart VPP with builtin command.
         (ret, stdout, stderr) = \
-            ssh.exec_command('sudo initctl start {}'.format(VPP_SERVICE_NAME))
+            ssh.exec_command('sudo -S {}_restart'.format(VPP_SERVICE_NAME))
         if ret != 0:
             logger.debug('Restarting VPP failed on node {}'.
                          format(hostname))
