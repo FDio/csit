@@ -299,6 +299,11 @@ def simple_burst(pkt_a, pkt_b, duration, rate, warmup_time, async_start,
             client.clear_stats()
             client.start(ports=[0, 1], duration=warmup_time)
             client.wait_on_traffic(ports=[0, 1], timeout=(warmup_time+30))
+
+            if client.get_warnings():
+                for warning in c.get_warnings():
+                    print_error(warning)
+
             stats = client.get_stats()
             print stats
             print "#####warmup statistics#####"
@@ -313,8 +318,6 @@ def simple_burst(pkt_a, pkt_b, duration, rate, warmup_time, async_start,
 
         # clear the stats before injecting
         client.clear_stats()
-        total_rcvd = 0
-        total_sent = 0
         lost_a = 0
         lost_b = 0
 
@@ -324,6 +327,10 @@ def simple_burst(pkt_a, pkt_b, duration, rate, warmup_time, async_start,
         if not async_start:
             # block until done
             client.wait_on_traffic(ports=[0, 1], timeout=(duration+30))
+
+            if client.get_warnings():
+                for warning in c.get_warnings():
+                    print_error(warning)
 
             # read the stats after the test
             stats = client.get_stats()
