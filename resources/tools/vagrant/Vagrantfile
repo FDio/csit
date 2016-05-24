@@ -52,7 +52,7 @@ def add_dut(config, name, mgmt_ip, net1, net2)
     node.vm.network "private_network", type: "dhcp", auto_config: false,
         virtualbox__intnet: net2
     node.vm.provider "virtualbox" do |vb|
-      vb.memory = "2048"
+      vb.memory = "3072"
       vb.customize ["modifyvm", :id, "--nicpromisc3", "allow-all"]
       vb.customize ["modifyvm", :id, "--nicpromisc4", "allow-all"]
     end
