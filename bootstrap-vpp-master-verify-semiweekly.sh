@@ -266,9 +266,9 @@ set -x
 echo Making a reservation for the HW system...
 
 # Space separated list of available testbeds, described by topology files
-TOPOLOGIES="topologies/available/lf_testbed1-710-520.yaml \
-            topologies/available/lf_testbed2-710-520.yaml \
-            topologies/available/lf_testbed3-710-520.yaml"
+TOPOLOGIES="topologies/available/lf_testbed1-X710-X520.yaml \
+            topologies/available/lf_testbed2-X710-X520.yaml \
+            topologies/available/lf_testbed3-X710-X520.yaml"
 
 # Reservation dir
 RESERVATION_DIR="/tmp/reservation_dir"
