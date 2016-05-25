@@ -21,8 +21,7 @@
 | ... | L2 | Intel-X520-DA2
 | Suite Teardown | 3-node Performance Suite Teardown
 | Test Setup | Setup all DUTs before test
-| Test Teardown | Run Keywords | Show statistics on all DUTs
-| ...                          | Remove startup configuration of VPP from all DUTs
+| Test Teardown | Run Keyword | Remove startup configuration of VPP from all DUTs
 | Documentation | *Throughput search suite (based on RFC2544).*
 | ...
 | ... | Test suite uses 3-node topology TG - DUT1 - DUT2 - TG, with one link
