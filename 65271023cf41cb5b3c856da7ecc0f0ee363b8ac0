@@ -1,0 +1,504 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da141535_04311c5a",
+        "filename": "resources/libraries/robot/traffic.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-25T12:00:16Z",
+      "side": 1,
+      "message": "Send IP packet from tx_port and check ARP on rx_port.",
+      "range": {
+        "startLine": 110,
+        "startChar": 22,
+        "endLine": 110,
+        "endChar": 66
+      },
+      "revId": "65271023cf41cb5b3c856da7ecc0f0ee363b8ac0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_c45fa471",
+        "filename": "resources/libraries/robot/traffic.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-25T12:00:16Z",
+      "side": 1,
+      "message": "Source IP address of transfered packet",
+      "range": {
+        "startLine": 119,
+        "startChar": 21,
+        "endLine": 119,
+        "endChar": 43
+      },
+      "revId": "65271023cf41cb5b3c856da7ecc0f0ee363b8ac0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_e4350847",
+        "filename": "resources/libraries/robot/traffic.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-25T12:00:16Z",
+      "side": 1,
+      "message": "tx_src_ip",
+      "range": {
+        "startLine": 119,
+        "startChar": 12,
+        "endLine": 119,
+        "endChar": 18
+      },
+      "revId": "65271023cf41cb5b3c856da7ecc0f0ee363b8ac0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_c43a0436",
+        "filename": "resources/libraries/robot/traffic.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-25T12:00:16Z",
+      "side": 1,
+      "message": "tx_dst_ip",
+      "range": {
+        "startLine": 120,
+        "startChar": 12,
+        "endLine": 120,
+        "endChar": 18
+      },
+      "revId": "65271023cf41cb5b3c856da7ecc0f0ee363b8ac0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_a454b054",
+        "filename": "resources/libraries/robot/traffic.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-25T12:00:16Z",
+      "side": 1,
+      "message": "Destination IP address of transfered packet.",
+      "range": {
+        "startLine": 120,
+        "startChar": 21,
+        "endLine": 120,
+        "endChar": 48
+      },
+      "revId": "65271023cf41cb5b3c856da7ecc0f0ee363b8ac0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_4446f4c0",
+        "filename": "resources/libraries/robot/traffic.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-25T12:00:16Z",
+      "side": 1,
+      "message": "Interface from which is IP packet send",
+      "range": {
+        "startLine": 121,
+        "startChar": 26,
+        "endLine": 121,
+        "endChar": 45
+      },
+      "revId": "65271023cf41cb5b3c856da7ecc0f0ee363b8ac0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_a43f1025",
+        "filename": "resources/libraries/robot/traffic.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-25T12:00:16Z",
+      "side": 1,
+      "message": "tx_port",
+      "range": {
+        "startLine": 121,
+        "startChar": 12,
+        "endLine": 121,
+        "endChar": 23
+      },
+      "revId": "65271023cf41cb5b3c856da7ecc0f0ee363b8ac0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_846acc18",
+        "filename": "resources/libraries/robot/traffic.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-25T12:00:16Z",
+      "side": 1,
+      "message": "tx_dst_mac",
+      "range": {
+        "startLine": 122,
+        "startChar": 12,
+        "endLine": 122,
+        "endChar": 22
+      },
+      "revId": "65271023cf41cb5b3c856da7ecc0f0ee363b8ac0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_6477b803",
+        "filename": "resources/libraries/robot/traffic.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-25T12:00:16Z",
+      "side": 1,
+      "message": "Destination MAC address of IP packet",
+      "range": {
+        "startLine": 122,
+        "startChar": 25,
+        "endLine": 122,
+        "endChar": 46
+      },
+      "revId": "65271023cf41cb5b3c856da7ecc0f0ee363b8ac0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_c4d684c5",
+        "filename": "resources/libraries/robot/traffic.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-25T12:00:16Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 125,
+        "startChar": 0,
+        "endLine": 125,
+        "endChar": 60
+      },
+      "revId": "65271023cf41cb5b3c856da7ecc0f0ee363b8ac0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_0466bc51",
+        "filename": "resources/libraries/robot/traffic.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-25T12:00:16Z",
+      "side": 1,
+      "message": "add to documentation",
+      "range": {
+        "startLine": 137,
+        "startChar": 57,
+        "endLine": 137,
+        "endChar": 66
+      },
+      "revId": "65271023cf41cb5b3c856da7ecc0f0ee363b8ac0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_e45aa882",
+        "filename": "resources/libraries/robot/traffic.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-25T12:00:16Z",
+      "side": 1,
+      "message": "add to documentation",
+      "range": {
+        "startLine": 138,
+        "startChar": 12,
+        "endLine": 138,
+        "endChar": 24
+      },
+      "revId": "65271023cf41cb5b3c856da7ecc0f0ee363b8ac0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_84ce4c59",
+        "filename": "resources/libraries/robot/traffic.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-25T12:00:16Z",
+      "side": 1,
+      "message": "tx",
+      "range": {
+        "startLine": 140,
+        "startChar": 27,
+        "endLine": 140,
+        "endChar": 29
+      },
+      "revId": "65271023cf41cb5b3c856da7ecc0f0ee363b8ac0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_644e98c3",
+        "filename": "resources/traffic_scripts/send_icmp_check_arp.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-25T12:00:16Z",
+      "side": 1,
+      "message": "and expects ARP on the other one",
+      "range": {
+        "startLine": 16,
+        "startChar": 18,
+        "endLine": 16,
+        "endChar": 35
+      },
+      "revId": "65271023cf41cb5b3c856da7ecc0f0ee363b8ac0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_444b94b0",
+        "filename": "resources/traffic_scripts/send_icmp_check_arp.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-25T12:00:16Z",
+      "side": 1,
+      "message": "use print logger logs nothing to output",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 28
+      },
+      "revId": "65271023cf41cb5b3c856da7ecc0f0ee363b8ac0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_a48950cc",
+        "filename": "resources/traffic_scripts/send_icmp_check_arp.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-25T12:00:16Z",
+      "side": 1,
+      "message": "Update doc string",
+      "revId": "65271023cf41cb5b3c856da7ecc0f0ee363b8ac0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_44e274a0",
+        "filename": "resources/traffic_scripts/send_icmp_check_arp.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-25T12:00:16Z",
+      "side": 1,
+      "message": "rx_arp_src_ip",
+      "range": {
+        "startLine": 32,
+        "startChar": 58,
+        "endLine": 32,
+        "endChar": 67
+      },
+      "revId": "65271023cf41cb5b3c856da7ecc0f0ee363b8ac0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_64e578a7",
+        "filename": "resources/traffic_scripts/send_icmp_check_arp.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-25T12:00:16Z",
+      "side": 1,
+      "message": "rx_arp_dst_ip",
+      "range": {
+        "startLine": 33,
+        "startChar": 10,
+        "endLine": 33,
+        "endChar": 22
+      },
+      "revId": "65271023cf41cb5b3c856da7ecc0f0ee363b8ac0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_04f47c59",
+        "filename": "resources/traffic_scripts/send_icmp_check_arp.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-25T12:00:16Z",
+      "side": 1,
+      "message": "IP",
+      "range": {
+        "startLine": 47,
+        "startChar": 19,
+        "endLine": 47,
+        "endChar": 21
+      },
+      "revId": "65271023cf41cb5b3c856da7ecc0f0ee363b8ac0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_c4a44459",
+        "filename": "resources/traffic_scripts/send_icmp_check_arp.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-25T12:00:16Z",
+      "side": 1,
+      "message": "it does fit in one line",
+      "range": {
+        "startLine": 48,
+        "startChar": 14,
+        "endLine": 50,
+        "endChar": 20
+      },
+      "revId": "65271023cf41cb5b3c856da7ecc0f0ee363b8ac0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_649338fb",
+        "filename": "tests/suites/ipv4/ipv4_arp_untagged.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-25T12:00:16Z",
+      "side": 1,
+      "message": "When",
+      "range": {
+        "startLine": 47,
+        "startChar": 4,
+        "endLine": 47,
+        "endChar": 7
+      },
+      "revId": "65271023cf41cb5b3c856da7ecc0f0ee363b8ac0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_449034ec",
+        "filename": "tests/suites/ipv4/ipv4_arp_untagged.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-25T12:00:16Z",
+      "side": 1,
+      "message": "move to Given section",
+      "range": {
+        "startLine": 52,
+        "startChar": 8,
+        "endLine": 52,
+        "endChar": 32
+      },
+      "revId": "65271023cf41cb5b3c856da7ecc0f0ee363b8ac0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
