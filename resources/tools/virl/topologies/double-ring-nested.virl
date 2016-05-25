@@ -3,7 +3,7 @@
     <extensions>
         <entry key="management_network" type="String">flat</entry>
     </extensions>
-    <node name="tg1" type="SIMPLE" subtype="server" location="570,238" vmImage="server-java-nested">
+    <node name="tg1" type="SIMPLE" subtype="server" location="570,238" vmImage="$$VM_IMAGE$$">
         <extensions>
             <entry key="config" type="String">#cloud-config&#xD;
 bootcmd:&#xD;
@@ -91,6 +91,7 @@ write_files:&#xD;
     mount -t nfs "${nfs_server_common}" /mnt/common
 
     mkdir /scratch/$(hostname)
+    cp /VERSION /scratch/$(hostname)/
 
     exit 0&#xD;
 </entry>
@@ -103,7 +104,7 @@ write_files:&#xD;
         <interface id="4" name="eth5"/>
         <interface id="5" name="eth6"/>
     </node>
-    <node name="sut1" type="SIMPLE" subtype="vPP" location="425,26" vmImage="server-java-nested">
+    <node name="sut1" type="SIMPLE" subtype="vPP" location="425,26" vmImage="$$VM_IMAGE$$">
         <extensions>
             <entry key="config" type="string">#cloud-config
 bootcmd:
@@ -191,7 +192,16 @@ write_files:
 
     mount -t nfs "${nfs_server_common}" /mnt/common
 
+    # Overwrite nested VM image with latest as per NFS
+    if [ -f /mnt/common/nested-vm-current.img ]
+    then
+      rm -f /var/lib/vm/vhost-nested.img
+      cp /mnt/common/nested-vm-current.img /var/lib/vm/vhost-nested.img
+    fi
+
     mkdir /scratch/$(hostname)
+    cp /VERSION /scratch/$(hostname)/
+    cat /var/lib/vm/vhost-nested.img | strings | grep NESTED_VERSION= > /scratch/$(hostname)/NESTED_VERSION
 
     exit 0&#xD;
 </entry>
@@ -201,7 +211,7 @@ write_files:
         <interface id="2" name="GigabitEthernet0/6/0"/>
         <interface id="3" name="GigabitEthernet0/7/0"/>
     </node>
-    <node name="sut2" type="SIMPLE" subtype="vPP" location="748,26" vmImage="server-java-nested">
+    <node name="sut2" type="SIMPLE" subtype="vPP" location="748,26" vmImage="$$VM_IMAGE$$">
         <extensions>
             <entry key="config" type="string">#cloud-config
 bootcmd:
@@ -289,7 +299,16 @@ write_files:
 
     mount -t nfs "${nfs_server_common}" /mnt/common
 
+    # Overwrite nested VM image with latest as per NFS
+    if [ -f /mnt/common/nested-vm-current.img ]
+    then
+      rm -f /var/lib/vm/vhost-nested.img
+      cp /mnt/common/nested-vm-current.img /var/lib/vm/vhost-nested.img
+    fi
+
     mkdir /scratch/$(hostname)
+    cp /VERSION /scratch/$(hostname)/
+    cat /var/lib/vm/vhost-nested.img | strings | grep NESTED_VERSION= > /scratch/$(hostname)/NESTED_VERSION
 
     exit 0&#xD;
 </entry>

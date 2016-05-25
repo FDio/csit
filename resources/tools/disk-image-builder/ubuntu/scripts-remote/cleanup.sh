@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh -e
 
 # Copyright (c) 2016 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,12 +13,25 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-VIRL_USER="tb4-virl"                                            # VIRL credentials (what one would enter in VMMaestro)
-VIRL_PASSWORD="Cisco1234"
+echo "********** CLEANING UP **********"
 
-NFS_SCRATCH_SERVERDIR="/nfs/scratch"                            # Our own (NFS server) IP address, and directory locations.
+# Clean up host keys only if we're using cloud-init
+# (which will generate new keys upon next boot). This
+# currently applies to Qemu build only.
 
-TESTCASE=$1
+if dpkg -s cloud-init > /dev/null 2>&1
+then
+  rm -f /etc/ssh/ssh_host_*
+fi
 
-virl_std_client -u $VIRL_USER -p $VIRL_PASSWORD simengine-stop --session-id $TESTCASE
-sudo rm -fr ${NFS_SCRATCH_SERVERDIR}/${TESTCASE}
+# Remove root's password, old resolv.conf and DHCP lease
+passwd -d root
+passwd -l root
+rm -f /etc/resolv.conf
+pkill dhclient
+rm -f /var/lib/dhcp/*leases
+
+echo "********** SCHEDULING SHUTDOWN IN 1 MINUTE **********"
+sync
+shutdown -h +1
+exit

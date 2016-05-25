@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Copyright (c) 2016 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,12 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-VIRL_USER="tb4-virl"                                            # VIRL credentials (what one would enter in VMMaestro)
-VIRL_PASSWORD="Cisco1234"
+# Script to clean up build artifacts and cached files.
 
-NFS_SCRATCH_SERVERDIR="/nfs/scratch"                            # Our own (NFS server) IP address, and directory locations.
-
-TESTCASE=$1
-
-virl_std_client -u $VIRL_USER -p $VIRL_PASSWORD simengine-stop --session-id $TESTCASE
-sudo rm -fr ${NFS_SCRATCH_SERVERDIR}/${TESTCASE}
+rm -fr $(dirname $0)/build/*
+rm -fr $(dirname $0)/lists/*
