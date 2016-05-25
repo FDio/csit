@@ -53,6 +53,14 @@
 | | ${10Ge_linerate_pps_1522B}= | Set Variable | 810635
 | | ${10Ge_linerate_pps_9000B}= | Set Variable | 138580
 | | ${10Ge_linerate_pps_9004B}= | Set Variable | 138519
+| | ${40Ge_linerate_pps_64B}= | Set Variable | 59523809
+| | ${40Ge_linerate_pps_68B}= | Set Variable | 56818181
+| | ${40Ge_linerate_pps_78B}= | Set Variable | 51020408
+| | ${40Ge_linerate_pps_1518B}= | Set Variable | 3250975
+| | ${40Ge_linerate_pps_1522B}= | Set Variable | 3242542
+| | ${40Ge_linerate_pps_9000B}= | Set Variable | 554323
+| | ${40Ge_linerate_pps_9004B}= | Set Variable | 554078
+
 | | Set Suite Variable | ${10Ge_linerate_pps_64B}
 | | Set Suite Variable | ${10Ge_linerate_pps_68B}
 | | Set Suite Variable | ${10Ge_linerate_pps_78B}
@@ -60,6 +68,13 @@
 | | Set Suite Variable | ${10Ge_linerate_pps_1522B}
 | | Set Suite Variable | ${10Ge_linerate_pps_9000B}
 | | Set Suite Variable | ${10Ge_linerate_pps_9004B}
+| | Set Suite Variable | ${40Ge_linerate_pps_64B}
+| | Set Suite Variable | ${40Ge_linerate_pps_68B}
+| | Set Suite Variable | ${40Ge_linerate_pps_78B}
+| | Set Suite Variable | ${40Ge_linerate_pps_1518B}
+| | Set Suite Variable | ${40Ge_linerate_pps_1522B}
+| | Set Suite Variable | ${40Ge_linerate_pps_9000B}
+| | Set Suite Variable | ${40Ge_linerate_pps_9004B}
 
 | Setup performance global Variables
 | | [Documentation] | Setup performance global Variables

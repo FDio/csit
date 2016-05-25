@@ -95,8 +95,9 @@ class VatJsonUtil(object):
             interface_dict = VatJsonUtil.get_vpp_interface_by_mac(
                 interface_list, if_mac)
             if not interface_dict:
-                raise Exception('Interface {0} not found by MAC {1}'
-                                .format(ifc, if_mac))
+                logger.trace('Interface {0} not found by MAC {1}'
+                             .format(ifc, if_mac))
+                continue
             ifc['name'] = interface_dict["interface_name"]
             ifc['vpp_sw_index'] = interface_dict["sw_if_index"]
             ifc['mtu'] = interface_dict["mtu"]
