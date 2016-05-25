@@ -19,8 +19,7 @@
 
 | Suite Teardown | 3-node Performance Suite Teardown
 | Test Setup | Setup all DUTs before test
-| Test Teardown | Run Keywords | Show statistics on all DUTs
-| ...                          | Remove startup configuration of VPP from all DUTs
+| Test Teardown | Run Keyword | Remove startup configuration of VPP from all DUTs
 | Documentation | Minimal throughput acceptance test cases
 
 *** Test Cases ***
