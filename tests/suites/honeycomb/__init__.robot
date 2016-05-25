@@ -15,8 +15,10 @@
 | ${node}= | ${nodes['DUT1']}
 
 *** Settings ***
+| Library | resources.libraries.python.honeycomb.HcPersistence
 | Resource | resources/libraries/robot/default.robot
 | Resource | resources/libraries/robot/honeycomb/honeycomb.robot
 | Suite Setup | Run keywords | Setup all DUTs before test | AND
+| ... | Clear persisted Honeycomb configuration | ${node} | AND
 | ... | Setup Honeycomb service on DUTs | ${node}
 | Suite Teardown | Stop Honeycomb service on DUTs | ${node}

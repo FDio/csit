@@ -26,7 +26,7 @@ class Constants(object):
     VAT_BIN_NAME = 'vpp_api_test'
 
     # Honeycomb directory location at topology nodes:
-    REMOTE_HC_DIR = '/opt/honeycomb/v3po-karaf-1.0.0-SNAPSHOT/bin'
+    REMOTE_HC_DIR = '/opt/honeycomb/v3po-karaf-1.0.0-SNAPSHOT'
 
     # Honeycomb templates location
     RESOURCES_TPL_HC = 'resources/templates/honeycomb'
