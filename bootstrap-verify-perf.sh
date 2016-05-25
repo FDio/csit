@@ -15,9 +15,10 @@
 set -x
 
 # Space separated list of available testbeds, described by topology files
-TOPOLOGIES="topologies/available/lf_testbed1-710-520.yaml \
-            topologies/available/lf_testbed2-710-520.yaml \
-            topologies/available/lf_testbed3-710-520.yaml"
+TOPOLOGIES="topologies/available/lf_testbed2-XL710-XL710.yaml"
+#TOPOLOGIES="topologies/available/lf_testbed1-710-520.yaml \
+#            topologies/available/lf_testbed2-710-520.yaml \
+#            topologies/available/lf_testbed3-710-520.yaml"
 
 VPP_STABLE_VER="1.0.0-437~g8f15e92_amd64"
 VPP_REPO_URL="https://nexus.fd.io/service/local/repositories/fd.io.dev/content/io/fd/vpp"
@@ -169,6 +170,7 @@ case "$TEST_TAG" in
               -L TRACE \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s performance \
+              -i NIC_Intel-XL710 \
               tests/
 esac
 
