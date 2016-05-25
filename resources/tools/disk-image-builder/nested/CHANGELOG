@@ -1,0 +1,27 @@
+## [1.2] - 2016-05-25
+
+### Changes
+- Embed version in hidden file with magic string that can be read
+  without actually booting the image:
+  ~~~
+  cat <vm image> | strings | grep NESTED_VERSION
+  ~~~
+- Include both cisco/cisco credentials (for backwards compatibility)
+  and csit/csit
+
+## [1.1] - 2016-05-17
+
+### Added
+- iproute2 package (for "ip" command)
+
+
+## [1.0] - 2016-05-16
+
+### First release
+- Basic script to build FD.IO VPP CSIT "nested VM" image using buildroot.
+This version is to mimic the previous, manually built image.
+- Packages installed:
+    - Kernel 4.3
+        - support for virtio NIC
+    - bridge-utils (for brctl)
+    - qemu (for qemu-ga)
