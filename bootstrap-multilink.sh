@@ -16,7 +16,7 @@
 
 sudo apt-get -y install python-virtualenv
 
-virtualenv env
+virtualenv --system-site-packages env
 . env/bin/activate
 pip install -r requirements.txt
 

@@ -142,7 +142,7 @@ if [ "$?" -ne "0" ]; then
 fi
 
 
-virtualenv env
+virtualenv --system-site-packages env
 . env/bin/activate
 
 echo pip install

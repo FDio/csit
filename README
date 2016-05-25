@@ -2,7 +2,7 @@
  - install virtualenv
  - generate environment using virtualenv:
     # cd $ROOT
-    # virtualenv env
+    # virtualenv --system-site-packages env
     # source env/bin/activate
  - install python requirements for this project by executing:
     # pip install -r requirements.txt
