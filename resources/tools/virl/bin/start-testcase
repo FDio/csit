@@ -66,7 +66,7 @@ def main():
                         "directory", default="/nfs/common")
     parser.add_argument("-wc", "--wait-count",
                         help="number of intervals to wait for simulation to " +
-                        "be ready", type=int, default=12)
+                        "be ready", type=int, default=24)
     parser.add_argument("-wt", "--wait-time",
                         help="length of a single interval to wait for " +
                         "simulation to be ready", type=int, default=5)
@@ -83,6 +83,9 @@ def main():
                         default="/home/jenkins-in/.ssh/id_rsa_virl")
     parser.add_argument("-spu", "--ssh-pubkey", help="SSH public keyfile",
                         default="/home/jenkins-in/.ssh/id_rsa_virl.pub")
+    parser.add_argument("-r", "--release", help="VM disk image/release " +
+                        "(ex. \"csit-ubuntu-14.04.4_2016-05-25_1.0\")",
+                        default="csit-ubuntu-14.04.4_2016-05-25_1.0")
     parser.add_argument("--topology-directory", help="Topology directory",
                         default="/home/jenkins-in/testcase-infra/topologies")
 
@@ -134,6 +137,7 @@ def main():
                 args.nfs_server_ip+":"+args.nfs_scratch_directory)
             line = line.replace("$$NFS_SERVER_COMMON$$", \
                 args.nfs_server_ip+":"+args.nfs_common_directory)
+            line = line.replace("$$VM_IMAGE$$", "server-"+args.release)
             new_file.write(line)
     os.close(temp_handle)
 
