@@ -85,9 +85,8 @@ class VppConfigGenerator(object):
 
         if pci_device is None:
             # No PCI device was given. Add all device from topology.
-            for port in node['interfaces'].values():
-                port_name = port.get('name')
-                pci_addr = Topology.get_interface_pci_addr(node, port_name)
+            for port in node['interfaces'].keys():
+                pci_addr = Topology.get_interface_pci_addr(node, port)
                 if pci_addr:
                     self.add_pci_device(node, pci_addr)
         else:
