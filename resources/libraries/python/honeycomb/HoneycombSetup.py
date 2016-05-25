@@ -185,3 +185,31 @@ class HoneycombSetup(object):
                         logger.info("Honeycomb on node {0} has stopped".
                                     format(node['host']))
         return True
+
+    @staticmethod
+    def clear_persisted_honeycomb_config(*nodes):
+        """Remove configuration data persisted from last Honeycomb session.
+        Default configuration will be used instead.
+
+        :param nodes: list of DUTs to execute on
+        :type nodes: list
+        :raises HoneycombError: If persisted configuration could not be removed.
+        """
+        cmd = "rm {0}/../etc/opendaylight/honeycomb/*".format(
+            Const.REMOTE_HC_DIR)
+        for node in nodes:
+            if node['type'] == NodeType.DUT:
+                ssh = SSH()
+                ssh.connect(node)
+                (ret_code, _, stderr) = ssh.exec_command_sudo(cmd)
+                if ret_code != 0:
+                    if "No such file or directory" not in stderr:
+                        raise HoneycombError('Couldn`t clear persisted '
+                                             'configuration on node {0}, {1}'
+                                             .format(node['host'], stderr))
+                    else:
+                        logger.info("persistence data was not present on node"
+                                    " {0}".format(node['host']))
+                else:
+                    logger.info("Persistence files removed on node {0}"
+                                .format(node['host']))
