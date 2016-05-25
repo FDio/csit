@@ -64,7 +64,7 @@ export PYTHONPATH=${CUR_DIR}
 sudo apt-get -y update
 sudo apt-get -y install libpython2.7-dev python-virtualenv
 
-virtualenv env
+virtualenv --system-site-packages env
 . env/bin/activate
 
 echo pip install
