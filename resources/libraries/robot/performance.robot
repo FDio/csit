@@ -35,31 +35,43 @@
 | | ... |                              for 10GE with 64B L2 Frame.
 | | ... | - ${10Ge_linerate_pps_68B} - Maximum number of packet per second
 | | ... |                              for 10GE with 68B L2 Frame.
+| | ... | - ${10Ge_linerate_pps_72B} - Maximum number of packet per second
+| | ... |                              for 10GE with 72B L2 Frame.
 | | ... | - ${10Ge_linerate_pps_78B} - Maximum number of packet per second
 | | ... |                              for 10GE with 78B L2 Frame.
 | | ... | - ${10Ge_linerate_pps_1518B} - Maximum number of packet per second
 | | ... |                                for 10GE with 1518B L2 Frame.
 | | ... | - ${10Ge_linerate_pps_1522B} - Maximum number of packet per second
 | | ... |                                for 10GE with 1522B L2 Frame.
+| | ... | - ${10Ge_linerate_pps_1526B} - Maximum number of packet per second
+| | ... |                                for 10GE with 1526B L2 Frame.
 | | ... | - ${10Ge_linerate_pps_9000B} - Maximum number of packet per second
 | | ... |                                for 10GE with 9000B L2 Frame.
 | | ... | - ${10Ge_linerate_pps_9004B} - Maximum number of packet per second
 | | ... |                                for 10GE with 9004B L2 Frame.
+| | ... | - ${10Ge_linerate_pps_9008B} - Maximum number of packet per second
+| | ... |                                for 10GE with 9008B L2 Frame.
 | | ...
 | | ${10Ge_linerate_pps_64B}= | Set Variable | 14880952
 | | ${10Ge_linerate_pps_68B}= | Set Variable | 14204545
+| | ${10Ge_linerate_pps_72B}= | Set Variable | 12755102
 | | ${10Ge_linerate_pps_78B}= | Set Variable | 12755102
 | | ${10Ge_linerate_pps_1518B}= | Set Variable | 812743
 | | ${10Ge_linerate_pps_1522B}= | Set Variable | 810635
+| | ${10Ge_linerate_pps_1526B}= | Set Variable | 808538
 | | ${10Ge_linerate_pps_9000B}= | Set Variable | 138580
 | | ${10Ge_linerate_pps_9004B}= | Set Variable | 138519
+| | ${10Ge_linerate_pps_9008B}= | Set Variable | 138458
 | | Set Suite Variable | ${10Ge_linerate_pps_64B}
 | | Set Suite Variable | ${10Ge_linerate_pps_68B}
+| | Set Suite Variable | ${10Ge_linerate_pps_72B}
 | | Set Suite Variable | ${10Ge_linerate_pps_78B}
 | | Set Suite Variable | ${10Ge_linerate_pps_1518B}
 | | Set Suite Variable | ${10Ge_linerate_pps_1522B}
+| | Set Suite Variable | ${10Ge_linerate_pps_1526B}
 | | Set Suite Variable | ${10Ge_linerate_pps_9000B}
 | | Set Suite Variable | ${10Ge_linerate_pps_9004B}
+| | Set Suite Variable | ${10Ge_linerate_pps_9008B}
 
 | 3-node circular Topology Variables Setup
 | | Append Nodes | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']}
