@@ -138,7 +138,7 @@ nodes:
         model: Intel-XL710
       port6:
         # t2-sut1-c4/p2 - 40GE port2 on Intel NIC xl710 2p40GE.
-        mac_address: "68:05:ca:35:77:0d"
+        mac_address: "68:05:ca:35:77:09"
         pci_address: "0000:85:00.1"
         link: link7
         model: Intel-XL710
@@ -205,7 +205,7 @@ nodes:
         model: Intel-XL710
       port6:
         # t2-sut2-c4/p2 - 40GE port2 on Intel NIC xl710 2p40GE.
-        mac_address: "68:05:ca:35:76:9d"
+        mac_address: "68:05:ca:35:76:99"
         pci_address: "0000:85:00.1"
         link: link14
         model: Intel-XL710
