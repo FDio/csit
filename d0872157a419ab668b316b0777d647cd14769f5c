@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da141535_c4b9e4ea",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-05-25T09:18:50Z",
+      "side": 1,
+      "message": "This is misleading. This patch only rework usage on multiple nodes. I think instead of all those changes you can simply use \"| Library | resources.libraries.python.QemuUtils.py | WITH NAME | qemu_node1\".",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 40
+      },
+      "revId": "d0872157a419ab668b316b0777d647cd14769f5c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
