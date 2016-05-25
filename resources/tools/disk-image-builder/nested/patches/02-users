@@ -1,0 +1,33 @@
+#!/bin/sh
+
+patch etc/sudoers <<"_EOF"
+97a98,99
+> 
+> csit ALL=(root) NOPASSWD:ALL
+_EOF
+
+patch etc/passwd <<"_EOF"
+10a11
+> csit:x:1001:1001:CSIT user:/tmp:/bin/sh
+_EOF
+
+patch etc/shadow <<"_EOF"
+1c1
+< root::10933:0:99999:7:::
+---
+> root:y0ZaR3z2z.kt.:16892:0:99999:7:::
+10a11
+> csit:5piAVSAyGsbaI:16892:0:99999:7:::
+_EOF
+
+patch etc/group <<"_EOF"
+27a28
+> csit:x:1001:
+_EOF
+
+patch etc/ssh/sshd_config <<"_EOF"
+44c44
+< #PermitRootLogin prohibit-password
+---
+> PermitRootLogin yes
+_EOF
