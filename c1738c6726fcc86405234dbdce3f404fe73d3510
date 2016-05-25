@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "da141535_c449e48c",
+        "filename": "resources/libraries/python/Dhcp.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-25T12:57:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_04959c32",
+      "range": {
+        "startLine": 21,
+        "startChar": 6,
+        "endLine": 21,
+        "endChar": 12
+      },
+      "revId": "c1738c6726fcc86405234dbdce3f404fe73d3510",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da141535_843c0c31",
         "filename": "resources/traffic_scripts/dhcp/check_dhcp_discover.py",
         "patchSetId": 5
@@ -36,6 +60,30 @@
       "writtenOn": "2016-05-25T11:45:39Z",
       "side": 1,
       "message": "Destination",
+      "range": {
+        "startLine": 48,
+        "startChar": 28,
+        "endLine": 48,
+        "endChar": 31
+      },
+      "revId": "c1738c6726fcc86405234dbdce3f404fe73d3510",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_0f2c9598",
+        "filename": "resources/traffic_scripts/dhcp/check_dhcp_discover.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-25T12:57:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_843c0c31",
       "range": {
         "startLine": 48,
         "startChar": 28,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "da141535_2f2759b8",
+        "filename": "resources/traffic_scripts/dhcp/check_dhcp_discover.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-25T12:57:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_6449f8cf",
+      "range": {
+        "startLine": 49,
+        "startChar": 11,
+        "endLine": 49,
+        "endChar": 14
+      },
+      "revId": "c1738c6726fcc86405234dbdce3f404fe73d3510",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da141535_241300ba",
         "filename": "resources/traffic_scripts/dhcp/check_dhcp_discover.py",
         "patchSetId": 5
@@ -82,6 +154,30 @@
       "writtenOn": "2016-05-25T11:45:39Z",
       "side": 1,
       "message": "Source",
+      "range": {
+        "startLine": 52,
+        "startChar": 28,
+        "endLine": 52,
+        "endChar": 31
+      },
+      "revId": "c1738c6726fcc86405234dbdce3f404fe73d3510",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_ef20419d",
+        "filename": "resources/traffic_scripts/dhcp/check_dhcp_discover.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-25T12:57:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_241300ba",
       "range": {
         "startLine": 52,
         "startChar": 28,
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "da141535_cf257dac",
+        "filename": "resources/traffic_scripts/dhcp/check_dhcp_discover.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-25T12:57:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_0418fcd1",
+      "range": {
+        "startLine": 53,
+        "startChar": 11,
+        "endLine": 53,
+        "endChar": 14
+      },
+      "revId": "c1738c6726fcc86405234dbdce3f404fe73d3510",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da141535_84f52c85",
         "filename": "resources/traffic_scripts/dhcp/check_dhcp_discover.py",
         "patchSetId": 5
@@ -128,6 +248,30 @@
       "writtenOn": "2016-05-25T11:45:39Z",
       "side": 1,
       "message": "What about to check and report status for dst and src IP address separately?",
+      "range": {
+        "startLine": 55,
+        "startChar": 4,
+        "endLine": 57,
+        "endChar": 19
+      },
+      "revId": "c1738c6726fcc86405234dbdce3f404fe73d3510",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_af3a49cb",
+        "filename": "resources/traffic_scripts/dhcp/check_dhcp_discover.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-25T12:57:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_84f52c85",
       "range": {
         "startLine": 55,
         "startChar": 4,
@@ -163,6 +307,30 @@
     },
     {
       "key": {
+        "uuid": "da141535_6f62f1d9",
+        "filename": "resources/traffic_scripts/dhcp/check_dhcp_discover.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-25T12:57:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_e483c8ca",
+      "range": {
+        "startLine": 70,
+        "startChar": 34,
+        "endLine": 70,
+        "endChar": 36
+      },
+      "revId": "c1738c6726fcc86405234dbdce3f404fe73d3510",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da141535_c488c4e9",
         "filename": "resources/traffic_scripts/dhcp/check_dhcp_discover.py",
         "patchSetId": 5
@@ -174,6 +342,30 @@
       "writtenOn": "2016-05-25T11:45:39Z",
       "side": 1,
       "message": "Please, use fullname like in lines 91 and 92.",
+      "range": {
+        "startLine": 71,
+        "startChar": 17,
+        "endLine": 71,
+        "endChar": 19
+      },
+      "revId": "c1738c6726fcc86405234dbdce3f404fe73d3510",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_8f6545e3",
+        "filename": "resources/traffic_scripts/dhcp/check_dhcp_discover.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-25T12:57:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_c488c4e9",
       "range": {
         "startLine": 71,
         "startChar": 17,
@@ -209,6 +401,30 @@
     },
     {
       "key": {
+        "uuid": "da141535_cf733db0",
+        "filename": "resources/traffic_scripts/dhcp/check_dhcp_discover.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-25T12:57:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_247ae0f1",
+      "range": {
+        "startLine": 74,
+        "startChar": 34,
+        "endLine": 74,
+        "endChar": 40
+      },
+      "revId": "c1738c6726fcc86405234dbdce3f404fe73d3510",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da141535_047fdce1",
         "filename": "resources/traffic_scripts/dhcp/check_dhcp_discover.py",
         "patchSetId": 5
@@ -220,6 +436,30 @@
       "writtenOn": "2016-05-25T11:45:39Z",
       "side": 1,
       "message": "Please, use fullname like in lines 91 and 92.",
+      "range": {
+        "startLine": 75,
+        "startChar": 17,
+        "endLine": 75,
+        "endChar": 23
+      },
+      "revId": "c1738c6726fcc86405234dbdce3f404fe73d3510",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_af6809bb",
+        "filename": "resources/traffic_scripts/dhcp/check_dhcp_discover.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-25T12:57:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_047fdce1",
       "range": {
         "startLine": 75,
         "startChar": 17,
@@ -255,6 +495,30 @@
     },
     {
       "key": {
+        "uuid": "da141535_ef6e01c9",
+        "filename": "resources/traffic_scripts/dhcp/check_dhcp_discover.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-25T12:57:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_6420d8f7",
+      "range": {
+        "startLine": 78,
+        "startChar": 34,
+        "endLine": 78,
+        "endChar": 40
+      },
+      "revId": "c1738c6726fcc86405234dbdce3f404fe73d3510",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da141535_441dd4bc",
         "filename": "resources/traffic_scripts/dhcp/check_dhcp_discover.py",
         "patchSetId": 5
@@ -266,6 +530,30 @@
       "writtenOn": "2016-05-25T11:45:39Z",
       "side": 1,
       "message": "Please, use fullname like in lines 91 and 92.",
+      "range": {
+        "startLine": 79,
+        "startChar": 17,
+        "endLine": 79,
+        "endChar": 23
+      },
+      "revId": "c1738c6726fcc86405234dbdce3f404fe73d3510",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_0f7a5588",
+        "filename": "resources/traffic_scripts/dhcp/check_dhcp_discover.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-25T12:57:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_441dd4bc",
       "range": {
         "startLine": 79,
         "startChar": 17,
@@ -301,6 +589,30 @@
     },
     {
       "key": {
+        "uuid": "da141535_2f751998",
+        "filename": "resources/traffic_scripts/dhcp/check_dhcp_discover.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-25T12:57:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_a426f014",
+      "range": {
+        "startLine": 82,
+        "startChar": 34,
+        "endLine": 82,
+        "endChar": 40
+      },
+      "revId": "c1738c6726fcc86405234dbdce3f404fe73d3510",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da141535_8423ec04",
         "filename": "resources/traffic_scripts/dhcp/check_dhcp_discover.py",
         "patchSetId": 5
@@ -312,6 +624,30 @@
       "writtenOn": "2016-05-25T11:45:39Z",
       "side": 1,
       "message": "Please, use fullname like in lines 91 and 92.",
+      "range": {
+        "startLine": 83,
+        "startChar": 17,
+        "endLine": 83,
+        "endChar": 23
+      },
+      "revId": "c1738c6726fcc86405234dbdce3f404fe73d3510",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_4f484d5b",
+        "filename": "resources/traffic_scripts/dhcp/check_dhcp_discover.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-25T12:57:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_8423ec04",
       "range": {
         "startLine": 83,
         "startChar": 17,
@@ -347,6 +683,30 @@
     },
     {
       "key": {
+        "uuid": "da141535_6f4b115a",
+        "filename": "resources/traffic_scripts/dhcp/check_dhcp_discover.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-25T12:57:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_e40ce896",
+      "range": {
+        "startLine": 86,
+        "startChar": 34,
+        "endLine": 86,
+        "endChar": 40
+      },
+      "revId": "c1738c6726fcc86405234dbdce3f404fe73d3510",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da141535_c411e4ad",
         "filename": "resources/traffic_scripts/dhcp/check_dhcp_discover.py",
         "patchSetId": 5
@@ -358,6 +718,30 @@
       "writtenOn": "2016-05-25T11:45:39Z",
       "side": 1,
       "message": "Please, use fullname like in lines 91 and 92.",
+      "range": {
+        "startLine": 87,
+        "startChar": 17,
+        "endLine": 87,
+        "endChar": 23
+      },
+      "revId": "c1738c6726fcc86405234dbdce3f404fe73d3510",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_8f3e65b7",
+        "filename": "resources/traffic_scripts/dhcp/check_dhcp_discover.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-25T12:57:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_c411e4ad",
       "range": {
         "startLine": 87,
         "startChar": 17,
@@ -416,6 +800,30 @@
     },
     {
       "key": {
+        "uuid": "da141535_0f05b510",
+        "filename": "tests/suites/dhcp/dhcp_client.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-25T12:57:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_e4e8687e",
+      "range": {
+        "startLine": 29,
+        "startChar": 43,
+        "endLine": 29,
+        "endChar": 44
+      },
+      "revId": "c1738c6726fcc86405234dbdce3f404fe73d3510",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da141535_84d88cf0",
         "filename": "tests/suites/dhcp/dhcp_client.robot",
         "patchSetId": 5
@@ -427,6 +835,30 @@
       "writtenOn": "2016-05-25T11:45:39Z",
       "side": 1,
       "message": "Please, add \"with expected vaules.\" as values of these fields are checked too.",
+      "range": {
+        "startLine": 30,
+        "startChar": 72,
+        "endLine": 30,
+        "endChar": 73
+      },
+      "revId": "c1738c6726fcc86405234dbdce3f404fe73d3510",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_ef09612d",
+        "filename": "tests/suites/dhcp/dhcp_client.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-25T12:57:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_84d88cf0",
       "range": {
         "startLine": 30,
         "startChar": 72,
@@ -462,6 +894,30 @@
     },
     {
       "key": {
+        "uuid": "da141535_4403940f",
+        "filename": "tests/suites/dhcp/dhcp_client.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-25T12:57:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_c4ed648d",
+      "range": {
+        "startLine": 40,
+        "startChar": 43,
+        "endLine": 40,
+        "endChar": 44
+      },
+      "revId": "c1738c6726fcc86405234dbdce3f404fe73d3510",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da141535_24ef8089",
         "filename": "tests/suites/dhcp/dhcp_client.robot",
         "patchSetId": 5
@@ -473,6 +929,30 @@
       "writtenOn": "2016-05-25T11:45:39Z",
       "side": 1,
       "message": "Please, add \"with expected vaules.\" as values of these fields are checked too.",
+      "range": {
+        "startLine": 41,
+        "startChar": 72,
+        "endLine": 41,
+        "endChar": 73
+      },
+      "revId": "c1738c6726fcc86405234dbdce3f404fe73d3510",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_2f007900",
+        "filename": "tests/suites/dhcp/dhcp_client.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-25T12:57:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_24ef8089",
       "range": {
         "startLine": 41,
         "startChar": 72,
