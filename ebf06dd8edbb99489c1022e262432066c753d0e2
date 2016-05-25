@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da141535_e4b068df",
+        "filename": "tests/suites/vxlan/vxlan_bd_untagged.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-25T11:05:05Z",
+      "side": 1,
+      "message": "maybe redundand",
+      "range": {
+        "startLine": 80,
+        "startChar": 4,
+        "endLine": 80,
+        "endChar": 5
+      },
+      "revId": "ebf06dd8edbb99489c1022e262432066c753d0e2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_c4b564ce",
+        "filename": "tests/suites/vxlan/vxlan_bd_untagged.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-25T11:05:05Z",
+      "side": 1,
+      "message": "same as 80",
+      "range": {
+        "startLine": 82,
+        "startChar": 4,
+        "endLine": 82,
+        "endChar": 5
+      },
+      "revId": "ebf06dd8edbb99489c1022e262432066c753d0e2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_04e35cda",
+        "filename": "tests/suites/vxlan/vxlan_bd_untagged.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-25T11:05:05Z",
+      "side": 1,
+      "message": "same as 80",
+      "range": {
+        "startLine": 149,
+        "startChar": 4,
+        "endLine": 149,
+        "endChar": 5
+      },
+      "revId": "ebf06dd8edbb99489c1022e262432066c753d0e2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_84c76c45",
+        "filename": "tests/suites/vxlan/vxlan_bd_untagged.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-25T11:05:05Z",
+      "side": 1,
+      "message": "same as 80",
+      "range": {
+        "startLine": 151,
+        "startChar": 4,
+        "endLine": 151,
+        "endChar": 5
+      },
+      "revId": "ebf06dd8edbb99489c1022e262432066c753d0e2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_24de6012",
+        "filename": "tests/suites/vxlan/vxlan_bd_untagged.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-25T11:05:05Z",
+      "side": 1,
+      "message": "same as 80",
+      "range": {
+        "startLine": 312,
+        "startChar": 4,
+        "endLine": 312,
+        "endChar": 5
+      },
+      "revId": "ebf06dd8edbb99489c1022e262432066c753d0e2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_44c1542d",
+        "filename": "tests/suites/vxlan/vxlan_bd_untagged.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-25T11:05:05Z",
+      "side": 1,
+      "message": "same as 80",
+      "range": {
+        "startLine": 314,
+        "startChar": 4,
+        "endLine": 314,
+        "endChar": 5
+      },
+      "revId": "ebf06dd8edbb99489c1022e262432066c753d0e2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
