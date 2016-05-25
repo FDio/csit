@@ -35,31 +35,33 @@
 | | ... |                              for 10GE with 64B L2 Frame.
 | | ... | - ${10Ge_linerate_pps_68B} - Maximum number of packet per second
 | | ... |                              for 10GE with 68B L2 Frame.
+| | ... | - ${10Ge_linerate_pps_72B} - Maximum number of packet per second
+| | ... |                              for 10GE with 72B L2 Frame.
 | | ... | - ${10Ge_linerate_pps_78B} - Maximum number of packet per second
 | | ... |                              for 10GE with 78B L2 Frame.
 | | ... | - ${10Ge_linerate_pps_1518B} - Maximum number of packet per second
 | | ... |                                for 10GE with 1518B L2 Frame.
 | | ... | - ${10Ge_linerate_pps_1522B} - Maximum number of packet per second
 | | ... |                                for 10GE with 1522B L2 Frame.
+| | ... | - ${10Ge_linerate_pps_1526B} - Maximum number of packet per second
+| | ... |                                for 10GE with 1526B L2 Frame.
 | | ... | - ${10Ge_linerate_pps_9000B} - Maximum number of packet per second
 | | ... |                                for 10GE with 9000B L2 Frame.
 | | ... | - ${10Ge_linerate_pps_9004B} - Maximum number of packet per second
 | | ... |                                for 10GE with 9004B L2 Frame.
+| | ... | - ${10Ge_linerate_pps_9008B} - Maximum number of packet per second
+| | ... |                                for 10GE with 9008B L2 Frame.
 | | ...
-| | ${10Ge_linerate_pps_64B}= | Set Variable | 14880952
-| | ${10Ge_linerate_pps_68B}= | Set Variable | 14204545
-| | ${10Ge_linerate_pps_78B}= | Set Variable | 12755102
-| | ${10Ge_linerate_pps_1518B}= | Set Variable | 812743
-| | ${10Ge_linerate_pps_1522B}= | Set Variable | 810635
-| | ${10Ge_linerate_pps_9000B}= | Set Variable | 138580
-| | ${10Ge_linerate_pps_9004B}= | Set Variable | 138519
-| | Set Suite Variable | ${10Ge_linerate_pps_64B}
-| | Set Suite Variable | ${10Ge_linerate_pps_68B}
-| | Set Suite Variable | ${10Ge_linerate_pps_78B}
-| | Set Suite Variable | ${10Ge_linerate_pps_1518B}
-| | Set Suite Variable | ${10Ge_linerate_pps_1522B}
-| | Set Suite Variable | ${10Ge_linerate_pps_9000B}
-| | Set Suite Variable | ${10Ge_linerate_pps_9004B}
+| | Set Suite Variable | ${10Ge_linerate_pps_64B} | 14880952
+| | Set Suite Variable | ${10Ge_linerate_pps_68B} | 14204545
+| | Set Suite Variable | ${10Ge_linerate_pps_72B} | 12755102
+| | Set Suite Variable | ${10Ge_linerate_pps_78B} | 12755102
+| | Set Suite Variable | ${10Ge_linerate_pps_1518B} | 812743
+| | Set Suite Variable | ${10Ge_linerate_pps_1522B} | 810635
+| | Set Suite Variable | ${10Ge_linerate_pps_1526B} | 808538
+| | Set Suite Variable | ${10Ge_linerate_pps_9000B} | 138580
+| | Set Suite Variable | ${10Ge_linerate_pps_9004B} | 138519
+| | Set Suite Variable | ${10Ge_linerate_pps_9008B} | 138458
 
 | Setup performance global Variables
 | | [Documentation] | Setup performance global Variables
@@ -68,10 +70,8 @@
 | | ... | - ${glob_loss_acceptance} - Loss acceptance treshold
 | | ... | - ${glob_loss_acceptance_type} - Loss acceptance treshold type
 | | ...
-| | ${glob_loss_acceptance}= | Set Variable | 0.5
-| | ${glob_loss_acceptance_type}= | Set Variable | percentage
-| | Set Suite Variable | ${glob_loss_acceptance}
-| | Set Suite Variable | ${glob_loss_acceptance_type}
+| | Set Suite Variable | ${glob_loss_acceptance} | 0.5
+| | Set Suite Variable | ${glob_loss_acceptance_type} | percentage
 
 | 3-node circular Topology Variables Setup
 | | Append Nodes | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']}
@@ -477,8 +477,10 @@
 | | ${rate_total}= | Evaluate | ${rate_per_stream}*${nr_streams}
 | | ${bandwidth_total}= | Evaluate | ${rate_total}*(${framesize}+20)*8/(10**9)
 | | Set Test Message | FINAL_RATE: ${rate_total} pps
-| | Set Test Message | (${nr_streams}x ${rate_per_stream} pps) | append=yes
-| | Set Test Message | FINAL_BANDWIDTH: ${bandwidth_total} Gbps | append=yes
+| | Set Test Message | (${nr_streams}x ${rate_per_stream} pps)
+| | ...              | append=yes
+| | Set Test Message | ${\n}FINAL_BANDWIDTH: ${bandwidth_total} Gbps (untagged)
+| | ...              | append=yes
 
 | Display result of PDR search
 | | [Documentation] | Display result of PDR search in packet per seconds (total
@@ -503,8 +505,10 @@
 | | ${rate_total}= | Evaluate | ${rate_per_stream}*${nr_streams}
 | | ${bandwidth_total}= | Evaluate | ${rate_total}*(${framesize}+20)*8/(10**9)
 | | Set Test Message | FINAL_RATE: ${rate_total} pps
-| | Set Test Message | (${nr_streams}x ${rate_per_stream} pps) | append=yes
-| | Set Test Message | FINAL_BANDWIDTH: ${bandwidth_total} Gbps | append=yes
+| | Set Test Message | (${nr_streams}x ${rate_per_stream} pps)
+| | ...              | append=yes
+| | Set Test Message | ${\n}FINAL_BANDWIDTH: ${bandwidth_total} Gbps (untagged)
+| | ...              | append=yes
 | | Set Test Message | ${\n}LOSS_ACCEPTANCE: ${loss_acceptance} ${loss_acceptance_type}
 | | ...              | append=yes
 
