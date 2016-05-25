@@ -60,3 +60,15 @@
 | | Stop honeycomb on DUTs | @{duts}
 | | Wait until keyword succeeds | 2m | 10s
 | | ... | Check honeycomb shutdown state | @{duts}
+
+| Clear persisted Honeycomb configuration
+| | [Documentation] | *Delete saved configuration.*
+| | ...
+| | ... | *Arguments:*
+| | ... | - duts - one or more nodes to clear persistence on. Type: dictionary
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Clear persisted Honeycomb configuration \| ${nodes['DUT1']} \|
+| | [Arguments] | @{duts}
+| | Clear persisted Honeycomb config | @{duts}
