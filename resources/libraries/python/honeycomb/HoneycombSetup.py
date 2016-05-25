@@ -53,7 +53,7 @@ class HoneycombSetup(object):
         :type nodes: list
         :raises HoneycombError: If Honeycomb fails to start.
         """
-        logger.console("Starting Honeycomb service ...")
+        logger.console("\nStarting Honeycomb service ...")
 
         cmd = "{0}/start".format(Const.REMOTE_HC_DIR)
 
@@ -81,7 +81,7 @@ class HoneycombSetup(object):
         :type nodes: list
         :raises HoneycombError: If Honeycomb failed to stop.
         """
-        logger.console("Shutting down Honeycomb service ...")
+        logger.console("\nShutting down Honeycomb service ...")
 
         cmd = "{0}/stop".format(Const.REMOTE_HC_DIR)
         errors = []
