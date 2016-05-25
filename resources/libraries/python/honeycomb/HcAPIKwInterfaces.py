@@ -1047,3 +1047,29 @@ class InterfaceKeywords(object):
                 "vlan-tag-rewrite")
         return InterfaceKeywords._set_interface_properties(
             node, sub_interface, path, None)
+
+    @staticmethod
+    def compare_interface_lists(list1, list2):
+        """Compare provided lists of interfaces by name.
+
+        :param list1: List of interfaces.
+        :param list2: List of interfaces.
+        :type list1: list
+        :type list2: list
+        :raises HoneycombError: If an interface exists in only one of the lists.
+        """
+
+        ignore = ["vx_tunnel0", "vxlan_gpe_tunnel0"]
+        # these have no equivalent in config data and no effect on VPP
+
+        names1 = [x['name'] for x in list1]
+        names2 = [x['name'] for x in list2]
+
+        for name in names1:
+            if name not in names2 and name not in ignore:
+                raise HoneycombError("Interface {0} not present in list {1}"
+                                     .format(name, list2))
+        for name in names2:
+            if name not in names1 and name not in ignore:
+                raise HoneycombError("Interface {0} not present in list {1}"
+                                     .format(name, list1))
