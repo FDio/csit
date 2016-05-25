@@ -25,13 +25,8 @@ rsync -avz ${@} ${USERNAME}@192.168.255.102:/tmp/ || exit
 
 ssh_do_duts "sudo apt-get -y purge 'vpp.*' ; exit 0"
 ssh_do_duts "sudo dpkg -i /tmp/vpp*.deb"
-ssh_do_duts "echo 128 | sudo tee /proc/sys/vm/nr_hugepages"
-ssh_do_duts "sudo rm -f /etc/vpp/startup.conf.orig ; sudo cp /etc/vpp/startup.conf /etc/vpp/startup.conf.orig"
-ssh_do_duts "sudo rm /etc/vpp/startup.conf"
-ssh_do_duts "sudo sed -e 's/socket-mem [0-9]*/socket-mem 128/' /etc/vpp/startup.conf.orig | sudo tee /etc/vpp/startup.conf"
-ssh_do_duts "echo heapsize 512M | sudo tee -a /etc/vpp/startup.conf"
-ssh_do_duts "sudo sed -e 's/vm.nr_hugepages=.*/vm.nr_hugepages=128/' -i /etc/sysctl.d/80-vpp.conf"
-ssh_do_duts "sudo sed -e 's/vm.max_map_count=.*/vm.max_map_count=256/' -i /etc/sysctl.d/80-vpp.conf"
-
+vppcfg="/etc/vpp/startup.conf"
+ssh_do_duts "sudo rm -f $vppcfg.orig; sudo cp $vppcfg $vppcfg.orig"
+ssh_do_duts "echo -e '\nheapsize 512M' | sudo tee -a $vppcfg"
 
 echo Success!
