@@ -24,6 +24,7 @@ import tempfile
 import shutil
 import time
 import paramiko
+import netifaces
 
 #
 # Helper function to indent a text string
@@ -40,6 +41,14 @@ def indent(lines, amount, fillchar=' '):
 #
 def main():
     #
+    # Get our default interface IP address. This will become the default
+    # value for the "NFS Server IP" option.
+    #
+    gws = netifaces.gateways()
+    addrs = netifaces.ifaddresses(gws['default'][netifaces.AF_INET][1])
+    default_addr = addrs[netifaces.AF_INET][0]['addr']
+
+    #
     # Verify CLI parameters and try to download our VPP image into a temporary
     # file first
     #
@@ -53,11 +62,9 @@ def main():
     parser.add_argument("-k", "--keep", help="Keep (do not delete) the " +
                         "simulation in case of error", action='store_true')
     parser.add_argument("-v", "--verbosity", action="count", default=0)
-    # FIXME: THe default value for the following line should not be a hardcoded
-    # address. We should determine it dynamically (e.g. IP address of first
-    # interface or whichever interface is tied to the flat network)
-    parser.add_argument("-nip", "--nfs-server-ip", help="NFS server (our) IP",
-                        default="10.30.51.28")
+    parser.add_argument("-nip", "--nfs-server-ip", help="NFS server (our) IP " +
+                        "default is derived from routing table: " +
+                        "{}".format(default_addr), default=default_addr)
     parser.add_argument("-ns", "--nfs-scratch-directory",
                         help="Server location for NFS scratch diretory",
                         default="/nfs/scratch")
@@ -66,7 +73,7 @@ def main():
                         "directory", default="/nfs/common")
     parser.add_argument("-wc", "--wait-count",
                         help="number of intervals to wait for simulation to " +
-                        "be ready", type=int, default=12)
+                        "be ready", type=int, default=24)
     parser.add_argument("-wt", "--wait-time",
                         help="length of a single interval to wait for " +
                         "simulation to be ready", type=int, default=5)
@@ -83,6 +90,9 @@ def main():
                         default="/home/jenkins-in/.ssh/id_rsa_virl")
     parser.add_argument("-spu", "--ssh-pubkey", help="SSH public keyfile",
                         default="/home/jenkins-in/.ssh/id_rsa_virl.pub")
+    parser.add_argument("-r", "--release", help="VM disk image/release " +
+                        "(ex. \"csit-ubuntu-14.04.4_2016-05-25_1.0\")",
+                        default="csit-ubuntu-14.04.4_2016-05-25_1.0")
     parser.add_argument("--topology-directory", help="Topology directory",
                         default="/home/jenkins-in/testcase-infra/topologies")
 
@@ -134,6 +144,7 @@ def main():
                 args.nfs_server_ip+":"+args.nfs_scratch_directory)
             line = line.replace("$$NFS_SERVER_COMMON$$", \
                 args.nfs_server_ip+":"+args.nfs_common_directory)
+            line = line.replace("$$VM_IMAGE$$", "server-"+args.release)
             new_file.write(line)
     os.close(temp_handle)
 
