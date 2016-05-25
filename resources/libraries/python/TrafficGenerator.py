@@ -182,7 +182,6 @@ class TrafficGenerator(object):
                 "- port_limit      : 2\n"
                 "  version         : 2\n"
                 "  interfaces      : [\"{}\",\"{}\"]\n"
-                "  port_bandwidth_gb : 10\n"
                 "  port_info       :\n"
                 "          - dest_mac        :   [{}]\n"
                 "            src_mac         :   [{}]\n"
