@@ -14,6 +14,7 @@
 *** Settings ***
 | Resource | resources/libraries/robot/interfaces.robot
 | Library  | resources.libraries.python.NodePath
+| Library  | resources.libraries.python.LispSetup.LispStatus
 | Library  | resources.libraries.python.LispSetup.LispSetup
 | Library  | resources.libraries.python.LispUtil
 
@@ -174,17 +175,15 @@
 | | ...
 | | ... | *Arguments:*
 | | ... | - ${dut_node} - DUT node. Type: dictionary
+| | ... | - ${set_eid} - Test eid data. Type: list
 | | ...
 | | ... | *Return:*
 | | ... | - No value returned
 | | ...
-| | ... | _NOTE:_ This KW requires following test case variables:
-| | ... | - ${set_eid} - Generated eid data which will be set to VPP.
-| | ...
 | | ... | *Example:*
-| | ... | \| When Lisp eid address is set \| ${nodes['DUT1']} \|
+| | ... | \| When Lisp eid address is set \| ${nodes['DUT1']} \| ${eid_table} |\
 | | ...
-| | [Arguments] | ${dut_node}
+| | [Arguments] | ${dut_node} | ${set_eid}
 | | Vpp Set Lisp Eid Table | ${dut_node} | ${set_eid}
 
 | Lisp eid address is set correct to eid table
@@ -192,6 +191,8 @@
 | | ...
 | | ... | *Arguments:*
 | | ... | - ${dut_node} - DUT node. Type: dictionary
+| | ... | - ${set_eid} - Example eid data, which was set to the VPP node.
+| | ... |                Type: list
 | | ...
 | | ... | *Return:*
 | | ... | - No value returned
@@ -201,9 +202,9 @@
 | | ...
 | | ... | *Example:*
 | | ... | \| Then Lisp eid address is set correct to eid table \
-| | ... | \| ${nodes['DUT1']} \|
+| | ... | \| ${nodes['DUT1']} \| ${eid_table}
 | | ...
-| | [Arguments] | ${dut_node}
+| | [Arguments] | ${dut_node} | ${set_eid}
 | | ${show_eid}= | Vpp Show Lisp Local Eid Table | ${dut_node}
 | | Lisp Should Be Equal | ${set_eid} | ${show_eid}
 
@@ -212,18 +213,17 @@
 | | ...
 | | ... | *Arguments:*
 | | ... | - ${dut_node} - DUT node. Type: dictionary
+| | ... | - ${set_eid} - Eid data, which will be remove from the VPP node.
+| | ... |                Type: list
 | | ...
 | | ... | *Return:*
 | | ... | - No value returned
 | | ...
-| | ... | _NOTE:_ This KW requires following test case variables:
-| | ... | - ${set_eid} - Generated eid data which was set to the VPP node.
-| | ...
 | | ... | *Example:*
 | | ... | \| When Delete all lisp eid address from VPP \
-| | ... | \| ${nodes['DUT1']} \|
+| | ... | \| ${nodes['DUT1']} \| ${eid_table}
 | | ...
-| | [Arguments] | ${dut_node}
+| | [Arguments] | ${dut_node} | ${set_eid}
 | | Vpp Unset Lisp Eid Table | ${dut_node} | ${set_eid}
 
 | Lisp eid table should be empty
@@ -242,50 +242,22 @@
 | | ${show_eid}= | Vpp Show Lisp Local Eid Table | ${dut_node}
 | | Lisp Is Empty | ${show_eid}
 
-| Lisp map resolver address is prepared
-| | [Documentation] | Generate map resolver address for testing
-| | ...             | lisp map resolver API.
-| | ...
-| | ... | *Arguments:*
-| | ... | - ${dut_node} - DUT node. Type: dictionary
-| | ... | - ${map_resolver_ipv4_num} - Number of generate ipv4 address.
-| | ... |                              Type: int
-| | ... | - ${map_resolver_ipv6_num} - Number of generate ipv6 address.
-| | ... |                              Type: int
-| | ...
-| | ... | *Return:*
-| | ... | - No value returned
-| | ...
-| | ... | _NOTE:_ This KW sets following test case variables:
-| | ... | - ${set_map_resolver} - Generate map resolver data.
-| | ...
-| | ... | *Example:*
-| | ... | \| Given Lisp map resolver address is prepared \
-| | ... | \| ${nodes['DUT1']} \| ${map_resolver_ipv4_num} \
-| | ... | \| ${map_resolver_ipv6_num} \|
-| | ...
-| | [Arguments] | ${dut_node} | ${map_resolver_ipv4_num} | ${map_resolver_ipv6_num}
-| | ${set_map_resolver} = | Generate Lisp Map Resolver Data
-| | ... | ${map_resolver_ipv4_num} | ${map_resolver_ipv6_num}
-| | Set Test Variable | ${set_map_resolver}
-
 | Lisp map resolver address is set
 | | [Documentation] | Set the lisp map resolver address in the VPP node.
 | | ...
 | | ... | *Arguments:*
 | | ... | - ${dut_node} - DUT node. Type: dictionary
+| | ... | - ${set_map_resolver} - Map resolver data, which will be set on
+| | ... |                         the VPP node. Type: list
 | | ...
 | | ... | *Return:*
 | | ... | - No value returned
 | | ...
-| | ... | _NOTE:_ This KW requires following test case variables:
-| | ... | - ${set_map_resolver} - Map resolver data which will be set
-| | ... |                         to the VPP node.
-| | ...
 | | ... | *Example:*
-| | ... | \| When Lisp map resolver address is set \| ${nodes['DUT1']} \|
+| | ... | \| When Lisp map resolver address is set \| ${nodes['DUT1']} \
+| | ... | \| ${map_resolver} \|
 | | ...
-| | [Arguments] | ${dut_node}
+| | [Arguments] | ${dut_node} | ${set_map_resolver}
 | | Vpp Set Lisp Map Resolver | ${dut_node} | ${set_map_resolver}
 
 | Lisp map resolver address is set correct
@@ -294,19 +266,17 @@
 | | ...
 | | ... | *Arguments:*
 | | ... | - ${dut_node} - DUT node. Type: dictionary
+| | ... | - ${set_map_resolver} - Map resolver data, which was set on
+| | ... |                         the VPP node. Type: list
 | | ...
 | | ... | *Return:*
 | | ... | - No value returned
 | | ...
-| | ... | _NOTE:_ This KW requires following test case variables:
-| | ... | - ${set_map_resolver} - Map resolver data which was set
-| | ... |                         to the VPP node.
-| | ...
 | | ... | *Example:*
 | | ... | \| Then Lisp map resolver address is set correct \
-| | ... | \| ${nodes['DUT1']} \|
+| | ... | \| ${nodes['DUT1']} \| ${map_resolver} \|
 | | ...
-| | [Arguments] | ${dut_node}
+| | [Arguments] | ${dut_node} | ${set_map_resolver}
 | | ${show_map_resolver}= | Vpp Show Lisp Map Resolver | ${dut_node}
 | | Lisp Should Be Equal | ${set_map_resolver} | ${show_map_resolver}
 
@@ -315,19 +285,17 @@
 | | ...
 | | ... | *Arguments:*
 | | ... | - ${dut_node} - DUT node. Type: dictionary
+| | ... | - ${map_resolver} - Map resolver data, which will be remove from
+| | ... |                     the VPP. Type: list
 | | ...
 | | ... | *Return:*
 | | ... | - No value returned
 | | ...
-| | ... | _NOTE:_ This KW requires following test case variables:
-| | ... | - ${set_map_resolver} - Map resolver data which was set
-| | ... |                         to the VPP node.
-| | ...
 | | ... | *Example:*
 | | ... | \| When Delete all lisp map resolver address from VPP \
-| | ... | \| ${nodes['DUT1']} \|
+| | ... | \| ${nodes['DUT1']} \| ${map_resolver} \|
 | | ...
-| | [Arguments] | ${dut_node}
+| | [Arguments] | ${dut_node} | ${set_map_resolver}
 | | Vpp Unset Lisp Map Resolver | ${dut_node} | ${set_map_resolver}
 
 | Lip map resolver address should be empty
@@ -346,3 +314,69 @@
 | | [Arguments] | ${dut_node}
 | | ${show_map_resolver}= | Vpp Show Lisp Map Resolver | ${dut_node}
 | | Lisp Is Empty | ${show_map_resolver}
+
+| Enable lisp
+| | [Documentation] | Enable lisp on VPP node.
+| | ...
+| | ... | *Arguments:*
+| | ... | - ${dut_node} - DUT node. Type: dictionary
+| | ...
+| | ... | *Return:*
+| | ... | - No value returned
+| | ...
+| | ... | *Example:*
+| | ... | \| Enable lisp \| ${nodes['DUT1']} \|
+| | ...
+| | [Arguments] | ${dut_node}
+| | Vpp Lisp Enable Disable | ${dut_node} | enable
+
+| Check if lisp is enabled
+| | [Documentation] | Check if the lisp is enabled.
+| | ...
+| | ... | *Arguments:*
+| | ... | - ${dut_node} - DUT node. Type: dictionary
+| | ... | - ${lisp_status_data} - Lisp status data, which was set on
+| | ... |                         the VPP node. Type: list
+| | ...
+| | ... | *Return:*
+| | ... | - No value returned
+| | ...
+| | ... | *Example:*
+| | ... | \| Check if lisp is enabled \| ${nodes['DUT1']} \|
+| | ...
+| | [Arguments] | ${dut_node} | ${lisp_status_data}
+| | ${show_lisp_stat}= | Vpp Show Lisp State | ${dut_node}
+| | Lisp Should Be Equal | ${show_lisp_stat} | ${lisp_status_data[1]}
+
+| Disable lisp
+| | [Documentation] | Disable lisp on VPP node.
+| | ...
+| | ... | *Arguments:*
+| | ... | - ${dut_node} - DUT node. Type: dictionary
+| | ...
+| | ... | *Return:*
+| | ... | - No value returned
+| | ...
+| | ... | *Example:*
+| | ... | \| Disable lisp \| ${nodes['DUT1']} \|
+| | ...
+| | [Arguments] | ${dut_node}
+| | Vpp Lisp Enable Disable | ${dut_node} | disable
+
+| Check if lisp is disabled
+| | [Documentation] | Check if lisp is disabled.
+| | ...
+| | ... | *Arguments:*
+| | ... | - ${dut_node} - DUT node. Type: dictionary
+| | ... | - ${lisp_status_data} - Lisp status data, which was set on
+| | ... |                         the VPP node. Type: list
+| | ...
+| | ... | *Return:*
+| | ... | - No value returned
+| | ...
+| | ... | *Example:*
+| | ... | \| Check if lisp is disabled \| ${nodes['DUT1']} \|
+| | ...
+| | [Arguments] | ${dut_node} | ${lisp_status_data}
+| | ${show_lisp_stat}= | Vpp Show Lisp State | ${dut_node}
+| | Lisp Should Be Equal | ${show_lisp_stat} | ${lisp_status_data[0]}
