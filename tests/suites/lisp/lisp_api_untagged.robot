@@ -20,6 +20,8 @@
 | Resource | resources/libraries/robot/default.robot
 | Resource | resources/libraries/robot/interfaces.robot
 | Resource | resources/libraries/robot/lisp/lisp_api.robot
+# import additional Lisp settings from resource file
+| Variables | tests/suites/lisp/resources/lisp_api_resources.py
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | 3_NODE_DOUBLE_LINK_TOPO
 | ... | VM_ENV | HW_ENV
 | Test Setup | Run Keywords | Setup all DUTs before test
@@ -29,12 +31,19 @@
 
 *** Variables ***
 | ${locator_set_num}= | 3
-| ${eid_ipv4_num}= | 4
-| ${eid_ipv6_num}= | 3
-| ${map_resolver_ipv4_num}= | 3
-| ${map_resolver_ipv6_num}= | 2
 
 *** Test Cases ***
+
+Vpp can enable and disable Lisp
+| | [Documentation] | Test lisp enable/disable API.
+| | ...             | Enable lisp on the VPP node,
+| | ...             | check if the lisp on the vpp node is enabled.
+| | ...             | Then disable lisp on the vpp node and check if
+| | ...             | the lisp is disabled on the vpp node.
+| | When Enable lisp | ${nodes['DUT1']}
+| | Then Check if lisp is enabled | ${nodes['DUT1']} | ${lisp_status}
+| | When Disable lisp | ${nodes['DUT1']}
+| | Then Check if lisp is disabled | ${nodes['DUT1']} | ${lisp_status}
 
 | VPP can add and delete locator_set
 | | [Documentation] | Test lisp locator_set API
@@ -45,8 +54,9 @@
 | | ...
 | | Given Lisp locator_set data is prepared
 | | ... | ${nodes['DUT1']} | ${locator_set_num}
+| | And   Enable lisp | ${nodes['DUT1']}
 | | When Lisp locator_set data is set | ${nodes['DUT1']}
-| | Then Lisp locator_set is set correct | ${nodes['DUT1']}
+| | Then Lisp locator_set is set correctly | ${nodes['DUT1']}
 | | When Delete all lisp locator_set from VPP | ${nodes['DUT1']}
 | | Then Lisp locator_set should be unset | ${nodes['DUT1']}
 
@@ -60,8 +70,9 @@
 | | ...
 | | Given Lisp locator_set data use for test reset locator_set are prepared
 | | ... | ${nodes['DUT1']} | ${locator_set_num}
+| | And   Enable lisp | ${nodes['DUT1']}
 | | When Lisp locator_set data is set | ${nodes['DUT1']}
-| | Then Lisp locator_set is set correct | ${nodes['DUT1']}
+| | Then Lisp locator_set is set correctly | ${nodes['DUT1']}
 | | When Delete all lisp locator_set from VPP | ${nodes['DUT1']}
 | | Then Lisp locator_set should be unset | ${nodes['DUT1']}
 
@@ -72,11 +83,11 @@
 | | ...             | Check if all eid IP address was unset
 | | ...             | from the VPP node.
 | | ...
-| | Given Lisp eid address is prepared
-| | ... | ${nodes['DUT1']} | ${eid_ipv4_num} | ${eid_ipv6_num}
-| | When Lisp eid address is set | ${nodes['DUT1']}
-| | Then Lisp eid address is set correct to eid table | ${nodes['DUT1']}
-| | When Delete all lisp eid address from VPP | ${nodes['DUT1']}
+| | Given Enable lisp | ${nodes['DUT1']}
+| | When Lisp eid address is set | ${nodes['DUT1']} | ${eid_table}
+| | Then Lisp eid address is set correctly to eid table | ${nodes['DUT1']}
+| | ...                                                 | ${eid_table}
+| | When Delete all lisp eid address from VPP | ${nodes['DUT1']} | ${eid_table}
 | | Then Lisp eid table should be empty | ${nodes['DUT1']}
 
 | Vpp can add and delete lisp map resolver address
@@ -86,9 +97,10 @@
 | | ...             | Check if all map resolver address was unset
 | | ...             | from the VPP node.
 | | ...
-| | Given Lisp map resolver address is prepared | ${nodes['DUT1']}
-| | ... | ${map_resolver_ipv4_num} | ${map_resolver_ipv6_num}
-| | When Lisp map resolver address is set | ${nodes['DUT1']}
-| | Then Lisp map resolver address is set correct | ${nodes['DUT1']}
+| | Given Enable lisp | ${nodes['DUT1']}
+| | When Lisp map resolver address is set | ${nodes['DUT1']} | ${map_resolver}
+| | Then Lisp map resolver address is set correctly | ${nodes['DUT1']}
+| | ...                                             | ${map_resolver}
 | | When Delete all lisp map resolver address from VPP | ${nodes['DUT1']}
+| | ...                                                | ${map_resolver}
 | | Then Lip map resolver address should be empty | ${nodes['DUT1']}

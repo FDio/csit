@@ -25,6 +25,21 @@ class LispUtil(object):
         pass
 
     @staticmethod
+    def vpp_show_lisp_state(node):
+        """Get lisp state from VPP node.
+
+        :param node: VPP node.
+        :type node: dict
+        :return: Lisp gpe state.
+        :rtype: list
+        """
+
+        vat = VatExecutor()
+        vat.execute_script_json_out('lisp/show_lisp_enable_disable.vat',
+                                    node)
+        return JsonParser().parse_data(vat.get_script_stdout())
+
+    @staticmethod
     def vpp_show_lisp_locator_set(node):
         """Get lisp locator_set from VPP node.
 
@@ -190,62 +205,6 @@ class LispUtil(object):
 
         loc_type = {'reset': locator_set_list}
         return loc_type
-
-    @staticmethod
-    def generate_lisp_local_eid_data(ipv4_num, ipv6_num):
-        """Generate a list of lisp local eid we want set to VPP and
-        then check if is set correct.
-
-        :param ipv4_num: Generate n ipv4 eid address.
-        :param ipv6_num: Generate n ipv6 eid address.
-        :type ipv4_num: str
-        :type ipv6_num: str
-        :return: list of lisp local eid.
-        :rtype: list
-        """
-
-        eid_table = []
-        for num in range(0, int(ipv4_num)):
-            addrr = '192.168.{}.1'.format(num)
-            eid = {'eid address': addrr,
-                   'eid prefix len': 24,
-                   'locator-set': 'ls1'}
-            eid_table.append(eid)
-
-        for num in range(0, int(ipv6_num)):
-            addrr = '10:{}::1'.format(num + 1)
-            eid = {'eid address': addrr,
-                   'eid prefix len': 32,
-                   'locator-set': 'ls1'}
-            eid_table.append(eid)
-
-        return eid_table
-
-    @staticmethod
-    def generate_lisp_map_resolver_data(ipv4_num, ipv6_num):
-        """Generate a list of lisp map resolvers we want set to VPP and
-        then check if is set correct.
-
-        :param ipv4_num: Generate n ipv4 map resolver address.
-        :param ipv6_num: Generate n ipv6 map resolver address.
-        :type ipv4_num: str
-        :type ipv6_num: str
-        :return: list of lisp map resolver.
-        :rtype: list
-        """
-
-        map_resolver = []
-        for i in range(0, int(ipv4_num)):
-            addr = '192.169.{}.1'.format(i)
-            resolver = {'map resolver': addr}
-            map_resolver.append(resolver)
-
-        for i in range(0, int(ipv6_num)):
-            addr = '12:{}::1'.format(i + 1)
-            resolver = {'map resolver': addr}
-            map_resolver.append(resolver)
-
-        return map_resolver
 
     def lisp_is_empty(self, lisp_params):
         """Check if the input param are empty.

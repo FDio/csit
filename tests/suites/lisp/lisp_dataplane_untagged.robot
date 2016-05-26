@@ -175,3 +175,58 @@
 | |      ... | ${tg_node} | ${tg2_ip6o4} | ${tg1_ip6o4}
 | |      ... | ${tg_to_dut2} | ${tg_to_dut2_mac} | ${dut2_to_tg_mac}
 | |      ... | ${tg_to_dut1} | ${dut1_to_tg_mac} | ${tg_to_dut1_mac}
+
+| VPP can disable lisp and then re-enable it and everything should work
+| | [Documentation] | Test disable and enable Lisp.
+| | ...             | Set Lisp and check if lisp work. Then disable Lisp
+| | ...             | and check if it is disabled. At the end re-enable lisp
+| | ...             | and check if Lisp is working.
+| | Given Path for 3-node testing is set
+| | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
+| | And   Interfaces in 3-node path are up
+| | And   IP addresses are set on interfaces
+| |       ... | ${dut1_node} | ${dut1_to_dut2}
+| |       ... | ${dut1_to_dut2_ip4} | ${prefix4}
+| |       ... | ${dut1_node} | ${dut1_to_tg}
+| |       ... | ${dut1_to_tg_ip4} | ${prefix4}
+| |       ... | ${dut2_node} | ${dut2_to_dut1}
+| |       ... | ${dut2_to_dut1_ip4} | ${prefix4}
+| |       ... | ${dut2_node} | ${dut2_to_tg}
+| |       ... | ${dut2_to_tg_ip4} | ${prefix4}
+| | And   VPP IP Probe | ${dut1_node} | ${dut1_to_dut2} | ${dut2_to_dut1_ip4}
+| | And   VPP IP Probe | ${dut2_node} | ${dut2_to_dut1} | ${dut1_to_dut2_ip4}
+| | And   Add Arp On Dut | ${dut2_node} | ${dut2_to_tg} | ${tg2_ip4}
+| |       ... | ${tg_to_dut2_mac}
+| | And   Add Arp On Dut | ${dut1_node} | ${dut1_to_tg} | ${tg1_ip4}
+| |       ... | ${tg_to_dut1_mac}
+| | When Set up Lisp topology
+| |      ... | ${dut1_node} | ${dut1_to_dut2} | ${NONE}
+| |      ... | ${dut2_node} | ${dut2_to_dut1} | ${NONE}
+| |      ... | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
+| |      ... | ${dut1_ip4_static_mapping} | ${dut2_ip4_static_mapping}
+| | Then Send Packet And Check Headers
+| |      ... | ${tg_node} | ${tg1_ip4} | ${tg2_ip4}
+| |      ... | ${tg_to_dut1} | ${tg_to_dut1_mac} | ${dut1_to_tg_mac}
+| |      ... | ${tg_to_dut2} | ${dut2_to_tg_mac} | ${tg_to_dut2_mac}
+| | And Send Packet And Check Headers
+| |      ... | ${tg_node} | ${tg2_ip4} | ${tg1_ip4}
+| |      ... | ${tg_to_dut2} | ${tg_to_dut2_mac} | ${dut2_to_tg_mac}
+| |      ... | ${tg_to_dut1} | ${dut1_to_tg_mac} | ${tg_to_dut1_mac}
+| | When Disable Lisp | ${dut1_node}
+| | Then Send packet from Port to Port should failed
+| |      ... | ${tg_node} | ${tg1_ip4} | ${tg2_ip4}
+| |      ... | ${tg_to_dut1} | ${tg_to_dut1_mac} | ${dut1_to_tg_mac}
+| |      ... | ${tg_to_dut2} | ${dut2_to_tg_mac} | ${tg_to_dut2_mac}
+| | And Send packet from Port to Port should failed
+| |      ... | ${tg_node} | ${tg2_ip4} | ${tg1_ip4}
+| |      ... | ${tg_to_dut2} | ${tg_to_dut2_mac} | ${dut2_to_tg_mac}
+| |      ... | ${tg_to_dut1} | ${dut1_to_tg_mac} | ${tg_to_dut1_mac}
+| | When Enable Lisp | ${dut1_node}
+| | Then Wait Until Keyword Succeeds | 2x | 5s | Send Packet And Check Headers
+| |      ... | ${tg_node} | ${tg1_ip4} | ${tg2_ip4}
+| |      ... | ${tg_to_dut1} | ${tg_to_dut1_mac} | ${dut1_to_tg_mac}
+| |      ... | ${tg_to_dut2} | ${dut2_to_tg_mac} | ${tg_to_dut2_mac}
+| | And Wait Until Keyword Succeeds | 2x | 5s | Send Packet And Check Headers
+| |      ... | ${tg_node} | ${tg2_ip4} | ${tg1_ip4}
+| |      ... | ${tg_to_dut2} | ${tg_to_dut2_mac} | ${dut2_to_tg_mac}
+| |      ... | ${tg_to_dut1} | ${dut1_to_tg_mac} | ${tg_to_dut1_mac}
