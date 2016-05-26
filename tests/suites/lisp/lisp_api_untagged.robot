@@ -36,6 +36,18 @@
 
 *** Test Cases ***
 
+Vpp can enable and disable Lisp
+| | [Documentation] | Test lisp enable/disable API.
+| | ...             | Enable lisp on the VPP node,
+| | ...             | check if the lisp on the vpp node is enabled.
+| | ...             | Then disable lisp on the vpp node and check if
+| | ...             | the lisp is disabled on the vpp node.
+| | Given Lisp test data is prepared
+| | When Enable lisp | ${nodes['DUT1']}
+| | Then Check if lisp is enabled | ${nodes['DUT1']}
+| | When Disable lisp | ${nodes['DUT1']}
+| | Then Check if lisp is disabled | ${nodes['DUT1']}
+
 | VPP can add and delete locator_set
 | | [Documentation] | Test lisp locator_set API
 | | ...             | Set locator_set and locator on the VPP node,
@@ -45,6 +57,7 @@
 | | ...
 | | Given Lisp locator_set data is prepared
 | | ... | ${nodes['DUT1']} | ${locator_set_num}
+| | And   Enable lisp | ${nodes['DUT1']}
 | | When Lisp locator_set data is set | ${nodes['DUT1']}
 | | Then Lisp locator_set is set correct | ${nodes['DUT1']}
 | | When Delete all lisp locator_set from VPP | ${nodes['DUT1']}
@@ -60,6 +73,7 @@
 | | ...
 | | Given Lisp locator_set data use for test reset locator_set are prepared
 | | ... | ${nodes['DUT1']} | ${locator_set_num}
+| | And   Enable lisp | ${nodes['DUT1']}
 | | When Lisp locator_set data is set | ${nodes['DUT1']}
 | | Then Lisp locator_set is set correct | ${nodes['DUT1']}
 | | When Delete all lisp locator_set from VPP | ${nodes['DUT1']}
@@ -74,6 +88,7 @@
 | | ...
 | | Given Lisp eid address is prepared
 | | ... | ${nodes['DUT1']} | ${eid_ipv4_num} | ${eid_ipv6_num}
+| | And   Enable lisp | ${nodes['DUT1']}
 | | When Lisp eid address is set | ${nodes['DUT1']}
 | | Then Lisp eid address is set correct to eid table | ${nodes['DUT1']}
 | | When Delete all lisp eid address from VPP | ${nodes['DUT1']}
@@ -88,6 +103,7 @@
 | | ...
 | | Given Lisp map resolver address is prepared | ${nodes['DUT1']}
 | | ... | ${map_resolver_ipv4_num} | ${map_resolver_ipv6_num}
+| | And   Enable lisp | ${nodes['DUT1']}
 | | When Lisp map resolver address is set | ${nodes['DUT1']}
 | | Then Lisp map resolver address is set correct | ${nodes['DUT1']}
 | | When Delete all lisp map resolver address from VPP | ${nodes['DUT1']}
