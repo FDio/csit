@@ -13,14 +13,11 @@
 
 *** Settings ***
 | Documentation | Lisp State mapping suite keywords
-| Resource | resources/libraries/robot/interfaces.robot
-| Library  | resources.libraries.python.NodePath
+| Resource | resources/libraries/robot/lisp/lisp_api.robot
 | Library  | resources.libraries.python.LispSetup.LispLocatorSet
 | Library  | resources.libraries.python.LispSetup.LispLocator
 | Library  | resources.libraries.python.LispSetup.LispLocalEid
 | Library  | resources.libraries.python.LispSetup.LispRemoteMapping
-| Library  | resources.libraries.python.LispSetup.LispSetup
-| Library  | resources.libraries.python.LispUtil
 
 *** Keywords ***
 | Set up Lisp topology
@@ -60,7 +57,7 @@
 | |                    | ... | Get Interface Sw Index | ${dut2_node}
 | |                    | ...                          | ${dut2_int_name}
 | |                    | ... | ELSE | Set Variable | ${dut2_int_index}
-| | Vpp lisp state | ${dut1_node} | enable
+| | Enable Lisp | ${dut1_node}
 | | Vpp Add Lisp Locator Set | ${dut1_node} | ${locator_set['locator_name']}
 | | Vpp Add Lisp Locator | ${dut1_node} | ${locator_set['locator_name']}
 | | ...                  | ${dut1_int_index} | ${locator_set['priority']}
@@ -73,7 +70,7 @@
 | | ...                         | ${dut1_static_mapping['seid']}
 | | ...                         | ${dut1_static_mapping['prefix']}
 | | ...                         | ${dut1_static_mapping['rloc']}
-| | Vpp Lisp State | ${dut2_node} | enable
+| | Enable Lisp | ${dut2_node}
 | | Vpp Add Lisp Locator Set | ${dut2_node} | ${locator_set['locator_name']}
 | | Vpp Add Lisp Locator | ${dut2_node} | ${locator_set['locator_name']}
 | | ...                  | ${dut2_int_index} | ${locator_set['priority']}

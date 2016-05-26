@@ -25,6 +25,21 @@ class LispUtil(object):
         pass
 
     @staticmethod
+    def vpp_show_lisp_state(node):
+        """Get lisp state from VPP node.
+
+        :param node: VPP node.
+        :type node: dict
+        :return: Lisp gpe state.
+        :rtype: list
+        """
+
+        vat = VatExecutor()
+        vat.execute_script_json_out('lisp/show_lisp_enable_disable.vat',
+                                    node)
+        return JsonParser().parse_data(vat.get_script_stdout())
+
+    @staticmethod
     def vpp_show_lisp_locator_set(node):
         """Get lisp locator_set from VPP node.
 
@@ -246,6 +261,21 @@ class LispUtil(object):
             map_resolver.append(resolver)
 
         return map_resolver
+
+    @staticmethod
+    def example_lisp_enable_disable_data():
+        """Lisp status example test data.
+
+        :return: list of enable/disable test data.
+        :rtype: list
+        """
+
+        gpe_list = [[{"gpe_status":"disabled",
+                      "feature_status":"disabled"}],
+                    [{"gpe_status":"enabled",
+                      "feature_status":"enabled"}]]
+
+        return  gpe_list
 
     def lisp_is_empty(self, lisp_params):
         """Check if the input param are empty.

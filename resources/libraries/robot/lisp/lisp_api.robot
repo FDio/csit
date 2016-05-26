@@ -14,6 +14,7 @@
 *** Settings ***
 | Resource | resources/libraries/robot/interfaces.robot
 | Library  | resources.libraries.python.NodePath
+| Library  | resources.libraries.python.LispSetup.Lisp
 | Library  | resources.libraries.python.LispSetup.LispSetup
 | Library  | resources.libraries.python.LispUtil
 
@@ -346,3 +347,89 @@
 | | [Arguments] | ${dut_node}
 | | ${show_map_resolver}= | Vpp Show Lisp Map Resolver | ${dut_node}
 | | Lisp Is Empty | ${show_map_resolver}
+
+| Lisp test data is prepared
+| | [Documentation] | Get lisp test data.
+| | ...
+| | ... | *Arguments:*
+| | ... | - No arguments.
+| | ...
+| | ... | *Return:*
+| | ... | - No value returned
+| | ...
+| | ... | _NOTE:_ This KW sets following test case variable:
+| | ... | - ${lisp_status_data} - Test data.
+| | ...
+| | ... | *Example:*
+| | ... | \| Lisp test data is prepared \|
+| | ...
+| | ${lisp_status_data}= | Example Lisp Enable Disable Data
+| | Set Test Variable | ${lisp_status_data}
+
+| Enable lisp
+| | [Documentation] | Enable lisp on VPP node.
+| | ...
+| | ... | *Arguments:*
+| | ... | - ${dut_node} - DUT node. Type: dictionary
+| | ...
+| | ... | *Return:*
+| | ... | - No value returned
+| | ...
+| | ... | *Example:*
+| | ... | \| Enable lisp \| ${nodes['DUT1']} \|
+| | ...
+| | [Arguments] | ${dut_node}
+| | Vpp Lisp Enable Disable | ${dut_node} | enable
+
+| Check if lisp is enabled
+| | [Documentation] | Check if the lisp is enabled.
+| | ...
+| | ... | *Arguments:*
+| | ... | - ${dut_node} - DUT node. Type: dictionary
+| | ...
+| | ... | *Return:*
+| | ... | - No value returned
+| | ...
+| | ... | _NOTE:_ This KW sets following test case variable:
+| | ... | - ${lisp_status_data} - Lisp state from VPP.
+| | ...
+| | ... | *Example:*
+| | ... | \| Check if lisp is enabled \| ${nodes['DUT1']} \|
+| | ...
+| | [Arguments] | ${dut_node}
+| | ${show_lisp_stat}= | Vpp Show Lisp State | ${dut_node}
+| | Lisp Should Be Equal | ${show_lisp_stat} | ${lisp_status_data[1]}
+
+| Disable lisp
+| | [Documentation] | Disable lisp on VPP node.
+| | ...
+| | ... | *Arguments:*
+| | ... | - ${dut_node} - DUT node. Type: dictionary
+| | ...
+| | ... | *Return:*
+| | ... | - No value returned
+| | ...
+| | ... | *Example:*
+| | ... | \| Disable lisp \| ${nodes['DUT1']} \|
+| | ...
+| | [Arguments] | ${dut_node}
+| | Vpp Lisp Enable Disable | ${dut_node} | disable
+
+| Check if lisp is disabled
+| | [Documentation] | Check if lisp is disabled.
+| | ...
+| | ... | *Arguments:*
+| | ... | - ${dut_node} - DUT node. Type: dictionary
+| | ...
+| | ... | *Return:*
+| | ... | - No value returned
+| | ...
+| | ... | _NOTE:_ This KW sets following test case variable:
+| | ... | - ${lisp_status_data} - Test data.
+| | ...
+| | ... | *Example:*
+| | ... | \| Check if lisp is disabled \| ${nodes['DUT1']} \|
+| | ...
+| | [Arguments] | ${dut_node}
+| | ${show_lisp_stat}= | Vpp Show Lisp State | ${dut_node}
+| | Lisp Should Be Equal | ${show_lisp_stat} | ${lisp_status_data[0]}
