@@ -26,6 +26,7 @@ from resources.libraries.python.honeycomb.HoneycombUtil \
 
 
 # pylint: disable=too-many-public-methods
+# pylint: disable=too-many-lines
 class InterfaceKeywords(object):
     """Keywords for Interface manipulation.
 
@@ -34,7 +35,7 @@ class InterfaceKeywords(object):
     """
 
     INTF_PARAMS = ("name", "description", "type", "enabled",
-                   "link-up-down-trap-enable")
+                   "link-up-down-trap-enable", "v3po:l2")
     IPV4_PARAMS = ("enabled", "forwarding", "mtu")
     IPV6_PARAMS = ("enabled", "forwarding", "mtu", "dup-addr-detect-transmits")
     IPV6_AUTOCONF_PARAMS = ("create-global-addresses",
@@ -46,8 +47,22 @@ class InterfaceKeywords(object):
     VXLAN_PARAMS = ("src", "dst", "vni", "encap-vrf-id")
     L2_PARAMS = ("bridge-domain", "split-horizon-group",
                  "bridged-virtual-interface")
+    L2_REWRITE_TAG_PARAMS = ("rewrite-operation",
+                             "first-pushed",
+                             "tag1",
+                             "tag2")
     TAP_PARAMS = ("tap-name", "mac", "device-instance")
     VHOST_USER_PARAMS = ("socket", "role")
+    SUB_INTF_PARAMS = ("super-interface",
+                       "identifier",
+                       "vlan-type",
+                       "number-of-tags",
+                       "outer-id",
+                       "inner-id",
+                       "match-any-outer-id",
+                       "match-any-inner-id",
+                       "exact-match",
+                       "default-subif")
 
     def __init__(self):
         pass
@@ -931,3 +946,104 @@ class InterfaceKeywords(object):
         new_vhost_structure = [new_vhost, ]
         return InterfaceKeywords._set_interface_properties(
             node, interface, path, new_vhost_structure)
+
+    @staticmethod
+    def create_sub_interface(node, super_interface, identifier, **kwargs):
+        """Create a new sub-interface.
+
+        :param node: Honeycomb node.
+        :param super_interface: The name of super interface.
+        :param identifier: sub-interface identifier.
+        :param kwargs: Parameters and their values. The accepted parameters are
+        defined in InterfaceKeywords.SUB_INTF_PARAMS.
+        :type node: dict
+        :type super_interface: str
+        :type identifier: int
+        :type kwargs: dict
+        :return: Content of response.
+        :rtype: bytearray
+        :raises HoneycombError: If the parameter is not valid.
+        """
+
+        # These parameters are empty types (in JSON represented as empty
+        # dictionary) but ODL internally represents them as Booleans. If the
+        # value is an empty dictionary, it is True, if the parameter is
+        # missing, it is False.
+        empty_types = ("match-any-outer-id",
+                       "match-any-inner-id",
+                       "exact-match",
+                       "default-subif")
+
+        sub_interface_name = "{0}.{1}".format(super_interface, str(identifier))
+        new_sub_interface = {
+            "name": sub_interface_name,
+            "type": "v3po:sub-interface",
+            "enabled": "false",
+            "sub-interface": {
+                "super-interface": super_interface,
+                "identifier": identifier
+            }
+        }
+        for param, value in kwargs.items():
+            if param in InterfaceKeywords.INTF_PARAMS:
+                new_sub_interface[param] = value
+            elif param in InterfaceKeywords.SUB_INTF_PARAMS:
+                if param in empty_types:
+                    if value:
+                        new_sub_interface["sub-interface"][param] = dict()
+                else:
+                    new_sub_interface["sub-interface"][param] = value
+            else:
+                raise HoneycombError("The parameter {0} is invalid.".
+                                     format(param))
+
+        path = ("interfaces", "interface")
+        new_sub_interface_structure = [new_sub_interface, ]
+        return InterfaceKeywords._set_interface_properties(
+            node, sub_interface_name, path, new_sub_interface_structure)
+
+    @staticmethod
+    def add_vlan_tag_rewrite_to_sub_interface(node, sub_interface, **kwargs):
+        """Add vlan tag rewrite to a sub-interface.
+
+        :param node: Honeycomb node.
+        :param sub_interface: The name of sub-interface.
+        :param kwargs: Parameters and their values. The accepted parameters are
+        defined in InterfaceKeywords.L2_REWRITE_TAG_PARAMS.
+        :type node: dict
+        :type sub_interface: str
+        :type kwargs: dict
+        :return: Content of response.
+        :rtype: bytearray
+        :raises HoneycombError: If the parameter is not valid.
+        """
+
+        new_rewrite = dict()
+        for param, value in kwargs.items():
+            if param in InterfaceKeywords.L2_REWRITE_TAG_PARAMS:
+                new_rewrite[param] = value
+            else:
+                raise HoneycombError("The parameter {0} is invalid.".
+                                     format(param))
+
+        path = ("interfaces", ("interface", "name", sub_interface), "v3po:l2",
+                "vlan-tag-rewrite")
+        return InterfaceKeywords._set_interface_properties(
+            node, sub_interface, path, new_rewrite)
+
+    @staticmethod
+    def remove_vlan_tag_rewrite_from_sub_interface(node, sub_interface):
+        """Remove vlan tag rewrite from a sub-interface.
+
+        :param node: Honeycomb node.
+        :param sub_interface: The name of sub-interface.
+        :type node: dict
+        :type sub_interface: str
+        :rtype: bytearray
+        :raises HoneycombError: If the parameter is not valid.
+        """
+
+        path = ("interfaces", ("interface", "name", sub_interface), "v3po:l2",
+                "vlan-tag-rewrite")
+        return InterfaceKeywords._set_interface_properties(
+            node, sub_interface, path, None)

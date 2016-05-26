@@ -178,5 +178,5 @@
 | | ...
 | | [Arguments] | ${node} | ${interface} | ${settings}
 | | Run Keyword And Expect Error | HoneycombError: * Status code: 400.
-| | ... | interfaceAPI.Configure interface vhost user | ${node} | ${interface} |
+| | ... | interfaceAPI.Configure interface vhost user | ${node} | ${interface}
 | | ... | &{settings}
