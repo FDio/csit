@@ -17,7 +17,7 @@ from resources.libraries.python.topology import NodeType
 from resources.libraries.python.VatExecutor import VatExecutor
 
 
-class Lisp(object):
+class LispStatus(object):
     """Class for lisp API."""
 
     def __init__(self):
@@ -34,7 +34,7 @@ class Lisp(object):
         """
 
         VatExecutor.cmd_from_template(node,
-                                      'lisp/lisp.vat',
+                                      'lisp/lisp_status.vat',
                                       state=state)
 
 
@@ -494,16 +494,3 @@ class LispSetup(object):
 
         lgi = LispGpeIface()
         lgi.vpp_lisp_gpe_iface(node, state)
-
-    @staticmethod
-    def vpp_lisp_state(node, state):
-        """Enable/Disable lisp on VPP node in topology.
-
-        :param node: VPP node.
-        :param state: State of the lisp, enable or disable
-        :type node: dict
-        :type state: str
-        """
-
-        lgi = Lisp()
-        lgi.vpp_lisp_enable_disable(node, state)
