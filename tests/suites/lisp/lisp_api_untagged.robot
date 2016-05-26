@@ -92,3 +92,15 @@
 | | Then Lisp map resolver address is set correct | ${nodes['DUT1']}
 | | When Delete all lisp map resolver address from VPP | ${nodes['DUT1']}
 | | Then Lip map resolver address should be empty | ${nodes['DUT1']}
+
+Vpp can enable and disable Lisp
+| | [Documentation] | Test lisp enable/disable API.
+| | ...             | Enable lisp on the VPP node,
+| | ...             | check if the lisp on the vpp node is enabled.
+| | ...             | Then disable lisp on the vpp node and check if
+| | ...             | the lisp is disabled on the vpp node.
+| | Given Lisp test data is prepared
+| | When Lisp is enable | ${nodes['DUT1']}
+| | Then Check if lisp enabled | ${nodes['DUT1']}
+| | When Lisp is disable | ${nodes['DUT1']}
+| | Then Check if lisp disabled | ${nodes['DUT1']}
