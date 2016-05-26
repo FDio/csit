@@ -330,6 +330,8 @@ class HoneycombUtil(object):
         if data_representation == DataRepresentation.JSON:
             data = dumps(data)
 
+        logger.trace(data)
+
         path = HoneycombUtil.read_path_from_url_file(url_file)
         return HTTPRequest.put(node=node, path=path, headers=header,
                                payload=data)

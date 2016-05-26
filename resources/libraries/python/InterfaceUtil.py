@@ -190,15 +190,15 @@ class InterfaceUtil(object):
 
         if interface is not None:
             if isinstance(interface, basestring):
-                sw_if_index = Topology.get_interface_sw_index(node, interface)
+                param = "interface_name"
+            elif isinstance(interface, int):
+                param = "sw_if_index"
             else:
-                sw_if_index = interface
-
+                raise TypeError
             for data_if in data:
-                if data_if["sw_if_index"] == sw_if_index:
-
+                if data_if[param] == interface:
                     return data_if
-
+            return dict()
         return data
 
     @staticmethod
