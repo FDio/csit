@@ -494,16 +494,3 @@ class LispSetup(object):
 
         lgi = LispGpeIface()
         lgi.vpp_lisp_gpe_iface(node, state)
-
-    @staticmethod
-    def vpp_lisp_state(node, state):
-        """Enable/Disable lisp on VPP node in topology.
-
-        :param node: VPP node.
-        :param state: State of the lisp, enable or disable
-        :type node: dict
-        :type state: str
-        """
-
-        lgi = Lisp()
-        lgi.vpp_lisp_enable_disable(node, state)
