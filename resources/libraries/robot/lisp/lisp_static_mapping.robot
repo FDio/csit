@@ -13,31 +13,28 @@
 
 *** Settings ***
 | Documentation | Lisp State mapping suite keywords
-| Resource | resources/libraries/robot/interfaces.robot
-| Library  | resources.libraries.python.NodePath
+| Resource | resources/libraries/robot/lisp/lisp_api.robot
 | Library  | resources.libraries.python.LispSetup.LispLocatorSet
 | Library  | resources.libraries.python.LispSetup.LispLocator
 | Library  | resources.libraries.python.LispSetup.LispLocalEid
 | Library  | resources.libraries.python.LispSetup.LispRemoteMapping
-| Library  | resources.libraries.python.LispSetup.LispSetup
-| Library  | resources.libraries.python.LispUtil
 
 *** Keywords ***
 | Set up Lisp topology
 | | [Documentation] | Set up Lisp static remote mapping topology.
 | | ...
 | | ... | *Arguments:*
-| | ... | - ${dut1_node} - DUT1 node. Type: dictionary
-| | ... | - ${dut1_int_name} - DUT1 node interface name. Type: string
-| | ... | - ${dut1_int_index} - DUT1 node interface index. Type: integer
-| | ... | - ${dut2_node} - DUT2 node. Type: dictionary
-| | ... | - ${dut2_int_name} - DUT2 node interface name. Type: string
-| | ... | - ${dut2_int_index} - DUT2 node interface index. Type: integer
-| | ... | - ${locator_set} - Locator set values. Type: dict
-| | ... | - ${dut1_eid} - Dut1 node eid address. Type: dict
-| | ... | - ${dut2_eid} - Dut2 node eid address. Type: dict
-| | ... | - ${dut1_static_mapping} - Dut1 static mapping address. Type: dict
-| | ... | - ${dut2_static_mapping} - Dut2 static mapping address. Type: dict
+| | ... | - dut1_node - DUT1 node. Type: dictionary
+| | ... | - dut1_int_name - DUT1 node interface name. Type: string
+| | ... | - dut1_int_index - DUT1 node interface index. Type: integer
+| | ... | - dut2_node - DUT2 node. Type: dictionary
+| | ... | - dut2_int_name - DUT2 node interface name. Type: string
+| | ... | - dut2_int_index - DUT2 node interface index. Type: integer
+| | ... | - locator_set - Locator set values. Type: dict
+| | ... | - dut1_eid - Dut1 node eid address. Type: dict
+| | ... | - dut2_eid - Dut2 node eid address. Type: dict
+| | ... | - dut1_static_mapping - Dut1 static mapping address. Type: dict
+| | ... | - dut2_static_mapping - Dut2 static mapping address. Type: dict
 | | ...
 | | ... | *Return:*
 | | ... | - No value returned
@@ -60,7 +57,7 @@
 | |                    | ... | Get Interface Sw Index | ${dut2_node}
 | |                    | ...                          | ${dut2_int_name}
 | |                    | ... | ELSE | Set Variable | ${dut2_int_index}
-| | Vpp lisp state | ${dut1_node} | enable
+| | Enable Lisp | ${dut1_node}
 | | Vpp Add Lisp Locator Set | ${dut1_node} | ${locator_set['locator_name']}
 | | Vpp Add Lisp Locator | ${dut1_node} | ${locator_set['locator_name']}
 | | ...                  | ${dut1_int_index} | ${locator_set['priority']}
@@ -73,7 +70,7 @@
 | | ...                         | ${dut1_static_mapping['seid']}
 | | ...                         | ${dut1_static_mapping['prefix']}
 | | ...                         | ${dut1_static_mapping['rloc']}
-| | Vpp Lisp State | ${dut2_node} | enable
+| | Enable Lisp | ${dut2_node}
 | | Vpp Add Lisp Locator Set | ${dut2_node} | ${locator_set['locator_name']}
 | | Vpp Add Lisp Locator | ${dut2_node} | ${locator_set['locator_name']}
 | | ...                  | ${dut2_int_index} | ${locator_set['priority']}
