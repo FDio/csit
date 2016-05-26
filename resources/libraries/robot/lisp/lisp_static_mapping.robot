@@ -19,10 +19,41 @@
 | Library  | resources.libraries.python.LispSetup.LispLocator
 | Library  | resources.libraries.python.LispSetup.LispLocalEid
 | Library  | resources.libraries.python.LispSetup.LispRemoteMapping
+| Library  | resources.libraries.python.LispSetup.Lisp
 | Library  | resources.libraries.python.LispSetup.LispSetup
 | Library  | resources.libraries.python.LispUtil
 
 *** Keywords ***
+| Enable Lisp
+| | [Documentation] | Enable lisp in vpp
+| | ...
+| | ... | *Arguments:*
+| | ... | - ${dut_node} - DUT node. Type: dictionary
+| | ...
+| | ... | *Return:*
+| | ... | - No value returned
+| | ...
+| | ... | *Example:*
+| | ... | \| Enable Lisp \| ${dut_node} \|
+| | ...
+| | [Arguments] | ${dut_node}
+| | Vpp Lisp Enable Disable | ${dut_node} | enable
+
+| Disable Lisp
+| | [Documentation] | Disable lisp in vpp
+| | ...
+| | ... | *Arguments:*
+| | ... | - ${dut_node} - DUT node. Type: dictionary
+| | ...
+| | ... | *Return:*
+| | ... | - No value returned
+| | ...
+| | ... | *Example:*
+| | ... | \| Enable Lisp \| ${dut_node} \|
+| | ...
+| | [Arguments] | ${dut_node}
+| | Vpp Lisp Enable Disable | ${dut_node} | disable
+
 | Set up Lisp topology
 | | [Documentation] | Set up Lisp static remote mapping topology.
 | | ...
@@ -60,7 +91,7 @@
 | |                    | ... | Get Interface Sw Index | ${dut2_node}
 | |                    | ...                          | ${dut2_int_name}
 | |                    | ... | ELSE | Set Variable | ${dut2_int_index}
-| | Vpp lisp state | ${dut1_node} | enable
+| | Enable Lisp | ${dut1_node}
 | | Vpp Add Lisp Locator Set | ${dut1_node} | ${locator_set['locator_name']}
 | | Vpp Add Lisp Locator | ${dut1_node} | ${locator_set['locator_name']}
 | | ...                  | ${dut1_int_index} | ${locator_set['priority']}
@@ -73,7 +104,7 @@
 | | ...                         | ${dut1_static_mapping['seid']}
 | | ...                         | ${dut1_static_mapping['prefix']}
 | | ...                         | ${dut1_static_mapping['rloc']}
-| | Vpp Lisp State | ${dut2_node} | enable
+| | Enable Lisp | ${dut2_node}
 | | Vpp Add Lisp Locator Set | ${dut2_node} | ${locator_set['locator_name']}
 | | Vpp Add Lisp Locator | ${dut2_node} | ${locator_set['locator_name']}
 | | ...                  | ${dut2_int_index} | ${locator_set['priority']}
