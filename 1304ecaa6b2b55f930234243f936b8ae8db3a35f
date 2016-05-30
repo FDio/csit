@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da141535_01efc988",
+        "filename": "tests/suites/honeycomb/6 - sub_interface.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-30T09:35:46Z",
+      "side": 1,
+      "message": "add also testcase Honeycomb sets sub-interface down while its super-interface is up",
+      "range": {
+        "startLine": 310,
+        "startChar": 2,
+        "endLine": 310,
+        "endChar": 75
+      },
+      "revId": "1304ecaa6b2b55f930234243f936b8ae8db3a35f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
