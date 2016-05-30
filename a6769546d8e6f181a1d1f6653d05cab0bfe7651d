@@ -25,6 +25,98 @@
     },
     {
       "key": {
+        "uuid": "da141535_149ca968",
+        "filename": "resources/libraries/python/MacSwap.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-30T14:52:01Z",
+      "side": 1,
+      "message": "VPP node",
+      "range": {
+        "startLine": 29,
+        "startChar": 34,
+        "endLine": 29,
+        "endChar": 37
+      },
+      "revId": "a6769546d8e6f181a1d1f6653d05cab0bfe7651d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_f4881524",
+        "filename": "resources/libraries/python/MacSwap.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-30T14:52:01Z",
+      "side": 1,
+      "message": "plugin.",
+      "range": {
+        "startLine": 29,
+        "startChar": 51,
+        "endLine": 29,
+        "endChar": 57
+      },
+      "revId": "a6769546d8e6f181a1d1f6653d05cab0bfe7651d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_b4829dfe",
+        "filename": "resources/libraries/python/MacSwap.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-30T14:52:01Z",
+      "side": 1,
+      "message": "What about ValueError?",
+      "range": {
+        "startLine": 43,
+        "startChar": 18,
+        "endLine": 43,
+        "endChar": 27
+      },
+      "revId": "a6769546d8e6f181a1d1f6653d05cab0bfe7651d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_9487990f",
+        "filename": "resources/libraries/python/MacSwap.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-30T14:52:01Z",
+      "side": 1,
+      "message": "not DUT",
+      "range": {
+        "startLine": 43,
+        "startChar": 41,
+        "endLine": 43,
+        "endChar": 48
+      },
+      "revId": "a6769546d8e6f181a1d1f6653d05cab0bfe7651d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da141535_942b1930",
         "filename": "resources/libraries/python/MacSwap.py",
         "patchSetId": 2
@@ -48,6 +140,52 @@
     },
     {
       "key": {
+        "uuid": "da141535_5479012e",
+        "filename": "resources/libraries/python/MacSwap.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-30T14:52:01Z",
+      "side": 1,
+      "message": "not DUT",
+      "range": {
+        "startLine": 63,
+        "startChar": 41,
+        "endLine": 63,
+        "endChar": 48
+      },
+      "revId": "a6769546d8e6f181a1d1f6653d05cab0bfe7651d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_747c0521",
+        "filename": "resources/libraries/python/MacSwap.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-30T14:52:01Z",
+      "side": 1,
+      "message": "ValueError?",
+      "range": {
+        "startLine": 63,
+        "startChar": 18,
+        "endLine": 63,
+        "endChar": 27
+      },
+      "revId": "a6769546d8e6f181a1d1f6653d05cab0bfe7651d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da141535_541d810e",
         "filename": "resources/traffic_scripts/macswap_check.py",
         "patchSetId": 2
@@ -64,6 +202,98 @@
         "startChar": 7,
         "endLine": 24,
         "endChar": 8
+      },
+      "revId": "a6769546d8e6f181a1d1f6653d05cab0bfe7651d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_34768d3f",
+        "filename": "resources/traffic_scripts/macswap_check.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-30T14:52:01Z",
+      "side": 1,
+      "message": "typo: received",
+      "range": {
+        "startLine": 24,
+        "startChar": 42,
+        "endLine": 24,
+        "endChar": 51
+      },
+      "revId": "a6769546d8e6f181a1d1f6653d05cab0bfe7651d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_b4997d70",
+        "filename": "resources/traffic_scripts/macswap_check.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-30T14:52:01Z",
+      "side": 1,
+      "message": "src - as I expect test of macswap so src and dst MAC addresses should be swapped...",
+      "range": {
+        "startLine": 35,
+        "startChar": 32,
+        "endLine": 35,
+        "endChar": 35
+      },
+      "revId": "a6769546d8e6f181a1d1f6653d05cab0bfe7651d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_74a3e59e",
+        "filename": "resources/traffic_scripts/macswap_check.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-30T14:52:01Z",
+      "side": 1,
+      "message": "or",
+      "range": {
+        "startLine": 35,
+        "startChar": 36,
+        "endLine": 35,
+        "endChar": 39
+      },
+      "revId": "a6769546d8e6f181a1d1f6653d05cab0bfe7651d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_949e7955",
+        "filename": "resources/traffic_scripts/macswap_check.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-30T14:52:01Z",
+      "side": 1,
+      "message": "dst",
+      "range": {
+        "startLine": 35,
+        "startChar": 65,
+        "endLine": 35,
+        "endChar": 68
       },
       "revId": "a6769546d8e6f181a1d1f6653d05cab0bfe7651d",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
