@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da141535_e1305558",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 6
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-05-30T08:05:11Z",
+      "side": 1,
+      "message": "Add jira task if exists.",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 39
+      },
+      "revId": "799538659c0f8b3daf33ec2d1a05a57f30712bf2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_21464dc0",
+        "filename": "resources/libraries/robot/lisp/lisp_static_mapping.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-05-30T08:05:11Z",
+      "side": 1,
+      "message": "Resource file doc is missing.",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 16
+      },
+      "revId": "799538659c0f8b3daf33ec2d1a05a57f30712bf2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_011349b9",
+        "filename": "resources/libraries/robot/lisp/lisp_static_mapping.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-05-30T08:05:11Z",
+      "side": 1,
+      "message": "Consider grouping of arguments in dict(s).",
+      "range": {
+        "startLine": 61,
+        "startChar": 4,
+        "endLine": 61,
+        "endChar": 15
+      },
+      "revId": "799538659c0f8b3daf33ec2d1a05a57f30712bf2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
