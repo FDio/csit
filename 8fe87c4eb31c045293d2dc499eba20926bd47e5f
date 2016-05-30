@@ -1,0 +1,326 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da141535_7413e55c",
+        "filename": "resources/libraries/robot/traffic.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-30T14:20:41Z",
+      "side": 1,
+      "message": "if ARP Request packet is received on rx_port.",
+      "range": {
+        "startLine": 110,
+        "startChar": 60,
+        "endLine": 110,
+        "endChar": 74
+      },
+      "revId": "8fe87c4eb31c045293d2dc499eba20926bd47e5f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_a1401d57",
+        "filename": "resources/libraries/robot/traffic.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-30T14:20:41Z",
+      "side": 1,
+      "message": "Missing one r: transferred\n- all occurances",
+      "range": {
+        "startLine": 118,
+        "startChar": 45,
+        "endLine": 118,
+        "endChar": 55
+      },
+      "revId": "8fe87c4eb31c045293d2dc499eba20926bd47e5f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_812519c4",
+        "filename": "resources/libraries/robot/traffic.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-30T14:20:41Z",
+      "side": 1,
+      "message": "the IP packet is sent (TG-if1).",
+      "range": {
+        "startLine": 122,
+        "startChar": 43,
+        "endLine": 122,
+        "endChar": 60
+      },
+      "revId": "8fe87c4eb31c045293d2dc499eba20926bd47e5f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_5410e14d",
+        "filename": "resources/libraries/robot/traffic.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-30T14:20:41Z",
+      "side": 1,
+      "message": "packet (DUT-if1).",
+      "range": {
+        "startLine": 123,
+        "startChar": 55,
+        "endLine": 123,
+        "endChar": 62
+      },
+      "revId": "8fe87c4eb31c045293d2dc499eba20926bd47e5f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_e11df574",
+        "filename": "resources/libraries/robot/traffic.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-30T14:20:41Z",
+      "side": 1,
+      "message": "Interface where the IP packet is received (TG-if2).",
+      "range": {
+        "startLine": 124,
+        "startChar": 22,
+        "endLine": 124,
+        "endChar": 41
+      },
+      "revId": "8fe87c4eb31c045293d2dc499eba20926bd47e5f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_341d6d67",
+        "filename": "resources/libraries/robot/traffic.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-30T14:20:41Z",
+      "side": 1,
+      "message": "Source MAC address of ARP packet (DUT1-if2).",
+      "range": {
+        "startLine": 125,
+        "startChar": 25,
+        "endLine": 125,
+        "endChar": 49
+      },
+      "revId": "8fe87c4eb31c045293d2dc499eba20926bd47e5f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_549341a3",
+        "filename": "resources/traffic_scripts/send_icmp_check_arp.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-30T14:20:41Z",
+      "side": 1,
+      "message": "What about to correctness of IP addresses first?\n\nif valid_ipv4(src_ip) and valid_ipv4(dst_ip):\n    pkt_raw \u003d Ether(dst\u003dtx_dst_mac) / IP(src\u003dsrc_ip, dst\u003ddst_ip) / ICMP()\n\n------------------\ndef valid_ipv4(ip):\n    \"\"\"Check if IP address has the correct IPv4 address format.\n\n    :param ip: IP address.\n    :type ip: str\n    :return: True in case of correct IPv4 address format,\n    otherwise return false.\n    :rtype: bool\n    \"\"\"\n    try:\n        ipaddress.IPv4Address(unicode(ip))\n        return True\n    except (AttributeError, ipaddress.AddressValueError):\n        return False",
+      "range": {
+        "startLine": 48,
+        "startChar": 45,
+        "endLine": 48,
+        "endChar": 51
+      },
+      "revId": "8fe87c4eb31c045293d2dc499eba20926bd47e5f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_34620dd9",
+        "filename": "resources/traffic_scripts/send_icmp_check_arp.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-30T14:20:41Z",
+      "side": 1,
+      "message": "packet received",
+      "range": {
+        "startLine": 60,
+        "startChar": 19,
+        "endLine": 60,
+        "endChar": 26
+      },
+      "revId": "8fe87c4eb31c045293d2dc499eba20926bd47e5f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_3490cd94",
+        "filename": "resources/traffic_scripts/send_icmp_check_arp.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-30T14:20:41Z",
+      "side": 1,
+      "message": "ARP request",
+      "range": {
+        "startLine": 69,
+        "startChar": 37,
+        "endLine": 69,
+        "endChar": 43
+      },
+      "revId": "8fe87c4eb31c045293d2dc499eba20926bd47e5f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_148dc97b",
+        "filename": "resources/traffic_scripts/send_icmp_check_arp.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-30T14:20:41Z",
+      "side": 1,
+      "message": "Source MAC",
+      "range": {
+        "startLine": 75,
+        "startChar": 37,
+        "endLine": 75,
+        "endChar": 43
+      },
+      "revId": "8fe87c4eb31c045293d2dc499eba20926bd47e5f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_f4e9351b",
+        "filename": "resources/traffic_scripts/send_icmp_check_arp.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-30T14:20:41Z",
+      "side": 1,
+      "message": "Destination MAC",
+      "range": {
+        "startLine": 81,
+        "startChar": 37,
+        "endLine": 81,
+        "endChar": 43
+      },
+      "revId": "8fe87c4eb31c045293d2dc499eba20926bd47e5f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_d4ee3122",
+        "filename": "resources/traffic_scripts/send_icmp_check_arp.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-30T14:20:41Z",
+      "side": 1,
+      "message": "Source ARP IP address",
+      "range": {
+        "startLine": 87,
+        "startChar": 37,
+        "endLine": 87,
+        "endChar": 43
+      },
+      "revId": "8fe87c4eb31c045293d2dc499eba20926bd47e5f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_b4f3bd09",
+        "filename": "resources/traffic_scripts/send_icmp_check_arp.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-30T14:20:41Z",
+      "side": 1,
+      "message": "Destination ARP IP address",
+      "range": {
+        "startLine": 93,
+        "startChar": 37,
+        "endLine": 93,
+        "endChar": 43
+      },
+      "revId": "8fe87c4eb31c045293d2dc499eba20926bd47e5f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_b4b4ddf2",
+        "filename": "tests/suites/ipv4/ipv4_arp_untagged.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-30T14:20:41Z",
+      "side": 1,
+      "message": "sends",
+      "range": {
+        "startLine": 41,
+        "startChar": 56,
+        "endLine": 41,
+        "endChar": 60
+      },
+      "revId": "8fe87c4eb31c045293d2dc499eba20926bd47e5f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
