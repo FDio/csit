@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da141535_414ee1c2",
+        "filename": "bootstrap.sh",
+        "patchSetId": 9
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 74
+      },
+      "writtenOn": "2016-05-30T09:16:59Z",
+      "side": 1,
+      "message": "copy / paste ?",
+      "revId": "56949c43f34391bd5c8ff67d73bb9156c83c3ae7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
