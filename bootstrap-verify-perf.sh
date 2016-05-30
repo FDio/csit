@@ -120,6 +120,7 @@ case "$TEST_TAG" in
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -i perftest_long \
               tests/
+        RETURN_STATUS=$(echo $?)
         ;;
     PERFTEST_SHORT )
         pybot ${PYBOT_ARGS} \
@@ -127,6 +128,7 @@ case "$TEST_TAG" in
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -i perftest_short \
               tests/
+        RETURN_STATUS=$(echo $?)
         ;;
     PERFTEST_LONG_BRIDGE )
         pybot ${PYBOT_ARGS} \
@@ -134,6 +136,7 @@ case "$TEST_TAG" in
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s "performance.Long_Bridge_Domain*" \
               tests/
+        RETURN_STATUS=$(echo $?)
         ;;
     PERFTEST_LONG_IPV4 )
         pybot ${PYBOT_ARGS} \
@@ -141,6 +144,7 @@ case "$TEST_TAG" in
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s "performance.Long_IPv4*" \
               tests/
+        RETURN_STATUS=$(echo $?)
         ;;
     PERFTEST_LONG_IPV6 )
         pybot ${PYBOT_ARGS} \
@@ -148,6 +152,7 @@ case "$TEST_TAG" in
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s "performance.Long_IPv6*" \
               tests/
+        RETURN_STATUS=$(echo $?)
         ;;
     PERFTEST_LONG_XCONNECT )
         pybot ${PYBOT_ARGS} \
@@ -155,6 +160,7 @@ case "$TEST_TAG" in
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s "performance.Long_Xconnect*" \
               tests/
+        RETURN_STATUS=$(echo $?)
         ;;
     PERFTEST_LONG_XCONNECT_DOT1Q )
         pybot ${PYBOT_ARGS} \
@@ -175,6 +181,7 @@ case "$TEST_TAG" in
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s performance -i PDR \
               tests/
+        RETURN_STATUS=$(echo $?)
         ;;
     * )
         # run full performance test suite and exit on fail
@@ -183,9 +190,12 @@ case "$TEST_TAG" in
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s performance \
               tests/
+        RETURN_STATUS=$(echo $?)
 esac
 
 # Pybot output post-processing
+echo Post-processing test data...
+
 python ${CUR_DIR}/resources/tools/robot_output_parser.py \
        -i ${CUR_DIR}/output.xml \
        -o ${CUR_DIR}/output_perf_data.json \
@@ -200,3 +210,6 @@ for i in ${ARCHIVE_ARTIFACTS[@]}; do
     cp $( readlink -f ${i} | tr '\n' ' ' ) archive/
 done
 
+echo Post-processing finished.
+
+exit ${RETURN_STATUS}
