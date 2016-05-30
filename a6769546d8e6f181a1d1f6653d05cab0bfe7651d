@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da141535_74208549",
+        "filename": "resources/libraries/python/MacSwap.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-05-30T14:07:35Z",
+      "side": 1,
+      "message": "Full stop at the end.",
+      "range": {
+        "startLine": 29,
+        "startChar": 51,
+        "endLine": 29,
+        "endChar": 57
+      },
+      "revId": "a6769546d8e6f181a1d1f6653d05cab0bfe7651d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_942b1930",
+        "filename": "resources/libraries/python/MacSwap.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-05-30T14:07:35Z",
+      "side": 1,
+      "message": "Full stop at the end.",
+      "range": {
+        "startLine": 50,
+        "startChar": 51,
+        "endLine": 50,
+        "endChar": 57
+      },
+      "revId": "a6769546d8e6f181a1d1f6653d05cab0bfe7651d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_541d810e",
+        "filename": "resources/traffic_scripts/macswap_check.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-05-30T14:07:35Z",
+      "side": 1,
+      "message": "No white space needed.",
+      "range": {
+        "startLine": 24,
+        "startChar": 7,
+        "endLine": 24,
+        "endChar": 8
+      },
+      "revId": "a6769546d8e6f181a1d1f6653d05cab0bfe7651d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_d43191a3",
+        "filename": "sample_tests/sample_suite.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-05-30T14:07:35Z",
+      "side": 1,
+      "message": "Documentation is missing - file, keywords, test.",
+      "revId": "a6769546d8e6f181a1d1f6653d05cab0bfe7651d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
