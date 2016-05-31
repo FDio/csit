@@ -41,7 +41,7 @@ class QemuUtils(object):
         # management interface.
         self._qemu_opt['options'] = '-daemonize -enable-kvm ' \
             '-machine pc-1.0,accel=kvm,usb=off,mem-merge=off ' \
-            '-net nic,macaddr=52:54:00:00:02:01'
+            '-net nic,macaddr=52:54:00:00:02:01 -balloon none'
         self._qemu_opt['ssh_fwd_port'] = 10022
         # Default serial console port
         self._qemu_opt['serial_port'] = 4556
@@ -157,9 +157,10 @@ class QemuUtils(object):
         # e.g. vhost1 MAC is 52:54:00:00:04:01
         if mac is None:
             mac = '52:54:00:00:04:{0:02x}'.format(self._vhost_id)
+        extend_options = 'mrg_rxbuf=off'
         # Create Virtio network device.
-        device = ' -device virtio-net-pci,netdev=vhost{0},mac={1}'.format(
-            self._vhost_id, mac)
+        device = ' -device virtio-net-pci,netdev=vhost{0},mac={1},{2}'.format(
+            self._vhost_id, mac, extend_options)
         self._qemu_opt['options'] += device
         # Add interface MAC and socket to the node dict
         if_data = {'mac_address': mac, 'socket': socket}
@@ -349,7 +350,7 @@ class QemuUtils(object):
         # Graphic setup
         graphic = '-monitor none -display none -vga none'
         # Run QEMU
-        cmd = '{0} {1} {2} {3} {4} -hda {5} {6} {7} {8} {9}'.format(
+        cmd = '{0} -cpu host {1} {2} {3} {4} -hda {5} {6} {7} {8} {9}'.format(
             self.__QEMU_BIN, self._qemu_opt.get('smp'), mem, ssh_fwd,
             self._qemu_opt.get('options'),
             self._qemu_opt.get('disk_image'), qmp, serial, qga, graphic)
