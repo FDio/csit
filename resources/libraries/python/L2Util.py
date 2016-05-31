@@ -254,6 +254,19 @@ class L2Util(object):
         exec_cmd_no_error(node, cmd, sudo=True)
 
     @staticmethod
+    def dpdk_l2fwd_start(node):
+        """Bridge two interfaces on linux node.
+
+        :param node: Node to add bridge on.
+        :type node: dict
+
+        """
+        cmd = '/dpdk-setup.sh'
+        exec_cmd_no_error(node, cmd, sudo=True)
+        cmd = "nohup /usr/local/bin/l2fwd -d /usr/lib/librte_pmd_virtio.so -n 2 -- -p 3 > /dev/null 2>&1 &"
+        exec_cmd_no_error(node, cmd, sudo=True)
+
+    @staticmethod
     def vpp_get_bridge_domain_data(node, bd_id=None):
         """Get all bridge domain data from a VPP node. If a domain ID number is
         provided, return only data for the matching bridge domain.
