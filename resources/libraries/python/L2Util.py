@@ -254,6 +254,57 @@ class L2Util(object):
         exec_cmd_no_error(node, cmd, sudo=True)
 
     @staticmethod
+    def dpdk_testpmd_start(node, coremask='', mem_channels='',
+                           socket_mem=''):
+        """Start DPDK testpmd app on node.
+
+        :param node: Node to start testpmd on.
+        :param coremask: Hexadecimal bitmask of the cores to run on.
+        :param mem_channels: Number of memory channels to use.
+        :param socket-mem: Memory to allocate on specific sockets.
+        :type node: dict
+        :type coremask: str
+        :type mem_channels: str
+        :type socket-mem: str
+        :return: nothing
+        """
+        # Set the hexadecimal bitmask of the cores to run on.
+        coremask = '-c {}'.format(coremask) if coremask else ''
+        # Set the number of memory channels to use.
+        mem_channels = '-n {}'.format(mem_channels) if mem_channels else ''
+        # Set the memory to allocate on specific sockets (use comma separated
+        # values).
+        socket_mem = '--socket-mem {}'.format(socket_mem) if socket_mem else ''
+        # Load an external driver. Multiple -d options are allowed.
+        driver = '-d /usr/lib/librte_pmd_virtio.so'
+        options = '-- '\
+            '--burst=64 '\
+            '--txd=2048 '\
+            '--rxd=2048 '\
+            '--txqflags=0xf00 '\
+            '--total-num-mbufs=65536 '\
+            '--portmask=3 '\
+            '--disable-hw-vlan '
+            #'--coremask=0x6 '\
+            #'--nb-cores=2 '
+        cmd = "/start-testpmd.sh -v {0} {1} {2} {3} {4}".format(
+            coremask, mem_channels, socket_mem, driver, options)
+        exec_cmd_no_error(node, cmd, sudo=True)
+
+    @staticmethod
+    def dpdk_testpmd_stop(node):
+        """Stop DPDK testpmd app on node.
+
+        :param node: Node to stop testpmd on.
+        :type node: dict
+        :return: nothing
+        """
+        _script = '/stop-testpmd.sh'
+
+        cmd = "{0}".format(_script)
+        exec_cmd_no_error(node, cmd, sudo=True)
+
+    @staticmethod
     def vpp_get_bridge_domain_data(node, bd_id=None):
         """Get all bridge domain data from a VPP node. If a domain ID number is
         provided, return only data for the matching bridge domain.
