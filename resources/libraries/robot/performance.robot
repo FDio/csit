@@ -15,6 +15,8 @@
 | Library | resources.libraries.python.topology.Topology
 | Library | resources.libraries.python.NodePath
 | Library | resources.libraries.python.InterfaceUtil
+| Library | resources.libraries.python.VhostUser
+| Library | resources.libraries.python.QemuUtils
 | Library | resources.libraries.python.TrafficGenerator
 | Library | resources.libraries.python.TrafficGenerator.TGDropRateSearchImpl
 | Resource | resources/libraries/robot/default.robot
@@ -24,6 +26,7 @@
 | Resource | resources/libraries/robot/l2_xconnect.robot
 | Resource | resources/libraries/robot/ipv4.robot
 | Resource | resources/libraries/robot/ipv6.robot
+| Resource | resources/libraries/robot/qemu.robot
 | Documentation | Performance suite keywords
 
 *** Keywords ***
@@ -188,6 +191,38 @@
 | | [Documentation] | Custom setup of L2 bridge topology
 | | Vpp l2bd forwarding setup | ${dut1} | ${dut1_if1} | ${dut1_if2}
 | | Vpp l2bd forwarding setup | ${dut2} | ${dut2_if1} | ${dut2_if2}
+| | All Vpp Interfaces Ready Wait | ${nodes}
+
+| L2 bridge domains initialized in a 3-node circular topology with Vhost-User
+| | [Documentation] | Create two Vhost-User interfaces on all defined VPP
+| | ...             | nodes. Add each Vhost-User interface into L2 bridge
+| | ...             | domains with learning enabled with physical inteface.
+| | ...
+| | ... | *Arguments:*
+| | ... | - ${bd_id1} - Bridge domain ID. Type: integer
+| | ... | - ${bd_id2} - Bridge domain ID. Type: integer
+| | ... | - ${sock1} - Socket path for first Vhost-User interface. Type: string
+| | ... | - ${sock2} - Socket path for second Vhost-User interface. Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| L2 bridge domains initialized in a 3-node circular topology \
+| | ... |    with Vhost-User \| 1 \| 2 \| /tmp/sock1 \| /tmp/sock2
+| | [Arguments] | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
+| | VPP Vhost interfaces for L2BD forwarding are setup | ${dut1}
+| | ...                                                | ${sock1}
+| | ...                                                | ${sock2}
+| | Interface is added to bridge domain | ${dut1} | ${dut1_if1} | ${bd_id1}
+| | Interface is added to bridge domain | ${dut1} | ${vhost_if1} | ${bd_id1}
+| | Interface is added to bridge domain | ${dut1} | ${dut1_if2} | ${bd_id2}
+| | Interface is added to bridge domain | ${dut1} | ${vhost_if2} | ${bd_id2}
+| | VPP Vhost interfaces for L2BD forwarding are setup | ${dut2}
+| | ...                                                | ${sock1}
+| | ...                                                | ${sock2}
+| | Interface is added to bridge domain | ${dut2} | ${dut2_if1} | ${bd_id1}
+| | Interface is added to bridge domain | ${dut2} | ${vhost_if1} | ${bd_id1}
+| | Interface is added to bridge domain | ${dut2} | ${dut2_if2} | ${bd_id2}
+| | Interface is added to bridge domain | ${dut2} | ${vhost_if2} | ${bd_id2}
 | | All Vpp Interfaces Ready Wait | ${nodes}
 
 | 3-node Performance Suite Setup
@@ -574,3 +609,32 @@
 | | Sleep | ${duration}
 | | Show runtime counters on all DUTs
 | | Stop traffic on tg
+
+| VM with Linux Bridge for Vhost L2BD forwarding is setup
+| | [Documentation] | Setup QEMU and start VM with two vhost interfaces and
+| | ... | interconnecting linux bridge.
+| | ...
+| | ... | *Arguments:*
+| | ... | - ${node} - DUT node to start VM on. Type: dictionary
+| | ... | - ${sock1} - Socket path for first Vhost-User interface. Type: string
+| | ... | - ${sock2} - Socket path for second Vhost-User interface. Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| VM with Linux Bridge for Vhost L2BD forwarding is setup \
+| | ... | \| ${nodes['DUT1']} \| /tmp/sock1 \| /tmp/sock2
+| | [Arguments] | ${node} | ${sock1} | ${sock2}
+| | Qemu Set Node | ${node}
+| | Qemu Add Vhost User If | ${sock1}
+| | Qemu Add Vhost User If | ${sock2}
+| | Qemu Set Smp | 1 | 2 | 1 | 1
+| | Qemu Set Mem Size | 2048
+| | ${vm}= | Qemu Start
+| | ${br}= | Set Variable | br0
+| | ${vhost1}= | Get Vhost User If Name By Sock | ${vm} | ${sock1}
+| | ${vhost2}= | Get Vhost User If Name By Sock | ${vm} | ${sock2}
+| | Linux Add Bridge | ${vm} | ${br} | ${vhost1} | ${vhost2}
+| | Set Interface State | ${vm} | ${vhost1} | up
+| | Set Interface State | ${vm} | ${vhost2} | up
+| | Set Interface State | ${vm} | ${br} | up
+| | Return From Keyword | ${vm}
