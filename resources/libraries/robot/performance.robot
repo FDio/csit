@@ -15,6 +15,7 @@
 | Library | resources.libraries.python.topology.Topology
 | Library | resources.libraries.python.NodePath
 | Library | resources.libraries.python.InterfaceUtil
+| Library | resources.libraries.python.VhostUser
 | Library | resources.libraries.python.TrafficGenerator
 | Library | resources.libraries.python.TrafficGenerator.TGDropRateSearchImpl
 | Resource | resources/libraries/robot/default.robot
@@ -24,6 +25,7 @@
 | Resource | resources/libraries/robot/l2_xconnect.robot
 | Resource | resources/libraries/robot/ipv4.robot
 | Resource | resources/libraries/robot/ipv6.robot
+| Resource | resources/libraries/robot/qemu.robot
 | Documentation | Performance suite keywords
 
 *** Keywords ***
@@ -256,6 +258,39 @@
 | | [Documentation] | Custom setup of L2 bridge topology
 | | Vpp l2bd forwarding setup | ${dut1} | ${dut1_if1} | ${dut1_if2}
 | | Vpp l2bd forwarding setup | ${dut2} | ${dut2_if1} | ${dut2_if2}
+| | All Vpp Interfaces Ready Wait | ${nodes}
+
+| L2 bridge domains with Vhost-User initialized in a 3-node circular topology
+| | [Documentation]
+| | ... | Create two Vhost-User interfaces on all defined VPP nodes. Add each
+| | ... | Vhost-User interface into L2 bridge domains with learning enabled
+| | ... | with physical inteface.
+| | ...
+| | ... | *Arguments:*
+| | ... | - bd_id1 - Bridge domain ID. Type: integer
+| | ... | - bd_id2 - Bridge domain ID. Type: integer
+| | ... | - sock1 - Sock path for first Vhost-User interface. Type: string
+| | ... | - sock2 - Sock path for second Vhost-User interface. Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| L2 bridge domains with Vhost-User initialized in a 3-node \
+| | ... |    circular topology \| 1 \| 2 \| /tmp/sock1 \| /tmp/sock2
+| | [Arguments] | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
+| | VPP Vhost interfaces for L2BD forwarding are setup | ${dut1}
+| | ...                                                | ${sock1}
+| | ...                                                | ${sock2}
+| | Interface is added to bridge domain | ${dut1} | ${dut1_if1} | ${bd_id1}
+| | Interface is added to bridge domain | ${dut1} | ${vhost_if1} | ${bd_id1}
+| | Interface is added to bridge domain | ${dut1} | ${dut1_if2} | ${bd_id2}
+| | Interface is added to bridge domain | ${dut1} | ${vhost_if2} | ${bd_id2}
+| | VPP Vhost interfaces for L2BD forwarding are setup | ${dut2}
+| | ...                                                | ${sock1}
+| | ...                                                | ${sock2}
+| | Interface is added to bridge domain | ${dut2} | ${dut2_if1} | ${bd_id1}
+| | Interface is added to bridge domain | ${dut2} | ${vhost_if1} | ${bd_id1}
+| | Interface is added to bridge domain | ${dut2} | ${dut2_if2} | ${bd_id2}
+| | Interface is added to bridge domain | ${dut2} | ${vhost_if2} | ${bd_id2}
 | | All Vpp Interfaces Ready Wait | ${nodes}
 
 | 2-node Performance Suite Setup
@@ -675,3 +710,116 @@
 | | Sleep | ${duration}
 | | Show runtime counters on all DUTs
 | | Stop traffic on tg
+
+| Guest with dpdk-testpmd connected via vhost is setup
+| | [Documentation]
+| | ... | Start QEMU guest with two vhost interfaces and interconnecting
+| | ... | DPDK testpmd. Qemu Guest is using 3 cores pinned to mask 0xE0 and
+| | ... | 2048M. Testpmd is using 3 cores (1 main core and 2 cores dedicated to
+| | ... | io) socket-mem=1024, mem-channel=4, txq/rxq=2048, burst=64,
+| | ... | disable-hw-vlan, total-num-mbufs, driver usr/lib/librte_pmd_virtio.so.
+| | ...
+| | ... | *Arguments:*
+| | ... | - dut_node - DUT node to start VM on. Type: dictionary
+| | ... | - sock1 - Sock path for first Vhost-User interface. Type: string
+| | ... | - sock2 - Sock path for second Vhost-User interface. Type: string
+| | ... | - vm_name - QemuUtil instance name. Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| VM with dpdk-testpmd for Vhost L2BD forwarding is setup \
+| | ... | \| ${nodes['DUT1']} \| /tmp/sock1 \| /tmp/sock2 \| DUT1_VM \|
+| | [Arguments] | ${dut_node} | ${sock1} | ${sock2} | ${vm_name}
+| | Import Library | resources.libraries.python.QemuUtils
+| | ...            | WITH NAME | ${vm_name}
+| | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock1}
+| | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock2}
+| | Run keyword | ${vm_name}.Qemu Set Node | ${dut_node}
+| | Run keyword | ${vm_name}.Qemu Set Smp | 3 | 3 | 1 | 1
+| | Run keyword | ${vm_name}.Qemu Set Mem Size | 2048
+| | Run keyword | ${vm_name}.Qemu Set Affinity | E0
+| | Run keyword | ${vm_name}.Qemu Set Disk Image
+| | ...         | /var/lib/vm/csit-nested-1.3.img
+| | ${vm}= | Run keyword | ${vm_name}.Qemu Start
+| | Dpdk Testpmd Start | ${vm} | 0x7 | 4 | 1024
+| | Return From Keyword | ${vm}
+
+| Guest with Linux Bridge connected via vhost is setup
+| | [Documentation]
+| | ... | Start QEMU guest with two vhost interfaces and interconnecting
+| | ... | linux bridge.
+| | ...
+| | ... | *Arguments:*
+| | ... | - dut_node - DUT node to start VM on. Type: dictionary
+| | ... | - sock1 - Sock path for first Vhost-User interface. Type: string
+| | ... | - sock2 - Sock path for second Vhost-User interface. Type: string
+| | ... | - vm_name - QemuUtil instance name. Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| VM with Linux Bridge for Vhost L2BD forwarding is setup \
+| | ... | \| ${nodes['DUT1']} \| /tmp/sock1 \| /tmp/sock2 \| DUT1_VM \|
+| | [Arguments] | ${dut_node} | ${sock1} | ${sock2} | ${vm_name}
+| | Import Library | resources.libraries.python.QemuUtils
+| | ...            | WITH NAME | ${vm_name}
+| | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock1}
+| | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock2}
+| | Run keyword | ${vm_name}.Qemu Set Node | ${dut_node}
+| | Run keyword | ${vm_name}.Qemu Set Smp | 3 | 3 | 1 | 1
+| | Run keyword | ${vm_name}.Qemu Set Mem Size | 2048
+| | Run keyword | ${vm_name}.Qemu Set Affinity | E0
+| | Run keyword | ${vm_name}.Qemu Set Disk Image
+| | ...         | /var/lib/vm/csit-nested-1.3.img
+| | ${vm}= | Run keyword | ${vm_name}.Qemu Start
+| | ${br}= | Set Variable | br0
+| | ${vhost1}= | Get Vhost User If Name By Sock | ${vm} | ${sock1}
+| | ${vhost2}= | Get Vhost User If Name By Sock | ${vm} | ${sock2}
+| | Linux Add Bridge | ${vm} | ${br} | ${vhost1} | ${vhost2}
+| | Set Interface State | ${vm} | ${vhost1} | up
+| | Set Interface State | ${vm} | ${vhost2} | up
+| | Set Interface State | ${vm} | ${br} | up
+| | Return From Keyword | ${vm}
+
+| Guest with dpdk-testpmd Teardown
+| | [Documentation]
+| | ... | Stop all qemu processes with dpdk-testpmd running on ${dut_node}.
+| | ... | Argument is dictionary of all running qemu nodes with its names.
+| | ... | Dpdk-testpmd is stopped gracefully with printing stats.
+| | ... |
+| | ... | *Arguments:*
+| | ... | - dut_node - Node where to clean qemu. Type: dictionary
+| | ... | - dut_vm_refs - VM references on node. Type: dictionary
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| VM with dpdk-testpmd Teardown \| ${node['DUT1']} \
+| | ... | \| ${dut_vm_refs} \|
+| | ...
+| | [Arguments] | ${dut_node} | ${dut_vm_refs}
+| | :FOR | ${vm_name} | IN | @{dut_vm_refs}
+| | | ${vm}= | Get From Dictionary | ${dut_vm_refs} | ${vm_name}
+| | | Dpdk Testpmd Stop | ${vm}
+| | | Run Keyword | ${vm_name}.Qemu Set Node | ${dut_node}
+| | | Run Keyword | ${vm_name}.Qemu Kill
+| | | Run Keyword | ${vm_name}.Qemu Clear Socks
+
+| Guest with Linux Bridge Teardown
+| | [Documentation]
+| | ... | Stop all qemu processes with Linux Bridge running on ${dut_node}.
+| | ... | Argument is dictionary of all running qemu nodes with its names.
+| | ... |
+| | ... | *Arguments:*
+| | ... | - dut_node - Node where to clean qemu. Type: dictionary
+| | ... | - dut_vm_refs - VM references on node. Type: dictionary
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| VM with Linux Bridge Teardown \| ${node['DUT1']} \
+| | ... | \| ${dut_vm_refs} \|
+| | ...
+| | [Arguments] | ${dut_node} | ${dut_vm_refs}
+| | :FOR | ${vm_name} | IN | @{dut_vm_refs}
+| | | ${vm}= | Get From Dictionary | ${dut_vm_refs} | ${vm_name}
+| | | Run Keyword | ${vm_name}.Qemu Set Node | ${dut_node}
+| | | Run Keyword | ${vm_name}.Qemu Kill
+| | | Run Keyword | ${vm_name}.Qemu Clear Socks
