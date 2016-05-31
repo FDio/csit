@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da141535_3248dd5a",
+        "filename": "resources/traffic_scripts/macswap_check.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-31T14:41:47Z",
+      "side": 1,
+      "message": "haven\u0027t",
+      "range": {
+        "startLine": 36,
+        "startChar": 42,
+        "endLine": 36,
+        "endChar": 48
+      },
+      "revId": "9c317646e6b245f36f3b3d5586ba6a4c3bdf1b9b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
