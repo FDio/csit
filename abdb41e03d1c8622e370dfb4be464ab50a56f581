@@ -22,6 +22,30 @@
       "revId": "abdb41e03d1c8622e370dfb4be464ab50a56f581",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_b7417f0d",
+        "filename": "tests/suites/honeycomb/6 - sub_interface.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-05-31T10:03:16Z",
+      "side": 1,
+      "message": "No, according to the info from developers, the order is as follows:\n1. Both are down --\u003e super-if up --\u003e sub-if up\n2. Both are up --\u003e super-if down --\u003e sub-if down",
+      "parentUuid": "da141535_97f8bbe6",
+      "range": {
+        "startLine": 307,
+        "startChar": 33,
+        "endLine": 307,
+        "endChar": 56
+      },
+      "revId": "abdb41e03d1c8622e370dfb4be464ab50a56f581",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
