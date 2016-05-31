@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da141535_b7a5ff05",
+        "filename": "tests/suites/performance/Long_IPv4_Cop_Intel-X520-DA2.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 518,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-31T08:43:16Z",
+      "side": 1,
+      "message": "9000B",
+      "range": {
+        "startLine": 518,
+        "startChar": 74,
+        "endLine": 518,
+        "endChar": 79
+      },
+      "revId": "a580cae9b75a6f74ac7ed2608620390871f1a6de",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
