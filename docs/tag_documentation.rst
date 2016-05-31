@@ -97,3 +97,17 @@ PDR
 NDR
     Non Drop Rate evaluation of results. Loss acceptance of dropped packets is
     set to zero lost packets.
+
+LISP TAGs
+---------
+LISP_IPv4
+    Test Lisp in IPv4 topology
+
+LISP_IPv6
+    Test Lisp in IPv6 topology
+
+LISP_IPv4oIPv6
+    Test IPv4 over IPv6 topology
+
+LISP_IPv6oIPv4
+    Test IPv6 over IPv4 topology
