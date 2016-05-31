@@ -254,6 +254,41 @@ class L2Util(object):
         exec_cmd_no_error(node, cmd, sudo=True)
 
     @staticmethod
+    def dpdk_testpmd_start(node):
+        """Xconnect two interfaces on node with DPDK testpmd app.
+
+        :param node: Node to start testpmd on.
+        :type node: dict
+
+        """
+        _start_script = '/start-testpmd.sh'
+        _cpu = '-l 1-2'
+        _mem_sockets = '-n 1'
+        _mem = '-m 512'
+        _driver = '-d /usr/lib/librte_pmd_virtio.so'
+        _num_mbufs = '--total-num-mbufs=32768'
+        _portmask = '--portmask=3'
+        _options = '--disable-hw-vlan'
+
+        cmd = "{0} {1} {2} {3} {4} -- {5} {6} {7}".format(
+            _start_script, _cpu, _mem_sockets, _driver, _mem, _num_mbufs,
+            _portmask, _options)
+        exec_cmd_no_error(node, cmd, sudo=True)
+
+    @staticmethod
+    def dpdk_testpmd_stop(node):
+        """Stop DPDK testpmd app on node.
+
+        :param node: Node to stop testpmd on.
+        :type node: dict
+
+        """
+        _start_script = '/stop-testpmd.sh'
+
+        cmd = "{0}".format(_start_script)
+        exec_cmd_no_error(node, cmd, sudo=True)
+
+    @staticmethod
     def vpp_get_bridge_domain_data(node, bd_id=None):
         """Get all bridge domain data from a VPP node. If a domain ID number is
         provided, return only data for the matching bridge domain.
