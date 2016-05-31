@@ -45,6 +45,37 @@
 | | ... |                                for 10GE with 9000B L2 Frame.
 | | ... | - ${10Ge_linerate_pps_9004B} - Maximum number of packet per second
 | | ... |                                for 10GE with 9004B L2 Frame.
+| | ... | - ${10Ge_lisp_linerate_pps_64B} - Maximum number of packet per second
+| | ... |                                   for 10GE with 64B L2 Frame, Lisp and
+| | ... |                                   IPv4 header.
+| | ... | - ${10Ge_lisp_linerate_pps_78B} - Maximum number of packet per second
+| | ... |                                   for 10GE with 78B L2 Frame, Lisp and
+| | ... |                                   IPv4 header.
+| | ... | - ${10Ge_lisp_linerate_pps_1460B} - Maximum number of packet per
+| | ... |                                     second for 10GE with 1460B L2
+| | ... |                                     Frame, Lisp and IPv6 header.
+| | ... | - ${10Ge_lisp_linerate_pps_1480B} - Maximum number of packet per
+| | ... |                                     second for 10GE with 1480B L2
+| | ... |                                     Frame, Lisp and IPv4 header.
+| | ... | - ${10Ge_lisp_linerate_pps_9000B} - Maximum number of packet per
+| | ... |                                     second for 10GE with 9000B L2
+| | ... |                                     Frame, Lisp, IPv4 or IPv6 header.
+| | ... | - ${10Ge_lisp_iph_linerate_pps_64B} - Maximum number of packet per
+| | ... |                                       second for 10GE with 64B L2
+| | ... |                                       Frame, Lisp, IPv4 and IPv6
+| | ... |                                       header.
+| | ... | - ${10Ge_lisp_iph_linerate_pps_78B} - Maximum number of packet per
+| | ... |                                       second for 10GE with 78B L2
+| | ... |                                       Frame, Lisp, IPv4 and IPv6
+| | ... |                                       header.
+| | ... | - ${10Ge_lisp_iph_linerate_pps_1460B} - Maximum number of packet per
+| | ... |                                         second for 10GE with 1460B L2
+| | ... |                                         Frame, Lisp, IPv4 and IPv6
+| | ... |                                         header.
+| | ... | - ${10Ge_lisp_iph_linerate_pps_9000B} - Maximum number of packet per
+| | ... |                                         second for 10GE with 9000B L2
+| | ... |                                         Frame, Lisp, IPv4 and IPv6
+| | ... |                                         header.
 | | ...
 | | ${10Ge_linerate_pps_64B}= | Set Variable | 14880952
 | | ${10Ge_linerate_pps_68B}= | Set Variable | 14204545
@@ -60,7 +91,15 @@
 | | ${40Ge_linerate_pps_1522B}= | Set Variable | 3242542
 | | ${40Ge_linerate_pps_9000B}= | Set Variable | 554323
 | | ${40Ge_linerate_pps_9004B}= | Set Variable | 554078
-
+| | ${10Ge_lisp_linerate_pps_64B}= | Set Variable | 13586956
+| | ${10Ge_lisp_linerate_pps_78B}= | Set Variable | 11792452
+| | ${10Ge_lisp_linerate_pps_1460B}= | Set Variable | 828912
+| | ${10Ge_lisp_linerate_pps_1480B}= | Set Variable | 828912
+| | ${10Ge_lisp_linerate_pps_9000B}= | Set Variable | 138458
+| | ${10Ge_lisp_iph_linerate_pps_64B}= | Set Variable |  9469696
+| | ${10Ge_lisp_iph_linerate_pps_78B}= | Set Variable |  8561643
+| | ${10Ge_lisp_iph_linerate_pps_1460B}= | Set Variable | 818062
+| | ${10Ge_lisp_iph_linerate_pps_9000B}= | Set Variable | 137847
 | | Set Suite Variable | ${10Ge_linerate_pps_64B}
 | | Set Suite Variable | ${10Ge_linerate_pps_68B}
 | | Set Suite Variable | ${10Ge_linerate_pps_78B}
@@ -75,6 +114,15 @@
 | | Set Suite Variable | ${40Ge_linerate_pps_1522B}
 | | Set Suite Variable | ${40Ge_linerate_pps_9000B}
 | | Set Suite Variable | ${40Ge_linerate_pps_9004B}
+| | Set Suite Variable | ${10Ge_lisp_linerate_pps_64B}
+| | Set Suite Variable | ${10Ge_lisp_linerate_pps_78B}
+| | Set Suite Variable | ${10Ge_lisp_linerate_pps_1460B}
+| | Set Suite Variable | ${10Ge_lisp_linerate_pps_1480B}
+| | Set Suite Variable | ${10Ge_lisp_linerate_pps_9000B}
+| | Set Suite Variable | ${10Ge_lisp_iph_linerate_pps_64B}
+| | Set Suite Variable | ${10Ge_lisp_iph_linerate_pps_78B}
+| | Set Suite Variable | ${10Ge_lisp_iph_linerate_pps_1460B}
+| | Set Suite Variable | ${10Ge_lisp_iph_linerate_pps_9000B}
 
 | Setup performance global Variables
 | | [Documentation] | Setup performance global Variables
@@ -658,3 +706,181 @@
 | | Sleep | ${duration}
 | | Show runtime counters on all DUTs
 | | Stop traffic on tg
+
+| Lisp IPv4 forwarding initialized in a 3-node circular topology
+| | [Documentation] | Custom setup of IPv4 addresses on all DUT nodes and TG \
+| | ...             | Don`t set route.
+| | ...
+| | ... | *Arguments:*
+| | ... | -${dut1_dut2_address} - Ip addresses from DUT1 to DUT2. Type: string
+| | ... | -${dut1_tg_address} - Ip addresses from DUT1 to tg. Type: string
+| | ... | -${dut2_dut1_address} - Ip addresses from DUT2 to DUT1. Type: string
+| | ... | -${dut1_tg_address} - Ip addresses from DUT1 to tg. Type: string
+| | ... | -${duts_prefix} - ip prefix. Type: int
+| | ...
+| | ... | *Return:*
+| | ... | - No value returned
+| | ...
+| | ... | *Example:*
+| | ... | \| Lisp IPv4 forwarding initialized in a 3-node circular topology \
+| | ... | \| ${dut1_dut2_address} \| ${dut1_tg_address} \
+| | ... | \| ${dut2_dut1_address} \| ${dut2_tg_address} \| ${duts_prefix} \|
+| | ...
+| | [Arguments] | ${dut1_dut2_address} | ${dut1_tg_address}
+| | ...         | ${dut2_dut1_address} | ${dut2_tg_address}
+| | ...         | ${duts_prefix}
+| | Set Interface State | ${dut1} | ${dut1_if1} | up
+| | Set Interface State | ${dut1} | ${dut1_if2} | up
+| | Set Interface State | ${dut2} | ${dut2_if1} | up
+| | Set Interface State | ${dut2} | ${dut2_if2} | up
+| | ${tg1_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
+| | ${tg1_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
+| | ${dut1_if2_mac}= | Get Interface MAC | ${dut1} | ${dut1_if2}
+| | ${dut2_if1_mac}= | Get Interface MAC | ${dut2} | ${dut2_if1}
+| | dut1_v4.set_arp | ${dut1_if1} | 10.10.10.2 | ${tg1_if1_mac}
+| | dut1_v4.set_arp | ${dut1_if2} | ${dut2_dut1_address} | ${dut2_if1_mac}
+| | dut2_v4.set_arp | ${dut2_if1} | ${dut1_dut2_address} | ${dut1_if2_mac}
+| | dut2_v4.set_arp | ${dut2_if2} | 20.20.20.2 | ${tg1_if2_mac}
+| | dut1_v4.set_ip | ${dut1_if1} | ${dut1_tg_address} | ${duts_prefix}
+| | dut1_v4.set_ip | ${dut1_if2} | ${dut1_dut2_address} | ${duts_prefix}
+| | dut2_v4.set_ip | ${dut2_if1} | ${dut2_dut1_address} | ${duts_prefix}
+| | dut2_v4.set_ip | ${dut2_if2} | ${dut2_tg_address} | ${duts_prefix}
+| | All Vpp Interfaces Ready Wait | ${nodes}
+
+| Lisp IPv6 forwarding initialized in a 3-node circular topology
+| | [Documentation] | Custom setup of IPv6 topology on all DUT nodes \
+| | ...             | Don`t set route.
+| | ...
+| | ... | *Arguments:*
+| | ... | -${dut1_dut2_address} - Ip addresses from DUT1 to DUT2. Type: string
+| | ... | -${dut1_tg_address} - Ip addresses from DUT1 to tg. Type: string
+| | ... | -${dut2_dut1_address} - Ip addresses from DUT2 to DUT1. Type: string
+| | ... | -${dut1_tg_address} - Ip addresses from DUT1 to tg. Type: string
+| | ... | -${duts_prefix} - ip prefix. Type: int
+| | ...
+| | ... | *Return:*
+| | ... | - No value returned
+| | ...
+| | ... | *Example:*
+| | ... | \| Lisp IPv6 forwarding initialized in a 3-node circular topology \
+| | ... | \| ${dut1_dut2_address} \| ${dut1_tg_address} \
+| | ... | \| ${dut2_dut1_address} \| ${dut2_tg_address} \| ${duts_prefix} \|
+| | ...
+| | [Arguments] | ${dut1_dut2_address} | ${dut1_tg_address}
+| | ...         | ${dut2_dut1_address} | ${dut2_tg_address}
+| | ...         | ${prefix}
+| | ${tg1_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
+| | ${tg1_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
+| | ${dut1_if2_mac}= | Get Interface MAC | ${dut1} | ${dut1_if2}
+| | ${dut2_if1_mac}= | Get Interface MAC | ${dut2} | ${dut2_if1}
+| | VPP Set If IPv6 Addr | ${dut1} | ${dut1_if1} | ${dut1_tg_address}
+| | ...                  | ${prefix}
+| | VPP Set If IPv6 Addr | ${dut1} | ${dut1_if2} | ${dut1_dut2_address}
+| | ...                  | ${prefix}
+| | VPP Set If IPv6 Addr | ${dut2} | ${dut2_if1} | ${dut2_dut1_address}
+| | ...                  | ${prefix}
+| | VPP Set If IPv6 Addr | ${dut2} | ${dut2_if2} | ${dut2_tg_address}
+| | ...                  | ${prefix}
+| | Vpp nodes ra suppress link layer | ${nodes}
+| | Vpp set IPv6 neighbor | ${dut1} | ${dut1_if1} | 2001:1::2
+| | ...                   | ${tg1_if1_mac}
+| | Vpp set IPv6 neighbor | ${dut2} | ${dut2_if2} | 2001:2::2
+| | ...                    | ${tg1_if2_mac}
+| | Vpp set IPv6 neighbor | ${dut1} | ${dut1_if2} | ${dut2_dut1_address}
+| | ...                    | ${dut2_if1_mac}
+| | Vpp set IPv6 neighbor | ${dut2} | ${dut2_if1} | ${dut1_dut2_address}
+| | ...                    | ${dut1_if2_mac}
+
+| Lisp IPv4 over IPv6 forwarding initialized in a 3-node circular topology
+| | [Documentation] | Custom setup of IPv4 over IPv6 topology on all DUT nodes \
+| | ...             | Don`t set route.
+| | ...
+| | ... | *Arguments:*
+| | ... | -${dut1_dut2_ip6_address} - IPv6 addresses from DUT1 to DUT2.
+| | ... |                             Type: string
+| | ... | -${dut1_tg_ip4_address} - IPv4 addresses from DUT1 to tg. Type: string
+| | ... | -${dut2_dut1_ip6_address} - IPv6 addresses from DUT2 to DUT1.
+| | ... |                             Type: string
+| | ... | -${dut1_tg_ip4_address} - IPv4 addresses from DUT1 to tg. Type: string
+| | ... | -${prefix4} - IPv4 prefix. Type: int
+| | ... | -${prefix6} - IPv6 prefix. Type: int
+| | ...
+| | ... | *Return:*
+| | ... | - No value returned
+| | ...
+| | ... | *Example:*
+| | ... | \| Lisp IPv4 over IPv6 forwarding initialized in a 3-node circular topology \
+| | ... | \| ${dut1_dut2_ip6_address} \| ${dut1_tg_ip4_address} \
+| | ... | \| ${dut2_dut1_ip6_address} \| ${dut2_tg_ip4_address} \
+| | ... | \| ${prefix4} \| ${prefix6} \|
+| | ...
+| | [Arguments] | ${dut1_dut2_ip6_address} | ${dut1_tg_ip4_address}
+| | ...         | ${dut2_dut1_ip6_address} | ${dut2_tg_ip4_address}
+| | ...         | ${prefix4} | ${prefix6}
+| | Set Interface State | ${dut1} | ${dut1_if1} | up
+| | Set Interface State | ${dut1} | ${dut1_if2} | up
+| | Set Interface State | ${dut2} | ${dut2_if1} | up
+| | Set Interface State | ${dut2} | ${dut2_if2} | up
+| | ${tg1_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
+| | ${tg1_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
+| | ${dut1_if2_mac}= | Get Interface MAC | ${dut1} | ${dut1_if2}
+| | ${dut2_if1_mac}= | Get Interface MAC | ${dut2} | ${dut2_if1}
+| | dut1_v4.set_ip | ${dut1_if1} | ${dut1_tg_ip4_address} | ${prefix4}
+| | VPP Set If IPv6 Addr | ${dut1} | ${dut1_if2} | ${dut1_dut2_ip6_address}
+| | ...                  | ${prefix6}
+| | VPP Set If IPv6 Addr | ${dut2} | ${dut2_if1} | ${dut2_dut1_ip6_address}
+| | ...                  | ${prefix6}
+| | dut2_v4.set_ip | ${dut2_if2} | ${dut2_tg_ip4_address} | ${prefix4}
+| | Vpp nodes ra suppress link layer | ${nodes}
+| | dut1_v4.set_arp | ${dut1_if1} | 10.10.10.2 | ${tg1_if1_mac}
+| | dut2_v4.set_arp | ${dut2_if2} | 20.20.20.2 | ${tg1_if2_mac}
+| | Vpp set IPv6 neighbor | ${dut1} | ${dut1_if2} | ${dut2_dut1_ip6_address}
+| | ...                    | ${dut2_if1_mac}
+| | Vpp set IPv6 neighbor | ${dut2} | ${dut2_if1} | ${dut1_dut2_ip6_address}
+| | ...                    | ${dut1_if2_mac}
+
+| Lisp IPv6 over IPv4 forwarding initialized in a 3-node circular topology
+| | [Documentation] | Custom setup of IPv4 over IPv6 topology on all DUT nodes \
+| | ...             | Don`t set route.
+| | ...
+| | ... | *Arguments:*
+| | ... | -${dut1_dut2_ip4_address} - IPv4 addresses from DUT1 to DUT2.
+| | ... |                             Type: string
+| | ... | -${dut1_tg_ip6_address} - IPv6 addresses from DUT1 to tg. Type: string
+| | ... | -${dut2_dut1_ip4_address} - IPv4 addresses from DUT2 to DUT1.
+| | ... |                             Type: string
+| | ... | -${dut1_tg_ip6_address} - IPv6 addresses from DUT1 to tg. Type: string
+| | ... | -${prefix4} - IPv4 prefix. Type: int
+| | ... | -${prefix6} - IPv6 prefix. Type: int
+| | ...
+| | ... | *Return:*
+| | ... | - No value returned
+| | ...
+| | ... | *Example:*
+| | ... | \| Lisp IPv6 over IPv4 forwarding initialized in a 3-node circular topology \
+| | ... | \| ${dut1_dut2_ip4_address} \| ${dut1_tg_ip6_address} \
+| | ... | \| ${dut2_dut1_ip4_address} \| ${dut2_tg_ip6_address} \
+| | ... | \| ${prefix4} \| ${prefix6} \|
+| | ...
+| | [Arguments] | ${dut1_dut2_ip4_address} | ${dut1_tg_ip6_address}
+| | ...         | ${dut2_dut1_ip4_address} | ${dut2_tg_ip6_address}
+| | ...         | ${prefix4} | ${prefix6}
+| | Set Interface State | ${dut1} | ${dut1_if1} | up
+| | Set Interface State | ${dut1} | ${dut1_if2} | up
+| | Set Interface State | ${dut2} | ${dut2_if1} | up
+| | Set Interface State | ${dut2} | ${dut2_if2} | up
+| | ${tg1_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
+| | ${tg1_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
+| | ${dut1_if2_mac}= | Get Interface MAC | ${dut1} | ${dut1_if2}
+| | ${dut2_if1_mac}= | Get Interface MAC | ${dut2} | ${dut2_if1}
+| | VPP Set If IPv6 Addr | ${dut1} | ${dut1_if1} | ${dut1_tg_ip6_address}
+| | ...                  | ${prefix6}
+| | dut1_v4.set_ip | ${dut1_if2} | ${dut1_dut2_ip4_address} | ${prefix4}
+| | dut2_v4.set_ip | ${dut2_if1} | ${dut2_dut1_ip4_address} | ${prefix4}
+| | VPP Set If IPv6 Addr | ${dut2} | ${dut2_if2} | ${dut2_tg_ip6_address}
+| | ...                  | ${prefix6}
+| | Vpp nodes ra suppress link layer | ${nodes}
+| | Vpp set IPv6 neighbor | ${dut1} | ${dut1_if1} | 2001:1::2 | ${tg1_if1_mac}
+| | Vpp set IPv6 neighbor | ${dut2} | ${dut2_if2} | 2001:2::2 | ${tg1_if2_mac}
+| | dut1_v4.set_arp | ${dut1_if2} | ${dut2_dut1_ip4_address} | ${dut2_if1_mac}
+| | dut2_v4.set_arp | ${dut2_if1} | ${dut1_dut2_ip4_address} | ${dut1_if2_mac}
