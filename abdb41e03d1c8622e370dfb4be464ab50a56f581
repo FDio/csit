@@ -2,6 +2,259 @@
   "comments": [
     {
       "key": {
+        "uuid": "da141535_7795273f",
+        "filename": "resources/libraries/robot/honeycomb/sub_interface.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-31T12:35:04Z",
+      "side": 1,
+      "message": "Better to use \"fails\" as it is expected to fail.",
+      "range": {
+        "startLine": 66,
+        "startChar": 12,
+        "endLine": 66,
+        "endChar": 17
+      },
+      "revId": "abdb41e03d1c8622e370dfb4be464ab50a56f581",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_57922358",
+        "filename": "resources/libraries/robot/honeycomb/sub_interface.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-31T12:35:04Z",
+      "side": 1,
+      "message": "Aling description with KW name and function.",
+      "range": {
+        "startLine": 67,
+        "startChar": 22,
+        "endLine": 67,
+        "endChar": 64
+      },
+      "revId": "abdb41e03d1c8622e370dfb4be464ab50a56f581",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_379faf61",
+        "filename": "resources/libraries/robot/honeycomb/sub_interface.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-31T12:35:04Z",
+      "side": 1,
+      "message": "Use correct KW in example.",
+      "range": {
+        "startLine": 75,
+        "startChar": 13,
+        "endLine": 75,
+        "endChar": 44
+      },
+      "revId": "abdb41e03d1c8622e370dfb4be464ab50a56f581",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_17aa6b70",
+        "filename": "resources/libraries/robot/honeycomb/sub_interface.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-31T12:35:04Z",
+      "side": 1,
+      "message": "We add/assing (sub-)interface to bridge domain not BD to interface.. Please, correct KW name and the description.",
+      "range": {
+        "startLine": 189,
+        "startChar": 2,
+        "endLine": 189,
+        "endChar": 47
+      },
+      "revId": "abdb41e03d1c8622e370dfb4be464ab50a56f581",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_77cac750",
+        "filename": "resources/libraries/robot/honeycomb/sub_interface.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-31T12:35:04Z",
+      "side": 1,
+      "message": "Why to create BD inside this KW and not in a separate step of test case?\nMaybe in the future it will be needed to add/assign sub-interface to already existing BD or add/assign more sub-interfaces to the same BD...",
+      "range": {
+        "startLine": 207,
+        "startChar": 4,
+        "endLine": 207,
+        "endChar": 43
+      },
+      "revId": "abdb41e03d1c8622e370dfb4be464ab50a56f581",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_b7e73fe4",
+        "filename": "resources/libraries/robot/honeycomb/sub_interface.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-31T12:35:04Z",
+      "side": 1,
+      "message": "VAT",
+      "range": {
+        "startLine": 250,
+        "startChar": 60,
+        "endLine": 250,
+        "endChar": 69
+      },
+      "revId": "abdb41e03d1c8622e370dfb4be464ab50a56f581",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_97ec3bc9",
+        "filename": "resources/libraries/robot/honeycomb/sub_interface.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-31T12:35:04Z",
+      "side": 1,
+      "message": "Sub-interface configuration with bd and rw from Honeycomb should be",
+      "range": {
+        "startLine": 277,
+        "startChar": 13,
+        "endLine": 277,
+        "endChar": 65
+      },
+      "revId": "abdb41e03d1c8622e370dfb4be464ab50a56f581",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_973afb34",
+        "filename": "resources/libraries/robot/honeycomb/sub_interface.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 363,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-31T12:35:04Z",
+      "side": 1,
+      "message": "removes",
+      "range": {
+        "startLine": 363,
+        "startChar": 23,
+        "endLine": 363,
+        "endChar": 27
+      },
+      "revId": "abdb41e03d1c8622e370dfb4be464ab50a56f581",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_77264718",
+        "filename": "resources/libraries/robot/honeycomb/sub_interface.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-31T12:35:04Z",
+      "side": 1,
+      "message": "Rewrite tag from Honeycomb should be",
+      "range": {
+        "startLine": 381,
+        "startChar": 13,
+        "endLine": 381,
+        "endChar": 55
+      },
+      "revId": "abdb41e03d1c8622e370dfb4be464ab50a56f581",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_b7d17fcf",
+        "filename": "resources/libraries/robot/honeycomb/sub_interface.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 405,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-31T12:35:04Z",
+      "side": 1,
+      "message": "Honeycomb tries to set wrong rewrite tag",
+      "range": {
+        "startLine": 405,
+        "startChar": 13,
+        "endLine": 405,
+        "endChar": 39
+      },
+      "revId": "abdb41e03d1c8622e370dfb4be464ab50a56f581",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_f7bc976e",
+        "filename": "tests/suites/honeycomb/6 - sub_interface.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-31T12:35:04Z",
+      "side": 1,
+      "message": "I guess it sets vlan tag rewrite on sub-interface in bridge domain...\n- if agreeed aling in all occurences (test names, descritpion, KWs...), please",
+      "range": {
+        "startLine": 113,
+        "startChar": 2,
+        "endLine": 113,
+        "endChar": 67
+      },
+      "revId": "abdb41e03d1c8622e370dfb4be464ab50a56f581",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da141535_97f8bbe6",
         "filename": "tests/suites/honeycomb/6 - sub_interface.robot",
         "patchSetId": 3
@@ -37,6 +290,30 @@
       "side": 1,
       "message": "No, according to the info from developers, the order is as follows:\n1. Both are down --\u003e super-if up --\u003e sub-if up\n2. Both are up --\u003e super-if down --\u003e sub-if down",
       "parentUuid": "da141535_97f8bbe6",
+      "range": {
+        "startLine": 307,
+        "startChar": 33,
+        "endLine": 307,
+        "endChar": 56
+      },
+      "revId": "abdb41e03d1c8622e370dfb4be464ab50a56f581",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_77b0878b",
+        "filename": "tests/suites/honeycomb/6 - sub_interface.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-31T12:35:04Z",
+      "side": 1,
+      "message": "Hmmm, it sounds a little bit crazy to me.. What in case there are defined more sub-interfaces on one interface and we want tu put down only one sub-inteface? If we put down interface then we will cut traffic for all sub-interfaces I guess... And then we will be in status - interface down and some sub-interfaces up...",
+      "parentUuid": "da141535_b7417f0d",
       "range": {
         "startLine": 307,
         "startChar": 33,
