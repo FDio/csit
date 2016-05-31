@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da141535_97f8bbe6",
+        "filename": "tests/suites/honeycomb/6 - sub_interface.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-05-31T09:03:32Z",
+      "side": 1,
+      "message": "I think this should be possible.",
+      "range": {
+        "startLine": 307,
+        "startChar": 33,
+        "endLine": 307,
+        "endChar": 56
+      },
+      "revId": "abdb41e03d1c8622e370dfb4be464ab50a56f581",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
