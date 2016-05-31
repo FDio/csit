@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da141535_17314bec",
+        "filename": "tests/suites/performance/Short_Lisp_Intel-X520-DA2.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-05-31T08:47:31Z",
+      "side": 1,
+      "message": "These libraries are part of performance.robot no need to have it twice",
+      "revId": "93a19cbefc4e802d869876baedbc2a34024b4f9b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_975c3b27",
+        "filename": "tests/suites/performance/Short_Lisp_Intel-X520-DA2.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-05-31T08:47:31Z",
+      "side": 1,
+      "message": "Try to create some additional TAGS to these describing LISP test. E.g LISP. Do not forget to document it in csit/docs/tag_documentation.rst\nPurpose is to give developer option to test only LISP IPV6. \nAfter TAG scheme will be done we can run selected tags from bootstrap/jjtrigger",
+      "revId": "93a19cbefc4e802d869876baedbc2a34024b4f9b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_f74db773",
+        "filename": "tests/suites/performance/Short_Lisp_Intel-X520-DA2.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-05-31T08:47:31Z",
+      "side": 1,
+      "message": "When",
+      "revId": "93a19cbefc4e802d869876baedbc2a34024b4f9b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_d752b312",
+        "filename": "tests/suites/performance/Short_Lisp_Intel-X520-DA2.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-05-31T08:47:31Z",
+      "side": 1,
+      "message": "And",
+      "revId": "93a19cbefc4e802d869876baedbc2a34024b4f9b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
