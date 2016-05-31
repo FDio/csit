@@ -112,6 +112,8 @@ else
     exit 1
 fi
 
+RETURN_STATUS=0
+
 case "$TEST_TAG" in
     # run specific performance tests based on jenkins job type variable
     PERFTEST_LONG )
@@ -167,6 +169,7 @@ case "$TEST_TAG" in
               -L TRACE \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s "performance.Long_Xconnect_Dot1q*" \
+        RETURN_STATUS=$(echo $?)
         ;;
     PERFTEST_NDR )
         pybot ${PYBOT_ARGS} \
@@ -174,6 +177,7 @@ case "$TEST_TAG" in
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s performance -i NDR \
               tests/
+        RETURN_STATUS=$(echo $?)
         ;;
     PERFTEST_PDR )
         pybot ${PYBOT_ARGS} \
