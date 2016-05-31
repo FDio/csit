@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da141535_6d3e74ba",
+        "filename": "resources/libraries/python/LispSetup.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-05-31T22:55:24Z",
+      "side": 1,
+      "message": "del",
+      "range": {
+        "startLine": 99,
+        "startChar": 44,
+        "endLine": 99,
+        "endChar": 47
+      },
+      "revId": "bef43d3217b52bb0fa2f85afaddf33bdec71e90e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
