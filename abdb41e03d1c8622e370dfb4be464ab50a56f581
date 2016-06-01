@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "da141535_4d03b0b8",
+        "filename": "resources/libraries/robot/honeycomb/sub_interface.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-06-01T07:55:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_7795273f",
+      "range": {
+        "startLine": 66,
+        "startChar": 12,
+        "endLine": 66,
+        "endChar": 17
+      },
+      "revId": "abdb41e03d1c8622e370dfb4be464ab50a56f581",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da141535_57922358",
         "filename": "resources/libraries/robot/honeycomb/sub_interface.robot",
         "patchSetId": 3
@@ -36,6 +60,30 @@
       "writtenOn": "2016-05-31T12:35:04Z",
       "side": 1,
       "message": "Aling description with KW name and function.",
+      "range": {
+        "startLine": 67,
+        "startChar": 22,
+        "endLine": 67,
+        "endChar": 64
+      },
+      "revId": "abdb41e03d1c8622e370dfb4be464ab50a56f581",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_2d007ca9",
+        "filename": "resources/libraries/robot/honeycomb/sub_interface.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-06-01T07:55:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_57922358",
       "range": {
         "startLine": 67,
         "startChar": 22,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "da141535_6df674d9",
+        "filename": "resources/libraries/robot/honeycomb/sub_interface.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-06-01T07:55:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_379faf61",
+      "range": {
+        "startLine": 75,
+        "startChar": 13,
+        "endLine": 75,
+        "endChar": 44
+      },
+      "revId": "abdb41e03d1c8622e370dfb4be464ab50a56f581",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da141535_17aa6b70",
         "filename": "resources/libraries/robot/honeycomb/sub_interface.robot",
         "patchSetId": 3
@@ -82,6 +154,30 @@
       "writtenOn": "2016-05-31T12:35:04Z",
       "side": 1,
       "message": "We add/assing (sub-)interface to bridge domain not BD to interface.. Please, correct KW name and the description.",
+      "range": {
+        "startLine": 189,
+        "startChar": 2,
+        "endLine": 189,
+        "endChar": 47
+      },
+      "revId": "abdb41e03d1c8622e370dfb4be464ab50a56f581",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_0d2db846",
+        "filename": "resources/libraries/robot/honeycomb/sub_interface.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-06-01T07:55:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_17aa6b70",
       "range": {
         "startLine": 189,
         "startChar": 2,
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "da141535_ed3164a3",
+        "filename": "resources/libraries/robot/honeycomb/sub_interface.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-06-01T07:55:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_77cac750",
+      "range": {
+        "startLine": 207,
+        "startChar": 4,
+        "endLine": 207,
+        "endChar": 43
+      },
+      "revId": "abdb41e03d1c8622e370dfb4be464ab50a56f581",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da141535_b7e73fe4",
         "filename": "resources/libraries/robot/honeycomb/sub_interface.robot",
         "patchSetId": 3
@@ -128,6 +248,30 @@
       "writtenOn": "2016-05-31T12:35:04Z",
       "side": 1,
       "message": "VAT",
+      "range": {
+        "startLine": 250,
+        "startChar": 60,
+        "endLine": 250,
+        "endChar": 69
+      },
+      "revId": "abdb41e03d1c8622e370dfb4be464ab50a56f581",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_cd26a068",
+        "filename": "resources/libraries/robot/honeycomb/sub_interface.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-06-01T07:55:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_b7e73fe4",
       "range": {
         "startLine": 250,
         "startChar": 60,
@@ -163,6 +307,30 @@
     },
     {
       "key": {
+        "uuid": "da141535_ad2b6c2f",
+        "filename": "resources/libraries/robot/honeycomb/sub_interface.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 277,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-06-01T07:55:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_97ec3bc9",
+      "range": {
+        "startLine": 277,
+        "startChar": 13,
+        "endLine": 277,
+        "endChar": 65
+      },
+      "revId": "abdb41e03d1c8622e370dfb4be464ab50a56f581",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da141535_973afb34",
         "filename": "resources/libraries/robot/honeycomb/sub_interface.robot",
         "patchSetId": 3
@@ -174,6 +342,30 @@
       "writtenOn": "2016-05-31T12:35:04Z",
       "side": 1,
       "message": "removes",
+      "range": {
+        "startLine": 363,
+        "startChar": 23,
+        "endLine": 363,
+        "endChar": 27
+      },
+      "revId": "abdb41e03d1c8622e370dfb4be464ab50a56f581",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_8d20a84a",
+        "filename": "resources/libraries/robot/honeycomb/sub_interface.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 363,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-06-01T07:55:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_973afb34",
       "range": {
         "startLine": 363,
         "startChar": 23,
@@ -209,6 +401,30 @@
     },
     {
       "key": {
+        "uuid": "da141535_6d1d540f",
+        "filename": "resources/libraries/robot/honeycomb/sub_interface.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-06-01T07:55:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_77264718",
+      "range": {
+        "startLine": 381,
+        "startChar": 13,
+        "endLine": 381,
+        "endChar": 55
+      },
+      "revId": "abdb41e03d1c8622e370dfb4be464ab50a56f581",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da141535_b7d17fcf",
         "filename": "resources/libraries/robot/honeycomb/sub_interface.robot",
         "patchSetId": 3
@@ -232,6 +448,30 @@
     },
     {
       "key": {
+        "uuid": "da141535_4d1a9018",
+        "filename": "resources/libraries/robot/honeycomb/sub_interface.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 405,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-06-01T07:55:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_b7d17fcf",
+      "range": {
+        "startLine": 405,
+        "startChar": 13,
+        "endLine": 405,
+        "endChar": 39
+      },
+      "revId": "abdb41e03d1c8622e370dfb4be464ab50a56f581",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da141535_f7bc976e",
         "filename": "tests/suites/honeycomb/6 - sub_interface.robot",
         "patchSetId": 3
@@ -243,6 +483,30 @@
       "writtenOn": "2016-05-31T12:35:04Z",
       "side": 1,
       "message": "I guess it sets vlan tag rewrite on sub-interface in bridge domain...\n- if agreeed aling in all occurences (test names, descritpion, KWs...), please",
+      "range": {
+        "startLine": 113,
+        "startChar": 2,
+        "endLine": 113,
+        "endChar": 67
+      },
+      "revId": "abdb41e03d1c8622e370dfb4be464ab50a56f581",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_8df9c8ca",
+        "filename": "tests/suites/honeycomb/6 - sub_interface.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-06-01T07:55:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da141535_f7bc976e",
       "range": {
         "startLine": 113,
         "startChar": 2,
@@ -314,6 +578,30 @@
       "side": 1,
       "message": "Hmmm, it sounds a little bit crazy to me.. What in case there are defined more sub-interfaces on one interface and we want tu put down only one sub-inteface? If we put down interface then we will cut traffic for all sub-interfaces I guess... And then we will be in status - interface down and some sub-interfaces up...",
       "parentUuid": "da141535_b7417f0d",
+      "range": {
+        "startLine": 307,
+        "startChar": 33,
+        "endLine": 307,
+        "endChar": 56
+      },
+      "revId": "abdb41e03d1c8622e370dfb4be464ab50a56f581",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_ad148cf5",
+        "filename": "tests/suites/honeycomb/6 - sub_interface.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-06-01T07:55:01Z",
+      "side": 1,
+      "message": "This is the way how it works in VPP.",
+      "parentUuid": "da141535_77b0878b",
       "range": {
         "startLine": 307,
         "startChar": 33,
