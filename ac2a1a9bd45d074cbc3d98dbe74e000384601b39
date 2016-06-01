@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "da141535_4ddbb01b",
+        "filename": "resources/libraries/python/IPv4Util.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-01T11:47:28Z",
+      "side": 1,
+      "message": "send.",
+      "range": {
+        "startLine": 174,
+        "startChar": 46,
+        "endLine": 174,
+        "endChar": 50
+      },
+      "revId": "ac2a1a9bd45d074cbc3d98dbe74e000384601b39",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_2d1d1cbe",
+        "filename": "resources/libraries/python/L2Util.py",
+        "patchSetId": 24
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-01T11:47:28Z",
+      "side": 1,
+      "message": "Please, use variable name tag1_id as it is related to tag1 option.\n- correct the name in all occurences",
+      "range": {
+        "startLine": 283,
+        "startChar": 60,
+        "endLine": 283,
+        "endChar": 66
+      },
+      "revId": "ac2a1a9bd45d074cbc3d98dbe74e000384601b39",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da141535_cd8340cb",
         "filename": "resources/libraries/robot/double_qemu_setup.robot",
         "patchSetId": 24
@@ -65,6 +111,52 @@
     },
     {
       "key": {
+        "uuid": "da141535_2d74fcfb",
+        "filename": "resources/libraries/robot/double_qemu_setup.robot",
+        "patchSetId": 24
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-01T11:47:28Z",
+      "side": 1,
+      "message": "Add missing argument descriptions there:\n- node\n- ip1 ... - ip4\n- prefix_length\n- qemu_name\n- mac_ID",
+      "range": {
+        "startLine": 48,
+        "startChar": 11,
+        "endLine": 48,
+        "endChar": 20
+      },
+      "revId": "ac2a1a9bd45d074cbc3d98dbe74e000384601b39",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_4d773003",
+        "filename": "resources/libraries/robot/double_qemu_setup.robot",
+        "patchSetId": 24
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-01T11:47:28Z",
+      "side": 1,
+      "message": "Setup QEMU Vhost and Run",
+      "range": {
+        "startLine": 56,
+        "startChar": 13,
+        "endLine": 56,
+        "endChar": 29
+      },
+      "revId": "ac2a1a9bd45d074cbc3d98dbe74e000384601b39",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da141535_ad5fec71",
         "filename": "resources/libraries/robot/double_qemu_setup.robot",
         "patchSetId": 24
@@ -76,6 +168,29 @@
       "writtenOn": "2016-06-01T11:23:42Z",
       "side": 1,
       "message": "maybe better place will be as keyword in testcase file.",
+      "range": {
+        "startLine": 90,
+        "startChar": 2,
+        "endLine": 90,
+        "endChar": 27
+      },
+      "revId": "ac2a1a9bd45d074cbc3d98dbe74e000384601b39",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_2df99c4d",
+        "filename": "resources/libraries/robot/double_qemu_setup.robot",
+        "patchSetId": 24
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-01T11:47:28Z",
+      "side": 1,
+      "message": "Please, add documentation.",
       "range": {
         "startLine": 90,
         "startChar": 2,
@@ -111,6 +226,29 @@
     },
     {
       "key": {
+        "uuid": "da141535_ed9a8413",
+        "filename": "resources/libraries/robot/double_qemu_setup.robot",
+        "patchSetId": 24
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-01T11:47:28Z",
+      "side": 1,
+      "message": "Please, add documentation.",
+      "range": {
+        "startLine": 105,
+        "startChar": 2,
+        "endLine": 105,
+        "endChar": 26
+      },
+      "revId": "ac2a1a9bd45d074cbc3d98dbe74e000384601b39",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da141535_0dc81821",
         "filename": "resources/libraries/robot/double_qemu_setup.robot",
         "patchSetId": 24
@@ -122,6 +260,29 @@
       "writtenOn": "2016-06-01T11:23:42Z",
       "side": 1,
       "message": "arguments missing in documentation",
+      "range": {
+        "startLine": 125,
+        "startChar": 5,
+        "endLine": 125,
+        "endChar": 18
+      },
+      "revId": "ac2a1a9bd45d074cbc3d98dbe74e000384601b39",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_ada48c57",
+        "filename": "resources/libraries/robot/double_qemu_setup.robot",
+        "patchSetId": 24
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-01T11:47:28Z",
+      "side": 1,
+      "message": "Please, add arguments description and example.",
       "range": {
         "startLine": 125,
         "startChar": 5,
@@ -196,6 +357,52 @@
         "startChar": 4,
         "endLine": 140,
         "endChar": 15
+      },
+      "revId": "ac2a1a9bd45d074cbc3d98dbe74e000384601b39",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_cdb6a08a",
+        "filename": "tests/suites/fds_related_tests/provider_network.robot",
+        "patchSetId": 24
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-01T11:47:28Z",
+      "side": 1,
+      "message": "There is used only 3-node topology there...",
+      "range": {
+        "startLine": 30,
+        "startChar": 24,
+        "endLine": 31,
+        "endChar": 32
+      },
+      "revId": "ac2a1a9bd45d074cbc3d98dbe74e000384601b39",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_adbb6c71",
+        "filename": "tests/suites/fds_related_tests/provider_network.robot",
+        "patchSetId": 24
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-01T11:47:28Z",
+      "side": 1,
+      "message": "Please, use variable ${prefix_length} there.\n- valid for all occuerences",
+      "range": {
+        "startLine": 75,
+        "startChar": 81,
+        "endLine": 75,
+        "endChar": 83
       },
       "revId": "ac2a1a9bd45d074cbc3d98dbe74e000384601b39",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
@@ -288,6 +495,52 @@
       "writtenOn": "2016-06-01T11:23:42Z",
       "side": 1,
       "message": "add also negative for qemu_node2\nnmspace1 16.0.20.3\nnmspace3 16.0.20.2",
+      "revId": "ac2a1a9bd45d074cbc3d98dbe74e000384601b39",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_ad724ce3",
+        "filename": "tests/suites/fds_related_tests/tenant_network.robot",
+        "patchSetId": 24
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-01T11:47:28Z",
+      "side": 1,
+      "message": "eThre is used only 3-node topology there...",
+      "range": {
+        "startLine": 30,
+        "startChar": 24,
+        "endLine": 31,
+        "endChar": 32
+      },
+      "revId": "ac2a1a9bd45d074cbc3d98dbe74e000384601b39",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_8d7788d4",
+        "filename": "tests/suites/fds_related_tests/tenant_network.robot",
+        "patchSetId": 24
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-01T11:47:28Z",
+      "side": 1,
+      "message": "Please, use variable ${prefix_length} there.\n- valid for all occurences",
+      "range": {
+        "startLine": 76,
+        "startChar": 59,
+        "endLine": 76,
+        "endChar": 61
+      },
       "revId": "ac2a1a9bd45d074cbc3d98dbe74e000384601b39",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
