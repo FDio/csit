@@ -150,3 +150,26 @@
 | | ... | --tx_if | ${tx_port} | --rx_if | ${rx_port}
 | | ... | --rx_arp_src_ip ${rx_arp_src_ip} | --rx_arp_dst_ip ${rx_arp_dst_ip}
 | | Run Traffic Script On Node | send_icmp_check_arp.py | ${tg_node} | ${args}
+
+| Receive And Check Router Advertisement Packet
+| | [Documentation] | Wait until RA packet is received and then check
+| | ...             | specific packet fields whether they are correct.
+| | ...
+| | ... | *Arguments:*
+| | ...
+| | ... | - rx_port - Interface where the packet is received. Type: string
+| | ... | - src_mac - MAC address of source interface from which the link-local
+| | ... |             IPv6 address is constructed and checked. Type: string
+| | ...
+| | ... | *Return:*
+| | ... | - No value returned
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Receive And Check Router Advertisement Packet \
+| | ... | \| eth2 \| 08:00:27:cc:4f:54 \
+| | ...
+| | [Arguments] | ${rx_port} | ${src_mac}
+| | ${args}= | Catenate | --rx_if | ${rx_port} | --src_mac | ${src_mac}
+| | Run Traffic Script On Node | check_ra_packet.py | ${tg_node} | ${args}
+| | ... | timeout=30
