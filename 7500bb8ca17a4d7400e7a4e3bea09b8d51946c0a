@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da141535_cd122062",
+        "filename": "tests/suites/honeycomb/6 - sub_interface.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-01T12:51:42Z",
+      "side": 1,
+      "message": "up",
+      "range": {
+        "startLine": 332,
+        "startChar": 35,
+        "endLine": 332,
+        "endChar": 39
+      },
+      "revId": "7500bb8ca17a4d7400e7a4e3bea09b8d51946c0a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_ad17ec50",
+        "filename": "tests/suites/honeycomb/6 - sub_interface.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-01T12:51:42Z",
+      "side": 1,
+      "message": "up",
+      "range": {
+        "startLine": 334,
+        "startChar": 35,
+        "endLine": 334,
+        "endChar": 39
+      },
+      "revId": "7500bb8ca17a4d7400e7a4e3bea09b8d51946c0a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
