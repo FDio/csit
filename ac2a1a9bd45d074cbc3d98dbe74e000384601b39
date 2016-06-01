@@ -1,0 +1,313 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da141535_cd8340cb",
+        "filename": "resources/libraries/robot/double_qemu_setup.robot",
+        "patchSetId": 24
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-01T11:23:42Z",
+      "side": 1,
+      "message": "this is too specific to FDS tests, move to dir with tests.",
+      "revId": "ac2a1a9bd45d074cbc3d98dbe74e000384601b39",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_0d613839",
+        "filename": "resources/libraries/robot/double_qemu_setup.robot",
+        "patchSetId": 24
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-01T11:23:42Z",
+      "side": 1,
+      "message": "move functionality to testcase and remove keyword",
+      "range": {
+        "startLine": 15,
+        "startChar": 2,
+        "endLine": 15,
+        "endChar": 26
+      },
+      "revId": "ac2a1a9bd45d074cbc3d98dbe74e000384601b39",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_ed65e445",
+        "filename": "resources/libraries/robot/double_qemu_setup.robot",
+        "patchSetId": 24
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-01T11:23:42Z",
+      "side": 1,
+      "message": "not all arguments in documentation",
+      "range": {
+        "startLine": 48,
+        "startChar": 11,
+        "endLine": 48,
+        "endChar": 20
+      },
+      "revId": "ac2a1a9bd45d074cbc3d98dbe74e000384601b39",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_ad5fec71",
+        "filename": "resources/libraries/robot/double_qemu_setup.robot",
+        "patchSetId": 24
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-01T11:23:42Z",
+      "side": 1,
+      "message": "maybe better place will be as keyword in testcase file.",
+      "range": {
+        "startLine": 90,
+        "startChar": 2,
+        "endLine": 90,
+        "endChar": 27
+      },
+      "revId": "ac2a1a9bd45d074cbc3d98dbe74e000384601b39",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_8d542855",
+        "filename": "resources/libraries/robot/double_qemu_setup.robot",
+        "patchSetId": 24
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-01T11:23:42Z",
+      "side": 1,
+      "message": "maybe better place will be as keyword in testcase file.",
+      "range": {
+        "startLine": 105,
+        "startChar": 2,
+        "endLine": 105,
+        "endChar": 26
+      },
+      "revId": "ac2a1a9bd45d074cbc3d98dbe74e000384601b39",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_0dc81821",
+        "filename": "resources/libraries/robot/double_qemu_setup.robot",
+        "patchSetId": 24
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-01T11:23:42Z",
+      "side": 1,
+      "message": "arguments missing in documentation",
+      "range": {
+        "startLine": 125,
+        "startChar": 5,
+        "endLine": 125,
+        "endChar": 18
+      },
+      "revId": "ac2a1a9bd45d074cbc3d98dbe74e000384601b39",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_add6ccc3",
+        "filename": "resources/libraries/robot/double_qemu_setup.robot",
+        "patchSetId": 24
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-01T11:23:42Z",
+      "side": 1,
+      "message": "dut_node",
+      "range": {
+        "startLine": 128,
+        "startChar": 20,
+        "endLine": 128,
+        "endChar": 23
+      },
+      "revId": "ac2a1a9bd45d074cbc3d98dbe74e000384601b39",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_edccc437",
+        "filename": "resources/libraries/robot/double_qemu_setup.robot",
+        "patchSetId": 24
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-01T11:23:42Z",
+      "side": 1,
+      "message": "Run Keyword",
+      "range": {
+        "startLine": 135,
+        "startChar": 4,
+        "endLine": 135,
+        "endChar": 15
+      },
+      "revId": "ac2a1a9bd45d074cbc3d98dbe74e000384601b39",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_cdd100cf",
+        "filename": "resources/libraries/robot/double_qemu_setup.robot",
+        "patchSetId": 24
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-01T11:23:42Z",
+      "side": 1,
+      "message": "Run Keyword",
+      "range": {
+        "startLine": 140,
+        "startChar": 4,
+        "endLine": 140,
+        "endChar": 15
+      },
+      "revId": "ac2a1a9bd45d074cbc3d98dbe74e000384601b39",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_ad880ce8",
+        "filename": "tests/suites/fds_related_tests/provider_network.robot",
+        "patchSetId": 24
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-01T11:23:42Z",
+      "side": 1,
+      "message": "is necessarry?",
+      "range": {
+        "startLine": 117,
+        "startChar": 4,
+        "endLine": 117,
+        "endChar": 18
+      },
+      "revId": "ac2a1a9bd45d074cbc3d98dbe74e000384601b39",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_4de5f0a6",
+        "filename": "tests/suites/fds_related_tests/provider_network.robot",
+        "patchSetId": 24
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-01T11:23:42Z",
+      "side": 1,
+      "message": "create keyword with positive pings and use it in both tests",
+      "revId": "ac2a1a9bd45d074cbc3d98dbe74e000384601b39",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_0deff888",
+        "filename": "tests/suites/fds_related_tests/provider_network.robot",
+        "patchSetId": 24
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-01T11:23:42Z",
+      "side": 1,
+      "message": "add also\nSend Ping From Node To Dst | ${qemu_node2} | 16.0.20.2 | nmspace1\nSend Ping From Node To Dst | ${qemu_node2} | 16.0.20.4 | nmspace3",
+      "revId": "ac2a1a9bd45d074cbc3d98dbe74e000384601b39",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_2de2bc9f",
+        "filename": "tests/suites/fds_related_tests/provider_network.robot",
+        "patchSetId": 24
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-01T11:23:42Z",
+      "side": 1,
+      "message": "create keyword with negative pings and use it in both tests",
+      "revId": "ac2a1a9bd45d074cbc3d98dbe74e000384601b39",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_8ddb08ed",
+        "filename": "tests/suites/fds_related_tests/provider_network.robot",
+        "patchSetId": 24
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-01T11:23:42Z",
+      "side": 1,
+      "message": "add also negative for qemu_node2\nnmspace1 16.0.20.3\nnmspace3 16.0.20.2",
+      "revId": "ac2a1a9bd45d074cbc3d98dbe74e000384601b39",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da141535_8d6d4835",
+        "filename": "tests/suites/fds_related_tests/tenant_network.robot",
+        "patchSetId": 24
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-01T11:23:42Z",
+      "side": 1,
+      "message": "is necessarry?",
+      "revId": "ac2a1a9bd45d074cbc3d98dbe74e000384601b39",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
