@@ -410,6 +410,24 @@
     },
     {
       "key": {
+        "uuid": "ba092121_b81f59b7",
+        "filename": "tests/suites/ipv4/ipv4_iacl_untagged.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-02T12:44:18Z",
+      "side": 1,
+      "message": "Please, add one passing try to every TC, e.g. in case of dropping src address first use packet with src address that shoudl not be dropped (i.e. packet delivered) and then test with src address to be dropped.",
+      "parentUuid": "ba092121_d83d6dbd",
+      "revId": "31c01120e983385aa2f20558021530c3a2db9fdd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba092121_b84ab953",
         "filename": "tests/suites/ipv6/ipv6_iacl_untagged.robot",
         "patchSetId": 6
@@ -421,6 +439,24 @@
       "writtenOn": "2016-06-02T07:02:41Z",
       "side": 1,
       "message": "L2fCIS_co",
+      "revId": "31c01120e983385aa2f20558021530c3a2db9fdd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_981c95c3",
+        "filename": "tests/suites/ipv6/ipv6_iacl_untagged.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-02T12:44:18Z",
+      "side": 1,
+      "message": "Please, add one passing try to every TC, e.g. in case of dropping src address first use packet with src address that shoudl not be dropped (i.e. packet delivered) and then test with src address to be dropped.",
+      "parentUuid": "ba092121_b84ab953",
       "revId": "31c01120e983385aa2f20558021530c3a2db9fdd",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
