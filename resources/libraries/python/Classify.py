@@ -21,8 +21,8 @@ class Classify(object):
     """Classify utilities."""
 
     @staticmethod
-    def vpp_create_classify_table(node, ip_version, direction):
-        """Create classify table.
+    def vpp_create_classify_table_l3(node, ip_version, direction):
+        """Create classify table for IP address filtering.
 
         :param node: VPP node to create classify table.
         :param ip_version: Version of IP protocol.
@@ -39,6 +39,37 @@ class Classify(object):
         """
         output = VatExecutor.cmd_from_template(node, "classify_add_table.vat",
                                                ip_version=ip_version,
+                                               direction=direction)
+
+        if output[0]["retval"] == 0:
+            table_index = output[0]["new_table_index"]
+            skip_n = output[0]["skip_n_vectors"]
+            match_n = output[0]["match_n_vectors"]
+            logger.trace('Classify table with table_index {} created on node {}'
+                         .format(table_index, node['host']))
+        else:
+            raise RuntimeError('Unable to create classify table on node {}'
+                               .format(node['host']))
+
+        return table_index, skip_n, match_n
+
+    @staticmethod
+    def vpp_create_classify_table_l2(node, direction):
+        """Create classify table for MAC address filtering.
+
+        :param node: VPP node to create classify table.
+        :param direction: Direction of traffic - src/dst.
+        :type node: dict
+        :type direction: str
+        :return table_index: Classify table index.
+        :return skip_n: Number of skip vectors.
+        :return match_n: Number of match vectors.
+        :rtype table_index: int
+        :rtype skip_n: int
+        :rtype match_n: int
+        """
+        output = VatExecutor.cmd_from_template(node,
+                                               "classify_add_table_l2.vat",
                                                direction=direction)
 
         if output[0]["retval"] == 0:
@@ -84,9 +115,10 @@ class Classify(object):
         return table_index, skip_n, match_n
 
     @staticmethod
-    def vpp_configure_classify_session(node, acl_method, table_index, skip_n,
-                                       match_n, ip_version, direction, address):
-        """Configuration of classify session.
+    def vpp_configure_classify_session_l3(node, acl_method, table_index, skip_n,
+                                          match_n, ip_version, direction,
+                                          address):
+        """Configuration of classify session for IP address filtering.
 
         :param node: VPP node to setup classify session.
         :param acl_method: ACL method - deny/permit.
@@ -112,6 +144,35 @@ class Classify(object):
                                                     skip_n=skip_n,
                                                     match_n=match_n,
                                                     ip_version=ip_version,
+                                                    direction=direction,
+                                                    address=address)
+
+    @staticmethod
+    def vpp_configure_classify_session_l2(node, acl_method, table_index, skip_n,
+                                          match_n, direction, address):
+        """Configuration of classify session for MAC address filtering.
+
+        :param node: VPP node to setup classify session.
+        :param acl_method: ACL method - deny/permit.
+        :param table_index: Classify table index.
+        :param skip_n: Number of skip vectors based on mask.
+        :param match_n: Number of match vectors based on mask.
+        :param direction: Direction of traffic - src/dst.
+        :param address: IPv4 or IPv6 address.
+        :type node: dict
+        :type acl_method: str
+        :type table_index: int
+        :type skip_n: int
+        :type match_n: int
+        :type direction: str
+        :type address: str
+        """
+        with VatTerminal(node) as vat:
+            vat.vat_terminal_exec_cmd_from_template("classify_add_session_l2.vat",
+                                                    acl_method=acl_method,
+                                                    table_index=table_index,
+                                                    skip_n=skip_n,
+                                                    match_n=match_n,
                                                     direction=direction,
                                                     address=address)
 
