@@ -49,9 +49,9 @@
 | | ... | ${dut1_to_tg} | ${dut1_to_tg_ip} | ${prefix_length}
 | | And Set Interface Address | ${dut1_node}
 | | ... | ${dut1_to_dut2} | ${dut1_to_dut2_ip} | ${prefix_length}
-| | ${table_index} | ${skip_n} | ${match_n}= | When Vpp Create Classify Table
+| | ${table_index} | ${skip_n} | ${match_n}= | When Vpp Create Classify Table L3
 | | ... | ${dut1_node} | ${ip_version} | src
-| | And Vpp Configure Classify Session
+| | And Vpp Configure Classify Session L3
 | | ... | ${dut1_node} | deny | ${table_index} | ${skip_n} | ${match_n}
 | | ... | ${ip_version} | src | ${test_src_ip}
 | | And Vpp Enable Input Acl Interface
@@ -80,9 +80,9 @@
 | | ... | ${dut1_to_tg} | ${dut1_to_tg_ip} | ${prefix_length}
 | | And Set Interface Address | ${dut1_node}
 | | ... | ${dut1_to_dut2} | ${dut1_to_dut2_ip} | ${prefix_length}
-| | ${table_index} | ${skip_n} | ${match_n}= | When Vpp Create Classify Table
+| | ${table_index} | ${skip_n} | ${match_n}= | When Vpp Create Classify Table L3
 | | ... | ${dut1_node} | ${ip_version} | dst
-| | And Vpp Configure Classify Session
+| | And Vpp Configure Classify Session L3
 | | ... | ${dut1_node} | deny | ${table_index} | ${skip_n} | ${match_n}
 | | ... | ${ip_version} | dst | ${test_dst_ip}
 | | And Vpp Enable Input Acl Interface
@@ -112,13 +112,13 @@
 | | And Set Interface Address | ${dut1_node}
 | | ... | ${dut1_to_dut2} | ${dut1_to_dut2_ip} | ${prefix_length}
 | | ${table_index_1} | ${skip_n_1} | ${match_n_1}=
-| | ... | When Vpp Create Classify Table | ${dut1_node} | ${ip_version} | src
+| | ... | When Vpp Create Classify Table L3 | ${dut1_node} | ${ip_version} | src
 | | ${table_index_2} | ${skip_n_2} | ${match_n_2}=
-| | ... | When Vpp Create Classify Table | ${dut1_node} | ${ip_version} | dst
-| | And Vpp Configure Classify Session
+| | ... | When Vpp Create Classify Table L3 | ${dut1_node} | ${ip_version} | dst
+| | And Vpp Configure Classify Session L3
 | | ... | ${dut1_node} | deny | ${table_index_1} | ${skip_n_1} | ${match_n_2}
 | | ... | ${ip_version} | src | ${test_src_ip}
-| | And Vpp Configure Classify Session
+| | And Vpp Configure Classify Session L3
 | | ... | ${dut1_node} | deny | ${table_index_2} | ${skip_n_2} | ${match_n_2}
 | | ... | ${ip_version} | dst | ${test_dst_ip}
 | | And Vpp Enable Input Acl Interface
@@ -391,3 +391,34 @@
 | | Then Send TCP or UDP packet should failed | ${tg_node}
 | | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
 | | ... | ${tg_to_dut2} | ${dut1_to_tg_mac} | UDP | 80 | 20
+
+| VPP drops packets based on MAC src addr
+| | [Documentation] | Create classify table on VPP, add source MAC address
+| | ...             | of traffic into table and setup 'deny' traffic
+| | ...             | and check if traffic is dropped.
+| | Given Path for 3-node testing is set
+| | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
+| | And Interfaces in 3-node path are up
+| | And Set Interface Address | ${dut1_node}
+| | ... | ${dut1_to_tg} | ${dut1_to_tg_ip} | ${prefix_length}
+| | And Set Interface Address | ${dut1_node}
+| | ... | ${dut1_to_dut2} | ${dut1_to_dut2_ip} | ${prefix_length}
+| | ${table_index} | ${skip_n} | ${match_n}= | When Vpp Create Classify Table L2
+| | ... | ${dut1_node} | src
+| | And Vpp Configure Classify Session L2
+| | ... | ${dut1_node} | deny | ${table_index} | ${skip_n} | ${match_n}
+| | ... | src | ${tg_to_dut1_mac}
+| | And Vpp Enable Input Acl Interface
+| | ... | ${dut1_node} | ${dut1_to_tg} | ${ip_version} | ${table_index}
+| | And Add Arp On Dut
+| | ... | ${dut1_node} | ${dut1_to_dut2} | ${dut1_to_dut2_ip_GW}
+| | ... | ${tg_to_dut2_mac}
+| | And Vpp Route Add
+| | ... | ${dut1_node} | ${test_dst_ip} | ${prefix_length}
+| | ... | ${dut1_to_dut2_ip_GW} | ${dut1_to_dut2}
+| | And L2 setup xconnect on DUT
+| | ... | ${dut2_node} | ${dut2_to_dut1} | ${dut2_to_tg}
+| | Then Send packet from Port to Port should failed | ${tg_node}
+| | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
+| | ... | ${dut1_to_tg_mac} | ${tg_to_dut2}
+| | ... | ${dut1_to_dut2_mac} | ${tg_to_dut2_mac}
