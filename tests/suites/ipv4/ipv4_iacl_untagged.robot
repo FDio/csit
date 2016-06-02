@@ -18,6 +18,7 @@
 | Resource | resources/libraries/robot/testing_path.robot
 | Resource | resources/libraries/robot/ipv4.robot
 | Resource | resources/libraries/robot/l2_xconnect.robot
+| Resource | resources/libraries/robot/l2_traffic.robot
 | Resource | resources/libraries/robot/traffic.robot
 | Library | resources.libraries.python.Classify.Classify
 | Library | resources.libraries.python.Trace
@@ -39,6 +40,7 @@
 | ${non_drop_src_ip}= | 15.0.0.1
 | ${prefix_length}= | 24
 | ${ip_version}= | ip4
+| ${l2_table}= | l2
 
 *** Test Cases ***
 | VPP drops packets based on IPv4 source addresses
@@ -61,16 +63,17 @@
 | | And L2 setup xconnect on DUT
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${dut2_to_tg}
 | | Then Send Packet And Check Headers | ${tg_node}
-| | ... | ${non_drop_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
-| | ... | ${dut1_to_tg_mac} | ${tg_to_dut2}
+| | ... | ${non_drop_src_ip} | ${test_dst_ip} | ${tg_to_dut1}
+| | ... | ${tg_to_dut1_mac} | ${dut1_to_tg_mac} | ${tg_to_dut2}
 | | ... | ${dut1_to_dut2_mac} | ${tg_to_dut2_mac}
 | | And Send Packet And Check Headers | ${tg_node}
 | | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
 | | ... | ${dut1_to_tg_mac} | ${tg_to_dut2}
 | | ... | ${dut1_to_dut2_mac} | ${tg_to_dut2_mac}
-| | ${table_index} | ${skip_n} | ${match_n}= | When Vpp Create Classify Table
-| | ... | ${dut1_node} | ${ip_version} | src
-| | And Vpp Configure Classify Session
+| | ${table_index} | ${skip_n} | ${match_n}=
+| | ... | When Vpp Creates Classify Table L3 | ${dut1_node}
+| | ... | ${ip_version} | src
+| | And Vpp Configures Classify Session L3
 | | ... | ${dut1_node} | deny | ${table_index} | ${skip_n} | ${match_n}
 | | ... | ${ip_version} | src | ${test_src_ip}
 | | And Vpp Enable Input Acl Interface
@@ -80,8 +83,8 @@
 | | ... | ${dut1_to_tg_mac} | ${tg_to_dut2}
 | | ... | ${dut1_to_dut2_mac} | ${tg_to_dut2_mac}
 | | And Send Packet And Check Headers | ${tg_node}
-| | ... | ${non_drop_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
-| | ... | ${dut1_to_tg_mac} | ${tg_to_dut2}
+| | ... | ${non_drop_src_ip} | ${test_dst_ip} | ${tg_to_dut1}
+| | ... | ${tg_to_dut1_mac} | ${dut1_to_tg_mac} | ${tg_to_dut2}
 | | ... | ${dut1_to_dut2_mac} | ${tg_to_dut2_mac}
 
 | VPP drops packets based on IPv4 destination addresses
@@ -107,16 +110,17 @@
 | | And L2 setup xconnect on DUT
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${dut2_to_tg}
 | | Then Send Packet And Check Headers | ${tg_node}
-| | ... | ${test_src_ip} | ${non_drop_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
-| | ... | ${dut1_to_tg_mac} | ${tg_to_dut2}
+| | ... | ${test_src_ip} | ${non_drop_dst_ip} | ${tg_to_dut1}
+| | ... | ${tg_to_dut1_mac} | ${dut1_to_tg_mac} | ${tg_to_dut2}
 | | ... | ${dut1_to_dut2_mac} | ${tg_to_dut2_mac}
 | | And Send Packet And Check Headers | ${tg_node}
 | | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
 | | ... | ${dut1_to_tg_mac} | ${tg_to_dut2}
 | | ... | ${dut1_to_dut2_mac} | ${tg_to_dut2_mac}
-| | ${table_index} | ${skip_n} | ${match_n}= | When Vpp Create Classify Table
-| | ... | ${dut1_node} | ${ip_version} | dst
-| | And Vpp Configure Classify Session
+| | ${table_index} | ${skip_n} | ${match_n}=
+| | ... | When Vpp Creates Classify Table L3 | ${dut1_node}
+| | ... | ${ip_version} | dst
+| | And Vpp Configures Classify Session L3
 | | ... | ${dut1_node} | deny | ${table_index} | ${skip_n} | ${match_n}
 | | ... | ${ip_version} | dst | ${test_dst_ip}
 | | And Vpp Enable Input Acl Interface
@@ -126,8 +130,8 @@
 | | ... | ${dut1_to_tg_mac} | ${tg_to_dut2}
 | | ... | ${dut1_to_dut2_mac} | ${tg_to_dut2_mac}
 | | And Send Packet And Check Headers | ${tg_node}
-| | ... | ${test_src_ip} | ${non_drop_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
-| | ... | ${dut1_to_tg_mac} | ${tg_to_dut2}
+| | ... | ${test_src_ip} | ${non_drop_dst_ip} | ${tg_to_dut1}
+| | ... | ${tg_to_dut1_mac} | ${dut1_to_tg_mac} | ${tg_to_dut2}
 | | ... | ${dut1_to_dut2_mac} | ${tg_to_dut2_mac}
 
 | VPP drops packets based on IPv4 src-addr and dst-addr
@@ -161,13 +165,14 @@
 | | ... | ${dut1_to_tg_mac} | ${tg_to_dut2}
 | | ... | ${dut1_to_dut2_mac} | ${tg_to_dut2_mac}
 | | ${table_index_1} | ${skip_n_1} | ${match_n_1}=
-| | ... | When Vpp Create Classify Table | ${dut1_node} | ${ip_version} | src
+| | ... | When Vpp Creates Classify Table L3 | ${dut1_node}
+| | ... | ${ip_version} | src
 | | ${table_index_2} | ${skip_n_2} | ${match_n_2}=
-| | ... | And Vpp Create Classify Table | ${dut1_node} | ${ip_version} | dst
-| | And Vpp Configure Classify Session
+| | ... | And Vpp Creates Classify Table L3 | ${dut1_node} | ${ip_version} | dst
+| | And Vpp Configures Classify Session L3
 | | ... | ${dut1_node} | deny | ${table_index_1} | ${skip_n_1} | ${match_n_2}
 | | ... | ${ip_version} | src | ${test_src_ip}
-| | And Vpp Configure Classify Session
+| | And Vpp Configures Classify Session L3
 | | ... | ${dut1_node} | deny | ${table_index_2} | ${skip_n_2} | ${match_n_2}
 | | ... | ${ip_version} | dst | ${test_dst_ip}
 | | And Vpp Enable Input Acl Interface
@@ -208,9 +213,10 @@
 | | And Send TCP or UDP packet | ${tg_node}
 | | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
 | | ... | ${tg_to_dut2} | ${dut1_to_tg_mac} | TCP | 80 | 20
-| | ${table_index} | ${skip_n} | ${match_n}= | When Vpp Create Classify Table Hex
+| | ${table_index} | ${skip_n} | ${match_n}=
+| | ... | When Vpp Creates Classify Table Hex
 | | ... | ${dut1_node} | 0000000000000000000000000000000000000000000000FF
-| | And Vpp Configure Classify Session Hex
+| | And Vpp Configures Classify Session Hex
 | | ... | ${dut1_node} | deny | ${table_index} | ${skip_n} | ${match_n}
 | | ... | 000000000000000000000000000000000000000000000006
 | | And Vpp Enable Input Acl Interface
@@ -247,9 +253,10 @@
 | | And Send TCP or UDP packet | ${tg_node}
 | | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
 | | ... | ${tg_to_dut2} | ${dut1_to_tg_mac} | UDP | 80 | 20
-| | ${table_index} | ${skip_n} | ${match_n}= | When Vpp Create Classify Table Hex
+| | ${table_index} | ${skip_n} | ${match_n}=
+| | ... | When Vpp Creates Classify Table Hex
 | | ... | ${dut1_node} | 0000000000000000000000000000000000000000000000FF
-| | And Vpp Configure Classify Session Hex
+| | And Vpp Configures Classify Session Hex
 | | ... | ${dut1_node} | deny | ${table_index} | ${skip_n} | ${match_n}
 | | ... | 000000000000000000000000000000000000000000000011
 | | And Vpp Enable Input Acl Interface
@@ -288,9 +295,9 @@
 | | ... | ${tg_to_dut2} | ${dut1_to_tg_mac} | TCP | 80 | 20
 | | ${hex_mask}= | Compute Classify Hex Mask | ${ip_version} | TCP | source
 | | ${hex_value}= | Compute Classify Hex Value | ${hex_mask} | 80 | 0
-| | ${table_index} | ${skip_n} | ${match_n}= | When Vpp Create Classify Table Hex
-| | ... | ${dut1_node} | ${hex_mask}
-| | And Vpp Configure Classify Session Hex
+| | ${table_index} | ${skip_n} | ${match_n}=
+| | ... | When Vpp Creates Classify Table Hex | ${dut1_node} | ${hex_mask}
+| | And Vpp Configures Classify Session Hex
 | | ... | ${dut1_node} | deny | ${table_index} | ${skip_n} | ${match_n}
 | | ... | ${hex_value}
 | | And Vpp Enable Input Acl Interface
@@ -329,9 +336,9 @@
 | | ... | ${tg_to_dut2} | ${dut1_to_tg_mac} | TCP | 20 | 80
 | | ${hex_mask}= | Compute Classify Hex Mask | ${ip_version} | TCP | destination
 | | ${hex_value}= | Compute Classify Hex Value | ${hex_mask} | 0 | 80
-| | ${table_index} | ${skip_n} | ${match_n}= | When Vpp Create Classify Table Hex
-| | ... | ${dut1_node} | ${hex_mask}
-| | And Vpp Configure Classify Session Hex
+| | ${table_index} | ${skip_n} | ${match_n}=
+| | ... | When Vpp Creates Classify Table Hex | ${dut1_node} | ${hex_mask}
+| | And Vpp Configures Classify Session Hex
 | | ... | ${dut1_node} | deny | ${table_index} | ${skip_n} | ${match_n}
 | | ... | ${hex_value}
 | | And Vpp Enable Input Acl Interface
@@ -371,9 +378,9 @@
 | | ${hex_mask}= | Compute Classify Hex Mask | ${ip_version} | TCP
 | | ...                                      | source + destination
 | | ${hex_value}= | Compute Classify Hex Value | ${hex_mask} | 80 | 20
-| | ${table_index} | ${skip_n} | ${match_n}= | When Vpp Create Classify Table Hex
-| | ... | ${dut1_node} | ${hex_mask}
-| | And Vpp Configure Classify Session Hex
+| | ${table_index} | ${skip_n} | ${match_n}=
+| | ... | When Vpp Creates Classify Table Hex | ${dut1_node} | ${hex_mask}
+| | And Vpp Configures Classify Session Hex
 | | ... | ${dut1_node} | deny | ${table_index} | ${skip_n} | ${match_n}
 | | ... | ${hex_value}
 | | And Vpp Enable Input Acl Interface
@@ -412,9 +419,9 @@
 | | ... | ${tg_to_dut2} | ${dut1_to_tg_mac} | UDP | 80 | 20
 | | ${hex_mask}= | Compute Classify Hex Mask | ${ip_version} | UDP | source
 | | ${hex_value}= | Compute Classify Hex Value | ${hex_mask} | 80 | 0
-| | ${table_index} | ${skip_n} | ${match_n}= | When Vpp Create Classify Table Hex
-| | ... | ${dut1_node} | ${hex_mask}
-| | And Vpp Configure Classify Session Hex
+| | ${table_index} | ${skip_n} | ${match_n}=
+| | ... | When Vpp Creates Classify Table Hex | ${dut1_node} | ${hex_mask}
+| | And Vpp Configures Classify Session Hex
 | | ... | ${dut1_node} | deny | ${table_index} | ${skip_n} | ${match_n}
 | | ... | ${hex_value}
 | | And Vpp Enable Input Acl Interface
@@ -453,9 +460,9 @@
 | | ... | ${tg_to_dut2} | ${dut1_to_tg_mac} | UDP | 20 | 80
 | | ${hex_mask}= | Compute Classify Hex Mask | ${ip_version} | UDP | destination
 | | ${hex_value}= | Compute Classify Hex Value | ${hex_mask} | 0 | 80
-| | ${table_index} | ${skip_n} | ${match_n}= | When Vpp Create Classify Table Hex
-| | ... | ${dut1_node} | ${hex_mask}
-| | And Vpp Configure Classify Session Hex
+| | ${table_index} | ${skip_n} | ${match_n}=
+| | ... | When Vpp Creates Classify Table Hex | ${dut1_node} | ${hex_mask}
+| | And Vpp Configures Classify Session Hex
 | | ... | ${dut1_node} | deny | ${table_index} | ${skip_n} | ${match_n}
 | | ... | ${hex_value}
 | | And Vpp Enable Input Acl Interface
@@ -495,9 +502,9 @@
 | | ${hex_mask}= | Compute Classify Hex Mask | ${ip_version} | UDP
 | | ...                                      | source + destination
 | | ${hex_value}= | Compute Classify Hex Value | ${hex_mask} | 80 | 20
-| | ${table_index} | ${skip_n} | ${match_n}= | When Vpp Create Classify Table Hex
-| | ... | ${dut1_node} | ${hex_mask}
-| | And Vpp Configure Classify Session Hex
+| | ${table_index} | ${skip_n} | ${match_n}=
+| | ... | When Vpp Creates Classify Table Hex | ${dut1_node} | ${hex_mask}
+| | And Vpp Configures Classify Session Hex
 | | ... | ${dut1_node} | deny | ${table_index} | ${skip_n} | ${match_n}
 | | ... | ${hex_value}
 | | And Vpp Enable Input Acl Interface
@@ -508,3 +515,26 @@
 | | And Send TCP or UDP packet | ${tg_node}
 | | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
 | | ... | ${tg_to_dut2} | ${dut1_to_tg_mac} | UDP | 110 | 25
+
+| VPP drops packets based on MAC src addr
+| | [Documentation] | Create classify table on VPP, add source MAC address
+| | ...             | of traffic into table and setup 'deny' traffic
+| | ...             | and check if traffic is dropped.
+| | Given Path for 3-node testing is set
+| | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
+| | And Interfaces in 3-node path are up
+| | And L2 setup xconnect on DUT
+| | ... | ${dut1_node} | ${dut1_to_dut2} | ${dut1_to_tg}
+| | And L2 setup xconnect on DUT
+| | ... | ${dut2_node} | ${dut2_to_dut1} | ${dut2_to_tg}
+| | Then Send and receive ICMP Packet
+| | ... | ${tg_node} | ${tg_to_dut1} | ${tg_to_dut2}
+| | ${table_index} | ${skip_n} | ${match_n}=
+| | ... | When Vpp Creates Classify Table L2 | ${dut1_node} | src
+| | And Vpp Configures Classify Session L2
+| | ... | ${dut1_node} | deny | ${table_index} | ${skip_n} | ${match_n}
+| | ... | src | ${tg_to_dut1_mac}
+| | And Vpp Enable Input Acl Interface
+| | ... | ${dut1_node} | ${dut1_to_tg} | ${l2_table} | ${table_index}
+| | Then Send and receive ICMP Packet should failed
+| | ... | ${tg_node} | ${tg_to_dut1} | ${tg_to_dut2}
