@@ -70,7 +70,7 @@ if [ "${#}" -ne "0" ]; then
     echo ${arr[0]}
 else
     VPP_STABLE_VER="16.09-rc0~33-g4b46c84~b200_amd64"
-    VPP_REPO_URL="https://nexus.fd.io/service/local/repositories/fd.io.master.ubuntu.trusty.main/content/io/fd/vppp"
+    VPP_REPO_URL="https://nexus.fd.io/service/local/repositories/fd.io.master.ubuntu.trusty.main/content/io/fd/vpp"
     wget -q "${VPP_REPO_URL}/vpp/${VPP_STABLE_VER}/vpp-${VPP_STABLE_VER}.deb" || exit
     wget -q "${VPP_REPO_URL}/vpp-dbg/${VPP_STABLE_VER}/vpp-dbg-${VPP_STABLE_VER}.deb" || exit
     wget -q "${VPP_REPO_URL}/vpp-dev/${VPP_STABLE_VER}/vpp-dev-${VPP_STABLE_VER}.deb" || exit
@@ -148,9 +148,12 @@ virtualenv env
 echo pip install
 pip install -r requirements.txt
 
-
 # There are used three iterations of tests there to check
 # the stability and reliability of the results
+
+RC=0
+MORE_FAILS=0
+
 for test_set in 1 2 3
 do
     echo
@@ -163,8 +166,62 @@ do
         --noncritical EXPECTED_FAILING \
         --output log_test_set${test_set} \
         tests/
+    PARTIAL_RC=$(echo $?)
+    if [ ${PARTIAL_RC} -eq 250 ]; then
+        MORE_FAILS=1
+    fi
+    RC=$((RC+PARTIAL_RC))
 done
 
+# Log the final result
+if [ ${RC} -eq 0 ]; then
+    set +x
+    echo
+    echo "=============================================================================="
+    echo "Final result of all test loops:                                       | PASS |"
+    echo "All critical tests have passed."
+    echo "=============================================================================="
+    echo
+    set -x
+elif [ ${MORE_FAILS} -eq 0 ]; then
+    if [ ${RC} -eq 1 ]; then
+        HLP_STR="test has"
+    else
+        HLP_STR="tests have"
+    fi
+    set +x
+    echo
+    echo "=============================================================================="
+    echo "Final result of all test loops:                                       | FAIL |"
+    echo "${RC} critical ${HLP_STR} failed."
+    echo "=============================================================================="
+    echo
+    set -x
+else
+    set +x
+    echo
+    echo "=============================================================================="
+    echo "Final result of all test loops:                                       | FAIL |"
+    echo "More then 250 critical tests have failed in one test loop."
+    echo "=============================================================================="
+    echo
+    set -x
+fi
+
+echo Post-processing test data...
+
+# Rebot output post-processing
 rebot --output output.xml ./log_test_set1.xml ./log_test_set2.xml ./log_test_set3.xml
 
+# Remove unnecessary log files
 rm -f ./log_test_set1.xml ./log_test_set2.xml ./log_test_set3.xml
+
+echo Post-processing finished.
+
+if [ ${RC} -eq 0 ]; then
+    RETURN_STATUS=0
+else
+    RETURN_STATUS=1
+fi
+
+exit ${RETURN_STATUS}
