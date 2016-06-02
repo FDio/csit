@@ -23,11 +23,11 @@
 | | ...
 | | ... | *Arguments:*
 | | ...
-| | ... | - {tg_node} - TG node. Type: dictionary
-| | ... | - {src_int} - Source interface. Type: string
-| | ... | - {dst_int} - Destination interface. Type: string
-| | ... | - {src_ip} - Source IP address (Optional). Type: string
-| | ... | - {dst_ip} - Destination IP address (Optional). Type: string
+| | ... | - tg_node - TG node. Type: dictionary
+| | ... | - src_int - Source interface. Type: string
+| | ... | - dst_int - Destination interface. Type: string
+| | ... | - src_ip - Source IP address (Optional). Type: string
+| | ... | - dst_ip - Destination IP address (Optional). Type: string
 | | ...
 | | ... | *Return:*
 | | ...
@@ -48,6 +48,39 @@
 | |          | ...                    | ${dst_mac} | ${src_ip} | ${dst_ip}
 | | Run Traffic Script On Node | send_ip_icmp.py | ${tg_node} | ${args}
 
+| Send and receive ICMP Packet should failed
+| | [Documentation] | Send ICMPv4/ICMPv6 echo request from source interface to
+| | ...             | destination interface and expect failure with
+| | ...             | ICMP echo Rx timeout error message.
+| | ...
+| | ... | *Arguments:*
+| | ...
+| | ... | - tg_node - TG node. Type: dictionary
+| | ... | - src_int - Source interface. Type: string
+| | ... | - dst_int - Destination interface. Type: string
+| | ... | - src_ip - Source IP address (Optional). Type: string
+| | ... | - dst_ip - Destination IP address (Optional). Type: string
+| | ...
+| | ... | *Return:*
+| | ...
+| | ... | - No value returned
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | _NOTE:_ Default IP is IPv4
+| | ...
+| | ... | \| Send and receive ICMP Packet \| ${nodes['TG']} \
+| | ... | \| ${tg_to_dut_if1} \| ${tg_to_dut_if2} \|
+| | ...
+| | [Arguments] | ${tg_node} | ${src_int} | ${dst_int} |
+| | ... | ${src_ip}=192.168.100.1 | ${dst_ip}=192.168.100.2
+| | ${src_mac}= | Get Interface Mac | ${tg_node} | ${src_int}
+| | ${dst_mac}= | Get Interface Mac | ${tg_node} | ${dst_int}
+| | ${args}= | Traffic Script Gen Arg | ${dst_int} | ${src_int} | ${src_mac}
+| |          | ...                    | ${dst_mac} | ${src_ip} | ${dst_ip}
+| | Run Keyword And Expect Error | ICMP echo Rx timeout |
+| | ... | Run Traffic Script On Node | send_ip_icmp.py | ${tg_node} | ${args}
+
 | Send and receive ICMPv4 bidirectionally
 | | [Documentation] | Send ICMPv4 echo request from both directions,
 | | ...             | from interface1 to interface2 and
@@ -55,11 +88,11 @@
 | | ...
 | | ... | *Arguments:*
 | | ...
-| | ... | - {tg_node} - TG node. Type: dictionary
-| | ... | - {src_int} - Source interface. Type: string
-| | ... | - {dst_int} - Destination interface. Type: string
-| | ... | - {src_ip} - Source IP address (Optional). Type: string
-| | ... | - {dst_ip} - Destination IP address (Optional). Type: string
+| | ... | - tg_node - TG node. Type: dictionary
+| | ... | - src_int - Source interface. Type: string
+| | ... | - dst_int - Destination interface. Type: string
+| | ... | - src_ip - Source IP address (Optional). Type: string
+| | ... | - dst_ip - Destination IP address (Optional). Type: string
 | | ...
 | | ... | *Return:*
 | | ...
@@ -84,11 +117,11 @@
 | | ...
 | | ... | *Arguments:*
 | | ...
-| | ... | - {tg_node} - TG node. Type: dictionary
-| | ... | - {src_int} - Source interface. Type: string
-| | ... | - {dst_int} - Destination interface. Type: string
-| | ... | - {src_ip} - Source IP address (Optional). Type: string
-| | ... | - {dst_ip} - Destination IP address (Optional). Type: string
+| | ... | - tg_node - TG node. Type: dictionary
+| | ... | - src_int - Source interface. Type: string
+| | ... | - dst_int - Destination interface. Type: string
+| | ... | - src_ip - Source IP address (Optional). Type: string
+| | ... | - dst_ip - Destination IP address (Optional). Type: string
 | | ...
 | | ... | *Return:*
 | | ...
