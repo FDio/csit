@@ -234,7 +234,7 @@
 | | ...             | Create two bridge domains (learning enabled) on the second
 | | ...             | VPP node and add one VXLAN interface and one interface
 | | ...             | toward TG to each of them. Check traffic bidirectionally.
-| | [Tags] | 3_NODE_DOUBLE_LINK_TOPO | EXPECTED_FAILING
+| | [Tags] | 3_NODE_DOUBLE_LINK_TOPO
 | | Given Path for 3-node BD-SHG testing is set | ${nodes['TG']}
 | | ...                                         | ${nodes['DUT1']}
 | | ...                                         | ${nodes['DUT2']}
@@ -303,7 +303,7 @@
 | | ...             | Create two bridge domains (learning enabled) on the second
 | | ...             | VPP node and add one VXLAN interface and one interface
 | | ...             | toward TG to each of them. Check traffic bidirectionally.
-| | [Tags] | 3_NODE_DOUBLE_LINK_TOPO | EXPECTED_FAILING
+| | [Tags] | 3_NODE_DOUBLE_LINK_TOPO
 | | Given Path for 3-node BD-SHG testing is set | ${nodes['TG']}
 | | ...                                         | ${nodes['DUT1']}
 | | ...                                         | ${nodes['DUT2']}
