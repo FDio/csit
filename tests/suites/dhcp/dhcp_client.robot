@@ -29,6 +29,7 @@
 | ${client_mask}= | 255.255.255.0
 | ${server_ip}= | 192.168.23.1
 | ${own_xid}= | 11112222
+| ${lease_time}= | ${15}
 
 *** Test Cases ***
 | VPP sends a DHCP DISCOVER
@@ -86,3 +87,30 @@
 | |       ... | ${tg_to_dut_if1_mac} | ${server_ip}
 | |       ... | ${dut_to_tg_if1_mac} | ${client_ip} | ${client_mask}
 | |       ... | offer_xid=${own_xid}
+
+| VPP honors DHCPv4 lease time
+| | [Documentation] | Send IP configuration to the VPP client via DHCP. Address
+| | ...             | is checked with ICMP echo request and after lease time
+| | ...             | there should be no reply for echo request.
+| | ...
+| | Given Path for 2-node testing is set
+| |       ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
+| | And   Interfaces in 2-node path are up
+| | And   VPP Route Add | ${dut_node} | 255.255.255.255 | 32 | ${NONE} | local
+| |       ... | ${FALSE} | ${NONE}
+| | When  Set DHCP client on Interface | ${dut_node} | ${dut_to_tg_if1}
+| | And   Send IP configuration to client via DHCP
+| |       ... | ${tg_node} | ${tg_to_dut_if1}
+| |       ... | ${tg_to_dut_if1_mac} | ${server_ip}
+| |       ... | ${client_ip} | ${client_mask}
+| |       ... | ${lease_time}
+| | And   Add Arp On Dut | ${dut_node} | ${dut_to_tg_if1} | ${server_ip}
+| |       ... | ${tg_to_dut_if1_mac}
+| | Then  Node replies to ICMP echo request | ${tg_node} | ${tg_to_dut_if1}
+| |       ... | ${dut_to_tg_if1_mac} | ${tg_to_dut_if1_mac} | ${client_ip}
+| |       ... | ${server_ip}
+| | And   Sleep | ${lease_time}
+| | And   Run Keyword And Expect Error | ICMP echo Rx timeout
+| |       ... | Node replies to ICMP echo request | ${tg_node}
+| |       ... | ${tg_to_dut_if1} | ${dut_to_tg_if1_mac} | ${tg_to_dut_if1_mac}
+| |       ... | ${client_ip} | ${server_ip}
