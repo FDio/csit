@@ -25,8 +25,3 @@ rsync -avz ${@} ${USERNAME}@192.168.255.102:/tmp/ || exit
 
 ssh_do_duts "sudo apt-get -y purge 'vpp.*' ; exit 0"
 ssh_do_duts "sudo dpkg -i /tmp/vpp*.deb"
-vppcfg="/etc/vpp/startup.conf"
-ssh_do_duts "sudo rm -f $vppcfg.orig; sudo cp $vppcfg $vppcfg.orig"
-ssh_do_duts "echo -e '\nheapsize 512M' | sudo tee -a $vppcfg"
-
-echo Success!
