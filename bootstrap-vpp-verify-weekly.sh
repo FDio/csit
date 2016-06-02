@@ -69,8 +69,8 @@ if [ "${#}" -ne "0" ]; then
     arr=(${@})
     echo ${arr[0]}
 else
-    VPP_STABLE_VER="1.0.0-451~g686a5a5_amd64"
-    VPP_REPO_URL="https://nexus.fd.io/service/local/repositories/fd.io.dev/content/io/fd/vpp"
+    VPP_STABLE_VER="16.09-rc0~33-g4b46c84~b200_amd64"
+    VPP_REPO_URL="https://nexus.fd.io/service/local/repositories/fd.io.master.ubuntu.trusty.main/content/io/fd/vppp"
     wget -q "${VPP_REPO_URL}/vpp/${VPP_STABLE_VER}/vpp-${VPP_STABLE_VER}.deb" || exit
     wget -q "${VPP_REPO_URL}/vpp-dbg/${VPP_STABLE_VER}/vpp-dbg-${VPP_STABLE_VER}.deb" || exit
     wget -q "${VPP_REPO_URL}/vpp-dev/${VPP_STABLE_VER}/vpp-dev-${VPP_STABLE_VER}.deb" || exit
