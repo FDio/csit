@@ -125,3 +125,32 @@
 | | :FOR | ${dut_node} | ${interface} | ${address} | ${prefix} | IN | @{args}
 | | | Set Interface Address | ${dut_node} | ${interface} | ${address}
 | | | ... | ${prefix}
+
+| Node replies to ICMP echo request
+| | [Documentation] | Run traffic script that waits for ICMP reply and ignores
+| | ...             | all other packets.
+| | ...
+| | ... | *Arguments:*
+| | ... | - tg_node - TG node where run traffic script. Type: dictionary
+| | ... | - tg_interface - TG interface where send ICMP echo request.
+| | ... |   Type: string
+| | ... | - dst_mac - Destination MAC address. Type: string
+| | ... | - src_mac - Source MAC address. Type: string
+| | ... | - dst_ip - Destination IP address. Type: string
+| | ... | - src_ip - Source IP address. Type: string
+| | ... | - timeout - Wait timeout in seconds (Default: 10). Type: integer
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Node replies to ICMP echo request \
+| | ... | \| ${nodes['TG']} \| eth2 \
+| | ... | \| 08:00:27:46:2b:4c \| 08:00:27:66:b8:57 \
+| | ... | \| 192.168.23.10 \| 192.168.23.1 \| 10 \|
+| | ...
+| | [Arguments] | ${tg_node} | ${tg_interface}
+| | ... | ${dst_mac} | ${src_mac} | ${dst_ip} | ${src_ip} | ${timeout}=${10}
+| | ${args}= | Catenate | --rx_if | ${tg_interface} | --tx_if | ${tg_interface}
+| | ... | --dst_mac | ${dst_mac} | --src_mac | ${src_mac}
+| | ... | --dst_ip | ${dst_ip} | --src_ip | ${src_ip} | --timeout | ${timeout}
+| | Run Traffic Script On Node | send_icmp_wait_for_reply.py
+| | ... | ${tg_node} | ${args}

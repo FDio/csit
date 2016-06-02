@@ -102,3 +102,37 @@
 | | ...      | ELSE | Catenate | ${args} | --offer_xid | ${offer_xid}
 | | Run Traffic Script On Node | dhcp/check_dhcp_request.py
 | | ... | ${tg_node} | ${args}
+
+
+| Send IP configuration to client via DHCP
+| | [Documentation] | Run script that sends IP configuration to the DHCP client.
+| | ...
+| | ... | *Arguments:*
+| | ... | - tg_node - TG node. Type: dictionary
+| | ... | - tg_interface - TG interface where listen for DHCP DISCOVER,
+| | ... |   send DHCP OFFER and DHCP ACK after DHCP REQUEST messages.
+| | ... |   Type: string
+| | ... | - server_mac - DHCP server MAC address. Type: string
+| | ... | - server_ip - DHCP server IP address. Type: string
+| | ... | - client_ip - IP address that is offered to client. Type: string
+| | ... | - client_mask - IP netmask that is offered to client. Type: string
+| | ... | - lease_time - IP lease time in seconds. Type: integer
+| | ...
+| | ... | *Return:*
+| | ... | - No value returned.
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Send IP configuration to client via DHCP \| ${nodes['TG']} \
+| | ... | \| eth2 \| 08:00:27:66:b8:57 \| 192.168.23.1 \
+| | ... | \| 192.168.23.10 \| 255.255.255.0 \| 86400 \|
+| | ...
+| | [Arguments] | ${tg_node} | ${tg_interface}
+| | ... | ${server_mac} | ${server_ip} | ${client_ip} | ${client_mask}
+| | ... | ${lease_time}
+| | ${args}= | Catenate | --rx_if | ${tg_interface}
+| | ... | --server_mac | ${server_mac} | --server_ip | ${server_ip}
+| | ... | --client_ip | ${client_ip} | --client_mask | ${client_mask}
+| | ... | --lease_time | ${lease_time}
+| | Run Traffic Script On Node  | dhcp/check_dhcp_request_ack.py
+| | ... | ${tg_node} | ${args}
