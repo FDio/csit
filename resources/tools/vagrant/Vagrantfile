@@ -20,6 +20,8 @@ $user_addition = <<-SHELL
     echo csit:csit | sudo chpasswd
     sudo adduser csit vagrant
     id csit
+    echo "csit ALL=(root) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/csit
+    sudo chmod 0440 /etc/sudoers.d/csit
 SHELL
 
 $install_prereqs = <<-SHELL
@@ -30,24 +32,18 @@ $install_prereqs = <<-SHELL
 SHELL
 
 $install_vpp = <<-SHELL
+    sudo apt-get -y purge vpp\*
     cd /vagrant
     vpp_pkgs="$(echo vpp*.deb)"
     if [ "$vpp_pkgs" != "vpp*.deb" ]; then
-      if [ "$(dpkg -l | grep vpp)" != "" ] ; then
-        sudo apt-get -y purge vpp\*
-      fi
-      sudo dpkg -i vpp*.deb
-      vppcfg="/etc/vpp/startup.conf"
-      sudo rm -f $vppcfg.orig
-      sudo cp $vppcfg $vppcfg.orig
-      echo -e '\nheapsize 512M' | sudo tee -a $vppcfg
+        sudo dpkg -i vpp*.deb
     fi
 SHELL
 
 
 def add_dut(config, name, mgmt_ip, net1, net2)
   config.vm.define name do |node|
-    node.vm.box = "puppetlabs/ubuntu-14.04-64-nocm"
+    node.vm.box = "fdio-csit/ubuntu-14.04.4_2016-05-25_1.0"
     node.vm.hostname = name
     node.vm.provision "shell", inline: $user_addition
     node.vm.provision "shell", inline: $install_prereqs
@@ -59,7 +55,7 @@ def add_dut(config, name, mgmt_ip, net1, net2)
     node.vm.network "private_network", type: "dhcp", auto_config: false,
         virtualbox__intnet: net2
     node.vm.provider "virtualbox" do |vb|
-      vb.memory = "2048"
+      vb.memory = "3232"
       vb.customize ["modifyvm", :id, "--nicpromisc3", "allow-all"]
       vb.customize ["modifyvm", :id, "--nicpromisc4", "allow-all"]
     end
@@ -68,19 +64,20 @@ def add_dut(config, name, mgmt_ip, net1, net2)
 end
 
 Vagrant.configure(2) do |config|
-  if Vagrant.has_plugin?("vagrant-proxyconf")
-    if ENV["http_proxy"]
-      config.proxy.http     = ENV["http_proxy"]
-    end
-    if ENV["https_proxy"]
-      config.proxy.https    = ENV["https_proxy"]
-    end
-    if ENV["no_proxy"]
-      config.proxy.no_proxy = ENV["no_proxy"]
-    end
-  end
+  config.vm.box_check_update = false
   config.vm.define "tg" do |tg|
-    tg.vm.box = "puppetlabs/ubuntu-14.04-64-nocm"
+    if Vagrant.has_plugin?("vagrant-proxyconf")
+      if ENV["http_proxy"]
+        config.proxy.http     = ENV["http_proxy"]
+      end
+      if ENV["https_proxy"]
+        config.proxy.https    = ENV["https_proxy"]
+      end
+      if ENV["no_proxy"]
+        config.proxy.no_proxy = ENV["no_proxy"]
+      end
+    end
+    tg.vm.box = "fdio-csit/ubuntu-14.04.4_2016-05-25_1.0"
     tg.vm.hostname = "tg"
 
     tg.vm.provision "shell", inline: $user_addition
