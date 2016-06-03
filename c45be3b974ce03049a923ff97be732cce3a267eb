@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "ba092121_e13d1cbd",
+        "filename": "resources/libraries/robot/dhcp_client.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-03T13:02:46Z",
+      "side": 1,
+      "message": "offerred configuration could be used after ack message. \nSend configuration to client via dynamic host configuration protocol.",
+      "parentUuid": "ba092121_5e7ee5e5",
+      "range": {
+        "startLine": 113,
+        "startChar": 38,
+        "endLine": 113,
+        "endChar": 42
+      },
+      "revId": "c45be3b974ce03049a923ff97be732cce3a267eb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba092121_9e1c7dc3",
         "filename": "resources/libraries/robot/dhcp_client.robot",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2016-06-03T11:04:58Z",
       "side": 1,
       "message": "IP configuration to the DHCP client",
+      "range": {
+        "startLine": 114,
+        "startChar": 44,
+        "endLine": 114,
+        "endChar": 79
+      },
+      "revId": "c45be3b974ce03049a923ff97be732cce3a267eb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_c14a1855",
+        "filename": "resources/libraries/robot/dhcp_client.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-03T13:02:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba092121_9e1c7dc3",
       "range": {
         "startLine": 114,
         "startChar": 44,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "ba092121_e164fce6",
+        "filename": "resources/libraries/robot/dhcp_client.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-03T13:02:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba092121_1e886de6",
+      "range": {
+        "startLine": 118,
+        "startChar": 27,
+        "endLine": 118,
+        "endChar": 30
+      },
+      "revId": "c45be3b974ce03049a923ff97be732cce3a267eb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba092121_de69d526",
         "filename": "resources/libraries/robot/dhcp_client.robot",
         "patchSetId": 1
@@ -82,6 +154,30 @@
       "writtenOn": "2016-06-03T11:04:58Z",
       "side": 1,
       "message": "Missing \\| at the end.",
+      "range": {
+        "startLine": 134,
+        "startChar": 51,
+        "endLine": 134,
+        "endChar": 52
+      },
+      "revId": "c45be3b974ce03049a923ff97be732cce3a267eb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_c161f8d4",
+        "filename": "resources/libraries/robot/dhcp_client.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-03T13:02:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba092121_de69d526",
       "range": {
         "startLine": 134,
         "startChar": 51,
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "ba092121_416e08cb",
+        "filename": "resources/libraries/robot/ipv4.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-03T13:02:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba092121_3e8331ce",
+      "range": {
+        "startLine": 135,
+        "startChar": 27,
+        "endLine": 135,
+        "endChar": 30
+      },
+      "revId": "c45be3b974ce03049a923ff97be732cce3a267eb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba092121_fe6c9938",
         "filename": "resources/libraries/robot/ipv4.robot",
         "patchSetId": 1
@@ -140,6 +260,30 @@
     },
     {
       "key": {
+        "uuid": "ba092121_217314b3",
+        "filename": "resources/libraries/robot/ipv4.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-03T13:02:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba092121_fe6c9938",
+      "range": {
+        "startLine": 141,
+        "startChar": 35,
+        "endLine": 141,
+        "endChar": 42
+      },
+      "revId": "c45be3b974ce03049a923ff97be732cce3a267eb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba092121_be762105",
         "filename": "resources/libraries/robot/ipv4.robot",
         "patchSetId": 1
@@ -151,6 +295,30 @@
       "writtenOn": "2016-06-03T11:04:58Z",
       "side": 1,
       "message": "Missing \\| at the end.",
+      "range": {
+        "startLine": 148,
+        "startChar": 47,
+        "endLine": 148,
+        "endChar": 48
+      },
+      "revId": "c45be3b974ce03049a923ff97be732cce3a267eb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_016810b9",
+        "filename": "resources/libraries/robot/ipv4.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-03T13:02:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba092121_be762105",
       "range": {
         "startLine": 148,
         "startChar": 47,
@@ -209,6 +377,54 @@
     },
     {
       "key": {
+        "uuid": "ba092121_be92a1f4",
+        "filename": "resources/traffic_scripts/dhcp/check_dhcp_request_ack.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-03T13:02:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba092121_7e608935",
+      "range": {
+        "startLine": 15,
+        "startChar": 49,
+        "endLine": 15,
+        "endChar": 67
+      },
+      "revId": "c45be3b974ce03049a923ff97be732cce3a267eb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_9e8fddcc",
+        "filename": "resources/traffic_scripts/dhcp/check_dhcp_request_ack.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-03T13:02:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba092121_9e735d15",
+      "range": {
+        "startLine": 15,
+        "startChar": 29,
+        "endLine": 15,
+        "endChar": 31
+      },
+      "revId": "c45be3b974ce03049a923ff97be732cce3a267eb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba092121_ded795be",
         "filename": "resources/traffic_scripts/dhcp/check_dhcp_request_ack.py",
         "patchSetId": 1
@@ -255,6 +471,30 @@
     },
     {
       "key": {
+        "uuid": "ba092121_7ebc096d",
+        "filename": "resources/traffic_scripts/dhcp/check_dhcp_request_ack.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-03T13:02:46Z",
+      "side": 1,
+      "message": "if in pkt is is dhcp-request, then is returned False",
+      "parentUuid": "ba092121_9ef8fd4a",
+      "range": {
+        "startLine": 30,
+        "startChar": 15,
+        "endLine": 30,
+        "endChar": 44
+      },
+      "revId": "c45be3b974ce03049a923ff97be732cce3a267eb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba092121_feda59e8",
         "filename": "resources/traffic_scripts/dhcp/check_dhcp_request_ack.py",
         "patchSetId": 1
@@ -266,6 +506,30 @@
       "writtenOn": "2016-06-03T11:04:58Z",
       "side": 1,
       "message": "Please, add documentation.",
+      "range": {
+        "startLine": 35,
+        "startChar": 4,
+        "endLine": 35,
+        "endChar": 8
+      },
+      "revId": "c45be3b974ce03049a923ff97be732cce3a267eb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_be574126",
+        "filename": "resources/traffic_scripts/dhcp/check_dhcp_request_ack.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-03T13:02:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba092121_feda59e8",
       "range": {
         "startLine": 35,
         "startChar": 4,
@@ -301,6 +565,30 @@
     },
     {
       "key": {
+        "uuid": "ba092121_9e2b5d94",
+        "filename": "resources/traffic_scripts/dhcp/check_dhcp_request_ack.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-03T13:02:46Z",
+      "side": 1,
+      "message": "there should be max 1 dhcp discover after offer is send.",
+      "parentUuid": "ba092121_be4d01c7",
+      "range": {
+        "startLine": 80,
+        "startChar": 4,
+        "endLine": 80,
+        "endChar": 21
+      },
+      "revId": "c45be3b974ce03049a923ff97be732cce3a267eb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba092121_7ec76913",
         "filename": "resources/traffic_scripts/dhcp/check_dhcp_request_ack.py",
         "patchSetId": 1
@@ -312,6 +600,30 @@
       "writtenOn": "2016-06-03T11:04:58Z",
       "side": 1,
       "message": "It should be checked if the received packet is DHCP REQUEST - if not, continue.\n\nIn the current implemantation any packet different from DHCP DISCOVER but not equal to DHCP REQUEST will lead to false positive at this stage...",
+      "range": {
+        "startLine": 84,
+        "startChar": 15,
+        "endLine": 84,
+        "endChar": 31
+      },
+      "revId": "c45be3b974ce03049a923ff97be732cce3a267eb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_9ea6bd52",
+        "filename": "resources/traffic_scripts/dhcp/check_dhcp_request_ack.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-03T13:02:46Z",
+      "side": 1,
+      "message": "we have test case for check DHCP REQUEST message: VPP sends DHCP REQUEST after OFFER. In IPv4 world there should be no other packets.",
+      "parentUuid": "ba092121_7ec76913",
       "range": {
         "startLine": 84,
         "startChar": 15,
@@ -347,6 +659,30 @@
     },
     {
       "key": {
+        "uuid": "ba092121_01413039",
+        "filename": "resources/traffic_scripts/send_icmp_wait_for_reply.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-03T13:02:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba092121_3ed1f1cd",
+      "range": {
+        "startLine": 26,
+        "startChar": 4,
+        "endLine": 26,
+        "endChar": 17
+      },
+      "revId": "c45be3b974ce03049a923ff97be732cce3a267eb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba092121_1ed62dc6",
         "filename": "resources/traffic_scripts/send_icmp_wait_for_reply.py",
         "patchSetId": 1
@@ -358,6 +694,30 @@
       "writtenOn": "2016-06-03T11:04:58Z",
       "side": 1,
       "message": "Line too long.",
+      "range": {
+        "startLine": 39,
+        "startChar": 4,
+        "endLine": 39,
+        "endChar": 82
+      },
+      "revId": "c45be3b974ce03049a923ff97be732cce3a267eb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_215c3425",
+        "filename": "resources/traffic_scripts/send_icmp_wait_for_reply.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-03T13:02:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba092121_1ed62dc6",
       "range": {
         "startLine": 39,
         "startChar": 4,
@@ -393,6 +753,30 @@
     },
     {
       "key": {
+        "uuid": "ba092121_41572803",
+        "filename": "resources/traffic_scripts/send_icmp_wait_for_reply.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-03T13:02:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba092121_7eee498d",
+      "range": {
+        "startLine": 68,
+        "startChar": 11,
+        "endLine": 69,
+        "endChar": 10
+      },
+      "revId": "c45be3b974ce03049a923ff97be732cce3a267eb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba092121_befbc146",
         "filename": "resources/traffic_scripts/send_icmp_wait_for_reply.py",
         "patchSetId": 1
@@ -416,6 +800,30 @@
     },
     {
       "key": {
+        "uuid": "ba092121_61522c15",
+        "filename": "resources/traffic_scripts/send_icmp_wait_for_reply.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-03T13:02:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba092121_befbc146",
+      "range": {
+        "startLine": 75,
+        "startChar": 4,
+        "endLine": 79,
+        "endChar": 72
+      },
+      "revId": "c45be3b974ce03049a923ff97be732cce3a267eb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba092121_3e9fb105",
         "filename": "tests/suites/dhcp/dhcp_client.robot",
         "patchSetId": 1
@@ -427,6 +835,30 @@
       "writtenOn": "2016-06-03T11:04:58Z",
       "side": 1,
       "message": "there should be no reply for echo request when lease has expired",
+      "range": {
+        "startLine": 93,
+        "startChar": 60,
+        "endLine": 94,
+        "endChar": 63
+      },
+      "revId": "c45be3b974ce03049a923ff97be732cce3a267eb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_81ff8001",
+        "filename": "tests/suites/dhcp/dhcp_client.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-03T13:02:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba092121_3e9fb105",
       "range": {
         "startLine": 93,
         "startChar": 60,
