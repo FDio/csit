@@ -216,7 +216,7 @@
 | | ...                          | ${topology_type}
 
 | 3-node Performance Suite Teardown
-| | Teardown traffic generator | ${tg}
+| | Teardown Traffic Generator | ${tg}
 
 | Find NDR using linear search and pps
 | | [Documentation] | Find throughput by using RFC2544 linear search with
