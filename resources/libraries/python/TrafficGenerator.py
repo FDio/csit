@@ -139,18 +139,18 @@ class TrafficGenerator(object):
         self._node = tg_node
 
         if tg_node['subtype'] == NodeSubTypeTG.TREX:
-            trex_path = "/opt/trex-core-2.03"
+            trex_path = "/opt/trex-core-2.00"
 
             ssh = SSH()
             ssh.connect(tg_node)
 
-            (ret, stdout, stderr) = ssh.exec_command(
-                "sudo sh -c '/tmp/openvpp-testing/resources/tools/t-rex/"
-                "t-rex-installer.sh'", timeout=300)
-            if int(ret) != 0:
-                logger.error('trex installation failed: {0}'.format(
-                    stdout + stderr))
-                raise RuntimeError('Installation of TG failed')
+#            (ret, stdout, stderr) = ssh.exec_command(
+#                "sudo sh -c '/tmp/openvpp-testing/resources/tools/t-rex/"
+#                "t-rex-installer.sh'", timeout=600)
+#            if int(ret) != 0:
+#                logger.error('trex installation failed: {0}'.format(
+#                    stdout + stderr))
+#                raise RuntimeError('Installation of TG failed')
 
             if1_pci = topo.get_interface_pci_addr(tg_node, tg_if1)
             if2_pci = topo.get_interface_pci_addr(tg_node, tg_if2)
