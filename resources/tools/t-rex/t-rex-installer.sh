@@ -1,6 +1,6 @@
 #!/bin/sh
 
-TREX_VERSION="2.02"
+TREX_VERSION="2.03"
 
 TREX_DOWNLOAD_REPO="https://github.com/cisco-system-traffic-generator/trex-core/archive/"
 TREX_DOWNLOAD_PACKAGE="v${TREX_VERSION}.zip"
@@ -24,7 +24,7 @@ cleanup () {
 
 trap cleanup EXIT
 
-test -d ${TREX_INSTALL_DIR} && echo "T-REX aleready installed: ${TREX_INSTALL_DIR}" && exit 1
+test -d ${TREX_INSTALL_DIR} && echo "T-REX aleready installed: ${TREX_INSTALL_DIR}" && exit 0
 
 wget -P ${WORKING_DIR} ${TREX_PACKAGE_URL}
 test $? -eq 0 || exit 1
