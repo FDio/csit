@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba092121_81a1c0ab",
+        "filename": "tests/suites/ipv4/ipv4_iacl_untagged.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-03T14:58:17Z",
+      "side": 1,
+      "message": "Please add postive tests before enabling iACL interface for non-dropping addresses as well as dropping addresses\nand\npositve test for non-dropping addresses after enabling the iACL interface.",
+      "revId": "64d542731137a0d44bf8c5e2403f8ea767cbcab4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_61a6acc3",
+        "filename": "tests/suites/ipv6/ipv6_iacl_untagged.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-03T14:58:17Z",
+      "side": 1,
+      "message": "Please add postive tests before enabling iACL interface for non-dropping addresses as well as dropping addresses\nand\npositve test for non-dropping addresses after enabling the iACL interface.",
+      "revId": "64d542731137a0d44bf8c5e2403f8ea767cbcab4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
