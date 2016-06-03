@@ -102,6 +102,33 @@ class TrafficGenerator(object):
         """
         return self._received
 
+    def install_traffic_generator(self, tg_node):
+        """TG installation.
+
+        :param tg_node: Traffic generator node.
+        :type tg_node: dict
+        :return: nothing
+        """
+
+        if tg_node['type'] != NodeType.TG:
+            raise Exception('Node type is not a TG')
+        self._node = tg_node
+
+        if tg_node['subtype'] == NodeSubTypeTG.TREX:
+            ssh = SSH()
+            ssh.connect(tg_node)
+
+            (ret, stdout, stderr) = ssh.exec_command(
+                "sudo sh -c '/tmp/openvpp-testing/resources/tools/t-rex/"
+                "t-rex-installer.sh"))
+
+        logger.trace(ret)
+        logger.trace(stdout)
+        logger.trace(stderr)
+
+        if int(ret) != 0:
+            raise RuntimeError('Installation of TG failed')
+
     #pylint: disable=too-many-arguments, too-many-locals
     def initialize_traffic_generator(self, tg_node, tg_if1, tg_if2,
                                      dut1_node, dut1_if1, dut1_if2,
@@ -132,8 +159,6 @@ class TrafficGenerator(object):
         :return: nothing
         """
 
-        trex_path = "/opt/trex-core-2.02"
-
         topo = Topology()
 
         if tg_node['type'] != NodeType.TG:
@@ -141,6 +166,8 @@ class TrafficGenerator(object):
         self._node = tg_node
 
         if tg_node['subtype'] == NodeSubTypeTG.TREX:
+            trex_path = "/opt/trex-core-2.03"
+
             ssh = SSH()
             ssh.connect(tg_node)
 

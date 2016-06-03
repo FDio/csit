@@ -197,7 +197,8 @@
 | | Setup performance rate Variables
 | | Setup performance global Variables
 | | 3-node circular Topology Variables Setup
-| | Initialize traffic generator | ${tg} | ${tg_if1} | ${tg_if2}
+| | Install Traffic Generator | ${tg}
+| | Initialize Traffic Generator | ${tg} | ${tg_if1} | ${tg_if2}
 | | ...                          | ${dut1} | ${dut1_if1} | ${dut1_if2}
 | | ...                          | ${dut2} | ${dut2_if1} | ${dut2_if2}
 | | ...                          | ${topology_type}
@@ -210,13 +211,14 @@
 | | Setup performance global Variables
 | | 3-node circular Topology Variables Setup with DUT interface model
 | | ... | ${nic_model}
-| | Initialize traffic generator | ${tg} | ${tg_if1} | ${tg_if2}
+| | Install Traffic Generator | ${tg}
+| | Initialize Traffic Generator | ${tg} | ${tg_if1} | ${tg_if2}
 | | ...                          | ${dut1} | ${dut1_if1} | ${dut1_if2}
 | | ...                          | ${dut2} | ${dut2_if1} | ${dut2_if2}
 | | ...                          | ${topology_type}
 
 | 3-node Performance Suite Teardown
-| | Teardown traffic generator | ${tg}
+| | Teardown Traffic Generator | ${tg}
 
 | Find NDR using linear search and pps
 | | [Documentation] | Find throughput by using RFC2544 linear search with
