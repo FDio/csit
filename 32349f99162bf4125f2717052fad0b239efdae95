@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba092121_c1757833",
+        "filename": "resources/libraries/robot/dhcp_client.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-03T16:10:39Z",
+      "side": 1,
+      "message": "KW name only once...",
+      "range": {
+        "startLine": 87,
+        "startChar": 13,
+        "endLine": 87,
+        "endChar": 73
+      },
+      "revId": "32349f99162bf4125f2717052fad0b239efdae95",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_a1728447",
+        "filename": "resources/libraries/robot/dhcp_client.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-03T16:10:39Z",
+      "side": 1,
+      "message": "Not needed line.",
+      "range": {
+        "startLine": 91,
+        "startChar": 0,
+        "endLine": 91,
+        "endChar": 31
+      },
+      "revId": "32349f99162bf4125f2717052fad0b239efdae95",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_01ca504f",
+        "filename": "resources/traffic_scripts/send_icmp_wait_for_reply.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-03T16:10:39Z",
+      "side": 1,
+      "message": "Please, do needed actions based on returend value.",
+      "range": {
+        "startLine": 82,
+        "startChar": 12,
+        "endLine": 82,
+        "endChar": 25
+      },
+      "revId": "32349f99162bf4125f2717052fad0b239efdae95",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
