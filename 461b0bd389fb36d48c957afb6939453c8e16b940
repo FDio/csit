@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba092121_c13338f5",
+        "filename": "tests/suites/ipv4/ipv4_iacl_untagged.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-03T12:42:44Z",
+      "side": 1,
+      "message": "Please, add also tests with another non-droping XXX (src, dst address, ...)before enabling of iACL interface as well as after enabling it to confirm that packet with this XXx are transfered correctly.",
+      "revId": "461b0bd389fb36d48c957afb6939453c8e16b940",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_a13044e9",
+        "filename": "tests/suites/ipv6/ipv6_iacl_untagged.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-03T12:42:44Z",
+      "side": 1,
+      "message": "Please, add also tests with another non-droping XXX (src, dst address, ...)before enabling of iACL interface as well as after enabling it to confirm that packet with this XXx are transfered correctly.",
+      "revId": "461b0bd389fb36d48c957afb6939453c8e16b940",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
