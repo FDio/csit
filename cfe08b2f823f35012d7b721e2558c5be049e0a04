@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba092121_61046c15",
+        "filename": "tests/suites/fds_related_tests/provider_network.robot",
+        "patchSetId": 28
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-03T12:27:20Z",
+      "side": 1,
+      "message": "And Set ...\n- all occurences",
+      "range": {
+        "startLine": 92,
+        "startChar": 3,
+        "endLine": 92,
+        "endChar": 4
+      },
+      "revId": "cfe08b2f823f35012d7b721e2558c5be049e0a04",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_e10f5c2d",
+        "filename": "tests/suites/fds_related_tests/provider_network.robot",
+        "patchSetId": 28
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-03T12:27:20Z",
+      "side": 1,
+      "message": "ping packets\n\n- all occurences",
+      "range": {
+        "startLine": 171,
+        "startChar": 27,
+        "endLine": 171,
+        "endChar": 34
+      },
+      "revId": "cfe08b2f823f35012d7b721e2558c5be049e0a04",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_0113705d",
+        "filename": "tests/suites/fds_related_tests/provider_network.robot",
+        "patchSetId": 28
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-03T12:27:20Z",
+      "side": 1,
+      "message": "Please, order arguments in way node | port_ping_from | port_ping_to :\nSend Ping From Node To Dst | ${qemu_node1} | nmspace1 | ${dut1_blue2}\n\n- all occurences",
+      "range": {
+        "startLine": 173,
+        "startChar": 32,
+        "endLine": 173,
+        "endChar": 73
+      },
+      "revId": "cfe08b2f823f35012d7b721e2558c5be049e0a04",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_a119647b",
+        "filename": "tests/suites/fds_related_tests/tenant_network.robot",
+        "patchSetId": 28
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-03T12:27:20Z",
+      "side": 1,
+      "message": "ping packets\n- all occurences",
+      "range": {
+        "startLine": 168,
+        "startChar": 27,
+        "endLine": 168,
+        "endChar": 34
+      },
+      "revId": "cfe08b2f823f35012d7b721e2558c5be049e0a04",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_c11c586d",
+        "filename": "tests/suites/fds_related_tests/tenant_network.robot",
+        "patchSetId": 28
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-03T12:27:20Z",
+      "side": 1,
+      "message": "Please, order arguments in way node | port_ping_from | port_ping_to :\nSend Ping From Node To Dst | ${qemu_node1} | nmspace1 | ${dut1_blue2}\n\n- all occurences",
+      "range": {
+        "startLine": 170,
+        "startChar": 33,
+        "endLine": 170,
+        "endChar": 73
+      },
+      "revId": "cfe08b2f823f35012d7b721e2558c5be049e0a04",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
