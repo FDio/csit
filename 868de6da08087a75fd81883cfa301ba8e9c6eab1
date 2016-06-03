@@ -1,0 +1,257 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba092121_3eb6918b",
+        "filename": "resources/libraries/robot/dhcp_client.robot",
+        "patchSetId": 10
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-03T11:57:43Z",
+      "side": 1,
+      "message": "TG",
+      "range": {
+        "startLine": 28,
+        "startChar": 24,
+        "endLine": 28,
+        "endChar": 27
+      },
+      "revId": "868de6da08087a75fd81883cfa301ba8e9c6eab1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_1ebbcd73",
+        "filename": "resources/libraries/robot/dhcp_client.robot",
+        "patchSetId": 10
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-03T11:57:43Z",
+      "side": 1,
+      "message": "TG",
+      "range": {
+        "startLine": 59,
+        "startChar": 27,
+        "endLine": 59,
+        "endChar": 30
+      },
+      "revId": "868de6da08087a75fd81883cfa301ba8e9c6eab1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_deac3538",
+        "filename": "resources/libraries/robot/dhcp_client.robot",
+        "patchSetId": 10
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-03T11:57:43Z",
+      "side": 1,
+      "message": "KW name only once... ;)",
+      "range": {
+        "startLine": 87,
+        "startChar": 13,
+        "endLine": 87,
+        "endChar": 73
+      },
+      "revId": "868de6da08087a75fd81883cfa301ba8e9c6eab1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_feaff929",
+        "filename": "resources/libraries/robot/dhcp_client.robot",
+        "patchSetId": 10
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-03T11:57:43Z",
+      "side": 1,
+      "message": "I guess this line should not be here...",
+      "range": {
+        "startLine": 91,
+        "startChar": 1,
+        "endLine": 91,
+        "endChar": 31
+      },
+      "revId": "868de6da08087a75fd81883cfa301ba8e9c6eab1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_bea98126",
+        "filename": "resources/traffic_scripts/dhcp/check_dhcp_request.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-03T11:57:43Z",
+      "side": 1,
+      "message": "Documentation.",
+      "range": {
+        "startLine": 28,
+        "startChar": 4,
+        "endLine": 28,
+        "endChar": 15
+      },
+      "revId": "868de6da08087a75fd81883cfa301ba8e9c6eab1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_1e406d55",
+        "filename": "resources/traffic_scripts/dhcp/check_dhcp_request.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-03T11:57:43Z",
+      "side": 1,
+      "message": "Why not True ?",
+      "range": {
+        "startLine": 35,
+        "startChar": 15,
+        "endLine": 35,
+        "endChar": 44
+      },
+      "revId": "868de6da08087a75fd81883cfa301ba8e9c6eab1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_be80618c",
+        "filename": "resources/traffic_scripts/dhcp/check_dhcp_request.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-03T11:57:43Z",
+      "side": 1,
+      "message": "Documentation.",
+      "range": {
+        "startLine": 40,
+        "startChar": 4,
+        "endLine": 40,
+        "endChar": 8
+      },
+      "revId": "868de6da08087a75fd81883cfa301ba8e9c6eab1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_1e174d53",
+        "filename": "resources/traffic_scripts/dhcp/check_dhcp_request.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-03T11:57:43Z",
+      "side": 1,
+      "message": "if offer_xid differs from xid value in DHCP DISCOVER the DHCP OFFER has to be discarded",
+      "range": {
+        "startLine": 75,
+        "startChar": 26,
+        "endLine": 75,
+        "endChar": 79
+      },
+      "revId": "868de6da08087a75fd81883cfa301ba8e9c6eab1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_5e4f0593",
+        "filename": "resources/traffic_scripts/dhcp/check_dhcp_request.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-03T11:57:43Z",
+      "side": 1,
+      "message": "elif",
+      "range": {
+        "startLine": 95,
+        "startChar": 8,
+        "endLine": 95,
+        "endChar": 10
+      },
+      "revId": "868de6da08087a75fd81883cfa301ba8e9c6eab1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_5e36e504",
+        "filename": "resources/traffic_scripts/dhcp/check_dhcp_request.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-03T11:57:43Z",
+      "side": 1,
+      "message": "We need to be sure that the received packet is DHCP REQUEST so we need method to check it, e.g. is_request:\nelif is_request(pkt):\n    dhcp_request \u003d pkt\n    break",
+      "range": {
+        "startLine": 97,
+        "startChar": 8,
+        "endLine": 97,
+        "endChar": 26
+      },
+      "revId": "868de6da08087a75fd81883cfa301ba8e9c6eab1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_be050116",
+        "filename": "resources/traffic_scripts/dhcp/check_dhcp_request.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-03T11:57:43Z",
+      "side": 1,
+      "message": "if offer_xid differs from xid value in DHCP DISCOVER the DHCP OFFER has to be discarded",
+      "range": {
+        "startLine": 103,
+        "startChar": 10,
+        "endLine": 103,
+        "endChar": 63
+      },
+      "revId": "868de6da08087a75fd81883cfa301ba8e9c6eab1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
