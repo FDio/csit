@@ -25,6 +25,144 @@
     },
     {
       "key": {
+        "uuid": "ba092121_5e94a536",
+        "filename": "resources/libraries/robot/dhcp_client.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-03T09:05:54Z",
+      "side": 1,
+      "message": "checked",
+      "range": {
+        "startLine": 32,
+        "startChar": 43,
+        "endLine": 32,
+        "endChar": 48
+      },
+      "revId": "c95f4bdbe2125bd1702d12ba2d84198f1a56d3e7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_5ebb85c4",
+        "filename": "resources/libraries/robot/dhcp_client.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-03T09:05:54Z",
+      "side": 1,
+      "message": "client",
+      "range": {
+        "startLine": 63,
+        "startChar": 30,
+        "endLine": 63,
+        "endChar": 37
+      },
+      "revId": "c95f4bdbe2125bd1702d12ba2d84198f1a56d3e7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_3eb0d1dc",
+        "filename": "resources/libraries/robot/dhcp_client.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-03T09:05:54Z",
+      "side": 1,
+      "message": "client",
+      "range": {
+        "startLine": 68,
+        "startChar": 28,
+        "endLine": 68,
+        "endChar": 35
+      },
+      "revId": "c95f4bdbe2125bd1702d12ba2d84198f1a56d3e7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_7edd2914",
+        "filename": "resources/libraries/robot/dhcp_client.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-03T09:05:54Z",
+      "side": 1,
+      "message": "When failure is expected, please, use format:\n\nRun Keyword And Expect Error | expected error message | Check DHCP_...",
+      "range": {
+        "startLine": 87,
+        "startChar": 9,
+        "endLine": 91,
+        "endChar": 30
+      },
+      "revId": "c95f4bdbe2125bd1702d12ba2d84198f1a56d3e7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_3ee7b1e6",
+        "filename": "resources/traffic_scripts/dhcp/check_dhcp_request.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-03T09:05:54Z",
+      "side": 1,
+      "message": "Please, add documentation.",
+      "range": {
+        "startLine": 27,
+        "startChar": 4,
+        "endLine": 27,
+        "endChar": 21
+      },
+      "revId": "c95f4bdbe2125bd1702d12ba2d84198f1a56d3e7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_5ee265d6",
+        "filename": "resources/traffic_scripts/dhcp/check_dhcp_request.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-03T09:05:54Z",
+      "side": 1,
+      "message": "What about to use it as argument of the method to allow change the default value?",
+      "range": {
+        "startLine": 87,
+        "startChar": 4,
+        "endLine": 87,
+        "endChar": 26
+      },
+      "revId": "c95f4bdbe2125bd1702d12ba2d84198f1a56d3e7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba092121_d847ad1c",
         "filename": "resources/traffic_scripts/dhcp/check_dhcp_request.py",
         "patchSetId": 9
@@ -48,6 +186,52 @@
     },
     {
       "key": {
+        "uuid": "ba092121_fed019f9",
+        "filename": "resources/traffic_scripts/dhcp/check_dhcp_request.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-03T09:05:54Z",
+      "side": 1,
+      "message": "Please, use more descriptive name, e.g. xid_wrong or add description.",
+      "range": {
+        "startLine": 100,
+        "startChar": 7,
+        "endLine": 100,
+        "endChar": 16
+      },
+      "revId": "c95f4bdbe2125bd1702d12ba2d84198f1a56d3e7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_bedaa115",
+        "filename": "resources/traffic_scripts/dhcp/check_dhcp_request.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-03T09:05:54Z",
+      "side": 1,
+      "message": "DHCP OFFER with wrong xid has not been discarded.",
+      "range": {
+        "startLine": 101,
+        "startChar": 28,
+        "endLine": 101,
+        "endChar": 50
+      },
+      "revId": "c95f4bdbe2125bd1702d12ba2d84198f1a56d3e7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba092121_3858e9f9",
         "filename": "tests/suites/dhcp/dhcp_client.robot",
         "patchSetId": 9
@@ -64,6 +248,52 @@
         "startChar": 2,
         "endLine": 59,
         "endChar": 36
+      },
+      "revId": "c95f4bdbe2125bd1702d12ba2d84198f1a56d3e7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_5e094594",
+        "filename": "tests/suites/dhcp/dhcp_client.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-03T09:05:54Z",
+      "side": 1,
+      "message": "send",
+      "range": {
+        "startLine": 73,
+        "startChar": 14,
+        "endLine": 73,
+        "endChar": 19
+      },
+      "revId": "c95f4bdbe2125bd1702d12ba2d84198f1a56d3e7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_3efe916c",
+        "filename": "tests/suites/dhcp/dhcp_client.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-03T09:05:54Z",
+      "side": 1,
+      "message": "sent",
+      "range": {
+        "startLine": 77,
+        "startChar": 56,
+        "endLine": 77,
+        "endChar": 60
       },
       "revId": "c95f4bdbe2125bd1702d12ba2d84198f1a56d3e7",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
