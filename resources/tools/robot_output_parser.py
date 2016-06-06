@@ -14,11 +14,11 @@
 # limitations under the License.
 
 """Script parses the data taken by robot framework (output.xml) and dumps
-intereted values into JSON output file."""
+intereted values into XML output file."""
 
-import json
-import re
-import sys, getopt
+import argparse
+import sys
+import xml.etree.ElementTree as ET
 
 from robot.api import ExecutionResult, ResultVisitor
 
@@ -26,9 +26,9 @@ from robot.api import ExecutionResult, ResultVisitor
 class ExecutionTestChecker(ResultVisitor):
     """Iterates through test cases."""
 
-    def __init__(self, vDeviceVersion):
-        self.vDeviceVersion = vDeviceVersion
-        self.out = []
+    def __init__(self, args):
+        self.root = ET.Element('build',
+                               attrib={'vdevice': args.vdevice})
 
     def visit_test(self, test):
         """Overloaded function. Called when test is found to process data.
@@ -37,29 +37,11 @@ class ExecutionTestChecker(ResultVisitor):
         :type test: ExecutionTestChecker
         """
 
-        test_id = test.longname
-        test_status = 'Failed'
-        framesize = ''
-        throughput = ''
-        throughput_units = ''
-        workers_per_nic = ''
-        workers = ''
-
-        if any("PERFTEST" in tag for tag in test.tags):
+        if any("PERFTEST_LONG" in tag for tag in test.tags):
             if test.status == 'PASS':
-                test_status = 'Passed'
-                if any("PERFTEST_LONG" in tag for tag in test.tags):
-                    throughput = test.message.split(' ')[1]
-                    throughput_units = test.message.split(' ')[2]
-                elif any("PERFTEST_SHORT" in tag for tag in test.tags):
-                    for keyword in test.keywords:
-                        for assign in keyword.assign:
-                            if assign == '${rate}':
-                                temp = re.findall(r"(\d*\.\d+|\d+)([A-Za-z]*)",
-                                                  keyword.args[0])
-                                throughput = temp[0][0]
-                                throughput_units = temp[0][1]
-
+                tags = []
+                for tag in test.tags:
+                    tags.append(tag)
                 for keyword in test.keywords:
                     for assign in keyword.assign:
                         if assign == '${framesize}':
@@ -68,43 +50,31 @@ class ExecutionTestChecker(ResultVisitor):
                         workers = keyword.name.split('\'')[1]
                         workers_per_nic = keyword.name.split('\'')[3]
 
-            self.out.append({'testCase': {
-                'testId': test_id,
-                'testStatus': test_status,
-                'workerThreads': workers,
-                'workerThreadsPerNic': workers_per_nic,
-                'testTags': [tag for tag in test.tags],
-                'l2FrameSize': {'value': framesize,
-                                'units': 'Bytes'},
-                'throughput': {'value': throughput,
-                               'units': throughput_units},
-                'vDevice': {'version': self.vDeviceVersion}}})
+                test_elem = ET.SubElement(self.root,
+                    test.longname.split('.')[3].replace(" ",""))
+                test_elem.attrib['name'] = test.longname.split('.')[3]
+                test_elem.attrib['workerthreads'] = workers
+                test_elem.attrib['workerspernic'] = workers_per_nic
+                test_elem.attrib['framesize'] = framesize
+                test_elem.attrib['tags'] = ', '.join(tags)
+                test_elem.text = test.message.split(' ')[1]
 
 
-def parse_tests(xml_file, vDeviceVersion):
+def parse_tests(args):
     """Parser result of robot output file and return.
 
-    :param xml_file: Output.xml from robot run.
-    :param vDeviceVersion: vDevice version.
-    :type xml_file: file
-    :type vDeviceVersion: str
+    :param args: Parsed arguments.
+    :type args: ArgumentParser
 
-    :return: JSON formatted output.
-    :rtype: dict
+    :return: XML formatted output.
+    :rtype: ElementTree
     """
 
-    result = ExecutionResult(xml_file)
-    checker = ExecutionTestChecker(vDeviceVersion)
+    result = ExecutionResult(args.input)
+    checker = ExecutionTestChecker(args)
     result.visit(checker)
 
-    return checker.out
-
-
-def print_help():
-    """Print help on stdout."""
-
-    print "args: [-h] -i <input_log_file> -o <output_json_file>" + \
-          " -v <vpp_version>"
+    return checker.root
 
 
 def print_error(msg):
@@ -118,44 +88,34 @@ def print_error(msg):
     sys.stderr.write(msg+'\n')
 
 
-def main(argv):
+def parse_args():
+    """Parse arguments from cmd line.
+
+    :return: Parsed arguments.
+    :rtype ArgumentParser
+    """
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-i", "--input", required=True,
+                        type=argparse.FileType('r'),
+                        help="Robot XML log file")
+    parser.add_argument("-o", "--output", required=True,
+                        type=argparse.FileType('w'),
+                        help="XML output file")
+    parser.add_argument("-v", "--vdevice", required=True,
+                        help="VPP version")
+
+    return parser.parse_args()
+
+
+def main():
     """Main function."""
 
-    _log_file = None
-    _json_file = None
-    _vpp = None
+    args = parse_args()
 
-    try:
-        opts, _ = getopt.getopt(argv, "hi:o:v:", ["help"])
-    except getopt.GetoptError:
-        print_help()
-        sys.exit(1)
-
-    for opt, arg in opts:
-        if opt in ('-h', "--help"):
-            print_help()
-            sys.exit()
-        elif opt == '-i':
-            _log_file = arg
-        elif opt == '-o':
-            _json_file = arg
-        elif opt == '-v':
-            _vpp = arg
-
-    if _log_file is None or _json_file is None or _vpp is None:
-        print_help()
-        sys.exit(1)
-
-    try:
-        with open(_log_file, 'r') as input_file:
-            with open(_json_file, 'w') as output_file:
-                out = parse_tests(input_file, _vpp)
-                json.dump(out, fp=output_file, sort_keys=True,
-                          indent=4, separators=(',', ': '))
-    except IOError as ex_error:
-        print_error(str(ex_error))
-        sys.exit(1)
+    root = parse_tests(args)
+    ET.ElementTree.write(ET.ElementTree(root), args.output)
 
 
 if __name__ == "__main__":
-    main(sys.argv[1:])
+    sys.exit(main())
