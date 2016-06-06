@@ -68,6 +68,30 @@
       "revId": "32349f99162bf4125f2717052fad0b239efdae95",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_077ca01f",
+        "filename": "resources/traffic_scripts/send_icmp_wait_for_reply.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-06T10:29:00Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba092121_01ca504f",
+      "range": {
+        "startLine": 82,
+        "startChar": 12,
+        "endLine": 82,
+        "endChar": 25
+      },
+      "revId": "32349f99162bf4125f2717052fad0b239efdae95",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
