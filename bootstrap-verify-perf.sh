@@ -28,7 +28,7 @@ INSTALLATION_DIR="/tmp/install_dir"
 
 PYBOT_ARGS="--noncritical MULTI_THREAD"
 
-ARCHIVE_ARTIFACTS=(log.html output.xml report.html output_perf_data.json)
+ARCHIVE_ARTIFACTS=(log.html output.xml report.html output_perf_data.xml)
 
 # If we run this script from CSIT jobs we want to use stable vpp version
 if [[ ${JOB_NAME} == csit-* ]] ;
@@ -167,6 +167,7 @@ case "$TEST_TAG" in
               -L TRACE \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s "performance.Long_Xconnect_Dot1q*" \
+        RETURN_STATUS=$(echo $?)
         ;;
     PERFTEST_NDR )
         pybot ${PYBOT_ARGS} \
@@ -174,6 +175,7 @@ case "$TEST_TAG" in
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s performance -i NDR \
               tests/
+        RETURN_STATUS=$(echo $?)
         ;;
     PERFTEST_PDR )
         pybot ${PYBOT_ARGS} \
@@ -198,7 +200,7 @@ echo Post-processing test data...
 
 python ${CUR_DIR}/resources/tools/robot_output_parser.py \
        -i ${CUR_DIR}/output.xml \
-       -o ${CUR_DIR}/output_perf_data.json \
+       -o ${CUR_DIR}/output_perf_data.xml \
        -v ${VPP_STABLE_VER}
 if [ ! $? -eq 0 ]; then
     echo "Parsing ${CUR_DIR}/output.xml failed"
