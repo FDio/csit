@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba092121_b2ff70aa",
+        "filename": "tests/suites/ipv4/ipv4_iacl_untagged.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-06T13:54:00Z",
+      "side": 1,
+      "message": "Move these settings after first traffic checks.\n\n- accordingly, apply to all next test cases",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 46
+      },
+      "revId": "451ed1752d3614221575441cb9fefaa314f91e03",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_922c6c4c",
+        "filename": "tests/suites/ipv4/ipv4_iacl_untagged.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-06T13:54:00Z",
+      "side": 1,
+      "message": "Move this traffic check to the end.\n\n- accordingly, apply to all next test cases",
+      "range": {
+        "startLine": 76,
+        "startChar": 0,
+        "endLine": 79,
+        "endChar": 49
+      },
+      "revId": "451ed1752d3614221575441cb9fefaa314f91e03",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_f26e0896",
+        "filename": "tests/suites/ipv6/ipv6_iacl_untagged.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-06T13:54:00Z",
+      "side": 1,
+      "message": "Move these settings after first traffic checks.\n\n- accordingly, apply to all next test cases",
+      "range": {
+        "startLine": 55,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 46
+      },
+      "revId": "451ed1752d3614221575441cb9fefaa314f91e03",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_726318b2",
+        "filename": "tests/suites/ipv6/ipv6_iacl_untagged.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-06T13:54:00Z",
+      "side": 1,
+      "message": "Move this traffic check to the end.\n\n- accordingly, apply to all next test cases",
+      "range": {
+        "startLine": 79,
+        "startChar": 0,
+        "endLine": 82,
+        "endChar": 49
+      },
+      "revId": "451ed1752d3614221575441cb9fefaa314f91e03",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
