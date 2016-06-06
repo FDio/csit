@@ -16,6 +16,7 @@
 from robot.api import logger
 from robot.libraries.BuiltIn import BuiltIn
 
+from resources.libraries.python.constants import Constants
 from resources.libraries.python.ssh import SSH
 from resources.libraries.python.topology import NodeType
 from resources.libraries.python.topology import NodeSubTypeTG
@@ -139,18 +140,19 @@ class TrafficGenerator(object):
         self._node = tg_node
 
         if tg_node['subtype'] == NodeSubTypeTG.TREX:
-            trex_path = "/opt/trex-core-2.00"
+            trex_path = "/opt/trex-core-2.03"
 
             ssh = SSH()
             ssh.connect(tg_node)
 
-#            (ret, stdout, stderr) = ssh.exec_command(
-#                "sudo sh -c '/tmp/openvpp-testing/resources/tools/t-rex/"
-#                "t-rex-installer.sh'", timeout=600)
-#            if int(ret) != 0:
-#                logger.error('trex installation failed: {0}'.format(
-#                    stdout + stderr))
-#                raise RuntimeError('Installation of TG failed')
+            (ret, stdout, stderr) = ssh.exec_command(
+                "sudo sh -c '{}/resources/tools/t-rex/"
+                "t-rex-installer.sh'".format(Constants.REMOTE_FW_DIR),
+                timeout=900)
+            if int(ret) != 0:
+                logger.error('trex installation failed: {0}'.format(
+                    stdout + stderr))
+                raise RuntimeError('Installation of TG failed')
 
             if1_pci = topo.get_interface_pci_addr(tg_node, tg_if1)
             if2_pci = topo.get_interface_pci_addr(tg_node, tg_if2)
@@ -198,9 +200,7 @@ class TrafficGenerator(object):
                 raise RuntimeError('trex config generation error')
 
             (ret, stdout, stderr) = ssh.exec_command(
-                "sh -c 'cd {0}/scripts/ && "
-                "sudo ./trex-cfg'"\
-                .format(trex_path))
+                "sh -c 'cd {0}/scripts/ && sudo ./trex-cfg'".format(trex_path))
             if int(ret) != 0:
                 logger.error('trex-cfg failed: {0}'.format(stdout + stderr))
                 raise RuntimeError('trex-cfg failed')
@@ -247,8 +247,8 @@ class TrafficGenerator(object):
         ssh.connect(node)
 
         (ret, stdout, stderr) = ssh.exec_command(
-            "sh -c '/tmp/openvpp-testing/resources/tools/t-rex/"
-            "t-rex-stateless-stop.py'")
+            "sh -c '{}/resources/tools/t-rex/"
+            "t-rex-stateless-stop.py'".format(Constants.REMOTE_FW_DIR))
         logger.trace(ret)
         logger.trace(stdout)
         logger.trace(stderr)
@@ -288,44 +288,44 @@ class TrafficGenerator(object):
 
         if traffic_type in ["3-node-xconnect", "3-node-bridge"]:
             (ret, stdout, stderr) = ssh.exec_command(
-                "sh -c '/tmp/openvpp-testing/resources/tools/t-rex/"
-                "t-rex-stateless.py "
-                "--duration={0} -r {1} -s {2} "
-                "--p{3}_src_start_ip 10.10.10.1 "
-                "--p{3}_src_end_ip 10.10.10.254 "
-                "--p{3}_dst_start_ip 20.20.20.1 "
-                "--p{4}_src_start_ip 20.20.20.1 "
-                "--p{4}_src_end_ip 20.20.20.254 "
-                "--p{4}_dst_start_ip 10.10.10.1 "
-                "{5} --warmup_time={6}'".format(duration, rate, framesize, _p0,
+                "sh -c '{0}/resources/tools/t-rex/t-rex-stateless.py "
+                "--duration={1} -r {2} -s {3} "
+                "--p{4}_src_start_ip 10.10.10.1 "
+                "--p{4}_src_end_ip 10.10.10.254 "
+                "--p{4}_dst_start_ip 20.20.20.1 "
+                "--p{5}_src_start_ip 20.20.20.1 "
+                "--p{5}_src_end_ip 20.20.20.254 "
+                "--p{5}_dst_start_ip 10.10.10.1 "
+                "{6} --warmup_time={7}'".format(Constants.REMOTE_FW_DIR,
+                                                duration, rate, framesize, _p0,
                                                 _p1, _async, warmup_time),
                 timeout=int(duration)+60)
         elif traffic_type in ["3-node-IPv4"]:
             (ret, stdout, stderr) = ssh.exec_command(
-                "sh -c '/tmp/openvpp-testing/resources/tools/t-rex/"
-                "t-rex-stateless.py "
-                "--duration={0} -r {1} -s {2} "
-                "--p{3}_src_start_ip 10.10.10.2 "
-                "--p{3}_src_end_ip 10.10.10.254 "
-                "--p{3}_dst_start_ip 20.20.20.2 "
-                "--p{4}_src_start_ip 20.20.20.2 "
-                "--p{4}_src_end_ip 20.20.20.254 "
-                "--p{4}_dst_start_ip 10.10.10.2 "
-                "{5} --warmup_time={6}'".format(duration, rate, framesize, _p0,
+                "sh -c '{0}/resources/tools/t-rex/t-rex-stateless.py "
+                "--duration={1} -r {2} -s {3} "
+                "--p{4}_src_start_ip 10.10.10.2 "
+                "--p{4}_src_end_ip 10.10.10.254 "
+                "--p{4}_dst_start_ip 20.20.20.2 "
+                "--p{5}_src_start_ip 20.20.20.2 "
+                "--p{5}_src_end_ip 20.20.20.254 "
+                "--p{5}_dst_start_ip 10.10.10.2 "
+                "{6} --warmup_time={7}'".format(Constants.REMOTE_FW_DIR,
+                                                duration, rate, framesize, _p0,
                                                 _p1, _async, warmup_time),
                 timeout=int(duration)+60)
         elif traffic_type in ["3-node-IPv6"]:
             (ret, stdout, stderr) = ssh.exec_command(
-                "sh -c '/tmp/openvpp-testing/resources/tools/t-rex/"
-                "t-rex-stateless.py "
-                "--duration={0} -r {1} -s {2} -6 "
-                "--p{3}_src_start_ip 2001:1::2 "
-                "--p{3}_src_end_ip 2001:1::FE "
-                "--p{3}_dst_start_ip 2001:2::2 "
-                "--p{4}_src_start_ip 2001:2::2 "
-                "--p{4}_src_end_ip 2001:2::FE "
-                "--p{4}_dst_start_ip 2001:1::2 "
-                "{5} --warmup_time={6}'".format(duration, rate, framesize, _p0,
+                "sh -c '{0}/resources/tools/t-rex/t-rex-stateless.py "
+                "--duration={1} -r {2} -s {3} -6 "
+                "--p{4}_src_start_ip 2001:1::2 "
+                "--p{4}_src_end_ip 2001:1::FE "
+                "--p{4}_dst_start_ip 2001:2::2 "
+                "--p{5}_src_start_ip 2001:2::2 "
+                "--p{5}_src_end_ip 2001:2::FE "
+                "--p{5}_dst_start_ip 2001:1::2 "
+                "{6} --warmup_time={7}'".format(Constants.REMOTE_FW_DIR,
+                                                duration, rate, framesize, _p0,
                                                 _p1, _async, warmup_time),
                 timeout=int(duration)+60)
         else:
