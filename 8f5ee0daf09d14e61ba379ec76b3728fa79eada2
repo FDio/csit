@@ -91,6 +91,29 @@
       "revId": "8f5ee0daf09d14e61ba379ec76b3728fa79eada2",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_87b670db",
+        "filename": "resources/libraries/robot/honeycomb/persistence.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-06-06T10:51:09Z",
+      "side": 1,
+      "message": "Expects",
+      "range": {
+        "startLine": 168,
+        "startChar": 52,
+        "endLine": 168,
+        "endChar": 58
+      },
+      "revId": "8f5ee0daf09d14e61ba379ec76b3728fa79eada2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
