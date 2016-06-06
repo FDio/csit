@@ -2,6 +2,98 @@
   "comments": [
     {
       "key": {
+        "uuid": "ba092121_c7da2817",
+        "filename": "resources/libraries/python/IPv4Util.py",
+        "patchSetId": 29
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-06-06T11:48:24Z",
+      "side": 1,
+      "message": "No empty line at the end, add \"raises\" part.",
+      "range": {
+        "startLine": 180,
+        "startChar": 8,
+        "endLine": 180,
+        "endChar": 11
+      },
+      "revId": "5cf10e62b8378281633e3877ae260caec43dcbf9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_8704307f",
+        "filename": "resources/libraries/python/L2Util.py",
+        "patchSetId": 29
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-06-06T11:48:24Z",
+      "side": 1,
+      "message": "No space.",
+      "range": {
+        "startLine": 250,
+        "startChar": 10,
+        "endLine": 250,
+        "endChar": 11
+      },
+      "revId": "5cf10e62b8378281633e3877ae260caec43dcbf9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_a7ee14b3",
+        "filename": "resources/libraries/robot/double_qemu_setup.robot",
+        "patchSetId": 29
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-06-06T11:48:24Z",
+      "side": 1,
+      "message": "I would not prefer hard-coded constants, move them to \"variables\" section or to a dedicated variables file.",
+      "range": {
+        "startLine": 49,
+        "startChar": 53,
+        "endLine": 49,
+        "endChar": 77
+      },
+      "revId": "5cf10e62b8378281633e3877ae260caec43dcbf9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_87ee708a",
+        "filename": "tests/suites/fds_related_tests/provider_network.robot",
+        "patchSetId": 29
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-06-06T11:48:24Z",
+      "side": 1,
+      "message": "Consider moving to a separate resource file.",
+      "range": {
+        "startLine": 137,
+        "startChar": 0,
+        "endLine": 137,
+        "endChar": 16
+      },
+      "revId": "5cf10e62b8378281633e3877ae260caec43dcbf9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba092121_47fe186d",
         "filename": "tests/suites/fds_related_tests/provider_network.robot",
         "patchSetId": 29
@@ -201,6 +293,29 @@
         "startLine": 156,
         "startChar": 4,
         "endLine": 156,
+        "endChar": 16
+      },
+      "revId": "5cf10e62b8378281633e3877ae260caec43dcbf9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_0702603e",
+        "filename": "tests/suites/fds_related_tests/tenant_network.robot",
+        "patchSetId": 29
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-06-06T11:48:24Z",
+      "side": 1,
+      "message": "${vxlan2_if}\u003d",
+      "range": {
+        "startLine": 158,
+        "startChar": 4,
+        "endLine": 158,
         "endChar": 16
       },
       "revId": "5cf10e62b8378281633e3877ae260caec43dcbf9",
