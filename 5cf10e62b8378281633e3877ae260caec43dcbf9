@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba092121_47fe186d",
+        "filename": "tests/suites/fds_related_tests/provider_network.robot",
+        "patchSetId": 29
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-06T11:31:07Z",
+      "side": 1,
+      "message": "VLAN",
+      "range": {
+        "startLine": 139,
+        "startChar": 28,
+        "endLine": 139,
+        "endChar": 32
+      },
+      "revId": "5cf10e62b8378281633e3877ae260caec43dcbf9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_07f8207b",
+        "filename": "tests/suites/fds_related_tests/provider_network.robot",
+        "patchSetId": 29
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-06T11:31:07Z",
+      "side": 1,
+      "message": "DUT",
+      "range": {
+        "startLine": 139,
+        "startChar": 63,
+        "endLine": 139,
+        "endChar": 66
+      },
+      "revId": "5cf10e62b8378281633e3877ae260caec43dcbf9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_27032475",
+        "filename": "tests/suites/fds_related_tests/provider_network.robot",
+        "patchSetId": 29
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-06T11:31:07Z",
+      "side": 1,
+      "message": "VLAN",
+      "range": {
+        "startLine": 140,
+        "startChar": 72,
+        "endLine": 140,
+        "endChar": 76
+      },
+      "revId": "5cf10e62b8378281633e3877ae260caec43dcbf9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_e7f40c89",
+        "filename": "tests/suites/fds_related_tests/provider_network.robot",
+        "patchSetId": 29
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-06T11:31:07Z",
+      "side": 1,
+      "message": "VLAN?",
+      "range": {
+        "startLine": 144,
+        "startChar": 43,
+        "endLine": 144,
+        "endChar": 48
+      },
+      "revId": "5cf10e62b8378281633e3877ae260caec43dcbf9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_67091c95",
+        "filename": "tests/suites/fds_related_tests/provider_network.robot",
+        "patchSetId": 29
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-06T11:31:07Z",
+      "side": 1,
+      "message": "add to documentation, update example",
+      "range": {
+        "startLine": 152,
+        "startChar": 49,
+        "endLine": 152,
+        "endChar": 55
+      },
+      "revId": "5cf10e62b8378281633e3877ae260caec43dcbf9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_a745f4b4",
+        "filename": "tests/suites/fds_related_tests/provider_network.robot",
+        "patchSetId": 29
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-06T11:31:07Z",
+      "side": 1,
+      "message": "add to variable",
+      "range": {
+        "startLine": 179,
+        "startChar": 65,
+        "endLine": 179,
+        "endChar": 73
+      },
+      "revId": "5cf10e62b8378281633e3877ae260caec43dcbf9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_c71fc8b6",
+        "filename": "tests/suites/fds_related_tests/tenant_network.robot",
+        "patchSetId": 29
+      },
+      "lineNbr": 139,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-06T11:31:07Z",
+      "side": 1,
+      "message": "DUT",
+      "range": {
+        "startLine": 139,
+        "startChar": 64,
+        "endLine": 139,
+        "endChar": 67
+      },
+      "revId": "5cf10e62b8378281633e3877ae260caec43dcbf9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_e722cc00",
+        "filename": "tests/suites/fds_related_tests/tenant_network.robot",
+        "patchSetId": 29
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-06T11:31:07Z",
+      "side": 1,
+      "message": "documentation",
+      "range": {
+        "startLine": 151,
+        "startChar": 58,
+        "endLine": 151,
+        "endChar": 64
+      },
+      "revId": "5cf10e62b8378281633e3877ae260caec43dcbf9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_8712f0b2",
+        "filename": "tests/suites/fds_related_tests/tenant_network.robot",
+        "patchSetId": 29
+      },
+      "lineNbr": 156,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-06T11:31:07Z",
+      "side": 1,
+      "message": "${vxlan1_if}\u003d",
+      "range": {
+        "startLine": 156,
+        "startChar": 4,
+        "endLine": 156,
+        "endChar": 16
+      },
+      "revId": "5cf10e62b8378281633e3877ae260caec43dcbf9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
