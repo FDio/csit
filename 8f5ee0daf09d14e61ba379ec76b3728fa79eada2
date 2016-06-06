@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba092121_c7c7c863",
+        "filename": "resources/libraries/python/honeycomb/HcAPIKwInterfaces.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1062,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-06-06T10:43:57Z",
+      "side": 1,
+      "message": "Add also \"vxlan_gpe_tunnel0\" for VxLAN GPE tunnels.",
+      "range": {
+        "startLine": 1062,
+        "startChar": 8,
+        "endLine": 1062,
+        "endChar": 14
+      },
+      "revId": "8f5ee0daf09d14e61ba379ec76b3728fa79eada2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_47abb889",
+        "filename": "resources/libraries/python/honeycomb/HcPersistence.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-06-06T10:43:57Z",
+      "side": 1,
+      "message": "Capital \"P\".",
+      "range": {
+        "startLine": 56,
+        "startChar": 37,
+        "endLine": 56,
+        "endChar": 38
+      },
+      "revId": "8f5ee0daf09d14e61ba379ec76b3728fa79eada2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_a79bb471",
+        "filename": "resources/libraries/python/honeycomb/HcPersistence.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-06-06T10:43:57Z",
+      "side": 1,
+      "message": "use \u0027 instead of \"",
+      "range": {
+        "startLine": 77,
+        "startChar": 18,
+        "endLine": 77,
+        "endChar": 19
+      },
+      "revId": "8f5ee0daf09d14e61ba379ec76b3728fa79eada2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_8788b023",
+        "filename": "resources/libraries/robot/honeycomb/persistence.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-06-06T10:43:57Z",
+      "side": 1,
+      "message": "Capital H.",
+      "range": {
+        "startLine": 39,
+        "startChar": 9,
+        "endLine": 39,
+        "endChar": 10
+      },
+      "revId": "8f5ee0daf09d14e61ba379ec76b3728fa79eada2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
