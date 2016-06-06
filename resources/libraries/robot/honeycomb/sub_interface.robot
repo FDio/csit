@@ -145,40 +145,6 @@
 | | ... | Should be equal as integers | ${vat_data['sub_default']}
 | | ... | ${sub_settings['default-subif']}
 
-| Sub-interface configuration from Honeycomb should be empty
-| | [Documentation] | Attempts to retrieve sub-interface configuration through\
-| | ... | Honeycomb and expects to get empty dictionary.
-| | ...
-| | ... | *Arguments:*
-| | ... | - node - information about a DUT node. Type: dictionary
-| | ... | - interface - name of a sub-interface on the specified node. Type:\
-| | ... | string
-| | ...
-| | ... | *Example:*
-| | ... | \| Sub-interface configuration from Honeycomb should be empty\
-| | ... | \| ${nodes['DUT1']} \| sub_test \|
-| | ...
-| | [Arguments] | ${node} | ${interface}
-| | ${api_data}= | interfaceAPI.Get interface oper data | ${node} | ${interface}
-| | Should be empty | ${api_data}
-
-| Sub-interface configuration from VAT should be empty
-| | [Documentation] | Attempts to retrieve sub-interface configuration through\
-| | ... | VAT and expects to get empty dictionary.
-| | ...
-| | ... | *Arguments:*
-| | ... | - node - information about a DUT node. Type: dictionary
-| | ... | - interface - name of a sub-interface on the specified node. Type:\
-| | ... | string
-| | ...
-| | ... | *Example:*
-| | ... | \| Sub-interface configuration from VAT should be empty\
-| | ... | \| ${nodes['DUT1']} \| sub_test \|
-| | ...
-| | [Arguments] | ${node} | ${interface} |
-| | ${vat_data}= | InterfaceCLI.VPP get interface data | ${node} | ${interface}
-| | Should be empty | ${vat_data}
-
 | Honeycomb adds sub-interface to bridge domain
 | | [Documentation] | Honeycomb adds the given sub-interface to bridge domain.
 | | ...
