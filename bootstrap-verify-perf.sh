@@ -15,9 +15,7 @@
 set -x
 
 # Space separated list of available testbeds, described by topology files
-TOPOLOGIES="topologies/available/lf_testbed1-X710-X520.yaml \
-            topologies/available/lf_testbed2-X710-X520.yaml \
-            topologies/available/lf_testbed3-X710-X520.yaml"
+TOPOLOGIES="topologies/available/lf_testbed2-X710-X520.yaml"
 
 VPP_STABLE_VER="1.0.0-437~g8f15e92_amd64"
 VPP_REPO_URL="https://nexus.fd.io/service/local/repositories/fd.io.dev/content/io/fd/vpp"
