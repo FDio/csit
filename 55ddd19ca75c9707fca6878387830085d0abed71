@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba092121_b24ad0aa",
+        "filename": "resources/libraries/python/topology.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 74
+      },
+      "writtenOn": "2016-06-06T16:56:58Z",
+      "side": 1,
+      "message": "missing documentation about the DICTnodes structure and how to use dynamic ports",
+      "revId": "55ddd19ca75c9707fca6878387830085d0abed71",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
