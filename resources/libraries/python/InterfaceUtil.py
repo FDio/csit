@@ -686,3 +686,53 @@ class InterfaceUtil(object):
                                                     sw_if_index=sw_if_index,
                                                     ip_version=ip_version,
                                                     table_index=table_index)
+
+    @staticmethod
+    def get_sw_if_index(node, interface_name):
+        """Get sw_if_index for the given interface from actual interface dump.
+
+        :param node: VPP node to get interface data from.
+        :param interface_name: Name of the specific interface.
+        :type node: dict
+        :type interface_name: str
+        :return: sw_if_index of the given interface.
+        :rtype: str
+        """
+
+        with VatTerminal(node) as vat:
+            if_data = vat.vat_terminal_exec_cmd_from_template(
+                "interface_dump.vat")
+        for interface in if_data[0]:
+            if interface["interface_name"] == interface_name:
+                return interface["sw_if_index"]
+
+        return None
+
+    @staticmethod
+    def vxlan_gpe_dump(node, interface_name=None):
+        """Get VxLAN GPE data for the given interface.
+
+        :param node: VPP node to get interface data from.
+        :param interface_name: Name of the specific interface. If None,
+        information about all VxLAN GPE interfaces is returned.
+        :type node: dict
+        :type interface_name: str
+        :return: Dictionary containing data for the given VxLAN GPE interface or
+        if interface=None, the list of dictionaries with all VxLAN GPE
+        interfaces.
+        :rtype: dict or list
+        """
+
+        with VatTerminal(node) as vat:
+            vxlan_gpe_data = vat.vat_terminal_exec_cmd_from_template(
+                "vxlan_gpe_dump.vat")
+
+        if interface_name:
+            sw_if_index = InterfaceUtil.get_sw_if_index(node, interface_name)
+            if sw_if_index:
+                for vxlan_gpe in vxlan_gpe_data[0]:
+                    if vxlan_gpe["sw_if_index"] == sw_if_index:
+                        return vxlan_gpe
+            return {}
+
+        return vxlan_gpe_data[0]
