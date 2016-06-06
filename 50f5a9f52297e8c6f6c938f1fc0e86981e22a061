@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "ba092121_525814fa",
+        "filename": "resources/libraries/python/TrafficScriptExecutor.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 84
+      },
+      "writtenOn": "2016-06-06T14:15:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba092121_b28c1081",
+      "range": {
+        "startLine": 69,
+        "startChar": 22,
+        "endLine": 69,
+        "endChar": 31
+      },
+      "revId": "50f5a9f52297e8c6f6c938f1fc0e86981e22a061",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba092121_92e90c1d",
         "filename": "resources/libraries/python/TrafficScriptExecutor.py",
         "patchSetId": 9
@@ -36,6 +60,30 @@
       "writtenOn": "2016-06-06T13:41:51Z",
       "side": 1,
       "message": "Please, change it to RuntimeError.",
+      "range": {
+        "startLine": 73,
+        "startChar": 22,
+        "endLine": 73,
+        "endChar": 31
+      },
+      "revId": "50f5a9f52297e8c6f6c938f1fc0e86981e22a061",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_325da0ea",
+        "filename": "resources/libraries/python/TrafficScriptExecutor.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 84
+      },
+      "writtenOn": "2016-06-06T14:15:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba092121_92e90c1d",
       "range": {
         "startLine": 73,
         "startChar": 22,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "ba092121_12729c7c",
+        "filename": "resources/libraries/python/TrafficScriptExecutor.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 84
+      },
+      "writtenOn": "2016-06-06T14:15:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba092121_72ee7824",
+      "range": {
+        "startLine": 75,
+        "startChar": 22,
+        "endLine": 75,
+        "endChar": 31
+      },
+      "revId": "50f5a9f52297e8c6f6c938f1fc0e86981e22a061",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba092121_b2e3f032",
         "filename": "resources/libraries/robot/traffic.robot",
         "patchSetId": 9
@@ -82,6 +154,30 @@
       "writtenOn": "2016-06-06T13:41:51Z",
       "side": 1,
       "message": "Send TCP or UDP packet",
+      "range": {
+        "startLine": 179,
+        "startChar": 13,
+        "endLine": 179,
+        "endChar": 49
+      },
+      "revId": "50f5a9f52297e8c6f6c938f1fc0e86981e22a061",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_d26b0484",
+        "filename": "resources/libraries/robot/traffic.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 84
+      },
+      "writtenOn": "2016-06-06T14:15:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba092121_b2e3f032",
       "range": {
         "startLine": 179,
         "startChar": 13,
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "ba092121_d2f0a4cb",
+        "filename": "tests/suites/ipv4/ipv4_iacl_untagged.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 84
+      },
+      "writtenOn": "2016-06-06T14:15:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba092121_3246c024",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 46
+      },
+      "revId": "50f5a9f52297e8c6f6c938f1fc0e86981e22a061",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba092121_f247281c",
         "filename": "tests/suites/ipv4/ipv4_iacl_untagged.robot",
         "patchSetId": 9
@@ -128,6 +248,30 @@
       "writtenOn": "2016-06-06T13:41:51Z",
       "side": 1,
       "message": "Move this traffic check to the end.\n\n- accordingly, apply to all next test cases",
+      "range": {
+        "startLine": 76,
+        "startChar": 0,
+        "endLine": 79,
+        "endChar": 49
+      },
+      "revId": "50f5a9f52297e8c6f6c938f1fc0e86981e22a061",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_b2ed30f2",
+        "filename": "tests/suites/ipv4/ipv4_iacl_untagged.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 84
+      },
+      "writtenOn": "2016-06-06T14:15:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba092121_f247281c",
       "range": {
         "startLine": 76,
         "startChar": 0,
@@ -163,6 +307,30 @@
     },
     {
       "key": {
+        "uuid": "ba092121_92ba2ce0",
+        "filename": "tests/suites/ipv6/ipv6_iacl_untagged.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 84
+      },
+      "writtenOn": "2016-06-06T14:15:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba092121_d25424cc",
+      "range": {
+        "startLine": 55,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 46
+      },
+      "revId": "50f5a9f52297e8c6f6c938f1fc0e86981e22a061",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba092121_b251b0da",
         "filename": "tests/suites/ipv6/ipv6_iacl_untagged.robot",
         "patchSetId": 9
@@ -174,6 +342,30 @@
       "writtenOn": "2016-06-06T13:41:51Z",
       "side": 1,
       "message": "Move this traffic check to the end.\n\n- accordingly, apply to all next test cases",
+      "range": {
+        "startLine": 79,
+        "startChar": 0,
+        "endLine": 82,
+        "endChar": 49
+      },
+      "revId": "50f5a9f52297e8c6f6c938f1fc0e86981e22a061",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_72bf98d1",
+        "filename": "tests/suites/ipv6/ipv6_iacl_untagged.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 84
+      },
+      "writtenOn": "2016-06-06T14:15:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba092121_b251b0da",
       "range": {
         "startLine": 79,
         "startChar": 0,
