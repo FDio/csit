@@ -334,3 +334,37 @@
 | | [Arguments] | ${node} | ${interface} | ${mtu} | ${vrf-id}
 | | ${vat_data}= | InterfaceCLI.VPP get interface data | ${node} | ${interface}
 | | Should be equal | ${vat_data['mtu']} | ${mtu}
+
+| Interface configuration from Honeycomb should be empty
+| | [Documentation] | Attempts to retrieve interface configuration through\
+| | ... | Honeycomb and expects to get empty dictionary.
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - information about a DUT node. Type: dictionary
+| | ... | - interface - name of a interface on the specified node. Type:\
+| | ... | string
+| | ...
+| | ... | *Example:*
+| | ... | \| Interface configuration from Honeycomb should be empty\
+| | ... | \| ${nodes['DUT1']} \| sub_test \|
+| | ...
+| | [Arguments] | ${node} | ${interface}
+| | ${api_data}= | interfaceAPI.Get interface oper data | ${node} | ${interface}
+| | Should be empty | ${api_data}
+
+| Interface configuration from VAT should be empty
+| | [Documentation] | Attempts to retrieve Interface configuration through\
+| | ... | VAT and expects to get empty dictionary.
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - information about a DUT node. Type: dictionary
+| | ... | - interface - name of a Interface on the specified node. Type:\
+| | ... | string
+| | ...
+| | ... | *Example:*
+| | ... | \| Interface configuration from VAT should be empty\
+| | ... | \| ${nodes['DUT1']} \| sub_test \|
+| | ...
+| | [Arguments] | ${node} | ${interface} |
+| | ${vat_data}= | InterfaceCLI.VPP get interface data | ${node} | ${interface}
+| | Should be empty | ${vat_data}

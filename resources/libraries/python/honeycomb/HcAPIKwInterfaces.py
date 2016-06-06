@@ -35,7 +35,7 @@ class InterfaceKeywords(object):
     """
 
     INTF_PARAMS = ("name", "description", "type", "enabled",
-                   "link-up-down-trap-enable", "v3po:l2")
+                   "link-up-down-trap-enable", "v3po:l2", "v3po:vxlan-gpe")
     IPV4_PARAMS = ("enabled", "forwarding", "mtu")
     IPV6_PARAMS = ("enabled", "forwarding", "mtu", "dup-addr-detect-transmits")
     IPV6_AUTOCONF_PARAMS = ("create-global-addresses",
@@ -63,6 +63,12 @@ class InterfaceKeywords(object):
                        "match-any-inner-id",
                        "exact-match",
                        "default-subif")
+    VXLAN_GPE_PARAMS = ("local",
+                        "remote",
+                        "vni",
+                        "next-protocol",
+                        "encap-vrf-id",
+                        "decap-vrf-id")
 
     def __init__(self):
         pass
@@ -1047,3 +1053,37 @@ class InterfaceKeywords(object):
                 "vlan-tag-rewrite")
         return InterfaceKeywords._set_interface_properties(
             node, sub_interface, path, None)
+
+    @staticmethod
+    def create_vxlan_gpe_interface(node, interface, **kwargs):
+        """Create a new VxLAN GPE interface.
+
+        :param node: Honeycomb node.
+        :param interface: The name of interface to be created.
+        :param kwargs: Parameters and their values. The accepted parameters are
+        defined in InterfaceKeywords.VXLAN_GPE_PARAMS.
+        :type node: dict
+        :type interface: str
+        :type kwargs: dict
+        :return: Content of response.
+        :rtype: bytearray
+        :raises HoneycombError: If a parameter in kwargs is not valid.
+        """
+
+        new_vxlan_gpe = {
+            "name": interface,
+            "type": "v3po:vxlan-gpe-tunnel",
+            "v3po:vxlan-gpe": {}
+        }
+        for param, value in kwargs.items():
+            if param in InterfaceKeywords.INTF_PARAMS:
+                new_vxlan_gpe[param] = value
+            elif param in InterfaceKeywords.VXLAN_GPE_PARAMS:
+                new_vxlan_gpe["v3po:vxlan-gpe"][param] = value
+            else:
+                raise HoneycombError("The parameter {0} is invalid.".
+                                     format(param))
+        path = ("interfaces", "interface")
+        vxlan_gpe_structure = [new_vxlan_gpe, ]
+        return InterfaceKeywords._set_interface_properties(
+            node, interface, path, vxlan_gpe_structure)
