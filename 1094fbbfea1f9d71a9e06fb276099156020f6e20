@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba092121_8d04517f",
+        "filename": "resources/libraries/python/Classify.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-06-07T08:20:03Z",
+      "side": 1,
+      "message": ":return (table_index, skip_n, match_n)\ntable_index: Classify table index.\nskip_n: Number of skip vectors.\nmatch_n: Number of match vectors.\n:rtype: e.g. tuple(str, str, str)\n\nCheck everywhere.",
+      "range": {
+        "startLine": 63,
+        "startChar": 8,
+        "endLine": 66,
+        "endChar": 21
+      },
+      "revId": "1094fbbfea1f9d71a9e06fb276099156020f6e20",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_2d030575",
+        "filename": "resources/libraries/python/TrafficScriptExecutor.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-06-07T08:20:03Z",
+      "side": 1,
+      "message": "Add :raises part to doc.",
+      "range": {
+        "startLine": 69,
+        "startChar": 16,
+        "endLine": 69,
+        "endChar": 21
+      },
+      "revId": "1094fbbfea1f9d71a9e06fb276099156020f6e20",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
