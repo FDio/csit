@@ -34,11 +34,11 @@
 | | ... | sub-interfaces inter-connected using L2 cross connect at 2x2.9Mpps in
 | | ... | 3-node topology. Tagging is applied between DUTs inserting 4B VLAN ID
 | | ... | into a packet header.
-| | [Tags] | 1_THREAD_NOHTT_RSS_1 | SINGLE_THREAD | NDR
+| | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | NDR
 | | ${framesize}= | Set Variable | 64
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 2.9mpps
-| | Given Add '1' worker threads and rss '1' without HTT to all DUTs
+| | Given Add '1' worker threads and rxqueues '1' without HTT to all DUTs
 | | And   Add all PCI devices to all DUTs
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
@@ -60,11 +60,11 @@
 | | ... | sub-interfaces inter-connected using L2 cross connect at
 | | ... | 2x 720,000pps in 3-node topology. Tagging is applied between DUTs
 | | ... | inserting 4B VLAN ID into a packet header.
-| | [Tags] | 1_THREAD_NOHTT_RSS_1 | SINGLE_THREAD | NDR
+| | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | NDR
 | | ${framesize}= | Set Variable | 1518
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 720000pps
-| | Given Add '1' worker threads and rss '1' without HTT to all DUTs
+| | Given Add '1' worker threads and rxqueues '1' without HTT to all DUTs
 | | And   Add all PCI devices to all DUTs
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
@@ -86,11 +86,11 @@
 | | ... | sub-interfaces inter-connected using L2 cross connect at
 | | ... | 2x 120,000pps in 3-node topology. Tagging is applied between DUTs
 | | ... | inserting 4B VLAN ID into a packet header.
-| | [Tags] | 1_THREAD_NOHTT_RSS_1 | SINGLE_THREAD | NDR
+| | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | NDR
 | | ${framesize}= | Set Variable | 9000
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 120000pps
-| | Given Add '1' worker threads and rss '1' without HTT to all DUTs
+| | Given Add '1' worker threads and rxqueues '1' without HTT to all DUTs
 | | And   Add all PCI devices to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
 | | And   VPP interfaces in path are up
@@ -105,17 +105,17 @@
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                   | ${framesize} | 3-node-xconnect
 
-| 2core VPP with rss 1 passes 64B frames through VLAN dot1q sub-interfaces inter-connected using L2 cross connect at 2x5.8Mpps in 3-node topology
+| 2core VPP with rxqueues 1 passes 64B frames through VLAN dot1q sub-interfaces inter-connected using L2 cross connect at 2x5.8Mpps in 3-node topology
 | | [Documentation]
 | | ... | VPP with 2 cores should pass 64B frames through VLAN dot1q
 | | ... | sub-interfaces inter-connected using L2 cross connect at 2x5.8Mpps in
 | | ... | 3-node topology. Tagging is applied between DUTs inserting 4B VLAN ID
 | | ... | into a packet header.
-| | [Tags] | 2_THREAD_NOHTT_RSS_1 | MULTI_THREAD | NDR
+| | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | NDR
 | | ${framesize}= | Set Variable | 64
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 5.8mpps
-| | Given Add '2' worker threads and rss '1' without HTT to all DUTs
+| | Given Add '2' worker threads and rxqueues '1' without HTT to all DUTs
 | | And   Add all PCI devices to all DUTs
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
@@ -131,17 +131,17 @@
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                   | ${framesize} | 3-node-xconnect
 
-| 2core VPP with rss 1 passes 1518B frames through VLAN dot1q sub-interfaces inter-connected using L2 cross connect at 2x 720,000pps in 3-node topology
+| 2core VPP with rxqueues 1 passes 1518B frames through VLAN dot1q sub-interfaces inter-connected using L2 cross connect at 2x 720,000pps in 3-node topology
 | | [Documentation]
 | | ... | VPP with 2 core should pass 1518B frames through VLAN dot1q
 | | ... | sub-interfaces inter-connected using L2 cross connect at
 | | ... | 2x 720,000pps in 3-node topology. Tagging is applied between DUTs
 | | ... | inserting 4B VLAN ID into a packet header.
-| | [Tags] | 2_THREAD_NOHTT_RSS_1 | MULTI_THREAD | NDR
+| | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | NDR
 | | ${framesize}= | Set Variable | 1518
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 720000pps
-| | Given Add '2' worker threads and rss '1' without HTT to all DUTs
+| | Given Add '2' worker threads and rxqueues '1' without HTT to all DUTs
 | | And   Add all PCI devices to all DUTs
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
@@ -157,17 +157,17 @@
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                   | ${framesize} | 3-node-xconnect
 
-| 2core VPP with rss 1 passes 9000B frames through VLAN dot1q sub-interfaces inter-connected using L2 cross connect at 2x 120,000pps in 3-node topology
+| 2core VPP with rxqueues 1 passes 9000B frames through VLAN dot1q sub-interfaces inter-connected using L2 cross connect at 2x 120,000pps in 3-node topology
 | | [Documentation]
 | | ... | VPP with 2 core should pass 9000B frames through VLAN dot1q
 | | ... | sub-interfaces inter-connected using L2 cross connect at
 | | ... | 2x 120,000pps in 3-node topology. Tagging is applied between DUTs
 | | ... | inserting 4B VLAN ID into a packet header.
-| | [Tags] | 2_THREAD_NOHTT_RSS_1 | MULTI_THREAD | NDR
+| | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | NDR
 | | ${framesize}= | Set Variable | 9000
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 120000pps
-| | Given Add '2' worker threads and rss '1' without HTT to all DUTs
+| | Given Add '2' worker threads and rxqueues '1' without HTT to all DUTs
 | | And   Add all PCI devices to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
 | | And   VPP interfaces in path are up
@@ -182,17 +182,17 @@
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                   | ${framesize} | 3-node-xconnect
 
-| 4core VPP with rss 2 passes 64B frames through VLAN dot1q sub-interfaces inter-connected using L2 cross connect at 2x9.0Mpps in 3-node topology
+| 4core VPP with rxqueues 2 passes 64B frames through VLAN dot1q sub-interfaces inter-connected using L2 cross connect at 2x9.0Mpps in 3-node topology
 | | [Documentation]
-| | ... | VPP with 4 cores and rss 2 should pass 64B frames through VLAN dot1q
+| | ... | VPP with 4 cores and rxqueues 2 should pass 64B frames through VLAN dot1q
 | | ... | sub-interfaces inter-connected using L2 cross connect at 2x9.0Mpps in
 | | ... | 3-node topology. Tagging is applied between DUTs inserting 4B VLAN ID
 | | ... | into a packet header.
-| | [Tags] | 4_THREAD_NOHTT_RSS_2 | MULTI_THREAD | NDR
+| | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | NDR
 | | ${framesize}= | Set Variable | 64
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 9.0mpps
-| | Given Add '4' worker threads and rss '2' without HTT to all DUTs
+| | Given Add '4' worker threads and rxqueues '2' without HTT to all DUTs
 | | And   Add all PCI devices to all DUTs
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
@@ -208,17 +208,17 @@
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                   | ${framesize} | 3-node-xconnect
 
-| 4core VPP with rss 2 passes 1518B frames through VLAN dot1q sub-interfaces inter-connected using L2 cross connect at 2x 720,000pps in 3-node topology
+| 4core VPP with rxqueues 2 passes 1518B frames through VLAN dot1q sub-interfaces inter-connected using L2 cross connect at 2x 720,000pps in 3-node topology
 | | [Documentation]
-| | ... | VPP with 4 cores and rss 2 should pass 1518B frames through VLAN
+| | ... | VPP with 4 cores and rxqueues 2 should pass 1518B frames through VLAN
 | | ... | dot1q sub-interfaces inter-connected using L2 cross connect at
 | | ... | 2x 720,000pps in 3-node topology. Tagging is applied between DUTs
 | | ... | inserting 4B VLAN ID into a packet header.
-| | [Tags] | 4_THREAD_NOHTT_RSS_2 | MULTI_THREAD | NDR
+| | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | NDR
 | | ${framesize}= | Set Variable | 1518
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 720000pps
-| | Given Add '4' worker threads and rss '2' without HTT to all DUTs
+| | Given Add '4' worker threads and rxqueues '2' without HTT to all DUTs
 | | And   Add all PCI devices to all DUTs
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
@@ -234,17 +234,17 @@
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                   | ${framesize} | 3-node-xconnect
 
-| 4core VPP with rss 2 passes 9000B frames through VLAN dot1q sub-interfaces inter-connected using L2 cross connect at 2x 120,000pps in 3-node topology
+| 4core VPP with rxqueues 2 passes 9000B frames through VLAN dot1q sub-interfaces inter-connected using L2 cross connect at 2x 120,000pps in 3-node topology
 | | [Documentation]
-| | ... | VPP with 4 cores and rss 2 should pass 9000B frames through VLAN
+| | ... | VPP with 4 cores and rxqueues 2 should pass 9000B frames through VLAN
 | | ... | dot1q sub-interfaces inter-connected using L2 cross connect at
 | | ... | 2x 120,000pps in 3-node topology. Tagging is applied between DUTs
 | | ... | inserting 4B VLAN ID into a packet header.
-| | [Tags] | 4_THREAD_NOHTT_RSS_2 | MULTI_THREAD | NDR
+| | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | NDR
 | | ${framesize}= | Set Variable | 9000
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 120000pps
-| | Given Add '4' worker threads and rss '2' without HTT to all DUTs
+| | Given Add '4' worker threads and rxqueues '2' without HTT to all DUTs
 | | And   Add all PCI devices to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
 | | And   VPP interfaces in path are up
