@@ -166,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "ba092121_0d5e0146",
+        "filename": "resources/libraries/python/honeycomb/HcPersistence.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-06-07T10:14:45Z",
+      "side": 1,
+      "message": "This should help readability even more than parentheses.",
+      "parentUuid": "ba092121_ade1559c",
+      "range": {
+        "startLine": 77,
+        "startChar": 18,
+        "endLine": 78,
+        "endChar": 62
+      },
+      "revId": "c2edb289b982ebb54b75500d09857ab45557137d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba092121_8dee918a",
         "filename": "resources/libraries/python/honeycomb/HcPersistence.py",
         "patchSetId": 5
@@ -183,6 +207,24 @@
     },
     {
       "key": {
+        "uuid": "ba092121_2d49c58b",
+        "filename": "resources/libraries/python/honeycomb/HcPersistence.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-06-07T10:14:45Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba092121_8dee918a",
+      "revId": "c2edb289b982ebb54b75500d09857ab45557137d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba092121_6df33d74",
         "filename": "resources/libraries/python/honeycomb/HcPersistence.py",
         "patchSetId": 5
@@ -194,6 +236,30 @@
       "writtenOn": "2016-06-07T09:15:17Z",
       "side": 1,
       "message": "unused variable",
+      "range": {
+        "startLine": 83,
+        "startChar": 22,
+        "endLine": 83,
+        "endChar": 28
+      },
+      "revId": "c2edb289b982ebb54b75500d09857ab45557137d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_4d44f973",
+        "filename": "resources/libraries/python/honeycomb/HcPersistence.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-06-07T10:14:45Z",
+      "side": 1,
+      "message": "Done, it is used now.",
+      "parentUuid": "ba092121_6df33d74",
       "range": {
         "startLine": 83,
         "startChar": 22,
