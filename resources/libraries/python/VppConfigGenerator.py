@@ -52,9 +52,11 @@ cpu {{
 
 dpdk {{
   socket-mem {socketmemconfig}
-{txqueuesconfig}
+  dev default {{
+  {rxqueuesconfig}
+  {txqueuesconfig}
+  }}
 {pciconfig}
-{rssconfig}
 {nomultiseg}
 }}
 """
@@ -164,13 +166,13 @@ class VppConfigGenerator(object):
         logger.debug('Setting hostname {} Heap Size config to {}'.
                      format(hostname, heapsize_config))
 
-    def add_rss_config(self, node, rss_config):
-        """Add RSS configuration for node.
+    def add_rxqueues_config(self, node, rxqueues_config):
+        """Add Rx Queues configuration for node.
 
         :param node: DUT node.
-        :param rss_config: RSS configuration, as a string.
+        :param rxqueues_config: Rxqueues configuration, as a string.
         :type node: dict
-        :type rss_config: str
+        :type rxqueues_config: str
         :return: nothing
         """
         if node['type'] != NodeType.DUT:
@@ -178,32 +180,11 @@ class VppConfigGenerator(object):
         hostname = Topology.get_node_hostname(node)
         if not hostname in self._nodeconfig:
             self._nodeconfig[hostname] = {}
-        if not 'rss_config' in self._nodeconfig[hostname]:
-            self._nodeconfig[hostname]['rss_config'] = []
-        self._nodeconfig[hostname]['rss_config'].append(rss_config)
-        logger.debug('Setting hostname {} RSS config to {}'.\
-            format(hostname, rss_config))
-
-    def add_max_tx_queues_config(self, node, max_tx_queues_config):
-        """Add Max TX Queues configuration for node.
-
-        :param node: DUT node.
-        :param max_tx_queues_config: Max TX Queues configuration, as a string.
-        :type node: dict
-        :type max_tx_queues_config: str
-        :return: nothing
-        """
-        if node['type'] != NodeType.DUT:
-            raise ValueError('Node type is not a DUT')
-        hostname = Topology.get_node_hostname(node)
-        if not hostname in self._nodeconfig:
-            self._nodeconfig[hostname] = {}
-        if not 'max_tx_queues_config' in self._nodeconfig[hostname]:
-            self._nodeconfig[hostname]['max_tx_queues_config'] = []
-        self._nodeconfig[hostname]['max_tx_queues_config'].append(
-            max_tx_queues_config)
-        logger.debug('Setting hostname {} max_tx_queues config to {}'.\
-            format(hostname, max_tx_queues_config))
+        if not 'rxqueues_config' in self._nodeconfig[hostname]:
+            self._nodeconfig[hostname]['rxqueues_config'] = []
+        self._nodeconfig[hostname]['rxqueues_config'].append(rxqueues_config)
+        logger.debug('Setting hostname {} rxqueues config to {}'.\
+            format(hostname, rxqueues_config))
 
     def add_no_multi_seg_config(self, node):
         """Add No Multi Seg configuration for node.
@@ -284,8 +265,8 @@ class VppConfigGenerator(object):
         logger.debug('Clearing Heap Size config for hostname {}.'.
                      format(hostname))
 
-    def remove_rss_config(self, node):
-        """Remove RSS configuration from node.
+    def remove_rxqueues_config(self, node):
+        """Remove Rxqueues configuration from node.
 
         :param node: DUT node.
         :type node: dict
@@ -295,23 +276,8 @@ class VppConfigGenerator(object):
             raise ValueError('Node type is not a DUT')
         hostname = Topology.get_node_hostname(node)
         if hostname in self._nodeconfig:
-            self._nodeconfig[hostname]['rss_config'] = []
-        logger.debug('Clearing RSS config for hostname {}.'.\
-            format(hostname))
-
-    def remove_max_tx_queues_config(self, node):
-        """Remove Max TX Queues configuration from node.
-
-        :param node: DUT node.
-        :type node: dict
-        :return: nothing
-        """
-        if node['type'] != NodeType.DUT:
-            raise ValueError('Node type is not a DUT')
-        hostname = Topology.get_node_hostname(node)
-        if hostname in self._nodeconfig:
-            self._nodeconfig[hostname]['max_tx_queues_config'] = []
-        logger.debug('Clearing Max TX Queues config for hostname {}.'.\
+            self._nodeconfig[hostname]['rxqueues_config'] = []
+        logger.debug('Clearing rxqueues config for hostname {}.'.\
             format(hostname))
 
     def remove_no_multi_seg_config(self, node):
@@ -351,7 +317,7 @@ class VppConfigGenerator(object):
         pciconfig = ""
         socketmemconfig = DEFAULT_SOCKETMEM_CONFIG
         heapsizeconfig = ""
-        rssconfig = ""
+        rxqueuesconfig = ""
         txqueuesconfig = ""
         nomultiseg = ""
 
@@ -370,12 +336,8 @@ class VppConfigGenerator(object):
                 heapsizeconfig = "\nheapsize {}\n".\
                     format(cfg['heapsize_config'])
 
-            if 'rss_config' in cfg:
-                rssconfig = "  " + "\n  ".join(cfg['rss_config'])
-
-            if 'max_tx_queues_config' in cfg:
-                txqueuesconfig = "  " + "\n  ".join(
-                    cfg['max_tx_queues_config'])
+            if 'rxqueues_config' in cfg:
+                rxqueuesconfig = "  " + "\n  ".join(cfg['rxqueues_config'])
 
             if 'no_multi_seg_config' in cfg:
                 nomultiseg = "  " + "\n  ".join(cfg['no_multi_seg_config'])
@@ -384,7 +346,7 @@ class VppConfigGenerator(object):
                                                pciconfig=pciconfig,
                                                socketmemconfig=socketmemconfig,
                                                heapsizeconfig=heapsizeconfig,
-                                               rssconfig=rssconfig,
+                                               rxqueuesconfig=rxqueuesconfig,
                                                txqueuesconfig=txqueuesconfig,
                                                nomultiseg = nomultiseg)
 
