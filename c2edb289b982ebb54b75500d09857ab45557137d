@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba092121_ed3d0dbd",
+        "filename": "resources/libraries/python/honeycomb/HcAPIKwInterfaces.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1055,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-07T08:36:55Z",
+      "side": 1,
+      "message": "List of interfaces.",
+      "range": {
+        "startLine": 1055,
+        "startChar": 22,
+        "endLine": 1055,
+        "endChar": 40
+      },
+      "revId": "c2edb289b982ebb54b75500d09857ab45557137d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_cd4a4955",
+        "filename": "resources/libraries/python/honeycomb/HcAPIKwInterfaces.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1056,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-07T08:36:55Z",
+      "side": 1,
+      "message": "List of interfaces.",
+      "range": {
+        "startLine": 1056,
+        "startChar": 22,
+        "endLine": 1056,
+        "endChar": 40
+      },
+      "revId": "c2edb289b982ebb54b75500d09857ab45557137d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_edc62d49",
+        "filename": "resources/libraries/python/honeycomb/HcPersistence.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-07T08:36:55Z",
+      "side": 1,
+      "message": "List",
+      "range": {
+        "startLine": 39,
+        "startChar": 22,
+        "endLine": 39,
+        "endChar": 26
+      },
+      "revId": "c2edb289b982ebb54b75500d09857ab45557137d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_2dec25c7",
+        "filename": "resources/libraries/robot/honeycomb/persistence.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-07T08:36:55Z",
+      "side": 1,
+      "message": "VLAN",
+      "range": {
+        "startLine": 86,
+        "startChar": 46,
+        "endLine": 86,
+        "endChar": 50
+      },
+      "revId": "c2edb289b982ebb54b75500d09857ab45557137d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_0df8417b",
+        "filename": "resources/libraries/robot/honeycomb/persistence.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-07T08:36:55Z",
+      "side": 1,
+      "message": "VLAN",
+      "range": {
+        "startLine": 131,
+        "startChar": 46,
+        "endLine": 131,
+        "endChar": 50
+      },
+      "revId": "c2edb289b982ebb54b75500d09857ab45557137d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_adeef5b2",
+        "filename": "resources/libraries/robot/honeycomb/persistence.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-07T08:36:55Z",
+      "side": 1,
+      "message": "VLAN",
+      "range": {
+        "startLine": 168,
+        "startChar": 46,
+        "endLine": 168,
+        "endChar": 50
+      },
+      "revId": "c2edb289b982ebb54b75500d09857ab45557137d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_0d3f2127",
+        "filename": "resources/libraries/robot/honeycomb/persistence.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-07T08:36:55Z",
+      "side": 1,
+      "message": "Please, add more info - that the HC service is stopped, then the persistence file is modified to simulate damage of the file and HC service is started again.",
+      "range": {
+        "startLine": 213,
+        "startChar": 22,
+        "endLine": 213,
+        "endChar": 69
+      },
+      "revId": "c2edb289b982ebb54b75500d09857ab45557137d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_2d3ae536",
+        "filename": "resources/libraries/robot/honeycomb/persistence.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-07T08:36:55Z",
+      "side": 1,
+      "message": "Persistence file is damaged during restart",
+      "range": {
+        "startLine": 220,
+        "startChar": 13,
+        "endLine": 220,
+        "endChar": 36
+      },
+      "revId": "c2edb289b982ebb54b75500d09857ab45557137d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
