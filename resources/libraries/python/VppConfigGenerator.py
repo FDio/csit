@@ -52,9 +52,11 @@ cpu {{
 
 dpdk {{
   socket-mem {socketmemconfig}
+  dev default {{
+  {rssconfig}
+  }}
 {txqueuesconfig}
 {pciconfig}
-{rssconfig}
 {nomultiseg}
 }}
 """
