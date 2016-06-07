@@ -93,6 +93,98 @@
       "revId": "1094fbbfea1f9d71a9e06fb276099156020f6e20",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_ed086d2f",
+        "filename": "resources/libraries/robot/traffic.robot",
+        "patchSetId": 12
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-07T12:21:48Z",
+      "side": 1,
+      "message": "integer",
+      "range": {
+        "startLine": 171,
+        "startChar": 53,
+        "endLine": 171,
+        "endChar": 59
+      },
+      "revId": "1094fbbfea1f9d71a9e06fb276099156020f6e20",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_cd05a915",
+        "filename": "resources/libraries/robot/traffic.robot",
+        "patchSetId": 12
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-07T12:21:48Z",
+      "side": 1,
+      "message": "integer",
+      "range": {
+        "startLine": 172,
+        "startChar": 63,
+        "endLine": 172,
+        "endChar": 69
+      },
+      "revId": "1094fbbfea1f9d71a9e06fb276099156020f6e20",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_ad027509",
+        "filename": "resources/libraries/robot/traffic.robot",
+        "patchSetId": 12
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-07T12:21:48Z",
+      "side": 1,
+      "message": "integer",
+      "range": {
+        "startLine": 215,
+        "startChar": 53,
+        "endLine": 215,
+        "endChar": 59
+      },
+      "revId": "1094fbbfea1f9d71a9e06fb276099156020f6e20",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_9fffd401",
+        "filename": "resources/libraries/robot/traffic.robot",
+        "patchSetId": 12
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-07T12:21:48Z",
+      "side": 1,
+      "message": "integer",
+      "range": {
+        "startLine": 216,
+        "startChar": 63,
+        "endLine": 216,
+        "endChar": 69
+      },
+      "revId": "1094fbbfea1f9d71a9e06fb276099156020f6e20",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
