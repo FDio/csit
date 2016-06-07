@@ -22,6 +22,30 @@
       "revId": "0a0416fc112cab39aba1391406267aca9512ffc3",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_ed5aad4f",
+        "filename": "resources/libraries/robot/honeycomb/persistence.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-06-07T10:14:45Z",
+      "side": 1,
+      "message": "I do not believe xconnect is implemented in Honeycomb.\n\nRegardless, we do not have xconnect tests. When we add new tests, we will also update this test case.",
+      "parentUuid": "ba092121_4de8797c",
+      "range": {
+        "startLine": 84,
+        "startChar": 2,
+        "endLine": 84,
+        "endChar": 36
+      },
+      "revId": "0a0416fc112cab39aba1391406267aca9512ffc3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
