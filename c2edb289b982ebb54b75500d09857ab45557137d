@@ -143,6 +143,69 @@
     },
     {
       "key": {
+        "uuid": "ba092121_ade1559c",
+        "filename": "resources/libraries/python/honeycomb/HcPersistence.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-07T09:15:17Z",
+      "side": 1,
+      "message": "please reformat this with parenthesis.",
+      "range": {
+        "startLine": 77,
+        "startChar": 18,
+        "endLine": 78,
+        "endChar": 62
+      },
+      "revId": "c2edb289b982ebb54b75500d09857ab45557137d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_8dee918a",
+        "filename": "resources/libraries/python/honeycomb/HcPersistence.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-07T09:15:17Z",
+      "side": 1,
+      "message": "wrong indentation",
+      "revId": "c2edb289b982ebb54b75500d09857ab45557137d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_6df33d74",
+        "filename": "resources/libraries/python/honeycomb/HcPersistence.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-07T09:15:17Z",
+      "side": 1,
+      "message": "unused variable",
+      "range": {
+        "startLine": 83,
+        "startChar": 22,
+        "endLine": 83,
+        "endChar": 28
+      },
+      "revId": "c2edb289b982ebb54b75500d09857ab45557137d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba092121_2dec25c7",
         "filename": "resources/libraries/robot/honeycomb/persistence.robot",
         "patchSetId": 5
