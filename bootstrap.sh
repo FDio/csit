@@ -104,14 +104,15 @@ do
 done
 
 # Temporarily download VPP packages from nexus.fd.io
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 if [ "${#}" -ne "0" ]; then
     arr=(${@})
     echo ${arr[0]}
 else
     rm -f *.deb
-    VPP_STABLE_VER="16.09-rc0~47-g3419d0b~b214_amd64"
-    VPP_REPO_URL="https://nexus.fd.io/service/local/repositories/fd.io.master.ubuntu.trusty.main/content/io/fd/vpp"
+    VPP_STABLE_VER=$(cat ${SCRIPT_DIR}/VPP_MASTER_STABLE_VER)
+    VPP_REPO_URL=$(cat ${SCRIPT_DIR}/VPP_MASTER_REPO_URL)
     wget -q "${VPP_REPO_URL}/vpp/${VPP_STABLE_VER}/vpp-${VPP_STABLE_VER}.deb" || exit
     wget -q "${VPP_REPO_URL}/vpp-dbg/${VPP_STABLE_VER}/vpp-dbg-${VPP_STABLE_VER}.deb" || exit
     wget -q "${VPP_REPO_URL}/vpp-dev/${VPP_STABLE_VER}/vpp-dev-${VPP_STABLE_VER}.deb" || exit
@@ -190,9 +191,9 @@ virtualenv --system-site-packages env
 echo pip install
 pip install -r requirements.txt
 
-pykwalify -s resources/topology_schemas/3_node_topology.sch.yaml \
-          -s resources/topology_schemas/topology.sch.yaml \
-          -d topologies/enabled/topology.yaml \
+pykwalify -s ${SCRIPT_DIR}/resources/topology_schemas/3_node_topology.sch.yaml \
+          -s ${SCRIPT_DIR}/resources/topology_schemas/topology.sch.yaml \
+          -d ${SCRIPT_DIR}/topologies/enabled/topology.yaml \
           -vvv
 
 result=$?
@@ -202,7 +203,7 @@ if [ "${result}" -ne "0" ]; then
 fi
 
 PYTHONPATH=`pwd` pybot -L TRACE \
-    -v TOPOLOGY_PATH:topologies/enabled/topology.yaml \
+    -v TOPOLOGY_PATH:${SCRIPT_DIR}/topologies/enabled/topology.yaml \
     --include vm_envAND3_node_single_link_topo \
     --include vm_envAND3_node_double_link_topo \
     --exclude PERFTEST \

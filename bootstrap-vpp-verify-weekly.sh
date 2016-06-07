@@ -64,13 +64,15 @@ EOF
 chmod 600 priv_key
 
 # Temporarily download VPP packages from nexus.fd.io
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
 rm -f *.deb
 if [ "${#}" -ne "0" ]; then
     arr=(${@})
     echo ${arr[0]}
 else
-    VPP_STABLE_VER="16.09-rc0~47-g3419d0b~b214_amd64"
-    VPP_REPO_URL="https://nexus.fd.io/service/local/repositories/fd.io.master.ubuntu.trusty.main/content/io/fd/vpp"
+    VPP_STABLE_VER=$(cat ${SCRIPT_DIR}/VPP_MASTER_STABLE_VER)
+    VPP_REPO_URL=$(cat ${SCRIPT_DIR}/VPP_MASTER_REPO_URL)
     wget -q "${VPP_REPO_URL}/vpp/${VPP_STABLE_VER}/vpp-${VPP_STABLE_VER}.deb" || exit
     wget -q "${VPP_REPO_URL}/vpp-dbg/${VPP_STABLE_VER}/vpp-dbg-${VPP_STABLE_VER}.deb" || exit
     wget -q "${VPP_REPO_URL}/vpp-dev/${VPP_STABLE_VER}/vpp-dev-${VPP_STABLE_VER}.deb" || exit
@@ -159,7 +161,7 @@ do
     echo
     echo ${test_set}. test loop
     PYTHONPATH=`pwd` pybot -L TRACE \
-        -v TOPOLOGY_PATH:topologies/enabled/topology.yaml \
+        -v TOPOLOGY_PATH:${SCRIPT_DIR}/topologies/enabled/topology.yaml \
         --include vm_envAND3_node_single_link_topo \
         --include vm_envAND3_node_double_link_topo \
         --exclude PERFTEST \
