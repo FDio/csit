@@ -2,6 +2,75 @@
   "comments": [
     {
       "key": {
+        "uuid": "ba092121_4d5ab984",
+        "filename": "resources/libraries/python/Classify.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-06-07T08:48:57Z",
+      "side": 1,
+      "message": ":return (table_index, skip_n, match_n)\ntable_index: Classify table index.\nskip_n: Number of skip vectors.\nmatch_n: Number of match vectors.\n:rtype: e.g. tuple(str, str, str)\n\nCheck everywhere, please.",
+      "range": {
+        "startLine": 33,
+        "startChar": 8,
+        "endLine": 36,
+        "endChar": 21
+      },
+      "revId": "451ed1752d3614221575441cb9fefaa314f91e03",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_ed506d60",
+        "filename": "tests/suites/ipv4/ipv4_iacl_untagged.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-06-07T08:48:57Z",
+      "side": 1,
+      "message": "Creates instead of create",
+      "range": {
+        "startLine": 53,
+        "startChar": 56,
+        "endLine": 53,
+        "endChar": 62
+      },
+      "revId": "451ed1752d3614221575441cb9fefaa314f91e03",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_8dc7b112",
+        "filename": "tests/suites/ipv4/ipv4_iacl_untagged.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-06-07T08:48:57Z",
+      "side": 1,
+      "message": "configures\nCheck everywhere, please.",
+      "range": {
+        "startLine": 55,
+        "startChar": 12,
+        "endLine": 55,
+        "endChar": 21
+      },
+      "revId": "451ed1752d3614221575441cb9fefaa314f91e03",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba092121_b2ff70aa",
         "filename": "tests/suites/ipv4/ipv4_iacl_untagged.robot",
         "patchSetId": 3
