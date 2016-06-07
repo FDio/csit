@@ -28,11 +28,11 @@
 | | [Documentation]
 | | ... | VPP with 1 core should pass 78B frames through IPv6 forwarding
 | | ... | at 2x 2.9Mpps in 3-node topology with COP.
-| | [Tags] | 1_THREAD_NOHTT_RSS_1 | SINGLE_THREAD | NDR
+| | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | NDR
 | | ${framesize}= | Set Variable | 78
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 2.9mpps
-| | Given Add '1' worker threads and rss '1' without HTT to all DUTs
+| | Given Add '1' worker threads and rxqueues '1' without HTT to all DUTs
 | | And   Add all PCI devices to all DUTs
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
@@ -50,11 +50,11 @@
 | | [Documentation]
 | | ... | VPP with 1 core should pass 1518B frames through IPv6 forwarding
 | | ... | at 2x 812,743pps (2x 10Gbps) in 3-node topology with COP.
-| | [Tags] | 1_THREAD_NOHTT_RSS_1 | SINGLE_THREAD | NDR
+| | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | NDR
 | | ${framesize}= | Set Variable | 1518
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 812743pps
-| | Given Add '1' worker threads and rss '1' without HTT to all DUTs
+| | Given Add '1' worker threads and rxqueues '1' without HTT to all DUTs
 | | And   Add all PCI devices to all DUTs
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
@@ -72,11 +72,11 @@
 | | [Documentation]
 | | ... | VPP with 1 core should pass 9000B frames through IPv6 forwarding
 | | ... | at 2x138,580pps (2x 10Gbps) in 3-node topology with COP.
-| | [Tags] | 1_THREAD_NOHTT_RSS_1 | SINGLE_THREAD | NDR
+| | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | NDR
 | | ${framesize}= | Set Variable | 9000
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 138580pps
-| | Given Add '1' worker threads and rss '1' without HTT to all DUTs
+| | Given Add '1' worker threads and rxqueues '1' without HTT to all DUTs
 | | And   Add all PCI devices to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
 | | When  IPv6 forwarding initialized in a 3-node circular topology
@@ -89,15 +89,15 @@
 | | Then  Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                    | ${framesize} | 3-node-IPv6
 
-| 2core VPP with rss 1 passes 78B frames through IPv6 forwarding with COP at 2x 4.9Mpps in 3-node topology
+| 2core VPP with rxqueues 1 passes 78B frames through IPv6 forwarding with COP at 2x 4.9Mpps in 3-node topology
 | | [Documentation]
 | | ... | VPP with 2 cores should pass 78B frames through IPv6 forwarding
 | | ... | at 2x 4.9Mpps in 3-node topology with COP.
-| | [Tags] | 2_THREAD_NOHTT_RSS_1 | MULTI_THREAD | NDR
+| | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | NDR
 | | ${framesize}= | Set Variable | 78
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 4.9mpps
-| | Given Add '2' worker threads and rss '1' without HTT to all DUTs
+| | Given Add '2' worker threads and rxqueues '1' without HTT to all DUTs
 | | And   Add all PCI devices to all DUTs
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
@@ -111,15 +111,15 @@
 | | Then  Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                    | ${framesize} | 3-node-IPv6
 
-| 2core VPP with rss 1 passes 1518B frames through IPv6 forwarding with COP at 2x 812,743pps in 3-node topology
+| 2core VPP with rxqueues 1 passes 1518B frames through IPv6 forwarding with COP at 2x 812,743pps in 3-node topology
 | | [Documentation]
 | | ... | VPP with 2 cores should pass 1518B frames through IPv6 forwarding
 | | ... | at 2x 812,743pps (2x 10Gbps) in 3-node topology with COP.
-| | [Tags] | 2_THREAD_NOHTT_RSS_1 | MULTI_THREAD | NDR
+| | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | NDR
 | | ${framesize}= | Set Variable | 1518
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 812743pps
-| | Given Add '2' worker threads and rss '1' without HTT to all DUTs
+| | Given Add '2' worker threads and rxqueues '1' without HTT to all DUTs
 | | And   Add all PCI devices to all DUTs
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
@@ -133,15 +133,15 @@
 | | Then  Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                    | ${framesize} | 3-node-IPv6
 
-| 2core VPP with rss 1 passes 9000B frames through IPv6 forwarding with COP at 2x 138,580pps in 3-node topology
+| 2core VPP with rxqueues 1 passes 9000B frames through IPv6 forwarding with COP at 2x 138,580pps in 3-node topology
 | | [Documentation]
 | | ... | VPP with 2 cores should pass 9000B frames through IPv6 forwarding
 | | ... | at 2x 138,580pps (2x 10Gbps) in 3-node topology with COP.
-| | [Tags] | 2_THREAD_NOHTT_RSS_1 | MULTI_THREAD | NDR
+| | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | NDR
 | | ${framesize}= | Set Variable | 9000
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 138580pps
-| | Given Add '2' worker threads and rss '1' without HTT to all DUTs
+| | Given Add '2' worker threads and rxqueues '1' without HTT to all DUTs
 | | And   Add all PCI devices to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
 | | When  IPv6 forwarding initialized in a 3-node circular topology
@@ -154,15 +154,15 @@
 | | Then  Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                    | ${framesize} | 3-node-IPv6
 
-| 4core VPP with rss 2 passes 78B frames through IPv6 forwarding with COP at 2x 10.1Mpps in 3-node topology
+| 4core VPP with rxqueues 2 passes 78B frames through IPv6 forwarding with COP at 2x 10.1Mpps in 3-node topology
 | | [Documentation]
-| | ... | VPP with 4 cores and rss 2 should pass 78B frames through IPv6
+| | ... | VPP with 4 cores and rxqueues 2 should pass 78B frames through IPv6
 | | ... | forwarding at 2x 10.1Mpps in 3-node topology with COP.
-| | [Tags] | 4_THREAD_NOHTT_RSS_2 | MULTI_THREAD | NDR
+| | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | NDR
 | | ${framesize}= | Set Variable | 78
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 10.1mpps
-| | Given Add '4' worker threads and rss '2' without HTT to all DUTs
+| | Given Add '4' worker threads and rxqueues '2' without HTT to all DUTs
 | | And   Add all PCI devices to all DUTs
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
@@ -176,15 +176,15 @@
 | | Then  Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                    | ${framesize} | 3-node-IPv6
 
-| 4core VPP with rss 2 passes 1518B frames through IPv6 forwarding with COP at 2x 812,743pps in 3-node topology
+| 4core VPP with rxqueues 2 passes 1518B frames through IPv6 forwarding with COP at 2x 812,743pps in 3-node topology
 | | [Documentation]
-| | ... | VPP with 4 cores and rss 2 should pass 1518B frames through IPv6
+| | ... | VPP with 4 cores and rxqueues 2 should pass 1518B frames through IPv6
 | | ... | forwarding at 2x 812,743pps (2x 10Gbps) in 3-node topology with COP.
-| | [Tags] | 4_THREAD_NOHTT_RSS_2 | MULTI_THREAD | NDR
+| | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | NDR
 | | ${framesize}= | Set Variable | 1518
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 812743pps
-| | Given Add '4' worker threads and rss '2' without HTT to all DUTs
+| | Given Add '4' worker threads and rxqueues '2' without HTT to all DUTs
 | | And   Add all PCI devices to all DUTs
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
@@ -198,15 +198,15 @@
 | | Then  Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                    | ${framesize} | 3-node-IPv6
 
-| 4core VPP with rss 2 passes 9000B frames through IPv6 forwarding with COP at 2x 138,580pps in 3-node topology
+| 4core VPP with rxqueues 2 passes 9000B frames through IPv6 forwarding with COP at 2x 138,580pps in 3-node topology
 | | [Documentation]
-| | ... | VPP with 4 cores and rss 2 should pass 9000B frames through IPv6
+| | ... | VPP with 4 cores and rxqueues 2 should pass 9000B frames through IPv6
 | | ... | forwarding at 2x 138,580pps (2x 10Gbps) in 3-node topology with COP.
-| | [Tags] | 4_THREAD_NOHTT_RSS_2 | MULTI_THREAD | NDR
+| | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | NDR
 | | ${framesize}= | Set Variable | 9000
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 138580pps
-| | Given Add '4' worker threads and rss '2' without HTT to all DUTs
+| | Given Add '4' worker threads and rxqueues '2' without HTT to all DUTs
 | | And   Add all PCI devices to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
 | | When  IPv6 forwarding initialized in a 3-node circular topology
