@@ -1,0 +1,464 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba092121_3fb568cd",
+        "filename": "resources/libraries/python/LispUtil.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 266,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-07T13:56:20Z",
+      "side": 1,
+      "message": "KW name could lead to assumption that it enables/disables",
+      "range": {
+        "startLine": 266,
+        "startChar": 8,
+        "endLine": 266,
+        "endChar": 32
+      },
+      "revId": "543bb1952df87c6839c0cd93a41e954c8f8684a6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_fff49088",
+        "filename": "resources/libraries/robot/lisp/lisp_api.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 360,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-07T13:56:20Z",
+      "side": 1,
+      "message": "variable",
+      "range": {
+        "startLine": 360,
+        "startChar": 51,
+        "endLine": 360,
+        "endChar": 60
+      },
+      "revId": "543bb1952df87c6839c0cd93a41e954c8f8684a6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_9fdd9417",
+        "filename": "resources/libraries/robot/lisp/lisp_api.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 369,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-07T13:56:20Z",
+      "side": 1,
+      "message": "Better to use KW name: Enable lisp",
+      "range": {
+        "startLine": 369,
+        "startChar": 2,
+        "endLine": 369,
+        "endChar": 16
+      },
+      "revId": "543bb1952df87c6839c0cd93a41e954c8f8684a6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_dfc30c37",
+        "filename": "resources/libraries/robot/lisp/lisp_api.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 370,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-07T13:56:20Z",
+      "side": 1,
+      "message": "on VPP node.",
+      "range": {
+        "startLine": 370,
+        "startChar": 34,
+        "endLine": 370,
+        "endChar": 40
+      },
+      "revId": "543bb1952df87c6839c0cd93a41e954c8f8684a6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_7fe2c0d6",
+        "filename": "resources/libraries/robot/lisp/lisp_api.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 379,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-07T13:56:20Z",
+      "side": 1,
+      "message": "Enable lisp",
+      "range": {
+        "startLine": 379,
+        "startChar": 13,
+        "endLine": 379,
+        "endChar": 27
+      },
+      "revId": "543bb1952df87c6839c0cd93a41e954c8f8684a6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_5fe7fce4",
+        "filename": "resources/libraries/robot/lisp/lisp_api.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 384,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-07T13:56:20Z",
+      "side": 1,
+      "message": "is enabled",
+      "range": {
+        "startLine": 384,
+        "startChar": 16,
+        "endLine": 384,
+        "endChar": 23
+      },
+      "revId": "543bb1952df87c6839c0cd93a41e954c8f8684a6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_3fec48c7",
+        "filename": "resources/libraries/robot/lisp/lisp_api.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 385,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-07T13:56:20Z",
+      "side": 1,
+      "message": "enabled",
+      "range": {
+        "startLine": 385,
+        "startChar": 43,
+        "endLine": 385,
+        "endChar": 49
+      },
+      "revId": "543bb1952df87c6839c0cd93a41e954c8f8684a6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_dff1cc96",
+        "filename": "resources/libraries/robot/lisp/lisp_api.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 393,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-07T13:56:20Z",
+      "side": 1,
+      "message": "variable",
+      "range": {
+        "startLine": 393,
+        "startChar": 51,
+        "endLine": 393,
+        "endChar": 60
+      },
+      "revId": "543bb1952df87c6839c0cd93a41e954c8f8684a6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_bfee18b3",
+        "filename": "resources/libraries/robot/lisp/lisp_api.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 394,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-07T13:56:20Z",
+      "side": 1,
+      "message": "VPP",
+      "range": {
+        "startLine": 394,
+        "startChar": 50,
+        "endLine": 394,
+        "endChar": 53
+      },
+      "revId": "543bb1952df87c6839c0cd93a41e954c8f8684a6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_df48acce",
+        "filename": "resources/libraries/robot/lisp/lisp_api.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 397,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-07T13:56:20Z",
+      "side": 1,
+      "message": "Check if lisp is enabled",
+      "range": {
+        "startLine": 397,
+        "startChar": 13,
+        "endLine": 397,
+        "endChar": 31
+      },
+      "revId": "543bb1952df87c6839c0cd93a41e954c8f8684a6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_1fd184fb",
+        "filename": "resources/libraries/robot/lisp/lisp_api.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 403,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-07T13:56:20Z",
+      "side": 1,
+      "message": "Better to use KW name: Disable lisp",
+      "range": {
+        "startLine": 403,
+        "startChar": 2,
+        "endLine": 403,
+        "endChar": 17
+      },
+      "revId": "543bb1952df87c6839c0cd93a41e954c8f8684a6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_bfd738ed",
+        "filename": "resources/libraries/robot/lisp/lisp_api.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 404,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-07T13:56:20Z",
+      "side": 1,
+      "message": "on VPP node",
+      "range": {
+        "startLine": 404,
+        "startChar": 35,
+        "endLine": 404,
+        "endChar": 41
+      },
+      "revId": "543bb1952df87c6839c0cd93a41e954c8f8684a6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_ffcdb05e",
+        "filename": "resources/libraries/robot/lisp/lisp_api.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 413,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-07T13:56:20Z",
+      "side": 1,
+      "message": "Disable lisp",
+      "range": {
+        "startLine": 413,
+        "startChar": 13,
+        "endLine": 413,
+        "endChar": 28
+      },
+      "revId": "543bb1952df87c6839c0cd93a41e954c8f8684a6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_9f04747f",
+        "filename": "resources/libraries/robot/lisp/lisp_api.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 418,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-07T13:56:20Z",
+      "side": 1,
+      "message": "is disabled",
+      "range": {
+        "startLine": 418,
+        "startChar": 16,
+        "endLine": 418,
+        "endChar": 24
+      },
+      "revId": "543bb1952df87c6839c0cd93a41e954c8f8684a6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_7f09a094",
+        "filename": "resources/libraries/robot/lisp/lisp_api.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 419,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-07T13:56:20Z",
+      "side": 1,
+      "message": "disabled",
+      "range": {
+        "startLine": 419,
+        "startChar": 39,
+        "endLine": 419,
+        "endChar": 46
+      },
+      "revId": "543bb1952df87c6839c0cd93a41e954c8f8684a6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_9f2b54eb",
+        "filename": "resources/libraries/robot/lisp/lisp_api.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 427,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-07T13:56:20Z",
+      "side": 1,
+      "message": "variable",
+      "range": {
+        "startLine": 427,
+        "startChar": 51,
+        "endLine": 427,
+        "endChar": 60
+      },
+      "revId": "543bb1952df87c6839c0cd93a41e954c8f8684a6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_ff225000",
+        "filename": "resources/libraries/robot/lisp/lisp_api.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 431,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-07T13:56:20Z",
+      "side": 1,
+      "message": "is disabled",
+      "range": {
+        "startLine": 431,
+        "startChar": 27,
+        "endLine": 431,
+        "endChar": 35
+      },
+      "revId": "543bb1952df87c6839c0cd93a41e954c8f8684a6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_3f88c8e6",
+        "filename": "resources/libraries/robot/lisp/lisp_static_mapping.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-07T13:56:20Z",
+      "side": 1,
+      "message": "There are already KWs in lisp_api.robot resource file that has the same function - please, remove these KWs and import lisp_api.robot resource file in the setting table when you need to use KWs from this resource file.",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 51
+      },
+      "revId": "543bb1952df87c6839c0cd93a41e954c8f8684a6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_1f6d0433",
+        "filename": "tests/suites/lisp/lisp_api_untagged.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-07T13:56:20Z",
+      "side": 1,
+      "message": "Update KW names\n\n- all occurences",
+      "range": {
+        "startLine": 46,
+        "startChar": 1,
+        "endLine": 49,
+        "endChar": 49
+      },
+      "revId": "543bb1952df87c6839c0cd93a41e954c8f8684a6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_7f652044",
+        "filename": "tests/suites/lisp/lisp_dataplane_untagged.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 182,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-07T13:56:20Z",
+      "side": 1,
+      "message": "it is disabled",
+      "range": {
+        "startLine": 182,
+        "startChar": 35,
+        "endLine": 182,
+        "endChar": 42
+      },
+      "revId": "543bb1952df87c6839c0cd93a41e954c8f8684a6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
