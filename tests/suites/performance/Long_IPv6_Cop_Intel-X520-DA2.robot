@@ -36,14 +36,14 @@
 | | [Documentation]
 | | ... | Find throughput with non drop rate for 78B frames by using
 | | ... | binary search with threshold 0.1Mpps.
-| | [Tags] | 1_THREAD_NOHTT_RSS_1 | SINGLE_THREAD | NDR
+| | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | NDR
 | | ${framesize}= | Set Variable | 78
 | | ${min_rate}= | Set Variable | 100000
 | | ${max_rate}= | Set Variable | ${10Ge_linerate_pps_78B}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '1' worker threads and rss '1' without HTT to all DUTs
+| | Given Add '1' worker threads and rxqueues '1' without HTT to all DUTs
 | | And   Add all PCI devices to all DUTs
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
@@ -64,14 +64,14 @@
 | | ... | Find throughput with partial drop rate for 78B frames by using
 | | ... | binary search with threshold 0.1Mpps. Loss acceptance is set to 0.5
 | | ... | percent of transmitted packets.
-| | [Tags] | 1_THREAD_NOHTT_RSS_1 | SINGLE_THREAD | PDR
+| | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | PDR
 | | ${framesize}= | Set Variable | 78
 | | ${min_rate}= | Set Variable | 100000
 | | ${max_rate}= | Set Variable | ${10Ge_linerate_pps_78B}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '1' worker threads and rss '1' without HTT to all DUTs
+| | Given Add '1' worker threads and rxqueues '1' without HTT to all DUTs
 | | And   Add all PCI devices to all DUTs
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
@@ -93,14 +93,14 @@
 | | [Documentation]
 | | ... | Find throughput with non drop rate for 1518B frames by using
 | | ... | binary search with threshold 10,000pps.
-| | [Tags] | 1_THREAD_NOHTT_RSS_1 | SINGLE_THREAD | NDR
+| | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | NDR
 | | ${framesize}= | Set Variable | 1518
 | | ${min_rate}= | Set Variable | 10000
 | | ${max_rate}= | Set Variable | ${10Ge_linerate_pps_1518B}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '1' worker threads and rss '1' without HTT to all DUTs
+| | Given Add '1' worker threads and rxqueues '1' without HTT to all DUTs
 | | And   Add all PCI devices to all DUTs
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
@@ -121,14 +121,14 @@
 | | ... | Find throughput with partial drop rate for 1518B frames by using
 | | ... | binary search with threshold 10,000pps. Loss acceptance is set to 0.5
 | | ... | percent of transmitted packets.
-| | [Tags] | 1_THREAD_NOHTT_RSS_1 | SINGLE_THREAD | PDR
+| | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | PDR
 | | ${framesize}= | Set Variable | 1518
 | | ${min_rate}= | Set Variable | 10000
 | | ${max_rate}= | Set Variable | ${10Ge_linerate_pps_1518B}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '1' worker threads and rss '1' without HTT to all DUTs
+| | Given Add '1' worker threads and rxqueues '1' without HTT to all DUTs
 | | And   Add all PCI devices to all DUTs
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
@@ -150,14 +150,14 @@
 | | [Documentation]
 | | ... | Find throughput with non drop rate for 9000B frames by using
 | | ... | binary search with threshold 5,000pps.
-| | [Tags] | 1_THREAD_NOHTT_RSS_1 | SINGLE_THREAD | NDR
+| | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | NDR
 | | ${framesize}= | Set Variable | 9000
 | | ${min_rate}= | Set Variable | 5000
 | | ${max_rate}= | Set Variable | ${10Ge_linerate_pps_9000B}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '1' worker threads and rss '1' without HTT to all DUTs
+| | Given Add '1' worker threads and rxqueues '1' without HTT to all DUTs
 | | And   Add all PCI devices to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
 | | When  IPv6 forwarding initialized in a 3-node circular topology
@@ -177,14 +177,14 @@
 | | ... | Find throughput with partial drop rate for 9000B frames by using
 | | ... | binary search with threshold of 5,000pps. Loss acceptance is set to
 | | ... | 0.5 percent of transmitted packets.
-| | [Tags] | 1_THREAD_NOHTT_RSS_1 | SINGLE_THREAD | PDR
+| | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | PDR
 | | ${framesize}= | Set Variable | 9000
 | | ${min_rate}= | Set Variable | 5000
 | | ${max_rate}= | Set Variable | ${10Ge_linerate_pps_9000B}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '1' worker threads and rss '1' without HTT to all DUTs
+| | Given Add '1' worker threads and rxqueues '1' without HTT to all DUTs
 | | And   Add all PCI devices to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
 | | When  IPv6 forwarding initialized in a 3-node circular topology
@@ -201,18 +201,18 @@
 | | ...                                       | ${glob_loss_acceptance}
 | | ...                                       | ${glob_loss_acceptance_type}
 
-| Find NDR with 2 cores and rss 1 by using RFC2544 binary search and 78B frames through IPv6 forwarding with COP in 3-node topology
+| Find NDR with 2 cores and rxqueues 1 by using RFC2544 binary search and 78B frames through IPv6 forwarding with COP in 3-node topology
 | | [Documentation]
 | | ... | Find throughput on 2 cores with non drop rate for 78B frames by using
 | | ... | binary search with threshold 0.1Mpps.
-| | [Tags] | 2_THREAD_NOHTT_RSS_1 | MULTI_THREAD | NDR
+| | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | NDR
 | | ${framesize}= | Set Variable | 78
 | | ${min_rate}= | Set Variable | 100000
 | | ${max_rate}= | Set Variable | ${10Ge_linerate_pps_78B}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '2' worker threads and rss '1' without HTT to all DUTs
+| | Given Add '2' worker threads and rxqueues '1' without HTT to all DUTs
 | | And   Add all PCI devices to all DUTs
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
@@ -228,19 +228,19 @@
 | | ...                                       | ${min_rate} | ${max_rate}
 | | ...                                       | ${threshold}
 
-| Find PDR with 2 cores and rss 1 by using RFC2544 binary search and 78B frames through IPv6 forwarding with COP in 3-node topology
+| Find PDR with 2 cores and rxqueues 1 by using RFC2544 binary search and 78B frames through IPv6 forwarding with COP in 3-node topology
 | | [Documentation]
 | | ... | Find throughput on 2 cores with partial drop rate for 78B frames by
 | | ... | using binary search with threshold 10,000pps. Loss acceptance is set
 | | ... | to 0.5 percent of transmitted packets.
-| | [Tags] | 2_THREAD_NOHTT_RSS_1 | MULTI_THREAD | PDR
+| | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | PDR
 | | ${framesize}= | Set Variable | 78
 | | ${min_rate}= | Set Variable | 100000
 | | ${max_rate}= | Set Variable | ${10Ge_linerate_pps_78B}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '2' worker threads and rss '1' without HTT to all DUTs
+| | Given Add '2' worker threads and rxqueues '1' without HTT to all DUTs
 | | And   Add all PCI devices to all DUTs
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
@@ -258,18 +258,18 @@
 | | ...                                       | ${glob_loss_acceptance}
 | | ...                                       | ${glob_loss_acceptance_type}
 
-| Find NDR with 2 cores and rss 1 by using RFC2544 binary search and 1518B frames through IPv6 forwarding with COP in 3-node topology
+| Find NDR with 2 cores and rxqueues 1 by using RFC2544 binary search and 1518B frames through IPv6 forwarding with COP in 3-node topology
 | | [Documentation]
 | | ... | Find throughput on 2 cores with non drop rate for 1518B frames by
 | | ... | using binary search with threshold 10,000pps.
-| | [Tags] | 2_THREAD_NOHTT_RSS_1 | MULTI_THREAD | NDR
+| | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | NDR
 | | ${framesize}= | Set Variable | 1518
 | | ${min_rate}= | Set Variable | 10000
 | | ${max_rate}= | Set Variable | ${10Ge_linerate_pps_1518B}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '2' worker threads and rss '1' without HTT to all DUTs
+| | Given Add '2' worker threads and rxqueues '1' without HTT to all DUTs
 | | And   Add all PCI devices to all DUTs
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
@@ -285,19 +285,19 @@
 | | ...                                       | ${min_rate} | ${max_rate}
 | | ...                                       | ${threshold}
 
-| Find PDR with 2 cores and rss 1 by using RFC2544 binary search and 1518B frames through IPv6 forwarding with COP in 3-node topology
+| Find PDR with 2 cores and rxqueues 1 by using RFC2544 binary search and 1518B frames through IPv6 forwarding with COP in 3-node topology
 | | [Documentation]
 | | ... | Find throughput on 2 cores with partial drop rate for 1518B frames by
 | | ... | using binary search with threshold 10,000pps. Loss acceptance is set
 | | ... | to 0.5 percent of transmitted packets.
-| | [Tags] | 2_THREAD_NOHTT_RSS_1 | MULTI_THREAD | PDR
+| | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | PDR
 | | ${framesize}= | Set Variable | 1518
 | | ${min_rate}= | Set Variable | 10000
 | | ${max_rate}= | Set Variable | ${10Ge_linerate_pps_1518B}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '2' worker threads and rss '1' without HTT to all DUTs
+| | Given Add '2' worker threads and rxqueues '1' without HTT to all DUTs
 | | And   Add all PCI devices to all DUTs
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
@@ -315,18 +315,18 @@
 | | ...                                       | ${glob_loss_acceptance}
 | | ...                                       | ${glob_loss_acceptance_type}
 
-| Find NDR with 2 cores and rss 1 by using RFC2544 binary search and 9000B frames through IPv6 forwarding with COP in 3-node topology
+| Find NDR with 2 cores and rxqueues 1 by using RFC2544 binary search and 9000B frames through IPv6 forwarding with COP in 3-node topology
 | | [Documentation]
 | | ... | Find throughput on 2 cores with non drop rate for 9000B frames by
 | | ... | using binary search with threshold 5,000pps.
-| | [Tags] | 2_THREAD_NOHTT_RSS_1 | MULTI_THREAD | NDR
+| | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | NDR
 | | ${framesize}= | Set Variable | 9000
 | | ${min_rate}= | Set Variable | 5000
 | | ${max_rate}= | Set Variable | ${10Ge_linerate_pps_9000B}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '2' worker threads and rss '1' without HTT to all DUTs
+| | Given Add '2' worker threads and rxqueues '1' without HTT to all DUTs
 | | And   Add all PCI devices to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
 | | When  IPv6 forwarding initialized in a 3-node circular topology
@@ -341,19 +341,19 @@
 | | ...                                       | ${min_rate} | ${max_rate}
 | | ...                                       | ${threshold}
 
-| Find PDR with 2 cores and rss 1 by using RFC2544 binary search and 9000B frames through IPv6 forwarding with COP in 3-node topology
+| Find PDR with 2 cores and rxqueues 1 by using RFC2544 binary search and 9000B frames through IPv6 forwarding with COP in 3-node topology
 | | [Documentation]
 | | ... | Find throughput on 2 cores with partial drop rate for 9000B frames by
 | | ... | using binary search with threshold 5,000pps. Loss acceptance is set
 | | ... | to 0.5 percent of transmitted packets.
-| | [Tags] | 2_THREAD_NOHTT_RSS_1 | MULTI_THREAD | PDR
+| | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | PDR
 | | ${framesize}= | Set Variable | 9000
 | | ${min_rate}= | Set Variable | 5000
 | | ${max_rate}= | Set Variable | ${10Ge_linerate_pps_9000B}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '2' worker threads and rss '1' without HTT to all DUTs
+| | Given Add '2' worker threads and rxqueues '1' without HTT to all DUTs
 | | And   Add all PCI devices to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
 | | When  IPv6 forwarding initialized in a 3-node circular topology
@@ -370,18 +370,18 @@
 | | ...                                       | ${glob_loss_acceptance}
 | | ...                                       | ${glob_loss_acceptance_type}
 
-| Find NDR with 4 cores and rss 2 by using RFC2544 binary search and 78B frames through IPv6 forwarding with COP in 3-node topology
+| Find NDR with 4 cores and rxqueues 2 by using RFC2544 binary search and 78B frames through IPv6 forwarding with COP in 3-node topology
 | | [Documentation]
-| | ... | Find throughput on 4 cores and rss 2 with non drop rate for 78B
+| | ... | Find throughput on 4 cores and rxqueues 2 with non drop rate for 78B
 | | ... | frames by using binary search with threshold 0.1Mpps.
-| | [Tags] | 4_THREAD_NOHTT_RSS_2 | MULTI_THREAD | NDR
+| | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | NDR
 | | ${framesize}= | Set Variable | 78
 | | ${min_rate}= | Set Variable | 100000
 | | ${max_rate}= | Set Variable | ${10Ge_linerate_pps_78B}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '4' worker threads and rss '2' without HTT to all DUTs
+| | Given Add '4' worker threads and rxqueues '2' without HTT to all DUTs
 | | And   Add all PCI devices to all DUTs
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
@@ -397,19 +397,19 @@
 | | ...                                       | ${min_rate} | ${max_rate}
 | | ...                                       | ${threshold}
 
-| Find PDR with 4 cores and rss 2 by using RFC2544 binary search and 78B frames through IPv6 forwarding with COP in 3-node topology
+| Find PDR with 4 cores and rxqueues 2 by using RFC2544 binary search and 78B frames through IPv6 forwarding with COP in 3-node topology
 | | [Documentation]
-| | ... | Find throughput on 4 cores and rss 2 with partial drop rate for 78B
+| | ... | Find throughput on 4 cores and rxqueues 2 with partial drop rate for 78B
 | | ... | frames by using binary search with threshold 0.1Mpps. Loss acceptance
 | | ... | is set to 0.5 percent of transmitted packets.
-| | [Tags] | 4_THREAD_NOHTT_RSS_2 | MULTI_THREAD | PDR
+| | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | PDR
 | | ${framesize}= | Set Variable | 78
 | | ${min_rate}= | Set Variable | 100000
 | | ${max_rate}= | Set Variable | ${10Ge_linerate_pps_78B}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '4' worker threads and rss '2' without HTT to all DUTs
+| | Given Add '4' worker threads and rxqueues '2' without HTT to all DUTs
 | | And   Add all PCI devices to all DUTs
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
@@ -427,18 +427,18 @@
 | | ...                                       | ${glob_loss_acceptance}
 | | ...                                       | ${glob_loss_acceptance_type}
 
-| Find NDR with 4 cores and rss 2 by using RFC2544 binary search and 1518B frames through IPv6 forwarding with COP in 3-node topology
+| Find NDR with 4 cores and rxqueues 2 by using RFC2544 binary search and 1518B frames through IPv6 forwarding with COP in 3-node topology
 | | [Documentation]
-| | ... | Find throughput on 4 cores and rss 2 with non drop rate for 1518B
+| | ... | Find throughput on 4 cores and rxqueues 2 with non drop rate for 1518B
 | | ... | frames by using binary search with threshold 10,000pps.
-| | [Tags] | 4_THREAD_NOHTT_RSS_2 | MULTI_THREAD | NDR
+| | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | NDR
 | | ${framesize}= | Set Variable | 1518
 | | ${min_rate}= | Set Variable | 10000
 | | ${max_rate}= | Set Variable | ${10Ge_linerate_pps_1518B}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '4' worker threads and rss '2' without HTT to all DUTs
+| | Given Add '4' worker threads and rxqueues '2' without HTT to all DUTs
 | | And   Add all PCI devices to all DUTs
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
@@ -454,19 +454,19 @@
 | | ...                                       | ${min_rate} | ${max_rate}
 | | ...                                       | ${threshold}
 
-| Find PDR with 4 cores and rss 2 by using RFC2544 binary search and 1518B frames through IPv6 forwarding with COP in 3-node topology
+| Find PDR with 4 cores and rxqueues 2 by using RFC2544 binary search and 1518B frames through IPv6 forwarding with COP in 3-node topology
 | | [Documentation]
-| | ... | Find throughput on 4 cores and rss 2 with partial drop rate for 1518B
+| | ... | Find throughput on 4 cores and rxqueues 2 with partial drop rate for 1518B
 | | ... | frames by using binary search with threshold 10,000pps. Loss
 | | ... | acceptance is set to 0.5 percent of transmitted packets.
-| | [Tags] | 4_THREAD_NOHTT_RSS_2 | MULTI_THREAD | PDR
+| | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | PDR
 | | ${framesize}= | Set Variable | 1518
 | | ${min_rate}= | Set Variable | 10000
 | | ${max_rate}= | Set Variable | ${10Ge_linerate_pps_1518B}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '4' worker threads and rss '2' without HTT to all DUTs
+| | Given Add '4' worker threads and rxqueues '2' without HTT to all DUTs
 | | And   Add all PCI devices to all DUTs
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
@@ -484,19 +484,19 @@
 | | ...                                       | ${glob_loss_acceptance}
 | | ...                                       | ${glob_loss_acceptance_type}
 
-| Find NDR with 4 cores and rss 2 by using RFC2544 binary search and 9000B frames through IPv6 forwarding with COP in 3-node topology
+| Find NDR with 4 cores and rxqueues 2 by using RFC2544 binary search and 9000B frames through IPv6 forwarding with COP in 3-node topology
 | | [Documentation]
-| | ... | Find throughput on 4 cores and rss 2 with non drop rate for 9000B
+| | ... | Find throughput on 4 cores and rxqueues 2 with non drop rate for 9000B
 | | ... | frames by using binary search starting at 138,580pps, stepping down
 | | ... | with step of 5,000pps.
-| | [Tags] | 4_THREAD_NOHTT_RSS_2 | MULTI_THREAD | NDR
+| | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | NDR
 | | ${framesize}= | Set Variable | 9000
 | | ${min_rate}= | Set Variable | 5000
 | | ${max_rate}= | Set Variable | ${10Ge_linerate_pps_9000B}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '4' worker threads and rss '2' without HTT to all DUTs
+| | Given Add '4' worker threads and rxqueues '2' without HTT to all DUTs
 | | And   Add all PCI devices to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
 | | When  IPv6 forwarding initialized in a 3-node circular topology
@@ -511,19 +511,19 @@
 | | ...                                       | ${min_rate} | ${max_rate}
 | | ...                                       | ${threshold}
 
-| Find PDR with 4 cores and rss 2 by using RFC2544 binary search and 9000B frames through IPv6 forwarding with COP in 3-node topology
+| Find PDR with 4 cores and rxqueues 2 by using RFC2544 binary search and 9000B frames through IPv6 forwarding with COP in 3-node topology
 | | [Documentation]
-| | ... | Find throughput on 4 cores and rss 2 with partial drop rate for 9000B
+| | ... | Find throughput on 4 cores and rxqueues 2 with partial drop rate for 9000B
 | | ... | frames by using binary search with threshold 5,000pps. Loss
 | | ... | acceptance is set to 0.5 percent of transmitted packets.
-| | [Tags] | 4_THREAD_NOHTT_RSS_2 | MULTI_THREAD | PDR
+| | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | PDR
 | | ${framesize}= | Set Variable | 9000
 | | ${min_rate}= | Set Variable | 5000
 | | ${max_rate}= | Set Variable | ${10Ge_linerate_pps_9000B}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '4' worker threads and rss '2' without HTT to all DUTs
+| | Given Add '4' worker threads and rxqueues '2' without HTT to all DUTs
 | | And   Add all PCI devices to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
 | | When  IPv6 forwarding initialized in a 3-node circular topology
