@@ -1,0 +1,349 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba092121_cde489ae",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 692,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-07T10:46:16Z",
+      "side": 1,
+      "message": "Please, add \"from actual interface dump.\"\nto clearly define difference to KW get_interface_sw_index in topology.py.",
+      "range": {
+        "startLine": 692,
+        "startChar": 50,
+        "endLine": 692,
+        "endChar": 51
+      },
+      "revId": "594f1644b3f6fb9b014cc215b51d19f5256e7263",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_2ded458c",
+        "filename": "resources/libraries/robot/honeycomb/interfaces.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 349,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-07T10:46:16Z",
+      "side": 1,
+      "message": "Please, use more descritpive value, e.g. GigabitEthernet0/8/0",
+      "range": {
+        "startLine": 349,
+        "startChar": 33,
+        "endLine": 349,
+        "endChar": 41
+      },
+      "revId": "594f1644b3f6fb9b014cc215b51d19f5256e7263",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_0d02813e",
+        "filename": "resources/libraries/robot/honeycomb/interfaces.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 366,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-07T10:46:16Z",
+      "side": 1,
+      "message": "Please, use more descritpive value, e.g. GigabitEthernet0/8/0",
+      "range": {
+        "startLine": 366,
+        "startChar": 33,
+        "endLine": 366,
+        "endChar": 41
+      },
+      "revId": "594f1644b3f6fb9b014cc215b51d19f5256e7263",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_6d9a1d16",
+        "filename": "resources/libraries/robot/honeycomb/vxlan_gpe.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-07T10:46:16Z",
+      "side": 1,
+      "message": "configuration",
+      "range": {
+        "startLine": 37,
+        "startChar": 28,
+        "endLine": 37,
+        "endChar": 41
+      },
+      "revId": "594f1644b3f6fb9b014cc215b51d19f5256e7263",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_ed73cde5",
+        "filename": "resources/libraries/robot/honeycomb/vxlan_gpe.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-07T10:46:16Z",
+      "side": 1,
+      "message": "configuration",
+      "range": {
+        "startLine": 76,
+        "startChar": 28,
+        "endLine": 76,
+        "endChar": 41
+      },
+      "revId": "594f1644b3f6fb9b014cc215b51d19f5256e7263",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_ad54b521",
+        "filename": "resources/libraries/robot/honeycomb/vxlan_gpe.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-07T10:46:16Z",
+      "side": 1,
+      "message": "2nd wrong...",
+      "range": {
+        "startLine": 171,
+        "startChar": 10,
+        "endLine": 171,
+        "endChar": 15
+      },
+      "revId": "594f1644b3f6fb9b014cc215b51d19f5256e7263",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_6d369d05",
+        "filename": "tests/suites/honeycomb/7 - vxlan_gpe.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-07T10:46:16Z",
+      "side": 1,
+      "message": "Then Run ...",
+      "range": {
+        "startLine": 56,
+        "startChar": 4,
+        "endLine": 56,
+        "endChar": 7
+      },
+      "revId": "594f1644b3f6fb9b014cc215b51d19f5256e7263",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_4d3bd9eb",
+        "filename": "tests/suites/honeycomb/7 - vxlan_gpe.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-07T10:46:16Z",
+      "side": 1,
+      "message": "And Run ...",
+      "range": {
+        "startLine": 60,
+        "startChar": 4,
+        "endLine": 60,
+        "endChar": 7
+      },
+      "revId": "594f1644b3f6fb9b014cc215b51d19f5256e7263",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_2d40a555",
+        "filename": "tests/suites/honeycomb/7 - vxlan_gpe.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-07T10:46:16Z",
+      "side": 1,
+      "message": "And Run ...",
+      "range": {
+        "startLine": 63,
+        "startChar": 4,
+        "endLine": 63,
+        "endChar": 7
+      },
+      "revId": "594f1644b3f6fb9b014cc215b51d19f5256e7263",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_6d1d7d73",
+        "filename": "tests/suites/honeycomb/7 - vxlan_gpe.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-07T10:46:16Z",
+      "side": 1,
+      "message": "Then Run ...",
+      "range": {
+        "startLine": 155,
+        "startChar": 4,
+        "endLine": 155,
+        "endChar": 7
+      },
+      "revId": "594f1644b3f6fb9b014cc215b51d19f5256e7263",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_4d12b963",
+        "filename": "tests/suites/honeycomb/7 - vxlan_gpe.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-07T10:46:16Z",
+      "side": 1,
+      "message": "And Run ...",
+      "range": {
+        "startLine": 159,
+        "startChar": 4,
+        "endLine": 159,
+        "endChar": 7
+      },
+      "revId": "594f1644b3f6fb9b014cc215b51d19f5256e7263",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_2d178553",
+        "filename": "tests/suites/honeycomb/7 - vxlan_gpe.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-07T10:46:16Z",
+      "side": 1,
+      "message": "And Run ...",
+      "range": {
+        "startLine": 162,
+        "startChar": 4,
+        "endLine": 162,
+        "endChar": 7
+      },
+      "revId": "594f1644b3f6fb9b014cc215b51d19f5256e7263",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_7f040015",
+        "filename": "tests/suites/honeycomb/7 - vxlan_gpe.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-07T10:46:16Z",
+      "side": 1,
+      "message": "Then Run ...",
+      "range": {
+        "startLine": 179,
+        "startChar": 4,
+        "endLine": 179,
+        "endChar": 7
+      },
+      "revId": "594f1644b3f6fb9b014cc215b51d19f5256e7263",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_5f093c2b",
+        "filename": "tests/suites/honeycomb/7 - vxlan_gpe.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-07T10:46:16Z",
+      "side": 1,
+      "message": "And Run ...",
+      "range": {
+        "startLine": 183,
+        "startChar": 4,
+        "endLine": 183,
+        "endChar": 7
+      },
+      "revId": "594f1644b3f6fb9b014cc215b51d19f5256e7263",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_3f0e8835",
+        "filename": "tests/suites/honeycomb/7 - vxlan_gpe.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 186,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-07T10:46:16Z",
+      "side": 1,
+      "message": "And Run ...",
+      "range": {
+        "startLine": 186,
+        "startChar": 4,
+        "endLine": 186,
+        "endChar": 7
+      },
+      "revId": "594f1644b3f6fb9b014cc215b51d19f5256e7263",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
