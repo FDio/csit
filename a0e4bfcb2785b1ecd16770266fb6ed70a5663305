@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba092121_9f5eb4e8",
+        "filename": "tests/suites/fds_related_tests/tenant_network.robot",
+        "patchSetId": 31
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-07T12:00:52Z",
+      "side": 1,
+      "message": "namespaces.",
+      "range": {
+        "startLine": 222,
+        "startChar": 54,
+        "endLine": 222,
+        "endChar": 64
+      },
+      "revId": "a0e4bfcb2785b1ecd16770266fb6ed70a5663305",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
