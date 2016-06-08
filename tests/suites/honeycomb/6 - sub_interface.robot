@@ -18,11 +18,11 @@
 | Resource | resources/libraries/robot/honeycomb/interfaces.robot
 | Variables | tests/suites/honeycomb/resources/sub_interfaces.py
 | Suite Teardown | Honeycomb removes all bridge domains | ${node}
+| Force Tags | honeycomb_sanity
 | Documentation | *Honeycomb sub-interface management test suite.*
 | ...
 | ...           | This test suite tests if it is posible to create, modify and \
 | ...           | delete a sub-interface.
-| Force Tags | honeycomb_sanity
 
 *** Variables ***
 | ${node}= | ${nodes['DUT1']}
