@@ -21,8 +21,8 @@
 | Resource | resources/libraries/robot/honeycomb/persistence.robot
 | Suite Setup | Restart Honeycomb and VPP and clear persisted configuration
 | ... | ${node}
+| Force Tags | honeycomb_persistence
 | Documentation | *Honeycomb configuration persistence test suite.*
-| Force Tags | honeycomb_sanity
 
 *** Test Cases ***
 | Honeycomb persists configuration through restart of both Honeycomb and VPP

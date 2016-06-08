@@ -114,6 +114,29 @@
 | | interfaceAPI.Add bridge domain to interface
 | | ... | ${node} | ${interface2} | ${bd_name} | &{settings}
 
+| Honeycomb fails to add interfaces to bridge domain
+| | [Documentation] | Uses Honeycomb API to assign interfaces to a bridge\
+| | ... | domain.
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - information about a DUT node. Type: dictionary
+| | ... | - interface1, interface2 - names of interfaces to assign to bridge\
+| | ... | domain. Type: string
+| | ... | - bd_name - name of the bridge domain. Type: string
+| | ... | - settings - bridge domain specific interface settings.\
+| | ... | Type: dictionary
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Honeycomb fails to add interfaces to bridge domain \
+| | ... | \| ${nodes['DUT1']} \| GigabitEthernet0/8/0 \| GigabitEthernet0/9/0 \
+| | ... | \| bd-04 \| ${{split_horizon_group:2, bvi:True}} \|
+| | [Arguments] | ${node} | ${interface1} | ${interface2} | ${bd_name}
+| | ... | ${settings}
+| | Run keyword and expect error | *Failed to validate*
+| | ... | Honeycomb adds interfaces to bridge domain | ${node} | ${interface1}
+| | ... | ${interface2} | ${bd_name} | ${settings}
+
 | Honeycomb should show interfaces assigned to bridge domain
 | | [Documentation] | Uses Honeycomb API to verify interface assignment to\
 | | ... | bridge domain.
@@ -146,6 +169,29 @@
 | | ... | ${if2_data['v3po:l2']['bridged-virtual-interface']}
 | | ... | ${settings['bvi']}
 
+| Honeycomb should not show interfaces assigned to bridge domain
+| | [Documentation] | Uses Honeycomb API to verify interface assignment to\
+| | ... | bridge domain.
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - information about a DUT node. Type: dictionary
+| | ... | - interface1, interface2 - names of interfaces to check bridge domain\
+| | ... | assignment on. Type: string
+| | ... | - bd_name - name of the bridge domain. Type: string
+| | ... | - settings - bridge domain specific interface settings.\
+| | ... | Type: dictionary
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Honeycomb should not show interfaces assigned to bridge domain \
+| | ... | \| ${nodes['DUT1']} \| GigabitEthernet0/8/0 \| GigabitEthernet0/9/0 \
+| | ... | \| bd-04 \| ${{split_horizon_group:2, bvi:False}} \|
+| | [Arguments] | ${node} | ${interface1} | ${interface2} | ${bd_name}
+| | ... | ${settings}
+| | Run keyword and expect error | *ValueError*
+| | ... | Honeycomb should show interfaces assigned to bridge domain
+| | ... | ${node} | ${interface1} | ${interface2} | ${bd_name} | ${settings}
+
 | VAT should show interfaces assigned to bridge domain
 | | [Documentation] | Uses VAT to verify interface assignment to\
 | | ... | bridge domain.
@@ -154,9 +200,9 @@
 | | ... | - node - Information about a DUT node. Type: dictionary
 | | ... | - index - Index of bridge domains on VPP node. Starts from 0,\
 | | ... | new BDs reuse numbers after a bridge domain is removed. Type: int
-| | ... | - interface1, interface2 - Names of interfaces to assign to bridge\
-| | ... | domain. Type: string
-| | ... | - settings - Bridge domain specific interface settings.\
+| | ... | - interface1, interface2 - names of interfaces to check bridge domain\
+| | ... | assignment on. Type: string
+| | ... | - settings - bridge domain specific interface settings.\
 | | ... | Type: dictionary
 | | ...
 | | ... | *Example:*
@@ -175,6 +221,30 @@
 | | :FOR | ${interface} | IN | @{bd_interfaces}
 | | | Should contain | ${if_indices} | ${interface['sw_if_index']}
 | | | Should be equal | ${interface['shg']} | ${settings['split_horizon_group']}
+
+| VAT should not show interfaces assigned to bridge domain
+| | [Documentation] | Uses VAT to verify interface assignment to\
+| | ... | bridge domain, and expects to fail.
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - information about a DUT node. Type: dictionary
+| | ... | - index - index of bridge domains on VPP node. Starts from 0,\
+| | ... | new BDs reuse numbers after a bridge domain is removed. Type: int
+| | ... | - interface1, interface2 - names of interfaces to check bridge domain\
+| | ... | assignment on. Type: string
+| | ... | - settings - bridge domain specific interface settings.\
+| | ... | Type: dictionary
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| VAT should not show interfaces assigned to bridge domain \
+| | ... | \| ${nodes['DUT1']} \| ${4} \| GigabitEthernet0/8/0 \
+| | ... | \| GigabitEthernet0/9/0 \| ${{split_horizon_group:2, bvi:False}} \|
+| | [Arguments] | ${node} | ${index} | ${interface1} | ${interface2}
+| | ... | ${settings}
+| | Run keyword and expect error | *No JSON object could be decoded*
+| | ... | VAT should show interfaces assigned to bridge domain
+| | ... | ${node} | ${index} | ${interface1} | ${interface2} | ${settings}
 
 | Honeycomb removes all bridge domains
 | | [Documentation] | Uses Honeycomb API to remove all bridge domains from the \
