@@ -19,28 +19,23 @@
 *** Settings ***
 | Resource | resources/libraries/robot/default.robot
 | Resource | resources/libraries/robot/honeycomb/persistence.robot
-# Restart Honeycomb and VPP to clear configuration before tests.
-| Suite Setup | Run keywords
-| ... | Stop Honeycomb service on DUTs | ${node} | AND
-| ... | Clear persisted Honeycomb configuration | ${node} | AND
-| ... | Setup DUT | ${node} | AND
-| ... | Setup Honeycomb service on DUTs | ${node}
+| Suite Setup | Restart both systems and clear persisted configuration | ${node}
 | Documentation | *Honeycomb configuration persistence test suite.*
+| Force Tags | honeycomb_sanity
 
 *** Test Cases ***
 | Honeycomb persists configuration through restart of both systems
 | | [Documentation] | Checks if Honeycomb maintains configuration after both\
 | | ... | Honeycomb and VPP are restarted.
-| | [Tags] | honeycomb_sanity
-| | When Honeycomb configures every setting | ${node} | ${interface}
-| | And Honeycomb and VPP are restarted | ${node}
+| | Given Honeycomb configures every setting | ${node} | ${interface}
+| | And Honeycomb and VPP should verify every setting | ${node} | ${interface}
+| | When Honeycomb and VPP are restarted | ${node}
 | | Then Honeycomb and VPP should verify every setting | ${node} | ${interface}
 | | And Honeycomb should show no rogue interfaces | ${node}
 
 | Honeycomb persists configuration through restart of Honeycomb
 | | [Documentation] | Checks if Honeycomb maintains configuration after it\
 | | ... | is restarted.
-| | [Tags] | honeycomb_sanity
 | | Given Honeycomb and VPP should verify every setting | ${node} | ${interface}
 | | When Honeycomb is restarted | ${node}
 | | Then Honeycomb and VPP should verify every setting | ${node} | ${interface}
@@ -49,7 +44,6 @@
 | Honeycomb persists configuration through restart of VPP
 | | [Documentation] | Checks if Honeycomb updates VPP settings after VPP is\
 | | ... | restarted.
-| | [Tags] | honeycomb_sanity
 | | Given Honeycomb and VPP should verify every setting | ${node} | ${interface}
 | | When VPP is restarted | ${node}
 | | Then Honeycomb and VPP should verify every setting | ${node} | ${interface}
@@ -58,7 +52,25 @@
 | Honeycomb reverts to defaults if persistence files are invalid
 | | [Documentation] | Checks if Honeycomb reverts to default configuration when\
 | | ... | persistence files are damaged or invalid.
-| | [Tags] | honeycomb_sanity
-| | Given Honeycomb and VPP should verify every setting | ${node} | ${interface}
+| | [Teardown] | Run keyword if test failed
+| | ... | Restart both systems and clear persisted configuration | ${node}
+| | Given Honeycomb and VPP should not have default configuration | ${node}
 | | When Persistence file is damaged during restart | ${node}
 | | Then Honeycomb and VPP should have default configuration | ${node}
+
+*** Keywords ***
+| Restart both systems and clear persisted configuration
+| | [Documentation] | Restarts Honeycomb and VPP with default configuration.
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - information about a DUT node. Type: dictionary
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | Restart both systems and clear persisted configuration \
+| | ... | \| ${nodes['DUT1']} \|
+| | [Arguments] | ${node}
+| | Stop Honeycomb service on DUTs | ${node}
+| | Clear persisted Honeycomb configuration | ${node}
+| | Setup DUT | ${node}
+| | Setup Honeycomb service on DUTs | ${node}

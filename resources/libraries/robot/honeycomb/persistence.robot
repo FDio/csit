@@ -102,29 +102,15 @@
 | | ... | ${node} | ${tap_interface} | ${tap_settings}
 | | Honeycomb creates vhost-user interface
 | | ... | ${node} | ${vhost_interface} | ${vhost_user_server}
-| | Honeycomb creates sub-interface
-| | ... | ${node} | ${interface} | ${sub_interface_id}
-| | ... | ${sub_interface_base_settings} | ${sub_interface_settings}
+| | Honeycomb creates sub-interface | ${node} | ${interface}
+| | ... | ${sub_if_1_match} | ${sub_if_1_tags} | ${sub_if_1_settings}
 | | Honeycomb sets interface state | ${node} | ${interface} | up
-| | VxLAN configuration from Honeycomb should be
-| | ... | ${node} | ${vx_interface} | ${vxlan_settings}
-| | VxLAN configuration from VAT should be
-| | ... | ${node} | ${vxlan_settings}
-| | Bridge domain configuration from Honeycomb should be
-| | ... | ${node} | ${bd_name} | ${bd_settings}
-| | Bridge domain configuration from VAT should be
-| | ... | ${node} | ${0} | ${bd_settings}
-| | TAP configuration from Honeycomb should be
-| | ... | ${node} | ${tap_interface} | ${tap_settings}
-| | TAP configuration from VAT should be
-| | ... | ${node} | ${tap_interface} | ${tap_settings}
-| | Sub-interface configuration from Honeycomb should be
-| | ... | ${node} | ${sub_interface_name} | ${sub_interface_base_settings}
-| | ... | ${sub_interface_settings}
-| | Sub-interface configuration from VAT should be
-| | ... | ${node} | ${sub_interface_name} | ${sub_interface_settings}
-| | Interface state from Honeycomb should be | ${node} | ${interface} | up
-| | Interface state from VAT should be | ${node} | ${interface} | up
+| | Honeycomb sets the sub-interface up
+| | ... | ${node} | ${interface} | ${sub_if_id}
+| | Honeycomb adds sub-interface to bridge domain
+| | ... | ${node} | ${interface} | ${sub_if_id} | ${sub_bd_settings}
+| | Honeycomb configures tag rewrite
+| | ... | ${node} | ${interface} | ${sub_if_id} | ${tag_rewrite_pop_1}
 
 | Honeycomb and VPP should verify every setting
 | | [Documentation] | Uses Honeycomb and VAT to verify settings for VxLAN,\
@@ -156,12 +142,23 @@
 | | Vhost-user configuration from VAT should be
 | | ... | ${node} | ${vhost_user_server}
 | | Sub-interface configuration from Honeycomb should be
-| | ... | ${node} | ${sub_interface_name} | ${sub_interface_base_settings}
-| | ... | ${sub_interface_settings}
+| | ... | ${node} | ${interface} | ${sub_if_id} | ${sub_if_1_oper}
 | | Sub-interface configuration from VAT should be
-| | ... | ${node} | ${sub_interface_name} | ${sub_interface_settings}
+| | ... | ${node} | ${sub_if_name} | ${sub_if_1_oper}
 | | Interface state from Honeycomb should be | ${node} | ${interface} | up
 | | Interface state from VAT should be | ${node} | ${interface} | up
+| | interface state from Honeycomb should be
+| | ... | ${node} | ${sub_if_name} | up
+| | Interface state from VAT should be
+| | ... | ${node} | ${sub_if_name} | up
+| | Sub-interface bridge domain configuration from Honeycomb should be
+| | ... | ${node} | ${interface} | ${sub_if_id} | ${sub_bd_settings}
+| | Sub-interface bridge domain configuration from VAT should be
+| | ... | ${node} | ${sub_if_name} | ${sub_bd_settings}
+| | Rewrite tag from Honeycomb should be
+| | ... | ${node} | ${interface} | ${sub_if_id} | ${tag_rewrite_pop_1_oper}
+| | Rewrite tag from VAT should be
+| | ... | ${node} | ${sub_if_name} | ${tag_rewrite_pop_1_VAT}
 
 | Honeycomb and VPP should have default configuration
 | | [Documentation] | Uses Honeycomb and VAT to verify settings for VxLAN,\
@@ -189,10 +186,27 @@
 | | ... | ${node} | ${vhost_interface}
 | | Vhost-user configuration from VAT should be empty
 | | ... | ${node}
-| | Sub-interface configuration from Honeycomb should be empty
-| | ... | ${node} | ${sub_interface_name}
-| | Sub-interface configuration from VAT should be empty
-| | ... | ${node} | ${sub_interface_name}
+| | interface state from Honeycomb should be
+| | ... | ${node} | ${interface} | down
+| | And interface state from VAT should be
+| | ... | ${node} | ${interface} | down
+
+| Honeycomb and VPP should not have default configuration
+| | [Documentation] | Uses Honeycomb and VAT to verify settings for VxLAN,\
+| | ... | bridge domains, TAP, vhost-user and VLAN. Expects any\
+| | ... | configuration other than default.
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - information about a DUT node. Type: dictionary
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Honeycomb and VPP should not have default configuration \|
+| | ... | ${nodes['DUT1']} \|
+| | [Arguments] | ${node}
+| | Run keyword and expect error | *
+| | ... | Honeycomb and VPP should have default configuration | ${node}
+
 
 | Honeycomb should show no rogue interfaces
 | | [Documentation] | Checks if operational data contains interfaces not\
