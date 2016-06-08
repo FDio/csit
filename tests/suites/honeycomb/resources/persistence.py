@@ -22,9 +22,10 @@ def get_variables(interface):
     :return: dictionary of test variables
     :rtype: dict
     """
-    # Vlan subinterface basic settings
-    sub_interface_id = 10
-    sub_interface_name = interface + '.' + str(sub_interface_id)
+    # basic settings
+    bd_name = 'bd_persist'
+    sub_if_id = 1
+    sub_if_name = interface + '.' + str(sub_if_id)
 
     variables = {
         # VxLan settings
@@ -34,7 +35,7 @@ def get_variables(interface):
                            "vni": 88,
                            'encap-vrf-id': 0},
         # bridge domain settings
-        'bd_name': 'bd_persist',
+        'bd_name': bd_name,
         'bd_settings': {'flood': True,
                         'forward': True,
                         'learn': True,
@@ -53,22 +54,85 @@ def get_variables(interface):
                               'role': 'server'
                               },
         # Vlan subinterface settings
-        'sub_interface_id': sub_interface_id,
-        'sub_interface_name': sub_interface_name,
-        'sub_interface_base_settings': {'name': sub_interface_name,
-                                        'type': 'v3po:sub-interface'
-                                        },
-        'sub_interface_settings': {
-            'super-interface': interface,
-            'identifier': sub_interface_id,
-            'vlan-type': '802dot1ad',
-            'number-of-tags': 2,
-            'outer-id': 22,
-            'inner-id': 33,
-            'match-any-outer-id': False,
-            'match-any-inner-id': False,
-            'exact-match': True,
-            'default-subif': True
+        'sub_if_id': sub_if_id,
+        'sub_if_name': sub_if_name,
+        'sub_if_1_settings': {
+            "identifier": sub_if_id,
+            "vlan-type": "802dot1q",
+            "enabled": "false"
+            },
+        'sub_if_1_tags': [
+            {
+                "index": "0",
+                "dot1q-tag": {
+                    "tag-type": "dot1q-types:s-vlan",
+                    "vlan-id": "100"
+                }
+            },
+            {
+                "index": "1",
+                "dot1q-tag": {
+                    "tag-type": "dot1q-types:c-vlan",
+                    "vlan-id": "any"
+                }
+            }
+            ],
+        'sub_if_1_match': "vlan-tagged-exact-match",
+        'sub_if_1_oper': {
+            "identifier": sub_if_id,
+            "oper-status": "up",
+            "admin-status": "up",
+            "tags": {
+                "tag": [
+                    {
+                        "index": 1,
+                        "dot1q-tag": {
+                            "tag-type": "dot1q-types:c-vlan",
+                            "vlan-id": "any"
+                        }
+                    },
+                    {
+                        "index": 0,
+                        "dot1q-tag": {
+                            "tag-type": "dot1q-types:s-vlan",
+                            "vlan-id": "100"
+                        }
+                    }
+                ]
+            },
+            "match": {
+                "vlan-tagged": {
+                    "match-exact-tags": False
+                }
+            }
+        },
+        'sub_bd_settings': {
+            'bridge-domain': bd_name,
+            'split-horizon-group': '1',
+            'bridged-virtual-interface': 'False'
+        },
+        'tag_rewrite_pop_1': {
+            "pop-tags": "1"
+        },
+
+        'tag_rewrite_pop_1_oper': {
+            "vlan-type": "vpp-vlan:802dot1ad",
+            "pop-tags": 1
+        },
+
+        'tag_rewrite_pop_1_VAT': {
+            'sub_default': 0,
+            'sub_dot1ad': 0,
+            'sub_exact_match': 0,
+            'sub_inner_vlan_id': 0,
+            'sub_inner_vlan_id_any': 1,
+            'sub_number_of_tags': 2,
+            'sub_outer_vlan_id': 100,
+            'sub_outer_vlan_id_any': 0,
+            'vtr_op': 3,
+            'vtr_push_dot1q': 0,
+            'vtr_tag1': 0,
+            'vtr_tag2': 0
         }
     }
     return variables
