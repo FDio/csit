@@ -34,12 +34,12 @@ def ssh_no_error(ssh, cmd, sudo=False):
     :rtype: str
     """
 
-    if sudo == True:
+    if sudo:
         ret, stdo, stde = ssh.exec_command_sudo(cmd)
     else:
         ret, stdo, stde = ssh.exec_command(cmd)
 
-    if 0 != ret:
+    if ret != 0:
         print 'Command execution failed: "{}"'.format(cmd)
         print 'stdout: {0}'.format(stdo)
         print 'stderr: {0}'.format(stde)
@@ -90,6 +90,11 @@ def main():
                 for deb in packages:
                     print "###TI scp: {}".format(deb)
                     ssh.scp(local_path=deb, remote_path=install_dir)
+
+                # Try to remove installed vpp.* packages
+                cmd = """if [ $(dpkg -l | grep vpp.* | wc -l) -ne 0 ];
+                      then apt-get purge -y "vpp.*; fi"""
+                stdout = ssh_no_error(ssh, cmd, sudo=True)
 
                 # Installation of VPP deb packages
                 cmd = "dpkg -i --force-all {}/*.deb".format(install_dir)
