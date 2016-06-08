@@ -32,6 +32,7 @@
 | Resource | resources/libraries/robot/honeycomb/vxlan.robot
 # import additional VxLAN settings from resource file
 | Variables | tests/suites/honeycomb/resources/vxlan.py
+| Force Tags | honeycomb_sanity
 | Documentation | *Honeycomb VxLAN management test suite.*
 | ...
 | ... | Test suite uses the first interface of the first DUT node.
@@ -39,7 +40,6 @@
 *** Test Cases ***
 | Honeycomb configures VxLAN tunnel
 | | [Documentation] | Check if Honeycomb API can configure VxLAN settings.
-| | [Tags] | honeycomb_sanity
 | | Given VxLAN configuration from Honeycomb should be empty
 | | ... | ${node} | ${vx_interface}
 | | And VxLAN configuration from VAT should be empty | ${node}
@@ -52,7 +52,6 @@
 
 | Honeycomb disables VxLAN tunnel
 | | [Documentation] | Check if Honeycomb API can reset VxLAN configuration.
-| | [Tags] | honeycomb_sanity
 | | Given VxLAN configuration from Honeycomb should be
 | | ... | ${node} | ${vx_interface} | ${vxlan_settings}
 | | And VxLAN configuration from VAT should be
@@ -65,7 +64,6 @@
 Honeycomb can configure VXLAN tunnel after one has been disabled
 | | [Documentation] | Check if Honeycomb API can configure VxLAN settings again\
 | | ... | after previous settings have been removed.
-| | [Tags] | honeycomb_sanity
 | | [Teardown] | Honeycomb removes VxLAN tunnel settings
 | | ... | ${node} | ${vx_interface}
 | | Given VxLAN configuration from Honeycomb should be empty
@@ -81,7 +79,6 @@ Honeycomb can configure VXLAN tunnel after one has been disabled
 | Honeycomb does not set VxLAN configuration on another interface type
 | | [Documentation] | Check if Honeycomb API prevents setting VxLAN\
 | | ... | on incorrect interface.
-| | [Tags] | honeycomb_sanity
 | | Given VxLAN configuration from Honeycomb should be empty
 | | ... | ${node} | ${interface}
 | | And VxLAN configuration from VAT should be empty | ${node}
@@ -95,7 +92,6 @@ Honeycomb can configure VXLAN tunnel after one has been disabled
 | Honeycomb does not set invalid VxLAN configuration
 | | [Documentation] | Check if Honeycomb API prevents setting incorrect VxLAN\
 | | ... | settings.
-| | [Tags] | honeycomb_sanity
 | | Given VxLAN configuration from Honeycomb should be empty
 | | ... | ${node} | ${vx_interface}
 | | And VxLAN configuration from VAT should be empty | ${node}
@@ -107,7 +103,6 @@ Honeycomb can configure VXLAN tunnel after one has been disabled
 | Honeycomb configures VxLAN tunnel with ipv6
 | | [Documentation] | Check if Honeycomb API can configure VxLAN with\
 | | ... | ipv6 settings.
-| | [Tags] | honeycomb_sanity
 | | [Teardown] | Honeycomb removes VxLAN tunnel settings
 | | ... | ${node} | ${vx_interface}
 | | Given VxLAN configuration from Honeycomb should be empty
