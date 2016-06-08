@@ -449,30 +449,6 @@ class InterfaceKeywords(object):
             node, interface, path, None)
 
     @staticmethod
-    def add_first_ipv4_neighbor(node, interface, ip_addr, link_layer_address):
-        """Add the first IPv4 neighbour.
-
-        If there are any other neighbours configured, they will be removed.
-
-        :param node: Honeycomb node.
-        :param interface: The name of interface.
-        :param ip_addr: IPv4 address of neighbour to be set.
-        :param link_layer_address: Link layer address.
-        :type node: dict
-        :type interface: str
-        :type ip_addr: str
-        :type link_layer_address: str
-        :return: Content of response.
-        :rtype: bytearray
-        """
-
-        path = ("interfaces", ("interface", "name", interface), "ietf-ip:ipv4")
-        neighbor = {"neighbor": [{"ip": ip_addr,
-                                  "link-layer-address": link_layer_address}, ]}
-        return InterfaceKeywords._set_interface_properties(
-            node, interface, path, neighbor)
-
-    @staticmethod
     def add_ipv4_neighbor(node, interface, ip_addr, link_layer_address):
         """Add the IPv4 neighbour.
 
@@ -602,30 +578,6 @@ class InterfaceKeywords(object):
                 "address")
         return InterfaceKeywords._set_interface_properties(
             node, interface, path, None)
-
-    @staticmethod
-    def add_first_ipv6_neighbor(node, interface, ip_addr, link_layer_address):
-        """Add the first IPv6 neighbour.
-
-        If there are any other neighbours configured, they will be removed.
-
-        :param node: Honeycomb node.
-        :param interface: The name of interface.
-        :param ip_addr: IPv6 address of neighbour to be set.
-        :param link_layer_address: Link layer address.
-        :type node: dict
-        :type interface: str
-        :type ip_addr: str
-        :type link_layer_address: str
-        :return: Content of response.
-        :rtype: bytearray
-        """
-
-        path = ("interfaces", ("interface", "name", interface), "ietf-ip:ipv6")
-        neighbor = {"neighbor": [{"ip": ip_addr,
-                                  "link-layer-address": link_layer_address}, ]}
-        return InterfaceKeywords._set_interface_properties(
-            node, interface, path, neighbor)
 
     @staticmethod
     def add_ipv6_neighbor(node, interface, ip_addr, link_layer_address):
