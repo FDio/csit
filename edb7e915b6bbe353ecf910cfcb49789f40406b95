@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "ba092121_93bb4bc4",
+        "filename": "resources/tools/topo_installation.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 74
+      },
+      "writtenOn": "2016-06-09T11:33:54Z",
+      "side": 1,
+      "message": "http://legacy.python.org/dev/peps/pep-0008/\nDon\u0027t compare boolean values to True or False using \u003d\u003d.\n\nYes:   if greeting:\nNo:    if greeting \u003d\u003d True:\nWorse: if greeting is True:",
+      "parentUuid": "ba092121_33dd9f71",
+      "range": {
+        "startLine": 37,
+        "startChar": 11,
+        "endLine": 37,
+        "endChar": 12
+      },
+      "revId": "edb7e915b6bbe353ecf910cfcb49789f40406b95",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba092121_53f813e5",
         "filename": "resources/tools/topo_installation.py",
         "patchSetId": 7
@@ -36,6 +60,30 @@
       "writtenOn": "2016-06-09T03:17:31Z",
       "side": 1,
       "message": "Why is this changed?  The original conditional follows the recommendation in the Python Coding Guidelines:  https://wiki.fd.io/view/CSIT/Documentation#CSIT_Test_Code_Guidelines",
+      "range": {
+        "startLine": 42,
+        "startChar": 15,
+        "endLine": 42,
+        "endChar": 16
+      },
+      "revId": "edb7e915b6bbe353ecf910cfcb49789f40406b95",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_93e22bd4",
+        "filename": "resources/tools/topo_installation.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 74
+      },
+      "writtenOn": "2016-06-09T11:33:54Z",
+      "side": 1,
+      "message": "https://docs.pylint.org/changelog.html\nAdd a new convention message, ‘misplaced-comparison-constant’, emitted when a constant is placed in the left hand side of a comparison, as in ‘5 \u003d\u003d func()’. This is also called Yoda condition, since the flow of code reminds of the Star Wars green character, conditions usually encountered in languages with variabile assignments in conditional statements.",
+      "parentUuid": "ba092121_53f813e5",
       "range": {
         "startLine": 42,
         "startChar": 15,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "ba092121_73e797e5",
+        "filename": "resources/tools/topo_installation.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 74
+      },
+      "writtenOn": "2016-06-09T11:33:54Z",
+      "side": 1,
+      "message": "https://wiki.fd.io/view/CSIT/Documentation#CSIT_Test_Code_Guidelines\nI didn\u0027t find yoda condition enforcing in this doc.",
+      "parentUuid": "ba092121_13da9b78",
+      "range": {
+        "startLine": 86,
+        "startChar": 27,
+        "endLine": 86,
+        "endChar": 28
+      },
+      "revId": "edb7e915b6bbe353ecf910cfcb49789f40406b95",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba092121_f3e60744",
         "filename": "resources/tools/topo_installation.py",
         "patchSetId": 7
@@ -82,6 +154,30 @@
       "writtenOn": "2016-06-09T03:17:31Z",
       "side": 1,
       "message": "Non-conformant coding style.",
+      "range": {
+        "startLine": 104,
+        "startChar": 26,
+        "endLine": 104,
+        "endChar": 27
+      },
+      "revId": "edb7e915b6bbe353ecf910cfcb49789f40406b95",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_53ec93c7",
+        "filename": "resources/tools/topo_installation.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 74
+      },
+      "writtenOn": "2016-06-09T11:33:54Z",
+      "side": 1,
+      "message": "https://wiki.fd.io/view/CSIT/Documentation#CSIT_Test_Code_Guidelines\nI didn\u0027t find yoda condition enforcing in this doc.",
+      "parentUuid": "ba092121_f3e60744",
       "range": {
         "startLine": 104,
         "startChar": 26,
