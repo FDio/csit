@@ -26,6 +26,7 @@
 *** Settings ***
 | Resource | resources/libraries/robot/default.robot
 | Resource | resources/libraries/robot/honeycomb/vhost_user.robot
+| Force Tags | honeycomb_sanity
 | Documentation | *Honeycomb vhost-user interface management test suite.*
 | ...
 | ...           | This test suite tests if it is posible to create, modify and\
@@ -35,7 +36,6 @@
 | Honycomb creates vhost-user interface - server
 | | [Documentation] | Check if Honeycomb creates a vhost-user interface, role:\
 | | ... | server.
-| | [Tags] | honeycomb_sanity
 | | ...
 | | Given vhost-user configuration from Honeycomb should be empty
 | | ... | ${node} | ${vhost_interface}
@@ -49,7 +49,6 @@
 | Honycomb modifies vhost-user interface - server
 | | [Documentation] | Check if Honeycomb can modify properties of existing\
 | | ... | vhost-user interface, role: server.
-| | [Tags] | honeycomb_sanity
 | | ...
 | | Given vhost-user configuration from Honeycomb should be
 | | ... | ${node} | ${vhost_interface} | ${vhost_user_server}
@@ -75,7 +74,6 @@
 | Honycomb deletes vhost-user interface - server
 | | [Documentation] | Check if Honeycomb can delete an existing vhost-user\
 | | ... | interface, role: server.
-| | [Tags] | honeycomb_sanity
 | | ...
 | | Given vhost-user configuration from Honeycomb should be
 | | ... | ${node} | ${vhost_interface} | ${vhost_user_server}
@@ -89,7 +87,6 @@
 | Honycomb creates vhost-user interface - client
 | | [Documentation] | Check if Honeycomb creates a vhost-user interface, role:\
 | | ... | client.
-| | [Tags] | honeycomb_sanity
 | | ...
 | | Given vhost-user configuration from Honeycomb should be empty
 | | ... | ${node} | ${vhost_interface}
@@ -103,7 +100,6 @@
 | Honycomb modifies vhost-user interface - client
 | | [Documentation] | Check if Honeycomb can modify properties of existing\
 | | ... | vhost-user interface, role: client.
-| | [Tags] | honeycomb_sanity
 | | ...
 | | Given vhost-user configuration from Honeycomb should be
 | | ... | ${node} | ${vhost_interface} | ${vhost_user_client}
@@ -129,7 +125,6 @@
 | Honycomb deletes vhost-user interface - client
 | | [Documentation] | Check if Honeycomb can delete an existing vhost-user\
 | | ... | interface, role: client.
-| | [Tags] | honeycomb_sanity
 | | ...
 | | Given vhost-user configuration from Honeycomb should be
 | | ... | ${node} | ${vhost_interface} | ${vhost_user_client}
@@ -143,7 +138,6 @@
 | Honeycomb does not set vhost-user configuration on another interface type
 | | [Documentation] | Check if Honeycomb refuses to set vhost-user\
 | | ... | configuration for interface which is not v3po:vhost-user type.
-| | [Tags] | honeycomb_sanity
 | | ...
 | | When Honeycomb fails setting vhost-user on different interface type
 | | ... | ${node} | ${interface} | ${vhost_user_server}
@@ -155,7 +149,6 @@
 | Honeycomb does not set invalid vhost-user configuration
 | | [Documentation] | Check if Honeycomb refuses to set invalid parameters to\
 | | ... | vhost-user interface.
-| | [Tags] | honeycomb_sanity
 | | ...
 | | Given vhost-user configuration from Honeycomb should be empty
 | | ... | ${node} | ${vhost_interface}
