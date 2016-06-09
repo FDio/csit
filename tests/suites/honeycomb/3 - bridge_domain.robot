@@ -21,12 +21,14 @@
 | ${bd2_name}= | bd-02
 | &{bd_settings}= | flood=${True} | forward=${True} | learn=${True}
 | ... | unknown-unicast-flood=${True} | arp-termination=${True}
-| &{if_settings}= | split_horizon_group=${1} | bvi=${True}
+| &{if_settings}= | split_horizon_group=${1} | bvi=${False}
+| &{if_settings2}= | split_horizon_group=${2} | bvi=${True}
 
 *** Settings ***
 | Resource | resources/libraries/robot/default.robot
 | Resource | resources/libraries/robot/honeycomb/interfaces.robot
 | Resource | resources/libraries/robot/honeycomb/bridge_domain.robot
+| Force Tags | honeycomb_sanity
 | Documentation | *Honeycomb bridge domain management test suite.*
 | ...
 | ... | Test suite uses the first two interfaces on the first DUT node.
@@ -34,7 +36,6 @@
 *** Test Cases ***
 | Honeycomb sets up l2 bridge domain
 | | [Documentation] | Check if Honeycomb can create bridge domains on VPP node.
-| | [Tags] | honeycomb_sanity
 | | When Honeycomb creates first l2 bridge domain
 | | ... | ${node} | ${bd1_name} | ${bd_settings}
 | | Then Bridge domain configuration from Honeycomb should be
@@ -45,7 +46,6 @@
 | Honeycomb manages multiple bridge domains on node
 | | [Documentation] | Check if Honeycomb can manage multiple bridge domains on\
 | | ... | a single node.
-| | [Tags] | honeycomb_sanity
 | | Given Bridge domain configuration from Honeycomb should be
 | | ... | ${node} | ${bd1_name} | ${bd_settings}
 | | When Honeycomb creates l2 bridge domain
@@ -62,7 +62,6 @@
 | Honeycomb removes bridge domains
 | | [Documentation] | Check if Honeycomb can remove bridge domains from a VPP\
 | | ... | node.
-| | [Tags] | honeycomb_sanity
 | | Given Bridge domain configuration from Honeycomb should be
 | | ... | ${node} | ${bd1_name} | ${bd_settings}
 | | When Honeycomb removes all bridge domains | ${node}
@@ -72,7 +71,6 @@
 | Honeycomb assigns interfaces to bridge domain
 | | [Documentation] | Check if Honeycomb can assign VPP interfaces to an\
 | | ... | existing bridge domain.
-| | [Tags] | honeycomb_sanity
 | | Given Honeycomb creates first l2 bridge domain
 | | ... | ${node} | ${bd1_name} | ${bd_settings}
 | | When Honeycomb adds interfaces to bridge domain
@@ -85,7 +83,6 @@
 | Honeycomb removes bridge domain with an interface assigned
 | | [Documentation] | Check if Honeycomb can remove a bridge domain that has an\
 | | ... | interface assigned to it.
-| | [Tags] | honeycomb_sanity
 | | Given Honeycomb should show interfaces assigned to bridge domain
 | | ... | ${node} | @{interfaces} | ${bd1_name} | ${if_settings}
 | | And VAT should show interfaces assigned to bridge domain
@@ -93,3 +90,16 @@
 | | When Honeycomb removes all bridge domains | ${node}
 | | Then Honeycomb should show no bridge domains | ${node}
 | | And VAT should show no bridge domains | ${node}
+
+| Honeycomb does not assign two bridged virtual interfaces to one bridge domain.
+| | [Documentation] | Check if Honeycomb can assign two bridged virtual\
+| | ... | interfaces to a single bridge domain, and expect to fail.
+| | [Teardown] | Honeycomb removes all bridge domains | ${node}
+| | Given Honeycomb creates first l2 bridge domain
+| | ... | ${node} | ${bd1_name} | ${bd_settings}
+| | When Honeycomb fails to add interfaces to bridge domain
+| | ... | ${node} | @{interfaces} | ${bd1_name} | ${if_settings2}
+| | Then Honeycomb should not show interfaces assigned to bridge domain
+| | ... | ${node} | @{interfaces} | ${bd1_name} | ${if_settings2}
+| | And VAT should not show interfaces assigned to bridge domain
+| | ... | ${node} | ${0} | @{interfaces} | ${if_settings2}

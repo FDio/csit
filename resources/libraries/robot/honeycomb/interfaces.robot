@@ -90,7 +90,7 @@
 | | ... | ${vat_data['admin_up_down']} == 1 | up | down
 | | Should be equal | ${vat_state} | ${state}
 
-| Honeycomb sets interface ipv4 configuration
+| Honeycomb sets interface ipv4 address
 | | [Documentation] | Uses Honeycomb API to change ipv4 configuration\
 | | ... | of the specified interface.
 | | ...
@@ -110,11 +110,9 @@
 | | ... | \| 192.168.0.3 \| 08:00:27:c0:5d:37 \
 | | ... | \| ${{'enabled': True, 'mtu': 1500}} \|
 | | [Arguments] | ${node} | ${interface} | ${address} | ${netmask}
-| | ... | ${fib_address} | ${fib_mac} | ${settings}
+| | ... | ${settings}
 | | interfaceAPI.Add first ipv4 address
 | | ... | ${node} | ${interface} | ${address} | ${netmask}
-| | interfaceAPI.Add first ipv4 neighbor
-| | ... | ${node} | ${interface} | ${fib_address} | ${fib_mac}
 | | :FOR | ${key} | IN | @{settings.keys()}
 | | | interfaceAPI.Configure interface ipv4
 | | | ... | ${node} | ${interface} | ${key} | ${settings['${key}']}
@@ -134,8 +132,32 @@
 | | ... | \| Honeycomb sets interface ipv4 address with prefix \
 | | ... | \| ${nodes['DUT1']} \| GigabitEthernet0/8/0 \| 192.168.0.2 \| 24 \|
 | | [Arguments] | ${node} | ${interface} | ${address} | ${prefix}
+| | ... | ${settings}
 | | interfaceAPI.Add first ipv4 address
 | | ... | ${node} | ${interface} | ${address} | ${prefix}
+| | :FOR | ${key} | IN | @{settings.keys()}
+| | | interfaceAPI.Configure interface ipv4
+| | | ... | ${node} | ${interface} | ${key} | ${settings['${key}']}
+
+| Honeycomb adds interface ipv4 neighbor
+| | [Documentation] | Uses Honeycomb API to assign an ipv4 neighbor to the\
+| | ... | specified interface. Existing neighbor entries will be removed.
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - information about a DUT node. Type: dictionary
+| | ... | - interface - name of an interface on the specified node. Type: string
+| | ... | - fib_address - IP address to add to fib table. Type: string
+| | ... | - fib_mac - MAC address to add to fib table. Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Honeycomb adds interface ipv4 neighbor \| ${nodes['DUT1']} \
+| | ... | \| GigabitEthernet0/8/0 \| 192.168.0.2 \| 255.255.255.0 \
+| | ... | \| 192.168.0.3 \| 08:00:27:c0:5d:37 \
+| | ... | \| ${{'enabled': True, 'mtu': 1500}} \|
+| | [Arguments] | ${node} | ${interface} | ${fib_address} | ${fib_mac}
+| | interfaceAPI.Add first ipv4 neighbor
+| | ... | ${node} | ${interface} | ${fib_address} | ${fib_mac}
 
 | IPv4 config from Honeycomb should be
 | | [Documentation] | Retrieves interface ipv4 configuration through Honeycomb\

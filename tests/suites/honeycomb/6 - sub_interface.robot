@@ -17,6 +17,7 @@
 | Resource | resources/libraries/robot/honeycomb/bridge_domain.robot
 | Resource | resources/libraries/robot/honeycomb/interfaces.robot
 | Variables | tests/suites/honeycomb/resources/sub_interfaces.py
+| Force Tags | honeycomb_sanity
 | Documentation | *Honeycomb sub-interface management test suite.*
 | ...
 | ...           | This test suite tests if it is posible to create, modify and\
@@ -78,8 +79,6 @@
 | Honycomb creates sub-interface
 | | [Documentation] | Check if Honeycomb creates a sub-interface.
 | | ...
-| | [Tags] | honeycomb_sanity
-| | ...
 | | Given sub-interface configuration from Honeycomb should be empty
 | | ... | ${node} | ${sub_interface_name}
 | | And sub-interface configuration from VAT should be empty
@@ -95,8 +94,6 @@
 
 | Honeycomb adds sub-interface to bridge domain
 | | [Documentation] | Check if Honeycomb adds a sub-interface to bridge domain.
-| | ...
-| | [Tags] | honeycomb_sanity
 | | ...
 | | Given sub-interface configuration from Honeycomb should be
 | | ... | ${node} | ${sub_interface_name} | ${sub_interface_base_settings}
@@ -117,8 +114,6 @@
 | Honeycomb sets vlan tag rewrite on sub-interface in bridge domain
 | | [Documentation] | Check if Honeycomb adds vlan tag rewrite on sub-interface\
 | | ... | in bridge domain.
-| | ...
-| | [Tags] | honeycomb_sanity
 | | ...
 | | Given sub-interface configuration from Honeycomb should be
 | | ... | ${node} | ${sub_interface_name} | ${sub_interface_base_settings}
@@ -142,8 +137,6 @@
 | | [Documentation] | Check if Honeycomb updates vlan tag rewrite on\
 | | ... | sub-interface in bridge domain.
 | | ...
-| | [Tags] | honeycomb_sanity
-| | ...
 | | Given sub-interface configuration from Honeycomb should be
 | | ... | ${node} | ${sub_interface_name} | ${sub_interface_base_settings}
 | | ... | ${sub_interface_settings}
@@ -161,8 +154,6 @@
 | Honeycomb removes vlan tag rewrite from sub-interface
 | | [Documentation] | Check if Honeycomb removes vlan tag rewrite from\
 | | ... | sub-interface.
-| | ...
-| | [Tags] | honeycomb_sanity
 | | ...
 | | Given sub-interface configuration from Honeycomb should be
 | | ... | ${node} | ${sub_interface_name} | ${sub_interface_base_settings}
@@ -182,8 +173,6 @@
 | | [Documentation] | Check if Honeycomb adds vlan tag rewrite on sub-interface\
 | | ... | in bridge domain if it was disabled before.
 | | ...
-| | [Tags] | honeycomb_sanity
-| | ...
 | | Given sub-interface configuration from Honeycomb should be
 | | ... | ${node} | ${sub_interface_name} | ${sub_interface_base_settings}
 | | ... | ${sub_interface_settings}
@@ -201,8 +190,6 @@
 | Honycomb deletes sub-interface
 | | [Documentation] | Check if Honeycomb can delete an existing sub-interface.
 | | ...
-| | [Tags] | honeycomb_sanity
-| | ...
 | | Given sub-interface configuration from Honeycomb should be
 | | ... | ${node} | ${sub_interface_name} | ${sub_interface_base_settings}
 | | ... | ${sub_interface_settings}
@@ -217,8 +204,6 @@
 | Honycomb creates sub-interface with bridge domain
 | | [Documentation] | Check if Honeycomb creates a sub-interface with bridge\
 | | ... | domain and rewrite tag configured.
-| | ...
-| | [Tags] | honeycomb_sanity
 | | ...
 | | Given sub-interface configuration from Honeycomb should be empty
 | | ... | ${node} | ${sub_interface2_name}
@@ -242,8 +227,6 @@
 | | ... | "rewrite-operation" parameter in "vlan-tag-rewrite". The operation\
 | | ... | must fail.
 | | ...
-| | [Tags] | honeycomb_sanity
-| | ...
 | | Given sub-interface configuration with bd and rw from Honeycomb should be
 | | ... | ${node} | ${sub_interface2_name} | ${sub_interface2_base_settings}
 | | ... | ${sub_interface2_settings}
@@ -264,8 +247,6 @@
 | | ... | "first-pushed" parameter in "vlan-tag-rewrite". The operation must\
 | | ... | fail.
 | | ...
-| | [Tags] | honeycomb_sanity
-| | ...
 | | Given sub-interface configuration with bd and rw from Honeycomb should be
 | | ... | ${node} | ${sub_interface2_name} | ${sub_interface2_base_settings}
 | | ... | ${sub_interface2_settings}
@@ -284,8 +265,6 @@
 | Honeycomb sets interface and sub-interface up
 | | [Documentation] | Honeycomb changes the state of interface up and then\
 | | ... | changes the state of its sub-interface up, in this order.
-| | ...
-| | [Tags] | honeycomb_sanity
 | | ...
 | | Given interface state from Honeycomb should be
 | | ... | ${node} | ${interface} | down
@@ -312,8 +291,6 @@
 | | [Documentation] | Honeycomb sets the sub-interface down while its\
 | | ... | super-interface is up. It must be possible.
 | | ...
-| | [Tags] | honeycomb_sanity
-| | ...
 | | Given interface state from Honeycomb should be
 | | ... | ${node} | ${sub_interface_name} | up
 | | And Interface state from VAT should be
@@ -336,8 +313,6 @@
 | Honeycomb sets interface and sub-interface down
 | | [Documentation] | Honeycomb changes the state of interface down and then\
 | | ... | changes the state of its sub-interface down, in this order.
-| | ...
-| | [Tags] | honeycomb_sanity
 | | ...
 | | Given interface state from Honeycomb should be
 | | ... | ${node} | ${interface} | up
@@ -363,8 +338,6 @@
 | Honeycomb fails to set sub-interface up while its super-interface is down
 | | [Documentation] | Honeycomb tries to set the sub-interface up while its\
 | | ... | super-interface is down. It must not be possible.
-| | ...
-| | [Tags] | honeycomb_sanity
 | | ...
 | | Given interface state from Honeycomb should be
 | | ... | ${node} | ${interface} | down
