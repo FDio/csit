@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba092121_33dd9f71",
+        "filename": "resources/tools/topo_installation.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2016-06-09T03:17:31Z",
+      "side": 1,
+      "message": "What is the purpose of this change?  The original conditional is more readable.  Although per the coding guidelines it should be \"if True \u003d\u003d sudo\".",
+      "range": {
+        "startLine": 37,
+        "startChar": 11,
+        "endLine": 37,
+        "endChar": 12
+      },
+      "revId": "edb7e915b6bbe353ecf910cfcb49789f40406b95",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_53f813e5",
+        "filename": "resources/tools/topo_installation.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2016-06-09T03:17:31Z",
+      "side": 1,
+      "message": "Why is this changed?  The original conditional follows the recommendation in the Python Coding Guidelines:  https://wiki.fd.io/view/CSIT/Documentation#CSIT_Test_Code_Guidelines",
+      "range": {
+        "startLine": 42,
+        "startChar": 15,
+        "endLine": 42,
+        "endChar": 16
+      },
+      "revId": "edb7e915b6bbe353ecf910cfcb49789f40406b95",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_13da9b78",
+        "filename": "resources/tools/topo_installation.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2016-06-09T03:17:31Z",
+      "side": 1,
+      "message": "Non-conformant coding style.",
+      "range": {
+        "startLine": 86,
+        "startChar": 27,
+        "endLine": 86,
+        "endChar": 28
+      },
+      "revId": "edb7e915b6bbe353ecf910cfcb49789f40406b95",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_f3e60744",
+        "filename": "resources/tools/topo_installation.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2016-06-09T03:17:31Z",
+      "side": 1,
+      "message": "Non-conformant coding style.",
+      "range": {
+        "startLine": 104,
+        "startChar": 26,
+        "endLine": 104,
+        "endChar": 27
+      },
+      "revId": "edb7e915b6bbe353ecf910cfcb49789f40406b95",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
