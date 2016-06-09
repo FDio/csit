@@ -26,6 +26,7 @@
 | Resource | resources/libraries/robot/default.robot
 | Resource | resources/libraries/robot/honeycomb/interfaces.robot
 | Resource | resources/libraries/robot/honeycomb/tap.robot
+| Force Tags | honeycomb_sanity
 | Documentation | *Honeycomb TAP management test suite.*
 | ...
 | ... | Test suite uses the first interface of the first DUT node.
@@ -33,7 +34,6 @@
 *** Test Cases ***
 | Honeycomb configures TAP interface
 | | [Documentation] | Check if Honeycomb API can configure a TAP interface.
-| | [Tags] | honeycomb_sanity
 | | Given TAP configuration from Honeycomb should be empty
 | | ... | ${node} | ${tap_interface}
 | | And TAP configuration from VAT should be empty
@@ -48,7 +48,6 @@
 | Honeycomb modifies existing TAP interface configuration
 | | [Documentation] | Check if Honeycomb API can re-configure and existing TAP\
 | | ... | interface with new settings.
-| | [Tags] | honeycomb_sanity
 | | Given TAP configuration from Honeycomb should be
 | | ... | ${node} | ${tap_interface} | ${tap_settings}
 | | And TAP configuration from VAT should be
@@ -62,7 +61,6 @@
 
 | Honeycomb removes TAP interface
 | | [Documentation] | Check if Honeycomb API can remove TAP interface.
-| | [Tags] | honeycomb_sanity
 | | Given TAP configuration from Honeycomb should be
 | | ... | ${node} | ${tap_interface} | ${tap_settings2}
 | | And TAP configuration from VAT should be

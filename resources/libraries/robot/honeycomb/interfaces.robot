@@ -90,7 +90,7 @@
 | | ... | ${vat_data['admin_up_down']} == 1 | up | down
 | | Should be equal | ${vat_state} | ${state}
 
-| Honeycomb sets interface ipv4 configuration
+| Honeycomb sets interface ipv4 address
 | | [Documentation] | Uses Honeycomb API to change ipv4 configuration\
 | | ... | of the specified interface.
 | | ...
@@ -99,25 +99,21 @@
 | | ... | - interface - name of an interface on the specified node. Type: string
 | | ... | - address - IP address to set. Type: string
 | | ... | - netmask - subnet mask to set. Type: string
-| | ... | - fib_address - IP address to add to fib table. Type: string
-| | ... | - fib_mac - MAC address to add to fib table. Type: string
 | | ... | - settings - ipv4 interface settings. Type: dictionary
 | | ...
 | | ... | *Example:*
 | | ...
 | | ... | \| Honeycomb sets interface ipv4 configuration \| ${nodes['DUT1']} \
 | | ... | \| GigabitEthernet0/8/0 \| 192.168.0.2 \| 255.255.255.0 \
-| | ... | \| 192.168.0.3 \| 08:00:27:c0:5d:37 \
 | | ... | \| ${{'enabled': True, 'mtu': 1500}} \|
 | | [Arguments] | ${node} | ${interface} | ${address} | ${netmask}
-| | ... | ${fib_address} | ${fib_mac} | ${settings}
+| | ... | ${settings}
 | | interfaceAPI.Add first ipv4 address
 | | ... | ${node} | ${interface} | ${address} | ${netmask}
-| | interfaceAPI.Add first ipv4 neighbor
-| | ... | ${node} | ${interface} | ${fib_address} | ${fib_mac}
 | | :FOR | ${key} | IN | @{settings.keys()}
 | | | interfaceAPI.Configure interface ipv4
 | | | ... | ${node} | ${interface} | ${key} | ${settings['${key}']}
+| | | ${api_data}= | interfaceAPI.Get interface oper data | ${node} | ${interface}
 
 | Honeycomb sets interface ipv4 address with prefix
 | | [Documentation] | Uses Honeycomb API to assign an ipv4 address to the\
@@ -128,14 +124,38 @@
 | | ... | - interface - name of an interface on the specified node. Type: string
 | | ... | - address - IP address to set. Type: string
 | | ... | - prefix - length of address network prefix. Type: int
+| | ... | - settings - ipv4 interface settings. Type: dictionary
 | | ...
 | | ... | *Example:*
 | | ...
 | | ... | \| Honeycomb sets interface ipv4 address with prefix \
 | | ... | \| ${nodes['DUT1']} \| GigabitEthernet0/8/0 \| 192.168.0.2 \| 24 \|
 | | [Arguments] | ${node} | ${interface} | ${address} | ${prefix}
+| | ... | ${settings}
 | | interfaceAPI.Add first ipv4 address
 | | ... | ${node} | ${interface} | ${address} | ${prefix}
+| | :FOR | ${key} | IN | @{settings.keys()}
+| | | interfaceAPI.Configure interface ipv4
+| | | ... | ${node} | ${interface} | ${key} | ${settings['${key}']}
+
+| Honeycomb adds interface ipv4 neighbor
+| | [Documentation] | Uses Honeycomb API to assign an ipv4 neighbor to the\
+| | ... | specified interface. Existing neighbor entries will be removed.
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - information about a DUT node. Type: dictionary
+| | ... | - interface - name of an interface on the specified node. Type: string
+| | ... | - fib_address - IP address to add to fib table. Type: string
+| | ... | - fib_mac - MAC address to add to fib table. Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Honeycomb adds interface ipv4 neighbor \| ${nodes['DUT1']} \
+| | ... | \| GigabitEthernet0/8/0 \| 192.168.0.3 \| 08:00:27:c0:5d:37 \
+| | ... | \| ${{'enabled': True, 'mtu': 1500}} \|
+| | [Arguments] | ${node} | ${interface} | ${fib_address} | ${fib_mac}
+| | interfaceAPI.Add first ipv4 neighbor
+| | ... | ${node} | ${interface} | ${fib_address} | ${fib_mac}
 
 | IPv4 config from Honeycomb should be
 | | [Documentation] | Retrieves interface ipv4 configuration through Honeycomb\
@@ -145,7 +165,7 @@
 | | ... | - node - information about a DUT node. Type: dictionary
 | | ... | - interface - name of an interface on the specified node. Type: string
 | | ... | - address - IP address to expect. Type: string
-| | ... | - netmask - subnet mask to expect. Type: string
+| | ... | - prefix - prefix length to expect. Type: string
 | | ... | - fib_address - IP address to expect in fib table. Type: string
 | | ... | - fib_mac - MAC address to expect in fib table. Type: string
 | | ... | - settings - ipv4 interface settings to expect. Type: dictionary
@@ -156,13 +176,13 @@
 | | ... | \| GigabitEthernet0/8/0 \| 192.168.0.2 \| 255.255.255.0 \
 | | ... | \| 192.168.0.3 \| 08:00:27:c0:5d:37 \
 | | ... | \| ${{'enabled': True, 'mtu': 1500}} \|
-| | [Arguments] | ${node} | ${interface} | ${address} | ${netmask}
+| | [Arguments] | ${node} | ${interface} | ${address} | ${prefix}
 | | ... | ${fib_address} | ${fib_mac} | ${settings}
 | | ${api_data}= | interfaceAPI.Get interface oper data | ${node} | ${interface}
 | | Should be equal | ${address}
 | | ... | ${api_data['ietf-ip:ipv4']['address'][0]['ip']}
-| | Should be equal | ${netmask}
-| | ... | ${api_data['ietf-ip:ipv4']['address'][0]['netmask']}
+| | Should be equal | ${prefix}
+| | ... | ${api_data['ietf-ip:ipv4']['address'][0]['prefix-length']}
 | | Should be equal | ${fib_address}
 | | ... | ${api_data['ietf-ip:ipv4']['neighbor'][0]['ip']
 | | Should be equal | ${fib_mac}
@@ -188,8 +208,57 @@
 | | [Arguments] | ${node} | ${interface} | ${address} | ${netmask}
 | | ${vpp_data}= | interfaceCLI.VPP get interface ip addresses
 | | ... | ${node} | ${interface} | ipv4
+#TODO: update based on resolution of bug https://jira.fd.io/browse/VPP-132
 | | Should be equal | ${vpp_data[0]['ip']} | ${address}
 | | Should be equal | ${vpp_data[0]['netmask']} | ${netmask}
+
+| Honeycomb removes interface ipv4 addresses
+| | [Documentation] | Removes all configured ipv4 addresses from the specified\
+| | ... | interface.
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - information about a DUT node. Type: dictionary
+| | ... | - interface - name of an interface on the specified node. Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Honeycomb removes interface ipv4 addresses \| ${nodes['DUT1']} \
+| | ... | \| GigabitEthernet0/8/0 \|
+| | [Arguments] | ${node} | ${interface}
+| | Remove all ipv4 addresses | ${node} | ${interface}
+
+| IPv4 address from Honeycomb should be empty
+| | [Documentation] | Retrieves interface ipv4 configuration through Honeycomb\
+| | ... | and expects to find no IPv4 addresses.
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - information about a DUT node. Type: dictionary
+| | ... | - interface - name of an interface on the specified node. Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| IPv4 address from Honeycomb should be empty\| ${nodes['DUT1']} \
+| | ... | \| GigabitEthernet0/8/0 \|
+| | [Arguments] | ${node} | ${interface}
+| | ${api_data}= | interfaceAPI.Get interface oper data | ${node} | ${interface}
+| | Should be empty | ${api_data['ietf-ip:ipv4']['address']
+
+| IPv4 address from VAT should be empty
+| | [Documentation] | Retrieves interface ipv4 configuration through VAT and\
+| | ... | and expects to find no ipv4 addresses.
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - information about a DUT node. Type: dictionary
+| | ... | - interface - name of an interface on the specified node. Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| IPv4 config from VAT should be empty \| ${nodes['DUT1']} \
+| | ... | \| GigabitEthernet0/8/0 \|
+| | [Arguments] | ${node} | ${interface}
+| | Run keyword and expect error | *No JSON object could be decoded.*
+| | ... | InterfaceCLI.VPP get interface ip addresses
+| | ... | ${node} | ${interface} | ipv4
 
 | Honeycomb sets interface ipv6 configuration
 | | [Documentation] | Uses Honeycomb API to change ipv6 configuration\
