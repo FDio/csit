@@ -51,8 +51,8 @@
 | | ... | ${dut1_to_dut2} | ${dut1_to_dut2_ip} | ${prefix_length}
 | | And Vpp Route Add
 | | ... | ${dut1_node} | ${test_dst_ip} | ${prefix_length}
-| | ... | ${dut1_to_dut2_ip_GW} | ${dut1_to_dut2}
+| | ... | ${dut1_to_dut2_ip_GW} | ${dut1_to_dut2} | resolve_attempts=${NONE}
 | | Then Send Packet And Check ARP Request | ${tg_node}
 | | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_to_dut1}
-| | ... | ${tg_to_dut2_mac} | ${tg_to_dut2} | ${dut1_to_dut2_mac}
+| | ... | ${dut1_to_tg_mac} | ${tg_to_dut2} | ${dut1_to_dut2_mac}
 | | ... | ${dut1_to_dut2_ip} | ${dut1_to_dut2_ip_GW}
