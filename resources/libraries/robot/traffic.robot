@@ -107,7 +107,7 @@
 | | ... | ${tg_node} | ${args}
 
 | Send Packet And Check ARP Request
-| | [Documentation] | Send IP packet from tx_port and check if ARP Request
+| | [Documentation] | Send IP packet from tx_port and check if ARP Request\
 | | ...             | packet is received on rx_port.
 | | ...
 | | ... | *Arguments:*
@@ -139,13 +139,13 @@
 | | ...
 | | ... | \| Send Packet And Check ARP Packet \| ${nodes['TG']} \| 16.0.0.1 \
 | | ... | \| 32.0.0.1 \| eth2 \| 08:00:27:cc:4f:54 \
-| | ... | \| eth4 \| 08:00:27:5b:49:dd \| 08:00:27:54:71:02 \|
+| | ... | \| eth4 \| 08:00:27:5b:49:dd \| 192.168.2.1 \| 192.168.2.2 \|
 | | ...
 | | [Arguments] | ${tg_node} | ${tx_src_ip} | ${tx_dst_ip} | ${tx_port}
-| | ... | ${tx_dst_mac} | ${rx_port} | ${rx_dst_mac} | ${rx_arp_src_ip}
+| | ... | ${tx_dst_mac} | ${rx_port} | ${rx_src_mac} | ${rx_arp_src_ip}
 | | ... | ${rx_arp_dst_ip}
 | | ${args}= | Catenate
-| | ... | --tx_dst_mac | ${tx_dst_mac} | --rx_dst_mac | ${rx_dst_mac}
+| | ... | --tx_dst_mac | ${tx_dst_mac} | --rx_src_mac | ${rx_src_mac}
 | | ... | --tx_src_ip | ${tx_src_ip} | --tx_dst_ip | ${tx_dst_ip}
 | | ... | --tx_if | ${tx_port} | --rx_if | ${rx_port}
 | | ... | --rx_arp_src_ip ${rx_arp_src_ip} | --rx_arp_dst_ip ${rx_arp_dst_ip}
