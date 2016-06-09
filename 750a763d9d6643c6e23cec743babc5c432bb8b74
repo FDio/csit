@@ -1,0 +1,297 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba092121_cec47c61",
+        "filename": "resources/libraries/python/IPv6Setup.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-09T21:53:48Z",
+      "side": 1,
+      "message": "Please, improve description.",
+      "range": {
+        "startLine": 251,
+        "startChar": 11,
+        "endLine": 251,
+        "endChar": 23
+      },
+      "revId": "750a763d9d6643c6e23cec743babc5c432bb8b74",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_8e8d6434",
+        "filename": "resources/libraries/robot/traffic.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 259,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-09T21:53:48Z",
+      "side": 1,
+      "message": "Missing pipe at the end: \\|",
+      "range": {
+        "startLine": 259,
+        "startChar": 39,
+        "endLine": 259,
+        "endChar": 40
+      },
+      "revId": "750a763d9d6643c6e23cec743babc5c432bb8b74",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_0e79542f",
+        "filename": "resources/traffic_scripts/check_ra_packet.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-09T21:53:48Z",
+      "side": 1,
+      "message": "transferred.",
+      "range": {
+        "startLine": 31,
+        "startChar": 34,
+        "endLine": 31,
+        "endChar": 45
+      },
+      "revId": "750a763d9d6643c6e23cec743babc5c432bb8b74",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_2e7c1820",
+        "filename": "resources/traffic_scripts/check_ra_packet.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-09T21:53:48Z",
+      "side": 1,
+      "message": "MAC",
+      "range": {
+        "startLine": 31,
+        "startChar": 16,
+        "endLine": 31,
+        "endChar": 19
+      },
+      "revId": "750a763d9d6643c6e23cec743babc5c432bb8b74",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_ce723c49",
+        "filename": "resources/traffic_scripts/check_ra_packet.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-09T21:53:48Z",
+      "side": 1,
+      "message": ":",
+      "range": {
+        "startLine": 36,
+        "startChar": 39,
+        "endLine": 36,
+        "endChar": 40
+      },
+      "revId": "750a763d9d6643c6e23cec743babc5c432bb8b74",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_4e9e2c58",
+        "filename": "resources/traffic_scripts/check_ra_packet.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-09T21:53:48Z",
+      "side": 1,
+      "message": "...            for the Router Advertisement\npart.\n\"\"\"",
+      "range": {
+        "startLine": 51,
+        "startChar": 47,
+        "endLine": 52,
+        "endChar": 7
+      },
+      "revId": "750a763d9d6643c6e23cec743babc5c432bb8b74",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_2ea3f89f",
+        "filename": "resources/traffic_scripts/check_ra_packet.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-09T21:53:48Z",
+      "side": 1,
+      "message": "not matching link-local",
+      "range": {
+        "startLine": 74,
+        "startChar": 43,
+        "endLine": 74,
+        "endChar": 57
+      },
+      "revId": "750a763d9d6643c6e23cec743babc5c432bb8b74",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_0ea0348f",
+        "filename": "tests/suites/ipv6/ipv6_ra.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-09T21:53:48Z",
+      "side": 1,
+      "message": "Please, add suite documentation.",
+      "revId": "750a763d9d6643c6e23cec743babc5c432bb8b74",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_ae882823",
+        "filename": "tests/suites/ipv6/ipv6_ra.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-09T21:53:48Z",
+      "side": 1,
+      "message": "Please, use backslash when the documentation follows at the next line:\npacket \\\n\n- please, do it for all doc strings in this suite",
+      "range": {
+        "startLine": 37,
+        "startChar": 72,
+        "endLine": 37,
+        "endChar": 78
+      },
+      "revId": "750a763d9d6643c6e23cec743babc5c432bb8b74",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_cea91c7d",
+        "filename": "tests/suites/ipv6/ipv6_ra.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-09T21:53:48Z",
+      "side": 1,
+      "message": "When Vpp ...",
+      "range": {
+        "startLine": 45,
+        "startChar": 4,
+        "endLine": 45,
+        "endChar": 7
+      },
+      "revId": "750a763d9d6643c6e23cec743babc5c432bb8b74",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_6eb0d0dd",
+        "filename": "tests/suites/ipv6/ipv6_ra.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-09T21:53:48Z",
+      "side": 1,
+      "message": "Not needed at the end of the line here.",
+      "range": {
+        "startLine": 46,
+        "startChar": 85,
+        "endLine": 46,
+        "endChar": 87
+      },
+      "revId": "750a763d9d6643c6e23cec743babc5c432bb8b74",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_aeb6e8da",
+        "filename": "tests/suites/ipv6/ipv6_ra.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-09T21:53:48Z",
+      "side": 1,
+      "message": "Then Receive ..",
+      "range": {
+        "startLine": 46,
+        "startChar": 4,
+        "endLine": 46,
+        "endChar": 11
+      },
+      "revId": "750a763d9d6643c6e23cec743babc5c432bb8b74",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_8ebb24c4",
+        "filename": "tests/suites/ipv6/ipv6_ra.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-09T21:53:48Z",
+      "side": 1,
+      "message": "Line too long.",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 46,
+        "endChar": 2
+      },
+      "revId": "750a763d9d6643c6e23cec743babc5c432bb8b74",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
