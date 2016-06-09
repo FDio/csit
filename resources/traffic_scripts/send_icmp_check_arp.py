@@ -46,15 +46,16 @@ def main():
     """Send IP ICMP packet from one traffic generator interface and expects
      ARP on the other."""
     args = TrafficScriptArg(
-        ['tx_dst_mac', 'rx_dst_mac', 'tx_src_ip', 'tx_dst_ip', 'rx_arp_src_ip',
+        ['tx_dst_mac', 'rx_src_mac', 'tx_src_ip', 'tx_dst_ip', 'rx_arp_src_ip',
          'rx_arp_dst_ip'])
 
     tx_dst_mac = args.get_arg('tx_dst_mac')
-    rx_dst_mac = args.get_arg('rx_dst_mac')
+    rx_src_mac = args.get_arg('rx_src_mac')
     src_ip = args.get_arg('tx_src_ip')
     dst_ip = args.get_arg('tx_dst_ip')
     tx_if = args.get_arg('tx_if')
     rx_if = args.get_arg('rx_if')
+    rx_dst_mac = 'ff:ff:ff:ff:ff:ff'
     rx_arp_src_ip = args.get_arg('rx_arp_src_ip')
     rx_arp_dst_ip = args.get_arg('rx_arp_dst_ip')
 
@@ -73,6 +74,20 @@ def main():
     if ether is None:
         raise RuntimeError("Ethernet frame Rx timeout")
 
+    if ether.dst == rx_dst_mac:
+        print("Ethernet destination address matched.")
+    else:
+        raise RuntimeError(
+            "Matching ethernet destination address unsuccessful: {0} != {1}".
+                format(ether.dst, rx_dst_mac))
+
+    if ether.src == rx_src_mac:
+        print("Ethernet source address matched.")
+    else:
+        raise RuntimeError(
+            "Matching ethernet source address unsuccessful: {0} != {1}".
+                format(ether.src, rx_src_mac))
+
     # ARP check
     if ether['ARP'] is not None:
         print("ARP packet received.")
@@ -87,7 +102,7 @@ def main():
         raise RuntimeError("Matching ARP request unsuccessful: {0}"
                            .format(ether.__repr__()))
 
-    if ether['ARP'].hwsrc == rx_dst_mac:
+    if ether['ARP'].hwsrc == rx_src_mac:
         print("Source MAC matched.")
     else:
         raise RuntimeError("Matching Source MAC unsuccessful: {0}"
