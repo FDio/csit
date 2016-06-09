@@ -20,8 +20,8 @@
 | Resource | resources/libraries/robot/default.robot
 | Resource | resources/libraries/robot/honeycomb/persistence.robot
 | Suite Setup | Restart both systems and clear persisted configuration | ${node}
+| Force Tags | honeycomb_persistence
 | Documentation | *Honeycomb configuration persistence test suite.*
-| Force Tags | honeycomb_sanity
 
 *** Test Cases ***
 | Honeycomb persists configuration through restart of both systems

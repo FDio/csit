@@ -32,6 +32,7 @@
 *** Settings ***
 | Resource | resources/libraries/robot/default.robot
 | Resource | resources/libraries/robot/honeycomb/interfaces.robot
+| Force Tags | honeycomb_sanity
 | Documentation | *Honeycomb interface management test suite.*
 | ...
 | ... | Test suite uses the first interface of the first DUT node.
@@ -40,7 +41,6 @@
 | Honeycomb configures and reads interface state
 | | [Documentation] | Check if Honeycomb API can modify the admin state of\
 | | ... | VPP interfaces.
-| | [Tags] | honeycomb_sanity
 | | Given Interface state is | ${node} | ${interface} | down
 | | When Honeycomb sets interface state | ${node} | ${interface} | up
 | | Then Interface state from Honeycomb should be
@@ -51,19 +51,24 @@
 | | ... | ${node} | ${interface} | down
 | | And Interface state from VAT should be | ${node} | ${interface} | down
 
-| Honeycomb modifies interface configuration - ipv4
+| Honeycomb modifies interface configuration - ipv4 (netmask)
 | | [Documentation] | Check if Honeycomb API can configure interfaces for ipv4.
-| | [Tags] | honeycomb_sanity
-| | When Honeycomb sets interface ipv4 configuration
-| | ... | ${node} | ${interface} | @{ipv4_address_mask} | @{ipv4_neighbor}
-| | ... | ${ipv4_settings}
+| | When Honeycomb sets interface ipv4 address
+| | ... | ${node} | ${interface} | @{ipv4_address_mask} | ${ipv4_settings}
+| | And Honeycomb adds interface ipv4 neighbor
+| | ... | ${node} | ${interface} | @{ipv4_neighbor}
 | | Then IPv4 config from Honeycomb should be
 | | ... | ${node} | ${interface} | @{ipv4_address_mask} | @{ipv4_neighbor}
 | | ... | ${ipv4_settings}
 | | And IPv4 config from VAT should be
 | | ... | ${node} | ${interface} | @{ipv4_address_mask}
+
+| Honeycomb modifies interface configuration - ipv4 (prefix)
+| | [Documentation] | Check if Honeycomb API can configure interfaces for ipv4.
 | | When Honeycomb sets interface ipv4 address with prefix
-| | ... | ${node} | ${interface} | @{ipv4_address_prefix}
+| | ... | ${node} | ${interface} | @{ipv4_address_prefix} | ${ipv4_settings}
+| | And Honeycomb adds interface ipv4 neighbor
+| | ... | ${node} | ${interface} | @{ipv4_neighbor}
 | | Then IPv4 config from Honeycomb should be
 | | ... | ${node} | ${interface} | @{ipv4_address_prefix} | @{ipv4_neighbor}
 | | ... | ${ipv4_settings}
@@ -72,7 +77,6 @@
 
 | Honeycomb modifies interface configuration - ipv6
 | | [Documentation] | Check if Honeycomb API can configure interfaces for ipv6.
-| | [Tags] | honeycomb_sanity
 | | When Honeycomb sets interface ipv6 configuration
 | | ... | ${node} | ${interface} | @{ipv6_address} | @{ipv6_neighbor}
 | | ... | ${ipv6_settings}
@@ -85,7 +89,6 @@
 | Honeycomb modifies interface configuration - ethernet,routing
 | | [Documentation] | Check if Honeycomb API can configure interface ethernet\
 | | ... | and routing settings.
-| | [Tags] | honeycomb_sanity
 | | When Honeycomb sets interface ethernet and routing configuration
 | | ... | ${node} | ${interface} | ${ethernet} | ${routing}
 | | Then Interface ethernet and routing configuration from Honeycomb should be
