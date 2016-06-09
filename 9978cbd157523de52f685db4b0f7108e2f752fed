@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba092121_f3760706",
+        "filename": "tests/suites/ipv4/ipv4_iacl_untagged.robot",
+        "patchSetId": 8
+      },
+      "lineNbr": 546,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-06-09T12:36:59Z",
+      "side": 1,
+      "message": "enable ip4-table instead of l2-table!",
+      "range": {
+        "startLine": 546,
+        "startChar": 43,
+        "endLine": 546,
+        "endChar": 53
+      },
+      "revId": "9978cbd157523de52f685db4b0f7108e2f752fed",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_b3608f36",
+        "filename": "tests/suites/ipv6/ipv6_iacl_untagged.robot",
+        "patchSetId": 8
+      },
+      "lineNbr": 572,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-06-09T12:36:59Z",
+      "side": 1,
+      "message": "enable ip6-table instead of l2-table!",
+      "range": {
+        "startLine": 572,
+        "startChar": 43,
+        "endLine": 572,
+        "endChar": 53
+      },
+      "revId": "9978cbd157523de52f685db4b0f7108e2f752fed",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
