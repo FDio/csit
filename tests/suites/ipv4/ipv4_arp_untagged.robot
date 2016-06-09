@@ -38,6 +38,24 @@
 
 *** Test Cases ***
 | VPP sends ARP requests for unknown destinations
+| | [Documentation] | Setup IP addresses.
+| | ...             | Send ICMP packet and check if VPP sends ARP request.
+| | Given Path for 3-node testing is set
+| | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
+| | And Interfaces in 3-node path are up
+| | And L2 setup xconnect on DUT
+| | ... | ${dut2_node} | ${dut2_to_dut1} | ${dut2_to_tg}
+| | When Set Interface Address | ${dut1_node}
+| | ... | ${dut1_to_tg} | ${dut1_to_tg_ip} | ${prefix_length}
+| | And Set Interface Address | ${dut1_node}
+| | ... | ${dut1_to_dut2} | ${dut1_to_dut2_ip} | ${prefix_length}
+| | Then Send Packet And Check ARP Request | ${tg_node}
+| | ... | ${test_src_ip} | ${dut1_to_dut2_ip_GW} | ${tg_to_dut1}
+| | ... | ${dut1_to_tg_mac} | ${tg_to_dut2} | ${dut1_to_dut2_mac}
+| | ... | ${dut1_to_dut2_ip} | ${dut1_to_dut2_ip_GW}
+
+| VPP sends ARP requests for route's next hop IP
+| | [Tags] | EXPECTED_FAILING
 | | [Documentation] | Setup IP addresses and route.
 | | ...             | Send ICMP packet and check if VPP sends ARP request.
 | | Given Path for 3-node testing is set
@@ -51,8 +69,8 @@
 | | ... | ${dut1_to_dut2} | ${dut1_to_dut2_ip} | ${prefix_length}
 | | And Vpp Route Add
 | | ... | ${dut1_node} | ${test_dst_ip} | ${prefix_length}
-| | ... | ${dut1_to_dut2_ip_GW} | ${dut1_to_dut2}
+| | ... | ${dut1_to_dut2_ip_GW} | ${dut1_to_dut2} | resolve_attempts=${NONE}
 | | Then Send Packet And Check ARP Request | ${tg_node}
 | | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_to_dut1}
-| | ... | ${tg_to_dut2_mac} | ${tg_to_dut2} | ${dut1_to_dut2_mac}
+| | ... | ${dut1_to_tg_mac} | ${tg_to_dut2} | ${dut1_to_dut2_mac}
 | | ... | ${dut1_to_dut2_ip} | ${dut1_to_dut2_ip_GW}
