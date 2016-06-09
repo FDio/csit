@@ -49,6 +49,30 @@
     },
     {
       "key": {
+        "uuid": "ba092121_13f5fb82",
+        "filename": "resources/tools/topo_installation.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2016-06-09T11:44:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba092121_93bb4bc4",
+      "range": {
+        "startLine": 37,
+        "startChar": 11,
+        "endLine": 37,
+        "endChar": 12
+      },
+      "revId": "edb7e915b6bbe353ecf910cfcb49789f40406b95",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba092121_53f813e5",
         "filename": "resources/tools/topo_installation.py",
         "patchSetId": 7
@@ -84,6 +108,30 @@
       "side": 1,
       "message": "https://docs.pylint.org/changelog.html\nAdd a new convention message, ‘misplaced-comparison-constant’, emitted when a constant is placed in the left hand side of a comparison, as in ‘5 \u003d\u003d func()’. This is also called Yoda condition, since the flow of code reminds of the Star Wars green character, conditions usually encountered in languages with variabile assignments in conditional statements.",
       "parentUuid": "ba092121_53f813e5",
+      "range": {
+        "startLine": 42,
+        "startChar": 15,
+        "endLine": 42,
+        "endChar": 16
+      },
+      "revId": "edb7e915b6bbe353ecf910cfcb49789f40406b95",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_f3f16796",
+        "filename": "resources/tools/topo_installation.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2016-06-09T11:44:40Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba092121_93e22bd4",
       "range": {
         "startLine": 42,
         "startChar": 15,
