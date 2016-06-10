@@ -65,6 +65,9 @@ def arp_request_test():
         # wait for APR reply
         ether = interface.recv_pkt()
 
+        if not ether:
+            raise RuntimeError("ARP reply timeout")
+
         # verify received packet
 
         if not ether.haslayer(ARP):
