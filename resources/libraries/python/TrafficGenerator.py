@@ -205,16 +205,35 @@ class TrafficGenerator(object):
                 logger.error('trex-cfg failed: {0}'.format(stdout + stderr))
                 raise RuntimeError('trex-cfg failed')
 
-            (ret, _, _) = ssh.exec_command(
-                "sh -c 'pgrep t-rex && sudo pkill t-rex'")
+            max_startup_retries = 3
+            while max_startup_retries > 0:
+                # kill T-rex only if it is already running
+                (ret, _, _) = ssh.exec_command(
+                    "sh -c 'pgrep t-rex && sudo pkill t-rex'")
 
-            (ret, _, _) = ssh.exec_command(
-                "sh -c 'cd {0}/scripts/ && "
-                "sudo nohup ./t-rex-64 -i -c 7 --iom 0 > /dev/null 2>&1 &'"
-                "> /dev/null"\
-                .format(trex_path))
-            if int(ret) != 0:
-                raise RuntimeError('t-rex-64 startup failed')
+                # start T-rex
+                (ret, _, _) = ssh.exec_command(
+                    "sh -c 'cd {0}/scripts/ && "
+                    "sudo nohup ./t-rex-64 -i -c 7 --iom 0 > /dev/null 2>&1 &'"
+                    "> /dev/null"\
+                    .format(trex_path))
+                if int(ret) != 0:
+                    raise RuntimeError('t-rex-64 startup failed')
+
+                # get T-rex server info
+                (ret, _, _) = ssh.exec_command(
+                    "sh -c '{0}/resources/tools/t-rex/t-rex-server-info.py'"\
+                    .format(Constants.REMOTE_FW_DIR),
+                    timeout=120)
+                if int(ret) == 0:
+                    # If we get info T-rex is running
+                    return
+                # try again
+                max_startup_retries -= 1
+            # after max retries T-rex is still not responding to API
+            # critical error occured
+            raise RuntimeError('t-rex-64 startup failed')
+
 
     @staticmethod
     def teardown_traffic_generator(node):
