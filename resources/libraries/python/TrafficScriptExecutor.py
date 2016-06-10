@@ -75,6 +75,8 @@ class TrafficScriptExecutor(object):
                 raise RuntimeError("DHCP REQUEST Rx timeout")
             elif "RuntimeError: TCP/UDP Rx timeout" in stderr:
                 raise RuntimeError("TCP/UDP Rx timeout")
+            elif "Error occurred: ARP reply timeout" in stdout:
+                raise RuntimeError("ARP reply timeout")
             else:
                 raise RuntimeError("Traffic script execution failed")
 
