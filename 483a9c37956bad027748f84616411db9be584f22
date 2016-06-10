@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba092121_a97942fe",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-06-10T14:52:36Z",
+      "side": 1,
+      "message": "Can you copy paste this function for TX as well?",
+      "revId": "483a9c37956bad027748f84616411db9be584f22",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_897e7ee3",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-06-10T14:52:36Z",
+      "side": 1,
+      "message": "Remove these completely",
+      "range": {
+        "startLine": 189,
+        "startChar": 8,
+        "endLine": 189,
+        "endChar": 32
+      },
+      "revId": "483a9c37956bad027748f84616411db9be584f22",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_89655e47",
+        "filename": "resources/libraries/robot/default.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-06-10T14:52:36Z",
+      "side": 1,
+      "message": "Remove these because this will not work i guess anymore\nMax TX I guess was renamed to newly txqueue. It suppose to increase the txqueues",
+      "range": {
+        "startLine": 104,
+        "startChar": 0,
+        "endLine": 104,
+        "endChar": 38
+      },
+      "revId": "483a9c37956bad027748f84616411db9be584f22",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_296d3233",
+        "filename": "resources/libraries/robot/default.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-06-10T14:52:36Z",
+      "side": 1,
+      "message": "Remove these because this will not work i guess anymore\nMax TX I guess was renamed to newly txqueue. It suppose to increase the txqueues",
+      "range": {
+        "startLine": 121,
+        "startChar": 20,
+        "endLine": 121,
+        "endChar": 26
+      },
+      "revId": "483a9c37956bad027748f84616411db9be584f22",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
