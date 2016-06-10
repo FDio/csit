@@ -21,15 +21,21 @@ export DEBIAN_FRONTEND=noninteractive
 sudo apt-get -y update
 sudo apt-get -y install libpython2.7-dev python-virtualenv
 
+VIRL_SERVERS=("10.30.51.28" "10.30.51.29" "10.30.51.30")
+VIRL_SERVER=""
+
+VIRL_USERNAME=jenkins-in
+VIRL_PKEY=priv_key
+VIRL_SERVER_STATUS_FILE="status"
+VIRL_SERVER_EXPECTED_STATUS="PRODUCTION"
+
+SSH_OPTIONS="-i ${VIRL_PKEY} -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o BatchMode=yes -o LogLevel=error"
+
 function ssh_do() {
     echo
     echo "### "  ssh $@
-    ssh -i priv_key -o StrictHostKeyChecking=no $@
+    ssh ${SSH_OPTIONS} $@
 }
-
-VIRL_SERVER=10.30.51.28
-VIRL_USERNAME=jenkins-in
-VIRL_PKEY=priv_key
 
 rm -f ${VIRL_PKEY}
 cat > ${VIRL_PKEY} <<EOF
@@ -61,18 +67,52 @@ cWsudXjMki8734WSpMBqBp/J8wG3C9ZS6IpQD+U7UXA+roB7Qr+j4TqtWfM+87Rh
 maOpG56uAyR0w5Z9BhwzA3VakibVk9KwDgZ29WtKFzuATLFnOtCS46E=
 -----END RSA PRIVATE KEY-----
 EOF
-chmod 600 priv_key
+chmod 600 ${VIRL_PKEY}
+
+#
+# Pick a random host from the array of VIRL servers, and attempt
+# to reach it and verify it's status.
+#
+# The server must be reachable, and have a "status" file with
+# the content "PRODUCTION", to be selected.
+#
+# If the server is not reachable, or does not have the correct
+# status, remove it from the array and start again.
+#
+# Abort if there are no more servers left in the array.
+#
+while [[ ! "$VIRL_SERVER" ]]
+do
+    num_hosts=${#VIRL_SERVERS[@]}
+    if [ $num_hosts == 0 ]
+    then
+        echo "No more VIRL candidate hosts available, failing."
+        exit 127
+    fi
+    element=$[ $RANDOM % $num_hosts ]
+    virl_server_candidate=${VIRL_SERVERS[$element]}
+    virl_server_status=$(ssh ${SSH_OPTIONS} ${VIRL_USERNAME}@${virl_server_candidate} cat $VIRL_SERVER_STATUS_FILE 2>&1)
+    echo VIRL HOST $virl_server_candidate status is \"$virl_server_status\"
+    if [ "$virl_server_status" == "$VIRL_SERVER_EXPECTED_STATUS" ]
+    then
+        # Candidate is in good status. Select this server.
+        VIRL_SERVER="$virl_server_candidate"
+    else
+        # Candidate is in bad status. Remove from array.
+        VIRL_SERVERS=("${VIRL_SERVERS[@]:0:$element}" "${VIRL_SERVERS[@]:$[$element+1]}")
+    fi
+done
 
 # Temporarily download VPP packages from nexus.fd.io
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-rm -f *.deb
 if [ "${#}" -ne "0" ]; then
     arr=(${@})
     echo ${arr[0]}
 else
-    VPP_STABLE_VER=$(cat ${SCRIPT_DIR}/VPP_MASTER_STABLE_VER)
-    VPP_REPO_URL=$(cat ${SCRIPT_DIR}/VPP_MASTER_REPO_URL)
+    rm -f *.deb
+    VPP_STABLE_VER=$(cat ${SCRIPT_DIR}/VPP_STABLE_VER)
+    VPP_REPO_URL=$(cat ${SCRIPT_DIR}/VPP_REPO_URL)
     wget -q "${VPP_REPO_URL}/vpp/${VPP_STABLE_VER}/vpp-${VPP_STABLE_VER}.deb" || exit
     wget -q "${VPP_REPO_URL}/vpp-dbg/${VPP_STABLE_VER}/vpp-dbg-${VPP_STABLE_VER}.deb" || exit
     wget -q "${VPP_REPO_URL}/vpp-dev/${VPP_STABLE_VER}/vpp-dev-${VPP_STABLE_VER}.deb" || exit
@@ -148,7 +188,7 @@ virtualenv --system-site-packages env
 . env/bin/activate
 
 echo pip install
-pip install -r requirements.txt
+pip install -r ${SCRIPT_DIR}/requirements.txt
 
 # There are used three iterations of tests there to check
 # the stability and reliability of the results

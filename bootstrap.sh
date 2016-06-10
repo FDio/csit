@@ -111,8 +111,8 @@ if [ "${#}" -ne "0" ]; then
     echo ${arr[0]}
 else
     rm -f *.deb
-    VPP_STABLE_VER=$(cat ${SCRIPT_DIR}/VPP_MASTER_STABLE_VER)
-    VPP_REPO_URL=$(cat ${SCRIPT_DIR}/VPP_MASTER_REPO_URL)
+    VPP_STABLE_VER=$(cat ${SCRIPT_DIR}/VPP_STABLE_VER)
+    VPP_REPO_URL=$(cat ${SCRIPT_DIR}/VPP_REPO_URL)
     wget -q "${VPP_REPO_URL}/vpp/${VPP_STABLE_VER}/vpp-${VPP_STABLE_VER}.deb" || exit
     wget -q "${VPP_REPO_URL}/vpp-dbg/${VPP_STABLE_VER}/vpp-dbg-${VPP_STABLE_VER}.deb" || exit
     wget -q "${VPP_REPO_URL}/vpp-dev/${VPP_STABLE_VER}/vpp-dev-${VPP_STABLE_VER}.deb" || exit
@@ -189,15 +189,14 @@ virtualenv --system-site-packages env
 . env/bin/activate
 
 echo pip install
-pip install -r requirements.txt
+pip install -r ${SCRIPT_DIR}/requirements.txt
 
 pykwalify -s ${SCRIPT_DIR}/resources/topology_schemas/3_node_topology.sch.yaml \
           -s ${SCRIPT_DIR}/resources/topology_schemas/topology.sch.yaml \
           -d ${SCRIPT_DIR}/topologies/enabled/topology.yaml \
           -vvv
 
-result=$?
-if [ "${result}" -ne "0" ]; then
+if [ "$?" -ne "0" ]; then
     echo "Topology schema validation failed."
     echo "However, the tests will start."
 fi
