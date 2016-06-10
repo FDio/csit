@@ -78,7 +78,7 @@
 | 2core VPP with rxqueues 1 passes 64B frames through IPv4 forwarding at 2x 7.5Mpps in 3-node topology
 | | [Documentation]
 | | ... | VPP with 2 cores should pass 64B frames through IPv4 forwarding
-| | ... | at 2x 7.5Mpps (2x 10Gbps) in 3-node topology.
+| | ... | at 2x 7.5Mpps in 3-node topology.
 | | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | NDR
 | | ${framesize}= | Set Variable | 64
 | | ${duration}= | Set Variable | 10
@@ -122,14 +122,14 @@
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                   | ${framesize} | 3-node-IPv4
 
-| 4core VPP with rxqueues 2 passes 64B frames through IPv4 forwarding at 2x 7.8Mpps in 3-node topology
+| 4core VPP with rxqueues 2 passes 64B frames through IPv4 forwarding at 2x 10.0Mpps in 3-node topology
 | | [Documentation]
 | | ... | VPP with 4 cores and rxqueues 2 should pass 64B frames through IPv4
-| | ... | forwarding at 2x 7.8Mpps in 3-node topology.
+| | ... | forwarding at 2x 10.0Mpps in 3-node topology.
 | | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | NDR
 | | ${framesize}= | Set Variable | 64
 | | ${duration}= | Set Variable | 10
-| | ${rate}= | Set Variable | 7.8mpps
+| | ${rate}= | Set Variable | 10.0mpps
 | | Given Add '4' worker threads and rxqueues '2' without HTT to all DUTs
 | | And   Add all PCI devices to all DUTs
 | | And   Add No Multi Seg to all DUTs

@@ -24,14 +24,14 @@
 | Documentation | Minimal throughput acceptance test cases
 
 *** Test Cases ***
-| 1core VPP passes 78B frames through IPv6 forwarding with COP at 2x 2.9Mpps in 3-node topology
+| 1core VPP passes 78B frames through IPv6 forwarding with COP at 2x 2.8Mpps in 3-node topology
 | | [Documentation]
 | | ... | VPP with 1 core should pass 78B frames through IPv6 forwarding
-| | ... | at 2x 2.9Mpps in 3-node topology with COP.
+| | ... | at 2x 2.8Mpps in 3-node topology with COP.
 | | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | NDR
 | | ${framesize}= | Set Variable | 78
 | | ${duration}= | Set Variable | 10
-| | ${rate}= | Set Variable | 2.9mpps
+| | ${rate}= | Set Variable | 2.8mpps
 | | Given Add '1' worker threads and rxqueues '1' without HTT to all DUTs
 | | And   Add all PCI devices to all DUTs
 | | And   Add No Multi Seg to all DUTs
