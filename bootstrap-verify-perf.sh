@@ -26,7 +26,7 @@ VPP_REPO_URL="https://nexus.fd.io/service/local/repositories/fd.io.dev/content/i
 RESERVATION_DIR="/tmp/reservation_dir"
 INSTALLATION_DIR="/tmp/install_dir"
 
-PYBOT_ARGS="--noncritical MULTI_THREAD"
+PYBOT_ARGS="-W 150 --noncritical MULTI_THREAD"
 
 ARCHIVE_ARTIFACTS=(log.html output.xml report.html output_perf_data.json)
 
