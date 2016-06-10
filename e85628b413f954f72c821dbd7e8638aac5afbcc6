@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba092121_69f32a0b",
+        "filename": "bootstrap.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 74
+      },
+      "writtenOn": "2016-06-10T10:30:19Z",
+      "side": 1,
+      "message": "SCRIPT_DIR\u003d\"$( cd \"$( dirname \"${BASH_SOURCE[0]}\" )\" \u0026\u0026 pwd )\"",
+      "revId": "e85628b413f954f72c821dbd7e8638aac5afbcc6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_49f866e5",
+        "filename": "bootstrap.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 74
+      },
+      "writtenOn": "2016-06-10T10:30:19Z",
+      "side": 1,
+      "message": "VPP_STABLE_VER\u003d$(cat ${SCRIPT_DIR}/VPP_MASTER_STABLE_VER)",
+      "revId": "e85628b413f954f72c821dbd7e8638aac5afbcc6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
