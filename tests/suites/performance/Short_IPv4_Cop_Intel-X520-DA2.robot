@@ -91,14 +91,14 @@
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                   | ${framesize} | 3-node-IPv4
 
-| 2core VPP with rss 1 passes 64B frames through IPv4 forwarding with COP at 2x 7.5Mpps in 3-node topology
+| 2core VPP with rss 1 passes 64B frames through IPv4 forwarding with COP at 2x 6.6Mpps in 3-node topology
 | | [Documentation]
 | | ... | VPP with 2 cores should pass 64B frames through IPv4 forwarding
-| | ... | at 2x 7.5Mpps (2x 10Gbps) in 3-node topology with COP.
+| | ... | at 2x 6.6Mpps in 3-node topology with COP.
 | | [Tags] | 2_THREAD_NOHTT_RSS_1 | MULTI_THREAD
 | | ${framesize}= | Set Variable | 64
 | | ${duration}= | Set Variable | 10
-| | ${rate}= | Set Variable | 7.5mpps
+| | ${rate}= | Set Variable | 6.6mpps
 | | Given Add '2' worker threads and rss '1' without HTT to all DUTs
 | | And   Add all PCI devices to all DUTs
 | | And   Add No Multi Seg to all DUTs
@@ -156,14 +156,14 @@
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                   | ${framesize} | 3-node-IPv4
 
-| 4core VPP with rss 2 passes 64B frames through IPv4 forwarding with COP at 2x 7.8Mpps in 3-node topology
+| 4core VPP with rss 2 passes 64B frames through IPv4 forwarding with COP at 2x 10.0Mpps in 3-node topology
 | | [Documentation]
 | | ... | VPP with 4 cores and rss 2 should pass 64B frames through IPv4
-| | ... | forwarding at 2x 7.8Mpps in 3-node topology with COP.
+| | ... | forwarding at 2x 10.0Mpps in 3-node topology with COP.
 | | [Tags] | 4_THREAD_NOHTT_RSS_2 | MULTI_THREAD
 | | ${framesize}= | Set Variable | 64
 | | ${duration}= | Set Variable | 10
-| | ${rate}= | Set Variable | 7.8mpps
+| | ${rate}= | Set Variable | 10.0mpps
 | | Given Add '4' worker threads and rss '2' without HTT to all DUTs
 | | And   Add all PCI devices to all DUTs
 | | And   Add No Multi Seg to all DUTs
