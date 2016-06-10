@@ -103,16 +103,53 @@ do
     fi
 done
 
-# Temporarily download VPP packages from nexus.fd.io
+# Check input parameters and set branch to download the VPP build from when necessary
+download=True
+
+if [ "${#}" -eq "0" ]; then
+    branch="master"
+    echo No branch provided - the master will be used.
+    echo No file provided - VPP build from the master branch will be downloaded.
+else
+    while [ "$1" != "" ]; do
+        case $1 in
+            -b | --branch )
+                shift
+                branch=$1
+                ;;
+            * )
+                download=False
+                echo $1
+        esac
+        shift
+    done
+fi
+
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-if [ "${#}" -ne "0" ]; then
-    arr=(${@})
-    echo ${arr[0]}
-else
+if [[ "${download}" == "True" ]]; then
+    case "${branch}" in
+        # Set the correct value to stream variable based on the branch name
+        master )
+            stream="MASTER"
+            ;;
+        stable/1606 )
+            stream="STABLE1606"
+            ;;
+        stable/1609 )
+            stream="STABLE1609"
+            ;;
+        * )
+            echo Unknown branch name. Exiting with error...
+            exit 1
+    esac
+
+    # Get VPP_REPO_URL and VPP stable build version
+    VPP_STABLE_VER=$(cat ${SCRIPT_DIR}/VPP_${stream}_STABLE_VER)
+    VPP_REPO_URL=$(cat ${SCRIPT_DIR}/VPP_${stream}_REPO_URL)
+
+    # Temporarily download VPP packages from nexus.fd.io
     rm -f *.deb
-    VPP_STABLE_VER=$(cat ${SCRIPT_DIR}/VPP_MASTER_STABLE_VER)
-    VPP_REPO_URL=$(cat ${SCRIPT_DIR}/VPP_MASTER_REPO_URL)
     wget -q "${VPP_REPO_URL}/vpp/${VPP_STABLE_VER}/vpp-${VPP_STABLE_VER}.deb" || exit
     wget -q "${VPP_REPO_URL}/vpp-dbg/${VPP_STABLE_VER}/vpp-dbg-${VPP_STABLE_VER}.deb" || exit
     wget -q "${VPP_REPO_URL}/vpp-dev/${VPP_STABLE_VER}/vpp-dev-${VPP_STABLE_VER}.deb" || exit
@@ -189,15 +226,14 @@ virtualenv --system-site-packages env
 . env/bin/activate
 
 echo pip install
-pip install -r requirements.txt
+pip install -r ${SCRIPT_DIR}/requirements.txt
 
 pykwalify -s ${SCRIPT_DIR}/resources/topology_schemas/3_node_topology.sch.yaml \
           -s ${SCRIPT_DIR}/resources/topology_schemas/topology.sch.yaml \
           -d ${SCRIPT_DIR}/topologies/enabled/topology.yaml \
           -vvv
 
-result=$?
-if [ "${result}" -ne "0" ]; then
+if [ "$?" -ne "0" ]; then
     echo "Topology schema validation failed."
     echo "However, the tests will start."
 fi
