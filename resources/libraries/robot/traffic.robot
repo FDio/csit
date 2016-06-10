@@ -273,3 +273,79 @@
 | | ${rx_port_name}= | Get interface name | ${node} | ${rx_port}
 | | ${args}= | Catenate | --rx_if | ${rx_port_name} | --src_mac | ${src_mac}
 | | Run Traffic Script On Node | check_ra_packet.py | ${node} | ${args}
+
+| Send ARP Request
+| | [Documentation] | Send ARP Request and check if the ARP Response is received.
+| | ...
+| | ... | *Arguments:*
+| | ...
+| | ... | _NOTE:_ Arguments are based on topology:
+| | ...             | TG(if1)<->(if1)DUT
+| | ...
+| | ... | - tg_node - Node to execute scripts on (TG). Type: dictionary
+| | ... | - tx_port - Interface from which the ARP packet is sent (TG-if1).
+| | ... |             Type: string
+| | ... | - src_mac - Source MAC address of ARP packet (TG-if1).
+| | ... |             Type: string
+| | ... | - tgt_mac - Target MAC address which is expected in the response
+| | ... |             (DUT-if1). Type: string
+| | ... | - src_ip - Source IP address of ARP packet (TG-if1).
+| | ... |            Type: string
+| | ... | - tgt_ip - Target IP address of ARP packet (DUT-if1).
+| | ... |            Type: string
+| | ...
+| | ... | *Return:*
+| | ... | - No value returned
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Send ARP Request \| ${nodes['TG']} \| eth3 \
+| | ... | \| 08:00:27:cc:4f:54 \| 08:00:27:c9:6a:d5 \
+| | ... | \| 10.0.0.100 \| 192.168.1.5 \|
+| | ...
+| | [Arguments] | ${tg_node} | ${tx_port}
+| | ...         | ${src_mac} | ${tgt_mac}
+| | ...         | ${src_ip} | ${tgt_ip}
+| | ${args}= | Catenate | --tx_if | ${tx_port}
+| | ...                 | --src_mac | ${src_mac} | --dst_mac | ${tgt_mac}
+| | ...                 | --src_ip | ${src_ip} | --dst_ip | ${tgt_ip}
+| | Run Traffic Script On Node | arp_request.py | ${tg_node} | ${args}
+
+| Send ARP Request should failed
+| | [Documentation] | Send ARP Request and
+| | ...             | the ARP Response should not be received.
+| | ...
+| | ... | *Arguments:*
+| | ...
+| | ... | _NOTE:_ Arguments are based on topology:
+| | ...             | TG(if1)<->(if1)DUT
+| | ...
+| | ... | - tg_node - Node to execute scripts on (TG). Type: dictionary
+| | ... | - tx_port - Interface from which the ARP packet is sent (TG-if1).
+| | ... |             Type: string
+| | ... | - src_mac - Source MAC address of ARP packet (TG-if1).
+| | ... |             Type: string
+| | ... | - tgt_mac - Target MAC address which is expected in the response
+| | ... |             (DUT-if1). Type: string
+| | ... | - src_ip - Source IP address of ARP packet (TG-if1).
+| | ... |            Type: string
+| | ... | - tgt_ip - Target IP address of ARP packet (DUT-if1).
+| | ... |            Type: string
+| | ...
+| | ... | *Return:*
+| | ... | - No value returned
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Send ARP Request should failed \| ${nodes['TG']} \| eth3 \
+| | ... | \| 08:00:27:cc:4f:54 \| 08:00:27:c9:6a:d5 \
+| | ... | \| 10.0.0.100 \| 192.168.1.5 \|
+| | ...
+| | [Arguments] | ${tg_node} | ${tx_port}
+| | ...         | ${src_mac} | ${tgt_mac}
+| | ...         | ${src_ip} | ${tgt_ip}
+| | ${args}= | Catenate | --tx_if | ${tx_port}
+| | ...                 | --src_mac | ${src_mac} | --dst_mac | ${tgt_mac}
+| | ...                 | --src_ip | ${src_ip} | --dst_ip | ${tgt_ip}
+| | Run Keyword And Expect Error | ARP reply timeout
+| | ... | Run Traffic Script On Node | arp_request.py | ${tg_node} | ${args}

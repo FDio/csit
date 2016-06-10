@@ -47,6 +47,7 @@ def arp_request_test():
     """Send ARP request, expect a reply and verify its fields.
 
     returns: test status
+    :raises RuntimeError: ARP reply timeout.
     """
     test_passed = False
     (src_if, src_mac, dst_mac, src_ip, dst_ip) = parse_arguments()
@@ -64,6 +65,9 @@ def arp_request_test():
     try:
         # wait for APR reply
         ether = interface.recv_pkt()
+
+        if not ether:
+            raise RuntimeError("ARP reply timeout")
 
         # verify received packet
 

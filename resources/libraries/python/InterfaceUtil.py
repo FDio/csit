@@ -748,3 +748,22 @@ class InterfaceUtil(object):
             return {}
 
         return vxlan_gpe_data[0]
+
+    @staticmethod
+    def vpp_proxy_arp_interface_enable(node, interface):
+        """Enable proxy ARP on interface.
+
+        :param node: VPP node to enable proxy ARP on interface.
+        :param interface: Interface to enable proxy ARP.
+        :type node: dict
+        :type interface: str or int
+        """
+        if isinstance(interface, basestring):
+            sw_if_index = InterfaceUtil.get_sw_if_index(node, interface)
+        else:
+            sw_if_index = interface
+
+        with VatTerminal(node) as vat:
+            vat.vat_terminal_exec_cmd_from_template(
+                "proxy_arp_intfc_enable.vat",
+                sw_if_index=sw_if_index)
