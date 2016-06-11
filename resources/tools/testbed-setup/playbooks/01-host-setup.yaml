@@ -45,6 +45,10 @@
   remote_user: testuser
   sudo: yes
   tasks:
+  - name: Install python-dev
+    apt: name=python-dev state=present
+  - name: Install python-virtualenv
+    apt: name=python-virtualenv state=present
   - name: Install cpufrequtils
     apt: name=cpufrequtils state=present
   - name: Set cpufrequtils defaults
@@ -52,13 +56,15 @@
   - name: Disable IRQ load balancing
     copy: src=files/irqbalance dest=/etc/default/irqbalance owner=root group=root mode=0644
   - name: Disable ondemand
-    shell: update-rc.d ondemand disable
-  - name: Install 4.2 kernel
-    apt: name=linux-generic-lts-xenial state=present
+    service: name=ondemand enabled=no
   - name: Install cgroup-support
     apt: name=cgroup-bin state=present
   - name: Install zlib1g-dev
     apt: name=zlib1g-dev state=present
+  - name: Copy Python requirements file
+    copy: src=files/requirements.txt dest=/tmp/requirements.txt
+  - name: Install PIP requirements
+    pip: requirements=/tmp/requirements.txt
 - hosts: tg
   remote_user: testuser
   sudo: yes
