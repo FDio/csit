@@ -46,6 +46,8 @@ then
   exit 1
 fi
 
+mkdir -p ${BUILD_DIR}
+
 echo Building version: ${VERSION}
 echo $VERSION > ${BUILD_DIR}/VERSION
 echo "NESTED_VERSION=${VERSION}" > ${BUILD_DIR}/VERSION_HIDDEN

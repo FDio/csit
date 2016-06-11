@@ -13,4 +13,4 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-sudo apt-get install -y gcc-multilib
+sudo apt-get install -y gcc-multilib bc unzip
