@@ -192,6 +192,9 @@ unzip -n ${PACKER_DIR}/packer*zip -d ${PACKER_DIR}
 
 ## APT
 
+# This seems to be where Ubuntu keeps superseded versions of packages
+LAUNCHPAD_URL='https://launchpad.net/ubuntu/+archive/primary/+files/'
+
 rm -fr ${OUTPUT_DIR}
 mkdir -p ${OUTPUT_DIR}/temp/deb
 mkdir -p ${APT_CACHE_DIR}
@@ -202,11 +205,16 @@ do
   # Download if not already present
   if [ ! -f ${APT_CACHE_DIR}/$name ]
   then
-    wget -P ${APT_CACHE_DIR} -O ${APT_CACHE_DIR}/$name ${url//\'}
+    if ! wget -P ${APT_CACHE_DIR} -O ${APT_CACHE_DIR}/$name ${url//\'}
+    then
+      echo "WARNING: Unable to get package using previously recorded URL, may"
+      echo "         be superseded. Trying launchpad instead."
+      wget -P ${APT_CACHE_DIR} -O ${APT_CACHE_DIR}/$name "${LAUNCHPAD_URL}${name}"
+    fi
   fi
 
   # Verify checksum (always -- regardless of whether the package was
-  # just downloaded, or already tehere
+  # just downloaded, or was already there
   actual_md5sum=$(${MD5UTIL} < ${APT_CACHE_DIR}/$name)
   if [ ! "${actual_md5sum:0:32}" = "${checksum:7}" ]
   then
