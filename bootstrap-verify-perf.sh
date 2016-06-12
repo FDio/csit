@@ -19,8 +19,8 @@ TOPOLOGIES="topologies/available/lf_testbed1-X710-X520.yaml \
             topologies/available/lf_testbed2-X710-X520.yaml \
             topologies/available/lf_testbed3-X710-X520.yaml"
 
-VPP_STABLE_VER="1.0.0-437~g8f15e92_amd64"
-VPP_REPO_URL="https://nexus.fd.io/service/local/repositories/fd.io.dev/content/io/fd/vpp"
+VPP_STABLE_VER="16.06-rc3~7-gcf2aa43~b32_amd64"
+VPP_REPO_URL="https://nexus.fd.io/content/repositories/fd.io.stable.1606.ubuntu.trusty.main/io/fd/vpp"
 
 # Reservation dir
 RESERVATION_DIR="/tmp/reservation_dir"
@@ -28,7 +28,7 @@ INSTALLATION_DIR="/tmp/install_dir"
 
 PYBOT_ARGS="--noncritical MULTI_THREAD"
 
-ARCHIVE_ARTIFACTS=(log.html output.xml report.html output_perf_data.json)
+ARCHIVE_ARTIFACTS=(log.html output.xml report.html output_perf_data.xml)
 
 # If we run this script from CSIT jobs we want to use stable vpp version
 if [[ ${JOB_NAME} == csit-* ]] ;
@@ -167,6 +167,7 @@ case "$TEST_TAG" in
               -L TRACE \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s "performance.Long_Xconnect_Dot1q*" \
+        RETURN_STATUS=$(echo $?)
         ;;
     PERFTEST_NDR )
         pybot ${PYBOT_ARGS} \
@@ -174,6 +175,7 @@ case "$TEST_TAG" in
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s performance -i NDR \
               tests/
+        RETURN_STATUS=$(echo $?)
         ;;
     PERFTEST_PDR )
         pybot ${PYBOT_ARGS} \
@@ -198,7 +200,7 @@ echo Post-processing test data...
 
 python ${CUR_DIR}/resources/tools/robot_output_parser.py \
        -i ${CUR_DIR}/output.xml \
-       -o ${CUR_DIR}/output_perf_data.json \
+       -o ${CUR_DIR}/output_perf_data.xml \
        -v ${VPP_STABLE_VER}
 if [ ! $? -eq 0 ]; then
     echo "Parsing ${CUR_DIR}/output.xml failed"
