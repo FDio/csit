@@ -110,8 +110,8 @@ if [ "${#}" -ne "0" ]; then
     echo ${arr[0]}
 else
     rm -f *.deb
-    VPP_STABLE_VER="16.09-rc0~47-g3419d0b~b214_amd64"
-    VPP_REPO_URL="https://nexus.fd.io/service/local/repositories/fd.io.master.ubuntu.trusty.main/content/io/fd/vpp"
+    VPP_STABLE_VER="16.06_amd64"
+    VPP_REPO_URL="https://nexus.fd.io/content/repositories/fd.io.stable.1606.ubuntu.trusty.main/io/fd/vpp"
     wget -q "${VPP_REPO_URL}/vpp/${VPP_STABLE_VER}/vpp-${VPP_STABLE_VER}.deb" || exit
     wget -q "${VPP_REPO_URL}/vpp-dbg/${VPP_STABLE_VER}/vpp-dbg-${VPP_STABLE_VER}.deb" || exit
     wget -q "${VPP_REPO_URL}/vpp-dev/${VPP_STABLE_VER}/vpp-dev-${VPP_STABLE_VER}.deb" || exit
