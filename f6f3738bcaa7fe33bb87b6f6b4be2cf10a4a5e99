@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba092121_e4751f33",
+        "filename": "tests/suites/performance/Long_Xconnect_Dot1ad_Intel-X520-DA2.robot",
+        "patchSetId": 12
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 74
+      },
+      "writtenOn": "2016-06-12T17:33:22Z",
+      "side": 1,
+      "message": "Could you please add to all test cases what are the packet sizes on the patch from src to dst:\nTG \u003c-(64B)-\u003e DUT1 \u003c-(72B)-\u003e DUT2 \u003c-(64B)-\u003e TG ?",
+      "revId": "f6f3738bcaa7fe33bb87b6f6b4be2cf10a4a5e99",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
