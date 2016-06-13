@@ -16,6 +16,7 @@ from robot.api import logger
 from resources.libraries.python.topology import NodeType
 from resources.libraries.python.ssh import SSH
 from resources.libraries.python.constants import Constants
+from resources.libraries.python.VatExecutor import VatExecutor
 
 
 class DUTSetup(object):
@@ -33,6 +34,16 @@ class DUTSetup(object):
                     logger.debug('stderr: {0}'.format(stderr))
                     raise Exception('DUT {0} failed to start VPP service'.
                                     format(node['host']))
+
+    @staticmethod
+    def vpp_show_version_verbose(node):
+        """Run "show version verbose" CLI command.
+
+        :param node: Node to run command on.
+        :type node: dict
+        """
+        vat = VatExecutor()
+        vat.execute_script("show_version_verbose.vat", node, json_out=False)
 
     @staticmethod
     def setup_all_duts(nodes):
