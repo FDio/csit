@@ -15,9 +15,10 @@
 
 from resources.libraries.python.VatExecutor import VatTerminal
 from resources.libraries.python.topology import Topology
-
+from resources.libraries.python.ssh import exec_cmd_no_error
 
 class Routing(object):
+
     """Routing utilities."""
 
     @staticmethod
@@ -88,3 +89,25 @@ class Routing(object):
                                                     prefix_length=prefix_len,
                                                     fib_number=fib_id,
                                                     where=place)
+
+    @staticmethod
+    def add_route(node, ip, prefix, gw, namespace=None):
+        """Add route in namespace.
+
+        :param node: Node where to execute command.
+        :param ip: Route destination IP.
+        :param prefix: IP prefix.
+        :param namespace: Execute command in namespace. Optional
+        :param gw: Gateway.
+        :type node: dict
+        :type ip: str
+        :type prefix: int
+        :type gw: str
+        :type namespace: str
+        """
+        if namespace is not None:
+            cmd = 'ip netns exec {} ip route add {}/{} via {}'.format(
+                namespace, ip, prefix, gw)
+        else:
+            cmd = 'ip route add {}/{} via {}'.format(ip, prefix, gw)
+        exec_cmd_no_error(node, cmd, sudo=True)
