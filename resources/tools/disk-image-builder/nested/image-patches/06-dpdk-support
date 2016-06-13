@@ -1,0 +1,45 @@
+#!/bin/sh
+
+### This may be a temporary file. Once DPDK is working stable in the nested
+### VM, and if and when ### we decide we want to do all testing with DPDK,
+### the steps executed here may become default configuration for the image.
+###
+### For now, to give us the flexibility to work with and without DPDK, keep
+### this as a separate script.
+
+DPDK_SETUP_FILE="dpdk-setup.sh"
+
+cat - > ${DPDK_SETUP_FILE} <<"_EOF"
+#!/bin/sh
+
+TARGET_DRIVER="uio_pci_generic"
+PATH_TO_IGB_UIO_MODULE="/usr/local/kmod/igb_uio.ko"
+NUM_HUGEPAGES=64
+
+# Load igb_uio module if this is the driver we want to use
+if [ "${TARGET_DRIVER}" = "igb_uio" ]
+then
+  insmod ${PATH_TO_IGB_UIO_MODULE}
+fi
+
+# Set up hugepages
+echo "vm.nr_hugepages = ${NUM_HUGEPAGES}" > /etc/sysctl.conf
+sysctl -p
+mkdir -p /mnt/huge
+grep -q hugetlbfs /etc/fstab || echo "hugetlbfs /mnt/huge hugetlbfs mode=1770,gid=2021 0 0" >> /etc/fstab
+mount -a
+
+#
+echo 1af4 1000 > /sys/bus/pci/drivers/${TARGET_DRIVER}/new_id
+#
+for dev in $(find /sys/bus/pci/drivers/virtio-pci -type l -name '*:*:*.*' | sed -e 's/.*\///')
+do
+  echo Unbinding $dev from virtio-pci
+  echo $dev > /sys/bus/pci/drivers/virtio-pci/unbind
+  echo Binding $dev to ${TARGET_DRIVER}
+  echo $dev > /sys/bus/pci/drivers/${TARGET_DRIVER}/bind
+done
+
+_EOF
+
+chmod 755 ${DPDK_SETUP_FILE}
