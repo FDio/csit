@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba092121_ad04ab15",
+        "filename": "tests/suites/ipv4/ipv4_arp_untagged.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-13T21:35:45Z",
+      "side": 1,
+      "message": "Please, align documentation wiht test case - there is no route set.",
+      "range": {
+        "startLine": 41,
+        "startChar": 41,
+        "endLine": 41,
+        "endChar": 51
+      },
+      "revId": "5184d8a10cd9a9420e39ef795ad3aaec8fd794f7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
