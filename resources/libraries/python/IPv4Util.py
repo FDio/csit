@@ -164,26 +164,83 @@ class IPv4Util(object):
 
     @staticmethod
     def send_ping_from_node_to_dst(node, destination, namespace=None,
-                                   ping_count=3):
+                                   ping_count=3, interface=None):
         """Send a ping from node to destination. Optionally, you can define a
-        namespace from where to send a ping.
+        namespace and interface from where to send a ping.
 
         :param node: Node to start ping on.
         :param destination: IPv4 address where to send ping.
-        :param namespace: Namespace to send ping from.
-        :param ping_count: Number of pings to send.
+        :param namespace: Namespace to send ping from. Optional
+        :param ping_count: Number of pings to send. Default 3
+        :param interface: Interface from where to send ping. Optional
         :type node: dict
         :type destination: str
         :type namespace: str
         :type ping_count: int
+        :type interface: str
         :raises RuntimeError: If no response for ping, raise error
         """
         cmd = ''
         if namespace is not None:
             cmd = 'ip netns exec {0} ping -c{1} {2}'.format(
                 namespace, ping_count, destination)
+        elif interface is not None:
+            cmd = 'ping -I {0} -c{1} {2}'.format(
+                interface, ping_count, destination)
         else:
             cmd = 'ping -c{0} {1}'.format(ping_count, destination)
         rc, stdout, stderr = exec_cmd(node, cmd, sudo=True)
         if rc != 0:
             raise RuntimeError("Ping Not Successful")
+
+    @staticmethod
+    def set_linux_interface_arp(node, interface, ip, mac, namespace=None):
+        """Set arp on interface in linux.
+
+        :param node: Node where to execute command.
+        :param interface: Interface in namespace.
+        :param ip: IP for arp.
+        :param mac: MAC address.
+        :param namespace: Execute command in namespace. Optional
+        :type node: dict
+        :type interface: str
+        :type ip: str
+        :type mac: str
+        :type namespace: str
+        :raises RuntimeError: Could not set ARP properly.
+        """
+        if namespace is not None:
+            cmd = 'ip netns exec {} arp -i {} -s {} {}'.format(
+                namespace, interface, ip, mac)
+        else:
+            cmd = 'arp -i {} -s {} {}'.format(interface, ip, mac)
+        rc, _, stderr = exec_cmd(node, cmd, sudo=True)
+        if rc != 0:
+            raise RuntimeError("Arp set not successful, reason:{}".
+                               format(stderr))
+
+    @staticmethod
+    def set_linux_interface_ip(node, interface, ip, prefix, namespace=None):
+        """Set IP address to interface in linux.
+
+        :param node: Node where to execute command.
+        :param interface: Interface in namespace.
+        :param ip: IP to be set on interface.
+        :param prefix: IP prefix.
+        :param namespace: Execute command in namespace. Optional
+        :type node: dict
+        :type interface: str
+        :type ip: str
+        :type prefix: int
+        :type namespace: str
+        :raises RuntimeError: IP could not be set.
+        """
+        if namespace is not None:
+            cmd = 'ip netns exec {} ip addr add {}/{} dev {}'.format(
+                namespace, ip, prefix, interface)
+        else:
+            cmd = 'ip addr add {}/{} dev {}'.format(ip, prefix, interface)
+        (rc, _, stderr) = exec_cmd(node, cmd, timeout=5, sudo=True)
+        if rc != 0:
+            raise RuntimeError(
+                'Could not set IP for interface, reason:{}'.format(stderr))
