@@ -38,8 +38,8 @@
 | | ...             | TG(if1)->(if1)DUT(if2)->TG(if2)
 | | ...
 | | ... | - tg_node - Node to execute scripts on (TG). Type: dictionary
-| | ... | - src_ip - IP of source interface (TG-if1). Type: int
-| | ... | - dst_ip - IP of destination interface (TG-if2). Type: int
+| | ... | - src_ip - IP of source interface (TG-if1). Type: string
+| | ... | - dst_ip - IP of destination interface (TG-if2). Type: string
 | | ... | - tx_src_port - Interface of TG-if1. Type: string
 | | ... | - tx_src_mac - MAC address of TG-if1. Type: string
 | | ... | - tx_dst_mac - MAC address of DUT-if1. Type: string
@@ -79,8 +79,8 @@
 | | ...             | TG(if1)->(if1)DUT(if2)->TG(if2)
 | | ...
 | | ... | - tg_node - Node to execute scripts on (TG). Type: dictionary
-| | ... | - src_ip - IP of source interface (TG-if1). Type: int
-| | ... | - dst_ip - IP of destination interface (TG-if2). Type: int
+| | ... | - src_ip - IP of source interface (TG-if1). Type: string
+| | ... | - dst_ip - IP of destination interface (TG-if2). Type: string
 | | ... | - tx_src_port - Interface of TG-if1. Type: string
 | | ... | - tx_src_mac - MAC address of TG-if1. Type: string
 | | ... | - tx_dst_mac - MAC address of DUT-if1. Type: string
