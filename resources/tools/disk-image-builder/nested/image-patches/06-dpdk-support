@@ -1,0 +1,78 @@
+#!/bin/sh
+
+### This may be a temporary file. Once DPDK is working stable in the nested
+### VM, and if and when ### we decide we want to do all testing with DPDK,
+### the steps executed here may become default configuration for the image.
+###
+### For now, to give us the flexibility to work with and without DPDK, keep
+### this as a separate script.
+
+DPDK_START_FILE="start-testpmd.sh"
+DPDK_STOP_FILE="stop-testpmd.sh"
+
+cat - > ${DPDK_START_FILE} <<"_EOF"
+#!/bin/sh
+
+TARGET_DRIVER="igb_uio"
+PATH_TO_IGB_UIO_MODULE="/usr/local/kmod/igb_uio.ko"
+NUM_HUGEPAGES=512
+TESTPMD_LOG=/tmp/testpmd.log
+TESTPMD_PID=/tmp/testpmd.pid
+
+if [ -f ${TESTPMD_PID} ]
+then
+  echo Testpmd is already running. Please stop running instance first.
+  echo Delete PID file ${TESTPMD_PID} if you are sure this is a stale PID file.
+  exit 1
+fi
+
+# Load igb_uio module if this is the driver we want to use
+if [ "${TARGET_DRIVER}" = "igb_uio" ]
+then
+  insmod ${PATH_TO_IGB_UIO_MODULE}
+fi
+
+# Set up hugepages
+echo "vm.nr_hugepages = ${NUM_HUGEPAGES}" > /etc/sysctl.conf
+sysctl -p
+mkdir -p /mnt/huge
+grep -q hugetlbfs /etc/fstab || echo "hugetlbfs /mnt/huge hugetlbfs mode=1770,gid=2021 0 0" >> /etc/fstab
+mount -a
+
+#
+echo 1af4 1000 > /sys/bus/pci/drivers/${TARGET_DRIVER}/new_id
+#
+for dev in $(find /sys/bus/pci/drivers/virtio-pci -type l -name '*:*:*.*' | sed -e 's/.*\///')
+do
+  echo Unbinding $dev from virtio-pci
+  echo $dev > /sys/bus/pci/drivers/virtio-pci/unbind
+  echo Binding $dev to ${TARGET_DRIVER}
+  echo $dev > /sys/bus/pci/drivers/${TARGET_DRIVER}/bind
+done
+
+# Start testpmd in the background. This looks a bit convoluted; we need to redirect stdin
+# (and keep stdin active) or else testpmd will quit.
+tail -f /dev/null | nohup testpmd $@ > ${TESTPMD_LOG} 2>&1 &
+echo $! > ${TESTPMD_PID}
+_EOF
+
+cat - > ${DPDK_STOP_FILE} <<"_EOF"
+#!/bin/sh
+
+TESTPMD_LOG=/tmp/testpmd.log
+TESTPMD_PID=/tmp/testpmd.pid
+
+if [ ! -f ${TESTPMD_PID} ]
+then
+  echo Testpmd is not running.
+  exit 1
+fi
+
+kill $(cat ${TESTPMD_PID})
+rm -f ${TESTPMD_PID}
+
+cat ${TESTPMD_LOG}
+_EOF
+
+chmod 755 ${DPDK_START_FILE}
+chmod 755 ${DPDK_STOP_FILE}
