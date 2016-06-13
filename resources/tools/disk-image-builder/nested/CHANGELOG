@@ -1,3 +1,15 @@
+## [1.3] - 2016-06-12
+
+### Changes
+- Use Glibc instead of uClibc. Required for DPDK.
+- Include buildroot patch for DPDK. Update build.sh
+  script to include that patch.
+- Update Linux kernel config to include UIO support
+
+### Added
+- Python, DPDK to image
+
+
 ## [1.2] - 2016-05-25
 
 ### Changes
