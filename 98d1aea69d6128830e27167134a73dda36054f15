@@ -1,0 +1,233 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba092121_0af25d9a",
+        "filename": "resources/libraries/python/IPv6Setup.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-13T14:52:24Z",
+      "side": 1,
+      "message": "vpp_ra_send_after_interval(node, interface, interval\u003d2):",
+      "range": {
+        "startLine": 250,
+        "startChar": 8,
+        "endLine": 250,
+        "endChar": 48
+      },
+      "revId": "98d1aea69d6128830e27167134a73dda36054f15",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_eaee09b4",
+        "filename": "resources/libraries/python/IPv6Setup.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-13T14:52:24Z",
+      "side": 1,
+      "message": "{}\u0027.format(interval)",
+      "range": {
+        "startLine": 263,
+        "startChar": 54,
+        "endLine": 263,
+        "endChar": 55
+      },
+      "revId": "98d1aea69d6128830e27167134a73dda36054f15",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_2ace415b",
+        "filename": "resources/traffic_scripts/check_ra_packet.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-13T14:52:24Z",
+      "side": 1,
+      "message": "unused imports",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 35
+      },
+      "revId": "98d1aea69d6128830e27167134a73dda36054f15",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_0adb7d1c",
+        "filename": "resources/traffic_scripts/check_ra_packet.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-13T14:52:24Z",
+      "side": 1,
+      "message": "unused import",
+      "range": {
+        "startLine": 25,
+        "startChar": 63,
+        "endLine": 25,
+        "endChar": 70
+      },
+      "revId": "98d1aea69d6128830e27167134a73dda36054f15",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_6aec39c8",
+        "filename": "resources/traffic_scripts/check_ra_packet.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-13T14:52:24Z",
+      "side": 1,
+      "message": "expected 2 blank lines",
+      "revId": "98d1aea69d6128830e27167134a73dda36054f15",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_4ad175fa",
+        "filename": "resources/traffic_scripts/check_ra_packet.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-13T14:52:24Z",
+      "side": 1,
+      "message": "exopected 2 blank lines",
+      "revId": "98d1aea69d6128830e27167134a73dda36054f15",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_4af8557c",
+        "filename": "resources/traffic_scripts/check_ra_packet.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-13T14:52:24Z",
+      "side": 1,
+      "message": "please add also address and link_local to the Exception text",
+      "range": {
+        "startLine": 75,
+        "startChar": 14,
+        "endLine": 75,
+        "endChar": 26
+      },
+      "revId": "98d1aea69d6128830e27167134a73dda36054f15",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_6a031974",
+        "filename": "resources/traffic_scripts/check_ra_packet.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-13T14:52:24Z",
+      "side": 1,
+      "message": "please add - {} !\u003d 255\u0027.format(ether[\u0027IPv6\u0027].hlim)",
+      "revId": "98d1aea69d6128830e27167134a73dda36054f15",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_2af52183",
+        "filename": "resources/traffic_scripts/check_ra_packet.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-13T14:52:24Z",
+      "side": 1,
+      "message": "please add ether[\u0027ra\u0027].code to error message",
+      "revId": "98d1aea69d6128830e27167134a73dda36054f15",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_aae251d3",
+        "filename": "tests/suites/ipv6/ipv6_ra.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-13T14:52:24Z",
+      "side": 1,
+      "message": "wrong documentation?",
+      "range": {
+        "startLine": 30,
+        "startChar": 19,
+        "endLine": 30,
+        "endChar": 48
+      },
+      "revId": "98d1aea69d6128830e27167134a73dda36054f15",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_8ae78de4",
+        "filename": "tests/suites/ipv6/ipv6_ra.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-13T14:52:24Z",
+      "side": 1,
+      "message": "not used",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 34
+      },
+      "revId": "98d1aea69d6128830e27167134a73dda36054f15",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
