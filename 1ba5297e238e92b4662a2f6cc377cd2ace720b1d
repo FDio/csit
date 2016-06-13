@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba092121_15f963c8",
+        "filename": "resources/traffic_scripts/check_ra_packet.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-13T14:52:24Z",
+      "side": 1,
+      "message": "unused import",
+      "revId": "1ba5297e238e92b4662a2f6cc377cd2ace720b1d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_f5f5cfcb",
+        "filename": "resources/traffic_scripts/check_ra_packet.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-13T14:52:24Z",
+      "side": 1,
+      "message": "2 blank lines",
+      "revId": "1ba5297e238e92b4662a2f6cc377cd2ace720b1d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_d502cbb3",
+        "filename": "resources/traffic_scripts/check_ra_packet.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-13T14:52:24Z",
+      "side": 1,
+      "message": "2 blank lines",
+      "revId": "1ba5297e238e92b4662a2f6cc377cd2ace720b1d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
