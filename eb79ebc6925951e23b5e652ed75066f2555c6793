@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba092121_eaa9697c",
+        "filename": "resources/libraries/robot/traffic.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-13T14:13:27Z",
+      "side": 1,
+      "message": "Target MAC address which is expected in the response",
+      "range": {
+        "startLine": 256,
+        "startChar": 22,
+        "endLine": 256,
+        "endChar": 33
+      },
+      "revId": "eb79ebc6925951e23b5e652ed75066f2555c6793",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_2aa0818f",
+        "filename": "resources/libraries/robot/traffic.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-13T14:13:27Z",
+      "side": 1,
+      "message": "Target",
+      "range": {
+        "startLine": 260,
+        "startChar": 21,
+        "endLine": 260,
+        "endChar": 32
+      },
+      "revId": "eb79ebc6925951e23b5e652ed75066f2555c6793",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_cab6a5dc",
+        "filename": "tests/suites/ipv4/ipv4_proxy_arp_untagged.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-13T14:13:27Z",
+      "side": 1,
+      "message": "please remove",
+      "range": {
+        "startLine": 40,
+        "startChar": 81,
+        "endLine": 40,
+        "endChar": 82
+      },
+      "revId": "eb79ebc6925951e23b5e652ed75066f2555c6793",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
