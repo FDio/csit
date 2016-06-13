@@ -736,3 +736,11 @@ class InterfaceUtil(object):
             return {}
 
         return vxlan_gpe_data[0]
+    @staticmethod
+    def set_dev_interface_ip(node, interface, ip, prefix):
+        ssh = SSH()
+        ssh.connect(node)
+        cmd = 'ip addr add {0}/{1} dev {2}'.format(ip, prefix, interface)
+        (rc, stdout, stderr) = ssh.exec_command_sudo(cmd)
+        if rc != 0:
+            raise RuntimeError('Could not set IP address')
