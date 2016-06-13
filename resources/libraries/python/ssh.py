@@ -82,7 +82,7 @@ class SSH(object):
             ssh = SSH.__existing_connections.pop(node_hash)
             ssh.close()
 
-    def exec_command(self, cmd, timeout=10):
+    def exec_command(self, cmd, timeout=10, background=False):
         """Execute SSH command on a new channel on the connected Node.
 
         Returns (return_code, stdout, stderr).
@@ -98,32 +98,35 @@ class SSH(object):
         logger.trace('exec_command on {0} took {1} seconds'.format(
             self._ssh.get_transport().getpeername(), end-start))
 
-        stdout = ""
-        try:
+        if background != True:
+            stdout = ""
+            try:
+                while True:
+                    buf = chan.recv(self.__MAX_RECV_BUF)
+                    stdout += buf
+                    if not buf:
+                        break
+            except socket.timeout:
+                logger.error('Caught timeout exception, current contents '
+                             'of buffer: {0}'.format(stdout))
+                raise
+
+
+            stderr = ""
             while True:
-                buf = chan.recv(self.__MAX_RECV_BUF)
-                stdout += buf
+                buf = chan.recv_stderr(self.__MAX_RECV_BUF)
+                stderr += buf
                 if not buf:
                     break
-        except socket.timeout:
-            logger.error('Caught timeout exception, current contents '
-                         'of buffer: {0}'.format(stdout))
-            raise
 
-        stderr = ""
-        while True:
-            buf = chan.recv_stderr(self.__MAX_RECV_BUF)
-            stderr += buf
-            if not buf:
-                break
+            return_code = chan.recv_exit_status()
+            logger.trace('chan_recv/_stderr took {} seconds'.format(time()-end))
 
-        return_code = chan.recv_exit_status()
-        logger.trace('chan_recv/_stderr took {} seconds'.format(time()-end))
+            logger.trace('return RC {}'.format(return_code))
+            logger.trace('return STDOUT {}'.format(stdout))
+            logger.trace('return STDERR {}'.format(stderr))
+            return return_code, stdout, stderr
 
-        logger.trace('return RC {}'.format(return_code))
-        logger.trace('return STDOUT {}'.format(stdout))
-        logger.trace('return STDERR {}'.format(stderr))
-        return return_code, stdout, stderr
 
     def exec_command_sudo(self, cmd, cmd_input=None, timeout=10):
         """Execute SSH command with sudo on a new channel on the connected Node.
