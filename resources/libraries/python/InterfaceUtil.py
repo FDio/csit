@@ -814,3 +814,23 @@ class InterfaceUtil(object):
             vat.vat_terminal_exec_cmd_from_template("set_fib_to_interface.vat",
                                                     sw_index=sw_if_index,
                                                     vrf=table_id)
+
+    @staticmethod
+    def set_linux_interface_mac(node, interface, mac, namespace=None):
+        """Set MAC address for interface in linux.
+
+        :param node: Node where to execute command.
+        :param interface: Interface in namespace.
+        :param mac: MAC to be assigned to interface.
+        :param namespace: Execute command in namespace. Optional
+        :type node: dict
+        :type interface: str
+        :type mac: str
+        :type namespace: str
+        """
+        if namespace is not None:
+            cmd = 'ip netns exec {} ip link set {} address {}'.format(
+                namespace, interface, mac)
+        else:
+            cmd = 'ip link set {} address {}'.format(interface, mac)
+        exec_cmd_no_error(node, cmd, sudo=True)
