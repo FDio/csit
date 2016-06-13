@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/sh -e
 
 # Copyright (c) 2016 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -67,6 +67,9 @@ set -e
 wget -P ${BUILD_DIR} -N $BUILDROOT_URL
 tar -C ${BUILD_DIR} -xzf ${BUILD_DIR}/$BUILDROOT_TARBALL
 
+# Apply DPDK patch to buildroot. Do not fail if this patch has already been applied.
+patch -N -d ${BUILDROOT_DIR} -p1 < buildroot-patches/dpdk.patch || /bin/true
+
 cp -p buildroot-config $BUILDROOT_DIR/.config
 cp -p kernel-defconfig $BUILDROOT_DIR/kernel-defconfig
 make -C $BUILDROOT_DIR
@@ -124,7 +127,7 @@ sudo tar -C ${MOUNT_TMPDIR} -xf ${BUILDROOT_OUTPUT}
 echo "Applying patches/modifications"
 mydir=$(pwd)
 cd ${MOUNT_TMPDIR}
-sudo run-parts -v  ${mydir}/patches
+sudo run-parts -v  ${mydir}/image-patches
 cd ${mydir}
 
 # Copy version and changelog
