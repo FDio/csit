@@ -211,6 +211,8 @@ class L2Util(object):
         exec_cmd_no_error(node, cmd, sudo=True)
         cmd = 'brctl addif {0} {1}'.format(br_name, if_2)
         exec_cmd_no_error(node, cmd, sudo=True)
+        cmd = 'ifconfig {0} up'.format(br_name)
+        exec_cmd_no_error(node, cmd, sudo=True)
 
     @staticmethod
     def setup_network_namespace(node, namespace_name, interface_name,

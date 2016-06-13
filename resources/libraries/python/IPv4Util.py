@@ -164,7 +164,7 @@ class IPv4Util(object):
 
     @staticmethod
     def send_ping_from_node_to_dst(node, destination, namespace=None,
-                                   ping_count=3):
+                                   ping_count=3, interface=None):
         """Send a ping from node to destination. Optionally, you can define a
         namespace from where to send a ping.
 
@@ -172,18 +172,61 @@ class IPv4Util(object):
         :param destination: IPv4 address where to send ping.
         :param namespace: Namespace to send ping from.
         :param ping_count: Number of pings to send.
+        :param interface: Interface from where to send ping.
         :type node: dict
         :type destination: str
         :type namespace: str
         :type ping_count: int
+        :type interface: str
         :raises RuntimeError: If no response for ping, raise error
         """
         cmd = ''
         if namespace is not None:
             cmd = 'ip netns exec {0} ping -c{1} {2}'.format(
                 namespace, ping_count, destination)
+        elif interface is not None:
+            cmd = 'ping -I {0} -c{1} {2}'.format(
+                interface, ping_count, destination)
         else:
             cmd = 'ping -c{0} {1}'.format(ping_count, destination)
         rc, stdout, stderr = exec_cmd(node, cmd, sudo=True)
         if rc != 0:
             raise RuntimeError("Ping Not Successful")
+
+    @staticmethod
+    def set_linux_interface_arp(node, interface, ip, mac):
+        """Set arp on interface in linux.
+
+        :param node: Node where to execute command.
+        :param interface: Interface in namespace.
+        :param ip: IP for arp.
+        :param mac: MAC address.
+        :type node: dict
+        :type interface: str
+        :type ip: str
+        :type mac: str
+        """
+        cmd = 'arp -i {} -s {} {}'.format(interface, ip, mac)
+        rc, stdout, stderr = exec_cmd(node, cmd, sudo=True)
+        if rc != 0:
+            raise RuntimeError("Arp set not successful")
+
+    @staticmethod
+    def set_linux_interface_ip(node, interface, ip, prefix):
+        """Set IP address to interface in linux.
+
+        :param node: Node where to execute command.
+        :param interface: Interface in namespace.
+        :param ip: IP to be set on interface.
+        :param prefix: IP prefix.
+        :type node: dict
+        :type interface: str
+        :type ip: str
+        :type prefix: int
+        :raises RuntimeError: IP could not be set.
+        """
+        cmd = 'ip addr add {}/{} dev {}'.format(ip, prefix, interface)
+        (rc, stdout, stderr) = exec_cmd(node, cmd, timeout=5, sudo=True)
+        if rc != 0:
+            raise RuntimeError(
+                'Could not set IP for interface, reason:{}'.format(stderr))

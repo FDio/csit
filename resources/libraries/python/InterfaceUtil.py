@@ -767,3 +767,16 @@ class InterfaceUtil(object):
             vat.vat_terminal_exec_cmd_from_template(
                 "proxy_arp_intfc_enable.vat",
                 sw_if_index=sw_if_index)
+    @staticmethod
+    def set_linux_interface_mac(node, interface, mac):
+        """Set MAC address for interface in linux.
+
+        :param node: Node where to execute command.
+        :param interface: Interface in namespace.
+        :param mac: MAC to be assigned to interface.
+        :type node: dict
+        :type interface: str
+        :type mac: str
+        """
+        cmd = 'ip link set {} address {}'.format(interface, mac)
+        exec_cmd_no_error(node, cmd, sudo=True)
