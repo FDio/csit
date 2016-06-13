@@ -28,6 +28,12 @@
 | | [Documentation] | Prepare all TGs before traffic scripts execution
 | | All TGs Set Interface Default Driver | ${nodes}
 
+| Show vpp version on all DUTs
+| | [Documentation] | Show VPP version verbose on all DUTs
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | Vpp show version verbose | ${nodes['${dut}']}
+
 | Add '${m}' worker threads and rxqueues '${n}' without HTT to all DUTs
 | | [Documentation] |  Setup M worker threads without HTT and rxqueues N in
 | | ...             |  startup configuration of VPP to all DUTs

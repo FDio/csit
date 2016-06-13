@@ -194,6 +194,7 @@
 | | [Arguments] | ${topology_type}
 | | Setup default startup configuration of VPP on all DUTs
 | | Update All Interface Data On All Nodes | ${nodes}
+| | Show vpp version on all DUTs
 | | Setup performance rate Variables
 | | Setup performance global Variables
 | | 3-node circular Topology Variables Setup
@@ -206,6 +207,7 @@
 | | [Arguments] | ${topology_type} | ${nic_model}
 | | Setup default startup configuration of VPP on all DUTs
 | | Update All Interface Data On All Nodes | ${nodes}
+| | Show vpp version on all DUTs
 | | Setup performance rate Variables
 | | Setup performance global Variables
 | | 3-node circular Topology Variables Setup with DUT interface model
