@@ -1,0 +1,1 @@
+map_add_del_rule index {index} psid {psid} dst {dst} {delete}
