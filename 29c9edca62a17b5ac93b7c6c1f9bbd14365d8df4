@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba092121_f0c4b660",
+        "filename": "resources/libraries/python/LispUtil.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-14T16:45:44Z",
+      "side": 1,
+      "message": "I think better place for this will be in separate python variable file, that could be imported with Variables in Settings section in lisp_api.robot file. If so, you can remove also Lisp test data is prepared KW.",
+      "range": {
+        "startLine": 273,
+        "startChar": 8,
+        "endLine": 276,
+        "endChar": 51
+      },
+      "revId": "29c9edca62a17b5ac93b7c6c1f9bbd14365d8df4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
