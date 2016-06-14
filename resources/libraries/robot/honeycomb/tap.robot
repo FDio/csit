@@ -106,7 +106,6 @@
 | | [Arguments] | ${node} | ${interface} | ${settings}
 | | ${vat_data}= | TAP Dump | ${node} | ${interface}
 | | Should be equal | ${vat_data['dev_name']} | ${settings['tap-name']}
-| | ${vat_data}= | VPP Get interface data | ${node}
 # other settings not accessible through VAT commands
 
 | TAP configuration from Honeycomb should be empty
