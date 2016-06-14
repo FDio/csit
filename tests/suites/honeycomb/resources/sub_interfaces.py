@@ -13,6 +13,62 @@
 
 """Test variables for Honeycomb sub-interface test suite."""
 
+# Sub-interface 1 and its settings:
+sub_if_1_settings = {
+    "identifier": "1",
+    "vlan-type": "802dot1q",
+    "enabled": "false"
+}
+
+sub_if_1_tags = [
+    {
+        "index": "0",
+        "dot1q-tag": {
+            "tag-type": "dot1q-types:s-vlan",
+            "vlan-id": "100"
+        }
+    },
+    {
+        "index": "1",
+        "dot1q-tag": {
+            "tag-type": "dot1q-types:c-vlan",
+            "vlan-id": "any"
+        }
+    }
+]
+
+sub_if_1_match = "vlan-tagged-exact-match"
+
+# Expected operational data: sub-interface.
+sub_if_1_oper = {
+    "identifier": 1,
+    "oper-status": "down",
+    "admin-status": "down",
+    "tags": {
+        "tag": [
+            {
+                "index": 1,
+                "dot1q-tag": {
+                    "tag-type": "dot1q-types:c-vlan",
+                    "vlan-id": "any"
+                }
+            },
+            {
+                "index": 0,
+                "dot1q-tag": {
+                    "tag-type": "dot1q-types:s-vlan",
+                    "vlan-id": "100"
+                }
+            }
+        ]
+    },
+    "match": {
+        "vlan-tagged": {
+            "match-exact-tags": False
+        }
+    }
+}
+
 # Bridge domain name.
 bd_name = 'test-sub-bd'
 
@@ -25,76 +81,197 @@ bd_settings = {
     'arp-termination': True
 }
 
-# Bridge domain configuration used while adding the bridge domain to a
-# sub-interface.
+# Bridge domain configuration used while adding the sub-interface to the bridge
+# domain.
 sub_bd_settings = {
     'bridge-domain': bd_name,
     'split-horizon-group': '0',
     'bridged-virtual-interface': 'False'
 }
 
-# Rewrite tag parameters used while setting the rewrite tag.
-rw_params = {
-    'rewrite-operation': 'pop-1',
-    'first-pushed': '802dot1ad',
-    'tag1': '1',
-    'tag2': '2'
+# Configuration data: Enable tag-rewrite push.
+tag_rewrite_push = {
+    "vlan-type": "vpp-vlan:802dot1q",
+    "push-tags": [
+        {
+            "index": 0,
+            "dot1q-tag": {
+                "tag-type": "dot1q-types:s-vlan",
+                "vlan-id":123
+            }
+        },
+        {
+            "index": 1,
+            "dot1q-tag": {
+                "tag-type": "dot1q-types:c-vlan",
+                "vlan-id": 456
+            }
+        }
+    ]
 }
 
-# Rewrite tag parameters used while editing the rewrite tag.
-rw_params_edited = {
-    'rewrite-operation': 'push-1',
-    'first-pushed': '802dot1q',
-    'tag1': '12',
-    'tag2': '22'
+# Expected operational data: tag-rewrite push.
+tag_rewrite_push_oper = {
+    "vlan-type": "vpp-vlan:802dot1q",
+    "push-tags": [
+        {
+            "index": 1,
+            "dot1q-tag": {
+                "tag-type": "dot1q-types:c-vlan",
+                "vlan-id": 456
+            }
+        },
+        {
+            "index": 0,
+            "dot1q-tag": {
+                "tag-type": "dot1q-types:s-vlan",
+                "vlan-id": 123
+            }
+        }
+    ]
 }
 
-# Rewrite tag parameters when it is disabled.
-rw_params_disabled = {
-    'rewrite-operation': 'disabled',
-    'first-pushed': '802dot1ad'
+# Expected VAT data: tag-rewrite push.
+tag_rewrite_push_VAT = {
+    'sub_default': 0,
+    'sub_dot1ad': 0,
+    'sub_exact_match': 0,
+    'sub_inner_vlan_id': 0,
+    'sub_inner_vlan_id_any': 1,
+    'sub_number_of_tags': 2,
+    'sub_outer_vlan_id': 100,
+    'sub_outer_vlan_id_any': 0,
+    'vtr_op': 2,
+    'vtr_push_dot1q': 1,
+    'vtr_tag1': 123,
+    'vtr_tag2': 456
 }
 
-# Rewrite tag parameters - wrong value of 'rewrite-operation' parameter.
-# Used in negative test.
-rw_params_wrong_op = {
-    'rewrite-operation': 'WRONG_OP',
-    'first-pushed': '802dot1q',
-    'tag1': '1',
-    'tag2': '2'
+# Configuration data: Enable tag-rewrite pop 1.
+tag_rewrite_pop_1 = {
+    "pop-tags": "1"
 }
 
-# Rewrite tag parameters - wrong value of 'first-pushed' parameter.
-# Used in negative test.
-rw_params_wrong_pushed = {
-    'rewrite-operation': 'pop-1',
-    'first-pushed': 'WRONG_PUSHED',
-    'tag1': '1',
-    'tag2': '2'
+# Expected operational data: tag-rewrite pop 1.
+tag_rewrite_pop_1_oper = {
+    "vlan-type": "vpp-vlan:802dot1ad",
+    "pop-tags": 1
 }
 
-# Second bridge domain name.
-bd2_name = 'test-sub-bd2'
-sub2_bd_settings = {
-    'bridge-domain': bd2_name,
-    'split-horizon-group': '0',
-    'bridged-virtual-interface': 'False'
+# Expected VAT data: tag-rewrite pop 1.
+tag_rewrite_pop_1_VAT = {
+    'sub_default': 0,
+    'sub_dot1ad': 0,
+    'sub_exact_match': 0,
+    'sub_inner_vlan_id': 0,
+    'sub_inner_vlan_id_any': 1,
+    'sub_number_of_tags': 2,
+    'sub_outer_vlan_id': 100,
+    'sub_outer_vlan_id_any': 0,
+    'vtr_op': 3,
+    'vtr_push_dot1q': 0,
+    'vtr_tag1': 0,
+    'vtr_tag2': 0
 }
 
-# Second bridge domain configuration used while adding the bridge domain to a
-# sub-interface.
-bd2_settings = {
-    'flood': True,
-    'forward': True,
-    'learn': True,
-    'unknown-unicast-flood': True,
-    'arp-termination': True
+# Configuration data: Enable tag-rewrite translate 1-2.
+tag_rewrite_translate_1_2 = {
+    "vlan-type": "vpp-vlan:802dot1q",
+    "pop-tags": "1",
+    "push-tags": [
+        {
+            "index": 0,
+            "dot1q-tag": {
+                "tag-type": "dot1q-types:s-vlan",
+                "vlan-id": 111
+            }
+        },
+        {
+            "index": 1,
+            "dot1q-tag": {
+                "tag-type": "dot1q-types:c-vlan",
+                "vlan-id": 222
+            }
+        }
+    ]
 }
 
-# Parameters of a bridge domain with rewrite tag.
-bd_rw_settings = {
-    'bridge-domain': bd2_name,
-    'split-horizon-group': '0',
-    'bridged-virtual-interface': 'False',
-    'vlan-tag-rewrite': rw_params
+# Expected operational data: tag-rewrite translate 1-2.
+tag_rewrite_translate_1_2_oper = {
+    "vlan-type": "vpp-vlan:802dot1q",
+    "pop-tags": 1,
+    "push-tags": [
+        {
+            "index": 1,
+            "dot1q-tag": {
+                "tag-type": "dot1q-types:c-vlan",
+                "vlan-id": 222
+            }
+        },
+        {
+            "index": 0,
+            "dot1q-tag": {
+                "tag-type": "dot1q-types:s-vlan",
+                "vlan-id": 111
+            }
+        }
+    ]
+}
+
+# Expected VAT data: tag-rewrite translate 1-2.
+tag_rewrite_translate_1_2_VAT = {
+    'sub_default': 0,
+    'sub_dot1ad': 0,
+    'sub_exact_match': 0,
+    'sub_inner_vlan_id': 0,
+    'sub_inner_vlan_id_any': 1,
+    'sub_number_of_tags': 2,
+    'sub_outer_vlan_id': 100,
+    'sub_outer_vlan_id_any': 0,
+    'vtr_op': 6,
+    'vtr_push_dot1q': 1,
+    'vtr_tag1': 111,
+    'vtr_tag2': 222
+}
+
+# Configuration data: Disable tag-rewrite.
+tag_rewrite_disabled = {}
+
+# Expected VAT data: Disable tag-rewrite.
+tag_rewrite_disabled_VAT = {
+    'sub_default': 0,
+    'sub_dot1ad': 0,
+    'sub_exact_match': 0,
+    'sub_inner_vlan_id': 0,
+    'sub_inner_vlan_id_any': 1,
+    'sub_number_of_tags': 2,
+    'sub_outer_vlan_id': 100,
+    'sub_outer_vlan_id_any': 0,
+    'vtr_op': 0,
+    'vtr_push_dot1q': 0,
+    'vtr_tag1': 0,
+    'vtr_tag2': 0
+}
+
+# Configuration data:
+# Wrong vlan-type for enable tag-rewrite translate 1-2.
+tag_rewrite_translate_1_2_wrong = {
+    "vlan-type": "vpp-vlan:WRONG",
+    "pop-tags": "1",
+    "push-tags": [
+        {
+            "index": 0,
+            "dot1q-tag": {
+                "tag-type": "dot1q-types:s-vlan",
+                "vlan-id": 111
+            }
+        },
+        {
+            "index": 1,
+            "dot1q-tag": {
+                "tag-type": "dot1q-types:c-vlan",
+                "vlan-id": 222
+            }
+        }
+    ]
 }

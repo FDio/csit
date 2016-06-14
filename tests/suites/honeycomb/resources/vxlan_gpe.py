@@ -43,7 +43,7 @@ vxlan_gpe_wrong_type_base_settings = {
     'name': vxlan_gpe_if2,
     'type': 'iana-if-type:ethernetCsmacd',
     'description': 'for testing purposes',
-    'enabled': 'true',
+    'enabled': True,
     'link-up-down-trap-enable': 'enabled'
 }
 
@@ -69,7 +69,7 @@ vxlan_gpe_if5 = 'vxlan_gpe_tunnel0'
 vxlan_gpe_base_ipv6_settings = {
     'name': vxlan_gpe_if5,
     'description': 'for testing purposes',
-    'enabled': 'true',
+    'enabled': True,
     'link-up-down-trap-enable': 'enabled'
 }
 vxlan_gpe_ipv6_settings = {
@@ -86,7 +86,7 @@ vxlan_gpe_if6 = 'vxlan_gpe_tunnel1'
 vxlan_gpe_base_ipv6_settings2 = {
     'name': vxlan_gpe_if6,
     'description': 'for testing purposes',
-    'enabled': 'true',
+    'enabled': True,
     'link-up-down-trap-enable': 'enabled'
 }
 vxlan_gpe_ipv6_settings2 = {
