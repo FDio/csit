@@ -14,196 +14,225 @@
 *** Settings ***
 | Library | resources.libraries.python.InterfaceUtil
 | ...     | WITH NAME | interfaceCLI
+| Library | resources.libraries.python.L2Util
+| ...     | WITH NAME | L2Util
 | Library | resources.libraries.python.honeycomb.HcAPIKwInterfaces.InterfaceKeywords
 | ...     | WITH NAME | InterfaceAPI
 | Resource | resources/libraries/robot/honeycomb/bridge_domain.robot
 | Documentation | Keywords used to manipulate sub-interfaces.
-
-*** Variables ***
-# Translation table used to convert values received from Honeycomb to values
-# received from VAT.
-| &{rewrite_operations}=
-| ... | disabled=0
-| ... | push-1=1
-| ... | push-2=2
-| ... | pop-1=3
-| ... | pop-2=4
-| ... | translate-1-to-1=5
-| ... | translate-1-to-2=6
-| ... | translate-2-to-1=7
-| ... | translate-2-to-2=8
 
 *** Keywords ***
 | Honeycomb creates sub-interface
 | | [Documentation] | Create a sub-interface using Honeycomb API.
 | | ...
 | | ... | *Arguments:*
-| | ... | - node - information about a DUT node. Type: dictionary
-| | ... | - interface - name of an interface on the specified node. Type: string
-| | ... | - identifier - ID of sub-interface to be created. Type: integer
-| | ... | - sub_interface_base_settings - Configuration data for sub-interface.\
-| | ... | Type: dictionary
-| | ... | - sub_interface_settings - Configuration data specific for a\
-| | ... | sub-interface. Type: dictionary
+| | ... | - node - Information about a DUT node. Type: dictionary
+| | ... | - super_interface - Super-interface where a sub-interface will be\
+| | ... | created. Type: string
+| | ... | - match - Match type. Type: string
+| | ... | - tags - List of tags to be set while creating the sub-interface.\
+| | ... | Type: list
+| | ... | - sub_interface_settings - Sub-inteface parameters to be set while\
+| | ... | creating the sub-interface. Type: dictionary
 | | ...
 | | ... | *Example:*
 | | ... | \| Honeycomb creates sub-interface\
-| | ... | \| ${nodes['DUT1']} \| sub_test \| 10 \| ${sub_interface_settings} \|
+| | ... | \| ${nodes['DUT1']} \| GigabitEthernet0/8/0\
+| | ... | \| vlan-tagged-exact-match \| ${sub_if_1_tags}\
+| | ... | \| ${sub_if_1_settings} \|
 | | ...
-| | [Arguments] | ${node} | ${interface} | ${identifier}
-| | ... | ${sub_interface_base_settings} | ${sub_interface_settings}
-| | interfaceAPI.Create sub interface | ${node} | ${interface}
-| | ... | &{sub_interface_base_settings} | &{sub_interface_settings}
-
-| Honeycomb fails to remove sub-interface
-| | [Documentation] | Honeycomb tries to remove sub-interface using Honeycomb\
-| | ... | API. This operation must fail.
+| | [Arguments] | ${node} | ${super_interface}
+| | ... | ${match} | ${tags} | ${sub_interface_settings}
 | | ...
-| | ... | *Arguments:*
-| | ... | - node - information about a DUT node. Type: dictionary
-| | ... | - interface - name of a sub-interface on the specified node.
-| | ... | Type: string
-| | ...
-| | ... | *Example:*
-| | ... | \| Honeycomb fails to remove sub-interface\
-| | ... | \| ${nodes['DUT1']} \| sub_test \|
-| | ...
-| | [Arguments] | ${node} | ${interface}
-| | Run keyword and expect error | *HoneycombError: Not possible to remove* 500.
-| | ... | interfaceAPI.Delete interface | ${node} | ${interface}
+| | interfaceAPI.Create sub interface | ${node} | ${super_interface}
+| | ... | ${match} | ${tags} | &{sub_interface_settings}
 
 | Sub-interface configuration from Honeycomb should be
 | | [Documentation] | Retrieves sub-interface configuration through Honeycomb\
 | | ... | and compares it with settings supplied in argument.
 | | ...
 | | ... | *Arguments:*
-| | ... | - node - information about a DUT node. Type: dictionary
-| | ... | - interface - name of an interface on the specified node. Type: string
-| | ... | - base_settings - Configuration data for sub-interface.\
-| | ... | Type: dictionary
-| | ... | - sub_settings - Configuration data specific for a sub-interface.\
+| | ... | - node - Information about a DUT node. Type: dictionary
+| | ... | - super_interface - Super-interface. Type: string
+| | ... | - identifier - Sub-interface ID. Type: integer or string
+| | ... | - sub_if_settings - Operational data for sub-interface to be checked.\
 | | ... | Type: dictionary
 | | ...
 | | ... | *Example:*
 | | ... | \| Sub-interface configuration from Honeycomb should be\
-| | ... | \| ${nodes['DUT1']} \| sub_test \| ${sub_interface_base_settings}\
-| | ... | \| ${sub_interface_settings} \|
+| | ... | \| ${nodes['DUT1']} \| GigabitEthernet0/8/0 \| 1\
+| | ... | \| ${sub_if_1_params} \|
 | | ...
-| | [Arguments] | ${node} | ${interface} | ${base_settings} | ${sub_settings}
-| | ${api_data}= | interfaceAPI.Get interface oper data | ${node} | ${interface}
-| | ${api_sub}= | Set Variable | ${api_data['v3po:sub-interface']}
-| | :FOR | ${key} | IN | @{base_settings.keys()}
-| | | Should be equal | ${api_data['${key}']} | ${base_settings['${key}']}
-| | Should be equal as strings
-| | ... | ${api_sub['super-interface']} | ${sub_settings['super-interface']}
-| | Should be equal as strings
-| | ... | ${api_sub['identifier']} | ${sub_settings['identifier']}
-| | Should be equal as strings
-| | ... | ${api_sub['vlan-type']} | ${sub_settings['vlan-type']}
-| | Should be equal as strings
-| | ... | ${api_sub['number-of-tags']} | ${sub_settings['number-of-tags']}
-| | Run keyword if | ${sub_settings['match-any-outer-id']} == ${TRUE}
-| | ... | Should be equal | ${api_sub['match-any-outer-id'][0]} | ${None}
-| | Run keyword if | ${sub_settings['match-any-inner-id']} == ${TRUE}
-| | ... | Should be equal | ${api_sub['match-any-inner-id'][0]} | ${None}
-| | Run keyword if | ${sub_settings['exact-match']} == ${TRUE}
-| | ... | Should be equal | ${api_sub['exact-match'][0]} | ${None}
-| | Run keyword if | ${sub_settings['default-subif']} == ${TRUE}
-| | ... | Should be equal | ${api_sub['default-subif'][0]} | ${None}
+| | [Arguments] | ${node} | ${super_interface} | ${identifier}
+| | ... | ${sub_if_settings}
+| | ...
+| | ${api_data}= | interfaceAPI.Get sub interface oper data
+| | ... | ${node} | ${super_interface} | ${identifier}
+| | interfaceAPI.Compare Data Structures | ${api_data} | ${sub_if_settings}
 
 | Sub-interface configuration from VAT should be
 | | [Documentation] | Retrieves sub-interface configuration through VAT and\
 | | ... | compares it with settings supplied in argument.
 | | ...
 | | ... | *Arguments:*
-| | ... | - node - information about a DUT node. Type: dictionary
-| | ... | - interface - name of an interface on the specified node. Type: string
-| | ... | - sub_settings - Configuration data specific for a sub-interface.\
-| | ... | Type: dictionary
+| | ... | - node - Information about a DUT node. Type: dictionary
+| | ... | - sub_interface - Name of an sub-interface on the specified node.\
+| | ... | Type: string
+| | ... | - sub_interface_settings - Operational data specific for a\
+| | ... | sub-interface to be checked. Type: dictionary
 | | ...
 | | ... | *Example:*
 | | ... | \| Sub-interface configuration from VAT should be\
-| | ... | \| ${nodes['DUT1']} \| sub_test \| ${sub_interface_base_settings}\
-| | ... | \| ${sub_interface_settings} \|
+| | ... | \| ${nodes['DUT1']} \| GigabitEthernet0/8/0.1 \| ${sub_if_1_params} \|
 | | ...
-| | [Arguments] | ${node} | ${interface} | ${sub_settings}
-| | ${vat_data}= | InterfaceCLI.VPP get interface data | ${node} | ${interface}
+| | [Arguments] | ${node} | ${sub_interface} | ${sub_interface_settings}
+| | ...
+| | ${vat_data}= | InterfaceCLI.VPP get interface data
+| | ... | ${node} | ${sub_interface}
 | | Should be equal as strings | ${vat_data['sub_id']}
-| | ... | ${sub_settings['identifier']}
-| | Should be equal as strings | ${vat_data['sub_number_of_tags']}
-| | ... | ${sub_settings['number-of-tags']}
-| | Run keyword if | ${sub_settings['match-any-outer-id']} == ${TRUE}
-| | ... | Should be equal as integers | ${vat_data['sub_outer_vlan_id_any']}
-| | ... | ${sub_settings['match-any-outer-id']}
-| | Run keyword if | ${sub_settings['match-any-inner-id']} == ${TRUE}
-| | ... | Should be equal as integers | ${vat_data['sub_inner_vlan_id_any']}
-| | ... | ${sub_settings['match-any-inner-id']}
-| | Run keyword if | ${sub_settings['exact-match']} == ${TRUE}
-| | ... | Should be equal as integers | ${vat_data['sub_exact_match']}
-| | ... | ${sub_settings['exact-match']}
-| | Run keyword if | ${sub_settings['default-subif']} == ${TRUE}
-| | ... | Should be equal as integers | ${vat_data['sub_default']}
-| | ... | ${sub_settings['default-subif']}
+| | ... | ${sub_interface_settings['identifier']}
+| | Should be equal as strings
+| | ... | ${vat_data['interface_name']} | ${sub_interface}
+| | Run keyword if | ${vat_data['link_up_down']} == 0
+| | ... | Should be equal as strings
+| | ... | ${sub_interface_settings['oper-status']} | down
+| | Run keyword if | ${vat_data['link_up_down']} == 1
+| | ... | Should be equal as strings
+| | ... | ${sub_interface_settings['oper-status']} | up
+
+| Sub-interface indices should be the same from Honeycomb and VAT
+| | [Documentation] | Uses VAT and Honeycomb to get operational data about the\
+| | ... | given sub-interface and compares the interface indexes.
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - Information about a DUT node. Type: dictionary
+| | ... | - super_interface - Super-interface. Type: string
+| | ... | - identifier - Sub-interface ID. Type: integer or string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Sub-interface indices should be the same from Honeycomb and VAT \
+| | ... | \| ${nodes['DUT1']} \| GigabitEthernet0/8/0 \| 1 \|
+| | ...
+| | [Arguments] | ${node} | ${super_interface} | ${identifier}
+| | ...
+| | ${api_data}= | interfaceAPI.Get sub interface oper data
+| | ... | ${node} | ${super_interface} | ${identifier}
+| | ${vat_data}= | InterfaceCLI.VPP get interface data
+| | ... | ${node} | ${super_interface}.${identifier}
+| | ${sw_if_index}= | EVALUATE | ${vat_data['sw_if_index']} + 1
+| | Should be equal as strings
+| | ... | ${api_data['if-index']} | ${sw_if_index}
+
+| Honeycomb sets the sub-interface up
+| | [Documentation] | Honeycomb sets the sub-interface up.
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - Information about a DUT node. Type: dictionary
+| | ... | - super_interface - Super-interface. Type: string
+| | ... | - identifier - Sub-interface ID. Type: integer or string
+| | ...
+| | ... | *Example:*
+| | ... | Honeycomb sets the sub-interface up\
+| | ... | \| ${nodes['DUT1']} \| GigabitEthernet0/8/0 \| 1 \|
+| | ...
+| | [Arguments] | ${node} | ${super_interface} | ${identifier}
+| | ...
+| | interfaceAPI.Set sub interface state
+| | ... | ${node} | ${super_interface} | ${identifier} | up
+
+| Honeycomb sets the sub-interface down
+| | [Documentation] | Honeycomb sets the sub-interface down.
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - Information about a DUT node. Type: dictionary
+| | ... | - super_interface - Super-interface. Type: string
+| | ... | - identifier - Sub-interface ID. Type: integer or string
+| | ...
+| | ... | *Example:*
+| | ... | Honeycomb sets the sub-interface down\
+| | ... | \| ${nodes['DUT1']} \| GigabitEthernet0/8/0 \| 1 \|
+| | ...
+| | [Arguments] | ${node} | ${super_interface} | ${identifier}
+| | ...
+| | interfaceAPI.Set sub interface state
+| | ... | ${node} | ${super_interface} | ${identifier} | down
+
+| Honeycomb fails to set sub-interface up
+| | [Documentation] | Honeycomb tries to set sub-interface up and expects error.
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - Information about a DUT node. Type: dictionary
+| | ... | - super_interface - Super-interface. Type: string
+| | ... | - identifier - Sub-interface ID. Type: integer or string
+| | ...
+| | ... | *Example:*
+| | ... | \| Honeycomb fails to set sub-interface up\
+| | ... | \| ${nodes['DUT1']} \| GigabitEthernet0/8/0 \| 1 \|
+| | ...
+| | [Arguments] | ${node} | ${super_interface} | ${identifier}
+| | ...
+| | Run keyword and expect error | *HoneycombError: * was not successful. * 500.
+| | ... | interfaceAPI.Set sub interface state
+| | ... | ${node} | ${super_interface} | ${identifier} | up
 
 | Honeycomb adds sub-interface to bridge domain
 | | [Documentation] | Honeycomb adds the given sub-interface to bridge domain.
 | | ...
 | | ... | *Arguments:*
-| | ... | - node - information about a DUT node. Type: dictionary
-| | ... | - interface - name of an sub-interface on the specified node. Type:\
-| | ... | string
-| | ... | - bd_name - The name of bridge domain where the sub-interface will be\
-| | ... | added. Type: string
-| | ... | - sub_bd_setings - Parameters to be set while adding the\
-| | ... | sub-interface to the bridge domain. Type: dictionary
+| | ... | - node - Information about a DUT node. Type: dictionary
+| | ... | - super_if - Super-interface. Type: string
+| | ... | - identifier - Sub-interface ID. Type: integer or string
+| | ... | - sub_bd_setings - Bridge domain parameters to be set while adding\
+| | ... | the sub-interface to the bridge domain. Type: dictionary
 | | ...
 | | ... | *Example:*
 | | ... | \| Honeycomb adds sub-interface to bridge domain\
-| | ... | \| ${nodes['DUT1']} \| sub_test \| test_bd \| ${sub_bd_setings} \|
+| | ... | \| ${nodes['DUT1']} \| GigabitEthernet0/8/0 \| 1 \| ${bd_settings} \|
 | | ...
-| | [Arguments] | ${node} | ${interface} | ${bd_name} | ${sub_bd_setings}
-| | interfaceAPI.Add bridge domain to interface
-| | ... | ${node} | ${interface} | ${bd_name}
-| | ... | split_horizon_group=${sub_bd_setings['split-horizon-group']}
-| | ... | bvi=${sub_bd_setings['bridged-virtual-interface']}
+| | [Arguments] | ${node} | ${super_if} | ${identifier} | ${sub_bd_setings}
+| | ...
+| | interfaceAPI.Add bridge domain to sub interface
+| | ... | ${node} | ${super_if} | ${identifier} | ${sub_bd_setings}
 
 | Sub-interface bridge domain configuration from Honeycomb should be
 | | [Documentation] | Uses Honeycomb API to verify sub-interface assignment to\
 | | ... | a bridge domain.
 | | ...
 | | ... | *Arguments:*
-| | ... | - node - information about a DUT node. Type: dictionary
-| | ... | - interface - name of a sub-interface on the specified node. Type:\
-| | ... | string
-| | ... | - setings - Parameters to be checked. Type: dictionary
+| | ... | - node - Information about a DUT node. Type: dictionary
+| | ... | - super_if - Super-interface. Type: string
+| | ... | - identifier - Sub-interface ID. Type: integer or string
+| | ... | - settings - Bridge domain parameters to be checked. Type: dictionary
 | | ...
 | | ... | *Example:*
 | | ... | \| Sub-interface bridge domain configuration from Honeycomb should be\
-| | ... | \| ${nodes['DUT1']} \| sub_test \| ${sub_bd_setings} \|
+| | ... | \| ${nodes['DUT1']} \| GigabitEthernet0/8/0 \| 1 \| ${bd_settings} \|
 | | ...
-| | [Arguments] | ${node} | ${interface} | ${settings}
-| | ${if_data}= | interfaceAPI.Get interface oper data | ${node} | ${interface}
-| | Should be equal | ${if_data['v3po:l2']['bridge-domain']}
+| | [Arguments] | ${node} | ${super_if} | ${identifier} | ${settings}
+| | ...
+| | ${if_data}= | interfaceAPI.Get BD data from sub interface
+| | ... | ${node} | ${super_if} | ${identifier}
+| | Should be equal | ${if_data['bridge-domain']}
 | | ... | ${settings['bridge-domain']}
-| | Should be equal | disabled
-| | ... | ${if_data['v3po:l2']['vlan-tag-rewrite']['rewrite-operation']}
 
 | Sub-interface bridge domain configuration from VAT should be
 | | [Documentation] | Uses VAT to verify sub-interface assignment to a bridge\
 | | ... | domain.
 | | ...
 | | ... | *Arguments:*
-| | ... | - node - information about a DUT node. Type: dictionary
-| | ... | - interface - name of a sub-interface on the specified node. Type:\
+| | ... | - node - Information about a DUT node. Type: dictionary
+| | ... | - interface - Name of a sub-interface on the specified node. Type:\
 | | ... | string
 | | ... | - setings - Parameters to be checked. Type: dictionary
 | | ...
 | | ... | *Example:*
 | | ... | \| Sub-interface bridge domain configuration from VAT should be\
-| | ... | \| ${nodes['DUT1']} \| sub_test \| ${sub_bd_setings} \|
+| | ... | \| ${nodes['DUT1']} \| GigabitEthernet0/8/0.1 \| ${sub_bd_setings} \|
 | | ...
 | | [Arguments] | ${node} | ${interface} | ${settings}
-| | ${bd_data}= | VPP get bridge domain data | ${node}
+| | ...
+| | ${bd_data}= | L2Util.VPP get bridge domain data | ${node}
 | | ${bd_intf}= | Set Variable | ${bd_data[0]}
 | | ${sw_if_data}= | Set Variable | ${bd_intf['sw_if'][0]}
 | | Should be equal as integers | ${bd_intf['flood']} | ${bd_settings['flood']}
@@ -213,166 +242,135 @@
 | | Should be equal as strings | ${sw_if_data['shg']}
 | | ... | ${settings['split-horizon-group']}
 
-| Sub-interface configuration with bd and rw from Honeycomb should be
-| | [Documentation] | Retrieves sub-interface configuration through Honeycomb\
-| | ... | and compares it with settings supplied in argument.
+| Honeycomb fails to remove all sub-interfaces
+| | [Documentation] | Honeycomb tries to remove all sub-interfaces using\
+| | ... | Honeycomb API. This operation must fail.
 | | ...
 | | ... | *Arguments:*
-| | ... | - node - information about a DUT node. Type: dictionary
-| | ... | - interface - name of an interface on the specified node. Type: string
-| | ... | - base_settings - Configuration data for sub-interface.\
-| | ... | Type: dictionary
-| | ... | - sub_settings - Configuration data specific for a sub-interface.\
-| | ... | Type: dictionary
+| | ... | - node - Information about a DUT node. Type: dictionary
+| | ... | - super_if - Super-interface. Type: string
 | | ...
 | | ... | *Example:*
-| | ... | \| Sub-interface configuration with bd and rw from Honeycomb should be\
-| | ... | \| ${nodes['DUT1']} \| sub_test \| ${sub_interface_base_settings}\
-| | ... | \| ${sub_interface_settings} \|
+| | ... | \| Honeycomb fails to remove all sub-interfaces\
+| | ... | \| ${nodes['DUT1']} \| GigabitEthernet0/8/0 \|
 | | ...
-| | [Arguments] | ${node} | ${interface} | ${base_settings} | ${sub_settings}
-| | ${api_data}= | interfaceAPI.Get interface oper data | ${node} | ${interface}
-| | ${api_sub}= | Set Variable | ${api_data['v3po:sub-interface']}
-| | Should be equal as strings | ${api_data['name']} | ${base_settings['name']}
-| | Should be equal as strings | ${api_data['type']} | ${base_settings['type']}
-| | Should be equal as strings
-| | ... | ${api_sub['super-interface']} | ${sub_settings['super-interface']}
-| | Should be equal as strings
-| | ... | ${api_sub['identifier']} | ${sub_settings['identifier']}
-| | Should be equal as strings
-| | ... | ${api_sub['vlan-type']} | ${sub_settings['vlan-type']}
-| | Should be equal as strings
-| | ... | ${api_sub['number-of-tags']} | ${sub_settings['number-of-tags']}
-| | Run keyword if | ${sub_settings['match-any-outer-id']} == ${TRUE}
-| | ... | Should be equal | ${api_sub['match-any-outer-id'][0]} | ${None}
-| | Run keyword if | ${sub_settings['match-any-inner-id']} == ${TRUE}
-| | ... | Should be equal | ${api_sub['match-any-inner-id'][0]} | ${None}
-| | Run keyword if | ${sub_settings['exact-match']} == ${TRUE}
-| | ... | Should be equal | ${api_sub['exact-match'][0]} | ${None}
-| | Run keyword if | ${sub_settings['default-subif']} == ${TRUE}
-| | ... | Should be equal | ${api_sub['default-subif'][0]} | ${None}
-| | Should be equal | ${api_data['v3po:l2']['bridge-domain']}
-| | ... | ${base_settings['v3po:l2']['bridge-domain']}
-| | ${rw_data}= | Set Variable | ${api_data['v3po:l2']['vlan-tag-rewrite']}
-| | ${rw_params}= | Set Variable
-| | ... | ${base_settings['v3po:l2']['vlan-tag-rewrite']}
-| | Should be equal as strings | ${rw_data['rewrite-operation']}
-| | ... | ${rw_params['rewrite-operation']}
-| | Should be equal as strings | ${rw_data['first-pushed']}
-| | ... | ${rw_params['first-pushed']}
+| | [Arguments] | ${node} | ${super_if}
+| | ...
+| | Run keyword and expect error | *HoneycombError:*not successful. * code: 500.
+| | ... | interfaceAPI.Remove all sub interfaces
+| | ... | ${node} | ${super_if}
 
-| Rewrite tag configuration from VAT should be
+| Honeycomb configures tag rewrite
+| | [Documentation] | Honeycomb configures tag-rewrite
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - Information about a DUT node. Type: dictionary
+| | ... | - super_if - Super-interface. Type: string
+| | ... | - identifier - Sub-interface ID. Type: integer or string
+| | ... | - settings - tag-rewrite parameters. Type: dictionary.
+| | ...
+| | ... | *Example:*
+| | ... | \| Honeycomb configures tag rewrite\
+| | ... | \| ${nodes['DUT1']} \| GigabitEthernet0/8/0 \| 1\
+| | ... | \| ${tag_rewrite_push} \|
+| | ...
+| | [Arguments] | ${node} | ${super_if} | ${identifier} | ${settings}
+| | ...
+| | interfaceAPI.Configure tag rewrite
+| | ... | ${node} | ${super_if} | ${identifier} | ${settings}
+
+| Rewrite tag from Honeycomb should be empty
+| | [Documentation] | Checks if the tag-rewrite is empty or does not exist.
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - Information about a DUT node. Type: dictionary
+| | ... | - super_if - Super-interface. Type: string
+| | ... | - identifier - Sub-interface ID. Type: integer or string
+| | ...
+| | ... | *Example:*
+| | ... | \| Rewrite tag from Honeycomb should be empty\
+| | ... | \| ${nodes['DUT1']} \| GigabitEthernet0/8/0 \| 1 \|
+| | ...
+| | [Arguments] | ${node} | ${super_if} | ${identifier}
+| | ...
+| | Run keyword and expect error | *Hon*Error*oper*does not contain*tag-rewrite*
+| | ... | interfaceAPI.Get tag rewrite oper data
+| | ... | ${node} | ${super_if} | ${identifier}
+
+| Rewrite tag from Honeycomb should be
+| | [Documentation] | Checks if the operational data retrieved from Honeycomb\
+| | ... | are as expected.
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - Information about a DUT node. Type: dictionary
+| | ... | - super_if - Super-interface. Type: string
+| | ... | - identifier - Sub-interface ID. Type: integer or string
+| | ... | - settings - tag-rewrite operational parameters to be checked.\
+| | ... | Type: dictionary.
+| | ...
+| | ... | *Example:*
+| | ... | \| Rewrite tag from Honeycomb should be\
+| | ... | \| ${nodes['DUT1']} \| GigabitEthernet0/8/0 \| 1\
+| | ... | \| ${tag_rewrite_push_oper} \|
+| | ...
+| | [Arguments] | ${node} | ${super_if} | ${identifier} | ${settings}
+| | ${api_data}= | interfaceAPI.Get tag rewrite oper data
+| | ... | ${node} | ${super_if} | ${identifier}
+| | interfaceAPI.Compare Data Structures | ${api_data} | ${settings}
+
+| Rewrite tag from VAT should be
 | | [Documentation] | Retrieves sub-interface configuration through VAT and\
 | | ... | compares values of rewrite tag parameters with settings supplied in\
 | | ... | argument.
 | | ...
 | | ... | *Arguments:*
 | | ... | - node - information about a DUT node. Type: dictionary
-| | ... | - interface - name of an interface on the specified node. Type: string
+| | ... | - interface - name of a sub-interface on the specified node.\
+| | ... | Type: string
 | | ... | - rw_settings - Parameters to be set while setting the rewrite tag.\
 | | ... | Type: dictionary
 | | ...
 | | ... | *Example:*
-| | ... | \| Rewrite tag configuration from VAT should be\
-| | ... | \| ${nodes['DUT1']} \| sub_test \| ${rw_params} \|
+| | ... | \| Rewrite tag from VAT should be\
+| | ... | \| ${nodes['DUT1']} \| GigabitEthernet0/8/0.1 \| ${rw_params} \|
 | | ...
 | | [Arguments] | ${node} | ${interface} | ${rw_settings}
 | | ${vat_data}= | InterfaceCLI.VPP get interface data | ${node} | ${interface}
-| | Should be equal as strings | ${vat_data['vtr_op']}
-| | ... | ${rewrite_operations['${rw_settings['rewrite-operation']}']}
-| | Run keyword if | '${rw_settings['rewrite-operation']}' == 'push-1'
-| | ... | Should be equal as strings
-| | ... | ${vat_data['vtr_tag1']} | ${rw_settings['tag1']}
-
-| Honeycomb sets rewrite tag
-| | [Documentation] | Set the rewrite tag for sub-interface using Honeycomb API.
-| | ...
-| | ... | *Arguments:*
-| | ... | - node - information about a DUT node. Type: dictionary
-| | ... | - sub_interface - name of an sub-interface on the specified node.\
-| | ... | Type: string
-| | ... | - rw_params - Parameters to be set while setting the rewrite tag.\
-| | ... | Type: dictionary
-| | ...
-| | ... | *Example:*
-| | ... | \| Honeycomb sets rewrite tag\
-| | ... | \| ${nodes['DUT1']} \| sub_test \| ${rw_params} \|
-| | ...
-| | [Arguments] | ${node} | ${sub_interface} | ${rw_params}
-| | interfaceAPI.Add vlan tag rewrite to sub interface
-| | ... | ${node} | ${sub_interface} | &{rw_params}
-
-| Honeycomb removes rewrite tag
-| | [Documentation] | Remove the rewrite tag from sub-interface using Honeycomb\
-| | ... | API.
-| | ...
-| | ... | *Arguments:*
-| | ... | - node - information about a DUT node. Type: dictionary
-| | ... | - sub_interface - name of an sub-interface on the specified node.\
-| | ... | Type: string
-| | ...
-| | ... | *Example:*
-| | ... | \| Honeycomb removes rewrite tag \| ${nodes['DUT1']} \| sub_test \|
-| | ...
-| | [Arguments] | ${node} | ${sub_interface}
-| | interfaceAPI.Remove vlan tag rewrite from sub interface
-| | ... | ${node} | ${sub_interface}
-
-| Rewrite tag from Honeycomb should be
-| | [Documentation] | Uses Honeycomb API to verify if the rewrite tag is set\
-| | ... | with correct parameters.
-| | ...
-| | ... | *Arguments:*
-| | ... | - node - information about a DUT node. Type: dictionary
-| | ... | - sub_interface - name of an sub-interface on the specified node.\
-| | ... | Type: string
-| | ... | - rw_params - Parameters to be checked. Type: dictionary
-| | ...
-| | ... | *Example:*
-| | ... | \| Rewrite tag from Honeycomb should be\
-| | ... | \| ${nodes['DUT1']} \| sub_test \| ${rw_params} \|
-| | ...
-| | [Arguments] | ${node} | ${sub_interface} | ${rw_params}
-| | ${if_data}= | interfaceAPI.Get interface oper data | ${node}
-| | ... | ${sub_interface}
-| | ${rw_data}= | Set Variable | ${if_data['v3po:l2']["vlan-tag-rewrite"]}
-| | Should be equal as strings | ${rw_data['rewrite-operation']}
-| | ... | ${rw_params['rewrite-operation']}
-| | Should be equal as strings | ${rw_data['first-pushed']}
-| | ... | ${rw_params['first-pushed']}
+| | interfaceAPI.Compare Data Structures | ${vat_data} | ${rw_settings}
 
 | Honeycomb fails to set wrong rewrite tag
 | | [Documentation] | Honeycomb tries to set wrong rewrite tag and expects\
-| | ... | error.
+| | ... | an error.
 | | ...
 | | ... | *Arguments:*
-| | ... | - node - information about a DUT node. Type: dictionary
-| | ... | - sub_interface - name of an sub-interface on the specified node.\
-| | ... | Type: string
-| | ... | - rw_params - Parameters to be set while setting the rewrite tag.\
-| | ... | Type: dictionary
+| | ... | - node - Information about a DUT node. Type: dictionary
+| | ... | - super_if - Super-interface. Type: string
+| | ... | - identifier - Sub-interface ID. Type: integer or string
+| | ... | - settings - tag-rewrite parameters. Type: dictionary.
 | | ...
 | | ... | *Example:*
 | | ... | \| Honeycomb fails to set wrong rewrite tag\
-| | ... | \| ${nodes['DUT1']} \| sub_test \| ${rw_params} \|
+| | ... | \| ${nodes['DUT1']} \| GigabitEthernet0/8/0 \| 1\
+| | ... | \| ${tag_rewrite_push_WRONG} \|
 | | ...
-| | [Arguments] | ${node} | ${sub_interface} | ${rw_params}
-| | Run keyword and expect error | *HoneycombError: * was not successful. * 400.
-| | ... | interfaceAPI.Add vlan tag rewrite to sub interface | ${node}
-| | ... | ${sub_interface} | &{rw_params}
+| | [Arguments] | ${node} | ${super_if} | ${identifier} | ${settings}
+| | Run keyword and expect error | *HoneycombError: * was not successful. *00.
+| | ... | interfaceAPI.Configure tag rewrite
+| | ... | ${node} | ${super_if} | ${identifier} | ${settings}
 
-| Honeycomb fails to set sub-interface up
-| | [Documentation] | Honeycomb tries to set sub-interface up and expects error.
+| VAT disables tag-rewrite
+| | [Documentation] | The keyword disables the tag-rewrite using VAT.
 | | ...
 | | ... | *Arguments:*
-| | ... | - node - information about a DUT node. Type: dictionary
-| | ... | - sub_interface - name of an sub-interface on the specified node.\
+| | ... | - node - Information about a DUT node. Type: dictionary
+| | ... | - sub_interface - Name of an sub-interface on the specified node.\
 | | ... | Type: string
 | | ...
 | | ... | *Example:*
-| | ... | \| Honeycomb fails to set sub-interface up\
-| | ... | \| ${node} \| sub_test \|
+| | ... | \| VAT disables tag-rewrite\
+| | ... | \| ${nodes['DUT1']} \| GigabitEthernet0/8/0.1 \|
 | | ...
 | | [Arguments] | ${node} | ${sub_interface}
-| | Run keyword and expect error | *HoneycombError: * was not successful. * 500.
-| | ... | interfaceAPI.Set interface up | ${node} | ${sub_interface}
+| | ...
+| | ${sw_if_index}= | interfaceCLI.Get sw if index | ${node} | ${sub_interface}
+| | L2Util.L2 tag rewrite | ${node} | ${sw_if_index} | disable
