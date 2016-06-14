@@ -368,3 +368,25 @@
 | | [Arguments] | ${node} | ${interface} |
 | | ${vat_data}= | InterfaceCLI.VPP get interface data | ${node} | ${interface}
 | | Should be empty | ${vat_data}
+
+| Interface indices from Honeycomb and VAT should correspond
+| | [Documentation] | Uses VAT and Honeycomb to get operational data about the\
+| | ... | given interface and compares the interface indexes. The interface
+| | ... | index from Honeycomb should be greater than index from VAT by one.
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - information about a DUT node. Type: dictionary
+| | ... | - interface - name of the interface to be checked. Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Interface indices from Honeycomb and VAT should correspond \
+| | ... | \| ${nodes['DUT1']} \| vxlan_gpe_tunnel0 \|
+| | ...
+| | [Arguments] | ${node} | ${interface}
+| | ...
+| | ${api_data}= | interfaceAPI.Get interface oper data | ${node} | ${interface}
+| | ${vat_data}= | InterfaceCLI.VPP get interface data | ${node} | ${interface}
+| | ${sw_if_index}= | EVALUATE | ${vat_data['sw_if_index']} + 1
+| | Should be equal as strings
+| | ... | ${api_data['if-index']} | ${sw_if_index}
