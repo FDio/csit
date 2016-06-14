@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "ba092121_ad638bb0",
+        "filename": "resources/libraries/robot/l2_traffic.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 84
+      },
+      "writtenOn": "2016-06-14T06:20:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba092121_cd26bfba",
+      "range": {
+        "startLine": 53,
+        "startChar": 43,
+        "endLine": 53,
+        "endChar": 44
+      },
+      "revId": "3292fadcf9f3977443b4c7de0af35169cd50ed8c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba092121_ad2b8b81",
         "filename": "resources/libraries/robot/l2_traffic.robot",
         "patchSetId": 11
@@ -36,6 +60,30 @@
       "writtenOn": "2016-06-13T22:01:57Z",
       "side": 1,
       "message": "use only argument name without curly brackets in the argument documentation part\n\n- valid for all variables in all documentation part here",
+      "range": {
+        "startLine": 57,
+        "startChar": 12,
+        "endLine": 57,
+        "endChar": 21
+      },
+      "revId": "3292fadcf9f3977443b4c7de0af35169cd50ed8c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_8d58c7fb",
+        "filename": "resources/libraries/robot/l2_traffic.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 84
+      },
+      "writtenOn": "2016-06-14T06:20:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba092121_ad2b8b81",
       "range": {
         "startLine": 57,
         "startChar": 12,
