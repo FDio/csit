@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba092121_10e5eaa7",
+        "filename": "tests/suites/performance/Long_IPv4_iAcl_Intel-X520-DA2.robot",
+        "patchSetId": 12
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-14T20:25:11Z",
+      "side": 1,
+      "message": "And",
+      "range": {
+        "startLine": 55,
+        "startChar": 47,
+        "endLine": 55,
+        "endChar": 51
+      },
+      "revId": "4496ed214ef97ba4de9247901a861bd1c7e603e1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_f0e1569b",
+        "filename": "tests/suites/performance/Long_IPv4_iAcl_Intel-X520-DA2.robot",
+        "patchSetId": 12
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-14T20:25:11Z",
+      "side": 1,
+      "message": "And\n- valid for all other test cases",
+      "range": {
+        "startLine": 62,
+        "startChar": 47,
+        "endLine": 62,
+        "endChar": 51
+      },
+      "revId": "4496ed214ef97ba4de9247901a861bd1c7e603e1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_10fcca3d",
+        "filename": "tests/suites/performance/Short_IPv4_iAcl_Intel-X520-DA2.robot",
+        "patchSetId": 12
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-14T20:25:11Z",
+      "side": 1,
+      "message": "And",
+      "range": {
+        "startLine": 42,
+        "startChar": 47,
+        "endLine": 42,
+        "endChar": 51
+      },
+      "revId": "4496ed214ef97ba4de9247901a861bd1c7e603e1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_f0f8364b",
+        "filename": "tests/suites/performance/Short_IPv4_iAcl_Intel-X520-DA2.robot",
+        "patchSetId": 12
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-14T20:25:11Z",
+      "side": 1,
+      "message": "And\n- valid for all test cases",
+      "range": {
+        "startLine": 49,
+        "startChar": 47,
+        "endLine": 49,
+        "endChar": 51
+      },
+      "revId": "4496ed214ef97ba4de9247901a861bd1c7e603e1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
