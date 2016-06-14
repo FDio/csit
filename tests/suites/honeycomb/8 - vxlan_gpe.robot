@@ -60,7 +60,7 @@
 | | ... | VxLAN GPE configuration from VAT should be
 | | ... | ${node} | ${vxlan_gpe_if1} | ${vxlan_gpe_settings}
 | | And run keyword and continue on failure
-| | ... | Interface indices should be the same from Honeycomb and VAT
+| | ... | VxLAN GPE Interface indices from Honeycomb and VAT should correspond
 | | ... | ${node} | ${vxlan_gpe_if1}
 
 | Honeycomb removes VxLAN GPE tunnel
@@ -149,7 +149,7 @@
 | | ... | VxLAN GPE configuration from VAT should be
 | | ... | ${node} | ${vxlan_gpe_if5} | ${vxlan_gpe_ipv6_settings}
 | | And run keyword and continue on failure
-| | ... | Interface indices should be the same from Honeycomb and VAT
+| | ... | VxLAN GPE Interface indices from Honeycomb and VAT should correspond
 | | ... | ${node} | ${vxlan_gpe_if5}
 
 | Honeycomb creates the second VxLAN GPE tunnel with ipv6
@@ -171,5 +171,5 @@
 | | ... | VxLAN GPE configuration from VAT should be
 | | ... | ${node} | ${vxlan_gpe_if6} | ${vxlan_gpe_ipv6_settings2}
 | | And run keyword and continue on failure
-| | ... | Interface indices should be the same from Honeycomb and VAT
+| | ... | VxLAN GPE Interface indices from Honeycomb and VAT should correspond
 | | ... | ${node} | ${vxlan_gpe_if6}
