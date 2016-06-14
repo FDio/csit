@@ -21,366 +21,295 @@
 | ...
 | ...           | This test suite tests if it is posible to create, modify and\
 | ...           | delete a sub-interface.
+| Force Tags | honeycomb_sanity
 
 *** Variables ***
 | ${node}= | ${nodes['DUT1']}
 
 # Test interface 1 and its sub-interface parameters:
-| ${interface}= | ${node['interfaces']['port1']['name']}
-| ${sub_interface_id}= | 10
-| ${sub_interface_name}= | ${interface}.${sub_interface_id}
-| &{sub_interface_base_settings}=
-| ... | name=${sub_interface_name}
-| ... | type=v3po:sub-interface
-| &{sub_interface_settings}=
-| ... | super-interface=${interface}
-| ... | identifier=${sub_interface_id}
-| ... | vlan-type=802dot1ad
-| ... | number-of-tags=2
-| ... | outer-id=22
-| ... | inner-id=33
-| ... | match-any-outer-id=${FALSE}
-| ... | match-any-inner-id=${FALSE}
-| ... | exact-match=${TRUE}
-| ... | default-subif=${TRUE}
-| &{sub_interface_settings_wrong}=
-| ... | super-interface=${interface}
-| ... | identifier=${sub_interface_id}
-| ... | vlan-type=WRONG_TYPE
-| ... | number-of-tags=2
-| ... | outer-id=22
-| ... | inner-id=33
-| ... | match-any-outer-id=${TRUE}
-| ... | match-any-inner-id=${TRUE}
-| ... | exact-match=${TRUE}
-| ... | default-subif=${TRUE}
-
-# Test interface 2 and its sub-interface parameters:
-| ${interface2}= | ${node['interfaces']['port3']['name']}
-| ${sub_interface2_name}= | ${interface2}.${sub_interface_id}
-| &{sub_interface2_base_settings}=
-| ... | name=${sub_interface2_name}
-| ... | type=v3po:sub-interface
-| ... | v3po:l2=&{bd_rw_settings}
-| &{sub_interface2_settings}=
-| ... | super-interface=${interface2}
-| ... | identifier=${sub_interface_id}
-| ... | vlan-type=802dot1ad
-| ... | number-of-tags=2
-| ... | outer-id=44
-| ... | inner-id=55
-| ... | match-any-outer-id=${FALSE}
-| ... | match-any-inner-id=${FALSE}
-| ... | exact-match=${TRUE}
-| ... | default-subif=${FALSE}
+| ${super_if}= | ${node['interfaces']['port1']['name']}
+| ${sub_if_id}= | ${sub_if_1_settings['identifier']}
+| ${sub_if_name}= | ${super_if}.${sub_if_id}
 
 *** Test Cases ***
 | Honycomb creates sub-interface
 | | [Documentation] | Check if Honeycomb creates a sub-interface.
 | | ...
-| | [Tags] | honeycomb_sanity
-| | ...
-| | Given sub-interface configuration from Honeycomb should be empty
-| | ... | ${node} | ${sub_interface_name}
-| | And sub-interface configuration from VAT should be empty
-| | ... | ${node} | ${sub_interface_name}
-| | When Honeycomb creates sub-interface
-| | ... | ${node} | ${interface} | ${sub_interface_id}
-| | ... | ${sub_interface_base_settings} | ${sub_interface_settings}
-| | Then sub-interface configuration from Honeycomb should be
-| | ... | ${node} | ${sub_interface_name} | ${sub_interface_base_settings}
-| | ... | ${sub_interface_settings}
-| | And sub-interface configuration from VAT should be
-| | ... | ${node} | ${sub_interface_name} | ${sub_interface_settings}
-
-| Honeycomb adds sub-interface to bridge domain
-| | [Documentation] | Check if Honeycomb adds a sub-interface to bridge domain.
-| | ...
-| | [Tags] | honeycomb_sanity
-| | ...
-| | Given sub-interface configuration from Honeycomb should be
-| | ... | ${node} | ${sub_interface_name} | ${sub_interface_base_settings}
-| | ... | ${sub_interface_settings}
-| | When Honeycomb creates L2 bridge domain
-| | ... | ${node} | ${bd_name} | ${bd_settings}
-| | Then Bridge domain configuration from Honeycomb should be
-| | ... | ${node} | ${bd_name} | ${bd_settings}
-| | When Honeycomb adds sub-interface to bridge domain
-| | ... | ${node} | ${sub_interface_name} | ${bd_name} | ${sub_bd_settings}
-| | Then sub-interface bridge domain configuration from Honeycomb should be
-| | ... | ${node} | ${sub_interface_name} | ${sub_bd_settings}
-| | And sub-interface bridge domain configuration from VAT should be
-| | ... | ${node} | ${sub_interface_name} | ${sub_bd_settings}
-| | And sub-interface configuration from VAT should be
-| | ... | ${node} | ${sub_interface_name} | ${sub_interface_settings}
-
-| Honeycomb sets vlan tag rewrite on sub-interface in bridge domain
-| | [Documentation] | Check if Honeycomb adds vlan tag rewrite on sub-interface\
-| | ... | in bridge domain.
-| | ...
-| | [Tags] | honeycomb_sanity
-| | ...
-| | Given sub-interface configuration from Honeycomb should be
-| | ... | ${node} | ${sub_interface_name} | ${sub_interface_base_settings}
-| | ... | ${sub_interface_settings}
-| | And sub-interface bridge domain configuration from Honeycomb should be
-| | ... | ${node} | ${sub_interface_name} | ${sub_bd_settings}
-| | &{init_rw_params}= | Create dictionary | first-pushed=802dot1ad
-| | ... | rewrite-operation=disabled
-| | And rewrite tag from Honeycomb should be
-| | ... | ${node} | ${sub_interface_name} | ${init_rw_params}
-| | When Honeycomb sets rewrite tag
-| | ... | ${node} | ${sub_interface_name} | ${rw_params}
-| | Then rewrite tag from Honeycomb should be
-| | ... | ${node} | ${sub_interface_name} | ${rw_params}
-| | And rewrite tag configuration from VAT should be
-| | ... | ${node} | ${sub_interface_name} | ${rw_params}
-| | And sub-interface configuration from VAT should be
-| | ... | ${node} | ${sub_interface_name} | ${sub_interface_settings}
-
-| Honeycomb edits vlan tag rewrite on sub-interface in bridge domain
-| | [Documentation] | Check if Honeycomb updates vlan tag rewrite on\
-| | ... | sub-interface in bridge domain.
-| | ...
-| | [Tags] | honeycomb_sanity
-| | ...
-| | Given sub-interface configuration from Honeycomb should be
-| | ... | ${node} | ${sub_interface_name} | ${sub_interface_base_settings}
-| | ... | ${sub_interface_settings}
-| | And rewrite tag from Honeycomb should be
-| | ... | ${node} | ${sub_interface_name} | ${rw_params}
-| | When Honeycomb sets rewrite tag
-| | ... | ${node} | ${sub_interface_name} | ${rw_params_edited}
-| | Then rewrite tag from Honeycomb should be
-| | ... | ${node} | ${sub_interface_name} | ${rw_params_edited}
-| | And rewrite tag configuration from VAT should be
-| | ... | ${node} | ${sub_interface_name} | ${rw_params_edited}
-| | And sub-interface configuration from VAT should be
-| | ... | ${node} | ${sub_interface_name} | ${sub_interface_settings}
-
-| Honeycomb removes vlan tag rewrite from sub-interface
-| | [Documentation] | Check if Honeycomb removes vlan tag rewrite from\
-| | ... | sub-interface.
-| | ...
-| | [Tags] | honeycomb_sanity
-| | ...
-| | Given sub-interface configuration from Honeycomb should be
-| | ... | ${node} | ${sub_interface_name} | ${sub_interface_base_settings}
-| | ... | ${sub_interface_settings}
-| | And rewrite tag from Honeycomb should be
-| | ... | ${node} | ${sub_interface_name} | ${rw_params_edited}
-| | When Honeycomb removes rewrite tag
-| | ... | ${node} | ${sub_interface_name}
-| | Then rewrite tag from Honeycomb should be
-| | ... | ${node} | ${sub_interface_name} | ${rw_params_disabled}
-| | And rewrite tag configuration from VAT should be
-| | ... | ${node} | ${sub_interface_name} | ${rw_params_disabled}
-| | And sub-interface configuration from VAT should be
-| | ... | ${node} | ${sub_interface_name} | ${sub_interface_settings}
-
-| Honeycomb sets again vlan tag rewrite on sub-interface in bridge domain
-| | [Documentation] | Check if Honeycomb adds vlan tag rewrite on sub-interface\
-| | ... | in bridge domain if it was disabled before.
-| | ...
-| | [Tags] | honeycomb_sanity
-| | ...
-| | Given sub-interface configuration from Honeycomb should be
-| | ... | ${node} | ${sub_interface_name} | ${sub_interface_base_settings}
-| | ... | ${sub_interface_settings}
-| | And rewrite tag from Honeycomb should be
-| | ... | ${node} | ${sub_interface_name} | ${rw_params_disabled}
-| | When Honeycomb sets rewrite tag
-| | ... | ${node} | ${sub_interface_name} | ${rw_params}
-| | Then rewrite tag from Honeycomb should be
-| | ... | ${node} | ${sub_interface_name} | ${rw_params}
-| | And rewrite tag configuration from VAT should be
-| | ... | ${node} | ${sub_interface_name} | ${rw_params}
-| | And sub-interface configuration from VAT should be
-| | ... | ${node} | ${sub_interface_name} | ${sub_interface_settings}
-
-| Honycomb deletes sub-interface
-| | [Documentation] | Check if Honeycomb can delete an existing sub-interface.
-| | ...
-| | [Tags] | honeycomb_sanity
-| | ...
-| | Given sub-interface configuration from Honeycomb should be
-| | ... | ${node} | ${sub_interface_name} | ${sub_interface_base_settings}
-| | ... | ${sub_interface_settings}
-| | When Honeycomb fails to remove sub-interface
-| | ... | ${node} | ${sub_interface_name}
-| | Then sub-interface configuration from Honeycomb should be
-| | ... | ${node} | ${sub_interface_name} | ${sub_interface_base_settings}
-| | ... | ${sub_interface_settings}
-| | And sub-interface configuration from VAT should be
-| | ... | ${node} | ${sub_interface_name} | ${sub_interface_settings}
-
-| Honycomb creates sub-interface with bridge domain
-| | [Documentation] | Check if Honeycomb creates a sub-interface with bridge\
-| | ... | domain and rewrite tag configured.
-| | ...
-| | [Tags] | honeycomb_sanity
-| | ...
-| | Given sub-interface configuration from Honeycomb should be empty
-| | ... | ${node} | ${sub_interface2_name}
-| | And sub-interface configuration from VAT should be empty
-| | ... | ${node} | ${sub_interface2_name}
-| | When Honeycomb creates L2 bridge domain
-| | ... | ${node} | ${bd2_name} | ${bd2_settings}
-| | And Honeycomb creates sub-interface
-| | ... | ${node} | ${interface2} | ${sub_interface_id}
-| | ... | ${sub_interface2_base_settings} | ${sub_interface2_settings}
-| | Then sub-interface configuration with bd and rw from Honeycomb should be
-| | ... | ${node} | ${sub_interface2_name} | ${sub_interface2_base_settings}
-| | ... | ${sub_interface2_settings}
-| | And sub-interface configuration from VAT should be
-| | ... | ${node} | ${sub_interface2_name} | ${sub_interface2_settings}
-| | And rewrite tag configuration from VAT should be
-| | ... | ${node} | ${sub_interface2_name} | ${rw_params}
-
-| Honeycomb sets wrong operation in vlan tag rewrite
-| | [Documentation] | Negative test: Honeycomb tries to set a wrong value of\
-| | ... | "rewrite-operation" parameter in "vlan-tag-rewrite". The operation\
-| | ... | must fail.
-| | ...
-| | [Tags] | honeycomb_sanity
-| | ...
-| | Given sub-interface configuration with bd and rw from Honeycomb should be
-| | ... | ${node} | ${sub_interface2_name} | ${sub_interface2_base_settings}
-| | ... | ${sub_interface2_settings}
-| | And rewrite tag from Honeycomb should be
-| | ... | ${node} | ${sub_interface_name} | ${rw_params_disabled}
-| | When Honeycomb fails to set wrong rewrite tag
-| | ... | ${node} | ${sub_interface_name} | ${rw_params_wrong_op}
-| | Then sub-interface configuration with bd and rw from Honeycomb should be
-| | ... | ${node} | ${sub_interface2_name} | ${sub_interface2_base_settings}
-| | ... | ${sub_interface2_settings}
-| | And rewrite tag from Honeycomb should be
-| | ... | ${node} | ${sub_interface_name} | ${rw_params_disabled}
-| | And rewrite tag configuration from VAT should be
-| | ... | ${node} | ${sub_interface_name} | ${rw_params_disabled}
-
-| Honeycomb sets wrong first-pushed in vlan tag rewrite
-| | [Documentation] | Negative test: Honeycomb tries to set a wrong value of\
-| | ... | "first-pushed" parameter in "vlan-tag-rewrite". The operation must\
-| | ... | fail.
-| | ...
-| | [Tags] | honeycomb_sanity
-| | ...
-| | Given sub-interface configuration with bd and rw from Honeycomb should be
-| | ... | ${node} | ${sub_interface2_name} | ${sub_interface2_base_settings}
-| | ... | ${sub_interface2_settings}
-| | And rewrite tag from Honeycomb should be
-| | ... | ${node} | ${sub_interface_name} | ${rw_params_disabled}
-| | When Honeycomb fails to set wrong rewrite tag
-| | ... | ${node} | ${sub_interface_name} | ${rw_params_wrong_pushed}
-| | Then sub-interface configuration with bd and rw from Honeycomb should be
-| | ... | ${node} | ${sub_interface2_name} | ${sub_interface2_base_settings}
-| | ... | ${sub_interface2_settings}
-| | And rewrite tag from Honeycomb should be
-| | ... | ${node} | ${sub_interface_name} | ${rw_params_disabled}
-| | And rewrite tag configuration from VAT should be
-| | ... | ${node} | ${sub_interface_name} | ${rw_params_disabled}
+| | Given interface configuration from Honeycomb should be empty
+| | ... | ${node} | ${sub_if_name}
+| | And interface configuration from VAT should be empty
+| | ... | ${node} | ${sub_if_name}
+| | When Honeycomb creates sub-interface | ${node} | ${super_if}
+| | ... | ${sub_if_1_match} | ${sub_if_1_tags} | ${sub_if_1_settings}
+| | Then run keyword and continue on failure
+| | ... | Sub-interface configuration from Honeycomb should be
+| | ... | ${node} | ${super_if} | ${sub_if_id} | ${sub_if_1_oper}
+| | And run keyword and continue on failure
+| | ... | Sub-interface configuration from VAT should be
+| | ... | ${node} | ${sub_if_name} | ${sub_if_1_oper}
+| | And run keyword and continue on failure
+| | ... | Interface indices should be the same from Honeycomb and VAT
+| | ... | ${node} | ${sub_if_name}
 
 | Honeycomb sets interface and sub-interface up
 | | [Documentation] | Honeycomb changes the state of interface up and then\
 | | ... | changes the state of its sub-interface up, in this order.
 | | ...
-| | [Tags] | honeycomb_sanity
-| | ...
 | | Given interface state from Honeycomb should be
-| | ... | ${node} | ${interface} | down
+| | ... | ${node} | ${super_if} | down
 | | And interface state from VAT should be
-| | ... | ${node} | ${interface} | down
+| | ... | ${node} | ${super_if} | down
 | | When Honeycomb sets interface state
-| | ... | ${node} | ${interface} | up
+| | ... | ${node} | ${super_if} | up
 | | Then interface state from Honeycomb should be
-| | ... | ${node} | ${interface} | up
+| | ... | ${node} | ${super_if} | up
 | | And interface state from VAT should be
-| | ... | ${node} | ${interface} | up
+| | ... | ${node} | ${super_if} | up
 | | Given interface state from Honeycomb should be
-| | ... | ${node} | ${sub_interface_name} | down
+| | ... | ${node} | ${sub_if_name} | down
 | | And interface state from VAT should be
-| | ... | ${node} | ${sub_interface_name} | down
-| | When Honeycomb sets interface state
-| | ... | ${node} | ${sub_interface_name} | up
+| | ... | ${node} | ${sub_if_name} | down
+| | When Honeycomb sets the sub-interface up
+| | ... | ${node} | ${super_if} | ${sub_if_id}
 | | Then interface state from Honeycomb should be
-| | ... | ${node} | ${sub_interface_name} | up
+| | ... | ${node} | ${sub_if_name} | up
 | | And Interface state from VAT should be
-| | ... | ${node} | ${sub_interface_name} | up
+| | ... | ${node} | ${sub_if_name} | up
 
 | Honeycomb sets sub-interface down while its super-interface is up
 | | [Documentation] | Honeycomb sets the sub-interface down while its\
 | | ... | super-interface is up. It must be possible.
 | | ...
-| | [Tags] | honeycomb_sanity
+| | [Teardown] | Set super and sub interfaces up
+| | ... | ${node} | ${super_if} | ${sub_if_id}
 | | ...
 | | Given interface state from Honeycomb should be
-| | ... | ${node} | ${sub_interface_name} | up
-| | And Interface state from VAT should be
-| | ... | ${node} | ${sub_interface_name} | up
-| | And interface state from Honeycomb should be
-| | ... | ${node} | ${interface} | up
+| | ... | ${node} | ${sub_if_name} | up
 | | And interface state from VAT should be
-| | ... | ${node} | ${interface} | up
-| | When Honeycomb sets interface state
-| | ... | ${node} | ${sub_interface_name} | down
-| | Then Interface state from Honeycomb should be
-| | ... | ${node} | ${sub_interface_name} | down
-| | And Interface state from VAT should be
-| | ... | ${node} | ${sub_interface_name} | down
+| | ... | ${node} | ${sub_if_name} | up
 | | And interface state from Honeycomb should be
-| | ... | ${node} | ${interface} | up
+| | ... | ${node} | ${super_if} | up
 | | And interface state from VAT should be
-| | ... | ${node} | ${interface} | up
+| | ... | ${node} | ${super_if} | up
+| | When Honeycomb sets the sub-interface down
+| | ... | ${node} | ${super_if} | ${sub_if_id}
+| | Then interface state from Honeycomb should be
+| | ... | ${node} | ${sub_if_name} | down
+| | And interface state from VAT should be
+| | ... | ${node} | ${sub_if_name} | down
+| | And interface state from Honeycomb should be
+| | ... | ${node} | ${super_if} | up
+| | And interface state from VAT should be
+| | ... | ${node} | ${super_if} | up
 
 | Honeycomb sets interface and sub-interface down
 | | [Documentation] | Honeycomb changes the state of interface down and then\
 | | ... | changes the state of its sub-interface down, in this order.
 | | ...
-| | [Tags] | honeycomb_sanity
+| | [Teardown] | Set super and sub interfaces down
+| | ... | ${node} | ${super_if} | ${sub_if_id}
 | | ...
 | | Given interface state from Honeycomb should be
-| | ... | ${node} | ${interface} | up
+| | ... | ${node} | ${super_if} | up
 | | And interface state from VAT should be
-| | ... | ${node} | ${interface} | up
+| | ... | ${node} | ${super_if} | up
 | | When Honeycomb sets interface state
-| | ... | ${node} | ${interface} | down
+| | ... | ${node} | ${super_if} | down
 | | Then interface state from Honeycomb should be
-| | ... | ${node} | ${interface} | down
-| | And Interface state from VAT should be
-| | ... | ${node} | ${interface} | down
-| | Given interface state from Honeycomb should be
-| | ... | ${node} | ${sub_interface_name} | up
+| | ... | ${node} | ${super_if} | down
 | | And interface state from VAT should be
-| | ... | ${node} | ${sub_interface_name} | up
-| | When Honeycomb sets interface state
-| | ... | ${node} | ${sub_interface_name} | down
-| | Then Interface state from Honeycomb should be
-| | ... | ${node} | ${sub_interface_name} | down
-| | And Interface state from VAT should be
-| | ... | ${node} | ${sub_interface_name} | down
+| | ... | ${node} | ${super_if} | down
+| | Given interface state from Honeycomb should be
+| | ... | ${node} | ${sub_if_name} | up
+| | And interface state from VAT should be
+| | ... | ${node} | ${sub_if_name} | up
+| | When Honeycomb sets the sub-interface down
+| | ... | ${node} | ${super_if} | ${sub_if_id}
+| | Then interface state from Honeycomb should be
+| | ... | ${node} | ${sub_if_name} | down
+| | And interface state from VAT should be
+| | ... | ${node} | ${sub_if_name} | down
 
 | Honeycomb fails to set sub-interface up while its super-interface is down
 | | [Documentation] | Honeycomb tries to set the sub-interface up while its\
 | | ... | super-interface is down. It must not be possible.
 | | ...
-| | [Tags] | honeycomb_sanity
-| | ...
 | | Given interface state from Honeycomb should be
-| | ... | ${node} | ${interface} | down
+| | ... | ${node} | ${super_if} | down
 | | And interface state from VAT should be
-| | ... | ${node} | ${interface} | down
+| | ... | ${node} | ${super_if} | down
 | | And interface state from Honeycomb should be
-| | ... | ${node} | ${sub_interface_name} | down
+| | ... | ${node} | ${sub_if_name} | down
 | | And interface state from VAT should be
-| | ... | ${node} | ${sub_interface_name} | down
+| | ... | ${node} | ${sub_if_name} | down
 | | When Honeycomb fails to set sub-interface up
-| | ... | ${node} | ${sub_interface_name}
+| | ... | ${node} | ${super_if} | ${sub_if_id}
 | | Then interface state from Honeycomb should be
-| | ... | ${node} | ${interface} | down
+| | ... | ${node} | ${super_if} | down
 | | And interface state from VAT should be
-| | ... | ${node} | ${interface} | down
+| | ... | ${node} | ${super_if} | down
 | | And interface state from Honeycomb should be
-| | ... | ${node} | ${sub_interface_name} | down
+| | ... | ${node} | ${sub_if_name} | down
 | | And interface state from VAT should be
-| | ... | ${node} | ${sub_interface_name} | down
+| | ... | ${node} | ${sub_if_name} | down
+
+| Honeycomb deletes sub-interface
+| | [Documentation] | Check if Honeycomb can delete an existing sub-interface.
+| | ...
+| | [Setup] | Set super and sub interfaces down
+| | ... | ${node} | ${super_if} | ${sub_if_id}
+| | ...
+| | Given sub-interface configuration from Honeycomb should be
+| | ... | ${node} | ${super_if} | ${sub_if_id} | ${sub_if_1_oper}
+| | And sub-interface configuration from VAT should be
+| | ... | ${node} | ${sub_if_name} | ${sub_if_1_oper}
+| | When Honeycomb fails to remove all sub-interfaces
+| | ... | ${node} | ${super_if}
+| | Then sub-interface configuration from Honeycomb should be
+| | ... | ${node} | ${super_if} | ${sub_if_id} | ${sub_if_1_oper}
+| | And sub-interface configuration from VAT should be
+| | ... | ${node} | ${sub_if_name} | ${sub_if_1_oper}
+
+| Honeycomb adds sub-interface to new bridge domain
+| | [Documentation] | Check if Honeycomb adds a sub-interface to bridge domain.
+| | ...
+| | [Setup] | Set super and sub interfaces down
+| | ... | ${node} | ${super_if} | ${sub_if_id}
+| | ...
+| | Given sub-interface configuration from Honeycomb should be
+| | ... | ${node} | ${super_if} | ${sub_if_id} | ${sub_if_1_oper}
+| | And sub-interface configuration from VAT should be
+| | ... | ${node} | ${sub_if_name} | ${sub_if_1_oper}
+| | When Honeycomb creates L2 bridge domain
+| | ... | ${node} | ${bd_name} | ${bd_settings}
+| | Then bridge domain configuration from Honeycomb should be
+| | ... | ${node} | ${bd_name} | ${bd_settings}
+| | When Honeycomb adds sub-interface to bridge domain
+| | ... | ${node} | ${super_if} | ${sub_if_id} | ${sub_bd_settings}
+| | Then sub-interface bridge domain configuration from Honeycomb should be
+| | ... | ${node} | ${super_if} | ${sub_if_id} | ${sub_bd_settings}
+| | And sub-interface bridge domain configuration from VAT should be
+| | ... | ${node} | ${sub_if_name} | ${sub_bd_settings}
+| | And sub-interface configuration from VAT should be
+| | ... | ${node} | ${sub_if_name} | ${sub_if_1_oper}
+
+| Honeycomb enables tag-rewrite pop 1
+| | [Documentation] | Check if Honeycomb enables tag-rewrite and sets its\
+| | ... | parameters correctly. Case: pop 1.
+| | ...
+| | Given rewrite tag from Honeycomb should be empty
+| | ... | ${node} | ${super_if} | ${sub_if_id}
+| | When Honeycomb configures tag rewrite
+| | ... | ${node} | ${super_if} | ${sub_if_id} | ${tag_rewrite_pop_1}
+| | Then rewrite tag from Honeycomb should be
+| | ... | ${node} | ${super_if} | ${sub_if_id} | ${tag_rewrite_pop_1_oper}
+| | And rewrite tag from VAT should be
+| | ... | ${node} | ${sub_if_name} | ${tag_rewrite_pop_1_VAT}
+
+| Honeycomb enables tag-rewrite push
+| | [Documentation] | Check if Honeycomb enables tag-rewrite and sets its\
+| | ... | parameters correctly. Case: push.
+| | ...
+| | Given rewrite tag from Honeycomb should be
+| | ... | ${node} | ${super_if} | ${sub_if_id} | ${tag_rewrite_pop_1_oper}
+| | When Honeycomb configures tag rewrite
+| | ... | ${node} | ${super_if} | ${sub_if_id} | ${tag_rewrite_push}
+| | Then rewrite tag from Honeycomb should be
+| | ... | ${node} | ${super_if} | ${sub_if_id} | ${tag_rewrite_push_oper}
+| | And rewrite tag from VAT should be
+| | ... | ${node} | ${sub_if_name} | ${tag_rewrite_push_VAT}
+
+| Honeycomb enables tag-rewrite translate 1-2
+| | [Documentation] | Check if Honeycomb enables tag-rewrite and sets its\
+| | ... | parameters correctly. Case: translate 1-2.
+| | ...
+| | Given rewrite tag from Honeycomb should be
+| | ... | ${node} | ${super_if} | ${sub_if_id} | ${tag_rewrite_push_oper}
+| | When Honeycomb configures tag rewrite
+| | ... | ${node} | ${super_if} | ${sub_if_id} | ${tag_rewrite_translate_1_2}
+| | Then rewrite tag from Honeycomb should be
+| | ... | ${node} | ${super_if} | ${sub_if_id}
+| | ... | ${tag_rewrite_translate_1_2_oper}
+| | And rewrite tag from VAT should be
+| | ... | ${node} | ${sub_if_name} | ${tag_rewrite_translate_1_2_VAT}
+
+| Honeycomb disables tag-rewrite
+| | [Documentation] | Check if Honeycomb disables the tag-rewrite.
+| | ...
+| | Given rewrite tag from Honeycomb should be
+| | ... | ${node} | ${super_if} | ${sub_if_id}
+| | ... | ${tag_rewrite_translate_1_2_oper}
+| | When Honeycomb configures tag rewrite
+| | ... | ${node} | ${super_if} | ${sub_if_id} | ${tag_rewrite_disabled}
+| | Then rewrite tag from Honeycomb should be empty
+| | ... | ${node} | ${super_if} | ${sub_if_id}
+| | And rewrite tag from VAT should be
+| | ... | ${node} | ${sub_if_name} | ${tag_rewrite_disabled_VAT}
+
+| Honeycomb enables tag-rewrite pop 1 again
+| | [Documentation] | Check if Honeycomb can enable tag-rewrite again, once it\
+| | ... | was disabled.
+| | ...
+| | Given rewrite tag from Honeycomb should be empty
+| | ... | ${node} | ${super_if} | ${sub_if_id}
+| | When Honeycomb configures tag rewrite
+| | ... | ${node} | ${super_if} | ${sub_if_id} | ${tag_rewrite_pop_1}
+| | Then rewrite tag from Honeycomb should be
+| | ... | ${node} | ${super_if} | ${sub_if_id} | ${tag_rewrite_pop_1_oper}
+| | And rewrite tag from VAT should be
+| | ... | ${node} | ${sub_if_name} | ${tag_rewrite_pop_1_VAT}
+
+| Honeycomb sets wrong vlan-type in tag-rewrite
+| | [Documentation] | Check if Honeycomb accepts wrong values of vlan-type in\
+| | ... | tag-rewrite.
+| | ...
+| | Given rewrite tag from Honeycomb should be
+| | ... | ${node} | ${super_if} | ${sub_if_id} | ${tag_rewrite_pop_1_oper}
+| | When Honeycomb fails to set wrong rewrite tag
+| | ... | ${node} | ${super_if} | ${sub_if_id}
+| | ... | ${tag_rewrite_translate_1_2_wrong}
+| | Then rewrite tag from Honeycomb should be
+| | ... | ${node} | ${super_if} | ${sub_if_id} | ${tag_rewrite_pop_1_oper}
+| | And rewrite tag from VAT should be
+| | ... | ${node} | ${sub_if_name} | ${tag_rewrite_pop_1_VAT}
+
+*** Keywords ***
+| Set super and sub interfaces up
+| | [Documentation] | Honeycomb sets super-interface and sub-interface up, in\
+| | ... | this order.
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - information about a DUT node. Type: dictionary
+| | ... | - super_interface - Super interface. Type: string
+| | ... | - identifier - Sub-interface identifier. Type: integer or string
+| | ...
+| | ... | *Example:*
+| | ... | \| Set super and sub interfaces up\
+| | ... | \| ${nodes['DUT1']} \| GigabitEthernet0/8/0 \| 1 \|
+| | ...
+| | [Arguments] | ${node} | ${super_interface} | ${identifier}
+| | ...
+| | Honeycomb sets interface state
+| | ... | ${node} | ${super_interface} | up
+| | Honeycomb sets the sub-interface up
+| | ... | ${node} | ${super_interface} | ${identifier}
+
+| Set super and sub interfaces down
+| | [Documentation] | Honeycomb sets super-interface and sub-interface down, in\
+| | ... | this order.
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - information about a DUT node. Type: dictionary
+| | ... | - super_interface - Super interface. Type: string
+| | ... | - identifier - Sub-interface identifier. Type: integer or string
+| | ...
+| | ... | *Example:*
+| | ... | \| Set super and sub interfaces down\
+| | ... | \| ${nodes['DUT1']} \| GigabitEthernet0/8/0 \| 1 \|
+| | ...
+| | [Arguments] | ${node} | ${super_interface} | ${identifier}
+| | ...
+| | Honeycomb sets interface state
+| | ... | ${node} | ${super_interface} | down
+| | Honeycomb sets the sub-interface down
+| | ... | ${node} | ${super_interface} | ${identifier}
