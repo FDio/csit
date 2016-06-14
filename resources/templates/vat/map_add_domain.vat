@@ -1,0 +1,1 @@
+map_add_domain ip4-pfx {ip4_pfx} ip6-pfx {ip6_pfx} ip6-src {ip6_src} ea-bits-len {ea_bits_len} psid-offset {psid_offset} psid-len {psid_len}
