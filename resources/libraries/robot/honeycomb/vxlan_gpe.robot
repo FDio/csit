@@ -130,7 +130,7 @@
 | | Should be equal as strings | ${vat_data['protocol']}
 | | ... | ${protocols['${vxlan_gpe_params['next-protocol']}']}
 
-| Interface indices should be the same from Honeycomb and VAT
+| VxLAN GPE Interface indices should be the same from Honeycomb and VAT
 | | [Documentation] | Uses VAT and Honeycomb to get operational data about the\
 | | ... | given interface and compares the interface indexes.
 | | ...
