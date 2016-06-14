@@ -35,7 +35,8 @@ class InterfaceKeywords(object):
     """
 
     INTF_PARAMS = ("name", "description", "type", "enabled",
-                   "link-up-down-trap-enable", "v3po:l2", "v3po:vxlan-gpe")
+                   "link-up-down-trap-enable", "v3po:l2", "v3po:vxlan-gpe",
+                   "vpp-vlan:sub-interfaces")
     IPV4_PARAMS = ("enabled", "forwarding", "mtu")
     IPV6_PARAMS = ("enabled", "forwarding", "mtu", "dup-addr-detect-transmits")
     IPV6_AUTOCONF_PARAMS = ("create-global-addresses",
@@ -47,22 +48,18 @@ class InterfaceKeywords(object):
     VXLAN_PARAMS = ("src", "dst", "vni", "encap-vrf-id")
     L2_PARAMS = ("bridge-domain", "split-horizon-group",
                  "bridged-virtual-interface")
-    L2_REWRITE_TAG_PARAMS = ("rewrite-operation",
-                             "first-pushed",
-                             "tag1",
-                             "tag2")
     TAP_PARAMS = ("tap-name", "mac", "device-instance")
     VHOST_USER_PARAMS = ("socket", "role")
-    SUB_INTF_PARAMS = ("super-interface",
-                       "identifier",
-                       "vlan-type",
-                       "number-of-tags",
-                       "outer-id",
-                       "inner-id",
-                       "match-any-outer-id",
-                       "match-any-inner-id",
-                       "exact-match",
-                       "default-subif")
+    SUB_IF_PARAMS = ("identifier",
+                     "vlan-type",
+                     "enabled")
+    SUB_IF_MATCH = ("default",
+                    "untagged",
+                    "vlan-tagged",
+                    "vlan-tagged-exact-match")
+    BD_PARAMS = ("bridge-domain",
+                 "split-horizon-group",
+                 "bridged-virtual-interface")
     VXLAN_GPE_PARAMS = ("local",
                         "remote",
                         "vni",
@@ -954,105 +951,258 @@ class InterfaceKeywords(object):
             node, interface, path, new_vhost_structure)
 
     @staticmethod
-    def create_sub_interface(node, super_interface, identifier, **kwargs):
+    def create_sub_interface(node, super_interface, match, tags=None, **kwargs):
         """Create a new sub-interface.
 
         :param node: Honeycomb node.
-        :param super_interface: The name of super interface.
-        :param identifier: sub-interface identifier.
+        :param super_interface: Super interface.
+        :param match: Match type. The valid values are defined in
+        InterfaceKeywords.SUB_IF_MATCH.
+        :param tags: List of tags.
         :param kwargs: Parameters and their values. The accepted parameters are
-        defined in InterfaceKeywords.SUB_INTF_PARAMS.
+        defined in InterfaceKeywords.SUB_IF_PARAMS.
+        :type node: dict
+        :type super_interface: str
+        :type match: str
+        :type tags: list
+        :type kwargs: dict
+        :return: Content of response.
+        :rtype: bytearray
+        :raises HoneycombError: If the parameter is not valid.
+        :raises KeyError: If the parameter 'match' is invalid.
+        """
+
+        match_type = {
+            "default":
+                {"default": {}},
+            "untagged":
+                {"untagged": {}},
+            "vlan-tagged":
+                {"vlan-tagged": {"match-exact-tags": "false"}},
+            "vlan-tagged-exact-match":
+                {"vlan-tagged": {"match-exact-tags": "true"}}
+        }
+
+        new_sub_interface = {
+            "tags": {
+                "tag": []
+            },
+        }
+
+        for param, value in kwargs.items():
+            if param in InterfaceKeywords.SUB_IF_PARAMS:
+                new_sub_interface[param] = value
+            else:
+                raise HoneycombError("The parameter {0} is invalid.".
+                                     format(param))
+        try:
+            new_sub_interface["match"] = match_type[match]
+        except KeyError:
+            raise HoneycombError("The value '{0}' of parameter 'match' is "
+                                 "invalid.".format(match))
+
+        if tags:
+            new_sub_interface["tags"]["tag"].extend(tags)
+
+        path = ("interfaces",
+                ("interface", "name", super_interface),
+                "vpp-vlan:sub-interfaces",
+                "sub-interface")
+        new_sub_interface_structure = [new_sub_interface, ]
+        return InterfaceKeywords._set_interface_properties(
+            node, super_interface, path, new_sub_interface_structure)
+
+    @staticmethod
+    def get_sub_interface_oper_data(node, super_interface, identifier):
+        """Retrieves sub-interface operational data using Honeycomb API.
+
+        :param node: Honeycomb node.
+        :param super_interface: Super interface.
+        :param identifier: The ID of sub-interface.
         :type node: dict
         :type super_interface: str
         :type identifier: int
-        :type kwargs: dict
-        :return: Content of response.
-        :rtype: bytearray
-        :raises HoneycombError: If the parameter is not valid.
+        :return: Sub-interface operational data.
+        :rtype: dict
+        :raises HoneycombError: If there is no sub-interface with the given ID.
         """
 
-        # These parameters are empty types (in JSON represented as empty
-        # dictionary) but ODL internally represents them as Booleans. If the
-        # value is an empty dictionary, it is True, if the parameter is
-        # missing, it is False.
-        empty_types = ("match-any-outer-id",
-                       "match-any-inner-id",
-                       "exact-match",
-                       "default-subif")
+        if_data = InterfaceKeywords.get_interface_oper_data(node,
+                                                            super_interface)
+        for sub_if in if_data["vpp-vlan:sub-interfaces"]["sub-interface"]:
+            if str(sub_if["identifier"]) == str(identifier):
+                return sub_if
 
-        sub_interface_name = "{0}.{1}".format(super_interface, str(identifier))
-        new_sub_interface = {
-            "name": sub_interface_name,
-            "type": "v3po:sub-interface",
-            "enabled": "false",
-            "sub-interface": {
-                "super-interface": super_interface,
-                "identifier": identifier
-            }
-        }
-        for param, value in kwargs.items():
-            if param in InterfaceKeywords.INTF_PARAMS:
-                new_sub_interface[param] = value
-            elif param in InterfaceKeywords.SUB_INTF_PARAMS:
-                if param in empty_types:
-                    if value:
-                        new_sub_interface["sub-interface"][param] = dict()
-                else:
-                    new_sub_interface["sub-interface"][param] = value
-            else:
-                raise HoneycombError("The parameter {0} is invalid.".
-                                     format(param))
-
-        path = ("interfaces", "interface")
-        new_sub_interface_structure = [new_sub_interface, ]
-        return InterfaceKeywords._set_interface_properties(
-            node, sub_interface_name, path, new_sub_interface_structure)
+        raise HoneycombError("The interface {0} does not have sub-interface "
+                             "with ID {1}".format(super_interface, identifier))
 
     @staticmethod
-    def add_vlan_tag_rewrite_to_sub_interface(node, sub_interface, **kwargs):
-        """Add vlan tag rewrite to a sub-interface.
+    def remove_all_sub_interfaces(node, super_interface):
+        """Remove all sub-interfaces from the given interface.
 
         :param node: Honeycomb node.
-        :param sub_interface: The name of sub-interface.
-        :param kwargs: Parameters and their values. The accepted parameters are
-        defined in InterfaceKeywords.L2_REWRITE_TAG_PARAMS.
+        :param super_interface: Super interface.
         :type node: dict
-        :type sub_interface: str
-        :type kwargs: dict
+        :type super_interface: str
         :return: Content of response.
         :rtype: bytearray
-        :raises HoneycombError: If the parameter is not valid.
         """
 
-        new_rewrite = dict()
-        for param, value in kwargs.items():
-            if param in InterfaceKeywords.L2_REWRITE_TAG_PARAMS:
-                new_rewrite[param] = value
-            else:
-                raise HoneycombError("The parameter {0} is invalid.".
-                                     format(param))
+        path = ("interfaces",
+                ("interface", "name", super_interface),
+                "vpp-vlan:sub-interfaces")
 
-        path = ("interfaces", ("interface", "name", sub_interface), "v3po:l2",
-                "vlan-tag-rewrite")
         return InterfaceKeywords._set_interface_properties(
-            node, sub_interface, path, new_rewrite)
+            node, super_interface, path, {})
 
     @staticmethod
-    def remove_vlan_tag_rewrite_from_sub_interface(node, sub_interface):
-        """Remove vlan tag rewrite from a sub-interface.
+    def set_sub_interface_state(node, super_interface, identifier, state):
+        """Set the administrative state of sub-interface.
 
         :param node: Honeycomb node.
-        :param sub_interface: The name of sub-interface.
+        :param super_interface: Super interface.
+        :param identifier: The ID of sub-interface.
+        :param state: Required sub-interface state - up or down.
         :type node: dict
-        :type sub_interface: str
+        :type super_interface: str
+        :type identifier: int
+        :type state: str
+        :return: Content of response.
         :rtype: bytearray
-        :raises HoneycombError: If the parameter is not valid.
         """
 
-        path = ("interfaces", ("interface", "name", sub_interface), "v3po:l2",
-                "vlan-tag-rewrite")
+        intf_state = {"up": "true",
+                      "down": "false"}
+
+        path = ("interfaces",
+                ("interface", "name", super_interface),
+                "vpp-vlan:sub-interfaces",
+                ("sub-interface", "identifier", identifier),
+                "enabled")
+
         return InterfaceKeywords._set_interface_properties(
-            node, sub_interface, path, None)
+            node, super_interface, path, intf_state[state])
+
+    @staticmethod
+    def add_bridge_domain_to_sub_interface(node, super_interface, identifier,
+                                           config):
+        """Add a sub-interface to a bridge domain and set its parameters.
+
+        :param node: Honeycomb node.
+        :param super_interface: Super interface.
+        :param identifier: The ID of sub-interface.
+        :param config: Bridge domain configuration.
+        :type node: dict
+        :type super_interface: str
+        :type identifier: int
+        :type config: dict
+        :return: Content of response.
+        :rtype: bytearray
+        """
+
+        path = ("interfaces",
+                ("interface", "name", super_interface),
+                "vpp-vlan:sub-interfaces",
+                ("sub-interface", "identifier", int(identifier)),
+                "l2")
+
+        return InterfaceKeywords._set_interface_properties(
+            node, super_interface, path, config)
+
+    @staticmethod
+    def get_bd_data_from_sub_interface(node, super_interface, identifier):
+        """Get the operational data about the bridge domain from sub-interface.
+
+        :param node: Honeycomb node.
+        :param super_interface: Super interface.
+        :param identifier: The ID of sub-interface.
+        :type node: dict
+        :type super_interface: str
+        :type identifier: int
+        :return: Operational data about the bridge domain.
+        :rtype: dict
+        :raises HoneycombError: If there is no sub-interface with the given ID.
+        """
+
+        try:
+            bd_data = InterfaceKeywords.get_sub_interface_oper_data(
+                node, super_interface, identifier)["l2"]
+            return bd_data
+        except KeyError:
+            raise HoneycombError("The operational data does not contain "
+                                 "information about a bridge domain.")
+
+    @staticmethod
+    def configure_tag_rewrite(node, super_interface, identifier, config):
+        """Add / change / disable vlan tag rewrite on a sub-interface.
+
+        :param node: Honeycomb node.
+        :param super_interface: Super interface.
+        :param identifier: The ID of sub-interface.
+        :param config: Rewrite tag configuration.
+        :type node: dict
+        :type super_interface: str
+        :type identifier: int
+        :type config: dict
+        :return: Content of response.
+        :rtype: bytearray
+        """
+
+        path = ("interfaces",
+                ("interface", "name", super_interface),
+                "vpp-vlan:sub-interfaces",
+                ("sub-interface", "identifier", int(identifier)),
+                "l2",
+                "rewrite")
+
+        return InterfaceKeywords._set_interface_properties(
+            node, super_interface, path, config)
+
+    @staticmethod
+    def get_tag_rewrite_oper_data(node, super_interface, identifier):
+        """Get the operational data about tag rewrite.
+
+        :param node: Honeycomb node.
+        :param super_interface: Super interface.
+        :param identifier: The ID of sub-interface.
+        :type node: dict
+        :type super_interface: str
+        :type identifier: int
+        :return: Operational data about tag rewrite.
+        :rtype: dict
+        :raises HoneycombError: If there is no sub-interface with the given ID.
+        """
+
+        try:
+            tag_rewrite = InterfaceKeywords.get_sub_interface_oper_data(
+                node, super_interface, identifier)["l2"]["rewrite"]
+            return tag_rewrite
+        except KeyError:
+            raise HoneycombError("The operational data does not contain "
+                                 "information about the tag-rewrite.")
+
+    @staticmethod
+    def compare_data_structures(data, ref):
+        """Checks if data obtained from UUT is as expected.
+
+        :param data: Data to be checked.
+        :param ref: Referential data used for comparison.
+        :type data: dict
+        :type ref: dict
+        :raises HoneycombError: If a parameter from referential data is not
+        present in operational data or if it has different value.
+        """
+
+        for key, item in ref.items():
+            try:
+                if data[key] != item:
+                    raise HoneycombError("The value of parameter '{0}' is "
+                                         "incorrect. It should be "
+                                         "'{1}' but it is '{2}'".
+                                         format(key, item, data[key]))
+            except KeyError:
+                raise HoneycombError("The parameter '{0}' is not present in "
+                                     "operational data".format(key))
 
     @staticmethod
     def compare_interface_lists(list1, list2):

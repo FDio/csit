@@ -90,7 +90,7 @@
 | | ... | ${api_data['name']} | ${base_settings['name']}
 | | Should be equal as strings
 | | ... | ${api_data['type']} | v3po:vxlan-gpe-tunnel
-| | Run keyword if | '${base_settings['enabled']}' == 'true'
+| | Run keyword if | $base_settings['enabled'] == True
 | | ... | Run keywords
 | | ... | Should be equal as strings | ${api_data['admin-status']} | up
 | | ... | AND
@@ -130,7 +130,7 @@
 | | Should be equal as strings | ${vat_data['protocol']}
 | | ... | ${protocols['${vxlan_gpe_params['next-protocol']}']}
 
-| Interface indices should be the same from Honeycomb and VAT
+| VxLAN GPE Interface indices should be the same from Honeycomb and VAT
 | | [Documentation] | Uses VAT and Honeycomb to get operational data about the\
 | | ... | given interface and compares the interface indexes.
 | | ...
@@ -140,15 +140,16 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Interface indices should be the same from Honeycomb and VAT \
-| | ... | \| ${nodes['DUT1']} \| vxlan_gpe_tunnel0 \|
+| | ... | \| VxLAN GPE Interface indices should be the same from Honeycomb and \
+| | ... | VAT \| ${nodes['DUT1']} \| vxlan_gpe_tunnel0 \|
 | | ...
 | | [Arguments] | ${node} | ${interface}
 | | ...
 | | ${api_data}= | interfaceAPI.Get interface oper data | ${node} | ${interface}
 | | ${vat_data}= | VxLAN GPE Dump | ${node} | ${interface}
+| | ${sw_if_index}= | EVALUATE | ${vat_data['sw_if_index']} + 1
 | | Should be equal as strings
-| | ... | ${api_data['if-index']} | ${vat_data['sw_if_index']}
+| | ... | ${api_data['if-index']} | ${sw_if_index}
 
 | VxLAN GPE configuration from VAT should be empty
 | | [Documentation] | Uses VAT to get operational data about the given\
