@@ -27,11 +27,12 @@
 | ...         | AND          | Update All Interface Data On All Nodes | ${nodes}
 | Test Setup | Setup all DUTs before test
 | Test Teardown | Show packet trace on all DUTs | ${nodes}
-| Documentation | *Router advertisement tests.*
+| Documentation | *IPv6 Router Advertisement test cases*
 | ...
-| ... | Test suite uses 3-node topology TG - DUT1 - DUT2 - TG
-| ... | with one link between nodes where Router advertisement functionality is
-| ... | tested in following test cases.
+| ... | RFC4861 Neighbor Discovery. Encapsulations: Eth-IPv6-RA on links
+| ... | TG-DUT1. IPv6 Router Advertisement tests use 3-node topology TG - DUT1 -
+| ... | DUT2 - TG with one link between the nodes. DUT1 and DUT2 are configured
+| ... | with IPv6 routing and static routes. TG verifies received RA packets.
 
 
 *** Variables ***
@@ -39,10 +40,11 @@
 | ${prefix_length}= | 64
 
 *** Test Cases ***
-| VPP transmits RA from IPv6 enabled interface
-| | [Documentation] | Setup IPv6 interace and wait for router advertisement \
-| | ...             | packet from this interface to be sent. Subsequently, \
-| | ...             | check received packet for correct contents.
+| TC01:DUT transmits RA on IPv6 enabled interface
+| | [Documentation]
+| | ... | On DUT1 configure IPv6 interface on the link to TG. Make TG wait
+| | ... | for IPv6 Router Advertisement packet to be sent out by DUT1 and
+| | ... | verify the received RA packet is correct.
 | | Given Path for 3-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And Interfaces in 3-node path are up
