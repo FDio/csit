@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba092121_1e929b57",
+        "filename": "resources/libraries/robot/traffic.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 249,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-15T15:51:53Z",
+      "side": 1,
+      "message": "dictionary",
+      "range": {
+        "startLine": 249,
+        "startChar": 60,
+        "endLine": 249,
+        "endChar": 64
+      },
+      "revId": "fa30b36750a1d844bc9b4027af95f003573fd037",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_de9b0371",
+        "filename": "resources/libraries/robot/traffic.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 260,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-15T15:51:53Z",
+      "side": 1,
+      "message": "As these are postional parameters you need to use them in correct positions:\n\\| ${nodes[\u0027DUT1\u0027]} \\| eth2 \\| 08:00:27:cc:4f:54 \\|",
+      "range": {
+        "startLine": 260,
+        "startChar": 10,
+        "endLine": 260,
+        "endChar": 61
+      },
+      "revId": "fa30b36750a1d844bc9b4027af95f003573fd037",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
