@@ -25,9 +25,15 @@
 | Test Setup | Clear interface counters on all vpp nodes in topology | ${nodes}
 | Test Teardown | Run Keyword If Test Failed | Show packet trace on all DUTs | ${nodes}
 
+
 *** Test Cases ***
 
-| VPP replies to ICMPv4 echo request
+| TC01:DUT replies to ICMPv4 Echo Req to its ingress interface
+| | [Documentation] | RFC791 IPv4 RFC792 ICMPv4: Eth-IPv4-ICMPv4 on link TG-DUT:
+| | ...             | On DUT configure interface IPv4 addresses and routes in the
+| | ...             | main routing domain. Make TG send ICMPv4 Echo Req to DUT
+| | ...             | ingress interface. Make TG verify ICMP Echo Reply is
+| | ...             | correct.
 | | [Tags] | 3_NODE_SINGLE_LINK_TOPO | VM_ENV
 | | Append Nodes | ${nodes['TG']} | ${nodes['DUT1']}
 | | Compute Path
@@ -36,7 +42,12 @@
 | | ${hops}= | Set Variable | ${0}
 | | Node "${src_node}" interface "${src_port}" can route to node "${dst_node}" interface "${dst_port}" ${hops} hops away using IPv4
 
-| TG can route to DUT egress interface
+| TC02:DUT routes IPv4 to its egress interface
+| | [Documentation] | RFC791 IPv4: Eth-IPv4-ICMPv4 on links TG-DUT1, DUT1-DUT2:
+| | ...             | On DUT1 and DUT2 configure interface IPv4 addresses and
+| | ...             | routes in the main routing domain. Make TG send ICMPv4
+| | ...             | Echo Req towards DUT1 egress interface connected to DUT2.
+| | ...             | Make TG verify ICMPv6 Echo Reply is correct.
 | | [Tags] | 3_NODE_SINGLE_LINK_TOPO | VM_ENV
 | | Append Nodes | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']}
 | | Compute Path
@@ -45,7 +56,12 @@
 | | ${hops}= | Set Variable | ${0}
 | | Node "${src_node}" interface "${src_port}" can route to node "${dst_node}" interface "${dst_port}" ${hops} hops away using IPv4
 
-| TG can route to DUT2 through DUT1
+| TC03:DUT1 routes IPv4 to DUT2 ingress interface
+| | [Documentation] | RFC791 IPv4: Eth-IPv4-ICMPv4 on links TG-DUT1, DUT1-DUT2:
+| | ...             | On DUT1 and DUT2 configure interface IPv4 addresses and
+| | ...             | routes in the main routing domain. Make TG send ICMPv4
+| | ...             | Echo Req towards DUT2 ingress interface connected to DUT1.
+| | ...             | Make TG verify ICMPv4 Echo Reply is correct.
 | | [Tags] | 3_NODE_SINGLE_LINK_TOPO | VM_ENV
 | | Append Nodes | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']}
 | | Compute Path
@@ -54,7 +70,13 @@
 | | ${hops}= | Set Variable | ${1}
 | | Node "${src_node}" interface "${src_port}" can route to node "${dst_node}" interface "${dst_port}" ${hops} hops away using IPv4
 
-| TG can route to DUT2 egress interface through DUT1
+| TC04:DUT1 routes IPv4 to DUT2 egress interface
+| | [Documentation] | RFC791 IPv4: Eth-IPv4-ICMPv4 on links TG-DUT1, TG-DUT2,
+| | ...             | DUT1-DUT2: On DUT1 and DUT2 configure interface IPv4
+| | ...             | addresses and routes in the main routing domain. Make
+| | ...             | TG send ICMPv4 Echo Req towards DUT2 egress interface
+| | ...             | connected to TG. Make TG verify ICMPv4 Echo Reply is
+| | ...             | correct.
 | | [Tags] | 3_NODE_SINGLE_LINK_TOPO | VM_ENV
 | | Append Nodes | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | Compute Path
@@ -63,7 +85,13 @@
 | | ${hops}= | Set Variable | ${1}
 | | Node "${src_node}" interface "${src_port}" can route to node "${dst_node}" interface "${dst_port}" ${hops} hops away using IPv4
 
-| TG can route to TG through DUT1 and DUT2
+| TC05:DUT1 and DUT2 route IPv4 between TG interfaces
+| | [Documentation] | RFC791 IPv4: Eth-IPv4-ICMPv4 on links TG-DUT1, TG-DUT2,
+| | ...             | DUT1-DUT2: On DUT1 and DUT2 configure interface IPv4
+| | ...             | addresses and routes in the main routing domain. Make
+| | ...             | TG send ICMPv4 Echo Req between its interfaces across
+| | ...             | DUT1 and DUT2. Make TG verify ICMPv4 Echo Replies are
+| | ...             | correct.
 | | [Tags] | 3_NODE_SINGLE_LINK_TOPO | VM_ENV
 | | Append Nodes | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | Compute Path
@@ -84,11 +112,23 @@
 | | ${port} | ${node}= | Next Interface
 | | Check ipv4 interface counter | ${node} | ${port} | ${exp_counter_val}
 
-| VPP can process ICMP echo request from min to 1500B packet size with 1B increment
+| TC06:DUT replies to ICMPv4 Echo Reqs with size 64B-to-1500B-incr-1B
+| | [Documentation] | RFC791 IPv4: Eth-IPv4-ICMPv4 on link TG-DUT: On DUT
+| | ...             | configure interface IPv4 addresses and routes in the main
+| | ...             | routing domain. Make TG send ICMPv4 Echo Reqs to DUT
+| | ...             | ingress interface, incrementating frame size from 64B to
+| | ...             | 1500B with increment step of 1Byte. Make TG verify ICMP
+| | ...             | Echo Replies are correct.
 | | [Tags] | 3_NODE_SINGLE_LINK_TOPO | VM_ENV
 | | Ipv4 icmp echo sweep | ${nodes['TG']} | ${nodes['DUT1']} | 0 | 1452 | 1
 
-| VPP can process ICMP echo request from 1500B to max packet size with 10B increment
+| TC07:DUT replies to ICMPv4 Echo Reqs with size 1500B-to-9000B-incr-10B
+| | [Documentation] | RFC791 IPv4: Eth-IPv4-ICMPv4 on link TG-DUT: On DUT
+| | ...             | configure interface IPv4 addresses and routes in the main
+| | ...             | routing domain. Make TG send ICMPv4 Echo Reqs to DUT
+| | ...             | ingress interface, incrementating frame size from 1500B
+| | ...             | to 9000B with increment step of 10Bytes. Make TG verify
+| | ...             | ICMPv4 Echo Replies are correct.
 | | [Tags] | 3_NODE_SINGLE_LINK_TOPO
 | | [Documentation] | This test case cannot be run reliably on VM_ENV because
 | | ...             | the virtual hosts can be connected using a bridge which
@@ -106,6 +146,9 @@
 | | ...            | Ipv4 icmp echo sweep | ${nodes['TG']} | ${nodes['DUT1']}
 | | ...            | 1452 | ${end_size} | 10
 
-| VPP responds to ARP request
+| TC08:DUT replies to ARP request
+| | [Documentation] | RFC826 ARP: Eth-ARP on link TG-DUT: On DUT configure
+| | ...             | interface IPv4 address in the main routing domain. Make
+| | ...             | TG send ARP Request to DUT and verify ARP Reply is correct.
 | | [Tags] | 3_NODE_SINGLE_LINK_TOPO | VM_ENV
 | | Send ARP request and validate response | ${nodes['TG']} | ${nodes['DUT1']}
