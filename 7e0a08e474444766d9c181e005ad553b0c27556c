@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba092121_99a6c5c0",
+        "filename": "tests/suites/bridge_domain/bridge_domain_untagged.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-15T21:45:45Z",
+      "side": 1,
+      "message": "Also documentation lines should not cross 80 chars per line...",
+      "revId": "7e0a08e474444766d9c181e005ad553b0c27556c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_f99ee162",
+        "filename": "tests/suites/bridge_domain/bridge_domain_untagged.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 218,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-15T21:45:45Z",
+      "side": 1,
+      "message": "6",
+      "range": {
+        "startLine": 218,
+        "startChar": 29,
+        "endLine": 218,
+        "endChar": 30
+      },
+      "revId": "7e0a08e474444766d9c181e005ad553b0c27556c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_1992b557",
+        "filename": "tests/suites/bridge_domain/bridge_domain_untagged.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 302,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-15T21:45:45Z",
+      "side": 1,
+      "message": "6",
+      "range": {
+        "startLine": 302,
+        "startChar": 29,
+        "endLine": 302,
+        "endChar": 30
+      },
+      "revId": "7e0a08e474444766d9c181e005ad553b0c27556c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
