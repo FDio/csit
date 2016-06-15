@@ -1,0 +1,303 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba092121_d95e7d12",
+        "filename": "resources/libraries/robot/honeycomb/sub_interface.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 252,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-15T21:06:45Z",
+      "side": 1,
+      "message": "all sub-interfaces",
+      "range": {
+        "startLine": 252,
+        "startChar": 39,
+        "endLine": 252,
+        "endChar": 52
+      },
+      "revId": "9abfa39b31e25c3c5077b977a3b1629131ea6387",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_79a53103",
+        "filename": "resources/libraries/robot/honeycomb/vxlan_gpe.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-15T21:06:45Z",
+      "side": 1,
+      "message": "Why do you compare boolean true as a string?",
+      "range": {
+        "startLine": 93,
+        "startChar": 54,
+        "endLine": 93,
+        "endChar": 63
+      },
+      "revId": "9abfa39b31e25c3c5077b977a3b1629131ea6387",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_59aa6dd5",
+        "filename": "resources/libraries/robot/honeycomb/vxlan_gpe.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-15T21:06:45Z",
+      "side": 1,
+      "message": "VxLAN GPE Interface",
+      "range": {
+        "startLine": 143,
+        "startChar": 13,
+        "endLine": 143,
+        "endChar": 22
+      },
+      "revId": "9abfa39b31e25c3c5077b977a3b1629131ea6387",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_1993d5a4",
+        "filename": "tests/suites/honeycomb/6 - sub_interface.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-15T21:06:45Z",
+      "side": 1,
+      "message": "Not needed here as it is the last KW in the test case.",
+      "range": {
+        "startLine": 50,
+        "startChar": 8,
+        "endLine": 50,
+        "endChar": 43
+      },
+      "revId": "9abfa39b31e25c3c5077b977a3b1629131ea6387",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_d9e31d32",
+        "filename": "tests/suites/honeycomb/6 - sub_interface.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-15T21:06:45Z",
+      "side": 1,
+      "message": "Based on the test case name and the description I would expect successfull deletion but there is used KW Honeycomb fails to remove all sub-interfaces... Please, use correct tets case name and description or use the correct Kw in the test case.",
+      "range": {
+        "startLine": 156,
+        "startChar": 1,
+        "endLine": 157,
+        "endChar": 78
+      },
+      "revId": "9abfa39b31e25c3c5077b977a3b1629131ea6387",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_996365b1",
+        "filename": "tests/suites/honeycomb/6 - sub_interface.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-15T21:06:45Z",
+      "side": 1,
+      "message": "With this approach if previous TC failed to set pop 1 this TC fails here... We have two options:\n1. remove the tag settings in the teardown of the previous TC and check here if the rewrite tag is empty (teardwon failure can cause failure here)\nor\n2. check here that rewrite tag is not equal to push (should not fail even in case of any failure of previous TC)",
+      "range": {
+        "startLine": 213,
+        "startChar": 4,
+        "endLine": 214,
+        "endChar": 74
+      },
+      "revId": "9abfa39b31e25c3c5077b977a3b1629131ea6387",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_795891fa",
+        "filename": "tests/suites/honeycomb/6 - sub_interface.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-15T21:06:45Z",
+      "side": 1,
+      "message": "see line 213",
+      "range": {
+        "startLine": 226,
+        "startChar": 2,
+        "endLine": 227,
+        "endChar": 73
+      },
+      "revId": "9abfa39b31e25c3c5077b977a3b1629131ea6387",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_3972197d",
+        "filename": "tests/suites/honeycomb/6 - sub_interface.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 241,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-15T21:06:45Z",
+      "side": 1,
+      "message": "see line 213",
+      "range": {
+        "startLine": 239,
+        "startChar": 3,
+        "endLine": 241,
+        "endChar": 43
+      },
+      "revId": "9abfa39b31e25c3c5077b977a3b1629131ea6387",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_b90509c4",
+        "filename": "tests/suites/honeycomb/6 - sub_interface.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 262,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-15T21:06:45Z",
+      "side": 1,
+      "message": "fails to set",
+      "range": {
+        "startLine": 262,
+        "startChar": 12,
+        "endLine": 262,
+        "endChar": 16
+      },
+      "revId": "9abfa39b31e25c3c5077b977a3b1629131ea6387",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_5914adf4",
+        "filename": "tests/suites/honeycomb/6 - sub_interface.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-15T21:06:45Z",
+      "side": 1,
+      "message": "that",
+      "range": {
+        "startLine": 263,
+        "startChar": 28,
+        "endLine": 263,
+        "endChar": 30
+      },
+      "revId": "9abfa39b31e25c3c5077b977a3b1629131ea6387",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_990a45d1",
+        "filename": "tests/suites/honeycomb/6 - sub_interface.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-15T21:06:45Z",
+      "side": 1,
+      "message": "doesn\u0027t accept",
+      "range": {
+        "startLine": 263,
+        "startChar": 41,
+        "endLine": 263,
+        "endChar": 48
+      },
+      "revId": "9abfa39b31e25c3c5077b977a3b1629131ea6387",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_790f71e2",
+        "filename": "tests/suites/honeycomb/6 - sub_interface.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-15T21:06:45Z",
+      "side": 1,
+      "message": "see line 213",
+      "range": {
+        "startLine": 266,
+        "startChar": 4,
+        "endLine": 267,
+        "endChar": 74
+      },
+      "revId": "9abfa39b31e25c3c5077b977a3b1629131ea6387",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_b92ce94b",
+        "filename": "tests/suites/honeycomb/6 - sub_interface.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-15T21:06:45Z",
+      "side": 1,
+      "message": "Maybe first read what is the tag rewrite value at the begging of the TC and then check that this value was not changed...",
+      "range": {
+        "startLine": 271,
+        "startChar": 4,
+        "endLine": 274,
+        "endChar": 61
+      },
+      "revId": "9abfa39b31e25c3c5077b977a3b1629131ea6387",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
