@@ -12,7 +12,8 @@
 # limitations under the License.
 
 *** Settings ***
-| Documentation | Check if VPP sends ARP request to unknown destinations.
+| Documentation | Functional tests to verify VPP DUT sends
+| ... | ARP Requests for unknown locally connected IPv4 addresses.
 | Resource | resources/libraries/robot/default.robot
 | Resource | resources/libraries/robot/counters.robot
 | Resource | resources/libraries/robot/interfaces.robot
@@ -37,9 +38,14 @@
 | ${prefix_length}= | 24
 
 *** Test Cases ***
-| VPP sends ARP requests for unknown destinations
-| | [Documentation] | Setup IP addresses.
-| | ...             | Send ICMP packet and check if VPP sends ARP request.
+| TC09:DUT sends ARP Request for unknown locally connected IPv4 address
+| | [Documentation] |
+| | ... | RFC826 ARP: Eth-IPv4 on links TG-DUT1, TG-DUT2, DUT1-DUT2:
+| | ... | Eth-ARP on link DUT1-DUT2: On DUT1 and DUT2 configure
+| | ... | interface IPv4 addresses and routes in the main routing
+| | ... | domain. Make TG send ICMPv4 Echo Req to its other interface
+| | ... | via DUT1 and DUT2. Make TG verify DUT2 sends ARP Request
+| | ... | for locally connected TG IPv4 address.
 | | Given Path for 3-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And Interfaces in 3-node path are up
@@ -55,9 +61,15 @@
 | | ... | ${dut1_to_dut2_ip} | ${dut1_to_dut2_ip_GW}
 
 | VPP sends ARP requests for route's next hop IP
+| TC10:DUT sends ARP Request for route next hop IPv4 address
+| | [Documentation] |
+| | ... | RFC826 ARP: Eth-IPv4 on links TG-DUT1, TG-DUT2, DUT1-DUT2:
+| | ... | Eth-ARP on link DUT1-DUT2: On DUT1 and DUT2 configure interface
+| | ... | IPv4 addresses and routes in the main routing domain. Make TG
+| | ... | send ICMPv4 Echo Req to the route on DUT configured with TG its
+| | ... | interface as next hop.Make TG verify DUT2 sends ARP Request for
+| | ... | locally connected TG IPv4 address.
 | | [Tags] | EXPECTED_FAILING
-| | [Documentation] | Setup IP addresses and route.
-| | ...             | Send ICMP packet and check if VPP sends ARP request.
 | | Given Path for 3-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And Interfaces in 3-node path are up
