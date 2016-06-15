@@ -30,11 +30,16 @@
 | ${tag_rewrite_method}= | pop-2
 
 *** Test Cases ***
-| VPP can push and pop two VLAN tags to traffic transferring through xconnect
-| | [Documentation] | Push two tags on DUT 1 to traffic sent from TG,
-| | ...             | pop two tags on DUT 2 from this traffic
-| | ...             | and receive untagged traffic on TG.
-| | ...
+| TC05: DUT1 and DUT2 with L2XC and two VLAN push-pop switch ICMPv4 between two TG links
+| | [Documentation] | Eth-802.1ad-IPv4-ICMPv4 on link DUT1-DUT2,
+| | ...             | Eth-IPv4-ICMPv4 on links TG-DUT1, TG-DUT2: On DUT1 and DUT2 configure L2 cross-connect
+| | ...             | (L2XC), each with one interface to TG and one Ethernet
+| | ...             | interface towards the other DUT.  Each DUT pushes two VLAN
+| | ...             | tags on packets received from local TG, and popping two VLAN
+| | ...             | tags on packets transmitted to local TG. Make TG send ICMPv4
+| | ...             | Echo Req in both directions between two of its interfaces to
+| | ...             | be switched by DUT1 and DUT2, verify all packets are
+| | ...             | received.
 | | Given Path for 3-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And Interfaces in 3-node path are up
