@@ -28,6 +28,17 @@
 | Test Setup | Setup all DUTs before test
 | Test Teardown | Run Keywords | Show packet trace on all DUTs | ${nodes}
 | ...           | AND          | Vpp Show Errors | ${nodes['DUT1']}
+| Documentation | *IPv6 routing with ingress ACL test cases*
+| ...
+| ... | Encapsulations: Eth-IPv6 on links TG-DUT1, TG-DUT2, DUT1-DUT2. IPv6
+| ... | ingress ACL (iACL) tests use 3-node topology TG - DUT1 - DUT2 - TG with
+| ... | one link between the nodes. DUT1 and DUT2 are configured with IPv6
+| ... | routing and static routes. DUT1 is configured with iACL on link to TG,
+| ... | iACL classification and permit/deny action are configured on a per test
+| ... | case basis. Test ICMPv6 Echo Request packets are sent in one direction
+| ... | by TG on link to DUT1 and received on TG link to DUT2. On receive TG
+| ... | verifies if packets are dropped, or if received verifies packet IPv6
+| ... | src-addr, dst-addr and MAC addresses.
 
 *** Variables ***
 | ${dut1_to_tg_ip}= | 3ffe:62::1
@@ -41,12 +52,13 @@
 | ${non_drop_src_ip}= | 3ffe:51::1
 | ${prefix_length}= | 64
 | ${ip_version}= | ip6
+| ${l2_table}= | l2
 
 *** Test Cases ***
-| VPP drops packets based on IPv6 source addresses
-| | [Documentation] | Create classify table on VPP, add source IP address
-| | ...             | of traffic into table and setup 'deny' traffic
-| | ...             | and check if traffic is dropped.
+| TC01: DUT with iACL IPv6 src-addr drops matching pkts
+| | [Documentation]
+| | ... | On DUT1 add source IPv6 address to classify table with 'deny'.\
+| | ... | Make TG verify matching packets are dropped.
 | | Given Path for 3-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And Interfaces in 3-node path are up
@@ -64,16 +76,17 @@
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${dut2_to_tg}
 | | And Vpp All Ra Suppress Link Layer | ${nodes}
 | | Then Send Packet And Check Headers | ${tg_node}
-| | ... | ${non_drop_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
-| | ... | ${dut1_to_tg_mac} | ${tg_to_dut2}
+| | ... | ${non_drop_src_ip} | ${test_dst_ip} | ${tg_to_dut1}
+| | ... | ${tg_to_dut1_mac} | ${dut1_to_tg_mac} | ${tg_to_dut2}
 | | ... | ${dut1_to_dut2_mac} | ${tg_to_dut2_mac}
 | | And Send Packet And Check Headers | ${tg_node}
 | | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
 | | ... | ${dut1_to_tg_mac} | ${tg_to_dut2}
 | | ... | ${dut1_to_dut2_mac} | ${tg_to_dut2_mac}
-| | ${table_index} | ${skip_n} | ${match_n}= | When Vpp Create Classify Table
-| | ... | ${dut1_node} | ${ip_version} | src
-| | And Vpp Configure Classify Session
+| | ${table_index} | ${skip_n} | ${match_n}=
+| | ... | When Vpp Creates Classify Table L3 | ${dut1_node}
+| | ... | ${ip_version} | src
+| | And Vpp Configures Classify Session L3
 | | ... | ${dut1_node} | deny | ${table_index} | ${skip_n} | ${match_n}
 | | ... | ${ip_version} | src | ${test_src_ip}
 | | And Vpp Enable Input Acl Interface
@@ -83,14 +96,14 @@
 | | ... | ${dut1_to_tg_mac} | ${tg_to_dut2}
 | | ... | ${dut1_to_dut2_mac} | ${tg_to_dut2_mac}
 | | And Send Packet And Check Headers | ${tg_node}
-| | ... | ${non_drop_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
-| | ... | ${dut1_to_tg_mac} | ${tg_to_dut2}
+| | ... | ${non_drop_src_ip} | ${test_dst_ip} | ${tg_to_dut1}
+| | ... | ${tg_to_dut1_mac} | ${dut1_to_tg_mac} | ${tg_to_dut2}
 | | ... | ${dut1_to_dut2_mac} | ${tg_to_dut2_mac}
 
-| VPP drops packets based on IPv6 destination addresses
-| | [Documentation] | Create classify table on VPP, add destination IP address
-| | ...             | of traffic into table and setup 'deny' traffic
-| | ...             | and check if traffic is dropped.
+| TC02: DUT with iACL IPv6 dst-addr drops matching pkts
+| | [Documentation]
+| | ... | On DUT1 add destination IPv6 address to classify table with 'deny'.\
+| | ... | Make TG verify matching packets are dropped.
 | | Given Path for 3-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And Interfaces in 3-node path are up
@@ -111,16 +124,17 @@
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${dut2_to_tg}
 | | And Vpp All Ra Suppress Link Layer | ${nodes}
 | | Then Send Packet And Check Headers | ${tg_node}
-| | ... | ${test_src_ip} | ${non_drop_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
-| | ... | ${dut1_to_tg_mac} | ${tg_to_dut2}
+| | ... | ${test_src_ip} | ${non_drop_dst_ip} | ${tg_to_dut1}
+| | ... | ${tg_to_dut1_mac} | ${dut1_to_tg_mac} | ${tg_to_dut2}
 | | ... | ${dut1_to_dut2_mac} | ${tg_to_dut2_mac}
 | | And Send Packet And Check Headers | ${tg_node}
 | | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
 | | ... | ${dut1_to_tg_mac} | ${tg_to_dut2}
 | | ... | ${dut1_to_dut2_mac} | ${tg_to_dut2_mac}
-| | ${table_index} | ${skip_n} | ${match_n}= | When Vpp Create Classify Table
-| | ... | ${dut1_node} | ${ip_version} | dst
-| | And Vpp Configure Classify Session
+| | ${table_index} | ${skip_n} | ${match_n}=
+| | ... | When Vpp Creates Classify Table L3 | ${dut1_node}
+| | ... | ${ip_version} | dst
+| | And Vpp Configures Classify Session L3
 | | ... | ${dut1_node} | deny | ${table_index} | ${skip_n} | ${match_n}
 | | ... | ${ip_version} | dst | ${test_dst_ip}
 | | And Vpp Enable Input Acl Interface
@@ -130,14 +144,14 @@
 | | ... | ${dut1_to_tg_mac} | ${tg_to_dut2}
 | | ... | ${dut1_to_dut2_mac} | ${tg_to_dut2_mac}
 | | And Send Packet And Check Headers | ${tg_node}
-| | ... | ${test_src_ip} | ${non_drop_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
-| | ... | ${dut1_to_tg_mac} | ${tg_to_dut2}
+| | ... | ${test_src_ip} | ${non_drop_dst_ip} | ${tg_to_dut1}
+| | ... | ${tg_to_dut1_mac} | ${dut1_to_tg_mac} | ${tg_to_dut2}
 | | ... | ${dut1_to_dut2_mac} | ${tg_to_dut2_mac}
 
-| VPP drops packets based on IPv6 src-addr and dst-addr
-| | [Documentation] | Create classify table on VPP, add source and destination
-| | ...             | IP address of traffic into table and setup 'deny' traffic
-| | ...             | and check if traffic is dropped.
+| TC03: DUT with iACL IPv6 src-addr and dst-addr drops matching pkts
+| | [Documentation]
+| | ... | On DUT1 add source and destination IPv6 addresses to classify table\
+| | ... | with 'deny'. Make TG verify matching packets are dropped.
 | | Given Path for 3-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And Interfaces in 3-node path are up
@@ -166,13 +180,14 @@
 | | ... | ${dut1_to_tg_mac} | ${tg_to_dut2}
 | | ... | ${dut1_to_dut2_mac} | ${tg_to_dut2_mac}
 | | ${table_index_1} | ${skip_n_1} | ${match_n_1}=
-| | ... | When Vpp Create Classify Table | ${dut1_node} | ${ip_version} | src
+| | ... | When Vpp Creates Classify Table L3 | ${dut1_node}
+| | ... | ${ip_version} | src
 | | ${table_index_2} | ${skip_n_2} | ${match_n_2}=
-| | ... | And Vpp Create Classify Table | ${dut1_node} | ${ip_version} | dst
-| | And Vpp Configure Classify Session
+| | ... | And Vpp Creates Classify Table L3 | ${dut1_node} | ${ip_version} | dst
+| | And Vpp Configures Classify Session L3
 | | ... | ${dut1_node} | deny | ${table_index_1} | ${skip_n_1} | ${match_n_2}
 | | ... | ${ip_version} | src | ${test_src_ip}
-| | And Vpp Configure Classify Session
+| | And Vpp Configures Classify Session L3
 | | ... | ${dut1_node} | deny | ${table_index_2} | ${skip_n_2} | ${match_n_2}
 | | ... | ${ip_version} | dst | ${test_dst_ip}
 | | And Vpp Enable Input Acl Interface
@@ -188,10 +203,10 @@
 | | ... | ${tg_to_dut1_mac} | ${dut1_to_tg_mac} | ${tg_to_dut2}
 | | ... | ${dut1_to_dut2_mac} | ${tg_to_dut2_mac}
 
-| VPP drops packets based on IPv6 protocol (TCP)
-| | [Documentation] | Create classify table on VPP, add mask for TCP port
-| | ...             | into table and setup 'deny' traffic
-| | ...             | and check if TCP traffic is dropped.
+| TC04: DUT with iACL IPv6 protocol set to TCP drops matching pkts
+| | [Documentation]
+| | ... | On DUT1 add protocol mask and TCP protocol (0x06) to classify table\
+| | ... | with 'deny'. Make TG verify matching packets are dropped.
 | | Given Path for 3-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And Interfaces in 3-node path are up
@@ -214,9 +229,10 @@
 | | And Send TCP or UDP packet | ${tg_node}
 | | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
 | | ... | ${tg_to_dut2} | ${dut1_to_tg_mac} | TCP | 80 | 20
-| | ${table_index} | ${skip_n} | ${match_n}= | When Vpp Create Classify Table Hex
+| | ${table_index} | ${skip_n} | ${match_n}=
+| | ... | When Vpp Creates Classify Table Hex
 | | ... | ${dut1_node} | 0000000000000000000000000000000000000000FF
-| | And Vpp Configure Classify Session Hex
+| | And Vpp Configures Classify Session Hex
 | | ... | ${dut1_node} | deny | ${table_index} | ${skip_n} | ${match_n}
 | | ... | 000000000000000000000000000000000000000006
 | | And Vpp Enable Input Acl Interface
@@ -228,10 +244,10 @@
 | | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
 | | ... | ${tg_to_dut2} | ${dut1_to_tg_mac} | UDP | 80 | 20
 
-| VPP drops packets based on IPv6 protocol (UDP)
-| | [Documentation] | Create classify table on VPP, add mask for UDP port
-| | ...             | into table and setup 'deny' traffic
-| | ...             | and check if UDP traffic is dropped.
+| TC05: DUT with iACL IPv6 protocol set to UDP drops matching pkts
+| | [Documentation]
+| | ... | On DUT1 add protocol mask and UDP protocol (0x11) to classify table\
+| | ... | with 'deny'. Make TG verify matching packets are dropped.
 | | Given Path for 3-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And Interfaces in 3-node path are up
@@ -254,9 +270,10 @@
 | | And Send TCP or UDP packet | ${tg_node}
 | | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
 | | ... | ${tg_to_dut2} | ${dut1_to_tg_mac} | UDP | 80 | 20
-| | ${table_index} | ${skip_n} | ${match_n}= | When Vpp Create Classify Table Hex
+| | ${table_index} | ${skip_n} | ${match_n}=
+| | ... | When Vpp Creates Classify Table Hex
 | | ... | ${dut1_node} | 0000000000000000000000000000000000000000FF
-| | And Vpp Configure Classify Session Hex
+| | And Vpp Configures Classify Session Hex
 | | ... | ${dut1_node} | deny | ${table_index} | ${skip_n} | ${match_n}
 | | ... | 000000000000000000000000000000000000000011
 | | And Vpp Enable Input Acl Interface
@@ -268,10 +285,10 @@
 | | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
 | | ... | ${tg_to_dut2} | ${dut1_to_tg_mac} | TCP | 80 | 20
 
-| VPP drops packets based on IPv6 TCP src ports
-| | [Documentation] | Create classify table on VPP, add source IP address
-| | ...             | of traffic into table and setup 'deny' traffic
-| | ...             | and check if traffic is dropped.
+| TC06: DUT with iACL IPv6 TCP src-ports drops matching pkts
+| | [Documentation]
+| | ... | On DUT1 add TCP source ports to classify table with 'deny'.\
+| | ... | Make TG verify matching packets are dropped.
 | | Given Path for 3-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And Interfaces in 3-node path are up
@@ -296,9 +313,9 @@
 | | ... | ${tg_to_dut2} | ${dut1_to_tg_mac} | TCP | 80 | 20
 | | ${hex_mask}= | Compute Classify Hex Mask | ${ip_version} | TCP | source
 | | ${hex_value}= | Compute Classify Hex Value | ${hex_mask} | 80 | 0
-| | ${table_index} | ${skip_n} | ${match_n}= | When Vpp Create Classify Table Hex
-| | ... | ${dut1_node} | ${hex_mask}
-| | And Vpp Configure Classify Session Hex
+| | ${table_index} | ${skip_n} | ${match_n}=
+| | ... | When Vpp Creates Classify Table Hex | ${dut1_node} | ${hex_mask}
+| | And Vpp Configures Classify Session Hex
 | | ... | ${dut1_node} | deny | ${table_index} | ${skip_n} | ${match_n}
 | | ... | ${hex_value}
 | | And Vpp Enable Input Acl Interface
@@ -310,10 +327,10 @@
 | | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
 | | ... | ${tg_to_dut2} | ${dut1_to_tg_mac} | TCP | 110 | 20
 
-| VPP drops packets based on IPv6 TCP dst ports
-| | [Documentation] | Create classify table on VPP, add destination TCP port
-| | ...             | of traffic into table and setup 'deny' traffic
-| | ...             | and check if traffic is dropped.
+| TC07: DUT with iACL IPv6 TCP dst-ports drops matching pkts
+| | [Documentation]
+| | ... | On DUT1 add TCP destination ports to classify table with 'deny'.\
+| | ... | Make TG verify matching packets are dropped.
 | | Given Path for 3-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And Interfaces in 3-node path are up
@@ -338,9 +355,9 @@
 | | ... | ${tg_to_dut2} | ${dut1_to_tg_mac} | TCP | 20 | 80
 | | ${hex_mask}= | Compute Classify Hex Mask | ${ip_version} | TCP | destination
 | | ${hex_value}= | Compute Classify Hex Value | ${hex_mask} | 0 | 80
-| | ${table_index} | ${skip_n} | ${match_n}= | When Vpp Create Classify Table Hex
-| | ... | ${dut1_node} | ${hex_mask}
-| | And Vpp Configure Classify Session Hex
+| | ${table_index} | ${skip_n} | ${match_n}=
+| | ... | When Vpp Creates Classify Table Hex | ${dut1_node} | ${hex_mask}
+| | And Vpp Configures Classify Session Hex
 | | ... | ${dut1_node} | deny | ${table_index} | ${skip_n} | ${match_n}
 | | ... | ${hex_value}
 | | And Vpp Enable Input Acl Interface
@@ -352,10 +369,10 @@
 | | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
 | | ... | ${tg_to_dut2} | ${dut1_to_tg_mac} | TCP | 20 | 110
 
-| VPP drops packets based on IPv6 TCP src + dst ports
-| | [Documentation] | Create classify table on VPP, add source and destination
-| | ...             | TCP port of traffic into table and setup 'deny' traffic
-| | ...             | and check if traffic is dropped.
+| TC08: DUT with iACL IPv6 TCP src-ports and dst-ports drops matching pkts
+| | [Documentation]
+| | ... | On DUT1 add TCP source and destination ports to classify table\
+| | ... | with 'deny'. Make TG verify matching packets are dropped.
 | | Given Path for 3-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And Interfaces in 3-node path are up
@@ -381,9 +398,9 @@
 | | ${hex_mask}= | Compute Classify Hex Mask | ${ip_version} | TCP
 | | ...                                      | source + destination
 | | ${hex_value}= | Compute Classify Hex Value | ${hex_mask} | 80 | 20
-| | ${table_index} | ${skip_n} | ${match_n}= | When Vpp Create Classify Table Hex
-| | ... | ${dut1_node} | ${hex_mask}
-| | And Vpp Configure Classify Session Hex
+| | ${table_index} | ${skip_n} | ${match_n}=
+| | ... | When Vpp Creates Classify Table Hex | ${dut1_node} | ${hex_mask}
+| | And Vpp Configures Classify Session Hex
 | | ... | ${dut1_node} | deny | ${table_index} | ${skip_n} | ${match_n}
 | | ... | ${hex_value}
 | | And Vpp Enable Input Acl Interface
@@ -395,10 +412,10 @@
 | | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
 | | ... | ${tg_to_dut2} | ${dut1_to_tg_mac} | TCP | 110 | 25
 
-| VPP drops packets based on IPv6 UDP src ports
-| | [Documentation] | Create classify table on VPP, add source UDP port
-| | ...             | of traffic into table and setup 'deny' traffic
-| | ...             | and check if traffic is dropped.
+| TC09: DUT with iACL IPv6 UDP src-ports drops matching pkts
+| | [Documentation]
+| | ... | On DUT1 add UDP source ports to classify table with 'deny'.\
+| | ... | Make TG verify matching packets are dropped.
 | | Given Path for 3-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And Interfaces in 3-node path are up
@@ -423,9 +440,9 @@
 | | ... | ${tg_to_dut2} | ${dut1_to_tg_mac} | UDP | 80 | 20
 | | ${hex_mask}= | Compute Classify Hex Mask | ${ip_version} | UDP | source
 | | ${hex_value}= | Compute Classify Hex Value | ${hex_mask} | 80 | 0
-| | ${table_index} | ${skip_n} | ${match_n}= | When Vpp Create Classify Table Hex
-| | ... | ${dut1_node} | ${hex_mask}
-| | And Vpp Configure Classify Session Hex
+| | ${table_index} | ${skip_n} | ${match_n}=
+| | ... | When Vpp Creates Classify Table Hex | ${dut1_node} | ${hex_mask}
+| | And Vpp Configures Classify Session Hex
 | | ... | ${dut1_node} | deny | ${table_index} | ${skip_n} | ${match_n}
 | | ... | ${hex_value}
 | | And Vpp Enable Input Acl Interface
@@ -437,10 +454,10 @@
 | | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
 | | ... | ${tg_to_dut2} | ${dut1_to_tg_mac} | UDP | 110 | 20
 
-| VPP drops packets based on IPv6 UDP dst ports
-| | [Documentation] | Create classify table on VPP, add destination UDP port
-| | ...             | of traffic into table and setup 'deny' traffic
-| | ...             | and check if traffic is dropped.
+| TC10: DUT with iACL IPv6 UDP dst-ports drops matching pkts
+| | [Documentation]
+| | ... | On DUT1 add TCP destination ports to classify table with 'deny'.\
+| | ... | Make TG verify matching packets are dropped.
 | | Given Path for 3-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And Interfaces in 3-node path are up
@@ -465,9 +482,9 @@
 | | ... | ${tg_to_dut2} | ${dut1_to_tg_mac} | UDP | 20 | 80
 | | ${hex_mask}= | Compute Classify Hex Mask | ${ip_version} | UDP | destination
 | | ${hex_value}= | Compute Classify Hex Value | ${hex_mask} | 0 | 80
-| | ${table_index} | ${skip_n} | ${match_n}= | When Vpp Create Classify Table Hex
-| | ... | ${dut1_node} | ${hex_mask}
-| | And Vpp Configure Classify Session Hex
+| | ${table_index} | ${skip_n} | ${match_n}=
+| | ... | When Vpp Creates Classify Table Hex | ${dut1_node} | ${hex_mask}
+| | And Vpp Configures Classify Session Hex
 | | ... | ${dut1_node} | deny | ${table_index} | ${skip_n} | ${match_n}
 | | ... | ${hex_value}
 | | And Vpp Enable Input Acl Interface
@@ -479,10 +496,10 @@
 | | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
 | | ... | ${tg_to_dut2} | ${dut1_to_tg_mac} | UDP | 20 | 110
 
-| VPP drops packets based on IPv6 UDP src + dst ports
-| | [Documentation] | Create classify table on VPP, add source and destination
-| | ...             | UDP port of traffic into table and setup 'deny' traffic
-| | ...             | and check if traffic is dropped.
+| TC11: DUT with iACL IPv6 UDP src-ports and dst-ports drops matching pkts
+| | [Documentation]
+| | ... | On DUT1 add UDP source and destination ports to classify table\
+| | ... | with 'deny'. Make TG verify matching packets are dropped.
 | | Given Path for 3-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And Interfaces in 3-node path are up
@@ -508,9 +525,9 @@
 | | ${hex_mask}= | Compute Classify Hex Mask | ${ip_version} | UDP
 | | ...                                      | source + destination
 | | ${hex_value}= | Compute Classify Hex Value | ${hex_mask} | 80 | 20
-| | ${table_index} | ${skip_n} | ${match_n}= | When Vpp Create Classify Table Hex
-| | ... | ${dut1_node} | ${hex_mask}
-| | And Vpp Configure Classify Session Hex
+| | ${table_index} | ${skip_n} | ${match_n}=
+| | ... | When Vpp Creates Classify Table Hex | ${dut1_node} | ${hex_mask}
+| | And Vpp Configures Classify Session Hex
 | | ... | ${dut1_node} | deny | ${table_index} | ${skip_n} | ${match_n}
 | | ... | ${hex_value}
 | | And Vpp Enable Input Acl Interface
@@ -521,3 +538,44 @@
 | | And Send TCP or UDP packet | ${tg_node}
 | | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
 | | ... | ${tg_to_dut2} | ${dut1_to_tg_mac} | UDP | 110 | 25
+
+| TC12: DUT with iACL MAC src-addr and iACL IPv6 UDP src-ports and dst-ports drops matching pkts
+| | [Documentation]
+| | ... | On DUT1 add source MAC address to classify (L2) table and add UDP\
+| | ... | source and destination ports to classify (hex) table with 'deny'.
+| | ... | Make TG verify matching packets are dropped.
+| | Given Path for 3-node testing is set
+| | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
+| | And Interfaces in 3-node path are up
+| | And L2 setup xconnect on DUT
+| | ... | ${dut1_node} | ${dut1_to_dut2} | ${dut1_to_tg}
+| | And L2 setup xconnect on DUT
+| | ... | ${dut2_node} | ${dut2_to_dut1} | ${dut2_to_tg}
+| | And Vpp All Ra Suppress Link Layer | ${nodes}
+| | Then Send TCP or UDP packet | ${tg_node}
+| | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
+| | ... | ${tg_to_dut2} | ${dut1_to_tg_mac} | UDP | 110 | 25
+| | And Send TCP or UDP packet | ${tg_node}
+| | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
+| | ... | ${tg_to_dut2} | ${dut1_to_tg_mac} | UDP | 80 | 20
+| | ${table_index} | ${skip_n} | ${match_n}=
+| | ... | When Vpp Creates Classify Table L2 | ${dut1_node} | src
+| | And Vpp Configures Classify Session L2
+| | ... | ${dut1_node} | deny | ${table_index} | ${skip_n} | ${match_n}
+| | ... | src | ${tg_to_dut1_mac}
+| | ${hex_mask}= | Compute Classify Hex Mask | ${ip_version} | UDP
+| | ...                                      | source + destination
+| | ${hex_value}= | Compute Classify Hex Value | ${hex_mask} | 80 | 20
+| | ${table_index} | ${skip_n} | ${match_n}=
+| | ... | When Vpp Creates Classify Table Hex | ${dut1_node} | ${hex_mask}
+| | And Vpp Configures Classify Session Hex
+| | ... | ${dut1_node} | deny | ${table_index} | ${skip_n} | ${match_n}
+| | ... | ${hex_value}
+| | And Vpp Enable Input Acl Interface
+| | ... | ${dut1_node} | ${dut1_to_tg} | ${l2_table} | ${table_index}
+| | Then Send TCP or UDP packet | ${tg_node}
+| | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
+| | ... | ${tg_to_dut2} | ${dut1_to_tg_mac} | UDP | 110 | 25
+| | And Send TCP or UDP packet should failed | ${tg_node}
+| | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
+| | ... | ${tg_to_dut2} | ${dut1_to_tg_mac} | UDP | 80 | 20
