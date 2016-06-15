@@ -21,6 +21,19 @@
 | Test Setup | Setup all DUTs before test
 | Suite Setup | Setup all TGs before traffic script
 | Test Teardown | Show Packet Trace on All DUTs | ${nodes}
+| Documentation | *L2 cross-connect with QinQ test cases*
+| ...
+| ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology with
+| ... | single links between nodes.
+| ... | *[Enc] Packet encapsulations:* Eth-dot1ad-IPv4-ICMPv4 on DUT1-DUT2,
+| ... | Eth-IPv4-ICMPv4 on TG-DUTn for L2 switching of IPv4.
+| ... | *[Cfg] DUT configuration:* DUT1 and DUT2 are configured with L2
+| ... | cross-connect (L2XC) switching with 802.31d QinQ VLAN tag push and pop.
+| ... | *[Ver] TG verification:* Test ICMPv4 Echo Request packets are
+| ... | sent in both directions by TG on links to DUT1 and DUT2; on receive TG
+| ... | verifies packets for correctness and their IPv4 src-addr, dst-addr and
+| ... | MAC addresses.
+| ... | *[Ref] Applicable standard specifications:* 802dot1ad.
 
 *** Variables ***
 | ${subid}= | 10
@@ -30,11 +43,17 @@
 | ${tag_rewrite_method}= | pop-2
 
 *** Test Cases ***
-| VPP can push and pop two VLAN tags to traffic transferring through xconnect
-| | [Documentation] | Push two tags on DUT 1 to traffic sent from TG,
-| | ...             | pop two tags on DUT 2 from this traffic
-| | ...             | and receive untagged traffic on TG.
-| | ...
+| TC01: DUT1 and DUT2 with L2XC and two VLAN push-pop switch ICMPv4 between two TG links
+| | [Documentation]
+| | ... | [Top] TG-DUT1-DUT2-TG. [Enc] Eth-dot1ad-IPv4-ICMPv4 on
+| | ... | DUT1-DUT2, Eth-IPv4-ICMPv4 on TG-DUTn. [Cfg] On DUT1 and DUT2
+| | ... | configure L2 cross-connect (L2XC), each with one interface to TG
+| | ... | and one Ethernet interface towards the other DUT; each DUT
+| | ... | pushes two VLAN tags on packets received from local TG, and
+| | ... | popping two VLAN tags on packets transmitted to local TG. [Ver]
+| | ... | Make TG send ICMPv4 Echo Req in both directions between two of
+| | ... | its interfaces to be switched by DUT1 and DUT2; verify all
+| | ... | packets are received. [Ref] 802dot1ad.
 | | Given Path for 3-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And Interfaces in 3-node path are up
