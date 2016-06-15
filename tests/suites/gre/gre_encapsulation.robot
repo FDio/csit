@@ -23,13 +23,23 @@
 | Test Setup | Run Keywords | Setup all DUTs before test
 | ...        | AND          | Setup all TGs before traffic script
 | Test Teardown | Show Packet Trace on All DUTs | ${nodes}
-| Documentation | *GRE test suite.*
+| Documentation | *GREoIPv4 test cases*
 | ...
-| ... | Test suite uses 2-node topology TG - DUT1 - TG with two links
-| ... | between nodes as well as 3-node topology TG - DUT1 - DUT2 - TG
-| ... | with one link between nodes. Test packets are sent from TG to DUT1.
-| ... | DUT1 encapsulate packet into GRE and send out from other interface.
-| ... | Traffic scripts check received MAC headers, IP headers and GRE headers.
+| ... | *[Top] Network Topologies:* TG=DUT1 2-node topology with two links
+| ... | between nodes; TG-DUT1-DUT2-TG 3-node circular topology with single
+| ... | links between nodes.
+| ... | *[Enc] Packet Encapsulations:* Eth-IPv4-GRE-IPv4-ICMPv4 on DUT1-DUT2,
+| ... | Eth-IPv4-ICMPv4 on TG-DUTn for routing over GRE tunnel; Eth-IPv4-ICMPv4
+| ... | on TG_if1-DUT, Eth-IPv4-GRE-IPv4-ICMPv4 on TG_if2_DUT for GREoIPv4
+| ... | encapsulation and decapsulation verification.
+| ... | *[Cfg] DUT configuration:* DUT1 and DUT2 are configured with IPv4 routing
+| ... | and static routes. GREoIPv4 tunnel is configured between DUT1 and DUT2.
+| ... | *[Ver] TG verification:* Test ICMPv4 (or ICMPv6) Echo Request packets are
+| ... | sent in both directions by TG on links to DUT1 and DUT2; GREoIPv4
+| ... | encapsulation and decapsulation are verified separately by TG; on
+| ... | receive TG verifies packets for correctness and their IPv4 (IPv6)
+| ... | src-addr, dst-addr and MAC addresses.
+| ... | *[Ref] Applicable standard specifications:* RFC2784.
 
 *** Variables ***
 | ${net1_address}= | 192.168.0.0
@@ -45,10 +55,15 @@
 | ${prefix}= | 24
 
 *** Test Cases ***
-| VPP can route IPv4 traffic from GRE tunnel
+| TC01: DUT1 and DUT2 route over GREoIPv4 tunnel between two TG links
+| | [Documentation]
+| | ... | [Top] TG-DUT1-DUT2-TG. [Enc] Eth-IPv4-GRE-IPv4-ICMPv4 on
+| | ... | DUT1-DUT2, Eth-IPv4-ICMPv4 on TG-DUTn. [Cfg] On DUT1 and DUT2
+| | ... | configure GREoIPv4 tunnel with IPv4 routes towards each other.
+| | ... | [Ver] Make TG send ICMPv4 Echo Req between its interfaces across
+| | ... | both DUTs and GRE tunnel between them; verify IPv4 headers on
+| | ... | received packets are correct. [Ref] RFC2784.
 | | [Tags] | 3_NODE_SINGLE_LINK_TOPO | 3_NODE_DOUBLE_LINK_TOPO
-| | [Documentation] | Create GRE configuration on 2 DUTs, send IP traffic and
-| | ...             | check IP is not changed.
 | | Given Path for 3-node testing is set | ${nodes['TG']} | ${nodes['DUT1']}
 | |       ... | ${nodes['DUT2']} | ${nodes['TG']}
 | | And   Interfaces in 3-node path are up
@@ -77,11 +92,14 @@
 | |      ... | ${tg_to_dut1} | ${tg_to_dut1_mac} | ${dut1_to_tg_mac}
 | |      ... | ${tg_to_dut2} | ${dut2_to_tg_mac} | ${tg_to_dut2_mac}
 
-
-| VPP can encapsulate IPv4 traffic in GRE
+| TC02: DUT encapsulates IPv4 into GREoIPv4 tunnel - GRE header verification
+| | [Documentation]
+| | ... | [Top] TG=DUT1. [Enc] Eth-IPv4-ICMPv4 on TG_if1-DUT,
+| | ... | Eth-IPv4-GRE-IPv4-ICMPv4 on TG_if2_DUT. [Cfg] On DUT1 configure
+| | ... | GREoIPv4 tunnel with IPv4 route towards TG. [Ver] Make TG send
+| | ... | non-encapsulated ICMPv4 Echo Req to DUT; verify TG received
+| | ... | GREoIPv4 encapsulated packet is correct. [Ref] RFC2784.
 | | [Tags] | 3_NODE_DOUBLE_LINK_TOPO
-| | [Documentation] | Create GRE configuration on DUT, send IP traffic and
-| | ...             | check IP is correctly encapsulate into GRE.
 | | Given Path for 2-node testing is set
 | |       ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | And   Interfaces in 2-node path are up
@@ -103,11 +121,14 @@
 | |      ... | ${net1_host_address} | ${net2_host_address}
 | |      ... | ${dut1_ip_address} | ${dut2_ip_address}
 
-
-| VPP can decapsulate IPv4 traffic in GRE
+| TC03: DUT decapsulates IPv4 from GREoIPv4 tunnel - IPv4 header verification
+| | [Documentation]
+| | ... | [Top] TG=DUT1. [Enc] Eth-IPv4-ICMPv4 on TG_if1-DUT,
+| | ... | Eth-IPv4-GRE-IPv4-ICMPv4 on TG_if2_DUT. [Cfg] On DUT1 configure
+| | ... | GREoIPv4 tunnel towards TG. [Ver] Make TG send ICMPv4 Echo Req
+| | ... | encapsulated into GREoIPv4 towards VPP; verify TG received IPv4
+| | ... | de-encapsulated packet is correct. [Ref] RFC2784.
 | | [Tags] | 3_NODE_DOUBLE_LINK_TOPO
-| | [Documentation] | Create GRE configuration on DUT, send GRE encapsulated
-| | ...             | traffic and  check IP is received without GRE headers.
 | | Given Path for 2-node testing is set
 | |       ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | And   Interfaces in 2-node path are up
