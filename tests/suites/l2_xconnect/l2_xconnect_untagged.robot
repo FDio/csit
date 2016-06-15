@@ -30,9 +30,13 @@
 | ${sock2}= | /tmp/sock2
 
 *** Test Cases ***
-| Vpp forwards ICMPv4 packets via L2 xconnect in circular topology
-| | [Documentation] | Setup single link path with X-connect
-| | ...             | and send ICMPv4 packet.
+| TC01: DUT1 and DUT2 with L2XC switch ICMPv4 between two TG links
+| | [Documentation] | Eth-IPv4-ICMPv4 on links DUT1-DUT2, TG-DUT1, TG-DUT2: On DUT1 and DUT2
+| | ...             | configure L2 cross-connect (L2XC), each with one interface
+| | ...             | to TG and one Ethernet interface towards the other DUT. Make
+| | ...             | TG send ICMPv4 Echo Req in both directions between two of
+| | ...             | its interfaces to be switched by DUT1 and DUT2, verify all
+| | ...             | packets are received.
 | | Given Path for 3-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And Interfaces in 3-node path are up
@@ -44,9 +48,13 @@
 | | Then Send and receive ICMPv4 bidirectionally
 | | ... | ${tg_node} | ${tg_to_dut1} | ${tg_to_dut2}
 
-| Vpp forwards ICMPv6 packets via L2 xconnect in circular topology
-| | [Documentation] | Setup single link path with X-connect
-| | ...             | and send ICMPv6 packet.
+| TC02: DUT1 and DUT2 with L2XC switch ICMPv6 between two TG links
+| | [Documentation] | Eth-IPv4-ICMPv6 on links DUT1-DUT2, TG-DUT1, TG-DUT2: On DUT1 and DUT2
+| | ...             | configure L2 cross-connect (L2XC), each with one interface
+| | ...             | to TG and one Ethernet interface towards the other DUT. Make
+| | ...             | TG send ICMPv6 Echo Req in both directions between two of
+| | ...             | its interfaces to be switched by DUT1 and DUT2, verify all
+| | ...             | packets are received.
 | | Given Path for 3-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And Interfaces in 3-node path are up
@@ -58,9 +66,13 @@
 | | Then Send and receive ICMPv6 bidirectionally
 | | ... | ${tg_node} | ${tg_to_dut1} | ${tg_to_dut2}
 
-| VPP forwards ICMPv4 packets through VM via L2 x-connect
-| | [Documentation] | Setup double link path with X-connect via Vhost user
-| | ...             | and send ICMPv4 packet.
+| TC03: DUT with two L2XCs switches ICMPv4 between TG and local VM links
+| | [Documentation] | Eth-IPv4-ICMPv4 on links DUT-VM, TG-DUT: On DUT configure two L2
+| | ...             | cross-connects (L2XC), each with one untagged interface to
+| | ...             | TG and untagged interface to local VM over vhost-user. Make
+| | ...             | TG send ICMPv4 Echo Reqs in both directions between two of
+| | ...             | its interfaces to be switched by DUT to and from VM, and
+| | ...             | verify all packets are received.
 | | [Tags] | 3_NODE_DOUBLE_LINK_TOPO | VPP_VM_ENV
 | | Given Path for 2-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
@@ -77,9 +89,13 @@
 | | [Teardown] | Run Keywords | Show Packet Trace on All DUTs | ${nodes}
 | | ...        | AND          | Stop and Clear QEMU | ${dut_node} | ${vm_node}
 
-| VPP forwards ICMPv6 packets through VM via L2 x-connect
-| | [Documentation] | Setup double link path with X-connect via Vhost user
-| | ...             | and send ICMPv6 packet.
+| TC04: DUT with two L2XCs switches ICMPv6 between TG and local VM links
+| | [Documentation] | Eth-IPv4-ICMPv6 on links DUT-VM, TG-DUT: On DUT configure two L2
+| | ...             | cross-connects (L2XC), each with one untagged interface to
+| | ...             | TG and untagged interface to local VM over vhost-user. Make
+| | ...             | TG send ICMPv6 Echo Reqs in both directions between two of
+| | ...             | its interfaces to be switched by DUT to and from VM, and
+| | ...             | verify all packets are received.
 | | [Tags] | 3_NODE_DOUBLE_LINK_TOPO | VPP_VM_ENV
 | | Given Path for 2-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
