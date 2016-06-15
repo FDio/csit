@@ -12,7 +12,6 @@
 # limitations under the License.
 
 *** Settings ***
-| Documentation | VXLAN tunnel over untagged IPv4 traffic tests using xconnect.
 | Resource | resources/libraries/robot/default.robot
 | Resource | resources/libraries/robot/testing_path.robot
 | Resource | resources/libraries/robot/vxlan.robot
@@ -22,12 +21,34 @@
 | Test Setup | Run Keywords | Setup all DUTs before test
 | ...        | AND          | Setup all TGs before traffic script
 | Test Teardown | Show Packet Trace on All DUTs | ${nodes}
+| Documentation | *RFC7348 VXLAN: L2 cross-connect with VXLAN test cases*
+| ...
+| ... | *[Top] Network topologies:* TG-DUT1-DUT2-TG 3-node circular topology
+| ... | with single links between nodes.
+| ... | *[Enc] Packet encapsulations:* Eth-IPv4-VXLAN-Eth-IPv4-ICMPv4 on
+| ... | DUT1-DUT2, Eth-IPv4-ICMPv4 on TG-DUTn for L2 switching of IPv4.
+| ... | *[Cfg] DUT configuration:* DUT1 and DUT2 are configured with L2
+| ... | cross-connect (L2XC) switching combined with static MACs, MAC learning
+| ... | enabled and Split Horizon Groups (SHG) depending on test case; VXLAN
+| ... | tunnels are configured between L2BDs on DUT1 and DUT2.
+| ... | *[Ver] TG verification:* Test ICMPv4 Echo Request packets
+| ... | are sent in both directions by TG on links to DUT1 and DUT2; on receive
+| ... | TG verifies packets for correctness and their IPv4 src-addr, dst-addr
+| ... | and MAC addresses.
+| ... | *[Ref] Applicable standard specifications:* RFC7348.
 
 *** Variables ***
 | ${VNI}= | 24
 
 *** Test Cases ***
-| VPP can pass IPv4 bidirectionally through VXLAN
+| TC01: DUT1 and DUT2 with L2XC and VXLANoIPv4 tunnels switch ICMPv4 between TG links
+| | [Documentation]
+| | ... | [Top] TG-DUT1-DUT2-TG. [Enc] Eth-IPv4-VXLAN-Eth-IPv4-ICMPv4 on
+| | ... | [Ref] RFC7348.DUT1-DUT2, Eth-IPv4-ICMPv4 on TG-DUTn. [Cfg] On
+| | ... | DUT1 and DUT2 configure L2 cross-connect (L2XC), each with one
+| | ... | interface to TG and one VXLAN tunnel interface towards the other
+| | ... | DUT. [Ver] Make TG send ICMPv4 Echo Req between two of its
+| | ... | interfaces; verify all packets are received. [Ref] RFC7348.
 | | Given Path for 3-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And   Interfaces in 3-node path are up
