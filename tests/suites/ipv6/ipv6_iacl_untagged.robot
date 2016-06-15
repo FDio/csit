@@ -43,10 +43,13 @@
 | ${ip_version}= | ip6
 
 *** Test Cases ***
-| VPP drops packets based on IPv6 source addresses
-| | [Documentation] | Create classify table on VPP, add source IP address
-| | ...             | of traffic into table and setup 'deny' traffic
-| | ...             | and check if traffic is dropped.
+| TC09:DUT with iACL IPv6 src-addr drops matching pkts
+| | [Documentation] | Eth-IPv6 on links TG-DUT1, TG-DUT2, DUT1-DUT2: On DUT1 and
+| | ...             | DUT2 configure interface IPv6 addresses and routes in the
+| | ...             | main routing domain. On DUT1 configure classify table, add
+| | ...             | source IPv6 address to table with 'deny'. Make TG send
+| | ...             | ICMPv4 Echo Req to its other interface via DUT1 and DUT2.
+| | ...             | Make TG verify that matching packets are dropped.
 | | Given Path for 3-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And Interfaces in 3-node path are up
@@ -87,10 +90,10 @@
 | | ... | ${dut1_to_tg_mac} | ${tg_to_dut2}
 | | ... | ${dut1_to_dut2_mac} | ${tg_to_dut2_mac}
 
-| VPP drops packets based on IPv6 destination addresses
-| | [Documentation] | Create classify table on VPP, add destination IP address
-| | ...             | of traffic into table and setup 'deny' traffic
-| | ...             | and check if traffic is dropped.
+| TC10:DUT with iACL IPv6 dst-addr drops matching pkts
+| | [Documentation] | On DUT1 configure classify table, add destination IPv6
+| | ...             | address to table with 'deny'. Make TG verify that matching
+| | ...             | packets are dropped.
 | | Given Path for 3-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And Interfaces in 3-node path are up
@@ -134,10 +137,10 @@
 | | ... | ${dut1_to_tg_mac} | ${tg_to_dut2}
 | | ... | ${dut1_to_dut2_mac} | ${tg_to_dut2_mac}
 
-| VPP drops packets based on IPv6 src-addr and dst-addr
-| | [Documentation] | Create classify table on VPP, add source and destination
-| | ...             | IP address of traffic into table and setup 'deny' traffic
-| | ...             | and check if traffic is dropped.
+| TC11:DUT with iACL IPv6 src-addr and dst-addr drops matching pkts
+| | [Documentation] | On DUT1 configure classify table, add source and
+| | ...             | destination IPv6 addresses to table with 'deny'. Make TG
+| | ...             | verify that matching packets are dropped.
 | | Given Path for 3-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And Interfaces in 3-node path are up
@@ -188,10 +191,11 @@
 | | ... | ${tg_to_dut1_mac} | ${dut1_to_tg_mac} | ${tg_to_dut2}
 | | ... | ${dut1_to_dut2_mac} | ${tg_to_dut2_mac}
 
-| VPP drops packets based on IPv6 protocol (TCP)
-| | [Documentation] | Create classify table on VPP, add mask for TCP port
-| | ...             | into table and setup 'deny' traffic
-| | ...             | and check if TCP traffic is dropped.
+| TC12:DUT with iACL IPv6 protocol set to TCP drops matching pkts
+| | [Documentation] | On DUT1 configure classify table, add protocol mask and
+| | ...             | TCP protocol (0x06) to table with 'deny'. Make TG send TCP
+| | ...             | packets to its other interface. Make TG verify that
+| | ...             | matching packets are dropped.
 | | Given Path for 3-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And Interfaces in 3-node path are up
@@ -228,10 +232,11 @@
 | | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
 | | ... | ${tg_to_dut2} | ${dut1_to_tg_mac} | UDP | 80 | 20
 
-| VPP drops packets based on IPv6 protocol (UDP)
-| | [Documentation] | Create classify table on VPP, add mask for UDP port
-| | ...             | into table and setup 'deny' traffic
-| | ...             | and check if UDP traffic is dropped.
+| TC13:DUT with iACL IPv6 protocol set to UDP drops matching pkts
+| | [Documentation] | On DUT1 configure classify table, add protocol mask and UDP
+| | ...             | protocol (0x11) to table with 'deny'. Make TG send UDP
+| | ...             | packets to its other interface. Make TG verify that
+| | ...             | matching packets are dropped.
 | | Given Path for 3-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And Interfaces in 3-node path are up
@@ -268,10 +273,10 @@
 | | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
 | | ... | ${tg_to_dut2} | ${dut1_to_tg_mac} | TCP | 80 | 20
 
-| VPP drops packets based on IPv6 TCP src ports
-| | [Documentation] | Create classify table on VPP, add source IP address
-| | ...             | of traffic into table and setup 'deny' traffic
-| | ...             | and check if traffic is dropped.
+| TC14:DUT with iACL IPv6 TCP src-ports drops matching pkts
+| | [Documentation] | On DUT1 configure classify table, add TCP source ports to
+| | ...             | table with 'deny'. Make TG send TCP packets to its other
+| | ...             | interface. Make TG verify that matching packets are dropped.
 | | Given Path for 3-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And Interfaces in 3-node path are up
@@ -310,10 +315,10 @@
 | | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
 | | ... | ${tg_to_dut2} | ${dut1_to_tg_mac} | TCP | 110 | 20
 
-| VPP drops packets based on IPv6 TCP dst ports
-| | [Documentation] | Create classify table on VPP, add destination TCP port
-| | ...             | of traffic into table and setup 'deny' traffic
-| | ...             | and check if traffic is dropped.
+| TC15:DUT with iACL IPv6 TCP dst-ports drops matching pkts
+| | [Documentation] | On DUT1 configure classify table, add TCP destination ports
+| | ...             | to table with 'deny'. Make TG verify that matching packets
+| | ...             | are dropped.
 | | Given Path for 3-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And Interfaces in 3-node path are up
@@ -352,10 +357,10 @@
 | | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
 | | ... | ${tg_to_dut2} | ${dut1_to_tg_mac} | TCP | 20 | 110
 
-| VPP drops packets based on IPv6 TCP src + dst ports
-| | [Documentation] | Create classify table on VPP, add source and destination
-| | ...             | TCP port of traffic into table and setup 'deny' traffic
-| | ...             | and check if traffic is dropped.
+| TC16:DUT with iACL IPv6 TCP src-ports and dst-ports drops matching pkts
+| | [Documentation] | On DUT1 configure classify table, add TCP source and
+| | ...             | destination ports to table with 'deny'. Make TG verify that
+| | ...             | matching packets are dropped.
 | | Given Path for 3-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And Interfaces in 3-node path are up
@@ -395,10 +400,10 @@
 | | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
 | | ... | ${tg_to_dut2} | ${dut1_to_tg_mac} | TCP | 110 | 25
 
-| VPP drops packets based on IPv6 UDP src ports
-| | [Documentation] | Create classify table on VPP, add source UDP port
-| | ...             | of traffic into table and setup 'deny' traffic
-| | ...             | and check if traffic is dropped.
+| TC17:DUT with iACL IPv6 UDP src-ports drops matching pkts
+| | [Documentation] | On DUT1 configure classify table, add UDP source ports to
+| | ...             | table with 'deny'. Make TG send TCP packets to its other
+| | ...             | interface. Make TG verify that matching packets are dropped.
 | | Given Path for 3-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And Interfaces in 3-node path are up
@@ -437,10 +442,10 @@
 | | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
 | | ... | ${tg_to_dut2} | ${dut1_to_tg_mac} | UDP | 110 | 20
 
-| VPP drops packets based on IPv6 UDP dst ports
-| | [Documentation] | Create classify table on VPP, add destination UDP port
-| | ...             | of traffic into table and setup 'deny' traffic
-| | ...             | and check if traffic is dropped.
+| TC18:DUT with iACL IPv6 UDP dst-ports drops matching pkts
+| | [Documentation] | On DUT1 configure classify table, add UDP destination ports
+| | ...             | to table with 'deny'. Make TG verify that matching packets
+| | ...             | are dropped.
 | | Given Path for 3-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And Interfaces in 3-node path are up
@@ -479,10 +484,10 @@
 | | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
 | | ... | ${tg_to_dut2} | ${dut1_to_tg_mac} | UDP | 20 | 110
 
-| VPP drops packets based on IPv6 UDP src + dst ports
-| | [Documentation] | Create classify table on VPP, add source and destination
-| | ...             | UDP port of traffic into table and setup 'deny' traffic
-| | ...             | and check if traffic is dropped.
+| TC19:DUT with iACL IPv6 UDP src-ports and dst-ports drops matching pkts
+| | [Documentation] | On DUT1 configure classify table, add UDP source and
+| | ...             | destination ports to table with 'deny'. Make TG verify that
+| | ...             | matching packets are dropped.
 | | Given Path for 3-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And Interfaces in 3-node path are up
