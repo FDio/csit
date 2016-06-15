@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "ba092121_13c85473",
+        "filename": "resources/libraries/python/honeycomb/HcAPIKwInterfaces.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1088,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-06-15T07:34:13Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba092121_b363e8b0",
+      "range": {
+        "startLine": 1088,
+        "startChar": 49,
+        "endLine": 1088,
+        "endChar": 50
+      },
+      "revId": "3b7d53246c3cd1112ea7a3aa5007de0f4ddef68a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba092121_53724c7d",
         "filename": "resources/libraries/python/honeycomb/HcAPIKwInterfaces.py",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2016-06-15T06:56:27Z",
       "side": 1,
       "message": "what is this?",
+      "range": {
+        "startLine": 1185,
+        "startChar": 40,
+        "endLine": 1185,
+        "endChar": 43
+      },
+      "revId": "3b7d53246c3cd1112ea7a3aa5007de0f4ddef68a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_33cb5874",
+        "filename": "resources/libraries/python/honeycomb/HcAPIKwInterfaces.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1185,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-06-15T07:34:13Z",
+      "side": 1,
+      "message": "Unit Under Test",
+      "parentUuid": "ba092121_53724c7d",
       "range": {
         "startLine": 1185,
         "startChar": 40,
