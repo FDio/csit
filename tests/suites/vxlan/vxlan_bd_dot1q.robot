@@ -12,7 +12,9 @@
 # limitations under the License.
 
 *** Settings ***
-| Documentation | VXLAN tunnel over Dot1Q tagged IPv4 traffic tests using bridge domain.
+| Documentation | RFC7348 VXLAN: Test L2 bridge-domain with VXLAN tunnel
+| ...           | interfaces. VXLAN tunnels configured over IPv4 and dot1q VLAN
+| ...           | tagged Ethernet.
 | Resource | resources/libraries/robot/default.robot
 | Resource | resources/libraries/robot/testing_path.robot
 | Resource | resources/libraries/robot/vxlan.robot
@@ -29,7 +31,13 @@
 | ${VLAN}= | 10
 
 *** Test Cases ***
-| VPP can encapsulate L2 in VXLAN over IPv4 over Dot1Q
+| TC08: DUT1 and DUT2 with L2BD and VXLANoIPv4oVLAN tunnels switch ICMPv4 between TG links
+| | [Documentation] | RFC7348 VXLAN: DUT1-DUT2 Eth-dot1q-IPv4-VXLAN-Eth-IPv4-ICMPv4:
+| | ...             | TG-DUT1 TG-DUT2 Eth-dot1q-IPv4-ICMPv4: On DUT1 and DUT2 configure
+| | ...             | L2 bridge-domain (MAC learning enabled), each with one
+| | ...             | interface to TG and one VXLAN tunnel interface towards the
+| | ...             | other DUT. Make TG send ICMPv4 Echo Req between two of its
+| | ...             | interfaces, verify all packets are received.
 | | Given Path for 3-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And   Interfaces in 3-node path are up

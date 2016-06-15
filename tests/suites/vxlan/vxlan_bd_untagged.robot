@@ -12,7 +12,9 @@
 # limitations under the License.
 
 *** Settings ***
-| Documentation | VXLAN tunnel over untagged IPv4 traffic tests using bridge domain.
+| Documentation | RFC7348 VXLAN: Test L2 bridge-domain with VXLAN tunnel
+| ...           | interfaces. VXLAN tunnels configured over IPv4 and untagged
+| ...           | Ethernet.
 | Resource | resources/libraries/robot/default.robot
 | Resource | resources/libraries/robot/testing_path.robot
 | Resource | resources/libraries/robot/vxlan.robot
@@ -42,11 +44,14 @@
 | ${ip6_prefix}= | 64
 
 *** Test Cases ***
-| VPP can pass IPv4 bidirectionally through VXLAN using bridge domain
-| | [Documentation] | Create VXLAN interface on both VPP nodes. Create one
-| | ...             | bridge domain (learning enabled) on both VPP nodes, add
-| | ...             | VXLAN interface and interface toward TG to bridge domains
-| | ...             | and check traffic bidirectionally.
+| TC02: DUT1 and DUT2 with L2BD and VXLANoIPv4 tunnels switch ICMPv4 between TG links
+| | [Documentation] | RFC7348 VXLAN: Eth-IPv4-VXLAN-Eth-IPv4-ICMPv4 on link DUT1-DUT2:
+| | ...             | Eth-IPv4-ICMPv4 on links TG-DUT1, TG-DUT2: On DUT1 and DUT2 configure
+| | ...             | L2 bridge-domain (MAC learning enabled), each with one
+| | ...             | interface to TG and one VXLAN tunnel interface towards the
+| | ...             | other DUT. Make TG send ICMPv4 Echo Req between two of its
+| | ...             | interfaces to be switched by DUT1 and DUT2, verify all
+| | ...             | packets are received.
 | | Given Path for 3-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And Interfaces in 3-node path are up
@@ -63,14 +68,17 @@
 | | Then Send and receive ICMPv4 bidirectionally
 | | ... | ${tg_node} | ${tg_to_dut1} | ${tg_to_dut2}
 
-| Vpp forwards ICMPv4 packets through VXLAN tunnels in the same split-horizon group of one L2 bridge domain
-| | [Documentation] | Create two VXLAN interfaces on both VPP nodes. Create one
-| | ...             | bridge domain (learning enabled) on the first VPP node,
-| | ...             | add VXLAN interfaces to the same split-horizon group of
-| | ...             | the bridge domain where interfaces toward TG are added to.
-| | ...             | Create two bridge domains (learning enabled) on the second
-| | ...             | VPP node and add one VXLAN interface and one interface
-| | ...             | toward TG to each of them. Check traffic bidirectionally.
+| TC03: DUT1 and DUT2 with L2BD and VXLANoIPv4 tunnels in SHG switch ICMPv4 between TG links
+| | [Documentation] | RFC7348 VXLAN: Eth-IPv4-VXLAN-Eth-IPv4-ICMPv4 on link DUT1-DUT2:
+| | ...             | Eth-IPv4-ICMPv4 on links TG-DUT1, TG-DUT2: On DUT1 and DUT2 configure
+| | ...             | L2 bridge-domain (MAC learning enabled), each with two
+| | ...             | untagged interfaces to TG and two VXLAN interfaces towards
+| | ...             | the other DUT. On DUT1 put both VXLAN interfaces into the
+| | ...             | same Split-Horizon-Group (SHG). Make TG send ICMPv4 Echo
+| | ...             | Reqs between all four of its interfaces to be switched by
+| | ...             | DUT1 and DUT2, and verify packets are not switched between
+| | ...             | TG interfaces connected to DUT2 that are isolated by SHG on
+| | ...             | DUT1.
 | | [Tags] | 3_NODE_DOUBLE_LINK_TOPO
 | | Given Path for 3-node BD-SHG testing is set | ${nodes['TG']}
 | | ...                                         | ${nodes['DUT1']}
@@ -132,14 +140,16 @@
 | | | ...                            | ${tg_node} | ${tg_to_dut2_if1}
 | | | ...                            | ${tg_to_dut2_if2}
 
-| Vpp forwards ICMPv4 packets through VXLAN tunnels in different split-horizon groups of one L2 bridge domain
-| | [Documentation] | Create two VXLAN interfaces on both VPP nodes. Create one
-| | ...             | bridge domain (learning enabled) on the first VPP node,
-| | ...             | add VXLAN interfaces to different split-horizon groups of
-| | ...             | the bridge domain where interfaces toward TG are added to.
-| | ...             | Create two bridge domains (learning enabled) on the second
-| | ...             | VPP node and add one VXLAN interface and one interface
-| | ...             | toward TG to each of them. Check traffic bidirectionally.
+| TC04: DUT1 and DUT2 with L2BD and VXLANoIPv4 tunnels in different SHGs switch ICMPv4 between TG links
+| | [Documentation] | RFC7348 VXLAN: Eth-IPv4-VXLAN-Eth-IPv4-ICMPv4 on link DUT1-DUT2:
+| | ...             | Eth-IPv4-ICMPv4 on links TG-DUT1, TG-DUT2: On DUT1 and DUT2 configure
+| | ...             | L2 bridge-domain (MAC learning enabled), each with two
+| | ...             | untagged interfaces to TG and two VXLAN interfaces towards
+| | ...             | the other DUT. On DUT1 put VXLAN interfaces into different
+| | ...             | Split-Horizon-Groups (SHGs). Make TG send ICMPv4 Echo Req
+| | ...             | between all four of its interfaces to be switched by DUT1
+| | ...             | and DUT2, verify packets are switched between all TG
+| | ...             | interfaces.
 | | [Tags] | 3_NODE_DOUBLE_LINK_TOPO
 | | Given Path for 3-node BD-SHG testing is set | ${nodes['TG']}
 | | ...                                         | ${nodes['DUT1']}
@@ -200,11 +210,13 @@
 | | ...                                         | ${tg_to_dut2_if1}
 | | ...                                         | ${tg_to_dut2_if2}
 
-| VPP can pass IPv6 bidirectionally through VXLAN using bridge domain
-| | [Documentation] | Create VXLAN interface on both VPP nodes. Create one
-| | ...             | bridge domain (learning enabled) on both VPP nodes, add
-| | ...             | VXLAN interface and interface toward TG to bridge domains
-| | ...             | and check traffic bidirectionally.
+| TC05: DUT1 and DUT2 with L2BD and VXLANoIPv6 tunnels switch ICMPv6 between TG links
+| | [Documentation] | RFC7348 VXLAN: Eth-IPv6-VXLAN-Eth-IPv6-ICMPv6 on link DUT1-DUT2:
+| | ...             | Eth-IPv6-ICMPv6 on links TG-DUT1, TG-DUT2: On DUT1 and DUT2 configure
+| | ...             | L2 bridge-domain (MAC learning enabled), each with one
+| | ...             | interface to TG and one VXLAN tunnel interface towards the
+| | ...             | other DUT. Make TG send ICMPv6 Echo Req between two of its
+| | ...             | interfaces to be switched by DUT1 and DUT2, verify all packets are received.
 | | [Tags] | 3_NODE_DOUBLE_LINK_TOPO
 | | Given Path for 3-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
@@ -226,14 +238,17 @@
 | | Then Send and receive ICMPv6 bidirectionally
 | | ... | ${tg_node} | ${tg_to_dut1} | ${tg_to_dut2}
 
-| Vpp forwards ICMPv6 packets through VXLAN tunnels in the same split-horizon group of one L2 bridge domain
-| | [Documentation] | Create two VXLAN interfaces on both VPP nodes. Create one
-| | ...             | bridge domain (learning enabled) on the first VPP node,
-| | ...             | add VXLAN interfaces to the same split-horizon group of
-| | ...             | the bridge domain where interfaces toward TG are added to.
-| | ...             | Create two bridge domains (learning enabled) on the second
-| | ...             | VPP node and add one VXLAN interface and one interface
-| | ...             | toward TG to each of them. Check traffic bidirectionally.
+| TC06: DUT1 and DUT2 with L2BD and VXLANoIPv6 tunnels in SHG switch ICMPv6 between TG links
+| | [Documentation] | RFC7348 VXLAN: Eth-IPv6-VXLAN-Eth-IPv6-ICMPv6 on link DUT1-DUT2:
+| | ...             | Eth-IPv6-ICMPv6 on links TG-DUT1, TG-DUT2: On DUT1 and DUT2 configure
+| | ...             | L2 bridge-domain (MAC learning enabled), each with two
+| | ...             | untagged interfaces to TG and two VXLAN interfaces towards
+| | ...             | the other DUT. On DUT1 put both VXLAN interfaces into the
+| | ...             | same Split-Horizon-Group (SHG). Make TG send ICMPv6 Echo
+| | ...             | Req between all four of its interfaces to be switched by
+| | ...             | DUT1 and DUT2, and verify packets are not switched between
+| | ...             | TG interfaces connected to DUT2 that are isolated by SHG on
+| | ...             | DUT1.
 | | [Tags] | 3_NODE_DOUBLE_LINK_TOPO
 | | Given Path for 3-node BD-SHG testing is set | ${nodes['TG']}
 | | ...                                         | ${nodes['DUT1']}
@@ -295,14 +310,16 @@
 | | | ...                            | ${tg_node} | ${tg_to_dut2_if1}
 | | | ...                            | ${tg_to_dut2_if2}
 
-| Vpp forwards ICMPv6 packets through VXLAN tunnels in different split-horizon groups of one L2 bridge domain
-| | [Documentation] | Create two VXLAN interfaces on both VPP nodes. Create one
-| | ...             | bridge domain (learning enabled) on the first VPP node,
-| | ...             | add VXLAN interfaces to different split-horizon groups of
-| | ...             | the bridge domain where interfaces toward TG are added to.
-| | ...             | Create two bridge domains (learning enabled) on the second
-| | ...             | VPP node and add one VXLAN interface and one interface
-| | ...             | toward TG to each of them. Check traffic bidirectionally.
+| TC07: DUT1 and DUT2 with L2BD and VXLANoIPv6 tunnels in different SHGs switch ICMPv6 between TG links
+| | [Documentation] | RFC7348 VXLAN: Eth-IPv6-VXLAN-Eth-IPv6-ICMPv6 on link DUT1-DUT2:
+| | ...             | Eth-IPv6-ICMPv6 on links TG-DUT1 TG-DUT2: On DUT1 and DUT2 configure
+| | ...             | L2 bridge-domain (MAC learning enabled), each with two
+| | ...             | untagged interfaces to TG and two VXLAN interfaces towards
+| | ...             | the other DUT. On DUT1 put VXLAN interfaces into different
+| | ...             | Split-Horizon-Groups (SHGs). Make TG send ICMPv6 Echo Req
+| | ...             | between all four of its interfaces to be switched by DUT1
+| | ...             | and DUT2, verify packets are switched between all TG
+| | ...             | interfaces.
 | | [Tags] | 3_NODE_DOUBLE_LINK_TOPO
 | | Given Path for 3-node BD-SHG testing is set | ${nodes['TG']}
 | | ...                                         | ${nodes['DUT1']}
