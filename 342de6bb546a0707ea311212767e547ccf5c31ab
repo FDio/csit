@@ -1,0 +1,349 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba092121_84abfc88",
+        "filename": "resources/libraries/robot/lisp/lisp_api.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-16T13:15:48Z",
+      "side": 1,
+      "message": "Sorry for wrong information at the beggining...\nPlease, use just variable name without dollar sign and curly brackets in argument description part.\n- valid for all occurences",
+      "range": {
+        "startLine": 28,
+        "startChar": 12,
+        "endLine": 28,
+        "endChar": 23
+      },
+      "revId": "342de6bb546a0707ea311212767e547ccf5c31ab",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_04492cd0",
+        "filename": "resources/libraries/robot/lisp/lisp_api.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-16T13:15:48Z",
+      "side": 1,
+      "message": "correctly",
+      "range": {
+        "startLine": 67,
+        "startChar": 26,
+        "endLine": 67,
+        "endChar": 33
+      },
+      "revId": "342de6bb546a0707ea311212767e547ccf5c31ab",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_e44518b4",
+        "filename": "resources/libraries/robot/lisp/lisp_api.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-16T13:15:48Z",
+      "side": 1,
+      "message": "correctly",
+      "range": {
+        "startLine": 68,
+        "startChar": 53,
+        "endLine": 68,
+        "endChar": 60
+      },
+      "revId": "342de6bb546a0707ea311212767e547ccf5c31ab",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_a41720a3",
+        "filename": "resources/libraries/robot/lisp/lisp_api.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-16T13:15:48Z",
+      "side": 1,
+      "message": "correctly",
+      "range": {
+        "startLine": 82,
+        "startChar": 42,
+        "endLine": 82,
+        "endChar": 49
+      },
+      "revId": "342de6bb546a0707ea311212767e547ccf5c31ab",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_04f12ccd",
+        "filename": "resources/libraries/robot/lisp/lisp_api.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-16T13:15:48Z",
+      "side": 1,
+      "message": "correctly",
+      "range": {
+        "startLine": 189,
+        "startChar": 26,
+        "endLine": 189,
+        "endChar": 33
+      },
+      "revId": "342de6bb546a0707ea311212767e547ccf5c31ab",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_04c80c73",
+        "filename": "resources/libraries/robot/lisp/lisp_api.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-16T13:15:48Z",
+      "side": 1,
+      "message": "correctly",
+      "range": {
+        "startLine": 190,
+        "startChar": 53,
+        "endLine": 190,
+        "endChar": 60
+      },
+      "revId": "342de6bb546a0707ea311212767e547ccf5c31ab",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_44ce0485",
+        "filename": "resources/libraries/robot/lisp/lisp_api.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 194,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-16T13:15:48Z",
+      "side": 1,
+      "message": "Comma not needed there.",
+      "range": {
+        "startLine": 194,
+        "startChar": 41,
+        "endLine": 194,
+        "endChar": 42
+      },
+      "revId": "342de6bb546a0707ea311212767e547ccf5c31ab",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_24e4300c",
+        "filename": "resources/libraries/robot/lisp/lisp_api.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-16T13:15:48Z",
+      "side": 1,
+      "message": "Missing \\| at the end: } \\|",
+      "range": {
+        "startLine": 205,
+        "startChar": 44,
+        "endLine": 205,
+        "endChar": 45
+      },
+      "revId": "342de6bb546a0707ea311212767e547ccf5c31ab",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_24cb1074",
+        "filename": "resources/libraries/robot/lisp/lisp_api.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-16T13:15:48Z",
+      "side": 1,
+      "message": "Comma not needed there.\n- valid for all occurences",
+      "range": {
+        "startLine": 216,
+        "startChar": 33,
+        "endLine": 216,
+        "endChar": 34
+      },
+      "revId": "342de6bb546a0707ea311212767e547ccf5c31ab",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_e4ed18f1",
+        "filename": "resources/libraries/robot/lisp/lisp_api.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 216,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-16T13:15:48Z",
+      "side": 1,
+      "message": "removed",
+      "range": {
+        "startLine": 216,
+        "startChar": 49,
+        "endLine": 216,
+        "endChar": 55
+      },
+      "revId": "342de6bb546a0707ea311212767e547ccf5c31ab",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_e4c4f860",
+        "filename": "resources/libraries/robot/lisp/lisp_api.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-16T13:15:48Z",
+      "side": 1,
+      "message": "Missing \\| at the end: } \\|",
+      "range": {
+        "startLine": 224,
+        "startChar": 44,
+        "endLine": 224,
+        "endChar": 45
+      },
+      "revId": "342de6bb546a0707ea311212767e547ccf5c31ab",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_44d164fa",
+        "filename": "resources/libraries/robot/lisp/lisp_api.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 344,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-16T13:15:48Z",
+      "side": 1,
+      "message": "Please, add lisp_status_data argument to example.",
+      "range": {
+        "startLine": 344,
+        "startChar": 11,
+        "endLine": 344,
+        "endChar": 18
+      },
+      "revId": "342de6bb546a0707ea311212767e547ccf5c31ab",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_84fe5c6a",
+        "filename": "resources/libraries/robot/lisp/lisp_api.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 377,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-16T13:15:48Z",
+      "side": 1,
+      "message": "Please, add lisp_status_data argument to example.",
+      "range": {
+        "startLine": 377,
+        "startChar": 11,
+        "endLine": 377,
+        "endChar": 18
+      },
+      "revId": "342de6bb546a0707ea311212767e547ccf5c31ab",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_84353c48",
+        "filename": "tests/suites/lisp/lisp_api_untagged.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-16T13:15:48Z",
+      "side": 1,
+      "message": "correctly",
+      "range": {
+        "startLine": 88,
+        "startChar": 33,
+        "endLine": 88,
+        "endChar": 40
+      },
+      "revId": "342de6bb546a0707ea311212767e547ccf5c31ab",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_a4304057",
+        "filename": "tests/suites/lisp/lisp_api_untagged.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-16T13:15:48Z",
+      "side": 1,
+      "message": "correctly",
+      "range": {
+        "startLine": 102,
+        "startChar": 42,
+        "endLine": 102,
+        "endChar": 49
+      },
+      "revId": "342de6bb546a0707ea311212767e547ccf5c31ab",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
