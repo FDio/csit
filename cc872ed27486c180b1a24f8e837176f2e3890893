@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba092121_59170d52",
+        "filename": "tests/suites/vxlan/vxlan_bd_dot1q.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-16T09:30:03Z",
+      "side": 1,
+      "message": "Lines too long.",
+      "range": {
+        "startLine": 35,
+        "startChar": 2,
+        "endLine": 36,
+        "endChar": 86
+      },
+      "revId": "cc872ed27486c180b1a24f8e837176f2e3890893",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_19099531",
+        "filename": "tests/suites/vxlan/vxlan_bd_untagged.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-16T09:30:03Z",
+      "side": 1,
+      "message": "Documentation lines should not cross 80 chars per line...",
+      "revId": "cc872ed27486c180b1a24f8e837176f2e3890893",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_a42ba081",
+        "filename": "tests/suites/vxlan/vxlan_bd_untagged.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-16T09:30:03Z",
+      "side": 1,
+      "message": "Sorry, I missed this discrepancy when checked over e-mails:\n1. The part for DUT1 is correct.\n2. Regarding DUT2 - there are created two bridge domains and one interface towards TG and one VXLAN interface are added to each of BDs to completely separate pahts that go through different VXLAN tunnels.\n\nSo the corresponding paths looks like:\n\n  TG-if1---DUT1-BD----VXLAN1---DUT2-BD1---TG-if3\n           |   |\n  TG-if2---+   +----VXLAN2---DUT2-BD2---TG-if4\n\n\nThis basic configurations is valid for all TCs with SHG below too!",
+      "range": {
+        "startLine": 73,
+        "startChar": 66,
+        "endLine": 76,
+        "endChar": 37
+      },
+      "revId": "cc872ed27486c180b1a24f8e837176f2e3890893",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
