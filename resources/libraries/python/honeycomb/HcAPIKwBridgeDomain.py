@@ -99,6 +99,7 @@ class BridgeDomainKeywords(object):
             new_data = HcUtil.set_item_value(resp, path, new_value)
         else:
             new_data = HcUtil.remove_item(resp, path)
+
         return BridgeDomainKeywords._configure_bd(node, bd_name, new_data)
 
     @staticmethod
@@ -328,3 +329,154 @@ class BridgeDomainKeywords(object):
         path = ("bridge-domains", ("bridge-domain", "name", bd_name), param)
         return BridgeDomainKeywords.\
             _set_bd_properties(node, bd_name, path, value)
+
+    @staticmethod
+    def add_l2_fib_entry(node, bd_name, l2_fib_entry):
+        """Add an L2 FIB entry to the bridge domain's list of L2 FIB entries.
+
+        :param node: Honeycomb node.
+        :param bd_name: Bridge domain's name.
+        :param l2_fib_entry: L2 FIB entry to be added to the L2 FIB table.
+        :type node: dict
+        :type bd_name: str
+        :type l2_fib_entry: dict
+        :return: Content of response.
+        :rtype: bytearray
+        """
+
+        path = ("bridge-domains",
+                ("bridge-domain", "name", bd_name),
+                "l2-fib-table",
+                "l2-fib-entry")
+
+        new_l2_fib_entry = [l2_fib_entry, ]
+        return BridgeDomainKeywords._set_bd_properties(
+            node, bd_name, path, new_l2_fib_entry)
+
+    @staticmethod
+    def modify_l2_fib_entry(node, bd_name, mac, param, value):
+        """Modify an existing L2 FIB entry in the bridge domain's L2 FIB table.
+        The L2 FIB entry is specified by MAC address.
+
+        :param node: Honeycomb node.
+        :param bd_name: Bridge domain's name.
+        :param mac: MAC address used as the key in L2 FIB data structure.
+        :param param: The parameter to be modified.
+        :param value: The new value of the parameter.
+        :type node: dict
+        :type bd_name: str
+        :type mac: str
+        :type param: str
+        :type value: str or int
+        :return: Content of response.
+        :rtype: bytearray
+        """
+
+        path = ("bridge-domains",
+                ("bridge-domain", "name", bd_name),
+                "l2-fib-table",
+                ("l2-fib-entry", "phys-address", mac),
+                param)
+
+        return BridgeDomainKeywords._set_bd_properties(
+            node, bd_name, path, value)
+
+    @staticmethod
+    def remove_l2_fib_entry(node, bd_name, mac):
+        """Remove an L2 FIB entry from bridge domain's L2 FIB table. The
+        entry is specified by MAC address.
+
+        :param node: Honeycomb node.
+        :param bd_name: Bridge domain's name.
+        :param mac: MAC address used as the key in L2 FIB data structure.
+        :type node: dict
+        :type bd_name: str
+        :type mac: str
+        :return: Content of response.
+        :rtype: bytearray
+        :raises HoneycombError: If it is not possible to remove the specified
+        entry.
+        """
+
+        path = ("bridge-domains",
+                ("bridge-domain", "name", bd_name),
+                "l2-fib-table",
+                ("l2-fib-entry", "phys-address", str(mac)))
+
+        status_code, resp = HcUtil.\
+            get_honeycomb_data(node, "config_bridge_domain")
+        if status_code != HTTPCodes.OK:
+            raise HoneycombError("Not possible to get configuration information"
+                                 " about the L2 FIB entry {0} from bridge "
+                                 "domain {1}. Status code: {2}.".
+                                 format(mac, bd_name, status_code))
+
+        new_data = HcUtil.remove_item(resp, path)
+        status_code, resp = HcUtil.\
+            put_honeycomb_data(node, "config_bridge_domain", new_data)
+        if status_code != HTTPCodes.OK:
+            raise HoneycombError("Not possible to remove L2 FIB entry {0} from "
+                                 "bridge domain {1}. Status code: {2}.".
+                                 format(mac, bd_name, status_code))
+        return resp
+
+
+    @staticmethod
+    def remove_all_l2_fib_entries(node, bd_name):
+        """Remove all entries from the bridge domain's L2 FIB table.
+
+        :param node: Honeycomb node.
+        :param bd_name: Bridge domain's name.
+        :type node: dict
+        :type bd_name: str
+        :return: Content of response.
+        :rtype: bytearray
+        """
+
+        path = ("bridge-domains",
+                ("bridge-domain", "name", bd_name),
+                "l2-fib-table")
+
+        return BridgeDomainKeywords._set_bd_properties(
+            node, bd_name, path, None)
+
+    @staticmethod
+    def get_all_l2_fib_entries(node, bd_name):
+        """Retrieves all entries form the bridge domain's L2 FIB table.
+
+        :param node: Honeycomb node.
+        :param bd_name: Bridge domain's name.
+        :type node: dict
+        :type bd_name: str
+        :return: Bridge domain's L2 FIB table or empty list if the table does
+        not exist or it is empty.
+        :rtype: list
+        """
+
+        bd_data = BridgeDomainKeywords.get_bd_oper_data(node, bd_name)
+        try:
+            return bd_data["l2-fib-table"]["l2-fib-entry"]
+        except KeyError:
+            return []
+
+    @staticmethod
+    def get_l2_fib_entry(node, bd_name, mac):
+        """Retrieves an entry from bridge domain's L2 FIB table. The entry is
+        specified by MAC address.
+
+        :param node: Honeycomb node.
+        :param bd_name: Bridge domain's name.
+        :param mac: MAC address used as the key in L2 FIB data structure.
+        :type node: dict
+        :type bd_name: str
+        :type mac: str
+        :return: The requested entry from bridge domain's L2 FIB table or empty
+        dictionary if it does not exist in the L2 FIB table.
+        :rtype: dict
+        """
+
+        l2_fib = BridgeDomainKeywords.get_all_l2_fib_entries(node, bd_name)
+        for entry in l2_fib:
+            if entry["phys-address"] == mac:
+                return entry
+        return {}
