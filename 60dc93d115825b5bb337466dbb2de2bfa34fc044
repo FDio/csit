@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba092121_392579c2",
+        "filename": "tests/suites/gre/gre_encapsulation.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-16T08:40:26Z",
+      "side": 1,
+      "message": "Line too long.",
+      "range": {
+        "startLine": 87,
+        "startChar": 22,
+        "endLine": 87,
+        "endChar": 99
+      },
+      "revId": "60dc93d115825b5bb337466dbb2de2bfa34fc044",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_f92ee1a4",
+        "filename": "tests/suites/gre/gre_encapsulation.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-16T08:40:26Z",
+      "side": 1,
+      "message": "Line too long.",
+      "range": {
+        "startLine": 116,
+        "startChar": 22,
+        "endLine": 116,
+        "endChar": 99
+      },
+      "revId": "60dc93d115825b5bb337466dbb2de2bfa34fc044",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
