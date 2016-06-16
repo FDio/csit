@@ -307,3 +307,78 @@ class L2Util(object):
                                                     tag_rewrite_method=
                                                     tag_rewrite_method,
                                                     tag1_optional=tag1_id)
+
+    @staticmethod
+    def delete_bridge_domain_vat(node, bd_id):
+        """Delete the specified bridge domain from the node.
+
+        :param node: VPP node to delete a bridge domain from.
+        :param bd_id: Bridge domain ID.
+        :type node: dict
+        :type bd_id: int
+        """
+
+        with VatTerminal(node) as vat:
+            vat.vat_terminal_exec_cmd_from_template(
+                "l2_bridge_domain_delete.vat", bd_id=bd_id)
+
+    @staticmethod
+    def delete_l2_fib_entry(node, bd_id, mac):
+        """Delete the specified L2 FIB entry.
+
+        :param node: VPP node.
+        :param bd_id: Bridge domain ID.
+        :param mac: MAC address used as the key in L2 FIB entry.
+        :type node: dict
+        :type bd_id: int
+        :type mac: str
+        """
+
+        with VatTerminal(node) as vat:
+            vat.vat_terminal_exec_cmd_from_template("l2_fib_entry_delete.vat",
+                                                    mac=mac,
+                                                    bd_id=bd_id)
+
+    @staticmethod
+    def get_l2_fib_table_vat(node, bd_index):
+        """Retrieves the L2 FIB table using VAT.
+
+        :param node: VPP node.
+        :param bd_index: Index of the bridge domain.
+        :type node: dict
+        :type bd_index: int
+        :return: L2 FIB table.
+        :rtype: list
+        """
+
+        bd_data = L2Util.vpp_get_bridge_domain_data(node)
+        bd_id = bd_data[bd_index-1]["bd_id"]
+
+        try:
+            with VatTerminal(node) as vat:
+                table = vat.vat_terminal_exec_cmd_from_template(
+                    "l2_fib_table_dump.vat", bd_id=bd_id)
+
+            return table[0]
+        except ValueError:
+            return []
+
+    @staticmethod
+    def get_l2_fib_entry_vat(node, bd_index, mac):
+        """Retrieves the L2 FIB entry specified by MAC address using VAT.
+
+        :param node: VPP node.
+        :param bd_index: Index of the bridge domain.
+        :param mac: MAC address used as the key in L2 FIB data structure.
+        :type node: dict
+        :type bd_index: int
+        :type mac: str
+        :return: L2 FIB entry
+        :rtype: dict
+        """
+
+        table = L2Util.get_l2_fib_table_vat(node, bd_index)
+        for entry in table:
+            if entry["mac"] == mac:
+                return entry
+        return {}

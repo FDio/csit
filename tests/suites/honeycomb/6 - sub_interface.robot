@@ -327,7 +327,7 @@
 | | ... | this order.
 | | ...
 | | ... | *Arguments:*
-| | ... | - node - information about a DUT node. Type: dictionary
+| | ... | - node - Information about a DUT node. Type: dictionary
 | | ... | - super_interface - Super interface. Type: string
 | | ... | - identifier - Sub-interface identifier. Type: integer or string
 | | ...
@@ -347,7 +347,7 @@
 | | ... | this order.
 | | ...
 | | ... | *Arguments:*
-| | ... | - node - information about a DUT node. Type: dictionary
+| | ... | - node - Information about a DUT node. Type: dictionary
 | | ... | - super_interface - Super interface. Type: string
 | | ... | - identifier - Sub-interface identifier. Type: integer or string
 | | ...

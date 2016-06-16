@@ -21,7 +21,7 @@
 | ${bd2_name}= | bd-02
 | &{bd_settings}= | flood=${True} | forward=${True} | learn=${True}
 | ... | unknown-unicast-flood=${True} | arp-termination=${True}
-| &{if_settings}= | split_horizon_group=${1} | bvi=${True}
+| &{if_settings}= | split_horizon_group=${1} | bvi=${False}
 
 *** Settings ***
 | Resource | resources/libraries/robot/default.robot
