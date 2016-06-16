@@ -29,8 +29,8 @@ PYBOT_ARGS="--noncritical MULTI_THREAD"
 
 ARCHIVE_ARTIFACTS=(log.html output.xml report.html output_perf_data.json)
 
-CUR_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-export PYTHONPATH=${CUR_DIR}
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+export PYTHONPATH=${SCRIPT_DIR}
 
 
 # 1st step: Download and prepare VPP packages
@@ -43,7 +43,7 @@ if [ "${#}" -ne "0" ]; then
 else
     # Download the latest VPP build .deb install packages
     echo Downloading VPP packages...
-    bash ./resources/tools/download_install_vpp_pkgs.sh --skip-install
+    bash ${SCRIPT_DIR}/resources/tools/download_install_vpp_pkgs.sh --skip-install
 fi
 
 VPP_DEBS=(*.deb)
@@ -63,11 +63,11 @@ set -x
 # 2nd step: Start virtual env and install requirements
 
 echo Starting virtual env...
-virtualenv env
+virtualenv --system-site-packages env
 . env/bin/activate
 
 echo Installing requirements...
-pip install -r requirements.txt
+pip install -r ${SCRIPT_DIR}/requirements.txt
 
 set +x
 echo "******************************************************************************"
@@ -246,7 +246,7 @@ do
     echo
 
     pybot -L TRACE \
-        -v TOPOLOGY_PATH:topologies/enabled/topology_VIRL.yaml \
+        -v TOPOLOGY_PATH:${SCRIPT_DIR}/topologies/enabled/topology_VIRL.yaml \
         --include vm_envAND3_node_single_link_topo \
         --include vm_envAND3_node_double_link_topo \
         --exclude PERFTEST \
@@ -286,7 +286,7 @@ WORKING_TOPOLOGY=""
 while :; do
     for TOPOLOGY in ${TOPOLOGIES};
     do
-        python ${CUR_DIR}/resources/tools/topo_reservation.py -t ${TOPOLOGY}
+        python ${SCRIPT_DIR}/resources/tools/topo_reservation.py -t ${TOPOLOGY}
         if [ $? -eq 0 ]; then
             WORKING_TOPOLOGY=${TOPOLOGY}
             echo "Reserved: ${WORKING_TOPOLOGY}"
@@ -306,8 +306,8 @@ while :; do
 done
 
 function cancel_all {
-    python ${CUR_DIR}/resources/tools/topo_installation.py -c -d ${INSTALLATION_DIR} -t $1
-    python ${CUR_DIR}/resources/tools/topo_reservation.py -c -t $1
+    python ${SCRIPT_DIR}/resources/tools/topo_installation.py -c -d ${INSTALLATION_DIR} -t $1
+    python ${SCRIPT_DIR}/resources/tools/topo_reservation.py -c -t $1
 }
 
 # Upon script exit, cleanup the VIRL simulation execution
@@ -315,7 +315,7 @@ function cancel_all {
 # and delete all vpp packages.
 trap "stop_virl_simulation; cancel_all ${WORKING_TOPOLOGY}" EXIT
 
-python ${CUR_DIR}/resources/tools/topo_installation.py -t ${WORKING_TOPOLOGY} \
+python ${SCRIPT_DIR}/resources/tools/topo_installation.py -t ${WORKING_TOPOLOGY} \
                                                        -d ${INSTALLATION_DIR} \
                                                        -p ${VPP_DEBS[@]}
 
@@ -402,12 +402,12 @@ fi
 echo Post-processing test data...
 
 # Getting JSON perf data output
-python ${CUR_DIR}/resources/tools/robot_output_parser.py \
-       -i ${CUR_DIR}/log_perf_test_set.xml \
-       -o ${CUR_DIR}/output_perf_data.json \
+python ${SCRIPT_DIR}/resources/tools/robot_output_parser.py \
+       -i ${SCRIPT_DIR}/log_perf_test_set.xml \
+       -o ${SCRIPT_DIR}/output_perf_data.json \
        -v ${VPP_VER}
 if [ ! $? -eq 0 ]; then
-    echo "Parsing ${CUR_DIR}/log_perf_test_set.xml failed"
+    echo "Parsing ${SCRIPT_DIR}/log_perf_test_set.xml failed"
 fi
 
 # Rebot output post-processing
