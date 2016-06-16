@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "ba092121_e4c0782c",
+        "filename": "tests/suites/performance/Long_IPv4_Intel-X520-DA2.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 74
+      },
+      "writtenOn": "2016-06-16T12:45:48Z",
+      "side": 1,
+      "message": "we have 252 streams in each direction,\n3-node-IPv4 traffic profile is following:\n\"--port1_src_start_ip 10.10.10.2 \"\n\"--port1_src_end_ip 10.10.10.254 \"\n\"--port1_dst_start_ip 20.20.20.2 \"\n\"--port2_src_start_ip 20.20.20.2 \"\n\"--port2_src_end_ip 20.20.20.254 \"\n\"--port2_dst_start_ip 10.10.10.2 \"",
+      "revId": "34a011a0c79288308cb163dc2289ff7e25062326",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba092121_e49bd870",
         "filename": "tests/suites/performance/Long_IPv4_Intel-X520-DA2.robot",
         "patchSetId": 1
