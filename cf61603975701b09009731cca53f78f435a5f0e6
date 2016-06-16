@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "ba092121_c4c7b411",
+        "filename": "resources/libraries/python/honeycomb/Notifications.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-06-16T15:11:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba092121_5e0ed335",
+      "range": {
+        "startLine": 58,
+        "startChar": 28,
+        "endLine": 58,
+        "endChar": 32
+      },
+      "revId": "cf61603975701b09009731cca53f78f435a5f0e6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba092121_3e131f5e",
         "filename": "resources/libraries/python/honeycomb/Notifications.py",
         "patchSetId": 2
@@ -36,6 +60,30 @@
       "writtenOn": "2016-06-15T11:39:34Z",
       "side": 1,
       "message": "Pass the value as a parameter or as a parameter of __init__",
+      "range": {
+        "startLine": 59,
+        "startChar": 31,
+        "endLine": 59,
+        "endChar": 33
+      },
+      "revId": "cf61603975701b09009731cca53f78f435a5f0e6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_a4ccc036",
+        "filename": "resources/libraries/python/honeycomb/Notifications.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-06-16T15:11:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba092121_3e131f5e",
       "range": {
         "startLine": 59,
         "startChar": 31,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "ba092121_84d1bccf",
+        "filename": "resources/libraries/python/honeycomb/Notifications.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-06-16T15:11:35Z",
+      "side": 1,
+      "message": "Now raises HoneycombError if the message is not fully received before timeout.",
+      "parentUuid": "ba092121_9e2b4b82",
+      "range": {
+        "startLine": 86,
+        "startChar": 8,
+        "endLine": 86,
+        "endChar": 15
+      },
+      "revId": "cf61603975701b09009731cca53f78f435a5f0e6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba092121_de19c37a",
         "filename": "resources/libraries/python/honeycomb/Notifications.py",
         "patchSetId": 2
@@ -82,6 +154,30 @@
       "writtenOn": "2016-06-15T11:39:34Z",
       "side": 1,
       "message": "Pass the hello message as an argument to __init__",
+      "range": {
+        "startLine": 89,
+        "startChar": 22,
+        "endLine": 92,
+        "endChar": 64
+      },
+      "revId": "cf61603975701b09009731cca53f78f435a5f0e6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_64d6a8c7",
+        "filename": "resources/libraries/python/honeycomb/Notifications.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-06-16T15:11:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba092121_de19c37a",
       "range": {
         "startLine": 89,
         "startChar": 22,
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "ba092121_4402843f",
+        "filename": "resources/libraries/python/honeycomb/Notifications.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 101,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-06-16T15:11:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba092121_be260fb9",
+      "range": {
+        "startLine": 96,
+        "startChar": 21,
+        "endLine": 101,
+        "endChar": 43
+      },
+      "revId": "cf61603975701b09009731cca53f78f435a5f0e6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba092121_3e3affcd",
         "filename": "resources/libraries/python/honeycomb/Notifications.py",
         "patchSetId": 2
@@ -128,6 +248,30 @@
       "writtenOn": "2016-06-15T11:39:34Z",
       "side": 1,
       "message": "What happens if there is the end of one message and the beginning of another one in the buffer?",
+      "range": {
+        "startLine": 111,
+        "startChar": 8,
+        "endLine": 111,
+        "endChar": 24
+      },
+      "revId": "cf61603975701b09009731cca53f78f435a5f0e6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_64ed888b",
+        "filename": "resources/libraries/python/honeycomb/Notifications.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-06-16T15:11:35Z",
+      "side": 1,
+      "message": "Now catenates received replies until one ends with the \"end of message\" character sequence.",
+      "parentUuid": "ba092121_3e3affcd",
       "range": {
         "startLine": 111,
         "startChar": 8,
@@ -163,6 +307,30 @@
     },
     {
       "key": {
+        "uuid": "ba092121_a43cc094",
+        "filename": "resources/libraries/robot/honeycomb/notifications.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-06-16T15:11:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba092121_1e373be5",
+      "range": {
+        "startLine": 16,
+        "startChar": 69,
+        "endLine": 16,
+        "endChar": 76
+      },
+      "revId": "cf61603975701b09009731cca53f78f435a5f0e6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba092121_be4def74",
         "filename": "tests/suites/honeycomb/9 - notification.robot",
         "patchSetId": 2
@@ -174,6 +342,30 @@
       "writtenOn": "2016-06-15T11:39:34Z",
       "side": 1,
       "message": "Line too long.\nCheck everywhere.",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 39,
+        "endChar": 82
+      },
+      "revId": "cf61603975701b09009731cca53f78f435a5f0e6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_6446a825",
+        "filename": "tests/suites/honeycomb/9 - notification.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-06-16T15:11:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba092121_be4def74",
       "range": {
         "startLine": 39,
         "startChar": 0,
