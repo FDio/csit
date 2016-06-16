@@ -16,6 +16,8 @@
 | Library | resources.libraries.python.honeycomb.HcAPIKwBridgeDomain.BridgeDomainKeywords
 | Library | resources.libraries.python.honeycomb.HcAPIKwInterfaces.InterfaceKeywords
 | ...     | WITH NAME | InterfaceAPI
+| Library | resources.libraries.python.InterfaceUtil
+| ...     | WITH NAME | interfaceCLI
 
 *** Keywords ***
 | Honeycomb creates first L2 bridge domain
@@ -213,3 +215,82 @@
 | | [Arguments] | ${node}
 | | Run Keyword And Expect Error | ValueError: No JSON object could be decoded
 | | ... | VPP get bridge domain data | ${node}
+
+| Honeycomb adds interface to bridge domain
+| | [Documentation] | Uses Honeycomb API to assign interface to a bridge\
+| | ... | domain.
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - information about a DUT node. Type: dictionary
+| | ... | - interface - name of interface to assign to bridge domain.\
+| | ... | Type: string
+| | ... | - bd_name - name of the bridge domain. Type: string
+| | ... | - settings - bridge domain specific interface settings.\
+| | ... | Type: dictionary
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Honeycomb adds interfaces to bridge domain \| ${nodes['DUT1']} \
+| | ... | \| GigabitEthernet0/8/0 \| bd-04 \
+| | ... | \| ${{split_horizon_group:2, bvi:False}} \|
+| | ...
+| | [Arguments] | ${node} | ${interface} | ${bd_name} | ${settings}
+| | ...
+| | interfaceAPI.Add bridge domain to interface
+| | ... | ${node} | ${interface} | ${settings['bridge-domain']}
+| | ... | ${settings['split-horizon-group']}
+| | ... | ${settings['bridged-virtual-interface']}
+
+| Bridge domain configuration in interface operational data should be empty
+| | [Documentation] | Get interface operational data and retrieve bridge
+| | ... | domain configuration from it. It should be empty.
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - Information about a DUT node. Type: dictionary
+| | ... | - interface - Name of interface where the bridge domain parameters \
+| | ... | will be checked.Type: string
+| | ...
+| | ... | *Example:*
+| | ... | \| Bridge domain configuration in interface operational data should \
+| | ... | be empty \| ${nodes['DUT1']} \| GigabitEthernet0/8/0 \|
+| | ...
+| | [Arguments] | ${node} | ${interface}
+| | ...
+| | ${if_data}= | interfaceAPI.Get BD Oper Data From Interface
+| | ... | ${node} | ${interface}
+| | Should be empty | ${if_data}
+
+| Bridge domain configuration in interface operational data should be
+| | [Documentation] | Get interface operational data and retrieve bridge
+| | ... | domain configuration from it. Compare the data to the expected one.
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - Information about a DUT node. Type: dictionary
+| | ... | - interface - Name of interface where the bridge domain parameters \
+| | ... | will be checked. Type: string
+| | ... | - bd_settings - The referential bridge domain data. Type: dictionary
+| | ...
+| | ... | *Example:*
+| | ... | \| Bridge domain configuration in interface operational data should \
+| | ... | be \| ${nodes['DUT1']} \| GigabitEthernet0/8/0 \| ${if_bd_settings} \|
+| | ...
+| | [Arguments] | ${node} | ${interface} | ${bd_settings}
+| | ...
+| | ${if_data}= | interfaceAPI.Get BD Oper Data From Interface
+| | ... | ${node} | ${interface}
+| | interfaceAPI.Compare Data Structures | ${if_data} | ${bd_settings}
+
+| VAT removes bridge domain
+| | [Documentation] Remove the specified bridge domain using VAT.
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - Information about a DUT node. Type: dictionary
+| | ... | - bd_id - Bridge domain ID. Type: integer
+| | ...
+| | ... | *Example:*
+| | ... | \| VAT removes bridge domain \
+| | ... | \| ${nodes['DUT1']} \| 1 \|
+| | ...
+| | [Arguments] | ${node} | ${bd_id}
+| | ...
+| | Delete Bridge Domain VAT | ${node} | ${bd_id}

@@ -301,6 +301,29 @@ class InterfaceKeywords(object):
             node, interface, path, v3po_l2)
 
     @staticmethod
+    def get_bd_oper_data_from_interface(node, interface):
+        """Returns operational data about bridge domain settings in the
+        interface.
+
+        :param node: Honeycomb node.
+        :param interface: The name of interface.
+        :type interface: str
+        :type param: str
+        :return: Operational data about bridge domain settings in the
+        interface.
+        :rtype: dict
+        """
+
+        if_data = InterfaceKeywords.get_interface_oper_data(node, interface)
+
+        if if_data:
+            try:
+                return if_data["v3po:l2"]
+            except KeyError:
+                return {}
+        return {}
+
+    @staticmethod
     def configure_interface_base(node, interface, param, value):
         """Configure the base parameters of interface.
 
@@ -1180,6 +1203,29 @@ class InterfaceKeywords(object):
         except KeyError:
             raise HoneycombError("The operational data does not contain "
                                  "information about the tag-rewrite.")
+
+    @staticmethod
+    def compare_data_structures(data, ref):
+        """Checks if data obtained from UUT is as expected.
+
+        :param data: Data to be checked.
+        :param ref: Referential data used for comparison.
+        :type data: dict
+        :type ref: dict
+        :raises HoneycombError: If a parameter from referential data is not
+        present in operational data or if it has different value.
+        """
+
+        for key, item in ref.items():
+            try:
+                if data[key] != item:
+                    raise HoneycombError("The value of parameter '{0}' is "
+                                         "incorrect. It should be "
+                                         "'{1}' but it is '{2}'".
+                                         format(key, item, data[key]))
+            except KeyError:
+                raise HoneycombError("The parameter '{0}' is not present in "
+                                     "operational data".format(key))
 
     @staticmethod
     def compare_data_structures(data, ref):
