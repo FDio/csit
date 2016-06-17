@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "ba092121_243c302f",
+        "filename": "resources/libraries/python/ProxyArp.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 84
+      },
+      "writtenOn": "2016-06-17T13:49:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba092121_04beccff",
+      "range": {
+        "startLine": 23,
+        "startChar": 28,
+        "endLine": 23,
+        "endChar": 48
+      },
+      "revId": "74fd8e8e43e423c183c38a33089fea88c21a8499",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba092121_8441bc0d",
         "filename": "resources/libraries/robot/traffic.robot",
         "patchSetId": 3
@@ -36,6 +60,30 @@
       "writtenOn": "2016-06-16T11:44:24Z",
       "side": 1,
       "message": "the ARP Response is received",
+      "range": {
+        "startLine": 244,
+        "startChar": 52,
+        "endLine": 244,
+        "endChar": 73
+      },
+      "revId": "74fd8e8e43e423c183c38a33089fea88c21a8499",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_446de431",
+        "filename": "resources/libraries/robot/traffic.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 84
+      },
+      "writtenOn": "2016-06-17T13:49:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba092121_8441bc0d",
       "range": {
         "startLine": 244,
         "startChar": 52,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "ba092121_b19f5d03",
+        "filename": "tests/suites/ipv4/ipv4_proxy_arp_untagged.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 84
+      },
+      "writtenOn": "2016-06-17T13:49:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba092121_4472847d",
+      "range": {
+        "startLine": 15,
+        "startChar": 2,
+        "endLine": 16,
+        "endChar": 50
+      },
+      "revId": "74fd8e8e43e423c183c38a33089fea88c21a8499",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba092121_c40574c3",
         "filename": "tests/suites/ipv4/ipv4_proxy_arp_untagged.robot",
         "patchSetId": 3
@@ -82,6 +154,30 @@
       "writtenOn": "2016-06-16T11:44:24Z",
       "side": 1,
       "message": "Please, set it to 2: 192.168.1.2\nso we can use address 192.168.1.1 for negative test.",
+      "range": {
+        "startLine": 35,
+        "startChar": 30,
+        "endLine": 35,
+        "endChar": 31
+      },
+      "revId": "74fd8e8e43e423c183c38a33089fea88c21a8499",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_845adc81",
+        "filename": "tests/suites/ipv4/ipv4_proxy_arp_untagged.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 84
+      },
+      "writtenOn": "2016-06-17T13:49:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba092121_c40574c3",
       "range": {
         "startLine": 35,
         "startChar": 30,
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "ba092121_7189c5c9",
+        "filename": "tests/suites/ipv4/ipv4_proxy_arp_untagged.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 84
+      },
+      "writtenOn": "2016-06-17T13:49:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba092121_641468f5",
+      "range": {
+        "startLine": 40,
+        "startChar": 2,
+        "endLine": 40,
+        "endChar": 81
+      },
+      "revId": "74fd8e8e43e423c183c38a33089fea88c21a8499",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba092121_840f7ce1",
         "filename": "tests/suites/ipv4/ipv4_proxy_arp_untagged.robot",
         "patchSetId": 3
@@ -140,6 +260,30 @@
     },
     {
       "key": {
+        "uuid": "ba092121_5186c1ba",
+        "filename": "tests/suites/ipv4/ipv4_proxy_arp_untagged.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 84
+      },
+      "writtenOn": "2016-06-17T13:49:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba092121_840f7ce1",
+      "range": {
+        "startLine": 41,
+        "startChar": 3,
+        "endLine": 42,
+        "endChar": 62
+      },
+      "revId": "74fd8e8e43e423c183c38a33089fea88c21a8499",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba092121_a43160a4",
         "filename": "tests/suites/ipv4/ipv4_proxy_arp_untagged.robot",
         "patchSetId": 3
@@ -151,6 +295,30 @@
       "writtenOn": "2016-06-16T11:44:24Z",
       "side": 1,
       "message": "Please, add folowing tests:\n1. positive tests with addresses\n   - ${lo_ip4_addr}\n   - ${hi_ip4_addr}\n2. negative tests with addresses\n   - 192.168.1.1 (use variable, e.g. test_wrong_ip1)\n   - 192.168.1.11 (use variable, e.g. test_wrong_ip2)",
+      "range": {
+        "startLine": 50,
+        "startChar": 4,
+        "endLine": 50,
+        "endChar": 25
+      },
+      "revId": "74fd8e8e43e423c183c38a33089fea88c21a8499",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_645fc873",
+        "filename": "tests/suites/ipv4/ipv4_proxy_arp_untagged.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 84
+      },
+      "writtenOn": "2016-06-17T13:49:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba092121_a43160a4",
       "range": {
         "startLine": 50,
         "startChar": 4,
