@@ -194,29 +194,45 @@ def create_streams(traffic_options, frame_size=64):
     p2_src_end_ip = traffic_options['p2_src_end_ip']
     p2_dst_start_ip = traffic_options['p2_dst_start_ip']
 
+    p1_dst_end_ip = traffic_options['p1_dst_end_ip']
+    p2_dst_end_ip = traffic_options['p2_dst_end_ip']
+
     base_pkt_a = Ether()/IP(src=p1_src_start_ip, dst=p1_dst_start_ip, proto=61)
     base_pkt_b = Ether()/IP(src=p2_src_start_ip, dst=p2_dst_start_ip, proto=61)
 
-    # The following code applies raw instructions to packet (IP src increment).
-    # It splits the generated traffic by "ip_src" variable to cores and fix
-    # IPv4 header checksum.
-    vm1 = STLScVmRaw([STLVmFlowVar(name="src",
-                                   min_value=p1_src_start_ip,
-                                   max_value=p1_src_end_ip,
-                                   size=4, op="inc"),
-                      STLVmWrFlowVar(fv_name="src", pkt_offset="IP.src"),
-                      STLVmFixIpv4(offset="IP"),
-                     ], split_by_field="src")
-    # The following code applies raw instructions to packet (IP src increment).
-    # It splits the generated traffic by "ip_src" variable to cores and fix
-    # IPv4 header checksum.
-    vm2 = STLScVmRaw([STLVmFlowVar(name="src",
-                                   min_value=p2_src_start_ip,
-                                   max_value=p2_src_end_ip,
-                                   size=4, op="inc"),
-                      STLVmWrFlowVar(fv_name="src", pkt_offset="IP.src"),
-                      STLVmFixIpv4(offset="IP"),
-                     ], split_by_field="src")
+    # The following code applies raw instructions to packet (IP src/dst
+    # increment). It splits the generated traffic by "ip_src"/"ip_dst" variable
+    # to cores and fix IPv4 header checksum.
+    if p1_dst_end_ip and p2_dst_end_ip:
+        vm1 = STLScVmRaw([STLVmFlowVar(name="dst",
+                                       min_value=p1_dst_start_ip,
+                                       max_value=p1_dst_end_ip,
+                                       size=4, op="inc"),
+                          STLVmWrFlowVar(fv_name="dst", pkt_offset="IP.dst"),
+                          STLVmFixIpv4(offset="IP"),
+                         ], split_by_field="dst")
+        vm2 = STLScVmRaw([STLVmFlowVar(name="dst",
+                                       min_value=p2_dst_start_ip,
+                                       max_value=p2_dst_end_ip,
+                                       size=4, op="inc"),
+                          STLVmWrFlowVar(fv_name="dst", pkt_offset="IP.dst"),
+                          STLVmFixIpv4(offset="IP"),
+                         ], split_by_field="dst")
+    else:
+        vm1 = STLScVmRaw([STLVmFlowVar(name="src",
+                                       min_value=p1_src_start_ip,
+                                       max_value=p1_src_end_ip,
+                                       size=4, op="inc"),
+                          STLVmWrFlowVar(fv_name="src", pkt_offset="IP.src"),
+                          STLVmFixIpv4(offset="IP"),
+                         ], split_by_field="src")
+        vm2 = STLScVmRaw([STLVmFlowVar(name="src",
+                                       min_value=p2_src_start_ip,
+                                       max_value=p2_src_end_ip,
+                                       size=4, op="inc"),
+                          STLVmWrFlowVar(fv_name="src", pkt_offset="IP.src"),
+                          STLVmFixIpv4(offset="IP"),
+                         ], split_by_field="src")
 
     return create_streams_v46(base_pkt_a, base_pkt_b, vm1, vm2, frame_size)
 
@@ -451,24 +467,28 @@ def parse_args():
 #                        help="Port 1 destination MAC address")
     parser.add_argument("--p1_src_start_ip", required=True,
                         help="Port 1 source start IP address")
-    parser.add_argument("--p1_src_end_ip", required=True,
+    parser.add_argument("--p1_src_end_ip",
+                        default=False,
                         help="Port 1 source end IP address")
     parser.add_argument("--p1_dst_start_ip", required=True,
                         help="Port 1 destination start IP address")
-#    parser.add_argument("--p1_dst_end_ip",
-#                        help="Port 1 destination end IP address")
+    parser.add_argument("--p1_dst_end_ip",
+                        default=False,
+                        help="Port 1 destination end IP address")
 #    parser.add_argument("--p2_src_mac",
 #                        help="Port 2 source MAC address")
 #    parser.add_argument("--p2_dst_mac",
 #                        help="Port 2 destination MAC address")
     parser.add_argument("--p2_src_start_ip", required=True,
                         help="Port 2 source start IP address")
-    parser.add_argument("--p2_src_end_ip", required=True,
+    parser.add_argument("--p2_src_end_ip",
+                        default=False,
                         help="Port 2 source end IP address")
     parser.add_argument("--p2_dst_start_ip", required=True,
                         help="Port 2 destination start IP address")
-#    parser.add_argument("--p2_dst_end_ip",
-#                        help="Port 2 destination end IP address")
+    parser.add_argument("--p2_dst_end_ip",
+                        default=False,
+                        help="Port 2 destination end IP address")
 
     return parser.parse_args()
 
