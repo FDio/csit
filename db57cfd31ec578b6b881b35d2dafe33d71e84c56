@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba092121_113169ec",
+        "filename": "resources/libraries/python/honeycomb/Notifications.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-06-17T08:31:42Z",
+      "side": 1,
+      "message": "Consider logging the reply.",
+      "range": {
+        "startLine": 114,
+        "startChar": 24,
+        "endLine": 114,
+        "endChar": 29
+      },
+      "revId": "db57cfd31ec578b6b881b35d2dafe33d71e84c56",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_912579ad",
+        "filename": "resources/libraries/python/honeycomb/Notifications.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-06-17T08:31:42Z",
+      "side": 1,
+      "message": "Duplicated code. Implement as a private method.",
+      "range": {
+        "startLine": 109,
+        "startChar": 8,
+        "endLine": 116,
+        "endChar": 74
+      },
+      "revId": "db57cfd31ec578b6b881b35d2dafe33d71e84c56",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_5137e1e3",
+        "filename": "resources/libraries/python/honeycomb/Notifications.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-06-17T08:31:42Z",
+      "side": 1,
+      "message": "Empty line should follow.",
+      "range": {
+        "startLine": 125,
+        "startChar": 70,
+        "endLine": 125,
+        "endChar": 77
+      },
+      "revId": "db57cfd31ec578b6b881b35d2dafe33d71e84c56",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_713ae5ce",
+        "filename": "resources/libraries/python/honeycomb/Notifications.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-06-17T08:31:42Z",
+      "side": 1,
+      "message": "See 109.",
+      "range": {
+        "startLine": 135,
+        "startChar": 8,
+        "endLine": 142,
+        "endChar": 68
+      },
+      "revId": "db57cfd31ec578b6b881b35d2dafe33d71e84c56",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_b1575d02",
+        "filename": "tests/suites/honeycomb/9 - notification.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-06-17T08:31:42Z",
+      "side": 1,
+      "message": "Consider negative test cases - wrong hello message sent, wrong subscription, ...",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 18
+      },
+      "revId": "db57cfd31ec578b6b881b35d2dafe33d71e84c56",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
