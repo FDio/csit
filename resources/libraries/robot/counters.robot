@@ -48,10 +48,10 @@
 | Vpp show stats
 | | [Documentation] | Show [error, hardware, interface] stats
 | | [Arguments] | ${node}
-| | Vpp Dump Stats Table | ${node}
-| | Vpp Show Errors | ${node}
-| | Vpp Show Hardware Detail | ${node}
-| | Vpp Show Runtime | ${node}
+| | Run Keyword And Ignore Error | Vpp Dump Stats Table | ${node}
+| | Run Keyword And Ignore Error | Vpp Show Errors | ${node}
+| | Run Keyword And Ignore Error | Vpp Show Hardware Detail | ${node}
+| | Run Keyword And Ignore Error | Vpp Show Runtime | ${node}
 
 | Clear all counters on all DUTs
 | | [Documentation] | Clear runtime, interface, hardware and error counters
