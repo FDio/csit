@@ -157,7 +157,7 @@ class VatTerminal(object):
     def __exit__(self, exc_type, exc_val, exc_tb):
         self.vat_terminal_close()
 
-    def vat_terminal_exec_cmd(self, cmd):
+    def vat_terminal_exec_cmd(self, cmd, timeout=10):
         """Execute command on the opened VAT terminal.
 
         :param cmd: Command to be executed.
@@ -168,7 +168,8 @@ class VatTerminal(object):
         logger.debug("Executing command in VAT terminal: {}".format(cmd))
         out = self._ssh.interactive_terminal_exec_command(self._tty,
                                                           cmd,
-                                                          self.__VAT_PROMPT)
+                                                          self.__VAT_PROMPT,
+                                                          time_out=timeout)
         logger.debug("VAT output: {}".format(out))
         if self.json:
             obj_start = out.find('{')

@@ -140,7 +140,8 @@ class VppCounters(object):
         with VatTerminal(node) as vat:
             vat.vat_terminal_exec_cmd('want_stats enable')
             for _ in range(0, 12):
-                stats_table = vat.vat_terminal_exec_cmd('dump_stats_table')
+                stats_table = vat.vat_terminal_exec_cmd('dump_stats_table',
+                                                        timeout=30)
                 if_counters = stats_table['interface_counters']
                 if len(if_counters) > 0:
                     self._stats_table = stats_table
