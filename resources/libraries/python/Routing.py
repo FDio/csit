@@ -22,7 +22,7 @@ class Routing(object):
 
     @staticmethod
     def vpp_route_add(node, network, prefix_len, gateway=None, interface=None,
-                      use_sw_index=True, resolve_attempts=10):
+                      use_sw_index=True, resolve_attempts=10, count=1):
         """Add route to the VPP node.
 
         :param node: Node to add route on.
@@ -32,6 +32,7 @@ class Routing(object):
         :param interface: Route interface.
         :param use_sw_index: Use sw_if_index in VAT command.
         :param resolve_attempts: Resolve attempts IP route add parameter.
+        :param count: number of IP addresses to add (increment is 1)
         If None, then is not used.
         :type node: dict
         :type network: str
@@ -40,6 +41,7 @@ class Routing(object):
         :type interface: str
         :type use_sw_index: bool
         :type resolve_attempts: int
+        :type count: int
         """
         if use_sw_index:
             int_cmd = ('sw_if_index {}'.
@@ -52,13 +54,17 @@ class Routing(object):
 
         via = 'via {}'.format(gateway) if gateway else ''
 
-        with VatTerminal(node) as vat:
+        cnt = 'count {}'.format(count) \
+            if count else ''
+
+        with VatTerminal(node, json_param=False) as vat:
             vat.vat_terminal_exec_cmd_from_template('add_route.vat',
                                                     network=network,
                                                     prefix_length=prefix_len,
                                                     via=via,
                                                     interface=int_cmd,
-                                                    resolve_attempts=rap)
+                                                    resolve_attempts=rap,
+                                                    count=cnt)
 
     @staticmethod
     def add_fib_table(node, network, prefix_len, fib_id, place):
