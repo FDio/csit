@@ -53,7 +53,7 @@ class SSH(object):
             pkey = None
             if 'priv_key' in node:
                 pkey = RSAKey.from_private_key(
-                        StringIO.StringIO(node['priv_key']))
+                    StringIO.StringIO(node['priv_key']))
 
             self._ssh = paramiko.SSHClient()
             self._ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
@@ -171,10 +171,21 @@ class SSH(object):
         try:
             with timeout(time_out, exception=RuntimeError):
                 while not buf.endswith(':~$ ') and not chan.closed:
-                    if chan.recv_ready():
-                        buf = chan.recv(self.__MAX_RECV_BUF)
-                    if chan.recv_stderr_ready():
-                        buf = chan.recv_stderr(self.__MAX_RECV_BUF)
+                    try:
+                        if chan.recv_ready():
+                            chunk = chan.recv(self.__MAX_RECV_BUF)
+                            buf += chunk
+                            if not chunk:
+                                break
+                        if chan.recv_stderr_ready():
+                            chunk = chan.recv_stderr(self.__MAX_RECV_BUF)
+                            buf += chunk
+                            if not chunk:
+                                break
+                    except socket.timeout:
+                        logger.error('Caught timeout exception, current '
+                                     'contents of buffer: {0}'.format(buf))
+                        raise
         except RuntimeError:
             raise Exception('Open interactive terminal timeout.')
         return chan
@@ -204,10 +215,27 @@ class SSH(object):
         try:
             with timeout(time_out, exception=RuntimeError):
                 while not buf.endswith(prompt) and not chan.closed:
-                    if chan.recv_ready():
-                        buf += chan.recv(self.__MAX_RECV_BUF)
-                    if chan.recv_stderr_ready():
-                        buf += chan.recv_stderr(self.__MAX_RECV_BUF)
+                    try:
+                        if chan.recv_ready():
+                            chunk = chan.recv(self.__MAX_RECV_BUF)
+                            buf += chunk
+                            if not chunk:
+                                break
+                        if chan.recv_stderr_ready():
+                            chunk = chan.recv_stderr(self.__MAX_RECV_BUF)
+                            buf += chunk
+                            if not chunk:
+                                break
+                    except socket.timeout:
+                        logger.error('Caught timeout exception, current '
+                                     'contents of buffer: {0}'.format(buf))
+                        raise
+                    if chan.exit_status_ready()\
+                        and not chan.recv_stderr_ready()\
+                        and not chan.recv_ready():
+                            logger.trace("Channel exit status: {0}".format(
+                                chan.recv_exit_status()))
+                            chan.close()
         except RuntimeError:
             raise Exception("Exec '{c}' timeout.".format(c=cmd))
         tmp = buf.replace(cmd.replace('\n', ''), '')

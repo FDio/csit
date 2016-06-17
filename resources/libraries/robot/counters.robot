@@ -48,7 +48,7 @@
 | Vpp show stats
 | | [Documentation] | Show [error, hardware, interface] stats
 | | [Arguments] | ${node}
-| | Vpp Dump Stats Table | ${node}
+| | Run Keyword And Ignore Error | Vpp Dump Stats Table | ${node}
 | | Vpp Show Errors | ${node}
 | | Vpp Show Hardware Detail | ${node}
 | | Vpp Show Runtime | ${node}
