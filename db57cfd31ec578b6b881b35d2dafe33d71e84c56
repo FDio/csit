@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "ba092121_31f10dce",
+        "filename": "resources/libraries/python/honeycomb/Notifications.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-06-17T11:16:50Z",
+      "side": 1,
+      "message": "Done. Every reply is now logged at trace level.",
+      "parentUuid": "ba092121_113169ec",
+      "range": {
+        "startLine": 114,
+        "startChar": 24,
+        "endLine": 114,
+        "endChar": 29
+      },
+      "revId": "db57cfd31ec578b6b881b35d2dafe33d71e84c56",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba092121_912579ad",
         "filename": "resources/libraries/python/honeycomb/Notifications.py",
         "patchSetId": 3
@@ -36,6 +60,30 @@
       "writtenOn": "2016-06-17T08:31:42Z",
       "side": 1,
       "message": "Duplicated code. Implement as a private method.",
+      "range": {
+        "startLine": 109,
+        "startChar": 8,
+        "endLine": 116,
+        "endChar": 74
+      },
+      "revId": "db57cfd31ec578b6b881b35d2dafe33d71e84c56",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_91e21902",
+        "filename": "resources/libraries/python/honeycomb/Notifications.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-06-17T11:16:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba092121_912579ad",
       "range": {
         "startLine": 109,
         "startChar": 8,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "ba092121_71e78513",
+        "filename": "resources/libraries/python/honeycomb/Notifications.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-06-17T11:16:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba092121_5137e1e3",
+      "range": {
+        "startLine": 125,
+        "startChar": 70,
+        "endLine": 125,
+        "endChar": 77
+      },
+      "revId": "db57cfd31ec578b6b881b35d2dafe33d71e84c56",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba092121_713ae5ce",
         "filename": "resources/libraries/python/honeycomb/Notifications.py",
         "patchSetId": 3
@@ -82,6 +154,30 @@
       "writtenOn": "2016-06-17T08:31:42Z",
       "side": 1,
       "message": "See 109.",
+      "range": {
+        "startLine": 135,
+        "startChar": 8,
+        "endLine": 142,
+        "endChar": 68
+      },
+      "revId": "db57cfd31ec578b6b881b35d2dafe33d71e84c56",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_51e4810c",
+        "filename": "resources/libraries/python/honeycomb/Notifications.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-06-17T11:16:50Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba092121_713ae5ce",
       "range": {
         "startLine": 135,
         "startChar": 8,
