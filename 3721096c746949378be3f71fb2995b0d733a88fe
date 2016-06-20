@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "ba092121_6ace6e85",
+        "filename": "tests/suites/performance/Short_IPv4_Cop_Intel-X520-DA2.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 74
+      },
+      "writtenOn": "2016-06-20T07:58:57Z",
+      "side": 1,
+      "message": "configuration",
+      "range": {
+        "startLine": 34,
+        "startChar": 43,
+        "endLine": 34,
+        "endChar": 57
+      },
+      "revId": "3721096c746949378be3f71fb2995b0d733a88fe",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_4acbaa72",
+        "filename": "tests/suites/performance/Short_IPv4_Cop_Intel-X520-DA2.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 74
+      },
+      "writtenOn": "2016-06-20T07:58:57Z",
+      "side": 1,
+      "message": "payload is not random, it is generated from alphabet.",
+      "range": {
+        "startLine": 38,
+        "startChar": 12,
+        "endLine": 38,
+        "endChar": 26
+      },
+      "revId": "3721096c746949378be3f71fb2995b0d733a88fe",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba092121_2758af55",
         "filename": "tests/suites/performance/Short_IPv4_Cop_Intel-X520-DA2.robot",
         "patchSetId": 1
