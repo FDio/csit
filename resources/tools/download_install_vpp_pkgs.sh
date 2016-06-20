@@ -21,7 +21,7 @@ trap 'rm -f *.deb.md5;rm -f *.deb; exit' ERR
 URL="https://nexus.fd.io/service/local/artifact/maven/content"
 VER="RELEASE"
 REPO="fd.io.master.ubuntu.trusty.main"
-GROUP="io.fd.vpp"
+GROUP="io.vpp"
 ARTIFACTS="vpp vpp-dbg vpp-dev vpp-dpdk-dev vpp-dpdk-dkms vpp-lib"
 PACKAGE="deb deb.md5"
 
