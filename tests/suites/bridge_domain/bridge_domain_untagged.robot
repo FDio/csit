@@ -23,23 +23,23 @@
 | Test Teardown | Show Packet Trace on All DUTs | ${nodes}
 | Documentation | *L2 bridge-domain test cases*
 | ...
-| ... | *(Top) Network Topologies:* TG=DUT1 2-node topology with two links
+| ... | *[Top] Network Topologies:* TG=DUT1 2-node topology with two links
 | ... | between nodes; TG-DUT1-DUT2-TG 3-node circular topology with
 | ... | single links between nodes; TG=DUT1=DUT2=TG 3-node circular
 | ... | topology with double parallel links and TG=DUT=VM 3-node topology
 | ... | with VM and double parallel links.
-| ... | *(Enc) Packet Encapsulations:* Eth-IPv4-ICMPv4 for L2 switching of
+| ... | *[Enc] Packet Encapsulations:* Eth-IPv4-ICMPv4 for L2 switching of
 | ... | IPv4; Eth-IPv6-ICMPv6 for L2 switching of IPv6 use. Both apply
 | ... | to all links.
-| ... | *(Cfg) DUT configuration:* DUT1 and DUT2 are configured with L2
+| ... | *[Cfg] DUT configuration:* DUT1 and DUT2 are configured with L2
 | ... | bridge-domain (L2BD) switching combined with static MACs; MAC
 | ... | learning enabled and Split Horizon Groups (SHG) depending on
 | ... | test case.
-| ... | *(Ver) TG verification:* Test ICMPv4 (or ICMPv6) Echo Request packets
+| ... | *[Ver] TG verification:* Test ICMPv4 (or ICMPv6) Echo Request packets
 | ... | are sent in both directions by TG on links to DUT1 and DUT2; on
 | ... | receive TG verifies packets for correctness and their IPv4 (IPv6)
 | ... | src-addr, dst-addr and MAC addresses.
-| ... | *(Ref) Applicable standard specifications:*
+| ... | *[Ref] Applicable standard specifications:*
 
 *** Variables ***
 | ${bd_id1}= | 1
@@ -52,17 +52,17 @@
 *** Test Cases ***
 | TC01: DUT reports active interfaces
 | | [Documentation]
-| | ... | (Top) TG=DUT1; TG-DUT1-DUT2-TG. (Enc) None. (Cfg) Discovered
-| | ... | active interfaces. (Ver) Report active interfaces on DUT. (Ref)
+| | ... | [Top] TG=DUT1; TG-DUT1-DUT2-TG. [Enc] None. [Cfg] Discovered \
+| | ... | active interfaces. [Ver] Report active interfaces on DUT. [Ref]
 | | [Tags] | 3_NODE_DOUBLE_LINK_TOPO | 3_NODE_SINGLE_LINK_TOPO
 | | VPP reports interfaces on | ${nodes['DUT1']}
 
 | TC02: DUT with L2BD (MAC learning) switch ICMPv4 between two TG links
 | | [Documentation]
-| | ... | (Top) TG=DUT1. (Enc) Eth-IPv4-ICMPv4. (Cfg) On DUT1 configure
-| | ... | two i/fs into L2BD with MAC learning. (Ver) Make TG verify
+| | ... | [Top] TG=DUT1. [Enc] Eth-IPv4-ICMPv4. [Cfg] On DUT1 configure \
+| | ... | two i/fs into L2BD with MAC learning. [Ver] Make TG verify
 | | ... | ICMPv4 Echo Req pkts are switched thru DUT1 in both directions
-| | ... | and are correct on receive. (Ref)
+| | ... | and are correct on receive. [Ref]
 | | [Tags] | 3_NODE_DOUBLE_LINK_TOPO
 | | Given Path for 2-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
@@ -77,10 +77,10 @@
 
 | TC03: DUT1 and DUT2 with L2BD (MAC learning) switch between two TG links
 | | [Documentation]
-| | ... | (Top) TG-DUT1-DUT2-TG. (Enc) Eth-IPv4-ICMPv4. (Cfg) On DUT1 and DUT2
-| | ... | configure two i/fs into L2BD with MAC learning. (Ver) Make TG
+| | ... | [Top] TG-DUT1-DUT2-TG. [Enc] Eth-IPv4-ICMPv4. [Cfg] On DUT1 and DUT2 \
+| | ... | configure two i/fs into L2BD with MAC learning. [Ver] Make TG
 | | ... | verify ICMPv4 Echo Req pkts are switched thru DUT1 and DUT2 in
-| | ... | both directions and are correct on receive. (Ref)
+| | ... | both directions and are correct on receive. [Ref]
 | | [Tags] | 3_NODE_SINGLE_LINK_TOPO
 | | Given Path for 3-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
@@ -100,10 +100,10 @@
 
 | TC04: DUT1 and DUT2 with L2BD (static MACs) switch between two TG links
 | | [Documentation]
-| | ... | (Top) TG-DUT1-DUT2-TG. (Enc) Eth-IPv4-ICMPv4. (Cfg) On DUT1 and
-| | ... | DUT2 configure two i/fs into L2BD with static MACs. (Ver) Make
+| | ... | [Top] TG-DUT1-DUT2-TG. [Enc] Eth-IPv4-ICMPv4. [Cfg] On DUT1 and \
+| | ... | DUT2 configure two i/fs into L2BD with static MACs. [Ver] Make
 | | ... | TG verify ICMPv4 Echo Req pkts are switched thru DUT1 and DUT2
-| | ... | in both directions and are correct on receive. (Ref)
+| | ... | in both directions and are correct on receive. [Ref]
 | | [Tags] | 3_NODE_SINGLE_LINK_TOPO
 | | Given Path for 3-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
@@ -145,12 +145,12 @@
 
 | TC05: DUT1 and DUT2 with L2BD (MAC learn) and SHG switch between four TG links
 | | [Documentation]
-| | ... | (Top) TG=DUT1=DUT2=TG. (Enc) Eth-IPv4-ICMPv4. (Cfg) On DUT1 and
+| | ... | [Top] TG=DUT1=DUT2=TG. [Enc] Eth-IPv4-ICMPv4. [Cfg] On DUT1 and \
 | | ... | DUT2 configure four i/fs into L2BD with MAC learning and the
-| | ... | same SHG on i/fs towards TG. (Ver) Make TG verify ICMPv4 Echo
+| | ... | same SHG on i/fs towards TG. [Ver] Make TG verify ICMPv4 Echo
 | | ... | Req pkts are switched thru DUT1 and DUT2 in both directions and
 | | ... | are correct on receive; verify no pkts are switched thru SHG
-| | ... | isolated interfaces. (Ref)
+| | ... | isolated interfaces. [Ref]
 | | [Tags] | 3_NODE_DOUBLE_LINK_TOPO
 | | Given Path for 3-node BD-SHG testing is set | ${nodes['TG']}
 | | ...                                         | ${nodes['DUT1']}
@@ -193,12 +193,12 @@
 
 | TC06: DUT with two L2BDs (MAC learn) switches ICMPv4 between TG and VM links
 | | [Documentation]
-| | ... | (Top) TG=DUT=VM. (Enc) Eth-IPv4-ICMPv4. (Cfg) On DUT1 configure
+| | ... | [Top] TG=DUT=VM. [Enc] Eth-IPv4-ICMPv4. [Cfg] On DUT1 configure \
 | | ... | two L2BDs with MAC learning, each with vhost-user i/f to local
 | | ... | VM and i/f to TG; configure VM to loop pkts back betwen its two
-| | ... | virtio i/fs. (Ver) Make TG verify ICMPv4 Echo Req pkts are
+| | ... | virtio i/fs. [Ver] Make TG verify ICMPv4 Echo Req pkts are
 | | ... | switched thru DUT1 and VM in both directions and are correct on
-| | ... | receive. (Ref)
+| | ... | receive. [Ref]
 | | [Tags] | 3_NODE_DOUBLE_LINK_TOPO | VPP_VM_ENV
 | | Given Path for 2-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
@@ -225,12 +225,12 @@
 
 | TC07: DUT with two L2BDs (MAC learn) switches ICMPv6 between TG and VM links
 | | [Documentation]
-| | ... | (Top) TG=DUT=VM. (Enc) Eth-IPv6-ICMPv6. (Cfg) On DUT1 configure
+| | ... | [Top] TG=DUT=VM. [Enc] Eth-IPv6-ICMPv6. [Cfg] On DUT1 configure \
 | | ... | two L2BDs with MAC learning, each with vhost-user i/f to local
 | | ... | VM and i/f to TG; configure VM to loop pkts back betwen its two
-| | ... | virtio i/fs. (Ver) Make TG verify ICMPv6 Echo Req pkts are
+| | ... | virtio i/fs. [Ver] Make TG verify ICMPv6 Echo Req pkts are
 | | ... | switched thru DUT1 and VM in both directions and are correct on
-| | ... | receive. (Ref)
+| | ... | receive. [Ref]
 | | [Tags] | 3_NODE_DOUBLE_LINK_TOPO | VPP_VM_ENV
 | | Given Path for 2-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
@@ -257,12 +257,12 @@
 
 | TC08: DUT with two L2BDs (static MACs) switches ICMPv4 between TG and VM links
 | | [Documentation]
-| | ... | (Top) TG=DUT=VM. (Enc) Eth-IPv4-ICMPv4. (Cfg) On DUT1 configure
+| | ... | [Top] TG=DUT=VM. [Enc] Eth-IPv4-ICMPv4. [Cfg] On DUT1 configure \
 | | ... | two L2BDs with static MACs, each with vhost-user i/f to local VM
 | | ... | and i/f to TG; configure VM to loop pkts back betwen its two
-| | ... | virtio i/fs. (Ver) Make TG verify ICMPv4 Echo Req pkts are
+| | ... | virtio i/fs. [Ver] Make TG verify ICMPv4 Echo Req pkts are
 | | ... | switched thru DUT1 and VM in both directions and are correct on
-| | ... | receive. (Ref)
+| | ... | receive. [Ref]
 | | [Tags] | 3_NODE_DOUBLE_LINK_TOPO | VPP_VM_ENV
 | | Given Path for 2-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
@@ -311,12 +311,12 @@
 
 | TC09: DUT with two L2BDs (static MACs) switches ICMPv6 between TG and VM links
 | | [Documentation]
-| | ... | (Top) TG=DUT=VM. (Enc) Eth-IPv6-ICMPv6. (Cfg) On DUT1 configure
+| | ... | [Top] TG=DUT=VM. [Enc] Eth-IPv6-ICMPv6. [Cfg] On DUT1 configure \
 | | ... | two L2BDs with static MACs, each with vhost-user i/f to local VM
 | | ... | and i/f to TG; configure VM to loop pkts back betwen its two
-| | ... | virtio i/fs. (Ver) Make TG verify ICMPv6 Echo Req pkts are
+| | ... | virtio i/fs. [Ver] Make TG verify ICMPv6 Echo Req pkts are
 | | ... | switched thru DUT1 and VM in both directions and are correct on
-| | ... | receive. (Ref)
+| | ... | receive. [Ref]
 | | [Tags] | 3_NODE_DOUBLE_LINK_TOPO | VPP_VM_ENV
 | | Given Path for 2-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
