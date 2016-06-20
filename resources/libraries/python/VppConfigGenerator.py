@@ -59,6 +59,12 @@ dpdk {{
 {pciconfig}
 {nomultiseg}
 }}
+
+ip6 {{
+  hash-buckets 2000000
+  heap-size 500m
+}}
+
 """
 # End VPP configuration template.
 
