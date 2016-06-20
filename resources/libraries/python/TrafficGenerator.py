@@ -344,6 +344,48 @@ class TrafficGenerator(object):
                                                 duration, rate, framesize, _p0,
                                                 _p1, _async, warmup_time),
                 timeout=int(duration)+60)
+        elif traffic_type in ["3-node-IPv6-dst-10000"]:
+            (ret, stdout, stderr) = ssh.exec_command(
+                "sh -c '{0}/resources/tools/t-rex/t-rex-stateless.py "
+                "--duration={1} -r {2} -s {3} -6 "
+                "--p{4}_src_start_ip 2001:1::1 "
+                "--p{4}_dst_start_ip 2001:2::0 "
+                "--p{4}_dst_end_ip 2001:2::270F "
+                "--p{5}_src_start_ip 2001:2::1 "
+                "--p{5}_dst_start_ip 2001:1::0 "
+                "--p{5}_dst_end_ip 2001:1::270F "
+                "{6} --warmup_time={7}'".format(Constants.REMOTE_FW_DIR,
+                                                duration, rate, framesize, _p0,
+                                                _p1, _async, warmup_time),
+                timeout=int(duration)+60)
+        elif traffic_type in ["3-node-IPv6-dst-100000"]:
+            (ret, stdout, stderr) = ssh.exec_command(
+                "sh -c '{0}/resources/tools/t-rex/t-rex-stateless.py "
+                "--duration={1} -r {2} -s {3} -6 "
+                "--p{4}_src_start_ip 2001:1::1 "
+                "--p{4}_dst_start_ip 2001:2::0 "
+                "--p{4}_dst_end_ip 2001:2::1:869F "
+                "--p{5}_src_start_ip 2001:2::1 "
+                "--p{5}_dst_start_ip 2001:1::0 "
+                "--p{5}_dst_end_ip 2001:1::1:869F "
+                "{6} --warmup_time={7}'".format(Constants.REMOTE_FW_DIR,
+                                                duration, rate, framesize, _p0,
+                                                _p1, _async, warmup_time),
+                timeout=int(duration)+60)
+        elif traffic_type in ["3-node-IPv6-dst-1000000"]:
+            (ret, stdout, stderr) = ssh.exec_command(
+                "sh -c '{0}/resources/tools/t-rex/t-rex-stateless.py "
+                "--duration={1} -r {2} -s {3} -6 "
+                "--p{4}_src_start_ip 2001:1::1 "
+                "--p{4}_dst_start_ip 2001:2::0 "
+                "--p{4}_dst_end_ip 2001:2::F:423F "
+                "--p{5}_src_start_ip 2001:2::1 "
+                "--p{5}_dst_start_ip 2001:1::0 "
+                "--p{5}_dst_end_ip 2001:1::F:423F "
+                "{6} --warmup_time={7}'".format(Constants.REMOTE_FW_DIR,
+                                                duration, rate, framesize, _p0,
+                                                _p1, _async, warmup_time),
+                timeout=int(duration)+60)
         else:
             raise NotImplementedError('Unsupported traffic type')
 
