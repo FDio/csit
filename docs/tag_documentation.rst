@@ -93,3 +93,15 @@ PDR
 NDR
     Non Drop Rate evaluation of results. Loss acceptance of dropped packets is
     set to zero lost packets.
+
+Scaling TAGs
+------------
+
+FIB_10K
+    10,000 entries in single IP fib table
+
+FIB_100K
+    100,000 entries in single IP fib table
+
+FIB_1000K
+    1,000,000 entries in single IP fib table
