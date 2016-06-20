@@ -16,6 +16,24 @@
       "revId": "c744630c40e4f4be54a608f20c812c1f660231f7",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_ea4a7e82",
+        "filename": "resources/tools/robot_output_parser_publish.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-06-20T13:37:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba092121_8aa42258",
+      "revId": "c744630c40e4f4be54a608f20c812c1f660231f7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
