@@ -16,6 +16,8 @@
 from resources.libraries.python.VatExecutor import VatTerminal
 from resources.libraries.python.topology import Topology
 
+from ipaddress import ip_address
+
 
 class Routing(object):
     """Routing utilities."""
@@ -59,6 +61,39 @@ class Routing(object):
                                                     via=via,
                                                     interface=int_cmd,
                                                     resolve_attempts=rap)
+
+    def vpp_route_add_count(self, node, network, prefix_len, gateway=None,
+                            interface=None, use_sw_index=True,
+                            resolve_attempts=10, count=1):
+        """Add specified number of routes to the VPP node.
+
+        :param node: Node to add route on.
+        :param network: Route destination network address.
+        :param prefix_len: Route destination network prefix length.
+        :param gateway: Route gateway address.
+        :param interface: Route interface.
+        :param use_sw_index: Use sw_if_index in VAT command.
+        :param resolve_attempts: Resolve attempts IP route add parameter.
+        If None, then is not used.
+        :param count: number of sequentional ip address to add
+        :type node: dict
+        :type network: str
+        :type prefix_len: int
+        :type gateway: str
+        :type interface: str
+        :type use_sw_index: bool
+        :type resolve_attempts: int
+        :type count: int
+        """
+        int_ip_address = int(ip_address(unicode(network)))
+
+        for i in range(int(count)):
+            int_ip_address += i
+            str_ip_address = str(ip_address(int_ip_address))
+            self.vpp_route_add(node, str_ip_address, prefix_len,
+                               gateway=gateway, interface=interface,
+                               use_sw_index=use_sw_index,
+                               resolve_attempts=resolve_attempts)
 
     @staticmethod
     def add_fib_table(node, network, prefix_len, fib_id, place):
