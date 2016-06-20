@@ -27,7 +27,7 @@ sudo apt-get -y install libpython2.7-dev python-virtualenv
 
 PYBOT_ARGS="--noncritical MULTI_THREAD"
 
-ARCHIVE_ARTIFACTS=(log.html output.xml report.html output_perf_data.json)
+ARCHIVE_ARTIFACTS=(log.html output.xml report.html output_perf_data.xml)
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 export PYTHONPATH=${SCRIPT_DIR}
@@ -404,7 +404,7 @@ echo Post-processing test data...
 # Getting JSON perf data output
 python ${SCRIPT_DIR}/resources/tools/robot_output_parser.py \
        -i ${SCRIPT_DIR}/log_perf_test_set.xml \
-       -o ${SCRIPT_DIR}/output_perf_data.json \
+       -o ${SCRIPT_DIR}/output_perf_data.xml \
        -v ${VPP_VER}
 if [ ! $? -eq 0 ]; then
     echo "Parsing ${SCRIPT_DIR}/log_perf_test_set.xml failed"
