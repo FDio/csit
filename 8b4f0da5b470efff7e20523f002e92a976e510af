@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba092121_ca09fa96",
+        "filename": "resources/libraries/python/honeycomb/Notifications.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-20T13:57:21Z",
+      "side": 1,
+      "message": "C",
+      "range": {
+        "startLine": 73,
+        "startChar": 22,
+        "endLine": 73,
+        "endChar": 23
+      },
+      "revId": "8b4f0da5b470efff7e20523f002e92a976e510af",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_aafec669",
+        "filename": "resources/libraries/python/honeycomb/Notifications.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-20T13:57:21Z",
+      "side": 1,
+      "message": "N",
+      "range": {
+        "startLine": 74,
+        "startChar": 22,
+        "endLine": 74,
+        "endChar": 23
+      },
+      "revId": "8b4f0da5b470efff7e20523f002e92a976e510af",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_2a4e36c2",
+        "filename": "resources/libraries/robot/honeycomb/notifications.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-20T13:57:21Z",
+      "side": 1,
+      "message": "Missing \\| at the end: up \\|",
+      "range": {
+        "startLine": 56,
+        "startChar": 37,
+        "endLine": 56,
+        "endChar": 39
+      },
+      "revId": "8b4f0da5b470efff7e20523f002e92a976e510af",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_ca9a1a14",
+        "filename": "resources/libraries/robot/honeycomb/notifications.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-20T13:57:21Z",
+      "side": 1,
+      "message": "Is this correct example of interface name?",
+      "range": {
+        "startLine": 73,
+        "startChar": 13,
+        "endLine": 73,
+        "endChar": 27
+      },
+      "revId": "8b4f0da5b470efff7e20523f002e92a976e510af",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_cac1fae5",
+        "filename": "tests/suites/honeycomb/9 - notification.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-20T13:57:21Z",
+      "side": 1,
+      "message": "Does it mean that you can use name different from the VPP name in HC? I.e. in VPP the name of TAP interface is tap-{number} (starting from tap-0) but you can define your own name in the HC, e.g. tap_test?",
+      "range": {
+        "startLine": 18,
+        "startChar": 22,
+        "endLine": 18,
+        "endChar": 30
+      },
+      "revId": "8b4f0da5b470efff7e20523f002e92a976e510af",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
