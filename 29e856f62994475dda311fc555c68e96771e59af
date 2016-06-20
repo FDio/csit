@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "ba092121_8a5f8272",
+        "filename": "resources/libraries/python/topology.py",
+        "patchSetId": 25
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 74
+      },
+      "writtenOn": "2016-06-20T12:36:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba092121_1eacdbec",
+      "range": {
+        "startLine": 207,
+        "startChar": 8,
+        "endLine": 207,
+        "endChar": 29
+      },
+      "revId": "29e856f62994475dda311fc555c68e96771e59af",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba092121_5eaa53d5",
         "filename": "resources/libraries/python/topology.py",
         "patchSetId": 25
@@ -36,6 +60,30 @@
       "writtenOn": "2016-06-15T13:18:52Z",
       "side": 1,
       "message": "isn\u0027t same as get_vhost_user_if_name_by_sock in VhostUser.py?",
+      "range": {
+        "startLine": 222,
+        "startChar": 8,
+        "endLine": 222,
+        "endChar": 37
+      },
+      "revId": "29e856f62994475dda311fc555c68e96771e59af",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_aa5a4681",
+        "filename": "resources/libraries/python/topology.py",
+        "patchSetId": 25
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 74
+      },
+      "writtenOn": "2016-06-20T12:36:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba092121_5eaa53d5",
       "range": {
         "startLine": 222,
         "startChar": 8,
