@@ -92,7 +92,7 @@ def get_start_end_ipv6(start_ip, end_ip):
             print "IPv6: start_ip is greater then end_ip"
             sys.exit(2)
 
-        max_p1 = abs(int(lo1) - int(lo2)) + 1
+        max_p1 = abs(int(lo1) - int(lo2))
         base_p1 = lo1
     except AddressValueError as ex_error:
         print ex_error
@@ -181,33 +181,55 @@ def create_packets_v6(traffic_options, frame_size=78):
     p2_src_end_ip = traffic_options['p2_src_end_ip']
     p2_dst_start_ip = traffic_options['p2_dst_start_ip']
 
-    base_p1, max_p1 = get_start_end_ipv6(p1_src_start_ip, p1_src_end_ip)
-    base_p2, max_p2 = get_start_end_ipv6(p2_src_start_ip, p2_src_end_ip)
+    p1_dst_end_ip = traffic_options['p1_dst_end_ip']
+    p2_dst_end_ip = traffic_options['p2_dst_end_ip']
 
     base_pkt_a = Ether()/IPv6(src=p1_src_start_ip, dst=p1_dst_start_ip)
     base_pkt_b = Ether()/IPv6(src=p2_src_start_ip, dst=p2_dst_start_ip)
 
-    # The following code applies raw instructions to packet (IP src increment).
-    # It splits the generated traffic by "ip_src" variable to cores
-    vm1 = STLScVmRaw([STLVmFlowVar(name="ipv6_src",
-                                   min_value=base_p1,
-                                   max_value=max_p1+base_p1,
-                                   size=8, op="inc"),
-                      STLVmWrFlowVar(fv_name="ipv6_src", pkt_offset="IPv6.src",
-                                     offset_fixup=8)
-                     ]
-                     , split_by_field="ipv6_src")
+    # The following code applies raw instructions to packet (IP src/dst
+    # increment). It splits the generated traffic by "ip_src"/"ip_dst" variable
+    # to cores and fix IPv4 header checksum.
+    if p1_dst_end_ip and p1_dst_end_ip:
+        base_p1, max_p1 = get_start_end_ipv6(p1_dst_start_ip, p1_dst_end_ip)
+        base_p2, max_p2 = get_start_end_ipv6(p2_dst_start_ip, p2_dst_end_ip)
 
-    # The following code applies raw instructions to packet (IP src increment).
-    # It splits the generated traffic by "ip_src" variable to cores
-    vm2 = STLScVmRaw([STLVmFlowVar(name="ipv6_src",
-                                   min_value=base_p2,
-                                   max_value=max_p2+base_p2,
-                                   size=8, op="inc"),
-                      STLVmWrFlowVar(fv_name="ipv6_src", pkt_offset="IPv6.src",
-                                     offset_fixup=8)
-                     ]
-                     , split_by_field="ipv6_src")
+        vm1 = STLScVmRaw([STLVmFlowVar(name="ipv6_dst",
+                                       min_value=base_p1,
+                                       max_value=max_p1+base_p1,
+                                       size=8, op="inc"),
+                          STLVmWrFlowVar(fv_name="ipv6_dst", pkt_offset="IPv6.dst",
+                                         offset_fixup=8)
+                         ]
+                         , split_by_field="ipv6_dst")
+        vm2 = STLScVmRaw([STLVmFlowVar(name="ipv6_dst",
+                                       min_value=base_p2,
+                                       max_value=max_p2+base_p2,
+                                       size=8, op="inc"),
+                          STLVmWrFlowVar(fv_name="ipv6_dst", pkt_offset="IPv6.dst",
+                                         offset_fixup=8)
+                         ]
+                         , split_by_field="ipv6_dst")
+    else:
+        base_p1, max_p1 = get_start_end_ipv6(p1_src_start_ip, p1_src_end_ip)
+        base_p2, max_p2 = get_start_end_ipv6(p2_src_start_ip, p2_src_end_ip)
+
+        vm1 = STLScVmRaw([STLVmFlowVar(name="ipv6_src",
+                                       min_value=base_p1,
+                                       max_value=max_p1+base_p1,
+                                       size=8, op="inc"),
+                          STLVmWrFlowVar(fv_name="ipv6_src", pkt_offset="IPv6.src",
+                                         offset_fixup=8)
+                         ]
+                         , split_by_field="ipv6_src")
+        vm2 = STLScVmRaw([STLVmFlowVar(name="ipv6_src",
+                                       min_value=base_p2,
+                                       max_value=max_p2+base_p2,
+                                       size=8, op="inc"),
+                          STLVmWrFlowVar(fv_name="ipv6_src", pkt_offset="IPv6.src",
+                                         offset_fixup=8)
+                         ]
+                         , split_by_field="ipv6_src")
 
     pkt_a = STLPktBuilder(pkt=base_pkt_a/generate_payload(
         max(0, fsize_no_fcs-len(base_pkt_a))), vm=vm1)
@@ -366,24 +388,28 @@ def main():
 #                        help="Port 1 destination MAC address")
     parser.add_argument("--p1_src_start_ip", required=True,
                         help="Port 1 source start IP address")
-    parser.add_argument("--p1_src_end_ip", required=True,
+    parser.add_argument("--p1_src_end_ip",
+                        default=False,
                         help="Port 1 source end IP address")
     parser.add_argument("--p1_dst_start_ip", required=True,
                         help="Port 1 destination start IP address")
-#    parser.add_argument("--p1_dst_end_ip",
-#                        help="Port 1 destination end IP address")
+    parser.add_argument("--p1_dst_end_ip",
+                        default=False,
+                        help="Port 1 destination end IP address")
 #    parser.add_argument("--p2_src_mac",
 #                        help="Port 2 source MAC address")
 #    parser.add_argument("--p2_dst_mac",
 #                        help="Port 2 destination MAC address")
     parser.add_argument("--p2_src_start_ip", required=True,
                         help="Port 2 source start IP address")
-    parser.add_argument("--p2_src_end_ip", required=True,
+    parser.add_argument("--p2_src_end_ip",
+                        default=False,
                         help="Port 2 source end IP address")
     parser.add_argument("--p2_dst_start_ip", required=True,
                         help="Port 2 destination start IP address")
-#    parser.add_argument("--p2_dst_end_ip",
-#                        help="Port 2 destination end IP address")
+    parser.add_argument("--p2_dst_end_ip",
+                        default=False,
+                        help="Port 2 destination end IP address")
 
     args = parser.parse_args()
 
