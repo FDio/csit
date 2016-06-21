@@ -12,7 +12,6 @@
 # limitations under the License.
 
 *** Settings ***
-| Documentation | LISP API test.
 | Library | resources.libraries.python.topology.Topology
 | Library | resources.libraries.python.NodePath
 | Library | resources.libraries.python.Trace
@@ -28,30 +27,39 @@
 | ...        | AND          | Setup all TGs before traffic script
 | ...        | AND          | Update All Interface Data On All Nodes | ${nodes}
 | Test Teardown | Show Packet Trace on All DUTs | ${nodes}
+| Documentation | *LISP API test cases*
+| ...
+| ... | *[Top] Network Topologies:* DUT1 1-node topology.
+| ... | *[Enc] Packet Encapsulations:* None.
+| ... | *[Cfg] DUT configuration:* DUT1 gets configured with all LISP
+| ... | parameters.
+| ... | *[Ver] Verification:* DUT1 operational data gets verified following
+| ... | configuration.
+| ... | *[Ref] Applicable standard specifications:* RFC6830.
 
 *** Variables ***
 | ${locator_set_num}= | 3
 
 *** Test Cases ***
 
-Vpp can enable and disable Lisp
-| | [Documentation] | Test lisp enable/disable API.
-| | ...             | Enable lisp on the VPP node,
-| | ...             | check if the lisp on the vpp node is enabled.
-| | ...             | Then disable lisp on the vpp node and check if
-| | ...             | the lisp is disabled on the vpp node.
+| TC01: DUT can enable and disable LISP
+| | [Documentation]
+| | ... | [Top] DUT1. [Enc] None. [Cfg1] Test LISP enable/disable API; On \
+| | ... | DUT1 enable LISP. [Ver1] Check DUT1 if LISP is enabled. [Cfg2]
+| | ... | Then disable LISP. [Ver2] Check DUT1 if LISP is disabled. [Ref]
+| | ... | RFC6830.
 | | When Enable lisp | ${nodes['DUT1']}
 | | Then Check if lisp is enabled | ${nodes['DUT1']} | ${lisp_status}
 | | When Disable lisp | ${nodes['DUT1']}
 | | Then Check if lisp is disabled | ${nodes['DUT1']} | ${lisp_status}
 
-| VPP can add and delete locator_set
-| | [Documentation] | Test lisp locator_set API
-| | ...             | Set locator_set and locator on the VPP node,
-| | ...             | check the configured data and then remove it.
-| | ...             | Check if all locator_set and locators was unset
-| | ...             | from the VPP node.
-| | ...
+| TC02: DUT can add and delete locator_set
+| | [Documentation]
+| | ... | [Top] DUT1. [Enc] None. [Cfg1] Test LISP locator_set API; on \
+| | ... | DUT1 configure locator_set and locator. [Ver1] Check DUT1
+| | ... | configured locator_set and locator are correct. [Cfg2] Then
+| | ... | remove locator_set and locator. [Ver2] check DUT1 locator_set
+| | ... | and locator are removed. [Ref] RFC6830.
 | | Given Lisp locator_set data is prepared
 | | ... | ${nodes['DUT1']} | ${locator_set_num}
 | | And   Enable lisp | ${nodes['DUT1']}
@@ -60,14 +68,15 @@ Vpp can enable and disable Lisp
 | | When Delete all lisp locator_set from VPP | ${nodes['DUT1']}
 | | Then Lisp locator_set should be unset | ${nodes['DUT1']}
 
-| VPP can add, reset and delete locator_set
-| | [Documentation] | Test lisp locator_set API
-| | ...             | Set locator_set and locator on the VPP node,
-| | ...             | then reset locator_set and set it again.
-| | ...             | Check the configured data and then remove it.
-| | ...             | Check if all locator_set and locators was unset
-| | ...             | from the VPP node.
-| | ...
+| TC03: DUT can add, reset and delete locator_set
+| | [Documentation]
+| | ... | [Top] DUT1. [Enc] None. [Cfg1] Test LISP locator_set API; on \
+| | ... | DUT1 configure locator_set and locator. [Ver1] Check DUT1
+| | ... | locator_set and locator are correct. [Cfg2] Then reset
+| | ... | locator_set and set it again. [Ver2] Check DUT1 locator_set and
+| | ... | locator are correct. [Cfg3] Then remove locator_set and locator.
+| | ... | [Ver3] Check DUT1 all locator_set and locators are removed.
+| | ... | [Ref] RFC6830.
 | | Given Lisp locator_set data use for test reset locator_set are prepared
 | | ... | ${nodes['DUT1']} | ${locator_set_num}
 | | And   Enable lisp | ${nodes['DUT1']}
@@ -76,13 +85,12 @@ Vpp can enable and disable Lisp
 | | When Delete all lisp locator_set from VPP | ${nodes['DUT1']}
 | | Then Lisp locator_set should be unset | ${nodes['DUT1']}
 
-| Vpp can add and delete eid address
-| | [Documentation] | Test lisp eid API
-| | ...             | Set lisp eid IP address on the VPP node,
-| | ...             | check the configured data and then remove it.
-| | ...             | Check if all eid IP address was unset
-| | ...             | from the VPP node.
-| | ...
+| TC04: DUT can add and delete eid address
+| | [Documentation]
+| | ... | [Top] DUT1. [Enc] None. [Cfg1] Test LISP eid API; on DUT1 \
+| | ... | configure LISP eid IP address. [Ver1] Check DUT1 configured data
+| | ... | is correct. [Cfg2] Remove configured data. [Ver2] Check DUT1 all
+| | ... | eid IP addresses are removed. [Ref] RFC6830.
 | | Given Enable lisp | ${nodes['DUT1']}
 | | When Lisp eid address is set | ${nodes['DUT1']} | ${eid_table}
 | | Then Lisp eid address is set correctly to eid table | ${nodes['DUT1']}
@@ -90,13 +98,13 @@ Vpp can enable and disable Lisp
 | | When Delete all lisp eid address from VPP | ${nodes['DUT1']} | ${eid_table}
 | | Then Lisp eid table should be empty | ${nodes['DUT1']}
 
-| Vpp can add and delete lisp map resolver address
-| | [Documentation] | Test lisp map resolver address API
-| | ...             | Set lisp map resolver address on the VPP node,
-| | ...             | check the configured data and then remove it.
-| | ...             | Check if all map resolver address was unset
-| | ...             | from the VPP node.
-| | ...
+| TC05: DUT can add and delete LISP map resolver address
+| | [Documentation]
+| | ... | [Top] DUT1. [Enc] None. [Cfg1] Test LISP map resolver address \
+| | ... | API; on DUT1 configure LISP map resolver address. [Ver1] Check
+| | ... | DUT1 configured data is correct. [Cfg2] Remove configured data.
+| | ... | [Ver2] Check DUT1 all map resolver addresses are removed. [Ref]
+| | ... | RFC6830.
 | | Given Enable lisp | ${nodes['DUT1']}
 | | When Lisp map resolver address is set | ${nodes['DUT1']} | ${map_resolver}
 | | Then Lisp map resolver address is set correctly | ${nodes['DUT1']}
