@@ -22,6 +22,30 @@
       "revId": "b795bb108e14165aea2b31fe47b585dd01f2e76e",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_c0f31972",
+        "filename": "resources/libraries/python/ProxyArp.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 84
+      },
+      "writtenOn": "2016-06-21T11:59:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba092121_ea95dee4",
+      "range": {
+        "startLine": 22,
+        "startChar": 8,
+        "endLine": 22,
+        "endChar": 29
+      },
+      "revId": "b795bb108e14165aea2b31fe47b585dd01f2e76e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
