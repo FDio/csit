@@ -109,6 +109,8 @@
 | | ... | ${node} | ${interface} | ${sub_if_id}
 | | Honeycomb adds sub-interface to bridge domain
 | | ... | ${node} | ${interface} | ${sub_if_id} | ${sub_bd_settings}
+| | Honeycomb configures tag rewrite
+| | ... | ${node} | ${interface} | ${sub_if_id} | ${tag_rewrite_pop_1}
 
 | Honeycomb and VPP should verify every setting
 | | [Documentation] | Uses Honeycomb and VAT to verify settings for VxLAN,\
@@ -149,6 +151,10 @@
 | | ... | ${node} | ${interface} | ${sub_if_id} | ${sub_bd_settings}
 | | Sub-interface bridge domain configuration from VAT should be
 | | ... | ${node} | ${sub_if_name} | ${sub_bd_settings}
+| | Rewrite tag from Honeycomb should be
+| | ... | ${node} | ${interface} | ${sub_if_id} | ${tag_rewrite_pop_1_oper}
+| | Rewrite tag from VAT should be
+| | ... | ${node} | ${sub_if_name} | ${tag_rewrite_pop_1_VAT}
 
 | Honeycomb and VPP should have default configuration
 | | [Documentation] | Uses Honeycomb and VAT to verify settings for VxLAN,\
