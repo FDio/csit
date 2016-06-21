@@ -20,7 +20,7 @@ TOPOLOGIES="topologies/available/lf_testbed1-X710-X520.yaml \
             topologies/available/lf_testbed3-X710-X520.yaml"
 
 VPP_STABLE_VER="16.09-rc0~85-gc71c426~b252_amd64"
-VPP_REPO_URL="https://nexus.fd.io/content/repositories/fd.io.master.ubuntu.trusty.main/io/vpp/"
+VPP_REPO_URL="https://nexus.fd.io/content/repositories/fd.io.master.ubuntu.trusty.main/io/fd/vpp/"
 
 # Reservation dir
 RESERVATION_DIR="/tmp/reservation_dir"
