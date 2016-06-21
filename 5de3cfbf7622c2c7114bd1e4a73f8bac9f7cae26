@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba092121_20fc153e",
+        "filename": "tests/suites/tagging/qinq_l2_xconnect.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-21T12:09:44Z",
+      "side": 1,
+      "message": "802.1ad?",
+      "range": {
+        "startLine": 31,
+        "startChar": 44,
+        "endLine": 31,
+        "endChar": 51
+      },
+      "revId": "5de3cfbf7622c2c7114bd1e4a73f8bac9f7cae26",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
