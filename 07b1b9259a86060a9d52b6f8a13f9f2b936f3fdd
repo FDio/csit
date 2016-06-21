@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "ba092121_db378aaf",
+        "filename": "tests/suites/vxlan/vxlan_bd_dot1q.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-21T18:22:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba092121_a08265fe",
+      "range": {
+        "startLine": 48,
+        "startChar": 39,
+        "endLine": 48,
+        "endChar": 42
+      },
+      "revId": "07b1b9259a86060a9d52b6f8a13f9f2b936f3fdd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba092121_607c4d21",
         "filename": "tests/suites/vxlan/vxlan_bd_dot1q.robot",
         "patchSetId": 5
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "ba092121_bb3cd694",
+        "filename": "tests/suites/vxlan/vxlan_bd_dot1q.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-21T18:22:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba092121_607c4d21",
+      "range": {
+        "startLine": 51,
+        "startChar": 57,
+        "endLine": 51,
+        "endChar": 64
+      },
+      "revId": "07b1b9259a86060a9d52b6f8a13f9f2b936f3fdd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba092121_0073514e",
         "filename": "tests/suites/vxlan/vxlan_bd_untagged.robot",
         "patchSetId": 5
@@ -59,6 +107,30 @@
       "writtenOn": "2016-06-21T11:01:31Z",
       "side": 1,
       "message": "Please, see comment in patch 1 regarding configuration of BDs on DUT2.",
+      "range": {
+        "startLine": 88,
+        "startChar": 67,
+        "endLine": 88,
+        "endChar": 71
+      },
+      "revId": "07b1b9259a86060a9d52b6f8a13f9f2b936f3fdd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_7b463e25",
+        "filename": "tests/suites/vxlan/vxlan_bd_untagged.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-21T18:22:57Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba092121_0073514e",
       "range": {
         "startLine": 88,
         "startChar": 67,
