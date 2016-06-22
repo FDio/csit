@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba092121_b403c472",
+        "filename": "resources/libraries/python/Docker.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 101
+      },
+      "writtenOn": "2016-06-22T15:53:36Z",
+      "side": 1,
+      "message": "As mentioned unicast via email -- happy to ensure that docker is installed on the physical testbeds and on the VM image (used for VIRL and Vagrant environments), but we can NOT have external downloads as part of routine testcase execution. Anything and everything that is required by the test case, needs to be pre-installed in the environment.",
+      "range": {
+        "startLine": 54,
+        "startChar": 8,
+        "endLine": 54,
+        "endChar": 44
+      },
+      "revId": "ec36a3fee1b8afb2c82f5edf36316711cee80139",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_74f52c82",
+        "filename": "resources/libraries/python/Docker.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 101
+      },
+      "writtenOn": "2016-06-22T15:53:36Z",
+      "side": 1,
+      "message": "Same comment here. Fetching the Ubuntu docker base image (188MB in size, I believe) each time a test case is executed, is a no-go. We have to make sure that the image is downloaded once and made available as part of the infrastructure outside of the test case.",
+      "range": {
+        "startLine": 77,
+        "startChar": 8,
+        "endLine": 77,
+        "endChar": 42
+      },
+      "revId": "ec36a3fee1b8afb2c82f5edf36316711cee80139",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
