@@ -1,0 +1,280 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba092121_76b093f4",
+        "filename": "resources/libraries/robot/honeycomb/bridge_domain.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-22T11:15:52Z",
+      "side": 1,
+      "message": "to check assignment ?",
+      "range": {
+        "startLine": 176,
+        "startChar": 57,
+        "endLine": 176,
+        "endChar": 66
+      },
+      "revId": "120738c15b351adeb34ba1ba3a07cef5c4635fa4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_56958f3e",
+        "filename": "resources/libraries/robot/honeycomb/bridge_domain.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-22T11:15:52Z",
+      "side": 1,
+      "message": "should not",
+      "range": {
+        "startLine": 184,
+        "startChar": 23,
+        "endLine": 184,
+        "endChar": 29
+      },
+      "revId": "120738c15b351adeb34ba1ba3a07cef5c4635fa4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_169f1761",
+        "filename": "resources/libraries/robot/honeycomb/bridge_domain.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-22T11:15:52Z",
+      "side": 1,
+      "message": "I guess it should not be here as you don\u0027t expect failure in this KW.",
+      "range": {
+        "startLine": 195,
+        "startChar": 23,
+        "endLine": 195,
+        "endChar": 44
+      },
+      "revId": "120738c15b351adeb34ba1ba3a07cef5c4635fa4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_f69b8370",
+        "filename": "resources/libraries/robot/honeycomb/bridge_domain.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-22T11:15:52Z",
+      "side": 1,
+      "message": "to check assignment ?",
+      "range": {
+        "startLine": 201,
+        "startChar": 57,
+        "endLine": 201,
+        "endChar": 66
+      },
+      "revId": "120738c15b351adeb34ba1ba3a07cef5c4635fa4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_d6887f24",
+        "filename": "resources/libraries/robot/honeycomb/bridge_domain.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-22T11:15:52Z",
+      "side": 1,
+      "message": "to check assignment ?",
+      "range": {
+        "startLine": 231,
+        "startChar": 57,
+        "endLine": 231,
+        "endChar": 66
+      },
+      "revId": "120738c15b351adeb34ba1ba3a07cef5c4635fa4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_b68d0b34",
+        "filename": "resources/libraries/robot/honeycomb/bridge_domain.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 238,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-22T11:15:52Z",
+      "side": 1,
+      "message": "should not",
+      "range": {
+        "startLine": 238,
+        "startChar": 17,
+        "endLine": 238,
+        "endChar": 23
+      },
+      "revId": "120738c15b351adeb34ba1ba3a07cef5c4635fa4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_16c4b73e",
+        "filename": "resources/libraries/robot/honeycomb/interfaces.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-22T11:15:52Z",
+      "side": 1,
+      "message": "Please, remove removed params from argument description too.",
+      "range": {
+        "startLine": 102,
+        "startChar": 10,
+        "endLine": 103,
+        "endChar": 67
+      },
+      "revId": "120738c15b351adeb34ba1ba3a07cef5c4635fa4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_d68f5f22",
+        "filename": "resources/libraries/robot/honeycomb/interfaces.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-22T11:15:52Z",
+      "side": 1,
+      "message": "Please, remove removed params from example too.",
+      "range": {
+        "startLine": 110,
+        "startChar": 10,
+        "endLine": 110,
+        "endChar": 47
+      },
+      "revId": "120738c15b351adeb34ba1ba3a07cef5c4635fa4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_f6c0232c",
+        "filename": "resources/libraries/robot/honeycomb/interfaces.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-22T11:15:52Z",
+      "side": 1,
+      "message": "Please, add settings parameter description.",
+      "range": {
+        "startLine": 124,
+        "startChar": 11,
+        "endLine": 124,
+        "endChar": 20
+      },
+      "revId": "120738c15b351adeb34ba1ba3a07cef5c4635fa4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_96e7a7e4",
+        "filename": "resources/libraries/robot/honeycomb/interfaces.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-22T11:15:52Z",
+      "side": 1,
+      "message": "Please, remove not defined parameters from example.",
+      "range": {
+        "startLine": 155,
+        "startChar": 34,
+        "endLine": 155,
+        "endChar": 67
+      },
+      "revId": "120738c15b351adeb34ba1ba3a07cef5c4635fa4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_76ec13c8",
+        "filename": "tests/suites/honeycomb/1 - interface_management.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-22T11:15:52Z",
+      "side": 1,
+      "message": "with address and netmask provided.",
+      "range": {
+        "startLine": 55,
+        "startChar": 78,
+        "endLine": 55,
+        "endChar": 79
+      },
+      "revId": "120738c15b351adeb34ba1ba3a07cef5c4635fa4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_36ce9b5b",
+        "filename": "tests/suites/honeycomb/1 - interface_management.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-22T11:15:52Z",
+      "side": 1,
+      "message": "with address and prefix provided.",
+      "range": {
+        "startLine": 67,
+        "startChar": 78,
+        "endLine": 67,
+        "endChar": 79
+      },
+      "revId": "120738c15b351adeb34ba1ba3a07cef5c4635fa4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
