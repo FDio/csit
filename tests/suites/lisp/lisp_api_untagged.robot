@@ -91,6 +91,7 @@
 | | ... | configure LISP eid IP address. [Ver1] Check DUT1 configured data
 | | ... | is correct. [Cfg2] Remove configured data. [Ver2] Check DUT1 all
 | | ... | eid IP addresses are removed. [Ref] RFC6830.
+| | [Tags] | EXPECTED_FAILING
 | | Given Enable lisp | ${nodes['DUT1']}
 | | When Lisp eid address is set | ${nodes['DUT1']} | ${eid_table}
 | | Then Lisp eid address is set correctly to eid table | ${nodes['DUT1']}
