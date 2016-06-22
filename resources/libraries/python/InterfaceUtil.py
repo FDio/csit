@@ -748,3 +748,16 @@ class InterfaceUtil(object):
             return {}
 
         return vxlan_gpe_data[0]
+
+    @staticmethod
+    def vpp_ip_source_check_setup(node, interface):
+        """Setup Reverse Path Forwarding source check on interface.
+
+        :param node: Node to add FIB on.
+        :param interface: Interface name to setup source check.
+        :type node: dict
+        :type interface: str
+        """
+        with VatTerminal(node) as vat:
+            vat.vat_terminal_exec_cmd_from_template("ip_source_check.vat",
+                                                    interface_name=interface)
