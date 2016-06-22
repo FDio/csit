@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba092121_36e45b0c",
+        "filename": "resources/libraries/python/honeycomb/Notifications.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-06-22T10:29:08Z",
+      "side": 1,
+      "message": "It is \"message delimiter\".",
+      "range": {
+        "startLine": 83,
+        "startChar": 36,
+        "endLine": 83,
+        "endChar": 71
+      },
+      "revId": "21ba46fa6e4c0b9da73dd66ac302128a6ae203bb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
