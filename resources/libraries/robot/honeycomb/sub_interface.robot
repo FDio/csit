@@ -69,6 +69,49 @@
 | | ... | ${node} | ${super_interface} | ${identifier}
 | | interfaceAPI.Compare Data Structures | ${api_data} | ${sub_if_settings}
 
+| Sub-interface configuration from Honeycomb should be empty
+| | [Documentation] | Retrieves sub-interface configuration through Honeycomb \
+| | ... | and expects no data.
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - Information about a DUT node. Type: dictionary
+| | ... | - super_interface - Super-interface. Type: string
+| | ... | - identifier - Sub-interface ID. Type: integer or string
+| | ...
+| | ... | *Example:*
+| | ... | \| Sub-interface configuration from Honeycomb should be empty\
+| | ... | \| ${nodes['DUT1']} \| GigabitEthernet0/8/0 \| 1 \|
+| | ...
+| | [Arguments] | ${node} | ${super_interface} | ${identifier}
+| | ...
+| | Run keyword and expect error | *KeyError: 'sub-interface'*
+| | ... | interfaceAPI.Get sub interface oper data
+| | ... | ${node} | ${super_interface} | ${identifier}
+
+| Sub-interface state from Honeycomb should be
+| | [Documentation] | Retrieves sub-interface configuration through Honeycomb \
+| | ... | and checks the administrative and operational state.
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - Information about a DUT node. Type: dictionary
+| | ... | - super_interface - Super-interface. Type: string
+| | ... | - identifier - Sub-interface ID. Type: integer or string
+| | ... | - admin_state - Required administrative state - up or down. \
+| | ... | Type: string
+| | ... | - oper_state - Required operational state - up or down. Type: string
+| | ...
+| | ... | *Example:*
+| | ... | \| Sub-interface state from Honeycomb should be\
+| | ... | \| ${nodes['DUT1']} \| GigabitEthernet0/8/0 \| 1 \| up \| up \|
+| | ...
+| | [Arguments] | ${node} | ${super_interface} | ${identifier}
+| | ... | ${admin_state} | ${oper_state}
+| | ...
+| | ${api_data}= | interfaceAPI.Get sub interface oper data
+| | ... | ${node} | ${super_interface} | ${identifier}
+| | Should be equal | ${api_data['admin-status']} | ${admin_state}
+| | Should be equal | ${api_data['oper-status']} | ${oper_state}
+
 | Sub-interface configuration from VAT should be
 | | [Documentation] | Retrieves sub-interface configuration through VAT and\
 | | ... | compares it with settings supplied in argument.
@@ -98,6 +141,35 @@
 | | Run keyword if | ${vat_data['link_up_down']} == 1
 | | ... | Should be equal as strings
 | | ... | ${sub_interface_settings['oper-status']} | up
+
+| Sub-interface state from VAT should be
+| | [Documentation] | Retrieves sub-interface configuration through VAT and \
+| | ... | checks the administrative and operational state.
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - Information about a DUT node. Type: dictionary
+| | ... | - sub_interface - Name of an sub-interface on the specified node. \
+| | ... | Type: string
+| | ... | - admin_state - Required administrative state - up or down. \
+| | ... | Type: string
+| | ... | - oper_state - Required operational state - up or down. Type: string
+| | ...
+| | ... | *Example:*
+| | ... | \| Sub-interface state from VAT should be \
+| | ... | \| ${nodes['DUT1']} \| GigabitEthernet0/8/0.1 \| up \| up \|
+| | ...
+| | [Arguments] | ${node} | ${sub_interface} | ${admin_state} | ${oper_state}
+| | ...
+| | ${vat_data}= | InterfaceCLI.VPP get interface data
+| | ... | ${node} | ${sub_interface}
+| | Run keyword if | '${admin_state}' == 'down'
+| | ... | Should be equal as strings | ${vat_data['admin_up_down']} | 0
+| | Run keyword if | '${admin_state}' == 'up'
+| | ... | Should be equal as strings | ${vat_data['admin_up_down']} | 1
+| | Run keyword if | '${oper_state}' == 'down'
+| | ... | Should be equal as strings | ${vat_data['link_up_down']} | 0
+| | Run keyword if | '${oper_state}' == 'up'
+| | ... | Should be equal as strings | ${vat_data['link_up_down']} | 1
 
 | Sub-interface indices from Honeycomb and VAT should correspond
 | | [Documentation] | Uses VAT and Honeycomb to get operational data about the\
