@@ -20,7 +20,7 @@
 | Suite Teardown | Honeycomb removes all bridge domains | ${node}
 | Documentation | *Honeycomb sub-interface management test suite.*
 | ...
-| ...           | This test suite tests if it is posible to create, modify and\
+| ...           | This test suite tests if it is posible to create, modify and \
 | ...           | delete a sub-interface.
 | Force Tags | honeycomb_sanity
 
@@ -36,8 +36,8 @@
 | Honycomb creates sub-interface
 | | [Documentation] | Check if Honeycomb creates a sub-interface.
 | | ...
-| | Given interface configuration from Honeycomb should be empty
-| | ... | ${node} | ${sub_if_name}
+| | Given sub-interface configuration from Honeycomb should be empty
+| | ... | ${node} | ${super_if} | ${sub_if_id}
 | | And interface configuration from VAT should be empty
 | | ... | ${node} | ${sub_if_name}
 | | When Honeycomb creates sub-interface | ${node} | ${super_if}
@@ -52,7 +52,7 @@
 | | ... | ${node} | ${super_if} | ${sub_if_id}
 
 | Honeycomb sets interface and sub-interface up
-| | [Documentation] | Honeycomb changes the state of interface up and then\
+| | [Documentation] | Honeycomb changes the state of interface up and then \
 | | ... | changes the state of its sub-interface up, in this order.
 | | ...
 | | Given interface state from Honeycomb should be
@@ -65,45 +65,48 @@
 | | ... | ${node} | ${super_if} | up
 | | And interface state from VAT should be
 | | ... | ${node} | ${super_if} | up
-| | Given interface state from Honeycomb should be
-| | ... | ${node} | ${sub_if_name} | down
-| | And interface state from VAT should be
-| | ... | ${node} | ${sub_if_name} | down
+| | Given run keyword and continue on failure
+| | ... | Sub-interface state from Honeycomb should be
+| | ... | ${node} | ${super_if} | ${sub_if_id} | down | down
+| | And run keyword and continue on failure
+| | ... | Sub-interface state from VAT should be
+| | ... | ${node} | ${sub_if_name} | down | down
 | | When Honeycomb sets the sub-interface up
 | | ... | ${node} | ${super_if} | ${sub_if_id}
-| | Then interface state from Honeycomb should be
-| | ... | ${node} | ${sub_if_name} | up
-| | And Interface state from VAT should be
-| | ... | ${node} | ${sub_if_name} | up
+| | Then run keyword and continue on failure
+| | ... | Sub-interface state from Honeycomb should be
+| | ... | ${node} | ${super_if} | ${sub_if_id} | up | up
+| | And sub-interface state from VAT should be
+| | ... | ${node} | ${sub_if_name} | up | up
 
 | Honeycomb sets sub-interface down while its super-interface is up
-| | [Documentation] | Honeycomb sets the sub-interface down while its\
+| | [Documentation] | Honeycomb sets the sub-interface down while its \
 | | ... | super-interface is up. It must be possible.
 | | ...
 | | [Teardown] | Set super and sub interfaces up
 | | ... | ${node} | ${super_if} | ${sub_if_id}
 | | ...
-| | Given interface state from Honeycomb should be
-| | ... | ${node} | ${sub_if_name} | up
-| | And interface state from VAT should be
-| | ... | ${node} | ${sub_if_name} | up
+| | Given sub-interface state from Honeycomb should be
+| | ... | ${node} | ${super_if} | ${sub_if_id} | up | up
+| | And sub-interface state from VAT should be
+| | ... | ${node} | ${sub_if_name} | up | up
 | | And interface state from Honeycomb should be
 | | ... | ${node} | ${super_if} | up
 | | And interface state from VAT should be
 | | ... | ${node} | ${super_if} | up
 | | When Honeycomb sets the sub-interface down
 | | ... | ${node} | ${super_if} | ${sub_if_id}
-| | Then interface state from Honeycomb should be
-| | ... | ${node} | ${sub_if_name} | down
-| | And interface state from VAT should be
-| | ... | ${node} | ${sub_if_name} | down
+| | Then sub-interface state from Honeycomb should be
+| | ... | ${node} | ${super_if} | ${sub_if_id} | down | down
+| | And sub-interface state from VAT should be
+| | ... | ${node} | ${sub_if_name} | down | down
 | | And interface state from Honeycomb should be
 | | ... | ${node} | ${super_if} | up
 | | And interface state from VAT should be
 | | ... | ${node} | ${super_if} | up
 
 | Honeycomb sets interface and sub-interface down
-| | [Documentation] | Honeycomb changes the state of interface down and then\
+| | [Documentation] | Honeycomb changes the state of interface down and then \
 | | ... | changes the state of its sub-interface down, in this order.
 | | ...
 | | [Teardown] | Set super and sub interfaces down
@@ -119,39 +122,39 @@
 | | ... | ${node} | ${super_if} | down
 | | And interface state from VAT should be
 | | ... | ${node} | ${super_if} | down
-| | Given interface state from Honeycomb should be
-| | ... | ${node} | ${sub_if_name} | up
-| | And interface state from VAT should be
-| | ... | ${node} | ${sub_if_name} | up
+| | Given sub-interface state from Honeycomb should be
+| | ... | ${node} | ${super_if} | ${sub_if_id} | up | down
+| | And sub-interface state from VAT should be
+| | ... | ${node} | ${sub_if_name} | up | down
 | | When Honeycomb sets the sub-interface down
 | | ... | ${node} | ${super_if} | ${sub_if_id}
-| | Then interface state from Honeycomb should be
-| | ... | ${node} | ${sub_if_name} | down
-| | And interface state from VAT should be
-| | ... | ${node} | ${sub_if_name} | down
+| | Then sub-interface state from Honeycomb should be
+| | ... | ${node} | ${super_if} | ${sub_if_id} | down | down
+| | And sub-interface state from VAT should be
+| | ... | ${node} | ${sub_if_name} | down | down
 
 | Honeycomb fails to set sub-interface up while its super-interface is down
-| | [Documentation] | Honeycomb tries to set the sub-interface up while its\
+| | [Documentation] | Honeycomb tries to set the sub-interface up while its \
 | | ... | super-interface is down. It must not be possible.
 | | ...
 | | Given interface state from Honeycomb should be
 | | ... | ${node} | ${super_if} | down
 | | And interface state from VAT should be
 | | ... | ${node} | ${super_if} | down
-| | And interface state from Honeycomb should be
-| | ... | ${node} | ${sub_if_name} | down
-| | And interface state from VAT should be
-| | ... | ${node} | ${sub_if_name} | down
+| | And sub-interface state from Honeycomb should be
+| | ... | ${node} | ${super_if} | ${sub_if_id} | down | down
+| | And sub-interface state from VAT should be
+| | ... | ${node} | ${sub_if_name} | down | down
 | | When Honeycomb fails to set sub-interface up
 | | ... | ${node} | ${super_if} | ${sub_if_id}
 | | Then interface state from Honeycomb should be
 | | ... | ${node} | ${super_if} | down
 | | And interface state from VAT should be
 | | ... | ${node} | ${super_if} | down
-| | And interface state from Honeycomb should be
-| | ... | ${node} | ${sub_if_name} | down
-| | And interface state from VAT should be
-| | ... | ${node} | ${sub_if_name} | down
+| | And sub-interface state from Honeycomb should be
+| | ... | ${node} | ${super_if} | ${sub_if_id} | down | down
+| | And sub-interface state from VAT should be
+| | ... | ${node} | ${sub_if_name} | down | down
 
 | Honeycomb fails to delete sub-interface
 | | [Documentation] | Check if Honeycomb can delete an existing sub-interface.
@@ -194,7 +197,7 @@
 | | ... | ${node} | ${sub_if_name} | ${sub_if_1_oper}
 
 | Honeycomb enables tag-rewrite pop 1
-| | [Documentation] | Check if Honeycomb enables tag-rewrite and sets its\
+| | [Documentation] | Check if Honeycomb enables tag-rewrite and sets its \
 | | ... | parameters correctly. Case: pop 1.
 | | ...
 | | [Teardown] | VAT disables tag-rewrite | ${node} | ${super_if}.${sub_if_id}
@@ -209,7 +212,7 @@
 | | ... | ${node} | ${sub_if_name} | ${tag_rewrite_pop_1_VAT}
 
 | Honeycomb enables tag-rewrite push
-| | [Documentation] | Check if Honeycomb enables tag-rewrite and sets its\
+| | [Documentation] | Check if Honeycomb enables tag-rewrite and sets its \
 | | ... | parameters correctly. Case: push.
 | | ...
 | | [Teardown] | VAT disables tag-rewrite | ${node} | ${super_if}.${sub_if_id}
@@ -224,7 +227,7 @@
 | | ... | ${node} | ${sub_if_name} | ${tag_rewrite_push_VAT}
 
 | Honeycomb enables tag-rewrite translate 1-2
-| | [Documentation] | Check if Honeycomb enables tag-rewrite and sets its\
+| | [Documentation] | Check if Honeycomb enables tag-rewrite and sets its \
 | | ... | parameters correctly. Case: translate 1-2.
 | | ...
 | | [Teardown] | VAT disables tag-rewrite | ${node} | ${super_if}.${sub_if_id}
@@ -256,7 +259,7 @@
 | | ... | ${node} | ${sub_if_name} | ${tag_rewrite_disabled_VAT}
 
 | Honeycomb enables tag-rewrite pop 1 again
-| | [Documentation] | Check if Honeycomb can enable tag-rewrite again, once it\
+| | [Documentation] | Check if Honeycomb can enable tag-rewrite again, once it \
 | | ... | was disabled by Honeycomb.
 | | ...
 | | [Teardown] | VAT disables tag-rewrite | ${node} | ${super_if}.${sub_if_id}
@@ -308,7 +311,7 @@
 | | ... | ${node} | ${sub_if_name} | ${tag_rewrite_disabled_VAT}
 
 | Honeycomb fails to set wrong vlan-type in tag-rewrite
-| | [Documentation] | Check that Honeycomb does not accept wrong values of\
+| | [Documentation] | Check that Honeycomb does not accept wrong values of \
 | | ... | vlan-type in tag-rewrite.
 | | ...
 | | Given rewrite tag from Honeycomb should be empty
@@ -323,7 +326,7 @@
 
 *** Keywords ***
 | Set super and sub interfaces up
-| | [Documentation] | Honeycomb sets super-interface and sub-interface up, in\
+| | [Documentation] | Honeycomb sets super-interface and sub-interface up, in \
 | | ... | this order.
 | | ...
 | | ... | *Arguments:*
