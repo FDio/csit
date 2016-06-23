@@ -55,6 +55,8 @@
     shell: update-rc.d ondemand disable
   - name: Install 4.2 kernel
     apt: name=linux-generic-lts-xenial state=present
+  - name: Install cgroup-support
+    apt: name=cgroup-bin state=present
 - hosts: tg
   remote_user: testuser
   sudo: yes
