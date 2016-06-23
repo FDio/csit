@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba092121_f7bb7ec2",
+        "filename": "resources/libraries/python/honeycomb/HcAPIKwBridgeDomain.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 445,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-23T12:54:28Z",
+      "side": 1,
+      "message": "from",
+      "range": {
+        "startLine": 445,
+        "startChar": 33,
+        "endLine": 445,
+        "endChar": 37
+      },
+      "revId": "3d59c8707a2e5ce83b66de55d5b477f8d4881c46",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
