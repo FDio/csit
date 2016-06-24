@@ -20,7 +20,8 @@
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | VM_ENV | HW_ENV
 | Test Setup | Run Keywords | Setup all DUTs before test
 | ...        | AND          | Setup all TGs before traffic script
-| Test Teardown | Show Packet Trace on All DUTs | ${nodes}
+| Test Teardown | Run Keywords | Show Packet Trace on All DUTs | ${nodes}
+| ...           | AND          | Show vpp trace dump on all DUTs
 | Documentation | *RFC7348 VXLAN: L2 cross-connect with VXLAN test cases*
 | ...
 | ... | *[Top] Network topologies:* TG-DUT1-DUT2-TG 3-node circular topology

@@ -20,7 +20,8 @@
 | ... | L2 | Intel-X520-DA2
 | Suite Teardown | 3-node Performance Suite Teardown
 | Test Setup | Setup all DUTs before test
-| Test Teardown | Run Keyword | Remove startup configuration of VPP from all DUTs
+| Test Teardown | Run Keywords | Remove startup configuration of VPP from all DUTs
+| ...           | AND          | Show vpp trace dump on all DUTs
 | Documentation | *Reference NDR throughput L2BD verify test cases*
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology
@@ -46,7 +47,7 @@
 | | ... | [Cfg] DUT runs L2BD config with 1 thread, 1 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Verify ref-NDR for 64 Byte
 | | ... | frames using single trial throughput test.
-| | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | NDR
+| | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | NDR | THIS
 | | ${framesize}= | Set Variable | 64
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 3.2mpps

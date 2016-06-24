@@ -20,7 +20,8 @@
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | HW_ENV | VM_ENV
 | Test Setup | Setup all DUTs before test
 | Suite Setup | Setup all TGs before traffic script
-| Test Teardown | Show Packet Trace on All DUTs | ${nodes}
+| Test Teardown | Run Keywords | Show Packet Trace on All DUTs | ${nodes}
+| ...           | AND          | Show vpp trace dump on all DUTs
 | Documentation | *L2 cross-connect with QinQ test cases*
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology with

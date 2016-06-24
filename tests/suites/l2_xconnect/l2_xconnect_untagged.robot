@@ -63,6 +63,7 @@
 | | When All Vpp Interfaces Ready Wait | ${nodes}
 | | Then Send and receive ICMPv4 bidirectionally
 | | ... | ${tg_node} | ${tg_to_dut1} | ${tg_to_dut2}
+| | [Teardown] | Run Keyword | Show vpp trace dump on all DUTs
 
 | TC02: DUT1 and DUT2 with L2XC switch ICMPv6 between two TG links
 | | [Documentation]
@@ -82,6 +83,7 @@
 | | When All Vpp Interfaces Ready Wait | ${nodes}
 | | Then Send and receive ICMPv6 bidirectionally
 | | ... | ${tg_node} | ${tg_to_dut1} | ${tg_to_dut2}
+| | [Teardown] | Run Keyword | Show vpp trace dump on all DUTs
 
 | TC03: DUT with two L2XCs switches ICMPv4 between TG and local VM links
 | | [Documentation]
@@ -106,6 +108,7 @@
 | | ...                                          | ${tg_to_dut_if2}
 | | [Teardown] | Run Keywords | Show Packet Trace on All DUTs | ${nodes}
 | | ...        | AND          | Stop and Clear QEMU | ${dut_node} | ${vm_node}
+| | ...        | AND          | Show vpp trace dump on all DUTs
 
 | TC04: DUT with two L2XCs switches ICMPv6 between TG and local VM links
 | | [Documentation]
@@ -130,4 +133,5 @@
 | | ...                                          | ${tg_to_dut_if2}
 | | [Teardown] | Run Keywords | Show Packet Trace on All DUTs | ${nodes}
 | | ...        | AND          | Stop and Clear QEMU | ${dut_node} | ${vm_node}
+| | ...        | AND          | Show vpp trace dump on all DUTs
 

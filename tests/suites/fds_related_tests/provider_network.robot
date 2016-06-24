@@ -23,8 +23,11 @@
 | Test Setup | Run Keywords | Setup all DUTs before test
 | ...        | AND          | Setup all TGs before traffic script
 | Test Teardown | Run Keywords | Show Packet Trace on All DUTs | ${nodes}
-| ...          | AND | Qemu Teardown | ${dut1_node} | ${qemu_node1} | qemu_node1
-| ...          | AND | Qemu Teardown | ${dut2_node} | ${qemu_node2} | qemu_node2
+| ...           | AND          | Show vpp trace dump on all DUTs
+| ...           | AND          | Qemu Teardown | ${dut1_node} | ${qemu_node1}
+| ...                          | qemu_node1
+| ...           | AND          | Qemu Teardown | ${dut2_node} | ${qemu_node2}
+| ...                          | qemu_node2
 | Documentation | *Provider network FDS related.*
 | ...
 | ... | Test suite uses 3-node topology TG - DUT1 - DUT2 - TG
