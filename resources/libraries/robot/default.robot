@@ -34,6 +34,13 @@
 | | :FOR | ${dut} | IN | @{duts}
 | | | Vpp show version verbose | ${nodes['${dut}']}
 
+| Show vpp trace dump on all DUTs
+| | [Documentation] | Save API trace and dump output on all DUTs
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | Vpp api trace save | ${nodes['${dut}']}
+| | | Vpp api trace dump | ${nodes['${dut}']}
+
 | Add '${m}' worker threads and rxqueues '${n}' without HTT to all DUTs
 | | [Documentation] |  Setup M worker threads without HTT and rxqueues N in
 | | ...             |  startup configuration of VPP to all DUTs

@@ -23,11 +23,13 @@
 | Library | resources.libraries.python.Trace
 
 | Force Tags | HW_ENV | VM_ENV | 3_NODE_SINGLE_LINK_TOPO
-| Suite Setup | Run Keywords | Setup all TGs before traffic script
+| Suite Setup | Run Keywords | Setup all DUTs before test
+| ...         | AND          | Setup all TGs before traffic script
 | ...         | AND          | Update All Interface Data On All Nodes | ${nodes}
 | Test Setup | Setup all DUTs before test
 | Test Teardown | Run Keywords | Show packet trace on all DUTs | ${nodes}
 | ...           | AND          | Vpp Show Errors | ${nodes['DUT1']}
+| ...           | AND          | Show vpp trace dump on all DUTs
 | Documentation | *IPv6 routing with ingress ACL test cases*
 | ...
 | ... | Encapsulations: Eth-IPv6 on links TG-DUT1, TG-DUT2, DUT1-DUT2. IPv6

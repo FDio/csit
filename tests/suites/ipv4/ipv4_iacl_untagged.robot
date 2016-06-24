@@ -29,6 +29,7 @@
 | Test Setup | Setup all DUTs before test
 | Test Teardown | Run Keywords | Show packet trace on all DUTs | ${nodes}
 | ...           | AND          | Vpp Show Errors | ${nodes['DUT1']}
+| ...           | AND          | Show vpp trace dump on all DUTs
 | Documentation | *IPv4 routing with ingress ACL test cases*
 | ...
 | ... | Encapsulations: Eth-IPv4 on links TG-DUT1, TG-DUT2, DUT1-DUT2. IPv4

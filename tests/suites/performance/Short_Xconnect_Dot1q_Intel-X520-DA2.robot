@@ -20,7 +20,8 @@
 | ... | L2 | Intel-X520-DA2
 | Suite Teardown | 3-node Performance Suite Teardown
 | Test Setup | Setup all DUTs before test
-| Test Teardown | Run Keyword | Remove startup configuration of VPP from all DUTs
+| Test Teardown | Run Keywords | Remove startup configuration of VPP from all DUTs
+| ...           | AND          | Show vpp trace dump on all DUTs
 | Documentation | *Reference NDR throughput L2XC verify test cases*
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology

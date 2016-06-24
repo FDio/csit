@@ -20,7 +20,8 @@
 | Force Tags | HW_ENV | VM_ENV
 | Test Setup | Run Keywords | Setup all DUTs before test
 | ...        | AND          | Setup all TGs before traffic script
-| Test Teardown | Show Packet Trace on All DUTs | ${nodes}
+| Test Teardown | Run Keywords | Show Packet Trace on All DUTs | ${nodes}
+| ...           | AND          | Show vpp trace dump on all DUTs
 | Documentation | *L2 bridge-domain test cases*
 | ...
 | ... | *[Top] Network Topologies:* TG=DUT1 2-node topology with two links
@@ -221,6 +222,7 @@
 | | Then Send and receive ICMPv4 bidirectionally | ${tg_node} | ${tg_to_dut_if1}
 | | ...                                          | ${tg_to_dut_if2}
 | | [Teardown] | Run Keywords | Show Packet Trace on All DUTs | ${nodes}
+| | ...        | AND          | Show vpp trace dump on all DUTs
 | | ...        | AND          | Stop and Clear QEMU | ${dut_node} | ${vm_node}
 
 | TC07: DUT with two L2BDs (MAC learn) switches ICMPv6 between TG and VM links
@@ -253,6 +255,7 @@
 | | Then Send and receive ICMPv6 bidirectionally | ${tg_node} | ${tg_to_dut_if1}
 | | ...                                          | ${tg_to_dut_if2}
 | | [Teardown] | Run Keywords | Show Packet Trace on All DUTs | ${nodes}
+| | ...        | AND          | Show vpp trace dump on all DUTs
 | | ...        | AND          | Stop and Clear QEMU | ${dut_node} | ${vm_node}
 
 | TC08: DUT with two L2BDs (static MACs) switches ICMPv4 between TG and VM links
@@ -307,6 +310,7 @@
 | | Then Send and receive ICMPv4 bidirectionally | ${tg_node} | ${tg_to_dut_if1}
 | | ...                                          | ${tg_to_dut_if2}
 | | [Teardown] | Run Keywords | Show Packet Trace on All DUTs | ${nodes}
+| | ...        | AND          | Show vpp trace dump on all DUTs
 | | ...        | AND          | Stop and Clear QEMU | ${dut_node} | ${vm_node}
 
 | TC09: DUT with two L2BDs (static MACs) switches ICMPv6 between TG and VM links
@@ -361,4 +365,5 @@
 | | Then Send and receive ICMPv6 bidirectionally | ${tg_node} | ${tg_to_dut_if1}
 | | ...                                          | ${tg_to_dut_if2}
 | | [Teardown] | Run Keywords | Show Packet Trace on All DUTs | ${nodes}
+| | ...        | AND          | Show vpp trace dump on all DUTs
 | | ...        | AND          | Stop and Clear QEMU | ${dut_node} | ${vm_node}
