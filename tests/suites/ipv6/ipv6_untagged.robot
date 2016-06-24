@@ -25,6 +25,7 @@
 | ...         | AND          | Setup all TGs before traffic script
 | Test Setup | Clear interface counters on all vpp nodes in topology | ${nodes}
 | Test Teardown | Run Keyword If Test Failed | Show packet trace on all DUTs | ${nodes}
+| ...           | AND                        | Show vpp trace dump on all DUTs
 | Documentation | *IPv6 routing test cases*
 | ...
 | ... | RFC2460 IPv6, RFC4443 ICMPv6, RFC4861 Neighbor Discovery.

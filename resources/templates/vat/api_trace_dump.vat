@@ -1,0 +1,1 @@
+exec api trace custom-dump /tmp/csit.api
