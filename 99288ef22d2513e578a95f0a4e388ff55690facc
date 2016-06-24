@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba092121_faa6c5c0",
+        "filename": "resources/libraries/robot/map.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-06-24T10:41:01Z",
+      "side": 1,
+      "message": "The documentation is missing.",
+      "range": {
+        "startLine": 20,
+        "startChar": 18,
+        "endLine": 20,
+        "endChar": 21
+      },
+      "revId": "99288ef22d2513e578a95f0a4e388ff55690facc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_daab0188",
+        "filename": "resources/libraries/robot/map.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-06-24T10:41:01Z",
+      "side": 1,
+      "message": "where to send",
+      "range": {
+        "startLine": 30,
+        "startChar": 35,
+        "endLine": 30,
+        "endChar": 45
+      },
+      "revId": "99288ef22d2513e578a95f0a4e388ff55690facc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_bab04df5",
+        "filename": "resources/libraries/robot/map.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-06-24T10:41:01Z",
+      "side": 1,
+      "message": "One white space is enough.",
+      "range": {
+        "startLine": 31,
+        "startChar": 19,
+        "endLine": 31,
+        "endChar": 21
+      },
+      "revId": "99288ef22d2513e578a95f0a4e388ff55690facc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_9a958942",
+        "filename": "resources/traffic_scripts/send_ipv4_check_lw_4o6.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-06-24T10:41:01Z",
+      "side": 1,
+      "message": "The documentation is missing.",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 21
+      },
+      "revId": "99288ef22d2513e578a95f0a4e388ff55690facc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_7a92b558",
+        "filename": "resources/traffic_scripts/send_ipv4_check_lw_4o6.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-06-24T10:41:01Z",
+      "side": 1,
+      "message": "The documentation is missing.",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 11
+      },
+      "revId": "99288ef22d2513e578a95f0a4e388ff55690facc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
