@@ -46,6 +46,26 @@ class DUTSetup(object):
         vat.execute_script("show_version_verbose.vat", node, json_out=False)
 
     @staticmethod
+    def vpp_api_trace_save(node):
+        """Run "api trace save" CLI command.
+
+        :param node: Node to run command on.
+        :type node: dict
+        """
+        vat = VatExecutor()
+        vat.execute_script("api_trace_save.vat", node, json_out=False)
+
+    @staticmethod
+    def vpp_api_trace_dump(node):
+        """Run "api trace custom-dump" CLI command.
+
+        :param node: Node to run command on.
+        :type node: dict
+        """
+        vat = VatExecutor()
+        vat.execute_script("api_trace_dump.vat", node, json_out=False)
+
+    @staticmethod
     def setup_all_duts(nodes):
         """Prepare all DUTs in given topology for test execution."""
         for node in nodes.values():

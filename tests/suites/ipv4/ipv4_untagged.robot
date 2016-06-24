@@ -24,6 +24,7 @@
 | ...         | AND          | Setup DUT nodes for IPv4 testing
 | Test Setup | Clear interface counters on all vpp nodes in topology | ${nodes}
 | Test Teardown | Run Keyword If Test Failed | Show packet trace on all DUTs | ${nodes}
+| ...           | AND                        | Show vpp trace dump on all DUTs
 | Documentation | *IPv4 routing test cases*
 | ...
 | ... | RFC791 IPv4, RFC826 ARP, RFC792 ICMPv4. Encapsulations: Eth-IPv4-ICMPv4
