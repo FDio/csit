@@ -26,7 +26,8 @@
 | ...         | AND          | Setup all TGs before traffic script
 | ...         | AND          | Update All Interface Data On All Nodes | ${nodes}
 | Test Setup | Clear interface counters on all vpp nodes in topology | ${nodes}
-| Test Teardown | Show packet trace on all DUTs | ${nodes}
+| Test Teardown | Run Keywords | Show packet trace on all DUTs | ${nodes}
+| ...           | AND          | Show vpp trace dump on all DUTs
 | Documentation | *COP Security IPv4 Blacklist and Whitelist Tests*
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology

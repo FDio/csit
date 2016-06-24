@@ -28,7 +28,8 @@
 | Test Setup | Run Keywords | Setup all DUTs before test
 | ...        | AND          | Setup all TGs before traffic script
 | ...        | AND          | Update All Interface Data On All Nodes | ${nodes}
-| Test Teardown | Show Packet Trace on All DUTs | ${nodes}
+| Test Teardown | Run Keywords | Show Packet Trace on All DUTs | ${nodes}
+| ...           | AND          | Show vpp trace dump on all DUTs
 | Documentation | *LISP static remote mapping test cases*
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology
