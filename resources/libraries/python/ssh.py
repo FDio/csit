@@ -170,15 +170,16 @@ class SSH(object):
         buf = ''
         try:
             with timeout(time_out, exception=RuntimeError):
-                while not buf.endswith(':~$ '):
+                while not buf.endswith(':~$ ') and not chan.closed:
                     if chan.recv_ready():
-                        buf = chan.recv(4096)
+                        buf = chan.recv(self.__MAX_RECV_BUF)
+                    if chan.recv_stderr_ready():
+                        buf = chan.recv_stderr(self.__MAX_RECV_BUF)
         except RuntimeError:
             raise Exception('Open interactive terminal timeout.')
         return chan
 
-    @staticmethod
-    def interactive_terminal_exec_command(chan, cmd, prompt,
+    def interactive_terminal_exec_command(self, chan, cmd, prompt,
                                           time_out=10):
         """Execute command on interactive terminal.
 
@@ -202,9 +203,11 @@ class SSH(object):
         buf = ''
         try:
             with timeout(time_out, exception=RuntimeError):
-                while not buf.endswith(prompt):
+                while not buf.endswith(prompt) and not chan.closed:
                     if chan.recv_ready():
-                        buf += chan.recv(4096)
+                        buf += chan.recv(self.__MAX_RECV_BUF)
+                    if chan.recv_stderr_ready():
+                        buf += chan.recv_stderr(self.__MAX_RECV_BUF)
         except RuntimeError:
             raise Exception("Exec '{c}' timeout.".format(c=cmd))
         tmp = buf.replace(cmd.replace('\n', ''), '')
