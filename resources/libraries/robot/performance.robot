@@ -197,8 +197,8 @@
 | | Setup performance global Variables
 | | 3-node circular Topology Variables Setup
 | | Initialize traffic generator | ${tg} | ${tg_if1} | ${tg_if2}
-| | ...                          | ${dut1} | ${dut1_if1} | ${dut1_if2}
-| | ...                          | ${dut2} | ${dut2_if1} | ${dut2_if2}
+| | ...                          | ${dut1} | ${dut1_if1}
+| | ...                          | ${dut2} | ${dut2_if2}
 | | ...                          | ${topology_type}
 
 3-node Performance Suite Setup with DUT's NIC model
@@ -211,8 +211,8 @@
 | | 3-node circular Topology Variables Setup with DUT interface model
 | | ... | ${nic_model}
 | | Initialize traffic generator | ${tg} | ${tg_if1} | ${tg_if2}
-| | ...                          | ${dut1} | ${dut1_if1} | ${dut1_if2}
-| | ...                          | ${dut2} | ${dut2_if1} | ${dut2_if2}
+| | ...                          | ${dut1} | ${dut1_if1}
+| | ...                          | ${dut2} | ${dut2_if2}
 | | ...                          | ${topology_type}
 
 | 3-node Performance Suite Teardown
