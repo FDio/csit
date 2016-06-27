@@ -2,6 +2,115 @@
   "comments": [
     {
       "key": {
+        "uuid": "ba092121_887423d0",
+        "filename": "resources/libraries/python/Docker.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-06-27T15:34:09Z",
+      "side": 1,
+      "message": "Add module documentation.\nOne empty line at he end of file is enough.",
+      "revId": "ec36a3fee1b8afb2c82f5edf36316711cee80139",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_6881cf8e",
+        "filename": "resources/libraries/python/Docker.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-06-27T15:34:09Z",
+      "side": 1,
+      "message": "Add class documentation.",
+      "range": {
+        "startLine": 19,
+        "startChar": 6,
+        "endLine": 19,
+        "endChar": 17
+      },
+      "revId": "ec36a3fee1b8afb2c82f5edf36316711cee80139",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_086933f9",
+        "filename": "resources/libraries/python/Docker.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-06-27T15:34:09Z",
+      "side": 1,
+      "message": ":return: True .....\nCheck everywhere.",
+      "range": {
+        "startLine": 29,
+        "startChar": 8,
+        "endLine": 29,
+        "endChar": 20
+      },
+      "revId": "ec36a3fee1b8afb2c82f5edf36316711cee80139",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_e86ddf05",
+        "filename": "resources/libraries/python/Docker.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-06-27T15:34:09Z",
+      "side": 1,
+      "message": ":rtype: bool",
+      "range": {
+        "startLine": 30,
+        "startChar": 8,
+        "endLine": 30,
+        "endChar": 19
+      },
+      "revId": "ec36a3fee1b8afb2c82f5edf36316711cee80139",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_c8721be5",
+        "filename": "resources/libraries/python/Docker.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-06-27T15:34:09Z",
+      "side": 1,
+      "message": ":return and rtype is missing.",
+      "range": {
+        "startLine": 52,
+        "startChar": 8,
+        "endLine": 52,
+        "endChar": 11
+      },
+      "revId": "ec36a3fee1b8afb2c82f5edf36316711cee80139",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba092121_b403c472",
         "filename": "resources/libraries/python/Docker.py",
         "patchSetId": 5
@@ -41,6 +150,52 @@
         "startChar": 8,
         "endLine": 77,
         "endChar": 42
+      },
+      "revId": "ec36a3fee1b8afb2c82f5edf36316711cee80139",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_487e0bb0",
+        "filename": "resources/libraries/python/Docker.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-06-27T15:34:09Z",
+      "side": 1,
+      "message": "DUT",
+      "range": {
+        "startLine": 85,
+        "startChar": 37,
+        "endLine": 85,
+        "endChar": 40
+      },
+      "revId": "ec36a3fee1b8afb2c82f5edf36316711cee80139",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_e844bf75",
+        "filename": "resources/libraries/python/Docker.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-06-27T15:34:09Z",
+      "side": 1,
+      "message": "Keep the formatting used in the project. E.g.:\ncmd \u003d \u0027ln -s /proc/{0}/ns/net /var/run/netns/{1}\u0027.format(\n    int(pid), docker_id)",
+      "range": {
+        "startLine": 142,
+        "startChar": 8,
+        "endLine": 144,
+        "endChar": 9
       },
       "revId": "ec36a3fee1b8afb2c82f5edf36316711cee80139",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
@@ -363,6 +518,29 @@
         "startChar": 29,
         "endLine": 102,
         "endChar": 32
+      },
+      "revId": "ec36a3fee1b8afb2c82f5edf36316711cee80139",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_6858af56",
+        "filename": "resources/libraries/python/ssh.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-06-27T15:34:09Z",
+      "side": 1,
+      "message": "Add params, types, ....",
+      "range": {
+        "startLine": 86,
+        "startChar": 11,
+        "endLine": 86,
+        "endChar": 18
       },
       "revId": "ec36a3fee1b8afb2c82f5edf36316711cee80139",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
