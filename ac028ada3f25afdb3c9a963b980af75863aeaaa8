@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba092121_fdf35f71",
+        "filename": "resources/libraries/robot/honeycomb/bridge_domain.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-27T08:32:54Z",
+      "side": 1,
+      "message": "integer",
+      "range": {
+        "startLine": 232,
+        "startChar": 72,
+        "endLine": 232,
+        "endChar": 75
+      },
+      "revId": "ac028ada3f25afdb3c9a963b980af75863aeaaa8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
