@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba092121_9d546355",
+        "filename": "resources/libraries/python/IPUtil.py",
+        "patchSetId": 31
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-06-27T08:02:01Z",
+      "side": 1,
+      "message": "This works only for interfaces present on tests start-up time but not for (sub-)interfaces created during tests run.\nSee InterfaceUtil.get_sw_if_index(node, interface_name) for more information.",
+      "range": {
+        "startLine": 44,
+        "startChar": 12,
+        "endLine": 44,
+        "endChar": 69
+      },
+      "revId": "32eba721396a4e1e6f7c38efe445c43861956dba",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_7d518f61",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 31
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-06-27T08:02:01Z",
+      "side": 1,
+      "message": "Do the methods defined in this class work only with interfaces defined in topo file or with all interfaces present on node? What about those created by tests?",
+      "range": {
+        "startLine": 29,
+        "startChar": 6,
+        "endLine": 29,
+        "endChar": 19
+      },
+      "revId": "32eba721396a4e1e6f7c38efe445c43861956dba",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
