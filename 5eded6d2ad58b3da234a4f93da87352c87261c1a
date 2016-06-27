@@ -1,0 +1,95 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba092121_88ce6359",
+        "filename": "resources/libraries/robot/performance.robot",
+        "patchSetId": 16
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 74
+      },
+      "writtenOn": "2016-06-27T13:52:40Z",
+      "side": 1,
+      "message": "IPv4, or IPv6 lisp header?",
+      "range": {
+        "startLine": 48,
+        "startChar": 1,
+        "endLine": 97,
+        "endChar": 7
+      },
+      "revId": "5eded6d2ad58b3da234a4f93da87352c87261c1a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_8879c331",
+        "filename": "tests/suites/performance/Long_Lisp_Intel-X520-DA2.robot",
+        "patchSetId": 16
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 74
+      },
+      "writtenOn": "2016-06-27T13:52:40Z",
+      "side": 1,
+      "message": "This description is not sufficient, please describe where is the packet encapsulated, decapsulated, what\u0027s the header content, etc. When I read this description I should understand how is the test designed. Please use tagging structure [Top] [Enc] [Cfg] [Ref], example: https://git.fd.io/cgit/csit/tree/tests/suites/performance/Long_IPv4_iAcl_Intel-X520-DA2.robot",
+      "revId": "5eded6d2ad58b3da234a4f93da87352c87261c1a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_28907742",
+        "filename": "tests/suites/performance/Long_Lisp_Intel-X520-DA2.robot",
+        "patchSetId": 16
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 74
+      },
+      "writtenOn": "2016-06-27T13:52:40Z",
+      "side": 1,
+      "message": "please adjust naming and documentation of all test cases basedon latest inf. model. example: https://git.fd.io/cgit/csit/tree/tests/suites/performance/Long_IPv4_iAcl_Intel-X520-DA2.robot",
+      "revId": "5eded6d2ad58b3da234a4f93da87352c87261c1a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_a8a3679d",
+        "filename": "tests/suites/performance/Short_Lisp_Intel-X520-DA2.robot",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 74
+      },
+      "writtenOn": "2016-06-27T13:52:40Z",
+      "side": 1,
+      "message": "the same comments as in Long_* file .. please adjust documentation and TC names",
+      "revId": "5eded6d2ad58b3da234a4f93da87352c87261c1a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_c8ec5bca",
+        "filename": "tests/suites/performance/resources/lisp_static_mapping.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 74
+      },
+      "writtenOn": "2016-06-27T13:52:40Z",
+      "side": 1,
+      "message": "this file is not caught by pylint job",
+      "revId": "5eded6d2ad58b3da234a4f93da87352c87261c1a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
