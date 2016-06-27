@@ -22,6 +22,30 @@
       "revId": "4a9b80e8643e46f0d6d45fa955690496858f7eae",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_8892e355",
+        "filename": "bootstrap.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 74
+      },
+      "writtenOn": "2016-06-27T13:15:37Z",
+      "side": 1,
+      "message": "Do we want to separate the TAGS per FD.io project ?\nskip_\u003cproject\u003e_\u003ctrigger\u003e\n\nor we just do:\nskip_\u003ctrigger\u003e\n\nwhere trigger can be weekly, patch, merge, ...",
+      "parentUuid": "ba092121_48528bde",
+      "range": {
+        "startLine": 209,
+        "startChar": 14,
+        "endLine": 209,
+        "endChar": 28
+      },
+      "revId": "4a9b80e8643e46f0d6d45fa955690496858f7eae",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
