@@ -45,6 +45,328 @@
       "revId": "ec36a3fee1b8afb2c82f5edf36316711cee80139",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_a8db67ec",
+        "filename": "resources/libraries/python/Namespaces.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-27T15:13:28Z",
+      "side": 1,
+      "message": "Linux namespace?",
+      "range": {
+        "startLine": 20,
+        "startChar": 7,
+        "endLine": 20,
+        "endChar": 16
+      },
+      "revId": "ec36a3fee1b8afb2c82f5edf36316711cee80139",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_c8d69bc5",
+        "filename": "resources/libraries/python/Namespaces.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-27T15:13:28Z",
+      "side": 1,
+      "message": "Set",
+      "range": {
+        "startLine": 24,
+        "startChar": 11,
+        "endLine": 24,
+        "endChar": 15
+      },
+      "revId": "ec36a3fee1b8afb2c82f5edf36316711cee80139",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_e8e83f7e",
+        "filename": "resources/libraries/python/Namespaces.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-27T15:13:28Z",
+      "side": 1,
+      "message": "MAC address",
+      "range": {
+        "startLine": 29,
+        "startChar": 20,
+        "endLine": 29,
+        "endChar": 23
+      },
+      "revId": "ec36a3fee1b8afb2c82f5edf36316711cee80139",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_c8ed7b8d",
+        "filename": "resources/libraries/python/Namespaces.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-27T15:13:28Z",
+      "side": 1,
+      "message": "copy/paste",
+      "range": {
+        "startLine": 61,
+        "startChar": 11,
+        "endLine": 61,
+        "endChar": 50
+      },
+      "revId": "ec36a3fee1b8afb2c82f5edf36316711cee80139",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_089b7319",
+        "filename": "resources/libraries/python/Namespaces.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-27T15:13:28Z",
+      "side": 1,
+      "message": "add default value to doc",
+      "range": {
+        "startLine": 90,
+        "startChar": 15,
+        "endLine": 90,
+        "endChar": 20
+      },
+      "revId": "ec36a3fee1b8afb2c82f5edf36316711cee80139",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_48904bec",
+        "filename": "resources/libraries/python/Namespaces.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-27T15:13:28Z",
+      "side": 1,
+      "message": "maybe replace with *intefaces, and then you can do for interface in interfaces: brctl addif {br} {interface}",
+      "range": {
+        "startLine": 107,
+        "startChar": 42,
+        "endLine": 107,
+        "endChar": 64
+      },
+      "revId": "ec36a3fee1b8afb2c82f5edf36316711cee80139",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_a802473c",
+        "filename": "resources/libraries/python/Tap.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-27T15:13:28Z",
+      "side": 1,
+      "message": "add 0 to {} or remove 1 from {1}",
+      "range": {
+        "startLine": 38,
+        "startChar": 20,
+        "endLine": 38,
+        "endChar": 38
+      },
+      "revId": "ec36a3fee1b8afb2c82f5edf36316711cee80139",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_a8548754",
+        "filename": "resources/libraries/python/Tap.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-27T15:13:28Z",
+      "side": 1,
+      "message": "docstring description",
+      "range": {
+        "startLine": 50,
+        "startChar": 11,
+        "endLine": 50,
+        "endChar": 14
+      },
+      "revId": "ec36a3fee1b8afb2c82f5edf36316711cee80139",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_484babb0",
+        "filename": "resources/libraries/python/Tap.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-27T15:13:28Z",
+      "side": 1,
+      "message": "modify?",
+      "range": {
+        "startLine": 52,
+        "startChar": 29,
+        "endLine": 52,
+        "endChar": 32
+      },
+      "revId": "ec36a3fee1b8afb2c82f5edf36316711cee80139",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_88ff8334",
+        "filename": "resources/libraries/python/Tap.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-27T15:13:28Z",
+      "side": 1,
+      "message": "mac has index 2 not 1. remove",
+      "range": {
+        "startLine": 65,
+        "startChar": 51,
+        "endLine": 65,
+        "endChar": 52
+      },
+      "revId": "ec36a3fee1b8afb2c82f5edf36316711cee80139",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_8851c364",
+        "filename": "resources/libraries/python/Tap.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-27T15:13:28Z",
+      "side": 1,
+      "message": "docstring description",
+      "range": {
+        "startLine": 79,
+        "startChar": 11,
+        "endLine": 79,
+        "endChar": 14
+      },
+      "revId": "ec36a3fee1b8afb2c82f5edf36316711cee80139",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_28c87721",
+        "filename": "resources/libraries/python/Tap.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-27T15:13:28Z",
+      "side": 1,
+      "message": "delete",
+      "range": {
+        "startLine": 81,
+        "startChar": 29,
+        "endLine": 81,
+        "endChar": 32
+      },
+      "revId": "ec36a3fee1b8afb2c82f5edf36316711cee80139",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_684e6fc3",
+        "filename": "resources/libraries/python/Tap.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-27T15:13:28Z",
+      "side": 1,
+      "message": "docstring description",
+      "range": {
+        "startLine": 100,
+        "startChar": 11,
+        "endLine": 100,
+        "endChar": 14
+      },
+      "revId": "ec36a3fee1b8afb2c82f5edf36316711cee80139",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_08cdb331",
+        "filename": "resources/libraries/python/Tap.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-27T15:13:28Z",
+      "side": 1,
+      "message": "check",
+      "range": {
+        "startLine": 102,
+        "startChar": 29,
+        "endLine": 102,
+        "endChar": 32
+      },
+      "revId": "ec36a3fee1b8afb2c82f5edf36316711cee80139",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
