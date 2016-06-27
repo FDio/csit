@@ -46,6 +46,54 @@
       "revId": "4a9b80e8643e46f0d6d45fa955690496858f7eae",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_c3255cac",
+        "filename": "bootstrap.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-27T23:56:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba092121_48528bde",
+      "range": {
+        "startLine": 209,
+        "startChar": 14,
+        "endLine": 209,
+        "endChar": 28
+      },
+      "revId": "4a9b80e8643e46f0d6d45fa955690496858f7eae",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_a33a68cb",
+        "filename": "bootstrap.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-06-27T23:56:23Z",
+      "side": 1,
+      "message": "We don\u0027t need to use separate rules per project at the moment.",
+      "parentUuid": "ba092121_8892e355",
+      "range": {
+        "startLine": 209,
+        "startChar": 14,
+        "endLine": 209,
+        "endChar": 28
+      },
+      "revId": "4a9b80e8643e46f0d6d45fa955690496858f7eae",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
