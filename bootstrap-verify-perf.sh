@@ -26,7 +26,7 @@ VPP_REPO_URL="https://nexus.fd.io/content/repositories/fd.io.master.ubuntu.trust
 RESERVATION_DIR="/tmp/reservation_dir"
 INSTALLATION_DIR="/tmp/install_dir"
 
-PYBOT_ARGS="--noncritical MULTI_THREAD"
+PYBOT_ARGS="--noncritical PERFTEST"
 
 ARCHIVE_ARTIFACTS=(log.html output.xml report.html output_perf_data.xml)
 
@@ -43,7 +43,6 @@ then
     wget -q "${VPP_REPO_URL}/vpp-dpdk-dkms/${VPP_STABLE_VER}/vpp-dpdk-dkms-${VPP_STABLE_VER}.deb" || exit
     wget -q "${VPP_REPO_URL}/vpp-lib/${VPP_STABLE_VER}/vpp-lib-${VPP_STABLE_VER}.deb" || exit
     VPP_DEBS="$( readlink -f *.deb | tr '\n' ' ' )"
-    PYBOT_ARGS="${PYBOT_ARGS} --exitonfailure"
     cd ..
 
 # If we run this script from vpp project we want to use local build
