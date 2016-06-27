@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba092121_48528bde",
+        "filename": "bootstrap.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-06-27T12:10:49Z",
+      "side": 1,
+      "message": "Add the new tag to docs/tag_documentation.rst",
+      "range": {
+        "startLine": 209,
+        "startChar": 14,
+        "endLine": 209,
+        "endChar": 28
+      },
+      "revId": "4a9b80e8643e46f0d6d45fa955690496858f7eae",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
