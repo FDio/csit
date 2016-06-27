@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "ba092121_97ca024e",
+        "filename": "tests/suites/ipv4/ipv4_proxy_arp_untagged.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 84
+      },
+      "writtenOn": "2016-06-27T06:28:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba092121_d7999a6f",
+      "range": {
+        "startLine": 27,
+        "startChar": 19,
+        "endLine": 27,
+        "endChar": 79
+      },
+      "revId": "23a89aa40863e4c3f8b087fcef00cb2637fe177d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba092121_3773364f",
         "filename": "tests/suites/ipv4/ipv4_proxy_arp_untagged.robot",
         "patchSetId": 7
@@ -36,6 +60,30 @@
       "writtenOn": "2016-06-23T12:10:17Z",
       "side": 1,
       "message": "Correct topo in this case: TG-DUT1",
+      "range": {
+        "startLine": 29,
+        "startChar": 36,
+        "endLine": 29,
+        "endChar": 46
+      },
+      "revId": "23a89aa40863e4c3f8b087fcef00cb2637fe177d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_77c76e46",
+        "filename": "tests/suites/ipv4/ipv4_proxy_arp_untagged.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 84
+      },
+      "writtenOn": "2016-06-27T06:28:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba092121_3773364f",
       "range": {
         "startLine": 29,
         "startChar": 36,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "ba092121_37c1f62e",
+        "filename": "tests/suites/ipv4/ipv4_proxy_arp_untagged.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 84
+      },
+      "writtenOn": "2016-06-27T06:28:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba092121_77cbee72",
+      "range": {
+        "startLine": 52,
+        "startChar": 16,
+        "endLine": 52,
+        "endChar": 26
+      },
+      "revId": "23a89aa40863e4c3f8b087fcef00cb2637fe177d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "ba092121_97a3229e",
         "filename": "tests/suites/ipv4/ipv4_proxy_arp_untagged.robot",
         "patchSetId": 7
@@ -82,6 +154,30 @@
       "writtenOn": "2016-06-23T12:10:17Z",
       "side": 1,
       "message": "on behalf of\n\n-all occurences",
+      "range": {
+        "startLine": 57,
+        "startChar": 49,
+        "endLine": 57,
+        "endChar": 55
+      },
+      "revId": "23a89aa40863e4c3f8b087fcef00cb2637fe177d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_f7e25ed4",
+        "filename": "tests/suites/ipv4/ipv4_proxy_arp_untagged.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 84
+      },
+      "writtenOn": "2016-06-27T06:28:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "ba092121_97a3229e",
       "range": {
         "startLine": 57,
         "startChar": 49,
