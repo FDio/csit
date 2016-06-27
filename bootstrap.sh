@@ -206,5 +206,6 @@ PYTHONPATH=`pwd` pybot -L TRACE \
     --include vm_envAND3_node_single_link_topo \
     --include vm_envAND3_node_double_link_topo \
     --exclude PERFTEST \
+    --exclude skip_for_patch \
     --noncritical EXPECTED_FAILING \
     tests/
