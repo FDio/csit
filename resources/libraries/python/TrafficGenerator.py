@@ -105,30 +105,26 @@ class TrafficGenerator(object):
 
     #pylint: disable=too-many-arguments, too-many-locals
     def initialize_traffic_generator(self, tg_node, tg_if1, tg_if2,
-                                     dut1_node, dut1_if1, dut1_if2,
-                                     dut2_node, dut2_if1, dut2_if2,
+                                     tg_if1_adj_node, tg_if1_adj_if,
+                                     tg_if2_adj_node, tg_if2_adj_if,
                                      test_type):
         """TG initialization.
 
         :param tg_node: Traffic generator node.
         :param tg_if1: TG - name of first interface.
         :param tg_if2: TG - name of second interface.
-        :param dut1_node: DUT1 node.
-        :param dut1_if1: DUT1 - name of first interface.
-        :param dut1_if2: DUT1 - name of second interface.
-        :param dut2_node: DUT2 node.
-        :param dut2_if1: DUT2 - name of first interface.
-        :param dut2_if2: DUT2 - name of second interface.
+        :param tg_if1_adj_node: TG if1 adjecent node.
+        :param tg_if1_adj_if: TG if1 adjecent interface.
+        :param tg_if2_adj_node: TG if2 adjecent node.
+        :param tg_if2_adj_if: TG if2 adjecent interface.
         :test_type: 'L2' or 'L3' - src/dst MAC address.
         :type tg_node: dict
         :type tg_if1: str
         :type tg_if2: str
-        :type dut1_node: dict
-        :type dut1_if1: str
-        :type dut1_if2: str
-        :type dut2_node: dict
-        :type dut2_if1: str
-        :type dut2_if2: str
+        :type tg_if1_adj_node: dict
+        :type tg_if1_adj_if: str
+        :type tg_if2_adj_node: dict
+        :type tg_if2_adj_if: str
         :type test_type: str
         :return: nothing
         """
@@ -163,8 +159,10 @@ class TrafficGenerator(object):
                 if1_adj_mac = if2_mac
                 if2_adj_mac = if1_mac
             elif test_type == 'L3':
-                if1_adj_mac = topo.get_interface_mac(dut1_node, dut1_if1)
-                if2_adj_mac = topo.get_interface_mac(dut2_node, dut2_if2)
+                if1_adj_mac = topo.get_interface_mac(tg_if1_adj_node,
+                                                     tg_if1_adj_if)
+                if2_adj_mac = topo.get_interface_mac(tg_if2_adj_node,
+                                                     tg_if2_adj_if)
             else:
                 raise Exception("test_type unknown")
 
