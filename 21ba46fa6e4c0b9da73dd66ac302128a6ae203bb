@@ -22,6 +22,29 @@
       "revId": "21ba46fa6e4c0b9da73dd66ac302128a6ae203bb",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_bdbba771",
+        "filename": "resources/libraries/python/honeycomb/Notifications.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 133,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-06-27T11:33:49Z",
+      "side": 1,
+      "message": "I think this should be moved to create session method.\nConsider to check if the Netconf server continues session after capabilities exchange",
+      "range": {
+        "startLine": 120,
+        "startChar": 0,
+        "endLine": 133,
+        "endChar": 37
+      },
+      "revId": "21ba46fa6e4c0b9da73dd66ac302128a6ae203bb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
