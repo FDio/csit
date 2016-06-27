@@ -24,11 +24,15 @@ Topology TAGs
     the devices.
 
 3_NODE_SINGLE_LINK_TOPO
-    3 nodes connected in a circular topoloty with at least one link
+    3 nodes connected in a circular topology with at least one link
     interconnecting devices.
 
 Objective TAGs
 --------------
+
+SKIP_PATCH
+    Test case(s) marked to not run in case of vpp-csit-verify (i.e. VPP patch)
+    and csit-vpp-verify jobs (i.e. CSIT patch).
 
 Environment TAGs
 ----------------

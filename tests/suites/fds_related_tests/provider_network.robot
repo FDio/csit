@@ -19,7 +19,7 @@
 | Resource | resources/libraries/robot/double_qemu_setup.robot
 | Resource | resources/libraries/robot/qemu.robot
 | Library  | resources.libraries.python.Trace
-| Force Tags | HW_ENV | VM_ENV
+| Force Tags | HW_ENV | VM_ENV | SKIP_PATCH
 | Test Setup | Run Keywords | Setup all DUTs before test
 | ...        | AND          | Setup all TGs before traffic script
 | Test Teardown | Run Keywords | Show Packet Trace on All DUTs | ${nodes}
