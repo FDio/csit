@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Traffic script that sends an ip icmp packet
+"""Traffic script that sends an IP ICMPv4/ICMPv6 packet
 from one interface to the other.
 """
 
