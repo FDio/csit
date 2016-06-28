@@ -1,0 +1,1 @@
+l2_interface_vlan_tag_rewrite sw_if_index {sw_if_index} {tag_rewrite_method} {push_dot1q} {tag1_optional} {tag2_optional}
