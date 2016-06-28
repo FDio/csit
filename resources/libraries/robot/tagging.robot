@@ -42,12 +42,14 @@
 | | ... | - ${subif_name_2}
 | | ... | - ${subif_index_2}
 | | ...
+| | ${INT1_name}= | Get interface name | ${DUT1} | ${INT1}
 | | ${subif_name_1} | ${subif_index_1}= | Create subinterface | ${DUT1}
-| | ...                                 | ${INT1} | ${SUB_ID}
+| | ...                                 | ${INT1_name} | ${SUB_ID}
 | | ...                                 | ${OUTER_VLAN_ID} | ${INNER_VLAN_ID}
 | | ...                                 | ${TYPE_SUBIF}
+| | ${INT2_name}= | Get interface name | ${DUT1} | ${INT2}
 | | ${subif_name_2} | ${subif_index_2}= | Create subinterface | ${DUT2}
-| | ...                                 | ${INT2} | ${SUB_ID}
+| | ...                                 | ${INT2_name} | ${SUB_ID}
 | | ...                                 | ${OUTER_VLAN_ID} | ${INNER_VLAN_ID}
 | | ...                                 | ${TYPE_SUBIF}
 | | Set Interface State | ${DUT1} | ${subif_index_1} | up
