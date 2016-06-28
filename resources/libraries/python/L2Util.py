@@ -296,6 +296,7 @@ class L2Util(object):
             tag1_id = ''
         else:
             tag1_id = 'tag1 {0}'.format(tag1_id)
+    
         if isinstance(interface, basestring):
             sw_if_index = Topology.get_interface_sw_index(node, interface)
         else:
