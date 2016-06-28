@@ -42,12 +42,14 @@
 | | ... | - ${subif_name_2}
 | | ... | - ${subif_index_2}
 | | ...
+| | ${INT1_name}= | Get interface name | ${DUT1} | ${INT1}
 | | ${subif_name_1} | ${subif_index_1}= | Create subinterface | ${DUT1}
-| | ...                                 | ${INT1} | ${SUB_ID}
+| | ...                                 | ${INT1_name} | ${SUB_ID}
 | | ...                                 | ${OUTER_VLAN_ID} | ${INNER_VLAN_ID}
 | | ...                                 | ${TYPE_SUBIF}
+| | ${INT2_name}= | Get interface name | ${DUT1} | ${INT2}
 | | ${subif_name_2} | ${subif_index_2}= | Create subinterface | ${DUT2}
-| | ...                                 | ${INT2} | ${SUB_ID}
+| | ...                                 | ${INT2_name} | ${SUB_ID}
 | | ...                                 | ${OUTER_VLAN_ID} | ${INNER_VLAN_ID}
 | | ...                                 | ${TYPE_SUBIF}
 | | Set Interface State | ${DUT1} | ${subif_index_1} | up
@@ -124,3 +126,27 @@
 | | ...
 | | L2 setup xconnect on DUT | ${DUT1} | ${INT1} | ${SUB_INT1}
 | | L2 setup xconnect on DUT | ${DUT2} | ${INT2} | ${SUB_INT2}
+
+| Vlan Subinterface Created
+| | [Documentation] | Create VLAN subinterface on DUT
+| | [Arguments] | ${dut_node} | ${interface} | ${vlan_id}
+| | [Return] | ${vlan_name} | ${vlan_index}
+| | ${interface_name}= | Get interface name | ${dut_node} | ${interface}
+| | ${vlan_name} | ${vlan_index}= | Create Vlan Subinterface
+| | ... | ${dut_node} | ${interface_name} | ${vlan_id}
+
+| Tagged Subinterface Created
+| | [Documentation] | Create tagged subinterface on DUT
+| | [Arguments] | ${dut_node} | ${interface} | ${subif_id} | ${outer_vlan_id}=${None} | ${inner_vlan_id}=${None} | ${type_subif}=${None}
+| | [Return] | ${subif_name} | ${subif_index}
+| | ${interface_name}= | Get interface name | ${dut_node} | ${interface}
+| | ${subif_name} | ${subif_index}= | Create Subinterface
+| | ... | ${dut_node} | ${interface_name} | ${subif_id} | outer_vlan_id=${outer_vlan_id} | inner_vlan_id=${inner_vlan_id} | type_subif=${type_subif}
+
+| L2 Tag Rewrite Method Set On Interface
+| | [Documentation] | Set L2 tag rewrite on (sub)interface on DUT
+| | [Arguments] | ${dut_node} | ${interface} | ${tag_rewrite_method} | ${push_dot1q}=Enabled | ${tag1_id}=${None} | ${tag2_id}=${None}
+| | ${result}= | Evaluate | isinstance($interface, int)
+| | ${interface_name}= | Run Keyword If | ${result} | Set Variable | ${interface}
+| | ...                | ELSE | Get interface name | ${dut_node} | ${interface}
+| | L2 Tag Rewrite | ${dut_node} | ${interface_name} | ${tag_rewrite_method} | push_dot1q=${push_dot1q} | tag1_id=${tag1_id} | tag2_id=${tag2_id}
