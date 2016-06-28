@@ -1,1 +1,1 @@
-ip_neighbor_add_del sw_if_index {sw_if_index} dst {ip_address} mac {mac_address}
+ip_neighbor_add_del sw_if_index {sw_if_index} dst {ip_address} mac {mac_address} {vrf}
