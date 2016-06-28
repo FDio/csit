@@ -69,9 +69,9 @@
 | | ... | - ${SUB_ID} - ID of the sub-interface to be created.
 | | ...
 | | ... | _Set testcase variables with name and index of created interfaces:_
-| | ... | - ${subif_name_1}
+| | ... | - ${if_1}
 | | ... | - ${subif_index_1}
-| | ... | - ${subif_name_2}
+| | ... | - ${if_2}
 | | ... | - ${subif_index_2}
 | | ...
 | | ... | *Example:*
@@ -80,9 +80,11 @@
 | | ... | \| ${nodes['DUT1']} \| ${dut1_if2} \| ${nodes['DUT2']} \
 | | ... | \| ${dut1_if2} \| 10 \|
 | | ...
-| | ${subif_name_1} | ${subif_index_1}= | Create Vlan Subinterface
+| | ${if_name_1}= | Get interface name | ${DUT1} | ${if_1}
+| | ${if_name_2}= | Get interface name | ${DUT2} | ${if_2}
+| | ${if_name_1} | ${subif_index_1}= | Create Vlan Subinterface
 | |                    | ...            | ${DUT1} | ${INT1} | ${SUB_ID}
-| | ${subif_name_2} | ${subif_index_2}= | Create Vlan Subinterface
+| | ${if_name_2} | ${subif_index_2}= | Create Vlan Subinterface
 | |                    | ...            | ${DUT2} | ${INT2} | ${SUB_ID}
 | | Set Interface State | ${DUT1} | ${subif_index_1} | up
 | | Set Interface State | ${DUT2} | ${subif_index_2} | up
