@@ -22,6 +22,7 @@ from scapy.layers.inet import ICMP, IP
 from scapy.all import Ether
 from scapy.layers.inet6 import ICMPv6EchoRequest
 from scapy.layers.inet6 import IPv6
+from scapy.layers.l2 import Dot1Q
 
 from resources.libraries.python.PacketVerifier import RxQueue, TxQueue
 from resources.libraries.python.TrafficScriptArg import TrafficScriptArg
@@ -63,12 +64,17 @@ def main():
     """Send IP ICMPv4/ICMPv6 packet from one traffic generator interface to
     the other one.
     """
-    args = TrafficScriptArg(['src_mac', 'dst_mac', 'src_ip', 'dst_ip'])
+    args = TrafficScriptArg(['src_mac', 'dst_mac', 'src_ip', 'dst_ip'], ['encaps', 'vlan1', 'vlan2'])
 
     src_mac = args.get_arg('src_mac')
     dst_mac = args.get_arg('dst_mac')
     src_ip = args.get_arg('src_ip')
     dst_ip = args.get_arg('dst_ip')
+
+    encaps = args.get_arg('encaps')
+    vlan1 = args.get_arg('vlan1')
+    vlan2 = args.get_arg('vlan2')
+
     tx_if = args.get_arg('tx_if')
     rx_if = args.get_arg('rx_if')
 
@@ -80,9 +86,21 @@ def main():
     icmp_format = ''
     # Create empty ip ICMP packet and add padding before sending
     if valid_ipv4(src_ip) and valid_ipv4(dst_ip):
-        pkt_raw = (Ether(src=src_mac, dst=dst_mac) /
-                   IP(src=src_ip, dst=dst_ip) /
-                   ICMP())
+        if encaps == 'Dot1q':
+            pkt_raw = (Ether(src=src_mac, dst=dst_mac) /
+                       Dot1Q(vlan=int(vlan1)) /
+                       IP(src=src_ip, dst=dst_ip) /
+                       ICMP())
+        elif encaps == 'Dot1ad':
+            pkt_raw = (Ether(src=src_mac, dst=dst_mac) /
+                       Dot1Q(vlan=int(vlan1), type=0x88A8) /
+                       Dot1Q(vlan=int(vlan2), type=0x8100) /
+                       IP(src=src_ip, dst=dst_ip) /
+                       ICMP())
+        else:
+            pkt_raw = (Ether(src=src_mac, dst=dst_mac) /
+                       IP(src=src_ip, dst=dst_ip) /
+                       ICMP())
         ip_format = 'IP'
         icmp_format = 'ICMP'
     elif valid_ipv6(src_ip) and valid_ipv6(dst_ip):
