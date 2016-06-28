@@ -55,6 +55,7 @@
 | ${test_ipv4_outside}= | 10.0.0.100
 # test_port depends on psid, length, offset
 | ${test_port}= | ${1232}
+| ${test_icmp_id}= | ${1232}
 
 *** Test Cases ***
 | TC01: Encapsulate IPv4 into IPv6. IPv6 dst depends on IPv4 and UDP destination
@@ -87,4 +88,38 @@
 | |      ... | ${tg_node} | ${tg_to_dut_if1} | ${tg_to_dut_if2}
 | |      ... | ${dut_to_tg_if1_mac} | ${test_ipv4_inside} | ${test_ipv4_outside}
 | |      ... | ${test_port} | ${tg_to_dut_if2_mac} | ${dut_to_tg_if2_mac}
+| |      ... | ${lw_rule_ipv6_dst} | ${lw_ipv6_src}
+
+TC02: Encapsulate IPv4 ICMP into IPv6. IPv6 dst depends on IPv4 addr and ICMP ID
+| | [Documentation]
+| | ... | [Top] TG=DUT1.
+| | ... | [Enc] Eth-IPv4-ICMP(type 0 and 8) on TG_if1-DUT, Eth-IPv6-IPv4-ICMP
+| | ... |       on TG_if2_DUT.
+| | ... | [Cfg] On DUT1 configure Map domain and Map rule.
+| | ... | [Ver] Make TG send non-encapsulated ICMP to DUT; verify TG received
+| | ... |       IPv4oIPv6 encapsulated packet is correct Checks IPv6
+| | ... |       destination based on ICMP Identifier field.
+| | ... | [Ref] RFC7596 section 8.1
+| | ...
+| | Given Path for 2-node testing is set
+| |       ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
+| | And   Interfaces in 2-node path are up
+| | And   IP addresses are set on interfaces
+| |       ... | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4} | ${ipv4_prefix_len}
+| |       ... | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6} | ${ipv6_prefix_len}
+| | And   Add IP Neighbor
+| |       ... | ${dut_node} | ${dut_to_tg_if2} | ${lw_rule_ipv6_dst}
+| |       ... | ${tg_to_dut_if2_mac}
+| | ${domain_index}=
+| | ... | When Map Add Domain
+| |            ... | ${dut_node} | ${lw_ipv4_pfx} | ${lw_ipv6_pfx}
+| |            ... | ${lw_ipv6_src} | 0 | ${lw_psid_offset}
+| |            ... | ${lw_psid_length}
+| |       And  Map Add Rule
+| |            ... | ${dut_node} | ${domain_index} | ${lw_rule_psid}
+| |            ... | ${lw_rule_ipv6_dst}
+| | Then Send IPv4 ICMP and check headers for lightweight 4over6
+| |      ... | ${tg_node} | ${tg_to_dut_if1} | ${tg_to_dut_if2}
+| |      ... | ${dut_to_tg_if1_mac} | ${test_ipv4_inside} | ${test_ipv4_outside}
+| |      ... | ${test_icmp_id} | ${tg_to_dut_if2_mac} | ${dut_to_tg_if2_mac}
 | |      ... | ${lw_rule_ipv6_dst} | ${lw_ipv6_src}
