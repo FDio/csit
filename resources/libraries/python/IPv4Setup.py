@@ -173,19 +173,23 @@ class Dut(IPv4Node):
         # TODO: check return value
         VatExecutor.cmd_from_template(self.node_info, script, **args)
 
-    def set_arp(self, iface_key, ip_address, mac_address):
+    def set_arp(self, iface_key, ip_address, mac_address, vrf=None):
         """Set entry in ARP cache.
 
         :param iface_key: Interface key.
         :param ip_address: IP address.
         :param mac_address: MAC address.
         :type iface_key: str
+        :param vrf: VRF table ID
         :type ip_address: str
         :type mac_address: str
+        :type vrf: int
         """
+        vrf = "vrf {}".format(vrf) if vrf else ''
         self.exec_vat('add_ip_neighbor.vat',
                       sw_if_index=self.get_sw_if_index(iface_key),
-                      ip_address=ip_address, mac_address=mac_address)
+                      ip_address=ip_address, mac_address=mac_address,
+                      vrf=vrf)
 
     def set_ip(self, interface, address, prefix_length):
         self.exec_vat('add_ip_address.vat',
@@ -316,16 +320,18 @@ class IPv4Setup(object):
                 get_node(node).set_arp(iface_key, ip_address, mac_address)
 
     @staticmethod
-    def add_arp_on_dut(node, iface_key, ip_address, mac_address):
+    def add_arp_on_dut(node, iface_key, ip_address, mac_address, vrf=None):
         """Set ARP cache entree on DUT node.
 
         :param node: VPP Node in the topology.
         :param iface_key: Interface key.
         :param ip_address: IP address of the interface.
         :param mac_address: MAC address of the interface.
+        :param vrf: VRF table ID (Optional).
         :type node: dict
         :type iface_key: str
         :type ip_address: str
         :type mac_address: str
+        :type vrf: int
         """
-        get_node(node).set_arp(iface_key, ip_address, mac_address)
+        get_node(node).set_arp(iface_key, ip_address, mac_address, vrf)
