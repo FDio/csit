@@ -34,7 +34,7 @@
 | ... | sent in both directions by TG on links to DUT1 and DUT2; on receive TG
 | ... | verifies packets for correctness and their IPv4 src-addr, dst-addr and
 | ... | MAC addresses.
-| ... | *[Ref] Applicable standard specifications:* 802dot1ad.
+| ... | *[Ref] Applicable standard specifications:* IEEE 802.1ad.
 
 *** Variables ***
 | ${subid}= | 10

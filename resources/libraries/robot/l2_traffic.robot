@@ -41,13 +41,13 @@
 | | ... | \| ${tg_to_dut_if1} \| ${tg_to_dut_if2} \|
 | | ...
 | | [Arguments] | ${tg_node} | ${src_int} | ${dst_int} |
-| | ... | ${src_ip}=192.168.100.1 | ${dst_ip}=192.168.100.2
+| | ... | ${src_ip}=192.168.100.1 | ${dst_ip}=192.168.100.2 | ${encaps}='' | ${vlan1}='' | ${vlan2}=''
 | | ${src_mac}= | Get Interface Mac | ${tg_node} | ${src_int}
 | | ${dst_mac}= | Get Interface Mac | ${tg_node} | ${dst_int}
 | | ${src_int_name}= | Get interface name | ${tg_node} | ${src_int}
 | | ${dst_int_name}= | Get interface name | ${tg_node} | ${dst_int}
 | | ${args}= | Traffic Script Gen Arg | ${dst_int_name} | ${src_int_name} | ${src_mac}
-| |          | ...                    | ${dst_mac} | ${src_ip} | ${dst_ip}
+| |          | ...                    | ${dst_mac} | ${src_ip} | ${dst_ip} | ${encaps} | ${vlan1} | ${vlan2}
 | | Run Traffic Script On Node | send_ip_icmp.py | ${tg_node} | ${args}
 
 | Send and receive ICMP Packet should failed
