@@ -208,4 +208,5 @@ PYTHONPATH=`pwd` pybot -L TRACE -W 150\
     --exclude PERFTEST \
     --exclude SKIP_PATCH \
     --noncritical EXPECTED_FAILING \
+    -s vlan \
     tests/
