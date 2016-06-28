@@ -580,8 +580,8 @@ class InterfaceUtil(object):
             return {}
 
     @staticmethod
-    def create_subinterface(node, interface, sub_id, outer_vlan_id,
-                            inner_vlan_id, type_subif):
+    def create_subinterface(node, interface, sub_id, outer_vlan_id=None,
+                            inner_vlan_id=None, type_subif=None):
         """Create sub-interface on node.
 
         :param node: Node to add sub-interface.
@@ -599,6 +599,19 @@ class InterfaceUtil(object):
         :return: name and index of created sub-interface
         :rtype: tuple
         """
+
+        if outer_vlan_id is None:
+            outer_vlan_id = ''
+        else:
+            outer_vlan_id = 'outer_vlan_id {0}'.format(outer_vlan_id)
+
+        if inner_vlan_id is None:
+            inner_vlan_id = ''
+        else:
+            inner_vlan_id = 'inner_vlan_id {0}'.format(inner_vlan_id)
+
+        if type_subif is None:
+            inner_vlan_id = ''
 
         if isinstance(interface, basestring):
             sw_if_index = Topology.get_interface_sw_index(node, interface)
