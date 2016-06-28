@@ -580,16 +580,16 @@ class InterfaceUtil(object):
             return {}
 
     @staticmethod
-    def create_subinterface(node, interface, sub_id, outer_vlan_id,
-                            inner_vlan_id, type_subif):
+    def create_subinterface(node, interface, sub_id, outer_vlan_id=None,
+                            inner_vlan_id=None, type_subif=None):
         """Create sub-interface on node.
 
         :param node: Node to add sub-interface.
         :param interface: Interface name on which create sub-interface.
         :param sub_id: ID of the sub-interface to be created.
-        :param outer_vlan_id: Outer VLAN ID.
-        :param inner_vlan_id: Inner VLAN ID.
-        :param type_subif: Type of sub-interface.
+        :param outer_vlan_id: Optional outer VLAN ID.
+        :param inner_vlan_id: Optional inner VLAN ID.
+        :param type_subif: Optional type of sub-interface.
         :type node: dict
         :type interface: str or int
         :type sub_id: int
@@ -600,8 +600,22 @@ class InterfaceUtil(object):
         :rtype: tuple
         """
 
+        if outer_vlan_id is None:
+            outer_vlan_id = ''
+        else:
+            outer_vlan_id = 'outer_vlan_id {0}'.format(outer_vlan_id)
+
+        if inner_vlan_id is None:
+            inner_vlan_id = ''
+        else:
+            inner_vlan_id = 'inner_vlan_id {0}'.format(inner_vlan_id)
+
+        if type_subif is None:
+            type_subif = ''
+
         if isinstance(interface, basestring):
-            sw_if_index = Topology.get_interface_sw_index(node, interface)
+            iface_key = Topology.get_interface_by_name(node, interface)
+            sw_if_index = Topology.get_interface_sw_index(node, iface_key)
         else:
             sw_if_index = interface
 
@@ -620,7 +634,7 @@ class InterfaceUtil(object):
             raise RuntimeError('Unable to create subinterface on node {}'
                                .format(node['host']))
 
-        with VatTerminal(node) as vat:
+        with VatTerminal(node, False) as vat:
             vat.vat_terminal_exec_cmd('exec show interfaces')
 
         name = '{}.{}'.format(interface, sub_id)
