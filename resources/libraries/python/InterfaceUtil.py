@@ -580,8 +580,8 @@ class InterfaceUtil(object):
             return {}
 
     @staticmethod
-    def create_subinterface(node, interface, sub_id, outer_vlan_id,
-                            inner_vlan_id, type_subif):
+    def create_subinterface(node, interface, sub_id, outer_vlan_id=None,
+                            inner_vlan_id=None, type_subif=None):
         """Create sub-interface on node.
 
         :param node: Node to add sub-interface.
@@ -600,8 +600,22 @@ class InterfaceUtil(object):
         :rtype: tuple
         """
 
+        if outer_vlan_id is None:
+            outer_vlan_id = ''
+        else:
+            outer_vlan_id = 'outer_vlan_id {0}'.format(outer_vlan_id)
+
+        if inner_vlan_id is None:
+            inner_vlan_id = ''
+        else:
+            inner_vlan_id = 'inner_vlan_id {0}'.format(inner_vlan_id)
+
+        if type_subif is None:
+            type_subif = ''
+
         if isinstance(interface, basestring):
-            sw_if_index = Topology.get_interface_sw_index(node, interface)
+            iface_key = Topology.get_interface_by_name(node, interface)
+            sw_if_index = Topology.get_interface_sw_index(node, iface_key)
         else:
             sw_if_index = interface
 
@@ -620,7 +634,7 @@ class InterfaceUtil(object):
             raise RuntimeError('Unable to create subinterface on node {}'
                                .format(node['host']))
 
-        with VatTerminal(node) as vat:
+        with VatTerminal(node, False) as vat:
             vat.vat_terminal_exec_cmd('exec show interfaces')
 
         name = '{}.{}'.format(interface, sub_id)
