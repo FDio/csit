@@ -103,6 +103,9 @@ def main():
     # Check whether received packet contains layers Ether, IP and ICMP
     if ether is None:
         raise RuntimeError('ICMP echo Rx timeout')
+    else:
+        print("Received packet (ether.__repr__()): {0}".format(ether.__repr__()))
+        print("Received packet (ether): {0}".format(ether))
 
     if not ether.haslayer(ip_format):
         raise RuntimeError('Not an IP packet received {0}'
