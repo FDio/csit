@@ -80,10 +80,12 @@
 | | ... | \| ${nodes['DUT1']} \| ${dut1_if2} \| ${nodes['DUT2']} \
 | | ... | \| ${dut1_if2} \| 10 \|
 | | ...
+| | ${INT1_NAME}= | Get interface name | ${DUT1} | ${INT1}
+| | ${INT2_NAME}= | Get interface name | ${DUT2} | ${INT2}
 | | ${subif_name_1} | ${subif_index_1}= | Create Vlan Subinterface
-| |                    | ...            | ${DUT1} | ${INT1} | ${SUB_ID}
+| |                 | ...               | ${DUT1} | ${INT1_NAME} | ${SUB_ID}
 | | ${subif_name_2} | ${subif_index_2}= | Create Vlan Subinterface
-| |                    | ...            | ${DUT2} | ${INT2} | ${SUB_ID}
+| |                 | ...               | ${DUT2} | ${INT2_NAME} | ${SUB_ID}
 | | Set Interface State | ${DUT1} | ${subif_index_1} | up
 | | Set Interface State | ${DUT2} | ${subif_index_2} | up
 | | Set Test Variable | ${subif_name_1}
