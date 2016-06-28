@@ -207,4 +207,5 @@ PYTHONPATH=`pwd` pybot -L TRACE \
     --include vm_envAND3_node_double_link_topo \
     --exclude PERFTEST \
     --noncritical EXPECTED_FAILING \
+    -s vlan \
     tests/
