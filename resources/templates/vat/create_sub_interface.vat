@@ -1,1 +1,1 @@
-create_subif sw_if_index {sw_if_index} sub_id {sub_id} outer_vlan_id {outer_vlan_id} inner_vlan_id {inner_vlan_id} {type_subif}
+create_subif sw_if_index {sw_if_index} sub_id {sub_id} {outer_vlan_id} {inner_vlan_id} {type_subif}
