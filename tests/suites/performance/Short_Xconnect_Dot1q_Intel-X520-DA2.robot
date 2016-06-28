@@ -59,7 +59,7 @@
 | | And   Add all PCI devices to all DUTs
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
-| | And   VPP interfaces in path are up
+| | And   VPP interfaces in path are up in a 3-node circular topology
 | | When VLAN dot1q subinterfaces initialized on 3-node topology
 | | ... | ${dut1} | ${dut1_if2} | ${dut2} | ${dut2_if1} | ${subid}
 | | And L2 tag rewrite method setup on interfaces
@@ -84,7 +84,7 @@
 | | And   Add all PCI devices to all DUTs
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
-| | And   VPP interfaces in path are up
+| | And   VPP interfaces in path are up in a 3-node circular topology
 | | When VLAN dot1q subinterfaces initialized on 3-node topology
 | | ... | ${dut1} | ${dut1_if2} | ${dut2} | ${dut2_if1} | ${subid}
 | | And L2 tag rewrite method setup on interfaces
@@ -108,7 +108,7 @@
 | | Given Add '1' worker threads and rxqueues '1' without HTT to all DUTs
 | | And   Add all PCI devices to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
-| | And   VPP interfaces in path are up
+| | And   VPP interfaces in path are up in a 3-node circular topology
 | | When VLAN dot1q subinterfaces initialized on 3-node topology
 | | ... | ${dut1} | ${dut1_if2} | ${dut2} | ${dut2_if1} | ${subid}
 | | And L2 tag rewrite method setup on interfaces
@@ -133,7 +133,7 @@
 | | And   Add all PCI devices to all DUTs
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
-| | And   VPP interfaces in path are up
+| | And   VPP interfaces in path are up in a 3-node circular topology
 | | When VLAN dot1q subinterfaces initialized on 3-node topology
 | | ... | ${dut1} | ${dut1_if2} | ${dut2} | ${dut2_if1} | ${subid}
 | | And L2 tag rewrite method setup on interfaces
@@ -158,7 +158,7 @@
 | | And   Add all PCI devices to all DUTs
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
-| | And   VPP interfaces in path are up
+| | And   VPP interfaces in path are up in a 3-node circular topology
 | | When VLAN dot1q subinterfaces initialized on 3-node topology
 | | ... | ${dut1} | ${dut1_if2} | ${dut2} | ${dut2_if1} | ${subid}
 | | And L2 tag rewrite method setup on interfaces
@@ -182,7 +182,7 @@
 | | Given Add '2' worker threads and rxqueues '1' without HTT to all DUTs
 | | And   Add all PCI devices to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
-| | And   VPP interfaces in path are up
+| | And   VPP interfaces in path are up in a 3-node circular topology
 | | When VLAN dot1q subinterfaces initialized on 3-node topology
 | | ... | ${dut1} | ${dut1_if2} | ${dut2} | ${dut2_if1} | ${subid}
 | | And L2 tag rewrite method setup on interfaces
@@ -207,7 +207,7 @@
 | | And   Add all PCI devices to all DUTs
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
-| | And   VPP interfaces in path are up
+| | And   VPP interfaces in path are up in a 3-node circular topology
 | | When VLAN dot1q subinterfaces initialized on 3-node topology
 | | ... | ${dut1} | ${dut1_if2} | ${dut2} | ${dut2_if1} | ${subid}
 | | And L2 tag rewrite method setup on interfaces
@@ -232,7 +232,7 @@
 | | And   Add all PCI devices to all DUTs
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
-| | And   VPP interfaces in path are up
+| | And   VPP interfaces in path are up in a 3-node circular topology
 | | When VLAN dot1q subinterfaces initialized on 3-node topology
 | | ... | ${dut1} | ${dut1_if2} | ${dut2} | ${dut2_if1} | ${subid}
 | | And L2 tag rewrite method setup on interfaces
@@ -256,7 +256,7 @@
 | | Given Add '4' worker threads and rxqueues '2' without HTT to all DUTs
 | | And   Add all PCI devices to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
-| | And   VPP interfaces in path are up
+| | And   VPP interfaces in path are up in a 3-node circular topology
 | | When VLAN dot1q subinterfaces initialized on 3-node topology
 | | ... | ${dut1} | ${dut1_if2} | ${dut2} | ${dut2_if1} | ${subid}
 | | And L2 tag rewrite method setup on interfaces

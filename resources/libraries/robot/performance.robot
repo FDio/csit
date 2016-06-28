@@ -73,6 +73,20 @@
 | | Set Suite Variable | ${glob_loss_acceptance}
 | | Set Suite Variable | ${glob_loss_acceptance_type}
 
+| 2-node circular Topology Variables Setup
+| | Append Nodes | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
+| | Compute Path
+| | ${tg_if1} | ${tg}= | Next Interface
+| | ${dut1_if1} | ${dut1}= | Next Interface
+| | ${dut1_if2} | ${dut1}= | Next Interface
+| | ${tg_if2} | ${tg}= | Next Interface
+| | Set Suite Variable | ${tg}
+| | Set Suite Variable | ${tg_if1}
+| | Set Suite Variable | ${tg_if2}
+| | Set Suite Variable | ${dut1}
+| | Set Suite Variable | ${dut1_if1}
+| | Set Suite Variable | ${dut1_if2}
+
 | 3-node circular Topology Variables Setup
 | | Append Nodes | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']}
 | | ...          | ${nodes['TG']}
@@ -92,6 +106,27 @@
 | | Set Suite Variable | ${dut2}
 | | Set Suite Variable | ${dut2_if1}
 | | Set Suite Variable | ${dut2_if2}
+
+| 2-node circular Topology Variables Setup with DUT interface model
+| | [Documentation] | Find a path between TG-DUT1-TG based on interface
+| | ...             | model provided as an argument. Set suite variables
+| | ...             | tg, tg_if1, tg_if2, dut1, dut1_if1, dut1_if2,
+| | [Arguments] | ${iface_model}
+| | ${iface_model_list}= | Create list | ${iface_model}
+| | Append Node | ${nodes['TG']}
+| | Append Node | ${nodes['DUT1']} | filter_list=${iface_model_list}
+| | Append Node | ${nodes['TG']}
+| | Compute Path
+| | ${tg_if1} | ${tg}= | Next Interface
+| | ${dut1_if1} | ${dut1}= | Next Interface
+| | ${dut1_if2} | ${dut1}= | Next Interface
+| | ${tg_if2} | ${tg}= | Next Interface
+| | Set Suite Variable | ${tg}
+| | Set Suite Variable | ${tg_if1}
+| | Set Suite Variable | ${tg_if2}
+| | Set Suite Variable | ${dut1}
+| | Set Suite Variable | ${dut1_if1}
+| | Set Suite Variable | ${dut1_if2}
 
 | 3-node circular Topology Variables Setup with DUT interface model
 | | [Documentation] | Find a path between TG-DUT1-DUT2-TG based on interface
@@ -121,7 +156,14 @@
 | | Set Suite Variable | ${dut2_if1}
 | | Set Suite Variable | ${dut2_if2}
 
-| VPP interfaces in path are up
+| VPP interfaces in path are up in a 2-node circular topology
+| | [Documentation] | *Set UP state on VPP interfaces in path on nodes.*
+| | ...
+| | Set Interface State | ${dut1} | ${dut1_if1} | up
+| | Set Interface State | ${dut1} | ${dut1_if2} | up
+| | Vpp Node Interfaces Ready Wait | ${dut1}
+
+| VPP interfaces in path are up in a 3-node circular topology
 | | [Documentation] | *Set UP state on VPP interfaces in path on nodes.*
 | | ...
 | | Set Interface State | ${dut1} | ${dut1_if1} | up
@@ -188,6 +230,19 @@
 | | Vpp l2bd forwarding setup | ${dut2} | ${dut2_if1} | ${dut2_if2}
 | | All Vpp Interfaces Ready Wait | ${nodes}
 
+| 2-node Performance Suite Setup
+| | [Arguments] | ${topology_type}
+| | Setup default startup configuration of VPP on all DUTs
+| | Update All Interface Data On All Nodes | ${nodes}
+| | Show vpp version on all DUTs
+| | Setup performance rate Variables
+| | Setup performance global Variables
+| | 2-node circular Topology Variables Setup
+| | Initialize traffic generator | ${tg} | ${tg_if1} | ${tg_if2}
+| | ...                          | ${dut1} | ${dut1_if1}
+| | ...                          | ${dut1} | ${dut1_if2}
+| | ...                          | ${topology_type}
+
 | 3-node Performance Suite Setup
 | | [Arguments] | ${topology_type}
 | | Setup default startup configuration of VPP on all DUTs
@@ -199,6 +254,20 @@
 | | Initialize traffic generator | ${tg} | ${tg_if1} | ${tg_if2}
 | | ...                          | ${dut1} | ${dut1_if1}
 | | ...                          | ${dut2} | ${dut2_if2}
+| | ...                          | ${topology_type}
+
+2-node Performance Suite Setup with DUT's NIC model
+| | [Arguments] | ${topology_type} | ${nic_model}
+| | Setup default startup configuration of VPP on all DUTs
+| | Update All Interface Data On All Nodes | ${nodes}
+| | Show vpp version on all DUTs
+| | Setup performance rate Variables
+| | Setup performance global Variables
+| | 2-node circular Topology Variables Setup with DUT interface model
+| | ... | ${nic_model}
+| | Initialize traffic generator | ${tg} | ${tg_if1} | ${tg_if2}
+| | ...                          | ${dut1} | ${dut1_if1}
+| | ...                          | ${dut1} | ${dut1_if2}
 | | ...                          | ${topology_type}
 
 3-node Performance Suite Setup with DUT's NIC model
