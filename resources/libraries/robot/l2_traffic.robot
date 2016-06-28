@@ -41,13 +41,18 @@
 | | ... | \| ${tg_to_dut_if1} \| ${tg_to_dut_if2} \|
 | | ...
 | | [Arguments] | ${tg_node} | ${src_int} | ${dst_int} |
-| | ... | ${src_ip}=192.168.100.1 | ${dst_ip}=192.168.100.2
+| | ... | ${src_ip}=192.168.100.1 | ${dst_ip}=192.168.100.2 | ${encaps}=${EMPTY} | ${vlan1}=${EMPTY} | ${vlan2}=${EMPTY}
 | | ${src_mac}= | Get Interface Mac | ${tg_node} | ${src_int}
 | | ${dst_mac}= | Get Interface Mac | ${tg_node} | ${dst_int}
 | | ${src_int_name}= | Get interface name | ${tg_node} | ${src_int}
 | | ${dst_int_name}= | Get interface name | ${tg_node} | ${dst_int}
 | | ${args}= | Traffic Script Gen Arg | ${dst_int_name} | ${src_int_name} | ${src_mac}
 | |          | ...                    | ${dst_mac} | ${src_ip} | ${dst_ip}
+| | ${args1}= | Run Keyword Unless | '${encaps}' == '${EMPTY}' | Catenate | ${args} | --encaps ${encaps} | --vlan1 ${vlan1}
+| | ${args2}= | Run Keyword Unless | '${vlan2}' == '${EMPTY}' | Catenate | ${args} | --vlan2 ${vlan2}
+| | ${args}= | Run Keyword If | '${args1}' == 'None' | Set Variable | ${args}
+| | ... | ELSE IF | '${args2}' == 'None' | Catenate | ${args} | ${args1}
+| | ... | ELSE | Catenate | ${args} | ${args1} | ${args2}
 | | Run Traffic Script On Node | send_ip_icmp.py | ${tg_node} | ${args}
 
 | Send and receive ICMP Packet should failed
