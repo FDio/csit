@@ -19,6 +19,8 @@
 | L2 setup xconnect on DUT
 | | [Documentation] | Setup Bidirectional Cross Connect on DUTs
 | | [Arguments] | ${node} | ${if1} | ${if2} |
-| | Set Interface State | ${node} | ${if1} | up
-| | Set Interface State | ${node} | ${if2} | up
-| | Vpp Setup Bidirectional Cross Connect | ${node} | ${if1} | ${if2}
+| | ${if1_name}= | Get interface name | ${node} | ${if1}
+| | Set Interface State | ${node} | ${if1_name} | up
+| | ${if2_name}= | Get interface name | ${node} | ${if2}
+| | Set Interface State | ${node} | ${if2_name} | up
+| | Vpp Setup Bidirectional Cross Connect | ${node} | ${if1_name} | ${if2_name}
