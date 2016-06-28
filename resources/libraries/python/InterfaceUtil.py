@@ -767,3 +767,25 @@ class InterfaceUtil(object):
             vat.vat_terminal_exec_cmd_from_template(
                 "proxy_arp_intfc_enable.vat",
                 sw_if_index=sw_if_index)
+
+    @staticmethod
+    def assign_fib_table_to_interface(node, interface, table_id):
+        """
+
+        :param node:
+        :param interface:
+        :param table_id:
+        :type node:
+        :type interface:
+        :type table_id:
+        :return:
+        """
+        if isinstance(interface, basestring):
+            sw_if_index = Topology.get_interface_sw_index(node, interface)
+        else:
+            sw_if_index = interface
+
+        with VatTerminal(node) as vat:
+            vat.vat_terminal_exec_cmd_from_template("set_fib_to_interface.vat",
+                                                    sw_index=sw_if_index,
+                                                    vrf=table_id,)

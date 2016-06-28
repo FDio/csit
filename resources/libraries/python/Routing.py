@@ -22,7 +22,7 @@ class Routing(object):
 
     @staticmethod
     def vpp_route_add(node, network, prefix_len, gateway=None, interface=None,
-                      use_sw_index=True, resolve_attempts=10, count=1):
+                      use_sw_index=True, resolve_attempts=10, count=1, vrf=None):
         """Add route to the VPP node.
 
         :param node: Node to add route on.
@@ -30,6 +30,7 @@ class Routing(object):
         :param prefix_len: Route destination network prefix length.
         :param gateway: Route gateway address.
         :param interface: Route interface.
+        :param vrf: VRF table ID.
         :param use_sw_index: Use sw_if_index in VAT command.
         :param resolve_attempts: Resolve attempts IP route add parameter.
         :param count: number of IP addresses to add starting from network IP
@@ -43,6 +44,7 @@ class Routing(object):
         :type use_sw_index: bool
         :type resolve_attempts: int
         :type count: int
+        :type vrf: int
         """
         if use_sw_index:
             int_cmd = ('sw_if_index {}'.
@@ -58,11 +60,14 @@ class Routing(object):
         cnt = 'count {}'.format(count) \
             if count else ''
 
+        vrf = 'vrf {}'.format(vrf) if vrf else ''
+
         with VatTerminal(node, json_param=False) as vat:
             vat.vat_terminal_exec_cmd_from_template('add_route.vat',
                                                     network=network,
                                                     prefix_length=prefix_len,
                                                     via=via,
+                                                    vrf=vrf,
                                                     interface=int_cmd,
                                                     resolve_attempts=rap,
                                                     count=cnt)
