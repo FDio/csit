@@ -34,7 +34,7 @@
 | ... | sent in both directions by TG on links to DUT1 and DUT2; on receive TG
 | ... | verifies packets for correctness and their IPv4 src-addr, dst-addr and
 | ... | MAC addresses.
-| ... | *[Ref] Applicable standard specifications:* 802dot1ad.
+| ... | *[Ref] Applicable standard specifications:* IEEE 802.1ad.
 
 *** Variables ***
 | ${subid}= | 10
@@ -54,7 +54,7 @@
 | | ... | popping two VLAN tags on packets transmitted to local TG. [Ver]
 | | ... | Make TG send ICMPv4 Echo Req in both directions between two of
 | | ... | its interfaces to be switched by DUT1 and DUT2; verify all
-| | ... | packets are received. [Ref] 802dot1ad.
+| | ... | packets are received. [Ref] IEEE 802.1ad.
 | | Given Path for 3-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And Interfaces in 3-node path are up

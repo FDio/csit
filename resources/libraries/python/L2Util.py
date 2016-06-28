@@ -280,33 +280,43 @@ class L2Util(object):
         return data
 
     @staticmethod
-    def l2_tag_rewrite(node, interface, tag_rewrite_method, tag1_id=None):
+    def l2_vlan_tag_rewrite(node, interface, tag_rewrite_method,
+                            push_dot1q=True, tag1_id=None, tag2_id=None):
         """Rewrite tags in frame.
 
         :param node: Node to rewrite tags.
         :param interface: Interface on which rewrite tags.
         :param tag_rewrite_method: Method of tag rewrite.
+        :param push_dot1q: Optional parameter to disable to push dot1q tag
+         instead of dot1ad.
         :param tag1_id: Optional tag1 ID for VLAN.
+        :param tag2_id: Optional tag2 ID for VLAN.
         :type node: dict
         :type interface: str or int
         :type tag_rewrite_method : str
+        :type push_dot1q : bool
         :type tag1_id: int
+        :type tag2_id: int
         """
-        if tag1_id is None:
-            tag1_id = ''
-        else:
-            tag1_id = 'tag1 {0}'.format(tag1_id)
+        push_dot1q = 'push_dot1q 0'.format(push_dot1q) if push_dot1q is True else ''
+
+        tag1_id = 'tag1 {0}'.format(tag1_id) if tag1_id else ''
+        tag2_id = 'tag2 {0}'.format(tag2_id) if tag2_id else ''
+
         if isinstance(interface, basestring):
-            sw_if_index = Topology.get_interface_sw_index(node, interface)
+            iface_key = Topology.get_interface_by_name(node, interface)
+            sw_if_index = Topology.get_interface_sw_index(node, iface_key)
         else:
             sw_if_index = interface
 
         with VatTerminal(node) as vat:
-            vat.vat_terminal_exec_cmd_from_template("l2_tag_rewrite.vat",
+            vat.vat_terminal_exec_cmd_from_template("l2_vlan_tag_rewrite.vat",
                                                     sw_if_index=sw_if_index,
                                                     tag_rewrite_method=
                                                     tag_rewrite_method,
-                                                    tag1_optional=tag1_id)
+                                                    push_dot1q=push_dot1q,
+                                                    tag1_optional=tag1_id,
+                                                    tag2_optional=tag2_id)
 
     @staticmethod
     def delete_bridge_domain_vat(node, bd_id):
