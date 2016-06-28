@@ -81,6 +81,7 @@ def main():
     # Create empty ip ICMP packet and add padding before sending
     if valid_ipv4(src_ip) and valid_ipv4(dst_ip):
         pkt_raw = (Ether(src=src_mac, dst=dst_mac) /
+                   Dot1Q(vlan=110) /
                    IP(src=src_ip, dst=dst_ip) /
                    ICMP())
         ip_format = 'IP'
