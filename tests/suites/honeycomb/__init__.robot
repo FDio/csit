@@ -12,6 +12,7 @@
 # limitations under the License.
 
 *** Variables***
+# Honeycomb node to run tests on.
 | ${node}= | ${nodes['DUT1']}
 
 *** Settings ***
@@ -20,5 +21,6 @@
 | Resource | resources/libraries/robot/honeycomb/honeycomb.robot
 | Suite Setup | Run keywords | Setup all DUTs before test | AND
 | ... | Clear persisted Honeycomb configuration | ${node} | AND
-| ... | Setup Honeycomb service on DUTs | ${node}
+| ... | Setup Honeycomb service on DUTs | ${node} | AND
+| ... | Set Global Variable | ${node}
 | Suite Teardown | Stop Honeycomb service on DUTs | ${node}

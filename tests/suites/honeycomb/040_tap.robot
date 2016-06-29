@@ -12,8 +12,7 @@
 # limitations under the License.
 
 *** Variables ***
-# Node and interfaces to run tests on.
-| ${node}= | ${nodes['DUT1']}
+# Interfaces to run tests on.
 | ${interface}= | ${node['interfaces']['port1']['name']}
 | ${tap_interface}= | tap_test
 # Configuration which will be set and verified during tests.

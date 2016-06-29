@@ -12,8 +12,7 @@
 # limitations under the License.
 
 *** Variables ***
-# Node and interfaces to run tests on.
-| ${node}= | ${nodes['DUT1']}
+# Interfaces to run tests on.
 | ${interface}= | ${node['interfaces']['port1']['name']}
 | ${tap_interface}= | tap_test
 | &{tap_settings}= | tap-name=tap_test | mac=08:00:27:c0:5d:37
