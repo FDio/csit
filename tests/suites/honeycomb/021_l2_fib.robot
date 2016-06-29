@@ -26,9 +26,8 @@
 | Force tags | honeycomb_sanity
 
 *** Variables ***
-# Node and interface used in tests.
-| ${node}= | ${nodes['DUT1']}
-| ${interface}= | GigabitEthernet0/8/0
+# Interface to run tests on.
+| ${interface}= | ${node['interfaces']['port1']['name']}
 
 *** Test Cases ***
 | Honeycomb adds L2 FIB entry (forward)

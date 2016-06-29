@@ -212,9 +212,11 @@
 | | ... | \| GigabitEthernet0/9/0 \| ${{split_horizon_group:2, bvi:False}} \|
 | | [Arguments] | ${node} | ${index} | ${interface1} | ${interface2}
 | | ... | ${settings}
-| | ${if1_index}= | Get interface sw index | ${node} | ${interface1}
-| | ${if2_index}= | Get interface sw index | ${node} | ${interface2}
-| | ${if_indices}= | Create list | ${if1_index} | ${if2_index}
+| | ${if1_link}= | Get interface by name | ${node} | ${interface1}
+| | ${if2_link}= | Get interface by name | ${node} | ${interface2}
+| | ${if_indices}= | Create list
+| | ... | ${node['interfaces']['${if1_link}']['vpp_sw_index']}
+| | ... | ${node['interfaces']['${if2_link}']['vpp_sw_index']}
 | | ${bd_data}= | VPP get bridge domain data | ${node}
 | | ${bd_interfaces}= | Set Variable | ${bd_data[${index}]['sw_if']}
 | | @{bd_interfaces}= | Create List | ${bd_interfaces[0]} | ${bd_interfaces[1]}

@@ -33,6 +33,7 @@
 | | ... | \| up \|
 | | [Arguments] | ${node} | ${interface} | ${state}
 | | interfaceCLI.Set interface state | ${node} | ${interface} | ${state}
+| | ... | if_type=name
 
 | Honeycomb sets interface state
 | | [Documentation] | Uses Honeycomb API to change the admin state\
@@ -184,9 +185,9 @@
 | | Should be equal | ${prefix}
 | | ... | ${api_data['ietf-ip:ipv4']['address'][0]['prefix-length']}
 | | Should be equal | ${fib_address}
-| | ... | ${api_data['ietf-ip:ipv4']['neighbor'][0]['ip']
+| | ... | ${api_data['ietf-ip:ipv4']['neighbor'][0]['ip']}
 | | Should be equal | ${fib_mac}
-| | ... | ${api_data['ietf-ip:ipv4']['neighbor'][0]['link-layer-address']
+| | ... | ${api_data['ietf-ip:ipv4']['neighbor'][0]['link-layer-address']}
 | | :FOR | ${key} | IN | @{settings.keys()}
 | | | Should be equal
 | | | ... | ${settings['{key']} | ${api_data['ietf-ip:ipv4']['{$key}']}

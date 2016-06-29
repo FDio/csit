@@ -12,7 +12,6 @@
 # limitations under the License.
 
 *** Variables ***
-| ${node}= | ${nodes['DUT1']}
 | ${interface}= | ${node['interfaces']['port1']['name']}
 | ${vhost_interface}= | test_vhost
 | &{vhost_user_server}= | socket=soc1 | role=server
