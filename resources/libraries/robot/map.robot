@@ -110,3 +110,47 @@
 | | ...
 | | Run Traffic Script On Node
 | | ... | send_ipv4_icmp_check_lw_4o6.py | ${tg_node} | ${args}
+
+| Send IPv4 UDP in IPv6 and check headers for lightweight 4over6
+| | [Documentation]
+| | ... |
+| | ...
+| | ... | *Arguments:*
+| | ... | - tg_node - Node where to run traffic script. Type: string
+| | ... | - tx_if - Interface from where to send ICPMv4 packet. Type: string
+| | ... | - rx_if - Interface where to receive IPinIP packet. Type: string
+| | ... | - tx_dst_mac - Destination MAC address of IPv4 packet. Type: string
+| | ... | - tx_dst_ipv6 - Destination IPv6 address. Type: string
+| | ... | - tx_src_ipv6 - Source IPv6 address. Type: string
+| | ... | - tx_dst_ipv4 - Destination IPv4 address. Type: string
+| | ... | - tx_src_ipv4 - Source IPv4 address. Type: string
+| | ... | - tx_src_udp_port - ICMP ID. Type: integer
+| | ... | - rx_dst_mac - Expected destination MAC address. Type: string
+| | ... | - rx_src_mac - Expected source MAC address. Type: string
+| | ...
+| | ... | *Return:*
+| | ... | - No value returned
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Send IPv4 ICMP and check headers for lightweight 4over6 \
+| | ... | \| ${tg_node} \| eth3 \| eth2 \| 08:00:27:66:b8:57 \| 20.0.0.1 \
+| | ... | \| 20.0.0.2 \| 1232 \| 08:00:27:46:2b:4c \| 08:00:27:f3:be:f0 \
+| | ... | \| 2001:1::2 \| 2001:1::1 \|
+| | ...
+| | [Arguments]
+| | ... | ${tg_node} | ${tx_if} | ${rx_if} | ${tx_dst_mac} | ${tx_dst_ipv4}
+| | ... | ${tx_src_ipv4} | ${tx_icmp_id} | ${rx_dst_mac} | ${rx_src_mac}
+| | ... | ${dst_ipv6} | ${src_ipv6}
+| | ...
+| | ${tx_name}= | Get interface name | ${tg_node} | ${tx_if}
+| | ${rx_name}= | Get interface name | ${tg_node} | ${rx_if}
+| | ${args}= | Catenate
+| | ... | --tx_if | ${tx_name} | --rx_if | ${rx_name}
+| | ... | --tx_dst_mac | ${tx_dst_mac} | --tx_src_ipv4 | ${tx_src_ipv4}
+| | ... | --tx_dst_ipv4 | ${tx_dst_ipv4} | --tx_icmp_id | ${tx_icmp_id}
+| | ... | --rx_dst_mac | ${rx_dst_mac} | --rx_src_mac | ${rx_src_mac}
+| | ... | --src_ipv6 | ${src_ipv6} | --dst_ipv6 | ${dst_ipv6}
+| | ...
+| | Run Traffic Script On Node
+| | ... | send_ipv4_icmp_check_lw_4o6.py | ${tg_node} | ${args}
