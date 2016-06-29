@@ -12,8 +12,7 @@
 # limitations under the License.
 
 *** Variables ***
-# Node and interfaces to run tests on.
-| ${node}= | ${nodes['DUT1']}
+# Interfaces to run tests on.
 | @{interfaces}= | ${node['interfaces']['port1']['name']}
 | ... | ${node['interfaces']['port3']['name']}
 # Configuration which will be set and verified during tests.

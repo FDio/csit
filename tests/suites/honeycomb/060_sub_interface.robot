@@ -25,8 +25,6 @@
 | ...           | delete a sub-interface.
 
 *** Variables ***
-| ${node}= | ${nodes['DUT1']}
-
 # Test interface 1 and its sub-interface parameters:
 | ${super_if}= | ${node['interfaces']['port1']['name']}
 | ${sub_if_id}= | ${sub_if_1_settings['identifier']}
@@ -36,7 +34,8 @@
 | Honycomb creates sub-interface
 | | [Documentation] | Check if Honeycomb creates a sub-interface.
 | | ...
-| | Given sub-interface configuration from Honeycomb should be empty
+| | Given interface state is | ${node} | ${super_if} | down
+| | And sub-interface configuration from Honeycomb should be empty
 | | ... | ${node} | ${super_if} | ${sub_if_id}
 | | And interface configuration from VAT should be empty
 | | ... | ${node} | ${sub_if_name}
