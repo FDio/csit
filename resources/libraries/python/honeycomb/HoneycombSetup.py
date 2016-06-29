@@ -53,6 +53,9 @@ class HoneycombSetup(object):
         :type nodes: list
         :raises HoneycombError: If Honeycomb fails to start.
         """
+
+        HoneycombSetup.print_environment(nodes)
+
         logger.console("\nStarting Honeycomb service ...")
 
         cmd = "{0}/bin/start".format(Const.REMOTE_HC_DIR)
@@ -123,6 +126,7 @@ class HoneycombSetup(object):
 
         for node in nodes:
             if node['type'] == NodeType.DUT:
+                HoneycombSetup.print_ports(node)
                 status_code, _ = HTTPRequest.get(node, path, timeout=10,
                                                  enable_logging=False)
                 if status_code == HTTPCodes.OK:
@@ -185,3 +189,53 @@ class HoneycombSetup(object):
                         logger.info("Honeycomb on node {0} has stopped".
                                     format(node['host']))
         return True
+
+    @staticmethod
+    def print_environment(nodes):
+        """Print information about the nodes to log. The information is defined
+        by commands in cmds tuple at the beginning of this method.
+
+        :param nodes: List of DUT nodes to get information about.
+        :type nodes: list
+        """
+
+        # TODO: When everything is set and running in VIRL env, transform this
+        # method to a keyword checking the environment.
+
+        cmds = ("uname -a",
+                "df -lh",
+                "echo $JAVA_HOME",
+                "echo $PATH",
+                "which java",
+                "java -version",
+                "dpkg --list | grep openjdk",
+                "ls -la /opt/honeycomb",
+                "ls -la /opt/honeycomb/v3po-karaf-1.0.0-SNAPSHOT")
+
+        for node in nodes:
+            if node['type'] == NodeType.DUT:
+                logger.info("Checking node {} ...".format(node['host']))
+                for cmd in cmds:
+                    logger.info("Command: {}".format(cmd))
+                    ssh = SSH()
+                    ssh.connect(node)
+                    ssh.exec_command_sudo(cmd)
+
+    @staticmethod
+    def print_ports(node):
+        """Uses "sudo netstat -anp | grep java" to print port where a java
+        application listens.
+
+        :param node: Honeycomb node where we want to print the ports.
+        :type node: dict
+        """
+
+        cmds = ("netstat -anp | grep java",
+                "ps -ef | grep karaf")
+
+        logger.info("Checking node {} ...".format(node['host']))
+        for cmd in cmds:
+            logger.info("Command: {}".format(cmd))
+            ssh = SSH()
+            ssh.connect(node)
+            ssh.exec_command_sudo(cmd)

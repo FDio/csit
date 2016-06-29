@@ -24,9 +24,6 @@ sudo apt-get -y install libpython2.7-dev python-virtualenv
 # Source the VIRL server parameters:
 source virl_params.sh
 
-# Temporary solution for testing purposes:
-VIRL_SERVER_EXPECTED_STATUS="TESTING"
-
 SSH_OPTIONS="-i ${VIRL_PKEY} -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o BatchMode=yes -o LogLevel=error"
 
 function ssh_do() {
