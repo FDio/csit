@@ -14,15 +14,35 @@ nodes:
     username: csit
     password: csit
     interfaces:
-      port3:
+      port1:
         mac_address: ""
         pci_address: "0000:00:09.0"
+        link: link0
+        driver: e1000
+      port2:
+        mac_address: ""
+        pci_address: "0000:00:0a.0"
+        link: link0
+        driver: e1000
+      port3:
+        mac_address: ""
+        pci_address: "0000:00:10.0"
         link: link1
+        driver: e1000
+      port4:
+        mac_address: ""
+        pci_address: "0000:00:11.0"
+        link: link4
         driver: e1000
       port5:
         mac_address: ""
-        pci_address: "0000:00:0a.0"
+        pci_address: "0000:00:12.0"
         link: link2
+        driver: e1000
+      port6:
+        mac_address: ""
+        pci_address: "0000:00:13.0"
+        link: link5
         driver: e1000
   DUT1:
     type: DUT
@@ -36,10 +56,20 @@ nodes:
         pci_address: "0000:00:09.0"
         link: link1
         driver: e1000
-      port3:
+      port2:
         mac_address: ""
         pci_address: "0000:00:0a.0"
+        link: link4
+        driver: e1000
+      port3:
+        mac_address: ""
+        pci_address: "0000:00:10.0"
         link: link3
+        driver: e1000
+      port4:
+        mac_address: ""
+        pci_address: "0000:00:11.0"
+        link: link6
         driver: e1000
   DUT2:
     type: DUT
@@ -53,8 +83,18 @@ nodes:
         pci_address: "0000:00:09.0"
         link: link2
         driver: e1000
-      port3:
+      port2:
         mac_address: ""
         pci_address: "0000:00:0a.0"
+        link: link5
+        driver: e1000
+      port3:
+        mac_address: ""
+        pci_address: "0000:00:10.0"
         link: link3
+        driver: e1000
+      port4:
+        mac_address: ""
+        pci_address: "0000:00:11.0"
+        link: link6
         driver: e1000
