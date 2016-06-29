@@ -38,7 +38,7 @@ def pack_framework_dir():
 
     try:
         directory = environ["TMPDIR"]
-    except Keyerror:
+    except KeyError:
         directory = None
 
     if directory is not None:
