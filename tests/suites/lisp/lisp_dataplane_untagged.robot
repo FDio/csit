@@ -81,11 +81,11 @@
 | |      ... | ${dut2_node} | ${dut2_to_dut1} | ${NONE}
 | |      ... | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
 | |      ... | ${dut1_ip4_static_mapping} | ${dut2_ip4_static_mapping}
-| | Then Send Packet And Check Headers
+| | Then Wait Until Keyword Succeeds | 2x | 5s | Send Packet And Check Headers
 | |      ... | ${tg_node} | ${tg1_ip4} | ${tg2_ip4}
 | |      ... | ${tg_to_dut1} | ${tg_to_dut1_mac} | ${dut1_to_tg_mac}
 | |      ... | ${tg_to_dut2} | ${dut2_to_tg_mac} | ${tg_to_dut2_mac}
-| | And Send Packet And Check Headers
+| | And Wait Until Keyword Succeeds | 2x | 5s | Send Packet And Check Headers
 | |      ... | ${tg_node} | ${tg2_ip4} | ${tg1_ip4}
 | |      ... | ${tg_to_dut2} | ${tg_to_dut2_mac} | ${dut2_to_tg_mac}
 | |      ... | ${tg_to_dut1} | ${dut1_to_tg_mac} | ${tg_to_dut1_mac}
@@ -121,11 +121,11 @@
 | |      ... | ${dut2_node} | ${dut2_to_dut1} | ${NONE}
 | |      ... | ${duts_locator_set} | ${dut1_ip6_eid} | ${dut2_ip6_eid}
 | |      ... | ${dut1_ip6_static_mapping} | ${dut2_ip6_static_mapping}
-| | Then Send Packet And Check Headers
+| | Then Wait Until Keyword Succeeds | 2x | 5s | Send Packet And Check Headers
 | |      ... | ${tg_node} | ${tg1_ip6} | ${tg2_ip6}
 | |      ... | ${tg_to_dut1} | ${tg_to_dut1_mac} | ${dut1_to_tg_mac}
 | |      ... | ${tg_to_dut2} | ${dut2_to_tg_mac} | ${tg_to_dut2_mac}
-| | And Send Packet And Check Headers
+| | And Wait Until Keyword Succeeds | 2x | 5s | Send Packet And Check Headers
 | |      ... | ${tg_node} | ${tg2_ip6} | ${tg1_ip6}
 | |      ... | ${tg_to_dut2} | ${tg_to_dut2_mac} | ${dut2_to_tg_mac}
 | |      ... | ${tg_to_dut1} | ${dut1_to_tg_mac} | ${tg_to_dut1_mac}
@@ -161,11 +161,11 @@
 | |      ... | ${dut2_node} | ${dut2_to_dut1} | ${NONE}
 | |      ... | ${duts_locator_set} | ${dut1_ip4o6_eid} | ${dut2_ip4o6_eid}
 | |      ... | ${dut1_ip4o6_static_mapping} | ${dut2_ip4o6_static_mapping}
-| | Then Send Packet And Check Headers
+| | Then Wait Until Keyword Succeeds | 2x | 5s | Send Packet And Check Headers
 | |      ... | ${tg_node} | ${tg1_ip4o6} | ${tg2_ip4o6}
 | |      ... | ${tg_to_dut1} | ${tg_to_dut1_mac} | ${dut1_to_tg_mac}
 | |      ... | ${tg_to_dut2} | ${dut2_to_tg_mac} | ${tg_to_dut2_mac}
-| | And Send Packet And Check Headers
+| | And Wait Until Keyword Succeeds | 2x | 5s | Send Packet And Check Headers
 | |      ... | ${tg_node} | ${tg2_ip4o6} | ${tg1_ip4o6}
 | |      ... | ${tg_to_dut2} | ${tg_to_dut2_mac} | ${dut2_to_tg_mac}
 | |      ... | ${tg_to_dut1} | ${dut1_to_tg_mac} | ${tg_to_dut1_mac}
@@ -201,11 +201,11 @@
 | |      ... | ${dut2_node} | ${dut2_to_dut1} | ${NONE}
 | |      ... | ${duts_locator_set} | ${dut1_ip6o4_eid} | ${dut2_ip6o4_eid}
 | |      ... | ${dut1_ip6o4_static_mapping} | ${dut2_ip6o4_static_mapping}
-| | Then Send Packet And Check Headers
+| | Then Wait Until Keyword Succeeds | 2x | 5s | Send Packet And Check Headers
 | |      ... | ${tg_node} | ${tg1_ip6o4} | ${tg2_ip6o4}
 | |      ... | ${tg_to_dut1} | ${tg_to_dut1_mac} | ${dut1_to_tg_mac}
 | |      ... | ${tg_to_dut2} | ${dut2_to_tg_mac} | ${tg_to_dut2_mac}
-| | And Send Packet And Check Headers
+| | And Wait Until Keyword Succeeds | 2x | 5s | Send Packet And Check Headers
 | |      ... | ${tg_node} | ${tg2_ip6o4} | ${tg1_ip6o4}
 | |      ... | ${tg_to_dut2} | ${tg_to_dut2_mac} | ${dut2_to_tg_mac}
 | |      ... | ${tg_to_dut1} | ${dut1_to_tg_mac} | ${tg_to_dut1_mac}
@@ -243,11 +243,11 @@
 | |      ... | ${dut2_node} | ${dut2_to_dut1} | ${NONE}
 | |      ... | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
 | |      ... | ${dut1_ip4_static_mapping} | ${dut2_ip4_static_mapping}
-| | Then Send Packet And Check Headers
+| | Then Wait Until Keyword Succeeds | 2x | 5s | Send Packet And Check Headers
 | |      ... | ${tg_node} | ${tg1_ip4} | ${tg2_ip4}
 | |      ... | ${tg_to_dut1} | ${tg_to_dut1_mac} | ${dut1_to_tg_mac}
 | |      ... | ${tg_to_dut2} | ${dut2_to_tg_mac} | ${tg_to_dut2_mac}
-| | And Send Packet And Check Headers
+| | And Wait Until Keyword Succeeds | 2x | 5s | Send Packet And Check Headers
 | |      ... | ${tg_node} | ${tg2_ip4} | ${tg1_ip4}
 | |      ... | ${tg_to_dut2} | ${tg_to_dut2_mac} | ${dut2_to_tg_mac}
 | |      ... | ${tg_to_dut1} | ${dut1_to_tg_mac} | ${tg_to_dut1_mac}
