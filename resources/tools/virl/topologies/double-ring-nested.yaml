@@ -6,6 +6,12 @@ metadata:
     - resources/topology_schemas/topology.sch.yaml
   tags: [hw, 3-node]
 
+honeycomb: &honeycomb
+    user: admin
+    passwd: admin
+    port: 8181
+    netconf_port: 1830
+
 nodes:
   TG:
     type: TG
@@ -42,6 +48,8 @@ nodes:
     username: cisco
     priv_key: |
 {priv_key}
+    honeycomb:
+      <<: *honeycomb
     interfaces:
       port1:
         mac_address: "{topology[sut1][nic-0][hw-addr]}"
@@ -66,6 +74,8 @@ nodes:
     username: cisco
     priv_key: |
 {priv_key}
+    honeycomb:
+      <<: *honeycomb
     interfaces:
       port1:
         mac_address: "{topology[sut2][nic-0][hw-addr]}"
