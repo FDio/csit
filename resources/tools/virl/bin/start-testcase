@@ -33,6 +33,17 @@ def indent(lines, amount, fillchar=' '):
     padding = amount * fillchar
     return padding + ('\n'+padding).join(lines.split('\n'))
 
+def print_stdout_stderr(stdout, stderr):
+    """Helper function: Print given stdout and stderr.
+
+    :param stdout: Standard output to be printed.
+    :param stderr: Standard error to be printed.
+    :type stdout: str
+    :type stderr: str
+    """
+    print("DEBUG: Command output was:\n{}".format(stdout))
+    print("DEBUG: Command stderr was:\n{}".format(stderr))
+
 #
 # Main function.
 # FIXME: Right now, this is really coded like a shell script, as one big
@@ -56,6 +67,9 @@ def main():
     parser.add_argument("topology", help="the base topology to be started")
     parser.add_argument("packages", help="Path to the VPP .deb(s) that " +
                         "is/are to be installed", nargs='+')
+    parser.add_argument("-d", "--honeycomb-package",
+                        help="Honeycomb package to be deployed on node(s).",
+                        default=None)
     parser.add_argument("-c", "--copy", help="Copy the .deb packages, " +
                         "leaving the originals in place. Default is to " +
                         "move them.", action='store_true')
@@ -129,6 +143,17 @@ def main():
             sys.exit(1)
 
     #
+    # Check if Honeycomb package exists
+    #
+    hc_pkg = args.honeycomb_package
+    if hc_pkg:
+        if args.verbosity >= 2:
+            print("DEBUG: Checking if file {} exists".format(hc_pkg))
+        if not os.path.isfile(hc_pkg):
+            print("ERROR: Debian package {} does not exist.".format(hc_pkg))
+            sys.exit(1)
+
+    #
     # Start VIRL topology
     #
     if args.verbosity >= 1:
@@ -180,12 +205,14 @@ def main():
     #
     # Create simulation scratch directory. Move topology file into that
     # directory. Copy or move debian packages into that directory.
+    # If Honeycomb package is specified, copy or move it into that directory.
     #
     scratch_directory = os.path.join(args.nfs_scratch_directory, session_id)
     os.mkdir(scratch_directory)
     shutil.move(temp_topology, os.path.join(scratch_directory,
                                             "virl_topology.virl"))
     os.mkdir(os.path.join(scratch_directory, "vpp"))
+    os.mkdir(os.path.join(scratch_directory, "hc"))
     for package in args.packages:
         if args.copy:
             shutil.copy(package, os.path.join(scratch_directory, "vpp",
@@ -193,6 +220,13 @@ def main():
         else:
             shutil.move(package, os.path.join(scratch_directory, "vpp",
                                               os.path.basename(package)))
+    if hc_pkg:
+        if args.copy:
+            shutil.copy(hc_pkg, os.path.join(scratch_directory, "hc",
+                                             os.path.basename(hc_pkg)))
+        else:
+            shutil.move(hc_pkg, os.path.join(scratch_directory, "hc",
+                                             os.path.basename(hc_pkg)))
 
     #
     # Wait for simulation to become active
@@ -324,7 +358,7 @@ def main():
                                auth=(args.username, args.password))
 
     #
-    # Upgrade VPP
+    # Upgrade VPP and Honeycomb if specified.
     #
     if args.verbosity >= 1:
         print "DEBUG: Uprading VPP"
@@ -343,15 +377,33 @@ def main():
                 client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
                 client.connect(ipaddr, username=args.ssh_user,
                                key_filename=args.ssh_privkey)
-                stdin, stdout, stderr = \
+                _, stdout, stderr = \
                     client.exec_command('sudo dpkg -i /scratch/vpp/*deb')
                 c_stdout = stdout.read()
                 c_stderr = stderr.read()
                 if args.verbosity >= 2:
-                    print "DEBUG: Command output was:"
-                    print c_stdout
-                    print "DEBUG: Command stderr was:"
-                    print c_stderr
+                    print_stdout_stderr(c_stdout, c_stderr)
+
+                if hc_pkg:
+                    _, stdout, stderr = client.\
+                        exec_command('sudo mkdir /opt/honeycomb/ || true')
+                    c_stdout = stdout.read()
+                    c_stderr = stderr.read()
+                    if args.verbosity >= 2:
+                        print_stdout_stderr(c_stdout, c_stderr)
+                    _, stdout, stderr = client.\
+                        exec_command('sudo rm -rf /opt/honeycomb/* || true')
+                    c_stdout = stdout.read()
+                    c_stderr = stderr.read()
+                    if args.verbosity >= 2:
+                        print_stdout_stderr(c_stdout, c_stderr)
+                    _, stdout, stderr = client.\
+                        exec_command('sudo tar -C /opt/honeycomb/ -xzf '
+                                     '/scratch/hc/*tar.gz')
+                    c_stdout = stdout.read()
+                    c_stderr = stderr.read()
+                    if args.verbosity >= 2:
+                        print_stdout_stderr(c_stdout, c_stderr)
 
     #
     # Write a file with timestamp to scratch directory. We can use this to track
