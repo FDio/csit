@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba092121_49bbad0e",
+        "filename": "tests/suites/honeycomb/021_l2_fib.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-06-29T09:48:48Z",
+      "side": 1,
+      "message": "run",
+      "range": {
+        "startLine": 29,
+        "startChar": 15,
+        "endLine": 29,
+        "endChar": 19
+      },
+      "revId": "e44b2359fc318bdc3a00c7d3288b082c1611c668",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
