@@ -97,100 +97,93 @@ do
         VIRL_SERVERS=("${VIRL_SERVERS[@]:0:$element}" "${VIRL_SERVERS[@]:$[$element+1]}")
     fi
 done
-################
-## Get the latest VPP deb packages:
-SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-#
-#if [ "${#}" -ne "0" ]; then
-#    arr=(${@})
-#    echo ${arr[0]}
-#else
-#    # Download the latest VPP build .deb install packages
-#    echo Downloading VPP packages...
-#    bash ${SCRIPT_DIR}/resources/tools/download_install_vpp_pkgs.sh --skip-install
-#fi
-#
-#VPP_DEBS=(*.deb)
-#echo ${VPP_DEBS[@]}
-#
-#VPP_VER=$(echo ${VPP_DEBS#vpp-})
-#VPP_VER=$(echo ${VPP_VER%.deb})
-#echo VPP version to be tested: ${VPP_VER}
-#
-#VIRL_DIR_LOC="/tmp"
-#VPP_DEBS_FULL=(${VPP_DEBS[@]})
-#
-## Prepend directory location at remote host to deb file list
-#for index in "${!VPP_DEBS_FULL[@]}"; do
-#    VPP_DEBS_FULL[${index}]=${VIRL_DIR_LOC}/${VPP_DEBS_FULL[${index}]}
-#done
-#
-#echo "Updated file names: " ${VPP_DEBS_FULL[@]}
-#
-cat ${VIRL_PKEY}
-## Copy the files to VIRL host
-#scp ${SSH_OPTIONS} *.deb \
-#    ${VIRL_USERNAME}@${VIRL_SERVER}:${VIRL_DIR_LOC}/
-#
-#result=$?
-#if [ "${result}" -ne "0" ]; then
-#    echo "Failed to copy vpp deb files to VIRL host"
-#    echo ${result}
-#    exit ${result}
-#fi
-#
-#set +x
-#echo "******************************************************************************"
-#echo "1st step: Download VPP packages and copy them to VIRL host            FINISHED"
-#echo "******************************************************************************"
-#set -x
-#
-## Get the latest Honeycomb:
-#URL="https://nexus.fd.io/service/local/artifact/maven/content"
-#REPO="fd.io.snapshot"
-#GROUP="io.fd.honeycomb.vpp.integration"
-#ARTIFACT="vpp-integration-karaf"
-#VERSION="1.0.0-SNAPSHOT"
-#EXT="tar.gz"
-#
-#rm -f *.${EXT}
-#curl "${URL}?r=${REPO}&g=${GROUP}&a=${ARTIFACT}&v=${VERSION}&e=${EXT}" -O -J
-#result=$?
-#if [ "${result}" -ne "0" ]; then
-#    echo "Failed to download the latest Honeycomb package"
-#    echo ${result}
-#    exit ${result}
-#fi
-#
-#HC_PKG=(*.tar.gz)
-#echo "Honeycomb package: " ${HC_PKG}
-#
-## Prepend directory location at remote host to Honeycomb package
-#HC_PKG_FULL=${VIRL_DIR_LOC}/${HC_PKG}
-#echo "Updated file name: " ${HC_PKG_FULL}
-#
-## Copy the Honeycomb package to VIRL host:
-#scp ${SSH_OPTIONS} ${HC_PKG} ${VIRL_USERNAME}@${VIRL_SERVER}:${VIRL_DIR_LOC}/
-#
-#result=$?
-#if [ "${result}" -ne "0" ]; then
-#    echo "Failed to copy the Honeycomb package to VIRL host"
-#    echo ${result}
-#    exit ${result}
-#fi
-#
-#set +x
-#echo "******************************************************************************"
-#echo "2nd step: Download Honeycomb package and copy it to VIRL host         FINISHED"
-#echo "******************************************************************************"
-#set -x
-#####################
-START_FILE="resources/tools/virl/bin/start-honeycomb-testcase"
-DST_DIR_1="/home/jenkins-in/testcase-infra/bin/"
-DST_DIR_2="/home/jenkins-in/bin/"
 
-scp ${SSH_OPTIONS} ${START_FILE} ${VIRL_USERNAME}@${VIRL_SERVER}:${DST_DIR_1}
-scp ${SSH_OPTIONS} ${START_FILE} ${VIRL_USERNAME}@${VIRL_SERVER}:${DST_DIR_2}
+# Get the latest VPP deb packages:
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+if [ "${#}" -ne "0" ]; then
+    arr=(${@})
+    echo ${arr[0]}
+else
+    # Download the latest VPP build .deb install packages
+    echo Downloading VPP packages...
+    bash ${SCRIPT_DIR}/resources/tools/download_install_vpp_pkgs.sh --skip-install
+fi
+
+VPP_DEBS=(*.deb)
+echo ${VPP_DEBS[@]}
+
+VPP_VER=$(echo ${VPP_DEBS#vpp-})
+VPP_VER=$(echo ${VPP_VER%.deb})
+echo VPP version to be tested: ${VPP_VER}
+
+VIRL_DIR_LOC="/tmp"
+VPP_DEBS_FULL=(${VPP_DEBS[@]})
+
+# Prepend directory location at remote host to deb file list
+for index in "${!VPP_DEBS_FULL[@]}"; do
+    VPP_DEBS_FULL[${index}]=${VIRL_DIR_LOC}/${VPP_DEBS_FULL[${index}]}
+done
+
+echo "Updated file names: " ${VPP_DEBS_FULL[@]}
+
+cat ${VIRL_PKEY}
+# Copy the files to VIRL host
+scp ${SSH_OPTIONS} *.deb \
+    ${VIRL_USERNAME}@${VIRL_SERVER}:${VIRL_DIR_LOC}/
+
+result=$?
+if [ "${result}" -ne "0" ]; then
+    echo "Failed to copy vpp deb files to VIRL host"
+    echo ${result}
+    exit ${result}
+fi
+
+set +x
+echo "******************************************************************************"
+echo "1st step: Download VPP packages and copy them to VIRL host            FINISHED"
+echo "******************************************************************************"
+set -x
+
+# Get the latest Honeycomb:
+URL="https://nexus.fd.io/service/local/artifact/maven/content"
+REPO="fd.io.snapshot"
+GROUP="io.fd.honeycomb.vpp.integration"
+ARTIFACT="vpp-integration-karaf"
+VERSION="1.0.0-SNAPSHOT"
+EXT="tar.gz"
+
+rm -f *.${EXT}
+curl "${URL}?r=${REPO}&g=${GROUP}&a=${ARTIFACT}&v=${VERSION}&e=${EXT}" -O -J
+result=$?
+if [ "${result}" -ne "0" ]; then
+    echo "Failed to download the latest Honeycomb package"
+    echo ${result}
+    exit ${result}
+fi
+
+HC_PKG=(*.tar.gz)
+echo "Honeycomb package: " ${HC_PKG}
+
+# Prepend directory location at remote host to Honeycomb package
+HC_PKG_FULL=${VIRL_DIR_LOC}/${HC_PKG}
+echo "Updated file name: " ${HC_PKG_FULL}
+
+# Copy the Honeycomb package to VIRL host:
+scp ${SSH_OPTIONS} ${HC_PKG} ${VIRL_USERNAME}@${VIRL_SERVER}:${VIRL_DIR_LOC}/
+
+result=$?
+if [ "${result}" -ne "0" ]; then
+    echo "Failed to copy the Honeycomb package to VIRL host"
+    echo ${result}
+    exit ${result}
+fi
+
+set +x
+echo "******************************************************************************"
+echo "2nd step: Download Honeycomb package and copy it to VIRL host         FINISHED"
+echo "******************************************************************************"
+set -x
 
 # Start a simulation on VIRL server
 echo "Starting simulation on VIRL server"
@@ -202,7 +195,7 @@ function stop_virl_simulation {
 
 VIRL_SID=$(ssh ${SSH_OPTIONS} \
     ${VIRL_USERNAME}@${VIRL_SERVER} \
-    "start-honeycomb-testcase double-ring-nested")
+    "start-testcase -c double-ring-nested -hc ${HC_PKG_FULL} ${VPP_DEBS_FULL[@]}")
 retval=$?
 if [ "$?" -ne "0" ]; then
     echo "VIRL simulation start failed"
@@ -231,6 +224,12 @@ if [ "$?" -ne "0" ]; then
     exit ${retval}
 fi
 
+set +x
+echo "******************************************************************************"
+echo "3rd step: Start the simulation on the VIRL server                     FINISHED"
+echo "******************************************************************************"
+set -x
+
 virtualenv --system-site-packages env
 . env/bin/activate
 
@@ -247,9 +246,20 @@ if [ "$?" -ne "0" ]; then
     echo "However, the tests will start."
 fi
 
-PYTHONPATH=`pwd` pybot -L TRACE -W 136\
+set +x
+echo "******************************************************************************"
+echo "4th step: Start virtual env and install requirements                  FINISHED"
+echo "******************************************************************************"
+set -x
+
+PYTHONPATH=`pwd` pybot -L TRACE \
     -v TOPOLOGY_PATH:${SCRIPT_DIR}/topologies/enabled/topology.yaml \
-    --suite "tests.func" \
     --include honeycomb_sanity \
     --noncritical EXPECTED_FAILING \
     tests/
+
+set +x
+echo "******************************************************************************"
+echo "5th step: Run Honeycomb tests                                        FINISHED"
+echo "******************************************************************************"
+set -x
