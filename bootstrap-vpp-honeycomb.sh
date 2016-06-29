@@ -24,9 +24,6 @@ sudo apt-get -y install libpython2.7-dev python-virtualenv
 # Source the VIRL server parameters:
 source virl_params.sh
 
-# Temporary solution for testing purposes:
-VIRL_SERVER_EXPECTED_STATUS="TESTING"
-
 SSH_OPTIONS="-i ${VIRL_PKEY} -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o BatchMode=yes -o LogLevel=error"
 
 function ssh_do() {
@@ -198,7 +195,7 @@ function stop_virl_simulation {
 
 VIRL_SID=$(ssh ${SSH_OPTIONS} \
     ${VIRL_USERNAME}@${VIRL_SERVER} \
-    "start-testcase -c double-ring-nested -hc ${HC_PKG_FULL} ${VPP_DEBS_FULL[@]}")
+    "start-testcase -c double-ring-nested -d ${HC_PKG_FULL} ${VPP_DEBS_FULL[@]}")
 retval=$?
 if [ "$?" -ne "0" ]; then
     echo "VIRL simulation start failed"

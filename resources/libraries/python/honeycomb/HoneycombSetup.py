@@ -53,6 +53,9 @@ class HoneycombSetup(object):
         :type nodes: list
         :raises HoneycombError: If Honeycomb fails to start.
         """
+
+        HoneycombSetup.print_environment(nodes)
+
         logger.console("\nStarting Honeycomb service ...")
 
         cmd = "{0}/bin/start".format(Const.REMOTE_HC_DIR)
@@ -185,3 +188,36 @@ class HoneycombSetup(object):
                         logger.info("Honeycomb on node {0} has stopped".
                                     format(node['host']))
         return True
+
+    @staticmethod
+    def print_environment(*nodes):
+        """Print information about the nodes to log. The information is defined
+        by commands in cmds tuple at the beginning of this method.
+
+        :param nodes: List of DUT nodes to get information about.
+        :type nodes: list
+        """
+
+        #TODO: When everything is set and running in VIRL env, transform this
+        # method to a keyword checking the environment.
+
+        cmds = ("uname -a",
+                "df -lh"
+                "echo $JAVA_HOME"
+                "echo $PATH",
+                "which java",
+                "java -version",
+                "dpkg --list | grep openjdk",
+                "ls -la /opt/honeycomb")
+
+        for node in nodes.values():
+            if node['type'] == NodeType.DUT:
+                logger.info("Checking node {} ...".format(node))
+                for cmd in cmds:
+                    logger.info("Command: {}".format(cmd))
+                    ssh = SSH()
+                    ssh.connect(node)
+                    (ret_code, stdout, stderr) = ssh.exec_command_sudo(cmd)
+                    logger.info("RC: {}".format(ret_code))
+                    logger.info("stdout: {}".format(stdout))
+                    logger.info("stderr: {}".format(stderr))
