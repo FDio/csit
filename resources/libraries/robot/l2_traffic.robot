@@ -50,7 +50,7 @@
 | |          | ...                    | ${dst_mac} | ${src_ip} | ${dst_ip}
 | | Run Traffic Script On Node | send_ip_icmp.py | ${tg_node} | ${args}
 
-| Send and receive ICMP Packet should failed
+| Send and receive ICMP Packet should fail
 | | [Documentation] | Send ICMPv4/ICMPv6 echo request from source interface to
 | | ...             | destination interface and expect failure with
 | | ...             | ICMP echo Rx timeout error message.
@@ -71,7 +71,7 @@
 | | ...
 | | ... | _NOTE:_ Default IP is IPv4
 | | ...
-| | ... | \| Send and receive ICMP Packet \| ${nodes['TG']} \
+| | ... | \| Send and receive ICMP Packet should fail\| ${nodes['TG']} \
 | | ... | \| ${tg_to_dut_if1} \| ${tg_to_dut_if2} \|
 | | ...
 | | [Arguments] | ${tg_node} | ${src_int} | ${dst_int} |
@@ -80,8 +80,9 @@
 | | ${dst_mac}= | Get Interface Mac | ${tg_node} | ${dst_int}
 | | ${src_int_name}= | Get interface name | ${tg_node} | ${src_int}
 | | ${dst_int_name}= | Get interface name | ${tg_node} | ${dst_int}
-| | ${args}= | Traffic Script Gen Arg | ${dst_int_name} | ${src_int_name} | ${src_mac}
-| |          | ...                    | ${dst_mac} | ${src_ip} | ${dst_ip}
+| | ${args}= | Traffic Script Gen Arg | ${dst_int_name} | ${src_int_name}
+| |          | ...                    | ${src_mac} | ${dst_mac}
+| |          | ...                    | ${src_ip} | ${dst_ip}
 | | Run Keyword And Expect Error | ICMP echo Rx timeout |
 | | ... | Run Traffic Script On Node | send_ip_icmp.py | ${tg_node} | ${args}
 
