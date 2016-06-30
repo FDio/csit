@@ -30,6 +30,10 @@
 | ${sub_if_id}= | ${sub_if_1_settings['identifier']}
 | ${sub_if_name}= | ${super_if}.${sub_if_id}
 
+# IP addresses configured on sub-interface during tests
+| &{ipv4}=   | address=192.168.0.4 | netmask=255.255.255.0 | prefix-lenght=${24}
+| &{ipv4_2}= | address=192.168.0.5 | netmask=255.255.0.0 | prefix-lenght=${16}
+
 *** Test Cases ***
 | Honycomb creates sub-interface
 | | [Documentation] | Check if Honeycomb creates a sub-interface.
@@ -328,6 +332,61 @@
 | | ... | ${node} | ${super_if} | ${sub_if_id}
 | | And rewrite tag from VAT should be
 | | ... | ${node} | ${sub_if_name} | ${tag_rewrite_disabled_VAT}
+
+| Honeycomb configures sub-interface ipv4 address
+| | [Documentation] | Check if Honeycomb can configure an ipv4 address on the\
+| | ... | sub-interface.
+| | ...
+| | When Honeycomb sets sub-interface ipv4 address
+| | ... | ${node} | ${super_if} | ${sub_if_id}
+| | ... | ${ipv4['address']} | ${ipv4['prefix-lenght']}
+| | Then sub-interface ipv4 address from Honeycomb should be
+| | ... | ${node} | ${super_if} | ${sub_if_id}
+| | ... | ${ipv4['address']} | ${ipv4['prefix-lenght']}
+| | And sub-interface ipv4 address from VAT should be
+| | ... | ${node} | ${sub_if_name}
+| | ... | ${ipv4['address']} | ${ipv4['prefix-lenght']}
+
+| Honeycomb removes sub-interface ipv4 address
+| | [Documentation] | Check if Honeycomb can remove configured ipv4 addresses\
+| | ... | from the sub-interface.
+| | ...
+| | Given sub-interface ipv4 address from Honeycomb should be
+| | ... | ${node} | ${super_if} | ${sub_if_id}
+| | ... | ${ipv4['address']} | ${ipv4['prefix-lenght']}
+| | And sub-interface ipv4 address from VAT should be
+| | ... | ${node} | ${sub_if_name}
+| | ... | ${ipv4['address']} | ${ipv4['prefix-lenght']}
+| | When Honeycomb removes all sub-interface ipv4 addresses
+| | ... | ${node} | ${super_if} | ${sub_if_id}
+| | Then sub-interface ipv4 address from Honeycomb should be empty
+| | ... | ${node} | ${super_if} | ${sub_if_id}
+| | And sub-interface ipv4 address from VAT should be empty
+| | ... | ${node} | ${sub_if_name}
+
+| Honeycomb modifies existing sub-interface ipv4 address
+| | [Documentation] | Check if Honeycomb can modify an ipv4 address already\
+| | ... | configured on the sub-interface.
+| | [Teardown] | Honeycomb removes all sub-interface ipv4 addresses
+| | ... | ${node} | ${super_if} | ${sub_if_id}
+| | Given sub-interface ipv4 address from Honeycomb should be empty
+| | ... | ${node} | ${super_if} | ${sub_if_id}
+| | And sub-interface ipv4 address from VAT should be empty
+| | ... | ${node} | ${sub_if_name}
+| | When Honeycomb sets sub-interface ipv4 address
+| | ... | ${node} | ${super_if} | ${sub_if_id}
+| | ... | ${ipv4['address']} | ${ipv4['prefix-lenght']}
+| | And Honeycomb sets sub-interface ipv4 address
+| | ... | ${node} | ${super_if} | ${sub_if_id}
+| | ... | ${ipv4_2['address']} | ${ipv4_2['prefix-lenght']}
+| | Then sub-interface ipv4 address from Honeycomb should be
+| | ... | ${node} | ${super_if} | ${sub_if_id}
+| | ... | ${ipv4_2['address']} | ${ipv4_2['prefix-lenght']}
+| | And sub-interface ipv4 address from VAT should be
+| | ... | ${node} | ${sub_if_name}
+| | ... | ${ipv4_2['address']} | ${ipv4_2['prefix-lenght']}
+
+
 
 *** Keywords ***
 | Set super and sub interfaces up
