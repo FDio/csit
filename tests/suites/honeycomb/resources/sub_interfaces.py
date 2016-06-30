@@ -275,3 +275,13 @@ tag_rewrite_translate_1_2_wrong = {
         }
     ]
 }
+
+# IP addresses configured on sub-interface during tests
+ipv4 = {
+    "address": "192.168.0.4",
+    "netmask": "255.255.255.0",
+    "prefix-length": 24}
+ipv4_2 = {
+    "address": "192.168.0.5",
+    "netmask": "255.255.0.0",
+    "prefix-length": 16}
