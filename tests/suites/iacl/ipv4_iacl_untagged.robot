@@ -527,25 +527,3 @@
 | | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
 | | ... | ${tg_to_dut2} | ${dut1_to_tg_mac} | UDP | 110 | 25
 
-| TC12: DUT with iACL MAC src-addr drops matching pkts
-| | [Documentation]
-| | ... | On DUT1 add source MAC address to classify table with 'deny'.\
-| | ... | Make TG verify matching packets are dropped.
-| | Given Path for 3-node testing is set
-| | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
-| | And Interfaces in 3-node path are up
-| | And L2 setup xconnect on DUT
-| | ... | ${dut1_node} | ${dut1_to_dut2} | ${dut1_to_tg}
-| | And L2 setup xconnect on DUT
-| | ... | ${dut2_node} | ${dut2_to_dut1} | ${dut2_to_tg}
-| | Then Send and receive ICMP Packet
-| | ... | ${tg_node} | ${tg_to_dut1} | ${tg_to_dut2}
-| | ${table_index} | ${skip_n} | ${match_n}=
-| | ... | When Vpp Creates Classify Table L2 | ${dut1_node} | src
-| | And Vpp Configures Classify Session L2
-| | ... | ${dut1_node} | deny | ${table_index} | ${skip_n} | ${match_n}
-| | ... | src | ${tg_to_dut1_mac}
-| | And Vpp Enable Input Acl Interface
-| | ... | ${dut1_node} | ${dut1_to_tg} | ${l2_table} | ${table_index}
-| | Then Send and receive ICMP Packet should failed
-| | ... | ${tg_node} | ${tg_to_dut1} | ${tg_to_dut2}
