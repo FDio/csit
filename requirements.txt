@@ -8,3 +8,6 @@ pykwalify==1.5.0
 scapy==2.3.1
 enum34==1.1.2
 requests==2.9.1
+ecdsa==0.13
+pycrypto==2.6.1
+
