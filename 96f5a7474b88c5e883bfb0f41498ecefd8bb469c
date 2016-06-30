@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba092121_ded88e55",
+        "filename": "bootstrap-vpp-honeycomb.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2016-06-30T17:12:49Z",
+      "side": 1,
+      "message": "These VIRL server definitions are replicated in several shell scripts.  Please move them to a separate, single file that can be imported by all of the scripts which need to reference VIRL servers.  If specific attributes need to be different for a given script, then that value can be overridden in the script.",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 40
+      },
+      "revId": "96f5a7474b88c5e883bfb0f41498ecefd8bb469c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
