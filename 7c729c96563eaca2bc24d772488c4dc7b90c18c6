@@ -1,0 +1,159 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba092121_f18f0322",
+        "filename": "resources/libraries/python/IPv4Util.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-07-01T13:27:58Z",
+      "side": 1,
+      "message": "and interface",
+      "range": {
+        "startLine": 169,
+        "startChar": 8,
+        "endLine": 169,
+        "endChar": 17
+      },
+      "revId": "7c729c96563eaca2bc24d772488c4dc7b90c18c6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_d194ff38",
+        "filename": "resources/libraries/python/IPv4Util.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-07-01T13:27:58Z",
+      "side": 1,
+      "message": "add default",
+      "revId": "7c729c96563eaca2bc24d772488c4dc7b90c18c6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_51c7cf45",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 770,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-07-01T13:27:58Z",
+      "side": 1,
+      "message": "add empty line.",
+      "range": {
+        "startLine": 770,
+        "startChar": 5,
+        "endLine": 770,
+        "endChar": 17
+      },
+      "revId": "7c729c96563eaca2bc24d772488c4dc7b90c18c6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_d1bbdfc2",
+        "filename": "resources/libraries/python/L2Util.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-07-01T13:27:58Z",
+      "side": 1,
+      "message": "rather use ip command instead ifconfig",
+      "range": {
+        "startLine": 214,
+        "startChar": 15,
+        "endLine": 214,
+        "endChar": 23
+      },
+      "revId": "7c729c96563eaca2bc24d772488c4dc7b90c18c6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_71a3f39e",
+        "filename": "resources/libraries/python/Namespaces.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-07-01T13:27:58Z",
+      "side": 1,
+      "message": "its the same as set_linux_interface_arp in ipv4util.py",
+      "range": {
+        "startLine": 37,
+        "startChar": 8,
+        "endLine": 37,
+        "endChar": 32
+      },
+      "revId": "7c729c96563eaca2bc24d772488c4dc7b90c18c6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_71cad350",
+        "filename": "resources/libraries/python/Namespaces.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-07-01T13:27:58Z",
+      "side": 1,
+      "message": "merge with add_linux_route in Routing.py",
+      "range": {
+        "startLine": 142,
+        "startChar": 8,
+        "endLine": 142,
+        "endChar": 34
+      },
+      "revId": "7c729c96563eaca2bc24d772488c4dc7b90c18c6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba092121_b1998b70",
+        "filename": "resources/libraries/python/Namespaces.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-07-01T13:27:58Z",
+      "side": 1,
+      "message": "its the same as send_ping_from_node_to_dst in ipv4util.py",
+      "range": {
+        "startLine": 180,
+        "startChar": 8,
+        "endLine": 180,
+        "endChar": 27
+      },
+      "revId": "7c729c96563eaca2bc24d772488c4dc7b90c18c6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
