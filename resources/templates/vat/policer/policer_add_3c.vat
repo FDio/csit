@@ -1,0 +1,1 @@
+policer_add_del name {name}  cir {cir} eir {eir} cb {cb} eb {eb} rate_type {rate_type} round_type {round_type} type {p_type} conform_action {conform_action} exceed_action {exceed_action} violate_action {violate_action} {color_aware}

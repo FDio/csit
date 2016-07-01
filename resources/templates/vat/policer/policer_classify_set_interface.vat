@@ -1,0 +1,1 @@
+policer_classify_set_interface sw_if_index {sw_if_index} {table_type} {table_index}
