@@ -158,3 +158,61 @@
 | | ...
 | | Run Traffic Script On Node
 | | ... | send_lw_4o6_check_ipv4_udp.py | ${tg_node} | ${args}
+
+| Send IPv4 UDP in IPv6 and check headers for lightweight hairpinning
+| | [Documentation]
+| | ... | Send empty UDP in IPv4 in IPv6 and check if IPv4 packet is correctly \
+| | ... | decapsulated and re-encapsulated to another lwB4.
+| | ...
+| | ... | *Arguments:*
+| | ... | - tg_node - Node where to run traffic script. Type: string
+| | ... | - tx_if - Interface from where to send ICPMv4 packet. Type: string
+| | ... | - rx_if - Interface where to receive IPinIP packet. Type: string
+| | ... | - tx_dst_mac - Destination MAC address of send IPv6 packet. \
+| | ... |   Type: string
+| | ... | - tx_dst_ipv6 - Destination IPv6 address (lwAFTR). Type: string
+| | ... | - tx_src_ipv6 - Source IPv6 address (lwB4_1). Type: string
+| | ... | - tx_dst_ipv4 - Destination IPv4 address. Type: string
+| | ... | - tx_src_ipv4 - Source IPv4 address. Type: string
+| | ... | - tx_dst_udp_port - Destination UDP port (PSID_2 related). \
+| | ... |   Type: integer
+| | ... | - tx_src_udp_port - Source UDP port (PSID_1 related). Type: integer
+| | ... | - rx_dst_mac - Expected destination MAC address. Type: string
+| | ... | - rx_src_mac - Expected source MAC address. Type: string
+| | ... | - rx_dst_ipv6 - Expected destination IPv6 address (lwB4_2). \
+| | ... |   Type: string
+| | ... | - rx_src_ipv6 - Expected source IPv6 address (lwAFTR). Type: string
+| | ...
+| | ... | *Return:*
+| | ... | - No value returned
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Send IPv4 UDP in IPv6 and check headers for lightweight hairpinning \
+| | ... | \| ${tg_node} \| port3 \| port3 \| 08:00:27:f3:be:f0 \| 2001:1::1 \
+| | ... | \| 2001:1::2 \| 20.0.0.1 \| 20.0.0.1 \| ${6232} \| ${1232} \
+| | ... | \| 08:00:27:46:2b:4c \| 08:00:27:f3:be:f0 \| 2001:1::3 \| 2001:1::1 \|
+| | ...
+| | [Arguments]
+| | ... | ${tg_node} | ${tx_if} | ${rx_if}
+| | ... | ${tx_dst_mac}
+| | ... | ${tx_dst_ipv6} | ${tx_src_ipv6}
+| | ... | ${tx_dst_ipv4} | ${tx_src_ipv4}
+| | ... | ${tx_dst_udp_port} | ${tx_src_udp_port}
+| | ... | ${rx_dst_mac} | ${rx_src_mac}
+| | ... | ${rx_dst_ipv6} | ${rx_src_ipv6}
+| | ...
+| | ${tx_name}= | Get interface name | ${tg_node} | ${tx_if}
+| | ${rx_name}= | Get interface name | ${tg_node} | ${rx_if}
+| | ${args}= | Catenate
+| | ... | --tx_if | ${tx_name} | --rx_if | ${rx_name}
+| | ... | --tx_dst_mac | ${tx_dst_mac}
+| | ... | --tx_dst_ipv6 | ${tx_dst_ipv6} | --tx_src_ipv6 | ${tx_src_ipv6}
+| | ... | --tx_dst_ipv4 | ${tx_dst_ipv4} | --tx_src_ipv4  | ${tx_src_ipv4}
+| | ... | --tx_dst_udp_port | ${tx_dst_udp_port}
+| | ... | --tx_src_udp_port | ${tx_src_udp_port}
+| | ... | --rx_dst_mac | ${rx_dst_mac} | --rx_src_mac | ${rx_src_mac}
+| | ... | --rx_dst_ipv6 | ${rx_dst_ipv6} | --rx_src_ipv6 | ${rx_src_ipv6}
+| | ...
+| | Run Traffic Script On Node
+| | ... | send_lw_4o6_check_hairpinning_udp.py | ${tg_node} | ${args}

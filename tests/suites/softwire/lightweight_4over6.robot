@@ -51,11 +51,14 @@
 | ${lw_psid_offset}= | ${6}
 | ${lw_rule_psid}= | ${52}
 | ${lw_rule_ipv6_dst}= | 2001:1::2
+| ${lw_rule_2_psid}= | ${22}
+| ${lw_rule_2_ipv6_dst}= | 2001:1::3
 | ${test_ipv4_inside}= | 20.0.0.1
 | ${test_ipv4_outside}= | 10.0.0.100
 # test_port depends on psid, length, offset
 | ${test_port}= | ${1232}
 | ${test_icmp_id}= | ${1232}
+| ${test_2_port}= | ${6232}
 
 *** Test Cases ***
 | TC01: Encapsulate IPv4 into IPv6. IPv6 dst depends on IPv4 and UDP destination
@@ -157,3 +160,41 @@ TC03: Decapsulate IPv4 UDP from IPv6.
 | |      ... | ${lw_ipv6_src} | ${lw_rule_ipv6_dst}
 | |      ... | ${test_ipv4_outside} | ${test_ipv4_inside} | ${test_port}
 | |      ... | ${tg_to_dut_if1_mac} | ${dut_to_tg_if1_mac}
+
+TC04: Hairpinning of traffic between two lwB4
+| | [Documentation]
+| | ... | [Top] DUT1-TG. \
+| | ... | [Enc] Eth-IPv6-IPv4-UDP on TG_if2_DUT, Eth-IPv6-IPv4-UDP on TG_if2_DUT
+| | ... | [Cfg] On DUT1 configure Map domain and two Map rules.
+| | ... | [Ver] Make TG send encapsulated UDP to DUT; verify TG received
+| | ... |       encapsulated packet is correct.
+| | ... | [Ref] RFC7596 RFC7597
+| | ...
+| | Given Path for 2-node testing is set
+| |       ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
+| | And   Interfaces in 2-node path are up
+| | And   IP addresses are set on interfaces
+| |       ... | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4} | ${ipv4_prefix_len}
+| |       ... | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6} | ${ipv6_prefix_len}
+| | And   Add IP Neighbor
+| |       ... | ${dut_node} | ${dut_to_tg_if2} | ${lw_rule_2_ipv6_dst}
+| |       ... | ${tg_to_dut_if2_mac}
+| | ${domain_index}=
+| | ... | When Map Add Domain
+| |            ... | ${dut_node} | ${lw_ipv4_pfx} | ${lw_ipv6_pfx}
+| |            ... | ${lw_ipv6_src} | 0 | ${lw_psid_offset}
+| |            ... | ${lw_psid_length}
+| |       And  Map Add Rule
+| |            ... | ${dut_node} | ${domain_index} | ${lw_rule_psid}
+| |            ... | ${lw_rule_ipv6_dst}
+| |       And  Map Add Rule
+| |            ... | ${dut_node} | ${domain_index} | ${lw_rule_2_psid}
+| |            ... | ${lw_rule_2_ipv6_dst}
+| | Then Send IPv4 UDP in IPv6 and check headers for lightweight hairpinning
+| |      ... | ${tg_node} | ${tg_to_dut_if2} | ${tg_to_dut_if2}
+| |      ... | ${dut_to_tg_if2_mac}
+| |      ... | ${lw_ipv6_src} | ${lw_rule_ipv6_dst}
+| |      ... | ${test_ipv4_inside} | ${test_ipv4_inside}
+| |      ... | ${test_2_port} | ${test_port}
+| |      ... | ${tg_to_dut_if2_mac} | ${dut_to_tg_if2_mac}
+| |      ... | ${lw_rule_2_ipv6_dst} | ${lw_ipv6_src}
