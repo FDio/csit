@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a0e1d27_f75de049",
+        "filename": "resources/libraries/robot/ipsec.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-07-04T11:15:00Z",
+      "side": 1,
+      "message": "Add \"\\\" at the end of line.\nCheck everywhere, please.",
+      "range": {
+        "startLine": 48,
+        "startChar": 48,
+        "endLine": 48,
+        "endChar": 51
+      },
+      "revId": "d9dce1e18e370f052ca5d63ec77f5c8e0f161f23",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_1749748b",
+        "filename": "resources/libraries/robot/ipsec.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-07-04T11:15:00Z",
+      "side": 1,
+      "message": "Use \\| in examples.\nCheck everywhere, please.",
+      "range": {
+        "startLine": 50,
+        "startChar": 33,
+        "endLine": 50,
+        "endChar": 34
+      },
+      "revId": "d9dce1e18e370f052ca5d63ec77f5c8e0f161f23",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_d75adc4f",
+        "filename": "resources/libraries/robot/ipsec.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-07-04T11:15:00Z",
+      "side": 1,
+      "message": "\\| is missing at the end of example.\nCheck everywhere, please.",
+      "range": {
+        "startLine": 50,
+        "startChar": 49,
+        "endLine": 50,
+        "endChar": 60
+      },
+      "revId": "d9dce1e18e370f052ca5d63ec77f5c8e0f161f23",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_97546422",
+        "filename": "tests/suites/ipsec/ipsec_ipv4.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-07-04T11:15:00Z",
+      "side": 1,
+      "message": "Use \"\\\" at the end of lines.\nCheck everywhere, please.",
+      "range": {
+        "startLine": 30,
+        "startChar": 70,
+        "endLine": 30,
+        "endChar": 74
+      },
+      "revId": "d9dce1e18e370f052ca5d63ec77f5c8e0f161f23",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
