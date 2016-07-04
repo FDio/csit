@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a0e1d27_1a2519ab",
+        "filename": "resources/libraries/python/honeycomb/HcAPIKwInterfaces.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1203,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-07-04T11:43:48Z",
+      "side": 1,
+      "message": "Consider renaming to remove_all_ipv4_addresses_from_sub_interface",
+      "range": {
+        "startLine": 1203,
+        "startChar": 8,
+        "endLine": 1203,
+        "endChar": 48
+      },
+      "revId": "4abc80b2f28fad43bfb974439d88200571d00275",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_9a19297c",
+        "filename": "resources/libraries/robot/honeycomb/sub_interface.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 471,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-07-04T11:43:48Z",
+      "side": 1,
+      "message": "Capital \"S\".",
+      "range": {
+        "startLine": 471,
+        "startChar": 2,
+        "endLine": 471,
+        "endChar": 3
+      },
+      "revId": "4abc80b2f28fad43bfb974439d88200571d00275",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_7a2655bc",
+        "filename": "resources/libraries/robot/honeycomb/sub_interface.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 495,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-07-04T11:43:48Z",
+      "side": 1,
+      "message": "Capital \"S\".",
+      "range": {
+        "startLine": 495,
+        "startChar": 2,
+        "endLine": 495,
+        "endChar": 3
+      },
+      "revId": "4abc80b2f28fad43bfb974439d88200571d00275",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_5a2b9182",
+        "filename": "resources/libraries/robot/honeycomb/sub_interface.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 534,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-07-04T11:43:48Z",
+      "side": 1,
+      "message": "Capital \"S\".",
+      "range": {
+        "startLine": 534,
+        "startChar": 2,
+        "endLine": 534,
+        "endChar": 3
+      },
+      "revId": "4abc80b2f28fad43bfb974439d88200571d00275",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_3a20dd9a",
+        "filename": "resources/libraries/robot/honeycomb/sub_interface.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 553,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-07-04T11:43:48Z",
+      "side": 1,
+      "message": "Capital \"S\".",
+      "range": {
+        "startLine": 553,
+        "startChar": 2,
+        "endLine": 553,
+        "endChar": 3
+      },
+      "revId": "4abc80b2f28fad43bfb974439d88200571d00275",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_fa3945d9",
+        "filename": "tests/suites/honeycomb/060_sub_interface.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-07-04T11:43:48Z",
+      "side": 1,
+      "message": "Consider moving to resources/sub_interfaces.py",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 78
+      },
+      "revId": "4abc80b2f28fad43bfb974439d88200571d00275",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_da3681e7",
+        "filename": "tests/suites/honeycomb/060_sub_interface.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 339,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-07-04T11:43:48Z",
+      "side": 1,
+      "message": "Add pre-requisities.",
+      "range": {
+        "startLine": 339,
+        "startChar": 0,
+        "endLine": 339,
+        "endChar": 7
+      },
+      "revId": "4abc80b2f28fad43bfb974439d88200571d00275",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_9a3009ea",
+        "filename": "tests/suites/honeycomb/060_sub_interface.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-07-04T11:43:48Z",
+      "side": 1,
+      "message": "What if the previous test fails?",
+      "range": {
+        "startLine": 354,
+        "startChar": 4,
+        "endLine": 354,
+        "endChar": 9
+      },
+      "revId": "4abc80b2f28fad43bfb974439d88200571d00275",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_ba33cdf5",
+        "filename": "tests/suites/honeycomb/060_sub_interface.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 389,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-07-04T11:43:48Z",
+      "side": 1,
+      "message": "One empty line is enough.",
+      "range": {
+        "startLine": 388,
+        "startChar": 0,
+        "endLine": 389,
+        "endChar": 0
+      },
+      "revId": "4abc80b2f28fad43bfb974439d88200571d00275",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
