@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a0e1d27_d7089c2f",
+        "filename": "resources/traffic_scripts/send_lw_4o6_check_ipv4_udp.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-07-04T11:29:25Z",
+      "side": 1,
+      "message": "No white space is needed here.",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 1
+      },
+      "revId": "a4981e25c562143a5fd4c986e493124e2955226c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_37123863",
+        "filename": "resources/traffic_scripts/send_lw_4o6_check_ipv4_udp.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-07-04T11:29:25Z",
+      "side": 1,
+      "message": "Add argument\u0027s documentation.",
+      "range": {
+        "startLine": 30,
+        "startChar": 66,
+        "endLine": 30,
+        "endChar": 69
+      },
+      "revId": "a4981e25c562143a5fd4c986e493124e2955226c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
