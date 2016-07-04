@@ -1,5 +1,5 @@
 robotframework==2.9.2
-paramiko==1.16.0
+paramiko==1.17.1
 scp==0.10.2
 ipaddress==1.0.16
 interruptingcow==0.6
