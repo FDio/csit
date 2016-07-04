@@ -14,6 +14,10 @@
 
 set -x
 
+env
+
+exit 0
+
 cat /etc/hostname
 cat /etc/hosts
 
