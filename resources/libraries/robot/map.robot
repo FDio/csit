@@ -158,3 +158,29 @@
 | | ...
 | | Run Traffic Script On Node
 | | ... | send_lw_4o6_check_ipv4_udp.py | ${tg_node} | ${args}
+
+| Send IPv4 UDP in IPv6 and check headers for lightweight hairpinning
+| | ...
+| | [Arguments]
+| | ... | ${tg_node} | ${tx_if} | ${rx_if}
+| | ... | ${tx_dst_mac}
+| | ... | ${tx_dst_ipv6} | ${tx_src_ipv6}
+| | ... | ${tx_dst_ipv4} | ${tx_src_ipv4}
+| | ... | ${tx_dst_udp_port} | ${tx_src_udp_port}
+| | ... | ${rx_dst_mac} | ${rx_src_mac}
+| | ... | ${rx_dst_ipv6} | ${rx_src_ipv}
+| | ...
+| | ${tx_name}= | Get interface name | ${tg_node} | ${tx_if}
+| | ${rx_name}= | Get interface name | ${tg_node} | ${rx_if}
+| | ${args}= | Catenate
+| | ... | --tx_if | ${tx_name} | --rx_if | ${rx_name}
+| | ... | --tx_dst_mac | ${tx_dst_mac}
+| | ... | --tx_dst_ipv6 | ${tx_dst_ipv6} | --tx_src_ipv6 | ${tx_src_ipv6}
+| | ... | --tx_dst_ipv4 | ${tx_dst_ipv4} | --tx_src_ipv4  | ${tx_src_ipv4}
+| | ... | --tx_dst_udp_port | ${tx_dst_udp_port}
+| | ... | --tx_src_udp_port | ${tx_src_udp_port}
+| | ... | --rx_dst_mac | ${rx_dst_mac} | --rx_src_mac | ${rx_src_mac}
+| | ... | --rx_dst_ipv6 | ${rx_dst_ipv6} | --rx_src_ipv | ${rx_src_ipv}
+| | ...
+| | Run Traffic Script On Node
+| | ... | send_lw_4o6_check_hairpinning_udp.py | ${tg_node} | ${args}
