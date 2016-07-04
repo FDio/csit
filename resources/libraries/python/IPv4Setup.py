@@ -192,10 +192,10 @@ class Dut(IPv4Node):
                       sw_if_index=self.get_sw_if_index(interface),
                       address=address, prefix_length=prefix_length)
 
-    def set_route(self, network, prefix_length, gateway, interface):
+    def set_route(self, network, prefix_length, gateway, interface, count=1):
         Routing.vpp_route_add(self.node_info,
                               network=network, prefix_len=prefix_length,
-                              gateway=gateway, interface=interface)
+                              gateway=gateway, interface=interface, count=count)
 
     def unset_route(self, network, prefix_length, gateway, interface):
         self.exec_vat('del_route.vat', network=network,
