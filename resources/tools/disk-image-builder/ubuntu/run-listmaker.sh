@@ -49,9 +49,11 @@ echo "Storinging data in ${OUTPUT_DIR}/."
 
 APT_WANTLIST_INFRA="nfs-common cloud-init"
 APT_WANTLIST_CSIT="python-dev python-virtualenv git"
-APT_WANTLIST_VPP="dkms"
+APT_WANTLIST_VPP="dkms bridge-utils"
 APT_WANTLIST_TREX="zlib1g-dev unzip"
 APT_WANTLIST_NESTED="qemu-system-x86"
+APT_WANTLIST_JAVA="openjdk-8-jdk-headless"
+APT_WANTLIST_DOCKER="docker-engine"
 
 # For now, let us NOT incude WANTLIST_NESTED in the below. We're installing qemu
 # separately from a separate source.
@@ -185,6 +187,24 @@ _EOF
 do_ssh apt-get --allow-unauthenticated update
 do_ssh apt-get --print-uris --allow-unauthenticated -y install $APT_WANTLIST_NESTED >> $APT_TEMPFILE
 do_ssh DEBIAN_FRONTEND=noninteractive apt-get --allow-unauthenticated -y install $APT_WANTLIST_NESTED
+
+### Install Java ($APT_WANTLIST_JAVA) separately from PPA
+do_ssh "cat - >> /etc/apt/sources.list" <<_EOF
+# For java
+deb http://ppa.launchpad.net/openjdk-r/ppa/ubuntu trusty main
+_EOF
+do_ssh apt-get --allow-unauthenticated update
+do_ssh apt-get --print-uris --allow-unauthenticated -y install $APT_WANTLIST_JAVA >> $APT_TEMPFILE
+do_ssh DEBIAN_FRONTEND=noninteractive apt-get --allow-unauthenticated -y install $APT_WANTLIST_JAVA
+
+### Install Docker ($APT_WANTLIST_DOCKER) separately from PPA
+do_ssh "cat - >> /etc/apt/sources.list" <<_EOF
+# For Docker
+deb https://apt.dockerproject.org/repo ubuntu-trusty main
+_EOF
+do_ssh apt-get --allow-unauthenticated update
+do_ssh apt-get --print-uris --allow-unauthenticated -y install $APT_WANTLIST_DOCKER >> $APT_TEMPFILE
+do_ssh DEBIAN_FRONTEND=noninteractive apt-get --allow-unauthenticated -y install $APT_WANTLIST_DOCKER
 
 cat $APT_TEMPFILE | grep MD5Sum | sort > $APT_OUTPUTFILE
 rm -f $APT_TEMPFILE
