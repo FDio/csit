@@ -109,39 +109,40 @@ class LispUtil(object):
 
         :param locator_set1: Generate lisp value.
         :param locator_set2: Lisp value from VPP.
-        :type locator_set1: dict
+        :type locator_set1: list
         :type locator_set2: list
         """
 
-        reset_list = []
+        # Remove duplicate value which is not set in vpp node.
         locator_set_list = []
-        for locator_set_type, item in locator_set1.iteritems():
-            if locator_set_type == 'normal':
-                self.lisp_should_be_equal(item, locator_set2)
-            elif locator_set_type == 'reset':
-                for locator_list in reversed(item):
-                    name = locator_list.get('locator-set')
-                    if name not in locator_set_list:
-                        reset_list.insert(0, locator_list)
-                        locator_set_list.append(name)
-                self.lisp_should_be_equal(reset_list, locator_set2)
-            else:
-                raise ValueError('Unknown locator_set_type value: '
-                                 '{}'.format(locator_set_type))
+        tmp_list = list(locator_set1)
+        while len(tmp_list):
+            locator_set = tmp_list.pop(0)
+            locator_set_name = locator_set.get('locator-set')
+            for tmp_loc_set in tmp_list:
+                tmp_loc_set_name = tmp_loc_set.get('locator-set')
+                if locator_set_name == tmp_loc_set_name:
+                    locator_set = tmp_loc_set
+                    tmp_list.remove(tmp_loc_set)
+            locator_set_list.append(locator_set)
+
+        for locator_set in locator_set2:
+            if 'locator-set-index' in locator_set:
+                del locator_set['locator-set-index']
+
+        self.lisp_should_be_equal(locator_set_list, locator_set2)
 
     @staticmethod
-    def generate_lisp_locator_set_data(node, locator_set_number):
+    def generate_unique_lisp_locator_set_data(node, locator_set_number):
         """Generate a list of lisp locator_set we want set to VPP and
-        then check if is set correct.
-
-        "normal" type of data set locator_set just once.
+        then check if it is set correctly. All locator_sets are unique.
 
         :param node: VPP node.
         :param locator_set_number: Generate n locator_set.
         :type node: dict
         :type locator_set_number: str
-        :return: dict of lisp locator_set.
-        :rtype: dict
+        :return: list of lisp locator_set.
+        :rtype: list
         """
 
         topo = Topology()
@@ -149,6 +150,46 @@ class LispUtil(object):
         locator_set_list = []
         i = 0
         for num in range(0, int(locator_set_number)):
+            locator_list = []
+            for interface in node['interfaces'].values():
+                link = interface.get('link')
+                i += 1
+                if link is None:
+                    continue
+
+                if_name = topo.get_interface_by_link_name(node, link)
+                sw_if_index = topo.get_interface_sw_index(node, if_name)
+                if if_name is not None:
+                    locator = {'locator-index': sw_if_index,
+                               'priority': i,
+                               'weight': i}
+                    locator_list.append(locator)
+
+            l_name = 'ls{0}'.format(num)
+            locator_set = {'locator-set': l_name,
+                           'locator': locator_list}
+            locator_set_list.append(locator_set)
+
+        return locator_set_list
+
+    @staticmethod
+    def generate_duplicate_lisp_locator_set_data(node, locator_set_number):
+        """Generate a list of lisp locator_set we want set to VPP and
+        then check if it is set correctly. Some locator_sets are duplicated.
+
+        :param node: VPP node.
+        :param locator_set_number: Generate n locator_set.
+        :type node: dict
+        :type locator_set_number: str
+        :return: list of lisp locator_set.
+        :rtype: list
+        """
+
+        topo = Topology()
+        locator_set_list = []
+        i = 0
+        for num in range(0, int(locator_set_number)):
+            locator_list = []
             for interface in node['interfaces'].values():
                 link = interface.get('link')
                 i += 1
@@ -159,52 +200,15 @@ class LispUtil(object):
                 sw_if_index = topo.get_interface_sw_index(node, if_name)
                 if if_name is not None:
                     l_name = 'ls{0}'.format(num)
+                    locator = {'locator-index': sw_if_index,
+                               'priority': i,
+                               'weight': i}
+                    locator_list.append(locator)
                     locator_set = {'locator-set': l_name,
-                                   'locator': sw_if_index,
-                                   'priority': i,
-                                   'weight': i}
+                                   'locator': locator_list}
                     locator_set_list.append(locator_set)
 
-        loc_type = {'normal': locator_set_list}
-        return loc_type
-
-    @staticmethod
-    def generate_lisp_locator_set_reset_data(node, locator_set_number):
-        """Generate a list of lisp locator_set we want set to VPP and
-        then check if is set correct.
-
-        "reset" type of data set locator_set multiple times,
-        use to test reset locator_set in vpp.
-
-        :param node: VPP node.
-        :param locator_set_number: Generate n locator_set.
-        :type node: dict
-        :type locator_set_number: str
-        :return: dict of lisp locator_set.
-        :rtype: dict
-        """
-
-        topo = Topology()
-
-        locator_set_list = []
-        for num in range(0, int(locator_set_number)):
-            for interface in node['interfaces'].values():
-                link = interface.get('link')
-                if link is None:
-                    continue
-
-                if_name = topo.get_interface_by_link_name(node, link)
-                sw_if_index = topo.get_interface_sw_index(node, if_name)
-                if if_name is not None:
-                    l_name = 'ls{0}'.format(num)
-                    locator_set = {'locator-set': l_name,
-                                   'locator': sw_if_index,
-                                   'priority': 1,
-                                   'weight': 1}
-                    locator_set_list.append(locator_set)
-
-        loc_type = {'reset': locator_set_list}
-        return loc_type
+        return locator_set_list
 
     def lisp_is_empty(self, lisp_params):
         """Check if the input param are empty.
