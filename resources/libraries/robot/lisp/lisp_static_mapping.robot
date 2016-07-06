@@ -62,7 +62,8 @@
 | | Vpp Add Lisp Locator | ${dut1_node} | ${locator_set['locator_name']}
 | | ...                  | ${dut1_int_index} | ${locator_set['priority']}
 | | ...                  | ${locator_set['weight']}
-| | Vpp Add Lisp Local Eid | ${dut1_node} | ${dut1_eid['locator_name']} | ${dut1_eid['eid']}
+| | Vpp Add Lisp Local Eid | ${dut1_node} | ${dut1_eid['locator_name']}
+| | ...                    | ${dut1_eid['vni']} | ${dut1_eid['eid']}
 | | ...                    | ${dut1_eid['prefix']}
 | | Vpp Add Lisp Remote Mapping | ${dut1_node} | ${dut1_static_mapping['vni']}
 | | ...                         | ${dut1_static_mapping['deid']}
@@ -75,7 +76,8 @@
 | | Vpp Add Lisp Locator | ${dut2_node} | ${locator_set['locator_name']}
 | | ...                  | ${dut2_int_index} | ${locator_set['priority']}
 | | ...                  | ${locator_set['weight']}
-| | Vpp Add Lisp Local Eid | ${dut2_node} | ${dut2_eid['locator_name']} | ${dut2_eid['eid']}
+| | Vpp Add Lisp Local Eid | ${dut2_node} | ${dut2_eid['locator_name']}
+| | ...                    | ${dut2_eid['vni']} | ${dut2_eid['eid']}
 | | ...                    | ${dut2_eid['prefix']}
 | | Vpp Add Lisp Remote Mapping | ${dut2_node} | ${dut2_static_mapping['vni']}
 | | ...                         | ${dut2_static_mapping['deid']}
