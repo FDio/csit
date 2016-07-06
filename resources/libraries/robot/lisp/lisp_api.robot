@@ -40,7 +40,7 @@
 | | ... | \| ${locator_set_number} \|
 | | ...
 | | [Arguments] | ${dut_node} | ${locator_set_number}
-| | ${locator_set_values}= | Generate Lisp Locator Set Data |
+| | ${locator_set_values}= | Generate Unique Lisp Locator Set Data |
 | | ...                    | ${dut_node} | ${locator_set_number}
 | | Set Test Variable | ${locator_set_values}
 
@@ -143,32 +143,9 @@
 | | ... |    are prepared \| ${nodes['DUT1']} \| ${locator_set_number} \|
 | | ...
 | | [Arguments] | ${dut_node} | ${locator_set_number}
-| | ${locator_set_values}= | Generate Lisp Locator Set Reset Data |
+| | ${locator_set_values}= | Generate Duplicate Lisp Locator Set Data |
 | | ...                    | ${dut_node} | ${locator_set_number}
 | | Set Test Variable | ${locator_set_values}
-
-| Lisp eid address is prepared
-| | [Documentation] | Generate lisp eid address for testing lisp eid API.
-| | ...
-| | ... | *Arguments:*
-| | ... | - dut_node - DUT node. Type: dictionary
-| | ... | - eid_ipv4_num - Number of generate ipv4 address. Type: int
-| | ... | - eid_ipv6_num - Number of generate ipv6 address. Type: int
-| | ...
-| | ... | *Return:*
-| | ... | - No value returned
-| | ...
-| | ... | _NOTE:_ This KW sets following test case variables:
-| | ... | - set_eid - New generate eid data.
-| | ...
-| | ... | *Example:*
-| | ... | \| Given Lisp eid address is prepared \| ${nodes['DUT1']} \
-| | ... | \| ${eid_ipv4_num} \| ${eid_ipv6_num} \|
-| | ...
-| | [Arguments] | ${dut_node} | ${eid_ipv4_num} | ${eid_ipv6_num}
-| | ${set_eid} = | Generate Lisp Local Eid Data
-| | ... | ${eid_ipv4_num} | ${eid_ipv6_num}
-| | Set Test Variable | ${set_eid}
 
 | Lisp eid address is set
 | | [Documentation] | Set the lisp eid address on the VPP node.
