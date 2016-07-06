@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a0e1d27_a0c0402b",
+        "filename": "resources/libraries/robot/counters.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 74
+      },
+      "writtenOn": "2016-07-06T11:09:06Z",
+      "side": 1,
+      "message": "If we need to ignore Error from show command then please put here a comment \"FIXME\" with bug JIRA bug id.",
+      "revId": "167547d9e2c9924ba86a3a4345e84235858d8e27",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
