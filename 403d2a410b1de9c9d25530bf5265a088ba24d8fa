@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a0e1d27_a0c4c05f",
+        "filename": "resources/libraries/python/ssh.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-07-06T10:59:26Z",
+      "side": 1,
+      "message": "We could move the if statement before assing statement to save one assingnment when chunk is empty...",
+      "range": {
+        "startLine": 179,
+        "startChar": 28,
+        "endLine": 180,
+        "endChar": 37
+      },
+      "revId": "403d2a410b1de9c9d25530bf5265a088ba24d8fa",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_80a1bcab",
+        "filename": "resources/libraries/python/ssh.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-07-06T10:59:26Z",
+      "side": 1,
+      "message": "Please, see line 179.",
+      "range": {
+        "startLine": 221,
+        "startChar": 27,
+        "endLine": 222,
+        "endChar": 37
+      },
+      "revId": "403d2a410b1de9c9d25530bf5265a088ba24d8fa",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
