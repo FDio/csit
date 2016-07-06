@@ -12,35 +12,25 @@
 # limitations under the License.
 
 *** Settings ***
-| Library | resources.libraries.python.honeycomb.Notifications | ${hello}
-| ... | ${subscription}
+| Library | resources.libraries.python.honeycomb.Notifications
+| Variables | tests/suites/honeycomb/resources/netconf/hello.py
+| Variables | tests/suites/honeycomb/resources/netconf/subscription.py
 | Documentation | Keywords used to test Honeycomb notifications over Netconf.
-
-*** Variables ***
-# hello message sent to Honeycomb through Netconf
-| ${hello}= | <hello xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
-| ... | <capabilities><capability>urn:ietf:params:netconf:base:1.0
-| ... | </capability></capabilities></hello>]]>]]>
-# rpc call to add a subscription to Netconf notifications
-| ${subscription}= | <netconf:rpc netconf:message-id="101"
-| ... | xmlns:netconf="urn:ietf:params:xml:ns:netconf:base:1.0">
-| ... | <create-subscription
-| ... | xmlns="urn:ietf:params:xml:ns:netconf:notification:1.0">
-| ... | <stream>honeycomb</stream></create-subscription></netconf:rpc>]]>]]>
 
 *** Keywords ***
 | Notification listener is established
 | | [Documentation] | Connects to Honeycomb notification service.
 | | ...
 | | ... | *Arguments:*
-| | ... | - node - information about a DUT node. Type: dictionary
+| | ... | - node - information about a DUT node. Type: dict
+| | ... |
 | | ...
 | | ... | *Example:*
 | | ...
 | | ... | \| Notification listener is established \| ${nodes['DUT1']} \|
 | | [Arguments] | ${node}
-| | Create session | ${node}
-| | Add notification listener
+| | Create session | ${node} | ${hello}
+| | Add notification listener | ${subscription}
 
 | Honeycomb should send interface state notification
 | | [Documentation] | Reads notification from Honeycomb and verifies\
