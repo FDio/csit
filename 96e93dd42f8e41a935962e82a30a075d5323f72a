@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a0e1d27_003a4ccd",
+        "filename": "tests/suites/performance/Long_Xconnect_Dot1ad_Intel-X520-DA2.robot",
+        "patchSetId": 26
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 74
+      },
+      "writtenOn": "2016-07-06T08:43:41Z",
+      "side": 1,
+      "message": "with dot1ad",
+      "revId": "96e93dd42f8e41a935962e82a30a075d5323f72a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_202550ab",
+        "filename": "tests/suites/performance/Long_Xconnect_Dot1ad_Intel-X520-DA2.robot",
+        "patchSetId": 26
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 74
+      },
+      "writtenOn": "2016-07-06T08:43:41Z",
+      "side": 1,
+      "message": "Could you please describe configuration of the encap between DUTs ?",
+      "revId": "96e93dd42f8e41a935962e82a30a075d5323f72a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_e03638e7",
+        "filename": "tests/suites/performance/Long_Xconnect_Dot1ad_Intel-X520-DA2.robot",
+        "patchSetId": 26
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 74
+      },
+      "writtenOn": "2016-07-06T08:43:41Z",
+      "side": 1,
+      "message": "forwarding",
+      "range": {
+        "startLine": 56,
+        "startChar": 30,
+        "endLine": 56,
+        "endChar": 39
+      },
+      "revId": "96e93dd42f8e41a935962e82a30a075d5323f72a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
