@@ -465,6 +465,38 @@
 | | Vpp l2bd forwarding setup | ${dut2} | ${dut2_if1} | ${dut2_if2}
 | | All Vpp Interfaces Ready Wait | ${nodes}
 
+| Scale L2 bridge domain initialized in a 3-node circular topology
+| | [Documentation] | Custom setup of scale L2 bridge topology
+| | ...
+| | ... | *Arguments:*
+| | ... | - ${count} - Number of L2Fib entries. Type: integer
+| | ...
+| | ... | *Return:*
+| | ... | - No value returned
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Scale L2 bridge domain initialized in a 3-node circular topology \
+| | ... | \| 10000 \|
+| | [Arguments] | ${count}
+| | VPP interfaces in path are up in a 3-node circular topology
+| | ${dut1_if1_idx}= | Get Interface Sw Index | ${dut1} | ${dut1_if1}
+| | ${dut1_if2_idx}= | Get Interface Sw Index | ${dut1} | ${dut1_if2}
+| | ${dut2_if1_idx}= | Get Interface Sw Index | ${dut2} | ${dut2_if1}
+| | ${dut2_if2_idx}= | Get Interface Sw Index | ${dut2} | ${dut2_if2}
+| | Vpp Add L2 Bridge Domain | ${dut1} | ${1} | ${dut1_if1} | ${dut1_if2}
+| | ...                      | learn=${FALSE}
+| | Vpp Add L2fib Entry | ${dut1} | 00:FA:00:00:00:00 | ${dut1_if2_idx} | ${1}
+| | ...                 | ${count}
+| | Vpp Add L2fib Entry | ${dut1} | 00:CE:00:00:00:00 | ${dut1_if1_idx} | ${1}
+| | ...                 | ${count}
+| | Vpp Add L2 Bridge Domain | ${dut2} | ${1} | ${dut2_if1} | ${dut2_if2}
+| | ...                      | learn=${FALSE}
+| | Vpp Add L2fib Entry | ${dut2} | 00:FA:00:00:00:00 | ${dut2_if2_idx} | ${1}
+| | ...                 | ${count}
+| | Vpp Add L2fib Entry | ${dut2} | 00:CE:00:00:00:00 | ${dut2_if1_idx} | ${1}
+| | ...                 | ${count}
+
 | 2-node Performance Suite Setup
 | | [Documentation]
 | | ... | Suite preparation phase that setup default startup configuration of
