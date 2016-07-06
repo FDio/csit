@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "9a0e1d27_400f24e2",
+        "filename": "resources/libraries/python/DropRateSearch.py",
+        "patchSetId": 25
+      },
+      "lineNbr": 463,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-07-06T11:40:33Z",
+      "side": 1,
+      "message": "update documentation return and rtype",
+      "range": {
+        "startLine": 463,
+        "startChar": 12,
+        "endLine": 463,
+        "endChar": 64
+      },
+      "revId": "93e77a036b78b9ba097c3f8ecc92572287e6cb0d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a0e1d27_c08fb474",
         "filename": "resources/libraries/robot/performance.robot",
         "patchSetId": 25
