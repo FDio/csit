@@ -40,9 +40,11 @@ dut2_ip4_static_mapping = {'vni': 0,
                            'rloc': '6.0.3.1',
                            'prefix': 24}
 dut1_ip4_eid = {'locator_name': locator_name,
+                'vni': 0,
                 'eid': '6.0.1.0',
                 'prefix': 24}
 dut2_ip4_eid = {'locator_name': locator_name,
+                'vni': 0,
                 'eid': '6.0.2.0',
                 'prefix': 24}
 
@@ -65,9 +67,11 @@ dut2_ip6_static_mapping = {'vni': 0,
                            'rloc': '6:0:3::1',
                            'prefix': 64}
 dut1_ip6_eid = {'locator_name': locator_name,
+                'vni': 0,
                 'eid': '6:0:1::0',
                 'prefix': 64}
 dut2_ip6_eid = {'locator_name': locator_name,
+                'vni': 0,
                 'eid': '6:0:2::0',
                 'prefix': 64}
 
@@ -91,9 +95,11 @@ dut2_ip4o6_static_mapping = {'vni': 0,
                              'rloc': '6:0:3::1',
                              'prefix': 24}
 dut1_ip4o6_eid = {'locator_name': locator_name,
+                  'vni': 0,
                   'eid': '6.0.1.0',
                   'prefix': 24}
 dut2_ip4o6_eid = {'locator_name': locator_name,
+                  'vni': 0,
                   'eid': '6.0.2.0',
                   'prefix': 24}
 
@@ -117,8 +123,10 @@ dut2_ip6o4_static_mapping = {'vni': 0,
                              'rloc': '6.0.3.1',
                              'prefix': 64}
 dut1_ip6o4_eid = {'locator_name': locator_name,
+                  'vni': 0,
                   'eid': '6:0:1::0',
                   'prefix': 64}
 dut2_ip6o4_eid = {'locator_name': locator_name,
+                  'vni': 0,
                   'eid': '6:0:2::0',
                   'prefix': 64}

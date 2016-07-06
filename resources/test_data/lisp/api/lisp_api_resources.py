@@ -14,44 +14,44 @@
 """Test variables for Lisp API test suite."""
 
 """Lisp status example test data."""
-lisp_status = [[{"gpe_status":"disabled",
-                 "feature_status":"disabled"}],
-               [{"gpe_status":"enabled",
-                 "feature_status":"enabled"}]]
+lisp_status = [{"gpe_status":"disabled",
+                "feature_status":"disabled"},
+               {"gpe_status":"enabled",
+                "feature_status":"enabled"}]
 
-"""Example lisp local eid we want set to VPP
-and then check if is set correct."""
-eid_table = [{'eid address': '192.168.0.1',
+# Example lisp local eid we want set to VPP
+# and then check if it is set correctly.
+eid_table = [{'eid': '192.168.0.1',
               'vni': 0,
-              'eid prefix len': 24,
+              'eid-prefix-len': 24,
               'locator-set': 'ls1'},
-             {'eid address': '192.168.1.1',
+             {'eid': '192.168.1.1',
               'vni': 0,
-              'eid prefix len': 24,
+              'eid-prefix-len': 24,
               'locator-set': 'ls1'},
-             {'eid address': '192.168.2.1',
+             {'eid': '192.168.2.1',
               'vni': 0,
-              'eid prefix len': 24,
+              'eid-prefix-len': 24,
               'locator-set': 'ls1'},
-             {'eid address': '192.168.3.1',
+             {'eid': '192.168.3.1',
               'vni': 0,
-              'eid prefix len': 24,
+              'eid-prefix-len': 24,
               'locator-set': 'ls1'},
-             {'eid address': '10:1::1',
+             {'eid': '10:1::1',
               'vni': 0,
-              'eid prefix len': 32,
+              'eid-prefix-len': 32,
               'locator-set': 'ls1'},
-             {'eid address': '10:2::1',
+             {'eid': '10:2::1',
               'vni': 0,
-              'eid prefix len': 32,
+              'eid-prefix-len': 32,
               'locator-set': 'ls1'},
-             {'eid address': '10:3::1',
+             {'eid': '10:3::1',
               'vni': 0,
-              'eid prefix len': 32,
+              'eid-prefix-len': 32,
               'locator-set': 'ls1'}]
 
-"""Example lisp map resolvers data we want set to VPP
-and then check if is set correct."""
+# Example lisp map resolvers data we want set to VPP
+# and then check if it is set correctly.
 map_resolver = [{'map resolver': '192.169.0.1'},
                 {'map resolver': '192.169.1.1'},
                 {'map resolver': '192.169.2.1'},
