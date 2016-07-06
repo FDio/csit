@@ -22,6 +22,30 @@
       "revId": "643908e049d9bd2beff8e896eb14317302cea309",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_c048d4ce",
+        "filename": "resources/libraries/robot/map.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-07-06T11:21:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a0e1d27_4041640a",
+      "range": {
+        "startLine": 171,
+        "startChar": 62,
+        "endLine": 171,
+        "endChar": 69
+      },
+      "revId": "643908e049d9bd2beff8e896eb14317302cea309",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
