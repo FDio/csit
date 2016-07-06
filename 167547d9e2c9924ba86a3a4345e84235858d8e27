@@ -16,6 +16,24 @@
       "revId": "167547d9e2c9924ba86a3a4345e84235858d8e27",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_8079bcfe",
+        "filename": "resources/libraries/robot/counters.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-07-06T11:23:34Z",
+      "side": 1,
+      "message": "Ok,keeping it simple, removing problematic dump_stats_table and leaving the rest as is.",
+      "parentUuid": "9a0e1d27_a0c0402b",
+      "revId": "167547d9e2c9924ba86a3a4345e84235858d8e27",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
