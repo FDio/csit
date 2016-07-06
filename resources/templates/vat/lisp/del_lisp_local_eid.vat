@@ -1,1 +1,1 @@
-lisp_add_del_local_eid eid {eid_address}/{eid_prefix} locator-set {locator_name} del
+lisp_add_del_local_eid vni {vni} eid {eid}/{eid_prefix} locator-set {locator_name} del

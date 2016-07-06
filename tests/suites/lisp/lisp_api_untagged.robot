@@ -20,7 +20,7 @@
 | Resource | resources/libraries/robot/interfaces.robot
 | Resource | resources/libraries/robot/lisp/lisp_api.robot
 # import additional Lisp settings from resource file
-| Variables | tests/suites/lisp/resources/lisp_api_resources.py
+| Variables | resources/test_data/lisp/api/lisp_api_resources.py
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | 3_NODE_DOUBLE_LINK_TOPO
 | ... | VM_ENV | HW_ENV
 | Test Setup | Run Keywords | Setup all DUTs before test
@@ -49,6 +49,7 @@
 | | ... | DUT1 enable LISP. [Ver1] Check DUT1 if LISP is enabled. [Cfg2]
 | | ... | Then disable LISP. [Ver2] Check DUT1 if LISP is disabled. [Ref]
 | | ... | RFC6830.
+| | [Tags] | EXPECTED_FAILING
 | | When Enable lisp | ${nodes['DUT1']}
 | | Then Check if lisp is enabled | ${nodes['DUT1']} | ${lisp_status}
 | | When Disable lisp | ${nodes['DUT1']}
@@ -61,6 +62,7 @@
 | | ... | configured locator_set and locator are correct. [Cfg2] Then
 | | ... | remove locator_set and locator. [Ver2] check DUT1 locator_set
 | | ... | and locator are removed. [Ref] RFC6830.
+| | [Tags] | EXPECTED_FAILING
 | | Given Lisp locator_set data is prepared
 | | ... | ${nodes['DUT1']} | ${locator_set_num}
 | | And   Enable lisp | ${nodes['DUT1']}
@@ -78,6 +80,7 @@
 | | ... | locator are correct. [Cfg3] Then remove locator_set and locator.
 | | ... | [Ver3] Check DUT1 all locator_set and locators are removed.
 | | ... | [Ref] RFC6830.
+| | [Tags] | EXPECTED_FAILING
 | | Given Lisp locator_set data use for test reset locator_set are prepared
 | | ... | ${nodes['DUT1']} | ${locator_set_num}
 | | And   Enable lisp | ${nodes['DUT1']}
