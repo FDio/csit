@@ -319,7 +319,7 @@ class TrafficGenerator(object):
         if traffic_type in ["3-node-xconnect", "3-node-bridge"]:
             (ret, stdout, stderr) = ssh.exec_command(
                 "sh -c '{0}/resources/tools/t-rex/t-rex-stateless.py "
-                "--duration={1} -r {2} -s {3} "
+                "--duration={1} -r {2} -s {3} -t ipv4 "
                 "--p{4}_src_start_ip 10.10.10.1 "
                 "--p{4}_src_end_ip 10.10.10.254 "
                 "--p{4}_dst_start_ip 20.20.20.1 "
@@ -331,10 +331,64 @@ class TrafficGenerator(object):
                                                     _p0, _p1, _async, _latency,
                                                     warmup_time),
                 timeout=int(duration)+60)
+        elif traffic_type in ["3-node-bridge-dst-10000"]:
+            (ret, stdout, stderr) = ssh.exec_command(
+                "sh -c '{0}/resources/tools/t-rex/t-rex-stateless.py "
+                "--duration={1} -r {2} -s {3} -t ethernet "
+                "--p{4}_src_start_ip 10.10.10.1 "
+                "--p{4}_src_end_ip 10.10.10.254 "
+                "--p{4}_dst_start_ip 20.20.20.1 "
+                "--p{4}_dst_start_mac 00:FA:00:00:00:00 "
+                "--p{4}_dst_count_mac 10000 "
+                "--p{5}_src_start_ip 20.20.20.1 "
+                "--p{5}_src_end_ip 20.20.20.254 "
+                "--p{5}_dst_start_ip 10.10.10.1 "
+                "--p{5}_dst_start_mac 00:CE:00:00:00:00 "
+                "--p{5}_dst_count_mac 10000 "
+                "{6} --warmup_time={7}'".format(Constants.REMOTE_FW_DIR,
+                                                duration, rate, framesize, _p0,
+                                                _p1, _async, warmup_time),
+                timeout=int(duration)+60)
+        elif traffic_type in ["3-node-bridge-dst-100000"]:
+            (ret, stdout, stderr) = ssh.exec_command(
+                "sh -c '{0}/resources/tools/t-rex/t-rex-stateless.py "
+                "--duration={1} -r {2} -s {3} -t ethernet "
+                "--p{4}_src_start_ip 10.10.10.1 "
+                "--p{4}_src_end_ip 10.10.10.254 "
+                "--p{4}_dst_start_ip 20.20.20.1 "
+                "--p{4}_dst_start_mac 00:FA:00:00:00:00 "
+                "--p{4}_dst_count_mac 100000 "
+                "--p{5}_src_start_ip 20.20.20.1 "
+                "--p{5}_src_end_ip 20.20.20.254 "
+                "--p{5}_dst_start_ip 10.10.10.1 "
+                "--p{5}_dst_start_mac 00:CE:00:00:00:00 "
+                "--p{5}_dst_count_mac 100000 "
+                "{6} --warmup_time={7}'".format(Constants.REMOTE_FW_DIR,
+                                                duration, rate, framesize, _p0,
+                                                _p1, _async, warmup_time),
+                timeout=int(duration)+60)
+        elif traffic_type in ["3-node-bridge-dst-1000000"]:
+            (ret, stdout, stderr) = ssh.exec_command(
+                "sh -c '{0}/resources/tools/t-rex/t-rex-stateless.py "
+                "--duration={1} -r {2} -s {3} -t ethernet "
+                "--p{4}_src_start_ip 10.10.10.1 "
+                "--p{4}_src_end_ip 10.10.10.254 "
+                "--p{4}_dst_start_ip 20.20.20.1 "
+                "--p{4}_dst_start_mac 00:FA:00:00:00:00 "
+                "--p{4}_dst_count_mac 1000000 "
+                "--p{5}_src_start_ip 20.20.20.1 "
+                "--p{5}_src_end_ip 20.20.20.254 "
+                "--p{5}_dst_start_ip 10.10.10.1 "
+                "--p{5}_dst_start_mac 00:CE:00:00:00:00 "
+                "--p{5}_dst_count_mac 1000000 "
+                "{6} --warmup_time={7}'".format(Constants.REMOTE_FW_DIR,
+                                                duration, rate, framesize, _p0,
+                                                _p1, _async, warmup_time),
+                timeout=int(duration)+60)
         elif traffic_type in ["3-node-IPv4"]:
             (ret, stdout, stderr) = ssh.exec_command(
                 "sh -c '{0}/resources/tools/t-rex/t-rex-stateless.py "
-                "--duration={1} -r {2} -s {3} "
+                "--duration={1} -r {2} -s {3} -t ipv4 "
                 "--p{4}_src_start_ip 10.10.10.2 "
                 "--p{4}_src_end_ip 10.10.10.254 "
                 "--p{4}_dst_start_ip 20.20.20.2 "
@@ -349,7 +403,7 @@ class TrafficGenerator(object):
         elif traffic_type in ["3-node-IPv4-dst-10000"]:
             (ret, stdout, stderr) = ssh.exec_command(
                 "sh -c '{0}/resources/tools/t-rex/t-rex-stateless.py "
-                "--duration={1} -r {2} -s {3} "
+                "--duration={1} -r {2} -s {3} -t ipv4 "
                 "--p{4}_src_start_ip 10.0.0.1 "
                 "--p{4}_dst_start_ip 20.0.0.0 "
                 "--p{4}_dst_end_ip 20.0.39.15 "
@@ -364,7 +418,7 @@ class TrafficGenerator(object):
         elif traffic_type in ["3-node-IPv4-dst-100000"]:
             (ret, stdout, stderr) = ssh.exec_command(
                 "sh -c '{0}/resources/tools/t-rex/t-rex-stateless.py "
-                "--duration={1} -r {2} -s {3} "
+                "--duration={1} -r {2} -s {3} -t ipv4 "
                 "--p{4}_src_start_ip 10.0.0.1 "
                 "--p{4}_dst_start_ip 20.0.0.0 "
                 "--p{4}_dst_end_ip 20.1.134.159 "
@@ -379,7 +433,7 @@ class TrafficGenerator(object):
         elif traffic_type in ["3-node-IPv4-dst-1000000"]:
             (ret, stdout, stderr) = ssh.exec_command(
                 "sh -c '{0}/resources/tools/t-rex/t-rex-stateless.py "
-                "--duration={1} -r {2} -s {3} "
+                "--duration={1} -r {2} -s {3} -t ipv4 "
                 "--p{4}_src_start_ip 10.0.0.1 "
                 "--p{4}_dst_start_ip 20.0.0.0 "
                 "--p{4}_dst_end_ip 20.15.66.63 "
@@ -394,7 +448,7 @@ class TrafficGenerator(object):
         elif traffic_type in ["3-node-IPv6"]:
             (ret, stdout, stderr) = ssh.exec_command(
                 "sh -c '{0}/resources/tools/t-rex/t-rex-stateless.py "
-                "--duration={1} -r {2} -s {3} -6 "
+                "--duration={1} -r {2} -s {3} -t ipv6 "
                 "--p{4}_src_start_ip 2001:1::2 "
                 "--p{4}_src_end_ip 2001:1::FE "
                 "--p{4}_dst_start_ip 2001:2::2 "
