@@ -15,6 +15,7 @@
 
 from robot.api.deco import keyword
 
+from resources.libraries.python.constants import Constants
 from resources.libraries.python.topology import Topology
 from resources.libraries.python.VatExecutor import VatExecutor, VatTerminal
 from resources.libraries.python.ssh import exec_cmd_no_error
@@ -43,6 +44,40 @@ class L2Util(object):
         VatExecutor.cmd_from_template(node, "add_l2_fib_entry.vat",
                                       mac=mac, bd=bd_id,
                                       interface=sw_if_index)
+
+    @staticmethod
+    def vpp_add_l2fib_entry(node, mac, interface, bd_id, count):
+        """ Create N static L2FIB entries on a vpp node.
+
+        :param node: Node to add L2FIB entry on.
+        :param mac: Destination mac address. Vendor part is used as base.
+        :param interface: Interface name or sw_if_index.
+        :param bd_id: Bridge domain id.
+        :param count: Number of entries. Incremening by 1.
+        :type node: dict
+        :type mac: str
+        :type interface: str or int
+        :type bd_id: int
+        :type count: int
+        """
+        if isinstance(interface, basestring):
+            sw_if_index = Topology.get_interface_sw_index(node, interface)
+        else:
+            sw_if_index = interface
+
+        remote_file_path = '{0}/{1}/{2}'.format(Constants.REMOTE_FW_DIR,
+                                                Constants.RESOURCES_TPL_VAT,
+                                                "add_l2_fib_entries.vat")
+        base = mac[:8]
+
+        cmd = ("for ((i=0; i<{0}; i++)); do inc=$(printf %0.6X \"$i\" | "
+            "sed -e 's/../&:/g' -e 's/:$//'); "
+            "echo l2fib_add_del mac {1}:$inc bd_id {2} sw_if_index {3}; "
+            "done > {4}".format(count, base, bd_id, interface,
+            remote_file_path))
+        exec_cmd_no_error(node, cmd)
+
+        VatExecutor().execute_script("add_l2_fib_entries.vat", node)
 
     @staticmethod
     def create_l2_bd(node, bd_id, flood=1, uu_flood=1, forward=1, learn=1,
