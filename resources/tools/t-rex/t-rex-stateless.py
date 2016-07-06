@@ -101,7 +101,7 @@ def get_start_end_ipv6(start_ip, end_ip):
     return base_p1, max_p1
 
 
-def create_packets(traffic_options, frame_size=64):
+def create_packets_v4(traffic_options, frame_size=64):
     """Create two IP packets to be used in stream.
 
     :param traffic_options: Parameters for packets.
@@ -148,6 +148,76 @@ def create_packets(traffic_options, frame_size=64):
                       STLVmWrFlowVar(fv_name="src", pkt_offset="IP.src"),
                       STLVmFixIpv4(offset="IP"),
                      ], split_by_field="src")
+
+    pkt_a = STLPktBuilder(pkt=base_pkt_a/generate_payload(
+        fsize_no_fcs-len(base_pkt_a)), vm=vm1)
+    pkt_b = STLPktBuilder(pkt=base_pkt_b/generate_payload(
+        fsize_no_fcs-len(base_pkt_b)), vm=vm2)
+
+    return(pkt_a, pkt_b)
+
+
+def create_packets_l2(traffic_options, frame_size=64):
+    """Create two IP packets to be used in stream.
+
+    :param traffic_options: Parameters for packets.
+    :param frame_size: Size of L2 frame.
+    :type traffic_options: list
+    :type frame_size: int
+    :return: Packet instances.
+    :rtype STLPktBuilder
+    """
+
+    if frame_size < 64:
+        print_error("Packet min. size is 64B")
+        sys.exit(1)
+
+    fsize_no_fcs = frame_size - 4 # no FCS
+
+    p1_src_start_ip = traffic_options['p1_src_start_ip']
+    p1_src_end_ip = traffic_options['p1_src_end_ip']
+    p1_dst_start_ip = traffic_options['p1_dst_start_ip']
+    p2_src_start_ip = traffic_options['p2_src_start_ip']
+    p2_src_end_ip = traffic_options['p2_src_end_ip']
+    p2_dst_start_ip = traffic_options['p2_dst_start_ip']
+
+    p1_dst_start_mac = traffic_options['p1_dst_start_mac']
+    p1_dst_count_mac = traffic_options['p1_dst_count_mac']
+    p2_dst_start_mac = traffic_options['p2_dst_start_mac']
+    p2_dst_count_mac = traffic_options['p2_dst_count_mac']
+
+    base_pkt_a = Ether(dst=p1_dst_start_mac)/IP(
+        src=p1_src_start_ip, dst=p1_dst_start_ip, proto=61)
+    base_pkt_b = Ether(dst=p2_dst_start_mac)/IP(
+        src=p2_src_start_ip, dst=p2_dst_start_ip, proto=61)
+
+    # The following code applies raw instructions to packet (IP dst/MAC dst
+    # increment). It splits the generated traffic by "mac_dst" variable to
+    # cores and fix IPv4 header checksum.
+    vm1 = STLScVmRaw([STLVmFlowVar(name="mac_dst",
+                                   min_value=0,
+                                   max_value=p1_dst_count_mac,
+                                   size=4, op="inc"),
+                      STLVmWrFlowVar(fv_name="mac_dst", pkt_offset=2),
+                      STLVmWrFlowVar(fv_name="ip_src",
+                                     min_value=p1_src_start_ip,
+                                     max_value=p1_src_end_ip,
+                                     size=4, op="inc"),
+                      STLVmWrFlowVar(fv_name="ip_src", pkt_offset="IP.src"),
+                      STLVmFixIpv4(offset="IP"),
+                     ], split_by_field="mac_dst")
+    vm2 = STLScVmRaw([STLVmFlowVar(name="mac_dst",
+                                   min_value=0,
+                                   max_value=p2_dst_count_mac,
+                                   size=4, op="inc"),
+                      STLVmWrFlowVar(fv_name="mac_dst", pkt_offset=2),
+                      STLVmWrFlowVar(fv_name="ip_src",
+                                     min_value=p2_src_start_ip,
+                                     max_value=p2_src_end_ip,
+                                     size=4, op="inc"),
+                      STLVmWrFlowVar(fv_name="ip_src", pkt_offset="IP.src"),
+                      STLVmFixIpv4(offset="IP"),
+                     ], split_by_field="mac_dst")
 
     pkt_a = STLPktBuilder(pkt=base_pkt_a/generate_payload(
         fsize_no_fcs-len(base_pkt_a)), vm=vm1)
@@ -340,12 +410,6 @@ def main():
     """Main function."""
 
     _traffic_options = {}
-    #default L3 profile is IPv4
-    _use_ipv6 = False
-    #default warmup time is 5 seconds
-    _warmup_time = 5
-    #default behaviour of this script is sychronous
-    _async_call = False
 
     parser = argparse.ArgumentParser()
     parser.add_argument("-d", "--duration", required=True, type=int,
@@ -354,43 +418,51 @@ def main():
                         help="Size of a Frame without padding and IPG")
     parser.add_argument("-r", "--rate", required=True,
                         help="Traffic rate with included units (%, pps)")
-    parser.add_argument("-6", "--use_IPv6", action="store_true",
-                        help="Use IPv6 traffic profile instead of IPv4")
+    parser.add_argument("-t", "--traffic_type",
+                        default='ipv4',
+                        choices=['ipv4', 'ipv6', 'ethernet'],
+                        help="Traffic type")
     parser.add_argument("--async", action="store_true",
+                        default=False,
                         help="Non-blocking call of the script")
     parser.add_argument("-w", "--warmup_time", type=int,
+                        default=5,
                         help="Traffic warmup time in seconds, 0 = disable")
-#    parser.add_argument("--p1_src_mac",
-#                        help="Port 1 source MAC address")
-#    parser.add_argument("--p1_dst_mac",
-#                        help="Port 1 destination MAC address")
+    parser.add_argument("--p1_dst_start_mac",
+                        help="Port 1 destination start MAC address")
+    parser.add_argument("--p1_dst_count_mac",
+                        help="Port 1 destination MAC address count")
     parser.add_argument("--p1_src_start_ip", required=True,
                         help="Port 1 source start IP address")
-    parser.add_argument("--p1_src_end_ip", required=True,
+    parser.add_argument("--p1_src_end_ip",
+                        default=False,
                         help="Port 1 source end IP address")
     parser.add_argument("--p1_dst_start_ip", required=True,
                         help="Port 1 destination start IP address")
-#    parser.add_argument("--p1_dst_end_ip",
-#                        help="Port 1 destination end IP address")
-#    parser.add_argument("--p2_src_mac",
-#                        help="Port 2 source MAC address")
-#    parser.add_argument("--p2_dst_mac",
-#                        help="Port 2 destination MAC address")
+    parser.add_argument("--p1_dst_end_ip",
+                        default=False,
+                        help="Port 1 destination end IP address")
+    parser.add_argument("--p2_dst_start_mac",
+                        help="Port 2 destination start MAC address")
+    parser.add_argument("--p2_dst_count_mac",
+                        help="Port 2 destination MAC address count")
     parser.add_argument("--p2_src_start_ip", required=True,
                         help="Port 2 source start IP address")
-    parser.add_argument("--p2_src_end_ip", required=True,
+    parser.add_argument("--p2_src_end_ip",
+                        default=False,
                         help="Port 2 source end IP address")
     parser.add_argument("--p2_dst_start_ip", required=True,
                         help="Port 2 destination start IP address")
-#    parser.add_argument("--p2_dst_end_ip",
-#                        help="Port 2 destination end IP address")
+    parser.add_argument("--p2_dst_end_ip",
+                        default=False,
+                        help="Port 2 destination end IP address")
 
     args = parser.parse_args()
 
     _duration = args.duration
     _frame_size = args.frame_size
     _rate = args.rate
-    _use_ipv6 = args.use_IPv6
+    _traffic_type = args.traffic_type
     _async_call = args.async
 
     if args.warmup_time is not None:
@@ -400,12 +472,17 @@ def main():
         if getattr(args, attr) is not None:
             _traffic_options[attr] = getattr(args, attr)
 
-    if _use_ipv6:
+    if _traffic_type == 'ipv6':
         pkt_a, pkt_b = create_packets_v6(_traffic_options,
                                          frame_size=_frame_size)
+    elif _traffic_type == 'ipv4':
+        pkt_a, pkt_b = create_packets_v4(_traffic_options,
+                                         frame_size=_frame_size)
+    elif _traffic_type == 'ethernet':
+        pkt_a, pkt_b = create_packets_l2(_traffic_options,
+                                         frame_size=_frame_size)
     else:
-        pkt_a, pkt_b = create_packets(_traffic_options,
-                                      frame_size=_frame_size)
+        raise ValueError('Traffic type not supported')
 
     simple_burst(pkt_a, pkt_b, _duration, _rate, _warmup_time, _async_call)
 
