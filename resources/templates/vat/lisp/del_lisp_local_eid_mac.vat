@@ -1,0 +1,1 @@
+lisp_add_del_local_eid vni <vni> eid {eid} locator-set {locator_name} del

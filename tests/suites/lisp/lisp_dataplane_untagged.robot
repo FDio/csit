@@ -59,6 +59,7 @@
 | | ... | ICMPv4 Echo Req between its interfaces across both DUTs and LISP
 | | ... | tunnel between them; verify IPv4 headers on received packets are
 | | ... | correct. [Ref] RFC6830.
+| | [Tags] | EXPECTED_FAILING
 | | Given Path for 3-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And   Interfaces in 3-node path are up
@@ -99,6 +100,7 @@
 | | ... | ICMPv6 Echo Req between its interfaces across both DUTs and LISP
 | | ... | tunnel between them; verify IPv4 headers on received packets are
 | | ... | correct. [Ref] RFC6830.
+| | [Tags] | EXPECTED_FAILING
 | | Given Path for 3-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And   Interfaces in 3-node path are up
@@ -139,6 +141,7 @@
 | | ... | ICMPv4 Echo Req between its interfaces across both DUTs and LISP
 | | ... | tunnel between them; verify IPv4 headers on received packets are
 | | ... | correct. [Ref] RFC6830.
+| | [Tags] | EXPECTED_FAILING
 | | Given Path for 3-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And   Interfaces in 3-node path are up
@@ -179,6 +182,7 @@
 | | ... | ICMPv6 Echo Req between its interfaces across both DUTs and LISP
 | | ... | tunnel between them; verify IPv4 headers on received packets are
 | | ... | correct. [Ref] RFC6830.
+| | [Tags] | EXPECTED_FAILING
 | | Given Path for 3-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And   Interfaces in 3-node path are up
@@ -221,6 +225,7 @@
 | | ... | correct. [Cfg2] Disable LISP. [Ver2] verify packets are not
 | | ... | received via LISP tunnel. [Cfg3] Re-enable LISP. [Ver3] verify
 | | ... | packets are received again via LISP tunnel. [Ref] RFC6830.
+| | [Tags] | EXPECTED_FAILING
 | | Given Path for 3-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And   Interfaces in 3-node path are up
