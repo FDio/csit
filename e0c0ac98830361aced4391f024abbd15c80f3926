@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a0e1d27_a6e1789c",
+        "filename": "resources/libraries/python/honeycomb/Netconf.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-07-07T13:46:13Z",
+      "side": 1,
+      "message": "consider to remove delimiter \u0027]]\u003e]]\u003e\u0027 from message before returning it.",
+      "revId": "e0c0ac98830361aced4391f024abbd15c80f3926",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_86ee748a",
+        "filename": "resources/libraries/python/honeycomb/Netconf.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-07-07T13:46:13Z",
+      "side": 1,
+      "message": "consider to add message delimiter \u0027]]\u003e]]\u003e\u0027 in send function. you can then send xml element or you can later change delimiting messages to chunking.",
+      "revId": "e0c0ac98830361aced4391f024abbd15c80f3926",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
