@@ -69,33 +69,37 @@ class VppConfigGenerator(object):
     def __init__(self):
         self._nodeconfig = {}
 
-    def add_pci_device(self, node, pci_device=None):
+    def add_pci_all_devices(self, node):
+        """Add all PCI devices from topology file to startup config
+
+        :param node: DUT node
+        :type node: dict
+        :return: nothing
+        """
+        for port in node['interfaces'].keys():
+            pci_addr = Topology.get_interface_pci_addr(node, port)
+            if pci_addr:
+                self.add_pci_device(node, pci_addr)
+
+
+    def add_pci_device(self, node, *pci_devices):
         """Add PCI device configuration for node.
 
         :param node: DUT node.
-        :param pci_device: PCI device (format 0000:00:00.0 or 00:00.0).
-        If none given, all PCI devices for this node as per topology will be
-        added.
+        :param pci_device: PCI devices (format 0000:00:00.0 or 00:00.0)
         :type node: dict
-        :type pci_device: str
+        :type pci_devices: tuple
         :return: nothing
         """
         if node['type'] != NodeType.DUT:
             raise ValueError('Node type is not a DUT')
 
-        if pci_device is None:
-            # No PCI device was given. Add all device from topology.
-            for port in node['interfaces'].values():
-                port_name = port.get('name')
-                pci_addr = Topology.get_interface_pci_addr(node, port_name)
-                if pci_addr:
-                    self.add_pci_device(node, pci_addr)
-        else:
-            # Specific device was given.
-            hostname = Topology.get_node_hostname(node)
+        # Specific device was given.
+        hostname = Topology.get_node_hostname(node)
 
-            pattern = re.compile("^[0-9A-Fa-f]{4}:[0-9A-Fa-f]{2}:"
-                                 "[0-9A-Fa-f]{2}\\.[0-9A-Fa-f]$")
+        pattern = re.compile("^[0-9A-Fa-f]{4}:[0-9A-Fa-f]{2}:"
+                             "[0-9A-Fa-f]{2}\\.[0-9A-Fa-f]$")
+        for pci_device in pci_devices:
             if not pattern.match(pci_device):
                 raise ValueError('PCI address {} to be added to host {} '
                                  'is not in valid format xxxx:xx:xx.x'.
