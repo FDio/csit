@@ -12,17 +12,18 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Traffic script that sends an IP ICMPv4/ICMPv6 packet
-from one interface to the other one."""
+"""Traffic script that sends an IP ICMPv4/ICMPv6 packet from one interface to
+the other one. Dot1q or Dot1ad tagging of the ethernet frame can be set.
+"""
 
 import sys
 import ipaddress
 
 from scapy.layers.inet import ICMP, IP
-from scapy.all import Ether
+from scapy.layers.l2 import Ether
+from scapy.layers.l2 import Dot1Q
 from scapy.layers.inet6 import ICMPv6EchoRequest
 from scapy.layers.inet6 import IPv6
-from scapy.layers.l2 import Dot1Q
 
 from resources.libraries.python.PacketVerifier import RxQueue, TxQueue
 from resources.libraries.python.TrafficScriptArg import TrafficScriptArg
@@ -62,9 +63,10 @@ def valid_ipv6(ip):
 
 def main():
     """Send IP ICMPv4/ICMPv6 packet from one traffic generator interface to
-    the other one.
+    the other one. Dot1q or Dot1ad tagging of the ethernet frame can be set.
     """
-    args = TrafficScriptArg(['src_mac', 'dst_mac', 'src_ip', 'dst_ip'], ['encaps', 'vlan1', 'vlan2'])
+    args = TrafficScriptArg(['src_mac', 'dst_mac', 'src_ip', 'dst_ip'],
+                            ['encaps', 'vlan1', 'vlan2'])
 
     src_mac = args.get_arg('src_mac')
     dst_mac = args.get_arg('dst_mac')
@@ -104,9 +106,21 @@ def main():
         ip_format = 'IP'
         icmp_format = 'ICMP'
     elif valid_ipv6(src_ip) and valid_ipv6(dst_ip):
-        pkt_raw = (Ether(src=src_mac, dst=dst_mac) /
-                   IPv6(src=src_ip, dst=dst_ip) /
-                   ICMPv6EchoRequest())
+        if encaps == 'Dot1q':
+            pkt_raw = (Ether(src=src_mac, dst=dst_mac) /
+                       Dot1Q(vlan=int(vlan1)) /
+                       IPv6(src=src_ip, dst=dst_ip) /
+                       ICMPv6EchoRequest())
+        elif encaps == 'Dot1ad':
+            pkt_raw = (Ether(src=src_mac, dst=dst_mac, type=0x88A8) /
+                       Dot1Q(vlan=int(vlan1), type=0x8100) /
+                       Dot1Q(vlan=int(vlan2)) /
+                       IPv6(src=src_ip, dst=dst_ip) /
+                       ICMPv6EchoRequest())
+        else:
+            pkt_raw = (Ether(src=src_mac, dst=dst_mac) /
+                       IPv6(src=src_ip, dst=dst_ip) /
+                       ICMPv6EchoRequest())
         ip_format = 'IPv6'
         icmp_format = 'ICMPv6EchoRequest'
     else:

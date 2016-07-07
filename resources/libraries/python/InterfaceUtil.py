@@ -582,33 +582,32 @@ class InterfaceUtil(object):
     @staticmethod
     def create_subinterface(node, interface, sub_id, outer_vlan_id=None,
                             inner_vlan_id=None, type_subif=None):
-        """Create sub-interface on node.
+        """Create sub-interface on node. It is possible to set required
+        sub-interface type and VLAN tag(s).
 
         :param node: Node to add sub-interface.
         :param interface: Interface name on which create sub-interface.
         :param sub_id: ID of the sub-interface to be created.
         :param outer_vlan_id: Optional outer VLAN ID.
         :param inner_vlan_id: Optional inner VLAN ID.
-        :param type_subif: Optional type of sub-interface.
+        :param type_subif: Optional type of sub-interface. Values supported by
+        VPP: [no_tags] [one_tag] [two_tags] [dot1ad] [exact_match] [default_sub]
         :type node: dict
         :type interface: str or int
         :type sub_id: int
         :type outer_vlan_id: int
         :type inner_vlan_id: int
         :type type_subif: str
-        :return: name and index of created sub-interface
+        :return: Name and index of created sub-interface.
         :rtype: tuple
+        :raises RuntimeError: If it is not possible to create sub-interface.
         """
 
-        if outer_vlan_id is None:
-            outer_vlan_id = ''
-        else:
-            outer_vlan_id = 'outer_vlan_id {0}'.format(outer_vlan_id)
+        outer_vlan_id = 'outer_vlan_id {0}'.format(outer_vlan_id)\
+            if outer_vlan_id else ''
 
-        if inner_vlan_id is None:
-            inner_vlan_id = ''
-        else:
-            inner_vlan_id = 'inner_vlan_id {0}'.format(inner_vlan_id)
+        inner_vlan_id = 'inner_vlan_id {0}'.format(inner_vlan_id)\
+            if inner_vlan_id else ''
 
         if type_subif is None:
             type_subif = ''
@@ -631,10 +630,10 @@ class InterfaceUtil(object):
             logger.trace('Created subinterface with index {}'
                          .format(sw_subif_index))
         else:
-            raise RuntimeError('Unable to create subinterface on node {}'
+            raise RuntimeError('Unable to create sub-interface on node {}'
                                .format(node['host']))
 
-        with VatTerminal(node, False) as vat:
+        with VatTerminal(node, json_param=False) as vat:
             vat.vat_terminal_exec_cmd('exec show interfaces')
 
         name = '{}.{}'.format(interface, sub_id)

@@ -19,8 +19,9 @@
 
 *** Keywords ***
 | Send and receive ICMP Packet
-| | [Documentation] | Send ICMPv4/ICMPv6 echo request from source interface to
-| | ...             | destination interface.
+| | [Documentation] | Send ICMPv4/ICMPv6 echo request from source interface to \
+| | ...             | destination interface. Packet can be set with Dot1q or
+| | ...             | Dot1ad tag(s) when required.
 | | ...
 | | ... | *Arguments:*
 | | ...
@@ -29,7 +30,7 @@
 | | ... | - dst_int - Destination interface. Type: string
 | | ... | - src_ip - Source IP address (Optional). Type: string
 | | ... | - dst_ip - Destination IP address (Optional). Type: string
-| | ... | - encaps - Encapsulation/tagging, e.g. Dot1q (Optional). Type: string
+| | ... | - encaps - Encapsulation: Dot1q or Dot1ad (Optional). Type: string
 | | ... | - vlan1 - VLAN (outer) tag (Optional). Type: integer
 | | ... | - vlan2 - VLAN inner tag (Optional). Type: integer
 | | ...
@@ -50,13 +51,13 @@
 | | ...
 | | [Arguments] | ${tg_node} | ${src_int} | ${dst_int} |
 | | ... | ${src_ip}=192.168.100.1 | ${dst_ip}=192.168.100.2 | ${encaps}=${EMPTY}
-| | ... | | ${vlan1}=${EMPTY} | ${vlan2}=${EMPTY}
+| | ... | ${vlan1}=${EMPTY} | ${vlan2}=${EMPTY}
 | | ${src_mac}= | Get Interface Mac | ${tg_node} | ${src_int}
 | | ${dst_mac}= | Get Interface Mac | ${tg_node} | ${dst_int}
 | | ${src_int_name}= | Get interface name | ${tg_node} | ${src_int}
 | | ${dst_int_name}= | Get interface name | ${tg_node} | ${dst_int}
 | | ${args}= | Traffic Script Gen Arg | ${dst_int_name} | ${src_int_name}
-| |          | ... | ${src_mac} | ${dst_mac} | ${src_ip} | ${dst_ip}
+| | ... | ${src_mac} | ${dst_mac} | ${src_ip} | ${dst_ip}
 | | ${args1}= | Run Keyword Unless | '${encaps}' == '${EMPTY}' | Catenate
 | | ... | --encaps ${encaps} | --vlan1 ${vlan1}
 | | ${args2}= | Run Keyword Unless | '${vlan2}' == '${EMPTY}' | Set Variable
@@ -97,7 +98,7 @@
 | | ${src_int_name}= | Get interface name | ${tg_node} | ${src_int}
 | | ${dst_int_name}= | Get interface name | ${tg_node} | ${dst_int}
 | | ${args}= | Traffic Script Gen Arg | ${dst_int_name} | ${src_int_name}
-| |          | ... | ${src_mac} | ${dst_mac} | ${src_ip} | ${dst_ip}
+| | ... | ${src_mac} | ${dst_mac} | ${src_ip} | ${dst_ip}
 | | Run Keyword And Expect Error | ICMP echo Rx timeout |
 | | ... | Run Traffic Script On Node | send_ip_icmp.py | ${tg_node} | ${args}
 

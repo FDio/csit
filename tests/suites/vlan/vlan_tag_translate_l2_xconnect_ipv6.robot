@@ -22,44 +22,49 @@
 | Suite Setup | Setup all TGs before traffic script
 | Test Teardown | Run Keywords | Show Packet Trace on All DUTs | ${nodes}
 | ...           | AND          | Show vpp trace dump on all DUTs
-| Documentation | *L2 cross-connect with VLAN tag rewrite test cases - IPv4*
+| Documentation | *L2 cross-connect with VLAN tag rewrite test cases - IPv6*
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology
 | ... | with single links between nodes.
-| ... | *[Enc] Packet encapsulations:* Eth-dot1q-IPv4-ICMPv4 or
-| ... | Eth-dot1ad-IPv4-ICMPv4 on TG-DUT1 and DUT1-DUT2, Eth-IPv4-ICMPv4
-| ... | on TG-DUT2 for L2 switching of IPv4.
+| ... | *[Enc] Packet encapsulations:* Eth-dot1q-IPv6-ICMPv6 or
+| ... | Eth-dot1ad-IPv6-ICMPv6 on TG-DUT1 and DUT1-DUT2, Eth-IPv6-ICMPv6
+| ... | on TG-DUT2 for L2 switching of IPv6.
 | ... | *[Cfg] DUT configuration:* DUT1 is configured with L2 cross-connect
 | ... | (L2XC) switching between VLAN sub-interface with VLAN tag rewrite
 | ... | translate-1-1 method of interface towards TG and interface towards DUT2.
 | ... | DUT2 is configured configured with L2 cross-connect (L2XC) switching
 | ... | between VLAN sub-interface with VLAN tag rewrite pop-1 method
 | ... | of interface towards DUT1 and interface towards TG.
-| ... | *[Ver] TG verification:* Test ICMPv4 Echo Request packets are
+| ... | *[Ver] TG verification:* Test ICMPv6 Echo Request packets are
 | ... | sent from TG on link to DUT1 and received in TG on link form DUT2;
-| ... | on receive TG verifies packets for correctness and their IPv4 src-addr,
+| ... | on receive TG verifies packets for correctness and their IPv6 src-addr,
 | ... | dst-addr and MAC addresses.
 | ... | *[Ref] Applicable standard specifications:* IEEE 802.1q, IEEE 802.1ad.
 
 *** Variables ***
 | ${subid}= | 10
+
 | ${outer_vlan_id1}= | 110
 | ${outer_vlan_id2}= | 120
 | ${outer_vlan_wrong}= | 150
+
 | ${inner_vlan_id1}= | 210
 | ${inner_vlan_id2}= | 220
 | ${inner_vlan_wrong}= | 250
 
+| ${src_ip}= | 3ffe:63::1
+| ${dst_ip}= | 3ffe:63::2
+
 *** Test Cases ***
-| TC01: DUT1 and DUT2 with L2XC and VLAN translate-1-1 (DUT1) switch ICMPv4 between two TG links
+| TC01: DUT1 and DUT2 with L2XC and VLAN translate-1-1 (DUT1) switch ICMPv6 between two TG links
 | | [Documentation]
-| | ... | [Top] TG-DUT1-DUT2-TG. [Enc] Eth-dot1q-IPv4-ICMPv4 on TG-DUT1 and \
-| | ... | DUT1-DUT2, Eth-IPv4-ICMPv4 on TG-DUT2. [Cfg] On DUT1 configure L2
+| | ... | [Top] TG-DUT1-DUT2-TG. [Enc] Eth-dot1q-IPv6-ICMPv6 on TG-DUT1 and \
+| | ... | DUT1-DUT2, Eth-IPv6-ICMPv6 on TG-DUT2. [Cfg] On DUT1 configure L2
 | | ... | cross-connect (L2XC) with one interface to DUT2 and one VLAN
 | | ... | sub-interface towards TG with VLAN tag rewrite translate-1-1 method;
 | | ... | on DUT2 configure L2 cross-connect (L2XC) with one interface to TG
 | | ... | and one VLAN sub-interface towards DUT1 with VLAN tag rewrite pop-1
-| | ... | method. [Ver] Make TG send ICMPv4 Echo Req tagegd with one Dot1q tag
+| | ... | method. [Ver] Make TG send ICMPv6 Echo Req tagegd with one Dot1q tag
 | | ... | from one of its interfaces to another one via DUT1 and DUT2; verify
 | | ... | that packet is received. [Ref] IEEE 802.1q
 | | Given Path for 3-node testing is set
@@ -77,19 +82,19 @@
 | | ... | ${dut1_node} | ${dut1_to_dut2} | ${vlan1_index}
 | | ... | ${dut2_node} | ${dut2_to_tg} | ${vlan2_index}
 | | Then Send and receive ICMP Packet
-| | ... | ${tg_node} | ${tg_to_dut1} | ${tg_to_dut2} | encaps=Dot1q
-| | ... | vlan1=${outer_vlan_id1}
+| | ... | ${tg_node} | ${tg_to_dut1} | ${tg_to_dut2} | src_ip=${src_ip}
+| | ... | dst_ip=${dst_ip} | encaps=Dot1q | vlan1=${outer_vlan_id1}
 
-| TC02: DUT1 and DUT2 with L2XC and VLAN translate-1-1 with wrong tag used (DUT1) switch ICMPv4 between two TG links
+| TC02: DUT1 and DUT2 with L2XC and VLAN translate-1-1 with wrong tag used (DUT1) switch ICMPv6 between two TG links
 | | [Documentation]
-| | ... | [Top] TG-DUT1-DUT2-TG. [Enc] Eth-dot1q-IPv4-ICMPv4 on TG-DUT1 and \
-| | ... | DUT1-DUT2, Eth-IPv4-ICMPv4 on TG-DUT2. [Cfg] On DUT1 configure L2
+| | ... | [Top] TG-DUT1-DUT2-TG. [Enc] Eth-dot1q-IPv6-ICMPv6 on TG-DUT1 and \
+| | ... | DUT1-DUT2, Eth-IPv6-ICMPv6 on TG-DUT2. [Cfg] On DUT1 configure L2
 | | ... | cross-connect (L2XC) with one interface to DUT2 and one VLAN
 | | ... | sub-interface towards TG with VLAN tag rewrite translate-1-1 method
 | | ... | to set tag different from tag set on VLAN sub-interface of DUT2;
 | | ... | on DUT2 configure L2 cross-connect (L2XC) with one interface to TG
 | | ... | and one VLAN sub-interface towards DUT1 with VLAN tag rewrite pop-1
-| | ... | method. [Ver] Make TG send ICMPv4 Echo Req tagegd with one Dot1q tag
+| | ... | method. [Ver] Make TG send ICMPv6 Echo Req tagegd with one Dot1q tag
 | | ... | from one of its interfaces to another one via DUT1 and DUT2; verify
 | | ... | that packet is not received. [Ref] IEEE 802.1q
 | | Given Path for 3-node testing is set
@@ -108,17 +113,18 @@
 | | ... | ${dut2_node} | ${dut2_to_tg} | ${vlan2_index}
 | | Then Run Keyword And Expect Error | ICMP echo Rx timeout
 | | ... | Send and receive ICMP Packet | ${tg_node} | ${tg_to_dut1}
-| | ... | ${tg_to_dut2} | encaps=Dot1q | vlan1=${outer_vlan_id1}
+| | ... | ${tg_to_dut2} | src_ip=${src_ip} | dst_ip=${dst_ip} | encaps=Dot1q
+| | ... | vlan1=${outer_vlan_id1}
 
-| TC03: DUT1 and DUT2 with L2XC and VLAN translate-1-2 (DUT1) switch ICMPv4 between two TG links
+| TC03: DUT1 and DUT2 with L2XC and VLAN translate-1-2 (DUT1) switch ICMPv6 between two TG links
 | | [Documentation]
-| | ... | [Top] TG-DUT1-DUT2-TG. [Enc] Eth-dot1q-IPv4-ICMPv4 on TG-DUT1, \
-| | ... | Eth-dot1ad-IPv4-ICMPv4 on DUT1-DUT2, Eth-IPv4-ICMPv4 on TG-DUT2.
+| | ... | [Top] TG-DUT1-DUT2-TG. [Enc] Eth-dot1q-IPv6-ICMPv6 on TG-DUT1, \
+| | ... | Eth-dot1ad-IPv6-ICMPv6 on DUT1-DUT2, Eth-IPv6-ICMPv6 on TG-DUT2.
 | | ... | [Cfg] On DUT1 configure L2 cross-connect (L2XC) with one interface to
 | | ... | DUT2 and one VLAN sub-interface towards TG with VLAN tag rewrite
 | | ... | translate-1-2 method; on DUT2 configure L2 cross-connect (L2XC) with
 | | ... | one interface to TG and one Dot1ad sub-interface towards DUT1 with
-| | ... | VLAN tag rewrite pop-2 method. [Ver] Make TG send ICMPv4 Echo Req
+| | ... | VLAN tag rewrite pop-2 method. [Ver] Make TG send ICMPv6 Echo Req
 | | ... | tagegd with one Dot1q tag from one of its interfaces to another one
 | | ... | via DUT1 and DUT2; verify that packet is received.
 | | ... | [Ref] IEEE 802.1q, IEEE 802.1ad
@@ -140,19 +146,19 @@
 | | ... | ${dut1_node} | ${dut1_to_dut2} | ${vlan1_index}
 | | ... | ${dut2_node} | ${dut2_to_tg} | ${vlan2_index}
 | | Then Send and receive ICMP Packet
-| | ... | ${tg_node} | ${tg_to_dut1} | ${tg_to_dut2} | encaps=Dot1q
-| | ... | vlan1=${outer_vlan_id1}
+| | ... | ${tg_node} | ${tg_to_dut1} | ${tg_to_dut2} | src_ip=${src_ip}
+| | ... | dst_ip=${dst_ip} | encaps=Dot1q | vlan1=${outer_vlan_id1}
 
-| TC04: DUT1 and DUT2 with L2XC and VLAN translate-1-2 with wrong inner tag used (DUT1) switch ICMPv4 between two TG links
+| TC04: DUT1 and DUT2 with L2XC and VLAN translate-1-2 with wrong inner tag used (DUT1) switch ICMPv6 between two TG links
 | | [Documentation]
-| | ... | [Top] TG-DUT1-DUT2-TG. [Enc] Eth-dot1q-IPv4-ICMPv4 on TG-DUT1, \
-| | ... | Eth-dot1ad-IPv4-ICMPv4 on DUT1-DUT2, Eth-IPv4-ICMPv4 on TG-DUT2.
+| | ... | [Top] TG-DUT1-DUT2-TG. [Enc] Eth-dot1q-IPv6-ICMPv6 on TG-DUT1, \
+| | ... | Eth-dot1ad-IPv6-ICMPv6 on DUT1-DUT2, Eth-IPv6-ICMPv6 on TG-DUT2.
 | | ... | [Cfg] On DUT1 configure L2 cross-connect (L2XC) with one interface to
 | | ... | DUT2 and one VLAN sub-interface towards TG with VLAN tag rewrite
 | | ... | translate-1-2 method to set inner tag different from inner tag set on
 | | ... | Dot1ad sub-interface of DUT2; on DUT2 configure L2 cross-connect with
 | | ... | one interface to TG and one Dot1ad sub-interface towards DUT1 with
-| | ... | VLAN tag rewrite pop-2 method. [Ver] Make TG send ICMPv4 Echo Req
+| | ... | VLAN tag rewrite pop-2 method. [Ver] Make TG send ICMPv6 Echo Req
 | | ... | tagegd with one Dot1q tag from one of its interfaces to another one
 | | ... | via DUT1 and DUT2; verify that packet is not received.
 | | ... | [Ref] IEEE 802.1q, IEEE 802.1ad
@@ -175,18 +181,19 @@
 | | ... | ${dut2_node} | ${dut2_to_tg} | ${vlan2_index}
 | | Then Run Keyword And Expect Error | ICMP echo Rx timeout
 | | ... | Send and receive ICMP Packet | ${tg_node} | ${tg_to_dut1}
-| | ... | ${tg_to_dut2} | encaps=Dot1q | vlan1=${outer_vlan_id1}
+| | ... | ${tg_to_dut2} | src_ip=${src_ip} | dst_ip=${dst_ip} | encaps=Dot1q
+| | ... | vlan1=${outer_vlan_id1}
 
-| TC05: DUT1 and DUT2 with L2XC and VLAN translate-1-2 with wrong outer tag used (DUT1) switch ICMPv4 between two TG links
+| TC05: DUT1 and DUT2 with L2XC and VLAN translate-1-2 with wrong outer tag used (DUT1) switch ICMPv6 between two TG links
 | | [Documentation]
-| | ... | [Top] TG-DUT1-DUT2-TG. [Enc] Eth-dot1q-IPv4-ICMPv4 on TG-DUT1, \
-| | ... | Eth-dot1ad-IPv4-ICMPv4 on DUT1-DUT2, Eth-IPv4-ICMPv4 on TG-DUT2.
+| | ... | [Top] TG-DUT1-DUT2-TG. [Enc] Eth-dot1q-IPv6-ICMPv6 on TG-DUT1, \
+| | ... | Eth-dot1ad-IPv6-ICMPv6 on DUT1-DUT2, Eth-IPv6-ICMPv6 on TG-DUT2.
 | | ... | [Cfg] On DUT1 configure L2 cross-connect (L2XC) with one interface to
 | | ... | DUT2 and one VLAN sub-interface towards TG with VLAN tag rewrite
 | | ... | translate-1-2 method to set outer tag different from outer tag set on
 | | ... | Dot1ad sub-interface of DUT2; on DUT2 configure L2 cross-connect with
 | | ... | one interface to TG and one Dot1ad sub-interface towards DUT1 with
-| | ... | VLAN tag rewrite pop-2 method. [Ver] Make TG send ICMPv4 Echo Req
+| | ... | VLAN tag rewrite pop-2 method. [Ver] Make TG send ICMPv6 Echo Req
 | | ... | tagegd with one Dot1q tag from one of its interfaces to another one
 | | ... | via DUT1 and DUT2; verify that packet is not received.
 | | ... | [Ref] IEEE 802.1q, IEEE 802.1ad
@@ -209,19 +216,20 @@
 | | ... | ${dut2_node} | ${dut2_to_tg} | ${vlan2_index}
 | | Then Run Keyword And Expect Error | ICMP echo Rx timeout
 | | ... | Send and receive ICMP Packet | ${tg_node} | ${tg_to_dut1}
-| | ... | ${tg_to_dut2} | encaps=Dot1q | vlan1=${outer_vlan_id1}
+| | ... | ${tg_to_dut2} | src_ip=${src_ip} | dst_ip=${dst_ip} | encaps=Dot1q
+| | ... | vlan1=${outer_vlan_id1}
 
-| TC06: DUT1 and DUT2 with L2XC and VLAN translate-1-2 with wrong outer and inner tag used (DUT1) switch ICMPv4 between two TG links
+| TC06: DUT1 and DUT2 with L2XC and VLAN translate-1-2 with wrong outer and inner tag used (DUT1) switch ICMPv6 between two TG links
 | | [Documentation]
-| | ... | [Top] TG-DUT1-DUT2-TG. [Enc] Eth-dot1q-IPv4-ICMPv4 on TG-DUT1, \
-| | ... | Eth-dot1ad-IPv4-ICMPv4 on DUT1-DUT2, Eth-IPv4-ICMPv4 on TG-DUT2.
+| | ... | [Top] TG-DUT1-DUT2-TG. [Enc] Eth-dot1q-IPv6-ICMPv6 on TG-DUT1, \
+| | ... | Eth-dot1ad-IPv6-ICMPv6 on DUT1-DUT2, Eth-IPv6-ICMPv6 on TG-DUT2.
 | | ... | [Cfg] On DUT1 configure L2 cross-connect (L2XC) with one interface to
 | | ... | DUT2 and one VLAN sub-interface towards TG with VLAN tag rewrite
 | | ... | translate-1-2 method to set outer and inner tags different from tags
 | | ... | set on Dot1ad sub-interface of DUT2; on DUT2 configure L2
 | | ... | cross-connect with one interface to TG and one Dot1ad sub-interface
 | | ... | towards DUT1 with VLAN tag rewrite pop-2 method. [Ver] Make TG send
-| | ... | ICMPv4 Echo Req tagegd with one Dot1q tag from one of its interfaces
+| | ... | ICMPv6 Echo Req tagegd with one Dot1q tag from one of its interfaces
 | | ... | to another one via DUT1 and DUT2; verify that packet is not received.
 | | ... | [Ref] IEEE 802.1q, IEEE 802.1ad
 | | Given Path for 3-node testing is set
@@ -243,17 +251,18 @@
 | | ... | ${dut2_node} | ${dut2_to_tg} | ${vlan2_index}
 | | Then Run Keyword And Expect Error | ICMP echo Rx timeout
 | | ... | Send and receive ICMP Packet | ${tg_node} | ${tg_to_dut1}
-| | ... | ${tg_to_dut2} | encaps=Dot1q | vlan1=${outer_vlan_id1}
+| | ... | ${tg_to_dut2} | src_ip=${src_ip} | dst_ip=${dst_ip} | encaps=Dot1q
+| | ... | vlan1=${outer_vlan_id1}
 
-| TC07: DUT1 and DUT2 with L2XC and VLAN translate-2-1 (DUT1) switch ICMPv4 between two TG links
+| TC07: DUT1 and DUT2 with L2XC and VLAN translate-2-1 (DUT1) switch ICMPv6 between two TG links
 | | [Documentation]
-| | ... | [Top] TG-DUT1-DUT2-TG. [Enc] Eth-dot1ad-IPv4-ICMPv4 on TG-DUT1, \
-| | ... | Eth-dot1q-IPv4-ICMPv4 on DUT1-DUT2, Eth-IPv4-ICMPv4 on TG-DUT2.
+| | ... | [Top] TG-DUT1-DUT2-TG. [Enc] Eth-dot1ad-IPv6-ICMPv6 on TG-DUT1, \
+| | ... | Eth-dot1q-IPv6-ICMPv6 on DUT1-DUT2, Eth-IPv6-ICMPv6 on TG-DUT2.
 | | ... | [Cfg] On DUT1 configure L2 cross-connect (L2XC) with one interface to
 | | ... | DUT2 and one Dot1ad sub-interface towards TG with VLAN tag rewrite
 | | ... | translate-2-1 method; on DUT2 configure L2 cross-connect (L2XC) with
 | | ... | one interface to TG and one VLAN sub-interface towards DUT1 with
-| | ... | VLAN tag rewrite pop-1 method. [Ver] Make TG send ICMPv4 Echo Req
+| | ... | VLAN tag rewrite pop-1 method. [Ver] Make TG send ICMPv6 Echo Req
 | | ... | tagegd with Dot1ad tags from one of its interfaces to another one
 | | ... | via DUT1 and DUT2; verify that packet is received.
 | | ... | [Ref] IEEE 802.1q, IEEE 802.1ad
@@ -274,19 +283,20 @@
 | | ... | ${dut1_node} | ${dut1_to_dut2} | ${vlan1_index}
 | | ... | ${dut2_node} | ${dut2_to_tg} | ${vlan2_index}
 | | Then Send and receive ICMP Packet
-| | ... | ${tg_node} | ${tg_to_dut1} | ${tg_to_dut2} | encaps=Dot1ad
-| | ... | vlan1=${outer_vlan_id1} | vlan2=${inner_vlan_id1}
+| | ... | ${tg_node} | ${tg_to_dut1} | ${tg_to_dut2} | src_ip=${src_ip}
+| | ... | dst_ip=${dst_ip} | encaps=Dot1ad | vlan1=${outer_vlan_id1}
+| | ... | vlan2=${inner_vlan_id1}
 
-| TC08: DUT1 and DUT2 with L2XC and VLAN translate-2-1 with wrong tag used (DUT1) switch ICMPv4 between two TG links
+| TC08: DUT1 and DUT2 with L2XC and VLAN translate-2-1 with wrong tag used (DUT1) switch ICMPv6 between two TG links
 | | [Documentation]
-| | ... | [Top] TG-DUT1-DUT2-TG. [Enc] Eth-dot1ad-IPv4-ICMPv4 on TG-DUT1, \
-| | ... | Eth-dot1q-IPv4-ICMPv4 on DUT1-DUT2, Eth-IPv4-ICMPv4 on TG-DUT2.
+| | ... | [Top] TG-DUT1-DUT2-TG. [Enc] Eth-dot1ad-IPv6-ICMPv6 on TG-DUT1, \
+| | ... | Eth-dot1q-IPv6-ICMPv6 on DUT1-DUT2, Eth-IPv6-ICMPv6 on TG-DUT2.
 | | ... | [Cfg] On DUT1 configure L2 cross-connect (L2XC) with one interface to
 | | ... | DUT2 and one Dot1ad sub-interface towards TG with VLAN tag rewrite
 | | ... | translate-2-1 method to set tag different from tag set on VLAN
 | | ... | sub-interface of DUT2; on DUT2 configure L2 cross-connect (L2XC) with
 | | ... | one interface to TG and one VLAN sub-interface towards DUT1 with
-| | ... | VLAN tag rewrite pop-1 method. [Ver] Make TG send ICMPv4 Echo Req
+| | ... | VLAN tag rewrite pop-1 method. [Ver] Make TG send ICMPv6 Echo Req
 | | ... | tagegd with Dot1ad tags from one of its interfaces to another one
 | | ... | via DUT1 and DUT2; verify that packet is not received.
 | | ... | [Ref] IEEE 802.1q, IEEE 802.1ad
@@ -308,19 +318,19 @@
 | | ... | ${dut2_node} | ${dut2_to_tg} | ${vlan2_index}
 | | Then Run Keyword And Expect Error | ICMP echo Rx timeout
 | | ... | Send and receive ICMP Packet | ${tg_node} | ${tg_to_dut1}
-| | ... | ${tg_to_dut2} | encaps=Dot1ad | vlan1=${outer_vlan_id1}
-| | ... | vlan2=${inner_vlan_id1}
+| | ... | ${tg_to_dut2} | src_ip=${src_ip} | dst_ip=${dst_ip} | encaps=Dot1ad
+| | ... | vlan1=${outer_vlan_id1} | vlan2=${inner_vlan_id1}
 
-| TC09: DUT1 and DUT2 with L2XC and VLAN translate-2-2 switch ICMPv4 between two TG links
+| TC09: DUT1 and DUT2 with L2XC and VLAN translate-2-2 switch ICMPv6 between two TG links
 | | [Documentation]
-| | ... | [Top] TG-DUT1-DUT2-TG. [Enc] Eth-dot1ad-IPv4-ICMPv4 on TG-DUT1 and \
-| | ... | on DUT1-DUT2, Eth-IPv4-ICMPv4 on TG-DUT2. [Cfg] On DUT1 configure L2
+| | ... | [Top] TG-DUT1-DUT2-TG. [Enc] Eth-dot1ad-IPv6-ICMPv6 on TG-DUT1 and \
+| | ... | on DUT1-DUT2, Eth-IPv6-ICMPv6 on TG-DUT2. [Cfg] On DUT1 configure L2
 | | ... | cross-connect (L2XC) with one interface to DUT2 and one Dot1ad
 | | ... | sub-interface towards TG with VLAN tag rewrite translate-2-2 method;
 | | ... | on DUT2 configure L2 cross-connect (L2XC) with one interface to TG and
 | | ... | one Dot1ad sub-interface towards DUT1 with VLAN tag rewrite pop-1
 | | ... | tagegd with Dot1ad tags from one of its interfaces to another one
-| | ... | method. [Ver] Make TG send ICMPv4 Echo Req via DUT1 and DUT2; verify
+| | ... | method. [Ver] Make TG send ICMPv6 Echo Req via DUT1 and DUT2; verify
 | | ... | that packet is received. [Ref] IEEE 802.1ad
 | | Given Path for 3-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
@@ -342,20 +352,21 @@
 | | ... | ${dut1_node} | ${dut1_to_dut2} | ${vlan1_index}
 | | ... | ${dut2_node} | ${dut2_to_tg} | ${vlan2_index}
 | | Then Send and receive ICMP Packet
-| | ... | ${tg_node} | ${tg_to_dut1} | ${tg_to_dut2} | encaps=Dot1ad
-| | ... | vlan1=${outer_vlan_id1} | vlan2=${inner_vlan_id1}
+| | ... | ${tg_node} | ${tg_to_dut1} | ${tg_to_dut2} | src_ip=${src_ip}
+| | ... | dst_ip=${dst_ip} | encaps=Dot1ad | vlan1=${outer_vlan_id1}
+| | ... | vlan2=${inner_vlan_id1}
 
-| TC10: DUT1 and DUT2 with L2XC and VLAN translate-2-2 with wrong inner tag used (DUT1) switch ICMPv4 between two TG links
+| TC10: DUT1 and DUT2 with L2XC and VLAN translate-2-2 with wrong inner tag used (DUT1) switch ICMPv6 between two TG links
 | | [Documentation]
-| | ... | [Top] TG-DUT1-DUT2-TG. [Enc] Eth-dot1ad-IPv4-ICMPv4 on TG-DUT1 and \
-| | ... | on DUT1-DUT2, Eth-IPv4-ICMPv4 on TG-DUT2. [Cfg] On DUT1 configure L2
+| | ... | [Top] TG-DUT1-DUT2-TG. [Enc] Eth-dot1ad-IPv6-ICMPv6 on TG-DUT1 and \
+| | ... | on DUT1-DUT2, Eth-IPv6-ICMPv6 on TG-DUT2. [Cfg] On DUT1 configure L2
 | | ... | cross-connect (L2XC) with one interface to DUT2 and one Dot1ad
 | | ... | sub-interface towards TG with VLAN tag rewrite translate-2-2 method to
 | | ... | set inner tag different from inner tag set on Dot1ad sub-interface of
 | | ... | DUT2; on DUT2 configure L2 cross-connect (L2XC) with one interface to
 | | ... | TG and one Dot1ad sub-interface towards DUT1 with VLAN tag rewrite
 | | ... | pop-1 tagegd with Dot1ad tags from one of its interfaces to another one
-| | ... | method. [Ver] Make TG send ICMPv4 Echo Req via DUT1 and DUT2; verify
+| | ... | method. [Ver] Make TG send ICMPv6 Echo Req via DUT1 and DUT2; verify
 | | ... | that packet is not received. [Ref] IEEE 802.1ad
 | | Given Path for 3-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
@@ -378,20 +389,20 @@
 | | ... | ${dut2_node} | ${dut2_to_tg} | ${vlan2_index}
 | | Then Run Keyword And Expect Error | ICMP echo Rx timeout
 | | ... | Send and receive ICMP Packet | ${tg_node} | ${tg_to_dut1}
-| | ... | ${tg_to_dut2} | encaps=Dot1ad | vlan1=${outer_vlan_id1}
-| | ... | vlan2=${inner_vlan_id1}
+| | ... | ${tg_to_dut2} | src_ip=${src_ip} | dst_ip=${dst_ip} | encaps=Dot1ad
+| | ... | vlan1=${outer_vlan_id1} | vlan2=${inner_vlan_id1}
 
-| TC11: DUT1 and DUT2 with L2XC and VLAN translate-2-2 with wrong outer tag used (DUT1) switch ICMPv4 between two TG links
+| TC11: DUT1 and DUT2 with L2XC and VLAN translate-2-2 with wrong outer tag used (DUT1) switch ICMPv6 between two TG links
 | | [Documentation]
-| | ... | [Top] TG-DUT1-DUT2-TG. [Enc] Eth-dot1ad-IPv4-ICMPv4 on TG-DUT1 and \
-| | ... | on DUT1-DUT2, Eth-IPv4-ICMPv4 on TG-DUT2. [Cfg] On DUT1 configure L2
+| | ... | [Top] TG-DUT1-DUT2-TG. [Enc] Eth-dot1ad-IPv6-ICMPv6 on TG-DUT1 and \
+| | ... | on DUT1-DUT2, Eth-IPv6-ICMPv6 on TG-DUT2. [Cfg] On DUT1 configure L2
 | | ... | cross-connect (L2XC) with one interface to DUT2 and one Dot1ad
 | | ... | sub-interface towards TG with VLAN tag rewrite translate-2-2 method to
 | | ... | set outer tag different from outer tag set on Dot1ad sub-interface of
 | | ... | DUT2; on DUT2 configure L2 cross-connect (L2XC) with one interface to
 | | ... | TG and one Dot1ad sub-interface towards DUT1 with VLAN tag rewrite
 | | ... | pop-1 tagegd with Dot1ad tags from one of its interfaces to another
-| | ... | one method. [Ver] Make TG send ICMPv4 Echo Req via DUT1 and DUT2;
+| | ... | one method. [Ver] Make TG send ICMPv6 Echo Req via DUT1 and DUT2;
 | | ... | verify that packet is not received. [Ref] IEEE 802.1ad
 | | Given Path for 3-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
@@ -414,20 +425,20 @@
 | | ... | ${dut2_node} | ${dut2_to_tg} | ${vlan2_index}
 | | Then Run Keyword And Expect Error | ICMP echo Rx timeout
 | | ... | Send and receive ICMP Packet | ${tg_node} | ${tg_to_dut1}
-| | ... | ${tg_to_dut2} | encaps=Dot1ad | vlan1=${outer_vlan_id1}
-| | ... | vlan2=${inner_vlan_id1}
+| | ... | ${tg_to_dut2} | src_ip=${src_ip} | dst_ip=${dst_ip} | encaps=Dot1ad
+| | ... | vlan1=${outer_vlan_id1} | vlan2=${inner_vlan_id1}
 
-| TC12: DUT1 and DUT2 with L2XC and VLAN translate-2-2 with wrong outer and inner tags used (DUT1) switch ICMPv4 between two TG links
+| TC12: DUT1 and DUT2 with L2XC and VLAN translate-2-2 with wrong outer and inner tags used (DUT1) switch ICMPv6 between two TG links
 | | [Documentation]
-| | ... | [Top] TG-DUT1-DUT2-TG. [Enc] Eth-dot1ad-IPv4-ICMPv4 on TG-DUT1 and \
-| | ... | on DUT1-DUT2, Eth-IPv4-ICMPv4 on TG-DUT2. [Cfg] On DUT1 configure L2
+| | ... | [Top] TG-DUT1-DUT2-TG. [Enc] Eth-dot1ad-IPv6-ICMPv6 on TG-DUT1 and \
+| | ... | on DUT1-DUT2, Eth-IPv6-ICMPv6 on TG-DUT2. [Cfg] On DUT1 configure L2
 | | ... | cross-connect (L2XC) with one interface to DUT2 and one Dot1ad
 | | ... | sub-interface towards TG with VLAN tag rewrite translate-2-2 method to
 | | ... | set tags different from tags set on Dot1ad sub-interface of DUT2;
 | | ... | on DUT2 configure L2 cross-connect (L2XC) with one interface to TG
 | | ... | and one Dot1ad sub-interface towards DUT1 with VLAN tag rewrite pop-1
 | | ... | tagegd with Dot1ad tags from one of its interfaces to another one
-| | ... | method. [Ver] Make TG send ICMPv4 Echo Req via DUT1 and DUT2; verify
+| | ... | method. [Ver] Make TG send ICMPv6 Echo Req via DUT1 and DUT2; verify
 | | ... | that packet is not received. [Ref] IEEE 802.1ad
 | | Given Path for 3-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
@@ -450,5 +461,5 @@
 | | ... | ${dut2_node} | ${dut2_to_tg} | ${vlan2_index}
 | | Then Run Keyword And Expect Error | ICMP echo Rx timeout
 | | ... | Send and receive ICMP Packet | ${tg_node} | ${tg_to_dut1}
-| | ... | ${tg_to_dut2} | encaps=Dot1ad | vlan1=${outer_vlan_id1}
-| | ... | vlan2=${inner_vlan_id1}
+| | ... | ${tg_to_dut2} | src_ip=${src_ip} | dst_ip=${dst_ip} | encaps=Dot1ad
+| | ... | vlan1=${outer_vlan_id1} | vlan2=${inner_vlan_id1}
