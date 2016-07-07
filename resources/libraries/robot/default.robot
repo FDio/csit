@@ -90,7 +90,7 @@
 | | ...             | startup configuration to all DUTs
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
-| | | Add PCI device | ${nodes['${dut}']}
+| | | Add PCI all devices | ${nodes['${dut}']}
 
 | Add PCI device to DUT
 | | [Documentation] | Add PCI device to VPP startup configuration
