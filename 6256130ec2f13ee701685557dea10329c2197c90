@@ -2,6 +2,46 @@
   "comments": [
     {
       "key": {
+        "uuid": "9a0e1d27_0672647c",
+        "filename": "resources/libraries/robot/l2_traffic.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 74
+      },
+      "writtenOn": "2016-07-07T08:33:01Z",
+      "side": 1,
+      "message": "please mention in the doc. that the packet can be with or without vlan header",
+      "range": {
+        "startLine": 22,
+        "startChar": 22,
+        "endLine": 22,
+        "endChar": 37
+      },
+      "revId": "6256130ec2f13ee701685557dea10329c2197c90",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_a6685888",
+        "filename": "resources/traffic_scripts/send_ip_icmp.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 74
+      },
+      "writtenOn": "2016-07-07T08:33:01Z",
+      "side": 1,
+      "message": "please add documentation with respect to encapsulation options",
+      "revId": "6256130ec2f13ee701685557dea10329c2197c90",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a0e1d27_46573c03",
         "filename": "tests/suites/vlan/vlan_tag_translate_l2_xconnect_ipv6.robot",
         "patchSetId": 1
