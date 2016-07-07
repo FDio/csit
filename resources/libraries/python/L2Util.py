@@ -280,8 +280,9 @@ class L2Util(object):
         return data
 
     @staticmethod
-    def l2_tag_rewrite(node, interface, tag_rewrite_method, push_dot1q='Enabled', tag1_id=None, tag2_id=None):
-        """Rewrite tags in frame.
+    def l2_vlan_tag_rewrite(node, interface, tag_rewrite_method,
+                            push_dot1q=True, tag1_id=None, tag2_id=None):
+        """Rewrite tags in ethernet frame.
 
         :param node: Node to rewrite tags.
         :param interface: Interface on which rewrite tags.
@@ -293,25 +294,15 @@ class L2Util(object):
         :type node: dict
         :type interface: str or int
         :type tag_rewrite_method : str
-        :type push_dot1q : str
+        :type push_dot1q : bool
         :type tag1_id: int
         :type tag2_id: int
         """
-        if push_dot1q == 'Enabled':
-            push_dot1q = ''
-        else:
-            push_dot1q = 'push_dot1q 0'
+        push_dot1q = 'push_dot1q 0'.format(push_dot1q) if not push_dot1q else ''
 
-        if tag1_id is None:
-            tag1_id = ''
-        else:
-            tag1_id = 'tag1 {0}'.format(tag1_id)
+        tag1_id = 'tag1 {0}'.format(tag1_id) if tag1_id else ''
+        tag2_id = 'tag2 {0}'.format(tag2_id) if tag2_id else ''
 
-        if tag2_id is None:
-            tag2_id = ''
-        else:
-            tag2_id = 'tag2 {0}'.format(tag2_id)
-    
         if isinstance(interface, basestring):
             iface_key = Topology.get_interface_by_name(node, interface)
             sw_if_index = Topology.get_interface_sw_index(node, iface_key)
@@ -319,7 +310,7 @@ class L2Util(object):
             sw_if_index = interface
 
         with VatTerminal(node) as vat:
-            vat.vat_terminal_exec_cmd_from_template("l2_tag_rewrite.vat",
+            vat.vat_terminal_exec_cmd_from_template("l2_vlan_tag_rewrite.vat",
                                                     sw_if_index=sw_if_index,
                                                     tag_rewrite_method=
                                                     tag_rewrite_method,
