@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a0e1d27_46573c03",
+        "filename": "tests/suites/vlan/vlan_tag_translate_l2_xconnect_ipv6.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-07-07T07:13:45Z",
+      "side": 1,
+      "message": "Please add API trace dump",
+      "revId": "6256130ec2f13ee701685557dea10329c2197c90",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_66524015",
+        "filename": "tests/suites/vlan/vlan_tag_translate_l2_xconnect_ipv6.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-07-07T07:13:45Z",
+      "side": 1,
+      "message": "Long",
+      "revId": "6256130ec2f13ee701685557dea10329c2197c90",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
