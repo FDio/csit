@@ -103,6 +103,65 @@ class LispRemoteMapping(object):
                                       seid=seid,
                                       seid_prefix=seid_prefix,
                                       rloc=rloc)
+class LispAdjacency(object):
+    """Class for lisp adjacency API."""
+
+    def __init__(self):
+        pass
+
+    @staticmethod
+    def vpp_add_lisp_adjacency(node, vni, deid, deid_prefix, seid,
+                               seid_prefix):
+        """Add lisp adjacency on the VPP node in topology.
+
+        :param node: VPP node.
+        :param vni: Vni.
+        :param deid: Destination eid address.
+        :param deid_predix: Destination eid address prefix_len.
+        :param seid: Source eid address.
+        :param seid_prefix: Source eid address prefix_len.
+        :type node: dict
+        :type vni: int
+        :type deid: str
+        :type deid_prefix: int
+        :type seid: str
+        :type seid_prefix: int
+        """
+
+        VatExecutor.cmd_from_template(node,
+                                      'lisp/add_lisp_adjacency.vat',
+                                      vni=vni,
+                                      deid=deid,
+                                      deid_prefix=deid_prefix,
+                                      seid=seid,
+                                      seid_prefix=seid_prefix)
+
+    @staticmethod
+    def vpp_del_lisp_adjacency(node, vni, deid, deid_prefix, seid,
+                               seid_prefix):
+        """Delete lisp adjacency on the VPP node in topology.
+
+        :param node: VPP node.
+        :param vni: Vni.
+        :param deid: Destination eid address.
+        :param deid_predix: Destination eid address prefix_len.
+        :param seid: Source eid address.
+        :param seid_prefix: Source eid address prefix_len.
+        :type node: dict
+        :type vni: int
+        :type deid: str
+        :type deid_prefix: int
+        :type seid: str
+        :type seid_prefix: int
+        """
+
+        VatExecutor.cmd_from_template(node,
+                                      'lisp/del_lisp_adjacency.vat',
+                                      vni=vni,
+                                      deid=deid,
+                                      deid_predix=deid_prefix,
+                                      seid=seid,
+                                      seid_prefix=seid_prefix)
 
 
 class LispGpeIface(object):
