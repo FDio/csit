@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a0e1d27_2b177153",
+        "filename": "resources/libraries/python/honeycomb/HcAPIKwInterfaces.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 1204,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-07-07T06:47:30Z",
+      "side": 1,
+      "message": "PEP8: Indentation",
+      "range": {
+        "startLine": 1204,
+        "startChar": 49,
+        "endLine": 1204,
+        "endChar": 59
+      },
+      "revId": "e3e54a22dd64eebad87eeabf9fb37d464e09fe4f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
