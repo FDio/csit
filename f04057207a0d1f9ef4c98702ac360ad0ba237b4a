@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9a0e1d27_46d17ccc",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 91
+      },
+      "lineNbr": 583,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-07-07T14:15:34Z",
+      "side": 1,
+      "message": "Method create_vlan_subinterface is defined in line and is specificto VLAN subinterface with one VLAN tag (there is a special vpp api command to create this interface).\n\nThis method create_subinterface is more general - you can create also untagged sub-interface.",
+      "parentUuid": "9a0e1d27_c6e6ac44",
+      "range": {
+        "startLine": 583,
+        "startChar": 8,
+        "endLine": 583,
+        "endChar": 27
+      },
+      "revId": "f04057207a0d1f9ef4c98702ac360ad0ba237b4a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a0e1d27_86d0b454",
         "filename": "resources/libraries/python/InterfaceUtil.py",
         "patchSetId": 91
@@ -36,6 +60,30 @@
       "writtenOn": "2016-07-07T08:28:42Z",
       "side": 1,
       "message": "is function will be called create_vlan_subinterface then type is not required",
+      "range": {
+        "startLine": 592,
+        "startChar": 15,
+        "endLine": 592,
+        "endChar": 25
+      },
+      "revId": "f04057207a0d1f9ef4c98702ac360ad0ba237b4a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_26d688c6",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 91
+      },
+      "lineNbr": 592,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-07-07T14:15:34Z",
+      "side": 1,
+      "message": "There can be specified more sub-interface types:\n- no_tags\n- one_tag\n- two_tags\n- two_tags dotad",
+      "parentUuid": "9a0e1d27_86d0b454",
       "range": {
         "startLine": 592,
         "startChar": 15,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "9a0e1d27_c6e46cae",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 91
+      },
+      "lineNbr": 601,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-07-07T14:15:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a0e1d27_865e74e8",
+      "range": {
+        "startLine": 601,
+        "startChar": 8,
+        "endLine": 601,
+        "endChar": 11
+      },
+      "revId": "f04057207a0d1f9ef4c98702ac360ad0ba237b4a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a0e1d27_66792093",
         "filename": "resources/libraries/python/InterfaceUtil.py",
         "patchSetId": 91
@@ -82,6 +154,30 @@
       "writtenOn": "2016-07-07T07:40:58Z",
       "side": 1,
       "message": "json_param\u003dFalse\n?",
+      "range": {
+        "startLine": 637,
+        "startChar": 31,
+        "endLine": 637,
+        "endChar": 36
+      },
+      "revId": "f04057207a0d1f9ef4c98702ac360ad0ba237b4a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_06db84ee",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 91
+      },
+      "lineNbr": 637,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-07-07T14:15:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a0e1d27_66792093",
       "range": {
         "startLine": 637,
         "startChar": 31,
@@ -129,6 +225,42 @@
     },
     {
       "key": {
+        "uuid": "9a0e1d27_e6fe5038",
+        "filename": "resources/libraries/python/L2Util.py",
+        "patchSetId": 91
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-07-07T14:15:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a0e1d27_26468824",
+      "revId": "f04057207a0d1f9ef4c98702ac360ad0ba237b4a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_66f36074",
+        "filename": "resources/libraries/python/L2Util.py",
+        "patchSetId": 91
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-07-07T14:15:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a0e1d27_267328b3",
+      "revId": "f04057207a0d1f9ef4c98702ac360ad0ba237b4a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a0e1d27_a65e1811",
         "filename": "resources/libraries/python/L2Util.py",
         "patchSetId": 91
@@ -140,6 +272,30 @@
       "writtenOn": "2016-07-07T07:40:58Z",
       "side": 1,
       "message": "Little bit confusing to me. If enabled then string is empty?\nAlso can this be done as True/False maybe?\nJust thinking",
+      "range": {
+        "startLine": 300,
+        "startChar": 0,
+        "endLine": 303,
+        "endChar": 39
+      },
+      "revId": "f04057207a0d1f9ef4c98702ac360ad0ba237b4a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_669a4016",
+        "filename": "resources/libraries/python/L2Util.py",
+        "patchSetId": 91
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-07-07T14:15:34Z",
+      "side": 1,
+      "message": "It is because of vpp_api implementation:\nusage: l2_interface_vlan_tag_rewrite \u003cintfc\u003e | sw_if_index \u003cnn\u003e [disable] [push-[1|2]] [pop-[1|2]] [translate-1-[1|2]] [translate-2-[1|2]] [push_dot1q 0] tag1 \u003cnn\u003e tag2 \u003cnn\u003e\n\nWhen string \u0027push_dot1q 0\u0027 is ommitted then tags are pushed as dot1q tags (default behaviour). When it is used than tags are pusehd as dot1ad tags... So it is used only in case that dot1ad tags are required.",
+      "parentUuid": "9a0e1d27_a65e1811",
       "range": {
         "startLine": 300,
         "startChar": 0,
@@ -175,6 +331,30 @@
     },
     {
       "key": {
+        "uuid": "9a0e1d27_a6f8584a",
+        "filename": "resources/libraries/python/L2Util.py",
+        "patchSetId": 91
+      },
+      "lineNbr": 314,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-07-07T14:15:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a0e1d27_c6610cd5",
+      "range": {
+        "startLine": 314,
+        "startChar": 0,
+        "endLine": 314,
+        "endChar": 4
+      },
+      "revId": "f04057207a0d1f9ef4c98702ac360ad0ba237b4a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a0e1d27_e647701c",
         "filename": "resources/libraries/robot/l2_traffic.robot",
         "patchSetId": 91
@@ -186,6 +366,30 @@
       "writtenOn": "2016-07-07T08:28:42Z",
       "side": 1,
       "message": "this is confusing if I don\u0027t know what are encaps options",
+      "range": {
+        "startLine": 32,
+        "startChar": 44,
+        "endLine": 32,
+        "endChar": 48
+      },
+      "revId": "f04057207a0d1f9ef4c98702ac360ad0ba237b4a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_469f3c04",
+        "filename": "resources/libraries/robot/l2_traffic.robot",
+        "patchSetId": 91
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-07-07T14:15:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a0e1d27_e647701c",
       "range": {
         "startLine": 32,
         "startChar": 44,
@@ -244,6 +448,30 @@
     },
     {
       "key": {
+        "uuid": "9a0e1d27_068944ca",
+        "filename": "resources/libraries/robot/tagging.robot",
+        "patchSetId": 91
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-07-07T14:15:34Z",
+      "side": 1,
+      "message": "It is general KW to create different types of tagged sub-interfaces based on value of type_subif variable:\n- one_tag -\u003e VLAN\n- two_tags -\u003e QinQ VLAN\n- two_tags dot1ad - DOT1AD\n\nInfo added to the documentation.",
+      "parentUuid": "9a0e1d27_a65178da",
+      "range": {
+        "startLine": 152,
+        "startChar": 2,
+        "endLine": 152,
+        "endChar": 9
+      },
+      "revId": "f04057207a0d1f9ef4c98702ac360ad0ba237b4a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a0e1d27_26aa08d5",
         "filename": "resources/libraries/robot/tagging.robot",
         "patchSetId": 91
@@ -279,6 +507,24 @@
     },
     {
       "key": {
+        "uuid": "9a0e1d27_26a44856",
+        "filename": "resources/libraries/robot/tagging.robot",
+        "patchSetId": 91
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-07-07T14:15:34Z",
+      "side": 1,
+      "message": "Yes, it is OK. Table closing is at the next line.",
+      "parentUuid": "9a0e1d27_663120a2",
+      "revId": "f04057207a0d1f9ef4c98702ac360ad0ba237b4a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a0e1d27_06202448",
         "filename": "resources/libraries/robot/tagging.robot",
         "patchSetId": 91
@@ -302,6 +548,30 @@
     },
     {
       "key": {
+        "uuid": "9a0e1d27_c6922cf6",
+        "filename": "resources/libraries/robot/tagging.robot",
+        "patchSetId": 91
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-07-07T14:15:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a0e1d27_06202448",
+      "range": {
+        "startLine": 183,
+        "startChar": 24,
+        "endLine": 183,
+        "endChar": 27
+      },
+      "revId": "f04057207a0d1f9ef4c98702ac360ad0ba237b4a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a0e1d27_862c344c",
         "filename": "resources/libraries/robot/tagging.robot",
         "patchSetId": 91
@@ -313,6 +583,30 @@
       "writtenOn": "2016-07-07T09:02:14Z",
       "side": 1,
       "message": "interface",
+      "range": {
+        "startLine": 188,
+        "startChar": 30,
+        "endLine": 188,
+        "endChar": 38
+      },
+      "revId": "f04057207a0d1f9ef4c98702ac360ad0ba237b4a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_a68f38cc",
+        "filename": "resources/libraries/robot/tagging.robot",
+        "patchSetId": 91
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-07-07T14:15:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a0e1d27_862c344c",
       "range": {
         "startLine": 188,
         "startChar": 30,
@@ -360,6 +654,24 @@
     },
     {
       "key": {
+        "uuid": "9a0e1d27_86bc346e",
+        "filename": "resources/libraries/robot/tagging.robot",
+        "patchSetId": 91
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-07-07T14:15:34Z",
+      "side": 1,
+      "message": "Yes, it is OK.",
+      "parentUuid": "9a0e1d27_262b2832",
+      "revId": "f04057207a0d1f9ef4c98702ac360ad0ba237b4a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a0e1d27_c6190c24",
         "filename": "resources/traffic_scripts/send_icmp_check_headers.py",
         "patchSetId": 91
@@ -371,6 +683,30 @@
       "writtenOn": "2016-07-07T09:02:14Z",
       "side": 1,
       "message": "The name of this module says \"check headers\" but it is not mentioned in doc.",
+      "range": {
+        "startLine": 15,
+        "startChar": 3,
+        "endLine": 16,
+        "endChar": 31
+      },
+      "revId": "f04057207a0d1f9ef4c98702ac360ad0ba237b4a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_66c120e4",
+        "filename": "resources/traffic_scripts/send_icmp_check_headers.py",
+        "patchSetId": 91
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-07-07T14:15:34Z",
+      "side": 1,
+      "message": "Information added to the doc string.",
+      "parentUuid": "9a0e1d27_c6190c24",
       "range": {
         "startLine": 15,
         "startChar": 3,
@@ -400,6 +736,24 @@
     },
     {
       "key": {
+        "uuid": "9a0e1d27_46b61c8c",
+        "filename": "resources/traffic_scripts/send_ip_icmp.py",
+        "patchSetId": 91
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-07-07T14:15:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a0e1d27_06af04e5",
+      "revId": "f04057207a0d1f9ef4c98702ac360ad0ba237b4a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a0e1d27_e6abf0d4",
         "filename": "tests/suites/vlan/qinq_l2_xconnect.robot",
         "patchSetId": 91
@@ -411,6 +765,30 @@
       "writtenOn": "2016-07-07T07:40:58Z",
       "side": 1,
       "message": "change to IEEE 802.1ad",
+      "range": {
+        "startLine": 57,
+        "startChar": 38,
+        "endLine": 57,
+        "endChar": 47
+      },
+      "revId": "f04057207a0d1f9ef4c98702ac360ad0ba237b4a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_06b0248a",
+        "filename": "tests/suites/vlan/qinq_l2_xconnect.robot",
+        "patchSetId": 91
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-07-07T14:15:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a0e1d27_e6abf0d4",
       "range": {
         "startLine": 57,
         "startChar": 38,
@@ -440,6 +818,24 @@
     },
     {
       "key": {
+        "uuid": "9a0e1d27_c6a90c26",
+        "filename": "tests/suites/vlan/vlan_tag_translate_l2_xconnect_ipv4.robot",
+        "patchSetId": 91
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-07-07T14:15:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a0e1d27_c6b8ec2c",
+      "revId": "f04057207a0d1f9ef4c98702ac360ad0ba237b4a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a0e1d27_a6b5f832",
         "filename": "tests/suites/vlan/vlan_tag_translate_l2_xconnect_ipv4.robot",
         "patchSetId": 91
@@ -457,6 +853,24 @@
     },
     {
       "key": {
+        "uuid": "9a0e1d27_a6a61852",
+        "filename": "tests/suites/vlan/vlan_tag_translate_l2_xconnect_ipv4.robot",
+        "patchSetId": 91
+      },
+      "lineNbr": 220,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-07-07T14:15:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a0e1d27_a6b5f832",
+      "revId": "f04057207a0d1f9ef4c98702ac360ad0ba237b4a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a0e1d27_8682f450",
         "filename": "tests/suites/vlan/vlan_tag_translate_l2_xconnect_ipv4.robot",
         "patchSetId": 91
@@ -468,6 +882,24 @@
       "writtenOn": "2016-07-07T07:40:58Z",
       "side": 1,
       "message": "line too long",
+      "revId": "f04057207a0d1f9ef4c98702ac360ad0ba237b4a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_8663141a",
+        "filename": "tests/suites/vlan/vlan_tag_translate_l2_xconnect_ipv4.robot",
+        "patchSetId": 91
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-07-07T14:15:34Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a0e1d27_8682f450",
       "revId": "f04057207a0d1f9ef4c98702ac360ad0ba237b4a",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
