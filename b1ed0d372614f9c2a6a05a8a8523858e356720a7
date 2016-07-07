@@ -1,0 +1,280 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a0e1d27_ab026109",
+        "filename": "resources/libraries/python/honeycomb/Netconf.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-07-07T08:04:56Z",
+      "side": 1,
+      "message": "Be more specific.",
+      "range": {
+        "startLine": 14,
+        "startChar": 3,
+        "endLine": 14,
+        "endChar": 35
+      },
+      "revId": "b1ed0d372614f9c2a6a05a8a8523858e356720a7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_eb08592f",
+        "filename": "resources/libraries/python/honeycomb/Netconf.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-07-07T08:04:56Z",
+      "side": 1,
+      "message": "sessions",
+      "range": {
+        "startLine": 26,
+        "startChar": 62,
+        "endLine": 26,
+        "endChar": 74
+      },
+      "revId": "b1ed0d372614f9c2a6a05a8a8523858e356720a7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_86ff9401",
+        "filename": "resources/libraries/python/honeycomb/Netconf.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-07-07T08:04:56Z",
+      "side": 1,
+      "message": "methods",
+      "range": {
+        "startLine": 26,
+        "startChar": 18,
+        "endLine": 26,
+        "endChar": 27
+      },
+      "revId": "b1ed0d372614f9c2a6a05a8a8523858e356720a7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_66048015",
+        "filename": "resources/libraries/python/honeycomb/Netconf.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-07-07T08:04:56Z",
+      "side": 1,
+      "message": "You do not have to wait for hello message from netconf server, you can send it immediately after connecting to the server.",
+      "range": {
+        "startLine": 86,
+        "startChar": 8,
+        "endLine": 88,
+        "endChar": 76
+      },
+      "revId": "b1ed0d372614f9c2a6a05a8a8523858e356720a7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_467cdc72",
+        "filename": "resources/libraries/robot/honeycomb/netconf.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-07-07T08:04:56Z",
+      "side": 1,
+      "message": "Library doc is missing.",
+      "range": {
+        "startLine": 14,
+        "startChar": 4,
+        "endLine": 14,
+        "endChar": 12
+      },
+      "revId": "b1ed0d372614f9c2a6a05a8a8523858e356720a7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_2681e84a",
+        "filename": "resources/libraries/robot/honeycomb/netconf.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-07-07T08:04:56Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 9
+      },
+      "revId": "b1ed0d372614f9c2a6a05a8a8523858e356720a7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_86e9d41c",
+        "filename": "resources/libraries/robot/honeycomb/netconf.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-07-07T08:04:56Z",
+      "side": 1,
+      "message": "\\| is missing",
+      "range": {
+        "startLine": 29,
+        "startChar": 10,
+        "endLine": 29,
+        "endChar": 17
+      },
+      "revId": "b1ed0d372614f9c2a6a05a8a8523858e356720a7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_0696e494",
+        "filename": "resources/libraries/robot/honeycomb/netconf.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-07-07T08:04:56Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 9
+      },
+      "revId": "b1ed0d372614f9c2a6a05a8a8523858e356720a7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_a68cd880",
+        "filename": "resources/libraries/robot/honeycomb/netconf.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-07-07T08:04:56Z",
+      "side": 1,
+      "message": "\\| is missing",
+      "range": {
+        "startLine": 42,
+        "startChar": 10,
+        "endLine": 42,
+        "endChar": 15
+      },
+      "revId": "b1ed0d372614f9c2a6a05a8a8523858e356720a7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_e692d09e",
+        "filename": "resources/libraries/robot/honeycomb/netconf.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-07-07T08:04:56Z",
+      "side": 1,
+      "message": "\\| is missing",
+      "range": {
+        "startLine": 55,
+        "startChar": 10,
+        "endLine": 55,
+        "endChar": 17
+      },
+      "revId": "b1ed0d372614f9c2a6a05a8a8523858e356720a7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_66eec024",
+        "filename": "resources/libraries/robot/honeycomb/notifications.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-07-07T08:04:56Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 26,
+        "endChar": 9
+      },
+      "revId": "b1ed0d372614f9c2a6a05a8a8523858e356720a7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_46f3bc0a",
+        "filename": "tests/suites/honeycomb/resources/netconf/hello.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-07-07T08:04:56Z",
+      "side": 1,
+      "message": "with",
+      "range": {
+        "startLine": 14,
+        "startChar": 17,
+        "endLine": 14,
+        "endChar": 20
+      },
+      "revId": "b1ed0d372614f9c2a6a05a8a8523858e356720a7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
