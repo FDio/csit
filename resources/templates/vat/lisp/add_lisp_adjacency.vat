@@ -1,0 +1,1 @@
+lisp_add_del_adjacency add vni {vni} deid {deid}/{deid_prefix} seid {seid}/{seid_prefix}
