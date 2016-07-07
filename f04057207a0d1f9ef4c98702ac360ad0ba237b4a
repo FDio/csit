@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "9a0e1d27_c6e6ac44",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 91
+      },
+      "lineNbr": 583,
+      "author": {
+        "id": 74
+      },
+      "writtenOn": "2016-07-07T08:28:42Z",
+      "side": 1,
+      "message": "create_vlan_subinterface",
+      "range": {
+        "startLine": 583,
+        "startChar": 8,
+        "endLine": 583,
+        "endChar": 27
+      },
+      "revId": "f04057207a0d1f9ef4c98702ac360ad0ba237b4a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_86d0b454",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 91
+      },
+      "lineNbr": 592,
+      "author": {
+        "id": 74
+      },
+      "writtenOn": "2016-07-07T08:28:42Z",
+      "side": 1,
+      "message": "is function will be called create_vlan_subinterface then type is not required",
+      "range": {
+        "startLine": 592,
+        "startChar": 15,
+        "endLine": 592,
+        "endChar": 25
+      },
+      "revId": "f04057207a0d1f9ef4c98702ac360ad0ba237b4a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a0e1d27_66792093",
         "filename": "resources/libraries/python/InterfaceUtil.py",
         "patchSetId": 91
@@ -36,6 +82,24 @@
       "writtenOn": "2016-07-07T07:40:58Z",
       "side": 1,
       "message": "line too long",
+      "revId": "f04057207a0d1f9ef4c98702ac360ad0ba237b4a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_26468824",
+        "filename": "resources/libraries/python/L2Util.py",
+        "patchSetId": 91
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 74
+      },
+      "writtenOn": "2016-07-07T08:28:42Z",
+      "side": 1,
+      "message": "l2_vlan_tag ?",
+      "parentUuid": "9a0e1d27_267328b3",
       "revId": "f04057207a0d1f9ef4c98702ac360ad0ba237b4a",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
@@ -81,6 +145,52 @@
         "startChar": 0,
         "endLine": 314,
         "endChar": 4
+      },
+      "revId": "f04057207a0d1f9ef4c98702ac360ad0ba237b4a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_e647701c",
+        "filename": "resources/libraries/robot/l2_traffic.robot",
+        "patchSetId": 91
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 74
+      },
+      "writtenOn": "2016-07-07T08:28:42Z",
+      "side": 1,
+      "message": "this is confusing if I don\u0027t know what are encaps options",
+      "range": {
+        "startLine": 32,
+        "startChar": 44,
+        "endLine": 32,
+        "endChar": 48
+      },
+      "revId": "f04057207a0d1f9ef4c98702ac360ad0ba237b4a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_a65178da",
+        "filename": "resources/libraries/robot/tagging.robot",
+        "patchSetId": 91
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 74
+      },
+      "writtenOn": "2016-07-07T08:28:42Z",
+      "side": 1,
+      "message": "what is tagged interface ? Can you please specify tag type ? VXLAN, DOT1Q, DOT1AD, ...",
+      "range": {
+        "startLine": 152,
+        "startChar": 2,
+        "endLine": 152,
+        "endChar": 9
       },
       "revId": "f04057207a0d1f9ef4c98702ac360ad0ba237b4a",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
