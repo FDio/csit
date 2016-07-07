@@ -20,7 +20,8 @@
 *** Keywords ***
 | Send and receive ICMP Packet
 | | [Documentation] | Send ICMPv4/ICMPv6 echo request from source interface to \
-| | ...             | destination interface. Dot1q or Dot1ad tag(s) can be set.
+| | ...             | destination interface. Packet can be set with Dot1q or
+| | ...             | Dot1ad tag(s) when required.
 | | ...
 | | ... | *Arguments:*
 | | ...
