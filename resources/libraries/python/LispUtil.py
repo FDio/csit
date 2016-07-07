@@ -101,7 +101,7 @@ class LispUtil(object):
 
         for tmp in lisp_val1:
             if tmp not in lisp_val2:
-                raise RuntimeError('Value {} is not find in vpp:\n'
+                raise RuntimeError('Value {} not found in vpp:\n'
                                    '{}'.format(tmp, lisp_val2))
 
     def lisp_locator_s_should_be_equal(self, locator_set1, locator_set2):
