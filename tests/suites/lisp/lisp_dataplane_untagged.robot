@@ -16,13 +16,13 @@
 | Resource | resources/libraries/robot/testing_path.robot
 | Resource | resources/libraries/robot/ipv4.robot
 | Resource | resources/libraries/robot/traffic.robot
-| Resource | resources/libraries/robot/lisp/lisp_static_mapping.robot
+| Resource | resources/libraries/robot/lisp/lisp_static_adjacency.robot
 | Resource | resources/libraries/robot/l2_traffic.robot
 | Library  | resources.libraries.python.IPUtil
 | Library  | resources.libraries.python.Trace
 | Library  | resources.libraries.python.IPv4Util.IPv4Util
 # import additional Lisp settings from resource file
-| Variables | tests/suites/lisp/resources/lisp_static_mapping.py
+| Variables | tests/suites/lisp/resources/lisp_static_adjacency.py
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | 3_NODE_DOUBLE_LINK_TOPO
 | ... | VM_ENV | HW_ENV
 | Test Setup | Run Keywords | Setup all DUTs before test
@@ -30,7 +30,7 @@
 | ...        | AND          | Update All Interface Data On All Nodes | ${nodes}
 | Test Teardown | Run Keywords | Show Packet Trace on All DUTs | ${nodes}
 | ...           | AND          | Show vpp trace dump on all DUTs
-| Documentation | *LISP static remote mapping test cases*
+| Documentation | *LISP static adjacency test cases*
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology
 | ... | with single links between nodes.
@@ -55,7 +55,7 @@
 | | [Documentation]
 | | ... | [Top] TG-DUT1-DUT2-TG. [Enc] Eth-IPv4-LISP-IPv4-ICMPv4 on \
 | | ... | DUT1-DUT2, Eth-IPv4-ICMPv4 on TG-DUTn. [Cfg] On DUT1 and DUT2
-| | ... | configure IPv4 LISP remote static mappings. [Ver] Make TG send
+| | ... | configure IPv4 LISP static adjacencies. [Ver] Make TG send
 | | ... | ICMPv4 Echo Req between its interfaces across both DUTs and LISP
 | | ... | tunnel between them; verify IPv4 headers on received packets are
 | | ... | correct. [Ref] RFC6830.
@@ -81,7 +81,8 @@
 | |      ... | ${dut1_node} | ${dut1_to_dut2} | ${NONE}
 | |      ... | ${dut2_node} | ${dut2_to_dut1} | ${NONE}
 | |      ... | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
-| |      ... | ${dut1_ip4_static_mapping} | ${dut2_ip4_static_mapping}
+| |      ... | ${dut1_to_dut2_ip4_static_adjacency} 
+| |      ... | ${dut2_to_dut1_ip4_static_adjacency}
 | | Then Send Packet And Check Headers
 | |      ... | ${tg_node} | ${tg1_ip4} | ${tg2_ip4}
 | |      ... | ${tg_to_dut1} | ${tg_to_dut1_mac} | ${dut1_to_tg_mac}
@@ -95,7 +96,7 @@
 | | [Documentation]
 | | ... | [Top] TG-DUT1-DUT2-TG. [Enc] Eth-IPv6-LISP-IPv6-ICMPv6 on \
 | | ... | DUT1-DUT2, Eth-IPv6-ICMPv6 on TG-DUTn. [Cfg] On DUT1 and DUT2
-| | ... | configure IPv6 LISP remote static mappings. [Ver] Make TG send
+| | ... | configure IPv6 LISP static adjacencies. [Ver] Make TG send
 | | ... | ICMPv6 Echo Req between its interfaces across both DUTs and LISP
 | | ... | tunnel between them; verify IPv4 headers on received packets are
 | | ... | correct. [Ref] RFC6830.
@@ -121,7 +122,8 @@
 | |      ... | ${dut1_node} | ${dut1_to_dut2} | ${NONE}
 | |      ... | ${dut2_node} | ${dut2_to_dut1} | ${NONE}
 | |      ... | ${duts_locator_set} | ${dut1_ip6_eid} | ${dut2_ip6_eid}
-| |      ... | ${dut1_ip6_static_mapping} | ${dut2_ip6_static_mapping}
+| |      ... | ${dut1_to_dut2_ip6_static_adjacency} 
+| |      ... | ${dut2_to_dut1_ip6_static_adjacency}
 | | Then Send Packet And Check Headers
 | |      ... | ${tg_node} | ${tg1_ip6} | ${tg2_ip6}
 | |      ... | ${tg_to_dut1} | ${tg_to_dut1_mac} | ${dut1_to_tg_mac}
@@ -135,7 +137,7 @@
 | | [Documentation]
 | | ... | [Top] TG-DUT1-DUT2-TG. [Enc] Eth-IPv6-LISP-IPv4-ICMPv4 on \
 | | ... | DUT1-DUT2, Eth-IPv4-ICMPv4 on TG-DUTn. [Cfg] On DUT1 and DUT2
-| | ... | configure IPv6 LISP remote static mappings. [Ver] Make TG send
+| | ... | configure IPv6 LISP static adjacencies. [Ver] Make TG send
 | | ... | ICMPv4 Echo Req between its interfaces across both DUTs and LISP
 | | ... | tunnel between them; verify IPv4 headers on received packets are
 | | ... | correct. [Ref] RFC6830.
@@ -161,7 +163,7 @@
 | |      ... | ${dut1_node} | ${dut1_to_dut2} | ${NONE}
 | |      ... | ${dut2_node} | ${dut2_to_dut1} | ${NONE}
 | |      ... | ${duts_locator_set} | ${dut1_ip4o6_eid} | ${dut2_ip4o6_eid}
-| |      ... | ${dut1_ip4o6_static_mapping} | ${dut2_ip4o6_static_mapping}
+| |      ... | ${dut1_ip4o6_static_adjacency} | ${dut2_ip4o6_static_adjacency}
 | | Then Send Packet And Check Headers
 | |      ... | ${tg_node} | ${tg1_ip4o6} | ${tg2_ip4o6}
 | |      ... | ${tg_to_dut1} | ${tg_to_dut1_mac} | ${dut1_to_tg_mac}
@@ -175,7 +177,7 @@
 | | [Documentation]
 | | ... | [Top] TG-DUT1-DUT2-TG. [Enc] Eth-IPv4-LISP-IPv6-ICMPv6 on \
 | | ... | DUT1-DUT2, Eth-IPv6-ICMPv6 on TG-DUTn. [Cfg] On DUT1 and DUT2
-| | ... | configure IPv4 LISP remote static mappings. [Ver] Make TG send
+| | ... | configure IPv4 LISP static adjacencies. [Ver] Make TG send
 | | ... | ICMPv6 Echo Req between its interfaces across both DUTs and LISP
 | | ... | tunnel between them; verify IPv4 headers on received packets are
 | | ... | correct. [Ref] RFC6830.
@@ -201,7 +203,7 @@
 | |      ... | ${dut1_node} | ${dut1_to_dut2} | ${NONE}
 | |      ... | ${dut2_node} | ${dut2_to_dut1} | ${NONE}
 | |      ... | ${duts_locator_set} | ${dut1_ip6o4_eid} | ${dut2_ip6o4_eid}
-| |      ... | ${dut1_ip6o4_static_mapping} | ${dut2_ip6o4_static_mapping}
+| |      ... | ${dut1_ip6o4_static_adjacency} | ${dut2_ip6o4_static_adjacency}
 | | Then Send Packet And Check Headers
 | |      ... | ${tg_node} | ${tg1_ip6o4} | ${tg2_ip6o4}
 | |      ... | ${tg_to_dut1} | ${tg_to_dut1_mac} | ${dut1_to_tg_mac}
@@ -215,7 +217,7 @@
 | | [Documentation]
 | | ... | [Top] TG-DUT1-DUT2-TG. [Enc] Eth-IPv4-LISP-IPv4-ICMPv4 on \
 | | ... | DUT1-DUT2, Eth-IPv4-ICMPv4 on TG-DUTn. [Cfg1] On DUT1 and DUT2
-| | ... | configure IPv4 LISP remote static mappings. [Ver1] Make TG send
+| | ... | configure IPv4 LISP static adjacencies. [Ver1] Make TG send
 | | ... | ICMPv4 Echo Req between its interfaces across both DUTs and LISP
 | | ... | tunnel between them; verify IPv4 headers on received packets are
 | | ... | correct. [Cfg2] Disable LISP. [Ver2] verify packets are not
@@ -243,7 +245,8 @@
 | |      ... | ${dut1_node} | ${dut1_to_dut2} | ${NONE}
 | |      ... | ${dut2_node} | ${dut2_to_dut1} | ${NONE}
 | |      ... | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
-| |      ... | ${dut1_ip4_static_mapping} | ${dut2_ip4_static_mapping}
+| |      ... | ${dut1_to_dut2_ip4_static_adjacency} 
+| |      ... | ${dut2_to_dut1_ip4_static_adjacency}
 | | Then Send Packet And Check Headers
 | |      ... | ${tg_node} | ${tg1_ip4} | ${tg2_ip4}
 | |      ... | ${tg_to_dut1} | ${tg_to_dut1_mac} | ${dut1_to_tg_mac}
