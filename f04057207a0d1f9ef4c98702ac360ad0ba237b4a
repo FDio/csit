@@ -308,6 +308,30 @@
     },
     {
       "key": {
+        "uuid": "9a0e1d27_91dd8c17",
+        "filename": "resources/libraries/python/L2Util.py",
+        "patchSetId": 91
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-07-07T19:23:13Z",
+      "side": 1,
+      "message": "Re-factored to use True/False.",
+      "parentUuid": "9a0e1d27_669a4016",
+      "range": {
+        "startLine": 300,
+        "startChar": 0,
+        "endLine": 303,
+        "endChar": 39
+      },
+      "revId": "f04057207a0d1f9ef4c98702ac360ad0ba237b4a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a0e1d27_c6610cd5",
         "filename": "resources/libraries/python/L2Util.py",
         "patchSetId": 91
