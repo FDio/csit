@@ -104,9 +104,21 @@ def main():
         ip_format = 'IP'
         icmp_format = 'ICMP'
     elif valid_ipv6(src_ip) and valid_ipv6(dst_ip):
-        pkt_raw = (Ether(src=src_mac, dst=dst_mac) /
-                   IPv6(src=src_ip, dst=dst_ip) /
-                   ICMPv6EchoRequest())
+        if encaps == 'Dot1q':
+            pkt_raw = (Ether(src=src_mac, dst=dst_mac) /
+                       Dot1Q(vlan=int(vlan1)) /
+                       IPv6(src=src_ip, dst=dst_ip) /
+                       ICMPv6EchoRequest())
+        elif encaps == 'Dot1ad':
+            pkt_raw = (Ether(src=src_mac, dst=dst_mac, type=0x88A8) /
+                       Dot1Q(vlan=int(vlan1), type=0x8100) /
+                       Dot1Q(vlan=int(vlan2)) /
+                       IPv6(src=src_ip, dst=dst_ip) /
+                       ICMPv6EchoRequest())
+        else:
+            pkt_raw = (Ether(src=src_mac, dst=dst_mac) /
+                       IPv6(src=src_ip, dst=dst_ip) /
+                       ICMPv6EchoRequest())
         ip_format = 'IPv6'
         icmp_format = 'ICMPv6EchoRequest'
     else:

@@ -50,7 +50,7 @@
 | | ...
 | | [Arguments] | ${tg_node} | ${src_int} | ${dst_int} |
 | | ... | ${src_ip}=192.168.100.1 | ${dst_ip}=192.168.100.2 | ${encaps}=${EMPTY}
-| | ... | | ${vlan1}=${EMPTY} | ${vlan2}=${EMPTY}
+| | ... | ${vlan1}=${EMPTY} | ${vlan2}=${EMPTY}
 | | ${src_mac}= | Get Interface Mac | ${tg_node} | ${src_int}
 | | ${dst_mac}= | Get Interface Mac | ${tg_node} | ${dst_int}
 | | ${src_int_name}= | Get interface name | ${tg_node} | ${src_int}
