@@ -37,10 +37,10 @@
 | | ... | - TYPE_SUBIF - Type of sub-interface.
 | | ...
 | | ... | _Set testcase variables with name and index of created interfaces:_
-| | ... | - ${subif_name_1}
-| | ... | - ${subif_index_1}
-| | ... | - ${subif_name_2}
-| | ... | - ${subif_index_2}
+| | ... | - subif_name_1
+| | ... | - subif_index_1
+| | ... | - subif_name_2
+| | ... | - subif_index_2
 | | ...
 | | ${INT1_name}= | Get interface name | ${DUT1} | ${INT1}
 | | ${subif_name_1} | ${subif_index_1}= | Create subinterface | ${DUT1}
@@ -71,10 +71,10 @@
 | | ... | - SUB_ID - ID of the sub-interface to be created.
 | | ...
 | | ... | _Set testcase variables with name and index of created interfaces:_
-| | ... | - ${subif_name_1}
-| | ... | - ${subif_index_1}
-| | ... | - ${subif_name_2}
-| | ... | - ${subif_index_2}
+| | ... | - subif_name_1
+| | ... | - subif_index_1
+| | ... | - subif_name_2
+| | ... | - subif_index_2
 | | ...
 | | ... | *Example:*
 | | ...
@@ -107,8 +107,8 @@
 | | ... | - SUB_INT2 - Interface on which rewrite tags.
 | | ... | - TAG_REWRITE_METHOD - Method of tag rewrite.
 | | ...
-| | L2 tag rewrite | ${DUT1} | ${SUB_INT1} | ${TAG_REWRITE_METHOD}
-| | L2 tag rewrite | ${DUT2} | ${SUB_INT2} | ${TAG_REWRITE_METHOD}
+| | L2 Vlan tag rewrite | ${DUT1} | ${SUB_INT1} | ${TAG_REWRITE_METHOD}
+| | L2 Vlan tag rewrite | ${DUT2} | ${SUB_INT2} | ${TAG_REWRITE_METHOD}
 
 | Interfaces and VLAN sub-interfaces inter-connected using L2-xconnect
 | | [Arguments] | ${DUT1} | ${INT1} | ${SUB_INT1}
@@ -150,7 +150,11 @@
 | | ... | ${dut_node} | ${interface_name} | ${vlan_id}
 
 | Tagged Subinterface Created
-| | [Documentation] | Create tagged sub-interface on DUT.
+| | [Documentation] | Create tagged sub-interface on DUT. Type of tagged \
+| | ... | sub-intreface depends on type_subif value:
+| | ... | - one_tag -> VLAN
+| | ... | - two_tags -> QinQ VLAN
+| | ... | - two_tags dot1ad - DOT1AD
 | | ...
 | | ... | *Arguments:*
 | | ... | - dut_node - Node to add VLAN sub-intreface. Type: dictionary
@@ -180,16 +184,16 @@
 | | ... | outer_vlan_id=${outer_vlan_id} | inner_vlan_id=${inner_vlan_id}
 | | ... | type_subif=${type_subif}
 
-| L2 Tag Rewrite Method Set On Interface
+| L2 Tag Rewrite Method Is Set On Interface
 | | [Documentation] | Set L2 tag rewrite on (sub-)interface on DUT
 | | ...
 | | ... | *Arguments:*
 | | ... | - dut_node - Node to set L2 tag rewrite method. Type: dictionary
-| | ... | - interface - (Sub-)nterface name or SW index to set L2 tag rewrite
+| | ... | - interface - (Sub-)interface name or SW index to set L2 tag rewrite
 | | ... | method. Type: string or integer
 | | ... | - tag_rewrite_method - Tag rewrite method. Type: string
-| | ... | - push_dot1q - Enabled to push tags as Dot1q, disabled to push tags as
-| | ... | Dot1ad (Optional). Type: string
+| | ... | - push_dot1q - True to push tags as Dot1q, False to push tags as
+| | ... | Dot1ad (Optional). Type: boolean
 | | ... | - tag1_id - VLAN tag1 ID (Optional). Type: integer
 | | ... | - tag2_id - VLAN tag2 ID (Optional). Type: integer
 | | ...
@@ -199,15 +203,16 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| L2 Tag Rewrite Method Set On Interface \| ${nodes['DUT1']} \| 9 \
-| | ... | \| pop-1 \|
-| | ... | \| L2 Tag Rewrite Method Set On Interface \| ${nodes['DUT2']} \| 10 \
-| | ... | \| translate-1-2 \| push_dot1q=Disabled \| tag1_id=10 \| tag1_id=20 \|
+| | ... | \| L2 Tag Rewrite Method Is Set On Interface \| ${nodes['DUT1']} \
+| | ... | \| 9 \| pop-1 \|
+| | ... | \| L2 Tag Rewrite Method Is Set On Interface \| ${nodes['DUT2']} \
+| | ... | \| 10 \| translate-1-2 \| push_dot1q=${False} \| tag1_id=10 \
+| | ... | \| tag1_id=20 \|
 | | ...
 | | [Arguments] | ${dut_node} | ${interface} | ${tag_rewrite_method}
-| | ... | ${push_dot1q}=Enabled | ${tag1_id}=${None} | ${tag2_id}=${None}
+| | ... | ${push_dot1q}=${True} | ${tag1_id}=${None} | ${tag2_id}=${None}
 | | ${result}= | Evaluate | isinstance($interface, int)
 | | ${interface_name}= | Run Keyword If | ${result} | Set Variable | ${interface}
 | | ...                | ELSE | Get interface name | ${dut_node} | ${interface}
-| | L2 Tag Rewrite | ${dut_node} | ${interface_name} | ${tag_rewrite_method}
+| | L2 Vlan Tag Rewrite | ${dut_node} | ${interface_name} | ${tag_rewrite_method}
 | | ... | push_dot1q=${push_dot1q} | tag1_id=${tag1_id} | tag2_id=${tag2_id}
