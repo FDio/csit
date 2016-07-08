@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a0e1d27_cc192b24",
+        "filename": "resources/libraries/python/L2Util.py",
+        "patchSetId": 95
+      },
+      "lineNbr": 297,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-07-08T07:19:30Z",
+      "side": 1,
+      "message": "no white space before \":\"",
+      "range": {
+        "startLine": 297,
+        "startChar": 24,
+        "endLine": 297,
+        "endChar": 25
+      },
+      "revId": "60379cfb07e02f04007710ed9076bdd53c4f5c60",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
