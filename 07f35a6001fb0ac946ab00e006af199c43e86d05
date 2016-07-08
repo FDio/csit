@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a0e1d27_ac45d7b4",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-07-08T09:10:54Z",
+      "side": 1,
+      "message": "maybe add_all_pci_devices?",
+      "range": {
+        "startLine": 72,
+        "startChar": 12,
+        "endLine": 72,
+        "endChar": 19
+      },
+      "revId": "07f35a6001fb0ac946ab00e006af199c43e86d05",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_8c1213b3",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-07-08T09:10:54Z",
+      "side": 1,
+      "message": ":return: nothing",
+      "revId": "07f35a6001fb0ac946ab00e006af199c43e86d05",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
