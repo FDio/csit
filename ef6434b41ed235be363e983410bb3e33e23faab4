@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9a0e1d27_ec3bcf36",
+        "filename": "resources/libraries/python/L2Util.py",
+        "patchSetId": 97
+      },
+      "lineNbr": 301,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-07-08T22:22:32Z",
+      "side": 1,
+      "message": "There really need to be 0. But unnecessary formatting removed.",
+      "parentUuid": "9a0e1d27_ec786f2d",
+      "range": {
+        "startLine": 301,
+        "startChar": 33,
+        "endLine": 301,
+        "endChar": 34
+      },
+      "revId": "ef6434b41ed235be363e983410bb3e33e23faab4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a0e1d27_6ce21fd7",
         "filename": "resources/traffic_scripts/send_ip_icmp.py",
         "patchSetId": 97
@@ -36,6 +60,30 @@
       "writtenOn": "2016-07-08T08:24:35Z",
       "side": 1,
       "message": "maybe better is full lib path: from scapy.layers.l2 import Ether",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 27
+      },
+      "revId": "ef6434b41ed235be363e983410bb3e33e23faab4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_cc480bcf",
+        "filename": "resources/traffic_scripts/send_ip_icmp.py",
+        "patchSetId": 97
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-07-08T22:22:32Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a0e1d27_6ce21fd7",
       "range": {
         "startLine": 23,
         "startChar": 0,
