@@ -1,0 +1,235 @@
+---
+metadata:
+  version: 0.1
+  schema:
+    - resources/topology_schemas/3_node_topology.sch.yaml
+    - resources/topology_schemas/topology.sch.yaml
+  tags: [hw, 3-node]
+
+nodes:
+  TG:
+    type: TG
+    subtype: TREX
+    host: "10.30.51.24"
+    port: 22
+    username: testuser
+    password: Cisco1234
+    interfaces:
+      port1:
+        # t3-tg1-c1/p1 - 40GE port1 on Intel NIC xl710 2p40GE.
+        mac_address: "68:05:ca:35:79:40"
+        pci_address: "0000:02:00.0"
+        driver: i40e
+        link: link1
+        model: Intel-XL710
+      port2:
+        # t3-tg1-c1/p2 - 40GE port2 on Intel NIC xl710 2p40GE.
+        mac_address: "68:05:ca:35:79:41"
+        pci_address: "0000:02:00.1"
+        driver: i40e
+        link: link2
+        model: Intel-XL710
+      port3:
+        # t3-tg1-c2/p1 - 10GE port1 on Intel NIC x710 2p10GE.
+        mac_address: "3c:fd:fe:9c:ef:98"
+        pci_address: "0000:05:00.0"
+        driver: i40e
+        link: link3
+        model: Intel-X710
+      port4:
+        # t3-tg1-c2/p2 - 10GE port2 on Intel NIC x710 2p10GE.
+        mac_address: "3c:fd:fe:9c:ef:99"
+        pci_address: "0000:05:00.1"
+        driver: i40e
+        link: link4
+        model: Intel-X710
+      port5:
+        # t3-tg1-c3/p1 - 10GE port1 on Intel NIC x710 2p10GE.
+        mac_address: "3c:fd:fe:9c:ee:28"
+        pci_address: "0000:07:00.0"
+        driver: i40e
+        link: link5
+        model: Intel-X710
+      port6:
+        # t3-tg1-c3/p2 - 10GE port2 on Intel NIC x710 2p10GE.
+        mac_address: "3c:fd:fe:9c:ee:29"
+        pci_address: "0000:07:00.1"
+        driver: i40e
+        link: link6
+        model: Intel-X710
+      port7:
+        # t3-tg1-c4/p1 - 40GE port1 on Intel NIC xl710 2p40GE.
+        mac_address: "68:05:ca:35:79:1c"
+        pci_address: "0000:86:00.0"
+        driver: i40e
+        link: link7
+        model: Intel-XL710
+      port8:
+        # t3-tg1-c4/p2 - 40GE port2 on Intel NIC xl710 2p40GE.
+        mac_address: "68:05:ca:35:79:19"
+        pci_address: "0000:86:00.1"
+        driver: i40e
+        link: link8
+        model: Intel-XL710
+      port9:
+        # t3-tg1-c5/p1 - 10GE port1 on Intel NIC x710 2p10GE.
+        mac_address: "3c:fd:fe:9c:ee:74"
+        pci_address: "0000:88:00.0"
+        driver: i40e
+        link: link9
+        model: Intel-X710
+      port10:
+        # t3-tg1-c5/p2 - 10GE port2 on Intel NIC x710 2p10GE.
+        mac_address: "3c:fd:fe:9c:ee:75"
+        pci_address: "0000:88:00.1"
+        driver: i40e
+        link: link10
+        model: Intel-X710
+      port11:
+        # t3-tg1-c6/p1 - 10GE port1 on Intel NIC x710 2p10GE.
+        mac_address: "3c:fd:fe:9c:ef:38"
+        pci_address: "0000:84:00.0"
+        driver: i40e
+        link: link11
+        model: Intel-X710
+      port12:
+        # t3-tg1-c6/p2 - 10GE port2 on Intel NIC x710 2p10GE.
+        mac_address: "3c:fd:fe:9c:ef:39"
+        pci_address: "0000:84:00.1"
+        driver: i40e
+        link: link11
+        model: Intel-X710
+  DUT1:
+    type: DUT
+    host: "10.30.51.25"
+    port: 22
+    username: testuser
+    password: Cisco1234
+    interfaces:
+      port1:
+        # t3-sut1-c1/p1 - 10GE port1 on Intel NIC x520 2p10GE.
+        mac_address: "90:e2:ba:b5:01:dc"
+        pci_address: "0000:0a:00.0"
+        link: link21
+        model: Intel-X520-DA2
+      port2:
+        # t3-sut1-c1/p2 - 10GE port2 on Intel NIC x520 2p10GE.
+        mac_address: "90:e2:ba:b5:01:dd"
+        pci_address: "0000:0a:00.1"
+        link: link3
+        model: Intel-X520-DA2
+#      port3:
+#        # t3-sut1-c2/p1 - 40GE port1 on Cisco VIC 1385 2p40GE.
+#        mac_address: "04:62:73:f8:80:c1"
+#        pci_address: "0000:13:00.0"
+#        link:
+#        model: Cisco-VIC-1385
+#      port4:
+#        # t3-sut1-c2/p2 - 40GE port2 on Cisco VIC 1385 2p40GE.
+#        mac_address: "04:62:73:f8:80:c2"
+#        pci_address: "0000:15:00.0"
+#        link:
+#        model: Cisco-VIC-1385
+      port5:
+        # t3-sut1-c4/p1 - 40GE port1 on Intel NIC xl710 2p40GE.
+        mac_address: "68:05:ca:37:25:18"
+        pci_address: "0000:85:00.0"
+        link: link23
+        model: Intel-XL710
+      port6:
+        # t3-sut1-c4/p2 - 40GE port2 on Intel NIC xl710 2p40GE.
+        mac_address: "68:05:ca:37:25:1d"
+        pci_address: "0000:85:00.1"
+        link: link7
+        model: Intel-XL710
+#      port7:
+#        # t3-sut1-c5/p1 - 10GE port1 on Intel NIC x710 2p10GE.
+#        mac_address: "3c:fd:fe:9c:ef:34"
+#        pci_address: "0000:87:00.0"
+#        link:
+#        model: Intel-X710
+#      port8:
+#        # t3-sut1-c5/p2 - 10GE port2 on Intel NIC x710 2p10GE.
+#        mac_address: "c:fd:fe:9c:ef:35"
+#        pci_address: "0000:87:00.1"
+#        link:
+#        model: Intel-X710
+#      port9:
+#        # t3-sut1-cm/p1 - 10GE port1 on Cisco VIC 1227 2p10GE.
+#        mac_address: "00:fe:c8:e5:46:d0"
+#        pci_address: "0000:06:00.0"
+#        link:
+#        model: Cisco-VIC-1227
+#      port10:
+#        # t3-sut1-cm/p2 - 10GE port2 on Cisco VIC 1227 2p10GE.
+#        mac_address: "00:fe:c8:e5:46:d1"
+#        pci_address: "0000:07:00.0"
+#        link:
+#        model: Cisco-VIC-1227
+  DUT2:
+    type: DUT
+    host: "10.30.51.26"
+    port: 22
+    username: testuser
+    password: Cisco1234
+    interfaces:
+      port1:
+        # t3-sut3-c1/p1 - 10GE port1 on Intel NIC x520 2p10GE.
+        mac_address: "90:e2:ba:b5:0f:38"
+        pci_address: "0000:0a:00.0"
+        link: link4
+        model: Intel-X520-DA2
+      port2:
+        # t3-sut3-c1/p2 - 10GE port2 on Intel NIC x520 2p10GE.
+        mac_address: "90:e2:ba:b5:0f:39"
+        pci_address: "0000:0a:00.1"
+        link: link21
+        model: Intel-X520-DA2
+#      port3:
+#        # t3-sut3-c2/p1 - 40GE port1 on Cisco VIC 1385 2p40GE.
+#        mac_address: "04:62:73:8c:78:2f"
+#        pci_address: "0000:13:00.0"
+#        link:
+#        model: Cisco-VIC-1385
+#      port4:
+#        # t3-sut3-c2/p2 - 40GE port2 on Cisco VIC 1385 2p40GE.
+#        mac_address: "04:62:73:8c:78:30"
+#        pci_address: "0000:15:00.0"
+#        link:
+#        model: Cisco-VIC-1385
+#      port5:
+#        # t3-sut3-c4/p1 - 40GE port1 on Intel NIC xl710 2p40GE.
+#        mac_address: "68:05:ca:35:76:b0"
+#        pci_address: "0000:85:00.0"
+#        link:
+#        model: Intel-XL710
+      port6:
+        # t3-sut3-c4/p2 - 40GE port2 on Intel NIC xl710 2p40GE.
+        mac_address: "68:05:ca:35:76:b5"
+        pci_address: "0000:85:00.1"
+        link: link8
+        model: Intel-XL710
+      port7:
+        # t3-sut3-c5/p1 - 10GE port1 on Intel NIC x710 2p10GE.
+        mac_address: "3c:fd:fe:9c:ee:e0"
+        pci_address: "0000:87:00.0"
+        link: link23
+        model: Intel-X710
+#      port8:
+#        # t3-sut3-c5/p2 - 10GE port2 on Intel NIC x710 2p10GE.
+#        mac_address: "3c:fd:fe:9c:ee:e1"
+#        pci_address: "0000:87:00.1"
+#        link:
+#        model: Intel-X710
+#      port9:
+#        # t3-sut3-cm/p1 - 10GE port1 on Cisco VIC 1227 2p10GE.
+#        mac_address: "00:fe:c8:e5:44:19"
+#        pci_address: "0000:06:00.0"
+#        link:
+#        model: Cisco-VIC-1227
+#      port10:
+#        # t3-sut3-cm/p2 - 10GE port2 on Cisco VIC 1227 2p10GE.
+#        mac_address: "00:fe:c8:e5:44:1a"
+#        pci_address: "0000:07:00.0"
+#        link:
+#        model: Cisco-VIC-1227
