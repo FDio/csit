@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a0e1d27_a0eefb89",
+        "filename": "tests/suites/softwire/lightweight_4over6.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-07-08T14:02:44Z",
+      "side": 1,
+      "message": "... correct. Check ...",
+      "range": {
+        "startLine": 100,
+        "startChar": 49,
+        "endLine": 100,
+        "endChar": 63
+      },
+      "revId": "da0a73d08f4a98f60d4903058f56660b885d4458",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_c0f8cf4b",
+        "filename": "tests/suites/softwire/lightweight_4over6.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-07-08T14:02:44Z",
+      "side": 1,
+      "message": "Please, use only one white space there.\n- valid for all occurances",
+      "range": {
+        "startLine": 106,
+        "startChar": 8,
+        "endLine": 106,
+        "endChar": 10
+      },
+      "revId": "da0a73d08f4a98f60d4903058f56660b885d4458",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
