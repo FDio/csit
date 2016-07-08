@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "9a0e1d27_c0ba0f0a",
+        "filename": "resources/libraries/python/honeycomb/Netconf.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-07-08T12:26:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a0e1d27_a6e1789c",
+      "revId": "e0c0ac98830361aced4391f024abbd15c80f3926",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a0e1d27_86ee748a",
         "filename": "resources/libraries/python/honeycomb/Netconf.py",
         "patchSetId": 4
@@ -30,6 +48,24 @@
       "writtenOn": "2016-07-07T13:46:13Z",
       "side": 1,
       "message": "consider to add message delimiter \u0027]]\u003e]]\u003e\u0027 in send function. you can then send xml element or you can later change delimiting messages to chunking.",
+      "revId": "e0c0ac98830361aced4391f024abbd15c80f3926",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_a0371bb0",
+        "filename": "resources/libraries/python/honeycomb/Netconf.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-07-08T12:26:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a0e1d27_86ee748a",
       "revId": "e0c0ac98830361aced4391f024abbd15c80f3926",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
