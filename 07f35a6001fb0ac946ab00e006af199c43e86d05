@@ -39,6 +39,29 @@
       "revId": "07f35a6001fb0ac946ab00e006af199c43e86d05",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_80041716",
+        "filename": "resources/libraries/robot/default.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-07-08T10:46:36Z",
+      "side": 1,
+      "message": "all PCI\nwhen Peter\u0027s comment accepted (see VppConfigGenerator.py line 72)",
+      "range": {
+        "startLine": 93,
+        "startChar": 10,
+        "endLine": 93,
+        "endChar": 17
+      },
+      "revId": "07f35a6001fb0ac946ab00e006af199c43e86d05",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
