@@ -96,6 +96,53 @@
     },
     {
       "key": {
+        "uuid": "9a0e1d27_8c8fb323",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 91
+      },
+      "lineNbr": 592,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-07-08T08:24:35Z",
+      "side": 1,
+      "message": "please add link or documentation where is list of posible options",
+      "parentUuid": "9a0e1d27_26d688c6",
+      "range": {
+        "startLine": 592,
+        "startChar": 15,
+        "endLine": 592,
+        "endChar": 25
+      },
+      "revId": "f04057207a0d1f9ef4c98702ac360ad0ba237b4a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_6c945f37",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 91
+      },
+      "lineNbr": 599,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-07-08T08:24:35Z",
+      "side": 1,
+      "message": "Name, fullstop at the end.",
+      "range": {
+        "startLine": 599,
+        "startChar": 17,
+        "endLine": 599,
+        "endChar": 18
+      },
+      "revId": "f04057207a0d1f9ef4c98702ac360ad0ba237b4a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a0e1d27_865e74e8",
         "filename": "resources/libraries/python/InterfaceUtil.py",
         "patchSetId": 91
