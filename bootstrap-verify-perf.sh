@@ -15,9 +15,10 @@
 set -x
 
 # Space separated list of available testbeds, described by topology files
-TOPOLOGIES="topologies/available/lf_testbed1-X710-X520.yaml \
-            topologies/available/lf_testbed2-X710-X520.yaml \
-            topologies/available/lf_testbed3-X710-X520.yaml"
+TOPOLOGIES="topologies/available/lf_testbed1.yaml"
+#TOPOLOGIES="topologies/available/lf_testbed1-X710-X520.yaml \
+#            topologies/available/lf_testbed2-X710-X520.yaml \
+#            topologies/available/lf_testbed3-X710-X520.yaml"
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
