@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a0e1d27_acd717ed",
+        "filename": "resources/libraries/python/LispSetup.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 171,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-07-08T08:42:29Z",
+      "side": 1,
+      "message": "prefix_len\u003dNone would be better in this context.",
+      "range": {
+        "startLine": 171,
+        "startChar": 65,
+        "endLine": 171,
+        "endChar": 75
+      },
+      "revId": "6df2fb95ee4fb64ff2dd2b9cce881c071963cd70",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_eccd0f5f",
+        "filename": "resources/libraries/python/LispSetup.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-07-08T08:42:29Z",
+      "side": 1,
+      "message": "address",
+      "range": {
+        "startLine": 172,
+        "startChar": 24,
+        "endLine": 172,
+        "endChar": 30
+      },
+      "revId": "6df2fb95ee4fb64ff2dd2b9cce881c071963cd70",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_8c04537f",
+        "filename": "resources/libraries/python/LispSetup.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-07-08T08:42:29Z",
+      "side": 1,
+      "message": "prefix_len\u003dNone would be better in this context.",
+      "range": {
+        "startLine": 201,
+        "startChar": 65,
+        "endLine": 201,
+        "endChar": 75
+      },
+      "revId": "6df2fb95ee4fb64ff2dd2b9cce881c071963cd70",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_6c09ff94",
+        "filename": "resources/libraries/python/LispSetup.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 336,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-07-08T08:42:29Z",
+      "side": 1,
+      "message": "I am not sure if I understand this message well - Is \"Lisp locator\" set by default on nodes other then DUT?",
+      "range": {
+        "startLine": 336,
+        "startChar": 30,
+        "endLine": 336,
+        "endChar": 63
+      },
+      "revId": "6df2fb95ee4fb64ff2dd2b9cce881c071963cd70",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_4cfe3b6d",
+        "filename": "resources/libraries/python/LispUtil.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-07-08T08:42:29Z",
+      "side": 1,
+      "message": "PEP8: White space after \"#\".",
+      "range": {
+        "startLine": 116,
+        "startChar": 8,
+        "endLine": 116,
+        "endChar": 9
+      },
+      "revId": "6df2fb95ee4fb64ff2dd2b9cce881c071963cd70",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_2c030775",
+        "filename": "resources/libraries/python/LispUtil.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-07-08T08:42:29Z",
+      "side": 1,
+      "message": "value which is not set in vpp node.\nOR\nvalue which is not to be set in vpp node.",
+      "range": {
+        "startLine": 116,
+        "startChar": 26,
+        "endLine": 116,
+        "endChar": 62
+      },
+      "revId": "6df2fb95ee4fb64ff2dd2b9cce881c071963cd70",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_0cd163fb",
+        "filename": "tests/suites/lisp/resources/lisp_api_resources.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-07-08T08:42:29Z",
+      "side": 1,
+      "message": "I would prefer comment starting with #.\nCheck everywhere.",
+      "range": {
+        "startLine": 22,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 3
+      },
+      "revId": "6df2fb95ee4fb64ff2dd2b9cce881c071963cd70",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_4ce75be5",
+        "filename": "tests/suites/lisp/resources/lisp_api_resources.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-07-08T08:42:29Z",
+      "side": 1,
+      "message": "if it is set correctly.",
+      "range": {
+        "startLine": 23,
+        "startChar": 15,
+        "endLine": 23,
+        "endChar": 33
+      },
+      "revId": "6df2fb95ee4fb64ff2dd2b9cce881c071963cd70",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
