@@ -2,6 +2,121 @@
   "comments": [
     {
       "key": {
+        "uuid": "9a0e1d27_e0e63344",
+        "filename": "resources/traffic_scripts/send_ipv4_icmp_check_lw_4o6.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-07-08T14:02:44Z",
+      "side": 1,
+      "message": "Parameter \u0027pkt\u0027 not defined in doc string of the method.\n+ add aslo return and rtype to doc string",
+      "range": {
+        "startLine": 28,
+        "startChar": 16,
+        "endLine": 28,
+        "endChar": 19
+      },
+      "revId": "800ea42540d95c7f9bfb804ab27bd1e2fc5b49ef",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_0065a7e0",
+        "filename": "resources/traffic_scripts/send_ipv4_icmp_check_lw_4o6.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-07-08T14:02:44Z",
+      "side": 1,
+      "message": "Better to use: is_ip4_in_ip6",
+      "range": {
+        "startLine": 28,
+        "startChar": 4,
+        "endLine": 28,
+        "endChar": 15
+      },
+      "revId": "800ea42540d95c7f9bfb804ab27bd1e2fc5b49ef",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_800ad7d0",
+        "filename": "resources/traffic_scripts/send_ipv4_icmp_check_lw_4o6.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-07-08T14:02:44Z",
+      "side": 1,
+      "message": "We should use the same approach of creating packets in all traffic scripts...\n\nUse this format in all other scripts or use format\ntx_pkt \u003d (Ether(dst\u003dtx_dst_mac) /\n          IP(src\u003dtx_src_ipv4, dst\u003dtx_dst_ipv4) /\n          ICMP(type\u003dicmp_type, id\u003dtx_icmp_id))\n\nhere, please.",
+      "range": {
+        "startLine": 65,
+        "startChar": 7,
+        "endLine": 67,
+        "endChar": 53
+      },
+      "revId": "800ea42540d95c7f9bfb804ab27bd1e2fc5b49ef",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_4014bff4",
+        "filename": "resources/traffic_scripts/send_ipv4_icmp_check_lw_4o6.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-07-08T14:02:44Z",
+      "side": 1,
+      "message": "is_ip4_in_ip6 if comment on line 28 accepted",
+      "range": {
+        "startLine": 74,
+        "startChar": 15,
+        "endLine": 74,
+        "endChar": 26
+      },
+      "revId": "800ea42540d95c7f9bfb804ab27bd1e2fc5b49ef",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_00f6c7d7",
+        "filename": "resources/traffic_scripts/send_ipv4_icmp_check_lw_4o6.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-07-08T14:02:44Z",
+      "side": 1,
+      "message": "IPv4 in IPv6",
+      "range": {
+        "startLine": 78,
+        "startChar": 32,
+        "endLine": 78,
+        "endChar": 40
+      },
+      "revId": "800ea42540d95c7f9bfb804ab27bd1e2fc5b49ef",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a0e1d27_40b03ff4",
         "filename": "tests/suites/softwire/lightweight_4over6.robot",
         "patchSetId": 6
