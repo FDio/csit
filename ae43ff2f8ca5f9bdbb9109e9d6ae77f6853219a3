@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a0e1d27_636d8d04",
+        "filename": "tests/suites/vlan/vlan_tag_translate_l2_xconnect_ipv4.robot",
+        "patchSetId": 101
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2016-07-09T09:28:20Z",
+      "side": 1,
+      "message": "VLAN tagged sub-interface",
+      "range": {
+        "startLine": 87,
+        "startChar": 40,
+        "endLine": 87,
+        "endChar": 49
+      },
+      "revId": "ae43ff2f8ca5f9bdbb9109e9d6ae77f6853219a3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_437289e6",
+        "filename": "tests/suites/vlan/vlan_tag_translate_l2_xconnect_ipv4.robot",
+        "patchSetId": 101
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2016-07-09T09:28:20Z",
+      "side": 1,
+      "message": "with VLAN tag rewrite (translate-1-1) on sub-interface to DUT2",
+      "range": {
+        "startLine": 88,
+        "startChar": 34,
+        "endLine": 89,
+        "endChar": 73
+      },
+      "revId": "ae43ff2f8ca5f9bdbb9109e9d6ae77f6853219a3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_237795d6",
+        "filename": "tests/suites/vlan/vlan_tag_translate_l2_xconnect_ipv4.robot",
+        "patchSetId": 101
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2016-07-09T09:28:20Z",
+      "side": 1,
+      "message": "on DUT2 configure L2XC with one interface to TG\n| | ... | and one VLAN sub-interface towards DUT1 with VLAN tag pop-1.",
+      "range": {
+        "startLine": 90,
+        "startChar": 10,
+        "endLine": 92,
+        "endChar": 16
+      },
+      "revId": "ae43ff2f8ca5f9bdbb9109e9d6ae77f6853219a3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_8368a1f6",
+        "filename": "tests/suites/vlan/vlan_tag_translate_l2_xconnect_ipv4.robot",
+        "patchSetId": 101
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2016-07-09T09:28:20Z",
+      "side": 1,
+      "message": "dot1q",
+      "range": {
+        "startLine": 92,
+        "startChar": 69,
+        "endLine": 92,
+        "endChar": 74
+      },
+      "revId": "ae43ff2f8ca5f9bdbb9109e9d6ae77f6853219a3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_a363a519",
+        "filename": "tests/suites/vlan/vlan_tag_translate_l2_xconnect_ipv4.robot",
+        "patchSetId": 101
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2016-07-09T09:28:20Z",
+      "side": 1,
+      "message": "tagged",
+      "range": {
+        "startLine": 92,
+        "startChar": 53,
+        "endLine": 92,
+        "endChar": 59
+      },
+      "revId": "ae43ff2f8ca5f9bdbb9109e9d6ae77f6853219a3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
