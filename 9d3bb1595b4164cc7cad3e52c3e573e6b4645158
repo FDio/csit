@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a0e1d27_d65415cc",
+        "filename": "resources/traffic_scripts/send_lw_4o6_check_ipv4_udp.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-07-11T07:47:53Z",
+      "side": 1,
+      "message": "Missing :param, :type..",
+      "revId": "9d3bb1595b4164cc7cad3e52c3e573e6b4645158",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
