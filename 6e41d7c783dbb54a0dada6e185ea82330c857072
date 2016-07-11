@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9a0e1d27_56b485f1",
+        "filename": "resources/libraries/robot/performance.robot",
+        "patchSetId": 28
+      },
+      "lineNbr": 551,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-07-11T09:50:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a0e1d27_16e72d14",
+      "range": {
+        "startLine": 551,
+        "startChar": 62,
+        "endLine": 551,
+        "endChar": 63
+      },
+      "revId": "6e41d7c783dbb54a0dada6e185ea82330c857072",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a0e1d27_f6e39903",
         "filename": "resources/libraries/robot/performance.robot",
         "patchSetId": 28
@@ -36,6 +60,30 @@
       "writtenOn": "2016-07-11T09:36:13Z",
       "side": 1,
       "message": "Please, add latency to the example and end it with \\| .",
+      "range": {
+        "startLine": 582,
+        "startChar": 13,
+        "endLine": 582,
+        "endChar": 23
+      },
+      "revId": "6e41d7c783dbb54a0dada6e185ea82330c857072",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_36b911ea",
+        "filename": "resources/libraries/robot/performance.robot",
+        "patchSetId": 28
+      },
+      "lineNbr": 582,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-07-11T09:50:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a0e1d27_f6e39903",
       "range": {
         "startLine": 582,
         "startChar": 13,
