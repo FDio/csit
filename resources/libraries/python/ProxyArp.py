@@ -16,7 +16,7 @@
 from resources.libraries.python.VatExecutor import VatTerminal
 
 
-class ProxyArp(object):
+class ProxyArp(object):  # pylint: disable=too-few-public-methods
     """Proxy ARP utilities."""
 
     @staticmethod

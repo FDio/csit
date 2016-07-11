@@ -16,7 +16,7 @@
 import argparse
 
 
-class TrafficScriptArg(object):
+class TrafficScriptArg(object):  # pylint: disable=too-few-public-methods
     """Traffic scripts argument parser.
 
     Parse arguments for traffic script. Default has two arguments '--tx_if'
