@@ -12,14 +12,15 @@
 # limitations under the License.
 
 """Common IP utilities library."""
+
 from ipaddress import IPv4Network
 
 from resources.libraries.python.ssh import SSH
 from resources.libraries.python.constants import Constants
-
 from resources.libraries.python.topology import Topology
 
-class IPUtil(object):
+
+class IPUtil(object):  # pylint: disable=too-few-public-methods
     """Common IP utilities"""
 
     @staticmethod

@@ -31,7 +31,7 @@ from resources.libraries.python.HTTPRequest import HTTPRequest
 from resources.libraries.python.constants import Constants as Const
 
 
-@unique
+@unique  # pylint: disable=too-few-public-methods
 class DataRepresentation(Enum):
     """Representation of data sent by PUT and POST requests."""
     NO_DATA = 0

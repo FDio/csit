@@ -17,7 +17,7 @@ from resources.libraries.python.topology import NodeType
 from resources.libraries.python.InterfaceUtil import InterfaceUtil
 
 
-class TGSetup(object):
+class TGSetup(object):  # pylint: disable=too-few-public-methods
     """TG setup before test."""
 
     @staticmethod

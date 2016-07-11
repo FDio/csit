@@ -26,7 +26,7 @@ from resources.libraries.python.VatJsonUtil import VatJsonUtil
 from resources.libraries.python.parsers.JsonParser import JsonParser
 
 
-class InterfaceUtil(object):
+class InterfaceUtil(object):  # pylint: disable=too-many-public-methods
     """General utilities for managing interfaces"""
 
     __UDEV_IF_RULES_FILE = '/etc/udev/rules.d/10-network.rules'
@@ -85,7 +85,7 @@ class InterfaceUtil(object):
         Function can be used only for TGs.
 
         :param node: Node where the interface is.
-        :param interface: Interface key from topology file.
+        :param iface_key: Interface key from topology file.
         :param mtu: MTU to set.
         :type node: dict
         :type iface_key: str
