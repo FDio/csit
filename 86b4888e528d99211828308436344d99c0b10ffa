@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a0e1d27_f63b9936",
+        "filename": "docs/tag_documentation.rst",
+        "patchSetId": 34
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 74
+      },
+      "writtenOn": "2016-07-11T11:31:24Z",
+      "side": 1,
+      "message": "please remove IP",
+      "range": {
+        "startLine": 105,
+        "startChar": 31,
+        "endLine": 105,
+        "endChar": 37
+      },
+      "revId": "86b4888e528d99211828308436344d99c0b10ffa",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_d64895ce",
+        "filename": "tests/suites/performance/Long_IPv4_Fib_100k_Intel-X520-DA2.robot",
+        "patchSetId": 34
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 74
+      },
+      "writtenOn": "2016-07-11T11:31:24Z",
+      "side": 1,
+      "message": "Long_IPv4_fib_100k_Intel-X520-DA2.robot does not correspond with this tag",
+      "range": {
+        "startLine": 17,
+        "startChar": 15,
+        "endLine": 17,
+        "endChar": 23
+      },
+      "revId": "86b4888e528d99211828308436344d99c0b10ffa",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
