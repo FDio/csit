@@ -42,6 +42,30 @@
     },
     {
       "key": {
+        "uuid": "9a0e1d27_76f30974",
+        "filename": "resources/tools/t-rex/t-rex-stateless.py",
+        "patchSetId": 26
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-07-11T12:50:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a0e1d27_40572403",
+      "range": {
+        "startLine": 137,
+        "startChar": 25,
+        "endLine": 137,
+        "endChar": 38
+      },
+      "revId": "258e52d1b02b2e3615fa8f0685bff6b905120cc3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a0e1d27_4044c473",
         "filename": "resources/tools/t-rex/t-rex-stateless.py",
         "patchSetId": 26
@@ -53,6 +77,30 @@
       "writtenOn": "2016-07-11T11:31:24Z",
       "side": 1,
       "message": "what\u0027s the reason for splitting the streams by dst IP, not src IP ?",
+      "range": {
+        "startLine": 144,
+        "startChar": 28,
+        "endLine": 144,
+        "endChar": 47
+      },
+      "revId": "258e52d1b02b2e3615fa8f0685bff6b905120cc3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_56d125cc",
+        "filename": "resources/tools/t-rex/t-rex-stateless.py",
+        "patchSetId": 26
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-07-11T12:50:41Z",
+      "side": 1,
+      "message": "Only IP.dst is incremented",
+      "parentUuid": "9a0e1d27_4044c473",
       "range": {
         "startLine": 144,
         "startChar": 28,
