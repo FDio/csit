@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "9a0e1d27_365d91ea",
+        "filename": "resources/traffic_scripts/send_ipv4_check_lw_4o6.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-07-11T08:45:53Z",
+      "side": 1,
+      "message": "Docstrings are not necessary for non-public methods",
+      "parentUuid": "9a0e1d27_5641250a",
+      "revId": "fa40c9131c05e1bf694bd69f518b67a4c6946eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a0e1d27_b6bac108",
         "filename": "tests/suites/softwire/util.py",
         "patchSetId": 13
@@ -30,6 +48,24 @@
       "writtenOn": "2016-07-11T07:44:22Z",
       "side": 1,
       "message": "Pls move file under resources/test_data",
+      "revId": "fa40c9131c05e1bf694bd69f518b67a4c6946eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_d66bf583",
+        "filename": "tests/suites/softwire/util.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-07-11T08:45:53Z",
+      "side": 1,
+      "message": "this file contains no test data, only helps to choose port number used in test case, based on PSID, PSID length and PSID offset.",
+      "parentUuid": "9a0e1d27_b6bac108",
       "revId": "fa40c9131c05e1bf694bd69f518b67a4c6946eac",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "9a0e1d27_16728d7c",
+        "filename": "tests/suites/softwire/util.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-07-11T08:45:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a0e1d27_9637bdb0",
+      "revId": "fa40c9131c05e1bf694bd69f518b67a4c6946eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a0e1d27_763c2994",
         "filename": "tests/suites/softwire/util.py",
         "patchSetId": 13
@@ -64,6 +118,30 @@
       "writtenOn": "2016-07-11T07:44:22Z",
       "side": 1,
       "message": "line too long",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 84
+      },
+      "revId": "fa40c9131c05e1bf694bd69f518b67a4c6946eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_f66ef995",
+        "filename": "tests/suites/softwire/util.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-07-11T08:45:53Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a0e1d27_763c2994",
       "range": {
         "startLine": 45,
         "startChar": 0,
