@@ -18,7 +18,7 @@ from resources.libraries.python.VatExecutor import VatExecutor
 from resources.libraries.python.topology import Topology
 
 
-class DhcpClient(object):
+class DhcpClient(object):  # pylint: disable=too-few-public-methods
     """DHCP Client utilities."""
 
     @staticmethod
