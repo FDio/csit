@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a0e1d27_164bad2c",
+        "filename": "resources/traffic_scripts/send_ipv4_icmp_check_lw_4o6.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-07-11T07:46:26Z",
+      "side": 1,
+      "message": "Missing :param, :type..",
+      "revId": "b63c706b3673a0406e5b344c001e2b02b79a1027",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
