@@ -17,7 +17,7 @@ from resources.libraries.python.topology import NodeType
 from resources.libraries.python.VatExecutor import VatExecutor
 
 
-class LispStatus(object):
+class LispStatus(object):  # pylint: disable=too-few-public-methods
     """Class for lisp API."""
 
     def __init__(self):
@@ -52,7 +52,7 @@ class LispRemoteMapping(object):
         :param node: VPP node.
         :param vni: Vni.
         :param deid: Destination eid address.
-        :param deid_predix: Destination eid address prefix_len.
+        :param deid_prefix: Destination eid address prefix_len.
         :param seid: Source eid address.
         :param seid_prefix: Source eid address prefix_len.
         :param rloc: Receiver locator.
@@ -82,7 +82,7 @@ class LispRemoteMapping(object):
         :param node: VPP node.
         :param vni: Vni.
         :param deid: Destination eid address.
-        :param deid_predix: Destination eid address prefix_len.
+        :param deid_prefix: Destination eid address prefix_len.
         :param seid: Source eid address.
         :param seid_prefix: Source eid address prefix_len.
         :param rloc: Receiver locator.
@@ -105,7 +105,7 @@ class LispRemoteMapping(object):
                                       rloc=rloc)
 
 
-class LispGpeIface(object):
+class LispGpeIface(object):  # pylint: disable=too-few-public-methods
     """Class for Lisp gpe interface API."""
 
     def __init__(self):

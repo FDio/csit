@@ -24,7 +24,7 @@ from resources.libraries.python.topology import Topology
 IPV6_NETWORKS = ['3ffe:{0:04x}::/64'.format(i) for i in range(1, 100)]
 
 
-def get_variables(nodes, networks=IPV6_NETWORKS):
+def get_variables(nodes, networks=IPV6_NETWORKS):  # pylint: disable=too-many-locals
     """Special robot framework method that returns dictionary nodes_ipv6_addr,
     mapping of node and interface name to IPv6 address.
 

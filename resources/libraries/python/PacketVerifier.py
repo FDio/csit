@@ -68,7 +68,7 @@ import socket
 import select
 
 from scapy.all import ETH_P_IP, ETH_P_IPV6, ETH_P_ALL, ETH_P_ARP
-from scapy.all import Ether, ARP, Packet
+from scapy.all import Ether, ARP
 from scapy.layers.inet6 import IPv6
 
 __all__ = ['RxQueue', 'TxQueue', 'Interface', 'create_gratuitous_arp_request',
@@ -77,7 +77,7 @@ __all__ = ['RxQueue', 'TxQueue', 'Interface', 'create_gratuitous_arp_request',
 # TODO: http://stackoverflow.com/questions/320232/ensuring-subprocesses-are-dead-on-exiting-python-program
 
 
-class PacketVerifier(object):
+class PacketVerifier(object):  # pylint: disable=too-few-public-methods
     """Base class for TX and RX queue objects for packet verifier."""
     def __init__(self, interface_name):
         os.system('sudo echo 1 > /proc/sys/net/ipv6/conf/{0}/disable_ipv6'
@@ -89,7 +89,7 @@ class PacketVerifier(object):
         self._ifname = interface_name
 
 
-def extract_one_packet(buf):
+def extract_one_packet(buf):  # pylint: disable=too-many-branches
     """Extract one packet from the incoming buf buffer.
 
     Takes string as input and looks for first whole packet in it.
@@ -192,7 +192,7 @@ def packet_reader(interface_name, queue):
         queue.put(pkt)
 
 
-class RxQueue(PacketVerifier):
+class RxQueue(PacketVerifier):  # pylint: disable=too-few-public-methods
     """Receive queue object.
 
     This object creates raw socket, reads packets from it and provides
@@ -243,7 +243,7 @@ class RxQueue(PacketVerifier):
         return Ether(pkt)
 
 
-class TxQueue(PacketVerifier):
+class TxQueue(PacketVerifier):  # pylint: disable=too-few-public-methods
     """Transmission queue object.
 
     This object is used to send packets over RAW socket on a interface.

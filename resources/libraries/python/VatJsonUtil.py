@@ -47,7 +47,7 @@ class VatJsonUtil(object):
 
         :param interfaces_list: Interfaces parsed from JSON.
         :param mac_address: MAC address of interface we are looking for.
-        :type interfaces_list: dict
+        :type interfaces_list: list
         :type mac_address: str
         :return: Interface from JSON.
         :rtype: dict
@@ -163,7 +163,7 @@ class VatJsonUtil(object):
         VAT command JSON output should be object (dict in python) or array. We
         are looking for something like this: { "retval": 0 }. Verification is
         skipped if VAT output does not contain return value element or root
-        elemet is array.
+        element is array.
 
         :param vat_out: VAT command output in python representation of JSON.
         :param exp_retval: Expected return value (default 0).
@@ -173,7 +173,7 @@ class VatJsonUtil(object):
         :type err_msg: str
         :raises RuntimeError: If VAT command return value is incorrect.
         """
-        if type(vat_out) is dict:
+        if isinstance(vat_out, dict):
             retval = vat_out.get('retval')
             if retval is not None:
                 if retval != exp_retval:

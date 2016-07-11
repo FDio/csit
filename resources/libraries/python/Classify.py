@@ -11,6 +11,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+"""Classify utilities library."""
+
 
 from robot.api import logger
 
@@ -116,9 +118,9 @@ class Classify(object):
         return table_index, skip_n, match_n
 
     @staticmethod
-    def vpp_configures_classify_session_l3(node, acl_method, table_index, skip_n,
-                                          match_n, ip_version, direction,
-                                          address):
+    def vpp_configures_classify_session_l3(node, acl_method, table_index,  # pylint: disable=too-many-arguments
+                                           skip_n, match_n, ip_version,
+                                           direction, address):
         """Configuration of classify session for IP address filtering.
 
         :param node: VPP node to setup classify session.
@@ -149,8 +151,8 @@ class Classify(object):
                                                     address=address)
 
     @staticmethod
-    def vpp_configures_classify_session_l2(node, acl_method, table_index, skip_n,
-                                          match_n, direction, address):
+    def vpp_configures_classify_session_l2(node, acl_method, table_index,
+                                           skip_n, match_n, direction, address):
         """Configuration of classify session for MAC address filtering.
 
         :param node: VPP node to setup classify session.
@@ -169,17 +171,18 @@ class Classify(object):
         :type address: str
         """
         with VatTerminal(node) as vat:
-            vat.vat_terminal_exec_cmd_from_template("classify_add_session_l2.vat",
-                                                    acl_method=acl_method,
-                                                    table_index=table_index,
-                                                    skip_n=skip_n,
-                                                    match_n=match_n,
-                                                    direction=direction,
-                                                    address=address)
+            vat.vat_terminal_exec_cmd_from_template(
+                "classify_add_session_l2.vat",
+                acl_method=acl_method,
+                table_index=table_index,
+                skip_n=skip_n,
+                match_n=match_n,
+                direction=direction,
+                address=address)
 
     @staticmethod
     def vpp_configures_classify_session_hex(node, acl_method, table_index,
-                                           skip_n, match_n, hex_value):
+                                            skip_n, match_n, hex_value):
         """Configuration of classify session with hex value.
 
         :param node: VPP node to setup classify session.

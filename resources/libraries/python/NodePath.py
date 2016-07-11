@@ -101,7 +101,6 @@ class NodePath(object):
         .. note:: First add at least two nodes to the topology.
         """
         nodes = self._nodes
-        nodes_filer = self._nodes_filter
         if len(nodes) < 2:
             raise RuntimeError('Not enough nodes to compute path')
 

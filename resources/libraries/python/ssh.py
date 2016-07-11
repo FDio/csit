@@ -53,7 +53,7 @@ class SSH(object):
             pkey = None
             if 'priv_key' in node:
                 pkey = RSAKey.from_private_key(
-                        StringIO.StringIO(node['priv_key']))
+                    StringIO.StringIO(node['priv_key']))
 
             self._ssh = paramiko.SSHClient()
             self._ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
@@ -273,7 +273,7 @@ def exec_cmd_no_error(node, cmd, timeout=None, sudo=False):
 
     Returns (stdout, stderr).
     """
-    (rc, stdout, stderr) = exec_cmd(node, cmd, timeout=timeout, sudo=sudo)
-    assert_equal(rc, 0, 'Command execution failed: "{}"\n{}'.
+    (ret_code, stdout, stderr) = exec_cmd(node, cmd, timeout=timeout, sudo=sudo)
+    assert_equal(ret_code, 0, 'Command execution failed: "{}"\n{}'.
                  format(cmd, stderr))
     return stdout, stderr

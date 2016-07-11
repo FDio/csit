@@ -11,6 +11,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+"""Utilities to run VAT commands on DUT."""
+
 import json
 
 from robot.api import logger
@@ -62,7 +64,7 @@ class VatExecutor(object):
                                                 Constants.RESOURCES_TPL_VAT,
                                                 vat_name)
         # TODO this overwrites the output if the vat script has been used twice
-        remote_file_out = remote_file_path + ".out"
+        # remote_file_out = remote_file_path + ".out"
 
         cmd = "sudo -S {vat} {json} < {input}".format(
             vat=Constants.VAT_BIN_NAME,
@@ -106,9 +108,11 @@ class VatExecutor(object):
                 "Script execution failed, but success was expected")
 
     def get_script_stdout(self):
+        """Return stdout."""
         return self._stdout
 
     def get_script_stderr(self):
+        """Return stderr."""
         return self._stderr
 
     @staticmethod
@@ -176,10 +180,10 @@ class VatTerminal(object):
             array_start = out.find('[')
             array_end = out.rfind(']')
 
-            if -1 == obj_start and -1 == array_start:
+            if obj_start == -1 and array_start == -1:
                 raise RuntimeError("No JSON data.")
 
-            if obj_start < array_start or -1 == array_start:
+            if obj_start < array_start or array_start == -1:
                 start = obj_start
                 end = obj_end + 1
             else:

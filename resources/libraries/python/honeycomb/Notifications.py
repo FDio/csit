@@ -67,8 +67,7 @@ class Notifications(object):
                        password=node['honeycomb']['passwd'],
                        pkey=None,
                        port=node['honeycomb']['netconf_port'],
-                       timeout=time_out,
-                       )
+                       timeout=time_out)
 
         logger.trace('Connect took {0} seconds'.format(time() - start))
         logger.debug('New ssh: {0}'.format(client))
