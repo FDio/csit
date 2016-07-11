@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a0e1d27_5641250a",
+        "filename": "resources/traffic_scripts/send_ipv4_check_lw_4o6.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-07-11T07:44:22Z",
+      "side": 1,
+      "message": "missing :param, :type,...",
+      "revId": "fa40c9131c05e1bf694bd69f518b67a4c6946eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_b6bac108",
+        "filename": "tests/suites/softwire/util.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-07-11T07:44:22Z",
+      "side": 1,
+      "message": "Pls move file under resources/test_data",
+      "revId": "fa40c9131c05e1bf694bd69f518b67a4c6946eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_9637bdb0",
+        "filename": "tests/suites/softwire/util.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-07-11T07:44:22Z",
+      "side": 1,
+      "message": ":type\n:return\nMissing",
+      "revId": "fa40c9131c05e1bf694bd69f518b67a4c6946eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_763c2994",
+        "filename": "tests/suites/softwire/util.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-07-11T07:44:22Z",
+      "side": 1,
+      "message": "line too long",
+      "range": {
+        "startLine": 45,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 84
+      },
+      "revId": "fa40c9131c05e1bf694bd69f518b67a4c6946eac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
