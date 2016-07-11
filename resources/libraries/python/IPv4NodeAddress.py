@@ -25,7 +25,7 @@ from resources.libraries.python.topology import Topology
 IPV4_NETWORKS = ['192.168.{}.0/24'.format(i) for i in range(1, 100)]
 
 
-class IPv4NetworkGenerator(object):
+class IPv4NetworkGenerator(object):  # pylint: disable=too-few-public-methods
     """IPv4 network generator."""
     def __init__(self, networks):
         """
@@ -51,7 +51,7 @@ class IPv4NetworkGenerator(object):
             raise StopIteration()
 
 
-def get_variables(nodes, networks=IPV4_NETWORKS[:]):
+def get_variables(nodes, networks=IPV4_NETWORKS[:]):  # pylint: disable=too-many-locals
     """Special robot framework method that returns dictionary nodes_ipv4_addr,
     mapping of node and interface name to IPv4 address.
 

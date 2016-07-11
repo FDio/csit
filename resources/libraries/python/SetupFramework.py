@@ -48,7 +48,7 @@ def pack_framework_dir():
     logger.debug(stderr)
 
     return_code = proc.wait()
-    if 0 != return_code:
+    if return_code != 0:
         raise Exception("Could not pack testing framework.")
 
     return file_name
@@ -73,7 +73,7 @@ def copy_tarball_to_node(tarball, node):
 def extract_tarball_at_node(tarball, node):
     """Extract tarball at given node.
 
-    Extracts tarball using tar on given node to specific CSIT loocation.
+    Extracts tarball using tar on given node to specific CSIT location.
 
     :param tarball: Path to tarball to upload.
     :param node: Dictionary created from topology.
@@ -89,7 +89,7 @@ def extract_tarball_at_node(tarball, node):
     cmd = 'sudo rm -rf {1}; mkdir {1} ; tar -zxf {0} -C {1}; ' \
         'rm -f {0}'.format(tarball, con.REMOTE_FW_DIR)
     (ret_code, _, stderr) = ssh.exec_command(cmd, timeout=30)
-    if 0 != ret_code:
+    if ret_code != 0:
         logger.error('Unpack error: {0}'.format(stderr))
         raise Exception('Failed to unpack {0} at node {1}'.format(
             tarball, node['host']))
@@ -102,10 +102,13 @@ def create_env_directory_at_node(node):
     ssh = SSH()
     ssh.connect(node)
     (ret_code, stdout, stderr) = ssh.exec_command(
-        'cd {0} && rm -rf env && virtualenv --system-site-packages env && . env/bin/activate && '
+        'cd {0} && '
+        'rm -rf env && '
+        'virtualenv --system-site-packages env && '
+        '. env/bin/activate && '
         'pip install -r requirements.txt'
         .format(con.REMOTE_FW_DIR), timeout=100)
-    if 0 != ret_code:
+    if ret_code != 0:
         logger.error('Virtualenv creation error: {0}'.format(stdout + stderr))
         raise Exception('Virtualenv setup failed')
     else:
@@ -140,7 +143,7 @@ def delete_local_tarball(tarball):
     call(split('sh -c "rm {0} > /dev/null 2>&1"'.format(tarball)))
 
 
-class SetupFramework(object): # pylint: disable=too-few-public-methods
+class SetupFramework(object):  # pylint: disable=too-few-public-methods
     """Setup suite run on topology nodes.
 
     Many VAT/CLI based tests need the scripts at remote hosts before executing
@@ -177,4 +180,3 @@ class SetupFramework(object): # pylint: disable=too-few-public-methods
         logger.trace('Test framework copied to all topology nodes')
         delete_local_tarball(tarball)
         logger.console('All nodes are ready')
-

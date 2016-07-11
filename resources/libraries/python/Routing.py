@@ -21,7 +21,7 @@ class Routing(object):
     """Routing utilities."""
 
     @staticmethod
-    def vpp_route_add(node, network, prefix_len, gateway=None, interface=None,
+    def vpp_route_add(node, network, prefix_len, gateway=None, interface=None,  # pylint: disable=too-many-arguments
                       use_sw_index=True, resolve_attempts=10, count=1):
         """Add route to the VPP node.
 

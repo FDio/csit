@@ -22,7 +22,7 @@ from resources.libraries.python.constants import Constants
 from resources.libraries.python.VatExecutor import VatTerminal, VatExecutor
 
 
-class IPv6Networks(object):
+class IPv6Networks(object):  # pylint: disable=too-few-public-methods
     """IPv6 network iterator.
 
     :param networks: List of the available IPv6 networks.
@@ -169,7 +169,6 @@ class IPv6Setup(object):
         :type addr: str
         :type prefix: str
         """
-        topo = Topology()
         sw_if_index = Topology.get_interface_sw_index(node, iface_key)
         with VatTerminal(node) as vat:
             vat.vat_terminal_exec_cmd_from_template('add_ip_address.vat',
@@ -212,19 +211,18 @@ class IPv6Setup(object):
                                                     sw_if_index=sw_if_index,
                                                     state='admin-down')
 
-
     @staticmethod
     def vpp_set_ipv6_neighbor(node, interface, ipaddr, macaddr):
         """Set IPv6 neighbor.
 
            :param node: VPP node.
            :param interface: Interface name.
-           :param ip_address: IPv6 address.
-           :param mac_address: mac address.
+           :param ipaddr: IPv6 address.
+           :param macaddr: mac address.
            :type node: dict
            :type interface: str
-           :type ip_address: str
-           :type mac_address: str
+           :type ipaddr: str
+           :type macaddr: str
         """
         sw_if_index = Topology.get_interface_sw_index(node, interface)
         VatExecutor.cmd_from_template(node,

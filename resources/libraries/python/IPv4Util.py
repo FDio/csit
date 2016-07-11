@@ -89,8 +89,8 @@ class IPv4Util(object):
         :rtype: int
         """
         for net in nodes_addr.values():
-            for p in net['ports'].values():
-                if p['node'] == node['host'] and p['if'] == port:
+            for net_port in net['ports'].values():
+                if net_port['node'] == node['host'] and net_port['if'] == port:
                     return net['prefix']
 
         raise Exception('Subnet not found for node {n} port {p}'.
@@ -112,8 +112,8 @@ class IPv4Util(object):
         :rtype: str
         """
         for net in nodes_addr.values():
-            for p in net['ports'].values():
-                if p['node'] == node['host'] and p['if'] == port:
+            for net_port in net['ports'].values():
+                if net_port['node'] == node['host'] and net_port['if'] == port:
                     return net['net_addr']
 
         raise Exception('Subnet not found for node {n} port {p}'.
@@ -178,12 +178,11 @@ class IPv4Util(object):
         :type ping_count: int
         :raises RuntimeError: If no response for ping, raise error
         """
-        cmd = ''
         if namespace is not None:
             cmd = 'ip netns exec {0} ping -c{1} {2}'.format(
                 namespace, ping_count, destination)
         else:
             cmd = 'ping -c{0} {1}'.format(ping_count, destination)
-        rc, stdout, stderr = exec_cmd(node, cmd, sudo=True)
-        if rc != 0:
+        ret_code, _, _ = exec_cmd(node, cmd, sudo=True)
+        if ret_code != 0:
             raise RuntimeError("Ping Not Successful")

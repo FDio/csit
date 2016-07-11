@@ -26,7 +26,7 @@ from resources.libraries.python.VatJsonUtil import VatJsonUtil
 from resources.libraries.python.parsers.JsonParser import JsonParser
 
 
-class InterfaceUtil(object):
+class InterfaceUtil(object):  # pylint: disable=too-many-public-methods
     """General utilities for managing interfaces"""
 
     __UDEV_IF_RULES_FILE = '/etc/udev/rules.d/10-network.rules'
@@ -85,7 +85,7 @@ class InterfaceUtil(object):
         Function can be used only for TGs.
 
         :param node: Node where the interface is.
-        :param interface: Interface key from topology file.
+        :param iface_key: Interface key from topology file.
         :param mtu: MTU to set.
         :type node: dict
         :type iface_key: str
@@ -104,7 +104,7 @@ class InterfaceUtil(object):
                              format(node['host'], node['type']))
 
     @staticmethod
-    def set_default_ethernet_mtu_on_all_interfaces_on_node(node):
+    def set_default_ethernet_mtu_on_all_interfaces_on_node(node):  # pylint: disable=invalid-name
         """Set default Ethernet MTU on all interfaces on node.
 
         Function can be used only for TGs.
@@ -523,7 +523,7 @@ class InterfaceUtil(object):
             param = ''
             sw_if_index = ''
         elif isinstance(interface, basestring):
-            sw_if_index = Topology.get_interface_sw_index(node, interface)
+            sw_if_index = str(Topology.get_interface_sw_index(node, interface))
         elif isinstance(interface, int):
             sw_if_index = interface
         else:

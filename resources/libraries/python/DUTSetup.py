@@ -11,6 +11,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+"""DUT Setup library."""
+
 from robot.api import logger
 
 from resources.libraries.python.topology import NodeType
@@ -20,6 +22,7 @@ from resources.libraries.python.VatExecutor import VatExecutor
 
 
 class DUTSetup(object):
+    """DUT setup before test."""
     @staticmethod
     def start_vpp_service_on_all_duts(nodes):
         """Start up the VPP service on all nodes."""
@@ -29,7 +32,7 @@ class DUTSetup(object):
                 ssh.connect(node)
                 (ret_code, stdout, stderr) = \
                     ssh.exec_command_sudo('service vpp restart')
-                if 0 != int(ret_code):
+                if int(ret_code) != 0:
                     logger.debug('stdout: {0}'.format(stdout))
                     logger.debug('stderr: {0}'.format(stderr))
                     raise Exception('DUT {0} failed to start VPP service'.
@@ -74,6 +77,11 @@ class DUTSetup(object):
 
     @staticmethod
     def setup_dut(node):
+        """Setup given node for testing with run setup script on node.
+
+        :param node: Node to setup.
+        :type node: dict
+        """
         ssh = SSH()
         ssh.connect(node)
 
@@ -82,7 +90,7 @@ class DUTSetup(object):
                 Constants.REMOTE_FW_DIR, Constants.RESOURCES_LIB_SH))
         logger.trace(stdout)
         logger.trace(stderr)
-        if 0 != int(ret_code):
+        if int(ret_code) != 0:
             logger.debug('DUT {0} setup script failed: "{1}"'.
                          format(node['host'], stdout + stderr))
             raise Exception('DUT test setup script failed at node {}'.
