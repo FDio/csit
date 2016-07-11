@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a0e1d27_965e9de8",
+        "filename": "resources/traffic_scripts/send_lw_4o6_check_hairpinning_udp.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-07-11T07:48:55Z",
+      "side": 1,
+      "message": "Missing :param, :type ...",
+      "revId": "e69c095ddc1b4174042214554ad02570fd462c66",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
