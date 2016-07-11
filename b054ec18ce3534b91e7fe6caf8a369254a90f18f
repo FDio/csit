@@ -1,0 +1,136 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a0e1d27_f61cb915",
+        "filename": "resources/libraries/python/LispUtil.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-07-11T09:28:52Z",
+      "side": 1,
+      "message": "sets",
+      "range": {
+        "startLine": 138,
+        "startChar": 50,
+        "endLine": 138,
+        "endChar": 53
+      },
+      "revId": "b054ec18ce3534b91e7fe6caf8a369254a90f18f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_16204d48",
+        "filename": "resources/libraries/python/LispUtil.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-07-11T09:28:52Z",
+      "side": 1,
+      "message": "it is set correctly",
+      "range": {
+        "startLine": 138,
+        "startChar": 22,
+        "endLine": 138,
+        "endChar": 36
+      },
+      "revId": "b054ec18ce3534b91e7fe6caf8a369254a90f18f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_96d33d38",
+        "filename": "resources/libraries/python/LispUtil.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-07-11T09:28:52Z",
+      "side": 1,
+      "message": "duplicated",
+      "range": {
+        "startLine": 178,
+        "startChar": 59,
+        "endLine": 178,
+        "endChar": 68
+      },
+      "revId": "b054ec18ce3534b91e7fe6caf8a369254a90f18f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_d619b523",
+        "filename": "resources/libraries/python/LispUtil.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-07-11T09:28:52Z",
+      "side": 1,
+      "message": "it is set correctly",
+      "range": {
+        "startLine": 178,
+        "startChar": 22,
+        "endLine": 178,
+        "endChar": 36
+      },
+      "revId": "b054ec18ce3534b91e7fe6caf8a369254a90f18f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_b61641f0",
+        "filename": "resources/libraries/python/LispUtil.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-07-11T09:28:52Z",
+      "side": 1,
+      "message": "locator_sets",
+      "range": {
+        "startLine": 178,
+        "startChar": 43,
+        "endLine": 178,
+        "endChar": 54
+      },
+      "revId": "b054ec18ce3534b91e7fe6caf8a369254a90f18f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_56dda541",
+        "filename": "resources/templates/vat/lisp/show_lisp_enable_disable.vat",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-07-11T09:28:52Z",
+      "side": 1,
+      "message": "Please, rename the vat file - show_lisp_status.vat",
+      "revId": "b054ec18ce3534b91e7fe6caf8a369254a90f18f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
