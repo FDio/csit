@@ -47,6 +47,12 @@ dut2_ip4_eid = {'locator_name': locator_name,
                 'vni': 0,
                 'eid': '6.0.2.0',
                 'prefix': 24}
+dut2_to_dut1_ip4_reconf= '6.0.3.20'
+dut1_ip4_static_mapping_reconf = {'vni': 0,
+                                  'deid': '6.0.2.0',
+                                  'seid': '6.0.1.0',
+                                  'rloc': '6.0.3.20',
+                                  'prefix': 24}
 
 # IPv6 Lisp static mapping configuration
 dut1_to_dut2_ip6 = '6:0:3::1'
@@ -74,6 +80,12 @@ dut2_ip6_eid = {'locator_name': locator_name,
                 'vni': 0,
                 'eid': '6:0:2::0',
                 'prefix': 64}
+dut2_to_dut1_ip6_reconf= '6:0:3::20'
+dut1_ip6_static_mapping_reconf = {'vni': 0,
+                                  'deid': '6:0:2::0',
+                                  'seid': '6:0:1::0',
+                                  'rloc': '6:0:3::20',
+                                  'prefix': 64}
 
 # IPv4 over IPv6 Lisp static mapping configuration
 dut1_to_dut2_ip4o6 = '6:0:3::1'
@@ -102,6 +114,13 @@ dut2_ip4o6_eid = {'locator_name': locator_name,
                   'vni': 0,
                   'eid': '6.0.2.0',
                   'prefix': 24}
+dut2_to_dut1_ip4o6_reconf= '6:0:3::20'
+dut1_ip4o6_static_mapping_reconf = {'vni': 0,
+                                    'deid': '6.0.2.0',
+                                    'seid': '6.0.1.0',
+                                    'rloc': '6:0:3::20',
+                                    'prefix': 24}
+
 
 # IPv6 over IPv4 Lisp static mapping configuration
 dut1_to_dut2_ip6o4 = '6.0.3.1'
@@ -130,3 +149,9 @@ dut2_ip6o4_eid = {'locator_name': locator_name,
                   'vni': 0,
                   'eid': '6:0:2::0',
                   'prefix': 64}
+dut2_to_dut1_ip6o4_reconf= '6.0.3.20'
+dut1_ip6o4_static_mapping_reconf = {'vni': 0,
+                                    'deid': '6:0:2::0',
+                                    'seid': '6:0:1::0',
+                                    'rloc': '6.0.3.20',
+                                    'prefix': 64}
