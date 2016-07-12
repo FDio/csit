@@ -51,6 +51,13 @@
 | | Build QEMU | ${node}
 | | Add Node to QEMU Build List | ${node}
 
+| Build QEMU on all DUTs
+| | [Documentation] | Build QEMU from sources on all DUTs. Nodes with successful
+| | ...             | QEMU build are stored in global variable list QEMU_BUILD
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | Build QEMU on Node | ${nodes['${dut}']}
+
 | Stop and Clear QEMU
 | | [Documentation] | Stop QEMU, clear used sockets and close SSH connection
 | | ...             | running on ${dut}, ${vm} is VM node info dictionary
