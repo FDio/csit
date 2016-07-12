@@ -1200,7 +1200,7 @@ class InterfaceKeywords(object):
             node, super_interface, path, address)
 
     @staticmethod
-    def remove_all_ipv4_addresses_from_sub_interface(node, super_interface,
+    def remove_all_ipv4_addresses_from_sub_interface(node, super_interface, # pylint: disable=invalid-name
                                                      identifier):
         """Remove all ipv4 addresses from the specified sub-interface.
 
@@ -1305,3 +1305,69 @@ class InterfaceKeywords(object):
         vxlan_gpe_structure = [new_vxlan_gpe, ]
         return InterfaceKeywords._set_interface_properties(
             node, interface, path, vxlan_gpe_structure)
+
+    @staticmethod
+    def enable_acl_on_interface(node, interface, table_name):
+        """Enable ACL on the given interface.
+
+        :param node: Honeycomb node.
+        :param interface: The interface where the ACL will be enabled.
+        :param table_name: Name of the classify table.
+        :type node: dict
+        :type interface: str
+        :type table_name: str
+        :return: Content of response.
+        :rtype: bytearray
+        :raises HoneycombError: If the configuration of interface is not
+        successful.
+        """
+
+        interface = interface.replace("/", "%2F")
+
+        data = {
+            "v3po:acl": {
+                "l2-acl": {
+                    "classify-table": table_name
+                },
+                "ip4-acl": {
+                    "classify-table": table_name
+                }
+            }
+        }
+
+        path = "/interface/" + interface + "/v3po:acl"
+        status_code, resp = HcUtil.\
+            put_honeycomb_data(node, "config_vpp_interfaces", data, path,
+                               data_representation=DataRepresentation.JSON)
+        if status_code != HTTPCodes.OK:
+            raise HoneycombError(
+                "The configuration of interface '{0}' was not successful. "
+                "Status code: {1}.".format(interface, status_code))
+        return resp
+
+    @staticmethod
+    def disable_acl_on_interface(node, interface):
+        """Disable ACL on the given interface.
+
+        :param node: Honeycomb node.
+        :param interface: The interface where the ACL will be disabled.
+        :type node: dict
+        :type interface: str
+        :return: Content of response.
+        :rtype: bytearray
+        :raises HoneycombError: If the configuration of interface is not
+        successful.
+        """
+
+        interface = interface.replace("/", "%2F")
+
+        path = "/interface/" + interface + "/v3po:acl"
+
+        status_code, resp = HcUtil.\
+            delete_honeycomb_data(node, "config_vpp_interfaces", path)
+
+        if status_code != HTTPCodes.OK:
+            raise HoneycombError(
+                "The configuration of interface '{0}' was not successful. "
+                "Status code: {1}.".format(interface, status_code))
+        return resp
