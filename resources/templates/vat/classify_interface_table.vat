@@ -1,0 +1,1 @@
+classify_table_by_interface sw_if_index {sw_if_index}
