@@ -19,6 +19,7 @@
 | Library  | resources.libraries.python.LispSetup.LispLocalEid
 | Library  | resources.libraries.python.LispSetup.LispAdjacency
 | Library  | resources.libraries.python.LispSetup.LispRemoteMapping
+| Library  | resources.libraries.python.IPv4Util.IPv4Util
 
 *** Keywords ***
 | Set up Lisp topology
@@ -96,3 +97,68 @@
 | | ...                    | ${dut2_static_adjacency['prefix']}
 | | ...                    | ${dut2_static_adjacency['seid']}
 | | ...                    | ${dut2_static_adjacency['prefix']}
+
+| Change Lisp Configuration
+| | [Documentation] | Change configuration of the Lisp protocol.
+| | ...
+| | ... | *Arguments:*
+| | ... | - dut1_node - DUT1 node. Type: dictionary
+| | ... | - dut2_node - DUT2 node. Type: dictionary
+| | ... | - dut1_to_dut2 - Dut1 interface name. Type: string
+| | ... | - dut2_to_dut1 - Dut2 interface name. Type: string
+| | ... | - dut1_to_dut2_mac - Dut1 mac address. Type: string
+| | ... | - dut2_to_dut1_mac - Dut2 mac address. Type: string
+| | ... | - new_dut1_ip - New dut1 node ip address. Type: string
+| | ... | - new_dut2_ip - New dut2 node ip address. Type: string
+| | ... | - prefix - Prefix of the dut nodes. Type: integer
+| | ... | - old_dut1_static_adjacency - Old dut1 static adjacency.
+| | ... |                               Type: dictionary
+| | ... | - new_dut1_static_adjacency - New dut1 static adjacency.
+| | ... |                               Type: dictionary
+| | ...
+| | ... | *Return:*
+| | ... | - No value returned
+| | ...
+| | ... | *Example:*
+| | ... | \| Change Lisp Configuration \| ${dut1_node} \| ${dut2_node} \
+| | ... | \| ${dut1_to_dut2} \| ${dut2_to_dut1} | "08:00:27:20:e0:0d" \
+| | ... | \| "08:00:27:b1:94:b1" \| "6.3.0.1" \| "6.3.0.20" \| "24" \
+| | ... | \| ${old_dut1_static_adjacency} \| ${new_dut1_static_adjacency} \|
+| | ...
+| | [Arguments] | ${dut1_node} | ${dut2_node} | ${dut1_to_dut2}
+| | ...         | ${dut2_to_dut1} | ${dut1_to_dut2_mac} | ${dut2_to_dut1_mac}
+| | ...         | ${new_dut1_ip} | ${new_dut2_ip} | ${prefix}
+| | ...         | ${old_dut1_static_adjacency} | ${new_dut1_static_adjacency}
+| | Flush IPv4 Addresses "${dut2_to_dut1}" "${dut2_node}"
+| | Vpp Del Lisp Remote Mapping | ${dut1_node}
+| | ...                         | ${old_dut1_static_adjacency['vni']}
+| | ...                         | ${old_dut1_static_adjacency['deid']}
+| | ...                         | ${old_dut1_static_adjacency['prefix']}
+| | ...                         | ${old_dut1_static_adjacency['seid']}
+| | ...                         | ${old_dut1_static_adjacency['prefix']}
+| | ...                         | ${old_dut1_static_adjacency['rloc']}
+| | Vpp Del Lisp Adjacency | ${dut1_node}
+| | ...                    | ${old_dut1_static_adjacency['vni']}
+| | ...                    | ${old_dut1_static_adjacency['deid']}
+| | ...                    | ${old_dut1_static_adjacency['prefix']}
+| | ...                    | ${old_dut1_static_adjacency['seid']}
+| | ...                    | ${old_dut1_static_adjacency['prefix']}
+| | Set Interface Address | ${dut2_node} | ${dut2_to_dut1}
+| | ...                   | ${new_dut2_ip} | ${prefix}
+| | Add Arp On Dut | ${dut1_node} | ${dut1_to_dut2} | ${new_dut2_ip}
+| | ...            | ${dut2_to_dut1_mac}
+| | Add Arp On Dut | ${dut2_node} | ${dut2_to_dut1} | ${new_dut1_ip}
+| | ...            | ${dut1_to_dut2_mac}
+| | Vpp Add Lisp Remote Mapping | ${dut1_node}
+| | ...                         | ${new_dut1_static_adjacency['vni']}
+| | ...                         | ${new_dut1_static_adjacency['deid']}
+| | ...                         | ${new_dut1_static_adjacency['prefix']}
+| | ...                         | ${new_dut1_static_adjacency['seid']}
+| | ...                         | ${new_dut1_static_adjacency['prefix']}
+| | ...                         | ${new_dut1_static_adjacency['rloc']}
+| | Vpp Add Lisp Adjacency | ${dut1_node}
+| | ...                    | ${new_dut1_static_adjacency['vni']}
+| | ...                    | ${new_dut1_static_adjacency['deid']}
+| | ...                    | ${new_dut1_static_adjacency['prefix']}
+| | ...                    | ${new_dut1_static_adjacency['seid']}
+| | ...                    | ${new_dut1_static_adjacency['prefix']}
