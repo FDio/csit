@@ -285,24 +285,27 @@ class HoneycombUtil(object):
         return origin_data
 
     @staticmethod
-    def get_honeycomb_data(node, url_file):
+    def get_honeycomb_data(node, url_file, path=""):
         """Retrieve data from Honeycomb according to given URL.
 
         :param node: Honeycomb node.
         :param url_file: URL file. The argument contains only the name of file
         without extension, not the full path.
+        :param path: Path which is added to the base path to identify the data.
         :type node: dict
         :type url_file: str
+        :type path: str
         :return: Status code and content of response.
         :rtype tuple
         """
 
-        path = HoneycombUtil.read_path_from_url_file(url_file)
+        base_path = HoneycombUtil.read_path_from_url_file(url_file)
+        path = base_path + path
         status_code, resp = HTTPRequest.get(node, path)
         return status_code, loads(resp)
 
     @staticmethod
-    def put_honeycomb_data(node, url_file, data,
+    def put_honeycomb_data(node, url_file, data, path="",
                            data_representation=DataRepresentation.JSON):
         """Send configuration data using PUT request and return the status code
         and response content.
@@ -311,10 +314,12 @@ class HoneycombUtil(object):
         :param url_file: URL file. The argument contains only the name of file
         without extension, not the full path.
         :param data: Configuration data to be sent to Honeycomb.
+        :param path: Path which is added to the base path to identify the data.
         :param data_representation: How the data is represented.
         :type node: dict
         :type url_file: str
         :type data: dict, str
+        :type path: str
         :type data_representation: DataRepresentation
         :return: Status code and content of response.
         :rtype: tuple
@@ -332,7 +337,8 @@ class HoneycombUtil(object):
 
         logger.trace(data)
 
-        path = HoneycombUtil.read_path_from_url_file(url_file)
+        base_path = HoneycombUtil.read_path_from_url_file(url_file)
+        path = base_path + path
         return HTTPRequest.put(node=node, path=path, headers=header,
                                payload=data)
 
@@ -373,17 +379,20 @@ class HoneycombUtil(object):
                                 payload=data, timeout=timeout)
 
     @staticmethod
-    def delete_honeycomb_data(node, url_file):
+    def delete_honeycomb_data(node, url_file, path=""):
         """Delete data from Honeycomb according to given URL.
 
         :param node: Honeycomb node.
         :param url_file: URL file. The argument contains only the name of file
         without extension, not the full path.
+        :param path: Path which is added to the base path to identify the data.
         :type node: dict
         :type url_file: str
+        :type path: str
         :return: Status code and content of response.
         :rtype tuple
         """
 
-        path = HoneycombUtil.read_path_from_url_file(url_file)
+        base_path = HoneycombUtil.read_path_from_url_file(url_file)
+        path = base_path + path
         return HTTPRequest.delete(node, path)
