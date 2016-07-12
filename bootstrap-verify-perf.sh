@@ -26,7 +26,7 @@ VPP_REPO_URL="https://nexus.fd.io/content/repositories/fd.io.master.ubuntu.trust
 RESERVATION_DIR="/tmp/reservation_dir"
 INSTALLATION_DIR="/tmp/install_dir"
 
-PYBOT_ARGS="-W 150 --noncritical PERFTEST"
+PYBOT_ARGS="-W 150 --noncritical PERFTEST --exclude SKIP_PATCH"
 
 ARCHIVE_ARTIFACTS=(log.html output.xml report.html output_perf_data.xml)
 
