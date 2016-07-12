@@ -280,3 +280,44 @@ class Classify(object):
             # base value of classify hex table for IPv6 TCP/UDP ports
         else:
             raise ValueError("Invalid IP version!")
+
+    @staticmethod
+    def get_classify_table_data(node, table_index):
+        """Retrieve settings for classify table by ID.
+
+        :param node: VPP node to retrieve classify data from.
+        :param table_index: Index of a specific classify table.
+        :type node: dict
+        :type table_index: int
+        :return: Classify table settings.
+        :rtype: dict
+        """
+        with VatTerminal(node) as vat:
+            data = vat.vat_terminal_exec_cmd_from_template(
+                "classify_table_info.vat",
+                table_id=table_index
+            )
+        return data[0]
+
+    @staticmethod
+    def get_classify_session_data(node, table_index, session_index=None):
+        """Retrieve settings for all classify sessions in a table.
+
+        :param node: VPP node to retrieve classify data from.
+        :param table_index: Index of a specific classify table.
+        :param session_index: Index of a specific classify session.
+        :type node: dict
+        :type table_index: int
+        :type session_index: int
+        :return: Classify session settings.
+        :rtype: list
+        """
+        with VatTerminal(node) as vat:
+            data = vat.vat_terminal_exec_cmd_from_template(
+                "classify_session_dump.vat",
+                table_id=table_index
+            )
+        if session_index is not None:
+            return data[0][session_index]
+        else:
+            return data[0]
