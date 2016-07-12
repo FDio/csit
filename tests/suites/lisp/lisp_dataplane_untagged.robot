@@ -20,7 +20,6 @@
 | Resource | resources/libraries/robot/l2_traffic.robot
 | Library  | resources.libraries.python.IPUtil
 | Library  | resources.libraries.python.Trace
-| Library  | resources.libraries.python.IPv4Util.IPv4Util
 # import additional Lisp settings from resource file
 | Variables | resources/test_data/lisp/static_mapping/lisp_static_mapping.py
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | 3_NODE_DOUBLE_LINK_TOPO
@@ -58,7 +57,8 @@
 | | ... | configure IPv4 LISP remote static mappings. [Ver] Make TG send
 | | ... | ICMPv4 Echo Req between its interfaces across both DUTs and LISP
 | | ... | tunnel between them; verify IPv4 headers on received packets are
-| | ... | correct. [Ref] RFC6830.
+| | ... | correct. [Cfg2] Reconf LISP. [Ver2] verify packets are received
+| | ... | again via LISP tunnel. [Ref] RFC6830.
 | | [Tags] | EXPECTED_FAILING
 | | Given Path for 3-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
@@ -91,6 +91,17 @@
 | |      ... | ${tg_node} | ${tg2_ip4} | ${tg1_ip4}
 | |      ... | ${tg_to_dut2} | ${tg_to_dut2_mac} | ${dut2_to_tg_mac}
 | |      ... | ${tg_to_dut1} | ${dut1_to_tg_mac} | ${tg_to_dut1_mac}
+| | When Change Lisp Configuration | ${dut1_node} | ${dut2_node}
+| |      ... | ${dut1_to_dut2_ip4} | ${dut2_to_dut1_ip4_reconf} | ${prefix4}
+| |      ... | ${dut1_ip4_static_mapping} | ${dut1_ip4_static_mapping_reconf}
+| | Then Send Packet And Check Headers
+| |      ... | ${tg_node} | ${tg1_ip4} | ${tg2_ip4}
+| |      ... | ${tg_to_dut1} | ${tg_to_dut1_mac} | ${dut1_to_tg_mac}
+| |      ... | ${tg_to_dut2} | ${dut2_to_tg_mac} | ${tg_to_dut2_mac}
+| | And Send Packet And Check Headers
+| |      ... | ${tg_node} | ${tg2_ip4} | ${tg1_ip4}
+| |      ... | ${tg_to_dut2} | ${tg_to_dut2_mac} | ${dut2_to_tg_mac}
+| |      ... | ${tg_to_dut1} | ${dut1_to_tg_mac} | ${tg_to_dut1_mac}
 
 | TC02: DUT1 and DUT2 route IPv6 bidirectionally over LISPoIPv6 tunnel
 | | [Documentation]
@@ -99,7 +110,8 @@
 | | ... | configure IPv6 LISP remote static mappings. [Ver] Make TG send
 | | ... | ICMPv6 Echo Req between its interfaces across both DUTs and LISP
 | | ... | tunnel between them; verify IPv4 headers on received packets are
-| | ... | correct. [Ref] RFC6830.
+| | ... | correct. [Cfg2] Reconf LISP. [Ver2] verify packets are received
+| | ... | again via LISP tunnel. [Ref] RFC6830.
 | | [Tags] | EXPECTED_FAILING
 | | Given Path for 3-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
@@ -132,6 +144,17 @@
 | |      ... | ${tg_node} | ${tg2_ip6} | ${tg1_ip6}
 | |      ... | ${tg_to_dut2} | ${tg_to_dut2_mac} | ${dut2_to_tg_mac}
 | |      ... | ${tg_to_dut1} | ${dut1_to_tg_mac} | ${tg_to_dut1_mac}
+| | When Change Lisp Configuration | ${dut1_node} | ${dut2_node}
+| |      ... | ${dut1_to_dut2_ip6} | ${dut2_to_dut1_ip6_reconf} | ${prefix6}
+| |      ... | ${dut1_ip6_static_mapping} | ${dut1_ip6_static_mapping_reconf}
+| | Then Send Packet And Check Headers
+| |      ... | ${tg_node} | ${tg1_ip6} | ${tg2_ip6}
+| |      ... | ${tg_to_dut1} | ${tg_to_dut1_mac} | ${dut1_to_tg_mac}
+| |      ... | ${tg_to_dut2} | ${dut2_to_tg_mac} | ${tg_to_dut2_mac}
+| | And Send Packet And Check Headers
+| |      ... | ${tg_node} | ${tg2_ip6} | ${tg1_ip6}
+| |      ... | ${tg_to_dut2} | ${tg_to_dut2_mac} | ${dut2_to_tg_mac}
+| |      ... | ${tg_to_dut1} | ${dut1_to_tg_mac} | ${tg_to_dut1_mac}
 
 | TC03: DUT1 and DUT2 route IPv4 bidirectionally over LISPoIPv6 tunnel
 | | [Documentation]
@@ -140,7 +163,8 @@
 | | ... | configure IPv6 LISP remote static mappings. [Ver] Make TG send
 | | ... | ICMPv4 Echo Req between its interfaces across both DUTs and LISP
 | | ... | tunnel between them; verify IPv4 headers on received packets are
-| | ... | correct. [Ref] RFC6830.
+| | ... | correct. [Cfg2] Reconf LISP. [Ver2] verify packets are received
+| | ... | again via LISP tunnel. [Ref] RFC6830.
 | | [Tags] | EXPECTED_FAILING
 | | Given Path for 3-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
@@ -173,6 +197,18 @@
 | |      ... | ${tg_node} | ${tg2_ip4o6} | ${tg1_ip4o6}
 | |      ... | ${tg_to_dut2} | ${tg_to_dut2_mac} | ${dut2_to_tg_mac}
 | |      ... | ${tg_to_dut1} | ${dut1_to_tg_mac} | ${tg_to_dut1_mac}
+| | When Change Lisp Configuration | ${dut1_node} | ${dut2_node}
+| |      ... | ${dut1_to_dut2_ip4o6} | ${dut2_to_dut1_ip4o6_reconf}
+| |      ... | ${dut_prefix4o6} | ${dut1_ip4o6_static_mapping}
+| |      ... | ${dut1_ip4o6_static_mapping_reconf}
+| | Then Send Packet And Check Headers
+| |      ... | ${tg_node} | ${tg1_ip4o6} | ${tg2_ip4o6}
+| |      ... | ${tg_to_dut1} | ${tg_to_dut1_mac} | ${dut1_to_tg_mac}
+| |      ... | ${tg_to_dut2} | ${dut2_to_tg_mac} | ${tg_to_dut2_mac}
+| | And Send Packet And Check Headers
+| |      ... | ${tg_node} | ${tg2_ip4o6} | ${tg1_ip4o6}
+| |      ... | ${tg_to_dut2} | ${tg_to_dut2_mac} | ${dut2_to_tg_mac}
+| |      ... | ${tg_to_dut1} | ${dut1_to_tg_mac} | ${tg_to_dut1_mac}
 
 | TC04: DUT1 and DUT2 route IPv6 bidirectionally over LISPoIPv4 tunnel
 | | [Documentation]
@@ -181,7 +217,8 @@
 | | ... | configure IPv4 LISP remote static mappings. [Ver] Make TG send
 | | ... | ICMPv6 Echo Req between its interfaces across both DUTs and LISP
 | | ... | tunnel between them; verify IPv4 headers on received packets are
-| | ... | correct. [Ref] RFC6830.
+| | ... | correct. [Cfg2] Reconf LISP. [Ver2] verify packets are received
+| | ... | again via LISP tunnel. [Ref] RFC6830.
 | | [Tags] | EXPECTED_FAILING
 | | Given Path for 3-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
@@ -206,6 +243,18 @@
 | |      ... | ${dut2_node} | ${dut2_to_dut1} | ${NONE}
 | |      ... | ${duts_locator_set} | ${dut1_ip6o4_eid} | ${dut2_ip6o4_eid}
 | |      ... | ${dut1_ip6o4_static_mapping} | ${dut2_ip6o4_static_mapping}
+| | Then Send Packet And Check Headers
+| |      ... | ${tg_node} | ${tg1_ip6o4} | ${tg2_ip6o4}
+| |      ... | ${tg_to_dut1} | ${tg_to_dut1_mac} | ${dut1_to_tg_mac}
+| |      ... | ${tg_to_dut2} | ${dut2_to_tg_mac} | ${tg_to_dut2_mac}
+| | And Send Packet And Check Headers
+| |      ... | ${tg_node} | ${tg2_ip6o4} | ${tg1_ip6o4}
+| |      ... | ${tg_to_dut2} | ${tg_to_dut2_mac} | ${dut2_to_tg_mac}
+| |      ... | ${tg_to_dut1} | ${dut1_to_tg_mac} | ${tg_to_dut1_mac}
+| | When Change Lisp Configuration | ${dut1_node} | ${dut2_node}
+| |      ... | ${dut1_to_dut2_ip6o4} | ${dut2_to_dut1_ip6o4_reconf}
+| |      ... | ${dut_prefix6o4} | ${dut1_ip6o4_static_mapping}
+| |      ... | ${dut1_ip6o4_static_mapping_reconf}
 | | Then Send Packet And Check Headers
 | |      ... | ${tg_node} | ${tg1_ip6o4} | ${tg2_ip6o4}
 | |      ... | ${tg_to_dut1} | ${tg_to_dut1_mac} | ${dut1_to_tg_mac}
