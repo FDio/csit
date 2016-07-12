@@ -307,8 +307,8 @@ class InterfaceKeywords(object):
 
         :param node: Honeycomb node.
         :param interface: The name of interface.
-        :type interface: str
         :type node: dict
+        :type interface: str
         :return: Operational data about bridge domain settings in the
         interface.
         :rtype: dict
@@ -1224,27 +1224,36 @@ class InterfaceKeywords(object):
             node, super_interface, path, None)
 
     @staticmethod
-    def compare_data_structures(data, ref):
+    def compare_data_structures(data, ref, ignore=()):
         """Checks if data obtained from UUT is as expected.
 
         :param data: Data to be checked.
         :param ref: Referential data used for comparison.
+        :param ignore: Dictionary keys to be ignored.
         :type data: dict
         :type ref: dict
+        :type ignore: iterable
         :raises HoneycombError: If a parameter from referential data is not
         present in operational data or if it has different value.
         """
 
+        errors = ""
+
         for key, item in ref.items():
+            if key in ignore:
+                continue
             try:
                 if data[key] != item:
-                    raise HoneycombError("The value of parameter '{0}' is "
-                                         "incorrect. It should be "
-                                         "'{1}' but it is '{2}'".
-                                         format(key, item, data[key]))
+                    errors += ("\nThe value of parameter '{0}' is "
+                               "incorrect. It should be "
+                               "'{1}' but it is '{2}'".
+                               format(key, item, data[key]))
             except KeyError:
-                raise HoneycombError("The parameter '{0}' is not present in "
-                                     "operational data".format(key))
+                errors += ("\nThe parameter '{0}' is not present in "
+                           "operational data".format(key))
+
+        if errors:
+            raise HoneycombError(errors)
 
     @staticmethod
     def compare_interface_lists(list1, list2):
