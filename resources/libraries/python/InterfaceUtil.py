@@ -700,6 +700,29 @@ class InterfaceUtil(object):
                                                     table_index=table_index)
 
     @staticmethod
+    def get_interface_classify_table(node, interface):
+        """Get name of classify table for the given interface.
+
+        :param node: VPP node to get data from.
+        :param interface: Name of a specific interface.
+        :type node: dict
+        :type interface: name
+        :return: Classify table name.
+        :rtype: str
+        """
+        if isinstance(interface, basestring):
+            sw_if_index = InterfaceUtil.get_sw_if_index(node, interface)
+        else:
+            sw_if_index = interface
+
+        with VatTerminal(node) as vat:
+            data = vat.vat_terminal_exec_cmd_from_template(
+                "classify_interface_table.vat",
+                sw_if_index=sw_if_index
+            )
+        return data
+
+    @staticmethod
     def get_sw_if_index(node, interface_name):
         """Get sw_if_index for the given interface from actual interface dump.
 
