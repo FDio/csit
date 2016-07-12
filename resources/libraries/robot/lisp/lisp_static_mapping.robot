@@ -85,3 +85,51 @@
 | | ...                         | ${dut2_static_mapping['seid']}
 | | ...                         | ${dut2_static_mapping['prefix']}
 | | ...                         | ${dut2_static_mapping['rloc']}
+
+| Change Lisp Configuration
+| | [Documentation] | Change configuration of the Lisp protocol.
+| | ...
+| | ... | *Arguments:*
+| | ... | - dut1_node - DUT1 node. Type: dictionary
+| | ... | - dut2_node - DUT2 node. Type: dictionary
+| | ... | - new_dut1_ip - New dut1 node ip addresses. Type: string
+| | ... | - new_dut2_ip - New dut2 node ip addresses. Type: string
+| | ... | - prefix - Prefix of the dut nodes. Type: integer
+| | ... | - old_dut1_static_mapping - Old dut1 static mapping address.
+| | ... |                             Type: dict
+| | ... | - new_dut1_static_mapping - New dut1 static mapping address.
+| | ... |                             Type: dict
+| | ...
+| | ... | *Return:*
+| | ... | - No value returned
+| | ...
+| | ... | *Example:*
+| | ... | \| Change Lisp Configuration \| ${dut1_node} \| ${dut2_node} \
+| | ... | \| ${new_dut1_ip} | \| ${new_dut2_ip} \| ${prefix} \
+| | ... | \| ${old_dut1_static_mapping} \| ${new_dut1_static_mapping} \|
+| | ...
+| | [Arguments] | ${dut1_node} | ${dut2_node} | ${new_dut1_ip} | ${new_dut2_ip}
+| | ...         | ${prefix} | ${old_dut1_ip_static_mapping}
+| | ...         | ${new_dut1_ip_static_mapping}
+| | Flush IPv4 Addresses "${dut2_to_dut1}" "${dut2_node}"
+| | And  Vpp Del Lisp Remote Mapping | ${dut1_node}
+| |      ... | ${old_dut1_ip_static_mapping['vni']}
+| |      ... | ${old_dut1_ip_static_mapping['deid']}
+| |      ... | ${old_dut1_ip_static_mapping['prefix']}
+| |      ... | ${old_dut1_ip_static_mapping['seid']}
+| |      ... | ${old_dut1_ip_static_mapping['prefix']}
+| |      ... | ${old_dut1_ip_static_mapping['rloc']}
+| | And  IP addresses are set on interfaces
+| |      ... | ${dut2_node} | ${dut2_to_dut1}
+| |      ... | ${new_dut2_ip} | ${prefix}
+| | And  Add Arp On Dut | ${dut1_node} | ${dut1_to_dut2} | ${new_dut2_ip}
+| |       ... | ${dut2_to_dut1_mac}
+| | And  Add Arp On Dut | ${dut2_node} | ${dut2_to_dut1} | ${new_dut1_ip}
+| |       ... | ${dut1_to_dut2_mac}
+| | And  Vpp Add Lisp Remote Mapping | ${dut1_node}
+| |      ... | ${new_dut1_ip_static_mapping['vni']}
+| |      ... | ${new_dut1_ip_static_mapping['deid']}
+| |      ... | ${new_dut1_ip_static_mapping['prefix']}
+| |      ... | ${new_dut1_ip_static_mapping['seid']}
+| |      ... | ${new_dut1_ip_static_mapping['prefix']}
+| |      ... | ${new_dut1_ip_static_mapping['rloc']}
