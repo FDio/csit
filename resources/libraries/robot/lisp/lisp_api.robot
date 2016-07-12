@@ -130,7 +130,7 @@
 | | ... | *Arguments:*
 | | ... | - dut_node - DUT node. Type: dictionary
 | | ... | - locator_set_number - Number how many locator_set data
-| | ... |                        it will generate. Type: int
+| | ... |                        it will generate. Type: integer
 | | ...
 | | ... | *Return:*
 | | ... | - No value returned
