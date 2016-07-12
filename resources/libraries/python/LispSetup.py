@@ -99,7 +99,7 @@ class LispRemoteMapping(object):
                                       'lisp/del_lisp_remote_mapping.vat',
                                       vni=vni,
                                       deid=deid,
-                                      deid_predix=deid_prefix,
+                                      deid_prefix=deid_prefix,
                                       seid=seid,
                                       seid_prefix=seid_prefix,
                                       rloc=rloc)
