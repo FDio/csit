@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a0e1d27_14096531",
+        "filename": "tests/suites/iacl/l2_iacl_untagged.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-07-13T07:28:29Z",
+      "side": 1,
+      "message": "Please add api trace dump. (see other suites fro more details)",
+      "revId": "db560a249e46e9f9c1ed25758d9e8f9673a1ca83",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_340c6942",
+        "filename": "tests/suites/iacl/l2_iacl_untagged.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-07-13T07:28:29Z",
+      "side": 1,
+      "message": "Please use the formatting we discussed and is used across:\n\n[Top]\n[Cfg]\n...",
+      "range": {
+        "startLine": 32,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 40
+      },
+      "revId": "db560a249e46e9f9c1ed25758d9e8f9673a1ca83",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_f405d114",
+        "filename": "tests/suites/iacl/l2_iacl_untagged.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-07-13T07:28:29Z",
+      "side": 1,
+      "message": "Line too long",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 71,
+        "endChar": 83
+      },
+      "revId": "db560a249e46e9f9c1ed25758d9e8f9673a1ca83",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
