@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a0e1d27_8fbb20c4",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-07-13T12:14:55Z",
+      "side": 1,
+      "message": "One empty line is enough.",
+      "range": {
+        "startLine": 124,
+        "startChar": 0,
+        "endLine": 124,
+        "endChar": 0
+      },
+      "revId": "b1dbcd27d078c58b3e53ce7b6343756769aa8510",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
