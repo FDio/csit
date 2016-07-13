@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "9a0e1d27_f4571125",
+        "filename": "tests/suites/performance/Long_IPv6_Fib_2M_Intel-X520-DA2.robot",
+        "patchSetId": 20
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-07-13T06:51:32Z",
+      "side": 1,
+      "message": "Fixed",
+      "parentUuid": "9a0e1d27_74354145",
+      "revId": "fd0d2ef3199d3f037fac4bd81a246c813b78174b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a0e1d27_543a3d37",
         "filename": "tests/suites/performance/Long_IPv6_Fib_2M_Intel-X520-DA2.robot",
         "patchSetId": 20
@@ -30,6 +48,30 @@
       "writtenOn": "2016-07-12T21:16:39Z",
       "side": 1,
       "message": "https://jenkins.fd.io/job/csit-vpp-perf-master-all/39/\nTraffic loss occurred: 2144731",
+      "range": {
+        "startLine": 124,
+        "startChar": 2,
+        "endLine": 124,
+        "endChar": 20
+      },
+      "revId": "fd0d2ef3199d3f037fac4bd81a246c813b78174b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_d4540d23",
+        "filename": "tests/suites/performance/Long_IPv6_Fib_2M_Intel-X520-DA2.robot",
+        "patchSetId": 20
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-07-13T06:51:32Z",
+      "side": 1,
+      "message": "Fixed",
+      "parentUuid": "9a0e1d27_543a3d37",
       "range": {
         "startLine": 124,
         "startChar": 2,
