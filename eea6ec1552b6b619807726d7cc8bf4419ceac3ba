@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9a0e1d27_4fb508cc",
+        "filename": "tests/suites/iacl/l2_iacl_untagged.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 84
+      },
+      "writtenOn": "2016-07-13T12:26:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a0e1d27_0fcb9073",
+      "range": {
+        "startLine": 24,
+        "startChar": 2,
+        "endLine": 24,
+        "endChar": 12
+      },
+      "revId": "eea6ec1552b6b619807726d7cc8bf4419ceac3ba",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a0e1d27_4fb988e8",
         "filename": "tests/suites/iacl/l2_iacl_untagged.robot",
         "patchSetId": 6
@@ -36,6 +60,30 @@
       "writtenOn": "2016-07-13T11:02:10Z",
       "side": 1,
       "message": "TG-DUT1-DUT2-TG.",
+      "range": {
+        "startLine": 46,
+        "startChar": 16,
+        "endLine": 46,
+        "endChar": 31
+      },
+      "revId": "eea6ec1552b6b619807726d7cc8bf4419ceac3ba",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_0fc71047",
+        "filename": "tests/suites/iacl/l2_iacl_untagged.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 84
+      },
+      "writtenOn": "2016-07-13T12:26:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a0e1d27_4fb988e8",
       "range": {
         "startLine": 46,
         "startChar": 16,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "9a0e1d27_efc3bc36",
+        "filename": "tests/suites/iacl/l2_iacl_untagged.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 84
+      },
+      "writtenOn": "2016-07-13T12:26:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a0e1d27_6fb44cf2",
+      "range": {
+        "startLine": 70,
+        "startChar": 16,
+        "endLine": 70,
+        "endChar": 31
+      },
+      "revId": "eea6ec1552b6b619807726d7cc8bf4419ceac3ba",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a0e1d27_8fbfa0d0",
         "filename": "tests/suites/iacl/l2_iacl_untagged.robot",
         "patchSetId": 6
@@ -82,6 +154,30 @@
       "writtenOn": "2016-07-13T11:02:10Z",
       "side": 1,
       "message": "TG-DUT1-DUT2-TG.",
+      "range": {
+        "startLine": 95,
+        "startChar": 16,
+        "endLine": 95,
+        "endChar": 31
+      },
+      "revId": "eea6ec1552b6b619807726d7cc8bf4419ceac3ba",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_cfc0f82c",
+        "filename": "tests/suites/iacl/l2_iacl_untagged.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 84
+      },
+      "writtenOn": "2016-07-13T12:26:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a0e1d27_8fbfa0d0",
       "range": {
         "startLine": 95,
         "startChar": 16,
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "9a0e1d27_afddc416",
+        "filename": "tests/suites/iacl/l2_iacl_untagged.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 84
+      },
+      "writtenOn": "2016-07-13T12:26:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a0e1d27_eff05ccb",
+      "range": {
+        "startLine": 97,
+        "startChar": 28,
+        "endLine": 97,
+        "endChar": 29
+      },
+      "revId": "eea6ec1552b6b619807726d7cc8bf4419ceac3ba",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a0e1d27_0fe4b00b",
         "filename": "tests/suites/iacl/l2_iacl_untagged.robot",
         "patchSetId": 6
@@ -128,6 +248,30 @@
       "writtenOn": "2016-07-13T11:02:10Z",
       "side": 1,
       "message": "TG-DUT1-DUT2-TG.",
+      "range": {
+        "startLine": 127,
+        "startChar": 16,
+        "endLine": 127,
+        "endChar": 31
+      },
+      "revId": "eea6ec1552b6b619807726d7cc8bf4419ceac3ba",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_6fe7ace5",
+        "filename": "tests/suites/iacl/l2_iacl_untagged.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 84
+      },
+      "writtenOn": "2016-07-13T12:26:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a0e1d27_0fe4b00b",
       "range": {
         "startLine": 127,
         "startChar": 16,
@@ -174,6 +318,54 @@
       "writtenOn": "2016-07-13T11:02:10Z",
       "side": 1,
       "message": "not needed",
+      "range": {
+        "startLine": 128,
+        "startChar": 73,
+        "endLine": 128,
+        "endChar": 74
+      },
+      "revId": "eea6ec1552b6b619807726d7cc8bf4419ceac3ba",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_4fece8c7",
+        "filename": "tests/suites/iacl/l2_iacl_untagged.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 84
+      },
+      "writtenOn": "2016-07-13T12:26:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a0e1d27_6fdd6c42",
+      "range": {
+        "startLine": 128,
+        "startChar": 38,
+        "endLine": 128,
+        "endChar": 42
+      },
+      "revId": "eea6ec1552b6b619807726d7cc8bf4419ceac3ba",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_0fcef05a",
+        "filename": "tests/suites/iacl/l2_iacl_untagged.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 84
+      },
+      "writtenOn": "2016-07-13T12:26:23Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a0e1d27_4fe2a804",
       "range": {
         "startLine": 128,
         "startChar": 73,
