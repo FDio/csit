@@ -182,7 +182,7 @@
 | | ... | \| ${nodes['DUT1']} \| ${eid_table} \|
 | | ...
 | | [Arguments] | ${dut_node} | ${set_eid}
-| | ${show_eid}= | Vpp Show Lisp Local Eid Table | ${dut_node}
+| | ${show_eid}= | Vpp Show Lisp Eid Table | ${dut_node}
 | | Lisp Should Be Equal | ${set_eid} | ${show_eid}
 
 | Delete all lisp eid address from VPP
@@ -216,7 +216,7 @@
 | | ... | \| Then Lisp eid table should be empty \| ${nodes['DUT1']} \|
 | | ...
 | | [Arguments] | ${dut_node}
-| | ${show_eid}= | Vpp Show Lisp Local Eid Table | ${dut_node}
+| | ${show_eid}= | Vpp Show Lisp Eid Table | ${dut_node}
 | | Lisp Is Empty | ${show_eid}
 
 | Lisp map resolver address is set

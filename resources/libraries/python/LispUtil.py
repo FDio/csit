@@ -54,8 +54,8 @@ class LispUtil(object):
         return JsonParser().parse_data(vat.get_script_stdout())
 
     @staticmethod
-    def vpp_show_lisp_local_eid_table(node):
-        """Get lisp local eid table from VPP node.
+    def vpp_show_lisp_eid_table(node):
+        """Get lisp eid table from VPP node.
 
         :param node: VPP node.
         :type node: dict
@@ -64,7 +64,7 @@ class LispUtil(object):
         """
 
         vat = VatExecutor()
-        vat.execute_script_json_out('lisp/show_lisp_local_eid_table.vat', node)
+        vat.execute_script_json_out('lisp/show_lisp_eid_table.vat', node)
         return JsonParser().parse_data(vat.get_script_stdout())
 
     @staticmethod
