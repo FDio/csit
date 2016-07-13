@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a0e1d27_2fe77414",
+        "filename": "pylint.cfg",
+        "patchSetId": 7
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-07-13T11:03:27Z",
+      "side": 1,
+      "message": "You used \"disable\u003dtoo-few-public-methods\" too many times. Consider changing this value.",
+      "range": {
+        "startLine": 270,
+        "startChar": 0,
+        "endLine": 270,
+        "endChar": 20
+      },
+      "revId": "c8c5fa9fcc0e70338e68b827b1fb398ac6aa12ee",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_8fd8c054",
+        "filename": "resources/libraries/python/PacketVerifier.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-07-13T11:03:27Z",
+      "side": 1,
+      "message": "Do not commit disabled code.",
+      "range": {
+        "startLine": 108,
+        "startChar": 4,
+        "endLine": 112,
+        "endChar": 11
+      },
+      "revId": "c8c5fa9fcc0e70338e68b827b1fb398ac6aa12ee",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_2fce5484",
+        "filename": "resources/libraries/python/VatExecutor.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-07-13T11:03:27Z",
+      "side": 1,
+      "message": "Do not commit disabled code.",
+      "range": {
+        "startLine": 67,
+        "startChar": 8,
+        "endLine": 67,
+        "endChar": 10
+      },
+      "revId": "c8c5fa9fcc0e70338e68b827b1fb398ac6aa12ee",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_efc73c63",
+        "filename": "resources/libraries/python/VatExecutor.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-07-13T11:03:27Z",
+      "side": 1,
+      "message": "Do not commit disabled code.",
+      "range": {
+        "startLine": 83,
+        "startChar": 8,
+        "endLine": 83,
+        "endChar": 69
+      },
+      "revId": "c8c5fa9fcc0e70338e68b827b1fb398ac6aa12ee",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
