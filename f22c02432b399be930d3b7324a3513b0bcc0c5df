@@ -1,0 +1,187 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a0e1d27_8f68c0f6",
+        "filename": "resources/libraries/python/IPv4Setup.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-07-13T16:29:37Z",
+      "side": 1,
+      "message": "ID (Optional).",
+      "range": {
+        "startLine": 183,
+        "startChar": 30,
+        "endLine": 183,
+        "endChar": 32
+      },
+      "revId": "f22c02432b399be930d3b7324a3513b0bcc0c5df",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_af638419",
+        "filename": "resources/libraries/python/IPv4Setup.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-07-13T16:29:37Z",
+      "side": 1,
+      "message": "move one line up",
+      "revId": "f22c02432b399be930d3b7324a3513b0bcc0c5df",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_4f72a8e6",
+        "filename": "resources/libraries/python/IPv6Util.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-07-13T16:29:37Z",
+      "side": 1,
+      "message": "ID (Optional).",
+      "range": {
+        "startLine": 121,
+        "startChar": 30,
+        "endLine": 121,
+        "endChar": 32
+      },
+      "revId": "f22c02432b399be930d3b7324a3513b0bcc0c5df",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_0f86f0b9",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 772,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-07-13T16:29:37Z",
+      "side": 1,
+      "message": "assign_interface_to_fib_table",
+      "range": {
+        "startLine": 772,
+        "startChar": 8,
+        "endLine": 772,
+        "endChar": 37
+      },
+      "revId": "f22c02432b399be930d3b7324a3513b0bcc0c5df",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_ef929cf5",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 773,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-07-13T16:29:37Z",
+      "side": 1,
+      "message": "don\u0027t forget to add doc",
+      "revId": "f22c02432b399be930d3b7324a3513b0bcc0c5df",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_ca19067b",
+        "filename": "resources/libraries/python/Routing.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-07-13T16:29:37Z",
+      "side": 1,
+      "message": "ID (Optional).",
+      "range": {
+        "startLine": 34,
+        "startChar": 30,
+        "endLine": 34,
+        "endChar": 32
+      },
+      "revId": "f22c02432b399be930d3b7324a3513b0bcc0c5df",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_aae9321c",
+        "filename": "resources/libraries/robot/testing_path.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-07-13T16:29:37Z",
+      "side": 1,
+      "message": "update docstring",
+      "revId": "f22c02432b399be930d3b7324a3513b0bcc0c5df",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_eae60a44",
+        "filename": "tests/suites/vrf/vrf_tests.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-07-13T16:29:37Z",
+      "side": 1,
+      "message": "not needed it is in *** Settings ***, fix all occurence",
+      "revId": "f22c02432b399be930d3b7324a3513b0bcc0c5df",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_2a4be22c",
+        "filename": "tests/suites/vrf/vrf_tests.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-07-13T16:29:37Z",
+      "side": 1,
+      "message": "not routed, please update all relevant occurence",
+      "range": {
+        "startLine": 189,
+        "startChar": 19,
+        "endLine": 189,
+        "endChar": 25
+      },
+      "revId": "f22c02432b399be930d3b7324a3513b0bcc0c5df",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
