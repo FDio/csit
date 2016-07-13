@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a0e1d27_cf8fd8cb",
+        "filename": "resources/libraries/robot/lisp/lisp_static_mapping.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-07-13T13:53:57Z",
+      "side": 1,
+      "message": "dut?",
+      "range": {
+        "startLine": 97,
+        "startChar": 35,
+        "endLine": 97,
+        "endChar": 39
+      },
+      "revId": "9232e7a10d851447c31a515a47c6bd0f05132b7e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_afbca46d",
+        "filename": "resources/libraries/robot/lisp/lisp_static_mapping.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-07-13T13:53:57Z",
+      "side": 1,
+      "message": "integer\nCheck everywhere, please.",
+      "range": {
+        "startLine": 97,
+        "startChar": 53,
+        "endLine": 97,
+        "endChar": 56
+      },
+      "revId": "9232e7a10d851447c31a515a47c6bd0f05132b7e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_6fb68c8c",
+        "filename": "resources/libraries/robot/lisp/lisp_static_mapping.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-07-13T13:53:57Z",
+      "side": 1,
+      "message": "only \\",
+      "range": {
+        "startLine": 108,
+        "startChar": 61,
+        "endLine": 108,
+        "endChar": 63
+      },
+      "revId": "9232e7a10d851447c31a515a47c6bd0f05132b7e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_0fadd031",
+        "filename": "tests/suites/lisp/lisp_dataplane_untagged.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-07-13T13:53:57Z",
+      "side": 1,
+      "message": "Start all [] on a new line.\nAdd \"\\\" at the end of lines where necessary.\nCheck everywhere, please.",
+      "range": {
+        "startLine": 55,
+        "startChar": 33,
+        "endLine": 55,
+        "endChar": 38
+      },
+      "revId": "9232e7a10d851447c31a515a47c6bd0f05132b7e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
