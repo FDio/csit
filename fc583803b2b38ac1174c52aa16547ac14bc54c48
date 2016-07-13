@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a0e1d27_8f79e095",
+        "filename": "resources/libraries/python/IPv4Util.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-07-13T09:02:03Z",
+      "side": 1,
+      "message": "no newline at EOF",
+      "revId": "fc583803b2b38ac1174c52aa16547ac14bc54c48",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_4f73c8b1",
+        "filename": "resources/libraries/python/Namespaces.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-07-13T09:02:03Z",
+      "side": 1,
+      "message": "too many blank lines",
+      "revId": "fc583803b2b38ac1174c52aa16547ac14bc54c48",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_2f6894b9",
+        "filename": "resources/libraries/python/Namespaces.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-07-13T09:02:03Z",
+      "side": 1,
+      "message": "too many blank lines",
+      "revId": "fc583803b2b38ac1174c52aa16547ac14bc54c48",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_cf5eb812",
+        "filename": "resources/libraries/python/Routing.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-07-13T09:02:03Z",
+      "side": 1,
+      "message": "no new line at EOF",
+      "revId": "fc583803b2b38ac1174c52aa16547ac14bc54c48",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_0f65d0e0",
+        "filename": "resources/libraries/python/Routing.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-07-13T09:02:03Z",
+      "side": 1,
+      "message": "please add blank line before",
+      "revId": "fc583803b2b38ac1174c52aa16547ac14bc54c48",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_ef617cd4",
+        "filename": "resources/libraries/python/Routing.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-07-13T09:02:03Z",
+      "side": 1,
+      "message": "please add blank line before",
+      "revId": "fc583803b2b38ac1174c52aa16547ac14bc54c48",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_2faf74e5",
+        "filename": "tests/suites/tap/tap_interface.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-07-13T09:02:03Z",
+      "side": 1,
+      "message": "too many blank lines",
+      "revId": "fc583803b2b38ac1174c52aa16547ac14bc54c48",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
