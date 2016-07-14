@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a0e1d27_25a315a0",
+        "filename": "topologies/available/lf_testbed3.yaml",
+        "patchSetId": 6
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-07-14T12:22:55Z",
+      "side": 1,
+      "message": "Do not commit disabled code. Or if necessary, describe why the code is disabled.",
+      "range": {
+        "startLine": 121,
+        "startChar": 0,
+        "endLine": 132,
+        "endChar": 30
+      },
+      "revId": "25b164604721f7c659b258649cae88455142ed0a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
