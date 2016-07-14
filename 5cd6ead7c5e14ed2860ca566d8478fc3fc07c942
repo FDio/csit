@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a0e1d27_a5d3a537",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 31
+      },
+      "lineNbr": 319,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-07-14T11:56:24Z",
+      "side": 1,
+      "message": "Consider using: \n_async \u003d \"--async\" if async_call else \"\"",
+      "range": {
+        "startLine": 313,
+        "startChar": 8,
+        "endLine": 319,
+        "endChar": 34
+      },
+      "revId": "5cd6ead7c5e14ed2860ca566d8478fc3fc07c942",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_45e28904",
+        "filename": "resources/tools/t-rex/t-rex-stateless.py",
+        "patchSetId": 31
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-07-14T11:56:24Z",
+      "side": 1,
+      "message": "Tuple of STLPktBuilder",
+      "range": {
+        "startLine": 172,
+        "startChar": 11,
+        "endLine": 172,
+        "endChar": 24
+      },
+      "revId": "5cd6ead7c5e14ed2860ca566d8478fc3fc07c942",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_e5f07dcb",
+        "filename": "resources/tools/t-rex/t-rex-stateless.py",
+        "patchSetId": 31
+      },
+      "lineNbr": 419,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-07-14T11:56:24Z",
+      "side": 1,
+      "message": "Do not commit disabled code.\nCheck everywhere, please.",
+      "range": {
+        "startLine": 416,
+        "startChar": 0,
+        "endLine": 419,
+        "endChar": 63
+      },
+      "revId": "5cd6ead7c5e14ed2860ca566d8478fc3fc07c942",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
