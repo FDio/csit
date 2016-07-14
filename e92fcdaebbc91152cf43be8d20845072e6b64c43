@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a0e1d27_25955540",
+        "filename": "resources/libraries/robot/lisp/lisp_static_mapping.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-07-14T12:54:46Z",
+      "side": 1,
+      "message": "address",
+      "range": {
+        "startLine": 95,
+        "startChar": 43,
+        "endLine": 95,
+        "endChar": 52
+      },
+      "revId": "e92fcdaebbc91152cf43be8d20845072e6b64c43",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_e59e3d63",
+        "filename": "resources/libraries/robot/lisp/lisp_static_mapping.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-07-14T12:54:46Z",
+      "side": 1,
+      "message": "address",
+      "range": {
+        "startLine": 96,
+        "startChar": 43,
+        "endLine": 96,
+        "endChar": 52
+      },
+      "revId": "e92fcdaebbc91152cf43be8d20845072e6b64c43",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_05f5b182",
+        "filename": "resources/libraries/robot/lisp/lisp_static_mapping.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-07-14T12:54:46Z",
+      "side": 1,
+      "message": "dut1_ip_static_mapping",
+      "range": {
+        "startLine": 98,
+        "startChar": 16,
+        "endLine": 98,
+        "endChar": 35
+      },
+      "revId": "e92fcdaebbc91152cf43be8d20845072e6b64c43",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_e5f19d96",
+        "filename": "resources/libraries/robot/lisp/lisp_static_mapping.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-07-14T12:54:46Z",
+      "side": 1,
+      "message": "dut1_ip_static_mapping",
+      "range": {
+        "startLine": 100,
+        "startChar": 16,
+        "endLine": 100,
+        "endChar": 35
+      },
+      "revId": "e92fcdaebbc91152cf43be8d20845072e6b64c43",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_4503a973",
+        "filename": "resources/libraries/robot/lisp/lisp_static_mapping.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-07-14T12:54:46Z",
+      "side": 1,
+      "message": "Consider using actual address and prefix values in example.",
+      "range": {
+        "startLine": 107,
+        "startChar": 13,
+        "endLine": 109,
+        "endChar": 72
+      },
+      "revId": "e92fcdaebbc91152cf43be8d20845072e6b64c43",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_25f8b57b",
+        "filename": "resources/libraries/robot/lisp/lisp_static_mapping.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-07-14T12:54:46Z",
+      "side": 1,
+      "message": "Missing arguments ${dut1_to_dut2}, ${dut2_to_dut1}",
+      "range": {
+        "startLine": 111,
+        "startChar": 4,
+        "endLine": 111,
+        "endChar": 15
+      },
+      "revId": "e92fcdaebbc91152cf43be8d20845072e6b64c43",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_65fead6d",
+        "filename": "resources/libraries/robot/lisp/lisp_static_mapping.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-07-14T12:54:46Z",
+      "side": 1,
+      "message": "Missing library import \"IPv4Util.py\"",
+      "range": {
+        "startLine": 114,
+        "startChar": 4,
+        "endLine": 114,
+        "endChar": 24
+      },
+      "revId": "e92fcdaebbc91152cf43be8d20845072e6b64c43",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_a5884523",
+        "filename": "resources/libraries/robot/lisp/lisp_static_mapping.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-07-14T12:54:46Z",
+      "side": 1,
+      "message": "Please do not use Given/When/Then/And syntax in keyword definitions. Also applies below.",
+      "range": {
+        "startLine": 115,
+        "startChar": 4,
+        "endLine": 115,
+        "endChar": 7
+      },
+      "revId": "e92fcdaebbc91152cf43be8d20845072e6b64c43",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_8509c197",
+        "filename": "resources/libraries/robot/lisp/lisp_static_mapping.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-07-14T12:54:46Z",
+      "side": 1,
+      "message": "Use \"Set interface address\" from \"IPv4Util.py\", with the same arguments.",
+      "range": {
+        "startLine": 122,
+        "startChar": 9,
+        "endLine": 124,
+        "endChar": 40
+      },
+      "revId": "e92fcdaebbc91152cf43be8d20845072e6b64c43",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
