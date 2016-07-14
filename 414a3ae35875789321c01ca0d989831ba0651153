@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a0e1d27_65b46df2",
+        "filename": "resources/tools/disk-image-builder/nested/image-patches/06-dpdk-support",
+        "patchSetId": 5
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-07-14T12:04:02Z",
+      "side": 1,
+      "message": "Can you please change to 512?\n\nThen we can merge this change.",
+      "range": {
+        "startLine": 18,
+        "startChar": 14,
+        "endLine": 18,
+        "endChar": 17
+      },
+      "revId": "414a3ae35875789321c01ca0d989831ba0651153",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
