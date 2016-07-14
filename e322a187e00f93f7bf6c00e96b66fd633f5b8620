@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "9a0e1d27_455f2973",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-07-14T14:22:37Z",
+      "side": 1,
+      "message": "please change commit message to more verbose version",
+      "revId": "e322a187e00f93f7bf6c00e96b66fd633f5b8620",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a0e1d27_05f6d1d7",
         "filename": "resources/libraries/python/InterfaceUtil.py",
         "patchSetId": 3
