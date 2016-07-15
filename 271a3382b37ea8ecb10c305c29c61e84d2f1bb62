@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a0e1d27_e9729748",
+        "filename": "tests/suites/rpf/ipv4_rpf_untagged.robot",
+        "patchSetId": 12
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-07-15T10:04:04Z",
+      "side": 1,
+      "message": "is",
+      "range": {
+        "startLine": 34,
+        "startChar": 13,
+        "endLine": 34,
+        "endChar": 16
+      },
+      "revId": "271a3382b37ea8ecb10c305c29c61e84d2f1bb62",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_492503c1",
+        "filename": "tests/suites/rpf/ipv6_rpf_untagged.robot",
+        "patchSetId": 12
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-07-15T10:04:04Z",
+      "side": 1,
+      "message": "is",
+      "range": {
+        "startLine": 35,
+        "startChar": 13,
+        "endLine": 35,
+        "endChar": 16
+      },
+      "revId": "271a3382b37ea8ecb10c305c29c61e84d2f1bb62",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
