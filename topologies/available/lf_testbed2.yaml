@@ -110,31 +110,32 @@ nodes:
         # t2-sut1-c1/p1 - 10GE port1 on Intel NIC x520 2p10GE.
         mac_address: "90:e2:ba:b5:02:b8"
         pci_address: "0000:0a:00.0"
-        link: link12
+        link: link21
         model: Intel-X520-DA2
       port2:
         # t2-sut1-c1/p2 - 10GE port2 on Intel NIC x520 2p10GE.
         mac_address: "90:e2:ba:b5:02:b9"
         pci_address: "0000:0a:00.1"
-        link: link1
-        model: Intel-X520-DA2
-      port3:
-        # t2-sut1-c2/p1 - 40GE port1 on Cisco VIC 1385 2p40GE.
-        mac_address: "04:62:73:8c:ca:cd"
-        pci_address: "0000:13:00.0"
-        link: link13
-        model: Cisco-VIC-1385
-      port4:
-        # t2-sut1-c2/p2 - 40GE port2 on Cisco VIC 1385 2p40GE.
-        mac_address: "04:62:73:8c:ca:ce"
-        pci_address: "0000:15:00.0"
         link: link3
-        model: Cisco-VIC-1385
+        model: Intel-X520-DA2
+###TODO:links need to be identified before enabling interfaces###
+#      port3:
+#        # t2-sut1-c2/p1 - 40GE port1 on Cisco VIC 1385 2p40GE.
+#        mac_address: "04:62:73:8c:ca:cd"
+#        pci_address: "0000:13:00.0"
+#        link:
+#        model: Cisco-VIC-1385
+#      port4:
+#        # t2-sut1-c2/p2 - 40GE port2 on Cisco VIC 1385 2p40GE.
+#        mac_address: "04:62:73:8c:ca:ce"
+#        pci_address: "0000:15:00.0"
+#        link:
+#        model: Cisco-VIC-1385
       port5:
         # t2-sut1-c4/p1 - 40GE port1 on Intel NIC xl710 2p40GE.
         mac_address: "68:05:ca:35:77:08"
         pci_address: "0000:85:00.0"
-        link: link14
+        link: link23
         model: Intel-XL710
       port6:
         # t2-sut1-c4/p2 - 40GE port2 on Intel NIC xl710 2p40GE.
@@ -142,30 +143,31 @@ nodes:
         pci_address: "0000:85:00.1"
         link: link7
         model: Intel-XL710
-      port7:
-        # t2-sut1-c5/p1 - 10GE port1 on Intel NIC x710 2p10GE.
-        mac_address: "3c:fd:fe:9c:ee:ec"
-        pci_address: "0000:87:00.0"
-        link: link15
-        model: Intel-X710
-      port8:
-        # t2-sut1-c5/p2 - 10GE port2 on Intel NIC x710 2p10GE.
-        mac_address: "3c:fd:fe:9c:ee:ed"
-        pci_address: "0000:87:00.1"
-        link: link9
-        model: Intel-X710
-      port9:
-        # t2-sut1-cm/p1 - 10GE port1 on Cisco VIC 1227 2p10GE.
-        mac_address: "00:fe:c8:e4:d0:9b"
-        pci_address: "0000:06:00.0"
-        link: link16
-        model: Cisco-VIC-1227
-      port10:
-        # t2-sut1-cm/p2 - 10GE port2 on Cisco VIC 1227 2p10GE.
-        mac_address: "00:fe:c8:e4:d0:9c"
-        pci_address: "0000:07:00.0"
-        link: link3
-        model: Cisco-VIC-1227
+###TODO:links need to be identified before enabling interfaces###
+#      port7:
+#        # t2-sut1-c5/p1 - 10GE port1 on Intel NIC x710 2p10GE.
+#        mac_address: "3c:fd:fe:9c:ee:ec"
+#        pci_address: "0000:87:00.0"
+#        link:
+#        model: Intel-X710
+#      port8:
+#        # t2-sut1-c5/p2 - 10GE port2 on Intel NIC x710 2p10GE.
+#        mac_address: "3c:fd:fe:9c:ee:ed"
+#        pci_address: "0000:87:00.1"
+#        link:
+#        model: Intel-X710
+#      port9:
+#        # t2-sut1-cm/p1 - 10GE port1 on Cisco VIC 1227 2p10GE.
+#        mac_address: "00:fe:c8:e4:d0:9b"
+#        pci_address: "0000:06:00.0"
+#        link:
+#        model: Cisco-VIC-1227
+#      port10:
+#        # t2-sut1-cm/p2 - 10GE port2 on Cisco VIC 1227 2p10GE.
+#        mac_address: "00:fe:c8:e4:d0:9c"
+#        pci_address: "0000:07:00.0"
+#        link:
+#        model: Cisco-VIC-1227
   DUT2:
     type: DUT
     host: "10.30.51.22"
@@ -177,26 +179,27 @@ nodes:
         # t2-sut2-c1/p1 - 10GE port1 on Intel NIC x520 2p10GE.
         mac_address: "90:e2:ba:b5:01:d8"
         pci_address: "0000:0a:00.0"
-        link: link2
+        link: link4
         model: Intel-X520-DA2
       port2:
         # t2-sut2-c1/p2 - 10GE port2 on Intel NIC x520 2p10GE.
         mac_address: "90:e2:ba:b5:01:d9"
         pci_address: "0000:0a:00.1"
-        link: link12
+        link: link21
         model: Intel-X520-DA2
-      port3:
-        # t2-sut2-c2/p1 - 40GE port1 on Cisco VIC 1385 2p40GE.
-        mac_address: "ec:bd:1d:08:8f:88"
-        pci_address: "0000:13:00.0"
-        link: link4
-        model: Cisco-VIC-1385
-      port4:
-        # t2-sut2-c2/p2 - 40GE port2 on Cisco VIC 1385 2p40GE.
-        mac_address: "ec:bd:1d:08:8f:89"
-        pci_address: "0000:15:00.0"
-        link: link13
-        model: Cisco-VIC-1385
+###TODO:links need to be identified before enabling interfaces###
+#      port3:
+#        # t2-sut2-c2/p1 - 40GE port1 on Cisco VIC 1385 2p40GE.
+#        mac_address: "ec:bd:1d:08:8f:88"
+#        pci_address: "0000:13:00.0"
+#        link: link4
+#        model: Cisco-VIC-1385
+#      port4:
+#        # t2-sut2-c2/p2 - 40GE port2 on Cisco VIC 1385 2p40GE.
+#        mac_address: "ec:bd:1d:08:8f:89"
+#        pci_address: "0000:15:00.0"
+#        link: link13
+#        model: Cisco-VIC-1385
       port5:
         # t2-sut2-c4/p1 - 40GE port1 on Intel NIC xl710 2p40GE.
         mac_address: "68:05:ca:35:76:98"
@@ -207,29 +210,30 @@ nodes:
         # t2-sut2-c4/p2 - 40GE port2 on Intel NIC xl710 2p40GE.
         mac_address: "68:05:ca:35:76:99"
         pci_address: "0000:85:00.1"
-        link: link14
+        link: link23
         model: Intel-XL710
-      port7:
-        # t2-sut2-c5/p1 - 10GE port1 on Intel NIC x710 2p10GE.
-        mac_address: "3c:fd:fe:9c:ee:e4"
-        pci_address: "0000:87:00.0"
-        link: link10
-        model: Intel-X710
-      port8:
-        # t2-sut2-c5/p2 - 10GE port2 on Intel NIC x710 2p10GE.
-        mac_address: "3c:fd:fe:9c:ee:e5"
-        pci_address: "0000:87:00.1"
-        link: link15
-        model: Intel-X710
-      port9:
-        # t2-sut2-cm/p1 - 10GE port1 on Cisco VIC 1227 2p10GE.
-        mac_address: "00:fe:c8:e4:eb:4b"
-        pci_address: "0000:06:00.0"
-        link: link4
-        model: Cisco-VIC-1227
-      port10:
-        # t2-sut2-cm/p2 - 10GE port2 on Cisco VIC 1227 2p10GE.
-        mac_address: "00:fe:c8:e4:eb:4c"
-        pci_address: "0000:07:00.0"
-        link: link16
-        model: Cisco-VIC-1227
+###TODO:links need to be identified before enabling interfaces###
+#      port7:
+#        # t2-sut2-c5/p1 - 10GE port1 on Intel NIC x710 2p10GE.
+#        mac_address: "3c:fd:fe:9c:ee:e4"
+#        pci_address: "0000:87:00.0"
+#        link:
+#        model: Intel-X710
+#      port8:
+#        # t2-sut2-c5/p2 - 10GE port2 on Intel NIC x710 2p10GE.
+#        mac_address: "3c:fd:fe:9c:ee:e5"
+#        pci_address: "0000:87:00.1"
+#        link:
+#        model: Intel-X710
+#      port9:
+#        # t2-sut2-cm/p1 - 10GE port1 on Cisco VIC 1227 2p10GE.
+#        mac_address: "00:fe:c8:e4:eb:4b"
+#        pci_address: "0000:06:00.0"
+#        link:
+#        model: Cisco-VIC-1227
+#      port10:
+#        # t2-sut2-cm/p2 - 10GE port2 on Cisco VIC 1227 2p10GE.
+#        mac_address: "00:fe:c8:e4:eb:4c"
+#        pci_address: "0000:07:00.0"
+#        link:
+#        model: Cisco-VIC-1227
