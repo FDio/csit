@@ -46,3 +46,26 @@ class DhcpClient(object):
             raise RuntimeError('Unable to set DHCP client on node {} and'
                                ' interface {}.'
                                .format(vpp_node, interface))
+
+    @staticmethod
+    def dhcp_proxy_config(vpp_node, server_address, source_address):
+        """Set DHCP proxy.
+
+        :param vpp_node: VPP node to set DHCP proxy.
+        :param server_address: DHCP server IP address.
+        :param source_address: DHCP proxy address.
+        :type vpp_node: dict
+        :type server_address: str
+        :type source_address: str
+        :raises RuntimeError: If unable to set DHCP proxy.
+        """
+
+        output = VatExecutor.cmd_from_template(vpp_node,
+                                               "dhcp_proxy_config.vat",
+                                               server_address=server_address,
+                                               source_address=source_address)
+        output = output[0]
+
+        if output["retval"] != 0:
+            raise RuntimeError('Unable to set DHCP proxy on node {}'
+                               .format(vpp_node))
