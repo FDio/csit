@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a0e1d27_092f0ba3",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 775,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-07-15T11:24:07Z",
+      "side": 1,
+      "message": "are",
+      "range": {
+        "startLine": 775,
+        "startChar": 58,
+        "endLine": 775,
+        "endChar": 60
+      },
+      "revId": "50ad13b812bdeafb1f5d811778e1658069cdcb53",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_c918f386",
+        "filename": "tests/suites/vrf/vrf_tests.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-07-15T11:24:07Z",
+      "side": 1,
+      "message": "Not necessary.",
+      "range": {
+        "startLine": 27,
+        "startChar": 18,
+        "endLine": 27,
+        "endChar": 29
+      },
+      "revId": "50ad13b812bdeafb1f5d811778e1658069cdcb53",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_a91dbf75",
+        "filename": "tests/suites/vrf/vrf_tests.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-07-15T11:24:07Z",
+      "side": 1,
+      "message": "Check with documentation guidelines - I think, we use [] instead of ().",
+      "range": {
+        "startLine": 66,
+        "startChar": 10,
+        "endLine": 66,
+        "endChar": 15
+      },
+      "revId": "50ad13b812bdeafb1f5d811778e1658069cdcb53",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
