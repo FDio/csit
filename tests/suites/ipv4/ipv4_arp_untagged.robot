@@ -68,7 +68,6 @@
 | | ... | Make TG send test packet destined to IPv4 address matching\
 | | ... | static route on DUT2. Make TG verify DUT2 sends ARP Request for
 | | ... | next hop of the static route.
-| | [Tags] | EXPECTED_FAILING
 | | Given Path for 3-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And Interfaces in 3-node path are up
