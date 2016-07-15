@@ -53,7 +53,7 @@
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 2.8mpps
 | | Given Add '1' worker threads and rxqueues '1' without HTT to all DUTs
-| | And   Add all PCI devices to all DUTs
+| | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
 | | When  IPv6 forwarding initialized in a 3-node circular topology
@@ -76,7 +76,7 @@
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 812743pps
 | | Given Add '1' worker threads and rxqueues '1' without HTT to all DUTs
-| | And   Add all PCI devices to all DUTs
+| | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
 | | When  IPv6 forwarding initialized in a 3-node circular topology
@@ -99,7 +99,7 @@
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 138580pps
 | | Given Add '1' worker threads and rxqueues '1' without HTT to all DUTs
-| | And   Add all PCI devices to all DUTs
+| | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Apply startup configuration on all VPP DUTs
 | | When  IPv6 forwarding initialized in a 3-node circular topology
 | | And   Add fib table | ${dut1} | 2001:1:: | 64 | 1 | local
@@ -121,7 +121,7 @@
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 4.9mpps
 | | Given Add '2' worker threads and rxqueues '1' without HTT to all DUTs
-| | And   Add all PCI devices to all DUTs
+| | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
 | | When  IPv6 forwarding initialized in a 3-node circular topology
@@ -144,7 +144,7 @@
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 812743pps
 | | Given Add '2' worker threads and rxqueues '1' without HTT to all DUTs
-| | And   Add all PCI devices to all DUTs
+| | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
 | | When  IPv6 forwarding initialized in a 3-node circular topology
@@ -167,7 +167,7 @@
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 138580pps
 | | Given Add '2' worker threads and rxqueues '1' without HTT to all DUTs
-| | And   Add all PCI devices to all DUTs
+| | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Apply startup configuration on all VPP DUTs
 | | When  IPv6 forwarding initialized in a 3-node circular topology
 | | And   Add fib table | ${dut1} | 2001:1:: | 64 | 1 | local
@@ -189,7 +189,7 @@
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 10.1mpps
 | | Given Add '4' worker threads and rxqueues '2' without HTT to all DUTs
-| | And   Add all PCI devices to all DUTs
+| | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
 | | When  IPv6 forwarding initialized in a 3-node circular topology
@@ -212,7 +212,7 @@
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 812743pps
 | | Given Add '4' worker threads and rxqueues '2' without HTT to all DUTs
-| | And   Add all PCI devices to all DUTs
+| | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
 | | When  IPv6 forwarding initialized in a 3-node circular topology
@@ -235,7 +235,7 @@
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 138580pps
 | | Given Add '4' worker threads and rxqueues '2' without HTT to all DUTs
-| | And   Add all PCI devices to all DUTs
+| | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Apply startup configuration on all VPP DUTs
 | | When  IPv6 forwarding initialized in a 3-node circular topology
 | | And   Add fib table | ${dut1} | 2001:1:: | 64 | 1 | local

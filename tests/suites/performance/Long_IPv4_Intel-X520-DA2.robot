@@ -62,7 +62,7 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '1' worker threads and rxqueues '1' without HTT to all DUTs
-| | And   Add all PCI devices to all DUTs
+| | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
 | | And   IPv4 forwarding initialized in a 3-node circular topology
@@ -84,7 +84,7 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '1' worker threads and rxqueues '1' without HTT to all DUTs
-| | And   Add all PCI devices to all DUTs
+| | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
 | | And   IPv4 forwarding initialized in a 3-node circular topology
@@ -108,7 +108,7 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '1' worker threads and rxqueues '1' without HTT to all DUTs
-| | And   Add all PCI devices to all DUTs
+| | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
 | | And   IPv4 forwarding initialized in a 3-node circular topology
@@ -130,7 +130,7 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '1' worker threads and rxqueues '1' without HTT to all DUTs
-| | And   Add all PCI devices to all DUTs
+| | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
 | | And   IPv4 forwarding initialized in a 3-node circular topology
@@ -154,7 +154,7 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '1' worker threads and rxqueues '1' without HTT to all DUTs
-| | And   Add all PCI devices to all DUTs
+| | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Apply startup configuration on all VPP DUTs
 | | And   IPv4 forwarding initialized in a 3-node circular topology
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
@@ -175,7 +175,7 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '1' worker threads and rxqueues '1' without HTT to all DUTs
-| | And   Add all PCI devices to all DUTs
+| | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Apply startup configuration on all VPP DUTs
 | | And   IPv4 forwarding initialized in a 3-node circular topology
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
@@ -198,7 +198,7 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '2' worker threads and rxqueues '1' without HTT to all DUTs
-| | And   Add all PCI devices to all DUTs
+| | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
 | | And   IPv4 forwarding initialized in a 3-node circular topology
@@ -220,7 +220,7 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '2' worker threads and rxqueues '1' without HTT to all DUTs
-| | And   Add all PCI devices to all DUTs
+| | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
 | | And   IPv4 forwarding initialized in a 3-node circular topology
@@ -244,7 +244,7 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '2' worker threads and rxqueues '1' without HTT to all DUTs
-| | And   Add all PCI devices to all DUTs
+| | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
 | | And   IPv4 forwarding initialized in a 3-node circular topology
@@ -266,7 +266,7 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '2' worker threads and rxqueues '1' without HTT to all DUTs
-| | And   Add all PCI devices to all DUTs
+| | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
 | | And   IPv4 forwarding initialized in a 3-node circular topology
@@ -290,7 +290,7 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '2' worker threads and rxqueues '1' without HTT to all DUTs
-| | And   Add all PCI devices to all DUTs
+| | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Apply startup configuration on all VPP DUTs
 | | And   IPv4 forwarding initialized in a 3-node circular topology
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
@@ -311,7 +311,7 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '2' worker threads and rxqueues '1' without HTT to all DUTs
-| | And   Add all PCI devices to all DUTs
+| | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Apply startup configuration on all VPP DUTs
 | | And   IPv4 forwarding initialized in a 3-node circular topology
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
@@ -334,7 +334,7 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '4' worker threads and rxqueues '2' without HTT to all DUTs
-| | And   Add all PCI devices to all DUTs
+| | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
 | | And   IPv4 forwarding initialized in a 3-node circular topology
@@ -356,7 +356,7 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '4' worker threads and rxqueues '2' without HTT to all DUTs
-| | And   Add all PCI devices to all DUTs
+| | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
 | | And   IPv4 forwarding initialized in a 3-node circular topology
@@ -380,7 +380,7 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '4' worker threads and rxqueues '2' without HTT to all DUTs
-| | And   Add all PCI devices to all DUTs
+| | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
 | | And   IPv4 forwarding initialized in a 3-node circular topology
@@ -402,7 +402,7 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '4' worker threads and rxqueues '2' without HTT to all DUTs
-| | And   Add all PCI devices to all DUTs
+| | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
 | | And   IPv4 forwarding initialized in a 3-node circular topology
@@ -426,7 +426,7 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '4' worker threads and rxqueues '2' without HTT to all DUTs
-| | And   Add all PCI devices to all DUTs
+| | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Apply startup configuration on all VPP DUTs
 | | And   IPv4 forwarding initialized in a 3-node circular topology
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
@@ -447,7 +447,7 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '4' worker threads and rxqueues '2' without HTT to all DUTs
-| | And   Add all PCI devices to all DUTs
+| | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Apply startup configuration on all VPP DUTs
 | | And   IPv4 forwarding initialized in a 3-node circular topology
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
