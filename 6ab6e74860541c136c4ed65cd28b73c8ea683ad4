@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a0e1d27_a9bfffcf",
+        "filename": "resources/libraries/robot/lisp/lisp_static_mapping.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-07-15T07:48:35Z",
+      "side": 1,
+      "message": "Where does this variable come from? It is not passed as argument. \nIf you use test data from an external file imported in test file, pass the data to keywords as arguments. It is much better readable. \nCheck everywhere.",
+      "range": {
+        "startLine": 115,
+        "startChar": 26,
+        "endLine": 115,
+        "endChar": 41
+      },
+      "revId": "6ab6e74860541c136c4ed65cd28b73c8ea683ad4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
