@@ -56,7 +56,7 @@
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 3.5mpps
 | | Given Add '1' worker threads and rxqueues '1' without HTT to all DUTs
-| | And   Add all PCI devices to all DUTs
+| | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
 | | And   IPv4 forwarding initialized in a 3-node circular topology
@@ -73,7 +73,7 @@
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 812743pps
 | | Given Add '1' worker threads and rxqueues '1' without HTT to all DUTs
-| | And   Add all PCI devices to all DUTs
+| | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
 | | And   IPv4 forwarding initialized in a 3-node circular topology
@@ -90,7 +90,7 @@
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 138580pps
 | | Given Add '1' worker threads and rxqueues '1' without HTT to all DUTs
-| | And   Add all PCI devices to all DUTs
+| | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Apply startup configuration on all VPP DUTs
 | | And   IPv4 forwarding initialized in a 3-node circular topology
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
@@ -106,7 +106,7 @@
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 7.5mpps
 | | Given Add '2' worker threads and rxqueues '1' without HTT to all DUTs
-| | And   Add all PCI devices to all DUTs
+| | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
 | | And   IPv4 forwarding initialized in a 3-node circular topology
@@ -123,7 +123,7 @@
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 812743pps
 | | Given Add '2' worker threads and rxqueues '1' without HTT to all DUTs
-| | And   Add all PCI devices to all DUTs
+| | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
 | | And   IPv4 forwarding initialized in a 3-node circular topology
@@ -140,7 +140,7 @@
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 138580pps
 | | Given Add '2' worker threads and rxqueues '1' without HTT to all DUTs
-| | And   Add all PCI devices to all DUTs
+| | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Apply startup configuration on all VPP DUTs
 | | And   IPv4 forwarding initialized in a 3-node circular topology
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
@@ -156,7 +156,7 @@
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 10.0mpps
 | | Given Add '4' worker threads and rxqueues '2' without HTT to all DUTs
-| | And   Add all PCI devices to all DUTs
+| | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
 | | And   IPv4 forwarding initialized in a 3-node circular topology
@@ -173,7 +173,7 @@
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 812743pps
 | | Given Add '4' worker threads and rxqueues '2' without HTT to all DUTs
-| | And   Add all PCI devices to all DUTs
+| | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
 | | And   IPv4 forwarding initialized in a 3-node circular topology
@@ -190,7 +190,7 @@
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 138580pps
 | | Given Add '4' worker threads and rxqueues '2' without HTT to all DUTs
-| | And   Add all PCI devices to all DUTs
+| | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Apply startup configuration on all VPP DUTs
 | | And   IPv4 forwarding initialized in a 3-node circular topology
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
