@@ -836,3 +836,11 @@
 | | Sleep | ${duration}
 | | Show runtime counters on all DUTs
 | | Stop traffic on tg
+
+| Add PCI devices to DUTs from 3-node single link topology
+| | ${dut1_if1_pci}= | Get Interface PCI Addr | ${dut1} | ${dut1_if1}
+| | ${dut1_if2_pci}= | Get Interface PCI Addr | ${dut1} | ${dut1_if2}
+| | ${dut2_if1_pci}= | Get Interface PCI Addr | ${dut2} | ${dut2_if1}
+| | ${dut2_if2_pci}= | Get Interface PCI Addr | ${dut2} | ${dut2_if2}
+| | Add PCI device | ${dut1} | ${dut1_if1_pci} | ${dut1_if2_pci}
+| | Add PCI device | ${dut2} | ${dut2_if1_pci} | ${dut2_if2_pci}

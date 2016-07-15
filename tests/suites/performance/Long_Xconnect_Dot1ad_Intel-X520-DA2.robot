@@ -66,7 +66,7 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '1' worker threads and rxqueues '1' without HTT to all DUTs
-| | And   Add all PCI devices to all DUTs
+| | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
 | | And   VPP interfaces in path are up in a 3-node circular topology
@@ -97,7 +97,7 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '1' worker threads and rxqueues '1' without HTT to all DUTs
-| | And   Add all PCI devices to all DUTs
+| | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
 | | And   VPP interfaces in path are up in a 3-node circular topology
@@ -130,7 +130,7 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '1' worker threads and rxqueues '1' without HTT to all DUTs
-| | And   Add all PCI devices to all DUTs
+| | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
 | | And   VPP interfaces in path are up in a 3-node circular topology
@@ -161,7 +161,7 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '1' worker threads and rxqueues '1' without HTT to all DUTs
-| | And   Add all PCI devices to all DUTs
+| | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
 | | And   VPP interfaces in path are up in a 3-node circular topology
@@ -194,7 +194,7 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '1' worker threads and rxqueues '1' without HTT to all DUTs
-| | And   Add all PCI devices to all DUTs
+| | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Apply startup configuration on all VPP DUTs
 | | And   VPP interfaces in path are up in a 3-node circular topology
 | | When VLAN subinterfaces initialized on 3-node topology
@@ -224,7 +224,7 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '1' worker threads and rxqueues '1' without HTT to all DUTs
-| | And   Add all PCI devices to all DUTs
+| | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Apply startup configuration on all VPP DUTs
 | | And   VPP interfaces in path are up in a 3-node circular topology
 | | When VLAN subinterfaces initialized on 3-node topology
@@ -256,7 +256,7 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '2' worker threads and rxqueues '1' without HTT to all DUTs
-| | And   Add all PCI devices to all DUTs
+| | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
 | | And   VPP interfaces in path are up in a 3-node circular topology
@@ -287,7 +287,7 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '2' worker threads and rxqueues '1' without HTT to all DUTs
-| | And   Add all PCI devices to all DUTs
+| | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
 | | And   VPP interfaces in path are up in a 3-node circular topology
@@ -320,7 +320,7 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '2' worker threads and rxqueues '1' without HTT to all DUTs
-| | And   Add all PCI devices to all DUTs
+| | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
 | | And   VPP interfaces in path are up in a 3-node circular topology
@@ -351,7 +351,7 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '2' worker threads and rxqueues '1' without HTT to all DUTs
-| | And   Add all PCI devices to all DUTs
+| | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
 | | And   VPP interfaces in path are up in a 3-node circular topology
@@ -384,7 +384,7 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '2' worker threads and rxqueues '1' without HTT to all DUTs
-| | And   Add all PCI devices to all DUTs
+| | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Apply startup configuration on all VPP DUTs
 | | And   VPP interfaces in path are up in a 3-node circular topology
 | | When VLAN subinterfaces initialized on 3-node topology
@@ -414,7 +414,7 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '2' worker threads and rxqueues '1' without HTT to all DUTs
-| | And   Add all PCI devices to all DUTs
+| | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Apply startup configuration on all VPP DUTs
 | | And   VPP interfaces in path are up in a 3-node circular topology
 | | When VLAN subinterfaces initialized on 3-node topology
@@ -446,7 +446,7 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '4' worker threads and rxqueues '2' without HTT to all DUTs
-| | And   Add all PCI devices to all DUTs
+| | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
 | | And   VPP interfaces in path are up in a 3-node circular topology
@@ -477,7 +477,7 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '4' worker threads and rxqueues '2' without HTT to all DUTs
-| | And   Add all PCI devices to all DUTs
+| | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
 | | And   VPP interfaces in path are up in a 3-node circular topology
@@ -510,7 +510,7 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '4' worker threads and rxqueues '2' without HTT to all DUTs
-| | And   Add all PCI devices to all DUTs
+| | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
 | | And   VPP interfaces in path are up in a 3-node circular topology
@@ -541,7 +541,7 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '4' worker threads and rxqueues '2' without HTT to all DUTs
-| | And   Add all PCI devices to all DUTs
+| | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
 | | And   VPP interfaces in path are up in a 3-node circular topology
@@ -574,7 +574,7 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '4' worker threads and rxqueues '2' without HTT to all DUTs
-| | And   Add all PCI devices to all DUTs
+| | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Apply startup configuration on all VPP DUTs
 | | And   VPP interfaces in path are up in a 3-node circular topology
 | | When VLAN subinterfaces initialized on 3-node topology
@@ -604,7 +604,7 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '4' worker threads and rxqueues '2' without HTT to all DUTs
-| | And   Add all PCI devices to all DUTs
+| | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Apply startup configuration on all VPP DUTs
 | | And   VPP interfaces in path are up in a 3-node circular topology
 | | When VLAN subinterfaces initialized on 3-node topology
