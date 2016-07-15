@@ -22,7 +22,7 @@ URL="https://nexus.fd.io/service/local/artifact/maven/content"
 VER="RELEASE"
 REPO="fd.io.master.ubuntu.trusty.main"
 GROUP="io.fd.vpp"
-ARTIFACTS="vpp vpp-dbg vpp-dev vpp-dpdk-dev vpp-dpdk-dkms vpp-lib"
+ARTIFACTS="vpp vpp-dbg vpp-dev vpp-dpdk-dev vpp-dpdk-dkms vpp-lib vpp-plugins"
 PACKAGE="deb deb.md5"
 
 for ART in ${ARTIFACTS}; do
