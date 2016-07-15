@@ -427,19 +427,21 @@ class InterfaceUtil(object):
         InterfaceUtil.tg_set_interfaces_udev_rules(node)
 
     @staticmethod
-    def update_all_interface_data_on_all_nodes(nodes):
+    def update_all_interface_data_on_all_nodes(nodes, skip_tg=False):
         """Update interface names on all nodes in DICT__nodes.
 
         This method updates the topology dictionary by querying interface lists
         of all nodes mentioned in the topology dictionary.
 
         :param nodes: Nodes in the topology.
+        :param skip_tg: Skip TG node
         :type nodes: dict
+        :type skip_tg: bool
         """
         for node_data in nodes.values():
             if node_data['type'] == NodeType.DUT:
                 InterfaceUtil.update_vpp_interface_data_on_node(node_data)
-            elif node_data['type'] == NodeType.TG:
+            elif node_data['type'] == NodeType.TG and not skip_tg:
                 InterfaceUtil.update_tg_interface_data_on_node(node_data)
 
     @staticmethod
