@@ -19,8 +19,10 @@ TOPOLOGIES="topologies/available/lf_testbed1-X710-X520.yaml \
             topologies/available/lf_testbed2-X710-X520.yaml \
             topologies/available/lf_testbed3-X710-X520.yaml"
 
-VPP_STABLE_VER="16.09-rc0~85-gc71c426~b252_amd64"
-VPP_REPO_URL="https://nexus.fd.io/content/repositories/fd.io.master.ubuntu.trusty.main/io/fd/vpp/"
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+VPP_STABLE_VER=$(cat ${SCRIPT_DIR}/VPP_STABLE_VER)
+VPP_REPO_URL=$(cat ${SCRIPT_DIR}/VPP_REPO_URL)
 
 # Reservation dir
 RESERVATION_DIR="/tmp/reservation_dir"
@@ -56,9 +58,8 @@ else
     exit 1
 fi
 
-CUR_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 WORKING_TOPOLOGY=""
-export PYTHONPATH=${CUR_DIR}
+export PYTHONPATH=${SCRIPT_DIR}
 
 sudo apt-get -y update
 sudo apt-get -y install libpython2.7-dev python-virtualenv
@@ -73,7 +74,7 @@ pip install -r requirements.txt
 while :; do
     for TOPOLOGY in ${TOPOLOGIES};
     do
-        python ${CUR_DIR}/resources/tools/topo_reservation.py -t ${TOPOLOGY}
+        python ${SCRIPT_DIR}/resources/tools/topo_reservation.py -t ${TOPOLOGY}
         if [ $? -eq 0 ]; then
             WORKING_TOPOLOGY=${TOPOLOGY}
             echo "Reserved: ${WORKING_TOPOLOGY}"
@@ -93,15 +94,15 @@ while :; do
 done
 
 function cancel_all {
-    python ${CUR_DIR}/resources/tools/topo_installation.py -c -d ${INSTALLATION_DIR} -t $1
-    python ${CUR_DIR}/resources/tools/topo_reservation.py -c -t $1
+    python ${SCRIPT_DIR}/resources/tools/topo_installation.py -c -d ${INSTALLATION_DIR} -t $1
+    python ${SCRIPT_DIR}/resources/tools/topo_reservation.py -c -t $1
 }
 
 # On script exit we cancel the reservation and installation and delete all vpp
 # packages
 trap "cancel_all ${WORKING_TOPOLOGY}" EXIT
 
-python ${CUR_DIR}/resources/tools/topo_installation.py -t ${WORKING_TOPOLOGY} \
+python ${SCRIPT_DIR}/resources/tools/topo_installation.py -t ${WORKING_TOPOLOGY} \
                                                        -d ${INSTALLATION_DIR} \
                                                        -p ${VPP_DEBS}
 if [ $? -eq 0 ]; then
@@ -197,12 +198,12 @@ esac
 # Pybot output post-processing
 echo Post-processing test data...
 
-python ${CUR_DIR}/resources/tools/robot_output_parser.py \
-       -i ${CUR_DIR}/output.xml \
-       -o ${CUR_DIR}/output_perf_data.xml \
+python ${SCRIPT_DIR}/resources/tools/robot_output_parser.py \
+       -i ${SCRIPT_DIR}/output.xml \
+       -o ${SCRIPT_DIR}/output_perf_data.xml \
        -v ${VPP_STABLE_VER}
 if [ ! $? -eq 0 ]; then
-    echo "Parsing ${CUR_DIR}/output.xml failed"
+    echo "Parsing ${SCRIPT_DIR}/output.xml failed"
 fi
 
 # Archive artifacts
