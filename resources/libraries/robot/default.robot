@@ -138,3 +138,4 @@
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | Apply Config | ${nodes['${dut}']}
+| | Update All Interface Data On All Nodes | ${nodes}
