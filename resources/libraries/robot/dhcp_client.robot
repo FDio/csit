@@ -137,5 +137,100 @@
 | | ... | --server_mac | ${server_mac} | --server_ip | ${server_ip}
 | | ... | --client_ip | ${client_ip} | --client_mask | ${client_mask}
 | | ... | --lease_time | ${lease_time}
-| | Run Traffic Script On Node  | dhcp/check_dhcp_request_ack.py
+| | Run Traffic Script On Node | dhcp/check_dhcp_request_ack.py
+| | ... | ${tg_node} | ${args}
+
+| Send DHCP Messages
+| | [Documentation] | Send and receive DHCP messages between client
+| | ...             | and server through DHCP proxy.
+| | ...
+| | ... | *Arguments:*
+| | ... | - tg_node - TG node. Type: dictionary
+| | ... | - tg_interface1 - TG interface. Type: string
+| | ... | - tg_interface2 - TG interface. Type: string
+| | ... | - server_ip - DHCP server IP address. Type: string
+| | ... | - client_ip - Client IP address. Type: string
+| | ... | - proxy_ip - DHCP proxy IP address. Type: string
+| | ...
+| | ... | *Return:*
+| | ... | - No value returned.
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Send DHCP Messages \| ${nodes['TG']} \
+| | ... | \| eth3 \| eth4 \| 192.168.0.100 \| 08:00:27:cc:4f:54 \
+| | ... | \| 172.16.0.2 \| 08:00:27:64:18:d2 \| 172.16.0.1 \|
+| | ...
+| | [Arguments] | ${tg_node} | ${tg_interface1} | ${tg_interface2}
+| | ... | ${server_ip} | ${server_mac} | ${client_ip} | ${client_mac}
+| | ... | ${proxy_ip} |
+| | ${tg_interface_name1}= | Get interface name | ${tg_node} | ${tg_interface1}
+| | ${tg_interface_name2}= | Get interface name | ${tg_node} | ${tg_interface2}
+| | ${args}= | Catenate | --tx_if | ${tg_interface_name1}
+| | ...                 | --rx_if | ${tg_interface_name2}
+| | ...                 | --server_ip | ${server_ip}
+| | ...                 | --server_mac | ${server_mac}
+| | ...                 | --client_ip | ${client_ip}
+| | ...                 | --client_mac | ${client_mac}
+| | ...                 | --proxy_ip | ${proxy_ip}
+| | Run Traffic Script On Node | dhcp/send_dhcp_messages.py
+| | ... | ${tg_node} | ${args}
+
+| Send DHCP DISCOVER
+| | [Documentation] | Send and receive DHCP DISCOVER.
+| | ...
+| | ... | *Arguments:*
+| | ... | - tg_node - TG node. Type: dictionary
+| | ... | - tg_interface1 - TG interface. Type: string
+| | ... | - tg_interface2 - TG interface. Type: string
+| | ... | - tx_src_ip - Source address of DHCP DISCOVER packet. Type: string
+| | ... | - tx_dst_ip - Destination address of DHCP DISCOVER packet. Type: string
+| | ...
+| | ... | *Return:*
+| | ... | - No value returned.
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Send DHCP DISCOVER \| ${nodes['TG']} \
+| | ... | \| eth3 \| eth4 \| 0.0.0.0 \| 255.255.255.255 \
+| | ...
+| | [Arguments] | ${tg_node} | ${tg_interface1} | ${tg_interface2}
+| | ... | ${tx_src_ip} | ${tx_dst_ip} |
+| | ${tg_interface_name1}= | Get interface name | ${tg_node} | ${tg_interface1}
+| | ${tg_interface_name2}= | Get interface name | ${tg_node} | ${tg_interface2}
+| | ${args}= | Catenate | --tx_if | ${tg_interface_name1}
+| | ...                 | --rx_if | ${tg_interface_name2}
+| | ...                 | --tx_src_ip | ${tx_src_ip}
+| | ...                 | --tx_dst_ip | ${tx_dst_ip}
+| | Run Traffic Script On Node | dhcp/send_dhcp_discover.py
+| | ... | ${tg_node} | ${args}
+
+| Send DHCP DISCOVER should fail
+| | [Documentation] | Send and receive DHCP DISCOVER should fail.
+| | ...
+| | ... | *Arguments:*
+| | ... | - tg_node - TG node. Type: dictionary
+| | ... | - tg_interface1 - TG interface. Type: string
+| | ... | - tg_interface2 - TG interface. Type: string
+| | ... | - tx_src_ip - Source address of DHCP DISCOVER packet. Type: string
+| | ... | - tx_dst_ip - Destination address of DHCP DISCOVER packet. Type: string
+| | ...
+| | ... | *Return:*
+| | ... | - No value returned.
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Send DHCP DISCOVER should fail \| ${nodes['TG']} \
+| | ... | \| eth3 \| eth4 \| 0.0.0.0 \| 255.255.255.255 \
+| | ...
+| | [Arguments] | ${tg_node} | ${tg_interface1} | ${tg_interface2}
+| | ... | ${tx_src_ip} | ${tx_dst_ip} |
+| | ${tg_interface_name1}= | Get interface name | ${tg_node} | ${tg_interface1}
+| | ${tg_interface_name2}= | Get interface name | ${tg_node} | ${tg_interface2}
+| | ${args}= | Catenate | --tx_if | ${tg_interface_name1}
+| | ...                 | --rx_if | ${tg_interface_name2}
+| | ...                 | --tx_src_ip | ${tx_src_ip}
+| | ...                 | --tx_dst_ip | ${tx_dst_ip}
+| | Run Keyword And Expect Error | DHCP DISCOVER timeout
+| | ... | Run Traffic Script On Node | dhcp/send_dhcp_discover.py
 | | ... | ${tg_node} | ${args}

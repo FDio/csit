@@ -50,6 +50,7 @@ class TrafficScriptExecutor(object):
         :type timeout: int
         :raises RuntimeError: ICMP echo Rx timeout.
         :raises RuntimeError: DHCP REQUEST Rx timeout.
+        :raises RuntimeError: DHCP DISCOVER timeout.
         :raises RuntimeError: TCP/UDP Rx timeout.
         :raises RuntimeError: ARP reply timeout.
         :raises RuntimeError: Traffic script execution failed.
@@ -74,6 +75,8 @@ class TrafficScriptExecutor(object):
                 raise RuntimeError("ICMP echo Rx timeout")
             elif "RuntimeError: DHCP REQUEST Rx timeout" in stderr:
                 raise RuntimeError("DHCP REQUEST Rx timeout")
+            elif "RuntimeError('DHCP DISCOVER timeout')" in stderr:
+                raise RuntimeError("DHCP DISCOVER timeout")
             elif "RuntimeError: TCP/UDP Rx timeout" in stderr:
                 raise RuntimeError("TCP/UDP Rx timeout")
             elif "Error occurred: ARP reply timeout" in stdout:
