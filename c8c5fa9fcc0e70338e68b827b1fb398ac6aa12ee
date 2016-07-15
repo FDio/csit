@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "9a0e1d27_ac526d11",
+        "filename": "pylint.cfg",
+        "patchSetId": 7
+      },
+      "lineNbr": 185,
+      "author": {
+        "id": 74
+      },
+      "writtenOn": "2016-07-15T10:53:05Z",
+      "side": 1,
+      "message": "please remove TODO",
+      "range": {
+        "startLine": 185,
+        "startChar": 16,
+        "endLine": 185,
+        "endChar": 20
+      },
+      "revId": "c8c5fa9fcc0e70338e68b827b1fb398ac6aa12ee",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a0e1d27_2fe77414",
         "filename": "pylint.cfg",
         "patchSetId": 7
