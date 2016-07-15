@@ -60,7 +60,7 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '1' worker threads and rxqueues '1' without HTT to all DUTs
-| | And   Add all PCI devices to all DUTs
+| | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
 | | When  IPv6 forwarding initialized in a 3-node circular topology
@@ -89,7 +89,7 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '1' worker threads and rxqueues '1' without HTT to all DUTs
-| | And   Add all PCI devices to all DUTs
+| | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
 | | When  IPv6 forwarding initialized in a 3-node circular topology
@@ -120,7 +120,7 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '1' worker threads and rxqueues '1' without HTT to all DUTs
-| | And   Add all PCI devices to all DUTs
+| | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
 | | When  IPv6 forwarding initialized in a 3-node circular topology
@@ -149,7 +149,7 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '1' worker threads and rxqueues '1' without HTT to all DUTs
-| | And   Add all PCI devices to all DUTs
+| | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
 | | When  IPv6 forwarding initialized in a 3-node circular topology
@@ -180,7 +180,7 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '1' worker threads and rxqueues '1' without HTT to all DUTs
-| | And   Add all PCI devices to all DUTs
+| | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Apply startup configuration on all VPP DUTs
 | | When  IPv6 forwarding initialized in a 3-node circular topology
 | | And   Add fib table | ${dut1} | 2001:1:: | 64 | 1 | local
@@ -208,7 +208,7 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '1' worker threads and rxqueues '1' without HTT to all DUTs
-| | And   Add all PCI devices to all DUTs
+| | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Apply startup configuration on all VPP DUTs
 | | When  IPv6 forwarding initialized in a 3-node circular topology
 | | And   Add fib table | ${dut1} | 2001:1:: | 64 | 1 | local
@@ -238,7 +238,7 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '2' worker threads and rxqueues '1' without HTT to all DUTs
-| | And   Add all PCI devices to all DUTs
+| | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
 | | When  IPv6 forwarding initialized in a 3-node circular topology
@@ -267,7 +267,7 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '2' worker threads and rxqueues '1' without HTT to all DUTs
-| | And   Add all PCI devices to all DUTs
+| | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
 | | When  IPv6 forwarding initialized in a 3-node circular topology
@@ -298,7 +298,7 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '2' worker threads and rxqueues '1' without HTT to all DUTs
-| | And   Add all PCI devices to all DUTs
+| | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
 | | When  IPv6 forwarding initialized in a 3-node circular topology
@@ -327,7 +327,7 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '2' worker threads and rxqueues '1' without HTT to all DUTs
-| | And   Add all PCI devices to all DUTs
+| | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
 | | When  IPv6 forwarding initialized in a 3-node circular topology
@@ -358,7 +358,7 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '2' worker threads and rxqueues '1' without HTT to all DUTs
-| | And   Add all PCI devices to all DUTs
+| | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Apply startup configuration on all VPP DUTs
 | | When  IPv6 forwarding initialized in a 3-node circular topology
 | | And   Add fib table | ${dut1} | 2001:1:: | 64 | 1 | local
@@ -386,7 +386,7 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '2' worker threads and rxqueues '1' without HTT to all DUTs
-| | And   Add all PCI devices to all DUTs
+| | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Apply startup configuration on all VPP DUTs
 | | When  IPv6 forwarding initialized in a 3-node circular topology
 | | And   Add fib table | ${dut1} | 2001:1:: | 64 | 1 | local
@@ -416,7 +416,7 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '4' worker threads and rxqueues '2' without HTT to all DUTs
-| | And   Add all PCI devices to all DUTs
+| | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
 | | When  IPv6 forwarding initialized in a 3-node circular topology
@@ -445,7 +445,7 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '4' worker threads and rxqueues '2' without HTT to all DUTs
-| | And   Add all PCI devices to all DUTs
+| | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
 | | When  IPv6 forwarding initialized in a 3-node circular topology
@@ -476,7 +476,7 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '4' worker threads and rxqueues '2' without HTT to all DUTs
-| | And   Add all PCI devices to all DUTs
+| | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
 | | When  IPv6 forwarding initialized in a 3-node circular topology
@@ -505,7 +505,7 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '4' worker threads and rxqueues '2' without HTT to all DUTs
-| | And   Add all PCI devices to all DUTs
+| | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
 | | When  IPv6 forwarding initialized in a 3-node circular topology
@@ -536,7 +536,7 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '4' worker threads and rxqueues '2' without HTT to all DUTs
-| | And   Add all PCI devices to all DUTs
+| | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Apply startup configuration on all VPP DUTs
 | | When  IPv6 forwarding initialized in a 3-node circular topology
 | | And   Add fib table | ${dut1} | 2001:1:: | 64 | 1 | local
@@ -564,7 +564,7 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '4' worker threads and rxqueues '2' without HTT to all DUTs
-| | And   Add all PCI devices to all DUTs
+| | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Apply startup configuration on all VPP DUTs
 | | When  IPv6 forwarding initialized in a 3-node circular topology
 | | And   Add fib table | ${dut1} | 2001:1:: | 64 | 1 | local
