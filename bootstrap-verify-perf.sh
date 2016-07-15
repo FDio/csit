@@ -44,6 +44,7 @@ then
     wget -q "${VPP_REPO_URL}/vpp-dpdk-dev/${VPP_STABLE_VER}/vpp-dpdk-dev-${VPP_STABLE_VER}.deb" || exit
     wget -q "${VPP_REPO_URL}/vpp-dpdk-dkms/${VPP_STABLE_VER}/vpp-dpdk-dkms-${VPP_STABLE_VER}.deb" || exit
     wget -q "${VPP_REPO_URL}/vpp-lib/${VPP_STABLE_VER}/vpp-lib-${VPP_STABLE_VER}.deb" || exit
+    wget -q "${VPP_REPO_URL}/vpp-plugins/${VPP_STABLE_VER}/vpp-plugins-${VPP_STABLE_VER}.deb" || exit
     VPP_DEBS="$( readlink -f *.deb | tr '\n' ' ' )"
     cd ..
 
