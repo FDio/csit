@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a0e1d27_cf0593c3",
+        "filename": "resources/tools/t-rex/t-rex-stateless.py",
+        "patchSetId": 32
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-07-18T09:04:37Z",
+      "side": 1,
+      "message": ":rtype:",
+      "range": {
+        "startLine": 112,
+        "startChar": 5,
+        "endLine": 112,
+        "endChar": 10
+      },
+      "revId": "56f163ae94893132fafaa8e0a30bf25cb9e5e4ba",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
