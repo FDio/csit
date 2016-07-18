@@ -58,6 +58,7 @@ dpdk {{
   }}
 {pciconfig}
 {nomultiseg}
+{enablevhostuser}
 }}
 """
 # End VPP configuration template.
@@ -209,6 +210,25 @@ class VppConfigGenerator(object):
         logger.debug('Setting hostname {} config with {}'.\
             format(hostname, "no-multi-seg"))
 
+    def add_enable_vhost_user_config(self, node):
+        """Add enable-vhost-user configuration for node.
+
+        :param node: DUT node.
+        :type node: dict
+        :return: nothing
+        """
+        if node['type'] != NodeType.DUT:
+            raise ValueError('Node type is not a DUT')
+        hostname = Topology.get_node_hostname(node)
+        if not hostname in self._nodeconfig:
+            self._nodeconfig[hostname] = {}
+        if not 'enable_vhost_user' in self._nodeconfig[hostname]:
+            self._nodeconfig[hostname]['enable_vhost_user'] = []
+        self._nodeconfig[hostname]['enable_vhost_user'].append(
+            "enable-vhost-user")
+        logger.debug('Setting hostname {} config with {}'.\
+            format(hostname, "enable-vhost-user"))
+
     def remove_all_pci_devices(self, node):
         """Remove PCI device configuration from node.
 
@@ -299,6 +319,21 @@ class VppConfigGenerator(object):
         logger.debug('Clearing No Multi Seg config for hostname {}.'.\
             format(hostname))
 
+    def remove_enable_vhost_user_config(self, node):
+        """Remove enable-vhost-user configuration from node.
+
+        :param node: DUT node.
+        :type node: dict
+        :return: nothing
+        """
+        if node['type'] != NodeType.DUT:
+            raise ValueError('Node type is not a DUT')
+        hostname = Topology.get_node_hostname(node)
+        if hostname in self._nodeconfig:
+            self._nodeconfig[hostname]['enable_vhost_user'] = []
+        logger.debug('Clearing enable-vhost-user config for hostname {}.'.\
+            format(hostname))
+
     def apply_config(self, node, waittime=5, retries=12):
         """Generate and apply VPP configuration for node.
 
@@ -324,6 +359,7 @@ class VppConfigGenerator(object):
         rxqueuesconfig = ""
         txqueuesconfig = ""
         nomultiseg = ""
+        enablevhostuser = ""
 
         if hostname in self._nodeconfig:
             cfg = self._nodeconfig[hostname]
@@ -346,13 +382,16 @@ class VppConfigGenerator(object):
             if 'no_multi_seg_config' in cfg:
                 nomultiseg = "  " + "\n  ".join(cfg['no_multi_seg_config'])
 
+            if 'enable_vhost_user' in cfg:
+                enablevhostuser = "  " + "\n  ".join(cfg['enable_vhost_user'])
+
         vppconfig = VPP_CONFIG_TEMPLATE.format(cpuconfig=cpuconfig,
                                                pciconfig=pciconfig,
                                                socketmemconfig=socketmemconfig,
-                                               heapsizeconfig=heapsizeconfig,
                                                rxqueuesconfig=rxqueuesconfig,
                                                txqueuesconfig=txqueuesconfig,
-                                               nomultiseg = nomultiseg)
+                                               nomultiseg=nomultiseg,
+                                               enablevhostuser=enablevhostuser)
 
         logger.debug('Writing VPP config to host {}: "{}"'.format(hostname,
                                                                   vppconfig))
