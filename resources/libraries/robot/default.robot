@@ -124,6 +124,7 @@
 | | | Remove Heapsize Config | ${nodes['${dut}']}
 | | | Remove Rxqueues Config | ${nodes['${dut}']}
 | | | Remove No Multi Seg Config | ${nodes['${dut}']}
+| | | Remove Enable Vhost User Config | ${nodes['${dut}']}
 
 | Setup default startup configuration of VPP on all DUTs
 | | [Documentation] | Setup default startup configuration of VPP to all DUTs
