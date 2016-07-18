@@ -12,7 +12,7 @@
 # limitations under the License.
 
 import StringIO
-from time import time
+from time import time, sleep
 
 import socket
 import paramiko
@@ -90,40 +90,44 @@ class SSH(object):
         logger.trace('exec_command on {0}: {1}'
                      .format(self._ssh.get_transport().getpeername(), cmd))
         start = time()
-        chan = self._ssh.get_transport().open_session()
-        if timeout is not None:
-            chan.settimeout(int(timeout))
+        stdout = StringIO.StringIO()
+        stderr = StringIO.StringIO()
+        chan = self._ssh.get_transport().open_session(timeout=timeout)
+        chan.settimeout(timeout)
+
         chan.exec_command(cmd)
+        while not chan.exit_status_ready():
+            if time() - start > timeout:
+                if chan.recv_ready():
+                    stdout.write(chan.recv(self.__MAX_RECV_BUF))
+
+                if chan.recv_stderr_ready():
+                    stderr.write(chan.recv_stderr(self.__MAX_RECV_BUF))
+
+                logger.error('Timeout exception\n'
+                             'Current contents of stdout buffer: {0}\n'
+                             'Current contents of stdout buffer: {1}\n'
+                             .format(stdout.getvalue(), stderr.getvalue()))
+                raise socket.timeout
+            sleep(0.1)
+        return_code = chan.recv_exit_status()
+
+        while chan.recv_ready():
+            stdout.write(chan.recv(self.__MAX_RECV_BUF))
+
+        while chan.recv_stderr_ready():
+            stderr.write(chan.recv_stderr(self.__MAX_RECV_BUF))
+
         end = time()
         logger.trace('exec_command on {0} took {1} seconds'.format(
             self._ssh.get_transport().getpeername(), end-start))
 
-        stdout = ""
-        try:
-            while True:
-                buf = chan.recv(self.__MAX_RECV_BUF)
-                stdout += buf
-                if not buf:
-                    break
-        except socket.timeout:
-            logger.error('Caught timeout exception, current contents '
-                         'of buffer: {0}'.format(stdout))
-            raise
-
-        stderr = ""
-        while True:
-            buf = chan.recv_stderr(self.__MAX_RECV_BUF)
-            stderr += buf
-            if not buf:
-                break
-
-        return_code = chan.recv_exit_status()
         logger.trace('chan_recv/_stderr took {} seconds'.format(time()-end))
 
         logger.trace('return RC {}'.format(return_code))
-        logger.trace('return STDOUT {}'.format(stdout))
-        logger.trace('return STDERR {}'.format(stderr))
-        return return_code, stdout, stderr
+        logger.trace('return STDOUT {}'.format(stdout.getvalue()))
+        logger.trace('return STDERR {}'.format(stderr.getvalue()))
+        return return_code, stdout.getvalue(), stderr.getvalue()
 
     def exec_command_sudo(self, cmd, cmd_input=None, timeout=10):
         """Execute SSH command with sudo on a new channel on the connected Node.
