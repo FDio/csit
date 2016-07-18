@@ -23,8 +23,9 @@
 | ...         | AND          | Update All Interface Data On All Nodes | ${nodes}
 | ...         | AND          | Setup DUT nodes for IPv4 testing
 | Test Setup | Clear interface counters on all vpp nodes in topology | ${nodes}
-| Test Teardown | Run Keyword If Test Failed | Show packet trace on all DUTs | ${nodes}
-| ...           | AND                        | Show vpp trace dump on all DUTs
+| Test Teardown | Run Keyword If Test Failed | Run Keywords
+| ... | Show packet trace on all DUTs | ${nodes} | AND
+| ... | Show vpp trace dump on all DUTs
 | Documentation | *IPv4 routing test cases*
 | ...
 | ... | RFC791 IPv4, RFC826 ARP, RFC792 ICMPv4. Encapsulations: Eth-IPv4-ICMPv4
@@ -115,7 +116,7 @@
 | | ... | Make TG send ICMPv4 Echo Reqs to DUT ingress interface,\
 | | ... | incrementating frame size from 64B to 1500B with increment step
 | | ... | of 1Byte. Make TG verify ICMP Echo Replies are correct.
-| | [Tags] | 3_NODE_SINGLE_LINK_TOPO | VM_ENV
+| | [Tags] | 3_NODE_SINGLE_LINK_TOPO | VM_ENV | tmp
 | | Ipv4 icmp echo sweep | ${nodes['TG']} | ${nodes['DUT1']} | 0 | 1452 | 1
 
 | TC07: DUT replies to ICMPv4 Echo Reqs with size 1500B-to-9000B-incr-10B
