@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a0e1d27_cf5eb3e9",
+        "filename": "resources/libraries/robot/testing_path.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-07-18T08:50:16Z",
+      "side": 1,
+      "message": "Indentation.",
+      "range": {
+        "startLine": 169,
+        "startChar": 0,
+        "endLine": 169,
+        "endChar": 56
+      },
+      "revId": "57af5ec176aa9657a758b00dcce026e58d67bb4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_af637fb0",
+        "filename": "tests/suites/vrf/vrf_tests.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-07-18T08:50:16Z",
+      "side": 1,
+      "message": "Not necessary if there is no ref. Check with documentation guidelines.\nCheck everywhere, please.",
+      "range": {
+        "startLine": 121,
+        "startChar": 10,
+        "endLine": 121,
+        "endChar": 15
+      },
+      "revId": "57af5ec176aa9657a758b00dcce026e58d67bb4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
