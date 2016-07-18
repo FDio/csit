@@ -62,7 +62,7 @@
 | |          | ...                    | ${dst_mac} | ${src_ip} | ${dst_ip}
 | | ${args}= | Set Variable
 | | ...      | ${args} --start_size ${start_size} --end_size ${end_size} --step ${step}
-| | Run Traffic Script On Node | ipv6_sweep_ping.py | ${src_node} | ${args} | ${20}
+| | Run Traffic Script On Node | ipv6_sweep_ping.py | ${src_node} | ${args}
 
 | Ipv6 tg to dut1 egress
 | | [Documentation] | Send traffic from TG to first DUT egress interface
