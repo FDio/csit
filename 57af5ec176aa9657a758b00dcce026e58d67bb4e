@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "9a0e1d27_2fce4f5b",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 779,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-07-18T11:46:23Z",
+      "side": 1,
+      "message": "str or int",
+      "range": {
+        "startLine": 779,
+        "startChar": 25,
+        "endLine": 779,
+        "endChar": 28
+      },
+      "revId": "57af5ec176aa9657a758b00dcce026e58d67bb4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a0e1d27_cf5eb3e9",
         "filename": "resources/libraries/robot/testing_path.robot",
         "patchSetId": 5
@@ -18,6 +41,98 @@
         "startChar": 0,
         "endLine": 169,
         "endChar": 56
+      },
+      "revId": "57af5ec176aa9657a758b00dcce026e58d67bb4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_efee17b4",
+        "filename": "resources/libraries/robot/testing_path.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-07-18T11:46:23Z",
+      "side": 1,
+      "message": "use either:\nwait until all interfaces are ready.\nor\nwait for all interfaces to be ready.",
+      "range": {
+        "startLine": 169,
+        "startChar": 22,
+        "endLine": 169,
+        "endChar": 55
+      },
+      "revId": "57af5ec176aa9657a758b00dcce026e58d67bb4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_2ff52f83",
+        "filename": "resources/libraries/robot/testing_path.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-07-18T11:46:23Z",
+      "side": 1,
+      "message": "line too long,\nalso applies below",
+      "range": {
+        "startLine": 291,
+        "startChar": 80,
+        "endLine": 291,
+        "endChar": 81
+      },
+      "revId": "57af5ec176aa9657a758b00dcce026e58d67bb4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_0ff26b9a",
+        "filename": "resources/libraries/robot/testing_path.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 312,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-07-18T11:46:23Z",
+      "side": 1,
+      "message": "path,\ncheck all references",
+      "range": {
+        "startLine": 312,
+        "startChar": 35,
+        "endLine": 312,
+        "endChar": 42
+      },
+      "revId": "57af5ec176aa9657a758b00dcce026e58d67bb4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_cf2b53ea",
+        "filename": "resources/libraries/robot/testing_path.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 315,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-07-18T11:46:23Z",
+      "side": 1,
+      "message": "use either:\nwait until all interfaces are ready.\nor\nwait for all interfaces to be ready.",
+      "range": {
+        "startLine": 315,
+        "startChar": 10,
+        "endLine": 315,
+        "endChar": 45
       },
       "revId": "57af5ec176aa9657a758b00dcce026e58d67bb4e",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
