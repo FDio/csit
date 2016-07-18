@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a0e1d27_2f6f6f94",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 391,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-07-18T08:56:07Z",
+      "side": 1,
+      "message": "PEP8: No spaces around \"\u003d\".\nCheck everywhere, please.",
+      "range": {
+        "startLine": 391,
+        "startChar": 53,
+        "endLine": 391,
+        "endChar": 56
+      },
+      "revId": "60f93b1838e0142ce626479298361ed4d36ce2b4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
