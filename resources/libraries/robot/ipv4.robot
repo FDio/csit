@@ -92,7 +92,7 @@
 | |          | ...                    | ${dst_mac} | ${src_ip} | ${dst_ip}
 | | ${args}= | Set Variable
 | | ... | ${args} --start_size ${start_size} --end_size ${end_size} --step ${step}
-| | Run Traffic Script On Node | ipv4_sweep_ping.py | ${src_node} | ${args} | ${20}
+| | Run Traffic Script On Node | ipv4_sweep_ping.py | ${src_node} | ${args}
 
 | Send ARP request and validate response
 | | [Arguments] | ${tg_node} | ${vpp_node}
