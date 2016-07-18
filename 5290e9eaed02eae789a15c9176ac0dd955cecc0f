@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a0e1d27_ef1617f1",
+        "filename": "tests/suites/performance/Long_Lisp_Intel-X520-DA2.robot",
+        "patchSetId": 20
+      },
+      "lineNbr": 788,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-07-18T09:27:57Z",
+      "side": 1,
+      "message": "TC25:\nplease re-count till the end of file \n18 TCs per group * 4 groups \u003d 72 TCs in total you have 69 due to some TC with wrong number",
+      "range": {
+        "startLine": 788,
+        "startChar": 1,
+        "endLine": 788,
+        "endChar": 7
+      },
+      "revId": "5290e9eaed02eae789a15c9176ac0dd955cecc0f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_6f5d67e9",
+        "filename": "tests/suites/performance/Short_Lisp_Intel-X520-DA2.robot",
+        "patchSetId": 20
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-07-18T09:27:57Z",
+      "side": 1,
+      "message": "line too long",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 94
+      },
+      "revId": "5290e9eaed02eae789a15c9176ac0dd955cecc0f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
