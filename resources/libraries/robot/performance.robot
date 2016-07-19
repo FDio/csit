@@ -437,6 +437,32 @@
 | | L2 setup xconnect on DUT | ${dut2} | ${dut2_if1} | ${dut2_if2}
 | | All Vpp Interfaces Ready Wait | ${nodes}
 
+| L2 xconnect with Vhost-User initialized in a 3-node circular topology
+| | [Documentation]
+| | ... | Create two Vhost-User interfaces on all defined VPP nodes. Cross
+| | ... | connect each Vhost interface with one physical inteface.
+| | ...
+| | ... | *Arguments:*
+| | ... | - sock1 - Sock path for first Vhost-User interface. Type: string
+| | ... | - sock2 - Sock path for second Vhost-User interface. Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| L2 xconnect with Vhost-User initialized in a 3-node \
+| | ... |    circular topology \| /tmp/sock1 \| /tmp/sock2
+| | [Arguments] | ${sock1} | ${sock2}
+| | VPP Vhost interfaces for L2BD forwarding are setup | ${dut1}
+| | ...                                                | ${sock1}
+| | ...                                                | ${sock2}
+| | L2 setup xconnect on DUT | ${dut1} | ${dut1_if1} | ${vhost_if1}
+| | L2 setup xconnect on DUT | ${dut1} | ${dut1_if2} | ${vhost_if2}
+| | VPP Vhost interfaces for L2BD forwarding are setup | ${dut2}
+| | ...                                                | ${sock1}
+| | ...                                                | ${sock2}
+| | L2 setup xconnect on DUT | ${dut2} | ${dut2_if1} | ${vhost_if1}
+| | L2 setup xconnect on DUT | ${dut2} | ${dut2_if2} | ${vhost_if2}
+| | All Vpp Interfaces Ready Wait | ${nodes}
+
 | L2 bridge domain initialized in a 3-node circular topology
 | | [Documentation]
 | | ... | Setup L2 DB topology by adding two interfaces on each DUT into BD
