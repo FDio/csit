@@ -426,6 +426,26 @@
 | | Vpp Route Add | ${dut2} | 2001:2::0 | ${host_prefix} | 2001:5::2
 | | ...           | interface=${dut2_if1} | count=${count}
 
+| IPv6 iAcl whitelist initialized in a 3-node circular topology
+| | [Documentation]
+| | ... | Creates classify L3 table on DUTs. IPv6 iAcl security whitelist
+| | ... | ingress /64 filter entries applied on links TG - DUT1 and DUT2 - TG.
+| | ...
+| | ${table_idx} | ${skip_n} | ${match_n}= | And Vpp Creates Classify Table L3
+| | ... | ${dut1} | ip6 | dst
+| | And Vpp Configures Classify Session L3
+| | ... | ${dut1} | permit | ${table_idx} | ${skip_n} | ${match_n}
+| | ... | ip6 | dst | 2001:2::2
+| | And Vpp Enable Input Acl Interface
+| | ... | ${dut1} | ${dut1_if1} | ip6 | ${table_idx}
+| | ${table_idx} | ${skip_n} | ${match_n}= | And Vpp Creates Classify Table L3
+| | ... | ${dut2} | ip6 | dst
+| | And Vpp Configures Classify Session L3
+| | ... | ${dut2} | permit | ${table_idx} | ${skip_n} | ${match_n}
+| | ... | ip6 | dst | 2001:1::2
+| | And Vpp Enable Input Acl Interface
+| | ... | ${dut2} | ${dut2_if2} | ip6 | ${table_idx}
+
 | L2 xconnect initialized in a 3-node circular topology
 | | [Documentation]
 | | ... | Setup L2 xconnect topology by cross connecting two interfaces on
