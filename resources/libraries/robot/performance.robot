@@ -28,7 +28,9 @@
 
 *** Keywords ***
 | Setup performance rate Variables
-| | [Documentation] | Setup performance rates as Suite Variables
+| | [Documentation]
+| | ... | Setup performance linerates as Suite Variables. Variables are used
+| | ... | as search boundaries in RFC2544 throughput search.
 | | ...
 | | ... | _NOTE:_ This KW sets following suite variables:
 | | ... | - 10Ge_linerate_pps_64B - Maximum number of packet per second
@@ -92,16 +94,29 @@
 | | Set Suite Variable | ${40Ge_linerate_pps_9008B} | 553832
 
 | Setup performance global Variables
-| | [Documentation] | Setup performance global Variables
+| | [Documentation]
+| | ... | Setup suite Variables. Variables are used across performance testing.
 | | ...
 | | ... | _NOTE:_ This KW sets following suite variables:
-| | ... | - ${glob_loss_acceptance} - Loss acceptance treshold
-| | ... | - ${glob_loss_acceptance_type} - Loss acceptance treshold type
+| | ... | - glob_loss_acceptance - Loss acceptance treshold
+| | ... | - glob_loss_acceptance_type - Loss acceptance treshold type
 | | ...
 | | Set Suite Variable | ${glob_loss_acceptance} | 0.5
 | | Set Suite Variable | ${glob_loss_acceptance_type} | percentage
 
 | 2-node circular Topology Variables Setup
+| | [Documentation]
+| | ... | Compute path for testing on two given nodes in circular
+| | ... | topology and set corresponding suite variables.
+| | ...
+| | ... | _NOTE:_ This KW sets following suite variables:
+| | ... | - tg - TG node
+| | ... | - tg_if1 - 1st TG interface towards DUT.
+| | ... | - tg_if2 - 2nd TG interface towards DUT.
+| | ... | - dut1 - DUT1 node
+| | ... | - dut1_if1 - 1st DUT interface towards TG.
+| | ... | - dut1_if2 - 2nd DUT interface towards TG.
+| | ...
 | | Append Nodes | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | Compute Path
 | | ${tg_if1} | ${tg}= | Next Interface
@@ -116,6 +131,21 @@
 | | Set Suite Variable | ${dut1_if2}
 
 | 3-node circular Topology Variables Setup
+| | [Documentation]
+| | ... | Compute path for testing on three given nodes in circular
+| | ... | topology and set corresponding suite variables.
+| | ...
+| | ... | _NOTE:_ This KW sets following suite variables:
+| | ... | - tg - TG node
+| | ... | - tg_if1 - TG interface towards DUT1.
+| | ... | - tg_if2 - TG interface towards DUT2.
+| | ... | - dut1 - DUT1 node
+| | ... | - dut1_if1 - DUT1 interface towards TG.
+| | ... | - dut1_if2 - DUT1 interface towards DUT2.
+| | ... | - dut2 - DUT2 node
+| | ... | - dut2_if1 - DUT2 interface towards TG.
+| | ... | - dut2_if2 - DUT2 interface towards DUT1.
+| | ...
 | | Append Nodes | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']}
 | | ...          | ${nodes['TG']}
 | | Compute Path
@@ -136,9 +166,26 @@
 | | Set Suite Variable | ${dut2_if2}
 
 | 2-node circular Topology Variables Setup with DUT interface model
-| | [Documentation] | Find a path between TG-DUT1-TG based on interface
-| | ...             | model provided as an argument. Set suite variables
-| | ...             | tg, tg_if1, tg_if2, dut1, dut1_if1, dut1_if2,
+| | [Documentation]
+| | ... | Compute path for testing on two given nodes in circular topology
+| | ... | based on interface model provided as an argument and set
+| | ... | corresponding suite variables.
+| | ...
+| | ... | *Arguments:*
+| | ... | - iface_model - Interface model. Type: string
+| | ...
+| | ... | _NOTE:_ This KW sets following suite variables:
+| | ... | - tg - TG node
+| | ... | - tg_if1 - 1st TG interface towards DUT.
+| | ... | - tg_if2 - 2nd TG interface towards DUT.
+| | ... | - dut1 - DUT1 node
+| | ... | - dut1_if1 - 1st DUT interface towards TG.
+| | ... | - dut1_if2 - 2nd DUT interface towards TG.
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| 2-node circular Topology Variables Setup with DUT interface model \
+| | ... | \| Intel-X520-DA2 \|
 | | [Arguments] | ${iface_model}
 | | ${iface_model_list}= | Create list | ${iface_model}
 | | Append Node | ${nodes['TG']}
@@ -157,10 +204,29 @@
 | | Set Suite Variable | ${dut1_if2}
 
 | 3-node circular Topology Variables Setup with DUT interface model
-| | [Documentation] | Find a path between TG-DUT1-DUT2-TG based on interface
-| | ...             | model provided as an argument. Set suite variables
-| | ...             | tg, tg_if1, tg_if2, dut1, dut1_if1, dut1_if2,
-| | ...             | dut2, dut2_if1, dut2_if2
+| | [Documentation]
+| | ... | Compute path for testing on three given nodes in circular topology
+| | ... | based on interface model provided as an argument and set
+| | ... | corresponding suite variables.
+| | ...
+| | ... | *Arguments:*
+| | ... | - iface_model - Interface model. Type: string
+| | ...
+| | ... | _NOTE:_ This KW sets following suite variables:
+| | ... | - tg - TG node
+| | ... | - tg_if1 - TG interface towards DUT1.
+| | ... | - tg_if2 - TG interface towards DUT2.
+| | ... | - dut1 - DUT1 node
+| | ... | - dut1_if1 - DUT1 interface towards TG.
+| | ... | - dut1_if2 - DUT1 interface towards DUT2.
+| | ... | - dut2 - DUT2 node
+| | ... | - dut2_if1 - DUT2 interface towards TG.
+| | ... | - dut2_if2 - DUT2 interface towards DUT1.
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| 3-node circular Topology Variables Setup with DUT interface model \
+| | ... | \| Intel-X520-DA2 \|
 | | [Arguments] | ${iface_model}
 | | ${iface_model_list}= | Create list | ${iface_model}
 | | Append Node | ${nodes['TG']}
@@ -185,14 +251,18 @@
 | | Set Suite Variable | ${dut2_if2}
 
 | VPP interfaces in path are up in a 2-node circular topology
-| | [Documentation] | *Set UP state on VPP interfaces in path on nodes.*
+| | [Documentation]
+| | ... | *Set UP state on VPP interfaces in path on nodes in 2-node circular
+| | ... | topology.*
 | | ...
 | | Set Interface State | ${dut1} | ${dut1_if1} | up
 | | Set Interface State | ${dut1} | ${dut1_if2} | up
 | | Vpp Node Interfaces Ready Wait | ${dut1}
 
 | VPP interfaces in path are up in a 3-node circular topology
-| | [Documentation] | *Set UP state on VPP interfaces in path on nodes.*
+| | [Documentation]
+| | ... | *Set UP state on VPP interfaces in path on nodes in 3-node circular
+| | ... | topology.*
 | | ...
 | | Set Interface State | ${dut1} | ${dut1_if1} | up
 | | Set Interface State | ${dut1} | ${dut1_if2} | up
@@ -202,7 +272,14 @@
 | | Vpp Node Interfaces Ready Wait | ${dut2}
 
 | IPv4 forwarding initialized in a 3-node circular topology
-| | [Documentation] | Custom setup of IPv4 addresses on all DUT nodes and TG
+| | [Documentation]
+| | ... | Set UP state on VPP interfaces in path on nodes in 3-node circular
+| | ... | topology. Get the interface MAC addresses and setup ARP on all VPP
+| | ... | interfaces. Setup IPv4 addresses with /24 prefix on DUT-TG links and
+| | ... | /30 prefix on DUT1-DUT2 link. Set routing on both DUT nodes with
+| | ... | prefix /24 and next hop of neighbour DUT interface IPv4 address.
+| | ...
+| Custom setup of IPv4 addresses on all DUT nodes and TG
 | | Set Interface State | ${dut1} | ${dut1_if1} | up
 | | Set Interface State | ${dut1} | ${dut1_if2} | up
 | | Set Interface State | ${dut2} | ${dut2_if1} | up
@@ -224,7 +301,13 @@
 | | All Vpp Interfaces Ready Wait | ${nodes}
 
 | IPv6 forwarding initialized in a 3-node circular topology
-| | [Documentation] | Custom setup of IPv6 topology on all DUT nodes
+| | [Documentation]
+| | ... | Set UP state on VPP interfaces in path on nodes in 3-node circular
+| | ... | topology. Get the interface MAC addresses and setup neighbour on all
+| | ... | VPP interfaces. Setup IPv6 addresses with /128 prefixes on all
+| | ... | interfaces. Set routing on both DUT nodes with prefix /64 and
+| | ... | next hop of neighbour DUT interface IPv6 address.
+| | ...
 | | ${prefix}= | Set Variable | 64
 | | ${tg1_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
 | | ${tg1_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
@@ -247,18 +330,36 @@
 | | Vpp Route Add | ${dut2} | 2001:1::0 | ${prefix} | 2001:3::1 | ${dut2_if1}
 
 | L2 xconnect initialized in a 3-node circular topology
-| | [Documentation] | Custom setup of L2 xconnect topology
+| | [Documentation]
+| | ... | Setup L2 xconnect topology by cross connecting two interfaces on
+| | ... | each DUT. Interfaces are brought up.
+| | ... |
 | | L2 setup xconnect on DUT | ${dut1} | ${dut1_if1} | ${dut1_if2}
 | | L2 setup xconnect on DUT | ${dut2} | ${dut2_if1} | ${dut2_if2}
 | | All Vpp Interfaces Ready Wait | ${nodes}
 
 | L2 bridge domain initialized in a 3-node circular topology
-| | [Documentation] | Custom setup of L2 bridge topology
+| | [Documentation]
+| | ... | Setup L2 DB topology by adding two interfaces on each DUT into BD
+| | ... | that is created automatically with index 1. Learning is enabled.
+| | ... | Interfaces are brought up.
+| | ... |
 | | Vpp l2bd forwarding setup | ${dut1} | ${dut1_if1} | ${dut1_if2}
 | | Vpp l2bd forwarding setup | ${dut2} | ${dut2_if1} | ${dut2_if2}
 | | All Vpp Interfaces Ready Wait | ${nodes}
 
 | 2-node Performance Suite Setup
+| | [Documentation]
+| | ... | Suite preparation phase that setup default startup configuration of
+| | ... | VPP on all DUTs. Updates interfaces on all nodes and setup global
+| | ... | variables used in test cases. Initializes traffic generator.
+| | ...
+| | ... | *Arguments:*
+| | ... | - topology_type - Topology type. Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| 2-node Performance Suite Setup \| L2 \|
 | | [Arguments] | ${topology_type}
 | | Setup default startup configuration of VPP on all DUTs
 | | Update All Interface Data On All Nodes | ${nodes}
@@ -272,6 +373,17 @@
 | | ...                          | ${topology_type}
 
 | 3-node Performance Suite Setup
+| | [Documentation]
+| | ... | Suite preparation phase that setup default startup configuration of
+| | ... | VPP on all DUTs. Updates interfaces on all nodes and setup global
+| | ... | variables used in test cases. Initializes traffic generator.
+| | ...
+| | ... | *Arguments:*
+| | ... | - topology_type - Topology type. Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| 3-node Performance Suite Setup \| L2 \|
 | | [Arguments] | ${topology_type}
 | | Setup default startup configuration of VPP on all DUTs
 | | Update All Interface Data On All Nodes | ${nodes}
@@ -285,6 +397,19 @@
 | | ...                          | ${topology_type}
 
 2-node Performance Suite Setup with DUT's NIC model
+| | [Documentation]
+| | ... | Suite preparation phase that setup default startup configuration of
+| | ... | VPP on all DUTs. Updates interfaces on all nodes and setup global
+| | ... | variables used in test cases based on interface model provided as an
+| | ... | argument. Initializes traffic generator.
+| | ...
+| | ... | *Arguments:*
+| | ... | - topology_type - Topology type. Type: string
+| | ... | - nic_model - Interface model. Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| 2-node Performance Suite Setup \| L2 \| Intel-X520-DA2 \|
 | | [Arguments] | ${topology_type} | ${nic_model}
 | | Setup default startup configuration of VPP on all DUTs
 | | Update All Interface Data On All Nodes | ${nodes}
@@ -299,6 +424,19 @@
 | | ...                          | ${topology_type}
 
 3-node Performance Suite Setup with DUT's NIC model
+| | [Documentation]
+| | ... | Suite preparation phase that setup default startup configuration of
+| | ... | VPP on all DUTs. Updates interfaces on all nodes and setup global
+| | ... | variables used in test cases based on interface model provided as an
+| | ... | argument. Initializes traffic generator.
+| | ...
+| | ... | *Arguments:*
+| | ... | - topology_type - Topology type. Type: string
+| | ... | - nic_model - Interface model. Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| 3-node Performance Suite Setup \| L2 \| Intel-X520-DA2 \|
 | | [Arguments] | ${topology_type} | ${nic_model}
 | | Setup default startup configuration of VPP on all DUTs
 | | Update All Interface Data On All Nodes | ${nodes}
@@ -313,19 +451,22 @@
 | | ...                          | ${topology_type}
 
 | 3-node Performance Suite Teardown
+| | [Documentation]
+| | ... | Suite teardown phase with traffic generator teardown.
+| | ...
 | | Teardown traffic generator | ${tg}
 
 | Find NDR using linear search and pps
-| | [Documentation] | Find throughput by using RFC2544 linear search with
-| | ...             | non drop rate
+| | [Documentation]
+| | ... | Find throughput by using RFC2544 linear search with non drop rate.
 | | ...
 | | ... | *Arguments:*
-| | ... | - ${framesize} - L2 Frame Size [B]. Type: integer
-| | ... | - ${start_rate} - Initial start rate [pps]. Type: float
-| | ... | - ${step_rate} - Step of linear search [pps]. Type: float
-| | ... | - ${topology_type} - Topology type. Type: string
-| | ... | - ${min_rate} - Lower limit of search [pps]. Type: float
-| | ... | - ${max_rate} - Upper limit of search [pps]. Type: float
+| | ... | - framesize - L2 Frame Size [B]. Type: integer
+| | ... | - start_rate - Initial start rate [pps]. Type: float
+| | ... | - step_rate - Step of linear search [pps]. Type: float
+| | ... | - topology_type - Topology type. Type: string
+| | ... | - min_rate - Lower limit of search [pps]. Type: float
+| | ... | - max_rate - Upper limit of search [pps]. Type: float
 | | ...
 | | ... | *Return:*
 | | ... | - No value returned
@@ -350,21 +491,19 @@
 | | ...                              | fail_on_loss=${False}
 
 | Find PDR using linear search and pps
-| | [Documentation] | Find throughput by using RFC2544 linear search with
-| | ...             | partial drop rate, with PDR threshold 0.5%.
+| | [Documentation]
+| | ... | Find throughput by using RFC2544 linear search with partial drop rate
+| | ... | with PDR threshold and type specified by parameter.
 | | ...
 | | ... | *Arguments:*
-| | ... | - ${framesize} - L2 Frame Size [B]. Type: integer
-| | ... | - ${start_rate} - Initial start rate [pps]. Type: float
-| | ... | - ${step_rate} - Step of linear search [pps]. Type: float
-| | ... | - ${topology_type} - Topology type. Type: string
-| | ... | - ${min_rate} - Lower limit of search [pps]. Type: float
-| | ... | - ${max_rate} - Upper limit of search [pps]. Type: float
-| | ... | - ${loss_acceptance} - Accepted loss during search. Type: float
-| | ... | - ${loss_acceptance_type} - Percentage or frames. Type: string
-| | ...
-| | ... | *Return:*
-| | ... | - No value returned
+| | ... | - framesize - L2 Frame Size [B]. Type: integer
+| | ... | - start_rate - Initial start rate [pps]. Type: float
+| | ... | - step_rate - Step of linear search [pps]. Type: float
+| | ... | - topology_type - Topology type. Type: string
+| | ... | - min_rate - Lower limit of search [pps]. Type: float
+| | ... | - max_rate - Upper limit of search [pps]. Type: float
+| | ... | - loss_acceptance - Accepted loss during search. Type: float
+| | ... | - loss_acceptance_type - Percentage or frames. Type: string
 | | ...
 | | ... | *Example:*
 | | ...
@@ -393,20 +532,17 @@
 | | ...                                   | fail_on_loss=${False}
 
 | Find NDR using binary search and pps
-| | [Documentation] | Find throughput by using RFC2544 binary search with
-| | ...             | non drop rate
+| | [Documentation]
+| | ... | Find throughput by using RFC2544 binary search with non drop rate.
 | | ...
 | | ... | *Arguments:*
-| | ... | - ${framesize} - L2 Frame Size [B]. Type: integer
-| | ... | - ${binary_min} - Lower boundary of search [pps]. Type: float
-| | ... | - ${binary_max} - Upper boundary of search [pps]. Type: float
-| | ... | - ${topology_type} - Topology type. Type: string
-| | ... | - ${min_rate} - Lower limit of search [pps]. Type: float
-| | ... | - ${max_rate} - Upper limit of search [pps]. Type: float
-| | ... | - ${threshold} - Threshold to stop search [pps]. Type: integer
-| | ...
-| | ... | *Return:*
-| | ... | - No value returned
+| | ... | - framesize - L2 Frame Size [B]. Type: integer
+| | ... | - binary_min - Lower boundary of search [pps]. Type: float
+| | ... | - binary_max - Upper boundary of search [pps]. Type: float
+| | ... | - topology_type - Topology type. Type: string
+| | ... | - min_rate - Lower limit of search [pps]. Type: float
+| | ... | - max_rate - Upper limit of search [pps]. Type: float
+| | ... | - threshold - Threshold to stop search [pps]. Type: integer
 | | ...
 | | ... | *Example:*
 | | ...
@@ -428,22 +564,20 @@
 | | ...                              | fail_on_loss=${False}
 
 | Find PDR using binary search and pps
-| | [Documentation] | Find throughput by using RFC2544 binary search with
-| | ...             | partial drop rate, with PDR threshold 0.5%.
+| | [Documentation]
+| | ... | Find throughput by using RFC2544 binary search with partial drop rate
+| | ... | with PDR threshold and type specified by parameter.
 | | ...
 | | ... | *Arguments:*
-| | ... | - ${framesize} - L2 Frame Size [B]. Type: integer
-| | ... | - ${binary_min} - Lower boundary of search [pps]. Type: float
-| | ... | - ${binary_max} - Upper boundary of search [pps]. Type: float
-| | ... | - ${topology_type} - Topology type. Type: string
-| | ... | - ${min_rate} - Lower limit of search [pps]. Type: float
-| | ... | - ${max_rate} - Upper limit of search [pps]. Type: float
-| | ... | - ${threshold} - Threshold to stop search [pps]. Type: integer
-| | ... | - ${loss_acceptance} - Accepted loss during search. Type: float
-| | ... | - ${loss_acceptance_type} - Percentage or frames. Type: string
-| | ...
-| | ... | *Return:*
-| | ... | - No value returned
+| | ... | - framesize - L2 Frame Size [B]. Type: integer
+| | ... | - binary_min - Lower boundary of search [pps]. Type: float
+| | ... | - binary_max - Upper boundary of search [pps]. Type: float
+| | ... | - topology_type - Topology type. Type: string
+| | ... | - min_rate - Lower limit of search [pps]. Type: float
+| | ... | - max_rate - Upper limit of search [pps]. Type: float
+| | ... | - threshold - Threshold to stop search [pps]. Type: integer
+| | ... | - loss_acceptance - Accepted loss during search. Type: float
+| | ... | - loss_acceptance_type - Percentage or frames. Type: string
 | | ...
 | | ... | *Example:*
 | | ...
@@ -473,20 +607,18 @@
 | | ...                                   | fail_on_loss=${False}
 
 | Find NDR using combined search and pps
-| | [Documentation] | Find throughput by using RFC2544 combined search
-| | ...             | (linear + binary) with non drop rate
+| | [Documentation]
+| | ... | Find throughput by using RFC2544 combined search (linear+binary) with
+| | ... | non drop rate.
 | | ...
 | | ... | *Arguments:*
-| | ... | - ${framesize} - L2 Frame Size [B]. Type: integer
-| | ... | - ${start_rate} - Initial start rate [pps]. Type: float
-| | ... | - ${step_rate} - Step of linear search [pps]. Type: float
-| | ... | - ${topology_type} - Topology type. Type: string
-| | ... | - ${min_rate} - Lower limit of search [pps]. Type: float
-| | ... | - ${max_rate} - Upper limit of search [pps]. Type: float
-| | ... | - ${threshold} - Threshold to stop search [pps]. Type: integer
-| | ...
-| | ... | *Return:*
-| | ... | - No value returned
+| | ... | - framesize - L2 Frame Size [B]. Type: integer
+| | ... | - start_rate - Initial start rate [pps]. Type: float
+| | ... | - step_rate - Step of linear search [pps]. Type: float
+| | ... | - topology_type - Topology type. Type: string
+| | ... | - min_rate - Lower limit of search [pps]. Type: float
+| | ... | - max_rate - Upper limit of search [pps]. Type: float
+| | ... | - threshold - Threshold to stop search [pps]. Type: integer
 | | ...
 | | ... | *Example:*
 | | ...
@@ -509,23 +641,20 @@
 | | ...                              | fail_on_loss=${False}
 
 | Find PDR using combined search and pps
-| | [Documentation] | Find throughput by using RFC2544 combined search
-| | ...             | (linear + binary) with partial drop rate, with PDR
-| | ...             | threshold 0.5%.
+| | [Documentation]
+| | ... | Find throughput by using RFC2544 combined search (linear+binary) with
+| | ... | partial drop rate with PDR threshold and type specified by parameter.
 | | ...
 | | ... | *Arguments:*
-| | ... | - ${framesize} - L2 Frame Size [B]. Type: integer
-| | ... | - ${start_rate} - Initial start rate [pps]. Type: float
-| | ... | - ${step_rate} - Step of linear search [pps]. Type: float
-| | ... | - ${topology_type} - Topology type. Type: string
-| | ... | - ${min_rate} - Lower limit of search [pps]. Type: float
-| | ... | - ${max_rate} - Upper limit of search [pps]. Type: float
-| | ... | - ${threshold} - Threshold to stop search [pps]. Type: integer
-| | ... | - ${loss_acceptance} - Accepted loss during search. Type: float
-| | ... | - ${loss_acceptance_type} - Percentage or frames. Type: string
-| | ...
-| | ... | *Return:*
-| | ... | - No value returned
+| | ... | - framesize - L2 Frame Size [B]. Type: integer
+| | ... | - start_rate - Initial start rate [pps]. Type: float
+| | ... | - step_rate - Step of linear search [pps]. Type: float
+| | ... | - topology_type - Topology type. Type: string
+| | ... | - min_rate - Lower limit of search [pps]. Type: float
+| | ... | - max_rate - Upper limit of search [pps]. Type: float
+| | ... | - threshold - Threshold to stop search [pps]. Type: integer
+| | ... | - loss_acceptance - Accepted loss during search. Type: float
+| | ... | - loss_acceptance_type - Percentage or frames. Type: string
 | | ...
 | | ... | *Example:*
 | | ...
@@ -556,16 +685,18 @@
 | | ...                                   | fail_on_loss=${False}
 
 | Display result of NDR search
-| | [Documentation] | Display result of NDR search in packet per seconds (total
-| | ...             | and per stream) and Gbps.
+| | [Documentation]
+| | ... | Display result of NDR search in packet per seconds (total and per
+| | ... | stream) and Gbps total bandwidth with untagged packet.
+| | ... | Througput is calculated as:
+| | ... | Measured rate per stream * Total number of streams
+| | ... | Bandwidth is calculated as:
+| | ... | (Througput * (L2 Frame Size + IPG) * 8) / Max bitrate of NIC
 | | ...
 | | ... | *Arguments:*
-| | ... | - ${rate_per_stream} - Measured rate per stream [pps]. Type: string
-| | ... | - ${framesize} - L2 Frame Size [B]. Type: integer
-| | ... | - ${nr_streams} - Total number of streams. Type: integer
-| | ...
-| | ... | *Return:*
-| | ... | - No value returned
+| | ... | - rate_per_stream - Measured rate per stream [pps]. Type: string
+| | ... | - framesize - L2 Frame Size [B]. Type: integer
+| | ... | - nr_streams - Total number of streams. Type: integer
 | | ...
 | | ... | *Example:*
 | | ...
@@ -580,18 +711,20 @@
 | | ...              | append=yes
 
 | Display result of PDR search
-| | [Documentation] | Display result of PDR search in packet per seconds (total
-| | ...             | and per stream) and Gbps.
+| | [Documentation]
+| | ... | Display result of PDR search in packet per seconds (total and per
+| | ... | stream) and Gbps total bandwidth with untagged packet.
+| | ... | Througput is calculated as:
+| | ... | Measured rate per stream * Total number of streams
+| | ... | Bandwidth is calculated as:
+| | ... | (Througput * (L2 Frame Size + IPG) * 8) / Max bitrate of NIC
 | | ...
 | | ... | *Arguments:*
-| | ... | - ${rate_per_stream} - Measured rate per stream [pps]. Type: string
-| | ... | - ${framesize} - L2 Frame Size [B]. Type: integer
-| | ... | - ${nr_streams} - Total number of streams. Type: integer
-| | ... | - ${loss_acceptance} - Accepted loss during search. Type: float
-| | ... | - ${loss_acceptance_type} - Percentage or frames. Type: string
-| | ...
-| | ... | *Return:*
-| | ... | - No value returned
+| | ... | - rate_per_stream - Measured rate per stream [pps]. Type: string
+| | ... | - framesize - L2 Frame Size [B]. Type: integer
+| | ... | - nr_streams - Total number of streams. Type: integer
+| | ... | - loss_acceptance - Accepted loss during search. Type: float
+| | ... | - loss_acceptance_type - Percentage or frames. Type: string
 | | ...
 | | ... | *Example:*
 | | ...
@@ -610,17 +743,15 @@
 | | ...              | append=yes
 
 | Traffic should pass with no loss
-| | [Documentation] | Send traffic at specified rate. No packet loss is
-| | ...             | accepted at loss evaluation.
+| | [Documentation]
+| | ... | Send traffic at specified rate. No packet loss is accepted at loss
+| | ... | evaluation.
 | | ...
 | | ... | *Arguments:*
-| | ... | - ${duration} - Duration of traffic run [s]. Type: integer
-| | ... | - ${rate} - Rate for sending packets. Type: string
-| | ... | - ${framesize} - L2 Frame Size [B]. Type: integer
-| | ... | - ${topology_type} - Topology type. Type: string
-| | ...
-| | ... | *Return:*
-| | ... | - No value returned
+| | ... | - duration - Duration of traffic run [s]. Type: integer
+| | ... | - rate - Rate for sending packets. Type: string
+| | ... | - framesize - L2 Frame Size [B]. Type: integer
+| | ... | - topology_type - Topology type. Type: string
 | | ...
 | | ... | *Example:*
 | | ...
@@ -637,19 +768,17 @@
 | | Run Keyword If | ${fail_on_loss} | No traffic loss occurred
 
 | Traffic should pass with partial loss
-| | [Documentation] | Send traffic at specified rate. Partial packet loss is
-| | ...             | accepted within loss acceptance value.
+| | [Documentation]
+| | ... | Send traffic at specified rate. Partial packet loss is accepted
+| | ... | within loss acceptance value specified as argument.
 | | ...
 | | ... | *Arguments:*
-| | ... | - ${duration} - Duration of traffic run [s]. Type: integer
-| | ... | - ${rate} - Rate for sending packets. Type: string
-| | ... | - ${framesize} - L2 Frame Size [B]. Type: integer
-| | ... | - ${topology_type} - Topology type. Type: string
-| | ... | - ${loss_acceptance} - Accepted loss during search. Type: float
-| | ... | - ${loss_acceptance_type} - Percentage or frames. Type: string
-| | ...
-| | ... | *Return:*
-| | ... | - No value returned
+| | ... | - duration - Duration of traffic run [s]. Type: integer
+| | ... | - rate - Rate for sending packets. Type: string
+| | ... | - framesize - L2 Frame Size [B]. Type: integer
+| | ... | - topology_type - Topology type. Type: string
+| | ... | - loss_acceptance - Accepted loss during search. Type: float
+| | ... | - loss_acceptance_type - Percentage or frames. Type: string
 | | ...
 | | ... | *Example:*
 | | ...
@@ -668,6 +797,21 @@
 | | ...            | ${loss_acceptance} | ${loss_acceptance_type}
 
 | Clear and show runtime counters with running traffic
+| | [Documentation]
+| | ... | Start traffic at specified rate then clear runtime counters on all
+| | ... | DUTs. Wait for specified amount of time and capture runtime counters
+| | ... | on all DUTs. Finally stop traffic
+| | ...
+| | ... | *Arguments:*
+| | ... | - duration - Duration of traffic run [s]. Type: integer
+| | ... | - rate - Rate for sending packets. Type: string
+| | ... | - framesize - L2 Frame Size [B]. Type: integer
+| | ... | - topology_type - Topology type. Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Traffic should pass with partial loss \| 10 \| 4.0mpps \| 64 \
+| | ... | \| 3-node-IPv4 \| 0.5 \| percentage
 | | [Arguments] | ${duration} | ${rate} | ${framesize} | ${topology_type}
 | | Send traffic on tg | -1 | ${rate} | ${framesize}
 | | ...                | ${topology_type} | warmup_time=0 | async_call=True
