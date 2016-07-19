@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a0e1d27_fd1c8d6c",
+        "filename": "resources/libraries/python/ssh.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-07-19T10:39:09Z",
+      "side": 1,
+      "message": "in seconds",
+      "range": {
+        "startLine": 89,
+        "startChar": 32,
+        "endLine": 89,
+        "endChar": 33
+      },
+      "revId": "2f86442de247859eb6f2f0e7c7117a367a529612",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_dd19c97a",
+        "filename": "resources/libraries/python/ssh.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-07-19T10:39:09Z",
+      "side": 1,
+      "message": "until command is done.\nOR\nfor command to be done.",
+      "range": {
+        "startLine": 89,
+        "startChar": 41,
+        "endLine": 89,
+        "endChar": 60
+      },
+      "revId": "2f86442de247859eb6f2f0e7c7117a367a529612",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_7d207d9b",
+        "filename": "resources/libraries/python/ssh.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-07-19T10:39:09Z",
+      "side": 1,
+      "message": "Sleep seems unnecessary here, the loop should be able to continue right away.",
+      "range": {
+        "startLine": 121,
+        "startChar": 12,
+        "endLine": 121,
+        "endChar": 22
+      },
+      "revId": "2f86442de247859eb6f2f0e7c7117a367a529612",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
