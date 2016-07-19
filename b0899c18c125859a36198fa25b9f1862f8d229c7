@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a0e1d27_920c6096",
+        "filename": "tests/suites/performance/Long_IPv6_iAcl_Intel-X520-DA2.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-07-19T08:47:42Z",
+      "side": 1,
+      "message": "line too long",
+      "range": {
+        "startLine": 23,
+        "startChar": 80,
+        "endLine": 23,
+        "endChar": 82
+      },
+      "revId": "b0899c18c125859a36198fa25b9f1862f8d229c7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_7211ccab",
+        "filename": "tests/suites/performance/Short_IPv6_iAcl_Intel-X520-DA2.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-07-19T08:47:42Z",
+      "side": 1,
+      "message": "line too long",
+      "range": {
+        "startLine": 23,
+        "startChar": 80,
+        "endLine": 23,
+        "endChar": 82
+      },
+      "revId": "b0899c18c125859a36198fa25b9f1862f8d229c7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
