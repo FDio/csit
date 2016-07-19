@@ -1,1 +1,1 @@
-ip_add_del_route {network}/{prefix_length} {via} {vrf} {interface} {resolve_attempts} {count}
+ip_add_del_route {network}/{prefix_length} {via} {vrf} {interface} {resolve_attempts} {count} {lookup_vrf}
