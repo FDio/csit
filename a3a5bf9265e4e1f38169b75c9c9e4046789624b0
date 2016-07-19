@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a0e1d27_92446075",
+        "filename": "resources/libraries/robot/performance.robot",
+        "patchSetId": 29
+      },
+      "lineNbr": 714,
+      "author": {
+        "id": 74
+      },
+      "writtenOn": "2016-07-19T10:07:58Z",
+      "side": 1,
+      "message": "Guest VM",
+      "range": {
+        "startLine": 714,
+        "startChar": 2,
+        "endLine": 714,
+        "endChar": 7
+      },
+      "revId": "a3a5bf9265e4e1f38169b75c9c9e4046789624b0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_525ec846",
+        "filename": "resources/libraries/robot/performance.robot",
+        "patchSetId": 29
+      },
+      "lineNbr": 714,
+      "author": {
+        "id": 74
+      },
+      "writtenOn": "2016-07-19T10:07:58Z",
+      "side": 1,
+      "message": "vhost-user",
+      "range": {
+        "startLine": 714,
+        "startChar": 40,
+        "endLine": 714,
+        "endChar": 45
+      },
+      "revId": "a3a5bf9265e4e1f38169b75c9c9e4046789624b0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_b2364402",
+        "filename": "resources/libraries/robot/performance.robot",
+        "patchSetId": 29
+      },
+      "lineNbr": 747,
+      "author": {
+        "id": 74
+      },
+      "writtenOn": "2016-07-19T10:07:58Z",
+      "side": 1,
+      "message": "guest VM, vhost-user",
+      "range": {
+        "startLine": 747,
+        "startChar": 2,
+        "endLine": 747,
+        "endChar": 8
+      },
+      "revId": "a3a5bf9265e4e1f38169b75c9c9e4046789624b0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_923b40eb",
+        "filename": "resources/libraries/robot/performance.robot",
+        "patchSetId": 29
+      },
+      "lineNbr": 783,
+      "author": {
+        "id": 74
+      },
+      "writtenOn": "2016-07-19T10:07:58Z",
+      "side": 1,
+      "message": "guest VM teardown .. does it need to be dpdk-testpmd specific ?",
+      "range": {
+        "startLine": 783,
+        "startChar": 2,
+        "endLine": 783,
+        "endChar": 7
+      },
+      "revId": "a3a5bf9265e4e1f38169b75c9c9e4046789624b0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
