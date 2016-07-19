@@ -27,7 +27,7 @@
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology
 | ... | with single links between nodes.
-| ... | *[Enc] Packet Encapsulations:* Eth-IPv4 for L2 switching of IPv4.
+| ... | *[Enc] Packet Encapsulations:* Eth-IPv4 for L2 cross connect.
 | ... | *[Cfg] DUT configuration:* DUT1 and DUT2 are configured with L2 cross-
 | ... | connect. DUT1 and DUT2 tested with 2p10GE NIC X520 Niantic by Intel.
 | ... | *[Ver] TG verification:* TG finds and reports throughput NDR (Non Drop

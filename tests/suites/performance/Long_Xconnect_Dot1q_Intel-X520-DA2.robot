@@ -22,11 +22,12 @@
 | Test Setup | Setup all DUTs before test
 | Test Teardown | Run Keywords | Remove startup configuration of VPP from all DUTs
 | ...           | AND          | Show vpp trace dump on all DUTs
-| Documentation | *RFC2544: Pkt throughput L2XC test cases*
+| Documentation | *RFC2544: Pkt throughput L2XC with 802.1q test cases*
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology
 | ... | with single links between nodes.
-| ... | *[Enc] Packet Encapsulations:* Eth-IPv4 for L2 switching of IPv4.
+| ... | *[Enc] Packet Encapsulations:* Eth-IPv4 for L2 cross connect. 802.1q
+| ... | tagging is applied on link between DUT1 and DUT2.
 | ... | *[Cfg] DUT configuration:* DUT1 and DUT2 are configured with L2 cross-
 | ... | connect. DUT1 and DUT2 tested with 2p10GE NIC X520 Niantic by Intel.
 | ... | *[Ver] TG verification:* TG finds and reports throughput NDR (Non Drop
@@ -48,7 +49,7 @@
 | ${tag_rewrite}= | pop-1
 
 *** Test Cases ***
-| TC01: 64B NDR binary search - DUT L2XC with dot1q - 1thread 1core 1rxq
+| TC01: 64B NDR binary search - DUT L2XC with 802.1q - 1thread 1core 1rxq
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC switching config with 1 thread, 1 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for 64 Byte frames
@@ -78,7 +79,7 @@
 | | ...                                       | ${min_rate} | ${max_rate}
 | | ...                                       | ${threshold}
 
-| TC02: 64B PDR binary search - DUT L2XC with dot1q - 1thread 1core 1rxq
+| TC02: 64B PDR binary search - DUT L2XC with 802.1q - 1thread 1core 1rxq
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC switching config with 1 thread, 1 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Find PDR for 64 Byte frames
@@ -110,7 +111,7 @@
 | | ...                                       | ${glob_loss_acceptance}
 | | ...                                       | ${glob_loss_acceptance_type}
 
-| TC03: 1518B NDR binary search - DUT L2XC with dot1q - 1thread 1core 1rxq
+| TC03: 1518B NDR binary search - DUT L2XC with 802.1q - 1thread 1core 1rxq
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC switching config with 1 thread, 1 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for 1518 Byte frames
@@ -140,7 +141,7 @@
 | | ...                                       | ${min_rate} | ${max_rate}
 | | ...                                       | ${threshold}
 
-| TC04: 1518B PDR binary search - DUT L2XC with dot1q - 1thread 1core 1rxq
+| TC04: 1518B PDR binary search - DUT L2XC with 802.1q - 1thread 1core 1rxq
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC switching config with 1 thread, 1 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Find PDR for 1518 Byte frames
@@ -172,7 +173,7 @@
 | | ...                                       | ${glob_loss_acceptance}
 | | ...                                       | ${glob_loss_acceptance_type}
 
-| TC05: 9000B NDR binary search - DUT L2XC with dot1q - 1thread 1core 1rxq
+| TC05: 9000B NDR binary search - DUT L2XC with 802.1q - 1thread 1core 1rxq
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC switching config with 1 thread, 1 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for 9000 Byte frames
@@ -201,7 +202,7 @@
 | | ...                                       | ${min_rate} | ${max_rate}
 | | ...                                       | ${threshold}
 
-| TC06: 9000B PDR binary search - DUT L2XC with dot1q - 1thread 1core 1rxq
+| TC06: 9000B PDR binary search - DUT L2XC with 802.1q - 1thread 1core 1rxq
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC switching config with 1 thread, 1 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Find PDR for 9000 Byte frames
@@ -232,7 +233,7 @@
 | | ...                                       | ${glob_loss_acceptance}
 | | ...                                       | ${glob_loss_acceptance_type}
 
-| TC07: 64B NDR binary search - DUT L2XC with dot1q - 2threads 2cores 1rxq
+| TC07: 64B NDR binary search - DUT L2XC with 802.1q - 2threads 2cores 1rxq
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC switching config with 2 threads, 2 phy cores, \
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for 64 Byte frames
@@ -262,7 +263,7 @@
 | | ...                                       | ${min_rate} | ${max_rate}
 | | ...                                       | ${threshold}
 
-| TC08: 64B PDR binary search - DUT L2XC with dot1q - 2threads 2cores 1rxq
+| TC08: 64B PDR binary search - DUT L2XC with 802.1q - 2threads 2cores 1rxq
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC switching config with 2 threads, 2 phy cores, \
 | | ... | 1 receive queue per NIC port. [Ver] Find PDR for 64 Byte frames
@@ -294,7 +295,7 @@
 | | ...                                       | ${glob_loss_acceptance}
 | | ...                                       | ${glob_loss_acceptance_type}
 
-| TC09: 1518B NDR binary search - DUT L2XC with dot1q - 2threads 2cores 1rxq
+| TC09: 1518B NDR binary search - DUT L2XC with 802.1q - 2threads 2cores 1rxq
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC switching config with 2 threads, 2 phy cores, \
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for 1518 Byte frames
@@ -324,7 +325,7 @@
 | | ...                                       | ${min_rate} | ${max_rate}
 | | ...                                       | ${threshold}
 
-| TC10: 1518B PDR binary search - DUT L2XC with dot1q - 2threads 2cores 1rxq
+| TC10: 1518B PDR binary search - DUT L2XC with 802.1q - 2threads 2cores 1rxq
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC switching config with 2 threads, 2 phy cores, \
 | | ... | 1 receive queue per NIC port. [Ver] Find PDR for 1518 Byte frames
@@ -356,7 +357,7 @@
 | | ...                                       | ${glob_loss_acceptance}
 | | ...                                       | ${glob_loss_acceptance_type}
 
-| TC11: 9000B NDR binary search - DUT L2XC with dot1q - 2threads 2cores 1rxq
+| TC11: 9000B NDR binary search - DUT L2XC with 802.1q - 2threads 2cores 1rxq
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC switching config with 2 threads, 2 phy cores, \
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for 9000 Byte frames
@@ -385,7 +386,7 @@
 | | ...                                       | ${min_rate} | ${max_rate}
 | | ...                                       | ${threshold}
 
-| TC12: 9000B PDR binary search - DUT L2XC with dot1q - 2threads 2cores 1rxq
+| TC12: 9000B PDR binary search - DUT L2XC with 802.1q - 2threads 2cores 1rxq
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC switching config with 2 threads, 2 phy cores, \
 | | ... | 1 receive queue per NIC port. [Ver] Find PDR for 9000 Byte frames
@@ -416,7 +417,7 @@
 | | ...                                       | ${glob_loss_acceptance}
 | | ...                                       | ${glob_loss_acceptance_type}
 
-| TC13: 64B NDR binary search - DUT L2XC with dot1q - 4threads 4cores 2rxq
+| TC13: 64B NDR binary search - DUT L2XC with 802.1q - 4threads 4cores 2rxq
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC switching config with 4 threads, 4 phy cores, \
 | | ... | 2 receive queues per NIC port. [Ver] Find NDR for 64 Byte frames
@@ -446,7 +447,7 @@
 | | ...                                       | ${min_rate} | ${max_rate}
 | | ...                                       | ${threshold}
 
-| TC14: 64B PDR binary search - DUT L2XC with dot1q - 4threads 4cores 2rxq
+| TC14: 64B PDR binary search - DUT L2XC with 802.1q - 4threads 4cores 2rxq
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC switching config with 4 threads, 4 phy cores, \
 | | ... | 2 receive queues per NIC port. [Ver] Find PDR for 64 Byte frames
@@ -478,7 +479,7 @@
 | | ...                                       | ${glob_loss_acceptance}
 | | ...                                       | ${glob_loss_acceptance_type}
 
-| TC15: 1518B NDR binary search - DUT L2XC with dot1q - 4threads 4cores 2rxq
+| TC15: 1518B NDR binary search - DUT L2XC with 802.1q - 4threads 4cores 2rxq
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC switching config with 4 threads, 4 phy cores, \
 | | ... | 2 receive queues per NIC port. [Ver] Find NDR for 1518 Byte frames
@@ -508,7 +509,7 @@
 | | ...                                       | ${min_rate} | ${max_rate}
 | | ...                                       | ${threshold}
 
-| TC16: 1518B PDR binary search - DUT L2XC with dot1q - 4threads 4cores 2rxq
+| TC16: 1518B PDR binary search - DUT L2XC with 802.1q - 4threads 4cores 2rxq
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC switching config with 4 threads, 4 phy cores, \
 | | ... | 2 receive queues per NIC port. [Ver] Find PDR for 1518 Byte frames
@@ -540,7 +541,7 @@
 | | ...                                       | ${glob_loss_acceptance}
 | | ...                                       | ${glob_loss_acceptance_type}
 
-| TC17: 9000B NDR binary search - DUT L2XC with dot1q - 4threads 4cores 2rxq
+| TC17: 9000B NDR binary search - DUT L2XC with 802.1q - 4threads 4cores 2rxq
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC switching config with 4 threads, 4 phy cores, \
 | | ... | 2 receive queues per NIC port. [Ver] Find NDR for 9000 Byte frames
@@ -569,7 +570,7 @@
 | | ...                                       | ${min_rate} | ${max_rate}
 | | ...                                       | ${threshold}
 
-| TC18: 9000B PDR binary search - DUT L2XC with dot1q - 4threads 4cores 2rxq
+| TC18: 9000B PDR binary search - DUT L2XC with 802.1q - 4threads 4cores 2rxq
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC switching config with 4 threads, 4 phy cores, \
 | | ... | 2 receive queues per NIC port. [Ver] Find PDR for 9000 Byte frames
