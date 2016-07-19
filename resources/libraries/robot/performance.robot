@@ -30,7 +30,12 @@
 | Setup performance rate Variables
 | | [Documentation] | Setup performance rates as Suite Variables
 | | ...
+| | ... | *Arguments:*
+| | ... | - iface_model - Interface model. Type: string
+| | ... |
 | | ... | _NOTE:_ This KW sets following suite variables:
+| | ... | - nic_bitrate_bps - NIC bitrate per Interface model in bps.
+| | ... |   Default value is 10^9 [bps].
 | | ... | - 10Ge_linerate_pps_64B - Maximum number of packet per second
 | | ... |                           for 10GE with 64B L2 Frame.
 | | ... | - 10Ge_linerate_pps_68B - Maximum number of packet per second
@@ -71,7 +76,12 @@
 | | ... |                             for 40GE with 9004B L2 Frame.
 | | ... | - 40Ge_linerate_pps_9008B - Maximum number of packet per second
 | | ... |                             for 40GE with 9008B L2 Frame.
+| | ... |
+| | ... | *Example:*
 | | ...
+| | ... | \| Setup performance rate Variables \| Intel-XL710 \|
+| | ... | \| Setup performance rate Variables \|
+| | [Arguments] | ${iface_model}=${EMPTY}
 | | Set Suite Variable | ${10Ge_linerate_pps_64B} | 14880952
 | | Set Suite Variable | ${10Ge_linerate_pps_68B} | 14204545
 | | Set Suite Variable | ${10Ge_linerate_pps_72B} | 13586956
@@ -90,6 +100,15 @@
 | | Set Suite Variable | ${40Ge_linerate_pps_9000B} | 554323
 | | Set Suite Variable | ${40Ge_linerate_pps_9004B} | 554078
 | | Set Suite Variable | ${40Ge_linerate_pps_9008B} | 553832
+| | ${nic_bitrate_bps}= | Run Keyword If | '${iface_model}' == 'Intel-X520-DA2'
+| | ...                                  | Evaluate | (10**9)
+| | ...                 | ELSE IF        | '${iface_model}' == 'Intel-X710'
+| | ...                                  | Evaluate | (40**9)
+| | ...                 | ELSE IF        | '${iface_model}' == 'Intel-XL710'
+| | ...                                  | Evaluate | (40**9)
+| | ...                 | ELSE           | Evaluate | (10**9)
+| | Set Suite Variable | ${nic_bitrate_bps}
+
 
 | Setup performance global Variables
 | | [Documentation] | Setup performance global Variables
@@ -289,7 +308,7 @@
 | | Setup default startup configuration of VPP on all DUTs
 | | Update All Interface Data On All Nodes | ${nodes}
 | | Show vpp version on all DUTs
-| | Setup performance rate Variables
+| | Setup performance rate Variables | ${nic_model}
 | | Setup performance global Variables
 | | 2-node circular Topology Variables Setup with DUT interface model
 | | ... | ${nic_model}
@@ -303,7 +322,7 @@
 | | Setup default startup configuration of VPP on all DUTs
 | | Update All Interface Data On All Nodes | ${nodes}
 | | Show vpp version on all DUTs
-| | Setup performance rate Variables
+| | Setup performance rate Variables | ${nic_model}
 | | Setup performance global Variables
 | | 3-node circular Topology Variables Setup with DUT interface model
 | | ... | ${nic_model}
@@ -572,7 +591,8 @@
 | | ... | \| Display result of NDR search \| 4400000 \| 64 \| 2
 | | [Arguments] | ${rate_per_stream} | ${framesize} | ${nr_streams}
 | | ${rate_total}= | Evaluate | ${rate_per_stream}*${nr_streams}
-| | ${bandwidth_total}= | Evaluate | ${rate_total}*(${framesize}+20)*8/(10**9)
+| | ${bandwidth_total}= | Evaluate
+| | ...                 | ${rate_total}*(${framesize}+20)*8/${nic_bitrate_bps}
 | | Set Test Message | FINAL_RATE: ${rate_total} pps
 | | Set Test Message | (${nr_streams}x ${rate_per_stream} pps)
 | | ...              | append=yes
@@ -600,7 +620,8 @@
 | | [Arguments] | ${rate_per_stream} | ${framesize} | ${nr_streams}
 | | ...         | ${loss_acceptance} | ${loss_acceptance_type}
 | | ${rate_total}= | Evaluate | ${rate_per_stream}*${nr_streams}
-| | ${bandwidth_total}= | Evaluate | ${rate_total}*(${framesize}+20)*8/(10**9)
+| | ${bandwidth_total}= | Evaluate
+| | ...                 | ${rate_total}*(${framesize}+20)*8/${nic_bitrate_bps}
 | | Set Test Message | FINAL_RATE: ${rate_total} pps
 | | Set Test Message | (${nr_streams}x ${rate_per_stream} pps)
 | | ...              | append=yes
