@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a0e1d27_327474ce",
+        "filename": "resources/libraries/robot/performance.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 74
+      },
+      "writtenOn": "2016-07-19T09:49:16Z",
+      "side": 1,
+      "message": "RFC2544 throughput search.",
+      "range": {
+        "startLine": 33,
+        "startChar": 31,
+        "endLine": 33,
+        "endChar": 57
+      },
+      "revId": "a3250ea54a9c6d83adaa3e373a4ecc088f5e4618",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
