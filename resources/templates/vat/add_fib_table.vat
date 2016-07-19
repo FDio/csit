@@ -1,1 +1,1 @@
-ip_add_del_route {network}/{prefix_length} {where} vrf {fib_number} create-vrf
+ip_add_del_route {network}/{prefix_length} {where} vrf {fib_number}
