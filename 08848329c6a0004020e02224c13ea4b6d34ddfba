@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a0e1d27_a3795895",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 788,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-07-20T14:12:04Z",
+      "side": 1,
+      "message": "enable RPF?",
+      "range": {
+        "startLine": 788,
+        "startChar": 29,
+        "endLine": 788,
+        "endChar": 36
+      },
+      "revId": "08848329c6a0004020e02224c13ea4b6d34ddfba",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
