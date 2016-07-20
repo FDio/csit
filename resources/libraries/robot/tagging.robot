@@ -47,7 +47,7 @@
 | | ...                                 | ${INT1_name} | ${SUB_ID}
 | | ...                                 | ${OUTER_VLAN_ID} | ${INNER_VLAN_ID}
 | | ...                                 | ${TYPE_SUBIF}
-| | ${INT2_name}= | Get interface name | ${DUT1} | ${INT2}
+| | ${INT2_name}= | Get interface name | ${DUT2} | ${INT2}
 | | ${subif_name_2} | ${subif_index_2}= | Create subinterface | ${DUT2}
 | | ...                                 | ${INT2_name} | ${SUB_ID}
 | | ...                                 | ${OUTER_VLAN_ID} | ${INNER_VLAN_ID}
