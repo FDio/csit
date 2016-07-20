@@ -388,6 +388,7 @@ class VppConfigGenerator(object):
         vppconfig = VPP_CONFIG_TEMPLATE.format(cpuconfig=cpuconfig,
                                                pciconfig=pciconfig,
                                                socketmemconfig=socketmemconfig,
+                                               heapsizeconfig=heapsizeconfig,
                                                rxqueuesconfig=rxqueuesconfig,
                                                txqueuesconfig=txqueuesconfig,
                                                nomultiseg=nomultiseg,
