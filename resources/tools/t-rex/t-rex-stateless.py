@@ -52,6 +52,10 @@ sys.path.insert(0, "/opt/trex-core-2.03/scripts/automation/"+\
                    "trex_control_plane/stl/")
 from trex_stl_lib.api import *
 
+stream_table = {'imix_v4_1': [{'size': 64, 'pps': 28, 'isg':0},
+                              {'size': 570, 'pps': 16, 'isg':0.1},
+                              {'size': 1518, 'pps': 4, 'isg':0.2}]
+               }
 
 def generate_payload(length):
     """Generate payload.
@@ -100,8 +104,74 @@ def get_start_end_ipv6(start_ip, end_ip):
 
     return base_p1, max_p1
 
+def create_streams_v46(base_pkt_a, base_pkt_b, vm1, vm2, frame_size):
 
-def create_packets(traffic_options, frame_size=64):
+    if type(frame_size) is int:
+
+        fsize_no_fcs = frame_size - 4 # no FCS
+        pkt_a = STLPktBuilder(pkt=base_pkt_a/generate_payload(
+            max(0, fsize_no_fcs-len(base_pkt_a))), vm=vm1)
+        pkt_b = STLPktBuilder(pkt=base_pkt_b/generate_payload(
+            max(0, fsize_no_fcs-len(base_pkt_b))), vm=vm2)
+        pkt_lat_a = STLPktBuilder(pkt=base_pkt_a/generate_payload(
+            max(0, fsize_no_fcs-len(base_pkt_a))))
+        pkt_lat_b = STLPktBuilder(pkt=base_pkt_b/generate_payload(
+            max(0, fsize_no_fcs-len(base_pkt_b))))
+        lat_stream1 = STLStream(packet=pkt_lat_a,
+                                flow_stats=STLFlowLatencyStats(pg_id=0),
+                                mode=STLTXCont(pps=1000))
+        # second traffic stream with a phase of 10ns (inter stream gap)
+        lat_stream2 = STLStream(packet=pkt_lat_b,
+                                isg=10.0,
+                                flow_stats=STLFlowLatencyStats(pg_id=1),
+                                mode=STLTXCont(pps=1000))
+
+        # create two traffic streams without latency stats
+        stream1 = STLStream(packet=pkt_a,
+                            mode=STLTXCont(pps=1000))
+        # second traffic stream with a phase of 10ns (inter stream gap)
+        stream2 = STLStream(packet=pkt_b,
+                            isg=10.0,
+                            mode=STLTXCont(pps=1000))
+    elif type(frame_size) is str:
+        lat_stream1 = []
+        lat_stream2 = []
+        stream1 = []
+        stream2 = []
+
+        for x in stream_table[frame_size]:
+            fsize_no_fcs = x['size'] - 4 # no FCS
+            pkt_a = STLPktBuilder(pkt=base_pkt_a/generate_payload(
+                max(0, fsize_no_fcs-len(base_pkt_a))), vm=vm1)
+            pkt_b = STLPktBuilder(pkt=base_pkt_b/generate_payload(
+                max(0, fsize_no_fcs-len(base_pkt_b))), vm=vm2)
+            pkt_lat_a = STLPktBuilder(pkt=base_pkt_a/generate_payload(
+                max(0, fsize_no_fcs-len(base_pkt_a))))
+            pkt_lat_b = STLPktBuilder(pkt=base_pkt_b/generate_payload(
+                max(0, fsize_no_fcs-len(base_pkt_b))))
+
+            lat_stream1.append(STLStream(packet=pkt_lat_a,
+                                   isg=x['isg'],
+                                   flow_stats=STLFlowLatencyStats(pg_id=0),
+                                   mode=STLTXCont(pps=x['pps'])))
+            lat_stream2.append(STLStream(packet=pkt_lat_b,
+                                   isg=x['isg'],
+                                   flow_stats=STLFlowLatencyStats(pg_id=1),
+                                   mode=STLTXCont(pps=x['pps'])))
+
+            stream1.append(STLStream(packet=pkt_a,
+                               isg=x['isg'],
+                               mode=STLTXCont(pps=x['pps'])))
+            stream2.append(STLStream(packet=pkt_b,
+                               isg=x['isg'],
+                               mode=STLTXCont(pps=x['pps'])))
+
+    else:
+        raise ValueError("Unknown stream type")
+
+    return (stream1, stream2, lat_stream1, lat_stream2)
+
+def create_streams(traffic_options, frame_size=64):
     """Create two IP packets to be used in stream.
 
     :param traffic_options: Parameters for packets.
@@ -112,11 +182,9 @@ def create_packets(traffic_options, frame_size=64):
     :rtype: Tuple of STLPktBuilder
     """
 
-    if frame_size < 64:
-        print_error("Packet min. size is 64B")
+    if type(frame_size) is int and frame_size < 64:
+        print_error("Frame min. size is 64B")
         sys.exit(1)
-
-    fsize_no_fcs = frame_size - 4 # no FCS
 
     p1_src_start_ip = traffic_options['p1_src_start_ip']
     p1_src_end_ip = traffic_options['p1_src_end_ip']
@@ -149,19 +217,10 @@ def create_packets(traffic_options, frame_size=64):
                       STLVmFixIpv4(offset="IP"),
                      ], split_by_field="src")
 
-    pkt_a = STLPktBuilder(pkt=base_pkt_a/generate_payload(
-        max(0, fsize_no_fcs-len(base_pkt_a))), vm=vm1)
-    pkt_b = STLPktBuilder(pkt=base_pkt_b/generate_payload(
-        max(0, fsize_no_fcs-len(base_pkt_b))), vm=vm2)
-    lat_a = STLPktBuilder(pkt=base_pkt_a/generate_payload(
-        max(0, fsize_no_fcs-len(base_pkt_a))))
-    lat_b = STLPktBuilder(pkt=base_pkt_b/generate_payload(
-        max(0, fsize_no_fcs-len(base_pkt_b))))
-
-    return(pkt_a, pkt_b, lat_a, lat_b)
+    return create_streams_v46(base_pkt_a, base_pkt_b, vm1, vm2, frame_size)
 
 
-def create_packets_v6(traffic_options, frame_size=78):
+def create_streams_v6(traffic_options, frame_size=78):
     """Create two IPv6 packets to be used in stream.
 
     :param traffic_options: Parameters for packets.
@@ -172,11 +231,9 @@ def create_packets_v6(traffic_options, frame_size=78):
     :rtype: Tuple of STLPktBuilder
     """
 
-    if frame_size < 78:
-        print "Packet min. size is 78B"
+    if type(frame_size) is int and frame_size < 78:
+        print "Frame min. size is 78B"
         sys.exit(2)
-
-    fsize_no_fcs = frame_size - 4 # no FCS
 
     p1_src_start_ip = traffic_options['p1_src_start_ip']
     p1_src_end_ip = traffic_options['p1_src_end_ip']
@@ -213,19 +270,9 @@ def create_packets_v6(traffic_options, frame_size=78):
                      ]
                      , split_by_field="ipv6_src")
 
-    pkt_a = STLPktBuilder(pkt=base_pkt_a/generate_payload(
-        max(0, fsize_no_fcs-len(base_pkt_a))), vm=vm1)
-    pkt_b = STLPktBuilder(pkt=base_pkt_b/generate_payload(
-        max(0, fsize_no_fcs-len(base_pkt_b))), vm=vm2)
-    lat_a = STLPktBuilder(pkt=base_pkt_a/generate_payload(
-        max(0, fsize_no_fcs-len(base_pkt_a))))
-    lat_b = STLPktBuilder(pkt=base_pkt_b/generate_payload(
-        max(0, fsize_no_fcs-len(base_pkt_b))))
+    return create_streams_v46(base_pkt_a, base_pkt_b, vm1, vm2, frame_size)
 
-    return(pkt_a, pkt_b, lat_a, lat_b)
-
-
-def simple_burst(pkt_a, pkt_b, pkt_lat_a, pkt_lat_b, duration, rate,
+def simple_burst(stream_a, stream_b, stream_lat_a, stream_lat_b, duration, rate,
                  warmup_time, async_start, latency):
     """Run the traffic with specific parameters.
 
@@ -270,28 +317,12 @@ def simple_burst(pkt_a, pkt_b, pkt_lat_a, pkt_lat_b, duration, rate,
         # prepare our ports (my machine has 0 <--> 1 with static route)
         client.reset(ports=[0, 1])
 
-        # create two traffic streams without latency stats
-        stream1 = STLStream(packet=pkt_a,
-                            mode=STLTXCont(pps=1000))
-        # second traffic stream with a phase of 10ns (inter stream gap)
-        stream2 = STLStream(packet=pkt_b,
-                            isg=10.0,
-                            mode=STLTXCont(pps=1000))
-        client.add_streams(stream1, ports=[0])
-        client.add_streams(stream2, ports=[1])
+        client.add_streams(stream_a, ports=[0])
+        client.add_streams(stream_b, ports=[1])
 
         if latency:
-            # create two traffic streams with latency stats
-            lat_stream1 = STLStream(packet=pkt_lat_a,
-                                    flow_stats=STLFlowLatencyStats(pg_id=0),
-                                    mode=STLTXCont(pps=1000))
-            # second traffic stream with a phase of 10ns (inter stream gap)
-            lat_stream2 = STLStream(packet=pkt_lat_b,
-                                    isg=10.0,
-                                    flow_stats=STLFlowLatencyStats(pg_id=1),
-                                    mode=STLTXCont(pps=1000))
-            client.add_streams(lat_stream1, ports=[0])
-            client.add_streams(lat_stream2, ports=[1])
+            client.add_streams(stream_lat_a, ports=[0])
+            client.add_streams(stream_lat_b, ports=[1])
 
         #warmup phase
         if warmup_time > 0:
@@ -397,7 +428,7 @@ def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument("-d", "--duration", required=True, type=int,
                         help="Duration of traffic run")
-    parser.add_argument("-s", "--frame_size", required=True, type=int,
+    parser.add_argument("-s", "--frame_size", required=True,
                         help="Size of a Frame without padding and IPG")
     parser.add_argument("-r", "--rate", required=True,
                         help="Traffic rate with included units (%, pps)")
@@ -447,7 +478,8 @@ def main():
     args = parse_args()
 
     _duration = args.duration
-    _frame_size = args.frame_size
+    fs = args.frame_size
+    _frame_size = int(fs) if fs.isdigit() else fs
     _rate = args.rate
     _use_ipv6 = args.use_IPv6
     _async_call = args.async
@@ -464,14 +496,14 @@ def main():
         print_error('IPv6 latency is not supported yet. Running without lat.')
         _latency = False
 
-        pkt_a, pkt_b, lat_a, lat_b = create_packets_v6(_traffic_options,
-                                                       frame_size=_frame_size)
+        stream_a, stream_b, stream_lat_a, stream_lat_b = create_streams_v6(
+            _traffic_options, frame_size=_frame_size)
     else:
-        pkt_a, pkt_b, lat_a, lat_b = create_packets(_traffic_options,
-                                                    frame_size=_frame_size)
+        stream_a, stream_b, stream_lat_a, stream_lat_b = create_streams(
+            _traffic_options, frame_size=_frame_size)
 
-    simple_burst(pkt_a, pkt_b, lat_a, lat_b, _duration, _rate, _warmup_time,
-                 _async_call, _latency)
+    simple_burst(stream_a, stream_b, stream_lat_a, stream_lat_b,
+                 _duration, _rate, _warmup_time, _async_call, _latency)
 
 if __name__ == "__main__":
     sys.exit(main())
