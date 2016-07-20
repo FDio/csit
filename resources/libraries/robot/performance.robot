@@ -41,18 +41,24 @@
 | | ... |                           for 10GE with 72B L2 Frame.
 | | ... | - 10Ge_linerate_pps_78B - Maximum number of packet per second
 | | ... |                           for 10GE with 78B L2 Frame.
+| | ... | - 10Ge_linerate_pps_114B - Maximum number of packet per second
+| | ... |                           for 10GE with 114B L2 Frame.
 | | ... | - 10Ge_linerate_pps_1518B - Maximum number of packet per second
 | | ... |                             for 10GE with 1518B L2 Frame.
 | | ... | - 10Ge_linerate_pps_1522B - Maximum number of packet per second
 | | ... |                             for 10GE with 1522B L2 Frame.
 | | ... | - 10Ge_linerate_pps_1526B - Maximum number of packet per second
 | | ... |                             for 10GE with 1526B L2 Frame.
+| | ... | - 10Ge_linerate_pps_1568B - Maximum number of packet per second
+| | ... |                             for 10GE with 1568B L2 Frame.
 | | ... | - 10Ge_linerate_pps_9000B - Maximum number of packet per second
 | | ... |                             for 10GE with 9000B L2 Frame.
 | | ... | - 10Ge_linerate_pps_9004B - Maximum number of packet per second
 | | ... |                             for 10GE with 9004B L2 Frame.
 | | ... | - 10Ge_linerate_pps_9008B - Maximum number of packet per second
 | | ... |                             for 10GE with 9008B L2 Frame.
+| | ... | - 10Ge_linerate_pps_9050B - Maximum number of packet per second
+| | ... |                             for 10GE with 9050B L2 Frame.
 | | ... | - 10Ge_linerate_pps_IMIX_v4_1 - Maximum number of packet per second
 | | ... |                                 for 10GE with IMIX_v4_1 profile.
 | | ... | - 40Ge_linerate_pps_64B - Maximum number of packet per second
@@ -63,38 +69,50 @@
 | | ... |                           for 40GE with 72B L2 Frame.
 | | ... | - 40Ge_linerate_pps_78B - Maximum number of packet per second
 | | ... |                           for 40GE with 78B L2 Frame.
+| | ... | - 40Ge_linerate_pps_114B - Maximum number of packet per second
+| | ... |                           for 40GE with 114B L2 Frame.
 | | ... | - 40Ge_linerate_pps_1518B - Maximum number of packet per second
 | | ... |                             for 40GE with 1518B L2 Frame.
 | | ... | - 40Ge_linerate_pps_1522B - Maximum number of packet per second
 | | ... |                             for 40GE with 1522B L2 Frame.
 | | ... | - 40Ge_linerate_pps_1526B - Maximum number of packet per second
 | | ... |                             for 40GE with 1526B L2 Frame.
+| | ... | - 40Ge_linerate_pps_1568B - Maximum number of packet per second
+| | ... |                             for 40GE with 1568B L2 Frame.
 | | ... | - 40Ge_linerate_pps_9000B - Maximum number of packet per second
 | | ... |                             for 40GE with 9000B L2 Frame.
 | | ... | - 40Ge_linerate_pps_9004B - Maximum number of packet per second
 | | ... |                             for 40GE with 9004B L2 Frame.
 | | ... | - 40Ge_linerate_pps_9008B - Maximum number of packet per second
 | | ... |                             for 40GE with 9008B L2 Frame.
+| | ... | - 40Ge_linerate_pps_9050B - Maximum number of packet per second
+| | ... |                             for 40GE with 9050B L2 Frame.
 | | ...
 | | Set Suite Variable | ${10Ge_linerate_pps_64B} | 14880952
 | | Set Suite Variable | ${10Ge_linerate_pps_68B} | 14204545
 | | Set Suite Variable | ${10Ge_linerate_pps_72B} | 13586956
 | | Set Suite Variable | ${10Ge_linerate_pps_78B} | 12755102
+| | Set Suite Variable | ${10Ge_linerate_pps_114B} |  9328358
 | | Set Suite Variable | ${10Ge_linerate_pps_1518B} | 812743
 | | Set Suite Variable | ${10Ge_linerate_pps_1522B} | 810635
+| | Set Suite Variable | ${10Ge_linerate_pps_1568B} | 787153
 | | Set Suite Variable | ${10Ge_linerate_pps_9000B} | 138580
 | | Set Suite Variable | ${10Ge_linerate_pps_9004B} | 138519
 | | Set Suite Variable | ${10Ge_linerate_pps_9008B} | 138458
+| | Set Suite Variable | ${10Ge_linerate_pps_9050B} | 137816
 | | Set Suite Variable | ${10Ge_linerate_pps_IMIX_v4_1} | 3343736
 | | Set Suite Variable | ${40Ge_linerate_pps_64B} | 59523809
 | | Set Suite Variable | ${40Ge_linerate_pps_68B} | 56818181
 | | Set Suite Variable | ${40Ge_linerate_pps_72B} | 54347826
 | | Set Suite Variable | ${40Ge_linerate_pps_78B} | 51020408
+| | Set Suite Variable | ${40Ge_linerate_pps_114B} |  37313432
 | | Set Suite Variable | ${40Ge_linerate_pps_1518B} | 3250975
 | | Set Suite Variable | ${40Ge_linerate_pps_1522B} | 3242542
+| | Set Suite Variable | ${40Ge_linerate_pps_1568B} | 3148614
 | | Set Suite Variable | ${40Ge_linerate_pps_9000B} | 554323
 | | Set Suite Variable | ${40Ge_linerate_pps_9004B} | 554078
 | | Set Suite Variable | ${40Ge_linerate_pps_9008B} | 553832
+| | Set Suite Variable | ${40Ge_linerate_pps_9050B} | 551267
 
 | Get Frame Size
 | | [Documentation]
@@ -434,6 +452,30 @@
 | | L2 setup xconnect on DUT | ${dut1} | ${dut1_if1} | ${dut1_if2}
 | | L2 setup xconnect on DUT | ${dut2} | ${dut2_if1} | ${dut2_if2}
 | | All Vpp Interfaces Ready Wait | ${nodes}
+
+| L2 xconnect with VXLANoIPv4 initialized in a 3-node circular topology
+| | [Documentation]
+| | ... | Setup L2 xconnect topology with VXLANoIPv4 by cross connecting
+| | ... | physical and vxlan interfaces on each DUT. All interfaces are brought
+| | ... | up. IPv4 addresses with prefix /24 are configured on interfaces
+| | ... | between DUTs. VXLAN sub-interfaces has same IPv4 address as
+| | ... | interfaces.
+| | ...
+| | VPP interfaces in path are up in a 3-node circular topology
+| | IP addresses are set on interfaces | ${dut1} | ${dut1_if2} | 172.16.0.1
+| | ...                                | 24
+| | IP addresses are set on interfaces | ${dut2} | ${dut2_if1} | 172.16.0.2
+| | ...                                | 24
+| | ${dut1_if2_mac}= | Get Interface MAC | ${dut1} | ${dut1_if2}
+| | ${dut2_if1_mac}= | Get Interface MAC | ${dut2} | ${dut2_if1}
+| | Add arp on dut | ${dut1} | ${dut1_if2} | 172.16.0.2 | ${dut2_if1_mac}
+| | Add arp on dut | ${dut2} | ${dut2_if1} | 172.16.0.1 | ${dut1_if2_mac}
+| | ${dut1s_vxlan}= | Create VXLAN interface | ${dut1} | 24
+| | ...             | 172.16.0.1 | 172.16.0.2
+| | L2 setup xconnect on DUT | ${dut1} | ${dut1_if1} | ${dut1s_vxlan}
+| | ${dut2s_vxlan}= | Create VXLAN interface | ${dut2} | 24
+| | ...             | 172.16.0.2 | 172.16.0.1
+| | L2 setup xconnect on DUT | ${dut2} | ${dut2_if2} | ${dut2s_vxlan}
 
 | L2 bridge domain initialized in a 3-node circular topology
 | | [Documentation]
