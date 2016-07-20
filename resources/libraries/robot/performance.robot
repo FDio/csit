@@ -337,6 +337,30 @@
 | | L2 setup xconnect on DUT | ${dut2} | ${dut2_if1} | ${dut2_if2}
 | | All Vpp Interfaces Ready Wait | ${nodes}
 
+| L2 xconnect with VXLANoIPv4 initialized in a 3-node circular topology
+| | [Documentation]
+| | ... | Setup L2 xconnect topology with VXLANoIPv4 by cross connecting
+| | ... | physical and vxlan interfaces on each DUT. All interfaces are brought
+| | ... | up. IPv4 addresses with prefix /24 are configured on interfaces
+| | ... | between DUTs. VXLAN sub-interfaces has same IPv4 address as
+| | ... | interfaces.
+| | ...
+| | VPP interfaces in path are up in a 3-node circular topology
+| | IP addresses are set on interfaces | ${dut1} | ${dut1_if2} | 172.16.0.1
+| | ...                                | 24
+| | IP addresses are set on interfaces | ${dut2} | ${dut2_if1} | 172.16.0.2
+| | ...                                | 24
+| | ${dut1_if2_mac}= | Get Interface MAC | ${dut1} | ${dut1_if2}
+| | ${dut2_if1_mac}= | Get Interface MAC | ${dut2} | ${dut2_if1}
+| | Add arp on dut | ${dut1} | ${dut1_if2} | 172.16.0.2 | ${dut2_if1_mac}
+| | Add arp on dut | ${dut2} | ${dut2_if1} | 172.16.0.1 | ${dut1_if2_mac}
+| | ${dut1s_vxlan}= | Create VXLAN interface | ${dut1} | 24
+| | ...             | 172.16.0.1 | 172.16.0.2
+| | L2 setup xconnect on DUT | ${dut1} | ${dut1_if1} | ${dut1s_vxlan}
+| | ${dut2s_vxlan}= | Create VXLAN interface | ${dut2} | 24
+| | ...             | 172.16.0.2 | 172.16.0.1
+| | L2 setup xconnect on DUT | ${dut2} | ${dut2_if2} | ${dut2s_vxlan}
+
 | L2 bridge domain initialized in a 3-node circular topology
 | | [Documentation]
 | | ... | Setup L2 DB topology by adding two interfaces on each DUT into BD
