@@ -52,6 +52,9 @@ sys.path.insert(0, "/opt/trex-core-2.03/scripts/automation/"+\
                    "trex_control_plane/stl/")
 from trex_stl_lib.api import *
 
+imix1_table = [{'size': 64, 'pps': 28, 'isg':0},
+               {'size': 570, 'pps': 16, 'isg':0.1},
+               {'size': 1518, 'pps': 4, 'isg':0.2}]
 
 def generate_payload(length):
     """Generate payload.
@@ -100,8 +103,28 @@ def get_start_end_ipv6(start_ip, end_ip):
 
     return base_p1, max_p1
 
+def create_streams_v46(pkt_a, pkt_b, pkt_lat_a, pkt_lat_b):
 
-def create_packets(traffic_options, frame_size=64):
+    lat_stream1 = STLStream(packet=pkt_lat_a,
+                            flow_stats=STLFlowLatencyStats(pg_id=0),
+                            mode=STLTXCont(pps=1000))
+    # second traffic stream with a phase of 10ns (inter stream gap)
+    lat_stream2 = STLStream(packet=pkt_lat_b,
+                            isg=10.0,
+                            flow_stats=STLFlowLatencyStats(pg_id=1),
+                            mode=STLTXCont(pps=1000))
+
+    # create two traffic streams without latency stats
+    stream1 = STLStream(packet=pkt_a,
+                        mode=STLTXCont(pps=1000))
+    # second traffic stream with a phase of 10ns (inter stream gap)
+    stream2 = STLStream(packet=pkt_b,
+                        isg=10.0,
+                        mode=STLTXCont(pps=1000))
+
+    return (lat_stream1, lat_stream2, stream1, stream2)
+
+def create_streams(traffic_options, frame_size=64):
     """Create two IP packets to be used in stream.
 
     :param traffic_options: Parameters for packets.
@@ -158,10 +181,16 @@ def create_packets(traffic_options, frame_size=64):
     lat_b = STLPktBuilder(pkt=base_pkt_b/generate_payload(
         max(0, fsize_no_fcs-len(base_pkt_b))))
 
-    return(pkt_a, pkt_b, lat_a, lat_b)
 
 
-def create_packets_v6(traffic_options, frame_size=78):
+    #for x in imix_table:
+    #   STLStream(isg = isg,
+    #                    packet = pkt,
+    #                    mode = STLTXCont(pps = pps))
+    return create_streams_v46(pkt_a, pkt_b, pkt_lat_a, pkt_lat_b)
+
+
+def create_streams_v6(traffic_options, frame_size=78):
     """Create two IPv6 packets to be used in stream.
 
     :param traffic_options: Parameters for packets.
@@ -222,10 +251,10 @@ def create_packets_v6(traffic_options, frame_size=78):
     lat_b = STLPktBuilder(pkt=base_pkt_b/generate_payload(
         max(0, fsize_no_fcs-len(base_pkt_b))))
 
-    return(pkt_a, pkt_b, lat_a, lat_b)
+    return create_streams_v46(pkt_a, pkt_b, pkt_lat_a, pkt_lat_b)
 
 
-def simple_burst(pkt_a, pkt_b, pkt_lat_a, pkt_lat_b, duration, rate,
+def simple_burst(stream_a, stream_b, stream_lat_a, stream_lat_b, duration, rate,
                  warmup_time, async_start, latency):
     """Run the traffic with specific parameters.
 
@@ -270,28 +299,12 @@ def simple_burst(pkt_a, pkt_b, pkt_lat_a, pkt_lat_b, duration, rate,
         # prepare our ports (my machine has 0 <--> 1 with static route)
         client.reset(ports=[0, 1])
 
-        # create two traffic streams without latency stats
-        stream1 = STLStream(packet=pkt_a,
-                            mode=STLTXCont(pps=1000))
-        # second traffic stream with a phase of 10ns (inter stream gap)
-        stream2 = STLStream(packet=pkt_b,
-                            isg=10.0,
-                            mode=STLTXCont(pps=1000))
-        client.add_streams(stream1, ports=[0])
-        client.add_streams(stream2, ports=[1])
+        client.add_streams(stream_a, ports=[0])
+        client.add_streams(stream_b, ports=[1])
 
         if latency:
-            # create two traffic streams with latency stats
-            lat_stream1 = STLStream(packet=pkt_lat_a,
-                                    flow_stats=STLFlowLatencyStats(pg_id=0),
-                                    mode=STLTXCont(pps=1000))
-            # second traffic stream with a phase of 10ns (inter stream gap)
-            lat_stream2 = STLStream(packet=pkt_lat_b,
-                                    isg=10.0,
-                                    flow_stats=STLFlowLatencyStats(pg_id=1),
-                                    mode=STLTXCont(pps=1000))
-            client.add_streams(lat_stream1, ports=[0])
-            client.add_streams(lat_stream2, ports=[1])
+            client.add_streams(stream_lat_a, ports=[0])
+            client.add_streams(stream_lat_b, ports=[1])
 
         #warmup phase
         if warmup_time > 0:
@@ -464,14 +477,14 @@ def main():
         print_error('IPv6 latency is not supported yet. Running without lat.')
         _latency = False
 
-        pkt_a, pkt_b, lat_a, lat_b = create_packets_v6(_traffic_options,
-                                                       frame_size=_frame_size)
+        stream_a, stream_b, stream_lat_a, stream_lat_b = create_streams_v6(
+            _traffic_options, frame_size=_frame_size)
     else:
-        pkt_a, pkt_b, lat_a, lat_b = create_packets(_traffic_options,
-                                                    frame_size=_frame_size)
+        stream_a, stream_b, stream_a, stream_b = create_streams(
+            _traffic_options, frame_size=_frame_size)
 
-    simple_burst(pkt_a, pkt_b, lat_a, lat_b, _duration, _rate, _warmup_time,
-                 _async_call, _latency)
+    simple_burst(stream_a, stream_b, stream_lat_a, stream_lat_b,
+                 _duration, _rate, _warmup_time, _async_call, _latency)
 
 if __name__ == "__main__":
     sys.exit(main())
