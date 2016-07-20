@@ -279,7 +279,6 @@
 | | ... | /30 prefix on DUT1-DUT2 link. Set routing on both DUT nodes with
 | | ... | prefix /24 and next hop of neighbour DUT interface IPv4 address.
 | | ...
-| Custom setup of IPv4 addresses on all DUT nodes and TG
 | | Set Interface State | ${dut1} | ${dut1_if1} | up
 | | Set Interface State | ${dut1} | ${dut1_if2} | up
 | | Set Interface State | ${dut2} | ${dut2_if1} | up
