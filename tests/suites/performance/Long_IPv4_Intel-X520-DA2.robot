@@ -456,3 +456,26 @@
 | | ...                                       | ${threshold}
 | | ...                                       | ${glob_loss_acceptance}
 | | ...                                       | ${glob_loss_acceptance_type}
+
+*** Test Cases ***
+| TC19: IMIX NDR binary search - DUT IPv4 - 1thread 1core 1rxq
+| | [Documentation]
+| | ... | [Cfg] DUT runs IPv4 routing config with 1 thread, 1 phy core, \
+| | ... | 1 receive queue per NIC port. [Ver] Find NDR for IMIX frame size
+| | ... | using binary search start at 10GE linerate, step 100kpps.
+| | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | NDR
+| | ${framesize}= | Set Variable | IMIX_v4_1
+| | ${min_rate}= | Set Variable | 100000
+| | ${max_rate}= | Set Variable | ${10Ge_linerate_pps_IMIX_v4_1}
+| | ${binary_min}= | Set Variable | ${min_rate}
+| | ${binary_max}= | Set Variable | ${max_rate}
+| | ${threshold}= | Set Variable | ${min_rate}
+| | Given Add '1' worker threads and rxqueues '1' without HTT to all DUTs
+| | And   Add all PCI devices to all DUTs
+| | And   Add No Multi Seg to all DUTs
+| | And   Apply startup configuration on all VPP DUTs
+| | And   IPv4 forwarding initialized in a 3-node circular topology
+| | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
+| | ...                                       | ${binary_max} | 3-node-IPv4
+| | ...                                       | ${min_rate} | ${max_rate}
+| | ...                                       | ${threshold}
