@@ -53,6 +53,8 @@
 | | ... |                             for 10GE with 9004B L2 Frame.
 | | ... | - 10Ge_linerate_pps_9008B - Maximum number of packet per second
 | | ... |                             for 10GE with 9008B L2 Frame.
+| | ... | - 10Ge_linerate_pps_IMIX_v4_1 - Maximum number of packet per second
+| | ... |                                 for 10GE with IMIX_v4_1 profile.
 | | ... | - 40Ge_linerate_pps_64B - Maximum number of packet per second
 | | ... |                           for 40GE with 64B L2 Frame.
 | | ... | - 40Ge_linerate_pps_68B - Maximum number of packet per second
@@ -83,6 +85,7 @@
 | | Set Suite Variable | ${10Ge_linerate_pps_9000B} | 138580
 | | Set Suite Variable | ${10Ge_linerate_pps_9004B} | 138519
 | | Set Suite Variable | ${10Ge_linerate_pps_9008B} | 138458
+| | Set Suite Variable | ${10Ge_linerate_pps_IMIX_v4_1} | 3343736
 | | Set Suite Variable | ${40Ge_linerate_pps_64B} | 59523809
 | | Set Suite Variable | ${40Ge_linerate_pps_68B} | 56818181
 | | Set Suite Variable | ${40Ge_linerate_pps_72B} | 54347826
@@ -92,6 +95,22 @@
 | | Set Suite Variable | ${40Ge_linerate_pps_9000B} | 554323
 | | Set Suite Variable | ${40Ge_linerate_pps_9004B} | 554078
 | | Set Suite Variable | ${40Ge_linerate_pps_9008B} | 553832
+
+| Get Frame Size
+| | [Documentation]
+| | ... | Framesize can be either integer in case of a single packet
+| | ... | in stream, or set of packets in case of IMIX type or simmilar.
+| | ... | This keyword returns average framesize.
+| | ...
+| | ... | *Arguments:*
+| | ... | - framesize - Framesize. Type: integer or string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Get Frame Size \| IMIX_v4_1
+| | [Arguments] | ${framesize}
+| | Run Keyword If | '${framesize}' == 'IMIX_v4_1' | Return From Keyword | 353.83333
+| | Return From Keyword | ${framesize}
 
 | Setup performance global Variables
 | | [Documentation]
@@ -710,6 +729,7 @@
 | | ... | \| (0, 10/10/10) \|
 | | [Arguments] | ${rate_per_stream} | ${framesize} | ${nr_streams}
 | | ...         | ${latency}
+| | ${framesize}= | Get Frame Size | ${framesize}
 | | ${rate_total}= | Evaluate | ${rate_per_stream}*${nr_streams}
 | | ${bandwidth_total}= | Evaluate | ${rate_total}*(${framesize}+20)*8/(10**9)
 | | Set Test Message | FINAL_RATE: ${rate_total} pps
@@ -744,6 +764,7 @@
 | | ... | \| percentage \| (0, 10/10/10) \|
 | | [Arguments] | ${rate_per_stream} | ${framesize} | ${nr_streams}
 | | ...         | ${loss_acceptance} | ${loss_acceptance_type} | ${latency}
+| | ${framesize}= | Get Frame Size | ${framesize}
 | | ${rate_total}= | Evaluate | ${rate_per_stream}*${nr_streams}
 | | ${bandwidth_total}= | Evaluate | ${rate_total}*(${framesize}+20)*8/(10**9)
 | | Set Test Message | FINAL_RATE: ${rate_total} pps
