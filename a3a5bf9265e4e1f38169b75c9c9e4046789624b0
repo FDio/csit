@@ -48,6 +48,54 @@
     },
     {
       "key": {
+        "uuid": "9a0e1d27_dee3ff31",
+        "filename": "resources/libraries/robot/performance.robot",
+        "patchSetId": 29
+      },
+      "lineNbr": 714,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-07-21T06:15:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a0e1d27_92446075",
+      "range": {
+        "startLine": 714,
+        "startChar": 2,
+        "endLine": 714,
+        "endChar": 7
+      },
+      "revId": "a3a5bf9265e4e1f38169b75c9c9e4046789624b0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_fee6c343",
+        "filename": "resources/libraries/robot/performance.robot",
+        "patchSetId": 29
+      },
+      "lineNbr": 714,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-07-21T06:15:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a0e1d27_525ec846",
+      "range": {
+        "startLine": 714,
+        "startChar": 40,
+        "endLine": 714,
+        "endChar": 45
+      },
+      "revId": "a3a5bf9265e4e1f38169b75c9c9e4046789624b0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a0e1d27_b2364402",
         "filename": "resources/libraries/robot/performance.robot",
         "patchSetId": 29
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "9a0e1d27_bed04b54",
+        "filename": "resources/libraries/robot/performance.robot",
+        "patchSetId": 29
+      },
+      "lineNbr": 747,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-07-21T06:15:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a0e1d27_b2364402",
+      "range": {
+        "startLine": 747,
+        "startChar": 2,
+        "endLine": 747,
+        "endChar": 8
+      },
+      "revId": "a3a5bf9265e4e1f38169b75c9c9e4046789624b0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a0e1d27_923b40eb",
         "filename": "resources/libraries/robot/performance.robot",
         "patchSetId": 29
@@ -82,6 +154,30 @@
       "writtenOn": "2016-07-19T10:07:58Z",
       "side": 1,
       "message": "guest VM teardown .. does it need to be dpdk-testpmd specific ?",
+      "range": {
+        "startLine": 783,
+        "startChar": 2,
+        "endLine": 783,
+        "endChar": 7
+      },
+      "revId": "a3a5bf9265e4e1f38169b75c9c9e4046789624b0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_7ecab3a2",
+        "filename": "resources/libraries/robot/performance.robot",
+        "patchSetId": 29
+      },
+      "lineNbr": 783,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-07-21T06:15:55Z",
+      "side": 1,
+      "message": "Done.\n\nWe need this to gracefully stop testpmd (stop testpmd and remove pid file, ...) and print stats. This sequence may be different per App we use. E.g Linux Bridge. Option would be to split App teardown and VM teardown, but that would me more lines of code?",
+      "parentUuid": "9a0e1d27_923b40eb",
       "range": {
         "startLine": 783,
         "startChar": 2,
