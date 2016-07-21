@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a0e1d27_d20ad3d1",
+        "filename": "resources/libraries/robot/lisp/lisp_static_adjacency.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-07-21T13:39:05Z",
+      "side": 1,
+      "message": "dictionary\nCheck everywhere, please.",
+      "range": {
+        "startLine": 34,
+        "startChar": 52,
+        "endLine": 34,
+        "endChar": 56
+      },
+      "revId": "4c277104c8461b26c82c864006763cff149daf00",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_72f9c7c7",
+        "filename": "resources/libraries/robot/lisp/lisp_static_adjacency.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-07-21T13:39:05Z",
+      "side": 1,
+      "message": "Consider using ${None} in this context.",
+      "range": {
+        "startLine": 45,
+        "startChar": 13,
+        "endLine": 45,
+        "endChar": 17
+      },
+      "revId": "4c277104c8461b26c82c864006763cff149daf00",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
