@@ -26,8 +26,6 @@
 | Suite Setup | Run Keywords | Setup all TGs before traffic script
 | ...         | AND          | Update All Interface Data On All Nodes | ${nodes}
 | Test Setup | Setup all DUTs before test
-| Test Teardown | Run Keywords | Show packet trace on all DUTs | ${nodes}
-| ...           | AND          | Show vpp trace dump on all DUTs
 | Documentation | *IPv6 Router Advertisement test cases*
 | ...
 | ... | RFC4861 Neighbor Discovery. Encapsulations: Eth-IPv6-RA on links
