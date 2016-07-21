@@ -23,7 +23,6 @@
 | Suite Setup | Run Keywords | Setup all TGs before traffic script
 | ...         | AND          | Update All Interface Data On All Nodes | ${nodes}
 | Test Setup | Setup all DUTs before test
-| Test Teardown | Show packet trace on all DUTs | ${nodes}
 | Documentation | *RFC1027 Proxy ARP test cases*
 | ...
 | ... | *[Top] Network topologies:* TG-DUT1 2-node topology with
