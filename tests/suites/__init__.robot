@@ -18,3 +18,6 @@
 | Suite Setup | Run Keywords | Setup Framework | ${nodes}
 | ...         | AND          | Setup All DUTs | ${nodes}
 | ...         | AND          | Update All Interface Data On All Nodes | ${nodes}
+| Test Teardown | Run Keyword If Test Failed | Run Keywords
+| ... | Show packet trace on all DUTs | ${nodes} | AND
+| ... | Show vpp trace dump on all DUTs
