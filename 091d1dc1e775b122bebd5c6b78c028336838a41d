@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9a0e1d27_1e23b706",
+        "filename": "resources/libraries/python/Classify.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-07-21T12:03:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a0e1d27_de72df48",
+      "range": {
+        "startLine": 307,
+        "startChar": 28,
+        "endLine": 307,
+        "endChar": 62
+      },
+      "revId": "091d1dc1e775b122bebd5c6b78c028336838a41d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a0e1d27_be8f2b23",
         "filename": "resources/libraries/python/Classify.py",
         "patchSetId": 9
@@ -36,6 +60,30 @@
       "writtenOn": "2016-07-21T09:28:29Z",
       "side": 1,
       "message": "is list returned when session_index is not None?",
+      "range": {
+        "startLine": 313,
+        "startChar": 16,
+        "endLine": 313,
+        "endChar": 20
+      },
+      "revId": "091d1dc1e775b122bebd5c6b78c028336838a41d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_be796bfe",
+        "filename": "resources/libraries/python/Classify.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 313,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-07-21T12:03:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a0e1d27_be8f2b23",
       "range": {
         "startLine": 313,
         "startChar": 16,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "9a0e1d27_9e7ea7e3",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 720,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-07-21T12:03:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a0e1d27_7e99936d",
+      "range": {
+        "startLine": 720,
+        "startChar": 26,
+        "endLine": 720,
+        "endChar": 55
+      },
+      "revId": "091d1dc1e775b122bebd5c6b78c028336838a41d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a0e1d27_9e946738",
         "filename": "resources/libraries/python/InterfaceUtil.py",
         "patchSetId": 9
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "9a0e1d27_7e83d3cc",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 722,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-07-21T12:03:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a0e1d27_9e946738",
+      "range": {
+        "startLine": 722,
+        "startChar": 25,
+        "endLine": 722,
+        "endChar": 28
+      },
+      "revId": "091d1dc1e775b122bebd5c6b78c028336838a41d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a0e1d27_be2babea",
         "filename": "tests/suites/honeycomb/resources/acl.py",
         "patchSetId": 9
@@ -105,6 +201,30 @@
       "writtenOn": "2016-07-21T09:28:29Z",
       "side": 1,
       "message": "are this 2 bytes necessarry?",
+      "range": {
+        "startLine": 23,
+        "startChar": 54,
+        "endLine": 23,
+        "endChar": 60
+      },
+      "revId": "091d1dc1e775b122bebd5c6b78c028336838a41d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_5ed6cfc6",
+        "filename": "tests/suites/honeycomb/resources/acl.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-07-21T12:03:58Z",
+      "side": 1,
+      "message": "In the current Honeycomb implementation, yes.\n\"Number of mask bytes must be a multiple of 16.\"",
+      "parentUuid": "9a0e1d27_be2babea",
       "range": {
         "startLine": 23,
         "startChar": 54,
