@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a0e1d27_fef003cb",
+        "filename": "resources/libraries/robot/default.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 149,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-07-21T08:28:03Z",
+      "side": 1,
+      "message": "Please be aware that there is same KW in \n[2|3]-node Performance Suite Setup [with DUT\u0027s NIC mode]\n!\nAs a result you will call this twice and it has no effect as later you will release igb_uio for TG.\nPlease reply.",
+      "range": {
+        "startLine": 149,
+        "startChar": 0,
+        "endLine": 149,
+        "endChar": 71
+      },
+      "revId": "63b77971417b0642024b4291a7793bfb8c65c599",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
