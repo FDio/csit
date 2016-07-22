@@ -23,20 +23,60 @@ import xml.etree.ElementTree as ET
 from robot.api import ExecutionResult, ResultVisitor
 
 
-class ExecutionTestChecker(ResultVisitor):
+class ExecutionChecker(ResultVisitor):
     """Iterates through test cases."""
 
     def __init__(self, args):
         self.root = ET.Element('build',
                                attrib={'vdevice': args.vdevice})
 
+    def visit_suite(self, suite):
+        """Implements traversing through the suite and its direct children.
+
+        :param suite: Suite to process.
+        :type suite: Suite
+        :return: Nothing.
+        """
+        if self.start_suite(suite) is not False:
+            suite.suites.visit(self)
+            suite.tests.visit(self)
+            self.end_suite(suite)
+
+    def start_suite(self, suite):
+        """Called when suite starts.
+
+        :param suite: Suite to process.
+        :type suite: Suite
+        :return: Nothing.
+        """
+        pass
+
+    def end_suite(self, suite):
+        """Called when suite ends.
+
+        :param suite: Suite to process.
+        :type suite: Suite
+        :return: Nothing.
+        """
+        pass
+
     def visit_test(self, test):
-        """Overloaded function. Called when test is found to process data.
+        """Implements traversing through the test.
 
         :param test: Test to process.
-        :type test: ExecutionTestChecker
+        :type test: Test
+        :return: Nothing.
         """
+        if self.start_test(test) is not False:
+            self.end_test(test)
 
+    def start_test(self, test):
+        """Called when test starts.
+
+        :param test: Test to process.
+        :type test: Test
+        :return: Nothing.
+        """
         if any("PERFTEST_LONG" in tag for tag in test.tags):
             if test.status == 'PASS':
                 tags = []
@@ -51,17 +91,26 @@ class ExecutionTestChecker(ResultVisitor):
                         workers_per_nic = keyword.name.split('\'')[3]
 
                 test_elem = ET.SubElement(self.root,
-                    test.longname.split('.')[3].replace(" ",""))
-                test_elem.attrib['name'] = test.longname.split('.')[3]
+                    test.parent.name.replace(" ",""))
+                test_elem.attrib['name'] = test.name
                 test_elem.attrib['workerthreads'] = workers
                 test_elem.attrib['workerspernic'] = workers_per_nic
                 test_elem.attrib['framesize'] = framesize
                 test_elem.attrib['tags'] = ', '.join(tags)
                 test_elem.text = test.message.split(' ')[1]
 
+    def end_test(self, test):
+        """Called when test ends.
+
+        :param test: Test to process.
+        :type test: Test
+        :return: Nothing.
+        """
+        pass
+
 
 def parse_tests(args):
-    """Parser result of robot output file and return.
+    """Process data from robot output.xml file and return XML data.
 
     :param args: Parsed arguments.
     :type args: ArgumentParser
@@ -71,7 +120,7 @@ def parse_tests(args):
     """
 
     result = ExecutionResult(args.input)
-    checker = ExecutionTestChecker(args)
+    checker = ExecutionChecker(args)
     result.visit(checker)
 
     return checker.root
