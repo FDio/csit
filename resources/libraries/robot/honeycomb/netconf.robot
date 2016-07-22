@@ -13,7 +13,7 @@
 
 *** Settings ***
 | Library | resources.libraries.python.honeycomb.Netconf
-| Variables | tests/suites/honeycomb/resources/netconf/hello.py
+| Variables | resources/test_data/honeycomb/netconf/hello.py
 | Documentation | Keywords for managing Netconf communication.
 
 *** Keywords ***

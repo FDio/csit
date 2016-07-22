@@ -22,7 +22,7 @@
 | Resource | resources/libraries/robot/honeycomb/tap.robot
 | Resource | resources/libraries/robot/honeycomb/vhost_user.robot
 | Resource | resources/libraries/robot/honeycomb/sub_interface.robot
-| Variables | tests/suites/honeycomb/resources/persistence.py | ${interface}
+| Variables | resources/test_data/honeycomb/persistence.py | ${interface}
 | Documentation | Keywords used to test Honeycomb persistence.
 
 *** Keywords ***

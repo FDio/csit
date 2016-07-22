@@ -18,7 +18,7 @@
 *** Settings ***
 | Resource | resources/libraries/robot/default.robot
 | Resource | resources/libraries/robot/honeycomb/access_control_lists.robot
-| Variables | tests/suites/honeycomb/resources/acl.py
+| Variables | resources/test_data/honeycomb/acl.py
 | Suite Teardown | Clear all ACL settings | ${node}
 | Documentation | *Honeycomb access control lists test suite.*
 | Force Tags | Honeycomb_sanity
