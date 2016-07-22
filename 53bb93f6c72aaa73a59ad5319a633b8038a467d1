@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9a0e1d27_88e2ec01",
+        "filename": "resources/libraries/robot/performance.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 74
+      },
+      "writtenOn": "2016-07-22T14:52:05Z",
+      "side": 1,
+      "message": "that\u0027s right ..",
+      "parentUuid": "9a0e1d27_a8f37009",
+      "range": {
+        "startLine": 88,
+        "startChar": 27,
+        "endLine": 88,
+        "endChar": 29
+      },
+      "revId": "53bb93f6c72aaa73a59ad5319a633b8038a467d1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a0e1d27_c8eea422",
         "filename": "resources/libraries/robot/performance.robot",
         "patchSetId": 5
@@ -36,6 +60,30 @@
       "writtenOn": "2016-07-22T12:27:07Z",
       "side": 1,
       "message": "line too long",
+      "range": {
+        "startLine": 112,
+        "startChar": 74,
+        "endLine": 112,
+        "endChar": 84
+      },
+      "revId": "53bb93f6c72aaa73a59ad5319a633b8038a467d1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_68e79813",
+        "filename": "resources/libraries/robot/performance.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 74
+      },
+      "writtenOn": "2016-07-22T14:52:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a0e1d27_c8eea422",
       "range": {
         "startLine": 112,
         "startChar": 74,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "9a0e1d27_48e4d40c",
+        "filename": "resources/tools/t-rex/t-rex-stateless.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 74
+      },
+      "writtenOn": "2016-07-22T14:52:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a0e1d27_088dbc7b",
+      "range": {
+        "startLine": 138,
+        "startChar": 8,
+        "endLine": 138,
+        "endChar": 71
+      },
+      "revId": "53bb93f6c72aaa73a59ad5319a633b8038a467d1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a0e1d27_a85810fb",
         "filename": "resources/tools/t-rex/t-rex-stateless.py",
         "patchSetId": 5
@@ -82,6 +154,30 @@
       "writtenOn": "2016-07-22T13:54:35Z",
       "side": 1,
       "message": "Unknown framesize type?",
+      "range": {
+        "startLine": 172,
+        "startChar": 34,
+        "endLine": 172,
+        "endChar": 40
+      },
+      "revId": "53bb93f6c72aaa73a59ad5319a633b8038a467d1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_28f1a0cd",
+        "filename": "resources/tools/t-rex/t-rex-stateless.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 74
+      },
+      "writtenOn": "2016-07-22T14:52:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a0e1d27_a85810fb",
       "range": {
         "startLine": 172,
         "startChar": 34,
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "9a0e1d27_08eedcec",
+        "filename": "resources/tools/t-rex/t-rex-stateless.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 74
+      },
+      "writtenOn": "2016-07-22T14:52:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a0e1d27_e8e9681b",
+      "range": {
+        "startLine": 237,
+        "startChar": 8,
+        "endLine": 237,
+        "endChar": 38
+      },
+      "revId": "53bb93f6c72aaa73a59ad5319a633b8038a467d1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a0e1d27_88f8ace6",
         "filename": "tests/suites/performance/Long_Bridge_Domain_Intel-X520-DA2.robot",
         "patchSetId": 5
@@ -128,6 +248,30 @@
       "writtenOn": "2016-07-22T12:27:07Z",
       "side": 1,
       "message": "Optional: do we need this header twice?",
+      "range": {
+        "startLine": 456,
+        "startChar": 0,
+        "endLine": 456,
+        "endChar": 18
+      },
+      "revId": "53bb93f6c72aaa73a59ad5319a633b8038a467d1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_e8ba88e0",
+        "filename": "tests/suites/performance/Long_Bridge_Domain_Intel-X520-DA2.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 456,
+      "author": {
+        "id": 74
+      },
+      "writtenOn": "2016-07-22T14:52:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a0e1d27_88f8ace6",
       "range": {
         "startLine": 456,
         "startChar": 0,
