@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a0e1d27_a8f37009",
+        "filename": "resources/libraries/robot/performance.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-07-22T12:27:07Z",
+      "side": 1,
+      "message": "40Ge will be added later with testcases?",
+      "range": {
+        "startLine": 88,
+        "startChar": 27,
+        "endLine": 88,
+        "endChar": 29
+      },
+      "revId": "53bb93f6c72aaa73a59ad5319a633b8038a467d1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_c8eea422",
+        "filename": "resources/libraries/robot/performance.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-07-22T12:27:07Z",
+      "side": 1,
+      "message": "line too long",
+      "range": {
+        "startLine": 112,
+        "startChar": 74,
+        "endLine": 112,
+        "endChar": 84
+      },
+      "revId": "53bb93f6c72aaa73a59ad5319a633b8038a467d1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_088dbc7b",
+        "filename": "resources/tools/t-rex/t-rex-stateless.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 138,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-07-22T12:27:07Z",
+      "side": 1,
+      "message": "please fix documentation",
+      "range": {
+        "startLine": 138,
+        "startChar": 8,
+        "endLine": 138,
+        "endChar": 71
+      },
+      "revId": "53bb93f6c72aaa73a59ad5319a633b8038a467d1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_e8e9681b",
+        "filename": "resources/tools/t-rex/t-rex-stateless.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 237,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-07-22T12:27:07Z",
+      "side": 1,
+      "message": "print_error(\"Frame min. size is 78B\")\n\nsame as for above v4",
+      "range": {
+        "startLine": 237,
+        "startChar": 8,
+        "endLine": 237,
+        "endChar": 38
+      },
+      "revId": "53bb93f6c72aaa73a59ad5319a633b8038a467d1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_88f8ace6",
+        "filename": "tests/suites/performance/Long_Bridge_Domain_Intel-X520-DA2.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 456,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-07-22T12:27:07Z",
+      "side": 1,
+      "message": "Optional: do we need this header twice?",
+      "range": {
+        "startLine": 456,
+        "startChar": 0,
+        "endLine": 456,
+        "endChar": 18
+      },
+      "revId": "53bb93f6c72aaa73a59ad5319a633b8038a467d1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
