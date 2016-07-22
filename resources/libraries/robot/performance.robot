@@ -317,14 +317,10 @@
 | | VPP Set If IPv6 Addr | ${dut2} | ${dut2_if1} | 2001:3::2 | ${prefix}
 | | VPP Set If IPv6 Addr | ${dut2} | ${dut2_if2} | 2001:2::1 | ${prefix}
 | | Vpp nodes ra suppress link layer | ${nodes}
-| | Vpp set IPv6 neighbor | ${dut1} | ${dut1_if1} | 2001:1::2
-| | ...                    | ${tg1_if1_mac}
-| | Vpp set IPv6 neighbor | ${dut2} | ${dut2_if2} | 2001:2::2
-| | ...                    | ${tg1_if2_mac}
-| | Vpp set IPv6 neighbor | ${dut1} | ${dut1_if2} | 2001:3::2
-| | ...                    | ${dut2_if1_mac}
-| | Vpp set IPv6 neighbor | ${dut2} | ${dut2_if1} | 2001:3::1
-| | ...                    | ${dut1_if2_mac}
+| | Add Ip Neighbor | ${dut1} | ${dut1_if1} | 2001:1::2 | ${tg1_if1_mac}
+| | Add Ip Neighbor | ${dut2} | ${dut2_if2} | 2001:2::2 | ${tg1_if2_mac}
+| | Add Ip Neighbor | ${dut1} | ${dut1_if2} | 2001:3::2 | ${dut2_if1_mac}
+| | Add Ip Neighbor | ${dut2} | ${dut2_if1} | 2001:3::1 | ${dut1_if2_mac}
 | | Vpp Route Add | ${dut1} | 2001:2::0 | ${prefix} | 2001:3::2 | ${dut1_if2}
 | | Vpp Route Add | ${dut2} | 2001:1::0 | ${prefix} | 2001:3::1 | ${dut2_if1}
 
