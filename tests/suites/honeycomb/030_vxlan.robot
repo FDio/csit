@@ -30,7 +30,7 @@
 | Resource | resources/libraries/robot/honeycomb/interfaces.robot
 | Resource | resources/libraries/robot/honeycomb/vxlan.robot
 # import additional VxLAN settings from resource file
-| Variables | tests/suites/honeycomb/resources/vxlan.py
+| Variables | resources/test_data/honeycomb/vxlan.py
 | Force Tags | honeycomb_sanity
 | Documentation | *Honeycomb VxLAN management test suite.*
 | ...

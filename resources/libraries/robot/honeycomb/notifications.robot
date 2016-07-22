@@ -13,8 +13,8 @@
 
 *** Settings ***
 | Library | resources.libraries.python.honeycomb.Notifications
-| Variables | tests/suites/honeycomb/resources/netconf/hello.py
-| Variables | tests/suites/honeycomb/resources/netconf/subscription.py
+| Variables | resources/test_data/honeycomb/netconf/hello.py
+| Variables | resources/test_data/honeycomb/netconf/subscription.py
 | Documentation | Keywords used to test Honeycomb notifications over Netconf.
 
 *** Keywords ***

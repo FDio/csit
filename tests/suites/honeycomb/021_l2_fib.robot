@@ -16,7 +16,7 @@
 | Resource | resources/libraries/robot/honeycomb/interfaces.robot
 | Resource | resources/libraries/robot/honeycomb/bridge_domain.robot
 | Resource | resources/libraries/robot/honeycomb/l2_fib.robot
-| Variables | tests/suites/honeycomb/resources/l2_fib.py
+| Variables | resources/test_data/honeycomb/l2_fib.py
 | Documentation | *Honeycomb L2 FIB management test suite.*
 | Suite Setup | Run keywords
 | ... | Set test interface down

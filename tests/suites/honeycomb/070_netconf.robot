@@ -14,7 +14,7 @@
 *** Settings ***
 | Resource | resources/libraries/robot/default.robot
 | Resource | resources/libraries/robot/honeycomb/netconf.robot
-| Variables | tests/suites/honeycomb/resources/netconf/triggers.py
+| Variables | resources/test_data/honeycomb/netconf/triggers.py
 | Documentation | *Netconf test suite. Contains test cases that need to bypass\
 | ... | REST API.*
 | Force Tags | honeycomb_sanity

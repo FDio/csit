@@ -16,7 +16,7 @@
 | Resource | resources/libraries/robot/honeycomb/sub_interface.robot
 | Resource | resources/libraries/robot/honeycomb/bridge_domain.robot
 | Resource | resources/libraries/robot/honeycomb/interfaces.robot
-| Variables | tests/suites/honeycomb/resources/sub_interfaces.py
+| Variables | resources/test_data/honeycomb/sub_interfaces.py
 | Suite Teardown | Honeycomb removes all bridge domains | ${node}
 | Force Tags | honeycomb_sanity
 | Documentation | *Honeycomb sub-interface management test suite.*

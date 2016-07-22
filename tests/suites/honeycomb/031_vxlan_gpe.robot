@@ -36,7 +36,7 @@
 | Resource | resources/libraries/robot/honeycomb/interfaces.robot
 | Resource | resources/libraries/robot/honeycomb/vxlan_gpe.robot
 # Import additional VxLAN GPE settings from resource file
-| Variables | tests/suites/honeycomb/resources/vxlan_gpe.py
+| Variables | resources/test_data/honeycomb/vxlan_gpe.py
 | Documentation | *Honeycomb VxLAN-GPE management test suite.*
 | Force Tags | honeycomb_sanity
 
