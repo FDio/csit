@@ -118,6 +118,7 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -L TRACE \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+              -s "tests.perf" \
               -i perftest_long \
               tests/
         RETURN_STATUS=$(echo $?)
@@ -126,6 +127,7 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -L TRACE \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+              -s "tests.perf" \
               -i perftest_short \
               tests/
         RETURN_STATUS=$(echo $?)
@@ -134,7 +136,7 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -L TRACE \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "performance.Long_Bridge_Domain*" \
+              -s "tests.perf.Long_Bridge_Domain*" \
               tests/
         RETURN_STATUS=$(echo $?)
         ;;
@@ -142,7 +144,7 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -L TRACE \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "performance.Long_IPv4*" \
+              -s "tests.perf.Long_IPv4*" \
               tests/
         RETURN_STATUS=$(echo $?)
         ;;
@@ -150,7 +152,7 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -L TRACE \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "performance.Long_IPv6*" \
+              -s "tests.perf.Long_IPv6*" \
               tests/
         RETURN_STATUS=$(echo $?)
         ;;
@@ -158,7 +160,7 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -L TRACE \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "performance.Long_Xconnect*" \
+              -s "tests.perf.Long_Xconnect*" \
               tests/
         RETURN_STATUS=$(echo $?)
         ;;
@@ -166,14 +168,14 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -L TRACE \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "performance.Long_Xconnect_Dot1q*" \
+              -s "tests.perf.Long_Xconnect_Dot1q*" \
         RETURN_STATUS=$(echo $?)
         ;;
     PERFTEST_NDR )
         pybot ${PYBOT_ARGS} \
               -L TRACE \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s performance -i NDR \
+              -s "tests.perf" -i NDR \
               tests/
         RETURN_STATUS=$(echo $?)
         ;;
@@ -181,7 +183,7 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -L TRACE \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s performance -i PDR \
+              -s "tests.perf" -i PDR \
               tests/
         RETURN_STATUS=$(echo $?)
         ;;
@@ -190,7 +192,7 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -L TRACE \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s performance \
+              -s "tests.perf" \
               tests/
         RETURN_STATUS=$(echo $?)
 esac

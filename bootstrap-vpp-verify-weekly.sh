@@ -202,6 +202,7 @@ do
     echo ${test_set}. test loop
     PYTHONPATH=`pwd` pybot -L TRACE \
         -v TOPOLOGY_PATH:${SCRIPT_DIR}/topologies/enabled/topology.yaml \
+        --suite "tests.func" \
         --include vm_envAND3_node_single_link_topo \
         --include vm_envAND3_node_double_link_topo \
         --exclude PERFTEST \

@@ -247,6 +247,7 @@ do
 
     pybot -L TRACE \
         -v TOPOLOGY_PATH:${SCRIPT_DIR}/topologies/enabled/topology_VIRL.yaml \
+        --suite "tests.func" \
         --include vm_envAND3_node_single_link_topo \
         --include vm_envAND3_node_double_link_topo \
         --exclude PERFTEST \
@@ -340,6 +341,7 @@ echo Performance tests on HW system
 pybot ${PYBOT_ARGS} \
     -L TRACE \
     -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+    --suite "tests.perf" \
     --include perftest_long \
     --output log_perf_test_set \
     tests/
