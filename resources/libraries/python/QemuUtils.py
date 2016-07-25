@@ -39,9 +39,9 @@ class QemuUtils(object):
         self._qemu_opt['smp'] = '-smp 1,sockets=1,cores=1,threads=1'
         # Daemonize the QEMU process after initialization. Default one
         # management interface.
-        self._qemu_opt['options'] = '-cpu host -daemonize -enable-kvm ' \
+        self._qemu_opt['options'] = '-daemonize -enable-kvm ' \
             '-machine pc-1.0,accel=kvm,usb=off,mem-merge=off ' \
-            '-net nic,macaddr=52:54:00:00:02:01 -balloon none'
+            '-net nic,macaddr=52:54:00:00:02:01'
         self._qemu_opt['ssh_fwd_port'] = 10022
         # Default serial console port
         self._qemu_opt['serial_port'] = 4556
@@ -51,8 +51,6 @@ class QemuUtils(object):
         self._qemu_opt['huge_mnt'] = '/mnt/huge'
         # Default image for CSIT virl setup
         self._qemu_opt['disk_image'] = '/var/lib/vm/vhost-nested.img'
-        # Affinity of qemu processes
-        self._qemu_opt['affinity'] = False
         # VM node info dict
         self._vm_info = {
             'type': NodeType.VM,
@@ -104,7 +102,7 @@ class QemuUtils(object):
         :param mem_size: RAM size in Mega Bytes.
         :type mem_size: int
         """
-        self._qemu_opt['mem_size'] = int(mem_size)
+        self._qemu_opt['mem_size'] = mem_size
 
     def qemu_set_huge_mnt(self, huge_mnt):
         """Set hugefile mount point.
@@ -121,14 +119,6 @@ class QemuUtils(object):
         :type disk_image: str
         """
         self._qemu_opt['disk_image'] = disk_image
-
-    def qemu_set_affinity(self, mask):
-        """Set qemu affinity by taskset with cpu mask.
-
-       :param mask: Hex CPU mask.
-       :type mask: str
-        """
-        self._qemu_opt['affinity'] = mask
 
     def qemu_set_node(self, node):
         """Set node to run QEMU on.
@@ -167,11 +157,9 @@ class QemuUtils(object):
         # e.g. vhost1 MAC is 52:54:00:00:04:01
         if mac is None:
             mac = '52:54:00:00:04:{0:02x}'.format(self._vhost_id)
-        extend_options = 'csum=off,gso=off,guest_tso4=off,guest_tso6=off,'\
-            'guest_ecn=off,mrg_rxbuf=off'
         # Create Virtio network device.
-        device = ' -device virtio-net-pci,netdev=vhost{0},mac={1},{2}'.format(
-            self._vhost_id, mac, extend_options)
+        device = ' -device virtio-net-pci,netdev=vhost{0},mac={1}'.format(
+            self._vhost_id, mac)
         self._qemu_opt['options'] += device
         # Add interface MAC and socket to the node dict
         if_data = {'mac_address': mac, 'socket': socket}
@@ -346,7 +334,7 @@ class QemuUtils(object):
             self._qemu_opt.get('ssh_fwd_port'))
         # Memory and huge pages
         mem = '-object memory-backend-file,id=mem,size={0}M,mem-path={1},' \
-            'share=on -m {0} -numa node,memdev=mem -mem-prealloc'.format(
+            'share=on -m {0} -numa node,memdev=mem'.format(
             self._qemu_opt.get('mem_size'), self._qemu_opt.get('huge_mnt'))
         self._huge_page_check()
         # Setup QMP via unix socket
@@ -360,12 +348,9 @@ class QemuUtils(object):
             '-device isa-serial,chardev=qga0'
         # Graphic setup
         graphic = '-monitor none -display none -vga none'
-        qbin = 'taskset {0} {1}'.format(self._qemu_opt.get('affinity'),
-            self.__QEMU_BIN) if self._qemu_opt.get(
-            'affinity') else self.__QEMU_BIN
         # Run QEMU
         cmd = '{0} {1} {2} {3} {4} -hda {5} {6} {7} {8} {9}'.format(
-            qbin, self._qemu_opt.get('smp'), mem, ssh_fwd,
+            self.__QEMU_BIN, self._qemu_opt.get('smp'), mem, ssh_fwd,
             self._qemu_opt.get('options'),
             self._qemu_opt.get('disk_image'), qmp, serial, qga, graphic)
         (ret_code, _, stderr) = self._ssh.exec_command_sudo(cmd, timeout=300)
