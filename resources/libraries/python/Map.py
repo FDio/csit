@@ -15,6 +15,7 @@
 
 
 from resources.libraries.python.VatExecutor import VatExecutor
+import ipaddress
 
 
 class Map(object):
@@ -81,3 +82,46 @@ class Map(object):
         if output[0]["retval"] != 0:
             raise RuntimeError('Unable to add map rule on node {}'
                                .format(vpp_node['host']))
+
+    @staticmethod
+    def map_del_domain(vpp_node, index):
+        """Delete map domain on node.
+
+        :param vpp_node: VPP node to delete map domain on.
+        :param index: Index of the map domain.
+        :type vpp_node: dict
+        :type index: int
+        :raises RuntimeError: If unable to delete map domain.
+        """
+        output = VatExecutor.cmd_from_template(vpp_node, "map_del_domain.vat",
+                                               index=index)
+        if output[0]["retval"] != 0:
+            raise RuntimeError('Unable to delete map domain {} on node {}'
+                               .format(index, vpp_node['host']))
+
+    @staticmethod
+    def compute_ipv6_map_destination_address(ipv4_pfx, ipv6_pfx, ea_bit_len, psid_offset, psid_len, ipv4_dst, dst_port):
+        # ipv4_pfx, ipv6_pfx, ea_bit_len, psid_offset, psid_len, ipv4_dst, dst_port = u'20.0.0.0/16', u'2001:db8::/32', 16, 6, 8,  u'20.0.6.5', 1232
+        ipv6_net = ipaddress.ip_network(unicode(ipv6_pfx))
+        ipv4_net = ipaddress.ip_network(unicode(ipv4_pfx))
+        ipv4_host =ipaddress.ip_address(unicode(ipv4_dst))
+
+        ipv6_host_len = ipv6_net._max_prefixlen - ipv6_net.prefixlen
+        ipv4_host_part = ipv4_host._ip & ipv4_net.hostmask._ip
+        ipv4_host_len = ipv4_net._max_prefixlen - ipv4_net.prefixlen
+
+        address = ipv6_net.network_address._ip >> ipv6_host_len
+        address = address << ipv4_host_len
+        address = address | ipv4_host_part
+
+        psid = int('0x34', 16)  # TODO: lasdkfj
+        address = address << psid_len
+        address = address | psid
+
+        address = address << ipv6_host_len - ipv4_host_len - psid_len - 16
+        address = address | ipv4_host._ip
+
+        address = address << 16
+        address = address | psid
+
+        return str(ipaddress.ip_address(address))
