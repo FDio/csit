@@ -19,6 +19,7 @@ import sys
 
 from scapy.layers.l2 import Ether
 from scapy.layers.inet import IP, UDP
+from ipaddress import ip_address
 
 from resources.libraries.python.PacketVerifier import RxQueue, TxQueue
 from resources.libraries.python.TrafficScriptArg import TrafficScriptArg
@@ -88,12 +89,12 @@ def main():  # pylint: disable=too-many-statements, too-many-locals
     ipv6 = ether.payload
 
     # check ipv6
-    if ipv6.dst != rx_dst_ipv6:
+    if ip_address(unicode(ipv6.dst)) != ip_address(unicode(rx_dst_ipv6)):
         raise RuntimeError("Destination IP error {} != {}.".
                            format(ipv6.dst, rx_dst_ipv6))
     print "Destination IPv6: OK."
 
-    if ipv6.src != rx_src_ipv6:
+    if ip_address(unicode(ipv6.src)) != ip_address(unicode(rx_src_ipv6)):
         raise RuntimeError("Source IP error {} != {}.".
                            format(ipv6.src, rx_src_ipv6))
     print "Source IPv6: OK."
