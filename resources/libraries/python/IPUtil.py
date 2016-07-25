@@ -12,12 +12,14 @@
 # limitations under the License.
 
 """Common IP utilities library."""
-from ipaddress import IPv4Network
+
+from ipaddress import IPv4Network, ip_address
 
 from resources.libraries.python.ssh import SSH
 from resources.libraries.python.constants import Constants
 
 from resources.libraries.python.topology import Topology
+
 
 class IPUtil(object):
     """Common IP utilities"""
@@ -45,7 +47,7 @@ class IPUtil(object):
         elif if_type == "name":
             iface_name = interface
         else:
-            raise ValueError("if_type unknown: {}".format(if_type))
+            raise ValueError("if_type unknown: {0}".format(if_type))
 
         cmd = "{c}".format(c=Constants.VAT_BIN_NAME)
         cmd_input = 'exec ip probe {dev} {ip}'.format(dev=iface_name, ip=addr)
@@ -53,6 +55,23 @@ class IPUtil(object):
         if int(ret_code) != 0:
             raise Exception('VPP ip probe {dev} {ip} failed on {h}'.format(
                 dev=iface_name, ip=addr, h=node['host']))
+
+    @staticmethod
+    def ip_addresses_should_be_equal(ip1, ip2):
+        """Fails if the given IP addresses are unequal.
+
+        :param ip1: IPv4 or IPv6 address.
+        :param ip2: IPv4 or IPv6 address.
+        :type ip1: str
+        :type ip2: str
+        """
+
+        addr1 = ip_address(unicode(ip1))
+        addr2 = ip_address(unicode(ip2))
+
+        if addr1 != addr2:
+            raise AssertionError('IP addresses are not equal: {0} != {1}'.
+                                 format(ip1, ip2))
 
 
 def convert_ipv4_netmask_prefix(network):
