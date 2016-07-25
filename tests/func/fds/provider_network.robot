@@ -167,10 +167,14 @@
 | | ... | ${dut_node} | ${interface_name} | ${vlan_blue}
 | | ${vlan2_name} | ${vlan2_index}= | Create Vlan Subinterface
 | | ... | ${dut_node} | ${interface_name} | ${vlan_red}
-| | L2 Tag Rewrite | ${dut_node} | @{vhosts}[0] | push-1 | ${vlan_blue}
-| | L2 Tag Rewrite | ${dut_node} | @{vhosts}[1] | push-1 | ${vlan_blue}
-| | L2 Tag Rewrite | ${dut_node} | @{vhosts}[2] | push-1 | ${vlan_red}
-| | L2 Tag Rewrite | ${dut_node} | @{vhosts}[3] | push-1 | ${vlan_red}
+| | L2 Vlan Tag Rewrite | ${dut_node} | @{vhosts}[0] | push-1
+| | ... | tag1_id=${vlan_blue}
+| | L2 Vlan Tag Rewrite | ${dut_node} | @{vhosts}[1] | push-1
+| | ... | tag1_id=${vlan_blue}
+| | L2 Vlan Tag Rewrite | ${dut_node} | @{vhosts}[2] | push-1
+| | ... | tag1_id=${vlan_red}
+| | L2 Vlan Tag Rewrite | ${dut_node} | @{vhosts}[3] | push-1
+| | ... | tag1_id=${vlan_red}
 | | Interface is added to bridge domain | ${dut_node}
 | | ... | ${vlan1_index} | ${bid_b} | 0
 | | Interface is added to bridge domain | ${dut_node}
@@ -252,7 +256,6 @@
 | | ... | Send Ping From Node To Dst | ${qemu_node1} | ${dut1_blue2}
 | | ... | ${namespace4}
 
-
 | Negative Scenario Ping From DUT1 - Inter network
 | | [Documentation] | Send ping packets from specified namespaces to other in
 | | ...             | order to test unreachability of namespaces.
@@ -308,7 +311,6 @@
 | | Run keyword and expect error | Ping Not Successful
 | | ... | Send Ping From Node To Dst | ${qemu_node2} | ${dut2_blue2}
 | | ... | ${namespace4}
-
 
 | Negative Scenario Ping From DUT2 - Inter network
 | | [Documentation] | Send ping packets from specified namespaces to other in
