@@ -23,3 +23,11 @@ class Trace(object):
             if node['type'] == NodeType.DUT:
                 vat = VatExecutor()
                 vat.execute_script("show_trace.vat", node, json_out=False)
+
+    @staticmethod
+    def clear_packet_trace_on_all_duts(nodes):
+        for node in nodes.values():
+            if node['type'] == NodeType.DUT:
+                vat = VatExecutor()
+                vat.execute_script("clear_trace.vat", node, json_out=False)
+
