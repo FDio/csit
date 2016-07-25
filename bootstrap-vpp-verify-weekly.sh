@@ -134,7 +134,7 @@ done
 echo "Updated file names: " ${VPP_DEBS_FULL[@]}
 
 # Copy the files to VIRL host
-scp -i ${VIRL_PKEY} -o StrictHostKeyChecking=no *.deb \
+scp ${SSH_OPTIONS} *.deb \
     ${VIRL_USERNAME}@${VIRL_SERVER}:${VIRL_DIR_LOC}/
 
 result=$?
@@ -148,13 +148,13 @@ fi
 echo "Starting simulation on VIRL server"
 
 function stop_virl_simulation {
-    ssh -i priv_key -o StrictHostKeyChecking=no ${VIRL_USERNAME}@${VIRL_SERVER}\
-        "/home/jenkins-in/testcase-infra/bin/stop-testcase ${VIRL_SID}"
+    ssh ${SSH_OPTIONS} ${VIRL_USERNAME}@${VIRL_SERVER}\
+        "stop-testcase ${VIRL_SID}"
 }
 
-VIRL_SID=$(ssh -i priv_key -o StrictHostKeyChecking=no \
+VIRL_SID=$(ssh ${SSH_OPTIONS} \
     ${VIRL_USERNAME}@${VIRL_SERVER} \
-    "/home/jenkins-in/testcase-infra/bin/start-testcase -c double-ring-nested ${VPP_DEBS_FULL[@]}")
+    "start-testcase -c double-ring-nested ${VPP_DEBS_FULL[@]}")
 retval=$?
 if [ "$?" -ne "0" ]; then
     echo "VIRL simulation start failed"
@@ -173,7 +173,7 @@ echo ${VIRL_SID}
 ssh_do ${VIRL_USERNAME}@${VIRL_SERVER} cat /scratch/${VIRL_SID}/topology.yaml
 
 # Download the topology file from virl session
-scp -i ${VIRL_PKEY} -o StrictHostKeyChecking=no \
+scp ${SSH_OPTIONS} \
     ${VIRL_USERNAME}@${VIRL_SERVER}:/scratch/${VIRL_SID}/topology.yaml \
     topologies/enabled/topology.yaml
 
