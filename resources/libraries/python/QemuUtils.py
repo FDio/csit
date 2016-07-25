@@ -39,9 +39,9 @@ class QemuUtils(object):
         self._qemu_opt['smp'] = '-smp 1,sockets=1,cores=1,threads=1'
         # Daemonize the QEMU process after initialization. Default one
         # management interface.
-        self._qemu_opt['options'] = '-cpu host -daemonize -enable-kvm ' \
+        self._qemu_opt['options'] = '-daemonize -enable-kvm ' \
             '-machine pc-1.0,accel=kvm,usb=off,mem-merge=off ' \
-            '-net nic,macaddr=52:54:00:00:02:01 -balloon none'
+            '-net nic,macaddr=52:54:00:00:02:01'
         self._qemu_opt['ssh_fwd_port'] = 10022
         # Default serial console port
         self._qemu_opt['serial_port'] = 4556
