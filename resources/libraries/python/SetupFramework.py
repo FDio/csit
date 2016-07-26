@@ -69,7 +69,6 @@ def copy_tarball_to_node(tarball, node):
 
     ssh.scp(tarball, "/tmp/")
 
-
 def extract_tarball_at_node(tarball, node):
     """Extract tarball at given node.
 
@@ -111,7 +110,7 @@ def create_env_directory_at_node(node):
     else:
         logger.console('Virtualenv created on {0}'.format(node['host']))
 
-
+#pylint: disable=broad-except
 def setup_node(args):
     """Run all set-up methods for a node.
 
@@ -121,14 +120,21 @@ def setup_node(args):
     :param args: All parameters needed to setup one node.
     :type args: tuple
     :return: nothing
+    :return: True - success, False - error
+    :rtype: bool
     """
     tarball, remote_tarball, node = args
-    copy_tarball_to_node(tarball, node)
-    extract_tarball_at_node(remote_tarball, node)
-    if node['type'] == NodeType.TG:
-        create_env_directory_at_node(node)
-    logger.console('Setup of node {0} done'.format(node['host']))
-
+    try:
+        copy_tarball_to_node(tarball, node)
+        extract_tarball_at_node(remote_tarball, node)
+        if node['type'] == NodeType.TG:
+            create_env_directory_at_node(node)
+    except Exception as exc:
+        logger.error("Node setup failed, error:'{0}'".format(exc.message))
+        return False
+    else:
+        logger.console('Setup of node {0} done'.format(node['host']))
+        return True
 
 def delete_local_tarball(tarball):
     """Delete local tarball to prevent disk pollution.
@@ -166,14 +172,15 @@ class SetupFramework(object): # pylint: disable=too-few-public-methods
         pool.close()
         pool.join()
 
+        # Turn on logging
+        BuiltIn().set_log_level(log_level)
+
         logger.info(
             'Executed node setups in parallel, waiting for processes to end')
         result.wait()
 
         logger.info('Results: {0}'.format(result.get()))
 
-        # Turn on logging
-        BuiltIn().set_log_level(log_level)
         logger.trace('Test framework copied to all topology nodes')
         delete_local_tarball(tarball)
         logger.console('All nodes are ready')
