@@ -166,14 +166,15 @@ class SetupFramework(object): # pylint: disable=too-few-public-methods
         pool.close()
         pool.join()
 
+        # Turn on logging
+        BuiltIn().set_log_level(log_level)
+
         logger.info(
             'Executed node setups in parallel, waiting for processes to end')
         result.wait()
 
         logger.info('Results: {0}'.format(result.get()))
 
-        # Turn on logging
-        BuiltIn().set_log_level(log_level)
         logger.trace('Test framework copied to all topology nodes')
         delete_local_tarball(tarball)
         logger.console('All nodes are ready')
