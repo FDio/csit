@@ -254,7 +254,9 @@ fi
 echo Post-processing test data...
 
 # Rebot output post-processing
-rebot --output output.xml ./log_test_set1.xml ./log_test_set2.xml ./log_test_set3.xml
+rebot --noncritical EXPECTED_FAILING \
+      --output output.xml \
+      ./log_test_set1.xml ./log_test_set2.xml ./log_test_set3.xml
 
 # Remove unnecessary log files
 rm -f ./log_test_set1.xml ./log_test_set2.xml ./log_test_set3.xml

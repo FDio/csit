@@ -413,8 +413,10 @@ if [ ! $? -eq 0 ]; then
 fi
 
 # Rebot output post-processing
-rebot --output output.xml ./log_func_test_set1.xml ./log_func_test_set2.xml \
-    ./log_func_test_set3.xml ./log_perf_test_set.xml
+rebot --noncritical EXPECTED_FAILING \
+      --output output.xml \
+      ./log_func_test_set1.xml ./log_func_test_set2.xml \
+      ./log_func_test_set3.xml ./log_perf_test_set.xml
 
 # Remove unnecessary files
 rm -f ./log_test_set1.xml ./log_test_set2.xml ./log_test_set3.xml \
