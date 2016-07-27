@@ -192,18 +192,20 @@ class L2Util(object):
                                                     interface2=sw_iface1)
 
     @staticmethod
-    def linux_add_bridge(node, br_name, if_1, if_2):
+    def linux_add_bridge(node, br_name, if_1, if_2, set_up=True):
         """Bridge two interfaces on linux node.
 
         :param node: Node to add bridge on.
         :param br_name: Bridge name.
         :param if_1: First interface to be added to the bridge.
         :param if_2: Second interface to be added to the bridge.
+        :param set_up: Change bridge interface state to up after create bridge.
+        Optional. Default: True.
         :type node: dict
         :type br_name: str
         :type if_1: str
         :type if_2: str
-
+        :type set_up: bool
         """
         cmd = 'brctl addbr {0}'.format(br_name)
         exec_cmd_no_error(node, cmd, sudo=True)
@@ -211,8 +213,9 @@ class L2Util(object):
         exec_cmd_no_error(node, cmd, sudo=True)
         cmd = 'brctl addif {0} {1}'.format(br_name, if_2)
         exec_cmd_no_error(node, cmd, sudo=True)
-        cmd = 'ip link set dev {0} up'.format(br_name)
-        exec_cmd_no_error(node, cmd, sudo=True)
+        if set_up:
+            cmd = 'ip link set dev {0} up'.format(br_name)
+            exec_cmd_no_error(node, cmd, sudo=True)
 
     @staticmethod
     def setup_network_namespace(node, namespace_name, interface_name,
@@ -244,14 +247,22 @@ class L2Util(object):
         exec_cmd_no_error(node, cmd, sudo=True)
 
     @staticmethod
-    def linux_del_bridge(node, br_name):
+    def linux_del_bridge(node, br_name, set_down=True):
         """Delete bridge from linux node.
 
         :param node: Node to delete bridge from.
         :param br_name: Bridge name.
+        :param set_down: Change bridge interface state to down before delbr
+        command. Optional. Default: True.
+        :type node: str
+        :type br_name: str
+        :type set_down: bool
         ..note:: The network interface corresponding to the bridge must be
         down before it can be deleted!
         """
+        if set_down:
+            cmd = 'ip link set dev {0} down'.format(br_name)
+            exec_cmd_no_error(node, cmd, sudo=True)
         cmd = 'brctl delbr {0}'.format(br_name)
         exec_cmd_no_error(node, cmd, sudo=True)
 
