@@ -346,7 +346,7 @@ class QemuUtils(object):
             self._qemu_opt.get('ssh_fwd_port'))
         # Memory and huge pages
         mem = '-object memory-backend-file,id=mem,size={0}M,mem-path={1},' \
-            'share=on -m {0} -numa node,memdev=mem -mem-prealloc'.format(
+            'share=on -m {0} -numa node,memdev=mem'.format(
             self._qemu_opt.get('mem_size'), self._qemu_opt.get('huge_mnt'))
         self._huge_page_check()
         # Setup QMP via unix socket
