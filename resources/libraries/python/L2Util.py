@@ -252,6 +252,8 @@ class L2Util(object):
         ..note:: The network interface corresponding to the bridge must be
         down before it can be deleted!
         """
+        cmd = 'ip link set dev {0} down'.format(br_name)
+        exec_cmd_no_error(node, cmd, sudo=True)
         cmd = 'brctl delbr {0}'.format(br_name)
         exec_cmd_no_error(node, cmd, sudo=True)
 
