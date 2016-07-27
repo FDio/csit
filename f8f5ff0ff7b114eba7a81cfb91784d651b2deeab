@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a0e1d27_e17983fd",
+        "filename": "resources/libraries/python/L2Util.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 256,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-07-27T08:20:38Z",
+      "side": 1,
+      "message": "Please, use this in separate method, e.g. set_device_down.\n\nThen create user KW (e.g. Delete Linux Bridge) in resource file to delete linux bridge where you first set the bridge down and then delete it.",
+      "range": {
+        "startLine": 255,
+        "startChar": 8,
+        "endLine": 256,
+        "endChar": 47
+      },
+      "revId": "f8f5ff0ff7b114eba7a81cfb91784d651b2deeab",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
