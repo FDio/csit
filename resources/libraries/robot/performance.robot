@@ -75,6 +75,8 @@
 | | ... |                             for 40GE with 9004B L2 Frame.
 | | ... | - 40Ge_linerate_pps_9008B - Maximum number of packet per second
 | | ... |                             for 40GE with 9008B L2 Frame.
+| | ... | - 40Ge_linerate_pps_IMIX_v4_1 - Maximum number of packet per second
+| | ... |                                 for 40GE with IMIX_v4_1 profile.
 | | ...
 | | Set Suite Variable | ${10Ge_linerate_pps_64B} | 14880952
 | | Set Suite Variable | ${10Ge_linerate_pps_68B} | 14204545
@@ -95,6 +97,7 @@
 | | Set Suite Variable | ${40Ge_linerate_pps_9000B} | 554323
 | | Set Suite Variable | ${40Ge_linerate_pps_9004B} | 554078
 | | Set Suite Variable | ${40Ge_linerate_pps_9008B} | 553832
+| | Set Suite Variable | ${40Ge_linerate_pps_IMIX_v4_1} | 13374944
 
 | Get Frame Size
 | | [Documentation]
@@ -464,52 +467,6 @@
 | | Vpp l2bd forwarding setup | ${dut1} | ${dut1_if1} | ${dut1_if2}
 | | Vpp l2bd forwarding setup | ${dut2} | ${dut2_if1} | ${dut2_if2}
 | | All Vpp Interfaces Ready Wait | ${nodes}
-
-| 2-node Performance Suite Setup
-| | [Documentation]
-| | ... | Suite preparation phase that setup default startup configuration of
-| | ... | VPP on all DUTs. Updates interfaces on all nodes and setup global
-| | ... | variables used in test cases. Initializes traffic generator.
-| | ...
-| | ... | *Arguments:*
-| | ... | - topology_type - Topology type. Type: string
-| | ...
-| | ... | *Example:*
-| | ...
-| | ... | \| 2-node Performance Suite Setup \| L2 \|
-| | [Arguments] | ${topology_type}
-| | Setup default startup configuration of VPP on all DUTs
-| | Show vpp version on all DUTs
-| | Setup performance rate Variables
-| | Setup performance global Variables
-| | 2-node circular Topology Variables Setup
-| | Initialize traffic generator | ${tg} | ${tg_if1} | ${tg_if2}
-| | ...                          | ${dut1} | ${dut1_if1}
-| | ...                          | ${dut1} | ${dut1_if2}
-| | ...                          | ${topology_type}
-
-| 3-node Performance Suite Setup
-| | [Documentation]
-| | ... | Suite preparation phase that setup default startup configuration of
-| | ... | VPP on all DUTs. Updates interfaces on all nodes and setup global
-| | ... | variables used in test cases. Initializes traffic generator.
-| | ...
-| | ... | *Arguments:*
-| | ... | - topology_type - Topology type. Type: string
-| | ...
-| | ... | *Example:*
-| | ...
-| | ... | \| 3-node Performance Suite Setup \| L2 \|
-| | [Arguments] | ${topology_type}
-| | Setup default startup configuration of VPP on all DUTs
-| | Show vpp version on all DUTs
-| | Setup performance rate Variables
-| | Setup performance global Variables
-| | 3-node circular Topology Variables Setup
-| | Initialize traffic generator | ${tg} | ${tg_if1} | ${tg_if2}
-| | ...                          | ${dut1} | ${dut1_if1}
-| | ...                          | ${dut2} | ${dut2_if2}
-| | ...                          | ${topology_type}
 
 2-node Performance Suite Setup with DUT's NIC model
 | | [Documentation]
