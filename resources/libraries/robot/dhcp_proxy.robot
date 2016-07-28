@@ -115,3 +115,38 @@
 | | Run Keyword And Expect Error | DHCP DISCOVER Rx timeout
 | | ... | Run Traffic Script On Node | dhcp/send_and_check_proxy_discover.py
 | | ... | ${tg_node} | ${args}
+
+| Send DHCPv6 Messages
+| | [Documentation] | Send and receive DHCP messages between client
+| | ...             | and server through DHCP proxy.
+| | ...
+| | ... | *Arguments:*
+| | ... | - tg_node - TG node. Type: dictionary
+| | ... | - tg_interface1 - TG interface. Type: string
+| | ... | - tg_interface2 - TG interface. Type: string
+| | ... | - server_ip - DHCP server IP address. Type: string
+| | ... | - proxy_ip - DHCP proxy IP address. Type: string
+| | ... | - client_mac - Client MAC address. Type: string
+| | ... | - server_mac - Server MAC address. Type: string
+| | ...
+| | ... | *Return:*
+| | ... | - No value returned.
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Send DHCP Messages \| ${nodes['TG']} \
+| | ... | \| eth3 \| eth4 \| 3ffe:62::1 \| 3ffe:63::2 \
+| | ... | \| 08:00:27:64:18:d2 \| 08:00:27:cc:4f:54 \|
+| | ...
+| | [Arguments] | ${tg_node} | ${tg_interface1} | ${tg_interface2}
+| | ...         | ${proxy_ip} | ${server_ip} | ${client_mac} | ${server_mac}
+| | ${tg_interface_name1}= | Get interface name | ${tg_node} | ${tg_interface1}
+| | ${tg_interface_name2}= | Get interface name | ${tg_node} | ${tg_interface2}
+| | ${args}= | Catenate | --tx_if | ${tg_interface_name1}
+| | ...                 | --rx_if | ${tg_interface_name2}
+| | ...                 | --proxy_ip | ${proxy_ip}
+| | ...                 | --server_ip | ${server_ip}
+| | ...                 | --client_mac | ${client_mac}
+| | ...                 | --server_mac | ${server_mac}
+| | Run Traffic Script On Node | dhcp/send_dhcp_v6_messages.py
+| | ... | ${tg_node} | ${args}
