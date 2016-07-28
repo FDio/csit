@@ -1,1 +1,1 @@
-sw_interface_set_table sw_if_index {sw_index} vrf {vrf}
+sw_interface_set_table sw_if_index {sw_index} vrf {vrf} {ipv6}

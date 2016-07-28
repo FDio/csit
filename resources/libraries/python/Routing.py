@@ -24,7 +24,7 @@ class Routing(object):
     @staticmethod
     def vpp_route_add(node, network, prefix_len, gateway=None,
                       interface=None, use_sw_index=True, resolve_attempts=10,
-                      count=1, vrf=None):
+                      count=1, vrf=None, lookup_vrf=None):
         """Add route to the VPP node.
 
         :param node: Node to add route on.
@@ -37,6 +37,7 @@ class Routing(object):
         :param resolve_attempts: Resolve attempts IP route add parameter.
         :param count: number of IP addresses to add starting from network IP
         with same prefix (increment is 1). If None, then is not used.
+        :param lookup_vrf: VRF table ID for lookup.
         :type node: dict
         :type network: str
         :type prefix_len: int
@@ -46,6 +47,7 @@ class Routing(object):
         :type resolve_attempts: int
         :type count: int
         :type vrf: int
+        :type lookup_vrf: int
         """
         if use_sw_index:
             int_cmd = ('sw_if_index {}'.
@@ -63,6 +65,8 @@ class Routing(object):
 
         vrf = 'vrf {}'.format(vrf) if vrf else ''
 
+        lookup_vrf = 'lookup-in-vrf {}'.format(lookup_vrf) if lookup_vrf else ''
+
         with VatTerminal(node, json_param=False) as vat:
             vat.vat_terminal_exec_cmd_from_template('add_route.vat',
                                                     network=network,
@@ -71,7 +75,8 @@ class Routing(object):
                                                     vrf=vrf,
                                                     interface=int_cmd,
                                                     resolve_attempts=rap,
-                                                    count=cnt)
+                                                    count=cnt,
+                                                    lookup_vrf=lookup_vrf)
 
     @staticmethod
     def add_fib_table(node, network, prefix_len, fib_id, place):
