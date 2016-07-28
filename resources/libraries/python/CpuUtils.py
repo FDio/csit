@@ -98,3 +98,36 @@ class CpuUtils(object):
             raise RuntimeError("Node cpuinfo not available.")
 
         return cpulist
+
+    @staticmethod
+    def cpu_list_per_node_str(node, cpu_node, skip_cnt=0,
+                              cpu_cnt=0, sep=","):
+        """Return string of node related list of CPU numbers.
+
+        :param node: Node dictionary with cpuinfo.
+        :param cpu_node: Numa node number.
+        :param skip_cnt: Skip first "skip_cnt" CPUs.
+        :param cpu_cnt: Count of cpus to return, if 0 then return all.
+        :param sep: Separator, default: 1,2,3,4,....
+        :type node: dict
+        :type cpu_node: int
+        :type skip_cnt: int
+        :type cpu_cnt: int
+        :type sep: str
+        :return: Cpu numbers related to numa from argument.
+        :rtype: str
+        """
+
+        cpu_list = CpuUtils.cpu_list_per_node(node, cpu_node)
+        cpu_list_len = len(cpu_list)
+        cpu_flist = ""
+        if cpu_cnt == 0:
+            cpu_cnt = cpu_list_len - skip_cnt
+
+        if cpu_cnt + skip_cnt > cpu_list_len:
+            raise RuntimeError("cpu_cnt + skip_cnt > length(cpu list).")
+
+        cpu_flist = sep.join(str(a) for a in
+                             cpu_list[skip_cnt:skip_cnt+cpu_cnt])
+
+        return cpu_flist
