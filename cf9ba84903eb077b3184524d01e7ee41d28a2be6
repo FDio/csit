@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a0e1d27_372219ba",
+        "filename": "tests/func/__init__.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-07-28T14:04:00Z",
+      "side": 1,
+      "message": "We should not use this test teardown here but in every specific suite file.\nHere we should use only Suite Teardown of the whole func test suite e.g. to do some post test cleaning when needed.\n\nBut I agree that with increasing number of test cases we could save tracing data only in case of test case failure to avoid too much unnecesary data in the log file. We need to change it in every test suite under func suite.",
+      "range": {
+        "startLine": 21,
+        "startChar": 1,
+        "endLine": 23,
+        "endChar": 39
+      },
+      "revId": "cf9ba84903eb077b3184524d01e7ee41d28a2be6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
