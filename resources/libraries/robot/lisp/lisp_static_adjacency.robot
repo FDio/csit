@@ -107,13 +107,13 @@
 | | ... | - dut1_to_dut2 - DUT1 towards DUT2 interface name. Type: string
 | | ... | - dut2_to_dut1 - DUT2 towards DUT1 interface name. Type: string
 | | ... | - dut1_to_dut2_mac - DUT1 towards DUT2 interface mac address.
-                               Type: string
+| | ... |                      Type: string
 | | ... | - dut2_to_dut1_mac - DUT2 towards DUT1 interface mac address.
-                               Type: string
+| | ... |                      Type: string
 | | ... | - new_dut1_ip - New DUT1 towards DUT2 interface IP address.
-                          Type: string
+| | ... |                 Type: string
 | | ... | - new_dut2_ip - New DUT2 towards DUT1 interface IP address.
-                          Type: string
+| | ... |                 Type: string
 | | ... | - prefix - Prefix of the DUT nodes. Type: integer
 | | ... | - old_dut1_static_adjacency - Old DUT1 static adjacency.
 | | ... |                               Type: dictionary
