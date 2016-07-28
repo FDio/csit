@@ -48,7 +48,7 @@ import string
 import struct
 import sys
 
-sys.path.insert(0, "/opt/trex-core-2.07/scripts/automation/"+\
+sys.path.insert(0, "/opt/trex-core-2.06/scripts/automation/"+\
                    "trex_control_plane/stl/")
 from trex_stl_lib.api import *
 
@@ -380,7 +380,7 @@ def simple_burst(stream_a, stream_b, stream_lat_a, stream_lat_b, duration, rate,
 
             if client.get_warnings():
                 for warning in client.get_warnings():
-                    print_error(warning)
+                    print(warning)
 
             # read the stats after the test
             stats = client.get_stats()
@@ -408,7 +408,7 @@ def simple_burst(stream_a, stream_b, stream_lat_a, stream_lat_b, duration, rate,
 
             if client.get_warnings():
                 for warning in client.get_warnings():
-                    print_error(warning)
+                    print(warning)
 
             # read the stats after the test
             stats = client.get_stats()
