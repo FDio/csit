@@ -41,6 +41,31 @@
 | | | Vpp api trace save | ${nodes['${dut}']}
 | | | Vpp api trace dump | ${nodes['${dut}']}
 
+| Add '${m}' worker threads and rxqueues '${n}' in 3-node single-link topo
+| | [Documentation] | Setup M worker threads and N rxqueues in vpp startup
+| | ...             | configuration on all DUTs in 3-node single-link topology.
+| | ${dut1_numa}= | Get interfaces numa node | ${dut1}
+| | ...           | ${dut1_if1} | ${dut1_if2}
+| | ${dut2_numa}= | Get interfaces numa node | ${dut2}
+| | ...           | ${dut2_if1} | ${dut2_if2}
+| | ${dut1_cpu_main}= | Cpu list per node str | ${dut1} | ${dut1_numa}
+| | ...               | max_cnt=1
+| | ${dut1_cpu_w}= | Cpu list per node str | ${dut1} | ${dut1_numa}
+| | ...            | skip_cnt=1 | max_cnt=${m}
+| | ${dut2_cpu_main}= | Cpu list per node str | ${dut2} | ${dut2_numa}
+| | ...               | max_cnt=1
+| | ${dut2_cpu_w}= | Cpu list per node str | ${dut2} | ${dut2_numa}
+| | ...            | skip_cnt=1 | max_cnt=${m}
+| | ${dut1_cpu}= | Catenate | main-core | ${dut1_cpu_main}
+| | ...          | corelist-workers | ${dut1_cpu_w}
+| | ${dut2_cpu}= | Catenate | main-core | ${dut2_cpu_main}
+| | ...          | corelist-workers | ${dut2_cpu_w}
+| | ${rxqueues}= | Catenate | num-rx-queues | ${n}
+| | Add CPU config | ${dut1} | ${dut1_cpu}
+| | Add CPU config | ${dut2} | ${dut2_cpu}
+| | Add rxqueues config | ${dut1} | ${dut1_rxqueues}
+| | Add rxqueues config | ${dut2} | ${dut2_rxqueues}
+
 | Add '${m}' worker threads and rxqueues '${n}' without HTT to all DUTs
 | | [Documentation] |  Setup M worker threads without HTT and rxqueues N in
 | | ...             |  startup configuration of VPP to all DUTs
