@@ -354,7 +354,7 @@ def simple_burst(stream_a, stream_b, stream_lat_a, stream_lat_b, duration, rate,
 
             if client.get_warnings():
                 for warning in client.get_warnings():
-                    print_error(warning)
+                    print(warning)
 
             # read the stats after the test
             stats = client.get_stats()
