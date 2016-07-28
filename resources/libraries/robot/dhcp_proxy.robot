@@ -115,3 +115,45 @@
 | | Run Keyword And Expect Error | DHCP DISCOVER Rx timeout
 | | ... | Run Traffic Script On Node | dhcp/send_and_check_proxy_discover.py
 | | ... | ${tg_node} | ${args}
+
+| Send DHCPv6 Messages
+| | [Documentation] | Send and receive DHCPv6 messages between client
+| | ...             | and server through DHCPv6 proxy.
+| | ...
+| | ... | *Arguments:*
+| | ... | - tg_node - TG node. Type: dictionary
+| | ... | - tg_interface1 - TG interface. Type: string
+| | ... | - tg_interface2 - TG interface. Type: string
+| | ... | - proxy_ip - DHCPv6 proxy IP address. Type: string
+| | ... | - proxy_mac - Proxy MAC address. Type: string
+| | ... | - server_ip - DHCPv6 server IP address. Type: string
+| | ... | - server_mac - Server MAC address. Type: string
+| | ... | - client_mac - Client MAC address. Type: string
+| | ... | - proxy_to_server_mac - MAC address of proxy interface
+| | ... |   connected to server. Type: string
+| | ...
+| | ... | *Return:*
+| | ... | - No value returned.
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Send DHCPv6 Messages \| ${nodes['TG']} \
+| | ... | \| eth3 \| eth4 \| 3ffe:62::1 \| 08:00:27:54:59:f9 \
+| | ... | \| 3ffe:63::2 \| 08:00:27:cc:4f:54 \|
+| | ... | \| 08:00:27:64:18:d2 \| 08:00:27:c9:6a:d5 \|
+| | ...
+| | [Arguments] | ${tg_node} | ${tg_interface1} | ${tg_interface2} | ${proxy_ip}
+| | ...         | ${proxy_mac} | ${server_ip} | ${server_mac} | ${client_mac}
+| | ...         | ${proxy_to_server_mac}
+| | ${tg_interface_name1}= | Get interface name | ${tg_node} | ${tg_interface1}
+| | ${tg_interface_name2}= | Get interface name | ${tg_node} | ${tg_interface2}
+| | ${args}= | Catenate | --tx_if | ${tg_interface_name1}
+| | ...                 | --rx_if | ${tg_interface_name2}
+| | ...                 | --proxy_ip | ${proxy_ip}
+| | ...                 | --proxy_mac | ${proxy_mac}
+| | ...                 | --server_ip | ${server_ip}
+| | ...                 | --server_mac | ${server_mac}
+| | ...                 | --client_mac | ${client_mac}
+| | ...                 | --proxy_to_server_mac | ${proxy_to_server_mac}
+| | Run Traffic Script On Node | dhcp/send_dhcp_v6_messages.py
+| | ... | ${tg_node} | ${args}
