@@ -1,0 +1,303 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a0e1d27_fcf8064b",
+        "filename": "resources/libraries/robot/lisp/lisp_static_adjacency.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-07-28T07:52:46Z",
+      "side": 1,
+      "message": "DUT1 towards DUT2",
+      "range": {
+        "startLine": 107,
+        "startChar": 27,
+        "endLine": 107,
+        "endChar": 31
+      },
+      "revId": "0a5f05f43094192c711eb303b6d634940d45da07",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_dc9542e5",
+        "filename": "resources/libraries/robot/lisp/lisp_static_adjacency.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-07-28T07:52:46Z",
+      "side": 1,
+      "message": "DUT2 towards DUT1",
+      "range": {
+        "startLine": 108,
+        "startChar": 27,
+        "endLine": 108,
+        "endChar": 31
+      },
+      "revId": "0a5f05f43094192c711eb303b6d634940d45da07",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_bc9a8e12",
+        "filename": "resources/libraries/robot/lisp/lisp_static_adjacency.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-07-28T07:52:46Z",
+      "side": 1,
+      "message": "DUT1 towards DUT2 interface",
+      "range": {
+        "startLine": 109,
+        "startChar": 31,
+        "endLine": 109,
+        "endChar": 35
+      },
+      "revId": "0a5f05f43094192c711eb303b6d634940d45da07",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_9c9fca03",
+        "filename": "resources/libraries/robot/lisp/lisp_static_adjacency.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-07-28T07:52:46Z",
+      "side": 1,
+      "message": "DUT2 towards DUT1 interface",
+      "range": {
+        "startLine": 110,
+        "startChar": 31,
+        "endLine": 110,
+        "endChar": 35
+      },
+      "revId": "0a5f05f43094192c711eb303b6d634940d45da07",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_7ca4f656",
+        "filename": "resources/libraries/robot/lisp/lisp_static_adjacency.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-07-28T07:52:46Z",
+      "side": 1,
+      "message": "DUT1 towards DUT2 interface IP address ?\n- I guess it is IP address of the interface...",
+      "range": {
+        "startLine": 111,
+        "startChar": 30,
+        "endLine": 111,
+        "endChar": 50
+      },
+      "revId": "0a5f05f43094192c711eb303b6d634940d45da07",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_5c8932c9",
+        "filename": "resources/libraries/robot/lisp/lisp_static_adjacency.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-07-28T07:52:46Z",
+      "side": 1,
+      "message": "DUT2 towards DUT1 interface IP address ?\n- I guess it is IP address of the interface...",
+      "range": {
+        "startLine": 112,
+        "startChar": 30,
+        "endLine": 112,
+        "endChar": 50
+      },
+      "revId": "0a5f05f43094192c711eb303b6d634940d45da07",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_fc8fe6ca",
+        "filename": "resources/libraries/robot/lisp/lisp_static_adjacency.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-07-28T07:52:46Z",
+      "side": 1,
+      "message": "Please, use capital letters for DUT1 and DUT2 in documentation.\n- valid for all occurences",
+      "range": {
+        "startLine": 114,
+        "startChar": 44,
+        "endLine": 114,
+        "endChar": 48
+      },
+      "revId": "0a5f05f43094192c711eb303b6d634940d45da07",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_5cb0128b",
+        "filename": "tests/func/lisp/lisp_dataplane_untagged.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-07-28T07:52:46Z",
+      "side": 1,
+      "message": "Verify",
+      "range": {
+        "startLine": 63,
+        "startChar": 17,
+        "endLine": 63,
+        "endChar": 23
+      },
+      "revId": "0a5f05f43094192c711eb303b6d634940d45da07",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_3cad5e32",
+        "filename": "tests/func/lisp/lisp_dataplane_untagged.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-07-28T07:52:46Z",
+      "side": 1,
+      "message": "Verify",
+      "range": {
+        "startLine": 123,
+        "startChar": 17,
+        "endLine": 123,
+        "endChar": 23
+      },
+      "revId": "0a5f05f43094192c711eb303b6d634940d45da07",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_1caa9a19",
+        "filename": "tests/func/lisp/lisp_dataplane_untagged.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-07-28T07:52:46Z",
+      "side": 1,
+      "message": "Verify",
+      "range": {
+        "startLine": 183,
+        "startChar": 17,
+        "endLine": 183,
+        "endChar": 23
+      },
+      "revId": "0a5f05f43094192c711eb303b6d634940d45da07",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_fca6c652",
+        "filename": "tests/func/lisp/lisp_dataplane_untagged.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-07-28T07:52:46Z",
+      "side": 1,
+      "message": "Verify",
+      "range": {
+        "startLine": 242,
+        "startChar": 17,
+        "endLine": 242,
+        "endChar": 23
+      },
+      "revId": "0a5f05f43094192c711eb303b6d634940d45da07",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_dc630219",
+        "filename": "tests/func/lisp/lisp_dataplane_untagged.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 301,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-07-28T07:52:46Z",
+      "side": 1,
+      "message": "Verify",
+      "range": {
+        "startLine": 301,
+        "startChar": 17,
+        "endLine": 301,
+        "endChar": 23
+      },
+      "revId": "0a5f05f43094192c711eb303b6d634940d45da07",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_bc684ef6",
+        "filename": "tests/func/lisp/lisp_dataplane_untagged.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-07-28T07:52:46Z",
+      "side": 1,
+      "message": "Verify",
+      "range": {
+        "startLine": 303,
+        "startChar": 17,
+        "endLine": 303,
+        "endChar": 23
+      },
+      "revId": "0a5f05f43094192c711eb303b6d634940d45da07",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
