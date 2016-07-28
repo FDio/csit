@@ -75,6 +75,8 @@
 | | ... |                             for 40GE with 9004B L2 Frame.
 | | ... | - 40Ge_linerate_pps_9008B - Maximum number of packet per second
 | | ... |                             for 40GE with 9008B L2 Frame.
+| | ... | - 40Ge_linerate_pps_IMIX_v4_1 - Maximum number of packet per second
+| | ... |                                 for 40GE with IMIX_v4_1 profile.
 | | ...
 | | Set Suite Variable | ${10Ge_linerate_pps_64B} | 14880952
 | | Set Suite Variable | ${10Ge_linerate_pps_68B} | 14204545
@@ -95,6 +97,7 @@
 | | Set Suite Variable | ${40Ge_linerate_pps_9000B} | 554323
 | | Set Suite Variable | ${40Ge_linerate_pps_9004B} | 554078
 | | Set Suite Variable | ${40Ge_linerate_pps_9008B} | 553832
+| | Set Suite Variable | ${40Ge_linerate_pps_IMIX_v4_1} | 13374944
 
 | Get Frame Size
 | | [Documentation]
