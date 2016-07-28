@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9a0e1d27_973b25eb",
+        "filename": "resources/libraries/robot/dhcp_client.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 84
+      },
+      "writtenOn": "2016-07-28T13:57:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a0e1d27_5768edb9",
+      "range": {
+        "startLine": 197,
+        "startChar": 56,
+        "endLine": 197,
+        "endChar": 57
+      },
+      "revId": "366c81afd4e82781ae5d8151b96ecf10142b5168",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a0e1d27_7773f1b1",
         "filename": "resources/libraries/robot/dhcp_client.robot",
         "patchSetId": 4
@@ -36,6 +60,30 @@
       "writtenOn": "2016-07-28T13:03:41Z",
       "side": 1,
       "message": "\\|",
+      "range": {
+        "startLine": 226,
+        "startChar": 56,
+        "endLine": 226,
+        "endChar": 57
+      },
+      "revId": "366c81afd4e82781ae5d8151b96ecf10142b5168",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_77409156",
+        "filename": "resources/libraries/robot/dhcp_client.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 84
+      },
+      "writtenOn": "2016-07-28T13:57:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a0e1d27_7773f1b1",
       "range": {
         "startLine": 226,
         "startChar": 56,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "9a0e1d27_377459ce",
+        "filename": "tests/func/dhcp/dhcp_v4_proxy.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 84
+      },
+      "writtenOn": "2016-07-28T13:57:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a0e1d27_179395fb",
+      "range": {
+        "startLine": 25,
+        "startChar": 2,
+        "endLine": 25,
+        "endChar": 15
+      },
+      "revId": "366c81afd4e82781ae5d8151b96ecf10142b5168",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a0e1d27_f7738113",
         "filename": "tests/func/dhcp/dhcp_v4_proxy.robot",
         "patchSetId": 4
@@ -82,6 +154,30 @@
       "writtenOn": "2016-07-28T13:03:41Z",
       "side": 1,
       "message": "* Test",
+      "range": {
+        "startLine": 30,
+        "startChar": 31,
+        "endLine": 30,
+        "endChar": 36
+      },
+      "revId": "366c81afd4e82781ae5d8151b96ecf10142b5168",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_1781558f",
+        "filename": "tests/func/dhcp/dhcp_v4_proxy.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 84
+      },
+      "writtenOn": "2016-07-28T13:57:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a0e1d27_f7738113",
       "range": {
         "startLine": 30,
         "startChar": 31,
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "9a0e1d27_f77dc1b2",
+        "filename": "tests/func/dhcp/dhcp_v4_proxy.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 84
+      },
+      "writtenOn": "2016-07-28T13:57:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a0e1d27_d7607d37",
+      "range": {
+        "startLine": 32,
+        "startChar": 58,
+        "endLine": 32,
+        "endChar": 63
+      },
+      "revId": "366c81afd4e82781ae5d8151b96ecf10142b5168",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a0e1d27_975a0582",
         "filename": "tests/func/dhcp/dhcp_v4_proxy.robot",
         "patchSetId": 4
@@ -128,6 +248,30 @@
       "writtenOn": "2016-07-28T13:03:41Z",
       "side": 1,
       "message": "Missing assing sing - fix for all occurrences, please.",
+      "range": {
+        "startLine": 42,
+        "startChar": 19,
+        "endLine": 42,
+        "endChar": 20
+      },
+      "revId": "366c81afd4e82781ae5d8151b96ecf10142b5168",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_d74abd82",
+        "filename": "tests/func/dhcp/dhcp_v4_proxy.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 84
+      },
+      "writtenOn": "2016-07-28T13:57:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a0e1d27_975a0582",
       "range": {
         "startLine": 42,
         "startChar": 19,
@@ -163,6 +307,30 @@
     },
     {
       "key": {
+        "uuid": "9a0e1d27_b74f4992",
+        "filename": "tests/func/dhcp/dhcp_v4_proxy.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 84
+      },
+      "writtenOn": "2016-07-28T13:57:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a0e1d27_57db4ded",
+      "range": {
+        "startLine": 48,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 5
+      },
+      "revId": "366c81afd4e82781ae5d8151b96ecf10142b5168",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a0e1d27_37d8d9ee",
         "filename": "tests/func/dhcp/dhcp_v4_proxy.robot",
         "patchSetId": 4
@@ -174,6 +342,30 @@
       "writtenOn": "2016-07-28T13:03:41Z",
       "side": 1,
       "message": "Use space and backslash at the end of the 1st line of the documentation:\nDUT \\\n\n-valid for all occurrences",
+      "range": {
+        "startLine": 50,
+        "startChar": 19,
+        "endLine": 50,
+        "endChar": 22
+      },
+      "revId": "366c81afd4e82781ae5d8151b96ecf10142b5168",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_97444575",
+        "filename": "tests/func/dhcp/dhcp_v4_proxy.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 84
+      },
+      "writtenOn": "2016-07-28T13:57:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a0e1d27_37d8d9ee",
       "range": {
         "startLine": 50,
         "startChar": 19,
@@ -209,6 +401,30 @@
     },
     {
       "key": {
+        "uuid": "9a0e1d27_575ead46",
+        "filename": "tests/func/dhcp/dhcp_v4_proxy.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 84
+      },
+      "writtenOn": "2016-07-28T13:57:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a0e1d27_d7ee3d8b",
+      "range": {
+        "startLine": 66,
+        "startChar": 4,
+        "endLine": 66,
+        "endChar": 8
+      },
+      "revId": "366c81afd4e82781ae5d8151b96ecf10142b5168",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a0e1d27_b7f3c972",
         "filename": "tests/func/dhcp/dhcp_v4_proxy.robot",
         "patchSetId": 4
@@ -220,6 +436,30 @@
       "writtenOn": "2016-07-28T13:03:41Z",
       "side": 1,
       "message": "Then Send",
+      "range": {
+        "startLine": 67,
+        "startChar": 4,
+        "endLine": 67,
+        "endChar": 8
+      },
+      "revId": "366c81afd4e82781ae5d8151b96ecf10142b5168",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_375b3956",
+        "filename": "tests/func/dhcp/dhcp_v4_proxy.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 84
+      },
+      "writtenOn": "2016-07-28T13:57:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a0e1d27_b7f3c972",
       "range": {
         "startLine": 67,
         "startChar": 4,
@@ -255,6 +495,30 @@
     },
     {
       "key": {
+        "uuid": "9a0e1d27_17583555",
+        "filename": "tests/func/dhcp/dhcp_v4_proxy.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 84
+      },
+      "writtenOn": "2016-07-28T13:57:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a0e1d27_f78f01cb",
+      "range": {
+        "startLine": 88,
+        "startChar": 4,
+        "endLine": 88,
+        "endChar": 8
+      },
+      "revId": "366c81afd4e82781ae5d8151b96ecf10142b5168",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a0e1d27_d7bcfd6e",
         "filename": "tests/func/dhcp/dhcp_v4_proxy.robot",
         "patchSetId": 4
@@ -278,6 +542,30 @@
     },
     {
       "key": {
+        "uuid": "9a0e1d27_f754a122",
+        "filename": "tests/func/dhcp/dhcp_v4_proxy.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 89,
+      "author": {
+        "id": 84
+      },
+      "writtenOn": "2016-07-28T13:57:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a0e1d27_d7bcfd6e",
+      "range": {
+        "startLine": 89,
+        "startChar": 4,
+        "endLine": 89,
+        "endChar": 8
+      },
+      "revId": "366c81afd4e82781ae5d8151b96ecf10142b5168",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a0e1d27_b7c189e6",
         "filename": "tests/func/dhcp/dhcp_v4_proxy.robot",
         "patchSetId": 4
@@ -289,6 +577,30 @@
       "writtenOn": "2016-07-28T13:03:41Z",
       "side": 1,
       "message": "And Send",
+      "range": {
+        "startLine": 91,
+        "startChar": 4,
+        "endLine": 91,
+        "endChar": 8
+      },
+      "revId": "366c81afd4e82781ae5d8151b96ecf10142b5168",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_d7319d0c",
+        "filename": "tests/func/dhcp/dhcp_v4_proxy.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 84
+      },
+      "writtenOn": "2016-07-28T13:57:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a0e1d27_b7c189e6",
       "range": {
         "startLine": 91,
         "startChar": 4,
