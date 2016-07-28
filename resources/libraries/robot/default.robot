@@ -44,11 +44,11 @@
 | Add '${m}' worker threads and rxqueues '${n}' without HTT to all DUTs
 | | [Documentation] |  Setup M worker threads without HTT and rxqueues N in
 | | ...             |  startup configuration of VPP to all DUTs
-| | ${cpu}= | Catenate | main-core | 0 | corelist-workers
-| | ${cpu}= | Run Keyword If | '${m}' == '1' | Catenate | ${cpu} | 1
-| | ...     | ELSE IF        | '${m}' == '2' | Catenate | ${cpu} | 1-2
-| | ...     | ELSE IF        | '${m}' == '4' | Catenate | ${cpu} | 1-4
-| | ...     | ELSE IF        | '${m}' == '6' | Catenate | ${cpu} | 1-6
+| | ${cpu}= | Catenate | main-core | 18 | corelist-workers
+| | ${cpu}= | Run Keyword If | '${m}' == '1' | Catenate | ${cpu} | 19
+| | ...     | ELSE IF        | '${m}' == '2' | Catenate | ${cpu} | 19-20
+| | ...     | ELSE IF        | '${m}' == '4' | Catenate | ${cpu} | 19-22
+| | ...     | ELSE IF        | '${m}' == '6' | Catenate | ${cpu} | 19-24
 | | ...     | ELSE           | Fail | Not supported combination
 | | ${rxqueues}= | Catenate | num-rx-queues | ${n}
 | | Add worker threads and rxqueues to all DUTs | ${cpu} | ${rxqueues}
