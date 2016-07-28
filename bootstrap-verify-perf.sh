@@ -28,7 +28,7 @@ VPP_REPO_URL=$(cat ${SCRIPT_DIR}/VPP_REPO_URL)
 RESERVATION_DIR="/tmp/reservation_dir"
 INSTALLATION_DIR="/tmp/install_dir"
 
-PYBOT_ARGS="-W 150 --noncritical PERFTEST --exclude SKIP_PATCH"
+PYBOT_ARGS="-W 150 -i NIC_Intel-XL710"
 
 ARCHIVE_ARTIFACTS=(log.html output.xml report.html output_perf_data.xml)
 
@@ -119,7 +119,7 @@ case "$TEST_TAG" in
               -L TRACE \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s "tests.perf" \
-              -i perftest_long \
+              #-i perftest_long \
               tests/
         RETURN_STATUS=$(echo $?)
         ;;
