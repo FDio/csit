@@ -820,25 +820,30 @@ class InterfaceUtil(object):
                                                     interface_name=interface)
 
     @staticmethod
-    def assign_interface_to_fib_table(node, interface, table_id):
+    def assign_interface_to_fib_table(node, interface, table_id, ipv6=False):
         """Assign VPP interface to specific VRF/FIB table.
 
         :param node: VPP node where the FIB and interface are located.
         :param interface: Interface to be assigned to FIB.
         :param table_id: VRF table ID.
+        :param ipv6: Assign to IPv6 table. Default False.
         :type node: dict
         :type interface: str or int
         :type table_id: int
+        :type ipv6: bool
         """
         if isinstance(interface, basestring):
             sw_if_index = Topology.get_interface_sw_index(node, interface)
         else:
             sw_if_index = interface
 
+        ipv6 = 'ipv6' if ipv6 else ''
+
         with VatTerminal(node) as vat:
             vat.vat_terminal_exec_cmd_from_template("set_fib_to_interface.vat",
                                                     sw_index=sw_if_index,
-                                                    vrf=table_id)
+                                                    vrf=table_id,
+                                                    ipv6=ipv6)
 
     @staticmethod
     def set_linux_interface_mac(node, interface, mac, namespace=None):
