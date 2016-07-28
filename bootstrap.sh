@@ -203,7 +203,7 @@ fi
 
 PYTHONPATH=`pwd` pybot -L TRACE -W 150 \
     -v TOPOLOGY_PATH:${SCRIPT_DIR}/topologies/enabled/topology.yaml \
-    --suite "tests.func" \
+    --suite "tests.func.dhcp.dhcp_v6_proxy" \
     --include vm_envAND3_node_single_link_topo \
     --include vm_envAND3_node_double_link_topo \
     --exclude PERFTEST \
