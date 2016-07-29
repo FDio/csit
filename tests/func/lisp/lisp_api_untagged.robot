@@ -49,7 +49,6 @@
 | | ... | DUT1 enable LISP. [Ver1] Check DUT1 if LISP is enabled. [Cfg2]
 | | ... | Then disable LISP. [Ver2] Check DUT1 if LISP is disabled. [Ref]
 | | ... | RFC6830.
-| | [Tags] | EXPECTED_FAILING
 | | When Enable lisp | ${nodes['DUT1']}
 | | Then Check if lisp is enabled | ${nodes['DUT1']} | ${lisp_status}
 | | When Disable lisp | ${nodes['DUT1']}
@@ -62,7 +61,6 @@
 | | ... | configured locator_set and locator are correct. [Cfg2] Then
 | | ... | remove locator_set and locator. [Ver2] check DUT1 locator_set
 | | ... | and locator are removed. [Ref] RFC6830.
-| | [Tags] | EXPECTED_FAILING
 | | Given Lisp locator_set data is prepared
 | | ... | ${nodes['DUT1']} | ${locator_set_num}
 | | And   Enable lisp | ${nodes['DUT1']}
