@@ -28,7 +28,7 @@ VPP_REPO_URL=$(cat ${SCRIPT_DIR}/VPP_REPO_URL)
 RESERVATION_DIR="/tmp/reservation_dir"
 INSTALLATION_DIR="/tmp/install_dir"
 
-PYBOT_ARGS="-W 150 --noncritical PERFTEST --exclude SKIP_PATCH"
+PYBOT_ARGS="-W 150 --noncritical PERFTEST"
 
 ARCHIVE_ARTIFACTS=(log.html output.xml report.html output_perf_data.xml)
 
@@ -119,6 +119,7 @@ case "$TEST_TAG" in
               -L TRACE \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s "tests.perf" \
+              --exclude SKIP_PATCH
               -i perftest_long \
               tests/
         RETURN_STATUS=$(echo $?)
@@ -187,6 +188,15 @@ case "$TEST_TAG" in
               tests/
         RETURN_STATUS=$(echo $?)
         ;;
+   PERFTEST_NIGHTLY )
+        #run all available tests
+        pybot ${PYBOT_ARGS} \
+              -L TRACE \
+              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+              -s "tests.perf" \
+              tests/
+        RETURN_STATUS=$(echo $?)
+	;;
     * )
         # run full performance test suite and exit on fail
         pybot ${PYBOT_ARGS} \
