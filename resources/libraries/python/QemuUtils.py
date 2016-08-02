@@ -49,10 +49,10 @@ class QemuUtils(object):
         self._qemu_opt['mem_size'] = 512
         # Default huge page mount point, required for Vhost-user interfaces.
         self._qemu_opt['huge_mnt'] = '/mnt/huge'
+        # Default do not allocate huge pages.
+        self._qemu_opt['huge_allocate'] = False
         # Default image for CSIT virl setup
         self._qemu_opt['disk_image'] = '/var/lib/vm/vhost-nested.img'
-        # Affinity of qemu processes
-        self._qemu_opt['affinity'] = False
         # VM node info dict
         self._vm_info = {
             'type': NodeType.VM,
@@ -114,6 +114,10 @@ class QemuUtils(object):
         """
         self._qemu_opt['huge_mnt'] = huge_mnt
 
+    def qemu_set_huge_allocate(self):
+        """Set flag to allocate more huge pages if needed."""
+        self._qemu_opt['huge_allocate'] = True
+
     def qemu_set_disk_image(self, disk_image):
         """Set disk image.
 
@@ -122,13 +126,22 @@ class QemuUtils(object):
         """
         self._qemu_opt['disk_image'] = disk_image
 
-    def qemu_set_affinity(self, mask):
-        """Set qemu affinity by taskset with cpu mask.
+    def qemu_set_affinity(self, *host_cpus):
+        """Set qemu affinity by getting thread PIDs via QMP and taskset to list
+        of CPU cores.
 
-       :param mask: Hex CPU mask.
-       :type mask: str
+        :param host_cpus: Lits of CPU cores.
+        :type host_cpus: list
         """
-        self._qemu_opt['affinity'] = mask
+        qemu_cpus = self._qemu_qmp_exec('query-cpus')
+        for qemu_cpu, host_cpu in zip(qemu_cpus['return'], host_cpus):
+            cmd = 'taskset -p {0} {1}'.format(hex(1 << int(host_cpu)),
+                qemu_cpu['thread_id'])
+            (ret_code, _, stderr) = self._ssh.exec_command_sudo(cmd)
+            if int(ret_code) != 0:
+                logger.debug('Set affinity failed {0}'.format(stderr))
+                raise RuntimeError('Set affinity failed on {0}'.format(
+                    self._node['host']))
 
     def qemu_set_node(self, node):
         """Set node to run QEMU on.
@@ -333,6 +346,39 @@ class QemuUtils(object):
                 raise RuntimeError('Mount huge pages failed on {0}'.format(
                     self._node['host']))
 
+    def _huge_page_allocate(self):
+        """Huge page allocate."""
+        huge_mnt = self._qemu_opt.get('huge_mnt')
+        mem_size = self._qemu_opt.get('mem_size')
+        # Check size of free huge pages
+        (_, output, _) = self._ssh.exec_command('grep Huge /proc/meminfo')
+        regex = re.compile(r'HugePages_Free:\s+(\d+)')
+        match = regex.search(output)
+        huge_free = int(match.group(1))
+        regex = re.compile(r'HugePages_Total:\s+(\d+)')
+        match = regex.search(output)
+        huge_total = int(match.group(1))
+        regex = re.compile(r'Hugepagesize:\s+(\d+)')
+        match = regex.search(output)
+        huge_size = int(match.group(1))
+
+        mem_needed = abs((huge_free * huge_size) - (mem_size * 1024))
+
+        if mem_needed:
+            huge_to_allocate = (mem_needed / huge_size) + huge_total
+            # Increase limit of allowed max hugepage count
+            cmd = 'echo "{0}" | sudo tee /proc/sys/vm/max_map_count'.format(
+                huge_to_allocate*3)
+            (ret_code, _, stderr) = self._ssh.exec_command_sudo(cmd)
+            # Increase hugepage count
+            cmd = 'echo "{0}" | sudo tee /proc/sys/vm/nr_hugepages'.format(
+                huge_to_allocate)
+            (ret_code, _, stderr) = self._ssh.exec_command_sudo(cmd)
+            if int(ret_code) != 0:
+                logger.debug('Mount huge pages failed {0}'.format(stderr))
+                raise RuntimeError('Mount huge pages failed on {0}'.format(
+                    self._node['host']))
+
     def qemu_start(self):
         """Start QEMU and wait until VM boot.
 
@@ -348,7 +394,17 @@ class QemuUtils(object):
         mem = '-object memory-backend-file,id=mem,size={0}M,mem-path={1},' \
             'share=on -m {0} -numa node,memdev=mem'.format(
             self._qemu_opt.get('mem_size'), self._qemu_opt.get('huge_mnt'))
-        self._huge_page_check()
+
+        # By default check only if hugepages are availbale.
+        # If 'huge_allocate' is set to true try to allocate as well.
+        try:
+            self._huge_page_check()
+        except RuntimeError as runtime_error:
+            if self._qemu_opt.get('huge_allocate'):
+                self._huge_page_allocate()
+            else:
+                raise runtime_error
+
         # Setup QMP via unix socket
         qmp = '-qmp unix:{0},server,nowait'.format(self.__QMP_SOCK)
         # Setup serial console
@@ -360,12 +416,9 @@ class QemuUtils(object):
             '-device isa-serial,chardev=qga0'
         # Graphic setup
         graphic = '-monitor none -display none -vga none'
-        qbin = 'taskset {0} {1}'.format(self._qemu_opt.get('affinity'),
-            self.__QEMU_BIN) if self._qemu_opt.get(
-            'affinity') else self.__QEMU_BIN
         # Run QEMU
         cmd = '{0} {1} {2} {3} {4} -hda {5} {6} {7} {8} {9}'.format(
-            qbin, self._qemu_opt.get('smp'), mem, ssh_fwd,
+            self.__QEMU_BIN, self._qemu_opt.get('smp'), mem, ssh_fwd,
             self._qemu_opt.get('options'),
             self._qemu_opt.get('disk_image'), qmp, serial, qga, graphic)
         (ret_code, _, stderr) = self._ssh.exec_command_sudo(cmd, timeout=300)
