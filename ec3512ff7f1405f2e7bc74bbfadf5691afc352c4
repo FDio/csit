@@ -1,0 +1,554 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a0e1d27_e7586efc",
+        "filename": "resources/libraries/python/Dhcp.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-08-02T07:49:58Z",
+      "side": 1,
+      "message": "class DhcpProxy(object):\n    \"\"\"doc\"\"\"",
+      "revId": "ec3512ff7f1405f2e7bc74bbfadf5691afc352c4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_076482b7",
+        "filename": "resources/libraries/robot/dhcp_client.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-08-02T07:49:58Z",
+      "side": 1,
+      "message": "move changes to dhcp_proxy.robot and update doc",
+      "revId": "ec3512ff7f1405f2e7bc74bbfadf5691afc352c4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_275f86e7",
+        "filename": "resources/traffic_scripts/dhcp/send_dhcp_discover.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-08-02T07:49:58Z",
+      "side": 1,
+      "message": "consider to rename send_and_check_proxy_discover.py",
+      "revId": "ec3512ff7f1405f2e7bc74bbfadf5691afc352c4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_27d1c657",
+        "filename": "resources/traffic_scripts/dhcp/send_dhcp_discover.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-08-02T07:49:58Z",
+      "side": 1,
+      "message": "sends packet and check if is received on interface",
+      "revId": "ec3512ff7f1405f2e7bc74bbfadf5691afc352c4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_e7caaea0",
+        "filename": "resources/traffic_scripts/dhcp/send_dhcp_discover.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-08-02T07:49:58Z",
+      "side": 1,
+      "message": "consider \n    for _ in range(10):\n        dhcp_discover \u003d rxq.recv(10)\n        if is_discover(dhcp_discover):\n            break\n    else:\n        raise RuntimeError(\"DHCP DISCOVER Rx error.\")\nfrom check_dhcp_request.py",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 37
+      },
+      "revId": "ec3512ff7f1405f2e7bc74bbfadf5691afc352c4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_bc87290f",
+        "filename": "resources/traffic_scripts/dhcp/send_dhcp_messages.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-08-02T07:49:58Z",
+      "side": 1,
+      "message": "consider to rename to send_and_check_proxy_messages.py",
+      "revId": "ec3512ff7f1405f2e7bc74bbfadf5691afc352c4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_5cf12dcc",
+        "filename": "resources/traffic_scripts/dhcp/send_dhcp_messages.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-08-02T07:49:58Z",
+      "side": 1,
+      "message": "please move parsing args to main function",
+      "range": {
+        "startLine": 28,
+        "startChar": 18,
+        "endLine": 28,
+        "endChar": 22
+      },
+      "revId": "ec3512ff7f1405f2e7bc74bbfadf5691afc352c4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_dcabfd87",
+        "filename": "resources/traffic_scripts/dhcp/send_dhcp_messages.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-08-02T07:49:58Z",
+      "side": 1,
+      "message": "and check DHCP DISCOVER proxy packet.",
+      "range": {
+        "startLine": 29,
+        "startChar": 7,
+        "endLine": 29,
+        "endChar": 32
+      },
+      "revId": "ec3512ff7f1405f2e7bc74bbfadf5691afc352c4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_1ca295ae",
+        "filename": "resources/traffic_scripts/dhcp/send_dhcp_messages.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-08-02T07:49:58Z",
+      "side": 1,
+      "message": "UDP_SERVICES.bootps",
+      "range": {
+        "startLine": 48,
+        "startChar": 40,
+        "endLine": 48,
+        "endChar": 42
+      },
+      "revId": "ec3512ff7f1405f2e7bc74bbfadf5691afc352c4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_fca6c1c0",
+        "filename": "resources/traffic_scripts/dhcp/send_dhcp_messages.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-08-02T07:49:58Z",
+      "side": 1,
+      "message": "UDP_SERVICES.bootpc",
+      "range": {
+        "startLine": 48,
+        "startChar": 30,
+        "endLine": 48,
+        "endChar": 32
+      },
+      "revId": "ec3512ff7f1405f2e7bc74bbfadf5691afc352c4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_3cee79ed",
+        "filename": "resources/traffic_scripts/dhcp/send_dhcp_messages.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-08-02T07:49:58Z",
+      "side": 1,
+      "message": "move to main function",
+      "range": {
+        "startLine": 84,
+        "startChar": 4,
+        "endLine": 84,
+        "endChar": 14
+      },
+      "revId": "ec3512ff7f1405f2e7bc74bbfadf5691afc352c4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_dcb41df4",
+        "filename": "resources/traffic_scripts/dhcp/send_dhcp_messages.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-08-02T07:49:58Z",
+      "side": 1,
+      "message": "please move parsing args to main function",
+      "range": {
+        "startLine": 87,
+        "startChar": 15,
+        "endLine": 87,
+        "endChar": 19
+      },
+      "revId": "ec3512ff7f1405f2e7bc74bbfadf5691afc352c4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_bcb049f5",
+        "filename": "resources/traffic_scripts/dhcp/send_dhcp_messages.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-08-02T07:49:58Z",
+      "side": 1,
+      "message": "send proxy DHCP OFFER packet, check client offer.",
+      "revId": "ec3512ff7f1405f2e7bc74bbfadf5691afc352c4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_bcb969eb",
+        "filename": "resources/traffic_scripts/dhcp/send_dhcp_messages.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-08-02T07:49:58Z",
+      "side": 1,
+      "message": "there should be only one rxq and rxq in main function",
+      "range": {
+        "startLine": 93,
+        "startChar": 3,
+        "endLine": 94,
+        "endChar": 24
+      },
+      "revId": "ec3512ff7f1405f2e7bc74bbfadf5691afc352c4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_1cbbb5e6",
+        "filename": "resources/traffic_scripts/dhcp/send_dhcp_messages.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-08-02T07:49:58Z",
+      "side": 1,
+      "message": "move to main function",
+      "range": {
+        "startLine": 151,
+        "startChar": 4,
+        "endLine": 151,
+        "endChar": 16
+      },
+      "revId": "ec3512ff7f1405f2e7bc74bbfadf5691afc352c4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_9ccea582",
+        "filename": "resources/traffic_scripts/dhcp/send_dhcp_messages.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 154,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-08-02T07:49:58Z",
+      "side": 1,
+      "message": "please move parsing args to main function",
+      "range": {
+        "startLine": 154,
+        "startChar": 17,
+        "endLine": 154,
+        "endChar": 21
+      },
+      "revId": "ec3512ff7f1405f2e7bc74bbfadf5691afc352c4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_9c958542",
+        "filename": "resources/traffic_scripts/dhcp/send_dhcp_messages.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-08-02T07:49:58Z",
+      "side": 1,
+      "message": "update doc string",
+      "revId": "ec3512ff7f1405f2e7bc74bbfadf5691afc352c4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_7ccbd172",
+        "filename": "resources/traffic_scripts/dhcp/send_dhcp_messages.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-08-02T07:49:58Z",
+      "side": 1,
+      "message": "only in main function",
+      "range": {
+        "startLine": 160,
+        "startChar": 4,
+        "endLine": 161,
+        "endChar": 24
+      },
+      "revId": "ec3512ff7f1405f2e7bc74bbfadf5691afc352c4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_3c9c3969",
+        "filename": "resources/traffic_scripts/dhcp/send_dhcp_messages.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-08-02T07:49:58Z",
+      "side": 1,
+      "message": "UDP_SERVICES.bootpc",
+      "range": {
+        "startLine": 173,
+        "startChar": 29,
+        "endLine": 173,
+        "endChar": 31
+      },
+      "revId": "ec3512ff7f1405f2e7bc74bbfadf5691afc352c4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_5c9fed5f",
+        "filename": "resources/traffic_scripts/dhcp/send_dhcp_messages.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-08-02T07:49:58Z",
+      "side": 1,
+      "message": "UDP_SERVICES.bootps",
+      "range": {
+        "startLine": 173,
+        "startChar": 39,
+        "endLine": 173,
+        "endChar": 41
+      },
+      "revId": "ec3512ff7f1405f2e7bc74bbfadf5691afc352c4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_fcbfe1ce",
+        "filename": "resources/traffic_scripts/dhcp/send_dhcp_messages.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-08-02T07:49:58Z",
+      "side": 1,
+      "message": "move to main function",
+      "range": {
+        "startLine": 221,
+        "startChar": 4,
+        "endLine": 221,
+        "endChar": 12
+      },
+      "revId": "ec3512ff7f1405f2e7bc74bbfadf5691afc352c4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_5cc80d74",
+        "filename": "resources/traffic_scripts/dhcp/send_dhcp_messages.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 224,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-08-02T07:49:58Z",
+      "side": 1,
+      "message": "please move parsing args to main function",
+      "range": {
+        "startLine": 224,
+        "startChar": 13,
+        "endLine": 224,
+        "endChar": 17
+      },
+      "revId": "ec3512ff7f1405f2e7bc74bbfadf5691afc352c4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_dc82ddff",
+        "filename": "resources/traffic_scripts/dhcp/send_dhcp_messages.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 225,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-08-02T07:49:58Z",
+      "side": 1,
+      "message": "update doc string",
+      "revId": "ec3512ff7f1405f2e7bc74bbfadf5691afc352c4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_3cc5595b",
+        "filename": "resources/traffic_scripts/dhcp/send_dhcp_messages.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-08-02T07:49:58Z",
+      "side": 1,
+      "message": "only in main function",
+      "range": {
+        "startLine": 230,
+        "startChar": 4,
+        "endLine": 231,
+        "endChar": 24
+      },
+      "revId": "ec3512ff7f1405f2e7bc74bbfadf5691afc352c4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_fc8da132",
+        "filename": "resources/traffic_scripts/dhcp/send_dhcp_messages.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-08-02T07:49:58Z",
+      "side": 1,
+      "message": "UDP_SERVICES.bootpc",
+      "range": {
+        "startLine": 244,
+        "startChar": 35,
+        "endLine": 244,
+        "endChar": 37
+      },
+      "revId": "ec3512ff7f1405f2e7bc74bbfadf5691afc352c4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_1c897526",
+        "filename": "resources/traffic_scripts/dhcp/send_dhcp_messages.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 244,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-08-02T07:49:58Z",
+      "side": 1,
+      "message": "UDP_SERVICES.bootps",
+      "range": {
+        "startLine": 244,
+        "startChar": 25,
+        "endLine": 244,
+        "endChar": 27
+      },
+      "revId": "ec3512ff7f1405f2e7bc74bbfadf5691afc352c4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
