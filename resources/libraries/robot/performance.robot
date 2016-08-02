@@ -467,6 +467,39 @@
 | | Vpp l2bd forwarding setup | ${dut2} | ${dut2_if1} | ${dut2_if2}
 | | All Vpp Interfaces Ready Wait | ${nodes}
 
+| L2 bridge domains with Vhost-User initialized in a 3-node circular topology
+| | [Documentation]
+| | ... | Create two Vhost-User interfaces on all defined VPP nodes. Add each
+| | ... | Vhost-User interface into L2 bridge domains with learning enabled
+| | ... | with physical inteface.
+| | ...
+| | ... | *Arguments:*
+| | ... | - bd_id1 - Bridge domain ID. Type: integer
+| | ... | - bd_id2 - Bridge domain ID. Type: integer
+| | ... | - sock1 - Sock path for first Vhost-User interface. Type: string
+| | ... | - sock2 - Sock path for second Vhost-User interface. Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| L2 bridge domains with Vhost-User initialized in a 3-node \
+| | ... |    circular topology \| 1 \| 2 \| /tmp/sock1 \| /tmp/sock2
+| | [Arguments] | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
+| | VPP Vhost interfaces for L2BD forwarding are setup | ${dut1}
+| | ...                                                | ${sock1}
+| | ...                                                | ${sock2}
+| | Interface is added to bridge domain | ${dut1} | ${dut1_if1} | ${bd_id1}
+| | Interface is added to bridge domain | ${dut1} | ${vhost_if1} | ${bd_id1}
+| | Interface is added to bridge domain | ${dut1} | ${dut1_if2} | ${bd_id2}
+| | Interface is added to bridge domain | ${dut1} | ${vhost_if2} | ${bd_id2}
+| | VPP Vhost interfaces for L2BD forwarding are setup | ${dut2}
+| | ...                                                | ${sock1}
+| | ...                                                | ${sock2}
+| | Interface is added to bridge domain | ${dut2} | ${dut2_if1} | ${bd_id1}
+| | Interface is added to bridge domain | ${dut2} | ${vhost_if1} | ${bd_id1}
+| | Interface is added to bridge domain | ${dut2} | ${dut2_if2} | ${bd_id2}
+| | Interface is added to bridge domain | ${dut2} | ${vhost_if2} | ${bd_id2}
+| | All Vpp Interfaces Ready Wait | ${nodes}
+
 | 2-node Performance Suite Setup
 | | [Documentation]
 | | ... | Suite preparation phase that setup default startup configuration of

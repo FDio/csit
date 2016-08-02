@@ -81,6 +81,9 @@ Performance testing TAGs
 PERFTEST
     All performance test cases.
 
+PERFTEST_VHOST
+    All performance test cases that includes testing of VHOST with VM.
+
 PERFTEST_SHORT
     Performance of DUT should pass specific value. Each test case run is
     executed for 10 seconds.
