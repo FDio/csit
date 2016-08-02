@@ -70,3 +70,10 @@
 | | ... | ELSE | Qemu Quit
 | | Qemu Clear Socks
 | | Run Keyword If | ${vm} is not None | Disconnect | ${vm}
+
+| Kill Qemu on all DUTs
+| | [Documentation] | Kill QEMU processes on all DUTs.
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | Qemu Set Node | ${nodes['${dut}']}
+| | | Qemu Kill
