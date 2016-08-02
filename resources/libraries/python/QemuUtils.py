@@ -53,8 +53,6 @@ class QemuUtils(object):
         self._qemu_opt['huge_allocate'] = False
         # Default image for CSIT virl setup
         self._qemu_opt['disk_image'] = '/var/lib/vm/vhost-nested.img'
-        # Affinity of qemu processes
-        self._qemu_opt['affinity'] = False
         # VM node info dict
         self._vm_info = {
             'type': NodeType.VM,
@@ -128,13 +126,22 @@ class QemuUtils(object):
         """
         self._qemu_opt['disk_image'] = disk_image
 
-    def qemu_set_affinity(self, mask):
-        """Set qemu affinity by taskset with cpu mask.
+    def qemu_set_affinity(self, *host_cpus):
+        """Set qemu affinity by getting thread PIDs via QMP and taskset to list
+        of CPU cores.
 
-       :param mask: Hex CPU mask.
-       :type mask: str
+        :param host_cpus: Lits of CPU cores.
+        :type host_cpus: list
         """
-        self._qemu_opt['affinity'] = mask
+        qemu_cpus = self._qemu_qmp_exec('query-cpus')
+        for qemu_cpu, host_cpu in zip(qemu_cpus['return'], host_cpus):
+            cmd = 'taskset -p {0} {1}'.format(hex(1 << int(host_cpu)),
+                qemu_cpu['thread_id'])
+            (ret_code, _, stderr) = self._ssh.exec_command_sudo(cmd)
+            if int(ret_code) != 0:
+                logger.debug('Set affinity failed {0}'.format(stderr))
+                raise RuntimeError('Set affinity failed on {0}'.format(
+                    self._node['host']))
 
     def qemu_set_node(self, node):
         """Set node to run QEMU on.
@@ -409,12 +416,9 @@ class QemuUtils(object):
             '-device isa-serial,chardev=qga0'
         # Graphic setup
         graphic = '-monitor none -display none -vga none'
-        qbin = 'taskset {0} {1}'.format(self._qemu_opt.get('affinity'),
-            self.__QEMU_BIN) if self._qemu_opt.get(
-            'affinity') else self.__QEMU_BIN
         # Run QEMU
         cmd = '{0} {1} {2} {3} {4} -hda {5} {6} {7} {8} {9}'.format(
-            qbin, self._qemu_opt.get('smp'), mem, ssh_fwd,
+            self.__QEMU_BIN, self._qemu_opt.get('smp'), mem, ssh_fwd,
             self._qemu_opt.get('options'),
             self._qemu_opt.get('disk_image'), qmp, serial, qga, graphic)
         (ret_code, _, stderr) = self._ssh.exec_command_sudo(cmd, timeout=300)
