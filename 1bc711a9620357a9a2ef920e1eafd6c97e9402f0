@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "9a0e1d27_676c5e9d",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 829,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-08-02T08:23:22Z",
+      "side": 1,
+      "message": "Assign to IPv6 table. Default False.",
+      "range": {
+        "startLine": 829,
+        "startChar": 21,
+        "endLine": 829,
+        "endChar": 60
+      },
+      "revId": "1bc711a9620357a9a2ef920e1eafd6c97e9402f0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a0e1d27_f62b8280",
         "filename": "tests/func/vrf/vrf_tests_v6.robot",
         "patchSetId": 1
