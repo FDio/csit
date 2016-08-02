@@ -293,6 +293,55 @@ class L2Util(object):
         return data
 
     @staticmethod
+    def dpdk_testpmd_start(node, coremask='', mem_channels='',
+                           socket_mem=''):
+        """Start DPDK testpmd app on node.
+
+        :param node: Node to start testpmd on.
+        :param coremask: Hexadecimal bitmask of the cores to run on.
+        :param mem_channels: Number of memory channels to use.
+        :param socket-mem: Memory to allocate on specific sockets.
+        :type node: dict
+        :type coremask: str
+        :type mem_channels: str
+        :type socket-mem: str
+        :return: nothing
+        """
+        # Set the hexadecimal bitmask of the cores to run on.
+        coremask = '-c {}'.format(coremask) if coremask else ''
+        # Set the number of memory channels to use.
+        mem_channels = '-n {}'.format(mem_channels) if mem_channels else ''
+        # Set the memory to allocate on specific sockets (use comma separated
+        # values).
+        socket_mem = '--socket-mem {}'.format(socket_mem) if socket_mem else ''
+        # Load an external driver. Multiple -d options are allowed.
+        driver = '-d /usr/lib/librte_pmd_virtio.so'
+        options = '-- '\
+            '--burst=64 '\
+            '--txd=2048 '\
+            '--rxd=2048 '\
+            '--txqflags=0xf00 '\
+            '--total-num-mbufs=65536 '\
+            '--portmask=3 '\
+            '--disable-hw-vlan '\
+            '--coremask=0x6 '\
+            '--nb-cores=2 '
+        cmd = "/start-testpmd.sh -v {0} {1} {2} {3} {4}".format(
+            coremask, mem_channels, socket_mem, driver, options)
+        exec_cmd_no_error(node, cmd, sudo=True)
+
+    @staticmethod
+    def dpdk_testpmd_stop(node):
+        """Stop DPDK testpmd app on node.
+
+        :param node: Node to stop testpmd on.
+        :type node: dict
+        :return: nothing
+        """
+        cmd = "/stop-testpmd.sh"
+        exec_cmd_no_error(node, cmd, sudo=True)
+
+    @staticmethod
     def l2_vlan_tag_rewrite(node, interface, tag_rewrite_method,
                             push_dot1q=True, tag1_id=None, tag2_id=None):
         """Rewrite tags in ethernet frame.
