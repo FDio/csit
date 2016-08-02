@@ -471,6 +471,17 @@ class QemuUtils(object):
         # daemonize QEMU
         self._ssh.exec_command_sudo('pkill -SIGKILL qemu')
 
+    def qemu_kill_on_all_duts(self, nodes):
+        """Kill qemu process on all DUTs.
+
+        :param nodes: DICT__nodes from Topology.DICT__nodes
+        :type nodes: dict
+        """
+        for node in nodes.values():
+            if node['type'] == NodeType.DUT:
+                self.qemu_set_node(node)
+                self.qemu_kill()
+
     def qemu_clear_socks(self):
         """Remove all sockets created by QEMU."""
         # If serial console port still open kill process
