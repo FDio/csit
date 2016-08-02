@@ -317,43 +317,8 @@ class QemuUtils(object):
             else:
                 interface['name'] = if_name
 
-    def _huge_page_check(self):
+    def _huge_page_check(self, allocate=False):
         """Huge page check."""
-        huge_mnt = self._qemu_opt.get('huge_mnt')
-        mem_size = self._qemu_opt.get('mem_size')
-        # Check size of free huge pages
-        (_, output, _) = self._ssh.exec_command('grep Huge /proc/meminfo')
-        regex = re.compile(r'HugePages_Free:\s+(\d+)')
-        match = regex.search(output)
-        huge_free = int(match.group(1))
-        regex = re.compile(r'Hugepagesize:\s+(\d+)')
-        match = regex.search(output)
-        huge_size = int(match.group(1))
-        if (mem_size * 1024) > (huge_free * huge_size):
-            raise RuntimeError('Not enough free huge pages {0} kB, required '
-                '{1} MB'.format(huge_free * huge_size, mem_size))
-        # Check if huge pages mount point exist
-        has_huge_mnt = False
-        (_, output, _) = self._ssh.exec_command('cat /proc/mounts')
-        for line in output.splitlines():
-            # Try to find something like:
-            # none /mnt/huge hugetlbfs rw,relatime,pagesize=2048k 0 0
-            mount = line.split()
-            if mount[2] == 'hugetlbfs' and mount[1] == huge_mnt:
-                has_huge_mnt = True
-                break
-        # If huge page mount point not exist create one
-        if not has_huge_mnt:
-            cmd = 'mount -t hugetlbfs -o pagesize=2048k none {0}'.format(
-                huge_mnt)
-            (ret_code, _, stderr) = self._ssh.exec_command_sudo(cmd)
-            if int(ret_code) != 0:
-                logger.debug('Mount huge pages failed {0}'.format(stderr))
-                raise RuntimeError('Mount huge pages failed on {0}'.format(
-                    self._node['host']))
-
-    def _huge_page_allocate(self):
-        """Huge page allocate."""
         huge_mnt = self._qemu_opt.get('huge_mnt')
         mem_size = self._qemu_opt.get('mem_size')
         # Check size of free huge pages
@@ -367,18 +332,46 @@ class QemuUtils(object):
         regex = re.compile(r'Hugepagesize:\s+(\d+)')
         match = regex.search(output)
         huge_size = int(match.group(1))
-
-        mem_needed = abs((huge_free * huge_size) - (mem_size * 1024))
-
-        if mem_needed:
-            huge_to_allocate = (mem_needed / huge_size) + huge_total
-            # Increase limit of allowed max hugepage count
-            cmd = 'echo "{0}" | sudo tee /proc/sys/vm/max_map_count'.format(
-                huge_to_allocate*3)
+        if (mem_size * 1024) > (huge_free * huge_size):
+            if allocate:
+                mem_needed = abs((huge_free * huge_size) - (mem_size * 1024))
+                huge_to_allocate = ((mem_needed / huge_size) * 2) + huge_total
+                max_map_count = huge_to_allocate*4
+                # Increase maximum number of memory map areas a process may have
+                cmd = 'echo "{0}" | sudo tee /proc/sys/vm/max_map_count'.format(
+                    max_map_count)
+                (ret_code, _, stderr) = self._ssh.exec_command_sudo(cmd)
+                # Increase hugepage count
+                cmd = 'echo "{0}" | sudo tee /proc/sys/vm/nr_hugepages'.format(
+                    huge_to_allocate)
+                (ret_code, _, stderr) = self._ssh.exec_command_sudo(cmd)
+                if int(ret_code) != 0:
+                    logger.debug('Mount huge pages failed {0}'.format(stderr))
+                    raise RuntimeError('Mount huge pages failed on {0}'.format(
+                        self._node['host']))
+            else:
+                raise RuntimeError('Not enough free huge pages {0} kB, '
+                    'required {1} MB'.format(huge_free * huge_size, mem_size))
+        # Check if huge pages mount point exist
+        has_huge_mnt = False
+        (_, output, _) = self._ssh.exec_command('cat /proc/mounts')
+        for line in output.splitlines():
+            # Try to find something like:
+            # none /mnt/huge hugetlbfs rw,relatime,pagesize=2048k 0 0
+            mount = line.split()
+            if mount[2] == 'hugetlbfs' and mount[1] == huge_mnt:
+                has_huge_mnt = True
+                break
+        # If huge page mount point not exist create one
+        if not has_huge_mnt:
+            cmd = 'mkdir -p {0}'.format(huge_mnt)
             (ret_code, _, stderr) = self._ssh.exec_command_sudo(cmd)
-            # Increase hugepage count
-            cmd = 'echo "{0}" | sudo tee /proc/sys/vm/nr_hugepages'.format(
-                huge_to_allocate)
+            if int(ret_code) != 0:
+                logger.debug('Create mount dir failed: {0}'.format(stderr))
+                raise RuntimeError('Create mount dir failed on {0}'.format(
+                    self._node['host']))
+            cmd = 'mount -t hugetlbfs -o pagesize=2048k none {0}'.format(
+                huge_mnt)
             (ret_code, _, stderr) = self._ssh.exec_command_sudo(cmd)
             if int(ret_code) != 0:
                 logger.debug('Mount huge pages failed {0}'.format(stderr))
@@ -403,13 +396,7 @@ class QemuUtils(object):
 
         # By default check only if hugepages are availbale.
         # If 'huge_allocate' is set to true try to allocate as well.
-        try:
-            self._huge_page_check()
-        except RuntimeError as runtime_error:
-            if self._qemu_opt.get('huge_allocate'):
-                self._huge_page_allocate()
-            else:
-                raise runtime_error
+        self._huge_page_check(allocate=self._qemu_opt.get('huge_allocate'))
 
         # Setup QMP via unix socket
         qmp = '-qmp unix:{0},server,nowait'.format(self.__QMP_SOCK)
