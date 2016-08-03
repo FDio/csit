@@ -14,7 +14,7 @@
 *** Settings ***
 | Resource | resources/libraries/robot/default.robot
 | Resource | resources/libraries/robot/testing_path.robot
-| Resource | resources/libraries/robot/dhcp_client.robot
+| Resource | resources/libraries/robot/dhcp_proxy.robot
 | Resource | resources/libraries/robot/ipv4.robot
 | Library | resources.libraries.python.Trace
 | Force Tags | HW_ENV | VM_ENV | 3_NODE_DOUBLE_LINK_TOPO
