@@ -47,6 +47,10 @@ class DhcpClient(object):
                                ' interface {}.'
                                .format(vpp_node, interface))
 
+
+class DhcpProxy(object):
+    """DHCP Proxy utilities."""
+
     @staticmethod
     def dhcp_proxy_config(vpp_node, server_address, source_address):
         """Set DHCP proxy.
