@@ -75,8 +75,8 @@ class TrafficScriptExecutor(object):
                 raise RuntimeError("ICMP echo Rx timeout")
             elif "RuntimeError: DHCP REQUEST Rx timeout" in stderr:
                 raise RuntimeError("DHCP REQUEST Rx timeout")
-            elif "RuntimeError('DHCP DISCOVER timeout')" in stderr:
-                raise RuntimeError("DHCP DISCOVER timeout")
+            elif "RuntimeError: DHCP DISCOVER Rx timeout" in stderr:
+                raise RuntimeError("DHCP DISCOVER Rx timeout")
             elif "RuntimeError: TCP/UDP Rx timeout" in stderr:
                 raise RuntimeError("TCP/UDP Rx timeout")
             elif "Error occurred: ARP reply timeout" in stdout:

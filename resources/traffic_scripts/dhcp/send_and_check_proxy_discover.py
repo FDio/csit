@@ -12,7 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Traffic script that sends DHCP DISCOVER packets."""
+"""Traffic script that sends DHCP DISCOVER packet
+ and check if is received on interface."""
 
 import sys
 
@@ -23,6 +24,20 @@ from scapy.layers.dhcp import DHCP, BOOTP
 
 from resources.libraries.python.PacketVerifier import RxQueue, TxQueue
 from resources.libraries.python.TrafficScriptArg import TrafficScriptArg
+
+
+def is_discover(pkt):
+    """If DHCP message type option is set to dhcp discover return True,
+    else return False. False is returned also if exception occurs."""
+    dhcp_discover = 1
+    try:
+        dhcp_options = pkt['BOOTP']['DHCP options'].options
+        message_type = filter(lambda x: x[0] == 'message-type',
+                              dhcp_options)
+        message_type = message_type[0][1]
+        return message_type == dhcp_discover
+    except:
+        return False
 
 
 def main():
@@ -43,7 +58,7 @@ def main():
 
     dhcp_discover = Ether(dst="ff:ff:ff:ff:ff:ff") / \
                     IP(src=tx_src_ip, dst=tx_dst_ip) / \
-                    UDP(sport=68, dport=67) / \
+                    UDP(sport=UDP_SERVICES.bootpc, dport=UDP_SERVICES.bootps) / \
                     BOOTP(op=1,) / \
                     DHCP(options=[("message-type", "discover"),
                                   "end"])
@@ -51,22 +66,12 @@ def main():
     sent_packets.append(dhcp_discover)
     txq.send(dhcp_discover)
 
-    ether = rxq.recv(2)
-
-    if ether is None:
-        raise RuntimeError('DHCP DISCOVER timeout')
-
-    if ether[UDP].dport != UDP_SERVICES.bootps:
-        raise RuntimeError("UDP destination port error.")
-    print "UDP destination port: OK."
-
-    if ether[UDP].sport != UDP_SERVICES.bootpc:
-        raise RuntimeError("UDP source port error.")
-    print "UDP source port: OK."
-
-    if ether[DHCP].options[0][1] != 1:  # 1 - DISCOVER message
-        raise RuntimeError("DHCP DISCOVER message error.")
-    print "DHCP DISCOVER message OK."
+    for _ in range(10):
+        dhcp_discover = rxq.recv(2)
+        if is_discover(dhcp_discover):
+            break
+    else:
+        raise RuntimeError("DHCP DISCOVER Rx timeout")
 
     sys.exit(0)
 
