@@ -15,5 +15,7 @@
 | Resource | resources/libraries/robot/default.robot
 | Resource | resources/libraries/robot/interfaces.robot
 | Library | resources.libraries.python.SetupFramework
+| Library | resources.libraries.python.CpuUtils
 | Suite Setup | Run Keywords | Setup Framework | ${nodes}
 | ...         | AND          | Setup All DUTs | ${nodes}
+| ...         | AND          | Get CPU Layout from all nodes | ${nodes}
