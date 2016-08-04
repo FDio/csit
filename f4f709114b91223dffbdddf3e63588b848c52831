@@ -16,6 +16,24 @@
       "revId": "f4f709114b91223dffbdddf3e63588b848c52831",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_284e3370",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-08-04T06:01:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a0e1d27_ad96d592",
+      "revId": "f4f709114b91223dffbdddf3e63588b848c52831",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
