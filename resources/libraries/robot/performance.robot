@@ -363,6 +363,58 @@
 | | ...           | count=${count}
 | | All Vpp Interfaces Ready Wait | ${nodes}
 
+| IPv4 forwarding with vhost initialized in a 3-node circular topology
+| | [Documentation]
+| | ... | Custom setup of IPv4 topology with vhost interfaces on all
+| | ... | DUT nodes in 3-node circular topology
+| | ...
+| | ... | *Arguments:*
+| | ... | - sock1 - Sock path for first Vhost-User interface. Type: string
+| | ... | - sock2 - Sock path for second Vhost-User interface. Type: string
+| | ...
+| | ... | *Return:*
+| | ... | - No value returned
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| IPv4 forwarding with vhost initialized in a 3-node circular topology \
+| | ... | \| /tmp/sock1 \| /tmp/sock2
+| | [Arguments] | ${sock1} | ${sock2}
+| | Set Interface State | ${dut1} | ${dut1_if1} | up
+| | Set Interface State | ${dut1} | ${dut1_if2} | up
+| | Set Interface State | ${dut2} | ${dut2_if1} | up
+| | Set Interface State | ${dut2} | ${dut2_if2} | up
+| | ${tg1_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
+| | ${tg1_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
+| | ${dut1_if2_mac}= | Get Interface MAC | ${dut1} | ${dut1_if2}
+| | ${dut2_if1_mac}= | Get Interface MAC | ${dut2} | ${dut2_if1}
+| | Add arp on dut | ${dut1} | ${dut1_if1} | 1.1.1.1 | ${tg1_if1_mac}
+| | Add arp on dut | ${dut1} | ${dut1_if2} | 2.2.2.2 | ${dut2_if1_mac}
+| | Add arp on dut | ${dut2} | ${dut2_if1} | 2.2.2.1 | ${dut1_if2_mac}
+| | Add arp on dut | ${dut2} | ${dut2_if2} | 3.3.3.1 | ${tg1_if2_mac}
+| | IP addresses are set on interfaces | ${dut1} | ${dut1_if1} | 1.1.1.2 | 30
+| | IP addresses are set on interfaces | ${dut1} | ${dut1_if2} | 2.2.2.1 | 30
+| | IP addresses are set on interfaces | ${dut2} | ${dut2_if1} | 2.2.2.2 | 30
+| | IP addresses are set on interfaces | ${dut2} | ${dut2_if2} | 3.3.3.2 | 30
+| | VPP Vhost interfaces for L2BD forwarding are setup | ${dut1}
+| | ...                                                | ${sock1}
+| | ...                                                | ${sock2}
+| | Set Interface State | ${dut1} | ${vhost_if1} | up
+| | Set Interface State | ${dut1} | ${vhost_if2} | up
+| | IP addresses are set on interfaces | ${dut1} | ${vhost_if1} | 4.4.4.1 | 30
+| | IP addresses are set on interfaces | ${dut1} | ${vhost_if2} | 5.5.5.1 | 30
+| | Vpp Route Add | ${dut1} | 10.10.10.0 | 24 | 1.1.1.1 | ${dut1_if1}
+| | Vpp Route Add | ${dut1} | 20.20.20.0 | 24 | 4.4.4.2 | ${vhost_if1}
+| | VPP Vhost interfaces for L2BD forwarding are setup | ${dut2}
+| | ...                                                | ${sock1}
+| | ...                                                | ${sock2}
+| | Set Interface State | ${dut2} | ${vhost_if1} | up
+| | Set Interface State | ${dut2} | ${vhost_if2} | up
+| | IP addresses are set on interfaces | ${dut2} | ${vhost_if1} | 4.4.4.1 | 30
+| | IP addresses are set on interfaces | ${dut2} | ${vhost_if2} | 5.5.5.1 | 30
+| | Vpp Route Add | ${dut2} | 10.10.10.0 | 24 | 5.5.5.2 | ${dut2_if1}
+| | Vpp Route Add | ${dut2} | 20.20.20.0 | 24 | 3.3.3.1 | ${dut2_if2}
+
 | IPv6 forwarding initialized in a 3-node circular topology
 | | [Documentation]
 | | ... | Set UP state on VPP interfaces in path on nodes in 3-node circular
@@ -996,7 +1048,7 @@
 | | Dpdk Testpmd Start | ${vm} | eal_coremask=0x7
 | | ...                | eal_mem_channels=4
 | | ...                | eal_socket_mem=1024
-| | ...                | pmd_fwd_mode=io
+| | ...                | pmd_fwd_mode=mac
 | | ...                | pmd_disable_hw_vlan=${True}
 | | ...                | pmd_disable_rss=${True}
 | | Return From Keyword | ${vm}
@@ -1033,9 +1085,47 @@
 | | ${vhost1}= | Get Vhost User If Name By Sock | ${vm} | ${sock1}
 | | ${vhost2}= | Get Vhost User If Name By Sock | ${vm} | ${sock2}
 | | Linux Add Bridge | ${vm} | ${br} | ${vhost1} | ${vhost2}
-| | Set Interface State | ${vm} | ${vhost1} | up
-| | Set Interface State | ${vm} | ${vhost2} | up
-| | Set Interface State | ${vm} | ${br} | up
+| | Set Interface State | ${vm} | ${vhost1} | up | if_type=name
+| | Set Interface State | ${vm} | ${vhost2} | up | if_type=name
+| | Set Interface State | ${vm} | ${br} | up | if_type=name
+| | Return From Keyword | ${vm}
+
+| Guest VM with IP forwarding connected via vhost-user is setup
+| | [Documentation]
+| | ... | Start QEMU guest with two vhost-user interfaces and interconnecting
+| | ... | ip forwarding.
+| | ...
+| | ... | *Arguments:*
+| | ... | - dut_node - DUT node to start guest VM on. Type: dictionary
+| | ... | - sock1 - Sock path for first Vhost-User interface. Type: string
+| | ... | - sock2 - Sock path for second Vhost-User interface. Type: string
+| | ... | - vm_name - QemuUtil instance name. Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| VM with Linux Bridge for Vhost L2BD forwarding is setup \
+| | ... | \| ${nodes['DUT1']} \| /tmp/sock1 \| /tmp/sock2 \| DUT1_VM \|
+| | [Arguments] | ${dut_node} | ${sock1} | ${sock2} | ${vm_name}
+| | Import Library | resources.libraries.python.QemuUtils
+| | ...            | WITH NAME | ${vm_name}
+| | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock1}
+| | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock2}
+| | Run keyword | ${vm_name}.Qemu Set Node | ${dut_node}
+| | Run keyword | ${vm_name}.Qemu Set Smp | 3 | 3 | 1 | 1
+| | Run keyword | ${vm_name}.Qemu Set Mem Size | 2048
+| | Run keyword | ${vm_name}.Qemu Set Huge Allocate
+| | Run keyword | ${vm_name}.Qemu Set Disk Image
+| | ...         | /var/lib/vm/csit-nested-1.3.img
+| | ${vm}= | Run keyword | ${vm_name}.Qemu Start
+| | Run keyword | ${vm_name}.Qemu Set Affinity | 5 | 6 | 7
+| | ${vhost1}= | Get Vhost User If Name By Sock | ${vm} | ${sock1}
+| | ${vhost2}= | Get Vhost User If Name By Sock | ${vm} | ${sock2}
+| | Set Interface State | ${vm} | ${vhost1} | up | if_type=name
+| | Set Interface State | ${vm} | ${vhost2} | up | if_type=name
+| | Set Linux Interface Ipaddr | ${vm} | ${vhost1} | 4.4.4.2/30
+| | Set Linux Interface Ipaddr | ${vm} | ${vhost2} | 5.5.5.2/30
+| | Set Linux Interface Route | ${vm} | ${vhost1} | 10.10.10.0/24
+| | Set Linux Interface Route | ${vm} | ${vhost2} | 20.20.20.0/24
 | | Return From Keyword | ${vm}
 
 | Guest VM with dpdk-testpmd Teardown
@@ -1050,7 +1140,7 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| VM with dpdk-testpmd Teardown \| ${node['DUT1']} \
+| | ... | \| Guest VM with dpdk-testpmd Teardown \| ${node['DUT1']} \
 | | ... | \| ${dut_vm_refs} \|
 | | ...
 | | [Arguments] | ${dut_node} | ${dut_vm_refs}
@@ -1061,7 +1151,7 @@
 | | | Run Keyword | ${vm_name}.Qemu Kill
 | | | Run Keyword | ${vm_name}.Qemu Clear Socks
 
-| Guest VM with Linux Bridge Teardown
+| Guest VM Teardown
 | | [Documentation]
 | | ... | Stop all qemu processes with Linux Bridge running on ${dut_node}.
 | | ... | Argument is dictionary of all qemu nodes running with its names.
@@ -1072,7 +1162,7 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| VM with Linux Bridge Teardown \| ${node['DUT1']} \
+| | ... | \| Guest VM Teardown \| ${node['DUT1']} \
 | | ... | \| ${dut_vm_refs} \|
 | | ...
 | | [Arguments] | ${dut_node} | ${dut_vm_refs}
