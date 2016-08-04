@@ -859,3 +859,44 @@ class InterfaceUtil(object):
         else:
             cmd = 'ip link set {} address {}'.format(interface, mac)
         exec_cmd_no_error(node, cmd, sudo=True)
+
+    @staticmethod
+    def set_linux_interface_ipaddr(node, interface, ipaddr, namespace=None):
+        """Set IP address for interface in linux.
+
+        :param node: Node where to execute command.
+        :param interface: Interface in namespace.
+        :param ipaddr: IP to be assigned to interface.
+        :param namespace: Execute command in namespace. Optional
+        :type node: dict
+        :type interface: str
+        :type ipaddr: str
+        :type namespace: str
+        """
+        if namespace is not None:
+            cmd = 'ip netns exec {} ip address add {} dev {}'.format(
+                namespace, ipaddr, interface)
+        else:
+            cmd = 'ip address add {} dev {}'.format(ipaddr, interface)
+        exec_cmd_no_error(node, cmd, sudo=True)
+
+    @staticmethod
+    def set_linux_interface_route(node, interface, route, namespace=None):
+        """Set route via interface in linux.
+
+        :param node: Node where to execute command.
+        :param interface: Interface in namespace.
+        :param route: Route to be added via interface.
+        :param namespace: Execute command in namespace. Optional
+        :type node: dict
+        :type interface: str
+        :type route: str
+        :type namespace: str
+        """
+        if namespace is not None:
+            cmd = 'ip netns exec {} ip route add {} dev {}'.format(
+                namespace, route, interface)
+        else:
+            cmd = 'ip route add {} dev {}'.format(route, interface)
+        exec_cmd_no_error(node, cmd, sudo=True)
+
