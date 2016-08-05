@@ -91,6 +91,7 @@
 | | ... | tag pop-1. [Ver] Make TG send ICMPv4 Echo Req tagged with one dot1q
 | | ... | tag from one of its interfaces to another one via DUT1 and DUT2;
 | | ... | verify that packet is not received. [Ref] IEEE 802.1q
+| | [Tags] | SKIP_PATCH
 | | Given Path for 3-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And Interfaces in 3-node path are up
@@ -155,6 +156,7 @@
 | | ... | tagged with one Dot1q tag from one of its interfaces to another one
 | | ... | via DUT1 and DUT2; verify that packet is not received.
 | | ... | [Ref] IEEE 802.1q, IEEE 802.1ad
+| | [Tags] | SKIP_PATCH
 | | Given Path for 3-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And Interfaces in 3-node path are up
@@ -189,6 +191,7 @@
 | | ... | tagged with one Dot1q tag from one of its interfaces to another one
 | | ... | via DUT1 and DUT2; verify that packet is not received.
 | | ... | [Ref] IEEE 802.1q, IEEE 802.1ad
+| | [Tags] | SKIP_PATCH
 | | Given Path for 3-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And Interfaces in 3-node path are up
@@ -223,6 +226,7 @@
 | | ... | ICMPv4 Echo Req tagged with one Dot1q tag from one of its interfaces
 | | ... | to another one via DUT1 and DUT2; verify that packet is not received.
 | | ... | [Ref] IEEE 802.1q, IEEE 802.1ad
+| | [Tags] | SKIP_PATCH
 | | Given Path for 3-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And Interfaces in 3-node path are up
@@ -289,6 +293,7 @@
 | | ... | tagged with Dot1ad tags from one of its interfaces to another one
 | | ... | via DUT1 and DUT2; verify that packet is not received.
 | | ... | [Ref] IEEE 802.1q, IEEE 802.1ad
+| | [Tags] | SKIP_PATCH
 | | Given Path for 3-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And Interfaces in 3-node path are up
@@ -356,6 +361,7 @@
 | | ... | pop-1 tagged with Dot1ad tags from one of its interfaces to another one
 | | ... | method. [Ver] Make TG send ICMPv4 Echo Req via DUT1 and DUT2; verify
 | | ... | that packet is not received. [Ref] IEEE 802.1ad
+| | [Tags] | SKIP_PATCH
 | | Given Path for 3-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And Interfaces in 3-node path are up
@@ -392,6 +398,7 @@
 | | ... | pop-1 tagged with Dot1ad tags from one of its interfaces to another
 | | ... | one method. [Ver] Make TG send ICMPv4 Echo Req via DUT1 and DUT2;
 | | ... | verify that packet is not received. [Ref] IEEE 802.1ad
+| | [Tags] | SKIP_PATCH
 | | Given Path for 3-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And Interfaces in 3-node path are up
@@ -428,6 +435,7 @@
 | | ... | tagged with Dot1ad tags from one of its interfaces to another one
 | | ... | method. [Ver] Make TG send ICMPv4 Echo Req via DUT1 and DUT2; verify
 | | ... | that packet is not received. [Ref] IEEE 802.1ad
+| | [Tags] | SKIP_PATCH
 | | Given Path for 3-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And Interfaces in 3-node path are up
