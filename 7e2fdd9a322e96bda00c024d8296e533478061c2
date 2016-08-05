@@ -1,0 +1,326 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a0e1d27_9ce22002",
+        "filename": "resources/libraries/python/CpuUtils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-08-05T12:42:23Z",
+      "side": 1,
+      "message": "string.",
+      "range": {
+        "startLine": 25,
+        "startChar": 65,
+        "endLine": 25,
+        "endChar": 71
+      },
+      "revId": "7e2fdd9a322e96bda00c024d8296e533478061c2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_1cee10ed",
+        "filename": "resources/libraries/python/CpuUtils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-08-05T12:42:23Z",
+      "side": 1,
+      "message": "Input string.",
+      "range": {
+        "startLine": 27,
+        "startChar": 23,
+        "endLine": 27,
+        "endChar": 35
+      },
+      "revId": "7e2fdd9a322e96bda00c024d8296e533478061c2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_dcbf78cf",
+        "filename": "resources/libraries/python/CpuUtils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-08-05T12:42:23Z",
+      "side": 1,
+      "message": "ValueError.",
+      "range": {
+        "startLine": 29,
+        "startChar": 61,
+        "endLine": 29,
+        "endChar": 71
+      },
+      "revId": "7e2fdd9a322e96bda00c024d8296e533478061c2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_fcba3ce0",
+        "filename": "resources/libraries/python/CpuUtils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-08-05T12:42:23Z",
+      "side": 1,
+      "message": "Integer",
+      "range": {
+        "startLine": 29,
+        "startChar": 17,
+        "endLine": 29,
+        "endChar": 24
+      },
+      "revId": "7e2fdd9a322e96bda00c024d8296e533478061c2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_bcb4c4f2",
+        "filename": "resources/libraries/python/CpuUtils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-08-05T12:42:23Z",
+      "side": 1,
+      "message": "DICT__nodes.",
+      "range": {
+        "startLine": 42,
+        "startChar": 48,
+        "endLine": 42,
+        "endChar": 59
+      },
+      "revId": "7e2fdd9a322e96bda00c024d8296e533478061c2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_7ce74c13",
+        "filename": "resources/libraries/python/CpuUtils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-08-05T12:42:23Z",
+      "side": 1,
+      "message": "nodes.",
+      "range": {
+        "startLine": 66,
+        "startChar": 32,
+        "endLine": 66,
+        "endChar": 37
+      },
+      "revId": "7e2fdd9a322e96bda00c024d8296e533478061c2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_9cb900ec",
+        "filename": "resources/libraries/python/CpuUtils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-08-05T12:42:23Z",
+      "side": 1,
+      "message": "node.",
+      "range": {
+        "startLine": 68,
+        "startChar": 30,
+        "endLine": 68,
+        "endChar": 34
+      },
+      "revId": "7e2fdd9a322e96bda00c024d8296e533478061c2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_7cce2c85",
+        "filename": "resources/libraries/python/CpuUtils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-08-05T12:42:23Z",
+      "side": 1,
+      "message": "nodes.",
+      "range": {
+        "startLine": 70,
+        "startChar": 31,
+        "endLine": 70,
+        "endChar": 36
+      },
+      "revId": "7e2fdd9a322e96bda00c024d8296e533478061c2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_3cf1d4cd",
+        "filename": "resources/libraries/python/CpuUtils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-08-05T12:42:23Z",
+      "side": 1,
+      "message": "available.",
+      "range": {
+        "startLine": 77,
+        "startChar": 49,
+        "endLine": 77,
+        "endChar": 58
+      },
+      "revId": "7e2fdd9a322e96bda00c024d8296e533478061c2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_5ccb6872",
+        "filename": "resources/libraries/python/CpuUtils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-08-05T12:42:23Z",
+      "side": 1,
+      "message": "cpuinfo.",
+      "range": {
+        "startLine": 83,
+        "startChar": 42,
+        "endLine": 83,
+        "endChar": 49
+      },
+      "revId": "7e2fdd9a322e96bda00c024d8296e533478061c2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_3cc8b473",
+        "filename": "resources/libraries/python/CpuUtils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-08-05T12:42:23Z",
+      "side": 1,
+      "message": "number.",
+      "range": {
+        "startLine": 84,
+        "startChar": 35,
+        "endLine": 84,
+        "endChar": 41
+      },
+      "revId": "7e2fdd9a322e96bda00c024d8296e533478061c2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_fca11caa",
+        "filename": "resources/libraries/python/CpuUtils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-08-05T12:42:23Z",
+      "side": 1,
+      "message": "argument.",
+      "range": {
+        "startLine": 87,
+        "startChar": 58,
+        "endLine": 87,
+        "endChar": 66
+      },
+      "revId": "7e2fdd9a322e96bda00c024d8296e533478061c2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_1cc5f05a",
+        "filename": "resources/libraries/python/CpuUtils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-08-05T12:42:23Z",
+      "side": 1,
+      "message": "List",
+      "range": {
+        "startLine": 87,
+        "startChar": 17,
+        "endLine": 87,
+        "endChar": 21
+      },
+      "revId": "7e2fdd9a322e96bda00c024d8296e533478061c2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_dca658c1",
+        "filename": "resources/libraries/python/CpuUtils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-08-05T12:42:23Z",
+      "side": 1,
+      "message": "available.",
+      "range": {
+        "startLine": 98,
+        "startChar": 49,
+        "endLine": 98,
+        "endChar": 58
+      },
+      "revId": "7e2fdd9a322e96bda00c024d8296e533478061c2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
