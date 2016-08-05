@@ -28,7 +28,7 @@ Functionality:
 
 import sys
 
-sys.path.insert(0, "/opt/trex-core-2.06/scripts/automation/"+\
+sys.path.insert(0, "/opt/trex-core-2.07/scripts/automation/"+\
                    "trex_control_plane/stl/")
 from trex_stl_lib.api import *
 
