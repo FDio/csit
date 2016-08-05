@@ -13,6 +13,8 @@
 
 """Defines nodes and topology structure."""
 
+from collections import Counter
+
 from yaml import load
 
 from robot.api import logger
@@ -32,7 +34,7 @@ def load_topo_from_yaml():
     with open(topo_path) as work_file:
         return load(work_file.read())['nodes']
 
-
+# pylint: disable=invalid-name
 class NodeType(object):
     """Defines node types used in topology dictionaries."""
     # Device Under Test (this node has VPP running on it)
@@ -332,6 +334,56 @@ class Topology(object):
             return None
 
     @staticmethod
+    def get_interface_numa_node(node, iface_key):
+        """Get interface numa node.
+
+        Returns physical relation to numa node, numa_id.
+
+        :param node: Node to get numa id on.
+        :param iface_key: Interface key from topology file.
+        :type node: dict
+        :type iface_key: str
+        :return: numa node id, None if not available.
+        :rtype: int
+        """
+        try:
+            return node['interfaces'][iface_key].get('numa_node')
+        except KeyError:
+            return None
+
+    @staticmethod
+    def get_interfaces_numa_node(node, *iface_keys):
+        """Get numa node on which are located most of the interfaces.
+
+        Return numa node with highest count of interfaces provided as arguments.
+        Return 0 if the interface does not have numa_node information available.
+        If all interfaces have unknown location (-1), then return 0.
+        If most of interfaces have unknown location (-1), but there are
+        some interfaces with known location, then return the second most
+        location of the provided interfaces.
+
+        :param node: Node from DICT__nodes.
+        :param iface_keys: Interface keys for lookup.
+        :type node: dict
+        :type iface_keys: strings
+        """
+        numa_list = []
+        for if_key in iface_keys:
+            try:
+                numa_list.append(node['interfaces'][if_key].get('numa_node'))
+            except KeyError:
+                pass
+
+        numa_cnt_mc = Counter(numa_list).most_common()
+
+        if len(numa_cnt_mc) > 0 and numa_cnt_mc[0][0] != -1:
+            return numa_cnt_mc[0][0]
+        elif len(numa_cnt_mc) > 1 and numa_cnt_mc[0][0] == -1:
+            return numa_cnt_mc[1][0]
+        else:
+            return 0
+
+    @staticmethod
     def get_interface_mac(node, iface_key):
         """Get MAC address for the interface.
 
@@ -414,6 +466,17 @@ class Topology(object):
             return node['interfaces'][iface_key].get('driver')
         except KeyError:
             return None
+
+    @staticmethod
+    def get_node_interfaces(node):
+        """Get all node interfaces.
+
+        :param node: Node to get list of interfaces from.
+        :type node: dict
+        :return: Return list of keys of all interfaces.
+        :rtype: list
+        """
+        return node['interfaces'].keys()
 
     @staticmethod
     def get_node_link_mac(node, link_name):
@@ -623,3 +686,19 @@ class Topology(object):
         :rtype: str
         """
         return node['host']
+
+    @staticmethod
+    def set_interface_numa_node(node, iface_key, numa_node_id):
+        """Set interface numa_node location.
+
+        :param node: Node to set numa_node on.
+        :param iface_key: Interface key from topology file.
+        :type node: dict
+        :type iface_key: str
+        :return: Return iface_key or None if not found.
+        """
+        try:
+            node['interfaces'][iface_key]['numa_node'] = numa_node_id
+            return iface_key
+        except KeyError:
+            return None
