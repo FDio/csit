@@ -17,3 +17,5 @@
 | Library | resources.libraries.python.SetupFramework
 | Suite Setup | Run Keywords | Setup Framework | ${nodes}
 | ...         | AND          | Setup All DUTs | ${nodes}
+| ...         | AND          | Update All Interface Data On All Nodes
+| ...                        | ${nodes} | skip_tg=${True} | numa_node=${True}
