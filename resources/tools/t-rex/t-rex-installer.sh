@@ -1,6 +1,6 @@
 #!/bin/sh
 
-TREX_VERSION="2.06"
+TREX_VERSION="2.07"
 
 TREX_DOWNLOAD_REPO="https://github.com/cisco-system-traffic-generator/trex-core/archive/"
 TREX_DOWNLOAD_PACKAGE="v${TREX_VERSION}.zip"
