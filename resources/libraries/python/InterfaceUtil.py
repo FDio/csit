@@ -427,7 +427,26 @@ class InterfaceUtil(object):
         InterfaceUtil.tg_set_interfaces_udev_rules(node)
 
     @staticmethod
-    def update_all_interface_data_on_all_nodes(nodes, skip_tg=False):
+    def iface_update_numa_node(node):
+        """For all interfaces from topology file update numa node based on
+           information from the node.
+
+        :param node: Node from topology.
+        :type node: dict
+        :return: nothing
+        """
+        ssh = SSH()
+        for if_key in Topology.get_node_interfaces(node):
+            if_pci = Topology.get_interface_pci_addr(node, if_key)
+            ssh.connect(node)
+            cmd = "cat /sys/bus/pci/devices/{}/numa_node".format(if_pci)
+            (ret, out, _) = ssh.exec_command(cmd)
+            if ret == 0:
+                Topology.set_interface_numa_node(node, if_key, int(out))
+
+    @staticmethod
+    def update_all_interface_data_on_all_nodes(nodes, skip_tg=False,
+                                               numa_node=False):
         """Update interface names on all nodes in DICT__nodes.
 
         This method updates the topology dictionary by querying interface lists
@@ -435,14 +454,22 @@ class InterfaceUtil(object):
 
         :param nodes: Nodes in the topology.
         :param skip_tg: Skip TG node
+        :param numa_node: Retrieve numa_node location.
         :type nodes: dict
         :type skip_tg: bool
+        :type numa_node: bool
         """
         for node_data in nodes.values():
             if node_data['type'] == NodeType.DUT:
                 InterfaceUtil.update_vpp_interface_data_on_node(node_data)
             elif node_data['type'] == NodeType.TG and not skip_tg:
                 InterfaceUtil.update_tg_interface_data_on_node(node_data)
+
+            if numa_node:
+                if node_data['type'] == NodeType.DUT:
+                    InterfaceUtil.iface_update_numa_node(node_data)
+                elif node_data['type'] == NodeType.TG and not skip_tg:
+                    InterfaceUtil.iface_update_numa_node(node_data)
 
     @staticmethod
     def create_vlan_subinterface(node, interface, vlan):
