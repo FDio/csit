@@ -382,7 +382,8 @@
 | | [Arguments] | ${node} | ${interface} | ${ethernet} | ${routing}
 | | ${api_data}= | interfaceAPI.Get interface oper data | ${node} | ${interface}
 | | :FOR | ${key} | IN | @{ethernet.keys()}
-| | | Should be equal | ${api_data['${key}']} | ${ethernet['${key}']}
+| | | Should be equal
+| | | ... | ${api_data['v3po:ethernet']['${key}']} | ${ethernet['${key}']}
 | | :FOR | ${key} | IN | @{routing.keys()}
 | | | Should be equal | ${api_data['${key}']} | ${routing['${key}']}
 
