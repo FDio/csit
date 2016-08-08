@@ -209,7 +209,8 @@ do
     then
       echo "WARNING: Unable to get package using previously recorded URL, may"
       echo "         be superseded. Trying launchpad instead."
-      wget -P ${APT_CACHE_DIR} -O ${APT_CACHE_DIR}/$name "${LAUNCHPAD_URL}${name}"
+      url_basename=$(basename $url | tr -d "'")
+      wget -P ${APT_CACHE_DIR} -O ${APT_CACHE_DIR}/$name "${LAUNCHPAD_URL}${url_basename}"
     fi
   fi
 
