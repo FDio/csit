@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a0e1d27_d2e2c1d4",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 434,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-08-08T09:12:04Z",
+      "side": 1,
+      "message": "topology.",
+      "range": {
+        "startLine": 434,
+        "startChar": 31,
+        "endLine": 434,
+        "endChar": 39
+      },
+      "revId": "3e148954cd72071b298e67f3869fd6b0a0324f2f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_b2e74de4",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 457,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-08-08T09:12:04Z",
+      "side": 1,
+      "message": "location.",
+      "range": {
+        "startLine": 457,
+        "startChar": 45,
+        "endLine": 457,
+        "endChar": 53
+      },
+      "revId": "3e148954cd72071b298e67f3869fd6b0a0324f2f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_72cad550",
+        "filename": "resources/libraries/python/topology.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 365,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-08-08T09:12:04Z",
+      "side": 1,
+      "message": "DICT_nodes ?",
+      "range": {
+        "startLine": 365,
+        "startChar": 31,
+        "endLine": 365,
+        "endChar": 44
+      },
+      "revId": "3e148954cd72071b298e67f3869fd6b0a0324f2f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_52c7d145",
+        "filename": "resources/libraries/python/topology.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 381,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-08-08T09:12:04Z",
+      "side": 1,
+      "message": "elif",
+      "range": {
+        "startLine": 381,
+        "startChar": 8,
+        "endLine": 381,
+        "endChar": 10
+      },
+      "revId": "3e148954cd72071b298e67f3869fd6b0a0324f2f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_32c45d3f",
+        "filename": "resources/libraries/python/topology.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 472,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-08-08T09:12:04Z",
+      "side": 1,
+      "message": "interfaces.\n+ add one empty line, please",
+      "range": {
+        "startLine": 472,
+        "startChar": 24,
+        "endLine": 472,
+        "endChar": 34
+      },
+      "revId": "3e148954cd72071b298e67f3869fd6b0a0324f2f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_12c1592e",
+        "filename": "resources/libraries/python/topology.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 475,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-08-08T09:12:04Z",
+      "side": 1,
+      "message": "interfaces.",
+      "range": {
+        "startLine": 475,
+        "startChar": 44,
+        "endLine": 475,
+        "endChar": 54
+      },
+      "revId": "3e148954cd72071b298e67f3869fd6b0a0324f2f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
