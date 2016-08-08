@@ -77,6 +77,18 @@ ls -lR /var/lib/vm
 mkdir -p /mnt/huge
 echo 'hugetlbfs	/mnt/huge	hugetlbfs	mode=1770,gid=111	0	0' >> /etc/fstab
 
+##
+## Java
+##
+echo "********** CREATING JAVA SHELL PROFILE **********"
+mkdir -p /etc/profile.d
+echo 'export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64' > /etc/profile.d/java.sh
+echo 'export PATH=$JAVA_HOME/bin:$PATH' >> /etc/profile.d/java.sh
+
+
+##
+## Changelog
+##
 echo "********** MOVING CHANGELOG AND VERSION FILES **********"
 
 mv ${TEMP_PATH}/VERSION /
