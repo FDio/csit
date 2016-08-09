@@ -27,7 +27,7 @@ sudo apt-get -y install libpython2.7-dev python-virtualenv
 
 PYBOT_ARGS="--noncritical MULTI_THREAD"
 
-ARCHIVE_ARTIFACTS=(log.html output.xml report.html output_perf_data.xml)
+ARCHIVE_ARTIFACTS=(log.html output.xml report.html)
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 export PYTHONPATH=${SCRIPT_DIR}
@@ -267,98 +267,6 @@ echo "4th step: Run functional tests                                        FINI
 echo "******************************************************************************"
 set -x
 
-
-# 5th step: Reserve and prepare HW system
-
-echo Making a reservation for the HW system...
-
-# Space separated list of available testbeds, described by topology files
-TOPOLOGIES="topologies/available/lf_testbed1.yaml \
-            topologies/available/lf_testbed2.yaml \
-            topologies/available/lf_testbed3.yaml"
-
-# Reservation dir
-RESERVATION_DIR="/tmp/reservation_dir"
-INSTALLATION_DIR="/tmp/install_dir"
-
-WORKING_TOPOLOGY=""
-
-# We iterate over available topologies and wait until we reserve topology
-while :; do
-    for TOPOLOGY in ${TOPOLOGIES};
-    do
-        python ${SCRIPT_DIR}/resources/tools/topo_reservation.py -t ${TOPOLOGY}
-        if [ $? -eq 0 ]; then
-            WORKING_TOPOLOGY=${TOPOLOGY}
-            echo "Reserved: ${WORKING_TOPOLOGY}"
-            break
-        fi
-    done
-
-    if [ ! -z "${WORKING_TOPOLOGY}" ]; then
-        # Exit the infinite while loop if we made a reservation
-        break
-    fi
-
-    # Wait ~3minutes before next try
-    SLEEP_TIME=$[ ( $RANDOM % 20 ) + 180 ]s
-    echo "Sleeping ${SLEEP_TIME}"
-    sleep ${SLEEP_TIME}
-done
-
-function cancel_all {
-    python ${SCRIPT_DIR}/resources/tools/topo_installation.py -c -d ${INSTALLATION_DIR} -t $1
-    python ${SCRIPT_DIR}/resources/tools/topo_reservation.py -c -t $1
-}
-
-# Upon script exit, cleanup the VIRL simulation execution
-# and cancel the reservation and installation of HW system
-# and delete all vpp packages.
-trap "stop_virl_simulation; cancel_all ${WORKING_TOPOLOGY}" EXIT
-
-python ${SCRIPT_DIR}/resources/tools/topo_installation.py -t ${WORKING_TOPOLOGY} \
-                                                       -d ${INSTALLATION_DIR} \
-                                                       -p ${VPP_DEBS[@]}
-
-if [ $? -eq 0 ]; then
-    echo "VPP Installed on hosts from: ${WORKING_TOPOLOGY}"
-else
-    echo "Failed to copy vpp deb files to DUTs"
-    exit 1
-fi
-
-set +x
-echo "******************************************************************************"
-echo "5th step: Making a reservation for HW system                          FINISHED"
-echo "******************************************************************************"
-set -x
-
-# 6th step: Run performance tests
-
-# Performance tests on HW system
-echo Performance tests on HW system
-
-pybot ${PYBOT_ARGS} \
-    -L TRACE \
-    -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-    --suite "tests.perf" \
-    --include perftest_long \
-    --output log_perf_test_set \
-    tests/
-
-PARTIAL_RC=$(echo $?)
-if [ ${PARTIAL_RC} -eq 250 ]; then
-    MORE_FAILS=1
-fi
-RC=$((RC+PARTIAL_RC))
-
-set +x
-echo "******************************************************************************"
-echo "6th step: Run performance tests                                       FINISHED"
-echo "******************************************************************************"
-set -x
-
-
 # Set RETURN_STATUS=1 if some critical test failed
 if [ ! ${RC} -eq 0 ]; then
         RETURN_STATUS=1
@@ -399,28 +307,16 @@ else
     set -x
 fi
 
-
 # 7th step: Post-processing test data
 echo Post-processing test data...
-
-# Getting JSON perf data output
-python ${SCRIPT_DIR}/resources/tools/robot_output_parser.py \
-       -i ${SCRIPT_DIR}/log_perf_test_set.xml \
-       -o ${SCRIPT_DIR}/output_perf_data.xml \
-       -v ${VPP_VER}
-if [ ! $? -eq 0 ]; then
-    echo "Parsing ${SCRIPT_DIR}/log_perf_test_set.xml failed"
-fi
 
 # Rebot output post-processing
 rebot --noncritical EXPECTED_FAILING \
       --output output.xml \
-      ./log_func_test_set1.xml ./log_func_test_set2.xml \
-      ./log_func_test_set3.xml ./log_perf_test_set.xml
+      ./log_func_test_set1.xml ./log_func_test_set2.xml ./log_func_test_set3.xml
 
 # Remove unnecessary files
-rm -f ./log_test_set1.xml ./log_test_set2.xml ./log_test_set3.xml \
-    ./log_perf_test_set.xml
+rm -f ./log_test_set1.xml ./log_test_set2.xml ./log_test_set3.xml
 
 # Archive artifacts
 mkdir archive
