@@ -11,6 +11,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+from time import time
+
 from robot.api import logger
 
 from resources.libraries.python.topology import NodeType
@@ -34,6 +36,40 @@ class DUTSetup(object):
                     logger.debug('stderr: {0}'.format(stderr))
                     raise Exception('DUT {0} failed to start VPP service'.
                                     format(node['host']))
+
+    @staticmethod
+    def restart_vpp_on_dut_node(node):
+        """Restart the VPP service on defined node.
+
+        :param node: Node to restart VPP on.
+        :type node: dict
+        :return status: PASS or FAIL
+        :return exec_time: Execution time [s] of vpp_restart command or None
+        :rtype status: str
+        :rtype exec_time: float
+        """
+        if node['type'] == NodeType.DUT:
+            ssh = SSH()
+            ssh.connect(node)
+            start = time()
+            (ret_code, stdout, stderr) = ssh.exec_command('sudo -S vpp_restart', timeout=20)
+            exec_time = time()- start
+            if 0 == int(ret_code):
+                status = 'PASS'
+                logger.debug('VPP successfully restarted on DUT node: {0}'.
+                             format(node['host']))
+                logger.debug('stdout: {0}'.format(stdout))
+            else:
+                status = 'FAIL'
+                logger.debug('VPP failed to restart on DUT node: {0}'.
+                             format(node['host']))
+                logger.debug('stderr: {0}'.format(stderr))
+        else:
+            status = 'FAIL'
+            exec_time = None
+            logger.debug('Node is not DUT type: {0}'.format(node['host']))
+
+        return status, exec_time
 
     @staticmethod
     def vpp_show_version_verbose(node):

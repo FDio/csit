@@ -70,8 +70,8 @@
 | | ...             | configuration to all DUTs
 | | ...
 | | ... | *Arguments:*
-| | ... | - ${cpu} - CPU configuration. Type: string
-| | ... | - ${rxqueues} - rxqueues configuration. Type: string
+| | ... | - cpu - CPU configuration. Type: string
+| | ... | - rxqueues - rxqueues configuration. Type: string
 | | ...
 | | ... | *Example:*
 | | ...
@@ -97,8 +97,8 @@
 | | ...             | to DUT specified as argument
 | | ...
 | | ... | *Arguments:*
-| | ... | - ${node} - DUT node. Type: dictionary
-| | ... | - ${pci_address} - PCI address. Type: string
+| | ... | - node - DUT node. Type: dictionary
+| | ... | - pci_address - PCI address. Type: string
 | | ...
 | | ... | *Example:*
 | | ...
@@ -147,3 +147,20 @@
 | | :FOR | ${dut} | IN | @{duts}
 | | | Apply Config | ${nodes['${dut}']}
 | | Update All Interface Data On All Nodes | ${nodes} | skip_tg=${TRUE}
+
+| Restart VPP on DUT
+| | [Documentation] | Restart VPP on the given DUT node.
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - DUT node. Type: dictionary
+| | ...
+| | ... | *Arguments:*
+| | ... | - status - Status of VPP restart - PASS or FAIL. Type: string
+| | ... | - exec_time - Execution time [s] of VPP restart - PASS or FAIL. Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Restart VPP on DUT \| ${nodes['DUT1']} \|
+| | [Arguments] | ${node}
+| | ${status} | ${exec_time}= | Restart VPP on DUT Node | ${node}
+| | [Return] | ${status} | ${exec_time}
