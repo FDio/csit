@@ -343,6 +343,18 @@
 | |      ... | ${tg_to_dut2} | ${tg_to_dut2_mac} | ${dut2_to_tg_mac}
 | |      ... | ${tg_to_dut1} | ${dut1_to_tg_mac} | ${tg_to_dut1_mac}
 | | When Enable Lisp | ${dut1_node}
+| | And Vpp Add Lisp Adjacency | ${dut1_node} 
+| |     ... | ${dut1_to_dut2_ip4_static_adjacency['vni']}
+| |     ... | ${dut1_to_dut2_ip4_static_adjacency['deid']}
+| |     ... | ${dut1_to_dut2_ip4_static_adjacency['prefix']}
+| |     ... | ${dut1_to_dut2_ip4_static_adjacency['seid']}
+| |     ... | ${dut1_to_dut2_ip4_static_adjacency['prefix']}
+| | And Vpp Add Lisp Adjacency | ${dut2_node} 
+| |     ... | ${dut2_to_dut1_ip4_static_adjacency['vni']}
+| |     ... | ${dut2_to_dut1_ip4_static_adjacency['deid']}
+| |     ... | ${dut2_to_dut1_ip4_static_adjacency['prefix']}
+| |     ... | ${dut2_to_dut1_ip4_static_adjacency['seid']}
+| |     ... | ${dut2_to_dut1_ip4_static_adjacency['prefix']}
 | | Then Wait Until Keyword Succeeds | 2x | 5s | Send Packet And Check Headers
 | |      ... | ${tg_node} | ${tg1_ip4} | ${tg2_ip4}
 | |      ... | ${tg_to_dut1} | ${tg_to_dut1_mac} | ${dut1_to_tg_mac}
