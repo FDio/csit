@@ -542,10 +542,6 @@ def main():
             _traffic_options[attr] = getattr(args, attr)
 
     if _use_ipv6:
-        # WARNING: Trex limitation to IPv4 only. IPv6 is not yet supported.
-        print_error('IPv6 latency is not supported yet. Running without lat.')
-        _latency = False
-
         stream_a, stream_b, stream_lat_a, stream_lat_b = create_streams_v6(
             _traffic_options, frame_size=_frame_size)
     else:
