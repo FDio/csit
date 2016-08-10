@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9a0e1d27_e5961c94",
+        "filename": "resources/libraries/robot/performance.robot",
+        "patchSetId": 24
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 74
+      },
+      "writtenOn": "2016-08-10T11:31:20Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a0e1d27_a5b94430",
+      "range": {
+        "startLine": 118,
+        "startChar": 0,
+        "endLine": 118,
+        "endChar": 3
+      },
+      "revId": "9bd425a098ace6a57247c6ed6ebb12beb287d64a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a0e1d27_e5af3ce2",
         "filename": "tests/perf/Long_Xconnect_Intel-XL710.robot",
         "patchSetId": 24
@@ -36,6 +60,30 @@
       "writtenOn": "2016-08-10T10:55:54Z",
       "side": 1,
       "message": "Why is this KW used only for ${s_24.5G} in some testcases?",
+      "range": {
+        "startLine": 170,
+        "startChar": 19,
+        "endLine": 170,
+        "endChar": 32
+      },
+      "revId": "9bd425a098ace6a57247c6ed6ebb12beb287d64a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_45d6e850",
+        "filename": "tests/perf/Long_Xconnect_Intel-XL710.robot",
+        "patchSetId": 24
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 74
+      },
+      "writtenOn": "2016-08-10T11:31:20Z",
+      "side": 1,
+      "message": "for larger packet sizes we are limited with PCIe bandwidth, for small packet size (64B) we are limited by Mpps HW limit.\nI put comments near variables.",
+      "parentUuid": "9a0e1d27_e5af3ce2",
       "range": {
         "startLine": 170,
         "startChar": 19,
