@@ -2,6 +2,23 @@
   "comments": [
     {
       "key": {
+        "uuid": "9a0e1d27_0518f07f",
+        "filename": "resources/libraries/robot/dhcp_proxy.robot",
+        "patchSetId": 16
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-08-10T18:15:56Z",
+      "side": 1,
+      "message": "add empty line at EOF",
+      "revId": "c28844b50b39017505d00161628c940f4a5afa1a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a0e1d27_65832c57",
         "filename": "resources/libraries/robot/dhcp_proxy.robot",
         "patchSetId": 16
@@ -64,6 +81,29 @@
         "startChar": 18,
         "endLine": 137,
         "endChar": 22
+      },
+      "revId": "c28844b50b39017505d00161628c940f4a5afa1a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_28586931",
+        "filename": "resources/libraries/robot/dhcp_proxy.robot",
+        "patchSetId": 16
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-08-10T18:15:56Z",
+      "side": 1,
+      "message": "maybe is needed also proxy mac argument",
+      "range": {
+        "startLine": 141,
+        "startChar": 5,
+        "endLine": 141,
+        "endChar": 14
       },
       "revId": "c28844b50b39017505d00161628c940f4a5afa1a",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
@@ -140,6 +180,75 @@
     },
     {
       "key": {
+        "uuid": "9a0e1d27_881ad56c",
+        "filename": "resources/traffic_scripts/dhcp/send_dhcp_v6_messages.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-08-10T18:15:56Z",
+      "side": 1,
+      "message": "replace with IPv6 multicast mapped MAC, all occurrences.  (33:33:00:01:00:02)",
+      "range": {
+        "startLine": 33,
+        "startChar": 46,
+        "endLine": 33,
+        "endChar": 63
+      },
+      "revId": "c28844b50b39017505d00161628c940f4a5afa1a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_451ee871",
+        "filename": "resources/traffic_scripts/dhcp/send_dhcp_v6_messages.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-08-10T18:15:56Z",
+      "side": 1,
+      "message": "please use UDP_SERVICES.dhcpv6_server for better readability, all ocurences",
+      "range": {
+        "startLine": 35,
+        "startChar": 40,
+        "endLine": 35,
+        "endChar": 43
+      },
+      "revId": "c28844b50b39017505d00161628c940f4a5afa1a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_6519ec87",
+        "filename": "resources/traffic_scripts/dhcp/send_dhcp_v6_messages.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-08-10T18:15:56Z",
+      "side": 1,
+      "message": "please use UDP_SERVICES.dhcpv6_client for better readability, all ocurences",
+      "range": {
+        "startLine": 35,
+        "startChar": 29,
+        "endLine": 35,
+        "endChar": 32
+      },
+      "revId": "c28844b50b39017505d00161628c940f4a5afa1a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a0e1d27_25277466",
         "filename": "resources/traffic_scripts/dhcp/send_dhcp_v6_messages.py",
         "patchSetId": 16
@@ -157,6 +266,23 @@
         "endLine": 45,
         "endChar": 32
       },
+      "revId": "c28844b50b39017505d00161628c940f4a5afa1a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_a83479de",
+        "filename": "resources/traffic_scripts/dhcp/send_dhcp_v6_messages.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-08-10T18:15:56Z",
+      "side": 1,
+      "message": "check also destination MAC address",
       "revId": "c28844b50b39017505d00161628c940f4a5afa1a",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
@@ -255,6 +381,52 @@
     },
     {
       "key": {
+        "uuid": "9a0e1d27_085da521",
+        "filename": "resources/traffic_scripts/dhcp/send_dhcp_v6_messages.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-08-10T18:15:56Z",
+      "side": 1,
+      "message": "src\u003dserver_mac, dst\u003dproxy_mac",
+      "range": {
+        "startLine": 86,
+        "startChar": 27,
+        "endLine": 86,
+        "endChar": 41
+      },
+      "revId": "c28844b50b39017505d00161628c940f4a5afa1a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_684e6171",
+        "filename": "resources/traffic_scripts/dhcp/send_dhcp_v6_messages.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-08-10T18:15:56Z",
+      "side": 1,
+      "message": "proxy_ip?",
+      "range": {
+        "startLine": 87,
+        "startChar": 45,
+        "endLine": 87,
+        "endChar": 62
+      },
+      "revId": "c28844b50b39017505d00161628c940f4a5afa1a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a0e1d27_85ef60b0",
         "filename": "resources/traffic_scripts/dhcp/send_dhcp_v6_messages.py",
         "patchSetId": 16
@@ -289,6 +461,30 @@
       "writtenOn": "2016-08-10T15:26:08Z",
       "side": 1,
       "message": "What about to check the ifaceid (if it is reasonable)?",
+      "range": {
+        "startLine": 106,
+        "startChar": 0,
+        "endLine": 106,
+        "endChar": 0
+      },
+      "revId": "c28844b50b39017505d00161628c940f4a5afa1a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_682781b7",
+        "filename": "resources/traffic_scripts/dhcp/send_dhcp_v6_messages.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-08-10T18:15:56Z",
+      "side": 1,
+      "message": "+1 but I think also in solicit function or main function",
+      "parentUuid": "9a0e1d27_e5261c16",
       "range": {
         "startLine": 106,
         "startChar": 0,
@@ -508,6 +704,52 @@
     },
     {
       "key": {
+        "uuid": "9a0e1d27_e83a71cc",
+        "filename": "resources/traffic_scripts/dhcp/send_dhcp_v6_messages.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-08-10T18:15:56Z",
+      "side": 1,
+      "message": "client_if?",
+      "range": {
+        "startLine": 192,
+        "startChar": 4,
+        "endLine": 192,
+        "endChar": 9
+      },
+      "revId": "c28844b50b39017505d00161628c940f4a5afa1a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_c837ade2",
+        "filename": "resources/traffic_scripts/dhcp/send_dhcp_v6_messages.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-08-10T18:15:56Z",
+      "side": 1,
+      "message": "server_if?",
+      "range": {
+        "startLine": 193,
+        "startChar": 4,
+        "endLine": 193,
+        "endChar": 9
+      },
+      "revId": "c28844b50b39017505d00161628c940f4a5afa1a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a0e1d27_25d2d4d2",
         "filename": "tests/func/dhcp/dhcp_v6_proxy.robot",
         "patchSetId": 16
@@ -519,6 +761,29 @@
       "writtenOn": "2016-08-10T15:26:08Z",
       "side": 1,
       "message": "Please add | *[Ref] Applicable standard specifications:* part to documentation.\n\n- valid to test cases too",
+      "revId": "c28844b50b39017505d00161628c940f4a5afa1a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_e841513a",
+        "filename": "tests/func/dhcp/dhcp_v6_proxy.robot",
+        "patchSetId": 16
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-08-10T18:15:56Z",
+      "side": 1,
+      "message": "where is offered address to the client?",
+      "range": {
+        "startLine": 39,
+        "startChar": 4,
+        "endLine": 39,
+        "endChar": 13
+      },
       "revId": "c28844b50b39017505d00161628c940f4a5afa1a",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
@@ -541,6 +806,52 @@
         "startChar": 2,
         "endLine": 44,
         "endChar": 5
+      },
+      "revId": "c28844b50b39017505d00161628c940f4a5afa1a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_482cbd99",
+        "filename": "tests/func/dhcp/dhcp_v6_proxy.robot",
+        "patchSetId": 16
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-08-10T18:15:56Z",
+      "side": 1,
+      "message": "128",
+      "range": {
+        "startLine": 58,
+        "startChar": 50,
+        "endLine": 58,
+        "endChar": 52
+      },
+      "revId": "c28844b50b39017505d00161628c940f4a5afa1a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_0826c5b7",
+        "filename": "tests/func/dhcp/dhcp_v6_proxy.robot",
+        "patchSetId": 16
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-08-10T18:15:56Z",
+      "side": 1,
+      "message": "should be in route table by default when you add a IP address.\nplease remove.",
+      "range": {
+        "startLine": 60,
+        "startChar": 0,
+        "endLine": 61,
+        "endChar": 28
       },
       "revId": "c28844b50b39017505d00161628c940f4a5afa1a",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
@@ -587,6 +898,29 @@
         "startChar": 4,
         "endLine": 66,
         "endChar": 8
+      },
+      "revId": "c28844b50b39017505d00161628c940f4a5afa1a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_48539d17",
+        "filename": "tests/func/dhcp/dhcp_v6_proxy.robot",
+        "patchSetId": 16
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-08-10T18:15:56Z",
+      "side": 1,
+      "message": "if2?",
+      "range": {
+        "startLine": 67,
+        "startChar": 22,
+        "endLine": 67,
+        "endChar": 25
       },
       "revId": "c28844b50b39017505d00161628c940f4a5afa1a",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
