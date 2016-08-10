@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a0e1d27_a5b94430",
+        "filename": "resources/libraries/robot/performance.robot",
+        "patchSetId": 24
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-08-10T10:55:54Z",
+      "side": 1,
+      "message": "Empty line?",
+      "range": {
+        "startLine": 118,
+        "startChar": 0,
+        "endLine": 118,
+        "endChar": 3
+      },
+      "revId": "9bd425a098ace6a57247c6ed6ebb12beb287d64a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_e5af3ce2",
+        "filename": "tests/perf/Long_Xconnect_Intel-XL710.robot",
+        "patchSetId": 24
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-08-10T10:55:54Z",
+      "side": 1,
+      "message": "Why is this KW used only for ${s_24.5G} in some testcases?",
+      "range": {
+        "startLine": 170,
+        "startChar": 19,
+        "endLine": 170,
+        "endChar": 32
+      },
+      "revId": "9bd425a098ace6a57247c6ed6ebb12beb287d64a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
