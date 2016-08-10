@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9a0e1d27_05747097",
+        "filename": "resources/libraries/python/CpuUtils.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 74
+      },
+      "writtenOn": "2016-08-10T10:50:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a0e1d27_6500cc01",
+      "range": {
+        "startLine": 112,
+        "startChar": 20,
+        "endLine": 112,
+        "endChar": 23
+      },
+      "revId": "2ab6faace39d9e81be22436e74ff7ff26f34f1a4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a0e1d27_4505c80f",
         "filename": "resources/libraries/python/CpuUtils.py",
         "patchSetId": 23
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "9a0e1d27_e5685cbc",
+        "filename": "resources/libraries/python/CpuUtils.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 74
+      },
+      "writtenOn": "2016-08-10T10:50:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a0e1d27_4505c80f",
+      "range": {
+        "startLine": 118,
+        "startChar": 16,
+        "endLine": 118,
+        "endChar": 22
+      },
+      "revId": "2ab6faace39d9e81be22436e74ff7ff26f34f1a4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a0e1d27_250ad421",
         "filename": "resources/libraries/python/CpuUtils.py",
         "patchSetId": 23
@@ -59,6 +107,30 @@
       "writtenOn": "2016-08-10T09:54:45Z",
       "side": 1,
       "message": "maybe could be replaced with:\ncpu_flist \u003d sep.join(cpu_list[skip_cnt:max_cnt])",
+      "range": {
+        "startLine": 130,
+        "startChar": 0,
+        "endLine": 137,
+        "endChar": 21
+      },
+      "revId": "2ab6faace39d9e81be22436e74ff7ff26f34f1a4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_c56558e2",
+        "filename": "resources/libraries/python/CpuUtils.py",
+        "patchSetId": 23
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 74
+      },
+      "writtenOn": "2016-08-10T10:50:42Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a0e1d27_250ad421",
       "range": {
         "startLine": 130,
         "startChar": 0,
