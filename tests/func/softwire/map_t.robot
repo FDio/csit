@@ -1,0 +1,106 @@
+# Copyright (c) 2016 Cisco and/or its affiliates.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at:
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+
+*** Settings ***
+| Resource | resources/libraries/robot/default.robot
+| Resource | resources/libraries/robot/testing_path.robot
+| Resource | resources/libraries/robot/ipv4.robot
+| Resource | resources/libraries/robot/ipv6.robot
+| Resource | resources/libraries/robot/map.robot
+| Library  | resources.libraries.python.IPUtil
+| Library  | resources.libraries.python.Trace
+| Force Tags | HW_ENV | VM_ENV | 3_NODE_DOUBLE_LINK_TOPO
+| Suite Setup | Run Keywords
+| ... | Setup all DUTs before test | AND
+| ... | Setup all TGs before traffic script
+| Test Teardown | Run Keywords
+| ... | Show packet trace on all DUTs | ${nodes} | AND
+| ... | Show vpp trace dump on all DUTs
+| Documentation | *TBD - module and test docs*
+
+
+*** Variables ***
+| ${dut_ip4}= | 10.0.0.1
+| ${dut_ip6}= | 2001:0::1
+| ${dut_ip4_gw}= | 10.0.0.2
+| ${dut_ip6_gw}= | 2001:0::2
+| ${ipv4_prefix_len}= | 24
+| ${ipv6_prefix_len}= | 64
+| ${ipv6_br_src}= | 2001:db8:ffff::/96
+
+
+*** Test Cases ***
+| TCxx: asdf
+| | [Tags] | tmp
+#| | [Setup] | Set interfaces IP addresses and routes
+| | [Setup] | Run Keywords
+| | ... | Setup all DUTs before test | AND
+| | ... | Setup all TGs before traffic script | AND
+| | ... | Set interfaces IP addresses and routes
+| | [Template] | Check MAP-T configuration with traffic script
+# |===================|===============|================|============|=============|==========|===========|================|==========|
+# | ipv4_pfx          | ipv6_dst_pfx  | ipv6_src_pfx   | ea_bit_len | psid_offset | psid_len | ipv4_src  | ipv4_dst       | dst_port |
+# |===================|===============|================|============|=============|==========|===========|================|==========|
+| | 20.169.0.0/16     | 2001:db8::/32 | ${ipv6_br_src} | ${40}      | ${6}        | ${8}     | 100.0.0.1 | 20.169.201.219 | ${1232}  |
+| | 20.169.201.219/32 | 2001:db8::/32 | ${ipv6_br_src} | ${0}       | ${0}        | ${0}     | 100.0.0.1 | 20.169.201.219 | ${1232}  |
+| | 20.0.0.0/8        | 2001:db8::/40 | ${ipv6_br_src} | ${24}      | ${0}        | ${0}     | 100.0.0.1 | 20.169.201.219 | ${1232}  |
+
+
+*** Keywords ***
+| Set interfaces IP addresses and routes
+| | Path for 2-node testing is set
+| | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
+| | Interfaces in 2-node path are up
+| | IP addresses are set on interfaces
+| | ... | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4} | ${ipv4_prefix_len}
+| | ... | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6} | ${ipv6_prefix_len}
+| | Vpp Route Add | ${dut_node} | :: | 0 | ${dut_ip6_gw} | ${dut_to_tg_if2}
+| | ... | resolve_attempts=${NONE} | count=${NONE}
+| | Add IP neighbor | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6_gw}
+| | ... | ${tg_to_dut_if2_mac}
+| | Vpp Route Add | ${dut_node} | 0.0.0.0 | 0 | ${dut_ip4_gw} | ${dut_to_tg_if1}
+| | ... | resolve_attempts=${NONE} | count=${NONE}
+| | Add IP neighbor | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4_gw}
+| | ... | ${tg_to_dut_if1_mac}
+
+| Check MAP-T configuration with traffic script
+| | [Arguments] | ${ipv4_pfx} | ${ipv6_dst_pfx} | ${ipv6_src_pfx} | ${ea_bit_len}
+| | ... | ${psid_offset} | ${psid_len} | ${ipv4_src} | ${ipv4_dst} | ${dst_port}
+| | ${domain_index}= | Map Add Domain | ${dut_node} | ${ipv4_pfx}
+| | ... | ${ipv6_dst_pfx} | ${ipv6_src_pfx} | ${ea_bit_len} | ${psid_offset} | ${psid_len} | ${TRUE}
+| | ${ipv6_dst}= | Compute IPv6 map destination address
+| | ... | ${ipv4_pfx} | ${ipv6_dst_pfx} | ${ea_bit_len} | ${psid_offset}
+| | ... | ${psid_len} | ${ipv4_dst} | ${dst_port}
+| | ${ipv6_src}= | Compute IPv6 map source address
+| | ... | ${ipv6_src_pfx} | ${ipv4_src}
+
+# Check translation from v4 to v6 with traffic script
+| | Send IPv4 UDP and check headers for MAP-T
+| | ... | ${tg_node} | ${tg_to_dut_if1} | ${tg_to_dut_if2}
+| | ... | ${dut_to_tg_if1_mac} | ${ipv4_dst} | ${ipv4_src} | ${dst_port}
+| | ... | ${tg_to_dut_if2_mac} | ${dut_to_tg_if2_mac}
+| | ... | ${ipv6_dst} | ${ipv6_src}
+
+# Check translation from v6 to v4 with traffic script
+#| | Send IPv4 UDP in IPv6 and check headers for lightweight 4over6
+#| |      ... | ${tg_node} | ${tg_to_dut_if2} | ${tg_to_dut_if1}
+#| |      ... | ${dut_to_tg_if2_mac} | ${tg_to_dut_if2_mac}
+#| |      ... | ${ipv6_br_src} | ${ipv6_ce_addr}
+#| |      ... | ${ipv4_outside} | ${ipv4_inside} | ${port}
+#| |      ... | ${tg_to_dut_if1_mac} | ${dut_to_tg_if1_mac}
+
+| | [Teardown] | Run Keywords
+| | ... | Map Del Domain | ${dut_node} | ${domain_index} | AND
+| | ... | Show packet trace on all DUTs | ${nodes} | AND
+| | ... | Clear packet trace on all DUTs | ${nodes}
