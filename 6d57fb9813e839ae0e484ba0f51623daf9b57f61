@@ -1,0 +1,579 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a0e1d27_0b26bfb7",
+        "filename": "resources/libraries/python/IPUtil.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-08-11T19:29:27Z",
+      "side": 1,
+      "message": "Please, use format with numbers as used in other libraries:{0} !\u003d {1}\n\n- please, fix for all occurrences in this library",
+      "range": {
+        "startLine": 72,
+        "startChar": 62,
+        "endLine": 72,
+        "endChar": 70
+      },
+      "revId": "6d57fb9813e839ae0e484ba0f51623daf9b57f61",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_6bbbfbe5",
+        "filename": "resources/libraries/python/Map.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 131,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-08-11T19:29:27Z",
+      "side": 1,
+      "message": "Please, add doc string also in case of private method.\n\n- valid for all occurences",
+      "range": {
+        "startLine": 131,
+        "startChar": 4,
+        "endLine": 131,
+        "endChar": 71
+      },
+      "revId": "6d57fb9813e839ae0e484ba0f51623daf9b57f61",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_4bc03750",
+        "filename": "resources/libraries/python/Map.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 199,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-08-11T19:29:27Z",
+      "side": 1,
+      "message": "Please, define the types.",
+      "range": {
+        "startLine": 198,
+        "startChar": 8,
+        "endLine": 199,
+        "endChar": 23
+      },
+      "revId": "6d57fb9813e839ae0e484ba0f51623daf9b57f61",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_2bb503ee",
+        "filename": "resources/libraries/python/Map.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-08-11T19:29:27Z",
+      "side": 1,
+      "message": "Please, add rtype.",
+      "range": {
+        "startLine": 201,
+        "startChar": 8,
+        "endLine": 201,
+        "endChar": 11
+      },
+      "revId": "6d57fb9813e839ae0e484ba0f51623daf9b57f61",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_cb09e732",
+        "filename": "tests/func/softwire/map_e.robot",
+        "patchSetId": 14
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-08-11T19:29:27Z",
+      "side": 1,
+      "message": "Test",
+      "range": {
+        "startLine": 24,
+        "startChar": 2,
+        "endLine": 24,
+        "endChar": 7
+      },
+      "revId": "6d57fb9813e839ae0e484ba0f51623daf9b57f61",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_8b03ef0e",
+        "filename": "tests/func/softwire/map_e.robot",
+        "patchSetId": 14
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-08-11T19:29:27Z",
+      "side": 1,
+      "message": "Please, add there:\n| AND | Set interfaces IP addresses and routes",
+      "range": {
+        "startLine": 26,
+        "startChar": 42,
+        "endLine": 26,
+        "endChar": 43
+      },
+      "revId": "6d57fb9813e839ae0e484ba0f51623daf9b57f61",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_0bba3fde",
+        "filename": "tests/func/softwire/map_e.robot",
+        "patchSetId": 14
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-08-11T19:29:27Z",
+      "side": 1,
+      "message": "Please, add the correct documentation.",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 46
+      },
+      "revId": "6d57fb9813e839ae0e484ba0f51623daf9b57f61",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_eb894bcb",
+        "filename": "tests/func/softwire/map_e.robot",
+        "patchSetId": 14
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-08-11T19:29:27Z",
+      "side": 1,
+      "message": "Please, delete unused code.\n\n- valid for all occurrences",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 53
+      },
+      "revId": "6d57fb9813e839ae0e484ba0f51623daf9b57f61",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_6e00a901",
+        "filename": "tests/func/softwire/map_e.robot",
+        "patchSetId": 14
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-08-11T19:29:27Z",
+      "side": 1,
+      "message": "Please, delete these lines - they are redundant.",
+      "range": {
+        "startLine": 53,
+        "startChar": 0,
+        "endLine": 56,
+        "endChar": 48
+      },
+      "revId": "6d57fb9813e839ae0e484ba0f51623daf9b57f61",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_4e05e50f",
+        "filename": "tests/func/softwire/map_e.robot",
+        "patchSetId": 14
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-08-11T19:29:27Z",
+      "side": 1,
+      "message": "Please, delete these lines - they are redundant.",
+      "range": {
+        "startLine": 78,
+        "startChar": 0,
+        "endLine": 81,
+        "endChar": 48
+      },
+      "revId": "6d57fb9813e839ae0e484ba0f51623daf9b57f61",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_2e0ab121",
+        "filename": "tests/func/softwire/map_e.robot",
+        "patchSetId": 14
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-08-11T19:29:27Z",
+      "side": 1,
+      "message": "Please, delete these lines - they are redundant.",
+      "range": {
+        "startLine": 106,
+        "startChar": 0,
+        "endLine": 109,
+        "endChar": 48
+      },
+      "revId": "6d57fb9813e839ae0e484ba0f51623daf9b57f61",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_ee13995a",
+        "filename": "tests/func/softwire/map_e.robot",
+        "patchSetId": 14
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-08-11T19:29:27Z",
+      "side": 1,
+      "message": "Please, delete these lines - they are redundant.",
+      "range": {
+        "startLine": 154,
+        "startChar": 0,
+        "endLine": 157,
+        "endChar": 48
+      },
+      "revId": "6d57fb9813e839ae0e484ba0f51623daf9b57f61",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_ce10d550",
+        "filename": "tests/func/softwire/map_e.robot",
+        "patchSetId": 14
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-08-11T19:29:27Z",
+      "side": 1,
+      "message": "Please, delete these lines - they are redundant.",
+      "range": {
+        "startLine": 171,
+        "startChar": 0,
+        "endLine": 174,
+        "endChar": 48
+      },
+      "revId": "6d57fb9813e839ae0e484ba0f51623daf9b57f61",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_ce37b5e2",
+        "filename": "tests/func/softwire/map_e.robot",
+        "patchSetId": 14
+      },
+      "lineNbr": 187,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-08-11T19:29:27Z",
+      "side": 1,
+      "message": "Add there [Setup]\nor\n[Setup] | NONE\nto overwrite default test setup from Setting table.",
+      "range": {
+        "startLine": 187,
+        "startChar": 0,
+        "endLine": 187,
+        "endChar": 2
+      },
+      "revId": "6d57fb9813e839ae0e484ba0f51623daf9b57f61",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_4e53a517",
+        "filename": "tests/func/softwire/map_e.robot",
+        "patchSetId": 14
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-08-11T19:29:27Z",
+      "side": 1,
+      "message": "Given Path",
+      "range": {
+        "startLine": 188,
+        "startChar": 4,
+        "endLine": 188,
+        "endChar": 8
+      },
+      "revId": "6d57fb9813e839ae0e484ba0f51623daf9b57f61",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_2e587131",
+        "filename": "tests/func/softwire/map_e.robot",
+        "patchSetId": 14
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-08-11T19:29:27Z",
+      "side": 1,
+      "message": "And Interfaces",
+      "range": {
+        "startLine": 190,
+        "startChar": 4,
+        "endLine": 190,
+        "endChar": 14
+      },
+      "revId": "6d57fb9813e839ae0e484ba0f51623daf9b57f61",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_0e748d97",
+        "filename": "tests/func/softwire/map_e.robot",
+        "patchSetId": 14
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-08-11T19:29:27Z",
+      "side": 1,
+      "message": "When IP",
+      "range": {
+        "startLine": 192,
+        "startChar": 4,
+        "endLine": 192,
+        "endChar": 6
+      },
+      "revId": "6d57fb9813e839ae0e484ba0f51623daf9b57f61",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_ee6839bc",
+        "filename": "tests/func/softwire/map_e.robot",
+        "patchSetId": 14
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-08-11T19:29:27Z",
+      "side": 1,
+      "message": "And Vpp",
+      "range": {
+        "startLine": 195,
+        "startChar": 4,
+        "endLine": 195,
+        "endChar": 7
+      },
+      "revId": "6d57fb9813e839ae0e484ba0f51623daf9b57f61",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_6e9c29c1",
+        "filename": "tests/func/softwire/map_e.robot",
+        "patchSetId": 14
+      },
+      "lineNbr": 197,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-08-11T19:29:27Z",
+      "side": 1,
+      "message": "And Add",
+      "range": {
+        "startLine": 197,
+        "startChar": 4,
+        "endLine": 197,
+        "endChar": 7
+      },
+      "revId": "6d57fb9813e839ae0e484ba0f51623daf9b57f61",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_4ea165f7",
+        "filename": "tests/func/softwire/map_e.robot",
+        "patchSetId": 14
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-08-11T19:29:27Z",
+      "side": 1,
+      "message": "Then Check",
+      "range": {
+        "startLine": 200,
+        "startChar": 4,
+        "endLine": 200,
+        "endChar": 9
+      },
+      "revId": "6d57fb9813e839ae0e484ba0f51623daf9b57f61",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_eea3999c",
+        "filename": "tests/func/softwire/map_e.robot",
+        "patchSetId": 14
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-08-11T19:29:27Z",
+      "side": 1,
+      "message": "When IP",
+      "range": {
+        "startLine": 204,
+        "startChar": 4,
+        "endLine": 204,
+        "endChar": 6
+      },
+      "revId": "6d57fb9813e839ae0e484ba0f51623daf9b57f61",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_cea0d592",
+        "filename": "tests/func/softwire/map_e.robot",
+        "patchSetId": 14
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-08-11T19:29:27Z",
+      "side": 1,
+      "message": "And Vpp",
+      "range": {
+        "startLine": 207,
+        "startChar": 4,
+        "endLine": 207,
+        "endChar": 7
+      },
+      "revId": "6d57fb9813e839ae0e484ba0f51623daf9b57f61",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_aeada18a",
+        "filename": "tests/func/softwire/map_e.robot",
+        "patchSetId": 14
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-08-11T19:29:27Z",
+      "side": 1,
+      "message": "And Add",
+      "range": {
+        "startLine": 209,
+        "startChar": 4,
+        "endLine": 209,
+        "endChar": 7
+      },
+      "revId": "6d57fb9813e839ae0e484ba0f51623daf9b57f61",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_8eaadd6e",
+        "filename": "tests/func/softwire/map_e.robot",
+        "patchSetId": 14
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-08-11T19:29:27Z",
+      "side": 1,
+      "message": "Then Check",
+      "range": {
+        "startLine": 212,
+        "startChar": 4,
+        "endLine": 212,
+        "endChar": 9
+      },
+      "revId": "6d57fb9813e839ae0e484ba0f51623daf9b57f61",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_0b4a3f80",
+        "filename": "tests/func/softwire/map_e.robot",
+        "patchSetId": 14
+      },
+      "lineNbr": 234,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-08-11T19:29:27Z",
+      "side": 1,
+      "message": "Please, add documentation with arguments description.",
+      "range": {
+        "startLine": 234,
+        "startChar": 2,
+        "endLine": 234,
+        "endChar": 45
+      },
+      "revId": "6d57fb9813e839ae0e484ba0f51623daf9b57f61",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
