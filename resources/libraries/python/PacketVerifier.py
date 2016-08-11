@@ -204,7 +204,7 @@ class RxQueue(PacketVerifier):
     def __init__(self, interface_name):
         PacketVerifier.__init__(self, interface_name)
 
-    def recv(self, timeout=3, ignore=None):
+    def recv(self, timeout=3, ignore=None, verbose=True):
         """Read next received packet.
 
         Returns scapy's Ether() object created from next packet in the queue.
@@ -212,9 +212,11 @@ class RxQueue(PacketVerifier):
         arrives in given timeout queue.Empty exception will be risen.
 
         :param timeout: How many seconds to wait for next packet.
-        :param ignore: Packet list that should be ignored.
+        :param ignore: List of packets that should be ignored.
+        :param verbose: Used to suppress detailed logging of ignored packets.
         :type timeout: int
         :type ignore: list
+        :type verbose: bool
 
         :return: Ether() initialized object from packet data.
         :rtype: scapy.Ether
@@ -226,8 +228,9 @@ class RxQueue(PacketVerifier):
         pkt = self._sock.recv(0x7fff)
         pkt_pad = auto_pad(pkt)
         print 'Received packet on {0} of len {1}'.format(self._ifname, len(pkt))
-        Ether(pkt).show2()
-        print
+        if verbose:
+            Ether(pkt).show2()
+            print
 
         if ignore is not None:
             for i, ig_pkt in enumerate(ignore):
@@ -238,7 +241,7 @@ class RxQueue(PacketVerifier):
                     # Found the packet in ignore list, get another one
                     # TODO: subtract timeout - time_spent in here
                     ignore.remove(ig_pkt)
-                    return self.recv(timeout, ignore)
+                    return self.recv(timeout, ignore, verbose)
 
         return Ether(pkt)
 
@@ -254,16 +257,19 @@ class TxQueue(PacketVerifier):
     def __init__(self, interface_name):
         PacketVerifier.__init__(self, interface_name)
 
-    def send(self, pkt):
+    def send(self, pkt, verbose=True):
         """Send packet out of the bound interface.
 
         :param pkt: Packet to send.
+        :param verbose: Used to supress detailed logging of sent packets.
         :type pkt: string or scapy Packet derivative.
+        :type verbose: bool
         """
         print 'Sending packet out of {0} of len {1}'.format(self._ifname,
                                                             len(pkt))
-        Ether(str(pkt)).show2()
-        print
+        if verbose:
+            Ether(str(pkt)).show2()
+            print
 
         pkt = auto_pad(str(pkt))
         self._sock.send(pkt)
