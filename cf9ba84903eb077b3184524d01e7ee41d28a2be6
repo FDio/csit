@@ -22,6 +22,30 @@
       "revId": "cf9ba84903eb077b3184524d01e7ee41d28a2be6",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_2b7d036f",
+        "filename": "tests/func/__init__.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-08-11T10:08:25Z",
+      "side": 1,
+      "message": "I\u0027ll create task for move rest of teardowns\nAn advantage of define test teardown in __init__ is you can edit it only on one place. If test need specific teardown you can overide it in suite or testcase.",
+      "parentUuid": "9a0e1d27_372219ba",
+      "range": {
+        "startLine": 21,
+        "startChar": 1,
+        "endLine": 23,
+        "endChar": 39
+      },
+      "revId": "cf9ba84903eb077b3184524d01e7ee41d28a2be6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
