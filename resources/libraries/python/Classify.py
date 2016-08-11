@@ -37,6 +37,7 @@ class Classify(object):
         :rtype: tuple(int, int, int)
         :raises RuntimeError: If VPP can't create table.
         """
+
         output = VatExecutor.cmd_from_template(node, "classify_add_table.vat",
                                                ip_version=ip_version,
                                                direction=direction)
@@ -203,6 +204,43 @@ class Classify(object):
                 skip_n=skip_n,
                 match_n=match_n,
                 hex_value=hex_value)
+
+    @staticmethod
+    def vpp_configures_classify_session_generic(node, session_type, table_index,
+                                                skip_n, match_n, match,
+                                                match2=''):
+        """Configuration of classify session.
+
+        :param node: VPP node to setup classify session.
+        :param session_type: Session type - hit-next, l2-hit-next, acl-hit-next
+        or policer-hit-next, and their respective parameters.
+        :param table_index: Classify table index.
+        :param skip_n: Number of skip vectors based on mask.
+        :param match_n: Number of match vectors based on mask.
+        :param match: Match value - l2, l3, l4 or hex, and their
+        respective parameters.
+        :param match2: Additional match values, to avoid using overly long
+        variables in RobotFramework.
+        :type node: dict
+        :type session_type: str
+        :type table_index: int
+        :type skip_n: int
+        :type match_n: int
+        :type match: str
+        :type match2: str
+        """
+
+        match = ' '.join((match, match2))
+
+        with VatTerminal(node) as vat:
+            vat.vat_terminal_exec_cmd_from_template(
+                "classify_add_session_generic.vat",
+                type=session_type,
+                table_index=table_index,
+                skip_n=skip_n,
+                match_n=match_n,
+                match=match,
+            )
 
     @staticmethod
     def compute_classify_hex_mask(ip_version, protocol, direction):

@@ -1,0 +1,1 @@
+ipfix_classify_table_add_del table {table} {ip_version} {add_del}
