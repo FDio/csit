@@ -9,8 +9,8 @@ metadata:
 honeycomb: &honeycomb
     user: admin
     passwd: admin
-    port: 8181
-    netconf_port: 1830
+    port: 8183
+    netconf_port: 2831
 
 nodes:
   TG:
