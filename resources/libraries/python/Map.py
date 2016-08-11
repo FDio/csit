@@ -24,7 +24,7 @@ class Map(object):
 
     @staticmethod
     def map_add_domain(vpp_node, ip4_pfx, ip6_pfx, ip6_src, ea_bits_len,
-                       psid_offset, psid_len):
+                       psid_offset, psid_len, map_t=False):
         """Add map domain on node.
 
         :param vpp_node: VPP node to add map domain on.
@@ -34,6 +34,7 @@ class Map(object):
         :param ea_bits_len: Embedded Address bits length.
         :param psid_offset: Port Set Identifier (PSID) offset.
         :param psid_len: Port Set Identifier (PSID) length.
+        :param map_t: Mapping using translation. Default False.
         :type vpp_node: dict
         :type ip4_pfx: str
         :type ip6_pfx: str
@@ -41,17 +42,21 @@ class Map(object):
         :type ea_bits_len: int
         :type psid_offset: int
         :type psid_len: int
+        :type map_t: bool
         :return: Index of created map domain.
         :rtype: int
         :raises RuntimeError: If unable to add map domain.
         """
+        translate = 'map-t' if map_t else ''
+
         output = VatExecutor.cmd_from_template(vpp_node, "map_add_domain.vat",
                                                ip4_pfx=ip4_pfx,
                                                ip6_pfx=ip6_pfx,
                                                ip6_src=ip6_src,
                                                ea_bits_len=ea_bits_len,
                                                psid_offset=psid_offset,
-                                               psid_len=psid_len)
+                                               psid_len=psid_len,
+                                               map_t=translate)
         if output[0]["retval"] == 0:
             return output[0]["index"]
         else:
