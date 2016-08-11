@@ -21,15 +21,18 @@ class Classify(object):
     """Classify utilities."""
 
     @staticmethod
-    def vpp_creates_classify_table_l3(node, ip_version, direction):
+    def vpp_creates_classify_table_l3(node, ip_version, direction,
+                                      next_table=None):
         """Create classify table for IP address filtering.
 
         :param node: VPP node to create classify table.
         :param ip_version: Version of IP protocol.
         :param direction: Direction of traffic - src/dst.
+        :param next_table: On miss, packet will move to table with this index.
         :type node: dict
         :type ip_version: str
         :type direction: str
+        :type next_table: int
         :return (table_index, skip_n, match_n)
         table_index: Classify table index.
         skip_n: Number of skip vectors.
@@ -37,9 +40,13 @@ class Classify(object):
         :rtype: tuple(int, int, int)
         :raises RuntimeError: If VPP can't create table.
         """
+        next_table = "next-table "+str(next_table)\
+            if next_table is not None else ''
+
         output = VatExecutor.cmd_from_template(node, "classify_add_table.vat",
                                                ip_version=ip_version,
-                                               direction=direction)
+                                               direction=direction,
+                                               next_table=next_table)
 
         if output[0]["retval"] == 0:
             table_index = output[0]["new_table_index"]
@@ -203,6 +210,36 @@ class Classify(object):
                 skip_n=skip_n,
                 match_n=match_n,
                 hex_value=hex_value)
+
+    @staticmethod
+    def vpp_configures_classify_session_generic(node, method, table_index,
+                                           skip_n, match_n, match):
+        """Configuration of classify session.
+
+        :param node: VPP node to setup classify session.
+        :param acl_method: ACL method - deny/permit.
+        :param table_index: Classify table index.
+        :param skip_n: Number of skip vectors based on mask.
+        :param match_n: Number of match vectors based on mask.
+        :param ip_version: Version of IP protocol.
+        :param direction: Direction of traffic - src/dst.
+        :param address: IPv4 or IPv6 address.
+        :type node: dict
+        :type acl_method: str
+        :type table_index: int
+        :type skip_n: int
+        :type match_n: int
+        :type ip_version: str
+        :type direction: str
+        :type address: str
+        """
+        with VatTerminal(node) as vat:
+            vat.vat_terminal_exec_cmd_from_template("classify_add_session_generic.vat",
+                                                    type=method,
+                                                    table_index=table_index,
+                                                    skip_n=skip_n,
+                                                    match_n=match_n,
+                                                    match=match)
 
     @staticmethod
     def compute_classify_hex_mask(ip_version, protocol, direction):
