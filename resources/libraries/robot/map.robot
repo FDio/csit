@@ -216,3 +216,45 @@
 | | ...
 | | Run Traffic Script On Node
 | | ... | send_lw_4o6_check_hairpinning_udp.py | ${tg_node} | ${args}
+
+| Send IPv4 UDP and check IPv6 headers for MAP-T
+| | [Documentation] |
+| | ... | TBD. \
+| | [Arguments]
+| | ... | ${tg_node} | ${tx_if} | ${rx_if}
+| | ... | ${tx_dst_mac} | ${tx_dst_ipv4} | ${tx_src_ipv4} | ${tx_dst_udp_port}
+| | ... | ${rx_dst_mac} | ${rx_src_mac} | ${dst_ipv6} | ${src_ipv6}
+| | ...
+| | ${tx_name}= | Get interface name | ${tg_node} | ${tx_if}
+| | ${rx_name}= | Get interface name | ${tg_node} | ${rx_if}
+| | ${args}= | Catenate
+| | ... | --tx_if | ${tx_name} | --rx_if | ${rx_name}
+| | ... | --tx_dst_mac | ${tx_dst_mac}
+| | ... | --tx_src_ipv4 | ${tx_src_ipv4} | --tx_dst_ipv4 | ${tx_dst_ipv4}
+| | ... | --tx_dst_udp_port | ${tx_dst_udp_port}
+| | ... | --rx_dst_mac | ${rx_dst_mac} | --rx_src_mac | ${rx_src_mac}
+| | ... | --rx_src_ipv6 | ${src_ipv6} | --rx_dst_ipv6 | ${dst_ipv6}
+| | ...
+| | Run Traffic Script On Node
+| | ... | send_ipv4_udp_check_map_t.py | ${tg_node} | ${args}
+
+| Send IPv6 UDP and check IPv4 headers for MAP-T
+| | [Documentation] |
+| | ... | TBD. \
+| | [Arguments]
+| | ... | ${tg_node} | ${tx_if} | ${rx_if}
+| | ... | ${tx_dst_mac} | ${tx_dst_ipv6} | ${tx_src_ipv6} | ${tx_src_udp_port}
+| | ... | ${rx_dst_mac} | ${rx_src_mac} | ${dst_ipv4} | ${src_ipv4}
+| | ...
+| | ${tx_name}= | Get interface name | ${tg_node} | ${tx_if}
+| | ${rx_name}= | Get interface name | ${tg_node} | ${rx_if}
+| | ${args}= | Catenate
+| | ... | --tx_if | ${tx_name} | --rx_if | ${rx_name}
+| | ... | --tx_dst_mac | ${tx_dst_mac}
+| | ... | --tx_src_ipv6 | ${tx_src_ipv6} | --tx_dst_ipv6 | ${tx_dst_ipv6}
+| | ... | --tx_src_udp_port | ${tx_src_udp_port}
+| | ... | --rx_dst_mac | ${rx_dst_mac} | --rx_src_mac | ${rx_src_mac}
+| | ... | --rx_src_ipv4 | ${src_ipv4} | --rx_dst_ipv4 | ${dst_ipv4}
+| | ...
+| | Run Traffic Script On Node
+| | ... | send_ipv6_udp_check_map_t.py | ${tg_node} | ${args}
