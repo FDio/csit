@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9a0e1d27_b95ba953",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 352,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-08-12T12:47:30Z",
+      "side": 1,
+      "message": "As discussed, this is correct",
+      "parentUuid": "9a0e1d27_794631c1",
+      "range": {
+        "startLine": 352,
+        "startChar": 12,
+        "endLine": 352,
+        "endChar": 16
+      },
+      "revId": "ecf43ddef7bd7bbc7c103d32eb694e97bad7821b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a0e1d27_59136db8",
         "filename": "resources/libraries/python/QemuUtils.py",
         "patchSetId": 12
@@ -36,6 +60,30 @@
       "writtenOn": "2016-08-12T11:58:39Z",
       "side": 1,
       "message": "As discussed per IM - this wording is misleading a little bit, please rephrase.",
+      "range": {
+        "startLine": 353,
+        "startChar": 36,
+        "endLine": 354,
+        "endChar": 36
+      },
+      "revId": "ecf43ddef7bd7bbc7c103d32eb694e97bad7821b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_f949218c",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-08-12T12:47:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a0e1d27_59136db8",
       "range": {
         "startLine": 353,
         "startChar": 36,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "9a0e1d27_7955111c",
+        "filename": "resources/libraries/robot/performance.robot",
+        "patchSetId": 12
+      },
+      "lineNbr": 953,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-08-12T12:47:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a0e1d27_b923a904",
+      "range": {
+        "startLine": 953,
+        "startChar": 20,
+        "endLine": 953,
+        "endChar": 24
+      },
+      "revId": "ecf43ddef7bd7bbc7c103d32eb694e97bad7821b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a0e1d27_9920e5f8",
         "filename": "resources/libraries/robot/performance.robot",
         "patchSetId": 12
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "9a0e1d27_59324d11",
+        "filename": "resources/libraries/robot/performance.robot",
+        "patchSetId": 12
+      },
+      "lineNbr": 959,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-08-12T12:47:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a0e1d27_9920e5f8",
+      "range": {
+        "startLine": 959,
+        "startChar": 13,
+        "endLine": 959,
+        "endChar": 68
+      },
+      "revId": "ecf43ddef7bd7bbc7c103d32eb694e97bad7821b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a0e1d27_791d11bd",
         "filename": "resources/libraries/robot/performance.robot",
         "patchSetId": 12
@@ -105,6 +201,30 @@
       "writtenOn": "2016-08-12T11:58:39Z",
       "side": 1,
       "message": "Guest VM with Linux Bridge connected via vhost-user is setup",
+      "range": {
+        "startLine": 995,
+        "startChar": 13,
+        "endLine": 995,
+        "endChar": 68
+      },
+      "revId": "ecf43ddef7bd7bbc7c103d32eb694e97bad7821b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_39379901",
+        "filename": "resources/libraries/robot/performance.robot",
+        "patchSetId": 12
+      },
+      "lineNbr": 995,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-08-12T12:47:30Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a0e1d27_791d11bd",
       "range": {
         "startLine": 995,
         "startChar": 13,
