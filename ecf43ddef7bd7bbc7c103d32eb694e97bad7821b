@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a0e1d27_794631c1",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 352,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-08-12T11:58:39Z",
+      "side": 1,
+      "message": "wrong indentation - please, align with if statment on line 335",
+      "range": {
+        "startLine": 352,
+        "startChar": 12,
+        "endLine": 352,
+        "endChar": 16
+      },
+      "revId": "ecf43ddef7bd7bbc7c103d32eb694e97bad7821b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_59136db8",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 12
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-08-12T11:58:39Z",
+      "side": 1,
+      "message": "As discussed per IM - this wording is misleading a little bit, please rephrase.",
+      "range": {
+        "startLine": 353,
+        "startChar": 36,
+        "endLine": 354,
+        "endChar": 36
+      },
+      "revId": "ecf43ddef7bd7bbc7c103d32eb694e97bad7821b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_b923a904",
+        "filename": "resources/libraries/robot/performance.robot",
+        "patchSetId": 12
+      },
+      "lineNbr": 953,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-08-12T11:58:39Z",
+      "side": 1,
+      "message": "Socket\n\n- valid for all occurrences",
+      "range": {
+        "startLine": 953,
+        "startChar": 20,
+        "endLine": 953,
+        "endChar": 24
+      },
+      "revId": "ecf43ddef7bd7bbc7c103d32eb694e97bad7821b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_9920e5f8",
+        "filename": "resources/libraries/robot/performance.robot",
+        "patchSetId": 12
+      },
+      "lineNbr": 959,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-08-12T11:58:39Z",
+      "side": 1,
+      "message": "Guest VM with dpdk-testpmd connected via vhost-user is setup",
+      "range": {
+        "startLine": 959,
+        "startChar": 13,
+        "endLine": 959,
+        "endChar": 68
+      },
+      "revId": "ecf43ddef7bd7bbc7c103d32eb694e97bad7821b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_791d11bd",
+        "filename": "resources/libraries/robot/performance.robot",
+        "patchSetId": 12
+      },
+      "lineNbr": 995,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-08-12T11:58:39Z",
+      "side": 1,
+      "message": "Guest VM with Linux Bridge connected via vhost-user is setup",
+      "range": {
+        "startLine": 995,
+        "startChar": 13,
+        "endLine": 995,
+        "endChar": 68
+      },
+      "revId": "ecf43ddef7bd7bbc7c103d32eb694e97bad7821b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
