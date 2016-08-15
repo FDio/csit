@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a1d315d_9aba4d09",
+        "filename": "resources/traffic_scripts/dhcp/send_dhcp_v6_messages.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 177,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-08-15T15:43:40Z",
+      "side": 1,
+      "message": "proxy_ip",
+      "range": {
+        "startLine": 177,
+        "startChar": 44,
+        "endLine": 177,
+        "endChar": 61
+      },
+      "revId": "719835224c2bed950eb582de010408727f0ed82d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
