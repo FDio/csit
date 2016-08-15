@@ -38,7 +38,7 @@
 | ... | links to DUTs. TG traffic profile contains two L3 flow-groups
 | ... | (flow-group per direction, 10k flows per flow-group) with all packets
 | ... | containing Ethernet header, IPv4 header with IP protocol=61 and
-| ... | generated payload. MAC addresses are matching MAC addresses of the TG
+| ... | static payload. MAC addresses are matching MAC addresses of the TG
 | ... | node interfaces. Incrementing of IP.dst (IPv4 destination address) field
 | ... | is applied to both streams.
 | ... | *[Ref] Applicable standard specifications:* RFC2544.
