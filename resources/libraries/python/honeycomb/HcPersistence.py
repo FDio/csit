@@ -40,8 +40,8 @@ class HcPersistence(object):
         :type nodes: list
         :raises HoneycombError: If persisted configuration could not be removed.
         """
-        cmd = "rm {0}/etc/opendaylight/honeycomb/*".format(
-            Const.REMOTE_HC_DIR)
+        cmd = "rm {0}/data/persistence/honeycomb/*"\
+            .format(Const.REMOTE_HC_DIR)
         for node in nodes:
             if node['type'] == NodeType.DUT:
                 ssh = SSH()
