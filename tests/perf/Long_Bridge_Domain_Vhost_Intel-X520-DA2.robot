@@ -64,7 +64,7 @@
 | TC01: 64B NDR binary search - DUT L2BD-VHOST - 1thread 1core 1rxq
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with 1 thread, 1 phy core, \
-| | ... | 1 receive queue per NIC port. [Ver] Find NDR for 64 Byte frames
+| | ... | 1 receive queue per NIC port. [Ver] Find NDR for 64 Byte frames \
 | | ... | using binary search start at 10GE linerate, step 10kpps.
 | | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | NDR
 | | ${framesize}= | Set Variable | 64
@@ -95,7 +95,7 @@
 | TC02: 64B PDR binary search - DUT L2BD-VHOST - 1thread 1core 1rxq
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with 1 thread, 1 phy core, \
-| | ... | 1 receive queue per NIC port. [Ver] Find PDR for 64 Byte frames
+| | ... | 1 receive queue per NIC port. [Ver] Find PDR for 64 Byte frames \
 | | ... | using binary search start at 10GE linerate, step 10kpps, LT=0.5%.
 | | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | PDR | SKIP_PATCH
 | | ${framesize}= | Set Variable | 64
@@ -128,7 +128,7 @@
 | TC03: 1518B NDR binary search - DUT L2BD-VHOST - 1thread 1core 1rxq
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with 1 thread, 1 phy core, \
-| | ... | 1 receive queue per NIC port. [Ver] Find NDR for 1518 Byte frames
+| | ... | 1 receive queue per NIC port. [Ver] Find NDR for 1518 Byte frames \
 | | ... | using binary search start at 10GE linerate, step 10kpps.
 | | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | NDR
 | | ${framesize}= | Set Variable | 1518
@@ -159,7 +159,7 @@
 | TC04: 1518B PDR binary search - DUT L2BD-VHOST - 1thread 1core 1rxq
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with 1 thread, 1 phy core, \
-| | ... | 1 receive queue per NIC port. [Ver] Find PDR for 1518 Byte frames
+| | ... | 1 receive queue per NIC port. [Ver] Find PDR for 1518 Byte frames \
 | | ... | using binary search start at 10GE linerate, step 10kpps, LT=0.5%.
 | | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | PDR | SKIP_PATCH
 | | ${framesize}= | Set Variable | 1518
@@ -192,8 +192,8 @@
 | TC05: IMIX_v4_1 NDR binary search - DUT L2BD-VHOST - 1thread 1core 1rxq
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with 1 thread, 1 phy core, \
-| | ... | 1 receive queue per NIC port. [Ver] Find NDR for IMIX_v4_1 frame size
-| | ... | using binary search start at 10GE linerate, step 5kpps.
+| | ... | 1 receive queue per NIC port. [Ver] Find NDR for IMIX_v4_1 frame \
+| | ... | size using binary search start at 10GE linerate, step 5kpps.
 | | ... | IMIX_v4_1 = (28x64B;16x570B;4x1518B)
 | | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | NDR
 | | ${framesize}= | Set Variable | IMIX_v4_1
@@ -224,8 +224,8 @@
 | TC06: IMIX_v4_1 PDR binary search - DUT L2BD-VHOST - 1thread 1core 1rxq
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with 1 thread, 1 phy core, \
-| | ... | 1 receive queue per NIC port. [Ver] Find PDR for IMIX_v4_1 frame size
-| | ... | using binary search start at 10GE linerate, step 5kpps, LT=0.5%.
+| | ... | 1 receive queue per NIC port. [Ver] Find PDR for IMIX_v4_1 frame \
+| | ... | size using binary search start at 10GE linerate, step 5kpps, LT=0.5%.
 | | ... | IMIX_v4_1 = (28x64B;16x570B;4x1518B)
 | | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | PDR | SKIP_PATCH
 | | ${framesize}= | Set Variable | IMIX_v4_1
@@ -257,7 +257,7 @@
 | TC07: 64B NDR binary search - DUT L2BD-VHOST - 2threads 2cores 1rxq
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with 2 threads, 2 phy cores, \
-| | ... | 1 receive queue per NIC port. [Ver] Find NDR for 64 Byte frames
+| | ... | 1 receive queue per NIC port. [Ver] Find NDR for 64 Byte frames \
 | | ... | using binary search start at 10GE linerate, step 10kpps.
 | | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | NDR
 | | ${framesize}= | Set Variable | 64
@@ -288,7 +288,7 @@
 | TC08: 64B PDR binary search - DUT L2BD-VHOST - 2threads 2cores 1rxq
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with 2 threads, 2 phy cores, \
-| | ... | 1 receive queue per NIC port. [Ver] Find PDR for 64 Byte frames
+| | ... | 1 receive queue per NIC port. [Ver] Find PDR for 64 Byte frames \
 | | ... | using binary search start at 10GE linerate, step 10kpps, LT=0.5%.
 | | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | PDR | SKIP_PATCH
 | | ${framesize}= | Set Variable | 64
@@ -321,7 +321,7 @@
 | TC09: 1518B NDR binary search - DUT L2BD-VHOST - 2threads 2cores 1rxq
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with 2 threads, 2 phy cores, \
-| | ... | 1 receive queue per NIC port. [Ver] Find NDR for 1518 Byte frames
+| | ... | 1 receive queue per NIC port. [Ver] Find NDR for 1518 Byte frames \
 | | ... | using binary search start at 10GE linerate, step 10kpps.
 | | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | NDR | SKIP_PATCH
 | | ${framesize}= | Set Variable | 1518
@@ -352,7 +352,7 @@
 | TC10: 1518B PDR binary search - DUT L2BD-VHOST - 2threads 2cores 1rxq
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with 2 threads, 2 phy cores, \
-| | ... | 1 receive queue per NIC port. [Ver] Find PDR for 1518 Byte frames
+| | ... | 1 receive queue per NIC port. [Ver] Find PDR for 1518 Byte frames \
 | | ... | using binary search start at 10GE linerate, step 10kpps, LT=0.5%.
 | | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | PDR | SKIP_PATCH
 | | ${framesize}= | Set Variable | 1518
@@ -385,8 +385,8 @@
 | TC11: IMIX_v4_1 NDR binary search - DUT L2BD-VHOST - 2threads 2cores 1rxq
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with 2 threads, 2 phy cores, \
-| | ... | 1 receive queue per NIC port. [Ver] Find NDR for IMIX_v4_1 frame size
-| | ... | using binary search start at 10GE linerate, step 5kpps.
+| | ... | 1 receive queue per NIC port. [Ver] Find NDR for IMIX_v4_1 frame \
+| | ... | size using binary search start at 10GE linerate, step 5kpps.
 | | ... | IMIX_v4_1 = (28x64B;16x570B;4x1518B)
 | | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | NDR | SKIP_PATCH
 | | ${framesize}= | Set Variable | IMIX_v4_1
@@ -417,8 +417,8 @@
 | TC12: IMIX_v4_1 PDR binary search - DUT L2BD-VHOST - 2threads 2cores 1rxq
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with 2 threads, 2 phy cores, \
-| | ... | 1 receive queue per NIC port. [Ver] Find PDR for IMIX_v4_1 frame size
-| | ... | using binary search start at 10GE linerate, step 5kpps, LT=0.5%.
+| | ... | 1 receive queue per NIC port. [Ver] Find PDR for IMIX_v4_1 frame \
+| | ... | size using binary search start at 10GE linerate, step 5kpps, LT=0.5%.
 | | ... | IMIX_v4_1 = (28x64B;16x570B;4x1518B)
 | | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | PDR | SKIP_PATCH
 | | ${framesize}= | Set Variable | IMIX_v4_1
@@ -451,7 +451,7 @@
 | TC13: 64B NDR binary search - DUT L2BD-VHOST - 4threads 4cores 2rxq
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with 4 threads, 4 phy cores, \
-| | ... | 2 receive queues per NIC port. [Ver] Find NDR for 64 Byte frames
+| | ... | 2 receive queues per NIC port. [Ver] Find NDR for 64 Byte frames \
 | | ... | using binary search start at 10GE linerate, step 10kpps.
 | | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | NDR
 | | ${framesize}= | Set Variable | 64
@@ -482,7 +482,7 @@
 | TC14: 64B PDR binary search - DUT L2BD-VHOST - 4threads 4cores 2rxq
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with 4 threads, 4 phy cores, \
-| | ... | 2 receive queues per NIC port. [Ver] Find PDR for 64 Byte frames
+| | ... | 2 receive queues per NIC port. [Ver] Find PDR for 64 Byte frames \
 | | ... | using binary search start at 10GE linerate, step 10kpps, LT=0.5%.
 | | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | PDR | SKIP_PATCH
 | | ${framesize}= | Set Variable | 64
@@ -515,7 +515,7 @@
 | TC15: 1518B NDR binary search - DUT L2BD-VHOST - 4threads 4cores 2rxq
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with 4 threads, 4 phy cores, \
-| | ... | 2 receive queues per NIC port. [Ver] Find NDR for 1518 Byte frames
+| | ... | 2 receive queues per NIC port. [Ver] Find NDR for 1518 Byte frames \
 | | ... | using binary search start at 10GE linerate, step 10kpps.
 | | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | NDR | SKIP_PATCH
 | | ${framesize}= | Set Variable | 1518
@@ -546,7 +546,7 @@
 | TC16: 1518B PDR binary search - DUT L2BD-VHOST - 4threads 4cores 2rxq
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with 4 threads, 4 phy cores, \
-| | ... | 2 receive queues per NIC port. [Ver] Find PDR for 1518 Byte frames
+| | ... | 2 receive queues per NIC port. [Ver] Find PDR for 1518 Byte frames \
 | | ... | using binary search start at 10GE linerate, step 10kpps, LT=0.5%.
 | | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | PDR | SKIP_PATCH
 | | ${framesize}= | Set Variable | 1518
@@ -579,8 +579,8 @@
 | TC17: IMIX_v4_1 NDR binary search - DUT L2BD-VHOST - 4threads 4cores 2rxq
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with 4 threads, 4 phy cores, \
-| | ... | 2 receive queues per NIC port. [Ver] Find NDR for IMIX_v4_1 frame size
-| | ... | using binary search start at 10GE linerate, step 5kpps.
+| | ... | 2 receive queues per NIC port. [Ver] Find NDR for IMIX_v4_1 frame \
+| | ... | size using binary search start at 10GE linerate, step 5kpps.
 | | ... | IMIX_v4_1 = (28x64B;16x570B;4x1518B)
 | | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | NDR | SKIP_PATCH
 | | ${framesize}= | Set Variable | IMIX_v4_1
@@ -611,8 +611,8 @@
 | TC18: IMIX_v4_1 PDR binary search - DUT L2BD-VHOST - 4threads 4cores 2rxq
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with 4 threads, 4 phy cores, \
-| | ... | 2 receive queues per NIC port. [Ver] Find PDR for IMIX_v4_1 frame size
-| | ... | using binary search start at 10GE linerate, step 5kpps, LT=0.5%.
+| | ... | 2 receive queues per NIC port. [Ver] Find PDR for IMIX_v4_1 frame \
+| | ... | size using binary search start at 10GE linerate, step 5kpps, LT=0.5%.
 | | ... | IMIX_v4_1 = (28x64B;16x570B;4x1518B)
 | | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | PDR | SKIP_PATCH
 | | ${framesize}= | Set Variable | IMIX_v4_1
@@ -626,6 +626,72 @@
 | | Given Add '4' worker threads and rxqueues '2' without HTT to all DUTs
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
+| | And   Apply startup configuration on all VPP DUTs
+| | When  L2 bridge domains with Vhost-User initialized in a 3-node circular topology
+| | ...   | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
+| | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
+| | ...     | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
+| | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
+| | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
+| | ...     | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
+| | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
+| | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
+| | ...                                       | ${binary_max} | 3-node-bridge
+| | ...                                       | ${min_rate} | ${max_rate}
+| | ...                                       | ${threshold}
+| | ...                                       | ${glob_loss_acceptance}
+| | ...                                       | ${glob_loss_acceptance_type}
+
+| TC19: 64B NDR binary search - DUT L2BD-DPDK-VHOST - 1thread 1core 1rxq
+| | [Documentation]
+| | ... | [Cfg] DUT runs L2BD switching config with 1 thread, 1 phy core, \
+| | ... | 1 receive queue per NIC port. [Ver] Find NDR for 64 Byte frames \
+| | ... | using binary search start at 10GE linerate, step 10kpps.
+| | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | NDR
+| | ${framesize}= | Set Variable | 64
+| | ${min_rate}= | Set Variable | 10000
+| | ${max_rate}= | Set Variable | ${10Ge_linerate_pps_64B}
+| | ${binary_min}= | Set Variable | ${min_rate}
+| | ${binary_max}= | Set Variable | ${max_rate}
+| | ${threshold}= | Set Variable | ${min_rate}
+| | ${dut1_vm_refs}= | Create Dictionary
+| | ${dut2_vm_refs}= | Create Dictionary
+| | Given Add '1' worker threads and rxqueues '1' without HTT to all DUTs
+| | And   Add PCI devices to DUTs from 3-node single link topology
+| | And   Add No Multi Seg to all DUTs
+| | And   Add Enable Vhost User to all DUTs
+| | And   Apply startup configuration on all VPP DUTs
+| | When  L2 bridge domains with Vhost-User initialized in a 3-node circular topology
+| | ...   | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
+| | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
+| | ...     | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
+| | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
+| | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
+| | ...     | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
+| | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
+| | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
+| | ...                                       | ${binary_max} | 3-node-bridge
+| | ...                                       | ${min_rate} | ${max_rate}
+| | ...                                       | ${threshold}
+
+| TC20: 64B PDR binary search - DUT L2BD-DPDK-VHOST - 1thread 1core 1rxq
+| | [Documentation]
+| | ... | [Cfg] DUT runs L2BD switching config with 1 thread, 1 phy core, \
+| | ... | 1 receive queue per NIC port. [Ver] Find PDR for 64 Byte frames \
+| | ... | using binary search start at 10GE linerate, step 10kpps, LT=0.5%.
+| | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | PDR | SKIP_PATCH
+| | ${framesize}= | Set Variable | 64
+| | ${min_rate}= | Set Variable | 10000
+| | ${max_rate}= | Set Variable | ${10Ge_linerate_pps_64B}
+| | ${binary_min}= | Set Variable | ${min_rate}
+| | ${binary_max}= | Set Variable | ${max_rate}
+| | ${threshold}= | Set Variable | ${min_rate}
+| | ${dut1_vm_refs}= | Create Dictionary
+| | ${dut2_vm_refs}= | Create Dictionary
+| | Given Add '1' worker threads and rxqueues '1' without HTT to all DUTs
+| | And   Add PCI devices to DUTs from 3-node single link topology
+| | And   Add No Multi Seg to all DUTs
+| | And   Add Enable Vhost User to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
 | | When  L2 bridge domains with Vhost-User initialized in a 3-node circular topology
 | | ...   | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
