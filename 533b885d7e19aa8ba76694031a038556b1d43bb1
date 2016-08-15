@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3a1d315d_9716a6f0",
+        "filename": "resources/libraries/python/Map.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-08-15T12:41:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a1d315d_b7b8822b",
+      "range": {
+        "startLine": 168,
+        "startChar": 16,
+        "endLine": 168,
+        "endChar": 54
+      },
+      "revId": "533b885d7e19aa8ba76694031a038556b1d43bb1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a1d315d_57eece23",
         "filename": "tests/func/softwire/map_e.robot",
         "patchSetId": 16
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "3a1d315d_3726b269",
+        "filename": "tests/func/softwire/map_e.robot",
+        "patchSetId": 16
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-08-15T12:41:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a1d315d_57eece23",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 1
+      },
+      "revId": "533b885d7e19aa8ba76694031a038556b1d43bb1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a1d315d_77e9ca19",
         "filename": "tests/func/softwire/map_e.robot",
         "patchSetId": 16
@@ -59,6 +107,24 @@
       "writtenOn": "2016-08-15T11:27:29Z",
       "side": 1,
       "message": "Please, add *[Ref] Applicable standard specifications:* part of the doc too.",
+      "revId": "533b885d7e19aa8ba76694031a038556b1d43bb1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_57312ea1",
+        "filename": "tests/func/softwire/map_e.robot",
+        "patchSetId": 16
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-08-15T12:41:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a1d315d_77e9ca19",
       "revId": "533b885d7e19aa8ba76694031a038556b1d43bb1",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
