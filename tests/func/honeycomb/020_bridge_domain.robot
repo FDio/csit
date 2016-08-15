@@ -90,16 +90,3 @@
 | | When Honeycomb removes all bridge domains | ${node}
 | | Then Honeycomb should show no bridge domains | ${node}
 | | And VAT should show no bridge domains | ${node}
-
-| Honeycomb does not assign two bridged virtual interfaces to one bridge domain.
-| | [Documentation] | Check if Honeycomb can assign two bridged virtual\
-| | ... | interfaces to a single bridge domain, and expect to fail.
-| | [Teardown] | Honeycomb removes all bridge domains | ${node}
-| | Given Honeycomb creates first l2 bridge domain
-| | ... | ${node} | ${bd1_name} | ${bd_settings}
-| | When Honeycomb fails to add interfaces to bridge domain
-| | ... | ${node} | @{interfaces} | ${bd1_name} | ${if_settings2}
-| | Then Honeycomb should not show interfaces assigned to bridge domain
-| | ... | ${node} | @{interfaces} | ${bd1_name} | ${if_settings2}
-| | And VAT should not show interfaces assigned to bridge domain
-| | ... | ${node} | ${0} | @{interfaces} | ${if_settings2}
