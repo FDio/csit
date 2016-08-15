@@ -1704,7 +1704,7 @@
 | | ... | [Cfg] DUT runs IPv6 LISP remote static mappings and whitelist \
 | | ... | filters config with 4 threads, 4 phy cores, 2 receive queues per NIC
 | | ... | port.
-| | ... | [Ver] Find PDR for 1460 Byte frames using binary search starlt
+| | ... | [Ver] Find PDR for 1460 Byte frames using binary search start
 | | ... | at 10GE linerate, step 10kpps, LT=0.5%.
 | | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | PDR | LISP_IPv4oIPv6
 | | ...    | SKIP_PATCH
