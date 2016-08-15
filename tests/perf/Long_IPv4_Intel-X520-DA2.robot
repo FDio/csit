@@ -481,7 +481,7 @@
 | | ...                                       | ${min_rate} | ${max_rate}
 | | ...                                       | ${threshold}
 
-| TC20: 64B PDR binary search - DUT IPv4 - 1thread 1core 1rxq
+| TC20: IMIX_v4_1 PDR binary search - DUT IPv4 - 1thread 1core 1rxq
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 routing config with 1 thread, 1 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Find PDR for IMIX_v4_1 frame size
