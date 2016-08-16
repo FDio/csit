@@ -62,6 +62,11 @@ class DpdkUtil(object):
         # Disable RSS (Receive Side Scaling).
         pmd_disable_rss = '--disable-rss '\
             if args.get('pmd_disable_rss', '') else ''
+        # Set the MAC address XX:XX:XX:XX:XX:XX of the peer port N
+        pmd_eth_peer_1 = '--eth-peer={} '.format(args['pmd_eth_peer_1'])\
+            if args.get('pmd_eth_peer_1', '') else ''
+        pmd_eth_peer_2 = '--eth-peer={} '.format(args['pmd_eth_peer_2'])\
+            if args.get('pmd_eth_peer_2', '') else ''
         # Set the hexadecimal bitmask of the cores running forwarding. Master
         # lcore=0 is reserved, so highest bit is set to 0.
         pmd_coremask = '--coremask={} '.format(\
@@ -86,6 +91,8 @@ class DpdkUtil(object):
             + pmd_portmask\
             + pmd_disable_hw_vlan\
             + pmd_disable_rss\
+            + pmd_eth_peer_1\
+            + pmd_eth_peer_2\
             + pmd_coremask\
             + pmd_nb_cores
         ssh = SSH()
