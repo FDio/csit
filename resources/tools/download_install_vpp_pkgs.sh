@@ -20,7 +20,16 @@ trap 'rm -f *.deb.md5;rm -f *.deb; exit' ERR
 
 URL="https://nexus.fd.io/service/local/artifact/maven/content"
 VER="RELEASE"
-REPO="fd.io.master.ubuntu.trusty.main"
+
+VPP_REPO_URL_PATH="./VPP_REPO_URL"
+if [ -e "$VPP_REPO_URL_PATH" ]; then
+    VPP_REPO_URL=$(cat $VPP_REPO_URL_PATH)
+    REPO=$(echo ${VPP_REPO_URL#https://nexus.fd.io/content/repositories/})
+    REPO=$(echo ${REPO%/io/fd/vpp/})
+else
+    REPO='fd.io.master.ubuntu.trusty.main'
+fi
+
 GROUP="io.fd.vpp"
 ARTIFACTS="vpp vpp-dbg vpp-dev vpp-dpdk-dev vpp-dpdk-dkms vpp-lib vpp-plugins"
 PACKAGE="deb deb.md5"
