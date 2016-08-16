@@ -40,14 +40,20 @@ class ExecutionChecker(ResultVisitor):
         if self.start_suite(suite) is not False:
             if suite.tests:
                 if self.formatting == 'html':
-                    sys.stdout.write('<table border=1>'+'\n')
-                    sys.stdout.write('<tr><th width=32%>Name</th>'+\
-                                     '<th width=40%>Documentation</th>'+\
-                                     '<th width=24%>Message</th>'+\
-                                     '<th width=4%>Status</th><tr/>'+'\n')
+                    sys.stdout.write('<table border=1><tr>'+'\n')
+                    sys.stdout.write('<th width=32%>Name</th>'+'\n')
+                    sys.stdout.write('<th width=40%>Documentation</th>'+'\n')
+                    if "Perf" and "Long" in suite.longname:
+                        sys.stdout.write('<th width=24%>Message</th>'+'\n')
+                    sys.stdout.write('<th width=4%>Status</th><tr/>'+'\n')
+                    sys.stdout.write('</tr>')
                 elif self.formatting == 'wiki':
                     sys.stdout.write('{| class="wikitable"'+'\n')
-                    sys.stdout.write('!Name!!Documentation!!Message!!Status'+'\n')
+                    if "Perf" and "Long" in suite.longname:
+                        header = '!Name!!Documentation!!Message!!Status'
+                    else:
+                        header = '!Name!!Documentation!!Status'
+                    sys.stdout.write(header+'\n')
                 else:
                     pass
 
@@ -78,6 +84,8 @@ class ExecutionChecker(ResultVisitor):
             mark_l = '<h'+str(level)+'>'
             mark_r = '</h'+str(level)+'>'
             sys.stdout.write(mark_l+suite.name+mark_r+'\n')
+            sys.stdout.write('<p>'+suite.doc+'</p>\n')
+
         elif self.formatting == 'wiki':
             mark = "=" * (level+2)
             sys.stdout.write(mark+suite.name+mark+'\n')
@@ -117,13 +125,15 @@ class ExecutionChecker(ResultVisitor):
             sys.stdout.write('<tr>'+'\n')
             sys.stdout.write('<td>'+test.name+'</td>'+'\n')
             sys.stdout.write('<td>'+test.doc+'</td>'+'\n')
-            sys.stdout.write('<td>'+test.message+'</td>'+'\n')
+            if any("PERFTEST_LONG" in tag for tag in test.tags):
+                sys.stdout.write('<td>'+test.message+'</td>'+'\n')
             sys.stdout.write('<td>'+test.status+'</td>'+'\n')
         elif self.formatting == 'wiki':
             sys.stdout.write('|-'+'\n')
             sys.stdout.write('|'+test.name+'\n')
             sys.stdout.write('|'+test.doc+'\n')
-            sys.stdout.write('|'+test.message+'\n')
+            if any("PERFTEST_LONG" in tag for tag in test.tags):
+                sys.stdout.write('|'+test.message+'\n')
             sys.stdout.write('|'+test.status+'\n')
         else:
             pass
