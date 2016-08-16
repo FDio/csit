@@ -388,6 +388,133 @@
 | | ...           | count=${count}
 | | All Vpp Interfaces Ready Wait | ${nodes}
 
+| IPv4 forwarding with vhost initialized in a 3-node circular topology
+| | [Documentation]
+| | ... | Create vhost-user interfaces in VPP. Set UP state of all VPP
+| | ... | interfaces in path on nodes in 3-node circular topology. Create 2
+| | ... | FIB tables on each DUT with multipath routing. Assign pair of
+| | ... | Physical and Virtual interfaces on both nodes to each FIB table.
+| | ... | Setup IPv4 addresses with /30 prefix on DUT-TG links and /30 prefix
+| | ... | on DUT1-DUT2 link. Set routing on all DUT nodes in all FIB tables
+| | ... | with prefix /24 and next hop of neighbour IPv4 address. Setup
+| | ... | ARP on all VPP interfaces.
+| | ...
+| | ... | *Arguments:*
+| | ... | - sock1 - Sock path for first Vhost-User interface. Type: string
+| | ... | - sock2 - Sock path for second Vhost-User interface. Type: string
+| | ...
+| | ... | *Return:*
+| | ... | - No value returned
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| IPv4 forwarding with vhost initialized in a 3-node circular \
+| | ... | topology \| /tmp/sock1 \| /tmp/sock2 \|
+| | [Arguments] | ${sock1} | ${sock2}
+| | VPP interfaces in path are up in a 3-node circular topology
+| | VPP Vhost interfaces for L2BD forwarding are setup | ${dut1}
+| | ...                                                | ${sock1}
+| | ...                                                | ${sock2}
+| | ${dut1_vif1}= | Set Variable | ${vhost_if1}
+| | ${dut1_vif2}= | Set Variable | ${vhost_if2}
+| | Set Interface State | ${dut1} | ${dut1_vif1} | up
+| | Set Interface State | ${dut1} | ${dut1_vif2} | up
+| | VPP Vhost interfaces for L2BD forwarding are setup | ${dut2}
+| | ...                                                | ${sock1}
+| | ...                                                | ${sock2}
+| | ${dut2_vif1}= | Set Variable | ${vhost_if1}
+| | ${dut2_vif2}= | Set Variable | ${vhost_if2}
+| | Set Interface State | ${dut2} | ${dut2_vif1} | up
+| | Set Interface State | ${dut2} | ${dut2_vif2} | up
+| | ${dut1_vif1_idx}= | Get Interface SW Index | ${dut1} | ${dut1_vif1}
+| | ${dut1_vif2_idx}= | Get Interface SW Index | ${dut1} | ${dut1_vif2}
+| | ${dut1_if1_idx}= | Get Interface SW Index | ${dut1} | ${dut1_if1}
+| | ${dut1_if2_idx}= | Get Interface SW Index | ${dut1} | ${dut1_if2}
+| | ${dut2_vif1_idx}= | Get Interface SW Index | ${dut2} | ${dut2_vif1}
+| | ${dut2_vif2_idx}= | Get Interface SW Index | ${dut2} | ${dut2_vif2}
+| | ${dut2_if1_idx}= | Get Interface SW Index | ${dut2} | ${dut2_if1}
+| | ${dut2_if2_idx}= | Get Interface SW Index | ${dut2} | ${dut2_if2}
+| | Add fib table | ${dut1} | 20.20.20.0 | 24 | ${fib_table_1}
+| | ... | via 4.4.4.2 sw_if_index ${dut1_vif1_idx} multipath
+| | Add fib table | ${dut1} | 10.10.10.0 | 24 | ${fib_table_1}
+| | ... | via 1.1.1.2 sw_if_index ${dut1_if1_idx} multipath
+| | Add fib table | ${dut1} | 20.20.20.0 | 24 | ${fib_table_2}
+| | ... | via 2.2.2.2 sw_if_index ${dut1_if2_idx} multipath
+| | Add fib table | ${dut1} | 10.10.10.0 | 24 | ${fib_table_2}
+| | ... | via 5.5.5.2 sw_if_index ${dut1_vif2_idx} multipath
+| | Add fib table | ${dut2} | 10.10.10.0 | 24 | ${fib_table_1}
+| | ... | via 2.2.2.1 sw_if_index ${dut2_if1_idx} multipath
+| | Add fib table | ${dut2} | 20.20.20.0 | 24 | ${fib_table_1}
+| | ... | via 4.4.4.1 sw_if_index ${dut2_vif1_idx} multipath
+| | Add fib table | ${dut2} | 10.10.10.0 | 24 | ${fib_table_2}
+| | ... | via 5.5.5.2 sw_if_index ${dut2_vif2_idx} multipath
+| | Add fib table | ${dut2} | 20.20.20.0 | 24 | ${fib_table_2}
+| | ... | via 3.3.3.2 sw_if_index ${dut2_if2_idx} multipath
+| | Assign Interface To Fib Table | ${dut1} | ${dut1_if1} | ${fib_table_1}
+| | Assign Interface To Fib Table | ${dut1} | ${dut1_vif1} | ${fib_table_1}
+| | Assign Interface To Fib Table | ${dut1} | ${dut1_if2} | ${fib_table_2}
+| | Assign Interface To Fib Table | ${dut1} | ${dut1_vif2} | ${fib_table_2}
+| | Assign Interface To Fib Table | ${dut2} | ${dut2_if1} | ${fib_table_1}
+| | Assign Interface To Fib Table | ${dut2} | ${dut2_vif1} | ${fib_table_1}
+| | Assign Interface To Fib Table | ${dut2} | ${dut2_if2} | ${fib_table_2}
+| | Assign Interface To Fib Table | ${dut2} | ${dut2_vif2} | ${fib_table_2}
+| | IP addresses are set on interfaces | ${dut1} | ${dut1_if1} | 1.1.1.2 | 30
+| | IP addresses are set on interfaces | ${dut1} | ${dut1_if2} | 2.2.2.1 | 30
+| | IP addresses are set on interfaces | ${dut1} | ${dut1_vif1} | 4.4.4.1 | 30
+| | IP addresses are set on interfaces | ${dut1} | ${dut1_vif2} | 5.5.5.1 | 30
+| | IP addresses are set on interfaces | ${dut2} | ${dut2_if1} | 2.2.2.2 | 30
+| | IP addresses are set on interfaces | ${dut2} | ${dut2_if2} | 3.3.3.1 | 30
+| | IP addresses are set on interfaces | ${dut2} | ${dut2_vif1} | 4.4.4.1 | 30
+| | IP addresses are set on interfaces | ${dut2} | ${dut2_vif2} | 5.5.5.1 | 30
+| | ${tg1_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
+| | ${dut1_if2_mac}= | Get Interface MAC | ${dut1} | ${dut1_if2}
+| | ${tg1_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
+| | ${dut2_if1_mac}= | Get Interface MAC | ${dut2} | ${dut2_if1}
+| | ${dut1_vif1_mac}= | Get Vhost User Mac By Sw Index | ${dut1}
+| | ... | ${dut1_vif1_idx}
+| | ${dut1_vif2_mac}= | Get Vhost User Mac By Sw Index | ${dut1}
+| | ... | ${dut1_vif2_idx}
+| | ${dut2_vif1_mac}= | Get Vhost User Mac By Sw Index | ${dut2}
+| | ... | ${dut2_vif1_idx}
+| | ${dut2_vif2_mac}= | Get Vhost User Mac By Sw Index | ${dut2}
+| | ... | ${dut2_vif2_idx}
+| | Set Test Variable | ${dut1_vif1_mac}
+| | Set Test Variable | ${dut1_vif2_mac}
+| | Set Test Variable | ${dut2_vif1_mac}
+| | Set Test Variable | ${dut2_vif2_mac}
+| | Add arp on dut | ${dut1} | ${dut1_if1} | 1.1.1.1 | ${tg1_if1_mac}
+| | ... | vrf=${fib_table_1}
+| | Add arp on dut | ${dut1} | ${dut1_if2} | 2.2.2.2 | ${dut2_if1_mac}
+| | ... | vrf=${fib_table_2}
+| | Add arp on dut | ${dut1} | ${dut1_vif1} | 4.4.4.2 | 52:54:00:00:04:01
+| | ... | vrf=${fib_table_1}
+| | Add arp on dut | ${dut1} | ${dut1_vif2} | 5.5.5.2 | 52:54:00:00:04:02
+| | ... | vrf=${fib_table_2}
+| | Add arp on dut | ${dut2} | ${dut2_if1} | 2.2.2.1 | ${dut1_if2_mac}
+| | ... | vrf=${fib_table_1}
+| | Add arp on dut | ${dut2} | ${dut2_if2} | 3.3.3.2 | ${tg1_if2_mac}
+| | ... | vrf=${fib_table_2}
+| | Add arp on dut | ${dut2} | ${dut2_vif1} | 4.4.4.2 | 52:54:00:00:04:01
+| | ... | vrf=${fib_table_1}
+| | Add arp on dut | ${dut2} | ${dut2_vif2} | 5.5.5.2 | 52:54:00:00:04:02
+| | ... | vrf=${fib_table_2}
+| | Vpp Route Add | ${dut1} | 20.20.20.0 | 24 | 4.4.4.2 | ${dut1_vif1}
+| | ... | vrf=${fib_table_1}
+| | Vpp Route Add | ${dut1} | 10.10.10.0 | 24 | 1.1.1.1 | ${dut1_if1}
+| | ... | vrf=${fib_table_1}
+| | Vpp Route Add | ${dut1} | 20.20.20.0 | 24 | 2.2.2.2 | ${dut1_if2}
+| | ... | vrf=${fib_table_2}
+| | Vpp Route Add | ${dut1} | 10.10.10.0 | 24 | 5.5.5.2 | ${dut1_vif2}
+| | ... | vrf=${fib_table_2}
+| | Vpp Route Add | ${dut2} | 20.20.20.0 | 24 | 4.4.4.2 | ${dut2_vif1}
+| | ... | vrf=${fib_table_1}
+| | Vpp Route Add | ${dut2} | 10.10.10.0 | 24 | 2.2.2.1 | ${dut2_if1}
+| | ... | vrf=${fib_table_1}
+| | Vpp Route Add | ${dut2} | 20.20.20.0 | 24 | 3.3.3.2 | ${dut2_if2}
+| | ... | vrf=${fib_table_2}
+| | Vpp Route Add | ${dut2} | 10.10.10.0 | 24 | 5.5.5.2 | ${dut2_vif2}
+| | ... | vrf=${fib_table_2}
+
 | IPv6 forwarding initialized in a 3-node circular topology
 | | [Documentation]
 | | ... | Set UP state on VPP interfaces in path on nodes in 3-node circular
@@ -976,6 +1103,49 @@
 | | ...                | eal_mem_channels=4
 | | ...                | eal_socket_mem=1024
 | | ...                | pmd_fwd_mode=io
+| | ...                | pmd_disable_hw_vlan=${True}
+| | Return From Keyword | ${vm}
+
+| Guest VM with dpdk-testpmd-mac connected via vhost-user is setup
+| | [Documentation]
+| | ... | Start QEMU guest with two vhost-user interfaces and interconnecting
+| | ... | DPDK testpmd. Qemu Guest is using 3 cores pinned to physical cores 5,
+| | ... | 6, 7 and 2048M. Testpmd is using 3 cores (1 main core and 2 cores
+| | ... | dedicated to io) socket-mem=1024, mem-channel=4, txq/rxq=2048,
+| | ... | burst=64, disable-hw-vlan, total-num-mbufs=65K, driver
+| | ... | usr/lib/librte_pmd_virtio.so and fwd mode is mac rewrite.
+| | ...
+| | ... | *Arguments:*
+| | ... | - dut_node - DUT node to start guest VM on. Type: dictionary
+| | ... | - sock1 - Socket path for first Vhost-User interface. Type: string
+| | ... | - sock2 - Socket path for second Vhost-User interface. Type: string
+| | ... | - vm_name - QemuUtil instance name. Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Guest VM with dpdk-testpmd for Vhost L2BD forwarding is setup \
+| | ... | \| ${nodes['DUT1']} \| /tmp/sock1 \| /tmp/sock2 \| DUT1_VM \
+| | ... | \| 00:00:00:00:00:01 \| 00:00:00:00:00:02 \|
+| | [Arguments] | ${dut_node} | ${sock1} | ${sock2} | ${vm_name}
+| | ...         | ${eth0_mac} | ${eth1_mac}
+| | Import Library | resources.libraries.python.QemuUtils
+| | ...            | WITH NAME | ${vm_name}
+| | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock1}
+| | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock2}
+| | Run keyword | ${vm_name}.Qemu Set Node | ${dut_node}
+| | Run keyword | ${vm_name}.Qemu Set Smp | 3 | 3 | 1 | 1
+| | Run keyword | ${vm_name}.Qemu Set Mem Size | 2048
+| | Run keyword | ${vm_name}.Qemu Set Huge Allocate
+| | Run keyword | ${vm_name}.Qemu Set Disk Image
+| | ...         | /var/lib/vm/csit-nested-1.3.img
+| | ${vm}= | Run keyword | ${vm_name}.Qemu Start
+| | Run keyword | ${vm_name}.Qemu Set Affinity | 5 | 6 | 7
+| | Dpdk Testpmd Start | ${vm} | eal_coremask=0x7
+| | ...                | eal_mem_channels=4
+| | ...                | eal_socket_mem=1024
+| | ...                | pmd_fwd_mode=mac
+| | ...                | pmd_eth_peer_0=0,${eth0_mac}
+| | ...                | pmd_eth_peer_1=1,${eth1_mac}
 | | ...                | pmd_disable_hw_vlan=${True}
 | | Return From Keyword | ${vm}
 
