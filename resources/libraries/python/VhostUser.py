@@ -13,7 +13,7 @@
 
 """Vhost-user interfaces library."""
 
-from resources.libraries.python.VatExecutor import VatExecutor
+from resources.libraries.python.VatExecutor import VatExecutor, VatTerminal
 
 
 class VhostUser(object):
@@ -52,4 +52,26 @@ class VhostUser(object):
         for interface in node['interfaces'].values():
             if interface.get('socket') == socket:
                 return interface.get('name')
+        return None
+
+    @staticmethod
+    def get_vhost_user_mac_by_sw_index(node, sw_if_index):
+        """Get Vhost-user l2_address for the given interface from actual
+        interface dump.
+
+        :param node: VPP node to get interface data from.
+        :param sw_if_index: Idx of the specific interface.
+        :type node: dict
+        :type interface_name: str
+        :return: l2_address of the given interface.
+        :rtype: str
+        """
+
+        with VatTerminal(node) as vat:
+            if_data = vat.vat_terminal_exec_cmd_from_template(
+                "interface_dump.vat")
+        for iface in if_data[0]:
+            if iface["sw_if_index"] == sw_if_index:
+                return ':'.join("%02x" % (b) for b in iface["l2_address"][:6])
+
         return None
