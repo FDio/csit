@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a1d315d_ce6127d5",
+        "filename": "resources/libraries/robot/performance.robot",
+        "patchSetId": 13
+      },
+      "lineNbr": 959,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-08-17T13:14:04Z",
+      "side": 1,
+      "message": "Wrong keyword name.",
+      "range": {
+        "startLine": 959,
+        "startChar": 13,
+        "endLine": 959,
+        "endChar": 74
+      },
+      "revId": "24fcc68a742ca35b716ed5d026655996dfc126a4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_ae5eeb10",
+        "filename": "resources/libraries/robot/performance.robot",
+        "patchSetId": 13
+      },
+      "lineNbr": 971,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-08-17T13:14:04Z",
+      "side": 1,
+      "message": "If possible, do not use hard coded constants, move it to the \"Variables\" section.",
+      "range": {
+        "startLine": 971,
+        "startChar": 18,
+        "endLine": 971,
+        "endChar": 49
+      },
+      "revId": "24fcc68a742ca35b716ed5d026655996dfc126a4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_6ea0d3f4",
+        "filename": "resources/libraries/robot/performance.robot",
+        "patchSetId": 13
+      },
+      "lineNbr": 995,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-08-17T13:14:04Z",
+      "side": 1,
+      "message": "Wrong keyword name.",
+      "range": {
+        "startLine": 995,
+        "startChar": 13,
+        "endLine": 995,
+        "endChar": 74
+      },
+      "revId": "24fcc68a742ca35b716ed5d026655996dfc126a4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_4ea51703",
+        "filename": "resources/libraries/robot/performance.robot",
+        "patchSetId": 13
+      },
+      "lineNbr": 1007,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-08-17T13:14:04Z",
+      "side": 1,
+      "message": "If possible, do not use hard coded constants, move it to the \"Variables\" section.",
+      "range": {
+        "startLine": 1007,
+        "startChar": 18,
+        "endLine": 1007,
+        "endChar": 49
+      },
+      "revId": "24fcc68a742ca35b716ed5d026655996dfc126a4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
