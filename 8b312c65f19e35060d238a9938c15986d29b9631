@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a0e1d27_74bbd80e",
+        "filename": "resources/libraries/robot/ipsec.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-08-17T09:57:04Z",
+      "side": 1,
+      "message": "We should move the variable settings to the test file...",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 22
+      },
+      "revId": "8b312c65f19e35060d238a9938c15986d29b9631",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_23ec34c7",
+        "filename": "resources/libraries/robot/ipsec.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-08-17T09:57:04Z",
+      "side": 1,
+      "message": "tg_node\n\n- all occurrences",
+      "range": {
+        "startLine": 70,
+        "startChar": 14,
+        "endLine": 70,
+        "endChar": 16
+      },
+      "revId": "8b312c65f19e35060d238a9938c15986d29b9631",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_e3cd1c5f",
+        "filename": "resources/libraries/robot/ipsec.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-08-17T09:57:04Z",
+      "side": 1,
+      "message": "Use only variable name without dollar sign and curly brackets.\n\n- all occurrences",
+      "range": {
+        "startLine": 71,
+        "startChar": 12,
+        "endLine": 71,
+        "endChar": 20
+      },
+      "revId": "8b312c65f19e35060d238a9938c15986d29b9631",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_03d138fb",
+        "filename": "resources/libraries/robot/ipsec.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-08-17T09:57:04Z",
+      "side": 1,
+      "message": "dut_node\n\n- all occurrences",
+      "range": {
+        "startLine": 73,
+        "startChar": 14,
+        "endLine": 73,
+        "endChar": 17
+      },
+      "revId": "8b312c65f19e35060d238a9938c15986d29b9631",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a0e1d27_f32b9480",
+        "filename": "resources/libraries/robot/ipsec.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-08-17T09:57:04Z",
+      "side": 1,
+      "message": "for",
+      "range": {
+        "startLine": 99,
+        "startChar": 37,
+        "endLine": 99,
+        "endChar": 39
+      },
+      "revId": "8b312c65f19e35060d238a9938c15986d29b9631",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_43fe106d",
+        "filename": "resources/libraries/robot/ipsec.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 236,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-08-17T09:57:04Z",
+      "side": 1,
+      "message": "Better to use Catenate function...",
+      "range": {
+        "startLine": 232,
+        "startChar": 3,
+        "endLine": 236,
+        "endChar": 71
+      },
+      "revId": "8b312c65f19e35060d238a9938c15986d29b9631",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
