@@ -57,12 +57,12 @@
     apt: name=linux-generic-lts-xenial state=present
   - name: Install cgroup-support
     apt: name=cgroup-bin state=present
+  - name: Install zlib1g-dev
+    apt: name=zlib1g-dev state=present
 - hosts: tg
   remote_user: testuser
   sudo: yes
   tasks:
-  - name: Install zlib1g-dev
-    apt: name=zlib1g-dev state=present
   - name: Install unzip
     apt: name=unzip state=present
   - name: pstate parameter
@@ -79,3 +79,11 @@
     lineinfile: dest=/etc/default/grub regexp=^GRUB_CMDLINE_LINUX= line=GRUB_CMDLINE_LINUX="\"isolcpus={{ isolcpus }} intel_pstate=disable\""
   - name: update grub
     command: update-grub
+  - name: Install pkg-config
+    apt: name=pkg-config state=present
+  - name: Install libglib2.0-dev
+    apt: name=libglib2.0-dev state=present
+  - name: Install autoconf
+    apt: name=autoconf state=present
+  - name: Install libtool
+    apt: name=libtool state=present
