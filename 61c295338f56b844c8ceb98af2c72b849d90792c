@@ -117,6 +117,29 @@
     },
     {
       "key": {
+        "uuid": "3a1d315d_fbe38003",
+        "filename": "resources/traffic_scripts/policer.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-08-18T16:52:22Z",
+      "side": 1,
+      "message": "TCP",
+      "range": {
+        "startLine": 80,
+        "startChar": 24,
+        "endLine": 80,
+        "endChar": 29
+      },
+      "revId": "61c295338f56b844c8ceb98af2c72b849d90792c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a1d315d_5b0f14e2",
         "filename": "resources/traffic_scripts/policer.py",
         "patchSetId": 4
@@ -133,6 +156,29 @@
         "startChar": 4,
         "endLine": 94,
         "endChar": 23
+      },
+      "revId": "61c295338f56b844c8ceb98af2c72b849d90792c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_dbf0c4cb",
+        "filename": "resources/traffic_scripts/policer.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-08-18T16:52:22Z",
+      "side": 1,
+      "message": "unused variable",
+      "range": {
+        "startLine": 98,
+        "startChar": 4,
+        "endLine": 98,
+        "endChar": 10
       },
       "revId": "61c295338f56b844c8ceb98af2c72b849d90792c",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
