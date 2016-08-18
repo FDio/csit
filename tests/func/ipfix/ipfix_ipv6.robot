@@ -29,56 +29,30 @@
 | Test Teardown | Run Keywords | Show packet trace on all DUTs | ${nodes}
 | ...           | AND          | Vpp Show Errors | ${nodes['DUT1']}
 | ...           | AND          | Show vpp trace dump on all DUTs
-| Documentation | *IPFIX ipv4 test cases*
+| Documentation | *IPFIX ipv6 test cases*
 | ...
 | ... | IPFIX tests use 3-node topology TG - DUT1 - DUT2 - TG with
-| ... | one link between the nodes. DUT1 is configured with IPv4
+| ... | one link between the nodes. DUT1 is configured with IPv4 and IPV6
 | ... | routing and static routes. IPFIX is configured on DUT1 with
 | ... | DUT1->TG interface as collector.Test packets are
-| ... | sent from TG to DUT1. TG listens for flow report packets
-| ... | and verifies that they contains flow record of test packets sent.
+| ... | sent from TG to or through DUT1. TG listens for flow report packets
+| ... | and verifies that they contains flow records of test packets sent.
 
 *** Variables ***
-| ${dut1_to_tg_ip}= | 192.168.1.1
-| ${dut2_to_dut1_ip}= | 192.168.2.1
-| ${test_src_ip}= | 16.0.0.1
-| ${test2_src_ip}= | 16.0.1.1
-| ${prefix_length}= | 24
-| ${ip_version}= | ip4
+| ${dut1_to_tg_ip}= | 10::10
+| ${dut2_to_dut1_ip}= | 11::10
+| ${test_src_ip}= | 12::10
+| ${test2_src_ip}= | 13::10
+| ${prefix_length}= | 64
+| ${ip_version}= | ip6
 | ${port}= | 80
 
-*** Test Cases ***
-| TC01: DUT sends IPFIX template and data packets
-| | [Documentation]
-| | ... | [Top] TG-DUT1-DUT2-TG. [Cfg] On DUT1 configure IPFIX with TG interface
-| | ... | address as collector and a basic classify session.
-| | ... | [Ver] Make TG listen for IPFIX template and data packets, verify
-| | ... | that packet is received and correct.
-| | ... | [Ref] RFC 7011
-| | Given Path for 3-node testing is set
-| | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
-| | And Interfaces in 3-node path are up
-| | And Set Interface Address | ${dut1_node}
-| | ... | ${dut1_to_tg} | ${dut1_to_tg_ip} | ${prefix_length}
-| | And Add ARP on DUT | ${dut1_node} | ${dut1_to_tg} | ${test_src_ip}
-| | ... | ${tg_to_dut1_mac}
-| | ${table_index} | ${skip_n} | ${match_n}=
-| | ... | And VPP creates classify table L3 | ${dut1_node} | ${ip_version} | src
-| | And VPP configures classify session L3 | ${dut1_node} | permit
-| | ... | ${table_index} | ${skip_n} | ${match_n} | ${ip_version} | src
-| | ... | ${test_src_ip}
-| | When Assign interface to flow table | ${dut1_node} | ${dut1_to_tg}
-| | ... | ${table_index} | ip_version=${ip_version}
-| | And setup IPFIX exporter | ${dut1_node} | ${test_src_ip} | ${dut1_to_tg_ip}
-| | ... | interval=5
-| | And Set IPFIX stream | ${dut1_node} | ${1}
-| | And Assign classify table to exporter | ${dut1_node} | ${table_index}
-| | ... | ${ip_version}
-| | Then Send packets and verify IPFIX | ${tg_node} | ${dut1_node}
-| | ... | ${tg_to_dut1} | ${dut1_to_tg} | ${test_src_ip} | ${dut1_to_tg_ip}
-| | ... | count=0
+# IPv4 addresses used for IPFIX exporter. Export over IPv6 not (yet?) supported.
+| ${dut1_to_tg_ip4}= | 192.168.1.1
+| ${test_src_ip4}= | 16.0.0.1
 
-| TC02: DUT reports packet flow for traffic by source address
+*** Test Cases ***
+| TC01: DUT reports packet flow for traffic by source address
 | | [Documentation]
 | | ... | [Top] TG-DUT1-DUT2-TG. [Cfg] On DUT1 configure IPFIX with TG interface
 | | ... | address as collector and add classify session with TG source address.
@@ -90,6 +64,12 @@
 | | And Interfaces in 3-node path are up
 | | And Set Interface Address | ${dut1_node}
 | | ... | ${dut1_to_tg} | ${dut1_to_tg_ip} | ${prefix_length}
+| |
+| | And Set Interface Address | ${dut1_node}
+| | ... | ${dut1_to_tg} | ${dut1_to_tg_ip4} | ${24}
+| | And Add ARP on DUT | ${dut1_node} | ${dut1_to_tg} | ${test_src_ip4}
+| | ... | ${tg_to_dut1_mac}
+| |
 | | And Add ARP on DUT | ${dut1_node} | ${dut1_to_tg} | ${test_src_ip}
 | | ... | ${tg_to_dut1_mac}
 | | ${table_index} | ${skip_n} | ${match_n}=
@@ -99,8 +79,8 @@
 | | ... | ${test_src_ip}
 | | When Assign interface to flow table | ${dut1_node} | ${dut1_to_tg}
 | | ... | ${table_index} | ip_version=${ip_version}
-| | And setup IPFIX exporter | ${dut1_node} | ${test_src_ip} | ${dut1_to_tg_ip}
-| | ... | interval=5
+| | And setup IPFIX exporter | ${dut1_node} | ${test_src_ip4}
+| | ... | ${dut1_to_tg_ip4} | interval=5
 | | And Set IPFIX stream | ${dut1_node} | ${1}
 | | And Assign classify table to exporter | ${dut1_node} | ${table_index}
 | | ... | ${ip_version}
@@ -108,7 +88,7 @@
 | | ... | ${tg_to_dut1} | ${dut1_to_tg} | ${test_src_ip} | ${dut1_to_tg_ip}
 | | ... | count=1
 
-| TC03: DUT reports packet flow for traffic with local destination address
+| TC02: DUT reports packet flow for traffic with local destination address
 | | [Documentation]
 | | ... | [Top] TG-DUT1-DUT2-TG. [Cfg] On DUT1 configure IPFIX with TG interface
 | | ... | address as collector and add classify session with destination
@@ -121,6 +101,12 @@
 | | And Interfaces in 3-node path are up
 | | And Set Interface Address | ${dut1_node}
 | | ... | ${dut1_to_tg} | ${dut1_to_tg_ip} | ${prefix_length}
+| |
+| | And Set Interface Address | ${dut1_node}
+| | ... | ${dut1_to_tg} | ${dut1_to_tg_ip4} | ${24}
+| | And Add ARP on DUT | ${dut1_node} | ${dut1_to_tg} | ${test_src_ip4}
+| | ... | ${tg_to_dut1_mac}
+| |
 | | And Add ARP on DUT | ${dut1_node} | ${dut1_to_tg} | ${test_src_ip}
 | | ... | ${tg_to_dut1_mac}
 | | ${table_index} | ${skip_n} | ${match_n}=
@@ -130,8 +116,8 @@
 | | ... | ${dut1_to_tg_ip}
 | | When Assign interface to flow table | ${dut1_node} | ${dut1_to_tg}
 | | ... | ${table_index} | ip_version=${ip_version}
-| | And setup IPFIX exporter | ${dut1_node} | ${test_src_ip} | ${dut1_to_tg_ip}
-| | ... | interval=5
+| | And setup IPFIX exporter | ${dut1_node} | ${test_src_ip4}
+| | ... | ${dut1_to_tg_ip4} | interval=5
 | | And Set IPFIX stream | ${dut1_node} | ${1}
 | | And Assign classify table to exporter | ${dut1_node} | ${table_index}
 | | ... | ${ip_version}
@@ -139,7 +125,7 @@
 | | ... | ${tg_to_dut1} | ${dut1_to_tg} | ${test_src_ip} | ${dut1_to_tg_ip}
 | | ... | count=1
 
-| TC04: DUT reports packet flow for traffic with remote destination address
+| TC03: DUT reports packet flow for traffic with remote destination address
 | | [Documentation]
 | | ... | [Top] TG-DUT1-DUT2-TG. [Cfg] On DUT1 configure IPFIX with TG interface
 | | ... | address as collector and add classify session with destination
@@ -153,8 +139,12 @@
 | | And Interfaces in 3-node path are up
 | | And Set Interface Address | ${dut1_node}
 | | ... | ${dut1_to_tg} | ${dut1_to_tg_ip} | ${prefix_length}
-| | And Set Interface Address | ${dut2_node}
-| | ... | ${dut2_to_dut1} | ${dut2_to_dut1_ip} | ${prefix_length}
+| |
+| | And Set Interface Address | ${dut1_node}
+| | ... | ${dut1_to_tg} | ${dut1_to_tg_ip4} | ${24}
+| | And Add ARP on DUT | ${dut1_node} | ${dut1_to_tg} | ${test_src_ip4}
+| | ... | ${tg_to_dut1_mac}
+| |
 | | And Add ARP on DUT | ${dut1_node} | ${dut1_to_tg} | ${test_src_ip}
 | | ... | ${tg_to_dut1_mac}
 | | And Add ARP on DUT | ${dut1_node} | ${dut1_to_dut2} | ${dut2_to_dut1_ip}
@@ -166,8 +156,8 @@
 | | ... | ${dut2_to_dut1_ip}
 | | When Assign interface to flow table | ${dut1_node} | ${dut1_to_tg}
 | | ... | ${table_index} | ip_version=${ip_version}
-| | And setup IPFIX exporter | ${dut1_node} | ${test_src_ip} | ${dut1_to_tg_ip}
-| | ... | interval=5
+| | And setup IPFIX exporter | ${dut1_node} | ${test_src_ip4}
+| | ... | ${dut1_to_tg_ip4} | interval=5
 | | And Set IPFIX stream | ${dut1_node} | ${1}
 | | And Assign classify table to exporter | ${dut1_node} | ${table_index}
 | | ... | ${ip_version}
@@ -175,7 +165,7 @@
 | | ... | ${tg_to_dut1} | ${dut2_to_dut1} | ${test_src_ip} | ${dut2_to_dut1_ip}
 | | ... | count=1
 
-| TC05: DUT reports packet flow for traffic by source and destination port
+| TC04: DUT reports packet flow for traffic by source and destination port
 | | [Documentation]
 | | ... | [Top] TG-DUT1-DUT2-TG. [Cfg] On DUT1 configure IPFIX with TG interface
 | | ... | address as collector and add classify session with TG source address
@@ -188,6 +178,12 @@
 | | And Interfaces in 3-node path are up
 | | And Set Interface Address | ${dut1_node}
 | | ... | ${dut1_to_tg} | ${dut1_to_tg_ip} | ${prefix_length}
+| |
+| | And Set Interface Address | ${dut1_node}
+| | ... | ${dut1_to_tg} | ${dut1_to_tg_ip4} | ${24}
+| | And Add ARP on DUT | ${dut1_node} | ${dut1_to_tg} | ${test_src_ip4}
+| | ... | ${tg_to_dut1_mac}
+| |
 | | And Add ARP on DUT | ${dut1_node} | ${dut1_to_tg} | ${test_src_ip}
 | | ... | ${tg_to_dut1_mac}
 | | ${table_index} | ${skip_n} | ${match_n}=
@@ -199,8 +195,8 @@
 | | ... | proto 6 l4 src_port ${port} dst_port ${port}
 | | When Assign interface to flow table | ${dut1_node} | ${dut1_to_tg}
 | | ... | ${table_index} | ip_version=${ip_version}
-| | And setup IPFIX exporter | ${dut1_node} | ${test_src_ip} | ${dut1_to_tg_ip}
-| | ... | interval=5
+| | And setup IPFIX exporter | ${dut1_node} | ${test_src_ip4}
+| | ... | ${dut1_to_tg_ip4} | interval=5
 | | And Set IPFIX stream | ${dut1_node} | ${1}
 | | And Assign classify table to exporter | ${dut1_node} | ${table_index}
 | | ... | ${ip_version}
