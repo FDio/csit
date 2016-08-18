@@ -23,6 +23,7 @@ with IPFIX packets.
 from scapy.all import Packet, bind_layers
 from scapy.fields import *
 from scapy.layers.inet import UDP
+from scapy.layers.inet6 import IP6Field
 from scapy.contrib.ppi_geotag import UTCTimeField
 
 
@@ -37,11 +38,14 @@ class IPFIXHandler(object):
         8: IPField("IPv4_src", ""),
         11: ShortField("dst_port", 0),
         12: IPField("IPv4_dst", ""),
+        27: IP6Field("IPv6_src", "::"),
+        28: IP6Field("IPv6_dst", "::"),
         86: LongField("packetTotalCount", 0),
         180: ShortField("udp_src_port", 0),
         181: ShortField("udp_dst_port", 0),
         182: ShortField("tcp_src_port", 0),
         183: ShortField("tcp_dst_port", 0),
+        193: ByteField("Next_header", 0x00)
     }
 
     def __init__(self):
