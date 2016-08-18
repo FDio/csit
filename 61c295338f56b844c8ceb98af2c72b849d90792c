@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a1d315d_3b5d78ea",
+        "filename": "resources/libraries/python/Policer.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-08-18T16:19:15Z",
+      "side": 1,
+      "message": "color_aware \u003d \u0027color-aware\u0027 if self._color_aware else \u0027\u0027",
+      "range": {
+        "startLine": 148,
+        "startChar": 8,
+        "endLine": 150,
+        "endChar": 39
+      },
+      "revId": "61c295338f56b844c8ceb98af2c72b849d90792c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_1b72bc7c",
+        "filename": "resources/libraries/python/Policer.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-08-18T16:19:15Z",
+      "side": 1,
+      "message": "direction \u003d \u0027src\u0027 if self._classify_match_is_src else \u0027dst\u0027\n\t\t\nif 6 \u003d\u003d ip_address(unicode(self._classify_match_ip)).version:\n    ip_version \u003d \u0027ip6\u0027\n\ttable_type \u003d PolicerClassifyTableType.IP6_TABLE\nelse:\n\tip_version \u003d \u0027ip4\u0027\n\ttable_type \u003d PolicerClassifyTableType.IP4_TABLE",
+      "range": {
+        "startLine": 190,
+        "startChar": 8,
+        "endLine": 202,
+        "endChar": 29
+      },
+      "revId": "61c295338f56b844c8ceb98af2c72b849d90792c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_fb6ee095",
+        "filename": "resources/libraries/robot/policer.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-08-18T16:19:15Z",
+      "side": 1,
+      "message": "Please, move variables to test files.",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 22
+      },
+      "revId": "61c295338f56b844c8ceb98af2c72b849d90792c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_db6b2484",
+        "filename": "resources/libraries/robot/policer.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-08-18T16:19:15Z",
+      "side": 1,
+      "message": "Pleae, use only variable names without dollar sign and curly brackets in the documentation.",
+      "range": {
+        "startLine": 44,
+        "startChar": 12,
+        "endLine": 44,
+        "endChar": 31
+      },
+      "revId": "61c295338f56b844c8ceb98af2c72b849d90792c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_bb686888",
+        "filename": "resources/traffic_scripts/policer.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-08-18T16:19:15Z",
+      "side": 1,
+      "message": "TCP ?",
+      "range": {
+        "startLine": 74,
+        "startChar": 20,
+        "endLine": 74,
+        "endChar": 23
+      },
+      "revId": "61c295338f56b844c8ceb98af2c72b849d90792c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_5b0f14e2",
+        "filename": "resources/traffic_scripts/policer.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-08-18T16:19:15Z",
+      "side": 1,
+      "message": "if 6 \u003d\u003d ip_address(unicode(src_ip)).version:\n    is_ipv4 \u003d False\nelse:\n    is_ipv4 \u003d True",
+      "range": {
+        "startLine": 92,
+        "startChar": 4,
+        "endLine": 94,
+        "endChar": 23
+      },
+      "revId": "61c295338f56b844c8ceb98af2c72b849d90792c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_5b26f469",
+        "filename": "tests/func/policer/policer_ip4.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-08-18T16:19:15Z",
+      "side": 1,
+      "message": "Why it is exepcted to fail?",
+      "range": {
+        "startLine": 43,
+        "startChar": 3,
+        "endLine": 43,
+        "endChar": 29
+      },
+      "revId": "61c295338f56b844c8ceb98af2c72b849d90792c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_7b31b0a1",
+        "filename": "tests/func/policer/policer_ip6.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-08-18T16:19:15Z",
+      "side": 1,
+      "message": "Why it is exepcted to fail?",
+      "range": {
+        "startLine": 43,
+        "startChar": 4,
+        "endLine": 43,
+        "endChar": 29
+      },
+      "revId": "61c295338f56b844c8ceb98af2c72b849d90792c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
