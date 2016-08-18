@@ -19,7 +19,7 @@ import sys
 from ipaddress import IPv4Address, IPv6Address, AddressValueError
 
 from scapy.layers.inet import IP, TCP, UDP
-from scapy.layers.inet6 import IPv6
+from scapy.layers.inet6 import IPv6, ICMPv6ND_RA
 from scapy.layers.l2 import Ether
 
 from resources.libraries.python.IPFIXUtil import IPFIXHandler, IPFIXData
@@ -139,6 +139,9 @@ def main():
                 break
             else:
                 raise RuntimeError("Unable to parse IPFIX set after header.")
+        # TODO: find a way to disable sending IPv6 neighbor discovery packets
+        elif pkt.haslayer(ICMPv6ND_RA):
+            continue
         else:
             raise RuntimeError("Received non-IPFIX packet or IPFIX header "
                                "not recognized.")
