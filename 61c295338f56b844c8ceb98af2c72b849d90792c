@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3a1d315d_3b3a1837",
+        "filename": "resources/libraries/python/Policer.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-08-19T05:26:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a1d315d_3b5d78ea",
+      "range": {
+        "startLine": 148,
+        "startChar": 8,
+        "endLine": 150,
+        "endChar": 39
+      },
+      "revId": "61c295338f56b844c8ceb98af2c72b849d90792c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a1d315d_1b72bc7c",
         "filename": "resources/libraries/python/Policer.py",
         "patchSetId": 4
@@ -36,6 +60,30 @@
       "writtenOn": "2016-08-18T16:19:15Z",
       "side": 1,
       "message": "direction \u003d \u0027src\u0027 if self._classify_match_is_src else \u0027dst\u0027\n\t\t\nif 6 \u003d\u003d ip_address(unicode(self._classify_match_ip)).version:\n    ip_version \u003d \u0027ip6\u0027\n\ttable_type \u003d PolicerClassifyTableType.IP6_TABLE\nelse:\n\tip_version \u003d \u0027ip4\u0027\n\ttable_type \u003d PolicerClassifyTableType.IP4_TABLE",
+      "range": {
+        "startLine": 190,
+        "startChar": 8,
+        "endLine": 202,
+        "endChar": 29
+      },
+      "revId": "61c295338f56b844c8ceb98af2c72b849d90792c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_5b0cb494",
+        "filename": "resources/libraries/python/Policer.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-08-19T05:26:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a1d315d_1b72bc7c",
       "range": {
         "startLine": 190,
         "startChar": 8,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "3a1d315d_bb1ce8c2",
+        "filename": "resources/libraries/robot/policer.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-08-19T05:26:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a1d315d_fb6ee095",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 22
+      },
+      "revId": "61c295338f56b844c8ceb98af2c72b849d90792c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a1d315d_db6b2484",
         "filename": "resources/libraries/robot/policer.robot",
         "patchSetId": 4
@@ -82,6 +154,30 @@
       "writtenOn": "2016-08-18T16:19:15Z",
       "side": 1,
       "message": "Pleae, use only variable names without dollar sign and curly brackets in the documentation.",
+      "range": {
+        "startLine": 44,
+        "startChar": 12,
+        "endLine": 44,
+        "endChar": 31
+      },
+      "revId": "61c295338f56b844c8ceb98af2c72b849d90792c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_db1fa4b6",
+        "filename": "resources/libraries/robot/policer.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-08-19T05:26:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a1d315d_db6b2484",
       "range": {
         "startLine": 44,
         "startChar": 12,
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "3a1d315d_9b792cff",
+        "filename": "resources/traffic_scripts/policer.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-08-19T05:26:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a1d315d_bb686888",
+      "range": {
+        "startLine": 74,
+        "startChar": 20,
+        "endLine": 74,
+        "endChar": 23
+      },
+      "revId": "61c295338f56b844c8ceb98af2c72b849d90792c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a1d315d_fbe38003",
         "filename": "resources/traffic_scripts/policer.py",
         "patchSetId": 4
@@ -128,6 +248,30 @@
       "writtenOn": "2016-08-18T16:52:22Z",
       "side": 1,
       "message": "TCP",
+      "range": {
+        "startLine": 80,
+        "startChar": 24,
+        "endLine": 80,
+        "endChar": 29
+      },
+      "revId": "61c295338f56b844c8ceb98af2c72b849d90792c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_3b88d8e6",
+        "filename": "resources/traffic_scripts/policer.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-08-19T05:26:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a1d315d_fbe38003",
       "range": {
         "startLine": 80,
         "startChar": 24,
@@ -163,6 +307,30 @@
     },
     {
       "key": {
+        "uuid": "3a1d315d_fb694026",
+        "filename": "resources/traffic_scripts/policer.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-08-19T05:26:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a1d315d_5b0f14e2",
+      "range": {
+        "startLine": 92,
+        "startChar": 4,
+        "endLine": 94,
+        "endChar": 23
+      },
+      "revId": "61c295338f56b844c8ceb98af2c72b849d90792c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a1d315d_dbf0c4cb",
         "filename": "resources/traffic_scripts/policer.py",
         "patchSetId": 4
@@ -174,6 +342,30 @@
       "writtenOn": "2016-08-18T16:52:22Z",
       "side": 1,
       "message": "unused variable",
+      "range": {
+        "startLine": 98,
+        "startChar": 4,
+        "endLine": 98,
+        "endChar": 10
+      },
+      "revId": "61c295338f56b844c8ceb98af2c72b849d90792c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_db768406",
+        "filename": "resources/traffic_scripts/policer.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-08-19T05:26:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a1d315d_dbf0c4cb",
       "range": {
         "startLine": 98,
         "startChar": 4,
@@ -209,6 +401,30 @@
     },
     {
       "key": {
+        "uuid": "3a1d315d_7b653044",
+        "filename": "tests/func/policer/policer_ip4.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-08-19T05:26:47Z",
+      "side": 1,
+      "message": "when patch was submitted this feature was new and not in csit verify job vpp version",
+      "parentUuid": "3a1d315d_5b26f469",
+      "range": {
+        "startLine": 43,
+        "startChar": 3,
+        "endLine": 43,
+        "endChar": 29
+      },
+      "revId": "61c295338f56b844c8ceb98af2c72b849d90792c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a1d315d_7b31b0a1",
         "filename": "tests/func/policer/policer_ip6.robot",
         "patchSetId": 4
@@ -220,6 +436,30 @@
       "writtenOn": "2016-08-18T16:19:15Z",
       "side": 1,
       "message": "Why it is exepcted to fail?",
+      "range": {
+        "startLine": 43,
+        "startChar": 4,
+        "endLine": 43,
+        "endChar": 29
+      },
+      "revId": "61c295338f56b844c8ceb98af2c72b849d90792c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_3b5fb874",
+        "filename": "tests/func/policer/policer_ip6.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 123
+      },
+      "writtenOn": "2016-08-19T05:26:47Z",
+      "side": 1,
+      "message": "when patch was submitted this feature was new and not in csit verify job vpp version",
+      "parentUuid": "3a1d315d_7b31b0a1",
       "range": {
         "startLine": 43,
         "startChar": 4,
