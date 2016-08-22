@@ -311,7 +311,7 @@ class IPsecUtil(object):
         :type sa_id: int
         :type laddr_range: string
         :type raddr_range: string
-        :type proto: intPolicyAction
+        :type proto: int
         :type lport_range: string
         :type rport_range: string
         """
