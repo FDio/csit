@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a1d315d_f1083f2f",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-08-22T14:38:48Z",
+      "side": 1,
+      "message": "Consider using absolute path\n$( readlink -f *.deb | tr \u0027\\n\u0027 \u0027 \u0027 )",
+      "range": {
+        "startLine": 47,
+        "startChar": 0,
+        "endLine": 47,
+        "endChar": 24
+      },
+      "revId": "583281300150c0195510e7d1d1f5ee433ab0bb1b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
