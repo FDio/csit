@@ -149,7 +149,7 @@
 | | ... | *Example:*
 | | ... | \| ${encr_alg}= \| Crypto Alg AES CBC 128 \|
 | | ... | \| ${auth_alg}= \| Integ Alg SHA1 96 \|
-| | ... | \| VPP Setup IPsec Manual Keyed Connection \| ${nodes['DUT1']} \
+| | ... | \| Setup IPsec Manual Keyed Connection \| ${nodes['DUT1']} \
 | | ... | \| GigabitEthernet0/8/0 \| ${encr_alg} \| sixteenbytes_key \
 | | ... | \| ${auth_alg} \| twentybytessecretkey \| ${1000} \| ${1001} \
 | | ... | \| 192.168.4.4 \| 192.168.3.3 \| 192.168.100.3 \| 192.168.100.2 \|
