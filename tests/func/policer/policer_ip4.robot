@@ -37,8 +37,13 @@
 | ${dut_to_tg_if2_ip4}= | 192.168.123.1
 | ${ip4_plen}= | ${24}
 
+| ${cir}= | ${100}
+| ${eir}= | ${150}
+| ${cb}= | ${200}
+| ${eb}= | ${300}
+
 *** Test Cases ***
-| TC01: VPP policer marks packet
+| TC01: VPP policer 2R3C Color-aware marks packet
 | | [Documentation]
 | | ... | [Top] TG=DUT1.
 | | ... | [Ref] RFC2474, RFC2698.
@@ -47,10 +52,6 @@
 | | ... | [Ver] TG sends IPv4 TCP packet on the first link to DUT1, verify if\
 | | ... | DUT1 sends correct IPv4 TCP packet with correct DSCP on the second\
 | | ... | link to TG.
-| | ${cir}= | Set Variable | ${100}
-| | ${eir}= | Set Variable | ${100}
-| | ${cb}= | Set Variable | ${100}
-| | ${eb}= | Set Variable | ${100}
 | | ${dscp}= | DSCP AF22
 | | Given Policer Set Name | policer1
 | | And Policer Set Node | ${dut_node}
@@ -65,6 +66,93 @@
 | | And Policer Set Exceed Action Mark and Transmit | ${dscp}
 | | And Policer Set Violate Action Drop
 | | And Policer Enable Color Aware
+| | And Policer Classify Set Precolor Exceed
+| | And Policer Classify Set Interface | ${dut_to_tg_if1}
+| | And Policer Classify Set Match IP | ${tg_to_dut_if1_ip}
+| | When Policer Set Configuration
+| | Then Send Packet and Verify Marking | ${tg_node} | ${tg_to_dut_if1}
+| | ... | ${tg_to_dut_if2} | ${tg_to_dut_if1_mac} | ${dut_to_tg_if1_mac}
+| | ... | ${tg_to_dut_if1_ip} | ${tg_to_dut_if2_ip} | ${dscp}
+
+| TC02: VPP policer 2R3C Color-blind marks packet
+| | [Documentation]
+| | ... | [Top] TG=DUT1.
+| | ... | [Ref] RFC2474, RFC2698.
+| | ... | [Cfg] On DUT1 configure 2R3C color-blind policer on the first\
+| | ... | interface.
+| | ... | [Ver] TG sends IPv4 TCP packet on the first link to DUT1, verify if\
+| | ... | DUT1 sends correct IPv4 TCP packet with correct DSCP on the second\
+| | ... | link to TG.
+| | ${dscp}= | DSCP AF22
+| | Given Policer Set Name | policer1
+| | And Policer Set Node | ${dut_node}
+| | And Policer Set CIR | ${cir}
+| | And Policer Set EIR | ${eir}
+| | And Policer Set CB | ${cb}
+| | And Policer Set EB | ${eb}
+| | And Policer Set Rate Type pps
+| | And Policer Set Round Type Closest
+| | And Policer Set Type 2R3C 2698
+| | And Policer Set Conform Action Mark and Transmit | ${dscp}
+| | And Policer Set Exceed Action Transmit
+| | And Policer Set Violate Action Drop
+| | And Policer Classify Set Precolor Exceed
+| | And Policer Classify Set Interface | ${dut_to_tg_if1}
+| | And Policer Classify Set Match IP | ${tg_to_dut_if1_ip}
+| | When Policer Set Configuration
+| | Then Send Packet and Verify Marking | ${tg_node} | ${tg_to_dut_if1}
+| | ... | ${tg_to_dut_if2} | ${tg_to_dut_if1_mac} | ${dut_to_tg_if1_mac}
+| | ... | ${tg_to_dut_if1_ip} | ${tg_to_dut_if2_ip} | ${dscp}
+
+| TC03: VPP policer 1R3C Color-aware marks packet
+| | [Documentation]
+| | ... | [Top] TG=DUT1.
+| | ... | [Ref] RFC2474, RFC2697.
+| | ... | [Cfg] On DUT1 configure 1R3C color-aware policer on the first\
+| | ... | interface.
+| | ... | [Ver] TG sends IPv4 TCP packet on the first link to DUT1, verify if\
+| | ... | DUT1 sends correct IPv4 TCP packet with correct DSCP on the second\
+| | ... | link to TG.
+| | ${dscp}= | DSCP AF22
+| | Given Policer Set Name | policer1
+| | And Policer Set Node | ${dut_node}
+| | And Policer Set CIR | ${cir}
+| | And Policer Set CB | ${cb}
+| | And Policer Set Rate Type pps
+| | And Policer Set Round Type Closest
+| | And Policer Set Type 1R3C
+| | And Policer Set Conform Action Transmit
+| | And Policer Set Exceed Action Mark and Transmit | ${dscp}
+| | And Policer Set Violate Action Drop
+| | And Policer Enable Color Aware
+| | And Policer Classify Set Precolor Exceed
+| | And Policer Classify Set Interface | ${dut_to_tg_if1}
+| | And Policer Classify Set Match IP | ${tg_to_dut_if1_ip}
+| | When Policer Set Configuration
+| | Then Send Packet and Verify Marking | ${tg_node} | ${tg_to_dut_if1}
+| | ... | ${tg_to_dut_if2} | ${tg_to_dut_if1_mac} | ${dut_to_tg_if1_mac}
+| | ... | ${tg_to_dut_if1_ip} | ${tg_to_dut_if2_ip} | ${dscp}
+
+| TC04: VPP policer 1R3C Color-blind marks packet
+| | [Documentation]
+| | ... | [Top] TG=DUT1.
+| | ... | [Ref] RFC2474, RFC2697.
+| | ... | [Cfg] On DUT1 configure 1R3C color-blind policer on the first\
+| | ... | interface.
+| | ... | [Ver] TG sends IPv4 TCP packet on the first link to DUT1, verify if\
+| | ... | DUT1 sends correct IPv4 TCP packet with correct DSCP on the second\
+| | ... | link to TG.
+| | ${dscp}= | DSCP AF22
+| | Given Policer Set Name | policer1
+| | And Policer Set Node | ${dut_node}
+| | And Policer Set CIR | ${cir}
+| | And Policer Set CB | ${cb}
+| | And Policer Set Rate Type pps
+| | And Policer Set Round Type Closest
+| | And Policer Set Type 1R3C
+| | And Policer Set Conform Action Mark and Transmit | ${dscp}
+| | And Policer Set Exceed Action Drop
+| | And Policer Set Violate Action Drop
 | | And Policer Classify Set Precolor Exceed
 | | And Policer Classify Set Interface | ${dut_to_tg_if1}
 | | And Policer Classify Set Match IP | ${tg_to_dut_if1_ip}
