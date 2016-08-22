@@ -460,6 +460,36 @@
 | | ...           | count=${count}
 | | All Vpp Interfaces Ready Wait | ${nodes}
 
+| IPv4 policer 2r3c-${t} initialized in a 3-node circular topology
+| | [Documentation]
+| | ... | Setup of 2r3c color-aware or color-blind policer with dst ip match
+| | ... | on all DUT nodes in 3-node circular topology. Policer is applied on
+| | ... | links TG - DUT1 and DUT2 - TG.
+| | ...
+| | ${dscp}= | DSCP AF22
+| | Policer Set Name | policer1
+| | Policer Set CIR | ${cir}
+| | Policer Set EIR | ${eir}
+| | Policer Set CB | ${cb}
+| | Policer Set EB | ${eb}
+| | Policer Set Rate Type pps
+| | Policer Set Round Type Closest
+| | Policer Set Type 2R3C 2698
+| | Policer Set Conform Action Transmit
+| | Policer Set Exceed Action Mark and Transmit | ${dscp}
+| | Policer Set Violate Action Transmit
+| | Policer Enable Color Aware
+| | Run Keyword If | ${t} == 'ca' | Policer Enable Color Aware
+| | Policer Classify Set Precolor Exceed
+| | Policer Set Node | ${dut1}
+| | Policer Classify Set Interface | ${dut1_if1}
+| | Policer Classify Set Match IP | 20.20.20.2 | ${False}
+| | Policer Set Configuration
+| | Policer Set Node | ${dut2}
+| | Policer Classify Set Interface | ${dut2_if2}
+| | Policer Classify Set Match IP | 10.10.10.2 | ${False}
+| | Policer Set Configuration
+
 | IPv6 forwarding initialized in a 3-node circular topology
 | | [Documentation]
 | | ... | Set UP state on VPP interfaces in path on nodes in 3-node circular
