@@ -37,15 +37,27 @@ if [[ ${JOB_NAME} == csit-* ]] ;
 then
     mkdir vpp_download
     cd vpp_download
-    #download vpp build from nexus and set VPP_DEBS variable
-    wget -q "${VPP_REPO_URL}/vpp/${VPP_STABLE_VER}/vpp-${VPP_STABLE_VER}.deb" || exit
-    wget -q "${VPP_REPO_URL}/vpp-dbg/${VPP_STABLE_VER}/vpp-dbg-${VPP_STABLE_VER}.deb" || exit
-    wget -q "${VPP_REPO_URL}/vpp-dev/${VPP_STABLE_VER}/vpp-dev-${VPP_STABLE_VER}.deb" || exit
-    wget -q "${VPP_REPO_URL}/vpp-dpdk-dev/${VPP_STABLE_VER}/vpp-dpdk-dev-${VPP_STABLE_VER}.deb" || exit
-    wget -q "${VPP_REPO_URL}/vpp-dpdk-dkms/${VPP_STABLE_VER}/vpp-dpdk-dkms-${VPP_STABLE_VER}.deb" || exit
-    wget -q "${VPP_REPO_URL}/vpp-lib/${VPP_STABLE_VER}/vpp-lib-${VPP_STABLE_VER}.deb" || exit
-    wget -q "${VPP_REPO_URL}/vpp-plugins/${VPP_STABLE_VER}/vpp-plugins-${VPP_STABLE_VER}.deb" || exit
-    VPP_DEBS="$( readlink -f *.deb | tr '\n' ' ' )"
+
+    if [[ ${TEST_TAG} == "PERFTEST_NIGHTLY" ]] ;
+    then
+        # Download the latest VPP build .deb install packages
+        echo Downloading VPP packages...
+        bash ${SCRIPT_DIR}/resources/tools/download_install_vpp_pkgs.sh --skip-install
+
+        VPP_DEBS="$( readlink -f *.deb | tr '\n' ' ' )"
+
+    else
+        #download vpp build from nexus and set VPP_DEBS variable
+        wget -q "${VPP_REPO_URL}/vpp/${VPP_STABLE_VER}/vpp-${VPP_STABLE_VER}.deb" || exit
+        wget -q "${VPP_REPO_URL}/vpp-dbg/${VPP_STABLE_VER}/vpp-dbg-${VPP_STABLE_VER}.deb" || exit
+        wget -q "${VPP_REPO_URL}/vpp-dev/${VPP_STABLE_VER}/vpp-dev-${VPP_STABLE_VER}.deb" || exit
+        wget -q "${VPP_REPO_URL}/vpp-dpdk-dev/${VPP_STABLE_VER}/vpp-dpdk-dev-${VPP_STABLE_VER}.deb" || exit
+        wget -q "${VPP_REPO_URL}/vpp-dpdk-dkms/${VPP_STABLE_VER}/vpp-dpdk-dkms-${VPP_STABLE_VER}.deb" || exit
+        wget -q "${VPP_REPO_URL}/vpp-lib/${VPP_STABLE_VER}/vpp-lib-${VPP_STABLE_VER}.deb" || exit
+        wget -q "${VPP_REPO_URL}/vpp-plugins/${VPP_STABLE_VER}/vpp-plugins-${VPP_STABLE_VER}.deb" || exit
+        VPP_DEBS="$( readlink -f *.deb | tr '\n' ' ' )"
+    fi
+
     cd ..
 
 # If we run this script from vpp project we want to use local build
