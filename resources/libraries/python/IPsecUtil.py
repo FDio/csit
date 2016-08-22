@@ -36,7 +36,7 @@ class PolicyAction(Enum):
 class CryptoAlg(Enum):
     """Encryption algorithms."""
     AES_CBC_128 = ('aes-cbc-128', 'AES-CBC', 16)
-    AES_CBC_192 = ('aes-cbc-128', 'AES-CBC', 24)
+    AES_CBC_192 = ('aes-cbc-192', 'AES-CBC', 24)
     AES_CBC_256 = ('aes-cbc-256', 'AES-CBC', 32)
 
     def __init__(self, alg_name, scapy_name, key_len):
@@ -258,7 +258,7 @@ class IPsecUtil(object):
 
     @staticmethod
     def vpp_ipsec_spd_add_if(node, spd_id, interface):
-        """Add interface to the SPD.
+        """Add interface to the Security Policy Database.
 
         :param node: VPP node.
         :param spd_id: SPD ID to add interface on.
@@ -299,9 +299,9 @@ class IPsecUtil(object):
             format IP/prefix or IP/mask. If no mask is provided, it's considered
             to be /32.
         :param proto: Policy selector next layer protocol number.
-        :param lport_range: Policy selector local TCP/UDP port range in foramt
+        :param lport_range: Policy selector local TCP/UDP port range in format
             <port_start>-<port_end>.
-        :param rport_range: Policy selector remote TCP/UDP port range in foramt
+        :param rport_range: Policy selector remote TCP/UDP port range in format
             <port_start>-<port_end>.
         :type node: dict
         :type spd_id: int
@@ -315,9 +315,7 @@ class IPsecUtil(object):
         :type lport_range: string
         :type rport_range: string
         """
-        direction = 'outbound'
-        if inbound:
-            direction = 'inbound'
+        direction = 'inbound' if inbound else 'outbound'
 
         act_str = action.value
         if PolicyAction.PROTECT == action and sa_id is not None:
