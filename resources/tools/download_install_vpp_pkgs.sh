@@ -24,10 +24,11 @@ REPO="fd.io.master.ubuntu.trusty.main"
 GROUP="io.fd.vpp"
 ARTIFACTS="vpp vpp-dbg vpp-dev vpp-dpdk-dev vpp-dpdk-dkms vpp-lib vpp-plugins"
 PACKAGE="deb deb.md5"
+CLASS="deb"
 
 for ART in ${ARTIFACTS}; do
     for PAC in $PACKAGE; do
-        curl "${URL}?r=${REPO}&g=${GROUP}&a=${ART}&p=${PAC}&v=${VER}" -O -J || exit
+        curl "${URL}?r=${REPO}&g=${GROUP}&a=${ART}&p=${PAC}&v=${VER}&c=${CLASS}" -O -J || exit
     done
 done
 
