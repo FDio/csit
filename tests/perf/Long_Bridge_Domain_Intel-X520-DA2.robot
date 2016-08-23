@@ -322,7 +322,7 @@
 | | ... | [Cfg] DUT runs L2BD switching config with 4 threads, 4 phy cores, \
 | | ... | 2 receive queues per NIC port. [Ver] Find NDR for 64 Byte frames
 | | ... | using binary search start at 10GE linerate, step 100kpps.
-| | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | NDR | SKIP_PATCH
+| | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | NDR
 | | ${framesize}= | Set Variable | 64
 | | ${min_rate}= | Set Variable | 100000
 | | ${max_rate}= | Set Variable | ${10Ge_linerate_pps_64B}
@@ -368,7 +368,7 @@
 | | ... | [Cfg] DUT runs L2BD switching config with 4 threads, 4 phy cores, \
 | | ... | 2 receive queues per NIC port. [Ver] Find NDR for 1518 Byte frames
 | | ... | using binary search start at 10GE linerate, step 10kpps.
-| | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | NDR
+| | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | NDR | SKIP_PATCH
 | | ${framesize}= | Set Variable | 1518
 | | ${min_rate}= | Set Variable | 10000
 | | ${max_rate}= | Set Variable | ${10Ge_linerate_pps_1518B}
