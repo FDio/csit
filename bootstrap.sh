@@ -202,7 +202,7 @@ if [ "$?" -ne "0" ]; then
     echo "However, the tests will start."
 fi
 
-PYTHONPATH=`pwd` pybot -L TRACE -W 150 \
+PYTHONPATH=`pwd` pybot -L TRACE -W 145\
     -v TOPOLOGY_PATH:${SCRIPT_DIR}/topologies/enabled/topology.yaml \
     --suite "tests.func" \
     --include vm_envAND3_node_single_link_topo \
