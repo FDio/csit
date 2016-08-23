@@ -57,7 +57,7 @@
 | | ... | port.
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start
 | | ... | at 10GE linerate, step 100kpps.
-| | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | NDR | LISP_IPv4 | SKIP_PATCH
+| | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | NDR | LISP_IPv4
 | | ${framesize}= | Set Variable | 64
 | | ${min_rate}= | Set Variable | 100000
 | | ${max_rate}= | Set Variable | ${10Ge_lisp_linerate_pps_72B}
@@ -89,6 +89,7 @@
 | | ... | [Ver] Find PDR for 64 Byte frames using binary search start
 | | ... | at 10GE linerate, step 100kpps, LT=0.5%.
 | | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | PDR | LISP_IPv4
+| | ...    | SKIP_PATCH
 | | ${framesize}= | Set Variable | 64
 | | ${min_rate}= | Set Variable | 100000
 | | ${max_rate}= | Set Variable | ${10Ge_lisp_linerate_pps_72B}
@@ -121,7 +122,7 @@
 | | ... | port.
 | | ... | [Ver] Find NDR for 1480 Byte frames using binary search start
 | | ... | at 10GE linerate, step 10kpps.
-| | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | NDR | LISP_IPv4 | SKIP_PATCH
+| | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | NDR | LISP_IPv4
 | | ${framesize}= | Set Variable | 1480
 | | ${min_rate}= | Set Variable | 10000
 | | ${max_rate}= | Set Variable | ${10Ge_lisp_linerate_pps_1488B}
@@ -152,6 +153,7 @@
 | | ... | port. [Ver] Find PDR for 1480 Byte frames using binary search start
 | | ... | at 10GE linerate, step 10kpps, LT=0.5%.
 | | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | PDR | LISP_IPv4
+| | ...    | SKIP_PATCH
 | | ${framesize}= | Set Variable | 1480
 | | ${min_rate}= | Set Variable | 10000
 | | ${max_rate}= | Set Variable | ${10Ge_lisp_linerate_pps_1488B}
@@ -184,7 +186,7 @@
 | | ... | port.
 | | ... | [Ver] Find NDR for 9000 Byte frames using binary search start
 | | ... | at 10GE linerate, step 5kpps.
-| | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | NDR | LISP_IPv4 | SKIP_PATCH
+| | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | NDR | LISP_IPv4
 | | ${framesize}= | Set Variable | 9000
 | | ${min_rate}= | Set Variable | 5000
 | | ${max_rate}= | Set Variable | ${10Ge_lisp_linerate_pps_9008B}
@@ -215,6 +217,7 @@
 | | ... | [Ver] Find PDR for 9000 Byte frames using binary search start
 | | ... | at 10GE linerate, step 5kpps, LT=0.5%.
 | | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | PDR | LISP_IPv4
+| | ...    | SKIP_PATCH
 | | ${framesize}= | Set Variable | 9000
 | | ${min_rate}= | Set Variable | 5000
 | | ${max_rate}= | Set Variable | ${10Ge_lisp_linerate_pps_9008B}
@@ -246,7 +249,7 @@
 | | ... | port.
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start
 | | ... | at 10GE linerate, step 100kpps.
-| | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | NDR | LISP_IPv4 | SKIP_PATCH
+| | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | NDR | LISP_IPv4
 | | ${framesize}= | Set Variable | 64
 | | ${min_rate}= | Set Variable | 100000
 | | ${max_rate}= | Set Variable | ${10Ge_lisp_linerate_pps_72B}
@@ -278,6 +281,7 @@
 | | ... | [Ver] Find PDR for 64 Byte frames using binary search start
 | | ... | at 10GE linerate, step 100kpps, LT=0.5%.
 | | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | PDR | LISP_IPv4
+| | ...    | SKIP_PATCH
 | | ${framesize}= | Set Variable | 64
 | | ${min_rate}= | Set Variable | 100000
 | | ${max_rate}= | Set Variable | ${10Ge_lisp_linerate_pps_72B}
@@ -310,7 +314,8 @@
 | | ... | port.
 | | ... | [Ver] Find NDR for 1480 Byte frames using binary search start
 | | ... | at 10GE linerate, step 10kpps.
-| | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | NDR | LISP_IPv4 | SKIP_PATCH
+| | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | NDR | LISP_IPv4
+| | ...    | SKIP_PATCH
 | | ${framesize}= | Set Variable | 1480
 | | ${min_rate}= | Set Variable | 10000
 | | ${max_rate}= | Set Variable | ${10Ge_lisp_linerate_pps_1488B}
@@ -341,7 +346,8 @@
 | | ... | port.
 | | ... | [Ver] Find PDR for 1480 Byte frames using binary search start
 | | ... | at 10GE linerate, step 10kpps, LT=0.5%.
-| | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | PDR | LISP_IPv4 | SKIP_PATCH
+| | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | PDR | LISP_IPv4
+| | ...    | SKIP_PATCH
 | | ${framesize}= | Set Variable | 1480
 | | ${min_rate}= | Set Variable | 10000
 | | ${max_rate}= | Set Variable | ${10Ge_lisp_linerate_pps_1488B}
@@ -374,7 +380,8 @@
 | | ... | port.
 | | ... | [Ver] Find NDR for 9000 Byte frames using binary search start
 | | ... | at 10GE linerate, step 5kpps.
-| | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | NDR | LISP_IPv4 | SKIP_PATCH
+| | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | NDR | LISP_IPv4
+| | ...    | SKIP_PATCH
 | | ${framesize}= | Set Variable | 9000
 | | ${min_rate}= | Set Variable | 5000
 | | ${max_rate}= | Set Variable | ${10Ge_lisp_linerate_pps_9008B}
@@ -404,7 +411,8 @@
 | | ... | port.
 | | ... | [Ver] Find PDR for 9000 Byte frames using binary search start
 | | ... | at 10GE linerate, step 5kpps, LT=0.5%.
-| | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | PDR | LISP_IPv4 | SKIP_PATCH
+| | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | PDR | LISP_IPv4
+| | ...    | SKIP_PATCH
 | | ${framesize}= | Set Variable | 9000
 | | ${min_rate}= | Set Variable | 5000
 | | ${max_rate}= | Set Variable | ${10Ge_lisp_linerate_pps_9008B}
@@ -436,7 +444,7 @@
 | | ... | port.
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start
 | | ... | at 10GE linerate, step 100kpps.
-| | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | NDR | LISP_IPv4 | SKIP_PATCH
+| | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | NDR | LISP_IPv4
 | | ${framesize}= | Set Variable | 64
 | | ${min_rate}= | Set Variable | 100000
 | | ${max_rate}= | Set Variable | ${10Ge_lisp_linerate_pps_72B}
@@ -468,6 +476,7 @@
 | | ... | [Ver] Find PDR for 64 Byte frames using binary search start
 | | ... | at 10GE linerate, step 100kpps, LT=0.5%.
 | | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | PDR | LISP_IPv4
+| | ...    | SKIP_PATCH
 | | ${framesize}= | Set Variable | 64
 | | ${min_rate}= | Set Variable | 100000
 | | ${max_rate}= | Set Variable | ${10Ge_lisp_linerate_pps_72B}
@@ -500,7 +509,8 @@
 | | ... | port.
 | | ... | [Ver] Find NDR for 1480 Byte frames using binary search start
 | | ... | at 10GE linerate, step 10kpps.
-| | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | NDR | LISP_IPv4 | SKIP_PATCH
+| | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | NDR | LISP_IPv4
+| | ...    | SKIP_PATCH
 | | ${framesize}= | Set Variable | 1480
 | | ${min_rate}= | Set Variable | 10000
 | | ${max_rate}= | Set Variable | ${10Ge_lisp_linerate_pps_1488B}
@@ -531,7 +541,8 @@
 | | ... | port.
 | | ... | [Ver] Find PDR for 1480 Byte frames using binary search start
 | | ... | at 10GE linerate, step 10kpps, LT=0.5%.
-| | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | PDR | LISP_IPv4 | SKIP_PATCH
+| | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | PDR | LISP_IPv4
+| | ...    | SKIP_PATCH
 | | ${framesize}= | Set Variable | 1480
 | | ${min_rate}= | Set Variable | 10000
 | | ${max_rate}= | Set Variable | ${10Ge_lisp_linerate_pps_1488B}
@@ -563,7 +574,8 @@
 | | ... | port.
 | | ... | [Ver] Find NDR for 9000 Byte frames using binary search start
 | | ... | at 10GE linerate, step 5kpps.
-| | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | NDR | LISP_IPv4 | SKIP_PATCH
+| | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | NDR | LISP_IPv4
+| | ...    | SKIP_PATCH
 | | ${framesize}= | Set Variable | 9000
 | | ${min_rate}= | Set Variable | 5000
 | | ${max_rate}= | Set Variable | ${10Ge_lisp_linerate_pps_9008B}
@@ -593,7 +605,8 @@
 | | ... | port.
 | | ... | [Ver] Find PDR for 9000 Byte frames using binary search start
 | | ... | at 10GE linerate, step 5kpps, LT=0.5%.
-| | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | PDR | LISP_IPv4 | SKIP_PATCH
+| | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | PDR | LISP_IPv4
+| | ...    | SKIP_PATCH
 | | ${framesize}= | Set Variable | 9000
 | | ${min_rate}= | Set Variable | 5000
 | | ${max_rate}= | Set Variable | ${10Ge_lisp_linerate_pps_9008B}
@@ -625,7 +638,7 @@
 | | ... | port.
 | | ... | [Ver] Find NDR for 78 Byte frames using binary search start
 | | ... | at 10GE linerate, step 100kpps.
-| | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | NDR | LISP_IPv6 | SKIP_PATCH
+| | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | NDR | LISP_IPv6
 | | ${framesize}= | Set Variable | 78
 | | ${min_rate}= | Set Variable | 100000
 | | ${max_rate}= | Set Variable | ${10Ge_lisp_linerate_pps_86B}
@@ -657,6 +670,7 @@
 | | ... | [Ver] Find PDR for 78 Byte frames using binary search start
 | | ... | at 10GE linerate, step 100kpps, LT=0.5%.
 | | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | PDR | LISP_IPv6
+| | ...    | SKIP_PATCH
 | | ${framesize}= | Set Variable | 78
 | | ${min_rate}= | Set Variable | 100000
 | | ${max_rate}= | Set Variable | ${10Ge_lisp_linerate_pps_86B}
@@ -689,7 +703,7 @@
 | | ... | port.
 | | ... | [Ver] Find NDR for 1460 Byte frames using binary search start
 | | ... | at 10GE linerate, step 10kpps.
-| | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | NDR | LISP_IPv6 | SKIP_PATCH
+| | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | NDR | LISP_IPv6
 | | ${framesize}= | Set Variable | 1460
 | | ${min_rate}= | Set Variable | 10000
 | | ${max_rate}= | Set Variable | ${10Ge_lisp_linerate_pps_1488B}
@@ -721,6 +735,7 @@
 | | ... | [Ver] Find PDR for 1460 Byte frames using binary search start
 | | ... | at 10GE linerate, step 10kpps, LT=0.5%.
 | | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | PDR | LISP_IPv6
+| | ...    | SKIP_PATCH
 | | ${framesize}= | Set Variable | 1460
 | | ${min_rate}= | Set Variable | 10000
 | | ${max_rate}= | Set Variable | ${10Ge_lisp_linerate_pps_1488B}
@@ -753,7 +768,7 @@
 | | ... | port.
 | | ... | [Ver] Find NDR for 9000 Byte frames using binary search start
 | | ... | at 10GE linerate, step 5kpps.
-| | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | NDR | LISP_IPv6 | SKIP_PATCH
+| | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | NDR | LISP_IPv6
 | | ${framesize}= | Set Variable | 9000
 | | ${min_rate}= | Set Variable | 5000
 | | ${max_rate}= | Set Variable | ${10Ge_lisp_linerate_pps_9008B}
@@ -784,6 +799,7 @@
 | | ... | [Ver] Find PDR for 9000 Byte frames using binary search start
 | | ... | at 10GE linerate, step 5kpps, LT=0.5%.
 | | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | PDR | LISP_IPv6
+| | ...    | SKIP_PATCH
 | | ${framesize}= | Set Variable | 9000
 | | ${min_rate}= | Set Variable | 5000
 | | ${max_rate}= | Set Variable | ${10Ge_lisp_linerate_pps_9008B}
@@ -815,7 +831,7 @@
 | | ... | port.
 | | ... | [Ver] Find NDR for 78 Byte frames using binary search start
 | | ... | at 10GE linerate, step 100kpps.
-| | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | NDR | LISP_IPv6 | SKIP_PATCH
+| | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | NDR | LISP_IPv6
 | | ${framesize}= | Set Variable | 78
 | | ${min_rate}= | Set Variable | 100000
 | | ${max_rate}= | Set Variable | ${10Ge_lisp_linerate_pps_86B}
@@ -847,6 +863,7 @@
 | | ... | [Ver] Find PDR for 78 Byte frames using binary search start
 | | ... | at 10GE linerate, step 100kpps, LT=0.5%.
 | | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | PDR | LISP_IPv6
+| | ...    | SKIP_PATCH
 | | ${framesize}= | Set Variable | 78
 | | ${min_rate}= | Set Variable | 100000
 | | ${max_rate}= | Set Variable | ${10Ge_lisp_linerate_pps_86B}
@@ -879,7 +896,8 @@
 | | ... | port.
 | | ... | [Ver] Find NDR for 1460 Byte frames using binary search start
 | | ... | at 10GE linerate, step 10kpps.
-| | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | NDR | LISP_IPv6 | SKIP_PATCH
+| | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | NDR | LISP_IPv6
+| | ...    | SKIP_PATCH
 | | ${framesize}= | Set Variable | 1460
 | | ${min_rate}= | Set Variable | 10000
 | | ${max_rate}= | Set Variable | ${10Ge_lisp_linerate_pps_1488B}
@@ -910,7 +928,8 @@
 | | ... | port.
 | | ... | [Ver] Find PDR for 1460 Byte frames using binary search start
 | | ... | at 10GE linerate, step 10kpps, LT=0.5%.
-| | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | PDR | LISP_IPv6 | SKIP_PATCH
+| | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | PDR | LISP_IPv6
+| | ...    | SKIP_PATCH
 | | ${framesize}= | Set Variable | 1460
 | | ${min_rate}= | Set Variable | 10000
 | | ${max_rate}= | Set Variable | ${10Ge_lisp_linerate_pps_1488B}
@@ -943,7 +962,8 @@
 | | ... | port.
 | | ... | [Ver] Find NDR for 9000 Byte frames using binary search start
 | | ... | at 10GE linerate, step 5kpps.
-| | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | NDR | LISP_IPv6 | SKIP_PATCH
+| | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | NDR | LISP_IPv6
+| | ...    | SKIP_PATCH
 | | ${framesize}= | Set Variable | 9000
 | | ${min_rate}= | Set Variable | 5000
 | | ${max_rate}= | Set Variable | ${10Ge_lisp_linerate_pps_9008B}
@@ -973,7 +993,8 @@
 | | ... | port.
 | | ... | [Ver] Find PDR for 9000 Byte frames using binary search start
 | | ... | at 10GE linerate, step 5kpps.
-| | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | PDR | LISP_IPv6 | SKIP_PATCH
+| | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | PDR | LISP_IPv6
+| | ...    | SKIP_PATCH
 | | ${framesize}= | Set Variable | 9000
 | | ${min_rate}= | Set Variable | 5000
 | | ${max_rate}= | Set Variable | ${10Ge_lisp_linerate_pps_9008B}
@@ -1005,7 +1026,7 @@
 | | ... | port.
 | | ... | [Ver] Find NDR for 78 Byte frames using binary search start
 | | ... | at 10GE linerate, step 100kpps.
-| | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | NDR | LISP_IPv6 | SKIP_PATCH
+| | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | NDR | LISP_IPv6
 | | ${framesize}= | Set Variable | 78
 | | ${min_rate}= | Set Variable | 100000
 | | ${max_rate}= | Set Variable | ${10Ge_lisp_linerate_pps_86B}
@@ -1037,6 +1058,7 @@
 | | ... | [Ver] Find PDR for 78 Byte frames using binary search start
 | | ... | at 10GE linerate, step 100kpps, LT=0.5%.
 | | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | PDR | LISP_IPv6
+| | ...    | SKIP_PATCH
 | | ${framesize}= | Set Variable | 78
 | | ${min_rate}= | Set Variable | 100000
 | | ${max_rate}= | Set Variable | ${10Ge_lisp_linerate_pps_86B}
@@ -1069,7 +1091,8 @@
 | | ... | port.
 | | ... | [Ver] Find NDR for 1460 Byte frames using binary search start
 | | ... | at 10GE linerate, step 100kpps.
-| | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | NDR | LISP_IPv6 | SKIP_PATCH
+| | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | NDR | LISP_IPv6
+| | ...    | SKIP_PATCH
 | | ${framesize}= | Set Variable | 1460
 | | ${min_rate}= | Set Variable | 10000
 | | ${max_rate}= | Set Variable | ${10Ge_lisp_linerate_pps_1488B}
@@ -1100,7 +1123,8 @@
 | | ... | port.
 | | ... | [Ver] Find PDR for 1460 Byte frames using binary search start
 | | ... | at 10GE linerate, step 10kpps, LT=0.5%.
-| | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | PDR | LISP_IPv6 | SKIP_PATCH
+| | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | PDR | LISP_IPv6
+| | ...    | SKIP_PATCH
 | | ${framesize}= | Set Variable | 1460
 | | ${min_rate}= | Set Variable | 10000
 | | ${max_rate}= | Set Variable | ${10Ge_lisp_linerate_pps_1488B}
@@ -1133,7 +1157,8 @@
 | | ... | port.
 | | ... | [Ver] Find NDR for 9000 Byte frames using binary search start
 | | ... | at 10GE linerate, step 5kpps.
-| | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | NDR | LISP_IPv6 | SKIP_PATCH
+| | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | NDR | LISP_IPv6
+| | ...    | SKIP_PATCH
 | | ${framesize}= | Set Variable | 9000
 | | ${min_rate}= | Set Variable | 5000
 | | ${max_rate}= | Set Variable | ${10Ge_lisp_linerate_pps_9008B}
@@ -1163,7 +1188,8 @@
 | | ... | port.
 | | ... | [Ver] Find PDR for 9000 Byte frames using binary search start
 | | ... | at 10GE linerate, step 5kpps, LT=0.5%.
-| | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | PDR | LISP_IPv6 | SKIP_PATCH
+| | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | PDR | LISP_IPv6
+| | ...    | SKIP_PATCH
 | | ${framesize}= | Set Variable | 9000
 | | ${min_rate}= | Set Variable | 5000
 | | ${max_rate}= | Set Variable | ${10Ge_lisp_linerate_pps_9008B}
@@ -1195,7 +1221,7 @@
 | | ... | port.
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start
 | | ... | at 10GE linerate, step 100kpps.
-| | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | NDR | LISP_IPv4oIPv6 | SKIP_PATCH
+| | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | NDR | LISP_IPv4oIPv6
 | | ${framesize}= | Set Variable | 64
 | | ${min_rate}= | Set Variable | 100000
 | | ${max_rate}= | Set Variable | ${10Ge_lisp_iph_linerate_pps_112B}
@@ -1227,6 +1253,7 @@
 | | ... | [Ver] Find PDR for 64 Byte frames using binary search start
 | | ... | at 10GE linerate, step 100kpps, LT=0.5%.
 | | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | PDR | LISP_IPv4oIPv6
+| | ...    | SKIP_PATCH
 | | ${framesize}= | Set Variable | 64
 | | ${min_rate}= | Set Variable | 100000
 | | ${max_rate}= | Set Variable | ${10Ge_lisp_iph_linerate_pps_112B}
@@ -1259,7 +1286,7 @@
 | | ... | port.
 | | ... | [Ver] Find NDR for 1460 Byte frames using binary search start
 | | ... | at 10GE linerate, step 100kpps.
-| | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | NDR | LISP_IPv4oIPv6 | SKIP_PATCH
+| | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | NDR | LISP_IPv4oIPv6
 | | ${framesize}= | Set Variable | 1460
 | | ${min_rate}= | Set Variable | 10000
 | | ${max_rate}= | Set Variable | ${10Ge_lisp_iph_linerate_pps_1508B}
@@ -1291,6 +1318,7 @@
 | | ... | [Ver] Find PDR for 1460 Byte frames using binary search start
 | | ... | at 10GE linerate, step 10kpps, LT=0.5%.
 | | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | PDR | LISP_IPv4oIPv6
+| | ...    | SKIP_PATCH
 | | ${framesize}= | Set Variable | 1460
 | | ${min_rate}= | Set Variable | 10000
 | | ${max_rate}= | Set Variable | ${10Ge_lisp_iph_linerate_pps_1508B}
@@ -1323,7 +1351,7 @@
 | | ... | port.
 | | ... | [Ver] Find NDR for 9000 Byte frames using binary search start
 | | ... | at 10GE linerate, step 5kpps.
-| | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | NDR | LISP_IPv4oIPv6 | SKIP_PATCH
+| | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | NDR | LISP_IPv4oIPv6
 | | ${framesize}= | Set Variable | 9000
 | | ${min_rate}= | Set Variable | 5000
 | | ${max_rate}= | Set Variable | ${10Ge_lisp_iph_linerate_pps_9048B}
@@ -1354,6 +1382,7 @@
 | | ... | [Ver] Find PDR for 9000 Byte frames using binary search start
 | | ... | at 10GE linerate, step 5kpps, LT=0.5%.
 | | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | PDR | LISP_IPv4oIPv6
+| | ...    | SKIP_PATCH
 | | ${framesize}= | Set Variable | 9000
 | | ${min_rate}= | Set Variable | 5000
 | | ${max_rate}= | Set Variable | ${10Ge_lisp_iph_linerate_pps_9048B}
@@ -1385,7 +1414,7 @@
 | | ... | port.
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start
 | | ... | at 10GE linerate, step 100kpps.
-| | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | NDR | LISP_IPv4oIPv6 | SKIP_PATCH
+| | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | NDR | LISP_IPv4oIPv6
 | | ${framesize}= | Set Variable | 64
 | | ${min_rate}= | Set Variable | 100000
 | | ${max_rate}= | Set Variable | ${10Ge_lisp_iph_linerate_pps_112B}
@@ -1417,6 +1446,7 @@
 | | ... | [Ver] Find PDR for 64 Byte frames using binary search start
 | | ... | at 10GE linerate, step 100kpps.
 | | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | PDR | LISP_IPv4oIPv6
+| | ...    | SKIP_PATCH
 | | ${framesize}= | Set Variable | 64
 | | ${min_rate}= | Set Variable | 100000
 | | ${max_rate}= | Set Variable | ${10Ge_lisp_iph_linerate_pps_112B}
@@ -1449,7 +1479,8 @@
 | | ... | port.
 | | ... | [Ver] Find NDR for 1460 Byte frames using binary search start
 | | ... | at 10GE linerate, step 10kpps.
-| | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | NDR | LISP_IPv4oIPv6 | SKIP_PATCH
+| | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | NDR | LISP_IPv4oIPv6
+| | ...    | SKIP_PATCH
 | | ${framesize}= | Set Variable | 1460
 | | ${min_rate}= | Set Variable | 10000
 | | ${max_rate}= | Set Variable | ${10Ge_lisp_iph_linerate_pps_1508B}
@@ -1480,7 +1511,8 @@
 | | ... | port.
 | | ... | [Ver] Find PDR for 1460 Byte frames using binary search start
 | | ... | at 10GE linerate, step 10kpps, LT=0.5%.
-| | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | PDR | LISP_IPv4oIPv6 | SKIP_PATCH
+| | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | PDR | LISP_IPv4oIPv6
+| | ...    | SKIP_PATCH
 | | ${framesize}= | Set Variable | 1460
 | | ${min_rate}= | Set Variable | 10000
 | | ${max_rate}= | Set Variable | ${10Ge_lisp_iph_linerate_pps_1508B}
@@ -1513,7 +1545,8 @@
 | | ... | port.
 | | ... | [Ver] Find NDR for 9000 Byte frames using binary search start
 | | ... | at 10GE linerate, step 5kpps.
-| | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | NDR | LISP_IPv4oIPv6 | SKIP_PATCH
+| | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | NDR | LISP_IPv4oIPv6
+| | ...    | SKIP_PATCH
 | | ${framesize}= | Set Variable | 9000
 | | ${min_rate}= | Set Variable | 5000
 | | ${max_rate}= | Set Variable | ${10Ge_lisp_iph_linerate_pps_9048B}
@@ -1543,7 +1576,8 @@
 | | ... | port.
 | | ... | [Ver] Find PDR for 9000 Byte frames using binary search start
 | | ... | at 10GE linerate, step 5kpps, LT=0.5%.
-| | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | PDR | LISP_IPv4oIPv6 | SKIP_PATCH
+| | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | PDR | LISP_IPv4oIPv6
+| | ...    | SKIP_PATCH
 | | ${framesize}= | Set Variable | 9000
 | | ${min_rate}= | Set Variable | 5000
 | | ${max_rate}= | Set Variable | ${10Ge_lisp_iph_linerate_pps_9048B}
@@ -1575,7 +1609,7 @@
 | | ... | port.
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start
 | | ... | at 10GE linerate, step 100kpps.
-| | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | NDR | LISP_IPv4oIPv6 | SKIP_PATCH
+| | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | NDR | LISP_IPv4oIPv6
 | | ${framesize}= | Set Variable | 64
 | | ${min_rate}= | Set Variable | 100000
 | | ${max_rate}= | Set Variable | ${10Ge_lisp_iph_linerate_pps_112B}
@@ -1607,6 +1641,7 @@
 | | ... | [Ver] Find PDR for 64 Byte frames using binary search start
 | | ... | at 10GE linerate, step 100kpps, LT=0.5%.
 | | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | PDR | LISP_IPv4oIPv6
+| | ...    | SKIP_PATCH
 | | ${framesize}= | Set Variable | 64
 | | ${min_rate}= | Set Variable | 100000
 | | ${max_rate}= | Set Variable | ${10Ge_lisp_iph_linerate_pps_112B}
@@ -1639,7 +1674,8 @@
 | | ... | port.
 | | ... | [Ver] Find NDR for 1460 Byte frames using binary search start
 | | ... | at 10GE linerate, step 10kpps.
-| | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | NDR | LISP_IPv4oIPv6 | SKIP_PATCH
+| | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | NDR | LISP_IPv4oIPv6
+| | ...    | SKIP_PATCH
 | | ${framesize}= | Set Variable | 1460
 | | ${min_rate}= | Set Variable | 10000
 | | ${max_rate}= | Set Variable | ${10Ge_lisp_iph_linerate_pps_1508B}
@@ -1670,7 +1706,8 @@
 | | ... | port.
 | | ... | [Ver] Find PDR for 1460 Byte frames using binary search starlt
 | | ... | at 10GE linerate, step 10kpps, LT=0.5%.
-| | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | PDR | LISP_IPv4oIPv6 | SKIP_PATCH
+| | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | PDR | LISP_IPv4oIPv6
+| | ...    | SKIP_PATCH
 | | ${framesize}= | Set Variable | 1460
 | | ${min_rate}= | Set Variable | 10000
 | | ${max_rate}= | Set Variable | ${10Ge_lisp_iph_linerate_pps_1508B}
@@ -1702,7 +1739,8 @@
 | | ... | port.
 | | ... | [Ver] Find NDR for 9000 Byte frames using binary search start
 | | ... | at 10GE linerate, step 5kpps.
-| | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | NDR | LISP_IPv4oIPv6 | SKIP_PATCH
+| | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | NDR | LISP_IPv4oIPv6
+| | ...    | SKIP_PATCH
 | | ${framesize}= | Set Variable | 9000
 | | ${min_rate}= | Set Variable | 5000
 | | ${max_rate}= | Set Variable | ${10Ge_lisp_iph_linerate_pps_9048B}
@@ -1732,7 +1770,8 @@
 | | ... | port.
 | | ... | [Ver] Find PDR for 9000 Byte frames using binary search start
 | | ... | at 10GE linerate, step 5kpps, LT=0.5%.
-| | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | PDR | LISP_IPv4oIPv6 | SKIP_PATCH
+| | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | PDR | LISP_IPv4oIPv6
+| | ...    | SKIP_PATCH
 | | ${framesize}= | Set Variable | 9000
 | | ${min_rate}= | Set Variable | 5000
 | | ${max_rate}= | Set Variable | ${10Ge_lisp_iph_linerate_pps_9048B}
@@ -1764,7 +1803,7 @@
 | | ... | port.
 | | ... | [Ver] Find NDR for 78 Byte frames using binary search start
 | | ... | at 10GE linerate, step 100kpps.
-| | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | NDR | LISP_IPv6oIPv4 | SKIP_PATCH
+| | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | NDR | LISP_IPv6oIPv4
 | | ${framesize}= | Set Variable | 78
 | | ${min_rate}= | Set Variable | 100000
 | | ${max_rate}= | Set Variable | ${10Ge_lisp_iph_linerate_pps_126B}
@@ -1796,6 +1835,7 @@
 | | ... | [Ver] Find PDR for 78 Byte frames using binary search start
 | | ... | at 10GE linerate, step 100kpps, LT=0.5%.
 | | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | PDR | LISP_IPv6IPv4
+| | ...    | SKIP_PATCH
 | | ${framesize}= | Set Variable | 78
 | | ${min_rate}= | Set Variable | 100000
 | | ${max_rate}= | Set Variable | ${10Ge_lisp_iph_linerate_pps_126B}
@@ -1828,7 +1868,7 @@
 | | ... | port.
 | | ... | [Ver] Find NDR for 1460 Byte frames using binary search start
 | | ... | at 10GE linerate, step 10kpps.
-| | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | NDR | LISP_IPv6oIPv4 | SKIP_PATCH
+| | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | NDR | LISP_IPv6oIPv4
 | | ${framesize}= | Set Variable | 1460
 | | ${min_rate}= | Set Variable | 10000
 | | ${max_rate}= | Set Variable | ${10Ge_lisp_iph_linerate_pps_1508B}
@@ -1860,6 +1900,7 @@
 | | ... | [Ver] Find PDR for 1460 Byte frames using binary search start
 | | ... | at 10GE linerate, step 10kpps, LT=0.5%.
 | | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | PDR | LISP_IPv6oIPv4
+| | ...    | SKIP_PATCH
 | | ${framesize}= | Set Variable | 1460
 | | ${min_rate}= | Set Variable | 10000
 | | ${max_rate}= | Set Variable | ${10Ge_lisp_iph_linerate_pps_1508B}
@@ -1892,7 +1933,7 @@
 | | ... | port.
 | | ... | [Ver] Find NDR for 9000 Byte frames using binary search start
 | | ... | at 10GE linerate, step 5kpps.
-| | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | NDR | LISP_IPv6oIPv4 | SKIP_PATCH
+| | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | NDR | LISP_IPv6oIPv4
 | | ${framesize}= | Set Variable | 9000
 | | ${min_rate}= | Set Variable | 5000
 | | ${max_rate}= | Set Variable | ${10Ge_lisp_iph_linerate_pps_9048B}
@@ -1923,6 +1964,7 @@
 | | ... | [Ver] Find PDR for 9000 Byte frames using binary search start
 | | ... | at 10GE linerate, step 5kpps, LT=0.5%.
 | | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | PDR | LISP_IPv6oIPv4
+| | ...    | SKIP_PATCH
 | | ${framesize}= | Set Variable | 9000
 | | ${min_rate}= | Set Variable | 5000
 | | ${max_rate}= | Set Variable | ${10Ge_lisp_iph_linerate_pps_9048B}
@@ -1954,7 +1996,7 @@
 | | ... | port.
 | | ... | [Ver] Find NDR for 78 Byte frames using binary search start
 | | ... | at 10GE linerate, step 100kpps.
-| | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | NDR | LISP_IPv6oIPv4 | SKIP_PATCH
+| | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | NDR | LISP_IPv6oIPv4
 | | ${framesize}= | Set Variable | 78
 | | ${min_rate}= | Set Variable | 100000
 | | ${max_rate}= | Set Variable | ${10Ge_lisp_iph_linerate_pps_126B}
@@ -1986,6 +2028,7 @@
 | | ... | [Ver] Find PDR for 78 Byte frames using binary search start
 | | ... | at 10GE linerate, step 100kpps, LT=0.5%.
 | | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | PDR | LISP_IPv6oIPv4
+| | ...    | SKIP_PATCH
 | | ${framesize}= | Set Variable | 78
 | | ${min_rate}= | Set Variable | 100000
 | | ${max_rate}= | Set Variable | ${10Ge_lisp_iph_linerate_pps_126B}
@@ -2018,7 +2061,8 @@
 | | ... | port.
 | | ... | [Ver] Find NDR for 1460 Byte frames using binary search start
 | | ... | at 10GE linerate, step 10kpps.
-| | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | NDR | LISP_IPv6oIPv4 | SKIP_PATCH
+| | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | NDR | LISP_IPv6oIPv4
+| | ...    | SKIP_PATCH
 | | ${framesize}= | Set Variable | 1460
 | | ${min_rate}= | Set Variable | 10000
 | | ${max_rate}= | Set Variable | ${10Ge_lisp_iph_linerate_pps_1508B}
@@ -2049,7 +2093,8 @@
 | | ... | port.
 | | ... | [Ver] Find PDR for 1460 Byte frames using binary search start
 | | ... | at 10GE linerate, step 10kpps, LT=0.5%.
-| | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | PDR | LISP_IPv6oIPv4 | SKIP_PATCH
+| | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | PDR | LISP_IPv6oIPv4
+| | ...    | SKIP_PATCH
 | | ${framesize}= | Set Variable | 1460
 | | ${min_rate}= | Set Variable | 10000
 | | ${max_rate}= | Set Variable | ${10Ge_lisp_iph_linerate_pps_1508B}
@@ -2082,7 +2127,8 @@
 | | ... | port.
 | | ... | [Ver] Find NDR for 9000 Byte frames using binary search start
 | | ... | at 10GE linerate, step 10kpps.
-| | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | NDR | LISP_IPv6oIPv4 | SKIP_PATCH
+| | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | NDR | LISP_IPv6oIPv4
+| | ...    | SKIP_PATCH
 | | ${framesize}= | Set Variable | 9000
 | | ${min_rate}= | Set Variable | 5000
 | | ${max_rate}= | Set Variable | ${10Ge_lisp_iph_linerate_pps_9048B}
@@ -2112,7 +2158,8 @@
 | | ... | port.
 | | ... | [Ver] Find PDR for 9000 Byte frames using binary search start
 | | ... | at 10GE linerate, step 5kpps, LT=0.5%.
-| | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | PDR | LISP_IPv6oIPv4 | SKIP_PATCH
+| | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | PDR | LISP_IPv6oIPv4
+| | ...    | SKIP_PATCH
 | | ${framesize}= | Set Variable | 9000
 | | ${min_rate}= | Set Variable | 5000
 | | ${max_rate}= | Set Variable | ${10Ge_lisp_iph_linerate_pps_9048B}
@@ -2144,7 +2191,7 @@
 | | ... | port.
 | | ... | [Ver] Find NDR for 78 Byte frames using binary search start
 | | ... | at 10GE linerate, step 100kpps.
-| | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | NDR | LISP_IPv6oIPv4 | SKIP_PATCH
+| | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | NDR | LISP_IPv6oIPv4
 | | ${framesize}= | Set Variable | 78
 | | ${min_rate}= | Set Variable | 100000
 | | ${max_rate}= | Set Variable | ${10Ge_lisp_iph_linerate_pps_126B}
@@ -2176,6 +2223,7 @@
 | | ... | [Ver] Find PDR for 78 Byte frames using binary search start
 | | ... | at 10GE linerate, step 100kpps, LT=0.5%.
 | | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | PDR | LISP_IPv6oIPv4
+| | ...    | SKIP_PATCH
 | | ${framesize}= | Set Variable | 78
 | | ${min_rate}= | Set Variable | 100000
 | | ${max_rate}= | Set Variable | ${10Ge_lisp_iph_linerate_pps_126B}
@@ -2208,7 +2256,8 @@
 | | ... | port.
 | | ... | [Ver] Find NDR for 1460 Byte frames using binary search start
 | | ... | at 10GE linerate, step 10kpps.
-| | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | NDR | LISP_IPv6oIPv4 | SKIP_PATCH
+| | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | NDR | LISP_IPv6oIPv4
+| | ...    | SKIP_PATCH
 | | ${framesize}= | Set Variable | 1460
 | | ${min_rate}= | Set Variable | 10000
 | | ${max_rate}= | Set Variable | ${10Ge_lisp_iph_linerate_pps_1508B}
@@ -2239,7 +2288,8 @@
 | | ... | port.
 | | ... | [Ver] Find PDR for 1460 Byte frames using binary search start
 | | ... | at 10GE linerate, step 10kpps, LT=0.5%.
-| | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | PDR | LISP_IPv6oIPv4 | SKIP_PATCH
+| | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | PDR | LISP_IPv6oIPv4
+| | ...    | SKIP_PATCH
 | | ${framesize}= | Set Variable | 1460
 | | ${min_rate}= | Set Variable | 10000
 | | ${max_rate}= | Set Variable | ${10Ge_lisp_iph_linerate_pps_1508B}
@@ -2272,7 +2322,8 @@
 | | ... | port.
 | | ... | [Ver] Find NDR for 9000 Byte frames using binary search start
 | | ... | at 10GE linerate, step 5kpps.
-| | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | NDR | LISP_IPv6oIPv4 | SKIP_PATCH
+| | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | NDR | LISP_IPv6oIPv4
+| | ...    | SKIP_PATCH
 | | ${framesize}= | Set Variable | 9000
 | | ${min_rate}= | Set Variable | 5000
 | | ${max_rate}= | Set Variable | ${10Ge_lisp_iph_linerate_pps_9048B}
@@ -2302,7 +2353,8 @@
 | | ... | port.
 | | ... | [Ver] Find PDR for 9000 Byte frames using binary search start
 | | ... | at 10GE linerate, step 5kpps, LT=0.5%.
-| | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | PDR | LISP_IPv6oIPv4 | SKIP_PATCH
+| | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | PDR | LISP_IPv6oIPv4
+| | ...    | SKIP_PATCH
 | | ${framesize}= | Set Variable | 9000
 | | ${min_rate}= | Set Variable | 5000
 | | ${max_rate}= | Set Variable | ${10Ge_lisp_iph_linerate_pps_9048B}
