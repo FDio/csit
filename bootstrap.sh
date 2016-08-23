@@ -202,12 +202,11 @@ if [ "$?" -ne "0" ]; then
     echo "However, the tests will start."
 fi
 
-PYTHONPATH=`pwd` pybot -L TRACE -W 150 \
+PYTHONPATH=`pwd` pybot -L TRACE -W 140\
     -v TOPOLOGY_PATH:${SCRIPT_DIR}/topologies/enabled/topology.yaml \
-    --suite "tests.func" \
+    --suite "tests.func.ipsec" \
     --include vm_envAND3_node_single_link_topo \
     --include vm_envAND3_node_double_link_topo \
     --exclude PERFTEST \
-    --exclude SKIP_PATCH \
     --noncritical EXPECTED_FAILING \
     tests/
