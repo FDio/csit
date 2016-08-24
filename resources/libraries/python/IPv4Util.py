@@ -218,29 +218,3 @@ class IPv4Util(object):
         if rc != 0:
             raise RuntimeError("Arp set not successful, reason:{}".
                                format(stderr))
-
-    @staticmethod
-    def set_linux_interface_ip(node, interface, ip, prefix, namespace=None):
-        """Set IP address to interface in linux.
-
-        :param node: Node where to execute command.
-        :param interface: Interface in namespace.
-        :param ip: IP to be set on interface.
-        :param prefix: IP prefix.
-        :param namespace: Execute command in namespace. Optional
-        :type node: dict
-        :type interface: str
-        :type ip: str
-        :type prefix: int
-        :type namespace: str
-        :raises RuntimeError: IP could not be set.
-        """
-        if namespace is not None:
-            cmd = 'ip netns exec {} ip addr add {}/{} dev {}'.format(
-                namespace, ip, prefix, interface)
-        else:
-            cmd = 'ip addr add {}/{} dev {}'.format(ip, prefix, interface)
-        (rc, _, stderr) = exec_cmd(node, cmd, timeout=5, sudo=True)
-        if rc != 0:
-            raise RuntimeError(
-                'Could not set IP for interface, reason:{}'.format(stderr))
