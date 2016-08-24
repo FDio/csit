@@ -205,8 +205,7 @@ fi
 PYTHONPATH=`pwd` pybot -L TRACE -W 145\
     -v TOPOLOGY_PATH:${SCRIPT_DIR}/topologies/enabled/topology.yaml \
     --suite "tests.func" \
-    --include vm_envAND3_node_single_link_topo \
-    --include vm_envAND3_node_double_link_topo \
+    --include POKUS \
     --exclude PERFTEST \
     --exclude SKIP_PATCH \
     --noncritical EXPECTED_FAILING \
