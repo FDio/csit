@@ -164,6 +164,26 @@ class LispAdjacency(object):
                                       seid_prefix=seid_prefix)
 
 
+class LispGpeStatus(object):
+    """Clas for LISP GPE status manipulation."""
+
+    def __init__(self):
+        pass
+
+    @staticmethod
+    def vpp_lisp_gpe_enable_disable(node, state):
+        """Change the state of LISP GPE - enable or disable.
+
+        :param node: VPP node.
+        :param state: Requested state - enable or disable.
+        :type node: dict
+        :type state: str
+        """
+
+        VatExecutor.cmd_from_template(node, 'lisp/lisp_gpe_status.vat',
+                                      state=state)
+
+
 class LispGpeIface(object):
     """Class for Lisp gpe interface API."""
 
@@ -180,9 +200,29 @@ class LispGpeIface(object):
         :type state: str
         """
 
-        VatExecutor.cmd_from_template(node,
-                                      'lisp/lisp_gpe_iface.vat',
+        VatExecutor.cmd_from_template(node, 'lisp/lisp_gpe_iface.vat',
                                       state=state)
+
+
+class LispGpeForwardEntry(object):
+    """The functionality needed for these methods is not implemented in VPP
+    (VAT). Bug https://jira.fd.io/browse/VPP-334 was open to cover this issue.
+
+    TODO: Implement when VPP-334 is fixed.
+    """
+
+    def __init__(self):
+        pass
+
+    @staticmethod
+    def add_lisp_gpe_forward_entry(node, *args):
+        # TODO: Implement when VPP-334 is fixed.
+        pass
+
+    @staticmethod
+    def del_lisp_gpe_forward_entry(node, *args):
+        # TODO: Implement when VPP-334 is fixed.
+        pass
 
 
 class LispMapResolver(object):

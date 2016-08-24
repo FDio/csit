@@ -218,35 +218,6 @@ class L2Util(object):
             exec_cmd_no_error(node, cmd, sudo=True)
 
     @staticmethod
-    def setup_network_namespace(node, namespace_name, interface_name,
-                                ip_address, prefix):
-        """Setup namespace on given node and attach interface and IP to
-        this namespace. Applicable also on TG node.
-
-        :param node: Node to set namespace on.
-        :param namespace_name: Namespace name.
-        :param interface_name: Interface name.
-        :param ip_address: IP address of namespace's interface.
-        :param prefix: IP address prefix length.
-        :type node: dict
-        :type namespace_name: str
-        :type vhost_if: str
-        :type ip_address: str
-        :type prefix: int
-
-        """
-        cmd = ('ip netns add {0}'.format(namespace_name))
-        exec_cmd_no_error(node, cmd, sudo=True)
-
-        cmd = ('ip link set dev {0} up netns {1}'.format(interface_name,
-                                                         namespace_name))
-        exec_cmd_no_error(node, cmd, sudo=True)
-
-        cmd = ('ip netns exec {0} ip addr add {1}/{2} dev {3}'.format(
-            namespace_name, ip_address, prefix, interface_name))
-        exec_cmd_no_error(node, cmd, sudo=True)
-
-    @staticmethod
     def linux_del_bridge(node, br_name, set_down=True):
         """Delete bridge from linux node.
 
