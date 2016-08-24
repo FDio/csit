@@ -1,0 +1,320 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a1d315d_6aa55803",
+        "filename": "resources/libraries/python/Classify.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 233,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-08-24T08:21:28Z",
+      "side": 1,
+      "message": "\u0027 \u0027.join((match, match2))",
+      "range": {
+        "startLine": 233,
+        "startChar": 16,
+        "endLine": 233,
+        "endChar": 36
+      },
+      "revId": "60f36ec0bc6f690bc3247c809df8f8e2f4bfacad",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_4a5cdc25",
+        "filename": "resources/libraries/python/IPFIXSetup.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-08-24T08:21:28Z",
+      "side": 1,
+      "message": "if fib else",
+      "range": {
+        "startLine": 46,
+        "startChar": 33,
+        "endLine": 46,
+        "endChar": 56
+      },
+      "revId": "60f36ec0bc6f690bc3247c809df8f8e2f4bfacad",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_8a52f411",
+        "filename": "resources/libraries/python/IPFIXSetup.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-08-24T08:21:28Z",
+      "side": 1,
+      "message": "Please use string formating instead concatenation. \"vrf_id {}\".format(fib). Apply to all ocurences",
+      "range": {
+        "startLine": 46,
+        "startChar": 14,
+        "endLine": 46,
+        "endChar": 32
+      },
+      "revId": "60f36ec0bc6f690bc3247c809df8f8e2f4bfacad",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_2aaf60e5",
+        "filename": "resources/libraries/python/PacketVerifier.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-08-24T08:21:28Z",
+      "side": 1,
+      "message": "if verbose:",
+      "range": {
+        "startLine": 231,
+        "startChar": 8,
+        "endLine": 231,
+        "endChar": 26
+      },
+      "revId": "60f36ec0bc6f690bc3247c809df8f8e2f4bfacad",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_0aaca4ec",
+        "filename": "resources/libraries/python/PacketVerifier.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-08-24T08:21:28Z",
+      "side": 1,
+      "message": "if verbose:",
+      "range": {
+        "startLine": 270,
+        "startChar": 8,
+        "endLine": 270,
+        "endChar": 27
+      },
+      "revId": "60f36ec0bc6f690bc3247c809df8f8e2f4bfacad",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_2ae76014",
+        "filename": "resources/libraries/robot/ipfix.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-08-24T08:21:28Z",
+      "side": 1,
+      "message": "add default",
+      "range": {
+        "startLine": 38,
+        "startChar": 47,
+        "endLine": 38,
+        "endChar": 55
+      },
+      "revId": "60f36ec0bc6f690bc3247c809df8f8e2f4bfacad",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_0ae4a40b",
+        "filename": "resources/libraries/robot/ipfix.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-08-24T08:21:28Z",
+      "side": 1,
+      "message": "add default",
+      "range": {
+        "startLine": 39,
+        "startChar": 48,
+        "endLine": 39,
+        "endChar": 56
+      },
+      "revId": "60f36ec0bc6f690bc3247c809df8f8e2f4bfacad",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_8a943438",
+        "filename": "tests/func/ipfix/ipfix_ipv4.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-08-24T08:21:28Z",
+      "side": 1,
+      "message": "please add tg_to_dut1_ip used as collector ip address",
+      "revId": "60f36ec0bc6f690bc3247c809df8f8e2f4bfacad",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_0aa0248f",
+        "filename": "tests/func/ipfix/ipfix_ipv4.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-08-24T08:21:28Z",
+      "side": 1,
+      "message": "add somewhere that zero packet is sent",
+      "range": {
+        "startLine": 55,
+        "startChar": 11,
+        "endLine": 55,
+        "endChar": 14
+      },
+      "revId": "60f36ec0bc6f690bc3247c809df8f8e2f4bfacad",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_6a99d86d",
+        "filename": "tests/func/ipfix/ipfix_ipv4.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-08-24T08:21:28Z",
+      "side": 1,
+      "message": "tg_to_dut1_ip, update also other tests",
+      "range": {
+        "startLine": 63,
+        "startChar": 58,
+        "endLine": 63,
+        "endChar": 69
+      },
+      "revId": "60f36ec0bc6f690bc3247c809df8f8e2f4bfacad",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_2aa3e09f",
+        "filename": "tests/func/ipfix/ipfix_ipv4.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-08-24T08:21:28Z",
+      "side": 1,
+      "message": "Setup",
+      "range": {
+        "startLine": 72,
+        "startChar": 8,
+        "endLine": 72,
+        "endChar": 13
+      },
+      "revId": "60f36ec0bc6f690bc3247c809df8f8e2f4bfacad",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_4a9e1c58",
+        "filename": "tests/func/ipfix/ipfix_ipv4.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-08-24T08:21:28Z",
+      "side": 1,
+      "message": "tg_to_dut1_ip, update also other tests",
+      "range": {
+        "startLine": 72,
+        "startChar": 48,
+        "endLine": 72,
+        "endChar": 59
+      },
+      "revId": "60f36ec0bc6f690bc3247c809df8f8e2f4bfacad",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_4ab5fccb",
+        "filename": "tests/func/ipfix/ipfix_ipv4.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-08-24T08:21:28Z",
+      "side": 1,
+      "message": "to add ip fib record to dut2 ip, also add \n| | And Set Interface Address | ${dut1_node}\n| | ... | ${dut1_to_dut2} | ${dut1_to_dut2_ip} | ${prefix_length}",
+      "range": {
+        "startLine": 154,
+        "startChar": 0,
+        "endLine": 155,
+        "endChar": 65
+      },
+      "revId": "60f36ec0bc6f690bc3247c809df8f8e2f4bfacad",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_6ab0b8dd",
+        "filename": "tests/func/ipfix/ipfix_ipv4.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-08-24T08:21:28Z",
+      "side": 1,
+      "message": "this will not work. you must send ethernet frame to next hop mac address so ${tg_node} | ${dut1_node} | ${tg_to_dut1} | ${dut1_to_tg} | ...",
+      "range": {
+        "startLine": 172,
+        "startChar": 4,
+        "endLine": 172,
+        "endChar": 39
+      },
+      "revId": "60f36ec0bc6f690bc3247c809df8f8e2f4bfacad",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
