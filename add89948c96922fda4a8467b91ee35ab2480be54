@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a1d315d_aa95b0e5",
+        "filename": "tests/func/ipsec/ipsec_transport_mode_ipv4.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-08-24T11:20:56Z",
+      "side": 1,
+      "message": "encryption\n:%s/encrytion/encryption/g",
+      "range": {
+        "startLine": 47,
+        "startChar": 66,
+        "endLine": 47,
+        "endChar": 75
+      },
+      "revId": "add89948c96922fda4a8467b91ee35ab2480be54",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_8a9af412",
+        "filename": "tests/func/ipsec/ipsec_tunnel_mode_ipv4.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-08-24T11:20:56Z",
+      "side": 1,
+      "message": "encryption\n:%s/encrytion/encryption/g",
+      "range": {
+        "startLine": 47,
+        "startChar": 63,
+        "endLine": 47,
+        "endChar": 72
+      },
+      "revId": "add89948c96922fda4a8467b91ee35ab2480be54",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
