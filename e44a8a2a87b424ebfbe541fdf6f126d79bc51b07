@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a1d315d_650c6995",
+        "filename": "tests/func/policer/policer_ip4.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-08-24T16:13:33Z",
+      "side": 1,
+      "message": "I\u0027m a little bit confused there... Docu part says it tests marker implementation by RFC2698 where PIR is used but here is used EIR that is used in marker implementation by RFC4115... Please, check with VPP developer.",
+      "range": {
+        "startLine": 93,
+        "startChar": 3,
+        "endLine": 93,
+        "endChar": 32
+      },
+      "revId": "e44a8a2a87b424ebfbe541fdf6f126d79bc51b07",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
