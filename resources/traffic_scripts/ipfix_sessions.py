@@ -152,8 +152,8 @@ def main():
 
     # do not print details for sent packets
     verbose = False
-    print("Sending more than one packet. Details will be filtered for\
-    # all packets sent.")
+    print("Sending more than one packet. Details will be filtered for "
+          "all packets sent.")
 
     ignore = []
     for x in range(sessions):
