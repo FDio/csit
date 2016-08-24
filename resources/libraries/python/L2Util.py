@@ -218,6 +218,40 @@ class L2Util(object):
             exec_cmd_no_error(node, cmd, sudo=True)
 
     @staticmethod
+    def linux_enable_forwarding(node):
+        """Enable forwarding on a Linux node, e.g. VM.
+
+        :param node: Node to enable forwarding on.
+        :type node: dict
+        """
+        cmd = 'sysctl -w net.ipv4.ip_forward=1'
+        exec_cmd_no_error(node, cmd, sudo=True)
+
+    @staticmethod
+    def set_linux_interface_ipaddr(node, interface, ipaddr, prefix,
+                                   namespace=None):
+        """Set IP address for interface in linux.
+
+        :param node: Node where to execute command.
+        :param interface: Interface in namespace.
+        :param ipaddr: IP to be assigned to interface.
+        :param prefix: Prefix.
+        :param namespace: Execute command in namespace. Optional
+        :type node: dict
+        :type interface: str
+        :type ipaddr: str
+        :type prefix: int or str
+        :type namespace: str
+        """
+        if namespace is not None:
+            cmd = 'ip netns exec {} ip address add {} dev {}'.format(
+                namespace, ipaddr, interface)
+        else:
+            cmd = 'ip address add {}/{} dev {}'.format(ipaddr, prefix,
+                                                       interface)
+        exec_cmd_no_error(node, cmd, sudo=True)
+
+    @staticmethod
     def setup_network_namespace(node, namespace_name, interface_name,
                                 ip_address, prefix):
         """Setup namespace on given node and attach interface and IP to
