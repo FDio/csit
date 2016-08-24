@@ -16,6 +16,7 @@
 | Library  | resources.libraries.python.NodePath
 | Library  | resources.libraries.python.LispSetup.LispStatus
 | Library  | resources.libraries.python.LispSetup.LispSetup
+| Library  | resources.libraries.python.LispSetup.LispGpeStatus
 | Library  | resources.libraries.python.LispUtil
 
 *** Keywords ***
@@ -82,7 +83,7 @@
 | | ... | \| Then Lisp locator_set is set correctly \| ${nodes['DUT1']} \|
 | | ...
 | | [Arguments] | ${dut_node}
-| | ${show_locator_set}= | Vpp Show Lisp Locator Set | ${dut_node}
+| | ${show_locator_set}= | Vpp Show Lisp Locator Set | ${dut_node} | local
 | | Lisp Locator S Should Be Equal
 | | ... | ${locator_set_values} | ${show_locator_set}
 
@@ -120,7 +121,7 @@
 | | ... | \| Then Lisp locator_set should be unset \| ${nodes['DUT1']} \|
 | | ...
 | | [Arguments] | ${dut_node}
-| | ${show_locator_set}= | Vpp Show Lisp Locator Set | ${dut_node}
+| | ${show_locator_set}= | Vpp Show Lisp Locator Set | ${dut_node} | ${EMPTY}
 | | Lisp Is Empty | ${show_locator_set}
 
 | Lisp locator_set data use for test reset locator_set are prepared
@@ -359,3 +360,33 @@
 | | [Arguments] | ${dut_node} | ${lisp_status_data}
 | | ${show_lisp_stat}= | Vpp Show Lisp State | ${dut_node}
 | | Lisp Should Be Equal | ${show_lisp_stat} | ${lisp_status_data[0]}
+
+| Enable Lisp Gpe
+| | [Documentation] | Enable Lisp Gpe on VPP node.
+| | ...
+| | ... | *Arguments:*
+| | ... | - dut_node - DUT node. Type: dictionary
+| | ...
+| | ... | *Return:*
+| | ... | - No value returned
+| | ...
+| | ... | *Example:*
+| | ... | \| Enable Lisp Gpe \| ${nodes['DUT1']} \|
+| | ...
+| | [Arguments] | ${dut_node}
+| | Vpp Lisp Gpe Enable Disable | ${dut_node} | enable
+
+| Disable Lisp Gpe
+| | [Documentation] | Disable Lisp Gpe on VPP node.
+| | ...
+| | ... | *Arguments:*
+| | ... | - dut_node - DUT node. Type: dictionary
+| | ...
+| | ... | *Return:*
+| | ... | - No value returned
+| | ...
+| | ... | *Example:*
+| | ... | \| Disable Lisp Gpe \| ${nodes['DUT1']} \|
+| | ...
+| | [Arguments] | ${dut_node}
+| | Vpp Lisp Gpe Enable Disable | ${dut_node} | disable
