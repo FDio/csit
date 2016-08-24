@@ -213,6 +213,28 @@ class InterfaceUtil(object):
         return data
 
     @staticmethod
+    def vpp_get_interface_mac(node, interface=None):
+        """Get MAC address for the given interface from actual interface dump.
+
+        :param node: VPP node to get interface data from.
+        :param interface: Numeric index or name string of a specific interface.
+        :type node: dict
+        :type interface: int or str
+        :return: MAC address.
+        :rtype: str
+        """
+
+        if_data = InterfaceUtil.vpp_get_interface_data(node, interface)
+        mac_data = [str(hex(item))[2:] for item in if_data['l2_address'][:6]]
+        mac_data_nice = []
+        for item in mac_data:
+            if len(item) == 1:
+                item = '0' + item
+            mac_data_nice.append(item)
+        mac = ":".join(mac_data_nice)
+        return mac
+
+    @staticmethod
     def vpp_get_interface_ip_addresses(node, interface, ip_version):
         """Get list of IP addresses from an interface on a VPP node.
 
