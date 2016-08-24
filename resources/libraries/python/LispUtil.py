@@ -15,7 +15,7 @@
 
 from resources.libraries.python.parsers.JsonParser import JsonParser
 from resources.libraries.python.topology import Topology
-from resources.libraries.python.VatExecutor import VatExecutor
+from resources.libraries.python.VatExecutor import VatExecutor, VatTerminal
 
 
 class LispUtil(object):
@@ -40,18 +40,25 @@ class LispUtil(object):
         return JsonParser().parse_data(vat.get_script_stdout())
 
     @staticmethod
-    def vpp_show_lisp_locator_set(node):
+    def vpp_show_lisp_locator_set(node, items_filter):
         """Get lisp locator_set from VPP node.
 
         :param node: VPP node.
+        :param items_filter: Filter which specifies which items should be
+        retrieved - local, remote, empty string = both.
         :type node: dict
+        :type items_filter: str
         :return: Lisp locator_set data as python list.
         :rtype: list
         """
 
-        vat = VatExecutor()
-        vat.execute_script_json_out('lisp/show_lisp_locator_set.vat', node)
-        return JsonParser().parse_data(vat.get_script_stdout())
+        try:
+            with VatTerminal(node) as vat:
+                response = vat.vat_terminal_exec_cmd_from_template(
+                    'lisp/show_lisp_locator_set.vat', filter=items_filter)
+            return response[0]
+        except ValueError:
+            return []
 
     @staticmethod
     def vpp_show_lisp_eid_table(node):
