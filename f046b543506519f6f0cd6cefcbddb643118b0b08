@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a1d315d_005b6355",
+        "filename": "resources/traffic_scripts/send_icmp_wait_for_reply.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-08-25T09:58:59Z",
+      "side": 1,
+      "message": "Try to handle specific exceptions. If this is not possible/practical then please add:\n# pylint: disable\u003dbare-except",
+      "range": {
+        "startLine": 44,
+        "startChar": 4,
+        "endLine": 44,
+        "endChar": 11
+      },
+      "revId": "f046b543506519f6f0cd6cefcbddb643118b0b08",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_e0574725",
+        "filename": "resources/traffic_scripts/send_icmp_wait_for_reply.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-08-25T09:58:59Z",
+      "side": 1,
+      "message": "same as above",
+      "range": {
+        "startLine": 64,
+        "startChar": 4,
+        "endLine": 64,
+        "endChar": 11
+      },
+      "revId": "f046b543506519f6f0cd6cefcbddb643118b0b08",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_603b37ec",
+        "filename": "tests/func/vrf/vrf_tests_v6.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-08-25T09:58:59Z",
+      "side": 1,
+      "message": "line too long",
+      "range": {
+        "startLine": 83,
+        "startChar": 80,
+        "endLine": 83,
+        "endChar": 81
+      },
+      "revId": "f046b543506519f6f0cd6cefcbddb643118b0b08",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_40403b56",
+        "filename": "tests/func/vrf/vrf_tests_v6.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-08-25T09:58:59Z",
+      "side": 1,
+      "message": "line too long",
+      "range": {
+        "startLine": 86,
+        "startChar": 80,
+        "endLine": 86,
+        "endChar": 81
+      },
+      "revId": "f046b543506519f6f0cd6cefcbddb643118b0b08",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
