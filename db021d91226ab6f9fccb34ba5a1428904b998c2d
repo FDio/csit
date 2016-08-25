@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a1d315d_89b0bfde",
+        "filename": "resources/libraries/robot/ipfix.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-08-25T20:37:47Z",
+      "side": 1,
+      "message": "} \\|",
+      "range": {
+        "startLine": 53,
+        "startChar": 34,
+        "endLine": 53,
+        "endChar": 35
+      },
+      "revId": "db021d91226ab6f9fccb34ba5a1428904b998c2d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
