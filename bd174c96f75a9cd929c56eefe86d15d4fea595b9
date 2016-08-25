@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3a1d315d_c01c4bc4",
+        "filename": "tests/func/vrf/vrf_tests.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 365
+      },
+      "writtenOn": "2016-08-25T08:49:51Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a1d315d_60821702",
+      "range": {
+        "startLine": 28,
+        "startChar": 52,
+        "endLine": 28,
+        "endChar": 56
+      },
+      "revId": "bd174c96f75a9cd929c56eefe86d15d4fea595b9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a1d315d_40871b10",
         "filename": "tests/func/vrf/vrf_tests_v6.robot",
         "patchSetId": 3
@@ -36,6 +60,24 @@
       "writtenOn": "2016-08-25T07:24:14Z",
       "side": 1,
       "message": "ipv6\u003d${TRUE}\nIt will be maybe more clear what the TRUE parameters sets without checking the function implementation.",
+      "revId": "bd174c96f75a9cd929c56eefe86d15d4fea595b9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_40883be7",
+        "filename": "tests/func/vrf/vrf_tests_v6.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 342,
+      "author": {
+        "id": 365
+      },
+      "writtenOn": "2016-08-25T08:49:51Z",
+      "side": 1,
+      "message": "Yes, that would be better.",
+      "parentUuid": "3a1d315d_40871b10",
       "revId": "bd174c96f75a9cd929c56eefe86d15d4fea595b9",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
