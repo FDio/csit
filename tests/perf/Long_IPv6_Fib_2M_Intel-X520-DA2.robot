@@ -19,7 +19,12 @@
 | ... | L3 | Intel-X520-DA2
 | Suite Teardown | 3-node Performance Suite Teardown
 | Test Setup | Setup all DUTs before test
-| Test Teardown | Run Keyword | Remove startup configuration of VPP from all DUTs
+| Test Teardown | Run Keywords 
+| ...           | Run Keyword If Test Failed
+| ...           | Traffic should pass with no loss | 10
+| ...           | ${min_rate}pps | ${framesize} | 3-node-IPv6-dst-${rts_per_flow}
+| ...           | fail_on_loss=${False}
+| ...           | AND | Remove startup configuration of VPP from all DUTs
 | Documentation | *RFC2544: Pkt throughput IPv6 routing test cases*
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology
