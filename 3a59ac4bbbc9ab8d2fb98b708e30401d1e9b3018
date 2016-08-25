@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a1d315d_e673e013",
+        "filename": "resources/libraries/robot/performance.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 610,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-08-25T14:21:51Z",
+      "side": 1,
+      "message": "Maybe we could put some explanation here:\ncolor-aware (2r3c-ca) or color-blind (2r3c-cb)",
+      "range": {
+        "startLine": 610,
+        "startChar": 24,
+        "endLine": 610,
+        "endChar": 50
+      },
+      "revId": "3a59ac4bbbc9ab8d2fb98b708e30401d1e9b3018",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_e95e1312",
+        "filename": "tests/perf/Long_IPv4_Policer_Intel-X520-DA2.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-08-25T14:21:51Z",
+      "side": 1,
+      "message": "We should not use values cir\u003deir (even if it is correct configuration) - in that case we have only two color marking (red or green) in fact but we should use values eir\u003ecir.",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 18
+      },
+      "revId": "3a59ac4bbbc9ab8d2fb98b708e30401d1e9b3018",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_2993eba4",
+        "filename": "tests/perf/Long_IPv4_Policer_Intel-X520-DA2.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-08-25T14:21:51Z",
+      "side": 1,
+      "message": "As it is recommended that cb (CBS) and eb (EBS or PBS in our case) be configured to be equal to or greater than the size of the largest possible IP packet in the corresponding stream it would be better to set these values inside every TC based on packet size to be tested (64B, 1518B, 9000B).",
+      "range": {
+        "startLine": 53,
+        "startChar": 1,
+        "endLine": 54,
+        "endChar": 17
+      },
+      "revId": "3a59ac4bbbc9ab8d2fb98b708e30401d1e9b3018",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
