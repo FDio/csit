@@ -76,6 +76,29 @@
     },
     {
       "key": {
+        "uuid": "3a1d315d_a095cfe5",
+        "filename": "resources/traffic_scripts/send_ipv4_udp_check_map_t.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-08-25T09:40:08Z",
+      "side": 1,
+      "message": "AttributeError should cover every possibility here, any scapy.ether object or None.",
+      "range": {
+        "startLine": 44,
+        "startChar": 10,
+        "endLine": 44,
+        "endChar": 42
+      },
+      "revId": "ee0b22e0181dc452e1397d23cbacfe62c2de9f41",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a1d315d_e0198723",
         "filename": "resources/traffic_scripts/send_ipv6_udp_check_map_t.py",
         "patchSetId": 7
@@ -87,6 +110,29 @@
       "writtenOn": "2016-08-25T06:25:18Z",
       "side": 1,
       "message": "param/return section of documentation is missing",
+      "revId": "ee0b22e0181dc452e1397d23cbacfe62c2de9f41",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_40727be6",
+        "filename": "resources/traffic_scripts/send_ipv6_udp_check_map_t.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-08-25T09:40:08Z",
+      "side": 1,
+      "message": "AttributeError",
+      "range": {
+        "startLine": 44,
+        "startChar": 10,
+        "endLine": 44,
+        "endChar": 42
+      },
       "revId": "ee0b22e0181dc452e1397d23cbacfe62c2de9f41",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
