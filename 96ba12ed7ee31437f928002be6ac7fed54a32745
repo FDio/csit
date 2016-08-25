@@ -187,6 +187,23 @@
       "revId": "96ba12ed7ee31437f928002be6ac7fed54a32745",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_c09b2b71",
+        "filename": "tests/func/vrf/vrf_tests_v6.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 342,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-08-25T07:24:14Z",
+      "side": 1,
+      "message": "ipv6\u003d${TRUE}\nIt will be maybe more clear what the TRUE means without checking the function definition",
+      "revId": "96ba12ed7ee31437f928002be6ac7fed54a32745",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
