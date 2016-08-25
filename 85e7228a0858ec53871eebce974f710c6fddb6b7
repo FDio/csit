@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a1d315d_808d3334",
+        "filename": "resources/libraries/robot/performance.robot",
+        "patchSetId": 31
+      },
+      "lineNbr": 729,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-08-25T07:45:40Z",
+      "side": 1,
+      "message": "interface",
+      "range": {
+        "startLine": 729,
+        "startChar": 57,
+        "endLine": 729,
+        "endChar": 65
+      },
+      "revId": "85e7228a0858ec53871eebce974f710c6fddb6b7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_a0882f23",
+        "filename": "resources/libraries/robot/performance.robot",
+        "patchSetId": 31
+      },
+      "lineNbr": 732,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-08-25T07:45:40Z",
+      "side": 1,
+      "message": "Please, use Socket.",
+      "range": {
+        "startLine": 732,
+        "startChar": 20,
+        "endLine": 732,
+        "endChar": 24
+      },
+      "revId": "85e7228a0858ec53871eebce974f710c6fddb6b7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
