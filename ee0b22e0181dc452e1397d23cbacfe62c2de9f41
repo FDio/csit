@@ -1,0 +1,95 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a1d315d_a02caf4b",
+        "filename": "resources/libraries/python/Map.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 272,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-08-25T06:25:18Z",
+      "side": 1,
+      "message": "please add documentation",
+      "revId": "ee0b22e0181dc452e1397d23cbacfe62c2de9f41",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_6026976a",
+        "filename": "resources/libraries/robot/map.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 246,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-08-25T06:25:18Z",
+      "side": 1,
+      "message": "\\",
+      "revId": "ee0b22e0181dc452e1397d23cbacfe62c2de9f41",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_402b9b30",
+        "filename": "resources/traffic_scripts/send_ipv4_udp_check_map_t.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-08-25T06:25:18Z",
+      "side": 1,
+      "message": "param/return doc section is missing",
+      "revId": "ee0b22e0181dc452e1397d23cbacfe62c2de9f41",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_20209f48",
+        "filename": "resources/traffic_scripts/send_ipv4_udp_check_map_t.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-08-25T06:25:18Z",
+      "side": 1,
+      "message": "UDP",
+      "range": {
+        "startLine": 37,
+        "startChar": 45,
+        "endLine": 37,
+        "endChar": 56
+      },
+      "revId": "ee0b22e0181dc452e1397d23cbacfe62c2de9f41",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_e0198723",
+        "filename": "resources/traffic_scripts/send_ipv6_udp_check_map_t.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-08-25T06:25:18Z",
+      "side": 1,
+      "message": "param/return section of documentation is missing",
+      "revId": "ee0b22e0181dc452e1397d23cbacfe62c2de9f41",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
