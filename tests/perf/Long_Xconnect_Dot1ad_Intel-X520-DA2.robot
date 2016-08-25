@@ -20,8 +20,13 @@
 | ... | L2 | Intel-X520-DA2
 | Suite Teardown | 3-node Performance Suite Teardown
 | Test Setup | Setup all DUTs before test
-| Test Teardown | Run Keywords | Remove startup configuration of VPP from all DUTs
-| ...           | AND          | Show vpp trace dump on all DUTs
+| Test Teardown | Run Keywords 
+| ...           | Run Keyword If Test Failed
+| ...           | Traffic should pass with no loss | 10
+| ...           | ${min_rate}pps | ${framesize} | 3-node-xconnect
+| ...           | fail_on_loss=${False}
+| ...           | AND | Remove startup configuration of VPP from all DUTs
+| ...           | AND | Show vpp trace dump on all DUTs
 | Documentation | *RFC2544: Pkt throughput L2XC with 802.1ad test cases*
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology
