@@ -22,11 +22,16 @@
 | ...         | AND          | Build QEMU on all DUTs
 | Suite Teardown | 3-node Performance Suite Teardown
 | Test Setup | Setup all DUTs before test
-| Test Teardown | Run Keywords | Remove startup configuration of VPP from all DUTs
-| ...           | AND          | Guest VM with dpdk-testpmd Teardown | ${dut1}
-| ...                          | ${dut1_vm_refs}
-| ...           | AND          | Guest VM with dpdk-testpmd Teardown | ${dut2}
-| ...                          | ${dut2_vm_refs}
+| Test Teardown | Run Keywords
+| ...           | Run Keyword If Test Failed
+| ...           | Traffic should pass with no loss | 10
+| ...           | ${min_rate}pps | ${framesize} | 3-node-IPv4
+| ...           | fail_on_loss=${False}
+| ...           | AND | Remove startup configuration of VPP from all DUTs
+| ...           | AND | Guest VM with dpdk-testpmd Teardown | ${dut1}
+| ...                 | ${dut1_vm_refs}
+| ...           | AND | Guest VM with dpdk-testpmd Teardown | ${dut2}
+| ...                 | ${dut2_vm_refs}
 | Documentation | *RFC2544: Pkt throughput IPv4 test cases with vhost*
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology
