@@ -49,9 +49,7 @@
 
 *** Variables ***
 | ${cir}= | ${100}
-| ${eir}= | ${100}
-| ${cb}= | ${100}
-| ${eb}= | ${100}
+| ${eir}= | ${150}
 
 *** Test Cases ***
 | TC01: 64B NDR binary search - DUT IPv4 2r3c-ca policer - 1thread 1core 1rxq
@@ -67,6 +65,8 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
+| | Set Test Variable | ${cb} | ${framesize}
+| | Set Test Variable | ${eb} | ${framesize}
 | | Given Add '1' worker threads and rxqueues '1' without HTT to all DUTs
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
@@ -91,6 +91,8 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
+| | Set Test Variable | ${cb} | ${framesize}
+| | Set Test Variable | ${eb} | ${framesize}
 | | Given Add '1' worker threads and rxqueues '1' without HTT to all DUTs
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
@@ -116,6 +118,8 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
+| | Set Test Variable | ${cb} | ${framesize}
+| | Set Test Variable | ${eb} | ${framesize}
 | | Given Add '1' worker threads and rxqueues '1' without HTT to all DUTs
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
@@ -140,6 +144,8 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
+| | Set Test Variable | ${cb} | ${framesize}
+| | Set Test Variable | ${eb} | ${framesize}
 | | Given Add '1' worker threads and rxqueues '1' without HTT to all DUTs
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
@@ -165,6 +171,8 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
+| | Set Test Variable | ${cb} | ${framesize}
+| | Set Test Variable | ${eb} | ${framesize}
 | | Given Add '1' worker threads and rxqueues '1' without HTT to all DUTs
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Apply startup configuration on all VPP DUTs
@@ -188,6 +196,8 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
+| | Set Test Variable | ${cb} | ${framesize}
+| | Set Test Variable | ${eb} | ${framesize}
 | | Given Add '1' worker threads and rxqueues '1' without HTT to all DUTs
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Apply startup configuration on all VPP DUTs
@@ -213,6 +223,8 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
+| | Set Test Variable | ${cb} | ${framesize}
+| | Set Test Variable | ${eb} | ${framesize}
 | | Given Add '2' worker threads and rxqueues '1' without HTT to all DUTs
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
@@ -237,6 +249,8 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
+| | Set Test Variable | ${cb} | ${framesize}
+| | Set Test Variable | ${eb} | ${framesize}
 | | Given Add '2' worker threads and rxqueues '1' without HTT to all DUTs
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
@@ -262,6 +276,8 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
+| | Set Test Variable | ${cb} | ${framesize}
+| | Set Test Variable | ${eb} | ${framesize}
 | | Given Add '2' worker threads and rxqueues '1' without HTT to all DUTs
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
@@ -286,6 +302,8 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
+| | Set Test Variable | ${cb} | ${framesize}
+| | Set Test Variable | ${eb} | ${framesize}
 | | Given Add '2' worker threads and rxqueues '1' without HTT to all DUTs
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
@@ -311,6 +329,8 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
+| | Set Test Variable | ${cb} | ${framesize}
+| | Set Test Variable | ${eb} | ${framesize}
 | | Given Add '2' worker threads and rxqueues '1' without HTT to all DUTs
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Apply startup configuration on all VPP DUTs
@@ -334,6 +354,8 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
+| | Set Test Variable | ${cb} | ${framesize}
+| | Set Test Variable | ${eb} | ${framesize}
 | | Given Add '2' worker threads and rxqueues '1' without HTT to all DUTs
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Apply startup configuration on all VPP DUTs
@@ -358,6 +380,8 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
+| | Set Test Variable | ${cb} | ${framesize}
+| | Set Test Variable | ${eb} | ${framesize}
 | | Given Add '4' worker threads and rxqueues '2' without HTT to all DUTs
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
@@ -382,6 +406,8 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
+| | Set Test Variable | ${cb} | ${framesize}
+| | Set Test Variable | ${eb} | ${framesize}
 | | Given Add '4' worker threads and rxqueues '2' without HTT to all DUTs
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
@@ -407,6 +433,8 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
+| | Set Test Variable | ${cb} | ${framesize}
+| | Set Test Variable | ${eb} | ${framesize}
 | | Given Add '4' worker threads and rxqueues '2' without HTT to all DUTs
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
@@ -431,6 +459,8 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
+| | Set Test Variable | ${cb} | ${framesize}
+| | Set Test Variable | ${eb} | ${framesize}
 | | Given Add '4' worker threads and rxqueues '2' without HTT to all DUTs
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
@@ -456,6 +486,8 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
+| | Set Test Variable | ${cb} | ${framesize}
+| | Set Test Variable | ${eb} | ${framesize}
 | | Given Add '4' worker threads and rxqueues '2' without HTT to all DUTs
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Apply startup configuration on all VPP DUTs
@@ -479,6 +511,8 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
+| | Set Test Variable | ${cb} | ${framesize}
+| | Set Test Variable | ${eb} | ${framesize}
 | | Given Add '4' worker threads and rxqueues '2' without HTT to all DUTs
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Apply startup configuration on all VPP DUTs
