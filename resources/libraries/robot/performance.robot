@@ -208,6 +208,7 @@
 | | ...
 | | ... | \| Calculate pps \| 10000000000 | 64
 | | [Arguments] | ${bps} | ${framesize}
+| | ${framesize}= | Get Frame Size | ${framesize}
 | | ${ret}= | Evaluate | (${bps}/((${framesize}+20)*8)).__trunc__()
 | | Return From Keyword | ${ret}
 
