@@ -237,9 +237,26 @@ class InterfaceKeywords(object):
         intf_state = {"up": "true",
                       "down": "false"}
 
-        path = ("interfaces", ("interface", "name", str(interface)), "enabled")
-        return InterfaceKeywords._set_interface_properties(
-            node, interface, path, intf_state[state.lower()])
+        intf = interface.replace("/", "%2F")
+        path = "/interface/{0}".format(intf)
+
+        status_code, resp = HcUtil.\
+            get_honeycomb_data(node, "config_vpp_interfaces", path)
+        if status_code != HTTPCodes.OK:
+            raise HoneycombError(
+                "Not possible to get configuration information about the "
+                "interfaces. Status code: {0}.".format(status_code))
+
+        resp["interface"][0]["enabled"] = intf_state[state.lower()]
+
+        status_code, resp = HcUtil. \
+            put_honeycomb_data(node, "config_vpp_interfaces", resp, path,
+                               data_representation=DataRepresentation.JSON)
+        if status_code != HTTPCodes.OK:
+            raise HoneycombError(
+                "The configuration of interface '{0}' was not successful. "
+                "Status code: {1}.".format(interface, status_code))
+        return resp
 
     @staticmethod
     def set_interface_up(node, interface):
@@ -1380,3 +1397,82 @@ class InterfaceKeywords(object):
                 "The configuration of interface '{0}' was not successful. "
                 "Status code: {1}.".format(interface, status_code))
         return resp
+
+    @staticmethod
+    def create_pbb_sub_interface(node, intf, sub_if_id, params):
+        """Creates a PBB sub-interface on the given interface and sets its
+        parameters.
+
+        :param node: Honeycomb node.
+        :param intf: The interface where PBB sub-interface will be configured.
+        :param sub_if_id: Sub-interface ID.
+        :param params: Configuration parameters of the sub-interface to be
+        created.
+        :type node: dict
+        :type intf: str
+        :type sub_if_id: str or int
+        :type params: dict
+        :return: Content of response.
+        :rtype: bytearray
+        :raises HoneycombError: If the configuration of sub-interface is not
+        successful.
+        """
+
+        interface = intf.replace("/", "%2F")
+        path = "/interface/{0}/sub-interfaces:sub-interfaces/sub-interface/" \
+               "{1}".format(interface, sub_if_id)
+        status_code, resp = HcUtil. \
+            put_honeycomb_data(node, "config_vpp_interfaces", params, path,
+                               data_representation=DataRepresentation.JSON)
+        if status_code != HTTPCodes.OK:
+            raise HoneycombError(
+                "The configuration of PBB sub-interface '{0}' was not "
+                "successful. Status code: {1}.".format(intf, status_code))
+        return resp
+
+    @staticmethod
+    def delete_pbb_sub_interface(node, intf, sub_if_id):
+        """Deletes the given PBB sub-interface.
+
+        :param node: Honeycomb node.
+        :param intf: The interface where PBB sub-interface will be deleted.
+        :param sub_if_id: ID of the PBB sub-interface to be deleted.
+        :type node: dict
+        :type intf: str
+        :type sub_if_id: str or int
+        :return: Content of response.
+        :rtype: bytearray
+        :raises HoneycombError: If the removal of sub-interface is not
+        successful.
+        """
+
+        interface = intf.replace("/", "%2F")
+        path = "/interface/{0}/sub-interfaces:sub-interfaces/sub-interface/" \
+               "{1}".format(interface, sub_if_id)
+
+        status_code, resp = HcUtil. \
+            delete_honeycomb_data(node, "config_vpp_interfaces", path)
+        if status_code != HTTPCodes.OK:
+            raise HoneycombError(
+                "The removal of pbb sub-interface '{0}' was not successful. "
+                "Status code: {1}.".format(intf, status_code))
+        return resp
+
+    @staticmethod
+    def get_pbb_sub_interface_oper_data(node, intf, sub_if_id):
+        """Retrieves PBB sub-interface operational data from Honeycomb.
+
+        :param node: Honeycomb node.
+        :param intf: The interface where PBB sub-interface is located.
+        :param sub_if_id: ID of the PBB sub-interface.
+        :type node: dict
+        :type intf: str
+        :type sub_if_id: str or int
+        :return: PBB sub-interface operational data.
+        :rtype: dict
+        :raises HoneycombError: If the removal of sub-interface is not
+        successful.
+        """
+
+        interface = "{0}.{1}".format(intf, sub_if_id)
+        return InterfaceKeywords.get_interface_oper_data(node, interface)

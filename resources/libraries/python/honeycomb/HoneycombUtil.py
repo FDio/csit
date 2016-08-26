@@ -338,6 +338,7 @@ class HoneycombUtil(object):
 
         base_path = HoneycombUtil.read_path_from_url_file(url_file)
         path = base_path + path
+        logger.trace(path)
         return HTTPRequest.put(node=node, path=path, headers=header,
                                payload=data)
 
