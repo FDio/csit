@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a1d315d_6cec51c8",
+        "filename": "tests/func/gre/gre_encapsulation.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-08-26T10:09:52Z",
+      "side": 1,
+      "message": "I think maybe to add?",
+      "range": {
+        "startLine": 206,
+        "startChar": 10,
+        "endLine": 206,
+        "endChar": 13
+      },
+      "revId": "1252ba0d88c5c8588515e77e065c21cea87746e3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_8ce7ade4",
+        "filename": "tests/func/gre/gre_encapsulation.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 207,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-08-26T10:09:52Z",
+      "side": 1,
+      "message": "please remove",
+      "range": {
+        "startLine": 207,
+        "startChar": 39,
+        "endLine": 207,
+        "endChar": 42
+      },
+      "revId": "1252ba0d88c5c8588515e77e065c21cea87746e3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
