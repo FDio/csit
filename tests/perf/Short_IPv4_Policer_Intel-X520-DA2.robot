@@ -47,9 +47,7 @@
 
 *** Variables ***
 | ${cir}= | ${100}
-| ${eir}= | ${100}
-| ${cb}= | ${100}
-| ${eb}= | ${100}
+| ${eir}= | ${150}
 
 *** Test Cases ***
 | TC01: Verify 64B ref-NDR at 2x 3.1Mpps - DUT IPv4 2r3c-ca policer - 1thread 1core 1rxq
@@ -61,6 +59,8 @@
 | | ${framesize}= | Set Variable | 64
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 3.1mpps
+| | Set Test Variable | ${cb} | ${framesize}
+| | Set Test Variable | ${eb} | ${framesize}
 | | Given Add '1' worker threads and rxqueues '1' without HTT to all DUTs
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
@@ -79,6 +79,8 @@
 | | ${framesize}= | Set Variable | 1518
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 812743pps
+| | Set Test Variable | ${cb} | ${framesize}
+| | Set Test Variable | ${eb} | ${framesize}
 | | Given Add '1' worker threads and rxqueues '1' without HTT to all DUTs
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
@@ -97,6 +99,8 @@
 | | ${framesize}= | Set Variable | 9000
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 138580pps
+| | Set Test Variable | ${cb} | ${framesize}
+| | Set Test Variable | ${eb} | ${framesize}
 | | Given Add '1' worker threads and rxqueues '1' without HTT to all DUTs
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Apply startup configuration on all VPP DUTs
@@ -114,6 +118,8 @@
 | | ${framesize}= | Set Variable | 64
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 5.6mpps
+| | Set Test Variable | ${cb} | ${framesize}
+| | Set Test Variable | ${eb} | ${framesize}
 | | Given Add '2' worker threads and rxqueues '1' without HTT to all DUTs
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
@@ -132,6 +138,8 @@
 | | ${framesize}= | Set Variable | 1518
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 812743pps
+| | Set Test Variable | ${cb} | ${framesize}
+| | Set Test Variable | ${eb} | ${framesize}
 | | Given Add '2' worker threads and rxqueues '1' without HTT to all DUTs
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
@@ -150,6 +158,8 @@
 | | ${framesize}= | Set Variable | 9000
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 138580pps
+| | Set Test Variable | ${cb} | ${framesize}
+| | Set Test Variable | ${eb} | ${framesize}
 | | Given Add '2' worker threads and rxqueues '1' without HTT to all DUTs
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Apply startup configuration on all VPP DUTs
@@ -167,6 +177,8 @@
 | | ${framesize}= | Set Variable | 64
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 8.9mpps
+| | Set Test Variable | ${cb} | ${framesize}
+| | Set Test Variable | ${eb} | ${framesize}
 | | Given Add '4' worker threads and rxqueues '2' without HTT to all DUTs
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
@@ -185,6 +197,8 @@
 | | ${framesize}= | Set Variable | 1518
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 812743pps
+| | Set Test Variable | ${cb} | ${framesize}
+| | Set Test Variable | ${eb} | ${framesize}
 | | Given Add '4' worker threads and rxqueues '2' without HTT to all DUTs
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
@@ -203,6 +217,8 @@
 | | ${framesize}= | Set Variable | 9000
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 138580pps
+| | Set Test Variable | ${cb} | ${framesize}
+| | Set Test Variable | ${eb} | ${framesize}
 | | Given Add '4' worker threads and rxqueues '2' without HTT to all DUTs
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Apply startup configuration on all VPP DUTs
