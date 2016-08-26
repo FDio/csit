@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a1d315d_ac8dc933",
+        "filename": "resources/libraries/python/Routing.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-08-26T09:08:01Z",
+      "side": 1,
+      "message": ".",
+      "range": {
+        "startLine": 36,
+        "startChar": 34,
+        "endLine": 36,
+        "endChar": 35
+      },
+      "revId": "9c853b3846c4fc6cff8ca242912548685e537dde",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_4c7cf520",
+        "filename": "resources/libraries/robot/gre.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-08-26T09:08:01Z",
+      "side": 1,
+      "message": "Please, add documentation part.",
+      "range": {
+        "startLine": 130,
+        "startChar": 22,
+        "endLine": 130,
+        "endChar": 25
+      },
+      "revId": "9c853b3846c4fc6cff8ca242912548685e537dde",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_ac94a937",
+        "filename": "resources/traffic_scripts/send_gre_check_gre_headers.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-08-26T09:08:01Z",
+      "side": 1,
+      "message": "not",
+      "range": {
+        "startLine": 87,
+        "startChar": 43,
+        "endLine": 87,
+        "endChar": 45
+      },
+      "revId": "9c853b3846c4fc6cff8ca242912548685e537dde",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_6c9e9158",
+        "filename": "tests/func/gre/gre_encapsulation.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-08-26T09:08:01Z",
+      "side": 1,
+      "message": "tunnels",
+      "range": {
+        "startLine": 161,
+        "startChar": 31,
+        "endLine": 161,
+        "endChar": 37
+      },
+      "revId": "9c853b3846c4fc6cff8ca242912548685e537dde",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_4ca3d59e",
+        "filename": "tests/func/gre/gre_encapsulation.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-08-26T09:08:01Z",
+      "side": 1,
+      "message": "And",
+      "range": {
+        "startLine": 183,
+        "startChar": 10,
+        "endLine": 183,
+        "endChar": 14
+      },
+      "revId": "9c853b3846c4fc6cff8ca242912548685e537dde",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_2ca0998f",
+        "filename": "tests/func/gre/gre_encapsulation.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-08-26T09:08:01Z",
+      "side": 1,
+      "message": "And",
+      "range": {
+        "startLine": 228,
+        "startChar": 10,
+        "endLine": 228,
+        "endChar": 14
+      },
+      "revId": "9c853b3846c4fc6cff8ca242912548685e537dde",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
