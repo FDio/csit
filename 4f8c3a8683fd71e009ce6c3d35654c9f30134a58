@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a1d315d_2c8659ba",
+        "filename": "tests/func/gre/gre_encapsulation.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-08-26T12:01:26Z",
+      "side": 1,
+      "message": "change TestCase name to be consistent with the rest of the suite.",
+      "range": {
+        "startLine": 163,
+        "startChar": 8,
+        "endLine": 163,
+        "endChar": 37
+      },
+      "revId": "4f8c3a8683fd71e009ce6c3d35654c9f30134a58",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_0c939dfb",
+        "filename": "tests/func/gre/gre_encapsulation.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-08-26T12:01:26Z",
+      "side": 1,
+      "message": "same as above",
+      "range": {
+        "startLine": 213,
+        "startChar": 8,
+        "endLine": 213,
+        "endChar": 45
+      },
+      "revId": "4f8c3a8683fd71e009ce6c3d35654c9f30134a58",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
