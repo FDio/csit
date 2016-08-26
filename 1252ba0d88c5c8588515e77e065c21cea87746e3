@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "3a1d315d_6c033174",
+        "filename": "resources/libraries/robot/gre.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-08-26T10:54:10Z",
+      "side": 1,
+      "message": "Missing Type",
+      "range": {
+        "startLine": 142,
+        "startChar": 66,
+        "endLine": 142,
+        "endChar": 67
+      },
+      "revId": "1252ba0d88c5c8588515e77e065c21cea87746e3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_6c3a1138",
+        "filename": "tests/func/gre/gre_encapsulation.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-08-26T10:54:10Z",
+      "side": 1,
+      "message": "Please, add documentation.",
+      "range": {
+        "startLine": 163,
+        "startChar": 10,
+        "endLine": 163,
+        "endChar": 13
+      },
+      "revId": "1252ba0d88c5c8588515e77e065c21cea87746e3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a1d315d_6cec51c8",
         "filename": "tests/func/gre/gre_encapsulation.robot",
         "patchSetId": 2
