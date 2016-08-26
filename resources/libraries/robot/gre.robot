@@ -125,3 +125,27 @@
 | | | ... | --outer_src_ip | ${outer_src_ip} | --outer_dst_ip | ${outer_dst_ip}
 | | Run Traffic Script On Node
 | | ... | send_gre_check_icmp_headers.py | ${tg_node} | ${args}
+
+| Send GRE and check received GRE header
+| | [Documentation] | TBD
+| | ...
+| | [Arguments] | ${tg_node} | ${tx_if} | ${rx_if}
+| | ... | ${tx_dst_mac} | ${tx_src_mac}
+| | ... | ${tx_outer_dst_ip} | ${tx_outer_src_ip}
+| | ... | ${tx_inner_dst_ip} | ${tx_inner_src_ip}
+| | ... | ${rx_dst_mac} | ${rx_src_mac}
+| | ... | ${rx_outer_dst_ip} | ${rx_outer_src_ip}
+| | ${tx_if_name}= | Get interface name | ${tg_node} | ${tx_if}
+| | ${rx_if_name}= | Get interface name | ${tg_node} | ${rx_if}
+| | ${args}= | Catenate | --tx_if | ${tx_if_name} | --rx_if | ${rx_if_name}
+| | ... | --tx_dst_mac | ${tx_dst_mac} | --tx_src_mac | ${tx_src_mac}
+| | ... | --tx_outer_dst_ip | ${tx_outer_dst_ip}
+| | ... | --tx_outer_src_ip | ${tx_outer_src_ip}
+| | ... | --tx_inner_dst_ip | ${tx_inner_dst_ip}
+| | ... | --tx_inner_src_ip | ${tx_inner_src_ip}
+| | ... | --rx_dst_mac | ${rx_dst_mac}
+| | ... | --rx_src_mac | ${rx_src_mac}
+| | ... | --rx_outer_dst_ip | ${rx_outer_dst_ip}
+| | ... | --rx_outer_src_ip | ${rx_outer_src_ip}
+| | Run Traffic Script On Node
+| | ... | send_gre_check_gre_headers.py | ${tg_node} | ${args}

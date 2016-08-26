@@ -48,11 +48,20 @@
 | ${net1_gw_address}= | 192.168.0.1
 | ${net2_address}= | 192.168.2.0
 | ${net2_host_address}= | 192.168.2.100
+| ${net3_address}= | 192.168.3.0
+| ${net3_host_address}= | 192.168.3.100
 | ${net2_gw_address}= | 192.168.2.1
 | ${dut1_ip_address}= | 192.168.1.1
 | ${dut2_ip_address}= | 192.168.1.2
 | ${dut1_gre_ip}= | 172.16.0.1
 | ${dut2_gre_ip}= | 172.16.0.2
+| ${dut_tun0_ip1}= | 172.16.0.1
+| ${dut_tun0_ip2}= | 172.16.0.2
+| ${dut_tun1_ip1}= | 172.16.1.1
+| ${dut_tun1_ip2}= | 172.16.1.2
+| ${dut1_lo_address}= | 10.0.0.1
+| ${tun0_dst}= | 10.0.0.2
+| ${tun1_dst}= | 10.0.0.3
 | ${prefix}= | 24
 
 *** Test Cases ***
@@ -148,3 +157,87 @@
 | |      ... | ${dut_to_tg_if2_mac} | ${tg_to_dut_if1_mac}
 | |      ... | ${net2_host_address} | ${net1_host_address}
 | |      ... | ${dut2_ip_address} | ${dut1_ip_address}
+
+| TC04: Send through different tunnel
+| | [Documentation]
+| | ... | TBD
+| | [Tags] | 3_NODE_DOUBLE_LINK_TOPO
+| | Given Path for 2-node testing is set
+| | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
+| | And Interfaces in 2-node path are up
+| | ${dut1_lo_index}= | And VPP Create loopback | ${dut_node}
+| | And IP addresses are set on interfaces
+| | ... | ${dut_node} | ${dut_to_tg_if2} | ${dut1_ip_address} | ${prefix}
+| | ... | ${dut_node} | ${dut_to_tg_if1} | ${net1_gw_address} | ${prefix}
+| | ... | ${dut_node} | ${dut1_lo_index} | ${dut1_lo_address} | ${32}
+| | And Add Arp On Dut | ${dut_node} | ${dut_to_tg_if2} | ${dut2_ip_address}
+| | ... | ${tg_to_dut_if2_mac}
+| | And Vpp Route Add | ${dut_node} | ${tun0_dst} | ${32}
+| | ... | ${dut2_ip_address} | ${dut_to_tg_if2}
+| | And Vpp Route Add | ${dut_node} | ${tun1_dst} | ${32}
+| | ... | ${dut2_ip_address} | ${dut_to_tg_if2}
+| | ${dut1_gre0_interface} | ${dut1_gre0_index}=
+| | ... | When GRE tunnel interface is created and up
+| | ... | ${dut_node} | ${dut1_lo_address} | ${tun0_dst}
+| | ${dut1_gre1_interface} | ${dut1_gre1_index}=
+| | ... | When GRE tunnel interface is created and up
+| | ... | ${dut_node} | ${dut1_lo_address} | ${tun1_dst}
+| | And IP addresses are set on interfaces
+| | ... | ${dut_node} | ${dut1_gre0_index} | ${dut_tun0_ip1} | ${prefix}
+| | ... | ${dut_node} | ${dut1_gre1_index} | ${dut_tun1_ip1} | ${prefix}
+| | And Vpp Route Add | ${dut_node} | ${net2_address} | ${prefix}
+| |  ... | ${dut_tun0_ip2} | ${dut1_gre0_index}
+| | And Vpp Route Add | ${dut_node} | ${net3_address} | ${prefix}
+| | ... | ${dut_tun1_ip2} | ${dut1_gre1_index}
+| | Then Send ICMPv4 and check received GRE header
+| | ... | ${tg_node} | ${tg_to_dut_if1} | ${tg_to_dut_if2}
+| | ... | ${dut_to_tg_if1_mac} | ${tg_to_dut_if2_mac}
+| | ... | ${net1_host_address} | ${net2_host_address}
+| | ... | ${dut1_lo_address} | ${tun0_dst}
+| | And Send ICMPv4 and check received GRE header
+| | ... | ${tg_node} | ${tg_to_dut_if1} | ${tg_to_dut_if2}
+| | ... | ${dut_to_tg_if1_mac} | ${tg_to_dut_if2_mac}
+| | ... | ${net1_host_address} | ${net3_host_address}
+| | ... | ${dut1_lo_address} | ${tun1_dst}
+
+| TC05: Route from one tunnel to other tunnel
+| | [Documentation]
+| | ... | TBD
+| | [Tags] | 3_NODE_DOUBLE_LINK_TOPO
+| | Given Path for 2-node testing is set
+| | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
+| | And Interfaces in 2-node path are up
+| | ${dut1_lo_index}= | And VPP Create loopback | ${dut_node}
+| | And IP addresses are set on interfaces
+| | ... | ${dut_node} | ${dut_to_tg_if2} | ${dut1_ip_address} | ${prefix}
+| | ... | ${dut_node} | ${dut_to_tg_if1} | ${net1_gw_address} | ${prefix}
+| | ... | ${dut_node} | ${dut1_lo_index} | ${dut1_lo_address} | ${32}
+| | And Add Arp On Dut | ${dut_node} | ${dut_to_tg_if2} | ${dut2_ip_address}
+| | ... | ${tg_to_dut_if2_mac}
+| | And Vpp Route Add | ${dut_node} | ${tun0_dst} | ${32}
+| | ... | ${dut2_ip_address} | ${dut_to_tg_if2}
+| | And Vpp Route Add | ${dut_node} | ${tun1_dst} | ${32}
+| | ... | ${dut2_ip_address} | ${dut_to_tg_if2}
+#TODO: report bug, remove loopback route if not needed
+| | And Vpp Route Add | ${dut_node} | ${dut1_lo_address} | ${32}
+| | ... | local=${TRUE} | use_sw_index=${FALSE}
+| | ${dut1_gre0_interface} | ${dut1_gre0_index}=
+| | ... | When GRE tunnel interface is created and up
+| | ... | ${dut_node} | ${dut1_lo_address} | ${tun0_dst}
+| | ${dut1_gre1_interface} | ${dut1_gre1_index}=
+| | ... | When GRE tunnel interface is created and up
+| | ... | ${dut_node} | ${dut1_lo_address} | ${tun1_dst}
+| | And IP addresses are set on interfaces
+| | ... | ${dut_node} | ${dut1_gre0_index} | ${dut_tun0_ip1} | ${prefix}
+| | ... | ${dut_node} | ${dut1_gre1_index} | ${dut_tun1_ip1} | ${prefix}
+| | And Vpp Route Add | ${dut_node} | ${net2_address} | ${prefix}
+| |  ... | ${dut_tun0_ip2} | ${dut1_gre0_index}
+| | And Vpp Route Add | ${dut_node} | ${net3_address} | ${prefix}
+| | ... | ${dut_tun1_ip2} | ${dut1_gre1_index}
+| | Then Send GRE and check received GRE header
+| | ... | ${tg_node} | ${tg_to_dut_if2} | ${tg_to_dut_if2}
+| | ... | ${dut_to_tg_if2_mac} | ${tg_to_dut_if2_mac}
+| | ... | ${dut1_lo_address} | ${tun0_dst}
+| | ... | ${net3_host_address} | ${net2_host_address}
+| | ... | ${tg_to_dut_if2_mac} | ${dut_to_tg_if2_mac}
+| | ... | ${tun1_dst} | ${dut1_lo_address}

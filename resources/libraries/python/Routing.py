@@ -24,7 +24,7 @@ class Routing(object):
     @staticmethod
     def vpp_route_add(node, network, prefix_len, gateway=None,
                       interface=None, use_sw_index=True, resolve_attempts=10,
-                      count=1, vrf=None, lookup_vrf=None):
+                      count=1, vrf=None, lookup_vrf=None, local=False):
         """Add route to the VPP node.
 
         :param node: Node to add route on.
@@ -33,6 +33,7 @@ class Routing(object):
         :param gateway: Route gateway address.
         :param interface: Route interface.
         :param vrf: VRF table ID (Optional).
+        :param local: Local or not,
         :param use_sw_index: Use sw_if_index in VAT command.
         :param resolve_attempts: Resolve attempts IP route add parameter.
         :param count: number of IP addresses to add starting from network IP
@@ -48,24 +49,32 @@ class Routing(object):
         :type count: int
         :type vrf: int
         :type lookup_vrf: int
+        :type local: bool
         """
-        if use_sw_index:
-            int_cmd = ('sw_if_index {}'.
-                       format(Topology.get_interface_sw_index(node, interface)))
+        if not local:
+            if use_sw_index:
+                int_cmd = ('sw_if_index {}'.
+                           format(Topology.get_interface_sw_index(node, interface)))
+            else:
+                int_cmd = interface
+
+            rap = 'resolve-attempts {}'.format(resolve_attempts) \
+                if resolve_attempts else ''
+
+            via = 'via {}'.format(gateway) if gateway else ''
+
+            cnt = 'count {}'.format(count) \
+                if count else ''
+
+            vrf = 'vrf {}'.format(vrf) if vrf else ''
+
+            lookup_vrf = 'lookup-in-vrf {}'.format(lookup_vrf) if lookup_vrf else ''
+
+            lcl = ''
+
         else:
-            int_cmd = interface
-
-        rap = 'resolve-attempts {}'.format(resolve_attempts) \
-            if resolve_attempts else ''
-
-        via = 'via {}'.format(gateway) if gateway else ''
-
-        cnt = 'count {}'.format(count) \
-            if count else ''
-
-        vrf = 'vrf {}'.format(vrf) if vrf else ''
-
-        lookup_vrf = 'lookup-in-vrf {}'.format(lookup_vrf) if lookup_vrf else ''
+            int_cmd = via = vrf = rap = cnt = lookup_vrf = ''
+            lcl = 'local'
 
         with VatTerminal(node, json_param=False) as vat:
             vat.vat_terminal_exec_cmd_from_template('add_route.vat',
@@ -76,7 +85,8 @@ class Routing(object):
                                                     interface=int_cmd,
                                                     resolve_attempts=rap,
                                                     count=cnt,
-                                                    lookup_vrf=lookup_vrf)
+                                                    lookup_vrf=lookup_vrf,
+                                                    local=lcl)
 
     @staticmethod
     def add_fib_table(node, network, prefix_len, fib_id, place):
