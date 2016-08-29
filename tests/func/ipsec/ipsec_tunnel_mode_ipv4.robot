@@ -21,7 +21,8 @@
 | ...        | AND          | Setup Topology for IPv4 IPsec testing
 | Test Teardown | Run Keywords | VPP IPsec Show | ${dut_node}
 | ...           | AND          | Show Packet Trace on All DUTs | ${nodes}
-| ...           | AND          | Show vpp trace dump on all DUTs
+| ...           | AND          | Show Vpp Errors on All DUTs
+| ...           | AND          | Show Vpp Trace Dump on All DUTs
 | Documentation | *IPv4 IPsec tunnel mode test suite.*
 | ...
 | ... | *[Top] Network topologies:* TG-DUT1 2-node topology with one link\
@@ -108,7 +109,7 @@
 | | ... | [Top] TG-DUT1.
 | | ... | [Ref] RFC4303.
 | | ... | [Cfg] On DUT1 configure IPsec manual keyed connection with encryption\
-| | ... | algorithm AES-CBC-128 and integrity algorithm SHA-256-128 in tunnel
+| | ... | algorithm AES-CBC-128 and integrity algorithm SHA-256-128 in tunnel\
 | | ... | mode.
 | | ... | [Ver] Send and receive ESP packet between TG and VPP node.
 | | [Tags] | SKIP_PATCH
@@ -129,7 +130,7 @@
 | | ... | [Top] TG-DUT1.
 | | ... | [Ref] RFC4303.
 | | ... | [Cfg] On DUT1 configure IPsec manual keyed connection with encryption\
-| | ... | algorithm AES-CBC-192 and integrity algorithm SHA-256-128 in tunnel
+| | ... | algorithm AES-CBC-192 and integrity algorithm SHA-256-128 in tunnel\
 | | ... | mode.
 | | ... | [Ver] Send and receive ESP packet between TG and VPP node.
 | | ${encr_alg}= | Crypto Alg AES CBC 192
@@ -149,7 +150,7 @@
 | | ... | [Top] TG-DUT1.
 | | ... | [Ref] RFC4303.
 | | ... | [Cfg] On DUT1 configure IPsec manual keyed connection with encryption\
-| | ... | algorithm AES-CBC-256 and integrity algorithm SHA-256-128 in tunnel
+| | ... | algorithm AES-CBC-256 and integrity algorithm SHA-256-128 in tunnel\
 | | ... | mode.
 | | ... | [Ver] Send and receive ESP packet between TG and VPP node.
 | | [Tags] | SKIP_PATCH
@@ -170,7 +171,7 @@
 | | ... | [Top] TG-DUT1.
 | | ... | [Ref] RFC4303.
 | | ... | [Cfg] On DUT1 configure IPsec manual keyed connection with encryption\
-| | ... | algorithm AES-CBC-128 and integrity algorithm SHA-384-192 in tunnel
+| | ... | algorithm AES-CBC-128 and integrity algorithm SHA-384-192 in tunnel\
 | | ... | mode.
 | | ... | [Ver] Send and receive ESP packet between TG and VPP node.
 | | [Tags] | SKIP_PATCH
@@ -191,7 +192,7 @@
 | | ... | [Top] TG-DUT1.
 | | ... | [Ref] RFC4303.
 | | ... | [Cfg] On DUT1 configure IPsec manual keyed connection with encryption\
-| | ... | algorithm AES-CBC-192 and integrity algorithm SHA-384-192 in tunnel
+| | ... | algorithm AES-CBC-192 and integrity algorithm SHA-384-192 in tunnel\
 | | ... | mode.
 | | ... | [Ver] Send and receive ESP packet between TG and VPP node.
 | | [Tags] | SKIP_PATCH
@@ -212,7 +213,7 @@
 | | ... | [Top] TG-DUT1.
 | | ... | [Ref] RFC4303.
 | | ... | [Cfg] On DUT1 configure IPsec manual keyed connection with encryption\
-| | ... | algorithm AES-CBC-256 and integrity algorithm SHA-384-192 in tunnel
+| | ... | algorithm AES-CBC-256 and integrity algorithm SHA-384-192 in tunnel\
 | | ... | mode.
 | | ... | [Ver] Send and receive ESP packet between TG and VPP node.
 | | ${encr_alg}= | Crypto Alg AES CBC 256
@@ -232,7 +233,7 @@
 | | ... | [Top] TG-DUT1.
 | | ... | [Ref] RFC4303.
 | | ... | [Cfg] On DUT1 configure IPsec manual keyed connection with encryption\
-| | ... | algorithm AES-CBC-128 and integrity algorithm SHA-512-256 in tunnel
+| | ... | algorithm AES-CBC-128 and integrity algorithm SHA-512-256 in tunnel\
 | | ... | mode.
 | | ... | [Ver] Send and receive ESP packet between TG and VPP node.
 | | [Tags] | SKIP_PATCH
@@ -253,7 +254,7 @@
 | | ... | [Top] TG-DUT1.
 | | ... | [Ref] RFC4303.
 | | ... | [Cfg] On DUT1 configure IPsec manual keyed connection with encryption\
-| | ... | algorithm AES-CBC-192 and integrity algorithm SHA-512-256 in tunnel
+| | ... | algorithm AES-CBC-192 and integrity algorithm SHA-512-256 in tunnel\
 | | ... | mode.
 | | ... | [Ver] Send and receive ESP packet between TG and VPP node.
 | | [Tags] | SKIP_PATCH
@@ -274,7 +275,7 @@
 | | ... | [Top] TG-DUT1.
 | | ... | [Ref] RFC4303.
 | | ... | [Cfg] On DUT1 configure IPsec manual keyed connection with encryption\
-| | ... | algorithm AES-CBC-256 and integrity algorithm SHA-512-256 in tunnel
+| | ... | algorithm AES-CBC-256 and integrity algorithm SHA-512-256 in tunnel\
 | | ... | mode.
 | | ... | [Ver] Send and receive ESP packet between TG and VPP node.
 | | ${encr_alg}= | Crypto Alg AES CBC 256
@@ -288,3 +289,82 @@
 | | ... | ${encr_alg} | ${encr_key} | ${auth_alg} | ${auth_key} | ${tg_spi}
 | | ... | ${dut_spi} | ${tg_src_ip} | ${dut_src_ip} | ${tg_tun_ip}
 | | ... | ${dut_tun_ip}
+
+| TC13: VPP process ESP packet in Tunnel Mode with AES-CBC-128 encryption and SHA1-96 integrity - different encryption alogrithms used
+| | [Documentation]
+| | ... | [Top] TG-DUT1.
+| | ... | [Cfg] On DUT1 configure IPsec manual keyed connection with encryption\
+| | ... | algorithm AES-CBC-128 and integrity algorithm SHA1-96 in tunnel mode.
+| | ... | [Ver] Send an ESP packet encrypted by encryption key different from\
+| | ... | encryption key stored on VPP node from TG to VPP node and expect no\
+| | ... | response to be received on TG.
+| | ... | [Ref] RFC4303.
+| | ${encr_alg}= | Crypto Alg AES CBC 128
+| | ${auth_alg}= | Integ Alg SHA1 96
+| | Given IPsec Generate Keys | ${encr_alg} | ${auth_alg}
+| | ${encr_key2}= | And Get Second Random String | ${encr_alg} | Crypto
+| | When VPP Setup IPsec Manual Keyed Connection
+| | ... | ${dut_node} | ${dut_if} | ${encr_alg} | ${encr_key} | ${auth_alg}
+| | ... | ${auth_key} | ${dut_spi} | ${tg_spi} | ${dut_src_ip} | ${tg_src_ip}
+| | ... | ${dut_tun_ip} | ${tg_tun_ip}
+| | Then Run Keyword And Expect Error | ESP packet Rx timeout
+| | ... | Send and Receive IPsec Packet | ${tg_node} | ${tg_if} | ${dut_if_mac}
+| | ... | ${encr_alg} | ${encr_key2} | ${auth_alg} | ${auth_key} | ${tg_spi}
+| | ... | ${dut_spi} | ${tg_src_ip} | ${dut_src_ip} | ${tg_tun_ip}
+| | ... | ${dut_tun_ip}
+
+| TC14: VPP process ESP packet in Tunnel Mode with AES-CBC-128 encryption and SHA1-96 integrity - different integrity alogrithms used
+| | [Documentation]
+| | ... | [Top] TG-DUT1.
+| | ... | [Cfg] On DUT1 configure IPsec manual keyed connection with encryption\
+| | ... | algorithm AES-CBC-128 and integrity algorithm SHA1-96 in tunnel mode.
+| | ... | [Ver] Send an ESP packet authenticated by integrity key different\
+| | ... | from integrity key stored on VPP node from TG to VPP node and expect\
+| | ... | no response to be received on TG.
+| | ... | [Ref] RFC4303.
+| | ${encr_alg}= | Crypto Alg AES CBC 128
+| | ${auth_alg}= | Integ Alg SHA1 96
+| | Given IPsec Generate Keys | ${encr_alg} | ${auth_alg}
+| | ${auth_key2}= | And Get Second Random String | ${auth_alg} | Integ
+| | When VPP Setup IPsec Manual Keyed Connection
+| | ... | ${dut_node} | ${dut_if} | ${encr_alg} | ${encr_key} | ${auth_alg}
+| | ... | ${auth_key} | ${dut_spi} | ${tg_spi} | ${dut_src_ip} | ${tg_src_ip}
+| | ... | ${dut_tun_ip} | ${tg_tun_ip}
+| | Then Run Keyword And Expect Error | ESP packet Rx timeout
+| | ... | Send and Receive IPsec Packet | ${tg_node} | ${tg_if} | ${dut_if_mac}
+| | ... | ${encr_alg} | ${encr_key} | ${auth_alg} | ${auth_key2} | ${tg_spi}
+| | ... | ${dut_spi} | ${tg_src_ip} | ${dut_src_ip} | ${tg_tun_ip}
+| | ... | ${dut_tun_ip}
+
+| TC15: VPP process ESP packet in Tunnel Mode with AES-CBC-128 encryption and SHA1-96 integrity - different encryption and integrity alogrithms used
+| | [Documentation]
+| | ... | [Top] TG-DUT1.
+| | ... | [Cfg] On DUT1 configure IPsec manual keyed connection with encryption\
+| | ... | algorithm AES-CBC-128 and integrity algorithm SHA1-96 in tunnel mode.
+| | ... | [Ver] Send an ESP packet authenticated by integrity key and encrypted\
+| | ... | by encryption key different from integrity and encryption keys stored\
+| | ... | on VPP node from TG to VPP node and expect no response to be received\
+| | ... | on TG.
+| | ... | [Ref] RFC4303.
+| | ${encr_alg}= | Crypto Alg AES CBC 128
+| | ${auth_alg}= | Integ Alg SHA1 96
+| | Given IPsec Generate Keys | ${encr_alg} | ${auth_alg}
+| | ${encr_key2}= | And Get Second Random String | ${encr_alg} | Crypto
+| | ${auth_key2}= | And Get Second Random String | ${auth_alg} | Integ
+| | When VPP Setup IPsec Manual Keyed Connection
+| | ... | ${dut_node} | ${dut_if} | ${encr_alg} | ${encr_key} | ${auth_alg}
+| | ... | ${auth_key} | ${dut_spi} | ${tg_spi} | ${dut_src_ip} | ${tg_src_ip}
+| | ... | ${dut_tun_ip} | ${tg_tun_ip}
+| | Then Run Keyword And Expect Error | ESP packet Rx timeout
+| | ... | Send and Receive IPsec Packet | ${tg_node} | ${tg_if} | ${dut_if_mac}
+| | ... | ${encr_alg} | ${encr_key2} | ${auth_alg} | ${auth_key2} | ${tg_spi}
+| | ... | ${dut_spi} | ${tg_src_ip} | ${dut_src_ip} | ${tg_tun_ip}
+| | ... | ${dut_tun_ip}
+
+*** Keywords ***
+| Get Second Random String
+| | [Arguments] | ${req_alg} | ${req_type}
+| | ${req_key_len}= | Run Keyword | And Get ${req_type} Alg Key Len | ${req_alg}
+| | :FOR | ${index} | IN RANGE | 100
+| | | ${req_key}= | And Generate Random String | ${req_key_len}
+| | | Return From Keyword If | '${req_key}' != '${encr_key}' | ${req_key}
