@@ -18,6 +18,7 @@
 | Library | resources.libraries.python.DUTSetup
 | Library | resources.libraries.python.TGSetup
 | Library | resources/libraries/python/VppConfigGenerator.py
+| Library | resources/libraries/python/VppCounters.py
 | Library | Collections
 
 *** Keywords ***
@@ -34,6 +35,12 @@
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | Vpp show version verbose | ${nodes['${dut}']}
+
+| Show Vpp Errors on All DUTs
+| | [Documentation] | Show VPP errors verbose on all DUTs
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | Vpp Show Errors | ${nodes['${dut}']}
 
 | Show vpp trace dump on all DUTs
 | | [Documentation] | Save API trace and dump output on all DUTs
