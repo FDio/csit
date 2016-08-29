@@ -174,8 +174,6 @@ def main():
 
     sent_packets = []
 
-    ip_pkt = None
-
     if is_ipv4:
         ip_pkt = IP(src=src_ip, dst=dst_ip) / \
                  ICMP()
@@ -195,7 +193,7 @@ def main():
     pkt_recv = rxq.recv(2, sent_packets)
 
     if pkt_recv is None:
-        raise RuntimeError('Rx timeout')
+        raise RuntimeError('ESP packet Rx timeout')
 
     if is_ipv4:
         check_ipv4(pkt_recv, src_tun, dst_ip, src_ip, sa_in)
