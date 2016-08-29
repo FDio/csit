@@ -227,10 +227,9 @@ class IPsecUtil(object):
         """
         ckey = crypto_key.encode('hex')
         ikey = integ_key.encode('hex')
-        tunnel = ''
-        if tunnel_src is not None and tunnel_dst is not None:
-            tunnel = 'tunnel_src {0} tunnel_dst {1}'.format(tunnel_src,
-                                                            tunnel_dst)
+        tunnel = 'tunnel_src {0} tunnel_dst {1}'.format(tunnel_src, tunnel_dst)\
+            if tunnel_src is not None and tunnel_dst is not None else ''
+
         out = VatExecutor.cmd_from_template(node,
                                             "ipsec/ipsec_sad_add_entry.vat",
                                             sad_id=sad_id, spi=spi,
@@ -267,10 +266,9 @@ class IPsecUtil(object):
         :type spd_id: int
         :type interface: str or int
         """
-        if isinstance(interface, basestring):
-            sw_if_index = Topology.get_interface_sw_index(node, interface)
-        else:
-            sw_if_index = interface
+        sw_if_index = Topology.get_interface_sw_index(node, interface)\
+            if isinstance(interface, basestring) else interface
+
         out = VatExecutor.cmd_from_template(node,
                                             "ipsec/ipsec_interface_add_spd.vat",
                                             spd_id=spd_id, sw_if_id=sw_if_index)
