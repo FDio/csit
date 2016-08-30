@@ -14,8 +14,8 @@
 """Routing utilities library."""
 
 from resources.libraries.python.VatExecutor import VatTerminal
-from resources.libraries.python.topology import Topology
 from resources.libraries.python.ssh import exec_cmd_no_error
+from resources.libraries.python.InterfaceUtil import InterfaceUtil
 
 
 class Routing(object):
@@ -57,7 +57,7 @@ class Routing(object):
         """
         if use_sw_index:
             int_cmd = ('sw_if_index {}'.
-                       format(Topology.get_interface_sw_index(node, interface)))
+                       format(InterfaceUtil().get_sw_if_index(node, interface)))
         else:
             int_cmd = interface
 
