@@ -1,0 +1,1 @@
+ikev2_profile_set_ts name {name} protocol {protocol_number} start_port {start_port} end_port {end_port} start_addr {start_addr} end_addr {end_addr} {place}
