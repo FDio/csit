@@ -349,3 +349,13 @@
 | | ...                 | --src_ip | ${src_ip} | --dst_ip | ${tgt_ip}
 | | Run Keyword And Expect Error | ARP reply timeout
 | | ... | Run Traffic Script On Node | arp_request.py | ${tg_node} | ${args}
+
+| Send IKEv2 Packet
+| | [Arguments] | ${tg_node} | ${src_ip} | ${dst_ip} | ${src_mac} |
+| | ... | ${dst_mac} | ${tx_port} | ${rSpi} | ${rEnc} | ${rAuth}
+| | ${tx_port_name}= | Get interface name | ${tg_node} | ${tx_port}
+| | ${args}= | Catenate | --src_mac | ${src_mac} | --dst_mac |
+| | ... | ${dst_mac} | --src_ip | ${src_ip} | --dst_ip | ${dst_ip} |
+| | ... | --tx_if | ${tx_port_name} | --rSpi ${rSpi} | --rEnc ${rEnc} | --rAuth ${rAuth}
+| | Run Traffic Script On Node | ikev2_traffic.py | ${tg_node} |
+| | ... | ${args}
