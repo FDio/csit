@@ -431,3 +431,50 @@
 | | ... | --path_1_mac | ${rx_dst_mac_1} | --path_2_mac | ${rx_dst_mac_2}
 | | Run Traffic Script On Node | send_icmp_check_multipath.py | ${tg_node}
 | | ... | ${args}
+
+| Send IKEv2 Packet
+| | [Documentation] | Send encrypted ICMP packet and\
+| | ...             | receive encrypted packet with IPsec.
+| | ...
+| | ... | *Arguments:*
+| | ...
+| | ... | _NOTE:_ Arguments are based on topology:
+| | ...             | TG(if1)<->(if1)DUT
+| | ...
+| | ... | - node - TG node. Type: dictionary
+| | ... | - src_ip - Source IP address. Type: string
+| | ... | - dst_ip - Destination IP address. Type: string
+| | ... | - src_tunnel_ip - Local tunnel IP address. Type: string
+| | ... | - dst_tunnel_ip - Remote tunnel IP address. Type: string
+| | ... | - src_mac - Source MAC address. Type: string
+| | ... | - dst_mac - Destination MAC address. Type: string
+| | ... | - tx_port - TG Interface. Type: string
+| | ... | - rSpi - Remote SPI. Type: integer
+| | ... | - rEnc - Remote Encryption key. Type: string
+| | ... | - rAuth - Remote Integrity key. Type: string
+| | ... | - lSpi - Local SPI. Type: integer
+| | ... | - lEnc - Local Encryption key. Type: string
+| | ... | - lAuth - Local Integrity key. Type: string
+| | ...
+| | ... | *Return:*
+| | ... | - No value returned
+| | ...
+| | ... | *Example:*
+| | ... | \| ${encr_alg}= \| Crypto Alg AES CBC 128 \|
+| | ... | \| ${auth_alg}= \| Integ Alg SHA1 96 \|
+| | ... | \| Send IKEv2 Packet \| ${nodes['TG']} \| 10.0.0.10 \| 10.0.0.5 \
+| | ... | \| 10.0.10.1 \| 10.0.5.1 \| 52:54:00:d4:d8:22 \| 52:54:00:d4:d8:21 \
+| | ... | \| eth0 \| ${1001} \| sixteenbytes_key \| twentybytessecretkey \
+| | ... | \| ${1000} \| sixteenbytes_key \| twentybytessecretkey \|
+| | ...
+| | [Arguments] | ${tg_node} | ${src_ip} | ${dst_ip} | ${src_tun_ip}
+| | ... | ${dst_tun_ip} | ${src_mac} | ${dst_mac} | ${tx_port} | ${rSpi}
+| | ... | ${rEnc} | ${rAuth} | ${lSpi} | ${lEnc} | ${lAuth}
+| | ${tx_port_name}= | Get interface name | ${tg_node} | ${tx_port}
+| | ${args}= | Catenate | --src_mac ${src_mac} | --dst_mac ${dst_mac}
+| | ... | --src_ip ${src_ip} | --dst_ip ${dst_ip}
+| | ... | --src_tun_ip ${src_tun_ip} | --dst_tun_ip ${dst_tun_ip}
+| | ... | --tx_if ${tx_port_name} | --rSpi ${rSpi} | --rEnc ${rEnc} |
+| | ... | --rAuth ${rAuth} | --lSpi ${lSpi} | --lEnc ${lEnc} | --lAuth ${lAuth}
+| | Run Traffic Script On Node | ikev2_traffic.py | ${tg_node} |
+| | ... | ${args}
