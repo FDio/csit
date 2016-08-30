@@ -691,7 +691,7 @@
 | | Given Add '1' worker threads and rxqueues '1' without HTT to all DUTs
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
-| | And   Add Enable Vhost User to all DUTs| | And   Add Enable Vhost User to all DUTs
+| | And   Add Enable Vhost User to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
 | | When  L2 xconnect with Vhost-User initialized in a 3-node circular topology
 | | ...   | ${sock1} | ${sock2}
