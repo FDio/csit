@@ -552,6 +552,7 @@
 | | Given Add '4' worker threads and rxqueues '2' without HTT to all DUTs
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
+| | And   Apply startup configuration on all VPP DUTs
 | | When Lisp IPv4 forwarding initialized in a 3-node circular topology
 | | ...  | ${dut1_to_dut2_ip4} | ${dut1_to_tg_ip4} | ${dut2_to_dut1_ip4}
 | | ...  | ${dut2_to_tg_ip4} | ${prefix4}
@@ -1717,6 +1718,7 @@
 | | Given Add '4' worker threads and rxqueues '2' without HTT to all DUTs
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
+| | And   Apply startup configuration on all VPP DUTs
 | | When Lisp IPv4 over IPv6 forwarding initialized in a 3-node circular topology
 | | ...  | ${dut1_to_dut2_ip4o6} | ${dut1_to_tg_ip4o6} | ${dut2_to_dut1_ip4o6}
 | | ...  | ${dut2_to_tg_ip4o6} | ${tg_prefix4o6} | ${dut_prefix4o6}
