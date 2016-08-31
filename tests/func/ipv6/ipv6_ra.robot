@@ -47,6 +47,7 @@
 | | ... | On DUT1 configure IPv6 interface on the link to TG. Make TG wait\
 | | ... | for IPv6 Router Advertisement packet to be sent out by DUT1 and
 | | ... | verify the received RA packet is correct.
+| | [Tags] | EXPECTED_FAILING
 | | Given Path for 3-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And Interfaces in 3-node path are up

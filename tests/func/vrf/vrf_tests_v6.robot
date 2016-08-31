@@ -407,3 +407,5 @@
 | | ... | ${dut2_to_dut1_ip2} | ${dut1_to_dut2_if2} | vrf=${fib_table_2}
 | | And Vpp Route Add | ${dut2_node} | ${tg_dut1_ip2} | ${ip_prefix}
 | | ... | ${dut1_to_dut2_ip2} | ${dut2_to_dut1_if2} | vrf=${fib_table_2}
+
+| | Vpp All RA Suppress Link Layer | ${nodes}
