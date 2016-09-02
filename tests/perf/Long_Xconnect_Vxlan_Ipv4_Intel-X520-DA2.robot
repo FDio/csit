@@ -49,6 +49,10 @@
 | ... | node interfaces.
 | ... | *[Ref] Applicable standard specifications:* RFC2544, RFC7348.
 
+*** Variables ***
+#X520-DA2 bandwidth limit
+| ${s_limit} | ${10000000000}
+
 *** Test Cases ***
 | TC01: 64B NDR binary search - DUT L2XC with VXLANoIPv4 - 1thread 1core 1rxq
 | | [Documentation]
@@ -56,9 +60,9 @@
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for 64 Byte frames
 | | ... | using binary search start at 10GE linerate, step 100kpps.
 | | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | NDR
-| | ${framesize}= | Set Variable | 64
-| | ${min_rate}= | Set Variable | 100000
-| | ${max_rate}= | Set Variable | ${10Ge_linerate_pps_114B}
+| | ${framesize}= | Set Variable | ${64}
+| | ${min_rate}= | Set Variable | ${100000}
+| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 50}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
@@ -78,9 +82,9 @@
 | | ... | 1 receive queue per NIC port. [Ver] Find PDR for 64 Byte frames
 | | ... | using binary search start at 10GE linerate, step 100kpps, LT=0.5%.
 | | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | PDR | SKIP_PATCH
-| | ${framesize}= | Set Variable | 64
-| | ${min_rate}= | Set Variable | 100000
-| | ${max_rate}= | Set Variable | ${10Ge_linerate_pps_114B}
+| | ${framesize}= | Set Variable | ${64}
+| | ${min_rate}= | Set Variable | ${100000}
+| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 50}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
@@ -102,9 +106,9 @@
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for 1518 Byte frames
 | | ... | using binary search start at 10GE linerate, step 10kpps.
 | | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | NDR
-| | ${framesize}= | Set Variable | 1518
-| | ${min_rate}= | Set Variable | 10000
-| | ${max_rate}= | Set Variable | ${10Ge_linerate_pps_1568B}
+| | ${framesize}= | Set Variable | ${1518}
+| | ${min_rate}= | Set Variable | ${10000}
+| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 50}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
@@ -123,9 +127,9 @@
 | | ... | 1 receive queue per NIC port. [Ver] Find PDR for 1518 Byte frames
 | | ... | using binary search start at 10GE linerate, step 10kpps, LT=0.5%.
 | | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | PDR | SKIP_PATCH
-| | ${framesize}= | Set Variable | 1518
-| | ${min_rate}= | Set Variable | 10000
-| | ${max_rate}= | Set Variable | ${10Ge_linerate_pps_1568B}
+| | ${framesize}= | Set Variable | ${1518}
+| | ${min_rate}= | Set Variable | ${10000}
+| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 50}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
@@ -146,9 +150,9 @@
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for 9000 Byte frames
 | | ... | using binary search start at 10GE linerate, step 5kpps.
 | | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | NDR
-| | ${framesize}= | Set Variable | 9000
-| | ${min_rate}= | Set Variable | 5000
-| | ${max_rate}= | Set Variable | ${10Ge_linerate_pps_9050B}
+| | ${framesize}= | Set Variable | ${9000}
+| | ${min_rate}= | Set Variable | ${5000}
+| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 50}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
@@ -167,9 +171,9 @@
 | | ... | 1 receive queue per NIC port. [Ver] Find PDR for 9000 Byte frames
 | | ... | using binary search start at 10GE linerate, step 5kpps, LT=0.5%.
 | | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | PDR | SKIP_PATCH
-| | ${framesize}= | Set Variable | 9000
-| | ${min_rate}= | Set Variable | 5000
-| | ${max_rate}= | Set Variable | ${10Ge_linerate_pps_9050B}
+| | ${framesize}= | Set Variable | ${9000}
+| | ${min_rate}= | Set Variable | ${5000}
+| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 50}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
@@ -190,9 +194,9 @@
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for 64 Byte frames
 | | ... | using binary search start at 10GE linerate, step 100kpps.
 | | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | NDR
-| | ${framesize}= | Set Variable | 64
-| | ${min_rate}= | Set Variable | 100000
-| | ${max_rate}= | Set Variable | ${10Ge_linerate_pps_114B}
+| | ${framesize}= | Set Variable | ${64}
+| | ${min_rate}= | Set Variable | ${100000}
+| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 50}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
@@ -212,9 +216,9 @@
 | | ... | 1 receive queue per NIC port. [Ver] Find PDR for 64 Byte frames
 | | ... | using binary search start at 10GE linerate, step 100kpps, LT=0.5%.
 | | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | PDR | SKIP_PATCH
-| | ${framesize}= | Set Variable | 64
-| | ${min_rate}= | Set Variable | 100000
-| | ${max_rate}= | Set Variable | ${10Ge_linerate_pps_114B}
+| | ${framesize}= | Set Variable | ${64}
+| | ${min_rate}= | Set Variable | ${100000}
+| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 50}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
@@ -236,9 +240,9 @@
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for 1518 Byte frames
 | | ... | using binary search start at 10GE linerate, step 10kpps.
 | | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | NDR | SKIP_PATCH
-| | ${framesize}= | Set Variable | 1518
-| | ${min_rate}= | Set Variable | 10000
-| | ${max_rate}= | Set Variable | ${10Ge_linerate_pps_1568B}
+| | ${framesize}= | Set Variable | ${1518}
+| | ${min_rate}= | Set Variable | ${10000}
+| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 50}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
@@ -257,9 +261,9 @@
 | | ... | 1 receive queue per NIC port. [Ver] Find PDR for 1518 Byte frames
 | | ... | using binary search start at 10GE linerate, step 10kpps, LT=0.5%.
 | | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | PDR | SKIP_PATCH
-| | ${framesize}= | Set Variable | 1518
-| | ${min_rate}= | Set Variable | 10000
-| | ${max_rate}= | Set Variable | ${10Ge_linerate_pps_1568B}
+| | ${framesize}= | Set Variable | ${1518}
+| | ${min_rate}= | Set Variable | ${10000}
+| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 50}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
@@ -280,9 +284,9 @@
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for 9000 Byte frames
 | | ... | using binary search start at 10GE linerate, step 5kpps.
 | | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | NDR | SKIP_PATCH
-| | ${framesize}= | Set Variable | 9000
-| | ${min_rate}= | Set Variable | 5000
-| | ${max_rate}= | Set Variable | ${10Ge_linerate_pps_9050B}
+| | ${framesize}= | Set Variable | ${9000}
+| | ${min_rate}= | Set Variable | ${5000}
+| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 50}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
@@ -301,9 +305,9 @@
 | | ... | 1 receive queue per NIC port. [Ver] Find PDR for 9000 Byte frames
 | | ... | using binary search start at 10GE linerate, step 5kpps, LT=0.5%.
 | | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | PDR | SKIP_PATCH
-| | ${framesize}= | Set Variable | 9000
-| | ${min_rate}= | Set Variable | 5000
-| | ${max_rate}= | Set Variable | ${10Ge_linerate_pps_9050B}
+| | ${framesize}= | Set Variable | ${9000}
+| | ${min_rate}= | Set Variable | ${5000}
+| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 50}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
@@ -324,9 +328,9 @@
 | | ... | 2 receive queues per NIC port. [Ver] Find NDR for 64 Byte frames
 | | ... | using binary search start at 10GE linerate, step 100kpps.
 | | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | NDR
-| | ${framesize}= | Set Variable | 64
-| | ${min_rate}= | Set Variable | 100000
-| | ${max_rate}= | Set Variable | ${10Ge_linerate_pps_114B}
+| | ${framesize}= | Set Variable | ${64}
+| | ${min_rate}= | Set Variable | ${100000}
+| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 50}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
@@ -346,9 +350,9 @@
 | | ... | 2 receive queues per NIC port. [Ver] Find PDR for 64 Byte frames
 | | ... | using binary search start at 10GE linerate, step 100kpps, LT=0.5%.
 | | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | PDR | SKIP_PATCH
-| | ${framesize}= | Set Variable | 64
-| | ${min_rate}= | Set Variable | 100000
-| | ${max_rate}= | Set Variable | ${10Ge_linerate_pps_114B}
+| | ${framesize}= | Set Variable | ${64}
+| | ${min_rate}= | Set Variable | ${100000}
+| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 50}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
@@ -370,9 +374,9 @@
 | | ... | 2 receive queues per NIC port. [Ver] Find NDR for 1518 Byte frames
 | | ... | using binary search start at 10GE linerate, step 10kpps.
 | | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | NDR | SKIP_PATCH
-| | ${framesize}= | Set Variable | 1518
-| | ${min_rate}= | Set Variable | 10000
-| | ${max_rate}= | Set Variable | ${10Ge_linerate_pps_1568B}
+| | ${framesize}= | Set Variable | ${1518}
+| | ${min_rate}= | Set Variable | ${10000}
+| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 50}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
@@ -391,9 +395,9 @@
 | | ... | 2 receive queues per NIC port. [Ver] Find PDR for 1518 Byte frames
 | | ... | using binary search start at 10GE linerate, step 10kpps, LT=0.5%.
 | | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | PDR | SKIP_PATCH
-| | ${framesize}= | Set Variable | 1518
-| | ${min_rate}= | Set Variable | 10000
-| | ${max_rate}= | Set Variable | ${10Ge_linerate_pps_1568B}
+| | ${framesize}= | Set Variable | ${1518}
+| | ${min_rate}= | Set Variable | ${10000}
+| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 50}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
@@ -414,9 +418,9 @@
 | | ... | 2 receive queues per NIC port. [Ver] Find NDR for 9000 Byte frames
 | | ... | using binary search start at 10GE linerate, step 5kpps.
 | | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | NDR | SKIP_PATCH
-| | ${framesize}= | Set Variable | 9000
-| | ${min_rate}= | Set Variable | 5000
-| | ${max_rate}= | Set Variable | ${10Ge_linerate_pps_9050B}
+| | ${framesize}= | Set Variable | ${9000}
+| | ${min_rate}= | Set Variable | ${5000}
+| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 50}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
@@ -435,9 +439,9 @@
 | | ... | 2 receive queues per NIC port. [Ver] Find PDR for 9000 Byte frames
 | | ... | using binary search start at 10GE linerate, step 5kpps, LT=0.5%.
 | | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | PDR | SKIP_PATCH
-| | ${framesize}= | Set Variable | 9000
-| | ${min_rate}= | Set Variable | 5000
-| | ${max_rate}= | Set Variable | ${10Ge_linerate_pps_9050B}
+| | ${framesize}= | Set Variable | ${9000}
+| | ${min_rate}= | Set Variable | ${5000}
+| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 50}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
