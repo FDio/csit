@@ -148,7 +148,7 @@ class TrafficGenerator(object):
         self._node = tg_node
 
         if tg_node['subtype'] == NodeSubTypeTG.TREX:
-            trex_path = "/opt/trex-core-2.07"
+            trex_path = "/opt/trex-core-2.08"
 
             ssh = SSH()
             ssh.connect(tg_node)
@@ -223,7 +223,7 @@ class TrafficGenerator(object):
                 # start T-rex
                 (ret, _, _) = ssh.exec_command(
                     "sh -c 'cd {0}/scripts/ && "
-                    "sudo nohup ./t-rex-64 -i -c 7 --iom 0 > /dev/null 2>&1 &'"
+                    "sudo nohup ./t-rex-64 -i -c 8 --iom 0 > /dev/null 2>&1 &'"
                     "> /dev/null"\
                     .format(trex_path))
                 if int(ret) != 0:
