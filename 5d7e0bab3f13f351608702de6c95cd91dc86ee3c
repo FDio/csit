@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3a1d315d_f7737d13",
+        "filename": "tests/func/lisp/lisp_ipv4_lispgpe_ipv4.robot",
+        "patchSetId": 29
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-09-05T12:42:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a1d315d_57f8f17b",
+      "range": {
+        "startLine": 140,
+        "startChar": 49,
+        "endLine": 140,
+        "endChar": 57
+      },
+      "revId": "5d7e0bab3f13f351608702de6c95cd91dc86ee3c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a1d315d_f7eeddb3",
         "filename": "tests/func/lisp/lisp_ipv4_lispgpe_ipv4.robot",
         "patchSetId": 29
@@ -36,6 +60,30 @@
       "writtenOn": "2016-09-05T11:52:01Z",
       "side": 1,
       "message": "missing whitespace",
+      "range": {
+        "startLine": 148,
+        "startChar": 28,
+        "endLine": 148,
+        "endChar": 30
+      },
+      "revId": "5d7e0bab3f13f351608702de6c95cd91dc86ee3c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_d7608137",
+        "filename": "tests/func/lisp/lisp_ipv4_lispgpe_ipv4.robot",
+        "patchSetId": 29
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-09-05T12:42:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a1d315d_f7eeddb3",
       "range": {
         "startLine": 148,
         "startChar": 28,
