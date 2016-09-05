@@ -57,7 +57,6 @@
 
 *** Test Cases ***
 | TC01: BMR, then an IPv4 prefix is assigned
-| | [Tags] | EXPECTED_FAILING
 | | [Documentation] |
 | | ... | Basic Mapping Rule https://tools.ietf.org/html/rfc7597#section-5.2\
 | | ... | IPv4 prefix length + ea bits length < 32 (o + r < 32)
@@ -163,7 +162,6 @@
 
 
 | TC04: End user IPv6 prefix is 64
-| | [Tags] | EXPECTED_FAILING
 | | [Documentation] |
 | | ... | Supported End-User IPv6 prefix length is 64 bit.
 | | ...
