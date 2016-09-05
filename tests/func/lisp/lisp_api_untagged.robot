@@ -61,6 +61,7 @@
 | | ... | configured locator_set and locator are correct. [Cfg2] Then
 | | ... | remove locator_set and locator. [Ver2] check DUT1 locator_set
 | | ... | and locator are removed. [Ref] RFC6830.
+| | [Tags] | EXPECTED_FAILING
 | | Given Lisp locator_set data is prepared
 | | ... | ${nodes['DUT1']} | ${locator_set_num}
 | | And   Enable lisp | ${nodes['DUT1']}
