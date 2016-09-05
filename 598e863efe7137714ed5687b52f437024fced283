@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3a1d315d_770e4d36",
+        "filename": "resources/libraries/python/L2Util.py",
+        "patchSetId": 28
+      },
+      "lineNbr": 221,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-09-05T11:38:37Z",
+      "side": 1,
+      "message": "Done\nMoved to IPUtil.py",
+      "parentUuid": "3a1d315d_81408b57",
+      "range": {
+        "startLine": 221,
+        "startChar": 8,
+        "endLine": 221,
+        "endChar": 31
+      },
+      "revId": "598e863efe7137714ed5687b52f437024fced283",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a1d315d_412273ba",
         "filename": "resources/libraries/python/L2Util.py",
         "patchSetId": 28
@@ -36,6 +60,30 @@
       "writtenOn": "2016-09-02T13:50:35Z",
       "side": 1,
       "message": "What about to have it ready for IPv6 too? E.g by using param ip_ver with default value ipv4...",
+      "range": {
+        "startLine": 227,
+        "startChar": 15,
+        "endLine": 227,
+        "endChar": 44
+      },
+      "revId": "598e863efe7137714ed5687b52f437024fced283",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_5713515c",
+        "filename": "resources/libraries/python/L2Util.py",
+        "patchSetId": 28
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-09-05T11:38:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a1d315d_412273ba",
       "range": {
         "startLine": 227,
         "startChar": 15,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "3a1d315d_1734b9dc",
+        "filename": "resources/libraries/python/L2Util.py",
+        "patchSetId": 28
+      },
+      "lineNbr": 231,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-09-05T11:38:37Z",
+      "side": 1,
+      "message": "Removed.\nIPv4Util.set_linux_interface_ip moved to IPUtil.",
+      "parentUuid": "3a1d315d_61256fc1",
+      "range": {
+        "startLine": 231,
+        "startChar": 8,
+        "endLine": 231,
+        "endChar": 34
+      },
+      "revId": "598e863efe7137714ed5687b52f437024fced283",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a1d315d_e1185f86",
         "filename": "resources/libraries/python/LispSetup.py",
         "patchSetId": 28
@@ -82,6 +154,30 @@
       "writtenOn": "2016-09-02T13:50:35Z",
       "side": 1,
       "message": "disable.",
+      "range": {
+        "startLine": 178,
+        "startChar": 50,
+        "endLine": 178,
+        "endChar": 57
+      },
+      "revId": "598e863efe7137714ed5687b52f437024fced283",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_5c5ed846",
+        "filename": "resources/libraries/python/LispSetup.py",
+        "patchSetId": 28
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-09-05T11:38:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a1d315d_e1185f86",
       "range": {
         "startLine": 178,
         "startChar": 50,
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "3a1d315d_1c2f40a3",
+        "filename": "resources/libraries/robot/lisp/lispgpe.robot",
+        "patchSetId": 28
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-09-05T11:38:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a1d315d_5c3a58ce",
+      "range": {
+        "startLine": 15,
+        "startChar": 18,
+        "endLine": 15,
+        "endChar": 25
+      },
+      "revId": "598e863efe7137714ed5687b52f437024fced283",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a1d315d_1c62a0d8",
         "filename": "resources/libraries/robot/lisp/lispgpe.robot",
         "patchSetId": 28
@@ -128,6 +248,30 @@
       "writtenOn": "2016-09-02T13:50:35Z",
       "side": 1,
       "message": "I would prefer dut1_interface as the interface name from vpp point of view is e.g. \u0027GigabitEthernet0/4/0\u0027 but here is expect \u0027port1\u0027 (what is in fact also interface name but not the one used in vpp world...)",
+      "range": {
+        "startLine": 30,
+        "startChar": 12,
+        "endLine": 30,
+        "endChar": 25
+      },
+      "revId": "598e863efe7137714ed5687b52f437024fced283",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_bc1dec75",
+        "filename": "resources/libraries/robot/lisp/lispgpe.robot",
+        "patchSetId": 28
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-09-05T11:38:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a1d315d_1c62a0d8",
       "range": {
         "startLine": 30,
         "startChar": 12,
@@ -163,6 +307,30 @@
     },
     {
       "key": {
+        "uuid": "3a1d315d_fc2b6492",
+        "filename": "resources/libraries/robot/lisp/lispgpe.robot",
+        "patchSetId": 28
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-09-05T11:38:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a1d315d_1c34e0dc",
+      "range": {
+        "startLine": 39,
+        "startChar": 48,
+        "endLine": 39,
+        "endChar": 55
+      },
+      "revId": "598e863efe7137714ed5687b52f437024fced283",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a1d315d_3c379ce5",
         "filename": "resources/libraries/robot/lisp/lispgpe.robot",
         "patchSetId": 28
@@ -186,6 +354,30 @@
     },
     {
       "key": {
+        "uuid": "3a1d315d_dc18a886",
+        "filename": "resources/libraries/robot/lisp/lispgpe.robot",
+        "patchSetId": 28
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-09-05T11:38:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a1d315d_3c379ce5",
+      "range": {
+        "startLine": 45,
+        "startChar": 20,
+        "endLine": 45,
+        "endChar": 27
+      },
+      "revId": "598e863efe7137714ed5687b52f437024fced283",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a1d315d_3c931ca5",
         "filename": "tests/func/lisp/lisp_ipv4_lispgpe_ipv4.robot",
         "patchSetId": 28
@@ -197,6 +389,30 @@
       "writtenOn": "2016-09-02T13:50:35Z",
       "side": 1,
       "message": "Please, use one KW e.g. \"Setup VRF on DUT\" and pass arguments there instead of creating two identical KWs with different values of parameters...",
+      "range": {
+        "startLine": 134,
+        "startChar": 2,
+        "endLine": 184,
+        "endChar": 71
+      },
+      "revId": "598e863efe7137714ed5687b52f437024fced283",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_d7888124",
+        "filename": "tests/func/lisp/lisp_ipv4_lispgpe_ipv4.robot",
+        "patchSetId": 28
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-09-05T11:38:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a1d315d_3c931ca5",
       "range": {
         "startLine": 134,
         "startChar": 2,
