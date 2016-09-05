@@ -62,6 +62,7 @@
 | | ... | [Cfg2] Reconf LISP.
 | | ... | [Ver2] Verify packets are received again via LISP tunnel.
 | | ... | [Ref] RFC6830.
+| | [Tags] | EXPECTED_FAILING
 | | Given Path for 3-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And   Interfaces in 3-node path are up
@@ -301,6 +302,7 @@
 | | ... | [Cfg3] Re-enable LISP.
 | | ... | [Ver3] Verify packets are received again via LISP tunnel.
 | | ... | [Ref] RFC6830.
+| | [Tags] | EXPECTED_FAILING
 | | Given Path for 3-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And   Interfaces in 3-node path are up
