@@ -53,7 +53,6 @@
 
 *** Test Cases ***
 | TC01: MAP-T test
-| | [Tags] | EXPECTED_FAILING
 | | [Documentation] |
 | | ... | Test to check map-t address translation.
 | | [Setup] | Set interfaces IP addresses and routes
