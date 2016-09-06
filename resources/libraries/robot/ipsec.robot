@@ -122,7 +122,7 @@
 | | VPP Set If IPv6 Addr | ${dut_node} | ${dut_lo} | ${dut_lo_ip6} | ${ip6_plen}
 | | Add IP Neighbor | ${dut_node} | ${dut_if} | ${tg_if_ip6} | ${tg_if_mac}
 | | Vpp All RA Suppress Link Layer | ${nodes}
-| | Vpp Route Add | ${dut_node} | ${tg_lo_ip6} | ${ip6_plen} | ${tg_if_ip6}
+| | Vpp Route Add | ${dut_node} | ${tg_lo_ip6} | ${ip6_plen_rt} | ${tg_if_ip6}
 | | ...           | ${dut_if}
 | | Set Test Variable | ${dut_tun_ip} | ${dut_if_ip6}
 | | Set Test Variable | ${dut_src_ip} | ${dut_lo_ip6}
