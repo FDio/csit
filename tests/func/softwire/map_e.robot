@@ -196,8 +196,8 @@
 | | 0.0.0.0/0         | 2001:db8:0000::/40      | ${ipv6_br_src} | ${8}       | ${0}        | ${0}     | 20.169.201.219 | ${1232}  |
 | | 0.0.0.0/0         | 2001:db8:0000::/40      | ${ipv6_br_src} | ${16}      | ${0}        | ${0}     | 20.169.201.219 | ${1232}  |
 | | 0.0.0.0/0         | 2001:db8::/32           | ${ipv6_br_src} | ${32}      | ${0}        | ${0}     | 20.169.201.219 | ${1232}  |
-| | 0.0.0.0/0         | 2001::/16               | ${ipv6_br_src} | ${48}      | ${0}        | ${0}     | 20.169.201.219 | ${1232}  |
-| | 0.0.0.0/0         | 2001::/16               | ${ipv6_br_src} | ${48}      | ${6}        | ${8}     | 20.169.201.219 | ${1232}  |
+| | 0.0.0.0/0         | 2001:d00::/24           | ${ipv6_br_src} | ${40}      | ${6}        | ${8}     | 20.169.201.219 | ${1232}  |
+| | 0.0.0.0/0         | 2001::/16               | ${ipv6_br_src} | ${40}      | ${6}        | ${8}     | 20.169.201.219 | ${1232}  |
 
 
 | Bug: VPP-318
@@ -259,8 +259,8 @@
 | | ... | resolve_attempts=${NONE} | count=${NONE}
 | | Add IP neighbor | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6_gw}
 | | ... | ${tg_to_dut_if2_mac}
-| | Vpp Route Add | ${dut_node} | 0.0.0.0 | 0 | ${dut_ip4_gw} | ${dut_to_tg_if1}
-| | ... | resolve_attempts=${NONE} | count=${NONE}
+| | Vpp Route Add | ${dut_node} | ${ipv4_outside} | 32 | ${dut_ip4_gw}
+| | ... | ${dut_to_tg_if1} | resolve_attempts=${NONE} | count=${NONE}
 | | Add IP neighbor | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4_gw}
 | | ... | ${tg_to_dut_if1_mac}
 
