@@ -274,6 +274,7 @@
 | | ... | - tx_if - Interface from where to send IPv4 UDP packet. Type: string
 | | ... | - rx_if - Interface where to receive IPv6 UDP packet. Type: string
 | | ... | - tx_dst_mac - Destination MAC address of IPv4 packet. Type: string
+| | ... | - tx_src_mac - Source MAC address of IPv4 packet. Type: string
 | | ... | - tx_dst_ipv6 - Destination IPv6 address. Type: string
 | | ... | - tx_src_ipv6 - Source IPv6 address. Type: string
 | | ... | - tx_src_udp_port - Source UDP port. Type: integer
@@ -293,15 +294,15 @@
 | | ... | \| 08:00:27:66:b8:57 \| 100.0.0.1 \| 20.169.201.219 \|
 | | ...
 | | [Arguments]
-| | ... | ${tg_node} | ${tx_if} | ${rx_if}
-| | ... | ${tx_dst_mac} | ${tx_dst_ipv6} | ${tx_src_ipv6} | ${tx_src_udp_port}
+| | ... | ${tg_node} | ${tx_if} | ${rx_if} | ${tx_dst_mac} | ${tx_src_mac}
+| | ... | ${tx_dst_ipv6} | ${tx_src_ipv6} | ${tx_src_udp_port}
 | | ... | ${rx_dst_mac} | ${rx_src_mac} | ${dst_ipv4} | ${src_ipv4}
 | | ...
 | | ${tx_name}= | Get interface name | ${tg_node} | ${tx_if}
 | | ${rx_name}= | Get interface name | ${tg_node} | ${rx_if}
 | | ${args}= | Catenate
 | | ... | --tx_if | ${tx_name} | --rx_if | ${rx_name}
-| | ... | --tx_dst_mac | ${tx_dst_mac}
+| | ... | --tx_dst_mac | ${tx_dst_mac} | --tx_src_mac | ${tx_src_mac}
 | | ... | --tx_src_ipv6 | ${tx_src_ipv6} | --tx_dst_ipv6 | ${tx_dst_ipv6}
 | | ... | --tx_src_udp_port | ${tx_src_udp_port}
 | | ... | --rx_dst_mac | ${rx_dst_mac} | --rx_src_mac | ${rx_src_mac}
