@@ -251,15 +251,16 @@
 | | ... | ${tg_node} | ${args}
 
 | Receive And Check Router Advertisement Packet
-| | [Documentation] | Wait until RA packet is received and then check
-| | ...             | specific packet fields whether they are correct.
+| | [Documentation] | Wait until RA packet is received and then verify\
+| | ...             | specific fields of received RA packet.
 | | ...
 | | ... | *Arguments:*
 | | ...
 | | ... | - node - Node where to check for RA packet. Type: dictionary
 | | ... | - rx_port - Interface where the packet is received. Type: string
-| | ... | - src_mac - MAC address of source interface from which the link-local
+| | ... | - src_mac - MAC address of source interface from which the link-local\
 | | ... |             IPv6 address is constructed and checked. Type: string
+| | ... | - interval - Configured retransmit interval. Optional. Type: integer
 | | ...
 | | ... | *Return:*
 | | ... | - No value returned
@@ -269,10 +270,48 @@
 | | ... | \| Receive And Check Router Advertisement Packet \
 | | ... | \| ${nodes['DUT1']} \| eth2 \| 08:00:27:cc:4f:54 \|
 | | ...
-| | [Arguments] | ${node} | ${rx_port} | ${src_mac}
+| | [Arguments] | ${node} | ${rx_port} | ${src_mac} | ${interval}=${0}
 | | ${rx_port_name}= | Get interface name | ${node} | ${rx_port}
-| | ${args}= | Catenate | --rx_if | ${rx_port_name} | --src_mac | ${src_mac}
+| | ${args}= | Catenate
+| | ... | --rx_if ${rx_port_name}
+| | ... | --src_mac ${src_mac}
+| | ... | --interval ${interval}
 | | Run Traffic Script On Node | check_ra_packet.py | ${node} | ${args}
+
+| Send Router Solicitation and check response
+| | [Documentation] | Send RS packet, wait for response and then verify\
+| | ...             | specific fields of received RA packet.
+| | ...
+| | ... | *Arguments:*
+| | ...
+| | ... | - tg_node - TG node to send RS packet from. Type: dictionary
+| | ... | - dut_node - DUT node to send RS packet to. Type: dictionary
+| | ... | - rx_port - Interface where the packet is sent from. Type: string
+| | ... | - tx_port - Interface where the packet is sent to. Type: string
+| | ... | - src_ip - Source IP address of RS packet. Optional. If not provided,\
+| | ... | link local address will be used. Type: string
+| | ...
+| | ... | *Return:*
+| | ... | - No value returned
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Send Router Solicitation and check response \
+| | ... | \| ${nodes['TG']} \| ${nodes['DUT1']} \| eth2 \
+| | ... | \| GigabitEthernet0/8/0 \| 10::10 \|
+| | ...
+| | [Arguments] | ${tg_node} | ${dut_node} | ${tx_port} | ${rx_port}
+| | ... | ${src_ip}=''
+| | ${src_mac}= | Get Interface Mac | ${tg_node} | ${tx_port}
+| | ${dst_mac}= | Get Interface Mac | ${dut_node} | ${rx_port}
+| | ${src_int_name}= | Get interface name | ${tg_node} | ${tx_port}
+| | ${dst_int_name}= | Get interface name | ${dut_node} | ${rx_port}
+| | ${args}= | catenate
+| | ... | --rx_if ${dst_int_name} --tx_if ${src_int_name}
+| | ... | --src_mac ${src_mac} | --dst_mac ${dst_mac}
+| | ... | --src_ip ${src_ip}
+| | Run Traffic Script On Node | send_rs_check_ra.py
+| | ... | ${tg_node} | ${args}
 
 | Send ARP Request
 | | [Documentation] | Send ARP Request and check if the ARP Response is received.
