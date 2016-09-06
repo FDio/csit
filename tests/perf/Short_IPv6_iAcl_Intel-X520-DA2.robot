@@ -15,9 +15,9 @@
 | Resource | resources/libraries/robot/performance.robot
 | Library | resources.libraries.python.Classify.Classify
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | PERFTEST_SHORT
-| ...        | NIC_Intel-X520-DA2
+| ...        | NIC_Intel-XL710
 | Suite Setup | 3-node Performance Suite Setup with DUT's NIC model
-| ... | L3 | Intel-X520-DA2
+| ... | L3 | Intel-XL710
 | Suite Teardown | 3-node Performance Suite Teardown
 | Test Setup | Setup all DUTs before test
 | Test Teardown | Run Keywords

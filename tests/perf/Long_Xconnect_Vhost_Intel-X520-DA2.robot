@@ -15,9 +15,9 @@
 | Resource | resources/libraries/robot/performance.robot
 | Library | resources.libraries.python.NodePath
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | PERFTEST_LONG
-| ...        | PERFTEST_VHOST | NIC_Intel-X520-DA2
+| ...        | PERFTEST_VHOST | NIC_Intel-XL710
 | Suite Setup | Run Keywords | 3-node Performance Suite Setup with DUT's NIC model
-| ... | L2 | Intel-X520-DA2
+| ... | L2 | Intel-XL710
 | ...         | AND          | Kill QEMU on all DUTs
 | ...         | AND          | Build QEMU on all DUTs
 | Suite Teardown | 3-node Performance Suite Teardown
