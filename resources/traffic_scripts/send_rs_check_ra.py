@@ -12,12 +12,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Router advertisement check script."""
+"""Router solicitation check script."""
 
 import sys
 import ipaddress
 
-from resources.libraries.python.PacketVerifier import RxQueue
+from scapy.layers.l2 import Ether
+from scapy.layers.inet6 import IPv6, ICMPv6ND_RS
+
+from resources.libraries.python.PacketVerifier import RxQueue, TxQueue
 from resources.libraries.python.TrafficScriptArg import TrafficScriptArg
 
 
@@ -45,22 +48,44 @@ def mac_to_ipv6_linklocal(mac):
 
 
 def main():
-    """Check packets on specific port and look for the Router Advertisement
-     part.
-    """
+    """Send Router Solicitation packet, check if the received response\
+     is a Router Advertisement packet and verify."""
 
-    args = TrafficScriptArg(['src_mac', 'interval'])
+    args = TrafficScriptArg(
+        ['src_mac', 'dst_mac', 'src_ip']
+    )
 
-    rx_if = args.get_arg('rx_if')
+    router_mac = args.get_arg('dst_mac')
     src_mac = args.get_arg('src_mac')
-    interval = int(args.get_arg('interval'))
-    rxq = RxQueue(rx_if)
+    src_ip = args.get_arg('src_ip')
+    if not src_ip:
+        src_ip = mac_to_ipv6_linklocal(src_mac)
+    tx_if = args.get_arg('tx_if')
 
-    ether = rxq.recv(max(5, interval))
+    txq = TxQueue(tx_if)
+    rxq = RxQueue(tx_if)
+
+    pkt_raw = (Ether(src=src_mac, dst='33:33:00:00:00:02') /
+               IPv6(src=src_ip, dst='ff02::2') /
+               ICMPv6ND_RS())
+
+    sent_packets = [pkt_raw]
+    txq.send(pkt_raw)
+
+    ether = rxq.recv(8, ignore=sent_packets)
 
     # Check whether received packet contains layer RA and check other values
     if ether is None:
         raise RuntimeError('ICMP echo Rx timeout')
+
+    if ether.src != router_mac:
+        raise RuntimeError(
+            'Packet source MAC ({0}) does not match '
+            'router MAC ({1}).'.format(ether.src, router_mac))
+    if ether.dst != src_mac:
+        raise RuntimeError(
+            'Packet destination MAC ({0}) does not match '
+            'RS source MAC ({1}).'.format(ether.dst, src_mac))
 
     if not ether.haslayer('ICMPv6ND_RA'):
         raise RuntimeError('Not an RA packet received {0}'
@@ -68,17 +93,20 @@ def main():
 
     src_address = ipaddress.IPv6Address(unicode(ether['IPv6'].src))
     dst_address = ipaddress.IPv6Address(unicode(ether['IPv6'].dst))
-    link_local = ipaddress.IPv6Address(unicode(mac_to_ipv6_linklocal(src_mac)))
-    all_nodes_multicast = ipaddress.IPv6Address(u'ff02::1')
+    router_link_local = ipaddress.IPv6Address(unicode(
+        mac_to_ipv6_linklocal(router_mac)))
+    rs_src_address = ipaddress.IPv6Address(unicode(src_ip))
 
-    if src_address != link_local:
+    if src_address != router_link_local:
         raise RuntimeError(
-            'Source address ({0}) not matching link local address({1})'.format(
-                src_address, link_local))
-    if dst_address != all_nodes_multicast:
-        raise RuntimeError('Packet destination address ({0}) is not the all '
-                           'nodes multicast address ({1}).'.format(
-                            dst_address, all_nodes_multicast))
+            'Packet source address ({0}) does not match '
+            'link local address({1})'.format(src_address, router_link_local))
+
+    if dst_address != rs_src_address:
+        raise RuntimeError(
+            'Packet destination address ({0}) does not match '
+            'RS source address ({1}).'.format(dst_address, rs_src_address))
+
     if ether['IPv6'].hlim != 255:
         raise RuntimeError('Hop limit not correct: {0}!=255'.format(
             ether['IPv6'].hlim))
