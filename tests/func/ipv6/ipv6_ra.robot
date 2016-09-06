@@ -39,7 +39,9 @@
 
 *** Variables ***
 | ${dut1_to_tg_ip}= | 3ffe:62::1
+| ${tg_to_dut1_ip}= | 3ffe:62::2
 | ${prefix_length}= | 64
+| ${interval}= | 2
 
 *** Test Cases ***
 | TC01: DUT transmits RA on IPv6 enabled interface
@@ -56,3 +58,37 @@
 | | When Vpp RA Send After Interval | ${dut1_node} | ${dut1_to_tg}
 | | Then Receive And Check Router Advertisement Packet
 | | ... | ${tg_node} | ${tg_to_dut1} | ${dut1_to_tg_mac}
+
+| TC02: DUT retransmits RA on IPv6 enabled interface after a set interval
+| | [Documentation]
+| | ... | On DUT1 configure IPv6 interface on the link to TG. Make TG wait\
+| | ... | for two IPv6 Router Advertisement packets to be sent out by DUT1 and
+| | ... | verify the received RA packets are correct.
+| | [Tags] | EXPECTED_FAILING
+| | Given Path for 3-node testing is set
+| | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
+| | And Interfaces in 3-node path are up
+| | And Vpp Set If Ipv6 Addr | ${dut1_node}
+| | ... | ${dut1_to_tg} | ${dut1_to_tg_ip} | ${prefix_length}
+| | When Vpp RA Send After Interval | ${dut1_node} | ${dut1_to_tg}
+| | ... | interval=${interval}
+| | :FOR | ${n} | IN RANGE | ${2}
+| | | Then Receive And Check Router Advertisement Packet
+| | | ... | ${tg_node} | ${tg_to_dut1} | ${dut1_to_tg_mac} | ${interval}
+
+| TC03: DUT responds to Router Solicitation request
+| | [Documentation]
+| | ... | On DUT1 configure IPv6 interface on the link to TG and suppress\
+| | ... | sending of Router Advertisement packets periodically. Make TG\
+| | ... | send IPv6 Router Solicitation request to DUT1, listen for response\
+| | ... | from DUT1 and verify the received RA packet is correct.
+| | [Tags] | EXPECTED_FAILING
+| | Given Path for 3-node testing is set
+| | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
+| | And Interfaces in 3-node path are up
+| | And Vpp Set If Ipv6 Addr | ${dut1_node}
+| | ... | ${dut1_to_tg} | ${dut1_to_tg_ip} | ${prefix_length}
+| | When VPP RA suppress link layer | ${dut1_node} | ${dut1_to_tg}
+| | Then Send Router Solicitation and check response
+| | ... | ${tg_node} | ${dut1_node} | ${tg_to_dut1} | ${dut1_to_tg}
+| | ... | ${tg_to_dut1_ip} | ${dut1_to_tg_ip}

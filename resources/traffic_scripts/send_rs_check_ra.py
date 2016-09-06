@@ -12,12 +12,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Router advertisement check script."""
+"""Router solicitation check script."""
 
 import sys
 import ipaddress
 
-from resources.libraries.python.PacketVerifier import RxQueue
+from scapy.layers.l2 import Ether
+from scapy.layers.inet6 import IPv6, ICMPv6ND_RS
+
+from resources.libraries.python.PacketVerifier import RxQueue, TxQueue
 from resources.libraries.python.TrafficScriptArg import TrafficScriptArg
 
 
@@ -45,22 +48,30 @@ def mac_to_ipv6_linklocal(mac):
 
 
 def main():
-    """Check packets on specific port and look for the Router Advertisement
-     part.
-    """
+    """Send Router Solicitation packet, check if the received response\
+     is a Router Advertisement packet and verify."""
 
-    args = TrafficScriptArg(['src_mac', 'interval'])
+    args = TrafficScriptArg(
+        ['src_mac', 'dst_mac', 'src_ip', 'dst_ip']
+    )
 
-    rx_if = args.get_arg('rx_if')
+    dst_mac = args.get_arg('dst_mac')
     src_mac = args.get_arg('src_mac')
-    interval = int(args.get_arg('interval'))
-    rxq = RxQueue(rx_if)
+    src_ip = args.get_arg('src_ip')
+    dst_ip = args.get_arg('dst_ip')
+    tx_if = args.get_arg('tx_if')
 
-    if interval > 5:
-        ether = rxq.recv(interval)
-    else:
-        # minimum timeout
-        ether = rxq.recv(5)
+    txq = TxQueue(tx_if)
+    rxq = RxQueue(tx_if)
+
+    pkt_raw = (Ether(src=src_mac, dst=dst_mac) /
+               IPv6(src=src_ip, dst=dst_ip) /
+               ICMPv6ND_RS())
+
+    sent_packets = [pkt_raw]
+    txq.send(pkt_raw)
+
+    ether = rxq.recv(8, ignore=sent_packets)
 
     # Check whether received packet contains layer RA and check other values
     if ether is None:
@@ -71,7 +82,7 @@ def main():
                            .format(ether.__repr__()))
 
     address = ipaddress.IPv6Address(unicode(ether['IPv6'].src))
-    link_local = ipaddress.IPv6Address(unicode(mac_to_ipv6_linklocal(src_mac)))
+    link_local = ipaddress.IPv6Address(unicode(mac_to_ipv6_linklocal(dst_mac)))
 
     if address != link_local:
         raise RuntimeError(
