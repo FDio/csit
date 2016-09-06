@@ -21,7 +21,8 @@ with IPFIX packets.
 
 
 from scapy.all import Packet, bind_layers
-from scapy.fields import *
+from scapy.fields import ByteField, ShortField, IntField, LongField, IPField,\
+    StrFixedLenField, FieldListField
 from scapy.layers.inet import UDP
 from scapy.layers.inet6 import IP6Field
 from scapy.contrib.ppi_geotag import UTCTimeField
