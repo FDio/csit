@@ -49,12 +49,14 @@ def _is_udp_in_ipv4(pkt):
 
 def main():  # pylint: disable=too-many-statements, too-many-locals
     """Main function of the script file."""
-    args = TrafficScriptArg(['tx_dst_mac', 'tx_src_ipv6', 'tx_dst_ipv6',
+    args = TrafficScriptArg(['tx_dst_mac', 'tx_src_mac',
+                             'tx_src_ipv6', 'tx_dst_ipv6',
                              'tx_src_udp_port', 'rx_dst_mac', 'rx_src_mac',
                              'rx_src_ipv4', 'rx_dst_ipv4'])
     rx_if = args.get_arg('rx_if')
     tx_if = args.get_arg('tx_if')
     tx_dst_mac = args.get_arg('tx_dst_mac')
+    tx_src_mac = args.get_arg('tx_src_mac')
     tx_src_ipv6 = args.get_arg('tx_src_ipv6')
     tx_dst_ipv6 = args.get_arg('tx_dst_ipv6')
     tx_src_udp_port = int(args.get_arg('tx_src_udp_port'))
@@ -70,7 +72,7 @@ def main():  # pylint: disable=too-many-statements, too-many-locals
 
     # Create empty UDP datagram in IPv6
 
-    udp = (Ether(dst=tx_dst_mac) /
+    udp = (Ether(dst=tx_dst_mac, src=tx_src_mac) /
            IPv6(src=tx_src_ipv6, dst=tx_dst_ipv6) /
            UDP(sport=tx_src_udp_port, dport=tx_dst_udp_port) /
            'udp_payload')
