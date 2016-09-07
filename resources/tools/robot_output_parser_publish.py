@@ -136,7 +136,8 @@ class ExecutionChecker(ResultVisitor):
         elif self.formatting == 'wiki':
             sys.stdout.write('|-'+'\n')
             sys.stdout.write('|'+test.name+'\n')
-            sys.stdout.write('|'+test.doc+'\n')
+            sys.stdout.write('|'+test.doc.replace('\n', ' ').replace('\r',\
+                '')+'\n')
             if any("PERFTEST_LONG" in tag for tag in test.tags):
                 sys.stdout.write('|'+test.message+'\n')
             sys.stdout.write('|'+test.status+'\n')
