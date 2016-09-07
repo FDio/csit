@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a1d315d_de3bf9e9",
+        "filename": "tests/func/ipsec/ipsec_transport_mode_ipv4.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 344,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-09-07T08:47:54Z",
+      "side": 1,
+      "message": "remove if not necessary",
+      "range": {
+        "startLine": 344,
+        "startChar": 36,
+        "endLine": 344,
+        "endChar": 39
+      },
+      "revId": "6b833c9f9dbc7617426d44d4054518dc8cb51c77",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_be403d57",
+        "filename": "tests/func/ipsec/ipsec_transport_mode_ipv4.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 346,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-09-07T08:47:54Z",
+      "side": 1,
+      "message": "remove if not necessary",
+      "range": {
+        "startLine": 346,
+        "startChar": 20,
+        "endLine": 346,
+        "endChar": 23
+      },
+      "revId": "6b833c9f9dbc7617426d44d4054518dc8cb51c77",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_7e22a5ba",
+        "filename": "tests/func/ipsec/ipsec_tunnel_mode_ipv4.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 367,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-09-07T08:47:54Z",
+      "side": 1,
+      "message": "remove if not necessary",
+      "range": {
+        "startLine": 367,
+        "startChar": 36,
+        "endLine": 367,
+        "endChar": 39
+      },
+      "revId": "6b833c9f9dbc7617426d44d4054518dc8cb51c77",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_5e2fe9a1",
+        "filename": "tests/func/ipsec/ipsec_tunnel_mode_ipv4.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 369,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-09-07T08:47:54Z",
+      "side": 1,
+      "message": "remove if not necessary",
+      "range": {
+        "startLine": 369,
+        "startChar": 20,
+        "endLine": 369,
+        "endChar": 23
+      },
+      "revId": "6b833c9f9dbc7617426d44d4054518dc8cb51c77",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
