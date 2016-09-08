@@ -18,7 +18,7 @@ sudo apt-get -y install python-virtualenv
 
 virtualenv --system-site-packages env
 . env/bin/activate
-pip install -r requirements.txt
+pip install --retries 10 --timeout 30 -r requirements.txt
 
 cat > mock.robot <<EOF
 *** test cases ***

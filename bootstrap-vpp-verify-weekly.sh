@@ -190,7 +190,7 @@ virtualenv --system-site-packages env
 . env/bin/activate
 
 echo pip install
-pip install -r ${SCRIPT_DIR}/requirements.txt
+pip install --retries 10 --timeout 30 -r ${SCRIPT_DIR}/requirements.txt
 
 # There are used three iterations of tests there to check
 # the stability and reliability of the results

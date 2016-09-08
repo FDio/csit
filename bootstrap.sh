@@ -191,7 +191,7 @@ virtualenv --system-site-packages env
 . env/bin/activate
 
 echo pip install
-pip install -r ${SCRIPT_DIR}/requirements.txt
+pip install --retries 10 --timeout 30 -r ${SCRIPT_DIR}/requirements.txt
 
 pykwalify -s ${SCRIPT_DIR}/resources/topology_schemas/3_node_topology.sch.yaml \
           -s ${SCRIPT_DIR}/resources/topology_schemas/topology.sch.yaml \
