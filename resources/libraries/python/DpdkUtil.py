@@ -19,6 +19,7 @@ from resources.libraries.python.ssh import SSH, exec_cmd_no_error
 class DpdkUtil(object):
     """Utilities for DPDK."""
 
+    #pylint: disable=too-many-locals
     @staticmethod
     def dpdk_testpmd_start(node, **args):
         """Start DPDK testpmd app on VM node.
@@ -32,6 +33,8 @@ class DpdkUtil(object):
         # Set the hexadecimal bitmask of the cores to run on.
         eal_coremask = '-c {} '.format(args['eal_coremask'])\
             if args.get('eal_coremask', '') else ''
+        # Set master core.
+        eal_master_core = '--master-lcore 0 '
         # Set the number of memory channels to use.
         eal_mem_channels = '-n {} '.format(args['eal_mem_channels'])\
             if args.get('eal_mem_channels', '') else ''
@@ -47,15 +50,21 @@ class DpdkUtil(object):
         # Set the number of packets per burst to N.
         pmd_burst = '--burst=64 '
         # Set the number of descriptors in the TX rings to N.
-        pmd_txd = '--txd=2048 '
+        pmd_txd = '--txd=256 '
         # Set the number of descriptors in the RX rings to N.
-        pmd_rxd = '--rxd=2048 '
+        pmd_rxd = '--rxd=256 '
+        # Set the number of queues in the TX to N.
+        pmd_txq = '--txq=1 '
+        # Set the number of queues in the RX to N.
+        pmd_rxq = '--rxq=1 '
         # Set the hexadecimal bitmask of TX queue flags.
         pmd_txqflags = '--txqflags=0xf00 '
         # Set the number of mbufs to be allocated in the mbuf pools.
-        pmd_total_num_mbufs = '--total-num-mbufs=65536 '
+        pmd_total_num_mbufs = '--total-num-mbufs={} '.format(\
+            args['pmd_num_mbufs']) if args.get('pmd_num_mbufs', '') else ''
         # Set the hexadecimal bitmask of the ports for forwarding.
-        pmd_portmask = '--portmask=0x3 '
+        pmd_portmask = '--portmask={} '.format(args['pmd_portmask'])\
+            if args.get('pmd_portmask', '') else ''
         # Disable hardware VLAN.
         pmd_disable_hw_vlan = '--disable-hw-vlan '\
             if args.get('pmd_disable_hw_vlan', '') else ''
@@ -67,17 +76,13 @@ class DpdkUtil(object):
             if args.get('pmd_eth_peer_0', '') else ''
         pmd_eth_peer_1 = '--eth-peer={} '.format(args['pmd_eth_peer_1'])\
             if args.get('pmd_eth_peer_1', '') else ''
-        # Set the hexadecimal bitmask of the cores running forwarding. Master
-        # lcore=0 is reserved, so highest bit is set to 0.
-        pmd_coremask = '--coremask={} '.format(\
-            hex(int(args['eal_coremask'], 0) & 0xFFFE))\
-            if args.get('eal_coremask', '') else ''
         # Set the number of forwarding cores based on coremask.
         pmd_nb_cores = '--nb-cores={} '.format(\
-            bin(int(args['eal_coremask'], 0) & 0xFFFE).count('1'))\
+            bin(int(args['eal_coremask'], 0)).count('1')-1)\
             if args.get('eal_coremask', '') else ''
         eal_options = '-v '\
             + eal_coremask\
+            + eal_master_core\
             + eal_mem_channels\
             + eal_socket_mem\
             + eal_driver
@@ -86,6 +91,8 @@ class DpdkUtil(object):
             + pmd_burst\
             + pmd_txd\
             + pmd_rxd\
+            + pmd_txq\
+            + pmd_rxq\
             + pmd_txqflags\
             + pmd_total_num_mbufs\
             + pmd_portmask\
@@ -93,7 +100,6 @@ class DpdkUtil(object):
             + pmd_disable_rss\
             + pmd_eth_peer_0\
             + pmd_eth_peer_1\
-            + pmd_coremask\
             + pmd_nb_cores
         ssh = SSH()
         ssh.connect(node)
