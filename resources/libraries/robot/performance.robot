@@ -1332,9 +1332,9 @@
 | | ... | Start QEMU guest with two vhost-user interfaces and interconnecting
 | | ... | DPDK testpmd. Qemu Guest is using 3 cores pinned to physical cores 5,
 | | ... | 6, 7 and 2048M. Testpmd is using 3 cores (1 main core and 2 cores
-| | ... | dedicated to io) socket-mem=1024, mem-channel=4, txq/rxq=2048,
-| | ... | burst=64, disable-hw-vlan, total-num-mbufs, driver
-| | ... | usr/lib/librte_pmd_virtio.so.
+| | ... | dedicated to io) mem-channel=4, txq/rxq=256, burst=64,
+| | ... | disable-hw-vlan, disable-rss, driver usr/lib/librte_pmd_virtio.so
+| | ... | and fwd mode is io.
 | | ...
 | | ... | *Arguments:*
 | | ... | - dut_node - DUT node to start guest VM on. Type: dictionary
@@ -1360,9 +1360,9 @@
 | | Run keyword | ${vm_name}.Qemu Set Affinity | 5 | 6 | 7
 | | Dpdk Testpmd Start | ${vm} | eal_coremask=0x7
 | | ...                | eal_mem_channels=4
-| | ...                | eal_socket_mem=1024
 | | ...                | pmd_fwd_mode=io
 | | ...                | pmd_disable_hw_vlan=${True}
+| | ...                | pmd_disable_rss=${True}
 | | Return From Keyword | ${vm}
 
 | Guest VM with dpdk-testpmd-mac connected via vhost-user is setup
@@ -1370,9 +1370,9 @@
 | | ... | Start QEMU guest with two vhost-user interfaces and interconnecting
 | | ... | DPDK testpmd. Qemu Guest is using 3 cores pinned to physical cores 5,
 | | ... | 6, 7 and 2048M. Testpmd is using 3 cores (1 main core and 2 cores
-| | ... | dedicated to io) socket-mem=1024, mem-channel=4, txq/rxq=2048,
-| | ... | burst=64, disable-hw-vlan, total-num-mbufs=65K, driver
-| | ... | usr/lib/librte_pmd_virtio.so and fwd mode is mac rewrite.
+| | ... | dedicated to io) mem-channel=4, txq/rxq=256, burst=64,
+| | ... | disable-hw-vlan, disable-rss, driver usr/lib/librte_pmd_virtio.so
+| | ... | and fwd mode is mac rewrite.
 | | ...
 | | ... | *Arguments:*
 | | ... | - dut_node - DUT node to start guest VM on. Type: dictionary
@@ -1403,11 +1403,11 @@
 | | Run keyword | ${vm_name}.Qemu Set Affinity | 5 | 6 | 7
 | | Dpdk Testpmd Start | ${vm} | eal_coremask=0x7
 | | ...                | eal_mem_channels=4
-| | ...                | eal_socket_mem=1024
 | | ...                | pmd_fwd_mode=mac
 | | ...                | pmd_eth_peer_0=0,${eth0_mac}
 | | ...                | pmd_eth_peer_1=1,${eth1_mac}
 | | ...                | pmd_disable_hw_vlan=${True}
+| | ...                | pmd_disable_rss=${True}
 | | Return From Keyword | ${vm}
 
 | Guest VM with Linux Bridge connected via vhost-user is setup
