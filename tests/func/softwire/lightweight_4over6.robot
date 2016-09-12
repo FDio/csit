@@ -41,6 +41,7 @@
 *** Variables ***
 | ${dut_ip4}= | 10.0.0.1
 | ${dut_ip6}= | 2001:0::1
+| ${tg_ip6}= | 2001:0::2
 | ${ipv4_prefix_len}= | 24
 | ${ipv6_prefix_len}= | 64
 
@@ -77,8 +78,11 @@
 | |       ... | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4} | ${ipv4_prefix_len}
 | |       ... | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6} | ${ipv6_prefix_len}
 | | And   Add IP Neighbor
-| |       ... | ${dut_node} | ${dut_to_tg_if2} | ${lw_rule_ipv6_dst}
+| |       ... | ${dut_node} | ${dut_to_tg_if2} | ${tg_ip6}
 | |       ... | ${tg_to_dut_if2_mac}
+| | And Vpp Route Add
+| |       ... | ${dut_node} | ${lw_rule_ipv6_dst} | 128
+| |       ... | ${tg_ip6} | ${dut_to_tg_if2} | resolve_attempts=${NONE}
 | | ${domain_index}=
 | | ... | When Map Add Domain
 | |            ... | ${dut_node} | ${lw_ipv4_pfx} | ${lw_ipv6_pfx}
@@ -111,8 +115,11 @@ TC02: Encapsulate IPv4 ICMP into IPv6. IPv6 dst depends on IPv4 addr and ICMP ID
 | |       ... | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4} | ${ipv4_prefix_len}
 | |       ... | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6} | ${ipv6_prefix_len}
 | | And   Add IP Neighbor
-| |       ... | ${dut_node} | ${dut_to_tg_if2} | ${lw_rule_ipv6_dst}
+| |       ... | ${dut_node} | ${dut_to_tg_if2} | ${tg_ip6}
 | |       ... | ${tg_to_dut_if2_mac}
+| | And Vpp Route Add
+| |       ... | ${dut_node} | ${lw_rule_ipv6_dst} | 128
+| |       ... | ${tg_ip6} | ${dut_to_tg_if2} | resolve_attempts=${NONE}
 | | ${domain_index}=
 | | ... | When Map Add Domain
 | |            ... | ${dut_node} | ${lw_ipv4_pfx} | ${lw_ipv6_pfx}
@@ -177,8 +184,11 @@ TC04: Hairpinning of traffic between two lwB4
 | |       ... | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4} | ${ipv4_prefix_len}
 | |       ... | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6} | ${ipv6_prefix_len}
 | | And   Add IP Neighbor
-| |       ... | ${dut_node} | ${dut_to_tg_if2} | ${lw_rule_2_ipv6_dst}
+| |       ... | ${dut_node} | ${dut_to_tg_if2} | ${tg_ip6}
 | |       ... | ${tg_to_dut_if2_mac}
+| | And Vpp Route Add
+| |       ... | ${dut_node} | ${lw_rule_2_ipv6_dst} | 128
+| |       ... | ${tg_ip6} | ${dut_to_tg_if2} | resolve_attempts=${NONE}
 | | ${domain_index}=
 | | ... | When Map Add Domain
 | |            ... | ${dut_node} | ${lw_ipv4_pfx} | ${lw_ipv6_pfx}
