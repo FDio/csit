@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a1d315d_aef804e6",
+        "filename": "resources/libraries/robot/traffic.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-09-12T22:09:54Z",
+      "side": 1,
+      "message": "Please, keep the naming convention used across the csit tests and use name dut_node.",
+      "range": {
+        "startLine": 286,
+        "startChar": 12,
+        "endLine": 286,
+        "endChar": 20
+      },
+      "revId": "0035ab17c18298f5dcae9f40eff15818aad570e2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_ae5da4eb",
+        "filename": "tests/func/ipv6/ipv6_ra.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-09-12T22:09:54Z",
+      "side": 1,
+      "message": "and\\",
+      "range": {
+        "startLine": 50,
+        "startChar": 70,
+        "endLine": 50,
+        "endChar": 73
+      },
+      "revId": "0035ab17c18298f5dcae9f40eff15818aad570e2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_2e52b4dd",
+        "filename": "tests/func/ipv6/ipv6_ra.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-09-12T22:09:54Z",
+      "side": 1,
+      "message": "and\\",
+      "range": {
+        "startLine": 65,
+        "startChar": 75,
+        "endLine": 65,
+        "endChar": 78
+      },
+      "revId": "0035ab17c18298f5dcae9f40eff15818aad570e2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_ce58e0fc",
+        "filename": "tests/func/ipv6/ipv6_ra.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-09-12T22:09:54Z",
+      "side": 1,
+      "message": "As agreed, please, use capital letter on beggining of every word of the KW in the test case.\n\n- all occurrences",
+      "range": {
+        "startLine": 68,
+        "startChar": 10,
+        "endLine": 68,
+        "endChar": 40
+      },
+      "revId": "0035ab17c18298f5dcae9f40eff15818aad570e2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_4e6cd09c",
+        "filename": "tests/func/ipv6/ipv6_ra.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-09-12T22:09:54Z",
+      "side": 1,
+      "message": "Please, use correct for of documenation with tags [Top], [Enc], [Cfg]...\n\n- all occurrences",
+      "range": {
+        "startLine": 81,
+        "startChar": 10,
+        "endLine": 84,
+        "endChar": 65
+      },
+      "revId": "0035ab17c18298f5dcae9f40eff15818aad570e2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
