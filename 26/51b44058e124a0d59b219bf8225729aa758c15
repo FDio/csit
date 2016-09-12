@@ -1,0 +1,8 @@
+Verified+1: fd.io JJB <jobbuilder@projectrotterdam.info>
+Code-Review+1: Matej Klotton <mklotton@cisco.com>
+Code-Review+2: Jan Gelety <jgelety@cisco.com>
+Submitted-by: Jan Gelety <jgelety@cisco.com>
+Submitted-at: Mon, 12 Sep 2016 20:30:18 +0000
+Reviewed-on: https://gerrit.fd.io/r/2811
+Project: csit
+Branch: refs/heads/rls1609
