@@ -71,6 +71,7 @@ def main():  # pylint: disable=too-many-statements, too-many-locals
     tx_pkt /= IPv6(src=tx_src_ipv6, dst=tx_dst_ipv6)
     tx_pkt /= IP(src=tx_src_ipv4, dst=tx_dst_ipv4)
     tx_pkt /= UDP(sport=tx_src_udp_port, dport=tx_dst_udp_port)
+    tx_pkt /= 'udp_payload'
 
     txq.send(tx_pkt)
     sent_packets.append(tx_pkt)
