@@ -200,6 +200,50 @@
 | | 0.0.0.0/0         | 2001::/16               | ${ipv6_br_src} | ${48}      | ${6}        | ${8}     | 20.169.201.219 | ${1232}  |
 
 
+| TC06: configure multiple domain and check with traffic script
+| | [Tags] | tmp
+| | [Documentation] |
+| | ... | tbd
+| | Given Path for 2-node testing is set
+| | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
+| | And Interfaces in 2-node path are up
+
+| | When IP addresses are set on interfaces
+| | ... | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4} | ${ipv4_prefix_len}
+| | ... | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6} | ${ipv6_prefix_len}
+| | And Vpp Route Add | ${dut_node} | :: | 0 | ${dut_ip6_gw}
+| | ... | ${dut_to_tg_if2} | resolve_attempts=${NONE} | count=${NONE}
+| | And Add IP neighbor | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6_gw}
+| | ... | ${tg_to_dut_if2_mac}
+| | Vpp Route Add | ${dut_node} | 0.0.0.0 | 0 | ${dut_ip4_gw} | ${dut_to_tg_if1}
+| | ... | resolve_attempts=${NONE} | count=${NONE}
+| | Add IP neighbor | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4_gw}
+| | ... | ${tg_to_dut_if1_mac}
+
+| | @{domain_set_1}= | Create list | 21.0.0.0/8 | 2001:db8:2100::/40 | ${ipv6_br_src} | ${24} | ${0} | ${0}
+| | ${ipv6_dst_1}= | Compute IPv6 map destination address
+| | ... | 21.0.0.0/8 | 2001:db8:2100::/40 | ${24} | ${0} | ${0} | 21.10.20.30 | ${1232}
+| | ${domain_index_1}= | And Map Add Domain | ${dut_node} | @{domain_set_1}
+
+| | @{domain_set_2}= | Create list | 22.0.0.0/8 | 2001:db8:2200::/40 | ${ipv6_br_src} | ${24} | ${0} | ${0}
+| | ${ipv6_dst_2}= | Compute IPv6 map destination address
+| | ... | 22.0.0.0/8 | 2001:db8:2200::/40 | ${24} | ${0} | ${0} | 22.10.20.30 | ${1232}
+| | ${domain_index_2}= | And Map Add Domain | ${dut_node} | @{domain_set_2}
+
+| | Then Send IPv4 UDP and check headers for lightweight 4over6
+| | ... | ${tg_node} | ${tg_to_dut_if1} | ${tg_to_dut_if2} | ${dut_to_tg_if1_mac} | 21.10.20.30 | ${ipv4_outside} | ${1232} | ${tg_to_dut_if2_mac} | ${dut_to_tg_if2_mac} | ${ipv6_dst_1} | ${ipv6_br_src}
+| | And Send IPv4 UDP in IPv6 and check headers for lightweight 4over6
+| | ... | ${tg_node} | ${tg_to_dut_if2} | ${tg_to_dut_if1} | ${dut_to_tg_if2_mac} | ${tg_to_dut_if2_mac} | ${ipv6_br_src} | ${ipv6_dst_1} | ${ipv4_outside} | 21.10.20.30 | ${1232} | ${tg_to_dut_if1_mac} | ${dut_to_tg_if1_mac}
+
+| | And Send IPv4 UDP and check headers for lightweight 4over6
+| | ... | ${tg_node} | ${tg_to_dut_if1} | ${tg_to_dut_if2} | ${dut_to_tg_if1_mac} | 22.10.20.30 | ${ipv4_outside} | ${1232} | ${tg_to_dut_if2_mac} | ${dut_to_tg_if2_mac} | ${ipv6_dst_2} | ${ipv6_br_src}
+| | And Send IPv4 UDP in IPv6 and check headers for lightweight 4over6
+| | ... | ${tg_node} | ${tg_to_dut_if2} | ${tg_to_dut_if1} | ${dut_to_tg_if2_mac} | ${tg_to_dut_if2_mac} | ${ipv6_br_src} | ${ipv6_dst_2} | ${ipv4_outside} | 22.10.20.30 | ${1232} | ${tg_to_dut_if1_mac} | ${dut_to_tg_if1_mac}
+
+
+
+
+
 | Bug: VPP-318
 | | [Tags] | EXPECTED_FAILING
 | | [Documentation] | qlen < psid length
