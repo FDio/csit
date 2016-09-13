@@ -153,9 +153,25 @@
 | | Should be equal as strings
 | | ... | ${api_data['if-index']} | ${sw_if_index}
 
+| VxLAN GPE configuration from Honeycomb should be empty
+| | [Documentation] | Uses Honeycomb API to get operational data about\
+| | ... | the given interface and expects to fail.
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - information about a DUT node. Type: dictionary
+| | ...
+| | ... | *Example:*
+| | ... | \| VxLAN GPE configuration from Honeycomb should be empty\
+| | ... | \| ${nodes['DUT1']} \| vxlan_gpe_tunnel0 \|
+| | ...
+| | [Arguments] | ${node} | ${interface}
+| | ...
+| | ${api_data}= | interfaceAPI.Get interface oper data | ${node} | ${interface}
+| | Should be empty | ${api_data}
+
 | VxLAN GPE configuration from VAT should be empty
 | | [Documentation] | Uses VAT to get operational data about the given\
-| | ... | interface and expects empty dictionary.
+| | ... | interface and expects an empty dictionary.
 | | ...
 | | ... | *Arguments:*
 | | ... | - node - information about a DUT node. Type: dictionary
