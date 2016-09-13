@@ -35,7 +35,7 @@ __all__ = ["SetupFramework"]
 def pack_framework_dir():
     """Pack the testing WS into temp file, return its name."""
 
-    tmpfile = NamedTemporaryFile(suffix=".tgz", prefix="openvpp-testing-")
+    tmpfile = NamedTemporaryFile(suffix=".tgz", prefix="openvpp-testing-", dir="../temp")
     file_name = tmpfile.name
     tmpfile.close()
 
