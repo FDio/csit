@@ -49,9 +49,9 @@
 | | ... | [Ref] RFC2474, RFC2698.
 | | ... | [Cfg] On DUT1 configure 2R3C color-aware policer on the first\
 | | ... | interface.
-| | ... | [Ver] TG sends IPv6 TCP packet on the first link to DUT1, verify if\
-| | ... | DUT1 sends correct IPv6 TCP packet with correct DSCP on the second\
-| | ... | link to TG.
+| | ... | [Ver] TG sends IPv6 TCP packet on the first link to DUT1.\
+| | ... | On DUT1 packet is marked with DSCP tag. Verify if DUT1 sends\
+| | ... | correct IPv6 TCP packet with correct DSCP on the second link to TG.
 | | ${dscp}= | DSCP AF22
 | | Given Policer Set Name | policer1
 | | And Policer Set Node | ${dut_node}
@@ -80,9 +80,9 @@
 | | ... | [Ref] RFC2474, RFC2698.
 | | ... | [Cfg] On DUT1 configure 2R3C color-blind policer on the first\
 | | ... | interface.
-| | ... | [Ver] TG sends IPv6 TCP packet on the first link to DUT1, verify if\
-| | ... | DUT1 sends correct IPv6 TCP packet with correct DSCP on the second\
-| | ... | link to TG.
+| | ... | [Ver] TG sends IPv6 TCP packet on the first link to DUT1.\
+| | ... | On DUT1 packet is marked with DSCP tag. Verify if DUT1 sends\
+| | ... | correct IPv6 TCP packet with correct DSCP on the second link to TG.
 | | ${dscp}= | DSCP AF22
 | | Given Policer Set Name | policer1
 | | And Policer Set Node | ${dut_node}
@@ -110,9 +110,9 @@
 | | ... | [Ref] RFC2474, RFC2697.
 | | ... | [Cfg] On DUT1 configure 1R3C color-aware policer on the first\
 | | ... | interface.
-| | ... | [Ver] TG sends IPv6 TCP packet on the first link to DUT1, verify if\
-| | ... | DUT1 sends correct IPv6 TCP packet with correct DSCP on the second\
-| | ... | link to TG.
+| | ... | [Ver] TG sends IPv6 TCP packet on the first link to DUT1.\
+| | ... | On DUT1 packet is marked with DSCP tag. Verify if DUT1 sends\
+| | ... | correct IPv6 TCP packet with correct DSCP on the second link to TG.
 | | ${dscp}= | DSCP AF22
 | | Given Policer Set Name | policer1
 | | And Policer Set Node | ${dut_node}
@@ -140,9 +140,9 @@
 | | ... | [Ref] RFC2474, RFC2697.
 | | ... | [Cfg] On DUT1 configure 1R3C color-blind policer on the first\
 | | ... | interface.
-| | ... | [Ver] TG sends IPv6 TCP packet on the first link to DUT1, verify if\
-| | ... | DUT1 sends correct IPv6 TCP packet with correct DSCP on the second\
-| | ... | link to TG.
+| | ... | [Ver] TG sends IPv6 TCP packet on the first link to DUT1.\
+| | ... | On DUT1 packet is marked with DSCP tag. Verify if DUT1 sends\
+| | ... | correct IPv6 TCP packet with correct DSCP on the second link to TG.
 | | ${dscp}= | DSCP AF22
 | | Given Policer Set Name | policer1
 | | And Policer Set Node | ${dut_node}
