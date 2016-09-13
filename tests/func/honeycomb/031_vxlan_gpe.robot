@@ -33,16 +33,20 @@
 
 *** Settings ***
 | Resource | resources/libraries/robot/default.robot
+| Resource | resources/libraries/robot/honeycomb/honeycomb.robot
 | Resource | resources/libraries/robot/honeycomb/interfaces.robot
 | Resource | resources/libraries/robot/honeycomb/vxlan_gpe.robot
 # Import additional VxLAN GPE settings from resource file
 | Variables | resources/test_data/honeycomb/vxlan_gpe.py
 | Documentation | *Honeycomb VxLAN-GPE management test suite.*
 | Force Tags | honeycomb_sanity
+| Suite Teardown | Run Keyword If Any Tests Failed
+| ... | Restart Honeycomb And VPP And Clear Persisted Configuration | ${node}
 
 *** Test Cases ***
+# TODO: Remove "continue on failure" once VPP bugs (VPP-217, VPP-156) are fixed.
 | Honeycomb creates VxLAN GPE tunnel
-| | [Documentation] | Check if Honeycomb API can configure VxLAN GPE tunnel.
+| | [Documentation] | Check if Honeycomb API can configure a VxLAN GPE tunnel.
 | | ...
 | | Given interface configuration from Honeycomb should be empty
 | | ... | ${node} | ${vxlan_gpe_if1}
@@ -51,34 +55,31 @@
 | | When Honeycomb creates VxLAN GPE interface
 | | ... | ${node} | ${vxlan_gpe_if1}
 | | ... | ${vxlan_gpe_base_settings} | ${vxlan_gpe_settings}
-| | Then run keyword and continue on failure
-| | ... | VxLAN GPE configuration from Honeycomb should be
+| | Then VxLAN GPE configuration from Honeycomb should be
 | | ... | ${node} | ${vxlan_gpe_if1}
 | | ... | ${vxlan_gpe_base_settings} | ${vxlan_gpe_settings}
 | | And run keyword and continue on failure
 | | ... | VxLAN GPE configuration from VAT should be
 | | ... | ${node} | ${vxlan_gpe_if1} | ${vxlan_gpe_settings}
-| | And run keyword and continue on failure
-| | ... | VxLAN GPE Interface indices from Honeycomb and VAT should correspond
+| | And VxLAN GPE Interface indices from Honeycomb and VAT should correspond
 | | ... | ${node} | ${vxlan_gpe_if1}
 
 | Honeycomb removes VxLAN GPE tunnel
 | | [Documentation] | Check if Honeycomb API can remove VxLAN GPE tunnel.
 | | ...
-# Disabled beacuse of bug in Honeycomb.
-# TODO: Enable when fixed.
-#| | Given VxLAN GPE configuration from Honeycomb should be
-#| | ... | ${node} | ${vxlan_gpe_if1}
-#| | ... | ${vxlan_gpe_base_settings} | ${vxlan_gpe_settings}
-#| | And VxLAN GPE configuration from VAT should be
-#| | ... | ${node} | ${vxlan_gpe_if1} | ${vxlan_gpe_settings}
+| | Run Keyword And Continue On Failure
+| | ... | Given VxLAN GPE configuration from Honeycomb should be
+| | ... | ${node} | ${vxlan_gpe_if1}
+| | ... | ${vxlan_gpe_base_settings} | ${vxlan_gpe_settings}
+| | Run Keyword And Continue On Failure
+| | ... | And VxLAN GPE configuration from VAT should be
+| | ... | ${node} | ${vxlan_gpe_if1} | ${vxlan_gpe_settings}
 | | When Honeycomb removes VxLAN GPE interface
 | | ... | ${node} | ${vxlan_gpe_if1}
-| | Then VxLAN GPE configuration from VAT should be empty
-| | ... | ${node}
-| | And VxLAN GPE configuration from Honeycomb should be
+| | Then VxLAN GPE configuration from Honeycomb should be empty
 | | ... | ${node} | ${vxlan_gpe_if1}
-| | ... | ${vxlan_gpe_disabled_base_settings} | ${vxlan_gpe_settings}
+| | And VxLAN GPE configuration from VAT should be empty
+| | ... | ${node}
 
 | Honeycomb sets wrong interface type while creating VxLAN GPE tunnel
 | | [Documentation] | Check if Honeycomb refuses to create a VxLAN GPE tunnel\
@@ -127,32 +128,27 @@
 | | ... | ${node}
 
 | Honeycomb creates VxLAN GPE tunnel with ipv6
-| | [Documentation] | Check if Honeycomb API can configure VxLAN GPE tunnel\
+| | [Documentation] | Check if Honeycomb API can configure a VxLAN GPE tunnel\
 | | ... | with IPv6 addresses.
 | | ...
 | | Given VxLAN GPE configuration from VAT should be empty
 | | ... | ${node}
-# Disabled beacuse of bug in Honeycomb
-# TODO: Enable when fixed.
-#| | And VxLAN GPE configuration from Honeycomb should be
-#| | ... | ${node} | ${vxlan_gpe_if5}
-#| | ... | ${vxlan_gpe_disabled_base_settings} | ${vxlan_gpe_settings}
+| | And VxLAN GPE configuration from Honeycomb should be empty
+| | ... | ${node} | ${vxlan_gpe_if5}
 | | When Honeycomb creates VxLAN GPE interface
 | | ... | ${node} | ${vxlan_gpe_if5}
 | | ... | ${vxlan_gpe_base_ipv6_settings} | ${vxlan_gpe_ipv6_settings}
-| | Then run keyword and continue on failure
-| | ... | VxLAN GPE configuration from Honeycomb should be
+| | Then VxLAN GPE configuration from Honeycomb should be
 | | ... | ${node} | ${vxlan_gpe_if5}
 | | ... | ${vxlan_gpe_base_ipv6_settings} | ${vxlan_gpe_ipv6_settings}
-| | And run keyword and continue on failure
+| | And Run Keyword And Continue On Failure
 | | ... | VxLAN GPE configuration from VAT should be
 | | ... | ${node} | ${vxlan_gpe_if5} | ${vxlan_gpe_ipv6_settings}
-| | And run keyword and continue on failure
-| | ... | VxLAN GPE Interface indices from Honeycomb and VAT should correspond
+| | And VxLAN GPE Interface indices from Honeycomb and VAT should correspond
 | | ... | ${node} | ${vxlan_gpe_if5}
 
-| Honeycomb creates the second VxLAN GPE tunnel with ipv6
-| | [Documentation] | Check if Honeycomb API can configure another one VxLAN\
+| Honeycomb creates a second VxLAN GPE tunnel with ipv6
+| | [Documentation] | Check if Honeycomb API can configure another VxLAN\
 | | ... | GPE tunnel with IPv6 addresses.
 | | ...
 | | Given interface configuration from Honeycomb should be empty
@@ -162,13 +158,11 @@
 | | When Honeycomb creates VxLAN GPE interface
 | | ... | ${node} | ${vxlan_gpe_if6}
 | | ... | ${vxlan_gpe_base_ipv6_settings2} | ${vxlan_gpe_ipv6_settings2}
-| | Then run keyword and continue on failure
-| | ... | VxLAN GPE configuration from Honeycomb should be
+| | Then VxLAN GPE configuration from Honeycomb should be
 | | ... | ${node} | ${vxlan_gpe_if6}
 | | ... | ${vxlan_gpe_base_ipv6_settings2} | ${vxlan_gpe_ipv6_settings2}
 | | And run keyword and continue on failure
 | | ... | VxLAN GPE configuration from VAT should be
 | | ... | ${node} | ${vxlan_gpe_if6} | ${vxlan_gpe_ipv6_settings2}
-| | And run keyword and continue on failure
-| | ... | VxLAN GPE Interface indices from Honeycomb and VAT should correspond
+| | And VxLAN GPE Interface indices from Honeycomb and VAT should correspond
 | | ... | ${node} | ${vxlan_gpe_if6}

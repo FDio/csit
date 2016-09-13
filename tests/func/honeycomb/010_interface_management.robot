@@ -33,16 +33,20 @@
 *** Settings ***
 | Resource | resources/libraries/robot/default.robot
 | Resource | resources/libraries/robot/honeycomb/interfaces.robot
+| Resource | resources/libraries/robot/honeycomb/honeycomb.robot
 | Force Tags | honeycomb_sanity
+| Suite Teardown | Run Keyword If Any Tests Failed
+| | ... | Restart Honeycomb And VPP And Clear Persisted Configuration | ${node}
 | Documentation | *Honeycomb interface management test suite.*
 | ...
 | ... | Test suite uses the first interface of the first DUT node.
 
 *** Test Cases ***
+# TODO: Remove "continue on failure" once VPP bugs (VPP-132, VPP-333) are fixed.
 | Honeycomb configures and reads interface state
 | | [Documentation] | Check if Honeycomb API can modify the admin state of\
 | | ... | VPP interfaces.
-| | Given Interface state is | ${node} | ${interface} | down
+| | Given Interface State Is | ${node} | ${interface} | down
 | | When Honeycomb sets interface state | ${node} | ${interface} | up
 | | Then Interface state from Honeycomb should be
 | | ... | ${node} | ${interface} | up
@@ -59,22 +63,26 @@
 | | ... | ${ipv4_address} | ${ipv4_mask} | ${ipv4_settings}
 | | And Honeycomb adds interface ipv4 neighbor
 | | ... | ${node} | ${interface} | @{ipv4_neighbor}
-| | Then IPv4 config from Honeycomb should be
+| | Run Keyword And Continue On Failure
+| | ... | Then IPv4 config from Honeycomb should be
 | | ... | ${node} | ${interface} | ${ipv4_address} | ${ipv4_prefix}
 | | ... | @{ipv4_neighbor} | ${ipv4_settings}
-| | And IPv4 config from VAT should be
+| | Run Keyword And Continue On Failure
+| | ... | And IPv4 config from VAT should be
 | | ... | ${node} | ${interface} | ${ipv4_address} | ${ipv4_prefix}
 
 | Honeycomb removes ipv4 address from interface
 | | [Documentation] | Check if Honeycomb API can remove configured ipv4\
 | | ... | addresses from interface.
-| | Given IPv4 config from Honeycomb should be
+| | Run Keyword And Continue On Failure
+| | ... | Given IPv4 config from Honeycomb should be
 | | ... | ${node} | ${interface} | ${ipv4_address} | ${ipv4_prefix}
 | | ... | @{ipv4_neighbor} | ${ipv4_settings}
-| | And IPv4 config from VAT should be
+| | Run Keyword And Continue On Failure
+| | ... | And IPv4 config from VAT should be
 | | ... | ${node} | ${interface} | ${ipv4_address} | ${ipv4_prefix}
 | | When Honeycomb removes interface ipv4 addresses | ${node} | ${interface}
-| | Then IPv4 address from Honeycomb should be empty | ${node} |${interface}
+| | Then IPv4 address from Honeycomb should be empty | ${node} | ${interface}
 | | And ipv4 address from VAT should be empty | ${node} | ${interface}
 
 | Honeycomb modifies interface configuration - ipv4 (prefix)
@@ -87,11 +95,13 @@
 | | ... | ${ipv4_settings}
 | | And Honeycomb adds interface ipv4 neighbor
 | | ... | ${node} | ${interface} | @{ipv4_neighbor}
-| | Then IPv4 config from Honeycomb should be
+| | Run Keyword And Continue On Failure
+| | ... | Then IPv4 config from Honeycomb should be
 | | ... | ${node} | ${interface} | ${ipv4_address2} | ${ipv4_prefix}
 | | ... | @{ipv4_neighbor}
 | | ... | ${ipv4_settings}
-| | And IPv4 config from VAT should be
+| | Run Keyword And Continue On Failure
+| | ... | And IPv4 config from VAT should be
 | | ... | ${node} | ${interface} | ${ipv4_address2} | ${ipv4_prefix}
 
 | Honeycomb modifies interface configuration - ipv6
@@ -99,10 +109,12 @@
 | | When Honeycomb sets interface ipv6 configuration
 | | ... | ${node} | ${interface} | @{ipv6_address} | @{ipv6_neighbor}
 | | ... | ${ipv6_settings}
-| | Then IPv6 config from Honeycomb should be
+| | Run Keyword And Continue On Failure
+| | ... | Then IPv6 config from Honeycomb should be
 | | ... | ${node} | ${interface} | @{ipv6_address} | @{ipv6_neighbor}
 | | ... | ${ipv6_settings}
-| | And IPv6 config from VAT should be
+| | Run Keyword And Continue On Failure
+| | ... | And IPv6 config from VAT should be
 | | ... | ${node} | ${interface} | @{ipv6_address}
 
 | Honeycomb modifies interface configuration - ethernet,routing

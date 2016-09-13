@@ -278,24 +278,28 @@ class Topology(object):
         :return: Interface name of the interface connected to the given link.
         :rtype: str
         """
-        return Topology._get_interface_by_key_value(node, "vpp_sw_index", sw_index)
+        return Topology._get_interface_by_key_value(node, "vpp_sw_index",
+                                                    sw_index)
 
     @staticmethod
     def get_interface_sw_index(node, iface_key):
-        """Get VPP sw_if_index for the interface.
+        """Get VPP sw_if_index for the interface, using either interface key or
+        name.
 
         :param node: Node to get interface sw_if_index on.
-        :param iface_key: Interface key from topology file, or sw_index.
+        :param iface_key: Interface key from topology file, or interface name.
         :type node: dict
-        :type iface_key: str/int
+        :type iface_key: str
         :return: Return sw_if_index or None if not found.
         """
         try:
             if isinstance(iface_key, basestring):
+                if iface_key not in node['interfaces'].keys():
+                    # assume it's interface name
+                    iface_key = Topology.get_interface_by_name(node, iface_key)
                 return node['interfaces'][iface_key].get('vpp_sw_index')
-            #FIXME: use only iface_key, do not use integer
             else:
-                return int(iface_key)
+                return None
         except (KeyError, ValueError):
             return None
 
@@ -514,7 +518,7 @@ class Topology(object):
                         if filt == interface['model']:
                             link_names.append(interface['link'])
                 elif (filter_list is not None) and ('model' not in interface):
-                    logger.trace("Cannot apply filter on interface: {}" \
+                    logger.trace("Cannot apply filter on interface: {}"
                                  .format(str(interface)))
                 else:
                     link_names.append(interface['link'])
@@ -534,8 +538,8 @@ class Topology(object):
         :param filter_list_node2: Link filter criteria for node2.
         :type node1: dict
         :type node2: dict
-        :type filter_list1: list of strings
-        :type filter_list2: list of strings
+        :type filter_list_node1: list of strings
+        :type filter_list_node2: list of strings
         :return: List of strings that represent connecting link names.
         :rtype: list
         """
@@ -578,7 +582,8 @@ class Topology(object):
         else:
             return connecting_links[0]
 
-    @keyword('Get egress interfaces name on "${node1}" for link with "${node2}"')
+    @keyword('Get egress interfaces name on "${node1}" for link with '
+             '"${node2}"')
     def get_egress_interfaces_name_for_nodes(self, node1, node2):
         """Get egress interfaces on node1 for link with node2.
 
