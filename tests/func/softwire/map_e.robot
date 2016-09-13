@@ -21,6 +21,7 @@
 | Library  | resources.libraries.python.IPUtil
 | Library  | resources.libraries.python.Trace
 | Force Tags | HW_ENV | VM_ENV | 3_NODE_DOUBLE_LINK_TOPO
+| Variables | resources/test_data/softwire/map_e_domains.py | ${5}
 | Suite Setup | Run Keywords
 | ... | Setup all DUTs before test | AND
 | ... | Setup all TGs before traffic script
@@ -52,7 +53,7 @@
 | ${ipv4_prefix_len}= | 24
 | ${ipv6_prefix_len}= | 64
 | ${ipv6_br_src}= | 2001:db8:ffff::1
-| ${ipv4_outside}= | 100.0.0.1
+| ${ipv4_outside}= | 1.0.0.1
 
 
 *** Test Cases ***
@@ -198,6 +199,38 @@
 | | 0.0.0.0/0         | 2001:db8::/32           | ${ipv6_br_src} | ${32}      | ${0}        | ${0}     | 20.169.201.219 | ${1232}  |
 | | 0.0.0.0/0         | 2001::/16               | ${ipv6_br_src} | ${48}      | ${0}        | ${0}     | 20.169.201.219 | ${1232}  |
 | | 0.0.0.0/0         | 2001::/16               | ${ipv6_br_src} | ${48}      | ${6}        | ${8}     | 20.169.201.219 | ${1232}  |
+
+
+| TC06: configure multiple domain and check with traffic script
+| | [Tags] | tmp
+| | [Documentation] |
+| | ... | tbd
+| | Given Path for 2-node testing is set
+| | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
+| | And Interfaces in 2-node path are up
+
+| | When IP addresses are set on interfaces
+| | ... | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4} | ${ipv4_prefix_len}
+| | ... | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6} | ${ipv6_prefix_len}
+| | And Vpp Route Add | ${dut_node} | :: | 0 | ${dut_ip6_gw}
+| | ... | ${dut_to_tg_if2} | resolve_attempts=${NONE} | count=${NONE}
+| | And Add IP neighbor | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6_gw}
+| | ... | ${tg_to_dut_if2_mac}
+| | Vpp Route Add | ${dut_node} | 0.0.0.0 | 0 | ${dut_ip4_gw} | ${dut_to_tg_if1}
+| | ... | resolve_attempts=${NONE} | count=${NONE}
+| | Add IP neighbor | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4_gw}
+| | ... | ${tg_to_dut_if1_mac}
+| | :FOR | ${domain_set} | IN | @{domain_sets}
+| | | And Map Add Domain | ${dut_node} | @{domain_set}
+
+| | :FOR | ${ip_set} | IN | @{ip_sets}
+| | | ${ipv4}= | Get From List | ${ip_set} | 0
+| | | ${ipv6}= | Get From List | ${ip_set} | 1
+| | | ${port}= | Get From List | ${ip_set} | 2
+| | | ${ipv6_br}= | Get From List | ${ip_set} | 3
+| | | Then Send IPv4 UDP and check headers for lightweight 4over6 | ${tg_node} | ${tg_to_dut_if1} | ${tg_to_dut_if2} | ${dut_to_tg_if1_mac} | ${ipv4} | ${ipv4_outside} | ${port} | ${tg_to_dut_if2_mac} | ${dut_to_tg_if2_mac} | ${ipv6} | ${ipv6_br}
+| | | And Send IPv4 UDP in IPv6 and check headers for lightweight 4over6 | ${tg_node} | ${tg_to_dut_if2} | ${tg_to_dut_if1} | ${dut_to_tg_if2_mac} | ${tg_to_dut_if2_mac} | ${ipv6_br} | ${ipv6} | ${ipv4_outside} |  ${ipv4} | ${port} | ${tg_to_dut_if1_mac} | ${dut_to_tg_if1_mac}
+
 
 
 | Bug: VPP-318
