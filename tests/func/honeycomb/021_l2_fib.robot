@@ -13,21 +13,27 @@
 
 *** Settings ***
 | Resource | resources/libraries/robot/default.robot
+| Resource | resources/libraries/robot/honeycomb/honeycomb.robot
 | Resource | resources/libraries/robot/honeycomb/interfaces.robot
 | Resource | resources/libraries/robot/honeycomb/bridge_domain.robot
 | Resource | resources/libraries/robot/honeycomb/l2_fib.robot
-| Variables | resources/test_data/honeycomb/l2_fib.py
+| Variables | resources/test_data/honeycomb/l2_fib.py | ${node} | ${interface}
+| ... | ${interface2}
 | Documentation | *Honeycomb L2 FIB management test suite.*
 | Suite Setup | Run keywords
 | ... | Set test interface down
 | ... | AND
 | ... | Honeycomb removes all bridge domains | ${node}
-| Suite Teardown | Honeycomb removes all bridge domains | ${node}
+| Suite Teardown | Run keywords
+| ... | Run Keyword If Any Tests Failed
+| ... | Restart Honeycomb And VPP And Clear Persisted Configuration | ${node}
+| ... | AND | Honeycomb removes all bridge domains | ${node}
 | Force tags | honeycomb_sanity
 
 *** Variables ***
 # Interface to run tests on.
 | ${interface}= | ${node['interfaces']['port1']['name']}
+| ${interface2}= | ${node['interfaces']['port3']['name']}
 
 *** Test Cases ***
 | Honeycomb adds L2 FIB entry (forward)

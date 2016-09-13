@@ -13,11 +13,15 @@
 
 *** Settings ***
 | Resource | resources/libraries/robot/default.robot
+| Resource | resources/libraries/robot/honeycomb/honeycomb.robot
 | Resource | resources/libraries/robot/honeycomb/sub_interface.robot
 | Resource | resources/libraries/robot/honeycomb/bridge_domain.robot
 | Resource | resources/libraries/robot/honeycomb/interfaces.robot
 | Variables | resources/test_data/honeycomb/sub_interfaces.py
-| Suite Teardown | Honeycomb removes all bridge domains | ${node}
+| Suite Teardown | Run keywords
+| ... | Run Keyword If Any Tests Failed
+| ... | Restart Honeycomb And VPP And Clear Persisted Configuration | ${node}
+| ... | AND | Honeycomb removes all bridge domains | ${node}
 | Force Tags | honeycomb_sanity
 | Documentation | *Honeycomb sub-interface management test suite.*
 | ...
@@ -34,7 +38,7 @@
 | Honycomb creates sub-interface
 | | [Documentation] | Check if Honeycomb creates a sub-interface.
 | | ...
-| | Given interface state is | ${node} | ${super_if} | down
+| | Given Interface State Is | ${node} | ${super_if} | down
 | | And sub-interface configuration from Honeycomb should be empty
 | | ... | ${node} | ${super_if} | ${sub_if_id}
 | | And interface configuration from VAT should be empty
@@ -347,6 +351,7 @@
 | | ... | ${node} | ${sub_if_name}
 | | ... | ${ipv4['address']} | ${ipv4['prefix-length']}
 
+#TODO: Remove "continue on failure" once VPP bug VPP-132 is fixed.
 | Honeycomb removes sub-interface ipv4 address
 | | [Documentation] | Check if Honeycomb can remove configured ipv4 addresses\
 | | ... | from the sub-interface.
@@ -354,7 +359,8 @@
 | | Given sub-interface ipv4 address from Honeycomb should be
 | | ... | ${node} | ${super_if} | ${sub_if_id}
 | | ... | ${ipv4['address']} | ${ipv4['prefix-length']}
-| | And sub-interface ipv4 address from VAT should be
+| | Run Keyword And Continue On Failure
+| | ... | And sub-interface ipv4 address from VAT should be
 | | ... | ${node} | ${sub_if_name}
 | | ... | ${ipv4['address']} | ${ipv4['prefix-length']}
 | | When Honeycomb removes all sub-interface ipv4 addresses
