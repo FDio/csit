@@ -21,6 +21,7 @@ from subprocess import Popen, PIPE, call
 from multiprocessing import Pool
 from tempfile import NamedTemporaryFile
 from os.path import basename
+from os import environ
 
 from robot.api import logger
 from robot.libraries.BuiltIn import BuiltIn
@@ -35,7 +36,16 @@ __all__ = ["SetupFramework"]
 def pack_framework_dir():
     """Pack the testing WS into temp file, return its name."""
 
-    tmpfile = NamedTemporaryFile(suffix=".tgz", prefix="openvpp-testing-")
+    try:
+        directory = environ["TMPDIR"]
+    except Keyerror:
+        directory = None
+
+    if directory is not None:
+        tmpfile = NamedTemporaryFile(suffix=".tgz", prefix="openvpp-testing-",\
+                                     dir="{0}".format(directory))
+    else:
+        tmpfile = NamedTemporaryFile(suffix=".tgz", prefix="openvpp-testing-")
     file_name = tmpfile.name
     tmpfile.close()
 
