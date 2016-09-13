@@ -18,9 +18,9 @@
 *** Settings ***
 | Resource | resources/libraries/robot/default.robot
 | Resource | resources/libraries/robot/honeycomb/persistence.robot
-| Suite Setup | Restart Honeycomb and VPP and clear persisted configuration
+| Suite Setup | Restart Honeycomb And VPP And Clear Persisted Configuration
 | ... | ${node}
-| Force Tags | honeycomb_persistence
+| Force Tags | honeycomb_sanity
 | Documentation | *Honeycomb configuration persistence test suite.*
 
 *** Test Cases ***
@@ -53,24 +53,7 @@
 | | [Documentation] | Checks if Honeycomb reverts to default configuration when\
 | | ... | persistence files are damaged or invalid.
 | | [Teardown] | Run keyword if test failed
-| | ... | Restart both systems and clear persisted configuration | ${node}
+| | ... | Restart Honeycomb And VPP And Clear Persisted Configuration | ${node}
 | | Given Honeycomb and VPP should not have default configuration | ${node}
 | | When Persistence file is damaged during restart | ${node}
 | | Then Honeycomb and VPP should have default configuration | ${node}
-
-*** Keywords ***
-| Restart Honeycomb and VPP and clear persisted configuration
-| | [Documentation] | Restarts Honeycomb and VPP with default configuration.
-| | ...
-| | ... | *Arguments:*
-| | ... | - node - information about a DUT node. Type: dictionary
-| | ...
-| | ... | *Example:*
-| | ...
-| | ... | Restart both systems and clear persisted configuration \
-| | ... | \| ${nodes['DUT1']} \|
-| | [Arguments] | ${node}
-| | Stop Honeycomb service on DUTs | ${node}
-| | Clear persisted Honeycomb configuration | ${node}
-| | Setup DUT | ${node}
-| | Setup Honeycomb service on DUTs | ${node}

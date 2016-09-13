@@ -14,6 +14,7 @@
 *** Settings ***
 | Library | resources/libraries/python/honeycomb/HoneycombSetup.py
 | Library | resources/libraries/python/honeycomb/HoneycombUtil.py
+| Library | resources/libraries/python/honeycomb/HcPersistence.py
 
 *** Keywords ***
 | Setup Honeycomb service on DUTs
@@ -36,7 +37,7 @@
 | | ...
 | | [Arguments] | @{duts}
 | | Start honeycomb on DUTs | @{duts}
-| | Wait until keyword succeeds | 4min | 20sec
+| | Wait until keyword succeeds | 1min | 10sec
 | | ... | Check honeycomb startup state | @{duts}
 
 | Stop honeycomb service on DUTs
@@ -58,7 +59,7 @@
 | | ...
 | | [Arguments] | @{duts}
 | | Stop honeycomb on DUTs | @{duts}
-| | Wait until keyword succeeds | 2m | 10s
+| | Wait until keyword succeeds | 30sec | 5sec
 | | ... | Check honeycomb shutdown state | @{duts}
 
 | Clear persisted Honeycomb configuration
@@ -72,3 +73,20 @@
 | | ... | \| Clear persisted Honeycomb configuration \| ${nodes['DUT1']} \|
 | | [Arguments] | @{duts}
 | | Clear persisted Honeycomb config | @{duts}
+
+| Restart Honeycomb and VPP and clear persisted configuration
+| | [Documentation] | Restarts Honeycomb and VPP with default configuration.
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - information about a DUT node. Type: dictionary
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Restart Honeycomb and VPP and clear persisted configuration \
+| | ... | \| ${nodes['DUT1']} \|
+| | [Arguments] | ${node}
+| | Log | Performing clean restart of Honeycomb and VPP. | console=True
+| | Stop Honeycomb service on DUTs | ${node}
+| | Clear persisted Honeycomb configuration | ${node}
+| | Setup DUT | ${node}
+| | Setup Honeycomb service on DUTs | ${node}

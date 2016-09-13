@@ -55,7 +55,7 @@ class HoneycombSetup(object):
         """
         logger.console("\nStarting Honeycomb service ...")
 
-        cmd = "{0}/bin/start".format(Const.REMOTE_HC_DIR)
+        cmd = "sudo service honeycomb start"
 
         for node in nodes:
             if node['type'] == NodeType.DUT:
@@ -83,7 +83,7 @@ class HoneycombSetup(object):
         """
         logger.console("\nShutting down Honeycomb service ...")
 
-        cmd = "{0}/bin/stop".format(Const.REMOTE_HC_DIR)
+        cmd = "sudo service honeycomb stop"
         errors = []
 
         for node in nodes:
@@ -139,6 +139,13 @@ class HoneycombSetup(object):
                 else:
                     raise HoneycombError('Unexpected return code: {0}.'.
                                          format(status_code))
+
+                status_code, _ = HcUtil.get_honeycomb_data(
+                    node, "config_vpp_interfaces")
+                if status_code != HTTPCodes.OK:
+                    raise HoneycombError('Honeycomb on node {0} running but '
+                                         'not yet ready.'.format(node['host']),
+                                         enable_logging=False)
         return True
 
     @staticmethod
@@ -153,7 +160,7 @@ class HoneycombSetup(object):
         :return: True if all GETs fail to connect.
         :rtype bool
         """
-        cmd = "ps -ef | grep -v grep | grep karaf"
+        cmd = "ps -ef | grep -v grep | grep honeycomb"
         for node in nodes:
             if node['type'] == NodeType.DUT:
                 try:
@@ -185,3 +192,30 @@ class HoneycombSetup(object):
                         logger.info("Honeycomb on node {0} has stopped".
                                     format(node['host']))
         return True
+
+    @staticmethod
+    def configure_unsecured_access(*nodes):
+        """Configure Honeycomb to allow restconf requests through insecure HTTP
+        used by tests. By default this is only allowed for localhost.
+
+         :param nodes: All nodes in test topology.
+         :type nodes: dict
+         :raises HoneycombError: If the configuration could not be changed.
+         """
+        # TODO: Modify tests to use HTTPS instead.
+
+        find = "restconf-binding-address"
+        replace = '\\"restconf-binding-address\\": \\"0.0.0.0\\",'
+
+        argument = '"/{0}/c\\ {1}"'.format(find, replace)
+        path = "{0}/config/honeycomb.json".format(Const.REMOTE_HC_DIR)
+        command = "sed -i {0} {1}".format(argument, path)
+
+        ssh = SSH()
+        for node in nodes:
+            if node['type'] == NodeType.DUT:
+                ssh.connect(node)
+                (ret_code, _, stderr) = ssh.exec_command_sudo(command)
+                if ret_code != 0:
+                    raise HoneycombError("Failed to modify configuration on "
+                                         "node {0}, {1}".format(node, stderr))

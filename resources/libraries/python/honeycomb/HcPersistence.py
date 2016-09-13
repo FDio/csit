@@ -40,7 +40,7 @@ class HcPersistence(object):
         :type nodes: list
         :raises HoneycombError: If persisted configuration could not be removed.
         """
-        cmd = "rm {0}/data/persistence/honeycomb/*".format(Const.REMOTE_HC_DIR)
+        cmd = "rm -rf {}/*".format(Const.REMOTE_HC_PERSIST)
         for node in nodes:
             if node['type'] == NodeType.DUT:
                 ssh = SSH()
@@ -60,7 +60,7 @@ class HcPersistence(object):
 
     @staticmethod
     def modify_persistence_files(node, find, replace):
-        """Searches contents of persistence file config.json for the provided
+        """Searches contents of persistence file data.json for the provided
          string, and replaces all occurrences with another string.
 
         :param node: Honeycomb node.
@@ -74,8 +74,7 @@ class HcPersistence(object):
         """
 
         argument = "\"s/{0}/{1}/g\"".format(find, replace)
-        path = "{0}/etc/opendaylight/honeycomb/config.json".format(
-            Const.REMOTE_HC_DIR)
+        path = "{0}/config/data.json".format(Const.REMOTE_HC_PERSIST)
         command = "sed -i {0} {1}".format(argument, path)
 
         ssh = SSH()

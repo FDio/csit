@@ -23,9 +23,12 @@
 
 *** Settings ***
 | Resource | resources/libraries/robot/default.robot
+| Resource | resources/libraries/robot/honeycomb/honeycomb.robot
 | Resource | resources/libraries/robot/honeycomb/interfaces.robot
 | Resource | resources/libraries/robot/honeycomb/tap.robot
 | Force Tags | honeycomb_sanity
+| Suite Teardown | Run Keyword If Any Tests Failed
+| ... | Restart Honeycomb And VPP And Clear Persisted Configuration | ${node}
 | Documentation | *Honeycomb TAP management test suite.*
 | ...
 | ... | Test suite uses the first interface of the first DUT node.

@@ -190,7 +190,7 @@
 | | ... | ${api_data['ietf-ip:ipv4']['neighbor'][0]['link-layer-address']}
 | | :FOR | ${key} | IN | @{settings.keys()}
 | | | Should be equal
-| | | ... | ${settings['{key']} | ${api_data['ietf-ip:ipv4']['{$key}']}
+| | | ... | ${settings['${key}']} | ${api_data['ietf-ip:ipv4']['${key}']}
 
 | IPv4 config from VAT should be
 | | [Documentation] | Retrieves interface ipv4 configuration through VAT and\
@@ -209,7 +209,6 @@
 | | [Arguments] | ${node} | ${interface} | ${address} | ${netmask}
 | | ${vpp_data}= | interfaceCLI.VPP get interface ip addresses
 | | ... | ${node} | ${interface} | ipv4
-#TODO: update based on resolution of bug https://jira.fd.io/browse/VPP-132
 | | Should be equal | ${vpp_data[0]['ip']} | ${address}
 | | Should be equal | ${vpp_data[0]['netmask']} | ${netmask}
 

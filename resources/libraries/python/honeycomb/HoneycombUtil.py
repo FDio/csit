@@ -86,7 +86,6 @@ class HoneycombError(Exception):
         self._msg = "{0}: {1}".format(self.__class__.__name__, msg)
         self._details = details
         if enable_logging:
-            logger.error(self._msg)
             logger.debug(self._details)
 
     def __repr__(self):

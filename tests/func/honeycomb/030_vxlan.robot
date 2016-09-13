@@ -27,11 +27,14 @@
 
 *** Settings ***
 | Resource | resources/libraries/robot/default.robot
+| Resource | resources/libraries/robot/honeycomb/honeycomb.robot
 | Resource | resources/libraries/robot/honeycomb/interfaces.robot
 | Resource | resources/libraries/robot/honeycomb/vxlan.robot
 # import additional VxLAN settings from resource file
 | Variables | resources/test_data/honeycomb/vxlan.py
 | Force Tags | honeycomb_sanity
+| Suite Teardown | Run Keyword If Any Tests Failed
+| ... | Restart Honeycomb And VPP And Clear Persisted Configuration | ${node}
 | Documentation | *Honeycomb VxLAN management test suite.*
 | ...
 | ... | Test suite uses the first interface of the first DUT node.
