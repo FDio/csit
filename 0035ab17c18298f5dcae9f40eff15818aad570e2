@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3a1d315d_44038fb8",
+        "filename": "resources/libraries/robot/traffic.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-09-13T17:12:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a1d315d_aef804e6",
+      "range": {
+        "startLine": 286,
+        "startChar": 12,
+        "endLine": 286,
+        "endChar": 20
+      },
+      "revId": "0035ab17c18298f5dcae9f40eff15818aad570e2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a1d315d_2448935a",
         "filename": "resources/libraries/robot/traffic.robot",
         "patchSetId": 3
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "3a1d315d_240093a9",
+        "filename": "resources/libraries/robot/traffic.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-09-13T17:12:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a1d315d_2448935a",
+      "range": {
+        "startLine": 299,
+        "startChar": 47,
+        "endLine": 299,
+        "endChar": 52
+      },
+      "revId": "0035ab17c18298f5dcae9f40eff15818aad570e2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a1d315d_843ac7cb",
         "filename": "resources/traffic_scripts/check_ra_packet.py",
         "patchSetId": 3
@@ -59,6 +107,30 @@
       "writtenOn": "2016-09-13T12:57:41Z",
       "side": 1,
       "message": "shorter version ether \u003d rxq.recv(max(5,interval)) :)",
+      "range": {
+        "startLine": 59,
+        "startChar": 4,
+        "endLine": 63,
+        "endChar": 27
+      },
+      "revId": "0035ab17c18298f5dcae9f40eff15818aad570e2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_449f0f60",
+        "filename": "resources/traffic_scripts/check_ra_packet.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-09-13T17:12:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a1d315d_843ac7cb",
       "range": {
         "startLine": 59,
         "startChar": 4,
@@ -117,6 +189,30 @@
     },
     {
       "key": {
+        "uuid": "3a1d315d_84e76712",
+        "filename": "resources/traffic_scripts/send_rs_check_ra.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-09-13T17:12:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a1d315d_49584a56",
+      "range": {
+        "startLine": 58,
+        "startChar": 4,
+        "endLine": 58,
+        "endChar": 11
+      },
+      "revId": "0035ab17c18298f5dcae9f40eff15818aad570e2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a1d315d_c93b3aea",
         "filename": "resources/traffic_scripts/send_rs_check_ra.py",
         "patchSetId": 3
@@ -128,6 +224,30 @@
       "writtenOn": "2016-09-13T12:57:41Z",
       "side": 1,
       "message": "please use multicast ipv6 mapped mac address 33-33-00-00-00-02",
+      "range": {
+        "startLine": 67,
+        "startChar": 38,
+        "endLine": 67,
+        "endChar": 45
+      },
+      "revId": "0035ab17c18298f5dcae9f40eff15818aad570e2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_e4a61bc1",
+        "filename": "resources/traffic_scripts/send_rs_check_ra.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-09-13T17:12:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a1d315d_c93b3aea",
       "range": {
         "startLine": 67,
         "startChar": 38,
@@ -163,6 +283,30 @@
     },
     {
       "key": {
+        "uuid": "3a1d315d_04a237ae",
+        "filename": "resources/traffic_scripts/send_rs_check_ra.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-09-13T17:12:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a1d315d_a940fe56",
+      "range": {
+        "startLine": 68,
+        "startChar": 36,
+        "endLine": 68,
+        "endChar": 42
+      },
+      "revId": "0035ab17c18298f5dcae9f40eff15818aad570e2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a1d315d_a9491e8d",
         "filename": "resources/traffic_scripts/send_rs_check_ra.py",
         "patchSetId": 3
@@ -174,6 +318,30 @@
       "writtenOn": "2016-09-13T12:57:41Z",
       "side": 1,
       "message": "check also source and destination MAC address of the received packet, must be unicast",
+      "range": {
+        "startLine": 77,
+        "startChar": 7,
+        "endLine": 77,
+        "endChar": 12
+      },
+      "revId": "0035ab17c18298f5dcae9f40eff15818aad570e2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_44c82f74",
+        "filename": "resources/traffic_scripts/send_rs_check_ra.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-09-13T17:12:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a1d315d_a9491e8d",
       "range": {
         "startLine": 77,
         "startChar": 7,
@@ -209,6 +377,30 @@
     },
     {
       "key": {
+        "uuid": "3a1d315d_64e44b0d",
+        "filename": "resources/traffic_scripts/send_rs_check_ra.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-09-13T17:12:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a1d315d_695b0655",
+      "range": {
+        "startLine": 85,
+        "startChar": 4,
+        "endLine": 85,
+        "endChar": 14
+      },
+      "revId": "0035ab17c18298f5dcae9f40eff15818aad570e2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a1d315d_e936f602",
         "filename": "resources/traffic_scripts/send_rs_check_ra.py",
         "patchSetId": 3
@@ -220,6 +412,30 @@
       "writtenOn": "2016-09-13T12:57:41Z",
       "side": 1,
       "message": "check also destination address, when is RA response to RS then is destination address unicast",
+      "range": {
+        "startLine": 87,
+        "startChar": 7,
+        "endLine": 87,
+        "endChar": 14
+      },
+      "revId": "0035ab17c18298f5dcae9f40eff15818aad570e2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_a4b943eb",
+        "filename": "resources/traffic_scripts/send_rs_check_ra.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-09-13T17:12:29Z",
+      "side": 1,
+      "message": "Done, but are we sure about this?\n\nThe RFC (#4861, section 4.2) says it\u0027s \"Typically the Source Address of an invoking Router Solicitation or the all-nodes multicast address.\", seems open to interpretation.",
+      "parentUuid": "3a1d315d_e936f602",
       "range": {
         "startLine": 87,
         "startChar": 7,
@@ -301,6 +517,30 @@
     },
     {
       "key": {
+        "uuid": "3a1d315d_e4317ba3",
+        "filename": "tests/func/ipv6/ipv6_ra.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-09-13T17:12:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a1d315d_ce58e0fc",
+      "range": {
+        "startLine": 68,
+        "startChar": 10,
+        "endLine": 68,
+        "endChar": 40
+      },
+      "revId": "0035ab17c18298f5dcae9f40eff15818aad570e2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a1d315d_4e6cd09c",
         "filename": "tests/func/ipv6/ipv6_ra.robot",
         "patchSetId": 3
@@ -312,6 +552,30 @@
       "writtenOn": "2016-09-12T22:09:54Z",
       "side": 1,
       "message": "Please, use correct for of documenation with tags [Top], [Enc], [Cfg]...\n\n- all occurrences",
+      "range": {
+        "startLine": 81,
+        "startChar": 10,
+        "endLine": 84,
+        "endChar": 65
+      },
+      "revId": "0035ab17c18298f5dcae9f40eff15818aad570e2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_a42b832f",
+        "filename": "tests/func/ipv6/ipv6_ra.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-09-13T17:12:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a1d315d_4e6cd09c",
       "range": {
         "startLine": 81,
         "startChar": 10,
@@ -347,6 +611,30 @@
     },
     {
       "key": {
+        "uuid": "3a1d315d_a4e26301",
+        "filename": "tests/func/ipv6/ipv6_ra.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-09-13T17:12:29Z",
+      "side": 1,
+      "message": "This is meant to prevent VPP from sending RA packets to TG every few seconds, and only sent RAs as a response to an RS request.",
+      "parentUuid": "3a1d315d_6410cb4e",
+      "range": {
+        "startLine": 91,
+        "startChar": 9,
+        "endLine": 91,
+        "endChar": 35
+      },
+      "revId": "0035ab17c18298f5dcae9f40eff15818aad570e2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a1d315d_890c2244",
         "filename": "tests/func/ipv6/ipv6_ra.robot",
         "patchSetId": 3
@@ -358,6 +646,30 @@
       "writtenOn": "2016-09-13T12:57:41Z",
       "side": 1,
       "message": "add tc where is RS send from host link local address",
+      "range": {
+        "startLine": 94,
+        "startChar": 12,
+        "endLine": 94,
+        "endChar": 25
+      },
+      "revId": "0035ab17c18298f5dcae9f40eff15818aad570e2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_249c1369",
+        "filename": "tests/func/ipv6/ipv6_ra.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-09-13T17:12:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a1d315d_890c2244",
       "range": {
         "startLine": 94,
         "startChar": 12,
