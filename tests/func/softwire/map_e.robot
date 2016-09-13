@@ -21,15 +21,16 @@
 | Library  | resources.libraries.python.IPUtil
 | Library  | resources.libraries.python.Trace
 | Force Tags | HW_ENV | VM_ENV | 3_NODE_DOUBLE_LINK_TOPO
+| Variables | resources/test_data/softwire/map_e_domains.py | ${5}
 | Suite Setup | Run Keywords
-| ... | Setup all DUTs before test | AND
-| ... | Setup all TGs before traffic script
+| ... | Setup All DUTs Before Test | AND
+| ... | Setup All TGs Before Traffic Script
 | Test Setup | Run Keywords
-| ... | Setup all DUTs before test | AND
-| ... | Setup all TGs before traffic script
+| ... | Setup All DUTs Before Test | AND
+| ... | Setup All TGs Before Traffic Script
 | Test Teardown | Run Keywords
-| ... | Show packet trace on all DUTs | ${nodes} | AND
-| ... | Show vpp trace dump on all DUTs
+| ... | Show Packet Trace On All DUTs | ${nodes} | AND
+| ... | Show Vpp Trace Dump On All DUTs
 | Documentation | *Test for Basic mapping rule for MAP-E*\
 | ... | *[Top] Network Topologies:* TG - DUT1 - TG with two links between the
 | ... | nodes.
@@ -52,23 +53,23 @@
 | ${ipv4_prefix_len}= | 24
 | ${ipv6_prefix_len}= | 64
 | ${ipv6_br_src}= | 2001:db8:ffff::1
-| ${ipv4_outside}= | 100.0.0.1
+| ${ipv4_outside}= | 1.0.0.1
 
 
 *** Test Cases ***
 | TC01: BMR, then an IPv4 prefix is assigned
-| | [Documentation] |
+| | [Documentation]
 | | ... | Basic Mapping Rule https://tools.ietf.org/html/rfc7597#section-5.2\
 | | ... | IPv4 prefix length + ea bits length < 32 (o + r < 32)
 | | ... | psid_length = 0, ip6_prefix < 64, ip4_prefix <= 32
 | | ...
 # TODO: replace setup when VPP-312 fixed
-#| | [Setup] | Set interfaces IP addresses and routes
+#| | [Setup] | Set Interfaces IP Addresses And Routes
 | | [Setup] | Run Keywords
-| | ... | Setup all DUTs before test | AND
-| | ... | Setup all TGs before traffic script | AND
-| | ... | Set interfaces IP addresses and routes
-| | [Template] | Check MAP configuration with traffic script
+| | ... | Setup All DUTs Before Test | AND
+| | ... | Setup All TGs Before Traffic Script | AND
+| | ... | Set Interfaces IP Addresses And Routes
+| | [Template] | Check MAP Configuration With Traffic Script
 # |=================|===============|================|============|=============|==========|================|==========|==================================|
 # | ipv4_pfx        | ipv6_pfx      | ipv6_src       | ea_bit_len | psid_offset | psid_len | ipv4_dst       | dst_port | expected_ipv6_dst                |
 # |=================|===============|================|============|=============|==========|================|==========|==================================|
@@ -83,18 +84,18 @@
 
 
 | TC02: BMR, full IPv4 address is to be assigned
-| | [Documentation] |
+| | [Documentation]
 | | ... | Basic Mapping Rule https://tools.ietf.org/html/rfc7597#section-5.2\
 | | ... | IPv4 prefix length + ea bits length == 32 (o + r == 32)
 | | ... | psid_length = 0, ip6_prefix < 64, ip4_prefix <= 32
 | | ...
 # TODO: replace setup when VPP-312 fixed
-#| | [Setup] | Set interfaces IP addresses and routes
+#| | [Setup] | Set Interfaces IP Addresses And Routes
 | | [Setup] | Run Keywords
-| | ... | Setup all DUTs before test | AND
-| | ... | Setup all TGs before traffic script | AND
-| | ... | Set interfaces IP addresses and routes
-| | [Template] | Check MAP configuration with traffic script
+| | ... | Setup All DUTs Before Test | AND
+| | ... | Setup All TGs Before Traffic Script | AND
+| | ... | Set Interfaces IP Addresses And Routes
+| | [Template] | Check MAP Configuration With Traffic Script
 # |===================|===============|================|============|=============|==========|================|==========|==================================|
 # | ipv4_pfx          | ipv6_pfx      | ipv6_src       | ea_bit_len | psid_offset | psid_len | ipv4_dst       | dst_port | expected_ipv6_dst                |
 # |===================|===============|================|============|=============|==========|================|==========|==================================|
@@ -112,18 +113,18 @@
 
 
 | TC03: BMR, shared IPv4 address is to be assigned
-| | [Documentation] |
+| | [Documentation]
 | | ... | Basic Mapping Rule https://tools.ietf.org/html/rfc7597#section-5.2\
 | | ... | IPv4 prefix length + ea bits length > 32 (o + r > 32)
 | | ... | ip6_prefix < 64, ip4_prefix <= 32
 | | ...
 # TODO: replace setup when VPP-312 fixed
-#| | [Setup] | Set interfaces IP addresses and routes
+#| | [Setup] | Set Interfaces IP Addresses And Routes
 | | [Setup] | Run Keywords
-| | ... | Setup all DUTs before test | AND
-| | ... | Setup all TGs before traffic script | AND
-| | ... | Set interfaces IP addresses and routes
-| | [Template] | Check MAP configuration with traffic script
+| | ... | Setup All DUTs Before Test | AND
+| | ... | Setup All TGs Before Traffic Script | AND
+| | ... | Set Interfaces IP Addresses And Routes
+| | [Template] | Check MAP Configuration With Traffic Script
 # |===================|===============|================|============|=============|==========|================|==========|===================================|
 # | ipv4_pfx          | ipv6_pfx      | ipv6_src       | ea_bit_len | psid_offset | psid_len | ipv4_dst       | dst_port | expected_ipv6_dst                 |
 # |===================|===============|================|============|=============|==========|================|==========|===================================|
@@ -162,16 +163,16 @@
 
 
 | TC04: End user IPv6 prefix is 64
-| | [Documentation] |
+| | [Documentation]
 | | ... | Supported End-User IPv6 prefix length is 64 bit.
 | | ...
 # TODO: replace setup when VPP-312 fixed
-#| | [Setup] | Set interfaces IP addresses and routes
+#| | [Setup] | Set Interfaces IP Addresses And Routes
 | | [Setup] | Run Keywords
-| | ... | Setup all DUTs before test | AND
-| | ... | Setup all TGs before traffic script | AND
-| | ... | Set interfaces IP addresses and routes
-| | [Template] | Check MAP configuration with traffic script
+| | ... | Setup All DUTs Before Test | AND
+| | ... | Setup All TGs Before Traffic Script | AND
+| | ... | Set Interfaces IP Addresses And Routes
+| | [Template] | Check MAP Configuration With Traffic Script
 # |===================|=========================|================|============|=============|==========|================|==========|
 # | ipv4_pfx          | ipv6_pfx                | ipv6_src       | ea_bit_len | psid_offset | psid_len | ipv4_dst       | dst_port |
 # |===================|=========================|================|============|=============|==========|================|==========|
@@ -184,12 +185,12 @@
 | TC05: IPv4 prefix is 0
 | | [Tags] | EXPECTED_FAILING
 # TODO: replace setup when VPP-312 fixed
-#| | [Setup] | Set interfaces IP addresses and routes
+#| | [Setup] | Set Interfaces IP Addresses And Routes
 | | [Setup] | Run Keywords
-| | ... | Setup all DUTs before test | AND
-| | ... | Setup all TGs before traffic script | AND
-| | ... | Set interfaces IP addresses and routes
-| | [Template] | Check MAP configuration with traffic script
+| | ... | Setup All DUTs Before Test | AND
+| | ... | Setup All TGs Before Traffic Script | AND
+| | ... | Set Interfaces IP Addresses And Routes
+| | [Template] | Check MAP Configuration With Traffic Script
 # |===================|=========================|================|============|=============|==========|================|==========|
 # | ipv4_pfx          | ipv6_pfx                | ipv6_src       | ea_bit_len | psid_offset | psid_len | ipv4_dst       | dst_port |
 # |===================|=========================|================|============|=============|==========|================|==========|
@@ -200,13 +201,135 @@
 | | 0.0.0.0/0         | 2001::/16               | ${ipv6_br_src} | ${40}      | ${6}        | ${8}     | 20.169.201.219 | ${1232}  |
 
 
+| TC06: Multiple domain and check with traffic script IPv4 source IPv6 destination
+| | [Documentation]
+| | ... | [Top] TG=DUT1.
+| | ... | [Cfg] Multiple MAP-E domains are configured, values from variable\
+| | ... | file.
+| | ... | [Ver] Send IPv4 to destination in configured domain and receive IPv6\
+| | ... | packet.
+| | ... | [Ref] RFC7597.
+| | Given Path For 2-node Testing Is Set
+| | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
+| | And Interfaces In 2-node Path Are Up
+| | And IP Addresses Are Set On Interfaces
+| | ... | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4} | ${ipv4_prefix_len}
+| | ... | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6} | ${ipv6_prefix_len}
+| | And Vpp Route Add | ${dut_node} | :: | 0 | ${dut_ip6_gw}
+| | ... | ${dut_to_tg_if2} | resolve_attempts=${NONE} | count=${NONE}
+| | And Add IP Neighbor | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6_gw}
+| | ... | ${tg_to_dut_if2_mac}
+| | And Vpp Route Add | ${dut_node} | 0.0.0.0 | 0 | ${dut_ip4_gw}
+| | ... | ${dut_to_tg_if1} | resolve_attempts=${NONE} | count=${NONE}
+| | And Add IP Neighbor | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4_gw}
+| | ... | ${tg_to_dut_if1_mac}
+| | :FOR | ${domain_set} | IN | @{domain_sets}
+| | | When Map Add Domain | ${dut_node} | @{domain_set}
+| | :FOR | ${ip_set} | IN | @{ip_sets}
+| | | ${ipv4}= | Get From List | ${ip_set} | 0
+| | | ${ipv6}= | Get From List | ${ip_set} | 1
+| | | ${port}= | Get From List | ${ip_set} | 2
+| | | ${ipv6_br}= | Get From List | ${ip_set} | 3
+| | | Then Send IPv4 UDP And Check Headers For Lightweight 4over6
+| | | ... | ${tg_node} | ${tg_to_dut_if1} | ${tg_to_dut_if2}
+| | | ... | ${dut_to_tg_if1_mac} | ${ipv4} | ${ipv4_outside} | ${port}
+| | | ... | ${tg_to_dut_if2_mac} | ${dut_to_tg_if2_mac} | ${ipv6} | ${ipv6_br}
+| | | And Send IPv4 UDP In IPv6 And Check Headers For Lightweight 4over6
+| | | ... | ${tg_node} | ${tg_to_dut_if2} | ${tg_to_dut_if1}
+| | | ... | ${dut_to_tg_if2_mac} | ${tg_to_dut_if2_mac} | ${ipv6_br} | ${ipv6}
+| | | ... | ${ipv4_outside} |  ${ipv4} | ${port} | ${tg_to_dut_if1_mac}
+| | | ... | ${dut_to_tg_if1_mac}
+
+
+| TC07: Multiple domain and check with traffic script IPv6 source IPv6 destination
+| | [Documentation]
+| | ... | [Top] TG=DUT1.
+| | ... | [Cfg] Multiple MAP-E domains are configured, values from variable\
+| | ... | file.
+| | ... | [Ver] Send IPv4 encapsulated in IPv6. Source and destination are from\
+| | ... | configured domains. Check if VPP translate IPv6 addresses.
+| | ... | [Ref] RFC7597.
+| | Given Path For 2-node Testing Is Set
+| | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
+| | And Interfaces In 2-node Path Are Up
+| | And IP Addresses Are Set On Interfaces
+| | ... | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4} | ${ipv4_prefix_len}
+| | ... | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6} | ${ipv6_prefix_len}
+| | And Vpp Route Add | ${dut_node} | :: | 0 | ${dut_ip6_gw}
+| | ... | ${dut_to_tg_if2} | resolve_attempts=${NONE} | count=${NONE}
+| | And Add IP Neighbor | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6_gw}
+| | ... | ${tg_to_dut_if2_mac}
+| | And Vpp Route Add | ${dut_node} | 0.0.0.0 | 0 | ${dut_ip4_gw}
+| | ... | ${dut_to_tg_if1} | resolve_attempts=${NONE} | count=${NONE}
+| | And Add IP Neighbor | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4_gw}
+| | ... | ${tg_to_dut_if1_mac}
+| | :FOR | ${domain_set} | IN | @{domain_sets}
+| | | When Map Add Domain | ${dut_node} | @{domain_set}
+| | ${ip_set_A}= | Get From List | ${ip_sets} | 0
+| | ${ip_set_B}= | Get From List | ${ip_sets} | 1
+| | ${ipv6_br}=  | Get From List | ${ip_set_A} | 3
+| | ${port_A}= | Get From List | ${ip_set_A} | 2
+| | ${port_B}= | Get From List | ${ip_set_B} | 2
+| | ${ipv6_A}= | Get From List | ${ip_set_A} | 1
+| | ${ipv6_B}= | Get From List | ${ip_set_B} | 1
+| | ${ipv4_A}= | Get From List | ${ip_set_A} | 0
+| | ${ipv4_B}= | Get From List | ${ip_set_B} | 0
+| | Then Send IPv4 UDP In IPv6 And Check Headers For Lightweight Hairpinning
+| | ... | ${tg_node} | ${tg_to_dut_if2}
+| | ... | ${tg_to_dut_if2}  | ${dut_to_tg_if2_mac}
+| | ... | ${ipv6_br} | ${ipv6_A}
+| | ... | ${ipv4_B} | ${ipv4_A}
+| | ... | ${port_B} | ${port_A}
+| | ... | ${tg_to_dut_if2_mac} | ${dut_to_tg_if2_mac}
+| | ... | ${ipv6_B} | ${ipv6_br}
+
+
+| TC08: Encapsulate IPv4 ICMP into IPv6
+| | [Documentation]
+| | ... | [Top] TG=DUT1.
+| | ... | [Enc] Eth-IPv4-ICMP(type 0 and 8) on TG_if1-DUT, Eth-IPv6-IPv4-ICMP\
+| | ... | on TG_if2_DUT.
+| | ... | [Cfg] Multiple MAP-E domains are configured, values from variable\
+| | ... | file.
+| | ... | [Ver] Make TG send non-encapsulated ICMP to DUT; verify TG received\
+| | ... | IPv4oIPv6 encapsulated packet is correct. Checks IPv6 destination\
+| | ... | based on ICMP Identifier field.
+| | ... | [Ref] RFC7597 section 8.2.
+| | Given Path For 2-node Testing Is Set
+| | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
+| | And Interfaces In 2-node Path Are Up
+| | And IP Addresses Are Set On Interfaces
+| | ... | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4} | ${ipv4_prefix_len}
+| | ... | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6} | ${ipv6_prefix_len}
+| | And Vpp Route Add | ${dut_node} | :: | 0 | ${dut_ip6_gw}
+| | ... | ${dut_to_tg_if2} | resolve_attempts=${NONE} | count=${NONE}
+| | And Add IP Neighbor | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6_gw}
+| | ... | ${tg_to_dut_if2_mac}
+| | And Vpp Route Add | ${dut_node} | 0.0.0.0 | 0 | ${dut_ip4_gw}
+| | ... | ${dut_to_tg_if1} | resolve_attempts=${NONE} | count=${NONE}
+| | And Add IP Neighbor | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4_gw}
+| | ... | ${tg_to_dut_if1_mac}
+| | :FOR | ${domain_set} | IN | @{domain_sets}
+| | | When Map Add Domain | ${dut_node} | @{domain_set}
+| | ${ip_set_A}= | Get From List | ${ip_sets} | 0
+| | ${ipv4_A}= | Get From List | ${ip_set_A} | 0
+| | ${ipv6_A}= | Get From List | ${ip_set_A} | 1
+| | ${icmp_id_A}= | Get From List | ${ip_set_A} | 2
+| | ${ipv6_br}=  | Get From List | ${ip_set_A} | 3
+| | Then Send IPv4 ICMP And Check Headers For Lightweight 4over6
+| | ... | ${tg_node} | ${tg_to_dut_if1} | ${tg_to_dut_if2}
+| | ... | ${dut_to_tg_if1_mac} | ${ipv4_A} | ${ipv4_outside}
+| | ... | ${icmp_id_A} | ${tg_to_dut_if2_mac} | ${dut_to_tg_if2_mac}
+| | ... | ${ipv6_A} | ${ipv6_br}
+
+
 | Bug: VPP-318
 | | [Tags] | EXPECTED_FAILING
 | | [Documentation] | qlen < psid length
-| | Given Path for 2-node testing is set
+| | Given Path For 2-node Testing Is Set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
-| | And Interfaces in 2-node path are up
-| | And IP addresses are set on interfaces
+| | And Interfaces In 2-node Path Are Up
+| | And IP Addresses Are Set On Interfaces
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4} | ${ipv4_prefix_len}
 | | ... | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6} | ${ipv6_prefix_len}
 | | Then Run Keyword And Expect Error | Unable to add map domain *
@@ -218,54 +341,54 @@
 | | [Tags] | EXPECTED_FAILING
 | | [Documentation] |
 | | ... | add route; add map; traffic pass; add route; add map; traffic fail
-| | Given Path for 2-node testing is set
+| | Given Path For 2-node Testing Is Set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
-| | And Interfaces in 2-node path are up
+| | And Interfaces In 2-node Path Are Up
 
-| | When IP addresses are set on interfaces
+| | When IP Addresses Are Set On Interfaces
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4} | ${ipv4_prefix_len}
 | | ... | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6} | ${ipv6_prefix_len}
 | | And Vpp Route Add | ${dut_node} | 2001:: | 16 | ${dut_ip6_gw}
 | | ... | ${dut_to_tg_if2} | resolve_attempts=${NONE} | count=${NONE}
-| | And Add IP neighbor | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6_gw}
+| | And Add IP Neighbor | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6_gw}
 | | ... | ${tg_to_dut_if2_mac}
 
-| | Then Check MAP configuration with traffic script
+| | Then Check MAP Configuration With Traffic Script
 | | ... | 20.0.0.0/8 | 2001::/16 | ${ipv6_br_src} | ${48} | ${6} | ${8}
 | | ... | 20.169.201.219 | ${1232} | 2001:a9c9:db34::14a9:c9db:34
 
-| | When IP addresses are set on interfaces
+| | When IP Addresses Are Set On Interfaces
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4} | ${ipv4_prefix_len}
 | | ... | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6} | ${ipv6_prefix_len}
 | | And Vpp Route Add | ${dut_node} | 2001:: | 16 | ${dut_ip6_gw}
 | | ... | ${dut_to_tg_if2} | resolve_attempts=${NONE} | count=${NONE}
-| | And Add IP neighbor | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6_gw}
+| | And Add IP Neighbor | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6_gw}
 | | ... | ${tg_to_dut_if2_mac}
 
-| | Then Check MAP configuration with traffic script
+| | Then Check MAP Configuration With Traffic Script
 | | ... | 20.0.0.0/8 | 2001::/16 | ${ipv6_br_src} | ${48} | ${6} | ${8}
 | | ... | 20.169.201.219 | ${1232} | 2001:a9c9:db34::14a9:c9db:34
 
 
 *** Keywords ***
-| Set interfaces IP addresses and routes
-| | Path for 2-node testing is set
+| Set Interfaces IP Addresses And Routes
+| | Path For 2-node Testing Is Set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
-| | Interfaces in 2-node path are up
-| | IP addresses are set on interfaces
+| | Interfaces In 2-node Path Are Up
+| | IP Addresses Are Set On Interfaces
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4} | ${ipv4_prefix_len}
 | | ... | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6} | ${ipv6_prefix_len}
 | | Vpp Route Add | ${dut_node} | :: | 0 | ${dut_ip6_gw} | ${dut_to_tg_if2}
 | | ... | resolve_attempts=${NONE} | count=${NONE}
-| | Add IP neighbor | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6_gw}
+| | Add IP Neighbor | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6_gw}
 | | ... | ${tg_to_dut_if2_mac}
 | | Vpp Route Add | ${dut_node} | ${ipv4_outside} | 32 | ${dut_ip4_gw}
 | | ... | ${dut_to_tg_if1} | resolve_attempts=${NONE} | count=${NONE}
-| | Add IP neighbor | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4_gw}
+| | Add IP Neighbor | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4_gw}
 | | ... | ${tg_to_dut_if1_mac}
 
-| Check MAP configuration with traffic script
-| | [Documentation] |
+| Check MAP Configuration With Traffic Script
+| | [Documentation]
 | | ... | Used as a test case template.\
 | | ... | Configure MAP-E domain with given parameters, with traffic script send
 | | ... | UDP in IPv4 packet to given UDP destination port and IP destination
@@ -279,38 +402,38 @@
 | | ... | ${expected_ipv6_dst}=${EMPTY}
 | | ${domain_index}= | Map Add Domain | ${dut_node} | ${ipv4_pfx} | ${ipv6_pfx}
 | | ... | ${ipv6_br_src} | ${ea_bit_len} | ${psid_offset} | ${psid_len}
-| | ${computed_ipv6_dst}= | Compute IPv6 map destination address
+| | ${computed_ipv6_dst}= | Compute IPv6 Map Destination Address
 | | ... | ${ipv4_pfx} | ${ipv6_pfx} | ${ea_bit_len} | ${psid_offset}
 | | ... | ${psid_len} | ${ipv4_dst} | ${dst_port}
 | | ${ipv6_dst}= | Run Keyword If | "${expected_ipv6_dst}" == "${EMPTY}"
 | | ... | Set Variable | ${computed_ipv6_dst}
 | | ... | ELSE |  Set Variable | ${expected_ipv6_dst}
 | | Run Keyword If | "${expected_ipv6_dst}" != "${EMPTY}"
-| | ... | IP Addresses Should be Equal
+| | ... | IP Addresses Should Be Equal
 | | ... | ${computed_ipv6_dst} | ${expected_ipv6_dst}
 | | ${ipv6_dst}= | Set Variable | ${computed_ipv6_dst}
-| | Check encapsulation with traffic script
+| | Check Encapsulation With Traffic Script
 | | ... | ${ipv4_dst} | ${dst_port} | ${ipv6_dst}
-| | Check decapsulation with traffic script
+| | Check Decapsulation With Traffic Script
 | | ... | ${ipv6_dst} | ${ipv4_dst} | ${dst_port}
 | | [Teardown] | Run Keywords
 | | ... | Map Del Domain | ${dut_node} | ${domain_index} | AND
-| | ... | Show packet trace on all DUTs | ${nodes} | AND
-| | ... | Clear packet trace on all DUTs | ${nodes}
+| | ... | Show Packet Trace On All DUTs | ${nodes} | AND
+| | ... | Clear Packet Trace On All DUTs | ${nodes}
 
-| Check encapsulation with traffic script
+| Check Encapsulation With Traffic Script
 | | [Arguments] | ${ipv4_dst} | ${dst_port} | ${ipv6_dst}
-| | Send IPv4 UDP and check headers for lightweight 4over6
-| |      ... | ${tg_node} | ${tg_to_dut_if1} | ${tg_to_dut_if2}
-| |      ... | ${dut_to_tg_if1_mac} | ${ipv4_dst} | ${ipv4_outside}
-| |      ... | ${dst_port} | ${tg_to_dut_if2_mac} | ${dut_to_tg_if2_mac}
-| |      ... | ${ipv6_dst} | ${ipv6_br_src}
+| | Send IPv4 UDP And Check Headers For Lightweight 4over6
+| | ... | ${tg_node} | ${tg_to_dut_if1} | ${tg_to_dut_if2}
+| | ... | ${dut_to_tg_if1_mac} | ${ipv4_dst} | ${ipv4_outside}
+| | ... | ${dst_port} | ${tg_to_dut_if2_mac} | ${dut_to_tg_if2_mac}
+| | ... | ${ipv6_dst} | ${ipv6_br_src}
 
-| Check decapsulation with traffic script
+| Check Decapsulation With Traffic Script
 | | [Arguments] | ${ipv6_ce_addr} | ${ipv4_inside} | ${port}
-| | Send IPv4 UDP in IPv6 and check headers for lightweight 4over6
-| |      ... | ${tg_node} | ${tg_to_dut_if2} | ${tg_to_dut_if1}
-| |      ... | ${dut_to_tg_if2_mac} | ${tg_to_dut_if2_mac}
-| |      ... | ${ipv6_br_src} | ${ipv6_ce_addr}
-| |      ... | ${ipv4_outside} | ${ipv4_inside} | ${port}
-| |      ... | ${tg_to_dut_if1_mac} | ${dut_to_tg_if1_mac}
+| | Send IPv4 UDP In IPv6 And Check Headers For Lightweight 4over6
+| | ... | ${tg_node} | ${tg_to_dut_if2} | ${tg_to_dut_if1}
+| | ... | ${dut_to_tg_if2_mac} | ${tg_to_dut_if2_mac}
+| | ... | ${ipv6_br_src} | ${ipv6_ce_addr}
+| | ... | ${ipv4_outside} | ${ipv4_inside} | ${port}
+| | ... | ${tg_to_dut_if1_mac} | ${dut_to_tg_if1_mac}
