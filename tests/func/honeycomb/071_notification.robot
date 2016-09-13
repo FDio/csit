@@ -20,6 +20,7 @@
 
 *** Settings ***
 | Resource | resources/libraries/robot/default.robot
+| Resource | resources/libraries/robot/honeycomb/honeycomb.robot
 | Resource | resources/libraries/robot/honeycomb/interfaces.robot
 | Resource | resources/libraries/robot/honeycomb/tap.robot
 | Resource | resources/libraries/robot/honeycomb/notifications.robot
@@ -30,6 +31,8 @@
 | ... | ${node} | ${tap_interface} | ${tap_settings}
 | Documentation | *Honeycomb notifications test suite.*
 | Force Tags | honeycomb_sanity
+| Suite Teardown | Run Keyword If Any Tests Failed
+| ... | Restart Honeycomb And VPP And Clear Persisted Configuration | ${node}
 
 *** Test Cases ***
 | Honeycomb sends notification on interface state change

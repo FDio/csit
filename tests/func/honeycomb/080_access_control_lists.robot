@@ -11,15 +11,19 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-*** Variables***
+*** Variables ***
 # Interface to run tests on.
 | ${interface}= | ${node['interfaces']['port1']['name']}
 
 *** Settings ***
 | Resource | resources/libraries/robot/default.robot
+| Resource | resources/libraries/robot/honeycomb/honeycomb.robot
 | Resource | resources/libraries/robot/honeycomb/access_control_lists.robot
 | Variables | resources/test_data/honeycomb/acl.py
-| Suite Teardown | Clear all ACL settings | ${node}
+| Suite Teardown | Run keywords
+| ... | Run Keyword If Any Tests Failed
+| ... | Restart Honeycomb And VPP And Clear Persisted Configuration | ${node}
+| ... | AND | Clear all ACL settings | ${node}
 | Documentation | *Honeycomb access control lists test suite.*
 | Force Tags | Honeycomb_sanity
 
