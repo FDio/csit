@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a1d315d_eaca654e",
+        "filename": "resources/libraries/robot/traffic.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-09-14T12:44:43Z",
+      "side": 1,
+      "message": "\"\\\" is missing",
+      "range": {
+        "startLine": 282,
+        "startChar": 65,
+        "endLine": 282,
+        "endChar": 71
+      },
+      "revId": "88ef04e7c1db7ac5c595ce6fa6cee934f81e14ba",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_0ab6c1d9",
+        "filename": "resources/libraries/robot/traffic.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 301,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-09-14T12:44:43Z",
+      "side": 1,
+      "message": "\\| is missing",
+      "range": {
+        "startLine": 301,
+        "startChar": 37,
+        "endLine": 301,
+        "endChar": 43
+      },
+      "revId": "88ef04e7c1db7ac5c595ce6fa6cee934f81e14ba",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_ead145fc",
+        "filename": "tests/func/ipv6/ipv6_ra.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-09-14T12:44:43Z",
+      "side": 1,
+      "message": "Capital Letters.",
+      "range": {
+        "startLine": 94,
+        "startChar": 16,
+        "endLine": 94,
+        "endChar": 34
+      },
+      "revId": "88ef04e7c1db7ac5c595ce6fa6cee934f81e14ba",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_cace895a",
+        "filename": "tests/func/ipv6/ipv6_ra.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-09-14T12:44:43Z",
+      "side": 1,
+      "message": "Capital Letters.",
+      "range": {
+        "startLine": 95,
+        "startChar": 34,
+        "endLine": 95,
+        "endChar": 50
+      },
+      "revId": "88ef04e7c1db7ac5c595ce6fa6cee934f81e14ba",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_aadb4d1a",
+        "filename": "tests/func/ipv6/ipv6_ra.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-09-14T12:44:43Z",
+      "side": 1,
+      "message": "Capital Letters.",
+      "range": {
+        "startLine": 112,
+        "startChar": 16,
+        "endLine": 112,
+        "endChar": 35
+      },
+      "revId": "88ef04e7c1db7ac5c595ce6fa6cee934f81e14ba",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_8ad8911e",
+        "filename": "tests/func/ipv6/ipv6_ra.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-09-14T12:44:43Z",
+      "side": 1,
+      "message": "Capital Letters.",
+      "range": {
+        "startLine": 113,
+        "startChar": 34,
+        "endLine": 113,
+        "endChar": 51
+      },
+      "revId": "88ef04e7c1db7ac5c595ce6fa6cee934f81e14ba",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
