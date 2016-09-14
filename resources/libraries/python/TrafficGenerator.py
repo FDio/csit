@@ -47,9 +47,6 @@ class TGDropRateSearchImpl(DropRateSearch):
             tg_instance.trex_stl_start_remote_exec(self.get_duration(),
                                                    unit_rate, frame_size,
                                                    traffic_type)
-            # Get latency stats from stream
-            self._latency_stats = tg_instance.get_latency()
-
             loss = tg_instance.get_loss()
             sent = tg_instance.get_sent()
             if self.loss_acceptance_type_is_percentage():
@@ -66,6 +63,16 @@ class TGDropRateSearchImpl(DropRateSearch):
         else:
             raise NotImplementedError("TG subtype not supported")
 
+    def get_latency(self):
+        """Return min/avg/max latency.
+
+        :return: Latency stats.
+        :rtype: list
+        """
+
+        tg_instance = BuiltIn().get_library_instance(
+            'resources.libraries.python.TrafficGenerator')
+        return tg_instance.get_latency_int()
 
 class TrafficGenerator(object):
     """Traffic Generator."""
@@ -107,8 +114,8 @@ class TrafficGenerator(object):
         """
         return self._received
 
-    def get_latency(self):
-        """Return min/avg/max latency.
+    def get_latency_int(self):
+        """Return rounded min/avg/max latency.
 
         :return: Latency stats.
         :rtype: list
@@ -476,9 +483,19 @@ class TrafficGenerator(object):
             self._received = self._result.split(', ')[1].split('=')[1]
             self._sent = self._result.split(', ')[2].split('=')[1]
             self._loss = self._result.split(', ')[3].split('=')[1]
+
             self._latency = []
-            self._latency.append(self._result.split(', ')[4].split('=')[1])
-            self._latency.append(self._result.split(', ')[5].split('=')[1])
+            lat_int_list = []
+            #round latency numbers
+            lat_str = self._result.split(', ')[4].split('=')[1]
+            for lat in lat_str.split("/"):
+                lat_int_list.append(int(float(lat)))
+            self._latency.append("/".join(str(tmp) for tmp in lat_int_list))
+            lat_int_list = []
+            lat_str = self._result.split(', ')[5].split('=')[1]
+            for lat in lat_str.split("/"):
+                lat_int_list.append(int(float(lat)))
+            self._latency.append("/".join(str(tmp) for tmp in lat_int_list))
 
     def stop_traffic_on_tg(self):
         """Stop all traffic on TG

@@ -909,7 +909,19 @@
 | | Set Search Frame Size | ${framesize}
 | | Set Search Rate Type pps
 | | Linear Search | ${start_rate} | ${topology_type}
-| | ${rate_per_stream} | ${latency}= | Verify Search Result
+| | ${rate_per_stream} | ${lat}= | Verify Search Result
+| | ${tmp}= | Create List | 100%NDR | ${lat}
+| | ${latency}= | Create List | ${tmp}
+| | ${rate_50p}= | Evaluate | int(${rate_per_stream}*0.5)
+| | ${lat_50p}= | Measure latency | ${duration} | ${rate_50p}pps
+| | ...                           | ${framesize} | ${topology_type}
+| | ${tmp}= | Create List | 50%NDR | ${lat_50p}
+| | Append To List | ${latency} | ${tmp}
+| | ${rate_10p}= | Evaluate | int(${rate_per_stream}*0.1)
+| | ${lat_10p}= | Measure latency | ${duration} | ${rate_10p}pps
+| | ...                           | ${framesize} | ${topology_type}
+| | ${tmp}= | Create List | 10%NDR | ${lat_10p}
+| | Append To List | ${latency} | ${tmp}
 | | Display result of NDR search | ${rate_per_stream} | ${framesize} | 2
 | | ...                          | ${latency}
 | | Traffic should pass with no loss | ${duration} | ${rate_per_stream}pps
@@ -984,7 +996,19 @@
 | | Set Search Rate Type pps
 | | Set Binary Convergence Threshold | ${threshold}
 | | Binary Search | ${binary_min} | ${binary_max} | ${topology_type}
-| | ${rate_per_stream} | ${latency}= | Verify Search Result
+| | ${rate_per_stream} | ${lat}= | Verify Search Result
+| | ${tmp}= | Create List | 100%NDR | ${lat}
+| | ${latency}= | Create List | ${tmp}
+| | ${rate_50p}= | Evaluate | int(${rate_per_stream}*0.5)
+| | ${lat_50p}= | Measure latency | ${duration} | ${rate_50p}pps
+| | ...                           | ${framesize} | ${topology_type}
+| | ${tmp}= | Create List | 50%NDR | ${lat_50p}
+| | Append To List | ${latency} | ${tmp}
+| | ${rate_10p}= | Evaluate | int(${rate_per_stream}*0.1)
+| | ${lat_10p}= | Measure latency | ${duration} | ${rate_10p}pps
+| | ...                           | ${framesize} | ${topology_type}
+| | ${tmp}= | Create List | 10%NDR | ${lat_10p}
+| | Append To List | ${latency} | ${tmp}
 | | Display result of NDR search | ${rate_per_stream} | ${framesize} | 2
 | | ...                          | ${latency}
 | | Traffic should pass with no loss | ${duration} | ${rate_per_stream}pps
@@ -1063,7 +1087,19 @@
 | | Set Search Rate Type pps
 | | Set Binary Convergence Threshold | ${threshold}
 | | Combined Search | ${start_rate} | ${topology_type}
-| | ${rate_per_stream} | ${latency}= | Verify Search Result
+| | ${rate_per_stream} | ${lat}= | Verify Search Result
+| | ${tmp}= | Create List | 100%NDR | ${lat}
+| | ${latency}= | Create List | ${tmp}
+| | ${rate_50p}= | Evaluate | int(${rate_per_stream}*0.5)
+| | ${lat_50p}= | Measure latency | ${duration} | ${rate_50p}pps
+| | ...                           | ${framesize} | ${topology_type}
+| | ${tmp}= | Create List | 50%NDR | ${lat_50p}
+| | Append To List | ${latency} | ${tmp}
+| | ${rate_10p}= | Evaluate | int(${rate_per_stream}*0.1)
+| | ${lat_10p}= | Measure latency | ${duration} | ${rate_10p}pps
+| | ...                           | ${framesize} | ${topology_type}
+| | ${tmp}= | Create List | 10%NDR | ${lat_10p}
+| | Append To List | ${latency} | ${tmp}
 | | Display result of NDR search | ${rate_per_stream} | ${framesize} | 2
 | | ...                          | ${latency}
 | | Traffic should pass with no loss | ${duration} | ${rate_per_stream}pps
@@ -1133,7 +1169,7 @@
 | | ... | *Example:*
 | | ...
 | | ... | \| Display result of NDR search \| 4400000 \| 64 \| 2 \
-| | ... | \| (0, 10/10/10) \|
+| | ... | \| [100%NDR, [10/10/10, 1/2/3]] \|
 | | [Arguments] | ${rate_per_stream} | ${framesize} | ${nr_streams}
 | | ...         | ${latency}
 | | ${framesize}= | Get Frame Size | ${framesize}
@@ -1144,9 +1180,9 @@
 | | ...              | append=yes
 | | Set Test Message | ${\n}FINAL_BANDWIDTH: ${bandwidth_total} Gbps (untagged)
 | | ...              | append=yes
-| | :FOR | ${idx} | ${lat} | IN ENUMERATE | @{latency}
-| | | Set Test Message | ${\n}LATENCY_STREAM_${idx}: ${lat} usec (min/avg/max)
-| | ...                | append=yes
+| | Set Test Message | ${\n}LATENCY usec [min/avg/max] | append=yes
+| | :FOR | ${lat} | IN | @{latency}
+| | | Set Test Message | ${\n}LAT_${lat[0]}: ${lat[1]} | append=yes
 
 | Display result of PDR search
 | | [Documentation]
@@ -1184,6 +1220,26 @@
 | | ...                | append=yes
 | | Set Test Message | ${\n}LOSS_ACCEPTANCE: ${loss_acceptance} ${loss_acceptance_type}
 | | ...              | append=yes
+
+| Measure latency
+| | [Documentation]
+| | ... | Send traffic at specified rate. Measure min/avg/max latency
+| | ...
+| | ... | *Arguments:*
+| | ... | - duration - Duration of traffic run [s]. Type: integer
+| | ... | - rate - Rate for sending packets. Type: string
+| | ... | - framesize - L2 Frame Size [B]. Type: integer
+| | ... | - topology_type - Topology type. Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Measure latency \| 10 \| 4.0mpps \| 64 \| 3-node-IPv4
+| | [Arguments] | ${duration} | ${rate} | ${framesize} | ${topology_type}
+| | Clear all counters on all DUTs
+| | Send traffic on tg | ${duration} | ${rate} | ${framesize}
+| | ...                | ${topology_type} | warmup_time=0
+| | Show statistics on all DUTs
+| | Run keyword and return | Get latency
 
 | Traffic should pass with no loss
 | | [Documentation]
