@@ -347,8 +347,8 @@ def simple_burst(stream_a, stream_b, stream_lat_a, stream_lat_b, duration, rate,
     total_sent = 0
     lost_a = 0
     lost_b = 0
-    lat_a = 'NA'
-    lat_b = 'NA'
+    lat_a = "0/0/0"
+    lat_b = "0/0/0"
 
     try:
         # turn this off if too many logs
