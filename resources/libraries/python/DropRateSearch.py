@@ -99,6 +99,15 @@ class DropRateSearch(object):
         self._search_result_rate = None
 
     @abstractmethod
+    def get_latency(self):
+        """Return min/avg/max latency.
+
+        :return: Latency stats.
+        :rtype: list
+        """
+        pass
+
+    @abstractmethod
     def measure_loss(self, rate, frame_size, loss_acceptance,
                      loss_acceptance_type, traffic_type):
         """Send traffic from TG and measure count of dropped frames.
@@ -460,7 +469,7 @@ class DropRateSearch(object):
             raise Exception('Search FAILED')
         elif self._search_result in [SearchResults.SUCCESS,
                                      SearchResults.SUSPICIOUS]:
-            return self._search_result_rate, self._latency_stats
+            return self._search_result_rate, self.get_latency()
 
     def binary_search(self, b_min, b_max, traffic_type, skip_max_rate=False):
         """Binary search of rate with loss below acceptance criteria.
