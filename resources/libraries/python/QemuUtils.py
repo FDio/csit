@@ -49,8 +49,8 @@ class QemuUtils(object):
         self._qemu_opt['mem_size'] = 512
         # Default huge page mount point, required for Vhost-user interfaces.
         self._qemu_opt['huge_mnt'] = '/mnt/huge'
-        # Default do not allocate huge pages.
-        self._qemu_opt['huge_allocate'] = False
+        # Huge page size.
+        self._qemu_opt['huge_size'] = 'default'
         # Default image for CSIT virl setup
         self._qemu_opt['disk_image'] = '/var/lib/vm/vhost-nested.img'
         # VM node info dict
@@ -114,9 +114,9 @@ class QemuUtils(object):
         """
         self._qemu_opt['huge_mnt'] = huge_mnt
 
-    def qemu_set_huge_allocate(self):
-        """Set flag to allocate more huge pages if needed."""
-        self._qemu_opt['huge_allocate'] = True
+    def qemu_set_huge_size_1g(self):
+        """Override default huge page size to 1G."""
+        self._qemu_opt['huge_size'] = '1G'
 
     def qemu_set_disk_image(self, disk_image):
         """Set disk image.
@@ -317,44 +317,30 @@ class QemuUtils(object):
             else:
                 interface['name'] = if_name
 
-    def _huge_page_check(self, allocate=False):
+    def _huge_page_check(self, numa_node=0):
         """Huge page check."""
         huge_mnt = self._qemu_opt.get('huge_mnt')
         mem_size = self._qemu_opt.get('mem_size')
-        # Check size of free huge pages
-        (_, output, _) = self._ssh.exec_command('grep Huge /proc/meminfo')
-        regex = re.compile(r'HugePages_Free:\s+(\d+)')
-        match = regex.search(output)
-        huge_free = int(match.group(1))
-        regex = re.compile(r'HugePages_Total:\s+(\d+)')
-        match = regex.search(output)
-        huge_total = int(match.group(1))
-        regex = re.compile(r'Hugepagesize:\s+(\d+)')
-        match = regex.search(output)
-        huge_size = int(match.group(1))
+        if self._qemu_opt['huge_size'] == '1G':
+            huge_size = 1048576
+        else:
+            # Check default hugepage size
+            (_, output, _) = self._ssh.exec_command('grep Huge /proc/meminfo')
+            regex = re.compile(r'Hugepagesize:\s+(\d+)')
+            match = regex.search(output)
+            huge_size = int(match.group(1))
+        cmd = 'cat /sys/devices/system/node/node*/hugepages/hugepages-{0}kB/'\
+            'free_hugepages'.format(huge_size)
+        (ret_code, output, stderr) = self._ssh.exec_command(cmd)
+        if int(ret_code) != 0:
+            logger.debug('Get free hugepages failed: {0}'.format(stderr))
+            raise RuntimeError('Get free hugepages failed on {0}'.format(
+                self._node['host']))
+        huge_free = int(output.splitlines()[numa_node])
         # Check if memory reqested by qemu is available on host
         if (mem_size * 1024) > (huge_free * huge_size):
-            # If we want to allocate hugepage dynamically
-            if allocate:
-                mem_needed = abs((huge_free * huge_size) - (mem_size * 1024))
-                huge_to_allocate = ((mem_needed / huge_size) * 2) + huge_total
-                max_map_count = huge_to_allocate*4
-                # Increase maximum number of memory map areas a process may have
-                cmd = 'echo "{0}" | sudo tee /proc/sys/vm/max_map_count'.format(
-                    max_map_count)
-                (ret_code, _, stderr) = self._ssh.exec_command_sudo(cmd)
-                # Increase hugepage count
-                cmd = 'echo "{0}" | sudo tee /proc/sys/vm/nr_hugepages'.format(
-                    huge_to_allocate)
-                (ret_code, _, stderr) = self._ssh.exec_command_sudo(cmd)
-                if int(ret_code) != 0:
-                    logger.debug('Mount huge pages failed {0}'.format(stderr))
-                    raise RuntimeError('Mount huge pages failed on {0}'.format(
-                        self._node['host']))
-            # If we do not want to allocate dynamicaly end with error
-            else:
-                raise RuntimeError('Not enough free huge pages: {0}, '
-                    '{1} MB'.format(huge_free, huge_free * huge_size))
+            raise RuntimeError('Not enough free huge pages: {0}, '\
+                '{1} MB'.format(huge_free, huge_free * huge_size))
         # Check if huge pages mount point exist
         has_huge_mnt = False
         (_, output, _) = self._ssh.exec_command('cat /proc/mounts')
@@ -373,8 +359,14 @@ class QemuUtils(object):
                 logger.debug('Create mount dir failed: {0}'.format(stderr))
                 raise RuntimeError('Create mount dir failed on {0}'.format(
                     self._node['host']))
-            cmd = 'mount -t hugetlbfs -o pagesize=2048k none {0}'.format(
-                huge_mnt)
+            if huge_size == 2048:
+                cmd = 'mount -t hugetlbfs -o pagesize=2048k none {0}'.format(
+                    huge_mnt)
+            elif huge_size == 1048576:
+                cmd = 'mount -t hugetlbfs -o pagesize=1G none {0}'.format(
+                    huge_mnt)
+            else:
+                raise ValueError('Invalid huge page size {0}'.format(huge_size))
             (ret_code, _, stderr) = self._ssh.exec_command_sudo(cmd)
             if int(ret_code) != 0:
                 logger.debug('Mount huge pages failed {0}'.format(stderr))
@@ -394,18 +386,15 @@ class QemuUtils(object):
             self._qemu_opt.get('ssh_fwd_port'))
         # Memory and huge pages
         mem = '-object memory-backend-file,id=mem,size={0}M,mem-path={1},' \
-            'share=on -m {0} -numa node,memdev=mem'.format(
+            'share=on -m {0} -numa node,memdev=mem'.format(\
             self._qemu_opt.get('mem_size'), self._qemu_opt.get('huge_mnt'))
-
-        # By default check only if hugepages are availbale.
-        # If 'huge_allocate' is set to true try to allocate as well.
-        self._huge_page_check(allocate=self._qemu_opt.get('huge_allocate'))
-
+        # Check if hugepages are availbale.
+        self._huge_page_check()
         # Setup QMP via unix socket
         qmp = '-qmp unix:{0},server,nowait'.format(self.__QMP_SOCK)
         # Setup serial console
         serial = '-chardev socket,host=127.0.0.1,port={0},id=gnc0,server,' \
-            'nowait -device isa-serial,chardev=gnc0'.format(
+            'nowait -device isa-serial,chardev=gnc0'.format(\
             self._qemu_opt.get('serial_port'))
         # Setup QGA via chardev (unix socket) and isa-serial channel
         qga = '-chardev socket,path=/tmp/qga.sock,server,nowait,id=qga0 ' \
