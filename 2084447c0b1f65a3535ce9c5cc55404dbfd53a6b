@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a1d315d_64ea0411",
+        "filename": "resources/libraries/robot/traffic.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 353,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-09-19T15:59:05Z",
+      "side": 1,
+      "message": "Don\u0027t forget to add the documentation",
+      "range": {
+        "startLine": 353,
+        "startChar": 2,
+        "endLine": 353,
+        "endChar": 19
+      },
+      "revId": "2084447c0b1f65a3535ce9c5cc55404dbfd53a6b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_c43e78b8",
+        "filename": "tests/func/ikev2/ikev2.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-09-19T15:59:05Z",
+      "side": 1,
+      "message": "IPv4-ESP-IPv4-ICMP",
+      "range": {
+        "startLine": 33,
+        "startChar": 39,
+        "endLine": 33,
+        "endChar": 52
+      },
+      "revId": "2084447c0b1f65a3535ce9c5cc55404dbfd53a6b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_a4b93c30",
+        "filename": "tests/func/ikev2/ikev2.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-09-19T15:59:05Z",
+      "side": 1,
+      "message": "Please move to resources/test_data as a variable in dict with key \u0027ID_IP\u0027 and pass key to the test case.",
+      "range": {
+        "startLine": 59,
+        "startChar": 0,
+        "endLine": 79,
+        "endChar": 35
+      },
+      "revId": "2084447c0b1f65a3535ce9c5cc55404dbfd53a6b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_246f6cc7",
+        "filename": "tests/func/ikev2/ikev2.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 183,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-09-19T15:59:05Z",
+      "side": 1,
+      "message": "FQDN\\",
+      "range": {
+        "startLine": 183,
+        "startChar": 74,
+        "endLine": 183,
+        "endChar": 78
+      },
+      "revId": "2084447c0b1f65a3535ce9c5cc55404dbfd53a6b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_04747097",
+        "filename": "tests/func/ikev2/ikev2.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-09-19T15:59:05Z",
+      "side": 1,
+      "message": "Algorithms\\",
+      "range": {
+        "startLine": 184,
+        "startChar": 63,
+        "endLine": 184,
+        "endChar": 73
+      },
+      "revId": "2084447c0b1f65a3535ce9c5cc55404dbfd53a6b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_e46854bc",
+        "filename": "tests/func/ikev2/ikev2.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-09-19T15:59:05Z",
+      "side": 1,
+      "message": "of\\",
+      "range": {
+        "startLine": 201,
+        "startChar": 71,
+        "endLine": 201,
+        "endChar": 73
+      },
+      "revId": "2084447c0b1f65a3535ce9c5cc55404dbfd53a6b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_a4625cd6",
+        "filename": "tests/func/ikev2/ikev2.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 202,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-09-19T15:59:05Z",
+      "side": 1,
+      "message": ".\\",
+      "range": {
+        "startLine": 202,
+        "startChar": 71,
+        "endLine": 202,
+        "endChar": 72
+      },
+      "revId": "2084447c0b1f65a3535ce9c5cc55404dbfd53a6b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_64832457",
+        "filename": "tests/func/ikev2/ikev2.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 213,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-09-19T15:59:05Z",
+      "side": 1,
+      "message": "@{dict_with_settings[\u0027ID_IP\u0027]} or \u0026{dict_with_settings[\u0027ID_IP\u0027]}",
+      "range": {
+        "startLine": 206,
+        "startChar": 60,
+        "endLine": 213,
+        "endChar": 46
+      },
+      "revId": "2084447c0b1f65a3535ce9c5cc55404dbfd53a6b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
