@@ -74,6 +74,7 @@ class LispRemoteMapping(object):
                                       seid_prefix=seid_prefix,
                                       rloc=rloc)
 
+
     @staticmethod
     def vpp_del_lisp_remote_mapping(node, vni, deid, deid_prefix, seid,
                                     seid_prefix, rloc):
