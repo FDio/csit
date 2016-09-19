@@ -49,6 +49,12 @@
 | | | Vpp api trace save | ${nodes['${dut}']}
 | | | Vpp api trace dump | ${nodes['${dut}']}
 
+| Show Vpp Vhost On All DUTs
+| | [Documentation] | Show Vhost User on all DUTs
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | Vpp Show Vhost | ${nodes['${dut}']}
+
 | Add '${m}' worker threads and rxqueues '${n}' in 3-node single-link topo
 | | [Documentation] | Setup M worker threads and N rxqueues in vpp startup
 | | ...             | configuration on all DUTs in 3-node single-link topology.
