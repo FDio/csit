@@ -45,6 +45,16 @@ class LispRemoteMapping(object):
         pass
 
     @staticmethod
+    def vpp_add_lisp_remote_mapping_new(node, vni, eid, prefix, rloc, priority=1, weight=1):
+        VatExecutor.cmd_from_template(node,
+                                      'lisp/add_lisp_remote_mapping_new.vat',
+                                      vni=vni,
+                                      eid=eid,
+                                      prefix=prefix,
+                                      rloc=rloc,
+                                      priority=priority,
+                                      weight=weight)
+    @staticmethod
     def vpp_add_lisp_remote_mapping(node, vni, deid, deid_prefix, seid,
                                     seid_prefix, rloc):
         """Add lisp remote mapping on the VPP node in topology.

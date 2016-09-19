@@ -1,0 +1,1 @@
+lisp_add_del_remote_mapping add vni {vni} eid {eid}/{prefix} rloc {rloc} p {priority} w {weight}

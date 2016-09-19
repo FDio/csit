@@ -20,7 +20,7 @@ MAC addresses are checked in received packet.
 import sys
 import ipaddress
 
-from scapy.layers.inet import ICMP, IP
+from scapy.layers.inet import ICMP, IP, UDP
 from scapy.layers.inet6 import IPv6
 from scapy.all import Ether
 from scapy.layers.inet6 import ICMPv6EchoRequest
@@ -69,12 +69,12 @@ def main():
     if valid_ipv4(src_ip) and valid_ipv4(dst_ip):
         pkt_raw = (Ether(src=src_mac, dst=dut1_if1_mac) /
                    IP(src=src_ip, dst=dst_ip) /
-                   ICMP())
+                   UDP())
         ip_format = 'IP'
     elif valid_ipv6(src_ip) and valid_ipv6(dst_ip):
         pkt_raw = (Ether(src=src_mac, dst=dut1_if1_mac) /
                    IPv6(src=src_ip, dst=dst_ip) /
-                   ICMPv6EchoRequest())
+                   UDP())
         ip_format = 'IPv6'
     else:
         raise ValueError("IP not in correct format")
