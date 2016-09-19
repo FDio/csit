@@ -64,6 +64,7 @@
 | | ... | packets are correct.
 | | ... | [Ref] RFC6830.
 | | ...
+| | [Tags] | LISP4
 | | Given Path for 3-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And Interfaces in 3-node path are up

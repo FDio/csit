@@ -71,16 +71,21 @@
 | | ... | ${dut1_eid['vni']}
 | | ... | ${dut1_eid['eid']}
 | | ... | ${dut1_eid['prefix']}
-| | Vpp Add Lisp Remote Mapping | ${dut1_node}
+| | Vpp Add Lisp Remote Mapping New | ${dut1_node}
 | | ... | ${dut1_static_adjacency['vni']}
-| | ... | ${dut1_static_adjacency['deid']}
-| | ... | ${dut1_static_adjacency['prefix']}
-| | ... | ${dut1_static_adjacency['seid']}
+| | ... | ${dut1_static_adjacency['eid']}
 | | ... | ${dut1_static_adjacency['prefix']}
 | | ... | ${dut1_static_adjacency['rloc']}
+#| | Vpp Add Lisp Remote Mapping | ${dut1_node}
+#| | ... | ${dut1_static_adjacency['vni']}
+#| | ... | ${dut1_static_adjacency['deid']}
+#| | ... | ${dut1_static_adjacency['prefix']}
+#| | ... | ${dut1_static_adjacency['seid']}
+#| | ... | ${dut1_static_adjacency['prefix']}
+#| | ... | ${dut1_static_adjacency['rloc']}
 | | Vpp Add Lisp Adjacency | ${dut1_node}
 | | ... | ${dut1_static_adjacency['vni']}
-| | ... | ${dut1_static_adjacency['deid']}
+| | ... | ${dut1_static_adjacency['eid']}
 | | ... | ${dut1_static_adjacency['prefix']}
 | | ... | ${dut1_static_adjacency['seid']}
 | | ... | ${dut1_static_adjacency['prefix']}
@@ -103,13 +108,18 @@
 | | ... | ${dut2_eid['vni']}
 | | ... | ${dut2_eid['eid']}
 | | ... | ${dut2_eid['prefix']}
-| | Vpp Add Lisp Remote Mapping | ${dut2_node}
+| | Vpp Add Lisp Remote Mapping New | ${dut2_node}
 | | ... | ${dut2_static_adjacency['vni']}
-| | ... | ${dut2_static_adjacency['deid']}
-| | ... | ${dut2_static_adjacency['prefix']}
-| | ... | ${dut2_static_adjacency['seid']}
+| | ... | ${dut2_static_adjacency['eid']}
 | | ... | ${dut2_static_adjacency['prefix']}
 | | ... | ${dut2_static_adjacency['rloc']}
+#| | Vpp Add Lisp Remote Mapping | ${dut2_node}
+#| | ... | ${dut2_static_adjacency['vni']}
+#| | ... | ${dut2_static_adjacency['deid']}
+#| | ... | ${dut2_static_adjacency['prefix']}
+#| | ... | ${dut2_static_adjacency['seid']}
+#| | ... | ${dut2_static_adjacency['prefix']}
+#| | ... | ${dut2_static_adjacency['rloc']}
 | | Vpp Add Lisp Adjacency | ${dut2_node}
 | | ... | ${dut2_static_adjacency['vni']}
 | | ... | ${dut2_static_adjacency['deid']}
