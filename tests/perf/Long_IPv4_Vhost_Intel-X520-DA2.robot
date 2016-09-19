@@ -27,6 +27,7 @@
 | ...           | Traffic should pass with no loss | 10
 | ...           | ${min_rate}pps | ${framesize} | 3-node-IPv4
 | ...           | fail_on_loss=${False}
+| ...           | AND | Show Vpp Vhost On All DUTs
 | ...           | AND | Remove startup configuration of VPP from all DUTs
 | ...           | AND | Guest VM with dpdk-testpmd Teardown | ${dut1}
 | ...                 | ${dut1_vm_refs}

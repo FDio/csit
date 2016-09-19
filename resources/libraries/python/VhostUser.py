@@ -75,3 +75,14 @@ class VhostUser(object):
                 return ':'.join("%02x" % (b) for b in iface["l2_address"][:6])
 
         return None
+
+    @staticmethod
+    def vpp_show_vhost(node):
+        """Get vhost-user data for the given node.
+
+        :param node: VPP node to get interface data from.
+        :type node: dict
+        :return: nothing
+        """
+        vat = VatExecutor()
+        vat.execute_script("show_vhost.vat", node, json_out=False)
