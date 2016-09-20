@@ -63,7 +63,7 @@
 | | ... | using binary search start at 10GE linerate, step 100kpps.
 | | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | NDR
 | | ${framesize}= | Set Variable | 64
-| | ${min_rate}= | Set Variable | 100000
+| | ${min_rate}= | Set Variable | ${100000}
 | | ${max_rate}= | Set Variable | ${s_18.75Mpps}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
@@ -85,7 +85,7 @@
 | | ... | using binary search start at 10GE linerate, step 10kpps.
 | | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | NDR
 | | ${framesize}= | Set Variable | 1518
-| | ${min_rate}= | Set Variable | 10000
+| | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_24.5G} | ${framesize}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
@@ -107,7 +107,7 @@
 | | ... | using binary search start at 10GE linerate, step 100kpps.
 | | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | NDR
 | | ${framesize}= | Set Variable | 64
-| | ${min_rate}= | Set Variable | 100000
+| | ${min_rate}= | Set Variable | ${100000}
 | | ${max_rate}= | Set Variable | ${s_18.75Mpps}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
@@ -129,7 +129,7 @@
 | | ... | using binary search start at 10GE linerate, step 10kpps.
 | | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | NDR | SKIP_PATCH
 | | ${framesize}= | Set Variable | 1518
-| | ${min_rate}= | Set Variable | 10000
+| | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_24.5G} | ${framesize}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
@@ -151,7 +151,7 @@
 | | ... | using binary search start at 10GE linerate, step 100kpps.
 | | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | NDR
 | | ${framesize}= | Set Variable | 64
-| | ${min_rate}= | Set Variable | 100000
+| | ${min_rate}= | Set Variable | ${100000}
 | | ${max_rate}= | Set Variable | ${s_18.75Mpps}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
@@ -173,7 +173,7 @@
 | | ... | using binary search start at 10GE linerate, step 10kpps.
 | | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | NDR | SKIP_PATCH
 | | ${framesize}= | Set Variable | 1518
-| | ${min_rate}= | Set Variable | 10000
+| | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_24.5G} | ${framesize}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
@@ -196,7 +196,7 @@
 | | ... | IMIX_v4_1 = (28x64B;16x570B;4x1518B)
 | | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | NDR
 | | ${framesize}= | Set Variable | IMIX_v4_1
-| | ${min_rate}= | Set Variable | 100000
+| | ${min_rate}= | Set Variable | ${100000}
 | | ${max_rate}= | Calculate pps | ${s_24.5G} | ${353.83333}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
@@ -219,7 +219,7 @@
 | | ... | IMIX_v4_1 = (28x64B;16x570B;4x1518B)
 | | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | NDR | SKIP_PATCH
 | | ${framesize}= | Set Variable | IMIX_v4_1
-| | ${min_rate}= | Set Variable | 100000
+| | ${min_rate}= | Set Variable | ${100000}
 | | ${max_rate}= | Calculate pps | ${s_24.5G} | ${353.83333}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
@@ -242,7 +242,7 @@
 | | ... | IMIX_v4_1 = (28x64B;16x570B;4x1518B)
 | | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | NDR | SKIP_PATCH
 | | ${framesize}= | Set Variable | IMIX_v4_1
-| | ${min_rate}= | Set Variable | 100000
+| | ${min_rate}= | Set Variable | ${100000}
 | | ${max_rate}= | Calculate pps | ${s_24.5G} | ${353.83333}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
