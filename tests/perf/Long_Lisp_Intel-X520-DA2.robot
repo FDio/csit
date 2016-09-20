@@ -197,7 +197,7 @@
 | | ... | at 10GE linerate, step 5kpps.
 | | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | NDR | LISP_IPv4
 | | ${framesize}= | Set Variable | ${9000}
-| | ${min_rate}= | Set Variable | ${5000}
+| | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 8}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
@@ -228,7 +228,7 @@
 | | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | PDR | LISP_IPv4
 | | ...    | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${9000}
-| | ${min_rate}= | Set Variable | ${5000}
+| | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 8}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
@@ -392,7 +392,7 @@
 | | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | NDR | LISP_IPv4
 | | ...    | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${9000}
-| | ${min_rate}= | Set Variable | ${5000}
+| | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 8}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
@@ -423,7 +423,7 @@
 | | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | PDR | LISP_IPv4
 | | ...    | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${9000}
-| | ${min_rate}= | Set Variable | ${5000}
+| | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 8}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
@@ -587,7 +587,7 @@
 | | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | NDR | LISP_IPv4
 | | ...    | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${9000}
-| | ${min_rate}= | Set Variable | ${5000}
+| | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 8}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
@@ -618,7 +618,7 @@
 | | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | PDR | LISP_IPv4
 | | ...    | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${9000}
-| | ${min_rate}= | Set Variable | ${5000}
+| | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 8}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
@@ -780,7 +780,7 @@
 | | ... | at 10GE linerate, step 5kpps.
 | | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | NDR | LISP_IPv6
 | | ${framesize}= | Set Variable | ${9000}
-| | ${min_rate}= | Set Variable | ${5000}
+| | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 8}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
@@ -811,7 +811,7 @@
 | | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | PDR | LISP_IPv6
 | | ...    | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${9000}
-| | ${min_rate}= | Set Variable | ${5000}
+| | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 8}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
@@ -975,7 +975,7 @@
 | | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | NDR | LISP_IPv6
 | | ...    | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${9000}
-| | ${min_rate}= | Set Variable | ${5000}
+| | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 8}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
@@ -1006,7 +1006,7 @@
 | | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | PDR | LISP_IPv6
 | | ...    | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${9000}
-| | ${min_rate}= | Set Variable | ${5000}
+| | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 8}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
@@ -1170,7 +1170,7 @@
 | | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | NDR | LISP_IPv6
 | | ...    | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${9000}
-| | ${min_rate}= | Set Variable | ${5000}
+| | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 8}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
@@ -1201,7 +1201,7 @@
 | | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | PDR | LISP_IPv6
 | | ...    | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${9000}
-| | ${min_rate}= | Set Variable | ${5000}
+| | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 8}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
@@ -1363,7 +1363,7 @@
 | | ... | at 10GE linerate, step 5kpps.
 | | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | NDR | LISP_IPv4oIPv6
 | | ${framesize}= | Set Variable | ${9000}
-| | ${min_rate}= | Set Variable | ${5000}
+| | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 48}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
@@ -1394,7 +1394,7 @@
 | | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | PDR | LISP_IPv4oIPv6
 | | ...    | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${9000}
-| | ${min_rate}= | Set Variable | ${5000}
+| | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 48}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
@@ -1558,7 +1558,7 @@
 | | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | NDR | LISP_IPv4oIPv6
 | | ...    | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${9000}
-| | ${min_rate}= | Set Variable | ${5000}
+| | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 48}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
@@ -1589,7 +1589,7 @@
 | | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | PDR | LISP_IPv4oIPv6
 | | ...    | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${9000}
-| | ${min_rate}= | Set Variable | ${5000}
+| | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 48}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
@@ -1753,7 +1753,7 @@
 | | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | NDR | LISP_IPv4oIPv6
 | | ...    | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${9000}
-| | ${min_rate}= | Set Variable | ${5000}
+| | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 48}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
@@ -1784,7 +1784,7 @@
 | | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | PDR | LISP_IPv4oIPv6
 | | ...    | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${9000}
-| | ${min_rate}= | Set Variable | ${5000}
+| | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 48}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
@@ -1946,7 +1946,7 @@
 | | ... | at 10GE linerate, step 5kpps.
 | | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | NDR | LISP_IPv6oIPv4
 | | ${framesize}= | Set Variable | ${9000}
-| | ${min_rate}= | Set Variable | ${5000}
+| | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 48}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
@@ -1977,7 +1977,7 @@
 | | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | PDR | LISP_IPv6oIPv4
 | | ...    | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${9000}
-| | ${min_rate}= | Set Variable | ${5000}
+| | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 48}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
@@ -2141,7 +2141,7 @@
 | | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | NDR | LISP_IPv6oIPv4
 | | ...    | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${9000}
-| | ${min_rate}= | Set Variable | ${5000}
+| | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 48}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
@@ -2172,7 +2172,7 @@
 | | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | PDR | LISP_IPv6oIPv4
 | | ...    | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${9000}
-| | ${min_rate}= | Set Variable | ${5000}
+| | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 48}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
@@ -2336,7 +2336,7 @@
 | | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | NDR | LISP_IPv6oIPv4
 | | ...    | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${9000}
-| | ${min_rate}= | Set Variable | ${5000}
+| | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 48}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
@@ -2367,7 +2367,7 @@
 | | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | PDR | LISP_IPv6oIPv4
 | | ...    | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${9000}
-| | ${min_rate}= | Set Variable | ${5000}
+| | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 48}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}

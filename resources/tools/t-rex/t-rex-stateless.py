@@ -134,19 +134,19 @@ def create_streams_v46(base_pkt_a, base_pkt_b, vm1, vm2, frame_size):
             max(0, fsize_no_fcs-len(base_pkt_b))))
         lat_stream1 = STLStream(packet=pkt_lat_a,
                                 flow_stats=STLFlowLatencyStats(pg_id=0),
-                                mode=STLTXCont(pps=10000))
+                                mode=STLTXCont(pps=9000))
         # second traffic stream with a phase of 10ns (inter stream gap)
         lat_stream2 = STLStream(packet=pkt_lat_b,
                                 isg=10.0,
                                 flow_stats=STLFlowLatencyStats(pg_id=1),
-                                mode=STLTXCont(pps=10000))
+                                mode=STLTXCont(pps=9000))
 
         stream1 = STLStream(packet=pkt_a,
-                            mode=STLTXCont(pps=10000))
+                            mode=STLTXCont(pps=9000))
         # second traffic stream with a phase of 10ns (inter stream gap)
         stream2 = STLStream(packet=pkt_b,
                             isg=10.0,
-                            mode=STLTXCont(pps=10000))
+                            mode=STLTXCont(pps=9000))
     elif type(frame_size) is str:
         lat_stream1 = []
         lat_stream2 = []
