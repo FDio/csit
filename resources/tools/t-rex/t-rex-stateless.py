@@ -315,6 +315,34 @@ def create_streams_v6(traffic_options, frame_size=78):
 
     return create_streams_v46(base_pkt_a, base_pkt_b, vm1, vm2, frame_size)
 
+def fmt_latency(lat_min, lat_avg, lat_max):
+    """ Return formatted, rounded latency
+
+    :param lat_min: Min latency
+    :param lat_avg: Average latency
+    :param lat_max: Max latency
+    :type lat_min: string
+    :type lat_avg: string
+    :type lat_max: string
+    :return: Formatted and rounded output "min/avg/max"
+    :rtype: string
+    """
+
+    try:
+        t_min = int(round(float(lat_min)))
+    except ValueError:
+        t_min = int(-1)
+    try:
+        t_avg = int(round(float(lat_avg)))
+    except ValueError:
+        t_avg = int(-1)
+    try:
+        t_max = int(round(float(lat_max)))
+    except ValueError:
+        t_max = int(-1)
+
+    return "/".join(str(tmp) for tmp in (t_min, t_avg, t_max))
+
 def simple_burst(stream_a, stream_b, stream_lat_a, stream_lat_b, duration, rate,
                  warmup_time, async_start, latency):
     """Run the traffic with specific parameters.
@@ -347,8 +375,8 @@ def simple_burst(stream_a, stream_b, stream_lat_a, stream_lat_b, duration, rate,
     total_sent = 0
     lost_a = 0
     lost_b = 0
-    lat_a = "0/0/0"
-    lat_b = "0/0/0"
+    lat_a = "-1/-1/-1"
+    lat_b = "-1/-1/-1"
 
     try:
         # turn this off if too many logs
@@ -420,14 +448,14 @@ def simple_burst(stream_a, stream_b, stream_lat_a, stream_lat_b, duration, rate,
             lost_b = stats[1]["opackets"] - stats[0]["ipackets"]
 
             if latency:
-                lat_a = "/".join((\
+                lat_a = fmt_latency(\
                     str(stats["latency"][0]["latency"]["total_min"]),\
                     str(stats["latency"][0]["latency"]["average"]),\
-                    str(stats["latency"][0]["latency"]["total_max"])))
-                lat_b = "/".join((\
+                    str(stats["latency"][0]["latency"]["total_max"]))
+                lat_b = fmt_latency(\
                     str(stats["latency"][1]["latency"]["total_min"]),\
                     str(stats["latency"][1]["latency"]["average"]),\
-                    str(stats["latency"][1]["latency"]["total_max"])))
+                    str(stats["latency"][1]["latency"]["total_max"]))
 
             total_sent = stats[0]["opackets"] + stats[1]["opackets"]
             total_rcvd = stats[0]["ipackets"] + stats[1]["ipackets"]
