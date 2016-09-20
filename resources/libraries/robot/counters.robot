@@ -39,7 +39,7 @@
 | | Should Be Equal | ${ipv4_counter} | ${value}
 
 | Show statistics on all DUTs
-| | [Documentation] | Show VPP statistics on all DUTs after the test failed
+| | [Documentation] | Show VPP statistics on all DUTs
 | | Sleep | 10 | Waiting for statistics to be collected
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
