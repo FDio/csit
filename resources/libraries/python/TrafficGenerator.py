@@ -485,17 +485,8 @@ class TrafficGenerator(object):
             self._loss = self._result.split(', ')[3].split('=')[1]
 
             self._latency = []
-            lat_int_list = []
-            #round latency numbers
-            lat_str = self._result.split(', ')[4].split('=')[1]
-            for lat in lat_str.split("/"):
-                lat_int_list.append(int(float(lat)))
-            self._latency.append("/".join(str(tmp) for tmp in lat_int_list))
-            lat_int_list = []
-            lat_str = self._result.split(', ')[5].split('=')[1]
-            for lat in lat_str.split("/"):
-                lat_int_list.append(int(float(lat)))
-            self._latency.append("/".join(str(tmp) for tmp in lat_int_list))
+            self._latency.append(self._result.split(', ')[4].split('=')[1])
+            self._latency.append(self._result.split(', ')[5].split('=')[1])
 
     def stop_traffic_on_tg(self):
         """Stop all traffic on TG
