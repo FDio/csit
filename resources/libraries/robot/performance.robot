@@ -913,13 +913,13 @@
 | | ${tmp}= | Create List | 100%NDR | ${lat}
 | | ${latency}= | Create List | ${tmp}
 | | ${rate_50p}= | Evaluate | int(${rate_per_stream}*0.5)
-| | ${lat_50p}= | Measure latency | ${duration} | ${rate_50p}pps
-| | ...                           | ${framesize} | ${topology_type}
+| | ${lat_50p}= | Measure latency pps | ${duration} | ${rate_50p}
+| | ...                               | ${framesize} | ${topology_type}
 | | ${tmp}= | Create List | 50%NDR | ${lat_50p}
 | | Append To List | ${latency} | ${tmp}
 | | ${rate_10p}= | Evaluate | int(${rate_per_stream}*0.1)
-| | ${lat_10p}= | Measure latency | ${duration} | ${rate_10p}pps
-| | ...                           | ${framesize} | ${topology_type}
+| | ${lat_10p}= | Measure latency pps | ${duration} | ${rate_10p}
+| | ...                               | ${framesize} | ${topology_type}
 | | ${tmp}= | Create List | 10%NDR | ${lat_10p}
 | | Append To List | ${latency} | ${tmp}
 | | Display result of NDR search | ${rate_per_stream} | ${framesize} | 2
@@ -1000,13 +1000,13 @@
 | | ${tmp}= | Create List | 100%NDR | ${lat}
 | | ${latency}= | Create List | ${tmp}
 | | ${rate_50p}= | Evaluate | int(${rate_per_stream}*0.5)
-| | ${lat_50p}= | Measure latency | ${duration} | ${rate_50p}pps
-| | ...                           | ${framesize} | ${topology_type}
+| | ${lat_50p}= | Measure latency pps | ${duration} | ${rate_50p}
+| | ...                               | ${framesize} | ${topology_type}
 | | ${tmp}= | Create List | 50%NDR | ${lat_50p}
 | | Append To List | ${latency} | ${tmp}
 | | ${rate_10p}= | Evaluate | int(${rate_per_stream}*0.1)
-| | ${lat_10p}= | Measure latency | ${duration} | ${rate_10p}pps
-| | ...                           | ${framesize} | ${topology_type}
+| | ${lat_10p}= | Measure latency pps | ${duration} | ${rate_10p}
+| | ...                               | ${framesize} | ${topology_type}
 | | ${tmp}= | Create List | 10%NDR | ${lat_10p}
 | | Append To List | ${latency} | ${tmp}
 | | Display result of NDR search | ${rate_per_stream} | ${framesize} | 2
@@ -1091,13 +1091,13 @@
 | | ${tmp}= | Create List | 100%NDR | ${lat}
 | | ${latency}= | Create List | ${tmp}
 | | ${rate_50p}= | Evaluate | int(${rate_per_stream}*0.5)
-| | ${lat_50p}= | Measure latency | ${duration} | ${rate_50p}pps
-| | ...                           | ${framesize} | ${topology_type}
+| | ${lat_50p}= | Measure latency pps | ${duration} | ${rate_50p}
+| | ...                               | ${framesize} | ${topology_type}
 | | ${tmp}= | Create List | 50%NDR | ${lat_50p}
 | | Append To List | ${latency} | ${tmp}
 | | ${rate_10p}= | Evaluate | int(${rate_per_stream}*0.1)
-| | ${lat_10p}= | Measure latency | ${duration} | ${rate_10p}pps
-| | ...                           | ${framesize} | ${topology_type}
+| | ${lat_10p}= | Measure latency pps | ${duration} | ${rate_10p}
+| | ...                               | ${framesize} | ${topology_type}
 | | ${tmp}= | Create List | 10%NDR | ${lat_10p}
 | | Append To List | ${latency} | ${tmp}
 | | Display result of NDR search | ${rate_per_stream} | ${framesize} | 2
@@ -1221,22 +1221,23 @@
 | | Set Test Message | ${\n}LOSS_ACCEPTANCE: ${loss_acceptance} ${loss_acceptance_type}
 | | ...              | append=yes
 
-| Measure latency
+| Measure latency pps
 | | [Documentation]
 | | ... | Send traffic at specified rate. Measure min/avg/max latency
 | | ...
 | | ... | *Arguments:*
 | | ... | - duration - Duration of traffic run [s]. Type: integer
-| | ... | - rate - Rate for sending packets. Type: string
+| | ... | - rate - Rate for sending packets. Type: integer
 | | ... | - framesize - L2 Frame Size [B]. Type: integer
 | | ... | - topology_type - Topology type. Type: string
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Measure latency \| 10 \| 4.0mpps \| 64 \| 3-node-IPv4
+| | ... | \| Measure latency \| 10 \| 4.0 \| 64 \| 3-node-IPv4
 | | [Arguments] | ${duration} | ${rate} | ${framesize} | ${topology_type}
+| | Return From Keyword If | ${rate} <= 10000 | ${-1}
 | | Clear all counters on all DUTs
-| | Send traffic on tg | ${duration} | ${rate} | ${framesize}
+| | Send traffic on tg | ${duration} | ${rate}pps | ${framesize}
 | | ...                | ${topology_type} | warmup_time=0
 | | Show statistics on all DUTs
 | | Run keyword and return | Get latency
