@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a1d315d_31e329db",
+        "filename": "resources/libraries/python/honeycomb/HcAPIKwInterfaces.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-09-20T12:45:51Z",
+      "side": 1,
+      "message": "move this to \"set interface state\" method above",
+      "range": {
+        "startLine": 255,
+        "startChar": 8,
+        "endLine": 274,
+        "endChar": 19
+      },
+      "revId": "ba4f72e1ad5b161e7cee4da5b51085c4c6e85f7e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_7173e14d",
+        "filename": "resources/libraries/robot/honeycomb/provider_backbone_bridge.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-09-20T12:45:51Z",
+      "side": 1,
+      "message": "from",
+      "range": {
+        "startLine": 41,
+        "startChar": 69,
+        "endLine": 41,
+        "endChar": 73
+      },
+      "revId": "ba4f72e1ad5b161e7cee4da5b51085c4c6e85f7e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_b1ce1959",
+        "filename": "resources/test_data/honeycomb/pbb/pbb.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-09-20T12:45:51Z",
+      "side": 1,
+      "message": "Interface name should not be hardcoded. Check everywhere.",
+      "range": {
+        "startLine": 43,
+        "startChar": 13,
+        "endLine": 43,
+        "endChar": 35
+      },
+      "revId": "ba4f72e1ad5b161e7cee4da5b51085c4c6e85f7e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_d1f8757e",
+        "filename": "tests/func/honeycomb/090_provider_backbone_bridge.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-09-20T12:45:51Z",
+      "side": 1,
+      "message": "consider adding:\n| Suite Teardown | Run Keyword If Any Tests Failed\n| ... | Restart Honeycomb And VPP And Clear Persisted Configuration | ${node}",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 16
+      },
+      "revId": "ba4f72e1ad5b161e7cee4da5b51085c4c6e85f7e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
