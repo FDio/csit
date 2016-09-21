@@ -22,7 +22,8 @@ from scapy.layers.inet import IP, TCP, UDP
 from scapy.layers.inet6 import IPv6
 from scapy.layers.l2 import Ether
 
-from resources.libraries.python.IPFIXUtil import IPFIXHandler, IPFIXData
+from resources.libraries.python.telemetry.IPFIXUtil import IPFIXHandler, \
+    IPFIXData
 from resources.libraries.python.PacketVerifier import RxQueue, TxQueue, auto_pad
 from resources.libraries.python.TrafficScriptArg import TrafficScriptArg
 
@@ -133,8 +134,6 @@ def main():
     tx_if = args.get_arg('tx_if')
 
     protocol = args.get_arg('protocol')
-    source_port = int(args.get_arg('port'))
-    destination_port = int(args.get_arg('port'))
     count = int(args.get_arg('count'))
     sessions = int(args.get_arg('sessions'))
 
