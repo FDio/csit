@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a1d315d_257ac388",
+        "filename": "resources/libraries/python/LispSetup.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 193
+      },
+      "writtenOn": "2016-09-21T10:32:26Z",
+      "side": 1,
+      "message": "I\u0027d rather we updated the old vpp_add_lisp_remote_mapping to fit the current API.",
+      "range": {
+        "startLine": 48,
+        "startChar": 8,
+        "endLine": 48,
+        "endChar": 39
+      },
+      "revId": "429e99e4073a0c42dc0d22e0d67d8249aabfe298",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_854bd758",
+        "filename": "resources/templates/vat/lisp/add_lisp_remote_mapping_new.vat",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 193
+      },
+      "writtenOn": "2016-09-21T10:32:26Z",
+      "side": 1,
+      "message": "Instead of adding a new vat template for add_lisp_remote_mapping, could we update the existing one and the tests that use it?",
+      "revId": "429e99e4073a0c42dc0d22e0d67d8249aabfe298",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_e5aa8bd3",
+        "filename": "resources/traffic_scripts/send_icmp_check_headers.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 193
+      },
+      "writtenOn": "2016-09-21T10:32:26Z",
+      "side": 1,
+      "message": "Just curious, why do we need to change this?",
+      "range": {
+        "startLine": 72,
+        "startChar": 19,
+        "endLine": 72,
+        "endChar": 22
+      },
+      "revId": "429e99e4073a0c42dc0d22e0d67d8249aabfe298",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_655f9b0f",
+        "filename": "tests/func/lisp/ipv6_lispgpe_ipv6.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 193
+      },
+      "writtenOn": "2016-09-21T10:32:26Z",
+      "side": 1,
+      "message": "I guess this should be replaced all over with IPv6",
+      "range": {
+        "startLine": 63,
+        "startChar": 28,
+        "endLine": 63,
+        "endChar": 32
+      },
+      "revId": "429e99e4073a0c42dc0d22e0d67d8249aabfe298",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_05a6a710",
+        "filename": "tests/func/lisp/ipv6_lispgpe_ipv6.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 193
+      },
+      "writtenOn": "2016-09-21T10:32:26Z",
+      "side": 1,
+      "message": "So these are ipsec tests? Then probably we should either create a separate subfolder for ipsec, or call the tests suite: ipv6_lispgpe_ipsec_ipv6 or something like that.",
+      "range": {
+        "startLine": 91,
+        "startChar": 4,
+        "endLine": 91,
+        "endChar": 9
+      },
+      "revId": "429e99e4073a0c42dc0d22e0d67d8249aabfe298",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
