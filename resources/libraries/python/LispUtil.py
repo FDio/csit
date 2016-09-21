@@ -120,23 +120,10 @@ class LispUtil(object):
         :type locator_set2: list
         """
 
-        # Remove duplicate value which is not set in vpp node.
         locator_set_list = []
-        tmp_list = list(locator_set1)
-        while len(tmp_list):
-            locator_set = tmp_list.pop(0)
-            locator_set_name = locator_set.get('locator-set')
-            for tmp_loc_set in tmp_list:
-                tmp_loc_set_name = tmp_loc_set.get('locator-set')
-                if locator_set_name == tmp_loc_set_name:
-                    locator_set = tmp_loc_set
-                    tmp_list.remove(tmp_loc_set)
-            locator_set_list.append(locator_set)
-
-        for locator_set in locator_set2:
-            if 'locator-set-index' in locator_set:
-                del locator_set['locator-set-index']
-
+        for item in locator_set1:
+            if item not in locator_set_list:
+                locator_set_list.append(item)
         self.lisp_should_be_equal(locator_set_list, locator_set2)
 
     @staticmethod
@@ -148,13 +135,15 @@ class LispUtil(object):
         :param locator_set_number: Generate n locator_set.
         :type node: dict
         :type locator_set_number: str
-        :return: list of lisp locator_set.
-        :rtype: list
+        :return: list of lisp locator_set, list of lisp locator_set expected
+        from VAT.
+        :rtype: tuple
         """
 
         topo = Topology()
 
         locator_set_list = []
+        locator_set_list_vat = []
         i = 0
         for num in range(0, int(locator_set_number)):
             locator_list = []
@@ -177,7 +166,11 @@ class LispUtil(object):
                            'locator': locator_list}
             locator_set_list.append(locator_set)
 
-        return locator_set_list
+            locator_set_vat = {"ls_name": l_name,
+                               "ls_index": num}
+            locator_set_list_vat.append(locator_set_vat)
+
+        return locator_set_list, locator_set_list_vat
 
     @staticmethod
     def generate_duplicate_lisp_locator_set_data(node, locator_set_number):
@@ -188,12 +181,14 @@ class LispUtil(object):
         :param locator_set_number: Generate n locator_set.
         :type node: dict
         :type locator_set_number: str
-        :return: list of lisp locator_set.
-        :rtype: list
+        :return: list of lisp locator_set, list of lisp locator_set expected
+        from VAT.
+        :rtype: tuple
         """
 
         topo = Topology()
         locator_set_list = []
+        locator_set_list_vat = []
         i = 0
         for num in range(0, int(locator_set_number)):
             locator_list = []
@@ -215,7 +210,11 @@ class LispUtil(object):
                                    'locator': locator_list}
                     locator_set_list.append(locator_set)
 
-        return locator_set_list
+                    locator_set_vat = {"ls_name": l_name,
+                               "ls_index": num}
+                    locator_set_list_vat.append(locator_set_vat)
+
+        return locator_set_list, locator_set_list_vat
 
     def lisp_is_empty(self, lisp_params):
         """Check if the input param are empty.

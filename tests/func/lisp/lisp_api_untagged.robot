@@ -61,10 +61,9 @@
 | | ... | configured locator_set and locator are correct. [Cfg2] Then
 | | ... | remove locator_set and locator. [Ver2] check DUT1 locator_set
 | | ... | and locator are removed. [Ref] RFC6830.
-| | [Tags] | EXPECTED_FAILING
 | | Given Lisp locator_set data is prepared
 | | ... | ${nodes['DUT1']} | ${locator_set_num}
-| | And   Enable lisp | ${nodes['DUT1']}
+| | And Enable lisp | ${nodes['DUT1']}
 | | When Lisp locator_set data is set | ${nodes['DUT1']}
 | | Then Lisp locator_set is set correctly | ${nodes['DUT1']}
 | | When Delete all lisp locator_set from VPP | ${nodes['DUT1']}
@@ -79,10 +78,9 @@
 | | ... | locator are correct. [Cfg3] Then remove locator_set and locator.
 | | ... | [Ver3] Check DUT1 all locator_set and locators are removed.
 | | ... | [Ref] RFC6830.
-| | [Tags] | EXPECTED_FAILING
 | | Given Lisp locator_set data use for test reset locator_set are prepared
 | | ... | ${nodes['DUT1']} | ${locator_set_num}
-| | And   Enable lisp | ${nodes['DUT1']}
+| | And Enable lisp | ${nodes['DUT1']}
 | | When Lisp locator_set data is set | ${nodes['DUT1']}
 | | Then Lisp locator_set is set correctly | ${nodes['DUT1']}
 | | When Delete all lisp locator_set from VPP | ${nodes['DUT1']}
@@ -94,11 +92,10 @@
 | | ... | configure LISP eid IP address. [Ver1] Check DUT1 configured data
 | | ... | is correct. [Cfg2] Remove configured data. [Ver2] Check DUT1 all
 | | ... | eid IP addresses are removed. [Ref] RFC6830.
-| | [Tags] | EXPECTED_FAILING
 | | Given Enable lisp | ${nodes['DUT1']}
 | | When Lisp eid address is set | ${nodes['DUT1']} | ${eid_table}
-| | Then Lisp eid address is set correctly to eid table | ${nodes['DUT1']}
-| | ...                                                 | ${eid_table}
+| | Then Lisp eid address is set correctly to eid table
+| | ... | ${nodes['DUT1']} | ${eid_table_vat}
 | | When Delete all lisp eid address from VPP | ${nodes['DUT1']} | ${eid_table}
 | | Then Lisp eid table should be empty | ${nodes['DUT1']}
 
@@ -111,8 +108,8 @@
 | | ... | RFC6830.
 | | Given Enable lisp | ${nodes['DUT1']}
 | | When Lisp map resolver address is set | ${nodes['DUT1']} | ${map_resolver}
-| | Then Lisp map resolver address is set correctly | ${nodes['DUT1']}
-| | ...                                             | ${map_resolver}
-| | When Delete all lisp map resolver address from VPP | ${nodes['DUT1']}
-| | ...                                                | ${map_resolver}
+| | Then Lisp map resolver address is set correctly
+| | ... | ${nodes['DUT1']} | ${map_resolver}
+| | When Delete all lisp map resolver address from VPP
+| | ... | ${nodes['DUT1']} | ${map_resolver}
 | | Then Lip map resolver address should be empty | ${nodes['DUT1']}

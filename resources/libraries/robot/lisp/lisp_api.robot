@@ -35,15 +35,19 @@
 | | ...
 | | ... | _NOTE:_ This KW sets following test case variables:
 | | ... | - locator_set_values - New generated locator_set data.
+| | ... | - locator_set_values_vat - New generated locator_set data expected\
+| | ... | from VAT.
 | | ...
 | | ... | *Example:*
 | | ... | \| Given Lisp locator_set data is prepared \| ${nodes['DUT1']} \
 | | ... | \| ${locator_set_number} \|
 | | ...
 | | [Arguments] | ${dut_node} | ${locator_set_number}
-| | ${locator_set_values}= | Generate Unique Lisp Locator Set Data |
-| | ...                    | ${dut_node} | ${locator_set_number}
+| | ${locator_set_values} | ${locator_set_values_vat}=
+| | ... | Generate Unique Lisp Locator Set Data
+| | ... | ${dut_node} | ${locator_set_number}
 | | Set Test Variable | ${locator_set_values}
+| | Set Test Variable | ${locator_set_values_vat}
 
 | Lisp locator_set data is set
 | | [Documentation] | Set the lisp locator_set and locator on the VPP node.
@@ -75,9 +79,8 @@
 | | ... | - No value returned
 | | ...
 | | ... | _NOTE:_ This KW requires following test case variables:
-| | ... | - locator_set_values - Generated locator_set data from
-| | ... |                        KW locator_set data is prepared,
-| | ... |                        which were set to VPP node.
+| | ... | - locator_set_values_vat - Generated locator_set data from
+| | ... | KW locator_set data is prepared, which are expected from VPP via VAT.
 | | ...
 | | ... | *Example:*
 | | ... | \| Then Lisp locator_set is set correctly \| ${nodes['DUT1']} \|
@@ -85,7 +88,7 @@
 | | [Arguments] | ${dut_node}
 | | ${show_locator_set}= | Vpp Show Lisp Locator Set | ${dut_node} | local
 | | Lisp Locator S Should Be Equal
-| | ... | ${locator_set_values} | ${show_locator_set}
+| | ... | ${locator_set_values_vat} | ${show_locator_set}
 
 | Delete all lisp locator_set from VPP
 | | [Documentation] | Delete all lisp locator_set on the VPP node.
@@ -138,15 +141,19 @@
 | | ...
 | | ... | _NOTE:_ This KW sets following test case variables:
 | | ... | - locator_set_values - New generate locator_set data.
+| | ... | - locator_set_values_vat - New generated locator_set data expected\
+| | ... | from VAT.
 | | ...
 | | ... | *Example:*
 | | ... | \| Given Lisp locator_set data use for test reset locator_set \
 | | ... |    are prepared \| ${nodes['DUT1']} \| ${locator_set_number} \|
 | | ...
 | | [Arguments] | ${dut_node} | ${locator_set_number}
-| | ${locator_set_values}= | Generate Duplicate Lisp Locator Set Data |
-| | ...                    | ${dut_node} | ${locator_set_number}
+| | ${locator_set_values} | ${locator_set_values_vat}=
+| | ... | Generate Duplicate Lisp Locator Set Data
+| | ... | ${dut_node} | ${locator_set_number}
 | | Set Test Variable | ${locator_set_values}
+| | Set Test Variable | ${locator_set_values_vat}
 
 | Lisp eid address is set
 | | [Documentation] | Set the lisp eid address on the VPP node.
