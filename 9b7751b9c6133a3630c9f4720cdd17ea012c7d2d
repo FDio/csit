@@ -1,0 +1,473 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a1d315d_aaffc233",
+        "filename": "TLDK-tests/func/ipv4/ipv4_assemble.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-09-21T10:57:54Z",
+      "side": 1,
+      "message": "Please strip trailing spaces\nApplies in all files.",
+      "range": {
+        "startLine": 33,
+        "startChar": 36,
+        "endLine": 33,
+        "endChar": 38
+      },
+      "revId": "9b7751b9c6133a3630c9f4720cdd17ea012c7d2d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_6af9aa4c",
+        "filename": "TLDK-tests/func/ipv4/ipv4_assemble.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-09-21T10:57:54Z",
+      "side": 1,
+      "message": "Please break lines to max length of 80 chars.\n| | ${packet_num} | ${dest_ip} | ${is_ipv4}\u003d | Get Pcap Info\n| | ... | ${tc01_file_prefix}\n\nApply on the rest of file(s)",
+      "range": {
+        "startLine": 39,
+        "startChar": 63,
+        "endLine": 39,
+        "endChar": 82
+      },
+      "revId": "9b7751b9c6133a3630c9f4720cdd17ea012c7d2d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_45ea5f10",
+        "filename": "TLDK-tests/tldk_scripts/run_tldk.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-09-21T10:57:54Z",
+      "side": 1,
+      "message": "Optional:\nConsider checking if udpfwd is terminated\n\npgrep udpfwd\ntest $? -eq 0 || exit 1",
+      "revId": "9b7751b9c6133a3630c9f4720cdd17ea012c7d2d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_25ef6320",
+        "filename": "TLDK-tests/tldk_scripts/run_tldk.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-09-21T10:57:54Z",
+      "side": 1,
+      "message": "Consider testing return value, may not be successful",
+      "revId": "9b7751b9c6133a3630c9f4720cdd17ea012c7d2d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_2a373201",
+        "filename": "TLDK/SetupTLDKTest.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-09-21T10:57:54Z",
+      "side": 1,
+      "message": "Maybe we can move the installation part of dpdk into bootstrap-tldk.sh file to be part of jenkins env setup. Any other views or comments?",
+      "revId": "9b7751b9c6133a3630c9f4720cdd17ea012c7d2d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_ca779ed3",
+        "filename": "TLDK/SetupTLDKTest.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-09-21T10:57:54Z",
+      "side": 1,
+      "message": "PEP: line too long",
+      "range": {
+        "startLine": 105,
+        "startChar": 0,
+        "endLine": 105,
+        "endChar": 97
+      },
+      "revId": "9b7751b9c6133a3630c9f4720cdd17ea012c7d2d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_057d876e",
+        "filename": "TLDK/SetupTLDKTest.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-09-21T10:57:54Z",
+      "side": 1,
+      "message": "PEP: Line too long",
+      "range": {
+        "startLine": 123,
+        "startChar": 0,
+        "endLine": 123,
+        "endChar": 104
+      },
+      "revId": "9b7751b9c6133a3630c9f4720cdd17ea012c7d2d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_e5816b4b",
+        "filename": "TLDK/SetupTLDKTest.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-09-21T10:57:54Z",
+      "side": 1,
+      "message": "PEP: Line too long",
+      "range": {
+        "startLine": 127,
+        "startChar": 0,
+        "endLine": 127,
+        "endChar": 94
+      },
+      "revId": "9b7751b9c6133a3630c9f4720cdd17ea012c7d2d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_c5966f94",
+        "filename": "TLDK/SetupTLDKTest.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-09-21T10:57:54Z",
+      "side": 1,
+      "message": "remove?",
+      "range": {
+        "startLine": 214,
+        "startChar": 0,
+        "endLine": 214,
+        "endChar": 20
+      },
+      "revId": "9b7751b9c6133a3630c9f4720cdd17ea012c7d2d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_a59373a2",
+        "filename": "TLDK/SetupTLDKTest.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-09-21T10:57:54Z",
+      "side": 1,
+      "message": "missing parameter section of documentation",
+      "revId": "9b7751b9c6133a3630c9f4720cdd17ea012c7d2d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_aa86a2b7",
+        "filename": "TLDK/UdpTest.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-09-21T10:57:54Z",
+      "side": 1,
+      "message": "Please add parameter descriptions for the functions/class.\n\n:param file_prefix: Text.\n:type node: type",
+      "revId": "9b7751b9c6133a3630c9f4720cdd17ea012c7d2d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_8a93e6f9",
+        "filename": "TLDK/UdpTest.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-09-21T10:57:54Z",
+      "side": 1,
+      "message": "We are using PEP coding style. Please keep max line length to 80 chars.",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 85
+      },
+      "revId": "9b7751b9c6133a3630c9f4720cdd17ea012c7d2d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_eaa49a58",
+        "filename": "TLDK/UdpTest.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-09-21T10:57:54Z",
+      "side": 1,
+      "message": "Please use spaces instead of tabs\nApply to rest of file(s)",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 58,
+        "endChar": 2
+      },
+      "revId": "9b7751b9c6133a3630c9f4720cdd17ea012c7d2d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_6a908aec",
+        "filename": "TLDK/UdpTest.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-09-21T10:57:54Z",
+      "side": 1,
+      "message": "PEP: line too long",
+      "revId": "9b7751b9c6133a3630c9f4720cdd17ea012c7d2d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_4abdce67",
+        "filename": "TLDK/UdpTest.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-09-21T10:57:54Z",
+      "side": 1,
+      "message": "PEP: line too long",
+      "revId": "9b7751b9c6133a3630c9f4720cdd17ea012c7d2d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_2ac292e9",
+        "filename": "TLDK/UdpTest.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-09-21T10:57:54Z",
+      "side": 1,
+      "message": "PEP: line too long",
+      "revId": "9b7751b9c6133a3630c9f4720cdd17ea012c7d2d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_0ab7d687",
+        "filename": "TLDK/UdpTest.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-09-21T10:57:54Z",
+      "side": 1,
+      "message": "PEP: line too long",
+      "revId": "9b7751b9c6133a3630c9f4720cdd17ea012c7d2d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_ca89decb",
+        "filename": "TLDK/UdpTest.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-09-21T10:57:54Z",
+      "side": 1,
+      "message": "No spaces required\nPlease apply to rest of file.",
+      "range": {
+        "startLine": 70,
+        "startChar": 0,
+        "endLine": 70,
+        "endChar": 8
+      },
+      "revId": "9b7751b9c6133a3630c9f4720cdd17ea012c7d2d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_eabb7a70",
+        "filename": "TLDK/UdpTest.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-09-21T10:57:54Z",
+      "side": 1,
+      "message": "PEP: line too long",
+      "range": {
+        "startLine": 74,
+        "startChar": 0,
+        "endLine": 74,
+        "endChar": 91
+      },
+      "revId": "9b7751b9c6133a3630c9f4720cdd17ea012c7d2d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_2a6972f9",
+        "filename": "TLDK/UdpTest.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-09-21T10:57:54Z",
+      "side": 1,
+      "message": "Please add param description.",
+      "revId": "9b7751b9c6133a3630c9f4720cdd17ea012c7d2d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_aaad8233",
+        "filename": "TLDK/UdpTest.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-09-21T10:57:54Z",
+      "side": 1,
+      "message": "PEP: line too long",
+      "range": {
+        "startLine": 90,
+        "startChar": 73,
+        "endLine": 90,
+        "endChar": 75
+      },
+      "revId": "9b7751b9c6133a3630c9f4720cdd17ea012c7d2d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_cab0be8d",
+        "filename": "TLDK/UdpTest.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-09-21T10:57:54Z",
+      "side": 1,
+      "message": "PEP: line too long",
+      "range": {
+        "startLine": 91,
+        "startChar": 0,
+        "endLine": 91,
+        "endChar": 91
+      },
+      "revId": "9b7751b9c6133a3630c9f4720cdd17ea012c7d2d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_85907796",
+        "filename": "TLDK/constants.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-09-21T10:57:54Z",
+      "side": 1,
+      "message": "Please remove unrelated code.",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 55
+      },
+      "revId": "9b7751b9c6133a3630c9f4720cdd17ea012c7d2d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
