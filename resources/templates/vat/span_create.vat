@@ -1,0 +1,2 @@
+exec set span src {src_if} dst {dst_if}
+#TODO: Replace with VAT command when it is available
