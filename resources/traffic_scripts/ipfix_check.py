@@ -22,7 +22,8 @@ from scapy.layers.inet import IP, TCP, UDP
 from scapy.layers.inet6 import IPv6
 from scapy.layers.l2 import Ether
 
-from resources.libraries.python.IPFIXUtil import IPFIXHandler, IPFIXData
+from resources.libraries.python.telemetry.IPFIXUtil import IPFIXHandler, \
+    IPFIXData
 from resources.libraries.python.PacketVerifier import RxQueue, TxQueue, auto_pad
 from resources.libraries.python.TrafficScriptArg import TrafficScriptArg
 
@@ -81,7 +82,6 @@ def main():
     rxq = RxQueue(tx_if)
 
     # generate simple packet based on arguments
-    ip_version = None
     if valid_ipv4(src_ip) and valid_ipv4(dst_ip):
         ip_version = IP
     elif valid_ipv6(src_ip) and valid_ipv6(dst_ip):
