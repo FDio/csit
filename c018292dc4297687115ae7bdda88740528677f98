@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3a1d315d_0a5b5688",
+        "filename": "resources/libraries/python/honeycomb/HcAPIKwInterfaces.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1413,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-09-21T08:23:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a1d315d_2aa732bf",
+      "range": {
+        "startLine": 1413,
+        "startChar": 25,
+        "endLine": 1413,
+        "endChar": 28
+      },
+      "revId": "c018292dc4297687115ae7bdda88740528677f98",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a1d315d_0aac769f",
         "filename": "resources/libraries/python/honeycomb/HcAPIKwInterfaces.py",
         "patchSetId": 4
@@ -36,6 +60,30 @@
       "writtenOn": "2016-09-21T07:38:57Z",
       "side": 1,
       "message": "int",
+      "range": {
+        "startLine": 1442,
+        "startChar": 25,
+        "endLine": 1442,
+        "endChar": 28
+      },
+      "revId": "c018292dc4297687115ae7bdda88740528677f98",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_ea5ffa70",
+        "filename": "resources/libraries/python/honeycomb/HcAPIKwInterfaces.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1442,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-09-21T08:23:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a1d315d_0aac769f",
       "range": {
         "startLine": 1442,
         "startChar": 25,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "3a1d315d_ca543e56",
+        "filename": "resources/libraries/python/honeycomb/HcAPIKwInterfaces.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1470,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-09-21T08:23:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a1d315d_eab01af6",
+      "range": {
+        "startLine": 1470,
+        "startChar": 25,
+        "endLine": 1470,
+        "endChar": 28
+      },
+      "revId": "c018292dc4297687115ae7bdda88740528677f98",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a1d315d_8a76463d",
         "filename": "resources/test_data/honeycomb/pbb/pbb.py",
         "patchSetId": 4
@@ -82,6 +154,30 @@
       "writtenOn": "2016-09-21T07:38:57Z",
       "side": 1,
       "message": "Interface speed cannot be hardcoded, we may get a different interface. Check everywhere.",
+      "range": {
+        "startLine": 44,
+        "startChar": 3,
+        "endLine": 44,
+        "endChar": 24
+      },
+      "revId": "c018292dc4297687115ae7bdda88740528677f98",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_aa510264",
+        "filename": "resources/test_data/honeycomb/pbb/pbb.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-09-21T08:23:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a1d315d_8a76463d",
       "range": {
         "startLine": 44,
         "startChar": 3,
