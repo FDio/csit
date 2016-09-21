@@ -26,7 +26,7 @@
 # Import configuration and test data:
 | Variables | resources/test_data/lisp/ipv4_lispgpe_ipv4/ipv4_lispgpe_ipv4.py
 | ...
-| Force Tags | 3_NODE_SINGLE_LINK_TOPO | VM_ENV | EXPECTED_FAILING
+| Force Tags | 3_NODE_SINGLE_LINK_TOPO | VM_ENV
 | ...
 | Test Setup | Run Keywords | Setup all DUTs before test
 | ...        | AND          | Setup all TGs before traffic script
