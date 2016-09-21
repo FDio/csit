@@ -71,6 +71,66 @@ eid_table = [{'eid': '192.168.0.0',
               'ttl': 0,
               'authoritative': 0}]
 
+# Expected data from VPP via VAT
+eid_table_vat = [
+    {
+        "action": 0,
+        "is_local": 1,
+        "eid": "192.168.0.0/24",
+        "vni": 0,
+        "ttl": 0,
+        "authoritative": 0
+    },
+    {
+        "action": 0,
+        "is_local": 1,
+        "eid": "192.168.1.0/24",
+        "vni": 0,
+        "ttl": 0,
+        "authoritative": 0
+    },
+    {
+        "action": 0,
+        "is_local": 1,
+        "eid": "192.168.2.0/24",
+        "vni": 0,
+        "ttl": 0,
+        "authoritative": 0
+    },
+    {
+        "action": 0,
+        "is_local": 1,
+        "eid": "192.168.3.0/24",
+        "vni": 0,
+        "ttl": 0,
+        "authoritative": 0
+    },
+    {
+        "action": 0,
+        "is_local": 1,
+        "eid": "10:1::/64",
+        "vni": 0,
+        "ttl": 0,
+        "authoritative": 0
+    },
+    {
+        "action": 0,
+        "is_local": 1,
+        "eid": "10:2::/64",
+        "vni": 0,
+        "ttl": 0,
+        "authoritative": 0
+    },
+    {
+        "action": 0,
+        "is_local": 1,
+        "eid": "10:3::/64",
+        "vni": 0,
+        "ttl": 0,
+        "authoritative": 0
+    }
+]
+
 # Example lisp map resolvers data we want set to VPP
 # and then check if it is set correctly.
 map_resolver = [{'map resolver': '192.169.0.1'},
