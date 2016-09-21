@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "3a1d315d_85e75740",
+        "filename": "resources/libraries/python/topology.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 297,
+      "author": {
+        "id": 74
+      },
+      "writtenOn": "2016-09-21T11:08:03Z",
+      "side": 1,
+      "message": "you should rather create get_interface_sw_index_by_name",
+      "range": {
+        "startLine": 297,
+        "startChar": 16,
+        "endLine": 297,
+        "endChar": 62
+      },
+      "revId": "ec803428e551c5fcefcc39b46696b3b48aeef38a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a1d315d_f12b712e",
         "filename": "resources/libraries/robot/honeycomb/honeycomb.robot",
         "patchSetId": 3
