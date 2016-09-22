@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a1d315d_dc4405b9",
+        "filename": "bootstrap.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 74
+      },
+      "writtenOn": "2016-09-22T21:09:17Z",
+      "side": 1,
+      "message": "We could save few seconds here if we download all .deb packages to ${SCRIPT_DIR}/tmp/ instead of .",
+      "range": {
+        "startLine": 125,
+        "startChar": 0,
+        "endLine": 125,
+        "endChar": 52
+      },
+      "revId": "e56e5488bf170a404acf98c4a33d8314309397b3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
