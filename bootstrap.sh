@@ -34,11 +34,15 @@ TEST_GROUPS=("bridge_domain,dhcp,gre,honeycomb,l2_xconnect,lisp,softwire" "cop,i
 SUITE_PATH="tests.func"
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-LOG_PATH="${SCRIPT_DIR}"
 
-# Create temp dir for tarballs
-mkdir ${SCRIPT_DIR}/../temp
-export TMPDIR="${SCRIPT_DIR}/../temp"
+# Create tmp dir
+mkdir ${SCRIPT_DIR}/tmp
+
+# Use tmp dir to store log files
+LOG_PATH="${SCRIPT_DIR}/tmp"
+
+# Use tmp dir for tarballs
+export TMPDIR="${SCRIPT_DIR}/tmp"
 
 SHARED_MEMORY_PATH="/run/shm"
 
@@ -123,6 +127,7 @@ if [ "${#}" -ne "0" ]; then
     arr=(${@})
     echo ${arr[0]}
 else
+    cd ${SCRIPT_DIR}/tmp
     rm -f *.deb
     VPP_STABLE_VER=$(cat ${SCRIPT_DIR}/VPP_STABLE_VER)
     VPP_REPO_URL=$(cat ${SCRIPT_DIR}/VPP_REPO_URL)
@@ -134,6 +139,7 @@ else
     wget -q "${VPP_REPO_URL}/vpp-dpdk-dkms/${VPP_STABLE_VER}/vpp-dpdk-dkms-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
     wget -q "${VPP_REPO_URL}/vpp-lib/${VPP_STABLE_VER}/vpp-lib-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
     wget -q "${VPP_REPO_URL}/vpp-plugins/${VPP_STABLE_VER}/vpp-plugins-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
+    cd ${SCRIPT_DIR}
 fi
 
 VPP_DEBS=(*.deb)
@@ -159,7 +165,7 @@ for index in "${!VIRL_SERVER[@]}"; do
     if [ "${copy}" -eq "0" ]; then
         echo "VPP deb files have already been copied to the VIRL host ${VIRL_SERVER[${index}]}"
     else
-        scp ${SSH_OPTIONS} *.deb \
+        scp ${SSH_OPTIONS} ${SCRIPT_DIR}/tmp/*.deb \
         ${VIRL_USERNAME}@${VIRL_SERVER[${index}]}:${VIRL_DIR_LOC}/
 
          result=$?
