@@ -34,7 +34,10 @@ TEST_GROUPS=("bridge_domain,dhcp,gre,honeycomb,l2_xconnect,lisp,softwire" "cop,i
 SUITE_PATH="tests.func"
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-LOG_PATH="${SCRIPT_DIR}"
+
+# Create output dir for logs
+mkdir ${SCRIPT_DIR}/../output
+LOG_PATH="${SCRIPT_DIR}/../output"
 
 # Create temp dir for tarballs
 mkdir ${SCRIPT_DIR}/../temp
