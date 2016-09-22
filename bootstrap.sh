@@ -281,6 +281,7 @@ set +x
 # Send to background an instance of the run_test_set() function for each number,
 # record the pid.
 for index in "${!VIRL_SERVER[@]}"; do
+    touch ${LOG_PATH}/log_test_set_run${index}.xml
     run_test_set ${index} &
     pid=$!
     echo "Sent to background: Test_set${index} (pid=$pid)"
