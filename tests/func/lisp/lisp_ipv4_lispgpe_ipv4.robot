@@ -16,17 +16,17 @@
 | Library | resources.libraries.python.NodePath
 | Library | resources.libraries.python.Trace
 | Library | resources.libraries.python.IPUtil
-| Library | resources.libraries.python.LispUtil
 | Resource | resources/libraries/robot/traffic.robot
 | Resource | resources/libraries/robot/default.robot
 | Resource | resources/libraries/robot/interfaces.robot
 | Resource | resources/libraries/robot/testing_path.robot
 | Resource | resources/libraries/robot/ipv4.robot
+| Resource | resources/libraries/robot/vrf.robot
 | Resource | resources/libraries/robot/lisp/lispgpe.robot
 # Import configuration and test data:
 | Variables | resources/test_data/lisp/ipv4_lispgpe_ipv4/ipv4_lispgpe_ipv4.py
 | ...
-| Force Tags | 3_NODE_SINGLE_LINK_TOPO | VM_ENV
+| Force Tags | 3_NODE_SINGLE_LINK_TOPO | VM_ENV | LISP
 | ...
 | Test Setup | Run Keywords | Setup all DUTs before test
 | ...        | AND          | Setup all TGs before traffic script
@@ -133,47 +133,3 @@
 | | ... | ${tg_node} | ${tg2_ip4} | ${tg1_ip4}
 | | ... | ${tg_to_dut2} | ${tg_to_dut2_mac} | ${dut2_to_tg_mac}
 | | ... | ${tg_to_dut1} | ${dut1_to_tg_mac} | ${tg_to_dut1_mac}
-
-*** Keywords ***
-| Setup VRF on DUT
-| | [Documentation]
-| | ... | The keyword sets a FIB table on a DUT, assigns two interfaces to it,\
-| | ... | adds two ARP items and a route, see example.
-| | ...
-| | ... | *Example:*
-| | ... | Three-node topology:
-| | ... | TG_if1 - DUT1_if1-DUT1_if2 - DUT2_if1-DUT2_if2 - TG_if2
-| | ... | Create one VRF on each DUT:
-| | ... | \| Setup VRF on DUT \| ${dut1_node} \| ${dut1_fib_table} \
-| | ... | \| ${dut1_to_dut2} \| ${dut2_to_dut1_ip4} \| ${dut2_to_dut1_mac} \
-| | ... | \| ${tg2_ip4} \| ${dut1_to_tg} \| ${tg1_ip4} \| ${tg_to_dut1_mac} \
-| | ... | \| 24 \|
-| | ... | \| Setup VRF on DUT \| ${dut2_node} \| ${dut2_fib_table} \
-| | ... | \| ${dut2_to_dut1} \| ${dut1_to_dut2_ip4} \| ${dut1_to_dut2_mac} \
-| | ... | \| ${tg1_ip4} \| ${dut2_to_tg} \| ${tg2_ip4} \| ${tg_to_dut2_mac} \
-| | ... | \| 24 \|
-| | ...
-| | [Arguments]
-| | ... | ${node} | ${table} | ${route_interface} | ${route_gateway_ip}
-| | ... | ${route_gateway_mac} | ${route_dst_ip} | ${vrf_src_if} | ${src_if_ip}
-| | ... | ${src_if_mac} | ${prefix_len}
-| | ...
-| | ${route_interface_idx}= | Get Interface SW Index
-| | ... | ${node} | ${route_interface}
-| | ...
-| | Add fib table | ${node}
-| | ... | ${route_dst_ip} | ${prefix_len} | ${table}
-| | ... | via ${route_gateway_ip} sw_if_index ${route_interface_idx} multipath
-| | ...
-| | Assign Interface To Fib Table
-| | ... | ${node} | ${route_interface} | ${table}
-| | Assign Interface To Fib Table
-| | ... | ${node} | ${vrf_src_if} | ${table}
-| | ...
-| | Add Arp On Dut | ${node} | ${vrf_src_if}
-| | ... | ${src_if_ip} | ${src_if_mac} | vrf=${table}
-| | Add Arp On Dut | ${node} | ${route_interface}
-| | ... | ${route_gateway_ip} | ${route_gateway_mac} | vrf=${table}
-| | ...
-| | Vpp Route Add | ${node} | ${route_dst_ip} | ${prefix_len}
-| | ... | ${route_gateway_ip} | ${route_interface} | vrf=${table}
