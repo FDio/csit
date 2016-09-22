@@ -241,7 +241,6 @@ function run_test_set() {
     OLDIFS=$IFS
     IFS=","
     nr=$(echo $1)
-    rm -f ${LOG_PATH}/test_run${nr}.log
     exec &> >(while read line; do echo "$(date +'%H:%M:%S') $line" \
      >> ${LOG_PATH}/test_run${nr}.log; done;)
     suite_str=""
@@ -281,6 +280,9 @@ set +x
 # Send to background an instance of the run_test_set() function for each number,
 # record the pid.
 for index in "${!VIRL_SERVER[@]}"; do
+    [ -f ${LOG_PATH}/test_run${index}.log ] && rm -f ${LOG_PATH}/test_run${index}.log
+    touch ${LOG_PATH}/test_run${index}.log
+    touch ${LOG_PATH}/log_test_set_run${index}.xml
     run_test_set ${index} &
     pid=$!
     echo "Sent to background: Test_set${index} (pid=$pid)"

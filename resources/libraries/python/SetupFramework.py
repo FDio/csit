@@ -50,7 +50,8 @@ def pack_framework_dir():
     tmpfile.close()
 
     proc = Popen(
-        split("tar --exclude-vcs -zcf {0} .".format(file_name)),
+        split("tar --exclude-vcs --exclude=./log*.xml --exclude=./output.xml \
+               --exclude=./test*.log -zcf {0} .".format(file_name)),
         stdout=PIPE, stderr=PIPE)
     (stdout, stderr) = proc.communicate()
 
