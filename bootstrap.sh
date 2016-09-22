@@ -34,11 +34,15 @@ TEST_GROUPS=("bridge_domain,dhcp,gre,honeycomb,l2_xconnect,lisp,softwire" "cop,i
 SUITE_PATH="tests.func"
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-LOG_PATH="${SCRIPT_DIR}"
 
-# Create temp dir for tarballs
-mkdir ${SCRIPT_DIR}/../temp
-export TMPDIR="${SCRIPT_DIR}/../temp"
+# Create tmp dir
+mkdir ${SCRIPT_DIR}/tmp
+
+# Use tmp dir to store log files
+LOG_PATH="${SCRIPT_DIR}/tmp"
+
+# Use tmp dir for tarballs
+export TMPDIR="${SCRIPT_DIR}/tmp"
 
 SHARED_MEMORY_PATH="/run/shm"
 
