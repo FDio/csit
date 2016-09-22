@@ -17,6 +17,7 @@
 intereted values into XML output file."""
 
 import argparse
+import re
 import sys
 import xml.etree.ElementTree as ET
 
@@ -25,6 +26,14 @@ from robot.api import ExecutionResult, ResultVisitor
 
 class ExecutionChecker(ResultVisitor):
     """Iterates through test cases."""
+
+    tc_regexp = re.compile(ur'^TC\d+:\s((\d+)B|IMIX_v4_1)[\D\d]+\s(\d)'\
+        '(thread|threads)\\s(\\d)(core|cores)\\s(\\d)(rxq|rxqs)')
+    rate_regexp = re.compile(ur'^[\D\d]*FINAL_RATE:\s(\d+\.\d+)[\D\d]*')
+    lat_regexp = re.compile(ur'^[\D\d]*'\
+        'LAT_\\d+%NDR:\\s\\[\'(\\d+\\/\\d+\\/\\d+)\',\\s\'(\\d+\\/\\d+\\/\\d+)\'\\]\\s\n'\
+        'LAT_\\d+%NDR:\\s\\[\'(\\d+\\/\\d+\\/\\d+)\',\\s\'(\\d+\\/\\d+\\/\\d+)\'\\]\\s\n'\
+        'LAT_\\d+%NDR:\\s\\[\'(\\d+\\/\\d+\\/\\d+)\',\\s\'(\\d+\\/\\d+\\/\\d+)\'\\]')
 
     def __init__(self, args):
         self.root = ET.Element('build',
@@ -82,22 +91,18 @@ class ExecutionChecker(ResultVisitor):
                 tags = []
                 for tag in test.tags:
                     tags.append(tag)
-                for keyword in test.keywords:
-                    for assign in keyword.assign:
-                        if assign == '${framesize}':
-                            framesize = keyword.args[0]
-                    if 'worker threads' in keyword.name:
-                        workers = keyword.name.split('\'')[1]
-                        workers_per_nic = keyword.name.split('\'')[3]
-
                 test_elem = ET.SubElement(self.root,
-                    test.parent.name.replace(" ",""))
+                                          test.parent.name.replace(" ", ""))
                 test_elem.attrib['name'] = test.parent.name
-                test_elem.attrib['workerthreads'] = workers
-                test_elem.attrib['workerspernic'] = workers_per_nic
-                test_elem.attrib['framesize'] = framesize
+                test_elem.attrib['framesize'] = str(re.search(\
+                    self.tc_regexp, test.name).group(2))
+                test_elem.attrib['workerthreads'] = str(re.search(\
+                    self.tc_regexp, test.name).group(3))
+                test_elem.attrib['workerspernic'] = str(re.search(\
+                    self.tc_regexp, test.name).group(7))
                 test_elem.attrib['tags'] = ', '.join(tags)
-                test_elem.text = test.message.split(' ')[1]
+                test_elem.text = str(re.search(\
+                    self.rate_regexp, test.message).group(1))
 
     def end_test(self, test):
         """Called when test ends.
