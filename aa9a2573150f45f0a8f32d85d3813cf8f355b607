@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a1d315d_56efb3b0",
+        "filename": "resources/test_data/softwire/map_e_domains.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-09-22T12:56:13Z",
+      "side": 1,
+      "message": "No white space.",
+      "range": {
+        "startLine": 28,
+        "startChar": 70,
+        "endLine": 28,
+        "endChar": 71
+      },
+      "revId": "aa9a2573150f45f0a8f32d85d3813cf8f355b607",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_96f54b85",
+        "filename": "resources/test_data/softwire/map_e_domains.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-09-22T12:56:13Z",
+      "side": 1,
+      "message": "Capital G",
+      "range": {
+        "startLine": 28,
+        "startChar": 18,
+        "endLine": 28,
+        "endChar": 19
+      },
+      "revId": "aa9a2573150f45f0a8f32d85d3813cf8f355b607",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_963c2b31",
+        "filename": "tests/func/softwire/map_e.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-09-22T12:56:13Z",
+      "side": 1,
+      "message": "not necessary",
+      "range": {
+        "startLine": 205,
+        "startChar": 19,
+        "endLine": 205,
+        "endChar": 21
+      },
+      "revId": "aa9a2573150f45f0a8f32d85d3813cf8f355b607",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_361317ba",
+        "filename": "tests/func/softwire/map_e.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 290,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-09-22T12:56:13Z",
+      "side": 1,
+      "message": "\\ is missing",
+      "range": {
+        "startLine": 290,
+        "startChar": 73,
+        "endLine": 290,
+        "endChar": 77
+      },
+      "revId": "aa9a2573150f45f0a8f32d85d3813cf8f355b607",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
