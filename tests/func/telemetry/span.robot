@@ -44,7 +44,26 @@
 | ${prefix}= | 24
 
 *** Test Cases ***
-| TC01: DUT mirrors IPv4 packets from one interface to another
+| TC01: DUT mirrors L2 packets from one interface to another
+| | [Documentation]
+| | ... | [Top] TG=DUT1
+| | ... | [Cfg] On DUT1 configure IPv4 address and set SPAN mirroring\
+| | ... | from one DUT interface to the other.
+| | ... | [Ver] Make TG send an ARP packet to DUT through one interface,\
+| | ... | then receive a copy of sent packet and of DUT's ARP reply\
+| | ... | on the second interface.
+| | Given Path For 2-node Testing Is Set | ${nodes['TG']} | ${nodes['DUT1']}
+| | ... | ${nodes['TG']}
+| | And Interfaces In 2-node Path Are Up
+| | And Set interface Address | ${dut_node} | ${dut_to_tg_if1}
+| | ... | ${dut_to_tg_if1_ip4} | ${prefix}
+| | And Set SPAN Mirroring | ${dut_node} | ${dut_to_tg_if1} | ${dut_to_tg_if2}
+| | Then Send Packet And Check Received Copies | ${tg_node}
+| | ... | ${tg_to_dut_if1} | ${tg_to_dut_if1_mac}
+| | ... | ${dut_to_tg__if1_mac} | ${tg_to_dut_if2}
+| | ... | ${tg_to_dut_if1_ip4} | ${dut_to_tg_if1_ip4} | ARP
+
+| TC02: DUT mirrors IPv4 packets from one interface to another
 | | [Documentation]
 | | ... | [Top] TG=DUT1
 | | ... | [Cfg] On DUT1 configure IPv4 address, add ARP entry for one TG \
