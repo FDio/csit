@@ -355,7 +355,7 @@ class DropRateSearch(object):
         :rtype: boolean
         """
         # Return False if not all elements of the iterable are True.
-        return not all(res_list)
+        return all(res_list)
 
     def _get_res_based_on_search_type(self, res_list):
         """Return result of search based on search evaluation type.
