@@ -466,7 +466,6 @@
 | | ...                                       | ${glob_loss_acceptance}
 | | ...                                       | ${glob_loss_acceptance_type}
 
-*** Test Cases ***
 | TC19: IMIX_v4_1 NDR binary search - DUT IPv4 - 1thread 1core 1rxq
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 routing config with 1 thread, 1 phy core, \
