@@ -30,7 +30,7 @@ VIRL_SERVER_EXPECTED_STATUS="PRODUCTION"
 
 SSH_OPTIONS="-i ${VIRL_PKEY} -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o BatchMode=yes -o LogLevel=error"
 
-TEST_GROUPS=("bridge_domain,dhcp,gre,honeycomb,l2_xconnect,lisp,softwire" "cop,ipfix,ipsec,ipv6,rpf,tap,vrf" "fds,iacl,ipv4,policer,vlan,vxlan")
+TEST_GROUPS=("lisp")
 SUITE_PATH="tests.func"
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
