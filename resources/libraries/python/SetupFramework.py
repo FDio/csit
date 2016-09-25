@@ -21,6 +21,7 @@ from subprocess import Popen, PIPE, call
 from multiprocessing import Pool
 from tempfile import NamedTemporaryFile
 from os.path import basename
+from os import environ
 
 from robot.api import logger
 from robot.libraries.BuiltIn import BuiltIn
@@ -35,13 +36,22 @@ __all__ = ["SetupFramework"]
 def pack_framework_dir():
     """Pack the testing WS into temp file, return its name."""
 
-    tmpfile = NamedTemporaryFile(suffix=".tgz", prefix="openvpp-testing-")
+    try:
+        directory = environ["TMPDIR"]
+    except KeyError:
+        directory = None
+
+    if directory is not None:
+        tmpfile = NamedTemporaryFile(suffix=".tgz", prefix="openvpp-testing-",
+                                     dir="{0}".format(directory))
+    else:
+        tmpfile = NamedTemporaryFile(suffix=".tgz", prefix="openvpp-testing-")
     file_name = tmpfile.name
     tmpfile.close()
 
     proc = Popen(
-        split("tar --exclude-vcs -zcf {0} .".format(file_name)),
-        stdout=PIPE, stderr=PIPE)
+        split("tar --exclude-vcs --exclude=./tmp --exclude=*.deb -zcf {0} .".
+              format(file_name)), stdout=PIPE, stderr=PIPE)
     (stdout, stderr) = proc.communicate()
 
     logger.debug(stdout)
@@ -73,7 +83,7 @@ def copy_tarball_to_node(tarball, node):
 def extract_tarball_at_node(tarball, node):
     """Extract tarball at given node.
 
-    Extracts tarball using tar on given node to specific CSIT loocation.
+    Extracts tarball using tar on given node to specific CSIT location.
 
     :param tarball: Path to tarball to upload.
     :param node: Dictionary created from topology.
@@ -102,7 +112,8 @@ def create_env_directory_at_node(node):
     ssh = SSH()
     ssh.connect(node)
     (ret_code, stdout, stderr) = ssh.exec_command(
-        'cd {0} && rm -rf env && virtualenv --system-site-packages env && . env/bin/activate && '
+        'cd {0} && rm -rf env && virtualenv --system-site-packages env && '
+        '. env/bin/activate && '
         'pip install -r requirements.txt'
         .format(con.REMOTE_FW_DIR), timeout=100)
     if 0 != ret_code:
@@ -111,7 +122,8 @@ def create_env_directory_at_node(node):
     else:
         logger.console('Virtualenv created on {0}'.format(node['host']))
 
-#pylint: disable=broad-except
+
+# pylint: disable=broad-except
 def setup_node(args):
     """Run all set-up methods for a node.
 
@@ -137,6 +149,7 @@ def setup_node(args):
         logger.console('Setup of node {0} done'.format(node['host']))
         return True
 
+
 def delete_local_tarball(tarball):
     """Delete local tarball to prevent disk pollution.
 
@@ -147,7 +160,7 @@ def delete_local_tarball(tarball):
     call(split('sh -c "rm {0} > /dev/null 2>&1"'.format(tarball)))
 
 
-class SetupFramework(object): # pylint: disable=too-few-public-methods
+class SetupFramework(object):  # pylint: disable=too-few-public-methods
     """Setup suite run on topology nodes.
 
     Many VAT/CLI based tests need the scripts at remote hosts before executing
