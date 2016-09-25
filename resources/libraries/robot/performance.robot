@@ -30,168 +30,6 @@
 | Documentation | Performance suite keywords
 
 *** Keywords ***
-| Setup performance rate Variables
-| | [Documentation]
-| | ... | Setup performance linerates as Suite Variables. Variables are used
-| | ... | as search boundaries in RFC2544 throughput search.
-| | ...
-| | ... | _NOTE:_ This KW sets following suite variables:
-| | ... | - 10Ge_linerate_pps_64B - Maximum number of packet per second
-| | ... |                           for 10GE with 64B L2 Frame.
-| | ... | - 10Ge_linerate_pps_68B - Maximum number of packet per second
-| | ... |                           for 10GE with 68B L2 Frame.
-| | ... | - 10Ge_linerate_pps_72B - Maximum number of packet per second
-| | ... |                           for 10GE with 72B L2 Frame.
-| | ... | - 10Ge_linerate_pps_78B - Maximum number of packet per second
-| | ... |                           for 10GE with 78B L2 Frame.
-| | ... | - 10Ge_linerate_pps_114B - Maximum number of packet per second
-| | ... |                           for 10GE with 114B L2 Frame.
-| | ... | - 10Ge_linerate_pps_1518B - Maximum number of packet per second
-| | ... |                             for 10GE with 1518B L2 Frame.
-| | ... | - 10Ge_linerate_pps_1522B - Maximum number of packet per second
-| | ... |                             for 10GE with 1522B L2 Frame.
-| | ... | - 10Ge_linerate_pps_1526B - Maximum number of packet per second
-| | ... |                             for 10GE with 1526B L2 Frame.
-| | ... | - 10Ge_linerate_pps_1568B - Maximum number of packet per second
-| | ... |                             for 10GE with 1568B L2 Frame.
-| | ... | - 10Ge_linerate_pps_9000B - Maximum number of packet per second
-| | ... |                             for 10GE with 9000B L2 Frame.
-| | ... | - 10Ge_linerate_pps_9004B - Maximum number of packet per second
-| | ... |                             for 10GE with 9004B L2 Frame.
-| | ... | - 10Ge_linerate_pps_9008B - Maximum number of packet per second
-| | ... |                             for 10GE with 9008B L2 Frame.
-| | ... | - 10Ge_linerate_pps_9050B - Maximum number of packet per second
-| | ... |                             for 10GE with 9050B L2 Frame.
-| | ... | - 10Ge_linerate_pps_IMIX_v4_1 - Maximum number of packet per second
-| | ... |                                 for 10GE with IMIX_v4_1 profile.
-| | ... | - 10Ge_lisp_linerate_pps_72B - Maximum number of packets per second
-| | ... |                                for 10GE with 72B L2 Frame, Lisp and
-| | ... |                                IPv4 header.
-| | ... | - 10Ge_lisp_linerate_pps_86B - Maximum number of packets per second
-| | ... |                                for 10GE with 86B L2 Frame, Lisp and
-| | ... |                                IPv4 header.
-| | ... | - 10Ge_lisp_linerate_pps_1488B - Maximum number of packets per
-| | ... |                                  second for 10GE with 1488B L2
-| | ... |                                  Frame, Lisp and IPv6 header.
-| | ... | - 10Ge_lisp_linerate_pps_9008B - Maximum number of packets per
-| | ... |                                  second for 10GE with 9008B L2
-| | ... |                                  Frame, Lisp, IPv4 or IPv6 header.
-| | ... | - 10Ge_lisp_iph_linerate_pps_112B - Maximum number of packets per
-| | ... |                                     second for 10GE with 112B L2
-| | ... |                                     Frame, Lisp, IPv4 and IPv6
-| | ... |                                     header.
-| | ... | - 10Ge_lisp_iph_linerate_pps_126B - Maximum number of packets per
-| | ... |                                     second for 10GE with 126B L2
-| | ... |                                     Frame, Lisp, IPv4 and IPv6
-| | ... |                                     header.
-| | ... | - 10Ge_lisp_iph_linerate_pps_1508B - Maximum number of packets per
-| | ... |                                      second for 10GE with 1508B L2
-| | ... |                                      Frame, Lisp, IPv4 and IPv6
-| | ... |                                      header.
-| | ... | - 10Ge_lisp_iph_linerate_pps_9048B - Maximum number of packets per
-| | ... |                                      second for 10GE with 9048B L2
-| | ... |                                      Frame, Lisp, IPv4 and IPv6
-| | ... |                                      header.
-| | ... | - 40Ge_linerate_pps_64B - Maximum number of packet per second
-| | ... |                           for 40GE with 64B L2 Frame.
-| | ... | - 40Ge_linerate_pps_68B - Maximum number of packet per second
-| | ... |                           for 40GE with 68B L2 Frame.
-| | ... | - 40Ge_linerate_pps_72B - Maximum number of packet per second
-| | ... |                           for 40GE with 72B L2 Frame.
-| | ... | - 40Ge_linerate_pps_78B - Maximum number of packet per second
-| | ... |                           for 40GE with 78B L2 Frame.
-| | ... | - 40Ge_linerate_pps_114B - Maximum number of packet per second
-| | ... |                           for 40GE with 114B L2 Frame.
-| | ... | - 40Ge_linerate_pps_1518B - Maximum number of packet per second
-| | ... |                             for 40GE with 1518B L2 Frame.
-| | ... | - 40Ge_linerate_pps_1522B - Maximum number of packet per second
-| | ... |                             for 40GE with 1522B L2 Frame.
-| | ... | - 40Ge_linerate_pps_1526B - Maximum number of packet per second
-| | ... |                             for 40GE with 1526B L2 Frame.
-| | ... | - 40Ge_linerate_pps_1568B - Maximum number of packet per second
-| | ... |                             for 40GE with 1568B L2 Frame.
-| | ... | - 40Ge_linerate_pps_9000B - Maximum number of packet per second
-| | ... |                             for 40GE with 9000B L2 Frame.
-| | ... | - 40Ge_linerate_pps_9004B - Maximum number of packet per second
-| | ... |                             for 40GE with 9004B L2 Frame.
-| | ... | - 40Ge_linerate_pps_9008B - Maximum number of packet per second
-| | ... |                             for 40GE with 9008B L2 Frame.
-| | ... | - 40Ge_linerate_pps_9050B - Maximum number of packet per second
-| | ... |                             for 40GE with 9050B L2 Frame.
-| | ... | - 40Ge_linerate_pps_IMIX_v4_1 - Maximum number of packet per second
-| | ... |                                 for 40GE with IMIX_v4_1 profile.
-| | ... | - 40Ge_lisp_linerate_pps_72B - Maximum number of packets per second
-| | ... |                                for 40GE with 72B L2 Frame, Lisp and
-| | ... |                                IPv4 header.
-| | ... | - 40Ge_lisp_linerate_pps_86B - Maximum number of packets per second
-| | ... |                                for 40GE with 86B L2 Frame, Lisp and
-| | ... |                                IPv4 header.
-| | ... | - 40Ge_lisp_linerate_pps_1488B - Maximum number of packets per
-| | ... |                                  second for 40GE with 1488B L2
-| | ... |                                  Frame, Lisp and IPv6 header.
-| | ... | - 40Ge_lisp_linerate_pps_9008B - Maximum number of packets per
-| | ... |                                  second for 40GE with 9008B L2
-| | ... |                                  Frame, Lisp, IPv4 or IPv6 header.
-| | ... | - 40Ge_lisp_iph_linerate_pps_112B - Maximum number of packets per
-| | ... |                                     second for 40GE with 112B L2
-| | ... |                                     Frame, Lisp, IPv4 and IPv6
-| | ... |                                     header.
-| | ... | - 40Ge_lisp_iph_linerate_pps_126B - Maximum number of packets per
-| | ... |                                     second for 40GE with 126B L2
-| | ... |                                     Frame, Lisp, IPv4 and IPv6
-| | ... |                                     header.
-| | ... | - 40Ge_lisp_iph_linerate_pps_1508B - Maximum number of packets per
-| | ... |                                      second for 40GE with 1508B L2
-| | ... |                                      Frame, Lisp, IPv4 and IPv6
-| | ... |                                      header.
-| | ... | - 40Ge_lisp_iph_linerate_pps_9048B - Maximum number of packets per
-| | ... |                                      second for 40GE with 9048B L2
-| | ... |                                      Frame, Lisp, IPv4 and IPv6
-| | ... |                                      header.
-| | ...
-| | Set Suite Variable | ${10Ge_linerate_pps_64B} | 14880952
-| | Set Suite Variable | ${10Ge_linerate_pps_68B} | 14204545
-| | Set Suite Variable | ${10Ge_linerate_pps_72B} | 13586956
-| | Set Suite Variable | ${10Ge_linerate_pps_78B} | 12755102
-| | Set Suite Variable | ${10Ge_linerate_pps_114B} |  9328358
-| | Set Suite Variable | ${10Ge_linerate_pps_1518B} | 812743
-| | Set Suite Variable | ${10Ge_linerate_pps_1522B} | 810635
-| | Set Suite Variable | ${10Ge_linerate_pps_1568B} | 787153
-| | Set Suite Variable | ${10Ge_linerate_pps_9000B} | 138580
-| | Set Suite Variable | ${10Ge_linerate_pps_9004B} | 138519
-| | Set Suite Variable | ${10Ge_linerate_pps_9008B} | 138458
-| | Set Suite Variable | ${10Ge_linerate_pps_9050B} | 137816
-| | Set Suite Variable | ${10Ge_linerate_pps_IMIX_v4_1} | 3343736
-| | Set Suite Variable | ${10Ge_lisp_linerate_pps_72B} | 13586956
-| | Set Suite Variable | ${10Ge_lisp_linerate_pps_86B} | 11792452
-| | Set Suite Variable | ${10Ge_lisp_linerate_pps_1488B} | 828912
-| | Set Suite Variable | ${10Ge_lisp_linerate_pps_9008B} | 138458
-| | Set Suite Variable | ${10Ge_lisp_iph_linerate_pps_112B} | 9469696
-| | Set Suite Variable | ${10Ge_lisp_iph_linerate_pps_126B} | 8561643
-| | Set Suite Variable | ${10Ge_lisp_iph_linerate_pps_1508B} | 818062
-| | Set Suite Variable | ${10Ge_lisp_iph_linerate_pps_9048B} | 137847
-| | Set Suite Variable | ${40Ge_linerate_pps_64B} | 59523809
-| | Set Suite Variable | ${40Ge_linerate_pps_68B} | 56818181
-| | Set Suite Variable | ${40Ge_linerate_pps_72B} | 54347826
-| | Set Suite Variable | ${40Ge_linerate_pps_78B} | 51020408
-| | Set Suite Variable | ${40Ge_linerate_pps_114B} |  37313432
-| | Set Suite Variable | ${40Ge_linerate_pps_1518B} | 3250975
-| | Set Suite Variable | ${40Ge_linerate_pps_1522B} | 3242542
-| | Set Suite Variable | ${40Ge_linerate_pps_1568B} | 3148614
-| | Set Suite Variable | ${40Ge_linerate_pps_9000B} | 554323
-| | Set Suite Variable | ${40Ge_linerate_pps_9004B} | 554078
-| | Set Suite Variable | ${40Ge_linerate_pps_9008B} | 553832
-| | Set Suite Variable | ${40Ge_linerate_pps_9050B} | 551267
-| | Set Suite Variable | ${40Ge_linerate_pps_IMIX_v4_1} | 13374944
-| | Set Suite Variable | ${40Ge_lisp_linerate_pps_72B} | 54347826
-| | Set Suite Variable | ${40Ge_lisp_linerate_pps_86B} | 47169811
-| | Set Suite Variable | ${40Ge_lisp_linerate_pps_1488B} | 3315649
-| | Set Suite Variable | ${40Ge_lisp_linerate_pps_9008B} | 553832
-| | Set Suite Variable | ${40Ge_lisp_iph_linerate_pps_112B} | 37878787
-| | Set Suite Variable | ${40Ge_lisp_iph_linerate_pps_126B} | 34246575
-| | Set Suite Variable | ${40Ge_lisp_iph_linerate_pps_1508B} | 3272251
-| | Set Suite Variable | ${40Ge_lisp_iph_linerate_pps_9048B} | 551389
-
 | Calculate pps
 | | [Documentation]
 | | ... | Calculate pps for given rate and L2 frame size,
@@ -840,7 +678,6 @@
 | | [Arguments] | ${topology_type} | ${nic_model}
 | | Setup default startup configuration of VPP on all DUTs
 | | Show vpp version on all DUTs
-| | Setup performance rate Variables
 | | Setup performance global Variables
 | | 2-node circular Topology Variables Setup with DUT interface model
 | | ... | ${nic_model}
@@ -866,7 +703,6 @@
 | | [Arguments] | ${topology_type} | ${nic_model}
 | | Setup default startup configuration of VPP on all DUTs
 | | Show vpp version on all DUTs
-| | Setup performance rate Variables
 | | Setup performance global Variables
 | | 3-node circular Topology Variables Setup with DUT interface model
 | | ... | ${nic_model}
