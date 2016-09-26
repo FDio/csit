@@ -913,3 +913,38 @@ class InterfaceUtil(object):
         else:
             cmd = 'ip link set {} address {}'.format(interface, mac)
         exec_cmd_no_error(node, cmd, sudo=True)
+
+    @staticmethod
+    def show_vpp_settings(node, *additional_cmds):
+        """Print default VPP settings. In case others are needed, can be
+        accepted as next parameters (each setting one parameter), preferably
+        in form of a string.
+
+        :param node: VPP node.
+        :param additional_cmds: Additional commands that the vpp should print
+         settings for.
+        :type node: dict
+        :type additional_cmds: tuple
+        """
+        def_setting_tb_displayed = {
+            'IPv6 FIB': 'ip6 fib',
+            'IPv4 FIB': 'ip fib',
+            'Interface IP': 'int addr',
+            'Interfaces': 'int',
+            'ARP': 'ip arp',
+            'Errors': 'err'
+        }
+
+        if additional_cmds:
+            for cmd in additional_cmds:
+                def_setting_tb_displayed['Custom Setting: {}'.format(cmd)] = cmd
+        ssh = SSH()
+        ssh.connect(node)
+        print "=" * 40
+        for key, value in def_setting_tb_displayed.iteritems():
+            (ret_code, stdout, stderr) = ssh.exec_command_sudo(
+                'vppctl sh {}'.format(value))
+            print "{} : {} \n".format(key, value)
+            print stdout
+            print "=" * 40
+
