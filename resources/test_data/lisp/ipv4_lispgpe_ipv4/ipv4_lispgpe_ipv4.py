@@ -52,3 +52,7 @@ dut2_ip4_eid = {'locator_name': locator_name,
 
 dut1_fib_table = '1'
 dut2_fib_table = '2'
+
+sock1 = "/tmp/sock1"
+sock2 = "/tmp/sock2"
+bid = 10
