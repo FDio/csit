@@ -139,6 +139,26 @@ class IPUtil(object):
             raise RuntimeError(
                 'Could not set IP for interface, reason:{}'.format(stderr))
 
+    @staticmethod
+    def set_linux_interface_route(node, interface, route, namespace=None):
+        """Set route via interface in linux.
+
+        :param node: Node where to execute command.
+        :param interface: Interface in namespace.
+        :param route: Route to be added via interface.
+        :param namespace: Execute command in namespace. Optional
+        :type node: dict
+        :type interface: str
+        :type route: str
+        :type namespace: str
+        """
+        if namespace is not None:
+            cmd = 'ip netns exec {} ip route add {} dev {}'.format(
+                namespace, route, interface)
+        else:
+            cmd = 'ip route add {} dev {}'.format(route, interface)
+        exec_cmd_no_error(node, cmd, sudo=True)
+
 
 def convert_ipv4_netmask_prefix(network):
     """Convert network mask to equivalent network prefix length or vice versa.
