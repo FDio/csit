@@ -32,7 +32,7 @@ class InterfaceUtil(object):
     __UDEV_IF_RULES_FILE = '/etc/udev/rules.d/10-network.rules'
 
     @staticmethod
-    def set_interface_state(node, interface, state, if_type="key"):
+    def set_interface_state(node, interface, state, if_type="key", link_up=False):
         """Set interface state on a node.
 
         Function can be used for DUTs as well as for TGs.
@@ -65,6 +65,8 @@ class InterfaceUtil(object):
         if node['type'] == NodeType.DUT:
             if state == 'up':
                 state = 'admin-up'
+                if link_up:
+                    state = 'admin-up link-up'
             elif state == 'down':
                 state = 'admin-down'
             else:
