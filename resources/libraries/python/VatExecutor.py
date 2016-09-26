@@ -44,7 +44,7 @@ class VatExecutor(object):
         self._stderr = None
         self._ret_code = None
 
-    def execute_script(self, vat_name, node, timeout=10, json_out=True):
+    def execute_script(self, vat_name, node, timeout=30, json_out=True):
         """Copy local_path script to node, execute it and return result.
 
         :param vat_name: Name of the vat script file. Only the file name of
