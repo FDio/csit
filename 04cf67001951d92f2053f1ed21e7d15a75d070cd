@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a1d315d_7013d00d",
+        "filename": "resources/libraries/python/telemetry/SPAN.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-09-26T07:27:11Z",
+      "side": 1,
+      "message": "Add arguments description.",
+      "range": {
+        "startLine": 30,
+        "startChar": 11,
+        "endLine": 30,
+        "endChar": 52
+      },
+      "revId": "04cf67001951d92f2053f1ed21e7d15a75d070cd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_b030489f",
+        "filename": "resources/libraries/robot/telemetry/span.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-09-26T07:27:11Z",
+      "side": 1,
+      "message": "\\| is missing",
+      "range": {
+        "startLine": 43,
+        "startChar": 51,
+        "endLine": 43,
+        "endChar": 54
+      },
+      "revId": "04cf67001951d92f2053f1ed21e7d15a75d070cd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_5021f44b",
+        "filename": "resources/traffic_scripts/span_check.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-09-26T07:27:11Z",
+      "side": 1,
+      "message": "No white space is necessary.",
+      "range": {
+        "startLine": 65,
+        "startChar": 4,
+        "endLine": 65,
+        "endChar": 5
+      },
+      "revId": "04cf67001951d92f2053f1ed21e7d15a75d070cd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
