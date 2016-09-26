@@ -11,7 +11,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Test variables for ip4-lispgpe-ip4 encapsulation test suite."""
+"""Test variables for Eth-IPv6-IPSec-LISPGPE-IPv6-ICMPv6
+encapsulation test suite."""
 
 # Lisp default global value
 locator_name = 'tst_locator'
