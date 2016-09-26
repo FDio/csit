@@ -28,6 +28,12 @@ dut1_to_tg_ip4 = '6.0.1.1'
 dut2_to_tg_ip4 = '6.0.2.1'
 tg1_ip4 = '6.0.1.2'
 tg2_ip4 = '6.0.2.2'
+dut1_vif1_ip4 = '6.0.10.1'
+dut1_vif2_ip4 = '6.0.11.1'
+vm1_vif1_ip4 = '6.0.10.2'
+vm1_vif2_ip4 = '6.0.11.2'
+vm1_vif1_mac = '52:54:00:00:04:01'
+vm1_vif2_mac = '52:54:00:00:04:02'
 prefix4 = 24
 
 dut1_to_dut2_ip4_static_adjacency = {'vni': 0,
@@ -52,3 +58,7 @@ dut2_ip4_eid = {'locator_name': locator_name,
 
 dut1_fib_table = '1'
 dut2_fib_table = '2'
+
+sock1 = "/tmp/sock1"
+sock2 = "/tmp/sock2"
+bid = 10
