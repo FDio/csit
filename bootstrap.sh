@@ -265,11 +265,21 @@ function run_test_set() {
         --output ${LOG_PATH}/log_test_set_run${nr} \
         tests/"
 
+#    PYTHONPATH=`pwd` pybot -L TRACE -W 136\
+#        -v TOPOLOGY_PATH:${SCRIPT_DIR}/topologies/enabled/topology${nr}.yaml \
+#        ${suite_str} \
+#        --include vm_envAND3_node_single_link_topo \
+#        --include vm_envAND3_node_double_link_topo \
+#        --exclude PERFTEST \
+#        --exclude SKIP_PATCH \
+#        --noncritical EXPECTED_FAILING \
+#        --output ${LOG_PATH}/log_test_set_run${nr} \
+#        tests/
+
     PYTHONPATH=`pwd` pybot -L TRACE -W 136\
         -v TOPOLOGY_PATH:${SCRIPT_DIR}/topologies/enabled/topology${nr}.yaml \
         ${suite_str} \
-        --include vm_envAND3_node_single_link_topo \
-        --include vm_envAND3_node_double_link_topo \
+        --include POKUS \
         --exclude PERFTEST \
         --exclude SKIP_PATCH \
         --noncritical EXPECTED_FAILING \
