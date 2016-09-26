@@ -913,3 +913,6 @@ class InterfaceUtil(object):
         else:
             cmd = 'ip link set {} address {}'.format(interface, mac)
         exec_cmd_no_error(node, cmd, sudo=True)
+
+
+
