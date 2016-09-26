@@ -94,7 +94,7 @@ class SSH(object):
         logger.debug('Reconnecting peer done: {}'.
                      format(self._ssh.get_transport().getpeername()))
 
-    def exec_command(self, cmd, timeout=10):
+    def exec_command(self, cmd, timeout=30):
         """Execute SSH command on a new channel on the connected Node.
 
         :param cmd: Command to run on the Node.
@@ -121,7 +121,7 @@ class SSH(object):
         logger.trace('exec_command on {0}: {1}'
                      .format(self._ssh.get_transport().getpeername(), cmd))
 
-        chan.exec_command(cmd)
+        chan.exec_command(cmd, timeout=timeout)
         while not chan.exit_status_ready() and timeout is not None:
             if chan.recv_ready():
                 stdout.write(chan.recv(self.__MAX_RECV_BUF))
