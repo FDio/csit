@@ -39,8 +39,7 @@
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology\
 | ... | with single links between nodes.
-| ... | *[Enc] Packet Encapsulations:* ICMPv4-IPv4-LISPGPE-IPSec-IPv4-ICMPv4,\
-| ... | ICMPv4-IPv4-IPSec-LISPGPE-IPv4-ICMPv4
+| ... | *[Enc] Packet Encapsulations:* ICMPv4-IPv4-IPSec-LISPGPE-IPv4-ICMPv4.
 | ... | *[Cfg] DUT configuration:* Each DUT is configured with LISP and IPsec.\
 | ... | IPsec is in transport mode. Tests cases are for IPsec configured both\
 | ... | on RLOC interface or lisp_gpe0 interface.
@@ -51,13 +50,13 @@
 *** Test Cases ***
 | TC01: DUT1 and DUT2 route IPv4 bidirectionally over LISP GPE tunnel using IPsec (transport) on RLOC Int.
 | | [Documentation]
-| | ... | Case: ip4-lispgpe-ipsec-ip4 - main fib
 | | ... | [Top] TG-DUT1-DUT2-TG.
-| | ... | [Enc] Eth-IPv4-LISPGPE-IPSec-IPv4-ICMPv4 on DUT1-DUT2,\
+| | ... | [Enc] Eth-IPv4-IPSec-LISPGPE-IPv4-ICMPv4 on DUT1-DUT2,\
 | | ... | Eth-IPv4-ICMPv4 on TG-DUTn.
 | | ... | [Cfg] Configure IPv4 LISP static adjacencies on DUT1 and DUT2 with\
-| | ... | IPsec in between DUTS.
-| | ... | [Ver] Make TG send ICMPv4 Echo Req between its interfaces across both\
+| | ... | IPsec in between DUTs.
+| | ... | [Ver] Case: ip4-lispgpe-ipsec-ip4 - main fib
+| | ... | Make TG send ICMPv4 Echo Req between its interfaces across both\
 | | ... | DUTs and LISP GPE tunnel between them; verify IPv4 headers on\
 | | ... | received packets are correct.
 | | ... | [Ref] RFC6830, RFC4303.
@@ -94,13 +93,13 @@
 
 | TC02: DUT1 and DUT2 route IPv4 bidirectionally over LISP GPE tunnel using IPsec (transport) lisp_gpe0 Int.
 | | [Documentation]
-| | ... | Case: ip4-ipsec-lispgpe-ip4 - main fib
 | | ... | [Top] TG-DUT1-DUT2-TG.
-| | ... | [Enc] Eth-IPv4-LISPGPE-IPSec-IPv4-ICMPv4 on DUT1-DUT2,\
+| | ... | [Enc] Eth-IPv4-IPSec-LISPGPE-IPv4-ICMPv4 on DUT1-DUT2,\
 | | ... | Eth-IPv4-ICMPv4 on TG-DUTn.
 | | ... | [Cfg] Configure IPv4 LISP static adjacencies on DUT1 and DUT2 with\
-| | ... | IPsec in between DUTS.
-| | ... | [Ver] Make TG send ICMPv4 Echo Req between its interfaces across both\
+| | ... | IPsec in between DUTs.
+| | ... | [Ver] Case: ip4-ipsec-lispgpe-ip4 - main fib
+| | ... | Make TG send ICMPv4 Echo Req between its interfaces across both\
 | | ... | DUTs and LISP GPE tunnel between them; verify IPv4 headers on\
 | | ... | received packets are correct.
 | | ... | [Ref] RFC6830, RFC4303.
@@ -139,13 +138,13 @@
 
 | TC03: DUT1 and DUT2 route IPv4 bidirectionally over LISP GPE tunnel using IPsec (transport) on RLOC Int and VRF on EID is enabled.
 | | [Documentation]
-| | ... | Case: ip6-lispgpe-ipsec-ip6 - vrf, main fib \
 | | ... | [Top] TG-DUT1-DUT2-TG.
-| | ... | [Enc] Eth-IPv4-LISPGPE-IPSec-IPv4-ICMPv4 on DUT1-DUT2,\
+| | ... | [Enc] Eth-IPv4-IPSec-LISPGPE-IPv4-ICMPv4 on DUT1-DUT2,\
 | | ... | Eth-IPv4-ICMPv4 on TG-DUTn.
 | | ... | [Cfg] Configure IPv4 LISP static adjacencies on DUT1 and DUT2 with\
-| | ... | IPsec in between DUTS.
-| | ... | [Ver] Make TG send ICMPv4 Echo Req between its interfaces across both\
+| | ... | IPsec in between DUTs.
+| | ... | [Ver] Case: ip4-lispgpe-ipsec-ip4 - vrf, main fib
+| | ... | Make TG send ICMPv4 Echo Req between its interfaces across both\
 | | ... | DUTs and LISP GPE tunnel between them; verify IPv4 headers on\
 | | ... | received packets are correct.
 | | ... | [Ref] RFC6830, RFC4303.
@@ -187,13 +186,13 @@
 
 | TC04: DUT1 and DUT2 route IPv4 bidirectionally over LISP GPE tunnel using IPsec (transport) on lisp_gpe0 Int and VRF is enabled.
 | | [Documentation]
-| | ... | Case: ip6-ipsec-lispgpe-ip6 - vrf, main fib
 | | ... | [Top] TG-DUT1-DUT2-TG.
-| | ... | [Enc] Eth-IPv4-LISPGPE-IPSec-IPv4-ICMPv4 on DUT1-DUT2,\
+| | ... | [Enc] Eth-IPv4-IPSec-LISPGPE-IPv4-ICMPv4 on DUT1-DUT2,\
 | | ... | Eth-IPv4-ICMPv4 on TG-DUTn.
 | | ... | [Cfg] Configure IPv4 LISP static adjacencies on DUT1 and DUT2 with\
-| | ... | IPsec in between DUTS.
-| | ... | [Ver] Make TG send ICMPv4 Echo Req between its interfaces across both\
+| | ... | IPsec in between DUTs.
+| | ... | [Ver] Case: ip4-ipsec-lispgpe-ip4 - vrf, main fib
+| | ... | Make TG send ICMPv4 Echo Req between its interfaces across both\
 | | ... | DUTs and LISP GPE tunnel between them; verify IPv4 headers on\
 | | ... | received packets are correct.
 | | ... | [Ref] RFC6830, RFC4303.

@@ -23,6 +23,19 @@
 | | ... | The keyword sets a FIB table on a DUT, assigns two interfaces to it,\
 | | ... | adds two ARP items and a route, see example.
 | | ...
+| | ... | *Arguments*
+| | ... | - node - DUT node. Type: dictionary
+| | ... | - table - FIB table ID. Type: integer
+| | ... | - route_interface - Destination interface to be assigned to FIB.\
+| | ... | Type: string
+| | ... | - route_gateway_ip - Route gateway IP address. Type: string
+| | ... | - route_gateway_mac - Route gateway MAC address. Type string
+| | ... | - route_dst_ip - Route destination IP. Type: string
+| | ... | - vrf_src_if - Source interface to be assigned to FIB. Type: string
+| | ... | - src_if_ip - IP address of the source interface. Type: string
+| | ... | - src_if_mac - MAC address of the source interface. Type: string
+| | ... | - prefix_len - Prefix length. Type: int
+| | ...
 | | ... | *Example:*
 | | ... | Three-node topology:
 | | ... | TG_if1 - DUT1_if1-DUT1_if2 - DUT2_if1-DUT2_if2 - TG_if2
