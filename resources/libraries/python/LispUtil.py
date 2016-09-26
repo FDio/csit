@@ -16,6 +16,7 @@
 from resources.libraries.python.parsers.JsonParser import JsonParser
 from resources.libraries.python.topology import Topology
 from resources.libraries.python.VatExecutor import VatExecutor, VatTerminal
+from resources.libraries.python.ssh import SSH
 
 
 class LispUtil(object):
@@ -224,3 +225,18 @@ class LispUtil(object):
         """
 
         self.lisp_should_be_equal([], lisp_params)
+
+    @staticmethod
+    def show_settings(node, cmd):
+        ssh = SSH()
+        ssh.connect(node)
+        (ret_code, stdout, stderr) = ssh.exec_command_sudo('vppctl sh ip6 fib')
+        print "=========="
+        print "Ret code: {}".format(ret_code)
+        print "Stdout: {}".format(stdout)
+        print "Stderr: {}".format(stderr)
+        (ret_code, stdout, stderr) = ssh.exec_command_sudo('vppctl sh lisp eid')
+        print "=========="
+        print "Ret code: {}".format(ret_code)
+        print "Stdout: {}".format(stdout)
+        print "Stderr: {}".format(stderr)
