@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a1d315d_b61600a6",
+        "filename": "resources/libraries/python/TLDK/UdpTest.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-09-27T05:23:30Z",
+      "side": 1,
+      "message": "Please remove all trailing spaces and replace tabs by spaces.",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 8
+      },
+      "revId": "e695f0f234c960ab66a0c3bfe87bb987fa8b4122",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_313d5abc",
+        "filename": "resources/libraries/python/TLDK/UdpTest.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-09-27T05:23:30Z",
+      "side": 1,
+      "message": "Please remove all trailing spaces and replace tabs by spaces.",
+      "range": {
+        "startLine": 66,
+        "startChar": 0,
+        "endLine": 66,
+        "endChar": 8
+      },
+      "revId": "e695f0f234c960ab66a0c3bfe87bb987fa8b4122",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_114c9e6f",
+        "filename": "resources/libraries/python/TLDK/UdpTest.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-09-27T05:23:30Z",
+      "side": 1,
+      "message": "Please remove all trailing spaces and replace tabs by spaces.",
+      "range": {
+        "startLine": 107,
+        "startChar": 0,
+        "endLine": 107,
+        "endChar": 8
+      },
+      "revId": "e695f0f234c960ab66a0c3bfe87bb987fa8b4122",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_f146c24e",
+        "filename": "resources/libraries/python/TLDK/UdpTest.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-09-27T05:23:30Z",
+      "side": 1,
+      "message": "Please remove all trailing spaces and replace tabs by spaces.",
+      "range": {
+        "startLine": 119,
+        "startChar": 0,
+        "endLine": 119,
+        "endChar": 6
+      },
+      "revId": "e695f0f234c960ab66a0c3bfe87bb987fa8b4122",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
