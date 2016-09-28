@@ -60,47 +60,62 @@ def main():
     dst_ip = args.get_arg('dst_ip')
     tx_if = args.get_arg('tx_if')
     rx_if = args.get_arg('rx_if')
+    count2 = 0
+    count3 = 0
 
     rxq = RxQueue(rx_if)
     txq = TxQueue(tx_if)
     sent_packets = []
     ip_format = ''
     pkt_raw = ''
-    if valid_ipv4(src_ip) and valid_ipv4(dst_ip):
-        pkt_raw = (Ether(src=src_mac, dst=dut1_if1_mac) /
-                   IP(src=src_ip, dst=dst_ip) /
-                   ICMP())
-        ip_format = 'IP'
-    elif valid_ipv6(src_ip) and valid_ipv6(dst_ip):
-        pkt_raw = (Ether(src=src_mac, dst=dut1_if1_mac) /
-                   IPv6(src=src_ip, dst=dst_ip) /
-                   ICMPv6EchoRequest())
-        ip_format = 'IPv6'
-    else:
-        raise ValueError("IP not in correct format")
-
-    sent_packets.append(pkt_raw)
-    txq.send(pkt_raw)
-    ether = rxq.recv(2)
-
-    if ether is None:
-        raise RuntimeError("ICMP echo Rx timeout")
-    if not ether.haslayer(ip_format):
-        raise RuntimeError("Not an IP packet received {0}"
-                           .format(ether.__repr__()))
-
-    # Compare data from packets
-    if src_ip == ether[ip_format].src and dst_ip == ether[ip_format].dst:
-        logger.trace("IP matched")
-        if dst_mac == ether['Ethernet'].dst and \
-                dut1_if2_mac == ether['Ethernet'].src:
-            logger.trace("MAC matched")
+    src = '16.0.0.'
+    src2 = '3ffe:51::'
+    for i in range(100, 201):
+        if valid_ipv4(src_ip) and valid_ipv4(dst_ip):
+            pkt_raw = (Ether(src=src_mac, dst=dut1_if1_mac) /
+                       IP(src=src+str(i), dst=dst_ip) /
+                       ICMP())
+            ip_format = 'IP'
+        elif valid_ipv6(src_ip) and valid_ipv6(dst_ip):
+            pkt_raw = (Ether(src=src_mac, dst=dut1_if1_mac) /
+                       IPv6(src=src2+str(i), dst=dst_ip) /
+                       ICMPv6EchoRequest())
+            ip_format = 'IPv6'
         else:
-            raise RuntimeError("Matching packet unsuccessful: {0}"
+            raise ValueError("IP not in correct format")
+
+        sent_packets.append(pkt_raw)
+        txq.send(pkt_raw)
+        ether = rxq.recv(2)
+
+        print ether
+
+        if ether is None:
+            raise RuntimeError("ICMP echo Rx timeout")
+        if not ether.haslayer(ip_format):
+            raise RuntimeError("Not an IP packet received {0}"
                                .format(ether.__repr__()))
-    else:
-        raise RuntimeError("Matching packet unsuccessful: {0}"
-                           .format(ether.__repr__()))
+
+        if ether['Ethernet'].dst == '02:00:00:00:00:02':
+            count2 += 1
+        if ether['Ethernet'].dst == '02:00:00:00:00:03':
+            count3 += 1
+
+
+#    # Compare data from packets
+#    if src_ip == ether[ip_format].src and dst_ip == ether[ip_format].dst:
+#        logger.trace("IP matched")
+#        if dst_mac == ether['Ethernet'].dst and \
+#                dut1_if2_mac == ether['Ethernet'].src:
+#            logger.trace("MAC matched")
+#        else:
+#            raise RuntimeError("Matching packet unsuccessful: {0}"
+#                               .format(ether.__repr__()))
+#    else:
+#        raise RuntimeError("Matching packet unsuccessful: {0}"
+#                           .format(ether.__repr__()))
+    print "count 02 : {}".format(count2)
+    print "count 03 : {}".format(count3)
     sys.exit(0)
 
 
