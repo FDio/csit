@@ -46,16 +46,17 @@ class LispRemoteMapping(object):
 
     @staticmethod
     def vpp_add_lisp_remote_mapping(node, vni, deid, deid_prefix, seid,
-                                    seid_prefix, rloc):
+                                    seid_prefix, rloc, is_mac=False):
         """Add lisp remote mapping on the VPP node in topology.
 
         :param node: VPP node.
         :param vni: Vni.
         :param deid: Destination eid address.
-        :param deid_predix: Destination eid address prefix_len.
+        :param deid_prefix: Destination eid address prefix_len.
         :param seid: Source eid address.
         :param seid_prefix: Source eid address prefix_len.
         :param rloc: Receiver locator.
+        :param is_mac: Set to True if the deid/seid is MAC address.
         :type node: dict
         :type vni: int
         :type deid: str
@@ -63,8 +64,14 @@ class LispRemoteMapping(object):
         :type seid: str
         :type seid_prefix: int
         :type rloc: str
+        :type is_mac: bool
         """
-
+        if is_mac:
+            deid_prefix = ''
+            seid_prefix = ''
+        else:
+            deid_prefix = '/{}'.format(deid_prefix)
+            seid_prefix = '/{}'.format(seid_prefix)
         VatExecutor.cmd_from_template(node,
                                       'lisp/add_lisp_remote_mapping.vat',
                                       vni=vni,
@@ -82,7 +89,7 @@ class LispRemoteMapping(object):
         :param node: VPP node.
         :param vni: Vni.
         :param deid: Destination eid address.
-        :param deid_predix: Destination eid address prefix_len.
+        :param deid_prefix: Destination eid address prefix_len.
         :param seid: Source eid address.
         :param seid_prefix: Source eid address prefix_len.
         :param rloc: Receiver locator.
@@ -113,7 +120,7 @@ class LispAdjacency(object):
 
     @staticmethod
     def vpp_add_lisp_adjacency(node, vni, deid, deid_prefix, seid,
-                               seid_prefix):
+                               seid_prefix, is_mac=False):
         """Add lisp adjacency on the VPP node in topology.
 
         :param node: VPP node.
@@ -122,14 +129,21 @@ class LispAdjacency(object):
         :param deid_prefix: Destination eid address prefix_len.
         :param seid: Source eid address.
         :param seid_prefix: Source eid address prefix_len.
+        :param is_mac: Set to True if the deid/seid is MAC address.
         :type node: dict
         :type vni: int
         :type deid: str
         :type deid_prefix: int
         :type seid: str
         :type seid_prefix: int
+        :type is_mac: bool
         """
-
+        if is_mac:
+            deid_prefix = ''
+            seid_prefix = ''
+        else:
+            deid_prefix = '/{}'.format(deid_prefix)
+            seid_prefix = '/{}'.format(seid_prefix)
         VatExecutor.cmd_from_template(node,
                                       'lisp/add_lisp_adjacency.vat',
                                       vni=vni,
@@ -588,3 +602,32 @@ class LispSetup(object):
 
         lgi = LispGpeIface()
         lgi.vpp_lisp_gpe_iface(node, state)
+
+
+class LispEidTableMap(object):
+    """
+    Class for EID table map.
+    """
+
+    @staticmethod
+    def vpp_lisp_eid_table_mapping(node, vni, bd=None, vrf=None):
+        """
+        Map LISP VNI to either bridge domain ID, or VRF ID.
+
+        :param node: VPP node.
+        :param vni: Lisp VNI.
+        :param bd: Bridge domain ID.
+        :param vrf: VRF id.
+        :type node: dict
+        :type vni: int
+        :type bd: int
+        :type vrf: int
+        """
+        if bd:
+            bd_or_vrf = 'bd_index {}'.format(bd)
+        else:
+            bd_or_vrf = 'vrf {}'.format(vrf)
+        VatExecutor.cmd_from_template(node,
+                                      'lisp/lisp_eid_table_add_del_map.vat',
+                                      vni=vni,
+                                      bd_or_vrf=bd_or_vrf)
