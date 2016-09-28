@@ -388,3 +388,46 @@
 | | ...                 | --src_ip | ${src_ip} | --dst_ip | ${tgt_ip}
 | | Run Keyword And Expect Error | ARP reply timeout
 | | ... | Run Traffic Script On Node | arp_request.py | ${tg_node} | ${args}
+
+| Send Packets And Check Multipath Routing
+| | [Documentation] | Send 100 IP ICMP packets traffic and check if is divided
+| | ...             | to two paths
+| | ...
+| | ... | *Arguments:*
+| | ...
+| | ... | _NOTE:_ Arguments are based on topology:
+| | ...             | TG(if1)->(if1)DUT(if2)->TG(if2)
+| | ...
+| | ... | - tg_node - Node to execute scripts on (TG). Type: dictionary
+| | ... | - src_port - Interface of TG-if1. Type: string
+| | ... | - dst_port - Interface of TG-if1. Type: string
+| | ... | - src_ip - IP of source interface (TG-if1). Type: string
+| | ... | - dst_ip - IP of destination interface (TG-if2). Type: string
+| | ... | - tx_src_mac - MAC address of TG-if1. Type: string
+| | ... | - tx_dst_mac - MAC address of DUT-if1. Type: string
+| | ... | - rx_src_mac - MAC address of DUT-if2. Type: string
+| | ... | - rx_dst_mac_1 - MAC address of interface for path 1. Type: string
+| | ... | - rx_dst_mac_2 - MAC address of interface for path 2. Type: string
+| | ...
+| | ... | *Return:*
+| | ... | - No value returned
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Send Packet And Check Multipath Routing \| ${nodes['TG']} \
+| | ... | \| eth2 \| eth3 \| 16.0.0.1 \| 32.0.0.1 \
+| | ... | \| 08:00:27:cc:4f:54 \| 08:00:27:c9:6a:d5 \| 08:00:27:54:59:f9 \
+| | ... | \| 02:00:00:00:00:02 \| 02:00:00:00:00:03 \|
+| | ...
+| | [Arguments] | ${tg_node} | ${src_port} | ${dst_port} | ${src_ip} | ${dst_ip}
+| | ...         | ${tx_src_mac} | ${tx_dst_mac} | ${rx_src_mac}
+| | ...         | ${rx_dst_mac_1} | ${rx_dst_mac_2}
+| | ${src_port_name}= | Get interface name | ${tg_node} | ${src_port}
+| | ${dst_port_name}= | Get interface name | ${tg_node} | ${dst_port}
+| | ${args}= | Catenate | --tx_if | ${src_port_name} | --rx_if | ${dst_port_name}
+| | ... | --src_ip | ${src_ip} | --dst_ip | ${dst_ip}
+| | ... | --tg_if1_mac | ${tx_src_mac} | --dut_if1_mac | ${tx_dst_mac}
+| | ... | --dut_if2_mac | ${rx_src_mac} | --path_1_mac | ${rx_dst_mac_1}
+| | ... | --path_2_mac | ${rx_dst_mac_2}
+| | Run Traffic Script On Node | send_icmp_check_multipath.py | ${tg_node} |
+| | ... | ${args}
