@@ -59,6 +59,7 @@ dpdk {{
 {pciconfig}
 {nomultiseg}
 {enablevhostuser}
+uio-driver vfio-pci
 }}
 
 ip6 {{
