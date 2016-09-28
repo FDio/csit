@@ -17,6 +17,7 @@ from resources.libraries.python.VatExecutor import VatTerminal
 from resources.libraries.python.topology import Topology
 from resources.libraries.python.ssh import exec_cmd_no_error
 
+
 class Routing(object):
 
     """Routing utilities."""
@@ -24,7 +25,8 @@ class Routing(object):
     @staticmethod
     def vpp_route_add(node, network, prefix_len, gateway=None,
                       interface=None, use_sw_index=True, resolve_attempts=10,
-                      count=1, vrf=None, lookup_vrf=None):
+                      count=1, vrf=None, lookup_vrf=None, multipath=False,
+                      weight=None):
         """Add route to the VPP node.
 
         :param node: Node to add route on.
@@ -38,6 +40,8 @@ class Routing(object):
         :param count: number of IP addresses to add starting from network IP
         with same prefix (increment is 1). If None, then is not used.
         :param lookup_vrf: VRF table ID for lookup.
+        :param multipath: Enable multipath routing.
+        :param weight: Weight value for unequal cost multipath routing.
         :type node: dict
         :type network: str
         :type prefix_len: int
@@ -48,6 +52,8 @@ class Routing(object):
         :type count: int
         :type vrf: int
         :type lookup_vrf: int
+        :type multipath: bool
+        :type weight: int
         """
         if use_sw_index:
             int_cmd = ('sw_if_index {}'.
@@ -67,6 +73,10 @@ class Routing(object):
 
         lookup_vrf = 'lookup-in-vrf {}'.format(lookup_vrf) if lookup_vrf else ''
 
+        multipath = 'multipath' if multipath else ''
+
+        weight = 'weight {}'.format(weight) if weight and multipath else ''
+
         with VatTerminal(node, json_param=False) as vat:
             vat.vat_terminal_exec_cmd_from_template('add_route.vat',
                                                     network=network,
@@ -76,7 +86,9 @@ class Routing(object):
                                                     interface=int_cmd,
                                                     resolve_attempts=rap,
                                                     count=cnt,
-                                                    lookup_vrf=lookup_vrf)
+                                                    lookup_vrf=lookup_vrf,
+                                                    multipath=multipath,
+                                                    weight=weight)
 
     @staticmethod
     def add_fib_table(node, network, prefix_len, fib_id, place):

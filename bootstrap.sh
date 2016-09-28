@@ -267,7 +267,8 @@ function run_test_set() {
 
     PYTHONPATH=`pwd` pybot -L TRACE -W 136\
         -v TOPOLOGY_PATH:${SCRIPT_DIR}/topologies/enabled/topology${nr}.yaml \
-        ${suite_str} \
+        --suite "tests.func.ipv4.ipv4_multipath_routing" \
+        --suite "tests.func.ipv6.ipv6_multipath_routing" \
         --include vm_envAND3_node_single_link_topo \
         --include vm_envAND3_node_double_link_topo \
         --exclude PERFTEST \
