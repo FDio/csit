@@ -16,6 +16,24 @@
       "revId": "01a8027606424913dc68b60452a2854fd0dc3950",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_f2835d54",
+        "filename": "tests/perf/Bridge_Domain_Intel-X520-DA2.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-09-29T12:48:54Z",
+      "side": 1,
+      "message": "I was following RF documentation:\nhttp://robotframework.org/robotframework/latest/RobotFrameworkUserGuide.html#data-driven-style\n\nYou have two way how to use it. Same TC multiple data. Multiple TC multiple data.\n\nyour first option would work too and i think the purpose is exactly same\nyour second option is not applicable in this scenario as i need each TC named separately.\n?",
+      "parentUuid": "3a1d315d_d793b34d",
+      "revId": "01a8027606424913dc68b60452a2854fd0dc3950",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
