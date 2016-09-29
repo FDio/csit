@@ -913,3 +913,37 @@ class InterfaceUtil(object):
         else:
             cmd = 'ip link set {} address {}'.format(interface, mac)
         exec_cmd_no_error(node, cmd, sudo=True)
+
+    @staticmethod
+    def add_ipsec_gre_interface(node, src_ip, dst_ip, local_sa_id,
+                                remote_sa_id, del_int=False, up=True):
+        """
+
+        :param node:
+        :param src_ip:
+        :param dst_ip:
+        :param local_sa_id:
+        :param remote_sa_id:
+        :param del_int:
+        :return:
+        """
+        if del_int:
+            delete = 'del'
+        else:
+            delete = ''
+        with VatTerminal(node) as vat:
+            output = vat.vat_terminal_exec_cmd_from_template(
+                "/ipsec/add_del_ipsec_gre_tunnel.vat",
+                src=src_ip,
+                dst=dst_ip,
+                local_sa_id=local_sa_id,
+                remote_sa_id=remote_sa_id,
+                delete=delete)
+        output = output[0]
+
+        if output["retval"] != 0:
+            raise RuntimeError("Could not create IPSec-GRE interface.")
+        sw_index = output['sw_if_index']
+        if up:
+            InterfaceUtil.set_interface_state(node, sw_index, 'up')
+        return sw_index

@@ -388,3 +388,23 @@
 | | ...                 | --src_ip | ${src_ip} | --dst_ip | ${tgt_ip}
 | | Run Keyword And Expect Error | ARP reply timeout
 | | ... | Run Traffic Script On Node | arp_request.py | ${tg_node} | ${args}
+
+| Send Packet And Check IPSec-GRE
+| | [Arguments] | ${node} | ${src_ip} | ${src_mac} | ${src_int}
+| | ...         | ${dst_ip} | ${dst_mac} | ${dst_int}
+| | ...         | ${src_gre_ip} | ${src_gre_mac} | ${dst_gre_ip}
+| | ...         | ${dst_gre_mac} | ${spi} | ${crypto_alg} | ${crypto_key}
+| | ...         | ${integ_alg} | ${integ_key}
+| | ${tx_port_name}= | Get interface name | ${tg_node} | ${src_int}
+| | ${rx_port_name}= | Get interface name | ${tg_node} | ${dst_int}
+| | ${crypto_alg_str}= | Get Crypto Alg Scapy Name | ${crypto_alg}
+| | ${integ_alg_str}= | Get Integ Alg Scapy Name | ${integ_alg}
+| | ${args}= | Catenate | --tx_if | ${tx_port_name} | --rx_if ${rx_port_name}
+| | ...                 | --src_mac | ${src_mac} | --dst_mac | ${dst_mac}
+| | ...                 | --src_ip | ${src_ip} | --dst_ip | ${dst_ip}
+| | ...                 | --src_gre_ip | ${src_gre_ip} | --dst_gre_ip | ${dst_gre_ip}
+| | ...                 | --src_gre_mac | ${src_gre_mac} | --dst_gre_mac | ${dst_gre_mac}
+| | ...                 | --spi | ${spi}
+| | ...                 | --crypto_alg | ${crypto_alg_str} | --crypto_key | ${crypto_key}
+| | ...                 | --integ_alg | ${integ_alg_str} | --integ_key | ${integ_key}
+| | Run Traffic Script On Node | ipsec_gre.py | ${node} | ${args}
