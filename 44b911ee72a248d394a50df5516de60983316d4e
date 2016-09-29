@@ -1,0 +1,118 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a1d315d_9280a947",
+        "filename": "resources/libraries/python/telemetry/SPAN.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-09-29T13:15:09Z",
+      "side": 1,
+      "message": "traffic",
+      "range": {
+        "startLine": 34,
+        "startChar": 43,
+        "endLine": 34,
+        "endChar": 49
+      },
+      "revId": "44b911ee72a248d394a50df5516de60983316d4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_3291d599",
+        "filename": "resources/libraries/robot/telemetry/span.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-09-29T13:15:09Z",
+      "side": 1,
+      "message": "\" | \" inconsistency. remove all or add between all of them",
+      "revId": "44b911ee72a248d394a50df5516de60983316d4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_d2862165",
+        "filename": "resources/templates/vat/span_create.vat",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-09-29T13:15:09Z",
+      "side": 1,
+      "message": "is this right place to for TODOs? SPAN.py?\n\nVAT output: \n\u0027#TODO:\u0027: function not found",
+      "revId": "44b911ee72a248d394a50df5516de60983316d4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_52d9f181",
+        "filename": "resources/traffic_scripts/span_check.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-09-29T13:15:09Z",
+      "side": 1,
+      "message": "layers.l2",
+      "range": {
+        "startLine": 25,
+        "startChar": 11,
+        "endLine": 25,
+        "endChar": 14
+      },
+      "revId": "44b911ee72a248d394a50df5516de60983316d4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_92a9c9e1",
+        "filename": "tests/func/telemetry/ipfix_ipv4.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-09-29T13:15:09Z",
+      "side": 1,
+      "message": "Resource file \u0027resources/libraries/robot/ipfix/telemetry.robot\u0027 does not exist\n\nresources/libraries/robot/telemetry/ipfix.robot?",
+      "revId": "44b911ee72a248d394a50df5516de60983316d4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_72faadbe",
+        "filename": "tests/func/telemetry/ipfix_ipv6.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-09-29T13:15:09Z",
+      "side": 1,
+      "message": "don\u0027t forget to rename ipfix to telemetry in bootstrab.sh",
+      "revId": "44b911ee72a248d394a50df5516de60983316d4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
