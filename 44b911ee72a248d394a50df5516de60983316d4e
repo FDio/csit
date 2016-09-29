@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3a1d315d_12edb9ef",
+        "filename": "resources/libraries/python/telemetry/SPAN.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-09-29T13:39:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a1d315d_9280a947",
+      "range": {
+        "startLine": 34,
+        "startChar": 43,
+        "endLine": 34,
+        "endChar": 49
+      },
+      "revId": "44b911ee72a248d394a50df5516de60983316d4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a1d315d_3291d599",
         "filename": "resources/libraries/robot/telemetry/span.robot",
         "patchSetId": 3
@@ -42,6 +66,24 @@
     },
     {
       "key": {
+        "uuid": "3a1d315d_32f2f5d2",
+        "filename": "resources/libraries/robot/telemetry/span.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-09-29T13:39:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a1d315d_3291d599",
+      "revId": "44b911ee72a248d394a50df5516de60983316d4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a1d315d_d2862165",
         "filename": "resources/templates/vat/span_create.vat",
         "patchSetId": 3
@@ -53,6 +95,24 @@
       "writtenOn": "2016-09-29T13:15:09Z",
       "side": 1,
       "message": "is this right place to for TODOs? SPAN.py?\n\nVAT output: \n\u0027#TODO:\u0027: function not found",
+      "revId": "44b911ee72a248d394a50df5516de60983316d4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_d2be21d4",
+        "filename": "resources/templates/vat/span_create.vat",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-09-29T13:39:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a1d315d_d2862165",
       "revId": "44b911ee72a248d394a50df5516de60983316d4e",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
@@ -82,6 +142,30 @@
     },
     {
       "key": {
+        "uuid": "3a1d315d_72e86de2",
+        "filename": "resources/traffic_scripts/span_check.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-09-29T13:39:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a1d315d_52d9f181",
+      "range": {
+        "startLine": 25,
+        "startChar": 11,
+        "endLine": 25,
+        "endChar": 14
+      },
+      "revId": "44b911ee72a248d394a50df5516de60983316d4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a1d315d_92a9c9e1",
         "filename": "tests/func/telemetry/ipfix_ipv4.robot",
         "patchSetId": 3
@@ -99,6 +183,24 @@
     },
     {
       "key": {
+        "uuid": "3a1d315d_52e33105",
+        "filename": "tests/func/telemetry/ipfix_ipv4.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-09-29T13:39:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a1d315d_92a9c9e1",
+      "revId": "44b911ee72a248d394a50df5516de60983316d4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a1d315d_72faadbe",
         "filename": "tests/func/telemetry/ipfix_ipv6.robot",
         "patchSetId": 3
@@ -110,6 +212,24 @@
       "writtenOn": "2016-09-29T13:15:09Z",
       "side": 1,
       "message": "don\u0027t forget to rename ipfix to telemetry in bootstrab.sh",
+      "revId": "44b911ee72a248d394a50df5516de60983316d4e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_f2a23dad",
+        "filename": "tests/func/telemetry/ipfix_ipv6.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-09-29T13:39:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a1d315d_72faadbe",
       "revId": "44b911ee72a248d394a50df5516de60983316d4e",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
