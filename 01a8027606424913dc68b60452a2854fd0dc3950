@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a1d315d_d793b34d",
+        "filename": "tests/perf/Bridge_Domain_Intel-X520-DA2.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-09-29T07:40:38Z",
+      "side": 1,
+      "message": "I think you are using test template wrong and should be replaced with keyword: \n\n| TC01: 64B NDR binary search - DUT L2BD - 1thread 1core 1rxq\n| | L2 Bridge Domain NDR Binary Search | ${64} | ${100000} | 1 | 1\n| | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | NDR\n\nor use it as template: \n| TC01: 64B NDR binary search - DUT L2BD - 1thread 1core 1rxq\n| | ${64} | ${100000} | 1 | 1\n| | ${1518} | ${100000} | 1 | 1\n| | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | NDR\n| | [Template] | L2 Bridge Domain NDR Binary Search\n\nbut then you need to remove Set documentation from template KW",
+      "revId": "01a8027606424913dc68b60452a2854fd0dc3950",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
