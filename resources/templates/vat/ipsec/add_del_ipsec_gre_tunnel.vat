@@ -1,0 +1,1 @@
+ipsec_gre_add_del_tunnel src {src} dst {dst} local_sa {local_sa_id} remote_sa {remote_sa_id} {delete}

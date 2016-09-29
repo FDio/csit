@@ -431,3 +431,66 @@
 | | ... | --path_1_mac | ${rx_dst_mac_1} | --path_2_mac | ${rx_dst_mac_2}
 | | Run Traffic Script On Node | send_icmp_check_multipath.py | ${tg_node}
 | | ... | ${args}
+
+| Send Packet And Check IPSec-GRE
+| | [Documentation] | Send ICMPv4 packet and await Encrypted GRE packet.\
+| | ...             | This packet is then decrypted and checked whether
+| | ...             | it contains mandatory headers.
+| | ...
+| | ... | *Arguments:*
+| | ...
+| | ... | _NOTE:_ Arguments are based on topology:
+| | ...             | TG(if1)->(if1)DUT->(if2)DUT->(if2)TG
+| | ...
+| | ... | - node - Node to execute scripts on (TG). Type: dictionary
+| | ... | - src_ip - Source IP address of the packet (TG-if1).
+| | ... |             Type: string
+| | ... | - src_mac - Source MAC address of the packet (TG-if1).
+| | ... |             Type: string
+| | ... | - src_int - Interface from which the packet is sent (TG-if1).
+| | ... |             Type: string
+| | ... | - dst_ip - Destination IP address of the packet (TG-if2).
+| | ... |            Type: string
+| | ... | - dst_mac - Destination MAC address of the packet (TG-if2).
+| | ... |            Type: string
+| | ... | - dst_int - Interface where the packet should arrive (TG-if2).
+| | ... |             (DUT-if1). Type: string
+| | ... | - src_gre_ip - Source IPSec/GRE tunnel IP (DUT-if1). Type: string
+| | ... | - src_gre_mac - Source IPSec/GRE tunnel MAC (DUT-if1). Type: string
+| | ... | - dst_gre_ip - Destination IPSec/GRE tunnel IP. Type: string
+| | ... | - dst_gre_mac - Destination IPSec/GRE tunnel MAC. Type: string
+| | ... | - spi - SPI identifier to check (Local). Type: string
+| | ... | - crypto_alg - Encrytion algorithm. Type: enum
+| | ... | - crypto_key - Encryption key. Type: string
+| | ... | - integ_alg - Integrity algorithm. Type: enum
+| | ... | - integ_key - Integrity key. Type: string
+| | ...
+| | ... | *Return:*
+| | ... | - No value returned
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Send Packet And Check IPSec-GRE \| ${nodes['TG']} \| 10.0.0.1 \
+| | ... | \| 08:00:27:cc:4f:54 \| eth2 \| 10.0.0.2 \| 08:00:27:c9:6a:d5 \
+| | ... | \| eth3 \| 192.168.0.1 \| 08:00:27:c9:6a:11 \| 192.168.0.2 \
+| | ... | \| 08:00:27:c9:6a:22 \| 1001 \| ${encr_alg} \| sixteenbytes_key \
+| | ... | \| ${auth_alg} \| twentybytessecretkey \|
+| | ...
+| | [Arguments] | ${node} | ${src_ip} | ${src_mac} | ${src_int}
+| | ...         | ${dst_ip} | ${dst_mac} | ${dst_int}
+| | ...         | ${src_gre_ip} | ${src_gre_mac} | ${dst_gre_ip}
+| | ...         | ${dst_gre_mac} | ${spi} | ${crypto_alg} | ${crypto_key}
+| | ...         | ${integ_alg} | ${integ_key}
+| | ${tx_port_name}= | Get interface name | ${tg_node} | ${src_int}
+| | ${rx_port_name}= | Get interface name | ${tg_node} | ${dst_int}
+| | ${crypto_alg_str}= | Get Crypto Alg Scapy Name | ${crypto_alg}
+| | ${integ_alg_str}= | Get Integ Alg Scapy Name | ${integ_alg}
+| | ${args}= | Catenate | --tx_if | ${tx_port_name} | --rx_if ${rx_port_name}
+| | ...      | --src_mac | ${src_mac} | --dst_mac | ${dst_mac}
+| | ...      | --src_ip | ${src_ip} | --dst_ip | ${dst_ip}
+| | ...      | --src_gre_ip | ${src_gre_ip} | --dst_gre_ip | ${dst_gre_ip}
+| | ...      | --src_gre_mac | ${src_gre_mac} | --dst_gre_mac | ${dst_gre_mac}
+| | ...      | --spi | ${spi}
+| | ...      | --crypto_alg | ${crypto_alg_str} | --crypto_key | ${crypto_key}
+| | ...      | --integ_alg | ${integ_alg_str} | --integ_key | ${integ_key}
+| | Run Traffic Script On Node | ipsec_gre.py | ${node} | ${args}
