@@ -50,7 +50,7 @@
 
 # IPv4 addresses used for IPFIX exporter. Export over IPv6 not (yet?) supported.
 | ${dut1_to_tg_ip4}= | 192.168.1.1
-| ${tg_to_dut1_ip4}= | 16.0.0.1
+| ${tg_to_dut1_ip4}= | 192.168.1.2
 
 *** Test Cases ***
 | TC01: DUT reports packet flow for traffic by source address
