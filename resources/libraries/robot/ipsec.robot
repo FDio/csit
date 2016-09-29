@@ -16,7 +16,6 @@
 | Library | resources.libraries.python.IPsecUtil
 | Library | resources.libraries.python.NodePath
 | Library | resources.libraries.python.TrafficScriptExecutor
-| Library | resources.libraries.python.IPv4Util
 | Library | resources.libraries.python.InterfaceUtil
 | Library | resources.libraries.python.Routing
 | Library | String
