@@ -213,7 +213,7 @@ class SSH(object):
 
     @staticmethod
     def interactive_terminal_exec_command(chan, cmd, prompt,
-                                          time_out=10):
+                                          time_out=30):
         """Execute command on interactive terminal.
 
         interactive_terminal_open() method has to be called first!

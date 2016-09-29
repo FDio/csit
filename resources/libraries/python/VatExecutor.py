@@ -150,6 +150,7 @@ class VatTerminal(object):
             self._tty,
             'sudo -S {}{}'.format(Constants.VAT_BIN_NAME, json_text),
             self.__VAT_PROMPT)
+        self._exec_failure = False
 
     def __enter__(self):
         return self
@@ -166,9 +167,14 @@ class VatTerminal(object):
         None if not in JSON mode.
         """
         logger.debug("Executing command in VAT terminal: {}".format(cmd))
-        out = self._ssh.interactive_terminal_exec_command(self._tty,
+        try:
+            out = self._ssh.interactive_terminal_exec_command(self._tty,
                                                           cmd,
                                                           self.__VAT_PROMPT)
+        except:
+            self._exec_failure = True
+            raise
+
         logger.debug("VAT output: {}".format(out))
         if self.json:
             obj_start = out.find('{')
@@ -177,7 +183,7 @@ class VatTerminal(object):
             array_end = out.rfind(']')
 
             if -1 == obj_start and -1 == array_start:
-                raise RuntimeError("No JSON data.")
+                raise RuntimeError("VAT: no JSON data.")
 
             if obj_start < array_start or -1 == array_start:
                 start = obj_start
@@ -193,9 +199,11 @@ class VatTerminal(object):
 
     def vat_terminal_close(self):
         """Close VAT terminal."""
-        self._ssh.interactive_terminal_exec_command(self._tty,
-                                                    'quit',
-                                                    self.__LINUX_PROMPT)
+        #interactive terminal is dead, we only need to close session
+        if not self._exec_failure:
+            self._ssh.interactive_terminal_exec_command(self._tty,
+                                                        'quit',
+                                                        self.__LINUX_PROMPT)
         self._ssh.interactive_terminal_close(self._tty)
 
     def vat_terminal_exec_cmd_from_template(self, vat_template_file, **args):
