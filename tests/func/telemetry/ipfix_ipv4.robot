@@ -42,7 +42,6 @@
 | ${dut1_to_tg_ip}= | 192.168.1.1
 | ${tg_to_dut1_ip}= | 192.168.1.2
 | ${dut2_to_dut1_ip}= | 192.168.2.1
-| ${route_ip}= | 16.0.0.1
 | ${prefix_length}= | 24
 | ${ip_version}= | ip4
 | ${port}= | 80
@@ -63,23 +62,20 @@
 | | ... | ${dut1_to_tg} | ${dut1_to_tg_ip} | ${prefix_length}
 | | And Add ARP on DUT | ${dut1_node} | ${dut1_to_tg} | ${tg_to_dut1_ip}
 | | ... | ${tg_to_dut1_mac}
-| | And Vpp Route Add
-| | ... | ${dut1_node} | ${route_ip} | 32
-| | ... | ${tg_to_dut1_ip} | ${dut1_to_tg} | resolve_attempts=${NONE}
 | | ${table_index} | ${skip_n} | ${match_n}=
 | | ... | And VPP creates classify table L3 | ${dut1_node} | ${ip_version} | src
 | | And VPP configures classify session L3 | ${dut1_node} | permit
 | | ... | ${table_index} | ${skip_n} | ${match_n} | ${ip_version} | src
-| | ... | ${route_ip}
+| | ... | ${tg_to_dut1_ip}
 | | When Assign interface to flow table | ${dut1_node} | ${dut1_to_tg}
 | | ... | ${table_index} | ip_version=${ip_version}
-| | And Setup IPFIX exporter | ${dut1_node} | ${route_ip}
+| | And Setup IPFIX exporter | ${dut1_node} | ${tg_to_dut1_ip}
 | | ... | ${dut1_to_tg_ip} | interval=5
 | | And Set IPFIX stream | ${dut1_node} | ${1}
 | | And Assign classify table to exporter | ${dut1_node} | ${table_index}
 | | ... | ${ip_version}
 | | Then Send packets and verify IPFIX | ${tg_node} | ${dut1_node}
-| | ... | ${tg_to_dut1} | ${dut1_to_tg} | ${route_ip} | ${dut1_to_tg_ip}
+| | ... | ${tg_to_dut1} | ${dut1_to_tg} | ${tg_to_dut1_ip} | ${dut1_to_tg_ip}
 | | ... | count=0
 
 | TC02: DUT reports packet flow for traffic by source address
@@ -94,25 +90,22 @@
 | | And Interfaces in 3-node path are up
 | | And Set Interface Address | ${dut1_node}
 | | ... | ${dut1_to_tg} | ${dut1_to_tg_ip} | ${prefix_length}
-| | And Add ARP on DUT | ${dut1_node} | ${dut1_to_tg} | ${route_ip}
+| | And Add ARP on DUT | ${dut1_node} | ${dut1_to_tg} | ${tg_to_dut1_ip}
 | | ... | ${tg_to_dut1_mac}
-| | And Vpp Route Add
-| | ... | ${dut1_node} | ${route_ip} | 32
-| | ... | ${tg_to_dut1_ip} | ${dut1_to_tg} | resolve_attempts=${NONE}
 | | ${table_index} | ${skip_n} | ${match_n}=
 | | ... | And VPP creates classify table L3 | ${dut1_node} | ${ip_version} | src
 | | And VPP configures classify session L3 | ${dut1_node} | permit
 | | ... | ${table_index} | ${skip_n} | ${match_n} | ${ip_version} | src
-| | ... | ${route_ip}
+| | ... | ${tg_to_dut1_ip}
 | | When Assign interface to flow table | ${dut1_node} | ${dut1_to_tg}
 | | ... | ${table_index} | ip_version=${ip_version}
-| | And Setup IPFIX exporter | ${dut1_node} | ${route_ip}
+| | And Setup IPFIX exporter | ${dut1_node} | ${tg_to_dut1_ip}
 | | ... | ${dut1_to_tg_ip} | interval=5
 | | And Set IPFIX stream | ${dut1_node} | ${1}
 | | And Assign classify table to exporter | ${dut1_node} | ${table_index}
 | | ... | ${ip_version}
 | | Then Send packets and verify IPFIX | ${tg_node} | ${dut1_node}
-| | ... | ${tg_to_dut1} | ${dut1_to_tg} | ${route_ip} | ${dut1_to_tg_ip}
+| | ... | ${tg_to_dut1} | ${dut1_to_tg} | ${tg_to_dut1_ip} | ${dut1_to_tg_ip}
 
 | TC03: DUT reports packet flow for traffic with local destination address
 | | [Documentation]
@@ -127,11 +120,8 @@
 | | And Interfaces in 3-node path are up
 | | And Set Interface Address | ${dut1_node}
 | | ... | ${dut1_to_tg} | ${dut1_to_tg_ip} | ${prefix_length}
-| | And Add ARP on DUT | ${dut1_node} | ${dut1_to_tg} | ${route_ip}
+| | And Add ARP on DUT | ${dut1_node} | ${dut1_to_tg} | ${tg_to_dut1_ip}
 | | ... | ${tg_to_dut1_mac}
-| | And Vpp Route Add
-| | ... | ${dut1_node} | ${route_ip} | 32
-| | ... | ${tg_to_dut1_ip} | ${dut1_to_tg} | resolve_attempts=${NONE}
 | | ${table_index} | ${skip_n} | ${match_n}=
 | | ... | And VPP creates classify table L3 | ${dut1_node} | ${ip_version} | dst
 | | And VPP configures classify session L3 | ${dut1_node} | permit
@@ -139,13 +129,13 @@
 | | ... | ${dut1_to_tg_ip}
 | | When Assign interface to flow table | ${dut1_node} | ${dut1_to_tg}
 | | ... | ${table_index} | ip_version=${ip_version}
-| | And Setup IPFIX exporter | ${dut1_node} | ${route_ip}
+| | And Setup IPFIX exporter | ${dut1_node} | ${tg_to_dut1_ip}
 | | ... | ${dut1_to_tg_ip} | interval=5
 | | And Set IPFIX stream | ${dut1_node} | ${1}
 | | And Assign classify table to exporter | ${dut1_node} | ${table_index}
 | | ... | ${ip_version}
 | | Then Send packets and verify IPFIX | ${tg_node} | ${dut1_node}
-| | ... | ${tg_to_dut1} | ${dut1_to_tg} | ${route_ip} | ${dut1_to_tg_ip}
+| | ... | ${tg_to_dut1} | ${dut1_to_tg} | ${tg_to_dut1_ip} | ${dut1_to_tg_ip}
 
 | TC04: DUT reports packet flow for traffic with remote destination address
 | | [Documentation]
@@ -161,11 +151,8 @@
 | | And Interfaces in 3-node path are up
 | | And Set Interface Address | ${dut1_node}
 | | ... | ${dut1_to_tg} | ${dut1_to_tg_ip} | ${prefix_length}
-| | And Add ARP on DUT | ${dut1_node} | ${dut1_to_tg} | ${route_ip}
+| | And Add ARP on DUT | ${dut1_node} | ${dut1_to_tg} | ${tg_to_dut1_ip}
 | | ... | ${tg_to_dut1_mac}
-| | And Vpp Route Add
-| | ... | ${dut1_node} | ${route_ip} | 32
-| | ... | ${tg_to_dut1_ip} | ${dut1_to_tg} | resolve_attempts=${NONE}
 | | And Add ARP on DUT | ${dut1_node} | ${dut1_to_dut2} | ${dut2_to_dut1_ip}
 | | ... | ${dut2_to_dut1_mac}
 | | ${table_index} | ${skip_n} | ${match_n}=
@@ -175,13 +162,13 @@
 | | ... | ${dut2_to_dut1_ip}
 | | When Assign interface to flow table | ${dut1_node} | ${dut1_to_tg}
 | | ... | ${table_index} | ip_version=${ip_version}
-| | And Setup IPFIX exporter | ${dut1_node} | ${route_ip}
+| | And Setup IPFIX exporter | ${dut1_node} | ${tg_to_dut1_ip}
 | | ... | ${dut1_to_tg_ip} | interval=5
 | | And Set IPFIX stream | ${dut1_node} | ${1}
 | | And Assign classify table to exporter | ${dut1_node} | ${table_index}
 | | ... | ${ip_version}
 | | Then Send packets and verify IPFIX | ${tg_node} | ${dut1_node}
-| | ... | ${tg_to_dut1} | ${dut1_to_tg} | ${route_ip} | ${dut2_to_dut1_ip}
+| | ... | ${tg_to_dut1} | ${dut1_to_tg} | ${tg_to_dut1_ip} | ${dut2_to_dut1_ip}
 
 | TC05: DUT reports packet flow for traffic by source and destination port
 | | [Documentation]
@@ -196,24 +183,24 @@
 | | And Interfaces in 3-node path are up
 | | And Set Interface Address | ${dut1_node}
 | | ... | ${dut1_to_tg} | ${dut1_to_tg_ip} | ${prefix_length}
-| | And Add ARP on DUT | ${dut1_node} | ${dut1_to_tg} | ${route_ip}
+| | And Add ARP on DUT | ${dut1_node} | ${dut1_to_tg} | ${tg_to_dut1_ip}
 | | ... | ${tg_to_dut1_mac}
 | | ${table_index} | ${skip_n} | ${match_n}=
 | | ... | And VPP creates classify table L3 | ${dut1_node} | ${ip_version}
 | | ... | src proto l4 src_port dst_port
 | | And VPP configures classify session generic | ${dut1_node}
 | | ... | acl-hit-next permit | ${table_index} | ${skip_n} | ${match_n}
-| | ... | l3 ${ip_version} src ${route_ip}
+| | ... | l3 ${ip_version} src ${tg_to_dut1_ip}
 | | ... | proto 6 l4 src_port ${port} dst_port ${port}
 | | When Assign interface to flow table | ${dut1_node} | ${dut1_to_tg}
 | | ... | ${table_index} | ip_version=${ip_version}
-| | And Setup IPFIX exporter | ${dut1_node} | ${route_ip}
+| | And Setup IPFIX exporter | ${dut1_node} | ${tg_to_dut1_ip}
 | | ... | ${dut1_to_tg_ip} | interval=5
 | | And Set IPFIX stream | ${dut1_node} | ${1}
 | | And Assign classify table to exporter | ${dut1_node} | ${table_index}
 | | ... | ${ip_version}
 | | Then Send packets and verify IPFIX | ${tg_node} | ${dut1_node}
-| | ... | ${tg_to_dut1} | ${dut1_to_tg} | ${route_ip} | ${dut1_to_tg_ip}
+| | ... | ${tg_to_dut1} | ${dut1_to_tg} | ${tg_to_dut1_ip} | ${dut1_to_tg_ip}
 | | ... | port=${port}
 
 | TC06: DUT reports packet flow with a large number of packets
@@ -228,25 +215,22 @@
 | | And Interfaces in 3-node path are up
 | | And Set Interface Address | ${dut1_node}
 | | ... | ${dut1_to_tg} | ${dut1_to_tg_ip} | ${prefix_length}
-| | And Add ARP on DUT | ${dut1_node} | ${dut1_to_tg} | ${route_ip}
+| | And Add ARP on DUT | ${dut1_node} | ${dut1_to_tg} | ${tg_to_dut1_ip}
 | | ... | ${tg_to_dut1_mac}
-| | And Vpp Route Add
-| | ... | ${dut1_node} | ${route_ip} | 32
-| | ... | ${tg_to_dut1_ip} | ${dut1_to_tg} | resolve_attempts=${NONE}
 | | ${table_index} | ${skip_n} | ${match_n}=
 | | ... | And VPP creates classify table L3 | ${dut1_node} | ${ip_version} | src
 | | And VPP configures classify session L3 | ${dut1_node} | permit
 | | ... | ${table_index} | ${skip_n} | ${match_n} | ${ip_version} | src
-| | ... | ${route_ip}
+| | ... | ${tg_to_dut1_ip}
 | | When Assign interface to flow table | ${dut1_node} | ${dut1_to_tg}
 | | ... | ${table_index} | ip_version=${ip_version}
-| | And setup IPFIX exporter | ${dut1_node} | ${route_ip} | ${dut1_to_tg_ip}
-| | ... | interval=5
+| | And setup IPFIX exporter | ${dut1_node} | ${tg_to_dut1_ip}
+| | ... | ${dut1_to_tg_ip} | interval=5
 | | And Set IPFIX stream | ${dut1_node} | ${1}
 | | And Assign classify table to exporter | ${dut1_node} | ${table_index}
 | | ... | ${ip_version}
 | | Then Send packets and verify IPFIX | ${tg_node} | ${dut1_node}
-| | ... | ${tg_to_dut1} | ${dut1_to_tg} | ${route_ip} | ${dut1_to_tg_ip}
+| | ... | ${tg_to_dut1} | ${dut1_to_tg} | ${tg_to_dut1_ip} | ${dut1_to_tg_ip}
 | | ... | count=20000 | timeout=10
 
 | TC07: DUT reports packet flow when multiple sessions are configured
@@ -263,28 +247,25 @@
 | | And Interfaces in 3-node path are up
 | | And Set Interface Address | ${dut1_node}
 | | ... | ${dut1_to_tg} | ${dut1_to_tg_ip} | ${prefix_length}
-| | And Add ARP on DUT | ${dut1_node} | ${dut1_to_tg} | ${route_ip}
+| | And Add ARP on DUT | ${dut1_node} | ${dut1_to_tg} | ${tg_to_dut1_ip}
 | | ... | ${tg_to_dut1_mac}
-| | And Vpp Route Add
-| | ... | ${dut1_node} | ${route_ip} | 32
-| | ... | ${tg_to_dut1_ip} | ${dut1_to_tg} | resolve_attempts=${NONE}
 | | ${table_index} | ${skip_n} | ${match_n}=
 | | ... | And VPP creates classify table L3 | ${dut1_node} | ${ip_version}
 | | ... | src proto l4 src_port dst_port
 | | :FOR | ${index} | IN RANGE | ${sessions}
 | | | VPP configures classify session generic | ${dut1_node}
 | | | ... | acl-hit-next permit | ${table_index} | ${skip_n} | ${match_n}
-| | | ... | l3 ${ip_version} src ${route_ip}
+| | | ... | l3 ${ip_version} src ${tg_to_dut1_ip}
 | | | ... | proto 6 l4 src_port ${index} dst_port ${index}
 | | When Assign interface to flow table | ${dut1_node} | ${dut1_to_tg}
 | | ... | ${table_index} | ip_version=${ip_version}
-| | And setup IPFIX exporter | ${dut1_node} | ${route_ip}
+| | And setup IPFIX exporter | ${dut1_node} | ${tg_to_dut1_ip}
 | | ... | ${dut1_to_tg_ip}
 | | ... | mtu=1450 | interval=5
 | | And Set IPFIX stream | ${dut1_node} | ${1}
 | | And Assign classify table to exporter | ${dut1_node} | ${table_index}
 | | ... | ${ip_version}
 | | Then Send session sweep and verify IPFIX | ${tg_node} | ${dut1_node}
-| | ... | ${tg_to_dut1} | ${dut1_to_tg} | ${route_ip} | ${dut1_to_tg_ip}
+| | ... | ${tg_to_dut1} | ${dut1_to_tg} | ${tg_to_dut1_ip} | ${dut1_to_tg_ip}
 | | ... | ${sessions} | timeout=10 | count=3
 # TODO: DUT reports packet flow when ACL is configured with wildcards
