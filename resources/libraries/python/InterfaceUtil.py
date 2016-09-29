@@ -913,3 +913,46 @@ class InterfaceUtil(object):
         else:
             cmd = 'ip link set {} address {}'.format(interface, mac)
         exec_cmd_no_error(node, cmd, sudo=True)
+
+    @staticmethod
+    def add_del_ipsec_gre_interface(node, src_ip, dst_ip, local_sa_id,
+                                remote_sa_id, del_int=False, up=True):
+        """
+        Add/Del IPSec-GRE interface. Default to add and bring interface up.
+
+        :param node: VPP node.
+        :param src_ip: Source IP.
+        :param dst_ip: Destination IP.
+        :param local_sa_id: Local SA ID.
+        :param remote_sa_id: Remote SA ID.
+        :param del_int: Delete interface (Optional).
+        :param up: Bring interface up/down (Optional).
+        :type node: dict
+        :type src_ip: str
+        :type dst_ip: str
+        :type local_sa_id: int
+        :type remote_sa_id: int
+        :type del_int: bool
+        :type up: bool
+        :return: Index of newly created interface.
+        """
+        if del_int:
+            delete = 'del'
+        else:
+            delete = ''
+        with VatTerminal(node) as vat:
+            output = vat.vat_terminal_exec_cmd_from_template(
+                "/ipsec/add_del_ipsec_gre_tunnel.vat",
+                src=src_ip,
+                dst=dst_ip,
+                local_sa_id=local_sa_id,
+                remote_sa_id=remote_sa_id,
+                delete=delete)
+        output = output[0]
+
+        if output["retval"] != 0:
+            raise RuntimeError("Could not create IPSec-GRE interface.")
+        sw_index = output['sw_if_index']
+        if up:
+            InterfaceUtil.set_interface_state(node, sw_index, 'up')
+        return sw_index
