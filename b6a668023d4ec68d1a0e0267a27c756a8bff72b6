@@ -1,0 +1,372 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a1d315d_cdbe86d4",
+        "filename": "resources/libraries/python/Routing.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-09-30T09:10:14Z",
+      "side": 1,
+      "message": "missing space before value",
+      "range": {
+        "startLine": 78,
+        "startChar": 24,
+        "endLine": 78,
+        "endChar": 26
+      },
+      "revId": "b6a668023d4ec68d1a0e0267a27c756a8bff72b6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_0d9b5e73",
+        "filename": "resources/libraries/robot/traffic.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 393,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-09-30T09:10:14Z",
+      "side": 1,
+      "message": "it is",
+      "range": {
+        "startLine": 393,
+        "startChar": 68,
+        "endLine": 393,
+        "endChar": 70
+      },
+      "revId": "b6a668023d4ec68d1a0e0267a27c756a8bff72b6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_ed894227",
+        "filename": "resources/libraries/robot/traffic.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 394,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-09-30T09:10:14Z",
+      "side": 1,
+      "message": "into",
+      "range": {
+        "startLine": 394,
+        "startChar": 22,
+        "endLine": 394,
+        "endChar": 24
+      },
+      "revId": "b6a668023d4ec68d1a0e0267a27c756a8bff72b6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_4d78362b",
+        "filename": "resources/libraries/robot/traffic.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 394,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-09-30T09:10:14Z",
+      "side": 1,
+      "message": "Missing full stop at the end of the sentence.",
+      "range": {
+        "startLine": 394,
+        "startChar": 29,
+        "endLine": 394,
+        "endChar": 34
+      },
+      "revId": "b6a668023d4ec68d1a0e0267a27c756a8bff72b6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_8db88ee6",
+        "filename": "resources/libraries/robot/traffic.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 403,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-09-30T09:10:14Z",
+      "side": 1,
+      "message": "TG-if2 ?",
+      "range": {
+        "startLine": 403,
+        "startChar": 36,
+        "endLine": 403,
+        "endChar": 42
+      },
+      "revId": "b6a668023d4ec68d1a0e0267a27c756a8bff72b6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_4dca766f",
+        "filename": "resources/libraries/robot/traffic.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 427,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-09-30T09:10:14Z",
+      "side": 1,
+      "message": "line too long",
+      "range": {
+        "startLine": 427,
+        "startChar": 80,
+        "endLine": 427,
+        "endChar": 81
+      },
+      "revId": "b6a668023d4ec68d1a0e0267a27c756a8bff72b6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_0dc47e5d",
+        "filename": "resources/traffic_scripts/send_icmp_check_multipath.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-09-30T09:10:14Z",
+      "side": 1,
+      "message": "it is",
+      "range": {
+        "startLine": 47,
+        "startChar": 53,
+        "endLine": 47,
+        "endChar": 55
+      },
+      "revId": "b6a668023d4ec68d1a0e0267a27c756a8bff72b6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_eda262ad",
+        "filename": "resources/traffic_scripts/send_icmp_check_multipath.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-09-30T09:10:14Z",
+      "side": 1,
+      "message": "into",
+      "range": {
+        "startLine": 47,
+        "startChar": 64,
+        "endLine": 47,
+        "endChar": 66
+      },
+      "revId": "b6a668023d4ec68d1a0e0267a27c756a8bff72b6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_2dc5fa3b",
+        "filename": "tests/func/ipv4/ipv4_multipath_routing.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-09-30T09:10:14Z",
+      "side": 1,
+      "message": "unused imports",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 55
+      },
+      "revId": "b6a668023d4ec68d1a0e0267a27c756a8bff72b6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_edb702d7",
+        "filename": "tests/func/ipv4/ipv4_multipath_routing.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-09-30T09:10:14Z",
+      "side": 1,
+      "message": "DOUBLE_LINK",
+      "range": {
+        "startLine": 26,
+        "startChar": 40,
+        "endLine": 26,
+        "endChar": 51
+      },
+      "revId": "b6a668023d4ec68d1a0e0267a27c756a8bff72b6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_cdba06c0",
+        "filename": "tests/func/ipv4/ipv4_multipath_routing.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-09-30T09:10:14Z",
+      "side": 1,
+      "message": "line too long",
+      "range": {
+        "startLine": 39,
+        "startChar": 80,
+        "endLine": 39,
+        "endChar": 81
+      },
+      "revId": "b6a668023d4ec68d1a0e0267a27c756a8bff72b6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_ade8eab4",
+        "filename": "tests/func/ipv4/ipv4_multipath_routing.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-09-30T09:10:14Z",
+      "side": 1,
+      "message": "into",
+      "range": {
+        "startLine": 62,
+        "startChar": 60,
+        "endLine": 62,
+        "endChar": 62
+      },
+      "revId": "b6a668023d4ec68d1a0e0267a27c756a8bff72b6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_eddee210",
+        "filename": "tests/func/ipv6/ipv6_multipath_routing.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-09-30T09:10:14Z",
+      "side": 1,
+      "message": "unused imports",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 55
+      },
+      "revId": "b6a668023d4ec68d1a0e0267a27c756a8bff72b6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_6dcbf253",
+        "filename": "tests/func/ipv6/ipv6_multipath_routing.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-09-30T09:10:14Z",
+      "side": 1,
+      "message": "DOUBLE_LINK",
+      "range": {
+        "startLine": 26,
+        "startChar": 40,
+        "endLine": 26,
+        "endChar": 51
+      },
+      "revId": "b6a668023d4ec68d1a0e0267a27c756a8bff72b6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_8db40ed2",
+        "filename": "tests/func/ipv6/ipv6_multipath_routing.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-09-30T09:10:14Z",
+      "side": 1,
+      "message": "line too long",
+      "range": {
+        "startLine": 39,
+        "startChar": 80,
+        "endLine": 39,
+        "endChar": 81
+      },
+      "revId": "b6a668023d4ec68d1a0e0267a27c756a8bff72b6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_4dc6f64a",
+        "filename": "tests/func/ipv6/ipv6_multipath_routing.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-09-30T09:10:14Z",
+      "side": 1,
+      "message": "into",
+      "range": {
+        "startLine": 59,
+        "startChar": 60,
+        "endLine": 59,
+        "endChar": 62
+      },
+      "revId": "b6a668023d4ec68d1a0e0267a27c756a8bff72b6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
