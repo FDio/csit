@@ -14,7 +14,7 @@
 *** Settings ***
 | Resource | resources/libraries/robot/performance.robot
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | PERFTEST_LONG
-| ...        | FIB_2M | NIC_Intel-X520-DA2
+| ...        | FIB_2M | NIC_Intel-X520-DA2 | SKIP_ALL
 | Suite Setup | 3-node Performance Suite Setup with DUT's NIC model
 | ... | L3 | Intel-X520-DA2
 | Suite Teardown | 3-node Performance Suite Teardown

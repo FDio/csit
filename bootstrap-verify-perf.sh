@@ -28,7 +28,7 @@ VPP_REPO_URL=$(cat ${SCRIPT_DIR}/VPP_REPO_URL)
 RESERVATION_DIR="/tmp/reservation_dir"
 INSTALLATION_DIR="/tmp/install_dir"
 
-PYBOT_ARGS="-W 150"
+PYBOT_ARGS="-W 150 --exclude SKIP_ALL"
 
 ARCHIVE_ARTIFACTS=(log.html output.xml report.html output_perf_data.xml)
 
