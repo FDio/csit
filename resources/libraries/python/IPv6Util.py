@@ -46,7 +46,7 @@ class IPv6Util(object):
         cmd = "ping6 -c {c} -s {s} -W {W} {dst}".format(c=count, s=data_size,
                                                         W=timeout,
                                                         dst=dst_addr)
-        (ret_code, stdout, _) = ssh.exec_command(cmd)
+        (_, stdout, _) = ssh.exec_command(cmd)
 
         regex = re.compile(r'(\d+) packets transmitted, (\d+) received')
         match = regex.search(stdout)
@@ -99,9 +99,9 @@ class IPv6Util(object):
                 host = port.get('node')
                 dev = port.get('if')
                 if host == node['host'] and dev == interface:
-                    ip = port.get('addr')
-                    if ip is not None:
-                        return ip
+                    ip_addr = port.get('addr')
+                    if ip_addr is not None:
+                        return ip_addr
                     else:
                         raise Exception(
                             'Node {n} port {p} IPv6 address is not set'.format(
