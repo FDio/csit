@@ -28,6 +28,15 @@ class IPv4Util(object):
     @keyword('From node "${node}" interface "${port}" ARP-ping '
              'IPv4 address "${ip_address}"')
     def arp_ping(node, interface, ip_address):
+        """Send an ARP ping from the specified node.
+
+        :param node: Node in topology.
+        :param ip_address: Destination IP address for the ARP packet.
+        :param interface: Name of an interface to send the ARP packet from.
+        :type node: dict
+        :type ip_address: str
+        :type interface: str
+        """
         log.debug('From node {} interface {} ARP-ping IPv4 address {}'.
                   format(Topology.get_node_hostname(node),
                          interface, ip_address))
@@ -89,8 +98,8 @@ class IPv4Util(object):
         :rtype: int
         """
         for net in nodes_addr.values():
-            for p in net['ports'].values():
-                if p['node'] == node['host'] and p['if'] == port:
+            for net_port in net['ports'].values():
+                if net_port['node'] == node['host'] and net_port['if'] == port:
                     return net['prefix']
 
         raise Exception('Subnet not found for node {n} port {p}'.
@@ -112,8 +121,8 @@ class IPv4Util(object):
         :rtype: str
         """
         for net in nodes_addr.values():
-            for p in net['ports'].values():
-                if p['node'] == node['host'] and p['if'] == port:
+            for net_port in net['ports'].values():
+                if net_port['node'] == node['host'] and net_port['if'] == port:
                     return net['net_addr']
 
         raise Exception('Subnet not found for node {n} port {p}'.
@@ -189,32 +198,32 @@ class IPv4Util(object):
                 interface, ping_count, destination)
         else:
             cmd = 'ping -c{0} {1}'.format(ping_count, destination)
-        rc, stdout, stderr = exec_cmd(node, cmd, sudo=True)
-        if rc != 0:
+        ret_code, _, _ = exec_cmd(node, cmd, sudo=True)
+        if ret_code != 0:
             raise RuntimeError("Ping Not Successful")
 
     @staticmethod
-    def set_linux_interface_arp(node, interface, ip, mac, namespace=None):
+    def set_linux_interface_arp(node, interface, ip_addr, mac, namespace=None):
         """Set arp on interface in linux.
 
         :param node: Node where to execute command.
         :param interface: Interface in namespace.
-        :param ip: IP for arp.
+        :param ip_addr: IP address for ARP entry.
         :param mac: MAC address.
         :param namespace: Execute command in namespace. Optional
         :type node: dict
         :type interface: str
-        :type ip: str
+        :type ip_addr: str
         :type mac: str
         :type namespace: str
         :raises RuntimeError: Could not set ARP properly.
         """
         if namespace is not None:
             cmd = 'ip netns exec {} arp -i {} -s {} {}'.format(
-                namespace, interface, ip, mac)
+                namespace, interface, ip_addr, mac)
         else:
-            cmd = 'arp -i {} -s {} {}'.format(interface, ip, mac)
-        rc, _, stderr = exec_cmd(node, cmd, sudo=True)
-        if rc != 0:
+            cmd = 'arp -i {} -s {} {}'.format(interface, ip_addr, mac)
+        ret_code, _, stderr = exec_cmd(node, cmd, sudo=True)
+        if ret_code != 0:
             raise RuntimeError("Arp set not successful, reason:{}".
                                format(stderr))
