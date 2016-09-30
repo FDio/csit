@@ -173,7 +173,7 @@ class VatJsonUtil(object):
         :type err_msg: str
         :raises RuntimeError: If VAT command return value is incorrect.
         """
-        if type(vat_out) is dict:
+        if isinstance(vat_out, dict):
             retval = vat_out.get('retval')
             if retval is not None:
                 if retval != exp_retval:

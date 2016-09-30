@@ -101,23 +101,23 @@ class Routing(object):
                                                     where=place)
 
     @staticmethod
-    def add_route(node, ip, prefix, gw, namespace=None):
+    def add_route(node, ip_addr, prefix, gateway, namespace=None):
         """Add route in namespace.
 
         :param node: Node where to execute command.
-        :param ip: Route destination IP.
+        :param ip_addr: Route destination IP address.
         :param prefix: IP prefix.
-        :param namespace: Execute command in namespace. Optional
-        :param gw: Gateway.
+        :param namespace: Execute command in namespace. Optional.
+        :param gateway: Gateway address.
         :type node: dict
-        :type ip: str
+        :type ip_addr: str
         :type prefix: int
-        :type gw: str
+        :type gateway: str
         :type namespace: str
         """
         if namespace is not None:
             cmd = 'ip netns exec {} ip route add {}/{} via {}'.format(
-                namespace, ip, prefix, gw)
+                namespace, ip_addr, prefix, gateway)
         else:
-            cmd = 'ip route add {}/{} via {}'.format(ip, prefix, gw)
+            cmd = 'ip route add {}/{} via {}'.format(ip_addr, prefix, gateway)
         exec_cmd_no_error(node, cmd, sudo=True)

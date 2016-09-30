@@ -217,8 +217,8 @@ class QemuUtils(object):
         (ret_code, stdout, stderr) = self._ssh.exec_command(qmp_cmd)
         if 0 != int(ret_code):
             logger.debug('QMP execute failed {0}'.format(stderr))
-            raise RuntimeError('QMP execute "{0}" failed on {1}'.format(cmd,
-                self._node['host']))
+            raise RuntimeError('QMP execute "{0}"'
+                               ' failed on {1}'.format(cmd, self._node['host']))
         logger.trace(stdout)
         # Skip capabilities negotiation messages.
         out_list = stdout.splitlines()
@@ -235,8 +235,8 @@ class QemuUtils(object):
         (ret_code, stdout, stderr) = self._ssh.exec_command(qga_cmd)
         if 0 != int(ret_code):
             logger.debug('QGA execute failed {0}'.format(stderr))
-            raise RuntimeError('QGA execute "{0}" failed on {1}'.format(cmd,
-                self._node['host']))
+            raise RuntimeError('QGA execute "{0}" '
+                               'failed on {1}'.format(cmd, self._node['host']))
         logger.trace(stdout)
         if not stdout:
             return {}
@@ -255,8 +255,8 @@ class QemuUtils(object):
         (ret_code, stdout, stderr) = self._ssh.exec_command(qga_cmd)
         if 0 != int(ret_code):
             logger.debug('QGA execute failed {0}'.format(stderr))
-            raise RuntimeError('QGA execute "{0}" failed on {1}'.format(cmd,
-                self._node['host']))
+            raise RuntimeError('QGA execute "{0}"'
+                               ' failed on {1}'.format(cmd, self._node['host']))
         logger.trace(stdout)
         if not stdout:
             return {}
@@ -353,8 +353,10 @@ class QemuUtils(object):
                         self._node['host']))
             # If we do not want to allocate dynamicaly end with error
             else:
-                raise RuntimeError('Not enough free huge pages: {0}, '
-                    '{1} MB'.format(huge_free, huge_free * huge_size))
+                raise RuntimeError(
+                    'Not enough free huge pages: {0}, '
+                    '{1} MB'.format(huge_free, huge_free * huge_size)
+                )
         # Check if huge pages mount point exist
         has_huge_mnt = False
         (_, output, _) = self._ssh.exec_command('cat /proc/mounts')
@@ -395,7 +397,7 @@ class QemuUtils(object):
         # Memory and huge pages
         mem = '-object memory-backend-file,id=mem,size={0}M,mem-path={1},' \
             'share=on -m {0} -numa node,memdev=mem'.format(
-            self._qemu_opt.get('mem_size'), self._qemu_opt.get('huge_mnt'))
+                self._qemu_opt.get('mem_size'), self._qemu_opt.get('huge_mnt'))
 
         # By default check only if hugepages are availbale.
         # If 'huge_allocate' is set to true try to allocate as well.
@@ -406,7 +408,7 @@ class QemuUtils(object):
         # Setup serial console
         serial = '-chardev socket,host=127.0.0.1,port={0},id=gnc0,server,' \
             'nowait -device isa-serial,chardev=gnc0'.format(
-            self._qemu_opt.get('serial_port'))
+                self._qemu_opt.get('serial_port'))
         # Setup QGA via chardev (unix socket) and isa-serial channel
         qga = '-chardev socket,path=/tmp/qga.sock,server,nowait,id=qga0 ' \
             '-device isa-serial,chardev=qga0'
@@ -443,15 +445,18 @@ class QemuUtils(object):
         out = self._qemu_qmp_exec('system_powerdown')
         err = out.get('error')
         if err is not None:
-            raise RuntimeError('QEMU system powerdown failed on {0}, '
-                'error: {1}'.format(self._node['host'], json.dumps(err)))
+            raise RuntimeError(
+                'QEMU system powerdown failed on {0}, '
+                'error: {1}'.format(self._node['host'], json.dumps(err))
+            )
 
     def qemu_system_reset(self):
         """Reset the system."""
         out = self._qemu_qmp_exec('system_reset')
         err = out.get('error')
         if err is not None:
-            raise RuntimeError('QEMU system reset failed on {0}, '
+            raise RuntimeError(
+                'QEMU system reset failed on {0}, '
                 'error: {1}'.format(self._node['host'], json.dumps(err)))
 
     def qemu_kill(self):
@@ -501,7 +506,8 @@ class QemuUtils(object):
             return ret.get('status')
         else:
             err = out.get('error')
-            raise RuntimeError('QEMU query-status failed on {0}, '
+            raise RuntimeError(
+                'QEMU query-status failed on {0}, '
                 'error: {1}'.format(self._node['host'], json.dumps(err)))
 
     @staticmethod

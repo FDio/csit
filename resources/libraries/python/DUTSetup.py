@@ -11,6 +11,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+"""DUT setup library."""
+
 from robot.api import logger
 
 from resources.libraries.python.topology import NodeType
@@ -20,6 +22,7 @@ from resources.libraries.python.VatExecutor import VatExecutor
 
 
 class DUTSetup(object):
+    """contains methods for setting up DUTs."""
     @staticmethod
     def start_vpp_service_on_all_duts(nodes):
         """Start up the VPP service on all nodes."""
@@ -74,6 +77,11 @@ class DUTSetup(object):
 
     @staticmethod
     def setup_dut(node):
+        """Run script over SSH to setup the DUT node.
+
+        :param node: DUT node to set up.
+        :type node: dict
+        """
         ssh = SSH()
         ssh.connect(node)
 

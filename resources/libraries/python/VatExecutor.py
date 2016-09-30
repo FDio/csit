@@ -11,6 +11,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+"""VAT executor library."""
+
 import json
 
 from robot.api import logger
@@ -39,6 +41,7 @@ def cleanup_vat_json_output(json_output):
 
 
 class VatExecutor(object):
+    """Contains methods for executing VAT commands on DUTs."""
     def __init__(self):
         self._stdout = None
         self._stderr = None
@@ -62,7 +65,7 @@ class VatExecutor(object):
                                                 Constants.RESOURCES_TPL_VAT,
                                                 vat_name)
         # TODO this overwrites the output if the vat script has been used twice
-        remote_file_out = remote_file_path + ".out"
+        # remote_file_out = remote_file_path + ".out"
 
         cmd = "sudo -S {vat} {json} < {input}".format(
             vat=Constants.VAT_BIN_NAME,
@@ -81,17 +84,29 @@ class VatExecutor(object):
         # self._delete_files(node, remote_file_path, remote_file_out)
 
     def execute_script_json_out(self, vat_name, node, timeout=10):
+        """Pass all arguments to 'execute_script' method, then cleanup returned
+        json output."""
         self.execute_script(vat_name, node, timeout, json_out=True)
         self._stdout = cleanup_vat_json_output(self._stdout)
 
     @staticmethod
     def _delete_files(node, *files):
+        """Use SSH to delete the specified files on node.
+
+        :param node: Node in topology.
+        :param files: Files to delete.
+        :type node: dict
+        :type files: iterable
+        """
+
         ssh = SSH()
         ssh.connect(node)
         files = " ".join([str(x) for x in files])
         ssh.exec_command("rm {0}".format(files))
 
     def script_should_have_failed(self):
+        """Read return code from last executed script and raise exception if the
+        script didn't fail."""
         if self._ret_code is None:
             raise Exception("First execute the script!")
         if self._ret_code == 0:
@@ -99,6 +114,8 @@ class VatExecutor(object):
                 "Script execution passed, but failure was expected")
 
     def script_should_have_passed(self):
+        """Read return code from last executed script and raise exception if the
+        script failed."""
         if self._ret_code is None:
             raise Exception("First execute the script!")
         if self._ret_code != 0:
@@ -106,9 +123,11 @@ class VatExecutor(object):
                 "Script execution failed, but success was expected")
 
     def get_script_stdout(self):
+        """Returns value of stdout from last executed script."""
         return self._stdout
 
     def get_script_stderr(self):
+        """Returns value of stderr from last executed script."""
         return self._stderr
 
     @staticmethod

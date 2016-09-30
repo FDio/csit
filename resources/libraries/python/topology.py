@@ -34,6 +34,7 @@ def load_topo_from_yaml():
     with open(topo_path) as work_file:
         return load(work_file.read())['nodes']
 
+
 # pylint: disable=invalid-name
 class NodeType(object):
     """Defines node types used in topology dictionaries."""
@@ -46,6 +47,7 @@ class NodeType(object):
 
 
 class NodeSubTypeTG(object):
+    """Defines node sub-type TG - traffic generator."""
     # T-Rex traffic generator
     TREX = 'TREX'
     # Moongen
@@ -278,7 +280,8 @@ class Topology(object):
         :return: Interface name of the interface connected to the given link.
         :rtype: str
         """
-        return Topology._get_interface_by_key_value(node, "vpp_sw_index", sw_index)
+        return Topology._get_interface_by_key_value(
+            node, "vpp_sw_index", sw_index)
 
     @staticmethod
     def get_interface_sw_index(node, iface_key):
@@ -578,7 +581,8 @@ class Topology(object):
         else:
             return connecting_links[0]
 
-    @keyword('Get egress interfaces name on "${node1}" for link with "${node2}"')
+    @keyword(
+        'Get egress interfaces name on "${node1}" for link with "${node2}"')
     def get_egress_interfaces_name_for_nodes(self, node1, node2):
         """Get egress interfaces on node1 for link with node2.
 

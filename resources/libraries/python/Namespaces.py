@@ -13,7 +13,7 @@
 
 """Linux namespace utilities library."""
 
-from resources.libraries.python.ssh import exec_cmd_no_error, exec_cmd, SSH
+from resources.libraries.python.ssh import exec_cmd_no_error, exec_cmd
 
 
 class Namespaces(object):
@@ -46,14 +46,14 @@ class Namespaces(object):
         :raises RuntimeError: Interface could not be attached.
         """
         cmd = 'ip link set {0} netns {1}'.format(interface, namespace)
-        (rc, _, stderr) = exec_cmd(node, cmd, timeout=5, sudo=True)
-        if rc != 0:
+        (ret_code, _, stderr) = exec_cmd(node, cmd, timeout=5, sudo=True)
+        if ret_code != 0:
             raise RuntimeError(
                 'Could not attach interface, reason:{}'.format(stderr))
         cmd = 'ip netns exec {} ip link set {} up'.format(
             namespace, interface)
-        (rc, _, stderr) = exec_cmd(node, cmd, timeout=5, sudo=True)
-        if rc != 0:
+        (ret_code, _, stderr) = exec_cmd(node, cmd, timeout=5, sudo=True)
+        if ret_code != 0:
             raise RuntimeError(
                 'Could not set interface state, reason:{}'.format(stderr))
 
@@ -91,6 +91,6 @@ class Namespaces(object):
         for namespace in self._namespaces:
             print "Cleaning namespace {}".format(namespace)
             cmd = 'ip netns delete {}'.format(namespace)
-            (rc, stdout, stderr) = exec_cmd(node, cmd, timeout=5, sudo=True)
-            if rc != 0:
+            (ret_code, _, _) = exec_cmd(node, cmd, timeout=5, sudo=True)
+            if ret_code != 0:
                 raise RuntimeError('Could not delete namespace')

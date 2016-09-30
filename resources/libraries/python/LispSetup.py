@@ -103,6 +103,8 @@ class LispRemoteMapping(object):
                                       seid=seid,
                                       seid_prefix=seid_prefix,
                                       rloc=rloc)
+
+
 class LispAdjacency(object):
     """Class for lisp adjacency API."""
 
@@ -117,7 +119,7 @@ class LispAdjacency(object):
         :param node: VPP node.
         :param vni: Vni.
         :param deid: Destination eid address.
-        :param deid_predix: Destination eid address prefix_len.
+        :param deid_prefix: Destination eid address prefix_len.
         :param seid: Source eid address.
         :param seid_prefix: Source eid address prefix_len.
         :type node: dict
@@ -144,7 +146,7 @@ class LispAdjacency(object):
         :param node: VPP node.
         :param vni: Vni.
         :param deid: Destination eid address.
-        :param deid_predix: Destination eid address prefix_len.
+        :param deid_prefix: Destination eid address prefix_len.
         :param seid: Source eid address.
         :param seid_prefix: Source eid address prefix_len.
         :type node: dict
@@ -216,11 +218,13 @@ class LispGpeForwardEntry(object):
 
     @staticmethod
     def add_lisp_gpe_forward_entry(node, *args):
+        """Not implemented"""
         # TODO: Implement when VPP-334 is fixed.
         pass
 
     @staticmethod
     def del_lisp_gpe_forward_entry(node, *args):
+        """Not implemented"""
         # TODO: Implement when VPP-334 is fixed.
         pass
 
