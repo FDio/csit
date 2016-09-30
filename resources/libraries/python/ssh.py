@@ -200,19 +200,23 @@ class SSH(object):
         chan.get_pty()
         chan.invoke_shell()
         chan.settimeout(int(time_out))
+        chan.set_combine_stderr(True)
 
         buf = ''
-        try:
-            with timeout(time_out, exception=RuntimeError):
-                while not buf.endswith(':~$ '):
-                    if chan.recv_ready():
-                        buf = chan.recv(4096)
-        except RuntimeError:
-            raise Exception('Open interactive terminal timeout.')
+        while not buf.endswith(':~$ '):
+            try:
+                chunk = chan.recv(self.__MAX_RECV_BUF)
+                if not chunk:
+                    break
+                buf += chunk
+                if chan.exit_status_ready():
+                    logger.error('Channel exit status ready')
+                    break
+            except socket.timeout:
+                raise Exception('Socket timeout: {0}'.format(buf))
         return chan
 
-    @staticmethod
-    def interactive_terminal_exec_command(chan, cmd, prompt,
+    def interactive_terminal_exec_command(self, chan, cmd, prompt,
                                           time_out=30):
         """Execute command on interactive terminal.
 
@@ -234,13 +238,17 @@ class SSH(object):
         """
         chan.sendall('{c}\n'.format(c=cmd))
         buf = ''
-        try:
-            with timeout(time_out, exception=RuntimeError):
-                while not buf.endswith(prompt):
-                    if chan.recv_ready():
-                        buf += chan.recv(4096)
-        except RuntimeError:
-            raise Exception("Exec '{c}' timeout.".format(c=cmd))
+        while not buf.endswith(prompt):
+            try:
+                chunk = chan.recv(self.__MAX_RECV_BUF)
+                if not chunk:
+                    break
+                buf += chunk
+                if chan.exit_status_ready():
+                    logger.error('Channel exit status ready')
+                    break
+            except socket.timeout:
+                raise Exception('Socket timeout: {0}'.format(buf))
         tmp = buf.replace(cmd.replace('\n', ''), '')
         return tmp.replace(prompt, '')
 
