@@ -68,7 +68,7 @@ import socket
 import select
 
 from scapy.all import ETH_P_IP, ETH_P_IPV6, ETH_P_ALL, ETH_P_ARP
-from scapy.all import Ether, ARP, Packet
+from scapy.all import Ether, ARP
 from scapy.layers.inet6 import IPv6
 
 __all__ = ['RxQueue', 'TxQueue', 'Interface', 'create_gratuitous_arp_request',
@@ -276,17 +276,32 @@ class TxQueue(PacketVerifier):
 
 
 class Interface(object):
+    """Class for network interfaces. Contains methods for sending and receiving
+     packets."""
     def __init__(self, if_name):
+        """Initialize the interface class.
+
+        :param if_name: Name of the interface.
+        :type if_name: str
+        """
         self.if_name = if_name
         self.sent_packets = []
         self.rxq = RxQueue(if_name)
         self.txq = TxQueue(if_name)
 
     def send_pkt(self, pkt):
+        """Send the provided packet out the interface."""
         self.sent_packets.append(pkt)
         self.txq.send(pkt)
 
     def recv_pkt(self, timeout=3):
+        """Read one packet from the interface's receive queue.
+
+        :param timeout: Timeout value in seconds.
+        :type timeout: int
+        :return: Ether() initialized object from packet data.
+        :rtype: scapy.Ether
+        """
         return self.rxq.recv(timeout, self.sent_packets)
 
 
