@@ -34,6 +34,7 @@ def load_topo_from_yaml():
     with open(topo_path) as work_file:
         return load(work_file.read())['nodes']
 
+
 # pylint: disable=invalid-name
 class NodeType(object):
     """Defines node types used in topology dictionaries."""
@@ -46,6 +47,7 @@ class NodeType(object):
 
 
 class NodeSubTypeTG(object):
+    """Defines node sub-type TG - traffic generator."""
     # T-Rex traffic generator
     TREX = 'TREX'
     # Moongen

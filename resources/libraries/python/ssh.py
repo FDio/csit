@@ -11,6 +11,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+"""Library for SSH connection management."""
+
 import StringIO
 from time import time, sleep
 
@@ -19,7 +21,7 @@ import paramiko
 from paramiko import RSAKey
 from paramiko.ssh_exception import SSHException
 from scp import SCPClient
-from interruptingcow import timeout
+from interruptingcow import timeout as icTimeout
 from robot.api import logger
 from robot.utils.asserts import assert_equal
 
@@ -29,6 +31,7 @@ __all__ = ["exec_cmd", "exec_cmd_no_error"]
 
 
 class SSH(object):
+    """Contains methods for managing and using SSH connections."""
 
     __MAX_RECV_BUF = 10*1024*1024
     __existing_connections = {}
@@ -39,6 +42,14 @@ class SSH(object):
 
     @staticmethod
     def _node_hash(node):
+        """Get IP address and port hash from node dictionary.
+
+        :param node: Node in topology.
+        :type node: dict
+        :return: IP address and port for the specified node.
+        :rtype: int
+        """
+
         return hash(frozenset([node['host'], node['port']]))
 
     def connect(self, node):
@@ -56,7 +67,7 @@ class SSH(object):
             pkey = None
             if 'priv_key' in node:
                 pkey = RSAKey.from_private_key(
-                        StringIO.StringIO(node['priv_key']))
+                    StringIO.StringIO(node['priv_key']))
 
             self._ssh = paramiko.SSHClient()
             self._ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
@@ -90,6 +101,8 @@ class SSH(object):
             ssh.close()
 
     def _reconnect(self):
+        """Close the SSH connection and open it again."""
+
         node = self._node
         self.disconnect(node)
         self.connect(node)
@@ -100,8 +113,8 @@ class SSH(object):
         """Execute SSH command on a new channel on the connected Node.
 
         :param cmd: Command to run on the Node.
-        :param timeout: Maximal time in seconds to wait while the command is
-        done. If is None then wait forever.
+        :param timeout: Maximal time in seconds to wait until the command is
+        done. If set to None then wait forever.
         :type cmd: str
         :type timeout: int
         :return return_code, stdout, stderr
@@ -203,7 +216,7 @@ class SSH(object):
 
         buf = ''
         try:
-            with timeout(time_out, exception=RuntimeError):
+            with icTimeout(time_out, exception=RuntimeError):
                 while not buf.endswith(':~$ '):
                     if chan.recv_ready():
                         buf = chan.recv(4096)
@@ -235,7 +248,7 @@ class SSH(object):
         chan.sendall('{c}\n'.format(c=cmd))
         buf = ''
         try:
-            with timeout(time_out, exception=RuntimeError):
+            with icTimeout(time_out, exception=RuntimeError):
                 while not buf.endswith(prompt):
                     if chan.recv_ready():
                         buf += chan.recv(4096)
@@ -283,8 +296,8 @@ def exec_cmd(node, cmd, timeout=600, sudo=False):
     ssh = SSH()
     try:
         ssh.connect(node)
-    except Exception, e:
-        logger.error("Failed to connect to node" + str(e))
+    except Exception as err:
+        logger.error("Failed to connect to node" + str(err))
         return None, None, None
 
     try:
@@ -293,8 +306,8 @@ def exec_cmd(node, cmd, timeout=600, sudo=False):
         else:
             (ret_code, stdout, stderr) = ssh.exec_command_sudo(cmd,
                                                                timeout=timeout)
-    except Exception, e:
-        logger.error(e)
+    except Exception as err:
+        logger.error(err)
         return None, None, None
 
     return ret_code, stdout, stderr
@@ -307,7 +320,7 @@ def exec_cmd_no_error(node, cmd, timeout=600, sudo=False):
 
     Returns (stdout, stderr).
     """
-    (rc, stdout, stderr) = exec_cmd(node, cmd, timeout=timeout, sudo=sudo)
-    assert_equal(rc, 0, 'Command execution failed: "{}"\n{}'.
+    (ret_code, stdout, stderr) = exec_cmd(node, cmd, timeout=timeout, sudo=sudo)
+    assert_equal(ret_code, 0, 'Command execution failed: "{}"\n{}'.
                  format(cmd, stderr))
     return stdout, stderr

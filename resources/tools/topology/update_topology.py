@@ -59,7 +59,7 @@ def ssh_no_error(ssh, cmd):
     :rtype: str
     """
     ret, stdo, stde = ssh.exec_command(cmd)
-    if 0 != ret:
+    if ret != 0:
         print 'Command execution failed: "{}"'.format(cmd)
         print 'stdout: {0}'.format(stdo)
         print 'stderr: {0}'.format(stde)

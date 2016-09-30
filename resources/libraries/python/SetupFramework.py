@@ -58,7 +58,7 @@ def pack_framework_dir():
     logger.debug(stderr)
 
     return_code = proc.wait()
-    if 0 != return_code:
+    if return_code != 0:
         raise Exception("Could not pack testing framework.")
 
     return file_name
@@ -99,7 +99,7 @@ def extract_tarball_at_node(tarball, node):
     cmd = 'sudo rm -rf {1}; mkdir {1} ; tar -zxf {0} -C {1}; ' \
         'rm -f {0}'.format(tarball, con.REMOTE_FW_DIR)
     (ret_code, _, stderr) = ssh.exec_command(cmd, timeout=30)
-    if 0 != ret_code:
+    if ret_code != 0:
         logger.error('Unpack error: {0}'.format(stderr))
         raise Exception('Failed to unpack {0} at node {1}'.format(
             tarball, node['host']))
@@ -116,7 +116,7 @@ def create_env_directory_at_node(node):
         '. env/bin/activate && '
         'pip install -r requirements.txt'
         .format(con.REMOTE_FW_DIR), timeout=100)
-    if 0 != ret_code:
+    if ret_code != 0:
         logger.error('Virtualenv creation error: {0}'.format(stdout + stderr))
         raise Exception('Virtualenv setup failed')
     else:
