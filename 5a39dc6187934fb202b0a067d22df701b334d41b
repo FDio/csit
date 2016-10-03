@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a1d315d_48aca435",
+        "filename": "resources/libraries/python/Classify.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-10-03T06:58:15Z",
+      "side": 1,
+      "message": "Disable R0913",
+      "range": {
+        "startLine": 121,
+        "startChar": 0,
+        "endLine": 123,
+        "endChar": 63
+      },
+      "revId": "5a39dc6187934fb202b0a067d22df701b334d41b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_68b1a08e",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-10-03T06:58:15Z",
+      "side": 1,
+      "message": "Capital",
+      "range": {
+        "startLine": 25,
+        "startChar": 7,
+        "endLine": 25,
+        "endChar": 8
+      },
+      "revId": "5a39dc6187934fb202b0a067d22df701b334d41b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_487384e7",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-10-03T06:58:15Z",
+      "side": 1,
+      "message": "This is not pylint compliant. Can we fix that c0122",
+      "range": {
+        "startLine": 35,
+        "startChar": 16,
+        "endLine": 35,
+        "endChar": 38
+      },
+      "revId": "5a39dc6187934fb202b0a067d22df701b334d41b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_28828894",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-10-03T06:58:15Z",
+      "side": 1,
+      "message": "This is not pylint compliant. Can we fix that c0122",
+      "range": {
+        "startLine": 93,
+        "startChar": 0,
+        "endLine": 93,
+        "endChar": 30
+      },
+      "revId": "5a39dc6187934fb202b0a067d22df701b334d41b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_c83554f8",
+        "filename": "resources/libraries/python/IPv4Util.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-10-03T06:58:15Z",
+      "side": 1,
+      "message": "ret_code, _, _ \u003d exec_cmd(node, cmd, sudo\u003dTrue)",
+      "range": {
+        "startLine": 201,
+        "startChar": 18,
+        "endLine": 201,
+        "endChar": 32
+      },
+      "revId": "5a39dc6187934fb202b0a067d22df701b334d41b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_682640d0",
+        "filename": "resources/libraries/python/IPv4Util.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 226,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-10-03T06:58:15Z",
+      "side": 1,
+      "message": "ret_code",
+      "range": {
+        "startLine": 226,
+        "startChar": 8,
+        "endLine": 226,
+        "endChar": 10
+      },
+      "revId": "5a39dc6187934fb202b0a067d22df701b334d41b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_a8133865",
+        "filename": "resources/libraries/python/Routing.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-10-03T06:58:15Z",
+      "side": 1,
+      "message": "Disable R0913",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 58
+      },
+      "revId": "5a39dc6187934fb202b0a067d22df701b334d41b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
