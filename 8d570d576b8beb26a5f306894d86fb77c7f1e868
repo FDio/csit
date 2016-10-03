@@ -45,6 +45,63 @@
       "revId": "8d570d576b8beb26a5f306894d86fb77c7f1e868",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_6803e042",
+        "filename": "resources/traffic_scripts/send_icmp_check_multipath.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-10-03T06:19:41Z",
+      "side": 1,
+      "message": "Don\u0027t you want to check also total number of packets?",
+      "range": {
+        "startLine": 112,
+        "startChar": 0,
+        "endLine": 116,
+        "endChar": 43
+      },
+      "revId": "8d570d576b8beb26a5f306894d86fb77c7f1e868",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_a8e9f881",
+        "filename": "tests/func/ipv4/ipv4_multipath_routing.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-10-03T06:19:41Z",
+      "side": 1,
+      "message": "add \\ to join the next line.",
+      "revId": "8d570d576b8beb26a5f306894d86fb77c7f1e868",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_88ecfc90",
+        "filename": "tests/func/ipv6/ipv6_multipath_routing.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-10-03T06:19:41Z",
+      "side": 1,
+      "message": "add \\ to join next line.",
+      "revId": "8d570d576b8beb26a5f306894d86fb77c7f1e868",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
