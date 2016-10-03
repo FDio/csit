@@ -22,6 +22,30 @@
       "revId": "9e160c24c8f90e11bfa842732689ee7d13b80f12",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_f1c9187a",
+        "filename": "tests/func/policer/policer_ip4.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-10-03T15:51:52Z",
+      "side": 1,
+      "message": "check everywhere",
+      "parentUuid": "3a1d315d_e8eff085",
+      "range": {
+        "startLine": 53,
+        "startChar": 70,
+        "endLine": 53,
+        "endChar": 71
+      },
+      "revId": "9e160c24c8f90e11bfa842732689ee7d13b80f12",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
