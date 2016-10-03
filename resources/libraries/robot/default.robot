@@ -147,6 +147,16 @@
 | | [Arguments] | ${node} | ${pci_address}
 | | Add PCI device | ${node} | ${pci_address}
 
+| Add Heapsize Config to all DUTs
+| | [Documentation] | Add Add Heapsize Config to VPP startup configuration
+| | ...             | to all DUTs
+| | ... | *Arguments:*
+| | ... | - ${heapsize} - Heapsize string (5G, 200M, ...)
+| | [Arguments] | ${heapsize}
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | Add Heapsize Config | ${nodes['${dut}']} | ${heapsize}
+
 | Add No Multi Seg to all DUTs
 | | [Documentation] | Add No Multi Seg to VPP startup configuration to all
 | | ...             | DUTs
