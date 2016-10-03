@@ -56,6 +56,7 @@
 | | Given Add '1' worker threads and rxqueues '1' without HTT to all DUTs
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
+| | And   Add Heapsize Config to all DUTs | 3G
 | | And   Apply startup configuration on all VPP DUTs
 | | And   Scale IPv4 forwarding initialized in a 3-node circular topology
 | | ...   | ${rts_per_flow}
@@ -75,6 +76,7 @@
 | | Given Add '1' worker threads and rxqueues '1' without HTT to all DUTs
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
+| | And   Add Heapsize Config to all DUTs | 3G
 | | And   Apply startup configuration on all VPP DUTs
 | | And   Scale IPv4 forwarding initialized in a 3-node circular topology
 | | ...   | ${rts_per_flow}
@@ -93,6 +95,7 @@
 | | ${rate}= | Set Variable | 138580pps
 | | Given Add '1' worker threads and rxqueues '1' without HTT to all DUTs
 | | And   Add PCI devices to DUTs from 3-node single link topology
+| | And   Add Heapsize Config to all DUTs | 3G
 | | And   Apply startup configuration on all VPP DUTs
 | | And   Scale IPv4 forwarding initialized in a 3-node circular topology
 | | ...   | ${rts_per_flow}
@@ -112,6 +115,7 @@
 | | Given Add '2' worker threads and rxqueues '1' without HTT to all DUTs
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
+| | And   Add Heapsize Config to all DUTs | 3G
 | | And   Apply startup configuration on all VPP DUTs
 | | And   Scale IPv4 forwarding initialized in a 3-node circular topology
 | | ...   | ${rts_per_flow}
@@ -131,6 +135,7 @@
 | | Given Add '2' worker threads and rxqueues '1' without HTT to all DUTs
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
+| | And   Add Heapsize Config to all DUTs | 3G
 | | And   Apply startup configuration on all VPP DUTs
 | | And   Scale IPv4 forwarding initialized in a 3-node circular topology
 | | ...   | ${rts_per_flow}
@@ -149,6 +154,7 @@
 | | ${rate}= | Set Variable | 138580pps
 | | Given Add '2' worker threads and rxqueues '1' without HTT to all DUTs
 | | And   Add PCI devices to DUTs from 3-node single link topology
+| | And   Add Heapsize Config to all DUTs | 3G
 | | And   Apply startup configuration on all VPP DUTs
 | | And   Scale IPv4 forwarding initialized in a 3-node circular topology
 | | ...   | ${rts_per_flow}
@@ -168,6 +174,7 @@
 | | Given Add '4' worker threads and rxqueues '2' without HTT to all DUTs
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
+| | And   Add Heapsize Config to all DUTs | 3G
 | | And   Apply startup configuration on all VPP DUTs
 | | And   Scale IPv4 forwarding initialized in a 3-node circular topology
 | | ...   | ${rts_per_flow}
@@ -187,6 +194,7 @@
 | | Given Add '4' worker threads and rxqueues '2' without HTT to all DUTs
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
+| | And   Add Heapsize Config to all DUTs | 3G
 | | And   Apply startup configuration on all VPP DUTs
 | | And   Scale IPv4 forwarding initialized in a 3-node circular topology
 | | ...   | ${rts_per_flow}
@@ -205,6 +213,7 @@
 | | ${rate}= | Set Variable | 138580pps
 | | Given Add '4' worker threads and rxqueues '2' without HTT to all DUTs
 | | And   Add PCI devices to DUTs from 3-node single link topology
+| | And   Add Heapsize Config to all DUTs | 3G
 | | And   Apply startup configuration on all VPP DUTs
 | | And   Scale IPv4 forwarding initialized in a 3-node circular topology
 | | ...   | ${rts_per_flow}
