@@ -265,7 +265,7 @@ class HoneycombSetup(object):
         """
 
         cmds = ("netstat -anp | grep java",
-                "ps -ef | grep karaf")
+                "ps -ef | grep [h]oneycomb")
 
         logger.info("Checking node {} ...".format(node['host']))
         for cmd in cmds:
