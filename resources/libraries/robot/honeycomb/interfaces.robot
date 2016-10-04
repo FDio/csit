@@ -452,3 +452,50 @@
 | | ${sw_if_index}= | EVALUATE | ${vat_data['sw_if_index']} + 1
 | | Should be equal as strings
 | | ... | ${api_data['if-index']} | ${sw_if_index}
+
+| Get Interface index from oper data
+| | [Documentation] | Retrieves interface operational data and returns\
+| | ... | if-index of the specified interface.
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - information about a DUT node. Type: dictionary
+| | ... | - interface - name of the interface. Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Get Interface index from oper data \| ${nodes['DUT1']} \| local0 \|
+| | [Arguments] | ${node} | ${interface}
+| | ${data}= | interfaceAPI.Get interface oper data | ${node} | ${interface}
+| | Return from keyword | ${data['if-index']}
+
+| Honeycomb should show disabled interface in oper data
+| | [Documentation] | Retrieves list of disabled interfaces\
+| | ... | and verifies that there is at least one.
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - information about a DUT node. Type: dictionary
+| | ... | - index - index of the interface to be checked. Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Honeycomb should show disabled interface in oper data \
+| | ... | \|${nodes['DUT1']} \| ${vx_interface} \|
+| | [Arguments] | ${node} | ${index}
+| | interfaceAPI.check disabled interface | ${node} | ${index}
+
+| Honeycomb should not show disabled interface in oper data
+| | [Documentation] | Retrieves list of disabled interfaces\
+| | ... | and expects to fail with a 404 - not found.
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - information about a DUT node. Type: dictionary
+| | ... | - index - index of the interface to be checked. Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Honeycomb should not show disabled interface in oper data \
+| | ... | \|${nodes['DUT1']} \| ${vx_interface} \|
+| | [Arguments] | ${node} | ${index}
+| | Run keyword and expect error | *
+| | ... | Honeycomb should show disabled interface in oper data
+| | ... | ${node} | ${index}

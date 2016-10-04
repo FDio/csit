@@ -51,30 +51,41 @@
 | | ... | ${node} | ${vx_interface} | ${vxlan_settings}
 | | And VxLAN configuration from VAT should be
 | | ... | ${node} | ${vxlan_settings}
+| | ${vxlan_index}= | Get Interface index from oper data
+| | ... | ${node} | ${vx_interface}
+| | Set Suite Variable | ${vxlan_index}
 
 | Honeycomb disables VxLAN tunnel
 | | [Documentation] | Check if Honeycomb API can reset VxLAN configuration.
 | | Given VxLAN configuration from Honeycomb should be
 | | ... | ${node} | ${vx_interface} | ${vxlan_settings}
+| | And Honeycomb should not show disabled interface in oper data
+| | ... | ${node} | ${vxlan_index}
 | | And VxLAN configuration from VAT should be
 | | ... | ${node} | ${vxlan_settings}
 | | When Honeycomb removes VxLAN tunnel settings | ${node} | ${vx_interface}
 | | Then VxLAN configuration from Honeycomb should be empty
 | | ... | ${node} | ${vx_interface}
+| | And Honeycomb should show disabled interface in oper data
+| | ... | ${node} | ${vxlan_index}
 | | And VxLAN configuration from VAT should be empty | ${node}
 
-Honeycomb can configure VXLAN tunnel after one has been disabled
+| Honeycomb can configure VXLAN tunnel after one has been disabled
 | | [Documentation] | Check if Honeycomb API can configure VxLAN settings again\
 | | ... | after previous settings have been removed.
 | | [Teardown] | Honeycomb removes VxLAN tunnel settings
 | | ... | ${node} | ${vx_interface}
 | | Given VxLAN configuration from Honeycomb should be empty
 | | ... | ${node} | ${vx_interface}
+| | And Honeycomb should show disabled interface in oper data
+| | ... | ${node} | ${vxlan_index}
 | | And VxLAN configuration from VAT should be empty | ${node}
 | | When Honeycomb sets interface VxLAN configuration
 | | ... | ${node} | ${vx_interface} | ${vxlan_settings2}
 | | Then VxLAN configuration from Honeycomb should be
 | | ... | ${node} | ${vx_interface} | ${vxlan_settings2}
+| | And Honeycomb should not show disabled interface in oper data
+| | ... | ${node} | ${vxlan_index}
 | | And VxLAN configuration from VAT should be
 | | ... | ${node} | ${vxlan_settings2}
 
