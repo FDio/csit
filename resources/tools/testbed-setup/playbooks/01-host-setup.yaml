@@ -79,6 +79,8 @@
   remote_user: testuser
   sudo: yes
   tasks:
+  - name: copy sysctl file
+    template: src=files/90-csit dest=/etc/sysctl.d/90-csit.conf owner=root group=root mode=644
   - name: Install dkms
     apt: name=dkms state=present
   - name: isolcpus and pstate parameter
