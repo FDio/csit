@@ -82,7 +82,7 @@
   - name: Install dkms
     apt: name=dkms state=present
   - name: isolcpus and pstate parameter
-    lineinfile: dest=/etc/default/grub regexp=^GRUB_CMDLINE_LINUX= line=GRUB_CMDLINE_LINUX="\"isolcpus={{ isolcpus }} intel_pstate=disable\""
+    lineinfile: dest=/etc/default/grub regexp=^GRUB_CMDLINE_LINUX= line=GRUB_CMDLINE_LINUX="\"isolcpus={{ isolcpus }} nohz_full={{ nohz }} rcu_nocbs={{ rcu }} intel_pstate=disable\""
   - name: update grub
     command: update-grub
   - name: Install pkg-config
