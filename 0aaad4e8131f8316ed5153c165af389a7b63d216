@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3a1d315d_540afa21",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-10-04T08:06:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a1d315d_f1d8f880",
+      "range": {
+        "startLine": 84,
+        "startChar": 8,
+        "endLine": 84,
+        "endChar": 11
+      },
+      "revId": "0aaad4e8131f8316ed5153c165af389a7b63d216",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a1d315d_91d1c459",
         "filename": "resources/libraries/python/IPv4Setup.py",
         "patchSetId": 4
@@ -59,6 +83,30 @@
       "writtenOn": "2016-10-03T15:25:54Z",
       "side": 1,
       "message": "Consider using \"raise NotImplementedError\".",
+      "range": {
+        "startLine": 223,
+        "startChar": 8,
+        "endLine": 223,
+        "endChar": 12
+      },
+      "revId": "0aaad4e8131f8316ed5153c165af389a7b63d216",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_d44baa57",
+        "filename": "resources/libraries/python/LispSetup.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 223,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-10-04T08:06:41Z",
+      "side": 1,
+      "message": "No functional changes in this commit.",
+      "parentUuid": "3a1d315d_11c5b48d",
       "range": {
         "startLine": 223,
         "startChar": 8,
