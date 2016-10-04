@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3a1d315d_f120f8b1",
+        "filename": "resources/libraries/python/Routing.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 84
+      },
+      "writtenOn": "2016-10-04T08:29:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a1d315d_91d42421",
+      "range": {
+        "startLine": 23,
+        "startChar": 4,
+        "endLine": 23,
+        "endChar": 28
+      },
+      "revId": "86b5e00faad3b2b9b5ec301de487162874139215",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a1d315d_f1e23800",
         "filename": "resources/libraries/robot/traffic.robot",
         "patchSetId": 8
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "3a1d315d_b4e26e2d",
+        "filename": "resources/libraries/robot/traffic.robot",
+        "patchSetId": 8
+      },
+      "lineNbr": 393,
+      "author": {
+        "id": 84
+      },
+      "writtenOn": "2016-10-04T08:29:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a1d315d_f1e23800",
+      "range": {
+        "startLine": 393,
+        "startChar": 71,
+        "endLine": 393,
+        "endChar": 73
+      },
+      "revId": "86b5e00faad3b2b9b5ec301de487162874139215",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a1d315d_91bb04e5",
         "filename": "resources/libraries/robot/traffic.robot",
         "patchSetId": 8
@@ -59,6 +107,30 @@
       "writtenOn": "2016-10-03T15:49:47Z",
       "side": 1,
       "message": "indentation",
+      "range": {
+        "startLine": 399,
+        "startChar": 9,
+        "endLine": 399,
+        "endChar": 19
+      },
+      "revId": "86b5e00faad3b2b9b5ec301de487162874139215",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_94d1b259",
+        "filename": "resources/libraries/robot/traffic.robot",
+        "patchSetId": 8
+      },
+      "lineNbr": 399,
+      "author": {
+        "id": 84
+      },
+      "writtenOn": "2016-10-04T08:29:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a1d315d_91bb04e5",
       "range": {
         "startLine": 399,
         "startChar": 9,
