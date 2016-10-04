@@ -165,6 +165,33 @@ class InterfaceKeywords(object):
             return []
 
     @staticmethod
+    def get_disabled_interfaces_oper_data(node):
+        """Get operational data about all disabled interfaces from Honeycomb.
+
+        :param node: Honeycomb node.
+        :type node: dict
+        :return: Operational data about disabled interfaces.
+        :rtype: list
+        :raises HoneycombError: If it is not possible to get operational data.
+        """
+
+        status_code, resp = HcUtil. \
+            get_honeycomb_data(node, "oper_disabled_interfaces")
+        if status_code == HTTPCodes.NOT_FOUND:
+            raise HoneycombError(
+                "No disabled interfaces present on node."
+            )
+        if status_code != HTTPCodes.OK:
+            raise HoneycombError(
+                "Not possible to get operational information about the "
+                "interfaces. Status code: {0}.".format(status_code))
+        try:
+            return resp["disabled-interfaces"]["disabled-interface-index"]
+
+        except (KeyError, TypeError):
+            return []
+
+    @staticmethod
     def get_interface_oper_data(node, interface):
         """Get operational data about the given interface from Honeycomb.
 
@@ -1532,3 +1559,27 @@ class InterfaceKeywords(object):
 
         interface = "{0}.{1}".format(intf, sub_if_id)
         return InterfaceKeywords.get_interface_oper_data(node, interface)
+
+    @staticmethod
+    def check_disabled_interface(node, interface):
+        """Retrieves list of disabled interface indices from Honeycomb,
+        and matches with the provided interface by index.
+
+        :param node: Honeycomb node.
+        :param interface: Index number of an interface on the node.
+        :type node: dict
+        :type interface: int
+        :return: True if the interface exists in disabled interfaces.
+        :rtype: bool
+        :raises HoneycombError: If the interface is not present
+         in retrieved list of disabled interfaces.
+         """
+        data = InterfaceKeywords.get_disabled_interfaces_oper_data(node)
+        # decrement by one = conversion from HC if-index to VPP sw_if_index
+        interface -= 1
+
+        for item in data:
+            if item["index"] == interface:
+                return True
+        raise HoneycombError("Interface index {0} not present in list"
+                             " of disabled interfaces.".format(interface))
