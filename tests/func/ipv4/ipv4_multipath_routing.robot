@@ -77,3 +77,33 @@
 | | ... | ${tg_to_dut_if2} | ${tg_to_dut_if1} | ${test_src_ip} | ${test_dst_ip}
 | | ... | ${tg_to_dut_if2_mac} | ${dut_to_tg_if2_mac} | ${dut_to_tg_if1_mac}
 | | ... | ${neighbor_1_mac} | ${neighbor_2_mac}
+
+| TC02: IPv4 Unequal-cost multipath routing
+| | [Documentation]
+| | ... | [Top] TG=DUT
+| | ... | [Cfg] On DUT configure multipath routing wiht two unequal-cost paths.
+| | ... | [Ver] TG sends 100 IPv4 ICMP packets traffic on the first link to\
+| | ... | DUT. On second link to TG verify if traffic is divided into two paths.
+| | Given Path for 2-node testing is set
+| | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
+| | And Interfaces in 2-node path are UP
+| | And Set Interface Address | ${dut_node}
+| | ... | ${dut_to_tg_if2} | ${ip_1} | ${prefix_length}
+| | And Set Interface Address | ${dut_node}
+| | ... | ${dut_to_tg_if1} | ${ip_2} | ${prefix_length}
+| | And Add Arp On Dut
+| | ... | ${dut_node} | ${dut_to_tg_if1} | ${neighbor_1_ip} | ${neighbor_1_mac}
+| | And Add Arp On Dut
+| | ... | ${dut_node} | ${dut_to_tg_if1} | ${neighbor_2_ip} | ${neighbor_2_mac}
+| | When Vpp Route Add
+| | ... | ${dut_node} | ${test_dst_ip} | ${prefix_length} | ${neighbor_1_ip}
+| | ... | ${dut_to_tg_if1} | resolve_attempts=${NONE} | multipath=${TRUE}
+| | ... | weight=${3}
+| | And Vpp Route Add
+| | ... | ${dut_node} | ${test_dst_ip} | ${prefix_length} | ${neighbor_2_ip}
+| | ... | ${dut_to_tg_if1} | resolve_attempts=${NONE} | multipath=${TRUE}
+| | ... | weight=${1}
+| | Then Send Packets And Check Multipath Routing | ${tg_node}
+| | ... | ${tg_to_dut_if2} | ${tg_to_dut_if1} | ${test_src_ip} | ${test_dst_ip}
+| | ... | ${tg_to_dut_if2_mac} | ${dut_to_tg_if2_mac} | ${dut_to_tg_if1_mac}
+| | ... | ${neighbor_1_mac} | ${neighbor_2_mac}
