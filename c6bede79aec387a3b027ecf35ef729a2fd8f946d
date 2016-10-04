@@ -25,6 +25,23 @@
     },
     {
       "key": {
+        "uuid": "3a1d315d_5459dafc",
+        "filename": "resources/test_data/lisp/ipv4_lispgpe_ipv6/ipv4_lispgpe_ipsec_ipv6.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-10-04T08:54:49Z",
+      "side": 1,
+      "message": "please reformat file.",
+      "revId": "c6bede79aec387a3b027ecf35ef729a2fd8f946d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a1d315d_d103bcb6",
         "filename": "tests/func/lisp/lisp_ipv4_ipsec_ipv6.robot",
         "patchSetId": 11
@@ -88,6 +105,23 @@
         "endLine": 63,
         "endChar": 19
       },
+      "revId": "c6bede79aec387a3b027ecf35ef729a2fd8f946d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_d403aab6",
+        "filename": "tests/func/lisp/lisp_ipv4_ipsec_ipv6.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-10-04T08:54:49Z",
+      "side": 1,
+      "message": "fix encap order. check everywhere",
       "revId": "c6bede79aec387a3b027ecf35ef729a2fd8f946d",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
