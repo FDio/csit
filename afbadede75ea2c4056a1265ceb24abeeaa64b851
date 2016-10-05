@@ -1,0 +1,107 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a1d315d_9d531539",
+        "filename": "resources/libraries/python/LispSetup.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 632,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-10-05T10:58:12Z",
+      "side": 1,
+      "message": "please intend properly",
+      "range": {
+        "startLine": 629,
+        "startChar": 0,
+        "endLine": 632,
+        "endChar": 54
+      },
+      "revId": "afbadede75ea2c4056a1265ceb24abeeaa64b851",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_7d195987",
+        "filename": "tests/func/lisp/l2_lisp_ipv4.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-10-05T10:58:12Z",
+      "side": 1,
+      "message": "Don\u0027t you want to add LISP tag as per other LISP suites?",
+      "revId": "afbadede75ea2c4056a1265ceb24abeeaa64b851",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_5d357df5",
+        "filename": "tests/func/lisp/l2_lisp_ipv4.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-10-05T10:58:12Z",
+      "side": 1,
+      "message": "please add trailing \\ to join lines\napply everywhere",
+      "revId": "afbadede75ea2c4056a1265ceb24abeeaa64b851",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_bd2ff1a0",
+        "filename": "tests/func/lisp/l2_lisp_ipv4.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-10-05T10:58:12Z",
+      "side": 1,
+      "message": "please fix\nEth-IP4...",
+      "range": {
+        "startLine": 44,
+        "startChar": 39,
+        "endLine": 44,
+        "endChar": 64
+      },
+      "revId": "afbadede75ea2c4056a1265ceb24abeeaa64b851",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_9d2af58e",
+        "filename": "tests/func/lisp/l2_lisp_ipv4.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-10-05T10:58:12Z",
+      "side": 1,
+      "message": "Eth-IP4....",
+      "range": {
+        "startLine": 58,
+        "startChar": 17,
+        "endLine": 58,
+        "endChar": 24
+      },
+      "revId": "afbadede75ea2c4056a1265ceb24abeeaa64b851",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
