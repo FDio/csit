@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a1d315d_6893d94f",
+        "filename": "resources/libraries/python/IKEv2.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-10-05T12:46:46Z",
+      "side": 1,
+      "message": "no new line is necessary, check everywhere.",
+      "range": {
+        "startLine": 45,
+        "startChar": 4,
+        "endLine": 45,
+        "endChar": 7
+      },
+      "revId": "30ff18170fc3fe7e071ca1ccfc7d9e6d7e7abbe0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_289de159",
+        "filename": "resources/libraries/python/IKEv2.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-10-05T12:46:46Z",
+      "side": 1,
+      "message": "No empty line is necessary, check everywhere.",
+      "range": {
+        "startLine": 83,
+        "startChar": 0,
+        "endLine": 84,
+        "endChar": 7
+      },
+      "revId": "30ff18170fc3fe7e071ca1ccfc7d9e6d7e7abbe0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_88907544",
+        "filename": "resources/libraries/python/IKEv2.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-10-05T12:46:46Z",
+      "side": 1,
+      "message": "alignment, check everywhere",
+      "range": {
+        "startLine": 173,
+        "startChar": 30,
+        "endLine": 173,
+        "endChar": 37
+      },
+      "revId": "30ff18170fc3fe7e071ca1ccfc7d9e6d7e7abbe0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
