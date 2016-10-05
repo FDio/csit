@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a1d315d_bd581157",
+        "filename": "resources/libraries/python/LispUtil.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-10-05T11:03:57Z",
+      "side": 1,
+      "message": "I would suggest to use a list of commands and then to perform them in a \"for\" cycle.\nConsider adding also another useful commands.",
+      "range": {
+        "startLine": 230,
+        "startChar": 4,
+        "endLine": 242,
+        "endChar": 41
+      },
+      "revId": "cb6d859ff4d267ff949324f482ac86f81d1ae6ed",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_7d327911",
+        "filename": "resources/test_data/lisp/ipv6_lispgpe_ipv6/ipv6_lispgpe_ipsec_ipv6.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-10-05T11:03:57Z",
+      "side": 1,
+      "message": "ipsec is missing.",
+      "range": {
+        "startLine": 14,
+        "startChar": 22,
+        "endLine": 14,
+        "endChar": 37
+      },
+      "revId": "cb6d859ff4d267ff949324f482ac86f81d1ae6ed",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_3d3c01e2",
+        "filename": "resources/test_data/lisp/ipv6_lispgpe_ipv6/ipv6_lispgpe_ipsec_ipv6.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-10-05T11:03:57Z",
+      "side": 1,
+      "message": "Consider using variables defined above, check everywhere.",
+      "range": {
+        "startLine": 35,
+        "startChar": 45,
+        "endLine": 35,
+        "endChar": 61
+      },
+      "revId": "cb6d859ff4d267ff949324f482ac86f81d1ae6ed",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_1d3f05d8",
+        "filename": "tests/func/lisp/ipsec_ipv6_lispgpe_ipv6.robot",
+        "patchSetId": 10
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-10-05T11:03:57Z",
+      "side": 1,
+      "message": "Use capital letters.\nAdd this tag to the tag documentation.",
+      "range": {
+        "startLine": 38,
+        "startChar": 69,
+        "endLine": 38,
+        "endChar": 74
+      },
+      "revId": "cb6d859ff4d267ff949324f482ac86f81d1ae6ed",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_dd206db2",
+        "filename": "tests/func/lisp/ipsec_ipv6_lispgpe_ipv6.robot",
+        "patchSetId": 10
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-10-05T11:03:57Z",
+      "side": 1,
+      "message": "the encapsulation is IPSec - LISP\ncheck everywhere",
+      "range": {
+        "startLine": 53,
+        "startChar": 47,
+        "endLine": 53,
+        "endChar": 60
+      },
+      "revId": "cb6d859ff4d267ff949324f482ac86f81d1ae6ed",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_bd06d11e",
+        "filename": "tests/func/lisp/ipsec_ipv6_lispgpe_ipv6.robot",
+        "patchSetId": 10
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-10-05T11:03:57Z",
+      "side": 1,
+      "message": "\"\\\" is missing, check everywhere",
+      "range": {
+        "startLine": 120,
+        "startChar": 74,
+        "endLine": 120,
+        "endChar": 76
+      },
+      "revId": "cb6d859ff4d267ff949324f482ac86f81d1ae6ed",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_9d01d508",
+        "filename": "tests/func/lisp/ipsec_ipv6_lispgpe_ipv6.robot",
+        "patchSetId": 10
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-10-05T11:03:57Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 153,
+        "startChar": 0,
+        "endLine": 153,
+        "endChar": 1
+      },
+      "revId": "cb6d859ff4d267ff949324f482ac86f81d1ae6ed",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
