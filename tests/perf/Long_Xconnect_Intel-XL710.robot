@@ -34,7 +34,7 @@
 | ... | with single links between nodes.
 | ... | *[Enc] Packet Encapsulations:* Eth-IPv4 for L2 cross connect.
 | ... | *[Cfg] DUT configuration:* DUT1 and DUT2 are configured with L2 cross-
-| ... | connect. DUT1 and DUT2 tested with 2p10GE NIC X520 Niantic by Intel.
+| ... | connect. DUT1 and DUT2 tested with 2p40GE NIC XL710 by Intel.
 | ... | *[Ver] TG verification:* TG finds and reports throughput NDR (Non Drop
 | ... | Rate) with zero packet loss tolerance or throughput PDR (Partial Drop
 | ... | Rate) with non-zero packet loss tolerance (LT) expressed in percentage
@@ -60,7 +60,7 @@
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC switching config with 1 thread, 1 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for 64 Byte frames
-| | ... | using binary search start at 10GE linerate, step 100kpps.
+| | ... | using binary search start at 18.75Mpps rate, step 100kpps.
 | | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | NDR
 | | ${framesize}= | Set Variable | 64
 | | ${min_rate}= | Set Variable | ${100000}
@@ -82,7 +82,7 @@
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC switching config with 1 thread, 1 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for 1518 Byte frames
-| | ... | using binary search start at 10GE linerate, step 10kpps.
+| | ... | using binary search start at 24.5G rate, step 10kpps.
 | | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | NDR
 | | ${framesize}= | Set Variable | 1518
 | | ${min_rate}= | Set Variable | ${10000}
@@ -104,7 +104,7 @@
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC switching config with 2 threads, 2 phy cores, \
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for 64 Byte frames
-| | ... | using binary search start at 10GE linerate, step 100kpps.
+| | ... | using binary search start at 18.75Mpps rate, step 100kpps.
 | | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | NDR
 | | ${framesize}= | Set Variable | 64
 | | ${min_rate}= | Set Variable | ${100000}
@@ -126,7 +126,7 @@
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC switching config with 2 threads, 2 phy cores, \
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for 1518 Byte frames
-| | ... | using binary search start at 10GE linerate, step 10kpps.
+| | ... | using binary search start at 24.5G rate, step 10kpps.
 | | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | NDR | SKIP_PATCH
 | | ${framesize}= | Set Variable | 1518
 | | ${min_rate}= | Set Variable | ${10000}
@@ -148,7 +148,7 @@
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC switching config with 4 threads, 4 phy cores, \
 | | ... | 2 receive queues per NIC port. [Ver] Find NDR for 64 Byte frames
-| | ... | using binary search start at 10GE linerate, step 100kpps.
+| | ... | using binary search start at 18.75Mpps rate, step 100kpps.
 | | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | NDR
 | | ${framesize}= | Set Variable | 64
 | | ${min_rate}= | Set Variable | ${100000}
@@ -170,7 +170,7 @@
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC switching config with 4 threads, 4 phy cores, \
 | | ... | 2 receive queues per NIC port. [Ver] Find NDR for 1518 Byte frames
-| | ... | using binary search start at 10GE linerate, step 10kpps.
+| | ... | using binary search start at 24.5G rate, step 10kpps.
 | | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | NDR | SKIP_PATCH
 | | ${framesize}= | Set Variable | 1518
 | | ${min_rate}= | Set Variable | ${10000}
@@ -192,7 +192,7 @@
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC switching config with 1 thread, 1 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for IMIX_v4_1 frame size
-| | ... | using binary search start at 10GE linerate, step 100kpps.
+| | ... | using binary search start at 24.5G rate, step 100kpps.
 | | ... | IMIX_v4_1 = (28x64B;16x570B;4x1518B)
 | | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | NDR
 | | ${framesize}= | Set Variable | IMIX_v4_1
@@ -215,7 +215,7 @@
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC switching config with 2 thread, 2 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for IMIX_v4_1 frame size
-| | ... | using binary search start at 10GE linerate, step 100kpps.
+| | ... | using binary search start at 24.5G rate, step 100kpps.
 | | ... | IMIX_v4_1 = (28x64B;16x570B;4x1518B)
 | | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | NDR | SKIP_PATCH
 | | ${framesize}= | Set Variable | IMIX_v4_1
@@ -238,7 +238,7 @@
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC switching config with 4 thread, 4 phy core, \
 | | ... | 2 receive queue per NIC port. [Ver] Find NDR for IMIX_v4_1 frame size
-| | ... | using binary search start at 10GE linerate, step 100kpps.
+| | ... | using binary search start at 24.5G rate, step 100kpps.
 | | ... | IMIX_v4_1 = (28x64B;16x570B;4x1518B)
 | | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | NDR | SKIP_PATCH
 | | ${framesize}= | Set Variable | IMIX_v4_1
