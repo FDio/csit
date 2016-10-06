@@ -424,9 +424,9 @@ class VppConfigGenerator(object):
         # Instead of restarting, we'll do separate start and stop
         # actions. This way we don't care whether VPP was running
         # to begin with.
-        ssh.exec_command('sudo initctl stop {}'.format(VPP_SERVICE_NAME))
+        ssh.exec_command('sudo service {} stop'.format(VPP_SERVICE_NAME))
         (ret, stdout, stderr) = \
-            ssh.exec_command('sudo initctl start {}'.format(VPP_SERVICE_NAME))
+            ssh.exec_command('sudo service {} start'.format(VPP_SERVICE_NAME))
         if ret != 0:
             logger.debug('Restarting VPP failed on node {}'.
                          format(hostname))
