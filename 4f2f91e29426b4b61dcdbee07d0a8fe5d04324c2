@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa3479d7_326db005",
+        "filename": "resources/tools/testbed-setup/dhcpd.conf",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2016-10-06T15:18:42Z",
+      "side": 1,
+      "message": "I think it would be good to add a comment here, indicating that this configuration is on the host t4-virl1 with address 10.30.51.28 which is being used as the pxe server.",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 41
+      },
+      "revId": "4f2f91e29426b4b61dcdbee07d0a8fe5d04324c2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
