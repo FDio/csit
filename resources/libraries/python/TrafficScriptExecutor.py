@@ -64,8 +64,8 @@ class TrafficScriptExecutor(object):
                "resources/traffic_scripts/{} {}") \
                   .format(Constants.REMOTE_FW_DIR, script_file_name,
                           script_args)
-        (ret_code, stdout, stderr) = ssh.exec_command_sudo(
-            'sh -c "{}"'.format(TrafficScriptExecutor._escape(cmd)),
+        (ret_code, stdout, stderr) = ssh.exec_command(
+            'sudo -SH sh -c "{}"'.format(TrafficScriptExecutor._escape(cmd)),
             timeout=timeout)
         logger.debug("stdout: {}".format(stdout))
         logger.debug("stderr: {}".format(stderr))
