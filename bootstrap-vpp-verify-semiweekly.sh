@@ -87,6 +87,9 @@ VIRL_PKEY=priv_key
 VIRL_SERVER_STATUS_FILE="status"
 VIRL_SERVER_EXPECTED_STATUS="PRODUCTION"
 
+VIRL_TOPOLOGY=double-ring-nested.xenial
+VIRL_RELEASE=csit-ubuntu-16.04.1_2016-10-10_1.4
+
 SSH_OPTIONS="-i ${VIRL_PKEY} -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o BatchMode=yes -o LogLevel=error"
 
 function ssh_do() {
@@ -194,7 +197,7 @@ function stop_virl_simulation {
 
 VIRL_SID=$(ssh ${SSH_OPTIONS} \
     ${VIRL_USERNAME}@${VIRL_SERVER} \
-    "start-testcase -c double-ring-nested ${VPP_DEBS_VIRL[@]}")
+    "start-testcase -c ${VIRL_TOPOLOGY} -r ${VIRL_RELEASE} ${VPP_DEBS_VIRL[@]}")
 retval=$?
 if [ "$?" -ne "0" ]; then
     echo "VIRL simulation start failed"
