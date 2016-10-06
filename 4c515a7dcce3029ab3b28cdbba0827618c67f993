@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa3479d7_d23d44bd",
+        "filename": "resources/test_data/lisp/l2/l2_ipv6.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-10-06T07:22:56Z",
+      "side": 1,
+      "message": "Do you really want to use this string.",
+      "range": {
+        "startLine": 41,
+        "startChar": 44,
+        "endLine": 41,
+        "endChar": 58
+      },
+      "revId": "4c515a7dcce3029ab3b28cdbba0827618c67f993",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
