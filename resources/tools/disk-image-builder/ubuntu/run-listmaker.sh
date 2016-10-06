@@ -48,7 +48,7 @@ echo "Storinging data in ${OUTPUT_DIR}/."
 # APT packages wanted
 
 APT_WANTLIST_INFRA="nfs-common cloud-init"
-APT_WANTLIST_CSIT="python-dev python-virtualenv git"
+APT_WANTLIST_CSIT="python-dev python-virtualenv git strongswan"
 APT_WANTLIST_VPP="dkms bridge-utils"
 APT_WANTLIST_TREX="zlib1g-dev unzip"
 APT_WANTLIST_NESTED="qemu-system-x86"
