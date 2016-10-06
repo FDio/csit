@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa3479d7_3235b046",
+        "filename": "resources/libraries/python/VPPUtil.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-10-06T13:25:55Z",
+      "side": 1,
+      "message": "use print()\ncheck everywhere",
+      "range": {
+        "startLine": 47,
+        "startChar": 8,
+        "endLine": 47,
+        "endChar": 22
+      },
+      "revId": "8b132f72658ac99500fbb40e46f60bcf4c770513",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
