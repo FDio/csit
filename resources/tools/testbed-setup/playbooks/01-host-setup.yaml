@@ -3,6 +3,8 @@
   remote_user: testuser
   sudo: yes
   tasks:
+  - name: install python-apt
+    raw: apt-get update && apt-get install python-apt -y -q
   - name: copy sudoers file
     copy: src=files/sudoers dest=/etc/sudoers.d/testuser owner=root group=root mode=660
   - name: copy hosts file
@@ -11,10 +13,6 @@
     template: src=files/hostname dest=/etc/hostname owner=root group=root mode=644
   - name: interfaces file
     template: src=files/interfaces dest=/etc/network/interfaces owner=root group=root mode=644
-  - name: copy ttyS0 file
-    template: src=files/ttyS0 dest=/etc/init/ttyS0.conf owner=root group=root mode=644
-  - name: start ttyS0
-    service: name=ttyS0 state=started
   - name: copy grub file
     template: src=files/grub dest=/etc/default/grub owner=root group=root mode=644
   - name: update grub
@@ -29,6 +27,8 @@
     apt: name=crudini state=present
   - name: install expect
     apt: name=expect state=present
+  - name: install qemu
+    apt: name=qemu-system-x86 state=present
 - hosts: virl
   remote_user: testuser
   sudo: yes
@@ -39,16 +39,22 @@
     copy: src=files/sudoers_virl dest=/etc/sudoers.d/virl owner=root group=root mode=660
   - name: Set VIRL user authorized key
     authorized_key: user=virl key="{{ lookup('file', '/home/testuser/.ssh/id_rsa.pub') }}"
-  - name: install qemu (as a workaround)
-    apt: name=qemu-system-x86 state=present
 - hosts: tg:sut
   remote_user: testuser
   sudo: yes
   tasks:
+  - name: copy sysctl file
+    template: src=files/90-csit dest=/etc/sysctl.d/90-csit.conf owner=root group=root mode=644
+  - name: isolcpus and pstate parameter
+    lineinfile: dest=/etc/default/grub regexp=^GRUB_CMDLINE_LINUX= line=GRUB_CMDLINE_LINUX="\"isolcpus={{ isolcpus }} nohz_full={{ isolcpus }} rcu_nocbs={{ isolcpus }} intel_pstate=disable\""
+  - name: update grub
+    command: update-grub
   - name: Install python-dev
     apt: name=python-dev state=present
   - name: Install python-virtualenv
     apt: name=python-virtualenv state=present
+  - name: Install python pip
+    apt: name=python-pip state=present
   - name: Install cpufrequtils
     apt: name=cpufrequtils state=present
   - name: Set cpufrequtils defaults
@@ -71,22 +77,12 @@
   tasks:
   - name: Install unzip
     apt: name=unzip state=present
-  - name: pstate parameter
-    lineinfile: dest=/etc/default/grub regexp=^GRUB_CMDLINE_LINUX= line=GRUB_CMDLINE_LINUX="\"intel_pstate=disable\""
-  - name: update grub
-    command: update-grub
 - hosts: sut
   remote_user: testuser
   sudo: yes
   tasks:
-  - name: copy sysctl file
-    template: src=files/90-csit dest=/etc/sysctl.d/90-csit.conf owner=root group=root mode=644
   - name: Install dkms
     apt: name=dkms state=present
-  - name: isolcpus and pstate parameter
-    lineinfile: dest=/etc/default/grub regexp=^GRUB_CMDLINE_LINUX= line=GRUB_CMDLINE_LINUX="\"isolcpus={{ isolcpus }} nohz_full={{ nohz }} rcu_nocbs={{ rcu }} intel_pstate=disable\""
-  - name: update grub
-    command: update-grub
   - name: Install pkg-config
     apt: name=pkg-config state=present
   - name: Install libglib2.0-dev
@@ -95,3 +91,5 @@
     apt: name=autoconf state=present
   - name: Install libtool
     apt: name=libtool state=present
+  - name: Disable 80-vpp.conf
+    command: ln -s /dev/null /etc/sysctl.d/80-vpp.conf
