@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa3479d7_b233e0f5",
+        "filename": "resources/libraries/python/LispSetup.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 632,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-10-06T07:17:56Z",
+      "side": 1,
+      "message": "indentation",
+      "range": {
+        "startLine": 630,
+        "startChar": 34,
+        "endLine": 632,
+        "endChar": 54
+      },
+      "revId": "af611027db960ea7859d112463b7f1cf59fbf6bd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa3479d7_724d7872",
+        "filename": "resources/test_data/lisp/l2/l2_ipv4.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-10-06T07:17:56Z",
+      "side": 1,
+      "message": "indentation",
+      "range": {
+        "startLine": 21,
+        "startChar": 20,
+        "endLine": 24,
+        "endChar": 30
+      },
+      "revId": "af611027db960ea7859d112463b7f1cf59fbf6bd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa3479d7_52527414",
+        "filename": "resources/test_data/lisp/l2/l2_ipv4.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-10-06T07:17:56Z",
+      "side": 1,
+      "message": "Consider using variables defined above.",
+      "range": {
+        "startLine": 38,
+        "startChar": 44,
+        "endLine": 38,
+        "endChar": 63
+      },
+      "revId": "af611027db960ea7859d112463b7f1cf59fbf6bd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa3479d7_3257f004",
+        "filename": "tests/func/lisp/l2_lisp_ipv4.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-10-06T07:17:56Z",
+      "side": 1,
+      "message": "Consider adding \"LISP\" tags.",
+      "range": {
+        "startLine": 30,
+        "startChar": 2,
+        "endLine": 30,
+        "endChar": 12
+      },
+      "revId": "af611027db960ea7859d112463b7f1cf59fbf6bd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
