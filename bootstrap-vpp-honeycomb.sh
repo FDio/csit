@@ -120,7 +120,7 @@ function stop_virl_simulation {
 
 VIRL_SID=$(ssh ${SSH_OPTIONS} \
     ${VIRL_USERNAME}@${VIRL_SERVER} \
-    "start-honeycomb-testcase double-ring-nested")
+    "start-honeycomb-testcase ${VIRL_TOPOLOGY} -r ${VIRL_RELEASE}")
 retval=$?
 if [ "$?" -ne "0" ]; then
     echo "VIRL simulation start failed"

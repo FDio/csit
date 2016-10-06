@@ -112,7 +112,8 @@ def create_env_directory_at_node(node):
     ssh = SSH()
     ssh.connect(node)
     (ret_code, stdout, stderr) = ssh.exec_command(
-        'cd {0} && rm -rf env && virtualenv --system-site-packages env && '
+        'cd {0} && rm -rf env && '
+        'virtualenv --system-site-packages --never-download env && '
         '. env/bin/activate && '
         'pip install -r requirements.txt'
         .format(con.REMOTE_FW_DIR), timeout=100)
