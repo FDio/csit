@@ -58,7 +58,7 @@ class TrafficScriptExecutor(object):
         logger.trace("{}".format(timeout))
         ssh = SSH()
         ssh.connect(node)
-        cmd = ("cd {}; virtualenv --system-site-packages env && " +
+        cmd = ("cd {}; virtualenv env && " +
                "export PYTHONPATH=${{PWD}}; " +
                ". ${{PWD}}/env/bin/activate; " +
                "resources/traffic_scripts/{} {}") \
