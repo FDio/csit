@@ -28,7 +28,7 @@ VPP_REPO_URL=$(cat ${SCRIPT_DIR}/VPP_REPO_URL)
 RESERVATION_DIR="/tmp/reservation_dir"
 INSTALLATION_DIR="/tmp/install_dir"
 
-PYBOT_ARGS="-W 150"
+PYBOT_ARGS="-W 150 -s tests.perf.Long_IPv6_Intel-X*"
 
 ARCHIVE_ARTIFACTS=(log.html output.xml report.html output_perf_data.xml)
 
@@ -126,100 +126,12 @@ else
     exit 1
 fi
 
-case "$TEST_TAG" in
-    # run specific performance tests based on jenkins job type variable
-    PERFTEST_LONG )
-        pybot ${PYBOT_ARGS} \
-              -L TRACE \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.perf" \
-              --exclude SKIP_PATCH \
-              -i perftest_long \
-              tests/
-        RETURN_STATUS=$(echo $?)
-        ;;
-    PERFTEST_SHORT )
-        pybot ${PYBOT_ARGS} \
-              -L TRACE \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.perf" \
-              -i perftest_short \
-              tests/
-        RETURN_STATUS=$(echo $?)
-        ;;
-    PERFTEST_LONG_BRIDGE )
-        pybot ${PYBOT_ARGS} \
-              -L TRACE \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.perf.Long_Bridge_Domain*" \
-              tests/
-        RETURN_STATUS=$(echo $?)
-        ;;
-    PERFTEST_LONG_IPV4 )
-        pybot ${PYBOT_ARGS} \
-              -L TRACE \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.perf.Long_IPv4*" \
-              tests/
-        RETURN_STATUS=$(echo $?)
-        ;;
-    PERFTEST_LONG_IPV6 )
-        pybot ${PYBOT_ARGS} \
-              -L TRACE \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.perf.Long_IPv6*" \
-              tests/
-        RETURN_STATUS=$(echo $?)
-        ;;
-    PERFTEST_LONG_XCONNECT )
-        pybot ${PYBOT_ARGS} \
-              -L TRACE \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.perf.Long_Xconnect*" \
-              tests/
-        RETURN_STATUS=$(echo $?)
-        ;;
-    PERFTEST_LONG_XCONNECT_DOT1Q )
-        pybot ${PYBOT_ARGS} \
-              -L TRACE \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.perf.Long_Xconnect_Dot1q*" \
-        RETURN_STATUS=$(echo $?)
-        ;;
-    PERFTEST_NDR )
-        pybot ${PYBOT_ARGS} \
-              -L TRACE \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.perf" -i NDR \
-              tests/
-        RETURN_STATUS=$(echo $?)
-        ;;
-    PERFTEST_PDR )
-        pybot ${PYBOT_ARGS} \
-              -L TRACE \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.perf" -i PDR \
-              tests/
-        RETURN_STATUS=$(echo $?)
-        ;;
-   PERFTEST_NIGHTLY )
-        #run all available tests
-        pybot ${PYBOT_ARGS} \
-              -L TRACE \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.perf" \
-              tests/
-        RETURN_STATUS=$(echo $?)
-        ;;
-    * )
-        # run full performance test suite and exit on fail
-        pybot ${PYBOT_ARGS} \
-              -L TRACE \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.perf" \
-              tests/
-        RETURN_STATUS=$(echo $?)
-esac
+# run full performance test suite and exit on fail
+pybot ${PYBOT_ARGS} \
+      -L TRACE \
+      -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+      tests/
+RETURN_STATUS=$(echo $?)
 
 # Pybot output post-processing
 echo Post-processing test data...
