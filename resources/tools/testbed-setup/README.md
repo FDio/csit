@@ -28,12 +28,16 @@ is available on the PXE bootstrap server in ~testuser/host-setup.
 
   - `sudo apt-get install isc-dhcp-server tftpd-hpa nginx-light ansible`
   - `cd ~testuser/host-setup`
-  - `wget 'http://releases.ubuntu.com/14.04/ubuntu-14.04.4-server-amd64.iso'`
+  - `wget 'http://releases.ubuntu.com/16.04.1/ubuntu-16.04.1-server-amd64.iso'`
   - `sudo mkdir /mnt/cdrom`
-  - `sudo mount -o loop ubuntu-14.04.4-server-amd64.iso /mnt/cdrom/`
+  - `sudo mount -o loop ubuntu-16.04.1-server-amd64.iso /mnt/cdrom/`
   - `sudo cp -r /mnt/cdrom/install/netboot/* /var/lib/tftpboot/`
   - `sudo mkdir /usr/share/nginx/html/ubuntu`
   - `sudo cp -r /mnt/cdrom/* /usr/share/nginx/html/ubuntu/`
+  - `sudo cp /mnt/cdrom/ubuntu/isolinux/ldlinux.c32 /var/lib/tftpboot`
+  - `sudo cp /mnt/cdrom/ubuntu/isolinux/libcom32.c32 /var/lib/tftpboot`
+  - `sudo cp /mnt/cdrom/ubuntu/isolinux/libutil.c32 /var/lib/tftpboot`
+  - `sudo cp /mnt/cdrom/ubuntu/isolinux/chain.c32 /var/lib/tftpboot`
   - `sudo umount /mnt/cdrom`
   - edit ks.cfg and replace IP address with that of your PXE bootstrap server
   - `sudo cp ks.cfg /usr/share/nginx/html/ks.cfg`
@@ -51,9 +55,12 @@ is available on the PXE bootstrap server in ~testuser/host-setup.
 From PXE boostrap server:
 
   - `cd ~testuser/host-setup/cimc`
+  - Initialize args.ip: Power-Off, reset BIOS defaults, Enable console redir, get LOM MAC addr
   - `./cimc.py -u admin -p Cisco1234 $CIMC_ADDRESS -d -i`
+  - Adjust BIOS settings
   - `./cimc.py -u admin -p Cisco1234 $CIMC_ADDRESS -d -s '<biosVfIntelHyperThreadingTech rn="Intel-HyperThreading-Tech" vpIntelHyperThreadingTech="disabled" />' -s '<biosVfEnhancedIntelSpeedStepTech rn="Enhanced-Intel-SpeedStep-Tech" vpEnhancedIntelSpeedStepTech="disabled" />' -s '<biosVfIntelTurboBoostTech rn="Intel-Turbo-Boost-Tech" vpIntelTurboBoostTech="disabled" />'`
-  - add MAC address to DHCP
+  - add MAC address to DHCP (/etc/dhcp/dhcpd.conf)
+  - Reboot server with boot from PXE (restart immediately)
   - `./cimc.py -u admin -p Cisco1234 $CIMC_ADDRESS -d -pxe`
 
 While Ubuntu install is running:
@@ -63,6 +70,7 @@ While Ubuntu install is running:
       - `./cimc.py -u admin -p Cisco1234 $CIMC_ADDRESS -d -r -rl 1 -rs <disk size> -rd '[1,2]'`
         Alternatively, create the RAID array manually.
 
+  - Set the next boot from HDD (without restart)
   - `./cimc.py -u admin -p Cisco1234 $CIMC_ADDRESS -d -hdd`
 
 When installation is finished:
@@ -74,11 +82,11 @@ When installation is finished:
     Example for physical testbed hosts:
     ~~~
     [tg]
-    10.30.51.16 hostname=t1-tg1
+    10.30.51.24 hostname=t3-tg1 isolcpus="1-17,19-35" ansible_python_interpreter=/usr/bin/python2.7
 
     [sut]
-    10.30.51.17 hostname=t1-sut1
-    10.30.51.18 hostname=t1-sut2
+    10.30.51.25 hostname=t3-sut1 isolcpus="1-17,19-35" ansible_python_interpreter=/usr/bin/python2.7
+    10.30.51.26 hostname=t3-sut2 isolcpus="1-17,19-35" ansible_python_interpreter=/usr/bin/python2.7
     ~~~
 
     Example for VIRL hosts -- use the "virl" tag and specify the flat network start and end addresses:
