@@ -13,7 +13,7 @@ nodes:
     host: "10.30.51.20"
     port: 22
     username: testuser
-    password: Cisco1234
+    password: Csit1234
     interfaces:
       port1:
         # t2-tg1-c1/p1 - 40GE port1 on Intel NIC xl710 2p40GE.
@@ -104,7 +104,7 @@ nodes:
     host: "10.30.51.21"
     port: 22
     username: testuser
-    password: Cisco1234
+    password: CSIT1234
     interfaces:
       port1:
         # t2-sut1-c1/p1 - 10GE port1 on Intel NIC x520 2p10GE.
@@ -173,7 +173,7 @@ nodes:
     host: "10.30.51.22"
     port: 22
     username: testuser
-    password: Cisco1234
+    password: Csit1234
     interfaces:
       port1:
         # t2-sut2-c1/p1 - 10GE port1 on Intel NIC x520 2p10GE.

@@ -28,6 +28,9 @@ VIRL_PKEY=priv_key
 VIRL_SERVER_STATUS_FILE="status"
 VIRL_SERVER_EXPECTED_STATUS="PRODUCTION"
 
+VIRL_TOPOLOGY=double-ring-nested.xenial
+VIRL_RELEASE=csit-ubuntu-16.04.1_2016-10-10_1.4
+
 SSH_OPTIONS="-i ${VIRL_PKEY} -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o BatchMode=yes -o LogLevel=error"
 
 TEST_GROUPS=("bridge_domain,dhcp,gre,honeycomb,l2_xconnect,lisp,softwire" "cop,telemetry,ipsec,ipv6,rpf,tap,vrf" "fds,iacl,ipv4,policer,vlan,vxlan")
@@ -194,7 +197,7 @@ for index in "${!VIRL_SERVER[@]}"; do
     echo "Starting simulation nr. ${index} on VIRL server ${VIRL_SERVER[${index}]}"
     VIRL_SID[${index}]=$(ssh ${SSH_OPTIONS} \
         ${VIRL_USERNAME}@${VIRL_SERVER[${index}]} \
-        "start-testcase -c double-ring-nested -r csit-ubuntu-14.04.4_2016-10-07_1.3 ${VPP_DEBS_FULL[@]}")
+        "start-testcase -c ${VIRL_TOPOLOGY} -r ${VIRL_RELEASE} ${VPP_DEBS_FULL[@]}")
     retval=$?
     if [ "$?" -ne "0" ]; then
         echo "VIRL simulation start failed on ${VIRL_SERVER[${index}]}"
