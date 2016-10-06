@@ -19,7 +19,7 @@ cat /etc/hosts
 
 export DEBIAN_FRONTEND=noninteractive
 sudo apt-get -y update
-sudo apt-get -y install libpython2.7-dev python-virtualenv
+sudo apt-get -y install libpython2.7-dev
 
 VIRL_SERVERS=("10.30.51.28" "10.30.51.29" "10.30.51.30")
 
@@ -194,7 +194,7 @@ for index in "${!VIRL_SERVER[@]}"; do
     echo "Starting simulation nr. ${index} on VIRL server ${VIRL_SERVER[${index}]}"
     VIRL_SID[${index}]=$(ssh ${SSH_OPTIONS} \
         ${VIRL_USERNAME}@${VIRL_SERVER[${index}]} \
-        "start-testcase -c double-ring-nested -r csit-ubuntu-14.04.4_2016-10-07_1.3 ${VPP_DEBS_FULL[@]}")
+        "start-testcase -c double-ring-nested.xenial -r csit-ubuntu-16.04.1_2016-10-10_1.4 ${VPP_DEBS_FULL[@]}")
     retval=$?
     if [ "$?" -ne "0" ]; then
         echo "VIRL simulation start failed on ${VIRL_SERVER[${index}]}"
