@@ -1,0 +1,239 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa3479d7_d2e30404",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 919,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-10-06T11:56:12Z",
+      "side": 1,
+      "message": "wrong indentation",
+      "range": {
+        "startLine": 918,
+        "startChar": 0,
+        "endLine": 919,
+        "endChar": 70
+      },
+      "revId": "c92ac7db530c9955a5930cb81946a651d3740bb3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa3479d7_92ed7cf2",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 919,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-10-06T11:56:12Z",
+      "side": 1,
+      "message": "Pylint C0103, wron name for \"up\" please rename to e.g. state_up",
+      "range": {
+        "startLine": 919,
+        "startChar": 61,
+        "endLine": 919,
+        "endChar": 68
+      },
+      "revId": "c92ac7db530c9955a5930cb81946a651d3740bb3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa3479d7_d2cae46d",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 936,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-10-06T11:56:12Z",
+      "side": 1,
+      "message": "rtype missing",
+      "range": {
+        "startLine": 936,
+        "startChar": 0,
+        "endLine": 936,
+        "endChar": 50
+      },
+      "revId": "c92ac7db530c9955a5930cb81946a651d3740bb3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa3479d7_32b490f1",
+        "filename": "resources/libraries/robot/traffic.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 437,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-10-06T11:56:12Z",
+      "side": 1,
+      "message": "add \\",
+      "revId": "c92ac7db530c9955a5930cb81946a651d3740bb3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa3479d7_b2c76064",
+        "filename": "tests/func/gre/l2_ipsec_gre.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-10-06T11:56:12Z",
+      "side": 1,
+      "message": "please escape with \\ at end",
+      "revId": "c92ac7db530c9955a5930cb81946a651d3740bb3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa3479d7_b29e4062",
+        "filename": "tests/func/gre/l2_ipsec_gre.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-10-06T11:56:12Z",
+      "side": 1,
+      "message": "Eth-IPv4...",
+      "range": {
+        "startLine": 36,
+        "startChar": 39,
+        "endLine": 36,
+        "endChar": 65
+      },
+      "revId": "c92ac7db530c9955a5930cb81946a651d3740bb3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa3479d7_d291c453",
+        "filename": "tests/func/gre/l2_ipsec_gre.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-10-06T11:56:12Z",
+      "side": 1,
+      "message": "and",
+      "range": {
+        "startLine": 66,
+        "startChar": 39,
+        "endLine": 66,
+        "endChar": 47
+      },
+      "revId": "c92ac7db530c9955a5930cb81946a651d3740bb3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa3479d7_52a6f4c2",
+        "filename": "tests/func/gre/l2_ipsec_gre.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-10-06T11:56:12Z",
+      "side": 1,
+      "message": "sent",
+      "range": {
+        "startLine": 66,
+        "startChar": 26,
+        "endLine": 66,
+        "endChar": 30
+      },
+      "revId": "c92ac7db530c9955a5930cb81946a651d3740bb3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa3479d7_32ab708b",
+        "filename": "tests/func/gre/l2_ipsec_gre.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-10-06T11:56:12Z",
+      "side": 1,
+      "message": "please add \\",
+      "revId": "c92ac7db530c9955a5930cb81946a651d3740bb3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa3479d7_12b06cf3",
+        "filename": "tests/func/gre/l2_ipsec_gre.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-10-06T11:56:12Z",
+      "side": 1,
+      "message": "and",
+      "range": {
+        "startLine": 120,
+        "startChar": 39,
+        "endLine": 120,
+        "endChar": 47
+      },
+      "revId": "c92ac7db530c9955a5930cb81946a651d3740bb3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa3479d7_72a1f8a8",
+        "filename": "tests/func/gre/l2_ipsec_gre.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-10-06T11:56:12Z",
+      "side": 1,
+      "message": "sent",
+      "range": {
+        "startLine": 120,
+        "startChar": 26,
+        "endLine": 120,
+        "endChar": 30
+      },
+      "revId": "c92ac7db530c9955a5930cb81946a651d3740bb3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
