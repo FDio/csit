@@ -194,7 +194,7 @@ function stop_virl_simulation {
 
 VIRL_SID=$(ssh ${SSH_OPTIONS} \
     ${VIRL_USERNAME}@${VIRL_SERVER} \
-    "start-testcase -c double-ring-nested ${VPP_DEBS_VIRL[@]}")
+    "start-testcase -c double-ring-nested.xenial -r csit-ubuntu-16.04.1_2016-10-10_1.4 ${VPP_DEBS_VIRL[@]}")
 retval=$?
 if [ "$?" -ne "0" ]; then
     echo "VIRL simulation start failed"

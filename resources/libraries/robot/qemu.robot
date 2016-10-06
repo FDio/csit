@@ -64,10 +64,7 @@
 | | ...             | returned by qemu_start or None.
 | | [Arguments] | ${dut} | ${vm}
 | | Qemu Set Node | ${dut}
-| | ${status} | ${value}= | Run Keyword And Ignore Error | Qemu System Status
-| | Run Keyword If | "${status}" == "FAIL" | Qemu Kill
-| | ... | ELSE IF | "${value}" == "running" | Qemu System Powerdown
-| | ... | ELSE | Qemu Quit
+| | Qemu Kill
 | | Qemu Clear Socks
 | | Run Keyword If | ${vm} is not None | Disconnect | ${vm}
 
