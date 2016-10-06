@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "fa3479d7_125d0cea",
+        "filename": "resources/libraries/python/LispUtil.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 242,
+      "author": {
+        "id": 365
+      },
+      "writtenOn": "2016-10-06T10:43:05Z",
+      "side": 1,
+      "message": "Updated. Please take a look.",
+      "parentUuid": "3a1d315d_bd581157",
+      "range": {
+        "startLine": 230,
+        "startChar": 4,
+        "endLine": 242,
+        "endChar": 41
+      },
+      "revId": "cb6d859ff4d267ff949324f482ac86f81d1ae6ed",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a1d315d_7d327911",
         "filename": "resources/test_data/lisp/ipv6_lispgpe_ipv6/ipv6_lispgpe_ipsec_ipv6.py",
         "patchSetId": 10
@@ -36,6 +60,30 @@
       "writtenOn": "2016-10-05T11:03:57Z",
       "side": 1,
       "message": "ipsec is missing.",
+      "range": {
+        "startLine": 14,
+        "startChar": 22,
+        "endLine": 14,
+        "endChar": 37
+      },
+      "revId": "cb6d859ff4d267ff949324f482ac86f81d1ae6ed",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa3479d7_b26be084",
+        "filename": "resources/test_data/lisp/ipv6_lispgpe_ipv6/ipv6_lispgpe_ipsec_ipv6.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 365
+      },
+      "writtenOn": "2016-10-06T10:43:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a1d315d_7d327911",
       "range": {
         "startLine": 14,
         "startChar": 22,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "fa3479d7_d26e6496",
+        "filename": "resources/test_data/lisp/ipv6_lispgpe_ipv6/ipv6_lispgpe_ipsec_ipv6.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 365
+      },
+      "writtenOn": "2016-10-06T10:43:05Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a1d315d_3d3c01e2",
+      "range": {
+        "startLine": 35,
+        "startChar": 45,
+        "endLine": 35,
+        "endChar": 61
+      },
+      "revId": "cb6d859ff4d267ff949324f482ac86f81d1ae6ed",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a1d315d_1d3f05d8",
         "filename": "tests/func/lisp/ipsec_ipv6_lispgpe_ipv6.robot",
         "patchSetId": 10
@@ -82,6 +154,30 @@
       "writtenOn": "2016-10-05T11:03:57Z",
       "side": 1,
       "message": "Use capital letters.\nAdd this tag to the tag documentation.",
+      "range": {
+        "startLine": 38,
+        "startChar": 69,
+        "endLine": 38,
+        "endChar": 74
+      },
+      "revId": "cb6d859ff4d267ff949324f482ac86f81d1ae6ed",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa3479d7_9268dc88",
+        "filename": "tests/func/lisp/ipsec_ipv6_lispgpe_ipv6.robot",
+        "patchSetId": 10
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 365
+      },
+      "writtenOn": "2016-10-06T10:43:05Z",
+      "side": 1,
+      "message": "Removed, replaced by LISP tag",
+      "parentUuid": "3a1d315d_1d3f05d8",
       "range": {
         "startLine": 38,
         "startChar": 69,
