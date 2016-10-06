@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "fa3479d7_120e2c35",
+        "filename": "resources/test_data/lisp/l2/l2_ipv6.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 365
+      },
+      "writtenOn": "2016-10-06T06:54:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a1d315d_08c5858d",
+      "range": {
+        "startLine": 20,
+        "startChar": 20,
+        "endLine": 24,
+        "endChar": 30
+      },
+      "revId": "09df277a31bfc951ead658cddc6fb1cf6c141004",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a1d315d_a8b9f116",
         "filename": "resources/test_data/lisp/l2/l2_ipv6.py",
         "patchSetId": 2
@@ -36,6 +60,30 @@
       "writtenOn": "2016-10-05T11:57:27Z",
       "side": 1,
       "message": "use variable defined above if possible.",
+      "range": {
+        "startLine": 38,
+        "startChar": 44,
+        "endLine": 38,
+        "endChar": 63
+      },
+      "revId": "09df277a31bfc951ead658cddc6fb1cf6c141004",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa3479d7_f2128857",
+        "filename": "resources/test_data/lisp/l2/l2_ipv6.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 365
+      },
+      "writtenOn": "2016-10-06T06:54:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a1d315d_a8b9f116",
       "range": {
         "startLine": 38,
         "startChar": 44,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "fa3479d7_d20f842d",
+        "filename": "tests/func/lisp/l2_lisp_ipv6.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 365
+      },
+      "writtenOn": "2016-10-06T06:54:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a1d315d_48425d11",
+      "range": {
+        "startLine": 30,
+        "startChar": 50,
+        "endLine": 30,
+        "endChar": 54
+      },
+      "revId": "09df277a31bfc951ead658cddc6fb1cf6c141004",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a1d315d_2845e116",
         "filename": "tests/func/lisp/l2_lisp_ipv6.robot",
         "patchSetId": 2
@@ -82,6 +154,30 @@
       "writtenOn": "2016-10-05T11:57:27Z",
       "side": 1,
       "message": "add \"\\\" where needed.",
+      "range": {
+        "startLine": 42,
+        "startChar": 68,
+        "endLine": 42,
+        "endChar": 76
+      },
+      "revId": "09df277a31bfc951ead658cddc6fb1cf6c141004",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa3479d7_b21c006c",
+        "filename": "tests/func/lisp/l2_lisp_ipv6.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 365
+      },
+      "writtenOn": "2016-10-06T06:54:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a1d315d_2845e116",
       "range": {
         "startLine": 42,
         "startChar": 68,
