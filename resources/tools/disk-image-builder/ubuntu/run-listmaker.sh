@@ -37,12 +37,12 @@ then
   exit 1
 fi
 DATE=$(date +%Y-%m-%d)
-OS="ubuntu-14.04.4"
+OS="ubuntu-16.04.1"
 RELEASE="${OS}_${DATE}_${VERSION}"
 OUTPUT_DIR="lists/${RELEASE}"
 
 echo "Building release ${RELEASE}."
-echo "Storinging data in ${OUTPUT_DIR}/."
+echo "Storing data in ${OUTPUT_DIR}/."
 
 
 # APT packages wanted
@@ -53,7 +53,7 @@ APT_WANTLIST_VPP="dkms bridge-utils"
 APT_WANTLIST_TREX="zlib1g-dev unzip"
 APT_WANTLIST_NESTED="qemu-system-x86"
 APT_WANTLIST_JAVA="openjdk-8-jdk-headless"
-APT_WANTLIST_DOCKER="docker-engine"
+#APT_WANTLIST_DOCKER="docker-engine"
 
 # For now, let us NOT incude WANTLIST_NESTED in the below. We're installing qemu
 # separately from a separate source.
@@ -145,6 +145,8 @@ function do_ssh {
     -o LogLevel=error ${SSH_USER}@${ip} "$@"
 }
 
+if [ "$OS" = "ubuntu-14.04.4" ]
+then
 do_ssh "cat - > /etc/apt/sources.list" <<_EOF
 deb http://us.archive.ubuntu.com/ubuntu/ trusty main restricted
 deb-src http://us.archive.ubuntu.com/ubuntu/ trusty main restricted
@@ -167,7 +169,31 @@ deb-src http://security.ubuntu.com/ubuntu trusty-security universe
 deb http://security.ubuntu.com/ubuntu trusty-security multiverse
 deb-src http://security.ubuntu.com/ubuntu trusty-security multiverse
 _EOF
-
+elif [ "$OS" = "ubuntu-16.04.1" ]
+then
+do_ssh "cat - > /etc/apt/sources.list" <<_EOF
+deb http://us.archive.ubuntu.com/ubuntu/ xenial main restricted
+deb-src http://us.archive.ubuntu.com/ubuntu/ xenial main restricted
+deb http://us.archive.ubuntu.com/ubuntu/ xenial-updates main restricted
+deb-src http://us.archive.ubuntu.com/ubuntu/ xenial-updates main restricted
+deb http://us.archive.ubuntu.com/ubuntu/ xenial universe
+deb-src http://us.archive.ubuntu.com/ubuntu/ xenial universe
+deb http://us.archive.ubuntu.com/ubuntu/ xenial-updates universe
+deb-src http://us.archive.ubuntu.com/ubuntu/ xenial-updates universe
+deb http://us.archive.ubuntu.com/ubuntu/ xenial multiverse
+deb-src http://us.archive.ubuntu.com/ubuntu/ xenial multiverse
+deb http://us.archive.ubuntu.com/ubuntu/ xenial-updates multiverse
+deb-src http://us.archive.ubuntu.com/ubuntu/ xenial-updates multiverse
+deb http://us.archive.ubuntu.com/ubuntu/ xenial-backports main restricted universe multiverse
+deb-src http://us.archive.ubuntu.com/ubuntu/ xenial-backports main restricted universe multiverse
+deb http://security.ubuntu.com/ubuntu xenial-security main restricted
+deb-src http://security.ubuntu.com/ubuntu xenial-security main restricted
+deb http://security.ubuntu.com/ubuntu xenial-security universe
+deb-src http://security.ubuntu.com/ubuntu xenial-security universe
+deb http://security.ubuntu.com/ubuntu xenial-security multiverse
+deb-src http://security.ubuntu.com/ubuntu xenial-security multiverse
+_EOF
+fi
 
 ### FIXME: Need error handling around all this
 do_ssh apt-get update
@@ -179,32 +205,47 @@ do_ssh apt-get --print-uris -y install $APT_WANTLIST >> $APT_TEMPFILE
 do_ssh DEBIAN_FRONTEND=noninteractive apt-get -y install $APT_WANTLIST
 
 ### Install qemu ($APT_WANTLIST_NESTED) separately from PPA
+if [ "$OS" = "ubuntu-14.04.4" ]
+then
 do_ssh "cat - >> /etc/apt/sources.list" <<_EOF
 # For a custom qemu build
 deb http://ppa.launchpad.net/syseleven-platform/virtualization/ubuntu trusty main
 deb-src http://ppa.launchpad.net/syseleven-platform/virtualization/ubuntu trusty main
 _EOF
+fi
 do_ssh apt-get --allow-unauthenticated update
 do_ssh apt-get --print-uris --allow-unauthenticated -y install $APT_WANTLIST_NESTED >> $APT_TEMPFILE
 do_ssh DEBIAN_FRONTEND=noninteractive apt-get --allow-unauthenticated -y install $APT_WANTLIST_NESTED
 
 ### Install Java ($APT_WANTLIST_JAVA) separately from PPA
+if [ "$OS" = "ubuntu-14.04.4" ]
+then
 do_ssh "cat - >> /etc/apt/sources.list" <<_EOF
 # For java
 deb http://ppa.launchpad.net/openjdk-r/ppa/ubuntu trusty main
 _EOF
+fi
 do_ssh apt-get --allow-unauthenticated update
 do_ssh apt-get --print-uris --allow-unauthenticated -y install $APT_WANTLIST_JAVA >> $APT_TEMPFILE
 do_ssh DEBIAN_FRONTEND=noninteractive apt-get --allow-unauthenticated -y install $APT_WANTLIST_JAVA
 
 ### Install Docker ($APT_WANTLIST_DOCKER) separately from PPA
-do_ssh "cat - >> /etc/apt/sources.list" <<_EOF
-# For Docker
-deb https://apt.dockerproject.org/repo ubuntu-trusty main
-_EOF
-do_ssh apt-get --allow-unauthenticated update
-do_ssh apt-get --print-uris --allow-unauthenticated -y install $APT_WANTLIST_DOCKER >> $APT_TEMPFILE
-do_ssh DEBIAN_FRONTEND=noninteractive apt-get --allow-unauthenticated -y install $APT_WANTLIST_DOCKER
+#if [ "$OS" = "ubuntu-14.04.4" ]
+#then
+#do_ssh "cat - >> /etc/apt/sources.list" <<_EOF
+## For Docker
+#deb https://apt.dockerproject.org/repo ubuntu-trusty main
+#_EOF
+#elif [ "$OS" = "ubuntu-16.04.1" ]
+#then
+#do_ssh "cat - >> /etc/apt/sources.list" <<_EOF
+## For Docker
+#deb https://apt.dockerproject.org/repo ubuntu-xenial main
+#_EOF
+#fi
+#do_ssh apt-get --allow-unauthenticated update
+#do_ssh apt-get --print-uris --allow-unauthenticated -y install $APT_WANTLIST_DOCKER >> $APT_TEMPFILE
+#do_ssh DEBIAN_FRONTEND=noninteractive apt-get --allow-unauthenticated -y install $APT_WANTLIST_DOCKER
 
 cat $APT_TEMPFILE | grep MD5Sum | sort > $APT_OUTPUTFILE
 rm -f $APT_TEMPFILE

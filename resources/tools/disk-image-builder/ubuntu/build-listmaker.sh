@@ -20,8 +20,8 @@ BUILD_DIR="$(pwd)/build"
 PACKER_DIR="${BUILD_DIR}/packer"
 OUT_DIR="${BUILD_DIR}/output/listmaker"
 
-RELEASE_NAME="csit-ubuntu-14.04.4-listmaker"
-PACKER_TEMPLATE="listmaker/ubuntu-14.04.4.json"
+RELEASE_NAME="csit-ubuntu-16.04.1-listmaker"
+PACKER_TEMPLATE="listmaker/ubuntu-16.04.1.json"
 
 VIRL_IMAGE_SUBTYPE=server
 VIRL_IMAGE_NAME="${RELEASE_NAME}"

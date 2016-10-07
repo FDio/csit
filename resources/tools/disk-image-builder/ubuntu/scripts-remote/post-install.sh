@@ -85,6 +85,28 @@ mkdir -p /etc/profile.d
 echo 'export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64' > /etc/profile.d/java.sh
 echo 'export PATH=$JAVA_HOME/bin:$PATH' >> /etc/profile.d/java.sh
 
+##
+## Huge Pages
+##
+echo "********** CONFIGURING HUGE PAGES **********"
+cat - > /etc/sysctl.d/90-csit.conf <<"_EOF"
+# Number of 2MB hugepages desired
+vm.nr_hugepages=1024
+
+# Must be greater than or equal to (2 * vm.nr_hugepages).
+vm.max_map_count=20000
+
+# All groups allowed to access hugepages
+vm.hugetlb_shm_group=0
+
+# Shared Memory Max must be greator or equal to the total size of hugepages.
+# For 2MB pages, TotalHugepageSize = vm.nr_hugepages * 2 * 1024 * 1024
+# If the existing kernel.shmmax setting  (cat /sys/proc/kernel/shmmax)
+# is greater than the calculated TotalHugepageSize then set this parameter
+# to current shmmax value.
+kernel.shmmax=2147483648
+_EOF
+ln -s /dev/null /etc/sysctl.d/80-vpp.conf
 
 ##
 ## Changelog
