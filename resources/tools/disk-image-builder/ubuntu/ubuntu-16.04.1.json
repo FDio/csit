@@ -1,0 +1,150 @@
+{
+  "_c": "Ubuntu 16.04.1 ISO URL at the time of creation of this file (10/2016)",
+  "_c": "was http://releases.ubuntu.com/14.04/ubuntu-16.04.1-server-amd64.iso .",
+  "_c": "",
+  "_c": "If and when 16.04.1 becomes superseded, this URL will likely change",
+  "_c": "to:",
+  "_c": "http://old-releases.ubuntu.com/releases/16.04.1/ubuntu-16.04.1-server-amd64.iso",
+  "variables": {
+    "release": null,
+    "output_dir": null,
+    "temp_dir": null,
+    "atlas_token": "{{env `ATLAS_TOKEN`}}",
+    "virl_user": "{{env `VIRL_USER`}}",
+    "virl_password": "{{env `VIRL_PASSWORD`}}"
+  },
+  "builders": [
+    {
+      "name": "{{user `release`}}-virtualbox",
+      "type": "virtualbox-iso",
+      "guest_os_type": "Ubuntu_64",
+      "iso_url": "http://releases.ubuntu.com/16.04/ubuntu-16.04.1-server-amd64.iso",
+      "iso_checksum": "d2d939ca0e65816790375f6826e4032f",
+      "iso_checksum_type": "md5",
+      "output_directory": "{{user `output_dir`}}",
+      "ssh_username": "root",
+      "ssh_password": "csit",
+      "disk_size": "4096",
+      "http_directory": "html",
+      "iso_target_path" : "build/ubuntu-16.04.1-server-amd64.iso",
+      "boot_command":
+        [
+          "<enter><wait><f6><esc><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+          "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+          "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+          "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+          "/install/vmlinuz<wait>",
+          " auto<wait>",
+          " console-setup/ask_detect=false<wait>",
+          " console-setup/layoutcode=us<wait>",
+          " console-setup/modelcode=pc105<wait>",
+          " debconf/frontend=noninteractive<wait>",
+          " debian-installer=en_US<wait>",
+          " fb=false<wait>",
+          " initrd=/install/initrd.gz<wait>",
+          " kbd-chooser/method=us<wait>",
+          " keyboard-configuration/layout=USA<wait>",
+          " keyboard-configuration/variant=USA<wait>",
+          " locale=en_US<wait>",
+          " netcfg/get_domain=vm<wait>",
+          " netcfg/get_hostname=vagrant<wait>",
+          " grub-installer/bootdev=/dev/vda<wait>",
+          " noapic<wait>",
+          " preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg",
+          " -- <wait>",
+           "<enter><wait>"
+        ]
+    },
+    {
+      "name": "{{user `release`}}-qemu",
+      "type": "qemu",
+      "iso_url": "http://releases.ubuntu.com/16.04.1/ubuntu-16.04.1-server-amd64.iso",
+      "iso_checksum": "d2d939ca0e65816790375f6826e4032f",
+      "iso_checksum_type": "md5",
+      "output_directory": "{{user `output_dir`}}",
+      "ssh_username": "root",
+      "ssh_password": "csit",
+      "disk_size": "4096",
+      "http_directory": "html",
+      "iso_target_path" : "build/ubuntu-16.04.1-server-amd64.iso",
+      "headless": "true",
+      "boot_command":
+        [
+          "<enter><wait><f6><esc><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+          "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+          "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+          "<bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs><bs>",
+          "/install/vmlinuz<wait>",
+          " auto<wait>",
+          " console-setup/ask_detect=false<wait>",
+          " console-setup/layoutcode=us<wait>",
+          " console-setup/modelcode=pc105<wait>",
+          " debconf/frontend=noninteractive<wait>",
+          " debian-installer=en_US<wait>",
+          " fb=false<wait>",
+          " initrd=/install/initrd.gz<wait>",
+          " kbd-chooser/method=us<wait>",
+          " keyboard-configuration/layout=USA<wait>",
+          " keyboard-configuration/variant=USA<wait>",
+          " locale=en_US<wait>",
+          " netcfg/get_domain=vm<wait>",
+          " netcfg/get_hostname=vagrant<wait>",
+          " grub-installer/bootdev=/dev/vda<wait>",
+          " noapic<wait>",
+          " preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg",
+          " -- <wait>",
+           "<enter><wait>"
+        ]
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "file",
+      "source": "{{ user `temp_dir`}}",
+      "destination": "/root"
+    },
+    {
+      "type": "shell",
+      "script": "scripts-remote/post-install.sh"
+    },
+    {
+      "type": "shell",
+      "only": ["{{user `release`}}-qemu"],
+      "script": "scripts-remote/serial-console-xenial.sh"
+    },
+    {
+      "type": "shell",
+      "only": ["{{user `release`}}-virtualbox"],
+      "script": "scripts-remote/vagrant-user.sh"
+    },
+    {
+      "type": "shell",
+      "only": ["{{user `release`}}-virtualbox"],
+      "script": "scripts-remote/vagrant-guestadditions.sh"
+    },
+    {
+      "type": "shell",
+      "script": "scripts-remote/cleanup.sh"
+    }
+  ],
+  "post-processors": [
+    {
+      "type": "vagrant",
+      "only": ["{{user `release`}}-virtualbox"],
+      "keep_input_artifact": true
+    },
+    {
+      "type": "shell-local",
+      "only": ["{{user `release`}}-qemu"],
+      "script": "scripts-local/upload-image-to-virl.sh",
+      "keep_input_artifact": true,
+      "environment_vars":
+        [
+          "VIRL_USER={{user `virl_user`}}",
+          "VIRL_PASSWORD={{user `virl_password`}}",
+          "VIRL_IMAGE_SUBTYPE=server",
+          "VIRL_IMAGE_NAME={{user `release`}}"
+        ]
+     }
+  ]
+}
