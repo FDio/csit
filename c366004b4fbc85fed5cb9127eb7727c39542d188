@@ -22,6 +22,30 @@
       "revId": "c366004b4fbc85fed5cb9127eb7727c39542d188",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa3479d7_782c394b",
+        "filename": "resources/libraries/python/VPPUtil.py",
+        "patchSetId": 17
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 365
+      },
+      "writtenOn": "2016-10-07T08:49:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa3479d7_58873562",
+      "range": {
+        "startLine": 47,
+        "startChar": 8,
+        "endLine": 47,
+        "endChar": 22
+      },
+      "revId": "c366004b4fbc85fed5cb9127eb7727c39542d188",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
