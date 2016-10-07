@@ -114,7 +114,6 @@
 | | :FOR | ${key} | IN | @{settings.keys()}
 | | | interfaceAPI.Configure interface ipv4
 | | | ... | ${node} | ${interface} | ${key} | ${settings['${key}']}
-| | | ${api_data}= | interfaceAPI.Get interface oper data | ${node} | ${interface}
 
 | Honeycomb sets interface ipv4 address with prefix
 | | [Documentation] | Uses Honeycomb API to assign an ipv4 address to the\
