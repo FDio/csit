@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<topology xmlns="http://www.cisco.com/VIRL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" schemaVersion="0.9" xsi:schemaLocation="http://www.cisco.com/VIRL https://raw.github.com/CiscoVIRL/schema/v0.9/virl.xsd">
+    <extensions>
+        <entry key="management_network" type="String">flat</entry>
+    </extensions>
+    <node name="tg1" type="SIMPLE" subtype="server" location="570,238" vmImage="$$VM_IMAGE$$">
+        <extensions>
+            <entry key="config" type="String">#cloud-config
+bootcmd:
+- ln -s -t /etc/rc.d /etc/rc.local
+hostname: tg1
+manage_etc_hosts: true
+nfs_server_scratch: $$NFS_SERVER_SCRATCH$$
+nfs_server_common: $$NFS_SERVER_COMMON$$
+runcmd:
+- systemctl start getty@ttyS0.service
+- systemctl start rc-local
+- touch /tmp/before-sed
+- sed -i 's/^\s*PasswordAuthentication\s\+no/PasswordAuthentication yes/' /etc/ssh/sshd_config
+- echo "UseDNS no" &gt;&gt; /etc/ssh/sshd_config
+- service ssh restart
+- service sshd restart
+users:
+- default
+- gecos: User configured by VIRL Configuration Engine 0.21.4
+  lock-passwd: false
+  name: cisco
+  plain-text-passwd: cisco
+  shell: /bin/bash
+  ssh-authorized-keys:
+  - VIRL-USER-SSH-PUBLIC-KEY
+  - VIRL-USER-SSH-PUBLIC-KEY
+  sudo: ALL=(ALL) NOPASSWD:ALL
+write_files:
+- path: /etc/init/ttyS0.conf
+  owner: root:root
+  content: |
+    # ttyS0 - getty
+    # This service maintains a getty on ttyS0 from the point the system is
+    # started until it is shut down again.
+    start on stopped rc or RUNLEVEL=[12345]
+    stop on runlevel [!12345]
+    respawn
+    exec /sbin/getty -L 115200 ttyS0 vt102
+  permissions: '0644'
+- path: /etc/systemd/system/dhclient@.service
+  content: |
+    [Unit]
+    Description=Run dhclient on %i interface
+    After=network.target
+    [Service]
+    Type=oneshot
+    ExecStart=/sbin/dhclient %i -pf /var/run/dhclient.%i.pid -lf /var/lib/dhclient/dhclient.%i.lease
+    RemainAfterExit=yes
+  owner: root:root
+  permissions: '0644'
+- path: /usr/local/sbin/cloud-instance-name
+  content: |
+    #!/usr/bin/python3.5
+    import pickle
+    print(pickle.loads(open('/var/lib/cloud/instance/obj.pkl', 'rb').read(), encoding="ACSII").metadata['name'])
+  owner: root:root
+  permissions: '0755'
+- path: /etc/rc.local
+  owner: root:root
+  permissions: '0755'
+  content: |-
+    #!/bin/sh
+    grep -q nfs_server_scratch /var/lib/cloud/instance/user-data.txt || exit 1
+    grep -q nfs_server_common /var/lib/cloud/instance/user-data.txt || exit 1
+    nfs_server_scratch=$(grep -E '^nfs_server_scratch:' /var/lib/cloud/instance/user-data.txt | awk '{ print $2 }')
+    nfs_server_common=$(grep -E '^nfs_server_common:' /var/lib/cloud/instance/user-data.txt | awk '{ print $2 }')
+    instance_name=$(/usr/local/sbin/cloud-instance-name | cut -f 3 -d '&lt;' | cut -f 1 -d '&gt;')
+    echo My instance name is $instance_name
+
+    MAXCOUNT=12
+    RETRY=5
+
+    mkdir -p /scratch
+    mkdir -p /mnt/common
+
+    echo "Mounting NFS directories"
+    count=0
+    while [ $count -lt $MAXCOUNT ] &amp;&amp; ! mount -t nfs "${nfs_server_scratch}/${instance_name}" /scratch
+    do
+      sleep 5
+      count=$[$count+1]
+    done
+
+    mount -t nfs "${nfs_server_common}" /mnt/common
+
+    mkdir /scratch/$(hostname)
+    cp /VERSION /scratch/$(hostname)/
+
+    exit 0
+</entry>
+            <entry key="Auto-generate config" type="Boolean">false</entry>
+        </extensions>
+        <interface id="0" name="eth1"/>
+        <interface id="1" name="eth2"/>
+        <interface id="2" name="eth3"/>
+        <interface id="3" name="eth4"/>
+        <interface id="4" name="eth5"/>
+        <interface id="5" name="eth6"/>
+    </node>
+    <node name="sut1" type="SIMPLE" subtype="vPP" location="425,26" vmImage="$$VM_IMAGE$$">
+        <extensions>
+            <entry key="config" type="string">#cloud-config
+bootcmd:
+- ln -s -t /etc/rc.d /etc/rc.local
+hostname: sut1
+manage_etc_hosts: true
+nfs_server_scratch: $$NFS_SERVER_SCRATCH$$
+nfs_server_common: $$NFS_SERVER_COMMON$$
+runcmd:
+- systemctl start getty@ttyS0.service
+- systemctl start rc-local
+- sed -i '/^\s*PasswordAuthentication\s\+no/d' /etc/ssh/sshd_config
+- echo "UseDNS no" &gt;&gt; /etc/ssh/sshd_config
+- service ssh restart
+- service sshd restart
+- sed -i 's/no-pci//' /opt/cisco/vpe/etc/qn.conf
+- sed -i 's/1024/1024 decimal-interface-names/g' /opt/cisco/vpe/etc/qn.conf
+- ln -s /dev/null /etc/sysctl.d/80-vpp.conf
+users:
+- default
+- gecos: User configured by VIRL Configuration Engine 0.21.4
+  lock-passwd: false
+  name: cisco
+  plain-text-passwd: cisco
+  shell: /bin/bash
+  ssh-authorized-keys:
+  - VIRL-USER-SSH-PUBLIC-KEY
+  - VIRL-USER-SSH-PUBLIC-KEY
+  sudo: ALL=(ALL) NOPASSWD:ALL
+write_files:
+- path: /etc/init/ttyS0.conf
+  owner: root:root
+  content: |
+    # ttyS0 - getty
+    # This service maintains a getty on ttyS0 from the point the system is
+    # started until it is shut down again.
+    start on stopped rc or RUNLEVEL=[12345]
+    stop on runlevel [!12345]
+    respawn
+    exec /sbin/getty -L 115200 ttyS0 vt102
+  permissions: '0644'
+- path: /etc/systemd/system/dhclient@.service
+  content: |
+    [Unit]
+    Description=Run dhclient on %i interface
+    After=network.target
+    [Service]
+    Type=oneshot
+    ExecStart=/sbin/dhclient %i -pf /var/run/dhclient.%i.pid -lf /var/lib/dhclient/dhclient.%i.lease
+    RemainAfterExit=yes
+  owner: root:root
+  permissions: '0644'
+- path: /usr/local/sbin/cloud-instance-name
+  content: |
+    #!/usr/bin/python3.5
+    import pickle
+    print(pickle.loads(open('/var/lib/cloud/instance/obj.pkl', 'rb').read(), encoding="ACSII").metadata['name'])
+  owner: root:root
+  permissions: '0755'
+- path: /etc/rc.local
+  owner: root:root
+  permissions: '0755'
+  content: |-
+    #!/bin/sh
+    grep -q nfs_server_scratch /var/lib/cloud/instance/user-data.txt || exit 1
+    grep -q nfs_server_common /var/lib/cloud/instance/user-data.txt || exit 1
+    nfs_server_scratch=$(grep -E '^nfs_server_scratch:' /var/lib/cloud/instance/user-data.txt | awk '{ print $2 }')
+    nfs_server_common=$(grep -E '^nfs_server_common:' /var/lib/cloud/instance/user-data.txt | awk '{ print $2 }')
+    instance_name=$(/usr/local/sbin/cloud-instance-name | cut -f 3 -d '&lt;' | cut -f 1 -d '&gt;')
+    echo My instance name is $instance_name
+
+    MAXCOUNT=12
+    RETRY=5
+
+    mkdir -p /scratch
+    mkdir -p /mnt/common
+
+    echo "Mounting NFS directories"
+    count=0
+    while [ $count -lt $MAXCOUNT ] &amp;&amp; ! mount -t nfs "${nfs_server_scratch}/${instance_name}" /scratch
+    do
+      sleep 5
+      count=$[$count+1]
+    done
+
+    mount -t nfs "${nfs_server_common}" /mnt/common
+
+    # Overwrite nested VM image with latest as per NFS
+    if [ -f /mnt/common/nested-vm-current.img ]
+    then
+      rm -f /var/lib/vm/vhost-nested.img
+      cp /mnt/common/nested-vm-current.img /var/lib/vm/vhost-nested.img
+    fi
+
+    mkdir /scratch/$(hostname)
+    cp /VERSION /scratch/$(hostname)/
+    cat /var/lib/vm/vhost-nested.img | strings | grep NESTED_VERSION= > /scratch/$(hostname)/NESTED_VERSION
+
+    exit 0
+- path: /etc/sysctl.d/90-csit.conf
+  owner: root:root
+  content: |
+    # Number of 2MB hugepages desired
+    vm.nr_hugepages=1024
+
+    # Must be greater than or equal to (2 * vm.nr_hugepages).
+    vm.max_map_count=20000
+
+    # All groups allowed to access hugepages
+    vm.hugetlb_shm_group=0
+
+    # Shared Memory Max must be greator or equal to the total size of hugepages.
+    # For 2MB pages, TotalHugepageSize = vm.nr_hugepages * 2 * 1024 * 1024
+    # If the existing kernel.shmmax setting  (cat /sys/proc/kernel/shmmax)
+    # is greater than the calculated TotalHugepageSize then set this parameter
+    # to current shmmax value.
+    kernel.shmmax=2147483648
+</entry>
+        </extensions>
+        <interface id="0" name="GigabitEthernet0/4/0"/>
+        <interface id="1" name="GigabitEthernet0/5/0"/>
+        <interface id="2" name="GigabitEthernet0/6/0"/>
+        <interface id="3" name="GigabitEthernet0/7/0"/>
+    </node>
+    <node name="sut2" type="SIMPLE" subtype="vPP" location="748,26" vmImage="$$VM_IMAGE$$">
+        <extensions>
+            <entry key="config" type="string">#cloud-config
+bootcmd:
+- ln -s -t /etc/rc.d /etc/rc.local
+hostname: sut2
+manage_etc_hosts: true
+nfs_server_scratch: $$NFS_SERVER_SCRATCH$$
+nfs_server_common: $$NFS_SERVER_COMMON$$
+runcmd:
+- systemctl start getty@ttyS0.service
+- systemctl start rc-local
+- sed -i '/^\s*PasswordAuthentication\s\+no/d' /etc/ssh/sshd_config
+- echo "UseDNS no" &gt;&gt; /etc/ssh/sshd_config
+- service ssh restart
+- service sshd restart
+- sed -i 's/no-pci//' /opt/cisco/vpe/etc/qn.conf
+- sed -i 's/1024/1024 decimal-interface-names/g' /opt/cisco/vpe/etc/qn.conf
+- ln -s /dev/null /etc/sysctl.d/80-vpp.conf
+users:
+- default
+- gecos: User configured by VIRL Configuration Engine 0.21.4
+  lock-passwd: false
+  name: cisco
+  plain-text-passwd: cisco
+  shell: /bin/bash
+  ssh-authorized-keys:
+  - VIRL-USER-SSH-PUBLIC-KEY
+  - VIRL-USER-SSH-PUBLIC-KEY
+  sudo: ALL=(ALL) NOPASSWD:ALL
+write_files:
+- path: /etc/init/ttyS0.conf
+  owner: root:root
+  content: |
+    # ttyS0 - getty
+    # This service maintains a getty on ttyS0 from the point the system is
+    # started until it is shut down again.
+    start on stopped rc or RUNLEVEL=[12345]
+    stop on runlevel [!12345]
+    respawn
+    exec /sbin/getty -L 115200 ttyS0 vt102
+  permissions: '0644'
+- path: /etc/systemd/system/dhclient@.service
+  content: |
+    [Unit]
+    Description=Run dhclient on %i interface
+    After=network.target
+    [Service]
+    Type=oneshot
+    ExecStart=/sbin/dhclient %i -pf /var/run/dhclient.%i.pid -lf /var/lib/dhclient/dhclient.%i.lease
+    RemainAfterExit=yes
+  owner: root:root
+  permissions: '0644'
+- path: /usr/local/sbin/cloud-instance-name
+  content: |
+    #!/usr/bin/python3.5
+    import pickle
+    print(pickle.loads(open('/var/lib/cloud/instance/obj.pkl', 'rb').read(), encoding="ACSII").metadata['name'])
+  owner: root:root
+  permissions: '0755'
+- path: /etc/rc.local
+  owner: root:root
+  permissions: '0755'
+  content: |-
+    #!/bin/sh
+    grep -q nfs_server_scratch /var/lib/cloud/instance/user-data.txt || exit 1
+    grep -q nfs_server_common /var/lib/cloud/instance/user-data.txt || exit 1
+    nfs_server_scratch=$(grep -E '^nfs_server_scratch:' /var/lib/cloud/instance/user-data.txt | awk '{ print $2 }')
+    nfs_server_common=$(grep -E '^nfs_server_common:' /var/lib/cloud/instance/user-data.txt | awk '{ print $2 }')
+    instance_name=$(/usr/local/sbin/cloud-instance-name | cut -f 3 -d '&lt;' | cut -f 1 -d '&gt;')
+    echo My instance name is $instance_name
+
+    MAXCOUNT=12
+    RETRY=5
+
+    mkdir -p /scratch
+    mkdir -p /mnt/common
+
+    echo "Mounting NFS directories"
+    count=0
+    while [ $count -lt $MAXCOUNT ] &amp;&amp; ! mount -t nfs "${nfs_server_scratch}/${instance_name}" /scratch
+    do
+      sleep 5
+      count=$[$count+1]
+    done
+
+    mount -t nfs "${nfs_server_common}" /mnt/common
+
+    # Overwrite nested VM image with latest as per NFS
+    if [ -f /mnt/common/nested-vm-current.img ]
+    then
+      rm -f /var/lib/vm/vhost-nested.img
+      cp /mnt/common/nested-vm-current.img /var/lib/vm/vhost-nested.img
+    fi
+
+    mkdir /scratch/$(hostname)
+    cp /VERSION /scratch/$(hostname)/
+    cat /var/lib/vm/vhost-nested.img | strings | grep NESTED_VERSION= > /scratch/$(hostname)/NESTED_VERSION
+
+    exit 0
+- path: /etc/sysctl.d/90-csit.conf
+  owner: root:root
+  content: |
+    # Number of 2MB hugepages desired
+    vm.nr_hugepages=1024
+
+    # Must be greater than or equal to (2 * vm.nr_hugepages).
+    vm.max_map_count=20000
+
+    # All groups allowed to access hugepages
+    vm.hugetlb_shm_group=0
+
+    # Shared Memory Max must be greator or equal to the total size of hugepages.
+    # For 2MB pages, TotalHugepageSize = vm.nr_hugepages * 2 * 1024 * 1024
+    # If the existing kernel.shmmax setting  (cat /sys/proc/kernel/shmmax)
+    # is greater than the calculated TotalHugepageSize then set this parameter
+    # to current shmmax value.
+    kernel.shmmax=2147483648
+</entry>
+        </extensions>
+        <interface id="0" name="GigabitEthernet0/4/0"/>
+        <interface id="1" name="GigabitEthernet0/5/0"/>
+        <interface id="2" name="GigabitEthernet0/6/0"/>
+        <interface id="3" name="GigabitEthernet0/7/0"/>
+    </node>
+    <connection dst="/virl:topology/virl:node[1]/virl:interface[3]" src="/virl:topology/virl:node[2]/virl:interface[1]"/>
+    <connection dst="/virl:topology/virl:node[1]/virl:interface[4]" src="/virl:topology/virl:node[2]/virl:interface[2]"/>
+    <connection dst="/virl:topology/virl:node[2]/virl:interface[3]" src="/virl:topology/virl:node[3]/virl:interface[3]"/>
+    <connection dst="/virl:topology/virl:node[2]/virl:interface[4]" src="/virl:topology/virl:node[3]/virl:interface[4]"/>
+    <connection dst="/virl:topology/virl:node[1]/virl:interface[5]" src="/virl:topology/virl:node[3]/virl:interface[1]"/>
+    <connection dst="/virl:topology/virl:node[1]/virl:interface[6]" src="/virl:topology/virl:node[3]/virl:interface[2]"/>
+</topology>
