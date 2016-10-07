@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa3479d7_f8f7098b",
+        "filename": "resources/libraries/python/VPPUtil.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-10-07T10:07:56Z",
+      "side": 1,
+      "message": "use print()",
+      "range": {
+        "startLine": 50,
+        "startChar": 17,
+        "endLine": 50,
+        "endChar": 49
+      },
+      "revId": "26df2b9c2d4ff80d2d7343226fd07c36c19f5413",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa3479d7_b8f18197",
+        "filename": "resources/libraries/python/VPPUtil.py",
+        "patchSetId": 20
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-10-07T10:07:56Z",
+      "side": 1,
+      "message": "use print()",
+      "range": {
+        "startLine": 51,
+        "startChar": 12,
+        "endLine": 51,
+        "endChar": 24
+      },
+      "revId": "26df2b9c2d4ff80d2d7343226fd07c36c19f5413",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
