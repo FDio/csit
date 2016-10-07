@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa3479d7_7bbc336d",
+        "filename": "resources/tools/disk-image-builder/ubuntu/build-listmaker.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 101
+      },
+      "writtenOn": "2016-10-07T17:51:42Z",
+      "side": 1,
+      "message": "Unless you want to move exclusively to 16.04 and stop 14.04 testing.. does it make sense to parameterize this and take the version as an argument to the script?",
+      "range": {
+        "startLine": 23,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 46
+      },
+      "revId": "4e4e063d043a375dc5fe99abc37f564dcd7e80ed",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa3479d7_5bc16fe3",
+        "filename": "resources/tools/disk-image-builder/ubuntu/listmaker/ubuntu-16.04.1.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 101
+      },
+      "writtenOn": "2016-10-07T17:51:42Z",
+      "side": 1,
+      "message": "Have you tested this? Does this actually still work in 16.04?\n\nI experimented with packer + 16.04 in some other context recently and had to implement a boot command like this, do to changes in the Ubuntu installer and different keystrokes being required to trigger this preseeded install:\n\n      \"boot_command\": [\n         \"\u003center\u003e\u003cwait\u003e\u003cf6\u003e\u003cesc\u003e\u003cbs\u003e\u003cbs\u003e\u003cbs\u003e\u003cbs\u003e\u003cbs\u003e\u003cbs\u003e\u003cbs\u003e\u003cbs\u003e\u003cbs\u003e\u003cbs\u003e\u003cbs\u003e\u003cbs\u003e\u003cbs\u003e\u003cbs\u003e\u003cbs\u003e\u003cbs\u003e\u003cbs\u003e\",\n         \"\u003cbs\u003e\u003cbs\u003e\u003cbs\u003e\u003cbs\u003e\u003cbs\u003e\u003cbs\u003e\u003cbs\u003e\u003cbs\u003e\u003cbs\u003e\u003cbs\u003e\u003cbs\u003e\u003cbs\u003e\u003cbs\u003e\u003cbs\u003e\u003cbs\u003e\u003cbs\u003e\u003cbs\u003e\u003cbs\u003e\u003cbs\u003e\u003cbs\u003e\u003cbs\u003e\u003cbs\u003e\",\n         \"\u003cbs\u003e\u003cbs\u003e\u003cbs\u003e\u003cbs\u003e\u003cbs\u003e\u003cbs\u003e\u003cbs\u003e\u003cbs\u003e\u003cbs\u003e\u003cbs\u003e\u003cbs\u003e\u003cbs\u003e\u003cbs\u003e\u003cbs\u003e\u003cbs\u003e\u003cbs\u003e\u003cbs\u003e\u003cbs\u003e\u003cbs\u003e\u003cbs\u003e\u003cbs\u003e\u003cbs\u003e\",\n         \"\u003cbs\u003e\u003cbs\u003e\u003cbs\u003e\u003cbs\u003e\u003cbs\u003e\u003cbs\u003e\u003cbs\u003e\u003cbs\u003e\u003cbs\u003e\u003cbs\u003e\u003cbs\u003e\u003cbs\u003e\u003cbs\u003e\u003cbs\u003e\u003cbs\u003e\u003cbs\u003e\u003cbs\u003e\u003cbs\u003e\u003cbs\u003e\u003cbs\u003e\u003cbs\u003e\u003cbs\u003e\",\n         \"/install/vmlinuz\u003cwait\u003e\",\n         \" auto\u003cwait\u003e\",\n         \" console-setup/ask_detect\u003dfalse\u003cwait\u003e\",\n         \" console-setup/layoutcode\u003dus\u003cwait\u003e\",\n         \" console-setup/modelcode\u003dpc105\u003cwait\u003e\",\n         \" debconf/frontend\u003dnoninteractive\u003cwait\u003e\",\n         \" debian-installer\u003den_US\u003cwait\u003e\",\n         \" fb\u003dfalse\u003cwait\u003e\",\n         \" initrd\u003d/install/initrd.gz\u003cwait\u003e\",\n         \" kbd-chooser/method\u003dus\u003cwait\u003e\",\n         \" keyboard-configuration/layout\u003dUSA\u003cwait\u003e\",\n         \" keyboard-configuration/variant\u003dUSA\u003cwait\u003e\",\n         \" locale\u003den_US\u003cwait\u003e\",\n         \" netcfg/get_domain\u003dvm\u003cwait\u003e\",\n         \" netcfg/get_hostname\u003dvagrant\u003cwait\u003e\",\n         \" grub-installer/bootdev\u003d/dev/vda\u003cwait\u003e\",\n         \" noapic\u003cwait\u003e\",\n         \" preseed/url\u003dhttp://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg\",\n         \" -- \u003cwait\u003e\",\n         \"\u003center\u003e\u003cwait\u003e\"\n        ]\n\nThat said, if you have tested this and the old command still works.. then all good :-)",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 9
+      },
+      "revId": "4e4e063d043a375dc5fe99abc37f564dcd7e80ed",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa3479d7_3bb6ab8b",
+        "filename": "resources/tools/disk-image-builder/ubuntu/run-listmaker.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 101
+      },
+      "writtenOn": "2016-10-07T17:51:42Z",
+      "side": 1,
+      "message": "I haven\u0027t tested this (yet).. but my guess would be that using a PPA for Java8 is no longer necessary, as (I think) 16.04 \"official\" distros have Java8. The only reason for adding a PPA there in 14.04 was because 14.04 \"official\" repos include Java7 only but not Java8.",
+      "range": {
+        "startLine": 235,
+        "startChar": 0,
+        "endLine": 235,
+        "endChar": 61
+      },
+      "revId": "4e4e063d043a375dc5fe99abc37f564dcd7e80ed",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa3479d7_1bbbe773",
+        "filename": "resources/tools/disk-image-builder/ubuntu/ubuntu-16.04.1.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 101
+      },
+      "writtenOn": "2016-10-07T17:51:42Z",
+      "side": 1,
+      "message": "Same comment here as in the listmaker ubuntu-16.041.json file regarding the keystrokes needed as input into the installer.",
+      "range": {
+        "startLine": 58,
+        "startChar": 10,
+        "endLine": 59,
+        "endChar": 37
+      },
+      "revId": "4e4e063d043a375dc5fe99abc37f564dcd7e80ed",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
