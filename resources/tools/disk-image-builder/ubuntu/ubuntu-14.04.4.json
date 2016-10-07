@@ -80,7 +80,7 @@
     {
       "type": "shell",
       "only": ["{{user `release`}}-qemu"],
-      "script": "scripts-remote/serial-console.sh"
+      "script": "scripts-remote/serial-console-ubuntu-14.04.4.sh"
     },
     {
       "type": "shell",
