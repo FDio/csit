@@ -16,7 +16,7 @@
 The keywords make possible to put and get configuration data and to get
 operational data.
 """
-
+from resources.libraries.python.topology import Topology
 from resources.libraries.python.HTTPRequest import HTTPCodes
 from resources.libraries.python.honeycomb.HoneycombSetup import HoneycombError
 from resources.libraries.python.honeycomb.HoneycombUtil \
@@ -222,7 +222,7 @@ class InterfaceKeywords(object):
         depending on the parameter "state".
 
         :param node: Honeycomb node.
-        :param interface: The name of interface.
+        :param interface: Interface name, key, link name or sw_if_index.
         :param state: The requested state, only "up" and "down" are valid
         values.
         :type node: dict
@@ -236,6 +236,9 @@ class InterfaceKeywords(object):
 
         intf_state = {"up": "true",
                       "down": "false"}
+
+        interface = Topology.convert_interface_reference(
+            node, interface, "name")
 
         intf = interface.replace("/", "%2F")
         path = "/interface/{0}".format(intf)
@@ -292,7 +295,7 @@ class InterfaceKeywords(object):
         """Add a new bridge domain to an interface and set its parameters.
 
         :param node: Honeycomb node.
-        :param interface: The name of interface.
+        :param interface: Interface name, key, link name or sw_if_index.
         :param bd_name: Bridge domain name.
         :param split_horizon_group: Split-horizon group name.
         :param bvi: The bridged virtual interface.
@@ -306,6 +309,9 @@ class InterfaceKeywords(object):
         :raises HoneycombError: If the interface is not present on the node.
         """
 
+        interface = Topology.convert_interface_reference(
+            node, interface, "name")
+
         v3po_l2 = {"bridge-domain": str(bd_name)}
         if split_horizon_group:
             v3po_l2["split-horizon-group"] = str(split_horizon_group)
@@ -316,6 +322,33 @@ class InterfaceKeywords(object):
 
         return InterfaceKeywords._set_interface_properties(
             node, interface, path, v3po_l2)
+
+    @staticmethod
+    def remove_bridge_domain_from_interface(node, interface):
+        """Remove bridge domain assignment from interface.
+
+        :param node: Honeycomb node.
+        :param interface: Interface name, key, link name or sw_if_index.
+        :type node: dict
+        :type interface: str or int
+
+        :raises HoneycombError: If the operation fails.
+        """
+
+        interface = Topology.convert_interface_reference(
+            node, interface, "name")
+
+        intf = interface.replace("/", "%2F")
+
+        path = "/interface/{0}/v3po:l2".format(intf)
+
+        status_code, _ = HcUtil.delete_honeycomb_data(
+            node, "config_vpp_interfaces", path)
+
+        if status_code != HTTPCodes.OK:
+            raise HoneycombError(
+                "Could not remove bridge domain assignment from interface "
+                "'{0}'. Status code: {1}.".format(interface, status_code))
 
     @staticmethod
     def get_bd_oper_data_from_interface(node, interface):
@@ -367,7 +400,7 @@ class InterfaceKeywords(object):
 
     @staticmethod
     def configure_interface_ipv4(node, interface, param, value):
-        """Configure IPv4 parameters of interface
+        """Configure IPv4 parameters of interface.
 
         :param node: Honeycomb node.
         :param interface: The name of interface.
@@ -382,6 +415,9 @@ class InterfaceKeywords(object):
         :rtype: bytearray
         :raises HoneycombError: If the parameter is not valid.
         """
+
+        interface = Topology.convert_interface_reference(
+            node, interface, "name")
 
         if param not in InterfaceKeywords.IPV4_PARAMS:
             raise HoneycombError("The parameter {0} is invalid.".format(param))
@@ -410,6 +446,9 @@ class InterfaceKeywords(object):
         :raises HoneycombError: If the provided netmask or prefix is not valid.
         """
 
+        interface = Topology.convert_interface_reference(
+            node, interface, "name")
+
         path = ("interfaces", ("interface", "name", interface), "ietf-ip:ipv4")
         if isinstance(network, basestring):
             address = {"address": [{"ip": ip_addr, "netmask": network}, ]}
@@ -437,6 +476,9 @@ class InterfaceKeywords(object):
         :rtype: bytearray
         :raises HoneycombError: If the provided netmask or prefix is not valid.
         """
+
+        interface = Topology.convert_interface_reference(
+            node, interface, "name")
 
         path = ("interfaces", ("interface", "name", interface), "ietf-ip:ipv4",
                 "address")

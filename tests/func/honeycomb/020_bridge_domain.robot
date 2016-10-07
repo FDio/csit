@@ -31,7 +31,7 @@
 | Suite Teardown | Run keywords
 | ... | Run Keyword If Any Tests Failed
 | ... | Restart Honeycomb And VPP And Clear Persisted Configuration | ${node}
-| ... | AND | Honeycomb removes all bridge domains | ${node}
+| ... | AND | Honeycomb removes all bridge domains | ${node} | @{interfaces}
 | Force Tags | honeycomb_sanity
 | Documentation | *Honeycomb bridge domain management test suite.*
 | ...
@@ -94,3 +94,5 @@
 | | When Honeycomb removes all bridge domains | ${node}
 | | Then Honeycomb should show no bridge domains | ${node}
 | | And VAT should show no bridge domains | ${node}
+| | And Honeycomb should not show interfaces assigned to bridge domain
+| | ... | ${node} | @{interfaces} | ${bd1_name}

@@ -254,7 +254,7 @@ class BridgeDomainKeywords(object):
                                                        bridge_domain)
 
     @staticmethod
-    def remove_all_bds(node):
+    def remove_all_bridge_domains(node):
         """Remove all bridge domains.
 
         :param node: Honeycomb node.
@@ -266,8 +266,10 @@ class BridgeDomainKeywords(object):
         """
 
         data = {"bridge-domains": {"bridge-domain": []}}
+
         status_code, resp = HcUtil.\
             put_honeycomb_data(node, "config_bridge_domain", data)
+
         if status_code != HTTPCodes.OK:
             raise HoneycombError("Not possible to remove all bridge domains. "
                                  "Status code: {0}.".format(status_code))
