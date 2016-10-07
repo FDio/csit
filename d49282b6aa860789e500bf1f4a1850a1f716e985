@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa3479d7_d83d65bd",
+        "filename": "tests/func/lisp/l2_lisp_ipv4.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-10-07T07:09:02Z",
+      "side": 1,
+      "message": "\\",
+      "revId": "d49282b6aa860789e500bf1f4a1850a1f716e985",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa3479d7_b84aa153",
+        "filename": "tests/func/lisp/l2_lisp_ipv4.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-10-07T07:09:02Z",
+      "side": 1,
+      "message": "\\",
+      "revId": "d49282b6aa860789e500bf1f4a1850a1f716e985",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa3479d7_9847dd4b",
+        "filename": "tests/func/lisp/l2_lisp_ipv4.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-10-07T07:09:02Z",
+      "side": 1,
+      "message": "\\",
+      "revId": "d49282b6aa860789e500bf1f4a1850a1f716e985",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa3479d7_58797592",
+        "filename": "tests/func/lisp/l2_lisp_ipv4.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-10-07T07:09:02Z",
+      "side": 1,
+      "message": "\\",
+      "revId": "d49282b6aa860789e500bf1f4a1850a1f716e985",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
