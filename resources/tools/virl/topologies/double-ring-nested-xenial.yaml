@@ -1,0 +1,95 @@
+---
+metadata:
+  version: 0.1
+  schema:
+    - resources/topology_schemas/3_node_topology.sch.yaml
+    - resources/topology_schemas/topology.sch.yaml
+  tags: [hw, 3-node]
+
+honeycomb: &honeycomb
+    user: admin
+    passwd: admin
+    port: 8181
+    netconf_port: 1830
+
+nodes:
+  TG:
+    type: TG
+    host: "{topology[tg1][nic-management][ip-addr]}"
+    port: 22
+    username: cisco
+    priv_key: |
+{priv_key}
+    interfaces:
+      port3:
+        mac_address: "{topology[tg1][nic-2][hw-addr]}"
+        pci_address: "0000:00:06.0"
+        link: link1
+        driver: virtio-pci
+      port4:
+        mac_address: "{topology[tg1][nic-3][hw-addr]}"
+        pci_address: "0000:00:07.0"
+        link: link4
+        driver: virtio-pci
+      port5:
+        mac_address: "{topology[tg1][nic-4][hw-addr]}"
+        pci_address: "0000:00:08.0"
+        link: link2
+        driver: virtio-pci
+      port6:
+        mac_address: "{topology[tg1][nic-5][hw-addr]}"
+        pci_address: "0000:00:09.0"
+        link: link5
+        driver: virtio-pci
+  DUT1:
+    type: DUT
+    host: "{topology[sut1][nic-management][ip-addr]}"
+    port: 22
+    username: cisco
+    honeycomb:
+      <<: *honeycomb
+    priv_key: |
+{priv_key}
+    interfaces:
+      port1:
+        mac_address: "{topology[sut1][nic-0][hw-addr]}"
+        pci_address: "0000:00:04.0"
+        link: link1
+      port2:
+        mac_address: "{topology[sut1][nic-1][hw-addr]}"
+        pci_address: "0000:00:05.0"
+        link: link4
+      port3:
+        mac_address: "{topology[sut1][nic-2][hw-addr]}"
+        pci_address: "0000:00:06.0"
+        link: link3
+      port4:
+        mac_address: "{topology[sut1][nic-3][hw-addr]}"
+        pci_address: "0000:00:07.0"
+        link: link6
+  DUT2:
+    type: DUT
+    host: "{topology[sut2][nic-management][ip-addr]}"
+    port: 22
+    username: cisco
+    honeycomb:
+      <<: *honeycomb
+    priv_key: |
+{priv_key}
+    interfaces:
+      port1:
+        mac_address: "{topology[sut2][nic-0][hw-addr]}"
+        pci_address: "0000:00:04.0"
+        link: link2
+      port2:
+        mac_address: "{topology[sut2][nic-1][hw-addr]}"
+        pci_address: "0000:00:05.0"
+        link: link5
+      port3:
+        mac_address: "{topology[sut2][nic-2][hw-addr]}"
+        pci_address: "0000:00:06.0"
+        link: link3
+      port4:
+        mac_address: "{topology[sut2][nic-3][hw-addr]}"
+        pci_address: "0000:00:07.0"
+        link: link6
