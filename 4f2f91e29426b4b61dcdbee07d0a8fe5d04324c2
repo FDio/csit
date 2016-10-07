@@ -22,6 +22,30 @@
       "revId": "4f2f91e29426b4b61dcdbee07d0a8fe5d04324c2",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa3479d7_18b52dcd",
+        "filename": "resources/tools/testbed-setup/dhcpd.conf",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-10-07T09:41:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa3479d7_326db005",
+      "range": {
+        "startLine": 30,
+        "startChar": 0,
+        "endLine": 30,
+        "endChar": 41
+      },
+      "revId": "4f2f91e29426b4b61dcdbee07d0a8fe5d04324c2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
