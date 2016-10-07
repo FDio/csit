@@ -337,3 +337,61 @@
 | | ... | \| Clear all ACL settings \| ${nodes['DUT1']} \|
 | | [Arguments] | ${node}
 | | Remove all classify tables | ${node}
+
+| Honeycomb creates ACL chain through IETF node
+| | [Documentation] | Creates classify chain through the high-level\
+| | ... | IETF-ACL node.
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - Information about a DUT node. Type: dictionary
+| | ... | - acl_list_name - Name for the classify chain. Type: string
+| | ... | - layer - Classification layer (L2, L3, L4, mixed). Type: string
+| | ... | - acl_list_settings - classify rules. Type: dictionary
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Honeycomb creates ACL chain through IETF node \
+| | ... | \| ${nodes['DUT1']} \| acl_test \| ${settings} \|
+| | [Arguments] | ${node} | ${acl_list_name} | ${layer} | ${acl_list_settings}
+| | Create IETF classify chain
+| | ... | ${node} | ${acl_list_name} | ${layer} | ${acl_list_settings}
+
+| Honeycomb assigns IETF-ACL chain to interface
+| | [Documentation] | Applies classification through the high-level\
+| | ... | IETF-ACL node to an interface.
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - Information about a DUT node. Type: dictionary
+| | ... | - interface - Interface to apply classifier to. | Type: string
+| | ... | - layer - Classification layer (L2, L3, L4, mixed). Type: string
+| | ... | - direction - Ingress or Egress ACL. Type: string
+| | ... | - acl_list_name - Name of the classify chain to apply. Type: string
+| | ... | - default_action - Default classify action: permit or deny.\
+| | ... | Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Honeycomb assigns IETF-ACL chain to interface \
+| | ... | \| ${nodes['DUT1']} \| GigabitEthernet0/8/0 \| L2 \| ingress \
+| | ... | \| acl_test \| permit \|
+| | [Arguments]
+| | ... | ${node} | ${interface} | ${layer} | ${direction} | ${acl_list_name}
+| | ... | ${default-action}
+| | Set IETF interface ACL
+| | ... | ${node} | ${interface} | ${layer} | ${direction} | ${acl_list_name}
+| | ... | ${default-action}
+
+| Clear IETF-ACL settings
+| | [Documentation] | Removes ACl assignment from interface, then deletes\
+| | ... | IETF-ACL chain.
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - Information about a DUT node. Type: dictionary
+| | ... | - interface - Interface to clean classifiers from. | Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | Clear IETF-ACL settings | ${nodes['DUT1']} \| GigabitEthernet0/8/0 \|
+| | [Arguments] | ${node} | ${interface}
+| | Delete IETF interface ACLs | ${node} | ${interface}
+| | Delete IETF classify chains | ${node}

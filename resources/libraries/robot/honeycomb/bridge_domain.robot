@@ -178,6 +178,39 @@
 | | | Should contain | ${if_indices} | ${interface['sw_if_index']}
 | | | Should be equal | ${interface['shg']} | ${settings['split_horizon_group']}
 
+| Honeycomb should not show interfaces assigned to bridge domain
+| | [Documentation] | Uses Honeycomb API to verify interfaces are not assigned\
+| | ... | to bridge domain.
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - Information about a DUT node. Type: dictionary
+| | ... | - interface1, interface2 - Names of interfaces to check\
+| | ... | bridge domain assignment on. Type: string
+| | ... | - bd_name - Name of the bridge domain. Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Honeycomb should not show interfaces assigned to bridge domain \
+| | ... | \| ${nodes['DUT1']} \| GigabitEthernet0/8/0 \| GigabitEthernet0/9/0 \
+| | ... | \| bd-04 \|
+| | [Arguments] | ${node} | ${interface1} | ${interface2} | ${bd_name}
+| | ${if1_data_oper}= | interfaceAPI.Get interface oper data
+| | ... | ${node} | ${interface1}
+| | ${if2_data_oper}= | interfaceAPI.Get interface oper data
+| | ... | ${node} | ${interface2}
+| | ${if1_data_cfg}=
+| | ... | interfaceAPI.Get interface cfg data | ${node} | ${interface1}
+| | ${if1_data_cfg}=
+| | ... | interfaceAPI.Get interface cfg data | ${node} | ${interface2}
+| | Run keyword and expect error | *KeyError: 'v3po:l2'*
+| | ... | Set Variable | ${if1_data_oper['v3po:l2']}
+| | Run keyword and expect error | *KeyError: 'v3po:l2'*
+| | ... | Set Variable | ${if2_data_oper['v3po:l2']}
+| | Run keyword and expect error | *KeyError: 'v3po:l2'*
+| | ... | Set Variable | ${if1_data_cfg['v3po:l2']}
+| | Run keyword and expect error | *KeyError: 'v3po:l2'*
+| | ... | Set Variable | ${if2_data_cfg['v3po:l2']}
+
 | Honeycomb removes all bridge domains
 | | [Documentation] | Uses Honeycomb API to remove all bridge domains from the \
 | | ... | VPP node.
@@ -188,8 +221,10 @@
 | | ... | *Example:*
 | | ...
 | | ... | \| Honeycomb removes all bridge domains \| ${nodes['DUT1']} \|
-| | [Arguments] | ${node}
-| | Remove all bds | ${node}
+| | [Arguments] | ${node} | @{interfaces}
+| | :FOR | ${interface} | IN | @{interfaces}
+| | | Remove bridge domain from interface | ${node} | ${interface}
+| | Remove all bridge domains | ${node}
 
 | Honeycomb should show no bridge domains
 | | [Documentation] | Uses Honeycomb API to verify the removal of all\
@@ -239,7 +274,7 @@
 | | [Arguments] | ${node} | ${interface} | ${bd_name} | ${settings}
 | | ...
 | | interfaceAPI.Add bridge domain to interface
-| | ... | ${node} | ${interface} | ${settings['bridge-domain']}
+| | ... | ${node} | ${interface} | ${bd_name}
 | | ... | ${settings['split-horizon-group']}
 | | ... | ${settings['bridged-virtual-interface']}
 

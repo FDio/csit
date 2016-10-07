@@ -372,7 +372,7 @@ class Topology(object):
         :return: Interface key.
         :rtype: str
 
-        :raises TypeError: If provided with invalid arguments.
+        :raises TypeError: If provided with invalid interface argument.
         :raises RuntimeError: If the interface does not exist in topology.
         """
 
