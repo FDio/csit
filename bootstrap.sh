@@ -194,7 +194,7 @@ for index in "${!VIRL_SERVER[@]}"; do
     echo "Starting simulation nr. ${index} on VIRL server ${VIRL_SERVER[${index}]}"
     VIRL_SID[${index}]=$(ssh ${SSH_OPTIONS} \
         ${VIRL_USERNAME}@${VIRL_SERVER[${index}]} \
-        "start-testcase -c double-ring-nested ${VPP_DEBS_FULL[@]}")
+        "start-testcase -c double-ring-nested -r csit-ubuntu-14.04.4_2016-10-07_1.3 ${VPP_DEBS_FULL[@]}")
     retval=$?
     if [ "$?" -ne "0" ]; then
         echo "VIRL simulation start failed on ${VIRL_SERVER[${index}]}"
