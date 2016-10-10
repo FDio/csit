@@ -535,9 +535,9 @@
 | | Vpp Route Add | ${dut1} | 2001:1::0 | ${host_prefix} | 2001:3::2
 | | ...           | interface=${dut1_if1} | count=${count}
 | | Vpp Route Add | ${dut2} | 2001:1::0 | ${host_prefix} | 2001:4::1
-| | ...           | interface=${dut2_if2} | count=${count}
-| | Vpp Route Add | ${dut2} | 2001:2::0 | ${host_prefix} | 2001:5::2
 | | ...           | interface=${dut2_if1} | count=${count}
+| | Vpp Route Add | ${dut2} | 2001:2::0 | ${host_prefix} | 2001:5::2
+| | ...           | interface=${dut2_if2} | count=${count}
 
 | IPv6 iAcl whitelist initialized in a 3-node circular topology
 | | [Documentation]
