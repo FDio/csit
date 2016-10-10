@@ -195,7 +195,7 @@ class SSH(object):
             command = 'sudo -S {c} <<< "{i}"'.format(c=cmd, i=cmd_input)
         return self.exec_command(command, timeout)
 
-    def interactive_terminal_open(self, time_out=10):
+    def interactive_terminal_open(self, time_out=30):
         """Open interactive terminal on a new channel on the connected Node.
 
         :param time_out: Timeout in seconds.
@@ -228,8 +228,7 @@ class SSH(object):
                 raise Exception('Socket timeout: {0}'.format(buf))
         return chan
 
-    def interactive_terminal_exec_command(self, chan, cmd, prompt,
-                                          time_out=30):
+    def interactive_terminal_exec_command(self, chan, cmd, prompt):
         """Execute command on interactive terminal.
 
         interactive_terminal_open() method has to be called first!
@@ -238,7 +237,6 @@ class SSH(object):
         :param cmd: Command to be executed.
         :param prompt: Command prompt, sequence of characters used to
         indicate readiness to accept commands.
-        :param time_out: Timeout in seconds.
         :return: Command output.
 
         .. warning:: Interruptingcow is used here, and it uses
