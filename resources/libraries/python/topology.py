@@ -349,12 +349,65 @@ class Topology(object):
         :type node: dict
         :type iface_key: str
         :return: Interface name or None if not found.
-        :rtype: int
+        :rtype: str
         """
         try:
             return node['interfaces'][iface_key].get('name')
         except KeyError:
             return None
+
+    @staticmethod
+    def convert_interface_reference(node, interface, wanted_format):
+        """Takes interface reference in any format
+        (name, link name, topology key or sw_if_index) and returns
+        its equivalent in the desired format.
+
+        :param node: Node in topology.
+        :param interface: Name, sw_if_index, link name or key of an interface
+         on the node.
+        :param wanted_format: Format of return value wanted.
+        Valid options are: sw_if_index, key, name.
+        :type node: dict
+        :type interface: str or int
+        :type wanted_format: str
+
+        :return: Interface name, interface key or sw_if_index.
+        :rtype: str or int
+
+        :raises TypeError, ValueError: If provided with invalid arguments.
+        :raises RuntimeError: If the interface does not exist in topology.
+        """
+
+        # Detect input type and convert to interface key.
+        if isinstance(interface, int):
+            key = Topology.get_interface_by_sw_index(node, interface)
+            if key is None:
+                raise RuntimeError("Interface with sw_if_index={0} does not "
+                                   "exist in topology.".format(interface))
+        elif interface in Topology.get_node_interfaces(node):
+            key = interface
+        elif interface in Topology.get_links({"dut": node}):
+            key = Topology.get_interface_by_link_name(node, interface)
+        elif isinstance(interface, basestring):
+            key = Topology.get_interface_by_name(node, interface)
+            if key is None:
+                raise RuntimeError("Interface with key, name or link name "
+                                   "\"{0}\" does not exist in topology."
+                                   .format(interface))
+        else:
+            raise TypeError("Type of interface argument must be integer"
+                            " or string.")
+
+        if wanted_format == "key":
+            return key
+        elif wanted_format == "name":
+            return Topology.get_interface_name(node, key)
+        elif wanted_format == "sw_if_index":
+            return Topology.get_interface_sw_index(node, key)
+        else:
+            raise ValueError("Unrecognized return value wanted: {0}."
+                             "Valid options are key, name, sw_if_index"
+                             .format(wanted_format))
 
     @staticmethod
     def get_interface_numa_node(node, iface_key):
