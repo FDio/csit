@@ -241,6 +241,30 @@ class IPsecUtil(object):
             err_msg='Add SAD entry failed on {0}'.format(node['host']))
 
     @staticmethod
+    def vpp_ipsec_sa_set_key(node, sa_id, crypto_key, integ_key):
+        """Update Security Association (SA) keys.
+
+        :param node: VPP node to update SA keys.
+        :param sa_id: SAD entry ID.
+        :param crypto_key: The encryption key string.
+        :param integ_key: The integrity key string.
+        :type node: dict
+        :type sa_id: int
+        :type crypto_key: str
+        :type integ_key: str
+        """
+        ckey = crypto_key.encode('hex')
+        ikey = integ_key.encode('hex')
+
+        out = VatExecutor.cmd_from_template(node,
+                                            "ipsec/ipsec_sa_set_key.vat",
+                                            sa_id=sa_id,
+                                            ckey=ckey, ikey=ikey)
+        VatJsonUtil.verify_vat_retval(
+            out[0],
+            err_msg='Update SA key failed on {0}'.format(node['host']))
+
+    @staticmethod
     def vpp_ipsec_add_spd(node, spd_id):
         """Create Security Policy Database on the VPP node.
 

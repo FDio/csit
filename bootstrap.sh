@@ -270,7 +270,7 @@ function run_test_set() {
 
     PYTHONPATH=`pwd` pybot -L TRACE -W 136\
         -v TOPOLOGY_PATH:${SCRIPT_DIR}/topologies/enabled/topology${nr}.yaml \
-        ${suite_str} \
+        --suite "tests.func.ipsec" \
         --include vm_envAND3_node_single_link_topo \
         --include vm_envAND3_node_double_link_topo \
         --exclude PERFTEST \
