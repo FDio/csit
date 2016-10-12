@@ -30,7 +30,7 @@ VIRL_SERVER_EXPECTED_STATUS="PRODUCTION"
 
 SSH_OPTIONS="-i ${VIRL_PKEY} -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o BatchMode=yes -o LogLevel=error"
 
-TEST_GROUPS=("bridge_domain,dhcp,gre,honeycomb,l2_xconnect,lisp,softwire" "cop,telemetry,ipsec,ipv6,rpf,tap,vrf" "fds,iacl,ipv4,policer,vlan,vxlan")
+TEST_GROUPS=("lisp,softwire")
 SUITE_PATH="tests.func"
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
@@ -257,11 +257,7 @@ function run_test_set() {
     echo "PYTHONPATH=`pwd` pybot -L TRACE -W 136\
         -v TOPOLOGY_PATH:${SCRIPT_DIR}/topologies/enabled/topology${nr}.yaml \
         ${suite_str} \
-        --include vm_envAND3_node_single_link_topo \
-        --include vm_envAND3_node_double_link_topo \
-        --exclude PERFTEST \
-        --exclude SKIP_PATCH \
-        --noncritical EXPECTED_FAILING \
+        --include test \
         --output ${LOG_PATH}/log_test_set_run${nr} \
         tests/"
 
@@ -270,6 +266,7 @@ function run_test_set() {
         ${suite_str} \
         --include vm_envAND3_node_single_link_topo \
         --include vm_envAND3_node_double_link_topo \
+        --include test \
         --exclude PERFTEST \
         --exclude SKIP_PATCH \
         --noncritical EXPECTED_FAILING \
