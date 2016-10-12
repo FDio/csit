@@ -338,7 +338,7 @@
 
 
 | Bug: VPP-312
-| | [Tags] | EXPECTED_FAILING
+| | [Tags] | test
 | | [Documentation] |
 | | ... | add route; add map; traffic pass; add route; add map; traffic fail
 | | Given Path For 2-node Testing Is Set
