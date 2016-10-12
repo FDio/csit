@@ -157,7 +157,9 @@
 | | ...         | ${integ_alg} | ${integ_key} | ${l_spi} | ${r_spi} | ${l_ip}
 | | ...         | ${r_ip} | ${l_tunnel}=${None} | ${r_tunnel}=${None}
 | | ${l_sa_id}= | Set Variable | ${10}
+| | Set Test Variable | ${l_sa_id}
 | | ${r_sa_id}= | Set Variable | ${20}
+| | Set Test Variable | ${r_sa_id}
 | | ${spd_id}= | Set Variable | ${1}
 | | ${p_hi}= | Set Variable | ${100}
 | | ${p_lo}= | Set Variable | ${10}
@@ -181,6 +183,26 @@
 | | VPP IPsec SPD Add Entry | ${node} | ${spd_id} | ${p_lo} | ${action}
 | | ...                     | sa_id=${l_sa_id} | laddr_range=${l_ip}
 | | ...                     | raddr_range=${r_ip} | inbound=${FALSE}
+
+| VPP Update IPsec SA Keys
+| | [Documentation] | Update IPsec SA keys on VPP node.
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - VPP node to update SA keys. Type: dictionary
+| | ... | - l_sa_id - Local SA ID. Type: string
+| | ... | - r_sa_id - Remote SA ID. Type: string
+| | ... | - crypto_key - Encryption key. Type: string
+| | ... | - integ_key - Integrity key. Type: string
+| | ...
+| | ... | *Example:*
+| | ... | \| VPP Update IPsec SA Keys \| ${nodes['DUT1']} \
+| | ... | \| 10 \| 20 \| sixteenbytes_key \| twentybytessecretkey \|
+| | [Arguments] | ${node} | ${l_sa_id} | ${r_sa_id} | ${crypto_key}
+| | ...         | ${integ_key}
+| | VPP IPsec SA Set Key | ${dut_node} | ${l_sa_id} | ${crypto_key}
+| | ...                  | ${integ_key}
+| | VPP IPsec SA Set Key | ${dut_node} | ${r_sa_id} | ${crypto_key}
+| | ...                  | ${integ_key}
 
 | Send and Receive IPsec Packet
 | | [Documentation] | Send IPsec packet from TG to DUT. Receive IPsec packet\
