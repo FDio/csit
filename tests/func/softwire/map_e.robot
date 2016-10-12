@@ -338,7 +338,6 @@
 
 
 | Bug: VPP-312
-| | [Tags] | EXPECTED_FAILING
 | | [Documentation] |
 | | ... | add route; add map; traffic pass; add route; add map; traffic fail
 | | Given Path For 2-node Testing Is Set
@@ -352,6 +351,10 @@
 | | ... | ${dut_to_tg_if2} | resolve_attempts=${NONE} | count=${NONE}
 | | And Add IP Neighbor | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6_gw}
 | | ... | ${tg_to_dut_if2_mac}
+| | And Vpp Route Add | ${dut_node} | 0.0.0.0 | 0 | ${dut_ip4_gw}
+| | ... | ${dut_to_tg_if1} | resolve_attempts=${NONE} | count=${NONE}
+| | And Add IP Neighbor | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4_gw}
+| | ... | ${tg_to_dut_if1_mac}
 
 | | Then Check MAP Configuration With Traffic Script
 | | ... | 20.0.0.0/8 | 2001::/16 | ${ipv6_br_src} | ${48} | ${6} | ${8}
@@ -364,6 +367,10 @@
 | | ... | ${dut_to_tg_if2} | resolve_attempts=${NONE} | count=${NONE}
 | | And Add IP Neighbor | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6_gw}
 | | ... | ${tg_to_dut_if2_mac}
+| | And Vpp Route Add | ${dut_node} | 0.0.0.0 | 0 | ${dut_ip4_gw}
+| | ... | ${dut_to_tg_if1} | resolve_attempts=${NONE} | count=${NONE}
+| | And Add IP Neighbor | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4_gw}
+| | ... | ${tg_to_dut_if1_mac}
 
 | | Then Check MAP Configuration With Traffic Script
 | | ... | 20.0.0.0/8 | 2001::/16 | ${ipv6_br_src} | ${48} | ${6} | ${8}
