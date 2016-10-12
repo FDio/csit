@@ -337,10 +337,11 @@
 | | ... | ${ipv6_br_src} | ${20} | ${6} | ${8}
 
 
-| Bug: VPP-312
-| | [Tags] | EXPECTED_FAILING
+| Repeated ip neighbor command doesnt put FIB to broken state
 | | [Documentation] |
-| | ... | add route; add map; traffic pass; add route; add map; traffic fail
+| | ... | Original issue described in https://jira.fd.io/browse/VPP-312.
+| | ... | The steps are add route, check with traffic then add same route \
+| | ... | again and check with traffic script.
 | | Given Path For 2-node Testing Is Set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | And Interfaces In 2-node Path Are Up
@@ -352,6 +353,10 @@
 | | ... | ${dut_to_tg_if2} | resolve_attempts=${NONE} | count=${NONE}
 | | And Add IP Neighbor | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6_gw}
 | | ... | ${tg_to_dut_if2_mac}
+| | And Vpp Route Add | ${dut_node} | 0.0.0.0 | 0 | ${dut_ip4_gw}
+| | ... | ${dut_to_tg_if1} | resolve_attempts=${NONE} | count=${NONE}
+| | And Add IP Neighbor | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4_gw}
+| | ... | ${tg_to_dut_if1_mac}
 
 | | Then Check MAP Configuration With Traffic Script
 | | ... | 20.0.0.0/8 | 2001::/16 | ${ipv6_br_src} | ${48} | ${6} | ${8}
@@ -364,6 +369,10 @@
 | | ... | ${dut_to_tg_if2} | resolve_attempts=${NONE} | count=${NONE}
 | | And Add IP Neighbor | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6_gw}
 | | ... | ${tg_to_dut_if2_mac}
+| | And Vpp Route Add | ${dut_node} | 0.0.0.0 | 0 | ${dut_ip4_gw}
+| | ... | ${dut_to_tg_if1} | resolve_attempts=${NONE} | count=${NONE}
+| | And Add IP Neighbor | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4_gw}
+| | ... | ${tg_to_dut_if1_mac}
 
 | | Then Check MAP Configuration With Traffic Script
 | | ... | 20.0.0.0/8 | 2001::/16 | ${ipv6_br_src} | ${48} | ${6} | ${8}
