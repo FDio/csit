@@ -28,8 +28,9 @@ def get_variables(test_case, name):
     :rtype: dict
     """
 
+    test_case = test_case.lower()
     variables = {
-        # generic packet data
+        # Variables for control packet, should always pass through DUT
         "src_ip": "16.0.0.1",
         "dst_ip": "16.0.1.1",
         "dst_net": "16.0.1.0",
@@ -38,17 +39,51 @@ def get_variables(test_case, name):
         "src_mac": "01:02:03:04:05:06",
         "dst_mac": "10:20:30:40:50:60"}
 
-    if test_case.lower() == "l2":
-        classify_vars = {
+    test_vars = {
+        "l2": {
+            # MACs classified directly
             "classify_src": "12:23:34:45:56:67",
             "classify_dst": "89:9A:AB:BC:CD:DE",
+            # MACs classified through mask
             "classify_src2": "01:02:03:04:56:67",
             "classify_dst2": "89:9A:AB:BC:50:60",
             "src_mask": "00:00:00:00:FF:FF",
-            "dst_mask": "FF:FF:FF:FF:00:00",
-            }
-
-        acl_settings = {
+            "dst_mask": "FF:FF:FF:FF:00:00"
+        },
+        "l3_ip4": {
+            # IPs for DUT interface setup
+            "dut_to_tg_if1_ip": "16.0.0.2",
+            "dut_to_tg_if2_ip": "192.168.0.2",
+            "gateway": "192.168.0.1",
+            # classified networks
+            "classify_src_net": "16.0.2.0",
+            "classify_dst_net": "16.0.3.0",
+            # IPs in classified networks
+            "classify_src": "16.0.2.1",
+            "classify_dst": "16.0.3.1",
+            "prefix_length": 24
+        },
+        "l3_ip6": {
+            # Override control packet addresses with IPv6
+            "src_ip": "10::1",
+            "dst_ip": "11::1",
+            "dst_net": "11::",
+            # IPs for DUT interface setup
+            "dut_to_tg_if1_ip": "10::2",
+            "dut_to_tg_if2_ip": "20::2",
+            "gateway": "20::1",
+            # classified networks
+            "classify_src_net": "12::",
+            "classify_dst_net": "13::",
+            # IPs in classified networks
+            "classify_src": "12::1",
+            "classify_dst": "13::1",
+            "prefix_length": 64
+        }
+    }
+    acl_data = {
+        # ACL configuration for L2 tests
+        "l2": {
             "acl": [{
                 "acl-type":
                     "ietf-access-control-list:eth-acl",
@@ -57,13 +92,63 @@ def get_variables(test_case, name):
                     "rule-name": "rule1",
                     "matches": {
                         "source-mac-address":
-                            classify_vars["classify_src"],
+                            test_vars["l2"]["classify_src"],
                         "source-mac-address-mask":
-                            classify_vars["src_mask"],
+                            test_vars["l2"]["src_mask"],
                         "destination-mac-address":
-                            classify_vars["classify_dst"],
+                            test_vars["l2"]["classify_dst"],
                         "destination-mac-address-mask":
-                            classify_vars["dst_mask"]
+                            test_vars["l2"]["dst_mask"]
+                    },
+                    "actions": {
+                        "deny": {}
+                    }
+                }]}
+            }]
+        },
+        # ACL configuration for L3 IPv4 tests
+        "l3_ip4": {
+            "acl": [{
+                "acl-type":
+                    "ietf-access-control-list:ipv4-acl",
+                "acl-name": name,
+                "access-list-entries": {"ace": [{
+                    "rule-name": "rule1",
+                    "matches": {
+                        "source-ipv4-network":
+                            "{0}/{1}".format(
+                                test_vars["l3_ip4"]["classify_src_net"],
+                                test_vars["l3_ip4"]["prefix_length"]),
+                        "destination-ipv4-network":
+                            "{0}/{1}".format(
+                                test_vars["l3_ip4"]["classify_dst_net"],
+                                test_vars["l3_ip4"]["prefix_length"]),
+                        "protocol": 17
+                    },
+                    "actions": {
+                        "deny": {}
+                    }
+                }]}
+            }]
+        },
+        # ACL settings for L3 IPv6 tests
+        "l3_ip6": {
+            "acl": [{
+                "acl-type":
+                    "ietf-access-control-list:ipv6-acl",
+                "acl-name": name,
+                "access-list-entries": {"ace": [{
+                    "rule-name": "rule1",
+                    "matches": {
+                        "source-ipv6-network":
+                            "{0}/{1}".format(
+                                test_vars["l3_ip6"]["classify_src_net"],
+                                test_vars["l3_ip6"]["prefix_length"]),
+                        "destination-ipv6-network":
+                            "{0}/{1}".format(
+                                test_vars["l3_ip6"]["classify_dst_net"],
+                                test_vars["l3_ip6"]["prefix_length"]),
+                        "protocol": 17
                     },
                     "actions": {
                         "deny": {}
@@ -71,12 +156,15 @@ def get_variables(test_case, name):
                 }]}
             }]
         }
+    }
+    try:
+        variables.update(test_vars[test_case])
+        variables.update(
+            {"acl_settings": acl_data[test_case]}
+        )
+    except KeyError:
+        raise Exception("Unrecognized test case {0}."
+                        " Valid options are: {1}".format(
+                            test_case, acl_data.keys()))
 
-    elif test_case.lower() in ("l3_ip4", "l3_ip6", "l4"):
-        raise NotImplementedError
-    else:
-        raise Exception("Unrecognized test case {0}".format(test_case))
-
-    variables.update(classify_vars)
-    variables["acl_settings"] = acl_settings
     return variables
