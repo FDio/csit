@@ -311,6 +311,47 @@
 | | ... | ${ipv6_A} | ${ipv6_br}
 
 
+| TC09: Repeated ip neighbor command doesnt put FIB to broken state
+| | [Documentation] |
+| | ... | Original issue described in https://jira.fd.io/browse/VPP-312.
+| | ... | [Top] TG=DUT1.
+| | ... | [Cfg] IP address are set on interfaces, ip neighbor multiple times
+| | ... | [Ver] FIB is not in broken state.  The steps are add route, \
+| | ... | check with traffic then add same route
+| | ... | again and check with traffic script.
+| | Given Path For 2-node Testing Is Set
+| | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
+| | And Interfaces In 2-node Path Are Up
+| | When IP Addresses Are Set On Interfaces
+| | ... | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4} | ${ipv4_prefix_len}
+| | ... | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6} | ${ipv6_prefix_len}
+| | And Vpp Route Add | ${dut_node} | 2001:: | 16 | ${dut_ip6_gw}
+| | ... | ${dut_to_tg_if2} | resolve_attempts=${NONE} | count=${NONE}
+| | And Add IP Neighbor | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6_gw}
+| | ... | ${tg_to_dut_if2_mac}
+| | And Vpp Route Add | ${dut_node} | 0.0.0.0 | 0 | ${dut_ip4_gw}
+| | ... | ${dut_to_tg_if1} | resolve_attempts=${NONE} | count=${NONE}
+| | And Add IP Neighbor | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4_gw}
+| | ... | ${tg_to_dut_if1_mac}
+| | Then Check MAP Configuration With Traffic Script
+| | ... | 20.0.0.0/8 | 2001::/16 | ${ipv6_br_src} | ${48} | ${6} | ${8}
+| | ... | 20.169.201.219 | ${1232} | 2001:a9c9:db34::14a9:c9db:34
+| | When IP Addresses Are Set On Interfaces
+| | ... | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4} | ${ipv4_prefix_len}
+| | ... | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6} | ${ipv6_prefix_len}
+| | And Vpp Route Add | ${dut_node} | 2001:: | 16 | ${dut_ip6_gw}
+| | ... | ${dut_to_tg_if2} | resolve_attempts=${NONE} | count=${NONE}
+| | And Add IP Neighbor | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6_gw}
+| | ... | ${tg_to_dut_if2_mac}
+| | And Vpp Route Add | ${dut_node} | 0.0.0.0 | 0 | ${dut_ip4_gw}
+| | ... | ${dut_to_tg_if1} | resolve_attempts=${NONE} | count=${NONE}
+| | And Add IP Neighbor | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4_gw}
+| | ... | ${tg_to_dut_if1_mac}
+| | Then Check MAP Configuration With Traffic Script
+| | ... | 20.0.0.0/8 | 2001::/16 | ${ipv6_br_src} | ${48} | ${6} | ${8}
+| | ... | 20.169.201.219 | ${1232} | 2001:a9c9:db34::14a9:c9db:34
+
+
 | Bug: VPP-318
 | | [Tags] | EXPECTED_FAILING
 | | [Documentation] | qlen < psid length
@@ -323,39 +364,6 @@
 | | Then Run Keyword And Expect Error | Unable to add map domain *
 | | ... | Map Add Domain | ${dut_node} | 20.169.0.0/16 | 2001:db8::/32
 | | ... | ${ipv6_br_src} | ${20} | ${6} | ${8}
-
-
-| Bug: VPP-312
-| | [Tags] | EXPECTED_FAILING
-| | [Documentation] |
-| | ... | add route; add map; traffic pass; add route; add map; traffic fail
-| | Given Path For 2-node Testing Is Set
-| | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
-| | And Interfaces In 2-node Path Are Up
-
-| | When IP Addresses Are Set On Interfaces
-| | ... | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4} | ${ipv4_prefix_len}
-| | ... | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6} | ${ipv6_prefix_len}
-| | And Vpp Route Add | ${dut_node} | 2001:: | 16 | ${dut_ip6_gw}
-| | ... | ${dut_to_tg_if2} | resolve_attempts=${NONE} | count=${NONE}
-| | And Add IP Neighbor | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6_gw}
-| | ... | ${tg_to_dut_if2_mac}
-
-| | Then Check MAP Configuration With Traffic Script
-| | ... | 20.0.0.0/8 | 2001::/16 | ${ipv6_br_src} | ${48} | ${6} | ${8}
-| | ... | 20.169.201.219 | ${1232} | 2001:a9c9:db34::14a9:c9db:34
-
-| | When IP Addresses Are Set On Interfaces
-| | ... | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4} | ${ipv4_prefix_len}
-| | ... | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6} | ${ipv6_prefix_len}
-| | And Vpp Route Add | ${dut_node} | 2001:: | 16 | ${dut_ip6_gw}
-| | ... | ${dut_to_tg_if2} | resolve_attempts=${NONE} | count=${NONE}
-| | And Add IP Neighbor | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6_gw}
-| | ... | ${tg_to_dut_if2_mac}
-
-| | Then Check MAP Configuration With Traffic Script
-| | ... | 20.0.0.0/8 | 2001::/16 | ${ipv6_br_src} | ${48} | ${6} | ${8}
-| | ... | 20.169.201.219 | ${1232} | 2001:a9c9:db34::14a9:c9db:34
 
 
 *** Keywords ***
