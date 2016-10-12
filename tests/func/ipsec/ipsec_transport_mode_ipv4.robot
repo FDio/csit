@@ -338,6 +338,109 @@
 | | ... | ${encr_alg} | ${encr_key2} | ${auth_alg} | ${auth_key2} | ${tg_spi}
 | | ... | ${dut_spi} | ${tg_tun_ip} | ${dut_tun_ip}
 
+| TC16: VPP process ESP packet in Transport Mode with AES-CBC-128 encryption and SHA1-96 integrity and update SA keys
+| | [Documentation]
+| | ... | [Top] TG-DUT1.
+| | ... | [Ref] RFC4303.
+| | ... | [Cfg] On DUT1 configure IPsec manual keyed connection with encryption\
+| | ... | algorithm AES-CBC-128 and integrity algorithm SHA1-96 in transport
+| | ... | mode and update SA keys.
+| | ... | [Ver] Send and receive ESP packet between TG and VPP node.
+| | ${encr_alg}= | Crypto Alg AES CBC 128
+| | ${auth_alg}= | Integ Alg SHA1 96
+| | Given IPsec Generate Keys | ${encr_alg} | ${auth_alg}
+| | When VPP Setup IPsec Manual Keyed Connection
+| | ... | ${dut_node} | ${dut_if} | ${encr_alg} | ${encr_key} | ${auth_alg}
+| | ... | ${auth_key} | ${dut_spi} | ${tg_spi} | ${dut_tun_ip} | ${tg_tun_ip}
+| | Then Send And Receive IPsec Packet | ${tg_node} | ${tg_if} | ${dut_if_mac}
+| | ... | ${encr_alg} | ${encr_key} | ${auth_alg} | ${auth_key} | ${tg_spi}
+| | ... | ${dut_spi} | ${tg_tun_ip} | ${dut_tun_ip}
+| | Given IPsec Generate Keys | ${encr_alg} | ${auth_alg}
+| | When VPP Update IPsec SA Keys | ${dut_node} | ${l_sa_id} | ${r_sa_id}
+| | ... | ${encr_key} | ${auth_key}
+| | Then Send And Receive IPsec Packet | ${tg_node} | ${tg_if} | ${dut_if_mac}
+| | ... | ${encr_alg} | ${encr_key} | ${auth_alg} | ${auth_key} | ${tg_spi}
+| | ... | ${dut_spi} | ${tg_tun_ip} | ${dut_tun_ip}
+
+| TC17: VPP process ESP packet in Transport Mode with AES-CBC-128 encryption and SHA1-96 integrity and update SA keys - different encryption alogrithms used
+| | [Documentation]
+| | ... | [Top] TG-DUT1.
+| | ... | [Ref] RFC4303.
+| | ... | [Cfg] On DUT1 configure IPsec manual keyed connection with encryption\
+| | ... | algorithm AES-CBC-128 and integrity algorithm SHA1-96 in transport
+| | ... | mode and update SA keys.
+| | ... | [Ver] Send and receive ESP packet between TG and VPP node.
+| | ${encr_alg}= | Crypto Alg AES CBC 128
+| | ${auth_alg}= | Integ Alg SHA1 96
+| | Given IPsec Generate Keys | ${encr_alg} | ${auth_alg}
+| | When VPP Setup IPsec Manual Keyed Connection
+| | ... | ${dut_node} | ${dut_if} | ${encr_alg} | ${encr_key} | ${auth_alg}
+| | ... | ${auth_key} | ${dut_spi} | ${tg_spi} | ${dut_tun_ip} | ${tg_tun_ip}
+| | Then Send And Receive IPsec Packet | ${tg_node} | ${tg_if} | ${dut_if_mac}
+| | ... | ${encr_alg} | ${encr_key} | ${auth_alg} | ${auth_key} | ${tg_spi}
+| | ... | ${dut_spi} | ${tg_tun_ip} | ${dut_tun_ip}
+| | Given IPsec Generate Keys | ${encr_alg} | ${auth_alg}
+| | ${encr_key2}= | And Get Second Random String | ${encr_alg} | Crypto
+| | When VPP Update IPsec SA Keys | ${dut_node} | ${l_sa_id} | ${r_sa_id}
+| | ... | ${encr_key} | ${auth_key}
+| | Then Run Keyword And Expect Error | ESP packet Rx timeout
+| | ... | Send And Receive IPsec Packet | ${tg_node} | ${tg_if} | ${dut_if_mac}
+| | ... | ${encr_alg} | ${encr_key2} | ${auth_alg} | ${auth_key} | ${tg_spi}
+| | ... | ${dut_spi} | ${tg_tun_ip} | ${dut_tun_ip}
+
+| TC18: VPP process ESP packet in Transport Mode with AES-CBC-128 encryption and SHA1-96 integrity and update SA keys - different integrity alogrithms used
+| | [Documentation]
+| | ... | [Top] TG-DUT1.
+| | ... | [Ref] RFC4303.
+| | ... | [Cfg] On DUT1 configure IPsec manual keyed connection with encryption\
+| | ... | algorithm AES-CBC-128 and integrity algorithm SHA1-96 in transport
+| | ... | mode and update SA keys.
+| | ... | [Ver] Send and receive ESP packet between TG and VPP node.
+| | ${encr_alg}= | Crypto Alg AES CBC 128
+| | ${auth_alg}= | Integ Alg SHA1 96
+| | Given IPsec Generate Keys | ${encr_alg} | ${auth_alg}
+| | When VPP Setup IPsec Manual Keyed Connection
+| | ... | ${dut_node} | ${dut_if} | ${encr_alg} | ${encr_key} | ${auth_alg}
+| | ... | ${auth_key} | ${dut_spi} | ${tg_spi} | ${dut_tun_ip} | ${tg_tun_ip}
+| | Then Send And Receive IPsec Packet | ${tg_node} | ${tg_if} | ${dut_if_mac}
+| | ... | ${encr_alg} | ${encr_key} | ${auth_alg} | ${auth_key} | ${tg_spi}
+| | ... | ${dut_spi} | ${tg_tun_ip} | ${dut_tun_ip}
+| | Given IPsec Generate Keys | ${encr_alg} | ${auth_alg}
+| | ${auth_key2}= | And Get Second Random String | ${auth_alg} | Integ
+| | When VPP Update IPsec SA Keys | ${dut_node} | ${l_sa_id} | ${r_sa_id}
+| | ... | ${encr_key} | ${auth_key}
+| | Then Run Keyword And Expect Error | ESP packet Rx timeout
+| | ... | Send And Receive IPsec Packet | ${tg_node} | ${tg_if} | ${dut_if_mac}
+| | ... | ${encr_alg} | ${encr_key} | ${auth_alg} | ${auth_key2} | ${tg_spi}
+| | ... | ${dut_spi} | ${tg_tun_ip} | ${dut_tun_ip}
+
+| TC19: VPP process ESP packet in Transport Mode with AES-CBC-128 encryption and SHA1-96 integrity and update SA keys - different encryption and integrity alogrithms used
+| | [Documentation]
+| | ... | [Top] TG-DUT1.
+| | ... | [Ref] RFC4303.
+| | ... | [Cfg] On DUT1 configure IPsec manual keyed connection with encryption\
+| | ... | algorithm AES-CBC-128 and integrity algorithm SHA1-96 in transport
+| | ... | mode and update SA keys.
+| | ... | [Ver] Send and receive ESP packet between TG and VPP node.
+| | ${encr_alg}= | Crypto Alg AES CBC 128
+| | ${auth_alg}= | Integ Alg SHA1 96
+| | Given IPsec Generate Keys | ${encr_alg} | ${auth_alg}
+| | When VPP Setup IPsec Manual Keyed Connection
+| | ... | ${dut_node} | ${dut_if} | ${encr_alg} | ${encr_key} | ${auth_alg}
+| | ... | ${auth_key} | ${dut_spi} | ${tg_spi} | ${dut_tun_ip} | ${tg_tun_ip}
+| | Then Send And Receive IPsec Packet | ${tg_node} | ${tg_if} | ${dut_if_mac}
+| | ... | ${encr_alg} | ${encr_key} | ${auth_alg} | ${auth_key} | ${tg_spi}
+| | ... | ${dut_spi} | ${tg_tun_ip} | ${dut_tun_ip}
+| | Given IPsec Generate Keys | ${encr_alg} | ${auth_alg}
+| | ${encr_key2}= | And Get Second Random String | ${encr_alg} | Crypto
+| | ${auth_key2}= | And Get Second Random String | ${auth_alg} | Integ
+| | When VPP Update IPsec SA Keys | ${dut_node} | ${l_sa_id} | ${r_sa_id}
+| | ... | ${encr_key} | ${auth_key}
+| | Then Run Keyword And Expect Error | ESP packet Rx timeout
+| | ... | Send And Receive IPsec Packet | ${tg_node} | ${tg_if} | ${dut_if_mac}
+| | ... | ${encr_alg} | ${encr_key2} | ${auth_alg} | ${auth_key2} | ${tg_spi}
+| | ... | ${dut_spi} | ${tg_tun_ip} | ${dut_tun_ip}
+
 *** Keywords ***
 | Get Second Random String
 | | [Arguments] | ${req_alg} | ${req_type}
