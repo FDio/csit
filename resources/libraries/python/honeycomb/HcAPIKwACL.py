@@ -281,14 +281,19 @@ class ACLKeywords(object):
         :rtype: bytearray
         :raises HoneycombError: If the operation fails.
         """
-        if layer.lower() == "l2":
-            suffix = "eth"
-        elif layer.lower() in ("l3_ip4", "l3_ip6", "l4"):
+        layer = layer.lower()
+        suffix_dict = {"l2": "eth",
+                       "l3_ip4": "ipv4",
+                       "l3_ip6": "ipv6"
+                       }
+        if layer == "l4":
             raise NotImplementedError
-        else:
+        try:
+            suffix = suffix_dict[layer]
+        except KeyError:
             raise ValueError("Unexpected value of layer argument {0}."
-                             "Valid options are: L2, L3_IP4, L3_IP6, L4."
-                             .format(layer))
+                             "Valid options are: {1}"
+                             .format(layer, suffix_dict.keys()))
 
         path = "/acl/ietf-access-control-list:{0}-acl/{1}".format(
             suffix, list_name)
@@ -328,6 +333,7 @@ class ACLKeywords(object):
         :raises HoneycombError: If the operation fails.
         """
 
+        layer = layer.lower()
         interface = Topology.convert_interface_reference(
             node, interface, "name")
 
@@ -341,30 +347,33 @@ class ACLKeywords(object):
         path = "/interface/{0}/ietf-acl/{1}/access-lists".format(
             interface, direction)
 
-        data = {
-                "access-lists": {
-                    "acl": [{
-                        "type": None,
-                        "name": list_name
-                    }],
-                    "default-action": default_action,
-                    "mode": None
-                    }
-                }
+        layers = {
+            "l2": {"mode": "l2", "suffix": "eth"},
+            "l3_ip4": {"mode": "l3", "suffix": "ipv4"},
+            "l3_ip6": {"mode": "l3", "suffix": "ipv6"}
+            }
 
-        acl_type = "ietf-access-control-list:{suffix}-acl"
-
-        if layer.lower() == "l2":
-            data["access-lists"]["mode"] = "l2"
-            data["access-lists"]["acl"][0]["type"] = \
-                acl_type.format(suffix="eth")
-
-        elif layer.lower() in ("l3_ip4", "l3_ip6", "L4"):
+        if layer == "L4":
             raise NotImplementedError
         else:
-            raise ValueError("Unknown network layer {0}. "
-                             "Valid options are: "
-                             "L2, L3_IP4, L3_IP6, L4.".format(layer))
+            try:
+                data = {
+                    "access-lists": {
+                        "acl": [
+                            {
+                                "type": "ietf-access-control-list:{0}-acl"
+                                .format(layers[layer]['suffix']),
+                                "name": list_name
+                            }
+                        ],
+                        "default-action": default_action,
+                        "mode": layers[layer]['mode']
+                    }
+                }
+            except KeyError:
+                raise ValueError("Unknown network layer {0}. "
+                                 "Valid options are: {1}".format(
+                                    layer, layers.keys()))
 
         status_code, resp = HcUtil.put_honeycomb_data(
             node, "config_vpp_interfaces", data, path)
