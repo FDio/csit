@@ -61,8 +61,83 @@ def get_variables(test_case, name):
             }]
         }
 
-    elif test_case.lower() in ("l3_ip4", "l3_ip6", "l4"):
-        raise NotImplementedError
+    elif test_case.lower() == "l3_ip4":
+        classify_vars = {
+            "classify_src_net": "16.0.2.0",
+            "classify_dst_net": "16.0.3.0",
+            "classify_src": "16.0.2.1",
+            "classify_dst": "16.0.3.1",
+            "prefix_length": 24,
+            "dut_to_tg_if1_ip": "16.0.0.2",
+            "dut_to_tg_if2_ip": "192.168.0.2",
+            "gateway": "192.168.0.1"
+        }
+
+        acl_settings = {
+            "acl": [{
+                "acl-type":
+                    "ietf-access-control-list:ipv4-acl",
+                "acl-name": name,
+                "access-list-entries": {"ace": [{
+                    "rule-name": "rule1",
+                    "matches": {
+                        "source-ipv4-network":
+                            "{0}/{1}".format(classify_vars["classify_src_net"],
+                                             classify_vars["prefix_length"]
+                                             ),
+                        "destination-ipv4-network":
+                            "{0}/{1}".format(classify_vars["classify_dst_net"],
+                                             classify_vars["prefix_length"]
+                                             ),
+                        "protocol": 17
+                    },
+                    "actions": {
+                        "deny": {}
+                    }
+                }]}
+            }]
+        }
+
+    elif test_case.lower() == "l3_ip6":
+        classify_vars = {
+            "classify_src_net": "12::",
+            "classify_dst_net": "13::",
+            "classify_src": "12::1",
+            "classify_dst": "13::1",
+            "prefix_length": 64,
+            "dut_to_tg_if1_ip": "10::2",
+            "dut_to_tg_if2_ip": "20::2",
+            "gateway": "20::1",
+            # Override IPv4 addresses
+            "src_ip": "10::1",
+            "dst_ip": "11::1",
+            "dst_net": "11::"
+        }
+
+        acl_settings = {
+            "acl": [{
+                "acl-type":
+                    "ietf-access-control-list:ipv6-acl",
+                "acl-name": name,
+                "access-list-entries": {"ace": [{
+                    "rule-name": "rule1",
+                    "matches": {
+                        "source-ipv6-network":
+                            "{0}/{1}".format(classify_vars["classify_src_net"],
+                                             classify_vars["prefix_length"]
+                                             ),
+                        "destination-ipv6-network":
+                            "{0}/{1}".format(classify_vars["classify_dst_net"],
+                                             classify_vars["prefix_length"]
+                                             ),
+                        "protocol": 17
+                    },
+                    "actions": {
+                        "deny": {}
+                    }
+                }]}
+            }]
+        }
     else:
         raise Exception("Unrecognized test case {0}".format(test_case))
 
