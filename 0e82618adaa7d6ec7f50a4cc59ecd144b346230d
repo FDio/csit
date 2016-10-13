@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa3479d7_92821151",
+        "filename": "tests/func/honeycomb/081_ietf_acl_traffic.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 173,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-10-13T12:29:43Z",
+      "side": 1,
+      "message": "these will be reused for setting up mixed-layer and multi-rule tests.",
+      "range": {
+        "startLine": 173,
+        "startChar": 0,
+        "endLine": 173,
+        "endChar": 16
+      },
+      "revId": "0e82618adaa7d6ec7f50a4cc59ecd144b346230d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
