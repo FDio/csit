@@ -66,17 +66,21 @@ class LispRemoteMapping(object):
         :type rloc: str
         :type is_mac: bool
         """
-        if is_mac:
-            deid_prefix = ''
+        deid_prefix = '/{}'.format(deid_prefix) if not is_mac else ''
+        seid_prefix = '/{}'.format(seid_prefix) if not is_mac else ''
+
+        if not seid:
             seid_prefix = ''
+            seid_enabled = ''
         else:
-            deid_prefix = '/{}'.format(deid_prefix)
-            seid_prefix = '/{}'.format(seid_prefix)
+            seid_enabled = 'seid'
+
         VatExecutor.cmd_from_template(node,
                                       'lisp/add_lisp_remote_mapping.vat',
                                       vni=vni,
                                       deid=deid,
                                       deid_prefix=deid_prefix,
+                                      seid_enabled=seid_enabled,
                                       seid=seid,
                                       seid_prefix=seid_prefix,
                                       rloc=rloc)
@@ -318,7 +322,7 @@ class LispLocalEid(object):
     @staticmethod
     def vpp_del_lisp_local_eid(node, locator_set_name, vni, eid,
                                prefix_len=None):
-        """Set lisp eid addres on the VPP node in topology.
+        """Set lisp eid address on the VPP node in topology.
 
         :param node: VPP node.
         :param locator_set_name: Name of the locator_set.
