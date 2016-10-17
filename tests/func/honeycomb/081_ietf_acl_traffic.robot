@@ -22,6 +22,7 @@
 | ${acl_name_l2}= | acl_l2
 | ${acl_name_l3_ip4}= | acl_l3_ip4
 | ${acl_name_l3_ip6}= | acl_l3_ip6
+| ${acl_name_mixed}= | acl_mixed
 
 *** Settings ***
 | Resource | resources/libraries/robot/default.robot
@@ -89,9 +90,9 @@
 | | ... | [Cfg] (Using Honeycomb API) On DUT1 set IPv4 addresses on both\
 | | ... | interfaces to TG, add ARP entry and routes, and configure L3 IPv4 ACL\
 | | ... | on ingress interface with src/dst IP and protocol.
-| | ... | [Ver] Send simple TCP packets from one TG interface to the other,\
-| | ... | using different IPv4 IPs. Receive all packets except those with\
-| | ... | IPs in the filtered ranges and UDP protocol payload.
+| | ... | [Ver] Send simple TCP and UDP packets from one TG interface\
+| | ... | to the other, using different IPv4 IPs. Receive all packets except\
+| | ... | those with IPs in the filtered ranges and UDP protocol payload.
 | | Given Setup interface IPs and routes for IPv4 ietf-ACL test
 | | ... | L3_IP4 | ${acl_name_l3_ip4}
 | | When Honeycomb creates ACL chain through IETF node
@@ -123,9 +124,9 @@
 | | ... | [Cfg] (Using Honeycomb API) On DUT1 set IPv6 addresses on both\
 | | ... | interfaces to TG, add IP neighbor entry and routes, and configure\
 | | ... | L3 IPv6 ACL on ingress interface with src/dst IP and next-header.
-| | ... | [Ver] Send simple TCP packets from one TG interface to the other,\
-| | ... | using different IPv6 IPs. Receive all packets except those with\
-| | ... | IPs in the filtered ranges and UDP protocol payload.
+| | ... | [Ver] Send simple TCP and UDP packets from one TG interface\
+| | ... | to the other, using different IPv6 IPs. Receive all packets except\
+| | ... | those with IPs in the filtered ranges and UDP protocol payload.
 | | Given Path for 2-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | And Import Variables | resources/test_data/honeycomb/ietf_acl.py
@@ -165,6 +166,80 @@
 | | ... | ${classify_src} | ${classify_dst}
 | | ... | ${tg_to_dut_if1} | ${tg_to_dut_if1_mac}
 | | ... | ${tg_to_dut_if2} | ${dut_to_tg_if1_mac}
+| | ... | UDP | ${src_port} | ${dst_port}
+
+| TC04: Honeycomb can configure L2 and L3 ACL on L2-mode interface
+| | [Documentation]
+| | ... | [Top] TG=DUT1=TG.
+| | ... | [Enc] Eth-IPv4-TCP.
+| | ... | [Cfg] (Using Honeycomb API) On DUT1 bridge both interfaces to TG\
+| | ... | and configure L2 and L3 ACL on ingress interface\
+| | ... | with src/dst MAC, src/dst IP and protocol.
+| | ... | [Ver] Send simple TCP and UDP packets from one TG interface\
+| | ... | to the other, using different MACs and IPv4 IPs. Receive all packets\
+| | ... | except those with MACs and IPs in the filtered ranges and UDP\
+| | ... | protocol payload.
+| | [Teardown] | Run Keywords
+| | ... | Clear IETF-ACL settings | ${node} | ${dut_to_tg_if1} | AND
+| | ... | Show Packet Trace on All DUTs | ${nodes} | AND
+| | ... | Honeycomb removes all bridge domains
+| | ... | ${node} | ${dut_to_tg_if1} | ${dut_to_tg_if2}
+| | Given Setup interfaces and bridge domain for ietf-ACL test
+| | ... | mixed | ${acl_name_mixed}
+| | When Honeycomb creates ACL chain through IETF node
+| | ... | ${dut_node} | ${acl_name_mixed} | mixed | ${acl_settings}
+| | And Honeycomb assigns IETF-ACL chain to interface
+| | ... | ${dut_node} | ${dut_to_tg_if1} | mixed | ingress | ${acl_name_mixed}
+| | ... | permit | L2
+| | Then Send TCP or UDP packet | ${tg_node} | ${src_ip} | ${dst_ip}
+| | ... | ${tg_to_dut_if1} | ${classify_src_mac}
+| | ... | ${tg_to_dut_if2} | ${classify_dst_mac}
+| | ... | TCP | ${src_port} | ${dst_port}
+| | And Send TCP or UDP packet | ${tg_node}
+| | ... | ${classify_src_ip} | ${classify_dst_ip}
+| | ... | ${tg_to_dut_if1} | ${tg_to_dut_if1_mac}
+| | ... | ${tg_to_dut_if2} | ${dut_to_tg_if1_mac}
+| | ... | UDP | ${src_port} | ${dst_port}
+| | And Run keyword and expect error | TCP/UDP Rx timeout
+| | ... | Send TCP or UDP packet | ${tg_node}
+| | ... | ${classify_src_ip} | ${classify_dst_ip}
+| | ... | ${tg_to_dut_if1} | ${classify_src_mac}
+| | ... | ${tg_to_dut_if2} | ${classify_dst_mac}
+| | ... | UDP | ${src_port} | ${dst_port}
+
+| TC05: Honeycomb can configure L2 and L3 ACL on L3-mode interface
+| | [Documentation]
+| | ... | [Top] TG=DUT1=TG.
+| | ... | [Enc] Eth-IPv4-TCP.
+| | ... | [Cfg] (Using Honeycomb API) On DUT1 set IPv4 addresses on both\
+| | ... | interfaces to TG, add ARP entry and routes, and configure\
+| | ... | L2 and L3 ACL on ingress interface with src/dst MAC, src/dst IP\
+| | ... | and protocol.
+| | ... | [Ver] Send simple TCP and UDP packets from one TG interface\
+| | ... | to the other, using different MACs and IPv4 IPs. Receive all packets\
+| | ... | except those with MACs and IPs in the filtered ranges and UDP\
+| | ... | protocol payload.
+| | Setup interface IPs and routes for IPv4 ietf-ACL test
+| | ... | mixed | ${acl_name_mixed}
+| | When Honeycomb creates ACL chain through IETF node
+| | ... | ${dut_node} | ${acl_name_mixed} | mixed | ${acl_settings}
+| | And Honeycomb assigns IETF-ACL chain to interface
+| | ... | ${dut_node} | ${dut_to_tg_if1} | mixed | ingress | ${acl_name_mixed}
+| | ... | permit | L3
+| | Then Send TCP or UDP packet | ${tg_node} | ${src_ip} | ${dst_ip}
+| | ... | ${tg_to_dut_if1} | ${classify_src_mac}
+| | ... | ${tg_to_dut_if2} | ${classify_dst_mac}
+| | ... | TCP | ${src_port} | ${dst_port}
+| | And Send TCP or UDP packet | ${tg_node}
+| | ... | ${classify_src_ip} | ${classify_dst_ip}
+| | ... | ${tg_to_dut_if1} | ${tg_to_dut_if1_mac}
+| | ... | ${tg_to_dut_if2} | ${dut_to_tg_if1_mac}
+| | ... | UDP | ${src_port} | ${dst_port}
+| | And Run keyword and expect error | TCP/UDP Rx timeout
+| | ... | Send TCP or UDP packet | ${tg_node}
+| | ... | ${classify_src_ip} | ${classify_dst_ip}
+| | ... | ${tg_to_dut_if1} | ${classify_src_mac}
+| | ... | ${tg_to_dut_if2} | ${classify_dst_mac}
 | | ... | UDP | ${src_port} | ${dst_port}
 
 # TODO: Test case for L4 ACL port-based filtering
