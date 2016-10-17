@@ -27,7 +27,7 @@ from resources.libraries.python.topology import NodeType
 class QemuUtils(object):
     """QEMU utilities."""
 
-    __QEMU_BIN = '/opt/qemu/bin/qemu-system-x86_64'
+    __QEMU_BIN = '/usr/bin/qemu-system-x86_64'
     # QEMU Machine Protocol socket
     __QMP_SOCK = '/tmp/qmp.sock'
     # QEMU Guest Agent socket
