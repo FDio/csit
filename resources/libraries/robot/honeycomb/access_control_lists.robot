@@ -376,10 +376,10 @@
 | | ... | \| acl_test \| permit \|
 | | [Arguments]
 | | ... | ${node} | ${interface} | ${layer} | ${direction} | ${acl_list_name}
-| | ... | ${default-action}
+| | ... | ${default-action} | ${mode}=${None}
 | | Set IETF interface ACL
 | | ... | ${node} | ${interface} | ${layer} | ${direction} | ${acl_list_name}
-| | ... | ${default-action}
+| | ... | ${default-action} | ${mode}
 
 | Clear IETF-ACL settings
 | | [Documentation] | Removes ACl assignment from interface, then deletes\
