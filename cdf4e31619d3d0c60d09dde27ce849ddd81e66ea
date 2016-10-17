@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da3975d1_d41c1216",
+        "filename": "resources/libraries/robot/honeycomb/access_control_lists.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 354,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-10-17T11:59:23Z",
+      "side": 1,
+      "message": "it is missing in the documentation.",
+      "range": {
+        "startLine": 354,
+        "startChar": 47,
+        "endLine": 354,
+        "endChar": 55
+      },
+      "revId": "cdf4e31619d3d0c60d09dde27ce849ddd81e66ea",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da3975d1_b4198e24",
+        "filename": "resources/libraries/robot/honeycomb/access_control_lists.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 388,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-10-17T11:59:23Z",
+      "side": 1,
+      "message": "They are missing in the documentation.",
+      "range": {
+        "startLine": 388,
+        "startChar": 18,
+        "endLine": 388,
+        "endChar": 40
+      },
+      "revId": "cdf4e31619d3d0c60d09dde27ce849ddd81e66ea",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da3975d1_74d32639",
+        "filename": "resources/test_data/honeycomb/ietf_acl.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-10-17T11:59:23Z",
+      "side": 1,
+      "message": "They are missing in the documentation.",
+      "range": {
+        "startLine": 17,
+        "startChar": 18,
+        "endLine": 17,
+        "endChar": 33
+      },
+      "revId": "cdf4e31619d3d0c60d09dde27ce849ddd81e66ea",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
