@@ -155,7 +155,7 @@ class TrafficGenerator(object):
         self._node = tg_node
 
         if tg_node['subtype'] == NodeSubTypeTG.TREX:
-            trex_path = "/opt/trex-core-2.07"
+            trex_path = "/opt/trex-core-2.09"
 
             ssh = SSH()
             ssh.connect(tg_node)
