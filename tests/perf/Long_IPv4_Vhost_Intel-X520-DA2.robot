@@ -19,7 +19,6 @@
 | Suite Setup | Run Keywords | 3-node Performance Suite Setup with DUT's NIC model
 | ... | L3 | Intel-X520-DA2
 | ...         | AND          | Kill QEMU on all DUTs
-| ...         | AND          | Build QEMU on all DUTs
 | Suite Teardown | 3-node Performance Suite Teardown
 | Test Setup | Setup all DUTs before test
 | Test Teardown | Run Keywords
