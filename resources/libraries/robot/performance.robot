@@ -1482,11 +1482,11 @@
 | | ... | \| Lisp IPv6 over IPv4 forwarding initialized in a 3-node circular topology \
 | | ... | \| ${dut1_dut2_ip4_address} \| ${dut1_tg_ip6_address} \
 | | ... | \| ${dut2_dut1_ip4_address} \| ${dut2_tg_ip6_address} \
-| | ... | \| ${prefix4} \| ${prefix6} \|
+| | ... | \| ${prefix6} \| ${prefix4} \|
 | | ...
 | | [Arguments] | ${dut1_dut2_ip4_address} | ${dut1_tg_ip6_address}
 | | ...         | ${dut2_dut1_ip4_address} | ${dut2_tg_ip6_address}
-| | ...         | ${prefix4} | ${prefix6}
+| | ...         | ${prefix6} | ${prefix4}
 | | Set Interface State | ${dut1} | ${dut1_if1} | up
 | | Set Interface State | ${dut1} | ${dut1_if2} | up
 | | Set Interface State | ${dut2} | ${dut2_if1} | up
