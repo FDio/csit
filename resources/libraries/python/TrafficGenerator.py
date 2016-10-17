@@ -155,7 +155,7 @@ class TrafficGenerator(object):
         self._node = tg_node
 
         if tg_node['subtype'] == NodeSubTypeTG.TREX:
-            trex_path = "/opt/trex-core-2.07"
+            trex_path = "/opt/trex-core-2.09"
 
             ssh = SSH()
             ssh.connect(tg_node)
@@ -215,17 +215,19 @@ class TrafficGenerator(object):
                 .format(stdout + stderr))
                 raise RuntimeError('trex config generation error')
 
-            (ret, stdout, stderr) = ssh.exec_command(
-                "sh -c 'cd {0}/scripts/ && sudo ./trex-cfg'".format(trex_path))
-            if int(ret) != 0:
-                logger.error('trex-cfg failed: {0}'.format(stdout + stderr))
-                raise RuntimeError('trex-cfg failed')
-
             max_startup_retries = 3
             while max_startup_retries > 0:
                 # kill T-rex only if it is already running
                 (ret, _, _) = ssh.exec_command(
                     "sh -c 'pgrep t-rex && sudo pkill t-rex'")
+
+                # configure T-rex
+                (ret, stdout, stderr) = ssh.exec_command(
+                    "sh -c 'cd {0}/scripts/ && sudo ./trex-cfg'"\
+                    .format(trex_path))
+                if int(ret) != 0:
+                    logger.error('trex-cfg failed: {0}'.format(stdout + stderr))
+                    raise RuntimeError('trex-cfg failed')
 
                 # start T-rex
                 (ret, _, _) = ssh.exec_command(
