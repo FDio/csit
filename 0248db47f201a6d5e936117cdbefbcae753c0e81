@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "da3975d1_f10ba829",
+        "filename": "resources/libraries/python/topology.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 367,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-10-17T08:21:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da3975d1_5136f404",
+      "range": {
+        "startLine": 367,
+        "startChar": 8,
+        "endLine": 367,
+        "endChar": 9
+      },
+      "revId": "0248db47f201a6d5e936117cdbefbcae753c0e81",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da3975d1_313b70ed",
         "filename": "resources/libraries/python/topology.py",
         "patchSetId": 2
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "da3975d1_b1052016",
+        "filename": "resources/libraries/python/topology.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 368,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-10-17T08:21:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da3975d1_313b70ed",
+      "range": {
+        "startLine": 368,
+        "startChar": 14,
+        "endLine": 368,
+        "endChar": 21
+      },
+      "revId": "0248db47f201a6d5e936117cdbefbcae753c0e81",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da3975d1_11406c55",
         "filename": "resources/libraries/python/topology.py",
         "patchSetId": 2
@@ -59,6 +107,30 @@
       "writtenOn": "2016-10-17T08:05:59Z",
       "side": 1,
       "message": "no white space",
+      "range": {
+        "startLine": 407,
+        "startChar": 8,
+        "endLine": 407,
+        "endChar": 9
+      },
+      "revId": "0248db47f201a6d5e936117cdbefbcae753c0e81",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da3975d1_91021c0a",
+        "filename": "resources/libraries/python/topology.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 407,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-10-17T08:21:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da3975d1_11406c55",
       "range": {
         "startLine": 407,
         "startChar": 8,
