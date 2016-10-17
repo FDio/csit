@@ -79,6 +79,24 @@ def get_variables(test_case, name):
             "classify_src": "12::1",
             "classify_dst": "13::1",
             "prefix_length": 64
+        },
+        "mixed": {
+            # IPs for DUT interface setup
+            "dut_to_tg_if1_ip": "16.0.0.2",
+            "dut_to_tg_if2_ip": "192.168.0.2",
+            "gateway": "192.168.0.1",
+            # classified networks
+            "classify_src_net": "16.0.2.0",
+            "classify_dst_net": "16.0.3.0",
+            # IPs in classified networks
+            "classify_src_ip": "16.0.2.1",
+            "classify_dst_ip": "16.0.3.1",
+            "prefix_length": 24,
+            # MACs classified through mask
+            "classify_src_mac": "01:02:03:04:56:67",
+            "classify_dst_mac": "89:9A:AB:BC:50:60",
+            "src_mask": "00:00:00:00:FF:FF",
+            "dst_mask": "FF:FF:FF:FF:00:00"
         }
     }
     acl_data = {
@@ -155,6 +173,38 @@ def get_variables(test_case, name):
                     }
                 }]}
             }]
+        },
+        "mixed": {
+            "acl": [{
+                "acl-type":
+                    "vpp-acl:mixed-acl",
+                "acl-name": name,
+                "access-list-entries": {"ace": [{
+                    "rule-name": "rule1",
+                    "matches": {
+                        "vpp-acl:source-mac-address":
+                            test_vars["mixed"]["classify_src_mac"],
+                        "vpp-acl:source-mac-address-mask":
+                            test_vars["mixed"]["src_mask"],
+                        "vpp-acl:destination-mac-address":
+                            test_vars["mixed"]["classify_dst_mac"],
+                        "vpp-acl:destination-mac-address-mask":
+                            test_vars["mixed"]["dst_mask"],
+                        "vpp-acl:source-ipv4-network":
+                            "{0}/{1}".format(
+                                test_vars["mixed"]["classify_src_net"],
+                                test_vars["mixed"]["prefix_length"]),
+                        "vpp-acl:destination-ipv4-network":
+                            "{0}/{1}".format(
+                                test_vars["mixed"]["classify_dst_net"],
+                                test_vars["mixed"]["prefix_length"]),
+                        "vpp-acl:protocol": 17
+                    },
+                    "actions": {
+                        "deny": {}
+                    }
+                }]}
+            }]
         }
     }
     try:
@@ -166,5 +216,4 @@ def get_variables(test_case, name):
         raise Exception("Unrecognized test case {0}."
                         " Valid options are: {1}".format(
                             test_case, acl_data.keys()))
-
     return variables

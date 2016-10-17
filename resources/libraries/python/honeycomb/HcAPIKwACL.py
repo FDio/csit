@@ -284,7 +284,8 @@ class ACLKeywords(object):
         layer = layer.lower()
         suffix_dict = {"l2": "eth",
                        "l3_ip4": "ipv4",
-                       "l3_ip6": "ipv6"
+                       "l3_ip6": "ipv6",
+                       "mixed": "mixed"
                        }
         if layer == "l4":
             raise NotImplementedError
@@ -295,8 +296,12 @@ class ACLKeywords(object):
                              "Valid options are: {1}"
                              .format(layer, suffix_dict.keys()))
 
-        path = "/acl/ietf-access-control-list:{0}-acl/{1}".format(
-            suffix, list_name)
+        if layer == "mixed":
+            path = "/acl/vpp-acl:{0}-acl/{1}"
+        else:
+            path = "/acl/ietf-access-control-list:{0}-acl/{1}"
+
+        path = path.format(suffix, list_name)
 
         status_code, resp = HcUtil.put_honeycomb_data(
             node, "config_ietf_classify_chain", data, path)
@@ -310,7 +315,7 @@ class ACLKeywords(object):
 
     @staticmethod
     def set_ietf_interface_acl(node, interface, layer, direction, list_name,
-                               default_action):
+                               default_action, mode=None):
         """Assign an interface to an ietf-acl classify chain.
 
         :param node: Honeycomb node.
@@ -321,12 +326,16 @@ class ACLKeywords(object):
         Valid options are: ingress, egress
         :param list_name: Name of an ietf-acl classify chain.
         :param default_action: Default classifier action: permit or deny.
+        :param mode: When using mixed layers, this specifies operational mode
+        of the interface - L2 or L3. If layer is not "mixed", this argument
+        will be ignored.
         :type node: dict
         :type interface: str or int
         :type layer: str
         :type direction: str
         :type list_name: str
         :type default_action: str
+        :type mode: str
 
         :return: Content of response.
         :rtype: bytearray
@@ -334,6 +343,8 @@ class ACLKeywords(object):
         """
 
         layer = layer.lower()
+        if mode is not None:
+            mode = mode.lower()
         interface = Topology.convert_interface_reference(
             node, interface, "name")
 
@@ -347,10 +358,14 @@ class ACLKeywords(object):
         path = "/interface/{0}/ietf-acl/{1}/access-lists".format(
             interface, direction)
 
+        types = {
+            "ietf": "ietf-access-control-list:{0}-acl",
+            "vpp": "vpp-acl:{0}-acl"}
         layers = {
-            "l2": {"mode": "l2", "suffix": "eth"},
-            "l3_ip4": {"mode": "l3", "suffix": "ipv4"},
-            "l3_ip6": {"mode": "l3", "suffix": "ipv6"}
+            "l2": {"mode": "l2", "acl_type": types['ietf'].format("eth")},
+            "l3_ip4": {"mode": "l3", "acl_type": types['ietf'].format("ipv4")},
+            "l3_ip6": {"mode": "l3", "acl_type": types['ietf'].format("ipv6")},
+            "mixed": {"mode": mode, "acl_type": types['vpp'].format("mixed")}
             }
 
         if layer == "L4":
@@ -361,8 +376,7 @@ class ACLKeywords(object):
                     "access-lists": {
                         "acl": [
                             {
-                                "type": "ietf-access-control-list:{0}-acl"
-                                .format(layers[layer]['suffix']),
+                                "type": layers[layer]['acl_type'],
                                 "name": list_name
                             }
                         ],
