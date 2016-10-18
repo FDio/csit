@@ -48,7 +48,7 @@
 | ...           | AND          | Show VPP Settings | ${nodes['DUT2']}
 | ...
 | Documentation | *IPv6 - ip6-ipsec-lispgpe-ip6 - main fib,
-| ... | vrf (gpe_vni-to-vrf), phy2listp, virt2lisp*
+| ... | vrf (gpe_vni-to-vrf), phy2lisp, virt2lisp*
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology\
 | ... | with single links between nodes.
