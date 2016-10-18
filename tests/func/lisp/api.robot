@@ -28,7 +28,7 @@
 | ...        | AND          | Update All Interface Data On All Nodes | ${nodes}
 | Test Teardown | Run Keywords | Show Packet Trace on All DUTs | ${nodes}
 | ...           | AND          | Show vpp trace dump on all DUTs
-| Documentation | *LISP API test cases*
+| Documentation | *API test cases*
 | ...
 | ... | *[Top] Network Topologies:* DUT1 1-node topology.
 | ... | *[Enc] Packet Encapsulations:* None.
