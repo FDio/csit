@@ -92,4 +92,4 @@
   - name: Install libtool
     apt: name=libtool state=present
   - name: Disable 80-vpp.conf
-    command: ln -s /dev/null /etc/sysctl.d/80-vpp.conf
+    command: rm -f /etc/sysctl.d/80-vpp.conf
