@@ -161,7 +161,7 @@ class TrafficGenerator(object):
             ssh.connect(tg_node)
 
             (ret, stdout, stderr) = ssh.exec_command(
-                "sudo sh -c '{}/resources/tools/t-rex/"
+                "sudo -E sh -c '{}/resources/tools/t-rex/"
                 "t-rex-installer.sh'".format(Constants.REMOTE_FW_DIR),
                 timeout=1800)
             if int(ret) != 0:
