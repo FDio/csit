@@ -236,6 +236,105 @@
 | | ... | ${tg_to_dut2} | ${tg_to_dut2_mac} | ${dut2_to_tg_mac}
 | | ... | ${tg_to_dut1} | ${dut1_to_tg_mac} | ${tg_to_dut1_mac}
 
+| TC05: DUT1 and DUT2 route IPv6 over Vhost to LISP GPE tunnel using IPsec (transport) on RLOC Int.
+| | [Documentation]
+| | ... | [Top] TG-DUT1-DUT2-TG.
+| | ... | [Enc] Eth-IPv6-IPSec-LISPGPE-IPv6-ICMP on DUT1-DUT2, Eth-IPv6-ICMP\
+| | ... | on TG-DUTn.
+| | ... | [Cfg] Configure IPv6 LISP static adjacencies on DUT1 and DUT2 with\
+| | ... | IPsec in between DUTS. Create Qemu vm on DUT1 and configure bridge\
+| | ... | between two vhosts.
+| | ... | [Ver] Case: ip6-ipsec-lispgpe-ip6 - main fib, virt2lisp\
+| | ... | Make TG send ICMPv6 Echo Req between its interfaces across\
+| | ... | both DUTs and LISP GPE tunnel between them; verify IPv6 headers on\
+| | ... | received packets are correct.
+| | ... | [Ref] RFC6830, RFC4303.
+| | [Teardown] | Run Keywords | Show Packet Trace on All DUTs | ${nodes}
+| | ...           | AND       | Show vpp trace dump on all DUTs
+| | ...           | AND       | VPP Show Errors | ${nodes['DUT1']}
+| | ...           | AND       | VPP Show Errors | ${nodes['DUT2']}
+| | ...           | AND       | Stop and Clear QEMU | ${dut1_node} | ${vm_node}
+| | ...           | AND       | Show VPP Settings | ${dut1_node}
+| | ...
+| | ${encr_alg}= | Crypto Alg AES CBC 128
+| | ${auth_alg}= | Integ Alg SHA1 96
+| | Given Setup Topology
+| | And Setup Qemu DUT1
+| | And Set up LISP GPE topology
+| | ... | ${dut1_node} | ${dut1_to_dut2} | ${NONE}
+| | ... | ${dut2_node} | ${dut2_to_dut1} | ${NONE}
+| | ... | ${duts_locator_set} | ${dut1_ip6_eid} | ${dut2_ip6_eid}
+| | ... | ${dut1_to_dut2_ip6_static_adjacency}
+| | ... | ${dut2_to_dut1_ip6_static_adjacency}
+| | And IPsec Generate Keys | ${encr_alg} | ${auth_alg}
+| | When VPP Setup IPsec Manual Keyed Connection
+| | ... | ${dut1_node} | ${dut1_to_dut2} | ${encr_alg} | ${encr_key}
+| | ... | ${auth_alg} | ${auth_key} | ${dut1_spi} | ${dut2_spi}
+| | ... | ${dut1_to_dut2_ip6} | ${dut2_to_dut1_ip6}
+| | And VPP Setup IPsec Manual Keyed Connection
+| | ... | ${dut2_node} | ${dut2_to_dut1} | ${encr_alg} | ${encr_key}
+| | ... | ${auth_alg} | ${auth_key} | ${dut2_spi} | ${dut1_spi}
+| | ... | ${dut2_to_dut1_ip6} | ${dut1_to_dut2_ip6}
+| | Then Send Packet And Check Headers
+| | ... | ${tg_node} | ${tg1_ip6} | ${tg2_ip6}
+| | ... | ${tg_to_dut1} | ${tg_to_dut1_mac} | ${dst_vhost_mac}
+| | ... | ${tg_to_dut2} | ${dut2_to_tg_mac} | ${tg_to_dut2_mac}
+| | And Send Packet And Check Headers
+| | ... | ${tg_node} | ${tg2_ip6} | ${tg1_ip6}
+| | ... | ${tg_to_dut2} | ${tg_to_dut2_mac} | ${dut2_to_tg_mac}
+| | ... | ${tg_to_dut1} | ${dut1_to_tg_mac} | ${tg_to_dut1_mac}
+
+| TC06: DUT1 and DUT2 route IPv6 over Vhost to LISP GPE tunnel using IPsec (transport) on lisp_gpe0 Int.
+| | [Documentation]
+| | ... | [Top] TG-DUT1-DUT2-TG.
+| | ... | [Enc] Eth-IPv6-IPSec-LISPGPE-IPv6-ICMPv6 on DUT1-DUT2,\
+| | ... | Eth-IPv6-ICMPv6 on TG-DUTn.
+| | ... | [Cfg] Configure IPv6 LISP static adjacencies on DUT1 and DUT2 with\
+| | ... | IPsec in between DUTS.
+| | ... | [Ver] Case: ip6-ipsec-lispgpe-ip6 - main fib, virt2lisp\
+| | ... | Make TG send ICMPv6 Echo Req between its interfaces across\
+| | ... | both DUTs and LISP GPE tunnel between them; verify IPv6 headers on\
+| | ... | received packets are correct.
+| | ... | [Ref] RFC6830, RFC4303.
+| | [Teardown] | Run Keywords | Show Packet Trace on All DUTs | ${nodes}
+| | ...           | AND       | Show vpp trace dump on all DUTs
+| | ...           | AND       | VPP Show Errors | ${nodes['DUT1']}
+| | ...           | AND       | VPP Show Errors | ${nodes['DUT2']}
+| | ...           | AND       | Stop and Clear QEMU | ${dut1_node} | ${vm_node}
+| | ...           | AND       | Show VPP Settings | ${dut1_node}
+| | ...
+| | ${encr_alg}= | Crypto Alg AES CBC 128
+| | ${auth_alg}= | Integ Alg SHA1 96
+| | Given Setup Topology
+| | And Setup Qemu DUT1
+| | And Set up LISP GPE topology
+| | ... | ${dut1_node} | ${dut1_to_dut2} | ${NONE}
+| | ... | ${dut2_node} | ${dut2_to_dut1} | ${NONE}
+| | ... | ${duts_locator_set} | ${dut1_ip6_eid} | ${dut2_ip6_eid}
+| | ... | ${dut1_to_dut2_ip6_static_adjacency}
+| | ... | ${dut2_to_dut1_ip6_static_adjacency}
+| | ${lisp1_if_idx}= | resources.libraries.python.InterfaceUtil.get sw if index
+| | ... | ${dut1_node} | lisp_gpe0
+| | ${lisp2_if_idx}= | resources.libraries.python.InterfaceUtil.get sw if index
+| | ... | ${dut2_node} | lisp_gpe0
+| | And IPsec Generate Keys | ${encr_alg} | ${auth_alg}
+| | When VPP Setup IPsec Manual Keyed Connection
+| | ... | ${dut1_node} | ${lisp1_if_idx} | ${encr_alg} | ${encr_key}
+| | ... | ${auth_alg} | ${auth_key} | ${dut1_spi} | ${dut2_spi}
+| | ... | ${dut1_to_dut2_ip6} | ${dut2_to_dut1_ip6}
+| | And VPP Setup IPsec Manual Keyed Connection
+| | ... | ${dut2_node} | ${lisp2_if_idx} | ${encr_alg} | ${encr_key}
+| | ... | ${auth_alg} | ${auth_key} | ${dut2_spi} | ${dut1_spi}
+| | ... | ${dut2_to_dut1_ip6} | ${dut1_to_dut2_ip6}
+| | Then Send Packet And Check Headers
+| | ... | ${tg_node} | ${tg1_ip6} | ${tg2_ip6}
+| | ... | ${tg_to_dut1} | ${tg_to_dut1_mac} | ${dst_vhost_mac}
+| | ... | ${tg_to_dut2} | ${dut2_to_tg_mac} | ${tg_to_dut2_mac}
+| | And Send Packet And Check Headers
+| | ... | ${tg_node} | ${tg2_ip6} | ${tg1_ip6}
+| | ... | ${tg_to_dut2} | ${tg_to_dut2_mac} | ${dut2_to_tg_mac}
+| | ... | ${tg_to_dut1} | ${dut1_to_tg_mac} | ${tg_to_dut1_mac}
+
 *** Keywords ***
 | Setup 3-node Topology
 | | [Documentation]
