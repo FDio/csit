@@ -17,6 +17,7 @@
 | Library | resources.libraries.python.Trace
 | Library | resources.libraries.python.IPUtil
 | Library | resources.libraries.python.IPv6Setup
+| Library | resources.libraries.python.VPPUtil
 | Resource | resources/libraries/robot/traffic.robot
 | Resource | resources/libraries/robot/default.robot
 | Resource | resources/libraries/robot/interfaces.robot
@@ -33,10 +34,11 @@
 | Test Setup | Run Keywords | Setup all DUTs before test
 | ...        | AND          | Setup all TGs before traffic script
 | ...        | AND          | Update All Interface Data On All Nodes | ${nodes}
+| ...        | AND          | Vpp All Ra Suppress Link Layer | ${nodes}
 | Test Teardown | Run Keywords | Show Packet Trace on All DUTs | ${nodes}
 | ...           | AND          | Show vpp trace dump on all DUTs
-| ...           | AND          | VPP Show Errors | ${nodes['DUT1']}
-| ...           | AND          | VPP Show Errors | ${nodes['DUT2']}
+| ...           | AND          | Show Vpp Settings | ${nodes['DUT1']}
+| ...           | AND          | Show Vpp Settings | ${nodes['DUT2']}
 | ...
 | Documentation | *ip6-lispgpe-ip6 encapsulation test cases*
 | ...
@@ -115,12 +117,10 @@
 | | Given Path for 3-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And Interfaces in 3-node path are up
-| | When Setup VRF on DUT | ${dut1_node} | ${dut1_fib_table} | ${dut1_to_dut2}
-| | ... | ${dut2_to_dut1_ip6} | ${dut2_to_dut1_mac} | ${tg2_ip6} | ${dut1_to_tg}
-| | ... | ${tg1_ip6} | ${tg_to_dut1_mac} | ${prefix6}
-| | And Setup VRF on DUT | ${dut2_node} | ${dut2_fib_table} | ${dut2_to_dut1}
-| | ... | ${dut1_to_dut2_ip6} | ${dut1_to_dut2_mac} | ${tg1_ip6} | ${dut2_to_tg}
-| | ... | ${tg2_ip6} | ${tg_to_dut2_mac} | ${prefix6}
+| | Assign Interface To Fib Table | ${dut1_node}
+| | ... | ${dut1_to_tg} | ${fib_table_1} | ipv6=${TRUE}
+| | Assign Interface To Fib Table | ${dut2_node}
+| | ... | ${dut2_to_tg} | ${fib_table_1} | ipv6=${TRUE}
 | | And Vpp Set If IPv6 Addr
 | | ... | ${dut1_node} | ${dut1_to_dut2} | ${dut1_to_dut2_ip6} | ${prefix6}
 | | And Vpp Set If IPv6 Addr
@@ -129,12 +129,14 @@
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${dut2_to_dut1_ip6} | ${prefix6}
 | | And Vpp Set If IPv6 Addr
 | | ... | ${dut2_node} | ${dut2_to_tg} | ${dut2_to_tg_ip6} | ${prefix6}
+| | Add IP Neighbors | ${fib_table_1}
 | | And Set up LISP GPE topology
 | | ... | ${dut1_node} | ${dut1_to_dut2} | ${NONE}
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${NONE}
 | | ... | ${duts_locator_set} | ${dut1_ip6_eid} | ${dut2_ip6_eid}
 | | ... | ${dut1_to_dut2_ip6_static_adjacency}
 | | ... | ${dut2_to_dut1_ip6_static_adjacency}
+| | ... | ${dut1_dut2_vni} | ${fib_table_1}
 | | Then Send Packet And Check Headers
 | | ... | ${tg_node} | ${tg1_ip6} | ${tg2_ip6}
 | | ... | ${tg_to_dut1} | ${tg_to_dut1_mac} | ${dut1_to_tg_mac}
@@ -157,11 +159,9 @@
 | | ...
 | | [Teardown] | Run Keywords | Show Packet Trace on All DUTs | ${nodes}
 | | ... | AND | Show vpp trace dump on all DUTs
-| | ... | AND | VPP Show Errors | ${nodes['DUT1']}
-| | ... | AND | VPP Show Errors | ${nodes['DUT2']}
+| | ... | AND | Show Vpp Settings | ${nodes['DUT1']}
+| | ... | AND | Show Vpp Settings | ${nodes['DUT2']}
 | | ... | AND | Stop and Clear QEMU | ${dut1_node} | ${vm_node}
-| | ...
-| | [Tags] | EXPECTED_FAILING
 | | ...
 | | Given Path for 3-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
@@ -212,21 +212,17 @@
 | | ...
 | | [Teardown] | Run Keywords | Show Packet Trace on All DUTs | ${nodes}
 | | ... | AND | Show vpp trace dump on all DUTs
-| | ... | AND | VPP Show Errors | ${nodes['DUT1']}
-| | ... | AND | VPP Show Errors | ${nodes['DUT2']}
+| | ... | AND | Show Vpp Settings | ${nodes['DUT1']}
+| | ... | AND | Show Vpp Settings | ${nodes['DUT2']}
 | | ... | AND | Stop and Clear QEMU | ${dut1_node} | ${vm_node}
-| | ...
-| | [Tags] | EXPECTED_FAILING
 | | ...
 | | Given Path for 3-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And Interfaces in 3-node path are up
-| | When Setup VRF on DUT | ${dut1_node} | ${dut1_fib_table} | ${dut1_to_dut2}
-| | ... | ${dut2_to_dut1_ip6} | ${dut2_to_dut1_mac} | ${tg2_ip6} | ${dut1_to_tg}
-| | ... | ${tg1_ip6} | ${tg_to_dut1_mac} | ${prefix6}
-| | And Setup VRF on DUT | ${dut2_node} | ${dut2_fib_table} | ${dut2_to_dut1}
-| | ... | ${dut1_to_dut2_ip6} | ${dut1_to_dut2_mac} | ${tg1_ip6} | ${dut2_to_tg}
-| | ... | ${tg2_ip6} | ${tg_to_dut2_mac} | ${prefix6}
+| | Assign Interface To Fib Table | ${dut1_node}
+| | ... | ${dut1_to_tg} | ${fib_table_1} | ipv6=${TRUE}
+| | Assign Interface To Fib Table | ${dut2_node}
+| | ... | ${dut2_to_tg} | ${fib_table_1} | ipv6=${TRUE}
 | | And Vpp Set If IPv6 Addr
 | | ... | ${dut1_node} | ${dut1_to_dut2} | ${dut1_to_dut2_ip6} | ${prefix6}
 | | And Vpp Set If IPv6 Addr
@@ -235,12 +231,14 @@
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${dut2_to_dut1_ip6} | ${prefix6}
 | | And Vpp Set If IPv6 Addr
 | | ... | ${dut2_node} | ${dut2_to_tg} | ${dut2_to_tg_ip6} | ${prefix6}
+| | Add IP Neighbors | ${fib_table_1}
 | | And Set up LISP GPE topology
 | | ... | ${dut1_node} | ${dut1_to_dut2} | ${NONE}
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${NONE}
 | | ... | ${duts_locator_set} | ${dut1_ip6_eid} | ${dut2_ip6_eid}
 | | ... | ${dut1_to_dut2_ip6_static_adjacency}
 | | ... | ${dut2_to_dut1_ip6_static_adjacency}
+| | ... | ${dut1_dut2_vni} | ${fib_table_1}
 | | And Setup Qemu DUT1
 | | Then Send Packet And Check Headers
 | | ... | ${tg_node} | ${tg1_ip6} | ${tg2_ip6}
@@ -268,3 +266,18 @@
 | | ${vhost_mac}= | Get Vhost User Mac By SW Index | ${dut1_node} | ${vhost2}
 | | Set test variable | ${dst_vhost_mac} | ${vhost_mac}
 | | VM for Vhost L2BD forwarding is setup | ${dut1_node} | ${sock1} | ${sock2}
+
+| Add IP Neighbors
+| | [Documentation]
+| | ... | Add IP neighbors to physical interfaces on DUTs.\
+| | ... | You can specify fib table ID for DUT-TG interfaces. Default is 0
+| | ...
+| | [Arguments] | ${fib_id}=${NONE}
+| | Add IP Neighbor | ${dut1_node} | ${dut1_to_tg} | ${tg1_ip6}
+| | ... | ${tg_to_dut1_mac} | ${fib_id}
+| | Add IP Neighbor | ${dut2_node} | ${dut2_to_tg} | ${tg2_ip6}
+| | ... | ${tg_to_dut2_mac} | ${fib_id}
+| | Add IP Neighbor | ${dut1_node} | ${dut1_to_dut2} | ${dut2_to_dut1_ip6}
+| | ... | ${dut2_to_dut1_mac}
+| | Add IP Neighbor | ${dut2_node} | ${dut2_to_dut1} | ${dut1_to_dut2_ip6}
+| | ... | ${dut1_to_dut2_mac}

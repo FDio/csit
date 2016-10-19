@@ -64,8 +64,8 @@ dut2_ip4_eid = {'locator_name': locator_name,
                 'eid': dst_ip_range,
                 'prefix': prefix4}
 
-dut1_fib_table = 1
-dut2_fib_table = 2
+fib_table_1 = 1
+dut1_dut2_vni = 1
 
 sock1 = "/tmp/sock1"
 sock2 = "/tmp/sock2"
