@@ -92,7 +92,7 @@ class InterfaceKeywords(object):
         status_code, resp = HcUtil.\
             put_honeycomb_data(node, "config_vpp_interfaces", data,
                                data_representation=data_representation)
-        if status_code != HTTPCodes.OK:
+        if status_code not in (HTTPCodes.OK, HTTPCodes.ACCEPTED):
             raise HoneycombError(
                 "The configuration of interface '{0}' was not successful. "
                 "Status code: {1}.".format(interface, status_code))
@@ -255,7 +255,7 @@ class InterfaceKeywords(object):
         status_code, resp = HcUtil. \
             put_honeycomb_data(node, "config_vpp_interfaces", resp, path,
                                data_representation=DataRepresentation.JSON)
-        if status_code != HTTPCodes.OK:
+        if status_code not in (HTTPCodes.OK, HTTPCodes.ACCEPTED):
             raise HoneycombError(
                 "The configuration of interface '{0}' was not successful. "
                 "Status code: {1}.".format(interface, status_code))
@@ -1407,7 +1407,7 @@ class InterfaceKeywords(object):
         status_code, resp = HcUtil.\
             put_honeycomb_data(node, "config_vpp_interfaces", data, path,
                                data_representation=DataRepresentation.JSON)
-        if status_code != HTTPCodes.OK:
+        if status_code not in (HTTPCodes.OK, HTTPCodes.ACCEPTED):
             raise HoneycombError(
                 "The configuration of interface '{0}' was not successful. "
                 "Status code: {1}.".format(interface, status_code))
@@ -1466,7 +1466,7 @@ class InterfaceKeywords(object):
         status_code, resp = HcUtil. \
             put_honeycomb_data(node, "config_vpp_interfaces", params, path,
                                data_representation=DataRepresentation.JSON)
-        if status_code != HTTPCodes.OK:
+        if status_code not in (HTTPCodes.OK, HTTPCodes.ACCEPTED):
             raise HoneycombError(
                 "The configuration of PBB sub-interface '{0}' was not "
                 "successful. Status code: {1}.".format(intf, status_code))
