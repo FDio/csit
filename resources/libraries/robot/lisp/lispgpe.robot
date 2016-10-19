@@ -20,6 +20,7 @@
 | Library  | resources.libraries.python.LispSetup.LispLocalEid
 | Library  | resources.libraries.python.LispSetup.LispAdjacency
 | Library  | resources.libraries.python.LispSetup.LispRemoteMapping
+| Library  | resources.libraries.python.LispSetup.LispEidTableMap
 
 *** Keywords ***
 | Set up LISP GPE topology
@@ -52,6 +53,7 @@
 | | ... | ${dut2_node} | ${dut2_if} | ${dut2_int_index}
 | | ... | ${locator_set} | ${dut1_eid} | ${dut2_eid}
 | | ... | ${dut1_static_adjacency} | ${dut2_static_adjacency}
+| | ... | ${vni_table}=0 | ${vrf_table}=0
 | | ...
 # DUT1 settings:
 | | ${dut1_int_index}= | Run Keyword If | ${dut1_int_index} is None
@@ -66,20 +68,23 @@
 | | ... | ${dut1_int_index}
 | | ... | ${locator_set['priority']}
 | | ... | ${locator_set['weight']}
+| | Vpp Lisp Eid Table Mapping | ${dut1_node}
+| | ... | ${vni_table}
+| | ... | vrf=${vrf_table}
 | | Vpp Add Lisp Local Eid | ${dut1_node}
 | | ... | ${dut1_eid['locator_name']}
-| | ... | ${dut1_eid['vni']}
+| | ... | ${vni_table}
 | | ... | ${dut1_eid['eid']}
 | | ... | ${dut1_eid['prefix']}
 | | Vpp Add Lisp Remote Mapping | ${dut1_node}
-| | ... | ${dut1_static_adjacency['vni']}
+| | ... | ${vni_table}
 | | ... | ${dut1_static_adjacency['deid']}
 | | ... | ${dut1_static_adjacency['prefix']}
 | | ... | ${dut1_static_adjacency['seid']}
 | | ... | ${dut1_static_adjacency['prefix']}
 | | ... | ${dut1_static_adjacency['rloc']}
 | | Vpp Add Lisp Adjacency | ${dut1_node}
-| | ... | ${dut1_static_adjacency['vni']}
+| | ... | ${vni_table}
 | | ... | ${dut1_static_adjacency['deid']}
 | | ... | ${dut1_static_adjacency['prefix']}
 | | ... | ${dut1_static_adjacency['seid']}
@@ -98,20 +103,23 @@
 | | ... | ${dut2_int_index}
 | | ... | ${locator_set['priority']}
 | | ... | ${locator_set['weight']}
+| | Vpp Lisp Eid Table Mapping | ${dut2_node}
+| | ... | ${vni_table}
+| | ... | vrf=${vrf_table}
 | | Vpp Add Lisp Local Eid | ${dut2_node}
 | | ... | ${dut2_eid['locator_name']}
-| | ... | ${dut2_eid['vni']}
+| | ... | ${vni_table}
 | | ... | ${dut2_eid['eid']}
 | | ... | ${dut2_eid['prefix']}
 | | Vpp Add Lisp Remote Mapping | ${dut2_node}
-| | ... | ${dut2_static_adjacency['vni']}
+| | ... | ${vni_table}
 | | ... | ${dut2_static_adjacency['deid']}
 | | ... | ${dut2_static_adjacency['prefix']}
 | | ... | ${dut2_static_adjacency['seid']}
 | | ... | ${dut2_static_adjacency['prefix']}
 | | ... | ${dut2_static_adjacency['rloc']}
 | | Vpp Add Lisp Adjacency | ${dut2_node}
-| | ... | ${dut2_static_adjacency['vni']}
+| | ... | ${vni_table}
 | | ... | ${dut2_static_adjacency['deid']}
 | | ... | ${dut2_static_adjacency['prefix']}
 | | ... | ${dut2_static_adjacency['seid']}
