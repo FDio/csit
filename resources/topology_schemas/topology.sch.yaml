@@ -77,6 +77,8 @@ schema;type_interface_tg: &type_interface_tg
 schema;type_honeycomb: &type_honeycomb
   type: map
   mapping: &type_honeycomb_mapping
+    schema:
+      required: no
     user:
       type: str
       required: yes
