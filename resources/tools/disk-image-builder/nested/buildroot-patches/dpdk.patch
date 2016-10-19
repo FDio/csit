@@ -77,7 +77,7 @@ index 0000000..1c47f19
 +++ b/package/dpdk/dpdk.hash
 @@ -0,0 +1,2 @@
 +# Locally calculated
-+sha256 d631495bc6e8d4c4aec72999ac03c3ce213bb996cb88f3bf14bb980dad1d3f7b  dpdk-16.04.tar.gz
++sha256 cc982455a74357e465112bede5c29451b6eeb35f8c1c0dcea280dd3e7829f0e9  dpdk-16.07.tar.gz
 diff --git a/package/dpdk/dpdk.mk b/package/dpdk/dpdk.mk
 new file mode 100644
 index 0000000..02860fd
@@ -90,7 +90,7 @@ index 0000000..02860fd
 +#
 +################################################################################
 +
-+DPDK_VERSION = 16.04
++DPDK_VERSION = 16.07
 +DPDK_SITE = http://dpdk.org/browse/dpdk/snapshot
 +DPDK_SOURCE = dpdk-$(DPDK_VERSION).tar.gz
 +
