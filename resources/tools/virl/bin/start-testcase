@@ -344,7 +344,7 @@ def main():
                 client.connect(ipaddr, username=args.ssh_user,
                                key_filename=args.ssh_privkey)
                 stdin, stdout, stderr = \
-                    client.exec_command('sudo dpkg -i /scratch/vpp/*deb')
+                    client.exec_command('sudo dpkg -i --force-all /scratch/vpp/*deb')
                 c_stdout = stdout.read()
                 c_stderr = stderr.read()
                 if args.verbosity >= 2:
