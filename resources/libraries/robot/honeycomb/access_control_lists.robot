@@ -172,7 +172,7 @@
 | | ... | \| ACL table from VAT should not exist \| ${nodes['DUT1']} \
 | | ... | \| ${0} \|
 | | [Arguments] | ${node} | ${table_index}
-| | Run keyword and expect error | No JSON data.
+| | Run keyword and expect error | VAT: no JSON data.
 | | ... | Get classify table data | ${node} | ${table_index}
 
 | ACL session from Honeycomb should be

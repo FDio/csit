@@ -43,6 +43,7 @@ def get_variables(test_case, name):
             # IPs for DUT interface setup
             "dut_to_tg_if1_ip": "16.0.0.2",
             "dut_to_tg_if2_ip": "192.168.0.2",
+            "prefix_length": 24,
             "gateway": "192.168.0.1",
             # classified networks
             "classify_src_net": "16.0.2.0",
@@ -50,7 +51,6 @@ def get_variables(test_case, name):
             # IPs in classified networks
             "classify_src": "16.0.2.1",
             "classify_dst": "16.0.3.1",
-            "prefix_length": 24
         },
         "l3_ip6": {
             # Override control packet addresses with IPv6
@@ -60,6 +60,7 @@ def get_variables(test_case, name):
             # IPs for DUT interface setup
             "dut_to_tg_if1_ip": "10::2",
             "dut_to_tg_if2_ip": "20::2",
+            "prefix_length": 64,
             "gateway": "20::1",
             # classified networks
             "classify_src_net": "12::",
@@ -67,7 +68,17 @@ def get_variables(test_case, name):
             # IPs in classified networks
             "classify_src": "12::1",
             "classify_dst": "13::1",
-            "prefix_length": 64
+        },
+        "l4": {
+            # IPs for DUT interface and route setup
+            "dut_to_tg_if1_ip": "16.0.0.2",
+            "dut_to_tg_if2_ip": "192.168.0.2",
+            "prefix_length": 24,
+            "gateway": "192.168.0.1",
+            "classify_dst_net": "16.0.3.0",
+            # Ports in classified ranges
+            "classify_src": 1500,
+            "classify_dst": 2000,
         },
         "mixed": {
             # IPs for DUT interface setup
@@ -85,7 +96,21 @@ def get_variables(test_case, name):
             "classify_src_mac": "01:02:03:04:56:67",
             "classify_dst_mac": "89:9A:AB:BC:50:60",
             "src_mask": "00:00:00:00:FF:FF",
-            "dst_mask": "FF:FF:FF:FF:00:00"
+            "dst_mask": "FF:FF:FF:FF:00:00",
+            # classified ports
+            "classify_src_port": 1500,
+            "classify_dst_port": 2000,
+        },
+        "multirule": {
+            # MACs classified by first rule
+            "classify_src": "12:23:34:45:56:67",
+            "classify_dst": "89:9A:AB:BC:CD:DE",
+            # MACs classified by second rule
+            "classify_src2": "01:02:03:04:56:67",
+            "classify_dst2": "89:9A:AB:BC:50:60",
+            # MAC rule masks -  only match specific addresses
+            "src_mask": "FF:FF:FF:FF:FF:FF",
+            "dst_mask": "FF:FF:FF:FF:FF:FF",
         }
     }
     acl_data = {
@@ -163,6 +188,31 @@ def get_variables(test_case, name):
                 }]}
             }]
         },
+        # ACL configuration for L4 tests
+        "l4": {
+            "acl": [{
+                "acl-type":
+                    "vpp-acl:mixed-acl",
+                "acl-name": name,
+                "access-list-entries": {"ace": [{
+                    "rule-name": "rule1",
+                    "matches": {
+                        "destination-ipv4-network": "0.0.0.0/0",
+                        "destination-port-range": {
+                            "lower-port": test_vars["l4"]["classify_dst"],
+                            "upper-port": test_vars["l4"]["classify_dst"] + 50
+                        },
+                        "source-port-range": {
+                            "lower-port": test_vars["l4"]["classify_src"],
+                            "upper-port": test_vars["l4"]["classify_src"] + 50
+                        }
+                    },
+                    "actions": {
+                        "deny": {}
+                    }
+                }]}
+            }]
+        },
         "mixed": {
             "acl": [{
                 "acl-type":
@@ -187,22 +237,89 @@ def get_variables(test_case, name):
                             "{0}/{1}".format(
                                 test_vars["mixed"]["classify_dst_net"],
                                 test_vars["mixed"]["prefix_length"]),
-                        "vpp-acl:protocol": 17
+                        "vpp-acl:protocol": 17,
+                        "vpp-acl:destination-port-range": {
+                            "lower-port": test_vars["l4"]["classify_dst"],
+                            "upper-port": test_vars["l4"]["classify_dst"] + 50
+                        },
+                        "vpp-acl:source-port-range": {
+                            "lower-port": test_vars["l4"]["classify_src"],
+                            "upper-port": test_vars["l4"]["classify_src"] + 50
+                        }
                     },
                     "actions": {
                         "deny": {}
                     }
                 }]}
             }]
+        },
+        "multirule": {
+            "acl": [{
+                "acl-type":
+                    "ietf-access-control-list:eth-acl",
+                "acl-name": name,
+                "access-list-entries": {"ace": [
+                    {
+                        "rule-name": "rule1",
+                        "matches": {
+                            "source-mac-address":
+                                test_vars["multirule"]["classify_src"],
+                            "source-mac-address-mask":
+                                test_vars["multirule"]["src_mask"],
+                            "destination-mac-address":
+                                test_vars["multirule"]["classify_dst"],
+                            "destination-mac-address-mask":
+                                test_vars["multirule"]["dst_mask"]
+                        },
+                        "actions": {
+                            "deny": {}
+                        }
+                    },
+                    {
+                        "rule-name": "rule2",
+                        "matches": {
+                            "source-mac-address":
+                                test_vars["multirule"]["classify_src2"],
+                            "source-mac-address-mask":
+                                test_vars["multirule"]["src_mask"],
+                            "destination-mac-address":
+                                test_vars["multirule"]["classify_dst2"],
+                            "destination-mac-address-mask":
+                                test_vars["multirule"]["dst_mask"]
+                        },
+                        "actions": {
+                            "deny": {}
+                        }
+                    },
+                    {
+                        "rule-name": "rule3",
+                        "matches": {
+                            "source-mac-address":
+                                variables["src_mac"],
+                            "source-mac-address-mask":
+                                test_vars["multirule"]["src_mask"],
+                            "destination-mac-address":
+                                variables["dst_mac"],
+                            "destination-mac-address-mask":
+                                test_vars["multirule"]["dst_mask"]
+                        },
+                        "actions": {
+                            "permit": {}
+                        }
+                    }
+                ]}
+            }]
         }
     }
     try:
-        variables.update(test_vars[test_case])
-        variables.update(
+        ret_vars = {}
+        ret_vars.update(variables)
+        ret_vars.update(test_vars[test_case])
+        ret_vars.update(
             {"acl_settings": acl_data[test_case]}
         )
     except KeyError:
         raise Exception("Unrecognized test case {0}."
                         " Valid options are: {1}".format(
                             test_case, acl_data.keys()))
-    return variables
+    return ret_vars

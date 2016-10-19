@@ -61,7 +61,7 @@ class BridgeDomainKeywords(object):
         status_code, resp = HcUtil.\
             put_honeycomb_data(node, "config_bridge_domain", data,
                                data_representation=data_representation)
-        if status_code != HTTPCodes.OK:
+        if status_code not in (HTTPCodes.OK, HTTPCodes.ACCEPTED):
             raise HoneycombError(
                 "The configuration of bridge domain '{0}' was not successful. "
                 "Status code: {1}.".format(bd_name, status_code))
@@ -90,7 +90,7 @@ class BridgeDomainKeywords(object):
 
         status_code, resp = HcUtil.\
             get_honeycomb_data(node, "config_bridge_domain")
-        if status_code != HTTPCodes.OK:
+        if status_code not in (HTTPCodes.OK, HTTPCodes.ACCEPTED):
             raise HoneycombError(
                 "Not possible to get configuration information about the "
                 "bridge domains. Status code: {0}.".format(status_code))
