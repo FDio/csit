@@ -32,6 +32,7 @@ from requests.auth import HTTPBasicAuth
 class HTTPCodes(IntEnum):
     """HTTP status codes"""
     OK = 200
+    ACCEPTED = 201
     UNAUTHORIZED = 401
     FORBIDDEN = 403
     NOT_FOUND = 404

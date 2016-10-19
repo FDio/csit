@@ -60,7 +60,7 @@ class ACLKeywords(object):
             status_code, resp = HcUtil.\
                 delete_honeycomb_data(node, "config_classify_table", path)
 
-        if status_code != HTTPCodes.OK:
+        if status_code not in (HTTPCodes.OK, HTTPCodes.ACCEPTED):
             raise HoneycombError(
                 "The configuration of classify table was not successful. "
                 "Status code: {0}.".format(status_code))
@@ -287,8 +287,6 @@ class ACLKeywords(object):
                        "l3_ip6": "ipv6",
                        "mixed": "mixed"
                        }
-        if layer == "l4":
-            raise NotImplementedError
         try:
             suffix = suffix_dict[layer]
         except KeyError:
@@ -306,7 +304,7 @@ class ACLKeywords(object):
         status_code, resp = HcUtil.put_honeycomb_data(
             node, "config_ietf_classify_chain", data, path)
 
-        if status_code != HTTPCodes.OK:
+        if status_code not in (HTTPCodes.OK, HTTPCodes.ACCEPTED):
             raise HoneycombError(
                 "Could not create classify chain."
                 "Status code: {0}.".format(status_code))
@@ -368,31 +366,28 @@ class ACLKeywords(object):
             "mixed": {"mode": mode, "acl_type": types['vpp'].format("mixed")}
             }
 
-        if layer == "L4":
-            raise NotImplementedError
-        else:
-            try:
-                data = {
-                    "access-lists": {
-                        "acl": [
-                            {
-                                "type": layers[layer]['acl_type'],
-                                "name": list_name
-                            }
-                        ],
-                        "default-action": default_action,
-                        "mode": layers[layer]['mode']
-                    }
+        try:
+            data = {
+                "access-lists": {
+                    "acl": [
+                        {
+                            "type": layers[layer]['acl_type'],
+                            "name": list_name
+                        }
+                    ],
+                    "default-action": default_action,
+                    "mode": layers[layer]['mode']
                 }
-            except KeyError:
-                raise ValueError("Unknown network layer {0}. "
-                                 "Valid options are: {1}".format(
-                                    layer, layers.keys()))
+            }
+        except KeyError:
+            raise ValueError("Unknown network layer {0}. "
+                             "Valid options are: {1}".format(
+                                layer, layers.keys()))
 
         status_code, resp = HcUtil.put_honeycomb_data(
             node, "config_vpp_interfaces", data, path)
 
-        if status_code != HTTPCodes.OK:
+        if status_code not in (HTTPCodes.OK, HTTPCodes.ACCEPTED):
             raise HoneycombError(
                 "Could not configure ACL on interface. "
                 "Status code: {0}.".format(status_code))
