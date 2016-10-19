@@ -15,14 +15,20 @@
 | Library | resources.libraries.python.topology.Topology
 | Library | resources.libraries.python.NodePath
 | Library | resources.libraries.python.Trace
+| Library | resources.libraries.python.LispUtil
+| Library | resources.libraries.python.VhostUser
+| Library | resources.libraries.python.QemuUtils
 | Library | resources.libraries.python.VPPUtil
+| Library | resources.libraries.python.IPsecUtil
 | Resource | resources/libraries/robot/traffic.robot
 | Resource | resources/libraries/robot/default.robot
 | Resource | resources/libraries/robot/interfaces.robot
 | Resource | resources/libraries/robot/testing_path.robot
 | Resource | resources/libraries/robot/vrf.robot
 | Resource | resources/libraries/robot/ipsec.robot
+| Resource | resources/libraries/robot/qemu.robot
 | Resource | resources/libraries/robot/lisp/lispgpe.robot
+| Resource | resources/libraries/robot/bridge_domain.robot
 | Resource | resources/libraries/robot/lisp/l2lisp.robot
 # Import configuration and test data:
 | Variables | resources/test_data/lisp/ipv4_ipsec_lispgpe_ipv4/ipv4_ipsec_lispgpe_ipv4.py
@@ -48,6 +54,14 @@
 | ... | *[Ver] TG verification:* Packet is send from TG(if1) across the DUT1 to\
 | ... | DUT2 where it is forwarded to TG(if2).
 | ... | *[Ref] Applicable standard specifications:* RFC6830, RFC4303.
+
+*** Variables ***
+| ${dut2_spi}= | ${1000}
+| ${dut1_spi}= | ${1001}
+| ${ESP_PROTO}= | ${50}
+| ${sock1}= | /tmp/sock1
+| ${sock2}= | /tmp/sock2
+| ${bid}= | 10
 
 *** Test Cases ***
 | TC01: DUT1 and DUT2 route IPv4 bidirectionally over LISP GPE tunnel using IPsec (transport) on RLOC Int.
@@ -220,6 +234,105 @@
 | | ... | ${tg_to_dut2} | ${tg_to_dut2_mac} | ${dut2_to_tg_mac}
 | | ... | ${tg_to_dut1} | ${dut1_to_tg_mac} | ${tg_to_dut1_mac}
 
+| TC05: DUT1 and DUT2 route IPv4 over Vhost to LISP GPE tunnel using IPsec (transport) on RLOC Int.
+| | [Documentation]
+| | ... | [Top] TG-DUT1-DUT2-TG.
+| | ... | [Enc] Eth-IPv4-IPSec-LISPGPE-IPv4-ICMP on DUT1-DUT2, Eth-IPv4-ICMP\
+| | ... | on TG-DUTn.
+| | ... | [Cfg] Configure IPv4 LISP static adjacencies on DUT1 and DUT2 with\
+| | ... | IPsec in between DUTS. Create Qemu vm on DUT1 and configure bridge\
+| | ... | between two vhosts.
+| | ... | [Ver] Case: ip4-ipsec-lispgpe-ip4 - main fib, virt2lisp\
+| | ... | Make TG send ICMPv4 Echo Req between its interfaces across\
+| | ... | both DUTs and LISP GPE tunnel between them; verify IPv4 headers on\
+| | ... | received packets are correct.
+| | ... | [Ref] RFC6830, RFC4303.
+| | [Teardown] | Run Keywords | Show Packet Trace on All DUTs | ${nodes}
+| | ...           | AND       | Show vpp trace dump on all DUTs
+| | ...           | AND       | Stop and Clear QEMU | ${dut1_node} | ${vm_node}
+| | ...           | AND       | Show VPP Settings | ${dut1_node}
+| | ...           | AND       | Show VPP Settings | ${dut2_node}
+| | ...
+| | ${encr_alg}= | Crypto Alg AES CBC 128
+| | ${auth_alg}= | Integ Alg SHA1 96
+| | Given Setup 3-node Topology
+| | And Add IP Neighbors
+| | And Setup Qemu DUT1
+| | And Set up LISP GPE topology
+| | ... | ${dut1_node} | ${dut1_to_dut2} | ${NONE}
+| | ... | ${dut2_node} | ${dut2_to_dut1} | ${NONE}
+| | ... | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
+| | ... | ${dut1_to_dut2_ip4_static_adjacency}
+| | ... | ${dut2_to_dut1_ip4_static_adjacency}
+| | And IPsec Generate Keys | ${encr_alg} | ${auth_alg}
+| | When VPP Setup IPsec Manual Keyed Connection
+| | ... | ${dut1_node} | ${dut1_to_dut2} | ${encr_alg} | ${encr_key}
+| | ... | ${auth_alg} | ${auth_key} | ${dut1_spi} | ${dut2_spi}
+| | ... | ${dut1_to_dut2_ip4} | ${dut2_to_dut1_ip4}
+| | And VPP Setup IPsec Manual Keyed Connection
+| | ... | ${dut2_node} | ${dut2_to_dut1} | ${encr_alg} | ${encr_key}
+| | ... | ${auth_alg} | ${auth_key} | ${dut2_spi} | ${dut1_spi}
+| | ... | ${dut2_to_dut1_ip4} | ${dut1_to_dut2_ip4}
+| | Then Send Packet And Check Headers
+| | ... | ${tg_node} | ${tg1_ip4} | ${tg2_ip4}
+| | ... | ${tg_to_dut1} | ${tg_to_dut1_mac} | ${dst_vhost_mac}
+| | ... | ${tg_to_dut2} | ${dut2_to_tg_mac} | ${tg_to_dut2_mac}
+| | And Send Packet And Check Headers
+| | ... | ${tg_node} | ${tg2_ip4} | ${tg1_ip4}
+| | ... | ${tg_to_dut2} | ${tg_to_dut2_mac} | ${dut2_to_tg_mac}
+| | ... | ${tg_to_dut1} | ${dut1_to_tg_mac} | ${tg_to_dut1_mac}
+
+| TC06: DUT1 and DUT2 route IPv4 over Vhost to LISP GPE tunnel using IPsec (transport) on lisp_gpe0 Int.
+| | [Documentation]
+| | ... | [Top] TG-DUT1-DUT2-TG.
+| | ... | [Enc] Eth-IPv4-IPSec-LISPGPE-IPv4-ICMPv4 on DUT1-DUT2,\
+| | ... | Eth-IPv4-ICMPv4 on TG-DUTn.
+| | ... | [Cfg] Configure IPv4 LISP static adjacencies on DUT1 and DUT2 with\
+| | ... | IPsec in between DUTS.
+| | ... | [Ver] Case: ip4-ipsec-lispgpe-ip4 - main fib, virt2lisp\
+| | ... | Make TG send ICMPv4 Echo Req between its interfaces across\
+| | ... | both DUTs and LISP GPE tunnel between them; verify IPv4 headers on\
+| | ... | received packets are correct.
+| | ... | [Ref] RFC6830, RFC4303.
+| | [Teardown] | Run Keywords | Show Packet Trace on All DUTs | ${nodes}
+| | ...           | AND       | Show vpp trace dump on all DUTs
+| | ...           | AND       | Stop and Clear QEMU | ${dut1_node} | ${vm_node}
+| | ...           | AND       | Show VPP Settings | ${dut1_node}
+| | ...           | AND       | Show VPP Settings | ${dut2_node}
+| | ...
+| | ${encr_alg}= | Crypto Alg AES CBC 128
+| | ${auth_alg}= | Integ Alg SHA1 96
+| | Given Setup 3-node Topology
+| | And Add IP Neighbors
+| | And Setup Qemu DUT1
+| | And Set up LISP GPE topology
+| | ... | ${dut1_node} | ${dut1_to_dut2} | ${NONE}
+| | ... | ${dut2_node} | ${dut2_to_dut1} | ${NONE}
+| | ... | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
+| | ... | ${dut1_to_dut2_ip4_static_adjacency}
+| | ... | ${dut2_to_dut1_ip4_static_adjacency}
+| | ${lisp1_if_idx}= | resources.libraries.python.InterfaceUtil.Get Sw If Index
+| | ... | ${dut1_node} | lisp_gpe0
+| | ${lisp2_if_idx}= | resources.libraries.python.InterfaceUtil.Get Sw If Index
+| | ... | ${dut2_node} | lisp_gpe0
+| | And IPsec Generate Keys | ${encr_alg} | ${auth_alg}
+| | When VPP Setup IPsec Manual Keyed Connection
+| | ... | ${dut1_node} | ${lisp1_if_idx} | ${encr_alg} | ${encr_key}
+| | ... | ${auth_alg} | ${auth_key} | ${dut1_spi} | ${dut2_spi}
+| | ... | ${dut1_to_dut2_ip4} | ${dut2_to_dut1_ip4}
+| | And VPP Setup IPsec Manual Keyed Connection
+| | ... | ${dut2_node} | ${lisp2_if_idx} | ${encr_alg} | ${encr_key}
+| | ... | ${auth_alg} | ${auth_key} | ${dut2_spi} | ${dut1_spi}
+| | ... | ${dut2_to_dut1_ip4} | ${dut1_to_dut2_ip4}
+| | Then Send Packet And Check Headers
+| | ... | ${tg_node} | ${tg1_ip4} | ${tg2_ip4}
+| | ... | ${tg_to_dut1} | ${tg_to_dut1_mac} | ${dst_vhost_mac}
+| | ... | ${tg_to_dut2} | ${dut2_to_tg_mac} | ${tg_to_dut2_mac}
+| | And Send Packet And Check Headers
+| | ... | ${tg_node} | ${tg2_ip4} | ${tg1_ip4}
+| | ... | ${tg_to_dut2} | ${tg_to_dut2_mac} | ${dut2_to_tg_mac}
+| | ... | ${tg_to_dut1} | ${dut1_to_tg_mac} | ${tg_to_dut1_mac}
+
 *** Keywords ***
 | Setup 3-node Topology
 | | [Documentation]
@@ -259,3 +372,21 @@
 | | ... | ${dut2_to_dut1_mac}
 | | Add IP Neighbor | ${dut2_node} | ${dut2_to_dut1} | ${dut1_to_dut2_ip4}
 | | ... | ${dut1_to_dut2_mac}
+
+| Setup Qemu DUT1
+| | [Documentation] | Setup Vhosts on DUT1 and setup IP to one of them. Setup \
+| | ... | Qemu and bridge the vhosts.
+| | ${vhost1}= | And Vpp Create Vhost User Interface | ${dut1_node} | ${sock1}
+| | ${vhost2}= | And Vpp Create Vhost User Interface | ${dut1_node} | ${sock2}
+| | Set Interface Address | ${dut1_node} | ${vhost2} | 6.6.1.9
+| | ... | ${prefix4}
+| | Set Interface State | ${dut1_node} | ${vhost1} | up
+| | Set Interface State | ${dut1_node} | ${vhost2} | up
+| | Bridge domain on DUT node is created | ${dut1_node} | ${bid} | learn=${TRUE}
+| | Interface is added to bridge domain | ${dut1_node}
+| | ... | ${dut1_to_tg} | ${bid} | 0
+| | Interface is added to bridge domain | ${dut1_node}
+| | ... | ${vhost1} | ${bid} | 0
+| | ${vhost_mac}= | Get Vhost User Mac By SW Index | ${dut1_node} | ${vhost2}
+| | Set test variable | ${dst_vhost_mac} | ${vhost_mac}
+| | VM for Vhost L2BD forwarding is setup | ${dut1_node} | ${sock1} | ${sock2}
