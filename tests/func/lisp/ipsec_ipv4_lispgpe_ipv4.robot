@@ -15,6 +15,7 @@
 | Library | resources.libraries.python.topology.Topology
 | Library | resources.libraries.python.NodePath
 | Library | resources.libraries.python.Trace
+| Library | resources.libraries.python.VPPUtil
 | Resource | resources/libraries/robot/traffic.robot
 | Resource | resources/libraries/robot/default.robot
 | Resource | resources/libraries/robot/interfaces.robot
@@ -22,6 +23,7 @@
 | Resource | resources/libraries/robot/vrf.robot
 | Resource | resources/libraries/robot/ipsec.robot
 | Resource | resources/libraries/robot/lisp/lispgpe.robot
+| Resource | resources/libraries/robot/lisp/l2lisp.robot
 # Import configuration and test data:
 | Variables | resources/test_data/lisp/ipv4_ipsec_lispgpe_ipv4/ipv4_ipsec_lispgpe_ipv4.py
 | ...
@@ -32,8 +34,8 @@
 | ...        | AND          | Update All Interface Data On All Nodes | ${nodes}
 | Test Teardown | Run Keywords | Show Packet Trace on All DUTs | ${nodes}
 | ...           | AND          | Show vpp trace dump on all DUTs
-| ...           | AND          | VPP Show Errors | ${nodes['DUT1']}
-| ...           | AND          | VPP Show Errors | ${nodes['DUT2']}
+| ...           | AND          | show_vpp_settings | ${nodes['DUT1']}
+| ...           | AND          | show_vpp_settings | ${nodes['DUT2']}
 | ...
 | Documentation | *IPv4-ip4-ipsec-lispgpe-ip4 - main fib, vrf (gpe_vni-to-vrf)
 | ...
@@ -60,8 +62,6 @@
 | | ... | DUTs and LISP GPE tunnel between them; verify IPv4 headers on\
 | | ... | received packets are correct.
 | | ... | [Ref] RFC6830, RFC4303.
-| | ...
-| | [Tags] | EXPECTED_FAILING
 | | ...
 | | ${encr_alg}= | Crypto Alg AES CBC 128
 | | ${auth_alg}= | Integ Alg SHA1 96
@@ -103,8 +103,6 @@
 | | ... | DUTs and LISP GPE tunnel between them; verify IPv4 headers on\
 | | ... | received packets are correct.
 | | ... | [Ref] RFC6830, RFC4303.
-| | ...
-| | [Tags] | EXPECTED_FAILING
 | | ...
 | | ${encr_alg}= | Crypto Alg AES CBC 128
 | | ${auth_alg}= | Integ Alg SHA1 96
@@ -149,17 +147,10 @@
 | | ... | received packets are correct.
 | | ... | [Ref] RFC6830, RFC4303.
 | | ...
-| | [Tags] | EXPECTED_FAILING
-| | ...
 | | ${encr_alg}= | Crypto Alg AES CBC 128
 | | ${auth_alg}= | Integ Alg SHA1 96
-| | Given Setup 3-node Topology
-| | And Setup VRF on DUT | ${dut1_node} | ${dut1_fib_table} | ${dut1_to_dut2}
-| | ... | ${dut2_to_dut1_ip4} | ${dut2_to_dut1_mac} | ${tg2_ip4} | ${dut1_to_tg}
-| | ... | ${tg1_ip4} | ${tg_to_dut1_mac} | ${prefix4}
-| | And Setup VRF on DUT | ${dut2_node} | ${dut2_fib_table} | ${dut2_to_dut1}
-| | ... | ${dut1_to_dut2_ip4} | ${dut1_to_dut2_mac} | ${tg1_ip4} | ${dut2_to_tg}
-| | ... | ${tg2_ip4} | ${tg_to_dut2_mac} | ${prefix4}
+| | Given Setup 3-node Topology | ${fib_table_1}
+| | Add IP Neighbors | ${fib_table_1}
 | | When IPsec Generate Keys | ${encr_alg} | ${auth_alg}
 | | And Set up LISP GPE topology
 | | ... | ${dut1_node} | ${dut1_to_dut2} | ${NONE}
@@ -167,6 +158,7 @@
 | | ... | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
 | | ... | ${dut1_to_dut2_ip4_static_adjacency}
 | | ... | ${dut2_to_dut1_ip4_static_adjacency}
+| | ... | ${dut1_dut2_vni} | ${fib_table_1}
 | | And VPP Setup IPsec Manual Keyed Connection
 | | ... | ${dut1_node} | ${dut1_to_dut2} | ${encr_alg} | ${encr_key}
 | | ... | ${auth_alg} | ${auth_key} | ${dut1_spi} | ${dut2_spi}
@@ -197,25 +189,17 @@
 | | ... | received packets are correct.
 | | ... | [Ref] RFC6830, RFC4303.
 | | ...
-| | [teardown] | Run keyword if test passed | Fail | Feature not implemented
-| | ...
-| | [Tags] | EXPECTED_FAILING
-| | ...
 | | ${encr_alg}= | Crypto Alg AES CBC 128
 | | ${auth_alg}= | Integ Alg SHA1 96
-| | Given Setup 3-node Topology
-| | And Setup VRF on DUT | ${dut1_node} | ${dut1_fib_table} | ${dut1_to_dut2}
-| | ... | ${dut2_to_dut1_ip4} | ${dut2_to_dut1_mac} | ${tg2_ip4} | ${dut1_to_tg}
-| | ... | ${tg1_ip4} | ${tg_to_dut1_mac} | ${prefix4}
-| | And Setup VRF on DUT | ${dut2_node} | ${dut2_fib_table} | ${dut2_to_dut1}
-| | ... | ${dut1_to_dut2_ip4} | ${dut1_to_dut2_mac} | ${tg1_ip4} | ${dut2_to_tg}
-| | ... | ${tg2_ip4} | ${tg_to_dut2_mac} | ${prefix4}
+| | Given Setup 3-node Topology | ${fib_table_1}
+| | Add IP Neighbors | ${fib_table_1}
 | | And Set up LISP GPE topology
 | | ... | ${dut1_node} | ${dut1_to_dut2} | ${NONE}
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${NONE}
 | | ... | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
 | | ... | ${dut1_to_dut2_ip4_static_adjacency}
 | | ... | ${dut2_to_dut1_ip4_static_adjacency}
+| | ... | ${dut1_dut2_vni} | ${fib_table_1}
 | | When IPsec Generate Keys | ${encr_alg} | ${auth_alg}
 | | ${lisp_if_idx}= | resources.libraries.python.InterfaceUtil.Get sw if index
 | | ... | ${dut1_node} | lisp_gpe0
@@ -240,11 +224,18 @@
 | Setup 3-node Topology
 | | [Documentation]
 | | ... | Setup 3-node topology for this test suite. Set all physical\
-| | ... | interfaces up and assing IP adresses to them.
+| | ... | interfaces up and assing IP adresses to them.\
+| | ... | You can specify fib table ID where the DUT-TG interfaces assign to.\
+| | ... | Default is 0.
 | | ...
+| | [Arguments] | ${fib_table}=0
 | | Path for 3-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | Interfaces in 3-node path are up
+| | Assign Interface To Fib Table | ${dut1_node}
+| | ... | ${dut1_to_tg} | ${fib_table}
+| | Assign Interface To Fib Table | ${dut2_node}
+| | ... | ${dut2_to_tg} | ${fib_table}
 | | Set Interface Address | ${dut1_node} | ${dut1_to_dut2} | ${dut1_to_dut2_ip4}
 | | ... | ${prefix4}
 | | Set Interface Address | ${dut1_node} | ${dut1_to_tg} | ${dut1_to_tg_ip4}
@@ -256,12 +247,14 @@
 
 | Add IP Neighbors
 | | [Documentation]
-| | ... | Add IP neighbors to physical interfaces on DUTs.
+| | ... | Add IP neighbors to physical interfaces on DUTs.\
+| | ... | You can specify fib table ID for DUT-TG interfaces. Default is 0
 | | ...
+| | [Arguments] | ${fib_id}=${NONE}
 | | Add IP Neighbor | ${dut1_node} | ${dut1_to_tg} | ${tg1_ip4}
-| | ... | ${tg_to_dut1_mac}
+| | ... | ${tg_to_dut1_mac} | ${fib_id}
 | | Add IP Neighbor | ${dut2_node} | ${dut2_to_tg} | ${tg2_ip4}
-| | ... | ${tg_to_dut2_mac}
+| | ... | ${tg_to_dut2_mac} | ${fib_id}
 | | Add IP Neighbor | ${dut1_node} | ${dut1_to_dut2} | ${dut2_to_dut1_ip4}
 | | ... | ${dut2_to_dut1_mac}
 | | Add IP Neighbor | ${dut2_node} | ${dut2_to_dut1} | ${dut1_to_dut2_ip4}
