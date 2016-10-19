@@ -30,6 +30,8 @@ tg1_ip6 = '2001:cdba:1::2'
 tg2_ip6 = '2001:cdba:2::2'
 prefix6 = 64
 
+vhost_ip = '2001:cdba:1::9'
+
 dut1_to_dut2_ip6_static_adjacency = {'vni': 0,
                                      'deid': '2001:cdba:2::0',
                                      'rloc': '2001:cdba:3::2',
@@ -50,8 +52,8 @@ dut2_ip6_eid = {'locator_name': locator_name,
                 'eid': '2001:cdba:2::0',
                 'prefix': 64}
 
-dut1_fib_table = '1'
-dut2_fib_table = '2'
+fib_table_1 = 1
+dut1_dut2_vni = 1
 
 sock1 = "/tmp/sock1"
 sock2 = "/tmp/sock2"
