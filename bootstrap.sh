@@ -28,7 +28,7 @@ VIRL_PKEY=priv_key
 VIRL_SERVER_STATUS_FILE="status"
 VIRL_SERVER_EXPECTED_STATUS="PRODUCTION"
 
-VIRL_TOPOLOGY=double-ring-nested.xenial
+VIRL_TOPOLOGY=double-ring-nested.xenial.test
 VIRL_RELEASE=csit-ubuntu-16.04.1_2016-10-10_1.4
 
 SSH_OPTIONS="-i ${VIRL_PKEY} -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o BatchMode=yes -o LogLevel=error"
