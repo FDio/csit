@@ -50,8 +50,8 @@ dut2_ip4_eid = {'locator_name': locator_name,
                 'eid': '6.6.2.0',
                 'prefix': 24}
 
-dut1_fib_table = '1'
-dut2_fib_table = '2'
+fib_table_1 = 1
+dut1_dut2_vni = 1
 
 dut2_spi = 1000
 dut1_spi = 1001
