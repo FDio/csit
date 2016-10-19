@@ -42,6 +42,9 @@ dst_ip_range = '6.0.5.0'
 
 vm1_vif1_mac = '52:54:00:00:04:01'
 vm1_vif2_mac = '52:54:00:00:04:02'
+
+vhost_ip = '6.0.1.3'
+
 prefix4 = 24
 
 dut1_to_dut2_ip4_static_adjacency = {'vni': 0,
@@ -64,8 +67,8 @@ dut2_ip4_eid = {'locator_name': locator_name,
                 'eid': dst_ip_range,
                 'prefix': prefix4}
 
-dut1_fib_table = 1
-dut2_fib_table = 2
+fib_table_1 = 1
+dut1_dut2_vni = 1
 
 sock1 = "/tmp/sock1"
 sock2 = "/tmp/sock2"
