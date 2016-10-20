@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da3975d1_e63644e7",
+        "filename": "tests/func/lisp/api_untagged.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 193
+      },
+      "writtenOn": "2016-10-20T11:27:21Z",
+      "side": 1,
+      "message": "Rename the file to just \"api\". We don\u0027t to tagging with LISP.",
+      "range": {
+        "startLine": 31,
+        "startChar": 24,
+        "endLine": 31,
+        "endChar": 27
+      },
+      "revId": "ef0d2461b3b488dd9b51250ca1230ae81c6803a4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da3975d1_26256cab",
+        "filename": "tests/func/lisp/dataplane_untagged.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 193
+      },
+      "writtenOn": "2016-10-20T11:27:21Z",
+      "side": 1,
+      "message": "Let\u0027s call them IP AFI independent functional tests. And because of that we\u0027ll just use IP4 (no need for IP6) here. I\u0027d also rename the file to something like dataplane or dataplane_generic (can\u0027t come up with a better name). We don\u0027t typically do VLAN tagging with LISP. \n\nOnce this gets merged, it would be a good home for the RTR test https://gerrit.fd.io/r/#/c/3434 as well",
+      "range": {
+        "startLine": 32,
+        "startChar": 24,
+        "endLine": 32,
+        "endChar": 32
+      },
+      "revId": "ef0d2461b3b488dd9b51250ca1230ae81c6803a4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
