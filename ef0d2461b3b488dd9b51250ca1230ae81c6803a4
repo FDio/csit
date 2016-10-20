@@ -45,6 +45,213 @@
       "revId": "ef0d2461b3b488dd9b51250ca1230ae81c6803a4",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da3975d1_c6b8e02c",
+        "filename": "tests/func/lisp/dataplane_untagged.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-10-20T13:19:49Z",
+      "side": 1,
+      "message": ".",
+      "range": {
+        "startLine": 37,
+        "startChar": 73,
+        "endLine": 37,
+        "endChar": 74
+      },
+      "revId": "ef0d2461b3b488dd9b51250ca1230ae81c6803a4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da3975d1_8682d850",
+        "filename": "tests/func/lisp/dataplane_untagged.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-10-20T13:19:49Z",
+      "side": 1,
+      "message": "There is used IPv4 only...\n\n- all occurences of IPv6/ICMPv6",
+      "range": {
+        "startLine": 41,
+        "startChar": 49,
+        "endLine": 41,
+        "endChar": 55
+      },
+      "revId": "ef0d2461b3b488dd9b51250ca1230ae81c6803a4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da3975d1_660a54d4",
+        "filename": "tests/func/lisp/ipv4_lispgpe_ipv6.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-10-20T13:19:49Z",
+      "side": 1,
+      "message": "4",
+      "range": {
+        "startLine": 39,
+        "startChar": 43,
+        "endLine": 39,
+        "endChar": 44
+      },
+      "revId": "ef0d2461b3b488dd9b51250ca1230ae81c6803a4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da3975d1_0672687c",
+        "filename": "tests/func/lisp/ipv4_lispgpe_ipv6.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-10-20T13:19:49Z",
+      "side": 1,
+      "message": "6",
+      "range": {
+        "startLine": 41,
+        "startChar": 43,
+        "endLine": 41,
+        "endChar": 44
+      },
+      "revId": "ef0d2461b3b488dd9b51250ca1230ae81c6803a4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da3975d1_e66e4496",
+        "filename": "tests/func/lisp/ipv4_lispgpe_ipv6.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-10-20T13:19:49Z",
+      "side": 1,
+      "message": "IPv6",
+      "range": {
+        "startLine": 43,
+        "startChar": 54,
+        "endLine": 43,
+        "endChar": 65
+      },
+      "revId": "ef0d2461b3b488dd9b51250ca1230ae81c6803a4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da3975d1_26144cf4",
+        "filename": "tests/func/lisp/ipv4_lispgpe_ipv6.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-10-20T13:19:49Z",
+      "side": 1,
+      "message": "6",
+      "range": {
+        "startLine": 55,
+        "startChar": 55,
+        "endLine": 55,
+        "endChar": 56
+      },
+      "revId": "ef0d2461b3b488dd9b51250ca1230ae81c6803a4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da3975d1_e6f524cc",
+        "filename": "tests/func/lisp/ipv6_lispgpe_ipv4.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-10-20T13:19:49Z",
+      "side": 1,
+      "message": "6",
+      "range": {
+        "startLine": 40,
+        "startChar": 43,
+        "endLine": 40,
+        "endChar": 52
+      },
+      "revId": "ef0d2461b3b488dd9b51250ca1230ae81c6803a4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da3975d1_c60220b4",
+        "filename": "tests/func/lisp/ipv6_lispgpe_ipv4.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-10-20T13:19:49Z",
+      "side": 1,
+      "message": "remove this",
+      "range": {
+        "startLine": 42,
+        "startChar": 45,
+        "endLine": 42,
+        "endChar": 56
+      },
+      "revId": "ef0d2461b3b488dd9b51250ca1230ae81c6803a4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da3975d1_a6ff1caa",
+        "filename": "tests/func/lisp/ipv6_lispgpe_ipv4.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-10-20T13:19:49Z",
+      "side": 1,
+      "message": "remove this",
+      "range": {
+        "startLine": 44,
+        "startChar": 59,
+        "endLine": 44,
+        "endChar": 65
+      },
+      "revId": "ef0d2461b3b488dd9b51250ca1230ae81c6803a4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
