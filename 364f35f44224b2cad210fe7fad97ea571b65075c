@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da3975d1_6bd57d42",
+        "filename": "resources/libraries/python/IKEv2.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-10-20T07:10:44Z",
+      "side": 1,
+      "message": "add raises part",
+      "range": {
+        "startLine": 291,
+        "startChar": 4,
+        "endLine": 291,
+        "endChar": 7
+      },
+      "revId": "364f35f44224b2cad210fe7fad97ea571b65075c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da3975d1_8bd0a154",
+        "filename": "resources/libraries/python/IKEv2.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 311,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-10-20T07:10:44Z",
+      "side": 1,
+      "message": "we prefer print()\ncheck everywhere",
+      "range": {
+        "startLine": 311,
+        "startChar": 4,
+        "endLine": 311,
+        "endChar": 40
+      },
+      "revId": "364f35f44224b2cad210fe7fad97ea571b65075c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da3975d1_abe36532",
+        "filename": "resources/libraries/robot/traffic.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 436,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-10-20T07:10:44Z",
+      "side": 1,
+      "message": "\\ is missing",
+      "range": {
+        "startLine": 436,
+        "startChar": 49,
+        "endLine": 436,
+        "endChar": 52
+      },
+      "revId": "364f35f44224b2cad210fe7fad97ea571b65075c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da3975d1_cbe6a944",
+        "filename": "resources/test_data/ikev2/ikev2_variables.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 195,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-10-20T07:10:44Z",
+      "side": 1,
+      "message": "Do not commit disabled code, or if necessary, describe why it is here.",
+      "range": {
+        "startLine": 174,
+        "startChar": 0,
+        "endLine": 195,
+        "endChar": 1
+      },
+      "revId": "364f35f44224b2cad210fe7fad97ea571b65075c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da3975d1_4bcab9a2",
+        "filename": "tests/func/ikev2/ikev2.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-10-20T07:10:44Z",
+      "side": 1,
+      "message": "\\ is missing\ncheck everywhere",
+      "range": {
+        "startLine": 36,
+        "startChar": 72,
+        "endLine": 36,
+        "endChar": 75
+      },
+      "revId": "364f35f44224b2cad210fe7fad97ea571b65075c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da3975d1_ebc04d7e",
+        "filename": "tests/func/ikev2/ikev2.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-10-20T07:10:44Z",
+      "side": 1,
+      "message": "This is not only setup, you also run the traffic script and check something. Change to more appropriate name.",
+      "range": {
+        "startLine": 97,
+        "startChar": 2,
+        "endLine": 97,
+        "endChar": 13
+      },
+      "revId": "364f35f44224b2cad210fe7fad97ea571b65075c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da3975d1_abba4508",
+        "filename": "tests/func/ikev2/ikev2.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-10-20T07:10:44Z",
+      "side": 1,
+      "message": "\\",
+      "range": {
+        "startLine": 98,
+        "startChar": 73,
+        "endLine": 98,
+        "endChar": 76
+      },
+      "revId": "364f35f44224b2cad210fe7fad97ea571b65075c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
