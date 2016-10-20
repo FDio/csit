@@ -2,6 +2,52 @@
   "comments": [
     {
       "key": {
+        "uuid": "da3975d1_2b1415f4",
+        "filename": "resources/libraries/python/IKEv2.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-10-20T11:01:51Z",
+      "side": 1,
+      "message": "Please, use correct description.",
+      "range": {
+        "startLine": 14,
+        "startChar": 3,
+        "endLine": 18,
+        "endChar": 16
+      },
+      "revId": "364f35f44224b2cad210fe7fad97ea571b65075c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da3975d1_ab16c5ef",
+        "filename": "resources/libraries/python/IKEv2.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-10-20T11:01:51Z",
+      "side": 1,
+      "message": "location.",
+      "range": {
+        "startLine": 229,
+        "startChar": 25,
+        "endLine": 229,
+        "endChar": 33
+      },
+      "revId": "364f35f44224b2cad210fe7fad97ea571b65075c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da3975d1_6bd57d42",
         "filename": "resources/libraries/python/IKEv2.py",
         "patchSetId": 11
@@ -48,6 +94,29 @@
     },
     {
       "key": {
+        "uuid": "da3975d1_ebca8d6d",
+        "filename": "resources/libraries/python/Routing.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-10-20T11:01:51Z",
+      "side": 1,
+      "message": "Just for sure - please, check if the change doesn\u0027t impact perf tests.",
+      "range": {
+        "startLine": 60,
+        "startChar": 29,
+        "endLine": 60,
+        "endChar": 61
+      },
+      "revId": "364f35f44224b2cad210fe7fad97ea571b65075c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "da3975d1_abe36532",
         "filename": "resources/libraries/robot/traffic.robot",
         "patchSetId": 11
@@ -64,6 +133,144 @@
         "startChar": 49,
         "endLine": 436,
         "endChar": 52
+      },
+      "revId": "364f35f44224b2cad210fe7fad97ea571b65075c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da3975d1_0b7cb11f",
+        "filename": "resources/libraries/robot/traffic.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 452,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-10-20T11:01:51Z",
+      "side": 1,
+      "message": "rSpi",
+      "range": {
+        "startLine": 452,
+        "startChar": 12,
+        "endLine": 452,
+        "endChar": 17
+      },
+      "revId": "364f35f44224b2cad210fe7fad97ea571b65075c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da3975d1_eb784d2d",
+        "filename": "resources/libraries/robot/traffic.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 453,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-10-20T11:01:51Z",
+      "side": 1,
+      "message": "rEnc",
+      "range": {
+        "startLine": 453,
+        "startChar": 12,
+        "endLine": 453,
+        "endChar": 17
+      },
+      "revId": "364f35f44224b2cad210fe7fad97ea571b65075c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da3975d1_cb758933",
+        "filename": "resources/libraries/robot/traffic.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 454,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-10-20T11:01:51Z",
+      "side": 1,
+      "message": "rAuth",
+      "range": {
+        "startLine": 454,
+        "startChar": 12,
+        "endLine": 454,
+        "endChar": 18
+      },
+      "revId": "364f35f44224b2cad210fe7fad97ea571b65075c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da3975d1_ab724547",
+        "filename": "resources/libraries/robot/traffic.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 455,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-10-20T11:01:51Z",
+      "side": 1,
+      "message": "lSpi",
+      "range": {
+        "startLine": 455,
+        "startChar": 12,
+        "endLine": 455,
+        "endChar": 17
+      },
+      "revId": "364f35f44224b2cad210fe7fad97ea571b65075c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da3975d1_8b8f8123",
+        "filename": "resources/libraries/robot/traffic.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 456,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-10-20T11:01:51Z",
+      "side": 1,
+      "message": "lEnc",
+      "range": {
+        "startLine": 456,
+        "startChar": 12,
+        "endLine": 456,
+        "endChar": 17
+      },
+      "revId": "364f35f44224b2cad210fe7fad97ea571b65075c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da3975d1_6b945d37",
+        "filename": "resources/libraries/robot/traffic.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 457,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-10-20T11:01:51Z",
+      "side": 1,
+      "message": "lAuth",
+      "range": {
+        "startLine": 457,
+        "startChar": 12,
+        "endLine": 457,
+        "endChar": 18
       },
       "revId": "364f35f44224b2cad210fe7fad97ea571b65075c",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
@@ -156,6 +363,29 @@
         "startChar": 73,
         "endLine": 98,
         "endChar": 76
+      },
+      "revId": "364f35f44224b2cad210fe7fad97ea571b65075c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da3975d1_eb5a8d4f",
+        "filename": "tests/func/ikev2/ikev2.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-10-20T11:01:51Z",
+      "side": 1,
+      "message": "This part should be moved to test case.\nThen the KW name can remain unchanged.",
+      "range": {
+        "startLine": 148,
+        "startChar": 4,
+        "endLine": 152,
+        "endChar": 38
       },
       "revId": "364f35f44224b2cad210fe7fad97ea571b65075c",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
