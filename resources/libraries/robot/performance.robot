@@ -78,7 +78,7 @@
 | | ...
 | | Set Suite Variable | ${glob_loss_acceptance} | 0.5
 | | Set Suite Variable | ${glob_loss_acceptance_type} | percentage
-| | Set Suite Variable | ${glob_vm_image} | /var/lib/vm/csit-nested-1.3.img
+| | Set Suite Variable | ${glob_vm_image} | /var/lib/vm/csit-nested-1.4.img
 
 | 2-node circular Topology Variables Setup
 | | [Documentation]
@@ -1192,7 +1192,6 @@
 | | Run keyword | ${vm_name}.Qemu Set Node | ${dut_node}
 | | Run keyword | ${vm_name}.Qemu Set Smp | 3 | 3 | 1 | 1
 | | Run keyword | ${vm_name}.Qemu Set Mem Size | 2048
-| | Run keyword | ${vm_name}.Qemu Set Huge Allocate
 | | Run keyword | ${vm_name}.Qemu Set Disk Image | ${glob_vm_image}
 | | ${vm}= | Run keyword | ${vm_name}.Qemu Start
 | | Run keyword | ${vm_name}.Qemu Set Affinity | 5 | 6 | 7
@@ -1234,9 +1233,7 @@
 | | Run keyword | ${vm_name}.Qemu Set Node | ${dut_node}
 | | Run keyword | ${vm_name}.Qemu Set Smp | 3 | 3 | 1 | 1
 | | Run keyword | ${vm_name}.Qemu Set Mem Size | 2048
-| | Run keyword | ${vm_name}.Qemu Set Huge Allocate
-| | Run keyword | ${vm_name}.Qemu Set Disk Image
-| | ...         | /var/lib/vm/csit-nested-1.3.img
+| | Run keyword | ${vm_name}.Qemu Set Disk Image | ${glob_vm_image}
 | | ${vm}= | Run keyword | ${vm_name}.Qemu Start
 | | Run keyword | ${vm_name}.Qemu Set Affinity | 5 | 6 | 7
 | | Dpdk Testpmd Start | ${vm} | eal_coremask=0x7
@@ -1272,7 +1269,6 @@
 | | Run keyword | ${vm_name}.Qemu Set Node | ${dut_node}
 | | Run keyword | ${vm_name}.Qemu Set Smp | 3 | 3 | 1 | 1
 | | Run keyword | ${vm_name}.Qemu Set Mem Size | 2048
-| | Run keyword | ${vm_name}.Qemu Set Huge Allocate
 | | Run keyword | ${vm_name}.Qemu Set Disk Image | ${glob_vm_image}
 | | ${vm}= | Run keyword | ${vm_name}.Qemu Start
 | | Run keyword | ${vm_name}.Qemu Set Affinity | 5 | 6 | 7
