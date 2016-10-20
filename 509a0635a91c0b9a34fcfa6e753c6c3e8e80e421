@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da3975d1_c0756833",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-10-20T07:57:49Z",
+      "side": 1,
+      "message": "keys",
+      "range": {
+        "startLine": 245,
+        "startChar": 44,
+        "endLine": 245,
+        "endChar": 47
+      },
+      "revId": "509a0635a91c0b9a34fcfa6e753c6c3e8e80e421",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da3975d1_a0c0242b",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 247,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-10-20T07:57:49Z",
+      "side": 1,
+      "message": "update SA keys",
+      "range": {
+        "startLine": 247,
+        "startChar": 33,
+        "endLine": 247,
+        "endChar": 46
+      },
+      "revId": "509a0635a91c0b9a34fcfa6e753c6c3e8e80e421",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da3975d1_80dd2017",
+        "filename": "resources/libraries/robot/ipsec.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-10-20T07:57:49Z",
+      "side": 1,
+      "message": "update SA keys",
+      "range": {
+        "startLine": 191,
+        "startChar": 31,
+        "endLine": 191,
+        "endChar": 42
+      },
+      "revId": "509a0635a91c0b9a34fcfa6e753c6c3e8e80e421",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da3975d1_8004007f",
+        "filename": "tests/func/ipsec/ipsec_transport_mode_ipv4.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 347,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-10-20T07:57:49Z",
+      "side": 1,
+      "message": "mode. Then update SA keys - use new keys.",
+      "range": {
+        "startLine": 347,
+        "startChar": 10,
+        "endLine": 347,
+        "endChar": 34
+      },
+      "revId": "509a0635a91c0b9a34fcfa6e753c6c3e8e80e421",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da3975d1_60091c95",
+        "filename": "tests/func/ipsec/ipsec_transport_mode_ipv4.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 348,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-10-20T07:57:49Z",
+      "side": 1,
+      "message": "before and after SA keys update.\n\n--similarly for other SA keys update test cases",
+      "range": {
+        "startLine": 348,
+        "startChar": 67,
+        "endLine": 348,
+        "endChar": 68
+      },
+      "revId": "509a0635a91c0b9a34fcfa6e753c6c3e8e80e421",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da3975d1_0b72717c",
+        "filename": "tests/func/ipsec/ipsec_transport_mode_ipv4.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 358,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-10-20T07:57:49Z",
+      "side": 1,
+      "message": "Please, use KW Get Second Random String to generate new encryption and integrity keys to be sure that the new key is different from previous one.",
+      "range": {
+        "startLine": 358,
+        "startChar": 4,
+        "endLine": 358,
+        "endChar": 57
+      },
+      "revId": "509a0635a91c0b9a34fcfa6e753c6c3e8e80e421",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da3975d1_eb6e0d96",
+        "filename": "tests/func/ipsec/ipsec_transport_mode_ipv4.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 457,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-10-20T07:57:49Z",
+      "side": 1,
+      "message": "Please, fix also this bug - there should be used {auth_key} in case that \u0027${req_type}\u0027 \u003d\u003d \u0027Integ\u0027",
+      "range": {
+        "startLine": 457,
+        "startChar": 48,
+        "endLine": 457,
+        "endChar": 59
+      },
+      "revId": "509a0635a91c0b9a34fcfa6e753c6c3e8e80e421",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
