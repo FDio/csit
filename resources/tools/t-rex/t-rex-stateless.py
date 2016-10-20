@@ -392,8 +392,13 @@ def simple_burst(stream_a, stream_b, stream_lat_a, stream_lat_b, duration, rate,
         client.add_streams(stream_b, ports=[1])
 
         if latency:
-            client.add_streams(stream_lat_a, ports=[0])
-            client.add_streams(stream_lat_b, ports=[1])
+            try:
+                client.add_streams(stream_lat_a, ports=[0])
+                client.add_streams(stream_lat_b, ports=[1])
+            except:
+                #Disable latency if NIC does not support requested stream type
+                print "##### FAILED to add latency streams #####"
+                latency = False
 
         #warmup phase
         if warmup_time > 0:
