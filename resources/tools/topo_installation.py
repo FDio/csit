@@ -84,6 +84,10 @@ def main():
                 cmd = "dpkg -l | grep vpp"
                 ret, _, _ = ssh.exec_command(cmd)
                 if ret == 0:
+                    # Try to fix interupted installations
+                    cmd = 'dpkg --configure -a'
+                    stdout = ssh_no_error(ssh, cmd, sudo=True)
+                    print "###TI {}".format(stdout)
                     # Try to remove installed vpp.* packages
                     cmd = 'apt-get purge -y "vpp.*"'
                     stdout = ssh_no_error(ssh, cmd, sudo=True)
