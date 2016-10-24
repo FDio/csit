@@ -55,19 +55,16 @@
 *** Keywords ***
 | L2 Bridge Domain NDR Binary Search
 | | [Arguments] | ${framesize} | ${min_rate} | ${wt} | ${rxq}
+| | Set Test Variable | ${framesize}
+| | Set Test Variable | ${min_rate}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Set Test Documentation | [Cfg] DUT runs L2BD switching config with ${wt}\
-| | Set Test Documentation | thread, ${wt} phy core, ${rxq}\ | append=True
-| | Set Test Documentation | receive queue per NIC port. | append=True
-| | Set Test Documentation | [Ver] Find NDR for ${framesize} Byte\ | append=True
-| | Set Test Documentation | frames using binary search start at\ | append=True
-| | Set Test Documentation | 10GE linerate, step ${threshold}pps. | append=True
 | | Add '${wt}' worker threads and rxqueues '${rxq}' in 3-node single-link topo
 | | Add PCI devices to DUTs from 3-node single link topology
-| | Run Keyword If | ${framesize} < ${1522} | Add No Multi Seg to all DUTs
+| | ${get_framesize}= | Get Frame Size | ${framesize}
+| | Run Keyword If | ${get_framesize} < ${1522} | Add No Multi Seg to all DUTs
 | | Apply startup configuration on all VPP DUTs
 | | L2 bridge domain initialized in a 3-node circular topology
 | | Find NDR using binary search and pps
@@ -76,21 +73,16 @@
 
 | L2 Bridge Domain PDR Binary Search
 | | [Arguments] | ${framesize} | ${min_rate} | ${wt} | ${rxq}
+| | Set Test Variable | ${framesize}
+| | Set Test Variable | ${min_rate}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Set Test Documentation | [Cfg] DUT runs L2BD switching config with ${wt}\
-| | Set Test Documentation | thread, ${wt} phy core, ${rxq}\ | append=True
-| | Set Test Documentation | receive queue per NIC port. | append=True
-| | Set Test Documentation | [Ver] Find PDR for ${framesize} Byte\ | append=True
-| | Set Test Documentation | frames using binary search start at\ | append=True
-| | Set Test Documentation | 10GE linerate, step ${threshold}pps, | append=True
-| | Set Test Documentation | LT=${glob_loss_acceptance} | append=True
-| | Set Test Documentation | ${glob_loss_acceptance_type}. | append=True
 | | Add '${wt}' worker threads and rxqueues '${rxq}' in 3-node single-link topo
 | | Add PCI devices to DUTs from 3-node single link topology
-| | Run Keyword If | ${framesize} < ${1522} | Add No Multi Seg to all DUTs
+| | ${get_framesize}= | Get Frame Size | ${framesize}
+| | Run Keyword If | ${get_framesize} < ${1522} | Add No Multi Seg to all DUTs
 | | Apply startup configuration on all VPP DUTs
 | | L2 bridge domain initialized in a 3-node circular topology
 | | Find PDR using binary search and pps
@@ -102,89 +94,179 @@
 | TC01: 64B NDR binary search - DUT L2BD - 1thread 1core 1rxq
 | | ... | ${64} | ${100000} | 1 | 1
 | | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | NDR
+| | [Documentation]
+| | ... | [Cfg] DUT runs L2BD switching config with with\
+| | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
+| | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 10GE\
+| | ... | linerate, step 100kpps.
 | | [Template] | L2 Bridge Domain NDR Binary Search
 
 | TC02: 64B PDR binary search - DUT L2BD - 1thread 1core 1rxq
 | | ... | ${64} | ${100000} | 1 | 1
 | | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | PDR | SKIP_PATCH
+| | [Documentation]
+| | ... | [Cfg] DUT runs L2BD switching config with with\
+| | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
+| | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 10GE\
+| | ... | linerate, step 100kpps, LT=0.5%.
 | | [Template] | L2 Bridge Domain PDR Binary Search
 
 | TC03: 1518B NDR binary search - DUT L2BD - 1thread 1core 1rxq
 | | ... | ${1518} | ${10000} | 1 | 1
 | | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | NDR
+| | [Documentation]
+| | ... | [Cfg] DUT runs L2BD switching config with with\
+| | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
+| | ... | [Ver] Find NDR for 1518 Byte frames using binary search start at 10GE\
+| | ... | linerate, step 10kpps.
 | | [Template] | L2 Bridge Domain NDR Binary Search
 
 | TC04: 1518B PDR binary search - DUT L2BD - 1thread 1core 1rxq
 | | ... | ${1518} | ${10000} | 1 | 1
 | | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | PDR | SKIP_PATCH
+| | [Documentation]
+| | ... | [Cfg] DUT runs L2BD switching config with with\
+| | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
+| | ... | [Ver] Find PDR for 1518 Byte frames using binary search start at 10GE\
+| | ... | linerate, step 10kpps, LT=0.5%.
 | | [Template] | L2 Bridge Domain PDR Binary Search
 
 | TC05: 9000B NDR binary search - DUT L2BD - 1thread 1core 1rxq
 | | ... | ${9000} | ${10000} | 1 | 1
 | | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | NDR
+| | [Documentation]
+| | ... | [Cfg] DUT runs L2BD switching config with with\
+| | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
+| | ... | [Ver] Find NDR for 9000 Byte frames using binary search start at 10GE\
+| | ... | linerate, step 10kpps.
 | | [Template] | L2 Bridge Domain NDR Binary Search
 
 | TC06: 9000B PDR binary search - DUT L2BD - 1thread 1core 1rxq
 | | ... | ${9000} | ${10000} | 1 | 1
 | | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | PDR | SKIP_PATCH
+| | [Documentation]
+| | ... | [Cfg] DUT runs L2BD switching config with with\
+| | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
+| | ... | [Ver] Find PDR for 9000 Byte frames using binary search start at 10GE\
+| | ... | linerate, step 10kpps, LT=0.5%.
 | | [Template] | L2 Bridge Domain PDR Binary Search
 
 | TC07: 64B NDR binary search - DUT L2BD - 2thread 2core 1rxq
 | | ... | ${64} | ${100000} | 2 | 1
 | | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | NDR
+| | [Documentation]
+| | ... | [Cfg] DUT runs L2BD switching config with with\
+| | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
+| | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 10GE\
+| | ... | linerate, step 100kpps.
 | | [Template] | L2 Bridge Domain NDR Binary Search
 
 | TC08: 64B PDR binary search - DUT L2BD - 2thread 2core 1rxq
 | | ... | ${64} | ${100000} | 2 | 1
 | | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | PDR | SKIP_PATCH
+| | [Documentation]
+| | ... | [Cfg] DUT runs L2BD switching config with with\
+| | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
+| | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 10GE\
+| | ... | linerate, step 100kpps, LT=0.5%.
 | | [Template] | L2 Bridge Domain PDR Binary Search
 
 | TC09: 1518B NDR binary search - DUT L2BD - 2thread 2core 1rxq
 | | ... | ${1518} | ${10000} | 2 | 1
 | | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | NDR | SKIP_PATCH
+| | [Documentation]
+| | ... | [Cfg] DUT runs L2BD switching config with with\
+| | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
+| | ... | [Ver] Find NDR for 1518 Byte frames using binary search start at 10GE\
+| | ... | linerate, step 10kpps.
 | | [Template] | L2 Bridge Domain NDR Binary Search
 
 | TC10: 1518B PDR binary search - DUT L2BD - 2thread 2core 1rxq
 | | ... | ${1518} | ${10000} | 2 | 1
 | | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | PDR | SKIP_PATCH
+| | [Documentation]
+| | ... | [Cfg] DUT runs L2BD switching config with with\
+| | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
+| | ... | [Ver] Find PDR for 1518 Byte frames using binary search start at 10GE\
+| | ... | linerate, step 10kpps, LT=0.5%.
 | | [Template] | L2 Bridge Domain PDR Binary Search
 
 | TC11: 9000B NDR binary search - DUT L2BD - 2thread 2core 1rxq
 | | ... | ${9000} | ${10000} | 2 | 1
 | | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | NDR | SKIP_PATCH
+| | [Documentation]
+| | ... | [Cfg] DUT runs L2BD switching config with with\
+| | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
+| | ... | [Ver] Find NDR for 9000 Byte frames using binary search start at 10GE\
+| | ... | linerate, step 10kpps.
 | | [Template] | L2 Bridge Domain NDR Binary Search
 
 | TC12: 9000B PDR binary search - DUT L2BD - 2thread 2core 1rxq
 | | ... | ${9000} | ${10000} | 2 | 1
 | | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | PDR | SKIP_PATCH
+| | [Documentation]
+| | ... | [Cfg] DUT runs L2BD switching config with with\
+| | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
+| | ... | [Ver] Find PDR for 9000 Byte frames using binary search start at 10GE\
+| | ... | linerate, step 10kpps, LT=0.5%.
 | | [Template] | L2 Bridge Domain PDR Binary Search
 
 | TC13: 64B NDR binary search - DUT L2BD - 4thread 4core 2rxq
 | | ... | ${64} | ${100000} | 4 | 2
 | | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | NDR
+| | [Documentation]
+| | ... | [Cfg] DUT runs L2BD switching config with with\
+| | ... | 4 threads, 4 phy cores, 2 receive queues per NIC port.
+| | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 10GE\
+| | ... | linerate, step 100kpps.
 | | [Template] | L2 Bridge Domain NDR Binary Search
 
 | TC14: 64B PDR binary search - DUT L2BD - 4thread 4core 2rxq
 | | ... | ${64} | ${100000} | 4 | 2
 | | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | PDR | SKIP_PATCH
+| | [Documentation]
+| | ... | [Cfg] DUT runs L2BD switching config with with\
+| | ... | 4 threads, 4 phy cores, 2 receive queues per NIC port.
+| | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 10GE\
+| | ... | linerate, step 100kpps, LT=0.5%.
 | | [Template] | L2 Bridge Domain PDR Binary Search
 
 | TC15: 1518B NDR binary search - DUT L2BD - 4thread 4core 2rxq
 | | ... | ${1518} | ${10000} | 4 | 2
 | | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | NDR | SKIP_PATCH
+| | [Documentation]
+| | ... | [Cfg] DUT runs L2BD switching config with with\
+| | ... | 4 threads, 4 phy cores, 2 receive queues per NIC port.
+| | ... | [Ver] Find NDR for 1518 Byte frames using binary search start at 10GE\
+| | ... | linerate, step 10kpps.
 | | [Template] | L2 Bridge Domain NDR Binary Search
 
 | TC16: 1518B PDR binary search - DUT L2BD - 4thread 4core 2rxq
 | | ... | ${1518} | ${10000} | 4 | 2
 | | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | PDR | SKIP_PATCH
+| | [Documentation]
+| | ... | [Cfg] DUT runs L2BD switching config with with\
+| | ... | 4 threads, 4 phy cores, 2 receive queues per NIC port.
+| | ... | [Ver] Find PDR for 1518 Byte frames using binary search start at 10GE\
+| | ... | linerate, step 10kpps, LT=0.5%.
 | | [Template] | L2 Bridge Domain PDR Binary Search
 
 | TC17: 9000B NDR binary search - DUT L2BD - 4thread 4core 2rxq
 | | ... | ${9000} | ${10000} | 4 | 2
 | | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | NDR | SKIP_PATCH
+| | [Documentation]
+| | ... | [Cfg] DUT runs L2BD switching config with with\
+| | ... | 4 threads, 4 phy cores, 2 receive queues per NIC port.
+| | ... | [Ver] Find NDR for 9000 Byte frames using binary search start at 10GE\
+| | ... | linerate, step 10kpps.
 | | [Template] | L2 Bridge Domain NDR Binary Search
 
 | TC18: 9000B PDR binary search - DUT L2BD - 4thread 4core 2rxq
 | | ... | ${9000} | ${10000} | 4 | 2
 | | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | PDR | SKIP_PATCH
+| | [Documentation]
+| | ... | [Cfg] DUT runs L2BD switching config with with\
+| | ... | 4 threads, 4 phy cores, 2 receive queues per NIC port.
+| | ... | [Ver] Find PDR for 9000 Byte frames using binary search start at 10GE\
+| | ... | linerate, step 10kpps, LT=0.5%.
 | | [Template] | L2 Bridge Domain PDR Binary Search
