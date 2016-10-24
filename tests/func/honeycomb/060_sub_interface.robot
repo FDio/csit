@@ -45,39 +45,34 @@
 | | ... | ${node} | ${sub_if_name}
 | | When Honeycomb creates sub-interface | ${node} | ${super_if}
 | | ... | ${sub_if_1_match} | ${sub_if_1_tags} | ${sub_if_1_settings}
-| | Then run keyword and continue on failure
-| | ... | Sub-interface configuration from Honeycomb should be
+| | Then Sub-interface configuration from Honeycomb should be
 | | ... | ${node} | ${super_if} | ${sub_if_id} | ${sub_if_1_oper}
-| | And run keyword and continue on failure
-| | ... | Sub-interface configuration from VAT should be
+| | And Sub-interface configuration from VAT should be
 | | ... | ${node} | ${sub_if_name} | ${sub_if_1_oper}
 | | And sub-interface indices from Honeycomb and VAT should correspond
 | | ... | ${node} | ${super_if} | ${sub_if_id}
 
 | Honeycomb sets interface and sub-interface up
-| | [Documentation] | Honeycomb changes the state of interface up and then \
-| | ... | changes the state of its sub-interface up, in this order.
+| | [Documentation] | Honeycomb changes the state of interface\
+| | ... | and of its sub-interface to up.
 | | ...
 | | Given interface state from Honeycomb should be
 | | ... | ${node} | ${super_if} | down
 | | And interface state from VAT should be
 | | ... | ${node} | ${super_if} | down
+| | Sub-interface state from Honeycomb should be
+| | ... | ${node} | ${super_if} | ${sub_if_id} | down | down
+| | Sub-interface state from VAT should be
+| | ... | ${node} | ${sub_if_name} | down | down
 | | When Honeycomb sets interface state
 | | ... | ${node} | ${super_if} | up
 | | Then interface state from Honeycomb should be
 | | ... | ${node} | ${super_if} | up
 | | And interface state from VAT should be
 | | ... | ${node} | ${super_if} | up
-| | Given run keyword and continue on failure
-| | ... | Sub-interface state from Honeycomb should be
-| | ... | ${node} | ${super_if} | ${sub_if_id} | down | down
-| | And run keyword and continue on failure
-| | ... | Sub-interface state from VAT should be
-| | ... | ${node} | ${sub_if_name} | down | down
 | | When Honeycomb sets the sub-interface up
 | | ... | ${node} | ${super_if} | ${sub_if_id}
-| | Then run keyword and continue on failure
-| | ... | Sub-interface state from Honeycomb should be
+| | Then Sub-interface state from Honeycomb should be
 | | ... | ${node} | ${super_if} | ${sub_if_id} | up | up
 | | And sub-interface state from VAT should be
 | | ... | ${node} | ${sub_if_name} | up | up
@@ -99,14 +94,14 @@
 | | ... | ${node} | ${super_if} | up
 | | When Honeycomb sets the sub-interface down
 | | ... | ${node} | ${super_if} | ${sub_if_id}
-| | Then sub-interface state from Honeycomb should be
-| | ... | ${node} | ${super_if} | ${sub_if_id} | down | down
-| | And sub-interface state from VAT should be
-| | ... | ${node} | ${sub_if_name} | down | down
-| | And interface state from Honeycomb should be
+| | Then interface state from Honeycomb should be
 | | ... | ${node} | ${super_if} | up
 | | And interface state from VAT should be
 | | ... | ${node} | ${super_if} | up
+| | And sub-interface state from Honeycomb should be
+| | ... | ${node} | ${super_if} | ${sub_if_id} | down | up
+| | And sub-interface state from VAT should be
+| | ... | ${node} | ${sub_if_name} | down | up
 
 | Honeycomb sets interface and sub-interface down
 | | [Documentation] | Honeycomb changes the state of interface down and then \
@@ -186,7 +181,7 @@
 | | ... | ${node} | ${super_if} | ${sub_if_id} | ${sub_if_1_oper}
 | | And sub-interface configuration from VAT should be
 | | ... | ${node} | ${sub_if_name} | ${sub_if_1_oper}
-| | When Honeycomb creates L2 bridge domain
+| | When Honeycomb creates first L2 bridge domain
 | | ... | ${node} | ${bd_name} | ${bd_settings}
 | | Then bridge domain configuration from Honeycomb should be
 | | ... | ${node} | ${bd_name} | ${bd_settings}
@@ -351,7 +346,6 @@
 | | ... | ${node} | ${sub_if_name}
 | | ... | ${ipv4['address']} | ${ipv4['prefix-length']}
 
-#TODO: Remove "continue on failure" once VPP bug VPP-132 is fixed.
 | Honeycomb removes sub-interface ipv4 address
 | | [Documentation] | Check if Honeycomb can remove configured ipv4 addresses\
 | | ... | from the sub-interface.

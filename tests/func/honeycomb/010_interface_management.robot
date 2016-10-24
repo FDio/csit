@@ -20,7 +20,7 @@
 | ${ipv4_mask}= | 255.255.255.0
 | ${ipv4_prefix}= | ${24}
 | @{ipv4_neighbor}= | 192.168.0.4 | 08:00:27:c0:5d:37
-| &{ipv4_settings}= | enabled=${True} | forwarding=${True} | mtu=${9000}
+| &{ipv4_settings}= | mtu=${9000}
 | @{ipv6_address}= | 10::10 | ${64}
 | @{ipv6_neighbor}= | 10::11 | 08:00:27:c0:5d:37
 | &{ipv6_settings}= | enabled=${True} | forwarding=${True} | mtu=${9000}
@@ -42,11 +42,12 @@
 | ... | Test suite uses the first interface of the first DUT node.
 
 *** Test Cases ***
-# TODO: Remove "continue on failure" once VPP bugs (VPP-132, VPP-333) are fixed.
 | Honeycomb configures and reads interface state
 | | [Documentation] | Check if Honeycomb API can modify the admin state of\
 | | ... | VPP interfaces.
-| | Given Interface State Is | ${node} | ${interface} | down
+| | Given Interface state from Honeycomb should be
+| | ... | ${node} | ${interface} | down
+| | And Interface state from VAT should be | ${node} | ${interface} | down
 | | When Honeycomb sets interface state | ${node} | ${interface} | up
 | | Then Interface state from Honeycomb should be
 | | ... | ${node} | ${interface} | up
@@ -56,70 +57,71 @@
 | | ... | ${node} | ${interface} | down
 | | And Interface state from VAT should be | ${node} | ${interface} | down
 
-| Honeycomb modifies interface configuration - ipv4 (netmask)
+| Honeycomb modifies interface IPv4 address with netmask
 | | [Documentation] | Check if Honeycomb API can configure interfaces for ipv4\
 | | ... | with address and netmask provided.
+| | Given IPv4 address from Honeycomb should be empty | ${node} | ${interface}
+| | And ipv4 address from VAT should be empty | ${node} | ${interface}
 | | When Honeycomb sets interface ipv4 address | ${node} | ${interface}
-| | ... | ${ipv4_address} | ${ipv4_mask} | ${ipv4_settings}
-| | And Honeycomb adds interface ipv4 neighbor
-| | ... | ${node} | ${interface} | @{ipv4_neighbor}
-| | Run Keyword And Continue On Failure
-| | ... | Then IPv4 config from Honeycomb should be
+| | ... | ${ipv4_address} | ${ipv4_mask}
+| | Then IPv4 address from Honeycomb should be
 | | ... | ${node} | ${interface} | ${ipv4_address} | ${ipv4_prefix}
-| | ... | @{ipv4_neighbor} | ${ipv4_settings}
-| | Run Keyword And Continue On Failure
-| | ... | And IPv4 config from VAT should be
-| | ... | ${node} | ${interface} | ${ipv4_address} | ${ipv4_prefix}
+| | And IPv4 address from VAT should be
+| | ... | ${node} | ${interface} | ${ipv4_address} | ${ipv4_mask}
 
-| Honeycomb removes ipv4 address from interface
+| Honeycomb removes IPv4 address from interface
 | | [Documentation] | Check if Honeycomb API can remove configured ipv4\
 | | ... | addresses from interface.
-| | Run Keyword And Continue On Failure
-| | ... | Given IPv4 config from Honeycomb should be
+| | Given IPv4 address from Honeycomb should be
 | | ... | ${node} | ${interface} | ${ipv4_address} | ${ipv4_prefix}
-| | ... | @{ipv4_neighbor} | ${ipv4_settings}
-| | Run Keyword And Continue On Failure
-| | ... | And IPv4 config from VAT should be
-| | ... | ${node} | ${interface} | ${ipv4_address} | ${ipv4_prefix}
+| | And IPv4 address from VAT should be
+| | ... | ${node} | ${interface} | ${ipv4_address} | ${ipv4_mask}
 | | When Honeycomb removes interface ipv4 addresses | ${node} | ${interface}
 | | Then IPv4 address from Honeycomb should be empty | ${node} | ${interface}
 | | And ipv4 address from VAT should be empty | ${node} | ${interface}
 
-| Honeycomb modifies interface configuration - ipv4 (prefix)
+| Honeycomb modifies interface IPv4 address with prefix
 | | [Documentation] | Check if Honeycomb API can configure interfaces for ipv4\
 | | ... | with address and prefix provided.
 | | [Teardown] | Honeycomb removes interface ipv4 addresses | ${node}
 | | ... | ${interface}
+| | Given IPv4 address from Honeycomb should be empty | ${node} | ${interface}
+| | And ipv4 address from VAT should be empty | ${node} | ${interface}
 | | When Honeycomb sets interface ipv4 address with prefix
 | | ... | ${node} | ${interface} | ${ipv4_address2} | ${ipv4_prefix}
-| | ... | ${ipv4_settings}
-| | And Honeycomb adds interface ipv4 neighbor
-| | ... | ${node} | ${interface} | @{ipv4_neighbor}
-| | Run Keyword And Continue On Failure
-| | ... | Then IPv4 config from Honeycomb should be
+| | Then IPv4 address from Honeycomb should be
 | | ... | ${node} | ${interface} | ${ipv4_address2} | ${ipv4_prefix}
-| | ... | @{ipv4_neighbor}
-| | ... | ${ipv4_settings}
-| | Run Keyword And Continue On Failure
-| | ... | And IPv4 config from VAT should be
-| | ... | ${node} | ${interface} | ${ipv4_address2} | ${ipv4_prefix}
+| | And IPv4 address from VAT should be
+| | ... | ${node} | ${interface} | ${ipv4_address2} | ${ipv4_mask}
 
-| Honeycomb modifies interface configuration - ipv6
+| Honeycomb modifies IPv4 neighbor table
+| | [Documentation] | Check if Honeycomb API can add and remove ARP entries.
+# Feature not implemented
+| | [Tags] | EXPECTED_FAILING
+| | [Teardown] | Honeycomb clears all interface ipv4 neighbors
+| | ... | ${node} | ${interface}
+| | When Honeycomb adds interface ipv4 neighbor
+| | ... | ${node} | ${interface} | @{ipv4_neighbor}
+| | Then IPv4 neighbor from Honeycomb should be
+| | ... | ${node} | ${interface} | @{ipv4_neighbor}
+# VAT dump not available
+
+| Honeycomb modifies interface configuration - IPv6
 | | [Documentation] | Check if Honeycomb API can configure interfaces for ipv6.
-| | When Honeycomb sets interface ipv6 configuration
-| | ... | ${node} | ${interface} | @{ipv6_address} | @{ipv6_neighbor}
-| | ... | ${ipv6_settings}
-| | Run Keyword And Continue On Failure
-| | ... | Then IPv6 config from Honeycomb should be
-| | ... | ${node} | ${interface} | @{ipv6_address} | @{ipv6_neighbor}
-| | ... | ${ipv6_settings}
-| | Run Keyword And Continue On Failure
-| | ... | And IPv6 config from VAT should be
+# Feature not implemented
+| | [Tags] | EXPECTED_FAILING
+| | When Honeycomb sets interface ipv6 address
+| | ... | ${node} | ${interface} | @{ipv6_address}
+| | Then IPv6 address from Honeycomb should be
+| | ... | ${node} | ${interface} | @{ipv6_address}
+| | And IPv6 address from VAT should be
 | | ... | ${node} | ${interface} | @{ipv6_address}
 
 | Honeycomb modifies interface configuration - ethernet,routing
 | | [Documentation] | Check if Honeycomb API can configure interface ethernet\
 | | ... | and routing settings.
+# Feature not implemented
+| | [Tags] | EXPECTED_FAILING
 | | When Honeycomb sets interface ethernet and routing configuration
 | | ... | ${node} | ${interface} | ${ethernet} | ${routing}
 | | Then Interface ethernet and routing configuration from Honeycomb should be

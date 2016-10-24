@@ -13,6 +13,7 @@
 
 """This module implements keywords to manipulate ACL data structures using
 Honeycomb REST API."""
+from robot.api import logger
 
 from resources.libraries.python.topology import Topology
 from resources.libraries.python.HTTPRequest import HTTPCodes
@@ -61,9 +62,12 @@ class ACLKeywords(object):
                 delete_honeycomb_data(node, "config_classify_table", path)
 
         if status_code not in (HTTPCodes.OK, HTTPCodes.ACCEPTED):
-            raise HoneycombError(
-                "The configuration of classify table was not successful. "
-                "Status code: {0}.".format(status_code))
+            if data is None and '"error-tag":"data-missing"' in resp:
+                logger.debug("data does not exist in path.")
+            else:
+                raise HoneycombError(
+                    "The configuration of classify table was not successful. "
+                    "Status code: {0}.".format(status_code))
         return resp
 
     @staticmethod

@@ -68,6 +68,7 @@
 | | ${api_data}= | interfaceAPI.Get sub interface oper data
 | | ... | ${node} | ${super_interface} | ${identifier}
 | | interfaceAPI.Compare Data Structures | ${api_data} | ${sub_if_settings}
+| | ... | list_order=${False}
 
 | Sub-interface configuration from Honeycomb should be empty
 | | [Documentation] | Retrieves sub-interface configuration through Honeycomb \
@@ -84,7 +85,7 @@
 | | ...
 | | [Arguments] | ${node} | ${super_interface} | ${identifier}
 | | ...
-| | Run keyword and expect error | *KeyError: 'sub-interface'*
+| | Run keyword and expect error | *KeyError: 'vpp-vlan:sub-interfaces'*
 | | ... | interfaceAPI.Get sub interface oper data
 | | ... | ${node} | ${super_interface} | ${identifier}
 
@@ -389,7 +390,8 @@
 | | [Arguments] | ${node} | ${super_if} | ${identifier} | ${settings}
 | | ${api_data}= | interfaceAPI.Get tag rewrite oper data
 | | ... | ${node} | ${super_if} | ${identifier}
-| | interfaceAPI.Compare Data Structures | ${api_data} | ${settings}
+| | interfaceAPI.Compare Data Structures
+| | ... | ${api_data} | ${settings} | list_order=${False}
 
 | Rewrite tag from VAT should be
 | | [Documentation] | Retrieves sub-interface configuration through VAT and\
@@ -547,7 +549,7 @@
 | | [Arguments] | ${node} | ${super_if} | ${identifier}
 | | ${if_data}= | interfaceAPI.Get sub interface oper data
 | | ... | ${node} | ${super_if} | ${identifier}
-| | Run keyword and expect error | *KeyError: 'address'*
+| | Run keyword and expect error | *KeyError: 'ipv4'*
 | | ... | Set Variable | ${if_data['ipv4']['address'][0]['ip']}
 
 | Sub-interface ipv4 address from VAT should be empty
