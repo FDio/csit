@@ -16,6 +16,8 @@
 The keywords make possible to put and get configuration data and to get
 operational data.
 """
+from robot.api import logger
+
 from resources.libraries.python.topology import Topology
 from resources.libraries.python.HTTPRequest import HTTPCodes
 from resources.libraries.python.honeycomb.HoneycombSetup import HoneycombError
@@ -342,13 +344,16 @@ class InterfaceKeywords(object):
 
         path = "/interface/{0}/v3po:l2".format(intf)
 
-        status_code, _ = HcUtil.delete_honeycomb_data(
+        status_code, response = HcUtil.delete_honeycomb_data(
             node, "config_vpp_interfaces", path)
 
         if status_code != HTTPCodes.OK:
-            raise HoneycombError(
-                "Could not remove bridge domain assignment from interface "
-                "'{0}'. Status code: {1}.".format(interface, status_code))
+            if '"error-tag":"data-missing"' in response:
+                logger.debug("Data does not exist in path.")
+            else:
+                raise HoneycombError(
+                    "Could not remove bridge domain assignment from interface "
+                    "'{0}'. Status code: {1}.".format(interface, status_code))
 
     @staticmethod
     def get_bd_oper_data_from_interface(node, interface):
@@ -1283,15 +1288,19 @@ class InterfaceKeywords(object):
             node, super_interface, path, None)
 
     @staticmethod
-    def compare_data_structures(data, ref, ignore=()):
+    def compare_data_structures(data, ref, ignore=(), list_order=True):
         """Checks if data obtained from UUT is as expected.
 
         :param data: Data to be checked.
         :param ref: Referential data used for comparison.
         :param ignore: Dictionary keys to be ignored.
+        :param list_order: Whether to consider the order of list items\
+        in comparison.
         :type data: dict
         :type ref: dict
         :type ignore: iterable
+        :type list_order: bool
+
         :raises HoneycombError: If a parameter from referential data is not
         present in operational data or if it has different value.
         """
@@ -1303,10 +1312,13 @@ class InterfaceKeywords(object):
                 continue
             try:
                 if data[key] != item:
-                    errors += ("\nThe value of parameter '{0}' is "
-                               "incorrect. It should be "
-                               "'{1}' but it is '{2}'".
-                               format(key, item, data[key]))
+                    if not list_order and sorted(data[key]) == sorted(item):
+                        pass
+                    else:
+                        errors += ("\nThe value of parameter '{0}' is "
+                                   "incorrect. It should be "
+                                   "'{1}' but it is '{2}'".
+                                   format(key, item, data[key]))
             except KeyError:
                 errors += ("\nThe parameter '{0}' is not present in "
                            "operational data".format(key))
@@ -1394,11 +1406,13 @@ class InterfaceKeywords(object):
 
         data = {
             "v3po:acl": {
-                "l2-acl": {
-                    "classify-table": table_name
-                },
-                "ip4-acl": {
-                    "classify-table": table_name
+                "ingress": {
+                    "ip4-acl": {
+                        "classify-table": table_name
+                    },
+                    "l2-acl": {
+                        "classify-table": table_name
+                    }
                 }
             }
         }

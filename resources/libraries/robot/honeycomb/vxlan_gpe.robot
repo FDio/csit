@@ -127,7 +127,8 @@
 | | ... | ${vat_data['encap_vrf_id']} | ${vxlan_gpe_params['encap-vrf-id']}
 | | Should be equal as strings
 | | ... | ${vat_data['decap_vrf_id']} | ${vxlan_gpe_params['decap-vrf-id']}
-| | Should be equal as strings | ${vat_data['protocol']}
+# VAT dump multiplies protocol value by 16777216
+| | Should be equal as strings | ${vat_data['protocol']/16777216}
 | | ... | ${protocols['${vxlan_gpe_params['next-protocol']}']}
 
 | VxLAN GPE Interface indices from Honeycomb and VAT should correspond

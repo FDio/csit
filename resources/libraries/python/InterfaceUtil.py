@@ -262,6 +262,8 @@ class InterfaceUtil(object):
             for item in data:
                 item["netmask"] = convert_ipv4_netmask_prefix(
                     item["prefix_length"])
+                # VAT returns addresses with reversed byte order (VPP-132)
+                item["ip"] = ".".join(item["ip"].split(".")[::-1])
         return data
 
     @staticmethod

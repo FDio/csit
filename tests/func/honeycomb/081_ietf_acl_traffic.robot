@@ -345,11 +345,9 @@
 | | Honeycomb sets interface state | ${dut_node} | ${dut_to_tg_if1} | up
 | | Honeycomb sets interface state | ${dut_node} | ${dut_to_tg_if2} | up
 | | Honeycomb sets interface ipv4 address with prefix | ${dut_node}
-| | ... | ${dut_to_tg_if1} | ${dut_to_tg_if1_ip}
-| | ... | ${prefix_length} | ${if_settings}
+| | ... | ${dut_to_tg_if1} | ${dut_to_tg_if1_ip} | ${prefix_length}
 | | Honeycomb sets interface ipv4 address with prefix | ${dut_node}
-| | ... | ${dut_to_tg_if2} | ${dut_to_tg_if2_ip}
-| | ... | ${prefix_length} | ${if_settings}
+| | ... | ${dut_to_tg_if2} | ${dut_to_tg_if2_ip} | ${prefix_length}
 # TODO: Configure routes through Honeycomb when implemented.(Honeycomb-58)
 | | Add ARP on DUT
 | | ... | ${node} | ${dut_to_tg_if2} | ${gateway} | ${tg_to_dut_if2_mac}
@@ -368,7 +366,7 @@
 | | ... | ${test_data_id} | ${acl_name}
 | | Honeycomb Sets Interface State | ${dut_node} | ${dut_to_tg_if1} | up
 | | Honeycomb Sets Interface State | ${dut_node} | ${dut_to_tg_if2} | up
-| | Honeycomb Creates L2 Bridge Domain
+| | Honeycomb Creates first L2 Bridge Domain
 | | ... | ${dut_node} | ${bd_name} | ${bd_settings}
 | | Honeycomb Adds Interfaces To Bridge Domain
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${dut_to_tg_if2}
