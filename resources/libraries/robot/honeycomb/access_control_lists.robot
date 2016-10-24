@@ -271,7 +271,9 @@
 | | [Arguments] | ${node} | ${interface} | ${table_name}
 | | ${data}= | InterfaceAPI.Get interface oper data | ${node} | ${interface}
 | | Should be equal
-| | ... | ${table_name} | ${data['v3po:acl']['l2-acl']['classify-table']}
+| | ... | ${table_name}
+| | ... | ${data['v3po:acl']['ingress']['l2-acl']['classify-table']}
+| | ... | ${data['v3po:acl']['ingress']['ip4-acl']['classify-table']}
 
 | Interface ACL settings from VAT should be
 | | [Documentation] | Retrieves ACL interface settings from VAT\

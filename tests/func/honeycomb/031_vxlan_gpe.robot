@@ -44,7 +44,6 @@
 | ... | Restart Honeycomb And VPP And Clear Persisted Configuration | ${node}
 
 *** Test Cases ***
-# TODO: Remove "continue on failure" once VPP bugs (VPP-217, VPP-156) are fixed.
 | Honeycomb creates VxLAN GPE tunnel
 | | [Documentation] | Check if Honeycomb API can configure a VxLAN GPE tunnel.
 | | ...
@@ -58,8 +57,7 @@
 | | Then VxLAN GPE configuration from Honeycomb should be
 | | ... | ${node} | ${vxlan_gpe_if1}
 | | ... | ${vxlan_gpe_base_settings} | ${vxlan_gpe_settings}
-| | And run keyword and continue on failure
-| | ... | VxLAN GPE configuration from VAT should be
+| | And VxLAN GPE configuration from VAT should be
 | | ... | ${node} | ${vxlan_gpe_if1} | ${vxlan_gpe_settings}
 | | And VxLAN GPE Interface indices from Honeycomb and VAT should correspond
 | | ... | ${node} | ${vxlan_gpe_if1}
@@ -67,12 +65,10 @@
 | Honeycomb removes VxLAN GPE tunnel
 | | [Documentation] | Check if Honeycomb API can remove VxLAN GPE tunnel.
 | | ...
-| | Run Keyword And Continue On Failure
-| | ... | Given VxLAN GPE configuration from Honeycomb should be
+| | Given VxLAN GPE configuration from Honeycomb should be
 | | ... | ${node} | ${vxlan_gpe_if1}
 | | ... | ${vxlan_gpe_base_settings} | ${vxlan_gpe_settings}
-| | Run Keyword And Continue On Failure
-| | ... | And VxLAN GPE configuration from VAT should be
+| | VxLAN GPE configuration from VAT should be
 | | ... | ${node} | ${vxlan_gpe_if1} | ${vxlan_gpe_settings}
 | | When Honeycomb removes VxLAN GPE interface
 | | ... | ${node} | ${vxlan_gpe_if1}
@@ -161,8 +157,7 @@
 | | Then VxLAN GPE configuration from Honeycomb should be
 | | ... | ${node} | ${vxlan_gpe_if6}
 | | ... | ${vxlan_gpe_base_ipv6_settings2} | ${vxlan_gpe_ipv6_settings2}
-| | And run keyword and continue on failure
-| | ... | VxLAN GPE configuration from VAT should be
+| | And VxLAN GPE configuration from VAT should be
 | | ... | ${node} | ${vxlan_gpe_if6} | ${vxlan_gpe_ipv6_settings2}
 | | And VxLAN GPE Interface indices from Honeycomb and VAT should correspond
 | | ... | ${node} | ${vxlan_gpe_if6}

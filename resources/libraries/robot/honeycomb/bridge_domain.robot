@@ -237,8 +237,8 @@
 | | ...
 | | ... | \| Honeycomb should show no bridge domains \| ${nodes['DUT1']} \|
 | | [Arguments] | ${node}
-| | ${bd_data}= | Get all BDs oper data | ${node}
-| | Should be empty | ${bd_data}
+| | Run keyword and expect error | *Not possible*Status code: 404*
+| | ... | Get all BDs oper data | ${node}
 
 | VAT should show no bridge domains
 | | [Documentation] | Uses VAT to verify the removal of all bridge domains.
