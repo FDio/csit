@@ -87,15 +87,9 @@
 | | ...
 | | [Arguments] | ${dut_node} | ${vm} | ${qemu_name}
 | | ${set_node}= | Replace Variables | ${qemu_name}.Qemu Set Node
-| | ${sys_status}= | Replace Variables | ${qemu_name}.Qemu System Status
 | | ${kill}= | Replace Variables | ${qemu_name}.Qemu Kill
-| | ${sys_pd}= | Replace Variables | ${qemu_name}.Qemu System Powerdown
-| | ${quit}= | Replace Variables | ${qemu_name}.Qemu Quit
 | | ${clear_socks}= | Replace Variables | ${qemu_name}.Qemu Clear Socks
 | | Run Keyword | ${set_node} | ${dut_node}
-| | ${status} | ${value}= | Run Keyword And Ignore Error | ${sys_status}
-| | Run Keyword If | "${status}" == "FAIL" | ${kill}
-| | ... | ELSE IF | "${value}" == "running" | ${sys_pd}
-| | ... | ELSE | ${quit}
+| | Run Keyword | ${kill}
 | | Run Keyword | ${clear_socks}
 | | Run Keyword If | ${vm} is not None | Disconnect | ${vm}
