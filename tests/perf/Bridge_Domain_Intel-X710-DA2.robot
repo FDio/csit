@@ -55,13 +55,13 @@
 *** Keywords ***
 | L2 Bridge Domain NDR Binary Search
 | | [Arguments] | ${framesize} | ${min_rate} | ${wt} | ${rxq}
-| | # Test Variables required for test teardown
 | | Set Test Variable | ${framesize}
 | | Set Test Variable | ${min_rate}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
+| | ${framesize}= | Get Frame Size | ${framesize}
 | | Set Test Documentation | [Cfg] DUT runs L2BD switching config with ${wt}\
 | | Set Test Documentation | thread, ${wt} phy core, ${rxq}\ | append=True
 | | Set Test Documentation | receive queue per NIC port. | append=True
@@ -79,13 +79,13 @@
 
 | L2 Bridge Domain PDR Binary Search
 | | [Arguments] | ${framesize} | ${min_rate} | ${wt} | ${rxq}
-| | # Test Variables required for test teardown
 | | Set Test Variable | ${framesize}
 | | Set Test Variable | ${min_rate}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
+| | ${framesize}= | Get Frame Size | ${framesize}
 | | Set Test Documentation | [Cfg] DUT runs L2BD switching config with ${wt}\
 | | Set Test Documentation | thread, ${wt} phy core, ${rxq}\ | append=True
 | | Set Test Documentation | receive queue per NIC port. | append=True
