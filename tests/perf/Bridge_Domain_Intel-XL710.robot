@@ -13,10 +13,11 @@
 
 *** Settings ***
 | Resource | resources/libraries/robot/performance.robot
+| Library | resources.libraries.python.NodePath
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | PERFTEST_LONG
-| ... | NIC_Intel-X710
+| ...        | NIC_Intel-XL710
 | Suite Setup | 3-node Performance Suite Setup with DUT's NIC model
-| ... | L2 | Intel-X710
+| ... | L2 | Intel-XL710
 | Suite Teardown | 3-node Performance Suite Teardown
 | Test Setup | Setup all DUTs before test
 | Test Teardown | Run Keywords
@@ -32,8 +33,8 @@
 | ... | with single links between nodes.
 | ... | *[Enc] Packet Encapsulations:* Eth-IPv4 for L2 switching of IPv4.
 | ... | *[Cfg] DUT configuration:* DUT1 and DUT2 are configured with L2 bridge-\
-| ... | domain and MAC learning enabled. DUT1 and DUT2 tested with 2p10GE NIC
-| ... | X710 by Intel.
+| ... | domain and MAC learning enabled. DUT1 and DUT2 tested with 2p40GE NIC\
+| ... | XL710-DA2 by Intel.
 | ... | *[Ver] TG verification:* TG finds and reports throughput NDR (Non Drop\
 | ... | Rate) with zero packet loss tolerance or throughput PDR (Partial Drop\
 | ... | Rate) with non-zero packet loss tolerance (LT) expressed in percentage\
@@ -49,13 +50,14 @@
 | ... | *[Ref] Applicable standard specifications:* RFC2544.
 
 *** Variables ***
-#X710 bandwidth limit
-| ${s_limit} | ${10000000000}
+#XL710-DA2 bandwidth limit ~49Gbps/2=24.5Gbps
+| ${s_24.5G} | ${24500000000}
+#XL710-DA2 Mpps limit 37.5Mpps/2=18.75Mpps
+| ${s_18.75Mpps} | ${18750000}
 
 *** Keywords ***
-| L2 Bridge Domain NDR Binary Search
-| | [Arguments] | ${framesize} | ${min_rate} | ${wt} | ${rxq}
-| | # Test Variables required for test teardown
+| L2 Bridge Domain NDR Binary Search BW limit
+| | [Arguments] | ${framesize} | ${min_rate} | ${wt} | ${rxq} | ${s_limit}
 | | Set Test Variable | ${framesize}
 | | Set Test Variable | ${min_rate}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
@@ -67,19 +69,45 @@
 | | Set Test Documentation | receive queue per NIC port. | append=True
 | | Set Test Documentation | [Ver] Find NDR for ${framesize} Byte\ | append=True
 | | Set Test Documentation | frames using binary search start at\ | append=True
-| | Set Test Documentation | 10GE linerate, step ${threshold}pps. | append=True
+| | Set Test Documentation | ${s_limit}bps rate, step ${threshold}pps.
+| | ... | append=True
 | | Add '${wt}' worker threads and rxqueues '${rxq}' in 3-node single-link topo
 | | Add PCI devices to DUTs from 3-node single link topology
 | | Run Keyword If | ${framesize} < ${1522} | Add No Multi Seg to all DUTs
+| | Run Keyword If | ${framesize} == IMIX_v4_1 | Add No Multi Seg to all DUTs
 | | Apply startup configuration on all VPP DUTs
 | | L2 bridge domain initialized in a 3-node circular topology
 | | Find NDR using binary search and pps
 | | ... | ${framesize} | ${binary_min} | ${binary_max} | 3-node-bridge
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
 
-| L2 Bridge Domain PDR Binary Search
-| | [Arguments] | ${framesize} | ${min_rate} | ${wt} | ${rxq}
-| | # Test Variables required for test teardown
+| L2 Bridge Domain NDR Binary Search
+| | [Arguments] | ${framesize} | ${min_rate} | ${wt} | ${rxq} | ${s_limit}
+| | Set Test Variable | ${framesize}
+| | Set Test Variable | ${min_rate}
+| | ${max_rate}= | Set Variable | ${s_limit}
+| | ${binary_min}= | Set Variable | ${min_rate}
+| | ${binary_max}= | Set Variable | ${max_rate}
+| | ${threshold}= | Set Variable | ${min_rate}
+| | Set Test Documentation | [Cfg] DUT runs L2BD switching config with ${wt}\
+| | Set Test Documentation | thread, ${wt} phy core, ${rxq}\ | append=True
+| | Set Test Documentation | receive queue per NIC port. | append=True
+| | Set Test Documentation | [Ver] Find NDR for ${framesize} Byte\ | append=True
+| | Set Test Documentation | frames using binary search start at\ | append=True
+| | Set Test Documentation | ${s_limit}pps rate, step ${threshold}pps.
+| | ... | append=True
+| | Add '${wt}' worker threads and rxqueues '${rxq}' in 3-node single-link topo
+| | Add PCI devices to DUTs from 3-node single link topology
+| | Run Keyword If | ${framesize} < ${1522} | Add No Multi Seg to all DUTs
+| | Run Keyword If | ${framesize} == IMIX_v4_1 | Add No Multi Seg to all DUTs
+| | Apply startup configuration on all VPP DUTs
+| | L2 bridge domain initialized in a 3-node circular topology
+| | Find NDR using binary search and pps
+| | ... | ${framesize} | ${binary_min} | ${binary_max} | 3-node-bridge
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
+
+| L2 Bridge Domain PDR Binary Search BW limit
+| | [Arguments] | ${framesize} | ${min_rate} | ${wt} | ${rxq} | ${s_limit}
 | | Set Test Variable | ${framesize}
 | | Set Test Variable | ${min_rate}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
@@ -91,12 +119,42 @@
 | | Set Test Documentation | receive queue per NIC port. | append=True
 | | Set Test Documentation | [Ver] Find PDR for ${framesize} Byte\ | append=True
 | | Set Test Documentation | frames using binary search start at\ | append=True
-| | Set Test Documentation | 10GE linerate, step ${threshold}pps, | append=True
+| | Set Test Documentation | ${s_limit}bps rate, step ${threshold}pps,
+| | ... | append=True
 | | Set Test Documentation | LT=${glob_loss_acceptance} | append=True
 | | Set Test Documentation | ${glob_loss_acceptance_type}. | append=True
 | | Add '${wt}' worker threads and rxqueues '${rxq}' in 3-node single-link topo
 | | Add PCI devices to DUTs from 3-node single link topology
 | | Run Keyword If | ${framesize} < ${1522} | Add No Multi Seg to all DUTs
+| | Run Keyword If | ${framesize} == IMIX_v4_1 | Add No Multi Seg to all DUTs
+| | Apply startup configuration on all VPP DUTs
+| | L2 bridge domain initialized in a 3-node circular topology
+| | Find PDR using binary search and pps
+| | ... | ${framesize} | ${binary_min} | ${binary_max} | 3-node-bridge
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
+| | ... | ${glob_loss_acceptance} | ${glob_loss_acceptance_type}
+
+| L2 Bridge Domain PDR Binary Search
+| | [Arguments] | ${framesize} | ${min_rate} | ${wt} | ${rxq} | ${s_limit}
+| | Set Test Variable | ${framesize}
+| | Set Test Variable | ${min_rate}
+| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
+| | ${binary_min}= | Set Variable | ${min_rate}
+| | ${binary_max}= | Set Variable | ${max_rate}
+| | ${threshold}= | Set Variable | ${min_rate}
+| | Set Test Documentation | [Cfg] DUT runs L2BD switching config with ${wt}\
+| | Set Test Documentation | thread, ${wt} phy core, ${rxq}\ | append=True
+| | Set Test Documentation | receive queue per NIC port. | append=True
+| | Set Test Documentation | [Ver] Find PDR for ${framesize} Byte\ | append=True
+| | Set Test Documentation | frames using binary search start at\ | append=True
+| | Set Test Documentation | ${s_limit}pps rate, step ${threshold}pps,
+| | ... | append=True
+| | Set Test Documentation | LT=${glob_loss_acceptance} | append=True
+| | Set Test Documentation | ${glob_loss_acceptance_type}. | append=True
+| | Add '${wt}' worker threads and rxqueues '${rxq}' in 3-node single-link topo
+| | Add PCI devices to DUTs from 3-node single link topology
+| | Run Keyword If | ${framesize} < ${1522} | Add No Multi Seg to all DUTs
+| | Run Keyword If | ${framesize} == IMIX_v4_1 | Add No Multi Seg to all DUTs
 | | Apply startup configuration on all VPP DUTs
 | | L2 bridge domain initialized in a 3-node circular topology
 | | Find PDR using binary search and pps
@@ -106,91 +164,46 @@
 
 *** Test Cases ***
 | TC01: 64B NDR binary search - DUT L2BD - 1thread 1core 1rxq
-| | ... | ${64} | ${100000} | 1 | 1
+| | ... | ${64} | ${100000} | 1 | 1 | ${s_18.75Mpps}
 | | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | NDR
 | | [Template] | L2 Bridge Domain NDR Binary Search
-
-| TC02: 64B PDR binary search - DUT L2BD - 1thread 1core 1rxq
-| | ... | ${64} | ${100000} | 1 | 1
-| | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | PDR | SKIP_PATCH
-| | [Template] | L2 Bridge Domain PDR Binary Search
 
 | TC03: 1518B NDR binary search - DUT L2BD - 1thread 1core 1rxq
-| | ... | ${1518} | ${10000} | 1 | 1
+| | ... | ${1518} | ${10000} | 1 | 1 | ${s_24.5G}
 | | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | NDR
-| | [Template] | L2 Bridge Domain NDR Binary Search
-
-| TC04: 1518B PDR binary search - DUT L2BD - 1thread 1core 1rxq
-| | ... | ${1518} | ${10000} | 1 | 1
-| | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | PDR | SKIP_PATCH
-| | [Template] | L2 Bridge Domain PDR Binary Search
-
-| TC05: 9000B NDR binary search - DUT L2BD - 1thread 1core 1rxq
-| | ... | ${9000} | ${10000} | 1 | 1
-| | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | NDR
-| | [Template] | L2 Bridge Domain NDR Binary Search
-
-| TC06: 9000B PDR binary search - DUT L2BD - 1thread 1core 1rxq
-| | ... | ${9000} | ${10000} | 1 | 1
-| | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | PDR | SKIP_PATCH
-| | [Template] | L2 Bridge Domain PDR Binary Search
+| | [Template] | L2 Bridge Domain NDR Binary Search BW limit
 
 | TC07: 64B NDR binary search - DUT L2BD - 2thread 2core 1rxq
-| | ... | ${64} | ${100000} | 2 | 1
+| | ... | ${64} | ${100000} | 2 | 1 | ${s_18.75Mpps}
 | | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | NDR
 | | [Template] | L2 Bridge Domain NDR Binary Search
 
-| TC08: 64B PDR binary search - DUT L2BD - 2thread 2core 1rxq
-| | ... | ${64} | ${100000} | 2 | 1
-| | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | PDR | SKIP_PATCH
-| | [Template] | L2 Bridge Domain PDR Binary Search
-
 | TC09: 1518B NDR binary search - DUT L2BD - 2thread 2core 1rxq
-| | ... | ${1518} | ${10000} | 2 | 1
+| | ... | ${1518} | ${10000} | 2 | 1 | ${s_24.5G}
 | | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | NDR | SKIP_PATCH
-| | [Template] | L2 Bridge Domain NDR Binary Search
-
-| TC10: 1518B PDR binary search - DUT L2BD - 2thread 2core 1rxq
-| | ... | ${1518} | ${10000} | 2 | 1
-| | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | PDR | SKIP_PATCH
-| | [Template] | L2 Bridge Domain PDR Binary Search
-
-| TC11: 9000B NDR binary search - DUT L2BD - 2thread 2core 1rxq
-| | ... | ${9000} | ${10000} | 2 | 1
-| | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | NDR | SKIP_PATCH
-| | [Template] | L2 Bridge Domain NDR Binary Search
-
-| TC12: 9000B PDR binary search - DUT L2BD - 2thread 2core 1rxq
-| | ... | ${9000} | ${10000} | 2 | 1
-| | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | PDR | SKIP_PATCH
-| | [Template] | L2 Bridge Domain PDR Binary Search
+| | [Template] | L2 Bridge Domain NDR Binary Search BW limit
 
 | TC13: 64B NDR binary search - DUT L2BD - 4thread 4core 2rxq
-| | ... | ${64} | ${100000} | 4 | 2
+| | ... | ${64} | ${100000} | 4 | 2 | ${s_18.75Mpps}
 | | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | NDR
 | | [Template] | L2 Bridge Domain NDR Binary Search
 
-| TC14: 64B PDR binary search - DUT L2BD - 4thread 4core 2rxq
-| | ... | ${64} | ${100000} | 4 | 2
-| | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | PDR | SKIP_PATCH
-| | [Template] | L2 Bridge Domain PDR Binary Search
-
 | TC15: 1518B NDR binary search - DUT L2BD - 4thread 4core 2rxq
-| | ... | ${1518} | ${10000} | 4 | 2
+| | ... | ${1518} | ${10000} | 4 | 2 | ${s_24.5G}
 | | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | NDR | SKIP_PATCH
-| | [Template] | L2 Bridge Domain NDR Binary Search
+| | [Template] | L2 Bridge Domain NDR Binary Search BW limit
 
-| TC16: 1518B PDR binary search - DUT L2BD - 4thread 4core 2rxq
-| | ... | ${1518} | ${10000} | 4 | 2
-| | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | PDR | SKIP_PATCH
-| | [Template] | L2 Bridge Domain PDR Binary Search
+| TC19: IMIX_v4_1 NDR binary search - DUT L2BD - 1thread 1core 1rxq
+| | ... | IMIX_v4_1 | ${100000} | 1 | 1 | ${s_24.5G}
+| | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | NDR
+| | [Template] | L2 Bridge Domain NDR Binary Search BW limit
 
-| TC17: 9000B NDR binary search - DUT L2BD - 4thread 4core 2rxq
-| | ... | ${9000} | ${10000} | 4 | 2
+| TC20: IMIX_v4_1 NDR binary search - DUT L2BD - 2thread 2core 1rxq
+| | ... | IMIX_v4_1 | ${100000} | 2 | 1 | ${s_24.5G}
+| | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | NDR | SKIP_PATCH
+| | [Template] | L2 Bridge Domain NDR Binary Search BW limit
+
+| TC21: IMIX_v4_1 NDR binary search - DUT L2BD - 4thread 4core 2rxq
+| | ... | IMIX_v4_1 | ${100000} | 4 | 2 | ${s_24.5G}
 | | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | NDR | SKIP_PATCH
-| | [Template] | L2 Bridge Domain NDR Binary Search
-
-| TC18: 9000B PDR binary search - DUT L2BD - 4thread 4core 2rxq
-| | ... | ${9000} | ${10000} | 4 | 2
-| | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | PDR | SKIP_PATCH
-| | [Template] | L2 Bridge Domain PDR Binary Search
+| | [Template] | L2 Bridge Domain NDR Binary Search BW limit
