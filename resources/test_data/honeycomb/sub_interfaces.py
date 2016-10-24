@@ -47,19 +47,19 @@ sub_if_1_oper = {
     "tags": {
         "tag": [
             {
+                "index": 0,
+                "dot1q-tag": {
+                    "tag-type": "dot1q-types:s-vlan",
+                    "vlan-id": "100"
+                }
+            },
+            {
                 "index": 1,
                 "dot1q-tag": {
                     "tag-type": "dot1q-types:c-vlan",
                     "vlan-id": "any"
                 }
             },
-            {
-                "index": 0,
-                "dot1q-tag": {
-                    "tag-type": "dot1q-types:s-vlan",
-                    "vlan-id": "100"
-                }
-            }
         ]
     },
     "match": {
@@ -97,7 +97,7 @@ tag_rewrite_push = {
             "index": 0,
             "dot1q-tag": {
                 "tag-type": "dot1q-types:s-vlan",
-                "vlan-id":123
+                "vlan-id": 123
             }
         },
         {
@@ -115,17 +115,17 @@ tag_rewrite_push_oper = {
     "vlan-type": "vpp-vlan:802dot1q",
     "push-tags": [
         {
-            "index": 1,
-            "dot1q-tag": {
-                "tag-type": "dot1q-types:c-vlan",
-                "vlan-id": 456
-            }
-        },
-        {
             "index": 0,
             "dot1q-tag": {
                 "tag-type": "dot1q-types:s-vlan",
                 "vlan-id": 123
+            }
+        },
+        {
+            "index": 1,
+            "dot1q-tag": {
+                "tag-type": "dot1q-types:c-vlan",
+                "vlan-id": 456
             }
         }
     ]
@@ -202,19 +202,19 @@ tag_rewrite_translate_1_2_oper = {
     "pop-tags": 1,
     "push-tags": [
         {
+            "index": 0,
+            "dot1q-tag": {
+                "tag-type": "dot1q-types:s-vlan",
+                "vlan-id": 111
+            }
+        },
+        {
             "index": 1,
             "dot1q-tag": {
                 "tag-type": "dot1q-types:c-vlan",
                 "vlan-id": 222
             }
         },
-        {
-            "index": 0,
-            "dot1q-tag": {
-                "tag-type": "dot1q-types:s-vlan",
-                "vlan-id": 111
-            }
-        }
     ]
 }
 

@@ -226,11 +226,9 @@ class BridgeDomainKeywords(object):
         :rtype: dict
         """
 
-        path = ("bridge-domains", )
         new_bd = BridgeDomainKeywords._create_bd_structure(bd_name, **kwargs)
-        bridge_domain = {"bridge-domain": [new_bd, ]}
-        return BridgeDomainKeywords._set_bd_properties(node, bd_name, path,
-                                                       bridge_domain)
+        bridge_domain = {"bridge-domains": {"bridge-domain": [new_bd, ]}}
+        return BridgeDomainKeywords._configure_bd(node, bd_name, bridge_domain)
 
     @staticmethod
     def add_bd(node, bd_name, **kwargs):
@@ -270,7 +268,7 @@ class BridgeDomainKeywords(object):
         status_code, resp = HcUtil.\
             put_honeycomb_data(node, "config_bridge_domain", data)
 
-        if status_code != HTTPCodes.OK:
+        if status_code not in (HTTPCodes.OK, HTTPCodes.ACCEPTED):
             raise HoneycombError("Not possible to remove all bridge domains. "
                                  "Status code: {0}.".format(status_code))
         return resp
