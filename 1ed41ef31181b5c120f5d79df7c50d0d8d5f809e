@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba3e81b7_36824001",
+        "filename": "TLDK-tests/tldk_scripts/install_tldk.sh",
+        "patchSetId": 11
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-10-24T07:15:45Z",
+      "side": 1,
+      "message": "Please do not modify the Hugepages settings. In VIRL with Xenial guests we have currently 1024 hugepages allocated statically via sysctl.d since boot. If your requirement is 1024*2M there is no need to to adjust. We would like to have this controlled in VIRL as there are some limitations.",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 46,
+        "endChar": 23
+      },
+      "revId": "1ed41ef31181b5c120f5d79df7c50d0d8d5f809e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "ba3e81b7_16873c11",
+        "filename": "TLDK-tests/tldk_scripts/run_tldk.sh",
+        "patchSetId": 11
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-10-24T07:15:45Z",
+      "side": 1,
+      "message": "Please do not modify the Hugepages settings. In VIRL with Xenial guests we have currently 1024 hugepages allocated statically via sysctl.d since boot. If your requirement is 1024*2M there is no need to to adjust. We would like to have this controlled in VIRL as there are some limitations.",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 28,
+        "endChar": 23
+      },
+      "revId": "1ed41ef31181b5c120f5d79df7c50d0d8d5f809e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
