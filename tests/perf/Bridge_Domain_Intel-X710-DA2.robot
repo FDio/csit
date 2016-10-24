@@ -14,9 +14,9 @@
 *** Settings ***
 | Resource | resources/libraries/robot/performance.robot
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | PERFTEST_LONG
-| ... | NIC_Intel-X520-DA2
+| ... | NIC_Intel-X710
 | Suite Setup | 3-node Performance Suite Setup with DUT's NIC model
-| ... | L2 | Intel-X520-DA2
+| ... | L2 | Intel-X710
 | Suite Teardown | 3-node Performance Suite Teardown
 | Test Setup | Setup all DUTs before test
 | Test Teardown | Run Keywords
@@ -32,8 +32,8 @@
 | ... | with single links between nodes.
 | ... | *[Enc] Packet Encapsulations:* Eth-IPv4 for L2 switching of IPv4.
 | ... | *[Cfg] DUT configuration:* DUT1 and DUT2 are configured with L2 bridge-\
-| ... | domain and MAC learning enabled. DUT1 and DUT2 tested with 2p10GE NI
-| ... | X520 Niantic by Intel.
+| ... | domain and MAC learning enabled. DUT1 and DUT2 tested with 2p10GE NIC
+| ... | X710 by Intel.
 | ... | *[Ver] TG verification:* TG finds and reports throughput NDR (Non Drop\
 | ... | Rate) with zero packet loss tolerance or throughput PDR (Partial Drop\
 | ... | Rate) with non-zero packet loss tolerance (LT) expressed in percentage\
@@ -49,12 +49,13 @@
 | ... | *[Ref] Applicable standard specifications:* RFC2544.
 
 *** Variables ***
-#X520-DA2 bandwidth limit
+#X710 bandwidth limit
 | ${s_limit} | ${10000000000}
 
 *** Keywords ***
 | L2 Bridge Domain NDR Binary Search
 | | [Arguments] | ${framesize} | ${min_rate} | ${wt} | ${rxq}
+| | # Test Variables required for test teardown
 | | Set Test Variable | ${framesize}
 | | Set Test Variable | ${min_rate}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
@@ -79,6 +80,7 @@
 
 | L2 Bridge Domain PDR Binary Search
 | | [Arguments] | ${framesize} | ${min_rate} | ${wt} | ${rxq}
+| | # Test Variables required for test teardown
 | | Set Test Variable | ${framesize}
 | | Set Test Variable | ${min_rate}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
