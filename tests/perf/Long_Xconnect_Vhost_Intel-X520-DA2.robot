@@ -81,7 +81,7 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
-| | Given Add '1' worker threads and rxqueues '1' without HTT to all DUTs
+| | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
@@ -112,7 +112,7 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
-| | Given Add '1' worker threads and rxqueues '1' without HTT to all DUTs
+| | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
@@ -145,7 +145,7 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
-| | Given Add '1' worker threads and rxqueues '1' without HTT to all DUTs
+| | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
@@ -176,7 +176,7 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
-| | Given Add '1' worker threads and rxqueues '1' without HTT to all DUTs
+| | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
@@ -210,7 +210,7 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
-| | Given Add '1' worker threads and rxqueues '1' without HTT to all DUTs
+| | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
@@ -242,7 +242,7 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
-| | Given Add '1' worker threads and rxqueues '1' without HTT to all DUTs
+| | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
@@ -275,7 +275,7 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
-| | Given Add '2' worker threads and rxqueues '1' without HTT to all DUTs
+| | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
@@ -306,7 +306,7 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
-| | Given Add '2' worker threads and rxqueues '1' without HTT to all DUTs
+| | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
@@ -339,7 +339,7 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
-| | Given Add '2' worker threads and rxqueues '1' without HTT to all DUTs
+| | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
@@ -370,7 +370,7 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
-| | Given Add '2' worker threads and rxqueues '1' without HTT to all DUTs
+| | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
@@ -404,7 +404,7 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
-| | Given Add '2' worker threads and rxqueues '1' without HTT to all DUTs
+| | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
@@ -436,7 +436,7 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
-| | Given Add '2' worker threads and rxqueues '1' without HTT to all DUTs
+| | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
@@ -469,7 +469,7 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
-| | Given Add '4' worker threads and rxqueues '2' without HTT to all DUTs
+| | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
@@ -500,7 +500,7 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
-| | Given Add '4' worker threads and rxqueues '2' without HTT to all DUTs
+| | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
@@ -533,7 +533,7 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
-| | Given Add '4' worker threads and rxqueues '2' without HTT to all DUTs
+| | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
@@ -564,7 +564,7 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
-| | Given Add '4' worker threads and rxqueues '2' without HTT to all DUTs
+| | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
@@ -598,7 +598,7 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
-| | Given Add '4' worker threads and rxqueues '2' without HTT to all DUTs
+| | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
@@ -630,7 +630,7 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
-| | Given Add '4' worker threads and rxqueues '2' without HTT to all DUTs
+| | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
@@ -648,70 +648,3 @@
 | | ...                                       | ${threshold}
 | | ...                                       | ${glob_loss_acceptance}
 | | ...                                       | ${glob_loss_acceptance_type}
-
-| TC19: 64B NDR binary search - DUT L2XC-DPDK-VHOST - 1thread 1core 1rxq
-| | [Documentation]
-| | ... | [Cfg] DUT runs L2XC switching config with 1 thread, 1 phy core, \
-| | ... | 1 receive queue per NIC port. [Ver] Find NDR for 64 Byte frames \
-| | ... | using binary search start at 10GE linerate, step 10kpps.
-| | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | NDR
-| | ${framesize}= | Set Variable | ${64}
-| | ${min_rate}= | Set Variable | ${10000}
-| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
-| | ${binary_min}= | Set Variable | ${min_rate}
-| | ${binary_max}= | Set Variable | ${max_rate}
-| | ${threshold}= | Set Variable | ${min_rate}
-| | ${dut1_vm_refs}= | Create Dictionary
-| | ${dut2_vm_refs}= | Create Dictionary
-| | Given Add '1' worker threads and rxqueues '1' without HTT to all DUTs
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Add Enable Vhost User to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | When  L2 xconnect with Vhost-User initialized in a 3-node circular topology
-| | ...   | ${sock1} | ${sock2}
-| | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ...     | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
-| | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
-| | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ...     | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
-| | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
-| | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-bridge
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
-
-| TC20: 64B PDR binary search - DUT L2XC-DPDK-VHOST - 1thread 1core 1rxq
-| | [Documentation]
-| | ... | [Cfg] DUT runs L2XC switching config with 1 thread, 1 phy core, \
-| | ... | 1 receive queue per NIC port. [Ver] Find PDR for 64 Byte frames \
-| | ... | using binary search start at 10GE linerate, step 10kpps, LT=0.5%.
-| | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | PDR | SKIP_PATCH
-| | ${framesize}= | Set Variable | ${64}
-| | ${min_rate}= | Set Variable | ${10000}
-| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
-| | ${binary_min}= | Set Variable | ${min_rate}
-| | ${binary_max}= | Set Variable | ${max_rate}
-| | ${threshold}= | Set Variable | ${min_rate}
-| | ${dut1_vm_refs}= | Create Dictionary
-| | ${dut2_vm_refs}= | Create Dictionary
-| | Given Add '1' worker threads and rxqueues '1' without HTT to all DUTs
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Add Enable Vhost User to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | When  L2 xconnect with Vhost-User initialized in a 3-node circular topology
-| | ...   | ${sock1} | ${sock2}
-| | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ...     | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
-| | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
-| | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ...     | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
-| | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
-| | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-bridge
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
-| | ...                                       | ${glob_loss_acceptance}
-| | ...                                       | ${glob_loss_acceptance_type}
-
