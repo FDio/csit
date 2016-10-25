@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba3e81b7_a4e15a9c",
+        "filename": "resources/tools/topo_installation.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-10-25T05:11:41Z",
+      "side": 1,
+      "message": "Can you put it there as well?",
+      "revId": "b6f4358fba6e48cd48741cf2e99e823287a863fa",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
