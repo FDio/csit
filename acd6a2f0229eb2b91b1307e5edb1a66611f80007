@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ba3e81b7_9fe33f33",
+        "filename": "tests/func/softwire/map_e.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-10-25T10:02:01Z",
+      "side": 1,
+      "message": "Are you sure you want to name the test case Bug:... as it is not bug anymore?\nAlso please add full documentation.",
+      "range": {
+        "startLine": 340,
+        "startChar": 2,
+        "endLine": 340,
+        "endChar": 14
+      },
+      "revId": "acd6a2f0229eb2b91b1307e5edb1a66611f80007",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
