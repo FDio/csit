@@ -154,19 +154,18 @@ nodes:
         pci_address: "0000:87:00.1"
         link: link9
         model: Intel-X710
-###TODO:links need to be identified before enabling interfaces###
-#      port9:
-#        # t3-sut1-cm/p1 - 10GE port1 on Cisco VIC 1227 2p10GE.
-#        mac_address: "00:fe:c8:e5:46:d0"
-#        pci_address: "0000:06:00.0"
-#        link:
-#        model: Cisco-VIC-1227
-#      port10:
-#        # t3-sut1-cm/p2 - 10GE port2 on Cisco VIC 1227 2p10GE.
-#        mac_address: "00:fe:c8:e5:46:d1"
-#        pci_address: "0000:07:00.0"
-#        link:
-#        model: Cisco-VIC-1227
+      port9:
+        # t3-sut1-cm/p1 - 10GE port1 on Cisco VIC 1227 2p10GE.
+        mac_address: "00:fe:c8:e5:46:d0"
+        pci_address: "0000:06:00.0"
+        link: link25
+        model: Cisco-VIC-1227
+      port10:
+        # t3-sut1-cm/p2 - 10GE port2 on Cisco VIC 1227 2p10GE.
+        mac_address: "00:fe:c8:e5:46:d1"
+        pci_address: "0000:07:00.0"
+        link: link5
+        model: Cisco-VIC-1227
   DUT2:
     type: DUT
     host: "10.30.51.26"
@@ -222,16 +221,15 @@ nodes:
         pci_address: "0000:87:00.1"
         link: link24
         model: Intel-X710
-###TODO:links need to be identified before enabling interfaces###
-#      port9:
-#        # t3-sut3-cm/p1 - 10GE port1 on Cisco VIC 1227 2p10GE.
-#        mac_address: "00:fe:c8:e5:44:19"
-#        pci_address: "0000:06:00.0"
-#        link:
-#        model: Cisco-VIC-1227
-#      port10:
-#        # t3-sut3-cm/p2 - 10GE port2 on Cisco VIC 1227 2p10GE.
-#        mac_address: "00:fe:c8:e5:44:1a"
-#        pci_address: "0000:07:00.0"
-#        link:
-#        model: Cisco-VIC-1227
+      port9:
+        # t3-sut3-cm/p1 - 10GE port1 on Cisco VIC 1227 2p10GE.
+        mac_address: "00:fe:c8:e5:44:19"
+        pci_address: "0000:06:00.0"
+        link: link6
+        model: Cisco-VIC-1227
+      port10:
+        # t3-sut3-cm/p2 - 10GE port2 on Cisco VIC 1227 2p10GE.
+        mac_address: "00:fe:c8:e5:44:1a"
+        pci_address: "0000:07:00.0"
+        link: link25
+        model: Cisco-VIC-1227
