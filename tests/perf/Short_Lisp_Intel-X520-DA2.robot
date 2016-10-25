@@ -64,7 +64,7 @@
 | | ${framesize}= | Set Variable | 64
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 1.9mpps
-| | Given Add '1' worker threads and rxqueues '1' without HTT to all DUTs
+| | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
@@ -89,7 +89,7 @@
 | | ${framesize}= | Set Variable | 1480
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 740000pps
-| | Given Add '1' worker threads and rxqueues '1' without HTT to all DUTs
+| | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
@@ -114,7 +114,7 @@
 | | ${framesize}= | Set Variable | 9000
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 120000pps
-| | Given Add '1' worker threads and rxqueues '1' without HTT to all DUTs
+| | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Apply startup configuration on all VPP DUTs
 | | When Lisp IPv4 forwarding initialized in a 3-node circular topology
@@ -138,7 +138,7 @@
 | | ${framesize}= | Set Variable | 64
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 3.6mpps
-| | Given Add '2' worker threads and rxqueues '1' without HTT to all DUTs
+| | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
@@ -163,7 +163,7 @@
 | | ${framesize}= | Set Variable | 1480
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 740000pps
-| | Given Add '2' worker threads and rxqueues '1' without HTT to all DUTs
+| | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
@@ -188,7 +188,7 @@
 | | ${framesize}= | Set Variable | 9000
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 120000pps
-| | Given Add '2' worker threads and rxqueues '1' without HTT to all DUTs
+| | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Apply startup configuration on all VPP DUTs
 | | When Lisp IPv4 forwarding initialized in a 3-node circular topology
@@ -212,7 +212,7 @@
 | | ${framesize}= | Set Variable | 64
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 3.5mpps
-| | Given Add '4' worker threads and rxqueues '2' without HTT to all DUTs
+| | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
@@ -237,7 +237,7 @@
 | | ${framesize}= | Set Variable | 1480
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 740000pps
-| | Given Add '4' worker threads and rxqueues '2' without HTT to all DUTs
+| | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
@@ -262,7 +262,7 @@
 | | ${framesize}= | Set Variable | 9000
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 120000pps
-| | Given Add '4' worker threads and rxqueues '2' without HTT to all DUTs
+| | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Apply startup configuration on all VPP DUTs
 | | When Lisp IPv4 forwarding initialized in a 3-node circular topology
@@ -286,7 +286,7 @@
 | | ${framesize}= | Set Variable | 78
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 1.56mpps
-| | Given Add '1' worker threads and rxqueues '1' without HTT to all DUTs
+| | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
@@ -311,7 +311,7 @@
 | | ${framesize}= | Set Variable | 1460
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 740000pps
-| | Given Add '1' worker threads and rxqueues '1' without HTT to all DUTs
+| | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
@@ -336,7 +336,7 @@
 | | ${framesize}= | Set Variable | 9000
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 120000pps
-| | Given Add '1' worker threads and rxqueues '1' without HTT to all DUTs
+| | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Apply startup configuration on all VPP DUTs
 | | When Lisp IPv6 forwarding initialized in a 3-node circular topology
@@ -360,7 +360,7 @@
 | | ${framesize}= | Set Variable | 78
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 3.2mpps
-| | Given Add '2' worker threads and rxqueues '1' without HTT to all DUTs
+| | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
@@ -385,7 +385,7 @@
 | | ${framesize}= | Set Variable | 1460
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 740000pps
-| | Given Add '2' worker threads and rxqueues '1' without HTT to all DUTs
+| | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
@@ -410,7 +410,7 @@
 | | ${framesize}= | Set Variable | 9000
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 120000pps
-| | Given Add '2' worker threads and rxqueues '1' without HTT to all DUTs
+| | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Apply startup configuration on all VPP DUTs
 | | When Lisp IPv6 forwarding initialized in a 3-node circular topology
@@ -434,7 +434,7 @@
 | | ${framesize}= | Set Variable | 78
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 3.2mpps
-| | Given Add '4' worker threads and rxqueues '2' without HTT to all DUTs
+| | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
@@ -459,7 +459,7 @@
 | | ${framesize}= | Set Variable | 1460
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 740000pps
-| | Given Add '4' worker threads and rxqueues '2' without HTT to all DUTs
+| | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
@@ -484,7 +484,7 @@
 | | ${framesize}= | Set Variable | 9000
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 120000pps
-| | Given Add '4' worker threads and rxqueues '2' without HTT to all DUTs
+| | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Apply startup configuration on all VPP DUTs
 | | When Lisp IPv6 forwarding initialized in a 3-node circular topology
@@ -508,7 +508,7 @@
 | | ${framesize}= | Set Variable | 64
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 1.53mpps
-| | Given Add '1' worker threads and rxqueues '1' without HTT to all DUTs
+| | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
@@ -533,7 +533,7 @@
 | | ${framesize}= | Set Variable | 1460
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 720000pps
-| | Given Add '1' worker threads and rxqueues '1' without HTT to all DUTs
+| | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
@@ -558,7 +558,7 @@
 | | ${framesize}= | Set Variable | 9000
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 120000pps
-| | Given Add '1' worker threads and rxqueues '1' without HTT to all DUTs
+| | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Apply startup configuration on all VPP DUTs
 | | When Lisp IPv4 over IPv6 forwarding initialized in a 3-node circular topology
@@ -582,7 +582,7 @@
 | | ${framesize}= | Set Variable | 64
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 3.25mpps
-| | Given Add '2' worker threads and rxqueues '1' without HTT to all DUTs
+| | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
@@ -607,7 +607,7 @@
 | | ${framesize}= | Set Variable | 1460
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 720000pps
-| | Given Add '2' worker threads and rxqueues '1' without HTT to all DUTs
+| | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
@@ -632,7 +632,7 @@
 | | ${framesize}= | Set Variable | 9000
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 120000pps
-| | Given Add '2' worker threads and rxqueues '1' without HTT to all DUTs
+| | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Apply startup configuration on all VPP DUTs
 | | When Lisp IPv4 over IPv6 forwarding initialized in a 3-node circular topology
@@ -656,7 +656,7 @@
 | | ${framesize}= | Set Variable | 64
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 3.12mpps
-| | Given Add '4' worker threads and rxqueues '2' without HTT to all DUTs
+| | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
@@ -681,7 +681,7 @@
 | | ${framesize}= | Set Variable | 1460
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 720000pps
-| | Given Add '4' worker threads and rxqueues '2' without HTT to all DUTs
+| | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
@@ -706,7 +706,7 @@
 | | ${framesize}= | Set Variable | 9000
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 120000pps
-| | Given Add '4' worker threads and rxqueues '2' without HTT to all DUTs
+| | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Apply startup configuration on all VPP DUTs
 | | When Lisp IPv4 over IPv6 forwarding initialized in a 3-node circular topology
@@ -730,7 +730,7 @@
 | | ${framesize}= | Set Variable | 78
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 1.75mpps
-| | Given Add '1' worker threads and rxqueues '1' without HTT to all DUTs
+| | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
@@ -755,7 +755,7 @@
 | | ${framesize}= | Set Variable | 1460
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 720000pps
-| | Given Add '1' worker threads and rxqueues '1' without HTT to all DUTs
+| | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
@@ -780,7 +780,7 @@
 | | ${framesize}= | Set Variable | 9000
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 120000pps
-| | Given Add '1' worker threads and rxqueues '1' without HTT to all DUTs
+| | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Apply startup configuration on all VPP DUTs
 | | When Lisp IPv6 over IPv4 forwarding initialized in a 3-node circular topology
@@ -804,7 +804,7 @@
 | | ${framesize}= | Set Variable | 78
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 3.42mpps
-| | Given Add '2' worker threads and rxqueues '1' without HTT to all DUTs
+| | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
@@ -829,7 +829,7 @@
 | | ${framesize}= | Set Variable | 1460
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 720000pps
-| | Given Add '2' worker threads and rxqueues '1' without HTT to all DUTs
+| | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
@@ -854,7 +854,7 @@
 | | ${framesize}= | Set Variable | 9000
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 120000pps
-| | Given Add '2' worker threads and rxqueues '1' without HTT to all DUTs
+| | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Apply startup configuration on all VPP DUTs
 | | When Lisp IPv6 over IPv4 forwarding initialized in a 3-node circular topology
@@ -878,7 +878,7 @@
 | | ${framesize}= | Set Variable | 78
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 3.42mpps
-| | Given Add '4' worker threads and rxqueues '2' without HTT to all DUTs
+| | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
@@ -903,7 +903,7 @@
 | | ${framesize}= | Set Variable | 1460
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 720000pps
-| | Given Add '4' worker threads and rxqueues '2' without HTT to all DUTs
+| | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
@@ -928,7 +928,7 @@
 | | ${framesize}= | Set Variable | 9000
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 120000pps
-| | Given Add '4' worker threads and rxqueues '2' without HTT to all DUTs
+| | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Apply startup configuration on all VPP DUTs
 | | When Lisp IPv6 over IPv4 forwarding initialized in a 3-node circular topology
