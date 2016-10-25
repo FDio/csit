@@ -118,19 +118,18 @@ nodes:
         pci_address: "0000:0a:00.1"
         link: link3
         model: Intel-X520-DA2
-###TODO:links need to be identified before enabling interfaces###
-#      port3:
-#        # t3-sut1-c2/p1 - 40GE port1 on Cisco VIC 1385 2p40GE.
-#        mac_address: "04:62:73:f8:80:c1"
-#        pci_address: "0000:13:00.0"
-#        link:
-#        model: Cisco-VIC-1385
-#      port4:
-#        # t3-sut1-c2/p2 - 40GE port2 on Cisco VIC 1385 2p40GE.
-#        mac_address: "04:62:73:f8:80:c2"
-#        pci_address: "0000:15:00.0"
-#        link:
-#        model: Cisco-VIC-1385
+      port3:
+        # t3-sut1-c2/p1 - 40GE port1 on Cisco VIC 1385 2p40GE.
+        mac_address: "04:62:73:f8:80:c1"
+        pci_address: "0000:13:00.0"
+        link: link22
+        model: Cisco-VIC-1385
+      port4:
+        # t3-sut1-c2/p2 - 40GE port2 on Cisco VIC 1385 2p40GE.
+        mac_address: "04:62:73:f8:80:c2"
+        pci_address: "0000:15:00.0"
+        link: link1
+        model: Cisco-VIC-1385
       port5:
         # t3-sut1-c4/p1 - 40GE port1 on Intel NIC xl710 2p40GE.
         mac_address: "68:05:ca:37:25:18"
@@ -187,19 +186,18 @@ nodes:
         pci_address: "0000:0a:00.1"
         link: link21
         model: Intel-X520-DA2
-###TODO:links need to be identified before enabling interfaces###
-#      port3:
-#        # t3-sut3-c2/p1 - 40GE port1 on Cisco VIC 1385 2p40GE.
-#        mac_address: "04:62:73:8c:78:2f"
-#        pci_address: "0000:13:00.0"
-#        link:
-#        model: Cisco-VIC-1385
-#      port4:
-#        # t3-sut3-c2/p2 - 40GE port2 on Cisco VIC 1385 2p40GE.
-#        mac_address: "04:62:73:8c:78:30"
-#        pci_address: "0000:15:00.0"
-#        link:
-#        model: Cisco-VIC-1385
+      port3:
+        # t3-sut3-c2/p1 - 40GE port1 on Cisco VIC 1385 2p40GE.
+        mac_address: "04:62:73:8c:78:2f"
+        pci_address: "0000:13:00.0"
+        link: link2
+        model: Cisco-VIC-1385
+      port4:
+        # t3-sut3-c2/p2 - 40GE port2 on Cisco VIC 1385 2p40GE.
+        mac_address: "04:62:73:8c:78:30"
+        pci_address: "0000:15:00.0"
+        link: link22
+        model: Cisco-VIC-1385
       port5:
         # t3-sut3-c4/p1 - 40GE port1 on Intel NIC xl710 2p40GE.
         mac_address: "68:05:ca:35:76:b0"
