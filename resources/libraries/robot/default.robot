@@ -81,30 +81,6 @@
 | | Add rxqueues config | ${dut1} | ${rxqueues}
 | | Add rxqueues config | ${dut2} | ${rxqueues}
 
-| Add '${m}' worker threads and rxqueues '${n}' without HTT to all DUTs
-| | [Documentation] |  Setup M worker threads without HTT and rxqueues N in
-| | ...             |  startup configuration of VPP to all DUTs
-| | ${cpu}= | Catenate | main-core | 0 | corelist-workers
-| | ${cpu}= | Run Keyword If | '${m}' == '1' | Catenate | ${cpu} | 1
-| | ...     | ELSE IF        | '${m}' == '2' | Catenate | ${cpu} | 1-2
-| | ...     | ELSE IF        | '${m}' == '4' | Catenate | ${cpu} | 1-4
-| | ...     | ELSE IF        | '${m}' == '6' | Catenate | ${cpu} | 1-6
-| | ...     | ELSE           | Fail | Not supported combination
-| | ${rxqueues}= | Catenate | num-rx-queues | ${n}
-| | Add worker threads and rxqueues to all DUTs | ${cpu} | ${rxqueues}
-
-| Add '${m}' worker threads and rxqueues '${n}' with HTT to all DUTs
-| | [Documentation] |  Setup M worker threads with HTT and rxqueues N in
-| | ...             |  startup configuration of VPP to all DUTs
-| | ${cpu}= | Catenate | main-core | 0 | corelist-workers
-| | ${cpu}= | Run Keyword If | '${m}' == '2' | Catenate | ${cpu} | 1,10
-| | ...     | ELSE IF        | '${m}' == '4' | Catenate | ${cpu} | 1-2,10-11
-| | ...     | ELSE IF        | '${m}' == '6' | Catenate | ${cpu} | 1-3,10-12
-| | ...     | ELSE IF        | '${m}' == '8' | Catenate | ${cpu} | 1-4,10-13
-| | ...     | ELSE           | Fail | Not supported combination
-| | ${rxqueues}= | Catenate | num-rx-queues | ${n}
-| | Add worker threads and rxqueues to all DUTs | ${cpu} | ${rxqueues}
-
 | Add worker threads and rxqueues to all DUTs
 | | [Documentation] | Setup worker threads and rxqueues in VPP startup
 | | ...             | configuration to all DUTs
