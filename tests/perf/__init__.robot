@@ -18,6 +18,6 @@
 | Library | resources.libraries.python.CpuUtils
 | Suite Setup | Run Keywords | Setup Framework | ${nodes}
 | ...         | AND          | Setup All DUTs | ${nodes}
-| ...         | AND          | Get CPU Layout from all nodes | ${nodes}
 | ...         | AND          | Update All Interface Data On All Nodes
+| ...         | AND          | Get CPU Layout from all nodes | ${nodes}
 | ...                        | ${nodes} | skip_tg=${True} | numa_node=${True}
