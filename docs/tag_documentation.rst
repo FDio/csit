@@ -77,6 +77,14 @@ NIC model tags
 
     Intel X710 NIC.
 
+.. topic:: NIC_Cisco-VIC-1227
+
+    VIC-1227 by Cisco.
+
+.. topic:: NIC_Cisco-VIC-1385
+
+    VIC-1385 by Cisco.
+
 
 Scaling TAGs
 ------------
