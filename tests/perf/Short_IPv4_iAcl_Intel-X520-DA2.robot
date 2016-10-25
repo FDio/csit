@@ -55,7 +55,7 @@
 | | ${framesize}= | Set Variable | 64
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 3.1mpps
-| | Given Add '1' worker threads and rxqueues '1' without HTT to all DUTs
+| | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
@@ -86,7 +86,7 @@
 | | ${framesize}= | Set Variable | 1518
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 812743pps
-| | Given Add '1' worker threads and rxqueues '1' without HTT to all DUTs
+| | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
@@ -117,7 +117,7 @@
 | | ${framesize}= | Set Variable | 9000
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 138580pps
-| | Given Add '1' worker threads and rxqueues '1' without HTT to all DUTs
+| | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Apply startup configuration on all VPP DUTs
 | | When  IPv4 forwarding initialized in a 3-node circular topology
@@ -147,7 +147,7 @@
 | | ${framesize}= | Set Variable | 64
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 5.8mpps
-| | Given Add '2' worker threads and rxqueues '1' without HTT to all DUTs
+| | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
@@ -178,7 +178,7 @@
 | | ${framesize}= | Set Variable | 1518
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 812743pps
-| | Given Add '2' worker threads and rxqueues '1' without HTT to all DUTs
+| | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
@@ -209,7 +209,7 @@
 | | ${framesize}= | Set Variable | 9000
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 138580pps
-| | Given Add '2' worker threads and rxqueues '1' without HTT to all DUTs
+| | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Apply startup configuration on all VPP DUTs
 | | When  IPv4 forwarding initialized in a 3-node circular topology
@@ -239,7 +239,7 @@
 | | ${framesize}= | Set Variable | 64
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 7.8mpps
-| | Given Add '4' worker threads and rxqueues '2' without HTT to all DUTs
+| | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
@@ -270,7 +270,7 @@
 | | ${framesize}= | Set Variable | 1518
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 812743pps
-| | Given Add '4' worker threads and rxqueues '2' without HTT to all DUTs
+| | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
@@ -301,7 +301,7 @@
 | | ${framesize}= | Set Variable | 9000
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 138580pps
-| | Given Add '4' worker threads and rxqueues '2' without HTT to all DUTs
+| | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Apply startup configuration on all VPP DUTs
 | | When  IPv4 forwarding initialized in a 3-node circular topology
