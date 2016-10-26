@@ -47,6 +47,28 @@ def ssh_no_error(ssh, cmd, sudo=False):
 
     return stdo
 
+def ssh_ignore_error(ssh, cmd, sudo=False):
+    """Execute a command over ssh channel, ignore errors.
+
+    :param ssh: SSH() object connected to a node.
+    :param cmd: Command line to execute on remote node.
+    :type ssh: SSH() object
+    :type cmd: str
+    :return: stdout from the SSH command.
+    :rtype: str
+    """
+
+    if sudo:
+        ret, stdo, stde = ssh.exec_command_sudo(cmd)
+    else:
+        ret, stdo, stde = ssh.exec_command(cmd)
+
+    if ret != 0:
+        print 'Command execution failed: "{}"'.format(cmd)
+        print 'stdout: {0}'.format(stdo)
+        print 'stderr: {0}'.format(stde)
+
+    return stdo
 
 def main():
     """Copy and installation of VPP packages."""
@@ -78,7 +100,7 @@ def main():
             if cancel_installation:
                 # Remove installation directory on DUT
                 cmd = "rm -r {}".format(install_dir)
-                stdout = ssh_no_error(ssh, cmd)
+                stdout = ssh_ignore_error(ssh, cmd)
                 print "###TI {}".format(stdout)
 
                 cmd = "dpkg -l | grep vpp"
