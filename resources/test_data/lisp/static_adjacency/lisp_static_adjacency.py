@@ -15,6 +15,12 @@
 
 # Lisp default global value
 locator_name = 'ls1'
+fib_table1 = 1
+dut1_dut2_vni = 1
+sock1 = '/tmp/sock1'
+sock2 = '/tmp/sock2'
+bid = 10
+vhost_ip = '6:0:1::3'
 
 # Lisp default locator_set value
 duts_locator_set = {'locator_name': locator_name,
@@ -47,7 +53,7 @@ dut2_ip4_eid = {'locator_name': locator_name,
                 'vni': 0,
                 'eid': '6.0.2.0',
                 'prefix': 24}
-dut2_to_dut1_ip4_reconf= '6.0.3.20'
+dut2_to_dut1_ip4_reconf = '6.0.3.20'
 dut1_to_dut2_ip4_static_adjacency_reconf = {'vni': 0,
                                             'deid': '6.0.2.0',
                                             'seid': '6.0.1.0',
@@ -80,7 +86,7 @@ dut2_ip6_eid = {'locator_name': locator_name,
                 'vni': 0,
                 'eid': '6:0:2::0',
                 'prefix': 64}
-dut2_to_dut1_ip6_reconf= '6:0:3::20'
+dut2_to_dut1_ip6_reconf = '6:0:3::20'
 dut1_to_dut2_ip6_static_adjacency_reconf = {'vni': 0,
                                             'deid': '6:0:2::0',
                                             'seid': '6:0:1::0',
@@ -114,7 +120,7 @@ dut2_ip4o6_eid = {'locator_name': locator_name,
                   'vni': 0,
                   'eid': '6.0.2.0',
                   'prefix': 24}
-dut2_to_dut1_ip4o6_reconf= '6:0:3::20'
+dut2_to_dut1_ip4o6_reconf = '6:0:3::20'
 dut1_ip4o6_static_adjacency_reconf = {'vni': 0,
                                       'deid': '6.0.2.0',
                                       'seid': '6.0.1.0',
@@ -148,7 +154,7 @@ dut2_ip6o4_eid = {'locator_name': locator_name,
                   'vni': 0,
                   'eid': '6:0:2::0',
                   'prefix': 64}
-dut2_to_dut1_ip6o4_reconf= '6.0.3.20'
+dut2_to_dut1_ip6o4_reconf = '6.0.3.20'
 dut1_ip6o4_static_adjacency_reconf = {'vni': 0,
                                       'deid': '6:0:2::0',
                                       'seid': '6:0:1::0',
