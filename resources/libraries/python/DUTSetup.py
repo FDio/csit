@@ -31,7 +31,7 @@ class DUTSetup(object):
             if node['type'] == NodeType.DUT:
                 ssh.connect(node)
                 (ret_code, stdout, stderr) = \
-                    ssh.exec_command_sudo('service vpp restart')
+                    ssh.exec_command_sudo('service vpp restart', timeout=120)
                 if int(ret_code) != 0:
                     logger.debug('stdout: {0}'.format(stdout))
                     logger.debug('stderr: {0}'.format(stderr))
@@ -89,7 +89,7 @@ class DUTSetup(object):
 
         (ret_code, stdout, stderr) = \
             ssh.exec_command('sudo -Sn bash {0}/{1}/dut_setup.sh'.format(
-                Constants.REMOTE_FW_DIR, Constants.RESOURCES_LIB_SH))
+                Constants.REMOTE_FW_DIR, Constants.RESOURCES_LIB_SH), timeout=120)
         logger.trace(stdout)
         logger.trace(stderr)
         if int(ret_code) != 0:
