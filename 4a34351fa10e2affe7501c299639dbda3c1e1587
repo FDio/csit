@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a437d4f_d5abecd4",
+        "filename": "tests/func/lisp/rtr_ipv4_lispge.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-10-26T14:59:20Z",
+      "side": 1,
+      "message": "Add empty line at EOF",
+      "revId": "4a34351fa10e2affe7501c299639dbda3c1e1587",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
