@@ -22,6 +22,30 @@
       "revId": "a51ceec4f27fb3bf2845a26d1fa87f384e41b441",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a437d4f_72821654",
+        "filename": "resources/libraries/robot/default.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-10-26T08:44:59Z",
+      "side": 1,
+      "message": "Because based on failed tests the DUT is not responsive more then 30 seconds after vpp restart issue so we decided to start with 1 min retry interval.\n\nTest of patch 1 took 2,5h because of stupid typo mistake  - there was passsed only DUT name string instead of the whole dictionary... It\u0027s fixed in patch 2.",
+      "parentUuid": "9a437d4f_0f1165ac",
+      "range": {
+        "startLine": 30,
+        "startChar": 41,
+        "endLine": 30,
+        "endChar": 46
+      },
+      "revId": "a51ceec4f27fb3bf2845a26d1fa87f384e41b441",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
