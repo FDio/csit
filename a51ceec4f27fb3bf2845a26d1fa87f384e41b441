@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a437d4f_0f1165ac",
+        "filename": "resources/libraries/robot/default.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2016-10-26T02:32:00Z",
+      "side": 1,
+      "message": "Why is the retry interval so large?  I would think that somewhere between 1-5 seconds would suffice.  Currently, there is some sort of python internal error being generated and it is taking ~ 2.5 hours to complete csit-vpp-functional-master!",
+      "range": {
+        "startLine": 30,
+        "startChar": 41,
+        "endLine": 30,
+        "endChar": 46
+      },
+      "revId": "a51ceec4f27fb3bf2845a26d1fa87f384e41b441",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
