@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a437d4f_75ffa002",
+        "filename": "tests/func/lisp/ipsec_ipv4_lispgpe_ipv4.robot",
+        "patchSetId": 16
+      },
+      "lineNbr": 331,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2016-10-26T14:35:59Z",
+      "side": 1,
+      "message": "Get Sw If Index",
+      "range": {
+        "startLine": 331,
+        "startChar": 64,
+        "endLine": 331,
+        "endChar": 79
+      },
+      "revId": "d652a4ccec5a34b7212be9335b1fdea9ba1e41a0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
