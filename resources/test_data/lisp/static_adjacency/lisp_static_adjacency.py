@@ -15,6 +15,12 @@
 
 # Lisp default global value
 locator_name = 'ls1'
+fib_table1 = 1
+dut1_dut2_vni = 1
+sock1 = '/tmp/sock1'
+sock2 = '/tmp/sock2'
+bid = 10
+vhost_ip = '6:0:1::3'
 
 # Lisp default locator_set value
 duts_locator_set = {'locator_name': locator_name,
