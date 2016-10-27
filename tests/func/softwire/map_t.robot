@@ -21,12 +21,14 @@
 | Library  | resources.libraries.python.IPUtil
 | Library  | resources.libraries.python.Trace
 | Force Tags | HW_ENV | VM_ENV | 3_NODE_DOUBLE_LINK_TOPO
-| Suite Setup | Run Keywords
-| ... | Setup all DUTs before test | AND
-| ... | Setup all TGs before traffic script
-| Test Teardown | Run Keywords
-| ... | Show packet trace on all DUTs | ${nodes} | AND
-| ... | Show vpp trace dump on all DUTs
+| Test Setup | Func Test Setup
+| Test Teardown | Func Test Teardown
+#| Suite Setup | Run Keywords
+#| ... | Setup all DUTs before test | AND
+#| ... | Setup all TGs before traffic script
+#| Test Teardown | Run Keywords
+#| ... | Show packet trace on all DUTs | ${nodes} | AND
+#| ... | Show vpp trace dump on all DUTs
 | Documentation | *Test for Basic mapping rule for MAP-T*\
 | ... | *[Top] Network Topologies:* TG - DUT1 - TG with two links between the
 | ... | nodes.

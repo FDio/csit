@@ -20,17 +20,19 @@
 | Resource | resources/libraries/robot/map.robot
 | Library  | resources.libraries.python.IPUtil
 | Library  | resources.libraries.python.Trace
-| Force Tags | HW_ENV | VM_ENV | 3_NODE_DOUBLE_LINK_TOPO
 | Variables | resources/test_data/softwire/map_e_domains.py | ${5}
-| Suite Setup | Run Keywords
-| ... | Setup All DUTs Before Test | AND
-| ... | Setup All TGs Before Traffic Script
-| Test Setup | Run Keywords
-| ... | Setup All DUTs Before Test | AND
-| ... | Setup All TGs Before Traffic Script
-| Test Teardown | Run Keywords
-| ... | Show Packet Trace On All DUTs | ${nodes} | AND
-| ... | Show Vpp Trace Dump On All DUTs
+| Force Tags | HW_ENV | VM_ENV | 3_NODE_DOUBLE_LINK_TOPO
+| Test Setup | Func Test Setup
+| Test Teardown | Func Test Teardown
+#| Suite Setup | Run Keywords
+#| ... | Setup All DUTs Before Test | AND
+#| ... | Setup All TGs Before Traffic Script
+#| Test Setup | Run Keywords
+#| ... | Setup All DUTs Before Test | AND
+#| ... | Setup All TGs Before Traffic Script
+#| Test Teardown | Run Keywords
+#| ... | Show Packet Trace On All DUTs | ${nodes} | AND
+#| ... | Show Vpp Trace Dump On All DUTs
 | Documentation | *Test for Basic mapping rule for MAP-E*\
 | ... | *[Top] Network Topologies:* TG - DUT1 - TG with two links between the
 | ... | nodes.

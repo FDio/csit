@@ -21,6 +21,7 @@
 | Library  | resources.libraries.python.Trace
 | Force Tags | HW_ENV | VM_ENV | SKIP_PATCH
 | Test Setup | Run Keywords | Setup all DUTs before test
+| ...        | AND          | Save VPP PIDs
 | ...        | AND          | Setup all TGs before traffic script
 | Test Teardown | Run Keywords | Show Packet Trace on All DUTs | ${nodes}
 | ...           | AND          | Show vpp trace dump on all DUTs
@@ -28,6 +29,7 @@
 | ...                          | qemu_node1
 | ...           | AND          | Qemu Teardown | ${dut2_node} | ${qemu_node2}
 | ...                          | qemu_node2
+| ...           | AND          | Check VPP PID in Teardown
 | Documentation | *Provider network FDS related.*
 | ...
 | ... | Test suite uses 3-node topology TG - DUT1 - DUT2 - TG

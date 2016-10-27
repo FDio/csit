@@ -18,10 +18,12 @@
 | Resource | resources/libraries/robot/qemu.robot
 | Library  | resources.libraries.python.Trace
 | Force Tags | HW_ENV | VM_ENV
-| Test Setup | Run Keywords | Setup all DUTs before test
-| ...        | AND          | Setup all TGs before traffic script
-| Test Teardown | Run Keywords | Show Packet Trace on All DUTs | ${nodes}
-| ...           | AND          | Show vpp trace dump on all DUTs
+| Test Setup | Func Test Setup
+| Test Teardown | Func Test Teardown
+#| Test Setup | Run Keywords | Setup all DUTs before test
+#| ...        | AND          | Setup all TGs before traffic script
+#| Test Teardown | Run Keywords | Show Packet Trace on All DUTs | ${nodes}
+#| ...           | AND          | Show vpp trace dump on all DUTs
 | Documentation | *L2 bridge-domain test cases*
 | ...
 | ... | *[Top] Network Topologies:* TG=DUT1 2-node topology with two links
@@ -55,7 +57,7 @@
 | | [Documentation]
 | | ... | [Top] TG=DUT1; TG-DUT1-DUT2-TG. [Enc] None. [Cfg] Discovered \
 | | ... | active interfaces. [Ver] Report active interfaces on DUT. [Ref]
-| | [Tags] | 3_NODE_DOUBLE_LINK_TOPO | 3_NODE_SINGLE_LINK_TOPO
+| | [Tags] | 3_NODE_DOUBLE_LINK_TOPO | 3_NODE_SINGLE_LINK_TOPO | POKUS
 | | VPP reports interfaces on | ${nodes['DUT1']}
 
 | TC02: DUT with L2BD (MAC learning) switch ICMPv4 between two TG links
