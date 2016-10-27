@@ -163,9 +163,9 @@ def dhcpv6_advertise(rx_if, tx_if, link_local_ip, proxy_ip,
         raise RuntimeError("Checksum error!")
     print "Checksum: OK."
 
-    if ether['IPv6']['UDP']['Raw'].load != interface_id:
-        raise RuntimeError("Interface ID error!")
-    print "Interface ID: OK."
+    if ether['IPv6']['UDP']['DHCPv6 Advertise Message'].msgtype != 'ADVERTISE':
+        raise RuntimeError("Message type error!")
+    print "Message type: OK."
 
 
 def dhcpv6_request(tx_if, rx_if, dhcp_multicast_ip, link_local_ip, proxy_ip,
@@ -282,9 +282,9 @@ def dhcpv6_reply(rx_if, tx_if, link_local_ip, proxy_ip, server_ip, server_mac,
         raise RuntimeError("Checksum error!")
     print "Checksum: OK."
 
-    if ether['IPv6']['UDP']['Raw'].load != interface_id:
-        raise RuntimeError("Interface ID error!")
-    print "Interface ID: OK."
+    if ether['IPv6']['UDP']['DHCPv6 Reply Message'].msgtype != 'REPLY':
+        raise RuntimeError("Message type error!")
+    print "Message type: OK."
 
 
 def main():
