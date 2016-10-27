@@ -30,13 +30,8 @@
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | VM_ENV | LISP
 | ...
-| Test Setup | Run Keywords | Setup all DUTs before test
-| ...        | AND          | Setup all TGs before traffic script
-| ...        | AND          | Update All Interface Data On All Nodes | ${nodes}
-| Test Teardown | Run Keywords | Show Packet Trace on All DUTs | ${nodes}
-| ...           | AND          | Show vpp trace dump on all DUTs
-| ...           | AND          | VPP Show Errors | ${nodes['DUT1']}
-| ...           | AND          | VPP Show Errors | ${nodes['DUT2']}
+| Test Setup | Func Test Setup
+| Test Teardown | Func Test Teardown
 | ...
 | Documentation | *ip6-lispgpe-ip6 encapsulation test cases*
 | ...
@@ -160,6 +155,7 @@
 | | ... | AND | VPP Show Errors | ${nodes['DUT1']}
 | | ... | AND | VPP Show Errors | ${nodes['DUT2']}
 | | ... | AND | Stop and Clear QEMU | ${dut1_node} | ${vm_node}
+| | ... | AND | Check VPP PID in Teardown
 | | ...
 | | [Tags] | EXPECTED_FAILING
 | | ...
@@ -215,6 +211,7 @@
 | | ... | AND | VPP Show Errors | ${nodes['DUT1']}
 | | ... | AND | VPP Show Errors | ${nodes['DUT2']}
 | | ... | AND | Stop and Clear QEMU | ${dut1_node} | ${vm_node}
+| | ... | AND | Check VPP PID in Teardown
 | | ...
 | | [Tags] | EXPECTED_FAILING
 | | ...

@@ -27,13 +27,8 @@
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | VM_ENV | LISP
 | ...
-| Test Setup | Run Keywords | Setup all DUTs before test
-| ...        | AND          | Setup all TGs before traffic script
-| ...        | AND          | Update All Interface Data On All Nodes | ${nodes}
-| Test Teardown | Run Keywords | Show Packet Trace on All DUTs | ${nodes}
-| ...           | AND          | Show vpp trace dump on all DUTs
-| ...           | AND          | VPP Show Errors | ${nodes['DUT1']}
-| ...           | AND          | VPP Show Errors | ${nodes['DUT2']}
+| Test Setup | Func Test Setup
+| Test Teardown | Func Test Teardown
 | ...
 | Documentation | *IPv4-ip4-ipsec-lispgpe-ip4 - main fib, vrf (gpe_vni-to-vrf)
 | ...
@@ -197,7 +192,8 @@
 | | ... | received packets are correct.
 | | ... | [Ref] RFC6830, RFC4303.
 | | ...
-| | [teardown] | Run keyword if test passed | Fail | Feature not implemented
+| | [teardown] | Run Keywords | Check VPP PID in Teardown
+| | ... | AND | Run keyword if test passed | Fail | Feature not implemented
 | | ...
 | | [Tags] | EXPECTED_FAILING
 | | ...
