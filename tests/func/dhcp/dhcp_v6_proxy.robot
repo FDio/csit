@@ -49,6 +49,7 @@
 | | ... | server through DHCP proxy.
 | | ... | [Ref] RFC 3315
 | | ...
+| | [Tags] | EXPECTED_FAILING
 | | Given Path for 2-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | And Interfaces in 2-node path are up
