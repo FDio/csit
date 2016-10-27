@@ -21,12 +21,9 @@
 | Library  | resources.libraries.python.IPUtil
 | Library  | resources.libraries.python.Trace
 | Force Tags | HW_ENV | VM_ENV | 3_NODE_DOUBLE_LINK_TOPO
-| Suite Setup | Run Keywords
-| ... | Setup all DUTs before test | AND
-| ... | Setup all TGs before traffic script
-| Test Teardown | Run Keywords
-| ... | Show packet trace on all DUTs | ${nodes} | AND
-| ... | Show vpp trace dump on all DUTs
+| Test Setup | Run Keywords | Func Test Setup
+| ... | AND | Set interfaces IP addresses and routes
+| Test Teardown | Func Test Teardown
 | Documentation | *Test for Basic mapping rule for MAP-T*\
 | ... | *[Top] Network Topologies:* TG - DUT1 - TG with two links between the
 | ... | nodes.
@@ -55,7 +52,6 @@
 | TC01: MAP-T test
 | | [Documentation] |
 | | ... | Test to check map-t address translation.
-| | [Setup] | Set interfaces IP addresses and routes
 | | [Template] | Check MAP-T configuration with traffic script
 # |===================|===============|================|============|=============|==========|===========|================|==========|
 # | ipv4_pfx          | ipv6_dst_pfx  | ipv6_src_pfx   | ea_bit_len | psid_offset | psid_len | ipv4_src  | ipv4_dst       | dst_port |
@@ -122,4 +118,5 @@
 | | [Teardown] | Run Keywords
 | | ... | Map Del Domain | ${dut_node} | ${domain_index} | AND
 | | ... | Show packet trace on all DUTs | ${nodes} | AND
-| | ... | Clear packet trace on all DUTs | ${nodes}
+| | ... | Clear packet trace on all DUTs | ${nodes} | AND
+| | ... | Check VPP PID in Teardown

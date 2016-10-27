@@ -18,14 +18,17 @@
 | Resource | resources/libraries/robot/interfaces.robot
 | Resource | resources/libraries/robot/ipv4.robot
 | Force Tags | HW_ENV
-| Suite Setup | Run Keywords | Setup all DUTs before test
-| ...         | AND          | Setup all TGs before traffic script
-| ...         | AND          | Update All Interface Data On All Nodes | ${nodes}
-| ...         | AND          | Setup DUT nodes for IPv4 testing
-| Test Setup | Clear interface counters on all vpp nodes in topology | ${nodes}
+| Suite Setup | Run Keywords
+| ... | Setup all DUTs before test | AND
+| ... | Setup all TGs before traffic script | AND
+| ... | Update All Interface Data On All Nodes | ${nodes} | AND
+| ... | Setup DUT nodes for IPv4 testing
+| Test Setup | Run Keywords | Save VPP PIDs | AND
+| ... | Clear interface counters on all vpp nodes in topology | ${nodes}
 | Test Teardown | Run Keywords
 | ... | Show packet trace on all DUTs | ${nodes} | AND
-| ... | Show vpp trace dump on all DUTs
+| ... | Show vpp trace dump on all DUTs | AND
+| ... | Check VPP PID in Teardown
 | Documentation | *IPv4 routing test cases*
 | ...
 | ... | RFC791 IPv4, RFC826 ARP, RFC792 ICMPv4. Encapsulations: Eth-IPv4-ICMPv4
@@ -126,7 +129,9 @@
 | | ... | step of 10Bytes. Make TG verify ICMPv4 Echo Replies are correct.
 | | [Tags] | 3_NODE_SINGLE_LINK_TOPO
 | | [Setup] | Setup MTU on TG based on MTU on DUT | ${nodes['TG']} | ${nodes['DUT1']}
-| | [Teardown] | Set default Ethernet MTU on all interfaces on node | ${nodes['TG']}
+| | [Teardown] | Run keywords
+| | ... | Set default Ethernet MTU on all interfaces on node | ${nodes['TG']}
+| | ... | AND | Check VPP PID in Teardown
 | | Append Nodes | ${nodes['TG']} | ${nodes['DUT1']}
 | | Compute Path
 | | ${dut_port} | ${dut_node}= | Last Interface

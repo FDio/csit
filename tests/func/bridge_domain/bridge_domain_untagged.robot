@@ -18,10 +18,8 @@
 | Resource | resources/libraries/robot/qemu.robot
 | Library  | resources.libraries.python.Trace
 | Force Tags | HW_ENV | VM_ENV
-| Test Setup | Run Keywords | Setup all DUTs before test
-| ...        | AND          | Setup all TGs before traffic script
-| Test Teardown | Run Keywords | Show Packet Trace on All DUTs | ${nodes}
-| ...           | AND          | Show vpp trace dump on all DUTs
+| Test Setup | Func Test Setup
+| Test Teardown | Func Test Teardown
 | Documentation | *L2 bridge-domain test cases*
 | ...
 | ... | *[Top] Network Topologies:* TG=DUT1 2-node topology with two links
@@ -222,8 +220,9 @@
 | | Then Send and receive ICMPv4 bidirectionally | ${tg_node} | ${tg_to_dut_if1}
 | | ...                                          | ${tg_to_dut_if2}
 | | [Teardown] | Run Keywords | Show Packet Trace on All DUTs | ${nodes}
-| | ...        | AND          | Show vpp trace dump on all DUTs
-| | ...        | AND          | Stop and Clear QEMU | ${dut_node} | ${vm_node}
+| | ... | AND | Show vpp trace dump on all DUTs
+| | ... | AND | Stop and Clear QEMU | ${dut_node} | ${vm_node}
+| | ... | AND | Check VPP PID in Teardown
 
 | TC07: DUT with two L2BDs (MAC learn) switches ICMPv6 between TG and VM links
 | | [Documentation]
@@ -255,8 +254,9 @@
 | | Then Send and receive ICMPv6 bidirectionally | ${tg_node} | ${tg_to_dut_if1}
 | | ...                                          | ${tg_to_dut_if2}
 | | [Teardown] | Run Keywords | Show Packet Trace on All DUTs | ${nodes}
-| | ...        | AND          | Show vpp trace dump on all DUTs
-| | ...        | AND          | Stop and Clear QEMU | ${dut_node} | ${vm_node}
+| | ... | AND | Show vpp trace dump on all DUTs
+| | ... | AND | Stop and Clear QEMU | ${dut_node} | ${vm_node}
+| | ... | AND | Check VPP PID in Teardown
 
 | TC08: DUT with two L2BDs (static MACs) switches ICMPv4 between TG and VM links
 | | [Documentation]
@@ -310,8 +310,9 @@
 | | Then Send and receive ICMPv4 bidirectionally | ${tg_node} | ${tg_to_dut_if1}
 | | ...                                          | ${tg_to_dut_if2}
 | | [Teardown] | Run Keywords | Show Packet Trace on All DUTs | ${nodes}
-| | ...        | AND          | Show vpp trace dump on all DUTs
-| | ...        | AND          | Stop and Clear QEMU | ${dut_node} | ${vm_node}
+| | ... | AND | Show vpp trace dump on all DUTs
+| | ... | AND | Stop and Clear QEMU | ${dut_node} | ${vm_node}
+| | ... | AND | Check VPP PID in Teardown
 
 | TC09: DUT with two L2BDs (static MACs) switches ICMPv6 between TG and VM links
 | | [Documentation]
@@ -321,7 +322,14 @@
 | | ... | virtio i/fs. [Ver] Make TG verify ICMPv6 Echo Req pkts are
 | | ... | switched thru DUT1 and VM in both directions and are correct on
 | | ... | receive. [Ref]
+| | ...
 | | [Tags] | 3_NODE_DOUBLE_LINK_TOPO | VPP_VM_ENV
+| | ...
+| | [Teardown] | Run Keywords | Show Packet Trace on All DUTs | ${nodes}
+| | ... | AND | Show vpp trace dump on all DUTs
+| | ... | AND | Stop and Clear QEMU | ${dut_node} | ${vm_node}
+| | ... | AND | Check VPP PID in Teardown
+| | ...
 | | Given Path for 2-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | And Interfaces in 2-node path are up
@@ -364,6 +372,3 @@
 | | ...                                       | ${sock2}
 | | Then Send and receive ICMPv6 bidirectionally | ${tg_node} | ${tg_to_dut_if1}
 | | ...                                          | ${tg_to_dut_if2}
-| | [Teardown] | Run Keywords | Show Packet Trace on All DUTs | ${nodes}
-| | ...        | AND          | Show vpp trace dump on all DUTs
-| | ...        | AND          | Stop and Clear QEMU | ${dut_node} | ${vm_node}

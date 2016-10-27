@@ -29,11 +29,8 @@
 | Variables | resources/test_data/lisp/static_adjacency/lisp_static_adjacency.py
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | 3_NODE_DOUBLE_LINK_TOPO
 | ... | VM_ENV | HW_ENV
-| Test Setup | Run Keywords | Setup all DUTs before test
-| ...        | AND          | Setup all TGs before traffic script
-| ...        | AND          | Update All Interface Data On All Nodes | ${nodes}
-| Test Teardown | Run Keywords | Show Packet Trace on All DUTs | ${nodes}
-| ...           | AND          | Show vpp trace dump on all DUTs
+| Test Setup | Func Test Setup
+| Test Teardown | Func Test Teardown
 | Documentation | *LISP static adjacency test cases*
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology\
@@ -124,6 +121,7 @@
 | | ... | AND | Show vpp trace dump on all DUTs
 | | ... | AND | Show Vpp Settings | ${nodes['DUT1']}
 | | ... | AND | Show Vpp Settings | ${nodes['DUT2']}
+| | ... | AND | Check VPP PID in Teardown
 | | ...
 | | Given Path for 3-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
@@ -172,6 +170,7 @@
 | | ... | AND | Show Vpp Settings | ${nodes['DUT1']}
 | | ... | AND | Show Vpp Settings | ${nodes['DUT2']}
 | | ... | AND | Stop and Clear QEMU | ${dut1_node} | ${vm_node}
+| | ... | AND | Check VPP PID in Teardown
 | | ...
 | | Given Path for 3-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}

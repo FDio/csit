@@ -97,3 +97,48 @@ class DUTSetup(object):
                          format(node['host'], stdout + stderr))
             raise Exception('DUT test setup script failed at node {}'.
                             format(node['host']))
+
+    @staticmethod
+    def get_vpp_pid(node):
+        """Get PID of running VPP process.
+
+        :param node: DUT node.
+        :type node: dict
+        :return: PID
+        :rtype: int
+        :raises RuntimeError if it is not possible to get the PID.
+        """
+
+        ssh = SSH()
+        ssh.connect(node)
+        ret_code, stdout, stderr = ssh.exec_command('pidof vpp')
+
+        logger.trace(stdout)
+        logger.trace(stderr)
+
+        if int(ret_code) != 0:
+            logger.debug('Not possible to get PID of VPP process on node: '
+                         '"{1}"'.format(node['host'], stdout + stderr))
+            raise RuntimeError('Not possible to get PID of VPP process on node:'
+                               ' {}'.format(node['host']))
+
+        if len(stdout.splitlines()) != 1:
+            raise RuntimeError("More then one VPP PID found on node {0}".
+                               format(node['host']))
+        return int(stdout)
+
+    @staticmethod
+    def get_vpp_pids(nodes):
+        """Get PID of running VPP process on all DUTs.
+
+        :param nodes: DUT nodes.
+        :type nodes: dict
+        :return: PIDs
+        :rtype: dict
+        """
+
+        pids = dict()
+        for node in nodes.values():
+            if node['type'] == NodeType.DUT:
+                pids[node['host']] = DUTSetup.get_vpp_pid(node)
+        return pids
