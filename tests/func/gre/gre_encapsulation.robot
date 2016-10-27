@@ -20,12 +20,8 @@
 | Library  | resources.libraries.python.IPUtil
 | Library  | resources.libraries.python.Trace
 | Force Tags | VM_ENV | HW_ENV
-| Test Setup | Run Keywords
-| ... | Setup all DUTs before test | AND
-| ... | Setup all TGs before traffic script
-| Test Teardown | Run Keywords
-| ... | Show Packet Trace on All DUTs | ${nodes} | AND
-| ... | Show vpp trace dump on all DUTs
+| Test Setup | Func Test Setup
+| Test Teardown | Func Test Teardown
 | Documentation | *GREoIPv4 test cases*
 | ...
 | ... | *[Top] Network Topologies:* TG=DUT1 2-node topology with two links

@@ -19,14 +19,17 @@
 | Resource | resources/libraries/robot/default.robot
 | Variables | resources/libraries/python/IPv6NodesAddr.py | ${nodes}
 | Force Tags | HW_ENV
-| Suite Setup | Run Keywords | Setup ipv6 to all dut in topology | ${nodes} | ${nodes_ipv6_addr}
-| ...         | AND          | Vpp nodes ra suppress link layer | ${nodes}
-| ...         | AND          | Vpp nodes setup ipv6 routing | ${nodes} | ${nodes_ipv6_addr}
-| ...         | AND          | Setup all TGs before traffic script
-| Test Setup | Clear interface counters on all vpp nodes in topology | ${nodes}
+| Suite Setup | Run Keywords
+| ... | Setup ipv6 to all dut in topology | ${nodes} | ${nodes_ipv6_addr} | AND
+| ... | Vpp nodes ra suppress link layer | ${nodes} | AND
+| ... | Vpp nodes setup ipv6 routing | ${nodes} | ${nodes_ipv6_addr} | AND
+| ... | Setup all TGs before traffic script
+| Test Setup | Run Keywords | Save VPP PIDs | AND
+| ... | Clear interface counters on all vpp nodes in topology | ${nodes}
 | Test Teardown | Run Keywords
 | ... | Show packet trace on all DUTs | ${nodes} | AND
-| ... | Show vpp trace dump on all DUTs
+| ... | Show vpp trace dump on all DUTs | AND
+| ... | Check VPP PID in Teardown
 | Documentation | *IPv6 routing test cases*
 | ...
 | ... | RFC2460 IPv6, RFC4443 ICMPv6, RFC4861 Neighbor Discovery.
@@ -62,7 +65,9 @@
 | | ... | step of 10Bytes. Make TG verify ICMPv6 Echo Replies are correct.
 | | [Tags] | 3_NODE_SINGLE_LINK_TOPO
 | | [Setup] | Setup MTU on TG based on MTU on DUT | ${nodes['TG']} | ${nodes['DUT1']}
-| | [Teardown] | Set default Ethernet MTU on all interfaces on node | ${nodes['TG']}
+| | [Teardown] | Run keywords
+| | ... | Set default Ethernet MTU on all interfaces on node | ${nodes['TG']}
+| | ... | AND | Check VPP PID in Teardown
 | | Append Nodes | ${nodes['TG']} | ${nodes['DUT1']}
 | | Compute Path
 | | ${dut_port} | ${dut_node}= | Last Interface
