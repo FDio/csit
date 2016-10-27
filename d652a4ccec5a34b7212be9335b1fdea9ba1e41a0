@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9a437d4f_387c6d72",
+        "filename": "tests/func/lisp/ipsec_ipv4_lispgpe_ipv4.robot",
+        "patchSetId": 16
+      },
+      "lineNbr": 276,
+      "author": {
+        "id": 84
+      },
+      "writtenOn": "2016-10-27T08:54:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a437d4f_789b15ca",
+      "range": {
+        "startLine": 276,
+        "startChar": 10,
+        "endLine": 276,
+        "endChar": 24
+      },
+      "revId": "d652a4ccec5a34b7212be9335b1fdea9ba1e41a0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a437d4f_58a051f4",
         "filename": "tests/func/lisp/ipsec_ipv4_lispgpe_ipv4.robot",
         "patchSetId": 16
@@ -36,6 +60,30 @@
       "writtenOn": "2016-10-27T08:41:54Z",
       "side": 1,
       "message": "See line 276.",
+      "range": {
+        "startLine": 323,
+        "startChar": 10,
+        "endLine": 323,
+        "endChar": 24
+      },
+      "revId": "d652a4ccec5a34b7212be9335b1fdea9ba1e41a0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a437d4f_f895c588",
+        "filename": "tests/func/lisp/ipsec_ipv4_lispgpe_ipv4.robot",
+        "patchSetId": 16
+      },
+      "lineNbr": 323,
+      "author": {
+        "id": 84
+      },
+      "writtenOn": "2016-10-27T08:54:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a437d4f_58a051f4",
       "range": {
         "startLine": 323,
         "startChar": 10,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "9a437d4f_78e9d519",
+        "filename": "tests/func/lisp/ipsec_ipv4_lispgpe_ipv4.robot",
+        "patchSetId": 16
+      },
+      "lineNbr": 331,
+      "author": {
+        "id": 84
+      },
+      "writtenOn": "2016-10-27T08:54:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a437d4f_75ffa002",
+      "range": {
+        "startLine": 331,
+        "startChar": 64,
+        "endLine": 331,
+        "endChar": 79
+      },
+      "revId": "d652a4ccec5a34b7212be9335b1fdea9ba1e41a0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a437d4f_985eb911",
         "filename": "tests/func/lisp/ipsec_ipv4_lispgpe_ipv4.robot",
         "patchSetId": 16
@@ -82,6 +154,30 @@
       "writtenOn": "2016-10-27T08:41:54Z",
       "side": 1,
       "message": "This KW is not needed -  please, delete it.",
+      "range": {
+        "startLine": 384,
+        "startChar": 0,
+        "endLine": 405,
+        "endChar": 29
+      },
+      "revId": "d652a4ccec5a34b7212be9335b1fdea9ba1e41a0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a437d4f_38f34d0c",
+        "filename": "tests/func/lisp/ipsec_ipv4_lispgpe_ipv4.robot",
+        "patchSetId": 16
+      },
+      "lineNbr": 405,
+      "author": {
+        "id": 84
+      },
+      "writtenOn": "2016-10-27T08:54:09Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a437d4f_985eb911",
       "range": {
         "startLine": 384,
         "startChar": 0,
