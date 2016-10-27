@@ -24,9 +24,7 @@
 *** Keywords ***
 | Setup all DUTs before test
 | | [Documentation] | Setup all DUTs in topology before test execution
-| | ${duts}= | Get Matches | ${nodes} | DUT*
-| | :FOR | ${dut} | IN | @{duts}
-| | | Wait Until Keyword Succeeds | 3x | 1 min | Setup Dut | ${nodes['${dut}']}
+| | Setup All DUTs | ${nodes}
 
 | Setup all TGs before traffic script
 | | [Documentation] | Prepare all TGs before traffic scripts execution
