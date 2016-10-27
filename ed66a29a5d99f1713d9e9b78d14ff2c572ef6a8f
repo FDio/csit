@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a437d4f_f87b8527",
+        "filename": "tests/func/lisp/ipsec_ipv4_lispgpe_ipv4.robot",
+        "patchSetId": 17
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 365
+      },
+      "writtenOn": "2016-10-27T11:49:23Z",
+      "side": 1,
+      "message": "Could be removed and replaced only by:\nShow VPP Settings | dut1_node\nShow VPP Settings | dut2_node (or {nodes[DUT2]})\n\nsince the show vpp settings contain show error.",
+      "range": {
+        "startLine": 269,
+        "startChar": 0,
+        "endLine": 270,
+        "endChar": 66
+      },
+      "revId": "ed66a29a5d99f1713d9e9b78d14ff2c572ef6a8f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a437d4f_d878c12d",
+        "filename": "tests/func/lisp/ipsec_ipv4_lispgpe_ipv4.robot",
+        "patchSetId": 17
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 365
+      },
+      "writtenOn": "2016-10-27T11:49:23Z",
+      "side": 1,
+      "message": "same a above",
+      "range": {
+        "startLine": 317,
+        "startChar": 0,
+        "endLine": 318,
+        "endChar": 66
+      },
+      "revId": "ed66a29a5d99f1713d9e9b78d14ff2c572ef6a8f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
