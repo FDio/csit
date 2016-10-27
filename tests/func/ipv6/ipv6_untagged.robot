@@ -19,14 +19,17 @@
 | Resource | resources/libraries/robot/default.robot
 | Variables | resources/libraries/python/IPv6NodesAddr.py | ${nodes}
 | Force Tags | HW_ENV
-| Suite Setup | Run Keywords | Setup ipv6 to all dut in topology | ${nodes} | ${nodes_ipv6_addr}
-| ...         | AND          | Vpp nodes ra suppress link layer | ${nodes}
-| ...         | AND          | Vpp nodes setup ipv6 routing | ${nodes} | ${nodes_ipv6_addr}
-| ...         | AND          | Setup all TGs before traffic script
-| Test Setup | Clear interface counters on all vpp nodes in topology | ${nodes}
+| Suite Setup | Run Keywords
+| ... | Setup ipv6 to all dut in topology | ${nodes} | ${nodes_ipv6_addr} | AND
+| ... | Vpp nodes ra suppress link layer | ${nodes} | AND
+| ... | Vpp nodes setup ipv6 routing | ${nodes} | ${nodes_ipv6_addr} | AND
+| ... | Setup all TGs before traffic script
+| Test Setup | Run Keywords | Save VPP PIDs | AND
+| ... | Clear interface counters on all vpp nodes in topology | ${nodes}
 | Test Teardown | Run Keywords
 | ... | Show packet trace on all DUTs | ${nodes} | AND
-| ... | Show vpp trace dump on all DUTs
+| ... | Show vpp trace dump on all DUTs | AND
+| ... | Check VPP PID in Teardown
 | Documentation | *IPv6 routing test cases*
 | ...
 | ... | RFC2460 IPv6, RFC4443 ICMPv6, RFC4861 Neighbor Discovery.

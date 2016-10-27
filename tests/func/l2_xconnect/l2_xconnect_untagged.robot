@@ -22,8 +22,8 @@
 | Library  | resources.libraries.python.Trace
 | Library | resources.libraries.python.NodePath
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | HW_ENV | VM_ENV
-| Test Setup | Setup all DUTs before test
-| Suite Setup | Setup all TGs before traffic script
+| Test Setup | Func Test Setup
+| Test Teardown | Func Test Teardown
 | Documentation | *L2 cross-connect test cases*
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology with

@@ -20,14 +20,9 @@
 | Resource | resources/libraries/robot/l2_xconnect.robot
 | Resource | resources/libraries/robot/traffic.robot
 | Library | resources.libraries.python.Trace
-
 | Force Tags | HW_ENV | VM_ENV | 3_NODE_SINGLE_LINK_TOPO
-| Suite Setup | Run Keywords | Setup all TGs before traffic script
-| ...         | AND          | Update All Interface Data On All Nodes | ${nodes}
-| Test Setup | Setup all DUTs before test
-| Test Teardown | Run Keywords | Show packet trace on all DUTs | ${nodes}
-| ...           | AND          | Vpp Show Errors | ${nodes['DUT1']}
-| ...           | AND          | Show vpp trace dump on all DUTs
+| Test Setup | Func Test Setup
+| Test Teardown | Func Test Teardown
 | Documentation | *Source RPF check on IPv4 test cases*
 | ...
 | ... | *[Top] Network Topologies:* TG - DUT1 - DUT2 - TG
