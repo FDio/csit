@@ -22,9 +22,11 @@
 | Library  | resources.libraries.python.Trace
 | Library  | resources.libraries.python.IPUtil
 | Force Tags | HW_ENV | VM_ENV | 3_NODE_DOUBLE_LINK_TOPO
-| Test Setup | Run Keywords | Setup all DUTs before test
-| ...        | AND          | Setup all TGs before traffic script
-| Test Teardown | Show Packet Trace on All DUTs | ${nodes}
+| Test Setup | Func Test Setup
+| Test Teardown | Func Test Teardown
+#| Test Setup | Run Keywords | Setup all DUTs before test
+#| ...        | AND          | Setup all TGs before traffic script
+#| Test Teardown | Show Packet Trace on All DUTs | ${nodes}
 | Documentation | *Vpn routed forwarding - baseline IPv4*
 | ... | *[Top] Network Topologies:* TG=DUT1=DUT2=TG 3-node topology with two
 | ... | links in between nodes.

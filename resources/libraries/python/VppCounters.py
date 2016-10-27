@@ -58,6 +58,23 @@ class VppCounters(object):
         vat.execute_script("show_errors_verbose.vat", node, json_out=False)
 
     @staticmethod
+    def vpp_show_errors_on_all_duts(nodes, verbose=False):
+        """Show errors on all DUTs.
+
+        :param nodes: VPP nodes
+        :param verbose: If True show verbose output.
+        :type nodes: dict
+        :type verbose: bool
+        """
+
+        for node in nodes.values():
+            if node['type'] == NodeType.DUT:
+                if verbose:
+                    VppCounters.vpp_show_errors_verbose(node)
+                else:
+                    VppCounters.vpp_show_errors(node)
+
+    @staticmethod
     def vpp_show_runtime(node):
         """Run "show runtime" CLI command.
 

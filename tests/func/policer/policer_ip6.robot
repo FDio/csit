@@ -15,11 +15,14 @@
 | Force Tags | 3_NODE_DOUBLE_LINK_TOPO | VM_ENV | HW_ENV
 | Resource | resources/libraries/robot/policer.robot
 | Library | resources.libraries.python.Trace
-| Test Setup | Run Keywords | Setup all DUTs before test
-| ...        | AND          | Setup all TGs before traffic script
+| Test Setup | Run Keywords | Func Test Setup
 | ...        | AND          | Setup Topology for IPv6 policer testing
-| Test Teardown | Run Keywords | Show Packet Trace on All DUTs | ${nodes}
-| ...           | AND          | Show vpp trace dump on all DUTs
+| Test Teardown | Func Test Teardown
+#| Test Setup | Run Keywords | Setup all DUTs before test
+#| ...        | AND          | Setup all TGs before traffic script
+#| ...        | AND          | Setup Topology for IPv6 policer testing
+#| Test Teardown | Run Keywords | Show Packet Trace on All DUTs | ${nodes}
+#| ...           | AND          | Show vpp trace dump on all DUTs
 | Documentation | *IPv6 policer test cases*
 | ...
 | ... | *[Top] Network topologies:* TG=DUT1 2-node topology with two links\

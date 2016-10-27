@@ -24,12 +24,14 @@
 
 | Force Tags | HW_ENV | VM_ENV | 3_NODE_SINGLE_LINK_TOPO | EXPECTED_FAILING
 # TODO: Remove EXPECTED_FAILING tag once functionality is implemented (VPP-204)
-| Suite Setup | Run Keywords | Setup all TGs before traffic script
-| ...         | AND          | Update All Interface Data On All Nodes | ${nodes}
-| Test Setup | Setup all DUTs before test
-| Test Teardown | Run Keywords | Show packet trace on all DUTs | ${nodes}
-| ...           | AND          | Vpp Show Errors | ${nodes['DUT1']}
-| ...           | AND          | Show vpp trace dump on all DUTs
+| Test Setup | Func Test Setup
+| Test Teardown | Func Test Teardown
+#| Suite Setup | Run Keywords | Setup all TGs before traffic script
+#| ...         | AND          | Update All Interface Data On All Nodes | ${nodes}
+#| Test Setup | Setup all DUTs before test
+#| Test Teardown | Run Keywords | Show packet trace on all DUTs | ${nodes}
+#| ...           | AND          | Vpp Show Errors | ${nodes['DUT1']}
+#| ...           | AND          | Show vpp trace dump on all DUTs
 | Documentation | *IPFIX ipv6 test cases*
 | ...
 | ... | IPFIX tests use 3-node topology TG - DUT1 - DUT2 - TG with

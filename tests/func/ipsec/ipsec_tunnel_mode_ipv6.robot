@@ -16,13 +16,17 @@
 | Library | resources.libraries.python.Trace
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | 3_NODE_DOUBLE_LINK_TOPO
 | ...        | VM_ENV | HW_ENV
-| Test Setup | Run Keywords | Setup all DUTs before test
-| ...        | AND          | Setup all TGs before traffic script
+| Test Setup | Run Keywords | Func Test Setup
 | ...        | AND          | Setup Topology for IPv6 IPsec testing
 | Test Teardown | Run Keywords | VPP IPsec Show | ${dut_node}
-| ...           | AND          | Show Packet Trace on All DUTs | ${nodes}
-| ...           | AND          | Show Vpp Errors on All DUTs
-| ...           | AND          | Show vpp trace dump on all DUTs
+| ...           | AND          | Func Test Teardown
+#| Test Setup | Run Keywords | Setup all DUTs before test
+#| ...        | AND          | Setup all TGs before traffic script
+#| ...        | AND          | Setup Topology for IPv6 IPsec testing
+#| Test Teardown | Run Keywords | VPP IPsec Show | ${dut_node}
+#| ...           | AND          | Show Packet Trace on All DUTs | ${nodes}
+#| ...           | AND          | Show Vpp Errors on All DUTs
+#| ...           | AND          | Show vpp trace dump on all DUTs
 | Documentation | *IPv6 IPsec tunnel mode test suite.*
 | ...
 | ... | *[Top] Network topologies:* TG-DUT1 2-node topology with one link\

@@ -19,14 +19,15 @@
 | Resource | resources/libraries/robot/ipv6.robot
 | Resource | resources/libraries/robot/traffic.robot
 | Library | resources.libraries.python.Trace
-
 | Force Tags | HW_ENV | VM_ENV | 3_NODE_SINGLE_LINK_TOPO
-| Suite Setup | Run Keywords | Setup All TGs Before Traffic Script
-| ...         | AND          | Update All Interface Data On All Nodes | ${nodes}
-| Test Setup | Setup All DUTs Before Test
-| Test Teardown | Run Keywords
-| ... | Show Packet Trace On All DUTs | ${nodes} | AND
-| ... | Show VPP Trace Dump On All DUTs
+| Test Setup | Func Test Setup
+| Test Teardown | Func Test Teardown
+#| Suite Setup | Run Keywords | Setup All TGs Before Traffic Script
+#| ...         | AND          | Update All Interface Data On All Nodes | ${nodes}
+#| Test Setup | Setup All DUTs Before Test
+#| Test Teardown | Run Keywords
+#| ... | Show Packet Trace On All DUTs | ${nodes} | AND
+#| ... | Show VPP Trace Dump On All DUTs
 | Documentation | *IPv6 Router Advertisement test cases*
 | ...
 | ... | RFC4861 Neighbor Discovery. Encapsulations: Eth-IPv6-RA on links

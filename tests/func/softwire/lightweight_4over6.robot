@@ -19,9 +19,11 @@
 | Resource | resources/libraries/robot/map.robot
 | Library  | resources.libraries.python.Trace
 | Force Tags | HW_ENV | VM_ENV | 3_NODE_DOUBLE_LINK_TOPO
-| Test Setup | Run Keywords | Setup all DUTs before test
-| ...        | AND          | Setup all TGs before traffic script
-| Test Teardown | Show Packet Trace on All DUTs | ${nodes}
+| Test Setup | Func Test Setup
+| Test Teardown | Func Test Teardown
+#| Test Setup | Run Keywords | Setup all DUTs before test
+#| ...        | AND          | Setup all TGs before traffic script
+#| Test Teardown | Show Packet Trace on All DUTs | ${nodes}
 | Documentation | *Lightweight 4 over 6 test cases*
 | ...
 | ... | LW4o6 is a subset of MAP-E, with per-subscriber rules. It uses the

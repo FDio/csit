@@ -21,11 +21,13 @@
 | Library  | resources.libraries.python.telemetry.SPAN
 | Force Tags | HW_ENV | VM_ENV | 3_NODE_DOUBLE_LINK_TOPO | EXPECTED_FAILING
 # TODO: Remove EXPECTED_FAILING tag once functionality is implemented (VPP-185)
-| Test Setup | Run Keywords | Setup all DUTs before test
-| ...        | AND          | Setup all TGs before traffic script
-| Test Teardown | Run Keyword If Test Failed | Run Keywords
-| ... | Show packet trace on all DUTs | ${nodes} | AND
-| ... | Show vpp trace dump on all DUTs
+| Test Setup | Func Test Setup
+| Test Teardown | Func Test Teardown
+#| Test Setup | Run Keywords | Setup all DUTs before test
+#| ...        | AND          | Setup all TGs before traffic script
+#| Test Teardown | Run Keyword If Test Failed | Run Keywords
+#| ... | Show packet trace on all DUTs | ${nodes} | AND
+#| ... | Show vpp trace dump on all DUTs
 | Documentation | *SPAN test suite*
 | ... | *[Top] Network Topologies:* TG=DUT1 2-node topology with two
 | ... | links between nodes.
