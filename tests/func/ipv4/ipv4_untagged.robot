@@ -18,14 +18,17 @@
 | Resource | resources/libraries/robot/interfaces.robot
 | Resource | resources/libraries/robot/ipv4.robot
 | Force Tags | HW_ENV
-| Suite Setup | Run Keywords | Setup all DUTs before test
-| ...         | AND          | Setup all TGs before traffic script
-| ...         | AND          | Update All Interface Data On All Nodes | ${nodes}
-| ...         | AND          | Setup DUT nodes for IPv4 testing
-| Test Setup | Clear interface counters on all vpp nodes in topology | ${nodes}
+| Suite Setup | Run Keywords
+| ... | Setup all DUTs before test | AND
+| ... | Setup all TGs before traffic script | AND
+| ... | Update All Interface Data On All Nodes | ${nodes} | AND
+| ... | Setup DUT nodes for IPv4 testing
+| Test Setup | Run Keywords | Save VPP PIDs | AND
+| ... | Clear interface counters on all vpp nodes in topology | ${nodes}
 | Test Teardown | Run Keywords
 | ... | Show packet trace on all DUTs | ${nodes} | AND
-| ... | Show vpp trace dump on all DUTs
+| ... | Show vpp trace dump on all DUTs | AND
+| ... | Check VPP PID in Teardown
 | Documentation | *IPv4 routing test cases*
 | ...
 | ... | RFC791 IPv4, RFC826 ARP, RFC792 ICMPv4. Encapsulations: Eth-IPv4-ICMPv4
