@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a437d4f_b82e1da4",
+        "filename": "tests/func/dhcp/dhcp_v6_proxy.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 474
+      },
+      "writtenOn": "2016-10-27T14:56:28Z",
+      "side": 1,
+      "message": "I might be misinterpreting, but with the change to the message testing code in this patch, the tests should pass, though only after the fix of vpp-510 is merged.\nCan we force the test code merge?",
+      "range": {
+        "startLine": 52,
+        "startChar": 4,
+        "endLine": 52,
+        "endChar": 29
+      },
+      "revId": "f01512b72664e025956fee1df0a381a35d95c8e7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
