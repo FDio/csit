@@ -34,12 +34,14 @@
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | VM_ENV | LISP
 | ...
 | Test Setup | Run Keywords | Setup all DUTs before test
+| ...        | AND          | Save VPP PIDs
 | ...        | AND          | Setup all TGs before traffic script
 | ...        | AND          | Update All Interface Data On All Nodes | ${nodes}
 | Test Teardown | Run Keywords | Show Packet Trace on All DUTs | ${nodes}
 | ...           | AND          | Show vpp trace dump on all DUTs
 | ...           | AND          | Show Vpp Settings | ${nodes['DUT1']}
 | ...           | AND          | Show Vpp Settings | ${nodes['DUT2']}
+| ...           | AND          | Check VPP PID in Teardown
 | ...
 | Documentation | *ip4-lispgpe-ip4 encapsulation test cases*
 | ...
@@ -110,11 +112,6 @@
 | | ... | received packets are correct.
 | | ... | [Ref] RFC6830.
 | | ...
-| | [Teardown] | Run Keywords | Show Packet Trace on All DUTs | ${nodes}
-| | ... | AND | Show vpp trace dump on all DUTs
-| | ... | AND | Show Vpp Settings | ${nodes['DUT1']}
-| | ... | AND | Show Vpp Settings | ${nodes['DUT2']}
-| | ...
 | | Given Path for 3-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And Interfaces in 3-node path are up
@@ -160,6 +157,7 @@
 | | ... | AND | Show Vpp Settings | ${nodes['DUT1']}
 | | ... | AND | Show Vpp Settings | ${nodes['DUT2']}
 | | ... | AND | Stop and Clear QEMU | ${dut1_node} | ${vm_node}
+| | ... | AND | Check VPP PID in Teardown
 | | ...
 | | Given Path for 3-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
@@ -210,6 +208,7 @@
 | | ... | AND | Show Vpp Settings | ${nodes['DUT1']}
 | | ... | AND | Show Vpp Settings | ${nodes['DUT2']}
 | | ... | AND | Stop and Clear QEMU | ${dut1_node} | ${vm_node}
+| | ... | AND | Check VPP PID in Teardown
 | | ...
 | | Given Path for 3-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}

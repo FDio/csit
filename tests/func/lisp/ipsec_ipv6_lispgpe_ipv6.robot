@@ -38,14 +38,9 @@
 | Variables | resources/test_data/lisp/ipv6_lispgpe_ipv6/ipv6_lispgpe_ipsec_ipv6.py
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | VM_ENV | LISP
 | ...
-| Test Setup | Run Keywords | Setup all DUTs before test
-| ...        | AND          | Setup all TGs before traffic script
-| ...        | AND          | Update All Interface Data On All Nodes | ${nodes}
+| Test Setup | Run Keywords | Func Test Setup
 | ...        | AND          | Vpp All Ra Suppress Link Layer | ${nodes}
-| Test Teardown | Run Keywords | Show Packet Trace on All DUTs | ${nodes}
-| ...           | AND          | Show vpp trace dump on all DUTs
-| ...           | AND          | Show VPP Settings | ${nodes['DUT1']}
-| ...           | AND          | Show VPP Settings | ${nodes['DUT2']}
+| Test Teardown | Func Test Teardown
 | ...
 | Documentation | *IPv6 - ip6-ipsec-lispgpe-ip6 - main fib,
 | ... | vrf (gpe_vni-to-vrf), phy2lisp, virt2lisp*
@@ -165,11 +160,12 @@
 | | ... | received packets are correct.
 | | ... | [Ref] RFC6830, RFC4303.
 | | [Teardown] | Run Keywords | Show Packet Trace on All DUTs | ${nodes}
-| | ...           | AND       | Show vpp trace dump on all DUTs
-| | ...           | AND       | VPP Show Errors | ${nodes['DUT1']}
-| | ...           | AND       | VPP Show Errors | ${nodes['DUT2']}
-| | ...           | AND       | Stop and Clear QEMU | ${dut1_node} | ${vm_node}
-| | ...           | AND       | Show VPP Settings | ${dut1_node}
+| | ... | AND | Show vpp trace dump on all DUTs
+| | ... | AND | VPP Show Errors | ${nodes['DUT1']}
+| | ... | AND | VPP Show Errors | ${nodes['DUT2']}
+| | ... | AND | Stop and Clear QEMU | ${dut1_node} | ${vm_node}
+| | ... | AND | Show VPP Settings | ${dut1_node}
+| | ... | AND | Check VPP PID in Teardown
 | | ...
 | | ${encr_alg}= | Crypto Alg AES CBC 128
 | | ${auth_alg}= | Integ Alg SHA1 96
@@ -212,11 +208,12 @@
 | | ... | received packets are correct.
 | | ... | [Ref] RFC6830, RFC4303.
 | | [Teardown] | Run Keywords | Show Packet Trace on All DUTs | ${nodes}
-| | ...           | AND       | Show vpp trace dump on all DUTs
-| | ...           | AND       | VPP Show Errors | ${nodes['DUT1']}
-| | ...           | AND       | VPP Show Errors | ${nodes['DUT2']}
-| | ...           | AND       | Stop and Clear QEMU | ${dut1_node} | ${vm_node}
-| | ...           | AND       | Show VPP Settings | ${dut1_node}
+| | ... | AND | Show vpp trace dump on all DUTs
+| | ... | AND | VPP Show Errors | ${nodes['DUT1']}
+| | ... | AND | VPP Show Errors | ${nodes['DUT2']}
+| | ... | AND | Stop and Clear QEMU | ${dut1_node} | ${vm_node}
+| | ... | AND | Show VPP Settings | ${dut1_node}
+| | ... | AND | Check VPP PID in Teardown
 | | ...
 | | ${encr_alg}= | Crypto Alg AES CBC 128
 | | ${auth_alg}= | Integ Alg SHA1 96
