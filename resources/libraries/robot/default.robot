@@ -173,3 +173,41 @@
 | | :FOR | ${dut} | IN | @{duts}
 | | | Apply Config | ${nodes['${dut}']}
 | | Update All Interface Data On All Nodes | ${nodes} | skip_tg=${TRUE}
+
+| Save VPP PIDs
+| | [Documentation] | Get PIDs of VPP processes from all DUTs in topology and
+| | ... | set it as a test variable. The PIDs are stored as dictionary items
+| | ... | where the key is the host and the value is the PID.
+| | ...
+| | ${setup_vpp_pids}= | Get VPP PIDs | ${nodes}
+| | Set Test Variable | ${setup_vpp_pids}
+
+| Check VPP PID in Teardown
+| | [Documentation] | Check if the VPP PIDs on all DUTs are the same at the end
+| | ... | of test as they were at the begining. If they are not, only a message
+| | ... | is printed on console and to log. The test will not fail.
+| | ...
+| | ${teardown_vpp_pids}= | Get VPP PIDs | ${nodes}
+| | ${err_msg}= | Catenate | \nThe VPP PIDs are not equal!\nTest Setup VPP PIDs:
+| | ... | ${setup_vpp_pids}\nTest Teardown VPP PIDs: ${teardown_vpp_pids}
+| | ${rc} | ${msg}= | Run keyword and ignore error
+| | ... | Dictionaries Should Be Equal
+| | ... | ${setup_vpp_pids} | ${teardown_vpp_pids}
+| | Run Keyword And Return If | '${rc}'=='FAIL' | Log | ${err_msg}
+| | ... | console=yes | level=WARN
+
+| Func Test Setup
+| | [Documentation] | Common test setup for functional tests.
+| | ...
+| | Setup all DUTs before test
+| | Save VPP PIDs
+| | Setup all TGs before traffic script
+| | Update All Interface Data On All Nodes | ${nodes}
+
+| Func Test Teardown
+| | [Documentation] | Common test teardown for functional tests.
+| | ...
+| | Show Packet Trace on All DUTs | ${nodes}
+| | Show vpp trace dump on all DUTs
+| | Vpp Show Errors On All DUTs | ${nodes}
+| | Check VPP PID in Teardown

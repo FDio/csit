@@ -20,12 +20,8 @@
 | Library | resources.libraries.python.Trace
 | Library | resources.libraries.python.ProxyArp
 | Force Tags | HW_ENV | VM_ENV | 3_NODE_SINGLE_LINK_TOPO
-| Suite Setup | Run Keywords | Setup all TGs before traffic script
-| ...         | AND          | Update All Interface Data On All Nodes | ${nodes}
-| Test Setup | Setup all DUTs before test
-| Test Teardown | Run Keywords
-| ... | Show packet trace on all DUTs | ${nodes} | AND
-| ... | Show vpp trace dump on all DUTs
+| Test Setup | Func Test Setup
+| Test Teardown | Func Test Teardown
 | Documentation | *RFC1027 Proxy ARP test cases*
 | ...
 | ... | *[Top] Network topologies:* TG-DUT1 2-node topology with
