@@ -20,17 +20,10 @@
 | Resource | resources/libraries/robot/map.robot
 | Library  | resources.libraries.python.IPUtil
 | Library  | resources.libraries.python.Trace
-| Force Tags | HW_ENV | VM_ENV | 3_NODE_DOUBLE_LINK_TOPO
 | Variables | resources/test_data/softwire/map_e_domains.py | ${5}
-| Suite Setup | Run Keywords
-| ... | Setup All DUTs Before Test | AND
-| ... | Setup All TGs Before Traffic Script
-| Test Setup | Run Keywords
-| ... | Setup All DUTs Before Test | AND
-| ... | Setup All TGs Before Traffic Script
-| Test Teardown | Run Keywords
-| ... | Show Packet Trace On All DUTs | ${nodes} | AND
-| ... | Show Vpp Trace Dump On All DUTs
+| Force Tags | HW_ENV | VM_ENV | 3_NODE_DOUBLE_LINK_TOPO
+| Test Setup | Func Test Setup
+| Test Teardown | Func Test Teardown
 | Documentation | *Test for Basic mapping rule for MAP-E*\
 | ... | *[Top] Network Topologies:* TG - DUT1 - TG with two links between the
 | ... | nodes.
@@ -66,8 +59,7 @@
 # TODO: replace setup when VPP-312 fixed
 #| | [Setup] | Set Interfaces IP Addresses And Routes
 | | [Setup] | Run Keywords
-| | ... | Setup All DUTs Before Test | AND
-| | ... | Setup All TGs Before Traffic Script | AND
+| | ... | Func Test Setup | AND
 | | ... | Set Interfaces IP Addresses And Routes
 | | [Template] | Check MAP Configuration With Traffic Script
 # |=================|===============|================|============|=============|==========|================|==========|==================================|
@@ -92,8 +84,7 @@
 # TODO: replace setup when VPP-312 fixed
 #| | [Setup] | Set Interfaces IP Addresses And Routes
 | | [Setup] | Run Keywords
-| | ... | Setup All DUTs Before Test | AND
-| | ... | Setup All TGs Before Traffic Script | AND
+| | ... | Func Test Setup | AND
 | | ... | Set Interfaces IP Addresses And Routes
 | | [Template] | Check MAP Configuration With Traffic Script
 # |===================|===============|================|============|=============|==========|================|==========|==================================|
@@ -121,8 +112,7 @@
 # TODO: replace setup when VPP-312 fixed
 #| | [Setup] | Set Interfaces IP Addresses And Routes
 | | [Setup] | Run Keywords
-| | ... | Setup All DUTs Before Test | AND
-| | ... | Setup All TGs Before Traffic Script | AND
+| | ... | Func Test Setup | AND
 | | ... | Set Interfaces IP Addresses And Routes
 | | [Template] | Check MAP Configuration With Traffic Script
 # |===================|===============|================|============|=============|==========|================|==========|===================================|
@@ -169,8 +159,7 @@
 # TODO: replace setup when VPP-312 fixed
 #| | [Setup] | Set Interfaces IP Addresses And Routes
 | | [Setup] | Run Keywords
-| | ... | Setup All DUTs Before Test | AND
-| | ... | Setup All TGs Before Traffic Script | AND
+| | ... | Func Test Setup | AND
 | | ... | Set Interfaces IP Addresses And Routes
 | | [Template] | Check MAP Configuration With Traffic Script
 # |===================|=========================|================|============|=============|==========|================|==========|
@@ -187,8 +176,7 @@
 # TODO: replace setup when VPP-312 fixed
 #| | [Setup] | Set Interfaces IP Addresses And Routes
 | | [Setup] | Run Keywords
-| | ... | Setup All DUTs Before Test | AND
-| | ... | Setup All TGs Before Traffic Script | AND
+| | ... | Func Test Setup | AND
 | | ... | Set Interfaces IP Addresses And Routes
 | | [Template] | Check MAP Configuration With Traffic Script
 # |===================|=========================|================|============|=============|==========|================|==========|

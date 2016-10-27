@@ -37,13 +37,8 @@
 | Variables | resources/test_data/lisp/ipv4_lispgpe_ipv6/ipv4_lispgpe_ipsec_ipv6.py
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | VM_ENV | LISP
 | ...
-| Test Setup | Run Keywords | Setup all DUTs before test
-| ...        | AND          | Setup all TGs before traffic script
-| ...        | AND          | Update All Interface Data On All Nodes | ${nodes}
-| Test Teardown | Run Keywords | Show Packet Trace on All DUTs | ${nodes}
-| ...           | AND          | Show vpp trace dump on all DUTs
-| ...           | AND          | VPP Show Errors | ${nodes['DUT1']}
-| ...           | AND          | VPP Show Errors | ${nodes['DUT2']}
+| Test Setup | Func Test Setup
+| Test Teardown | Func Test Teardown
 | ...
 | Documentation | *IPv6 - ip4-ipsec-lispgpe-ip6 - main fib, virt2lisp, phy2lisp*
 | ...

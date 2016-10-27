@@ -22,11 +22,8 @@
 | Resource | resources/libraries/robot/l2_xconnect.robot
 | Variables  | resources/libraries/python/IPv4NodeAddress.py | ${nodes}
 | Force Tags | HW_ENV | VM_ENV | 3_NODE_SINGLE_LINK_TOPO
-| Test Setup | Run Keywords | Setup all DUTs before test
-| ...        | AND          | Setup all TGs before traffic script
-| ...        | AND          | Update All Interface Data On All Nodes | ${nodes}
-| Test Teardown | Run Keywords | Show packet trace on all DUTs | ${nodes}
-| ...           | AND          | Show vpp trace dump on all DUTs
+| Test Setup | Func Test Setup
+| Test Teardown | Func Test Teardown
 | Documentation | *COP Security IPv4 Blacklist and Whitelist Tests*
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology
