@@ -22,6 +22,30 @@
       "revId": "f01512b72664e025956fee1df0a381a35d95c8e7",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a437d4f_7ed3fd38",
+        "filename": "tests/func/dhcp/dhcp_v6_proxy.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-10-28T11:59:59Z",
+      "side": 1,
+      "message": "As discussed via e-mails we cannot remove the tag now. We will do it immediately when teh corresponding vpp change is merged in vpp master and vpp build that will be used as stable version of vpp in csit .",
+      "parentUuid": "9a437d4f_b82e1da4",
+      "range": {
+        "startLine": 52,
+        "startChar": 4,
+        "endLine": 52,
+        "endChar": 29
+      },
+      "revId": "f01512b72664e025956fee1df0a381a35d95c8e7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
