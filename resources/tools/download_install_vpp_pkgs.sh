@@ -27,7 +27,7 @@ if [ -e "$VPP_REPO_URL_PATH" ]; then
     REPO=$(echo ${VPP_REPO_URL#https://nexus.fd.io/content/repositories/})
     REPO=$(echo ${REPO%/io/fd/vpp/})
 else
-    REPO='fd.io.master.ubuntu.trusty.main'
+    REPO='fd.io.master.ubuntu.xenial.main'
 fi
 
 GROUP="io.fd.vpp"

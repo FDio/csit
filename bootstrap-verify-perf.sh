@@ -21,9 +21,6 @@ TOPOLOGIES="topologies/available/lf_testbed1.yaml \
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-VPP_STABLE_VER=$(cat ${SCRIPT_DIR}/VPP_STABLE_VER)
-VPP_REPO_URL=$(cat ${SCRIPT_DIR}/VPP_REPO_URL)
-
 # Reservation dir
 RESERVATION_DIR="/tmp/reservation_dir"
 INSTALLATION_DIR="/tmp/install_dir"
@@ -45,8 +42,11 @@ then
         bash ${SCRIPT_DIR}/resources/tools/download_install_vpp_pkgs.sh --skip-install
 
         VPP_DEBS="$( readlink -f *.deb | tr '\n' ' ' )"
-
+        # Take vpp package and get the vpp version
+        VPP_STABLE_VER="$( expr match $(ls *.deb | head -n 1) 'vpp-\(.*\)-deb.deb' )"
     else
+        VPP_REPO_URL=$(cat ${SCRIPT_DIR}/VPP_REPO_URL)
+        VPP_STABLE_VER=$(cat ${SCRIPT_DIR}/VPP_STABLE_VER)
         VPP_CLASSIFIER="-deb"
         #download vpp build from nexus and set VPP_DEBS variable
         wget -q "${VPP_REPO_URL}/vpp/${VPP_STABLE_VER}/vpp-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
@@ -64,9 +64,11 @@ then
 # If we run this script from vpp project we want to use local build
 elif [[ ${JOB_NAME} == vpp-* ]] ;
 then
-    #use local packages provided as argument list
+    # Use local packages provided as argument list
     # Jenkins VPP deb paths (convert to full path)
     VPP_DEBS="$( readlink -f $@ | tr '\n' ' ' )"
+    # Take vpp package and get the vpp version
+    VPP_STABLE_VER="$( expr match $1 'vpp-\(.*\)-deb.deb' )"
 else
     echo "Unable to identify job type based on JOB_NAME variable: ${JOB_NAME}"
     exit 1
