@@ -1,5 +1,6 @@
 /env
 outputs
+gen_docs
 output.xml
 log.html
 report.html
