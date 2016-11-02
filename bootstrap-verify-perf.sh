@@ -21,9 +21,6 @@ TOPOLOGIES="topologies/available/lf_testbed1.yaml \
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-VPP_STABLE_VER=$(cat ${SCRIPT_DIR}/VPP_STABLE_VER)
-VPP_REPO_URL=$(cat ${SCRIPT_DIR}/VPP_REPO_URL)
-
 # Reservation dir
 RESERVATION_DIR="/tmp/reservation_dir"
 INSTALLATION_DIR="/tmp/install_dir"
@@ -47,8 +44,10 @@ then
         VPP_DEBS="$( readlink -f *.deb | tr '\n' ' ' )"
 
     else
+        VPP_REPO_URL=$(cat ${SCRIPT_DIR}/VPP_REPO_URL)
+        VPP_STABLE_VER=$(cat ${SCRIPT_DIR}/VPP_STABLE_VER)
         VPP_CLASSIFIER="-deb"
-        #download vpp build from nexus and set VPP_DEBS variable
+        # Download vpp build from nexus and set VPP_DEBS variable
         wget -q "${VPP_REPO_URL}/vpp/${VPP_STABLE_VER}/vpp-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
         wget -q "${VPP_REPO_URL}/vpp-dbg/${VPP_STABLE_VER}/vpp-dbg-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
         wget -q "${VPP_REPO_URL}/vpp-dev/${VPP_STABLE_VER}/vpp-dev-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
@@ -64,7 +63,7 @@ then
 # If we run this script from vpp project we want to use local build
 elif [[ ${JOB_NAME} == vpp-* ]] ;
 then
-    #use local packages provided as argument list
+    # Use local packages provided as argument list
     # Jenkins VPP deb paths (convert to full path)
     VPP_DEBS="$( readlink -f $@ | tr '\n' ' ' )"
 else
@@ -125,6 +124,9 @@ else
     echo "Failed to copy vpp deb files to DUTs"
     exit 1
 fi
+
+# Get vpp version
+VPP_INSTALLED_VER="$(dpkg-query --showformat='${Version}' --show vpp)"
 
 case "$TEST_TAG" in
     # run specific performance tests based on jenkins job type variable
@@ -227,7 +229,7 @@ echo Post-processing test data...
 python ${SCRIPT_DIR}/resources/tools/robot_output_parser.py \
        -i ${SCRIPT_DIR}/output.xml \
        -o ${SCRIPT_DIR}/output_perf_data.xml \
-       -v ${VPP_STABLE_VER}
+       -v ${VPP_INSTALLED_VER}
 if [ ! $? -eq 0 ]; then
     echo "Parsing ${SCRIPT_DIR}/output.xml failed"
 fi
