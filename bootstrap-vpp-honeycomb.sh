@@ -21,6 +21,9 @@ export DEBIAN_FRONTEND=noninteractive
 sudo apt-get -y update
 sudo apt-get -y install libpython2.7-dev python-virtualenv
 
+VIRL_TOPOLOGY=double-ring-nested.trusty
+VIRL_RELEASE=csit-ubuntu-14.04.4_2016-10-07_1.3
+
 # Source the VIRL server parameters:
 source virl_params.sh
 
