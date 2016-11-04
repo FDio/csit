@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a437d4f_02f5af82",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 5
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-11-04T14:55:14Z",
+      "side": 1,
+      "message": "n",
+      "range": {
+        "startLine": 9,
+        "startChar": 27,
+        "endLine": 9,
+        "endChar": 28
+      },
+      "revId": "921c473aaf638617cf1b015442b553a96fddac7d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a437d4f_e2486bce",
+        "filename": "tests/func/lisp/ipsec_ipv4_lispgpe_ipv4.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-11-04T14:55:14Z",
+      "side": 1,
+      "message": "why don\u0027t you use \"Func Test Setup\" here? It executes the same keywords.",
+      "range": {
+        "startLine": 32,
+        "startChar": 15,
+        "endLine": 35,
+        "endChar": 79
+      },
+      "revId": "921c473aaf638617cf1b015442b553a96fddac7d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a437d4f_a21263b2",
+        "filename": "tests/func/lisp/ipv4_lispgpe_ipv4.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-11-04T14:55:14Z",
+      "side": 1,
+      "message": "\"Func Test Setup\"?",
+      "range": {
+        "startLine": 36,
+        "startChar": 13,
+        "endLine": 39,
+        "endChar": 79
+      },
+      "revId": "921c473aaf638617cf1b015442b553a96fddac7d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a437d4f_620c7b95",
+        "filename": "tests/func/lisp/ipv6_lispgpe_ipv6.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-11-04T14:55:14Z",
+      "side": 1,
+      "message": "\"Func Test Setup\" | AND ...",
+      "range": {
+        "startLine": 34,
+        "startChar": 28,
+        "endLine": 37,
+        "endChar": 79
+      },
+      "revId": "921c473aaf638617cf1b015442b553a96fddac7d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
