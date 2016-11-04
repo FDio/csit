@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a437d4f_c77d79b3",
+        "filename": "tests/func/softwire/map_e.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 340,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-11-04T09:28:51Z",
+      "side": 1,
+      "message": "Add the number of TC.",
+      "range": {
+        "startLine": 340,
+        "startChar": 2,
+        "endLine": 340,
+        "endChar": 61
+      },
+      "revId": "09ce8096c98e24b41cc50fac84aee6dec8fdaeec",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a437d4f_67448d74",
+        "filename": "tests/func/softwire/map_e.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 341,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-11-04T09:28:51Z",
+      "side": 1,
+      "message": "Use the usual format of TC documentation.",
+      "range": {
+        "startLine": 341,
+        "startChar": 4,
+        "endLine": 341,
+        "endChar": 19
+      },
+      "revId": "09ce8096c98e24b41cc50fac84aee6dec8fdaeec",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
