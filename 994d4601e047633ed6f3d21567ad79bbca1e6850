@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a437d4f_2777a5d6",
+        "filename": "resources/libraries/python/honeycomb/HoneycombSetup.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-11-04T09:24:45Z",
+      "side": 1,
+      "message": "Consider using:\n\"ps -ef | grep [h]oneycomb\"\nfor better output",
+      "range": {
+        "startLine": 268,
+        "startChar": 16,
+        "endLine": 268,
+        "endChar": 41
+      },
+      "revId": "994d4601e047633ed6f3d21567ad79bbca1e6850",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
