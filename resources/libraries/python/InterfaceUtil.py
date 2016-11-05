@@ -466,7 +466,21 @@ class InterfaceUtil(object):
             cmd = "cat /sys/bus/pci/devices/{}/numa_node".format(if_pci)
             (ret, out, _) = ssh.exec_command(cmd)
             if ret == 0:
-                Topology.set_interface_numa_node(node, if_key, int(out))
+                try:
+                    node = int(out)
+                    if node < 0:
+                        raise ValueError
+                except ValueError:
+                    # For debug purpose we will try to get the value one more
+                    # time
+                    (ret, out, _) = ssh.exec_command(cmd)
+                    raise RuntimeError('Error reading numa location for: {0}'\
+                        .format(if_pci))
+                else:
+                    Topology.set_interface_numa_node(node, if_key, node)
+            else:
+                raise RuntimeError('Update numa node failed for: {0}'\
+                    .format(if_pci))
 
     @staticmethod
     def update_all_interface_data_on_all_nodes(nodes, skip_tg=False,
