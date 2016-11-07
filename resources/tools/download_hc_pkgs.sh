@@ -23,8 +23,10 @@ VER="RELEASE"
 REPO='fd.io.master.ubuntu.trusty.main'
 GROUP="io.fd.vpp"
 HC_GROUP="io.fd.honeycomb"
+NSH_GROUP="io.fd.nsh_sfc"
 VPP_ARTIFACTS="vpp vpp-dbg vpp-dev vpp-dpdk-dev vpp-dpdk-dkms vpp-lib vpp-plugins"
 HC_ARTIFACTS="honeycomb"
+NSH_ARTIFACT="vpp-nsh-plugin"
 PACKAGE="deb deb.md5"
 CLASS="deb"
 
@@ -37,6 +39,12 @@ done
 for ART in ${HC_ARTIFACTS}; do
     for PAC in $PACKAGE; do
         curl "${URL}?r=${REPO}&g=${HC_GROUP}&a=${ART}&p=${PAC}&v=${VER}&c=${CLASS}" -O -J || exit
+    done
+done
+
+for ART in ${NSH_ARTIFACTS}; do
+    for PAC in $PACKAGE; do
+        curl "${URL}?r=${REPO}&g=${NSH_GROUP}&a=${ART}&p=${PAC}&v=${VER}&c=${CLASS}" -O -J || exit
     done
 done
 
