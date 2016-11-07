@@ -296,3 +296,36 @@ class HoneycombSetup(object):
         if ret_code != 0:
             raise HoneycombError("Failed to modify configuration on "
                                  "node {0}, {1}".format(node, stderr))
+
+    @staticmethod
+    def enable_module_features(node):
+        """Configure Honeycomb to use VPP modules that are disabled by default.
+
+        Note: If the module is not enabled in VPP, Honeycomb will
+        be unable to establish VPP connection.
+
+        :param node: Honeycomb node.
+        :type node: dict
+        :raises HoneycombError: If the configuration could not be changed.
+         """
+
+        disabled_features = {
+            "NSH": "io.fd.honeycomb.vppnsh.impl.VppNshModule"
+        }
+
+        ssh = SSH()
+        ssh.connect(node)
+
+        for feature in disabled_features.keys():
+            # uncomment by replacing the entire line
+            find = replace = "{0}".format(disabled_features[feature])
+
+            argument = '"/{0}/c\\ {1}"'.format(find, replace)
+            path = "{0}/modules/io-fd-honeycomb-vpp-integration*module-config"\
+                .format(Const.REMOTE_HC_DIR)
+            command = "sed -i {0} {1}".format(argument, path)
+
+            (ret_code, _, stderr) = ssh.exec_command_sudo(command)
+            if ret_code != 0:
+                raise HoneycombError("Failed to modify configuration on "
+                                     "node {0}, {1}".format(node, stderr))
