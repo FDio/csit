@@ -237,6 +237,30 @@
     },
     {
       "key": {
+        "uuid": "9a437d4f_7d0adad3",
+        "filename": "tests/func/lisp/ipv4_lispgpe_ipv4.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-11-07T08:25:39Z",
+      "side": 1,
+      "message": "These KWs are different. This test teardown uses \"Show Vpp Settings\" but the common test teardown uses \"Show Vpp Errors\".",
+      "parentUuid": "9a437d4f_7d3c1a94",
+      "range": {
+        "startLine": 40,
+        "startChar": 33,
+        "endLine": 41,
+        "endChar": 64
+      },
+      "revId": "921c473aaf638617cf1b015442b553a96fddac7d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a437d4f_620c7b95",
         "filename": "tests/func/lisp/ipv6_lispgpe_ipv6.robot",
         "patchSetId": 5
