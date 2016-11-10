@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "9a437d4f_759f8e04",
+        "filename": "resources/libraries/python/honeycomb/HcAPIKwNSH.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-11-10T14:01:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a437d4f_3502263f",
+      "range": {
+        "startLine": 110,
+        "startChar": 8,
+        "endLine": 110,
+        "endChar": 11
+      },
+      "revId": "fb6d459434751e24471486a3ec0094b47fba9d42",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a437d4f_15ff2236",
         "filename": "resources/libraries/python/honeycomb/HcAPIKwNSH.py",
         "patchSetId": 5
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "9a437d4f_959af212",
+        "filename": "resources/libraries/python/honeycomb/HcAPIKwNSH.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-11-10T14:01:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a437d4f_15ff2236",
+      "range": {
+        "startLine": 122,
+        "startChar": 8,
+        "endLine": 122,
+        "endChar": 11
+      },
+      "revId": "fb6d459434751e24471486a3ec0094b47fba9d42",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a437d4f_f5fb7e45",
         "filename": "resources/libraries/python/honeycomb/HcAPIKwNSH.py",
         "patchSetId": 5
@@ -59,6 +107,30 @@
       "writtenOn": "2016-11-10T13:52:20Z",
       "side": 1,
       "message": "return is missing",
+      "range": {
+        "startLine": 165,
+        "startChar": 8,
+        "endLine": 165,
+        "endChar": 11
+      },
+      "revId": "fb6d459434751e24471486a3ec0094b47fba9d42",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a437d4f_b595f6e5",
+        "filename": "resources/libraries/python/honeycomb/HcAPIKwNSH.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-11-10T14:01:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a437d4f_f5fb7e45",
       "range": {
         "startLine": 165,
         "startChar": 8,
