@@ -106,17 +106,53 @@ do
     fi
 done
 
+# Download the latest VPP and HC .deb packages
+        echo Downloading packages...
+        bash ${SCRIPT_DIR}/resources/tools/download_hc_pkgs.sh
+
+        VPP_DEBS="$( readlink -f *.deb | tr '\n' ' ' )"
+        # Take vpp package and get the vpp version
+        VPP_STABLE_VER="$( expr match $(ls *.deb | head -n 1) 'vpp-\(.*\)-deb.deb' )"
+
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+VPP_DEBS=(*.deb)
+echo ${VPP_DEBS[@]}
+VIRL_DIR_LOC="/tmp"
+VPP_DEBS_FULL=(${VPP_DEBS[@]})
+
+# Prepend directory location at remote host to deb file list
+for index in "${!VPP_DEBS_FULL[@]}"; do
+    VPP_DEBS_FULL[${index}]=${VIRL_DIR_LOC}/${VPP_DEBS_FULL[${index}]}
+done
+
+echo "Updated file names: " ${VPP_DEBS_FULL[@]}
 
 cat ${VIRL_PKEY}
 
-# Copy start-honeycomb-testcase to VIRL
-START_FILE="resources/tools/virl/bin/start-honeycomb-testcase"
-DST_DIR_1="/home/jenkins-in/testcase-infra/bin/"
-DST_DIR_2="/home/jenkins-in/bin/"
+# Copy the files to VIRL hosts
+DONE=""
+for index in "${!VIRL_SERVER[@]}"; do
+    # Do not copy files in case they have already been copied to the VIRL host
+    [[ "${DONE[@]}" =~ "${VIRL_SERVER[${index}]}" ]] && copy=0 || copy=1
 
-scp ${SSH_OPTIONS} ${START_FILE} ${VIRL_USERNAME}@${VIRL_SERVER}:${DST_DIR_1}
-scp ${SSH_OPTIONS} ${START_FILE} ${VIRL_USERNAME}@${VIRL_SERVER}:${DST_DIR_2}
+    if [ "${copy}" -eq "0" ]; then
+        echo "deb files have already been copied to the VIRL host ${VIRL_SERVER[${index}]}"
+    else
+        scp ${SSH_OPTIONS} *.deb \
+        ${VIRL_USERNAME}@${VIRL_SERVER[${index}]}:${VIRL_DIR_LOC}/
+
+         result=$?
+        if [ "${result}" -ne "0" ]; then
+            echo "Failed to copy deb files to VIRL host ${VIRL_SERVER[${index}]}"
+            echo ${result}
+            exit ${result}
+        else
+            echo "deb files successfully copied to the VIRL host ${VIRL_SERVER[${index}]}"
+        fi
+        DONE+=(${VIRL_SERVER[${index}]})
+    fi
+done
 
 # Start a simulation on VIRL server
 echo "Starting simulation on VIRL server"
@@ -128,7 +164,7 @@ function stop_virl_simulation {
 
 VIRL_SID=$(ssh ${SSH_OPTIONS} \
     ${VIRL_USERNAME}@${VIRL_SERVER} \
-    "start-honeycomb-testcase ${VIRL_TOPOLOGY} -r ${VIRL_RELEASE}")
+    "start-testcase ${VIRL_TOPOLOGY} -r ${VIRL_RELEASE}")
 retval=$?
 if [ "$?" -ne "0" ]; then
     echo "VIRL simulation start failed"
