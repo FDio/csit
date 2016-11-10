@@ -41,10 +41,6 @@
     command: ln -sf /home/jenkins-in/testcase-infra/bin/start-testcase /home/jenkins-in/bin/start-testcase
     args:
       creates: /home/jenkins-in/bin/start-testcase
-  - name: Link start-honeycomb-testcase executable
-    command: ln -sf /home/jenkins-in/testcase-infra/bin/start-honeycomb-testcase /home/jenkins-in/bin/start-honeycomb-testcase
-    args:
-      creates: /home/jenkins-in/bin/start-honeycomb-testcase
   - name: Link stop-testcase executable
     command: ln -sf /home/jenkins-in/testcase-infra/bin/stop-testcase /home/jenkins-in/bin/stop-testcase
     args:
