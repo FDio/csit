@@ -77,15 +77,18 @@ def dhcpv6_solicit(tx_if, rx_if, dhcp_multicast_ip, link_local_ip, proxy_ip,
         raise RuntimeError('DHCPv6 SOLICIT timeout')
 
     if ether.dst != server_mac:
-        raise RuntimeError("Destination MAC address error!")
+        raise RuntimeError("Destination MAC address error: {} != {}".format(
+            ether.dst, server_mac))
     print "Destination MAC address: OK."
 
     if ether['IPv6'].src != proxy_ip:
-        raise RuntimeError("Source IP address error!")
+        raise RuntimeError("Source IP address error: {} != {}".format(
+            ether['IPv6'].src, proxy_ip))
     print "Source IP address: OK."
 
     if ether['IPv6'].dst != server_ip:
-        raise RuntimeError("Destination IP address error!")
+        raise RuntimeError("Destination IP address error: {} != {}".format(
+            ether['IPv6'].dst, server_ip))
     print "Destination IP address: OK."
 
     if ether['IPv6']['UDP']\
@@ -94,10 +97,11 @@ def dhcpv6_solicit(tx_if, rx_if, dhcp_multicast_ip, link_local_ip, proxy_ip,
     else:
         raise RuntimeError("Relay Agent/Server Message error.")
 
-    if ether['IPv6']['UDP']\
-        ['DHCPv6 Relay Forward Message (Relay Agent/Server Message)']\
-        .linkaddr != proxy_ip:
-        raise RuntimeError("Proxy IP address error!")
+    linkaddr = ether['IPv6']['UDP']\
+        ['DHCPv6 Relay Forward Message (Relay Agent/Server Message)'].linkaddr
+    if linkaddr != proxy_ip:
+        raise RuntimeError("Proxy IP address error: {} != {}".format(
+           linkaddr, proxy_ip))
     print "Proxy IP address: OK."
 
     try:
@@ -156,15 +160,18 @@ def dhcpv6_advertise(rx_if, tx_if, link_local_ip, proxy_ip,
         raise RuntimeError('DHCPv6 ADVERTISE timeout')
 
     if ether['IPv6'].src != proxy_ip:
-        raise RuntimeError("Source IP address error!")
+        raise RuntimeError("Source IP address error: {} != {}".format(
+            ether['IPv6'].src, proxy_ip))
     print "Source IP address: OK."
 
     if not _check_udp_checksum(ether['IPv6']):
         raise RuntimeError("Checksum error!")
     print "Checksum: OK."
 
-    if ether['IPv6']['UDP']['DHCPv6 Advertise Message'].msgtype != 'ADVERTISE':
-        raise RuntimeError("Message type error!")
+    msgtype = ether['IPv6']['UDP']['DHCPv6 Advertise Message'].msgtype
+    if msgtype != 'ADVERTISE':
+        raise RuntimeError("Message type error: {} != ADVERTISE".format(
+            msgtype))
     print "Message type: OK."
 
 
@@ -211,11 +218,13 @@ def dhcpv6_request(tx_if, rx_if, dhcp_multicast_ip, link_local_ip, proxy_ip,
         raise RuntimeError('DHCPv6 REQUEST timeout')
 
     if ether['IPv6'].src != proxy_ip:
-        raise RuntimeError("Source IP address error!")
+        raise RuntimeError("Source IP address error: {} != {}".format(
+            ether['IPv6'].src, proxy_ip))
     print "Source IP address: OK."
 
     if ether['IPv6'].dst != server_ip:
-        raise RuntimeError("Destination IP address error!")
+        raise RuntimeError("Destination IP address error: {} != {}".format(
+            ether['IPv6'].dst, server_ip))
     print "Destination IP address: OK."
 
     if ether['IPv6']['UDP']\
@@ -224,10 +233,11 @@ def dhcpv6_request(tx_if, rx_if, dhcp_multicast_ip, link_local_ip, proxy_ip,
     else:
         raise RuntimeError("Relay Agent/Server Message error.")
 
-    if ether['IPv6']['UDP']\
-            ['DHCPv6 Relay Forward Message (Relay Agent/Server Message)']\
-            .linkaddr != proxy_ip:
-        raise RuntimeError("Proxy IP address error!")
+    linkaddr = ether['IPv6']['UDP']\
+        ['DHCPv6 Relay Forward Message (Relay Agent/Server Message)'].linkaddr
+    if linkaddr != proxy_ip:
+        raise RuntimeError("Proxy IP address error: {} != {}".format(
+           linkaddr, proxy_ip))
     print "Proxy IP address: OK."
 
 
@@ -275,15 +285,17 @@ def dhcpv6_reply(rx_if, tx_if, link_local_ip, proxy_ip, server_ip, server_mac,
         raise RuntimeError('DHCPv6 REPLY timeout')
 
     if ether['IPv6'].src != proxy_ip:
-        raise RuntimeError("Source IP address error!")
+        raise RuntimeError("Source IP address error: {} != {}".format(
+            ether['IPv6'].src, proxy_ip))
     print "Source IP address: OK."
 
     if not _check_udp_checksum(ether['IPv6']):
         raise RuntimeError("Checksum error!")
     print "Checksum: OK."
 
-    if ether['IPv6']['UDP']['DHCPv6 Reply Message'].msgtype != 'REPLY':
-        raise RuntimeError("Message type error!")
+    msgtype = ether['IPv6']['UDP']['DHCPv6 Advertise Message'].msgtype
+    if msgtype != 'REPLY':
+        raise RuntimeError("Message type error: {} != REPLY".format(msgtype))
     print "Message type: OK."
 
 
