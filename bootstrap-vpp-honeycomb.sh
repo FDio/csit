@@ -106,11 +106,11 @@ do
     fi
 done
 
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
 # Download the latest VPP and HC .deb packages
 echo Downloading packages...
 bash ${SCRIPT_DIR}/resources/tools/download_hc_pkgs.sh
-
-SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 VPP_DEBS=(*.deb)
 echo ${VPP_DEBS[@]}
