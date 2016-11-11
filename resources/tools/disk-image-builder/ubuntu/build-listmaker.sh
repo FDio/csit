@@ -20,11 +20,11 @@ BUILD_DIR="$(pwd)/build"
 PACKER_DIR="${BUILD_DIR}/packer"
 OUT_DIR="${BUILD_DIR}/output/listmaker"
 
-if [ "$1" == "ubuntu-14.04.4" ]
+if [ "$1" = "ubuntu-14.04.4" ]
 then
     RELEASE_NAME="csit-ubuntu-14.04.4-listmaker"
     PACKER_TEMPLATE="listmaker/ubuntu-14.04.4.json"
-elif [ "$1" == "ubuntu-16.04.1" ]
+elif [ "$1" = "ubuntu-16.04.1" ]
 then
     RELEASE_NAME="csit-ubuntu-16.04.1-listmaker"
     PACKER_TEMPLATE="listmaker/ubuntu-16.04.1.json"
