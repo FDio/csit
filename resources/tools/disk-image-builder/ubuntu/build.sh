@@ -83,7 +83,7 @@ PACKER_DIR="${BUILD_DIR}/packer"
 APT_CACHE_DIR="${BUILD_DIR}/cache/apt"
 PIP_CACHE_DIR="${BUILD_DIR}/cache/pip"
 
-PACKER_TEMPLATE="ubuntu-14.04.4.json"
+PACKER_TEMPLATE="$1.json"
 LISTS_DIR="$(dirname $0)/lists"
 
 function syntax {
