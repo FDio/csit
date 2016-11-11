@@ -63,6 +63,7 @@ echo "Storing data in ${OUTPUT_DIR}/."
 
 APT_WANTLIST_INFRA="nfs-common cloud-init"
 APT_WANTLIST_CSIT="python-dev python-pip python-virtualenv git strongswan"
+APT_WANTLIST_TLDK="libpcap0.8-dev libpcap-dev"
 APT_WANTLIST_VPP="dkms bridge-utils"
 APT_WANTLIST_TREX="zlib1g-dev unzip"
 APT_WANTLIST_NESTED="qemu-system-x86"
@@ -72,7 +73,7 @@ APT_WANTLIST_JAVA="openjdk-8-jdk-headless"
 
 # For now, let us NOT incude WANTLIST_NESTED in the below. We're installing qemu
 # separately from a separate source.
-APT_WANTLIST="$APT_WANTLIST_INFRA $APT_WANTLIST_CSIT $APT_WANTLIST_VPP $WANTLIST_TREX"
+APT_WANTLIST="$APT_WANTLIST_INFRA $APT_WANTLIST_CSIT $APT_WANTLIST_VPP $APT_WANTLIST_TREX $APT_WANTLIST_TLDK"
 
 APT_OUTPUTFILE="${OUTPUT_DIR}/apt-packages.txt"
 
