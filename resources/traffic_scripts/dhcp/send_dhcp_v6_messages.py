@@ -30,6 +30,32 @@ def _check_udp_checksum(pkt):
     return new['UDP'].chksum == pkt['UDP'].chksum
 
 
+def _get_dhcpv6_msgtype(msg_index):
+    """Return DHCPv6 message type string.
+
+    :param msg_index: Index of message type.
+    :return: Message type.
+    :type msg_index: int
+    :rtype msg_str: str
+    """
+    dhcp6_messages = {
+        1: "SOLICIT",
+        2: "ADVERTISE",
+        3: "REQUEST",
+        4: "CONFIRM",
+        5: "RENEW",
+        6: "REBIND",
+        7: "REPLY",
+        8: "RELEASE",
+        9: "DECLINE",
+        10: "RECONFIGURE",
+        11: "INFORMATION-REQUEST",
+        12: "RELAY-FORW",
+        13: "RELAY-REPL"
+    }
+    return dhcp6_messages[msg_index]
+
+
 def dhcpv6_solicit(tx_if, rx_if, dhcp_multicast_ip, link_local_ip, proxy_ip,
                    server_ip, server_mac, client_duid, client_mac):
     """Send and check DHCPv6 SOLICIT proxy packet.
@@ -91,11 +117,12 @@ def dhcpv6_solicit(tx_if, rx_if, dhcp_multicast_ip, link_local_ip, proxy_ip,
             ether['IPv6'].dst, server_ip))
     print "Destination IP address: OK."
 
-    if ether['IPv6']['UDP']\
-        ['DHCPv6 Relay Forward Message (Relay Agent/Server Message)']:
-        print "Relay Agent/Server Message: OK."
-    else:
-        raise RuntimeError("Relay Agent/Server Message error.")
+    msgtype = _get_dhcpv6_msgtype(ether['IPv6']['UDP']
+        ['DHCPv6 Relay Forward Message (Relay Agent/Server Message)'].msgtype)
+    if msgtype != 'RELAY-FORW':
+        raise RuntimeError("Message type error: {} != RELAY-FORW".format(
+            msgtype))
+    print "Message type: OK."
 
     linkaddr = ether['IPv6']['UDP']\
         ['DHCPv6 Relay Forward Message (Relay Agent/Server Message)'].linkaddr
@@ -127,7 +154,7 @@ def dhcpv6_advertise(rx_if, tx_if, link_local_ip, proxy_ip,
     :param proxy_to_server_mac: MAC address of DHCPv6 proxy interface.
     :param interface_id: ID of proxy interface.
     :type rx_if: str
-    :type tx_if: str
+    :type tx_if: str| | [Tags] | EXPECTED_FAILING
     :type link_local_ip: str
     :type proxy_ip: str
     :type server_ip: str
@@ -168,7 +195,8 @@ def dhcpv6_advertise(rx_if, tx_if, link_local_ip, proxy_ip,
         raise RuntimeError("Checksum error!")
     print "Checksum: OK."
 
-    msgtype = ether['IPv6']['UDP']['DHCPv6 Advertise Message'].msgtype
+    msgtype = _get_dhcpv6_msgtype(ether['IPv6']['UDP']
+                                  ['DHCPv6 Advertise Message'].msgtype)
     if msgtype != 'ADVERTISE':
         raise RuntimeError("Message type error: {} != ADVERTISE".format(
             msgtype))
@@ -227,11 +255,12 @@ def dhcpv6_request(tx_if, rx_if, dhcp_multicast_ip, link_local_ip, proxy_ip,
             ether['IPv6'].dst, server_ip))
     print "Destination IP address: OK."
 
-    if ether['IPv6']['UDP']\
-        ['DHCPv6 Relay Forward Message (Relay Agent/Server Message)']:
-        print "Relay Agent/Server Message: OK."
-    else:
-        raise RuntimeError("Relay Agent/Server Message error.")
+    msgtype = _get_dhcpv6_msgtype(ether['IPv6']['UDP']
+        ['DHCPv6 Relay Forward Message (Relay Agent/Server Message)'].msgtype)
+    if msgtype != 'RELAY-FORW':
+        raise RuntimeError("Message type error: {} != RELAY-FORW".format(
+            msgtype))
+    print "Message type: OK."
 
     linkaddr = ether['IPv6']['UDP']\
         ['DHCPv6 Relay Forward Message (Relay Agent/Server Message)'].linkaddr
@@ -293,7 +322,8 @@ def dhcpv6_reply(rx_if, tx_if, link_local_ip, proxy_ip, server_ip, server_mac,
         raise RuntimeError("Checksum error!")
     print "Checksum: OK."
 
-    msgtype = ether['IPv6']['UDP']['DHCPv6 Reply Message'].msgtype
+    msgtype = _get_dhcpv6_msgtype(ether['IPv6']['UDP']
+                                  ['DHCPv6 Reply Message'].msgtype)
     if msgtype != 'REPLY':
         raise RuntimeError("Message type error: {} != REPLY".format(msgtype))
     print "Message type: OK."
