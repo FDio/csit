@@ -38,11 +38,11 @@ then
 fi
 DATE=$(date +%Y-%m-%d)
 
-if [ "$1" == "ubuntu-14.04.4" ]
+if [ "$1" = "ubuntu-14.04.4" ]
 then
     OS="ubuntu-14.04.4"
     VIRL_TOPOLOGY_FILE="listmaker/virl-listmaker-ubuntu-14.04.4.yaml"
-elif [ "$1" == "ubuntu-16.04.1" ]
+elif [ "$1" = "ubuntu-16.04.1" ]
 then
     OS="ubuntu-16.04.1"
     VIRL_TOPOLOGY_FILE="listmaker/virl-listmaker-ubuntu-16.04.1.yaml"
@@ -63,6 +63,7 @@ echo "Storing data in ${OUTPUT_DIR}/."
 
 APT_WANTLIST_INFRA="nfs-common cloud-init"
 APT_WANTLIST_CSIT="python-dev python-pip python-virtualenv git strongswan"
+APT_WANTLIST_TLDK="libpcap0.8-dev libpcap-dev"
 APT_WANTLIST_VPP="dkms bridge-utils"
 APT_WANTLIST_TREX="zlib1g-dev unzip"
 APT_WANTLIST_NESTED="qemu-system-x86"
@@ -72,7 +73,7 @@ APT_WANTLIST_JAVA="openjdk-8-jdk-headless"
 
 # For now, let us NOT incude WANTLIST_NESTED in the below. We're installing qemu
 # separately from a separate source.
-APT_WANTLIST="$APT_WANTLIST_INFRA $APT_WANTLIST_CSIT $APT_WANTLIST_VPP $WANTLIST_TREX"
+APT_WANTLIST="$APT_WANTLIST_INFRA $APT_WANTLIST_CSIT $APT_WANTLIST_VPP $APT_WANTLIST_TREX $APT_WANTLIST_TLDK"
 
 APT_OUTPUTFILE="${OUTPUT_DIR}/apt-packages.txt"
 
