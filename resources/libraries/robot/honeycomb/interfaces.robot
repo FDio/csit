@@ -237,7 +237,7 @@
 
 | IPv4 neighbor from Honeycomb should be
 | | [Documentation] | Retrieves ipv4 neighbor list through Honeycomb\
-| | and compares with neighbor list supplied in argument.
+| | ... | and compares with neighbor list supplied in argument.
 | | ...
 | | ... | *Arguments:*
 | | ... | - node - information about a DUT node. Type: dictionary
