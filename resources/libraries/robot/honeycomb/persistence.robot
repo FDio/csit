@@ -37,6 +37,7 @@
 | | ... | \| Honeycomb is restarted \| ${nodes['DUT1']} \|
 | | [Arguments] | ${node}
 | | Stop Honeycomb service on DUTs | ${node}
+| | Log Persisted Configuration | ${node}
 | | Setup Honeycomb service on DUTs | ${node}
 
 | VPP is restarted
@@ -78,6 +79,7 @@
 | | ... | \| Honeycomb and VPP are restarted \| ${nodes['DUT1']} \|
 | | [Arguments] | ${node}
 | | Stop Honeycomb service on DUTs | ${node}
+| | Log Persisted Configuration | ${node}
 | | Setup DUT | ${node}
 | | Setup Honeycomb service on DUTs | ${node}
 

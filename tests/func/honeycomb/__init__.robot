@@ -22,6 +22,7 @@
 | Suite Setup | Run Keywords | Setup All DUTs Before Test | AND
 | ... | Clear Persisted Honeycomb Configuration | ${node} | AND
 | ... | Configure Unsecured Access | ${node} | AND
+| ... | Configure Log Level | ${node} | TRACE | AND
 | ... | Setup Honeycomb Service On DUTs | ${node} | AND
 | ... | Set Global Variable | ${node}
 | Suite Teardown | Stop Honeycomb Service On DUTs | ${node}
