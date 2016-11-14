@@ -243,8 +243,7 @@ class HoneycombSetup(object):
                 "which java",
                 "java -version",
                 "dpkg --list | grep openjdk",
-                "ls -la /opt/honeycomb",
-                "ls -la /opt/honeycomb/v3po-karaf-1.0.0-SNAPSHOT")
+                "ls -la /opt/honeycomb")
 
         for node in nodes:
             if node['type'] == NodeType.DUT:
@@ -274,3 +273,26 @@ class HoneycombSetup(object):
             ssh.connect(node)
             ssh.exec_command_sudo(cmd)
 
+    @staticmethod
+    def configure_log_level(node, level):
+        """Set Honeycomb logging to the specified level.
+
+        :param node: Honeycomb node.
+        :param level: Log level (INFO, DEBUG, TRACE).
+        :type node: dict
+        :type level: str
+        """
+
+        find = 'logger name=\\"io.fd\\"'
+        replace = '<logger name=\\"io.fd\\" level=\\"{0}\\"/>'.format(level)
+
+        argument = '"/{0}/c\\ {1}"'.format(find, replace)
+        path = "{0}/config/logback.xml".format(Const.REMOTE_HC_DIR)
+        command = "sed -i {0} {1}".format(argument, path)
+
+        ssh = SSH()
+        ssh.connect(node)
+        (ret_code, _, stderr) = ssh.exec_command_sudo(command)
+        if ret_code != 0:
+            raise HoneycombError("Failed to modify configuration on "
+                                 "node {0}, {1}".format(node, stderr))
