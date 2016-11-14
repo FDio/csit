@@ -83,3 +83,22 @@ class HcPersistence(object):
         if ret_code != 0:
             raise HoneycombError("Failed to modify persistence file on node"
                                  " {0}, {1}".format(node, stderr))
+
+    @staticmethod
+    def log_persisted_configuration(node):
+        """Read contents of Honeycomb persistence files and print them to log.
+
+        :param node: Honeycomb node.
+        :type node: dict
+        """
+
+        commands = [
+            "cat {0}/config/data.json".format(Const.REMOTE_HC_PERSIST),
+            "cat {0}/context/data.json".format(Const.REMOTE_HC_PERSIST),
+        ]
+
+        ssh = SSH()
+        ssh.connect(node)
+        for command in commands:
+            (_, stdout, _) = ssh.exec_command_sudo(command)
+            logger.info(stdout)
