@@ -1,0 +1,47 @@
+{
+  "_c": "Centos7 ISO URL at the time of creation of this file (05/2016)",
+  "_c": "was http://centos.mirrors.hoobly.com/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso .",
+  "_c": "",
+  "variables": {
+    "release": null,
+    "outputdir": null,
+    "atlas_token": "{{env `ATLAS_TOKEN`}}", 
+    "virl_user": "{{env `VIRL_USER`}}",
+    "virl_password": "{{env `VIRL_PASSWORD`}}"
+  },
+  "builders": [
+    {
+      "name": "{{user `release`}}",
+      "type": "qemu",
+      "iso_url": "http://centos.mirrors.hoobly.com/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso",
+      "iso_checksum": "88c0437f0a14c6e2c94426df9d43cd67",
+      "iso_checksum_type": "md5",
+      "output_directory": "{{user `outputdir`}}",
+      "ssh_username": "root",
+      "ssh_password": "csit",
+      "disk_size": "4096",
+      "shutdown_command": "echo 'packer' | sudo -S /sbin/halt -h -p",
+      "http_directory": "html",
+      "iso_target_path" : "build/centos-7-1511.iso",
+      "headless": "true",
+      "boot_command":
+        [
+          "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks.cfg<enter><wait>"
+        ]
+    }
+  ],
+  "post-processors": [
+    {
+      "type": "shell-local",
+      "script": "scripts-local/upload-image-to-virl.sh",
+      "keep_input_artifact": true,
+      "environment_vars":
+        [
+          "VIRL_USER={{user `virl_user`}}",
+          "VIRL_PASSWORD={{user `virl_password`}}",
+          "VIRL_IMAGE_SUBTYPE=server",
+          "VIRL_IMAGE_NAME={{user `release`}}"
+        ]
+     }
+  ]
+}
