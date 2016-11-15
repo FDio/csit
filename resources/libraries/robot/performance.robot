@@ -1195,6 +1195,7 @@
 | | Run keyword | ${vm_name}.Qemu Set Disk Image | ${glob_vm_image}
 | | ${vm}= | Run keyword | ${vm_name}.Qemu Start
 | | Run keyword | ${vm_name}.Qemu Set Affinity | 5 | 6 | 7
+| | Run keyword | ${vm_name}.Qemu Set Scheduler
 | | Dpdk Testpmd Start | ${vm} | eal_coremask=0x7
 | | ...                | eal_mem_channels=4
 | | ...                | pmd_fwd_mode=io
@@ -1236,6 +1237,7 @@
 | | Run keyword | ${vm_name}.Qemu Set Disk Image | ${glob_vm_image}
 | | ${vm}= | Run keyword | ${vm_name}.Qemu Start
 | | Run keyword | ${vm_name}.Qemu Set Affinity | 5 | 6 | 7
+| | Run keyword | ${vm_name}.Qemu Set Scheduler
 | | Dpdk Testpmd Start | ${vm} | eal_coremask=0x7
 | | ...                | eal_mem_channels=4
 | | ...                | pmd_fwd_mode=mac

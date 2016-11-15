@@ -149,6 +149,20 @@ class QemuUtils(object):
                 raise RuntimeError('Set affinity failed on {0}'.format(
                     self._node['host']))
 
+    def qemu_set_scheduler(self):
+        """Set scheduling policy to SCHED_RR with priority 1 for qemu cpu
+        processes.
+        """
+        qemu_cpus = self._qemu_qmp_exec('query-cpus')['return']
+
+        for qemu_cpu in qemu_cpus:
+            cmd = 'chrt -r -p 1 {0}'.format(qemu_cpu['thread_id'])
+            (ret_code, _, stderr) = self._ssh.exec_command_sudo(cmd)
+            if int(ret_code) != 0:
+                logger.debug('Apply SCHED_RR failed {0}'.format(stderr))
+                raise RuntimeError('Apply SCHED_RR failed on {0}'.format(
+                    self._node['host']))
+
     def qemu_set_node(self, node):
         """Set node to run QEMU on.
 
