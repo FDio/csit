@@ -1195,6 +1195,7 @@
 | | Run keyword | ${vm_name}.Qemu Set Disk Image | ${glob_vm_image}
 | | ${vm}= | Run keyword | ${vm_name}.Qemu Start
 | | Run keyword | ${vm_name}.Qemu Set Affinity | 5 | 6 | 7
+| | Run keyword | ${vm_name}.Qemu Set Scheduler Policy
 | | Dpdk Testpmd Start | ${vm} | eal_coremask=0x7
 | | ...                | eal_mem_channels=4
 | | ...                | pmd_fwd_mode=io
@@ -1236,6 +1237,7 @@
 | | Run keyword | ${vm_name}.Qemu Set Disk Image | ${glob_vm_image}
 | | ${vm}= | Run keyword | ${vm_name}.Qemu Start
 | | Run keyword | ${vm_name}.Qemu Set Affinity | 5 | 6 | 7
+| | Run keyword | ${vm_name}.Qemu Set Scheduler Policy
 | | Dpdk Testpmd Start | ${vm} | eal_coremask=0x7
 | | ...                | eal_mem_channels=4
 | | ...                | pmd_fwd_mode=mac
@@ -1272,6 +1274,7 @@
 | | Run keyword | ${vm_name}.Qemu Set Disk Image | ${glob_vm_image}
 | | ${vm}= | Run keyword | ${vm_name}.Qemu Start
 | | Run keyword | ${vm_name}.Qemu Set Affinity | 5 | 6 | 7
+| | Run keyword | ${vm_name}.Qemu Set Scheduler Policy
 | | ${br}= | Set Variable | br0
 | | ${vhost1}= | Get Vhost User If Name By Sock | ${vm} | ${sock1}
 | | ${vhost2}= | Get Vhost User If Name By Sock | ${vm} | ${sock2}
