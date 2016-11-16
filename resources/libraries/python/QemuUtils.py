@@ -39,7 +39,7 @@ class QemuUtils(object):
         # Daemonize the QEMU process after initialization. Default one
         # management interface.
         self._qemu_opt['options'] = '-cpu host -daemonize -enable-kvm ' \
-            '-machine pc-1.0,accel=kvm,usb=off,mem-merge=off ' \
+            '-machine pc,accel=kvm,usb=off,mem-merge=off ' \
             '-net nic,macaddr=52:54:00:00:02:01 -balloon none'
         self._qemu_opt['ssh_fwd_port'] = 10022
         # Default serial console port
@@ -500,7 +500,7 @@ class QemuUtils(object):
         # Graphic setup
         graphic = '-monitor none -display none -vga none'
         # Run QEMU
-        cmd = '{0} {1} {2} {3} {4} -hda {5} {6} {7} {8} {9}'.format(
+        cmd = 'taskset -c 5 {0} {1} {2} {3} {4} -hda {5} {6} {7} {8} {9}'.format(
             self.__QEMU_BIN, self._qemu_opt.get('smp'), mem, ssh_fwd,
             self._qemu_opt.get('options'),
             self._qemu_opt.get('disk_image'), qmp, serial, qga, graphic)

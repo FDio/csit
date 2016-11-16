@@ -16,9 +16,8 @@
 | Library | resources.libraries.python.QemuUtils
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | PERFTEST_LONG
 | ...        | PERFTEST_VHOST | NIC_Intel-X520-DA2
-| Suite Setup | Run Keywords | 3-node Performance Suite Setup with DUT's NIC model
+| Suite Setup | 3-node Performance Suite Setup with DUT's NIC model
 | ... | L2 | Intel-X520-DA2
-| ...         | AND          | Kill QEMU on all DUTs
 | Suite Teardown | 3-node Performance Suite Teardown
 | Test Setup | Setup all DUTs before test
 | Test Teardown | Run Keywords
@@ -32,6 +31,7 @@
 | ...                 | ${dut1_vm_refs}
 | ...           | AND | Guest VM with dpdk-testpmd Teardown | ${dut2}
 | ...                 | ${dut2_vm_refs}
+| ...           | AND | Kill QEMU on all DUTs
 | Documentation | *RFC2544: Pkt throughput L2BD test cases with vhost*
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology
@@ -87,6 +87,7 @@
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
+| | And   Setup scheduler policy for VPP on all DUTs
 | | When  L2 bridge domains with Vhost-User initialized in a 3-node circular topology
 | | ...   | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
 | | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
@@ -118,6 +119,7 @@
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
+| | And   Setup scheduler policy for VPP on all DUTs
 | | When  L2 bridge domains with Vhost-User initialized in a 3-node circular topology
 | | ...   | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
 | | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
@@ -151,6 +153,7 @@
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
+| | And   Setup scheduler policy for VPP on all DUTs
 | | When  L2 bridge domains with Vhost-User initialized in a 3-node circular topology
 | | ...   | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
 | | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
@@ -182,6 +185,7 @@
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
+| | And   Setup scheduler policy for VPP on all DUTs
 | | When  L2 bridge domains with Vhost-User initialized in a 3-node circular topology
 | | ...   | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
 | | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
@@ -216,6 +220,7 @@
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
+| | And   Setup scheduler policy for VPP on all DUTs
 | | When  L2 bridge domains with Vhost-User initialized in a 3-node circular topology
 | | ...   | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
 | | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
@@ -247,6 +252,7 @@
 | | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Apply startup configuration on all VPP DUTs
+| | And   Setup scheduler policy for VPP on all DUTs
 | | When  L2 bridge domains with Vhost-User initialized in a 3-node circular topology
 | | ...   | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
 | | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
@@ -280,6 +286,7 @@
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
+| | And   Setup scheduler policy for VPP on all DUTs
 | | When  L2 bridge domains with Vhost-User initialized in a 3-node circular topology
 | | ...   | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
 | | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
@@ -311,6 +318,7 @@
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
+| | And   Setup scheduler policy for VPP on all DUTs
 | | When  L2 bridge domains with Vhost-User initialized in a 3-node circular topology
 | | ...   | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
 | | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
@@ -344,6 +352,7 @@
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
+| | And   Setup scheduler policy for VPP on all DUTs
 | | When  L2 bridge domains with Vhost-User initialized in a 3-node circular topology
 | | ...   | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
 | | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
@@ -375,6 +384,7 @@
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
+| | And   Setup scheduler policy for VPP on all DUTs
 | | When  L2 bridge domains with Vhost-User initialized in a 3-node circular topology
 | | ...   | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
 | | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
@@ -409,6 +419,7 @@
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
+| | And   Setup scheduler policy for VPP on all DUTs
 | | When  L2 bridge domains with Vhost-User initialized in a 3-node circular topology
 | | ...   | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
 | | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
@@ -441,6 +452,7 @@
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
+| | And   Setup scheduler policy for VPP on all DUTs
 | | When  L2 bridge domains with Vhost-User initialized in a 3-node circular topology
 | | ...   | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
 | | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
@@ -474,6 +486,7 @@
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
+| | And   Setup scheduler policy for VPP on all DUTs
 | | When  L2 bridge domains with Vhost-User initialized in a 3-node circular topology
 | | ...   | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
 | | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
@@ -505,6 +518,7 @@
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
+| | And   Setup scheduler policy for VPP on all DUTs
 | | When  L2 bridge domains with Vhost-User initialized in a 3-node circular topology
 | | ...   | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
 | | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
@@ -538,6 +552,7 @@
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
+| | And   Setup scheduler policy for VPP on all DUTs
 | | When  L2 bridge domains with Vhost-User initialized in a 3-node circular topology
 | | ...   | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
 | | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
@@ -569,6 +584,7 @@
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
+| | And   Setup scheduler policy for VPP on all DUTs
 | | When  L2 bridge domains with Vhost-User initialized in a 3-node circular topology
 | | ...   | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
 | | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
@@ -603,6 +619,7 @@
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
+| | And   Setup scheduler policy for VPP on all DUTs
 | | When  L2 bridge domains with Vhost-User initialized in a 3-node circular topology
 | | ...   | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
 | | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
@@ -635,6 +652,7 @@
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
+| | And   Setup scheduler policy for VPP on all DUTs
 | | When  L2 bridge domains with Vhost-User initialized in a 3-node circular topology
 | | ...   | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
 | | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
