@@ -90,7 +90,13 @@ PERFTEST_SHORT
 
 PERFTEST_LONG
     Find performance of DUT based on RFC2544 with linear/binary/combined
-    search. Each test case run is executed for 60 seconds.
+    search.
+
+PERFTEST_ENCAP
+    All encapsulation test case.
+
+PERFTEST_BASE
+    All baseline test case.
 
 PDR
     Partial Drop Rate evaluation of single run result. Loss acceptance of
