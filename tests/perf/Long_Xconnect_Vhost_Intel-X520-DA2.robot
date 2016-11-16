@@ -85,6 +85,7 @@
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
+| | And   Setup scheduler policy for VPP on all DUTs
 | | When  L2 xconnect with Vhost-User initialized in a 3-node circular topology
 | | ...   | ${sock1} | ${sock2}
 | | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
@@ -116,6 +117,7 @@
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
+| | And   Setup scheduler policy for VPP on all DUTs
 | | When  L2 xconnect with Vhost-User initialized in a 3-node circular topology
 | | ...   | ${sock1} | ${sock2}
 | | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
@@ -149,6 +151,7 @@
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
+| | And   Setup scheduler policy for VPP on all DUTs
 | | When  L2 xconnect with Vhost-User initialized in a 3-node circular topology
 | | ...   | ${sock1} | ${sock2}
 | | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
@@ -180,6 +183,7 @@
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
+| | And   Setup scheduler policy for VPP on all DUTs
 | | When  L2 xconnect with Vhost-User initialized in a 3-node circular topology
 | | ...   | ${sock1} | ${sock2}
 | | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
@@ -214,6 +218,7 @@
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
+| | And   Setup scheduler policy for VPP on all DUTs
 | | When  L2 xconnect with Vhost-User initialized in a 3-node circular topology
 | | ...   | ${sock1} | ${sock2}
 | | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
@@ -246,6 +251,7 @@
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
+| | And   Setup scheduler policy for VPP on all DUTs
 | | When  L2 xconnect with Vhost-User initialized in a 3-node circular topology
 | | ...   | ${sock1} | ${sock2}
 | | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
@@ -279,6 +285,7 @@
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
+| | And   Setup scheduler policy for VPP on all DUTs
 | | When  L2 xconnect with Vhost-User initialized in a 3-node circular topology
 | | ...   | ${sock1} | ${sock2}
 | | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
@@ -310,6 +317,7 @@
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
+| | And   Setup scheduler policy for VPP on all DUTs
 | | When  L2 xconnect with Vhost-User initialized in a 3-node circular topology
 | | ...   | ${sock1} | ${sock2}
 | | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
@@ -343,6 +351,7 @@
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
+| | And   Setup scheduler policy for VPP on all DUTs
 | | When  L2 xconnect with Vhost-User initialized in a 3-node circular topology
 | | ...   | ${sock1} | ${sock2}
 | | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
@@ -374,6 +383,7 @@
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
+| | And   Setup scheduler policy for VPP on all DUTs
 | | When  L2 xconnect with Vhost-User initialized in a 3-node circular topology
 | | ...   | ${sock1} | ${sock2}
 | | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
@@ -408,6 +418,7 @@
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
+| | And   Setup scheduler policy for VPP on all DUTs
 | | When  L2 xconnect with Vhost-User initialized in a 3-node circular topology
 | | ...   | ${sock1} | ${sock2}
 | | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
@@ -440,6 +451,7 @@
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
+| | And   Setup scheduler policy for VPP on all DUTs
 | | When  L2 xconnect with Vhost-User initialized in a 3-node circular topology
 | | ...   | ${sock1} | ${sock2}
 | | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
@@ -473,6 +485,7 @@
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
+| | And   Setup scheduler policy for VPP on all DUTs
 | | When  L2 xconnect with Vhost-User initialized in a 3-node circular topology
 | | ...   | ${sock1} | ${sock2}
 | | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
@@ -504,6 +517,7 @@
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
+| | And   Setup scheduler policy for VPP on all DUTs
 | | When  L2 xconnect with Vhost-User initialized in a 3-node circular topology
 | | ...   | ${sock1} | ${sock2}
 | | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
@@ -537,6 +551,7 @@
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
+| | And   Setup scheduler policy for VPP on all DUTs
 | | When  L2 xconnect with Vhost-User initialized in a 3-node circular topology
 | | ...   | ${sock1} | ${sock2}
 | | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
@@ -568,6 +583,7 @@
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
+| | And   Setup scheduler policy for VPP on all DUTs
 | | When  L2 xconnect with Vhost-User initialized in a 3-node circular topology
 | | ...   | ${sock1} | ${sock2}
 | | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
@@ -602,6 +618,7 @@
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
+| | And   Setup scheduler policy for VPP on all DUTs
 | | When  L2 xconnect with Vhost-User initialized in a 3-node circular topology
 | | ...   | ${sock1} | ${sock2}
 | | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
@@ -634,6 +651,7 @@
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
+| | And   Setup scheduler policy for VPP on all DUTs
 | | When  L2 xconnect with Vhost-User initialized in a 3-node circular topology
 | | ...   | ${sock1} | ${sock2}
 | | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
