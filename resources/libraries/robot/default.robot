@@ -19,31 +19,32 @@
 | Library | resources.libraries.python.TGSetup
 | Library | resources/libraries/python/VppConfigGenerator.py
 | Library | resources/libraries/python/VppCounters.py
+| Library | resources/libraries/python/VppUtil.py
 | Library | Collections
 
 *** Keywords ***
 | Setup all DUTs before test
-| | [Documentation] | Setup all DUTs in topology before test execution
+| | [Documentation] | Setup all DUTs in topology before test execution.
 | | Setup All DUTs | ${nodes}
 
 | Setup all TGs before traffic script
-| | [Documentation] | Prepare all TGs before traffic scripts execution
+| | [Documentation] | Prepare all TGs before traffic scripts execution.
 | | All TGs Set Interface Default Driver | ${nodes}
 
-| Show vpp version on all DUTs
-| | [Documentation] | Show VPP version verbose on all DUTs
+| Show Vpp Version On All DUTs
+| | [Documentation] | Show VPP version verbose on all DUTs.
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | Vpp show version verbose | ${nodes['${dut}']}
 
-| Show Vpp Errors on All DUTs
-| | [Documentation] | Show VPP errors verbose on all DUTs
+| Show Vpp Errors On All DUTs
+| | [Documentation] | Show VPP errors verbose on all DUTs.
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | Vpp Show Errors | ${nodes['${dut}']}
 
-| Show vpp trace dump on all DUTs
-| | [Documentation] | Save API trace and dump output on all DUTs
+| Show Vpp Trace Dump On All DUTs
+| | [Documentation] | Save API trace and dump output on all DUTs.
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | Vpp api trace save | ${nodes['${dut}']}
@@ -54,6 +55,13 @@
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | Vpp Show Vhost | ${nodes['${dut}']}
+
+| Setup Scheduler Policy for Vpp On All DUTs
+| | [Documentation] | Setup CFS scheduler policy to SCHED_RR with priority 1 on
+| | ...             | worker threads on all DUTs.
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | Set Vpp Scheduler Policy RR | ${nodes['${dut}']}
 
 | Add '${m}' worker threads and rxqueues '${n}' in 3-node single-link topo
 | | [Documentation] | Setup M worker threads and N rxqueues in vpp startup
