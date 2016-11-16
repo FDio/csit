@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "7a288981_28ec17c7",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-11-16T07:44:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a288981_289e5757",
+      "range": {
+        "startLine": 152,
+        "startChar": 8,
+        "endLine": 152,
+        "endChar": 26
+      },
+      "revId": "74cee60576f7f72e566ad16556445b84a22566ad",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a288981_08a39b9f",
         "filename": "resources/libraries/python/QemuUtils.py",
         "patchSetId": 2
@@ -36,6 +60,30 @@
       "writtenOn": "2016-11-16T07:21:28Z",
       "side": 1,
       "message": "Add raises part.",
+      "range": {
+        "startLine": 155,
+        "startChar": 8,
+        "endLine": 155,
+        "endChar": 11
+      },
+      "revId": "74cee60576f7f72e566ad16556445b84a22566ad",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a288981_08d15bfb",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 155,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-11-16T07:44:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a288981_08a39b9f",
       "range": {
         "startLine": 155,
         "startChar": 8,
