@@ -50,3 +50,30 @@ class VPPUtil(object):
             print("{} : {} \n".format(key, value))
             print(stdout)
             print("=" * 40)
+
+    @staticmethod
+    def set_vpp_scheduler_policy_rr(node):
+        """Set CFS scheduler policy to SCHED_RR with priority 1 on all vpp
+        worker threads.
+
+        :param node: VPP node.
+        :type node: dict
+        """
+        ssh = SSH()
+        ssh.connect(node)
+
+        cmd = "cat /proc/`pidof vpp`/task/*/stat | grep -i vpp_wk"\
+            " | awk '{print $1}'"
+
+        (ret, stdout, _) = ssh.exec_command_sudo(cmd)
+        if ret != 0:
+            raise RuntimeError("Failed to get VPP worker threads.")
+
+        for pid in stdout.split("\n"):
+            if len(pid) > 0:
+                cmd = "chrt -r -p 1 {0}".format(pid)
+                (ret, stdout, _) = ssh.exec_command_sudo(cmd)
+                if ret != 0:
+                    raise RuntimeError("Failed to set CFS on PID {0}."\
+                        .format(pid))
+
