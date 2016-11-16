@@ -500,7 +500,7 @@ class QemuUtils(object):
         # Graphic setup
         graphic = '-monitor none -display none -vga none'
         # Run QEMU
-        cmd = '{0} {1} {2} {3} {4} -hda {5} {6} {7} {8} {9}'.format(
+        cmd = 'taskset -c 5 {0} {1} {2} {3} {4} -hda {5} {6} {7} {8} {9}'.format(
             self.__QEMU_BIN, self._qemu_opt.get('smp'), mem, ssh_fwd,
             self._qemu_opt.get('options'),
             self._qemu_opt.get('disk_image'), qmp, serial, qga, graphic)

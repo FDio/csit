@@ -136,7 +136,7 @@ case "$TEST_TAG" in
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s "tests.perf" \
               --exclude SKIP_PATCH \
-              -i perftest_long \
+              -i perftest_vhost \
               tests/
         RETURN_STATUS=$(echo $?)
         ;;
