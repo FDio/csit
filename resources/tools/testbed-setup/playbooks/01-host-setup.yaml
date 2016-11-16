@@ -61,6 +61,8 @@
     copy: src=files/cpufrequtils dest=/etc/default/cpufrequtils owner=root group=root mode=0644
   - name: Disable IRQ load balancing
     copy: src=files/irqbalance dest=/etc/default/irqbalance owner=root group=root mode=0644
+  - name: Pinning of IRQs
+    command: for l in `ls /proc/irq`; do echo 1 | sudo tee /proc/irq/$l/smp_affinity; done
   - name: Disable ondemand
     service: name=ondemand enabled=no
   - name: Install cgroup-support
