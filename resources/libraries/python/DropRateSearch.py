@@ -102,7 +102,7 @@ class DropRateSearch(object):
     def get_latency(self):
         """Return min/avg/max latency.
 
-        :return: Latency stats.
+        :returns: Latency stats.
         :rtype: list
         """
         pass
@@ -122,7 +122,7 @@ class DropRateSearch(object):
         :type loss_acceptance: float
         :type loss_acceptance_type: LossAcceptanceType
         :type traffic_type: str
-        :return: Drop threshold exceeded? (True/False)
+        :returns: Drop threshold exceeded? (True/False)
         :rtype bool
         """
         pass
@@ -134,7 +134,8 @@ class DropRateSearch(object):
         :param min_rate: Lower value of search boundaries.
         :type max_rate: float
         :type min_rate: float
-        :return: nothing
+        :returns: nothing
+        :raises: ValueError if min rate is lower than 0 and higher than max rate
         """
         if float(min_rate) <= 0:
             raise ValueError("min_rate must be higher than 0")
@@ -149,7 +150,8 @@ class DropRateSearch(object):
 
         :param loss_acceptance: Loss acceptance treshold for PDR search.
         :type loss_acceptance: str
-        :return: nothing
+        :returns: nothing
+        :raises: ValueError if loss acceptance is lower than zero
         """
         if float(loss_acceptance) < 0:
             raise ValueError("Loss acceptance must be higher or equal 0")
@@ -159,7 +161,7 @@ class DropRateSearch(object):
     def get_loss_acceptance(self):
         """Return configured loss acceptance treshold.
 
-        :return: Loss acceptance treshold.
+        :returns: Loss acceptance treshold.
         :rtype: float
         """
         return self._loss_acceptance
@@ -167,14 +169,14 @@ class DropRateSearch(object):
     def set_loss_acceptance_type_percentage(self):
         """Set loss acceptance treshold type to percentage.
 
-        :return: nothing
+        :returns: nothing
         """
         self._loss_acceptance_type = LossAcceptanceType.PERCENTAGE
 
     def set_loss_acceptance_type_frames(self):
         """Set loss acceptance treshold type to frames.
 
-        :return: nothing
+        :returns: nothing
         """
         self._loss_acceptance_type = LossAcceptanceType.FRAMES
 
@@ -182,7 +184,7 @@ class DropRateSearch(object):
         """Return true if loss acceptance treshold type is percentage,
            false otherwise.
 
-        :return: True if loss acceptance treshold type is percentage.
+        :returns: True if loss acceptance treshold type is percentage.
         :rtype: boolean
         """
         return self._loss_acceptance_type == LossAcceptanceType.PERCENTAGE
@@ -192,28 +194,28 @@ class DropRateSearch(object):
 
         :param step_rate: Linear search step size.
         :type step_rate: float
-        :return: nothing
+        :returns: nothing
         """
         self._rate_linear_step = float(step_rate)
 
     def set_search_rate_type_percentage(self):
         """Set rate type to percentage of linerate.
 
-        :return: nothing
+        :returns: nothing
         """
         self._set_search_rate_type(RateType.PERCENTAGE)
 
     def set_search_rate_type_bps(self):
         """Set rate type to bits per second.
 
-        :return: nothing
+        :returns: nothing
         """
         self._set_search_rate_type(RateType.BITS_PER_SECOND)
 
     def set_search_rate_type_pps(self):
         """Set rate type to packets per second.
 
-        :return: nothing
+        :returns: nothing
         """
         self._set_search_rate_type(RateType.PACKETS_PER_SECOND)
 
@@ -222,7 +224,8 @@ class DropRateSearch(object):
 
         :param rate_type: Type of rate to set.
         :type rate_type: RateType
-        :return: nothing
+        :returns: nothing
+        :raises: Exception if rate type is unknown
         """
         if rate_type not in RateType:
             raise Exception("rate_type unknown: {}".format(rate_type))
@@ -234,7 +237,7 @@ class DropRateSearch(object):
 
         :param frame_size: Size of frames.
         :type frame_size: str
-        :return: nothing
+        :returns: nothing
         """
         self._frame_size = frame_size
 
@@ -243,14 +246,14 @@ class DropRateSearch(object):
 
         :param duration: Number of seconds for traffic to run.
         :type duration: int
-        :return: nothing
+        :returns: nothing
         """
         self._duration = int(duration)
 
     def get_duration(self):
         """Return configured duration of single traffic run.
 
-        :return: Number of seconds for traffic to run.
+        :returns: Number of seconds for traffic to run.
         :rtype: int
         """
         return self._duration
@@ -260,14 +263,14 @@ class DropRateSearch(object):
 
         :param convergence: Treshold value number.
         :type convergence: float
-        :return: nothing
+        :returns: nothing
         """
         self._binary_convergence_threshold = float(convergence)
 
     def get_binary_convergence_threshold(self):
         """Get convergence for binary search.
 
-        :return: Treshold value number.
+        :returns: Treshold value number.
         :rtype: float
         """
         return self._binary_convergence_threshold
@@ -275,8 +278,9 @@ class DropRateSearch(object):
     def get_rate_type_str(self):
         """Return rate type representation.
 
-        :return: String representation of rate type.
+        :returns: String representation of rate type.
         :rtype: str
+        :raises: ValueError if rate type is unknown
         """
         if self._rate_type == RateType.PERCENTAGE:
             return "%"
@@ -292,17 +296,18 @@ class DropRateSearch(object):
 
         :param max_attempts: Number of traffic runs.
         :type max_attempts: int
-        :return: nothing
+        :returns: nothing
+        :raises: ValueError if max attempts is lower than zero
         """
         if int(max_attempts) > 0:
             self._max_attempts = int(max_attempts)
         else:
-            raise ValueError("Max attempt must by greater then zero")
+            raise ValueError("Max attempt must by greater than zero")
 
     def get_max_attempts(self):
         """Return maximum number of traffic runs during one rate step.
 
-        :return: Number of traffic runs.
+        :returns: Number of traffic runs.
         :rtype: int
         """
         return self._max_attempts
@@ -310,14 +315,14 @@ class DropRateSearch(object):
     def set_search_result_type_best_of_n(self):
         """Set type of search result evaluation to Best of N.
 
-        :return: nothing
+        :returns: nothing
         """
         self._set_search_result_type(SearchResultType.BEST_OF_N)
 
     def set_search_result_type_worst_of_n(self):
         """Set type of search result evaluation to Worst of N.
 
-        :return: nothing
+        :returns: nothing
         """
         self._set_search_result_type(SearchResultType.WORST_OF_N)
 
@@ -326,7 +331,8 @@ class DropRateSearch(object):
 
         :param search_type: Type of search result evaluation to set.
         :type search_type: SearchResultType
-        :return: nothing
+        :returns: nothing
+        :raises: ValueError if search type is unknown
         """
         if search_type not in SearchResultType:
             raise ValueError("search_type unknown: {}".format(search_type))
@@ -339,7 +345,7 @@ class DropRateSearch(object):
 
         :param res_list: List of return values from all runs at one rate step.
         :type res_list: list
-        :return: True if at least one run is True, False otherwise.
+        :returns: True if at least one run is True, False otherwise.
         :rtype: boolean
         """
         # Return True if any element of the iterable is True.
@@ -351,7 +357,7 @@ class DropRateSearch(object):
 
         :param res_list: List of return values from all runs at one rate step.
         :type res_list: list
-        :return: False if at least one run is False, True otherwise.
+        :returns: False if at least one run is False, True otherwise.
         :rtype: boolean
         """
         # Return False if not all elements of the iterable are True.
@@ -362,8 +368,9 @@ class DropRateSearch(object):
 
         :param res_list: List of return values from all runs at one rate step.
         :type res_list: list
-        :return: Boolean based on search result type.
+        :returns: Boolean based on search result type.
         :rtype: boolean
+        :raises: ValueError if search result type is unknown
         """
         if self._search_result_type == SearchResultType.BEST_OF_N:
             return self._get_best_of_n(res_list)
@@ -379,7 +386,8 @@ class DropRateSearch(object):
         :param traffic_type: Traffic profile.
         :type start_rate: float
         :type traffic_type: str
-        :return: nothing
+        :returns: nothing
+        :raises: ValueError if start rate is not in range
         """
 
         if not self._rate_min <= float(start_rate) <= self._rate_max:
@@ -462,8 +470,9 @@ class DropRateSearch(object):
     def verify_search_result(self):
         """Fail if search was not successful.
 
-        :return: Result rate and latency stats.
+        :returns: Result rate and latency stats.
         :rtype: tuple
+        :raises: Exception if search failed
         """
         if self._search_result == SearchResults.FAILURE:
             raise Exception('Search FAILED')
@@ -482,7 +491,8 @@ class DropRateSearch(object):
         :type b_max: float
         :type traffic_type: str
         :type skip_max_rate: bool
-        :return: nothing
+        :returns: nothing
+        :raises: ValueError if input values are not valid
         """
 
         if not self._rate_min <= float(b_min) <= self._rate_max:
@@ -498,7 +508,7 @@ class DropRateSearch(object):
             rate = ((float(b_max) - float(b_min)) / 2) + float(b_min)
         else:
             # rate is max of interval
-            rate =  float(b_max)
+            rate = float(b_max)
         # rate diff with previous run
         rate_diff = abs(self._last_binary_rate - rate)
 
@@ -536,7 +546,8 @@ class DropRateSearch(object):
         :param traffic_type: Traffic profile.
         :type start_rate: float
         :type traffic_type: str
-        :return: nothing
+        :returns: nothing
+        :raises: RuntimeError if linear search failed
         """
 
         self.linear_search(start_rate, traffic_type)
@@ -583,9 +594,10 @@ class DropRateSearch(object):
         :type num_b: float
         :type rel_tol: float
         :type abs_tol: float
-        :return: Returns True if num_a is close in value to num_b or equal.
+        :returns: Returns True if num_a is close in value to num_b or equal.
                  False otherwise.
         :rtype: boolean
+        :raises: ValueError if input values are not valid
         """
 
         if num_a == num_b:

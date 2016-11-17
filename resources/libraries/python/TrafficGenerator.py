@@ -34,14 +34,30 @@ class TGDropRateSearchImpl(DropRateSearch):
 
     def measure_loss(self, rate, frame_size, loss_acceptance,
                      loss_acceptance_type, traffic_type):
+        """Runs the traffic and evaluate the measured results.
 
+        :param rate: Offered traffic load.
+        :param frame_size: Size of frame.
+        :param loss_acceptance: Permitted drop ratio or frames count.
+        :param loss_acceptance_type: Type of permitted loss.
+        :param traffic_type: Traffic profile ([2,3]-node-L[2,3], ...).
+        :type rate: int
+        :type frame_size: str
+        :type loss_acceptance: float
+        :type loss_acceptance_type: LossAcceptanceType
+        :type traffic_type: str
+        :returns: Drop threshold exceeded? (True/False)
+        :rtype: bool
+        :raises: NotImplementedError if TG is not supported.
+        :raises: RuntimeError if TG is not specified.
+        """
         # we need instance of TrafficGenerator instantiated by Robot Framework
         # to be able to use trex_stl-*()
         tg_instance = BuiltIn().get_library_instance(
             'resources.libraries.python.TrafficGenerator')
 
         if tg_instance._node['subtype'] is None:
-            raise Exception('TG subtype not defined')
+            raise RuntimeError('TG subtype not defined')
         elif tg_instance._node['subtype'] == NodeSubTypeTG.TREX:
             unit_rate = str(rate) + self.get_rate_type_str()
             tg_instance.trex_stl_start_remote_exec(self.get_duration(),
@@ -52,7 +68,6 @@ class TGDropRateSearchImpl(DropRateSearch):
             if self.loss_acceptance_type_is_percentage():
                 loss = (float(loss) / float(sent)) * 100
 
-            # TODO: getters for tg_instance
             logger.trace("comparing: {} < {} {}".format(loss,
                                                         loss_acceptance,
                                                         loss_acceptance_type))
@@ -64,12 +79,11 @@ class TGDropRateSearchImpl(DropRateSearch):
             raise NotImplementedError("TG subtype not supported")
 
     def get_latency(self):
-        """Return min/avg/max latency.
+        """Returns min/avg/max latency.
 
-        :return: Latency stats.
+        :returns: Latency stats.
         :rtype: list
         """
-
         tg_instance = BuiltIn().get_library_instance(
             'resources.libraries.python.TrafficGenerator')
         return tg_instance.get_latency_int()
@@ -93,7 +107,7 @@ class TrafficGenerator(object):
     def get_loss(self):
         """Return number of lost packets.
 
-        :return: Number of lost packets.
+        :returns: Number of lost packets.
         :rtype: str
         """
         return self._loss
@@ -101,7 +115,7 @@ class TrafficGenerator(object):
     def get_sent(self):
         """Return number of sent packets.
 
-        :return: Number of sent packets.
+        :returns: Number of sent packets.
         :rtype: str
         """
         return self._sent
@@ -109,7 +123,7 @@ class TrafficGenerator(object):
     def get_received(self):
         """Return number of received packets.
 
-        :return: Number of received packets.
+        :returns: Number of received packets.
         :rtype: str
         """
         return self._received
@@ -117,12 +131,11 @@ class TrafficGenerator(object):
     def get_latency_int(self):
         """Return rounded min/avg/max latency.
 
-        :return: Latency stats.
+        :returns: Latency stats.
         :rtype: list
         """
         return self._latency
 
-    #pylint: disable=too-many-arguments, too-many-locals
     def initialize_traffic_generator(self, tg_node, tg_if1, tg_if2,
                                      tg_if1_adj_node, tg_if1_adj_if,
                                      tg_if2_adj_node, tg_if2_adj_if,
@@ -136,7 +149,7 @@ class TrafficGenerator(object):
         :param tg_if1_adj_if: TG if1 adjecent interface.
         :param tg_if2_adj_node: TG if2 adjecent node.
         :param tg_if2_adj_if: TG if2 adjecent interface.
-        :test_type: 'L2' or 'L3' - src/dst MAC address.
+        :param test_type: 'L2' or 'L3' - src/dst MAC address.
         :type tg_node: dict
         :type tg_if1: str
         :type tg_if2: str
@@ -145,13 +158,14 @@ class TrafficGenerator(object):
         :type tg_if2_adj_node: dict
         :type tg_if2_adj_if: str
         :type test_type: str
-        :return: nothing
+        :returns: nothing
+        :raises: RuntimeError in case of issue during initialization.
         """
 
         topo = Topology()
 
         if tg_node['type'] != NodeType.TG:
-            raise Exception('Node type is not a TG')
+            raise RuntimeError('Node type is not a TG')
         self._node = tg_node
 
         if tg_node['subtype'] == NodeSubTypeTG.TREX:
@@ -259,10 +273,12 @@ class TrafficGenerator(object):
 
         :param node: Traffic generator node.
         :type node: dict
-        :return: nothing
+        :returns: nothing
+        :raises: RuntimeError if T-rex teardown failed.
+        :raises: RuntimeError if node type is not a TG.
         """
         if node['type'] != NodeType.TG:
-            raise Exception('Node type is not a TG')
+            raise RuntimeError('Node type is not a TG')
         if node['subtype'] == NodeSubTypeTG.TREX:
             ssh = SSH()
             ssh.connect(node)
@@ -278,7 +294,8 @@ class TrafficGenerator(object):
 
         :param node: T-REX generator node.
         :type node: dict
-        :return: Nothing
+        :returns: Nothing
+        :raises: RuntimeError if stop traffic script fails.
         """
         ssh = SSH()
         ssh.connect(node)
@@ -312,7 +329,9 @@ class TrafficGenerator(object):
         :type async_call: bool
         :type latency: bool
         :type warmup_time: int
-        :return: Nothing
+        :returns: Nothing
+        :raises: NotImplementedError if traffic type is not supported.
+        :raises: RuntimeError in case of TG driver issue.
         """
         ssh = SSH()
         ssh.connect(self._node)
@@ -491,9 +510,10 @@ class TrafficGenerator(object):
             self._latency.append(self._result.split(', ')[5].split('=')[1])
 
     def stop_traffic_on_tg(self):
-        """Stop all traffic on TG
+        """Stop all traffic on TG.
 
-        :return: Nothing
+        :returns: Nothing
+        :raises: RuntimeError if TG is not set.
         """
         if self._node is None:
             raise RuntimeError("TG is not set")
@@ -509,14 +529,21 @@ class TrafficGenerator(object):
         :param rate: Offered load per interface (e.g. 1%, 3gbps, 4mpps, ...).
         :param framesize: Frame size (L2) in Bytes.
         :param traffic_type: Traffic profile.
+        :param warmup_time: Warmup phase in seconds.
+        :param async_call: Async mode.
         :param latency: With latency measurement.
         :type duration: str
         :type rate: str
         :type framesize: str
         :type traffic_type: str
+        :type warmup_time: int
+        :type async_call: bool
         :type latency: bool
-        :return: TG output.
+        :returns: TG output.
         :rtype: str
+        :raises: RuntimeError if TG is not set.
+        :raises: RuntimeError if node is not TG or subtype is not specified.
+        :raises: NotImplementedError if TG is not supported.
         """
 
         node = self._node
@@ -524,10 +551,10 @@ class TrafficGenerator(object):
             raise RuntimeError("TG is not set")
 
         if node['type'] != NodeType.TG:
-            raise Exception('Node type is not a TG')
+            raise RuntimeError('Node type is not a TG')
 
         if node['subtype'] is None:
-            raise Exception('TG subtype not defined')
+            raise RuntimeError('TG subtype not defined')
         elif node['subtype'] == NodeSubTypeTG.TREX:
             self.trex_stl_start_remote_exec(duration, rate, framesize,
                                             traffic_type, async_call, latency,
@@ -540,7 +567,8 @@ class TrafficGenerator(object):
     def no_traffic_loss_occurred(self):
         """Fail if loss occurred in traffic run.
 
-        :return: nothing
+        :returns: nothing
+        :raises: Exception if loss occured.
         """
         if self._loss is None:
             raise Exception('The traffic generation has not been issued')
@@ -551,7 +579,12 @@ class TrafficGenerator(object):
                                       loss_acceptance_type):
         """Fail if loss is higher then accepted in traffic run.
 
-        :return: nothing
+        :param loss_acceptance: Permitted drop ratio or frames count.
+        :param loss_acceptance_type: Type of permitted loss.
+        :type loss_acceptance: float
+        :type loss_acceptance_type: LossAcceptanceType
+        :returns: nothing
+        :raises: Exception if loss is above acceptance criteria.
         """
         if self._loss is None:
             raise Exception('The traffic generation has not been issued')
