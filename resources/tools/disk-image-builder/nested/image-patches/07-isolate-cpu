@@ -1,0 +1,8 @@
+#!/bin/sh
+
+patch boot/grub/menu.lst <<"_EOF"
+15c17
+<       kernel /boot/bzImage rw root=/dev/sda1 console=ttyS0,115200n8
+---
+>       kernel /boot/bzImage rw root=/dev/sda1 console=ttyS0,115200n8 isolcpus=1-7 nohz_full=1-7 rcu_nocbs=1-7
+_EOF

@@ -50,6 +50,11 @@ do
   echo $dev > /sys/bus/pci/drivers/${TARGET_DRIVER}/bind
 done
 
+for i in $(ls /proc/irq/ | grep [0-9])
+do
+  echo 1 > /proc/irq/$i/smp_affinity
+done
+
 # Start testpmd in the background. This looks a bit convoluted; we need to redirect stdin
 # (and keep stdin active) or else testpmd will quit.
 tail -f /dev/null | nohup testpmd $@ > ${TESTPMD_LOG} 2>&1 &
