@@ -16,7 +16,7 @@
 # Test data for issue: https://jira.fd.io/browse/HONEYCOMB-105
 # Creating and removing interfaces may result in duplicated interface indices.
 trigger_105 = u"""
-<rpc message-id="m-27" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+<rpc message-id="m-1" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
 <get-config>
 <source>
 <running/>
@@ -32,7 +32,7 @@ trigger_105 = u"""
 </rpc>
 ]]>]]>
 
-<rpc message-id="m-72" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+<rpc message-id="m-2" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
 <lock>
 <target>
 <candidate/>
@@ -41,7 +41,7 @@ trigger_105 = u"""
 </rpc>
 ]]>]]>
 
-<rpc message-id="m-38" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+<rpc message-id="m-3" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
 <edit-config>
 <target>
 <candidate/>
@@ -67,12 +67,12 @@ a:operation="replace">
 </rpc>
 ]]>]]>
 
-<rpc message-id="m-80" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+<rpc message-id="m-4" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
 <commit/>
 </rpc>
 ]]>]]>
 
-<rpc message-id="m-74" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+<rpc message-id="m-5" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
 <unlock>
 <target>
 <candidate/>
@@ -81,7 +81,7 @@ a:operation="replace">
 </rpc>
 ]]>]]>
 
-<rpc message-id="m-72" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+<rpc message-id="m-6" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
 <lock>
 <target>
 <candidate/>
@@ -90,7 +90,7 @@ a:operation="replace">
 </rpc>
 ]]>]]>
 
-<rpc message-id="m-43" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+<rpc message-id="m-7" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
 <edit-config>
 <target>
 <candidate/>
@@ -108,12 +108,12 @@ a:operation="delete">
 </rpc>
 ]]>]]>
 
-<rpc message-id="m-80" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+<rpc message-id="m-8" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
 <commit/>
 </rpc>
 ]]>]]>
 
-<rpc message-id="m-74" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+<rpc message-id="m-9" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
 <unlock>
 <target>
 <candidate/>
@@ -122,7 +122,7 @@ a:operation="delete">
 </rpc>
 ]]>]]>
 
-<rpc message-id="m-72" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+<rpc message-id="m-10" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
 <lock>
 <target>
 <candidate/>
@@ -131,7 +131,7 @@ a:operation="delete">
 </rpc>
 ]]>]]>
 
-<rpc message-id="m-50" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+<rpc message-id="m-11" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
 <edit-config>
 <target>
 <candidate/>
@@ -157,12 +157,12 @@ a:operation="replace">
 </rpc>
 ]]>]]>
 
-<rpc message-id="m-80" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+<rpc message-id="m-12" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
 <commit/>
 </rpc>
 ]]>]]>
 
-<rpc message-id="m-74" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+<rpc message-id="m-13" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
 <unlock>
 <target>
 <candidate/>
@@ -171,7 +171,7 @@ a:operation="replace">
 </rpc>
 ]]>]]>
 
-<rpc message-id="m-72" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+<rpc message-id="m-14" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
 <lock>
 <target>
 <candidate/>
@@ -180,7 +180,7 @@ a:operation="replace">
 </rpc>
 ]]>]]>
 
-<rpc message-id="m-57" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+<rpc message-id="m-15" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
 <edit-config>
 <target>
 <candidate/>
@@ -206,12 +206,12 @@ a:operation="replace">
 </rpc>
 ]]>]]>
 
-<rpc message-id="m-80" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+<rpc message-id="m-16" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
 <commit/>
 </rpc>
 ]]>]]>
 
-<rpc message-id="m-74" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+<rpc message-id="m-17" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
 <unlock>
 <target>
 <candidate/>
@@ -220,7 +220,7 @@ a:operation="replace">
 </rpc>
 ]]>]]>
 
-<rpc message-id="m-72" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+<rpc message-id="m-18" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
 <lock>
 <target>
 <candidate/>
@@ -229,7 +229,7 @@ a:operation="replace">
 </rpc>
 ]]>]]>
 
-<rpc message-id="m-64" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+<rpc message-id="m-19" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
 <edit-config>
 <target>
 <candidate/>
@@ -255,12 +255,12 @@ a:operation="replace">
 </rpc>
 ]]>]]>
 
-<rpc message-id="m-80" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+<rpc message-id="m-20" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
 <commit/>
 </rpc>
 ]]>]]>
 
-<rpc message-id="m-74" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+<rpc message-id="m-21" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
 <unlock>
 <target>
 <candidate/>
@@ -269,7 +269,7 @@ a:operation="replace">
 </rpc>
 ]]>]]>
 
-<rpc message-id="m-72" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+<rpc message-id="m-22" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
 <lock>
 <target>
 <candidate/>
@@ -278,7 +278,7 @@ a:operation="replace">
 </rpc>
 ]]>]]>
 
-<rpc message-id="m-72" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+<rpc message-id="m-23" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
 <edit-config>
 <target>
 <candidate/>
@@ -303,12 +303,12 @@ a:operation="replace">
 </rpc>
 ]]>]]>
 
-<rpc message-id="m-80" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+<rpc message-id="m-24" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
 <commit/>
 </rpc>
 ]]>]]>
 
-<rpc message-id="m-74" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+<rpc message-id="m-25" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
 <unlock>
 <target>
 <candidate/>
@@ -317,7 +317,7 @@ a:operation="replace">
 </rpc>
 ]]>]]>
 
-<rpc message-id="m-72" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+<rpc message-id="m-26" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
 <lock>
 <target>
 <candidate/>
@@ -326,7 +326,7 @@ a:operation="replace">
 </rpc>
 ]]>]]>
 
-<rpc message-id="m-75" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+<rpc message-id="m-27" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
 <get>
 <filter xmlns:ns0="urn:ietf:params:xml:ns:netconf:base:1.0" ns0:type="subtree">
 <interfaces-state xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces"/>
@@ -334,3 +334,113 @@ a:operation="replace">
 </get>
 </rpc>
 ]]>]]>"""
+
+# Test data for issue: https://jira.fd.io/browse/HONEYCOMB-255
+# Reverting transaction fails with "missing writer"
+trigger_revert1 = u"""
+<rpc message-id="101" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+<edit-config>
+<target>
+<candidate/>
+</target>
+<config>
+<interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+<interface>
+<name>vxlan3</name>
+<type xmlns:v3po="urn:opendaylight:params:xml:ns:yang:v3po">
+    v3po:vxlan-tunnel</type>
+<enabled>true</enabled>
+<vxlan xmlns="urn:opendaylight:params:xml:ns:yang:v3po">
+<src>192.168.1.6</src>
+<dst>192.168.1.7</dst>
+<vni>9</vni>
+<encap-vrf-id>0</encap-vrf-id>
+</vxlan>
+</interface>
+</interfaces>
+</config>
+</edit-config>
+</rpc>
+]]>]]>
+
+<rpc message-id="101" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+<edit-config>
+<target>
+<candidate/>
+</target>
+<config>
+<interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+<interface>
+<name>vxlan4</name>
+<type xmlns:v3po="urn:opendaylight:params:xml:ns:yang:v3po">
+    v3po:vxlan-tunnel</type>
+<enabled>true</enabled>
+<vxlan xmlns="urn:opendaylight:params:xml:ns:yang:v3po">
+<src>192.168.1.6</src>
+<dst>192.168.1.7</dst>
+<vni>9</vni>
+<encap-vrf-id>0</encap-vrf-id>
+</vxlan>
+</interface>
+</interfaces>
+</config>
+</edit-config>
+</rpc>
+]]>]]>
+
+ <rpc message-id="102"
+      xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+   <commit/>
+ </rpc>
+ ]]>]]>"""
+
+# Test data for issue: https://jira.fd.io/browse/HONEYCOMB-255, part 2
+# Reverting transaction fails with "transaction has been closed"
+trigger_revert2 = u"""
+<rpc message-id="101" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+<edit-config>
+<target>
+<candidate/>
+</target>
+<config>
+<interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+<interface>
+<name>tap</name>
+<type xmlns:v3po="urn:opendaylight:params:xml:ns:yang:v3po">v3po:tap</type>
+<enabled>true</enabled>
+<tap xmlns="urn:opendaylight:params:xml:ns:yang:v3po">
+<tap-name>tap</tap-name>
+</tap>
+</interface>
+</interfaces>
+</config>
+</edit-config>
+</rpc>
+]]>]]>
+
+<rpc message-id="101" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+<edit-config>
+<target>
+<candidate/>
+</target>
+<config>
+<interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+<interface>
+<name>tap2</name>
+<type xmlns:v3po="urn:opendaylight:params:xml:ns:yang:v3po">v3po:tap</type>
+<enabled>true</enabled>
+<tap xmlns="urn:opendaylight:params:xml:ns:yang:v3po">
+<tap-name>tap</tap-name>
+</tap>
+</interface>
+</interfaces>
+</config>
+</edit-config>
+</rpc>
+]]>]]>
+
+ <rpc message-id="102"
+      xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+   <commit/>
+ </rpc>
+ ]]>]]>"""

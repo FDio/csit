@@ -15,6 +15,9 @@
 | Resource | resources/libraries/robot/default.robot
 | Resource | resources/libraries/robot/honeycomb/honeycomb.robot
 | Resource | resources/libraries/robot/honeycomb/netconf.robot
+| Resource | resources/libraries/robot/honeycomb/bridge_domain.robot
+| Library | resources.libraries.python.honeycomb.HcAPIKwInterfaces.InterfaceKeywords
+| ...     | WITH NAME | InterfaceAPI
 | Variables | resources/test_data/honeycomb/netconf/triggers.py
 | Documentation | *Netconf test suite. Contains test cases that need to bypass\
 | ... | REST API.*
@@ -22,11 +25,35 @@
 | Suite Teardown | Run Keyword If Any Tests Failed
 | ... | Restart Honeycomb And VPP And Clear Persisted Configuration | ${node}
 
+*** Variables ***
+| &{bd_settings}= | flood=${True} | forward=${True} | learn=${True}
+| ... | unknown-unicast-flood=${True} | arp-termination=${True}
+
 *** Test Cases ***
 | Honeycomb can create and delete interfaces
 | | [Documentation] | Repeatedly create and delete an interface through Netconf\
 | | ... | and check the reply for any errors.
 | | Given Netconf session is established | ${node}
+| | And Honeycomb creates first L2 bridge domain
+| | ... | ${node} | bd_netconf | ${bd_settings}
 | | :FOR | ${index} | IN RANGE | 20
 | | | When Error trigger is sent | ${trigger_105}
 | | | Then Replies should not contain RPC errors
+
+| Transaction revert test case 1
+| | [Documentation] | Configure two conflicting VxLAN tunnels, then verify\
+| | ... | that neither tunnel exists.
+| | Given Netconf session is established | ${node}
+| | ${if_data}= | And InterfaceAPI.Get all interfaces oper data | ${node}
+| | When Error trigger is sent | ${trigger_revert1}
+| | ${if_data_new}= | And InterfaceAPI.Get all interfaces oper data | ${node}
+| | Then Should be equal | ${if_data} | ${if_data_new}
+
+| Transaction revert test case 2
+| | [Documentation] | Configure two conflicting TAP interfaces, then verify\
+| | ... | that neither interface exists.
+| | Given Netconf session is established | ${node}
+| | ${if_data}= | And InterfaceAPI.Get all interfaces oper data | ${node}
+| | When Error trigger is sent | ${trigger_revert1}
+| | ${if_data_new}= | And InterfaceAPI.Get all interfaces oper data | ${node}
+| | Then Should be equal | ${if_data} | ${if_data_new}
