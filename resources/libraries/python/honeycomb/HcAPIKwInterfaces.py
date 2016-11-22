@@ -85,7 +85,7 @@ class InterfaceKeywords(object):
         :type interface: str
         :type data: dict
         :type data_representation: DataRepresentation
-        :return: Content of response.
+        :returns: Content of response.
         :rtype: bytearray
         :raises HoneycombError: If the status code in response on PUT is not
         200 = OK.
@@ -106,7 +106,7 @@ class InterfaceKeywords(object):
 
         :param node: Honeycomb node.
         :type node: dict
-        :return: Configuration data about all interfaces from Honeycomb.
+        :returns: Configuration data about all interfaces from Honeycomb.
         :rtype: list
         :raises HoneycombError: If it is not possible to get configuration data.
         """
@@ -131,7 +131,7 @@ class InterfaceKeywords(object):
         :param interface: The name of interface.
         :type node: dict
         :type interface: str
-        :return: Configuration data about the given interface from Honeycomb.
+        :returns: Configuration data about the given interface from Honeycomb.
         :rtype: dict
         """
 
@@ -147,7 +147,7 @@ class InterfaceKeywords(object):
 
         :param node: Honeycomb node.
         :type node: dict
-        :return: Operational data about all interfaces from Honeycomb.
+        :returns: Operational data about all interfaces from Honeycomb.
         :rtype: list
         :raises HoneycombError: If it is not possible to get operational data.
         """
@@ -170,7 +170,7 @@ class InterfaceKeywords(object):
 
         :param node: Honeycomb node.
         :type node: dict
-        :return: Operational data about disabled interfaces.
+        :returns: Operational data about disabled interfaces.
         :rtype: list
         :raises HoneycombError: If it is not possible to get operational data.
         """
@@ -199,7 +199,7 @@ class InterfaceKeywords(object):
         :param interface: The name of interface.
         :type node: dict
         :type interface: str
-        :return: Operational data about the given interface from Honeycomb.
+        :returns: Operational data about the given interface from Honeycomb.
         :rtype: dict
         """
 
@@ -225,7 +225,7 @@ class InterfaceKeywords(object):
         :type interface: str
         :type path: tuple
         :type new_value: str, dict or list
-        :return: Content of response.
+        :returns: Content of response.
         :rtype: bytearray
         :raises HoneycombError: If it is not possible to get or set the data.
         """
@@ -257,7 +257,7 @@ class InterfaceKeywords(object):
         :type node: dict
         :type interface: str
         :type state: str
-        :return: Content of response.
+        :returns: Content of response.
         :rtype: bytearray
         :raises KeyError: If the argument "state" is nor "up" or "down".
         :raises HoneycombError: If the interface is not present on the node.
@@ -298,7 +298,7 @@ class InterfaceKeywords(object):
         :param interface: The name of interface.
         :type node: dict
         :type interface: str
-        :return: Content of response
+        :returns: Content of response
         :rtype: bytearray
         """
 
@@ -312,7 +312,7 @@ class InterfaceKeywords(object):
         :param interface: The name of interface.
         :type node: dict
         :type interface: str
-        :return: Content of response.
+        :returns: Content of response.
         :rtype: bytearray
         """
 
@@ -333,7 +333,7 @@ class InterfaceKeywords(object):
         :type bd_name: str
         :type split_horizon_group: str
         :type bvi: str
-        :return: Content of response.
+        :returns: Content of response.
         :rtype: bytearray
         :raises HoneycombError: If the interface is not present on the node.
         """
@@ -391,7 +391,7 @@ class InterfaceKeywords(object):
         :param interface: The name of interface.
         :type node: dict
         :type interface: str
-        :return: Operational data about bridge domain settings in the
+        :returns: Operational data about bridge domain settings in the
         interface.
         :rtype: dict
         """
@@ -418,7 +418,7 @@ class InterfaceKeywords(object):
         :type interface: str
         :type param: str
         :type value: str
-        :return: Content of response.
+        :returns: Content of response.
         :rtype: bytearray
         :raises HoneycombError: If the parameter is not valid.
         """
@@ -443,7 +443,7 @@ class InterfaceKeywords(object):
         :type interface: str
         :type param: str
         :type value: str
-        :return: Content of response.
+        :returns: Content of response.
         :rtype: bytearray
         :raises HoneycombError: If the parameter is not valid.
         """
@@ -473,7 +473,7 @@ class InterfaceKeywords(object):
         :type interface: str
         :type ip_addr: str
         :type network: str or int
-        :return: Content of response.
+        :returns: Content of response.
         :rtype: bytearray
         :raises HoneycombError: If the provided netmask or prefix is not valid.
         """
@@ -504,7 +504,7 @@ class InterfaceKeywords(object):
         :type interface: str
         :type ip_addr: str
         :type network: str or int
-        :return: Content of response.
+        :returns: Content of response.
         :rtype: bytearray
         :raises HoneycombError: If the provided netmask or prefix is not valid.
         """
@@ -532,7 +532,7 @@ class InterfaceKeywords(object):
         :param interface: The name of interface.
         :type node: dict
         :type interface: str
-        :return: Content of response.
+        :returns: Content of response.
         :rtype: bytearray
         """
 
@@ -553,7 +553,7 @@ class InterfaceKeywords(object):
         :type interface: str
         :type ip_addr: str
         :type link_layer_address: str
-        :return: Content of response.
+        :returns: Content of response.
         :rtype: bytearray
         """
 
@@ -571,7 +571,7 @@ class InterfaceKeywords(object):
         :param interface: The name of interface.
         :type node: dict
         :type interface: str
-        :return: Content of response.
+        :returns: Content of response.
         :rtype: bytearray
         """
 
@@ -593,7 +593,7 @@ class InterfaceKeywords(object):
         :type interface: str
         :type param: str
         :type value: str
-        :return: Content of response.
+        :returns: Content of response.
         :rtype: bytearray
         :raises HoneycombError: If the parameter is not valid.
         """
@@ -624,7 +624,7 @@ class InterfaceKeywords(object):
         :type interface: str
         :type ip_addr: str
         :type prefix_len: str
-        :return: Content of response.
+        :returns: Content of response.
         :rtype: bytearray
         """
 
@@ -645,7 +645,7 @@ class InterfaceKeywords(object):
         :type interface: str
         :type ip_addr: str
         :type prefix_len: str
-        :return: Content of response.
+        :returns: Content of response.
         :rtype: bytearray
         """
 
@@ -663,7 +663,7 @@ class InterfaceKeywords(object):
         :param interface: The name of interface.
         :type node: dict
         :type interface: str
-        :return: Content of response.
+        :returns: Content of response.
         :rtype: bytearray
         """
 
@@ -684,7 +684,7 @@ class InterfaceKeywords(object):
         :type interface: str
         :type ip_addr: str
         :type link_layer_address: str
-        :return: Content of response.
+        :returns: Content of response.
         :rtype: bytearray
         """
 
@@ -702,7 +702,7 @@ class InterfaceKeywords(object):
         :param interface: The name of interface.
         :type node: dict
         :type interface: str
-        :return: Content of response.
+        :returns: Content of response.
         :rtype: bytearray
         """
 
@@ -724,7 +724,7 @@ class InterfaceKeywords(object):
         :type interface: str
         :type param: str
         :type value: str
-        :return: Content of response.
+        :returns: Content of response.
         :rtype: bytearray
         :raises HoneycombError: If the parameter is not valid.
         """
@@ -749,7 +749,7 @@ class InterfaceKeywords(object):
         :type interface: str
         :type param: str
         :type value: str
-        :return: Content of response.
+        :returns: Content of response.
         :rtype: bytearray
         :raises HoneycombError: If the parameter is not valid.
         """
@@ -773,7 +773,7 @@ class InterfaceKeywords(object):
         :type node: dict
         :type interface: str
         :type kwargs: dict
-        :return: Content of response.
+        :returns: Content of response.
         :rtype: bytearray
         :raises HoneycombError: If the parameter is not valid.
         """
@@ -802,7 +802,7 @@ class InterfaceKeywords(object):
         :param interface: The name of interface.
         :type node: dict
         :type interface: str
-        :return: Content of response.
+        :returns: Content of response.
         :rtype: bytearray
         :raises HoneycombError: If it is not possible to get information about
         interfaces or it is not possible to delete the interface.
@@ -844,7 +844,7 @@ class InterfaceKeywords(object):
         :type node: dict
         :type interface: str
         :type kwargs: dict
-        :return: Content of response.
+        :returns: Content of response.
         :rtype: bytearray
         :raises HoneycombError: If the parameter is not valid.
         """
@@ -873,7 +873,7 @@ class InterfaceKeywords(object):
         :type interface: str
         :type param: str
         :type value: str
-        :return: Content of response.
+        :returns: Content of response.
         :rtype: bytearray
         :raises HoneycombError: If the parameter is not valid.
         """
@@ -896,7 +896,7 @@ class InterfaceKeywords(object):
         :type node: dict
         :type interface: str
         :type kwargs: dict
-        :return: Content of response.
+        :returns: Content of response.
         :rtype: bytearray
         :raises HoneycombError: If the parameter is not valid.
         """
@@ -935,7 +935,7 @@ class InterfaceKeywords(object):
         :type node: dict
         :type interface: str
         :type kwargs: dict
-        :return: Content of response.
+        :returns: Content of response.
         :rtype: bytearray
         :raises HoneycombError: If the parameter is not valid.
         """
@@ -969,7 +969,7 @@ class InterfaceKeywords(object):
         :type node: dict
         :type interface: str
         :type kwargs: dict
-        :return: Content of response.
+        :returns: Content of response.
         :rtype: bytearray
         :raises HoneycombError: If the parameter is not valid.
         """
@@ -997,7 +997,7 @@ class InterfaceKeywords(object):
         :type node: dict
         :type interface: str
         :type kwargs: dict
-        :return: Content of response.
+        :returns: Content of response.
         :rtype: bytearray
         :raises HoneycombError: If the parameter is not valid.
         """
@@ -1034,7 +1034,7 @@ class InterfaceKeywords(object):
         :type match: str
         :type tags: list
         :type kwargs: dict
-        :return: Content of response.
+        :returns: Content of response.
         :rtype: bytearray
         :raises HoneycombError: If the parameter is not valid.
         :raises KeyError: If the parameter 'match' is invalid.
@@ -1090,7 +1090,7 @@ class InterfaceKeywords(object):
         :type node: dict
         :type super_interface: str
         :type identifier: int
-        :return: Sub-interface operational data.
+        :returns: Sub-interface operational data.
         :rtype: dict
         :raises HoneycombError: If there is no sub-interface with the given ID.
         """
@@ -1112,7 +1112,7 @@ class InterfaceKeywords(object):
         :param super_interface: Super interface.
         :type node: dict
         :type super_interface: str
-        :return: Content of response.
+        :returns: Content of response.
         :rtype: bytearray
         """
 
@@ -1135,7 +1135,7 @@ class InterfaceKeywords(object):
         :type super_interface: str
         :type identifier: int
         :type state: str
-        :return: Content of response.
+        :returns: Content of response.
         :rtype: bytearray
         """
 
@@ -1164,7 +1164,7 @@ class InterfaceKeywords(object):
         :type super_interface: str
         :type identifier: int
         :type config: dict
-        :return: Content of response.
+        :returns: Content of response.
         :rtype: bytearray
         """
 
@@ -1187,7 +1187,7 @@ class InterfaceKeywords(object):
         :type node: dict
         :type super_interface: str
         :type identifier: int
-        :return: Operational data about the bridge domain.
+        :returns: Operational data about the bridge domain.
         :rtype: dict
         :raises HoneycombError: If there is no sub-interface with the given ID.
         """
@@ -1212,7 +1212,7 @@ class InterfaceKeywords(object):
         :type super_interface: str
         :type identifier: int
         :type config: dict
-        :return: Content of response.
+        :returns: Content of response.
         :rtype: bytearray
         """
 
@@ -1236,7 +1236,7 @@ class InterfaceKeywords(object):
         :type node: dict
         :type super_interface: str
         :type identifier: int
-        :return: Operational data about tag rewrite.
+        :returns: Operational data about tag rewrite.
         :rtype: dict
         :raises HoneycombError: If there is no sub-interface with the given ID.
         """
@@ -1266,7 +1266,7 @@ class InterfaceKeywords(object):
         :type identifier: int
         :type ip_addr: str
         :type network: str or int
-        :return: Content of response.
+        :returns: Content of response.
         :rtype: bytearray
         :raises HoneycombError: If the provided netmask or prefix is not valid.
         """
@@ -1301,7 +1301,7 @@ class InterfaceKeywords(object):
         :type node: dict
         :type super_interface: str
         :type identifier: int
-        :return: Content of response.
+        :returns: Content of response.
         :rtype: bytearray
         """
 
@@ -1390,7 +1390,7 @@ class InterfaceKeywords(object):
         :type node: dict
         :type interface: str
         :type kwargs: dict
-        :return: Content of response.
+        :returns: Content of response.
         :rtype: bytearray
         :raises HoneycombError: If a parameter in kwargs is not valid.
         """
@@ -1423,7 +1423,7 @@ class InterfaceKeywords(object):
         :type node: dict
         :type interface: str
         :type table_name: str
-        :return: Content of response.
+        :returns: Content of response.
         :rtype: bytearray
         :raises HoneycombError: If the configuration of interface is not
         successful.
@@ -1462,7 +1462,7 @@ class InterfaceKeywords(object):
         :param interface: The interface where the ACL will be disabled.
         :type node: dict
         :type interface: str
-        :return: Content of response.
+        :returns: Content of response.
         :rtype: bytearray
         :raises HoneycombError: If the configuration of interface is not
         successful.
@@ -1482,28 +1482,25 @@ class InterfaceKeywords(object):
         return resp
 
     @staticmethod
-    def create_pbb_sub_interface(node, intf, sub_if_id, params):
+    def create_pbb_sub_interface(node, intf, params):
         """Creates a PBB sub-interface on the given interface and sets its
         parameters.
 
         :param node: Honeycomb node.
         :param intf: The interface where PBB sub-interface will be configured.
-        :param sub_if_id: Sub-interface ID.
         :param params: Configuration parameters of the sub-interface to be
         created.
         :type node: dict
         :type intf: str
-        :type sub_if_id: str or int
         :type params: dict
-        :return: Content of response.
+        :returns: Content of response.
         :rtype: bytearray
         :raises HoneycombError: If the configuration of sub-interface is not
         successful.
         """
 
         interface = intf.replace("/", "%2F")
-        path = "/interface/{0}/sub-interfaces:sub-interfaces/sub-interface/" \
-               "{1}".format(interface, sub_if_id)
+        path = "/interface/{0}/pbb-rewrite/".format(interface)
         status_code, resp = HcUtil. \
             put_honeycomb_data(node, "config_vpp_interfaces", params, path,
                                data_representation=DataRepresentation.JSON)
@@ -1514,24 +1511,21 @@ class InterfaceKeywords(object):
         return resp
 
     @staticmethod
-    def delete_pbb_sub_interface(node, intf, sub_if_id):
+    def delete_pbb_sub_interface(node, intf):
         """Deletes the given PBB sub-interface.
 
         :param node: Honeycomb node.
         :param intf: The interface where PBB sub-interface will be deleted.
-        :param sub_if_id: ID of the PBB sub-interface to be deleted.
         :type node: dict
         :type intf: str
-        :type sub_if_id: str or int
-        :return: Content of response.
+        :returns: Content of response.
         :rtype: bytearray
         :raises HoneycombError: If the removal of sub-interface is not
         successful.
         """
 
         interface = intf.replace("/", "%2F")
-        path = "/interface/{0}/sub-interfaces:sub-interfaces/sub-interface/" \
-               "{1}".format(interface, sub_if_id)
+        path = "/interface/{0}/pbb-rewrite".format(interface)
 
         status_code, resp = HcUtil. \
             delete_honeycomb_data(node, "config_vpp_interfaces", path)
@@ -1551,14 +1545,13 @@ class InterfaceKeywords(object):
         :type node: dict
         :type intf: str
         :type sub_if_id: str or int
-        :return: PBB sub-interface operational data.
+        :returns: PBB sub-interface operational data.
         :rtype: dict
         :raises HoneycombError: If the removal of sub-interface is not
         successful.
         """
 
-        interface = "{0}.{1}".format(intf, sub_if_id)
-        return InterfaceKeywords.get_interface_oper_data(node, interface)
+        raise NotImplementedError
 
     @staticmethod
     def check_disabled_interface(node, interface):
@@ -1569,7 +1562,7 @@ class InterfaceKeywords(object):
         :param interface: Index number of an interface on the node.
         :type node: dict
         :type interface: int
-        :return: True if the interface exists in disabled interfaces.
+        :returns: True if the interface exists in disabled interfaces.
         :rtype: bool
         :raises HoneycombError: If the interface is not present
          in retrieved list of disabled interfaces.
