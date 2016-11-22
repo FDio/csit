@@ -29,13 +29,13 @@
 | | ...
 | | ... | *Example:*
 | | ... | \| Honeycomb creates PBB sub interface \| ${node} \| ${super_if}\
-| | ... | \| ${cfg_pbb_sub_if_1_ID} \| ${cfg_pbb_sub_if_1} \|
+| | ... | \| ${cfg_pbb_sub_if_1} \|
 | | ...
-| | [Arguments] | ${node} | ${super_if} | ${sub_if_id} | ${params}
+| | [Arguments] | ${node} | ${super_if} | ${params}
 | | ...
 | | IfAPI.Set Interface Up | ${node} | ${super_if}
 | | IfAPI.Create PBB Sub Interface
-| | ... | ${node} | ${super_if} | ${sub_if_id} | ${params}
+| | ... | ${node} | ${super_if} | ${params}
 
 | Honeycomb Removes PBB Sub Interface
 | | [Documentation] | Uses Honeycomb API to remove PBB sub-interface from its\
@@ -48,11 +48,11 @@
 | | ...
 | | ... | *Example:*
 | | ... | \| Honeycomb Removes PBB sub interface\
-| | ... | \| ${node} \| ${super_if} \| ${cfg_pbb_sub_if_1_ID} \|
+| | ... | \| ${node} \| ${super_if} \|
 | | ...
-| | [Arguments] | ${node} | ${super_if} | ${sub_if_id}
+| | [Arguments] | ${node} | ${super_if}
 | | ...
-| | Delete PBB Sub Interface | ${node} | ${super_if} | ${sub_if_id}
+| | Delete PBB Sub Interface | ${node} | ${super_if}
 
 | PBB Sub Interface Operational Data From Honeycomb Should Be
 | | [Documentation] | Retrieves PBB sub-interface operational data from
@@ -107,12 +107,11 @@
 | | ...
 | | ... | *Example:*
 | | ... | \| Honeycomb fails to create PBB sub interface\
-| | ... | \| ${node} \| ${super_if} \| ${cfg_pbb_sub_if_ID}\
-| | ... | \| ${cfg_pbb_sub_if_no_vlan_tag} \|
+| | ... | \| ${node} \| ${super_if} \| ${cfg_pbb_sub_if_no_vlan_tag} \|
 | | ...
-| | [Arguments] | ${node} | ${super_if} | ${sub_if_id} | ${params}
+| | [Arguments] | ${node} | ${super_if} | ${params}
 | | ...
 | | IfAPI.Set Interface Up | ${node} | ${super_if}
-| | Run keyword and expect error | *HoneycombError*not successful*code: *00.
+| | Run keyword and expect error | *HoneycombError*not successful*.
 | | ... | IfAPI.Create PBB Sub Interface
-| | ... | ${node} | ${super_if} | ${sub_if_id} | ${params}
+| | ... | ${node} | ${super_if} | ${params}
