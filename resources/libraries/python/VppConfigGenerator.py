@@ -63,7 +63,7 @@ dpdk {{
 
 ip6 {{
   hash-buckets 2000000
-  heap-size 1G
+  heap-size 3G
 }}
 
 """
