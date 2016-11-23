@@ -29,7 +29,10 @@ def load_topo_from_yaml():
 
     :return: Nodes from loaded topology.
     """
-    topo_path = BuiltIn().get_variable_value("${TOPOLOGY_PATH}")
+    try:
+        topo_path = BuiltIn().get_variable_value("${TOPOLOGY_PATH}")
+    except:
+        return ''
 
     with open(topo_path) as work_file:
         return load(work_file.read())['nodes']
