@@ -96,7 +96,7 @@
 
 | Honeycomb modifies IPv4 neighbor table
 | | [Documentation] | Check if Honeycomb API can add and remove ARP entries.
-# Feature not implemented
+# Operational data and VAT dump not available (HONEYCOMB-111)
 | | [Tags] | EXPECTED_FAILING
 | | [Teardown] | Honeycomb clears all interface ipv4 neighbors
 | | ... | ${node} | ${interface}
@@ -104,11 +104,10 @@
 | | ... | ${node} | ${interface} | @{ipv4_neighbor}
 | | Then IPv4 neighbor from Honeycomb should be
 | | ... | ${node} | ${interface} | @{ipv4_neighbor}
-# VAT dump not available
 
 | Honeycomb modifies interface configuration - IPv6
 | | [Documentation] | Check if Honeycomb API can configure interfaces for ipv6.
-# Feature not implemented
+# Configuring IPv6 not implemented (HONEYCOMB-102)
 | | [Tags] | EXPECTED_FAILING
 | | When Honeycomb sets interface ipv6 address
 | | ... | ${node} | ${interface} | @{ipv6_address}
@@ -117,14 +116,18 @@
 | | And IPv6 address from VAT should be
 | | ... | ${node} | ${interface} | @{ipv6_address}
 
-| Honeycomb modifies interface configuration - ethernet,routing
-| | [Documentation] | Check if Honeycomb API can configure interface ethernet\
-| | ... | and routing settings.
-# Feature not implemented
+# TODO: Honeycomb modifies IPv6 neighbor table
+
+| Honeycomb modifies interface configuration - MTU
+| | [Documentation] | Check if Honeycomb API can configure interface\
+| | ... | MTU value.
+# Configuring MTU not implemented (HONEYCOMB-126)
 | | [Tags] | EXPECTED_FAILING
-| | When Honeycomb sets interface ethernet and routing configuration
-| | ... | ${node} | ${interface} | ${ethernet} | ${routing}
-| | Then Interface ethernet and routing configuration from Honeycomb should be
-| | ... | ${node} | ${interface} | ${ethernet} | ${routing}
-| | And Interface ethernet and routing configuration from VAT should be
-| | ... | ${node} | ${interface} | ${ethernet['mtu']} | ${routing['vrf-id']}
+| | When Honeycomb sets interface ethernet configuration
+| | ... | ${node} | ${interface} | ${ethernet}
+| | Then Interface ethernet configuration from Honeycomb should be
+| | ... | ${node} | ${interface} | ${ethernet}
+| | And Interface ethernet configuration from VAT should be
+| | ... | ${node} | ${interface} | ${ethernet['mtu']}
+
+# TODO: Honeycomb configures routing on interface

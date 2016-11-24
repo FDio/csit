@@ -27,6 +27,8 @@
 | Honeycomb persists configuration through restart of both Honeycomb and VPP
 | | [Documentation] | Checks if Honeycomb maintains configuration after both\
 | | ... | Honeycomb and VPP are restarted.
+# Vxlan tunnel name is not properly restored (HONEYCOMB-301)
+| | [Tags] | EXPECTED_FAILING
 | | Given Honeycomb configures every setting | ${node} | ${interface}
 | | And Honeycomb and VPP should verify every setting | ${node} | ${interface}
 | | When Honeycomb and VPP are restarted | ${node}
@@ -36,6 +38,8 @@
 | Honeycomb persists configuration through restart of Honeycomb
 | | [Documentation] | Checks if Honeycomb maintains configuration after it\
 | | ... | is restarted.
+# Vxlan tunnel name is not properly restored (HONEYCOMB-301)
+| | [Tags] | EXPECTED_FAILING
 | | Given Honeycomb and VPP should verify every setting | ${node} | ${interface}
 | | When Honeycomb is restarted | ${node}
 | | Then Honeycomb and VPP should verify every setting | ${node} | ${interface}
@@ -44,6 +48,8 @@
 | Honeycomb persists configuration through restart of VPP
 | | [Documentation] | Checks if Honeycomb updates VPP settings after VPP is\
 | | ... | restarted.
+# Vxlan tunnel name is not properly restored (HONEYCOMB-301)
+| | [Tags] | EXPECTED_FAILING
 | | Given Honeycomb and VPP should verify every setting | ${node} | ${interface}
 | | When VPP is restarted | ${node}
 | | Then Honeycomb and VPP should verify every setting | ${node} | ${interface}

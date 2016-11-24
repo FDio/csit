@@ -18,23 +18,6 @@
 | ...     | WITH NAME | InterfaceAPI
 
 *** Keywords ***
-| Interface state is
-| | [Documentation] | Uses VPP binary API to ensure that the interface under\
-| | ... | test is in the specified admin state.
-| | ...
-| | ... | *Arguments:*
-| | ... | - node - information about a DUT node. Type: dictionary
-| | ... | - interface - name of an interface on the specified node. Type: string
-| | ... | - state - state to set on interface. Type:string
-| | ...
-| | ... | *Example:*
-| | ...
-| | ... | \| Interface state is \| ${nodes['DUT1']} \| GigabitEthernet0/8/0 \
-| | ... | \| up \|
-| | [Arguments] | ${node} | ${interface} | ${state}
-| | interfaceCLI.Set interface state | ${node} | ${interface} | ${state}
-| | ... | if_type=name
-
 | Honeycomb sets interface state
 | | [Documentation] | Uses Honeycomb API to change the admin state\
 | | ... | of the specified interface.
@@ -271,7 +254,7 @@
 | | ... | \| Honeycomb clears all interface ipv4 neighbors \| ${nodes['DUT1']} \
 | | ... | \| GigabitEthernet0/8/0 \|
 | | [Arguments] | ${node} | ${interface}
-| | interfaceAPI.clear all ipv4 neighbors | ${node} | ${interface}
+| | interfaceAPI.Remove all ipv4 neighbors | ${node} | ${interface}
 
 | Honeycomb sets interface ipv6 address
 | | [Documentation] | Uses Honeycomb API to change ipv6 address\
@@ -333,67 +316,58 @@
 | | Should be equal | ${vpp_data[0]['ip']} | ${address}
 | | Should be equal | ${vpp_data[0]['prefix-length']} | ${prefix}
 
-| Honeycomb sets interface ethernet and routing configuration
-| | [Documentation] | Uses Honeycomb API to change interface configuration.
+| Honeycomb sets interface ethernet configuration
+| | [Documentation] | Uses Honeycomb API to change interface ethernet\
+| | ... | configuration.
 | | ...
 | | ... | *Arguments:*
 | | ... | - node - information about a DUT node. Type: dictionary
 | | ... | - interface - name of an interface on the specified node. Type: string
 | | ... | - ethernet - interface ethernet settings. Type: dictionary
-| | ... | - routing - interface routing settings. Type: dictionary
 | | ...
 | | ... | *Example:*
 | | ...
 | | ... | \| Honeycomb sets interface ethernet and routing configuration \
 | | ... | \| ${nodes['DUT1']} \| GigabitEthernet0/8/0 \| ${{'mtu': 1500}} \
-| | ... | \| ${{'vrf-if': 2}} \|
-| | [Arguments] | ${node} | ${interface} | ${ethernet} | ${routing}
+| | [Arguments] | ${node} | ${interface} | ${ethernet}
 | | :FOR | ${key} | IN | @{ethernet.keys()}
 | | | interfaceAPI.Configure interface ethernet
 | | | ... | ${node} | ${interface} | ${key} | ${ethernet['${key}']}
-| | :FOR | ${key} | IN | @{routing.keys()}
-| | | interfaceAPI.Configure interface routing
-| | | ... | ${node} | ${interface} | ${key} | ${routing['${key}']}
 
-| Interface ethernet and routing configuration from Honeycomb should be
-| | [Documentation] | Retrieves interface routing and ethernet configuration\
+| Interface ethernet configuration from Honeycomb should be
+| | [Documentation] | Retrieves interface ethernet configuration\
 | | ... | through Honeycomb and compares with settings supplied in arguments.
 | | ...
 | | ... | *Arguments:*
 | | ... | - node - information about a DUT node. Type: dictionary
 | | ... | - interface - name of an interface on the specified node. Type: string
 | | ... | - ethernet - interface ethernet settings. Type: dictionary
-| | ... | - routing - interface routing settings. Type: dictionary
 | | ...
 | | ... | *Example:*
 | | ...
 | | ... | \| Interface ethernet and routing configuration from Honeycomb \
 | | ... | should be \| ${nodes['DUT1']} \| GigabitEthernet0/8/0 \
-| | ... | \| ${{'mtu': 1500}} \| ${{'vrf-id': 2}} \|
-| | [Arguments] | ${node} | ${interface} | ${ethernet} | ${routing}
+| | ... | \| ${{'mtu': 1500}} \|
+| | [Arguments] | ${node} | ${interface} | ${ethernet}
 | | ${api_data}= | interfaceAPI.Get interface oper data | ${node} | ${interface}
 | | :FOR | ${key} | IN | @{ethernet.keys()}
 | | | Should be equal
 | | | ... | ${api_data['v3po:ethernet']['${key}']} | ${ethernet['${key}']}
-| | :FOR | ${key} | IN | @{routing.keys()}
-| | | Should be equal | ${api_data['${key}']} | ${routing['${key}']}
 
-| Interface ethernet and routing configuration from VAT should be
-| | [Documentation] | Retrieves interface routing and ethernet configuration\
+| Interface ethernet configuration from VAT should be
+| | [Documentation] | Retrieves interface ethernet configuration\
 | | ... | through VAT and compares with settings supplied in arguments.
 | | ...
 | | ... | *Arguments:*
 | | ... | - node - information about a DUT node. Type: dictionary
 | | ... | - interface - name of an interface on the specified node. Type: string
 | | ... | - mtu - value of maximum transmission unit expected. Type: integer
-| | ... | - vrf-id - ID number of a VPN expected on interface. Type: integer
 | | ...
 | | ... | *Example:*
 | | ...
 | | ... | \| Interface ethernet and routing configuration from VAT \
-| | ... | should be \| ${nodes['DUT1']} \| GigabitEthernet0/8/0 \| ${1500} \
-| | ... | \| ${2} \|
-| | [Arguments] | ${node} | ${interface} | ${mtu} | ${vrf-id}
+| | ... | should be \| ${nodes['DUT1']} \| GigabitEthernet0/8/0 \| ${1500} \|
+| | [Arguments] | ${node} | ${interface} | ${mtu}
 | | ${vat_data}= | InterfaceCLI.VPP get interface data | ${node} | ${interface}
 | | Should be equal | ${vat_data['mtu']} | ${mtu}
 
