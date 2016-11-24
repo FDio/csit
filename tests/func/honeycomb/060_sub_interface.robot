@@ -38,7 +38,7 @@
 | Honycomb creates sub-interface
 | | [Documentation] | Check if Honeycomb creates a sub-interface.
 | | ...
-| | Given Interface State Is | ${node} | ${super_if} | down
+| | Given Honeycomb sets interface state | ${node} | ${super_if} | down
 | | And sub-interface configuration from Honeycomb should be empty
 | | ... | ${node} | ${super_if} | ${sub_if_id}
 | | And interface configuration from VAT should be empty
