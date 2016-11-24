@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5a2585a7_13e2b403",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-11-24T07:25:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a2585a7_f3716878",
+      "range": {
+        "startLine": 50,
+        "startChar": 16,
+        "endLine": 50,
+        "endChar": 20
+      },
+      "revId": "9dbab1057b862b79c55eacfe31751d580e4aa302",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a2585a7_b36be084",
         "filename": "resources/libraries/python/TrafficGenerator.py",
         "patchSetId": 7
@@ -36,6 +60,30 @@
       "writtenOn": "2016-11-24T07:16:54Z",
       "side": 1,
       "message": "Consider using less general exception, e.g. RuntimeError",
+      "range": {
+        "startLine": 52,
+        "startChar": 17,
+        "endLine": 52,
+        "endChar": 26
+      },
+      "revId": "9dbab1057b862b79c55eacfe31751d580e4aa302",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_f3e60816",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-11-24T07:25:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a2585a7_b36be084",
       "range": {
         "startLine": 52,
         "startChar": 17,
