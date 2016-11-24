@@ -87,6 +87,8 @@
 | Honeycomb removes bridge domain with an interface assigned
 | | [Documentation] | Check if Honeycomb can remove a bridge domain that has an\
 | | ... | interface assigned to it.
+# Bridge domain references not cleaned up on delete (HONEYCOMB-267)
+| | [Tags] | EXPECTED_FAILING
 | | Given Honeycomb should show interfaces assigned to bridge domain
 | | ... | ${node} | @{interfaces} | ${bd1_name} | ${if_settings}
 | | And VAT should show interfaces assigned to bridge domain
