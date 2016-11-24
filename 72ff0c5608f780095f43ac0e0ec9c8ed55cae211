@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5a2585a7_96b57233",
+        "filename": "resources/tools/doc_gen/gen_rst.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-11-24T10:34:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a2585a7_0decd1c6",
+      "range": {
+        "startLine": 94,
+        "startChar": 52,
+        "endLine": 94,
+        "endChar": 54
+      },
+      "revId": "72ff0c5608f780095f43ac0e0ec9c8ed55cae211",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a2585a7_8d4561b5",
         "filename": "resources/tools/doc_gen/gen_rst.py",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2016-11-24T09:30:04Z",
       "side": 1,
       "message": "What about create_rst_files_set ?\nAs the rst file names are created by method create_file_name...",
+      "range": {
+        "startLine": 105,
+        "startChar": 4,
+        "endLine": 105,
+        "endChar": 25
+      },
+      "revId": "72ff0c5608f780095f43ac0e0ec9c8ed55cae211",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_76820654",
+        "filename": "resources/tools/doc_gen/gen_rst.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-11-24T10:34:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a2585a7_8d4561b5",
       "range": {
         "startLine": 105,
         "startChar": 4,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "5a2585a7_56870a62",
+        "filename": "resources/tools/doc_gen/gen_rst.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-11-24T10:34:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a2585a7_edf7458b",
+      "range": {
+        "startLine": 109,
+        "startChar": 10,
+        "endLine": 109,
+        "endChar": 11
+      },
+      "revId": "72ff0c5608f780095f43ac0e0ec9c8ed55cae211",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a2585a7_8dee81b3",
         "filename": "resources/tools/doc_gen/gen_rst.py",
         "patchSetId": 1
@@ -82,6 +154,30 @@
       "writtenOn": "2016-11-24T09:30:04Z",
       "side": 1,
       "message": "is",
+      "range": {
+        "startLine": 110,
+        "startChar": 52,
+        "endLine": 110,
+        "endChar": 54
+      },
+      "revId": "72ff0c5608f780095f43ac0e0ec9c8ed55cae211",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_367c7e72",
+        "filename": "resources/tools/doc_gen/gen_rst.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-11-24T10:34:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a2585a7_8dee81b3",
       "range": {
         "startLine": 110,
         "startChar": 52,
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "5a2585a7_1681824a",
+        "filename": "resources/tools/doc_gen/gen_rst.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-11-24T10:34:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a2585a7_6d1235b6",
+      "range": {
+        "startLine": 129,
+        "startChar": 21,
+        "endLine": 129,
+        "endChar": 23
+      },
+      "revId": "72ff0c5608f780095f43ac0e0ec9c8ed55cae211",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a2585a7_0dbbb173",
         "filename": "resources/tools/doc_gen/gen_rst.py",
         "patchSetId": 1
@@ -128,6 +248,30 @@
       "writtenOn": "2016-11-24T09:30:04Z",
       "side": 1,
       "message": "names",
+      "range": {
+        "startLine": 198,
+        "startChar": 36,
+        "endLine": 198,
+        "endChar": 40
+      },
+      "revId": "72ff0c5608f780095f43ac0e0ec9c8ed55cae211",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_f695d688",
+        "filename": "resources/tools/doc_gen/gen_rst.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-11-24T10:34:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a2585a7_0dbbb173",
       "range": {
         "startLine": 198,
         "startChar": 36,
