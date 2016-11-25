@@ -1,0 +1,61 @@
+# Copyright (c) 2016 Cisco and/or its affiliates.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at:
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+
+"""
+This module exists to provide the l2fwd test for DPDK on topology nodes.
+"""
+
+from robot.api import logger
+from robot.libraries.BuiltIn import BuiltIn
+
+from resources.libraries.python.ssh import SSH
+from resources.libraries.python.constants import Constants as con
+from resources.libraries.python.topology import Topology
+
+class L2fwdTest(object):
+    """Test the DPDK l2fwd performance."""
+
+    @staticmethod
+    def start_the_l2fwd_test(dut_node, cpu_coremask, nb_cores, queue_nums,
+                            jumbo_frames):
+        """
+        Execute the l2fwd on the dut_node.
+
+        :param dut_node: will execute the l2fwd on this node
+        :param cpu_coremask: the DPDK run core mask
+        :param nb_cores: the cores number for the forwarding
+        :param queue_nums: the queues number for the NIC
+        :param jumbo_frames: is jumbo frames or not
+        :type dut_node: dict
+        :type cpu_coremask: str
+        :type nb_cores: str
+        :type queue_nums: str
+        :type jumbo_frames: str
+        :return: none
+        """
+        ssh = SSH()
+        ssh.connect(dut_node)
+
+        cmd = 'cd {0}/dpdk-tests/dpdk_scripts/ && ./run_l2fwd.sh ' \
+              '{1} {2} {3} {4}'.format(con.REMOTE_FW_DIR, cpu_coremask,
+              nb_cores, queue_nums, jumbo_frames)
+
+        logger.console('Will Execute the cmd: {0}'.format(cmd))
+
+        (ret_code, _, stderr) = ssh.exec_command(cmd, timeout=600)
+        if 0 != ret_code:
+            logger.error('Execute the l2fwd error: {0}'.format(stderr))
+            raise Exception('Failed to execute l2fwd test at node {0}'
+                            .format(dut_node['host']))
+
