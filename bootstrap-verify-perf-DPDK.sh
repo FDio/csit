@@ -79,10 +79,10 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -L TRACE \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -v DPDK_TEST:True
+              -v DPDK_TEST:True \
               -s "dpdk-tests.perf" \
               --exclude SKIP_PATCH \
-              -i perftest_long \
+              -i NDRPDRDISC \
               dpdk-tests/
         RETURN_STATUS=$(echo $?)
         ;;
@@ -90,27 +90,9 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -L TRACE \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -v DPDK_TEST:True
+              -v DPDK_TEST:True \
               -s "dpdk-tests.perf" \
-              -i perftest_short \
-              dpdk-tests/
-        RETURN_STATUS=$(echo $?)
-        ;;
-    PERFTEST_NDR )
-        pybot ${PYBOT_ARGS} \
-              -L TRACE \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -v DPDK_TEST:True
-              -s "dpdk-tests.perf" -i NDR \
-              dpdk-tests/
-        RETURN_STATUS=$(echo $?)
-        ;;
-    PERFTEST_PDR )
-        pybot ${PYBOT_ARGS} \
-              -L TRACE \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -v DPDK_TEST:True
-              -s "dpdk-tests.perf" -i PDR \
+              -i NDRCHK \
               dpdk-tests/
         RETURN_STATUS=$(echo $?)
         ;;
@@ -119,7 +101,7 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -L TRACE \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -v DPDK_TEST:True
+              -v DPDK_TEST:True \
               -s "dpdk-tests.perf" \
               dpdk-tests/
         RETURN_STATUS=$(echo $?)
@@ -129,7 +111,7 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -L TRACE \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -v DPDK_TEST:True
+              -v DPDK_TEST:True \
               -s "dpdk-tests.perf" \
               dpdk-tests/
         RETURN_STATUS=$(echo $?)
