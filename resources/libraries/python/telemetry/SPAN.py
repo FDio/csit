@@ -37,12 +37,60 @@ class SPAN(object):
         :type dst_if: str
         """
 
-        src_if = Topology.get_interface_name(node, src_if)
-        dst_if = Topology.get_interface_name(node, dst_if)
+        src_if = Topology.get_interface_sw_index(node, src_if)
+        dst_if = Topology.get_interface_sw_index(node, dst_if)
 
         with VatTerminal(node, json_param=False) as vat:
             vat.vat_terminal_exec_cmd_from_template('span_create.vat',
-                                                    src_if=src_if,
-                                                    dst_if=dst_if,
+                                                    src_sw_if_index=src_if,
+                                                    dst_sw_if_index=dst_if,
                                                     )
-    # TODO: Update "span_create.vat" to use VAT command, once available
+
+    @staticmethod
+    def vpp_get_span_configuration(node):
+        """Get full SPAN configuration from VPP node.
+
+        :param node: DUT node.
+        :type node: dict
+        :returns: Full SPAN configuration as list. One list entry for every
+        source/destination interface pair.
+        :rtype: list of dict
+        """
+
+        with VatTerminal(node, json_param=True) as vat:
+            data = vat.vat_terminal_exec_cmd_from_template('span_dump.vat')
+            return data[0]
+
+    @staticmethod
+    def vpp_get_span_configuration_by_interface(node, dst_interface,
+                                                ret_format="sw_if_index"):
+        """Get a list of all interfaces currently being mirrored
+        to the specified interface.
+
+        :param node: DUT node.
+        :param dst_interface: Name, sw_if_index or key of interface.
+        :param ret_format: Optional. Desired format of returned interfaces.
+        :type node: dict
+        :type dst_interface: str or int
+        :type ret_format: string
+        :returns: List of SPAN source interfaces for the provided destination
+        interface.
+        :rtype: list
+        """
+
+        data = SPAN.vpp_get_span_configuration(node)
+
+        dst_interface = Topology.convert_interface_reference(
+            node, dst_interface, "sw_if_index")
+        src_interfaces = []
+        for item in data:
+            if item["dst-if-index"] == dst_interface:
+                src_interfaces.append(item["src-if-index"])
+
+        if ret_format != "sw_if_index":
+            src_interfaces = [
+                Topology.convert_interface_reference(
+                    node, interface, ret_format
+                ) for interface in src_interfaces]
+
+        return src_interfaces
