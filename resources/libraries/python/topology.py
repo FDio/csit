@@ -126,6 +126,19 @@ class Topology(object):
         node['interfaces'][iface_key]['vpp_sw_index'] = int(sw_if_index)
 
     @staticmethod
+    def update_interface_name(node, iface_key, name):
+        """Update name on the interface from the node.
+
+        :param node: Node to update name on.
+        :param iface_key: Topology key of the interface.
+        :param name: Interface name to store.
+        :type node: dict
+        :type iface_key: str
+        :type name: str
+        """
+        node['interfaces'][iface_key]['name'] = str(name)
+
+    @staticmethod
     def update_interface_mac_address(node, iface_key, mac_address):
         """Update mac_address on the interface from the node.
 
