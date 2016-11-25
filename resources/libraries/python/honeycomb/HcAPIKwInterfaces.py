@@ -1576,3 +1576,55 @@ class InterfaceKeywords(object):
                 return True
         raise HoneycombError("Interface index {0} not present in list"
                              " of disabled interfaces.".format(interface))
+
+    @staticmethod
+    def configure_interface_span(node, dst_interface, *src_interfaces):
+        """Configure SPAN port mirroring on the specified interfaces. If no
+         source interface is provided, SPAN will be disabled.
+
+        :param node: Honeycomb node.
+        :param dst_interface: Interface to mirror packets to.
+        :param src_interfaces: List of interfaces to mirror packets from.
+        :type node: dict
+        :type dst_interface: str
+        :type src_interfaces: list of str
+        :returns: Content of response.
+        :rtype: bytearray
+        :raises HoneycombError: If SPAN could not be configured.
+        """
+
+        interface = dst_interface.replace("/", "%2F")
+        path = "/interface/" + interface + "/span"
+
+        if not src_interfaces:
+            status_code, _ = HcUtil.delete_honeycomb_data(
+                node, "config_vpp_interfaces", path)
+
+        data = {
+            "span": {
+                "mirrored-interfaces": {
+                    "mirrored-interface": src_interfaces
+                }
+            }
+        }
+
+        status_code, _ = HcUtil.put_honeycomb_data(
+            node, "config_vpp_interfaces", data, path)
+
+        if status_code not in (HTTPCodes.OK, HTTPCodes.ACCEPTED):
+            raise HoneycombError(
+                "Configuring SPAN failed. Status code:{0}".format(status_code))
+
+    @staticmethod
+    def add_interface_local0_to_topology(node):
+        """Use Topology methods to add interface "local0" to working topology,
+        if not already present.
+
+        :param node: DUT node.
+        :type node: dict
+        """
+
+        if Topology.get_interface_by_sw_index(node, 0) is None:
+            local0_key = Topology.add_new_port(node, "localzero")
+            Topology.update_interface_sw_if_index(node, local0_key, 0)
+            Topology.update_interface_name(node, local0_key, "local0")
