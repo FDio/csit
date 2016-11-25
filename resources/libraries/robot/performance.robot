@@ -167,7 +167,7 @@
 | | Append Node | ${nodes['TG']}
 | | Append Node | ${nodes['DUT1']} | filter_list=${iface_model_list}
 | | Append Node | ${nodes['TG']}
-| | Compute Path
+| | Compute Path | always_same_link=${FALSE}
 | | ${tg_if1} | ${tg}= | Next Interface
 | | ${dut1_if1} | ${dut1}= | Next Interface
 | | ${dut1_if2} | ${dut1}= | Next Interface
@@ -1072,10 +1072,11 @@
 | | ... | \| Measure latency \| 10 \| 4.0 \| 64 \| 3-node-IPv4
 | | [Arguments] | ${duration} | ${rate} | ${framesize} | ${topology_type}
 | | Return From Keyword If | ${rate} <= 10000 | ${-1}
-| | Clear all counters on all DUTs
+| | ${ret}= | For DPDK Performance Test
+| | Run Keyword If | ${ret}==${FALSE} | Clear all counters on all DUTs
 | | Send traffic on tg | ${duration} | ${rate}pps | ${framesize}
 | | ...                | ${topology_type} | warmup_time=0
-| | Show statistics on all DUTs
+| | Run Keyword If | ${ret}==${FALSE} | Show statistics on all DUTs
 | | Run keyword and return | Get latency
 
 | Traffic should pass with no loss
@@ -1097,10 +1098,11 @@
 | | ...         | ${fail_on_loss}=${True}
 | | Clear and show runtime counters with running traffic | ${duration}
 | | ...  | ${rate} | ${framesize} | ${topology_type}
-| | Clear all counters on all DUTs
+| | ${ret}= | For DPDK Performance Test
+| | Run Keyword If | ${ret}==${FALSE} | Clear all counters on all DUTs
 | | Send traffic on tg | ${duration} | ${rate} | ${framesize}
 | | ...                | ${topology_type} | warmup_time=0
-| | Show statistics on all DUTs
+| | Run Keyword If | ${ret}==${FALSE} | Show statistics on all DUTs
 | | Run Keyword If | ${fail_on_loss} | No traffic loss occurred
 
 | Traffic should pass with partial loss
@@ -1125,10 +1127,11 @@
 | | ...         | ${fail_on_loss}=${True}
 | | Clear and show runtime counters with running traffic | ${duration}
 | | ...  | ${rate} | ${framesize} | ${topology_type}
-| | Clear all counters on all DUTs
+| | ${ret}= | For DPDK Performance Test
+| | Run Keyword If | ${ret}==${FALSE} | Clear all counters on all DUTs
 | | Send traffic on tg | ${duration} | ${rate} | ${framesize}
 | | ...                | ${topology_type} | warmup_time=0
-| | Show statistics on all DUTs
+| | Run Keyword If | ${ret}==${FALSE} | Show statistics on all DUTs
 | | Run Keyword If | ${fail_on_loss} | Partial traffic loss accepted
 | | ...            | ${loss_acceptance} | ${loss_acceptance_type}
 
@@ -1152,9 +1155,10 @@
 | | Send traffic on tg | -1 | ${rate} | ${framesize}
 | | ...                | ${topology_type} | warmup_time=0 | async_call=${True}
 | | ...                | latency=${False}
-| | Clear runtime counters on all DUTs
+| | ${ret}= | For DPDK Performance Test
+| | Run Keyword If | ${ret}==${FALSE} | Clear runtime counters on all DUTs
 | | Sleep | ${duration}
-| | Show runtime counters on all DUTs
+| | Run Keyword If | ${ret}==${FALSE} | Show runtime counters on all DUTs
 | | Stop traffic on tg
 
 | Add PCI devices to DUTs from 3-node single link topology
@@ -1503,4 +1507,77 @@
 | | Add Ip Neighbor | ${dut2} | ${dut2_if2} | 2001:2::2 | ${tg1_if2_mac}
 | | dut1_v4.set_arp | ${dut1_if2} | ${dut2_dut1_ip4_address} | ${dut2_if1_mac}
 | | dut2_v4.set_arp | ${dut2_if1} | ${dut1_dut2_ip4_address} | ${dut1_if2_mac}
+
+*** Keywords ***
+DPDK 2-node Performance Suite Setup with DUT's NIC model
+| | [Documentation]
+| | ... | Updates interfaces on all nodes and setup global
+| | ... | variables used in test cases based on interface model provided as an
+| | ... | argument. Initializes traffic generator. Initializes DPDK test environment.
+| | ...
+| | ... | *Arguments:*
+| | ... | - topology_type - Topology type. Type: string
+| | ... | - nic_model - Interface model. Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| DPDK 2-node Performance Suite Setup with DUT's NIC model \| L2 \| Intel-X520-DA2 \|
+| | [Arguments] | ${topology_type} | ${nic_model}
+| | Setup performance global Variables
+| | 2-node circular Topology Variables Setup with DUT interface model
+| | ... | ${nic_model}
+| | Initialize traffic generator | ${tg} | ${tg_if1} | ${tg_if2}
+| | ...                          | ${dut1} | ${dut1_if1}
+| | ...                          | ${dut1} | ${dut1_if2}
+| | ...                          | ${topology_type}
+| | Initialize DPDK Environment | ${dut1} | ${dut1_if1} | ${dut1_if2}
+
+DPDK 3-node Performance Suite Setup with DUT's NIC model
+| | [Documentation]
+| | ... | Updates interfaces on all nodes and setup global
+| | ... | variables used in test cases based on interface model provided as an
+| | ... | argument. Initializes traffic generator. Initializes DPDK test environment.
+| | ...
+| | ... | *Arguments:*
+| | ... | - topology_type - Topology type. Type: string
+| | ... | - nic_model - Interface model. Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| 3-node Performance Suite Setup \| L2 \| Intel-X520-DA2 \|
+| | [Arguments] | ${topology_type} | ${nic_model}
+| | Setup performance global Variables
+| | 3-node circular Topology Variables Setup with DUT interface model
+| | ... | ${nic_model}
+| | Initialize traffic generator | ${tg} | ${tg_if1} | ${tg_if2}
+| | ...                          | ${dut1} | ${dut1_if1}
+| | ...                          | ${dut2} | ${dut2_if2}
+| | ...                          | ${topology_type}
+| | Initialize DPDK Environment | ${dut1} | ${dut1_if1} | ${dut1_if2}
+| | Initialize DPDK Environment | ${dut2} | ${dut2_if1} | ${dut2_if2}
+
+DPDK 3-node Performance Suite Teardown
+| | [Documentation]
+| | ... | Suite teardown phase with traffic generator teardown.
+| | ... | Cleanup DPDK test environment.
+| | ...
+| | Teardown traffic generator | ${tg}
+| | Cleanup DPDK Environment | ${dut1} | ${dut1_if1} | ${dut1_if2}
+| | Cleanup DPDK Environment | ${dut2} | ${dut2_if1} | ${dut2_if2}
+
+DPDK 2-node Performance Suite Teardown
+| | [Documentation]
+| | ... | Suite teardown phase with traffic generator teardown.
+| | ... | Cleanup DPDK test environment.
+| | ...
+| | Teardown traffic generator | ${tg}
+| | Cleanup DPDK Environment | ${dut1} | ${dut1_if1} | ${dut1_if2}
+
+For DPDK Performance Test
+| | [Documentation]
+| | ... | Return TRUE if variable DPDK_TEST exist, otherwise FALSE.
+| | ${ret} | ${tmp}=  | Run Keyword And Ignore Error
+| | ... | Variable Should Exist | ${DPDK_TEST}
+| | Return From Keyword If | "${ret}" == "PASS" | ${TRUE}
+| | Return From Keyword | ${FALSE}
 
