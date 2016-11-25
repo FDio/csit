@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a2585a7_a1e38632",
+        "filename": "resources/tools/disk-image-builder/centos/run-listmaker.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-11-25T08:09:25Z",
+      "side": 0,
+      "message": "This file looks like for ubuntu?",
+      "revId": "3e62e29b594f36e80f397a02bc4eaa88ff71ab0d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_61d59e42",
+        "filename": "resources/tools/disk-image-builder/centos/scripts-remote/post-install.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-11-25T08:09:25Z",
+      "side": 0,
+      "message": "This file looks like Debian/Ubuntu dependent because of APT",
+      "revId": "3e62e29b594f36e80f397a02bc4eaa88ff71ab0d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}

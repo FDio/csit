@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a2585a7_e1d98e84",
+        "filename": "resources/tools/disk-image-builder/centos/build-listmaker.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-11-25T08:09:25Z",
+      "side": 1,
+      "message": "\u003d\nPlease fix",
+      "range": {
+        "startLine": 23,
+        "startChar": 10,
+        "endLine": 23,
+        "endChar": 12
+      },
+      "revId": "bce5977a611fbf34725f8a2c727966b9db25dd8b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_01ddba70",
+        "filename": "resources/tools/disk-image-builder/centos/html/.ks.cfg.swp",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-11-25T08:09:25Z",
+      "side": 1,
+      "message": "Is this binary file needed? Looks like vi/vim temporary file. Please remove if not required.",
+      "revId": "bce5977a611fbf34725f8a2c727966b9db25dd8b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_81d08a54",
+        "filename": "resources/tools/disk-image-builder/centos/scripts-remote/serial-console-centos-7-1511.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-11-25T08:09:25Z",
+      "side": 1,
+      "message": "Ubuntu/Debian reference?",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 64
+      },
+      "revId": "bce5977a611fbf34725f8a2c727966b9db25dd8b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
