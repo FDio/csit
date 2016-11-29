@@ -1,0 +1,343 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a2585a7_c25450cc",
+        "filename": "dpdk-tests/dpdk_scripts/install_dpdk.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-11-29T08:45:31Z",
+      "side": 1,
+      "message": "please put into variable",
+      "range": {
+        "startLine": 8,
+        "startChar": 8,
+        "endLine": 8,
+        "endChar": 18
+      },
+      "revId": "c395d8064c3967e3c57838f1ba1f87e06abe1a26",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_a25144da",
+        "filename": "dpdk-tests/dpdk_scripts/install_dpdk.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-11-29T08:45:31Z",
+      "side": 1,
+      "message": "please put into variable",
+      "range": {
+        "startLine": 9,
+        "startChar": 5,
+        "endLine": 9,
+        "endChar": 15
+      },
+      "revId": "c395d8064c3967e3c57838f1ba1f87e06abe1a26",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_825e48e8",
+        "filename": "dpdk-tests/dpdk_scripts/install_dpdk.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-11-29T08:45:31Z",
+      "side": 1,
+      "message": "please put into variable",
+      "range": {
+        "startLine": 14,
+        "startChar": 26,
+        "endLine": 14,
+        "endChar": 36
+      },
+      "revId": "c395d8064c3967e3c57838f1ba1f87e06abe1a26",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_62635cb2",
+        "filename": "dpdk-tests/dpdk_scripts/install_dpdk.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-11-29T08:45:31Z",
+      "side": 1,
+      "message": "please remove we already have hugepages allocated. or do the testing if enough HP are available and execute only if not!",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 40
+      },
+      "revId": "c395d8064c3967e3c57838f1ba1f87e06abe1a26",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_820528c4",
+        "filename": "dpdk-tests/perf/l2fwd_IPv4_Intel-X520-DA2.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-11-29T08:45:31Z",
+      "side": 1,
+      "message": "I guess there is no IP4 routing in l2fwd???",
+      "range": {
+        "startLine": 51,
+        "startChar": 16,
+        "endLine": 51,
+        "endChar": 37
+      },
+      "revId": "c395d8064c3967e3c57838f1ba1f87e06abe1a26",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_420f40e2",
+        "filename": "dpdk-tests/perf/l2fwd_IPv4_Intel-X520-DA2.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-11-29T08:45:31Z",
+      "side": 1,
+      "message": "${64}",
+      "range": {
+        "startLine": 55,
+        "startChar": 35,
+        "endLine": 55,
+        "endChar": 37
+      },
+      "revId": "c395d8064c3967e3c57838f1ba1f87e06abe1a26",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_221434f4",
+        "filename": "dpdk-tests/perf/l2fwd_IPv4_Intel-X520-DA2.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-11-29T08:45:31Z",
+      "side": 1,
+      "message": "${100000}",
+      "range": {
+        "startLine": 56,
+        "startChar": 34,
+        "endLine": 56,
+        "endChar": 40
+      },
+      "revId": "c395d8064c3967e3c57838f1ba1f87e06abe1a26",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_620a3cd4",
+        "filename": "dpdk-tests/perf/l2fwd_IPv4_Intel-X520-DA2.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-11-29T08:45:31Z",
+      "side": 1,
+      "message": "this is not used anymore please check the functions Calculate pps.",
+      "range": {
+        "startLine": 57,
+        "startChar": 34,
+        "endLine": 57,
+        "endChar": 58
+      },
+      "revId": "c395d8064c3967e3c57838f1ba1f87e06abe1a26",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_a2682488",
+        "filename": "dpdk-tests/perf/l2fwd_IPv4_Intel-X520-DA2.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-11-29T08:45:31Z",
+      "side": 1,
+      "message": "do you really need 3-node-IPv4 profile for l2fwd testing? Maybe 3-node-bridge or 3-node-xconnect",
+      "range": {
+        "startLine": 63,
+        "startChar": 64,
+        "endLine": 63,
+        "endChar": 75
+      },
+      "revId": "c395d8064c3967e3c57838f1ba1f87e06abe1a26",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_e26e2c96",
+        "filename": "resources/libraries/python/DPDK/DPDKTools.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-11-29T08:45:31Z",
+      "side": 1,
+      "message": "remove extra trailing spaces.",
+      "range": {
+        "startLine": 65,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 4
+      },
+      "revId": "c395d8064c3967e3c57838f1ba1f87e06abe1a26",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_c26b3084",
+        "filename": "resources/libraries/python/DPDK/DPDKTools.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-11-29T08:45:31Z",
+      "side": 1,
+      "message": "remove extra trailing spaces.",
+      "range": {
+        "startLine": 73,
+        "startChar": 0,
+        "endLine": 73,
+        "endChar": 3
+      },
+      "revId": "c395d8064c3967e3c57838f1ba1f87e06abe1a26",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_0272587c",
+        "filename": "resources/libraries/python/DPDK/L2fwdTest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-11-29T08:45:31Z",
+      "side": 1,
+      "message": "please remove",
+      "range": {
+        "startLine": 26,
+        "startChar": 25,
+        "endLine": 26,
+        "endChar": 65
+      },
+      "revId": "c395d8064c3967e3c57838f1ba1f87e06abe1a26",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_425860fa",
+        "filename": "resources/libraries/python/DPDK/SetupDPDKTest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-11-29T08:45:31Z",
+      "side": 1,
+      "message": "please remove",
+      "range": {
+        "startLine": 181,
+        "startChar": 29,
+        "endLine": 181,
+        "endChar": 69
+      },
+      "revId": "c395d8064c3967e3c57838f1ba1f87e06abe1a26",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_e2f50ccc",
+        "filename": "resources/libraries/robot/DPDK/default.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-11-29T08:45:31Z",
+      "side": 1,
+      "message": "please remove trailing spaces",
+      "range": {
+        "startLine": 48,
+        "startChar": 7,
+        "endLine": 48,
+        "endChar": 8
+      },
+      "revId": "c395d8064c3967e3c57838f1ba1f87e06abe1a26",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_225d54ea",
+        "filename": "resources/libraries/robot/DPDK/performance.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-11-29T08:45:31Z",
+      "side": 1,
+      "message": "This file is very very old version of performance library. DO NOT copy it there. instead please link to original resources/libraries/robot/performance.robot otherwise change in original lib will not be reflected there. If you add some keywords please amend them into original libary",
+      "revId": "c395d8064c3967e3c57838f1ba1f87e06abe1a26",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
