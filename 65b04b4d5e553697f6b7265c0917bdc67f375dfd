@@ -140,6 +140,30 @@
     },
     {
       "key": {
+        "uuid": "5a2585a7_024b782c",
+        "filename": "bootstrap-TLDK.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-11-29T08:23:28Z",
+      "side": 1,
+      "message": "The location is good. Please ignore",
+      "parentUuid": "5a2585a7_e2d98c84",
+      "range": {
+        "startLine": 209,
+        "startChar": 13,
+        "endLine": 209,
+        "endChar": 28
+      },
+      "revId": "65b04b4d5e553697f6b7265c0917bdc67f375dfd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a2585a7_02ddb870",
         "filename": "bootstrap-TLDK.sh",
         "patchSetId": 1
@@ -151,6 +175,30 @@
       "writtenOn": "2016-11-29T08:07:02Z",
       "side": 1,
       "message": "i would prefer the location of test to be tests/TLDK",
+      "range": {
+        "startLine": 214,
+        "startChar": 4,
+        "endLine": 214,
+        "endChar": 15
+      },
+      "revId": "65b04b4d5e553697f6b7265c0917bdc67f375dfd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_22467424",
+        "filename": "bootstrap-TLDK.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-11-29T08:23:28Z",
+      "side": 1,
+      "message": "The location is good. Please ignore",
+      "parentUuid": "5a2585a7_02ddb870",
       "range": {
         "startLine": 214,
         "startChar": 4,
