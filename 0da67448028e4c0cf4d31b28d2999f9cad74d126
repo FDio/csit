@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a2585a7_a2ff04aa",
+        "filename": "bootstrap-verify-perf-DPDK.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-11-29T08:49:24Z",
+      "side": 1,
+      "message": "there is missing installation of dpdk within bootstrap. In perf we do the installation within bootstrap not inside the suite tests. If you do the installation within framework then you have to copy the dpdk to DUTs",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 53
+      },
+      "revId": "0da67448028e4c0cf4d31b28d2999f9cad74d126",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
