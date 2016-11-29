@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a2585a7_62d59c42",
+        "filename": "TLDK-tests/tldk_scripts/install_tldk.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-11-29T08:22:30Z",
+      "side": 1,
+      "message": "please remove. not needed anymore.",
+      "range": {
+        "startLine": 8,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 25
+      },
+      "revId": "a42ab5cf0698fef1a68bd792f50f9c27a294d806",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_42caa0a2",
+        "filename": "TLDK-tests/tldk_scripts/install_tldk.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-11-29T08:22:30Z",
+      "side": 1,
+      "message": "please put this into variable on the top of script.",
+      "range": {
+        "startLine": 13,
+        "startChar": 8,
+        "endLine": 13,
+        "endChar": 18
+      },
+      "revId": "a42ab5cf0698fef1a68bd792f50f9c27a294d806",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_02c49890",
+        "filename": "TLDK-tests/tldk_scripts/install_tldk.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-11-29T08:22:30Z",
+      "side": 1,
+      "message": "use variable for version",
+      "range": {
+        "startLine": 14,
+        "startChar": 5,
+        "endLine": 14,
+        "endChar": 15
+      },
+      "revId": "a42ab5cf0698fef1a68bd792f50f9c27a294d806",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_22cf94b2",
+        "filename": "TLDK-tests/tldk_scripts/install_tldk.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-11-29T08:22:30Z",
+      "side": 1,
+      "message": "use variable for version",
+      "range": {
+        "startLine": 20,
+        "startChar": 26,
+        "endLine": 20,
+        "endChar": 36
+      },
+      "revId": "a42ab5cf0698fef1a68bd792f50f9c27a294d806",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_e2c06c7e",
+        "filename": "TLDK-tests/tldk_scripts/install_tldk.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-11-29T08:22:30Z",
+      "side": 1,
+      "message": "Please do check if hugepages are already there. We do have allocated vm.nr_hugepages\u003d1024 so i guess this won\u0027t be needed.",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 40
+      },
+      "revId": "a42ab5cf0698fef1a68bd792f50f9c27a294d806",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_623c7c94",
+        "filename": "resources/libraries/python/TLDK/SetupTLDKTest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-11-29T08:22:30Z",
+      "side": 1,
+      "message": "this is not needed anymore, we adjust limits.",
+      "range": {
+        "startLine": 181,
+        "startChar": 29,
+        "endLine": 181,
+        "endChar": 69
+      },
+      "revId": "a42ab5cf0698fef1a68bd792f50f9c27a294d806",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_823768b0",
+        "filename": "resources/libraries/python/TLDK/UdpTest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-11-29T08:22:30Z",
+      "side": 1,
+      "message": "this is not needed anymore, we adjust limits",
+      "range": {
+        "startLine": 29,
+        "startChar": 23,
+        "endLine": 29,
+        "endChar": 63
+      },
+      "revId": "a42ab5cf0698fef1a68bd792f50f9c27a294d806",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_a2ba6408",
+        "filename": "resources/libraries/python/TLDK/UdpTest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-11-29T08:22:30Z",
+      "side": 1,
+      "message": "please replace tabs by spaces.",
+      "range": {
+        "startLine": 119,
+        "startChar": 0,
+        "endLine": 119,
+        "endChar": 6
+      },
+      "revId": "a42ab5cf0698fef1a68bd792f50f9c27a294d806",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
