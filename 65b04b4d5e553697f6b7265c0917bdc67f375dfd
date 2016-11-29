@@ -1,0 +1,182 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a2585a7_c28fb074",
+        "filename": "bootstrap-TLDK.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-11-29T08:07:02Z",
+      "side": 1,
+      "message": "please replace all TABs with spaces",
+      "range": {
+        "startLine": 113,
+        "startChar": 0,
+        "endLine": 113,
+        "endChar": 1
+      },
+      "revId": "65b04b4d5e553697f6b7265c0917bdc67f375dfd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_82e9a81c",
+        "filename": "bootstrap-TLDK.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-11-29T08:07:02Z",
+      "side": 1,
+      "message": "put the version into variable somewhere at the top of the script.",
+      "range": {
+        "startLine": 117,
+        "startChar": 31,
+        "endLine": 117,
+        "endChar": 48
+      },
+      "revId": "65b04b4d5e553697f6b7265c0917bdc67f375dfd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_a28ca480",
+        "filename": "bootstrap-TLDK.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-11-29T08:07:02Z",
+      "side": 1,
+      "message": "please remove as they are part of image now",
+      "range": {
+        "startLine": 124,
+        "startChar": 0,
+        "endLine": 125,
+        "endChar": 100
+      },
+      "revId": "65b04b4d5e553697f6b7265c0917bdc67f375dfd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_62eebc24",
+        "filename": "bootstrap-TLDK.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 151,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-11-29T08:07:02Z",
+      "side": 1,
+      "message": "csit-ubuntu-16.04.1_2016-11-28_1.5\n- that version will include libpcap",
+      "range": {
+        "startLine": 151,
+        "startChar": 13,
+        "endLine": 151,
+        "endChar": 47
+      },
+      "revId": "65b04b4d5e553697f6b7265c0917bdc67f375dfd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_42f3c00a",
+        "filename": "bootstrap-TLDK.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-11-29T08:07:02Z",
+      "side": 1,
+      "message": "this has to be prior start of simulation on line 157.",
+      "range": {
+        "startLine": 174,
+        "startChar": 0,
+        "endLine": 174,
+        "endChar": 30
+      },
+      "revId": "65b04b4d5e553697f6b7265c0917bdc67f375dfd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_e2d98c84",
+        "filename": "bootstrap-TLDK.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-11-29T08:07:02Z",
+      "side": 1,
+      "message": "tests.TLDK.func",
+      "range": {
+        "startLine": 209,
+        "startChar": 13,
+        "endLine": 209,
+        "endChar": 28
+      },
+      "revId": "65b04b4d5e553697f6b7265c0917bdc67f375dfd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_02ddb870",
+        "filename": "bootstrap-TLDK.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 214,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-11-29T08:07:02Z",
+      "side": 1,
+      "message": "i would prefer the location of test to be tests/TLDK",
+      "range": {
+        "startLine": 214,
+        "startChar": 4,
+        "endLine": 214,
+        "endChar": 15
+      },
+      "revId": "65b04b4d5e553697f6b7265c0917bdc67f375dfd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_a2e38432",
+        "filename": "resources/tools/virl/bin/start-testcase-TLDK",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-11-29T08:07:02Z",
+      "side": 1,
+      "message": "This file looks good",
+      "revId": "65b04b4d5e553697f6b7265c0917bdc67f375dfd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
