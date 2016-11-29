@@ -310,7 +310,7 @@ class HoneycombSetup(object):
          """
 
         disabled_features = {
-            "NSH": "io.fd.honeycomb.vppnsh.impl.VppNshModule"
+            "NSH": "io.fd.hc2vpp.vppnsh.impl.VppNshModule"
         }
 
         ssh = SSH()
@@ -321,7 +321,7 @@ class HoneycombSetup(object):
             find = replace = "{0}".format(disabled_features[feature])
 
             argument = '"/{0}/c\\ {1}"'.format(find, replace)
-            path = "{0}/modules/io-fd-honeycomb-vpp-integration*module-config"\
+            path = "{0}/modules/*module-config"\
                 .format(Const.REMOTE_HC_DIR)
             command = "sed -i {0} {1}".format(argument, path)
 
