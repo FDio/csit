@@ -363,3 +363,33 @@ class Classify(object):
             return data[0][session_index]
         else:
             return data[0]
+
+    @staticmethod
+    def vpp_get_plugin_acl_settings(node):
+        """Retrieve configured settings from the ACL plugin.
+
+        :param node: VPP node.
+        :type node: dict
+        :returns: List of classifier settings.
+        :rtype: list
+        """
+
+        with VatTerminal(node) as vat:
+            return vat.vat_terminal_exec_cmd("acl_dump")
+
+
+    @staticmethod
+    def vpp_get_plugin_acl_interface_assignment(node):
+        """Retrieve interface assignment from the ACL plugin.
+
+        :param node: VPP node.
+        :type node: dict
+        :returns: List of interfaces and their classifier asignments.
+        :rtype: list
+        """
+
+        with VatTerminal(node) as vat:
+            try:
+                return vat.vat_terminal_exec_cmd("acl_interface_list_dump")
+            except RuntimeError:
+                pass
