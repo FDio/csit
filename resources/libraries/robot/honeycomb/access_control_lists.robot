@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2017 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -339,50 +339,46 @@
 | | [Arguments] | ${node}
 | | Remove all classify tables | ${node}
 
-| Honeycomb creates ACL chain through IETF node
-| | [Documentation] | Creates classify chain through the high-level\
-| | ... | IETF-ACL node.
+| Honeycomb creates ACL chain through ACL plugin
+| | [Documentation] | Creates classify chain using the ACL plugin.
 | | ...
 | | ... | *Arguments:*
 | | ... | - node - Information about a DUT node. Type: dictionary
 | | ... | - acl_list_name - Name for the classify chain. Type: string
-| | ... | - layer - Classification layer (L2, L3, L4, mixed). Type: string
 | | ... | - acl_list_settings - classify rules. Type: dictionary
+| | ... | - macip - Use MAC+IP classifier. Optional. Type: boolean
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Honeycomb creates ACL chain through IETF node \
+| | ... | \| Honeycomb creates ACL chain through ACL plugin \
 | | ... | \| ${nodes['DUT1']} \| acl_test \| ${settings} \|
-| | [Arguments] | ${node} | ${acl_list_name} | ${layer} | ${acl_list_settings}
-| | Create IETF classify chain
-| | ... | ${node} | ${acl_list_name} | ${layer} | ${acl_list_settings}
+| | [Arguments] | ${node} | ${acl_list_name} | ${acl_list_settings}
+| | ... | ${macip}=${False}
+| | Create ACL plugin classify chain
+| | ... | ${node} | ${acl_list_name} | ${acl_list_settings} | ${macip}
 
-| Honeycomb assigns IETF-ACL chain to interface
+| Honeycomb assigns plugin-ACL chain to interface
 | | [Documentation] | Applies classification through the high-level\
 | | ... | IETF-ACL node to an interface.
 | | ...
 | | ... | *Arguments:*
 | | ... | - node - Information about a DUT node. Type: dictionary
-| | ... | - interface - Interface to apply classifier to. | Type: string
-| | ... | - layer - Classification layer (L2, L3, L4, mixed). Type: string
-| | ... | - direction - Ingress or Egress ACL. Type: string
-| | ... | - acl_list_name - Name of the classify chain to apply. Type: string
-| | ... | - default_action - Default classify action: permit or deny.\
-| | ... | Type: string
+| | ... | - interface - Interface to assign classifier to. Type: string
+| | ... | - acl_list_name - Name of the clasify chain. Type: string
+| | ... | - direction - Classifier direction, ingress or egress. Type: string
+| | ... | - macip - Use MAC+IP classifier. Optional. Type: boolean
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Honeycomb assigns IETF-ACL chain to interface \
-| | ... | \| ${nodes['DUT1']} \| GigabitEthernet0/8/0 \| L2 \| ingress \
-| | ... | \| acl_test \| permit \|
+| | ... | \| Honeycomb assigns plugin-ACL chain to interface \
+| | ... | \| ${nodes['DUT1']} \| GigabitEthernet0/8/0 \| acl_test \| ingress \|
 | | [Arguments]
-| | ... | ${node} | ${interface} | ${layer} | ${direction} | ${acl_list_name}
-| | ... | ${default-action} | ${mode}=${None}
-| | Set IETF interface ACL
-| | ... | ${node} | ${interface} | ${layer} | ${direction} | ${acl_list_name}
-| | ... | ${default-action} | ${mode}
+| | ... | ${node} | ${interface} | ${acl_list_name} | ${direction}
+| | ... | ${macip}=${False}
+| | Set ACL plugin interface
+| | ... | ${node} | ${interface} | ${acl_list_name} | ${direction} | ${macip}
 
-| Clear IETF-ACL settings
+| Clear plugin-ACL settings
 | | [Documentation] | Removes ACl assignment from interface, then deletes\
 | | ... | IETF-ACL chain.
 | | ...
@@ -392,7 +388,61 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | Clear IETF-ACL settings | ${nodes['DUT1']} \| GigabitEthernet0/8/0 \|
+| | ... | \| Clear plugin-ACL settings | ${nodes['DUT1']} \
+| | ... | \| GigabitEthernet0/8/0 \|
 | | [Arguments] | ${node} | ${interface}
-| | Delete IETF interface ACLs | ${node} | ${interface}
-| | Delete IETF classify chains | ${node}
+| | Delete interface plugin ACLs | ${node} | ${interface}
+| | Delete ACL plugin classify chains | ${node}
+
+| Read plugin-ACL configuration from VAT
+| | [Documentation] | Obtains ACL-plugin configuration through VAT and logs\
+| | ... | the reply.
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - Information about a DUT node. Type: dictionary
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Read plugin-ACL configuration from VAT \| ${nodes['DUT1']} \|
+| | [Arguments] | ${node}
+| | VPP log plugin acl settings | ${node}
+| | VPP log plugin acl interface assignment | ${node}
+
+| Send ICMP packet with type and code
+| | [Documentation] | Sends an ICMP packet with specified code and type.
+| | ...
+| | ... | *Arguments:*
+| | ...
+| | ... | _NOTE:_ Arguments are based on topology:
+| | ... | TG(if1)->(if1)DUT(if2)->TG(if2)
+| | ...
+| | ... | - tg_node - Node to execute scripts on (TG). Type: dictionary
+| | ... | - src_ip - IP of source interface (TG-if1). Type: integer
+| | ... | - dst_ip - IP of destination interface (TG-if2). Type: integer
+| | ... | - tx_port - Source interface (TG-if1). Type: string
+| | ... | - tx_mac - MAC address of source interface (TG-if1). Type: string
+| | ... | - rx_port - Destionation interface (TG-if1). Type: string
+| | ... | - rx_mac - MAC address of destination interface (TG-if1). Type: string
+| | ... | - icmp_type - ICMP type to use. Type: int
+| | ... | - icmp_code - ICMP code to use. Type: int
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Send ICMP packet with type and code \| ${nodes['TG']} \
+| | ... | \| 16.0.0.1 \| 32.0.0.1 \| eth2 \| 08:00:27:cc:4f:54 \
+| | ... | \| eth4 \| 08:00:27:c9:6a:d5 \| ${1} \| ${1} \|
+| | ...
+| | [Arguments] | ${tg_node} | ${src_ip} | ${dst_ip} | ${tx_port} |
+| | ... | ${tx_mac} | ${rx_port} | ${rx_mac} | ${icmp_type} | ${icmp_code}
+| | ${tx_port_name}= | Get interface name | ${tg_node} | ${tx_port}
+| | ${rx_port_name}= | Get interface name | ${tg_node} | ${rx_port}
+| | ${args}= | Catenate | --src_mac | ${tx_mac}
+| | ...                 | --dst_mac | ${rx_mac}
+| | ...                 | --src_ip | ${src_ip}
+| | ...                 | --dst_ip | ${dst_ip}
+| | ...                 | --tx_if | ${tx_port_name}
+| | ...                 | --rx_if | ${rx_port_name}
+| | ...                 | --icmp_type | ${icmp_type}
+| | ...                 | --icmp_code | ${icmp_code}
+| | Run Traffic Script On Node | send_icmp_type_code.py
+| | ... | ${tg_node} | ${args}

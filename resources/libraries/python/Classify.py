@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2017 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -363,3 +363,34 @@ class Classify(object):
             return data[0][session_index]
         else:
             return data[0]
+
+    @staticmethod
+    def vpp_log_plugin_acl_settings(node):
+        """Retrieve configured settings from the ACL plugin
+         and write to robot log.
+
+        :param node: VPP node.
+        :type node: dict
+        """
+        try:
+            VatExecutor.cmd_from_template(
+                node, "acl_plugin/acl_dump.vat")
+        except ValueError:
+            # Fails to parse JSON data in response, but it is still logged
+            pass
+
+    @staticmethod
+    def vpp_log_plugin_acl_interface_assignment(node):
+        """Retrieve interface assignment from the ACL plugin
+        and write to robot log.
+
+        :param node: VPP node.
+        :type node: dict
+        """
+
+        try:
+            VatExecutor.cmd_from_template(
+                node, "acl_plugin/acl_interface_dump.vat", json_out=False)
+        except RuntimeError:
+            # Fails to parse response, but it is still logged
+            pass
