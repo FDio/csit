@@ -269,43 +269,30 @@ class ACLKeywords(object):
             return {}
 
     @staticmethod
-    def create_ietf_classify_chain(node, list_name, layer, data):
+    def create_acl_plugin_classify_chain(node, list_name, data, macip=False):
         """Create classify chain using the ietf-acl node.
 
         :param node: Honeycomb node.
         :param list_name: Name for the classify list.
-        :param layer: Network layer to classify on.
         :param data: Dictionary of settings to send to Honeycomb.
+        :param macip: Use simple MAC+IP classifier. Optional.
         :type node: dict
         :type list_name: str
-        :type layer: string
         :type data: dict
+        :type macip: bool
 
         :return: Content of response.
         :rtype: bytearray
         :raises HoneycombError: If the operation fails.
         """
-        layer = layer.lower()
-        suffix_dict = {"l2": "eth",
-                       "l3_ip4": "ipv4",
-                       "l3_ip6": "ipv6",
-                       "mixed": "mixed"}
-        try:
-            suffix = suffix_dict[layer]
-        except KeyError:
-            raise ValueError("Unexpected value of layer argument {0}."
-                             "Valid options are: {1}"
-                             .format(layer, suffix_dict.keys()))
 
-        if layer == "mixed":
-            path = "/acl/vpp-acl:{0}-acl/{1}"
+        if macip:
+            path = "/acl/vpp-acl:vpp-macip-acl/{0}".format(list_name)
         else:
-            path = "/acl/ietf-access-control-list:{0}-acl/{1}"
-
-        path = path.format(suffix, list_name)
+            path = "/acl/vpp-acl:vpp-acl/{0}".format(list_name)
 
         status_code, resp = HcUtil.put_honeycomb_data(
-            node, "config_ietf_classify_chain", data, path)
+            node, "config_plugin_acl", data, path)
 
         if status_code not in (HTTPCodes.OK, HTTPCodes.ACCEPTED):
             raise HoneycombError(
@@ -315,37 +302,27 @@ class ACLKeywords(object):
         return resp
 
     @staticmethod
-    def set_ietf_interface_acl(node, interface, layer, direction, list_name,
-                               default_action, mode=None):
+    def set_acl_plugin_interface(node, interface, acl_name,
+                                 direction, macip=False):
         """Assign an interface to an ietf-acl classify chain.
 
         :param node: Honeycomb node.
         :param interface: Name of an interface on the node.
-        :param layer: Network layer to classify packets on.
-        Valid options are: L2, L3, L4. Mixed ACL not supported yet.
+        :param acl_name: Name of an ACL chain configured through ACL-plugin.
         :param direction: Classify incoming or outgiong packets.
         Valid options are: ingress, egress
-        :param list_name: Name of an ietf-acl classify chain.
-        :param default_action: Default classifier action: permit or deny.
-        :param mode: When using mixed layers, this specifies operational mode
-        of the interface - L2 or L3. If layer is not "mixed", this argument
-        will be ignored.
+        :param macip: Use simple MAC+IP classifier. Optional.
         :type node: dict
         :type interface: str or int
-        :type layer: str
+        :type acl_name: str
         :type direction: str
-        :type list_name: str
-        :type default_action: str
-        :type mode: str
+        :type macip: bool
 
         :return: Content of response.
         :rtype: bytearray
         :raises HoneycombError: If the operation fails.
         """
 
-        layer = layer.lower()
-        if mode is not None:
-            mode = mode.lower()
         interface = Topology.convert_interface_reference(
             node, interface, "name")
 
@@ -356,36 +333,29 @@ class ACLKeywords(object):
                              "Valid options are: ingress, egress."
                              .format(direction))
 
-        path = "/interface/{0}/ietf-acl/{1}/access-lists".format(
+        path = "/interface/{0}/interface-acl:acl/{1}".format(
             interface, direction)
 
-        types = {
-            "ietf": "ietf-access-control-list:{0}-acl",
-            "vpp": "vpp-acl:{0}-acl"}
-        layers = {
-            "l2": {"mode": "l2", "acl_type": types['ietf'].format("eth")},
-            "l3_ip4": {"mode": "l3", "acl_type": types['ietf'].format("ipv4")},
-            "l3_ip6": {"mode": "l3", "acl_type": types['ietf'].format("ipv6")},
-            "mixed": {"mode": mode, "acl_type": types['vpp'].format("mixed")}
-            }
-
-        try:
+        if macip:
             data = {
-                "access-lists": {
-                    "acl": [
-                        {
-                            "type": layers[layer]['acl_type'],
-                            "name": list_name
-                        }
-                    ],
-                    "default-action": default_action,
-                    "mode": layers[layer]['mode']
+                direction: {
+                    "vpp-macip-acl": {
+                        "type": "vpp-acl:vpp-macip-acl",
+                        "name": acl_name
+                    }
                 }
             }
-        except KeyError:
-            raise ValueError("Unknown network layer {0}. "
-                             "Valid options are: {1}".
-                             format(layer, layers.keys()))
+        else:
+            data = {
+                direction: {
+                    "vpp-acls": [
+                        {
+                            "type": "vpp-acl:vpp-acl",
+                            "name": acl_name
+                        }
+                    ]
+                }
+            }
 
         status_code, resp = HcUtil.put_honeycomb_data(
             node, "config_vpp_interfaces", data, path)
@@ -398,20 +368,21 @@ class ACLKeywords(object):
         return resp
 
     @staticmethod
-    def delete_ietf_interface_acls(node, interface):
-        """Remove all ietf-acl assignments from an interface.
+    def delete_interface_plugin_acls(node, interface):
+        """Remove all plugin-acl assignments from an interface.
 
         :param node: Honeycomb node.
         :param interface: Name of an interface on the node.
         :type node: dict
-        :type interface: str or int"""
+        :type interface: str or int
+        """
 
         interface = Topology.convert_interface_reference(
             node, interface, "name")
 
         interface = interface.replace("/", "%2F")
 
-        path = "/interface/{0}/ietf-acl/".format(interface)
+        path = "/interface/{0}/interface-acl:acl/".format(interface)
         status_code, _ = HcUtil.delete_honeycomb_data(
             node, "config_vpp_interfaces", path)
 
@@ -421,17 +392,17 @@ class ACLKeywords(object):
                 "Status code: {0}.".format(status_code))
 
     @staticmethod
-    def delete_ietf_classify_chains(node):
-        """Remove all classify chains from the ietf-acl node.
+    def delete_acl_plugin_classify_chains(node):
+        """Remove all plugin-ACL classify chains.
 
         :param node: Honeycomb node.
         :type node: dict
         """
 
         status_code, _ = HcUtil.delete_honeycomb_data(
-            node, "config_ietf_classify_chain")
+            node, "config_plugin_acl")
 
         if status_code != HTTPCodes.OK:
             raise HoneycombError(
-                "Could not remove ietf-acl chain. "
+                "Could not remove plugin-acl chain. "
                 "Status code: {0}.".format(status_code))
