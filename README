@@ -33,3 +33,4 @@ pybot -L TRACE -v TOPOLOGY_PATH:topologies/enabled/topology.yaml tests
  - python2.7
  - python-dev package
 
+
