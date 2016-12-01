@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5a2585a7_9bd0ee54",
+        "filename": "resources/tools/disk-image-builder/centos/build-listmaker.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 32
+      },
+      "writtenOn": "2016-12-01T23:36:46Z",
+      "side": 1,
+      "message": "Yes, I agree the above is not strictly correct in single brackets.\nFixed.",
+      "parentUuid": "5a2585a7_e1d98e84",
+      "range": {
+        "startLine": 23,
+        "startChar": 10,
+        "endLine": 23,
+        "endChar": 12
+      },
+      "revId": "bce5977a611fbf34725f8a2c727966b9db25dd8b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a2585a7_01ddba70",
         "filename": "resources/tools/disk-image-builder/centos/html/.ks.cfg.swp",
         "patchSetId": 3
@@ -42,6 +66,24 @@
     },
     {
       "key": {
+        "uuid": "5a2585a7_9be90e1d",
+        "filename": "resources/tools/disk-image-builder/centos/html/.ks.cfg.swp",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 32
+      },
+      "writtenOn": "2016-12-01T23:36:46Z",
+      "side": 1,
+      "message": "Fixed",
+      "parentUuid": "5a2585a7_01ddba70",
+      "revId": "bce5977a611fbf34725f8a2c727966b9db25dd8b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a2585a7_81d08a54",
         "filename": "resources/tools/disk-image-builder/centos/scripts-remote/serial-console-centos-7-1511.sh",
         "patchSetId": 3
@@ -53,6 +95,30 @@
       "writtenOn": "2016-11-25T08:09:25Z",
       "side": 1,
       "message": "Ubuntu/Debian reference?",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 64
+      },
+      "revId": "bce5977a611fbf34725f8a2c727966b9db25dd8b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_dbe67644",
+        "filename": "resources/tools/disk-image-builder/centos/scripts-remote/serial-console-centos-7-1511.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 32
+      },
+      "writtenOn": "2016-12-01T23:36:46Z",
+      "side": 1,
+      "message": "This file is cloned from Ubuntu and renamed and otherwise hasn\u0027t been touched. However, I think it will work without to many mods for Centos. I will remove Ubuntu refs once it is tested in VIRL.",
+      "parentUuid": "5a2585a7_81d08a54",
       "range": {
         "startLine": 41,
         "startChar": 0,

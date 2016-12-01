@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "5a2585a7_7bee6224",
+        "filename": "resources/tools/disk-image-builder/centos/run-listmaker.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 32
+      },
+      "writtenOn": "2016-12-01T23:36:46Z",
+      "side": 0,
+      "message": "Yes, I started by cloning ubuntu directory. I haven\u0027t fixed this in this patch series yet. First step is to upload image in VIRL.",
+      "parentUuid": "5a2585a7_a1e38632",
+      "revId": "3e62e29b594f36e80f397a02bc4eaa88ff71ab0d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a2585a7_61d59e42",
         "filename": "resources/tools/disk-image-builder/centos/scripts-remote/post-install.sh",
         "patchSetId": 3
