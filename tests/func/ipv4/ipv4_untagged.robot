@@ -101,18 +101,6 @@
 | | ${dst_port} | ${dst_node}= | Last Interface
 | | ${hops}= | Set Variable | ${2}
 | | Node "${src_node}" interface "${src_port}" can route to node "${dst_node}" interface "${dst_port}" ${hops} hops away using IPv4
-| | ${port} | ${node}= | Next Interface
-| | ${port} | ${node}= | Next Interface
-| | ${exp_counter_val}= | Set Variable | ${1}
-| | Vpp dump stats table | ${node}
-| | Check ipv4 interface counter | ${node} | ${port} | ${exp_counter_val}
-| | ${port} | ${node}= | Next Interface
-| | Check ipv4 interface counter | ${node} | ${port} | ${exp_counter_val}
-| | ${port} | ${node}= | Next Interface
-| | Vpp dump stats table | ${node}
-| | Check ipv4 interface counter | ${node} | ${port} | ${exp_counter_val}
-| | ${port} | ${node}= | Next Interface
-| | Check ipv4 interface counter | ${node} | ${port} | ${exp_counter_val}
 
 | TC06: DUT replies to ICMPv4 Echo Reqs with size 64B-to-1500B-incr-1B
 | | [Documentation]
