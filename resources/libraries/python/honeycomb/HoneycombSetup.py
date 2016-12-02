@@ -127,8 +127,12 @@ class HoneycombSetup(object):
         for node in nodes:
             if node['type'] == NodeType.DUT:
                 HoneycombSetup.print_ports(node)
-                status_code, _ = HTTPRequest.get(node, path, timeout=10,
-                                                 enable_logging=False)
+                try:
+                    status_code, _ = HTTPRequest.get(node, path, timeout=10,
+                                                     enable_logging=False)
+                except HTTPRequestError:
+                    HcUtil.read_log_tail(node)
+                    raise
                 if status_code == HTTPCodes.OK:
                     logger.info("Honeycomb on node {0} is up and running".
                                 format(node['host']))
