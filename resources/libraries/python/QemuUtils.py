@@ -15,7 +15,6 @@
 
 from time import time, sleep
 import json
-import re
 
 from robot.api import logger
 
@@ -252,7 +251,8 @@ class QemuUtils(object):
         if int(ret_code) != 0:
             logger.debug('QGA execute failed {0}'.format(stderr))
             raise RuntimeError('QGA execute "{0}" '
-                               'failed on {1}'.format(cmd, self._node['host']))
+                               'failed on {1}'.format(qga_cmd,
+                                                      self._node['host']))
         logger.trace(stdout)
         if not stdout:
             return {}
@@ -337,17 +337,12 @@ class QemuUtils(object):
         """Huge page check."""
         huge_mnt = self._qemu_opt.get('huge_mnt')
         mem_size = self._qemu_opt.get('mem_size')
-        # Check size of free huge pages
-        (_, output, _) = self._ssh.exec_command('grep Huge /proc/meminfo')
-        regex = re.compile(r'HugePages_Free:\s+(\d+)')
-        match = regex.search(output)
-        huge_free = int(match.group(1))
-        regex = re.compile(r'HugePages_Total:\s+(\d+)')
-        match = regex.search(output)
-        huge_total = int(match.group(1))
-        regex = re.compile(r'Hugepagesize:\s+(\d+)')
-        match = regex.search(output)
-        huge_size = int(match.group(1))
+
+        # Get huge pages information
+        huge_size = self._get_huge_page_size()
+        huge_free = self._get_huge_page_free(huge_size)
+        huge_total = self._get_huge_page_total(huge_size)
+
         # Check if memory reqested by qemu is available on host
         if (mem_size * 1024) > (huge_free * huge_size):
             # If we want to allocate hugepage dynamically
@@ -398,6 +393,82 @@ class QemuUtils(object):
                 logger.debug('Mount huge pages failed {0}'.format(stderr))
                 raise RuntimeError('Mount huge pages failed on {0}'.format(
                     self._node['host']))
+
+    def _get_huge_page_size(self):
+        """Get default size of huge pages in system.
+
+        :param huge_size: Size of hugepages.
+        :type huge_size: int
+        :returns: Default size of free huge pages in system.
+        :rtype: int
+        :raises: RuntimeError if reading failed for three times.
+        """
+        # TODO: remove to dedicated library
+        cmd_huge_size = "grep Hugepagesize /proc/meminfo | awk '{ print $2 }'"
+        for _ in range(3):
+            (ret, out, _) = self._ssh.exec_command_sudo(cmd_huge_size)
+            if ret == 0:
+                try:
+                    huge_size = int(out)
+                except ValueError:
+                    logger.trace('Reading huge page size information failed')
+                else:
+                    break
+        else:
+            raise RuntimeError('Getting huge page size information failed.')
+        return huge_size
+
+    def _get_huge_page_free(self, huge_size):
+        """Get total number of huge pages in system.
+
+        :param huge_size: Size of hugepages.
+        :type huge_size: int
+        :returns: Number of free huge pages in system.
+        :rtype: int
+        :raises: RuntimeError if reading failed for three times.
+        """
+        # TODO: add numa aware option
+        # TODO: remove to dedicated library
+        cmd_huge_free = 'cat /sys/kernel/mm/hugepages/hugepages-{0}kB/'\
+            'free_hugepages'.format(huge_size)
+        for _ in range(3):
+            (ret, out, _) = self._ssh.exec_command_sudo(cmd_huge_free)
+            if ret == 0:
+                try:
+                    huge_free = int(out)
+                except ValueError:
+                    logger.trace('Reading free huge pages information failed')
+                else:
+                    break
+        else:
+            raise RuntimeError('Getting free huge pages information failed.')
+        return huge_free
+
+    def _get_huge_page_total(self, huge_size):
+        """Get total number of huge pages in system.
+
+        :param huge_size: Size of hugepages.
+        :type huge_size: int
+        :returns: Total number of huge pages in system.
+        :rtype: int
+        :raises: RuntimeError if reading failed for three times.
+        """
+        # TODO: add numa aware option
+        # TODO: remove to dedicated library
+        cmd_huge_total = 'cat /sys/kernel/mm/hugepages/hugepages-{0}kB/'\
+            'nr_hugepages'.format(huge_size)
+        for _ in range(3):
+            (ret, out, _) = self._ssh.exec_command_sudo(cmd_huge_total)
+            if ret == 0:
+                try:
+                    huge_total = int(out)
+                except ValueError:
+                    logger.trace('Reading total huge pages information failed')
+                else:
+                    break
+        else:
+            raise RuntimeError('Getting total huge pages information failed.')
+        return huge_total
 
     def qemu_start(self):
         """Start QEMU and wait until VM boot.
