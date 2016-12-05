@@ -26,7 +26,7 @@ HC_GROUP="io.fd.hc2vpp"
 NSH_GROUP="io.fd.nsh_sfc"
 VPP_ARTIFACTS="vpp vpp-dbg vpp-dev vpp-dpdk-dev vpp-dpdk-dkms vpp-lib vpp-plugins"
 HC_ARTIFACTS="honeycomb"
-NSH_ARTIFACT="vpp-nsh-plugin"
+NSH_ARTIFACTS="vpp-nsh-plugin"
 PACKAGE="deb deb.md5"
 CLASS="deb"
 
