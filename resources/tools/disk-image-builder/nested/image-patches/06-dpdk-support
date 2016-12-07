@@ -34,6 +34,8 @@ fi
 
 # Set up hugepages
 echo "vm.nr_hugepages = ${NUM_HUGEPAGES}" > /etc/sysctl.conf
+echo "vm.swappiness = 0" >> /etc/sysctl.conf
+echo "kernel.randomize_va_space = 0" >> /etc/sysctl.conf
 sysctl -p
 mkdir -p /mnt/huge
 grep -q hugetlbfs /etc/fstab || echo "hugetlbfs /mnt/huge hugetlbfs mode=1770,gid=2021 0 0" >> /etc/fstab
@@ -50,9 +52,19 @@ do
   echo $dev > /sys/bus/pci/drivers/${TARGET_DRIVER}/bind
 done
 
+# RCU and IRQ affinity
 for i in $(ls /proc/irq/ | grep [0-9])
 do
   echo 1 > /proc/irq/$i/smp_affinity
+done
+echo 1 | sudo tee /sys/bus/workqueue/devices/writeback/cpumask
+
+# There is a bug causing packet loss when VM is initialized. This workaround is
+# supposed to re-initialize CPUs.
+for i in $(ls -d /sys/devices/system/cpu/cpu[1-9]/online); do
+    echo 0 | sudo tee $i
+    sleep 2
+    echo 1 | sudo tee $i
 done
 
 # Start testpmd in the background. This looks a bit convoluted; we need to redirect stdin
