@@ -34,6 +34,8 @@ fi
 
 # Set up hugepages
 echo "vm.nr_hugepages = ${NUM_HUGEPAGES}" > /etc/sysctl.conf
+echo "vm.swappiness = 0" >> /etc/sysctl.conf
+echo "kernel.randomize_va_space = 0" >> /etc/sysctl.conf
 sysctl -p
 mkdir -p /mnt/huge
 grep -q hugetlbfs /etc/fstab || echo "hugetlbfs /mnt/huge hugetlbfs mode=1770,gid=2021 0 0" >> /etc/fstab
@@ -50,10 +52,18 @@ do
   echo $dev > /sys/bus/pci/drivers/${TARGET_DRIVER}/bind
 done
 
+# RCU and IRQ affinity
 for i in $(ls /proc/irq/ | grep [0-9])
 do
   echo 1 > /proc/irq/$i/smp_affinity
 done
+echo 1 | sudo tee /sys/bus/workqueue/devices/writeback/cpumask
+
+# Bug fix workaround
+echo 0 | sudo tee /sys/devices/system/cpu/cpu1/online
+echo 0 | sudo tee /sys/devices/system/cpu/cpu2/online
+echo 1 | sudo tee /sys/devices/system/cpu/cpu1/online
+echo 1 | sudo tee /sys/devices/system/cpu/cpu2/online
 
 # Start testpmd in the background. This looks a bit convoluted; we need to redirect stdin
 # (and keep stdin active) or else testpmd will quit.
