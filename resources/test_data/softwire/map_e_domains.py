@@ -33,7 +33,10 @@ def get_variables(count):
     domain_sets = []
     ip_sets = []
 
-    for n1, n2 in sample(list(product(xrange(2, 224), xrange(0, 256))), count):
+    ip_product = [x for x in list(product(xrange(2, 224), xrange(0, 256)))
+                  if x[0] != 127]
+
+    for n1, n2 in sample(ip_product, count):
         v4_pfx = '{}.{}.0.0/16'.format(n1, n2)
         v6_pfx = '2001:{:x}{:x}::/48'.format(n1, n2)
         ipv6_br = '2001:ffff::1'
