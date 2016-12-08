@@ -37,7 +37,7 @@
 | | ...
 | | [Arguments] | @{duts}
 | | Start honeycomb on DUTs | @{duts}
-| | Wait until keyword succeeds | 3min | 10sec
+| | Wait until keyword succeeds | 4min | 15sec
 | | ... | Check honeycomb startup state | @{duts}
 
 | Stop honeycomb service on DUTs
