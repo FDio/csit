@@ -161,7 +161,7 @@ VIRL_SID=$(ssh ${SSH_OPTIONS} \
     ${VIRL_USERNAME}@${VIRL_SERVER} \
     "start-testcase -c ${VIRL_TOPOLOGY} -r ${VIRL_RELEASE} ${VPP_DEBS_FULL[@]}")
 retval=$?
-if [ "$?" -ne "0" ]; then
+if [ ${retval} -ne "0" ]; then
     echo "VIRL simulation start failed"
     exit ${retval}
 fi
@@ -183,7 +183,7 @@ scp ${SSH_OPTIONS} \
     topologies/enabled/topology.yaml
 
 retval=$?
-if [ "$?" -ne "0" ]; then
+if [ ${retval} -ne "0" ]; then
     echo "Failed to copy topology file from VIRL simulation"
     exit ${retval}
 fi

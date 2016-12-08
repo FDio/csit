@@ -169,7 +169,7 @@ for index in "${!VIRL_SERVER[@]}"; do
         scp ${SSH_OPTIONS} *.deb \
         ${VIRL_USERNAME}@${VIRL_SERVER[${index}]}:${VIRL_DIR_LOC}/
 
-         result=$?
+        result=$?
         if [ "${result}" -ne "0" ]; then
             echo "Failed to copy VPP deb files to VIRL host ${VIRL_SERVER[${index}]}"
             echo ${result}
@@ -199,7 +199,7 @@ for index in "${!VIRL_SERVER[@]}"; do
         ${VIRL_USERNAME}@${VIRL_SERVER[${index}]} \
         "start-testcase -c ${VIRL_TOPOLOGY} -r ${VIRL_RELEASE} ${VPP_DEBS_FULL[@]}")
     retval=$?
-    if [ "$?" -ne "0" ]; then
+    if [ ${retval} -ne "0" ]; then
         echo "VIRL simulation start failed on ${VIRL_SERVER[${index}]}"
         exit ${retval}
     fi
@@ -218,7 +218,7 @@ for index in "${!VIRL_SERVER[@]}"; do
         topologies/enabled/topology${index}.yaml
 
     retval=$?
-    if [ "$?" -ne "0" ]; then
+    if [ ${retval} -ne "0" ]; then
         echo "Failed to copy topology file from VIRL simulation nr. ${index} on VIRL server ${VIRL_SERVER[${index}]}"
         exit ${retval}
     fi
