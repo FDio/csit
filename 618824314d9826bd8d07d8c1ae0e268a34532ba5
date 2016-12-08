@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a2585a7_e7798bfd",
+        "filename": "bootstrap-hc2vpp-integration.sh",
+        "patchSetId": 5
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 174
+      },
+      "writtenOn": "2016-12-08T14:16:30Z",
+      "side": 1,
+      "message": "It is no longer private ;) \nI saw that in other csit scripts. Not sure why you are doing that in csit...",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 71,
+        "endChar": 29
+      },
+      "revId": "618824314d9826bd8d07d8c1ae0e268a34532ba5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
