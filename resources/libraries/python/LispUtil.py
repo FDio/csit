@@ -30,7 +30,7 @@ class LispUtil(object):
 
         :param node: VPP node.
         :type node: dict
-        :return: Lisp gpe state.
+        :returns: Lisp gpe state.
         :rtype: list
         """
 
@@ -48,7 +48,7 @@ class LispUtil(object):
         retrieved - local, remote, empty string = both.
         :type node: dict
         :type items_filter: str
-        :return: Lisp locator_set data as python list.
+        :returns: Lisp locator_set data as python list.
         :rtype: list
         """
 
@@ -66,7 +66,7 @@ class LispUtil(object):
 
         :param node: VPP node.
         :type node: dict
-        :return: Lisp eid table as python list.
+        :returns: Lisp eid table as python list.
         :rtype: list
         """
 
@@ -80,12 +80,26 @@ class LispUtil(object):
 
         :param node: VPP node.
         :type node: dict
-        :return: Lisp map resolver as python list.
+        :returns: Lisp map resolver as python list.
         :rtype: list
         """
 
         vat = VatExecutor()
         vat.execute_script_json_out('lisp/show_lisp_map_resolver.vat', node)
+        return JsonParser().parse_data(vat.get_script_stdout())
+
+    @staticmethod
+    def vpp_show_lisp_pitr(node):
+        """Get Lisp PITR feature config from VPP node.
+
+        :param node: VPP node.
+        :type node: dict
+        :returns: Lisp PITR config data.
+        :rtype: dict
+        """
+
+        vat = VatExecutor()
+        vat.execute_script_json_out('lisp/show_lisp_pitr.vat', node)
         return JsonParser().parse_data(vat.get_script_stdout())
 
     @staticmethod
@@ -135,7 +149,7 @@ class LispUtil(object):
         :param locator_set_number: Generate n locator_set.
         :type node: dict
         :type locator_set_number: str
-        :return: list of lisp locator_set, list of lisp locator_set expected
+        :returns: list of lisp locator_set, list of lisp locator_set expected
         from VAT.
         :rtype: tuple
         """
@@ -181,7 +195,7 @@ class LispUtil(object):
         :param locator_set_number: Generate n locator_set.
         :type node: dict
         :type locator_set_number: str
-        :return: list of lisp locator_set, list of lisp locator_set expected
+        :returns: list of lisp locator_set, list of lisp locator_set expected
         from VAT.
         :rtype: tuple
         """
