@@ -68,7 +68,6 @@
 | | ${api_data}= | interfaceAPI.Get sub interface oper data
 | | ... | ${node} | ${super_interface} | ${identifier}
 | | interfaceAPI.Compare Data Structures | ${api_data} | ${sub_if_settings}
-| | ... | list_order=${False}
 
 | Sub-interface configuration from Honeycomb should be empty
 | | [Documentation] | Retrieves sub-interface configuration through Honeycomb \
@@ -391,7 +390,7 @@
 | | ${api_data}= | interfaceAPI.Get tag rewrite oper data
 | | ... | ${node} | ${super_if} | ${identifier}
 | | interfaceAPI.Compare Data Structures
-| | ... | ${api_data} | ${settings} | list_order=${False}
+| | ... | ${api_data} | ${settings}
 
 | Rewrite tag from VAT should be
 | | [Documentation] | Retrieves sub-interface configuration through VAT and\

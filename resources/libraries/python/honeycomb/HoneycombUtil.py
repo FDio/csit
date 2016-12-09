@@ -27,8 +27,7 @@ from enum import Enum, unique
 
 from robot.api import logger
 
-from resources.libraries.python.ssh import SSH
-from resources.libraries.python.HTTPRequest import HTTPRequest, HTTPCodes
+from resources.libraries.python.HTTPRequest import HTTPRequest
 from resources.libraries.python.constants import Constants as Const
 
 
@@ -302,10 +301,7 @@ class HoneycombUtil(object):
         base_path = HoneycombUtil.read_path_from_url_file(url_file)
         path = base_path + path
         status_code, resp = HTTPRequest.get(node, path)
-        response = loads(resp)
-        if status_code != HTTPCodes.OK:
-            HoneycombUtil.read_log_tail(node)
-        return status_code, response
+        return status_code, loads(resp)
 
     @staticmethod
     def put_honeycomb_data(node, url_file, data, path="",
@@ -343,12 +339,8 @@ class HoneycombUtil(object):
         base_path = HoneycombUtil.read_path_from_url_file(url_file)
         path = base_path + path
         logger.trace(path)
-        (status_code, response) = HTTPRequest.put(
+        return HTTPRequest.put(
             node=node, path=path, headers=header, payload=data)
-
-        if status_code not in (HTTPCodes.OK, HTTPCodes.ACCEPTED):
-            HoneycombUtil.read_log_tail(node)
-        return status_code, response
 
     @staticmethod
     def post_honeycomb_data(node, url_file, data=None,
@@ -383,12 +375,8 @@ class HoneycombUtil(object):
             data = dumps(data)
 
         path = HoneycombUtil.read_path_from_url_file(url_file)
-        (status_code, response) = HTTPRequest.post(
+        return HTTPRequest.post(
             node=node, path=path, headers=header, payload=data, timeout=timeout)
-
-        if status_code not in (HTTPCodes.OK, HTTPCodes.ACCEPTED):
-            HoneycombUtil.read_log_tail(node)
-        return status_code, response
 
     @staticmethod
     def delete_honeycomb_data(node, url_file, path=""):
@@ -407,48 +395,4 @@ class HoneycombUtil(object):
 
         base_path = HoneycombUtil.read_path_from_url_file(url_file)
         path = base_path + path
-        (status_code, response) = HTTPRequest.delete(node, path)
-
-        if status_code != HTTPCodes.OK:
-            HoneycombUtil.read_log_tail(node)
-        return status_code, response
-
-    @staticmethod
-    def read_log_tail(node, lines=120):
-        """Read  the last N lines of the Honeycomb log file and print them
-        to robot log.
-
-        :param node: Honeycomb node.
-        :param lines: Number of lines to read.
-        :type node: dict
-        :type lines: int
-        :returns: Last N log lines.
-        :rtype: str
-        """
-
-        logger.trace(
-            "HTTP request failed, "
-            "obtaining last {0} lines of Honeycomb log...".format(lines))
-
-        ssh = SSH()
-        ssh.connect(node)
-        cmd = "tail -n {0} /var/log/honeycomb/honeycomb.log".format(lines)
-        # ssh also logs the reply on trace level
-        (_, stdout, _) = ssh.exec_command(cmd, timeout=30)
-
-        return stdout
-
-    @staticmethod
-    def archive_honeycomb_log(node):
-        """Copy honeycomb log file from DUT node to VIRL for archiving.
-
-        :param node: Honeycomb node.
-        :type node: dict
-        """
-
-        ssh = SSH()
-        ssh.connect(node)
-
-        cmd = "cp /var/log/honeycomb/honeycomb.log /scratch/"
-
-        ssh.exec_command_sudo(cmd)
+        return HTTPRequest.delete(node, path)

@@ -1313,43 +1313,72 @@ class InterfaceKeywords(object):
             node, super_interface, path, None)
 
     @staticmethod
-    def compare_data_structures(data, ref, ignore=(), list_order=True):
-        """Checks if data obtained from UUT is as expected.
+    def compare_data_structures(data, ref, _path=''):
+        """Checks if data obtained from UUT is as expected. If it is not,
+        proceeds down the list/dictionary tree and finds the point of mismatch.
 
         :param data: Data to be checked.
         :param ref: Referential data used for comparison.
-        :param ignore: Dictionary keys to be ignored.
-        :param list_order: Whether to consider the order of list items\
-        in comparison.
+        :param _path: Used in recursive calls, stores the path taken down
+        the JSON tree.
         :type data: dict
         :type ref: dict
-        :type ignore: iterable
-        :type list_order: bool
+        :type _path: str
 
-        :raises HoneycombError: If a parameter from referential data is not
-        present in operational data or if it has different value.
+        :raises HoneycombError: If the data structures do not match in some way,
+        or if they are not in deserialized JSON format.
         """
 
-        errors = ""
+        if data == ref:
+            return True
 
-        for key, item in ref.items():
-            if key in ignore:
-                continue
-            try:
-                if data[key] != item:
-                    if not list_order and sorted(data[key]) == sorted(item):
-                        pass
+        elif isinstance(data, dict) and isinstance(ref, dict):
+            for key in ref:
+                if key not in data:
+                    raise HoneycombError(
+                        "Key {key} is not present in path {path}. Keys in path:"
+                        "{data_keys}".format(
+                            key=key,
+                            path=_path,
+                            data_keys=data.keys()))
+
+                if data[key] != ref[key]:
+                    if isinstance(data[key], list) \
+                            or isinstance(data[key], dict):
+                        InterfaceKeywords.compare_data_structures(
+                            data[key], ref[key],
+                            _path + '[{0}]'.format(key))
                     else:
-                        errors += ("\nThe value of parameter '{0}' is "
-                                   "incorrect. It should be "
-                                   "'{1}' but it is '{2}'".
-                                   format(key, item, data[key]))
-            except KeyError:
-                errors += ("\nThe parameter '{0}' is not present in "
-                           "operational data".format(key))
+                        raise HoneycombError(
+                            "Data mismatch, key {key} in path {path} has value"
+                            " {data}, but should be {ref}".format(
+                                key=key,
+                                path=_path,
+                                data=data[key],
+                                ref=ref[key]))
 
-        if errors:
-            raise HoneycombError(errors)
+        elif isinstance(data, list) and isinstance(ref, list):
+            for item in ref:
+                if item not in data:
+                    if isinstance(item, dict):
+                        InterfaceKeywords.compare_data_structures(
+                            data[0], item,
+                            _path + '[{0}]'.format(ref.index(item)))
+                    else:
+                        raise HoneycombError(
+                            "Data mismatch, list item {index} in path {path}"
+                            " has value {data}, but should be {ref}".format(
+                                index=ref.index(item),
+                                path=_path,
+                                data=data[0],
+                                ref=item))
+
+        else:
+            raise HoneycombError(
+                "Unexpected data type {data_type}, reference type is"
+                " {ref_type}. Must be list or dictionary.".format(
+                    data_type=type(data),
+                    ref_type=type(ref)))
 
     @staticmethod
     def compare_interface_lists(list1, list2):

@@ -17,7 +17,6 @@
 hc_acl_table = {
     "name": "acl_table_test",
     "nbuckets": 1,
-    "memory_size": 100000,
     "skip_n_vectors": 0,
     "miss_next": "permit",
     "mask": "00:00:00:00:00:00:ff:ff:ff:ff:ff:ff:00:00:00:00"
@@ -26,7 +25,6 @@ hc_acl_table = {
 hc_acl_table2 = {
     "name": "acl_table_test2",
     "nbuckets": 2,
-    "memory_size": 100000,
     "skip_n_vectors": 1,
     "next_table": "acl_table_test",
     "miss_next": "deny",

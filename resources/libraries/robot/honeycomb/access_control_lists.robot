@@ -12,7 +12,6 @@
 # limitations under the License.
 *** Variables ***
 #TODO: update based on resolution of bug https://jira.fd.io/browse/HONEYCOMB-119
-| @{hc_table_ignore}= | memory_size
 
 *** Settings ***
 | Library | resources.libraries.python.Classify
@@ -124,7 +123,7 @@
 | | ... | \| ${settings} \|
 | | [Arguments] | ${node} | ${settings}
 | | ${data}= | Get classify table oper data | ${node} | ${settings['name']}
-| | Compare data structures | ${data} | ${settings} | ignore=${hc_table_ignore}
+| | Compare data structures | ${data} | ${settings}
 
 | ACL table from VAT should be
 | | [Documentation] | Retrieves ACL table information from VAT\
