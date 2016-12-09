@@ -89,6 +89,20 @@ class LispUtil(object):
         return JsonParser().parse_data(vat.get_script_stdout())
 
     @staticmethod
+    def vpp_show_lisp_pitr(node):
+        """Get Lisp PITR feature config from VPP node.
+
+        :param node: VPP node.
+        :type node: dict
+        :returns: Lisp PITR config data.
+        :rtype: dict
+        """
+
+        vat = VatExecutor()
+        vat.execute_script_json_out('lisp/show_lisp_pitr.vat', node)
+        return JsonParser().parse_data(vat.get_script_stdout())
+
+    @staticmethod
     def lisp_should_be_equal(lisp_val1, lisp_val2):
         """Fail if the lisp values are not equal.
 
