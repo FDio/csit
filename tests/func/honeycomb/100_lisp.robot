@@ -1,0 +1,120 @@
+# Copyright (c) 2016 Cisco and/or its affiliates.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at:
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+*** Variables***
+| ${interface}= | ${node['interfaces']['port1']['name']}
+| ${bd_name}= | bd_lisp
+| ${bd2_name}= | bd2_lisp
+| &{bd_settings}= | flood=${True} | forward=${True} | learn=${True}
+| ... | unknown-unicast-flood=${True} | arp-termination=${True}
+
+*** Settings ***
+| Resource | resources/libraries/robot/default.robot
+| Resource | resources/libraries/robot/honeycomb/honeycomb.robot
+| Resource | resources/libraries/robot/honeycomb/lisp.robot
+| Resource | resources/libraries/robot/honeycomb/bridge_domain.robot
+| Variables | resources/test_data/honeycomb/lisp.py
+| Documentation | *Honeycomb Lisp test suite.*
+| Suite Teardown | Run Keyword If Any Tests Failed
+| ... | Restart Honeycomb And VPP And Clear Persisted Configuration | ${node}
+| Force Tags | honeycomb_sanity
+
+*** Test Cases ***
+| TC01: Honeycomb enables Lisp feature
+| | [Documentation] |
+| | Given Lisp Should Not Be Configured | ${node}
+| | When Honeycomb Enables Lisp | ${node}
+| | Then Lisp state From Honeycomb Should Be | ${node} | enabled
+| | And Lisp state From VAT Should Be | ${node} | enabled
+
+| TC02: Honeycomb adds locator set and locator
+| | Given Lisp state From Honeycomb Should Be | ${node} | enabled
+| | When Honeycomb adds locator set | ${node} | ${interface} | ${locator_set}
+| | Then Locator Set From Honeycomb Should Be
+| | ... | ${node} | ${interface} | ${locator_set}
+
+| TC03: Honeycomb configures Lisp - remote mapping - Bridge Domain
+| | Given Lisp state From Honeycomb Should Be | ${node} | enabled
+| | And Honeycomb creates first l2 bridge domain
+| | ... | ${node} | ${bd_name} | ${bd_settings}
+| | When Honeycomb adds Lisp mapping | ${node} | ${lisp_settings_remote_bd}
+| | Then Lisp mapping From Honeycomb Should Be
+| | ... | ${node} | ${remote_bd_subtable}
+| | And Lisp mapping From VAT Should Be
+| | ... | ${node} | ${vat_remote_bd}
+
+| TC04: Honeycomb can remove Lisp mapping
+| | Given Lisp mapping From Honeycomb Should Be
+| | ... | ${node} | ${remote_bd_subtable}
+| | And Lisp mapping From VAT Should Be
+| | ... | ${node} | ${vat_remote_bd}
+| | Honeycomb removes all lisp mappings | ${node}
+
+| TC05: Honeycomb configures Lisp - remote mapping - VRF
+| | [Teardown] | Honeycomb removes all lisp mappings | ${node}
+| | When Honeycomb adds Lisp mapping | ${node} | ${lisp_settings_remote_vrf}
+| | Then Lisp mapping From Honeycomb Should Be
+| | ... | ${node} | ${remote_vrf_subtable}
+| | And Lisp mapping From VAT Should Be | ${node} | ${vat_remote_vrf}
+
+| TC06: Honeycomb configures Lisp - local mapping - Bridge Domain
+| | [Teardown] | Honeycomb removes all lisp mappings | ${node}
+| | Given Locator Set From Honeycomb Should Be
+| | ... | ${node} | ${interface} | ${locator_set}
+| | And Honeycomb creates first l2 bridge domain
+| | ... | ${node} | ${bd2_name} | ${bd_settings}
+| | When Honeycomb adds Lisp mapping | ${node} | ${lisp_settings_local_bd}
+| | Then Lisp mapping From Honeycomb Should Be | ${node} | ${local_bd_subtable}
+| | And Lisp mapping From VAT Should Be | ${node} | ${vat_local_bd}
+
+| TC07: Honeycomb configures Lisp - local mapping - VRF
+| | [Teardown] | Honeycomb removes all lisp mappings | ${node}
+| | Given Locator Set From Honeycomb Should Be
+| | ... | ${node} | ${interface} | ${locator_set}
+| | When Honeycomb adds Lisp mapping | ${node} | ${lisp_settings_local_vrf}
+| | Then Lisp mapping From Honeycomb Should Be | ${node} | ${local_vrf_subtable}
+| | And Lisp mapping From VAT Should Be | ${node} | ${vat_local_vrf}
+
+| TC08: Honeycomb configures Lisp mapping with adjacency
+| | [Tags] | EXPECTED_FAILING
+# Requests below "vrf-subtable" level fail on table-id lookup (HONEYCOMB-290)
+| | [Teardown] | Honeycomb removes all lisp mappings | ${node}
+| | Given Locator Set From Honeycomb Should Be
+| | ... | ${node} | ${interface} | ${locator_set}
+| | And Honeycomb creates first l2 bridge domain
+| | ... | ${node} | ${bd2_name} | ${bd_settings}
+| | And Honeycomb adds Lisp mapping | ${node} | ${lisp_settings_local_vrf}
+| | And Honeycomb adds Lisp mapping | ${node} | ${lisp_settings_remote_vrf}
+| | When Honeycomb adds Lisp adjacency | ${node} | ${4} | remote_map_vrf
+| | ... | adj01 | ${remote_vrf_adjacency}
+| | Then Lisp mapping from Honeycomb should be
+| | ... | ${node} | ${remote_adj_subtable}
+
+| TC09: Honeycomb configures Lisp map resolver
+| | When Honeycomb adds Lisp Map resolver | ${node} | 192.168.0.4
+| | Then Map resolver from Honeycomb should be | ${node} | 192.168.0.4
+| | And Map resolver from VAT should be | ${node} | 192.168.0.4
+
+| TC10: Honeycomb enabled Lisp PITR feature
+| | When Honeycomb enables Lisp PITR feature | ${node} | ${locator_set}
+| | Then PITR config from Honeycomb should be | ${node} | ${locator_set}
+| | And PITR config from VAT should be | ${node} | ${locator_set}
+
+| TC11: Honeycomb can remove configuration of Lisp features
+| | [Tags] | EXPECTED_FAILING
+# Delete operation fails due to incorrect write order(HONEYCOMB-296),
+# but returns code 200: OK (HONEYCOMB-297)
+| | Given Map resolver from Honeycomb should be | ${node} | 192.168.0.4
+| | And PITR config from Honeycomb should be | ${node} | ${locator_set}
+| | When Honeycomb disables all Lisp features | ${node}
+| | Then Lisp Should Not Be Configured | ${node}
