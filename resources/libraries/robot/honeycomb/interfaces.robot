@@ -235,7 +235,7 @@
 | | ${api_data}= | interfaceAPI.Get interface oper data | ${node} | ${interface}
 | | ${data_neighbors}= | Set Variable | ${api_data['ietf-ip:ipv4']['neighbor']}
 | | Compare data structures
-| | ... | ${data_neighbors} | ${neighbors} | list_order=${False}
+| | ... | ${data_neighbors} | ${neighbors}
 | | Should be equal | ${neighbor['fib_address']}
 | | ... | ${api_data['ietf-ip:ipv4']['neighbor'][0]['ip']}
 | | Should be equal | ${neighbor['fib_mac']}
