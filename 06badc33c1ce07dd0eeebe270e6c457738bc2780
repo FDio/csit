@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a2585a7_f8e12a9b",
+        "filename": "resources/libraries/python/honeycomb/HoneycombUtil.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 393,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-12-12T07:35:00Z",
+      "side": 1,
+      "message": ":returns:\nCheck everywhere in this file.",
+      "range": {
+        "startLine": 393,
+        "startChar": 8,
+        "endLine": 393,
+        "endChar": 16
+      },
+      "revId": "06badc33c1ce07dd0eeebe270e6c457738bc2780",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
