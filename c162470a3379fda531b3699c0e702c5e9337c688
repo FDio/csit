@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a2585a7_73143df5",
+        "filename": "resources/libraries/python/DPDK/DPDKTools.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-12-12T11:24:48Z",
+      "side": 1,
+      "message": "lines too long",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 82
+      },
+      "revId": "c162470a3379fda531b3699c0e702c5e9337c688",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_53f941c7",
+        "filename": "resources/libraries/python/DPDK/DPDKTools.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-12-12T11:24:48Z",
+      "side": 1,
+      "message": "lines too long",
+      "range": {
+        "startLine": 82,
+        "startChar": 0,
+        "endLine": 83,
+        "endChar": 92
+      },
+      "revId": "c162470a3379fda531b3699c0e702c5e9337c688",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_930fa9e1",
+        "filename": "resources/libraries/python/DPDK/L2fwdTest.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-12-12T11:24:48Z",
+      "side": 1,
+      "message": "line too long",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 50,
+        "endChar": 83
+      },
+      "revId": "c162470a3379fda531b3699c0e702c5e9337c688",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_f3682d89",
+        "filename": "resources/libraries/robot/DPDK/default.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-12-12T11:24:48Z",
+      "side": 1,
+      "message": "we do not have HTT enabled yet",
+      "range": {
+        "startLine": 25,
+        "startChar": 61,
+        "endLine": 25,
+        "endChar": 69
+      },
+      "revId": "c162470a3379fda531b3699c0e702c5e9337c688",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_f3e38d31",
+        "filename": "resources/libraries/robot/DPDK/default.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-12-12T11:24:48Z",
+      "side": 1,
+      "message": "line too long",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 25,
+        "endChar": 84
+      },
+      "revId": "c162470a3379fda531b3699c0e702c5e9337c688",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_13e73942",
+        "filename": "resources/libraries/robot/DPDK/default.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-12-12T11:24:48Z",
+      "side": 1,
+      "message": "line too long",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 82
+      },
+      "revId": "c162470a3379fda531b3699c0e702c5e9337c688",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_d30531c3",
+        "filename": "resources/libraries/robot/DPDK/default.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 59,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-12-12T11:24:48Z",
+      "side": 1,
+      "message": "line too long\nwe do not have HTT enabled yet",
+      "range": {
+        "startLine": 59,
+        "startChar": 0,
+        "endLine": 59,
+        "endChar": 84
+      },
+      "revId": "c162470a3379fda531b3699c0e702c5e9337c688",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_b30aa5d0",
+        "filename": "resources/libraries/robot/DPDK/default.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-12-12T11:24:48Z",
+      "side": 1,
+      "message": "line too long",
+      "range": {
+        "startLine": 70,
+        "startChar": 0,
+        "endLine": 70,
+        "endChar": 82
+      },
+      "revId": "c162470a3379fda531b3699c0e702c5e9337c688",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
