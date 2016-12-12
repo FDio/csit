@@ -142,8 +142,7 @@ class QemuUtils(object):
             raise ValueError('Host CPU count must match Qemu Thread count')
 
         for qemu_cpu, host_cpu in zip(qemu_cpus, host_cpus):
-            cmd = 'taskset -p {0} {1}'.format(hex(1 << int(host_cpu)),
-                                              qemu_cpu['thread_id'])
+            cmd = 'taskset -pc {0} {1}'.format(host_cpu, qemu_cpu['thread_id'])
             (ret_code, _, stderr) = self._ssh.exec_command_sudo(cmd)
             if int(ret_code) != 0:
                 logger.debug('Set affinity failed {0}'.format(stderr))
@@ -280,7 +279,7 @@ class QemuUtils(object):
             return {}
         return json.loads(stdout.split('\n', 1)[0])
 
-    def _wait_until_vm_boot(self, timeout=300):
+    def _wait_until_vm_boot(self, timeout=60):
         """Wait until QEMU VM is booted.
 
         Ping QEMU guest agent each 5s until VM booted or timeout.
@@ -289,12 +288,15 @@ class QemuUtils(object):
         :type timeout: int
         """
         start = time()
-        while 1:
+        while True:
             if time() - start > timeout:
                 raise RuntimeError('timeout, VM {0} not booted on {1}'.format(
                     self._qemu_opt['disk_image'], self._node['host']))
             self._qemu_qga_flush()
-            out = self._qemu_qga_exec('guest-ping')
+            try:
+                out = self._qemu_qga_exec('guest-info')
+            except ValueError:
+                pass
             # Empty output - VM not booted yet
             if not out:
                 sleep(5)
@@ -305,8 +307,10 @@ class QemuUtils(object):
             elif out.get('error') is not None:
                 sleep(5)
             else:
-                raise RuntimeError('QGA guest-ping unexpected output {}'.format(
-                    out))
+                # If there is an unexpected output from QGA guest-info, try
+                # again until timeout.
+                logger.trace('QGA guest-ping unexpected output {}'.format(out))
+
         logger.trace('VM {0} booted on {1}'.format(self._qemu_opt['disk_image'],
                                                    self._node['host']))
 
@@ -513,7 +517,11 @@ class QemuUtils(object):
                 self._node['host']))
         logger.trace('QEMU running')
         # Wait until VM boot
-        self._wait_until_vm_boot()
+        try:
+            self._wait_until_vm_boot()
+        except RuntimeError:
+            self.qemu_kill()
+            raise
         # Update interface names in VM node dict
         self._update_vm_interfaces()
         # Return VM node dict
