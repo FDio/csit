@@ -1168,8 +1168,8 @@
 | Guest VM with dpdk-testpmd connected via vhost-user is setup
 | | [Documentation]
 | | ... | Start QEMU guest with two vhost-user interfaces and interconnecting
-| | ... | DPDK testpmd. Qemu Guest is using 3 cores pinned to physical cores 5,
-| | ... | 6, 7 and 2048M. Testpmd is using 3 cores (1 main core and 2 cores
+| | ... | DPDK testpmd. Qemu Guest is using 5 cores pinned to physical cores
+| | ... | 5-9, and 2048M. Testpmd is using 5 cores (1 main core and 4 cores
 | | ... | dedicated to io) mem-channel=4, txq/rxq=256, burst=64,
 | | ... | disable-hw-vlan, disable-rss, driver usr/lib/librte_pmd_virtio.so
 | | ... | and fwd mode is io.
@@ -1190,24 +1190,23 @@
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock1}
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock2}
 | | Run keyword | ${vm_name}.Qemu Set Node | ${dut_node}
-| | Run keyword | ${vm_name}.Qemu Set Smp | 3 | 3 | 1 | 1
+| | Run keyword | ${vm_name}.Qemu Set Smp | 5 | 5 | 1 | 1
 | | Run keyword | ${vm_name}.Qemu Set Mem Size | 2048
 | | Run keyword | ${vm_name}.Qemu Set Disk Image | ${glob_vm_image}
 | | ${vm}= | Run keyword | ${vm_name}.Qemu Start
-| | Run keyword | ${vm_name}.Qemu Set Affinity | 5 | 6 | 7
+| | Run keyword | ${vm_name}.Qemu Set Affinity | 5 | 6 | 7 | 8 | 9
 | | Run keyword | ${vm_name}.Qemu Set Scheduler Policy
-| | Dpdk Testpmd Start | ${vm} | eal_coremask=0x7
+| | Dpdk Testpmd Start | ${vm} | eal_coremask=0x1f
 | | ...                | eal_mem_channels=4
 | | ...                | pmd_fwd_mode=io
 | | ...                | pmd_disable_hw_vlan=${True}
-| | ...                | pmd_disable_rss=${True}
 | | Return From Keyword | ${vm}
 
 | Guest VM with dpdk-testpmd-mac connected via vhost-user is setup
 | | [Documentation]
 | | ... | Start QEMU guest with two vhost-user interfaces and interconnecting
-| | ... | DPDK testpmd. Qemu Guest is using 3 cores pinned to physical cores 5,
-| | ... | 6, 7 and 2048M. Testpmd is using 3 cores (1 main core and 2 cores
+| | ... | DPDK testpmd. Qemu Guest is using 5 cores pinned to physical cores
+| | ... | 5-9 and 2048M. Testpmd is using 5 cores (1 main core and 4 cores
 | | ... | dedicated to io) mem-channel=4, txq/rxq=256, burst=64,
 | | ... | disable-hw-vlan, disable-rss, driver usr/lib/librte_pmd_virtio.so
 | | ... | and fwd mode is mac rewrite.
@@ -1232,19 +1231,18 @@
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock1}
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock2}
 | | Run keyword | ${vm_name}.Qemu Set Node | ${dut_node}
-| | Run keyword | ${vm_name}.Qemu Set Smp | 3 | 3 | 1 | 1
+| | Run keyword | ${vm_name}.Qemu Set Smp | 5 | 5 | 1 | 1
 | | Run keyword | ${vm_name}.Qemu Set Mem Size | 2048
 | | Run keyword | ${vm_name}.Qemu Set Disk Image | ${glob_vm_image}
 | | ${vm}= | Run keyword | ${vm_name}.Qemu Start
-| | Run keyword | ${vm_name}.Qemu Set Affinity | 5 | 6 | 7
+| | Run keyword | ${vm_name}.Qemu Set Affinity | 5 | 6 | 7 | 8 | 9
 | | Run keyword | ${vm_name}.Qemu Set Scheduler Policy
-| | Dpdk Testpmd Start | ${vm} | eal_coremask=0x7
+| | Dpdk Testpmd Start | ${vm} | eal_coremask=0x1f
 | | ...                | eal_mem_channels=4
 | | ...                | pmd_fwd_mode=mac
 | | ...                | pmd_eth_peer_0=0,${eth0_mac}
 | | ...                | pmd_eth_peer_1=1,${eth1_mac}
 | | ...                | pmd_disable_hw_vlan=${True}
-| | ...                | pmd_disable_rss=${True}
 | | Return From Keyword | ${vm}
 
 | Guest VM with Linux Bridge connected via vhost-user is setup
