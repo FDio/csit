@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5a2585a7_0e34acdc",
+        "filename": "resources/libraries/robot/honeycomb/lisp.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-12-12T15:40:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a2585a7_2e10884d",
+      "range": {
+        "startLine": 152,
+        "startChar": 1,
+        "endLine": 152,
+        "endChar": 47
+      },
+      "revId": "465679d1b162e6a3118a8a4acf62ff304c8540e9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a2585a7_0e1dcc66",
         "filename": "resources/libraries/robot/honeycomb/lisp.robot",
         "patchSetId": 3
@@ -36,6 +60,30 @@
       "writtenOn": "2016-12-12T15:36:42Z",
       "side": 1,
       "message": "Doc is missing",
+      "range": {
+        "startLine": 158,
+        "startChar": 0,
+        "endLine": 158,
+        "endChar": 41
+      },
+      "revId": "465679d1b162e6a3118a8a4acf62ff304c8540e9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_ce4d8474",
+        "filename": "resources/libraries/robot/honeycomb/lisp.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2016-12-12T15:40:52Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a2585a7_0e1dcc66",
       "range": {
         "startLine": 158,
         "startChar": 0,
