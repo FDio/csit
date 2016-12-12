@@ -40,9 +40,9 @@
 | ... | *[Cfg] DUT configuration:* DUT1 and DUT2 are configured with L2 cross-
 | ... | connect. Qemu Guest is connected to VPP via vhost-user interfaces.
 | ... | Guest is running DPDK testpmd interconnecting vhost-user interfaces
-| ... | using 3 cores pinned to cpus 5,6,7 and 2048M memory. Testpmd is using
-| ... | socket-mem=1024M (512x2M hugepages), 3 cores (1 main core and 2 cores
-| ... | 2 cores dedicated for io), forwarding mode is set to io, rxq/txq=2048,
+| ... | using 5 cores pinned to cpus 5-9 and 2048M memory. Testpmd is using
+| ... | socket-mem=1024M (512x2M hugepages), 5 cores (1 main core and 4 cores
+| ... | dedicated for io), forwarding mode is set to io, rxd/txd=256,
 | ... | burst=64. DUT1, DUT2 are tested with 2p10GE NIC X520 Niantic by Intel.
 | ... | *[Ver] TG verification:* TG finds and reports throughput NDR (Non Drop
 | ... | Rate) with zero packet loss tolerance or throughput PDR (Partial Drop

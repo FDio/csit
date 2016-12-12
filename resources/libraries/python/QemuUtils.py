@@ -142,8 +142,7 @@ class QemuUtils(object):
             raise ValueError('Host CPU count must match Qemu Thread count')
 
         for qemu_cpu, host_cpu in zip(qemu_cpus, host_cpus):
-            cmd = 'taskset -p {0} {1}'.format(hex(1 << int(host_cpu)),
-                                              qemu_cpu['thread_id'])
+            cmd = 'taskset -pc {0} {1}'.format(host_cpu, qemu_cpu['thread_id'])
             (ret_code, _, stderr) = self._ssh.exec_command_sudo(cmd)
             if int(ret_code) != 0:
                 logger.debug('Set affinity failed {0}'.format(stderr))
