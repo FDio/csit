@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a2585a7_d39bf1c7",
+        "filename": "bootstrap-verify-perf-DPDK.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-12-12T09:48:00Z",
+      "side": 1,
+      "message": "You cannot just download it. You need to do also installation. You are downloading it to jenkins slave as bootstrap is running on jenkins. If you want to have it on the DUTs you would need to do installation or at least copy it to DUTs. If you prefer installation from CSIT/robot then remove this.",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 37,
+        "endChar": 51
+      },
+      "revId": "fbaacde4b37bd1bcb0fb9edb08e1971bc4cc459f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_f35eed11",
+        "filename": "bootstrap-verify-perf-DPDK.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 142,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-12-12T09:48:00Z",
+      "side": 1,
+      "message": "i think you do not need these for dpdk/testpmd/l2fwd testing.",
+      "range": {
+        "startLine": 103,
+        "startChar": 0,
+        "endLine": 142,
+        "endChar": 10
+      },
+      "revId": "fbaacde4b37bd1bcb0fb9edb08e1971bc4cc459f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
