@@ -210,3 +210,11 @@ PYTHONPATH=`pwd` pybot -L TRACE -W 136\
     --include honeycomb_sanity \
     --noncritical EXPECTED_FAILING \
     tests/
+
+# Get Honeycomb log file from each virl host
+for index in "${!VIRL_SERVER[@]}"; do
+    scp ${SSH_OPTIONS} ${VIRL_USERNAME}@${VIRL_SERVER[${index}]}:/var/log/honeycomb/honeycomb.log ${WORKSPACE}/csit/honeycomb_${index}.log
+done
+
+#copy artifacts to workspace for archiving
+cp report.html log.html output.xml honeycomb.log ..
