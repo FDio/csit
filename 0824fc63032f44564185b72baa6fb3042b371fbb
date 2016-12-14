@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a2585a7_1a4e2570",
+        "filename": "bootstrap-TLDK.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-12-14T20:29:59Z",
+      "side": 1,
+      "message": "${retval}",
+      "range": {
+        "startLine": 168,
+        "startChar": 6,
+        "endLine": 168,
+        "endChar": 8
+      },
+      "revId": "0824fc63032f44564185b72baa6fb3042b371fbb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_3a31e1ec",
+        "filename": "bootstrap-TLDK.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2016-12-14T20:29:59Z",
+      "side": 1,
+      "message": "${retval}",
+      "range": {
+        "startLine": 188,
+        "startChar": 6,
+        "endLine": 188,
+        "endChar": 8
+      },
+      "revId": "0824fc63032f44564185b72baa6fb3042b371fbb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
