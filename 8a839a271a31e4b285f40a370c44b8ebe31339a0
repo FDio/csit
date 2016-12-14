@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a2585a7_74d8a2ef",
+        "filename": "tests/func/lisp/ipv6_ipsec_lispgpe_ipv6.robot",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-12-14T12:01:14Z",
+      "side": 1,
+      "message": "compare with existing ipv6_ipsec_lispgpe_ipv6.robot and only add new TCs",
+      "revId": "8a839a271a31e4b285f40a370c44b8ebe31339a0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_f4f37271",
+        "filename": "tests/func/lisp/ipv6_lispgpe_ipsec_ipv6.robot",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2016-12-14T12:01:14Z",
+      "side": 1,
+      "message": "compare with existing ipv6_ipsec_lispgpe_ipv6.robot and only add new TCs",
+      "revId": "8a839a271a31e4b285f40a370c44b8ebe31339a0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
