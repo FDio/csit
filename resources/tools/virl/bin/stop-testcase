@@ -20,5 +20,8 @@ NFS_SCRATCH_SERVERDIR="/nfs/scratch"                            # Our own (NFS s
 
 TESTCASE=$1
 
-virl_std_client -u $VIRL_USER -p $VIRL_PASSWORD simengine-stop --session-id $TESTCASE
-sudo rm -fr ${NFS_SCRATCH_SERVERDIR}/${TESTCASE}
+if [ "x${TESTCASE}" != "x" ]
+then
+    virl_std_client -u $VIRL_USER -p $VIRL_PASSWORD simengine-stop --session-id $TESTCASE
+    sudo rm -fr ${NFS_SCRATCH_SERVERDIR}/${TESTCASE}
+fi
