@@ -22,7 +22,6 @@ from resources.libraries.python.VatJsonUtil import VatJsonUtil
 from resources.libraries.python.topology import Topology
 
 
-# pylint: disable=too-few-public-methods
 class PolicerRateType(Enum):
     """Policer rate types."""
     KBPS = 'kbps'
@@ -111,7 +110,6 @@ class PolicerClassifyTableType(Enum):
 
 
 # pylint: disable=too-many-instance-attributes
-# pylint: disable=too-many-public-methods
 class Policer(object):
     """Policer utilities."""
 
@@ -175,7 +173,6 @@ class Policer(object):
                                             exceed_action=exceed_action,
                                             violate_action=violate_action,
                                             color_aware=color_aware)
-        # pylint: enable=no-member
 
         VatJsonUtil.verify_vat_retval(
             out[0],
@@ -187,7 +184,7 @@ class Policer(object):
         # create classify table
         direction = 'src' if self._classify_match_is_src else 'dst'
 
-        if 6 == ip_address(unicode(self._classify_match_ip)).version:
+        if ip_address(unicode(self._classify_match_ip)).version == 6:
             ip_version = 'ip6'
             table_type = PolicerClassifyTableType.IP6_TABLE
         else:

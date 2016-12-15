@@ -88,8 +88,9 @@ class DUTSetup(object):
         ssh.connect(node)
 
         (ret_code, stdout, stderr) = \
-            ssh.exec_command('sudo -Sn bash {0}/{1}/dut_setup.sh'.format(
-                Constants.REMOTE_FW_DIR, Constants.RESOURCES_LIB_SH), timeout=120)
+            ssh.exec_command('sudo -Sn bash {0}/{1}/dut_setup.sh'.
+                             format(Constants.REMOTE_FW_DIR,
+                                    Constants.RESOURCES_LIB_SH), timeout=120)
         logger.trace(stdout)
         logger.trace(stderr)
         if int(ret_code) != 0:
@@ -118,7 +119,7 @@ class DUTSetup(object):
 
         if int(ret_code) != 0:
             logger.debug('Not possible to get PID of VPP process on node: '
-                         '"{1}"'.format(node['host'], stdout + stderr))
+                         '{0}\n {1}'.format(node['host'], stdout + stderr))
             raise RuntimeError('Not possible to get PID of VPP process on node:'
                                ' {}'.format(node['host']))
 
