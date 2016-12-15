@@ -18,7 +18,7 @@ from collections import Counter
 from yaml import load
 
 from robot.api import logger
-from robot.libraries.BuiltIn import BuiltIn
+from robot.libraries.BuiltIn import BuiltIn, RobotNotRunningError
 from robot.api.deco import keyword
 
 __all__ = ["DICT__nodes", 'Topology']
@@ -27,11 +27,11 @@ __all__ = ["DICT__nodes", 'Topology']
 def load_topo_from_yaml():
     """Load topology from file defined in "${TOPOLOGY_PATH}" variable.
 
-    :return: Nodes from loaded topology.
+    :returns: Nodes from loaded topology.
     """
     try:
         topo_path = BuiltIn().get_variable_value("${TOPOLOGY_PATH}")
-    except:
+    except RobotNotRunningError:
         return ''
 
     with open(topo_path) as work_file:
@@ -312,7 +312,7 @@ class Topology(object):
         try:
             if isinstance(iface_key, basestring):
                 return node['interfaces'][iface_key].get('vpp_sw_index')
-            #FIXME: use only iface_key, do not use integer
+            # TODO: use only iface_key, do not use integer
             else:
                 return int(iface_key)
         except (KeyError, ValueError):

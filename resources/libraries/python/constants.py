@@ -11,8 +11,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+"""Constants used in CSIT."""
+
 
 class Constants(object):
+    """Constants used in CSIT."""
+
     # OpenVPP testing directory location at topology nodes
     REMOTE_FW_DIR = '/tmp/openvpp-testing'
 

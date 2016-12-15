@@ -56,9 +56,9 @@ class TGDropRateSearchImpl(DropRateSearch):
         tg_instance = BuiltIn().get_library_instance(
             'resources.libraries.python.TrafficGenerator')
 
-        if tg_instance._node['subtype'] is None:
+        if tg_instance.node['subtype'] is None:
             raise RuntimeError('TG subtype not defined')
-        elif tg_instance._node['subtype'] == NodeSubTypeTG.TREX:
+        elif tg_instance.node['subtype'] == NodeSubTypeTG.TREX:
             unit_rate = str(rate) + self.get_rate_type_str()
             tg_instance.trex_stl_start_remote_exec(self.get_duration(),
                                                    unit_rate, frame_size,
@@ -88,6 +88,7 @@ class TGDropRateSearchImpl(DropRateSearch):
             'resources.libraries.python.TrafficGenerator')
         return tg_instance.get_latency_int()
 
+
 class TrafficGenerator(object):
     """Traffic Generator."""
 
@@ -103,6 +104,15 @@ class TrafficGenerator(object):
         self._node = None
         # T-REX interface order mapping
         self._ifaces_reordered = 0
+
+    @property
+    def node(self):
+        """Getter.
+
+        :returns: Traffic generator node.
+        :rtype: dict
+        """
+        return self._node
 
     def get_loss(self):
         """Return number of lost packets.

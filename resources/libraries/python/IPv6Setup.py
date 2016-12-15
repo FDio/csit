@@ -63,7 +63,7 @@ class IPv6Setup(object):
         :param nodes_addr: Available nodes IPv6 addresses.
         :type nodes: dict
         :type nodes_addr: dict
-        :return: Affected interfaces as list of (node, interface) tuples.
+        :returns: Affected interfaces as list of (node, interface) tuples.
         :rtype: list
         """
         interfaces = []
@@ -169,7 +169,6 @@ class IPv6Setup(object):
         :type addr: str
         :type prefix: str
         """
-        topo = Topology()
         sw_if_index = Topology.get_interface_sw_index(node, iface_key)
         with VatTerminal(node) as vat:
             vat.vat_terminal_exec_cmd_from_template('add_ip_address.vat',
@@ -266,7 +265,7 @@ class IPv6Setup(object):
         :param nodes_addr: Available nodes IPv6 addresses.
         :type link: str
         :type nodes_addr: dict
-        :return: Link IPv6 address.
+        :returns: Link IPv6 address.
         :rtype: str
         """
         net = nodes_addr.get(link)
@@ -282,7 +281,7 @@ class IPv6Setup(object):
         :param nodes_addr: Available nodes IPv6 addresses.
         :type link: str
         :type nodes_addr: dict
-        :return: Link IPv6 address prefix.
+        :returns: Link IPv6 address prefix.
         :rtype: int
         """
         net = nodes_addr.get(link)

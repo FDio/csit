@@ -19,7 +19,6 @@ from resources.libraries.python.ssh import SSH, exec_cmd_no_error
 class DpdkUtil(object):
     """Utilities for DPDK."""
 
-    #pylint: disable=too-many-locals
     @staticmethod
     def dpdk_testpmd_start(node, **args):
         """Start DPDK testpmd app on VM node.
