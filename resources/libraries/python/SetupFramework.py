@@ -71,7 +71,7 @@ def copy_tarball_to_node(tarball, node):
     :param node: Dictionary created from topology.
     :type tarball: str
     :type node: dict
-    :return: nothing
+    :returns: nothing
     """
     logger.console('Copying tarball to {0}'.format(node['host']))
     ssh = SSH()
@@ -89,7 +89,7 @@ def extract_tarball_at_node(tarball, node):
     :param node: Dictionary created from topology.
     :type tarball: str
     :type node: dict
-    :return: nothing
+    :returns: nothing
     """
     logger.console('Extracting tarball to {0} on {1}'.format(
         con.REMOTE_FW_DIR, node['host']))
@@ -133,8 +133,7 @@ def setup_node(args):
 
     :param args: All parameters needed to setup one node.
     :type args: tuple
-    :return: nothing
-    :return: True - success, False - error
+    :returns: True - success, False - error
     :rtype: bool
     """
     tarball, remote_tarball, node = args
@@ -156,12 +155,12 @@ def delete_local_tarball(tarball):
 
     :param tarball: Path to tarball to upload.
     :type tarball: str
-    :return: nothing
+    :returns: nothing
     """
     call(split('sh -c "rm {0} > /dev/null 2>&1"'.format(tarball)))
 
 
-class SetupFramework(object):  # pylint: disable=too-few-public-methods
+class SetupFramework(object):
     """Setup suite run on topology nodes.
 
     Many VAT/CLI based tests need the scripts at remote hosts before executing
@@ -199,4 +198,3 @@ class SetupFramework(object):  # pylint: disable=too-few-public-methods
         logger.trace('Test framework copied to all topology nodes')
         delete_local_tarball(tarball)
         logger.console('All nodes are ready')
-

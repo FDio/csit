@@ -86,8 +86,7 @@ class IPFIXHeader(Packet):
                    IntField("Sequence Number", 0),
                    IntField("Observation Domain ID", 0),
                    ShortField("Set_ID", 0),
-                   ShortField("Set_Length", 0)
-                   ]
+                   ShortField("Set_Length", 0)]
 
 
 class IPFIXTemplate(Packet):
@@ -96,8 +95,7 @@ class IPFIXTemplate(Packet):
     fields_desc = [ShortField("Template_ID", 256),
                    ShortField("nFields", 2),
                    FieldListField("Template", [], ShortField("type_len", ""),
-                                  count_from=lambda p: p.nFields*2)
-                   ]
+                                  count_from=lambda p: p.nFields*2)]
 
 
 class IPFIXData(Packet):

@@ -26,7 +26,7 @@ class VPPUtil(object):
 
         :param node: VPP node.
         :param additional_cmds: Additional commands that the vpp should print
-         settings for.
+        settings for.
         :type node: dict
         :type additional_cmds: tuple
         """
@@ -44,9 +44,5 @@ class VPPUtil(object):
                 def_setting_tb_displayed['Custom Setting: {}'.format(cmd)] = cmd
         ssh = SSH()
         ssh.connect(node)
-        print("=" * 40)
-        for key, value in def_setting_tb_displayed.iteritems():
-            (_, stdout, _) = ssh.exec_command_sudo('vppctl sh {}'.format(value))
-            print("{} : {} \n".format(key, value))
-            print(stdout)
-            print("=" * 40)
+        for _, value in def_setting_tb_displayed.items():
+            (_, _, _) = ssh.exec_command_sudo('vppctl sh {}'.format(value))

@@ -22,7 +22,6 @@ from resources.libraries.python.topology import Topology
 from resources.libraries.python.VatJsonUtil import VatJsonUtil
 
 
-# pylint: disable=too-few-public-methods
 class PolicyAction(Enum):
     """Policy actions."""
     BYPASS = 'bypass'
@@ -61,14 +60,11 @@ class IntegAlg(Enum):
 class IPsecUtil(object):
     """IPsec utilities."""
 
-    # pylint: disable=too-many-arguments
-    # pylint: disable=too-many-locals
-
     @staticmethod
     def policy_action_bypass():
         """Return policy action bypass.
 
-        :return: PolicyAction enum BYPASS object.
+        :returns: PolicyAction enum BYPASS object.
         :rtype: PolicyAction
         """
         return PolicyAction.BYPASS
@@ -77,7 +73,7 @@ class IPsecUtil(object):
     def policy_action_discard():
         """Return policy action discard.
 
-        :return: PolicyAction enum DISCARD object.
+        :returns: PolicyAction enum DISCARD object.
         :rtype: PolicyAction
         """
         return PolicyAction.DISCARD
@@ -86,7 +82,7 @@ class IPsecUtil(object):
     def policy_action_protect():
         """Return policy action protect.
 
-        :return: PolicyAction enum PROTECT object.
+        :returns: PolicyAction enum PROTECT object.
         :rtype: PolicyAction
         """
         return PolicyAction.PROTECT
@@ -95,7 +91,7 @@ class IPsecUtil(object):
     def crypto_alg_aes_cbc_128():
         """Return encryption algorithm aes-cbc-128.
 
-        :return: CryptoAlg enum AES_CBC_128 object.
+        :returns: CryptoAlg enum AES_CBC_128 object.
         :rtype: CryptoAlg
         """
         return CryptoAlg.AES_CBC_128
@@ -104,7 +100,7 @@ class IPsecUtil(object):
     def crypto_alg_aes_cbc_192():
         """Return encryption algorithm aes-cbc-192.
 
-        :return: CryptoAlg enum AES_CBC_192 objec.
+        :returns: CryptoAlg enum AES_CBC_192 objec.
         :rtype: CryptoAlg
         """
         return CryptoAlg.AES_CBC_192
@@ -113,7 +109,7 @@ class IPsecUtil(object):
     def crypto_alg_aes_cbc_256():
         """Return encryption algorithm aes-cbc-256.
 
-        :return: CryptoAlg enum AES_CBC_256 object.
+        :returns: CryptoAlg enum AES_CBC_256 object.
         :rtype: CryptoAlg
         """
         return CryptoAlg.AES_CBC_256
@@ -124,7 +120,7 @@ class IPsecUtil(object):
 
         :param crypto_alg: Encryption algorithm.
         :type crypto_alg: CryptoAlg
-        :return: Key length.
+        :returns: Key length.
         :rtype: int
         """
         return crypto_alg.key_len
@@ -135,7 +131,7 @@ class IPsecUtil(object):
 
         :param crypto_alg: Encryption algorithm.
         :type crypto_alg: CryptoAlg
-        :return: Algorithm scapy name.
+        :returns: Algorithm scapy name.
         :rtype: str
         """
         return crypto_alg.scapy_name
@@ -144,7 +140,7 @@ class IPsecUtil(object):
     def integ_alg_sha1_96():
         """Return integrity algorithm SHA1-96.
 
-        :return: IntegAlg enum SHA1_96 object.
+        :returns: IntegAlg enum SHA1_96 object.
         :rtype: IntegAlg
         """
         return IntegAlg.SHA1_96
@@ -153,7 +149,7 @@ class IPsecUtil(object):
     def integ_alg_sha_256_128():
         """Return integrity algorithm SHA-256-128.
 
-        :return: IntegAlg enum SHA_256_128 object.
+        :returns: IntegAlg enum SHA_256_128 object.
         :rtype: IntegAlg
         """
         return IntegAlg.SHA_256_128
@@ -162,7 +158,7 @@ class IPsecUtil(object):
     def integ_alg_sha_384_192():
         """Return integrity algorithm SHA-384-192.
 
-        :return: IntegAlg enum SHA_384_192 object.
+        :returns: IntegAlg enum SHA_384_192 object.
         :rtype: IntegAlg
         """
         return IntegAlg.SHA_384_192
@@ -171,7 +167,7 @@ class IPsecUtil(object):
     def integ_alg_sha_512_256():
         """Return integrity algorithm SHA-512-256.
 
-        :return: IntegAlg enum SHA_512_256 object.
+        :returns: IntegAlg enum SHA_512_256 object.
         :rtype: IntegAlg
         """
         return IntegAlg.SHA_512_256
@@ -182,7 +178,7 @@ class IPsecUtil(object):
 
         :param integ_alg: Integrity algorithm.
         :type integ_alg: IntegAlg
-        :return: Key length.
+        :returns: Key length.
         :rtype: int
         """
         return integ_alg.key_len
@@ -193,7 +189,7 @@ class IPsecUtil(object):
 
         :param integ_alg: Integrity algorithm.
         :type integ_alg: IntegAlg
-        :return: Algorithm scapy name.
+        :returns: Algorithm scapy name.
         :rtype: str
         """
         return integ_alg.scapy_name

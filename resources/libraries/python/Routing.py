@@ -21,7 +21,6 @@ from resources.libraries.python.ssh import exec_cmd_no_error
 class Routing(object):
     """Routing utilities."""
 
-    # pylint: disable=too-many-arguments
     @staticmethod
     def vpp_route_add(node, network, prefix_len, gateway=None,
                       interface=None, use_sw_index=True, resolve_attempts=10,

@@ -27,7 +27,7 @@ __all__ = ["DICT__nodes", 'Topology']
 def load_topo_from_yaml():
     """Load topology from file defined in "${TOPOLOGY_PATH}" variable.
 
-    :return: Nodes from loaded topology.
+    :returns: Nodes from loaded topology.
     """
     try:
         topo_path = BuiltIn().get_variable_value("${TOPOLOGY_PATH}")

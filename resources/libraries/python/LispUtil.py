@@ -30,7 +30,7 @@ class LispUtil(object):
 
         :param node: VPP node.
         :type node: dict
-        :return: Lisp gpe state.
+        :returns: Lisp gpe state.
         :rtype: list
         """
 
@@ -48,7 +48,7 @@ class LispUtil(object):
         retrieved - local, remote, empty string = both.
         :type node: dict
         :type items_filter: str
-        :return: Lisp locator_set data as python list.
+        :returns: Lisp locator_set data as python list.
         :rtype: list
         """
 
@@ -66,7 +66,7 @@ class LispUtil(object):
 
         :param node: VPP node.
         :type node: dict
-        :return: Lisp eid table as python list.
+        :returns: Lisp eid table as python list.
         :rtype: list
         """
 
@@ -80,7 +80,7 @@ class LispUtil(object):
 
         :param node: VPP node.
         :type node: dict
-        :return: Lisp map resolver as python list.
+        :returns: Lisp map resolver as python list.
         :rtype: list
         """
 
@@ -135,7 +135,7 @@ class LispUtil(object):
         :param locator_set_number: Generate n locator_set.
         :type node: dict
         :type locator_set_number: str
-        :return: list of lisp locator_set, list of lisp locator_set expected
+        :returns: list of lisp locator_set, list of lisp locator_set expected
         from VAT.
         :rtype: tuple
         """
@@ -181,7 +181,7 @@ class LispUtil(object):
         :param locator_set_number: Generate n locator_set.
         :type node: dict
         :type locator_set_number: str
-        :return: list of lisp locator_set, list of lisp locator_set expected
+        :returns: list of lisp locator_set, list of lisp locator_set expected
         from VAT.
         :rtype: tuple
         """
@@ -211,7 +211,7 @@ class LispUtil(object):
                     locator_set_list.append(locator_set)
 
                     locator_set_vat = {"ls_name": l_name,
-                               "ls_index": num}
+                                       "ls_index": num}
                     locator_set_list_vat.append(locator_set_vat)
 
         return locator_set_list, locator_set_list_vat
