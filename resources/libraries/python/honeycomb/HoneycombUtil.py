@@ -437,3 +437,16 @@ class HoneycombUtil(object):
         (_, stdout, _) = ssh.exec_command(cmd, timeout=30)
 
         return stdout
+
+    @staticmethod
+    def get_honeycomb_log(node):
+        """Copy honeycomb log file from DUT node to VIRL for archiving.
+
+        :param node: Honeycomb node.
+        :type node: dict
+        """
+
+        ssh = SSH()
+        ssh.connect(node)
+
+        ssh.scp("/tmp", "/var/log/honeycomb/honeycomb.log", get=True)

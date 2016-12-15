@@ -270,8 +270,8 @@ class SSH(object):
         """
         chan.close()
 
-    def scp(self, local_path, remote_path):
-        """Copy files from local_path to remote_path.
+    def scp(self, local_path, remote_path, get=False):
+        """Copy files from local_path to remote_path or vice versa.
 
         connect() method has to be called first!
         """
@@ -280,7 +280,10 @@ class SSH(object):
         # SCPCLient takes a paramiko transport as its only argument
         scp = SCPClient(self._ssh.get_transport())
         start = time()
-        scp.put(local_path, remote_path)
+        if not get:
+            scp.put(local_path, remote_path)
+        else:
+            scp.get(remote_path, local_path)
         scp.close()
         end = time()
         logger.trace('SCP took {0} seconds'.format(end-start))

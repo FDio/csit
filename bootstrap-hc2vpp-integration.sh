@@ -214,5 +214,5 @@ PYTHONPATH=`pwd` pybot -L TRACE -W 136\
 # Get Honeycomb log file from virl host
 # log only exists on DUT1
 for index in "${!VIRL_SERVER[@]}"; do
-    scp ${SSH_OPTIONS} ${VIRL_USERNAME}@${VIRL_SERVER[${index}]}:/var/log/honeycomb/honeycomb.log . || true
+    scp ${SSH_OPTIONS} ${VIRL_USERNAME}@${VIRL_SERVER[${index}]}:/tmp/honeycomb.log . || true
 done
