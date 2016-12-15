@@ -152,7 +152,7 @@ class VppCounters(object):
 
         :param node: Node to dump stats table on.
         :type node: dict
-        :return: Stats table.
+        :returns: Stats table.
         """
         with VatTerminal(node) as vat:
             vat.vat_terminal_exec_cmd('want_stats enable')
@@ -166,9 +166,27 @@ class VppCounters(object):
             return None
 
     def vpp_get_ipv4_interface_counter(self, node, interface):
+        """
+
+        :param node: Node to get interface IPv4 counter on.
+        :param interface: Interface name.
+        :type node: dict
+        :type interface: str
+        :returns: Interface IPv4 counter.
+        :rtype: int
+        """
         return self.vpp_get_ipv46_interface_counter(node, interface, False)
 
     def vpp_get_ipv6_interface_counter(self, node, interface):
+        """
+
+        :param node: Node to get interface IPv6 counter on.
+        :param interface: Interface name.
+        :type node: dict
+        :type interface: str
+        :returns: Interface IPv6 counter.
+        :rtype: int
+        """
         return self.vpp_get_ipv46_interface_counter(node, interface, True)
 
     def vpp_get_ipv46_interface_counter(self, node, interface, is_ipv6=True):
@@ -180,7 +198,7 @@ class VppCounters(object):
         :type node: dict
         :type interface: str
         :type is_ipv6: bool
-        :return: Interface IPv4/IPv6 counter.
+        :returns: Interface IPv4/IPv6 counter.
         :rtype: int
         """
         version = 'ip6' if is_ipv6 else 'ip4'

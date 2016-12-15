@@ -53,7 +53,7 @@
 | | ... | ${settings['weight']}
 | | Vpp Lisp Eid Table Mapping | ${dut_node}
 | | ... | ${settings['vni']}
-| | ... | bd=${settings['bd']}
+| | ... | bd_id=${settings['bd']}
 | | Vpp Add Lisp Local Eid | ${dut_node}
 | | ... | ${settings['locator_name']}
 | | ... | ${settings['vni']}

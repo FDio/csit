@@ -75,19 +75,19 @@ class IPUtil(object):
 
     @staticmethod
     def setup_network_namespace(node, namespace_name, interface_name,
-                                ip_address, prefix):
+                                ip_addr, prefix):
         """Setup namespace on given node and attach interface and IP to
         this namespace. Applicable also on TG node.
 
         :param node: Node to set namespace on.
         :param namespace_name: Namespace name.
         :param interface_name: Interface name.
-        :param ip_address: IP address of namespace's interface.
+        :param ip_addr: IP address of namespace's interface.
         :param prefix: IP address prefix length.
         :type node: dict
         :type namespace_name: str
         :type vhost_if: str
-        :type ip_address: str
+        :type ip_addr: str
         :type prefix: int
         """
         cmd = ('ip netns add {0}'.format(namespace_name))
@@ -98,7 +98,7 @@ class IPUtil(object):
         exec_cmd_no_error(node, cmd, sudo=True)
 
         cmd = ('ip netns exec {0} ip addr add {1}/{2} dev {3}'.format(
-            namespace_name, ip_address, prefix, interface_name))
+            namespace_name, ip_addr, prefix, interface_name))
         exec_cmd_no_error(node, cmd, sudo=True)
 
     @staticmethod
@@ -114,28 +114,29 @@ class IPUtil(object):
         exec_cmd_no_error(node, cmd, sudo=True)
 
     @staticmethod
-    def set_linux_interface_ip(node, interface, ip, prefix, namespace=None):
+    def set_linux_interface_ip(node, interface, ip_addr, prefix,
+                               namespace=None):
         """Set IP address to interface in linux.
 
         :param node: Node where to execute command.
         :param interface: Interface in namespace.
-        :param ip: IP to be set on interface.
+        :param ip_addr: IP to be set on interface.
         :param prefix: IP prefix.
         :param namespace: Execute command in namespace. Optional
         :type node: dict
         :type interface: str
-        :type ip: str
+        :type ip_addr: str
         :type prefix: int
         :type namespace: str
         :raises RuntimeError: IP could not be set.
         """
         if namespace is not None:
             cmd = 'ip netns exec {} ip addr add {}/{} dev {}'.format(
-                namespace, ip, prefix, interface)
+                namespace, ip_addr, prefix, interface)
         else:
-            cmd = 'ip addr add {}/{} dev {}'.format(ip, prefix, interface)
-        (rc, _, stderr) = exec_cmd(node, cmd, timeout=5, sudo=True)
-        if rc != 0:
+            cmd = 'ip addr add {}/{} dev {}'.format(ip_addr, prefix, interface)
+        (ret_code, _, stderr) = exec_cmd(node, cmd, timeout=5, sudo=True)
+        if ret_code != 0:
             raise RuntimeError(
                 'Could not set IP for interface, reason:{}'.format(stderr))
 
@@ -166,7 +167,7 @@ def convert_ipv4_netmask_prefix(network):
     Example: mask 255.255.0.0 -> prefix length 16
     :param network: Network mask or network prefix length.
     :type network: str or int
-    :return: Network mask or network prefix length.
+    :returns: Network mask or network prefix length.
     :rtype: str or int
     """
     temp_address = "0.0.0.0"

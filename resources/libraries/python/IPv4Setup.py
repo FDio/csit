@@ -38,8 +38,7 @@ class IPv4Node(object):
 
         :param prefix_length: Length of network prefix.
         :type prefix_length: int
-
-        :return: Network mask.
+        :returns: Network mask.
         :rtype: str
         """
 
@@ -56,7 +55,7 @@ class IPv4Node(object):
         :type interface: str
         :type address: str
         :type prefix_length: int
-        :return: nothing
+        :returns: nothing
         """
         pass
 
@@ -72,7 +71,7 @@ class IPv4Node(object):
         :type prefix_length: int
         :type gateway: str
         :type interface: str
-        :return: nothing
+        :returns: nothing
         """
         pass
 
@@ -88,7 +87,7 @@ class IPv4Node(object):
         :type prefix_length: int
         :type gateway: str
         :type interface: str
-        :return: nothing
+        :returns: nothing
         """
         pass
 
@@ -110,7 +109,7 @@ class IPv4Node(object):
         :param source_interface: Source interface name.
         :type destination_address: str
         :type source_interface: str
-        :return: nothing
+        :returns: nothing
         """
         pass
 
@@ -125,8 +124,7 @@ class Tg(IPv4Node):
 
         :param cmd: Command to be executed.
         :type cmd: str
-
-        :return: Content of stdout and stderr returned by command.
+        :returns: Content of stdout and stderr returned by command.
         :rtype: tuple
         """
         return exec_cmd_no_error(self.node_info, cmd)
@@ -136,8 +134,7 @@ class Tg(IPv4Node):
 
         :param cmd: Command to be executed.
         :type cmd: str
-
-        :return: Content of stdout and stderr returned by command.
+        :returns: Content of stdout and stderr returned by command.
         :rtype: tuple
         """
         return exec_cmd_no_error(self.node_info, cmd, sudo=True)
@@ -188,7 +185,7 @@ class Dut(IPv4Node):
 
         :param interface: Interface name.
         :type interface: str
-        :return: sw_if_index of the interface or None.
+        :returns: sw_if_index of the interface or None.
         :rtype: int
         """
         return Topology().get_interface_sw_index(self.node_info, interface)
@@ -200,7 +197,7 @@ class Dut(IPv4Node):
         :param args: Parameters to the script.
         :type script: str
         :type args: dict
-        :return: nothing
+        :returns: nothing
         """
         # TODO: check return value
         VatExecutor.cmd_from_template(self.node_info, script, **args)
@@ -255,7 +252,7 @@ def get_node(node_info):
 
     :param node_info: Dictionary containing information on nodes in topology.
     :type node_info: dict
-    :return: Class instance that is derived from Node.
+    :returns: Class instance that is derived from Node.
     """
     if node_info['type'] == NodeType.TG:
         return Tg(node_info)
@@ -277,7 +274,7 @@ class IPv4Setup(object):
         :param nodes_addr: Available nodes IPv4 addresses.
         :type nodes: dict
         :type nodes_addr: dict
-        :return: Affected interfaces as list of (node, interface) tuples.
+        :returns: Affected interfaces as list of (node, interface) tuples.
         :rtype: list
         """
         interfaces = []
@@ -310,7 +307,7 @@ class IPv4Setup(object):
         :type node: dict
         :type iface_key: str
         :type nodes_addr: dict
-        :return: IPv4 address.
+        :returns: IPv4 address.
         :rtype: str
         """
         interface = Topology.get_interface_name(node, iface_key)

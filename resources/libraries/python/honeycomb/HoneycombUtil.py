@@ -126,7 +126,7 @@ class HoneycombUtil(object):
         :param url_file: URL file. The argument contains only the name of file
         without extension, not the full path.
         :type url_file: str
-        :return: Requested path.
+        :returns: Requested path.
         :rtype: str
         """
 
@@ -178,7 +178,7 @@ class HoneycombUtil(object):
         :param path: Path to data we want to find.
         :type data: dict
         :type path: tuple
-        :return: Data represented by path.
+        :returns: Data represented by path.
         :rtype: str, dict, or list
         :raises HoneycombError: If the data has not been found.
         """
@@ -205,7 +205,7 @@ class HoneycombUtil(object):
         :param path: Path to data we want to remove.
         :type data: dict
         :type path: tuple
-        :return: Original data without removed part.
+        :returns: Original data without removed part.
         :rtype: dict
         """
 
@@ -245,7 +245,7 @@ class HoneycombUtil(object):
         :type data: dict
         :type path: tuple
         :type new_value: str, dict or list
-        :return: Original data with the new value.
+        :returns: Original data with the new value.
         :rtype: dict
         """
 
@@ -295,14 +295,14 @@ class HoneycombUtil(object):
         :type node: dict
         :type url_file: str
         :type path: str
-        :return: Status code and content of response.
+        :returns: Status code and content of response.
         :rtype tuple
         """
 
         base_path = HoneycombUtil.read_path_from_url_file(url_file)
         path = base_path + path
         status_code, resp = HTTPRequest.get(node, path)
-        (status_node, response) = status_code, loads(resp)
+        response = loads(resp)
         if status_code != HTTPCodes.OK:
             HoneycombUtil.read_log_tail(node)
         return status_code, response
@@ -324,7 +324,7 @@ class HoneycombUtil(object):
         :type data: dict, str
         :type path: str
         :type data_representation: DataRepresentation
-        :return: Status code and content of response.
+        :returns: Status code and content of response.
         :rtype: tuple
         :raises HoneycombError: If the given data representation is not defined
         in HEADERS.
@@ -368,7 +368,7 @@ class HoneycombUtil(object):
         :type data: dict, str
         :type data_representation: DataRepresentation
         :type timeout: int
-        :return: Status code and content of response.
+        :returns: Status code and content of response.
         :rtype: tuple
         :raises HoneycombError: If the given data representation is not defined
         in HEADERS.
@@ -401,7 +401,7 @@ class HoneycombUtil(object):
         :type node: dict
         :type url_file: str
         :type path: str
-        :return: Status code and content of response.
+        :returns: Status code and content of response.
         :rtype tuple
         """
 
@@ -422,7 +422,7 @@ class HoneycombUtil(object):
         :param lines: Number of lines to read.
         :type node: dict
         :type lines: int
-        :return: Last N log lines.
+        :returns: Last N log lines.
         :rtype: str
         """
 
