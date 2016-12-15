@@ -26,4 +26,6 @@
 | ... | Configure Log Level | ${node} | TRACE | AND
 | ... | Setup Honeycomb Service On DUTs | ${node} | AND
 | ... | Set Global Variable | ${node}
-| Suite Teardown | Stop Honeycomb Service On DUTs | ${node}
+| Suite Teardown | Run keywords
+| ... | Stop Honeycomb Service On DUTs | ${node} | AND
+| ... | Archive Honeycomb log file | ${node}

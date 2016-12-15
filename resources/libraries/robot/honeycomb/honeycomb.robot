@@ -90,3 +90,15 @@
 | | Clear persisted Honeycomb configuration | ${node}
 | | Setup DUT | ${node}
 | | Setup Honeycomb service on DUTs | ${node}
+
+| Archive Honeycomb log file
+| | [Documentation] | Copy honeycomb.log file from Honeycomb node\
+| | ... | to test executor.
+| | ... | *Arguments:*
+| | ... | - node - information about a DUT node. Type: dictionary
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Archive Honeycomb log file \| ${nudes['DUT1']} \|
+| | [Arguments] | ${node}
+| | Archive Honeycomb log | ${node}
