@@ -18,8 +18,6 @@ from robot.api import logger
 from resources.libraries.python.VatExecutor import VatExecutor, VatTerminal
 
 
-# pylint: disable=too-many-arguments, invalid-name
-
 class Classify(object):
     """Classify utilities."""
 
@@ -33,7 +31,7 @@ class Classify(object):
         :type node: dict
         :type ip_version: str
         :type direction: str
-        :return (table_index, skip_n, match_n)
+        :returns (table_index, skip_n, match_n)
         table_index: Classify table index.
         skip_n: Number of skip vectors.
         match_n: Number of match vectors.
@@ -65,7 +63,7 @@ class Classify(object):
         :param direction: Direction of traffic - src/dst.
         :type node: dict
         :type direction: str
-        :return (table_index, skip_n, match_n)
+        :returns (table_index, skip_n, match_n)
         table_index: Classify table index.
         skip_n: Number of skip vectors.
         match_n: Number of match vectors.
@@ -96,7 +94,7 @@ class Classify(object):
         :param hex_mask: Classify hex mask.
         :type node: dict
         :type hex_mask: str
-        :return (table_index, skip_n, match_n)
+        :returns (table_index, skip_n, match_n)
         table_index: Classify table index.
         skip_n: Number of skip vectors.
         match_n: Number of match vectors.
@@ -256,7 +254,7 @@ class Classify(object):
         :type ip_version: str
         :type protocol: str
         :type direction: str
-        :return: Classify hex mask.
+        :returns: Classify hex mask.
         :rtype : str
         :raises ValueError: If protocol is not TCP or UDP.
         :raises ValueError: If direction is not source or destination or
@@ -286,7 +284,7 @@ class Classify(object):
         :type hex_mask: str
         :type source_port: str
         :type destination_port: str
-        :return: Classify hex value.
+        :returns: Classify hex value.
         :rtype: str
         """
         source_port_hex = Classify._port_convert(source_port)
@@ -300,7 +298,7 @@ class Classify(object):
 
         :param port: TCP/UDP port number.
         :type port: str
-        :return: TCP/UDP port number in 4-digit hexadecimal format.
+        :returns: TCP/UDP port number in 4-digit hexadecimal format.
         :rtype: str
         """
         return '{0:04x}'.format(int(port))
@@ -331,7 +329,7 @@ class Classify(object):
         :param table_index: Index of a specific classify table.
         :type node: dict
         :type table_index: int
-        :return: Classify table settings.
+        :returns: Classify table settings.
         :rtype: dict
         """
         with VatTerminal(node) as vat:
@@ -352,7 +350,7 @@ class Classify(object):
         :type node: dict
         :type table_index: int
         :type session_index: int
-        :return: List of classify session settings, or a dictionary of settings
+        :returns: List of classify session settings, or a dictionary of settings
          for a specific classify session.
         :rtype: list or dict
         """

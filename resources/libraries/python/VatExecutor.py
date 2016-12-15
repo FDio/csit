@@ -30,7 +30,7 @@ def cleanup_vat_json_output(json_output):
     Clean up VAT JSON output from clutter like vat# prompts and such.
 
     :param json_output: Cluttered JSON output.
-    :return: Cleaned up output JSON string.
+    :returns: Cleaned up output JSON string.
     """
 
     retval = json_output
@@ -187,9 +187,8 @@ class VatTerminal(object):
         """
         logger.debug("Executing command in VAT terminal: {}".format(cmd))
         try:
-            out = self._ssh.interactive_terminal_exec_command(self._tty,
-                                                          cmd,
-                                                          self.__VAT_PROMPT)
+            out = self._ssh.interactive_terminal_exec_command(self._tty, cmd,
+                                                              self.__VAT_PROMPT)
         except:
             self._exec_failure = True
             raise
@@ -201,10 +200,10 @@ class VatTerminal(object):
             array_start = out.find('[')
             array_end = out.rfind(']')
 
-            if -1 == obj_start and -1 == array_start:
+            if obj_start == -1 and array_start == -1:
                 raise RuntimeError("VAT: no JSON data.")
 
-            if obj_start < array_start or -1 == array_start:
+            if obj_start < array_start or array_start == -1:
                 start = obj_start
                 end = obj_end + 1
             else:

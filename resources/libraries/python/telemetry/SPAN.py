@@ -17,7 +17,6 @@ from resources.libraries.python.topology import Topology
 from resources.libraries.python.VatExecutor import VatTerminal
 
 
-# pylint: disable=too-few-public-methods
 class SPAN(object):
     """Class contains methods for setting up SPAN mirroring on DUTs."""
 
@@ -43,8 +42,7 @@ class SPAN(object):
         with VatTerminal(node, json_param=False) as vat:
             vat.vat_terminal_exec_cmd_from_template('span_create.vat',
                                                     src_sw_if_index=src_if,
-                                                    dst_sw_if_index=dst_if,
-                                                    )
+                                                    dst_sw_if_index=dst_if)
 
     @staticmethod
     def vpp_get_span_configuration(node):

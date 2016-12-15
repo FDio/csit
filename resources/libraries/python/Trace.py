@@ -11,14 +11,22 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+"""Packet trace library."""
+
 from resources.libraries.python.VatExecutor import VatExecutor
 from resources.libraries.python.topology import NodeType
 
 
 class Trace(object):
+    """This class provides methods to manipulate the VPP packet trace."""
 
     @staticmethod
     def show_packet_trace_on_all_duts(nodes):
+        """Show VPP packet trace.
+
+        :param nodes: Nodes from which the packet trace will be displayed.
+        :type nodes: list
+        """
         for node in nodes.values():
             if node['type'] == NodeType.DUT:
                 vat = VatExecutor()
@@ -26,8 +34,12 @@ class Trace(object):
 
     @staticmethod
     def clear_packet_trace_on_all_duts(nodes):
+        """Clear VPP packet trace.
+
+        :param nodes: Nodes where the packet trace will be cleared.
+        :type nodes: list
+        """
         for node in nodes.values():
             if node['type'] == NodeType.DUT:
                 vat = VatExecutor()
                 vat.execute_script("clear_trace.vat", node, json_out=False)
-

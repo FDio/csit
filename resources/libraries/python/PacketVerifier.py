@@ -51,7 +51,7 @@
       chksum    = 0xa607
       src       = 11.11.11.11
       dst       = 11.11.11.10
-      \options   \
+      options
     ###[ ICMP ]###
       type      = echo-reply
       code      = 0
@@ -74,7 +74,8 @@ from scapy.layers.inet6 import IPv6
 __all__ = ['RxQueue', 'TxQueue', 'Interface', 'create_gratuitous_arp_request',
            'auto_pad', 'checksum_equal']
 
-# TODO: http://stackoverflow.com/questions/320232/ensuring-subprocesses-are-dead-on-exiting-python-program
+# TODO: http://stackoverflow.com/questions/320232/
+# ensuring-subprocesses-are-dead-on-exiting-python-program
 
 
 class PacketVerifier(object):
@@ -97,7 +98,7 @@ def extract_one_packet(buf):
 
     :param buf: String representation of incoming packet buffer.
     :type buf: str
-    :return: String representation of first packet in buf.
+    :returns: String representation of first packet in buf.
     :rtype: str
     """
     pkt_len = 0
@@ -105,11 +106,6 @@ def extract_one_packet(buf):
     if len(buf) < 60:
         return None
 
-    # print
-    # print buf.__repr__()
-    # print Ether(buf).__repr__()
-    # print len(Ether(buf))
-    # print
     try:
         ether_type = Ether(buf[0:14]).type
     except AttributeError:
@@ -182,7 +178,7 @@ def packet_reader(interface_name, queue):
     :param queue: Queue in which this function will push incoming packets.
     :type interface_name: str
     :type queue: multiprocessing.Queue
-    :return: None
+    :returns: None
     """
     sock = socket.socket(socket.AF_PACKET, socket.SOCK_RAW, ETH_P_ALL)
     sock.bind((interface_name, ETH_P_ALL))
@@ -218,7 +214,7 @@ class RxQueue(PacketVerifier):
         :type ignore: list
         :type verbose: bool
 
-        :return: Ether() initialized object from packet data.
+        :returns: Ether() initialized object from packet data.
         :rtype: scapy.Ether
         """
         (rlist, _, _) = select.select([self._sock], [], [], timeout)
@@ -227,7 +223,7 @@ class RxQueue(PacketVerifier):
 
         pkt = self._sock.recv(0x7fff)
         pkt_pad = auto_pad(pkt)
-        print 'Received packet on {0} of len {1}'.format(self._ifname, len(pkt))
+        print'Received packet on {0} of len {1}'.format(self._ifname, len(pkt))
         if verbose:
             Ether(pkt).show2()
             print
@@ -299,7 +295,7 @@ class Interface(object):
 
         :param timeout: Timeout value in seconds.
         :type timeout: int
-        :return: Ether() initialized object from packet data.
+        :returns: Ether() initialized object from packet data.
         :rtype: scapy.Ether
         """
         return self.rxq.recv(timeout, self.sent_packets)
@@ -332,7 +328,7 @@ def checksum_equal(chksum1, chksum2):
     :type chksum1: uint16
     :type chksum2: uint16
 
-    :return: True if checksums are equivalent, False otherwise.
+    :returns: True if checksums are equivalent, False otherwise.
     :rtype: boolean
     """
     if chksum1 == 0xFFFF:
