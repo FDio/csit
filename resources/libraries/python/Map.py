@@ -44,7 +44,7 @@ class Map(object):
         :type psid_offset: int
         :type psid_len: int
         :type map_t: bool
-        :return: Index of created map domain.
+        :returns: Index of created map domain.
         :rtype: int
         :raises RuntimeError: If unable to add map domain.
         """
@@ -124,8 +124,7 @@ class Map(object):
         :type port: int
         :type psid_len: int
         :type psid_offset: int
-
-        :return: PSID.
+        :returns: PSID.
         :rtype: int
         """
         ones = 2**16-1
@@ -149,10 +148,10 @@ class Map(object):
         :type ea_bit_len: int
         :type psid_len: int
         :type psid: int
-        :return: Number representing EA bit field of destination IPv6 address.
+        :returns: Number representing EA bit field of destination IPv6 address.
         :rtype: int
         """
-        v4_suffix_len = ipv4_net._max_prefixlen - ipv4_net.prefixlen
+        v4_suffix_len = ipv4_net.max_prefixlen - ipv4_net.prefixlen
         v4_suffix = ipv4_net.network_address._ip ^ ipv4_host._ip
 
         if ipv4_net.prefixlen + ea_bit_len <= 32:
@@ -181,12 +180,12 @@ class Map(object):
         :type dst_ip: ipaddress.IPv4Address
         :type ea_bit_len: int
         :type psid: int
-        :return: Number representing interface id field of destination IPv6
+        :returns: Number representing interface id field of destination IPv6
         address.
         :rtype: int
         """
         if rule_net.prefixlen + ea_bit_len < 32:
-            v4_suffix_len = rule_net._max_prefixlen - rule_net.prefixlen
+            v4_suffix_len = rule_net.max_prefixlen - rule_net.prefixlen
             v4_suffix = rule_net.network_address._ip ^ dst_ip._ip
             ea_bits = v4_suffix >> (v4_suffix_len - ea_bit_len)
             address = rule_net.network_address._ip >> v4_suffix_len
@@ -235,22 +234,22 @@ class Map(object):
         :type psid_len: int
         :type ipv4_dst: str
         :type dst_port: int
-        :return: Computed IPv6 address.
+        :returns: Computed IPv6 address.
         :rtype: str
         """
         ipv6_net = ipaddress.ip_network(unicode(ipv6_pfx))
         ipv4_net = ipaddress.ip_network(unicode(ipv4_pfx))
         ipv4_host = ipaddress.ip_address(unicode(ipv4_dst))
 
-        ipv6_host_len = ipv6_net._max_prefixlen - ipv6_net.prefixlen
-        ipv4_host_len = ipv4_net._max_prefixlen - ipv4_net.prefixlen
+        ipv6_host_len = ipv6_net.max_prefixlen - ipv6_net.prefixlen
+        # ipv4_host_len = ipv4_net._max_prefixlen - ipv4_net.prefixlen
         end_user_v6_pfx_len = ipv6_net.prefixlen + ea_bit_len
         psid = Map.get_psid_from_port(dst_port, psid_len, psid_offset)
 
         rule_v6_pfx = ipv6_net.network_address._ip >> ipv6_host_len
         ea_bits = Map._make_ea_bits(ipv4_net, ipv4_host, ea_bit_len, psid_len,
                                     psid)
-        subnet_id = 0
+        # subnet_id = 0
         interface_id = Map._make_interface_id(ipv4_net, ipv4_host, ea_bit_len,
                                               psid)
 
@@ -276,7 +275,7 @@ class Map(object):
         :param ipv4_src: IPv4 source address
         :type ipv6_pfx: str
         :type ipv4_src: str
-        :return: IPv6 address, combination of IPv6 prefix and IPv4 address.
+        :returns: IPv6 address, combination of IPv6 prefix and IPv4 address.
         :rtype: str
         """
         ipv6_net = ipaddress.ip_network(unicode(ipv6_pfx))

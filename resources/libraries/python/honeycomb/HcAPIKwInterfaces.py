@@ -27,8 +27,6 @@ from resources.libraries.python.honeycomb.HoneycombUtil \
     import HoneycombUtil as HcUtil
 
 
-# pylint: disable=too-many-public-methods
-# pylint: disable=too-many-lines
 class InterfaceKeywords(object):
     """Keywords for Interface manipulation.
 
@@ -1291,7 +1289,7 @@ class InterfaceKeywords(object):
             node, super_interface, path, address)
 
     @staticmethod
-    def remove_all_ipv4_addresses_from_sub_interface(node, super_interface, # pylint: disable=invalid-name
+    def remove_all_ipv4_addresses_from_sub_interface(node, super_interface,
                                                      identifier):
         """Remove all ipv4 addresses from the specified sub-interface.
 

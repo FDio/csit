@@ -289,8 +289,7 @@ class ACLKeywords(object):
         suffix_dict = {"l2": "eth",
                        "l3_ip4": "ipv4",
                        "l3_ip6": "ipv6",
-                       "mixed": "mixed"
-                       }
+                       "mixed": "mixed"}
         try:
             suffix = suffix_dict[layer]
         except KeyError:
@@ -385,8 +384,8 @@ class ACLKeywords(object):
             }
         except KeyError:
             raise ValueError("Unknown network layer {0}. "
-                             "Valid options are: {1}".format(
-                                layer, layers.keys()))
+                             "Valid options are: {1}".
+                             format(layer, layers.keys()))
 
         status_code, resp = HcUtil.put_honeycomb_data(
             node, "config_vpp_interfaces", data, path)
