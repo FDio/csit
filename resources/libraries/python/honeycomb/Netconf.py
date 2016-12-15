@@ -14,10 +14,10 @@
 """Keywords used to connect to Honeycomb through Netconf, send messages
  and receive replies."""
 
+import socket
 from time import time
 
 import paramiko
-import socket
 from robot.api import logger
 from interruptingcow import timeout
 
@@ -61,8 +61,7 @@ class Netconf(object):
                        password=node['honeycomb']['passwd'],
                        pkey=None,
                        port=node['honeycomb']['netconf_port'],
-                       timeout=time_out,
-                       )
+                       timeout=time_out)
 
         logger.trace('Connect took {0} seconds'.format(time() - start))
         logger.debug('New ssh: {0}'.format(client))
@@ -102,7 +101,7 @@ class Netconf(object):
         :type size:int
         :type time_out:int
         :type err:str
-        :return: Content of response.
+        :returns: Content of response.
         :rtype: str
         :raises HoneycombError: If the read process times out.
         """
@@ -123,13 +122,11 @@ class Netconf(object):
                             break
                     except socket.timeout:
                         raise HoneycombError("Socket timeout.",
-                                             enable_logging=False
-                                             )
+                                             enable_logging=False)
 
         except RuntimeError:
             raise HoneycombError(err + " Content of buffer: {0}".format(reply),
-                                 enable_logging=False
-                                 )
+                                 enable_logging=False)
 
         logger.trace(reply)
         return reply.replace(self.delimiter, "")
@@ -142,7 +139,7 @@ class Netconf(object):
         :param time_out: Timeout value for getting the complete response.
         :type size:int
         :type time_out:int
-        :return: Content of response.
+        :returns: Content of response.
         :rtype: str
         """
 

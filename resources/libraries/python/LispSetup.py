@@ -610,21 +610,21 @@ class LispEidTableMap(object):
     """
 
     @staticmethod
-    def vpp_lisp_eid_table_mapping(node, vni, bd=None, vrf=None):
+    def vpp_lisp_eid_table_mapping(node, vni, bd_id=None, vrf=None):
         """
         Map LISP VNI to either bridge domain ID, or VRF ID.
 
         :param node: VPP node.
         :param vni: Lisp VNI.
-        :param bd: Bridge domain ID.
+        :param bd_id: Bridge domain ID.
         :param vrf: VRF id.
         :type node: dict
         :type vni: int
-        :type bd: int
+        :type bd_id: int
         :type vrf: int
         """
-        if bd:
-            bd_or_vrf = 'bd_index {}'.format(bd)
+        if bd_id:
+            bd_or_vrf = 'bd_index {}'.format(bd_id)
         else:
             bd_or_vrf = 'vrf {}'.format(vrf)
         VatExecutor.cmd_from_template(node,
