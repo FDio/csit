@@ -1,0 +1,469 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a2585a7_fa7eb9e3",
+        "filename": "resources/libraries/python/DPDK/DPDKTools.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-12-15T09:22:15Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 28
+      },
+      "revId": "a6b30f05ce0b147f34c4383bb6d5bc612c204c62",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_9a269515",
+        "filename": "resources/libraries/python/DPDK/DPDKTools.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-12-15T09:22:15Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 43
+      },
+      "revId": "a6b30f05ce0b147f34c4383bb6d5bc612c204c62",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_7a23e905",
+        "filename": "resources/libraries/python/DPDK/DPDKTools.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-12-15T09:22:15Z",
+      "side": 1,
+      "message": "no need to explicitly log. there is internal SSH logger that will do the job",
+      "range": {
+        "startLine": 52,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 63
+      },
+      "revId": "a6b30f05ce0b147f34c4383bb6d5bc612c204c62",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_ba1151ae",
+        "filename": "resources/libraries/python/DPDK/DPDKTools.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-12-15T09:22:15Z",
+      "side": 1,
+      "message": "if ret_code !\u003d 0:",
+      "revId": "a6b30f05ce0b147f34c4383bb6d5bc612c204c62",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_5a202df7",
+        "filename": "resources/libraries/python/DPDK/DPDKTools.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-12-15T09:22:15Z",
+      "side": 1,
+      "message": "no need to explicitly log. there is internal SSH logger that will do the job",
+      "range": {
+        "startLine": 56,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 41
+      },
+      "revId": "a6b30f05ce0b147f34c4383bb6d5bc612c204c62",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_da0c1d97",
+        "filename": "resources/libraries/python/DPDK/DPDKTools.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-12-15T09:22:15Z",
+      "side": 1,
+      "message": "wring indentation (pylint error)",
+      "revId": "a6b30f05ce0b147f34c4383bb6d5bc612c204c62",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_3a1d61be",
+        "filename": "resources/libraries/python/DPDK/DPDKTools.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-12-15T09:22:15Z",
+      "side": 1,
+      "message": "no need to explicitly log. there is internal SSH logger that will do the job",
+      "range": {
+        "startLine": 87,
+        "startChar": 0,
+        "endLine": 87,
+        "endChar": 63
+      },
+      "revId": "a6b30f05ce0b147f34c4383bb6d5bc612c204c62",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_fa17d9a1",
+        "filename": "resources/libraries/python/DPDK/DPDKTools.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-12-15T09:22:15Z",
+      "side": 1,
+      "message": "if ret_code !\u003d 0:",
+      "revId": "a6b30f05ce0b147f34c4383bb6d5bc612c204c62",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_1a7aa5f1",
+        "filename": "resources/libraries/python/DPDK/DPDKTools.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-12-15T09:22:15Z",
+      "side": 1,
+      "message": "no need to explicitly log. there is internal SSH logger that will do the job",
+      "range": {
+        "startLine": 91,
+        "startChar": 0,
+        "endLine": 91,
+        "endChar": 71
+      },
+      "revId": "a6b30f05ce0b147f34c4383bb6d5bc612c204c62",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_7a6ac91b",
+        "filename": "resources/libraries/python/DPDK/L2fwdTest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-12-15T09:22:15Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 28
+      },
+      "revId": "a6b30f05ce0b147f34c4383bb6d5bc612c204c62",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_da83fdca",
+        "filename": "resources/libraries/python/DPDK/L2fwdTest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-12-15T09:22:15Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 20,
+        "endChar": 43
+      },
+      "revId": "a6b30f05ce0b147f34c4383bb6d5bc612c204c62",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_da5add82",
+        "filename": "resources/libraries/python/DPDK/L2fwdTest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-12-15T09:22:15Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 56
+      },
+      "revId": "a6b30f05ce0b147f34c4383bb6d5bc612c204c62",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_5a770d03",
+        "filename": "resources/libraries/python/DPDK/L2fwdTest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-12-15T09:22:15Z",
+      "side": 1,
+      "message": "wrong indentation (pylint error)",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 42
+      },
+      "revId": "a6b30f05ce0b147f34c4383bb6d5bc612c204c62",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_3a7441fc",
+        "filename": "resources/libraries/python/DPDK/L2fwdTest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-12-15T09:22:15Z",
+      "side": 1,
+      "message": "wrong indentation (pylint error)",
+      "range": {
+        "startLine": 50,
+        "startChar": 0,
+        "endLine": 52,
+        "endChar": 49
+      },
+      "revId": "a6b30f05ce0b147f34c4383bb6d5bc612c204c62",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_9a6d7535",
+        "filename": "resources/libraries/python/DPDK/L2fwdTest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-12-15T09:22:15Z",
+      "side": 1,
+      "message": "no need to explicitly log. there is internal SSH logger that will do the job",
+      "range": {
+        "startLine": 54,
+        "startChar": 0,
+        "endLine": 54,
+        "endChar": 63
+      },
+      "revId": "a6b30f05ce0b147f34c4383bb6d5bc612c204c62",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_1a618539",
+        "filename": "resources/libraries/python/DPDK/L2fwdTest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-12-15T09:22:15Z",
+      "side": 1,
+      "message": "if ret_code !\u003d 0:",
+      "range": {
+        "startLine": 57,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 25
+      },
+      "revId": "a6b30f05ce0b147f34c4383bb6d5bc612c204c62",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_ba8831e8",
+        "filename": "resources/libraries/python/DPDK/L2fwdTest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-12-15T09:22:15Z",
+      "side": 1,
+      "message": "no need to explicitly log. there is internal SSH logger that will do the job",
+      "range": {
+        "startLine": 58,
+        "startChar": 0,
+        "endLine": 58,
+        "endChar": 71
+      },
+      "revId": "a6b30f05ce0b147f34c4383bb6d5bc612c204c62",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_ba5f1172",
+        "filename": "resources/libraries/python/DPDK/SetupDPDKTest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-12-15T09:22:15Z",
+      "side": 1,
+      "message": "if return_code !\u003d 0:",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 24
+      },
+      "revId": "a6b30f05ce0b147f34c4383bb6d5bc612c204c62",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_9a545555",
+        "filename": "resources/libraries/python/DPDK/SetupDPDKTest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-12-15T09:22:15Z",
+      "side": 1,
+      "message": "if ret_code !\u003d 0:",
+      "range": {
+        "startLine": 92,
+        "startChar": 0,
+        "endLine": 92,
+        "endChar": 21
+      },
+      "revId": "a6b30f05ce0b147f34c4383bb6d5bc612c204c62",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_7a51a961",
+        "filename": "resources/libraries/python/DPDK/SetupDPDKTest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 114,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-12-15T09:22:15Z",
+      "side": 1,
+      "message": "if ret_code !\u003d 0:",
+      "range": {
+        "startLine": 114,
+        "startChar": 0,
+        "endLine": 114,
+        "endChar": 21
+      },
+      "revId": "a6b30f05ce0b147f34c4383bb6d5bc612c204c62",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_5a4eedc2",
+        "filename": "resources/libraries/python/DPDK/SetupDPDKTest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-12-15T09:22:15Z",
+      "side": 1,
+      "message": "if ret_code !\u003d 0:",
+      "range": {
+        "startLine": 137,
+        "startChar": 0,
+        "endLine": 137,
+        "endChar": 21
+      },
+      "revId": "a6b30f05ce0b147f34c4383bb6d5bc612c204c62",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
