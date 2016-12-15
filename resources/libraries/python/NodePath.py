@@ -101,7 +101,7 @@ class NodePath(object):
         .. note:: First add at least two nodes to the topology.
         """
         nodes = self._nodes
-        nodes_filer = self._nodes_filter
+        # nodes_filer = self._nodes_filter
         if len(nodes) < 2:
             raise RuntimeError('Not enough nodes to compute path')
 
@@ -144,7 +144,7 @@ class NodePath(object):
     def next_interface(self):
         """Path interface iterator.
 
-        :return: Interface and node or None if not next interface.
+        :returns: Interface and node or None if not next interface.
         :rtype: tuple (str, dict)
 
         .. note:: Call compute_path before.
@@ -157,7 +157,7 @@ class NodePath(object):
     def first_interface(self):
         """Return first interface on the path.
 
-        :return: Interface and node.
+        :returns: Interface and node.
         :rtype: tuple (str, dict)
 
         .. note:: Call compute_path before.
@@ -169,7 +169,7 @@ class NodePath(object):
     def last_interface(self):
         """Return last interface on the path.
 
-        :return: Interface and node.
+        :returns: Interface and node.
         :rtype: tuple (str, dict)
 
         .. note:: Call compute_path before.
@@ -181,7 +181,7 @@ class NodePath(object):
     def first_ingress_interface(self):
         """Return first ingress interface on the path.
 
-        :return: Interface and node.
+        :returns: Interface and node.
         :rtype: tuple (str, dict)
 
         .. note:: Call compute_path before.
@@ -193,7 +193,7 @@ class NodePath(object):
     def last_egress_interface(self):
         """Return last egress interface on the path.
 
-        :return: Interface and node.
+        :returns: Interface and node.
         :rtype: tuple (str, dict)
 
         .. note:: Call compute_path before.

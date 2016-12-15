@@ -301,7 +301,7 @@ def exec_cmd(node, cmd, timeout=600, sudo=False):
     ssh = SSH()
     try:
         ssh.connect(node)
-    except Exception as err:
+    except SSHException as err:
         logger.error("Failed to connect to node" + str(err))
         return None, None, None
 
@@ -311,7 +311,7 @@ def exec_cmd(node, cmd, timeout=600, sudo=False):
         else:
             (ret_code, stdout, stderr) = ssh.exec_command_sudo(cmd,
                                                                timeout=timeout)
-    except Exception as err:
+    except SSHException as err:
         logger.error(err)
         return None, None, None
 
