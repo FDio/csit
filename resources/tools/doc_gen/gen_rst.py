@@ -170,12 +170,21 @@ def write_module_title(fh, module_name):
 def generate_py_rst_files():
     """Generate all rst files for all python modules."""
 
+    dirs_ignore_list = ["__pycache__", ]
+
     py_libs = get_files(PATH_PY_LIBS, PY_EXT)
     file_names = create_rst_file_names_set(py_libs, RESOURCES_DIR)
 
     for file_name in file_names:
         path = join(WORKING_DIR, *file_name.split('.')[:-1])
         dirs, files = scan_dir(path)
+
+        for item in dirs_ignore_list:
+            while True:
+                try:
+                    dirs.remove(item)
+                except ValueError:
+                    break
 
         full_path = join(WORKING_DIR, file_name)
         with open(full_path, mode='a') as fh:
