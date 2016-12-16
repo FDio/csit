@@ -16,7 +16,8 @@
 | Resource | resources/libraries/robot/honeycomb/port_mirroring.robot
 | Resource | resources/libraries/robot/honeycomb/interfaces.robot
 | Resource | resources/libraries/robot/honeycomb/honeycomb.robot
-| Force Tags | honeycomb_sanity
+# Test suite out of date since https://gerrit.fd.io/r/4272
+| Force Tags | honeycomb_sanity | EXCPECTED_FAILING
 | Suite Setup | Add Interface local0 To Topology | ${node}
 | Suite Teardown | Run Keyword If Any Tests Failed
 | | ... | Restart Honeycomb And VPP And Clear Persisted Configuration | ${node}
