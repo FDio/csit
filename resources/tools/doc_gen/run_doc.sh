@@ -50,4 +50,4 @@ sphinx-build -v -b html ${WORKING_DIR} ${BUILD_DIR}/
 find . -type d -name 'env' | xargs rm -rf
 
 echo Creating csit.doc.tar.gz ...
-tar -czvf ./csit.doc.tar.gz ${BUILD_DIR}
+tar -czvf ./csit.docs.tar.gz ${BUILD_DIR}
