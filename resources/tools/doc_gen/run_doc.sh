@@ -41,8 +41,11 @@ export PYTHONPATH=`pwd`
 # Generate rst files:
 ./gen_rst.py
 
+# Remove all rst files from ./${WORKING_DIR}/env directory - we do not need them
+find ./${WORKING_DIR}/env -type f -name '*.rst' | xargs rm -f
+
 # Generate the documentation:
-sphinx-build -vvv -b html ${WORKING_DIR}/ ${BUILD_DIR}/
+sphinx-build -v -b html ${WORKING_DIR} ${BUILD_DIR}/
 
 find . -type d -name 'env' | xargs rm -rf
 
