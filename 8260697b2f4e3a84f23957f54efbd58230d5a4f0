@@ -1,0 +1,67 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a2585a7_85519664",
+        "filename": "resources/libraries/python/DPDK/DPDKTools.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-12-16T07:05:26Z",
+      "side": 1,
+      "message": "pylint error: unused variable - replace by _",
+      "range": {
+        "startLine": 49,
+        "startChar": 22,
+        "endLine": 49,
+        "endChar": 28
+      },
+      "revId": "8260697b2f4e3a84f23957f54efbd58230d5a4f0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_654eaac3",
+        "filename": "resources/libraries/python/DPDK/DPDKTools.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-12-16T07:05:26Z",
+      "side": 1,
+      "message": "pylint error: unused variable - replace by _",
+      "revId": "8260697b2f4e3a84f23957f54efbd58230d5a4f0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_454baeb0",
+        "filename": "resources/libraries/python/DPDK/L2fwdTest.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-12-16T07:05:26Z",
+      "side": 1,
+      "message": "pylint error: unused variable - replace by _",
+      "range": {
+        "startLine": 50,
+        "startChar": 22,
+        "endLine": 50,
+        "endChar": 28
+      },
+      "revId": "8260697b2f4e3a84f23957f54efbd58230d5a4f0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
