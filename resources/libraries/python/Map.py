@@ -152,7 +152,7 @@ class Map(object):
         :rtype: int
         """
         v4_suffix_len = ipv4_net.max_prefixlen - ipv4_net.prefixlen
-        v4_suffix = ipv4_net.network_address._ip ^ ipv4_host._ip
+        v4_suffix = int(ipv4_net.network_address) ^ int(ipv4_host)
 
         if ipv4_net.prefixlen + ea_bit_len <= 32:
             ea_bits = v4_suffix >> (v4_suffix_len - ea_bit_len)
@@ -186,17 +186,17 @@ class Map(object):
         """
         if rule_net.prefixlen + ea_bit_len < 32:
             v4_suffix_len = rule_net.max_prefixlen - rule_net.prefixlen
-            v4_suffix = rule_net.network_address._ip ^ dst_ip._ip
+            v4_suffix = int(rule_net.network_address) ^ int(dst_ip)
             ea_bits = v4_suffix >> (v4_suffix_len - ea_bit_len)
-            address = rule_net.network_address._ip >> v4_suffix_len
+            address = int(rule_net.network_address) >> v4_suffix_len
             address <<= ea_bit_len
             address |= ea_bits
             address <<= 32 - rule_net.prefixlen - ea_bit_len
             address <<= 16
         elif rule_net.prefixlen + ea_bit_len == 32:
-            address = dst_ip._ip << 16
+            address = int(dst_ip) << 16
         else:
-            address = dst_ip._ip << 16
+            address = int(dst_ip) << 16
             address |= psid
             return address
 
@@ -241,7 +241,7 @@ class Map(object):
         end_user_v6_pfx_len = ipv6_net.prefixlen + ea_bit_len
         psid = Map.get_psid_from_port(dst_port, psid_len, psid_offset)
 
-        rule_v6_pfx = ipv6_net.network_address._ip >> ipv6_host_len
+        rule_v6_pfx = int(ipv6_net.network_address) >> ipv6_host_len
         ea_bits = Map._make_ea_bits(ipv4_net, ipv4_host, ea_bit_len, psid_len,
                                     psid)
         interface_id = Map._make_interface_id(ipv4_net, ipv4_host, ea_bit_len,
@@ -275,7 +275,7 @@ class Map(object):
         ipv6_net = ipaddress.ip_network(unicode(ipv6_pfx))
         ipv4_host = ipaddress.ip_address(unicode(ipv4_src))
 
-        address = ipv6_net.network_address._ip
-        address |= ipv4_host._ip
+        address = int(ipv6_net.network_address)
+        address |= int(ipv4_host)
 
         return str(ipaddress.ip_address(address))
