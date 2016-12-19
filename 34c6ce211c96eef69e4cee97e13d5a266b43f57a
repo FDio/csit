@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a2585a7_2b2cf101",
+        "filename": "dpdk-tests/dpdk_scripts/install_dpdk.sh",
+        "patchSetId": 10
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-12-19T07:38:25Z",
+      "side": 1,
+      "message": "You have tests for l2fwd and compiling l3fwd? and in test descriptions there is testpmd.\nIt is very confusing what is being tested.",
+      "range": {
+        "startLine": 22,
+        "startChar": 23,
+        "endLine": 22,
+        "endChar": 28
+      },
+      "revId": "34c6ce211c96eef69e4cee97e13d5a266b43f57a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_8bf52585",
+        "filename": "dpdk-tests/dpdk_scripts/run_l2fwd.sh",
+        "patchSetId": 10
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-12-19T07:38:25Z",
+      "side": 1,
+      "message": "Why are you running testpmd when the file is called l2fwd?",
+      "range": {
+        "startLine": 25,
+        "startChar": 78,
+        "endLine": 25,
+        "endChar": 85
+      },
+      "revId": "34c6ce211c96eef69e4cee97e13d5a266b43f57a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_6bf2f99b",
+        "filename": "dpdk-tests/dpdk_scripts/run_l2fwd.sh",
+        "patchSetId": 10
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-12-19T07:38:25Z",
+      "side": 1,
+      "message": "Why are you running testpmd when the file is called l2fwd?",
+      "range": {
+        "startLine": 30,
+        "startChar": 78,
+        "endLine": 30,
+        "endChar": 85
+      },
+      "revId": "34c6ce211c96eef69e4cee97e13d5a266b43f57a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_4bef3db1",
+        "filename": "dpdk-tests/perf/l2fwd_IPv4_Intel-X520-DA2.robot",
+        "patchSetId": 10
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-12-19T07:38:25Z",
+      "side": 1,
+      "message": "Tests contains L2FWD???",
+      "range": {
+        "startLine": 31,
+        "startChar": 62,
+        "endLine": 31,
+        "endChar": 69
+      },
+      "revId": "34c6ce211c96eef69e4cee97e13d5a266b43f57a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
