@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a2585a7_ab3fc124",
+        "filename": "resources/libraries/python/TLDK/UdpTest.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-12-19T07:42:37Z",
+      "side": 1,
+      "message": "Pylint error",
+      "revId": "a0d42ad0dffc3c996385be56522ef8b777f1eee2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_8b3c0531",
+        "filename": "resources/libraries/python/TLDK/UdpTest.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-12-19T07:42:37Z",
+      "side": 1,
+      "message": "Pylint error",
+      "revId": "a0d42ad0dffc3c996385be56522ef8b777f1eee2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_4b461dc1",
+        "filename": "resources/libraries/python/TLDK/UdpTest.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-12-19T07:42:37Z",
+      "side": 1,
+      "message": "pylint error. indentation",
+      "revId": "a0d42ad0dffc3c996385be56522ef8b777f1eee2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_0b1815d2",
+        "filename": "resources/libraries/python/TLDK/UdpTest.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2016-12-19T07:42:37Z",
+      "side": 1,
+      "message": "pylint error, this variable is not used",
+      "range": {
+        "startLine": 100,
+        "startChar": 38,
+        "endLine": 100,
+        "endChar": 44
+      },
+      "revId": "a0d42ad0dffc3c996385be56522ef8b777f1eee2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
