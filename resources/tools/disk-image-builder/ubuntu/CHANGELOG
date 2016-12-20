@@ -1,3 +1,7 @@
+## [1.6] - 2016-12-19
+
+Add cmake
+
 ## [1.5] - 2016-11-28
 
 Add libpcap-dev and libpcap0.8-dev
