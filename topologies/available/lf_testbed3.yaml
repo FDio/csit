@@ -237,3 +237,4 @@ nodes:
         pci_address: "0000:07:00.0"
         link: link25
         model: Cisco-VIC-1227
+
