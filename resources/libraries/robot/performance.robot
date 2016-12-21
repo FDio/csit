@@ -121,8 +121,8 @@
 | | ... | - dut1_if1 - DUT1 interface towards TG.
 | | ... | - dut1_if2 - DUT1 interface towards DUT2.
 | | ... | - dut2 - DUT2 node
-| | ... | - dut2_if1 - DUT2 interface towards TG.
-| | ... | - dut2_if2 - DUT2 interface towards DUT1.
+| | ... | - dut2_if1 - DUT2 interface towards DUT1.
+| | ... | - dut2_if2 - DUT2 interface towards TG.
 | | ...
 | | Append Nodes | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']}
 | | ...          | ${nodes['TG']}
@@ -248,6 +248,46 @@
 | | Set Interface State | ${dut2} | ${dut2_if2} | up
 | | Vpp Node Interfaces Ready Wait | ${dut1}
 | | Vpp Node Interfaces Ready Wait | ${dut2}
+
+| IPsec initialized in a 3-node circular topology
+| | [Documentation]
+| | ... | Set UP state on VPP interfaces in path on nodes in 3-node circular
+| | ... | topology. Get the interface MAC addresses and setup ARP on all VPP
+| | ... | interfaces. Setup IPv4 addresses with /24 prefix on DUT-TG and
+| | ... | DUT1-DUT2 links. Set routing for encrypted traffic on both DUT nodes
+| | ... | with prefix /8 and next hop of neighbour DUT or TG interface IPv4 
+| | ... | address.
+| | ...
+| | ${tg_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
+| | ${tg_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
+| | ${dut1_if1_mac}= | Get Interface MAC | ${dut1} | ${dut1_if1}
+| | ${dut1_if2_mac}= | Get Interface MAC | ${dut1} | ${dut1_if2}
+| | ${dut2_if1_mac}= | Get Interface MAC | ${dut2} | ${dut2_if1}
+| | ${dut2_if2_mac}= | Get Interface MAC | ${dut2} | ${dut2_if2}
+| | Set Interface State | ${dut1} | ${dut1_if1} | up
+| | Set Interface State | ${dut1} | ${dut1_if2} | up
+| | Set Interface State | ${dut2} | ${dut2_if1} | up
+| | Set Interface State | ${dut2} | ${dut2_if2} | up
+| | Set Test Variable | ${tg_if1_mac}
+| | Set Test Variable | ${tg_if2_mac}
+| | Set Test Variable | ${dut1_if1_mac}
+| | Set Test Variable | ${dut1_if2_mac}
+| | Set Test Variable | ${dut2_if1_mac}
+| | Set Test Variable | ${dut2_if2_mac}
+| | dut1_v4.set_ip | ${dut1_if1} | ${dut1_if1_ip4} | 24
+| | dut1_v4.set_ip | ${dut1_if2} | ${dut1_if2_ip4} | 24
+| | dut2_v4.set_ip | ${dut2_if1} | ${dut2_if1_ip4} | 24
+| | dut2_v4.set_ip | ${dut2_if2} | ${dut2_if2_ip4} | 24
+| | dut1_v4.set_arp | ${dut1_if1} | ${tg_if1_ip4} | ${tg_if1_mac}
+| | dut1_v4.set_arp | ${dut1_if2} | ${dut2_if1_ip4} | ${dut2_if1_mac}
+| | dut2_v4.set_arp | ${dut2_if2} | ${tg_if2_ip4} | ${tg_if2_mac}
+| | dut2_v4.set_arp | ${dut2_if1} | ${dut1_if2_ip4} | ${dut1_if2_mac}
+| | dut1_v4.set_route | ${raddr_ip4} | 8 | ${dut2_if1_ip4} | ${dut1_if2}
+| | dut1_v4.set_route | ${laddr_ip4} | 8 | ${tg_if1_ip4} | ${dut1_if1}
+| | dut2_v4.set_route | ${raddr_ip4} | 8 | ${tg_if2_ip4} | ${dut2_if2}
+| | dut2_v4.set_route | ${laddr_ip4} | 8 | ${dut1_if2_ip4} | ${dut2_if1}
+| | All Vpp Interfaces Ready Wait | ${nodes}
+
 
 | IPv4 forwarding initialized in a 3-node circular topology
 | | [Documentation]

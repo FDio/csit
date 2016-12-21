@@ -285,7 +285,6 @@ class TrafficGenerator(object):
             # critical error occured
             raise RuntimeError('t-rex-64 startup failed')
 
-
     @staticmethod
     def teardown_traffic_generator(node):
         """TG teardown.
@@ -388,6 +387,51 @@ class TrafficGenerator(object):
                 "--p{5}_src_start_ip 20.20.20.2 "
                 "--p{5}_src_end_ip 20.20.20.254 "
                 "--p{5}_dst_start_ip 10.10.10.2 "
+                "{6} {7} --warmup_time={8}'".format(Constants.REMOTE_FW_DIR,
+                                                    duration, rate, framesize,
+                                                    _p0, _p1, _async, _latency,
+                                                    warmup_time),
+                timeout=int(duration)+60)
+        elif traffic_type in ["3-node-IPv4-dst-1"]:
+            (ret, stdout, stderr) = ssh.exec_command(
+                "sh -c '{0}/resources/tools/t-rex/t-rex-stateless.py "
+                "--duration={1} -r {2} -s {3} "
+                "--p{4}_src_start_ip 10.0.0.1 "
+                "--p{4}_dst_start_ip 20.0.0.0 "
+                "--p{4}_dst_end_ip 20.0.0.0 "
+                "--p{5}_src_start_ip 20.0.0.1 "
+                "--p{5}_dst_start_ip 10.0.0.0 "
+                "--p{5}_dst_end_ip 10.0.0.0 "
+                "{6} {7} --warmup_time={8}'".format(Constants.REMOTE_FW_DIR,
+                                                    duration, rate, framesize,
+                                                    _p0, _p1, _async, _latency,
+                                                    warmup_time),
+                timeout=int(duration)+60)
+        elif traffic_type in ["3-node-IPv4-dst-100"]:
+            (ret, stdout, stderr) = ssh.exec_command(
+                "sh -c '{0}/resources/tools/t-rex/t-rex-stateless.py "
+                "--duration={1} -r {2} -s {3} "
+                "--p{4}_src_start_ip 10.0.0.1 "
+                "--p{4}_dst_start_ip 20.0.0.0 "
+                "--p{4}_dst_end_ip 20.0.0.99 "
+                "--p{5}_src_start_ip 20.0.0.1 "
+                "--p{5}_dst_start_ip 10.0.0.0 "
+                "--p{5}_dst_end_ip 10.0.0.99 "
+                "{6} {7} --warmup_time={8}'".format(Constants.REMOTE_FW_DIR,
+                                                    duration, rate, framesize,
+                                                    _p0, _p1, _async, _latency,
+                                                    warmup_time),
+                timeout=int(duration)+60)
+        elif traffic_type in ["3-node-IPv4-dst-1000"]:
+            (ret, stdout, stderr) = ssh.exec_command(
+                "sh -c '{0}/resources/tools/t-rex/t-rex-stateless.py "
+                "--duration={1} -r {2} -s {3} "
+                "--p{4}_src_start_ip 10.0.0.1 "
+                "--p{4}_dst_start_ip 20.0.0.0 "
+                "--p{4}_dst_end_ip 20.0.3.231 "
+                "--p{5}_src_start_ip 20.0.0.1 "
+                "--p{5}_dst_start_ip 10.0.0.0 "
+                "--p{5}_dst_end_ip 10.0.3.231 "
                 "{6} {7} --warmup_time={8}'".format(Constants.REMOTE_FW_DIR,
                                                     duration, rate, framesize,
                                                     _p0, _p1, _async, _latency,

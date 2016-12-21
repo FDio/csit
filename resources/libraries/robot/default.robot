@@ -171,6 +171,13 @@
 | | :FOR | ${dut} | IN | @{duts}
 | | | Add Enable Vhost User Config | ${nodes['${dut}']}
 
+| Add Cryptodev to all DUTs
+| | [Documentation] | AddCryptodev to VPP startup configuration to all
+| | ...             | DUTs
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | Add Cryptodev Config | ${nodes['${dut}']}
+
 | Remove startup configuration of VPP from all DUTs
 | | [Documentation] | Remove VPP startup configuration from all DUTs
 | | ${duts}= | Get Matches | ${nodes} | DUT*
@@ -178,6 +185,7 @@
 | | | Remove All PCI Devices | ${nodes['${dut}']}
 | | | Remove All CPU Config | ${nodes['${dut}']}
 | | | Remove Socketmem Config | ${nodes['${dut}']}
+| | | Remove Cryptodev Config | ${nodes['${dut}']}
 | | | Remove Heapsize Config | ${nodes['${dut}']}
 | | | Remove Rxqueues Config | ${nodes['${dut}']}
 | | | Remove No Multi Seg Config | ${nodes['${dut}']}
