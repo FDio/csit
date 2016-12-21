@@ -143,3 +143,14 @@ class DUTSetup(object):
             if node['type'] == NodeType.DUT:
                 pids[node['host']] = DUTSetup.get_vpp_pid(node)
         return pids
+
+    @staticmethod
+    def vpp_show_crypto_device_mapping(node):
+        """Run "show crypto device mapping" CLI command.
+
+        :param node: Node to run command on.
+        :type node: dict
+        """
+        vat = VatExecutor()
+        vat.execute_script("show_crypto_device_mapping.vat", node,
+                           json_out=False)
