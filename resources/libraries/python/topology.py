@@ -805,6 +805,20 @@ class Topology(object):
         return node['host']
 
     @staticmethod
+    def get_cryptodev(node):
+        """Return Crytodev configuration of the node.
+
+        :param node: Node created from topology.
+        :type node: dict
+        :return: Cryptodev configuration string.
+        :rtype: str
+        """
+        try:
+            return node['cryptodev']
+        except KeyError:
+            return None
+
+    @staticmethod
     def set_interface_numa_node(node, iface_key, numa_node_id):
         """Set interface numa_node location.
 
