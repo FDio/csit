@@ -16,6 +16,7 @@
 from robot.api import logger
 
 from resources.libraries.python.topology import NodeType
+from resources.libraries.python.topology import Topology
 from resources.libraries.python.ssh import SSH
 from resources.libraries.python.constants import Constants
 from resources.libraries.python.VatExecutor import VatExecutor
@@ -143,3 +144,135 @@ class DUTSetup(object):
             if node['type'] == NodeType.DUT:
                 pids[node['host']] = DUTSetup.get_vpp_pid(node)
         return pids
+
+    @staticmethod
+    def vpp_show_crypto_device_mapping(node):
+        """Run "show crypto device mapping" CLI command.
+
+        :param node: Node to run command on.
+        :type node: dict
+        """
+        vat = VatExecutor()
+        vat.execute_script("show_crypto_device_mapping.vat", node,
+                           json_out=False)
+
+    @staticmethod
+    def crypto_device_verify(node, force_init=False, numvfs=32):
+        """Verify if Crypto QAT device virtual functions are initialized on all
+        DUTs. If parameter force initialization is set to True, then try to
+        initialize or disable QAT.
+
+        :param node: DUT node.
+        :param force_init: If True then try to initialize to specific value.
+        :param numvfs: NUmber of VFs to initialize, 0 - disable the VFs.
+        :type node: dict
+        :type force_init: bool
+        :type numvfs: int
+        :return: nothing
+        :raises RuntimeError if QAT is not initialized or failed to initialize.
+        """
+
+        ssh = SSH()
+        ssh.connect(node)
+
+        cryptodev = Topology.get_cryptodev(node)
+
+        ret_code, stdout, _ = ssh.exec_command('lspci -vmms {}'.format(
+            cryptodev))
+
+        if int(ret_code) != 0:
+            raise RuntimeError('Failed to retrieve lscpi information on host: '
+                               '{}'.format(node['host']))
+
+        if stdout:
+            # QAT is initialized but we want to override with numvfs
+            if force_init:
+                DUTSetup.crypto_device_init(node, numvfs)
+        else:
+            if force_init:
+                # QAT is not initialized and we want to initialize with numvfs
+                DUTSetup.crypto_device_init(node, numvfs)
+            else:
+                # QAT is not initialized - raise an error
+                raise RuntimeError('Crypto device is not initialized on host: '
+                                   '{}'.format(node['host']))
+
+    @staticmethod
+    def crypto_device_init(node, numvfs):
+        """Init Crypto QAT device virtual functions on DUT.
+
+        :param node: DUT node.
+        :param numvfs: Number of VFs to initialize, 0 - disable the VFs.
+        :type node: dict
+        :type numvfs: int
+        :return: nothing
+        :raises RuntimeError if QAT failed to initialize.
+        """
+
+        ssh = SSH()
+        ssh.connect(node)
+
+        cryptodev = Topology.get_cryptodev(node)
+        cryptodev_addr = '{0}:{1}:00.0'.format(cryptodev.split(':')[0],
+                                               cryptodev.split(':')[1])
+
+        # QAT device must be bind to kernel driver before initialization
+        DUTSetup.pci_driver_unbind(node, cryptodev_addr)
+        DUTSetup.pci_driver_bind(node, cryptodev_addr, "dh895xcc")
+
+        # Initialize QAT VFs
+        ret_code, _, _ = ssh.exec_command(
+            "sudo sh -c 'echo {} | tee /sys/bus/pci/devices/{}/sriov_numvfs'"
+            .format(numvfs, cryptodev_addr.replace(':', r'\:')))
+
+        if int(ret_code) != 0:
+            raise RuntimeError('Failed to initialize {} VFs on QAT device on '
+                               'host: {}'.format(numvfs, node['host']))
+
+    @staticmethod
+    def pci_driver_unbind(node, pci_addr):
+        """Unbind PCI device from current driver on node.
+
+        :param node: DUT node.
+        :param pci_addr: PCI device address.
+        :type node: dict
+        :type pci_addr: string
+        :return: nothing
+        :raises RuntimeError if PCI device unbind failed.
+        """
+
+        ssh = SSH()
+        ssh.connect(node)
+
+        ret_code, _, _ = ssh.exec_command(
+            "sudo sh -c 'echo {} | tee /sys/bus/pci/devices/{}/driver/unbind'"
+            .format(pci_addr, pci_addr.replace(':', r'\:')))
+
+        if int(ret_code) != 0:
+            raise RuntimeError('Failed to unbind PCI device from driver on '
+                               'host: {}'.format(node['host']))
+
+    @staticmethod
+    def pci_driver_bind(node, pci_addr, driver):
+        """Bind PCI device to driver on node.
+
+        :param node: DUT node.
+        :param pci_addr: PCI device address.
+        :param driver: Driver to bind.
+        :type node: dict
+        :type pci_addr: string
+        :type driver: string
+        :return: nothing
+        :raises RuntimeError if PCI device bind failed.
+        """
+
+        ssh = SSH()
+        ssh.connect(node)
+
+        ret_code, _, _ = ssh.exec_command(
+            "sudo sh -c 'echo {} | tee /sys/bus/pci/drivers/{}/bind'"
+            .format(pci_addr, driver))
+
+        if int(ret_code) != 0:
+            raise RuntimeError('Failed to bind PCI device to {} driver on '
+                               'host: {}'.format(driver, node['host']))
