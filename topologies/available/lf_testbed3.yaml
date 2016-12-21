@@ -105,7 +105,8 @@ nodes:
     port: 22
     username: testuser
     password: Csit1234
-    cryptodev: "dev 0000:86:00.0"
+    cryptodev: 0000:86:00.0
+    uio_driver: igb_uio
     interfaces:
       port1:
         # t3-sut1-c1/p1 - 10GE port1 on Intel NIC x520 2p10GE.
@@ -173,7 +174,8 @@ nodes:
     port: 22
     username: testuser
     password: Csit1234
-    cryptodev: "dev 0000:86:00.0"
+    cryptodev: 0000:86:00.0
+    uio_driver: igb_uio
     interfaces:
       port1:
         # t3-sut3-c1/p1 - 10GE port1 on Intel NIC x520 2p10GE.
