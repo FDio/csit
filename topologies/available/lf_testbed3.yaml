@@ -105,6 +105,7 @@ nodes:
     port: 22
     username: testuser
     password: Csit1234
+    cryptodev: "dev 0000:86:00.0"
     interfaces:
       port1:
         # t3-sut1-c1/p1 - 10GE port1 on Intel NIC x520 2p10GE.
@@ -133,13 +134,13 @@ nodes:
       port5:
         # t3-sut1-c4/p1 - 40GE port1 on Intel NIC xl710 2p40GE.
         mac_address: "68:05:ca:37:25:18"
-        pci_address: "0000:85:00.0"
+        pci_address: "0000:88:00.0"
         link: link23
         model: Intel-XL710
       port6:
         # t3-sut1-c4/p2 - 40GE port2 on Intel NIC xl710 2p40GE.
         mac_address: "68:05:ca:37:25:19"
-        pci_address: "0000:85:00.1"
+        pci_address: "0000:88:00.1"
         link: link7
         model: Intel-XL710
       port7:
@@ -172,6 +173,7 @@ nodes:
     port: 22
     username: testuser
     password: Csit1234
+    cryptodev: "dev 0000:86:00.0"
     interfaces:
       port1:
         # t3-sut3-c1/p1 - 10GE port1 on Intel NIC x520 2p10GE.
@@ -200,13 +202,13 @@ nodes:
       port5:
         # t3-sut3-c4/p1 - 40GE port1 on Intel NIC xl710 2p40GE.
         mac_address: "68:05:ca:35:76:b0"
-        pci_address: "0000:85:00.0"
+        pci_address: "0000:88:00.0"
         link: link8
         model: Intel-XL710
       port6:
         # t3-sut3-c4/p2 - 40GE port2 on Intel NIC xl710 2p40GE.
         mac_address: "68:05:ca:35:76:b1"
-        pci_address: "0000:85:00.1"
+        pci_address: "0000:88:00.1"
         link: link23
         model: Intel-XL710
       port7:
