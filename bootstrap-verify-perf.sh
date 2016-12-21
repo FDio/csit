@@ -15,9 +15,11 @@
 set -x
 
 # Space separated list of available testbeds, described by topology files
-TOPOLOGIES="topologies/available/lf_testbed1.yaml \
-            topologies/available/lf_testbed2.yaml \
-            topologies/available/lf_testbed3.yaml"
+#TOPOLOGIES="topologies/available/lf_testbed1.yaml \
+#            topologies/available/lf_testbed2.yaml \
+#            topologies/available/lf_testbed3.yaml"
+
+TOPOLOGIES="topologies/available/lf_testbed3.yaml"
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
@@ -25,7 +27,7 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 RESERVATION_DIR="/tmp/reservation_dir"
 INSTALLATION_DIR="/tmp/install_dir"
 
-PYBOT_ARGS="-W 150"
+PYBOT_ARGS="-W 150 --exitonfailure"
 
 ARCHIVE_ARTIFACTS=(log.html output.xml report.html output_perf_data.xml)
 
@@ -172,7 +174,7 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -L TRACE \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.perf" \
+              -s "tests.perf" -i IPSEC \
               tests/
         RETURN_STATUS=$(echo $?)
 esac
