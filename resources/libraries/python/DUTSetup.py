@@ -16,6 +16,7 @@
 from robot.api import logger
 
 from resources.libraries.python.topology import NodeType
+from resources.libraries.python.topology import Topology
 from resources.libraries.python.ssh import SSH
 from resources.libraries.python.constants import Constants
 from resources.libraries.python.VatExecutor import VatExecutor
@@ -143,3 +144,91 @@ class DUTSetup(object):
             if node['type'] == NodeType.DUT:
                 pids[node['host']] = DUTSetup.get_vpp_pid(node)
         return pids
+
+    @staticmethod
+    def vpp_show_crypto_device_mapping(node):
+        """Run "show crypto device mapping" CLI command.
+
+        :param node: Node to run command on.
+        :type node: dict
+        """
+        vat = VatExecutor()
+        vat.execute_script("show_crypto_device_mapping.vat", node,
+                           json_out=False)
+
+    @staticmethod
+    def crypto_device_verify(node, force_init=False):
+        """Verify if Crypto QAT device virtual functions are initialized on all
+        DUTs. If parameter force initialization is set to True, then try to
+        initialize.
+
+        :param node: DUT node.
+        :param force_init: If True then try to initialize.
+        :type node: dict
+        :type force_init: bool
+        :return: nothing
+        :raises RuntimeError if QAT is not initialized or failed to initialize.
+        """
+
+        ssh = SSH()
+        ssh.connect(node)
+
+        cryptodev = Topology.get_cryptodev(node)
+
+        ret_code, stdout, _ = ssh.exec_command('lspci -vmms {}'.format(
+            cryptodev))
+
+        if int(ret_code) != 0:
+            raise RuntimeError('Failed to retrieve lscpi information on host: '
+                               '{}'.format(node['host']))
+
+        if not stdout:
+            if force_init:
+                DUTSetup.crypto_device_init(node)
+            else:
+                raise RuntimeError('Crypto device is not initialized on host: '
+                                   '{}'.format(node['host']))
+
+    @staticmethod
+    def crypto_device_init(node):
+        """Init Crypto QAT device virtual functions on DUT.
+
+        :param node: DUT node.
+        :type node: dict
+        :return: nothing
+        :raises RuntimeError if QAT failed to initialize.
+        """
+
+        ssh = SSH()
+        ssh.connect(node)
+
+        cryptodev = Topology.get_cryptodev(node)
+        cryptodev_addr = '{0}:{1}:00.0'.format(cryptodev.split(':')[0],
+                                               cryptodev.split(':')[1])
+        cryptodev_path = r'{0}\:{1}\:00.0'.format(cryptodev.split(':')[0],
+                                                  cryptodev.split(':')[1])
+
+        ret_code, _, _ = ssh.exec_command(
+            "sudo sh -c 'echo {} | tee /sys/bus/pci/devices/{}/driver/unbind'"
+            .format(cryptodev_addr, cryptodev_path))
+
+        if int(ret_code) != 0:
+            raise RuntimeError('Failed to unbind QAT device on '
+                               'host: {}'.format(node['host']))
+
+        ret_code, _, _ = ssh.exec_command(
+            "sudo sh -c 'echo {} | tee /sys/bus/pci/drivers/dh895xcc/bind'"
+            .format(cryptodev_addr))
+
+        if int(ret_code) != 0:
+            raise RuntimeError('Failed to bind QAT device to kernel driver on '
+                               'host: {}'.format(node['host']))
+
+        ret_code, _, _ = ssh.exec_command(
+            "sudo sh -c 'echo 32 | tee /sys/bus/pci/devices/{}/sriov_numvfs'"
+            .format(cryptodev_path))
+
+        if int(ret_code) != 0:
+            raise RuntimeError('Failed to initialize VFs on QAT device on '
+                               'host: {}'.format(node['host']))
+
