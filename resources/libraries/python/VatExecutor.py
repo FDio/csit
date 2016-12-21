@@ -83,6 +83,42 @@ class VatExecutor(object):
         # TODO: download vpp_api_test output file
         # self._delete_files(node, remote_file_path, remote_file_out)
 
+    def scp_and_execute_script(self, vat_name, node, timeout=10, json_out=True):
+        """Copy vat_name script to node, execute it and return result.
+
+        :param vat_name: Name of the vat script file.
+        Full path and name of the script is required.
+        :param node: Node to execute the VAT script on.
+        :param timeout: Seconds to allow the script to run.
+        :param json_out: Require JSON output.
+        :type vat_name: str
+        :type node: dict
+        :type timeout: int
+        :type json_out: bool
+        :returns: Status code, stdout and stderr of executed script
+        :rtype tuple
+        """
+
+        ssh = SSH()
+        ssh.connect(node)
+
+        ssh.scp(vat_name, vat_name)
+
+        cmd = "sudo -S {vat} {json} < {input}".format(
+            json="json" if json_out is True else "",
+            vat=Constants.VAT_BIN_NAME,
+            input=vat_name)
+        (ret_code, stdout, stderr) = ssh.exec_command(cmd, timeout)
+        self._ret_code = ret_code
+        self._stdout = stdout
+        self._stderr = stderr
+
+        logger.trace("Command '{0}' returned {1}'".format(cmd, self._ret_code))
+        logger.trace("stdout: '{0}'".format(self._stdout))
+        logger.trace("stderr: '{0}'".format(self._stderr))
+
+        self._delete_files(node, vat_name)
+
     def execute_script_json_out(self, vat_name, node, timeout=10):
         """Pass all arguments to 'execute_script' method, then cleanup returned
         json output."""
