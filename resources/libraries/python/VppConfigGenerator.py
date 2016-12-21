@@ -57,6 +57,8 @@ dpdk {{
   {txqueuesconfig}
   }}
 {pciconfig}
+  {cryptodevconfig}
+  {uiodriverconfig}
 {nomultiseg}
 {enablevhostuser}
 }}
@@ -235,6 +237,32 @@ class VppConfigGenerator(object):
         logger.debug('Setting hostname {} config with {}'.\
             format(hostname, "enable-vhost-user"))
 
+    def add_cryptodev_config(self, node):
+        """Add cryptodev configuration for node.
+
+        :param node: DUT node.
+        :type node: dict
+        :returns: nothing
+        :raises ValueError: If node type is not a DUT
+        """
+        if node['type'] != NodeType.DUT:
+            raise ValueError('Node type is not a DUT')
+        hostname = Topology.get_node_hostname(node)
+        if hostname not in self._nodeconfig:
+            self._nodeconfig[hostname] = {}
+
+        cryptodev_config = Topology.get_cryptodev(node)
+        if cryptodev_config:
+            self._nodeconfig[hostname]['cryptodev_config'] = cryptodev_config
+            logger.debug('Setting hostname {} Cryptodev config to {}'.
+                         format(hostname, cryptodev_config))
+
+        uio_driver_config = Topology.get_uio_driver(node)
+        if uio_driver_config:
+            self._nodeconfig[hostname]['uio_driver_config'] = uio_driver_config
+            logger.debug('Setting hostname {} uio_driver config to {}'.
+                         format(hostname, uio_driver_config))
+
     def remove_all_pci_devices(self, node):
         """Remove PCI device configuration from node.
 
@@ -278,6 +306,22 @@ class VppConfigGenerator(object):
         if hostname in self._nodeconfig:
             self._nodeconfig[hostname].pop('socketmem_config', None)
         logger.debug('Clearing Socket Memory config for hostname {}.'.
+                     format(hostname))
+
+    def remove_cryptodev_config(self, node):
+        """Remove Cryptodev configuration from node.
+
+        :param node: DUT node.
+        :type node: dict
+        :returns: nothing
+        :raises ValueError: If node type is not a DUT
+        """
+        if node['type'] != NodeType.DUT:
+            raise ValueError('Node type is not a DUT')
+        hostname = Topology.get_node_hostname(node)
+        if hostname in self._nodeconfig:
+            self._nodeconfig[hostname].pop('cryptodev_config', None)
+        logger.debug('Clearing Cryptodev config for hostname {}.'.
                      format(hostname))
 
     def remove_heapsize_config(self, node):
@@ -366,6 +410,8 @@ class VppConfigGenerator(object):
         txqueuesconfig = ""
         nomultiseg = ""
         enablevhostuser = ""
+        cryptodevconfig = ""
+        uiodriverconfig = ""
 
         if hostname in self._nodeconfig:
             cfg = self._nodeconfig[hostname]
@@ -377,6 +423,12 @@ class VppConfigGenerator(object):
 
             if 'socketmem_config' in cfg:
                 socketmemconfig = cfg['socketmem_config']
+
+            if 'cryptodev_config' in cfg:
+                cryptodevconfig = cfg['cryptodev_config']
+
+            if 'uio_driver_config' in cfg:
+                uiodriverconfig = cfg['uio_driver_config']
 
             if 'heapsize_config' in cfg:
                 heapsizeconfig = "\nheapsize {}\n".\
@@ -393,6 +445,8 @@ class VppConfigGenerator(object):
 
         vppconfig = VPP_CONFIG_TEMPLATE.format(cpuconfig=cpuconfig,
                                                pciconfig=pciconfig,
+                                               cryptodevconfig=cryptodevconfig,
+                                               uiodriverconfig=uiodriverconfig,
                                                socketmemconfig=socketmemconfig,
                                                heapsizeconfig=heapsizeconfig,
                                                rxqueuesconfig=rxqueuesconfig,
