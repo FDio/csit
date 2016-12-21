@@ -72,6 +72,24 @@
 | | :FOR | ${dut} | IN | @{duts}
 | | | Set VPP Scheduling rr | ${nodes['${dut}']}
 
+| Verify Crypto Device On All DUTs
+| | [Documentation] | Verify if Crypto QAT device virtual functions are
+| | ... | initialized on all DUTs. If parameter force_init is set to True, then
+| | ... | try to initialize.
+| | ...
+| | ... | *Arguments:*
+| | ... | - ${force_init} - Try to initialize. Type: boolean
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Verify Crypto Device On All DUTs \| True \|
+| | ...
+| | [Arguments] | ${force_init}=${False}
+| | ...
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | Crypto Device Verify | ${nodes['${dut}']} | force_init=${force_init}
+
 | Add '${m}' worker threads and rxqueues '${n}' in 3-node single-link topo
 | | [Documentation] | Setup M worker threads and N rxqueues in vpp startup\
 | | ... | configuration on all DUTs in 3-node single-link topology.
@@ -236,6 +254,22 @@
 | | :FOR | ${dut} | IN | @{duts}
 | | | Add Enable Vhost User Config | ${nodes['${dut}']}
 
+| Add Cryptodev to all DUTs
+| | [Documentation] | AddCryptodev to VPP startup configuration to all
+| | ...             | DUTs
+| | ...
+| | ... | *Arguments:*
+| | ... | - ${count} - Number of QAT devices
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Add Cryptodev to all DUTs \| 4 \|
+| | ...
+| | [Arguments] | ${count}
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | Add Cryptodev Config | ${nodes['${dut}']} | ${count}
+
 | Remove startup configuration of VPP from all DUTs
 | | [Documentation] | Remove VPP startup configuration from all DUTs.
 | | ...
@@ -244,6 +278,7 @@
 | | | Remove All PCI Devices | ${nodes['${dut}']}
 | | | Remove All CPU Config | ${nodes['${dut}']}
 | | | Remove Socketmem Config | ${nodes['${dut}']}
+| | | Remove Cryptodev Config | ${nodes['${dut}']}
 | | | Remove Heapsize Config | ${nodes['${dut}']}
 | | | Remove Rxqueues Config | ${nodes['${dut}']}
 | | | Remove No Multi Seg Config | ${nodes['${dut}']}
