@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2017 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -121,8 +121,8 @@
 | | ... | - dut1_if1 - DUT1 interface towards TG.
 | | ... | - dut1_if2 - DUT1 interface towards DUT2.
 | | ... | - dut2 - DUT2 node
-| | ... | - dut2_if1 - DUT2 interface towards TG.
-| | ... | - dut2_if2 - DUT2 interface towards DUT1.
+| | ... | - dut2_if1 - DUT2 interface towards DUT1.
+| | ... | - dut2_if2 - DUT2 interface towards TG.
 | | ...
 | | Append Nodes | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']}
 | | ... | ${nodes['TG']}
@@ -248,6 +248,43 @@
 | | Set Interface State | ${dut2} | ${dut2_if2} | up
 | | Vpp Node Interfaces Ready Wait | ${dut1}
 | | Vpp Node Interfaces Ready Wait | ${dut2}
+
+| IPsec initialized in a 3-node circular topology
+| | [Documentation]
+| | ... | Set UP state on VPP interfaces in path on nodes in 3-node circular
+| | ... | topology. Get the interface MAC addresses and setup ARP on all VPP
+| | ... | interfaces. Setup IPv4 addresses with /24 prefix on DUT-TG and
+| | ... | DUT1-DUT2 links. Set routing for encrypted traffic on both DUT nodes
+| | ... | with prefix /8 and next hop of neighbour DUT or TG interface IPv4 
+| | ... | address.
+| | ...
+| | VPP interfaces in path are up in a 3-node circular topology
+| | ${tg_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
+| | ${tg_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
+| | ${dut1_if1_mac}= | Get Interface MAC | ${dut1} | ${dut1_if1}
+| | ${dut1_if2_mac}= | Get Interface MAC | ${dut1} | ${dut1_if2}
+| | ${dut2_if1_mac}= | Get Interface MAC | ${dut2} | ${dut2_if1}
+| | ${dut2_if2_mac}= | Get Interface MAC | ${dut2} | ${dut2_if2}
+| | Set Interface State | ${dut1} | ${dut1_if1} | up
+| | Set Interface State | ${dut1} | ${dut1_if2} | up
+| | Set Interface State | ${dut2} | ${dut2_if1} | up
+| | Set Interface State | ${dut2} | ${dut2_if2} | up
+| | Set Test Variable | ${tg_if1_mac}
+| | Set Test Variable | ${tg_if2_mac}
+| | Set Test Variable | ${dut1_if1_mac}
+| | Set Test Variable | ${dut1_if2_mac}
+| | Set Test Variable | ${dut2_if1_mac}
+| | Set Test Variable | ${dut2_if2_mac}
+| | dut1_v4.set_ip | ${dut1_if1} | ${dut1_if1_ip4} | 24
+| | dut1_v4.set_ip | ${dut1_if2} | ${dut1_if2_ip4} | 24
+| | dut2_v4.set_ip | ${dut2_if1} | ${dut2_if1_ip4} | 24
+| | dut2_v4.set_ip | ${dut2_if2} | ${dut2_if2_ip4} | 24
+| | dut1_v4.set_arp | ${dut1_if1} | ${tg_if1_ip4} | ${tg_if1_mac}
+| | dut1_v4.set_arp | ${dut1_if2} | ${dut2_if1_ip4} | ${dut2_if1_mac}
+| | dut2_v4.set_arp | ${dut2_if2} | ${tg_if2_ip4} | ${tg_if2_mac}
+| | dut2_v4.set_arp | ${dut2_if1} | ${dut1_if2_ip4} | ${dut1_if2_mac}
+| | dut1_v4.set_route | ${laddr_ip4} | 8 | ${tg_if1_ip4} | ${dut1_if1}
+| | dut2_v4.set_route | ${raddr_ip4} | 8 | ${tg_if2_ip4} | ${dut2_if2}
 
 | IPv4 forwarding initialized in a 3-node circular topology
 | | [Documentation]
@@ -1319,6 +1356,8 @@
 | | ... | - rate - Rate for sending packets. Type: string
 | | ... | - framesize - L2 Frame Size [B]. Type: integer
 | | ... | - topology_type - Topology type. Type: string
+| | ... | - fail_on_loss - If True, the keyword fails if loss occurred.
+| | ... | Type: boolean
 | | ...
 | | ... | *Example:*
 | | ...
@@ -1979,3 +2018,80 @@
 | | ... | Variable Should Exist | ${DPDK_TEST}
 | | Return From Keyword If | "${ret}" == "PASS" | ${TRUE}
 | | Return From Keyword | ${FALSE}
+
+| Performance test setup
+| | [Documentation] | Common test setup for performance tests.
+| | ...
+| | Setup all DUTs before test
+| | Reset VAT History On All DUTs | ${nodes}
+
+| Performance test teardown
+| | [Documentation] | Common test teardown for performance tests.
+| | ...
+| | ... | *Arguments:*
+| | ... | - duration - Duration of traffic run [s]. Type: integer
+| | ... | - rate - Rate for sending packets. Type: string
+| | ... | - framesize - L2 Frame Size [B]. Type: integer
+| | ... | - topology_type - Topology type. Type: string
+| | ... | - fail_on_loss - If True, the keyword fails if loss occurred.
+| | ... | Type: boolean
+| | ... | - show_trace - If True, the vpp traces from all DUTs are logged.
+| | ... | Type: boolean
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Traffic should pass with no loss \| 10 \| 4.0mpps \| 64 \
+| | ... | \| 3-node-IPv4 \|
+| | ...
+| | [Arguments] | ${duration} | ${rate} | ${framesize} | ${topology_type}
+| | ... | ${fail_on_loss}=${True} | ${show_trace}=${False}
+| | ...
+| | Show VAT History On All DUTs | ${nodes}
+| | Show statistics on all DUTs
+| | Run Keyword If Test Failed
+| | ... | Traffic should pass with no loss | ${duration} | ${rate}
+| | ... | ${framesize} | ${topology_type} | ${fail_on_loss}
+| | Remove startup configuration of VPP from all DUTs
+| | Run keyword if | ${show_trace} | Show vpp trace dump on all DUTs
+
+| Performance test with vhost and VM with dpdk-testpmd teardown
+| | [Documentation] | Common test teardown for performance tests which use
+| | ... | vhost(s) and VM(s) with dpdk-testpmd.
+| | ...
+| | ... | *Arguments:*
+| | ... | - duration - Duration of traffic run [s]. Type: integer
+| | ... | - rate - Rate for sending packets. Type: string
+| | ... | - framesize - L2 Frame Size [B]. Type: integer
+| | ... | - topology_type - Topology type. Type: string
+| | ... | - fail_on_loss - If True, the keyword fails if loss occurred.
+| | ... | Type: boolean
+| | ... | - show_trace - If True, the traces from all DUTs are logged.
+| | ... | Type: boolean
+| | ... | - dut1_node - Node where to clean qemu. Type: dictionary
+| | ... | - dut1_vm_refs - VM references on node. Type: dictionary
+| | ... | - dut2_node - Node where to clean qemu. Type: dictionary
+| | ... | - dut2_vm_refs - VM references on node. Type: dictionary
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Traffic should pass with no loss \| 10 \| 4.0mpps \| 64 \
+| | ... | \| 3-node-IPv4 \| ${node['DUT1']} \| ${dut_vm_refs} \
+| | ... | \| ${node['DUT2']} \| ${dut_vm_refs} \|
+| | ...
+| | [Arguments] | ${duration} | ${rate} | ${framesize} | ${topology_type}
+| | ... | ${fail_on_loss}=${True} | ${show_trace}=${False}
+| | ... | ${dut1_node}=${None} | ${dut1_vm_refs}=${None}
+| | ... | ${dut2_node}=${None} | ${dut2_vm_refs}=${None}
+| | ...
+| | Show VAT History On All DUTs | ${nodes}
+| | Show statistics on all DUTs
+| | Run Keyword If Test Failed
+| | ... | Traffic should pass with no loss | ${duration} | ${rate}
+| | ... | ${framesize} | ${topology_type} | ${fail_on_loss}
+| | Show Vpp Vhost On All DUTs
+| | Remove startup configuration of VPP from all DUTs
+| | Run keyword if | ${show_trace} | Show vpp trace dump on all DUTs
+| | Run keyword unless | ${dut1_node}==${None}
+| | ... | Guest VM with dpdk-testpmd Teardown | ${dut1} | ${dut1_vm_refs}
+| | Run keyword unless | ${dut2_node}==${None}
+| | ... | Guest VM with dpdk-testpmd Teardown | ${dut2} | ${dut2_vm_refs}
