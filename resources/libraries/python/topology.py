@@ -39,6 +39,9 @@ def load_topo_from_yaml():
 
 
 # pylint: disable=invalid-name
+# pylint: disable=too-few-public-methods
+# pylint: disable=too-many-public-methods
+
 class NodeType(object):
     """Defines node types used in topology dictionaries."""
     # Device Under Test (this node has VPP running on it)
@@ -803,6 +806,21 @@ class Topology(object):
         :rtype: str
         """
         return node['host']
+
+    @staticmethod
+    def get_cryptodev(node):
+        """Return Crytodev configuration of the node.
+
+        :param node: Node created from topology.
+        :type node: dict
+        :return: Cryptodev configuration string.
+        :rtype: str
+        :raises KeyError: If node has no key 'cryptodev'
+        """
+        try:
+            return node['cryptodev']
+        except KeyError:
+            return None
 
     @staticmethod
     def set_interface_numa_node(node, iface_key, numa_node_id):
