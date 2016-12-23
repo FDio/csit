@@ -3,7 +3,10 @@
 ROOTDIR=/tmp/openvpp-testing
 PWDDIR=$(pwd)
 
-cd ${ROOTDIR}/dpdk-16.07/
+DPDK_VERSION=16.07
+DPDK_DIR=dpdk-${DPDK_VERSION}
+
+cd ${ROOTDIR}/${DPDK_DIR}/
 modprobe uio
 lsmod | grep igb_uio
 if [ $? -eq 1 ];
