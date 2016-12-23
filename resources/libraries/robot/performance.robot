@@ -1848,4 +1848,3 @@
 | | ... | Variable Should Exist | ${DPDK_TEST}
 | | Return From Keyword If | "${ret}" == "PASS" | ${TRUE}
 | | Return From Keyword | ${FALSE}
-
