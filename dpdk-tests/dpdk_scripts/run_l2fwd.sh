@@ -41,6 +41,33 @@ else
     echo "testpmd is not running"
 fi
 
+# Try to kill the l3fwd
+sudo pgrep l3fwd
+if [ $? -eq "0" ]; then
+    success=false
+    sudo pkill l3fwd
+    echo "RC = $?"
+    for attempt in {1..5}; do
+        echo "Checking if l3fwd is still alive, attempt nr ${attempt}"
+        sudo pgrep l3fwd
+        if [ $? -eq "1" ]; then
+            echo "l3fwd is dead"
+            success=true
+            break
+        fi
+        echo "l3fwd is still alive, waiting 1 second"
+        sleep 1
+    done
+    if [ "$success" = false ]; then
+        echo "The command sudo pkill l3fwd failed"
+        sudo pkill -9 l3fwd
+        echo "RC = $?"
+        exit 1
+    fi
+else
+    echo "l3fwd is not running"
+fi
+
 # Remove hugepages
 sudo rm -f /dev/hugepages/*
 
