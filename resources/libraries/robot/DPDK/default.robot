@@ -18,6 +18,7 @@
 | Library | resources.libraries.python.DUTSetup
 | Library | resources.libraries.python.TGSetup
 | Library | resources.libraries.python.DPDK.L2fwdTest
+| Library | resources.libraries.python.DPDK.L3fwdTest
 | Library | Collections
 
 *** Keywords ***
@@ -42,3 +43,23 @@
 | | ... | ${jumbo_frames}
 | | Start the l2fwd test | ${dut2} | ${dut2_cpus} | ${nb_cores} | ${rxqueues}
 | | ... | ${jumbo_frames}
+
+| Start L3FWD '${m}' worker threads and rxqueues '${n}' with jumbo frames '${b}'
+| | [Documentation] |  Start the l3fwd with M worker threads without HTT and rxqueues N
+| | ...             |  and B(yes or no) jumbo frames in all DUTs
+| | ${cpu_cnt}= | Convert To Integer | ${m}
+| | ${nb_cores}= | Convert to String | ${m}
+| | ${rxqueues}= | Convert to String | ${n}
+| | ${jumbo_frames}= | Convert to String | ${b}
+| | ${dut1_numa}= | Get interfaces numa node | ${dut1}
+| | ... | ${dut1_if1} | ${dut1_if2}
+| | ${dut2_numa}= | Get interfaces numa node | ${dut2}
+| | ... | ${dut2_if1} | ${dut2_if2}
+| | ${dut1_cpus}= | Cpu List Per Node Str | ${dut1} | ${dut1_numa}
+| | ... | cpu_cnt=${cpu_cnt}
+| | ${dut2_cpus}= | Cpu List Per Node Str | ${dut2} | ${dut2_numa}
+| | ... | cpu_cnt=${cpu_cnt}
+| | Start the l3fwd test | ${nodes} | ${dut1} | ${nb_cores} | ${dut1_cpus}
+| | ... | ${rxqueues} | ${jumbo_frames}
+| | Start the l3fwd test | ${nodes} | ${dut2} | ${nb_cores} | ${dut2_cpus}
+| | ... | ${rxqueues} | ${jumbo_frames}
