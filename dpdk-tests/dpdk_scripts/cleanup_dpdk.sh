@@ -5,6 +5,8 @@ PWDDIR=$(pwd)
 
 TESTPMD_LOG=/tmp/testpmd.log
 TESTPMD_PID=/tmp/testpmd.pid
+DPDK_VERSION=16.07
+DPDK_DIR=dpdk-${DPDK_VERSION}
 
 port1_driver=$1
 port1_pci=$2
@@ -21,7 +23,7 @@ cat ${TESTPMD_LOG}
 
 sleep 2
 
-cd ${ROOTDIR}/dpdk-16.07/
+cd ${ROOTDIR}/${DPDK_DIR}/
 ./tools/dpdk-devbind.py -b ${port1_driver} ${port1_pci}
 ./tools/dpdk-devbind.py -b ${port2_driver} ${port2_pci}
 
