@@ -5,6 +5,8 @@ PWDDIR=$(pwd)
 
 TESTPMD_LOG=/tmp/testpmd.log
 TESTPMD_PID=/tmp/testpmd.pid
+DPDK_VERSION=17.02
+DPDK_DIR=dpdk-${DPDK_VERSION}
 
 cpu_corelist=$1
 nb_cores=$2
@@ -37,13 +39,13 @@ sudo rm -f /dev/hugepages/*
 #run the testpmd
 cd ${ROOTDIR}
 if [ "$jumbo_frames" = "yes" ]; then
-tail -f /dev/null | nohup ./dpdk-16.07/x86_64-native-linuxapp-gcc/app/testpmd -l ${cpu_corelist} \
+tail -f /dev/null | nohup ./${DPDK_DIR}/x86_64-native-linuxapp-gcc/app/testpmd -l ${cpu_corelist} \
     -n 4 -- --numa --nb-ports=2 --portmask=0x3 --nb-cores=${nb_cores} \
     --max-pkt-len=9000 --txqflags=0 --forward-mode=io --rxq=${queue_nums} \
     --txq=${queue_nums} --auto-start > ${TESTPMD_LOG} 2>&1 &
 echo $! > ${TESTPMD_PID}
 else
-tail -f /dev/null | nohup ./dpdk-16.07/x86_64-native-linuxapp-gcc/app/testpmd -l ${cpu_corelist} \
+tail -f /dev/null | nohup ./${DPDK_DIR}/x86_64-native-linuxapp-gcc/app/testpmd -l ${cpu_corelist} \
     -n 4 -- --numa --nb-ports=2 --portmask=0x3 --nb-cores=${nb_cores} \
     --forward-mode=io --rxq=${queue_nums} --txq=${queue_nums} --auto-start > ${TESTPMD_LOG} 2>&1 &
 echo $! > ${TESTPMD_PID}
