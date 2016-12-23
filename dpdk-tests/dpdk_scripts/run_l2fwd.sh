@@ -8,6 +8,9 @@ ROOTDIR=/tmp/openvpp-testing
 TESTPMDLOG=screenlog.0
 PWDDIR=$(pwd)
 
+TESTPMD_LOG=/tmp/testpmd.log
+TESTPMD_PID=/tmp/testpmd.pid
+
 # Setting command line arguments
 cpu_corelist=$1
 nb_cores=$2

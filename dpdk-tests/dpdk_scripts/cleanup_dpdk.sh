@@ -8,6 +8,11 @@ ROOTDIR=/tmp/openvpp-testing
 TESTPMDLOG=screenlog.0
 PWDDIR=$(pwd)
 
+TESTPMD_LOG=/tmp/testpmd.log
+TESTPMD_PID=/tmp/testpmd.pid
+L3FWD_LOG=/tmp/l3fwd.log
+L3FWD_PID=/tmp/l3fwd.pid
+
 # Setting command line arguments
 port1_driver=$1
 port1_pci=$2
@@ -41,6 +46,38 @@ else
     echo "testpmd is not running"
 fi
 
+#also kill the l3fwd
+sudo pgrep l3fwd
+if [ $? -eq "0" ]; then
+    success=false
+    sudo pkill l3fwd
+    echo "RC = $?"
+    for attempt in {1..5}; do
+        echo "Checking if l3fwd is still alive, attempt nr ${attempt}"
+        sudo pgrep l3fwd
+        if [ $? -eq "1" ]; then
+            echo "l3fwd is dead"
+            success=true
+            break
+        fi
+        echo "l3fwd is still alive, waiting 1 second"
+        sleep 1
+    done
+    if [ "$success" = false ]; then
+        echo "The command sudo pkill l3fwd failed"
+        sudo pkill -9 l3fwd
+        echo "RC = $?"
+        exit 1
+    fi
+else
+    echo "l3fwd is not running"
+fi
+
+sudo rm -f ${TESTPMD_LOG}
+sudo rm -f ${TESTPMD_PID}
+sudo rm -f ${L3FWD_LOG}
+sudo rm -f ${L3FWD_PID}
+
 # Remove hugepages
 sudo rm -f /dev/hugepages/*
 
@@ -55,6 +92,9 @@ sleep 2
 
 if1_name=`./usertools/dpdk-devbind.py --s | grep "${port1_pci}" | sed -n 's/.*if=\(\S\)/\1/p' | awk -F' ' '{print $1}'`
 if2_name=`./usertools/dpdk-devbind.py --s | grep "${port2_pci}" | sed -n 's/.*if=\(\S\)/\1/p' | awk -F' ' '{print $1}'`
+
+ifconfig ${if1_name} up
+ifconfig ${if2_name} up
 
 # Remove igb_uio driver
 rmmod igb_uio || \
