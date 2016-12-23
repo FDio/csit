@@ -513,6 +513,23 @@ class TrafficGenerator(object):
                                                     _p0, _p1, _async, _latency,
                                                     warmup_time),
                 timeout = int(duration) + 60)
+        elif traffic_type in ["3-node-IPv4-l3fwd"]:
+            # add for the DPDK l3fwd routing test
+            # please make sure the TG port 0 connect to the DUT port 0
+            (ret, stdout, stderr) = ssh.exec_command(
+                "sh -c '{0}/resources/tools/t-rex/t-rex-stateless.py "
+                "--duration={1} -r {2} -s {3} "
+                "--p{4}_dst_start_ip 2.1.1.2 "
+                "--p{4}_dst_end_ip 2.1.1.254 "
+                "--p{4}_src_start_ip 20.20.20.2 "
+                "--p{5}_dst_start_ip 1.1.1.2 "
+                "--p{5}_dst_end_ip 1.1.1.254 "
+                "--p{5}_src_start_ip 10.10.10.2 "
+                "{6} {7} --warmup_time={8}'".format(Constants.REMOTE_FW_DIR,
+                                                    duration, rate, framesize,
+                                                    1, 2, _async, _latency,
+                                                    warmup_time),
+                timeout=int(duration)+60)
         else:
             raise NotImplementedError('Unsupported traffic type')
 

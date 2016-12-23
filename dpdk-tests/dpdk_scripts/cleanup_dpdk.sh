@@ -5,6 +5,10 @@ PWDDIR=$(pwd)
 
 TESTPMD_LOG=/tmp/testpmd.log
 TESTPMD_PID=/tmp/testpmd.pid
+L3FWD_LOG=/tmp/l3fwd.log
+L3FWD_PID=/tmp/l3fwd.pid
+DPDK_VERSION=16.07
+DPDK_DIR=dpdk-${DPDK_VERSION}
 
 port1_driver=$1
 port1_pci=$2
@@ -32,11 +36,34 @@ if [ $? -eq "0" ]; then
     cat ${TESTPMD_LOG}
 fi
 
+#also kill the l3fwd
+sudo pgrep l3fwd
+if [ $? -eq "0" ]; then
+    success=false
+    sudo pkill tail
+    sudo pkill l3fwd
+    for attempt in {1..5}; do
+        sudo pgrep l3fwd
+        if [ $? -eq "1" ]; then
+            success=true
+            break
+        fi
+        sleep 1
+    done
+    if [ "$success" = false ]; then
+        echo "The command sudo pkill l3fwd failed"
+        exit 1
+    fi
+    cat ${L3FWD_LOG}
+fi
+
 sudo rm -f ${TESTPMD_LOG}
 sudo rm -f ${TESTPMD_PID}
+sudo rm -f ${L3FWD_LOG}
+sudo rm -f ${L3FWD_PID}
 sudo rm -f /dev/hugepages/*
 
-cd ${ROOTDIR}/dpdk-16.07/
+cd ${ROOTDIR}/${DPDK_DIR}/
 ./tools/dpdk-devbind.py -b ${port1_driver} ${port1_pci}
 ./tools/dpdk-devbind.py -b ${port2_driver} ${port2_pci}
 
