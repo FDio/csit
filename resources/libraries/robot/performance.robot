@@ -661,6 +661,29 @@
 | | Interface is added to bridge domain | ${dut2} | ${vhost_if2} | ${bd_id2}
 | | All Vpp Interfaces Ready Wait | ${nodes}
 
+| L2 bridge domain with VXLANoIPv4 initialized in a 3-node circular topology
+| | [Documentation]
+| | ... | Setup L2 bridge domain topology with VXLANoIPv4 by connecting
+| | ... | physical and vxlan interfaces on each DUT. All interfaces are brought
+| | ... | up. IPv4 addresses with prefix /24 are configured on interfaces
+| | ... | between DUTs. VXLAN sub-interfaces has same IPv4 address as
+| | ... | interfaces.
+| | ...
+| | VPP interfaces in path are up in a 3-node circular topology
+| | IP addresses are set on interfaces | ${dut1} | ${dut1_if2} | 172.16.0.1 | 24
+| | IP addresses are set on interfaces | ${dut2} | ${dut2_if1} | 172.16.0.2 | 24
+| | ${dut1_if2_mac}= | Get Interface MAC | ${dut1} | ${dut1_if2}
+| | ${dut2_if1_mac}= | Get Interface MAC | ${dut2} | ${dut2_if1}
+| | Add arp on dut | ${dut1} | ${dut1_if2} | 172.16.0.2 | ${dut2_if1_mac}
+| | Add arp on dut | ${dut2} | ${dut2_if1} | 172.16.0.1 | ${dut1_if2_mac}
+| | ${dut1s_vxlan}= | Create VXLAN interface | ${dut1} | 24
+| | ... | 172.16.0.1 | 172.16.0.2
+| | ${dut2s_vxlan}= | Create VXLAN interface | ${dut2} | 24
+| | ... | 172.16.0.2 | 172.16.0.1
+| | Vpp l2bd forwarding setup | ${dut1} | ${dut1_if1} | ${dut1s_vxlan}
+| | Vpp l2bd forwarding setup | ${dut2} | ${dut2_if2} | ${dut2s_vxlan}
+| | All Vpp Interfaces Ready Wait | ${nodes}
+
 2-node Performance Suite Setup with DUT's NIC model
 | | [Documentation]
 | | ... | Suite preparation phase that setup default startup configuration of
