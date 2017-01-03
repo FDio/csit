@@ -16,6 +16,397 @@
       "revId": "c19dab63391181d4a8495db50e2d58045c67b5b6",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_859ce86a",
+        "filename": "resources/libraries/python/SNAT.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-01-03T07:38:15Z",
+      "side": 1,
+      "message": "only dict",
+      "range": {
+        "startLine": 32,
+        "startChar": 16,
+        "endLine": 32,
+        "endChar": 28
+      },
+      "revId": "c19dab63391181d4a8495db50e2d58045c67b5b6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_c592f056",
+        "filename": "resources/libraries/python/SNAT.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-01-03T07:38:15Z",
+      "side": 1,
+      "message": "Add \"raises\"",
+      "range": {
+        "startLine": 33,
+        "startChar": 8,
+        "endLine": 33,
+        "endChar": 11
+      },
+      "revId": "c19dab63391181d4a8495db50e2d58045c67b5b6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_458e0030",
+        "filename": "resources/libraries/python/SNAT.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-01-03T07:38:15Z",
+      "side": 1,
+      "message": "Only list",
+      "range": {
+        "startLine": 77,
+        "startChar": 16,
+        "endLine": 77,
+        "endChar": 28
+      },
+      "revId": "c19dab63391181d4a8495db50e2d58045c67b5b6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_6589fc25",
+        "filename": "resources/libraries/python/SNAT.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-01-03T07:38:15Z",
+      "side": 1,
+      "message": "Add \"raises\"",
+      "range": {
+        "startLine": 78,
+        "startChar": 8,
+        "endLine": 78,
+        "endChar": 11
+      },
+      "revId": "c19dab63391181d4a8495db50e2d58045c67b5b6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_2583f405",
+        "filename": "resources/libraries/python/honeycomb/NAT.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-01-03T07:38:15Z",
+      "side": 1,
+      "message": "Add \"raises\"",
+      "range": {
+        "startLine": 69,
+        "startChar": 8,
+        "endLine": 69,
+        "endChar": 11
+      },
+      "revId": "c19dab63391181d4a8495db50e2d58045c67b5b6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_0588f81d",
+        "filename": "resources/libraries/python/honeycomb/NAT.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-01-03T07:38:15Z",
+      "side": 1,
+      "message": "What if \"nat-state\" is not in resp?",
+      "range": {
+        "startLine": 76,
+        "startChar": 21,
+        "endLine": 76,
+        "endChar": 30
+      },
+      "revId": "c19dab63391181d4a8495db50e2d58045c67b5b6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_e57ccc22",
+        "filename": "resources/libraries/python/honeycomb/NAT.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-01-03T07:38:15Z",
+      "side": 1,
+      "message": "Add \"returns\" and \"rtype\".",
+      "range": {
+        "startLine": 90,
+        "startChar": 8,
+        "endLine": 90,
+        "endChar": 11
+      },
+      "revId": "c19dab63391181d4a8495db50e2d58045c67b5b6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_8573c84c",
+        "filename": "resources/libraries/python/honeycomb/NAT.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-01-03T07:38:15Z",
+      "side": 1,
+      "message": "Add to doc, specify.",
+      "range": {
+        "startLine": 99,
+        "startChar": 63,
+        "endLine": 99,
+        "endChar": 68
+      },
+      "revId": "c19dab63391181d4a8495db50e2d58045c67b5b6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_6590dc43",
+        "filename": "resources/libraries/python/honeycomb/NAT.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-01-03T07:38:15Z",
+      "side": 1,
+      "message": "Add \"raises\"",
+      "range": {
+        "startLine": 108,
+        "startChar": 8,
+        "endLine": 108,
+        "endChar": 11
+      },
+      "revId": "c19dab63391181d4a8495db50e2d58045c67b5b6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_a576c43c",
+        "filename": "resources/libraries/python/honeycomb/NAT.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-01-03T07:38:15Z",
+      "side": 1,
+      "message": "Add \"returns\" and \"rtype\".",
+      "range": {
+        "startLine": 108,
+        "startChar": 8,
+        "endLine": 108,
+        "endChar": 11
+      },
+      "revId": "c19dab63391181d4a8495db50e2d58045c67b5b6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_4595e031",
+        "filename": "resources/libraries/robot/honeycomb/nat.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-01-03T07:38:15Z",
+      "side": 1,
+      "message": "${0} - it must be int as stated in doc",
+      "range": {
+        "startLine": 49,
+        "startChar": 13,
+        "endLine": 49,
+        "endChar": 14
+      },
+      "revId": "c19dab63391181d4a8495db50e2d58045c67b5b6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_259ad463",
+        "filename": "resources/libraries/robot/honeycomb/nat.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-01-03T07:38:15Z",
+      "side": 1,
+      "message": "${1} - it must be int as stated in doc",
+      "range": {
+        "startLine": 49,
+        "startChar": 18,
+        "endLine": 49,
+        "endChar": 19
+      },
+      "revId": "c19dab63391181d4a8495db50e2d58045c67b5b6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_059fd853",
+        "filename": "resources/libraries/robot/honeycomb/nat.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-01-03T07:38:15Z",
+      "side": 1,
+      "message": "${0} - it must be int as stated in doc",
+      "range": {
+        "startLine": 65,
+        "startChar": 28,
+        "endLine": 65,
+        "endChar": 29
+      },
+      "revId": "c19dab63391181d4a8495db50e2d58045c67b5b6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_85aaa86e",
+        "filename": "resources/libraries/robot/honeycomb/nat.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-01-03T07:38:15Z",
+      "side": 1,
+      "message": "Remove empty line above",
+      "range": {
+        "startLine": 80,
+        "startChar": 0,
+        "endLine": 80,
+        "endChar": 7
+      },
+      "revId": "c19dab63391181d4a8495db50e2d58045c67b5b6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_65b7bcd9",
+        "filename": "resources/libraries/robot/honeycomb/nat.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-01-03T07:38:15Z",
+      "side": 1,
+      "message": "and",
+      "range": {
+        "startLine": 109,
+        "startChar": 10,
+        "endLine": 109,
+        "endChar": 13
+      },
+      "revId": "c19dab63391181d4a8495db50e2d58045c67b5b6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_25b1b4e1",
+        "filename": "resources/test_data/honeycomb/nat.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-01-03T07:38:15Z",
+      "side": 1,
+      "message": "returns",
+      "range": {
+        "startLine": 27,
+        "startChar": 5,
+        "endLine": 27,
+        "endChar": 11
+      },
+      "revId": "c19dab63391181d4a8495db50e2d58045c67b5b6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_c5c79044",
+        "filename": "tests/func/honeycomb/130_nat.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-01-03T07:38:15Z",
+      "side": 1,
+      "message": "It should be int as stated in doc",
+      "range": {
+        "startLine": 49,
+        "startChar": 64,
+        "endLine": 49,
+        "endChar": 65
+      },
+      "revId": "c19dab63391181d4a8495db50e2d58045c67b5b6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
