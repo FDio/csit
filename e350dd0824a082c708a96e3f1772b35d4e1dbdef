@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a2585a7_99f1f1cf",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-01-05T07:29:26Z",
+      "side": 1,
+      "message": "please remove, not needed now we will adjust them globally",
+      "range": {
+        "startLine": 64,
+        "startChar": 0,
+        "endLine": 66,
+        "endChar": 45
+      },
+      "revId": "e350dd0824a082c708a96e3f1772b35d4e1dbdef",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_b9e4ad0d",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 394,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-01-05T07:29:26Z",
+      "side": 1,
+      "message": "please remove, not needed now we will adjust them globally",
+      "range": {
+        "startLine": 392,
+        "startChar": 0,
+        "endLine": 394,
+        "endChar": 45
+      },
+      "revId": "e350dd0824a082c708a96e3f1772b35d4e1dbdef",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_79ee45ee",
+        "filename": "resources/libraries/python/topology.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-01-05T07:29:26Z",
+      "side": 1,
+      "message": "please remove, not needed now we will adjust them globally",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 41
+      },
+      "revId": "e350dd0824a082c708a96e3f1772b35d4e1dbdef",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
