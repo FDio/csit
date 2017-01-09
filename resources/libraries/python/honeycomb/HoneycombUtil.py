@@ -27,6 +27,7 @@ from enum import Enum, unique
 
 from robot.api import logger
 
+from resources.libraries.python.ssh import SSH
 from resources.libraries.python.HTTPRequest import HTTPRequest
 from resources.libraries.python.constants import Constants as Const
 
@@ -396,3 +397,18 @@ class HoneycombUtil(object):
         base_path = HoneycombUtil.read_path_from_url_file(url_file)
         path = base_path + path
         return HTTPRequest.delete(node, path)
+
+    @staticmethod
+    def archive_honeycomb_log(node):
+        """Copy honeycomb log file from DUT node to VIRL for archiving.
+
+        :param node: Honeycomb node.
+        :type node: dict
+        """
+
+        ssh = SSH()
+        ssh.connect(node)
+
+        cmd = "cp /var/log/honeycomb/honeycomb.log /scratch/"
+
+        ssh.exec_command_sudo(cmd)
