@@ -87,11 +87,16 @@ class VatExecutor(object):
         """Copy vat_name script to node, execute it and return result.
 
         :param vat_name: Name of the vat script file.
-        Full path and name name of the script is required.
+        Full path and name of the script is required.
         :param node: Node to execute the VAT script on.
         :param timeout: Seconds to allow the script to run.
         :param json_out: Require JSON output.
-        :returns: (rc, stdout, stderr) tuple.
+        :type vat_name: str
+        :type node: dict
+        :type timeout: int
+        :type json_out: bool
+        :returns: Status code, stdout and stderr of executed script
+        :rtype tuple
         """
 
         ssh = SSH()

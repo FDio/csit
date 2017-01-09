@@ -61,10 +61,6 @@ class IntegAlg(Enum):
 class IPsecUtil(object):
     """IPsec utilities."""
 
-    # pylint: disable=too-many-arguments
-    # pylint: disable=too-many-locals
-    # pylint: disable=too-many-public-methods
-
     @staticmethod
     def policy_action_bypass():
         """Return policy action bypass.
@@ -213,9 +209,9 @@ class IPsecUtil(object):
         :param integ_alg: The integrity algorithm name.
         :param integ_key: The integrity key string.
         :param tunnel_src: Tunnel header source IPv4 or IPv6 address. If not
-            specified ESP transport mode is used.
+        specified ESP transport mode is used.
         :param tunnel_dst: Tunnel header destination IPv4 or IPv6 address. If
-            not specified ESP transport mode is used.
+        not specified ESP transport mode is used.
         :type node: dict
         :type sad_id: int
         :type spi: int
@@ -250,17 +246,17 @@ class IPsecUtil(object):
         :param node: VPP node to add SAD entry on.
         :param n_entries: Number of SAD entries to be created
         :param sad_id: First SAD entry ID. All subsequent SAD entries will have
-            id incremented by 1.
+        id incremented by 1.
         :param spi: Security Parameter Index of first SAD entry. All subsequent
-            SAD entries will have spi incremented by 1
+        SAD entries will have spi incremented by 1
         :param crypto_alg: The encryption algorithm name.
         :param crypto_key: The encryption key string.
         :param integ_alg: The integrity algorithm name.
         :param integ_key: The integrity key string.
         :param tunnel_src: Tunnel header source IPv4 or IPv6 address. If not
-            specified ESP transport mode is used.
+        specified ESP transport mode is used.
         :param tunnel_dst: Tunnel header destination IPv4 or IPv6 address. If
-            not specified ESP transport mode is used.
+        not specified ESP transport mode is used.
         :type node: dict
         :type n_entries: int
         :type sad_id: int
@@ -280,10 +276,12 @@ class IPsecUtil(object):
 
         with open(tmp_filename, 'w') as tmp_file:
             for i in range(0, n_entries):
-                buf_str = 'ipsec_sad_add_del_entry esp sad_id {0} spi {1} \
-crypto_alg {2} crypto_key {3} integ_alg {4} integ_key {5} {6}\n'.format(
-    sad_id+i, spi+i, crypto_alg.alg_name, ckey, integ_alg.alg_name, ikey,
-    tunnel)
+                buf_str = 'ipsec_sad_add_del_entry esp sad_id {0} spi {1} ' \
+                          'crypto_alg {2} crypto_key {3} integ_alg {4} ' \
+                          'integ_key {5} {6}\n'.format(sad_id+i, spi+i,
+                                                       crypto_alg.alg_name,
+                                                       ckey, integ_alg.alg_name,
+                                                       ikey, tunnel)
                 tmp_file.write(buf_str)
         vat = VatExecutor()
         vat.scp_and_execute_script(tmp_filename, node, 300)
@@ -361,19 +359,19 @@ crypto_alg {2} crypto_key {3} integ_alg {4} integ_key {5} {6}\n'.format(
         :param priority: SPD entry priority, higher number = higher priority.
         :param action: Policy action.
         :param inbound: If True policy is for inbound traffic, otherwise
-            outbound.
+        outbound.
         :param sa_id: SAD entry ID for protect action.
         :param laddr_range: Policy selector local IPv4 or IPv6 address range in
-            format IP/prefix or IP/mask. If no mask is provided, it's considered
-            to be /32.
+        format IP/prefix or IP/mask. If no mask is provided, it's considered
+        to be /32.
         :param raddr_range: Policy selector remote IPv4 or IPv6 address range in
-            format IP/prefix or IP/mask. If no mask is provided, it's considered
-            to be /32.
+        format IP/prefix or IP/mask. If no mask is provided, it's considered
+        to be /32.
         :param proto: Policy selector next layer protocol number.
         :param lport_range: Policy selector local TCP/UDP port range in format
-            <port_start>-<port_end>.
+        <port_start>-<port_end>.
         :param rport_range: Policy selector remote TCP/UDP port range in format
-            <port_start>-<port_end>.
+        <port_start>-<port_end>.
         :type node: dict
         :type spd_id: int
         :type priority: int
@@ -430,15 +428,15 @@ crypto_alg {2} crypto_key {3} integ_alg {4} integ_key {5} {6}\n'.format(
         :param spd_id: SPD ID to add entries on.
         :param priority: SPD entries priority, higher number = higher priority.
         :param inbound: If True policy is for inbound traffic, otherwise
-            outbound.
+        outbound.
         :param sa_id: SAD entry ID for first entry. Each subsequent entry will
-            SAD entry ID incermented by 1
+        SAD entry ID incermented by 1
         :param raddr_ip: Policy selector remote IPv4 start address for the first
-            entry. Remote IPv4 end address will be calculated depending on
-            raddr_range parameter. Each subsequent entry will have start address
-            next after IPv4 end address of previous entry.
+        entry. Remote IPv4 end address will be calculated depending on
+        raddr_range parameter. Each subsequent entry will have start address
+        next after IPv4 end address of previous entry.
         :param raddr_range: Mask specifying range of Policy selector Remote IPv4
-            addresses. Valid values are from 1 to 32.
+        addresses. Valid values are from 1 to 32.
         :type node: dict
         :type n_entries: int
         :type spd_id: int
@@ -452,8 +450,8 @@ crypto_alg {2} crypto_key {3} integ_alg {4} integ_key {5} {6}\n'.format(
         direction = 'inbound' if inbound else 'outbound'
         addr_incr = 1 << (32 - raddr_range)
         addr_ip = int(ip_address(unicode(raddr_ip)))
-        start_str = 'ipsec_spd_add_del_entry spd_id {0} priority {1} {2} \
-action protect sa_id'.format(spd_id, priority, direction)
+        start_str = 'ipsec_spd_add_del_entry spd_id {0} priority {1} {2} ' \
+                    'action protect sa_id'.format(spd_id, priority, direction)
         with open(tmp_filename, 'w') as tmp_file:
             for i in range(0, n_entries):
                 r_ip_s = ip_address(addr_ip + addr_incr * i)
@@ -485,11 +483,11 @@ action protect sa_id'.format(spd_id, priority, direction)
         :param tunnel_ip1: Tunnel node1 IPv4 address.
         :param tunnel_ip2: Tunnel node2 IPv4 address.
         :param raddr_ip1: Policy selector remote IPv4 start address for the
-            first tunnel in direction node1->node2.
+        first tunnel in direction node1->node2.
         :param raddr_ip2: Policy selector remote IPv4 start address for the
-            first tunnel in direction node2->node1.
+        first tunnel in direction node2->node1.
         :param raddr_range: Mask specifying range of Policy selector Remote IPv4
-            addresses. Valid values are from 1 to 32.
+        addresses. Valid values are from 1 to 32.
         :type node1: dict
         :type node2: dict
         :type interface1: str or int

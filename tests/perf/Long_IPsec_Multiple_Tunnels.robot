@@ -51,7 +51,7 @@
 | ... | static payload. MAC addresses are matching MAC addresses of the TG
 | ... | node interfaces. Incrementing of IP.dst (IPv4 destination address) field
 | ... | is applied to both streams.
-| ... | *[Ref] Applicable standard specifications:* RFC4303.
+| ... | *[Ref] Applicable standard specifications:* RFC4303 and RFC2544.
 
 *** Variables ***
 #X710 bandwidth limit
@@ -67,6 +67,7 @@
 | ${addr_range}= | ${32}
 | ${encr_alg}= | Crypto Alg AES CBC 128
 | ${auth_alg}= | Integ Alg SHA1 96
+| ${ipsec_overhead}= | ${58}
 
 *** Test Cases ***
 | TC01: 64B NDR binary search - IPsec 1 Tunnel Performance Test - 1thread 1core 1rxq
@@ -79,7 +80,7 @@
 | | ${n_tunnels}= | Set Variable | ${1}
 | | ${framesize}= | Set Variable | ${64}
 | | ${min_rate}= | Set Variable | ${10000}
-| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
+| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + ${ipsec_overhead}}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
@@ -116,7 +117,7 @@
 | | ${n_tunnels}= | Set Variable | ${100}
 | | ${framesize}= | Set Variable | ${64}
 | | ${min_rate}= | Set Variable | ${10000}
-| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
+| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + ${ipsec_overhead}}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
@@ -153,7 +154,7 @@
 | | ${n_tunnels}= | Set Variable | ${10000}
 | | ${framesize}= | Set Variable | ${64}
 | | ${min_rate}= | Set Variable | ${10000}
-| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
+| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + ${ipsec_overhead}}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}

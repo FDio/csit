@@ -389,10 +389,6 @@ class VppConfigGenerator(object):
         :type retries: int
         """
 
-        # pylint: disable=too-many-locals
-        # pylint: disable=too-many-branches
-        # pylint: disable=too-many-statements
-
         if node['type'] != NodeType.DUT:
             raise ValueError('Node type is not a DUT')
         hostname = Topology.get_node_hostname(node)

@@ -39,8 +39,6 @@ def load_topo_from_yaml():
 
 
 # pylint: disable=invalid-name
-# pylint: disable=too-few-public-methods
-# pylint: disable=too-many-public-methods
 
 class NodeType(object):
     """Defines node types used in topology dictionaries."""
@@ -815,7 +813,6 @@ class Topology(object):
         :type node: dict
         :return: Cryptodev configuration string.
         :rtype: str
-        :raises KeyError: If node has no key 'cryptodev'
         """
         try:
             return node['cryptodev']
