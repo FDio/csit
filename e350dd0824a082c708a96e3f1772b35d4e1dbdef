@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "5a2585a7_34a1e4f8",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 253,
+      "author": {
+        "id": 720
+      },
+      "writtenOn": "2017-01-09T14:55:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a2585a7_b9926d55",
+      "range": {
+        "startLine": 253,
+        "startChar": 8,
+        "endLine": 253,
+        "endChar": 12
+      },
+      "revId": "e350dd0824a082c708a96e3f1772b35d4e1dbdef",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a2585a7_398e7d2f",
         "filename": "resources/libraries/python/IPsecUtil.py",
         "patchSetId": 2
@@ -59,6 +83,30 @@
       "writtenOn": "2017-01-05T12:04:39Z",
       "side": 1,
       "message": "reformat, e.g.:\n                buf_str \u003d \u0027ipsec_sad_add_del_entry esp sad_id {0} spi {1} \u0027 \\\n                          \u0027crypto_alg {2} crypto_key {3} integ_alg {4} \u0027 \\\n                          \u0027integ_key {5} {6}\\n\u0027.format(sad_id+i, spi+i, \n                                                       crypto_alg.alg_name, \n                                                       ckey, integ_alg.alg_name,\n                                                       ikey, tunnel)",
+      "range": {
+        "startLine": 283,
+        "startChar": 16,
+        "endLine": 286,
+        "endChar": 11
+      },
+      "revId": "e350dd0824a082c708a96e3f1772b35d4e1dbdef",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_549c70c0",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 720
+      },
+      "writtenOn": "2017-01-09T14:55:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a2585a7_398e7d2f",
       "range": {
         "startLine": 283,
         "startChar": 16,
@@ -94,6 +142,30 @@
     },
     {
       "key": {
+        "uuid": "5a2585a7_f4811c4b",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 456,
+      "author": {
+        "id": 720
+      },
+      "writtenOn": "2017-01-09T14:55:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a2585a7_d9d1b9fc",
+      "range": {
+        "startLine": 455,
+        "startChar": 8,
+        "endLine": 456,
+        "endChar": 57
+      },
+      "revId": "e350dd0824a082c708a96e3f1772b35d4e1dbdef",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a2585a7_b9ceed58",
         "filename": "resources/libraries/python/VatExecutor.py",
         "patchSetId": 2
@@ -105,6 +177,30 @@
       "writtenOn": "2017-01-05T12:04:39Z",
       "side": 1,
       "message": "remove",
+      "range": {
+        "startLine": 90,
+        "startChar": 27,
+        "endLine": 90,
+        "endChar": 31
+      },
+      "revId": "e350dd0824a082c708a96e3f1772b35d4e1dbdef",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_94909896",
+        "filename": "resources/libraries/python/VatExecutor.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 720
+      },
+      "writtenOn": "2017-01-09T14:55:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a2585a7_b9ceed58",
       "range": {
         "startLine": 90,
         "startChar": 27,
@@ -140,6 +236,30 @@
     },
     {
       "key": {
+        "uuid": "5a2585a7_748d2c7b",
+        "filename": "resources/libraries/python/VatExecutor.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 720
+      },
+      "writtenOn": "2017-01-09T14:55:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a2585a7_99db311b",
+      "range": {
+        "startLine": 95,
+        "startChar": 8,
+        "endLine": 95,
+        "endChar": 11
+      },
+      "revId": "e350dd0824a082c708a96e3f1772b35d4e1dbdef",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a2585a7_b9e4ad0d",
         "filename": "resources/libraries/python/VppConfigGenerator.py",
         "patchSetId": 2
@@ -151,6 +271,30 @@
       "writtenOn": "2017-01-05T07:29:26Z",
       "side": 1,
       "message": "please remove, not needed now we will adjust them globally",
+      "range": {
+        "startLine": 392,
+        "startChar": 0,
+        "endLine": 394,
+        "endChar": 45
+      },
+      "revId": "e350dd0824a082c708a96e3f1772b35d4e1dbdef",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_6b48a65b",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 394,
+      "author": {
+        "id": 720
+      },
+      "writtenOn": "2017-01-09T14:55:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a2585a7_b9e4ad0d",
       "range": {
         "startLine": 392,
         "startChar": 0,
@@ -186,6 +330,30 @@
     },
     {
       "key": {
+        "uuid": "5a2585a7_8b4bd258",
+        "filename": "resources/libraries/python/topology.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 720
+      },
+      "writtenOn": "2017-01-09T14:55:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a2585a7_79ee45ee",
+      "range": {
+        "startLine": 42,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 41
+      },
+      "revId": "e350dd0824a082c708a96e3f1772b35d4e1dbdef",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a2585a7_79d8851d",
         "filename": "resources/libraries/python/topology.py",
         "patchSetId": 2
@@ -197,6 +365,30 @@
       "writtenOn": "2017-01-05T12:04:39Z",
       "side": 1,
       "message": "It does not raise \"KeyError\"",
+      "range": {
+        "startLine": 818,
+        "startChar": 8,
+        "endLine": 818,
+        "endChar": 56
+      },
+      "revId": "e350dd0824a082c708a96e3f1772b35d4e1dbdef",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_ab3e8eb6",
+        "filename": "resources/libraries/python/topology.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 818,
+      "author": {
+        "id": 720
+      },
+      "writtenOn": "2017-01-09T14:55:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a2585a7_79d8851d",
       "range": {
         "startLine": 818,
         "startChar": 8,
@@ -255,6 +447,30 @@
     },
     {
       "key": {
+        "uuid": "5a2585a7_0bd242d2",
+        "filename": "resources/libraries/robot/performance.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 720
+      },
+      "writtenOn": "2017-01-09T14:55:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a2585a7_390afd8a",
+      "range": {
+        "startLine": 250,
+        "startChar": 0,
+        "endLine": 250,
+        "endChar": 49
+      },
+      "revId": "e350dd0824a082c708a96e3f1772b35d4e1dbdef",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a2585a7_19ff4169",
         "filename": "tests/perf/Long_IPsec_Multiple_Tunnels.robot",
         "patchSetId": 2
@@ -278,6 +494,30 @@
     },
     {
       "key": {
+        "uuid": "5a2585a7_2b7a9e88",
+        "filename": "tests/perf/Long_IPsec_Multiple_Tunnels.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 720
+      },
+      "writtenOn": "2017-01-09T14:55:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a2585a7_19ff4169",
+      "range": {
+        "startLine": 54,
+        "startChar": 52,
+        "endLine": 54,
+        "endChar": 59
+      },
+      "revId": "e350dd0824a082c708a96e3f1772b35d4e1dbdef",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a2585a7_f9035571",
         "filename": "tests/perf/Long_IPsec_Multiple_Tunnels.robot",
         "patchSetId": 2
@@ -289,6 +529,30 @@
       "writtenOn": "2017-01-05T12:04:39Z",
       "side": 1,
       "message": "${framesize + ${ipsec_overhead}}\ncheck everywhere",
+      "range": {
+        "startLine": 82,
+        "startChar": 48,
+        "endLine": 82,
+        "endChar": 60
+      },
+      "revId": "e350dd0824a082c708a96e3f1772b35d4e1dbdef",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_0b6fe2c6",
+        "filename": "tests/perf/Long_IPsec_Multiple_Tunnels.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 720
+      },
+      "writtenOn": "2017-01-09T14:55:10Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a2585a7_f9035571",
       "range": {
         "startLine": 82,
         "startChar": 48,
