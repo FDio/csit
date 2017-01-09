@@ -66,7 +66,7 @@ def main():
     the other one. Dot1q or Dot1ad tagging of the ethernet frame can be set.
     """
     args = TrafficScriptArg(['src_mac', 'dst_mac', 'src_ip', 'dst_ip'],
-                            ['encaps', 'vlan1', 'vlan2'])
+                            ['encaps', 'vlan1', 'vlan2', 'encaps_rx'])
 
     src_mac = args.get_arg('src_mac')
     dst_mac = args.get_arg('dst_mac')
@@ -76,6 +76,7 @@ def main():
     encaps = args.get_arg('encaps')
     vlan1 = args.get_arg('vlan1')
     vlan2 = args.get_arg('vlan2')
+    encaps_rx = args.get_arg('encaps_rx')
 
     tx_if = args.get_arg('tx_if')
     rx_if = args.get_arg('rx_if')
@@ -135,6 +136,15 @@ def main():
     # Check whether received packet contains layers Ether, IP and ICMP
     if ether is None:
         raise RuntimeError('ICMP echo Rx timeout')
+
+    if encaps_rx:
+        if encaps_rx == 'Dot1q':
+            if not ether.haslayer(Dot1Q):
+                raise RuntimeError('Not VLAN tagged Eth frame received {0}'
+                                   .format(ether.__repr__()))
+            elif ether[Dot1Q].vlan != vlan1:
+                raise RuntimeError('Eth frame with wrong VLAN tag received {0}'
+                                   .format(ether.__repr__()))
 
     if not ether.haslayer(ip_format):
         raise RuntimeError('Not an IP packet received {0}'
