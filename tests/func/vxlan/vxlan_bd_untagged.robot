@@ -16,6 +16,7 @@
 | Resource | resources/libraries/robot/testing_path.robot
 | Resource | resources/libraries/robot/vxlan.robot
 | Resource | resources/libraries/robot/l2_traffic.robot
+| Resource | resources/libraries/robot/qemu.robot
 | Library  | resources.libraries.python.Trace
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | VM_ENV | HW_ENV
 | Test Setup | Func Test Setup
@@ -57,6 +58,17 @@
 | ${ip6_addr2}= | 3ffe:64::2
 | ${ip6_prefix}= | 64
 
+| ${sock1}= | /tmp/sock1
+| ${sock2}= | /tmp/sock2
+
+| ${qemu1}= | qemu_instance_1
+| ${qemu2}= | qemu_instance_2
+
+| ${dut1_vhost1}= | dut1_vhost_if1
+| ${dut1_vhost2}= | dut1_vhost_if2
+| ${dut2_vhost1}= | dut2_vhost_if1
+| ${dut2_vhost2}= | dut2_vhost_if2
+
 *** Test Cases ***
 | TC01: DUT1 and DUT2 with L2BD and VXLANoIPv4 tunnels switch ICMPv4 between TG links
 | | [Documentation]
@@ -74,12 +86,12 @@
 | | ...                                    | ${dut2_node} | ${dut2_to_dut1_name} | ${NONE}
 | | ${dut1s_vxlan}= | When Create VXLAN interface     | ${dut1_node} | ${vni_1}
 | |                 | ... | ${dut1s_ip_address} | ${dut2s_ip_address}
-| | And  Interfaces are added to BD | ${dut1_node} | ${bd_id1}
-| | ...                             | ${dut1_to_tg} | ${dut1s_vxlan}
+| | And Interfaces are added to BD | ${dut1_node} | ${bd_id1}
+| | ...                            | ${dut1_to_tg} | ${dut1s_vxlan}
 | | ${dut2s_vxlan}= | And Create VXLAN interface | ${dut2_node} | ${vni_1}
 | |                 | ... | ${dut2s_ip_address} | ${dut1s_ip_address}
-| | And  Interfaces are added to BD | ${dut2_node} | ${bd_id1}
-| | ...                             | ${dut2_to_tg} | ${dut2s_vxlan}
+| | And Interfaces are added to BD | ${dut2_node} | ${bd_id1}
+| | ...                            | ${dut2_to_tg} | ${dut2s_vxlan}
 | | Then Send and receive ICMPv4 bidirectionally
 | | ... | ${tg_node} | ${tg_to_dut1} | ${tg_to_dut2}
 
@@ -250,12 +262,12 @@
 | | And VPP IP Probe | ${dut2_node} | ${dut2_to_dut1} | ${ip6_addr1}
 | | ${dut1s_vxlan}= | When Create VXLAN interface | ${dut1_node} | ${vni_1}
 | | | ...                                         | ${ip6_addr1} | ${ip6_addr2}
-| | And  Interfaces are added to BD | ${dut1_node} | ${bd_id1}
-| | ...                             | ${dut1_to_tg} | ${dut1s_vxlan}
+| | And Interfaces are added to BD | ${dut1_node} | ${bd_id1}
+| | ...                            | ${dut1_to_tg} | ${dut1s_vxlan}
 | | ${dut2s_vxlan}= | And Create VXLAN interface | ${dut2_node} | ${vni_1}
 | | | ...                                        | ${ip6_addr2} | ${ip6_addr1}
-| | And  Interfaces are added to BD | ${dut2_node} | ${bd_id1}
-| | ...                             | ${dut2_to_tg} | ${dut2s_vxlan}
+| | And Interfaces are added to BD | ${dut2_node} | ${bd_id1}
+| | ...                            | ${dut2_to_tg} | ${dut2s_vxlan}
 | | Then Send and receive ICMPv6 bidirectionally
 | | ... | ${tg_node} | ${tg_to_dut1} | ${tg_to_dut2}
 
@@ -404,3 +416,123 @@
 | | And Send and receive ICMPv6 bidirectionally | ${tg_node}
 | | ...                                         | ${tg_to_dut2_if1}
 | | ...                                         | ${tg_to_dut2_if2}
+
+| TC07:DUT1 and DUT2 with two L2BDs and VXLANoIPv4 tunnel switch ICMPv4 between TG links and VM links
+| | [Documentation]
+| | ... | [Top] TG-DUT1-VM-DUT1-DUT2-VM-DUT2-TG.
+| | ... | [Enc] Eth-IPv4-VXLAN-Eth-IPv4-ICMPv4 on DUT1-DUT2; Eth-IPv4-ICMPv4
+| | ... | on TG-DUTn and DUTn=VM.
+| | ... | [Cfg] On both DUTs configure two L2BDs (MAC learning enabled); first
+| | ... | L2BD with untagged interface to TG and vhost-user interface to local
+| | ... | VM, second one with vhost-user interface to local VM and VXLAN
+| | ... | interface towards the other DUT. Configure linux bridge on both VMs
+| | ... | to pass traffic between both vhost-user interfaces.
+| | ... | [Ver] Make TG send ICMPv4 Echo Req between two of its interfaces to
+| | ... | be switched by DUT1 and DUT2; verify packets are switched between
+| | ... | these TG interfaces.
+| | ... | [Ref] RFC7348.
+| | [Tags] | 3_NODE_DOUBLE_LINK_TOPO | VPP_VM_ENV
+| | Given Path for 3-node testing is set
+| | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
+| | And Interfaces in 3-node path are up
+| | When VPP Vhost interfaces for L2BD forwarding are setup | ${dut1_node}
+| | ...                                                     | ${sock1}
+| | ...                                                     | ${sock2}
+| | ...                                                     | ${dut1_vhost1}
+| | ...                                                     | ${dut1_vhost2}
+| | And VPP Vhost interfaces for L2BD forwarding are setup | ${dut2_node}
+| | ...                                                    | ${sock1}
+| | ...                                                    | ${sock2}
+| | ...                                                    | ${dut2_vhost1}
+| | ...                                                    | ${dut2_vhost2}
+| | And VM for Vhost L2BD forwarding is setup | ${dut1_node} | ${sock1}
+| | ...                                       | ${sock2} | ${qemu1}
+| | And VM for Vhost L2BD forwarding is setup | ${dut2_node} | ${sock1}
+| | ...                                       | ${sock2} | ${qemu2}
+| | And Set Interface Address | ${dut1_node} | ${dut1_to_dut2} | ${ip4_addr1}
+| | ...                       | ${ip4_prefix}
+| | And Set Interface Address | ${dut2_node} | ${dut2_to_dut1} | ${ip4_addr2}
+| | ...                       | ${ip4_prefix}
+| | And VPP IP Probe | ${dut1_node} | ${dut1_to_dut2} | ${ip4_addr2}
+| | And VPP IP Probe | ${dut2_node} | ${dut2_to_dut1} | ${ip4_addr1}
+| | ${dut1s_vxlan}= | And Create VXLAN interface | ${dut1_node} | ${vni_1}
+| |                 | ...                        | ${ip4_addr1} | ${ip4_addr2}
+| | ${dut2s_vxlan}= | And Create VXLAN interface | ${dut2_node} | ${vni_1}
+| |                 | ...                        | ${ip4_addr2} | ${ip4_addr1}
+| | And Interfaces are added to BD | ${dut1_node} | ${bd_id1}
+| | ...                            | ${dut1_to_tg} | ${${dut1_vhost1}}
+| | And Interfaces are added to BD | ${dut1_node} | ${bd_id2}
+| | ...                            | ${dut1s_vxlan} | ${${dut1_vhost2}}
+| | And Interfaces are added to BD | ${dut2_node} | ${bd_id1}
+| | ...                            | ${dut2_to_tg} | ${${dut2_vhost1}}
+| | And Interfaces are added to BD | ${dut2_node} | ${bd_id2}
+| | ...                            | ${dut2s_vxlan} | ${${dut2_vhost2}}
+| | Then Send and receive ICMPv4 bidirectionally
+| | ... | ${tg_node} | ${tg_to_dut1} | ${tg_to_dut2}
+| | [Teardown] | Run Keywords | Show Packet Trace on All DUTs | ${nodes}
+| | ... | AND | Show vpp trace dump on all DUTs
+| | ... | AND | ${qemu_stop_clear1}= | Replace Variables | ${qemu1}.Stop and Clear QEMU
+| | ... | AND | Run keyword | ${qemu_stop_clear1} | ${dut1_node} | ${${qemu1}}
+| | ... | AND | ${qemu_stop_clear2}= | Replace Variables | ${qemu2}.Stop and Clear QEMU
+| | ... | AND | Run keyword | ${qemu_stop_clear2} | ${dut1_node} | ${${qemu2}}
+| | ... | AND | Check VPP PID in Teardown
+
+| TC08:DUT1 and DUT2 with two L2BDs and VXLANoIPv6 tunnel switch ICMPv6 between TG links and VM links
+| | [Documentation]
+| | ... | [Top] TG-DUT1-VM-DUT1-DUT2-VM-DUT2-TG.
+| | ... | [Enc] Eth-IPv6-VXLAN-Eth-IPv6-ICMPv6 on DUT1-DUT2; Eth-IPv4-ICMPv4
+| | ... | on TG-DUTn and DUTn=VM.
+| | ... | [Cfg] On both DUTs configure two L2BDs (MAC learning enabled); first
+| | ... | L2BD with untagged interface to TG and vhost-user interface to local
+| | ... | VM, second one with vhost-user interface to local VM and VXLAN
+| | ... | interface towards the other DUT. Configure linux bridge on both VMs
+| | ... | to pass traffic between both vhost-user interfaces.
+| | ... | [Ver] Make TG send ICMPv6 Echo Req between two of its interfaces to
+| | ... | be switched by DUT1 and DUT2; verify packets are switched between
+| | ... | these TG interfaces.
+| | ... | [Ref] RFC7348.
+| | [Tags] | 3_NODE_DOUBLE_LINK_TOPO | VPP_VM_ENV
+| | Given Path for 3-node testing is set
+| | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
+| | And Interfaces in 3-node path are up
+| | When VPP Vhost interfaces for L2BD forwarding are setup | ${dut1_node}
+| | ...                                                     | ${sock1}
+| | ...                                                     | ${sock2}
+| | ...                                                     | ${dut1_vhost1}
+| | ...                                                     | ${dut1_vhost2}
+| | And VPP Vhost interfaces for L2BD forwarding are setup | ${dut2_node}
+| | ...                                                    | ${sock1}
+| | ...                                                    | ${sock2}
+| | ...                                                    | ${dut2_vhost1}
+| | ...                                                    | ${dut2_vhost2}
+| | And VM for Vhost L2BD forwarding is setup | ${dut1_node} | ${sock1}
+| | ...                                       | ${sock2} | ${qemu1}
+| | And VM for Vhost L2BD forwarding is setup | ${dut2_node} | ${sock1}
+| | ...                                       | ${sock2} | ${qemu2}
+| | And Set Interface Address | ${dut1_node} | ${dut1_to_dut2} | ${ip6_addr1}
+| | ...                       | ${ip6_prefix}
+| | And Set Interface Address | ${dut2_node} | ${dut2_to_dut1} | ${ip6_addr2}
+| | ...                       | ${ip6_prefix}
+| | And VPP IP Probe | ${dut1_node} | ${dut1_to_dut2} | ${ip4_addr2}
+| | And VPP IP Probe | ${dut2_node} | ${dut2_to_dut1} | ${ip4_addr1}
+| | ${dut1s_vxlan}= | And Create VXLAN interface | ${dut1_node} | ${vni_1}
+| |                 | ...                        | ${ip6_addr1} | ${ip6_addr2}
+| | ${dut2s_vxlan}= | And Create VXLAN interface | ${dut2_node} | ${vni_1}
+| |                 | ...                        | ${ip6_addr2} | ${ip6_addr1}
+| | And Interfaces are added to BD | ${dut1_node} | ${bd_id1}
+| | ...                            | ${dut1_to_tg} | ${${dut1_vhost1}}
+| | And Interfaces are added to BD | ${dut1_node} | ${bd_id2}
+| | ...                            | ${dut1s_vxlan} | ${${dut1_vhost2}}
+| | And Interfaces are added to BD | ${dut2_node} | ${bd_id1}
+| | ...                            | ${dut2_to_tg} | ${${dut2_vhost1}}
+| | And Interfaces are added to BD | ${dut2_node} | ${bd_id2}
+| | ...                            | ${dut2s_vxlan} | ${${dut2_vhost2}}
+| | Then Send and receive ICMPv6 bidirectionally
+| | ... | ${tg_node} | ${tg_to_dut1} | ${tg_to_dut2}
+| | [Teardown] | Run Keywords | Show Packet Trace on All DUTs | ${nodes}
+| | ... | AND | Show vpp trace dump on all DUTs
+| | ... | AND | ${qemu_stop_clear1}= | Replace Variables | ${qemu1}.Stop and Clear QEMU
+| | ... | AND | Run keyword | ${qemu_stop_clear1} | ${dut1_node} | ${${qemu1}}
+| | ... | AND | ${qemu_stop_clear2}= | Replace Variables | ${qemu2}.Stop and Clear QEMU
+| | ... | AND | Run keyword | ${qemu_stop_clear2} | ${dut1_node} | ${${qemu2}}
+| | ... | AND | Check VPP PID in Teardown
