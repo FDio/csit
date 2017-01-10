@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5a2585a7_e1cf17af",
+        "filename": "resources/libraries/robot/honeycomb/nat.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-01-10T11:54:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a2585a7_a110ef4e",
+      "range": {
+        "startLine": 117,
+        "startChar": 13,
+        "endLine": 117,
+        "endChar": 50
+      },
+      "revId": "850c8c63e5165e6e78d4811f7aa1d53ecf0e7b5e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a2585a7_811df368",
         "filename": "resources/libraries/robot/honeycomb/nat.robot",
         "patchSetId": 3
@@ -36,6 +60,30 @@
       "writtenOn": "2017-01-10T10:14:08Z",
       "side": 1,
       "message": "remove",
+      "range": {
+        "startLine": 118,
+        "startChar": 49,
+        "endLine": 118,
+        "endChar": 55
+      },
+      "revId": "850c8c63e5165e6e78d4811f7aa1d53ecf0e7b5e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_c1c41b94",
+        "filename": "resources/libraries/robot/honeycomb/nat.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-01-10T11:54:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a2585a7_811df368",
       "range": {
         "startLine": 118,
         "startChar": 49,
