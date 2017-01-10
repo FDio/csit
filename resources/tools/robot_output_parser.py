@@ -92,7 +92,7 @@ class ExecutionChecker(ResultVisitor):
                 for tag in test.tags:
                     tags.append(tag)
                 test_elem = ET.SubElement(self.root,
-                                          test.parent.name.replace(" ", ""))
+                                          "S"+test.parent.name.replace(" ", ""))
                 test_elem.attrib['name'] = test.parent.name
                 test_elem.attrib['framesize'] = str(re.search(\
                     self.tc_regexp, test.name).group(2))
