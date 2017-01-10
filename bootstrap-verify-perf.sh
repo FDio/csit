@@ -136,7 +136,7 @@ case "$TEST_TAG" in
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s "tests.perf" \
               --exclude SKIP_PATCH \
-              -i perftest_long \
+              -i NDRPDRDISC \
               tests/
         RETURN_STATUS=$(echo $?)
         ;;
@@ -145,62 +145,7 @@ case "$TEST_TAG" in
               -L TRACE \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s "tests.perf" \
-              -i perftest_short \
-              tests/
-        RETURN_STATUS=$(echo $?)
-        ;;
-    PERFTEST_LONG_BRIDGE )
-        pybot ${PYBOT_ARGS} \
-              -L TRACE \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.perf.Long_Bridge_Domain*" \
-              tests/
-        RETURN_STATUS=$(echo $?)
-        ;;
-    PERFTEST_LONG_IPV4 )
-        pybot ${PYBOT_ARGS} \
-              -L TRACE \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.perf.Long_IPv4*" \
-              tests/
-        RETURN_STATUS=$(echo $?)
-        ;;
-    PERFTEST_LONG_IPV6 )
-        pybot ${PYBOT_ARGS} \
-              -L TRACE \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.perf.Long_IPv6*" \
-              tests/
-        RETURN_STATUS=$(echo $?)
-        ;;
-    PERFTEST_LONG_XCONNECT )
-        pybot ${PYBOT_ARGS} \
-              -L TRACE \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.perf.Long_Xconnect*" \
-              tests/
-        RETURN_STATUS=$(echo $?)
-        ;;
-    PERFTEST_LONG_XCONNECT_DOT1Q )
-        pybot ${PYBOT_ARGS} \
-              -L TRACE \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.perf.Long_Xconnect_Dot1q*" \
-        RETURN_STATUS=$(echo $?)
-        ;;
-    PERFTEST_NDR )
-        pybot ${PYBOT_ARGS} \
-              -L TRACE \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.perf" -i NDR \
-              tests/
-        RETURN_STATUS=$(echo $?)
-        ;;
-    PERFTEST_PDR )
-        pybot ${PYBOT_ARGS} \
-              -L TRACE \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.perf" -i PDR \
+              -i NDRCHK \
               tests/
         RETURN_STATUS=$(echo $?)
         ;;
