@@ -14,8 +14,8 @@
 *** Settings ***
 | Resource | resources/libraries/robot/performance.robot
 | Library | resources.libraries.python.NodePath
-| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | PERFTEST_LONG
-| ...        | NIC_Intel-XL710 | PERFTEST_BASE
+| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDRDISC
+| ...        | NIC_Intel-XL710 | ETH | L2BDMACLRN | BASE
 | Suite Setup | 3-node Performance Suite Setup with DUT's NIC model
 | ... | L2 | Intel-XL710
 | Suite Teardown | 3-node Performance Suite Teardown
@@ -133,7 +133,7 @@
 *** Test Cases ***
 | TC01: 64B NDR binary search - DUT L2BD - 1thread 1core 1rxq
 | | ... | ${64} | ${100000} | 1 | 1 | ${s_18.75Mpps}
-| | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | NDR
+| | [Tags] | 1T1C | STHREAD | NDRDISC
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
@@ -143,7 +143,7 @@
 
 | TC03: 1518B NDR binary search - DUT L2BD - 1thread 1core 1rxq
 | | ... | ${1518} | ${10000} | 1 | 1 | ${s_24.5G}
-| | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | NDR
+| | [Tags] | 1T1C | STHREAD | NDRDISC
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
@@ -153,7 +153,7 @@
 
 | TC07: 64B NDR binary search - DUT L2BD - 2thread 2core 1rxq
 | | ... | ${64} | ${100000} | 2 | 1 | ${s_18.75Mpps}
-| | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | NDR
+| | [Tags] | 2T2C | MTHREAD | NDRDISC
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
@@ -163,7 +163,7 @@
 
 | TC09: 1518B NDR binary search - DUT L2BD - 2thread 2core 1rxq
 | | ... | ${1518} | ${10000} | 2 | 1 | ${s_24.5G}
-| | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | NDR | SKIP_PATCH
+| | [Tags] | 2T2C | MTHREAD | NDRDISC | SKIP_PATCH
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
@@ -173,7 +173,7 @@
 
 | TC13: 64B NDR binary search - DUT L2BD - 4thread 4core 2rxq
 | | ... | ${64} | ${100000} | 4 | 2 | ${s_18.75Mpps}
-| | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | NDR
+| | [Tags] | 4T4C | MTHREAD | NDRDISC
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 4 threads, 4 phy cores, 2 receive queues per NIC port.
@@ -183,7 +183,7 @@
 
 | TC15: 1518B NDR binary search - DUT L2BD - 4thread 4core 2rxq
 | | ... | ${1518} | ${10000} | 4 | 2 | ${s_24.5G}
-| | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | NDR | SKIP_PATCH
+| | [Tags] | 4T4C | MTHREAD | NDRDISC | SKIP_PATCH
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 4 threads, 4 phy cores, 2 receive queues per NIC port.
@@ -193,7 +193,7 @@
 
 | TC19: IMIX_v4_1 NDR binary search - DUT L2BD - 1thread 1core 1rxq
 | | ... | IMIX_v4_1 | ${100000} | 1 | 1 | ${s_24.5G}
-| | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | NDR
+| | [Tags] | 1T1C | STHREAD | NDRDISC
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
@@ -203,7 +203,7 @@
 
 | TC20: IMIX_v4_1 NDR binary search - DUT L2BD - 2thread 2core 1rxq
 | | ... | IMIX_v4_1 | ${100000} | 2 | 1 | ${s_24.5G}
-| | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | NDR | SKIP_PATCH
+| | [Tags] | 2T2C | MTHREAD | NDRDISC | SKIP_PATCH
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
@@ -213,7 +213,7 @@
 
 | TC21: IMIX_v4_1 NDR binary search - DUT L2BD - 4thread 4core 2rxq
 | | ... | IMIX_v4_1 | ${100000} | 4 | 2 | ${s_24.5G}
-| | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | NDR | SKIP_PATCH
+| | [Tags] | 4T4C | MTHREAD | NDRDISC | SKIP_PATCH
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 4 threads, 4 phy cores, 2 receive queues per NIC port.

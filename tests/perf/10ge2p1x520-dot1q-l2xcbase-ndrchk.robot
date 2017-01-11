@@ -14,8 +14,8 @@
 *** Settings ***
 | Resource | resources/libraries/robot/performance.robot
 | Resource | resources/libraries/robot/tagging.robot
-| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | PERFTEST_SHORT
-| ...        | NIC_Intel-X520-DA2
+| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRCHK
+| ...        | NIC_Intel-X520-DA2 | L2XCFWD | BASE | DOT1Q
 | Suite Setup | 3-node Performance Suite Setup with DUT's NIC model
 | ... | L2 | Intel-X520-DA2
 | Suite Teardown | 3-node Performance Suite Teardown
@@ -52,7 +52,7 @@
 | | ... | [Cfg] DUT runs L2XC config with 1 thread, 1 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Verify ref-NDR for 64 Byte
 | | ... | frames using single trial throughput test.
-| | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | NDR
+| | [Tags] | 1T1C | STHREAD
 | | ${framesize}= | Set Variable | 64
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 2.9mpps
@@ -77,7 +77,7 @@
 | | ... | [Cfg] DUT runs L2XC config with 1 thread, 1 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Verify ref-NDR for 1518 Byte
 | | ... | frames using single trial throughput test.
-| | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | NDR
+| | [Tags] | 1T1C | STHREAD
 | | ${framesize}= | Set Variable | 1518
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 720000pps
@@ -102,7 +102,7 @@
 | | ... | [Cfg] DUT runs L2XC config with 1 thread, 1 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Verify ref-NDR for 9000 Byte
 | | ... | frames using single trial throughput test.
-| | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | NDR
+| | [Tags] | 1T1C | STHREAD
 | | ${framesize}= | Set Variable | 9000
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 120000pps
@@ -126,7 +126,7 @@
 | | ... | [Cfg] DUT runs L2XC config with 2 threads, 2 phy cores, \
 | | ... | 1 receive queue per NIC port. [Ver] Verify ref-NDR for 64 Byte
 | | ... | frames using single trial throughput test.
-| | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | NDR
+| | [Tags] | 2T2C | MTHREAD
 | | ${framesize}= | Set Variable | 64
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 7.0mpps
@@ -151,7 +151,7 @@
 | | ... | [Cfg] DUT runs L2XC config with 2 threads, 2 phy cores, \
 | | ... | 1 receive queue per NIC port. [Ver] Verify ref-NDR for 1518 Byte
 | | ... | frames using single trial throughput test.
-| | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | NDR
+| | [Tags] | 2T2C | MTHREAD
 | | ${framesize}= | Set Variable | 1518
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 720000pps
@@ -176,7 +176,7 @@
 | | ... | [Cfg] DUT runs L2XC config with 2 threads, 2 phy cores, \
 | | ... | 1 receive queue per NIC port. [Ver] Verify ref-NDR for 9000 Byte
 | | ... | frames using single trial throughput test.
-| | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | NDR
+| | [Tags] | 2T2C | MTHREAD
 | | ${framesize}= | Set Variable | 9000
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 120000pps
@@ -200,7 +200,7 @@
 | | ... | [Cfg] DUT runs L2XC config with 4 threads, 4 phy cores, \
 | | ... | 2 receive queues per NIC port. [Ver] Verify ref-NDR for 64 Byte
 | | ... | frames using single trial throughput test.
-| | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | NDR
+| | [Tags] | 4T4C | MTHREAD
 | | ${framesize}= | Set Variable | 64
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 11.0mpps
@@ -225,7 +225,7 @@
 | | ... | [Cfg] DUT runs L2XC config with 4 threads, 4 phy cores, \
 | | ... | 2 receive queues per NIC port. [Ver] Verify ref-NDR for 1518 Byte
 | | ... | frames using single trial throughput test.
-| | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | NDR
+| | [Tags] | 4T4C | MTHREAD
 | | ${framesize}= | Set Variable | 1518
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 720000pps
@@ -250,7 +250,7 @@
 | | ... | [Cfg] DUT runs L2XC config with 4 threads, 4 phy cores, \
 | | ... | 2 receive queues per NIC port. [Ver] Verify ref-NDR for 9000 Byte
 | | ... | frames using single trial throughput test.
-| | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | NDR
+| | [Tags] | 4T4C | MTHREAD
 | | ${framesize}= | Set Variable | 9000
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 120000pps
