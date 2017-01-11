@@ -20,8 +20,8 @@
 | ...     | WITH NAME | dut2_v4
 # import additional Lisp settings from resource file
 | Variables | resources/test_data/lisp/performance/lisp_static_adjacency.py
-| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | PERFTEST_SHORT
-| ...        | NIC_Intel-X520-DA2 | PERFTEST_ENCAP | LISP
+| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRCHK
+| ... | NIC_Intel-X520-DA2 | IP4FWD | ENCAP | LISP | IP6UNRLAY | IP4OVRLAY
 | Suite Setup | 3-node Performance Suite Setup with DUT's NIC model
 | ... | L3 | Intel-X520-DA2
 | Suite Teardown | 3-node Performance Suite Teardown
@@ -55,7 +55,7 @@
 | | ... | 1 receive queue per NIC port.
 | | ... | [Ver] Verify ref-NDR for 64 Byte frames using single trial\
 | | ... | throughput test.
-| | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | NDR | LISP_IPv4oIPv6
+| | [Tags] | 1T1C | STHREAD
 | | ${framesize}= | Set Variable | 64
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 1.53mpps
@@ -80,7 +80,7 @@
 | | ... | 1 receive queue per NIC port.
 | | ... | [Ver] Verify ref-NDR for 1460 Byte frames using single trial\
 | | ... | throughput test.
-| | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | NDR | LISP_IPv4oIPv6
+| | [Tags] | 1T1C | STHREAD
 | | ${framesize}= | Set Variable | 1460
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 720000pps
@@ -105,7 +105,7 @@
 | | ... | 1 receive queue per NIC port.
 | | ... | [Ver] Verify ref-NDR for 9000 Byte frames using single trial\
 | | ... | throughput test.
-| | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | NDR | LISP_IPv4oIPv6
+| | [Tags] | 1T1C | STHREAD
 | | ${framesize}= | Set Variable | 9000
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 120000pps
@@ -129,7 +129,7 @@
 | | ... | 1 receive queue per NIC port.
 | | ... | [Ver] Verify ref-NDR for 64 Byte frames using single trial\
 | | ... | throughput test.
-| | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | NDR | LISP_IPv4oIPv6
+| | [Tags] | 2T2C | MTHREAD
 | | ${framesize}= | Set Variable | 64
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 3.25mpps
@@ -154,7 +154,7 @@
 | | ... | 1 receive queue per NIC port.
 | | ... | [Ver] Verify ref-NDR for 1460 Byte frames using single trial\
 | | ... | throughput test.
-| | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | NDR | LISP_IPv4oIPv6
+| | [Tags] | 2T2C | MTHREAD
 | | ${framesize}= | Set Variable | 1460
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 720000pps
@@ -179,7 +179,7 @@
 | | ... | 1 receive queue per NIC port.
 | | ... | [Ver] Verify ref-NDR for 9000 Byte frames using single trial\
 | | ... | throughput test.
-| | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | NDR | LISP_IPv4oIPv6
+| | [Tags] | 2T2C | MTHREAD
 | | ${framesize}= | Set Variable | 9000
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 120000pps
@@ -203,7 +203,7 @@
 | | ... | 2 receive queues per NIC port.
 | | ... | [Ver] Verify ref-NDR for 64 Byte frames using single trial\
 | | ... | throughput test.
-| | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | NDR | LISP_IPv4oIPv6
+| | [Tags] | 4T4C | MTHREAD
 | | ${framesize}= | Set Variable | 64
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 3.12mpps
@@ -228,7 +228,7 @@
 | | ... | 2 receive queues per NIC port.
 | | ... | [Ver] Verify ref-NDR for 1460 Byte frames using single trial\
 | | ... | throughput test.
-| | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | NDR | LISP_IPv4oIPv6
+| | [Tags] | 4T4C | MTHREAD
 | | ${framesize}= | Set Variable | 1460
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 720000pps
@@ -253,7 +253,7 @@
 | | ... | 2 receive queues per NIC port.
 | | ... | [Ver] Verify ref-NDR for 9000 Byte frames using single trial\
 | | ... | throughput test.
-| | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | NDR | LISP_IPv4oIPv6
+| | [Tags] | 4T4C | MTHREAD
 | | ${framesize}= | Set Variable | 9000
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 120000pps

@@ -13,8 +13,8 @@
 
 *** Settings ***
 | Resource | resources/libraries/robot/performance.robot
-| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | PERFTEST_LONG
-| ... | NIC_Intel-X520-DA2 | PERFTEST_BASE
+| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDRDISC
+| ... | NIC_Intel-X520-DA2 | ETH | L2BDMACLRN | BASE
 | Suite Setup | 3-node Performance Suite Setup with DUT's NIC model
 | ... | L2 | Intel-X520-DA2
 | Suite Teardown | 3-node Performance Suite Teardown
@@ -93,7 +93,7 @@
 *** Test Cases ***
 | TC01: 64B NDR binary search - DUT L2BD - 1thread 1core 1rxq
 | | ... | ${64} | ${100000} | 1 | 1
-| | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | NDR
+| | [Tags] | 1T1C | STHREAD | NDRDISC
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
@@ -103,7 +103,7 @@
 
 | TC02: 64B PDR binary search - DUT L2BD - 1thread 1core 1rxq
 | | ... | ${64} | ${100000} | 1 | 1
-| | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | PDR | SKIP_PATCH
+| | [Tags] | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
@@ -113,7 +113,7 @@
 
 | TC03: 1518B NDR binary search - DUT L2BD - 1thread 1core 1rxq
 | | ... | ${1518} | ${10000} | 1 | 1
-| | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | NDR
+| | [Tags] | 1T1C | STHREAD | NDRDISC
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
@@ -123,7 +123,7 @@
 
 | TC04: 1518B PDR binary search - DUT L2BD - 1thread 1core 1rxq
 | | ... | ${1518} | ${10000} | 1 | 1
-| | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | PDR | SKIP_PATCH
+| | [Tags] | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
@@ -133,7 +133,7 @@
 
 | TC05: 9000B NDR binary search - DUT L2BD - 1thread 1core 1rxq
 | | ... | ${9000} | ${10000} | 1 | 1
-| | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | NDR
+| | [Tags] | 1T1C | STHREAD | NDRDISC
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
@@ -143,7 +143,7 @@
 
 | TC06: 9000B PDR binary search - DUT L2BD - 1thread 1core 1rxq
 | | ... | ${9000} | ${10000} | 1 | 1
-| | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | PDR | SKIP_PATCH
+| | [Tags] | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
@@ -153,7 +153,7 @@
 
 | TC07: 64B NDR binary search - DUT L2BD - 2thread 2core 1rxq
 | | ... | ${64} | ${100000} | 2 | 1
-| | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | NDR
+| | [Tags] | 2T2C | MTHREAD | NDRDISC
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
@@ -163,7 +163,7 @@
 
 | TC08: 64B PDR binary search - DUT L2BD - 2thread 2core 1rxq
 | | ... | ${64} | ${100000} | 2 | 1
-| | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | PDR | SKIP_PATCH
+| | [Tags] | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
@@ -173,7 +173,7 @@
 
 | TC09: 1518B NDR binary search - DUT L2BD - 2thread 2core 1rxq
 | | ... | ${1518} | ${10000} | 2 | 1
-| | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | NDR | SKIP_PATCH
+| | [Tags] | 2T2C | MTHREAD | NDRDISC | SKIP_PATCH
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
@@ -183,7 +183,7 @@
 
 | TC10: 1518B PDR binary search - DUT L2BD - 2thread 2core 1rxq
 | | ... | ${1518} | ${10000} | 2 | 1
-| | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | PDR | SKIP_PATCH
+| | [Tags] | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
@@ -193,7 +193,7 @@
 
 | TC11: 9000B NDR binary search - DUT L2BD - 2thread 2core 1rxq
 | | ... | ${9000} | ${10000} | 2 | 1
-| | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | NDR | SKIP_PATCH
+| | [Tags] | 2T2C | MTHREAD | NDRDISC | SKIP_PATCH
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
@@ -203,7 +203,7 @@
 
 | TC12: 9000B PDR binary search - DUT L2BD - 2thread 2core 1rxq
 | | ... | ${9000} | ${10000} | 2 | 1
-| | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | PDR | SKIP_PATCH
+| | [Tags] | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
@@ -213,7 +213,7 @@
 
 | TC13: 64B NDR binary search - DUT L2BD - 4thread 4core 2rxq
 | | ... | ${64} | ${100000} | 4 | 2
-| | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | NDR
+| | [Tags] | 4T4C | MTHREAD | NDRDISC
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 4 threads, 4 phy cores, 2 receive queues per NIC port.
@@ -223,7 +223,7 @@
 
 | TC14: 64B PDR binary search - DUT L2BD - 4thread 4core 2rxq
 | | ... | ${64} | ${100000} | 4 | 2
-| | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | PDR | SKIP_PATCH
+| | [Tags] | 4T4C | MTHREAD | PDRDISC | SKIP_PATCH
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 4 threads, 4 phy cores, 2 receive queues per NIC port.
@@ -233,7 +233,7 @@
 
 | TC15: 1518B NDR binary search - DUT L2BD - 4thread 4core 2rxq
 | | ... | ${1518} | ${10000} | 4 | 2
-| | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | NDR | SKIP_PATCH
+| | [Tags] | 4T4C | MTHREAD | NDRDISC | SKIP_PATCH
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 4 threads, 4 phy cores, 2 receive queues per NIC port.
@@ -243,7 +243,7 @@
 
 | TC16: 1518B PDR binary search - DUT L2BD - 4thread 4core 2rxq
 | | ... | ${1518} | ${10000} | 4 | 2
-| | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | PDR | SKIP_PATCH
+| | [Tags] | 4T4C | MTHREAD | PDRDISC | SKIP_PATCH
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 4 threads, 4 phy cores, 2 receive queues per NIC port.
@@ -253,7 +253,7 @@
 
 | TC17: 9000B NDR binary search - DUT L2BD - 4thread 4core 2rxq
 | | ... | ${9000} | ${10000} | 4 | 2
-| | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | NDR | SKIP_PATCH
+| | [Tags] | 4T4C | MTHREAD | NDRDISC | SKIP_PATCH
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 4 threads, 4 phy cores, 2 receive queues per NIC port.
@@ -263,7 +263,7 @@
 
 | TC18: 9000B PDR binary search - DUT L2BD - 4thread 4core 2rxq
 | | ... | ${9000} | ${10000} | 4 | 2
-| | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | PDR | SKIP_PATCH
+| | [Tags] | 4T4C | MTHREAD | PDRDISC | SKIP_PATCH
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 4 threads, 4 phy cores, 2 receive queues per NIC port.

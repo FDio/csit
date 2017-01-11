@@ -14,8 +14,8 @@
 *** Settings ***
 | Resource | resources/libraries/robot/performance.robot
 | Library | resources.libraries.python.QemuUtils
-| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | PERFTEST_LONG
-| ...        | PERFTEST_VHOST | NIC_Intel-X520-DA2 | PERFTEST_BASE
+| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDRDISC
+| ...        | NIC_Intel-X520-DA2 | ETH | IP4FWD | BASE | VHOST | VM
 | Suite Setup | 3-node Performance Suite Setup with DUT's NIC model
 | ... | L3 | Intel-X520-DA2
 | Suite Teardown | 3-node Performance Suite Teardown
@@ -72,7 +72,7 @@
 | | ... | [Cfg] DUT runs IPv4 routing config with 1 thread, 1 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for 64 Byte frames \
 | | ... | using binary search start at 10GE linerate, step 10kpps.
-| | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | NDR
+| | [Tags] | 1T1C | STHREAD | NDRDISC
 | | ${framesize}= | Set Variable | ${64}
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
@@ -106,7 +106,7 @@
 | | ... | [Cfg] DUT runs IPv4 routing config with 1 thread, 1 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Find PDR for 64 Byte frames \
 | | ... | using binary search start at 10GE linerate, step 10kpps, LT=0.5%.
-| | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | PDR | SKIP_PATCH
+| | [Tags] | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${64}
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
@@ -142,7 +142,7 @@
 | | ... | [Cfg] DUT runs IPv4 routing config with 1 thread, 1 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for 1518 Byte frames \
 | | ... | using binary search start at 10GE linerate, step 10kpps.
-| | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | NDR
+| | [Tags] | 1T1C | STHREAD | NDRDISC
 | | ${framesize}= | Set Variable | ${1518}
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
@@ -176,7 +176,7 @@
 | | ... | [Cfg] DUT runs IPv4 routing config with 1 thread, 1 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Find PDR for 1518 Byte frames \
 | | ... | using binary search start at 10GE linerate, step 10kpps, LT=0.5%.
-| | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | PDR | SKIP_PATCH
+| | [Tags] | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${1518}
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
@@ -213,7 +213,7 @@
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for IMIX_v4_1 frame \
 | | ... | size using binary search start at 10GE linerate, step 5kpps.
 | | ... | IMIX_v4_1 = (28x64B;16x570B;4x1518B)
-| | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | NDR
+| | [Tags] | 1T1C | STHREAD | NDRDISC
 | | ${framesize}= | Set Variable | IMIX_v4_1
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
@@ -248,7 +248,7 @@
 | | ... | 1 receive queue per NIC port. [Ver] Find PDR for IMIX_v4_1 frame \
 | | ... | size using binary search start at 10GE linerate, step 5kpps, LT=0.5%.
 | | ... | IMIX_v4_1 = (28x64B;16x570B;4x1518B)
-| | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | PDR | SKIP_PATCH
+| | [Tags] | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | IMIX_v4_1
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
@@ -283,7 +283,7 @@
 | | ... | [Cfg] DUT runs IPv4 routing config with 2 threads, 2 phy cores, \
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for 64 Byte frames \
 | | ... | using binary search start at 10GE linerate, step 10kpps.
-| | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | NDR
+| | [Tags] | 2T2C | MTHREAD | NDRDISC
 | | ${framesize}= | Set Variable | ${64}
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
@@ -317,7 +317,7 @@
 | | ... | [Cfg] DUT runs IPv4 routing config with 2 threads, 2 phy cores, \
 | | ... | 1 receive queue per NIC port. [Ver] Find PDR for 64 Byte frames \
 | | ... | using binary search start at 10GE linerate, step 10kpps, LT=0.5%.
-| | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | PDR | SKIP_PATCH
+| | [Tags] | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${64}
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
@@ -353,7 +353,7 @@
 | | ... | [Cfg] DUT runs IPv4 routing config with 2 threads, 2 phy cores, \
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for 1518 Byte frames \
 | | ... | using binary search start at 10GE linerate, step 10kpps.
-| | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | NDR | SKIP_PATCH
+| | [Tags] | 2T2C | MTHREAD | NDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${1518}
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
@@ -387,7 +387,7 @@
 | | ... | [Cfg] DUT runs IPv4 routing config with 2 threads, 2 phy cores, \
 | | ... | 1 receive queue per NIC port. [Ver] Find PDR for 1518 Byte frames \
 | | ... | using binary search start at 10GE linerate, step 10kpps, LT=0.5%.
-| | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | PDR | SKIP_PATCH
+| | [Tags] | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${1518}
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
@@ -424,7 +424,7 @@
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for IMIX_v4_1 frame \
 | | ... | size using binary search start at 10GE linerate, step 5kpps.
 | | ... | IMIX_v4_1 = (28x64B;16x570B;4x1518B)
-| | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | NDR | SKIP_PATCH
+| | [Tags] | 2T2C | MTHREAD | NDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | IMIX_v4_1
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
@@ -459,7 +459,7 @@
 | | ... | 1 receive queue per NIC port. [Ver] Find PDR for IMIX_v4_1 frame \
 | | ... | size using binary search start at 10GE linerate, step 5kpps, LT=0.5%.
 | | ... | IMIX_v4_1 = (28x64B;16x570B;4x1518B)
-| | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | PDR | SKIP_PATCH
+| | [Tags] | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | IMIX_v4_1
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
@@ -495,7 +495,7 @@
 | | ... | [Cfg] DUT runs IPv4 routing config with 4 threads, 4 phy cores, \
 | | ... | 2 receive queues per NIC port. [Ver] Find NDR for 64 Byte frames \
 | | ... | using binary search start at 10GE linerate, step 10kpps.
-| | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | NDR
+| | [Tags] | 4T4C | MTHREAD | NDRDISC
 | | ${framesize}= | Set Variable | ${64}
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
@@ -529,7 +529,7 @@
 | | ... | [Cfg] DUT runs IPv4 routing config with 4 threads, 4 phy cores, \
 | | ... | 2 receive queues per NIC port. [Ver] Find PDR for 64 Byte frames \
 | | ... | using binary search start at 10GE linerate, step 10kpps, LT=0.5%.
-| | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | PDR | SKIP_PATCH
+| | [Tags] | 4T4C | MTHREAD | PDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${64}
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
@@ -565,7 +565,7 @@
 | | ... | [Cfg] DUT runs IPv4 routing config with 4 threads, 4 phy cores, \
 | | ... | 2 receive queues per NIC port. [Ver] Find NDR for 1518 Byte frames \
 | | ... | using binary search start at 10GE linerate, step 10kpps.
-| | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | NDR | SKIP_PATCH
+| | [Tags] | 4T4C | MTHREAD | NDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${1518}
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
@@ -599,7 +599,7 @@
 | | ... | [Cfg] DUT runs IPv4 routing config with 4 threads, 4 phy cores, \
 | | ... | 2 receive queues per NIC port. [Ver] Find PDR for 1518 Byte frames \
 | | ... | using binary search start at 10GE linerate, step 10kpps, LT=0.5%.
-| | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | PDR | SKIP_PATCH
+| | [Tags] | 4T4C | MTHREAD | PDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${1518}
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
@@ -636,7 +636,7 @@
 | | ... | 2 receive queues per NIC port. [Ver] Find NDR for IMIX_v4_1 frame \
 | | ... | size using binary search start at 10GE linerate, step 5kpps.
 | | ... | IMIX_v4_1 = (28x64B;16x570B;4x1518B)
-| | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | NDR | SKIP_PATCH
+| | [Tags] | 4T4C | MTHREAD | NDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | IMIX_v4_1
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
@@ -671,7 +671,7 @@
 | | ... | 2 receive queues per NIC port. [Ver] Find PDR for IMIX_v4_1 frame \
 | | ... | size using binary search start at 10GE linerate, step 5kpps, LT=0.5%.
 | | ... | IMIX_v4_1 = (28x64B;16x570B;4x1518B)
-| | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | PDR | SKIP_PATCH
+| | [Tags] | 4T4C | MTHREAD | PDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | IMIX_v4_1
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
@@ -701,5 +701,3 @@
 | | ...                                       | ${threshold}
 | | ...                                       | ${glob_loss_acceptance}
 | | ...                                       | ${glob_loss_acceptance_type}
-
-

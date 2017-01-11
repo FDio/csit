@@ -15,7 +15,7 @@
 
 
 .. contents:: Table of Contents
-   :depth: 2
+    :depth: 2
 
 
 TAGs and their descriptions
@@ -60,6 +60,22 @@ Environment TAGs
 .. topic:: VPP_VM_ENV
 
     DUTs with VPP and capable of running Virtual Machine.
+
+
+NIC model tags
+--------------
+
+.. topic:: NIC_Intel-X520-DA2
+
+    Intel X520-DA2 NIC.
+
+.. topic:: NIC_Intel-XL710
+
+    Intel XL710 NIC.
+
+.. topic:: NIC_Intel-X710
+
+    Intel X710 NIC.
 
 
 Scaling TAGs
