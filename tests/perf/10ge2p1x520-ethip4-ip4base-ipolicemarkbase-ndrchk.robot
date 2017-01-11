@@ -16,8 +16,8 @@
 | Library | resources.libraries.python.Policer
 | Library | resources.libraries.python.IPv4Setup.Dut | ${nodes['DUT1']} | WITH NAME | dut1_v4
 | Library | resources.libraries.python.IPv4Setup.Dut | ${nodes['DUT2']} | WITH NAME | dut2_v4
-| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | PERFTEST_SHORT
-| ...        | NIC_Intel-X520-DA2
+| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRCHK
+| ...        | NIC_Intel-X520-DA2 | IP4FWD | BASE | DOT1Q
 | Suite Setup | 3-node Performance Suite Setup with DUT's NIC model
 | ... | L3 | Intel-X520-DA2
 | Suite Teardown | 3-node Performance Suite Teardown
@@ -55,7 +55,7 @@
 | | ... | [Cfg] DUT runs IPv4 routing and policer config with 1 thread, 1 phy \
 | | ... | core, 1 receive queue per NIC port. [Ver] Verify ref-NDR for 64 \
 | | ... | Byte frames using single trial throughput test.
-| | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | NDR
+| | [Tags] | 1T1C | STHREAD
 | | ${framesize}= | Set Variable | 64
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 3.1mpps
@@ -75,7 +75,7 @@
 | | ... | [Cfg] DUT runs IPv4 routing and policer config with 1 thread, 1 phy \
 | | ... | core, 1 receive queue per NIC port. [Ver] Verify ref-NDR for 1518 \
 | | ... | Byte frames using single trial throughput test.
-| | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | NDR
+| | [Tags] | 1T1C | STHREAD
 | | ${framesize}= | Set Variable | 1518
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 812743pps
@@ -95,7 +95,7 @@
 | | ... | [Cfg] DUT runs IPv4 routing and policer config with 1 thread, 1 phy \
 | | ... | core, 1 receive queue per NIC port. [Ver] Verify ref-NDR for 9000 \
 | | ... | Byte frames using single trial throughput test.
-| | [Tags] | 1_THREAD_NOHTT_RXQUEUES_1 | SINGLE_THREAD | NDR
+| | [Tags] | 1T1C | STHREAD
 | | ${framesize}= | Set Variable | 9000
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 138580pps
@@ -114,7 +114,7 @@
 | | ... | [Cfg] DUT runs IPv4 routing and policer config with 2 threads, 2 \
 | | ... | phy cores, 1 receive queue per NIC port. [Ver] Verify ref-NDR for \
 | | ... | 64 Byte frames using single trial throughput test.
-| | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | NDR
+| | [Tags] | 2T2C | MTHREAD
 | | ${framesize}= | Set Variable | 64
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 5.6mpps
@@ -134,7 +134,7 @@
 | | ... | [Cfg] DUT runs IPv4 routing and policer config with 2 threads, 2 \
 | | ... | phy cores, 1 receive queue per NIC port. [Ver] Verify ref-NDR for \
 | | ... | 1518 Byte frames using single trial throughput test.
-| | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | NDR
+| | [Tags] | 2T2C | MTHREAD
 | | ${framesize}= | Set Variable | 1518
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 812743pps
@@ -154,7 +154,7 @@
 | | ... | [Cfg] DUT runs IPv4 routing and policer config with 2 threads, 2 \
 | | ... | phy cores, 1 receive queue per NIC port. [Ver] Verify ref-NDR for \
 | | ... | 9000 Byte frames using single trial throughput test.
-| | [Tags] | 2_THREAD_NOHTT_RXQUEUES_1 | MULTI_THREAD | NDR
+| | [Tags] | 2T2C | MTHREAD
 | | ${framesize}= | Set Variable | 9000
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 138580pps
@@ -173,7 +173,7 @@
 | | ... | [Cfg] DUT runs IPv4 routing and policer config with 4 thread, 4 \
 | | ... | phy core, 2 receive queue per NIC port. [Ver] Verify ref-NDR for 64 \
 | | ... | Byte frames using single trial throughput test.
-| | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | NDR
+| | [Tags] | 4T4C | MTHREAD
 | | ${framesize}= | Set Variable | 64
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 8.9mpps
@@ -193,7 +193,7 @@
 | | ... | [Cfg] DUT runs IPv4 routing and policer config with 4 thread, 4 \
 | | ... | phy core, 2 receive queue per NIC port. [Ver] Verify ref-NDR for \
 | | ... | 1518 Byte frames using single trial throughput test.
-| | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | NDR
+| | [Tags] | 4T4C | MTHREAD
 | | ${framesize}= | Set Variable | 1518
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 812743pps
@@ -213,7 +213,7 @@
 | | ... | [Cfg] DUT runs IPv4 routing and policer config with 4 thread, 4 \
 | | ... | phy core, 2 receive queue per NIC port. [Ver] Verify ref-NDR for \
 | | ... | 9000 Byte frames using single trial throughput test.
-| | [Tags] | 4_THREAD_NOHTT_RXQUEUES_2 | MULTI_THREAD | NDR
+| | [Tags] | 4T4C | MTHREAD
 | | ${framesize}= | Set Variable | 9000
 | | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 138580pps
