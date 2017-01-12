@@ -86,7 +86,7 @@ class ExecutionChecker(ResultVisitor):
         :type test: Test
         :return: Nothing.
         """
-        if any("PERFTEST_LONG" in tag for tag in test.tags):
+        if any("NDRPDRDISC" in tag for tag in test.tags):
             if test.status == 'PASS':
                 tags = []
                 for tag in test.tags:
