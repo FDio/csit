@@ -44,11 +44,11 @@
 | ${rts_per_flow}= | 1000000
 
 *** Test Cases ***
-| TC01: Verify 78B ref-NDR at 2x 2.3Mpps - DUT IPv6 Fib 2x1M - 1thread 1core 1rxq
+| tc01-78B-1t1c-ethip6-ip6scale2m-ndrchk
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv6 routing config with 1 thread, 1 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Verify ref-NDR for 78 Byte
-| | ... | frames using single trial throughput test.
+| | ... | frames using single trial throughput test at 2x 2.3mpps.
 | | [Tags] | 1T1C | STHREAD
 | | ${framesize}= | Set Variable | 78
 | | ${duration}= | Set Variable | 10
@@ -63,11 +63,11 @@
 | | ...                                    | ${framesize}
 | | ...                                    | 3-node-IPv6-dst-${rts_per_flow}
 
-| TC02: Verify 1518B ref-NDR at 2x 812.74kpps - DUT IPv6 Fib 2x1M - 1thread 1core 1rxq
+| tc02-1518B-1t1c-ethip6-ip6scale2m-ndrchk
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv6 routing config with 1 thread, 1 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Verify ref-NDR for 1518 Byte
-| | ... | frames using single trial throughput test.
+| | ... | frames using single trial throughput test at 2x 812743pps.
 | | [Tags] | 1T1C | STHREAD
 | | ${framesize}= | Set Variable | 1518
 | | ${duration}= | Set Variable | 10
@@ -82,11 +82,11 @@
 | | ...                                    | ${framesize}
 | | ...                                    | 3-node-IPv6-dst-${rts_per_flow}
 
-| TC03: Verify 9000B ref-NDR at 2x 138.58kpps - DUT IPv6 Fib 2x1M - 1thread 1core 1rxq
+| tc03-9000B-1t1c-ethip6-ip6scale2m-ndrchk
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv6 routing config with 1 thread, 1 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Verify ref-NDR for 9000 Byte
-| | ... | frames using single trial throughput test.
+| | ... | frames using single trial throughput test at 2x 138580pps.
 | | [Tags] | 1T1C | STHREAD
 | | ${framesize}= | Set Variable | 9000
 | | ${duration}= | Set Variable | 10
@@ -100,11 +100,11 @@
 | | ...                                    | ${framesize}
 | | ...                                    | 3-node-IPv6-dst-${rts_per_flow}
 
-| TC04: Verify 78B ref-NDR at 2x 4.9Mpps - DUT IPv6 Fib 2x1M - 2threads, 2cores, 1rxq
+| tc04-78B-2t2c-ethip6-ip6scale2m-ndrchk
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv6 routing config with 2 thread, 2 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Verify ref-NDR for 78 Byte
-| | ... | frames using single trial throughput test.
+| | ... | frames using single trial throughput test at 2x 4.9mpps.
 | | [Tags] | 2T2C | MTHREAD
 | | ${framesize}= | Set Variable | 78
 | | ${duration}= | Set Variable | 10
@@ -119,11 +119,11 @@
 | | ...                                    | ${framesize}
 | | ...                                    | 3-node-IPv6-dst-${rts_per_flow}
 
-| TC05: Verify 1518B ref-NDR at 2x 812.74kpps - DUT IPv6 Fib 2x1M - 2threads, 2cores, 1rxq
+| tc05-1518B-2t2c-ethip6-ip6scale2m-ndrchk
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv6 routing config with 2 thread, 2 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Verify ref-NDR for 1518 Byte
-| | ... | frames using single trial throughput test.
+| | ... | frames using single trial throughput test at 2x 812743pps.
 | | [Tags] | 2T2C | MTHREAD
 | | ${framesize}= | Set Variable | 1518
 | | ${duration}= | Set Variable | 10
@@ -138,11 +138,11 @@
 | | ...                                    | ${framesize}
 | | ...                                    | 3-node-IPv6-dst-${rts_per_flow}
 
-| TC06: Verify 9000B ref-NDR at 2x 138.58kpps - DUT IPv6 Fib 2x1M - 2threads, 2cores, 1rxq
+| tc06-9000B-2t2c-ethip6-ip6scale2m-ndrchk
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv6 routing config with 2 thread, 2 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Verify ref-NDR for 9000 Byte
-| | ... | frames using single trial throughput test.
+| | ... | frames using single trial throughput test at 2x 138580pps.
 | | [Tags] | 2T2C | MTHREAD
 | | ${framesize}= | Set Variable | 9000
 | | ${duration}= | Set Variable | 10
@@ -156,11 +156,11 @@
 | | ...                                    | ${framesize}
 | | ...                                    | 3-node-IPv6-dst-${rts_per_flow}
 
-| TC07: Verify 78B ref-NDR at 2x 9.5Mpps - DUT IPv6 Fib 2x1M - 4threads, 4cores, 2rxq
+| tc07-78B-4t4c-ethip6-ip6scale2m-ndrchk
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv6 routing config with 4 thread, 4 phy core, \
 | | ... | 2 receive queue per NIC port. [Ver] Verify ref-NDR for 78 Byte
-| | ... | frames using single trial throughput test.
+| | ... | frames using single trial throughput test at 2x 9.5mpps.
 | | [Tags] | 4T4C | MTHREAD
 | | ${framesize}= | Set Variable | 78
 | | ${duration}= | Set Variable | 10
@@ -175,11 +175,11 @@
 | | ...                                    | ${framesize}
 | | ...                                    | 3-node-IPv6-dst-${rts_per_flow}
 
-| TC08: Verify 1518B ref-NDR at 2x 812.74kpps - DUT IPv6 Fib 2x1M - 4threads, 4cores, 2rxq
+| tc08-1518B-4t4c-ethip6-ip6scale2m-ndrchk
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv6 routing config with 4 thread, 4 phy core, \
 | | ... | 2 receive queue per NIC port. [Ver] Verify ref-NDR for 1518 Byte
-| | ... | frames using single trial throughput test.
+| | ... | frames using single trial throughput test at 2x 812743pps.
 | | [Tags] | 4T4C | MTHREAD
 | | ${framesize}= | Set Variable | 1518
 | | ${duration}= | Set Variable | 10
@@ -194,11 +194,11 @@
 | | ...                                    | ${framesize}
 | | ...                                    | 3-node-IPv6-dst-${rts_per_flow}
 
-| TC09: Verify 9000B ref-NDR at 2x 138.58kpps - DUT IPv6 Fib 2x1M - 4threads, 4cores, 2rxq
+| tc09-9000B-4t4c-ethip6-ip6scale2m-ndrchk
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv6 routing config with 4 thread, 4 phy core, \
 | | ... | 2 receive queue per NIC port. [Ver] Verify ref-NDR for 9000 Byte
-| | ... | frames using single trial throughput test.
+| | ... | frames using single trial throughput test at 2x 138580pps.
 | | [Tags] | 4T4C | MTHREAD
 | | ${framesize}= | Set Variable | 9000
 | | ${duration}= | Set Variable | 10

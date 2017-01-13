@@ -46,11 +46,12 @@
 | ... | *[Ref] Applicable standard specifications:* RFC2544.
 
 *** Test Cases ***
-| TC01: Verify 64B ref-NDR at 2x 3.5Mpps - DUT IPv4 whitelist - 1thread 1core 1rxq
+| tc01-64B-1t1c-ethip4-ip4base-copwhtlistbase-ndrchk
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 routing and whitelist filters config with \
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port. [Ver] Verify
-| | ... | ref-NDR for 64 Byte frames using single trial throughput test.
+| | ... | ref-NDR for 64 Byte frames using single trial throughput test
+| | ... | at 2x 3.5mpps.
 | | [Tags] | 1T1C | STHREAD
 | | ${framesize}= | Set Variable | 64
 | | ${duration}= | Set Variable | 10
@@ -69,11 +70,12 @@
 | | Then  Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                    | ${framesize} | 3-node-IPv4
 
-| TC02: Verify 1518B ref-NDR at 2x 812.74kpps - DUT IPv4 whitelist - 1thread 1core 1rxq
+| tc02-1518B-1t1c-ethip4-ip4base-copwhtlistbase-ndrchk
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 routing and whitelist filters config with \
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port. [Ver] Verify
-| | ... | ref-NDR for 1518 Byte frames using single trial throughput test.
+| | ... | ref-NDR for 1518 Byte frames using single trial throughput test
+| | ... | at 2x 812743pps.
 | | [Tags] | 1T1C | STHREAD
 | | ${framesize}= | Set Variable | 1518
 | | ${duration}= | Set Variable | 10
@@ -92,11 +94,12 @@
 | | Then  Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                    | ${framesize} | 3-node-IPv4
 
-| TC03: Verify 9000B ref-NDR at 2x 138.58kpps - DUT IPv4 whitelist - 1thread 1core 1rxq
+| tc03-9000B-1t1c-ethip4-ip4base-copwhtlistbase-ndrchk
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 routing and whitelist filters config with \
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port. [Ver] Verify
-| | ... | ref-NDR for 9000 Byte frames using single trial throughput test.
+| | ... | ref-NDR for 9000 Byte frames using single trial throughput test
+| | ... | at 2x 138580pps.
 | | [Tags] | 1T1C | STHREAD
 | | ${framesize}= | Set Variable | 9000
 | | ${duration}= | Set Variable | 10
@@ -114,11 +117,12 @@
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                   | ${framesize} | 3-node-IPv4
 
-| TC04: Verify 64B ref-NDR at 2x 6.6Mpps - DUT IPv4 whitelist - 2thread 2core 1rxq
+| tc04-64B-2t2c-ethip4-ip4base-copwhtlistbase-ndrchk
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 routing and whitelist filters config with \
 | | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port. [Ver] Verify
-| | ... | ref-NDR for 64 Byte frames using single trial throughput test.
+| | ... | ref-NDR for 64 Byte frames using single trial throughput test
+| | ... | at 2x 6.6mpps.
 | | [Tags] | 2T2C | MTHREAD
 | | ${framesize}= | Set Variable | 64
 | | ${duration}= | Set Variable | 10
@@ -137,11 +141,12 @@
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                   | ${framesize} | 3-node-IPv4
 
-| TC05: Verify 1518B ref-NDR at 2x 812.74kpps - DUT IPv4 whitelist - 2thread 2core 1rxq
+| tc05-1518B-2t2c-ethip4-ip4base-copwhtlistbase-ndrchk
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 routing and whitelist filters config with \
 | | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port. [Ver] Verify
-| | ... | ref-NDR for 1518 Byte frames using single trial throughput test.
+| | ... | ref-NDR for 1518 Byte frames using single trial throughput test
+| | ... | at 2x 812743pps.
 | | [Tags] | 2T2C | MTHREAD
 | | ${framesize}= | Set Variable | 1518
 | | ${duration}= | Set Variable | 10
@@ -160,11 +165,12 @@
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                   | ${framesize} | 3-node-IPv4
 
-| TC06: Verify 9000B ref-NDR at 2x 138.58kpps - DUT IPv4 whitelist - 2thread 2core 1rxq
+| tc06-9000B-2t2c-ethip4-ip4base-copwhtlistbase-ndrchk
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 routing and whitelist filters config with \
 | | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port. [Ver] Verify
-| | ... | ref-NDR for 9000 Byte frames using single trial throughput test.
+| | ... | ref-NDR for 9000 Byte frames using single trial throughput test
+| | ... | at 2x 138580pps.
 | | [Tags] | 2T2C | MTHREAD
 | | ${framesize}= | Set Variable | 9000
 | | ${duration}= | Set Variable | 10
@@ -182,11 +188,12 @@
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                   | ${framesize} | 3-node-IPv4
 
-| TC07: Verify 64B ref-NDR at 2x 10.0Mpps - DUT IPv4 whitelist - 4threads 4cores 2rxq
+| tc07-64B-4t4c-ethip4-ip4base-copwhtlistbase-ndrchk
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 routing and whitelist filters config with \
 | | ... | 4 thread, 4 phy core, 2 receive queue per NIC port. [Ver] Verify
-| | ... | ref-NDR for 64 Byte frames using single trial throughput test.
+| | ... | ref-NDR for 64 Byte frames using single trial throughput test
+| | ... | at 2x 10.0mpps.
 | | [Tags] | 4T4C | MTHREAD
 | | ${framesize}= | Set Variable | 64
 | | ${duration}= | Set Variable | 10
@@ -205,11 +212,12 @@
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                   | ${framesize} | 3-node-IPv4
 
-| TC08: Verify 1518B ref-NDR at 2x 812.74kpps - DUT IPv4 whitelist - 4threads 4cores 2rxq
+| tc08-1518B-4t4c-ethip4-ip4base-copwhtlistbase-ndrchk
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 routing and whitelist filters config with \
 | | ... | 4 thread, 4 phy core, 2 receive queue per NIC port. [Ver] Verify
-| | ... | ref-NDR for 1518 Byte frames using single trial throughput test.
+| | ... | ref-NDR for 1518 Byte frames using single trial throughput test
+| | ... | at 2x 812743pps.
 | | [Tags] | 4T4C | MTHREAD
 | | ${framesize}= | Set Variable | 1518
 | | ${duration}= | Set Variable | 10
@@ -228,11 +236,12 @@
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                   | ${framesize} | 3-node-IPv4
 
-| TC09: Verify 9000B ref-NDR at 2x 138.58kpps - DUT IPv4 whitelist - 4threads 4cores 2rxq
+| tc09-9000B-4t4c-ethip4-ip4base-copwhtlistbase-ndrchk
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 routing and whitelist filters config with \
 | | ... | 4 thread, 4 phy core, 2 receive queue per NIC port. [Ver] Verify
-| | ... | ref-NDR for 9000 Byte frames using single trial throughput test.
+| | ... | ref-NDR for 9000 Byte frames using single trial throughput test
+| | ... | at 2x 138580pps.
 | | [Tags] | 4T4C | MTHREAD
 | | ${framesize}= | Set Variable | 9000
 | | ${duration}= | Set Variable | 10
