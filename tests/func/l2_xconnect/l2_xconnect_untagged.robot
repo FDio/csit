@@ -95,13 +95,11 @@
 | | Given Path for 2-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | And Interfaces in 2-node path are up
-| | When VPP Vhost interfaces for L2BD forwarding are setup | ${dut_node}
-| | ...                                                     | ${sock1}
-| | ...                                                     | ${sock2}
+| | When VPP Vhost interfaces for L2 forwarding are setup | ${dut_node}
+| | ...                                                   | ${sock1} | ${sock2}
 | | And L2 Setup Xconnect on DUT | ${dut_node} | ${dut_to_tg_if1} | ${vhost_if1}
 | | And L2 Setup Xconnect on DUT | ${dut_node} | ${dut_to_tg_if2} | ${vhost_if2}
-| | And VM for Vhost L2BD forwarding is setup | ${dut_node} | ${sock1}
-| | ...                                       | ${sock2}
+| | And VM for Vhost L2 forwarding is setup | ${dut_node} | ${sock1} | ${sock2}
 | | Then Send and receive ICMPv4 bidirectionally | ${tg_node} | ${tg_to_dut_if1}
 | | ...                                          | ${tg_to_dut_if2}
 | | [Teardown] | Run Keywords | Show Packet Trace on All DUTs | ${nodes}
@@ -121,13 +119,11 @@
 | | Given Path for 2-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | And Interfaces in 2-node path are up
-| | When VPP Vhost interfaces for L2BD forwarding are setup | ${dut_node}
-| | ...                                                     | ${sock1}
-| | ...                                                     | ${sock2}
+| | When VPP Vhost interfaces for L2 forwarding are setup | ${dut_node}
+| | ...                                                   | ${sock1} | ${sock2}
 | | And L2 Setup Xconnect on DUT | ${dut_node} | ${dut_to_tg_if1} | ${vhost_if1}
 | | And L2 Setup Xconnect on DUT | ${dut_node} | ${dut_to_tg_if2} | ${vhost_if2}
-| | And VM for Vhost L2BD forwarding is setup | ${dut_node} | ${sock1}
-| | ...                                       | ${sock2}
+| | And VM for Vhost L2 forwarding is setup | ${dut_node} | ${sock1} | ${sock2}
 | | Then Send and receive ICMPv6 bidirectionally | ${tg_node} | ${tg_to_dut_if1}
 | | ...                                          | ${tg_to_dut_if2}
 | | [Teardown] | Run Keywords | Show Packet Trace on All DUTs | ${nodes}

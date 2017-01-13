@@ -15,7 +15,6 @@
 | Library | resources.libraries.python.L2Util
 | Library | resources.libraries.python.InterfaceUtil
 | Library | resources.libraries.python.NodePath
-| Library | resources.libraries.python.VhostUser
 | Resource | resources/libraries/robot/interfaces.robot
 | Resource | resources/libraries/robot/l2_traffic.robot
 
@@ -200,6 +199,7 @@
 | | ...         | ${vpp_node_if} | ${bd_id}
 | | ${mac}= | Get Interface Mac | ${dest_node} | ${dest_node_if}
 | | Vpp Add L2fib Entry | ${vpp_node} | ${mac} | ${vpp_node_if} | ${bd_id}
+<<<<<<< HEAD
 
 | VM for Vhost L2BD forwarding is setup
 | | [Documentation] | Setup QEMU and start VM with two vhost interfaces.
@@ -277,3 +277,5 @@
 | | Set Interface State | ${dut_node} | ${vhost_2} | up
 | | Set Test Variable | ${${vhost_if1}} | ${vhost_1}
 | | Set Test Variable | ${${vhost_if2}} | ${vhost_2}
+=======
+>>>>>>> VIRL test: Dot1Q-L2BD-vhost_user test (CSIT-502)
