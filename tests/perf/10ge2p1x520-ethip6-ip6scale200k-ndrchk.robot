@@ -44,7 +44,7 @@
 | ${rts_per_flow}= | 100000
 
 *** Test Cases ***
-| TC01: Verify 78B ref-NDR at 2x 2.9Mpps - DUT IPv6 Fib 2x100k - 1thread 1core 1rxq
+| tc01-78B-1t1c-ethip6-ip6scale200k-ndrchk
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv6 routing config with 1 thread, 1 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Verify ref-NDR for 78 Byte
@@ -63,7 +63,7 @@
 | | ...                                    | ${framesize}
 | | ...                                    | 3-node-IPv6-dst-${rts_per_flow}
 
-| TC02: Verify 1518B ref-NDR at 2x 812.74kpps - DUT IPv6 Fib 2x100k - 1thread 1core 1rxq
+| tc02-1518B-1t1c-ethip6-ip6scale200k-ndrchk
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv6 routing config with 1 thread, 1 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Verify ref-NDR for 1518 Byte
@@ -82,7 +82,7 @@
 | | ...                                    | ${framesize}
 | | ...                                    | 3-node-IPv6-dst-${rts_per_flow}
 
-| TC03: Verify 9000B ref-NDR at 2x 138.58kpps - DUT IPv6 Fib 2x100k - 1thread 1core 1rxq
+| tc03-9000B-1t1c-ethip6-ip6scale200k-ndrchk
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv6 routing config with 1 thread, 1 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Verify ref-NDR for 9000 Byte
@@ -100,7 +100,7 @@
 | | ...                                    | ${framesize}
 | | ...                                    | 3-node-IPv6-dst-${rts_per_flow}
 
-| TC04: Verify 78B ref-NDR at 2x 5.9Mpps - DUT IPv6 Fib 2x100k - 2threads, 2cores, 1rxq
+| tc04-78B-2t2c-ethip6-ip6scale200k-ndrchk
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv6 routing config with 2 thread, 2 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Verify ref-NDR for 78 Byte
@@ -119,7 +119,7 @@
 | | ...                                    | ${framesize}
 | | ...                                    | 3-node-IPv6-dst-${rts_per_flow}
 
-| TC05: Verify 1518B ref-NDR at 2x 812.74kpps - DUT IPv6 Fib 2x100k - 2threads, 2cores, 1rxq
+| tc05-1518B-2t2c-ethip6-ip6scale200k-ndrchk
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv6 routing config with 2 thread, 2 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Verify ref-NDR for 1518 Byte
@@ -138,7 +138,7 @@
 | | ...                                    | ${framesize}
 | | ...                                    | 3-node-IPv6-dst-${rts_per_flow}
 
-| TC06: Verify 9000B ref-NDR at 2x 138.58kpps - DUT IPv6 Fib 2x100k - 2threads, 2cores, 1rxq
+| tc06-9000B-2t2c-ethip6-ip6scale200k-ndrchk
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv6 routing config with 2 thread, 2 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Verify ref-NDR for 9000 Byte
@@ -156,7 +156,7 @@
 | | ...                                    | ${framesize}
 | | ...                                    | 3-node-IPv6-dst-${rts_per_flow}
 
-| TC07: Verify 78B ref-NDR at 2x 10.3Mpps - DUT IPv6 Fib 2x100k - 4threads, 4cores, 2rxq
+| tc07-78B-4t4c-ethip6-ip6scale200k-ndrchk
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv6 routing config with 4 thread, 4 phy core, \
 | | ... | 2 receive queue per NIC port. [Ver] Verify ref-NDR for 78 Byte
@@ -175,7 +175,7 @@
 | | ...                                    | ${framesize}
 | | ...                                    | 3-node-IPv6-dst-${rts_per_flow}
 
-| TC08: Verify 1518B ref-NDR at 2x 812.74kpps - DUT IPv6 Fib 2x100k - 4threads, 4cores, 2rxq
+| tc08-1518B-4t4c-ethip6-ip6scale200k-ndrchk
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv6 routing config with 4 thread, 4 phy core, \
 | | ... | 2 receive queue per NIC port. [Ver] Verify ref-NDR for 1518 Byte
@@ -194,7 +194,7 @@
 | | ...                                    | ${framesize}
 | | ...                                    | 3-node-IPv6-dst-${rts_per_flow}
 
-| TC09: Verify 9000B ref-NDR at 2x 138.58kpps - DUT IPv6 Fib 2x100k - 4threads, 4cores, 2rxq
+| tc09-9000B-4t4c-ethip6-ip6scale200k-ndrchk
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv6 routing config with 4 thread, 4 phy core, \
 | | ... | 2 receive queue per NIC port. [Ver] Verify ref-NDR for 9000 Byte
