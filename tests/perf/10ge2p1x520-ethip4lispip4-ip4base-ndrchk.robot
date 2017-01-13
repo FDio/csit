@@ -49,7 +49,7 @@
 | ... | *[Ref] Applicable standard specifications:* RFC2544.
 
 *** Test Cases ***
-| TC01: Verify 64B ref-NDR at 2x 1.9Mpps - DUT IPv4 - 1thread 1core 1rxq
+| tc01-64B-1t1c-ethip4lispip4-ip4base-ndrchk
 | | [Documentation]
 | | ... | [Cfg] DUT runs LISP tunnel config with 1 thread, 1 phy core,\
 | | ... | 1 receive queue per NIC port.
@@ -74,7 +74,7 @@
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                   | ${framesize} | 3-node-IPv4
 
-| TC02: Verify 1480B ref-NDR at 2x 740kpps - DUT IPv4 - 1thread 1core 1rxq
+| tc02-1480B-1t1c-ethip4lispip4-ip4base-ndrchk
 | | [Documentation]
 | | ... | [Cfg] DUT runs LISP tunnel config with 1 thread, 1 phy core,\
 | | ... | 1 receive queue per NIC port.
@@ -99,7 +99,7 @@
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                   | ${framesize} | 3-node-IPv4
 
-| TC03: Verify 9000B ref-NDR at 2x 120kpps - DUT IPv4 - 1thread 1core 1rxq
+| tc03-9000B-1t1c-ethip4lispip4-ip4base-ndrchk
 | | [Documentation]
 | | ... | [Cfg] DUT runs LISP tunnel config with 1 thread, 1 phy core,\
 | | ... | 1 receive queue per NIC port.
@@ -123,7 +123,7 @@
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                   | ${framesize} | 3-node-IPv4
 
-| TC04: Verify 64B ref-NDR at 2x 3.6Mpps - DUT IPv4 - 2thread 2core 1rxq
+| tc04-64B-2t2c-ethip4lispip4-ip4base-ndrchk
 | | [Documentation]
 | | ... | [Cfg] DUT runs LISP tunnel config with 2 threads, 2 phy cores,\
 | | ... | 1 receive queue per NIC port.
@@ -148,7 +148,7 @@
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                   | ${framesize} | 3-node-IPv4
 
-| TC05: Verify 1480B ref-NDR at 2x 740kpps - DUT IPv4 - 2thread 2core 1rxq
+| tc05-1480B-2t2c-ethip4lispip4-ip4base-ndrchk
 | | [Documentation]
 | | ... | [Cfg] DUT runs LISP tunnel config with 2 threads, 2 phy cores,\
 | | ... | 1 receive queue per NIC port.
@@ -173,7 +173,7 @@
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                   | ${framesize} | 3-node-IPv4
 
-| TC06: Verify 9000B ref-NDR at 2x 120kpps - DUT IPv4 - 2thread 2core 1rxq
+| tc06-9000B-2t2c-ethip4lispip4-ip4base-ndrchk
 | | [Documentation]
 | | ... | [Cfg] DUT runs LISP tunnel config with 2 threads, 2 phy cores,\
 | | ... | 1 receive queue per NIC port.
@@ -197,7 +197,7 @@
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                   | ${framesize} | 3-node-IPv4
 
-| TC07: Verify 64B ref-NDR at 2x 3.5Mpps - DUT IPv4 - 4thread 4core 2rxq
+| tc07-64B-4t4c-ethip4lispip4-ip4base-ndrchk
 | | [Documentation]
 | | ... | [Cfg] DUT runs LISP tunnel config with 4 threads, 4 phy cores,\
 | | ... | 2 receive queues per NIC port.
@@ -222,7 +222,7 @@
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                   | ${framesize} | 3-node-IPv4
 
-| TC08: Verify 1480B ref-NDR at 2x 740kpps - DUT IPv4 - 4thread 4core 2rxq
+| tc08-1480B-4t4c-ethip4lispip4-ip4base-ndrchk
 | | [Documentation]
 | | ... | [Cfg] DUT runs LISP tunnel config with 4 threads, 4 phy cores,\
 | | ... | 2 receive queues per NIC port.
@@ -247,7 +247,7 @@
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                   | ${framesize} | 3-node-IPv4
 
-| TC09: Verify 9000B ref-NDR at 2x 120kpps - DUT IPv4 - 4thread 4core 2rxq
+| tc09-9000B-4t4c-ethip4lispip4-ip4base-ndrchk
 | | [Documentation]
 | | ... | [Cfg] DUT runs LISP tunnel config with 4 threads, 4 phy cores,\
 | | ... | 2 receive queues per NIC port.
