@@ -241,6 +241,10 @@ Encapsulation tags
 
     All test cases with GRE.
 
+.. topic:: IPSEC
+
+    All test cases with IPSEC.
+
 
 Interface tags
 --------------
@@ -276,6 +280,26 @@ Feature tags
 .. topic:: COPWHLIST
 
     COP whitelist.
+
+
+Encryption tags
+---------------
+
+.. topic:: IPSECSW
+
+    Crypto in software.
+
+.. topic:: IPSECHW
+
+    Crypto in hardware.
+
+.. topic:: IPSECTRAN
+
+    IPSec in transport mode.
+
+.. topic:: IPSECTUN
+
+    IPSec in tunnel mode.
 
 
 Client-workload tags
