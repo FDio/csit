@@ -47,11 +47,11 @@
 | ${tag_rewrite}= | pop-1
 
 *** Test Cases ***
-| TC01: Verify 64B ref-NDR at 2x 2.9Mpps - DUT 802.1q - 1thread 1core 1rxq
+| tc01-64B-1t1c-dot1q-l2xcbase-ndrchk
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC config with 1 thread, 1 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Verify ref-NDR for 64 Byte
-| | ... | frames using single trial throughput test.
+| | ... | frames using single trial throughput test at 2x 2.9mpps.
 | | [Tags] | 1T1C | STHREAD
 | | ${framesize}= | Set Variable | 64
 | | ${duration}= | Set Variable | 10
@@ -72,11 +72,11 @@
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                   | ${framesize} | 3-node-xconnect
 
-| TC02: Verify 1518B ref-NDR at 2x 720kpps - DUT 802.1q - 1thread 1core 1rxq
+| tc02-1518B-1t1c-dot1q-l2xcbase-ndrchk
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC config with 1 thread, 1 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Verify ref-NDR for 1518 Byte
-| | ... | frames using single trial throughput test.
+| | ... | frames using single trial throughput test at 2x 720000pps.
 | | [Tags] | 1T1C | STHREAD
 | | ${framesize}= | Set Variable | 1518
 | | ${duration}= | Set Variable | 10
@@ -97,11 +97,11 @@
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                   | ${framesize} | 3-node-xconnect
 
-| TC03: Verify 9000B ref-NDR at 2x 120kpps - DUT 802.1q - 1thread 1core 1rxq
+| tc03-9000B-1t1c-dot1q-l2xcbase-ndrchk
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC config with 1 thread, 1 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Verify ref-NDR for 9000 Byte
-| | ... | frames using single trial throughput test.
+| | ... | frames using single trial throughput test at 2x 120000pps.
 | | [Tags] | 1T1C | STHREAD
 | | ${framesize}= | Set Variable | 9000
 | | ${duration}= | Set Variable | 10
@@ -121,11 +121,11 @@
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                   | ${framesize} | 3-node-xconnect
 
-| TC04: Verify 64B ref-NDR at 2x 7Mpps - DUT 802.1q - 2thread 2core 1rxq
+| tc04-64B-2t2c-dot1q-l2xcbase-ndrchk
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC config with 2 threads, 2 phy cores, \
 | | ... | 1 receive queue per NIC port. [Ver] Verify ref-NDR for 64 Byte
-| | ... | frames using single trial throughput test.
+| | ... | frames using single trial throughput test at 2x 7.0mpps.
 | | [Tags] | 2T2C | MTHREAD
 | | ${framesize}= | Set Variable | 64
 | | ${duration}= | Set Variable | 10
@@ -146,11 +146,11 @@
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                   | ${framesize} | 3-node-xconnect
 
-| TC05: Verify 1518B ref-NDR at 2x 720kpps - DUT 802.1q - 2thread 2core 1rxq
+| tc05-1518B-2t2c-dot1q-l2xcbase-ndrchk
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC config with 2 threads, 2 phy cores, \
 | | ... | 1 receive queue per NIC port. [Ver] Verify ref-NDR for 1518 Byte
-| | ... | frames using single trial throughput test.
+| | ... | frames using single trial throughput test at 2x 720000pps.
 | | [Tags] | 2T2C | MTHREAD
 | | ${framesize}= | Set Variable | 1518
 | | ${duration}= | Set Variable | 10
@@ -171,11 +171,11 @@
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                   | ${framesize} | 3-node-xconnect
 
-| TC06: Verify 9000B ref-NDR at 2x 120kpps - DUT 802.1q - 2thread 2core 1rxq
+| tc06-9000B-2t2c-dot1q-l2xcbase-ndrchk
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC config with 2 threads, 2 phy cores, \
 | | ... | 1 receive queue per NIC port. [Ver] Verify ref-NDR for 9000 Byte
-| | ... | frames using single trial throughput test.
+| | ... | frames using single trial throughput test at 2x 120000pps.
 | | [Tags] | 2T2C | MTHREAD
 | | ${framesize}= | Set Variable | 9000
 | | ${duration}= | Set Variable | 10
@@ -195,11 +195,11 @@
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                   | ${framesize} | 3-node-xconnect
 
-| TC07: Verify 64B ref-NDR at 2x 11Mpps - DUT 802.1q - 4thread 4core 2rxq
+| tc07-64B-4t4c-dot1q-l2xcbase-ndrchk
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC config with 4 threads, 4 phy cores, \
 | | ... | 2 receive queues per NIC port. [Ver] Verify ref-NDR for 64 Byte
-| | ... | frames using single trial throughput test.
+| | ... | frames using single trial throughput test at 2x 11.0mpps.
 | | [Tags] | 4T4C | MTHREAD
 | | ${framesize}= | Set Variable | 64
 | | ${duration}= | Set Variable | 10
@@ -220,11 +220,11 @@
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                   | ${framesize} | 3-node-xconnect
 
-| TC08: Verify 1518B ref-NDR at 2x 720kpps - DUT 802.1q - 4thread 4core 2rxq
+| tc08-1518B-4t4c-dot1q-l2xcbase-ndrchk
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC config with 4 threads, 4 phy cores, \
 | | ... | 2 receive queues per NIC port. [Ver] Verify ref-NDR for 1518 Byte
-| | ... | frames using single trial throughput test.
+| | ... | frames using single trial throughput test at 2x 720000pps.
 | | [Tags] | 4T4C | MTHREAD
 | | ${framesize}= | Set Variable | 1518
 | | ${duration}= | Set Variable | 10
@@ -245,11 +245,11 @@
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                   | ${framesize} | 3-node-xconnect
 
-| TC09: Verify 9000B ref-NDR at 2x 120kpps - DUT 802.1q - 4thread 4core 2rxq
+| tc09-9000B-4t4c-dot1q-l2xcbase-ndrchk
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC config with 4 threads, 4 phy cores, \
 | | ... | 2 receive queues per NIC port. [Ver] Verify ref-NDR for 9000 Byte
-| | ... | frames using single trial throughput test.
+| | ... | frames using single trial throughput test at 2x 120000pps.
 | | [Tags] | 4T4C | MTHREAD
 | | ${framesize}= | Set Variable | 9000
 | | ${duration}= | Set Variable | 10

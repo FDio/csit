@@ -55,7 +55,7 @@
 | ${s_limit} | ${10000000000}
 
 *** Test Cases ***
-| TC01: 78B NDR binary search - DUT IPv6 whitelist - 1thread 1core 1rxq
+| tc01-78B-1t1c-ethip6-ip6base-copwhtlistbase-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv6 routing and whitelist filters config with \
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port. [Ver] Find NDR
@@ -84,7 +84,7 @@
 | | ...                                       | ${min_rate} | ${max_rate}
 | | ...                                       | ${threshold}
 
-| TC02: 78B PDR binary search - DUT IPv6 whitelist - 1thread 1core 1rxq
+| tc02-78B-1t1c-ethip6-ip6base-copwhtlistbase-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv6 routing and whitelist filters config with \
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port. [Ver] Find PDR
@@ -115,7 +115,7 @@
 | | ...                                       | ${glob_loss_acceptance}
 | | ...                                       | ${glob_loss_acceptance_type}
 
-| TC03: 1518B NDR binary search - DUT IPv6 whitelist - 1thread 1core 1rxq
+| tc03-1518B-1t1c-ethip6-ip6base-copwhtlistbase-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv6 routing and whitelist filters config with \
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port. [Ver] Find NDR
@@ -144,7 +144,7 @@
 | | ...                                       | ${min_rate} | ${max_rate}
 | | ...                                       | ${threshold}
 
-| TC04: 1518B PDR binary search - DUT IPv6 whitelist - 1thread 1core 1rxq
+| tc04-1518B-1t1c-ethip6-ip6base-copwhtlistbase-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv6 routing and whitelist filters config with \
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port. [Ver] Find PDR
@@ -175,7 +175,7 @@
 | | ...                                       | ${glob_loss_acceptance}
 | | ...                                       | ${glob_loss_acceptance_type}
 
-| TC05: 9000B NDR binary search - DUT IPv6 whitelist - 1thread 1core 1rxq
+| tc05-9000B-1t1c-ethip6-ip6base-copwhtlistbase-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv6 routing and whitelist filters config with \
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port. [Ver] Find NDR
@@ -203,7 +203,7 @@
 | | ...                                       | ${min_rate} | ${max_rate}
 | | ...                                       | ${threshold}
 
-| TC06: 9000B PDR binary search - DUT IPv6 whitelist - 1thread 1core 1rxq
+| tc06-9000B-1t1c-ethip6-ip6base-copwhtlistbase-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv6 routing and whitelist filters config with \
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port. [Ver] Find PDR
@@ -233,7 +233,7 @@
 | | ...                                       | ${glob_loss_acceptance}
 | | ...                                       | ${glob_loss_acceptance_type}
 
-| TC07: 78B NDR binary search - DUT IPv6 whitelist - 2threads 2cores 1rxq
+| tc07-78B-2t2c-ethip6-ip6base-copwhtlistbase-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv6 routing and whitelist filters config with \
 | | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port. [Ver] Find NDR
@@ -262,7 +262,7 @@
 | | ...                                       | ${min_rate} | ${max_rate}
 | | ...                                       | ${threshold}
 
-| TC08: 78B PDR binary search - DUT IPv6 whitelist - 2threads 2cores 1rxq
+| tc08-78B-2t2c-ethip6-ip6base-copwhtlistbase-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv6 routing and whitelist filters config with \
 | | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port. [Ver] Find PDR
@@ -293,7 +293,7 @@
 | | ...                                       | ${glob_loss_acceptance}
 | | ...                                       | ${glob_loss_acceptance_type}
 
-| TC09: 1518B NDR binary search - DUT IPv6 whitelist - 2threads 2cores 1rxq
+| tc09-1518B-2t2c-ethip6-ip6base-copwhtlistbase-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv6 routing and whitelist filters config with \
 | | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port. [Ver] Find NDR
@@ -322,7 +322,7 @@
 | | ...                                       | ${min_rate} | ${max_rate}
 | | ...                                       | ${threshold}
 
-| TC10: 1518B PDR binary search - DUT IPv6 whitelist - 2threads 2cores 1rxq
+| tc10-1518B-2t2c-ethip6-ip6base-copwhtlistbase-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv6 routing and whitelist filters config with \
 | | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port. [Ver] Find PDR
@@ -353,7 +353,7 @@
 | | ...                                       | ${glob_loss_acceptance}
 | | ...                                       | ${glob_loss_acceptance_type}
 
-| TC11: 9000B NDR binary search - DUT IPv6 whitelist - 2threads 2cores 1rxq
+| tc11-9000B-2t2c-ethip6-ip6base-copwhtlistbase-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv6 routing and whitelist filters config with \
 | | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port. [Ver] Find NDR
@@ -381,7 +381,7 @@
 | | ...                                       | ${min_rate} | ${max_rate}
 | | ...                                       | ${threshold}
 
-| TC12: 9000B PDR binary search - DUT IPv6 whitelist - 2threads 2cores 1rxq
+| tc12-9000B-2t2c-ethip6-ip6base-copwhtlistbase-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv6 routing and whitelist filters config with \
 | | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port. [Ver] Find PDR
@@ -411,7 +411,7 @@
 | | ...                                       | ${glob_loss_acceptance}
 | | ...                                       | ${glob_loss_acceptance_type}
 
-| TC13: 78B NDR binary search - DUT IPv6 whitelist - 4threads 4cores 2rxq
+| tc13-78B-4t4c-ethip6-ip6base-copwhtlistbase-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv6 routing and whitelist filters config with \
 | | ... | 4 threads, 4 phy cores, 2 receive queue per NIC port. [Ver] Find NDR
@@ -440,7 +440,7 @@
 | | ...                                       | ${min_rate} | ${max_rate}
 | | ...                                       | ${threshold}
 
-| TC14: 78B PDR binary search - DUT IPv6 whitelist - 4threads 4cores 2rxq
+| tc14-78B-4t4c-ethip6-ip6base-copwhtlistbase-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv6 routing and whitelist filters config with \
 | | ... | 4 threads, 4 phy cores, 2 receive queue per NIC port. [Ver] Find PDR
@@ -471,7 +471,7 @@
 | | ...                                       | ${glob_loss_acceptance}
 | | ...                                       | ${glob_loss_acceptance_type}
 
-| TC15: 1518B NDR binary search - DUT IPv6 whitelist - 4threads 4cores 2rxq
+| tc15-1518B-4t4c-ethip6-ip6base-copwhtlistbase-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv6 routing and whitelist filters config with \
 | | ... | 4 threads, 4 phy cores, 2 receive queue per NIC port. [Ver] Find NDR
@@ -500,7 +500,7 @@
 | | ...                                       | ${min_rate} | ${max_rate}
 | | ...                                       | ${threshold}
 
-| TC16: 1518B PDR binary search - DUT IPv6 whitelist - 4threads 4cores 2rxq
+| tc16-1518B-4t4c-ethip6-ip6base-copwhtlistbase-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv6 routing and whitelist filters config with \
 | | ... | 4 threads, 4 phy cores, 2 receive queue per NIC port. [Ver] Find PDR
@@ -531,7 +531,7 @@
 | | ...                                       | ${glob_loss_acceptance}
 | | ...                                       | ${glob_loss_acceptance_type}
 
-| TC17: 9000B NDR binary search - DUT IPv6 whitelist - 4threads 4cores 2rxq
+| tc17-9000B-4t4c-ethip6-ip6base-copwhtlistbase-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv6 routing and whitelist filters config with \
 | | ... | 4 threads, 4 phy cores, 2 receive queue per NIC port. [Ver] Find NDR
@@ -559,7 +559,7 @@
 | | ...                                       | ${min_rate} | ${max_rate}
 | | ...                                       | ${threshold}
 
-| TC18: 9000B PDR binary search - DUT IPv6 whitelist - 4threads 4cores 2rxq
+| tc18-9000B-4t4c-ethip6-ip6base-copwhtlistbase-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv6 routing and whitelist filters config with \
 | | ... | 4 threads, 4 phy cores, 2 receive queue per NIC port. [Ver] Find PDR
