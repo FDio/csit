@@ -436,20 +436,18 @@
 | | Given Path for 3-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And Interfaces in 3-node path are up
-| | When VPP Vhost interfaces for L2BD forwarding are setup | ${dut1_node}
-| | ...                                                     | ${sock1}
-| | ...                                                     | ${sock2}
-| | ...                                                     | ${dut1_vhost1}
-| | ...                                                     | ${dut1_vhost2}
-| | And VPP Vhost interfaces for L2BD forwarding are setup | ${dut2_node}
-| | ...                                                    | ${sock1}
-| | ...                                                    | ${sock2}
-| | ...                                                    | ${dut2_vhost1}
-| | ...                                                    | ${dut2_vhost2}
-| | And VM for Vhost L2BD forwarding is setup | ${dut1_node} | ${sock1}
-| | ...                                       | ${sock2} | ${qemu1}
-| | And VM for Vhost L2BD forwarding is setup | ${dut2_node} | ${sock1}
-| | ...                                       | ${sock2} | ${qemu2}
+| | When VPP Vhost interfaces for L2 forwarding are setup | ${dut1_node}
+| | ...                                                   | ${sock1} | ${sock2}
+| | ...                                                   | ${dut1_vhost1}
+| | ...                                                   | ${dut1_vhost2}
+| | And VPP Vhost interfaces for L2 forwarding are setup | ${dut2_node}
+| | ...                                                  | ${sock1} | ${sock2}
+| | ...                                                  | ${dut2_vhost1}
+| | ...                                                  | ${dut2_vhost2}
+| | And VM for Vhost L2 forwarding is setup | ${dut1_node} | ${sock1}
+| | ...                                     | ${sock2} | ${qemu1}
+| | And VM for Vhost L2 forwarding is setup | ${dut2_node} | ${sock1}
+| | ...                                     | ${sock2} | ${qemu2}
 | | And Set Interface Address | ${dut1_node} | ${dut1_to_dut2} | ${ip4_addr1}
 | | ...                       | ${ip4_prefix}
 | | And Set Interface Address | ${dut2_node} | ${dut2_to_dut1} | ${ip4_addr2}
@@ -496,20 +494,18 @@
 | | Given Path for 3-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And Interfaces in 3-node path are up
-| | When VPP Vhost interfaces for L2BD forwarding are setup | ${dut1_node}
-| | ...                                                     | ${sock1}
-| | ...                                                     | ${sock2}
-| | ...                                                     | ${dut1_vhost1}
-| | ...                                                     | ${dut1_vhost2}
-| | And VPP Vhost interfaces for L2BD forwarding are setup | ${dut2_node}
-| | ...                                                    | ${sock1}
-| | ...                                                    | ${sock2}
-| | ...                                                    | ${dut2_vhost1}
-| | ...                                                    | ${dut2_vhost2}
-| | And VM for Vhost L2BD forwarding is setup | ${dut1_node} | ${sock1}
-| | ...                                       | ${sock2} | ${qemu1}
-| | And VM for Vhost L2BD forwarding is setup | ${dut2_node} | ${sock1}
-| | ...                                       | ${sock2} | ${qemu2}
+| | When VPP Vhost interfaces for L2 forwarding are setup | ${dut1_node}
+| | ...                                                   | ${sock1} | ${sock2}
+| | ...                                                   | ${dut1_vhost1}
+| | ...                                                   | ${dut1_vhost2}
+| | And VPP Vhost interfaces for L2 forwarding are setup | ${dut2_node}
+| | ...                                                  | ${sock1} | ${sock2}
+| | ...                                                  | ${dut2_vhost1}
+| | ...                                                  | ${dut2_vhost2}
+| | And VM for Vhost L2 forwarding is setup | ${dut1_node} | ${sock1}
+| | ...                                     | ${sock2} | ${qemu1}
+| | And VM for Vhost L2 forwarding is setup | ${dut2_node} | ${sock1}
+| | ...                                     | ${sock2} | ${qemu2}
 | | And Set Interface Address | ${dut1_node} | ${dut1_to_dut2} | ${ip6_addr1}
 | | ...                       | ${ip6_prefix}
 | | And Set Interface Address | ${dut2_node} | ${dut2_to_dut1} | ${ip6_addr2}
