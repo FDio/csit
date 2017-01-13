@@ -202,9 +202,8 @@
 | | Given Path for 2-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | And Interfaces in 2-node path are up
-| | When VPP Vhost interfaces for L2BD forwarding are setup | ${dut_node}
-| | ...                                                     | ${sock1}
-| | ...                                                     | ${sock2}
+| | When VPP Vhost interfaces for L2 forwarding are setup | ${dut_node}
+| | ...                                                   | ${sock1} | ${sock2}
 | | And Bridge domain on DUT node is created | ${dut_node} | ${bd_id1}
 | | And Interface is added to bridge domain | ${dut_node} | ${dut_to_tg_if1}
 | | ...                                     | ${bd_id1}
@@ -215,8 +214,7 @@
 | | ...                                     | ${bd_id2}
 | | And Interface is added to bridge domain | ${dut_node} | ${vhost_if2}
 | | ...                                     | ${bd_id2}
-| | And VM for Vhost L2BD forwarding is setup | ${dut_node} | ${sock1}
-| | ...                                       | ${sock2}
+| | And VM for Vhost L2 forwarding is setup | ${dut_node} | ${sock1} | ${sock2}
 | | Then Send and receive ICMPv4 bidirectionally | ${tg_node} | ${tg_to_dut_if1}
 | | ...                                          | ${tg_to_dut_if2}
 | | [Teardown] | Run Keywords | Show Packet Trace on All DUTs | ${nodes}
@@ -236,9 +234,8 @@
 | | Given Path for 2-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | And Interfaces in 2-node path are up
-| | When VPP Vhost interfaces for L2BD forwarding are setup | ${dut_node}
-| | ...                                                     | ${sock1}
-| | ...                                                     | ${sock2}
+| | When VPP Vhost interfaces for L2 forwarding are setup | ${dut_node}
+| | ...                                                   | ${sock1} | ${sock2}
 | | And Bridge domain on DUT node is created | ${dut_node} | ${bd_id1}
 | | And Interface is added to bridge domain | ${dut_node} | ${dut_to_tg_if1}
 | | ...                                     | ${bd_id1}
@@ -249,8 +246,7 @@
 | | ...                                     | ${bd_id2}
 | | And Interface is added to bridge domain | ${dut_node} | ${vhost_if2}
 | | ...                                     | ${bd_id2}
-| | And VM for Vhost L2BD forwarding is setup | ${dut_node} | ${sock1}
-| | ...                                       | ${sock2}
+| | And VM for Vhost L2 forwarding is setup | ${dut_node} | ${sock1} | ${sock2}
 | | Then Send and receive ICMPv6 bidirectionally | ${tg_node} | ${tg_to_dut_if1}
 | | ...                                          | ${tg_to_dut_if2}
 | | [Teardown] | Run Keywords | Show Packet Trace on All DUTs | ${nodes}
@@ -270,9 +266,8 @@
 | | Given Path for 2-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | And Interfaces in 2-node path are up
-| | When VPP Vhost interfaces for L2BD forwarding are setup | ${dut_node}
-| | ...                                                     | ${sock1}
-| | ...                                                     | ${sock2}
+| | When VPP Vhost interfaces for L2 forwarding are setup | ${dut_node}
+| | ...                                                   | ${sock1} | ${sock2}
 | | And Bridge domain on DUT node is created | ${dut_node} | ${bd_id1}
 | | ...                                      | learn=${FALSE}
 | | And Interface is added to bridge domain | ${dut_node} | ${dut_to_tg_if1}
@@ -305,8 +300,7 @@
 | | ...                                                | ${dut_node}
 | | ...                                                | ${vhost_if2}
 | | ...                                                | ${bd_id2}
-| | And VM for Vhost L2BD forwarding is setup | ${dut_node} | ${sock1}
-| | ...                                       | ${sock2}
+| | And VM for Vhost L2 forwarding is setup | ${dut_node} | ${sock1} | ${sock2}
 | | Then Send and receive ICMPv4 bidirectionally | ${tg_node} | ${tg_to_dut_if1}
 | | ...                                          | ${tg_to_dut_if2}
 | | [Teardown] | Run Keywords | Show Packet Trace on All DUTs | ${nodes}
@@ -333,9 +327,8 @@
 | | Given Path for 2-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | And Interfaces in 2-node path are up
-| | When VPP Vhost interfaces for L2BD forwarding are setup | ${dut_node}
-| | ...                                                     | ${sock1}
-| | ...                                                     | ${sock2}
+| | When VPP Vhost interfaces for L2 forwarding are setup | ${dut_node}
+| | ...                                                   | ${sock1} | ${sock2}
 | | And Bridge domain on DUT node is created | ${dut_node} | ${bd_id1}
 | | ...                                      | learn=${FALSE}
 | | And Interface is added to bridge domain | ${dut_node} | ${dut_to_tg_if1}
@@ -368,7 +361,6 @@
 | | ...                                                | ${dut_node}
 | | ...                                                | ${vhost_if2}
 | | ...                                                | ${bd_id2}
-| | And VM for Vhost L2BD forwarding is setup | ${dut_node} | ${sock1}
-| | ...                                       | ${sock2}
+| | And VM for Vhost L2 forwarding is setup | ${dut_node} | ${sock1} | ${sock2}
 | | Then Send and receive ICMPv6 bidirectionally | ${tg_node} | ${tg_to_dut_if1}
 | | ...                                          | ${tg_to_dut_if2}
