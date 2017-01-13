@@ -21,6 +21,7 @@
 | Resource | resources/libraries/robot/honeycomb/honeycomb.robot
 | Suite Setup | Run Keywords | Setup All DUTs Before Test | AND
 | ... | Clear Persisted Honeycomb Configuration | ${node} | AND
+| ... | Copy Java Libraries | ${node} | AND
 | ... | Configure Unsecured Access | ${node} | AND
 | ... | Enable Module Features | ${node} | AND
 | ... | Configure Log Level | ${node} | TRACE | AND

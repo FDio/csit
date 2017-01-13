@@ -298,14 +298,16 @@ class HoneycombSetup(object):
                                  "node {0}, {1}".format(node, stderr))
 
     @staticmethod
-    def enable_module_features(node):
+    def enable_module_features(node, *features):
         """Configure Honeycomb to use VPP modules that are disabled by default.
 
-        Note: If the module is not enabled in VPP, Honeycomb will
+        ..Note:: If the module is not enabled in VPP, Honeycomb will
         be unable to establish VPP connection.
 
         :param node: Honeycomb node.
+        :param features: Features to enable.
         :type node: dict
+        :type features: string
         :raises HoneycombError: If the configuration could not be changed.
          """
 
@@ -316,16 +318,57 @@ class HoneycombSetup(object):
         ssh = SSH()
         ssh.connect(node)
 
-        for feature in disabled_features.keys():
-            # uncomment by replacing the entire line
-            find = replace = "{0}".format(disabled_features[feature])
+        for feature in features:
+            if feature in disabled_features.keys():
+                # uncomment by replacing the entire line
+                find = replace = "{0}".format(disabled_features[feature])
 
-            argument = '"/{0}/c\\ {1}"'.format(find, replace)
-            path = "{0}/modules/*module-config"\
-                .format(Const.REMOTE_HC_DIR)
-            command = "sed -i {0} {1}".format(argument, path)
+                argument = '"/{0}/c\\ {1}"'.format(find, replace)
+                path = "{0}/modules/*module-config"\
+                    .format(Const.REMOTE_HC_DIR)
+                command = "sed -i {0} {1}".format(argument, path)
 
-            (ret_code, _, stderr) = ssh.exec_command_sudo(command)
+                (ret_code, _, stderr) = ssh.exec_command_sudo(command)
+                if ret_code != 0:
+                    raise HoneycombError("Failed to modify configuration on "
+                                         "node {0}, {1}".format(node, stderr))
+            else:
+                raise HoneycombError(
+                    "Unrecognized feature {0}.".format(feature))
+
+    @staticmethod
+    def copy_java_libraries(node):
+        """Copy Java libraries installed by vpp-api-java package to honeycomb
+        lib folder.
+
+        This is a (temporary?) workaround for jvpp version mismatches.
+
+        :param node: Honeycomb node
+        :type node: dict
+        """
+
+        ssh = SSH()
+        ssh.connect(node)
+        (_, stdout, _) = ssh.exec_command_sudo(
+            "ls /usr/share/java | grep ^jvpp-*")
+
+        files = stdout.split("\n")[:-1]
+        for item in files:
+            # example filenames:
+            # jvpp-registry-17.04.jar
+            # jvpp-core-17.04.jar
+
+            parts = item.split("-")
+            version = "{0}-SNAPSHOT".format(parts[2][:5])
+            artifact_id = "{0}-{1}".format(parts[0], parts[1])
+
+            directory = "{0}/lib/io/fd/vpp/{1}/{2}".format(
+                Const.REMOTE_HC_DIR, artifact_id, version)
+            cmd = "sudo mkdir -p {0}; " \
+                  "sudo cp /usr/share/java/{0} {1}/{2}-{3}.jar".format(
+                    item, directory, artifact_id, version)
+
+            (ret_code, _, stderr) = ssh.exec_command(cmd)
             if ret_code != 0:
-                raise HoneycombError("Failed to modify configuration on "
+                raise HoneycombError("Failed to copy JVPP libraries on "
                                      "node {0}, {1}".format(node, stderr))

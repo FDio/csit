@@ -24,7 +24,8 @@
 | Documentation | *Honeycomb NSH test suite.*
 | Suite Teardown | Run Keyword If Any Tests Failed
 | ... | Restart Honeycomb And VPP And Clear Persisted Configuration | ${node}
-| Force Tags | honeycomb_sanity
+# disabled pending NSH version 17.04
+#| Force Tags | honeycomb_sanity
 
 *** Test Cases ***
 | TC01: Honeycomb can configure NSH entry
