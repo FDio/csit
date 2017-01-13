@@ -51,7 +51,7 @@
 | ${tag_rewrite}= | pop-2
 
 *** Test Cases ***
-| TC01: Verify 64B ref-NDR at 2x 2.9Mpps - DUT L2XC with 802.1ad - 1thread 1core 1rxq
+| tc01-64B-1t1c-dot1ad-l2xcbase-ndrchk
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC with 802.1ad config with 1 thread, 1 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Verify ref-NDR for 64 Byte
@@ -77,7 +77,7 @@
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                   | ${framesize} | 3-node-xconnect
 
-| TC02: Verify 1514B ref-NDR at 2x 810.635kpps - DUT L2XC with 802.1ad - 1thread 1core 1rxq
+| tc02-1514B-1t1c-dot1ad-l2xcbase-ndrchk
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC with 802.1ad config with 1 thread, 1 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Verify ref-NDR for 1514 Byte
@@ -103,7 +103,7 @@
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                   | ${framesize} | 3-node-xconnect
 
-| TC03: Verify 9000B ref-NDR at 2x 138.458kpps - DUT L2XC with 802.1ad - 1thread 1core 1rxq
+| tc03-9000B-1t1c-dot1ad-l2xcbase-ndrchk
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC with 802.1ad config with 1 thread, 1 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Verify ref-NDR for 9000 Byte
@@ -128,7 +128,7 @@
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                   | ${framesize} | 3-node-xconnect
 
-| TC04: Verify 64B ref-NDR at 2x 7Mpps - DUT L2XC with 802.1ad - 2thread 2core 1rxq
+| tc04-64B-2t2c-dot1ad-l2xcbase-ndrchk
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC with 802.1ad config with 2 thread, 2 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Verify ref-NDR for 64 Byte
@@ -154,7 +154,7 @@
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                   | ${framesize} | 3-node-xconnect
 
-| TC05: Verify 1514B ref-NDR at 2x 810.635kpps - DUT L2XC with 802.1ad - 2thread 2core 1rxq
+| tc05-1514B-2t2c-dot1ad-l2xcbase-ndrchk
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC with 802.1ad config with 2 thread, 2 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Verify ref-NDR for 1514 Byte
@@ -180,7 +180,7 @@
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                   | ${framesize} | 3-node-xconnect
 
-| TC06: Verify 9000B ref-NDR at 2x 138.458kpps - DUT L2XC with 802.1ad - 2thread 2core 1rxq
+| tc06-9000B-2t2c-dot1ad-l2xcbase-ndrchk
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC with 802.1ad config with 2 thread, 2 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Verify ref-NDR for 9000 Byte
@@ -205,7 +205,7 @@
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                   | ${framesize} | 3-node-xconnect
 
-| TC07: Verify 64B ref-NDR at 2x 8Mpps - DUT L2XC with 802.1ad - 4thread 4core 2rxq
+| tc07-64B-4t4c-dot1ad-l2xcbase-ndrchk
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC with 802.1ad config with 4 thread, 4 phy core, \
 | | ... | 2 receive queue per NIC port. [Ver] Verify ref-NDR for 64 Byte
@@ -231,7 +231,7 @@
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                   | ${framesize} | 3-node-xconnect
 
-| TC08: Verify 1514B ref-NDR at 2x 810.635kpps - DUT L2XC with 802.1ad - 4thread 4core 2rxq
+| tc08-1514B-4t4c-dot1ad-l2xcbase-ndrchk
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC with 802.1ad config with 4 thread, 4 phy core, \
 | | ... | 2 receive queue per NIC port. [Ver] Verify ref-NDR for 1514 Byte
@@ -257,7 +257,7 @@
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                   | ${framesize} | 3-node-xconnect
 
-| TC09: Verify 9000B ref-NDR at 2x 138.458kpps - DUT L2XC with 802.1ad - 4thread 4core 2rxq
+| tc09-9000B-4t4c-dot1ad-l2xcbase-ndrchk
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC with 802.1ad config with 4 thread, 4 phy core, \
 | | ... | 2 receive queue per NIC port. [Ver] Verify ref-NDR for 9000 Byte
