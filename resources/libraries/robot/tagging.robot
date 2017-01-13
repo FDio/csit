@@ -128,7 +128,7 @@
 | | L2 setup xconnect on DUT | ${DUT2} | ${INT2} | ${SUB_INT2}
 
 | Vlan Subinterface Created
-| | [Documentation] | Create VLAN sub-interface on DUT.
+| | [Documentation] | Create VLAN sub-interface on DUT and set admin status up.
 | | ...
 | | ... | *Arguments:*
 | | ... | - dut_node - Node to add VLAN sub-intreface. Type: dictionary
@@ -148,6 +148,7 @@
 | | ${interface_name}= | Get interface name | ${dut_node} | ${interface}
 | | ${vlan_name} | ${vlan_index}= | Create Vlan Subinterface
 | | ... | ${dut_node} | ${interface_name} | ${vlan_id}
+| | Set Interface State | ${dut_node} | ${vlan_index} | up
 
 | Tagged Subinterface Created
 | | [Documentation] | Create tagged sub-interface on DUT. Type of tagged \
