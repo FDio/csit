@@ -50,7 +50,7 @@
 | ${eir}= | ${150}
 
 *** Test Cases ***
-| TC01: Verify 64B ref-NDR at 2x 3.1Mpps - DUT IPv4 2r3c-ca policer - 1thread 1core 1rxq
+| tc01-64B-1t1c-ethip4-ip4base-ipolicemarkbase-ndrchk
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 routing and policer config with 1 thread, 1 phy \
 | | ... | core, 1 receive queue per NIC port. [Ver] Verify ref-NDR for 64 \
@@ -70,7 +70,7 @@
 | | Then  Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                    | ${framesize} | 3-node-IPv4
 
-| TC02: Verify 1518B ref-NDR at 2x 812.74kpps - DUT IPv4 2r3c-ca policer - 1thread 1core 1rxq
+| tc02-1518B-1t1c-ethip4-ip4base-ipolicemarkbase-ndrchk
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 routing and policer config with 1 thread, 1 phy \
 | | ... | core, 1 receive queue per NIC port. [Ver] Verify ref-NDR for 1518 \
@@ -90,7 +90,7 @@
 | | Then  Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                    | ${framesize} | 3-node-IPv4
 
-| TC03: Verify 9000B ref-NDR at 2x 138.58kpps - DUT IPv4 2r3c-ca policer - 1thread 1core 1rxq
+| tc03-9000B-1t1c-ethip4-ip4base-ipolicemarkbase-ndrchk
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 routing and policer config with 1 thread, 1 phy \
 | | ... | core, 1 receive queue per NIC port. [Ver] Verify ref-NDR for 9000 \
@@ -109,7 +109,7 @@
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                   | ${framesize} | 3-node-IPv4
 
-| TC04: Verify 64B ref-NDR at 2x 5.6Mpps - DUT IPv4 2r3c-ca policer - 2thread 2core 1rxq
+| tc04-64B-2t2c-ethip4-ip4base-ipolicemarkbase-ndrchk
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 routing and policer config with 2 threads, 2 \
 | | ... | phy cores, 1 receive queue per NIC port. [Ver] Verify ref-NDR for \
@@ -129,7 +129,7 @@
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                   | ${framesize} | 3-node-IPv4
 
-| TC05: Verify 1518B ref-NDR at 2x 812.74kpps - DUT IPv4 2r3c-ca policer - 2thread 2core 1rxq
+| tc05-1518B-2t2c-ethip4-ip4base-ipolicemarkbase-ndrchk
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 routing and policer config with 2 threads, 2 \
 | | ... | phy cores, 1 receive queue per NIC port. [Ver] Verify ref-NDR for \
@@ -149,7 +149,7 @@
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                   | ${framesize} | 3-node-IPv4
 
-| TC06: Verify 9000B ref-NDR at 2x 138.58kpps - DUT IPv4 2r3c-ca policer - 2thread 2core 1rxq
+| tc06-9000B-2t2c-ethip4-ip4base-ipolicemarkbase-ndrchk
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 routing and policer config with 2 threads, 2 \
 | | ... | phy cores, 1 receive queue per NIC port. [Ver] Verify ref-NDR for \
@@ -168,7 +168,7 @@
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                   | ${framesize} | 3-node-IPv4
 
-| TC07: Verify 64B ref-NDR at 2x 8.9Mpps - DUT IPv4 2r3c-ca policer - 4threads 4cores 2rxq
+| tc07-64B-4t4c-ethip4-ip4base-ipolicemarkbase-ndrchk
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 routing and policer config with 4 thread, 4 \
 | | ... | phy core, 2 receive queue per NIC port. [Ver] Verify ref-NDR for 64 \
@@ -188,7 +188,7 @@
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                   | ${framesize} | 3-node-IPv4
 
-| TC08: Verify 1518B ref-NDR at 2x 812.74kpps - DUT IPv4 2r3c-ca policer - 4threads 4cores 2rxq
+| tc08-1518B-4t4c-ethip4-ip4base-ipolicemarkbase-ndrchk
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 routing and policer config with 4 thread, 4 \
 | | ... | phy core, 2 receive queue per NIC port. [Ver] Verify ref-NDR for \
@@ -208,7 +208,7 @@
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                   | ${framesize} | 3-node-IPv4
 
-| TC09: Verify 9000B ref-NDR at 2x 138.58kpps - DUT IPv4 2r3c-ca policer - 4threads 4cores 2rxq
+| tc09-9000B-4t4c-ethip4-ip4base-ipolicemarkbase-ndrchk
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 routing and policer config with 4 thread, 4 \
 | | ... | phy core, 2 receive queue per NIC port. [Ver] Verify ref-NDR for \
