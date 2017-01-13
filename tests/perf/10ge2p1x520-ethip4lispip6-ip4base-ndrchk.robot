@@ -49,12 +49,12 @@
 | ... | *[Ref] Applicable standard specifications:* RFC2544.
 
 *** Test Cases ***
-| TC01: Verify 64B ref-NDR at 2x 1.53Mpps - DUT IPv4oIPv6 - 1thread 1core 1rxq
+| tc01-64B-1t1c-ethip4lispip6-ip4base-ndrchk
 | | [Documentation]
 | | ... | [Cfg] DUT runs LISP tunnel config with 1 thread, 1 phy core,\
 | | ... | 1 receive queue per NIC port.
 | | ... | [Ver] Verify ref-NDR for 64 Byte frames using single trial\
-| | ... | throughput test.
+| | ... | throughput test at 2x 1.53mpps.
 | | [Tags] | 1T1C | STHREAD
 | | ${framesize}= | Set Variable | 64
 | | ${duration}= | Set Variable | 10
@@ -74,12 +74,12 @@
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                   | ${framesize} | 3-node-IPv4
 
-| TC02: Verify 1460B ref-NDR at 2x 720kpps - DUT IPv4oIPv6 - 1thread 1core 1rxq
+| tc02-1460B-1t1c-ethip4lispip6-ip4base-ndrchk
 | | [Documentation]
 | | ... | [Cfg] DUT runs LISP tunnel config with 1 thread, 1 phy core,\
 | | ... | 1 receive queue per NIC port.
 | | ... | [Ver] Verify ref-NDR for 1460 Byte frames using single trial\
-| | ... | throughput test.
+| | ... | throughput test at 2x 720000pps.
 | | [Tags] | 1T1C | STHREAD
 | | ${framesize}= | Set Variable | 1460
 | | ${duration}= | Set Variable | 10
@@ -99,12 +99,12 @@
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                   | ${framesize} | 3-node-IPv4
 
-| TC03: Verify 9000B ref-NDR at 2x 120kpps - DUT IPv4oIPv6 - 1thread 1core 1rxq
+| tc03-9000B-1t1c-ethip4lispip6-ip4base-ndrchk
 | | [Documentation]
 | | ... | [Cfg] DUT runs LISP tunnel config with 1 thread, 1 phy core,\
 | | ... | 1 receive queue per NIC port.
 | | ... | [Ver] Verify ref-NDR for 9000 Byte frames using single trial\
-| | ... | throughput test.
+| | ... | throughput test at 2x 120000pps.
 | | [Tags] | 1T1C | STHREAD
 | | ${framesize}= | Set Variable | 9000
 | | ${duration}= | Set Variable | 10
@@ -123,12 +123,12 @@
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                   | ${framesize} | 3-node-IPv4
 
-| TC04: Verify 64B ref-NDR at 2x 3.25Mpps - DUT IPv4oIPv6 - 2thread 2core 1rxq
+| tc04-64B-2t2c-ethip4lispip6-ip4base-ndrchk
 | | [Documentation]
 | | ... | [Cfg] DUT runs LISP tunnel config with 2 threads, 2 phy cores,\
 | | ... | 1 receive queue per NIC port.
 | | ... | [Ver] Verify ref-NDR for 64 Byte frames using single trial\
-| | ... | throughput test.
+| | ... | throughput test at 2x 3.25mpps.
 | | [Tags] | 2T2C | MTHREAD
 | | ${framesize}= | Set Variable | 64
 | | ${duration}= | Set Variable | 10
@@ -148,12 +148,12 @@
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                   | ${framesize} | 3-node-IPv4
 
-| TC05: Verify 1460B ref-NDR at 2x 720kpps - DUT IPv4oIPv6 - 2thread 2core 1rxq
+| tc05-1460B-2t2c-ethip4lispip6-ip4base-ndrchk
 | | [Documentation]
 | | ... | [Cfg] DUT runs LISP tunnel config with 2 threads, 2 phy cores,\
 | | ... | 1 receive queue per NIC port.
 | | ... | [Ver] Verify ref-NDR for 1460 Byte frames using single trial\
-| | ... | throughput test.
+| | ... | throughput test at 2x 720000pps.
 | | [Tags] | 2T2C | MTHREAD
 | | ${framesize}= | Set Variable | 1460
 | | ${duration}= | Set Variable | 10
@@ -173,12 +173,12 @@
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                   | ${framesize} | 3-node-IPv4
 
-| TC06: Verify 9000B ref-NDR at 2x 120kpps - DUT IPv4oIPv6 - 2thread 2core 1rxq
+| tc06-9000B-2t2c-ethip4lispip6-ip4base-ndrchk
 | | [Documentation]
 | | ... | [Cfg] DUT runs LISP tunnel config with 2 threads, 2 phy cores,\
 | | ... | 1 receive queue per NIC port.
 | | ... | [Ver] Verify ref-NDR for 9000 Byte frames using single trial\
-| | ... | throughput test.
+| | ... | throughput test at 2x 120000pps.
 | | [Tags] | 2T2C | MTHREAD
 | | ${framesize}= | Set Variable | 9000
 | | ${duration}= | Set Variable | 10
@@ -197,12 +197,12 @@
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                   | ${framesize} | 3-node-IPv4
 
-| TC07: Verify 64B ref-NDR at 2x 3.12Mpps - DUT IPv4oIPv6 - 4thread 4core 2rxq
+| tc07-64B-4t4c-ethip4lispip6-ip4base-ndrchk
 | | [Documentation]
 | | ... | [Cfg] DUT runs LISP tunnel config with 4 threads, 4 phy cores,\
 | | ... | 2 receive queues per NIC port.
 | | ... | [Ver] Verify ref-NDR for 64 Byte frames using single trial\
-| | ... | throughput test.
+| | ... | throughput test at 2x 3.12mpps.
 | | [Tags] | 4T4C | MTHREAD
 | | ${framesize}= | Set Variable | 64
 | | ${duration}= | Set Variable | 10
@@ -222,12 +222,12 @@
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                   | ${framesize} | 3-node-IPv4
 
-| TC08: Verify 1460B ref-NDR at 2x 720kpps - DUT IPv4oIPv6 - 4thread 4core 2rxq
+| tc08-1460B-4t4c-ethip4lispip6-ip4base-ndrchk
 | | [Documentation]
 | | ... | [Cfg] DUT runs LISP tunnel config with 4 threads, 4 phy cores,\
 | | ... | 2 receive queues per NIC port.
 | | ... | [Ver] Verify ref-NDR for 1460 Byte frames using single trial\
-| | ... | throughput test.
+| | ... | throughput test at 2x 720000pps.
 | | [Tags] | 4T4C | MTHREAD
 | | ${framesize}= | Set Variable | 1460
 | | ${duration}= | Set Variable | 10
@@ -247,12 +247,12 @@
 | | Then Traffic should pass with no loss | ${duration} | ${rate}
 | | ...                                   | ${framesize} | 3-node-IPv4
 
-| TC09: Verify 9000B ref-NDR at 2x 120kpps - DUT IPv4oIPv6 - 4thread 4core 2rxq
+| tc09-9000B-4t4c-ethip4lispip6-ip4base-ndrchk
 | | [Documentation]
 | | ... | [Cfg] DUT runs LISP tunnel config with 4 threads, 4 phy cores,\
 | | ... | 2 receive queues per NIC port.
 | | ... | [Ver] Verify ref-NDR for 9000 Byte frames using single trial\
-| | ... | throughput test.
+| | ... | throughput test at 2x 120000pps.
 | | [Tags] | 4T4C | MTHREAD
 | | ${framesize}= | Set Variable | 9000
 | | ${duration}= | Set Variable | 10
