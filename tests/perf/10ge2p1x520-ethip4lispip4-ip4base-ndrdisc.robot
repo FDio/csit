@@ -53,7 +53,7 @@
 | ${s_limit} | ${10000000000}
 
 *** Test Cases ***
-| TC01: 64B NDR binary search - DUT IPv4 over LISPoIPv4 tunnel - 1thread 1core 1rxq
+| tc01-64B-1t1c-ethip4lispip4-ip4base-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 LISP remote static mappings and whitelist\
 | | ... | filters config with 1 thread, 1 phy core, 1 receive queue per NIC\
@@ -84,7 +84,7 @@
 | | ...                                       | ${min_rate} | ${max_rate}
 | | ...                                       | ${threshold}
 
-| TC02: 64B PDR binary search - DUT IPv4 over LISPoIPv4 tunnel - 1thread 1core 1rxq
+| tc02-64B-1t1c-ethip4lispip4-ip4base-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 LISP remote static mappings and whitelist\
 | | ... | filters config with 1 thread, 1 phy core, 1 receive queue per NIC\
@@ -117,7 +117,7 @@
 | | ...                                       | ${glob_loss_acceptance}
 | | ...                                       | ${glob_loss_acceptance_type}
 
-| TC03: 1480B NDR binary search - DUT IPv4 over LISPoIPv4 tunnel - 1thread 1core 1rxq
+| tc03-1480B-1t1c-ethip4lispip4-ip4base-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 LISP remote static mappings and whitelist\
 | | ... | filters config with 1 thread, 1 phy core, 1 receive queue per NIC\
@@ -148,7 +148,7 @@
 | | ...                                       | ${min_rate} | ${max_rate}
 | | ...                                       | ${threshold}
 
-| TC04: 1480B PDR binary search - DUT IPv4 over LISPoIPv4 tunnel - 1thread 1core 1rxq
+| tc04-1480B-1t1c-ethip4lispip4-ip4base-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 LISP remote static mappings and whitelist\
 | | ... | filters config with 1 thread, 1 phy core, 1 receive queue per NIC\
@@ -181,7 +181,7 @@
 | | ...                                       | ${glob_loss_acceptance}
 | | ...                                       | ${glob_loss_acceptance_type}
 
-| TC05: 9000B NDR binary search - DUT IPv4 over LISPoIPv4 tunnel - 1thread 1core 1rxq
+| tc05-9000B-1t1c-ethip4lispip4-ip4base-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 LISP remote static mappings and whitelist\
 | | ... | filters config with 1 thread, 1 phy core, 1 receive queue per NIC\
@@ -211,7 +211,7 @@
 | | ...                                       | ${min_rate} | ${max_rate}
 | | ...                                       | ${threshold}
 
-| TC06: 9000B PDR binary search - DUT IPv4 over LISPoIPv4 tunnel - 1thread 1core 1rxq
+| tc06-9000B-1t1c-ethip4lispip4-ip4base-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 LISP remote static mappings and whitelist\
 | | ... | filters config with 1 thread, 1 phy core, 1 receive queue per NIC\
@@ -243,7 +243,7 @@
 | | ...                                       | ${glob_loss_acceptance}
 | | ...                                       | ${glob_loss_acceptance_type}
 
-| TC07: 64B NDR binary search - DUT IPv4 over LISPoIPv4 tunnel - 2thread 2core 1rxq
+| tc07-64B-2t2c-ethip4lispip4-ip4base-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 LISP remote static mappings and whitelist\
 | | ... | filters config with 2 threads, 2 phy cores, 1 receive queue per NIC\
@@ -274,7 +274,7 @@
 | | ...                                       | ${min_rate} | ${max_rate}
 | | ...                                       | ${threshold}
 
-| TC08: 64B PDR binary search - DUT IPv4 over LISPoIPv4 tunnel - 2thread 2core 1rxq
+| tc08-64B-2t2c-ethip4lispip4-ip4base-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 LISP remote static mappings and whitelist\
 | | ... | filters config with 2 threads, 2 phy cores, 1 receive queue per NIC\
@@ -307,7 +307,7 @@
 | | ...                                       | ${glob_loss_acceptance}
 | | ...                                       | ${glob_loss_acceptance_type}
 
-| TC09: 1480B NDR binary search - DUT IPv4 over LISPoIPv4 tunnel - 2thread 2core 1rxq
+| tc09-1480B-2t2c-ethip4lispip4-ip4base-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 LISP remote static mappings and whitelist\
 | | ... | filters config with 2 threads, 2 phy cores, 1 receive queue per NIC\
@@ -338,7 +338,7 @@
 | | ...                                       | ${min_rate} | ${max_rate}
 | | ...                                       | ${threshold}
 
-| TC10: 1480B PDR binary search - DUT IPv4 over LISPoIPv4 tunnel - 2thread 2core 1rxq
+| tc10-1480B-2t2c-ethip4lispip4-ip4base-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 LISP remote static mappings and whitelist\
 | | ... | filters config with 2 threads, 2 phy cores, 1 receive queue per NIC\
@@ -371,7 +371,7 @@
 | | ...                                       | ${glob_loss_acceptance}
 | | ...                                       | ${glob_loss_acceptance_type}
 
-| TC11: 9000B NDR binary search - DUT IPv4 over LISPoIPv4 tunnel - 2thread 2core 1rxq
+| tc11-9000B-2t2c-ethip4lispip4-ip4base-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 LISP remote static mappings and whitelist\
 | | ... | filters config with 2 threads, 2 phy cores, 1 receive queue per NIC\
@@ -401,7 +401,7 @@
 | | ...                                       | ${min_rate} | ${max_rate}
 | | ...                                       | ${threshold}
 
-| TC12: 9000B PDR binary search - DUT IPv4 over LISPoIPv4 tunnel - 2thread 2core 1rxq
+| tc12-9000B-2t2c-ethip4lispip4-ip4base-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 LISP remote static mappings and whitelist\
 | | ... | filters config with 2 threads, 2 phy cores, 1 receive queue per NIC\
@@ -433,7 +433,7 @@
 | | ...                                       | ${glob_loss_acceptance}
 | | ...                                       | ${glob_loss_acceptance_type}
 
-| TC13: 64B NDR binary search - DUT IPv4 over LISPoIPv4 tunnel - 4thread 4core 2rxq
+| tc13-64B-4t4c-ethip4lispip4-ip4base-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 LISP remote static mappings and whitelist\
 | | ... | filters config with 4 threads, 4 phy cores, 2 receive queues per NIC\
@@ -464,7 +464,7 @@
 | | ...                                       | ${min_rate} | ${max_rate}
 | | ...                                       | ${threshold}
 
-| TC14: 64B PDR binary search - DUT IPv4 over LISPoIPv4 tunnel - 4thread 4core 2rxq
+| tc14-64B-4t4c-ethip4lispip4-ip4base-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 LISP remote static mappings and whitelist\
 | | ... | filters config with 4 threads, 4 phy cores, 2 receive queues per NIC\
@@ -497,7 +497,7 @@
 | | ...                                       | ${glob_loss_acceptance}
 | | ...                                       | ${glob_loss_acceptance_type}
 
-| TC15: 1480B NDR binary search - DUT IPv4 over LISPoIPv4 tunnel - 4thread 4core 2rxq
+| tc15-1480B-4t4c-ethip4lispip4-ip4base-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 LISP remote static mappings and whitelist\
 | | ... | filters config with 4 threads, 4 phy cores, 2 receive queues per NIC\
@@ -528,7 +528,7 @@
 | | ...                                       | ${min_rate} | ${max_rate}
 | | ...                                       | ${threshold}
 
-| TC16: 1480B PDR binary search - DUT IPv4 over LISPoIPv4 tunnel - 4thread 4core 2rxq
+| tc16-1480B-4t4c-ethip4lispip4-ip4base-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 LISP remote static mappings and whitelist\
 | | ... | filters config with 4 threads, 4 phy cores, 2 receive queues per NIC\
@@ -561,7 +561,7 @@
 | | ...                                       | ${glob_loss_acceptance}
 | | ...                                       | ${glob_loss_acceptance_type}
 
-| TC17: 9000B NDR binary search - DUT IPv4 over LISPoIPv4 tunnel - 4thread 4core 2rxq
+| tc17-9000B-4t4c-ethip4lispip4-ip4base-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 LISP remote static mappings and whitelist\
 | | ... | filters config with 4 threads, 4 phy cores, 2 receive queues per NIC\
@@ -591,7 +591,7 @@
 | | ...                                       | ${min_rate} | ${max_rate}
 | | ...                                       | ${threshold}
 
-| TC18: 9000B PDR binary search - DUT IPv4 over LISPoIPv4 tunnel - 4thread 4core 2rxq
+| tc18-9000B-4t4c-ethip4lispip4-ip4base-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 LISP remote static mappings and whitelist\
 | | ... | filters config with 4 threads, 4 phy cores, 2 receive queues per NIC\
