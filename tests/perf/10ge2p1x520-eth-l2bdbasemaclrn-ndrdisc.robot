@@ -91,7 +91,7 @@
 | | ... | ${glob_loss_acceptance} | ${glob_loss_acceptance_type}
 
 *** Test Cases ***
-| TC01: 64B NDR binary search - DUT L2BD - 1thread 1core 1rxq
+| tc01-64B-1t1c-eth-l2bdbasemaclrn-ndrdisc
 | | ... | ${64} | ${100000} | 1 | 1
 | | [Tags] | 1T1C | STHREAD | NDRDISC
 | | [Documentation]
@@ -101,7 +101,7 @@
 | | ... | linerate, step 100kpps.
 | | [Template] | L2 Bridge Domain NDR Binary Search
 
-| TC02: 64B PDR binary search - DUT L2BD - 1thread 1core 1rxq
+| tc02-64B-1t1c-eth-l2bdbasemaclrn-pdrdisc
 | | ... | ${64} | ${100000} | 1 | 1
 | | [Tags] | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
 | | [Documentation]
@@ -111,7 +111,7 @@
 | | ... | linerate, step 100kpps, LT=0.5%.
 | | [Template] | L2 Bridge Domain PDR Binary Search
 
-| TC03: 1518B NDR binary search - DUT L2BD - 1thread 1core 1rxq
+| tc03-1518B-1t1c-eth-l2bdbasemaclrn-ndrdisc
 | | ... | ${1518} | ${10000} | 1 | 1
 | | [Tags] | 1T1C | STHREAD | NDRDISC
 | | [Documentation]
@@ -121,7 +121,7 @@
 | | ... | linerate, step 10kpps.
 | | [Template] | L2 Bridge Domain NDR Binary Search
 
-| TC04: 1518B PDR binary search - DUT L2BD - 1thread 1core 1rxq
+| tc04-1518B-1t1c-eth-l2bdbasemaclrn-pdrdisc
 | | ... | ${1518} | ${10000} | 1 | 1
 | | [Tags] | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
 | | [Documentation]
@@ -131,7 +131,7 @@
 | | ... | linerate, step 10kpps, LT=0.5%.
 | | [Template] | L2 Bridge Domain PDR Binary Search
 
-| TC05: 9000B NDR binary search - DUT L2BD - 1thread 1core 1rxq
+| tc05-9000B-1t1c-eth-l2bdbasemaclrn-ndrdisc
 | | ... | ${9000} | ${10000} | 1 | 1
 | | [Tags] | 1T1C | STHREAD | NDRDISC
 | | [Documentation]
@@ -141,7 +141,7 @@
 | | ... | linerate, step 10kpps.
 | | [Template] | L2 Bridge Domain NDR Binary Search
 
-| TC06: 9000B PDR binary search - DUT L2BD - 1thread 1core 1rxq
+| tc06-9000B-1t1c-eth-l2bdbasemaclrn-pdrdisc
 | | ... | ${9000} | ${10000} | 1 | 1
 | | [Tags] | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
 | | [Documentation]
@@ -151,7 +151,7 @@
 | | ... | linerate, step 10kpps, LT=0.5%.
 | | [Template] | L2 Bridge Domain PDR Binary Search
 
-| TC07: 64B NDR binary search - DUT L2BD - 2thread 2core 1rxq
+| tc07-64B-2t2c-eth-l2bdbasemaclrn-ndrdisc
 | | ... | ${64} | ${100000} | 2 | 1
 | | [Tags] | 2T2C | MTHREAD | NDRDISC
 | | [Documentation]
@@ -161,7 +161,7 @@
 | | ... | linerate, step 100kpps.
 | | [Template] | L2 Bridge Domain NDR Binary Search
 
-| TC08: 64B PDR binary search - DUT L2BD - 2thread 2core 1rxq
+| tc08-64B-2t2c-eth-l2bdbasemaclrn-pdrdisc
 | | ... | ${64} | ${100000} | 2 | 1
 | | [Tags] | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
 | | [Documentation]
@@ -171,7 +171,7 @@
 | | ... | linerate, step 100kpps, LT=0.5%.
 | | [Template] | L2 Bridge Domain PDR Binary Search
 
-| TC09: 1518B NDR binary search - DUT L2BD - 2thread 2core 1rxq
+| tc09-1518B-2t2c-eth-l2bdbasemaclrn-ndrdisc
 | | ... | ${1518} | ${10000} | 2 | 1
 | | [Tags] | 2T2C | MTHREAD | NDRDISC | SKIP_PATCH
 | | [Documentation]
@@ -181,7 +181,7 @@
 | | ... | linerate, step 10kpps.
 | | [Template] | L2 Bridge Domain NDR Binary Search
 
-| TC10: 1518B PDR binary search - DUT L2BD - 2thread 2core 1rxq
+| tc10-1518B-2t2c-eth-l2bdbasemaclrn-pdrdisc
 | | ... | ${1518} | ${10000} | 2 | 1
 | | [Tags] | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
 | | [Documentation]
@@ -191,7 +191,7 @@
 | | ... | linerate, step 10kpps, LT=0.5%.
 | | [Template] | L2 Bridge Domain PDR Binary Search
 
-| TC11: 9000B NDR binary search - DUT L2BD - 2thread 2core 1rxq
+| tc11-9000B-2t2c-eth-l2bdbasemaclrn-ndrdisc
 | | ... | ${9000} | ${10000} | 2 | 1
 | | [Tags] | 2T2C | MTHREAD | NDRDISC | SKIP_PATCH
 | | [Documentation]
@@ -201,7 +201,7 @@
 | | ... | linerate, step 10kpps.
 | | [Template] | L2 Bridge Domain NDR Binary Search
 
-| TC12: 9000B PDR binary search - DUT L2BD - 2thread 2core 1rxq
+| tc12-9000B-2t2c-eth-l2bdbasemaclrn-pdrdisc
 | | ... | ${9000} | ${10000} | 2 | 1
 | | [Tags] | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
 | | [Documentation]
@@ -211,7 +211,7 @@
 | | ... | linerate, step 10kpps, LT=0.5%.
 | | [Template] | L2 Bridge Domain PDR Binary Search
 
-| TC13: 64B NDR binary search - DUT L2BD - 4thread 4core 2rxq
+| tc13-64B-4t4c-eth-l2bdbasemaclrn-ndrdisc
 | | ... | ${64} | ${100000} | 4 | 2
 | | [Tags] | 4T4C | MTHREAD | NDRDISC
 | | [Documentation]
@@ -221,7 +221,7 @@
 | | ... | linerate, step 100kpps.
 | | [Template] | L2 Bridge Domain NDR Binary Search
 
-| TC14: 64B PDR binary search - DUT L2BD - 4thread 4core 2rxq
+| tc14-64B-4t4c-eth-l2bdbasemaclrn-pdrdisc
 | | ... | ${64} | ${100000} | 4 | 2
 | | [Tags] | 4T4C | MTHREAD | PDRDISC | SKIP_PATCH
 | | [Documentation]
@@ -231,7 +231,7 @@
 | | ... | linerate, step 100kpps, LT=0.5%.
 | | [Template] | L2 Bridge Domain PDR Binary Search
 
-| TC15: 1518B NDR binary search - DUT L2BD - 4thread 4core 2rxq
+| tc15-1518B-4t4c-eth-l2bdbasemaclrn-ndrdisc
 | | ... | ${1518} | ${10000} | 4 | 2
 | | [Tags] | 4T4C | MTHREAD | NDRDISC | SKIP_PATCH
 | | [Documentation]
@@ -241,7 +241,7 @@
 | | ... | linerate, step 10kpps.
 | | [Template] | L2 Bridge Domain NDR Binary Search
 
-| TC16: 1518B PDR binary search - DUT L2BD - 4thread 4core 2rxq
+| tc16-1518B-4t4c-eth-l2bdbasemaclrn-pdrdisc
 | | ... | ${1518} | ${10000} | 4 | 2
 | | [Tags] | 4T4C | MTHREAD | PDRDISC | SKIP_PATCH
 | | [Documentation]
@@ -251,7 +251,7 @@
 | | ... | linerate, step 10kpps, LT=0.5%.
 | | [Template] | L2 Bridge Domain PDR Binary Search
 
-| TC17: 9000B NDR binary search - DUT L2BD - 4thread 4core 2rxq
+| tc17-9000B-4t4c-eth-l2bdbasemaclrn-ndrdisc
 | | ... | ${9000} | ${10000} | 4 | 2
 | | [Tags] | 4T4C | MTHREAD | NDRDISC | SKIP_PATCH
 | | [Documentation]
@@ -261,7 +261,7 @@
 | | ... | linerate, step 10kpps.
 | | [Template] | L2 Bridge Domain NDR Binary Search
 
-| TC18: 9000B PDR binary search - DUT L2BD - 4thread 4core 2rxq
+| tc18-9000B-4t4c-eth-l2bdbasemaclrn-pdrdisc
 | | ... | ${9000} | ${10000} | 4 | 2
 | | [Tags] | 4T4C | MTHREAD | PDRDISC | SKIP_PATCH
 | | [Documentation]
