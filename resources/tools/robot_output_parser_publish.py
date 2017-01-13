@@ -44,13 +44,13 @@ class ExecutionChecker(ResultVisitor):
                     sys.stdout.write('<table width=100% border=1><tr>'+'\n')
                     sys.stdout.write('<th width=32%>Name</th>'+'\n')
                     sys.stdout.write('<th width=40%>Documentation</th>'+'\n')
-                    if "Perf" and "Long" in suite.longname:
+                    if "ndrdisc" in suite.longname:
                         sys.stdout.write('<th width=24%>Message</th>'+'\n')
                     sys.stdout.write('<th width=4%>Status</th><tr/>'+'\n')
                     sys.stdout.write('</tr>')
                 elif self.formatting == 'wiki':
                     sys.stdout.write('{| class="wikitable"'+'\n')
-                    if "Perf" and "Long" in suite.longname:
+                    if "ndrdisc" in suite.longname:
                         header = '!Name!!Documentation!!Message!!Status'
                     else:
                         header = '!Name!!Documentation!!Status'
@@ -130,7 +130,7 @@ class ExecutionChecker(ResultVisitor):
             sys.stdout.write('<tr>'+'\n')
             sys.stdout.write('<td>'+test.name+'</td>'+'\n')
             sys.stdout.write('<td>'+test.doc+'</td>'+'\n')
-            if any("PERFTEST_LONG" in tag for tag in test.tags):
+            if any("NDRPDRDISC" in tag for tag in test.tags):
                 sys.stdout.write('<td>'+test.message+'</td>'+'\n')
             sys.stdout.write('<td>'+test.status+'</td>'+'\n')
         elif self.formatting == 'wiki':
@@ -138,7 +138,7 @@ class ExecutionChecker(ResultVisitor):
             sys.stdout.write('|'+test.name+'\n')
             sys.stdout.write('|'+test.doc.replace('\n', ' ').replace('\r',\
                 '')+'\n')
-            if any("PERFTEST_LONG" in tag for tag in test.tags):
+            if any("NDRPDRDISC" in tag for tag in test.tags):
                 sys.stdout.write('|'+test.message+'\n')
             sys.stdout.write('|'+test.status+'\n')
         else:

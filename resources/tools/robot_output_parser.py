@@ -27,8 +27,7 @@ from robot.api import ExecutionResult, ResultVisitor
 class ExecutionChecker(ResultVisitor):
     """Iterates through test cases."""
 
-    tc_regexp = re.compile(ur'^TC\d+:\s((\d+)B|IMIX_v4_1)[\D\d]+\s(\d)'\
-        '(thread|threads)\\s(\\d)(core|cores)\\s(\\d)(rxq|rxqs)')
+    tc_regexp = re.compile(ur'^tc\d+-((\d+)B|IMIX)-(\d)t(\d)c-(.*)')
     rate_regexp = re.compile(ur'^[\D\d]*FINAL_RATE:\s(\d+\.\d+)[\D\d]*')
     lat_regexp = re.compile(ur'^[\D\d]*'\
         'LAT_\\d+%NDR:\\s\\[\'(\\d+\\/\\d+\\/\\d+)\',\\s\'(\\d+\\/\\d+\\/\\d+)\'\\]\\s\n'\
@@ -95,11 +94,20 @@ class ExecutionChecker(ResultVisitor):
                                           "S"+test.parent.name.replace(" ", ""))
                 test_elem.attrib['name'] = test.parent.name
                 test_elem.attrib['framesize'] = str(re.search(\
-                    self.tc_regexp, test.name).group(2))
-                test_elem.attrib['workerthreads'] = str(re.search(\
-                    self.tc_regexp, test.name).group(3))
-                test_elem.attrib['workerspernic'] = str(re.search(\
-                    self.tc_regexp, test.name).group(7))
+                    self.tc_regexp, test.name).group(1))
+                test_elem.attrib['threads'] = str(re.search(\
+                    self.tc_regexp, test.name).group(4))
+                test_elem.attrib['cores'] = str(re.search(\
+                    self.tc_regexp, test.name).group(5))
+                test_elem.attrib['lat_100'] = str(re.search(\
+                    self.lat_regexp, test.message).group(1)) + '/' +\
+                    str(re.search(self.lat_regexp,test.message).group(2))
+                test_elem.attrib['lat_50'] = str(re.search(\
+                    self.lat_regexp, test.message).group(3)) + '/' +\
+                    str(re.search(self.lat_regexp,test.message).group(4))
+                test_elem.attrib['lat_10'] = str(re.search(\
+                    self.lat_regexp, test.message).group(5)) + '/' +\
+                    str(re.search(self.lat_regexp,test.message).group(6))
                 test_elem.attrib['tags'] = ', '.join(tags)
                 test_elem.text = str(re.search(\
                     self.rate_regexp, test.message).group(1))
