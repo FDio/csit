@@ -262,6 +262,7 @@ function run_test_set() {
         ${suite_str} \
         --include vm_envAND3_node_single_link_topo \
         --include vm_envAND3_node_double_link_topo \
+        --include tmp \
         --exclude PERFTEST \
         --exclude SKIP_PATCH \
         --noncritical EXPECTED_FAILING \
@@ -273,6 +274,7 @@ function run_test_set() {
         ${suite_str} \
         --include vm_envAND3_node_single_link_topo \
         --include vm_envAND3_node_double_link_topo \
+        --include tmp\
         --exclude PERFTEST \
         --exclude SKIP_PATCH \
         --noncritical EXPECTED_FAILING \
