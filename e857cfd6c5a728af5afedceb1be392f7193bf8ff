@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a2585a7_6b841dd4",
+        "filename": "tests/func/ipv4/2p1nic_ethip4_ip4base_eth_2vhost_1vm.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2017-01-16T20:47:48Z",
+      "side": 1,
+      "message": "Please, use standard Func Test Setup here to remove settings from previous tests - e.g. iACL.",
+      "range": {
+        "startLine": 31,
+        "startChar": 15,
+        "endLine": 32,
+        "endChar": 72
+      },
+      "revId": "e857cfd6c5a728af5afedceb1be392f7193bf8ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_0bd7d9c0",
+        "filename": "tests/func/ipv4/2p1nic_ethip4_ip4base_eth_2vhost_1vm.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2017-01-16T20:47:48Z",
+      "side": 1,
+      "message": "Please, remove empty line.",
+      "revId": "e857cfd6c5a728af5afedceb1be392f7193bf8ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_ebe5ada8",
+        "filename": "tests/func/ipv4/2p1nic_ethip4_ip4base_eth_2vhost_1vm.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2017-01-16T20:47:48Z",
+      "side": 1,
+      "message": "Please, remove empty line.",
+      "revId": "e857cfd6c5a728af5afedceb1be392f7193bf8ff",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
