@@ -1143,7 +1143,7 @@ class InterfaceKeywords(object):
         path = ("interfaces",
                 ("interface", "name", super_interface),
                 "vpp-vlan:sub-interfaces",
-                ("sub-interface", "identifier", identifier),
+                ("sub-interface", "identifier", int(identifier)),
                 "enabled")
 
         return InterfaceKeywords._set_interface_properties(

@@ -35,7 +35,7 @@
 | ${sub_if_name}= | ${super_if}.${sub_if_id}
 
 *** Test Cases ***
-| Honycomb creates sub-interface
+| Honeycomb creates sub-interface
 | | [Documentation] | Check if Honeycomb creates a sub-interface.
 | | ...
 | | Given Honeycomb sets interface state | ${node} | ${super_if} | down
