@@ -43,19 +43,10 @@
 | ... | *[Ref] Applicable standard specifications:*
 
 *** Variables ***
-| ${tap1_VPP_ip}= | 16.0.10.1
-| ${tap2_VPP_ip}= | 16.0.20.1
-
 | ${tap1_NM_ip}= | 16.0.10.2
-| ${tap2_NM_ip}= | 16.0.20.2
 | ${tap2_NM_SHG}= | 16.0.10.3
 
-| ${bid_from_TG}= | 19
-| ${bid_to_TG}= | 20
-| ${bid_NM}= | container1_br
-| ${bid_TAP}= | tapBr
 | ${bd_id1}= | 21
-| ${bd_id2}= | 22
 | ${shg1}= | 2
 | ${shg2}= | 3
 
@@ -64,126 +55,15 @@
 
 | ${tap_int1}= | tap_int1
 | ${tap_int2}= | tap_int2
-| ${mod_tap_name}= | tap_int1MOD
 
 | ${namespace1}= | nmspace1
 | ${namespace2}= | nmspace2
 
-| ${dut_ip_address}= | 192.168.0.1
-| ${tg_ip_address}= | 192.168.0.2
 | ${tg_ip_address_SHG}= | 16.0.10.20
-| ${tg_ip_address_GW}= | 192.168.0.0
-
 | ${prefix}= | 24
 
 *** Test Cases ***
-| TC01: Tap Interface Simple BD
-| | [Documentation]
-| | ... | [Top] TG-DUT1-TG.
-| | ... | [Enc] Eth-IPv4-ICMPv4.
-| | ... | [Cfg] On DUT1 configure two
-| | ... | L2BD with two if's for each L2BD with MAC learning and one L2BD
-| | ... | joining two linux-TAP interfaces created by VPP located in namespace.
-| | ... | [Ver] Packet sent from TG is passed through all L2BD and received
-| | ... | back on TG. Then src_ip, dst_ip and MAC are checked.
-| | ...
-| | [Teardown] | Run Keywords
-| | ... | Linux Del Bridge | ${dut_node} | ${bid_TAP} | AND
-| | ... | Show Packet Trace on All DUTs | ${nodes} | AND
-| | ... | Clean Up Namespaces | ${nodes['DUT1']} | AND
-| | ... | Check VPP PID in Teardown
-| | ...
-| | Given Path for 2-node testing is set | ${nodes['TG']} | ${nodes['DUT1']}
-| | ... | ${nodes['TG']}
-| | And Interfaces in 2-node path are up
-| | ${int1}= | And Add Tap Interface | ${dut_node} | ${tap_int1}
-| | ${int2}= | And Add Tap Interface | ${dut_node} | ${tap_int2}
-| | And Set Interface State | ${dut_node} | ${int1} | up
-| | And Set Interface State | ${dut_node} | ${int2} | up
-| | And Bridge domain on DUT node is created | ${dut_node}
-| | ... | ${bid_from_TG} | learn=${TRUE}
-| | And Bridge domain on DUT node is created | ${dut_node}
-| | ... | ${bid_to_TG} | learn=${TRUE}
-| | And Linux Add Bridge | ${dut_node}
-| | ... | ${bid_TAP} | ${tap_int1} | ${tap_int2}
-| | And Interface is added to bridge domain | ${dut_node}
-| | ... | ${int1} | ${bid_to_TG} | 0
-| | And Interface is added to bridge domain | ${dut_node}
-| | ... | ${dut_to_tg_if1} | ${bid_to_TG} | 0
-| | And Interface is added to bridge domain | ${dut_node}
-| | ... | ${int2} | ${bid_from_TG} | 0
-| | And Interface is added to bridge domain | ${dut_node}
-| | ... | ${dut_to_tg_if2} | ${bid_from_TG} | 0
-| | Then Send and receive ICMP Packet | ${tg_node}
-| | ... | ${tg_to_dut_if1} | ${tg_to_dut_if2}
-
-| TC02: Tap Interface IP Ping Without Namespace
-| | [Documentation]
-| | ... | [Top] TG-DUT1-TG.
-| | ... | [Enc] Eth-IPv4-ICMPv4.
-| | ... | [Cfg] On DUT1 configure two interface addresses with IPv4 of which
-| | ... | one is TAP interface ( dut_to_tg_if and TAP ).
-| | ... | and one is linux-TAP.
-| | ... | [Ver] Packet sent from TG gets to the destination and ICMP-reply is
-| | ... | received on TG.
-| | Given Path for 2-node testing is set | ${nodes['TG']} | ${nodes['DUT1']}
-| | ... | ${nodes['TG']}
-| | And Interfaces in 2-node path are up
-| | ${int1}= | And Add Tap Interface | ${dut_node} | ${tap_int1} |
-| | And Set Interface Address
-| | ... | ${dut_node} | ${int1} | ${tap1_VPP_ip} | ${prefix}
-| | And Set Interface Address
-| | ... | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip_address} | ${prefix}
-| | And Set Interface State | ${dut_node} | ${int1} | up
-| | And Set Linux Interface MAC | ${dut_node} | ${tap_int1} | ${tap1_NM_mac}
-| | And Set Linux Interface IP | ${dut_node}
-| | ... | ${tap_int1} | ${tap1_NM_ip} | ${prefix}
-| | And Add Route | ${dut_node}
-| | ... | ${tg_ip_address_GW} | ${prefix} | ${tap1_VPP_ip}
-| | And Add Arp On Dut | ${dut_node} | ${dut_to_tg_if1}
-| | ... | ${tg_ip_address} | ${tg_to_dut_if1_mac}
-| | And Add Arp On Dut | ${dut_node} | ${int1}
-| | ... | ${tap1_NM_ip} | ${tap1_NM_mac}
-| | Then Node replies to ICMP echo request | ${tg_node} | ${tg_to_dut_if1}
-| | ... | ${dut_to_tg_if1_mac} | ${tg_to_dut_if1_mac}
-| | ... | ${tap1_NM_ip} | ${tg_ip_address}
-
-| TC03: Tap Interface IP Ping With Namespace
-| | [Documentation]
-| | ... | [Top] TG-DUT1-TG.
-| | ... | [Enc] Eth-IPv4-ICMPv4.
-| | ... | [Cfg] On DUT1 configure two interface addresses with IPv4 of which
-| | ... | one is TAP interface ( dut_to_tg_if and TAP ).
-| | ... | and one is linux-TAP in namespace.
-| | ... | [Ver] Packet sent from TG gets to the destination and ICMP-reply is
-| | ... | received on TG.
-| | Given Path for 2-node testing is set | ${nodes['TG']} | ${nodes['DUT1']}
-| | ... | ${nodes['TG']}
-| | And Interfaces in 2-node path are up
-| | ${int1}= | And Add Tap Interface | ${dut_node} | ${tap_int1} |
-| | And Set Interface Address
-| | ... | ${dut_node} | ${int1} | ${tap1_VPP_ip} | ${prefix}
-| | And Set Interface Address
-| | ... | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip_address} | ${prefix}
-| | And Set Interface State | ${dut_node} | ${int1} | up
-| | When Create Namespace | ${dut_node} | ${namespace1}
-| | And Attach Interface To Namespace | ${dut_node}
-| | ... | ${namespace1} | ${tap_int1}
-| | And Set Linux Interface MAC | ${dut_node}
-| | ... | ${tap_int1} | ${tap1_NM_mac} | ${namespace1}
-| | And Set Linux Interface IP | ${dut_node}
-| | ... | ${tap_int1} | ${tap1_NM_ip} | ${prefix} | ${namespace1}
-| | And Add Arp On Dut | ${dut_node} | ${dut_to_tg_if1}
-| | ... | ${tg_ip_address} | ${tg_to_dut_if1_mac}
-| | And Add Arp On Dut | ${dut_node} | ${int1}
-| | ... | ${tap1_NM_ip} | ${tap1_NM_mac}
-| | And Add Route | ${dut_node}
-| | ... | ${tg_ip_address_GW} | ${prefix} | ${tap1_VPP_ip} | ${namespace1}
-| | Then Node replies to ICMP echo request | ${tg_node} | ${tg_to_dut_if1}
-| | ... | ${dut_to_tg_if1_mac} | ${tg_to_dut_if1_mac}
-| | ... | ${tap1_NM_ip} | ${tg_ip_address}
-
-| TC04: Tap Interface BD - Different Split Horizon
+| TC01: Tap Interface BD - Different Split Horizon
 | | [Documentation]
 | | ... | [Top] TG-DUT1-TG.
 | | ... | [Enc] Eth-IPv4-ICMPv4.
@@ -235,7 +115,7 @@
 | | And Send Ping From Node To Dst | ${dut_node} | ${tap1_NM_ip} | namespace=${namespace2}
 | | And Send Ping From Node To Dst | ${dut_node} | ${tap2_NM_SHG} | namespace=${namespace1}
 
-| TC05: Tap Interface BD - Same Split Horizon
+| TC02: Tap Interface BD - Same Split Horizon
 | | [Documentation]
 | | ... | [Top] TG-DUT1-TG.
 | | ... | [Enc] Eth-IPv4-ICMPv4.
@@ -288,29 +168,3 @@
 | | ... | ${dut_node} | ${tap2_NM_SHG} | namespace=${namespace1}
 | | And Run Keyword And Expect Error | Ping Not Successful | Send Ping From Node To Dst
 | | ... | ${dut_node} | ${tap1_NM_ip} | namespace=${namespace2}
-
-| TC06: Tap Interface Modify And Delete
-| | [Documentation]
-| | ... | [Top] TG-DUT1-TG.
-| | ... | [Enc] Eth-IPv4-ICMPv4.
-| | ... | [Cfg] Set two TAP interfaces.
-| | ... | [Ver] Verify that TAP interface can be modified, deleted, and no other
-| | ... | TAP interface is affected.
-| | Given Path for 2-node testing is set | ${nodes['TG']} | ${nodes['DUT1']}
-| | ... | ${nodes['TG']}
-| | And Interfaces in 2-node path are up
-| | ${int1}= | And Add Tap Interface | ${dut_node} | ${tap_int1}
-| | ${int2}= | And Add Tap Interface | ${dut_node} | ${tap_int2}
-| | And Set Interface State | ${dut_node} | ${int1} | up
-| | And Set Interface State | ${dut_node} | ${int2} | up
-| | When Modify Tap Interface | ${dut_node} | ${int1} | ${mod_tap_name}
-| | Then Check Tap Present | ${dut_node} | ${mod_tap_name}
-| | When Delete Tap Interface | ${dut_node} | ${int1}
-| | Then Run Keyword And Expect Error
-| | ... | Tap interface :${mod_tap_name} does not exist
-| | ... | Check Tap Present | ${dut_node} | ${mod_tap_name}
-| | And Check Tap Present | ${dut_node} | ${tap_int2}
-| | When Delete Tap Interface | ${dut_node} | ${int2}
-| | Then Run Keyword And Expect Error
-| | ... | ValueError: No JSON object could be decoded
-| | ... | Check Tap Present | ${dut_node} | ${tap_int2}
