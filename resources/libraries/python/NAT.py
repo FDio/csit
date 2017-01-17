@@ -64,7 +64,7 @@ class NATUtil(object):
                     "vrf": items[4]
                 })
             else:
-                raise RuntimeError("Unexpected output from span_mapping_dump.")
+                raise RuntimeError("Unexpected output from snat_mapping_dump.")
 
         return data
 
@@ -90,8 +90,9 @@ class NATUtil(object):
         data = []
         for line in lines:
             items = line.split(" ")
-            while "" in items:
-                items.remove("")
+            for trash in ("", "vat#"):
+                while trash in items:
+                    items.remove(trash)
             if len(items) == 0:
                 continue
             elif len(items) == 3:
@@ -102,6 +103,6 @@ class NATUtil(object):
                 })
             else:
                 raise RuntimeError(
-                    "Unexpected output from span_interface_dump.")
+                    "Unexpected output from snat_interface_dump.")
 
         return data

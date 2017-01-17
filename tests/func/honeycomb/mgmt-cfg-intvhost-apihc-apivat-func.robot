@@ -14,29 +14,26 @@
 *** Variables ***
 | ${interface}= | ${node['interfaces']['port1']['name']}
 | ${vhost_interface}= | test_vhost
-| &{vhost_user_server}= | socket=soc1 | role=server
-| &{vhost_user_server_edit_1}= | socket=soc12 | role=server
-| &{vhost_user_server_edit_2}= | socket=soc12 | role=client
-| &{vhost_user_client}= | socket=soc2 | role=client
-| &{vhost_user_client_edit_1}= | socket=soc22 | role=client
-| &{vhost_user_client_edit_2}= | socket=soc22 | role=server
-| &{vhost_user_wrong}= | socket=soc2 | role=wrong
+| &{vhost_user_server}= | socket=/tmp/soc1 | role=server
+| &{vhost_user_server_edit_1}= | socket=/tmp/soc12 | role=server
+| &{vhost_user_server_edit_2}= | socket=/tmp/soc12 | role=client
+| &{vhost_user_client}= | socket=/tmp/soc2 | role=client
+| &{vhost_user_client_edit_1}= | socket=/tmp/soc22 | role=client
+| &{vhost_user_client_edit_2}= | socket=/tmp/soc22 | role=server
+| &{vhost_user_wrong}= | socket=/tmp/soc2 | role=wrong
 
 *** Settings ***
 | Resource | resources/libraries/robot/default.robot
 | Resource | resources/libraries/robot/honeycomb/honeycomb.robot
 | Resource | resources/libraries/robot/honeycomb/vhost_user.robot
-# Whole suite failing due to bug https://jira.fd.io/browse/VPP-562
+# vhost-user as server failing due to VPP bug (VPP-562)
 | Force Tags | honeycomb_sanity | EXPECTED_FAILING
 | Suite Teardown | Run Keyword If Any Tests Failed
 | ... | Restart Honeycomb And VPP And Clear Persisted Configuration | ${node}
 | Documentation | *Honeycomb vhost-user interface management test suite.*
-| ...
-| ...           | This test suite tests if it is posible to create, modify and\
-| ...           | delete a vhost-user interface.
 
 *** Test Cases ***
-| TC01: Honycomb creates vhost-user interface - server
+| TC01: Honeycomb creates vhost-user interface - server
 | | [Documentation] | Check if Honeycomb creates a vhost-user interface, role:\
 | | ... | server.
 | | ...
@@ -49,7 +46,7 @@
 | | And vhost-user configuration from VAT should be
 | | ... | ${node} | ${vhost_user_server}
 
-| TC02: Honycomb modifies vhost-user interface - server
+| TC02: Honeycomb modifies vhost-user interface - server
 | | [Documentation] | Check if Honeycomb can modify properties of existing\
 | | ... | vhost-user interface, role: server.
 | | ...
@@ -74,7 +71,7 @@
 | | And vhost-user configuration from VAT should be
 | | ... | ${node} | ${vhost_user_server}
 
-| TC03: Honycomb deletes vhost-user interface - server
+| TC03: Honeycomb deletes vhost-user interface - server
 | | [Documentation] | Check if Honeycomb can delete an existing vhost-user\
 | | ... | interface, role: server.
 | | ...
@@ -87,7 +84,7 @@
 | | And vhost-user configuration from VAT should be empty
 | | ... | ${node}
 
-| TC04: Honycomb creates vhost-user interface - client
+| TC04: Honeycomb creates vhost-user interface - client
 | | [Documentation] | Check if Honeycomb creates a vhost-user interface, role:\
 | | ... | client.
 | | ...
@@ -100,7 +97,7 @@
 | | And vhost-user configuration from VAT should be
 | | ... | ${node} | ${vhost_user_client}
 
-| TC05: Honycomb modifies vhost-user interface - client
+| TC05: Honeycomb modifies vhost-user interface - client
 | | [Documentation] | Check if Honeycomb can modify properties of existing\
 | | ... | vhost-user interface, role: client.
 | | ...
@@ -125,7 +122,7 @@
 | | And vhost-user configuration from VAT should be
 | | ... | ${node} | ${vhost_user_client}
 
-| TC06: Honycomb deletes vhost-user interface - client
+| TC06: Honeycomb deletes vhost-user interface - client
 | | [Documentation] | Check if Honeycomb can delete an existing vhost-user\
 | | ... | interface, role: client.
 | | ...

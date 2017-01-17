@@ -27,7 +27,7 @@
 | TC01: Honeycomb persists configuration through restart of both Honeycomb and VPP
 | | [Documentation] | Checks if Honeycomb maintains configuration after both\
 | | ... | Honeycomb and VPP are restarted.
-# Vxlan tunnel name is not properly restored (HONEYCOMB-301)
+# Vxlan tunnel name is sometimes not properly restored (HONEYCOMB-301)
 | | [Tags] | EXPECTED_FAILING
 | | Given Honeycomb configures every setting | ${node} | ${interface}
 | | And Honeycomb and VPP should verify every setting | ${node} | ${interface}
@@ -38,7 +38,7 @@
 | TC02: Honeycomb persists configuration through restart of Honeycomb
 | | [Documentation] | Checks if Honeycomb maintains configuration after it\
 | | ... | is restarted.
-# Vxlan tunnel name is not properly restored (HONEYCOMB-301)
+# Vxlan tunnel name is sometimes not properly restored (HONEYCOMB-301)
 | | [Tags] | EXPECTED_FAILING
 | | Given Honeycomb and VPP should verify every setting | ${node} | ${interface}
 | | When Honeycomb is restarted | ${node}
@@ -48,7 +48,7 @@
 | TC03: Honeycomb persists configuration through restart of VPP
 | | [Documentation] | Checks if Honeycomb updates VPP settings after VPP is\
 | | ... | restarted.
-# Vxlan tunnel name is not properly restored (HONEYCOMB-301)
+# Vxlan tunnel name is sometimes not properly restored (HONEYCOMB-301)
 | | [Tags] | EXPECTED_FAILING
 | | Given Honeycomb and VPP should verify every setting | ${node} | ${interface}
 | | When VPP is restarted | ${node}
@@ -60,6 +60,5 @@
 | | ... | persistence files are damaged or invalid.
 | | [Teardown] | Run keyword if test failed
 | | ... | Restart Honeycomb And VPP And Clear Persisted Configuration | ${node}
-| | Given Honeycomb and VPP should not have default configuration | ${node}
 | | When Persistence file is damaged during restart | ${node}
 | | Then Honeycomb and VPP should have default configuration | ${node}
