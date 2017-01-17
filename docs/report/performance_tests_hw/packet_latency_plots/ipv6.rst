@@ -1,0 +1,14 @@
+IPv6 Routed-Forwarding
+======================
+
+78B-ethip6-ip6*-ndrdisc-lat50
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. raw:: html
+
+    <iframe width="700" height="700" frameborder="0" scrolling="no" src="../../_static/78B-1t1c-ethip6-ip6-ndrdisc-lat50.html"></iframe>
+    <iframe width="700" height="700" frameborder="0" scrolling="no" src="../../_static/78B-2t2c-ethip6-ip6-ndrdisc-lat50.html"></iframe>
+    <iframe width="700" height="700" frameborder="0" scrolling="no" src="../../_static/78B-4t4c-ethip6-ip6-ndrdisc-lat50.html"></iframe>
+
+Source of data https://jenkins.fd.io/view/csit/job/csit-vpp-perf-1701-all/.
+
