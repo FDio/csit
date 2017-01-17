@@ -1,0 +1,4 @@
+Sphinx
+sphinx-rtd-theme==0.1.9
+plotly==1.13.0
+lxml==3.5.0
