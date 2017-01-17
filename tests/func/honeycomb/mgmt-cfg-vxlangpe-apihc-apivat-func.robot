@@ -40,7 +40,7 @@
 | Variables | resources/test_data/honeycomb/vxlan_gpe.py
 | Documentation | *Honeycomb VxLAN-GPE management test suite.*
 | Force Tags | honeycomb_sanity
-| Suite Teardown | Run Keyword If Any Tests Failed
+| Suite Setup
 | ... | Restart Honeycomb And VPP And Clear Persisted Configuration | ${node}
 
 *** Test Cases ***

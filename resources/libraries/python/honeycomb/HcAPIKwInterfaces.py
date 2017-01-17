@@ -1143,7 +1143,7 @@ class InterfaceKeywords(object):
         path = ("interfaces",
                 ("interface", "name", super_interface),
                 "vpp-vlan:sub-interfaces",
-                ("sub-interface", "identifier", identifier),
+                ("sub-interface", "identifier", int(identifier)),
                 "enabled")
 
         return InterfaceKeywords._set_interface_properties(
@@ -1375,10 +1375,11 @@ class InterfaceKeywords(object):
 
         else:
             raise HoneycombError(
-                "Unexpected data type {data_type}, reference type is"
-                " {ref_type}. Must be list or dictionary.".format(
+                "Unexpected data type {data_type} in path {path}, reference"
+                " type is {ref_type}. Must be list or dictionary.".format(
                     data_type=type(data),
-                    ref_type=type(ref)))
+                    ref_type=type(ref),
+                    path=_path))
 
     @staticmethod
     def compare_interface_lists(list1, list2):
