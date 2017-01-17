@@ -15,11 +15,12 @@ port2_pci=$4
 sudo pkill testpmd
 sudo pkill l2fwd
 sudo pkill l3fwd
+
+sleep 5
+
 sudo rm -f ${TESTPMD_PID}
 sudo rm -f /dev/hugepages/*
 cat ${TESTPMD_LOG}
-
-sleep 2
 
 cd ${ROOTDIR}/dpdk-16.07/
 ./tools/dpdk-devbind.py -b ${port1_driver} ${port1_pci}
