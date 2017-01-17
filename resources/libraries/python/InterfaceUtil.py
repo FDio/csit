@@ -225,6 +225,9 @@ class InterfaceUtil(object):
         """
 
         if_data = InterfaceUtil.vpp_get_interface_data(node, interface)
+        if if_data['sup_sw_if_index'] != if_data['sw_if_index']:
+            if_data = InterfaceUtil.vpp_get_interface_data(
+                node, if_data['sup_sw_if_index'])
         mac_data = [str(hex(item))[2:] for item in if_data['l2_address'][:6]]
         mac_data_nice = []
         for item in mac_data:
