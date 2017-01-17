@@ -55,8 +55,6 @@
 | TC04: Honeycomb enables NAT on interface - inbound
 | | [Documentation] | Honeycomb configures NAT on an interface\
 | | ... | in inbound direction.
-# Interface config not visible in VAT - https://jira.fd.io/browse/HC2VPP-8
-| | [Tags] | EXPECTED_FAILING
 | | Given NAT Interface Configuration From Honeycomb Should Be Empty
 | | ... | ${node} | ${interface} | inbound
 | | And NAT Interface Configuration From Honeycomb Should Be Empty
@@ -86,8 +84,6 @@
 | TC06: Honeycomb enables NAT on interface - outbound
 | | [Documentation] | Honeycomb configures NAT on an interface\
 | | ... | in outbound direction.
-# Interface config not visible in VAT - https://jira.fd.io/browse/HC2VPP-8
-| | [Tags] | EXPECTED_FAILING
 | | [Teardown] | Honeycomb removes NAT interface configuration
 | | ... | ${node} | ${interface} | outbound
 | | Given NAT Interface Configuration From Honeycomb Should Be empty

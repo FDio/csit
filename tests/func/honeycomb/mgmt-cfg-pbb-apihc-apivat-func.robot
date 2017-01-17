@@ -61,7 +61,7 @@
 | TC06: Honeycomb fails to set wrong b-vlan-tag-vlan-id for new PBB sub-interface
 | | [Documentation] | Honeycomb fails to create a new PBB sub-interface with\
 | | ... | wrong value of parameter b-vlan-tag-vlan-id, type uint16, 12 bit\
-| | ... | range, range "1..4095".
+| | ... | range, range 1..4095.
 | | ...
 | | Honeycomb fails to create PBB sub interface | ${node} | ${super_if}
 | | ... | ${cfg_pbb_sub_if_wrong_vlan_tag}
@@ -69,7 +69,7 @@
 | TC07: Honeycomb fails to set wrong i-tag-isid for new PBB sub-interface
 | | [Documentation] | Honeycomb fails to create a new PBB sub-interface with\
 | | ... | wrong value of parameter i-tag-isid, type uint32, 24 bit range,\
-| | ... | range "1..16777215".
+| | ... | range 1..16777215.
 | | ...
 | | Honeycomb fails to create PBB sub interface | ${node} | ${super_if}
 | | ... | ${cfg_pbb_sub_if_wrong_i_tag}

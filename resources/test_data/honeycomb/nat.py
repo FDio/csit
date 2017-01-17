@@ -87,11 +87,11 @@ def get_variables(node, interface):
             }
         ],
         "nat_interface_vat_in": [
-            {"sw_if_index": sw_if_index,
+            {"sw_if_index": str(sw_if_index),
              "direction": "in"}
         ],
         "nat_interface_vat_out": [
-            {"sw_if_index": sw_if_index,
+            {"sw_if_index": str(sw_if_index),
              "direction": "out"}
         ]
     }

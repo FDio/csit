@@ -103,7 +103,7 @@
 | | Honeycomb creates TAP interface
 | | ... | ${node} | ${tap_interface} | ${tap_settings}
 | | Honeycomb creates vhost-user interface
-| | ... | ${node} | ${vhost_interface} | ${vhost_user_server}
+| | ... | ${node} | ${vhost_interface} | ${vhost_user_client}
 | | Honeycomb creates sub-interface | ${node} | ${interface}
 | | ... | ${sub_if_1_match} | ${sub_if_1_tags} | ${sub_if_1_settings}
 | | Honeycomb sets interface state | ${node} | ${interface} | up
@@ -140,9 +140,9 @@
 | | TAP configuration from VAT should be
 | | ... | ${node} | ${tap_interface} | ${tap_settings}
 | | Vhost-user configuration from Honeycomb should be
-| | ... | ${node} | ${vhost_interface} | ${vhost_user_server}
+| | ... | ${node} | ${vhost_interface} | ${vhost_user_client}
 | | Vhost-user configuration from VAT should be
-| | ... | ${node} | ${vhost_user_server}
+| | ... | ${node} | ${vhost_user_client}
 | | Sub-interface configuration from Honeycomb should be
 | | ... | ${node} | ${interface} | ${sub_if_id} | ${sub_if_1_oper}
 | | Sub-interface configuration from VAT should be
