@@ -24,9 +24,6 @@
 | ... | AND | Honeycomb removes all bridge domains | ${node}
 | Force Tags | honeycomb_sanity
 | Documentation | *Honeycomb sub-interface management test suite.*
-| ...
-| ...           | This test suite tests if it is posible to create, modify and \
-| ...           | delete a sub-interface.
 
 *** Variables ***
 # Test interface 1 and its sub-interface parameters:

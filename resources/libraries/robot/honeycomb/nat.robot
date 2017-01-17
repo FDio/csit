@@ -171,4 +171,4 @@
 | | ... | \| ${nodes['DUT1']} \| ${settings} \|
 | | [Arguments] | ${node} | ${settings}
 | | ${data}= | VPP get NAT interfaces | ${node}
-| | Compare data structures | ${data[0]} | ${settings}
+| | Compare data structures | ${data} | ${settings}

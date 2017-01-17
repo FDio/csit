@@ -47,6 +47,7 @@
 | ... | Restart Honeycomb And VPP And Clear Persisted Configuration | ${node}
 | Documentation | *Honeycomb access control lists test suite for IETF-ACL node.*
 # Test suite out of date since https://gerrit.fd.io/r/#/c/4331/
+# Ietf-ACL fucntionality will be removed
 # | Force Tags | Honeycomb_sanity
 
 *** Test Cases ***
