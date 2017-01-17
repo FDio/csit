@@ -34,8 +34,6 @@
 | ... | AND | Honeycomb removes all bridge domains | ${node} | @{interfaces}
 | Force Tags | honeycomb_sanity
 | Documentation | *Honeycomb bridge domain management test suite.*
-| ...
-| ... | Test suite uses the first two interfaces on the first DUT node.
 
 *** Test Cases ***
 | TC01: Honeycomb sets up l2 bridge domain
@@ -79,22 +77,33 @@
 | | ... | ${node} | ${bd1_name} | ${bd_settings}
 | | When Honeycomb adds interfaces to bridge domain
 | | ... | ${node} | @{interfaces} | ${bd1_name} | ${if_settings}
-| | Then Honeycomb should show interfaces assigned to bridge domain
+| | Then Bridge domain configuration from Honeycomb should be
+| | ... | ${node} | ${bd1_name} | ${bd_settings}
+| | And Bridge domain configuration from VAT should be
+| | ... | ${node} | ${0} | ${bd_settings}
+| | And Honeycomb should show interfaces assigned to bridge domain
 | | ... | ${node} | @{interfaces} | ${bd1_name} | ${if_settings}
 | | And VAT should show interfaces assigned to bridge domain
 | | ... | ${node} | ${0} | @{interfaces} | ${if_settings}
 
-| TC05: Honeycomb removes bridge domain with an interface assigned
+| TC05: Honeycomb cannot remove bridge domain with an interface assigned
 | | [Documentation] | Check if Honeycomb can remove a bridge domain that has an\
-| | ... | interface assigned to it.
-# Bridge domain references not cleaned up on delete (HONEYCOMB-267)
-| | [Tags] | EXPECTED_FAILING
-| | Given Honeycomb should show interfaces assigned to bridge domain
+| | ... | interface assigned to it. Expect to fail with code 500.
+| | Given Bridge domain configuration from Honeycomb should be
+| | ... | ${node} | ${bd1_name} | ${bd_settings}
+| | And Bridge domain configuration from VAT should be
+| | ... | ${node} | ${0} | ${bd_settings}
+| | And Honeycomb should show interfaces assigned to bridge domain
 | | ... | ${node} | @{interfaces} | ${bd1_name} | ${if_settings}
 | | And VAT should show interfaces assigned to bridge domain
 | | ... | ${node} | ${0} | @{interfaces} | ${if_settings}
-| | When Honeycomb removes all bridge domains | ${node}
-| | Then Honeycomb should show no bridge domains | ${node}
-| | And VAT should show no bridge domains | ${node}
-| | And Honeycomb should not show interfaces assigned to bridge domain
-| | ... | ${node} | @{interfaces} | ${bd1_name}
+| | When Run keyword and expect error | HoneycombError* Status code: 500.
+| | ... | Honeycomb removes all bridge domains | ${node}
+| | Then Bridge domain configuration from Honeycomb should be
+| | ... | ${node} | ${bd1_name} | ${bd_settings}
+| | And Bridge domain configuration from VAT should be
+| | ... | ${node} | ${0} | ${bd_settings}
+| | And Honeycomb should show interfaces assigned to bridge domain
+| | ... | ${node} | @{interfaces} | ${bd1_name} | ${if_settings}
+| | And VAT should show interfaces assigned to bridge domain
+| | ... | ${node} | ${0} | @{interfaces} | ${if_settings}

@@ -36,8 +36,6 @@
 | Suite Teardown | Run Keyword If Any Tests Failed
 | ... | Restart Honeycomb And VPP And Clear Persisted Configuration | ${node}
 | Documentation | *Honeycomb VxLAN management test suite.*
-| ...
-| ... | Test suite uses the first interface of the first DUT node.
 
 *** Test Cases ***
 | TC01: Honeycomb configures VxLAN tunnel
