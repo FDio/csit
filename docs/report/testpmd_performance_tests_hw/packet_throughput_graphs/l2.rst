@@ -1,0 +1,146 @@
+L2 Ethernet Looping
+===================
+
+Following sections provide a summary of VPP Phy-to-Phy L2 Ethernet Looping
+performance illustrating NDR throughput (zero packet loss) and PDR throughput
+(<0.5% packet loss). Performance is reported for Testpmd running in multiple
+Testpmd worker thread (a.k.a. VPP data plane thread) and physical CPU core
+configurations.
+
+Title of each graph is a regex (regular expression) matching plotted
+test cases.
+
+.. note::
+
+    Sources of test results data: i) FD.io executor jobs `csit-dpdk-perf-1701-all
+    <https://jenkins.fd.io/view/csit/job/csit-dpdk-perf-1701-all/>`_ and
+    `csit-dpdk-perf-1701-long
+    <https://jenkins.fd.io/view/csit/job/csit-dpdk-perf-1701-long/>`_, ii)
+    FD.io jobs archieved result files.
+
+NDR Throughput
+~~~~~~~~~~~~~~
+
+NDR throughput of Testpmd - running in configuration of **one worker thread
+(1t) on one physical core (1c)** - is presented in the figure below.
+
+.. raw:: html
+
+    <iframe width="700" height="700" frameborder="0" scrolling="no" src="../../_static/testpmd/64B-1t1c-l2-ndrdisc.html"></iframe>
+
+*Figure 1. Testpmd 1thread 1core - NDR Throughput for Phy-to-Phy L2 Ethernet
+Looping.*
+
+CSIT test cases used to generate results presented above can be found in CSIT
+git repository by filtering with specified regex as follows:
+
+.. code-block:: bash
+
+    $ csit/dpdk-tests/perf
+    $ grep -E "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc" *
+
+    10ge2p1x520-eth-l2xcbase-ndrdisc.robot:| tc01-64B-1t1c-eth-l2xcbase-ndrdisc
+
+NDR throughput of Testpmd - running in configuration of **two worker threads
+(2t) on two physical cores (2c)** - is presented in the figure below.
+
+.. raw:: html
+
+    <iframe width="700" height="700" frameborder="0" scrolling="no" src="../../_static/testpmd/64B-2t2c-l2-ndrdisc.html"></iframe>
+
+*Figure 2. Testpmd 2threads 2cores - NDR Throughput for Phy-to-Phy L2 Ethernet
+Looping.*
+
+CSIT test cases used to generate results presented above can be found in CSIT
+git repository by filtering with specified regex as follows:
+
+.. code-block:: bash
+
+    $ csit/dpdk-tests/perf
+    $ grep -E "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc" *
+
+    10ge2p1x520-eth-l2xcbase-ndrdisc.robot:| tc07-64B-2t2c-eth-l2xcbase-ndrdisc
+
+NDR throughput of Testpmd - running in configuration of **four worker threads
+(4t) on four physical cores (4c)** - is presented in the figure below.
+
+.. raw:: html
+
+    <iframe width="700" height="700" frameborder="0" scrolling="no" src="../../_static/testpmd/64B-4t4c-l2-ndrdisc.html"></iframe>
+
+*Figure 3. Testpmd 4threads 4cores - NDR Throughput for Phy-to-Phy L2 Ethernet
+Looping.*
+
+CSIT test cases used to generate results presented above can be found in CSIT
+git repository by filtering with specified regex as follows:
+
+.. code-block:: bash
+
+    $ csit/dpdk-tests/perf
+    $ grep -E "64B-4t4c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc" *
+
+    10ge2p1x520-eth-l2xcbase-ndrdisc.robot:| tc13-64B-4t4c-eth-l2xcbase-ndrdisc
+
+PDR Throughput
+~~~~~~~~~~~~~~
+
+PDR throughput of Testpmd - running in configuration of **one worker thread
+(1t) on one physical core (1c)** - is presented in the figure below. PDR at
+below 0.5% packet loss ratio.
+
+.. raw:: html
+
+    <iframe width="700" height="700" frameborder="0" scrolling="no" src="../../_static/testpmd/64B-1t1c-l2-pdrdisc.html"></iframe>
+
+*Figure 4. Testpmd 1thread 1core - PDR Throughput for Phy-to-Phy L2 Ethernet
+Looping.*
+
+CSIT test cases used to generate results presented above can be found in CSIT
+git repository by filtering with specified regex as follows:
+
+.. code-block:: bash
+
+    $ csit/tests/perf
+    $ grep -E "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-pdrdisc" *
+
+    10ge2p1x520-eth-l2xcbase-ndrdisc.robot:| tc02-64B-1t1c-eth-l2xcbase-pdrdisc
+
+PDR throughput of Testpmd - running in configuration of **two worker threads
+(2t) on two physical cores (2c)** - is presented in the figure below.
+
+.. raw:: html
+
+    <iframe width="700" height="700" frameborder="0" scrolling="no" src="../../_static/testpmd/64B-2t2c-l2-pdrdisc.html"></iframe>
+
+*Figure 5. Testpmd 2thread 2core - PDR Throughput for Phy-to-Phy L2 Ethernet
+Looping.*
+
+CSIT test cases used to generate results presented above can be found in CSIT
+git repository by filtering with specified regex as follows:
+
+.. code-block:: bash
+
+    $ csit/tests/perf
+    $ grep -E "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-pdrdisc" *
+
+    10ge2p1x520-eth-l2xcbase-ndrdisc.robot:| tc08-64B-2t2c-eth-l2xcbase-pdrdisc
+
+PDR throughput of Testpmd - running in configuration of **four worker threads
+(4t) on four physical cores (4c)** - is presented in the figure below.
+
+.. raw:: html
+
+    <iframe width="700" height="700" frameborder="0" scrolling="no" src="../../_static/testpmd/64B-4t4c-l2-pdrdisc.html"></iframe>
+
+*Figure 6. Testpmd 4thread 4core - PDR Throughput for Phy-to-Phy L2 Ethernet
+Looping.*
+
+CSIT test cases used to generate results presented above can be found in CSIT
+git repository by filtering with specified regex as follows:
+
+.. code-block:: bash
+
+    $ csit/tests/perf
+    $ grep -E "64B-4t4c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-pdrdisc" *
+
+    10ge2p1x520-eth-l2xcbase-ndrdisc.robot:| tc14-64B-4t4c-eth-l2xcbase-pdrdisc
