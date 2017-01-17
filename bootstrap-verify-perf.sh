@@ -164,6 +164,7 @@ case "$TEST_TAG" in
               -L TRACE \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s "tests.perf" \
+              -i THIS \
               tests/
         RETURN_STATUS=$(echo $?)
 esac
