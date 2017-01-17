@@ -61,10 +61,14 @@
 | |       ...         | ${dut2_node} | ${dut2s_vlan_name} | ${dut2s_vlan_index}
 | | ${dut1s_vxlan}= | When Create VXLAN interface     | ${dut1_node} | ${VNI}
 | |                 | ...  | ${dut1s_ip_address} | ${dut2s_ip_address}
+| |                   And  Set Interface State | ${dut1_node} | ${dut1s_vxlan}
+| |                   ...  | up
 | |                   And  Interfaces are added to BD | ${dut1_node} | ${BID}
 | |                   ...  | ${dut1_to_tg} | ${dut1s_vxlan}
 | | ${dut2s_vxlan}= | And  Create VXLAN interface     | ${dut2_node} | ${VNI}
 | |                 | ...  | ${dut2s_ip_address} | ${dut1s_ip_address}
+| |                   And  Set Interface State | ${dut2_node} | ${dut2s_vxlan}
+| |                   ...  | up
 | |                   And  Interfaces are added to BD | ${dut2_node} | ${BID}
 | |                   ...  | ${dut2_to_tg} | ${dut2s_vxlan}
 | | Then Send and receive ICMPv4 bidirectionally

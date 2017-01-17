@@ -20,6 +20,7 @@
 | Library  | resources.libraries.python.L2Util
 | Library  | resources.libraries.python.IPUtil
 | Library  | resources.libraries.python.IPv4Util
+| Library  | resources.libraries.python.IPv6Util
 | Library  | resources.libraries.python.IPv4Setup
 | Library  | resources.libraries.python.NodePath
 
@@ -50,12 +51,14 @@
 | | ${DUT2_INT_INDEX}= | Run Keyword If | ${DUT2_INT_INDEX} is None
 | |                    | ... | Get Interface Sw Index | ${DUT2} | ${DUT2_INT_KEY}
 | |                    | ... | ELSE | Set Variable | ${DUT2_INT_INDEX}
+| | ${DUT1_INT_MAC}= | Vpp Get Interface Mac | ${DUT1} | ${DUT1_INT_INDEX}
+| | ${DUT2_INT_MAC}= | Vpp Get Interface Mac | ${DUT2} | ${DUT2_INT_INDEX}
 | | Set Interface Address | ${DUT1} | ${DUT1_INT_INDEX}
 | | ... | ${dut1s_ip_address} | ${duts_ip_address_prefix}
 | | Set Interface Address | ${DUT2} | ${DUT2_INT_INDEX}
 | | ... | ${dut2s_ip_address} | ${duts_ip_address_prefix}
-| | VPP IP Probe | ${DUT1} | ${DUT1_INT_NAME} | ${dut2s_ip_address} | if_type=name
-| | VPP IP Probe | ${DUT2} | ${DUT2_INT_NAME} | ${dut1s_ip_address} | if_type=name
+| | Add IP Neighbor | ${DUT1} | ${DUT1_INT_INDEX} | ${dut2s_ip_address} | ${DUT2_INT_MAC}
+| | Add IP Neighbor | ${DUT2} | ${DUT2_INT_INDEX} | ${dut1s_ip_address} | ${DUT1_INT_MAC}
 
 | VXLAN interface is created
 | | [Arguments] | ${DUT} | ${VNI} | ${SRC_IP} | ${DST_IP}
