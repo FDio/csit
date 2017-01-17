@@ -50,8 +50,8 @@ def get_variables(interface):
                          },
         # vhost-user interface settings
         'vhost_interface': 'test_vhost',
-        'vhost_user_server': {'socket': 'soc1',
-                              'role': 'server'
+        'vhost_user_client': {'socket': 'soc1',
+                              'role': 'client'
                               },
         # Vlan subinterface settings
         'sub_if_id': sub_if_id,

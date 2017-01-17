@@ -96,8 +96,6 @@
 
 | Honeycomb modifies IPv4 neighbor table
 | | [Documentation] | Check if Honeycomb API can add and remove ARP entries.
-# Operational data and VAT dump not available (HONEYCOMB-111)
-| | [Tags] | EXPECTED_FAILING
 | | [Teardown] | Honeycomb clears all interface ipv4 neighbors
 | | ... | ${node} | ${interface}
 | | When Honeycomb adds interface ipv4 neighbor
@@ -107,8 +105,6 @@
 
 | Honeycomb modifies interface configuration - IPv6
 | | [Documentation] | Check if Honeycomb API can configure interfaces for ipv6.
-# Configuring IPv6 not implemented (HONEYCOMB-102)
-| | [Tags] | EXPECTED_FAILING
 | | When Honeycomb sets interface ipv6 address
 | | ... | ${node} | ${interface} | @{ipv6_address}
 | | Then IPv6 address from Honeycomb should be
@@ -121,8 +117,6 @@
 | Honeycomb modifies interface configuration - MTU
 | | [Documentation] | Check if Honeycomb API can configure interface\
 | | ... | MTU value.
-# Configuring MTU not implemented (HONEYCOMB-126)
-| | [Tags] | EXPECTED_FAILING
 | | When Honeycomb sets interface ethernet configuration
 | | ... | ${node} | ${interface} | ${ethernet}
 | | Then Interface ethernet configuration from Honeycomb should be
