@@ -30,8 +30,6 @@
 | Suite Teardown | Run Keyword If Any Tests Failed
 | ... | Restart Honeycomb And VPP And Clear Persisted Configuration | ${node}
 | Documentation | *Honeycomb TAP management test suite.*
-| ...
-| ... | Test suite uses the first interface of the first DUT node.
 
 *** Test Cases ***
 | TC01: Honeycomb configures TAP interface

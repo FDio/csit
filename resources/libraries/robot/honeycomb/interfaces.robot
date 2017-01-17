@@ -231,14 +231,11 @@
 | | ...
 | | ... | \| IPv4 neighbor from Honeycomb should be \| ${nodes['DUT1']} \
 | | ... | \| GigabitEthernet0/8/0 \| 192.168.0.4 \| 08:00:27:60:26:ab \|
-| | [Arguments] | ${node} | ${interface} | @{neighbors}
+| | [Arguments] | ${node} | ${interface} | ${ip_address} | ${mac_address}
 | | ${api_data}= | interfaceAPI.Get interface oper data | ${node} | ${interface}
-| | ${data_neighbors}= | Set Variable | ${api_data['ietf-ip:ipv4']['neighbor']}
-| | Compare data structures
-| | ... | ${data_neighbors} | ${neighbors}
-| | Should be equal | ${neighbor['fib_address']}
+| | Should be equal | ${ip_address}
 | | ... | ${api_data['ietf-ip:ipv4']['neighbor'][0]['ip']}
-| | Should be equal | ${neighbor['fib_mac']}
+| | Should be equal | ${mac_address}
 | | ... | ${api_data['ietf-ip:ipv4']['neighbor'][0]['link-layer-address']}
 
 | Honeycomb clears all interface ipv4 neighbors
@@ -290,11 +287,9 @@
 | | ... | \| GigabitEthernet0/8/0 \| 10::10 \| 64 \|
 | | [Arguments] | ${node} | ${interface} | ${address} | ${prefix}
 | | ${api_data}= | interfaceAPI.Get interface oper data | ${node} | ${interface}
-| | Should be equal | ${address}
-| | ... | ${api_data['ietf-ip:ipv6']['address'][0]['ip']}
-| | Should be equal | ${prefix}
-| | ... | ${api_data['ietf-ip:ipv6']['address'][0]['prefix-length']}
-| | Should be equal | ${fib_address}
+| | ${settings}= | Create Dictionary
+| | ... | ip=${address} | prefix-length=${prefix}
+| | Should contain | ${api_data['ietf-ip:ipv6']['address']} | ${settings}
 
 | IPv6 address from VAT should be
 | | [Documentation] | Retrieves interface ipv6 address through VAT and\
@@ -313,8 +308,9 @@
 | | [Arguments] | ${node} | ${interface} | ${address} | ${prefix}
 | | ${vpp_data}= | interfaceCLI.VPP get interface ip addresses
 | | ... | ${node} | ${interface} | ipv6
-| | Should be equal | ${vpp_data[0]['ip']} | ${address}
-| | Should be equal | ${vpp_data[0]['prefix-length']} | ${prefix}
+| | ${settings}= | Create Dictionary
+| | ... | ip=${address} | prefix_length=${prefix}
+| | Should contain | ${vpp_data} | ${settings}
 
 | Honeycomb sets interface ethernet configuration
 | | [Documentation] | Uses Honeycomb API to change interface ethernet\

@@ -22,8 +22,6 @@
 | Suite Teardown | Run Keyword If Any Tests Failed
 | | ... | Restart Honeycomb And VPP And Clear Persisted Configuration | ${node}
 | Documentation | *Honeycomb port mirroring test suite.*
-| ...
-| ... | Test suite uses the first interface of the first DUT node.
 
 *** Variables ***
 | ${interface1}= | ${node['interfaces']['port1']['name']}

@@ -22,12 +22,12 @@
 | Documentation | *Honeycomb L2 FIB management test suite.*
 | Suite Setup | Run keywords
 | ... | Set test interface down
-| ... | AND
-| ... | Honeycomb removes all bridge domains | ${node} | ${interface}
 | Suite Teardown | Run keywords
 | ... | Run Keyword If Any Tests Failed
 | ... | Restart Honeycomb And VPP And Clear Persisted Configuration | ${node}
-| ... | AND | Honeycomb removes all bridge domains | ${node}
+| ... | AND
+| ... | Honeycomb removes all bridge domains
+| ... | ${node} | ${interface} | ${interface2}
 | Force tags | honeycomb_sanity
 
 *** Variables ***
