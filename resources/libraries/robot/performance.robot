@@ -952,7 +952,9 @@
 | | ...            | Set Loss Acceptance Type Percentage
 | | Set Binary Convergence Threshold | ${threshold}
 | | Binary Search | ${binary_min} | ${binary_max} | ${topology_type}
-| | ${rate_per_stream} | ${latency}= | Verify Search Result
+| | ${rate_per_stream} | ${lat}= | Verify Search Result
+| | ${tmp}= | Create List | 100%NDR | ${lat}
+| | ${latency}= | Create List | ${tmp}
 | | Display result of PDR search | ${rate_per_stream} | ${framesize} | 2
 | | ...                          | ${loss_acceptance} | ${loss_acceptance_type}
 | | ...                          | ${latency}
@@ -1107,7 +1109,7 @@
 | | ... | *Example:*
 | | ...
 | | ... | \| Display result of PDR search \| 4400000 \| 64 \| 2 \| 0.5 \
-| | ... | \| percentage \| (0, 10/10/10) \|
+| | ... | \| percentage \| [100%NDR, [10/10/10, 1/2/3]] \|
 | | [Arguments] | ${rate_per_stream} | ${framesize} | ${nr_streams}
 | | ...         | ${loss_acceptance} | ${loss_acceptance_type} | ${latency}
 | | ${framesize}= | Get Frame Size | ${framesize}
@@ -1118,9 +1120,9 @@
 | | ...              | append=yes
 | | Set Test Message | ${\n}FINAL_BANDWIDTH: ${bandwidth_total} Gbps (untagged)
 | | ...              | append=yes
-| | :FOR | ${idx} | ${lat} | IN ENUMERATE | @{latency}
-| | | Set Test Message | ${\n}LATENCY_STREAM_${idx}: ${lat} usec (min/avg/max)
-| | ...                | append=yes
+| | Set Test Message | ${\n}LATENCY usec [min/avg/max] | append=yes
+| | :FOR | ${lat} | IN | @{latency}
+| | | Set Test Message | ${\n}LAT_${lat[0]}: ${lat[1]} | append=yes
 | | Set Test Message | ${\n}LOSS_ACCEPTANCE: ${loss_acceptance} ${loss_acceptance_type}
 | | ...              | append=yes
 
