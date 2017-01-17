@@ -115,7 +115,7 @@
 | | [Documentation] | Check if Honeycomb can configure local and remote Lisp\
 | | ... | mappings with VRF, and configure adjacency.
 | | [Tags] | EXPECTED_FAILING
-# Requests below "vrf-subtable" level fail on table-id lookup (HONEYCOMB-290)
+# Adjacency is not properly configured (HONEYCOMB-338)
 | | [Teardown] | Honeycomb removes all lisp mappings | ${node}
 | | Given Locator Set From Honeycomb Should Be
 | | ... | ${node} | ${interface} | ${locator_set}
@@ -125,12 +125,11 @@
 | | ... | ${node}
 | | And Lisp mappings from VAT should not exist
 | | ... | ${node}
-| | And Honeycomb adds Lisp mapping | ${node} | ${lisp_settings_local_vrf}
-| | And Honeycomb adds Lisp mapping | ${node} | ${lisp_settings_remote_vrf}
-| | When Honeycomb adds Lisp adjacency | ${node} | ${4} | remote_map_vrf
-| | ... | adj01 | ${remote_vrf_adjacency}
+| | And Honeycomb adds Lisp mapping | ${node} | ${lisp_settings_both_vrf}
+| | When Honeycomb adds Lisp adjacency | ${node} | ${7} | remote_map_vrf
+| | ... | adj01 | ${vrf_adjacency}
 | | Then Lisp mapping from Honeycomb should be
-| | ... | ${node} | ${remote_adj_subtable}
+| | ... | ${node} | ${adj_subtable}
 
 | TC09: Honeycomb configures Lisp map resolver
 | | [Documentation] | Check if Honeycomb can configure a Lisp map resolver.
@@ -151,8 +150,7 @@
 | TC11: Honeycomb can remove configuration of Lisp features
 | | [Documentation] | Check if Honeycomb can disable all Lisp features.
 | | [Tags] | EXPECTED_FAILING
-# Delete operation fails due to incorrect write order(HONEYCOMB-296),
-# but returns code 200: OK (HONEYCOMB-297)
+# Delete operation fails if PITR feature is enabled (HONEYCOMB-337)
 | | Given Map resolver from Honeycomb should be | ${node} | 192.168.0.4
 | | And PITR config from Honeycomb should be | ${node} | ${locator_set}
 | | When Honeycomb disables all Lisp features | ${node}

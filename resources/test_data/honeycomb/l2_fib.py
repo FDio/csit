@@ -119,7 +119,6 @@ def get_variables(node, interface, interface2):
         # Configuration data:
         'l2_fib_filter_cfg': {
             "phys-address": filtered,
-            "outgoing-interface": interface,
             "static-config": True,
             "action": "l2-fib-filter"
         },
@@ -127,7 +126,6 @@ def get_variables(node, interface, interface2):
         # Expected operational data:
         'l2_fib_filter_oper': {
             "phys-address": filtered,
-            "outgoing-interface": interface,
             "bridged-virtual-interface": False,
             "action": "v3po:l2-fib-filter",
             "static-config": True
@@ -136,7 +134,6 @@ def get_variables(node, interface, interface2):
         # Expected VAT data:
         'l2_fib_filter_vat': {
             "mac": int("".join(filtered.split(':')), 16),
-            "sw_if_index": sw_if_index,
             "static_mac": 1,
             "filter_mac": 1,
             "bvi_mac": 0

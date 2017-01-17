@@ -26,8 +26,8 @@
 | Resource | resources/libraries/robot/default.robot
 | Resource | resources/libraries/robot/honeycomb/honeycomb.robot
 | Resource | resources/libraries/robot/honeycomb/vhost_user.robot
-# Whole suite failing due to bug https://jira.fd.io/browse/VPP-562
-| Force Tags | honeycomb_sanity | EXPECTED_FAILING
+# vhost-user as server disabled due to VPP bug (VPP-562)
+#| Force Tags | honeycomb_sanity
 | Suite Teardown | Run Keyword If Any Tests Failed
 | ... | Restart Honeycomb And VPP And Clear Persisted Configuration | ${node}
 | Documentation | *Honeycomb vhost-user interface management test suite.*
@@ -91,6 +91,7 @@
 | | [Documentation] | Check if Honeycomb creates a vhost-user interface, role:\
 | | ... | client.
 | | ...
+| | [Tags] | honeycomb_sanity
 | | Given vhost-user configuration from Honeycomb should be empty
 | | ... | ${node} | ${vhost_interface}
 | | When Honeycomb creates vhost-user interface
@@ -104,6 +105,7 @@
 | | [Documentation] | Check if Honeycomb can modify properties of existing\
 | | ... | vhost-user interface, role: client.
 | | ...
+| | [Tags] | honeycomb_sanity
 | | Given vhost-user configuration from Honeycomb should be
 | | ... | ${node} | ${vhost_interface} | ${vhost_user_client}
 | | When Honeycomb configures vhost-user interface
@@ -129,6 +131,7 @@
 | | [Documentation] | Check if Honeycomb can delete an existing vhost-user\
 | | ... | interface, role: client.
 | | ...
+| | [Tags] | honeycomb_sanity
 | | Given vhost-user configuration from Honeycomb should be
 | | ... | ${node} | ${vhost_interface} | ${vhost_user_client}
 | | When Honeycomb removes vhost-user interface
@@ -142,6 +145,7 @@
 | | [Documentation] | Check if Honeycomb refuses to set vhost-user\
 | | ... | configuration for interface which is not v3po:vhost-user type.
 | | ...
+| | [Tags] | honeycomb_sanity
 | | When Honeycomb fails setting vhost-user on different interface type
 | | ... | ${node} | ${interface} | ${vhost_user_server}
 | | Then vhost-user configuration from Honeycomb should be empty
@@ -153,6 +157,7 @@
 | | [Documentation] | Check if Honeycomb refuses to set invalid parameters to\
 | | ... | vhost-user interface.
 | | ...
+| | [Tags] | honeycomb_sanity
 | | Given vhost-user configuration from Honeycomb should be empty
 | | ... | ${node} | ${vhost_interface}
 | | When Honeycomb fails setting invalid vhost-user configuration

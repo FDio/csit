@@ -36,13 +36,13 @@
 | | ... | ${node} | ${table_index}
 | | When Honeycomb creates ACL table
 | | ... | ${node} | ${hc_acl_table}
-| | Then ACL table from Honeycomb should be | ${node} | ${hc_acl_table}
+| | Then ACL table from Honeycomb should be | ${node} | ${hc_acl_table_oper}
 | | And ACL table from VAT should be
 | | ... | ${node} | ${table_index} | ${vat_acl_table}
 
 | Honeycomb can remove ACL table
 | | [Documentation] | Check if Honeycomb API can delete an ACL table.
-| | Given ACL table from Honeycomb should be | ${node} | ${hc_acl_table}
+| | Given ACL table from Honeycomb should be | ${node} | ${hc_acl_table_oper}
 | | And ACL table from VAT should be
 | | ... | ${node} | ${table_index} | ${vat_acl_table}
 | | When Honeycomb removes ACL table | ${node} | ${hc_acl_table['name']}
@@ -59,16 +59,16 @@
 | | ... | ${node} | ${table_index}
 | | When Honeycomb creates ACL table | ${node} | ${hc_acl_table}
 | | And Honeycomb creates ACL table | ${node} | ${hc_acl_table2}
-| | Then ACL table from Honeycomb should be | ${node} | ${hc_acl_table}
+| | Then ACL table from Honeycomb should be | ${node} | ${hc_acl_table_oper}
 | | And ACL table from VAT should be
 | | ... | ${node} | ${table_index} | ${vat_acl_table}
-| | And ACL table from Honeycomb should be | ${node} | ${hc_acl_table2}
+| | And ACL table from Honeycomb should be | ${node} | ${hc_acl_table2_oper}
 | | And ACL table from VAT should be
 | | ... | ${node} | ${table_index2} | ${vat_acl_table2}
 
 | Honeycomb can add ACL session to table
 | | [Documentation] | Check if Honeycomb API can add an ACL session to a table.
-| | Given ACL table from Honeycomb should be | ${node} | ${hc_acl_table}
+| | Given ACL table from Honeycomb should be | ${node} | ${hc_acl_table_oper}
 | | And ACL table from VAT should be
 | | ... | ${node} | ${table_index} | ${vat_acl_table}
 | | When Honeycomb adds ACL session
@@ -113,7 +113,7 @@
 
 | Honeycomb enables ACL on interface
 | | [Documentation] | Check if Honeycomb API can enable ACL on an interface.
-| | Given ACL table from Honeycomb should be | ${node} | ${hc_acl_table}
+| | Given ACL table from Honeycomb should be | ${node} | ${hc_acl_table_oper}
 | | And ACL table from VAT should be
 | | ... | ${node} | ${table_index} | ${vat_acl_table}
 | | And ACL session from Honeycomb should be
@@ -142,16 +142,14 @@
 | Honeycomb can remove one out of multiple ACL tables
 | | [Documentation] | Check if Honeycomb API can delete an ACL table if more\
 | | ... | than one table exists.
-# Attempting to remove one ACL table removes all of them (VPP-206)
-| | [Tags] | EXPECTED_FAILING
-| | Given ACL table from Honeycomb should be | ${node} | ${hc_acl_table}
+| | Given ACL table from Honeycomb should be | ${node} | ${hc_acl_table_oper}
 | | And ACL table from VAT should be
 | | ... | ${node} | ${table_index} | ${vat_acl_table}
-| | And ACL table from Honeycomb should be | ${node} | ${hc_acl_table2}
+| | And ACL table from Honeycomb should be | ${node} | ${hc_acl_table2_oper}
 | | And ACL table from VAT should be
 | | ... | ${node} | ${table_index2} | ${vat_acl_table2}
 | | When Honeycomb removes ACL table | ${node} | ${hc_acl_table2['name']}
-| | Then ACL table from Honeycomb should be | ${node} | ${hc_acl_table}
+| | Then ACL table from Honeycomb should be | ${node} | ${hc_acl_table_oper}
 | | And ACL table from VAT should be
 | | ... | ${node} | ${table_index} | ${vat_acl_table}
 | | And ACL table from Honeycomb should not exist
