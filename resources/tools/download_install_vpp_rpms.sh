@@ -1,4 +1,5 @@
 #!/bin/bash
+
 # Copyright (c) 2016 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,23 +13,27 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-set -x
+set -ex
 
-cat /etc/hostname
-cat /etc/hosts
+VER="RELEASE"
 
-SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-
-if [ -f "/etc/redhat-release" ]; then
-    ${SCRIPT_DIR}/bootstrap-centos.sh
+VPP_REPO_URL_PATH="./VPP_REPO_URL"
+if [ -e "$VPP_REPO_URL_PATH" ]; then
+    VPP_REPO_URL=$(cat $VPP_REPO_URL_PATH)
+    REPO=$(echo ${VPP_REPO_URL#https://nexus.fd.io/content/repositories/})
+    REPO=$(echo ${REPO%/fd.io.centos7})
 else
-    ${SCRIPT_DIR}/bootstrap-ubuntu.sh
+    REPO='https://nexus.fd.io/content/repositories/fd.io.centos7'
 fi
 
-if [ ${RC} -eq 0 ]; then
-    RETURN_STATUS=0
-else
-    RETURN_STATUS=1
-fi
+ARTIFACTS="vpp vpp-lib vpp-debuginfo vpp-devel vpp-python-api vpp-plugins"
 
-exit ${RETURN_STATUS}
+
+yum-config-manager --add-repo $REPO
+
+if [ "$1" != "--skip-install" ]; then
+    echo Installing VPP
+    sudo yum install -y $ARTIFACTS
+else
+    echo VPP Installation skipped
+fi
