@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5a2585a7_da1bd9c8",
+        "filename": "tests/func/cop_base/virtio2p-ethip4-ip4base-copblklistbase-func.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2017-01-19T12:31:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a2585a7_ba06cdcc",
+      "range": {
+        "startLine": 27,
+        "startChar": 51,
+        "endLine": 27,
+        "endChar": 60
+      },
+      "revId": "fe203fb848be133683df294ca39d92ea83db9356",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a2585a7_5a13690d",
         "filename": "tests/func/dhcp/virtio2p-ethip4-ip4base-ip4dhcpclient-func.robot",
         "patchSetId": 1
@@ -36,6 +60,24 @@
       "writtenOn": "2017-01-19T10:09:42Z",
       "side": 1,
       "message": "Are test in this directory realy virtio2p. Probably eth2p or ge2p. \nWe are testing it in CSIT virl, but it should be runable in physical testbed too.",
+      "revId": "fe203fb848be133683df294ca39d92ea83db9356",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_da72b910",
+        "filename": "tests/func/dhcp/virtio2p-ethip4-ip4base-ip4dhcpclient-func.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2017-01-19T12:31:41Z",
+      "side": 1,
+      "message": "Hmm, that\u0027s the good point. Maybe we should use just 2p ... Will be discussed.",
+      "parentUuid": "5a2585a7_5a13690d",
       "revId": "fe203fb848be133683df294ca39d92ea83db9356",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
