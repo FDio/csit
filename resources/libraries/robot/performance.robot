@@ -27,6 +27,7 @@
 | Resource | resources/libraries/robot/ipv4.robot
 | Resource | resources/libraries/robot/ipv6.robot
 | Resource | resources/libraries/robot/qemu.robot
+| Resource | resources/libraries/robot/tagging.robot
 | Documentation | Performance suite keywords
 
 *** Keywords ***
@@ -618,6 +619,41 @@
 | | L2 setup xconnect on DUT | ${dut2} | ${dut2_if2} | ${vhost_if2}
 | | All Vpp Interfaces Ready Wait | ${nodes}
 
+| L2 xconnect with Vhost-User and VLAN initialized in a 3-node circular topology
+| | [Documentation]
+| | ... | Create two Vhost-User interfaces on all defined VPP nodes. Cross
+| | ... | connect each Vhost interface with one physical interface.
+| | ... | Setup VLAN between DUTs. All interfaces are brought up.
+| | ...
+| | ... | *Arguments:*
+| | ... | - sock1 - Socket path for first Vhost-User interface. Type: string
+| | ... | - sock2 - Socket path for second Vhost-User interface. Type: string
+| | ... | - subid - ID of the sub-interface to be created. Type: string
+| | ... | - tag_rewrite - Method of tag rewrite. Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| L2 xconnect with Vhost-User and VLAN initialized in a 3-node\
+| | ... | circular topology \| /tmp/sock1 \| /tmp/sock2 \| 10 \| pop-1 \|
+| | ...
+| | [Arguments] | ${sock1} | ${sock2} | ${subid} | ${tag_rewrite}
+| | ...
+| | VPP interfaces in path are up in a 3-node circular topology
+| | VLAN dot1q subinterfaces initialized on 3-node topology
+| | ... | ${dut1} | ${dut1_if2} | ${dut2} | ${dut2_if1} | ${subid}
+| | L2 tag rewrite method setup on interfaces
+| | ... | ${dut1} | ${subif_index_1} | ${dut2} | ${subif_index_2}
+| | ... | ${tag_rewrite}
+| | VPP Vhost interfaces for L2BD forwarding are setup | ${dut1}
+| | ... | ${sock1} | ${sock2}
+| | L2 setup xconnect on DUT | ${dut1} | ${dut1_if1} | ${vhost_if1}
+| | L2 setup xconnect on DUT | ${dut1} | ${subif_index_1} | ${vhost_if2}
+| | VPP Vhost interfaces for L2BD forwarding are setup | ${dut2}
+| | ... | ${sock1} | ${sock2}
+| | L2 setup xconnect on DUT | ${dut2} | ${subif_index_2} | ${vhost_if1}
+| | L2 setup xconnect on DUT | ${dut2} | ${dut2_if2} | ${vhost_if2}
+| | All Vpp Interfaces Ready Wait | ${nodes}
+
 | L2 bridge domain initialized in a 3-node circular topology
 | | [Documentation]
 | | ... | Setup L2 DB topology by adding two interfaces on each DUT into BD
@@ -702,8 +738,8 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| L2 bridge domains with Vhost-User initialized in a 3-node \
-| | ... | circular topology \| 1 \| 2 \| /tmp/sock1 \| /tmp/sock2 \|
+| | ... | \| L2 bridge domains with Vhost-User and VXLANoIPv4 initialized in a\
+| | ... | 3-node circular topology \| 1 \| 2 \| /tmp/sock1 \| /tmp/sock2 \|
 | | ...
 | | [Arguments] | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
 | | ...
@@ -723,6 +759,50 @@
 | | VPP Vhost interfaces for L2BD forwarding are setup | ${dut2}
 | | ... | ${sock1} | ${sock2}
 | | Interface is added to bridge domain | ${dut2} | ${dut2s_vxlan} | ${bd_id1}
+| | Interface is added to bridge domain | ${dut2} | ${vhost_if1} | ${bd_id1}
+| | Interface is added to bridge domain | ${dut2} | ${vhost_if2} | ${bd_id2}
+| | Interface is added to bridge domain | ${dut2} | ${dut2_if2} | ${bd_id2}
+| | All Vpp Interfaces Ready Wait | ${nodes}
+
+| L2 bridge domains with Vhost-User and VLAN initialized in a 3-node circular topology
+| | [Documentation]
+| | ... | Create two Vhost-User interfaces on all defined VPP nodes. Add each
+| | ... | Vhost-User interface into L2 bridge domains with learning enabled
+| | ... | with physical inteface.
+| | ... | Setup VLAN between DUTs. All interfaces are brought up.
+| | ...
+| | ... | *Arguments:*
+| | ... | - bd_id1 - Bridge domain ID. Type: integer
+| | ... | - bd_id2 - Bridge domain ID. Type: integer
+| | ... | - sock1 - Sock path for first Vhost-User interface. Type: string
+| | ... | - sock2 - Sock path for second Vhost-User interface. Type: string
+| | ... | - subid - ID of the sub-interface to be created. Type: string
+| | ... | - tag_rewrite - Method of tag rewrite. Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| L2 bridge domains with Vhost-User and VLAN initialized in a 3-node\
+| | ... | circular topology \| 1 \| 2 \| /tmp/sock1 \| /tmp/sock2 \| 10\
+| | ... | pop-1 \|
+| | ...
+| | [Arguments] | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2} | ${subid}
+| | ... | ${tag_rewrite}
+| | ...
+| | VPP interfaces in path are up in a 3-node circular topology
+| | VLAN dot1q subinterfaces initialized on 3-node topology
+| | ... | ${dut1} | ${dut1_if2} | ${dut2} | ${dut2_if1} | ${subid}
+| | L2 tag rewrite method setup on interfaces
+| | ... | ${dut1} | ${subif_index_1} | ${dut2} | ${subif_index_2}
+| | ... | ${tag_rewrite}
+| | VPP Vhost interfaces for L2BD forwarding are setup | ${dut1}
+| | ... | ${sock1} | ${sock2}
+| | Interface is added to bridge domain | ${dut1} | ${dut1_if1} | ${bd_id1}
+| | Interface is added to bridge domain | ${dut1} | ${vhost_if1} | ${bd_id1}
+| | Interface is added to bridge domain | ${dut1} | ${vhost_if2} | ${bd_id2}
+| | Interface is added to bridge domain | ${dut1} | ${subif_index_1} | ${bd_id2}
+| | VPP Vhost interfaces for L2BD forwarding are setup | ${dut2}
+| | ... | ${sock1} | ${sock2}
+| | Interface is added to bridge domain | ${dut2} | ${subif_index_2} | ${bd_id1}
 | | Interface is added to bridge domain | ${dut2} | ${vhost_if1} | ${bd_id1}
 | | Interface is added to bridge domain | ${dut2} | ${vhost_if2} | ${bd_id2}
 | | Interface is added to bridge domain | ${dut2} | ${dut2_if2} | ${bd_id2}
