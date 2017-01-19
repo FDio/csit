@@ -48,11 +48,11 @@
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv6 routing config with 1 thread, 1 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Verify ref-NDR for 78 Byte
-| | ... | frames using single trial throughput test at 2x 2.3mpps.
+| | ... | frames using single trial throughput test at 2x 1.8mpps.
 | | [Tags] | 1T1C | STHREAD
 | | ${framesize}= | Set Variable | 78
 | | ${duration}= | Set Variable | 10
-| | ${rate}= | Set Variable | 2.3mpps
+| | ${rate}= | Set Variable | 1.8mpps
 | | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
@@ -104,11 +104,11 @@
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv6 routing config with 2 thread, 2 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Verify ref-NDR for 78 Byte
-| | ... | frames using single trial throughput test at 2x 4.9mpps.
+| | ... | frames using single trial throughput test at 2x 4.0mpps.
 | | [Tags] | 2T2C | MTHREAD
 | | ${framesize}= | Set Variable | 78
 | | ${duration}= | Set Variable | 10
-| | ${rate}= | Set Variable | 4.9mpps
+| | ${rate}= | Set Variable | 4.0mpps
 | | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
@@ -160,11 +160,11 @@
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv6 routing config with 4 thread, 4 phy core, \
 | | ... | 2 receive queue per NIC port. [Ver] Verify ref-NDR for 78 Byte
-| | ... | frames using single trial throughput test at 2x 9.5mpps.
+| | ... | frames using single trial throughput test at 2x 6.8mpps.
 | | [Tags] | 4T4C | MTHREAD
 | | ${framesize}= | Set Variable | 78
 | | ${duration}= | Set Variable | 10
-| | ${rate}= | Set Variable | 9.5mpps
+| | ${rate}= | Set Variable | 6.8mpps
 | | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
