@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a2585a7_ae51ee0f",
+        "filename": "resources/libraries/robot/performance.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 641,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-01-19T15:16:52Z",
+      "side": 1,
+      "message": "missing import from resources/libraries/robot/tagging.robot",
+      "range": {
+        "startLine": 641,
+        "startChar": 4,
+        "endLine": 641,
+        "endChar": 59
+      },
+      "revId": "13684bc65a9d3e0318d3fee0b171ff59f890f1a8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
