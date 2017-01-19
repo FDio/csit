@@ -9,10 +9,12 @@ CSIT 17.01
     introduction
     functional_tests
     performance_tests
+    honeycomb_tests
     performance_plots_ndr
     performance_plots_pdr
     performance_plots_latency
     functional_results
     performance_results
+    honeycomb_results
     legal
 
