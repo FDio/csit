@@ -82,7 +82,6 @@ areas marked with [%]:
   LightWeight4over6, MAP-E, MAP-T.
 * **VLAN rewrites [&]** - L2 VLAN rewrite tests 2-2, 2-1, 1-2 with L2XC and L2BD.
 * **Tap Interface [&]** - baseline Linux tap interface tests.
-* **HoneyComb [&]** - HoneyComb control plane interface into VPP.
 
 Total 199 functional tests in the CSIT-16.09 Release (up from 76 functional
 tests in the CSIT-16.06 Release).

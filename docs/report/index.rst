@@ -9,8 +9,10 @@ CSIT 17.01
     introduction
     functional_tests
     performance_tests
+    honeycomb_tests
     performance_plots
     functional_results
     performance_results
+    honeycomb_results
     legal
 
