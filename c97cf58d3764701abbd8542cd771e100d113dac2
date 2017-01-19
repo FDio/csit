@@ -1,0 +1,61 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a2585a7_3a03fd43",
+        "filename": "tests/func/dhcp/virtio2p-ethip4-ip4base-ip4dhcpclient-func.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2017-01-19T19:38:49Z",
+      "side": 1,
+      "message": "Please change to DHCPv4 everywhere.",
+      "range": {
+        "startLine": 34,
+        "startChar": 14,
+        "endLine": 34,
+        "endChar": 18
+      },
+      "revId": "c97cf58d3764701abbd8542cd771e100d113dac2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_7ae9857f",
+        "filename": "tests/func/dhcp/virtio2p-ethip4-ip4base-ip6dhcpproxy-func.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2017-01-19T19:38:49Z",
+      "side": 1,
+      "message": "wrong name -ethip6-ip6base-ip6dhcpproxy-func. Maybe only -ethip6-ip6base-dhcpproxy-func.",
+      "revId": "c97cf58d3764701abbd8542cd771e100d113dac2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_ba4b6d86",
+        "filename": "tests/func/iacl_base/virtio2p-eth-l2xcbase-iacldstbase-func.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2017-01-19T19:38:49Z",
+      "side": 1,
+      "message": "I\u0027d prefer -iaclbase- without dst. Test in file are src, dst, and src-dst based.",
+      "revId": "c97cf58d3764701abbd8542cd771e100d113dac2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
