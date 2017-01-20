@@ -43,6 +43,7 @@
 
 *** Test Cases ***
 | TC01: DUT1 and DUT2 with L2BD and VXLANoIPv4oVLAN tunnels switch ICMPv4 between TG links
+| | [Tags] | EXPECTED_FAILING
 | | [Documentation]
 | | ... | [Top] TG-DUT1-DUT2-TG. [Enc] Eth-dot1q-IPv4-VXLAN-Eth-IPv4-ICMPv4 on\
 | | ... | DUT1-DUT2; Eth-IPv4-ICMPv4 on TG-DUTn. [Cfg] On DUT1 and DUT2
