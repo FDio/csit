@@ -21,12 +21,14 @@ export DEBIAN_FRONTEND=noninteractive
 sudo apt-get -y update
 sudo apt-get -y install libpython2.7-dev python-virtualenv
 
-VIRL_SERVERS=("10.30.51.28" "10.30.51.29" "10.30.51.30")
+#VIRL_SERVERS=("10.30.51.28" "10.30.51.29" "10.30.51.30")
+VIRL_SERVERS=("10.30.51.28")
 
 VIRL_USERNAME=jenkins-in
 VIRL_PKEY=priv_key
 VIRL_SERVER_STATUS_FILE="status"
-VIRL_SERVER_EXPECTED_STATUS="PRODUCTION"
+#VIRL_SERVER_EXPECTED_STATUS="PRODUCTION"
+VIRL_SERVER_EXPECTED_STATUS="TESTING"
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 

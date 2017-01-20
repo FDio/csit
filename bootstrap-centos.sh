@@ -19,12 +19,14 @@ cat /etc/hosts
 
 sudo yum install -y python-devel python-virtualenv
 
-VIRL_SERVERS=("10.30.51.28" "10.30.51.29" "10.30.51.30")
+#VIRL_SERVERS=("10.30.51.28" "10.30.51.29" "10.30.51.30")
+VIRL_SERVERS=("10.30.51.28")
 
 VIRL_USERNAME=jenkins-in
 VIRL_PKEY=priv_key
 VIRL_SERVER_STATUS_FILE="status"
-VIRL_SERVER_EXPECTED_STATUS="PRODUCTION"
+#VIRL_SERVER_EXPECTED_STATUS="PRODUCTION"
+VIRL_SERVER_EXPECTED_STATUS="TESTING"
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
