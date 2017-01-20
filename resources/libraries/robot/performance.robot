@@ -1263,13 +1263,13 @@
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock1}
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock2}
 | | Run keyword | ${vm_name}.Qemu Set Node | ${dut_node}
-| | Run keyword | ${vm_name}.Qemu Set Smp | 5 | 5 | 1 | 1
+| | Run keyword | ${vm_name}.Qemu Set Smp | 3 | 3 | 1 | 1
 | | Run keyword | ${vm_name}.Qemu Set Mem Size | 2048
 | | Run keyword | ${vm_name}.Qemu Set Disk Image | ${glob_vm_image}
 | | ${vm}= | Run keyword | ${vm_name}.Qemu Start
-| | Run keyword | ${vm_name}.Qemu Set Affinity | 5 | 6 | 7 | 8 | 9
+| | Run keyword | ${vm_name}.Qemu Set Affinity | 23 | 24 | 25
 | | Run keyword | ${vm_name}.Qemu Set Scheduler Policy
-| | Dpdk Testpmd Start | ${vm} | eal_coremask=0x1f
+| | Dpdk Testpmd Start | ${vm} | eal_coremask=0x7
 | | ...                | eal_mem_channels=4
 | | ...                | pmd_fwd_mode=io
 | | ...                | pmd_disable_hw_vlan=${True}
