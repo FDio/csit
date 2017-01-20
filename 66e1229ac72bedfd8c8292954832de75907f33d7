@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5a2585a7_316e8397",
+        "filename": "tests/func/l2xc_base/virtio2p-eth-l2xcbase-eth-2vhost-1vm-func.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2017-01-20T12:17:37Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a2585a7_aee1eed1",
+      "range": {
+        "startLine": 66,
+        "startChar": 0,
+        "endLine": 69,
+        "endChar": 41
+      },
+      "revId": "66e1229ac72bedfd8c8292954832de75907f33d7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a2585a7_6e02e670",
         "filename": "tests/func/softwire/virtio2p-ethip4-ip6base-lgtwgt4o6-func.robot",
         "patchSetId": 3
@@ -36,6 +60,24 @@
       "writtenOn": "2017-01-19T19:38:49Z",
       "side": 1,
       "message": "This is LW 4over6, ipv4 packet is encapsulated into ipv6. Is developed to pass ipv4 traffic through IPv6 providers network and then is ip4base. So the filename should be 2p-ethip6-ip4base-lgtwgt4o6-func",
+      "revId": "66e1229ac72bedfd8c8292954832de75907f33d7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_b18cb336",
+        "filename": "tests/func/softwire/virtio2p-ethip4-ip6base-lgtwgt4o6-func.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2017-01-20T12:17:37Z",
+      "side": 1,
+      "message": "It\u0027s a little bit difficult there becasue of two changes:\n\n1. wire encapsulation from ethip4 (RX side) to ethip6ip4 (TX side)\n\n2. packet forwarding function change from ip4base (RX side) to ip6base (TX side)\n\nLet\u0027s discuss it offline.",
+      "parentUuid": "5a2585a7_6e02e670",
       "revId": "66e1229ac72bedfd8c8292954832de75907f33d7",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
@@ -59,6 +101,24 @@
     },
     {
       "key": {
+        "uuid": "5a2585a7_517d8f1b",
+        "filename": "tests/func/softwire/virtio2p-ethip4-ip6base-mape-func.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2017-01-20T12:17:37Z",
+      "side": 1,
+      "message": "See comment for lw4o6.",
+      "parentUuid": "5a2585a7_4ef96a7f",
+      "revId": "66e1229ac72bedfd8c8292954832de75907f33d7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a2585a7_0ef3629f",
         "filename": "tests/func/softwire/virtio2p-ethip4-ip6base-mapt-func.robot",
         "patchSetId": 3
@@ -70,6 +130,24 @@
       "writtenOn": "2017-01-19T19:38:49Z",
       "side": 1,
       "message": "same as lw4o6",
+      "revId": "66e1229ac72bedfd8c8292954832de75907f33d7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_3178c32a",
+        "filename": "tests/func/softwire/virtio2p-ethip4-ip6base-mapt-func.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2017-01-20T12:17:37Z",
+      "side": 1,
+      "message": "See comment for lwt4o6.",
+      "parentUuid": "5a2585a7_0ef3629f",
       "revId": "66e1229ac72bedfd8c8292954832de75907f33d7",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
