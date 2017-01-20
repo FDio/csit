@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "5a2585a7_715c0bee",
+        "filename": "docs/report/functional_tests.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-01-20T11:48:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a2585a7_9a4e7195",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 29
+      },
+      "revId": "6402df4f66539c28ec8cfa47f5c164b15e5b343e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a2585a7_5a480987",
         "filename": "docs/report/functional_tests.rst",
         "patchSetId": 5
@@ -36,6 +60,30 @@
       "writtenOn": "2017-01-19T16:17:46Z",
       "side": 1,
       "message": "Looks like this contains wiki escape characters:  I think this should be \u0027*****\u0027",
+      "range": {
+        "startLine": 35,
+        "startChar": 53,
+        "endLine": 35,
+        "endChar": 59
+      },
+      "revId": "6402df4f66539c28ec8cfa47f5c164b15e5b343e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_9159b700",
+        "filename": "docs/report/functional_tests.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-01-20T11:48:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a2585a7_5a480987",
       "range": {
         "startLine": 35,
         "startChar": 53,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "5a2585a7_b16273ab",
+        "filename": "docs/report/functional_tests.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-01-20T11:48:18Z",
+      "side": 1,
+      "message": "In final, it is good rendered, this is gerrit view.",
+      "parentUuid": "5a2585a7_1a5a8150",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 42
+      },
+      "revId": "6402df4f66539c28ec8cfa47f5c164b15e5b343e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a2585a7_fa58d557",
         "filename": "docs/report/functional_tests.rst",
         "patchSetId": 5
@@ -82,6 +154,30 @@
       "writtenOn": "2017-01-19T16:17:46Z",
       "side": 1,
       "message": "These stats need to be updated for 17.01",
+      "range": {
+        "startLine": 87,
+        "startChar": 0,
+        "endLine": 88,
+        "endChar": 33
+      },
+      "revId": "6402df4f66539c28ec8cfa47f5c164b15e5b343e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_d15f3fe4",
+        "filename": "docs/report/functional_tests.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-01-20T11:48:18Z",
+      "side": 1,
+      "message": "will do",
+      "parentUuid": "5a2585a7_fa58d557",
       "range": {
         "startLine": 87,
         "startChar": 0,
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "5a2585a7_f150fbd5",
+        "filename": "docs/report/functional_tests.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-01-20T11:48:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a2585a7_9a3551f9",
+      "range": {
+        "startLine": 105,
+        "startChar": 62,
+        "endLine": 105,
+        "endChar": 68
+      },
+      "revId": "6402df4f66539c28ec8cfa47f5c164b15e5b343e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a2585a7_7a3ce5e2",
         "filename": "docs/report/functional_tests.rst",
         "patchSetId": 5
@@ -140,6 +260,30 @@
     },
     {
       "key": {
+        "uuid": "5a2585a7_51734f80",
+        "filename": "docs/report/functional_tests.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-01-20T11:48:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a2585a7_7a3ce5e2",
+      "range": {
+        "startLine": 109,
+        "startChar": 12,
+        "endLine": 109,
+        "endChar": 17
+      },
+      "revId": "6402df4f66539c28ec8cfa47f5c164b15e5b343e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a2585a7_3a265dcf",
         "filename": "docs/report/functional_tests.rst",
         "patchSetId": 5
@@ -151,6 +295,30 @@
       "writtenOn": "2017-01-19T16:17:46Z",
       "side": 1,
       "message": "I would recommend that we remove this section.  The reality is we have completed the VIRL portion of the build infrastructure for Ubuntu 16.04 and Centos, but the Vagrant/Virtualbox portion has not been completed for either of them.",
+      "range": {
+        "startLine": 112,
+        "startChar": 0,
+        "endLine": 120,
+        "endChar": 78
+      },
+      "revId": "6402df4f66539c28ec8cfa47f5c164b15e5b343e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_116dc798",
+        "filename": "docs/report/functional_tests.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-01-20T11:48:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a2585a7_3a265dcf",
       "range": {
         "startLine": 112,
         "startChar": 0,
@@ -209,6 +377,30 @@
     },
     {
       "key": {
+        "uuid": "5a2585a7_f167dbb5",
+        "filename": "docs/report/functional_tests.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-01-20T11:48:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a2585a7_ba192d8a",
+      "range": {
+        "startLine": 157,
+        "startChar": 0,
+        "endLine": 157,
+        "endChar": 68
+      },
+      "revId": "6402df4f66539c28ec8cfa47f5c164b15e5b343e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a2585a7_9a1c3179",
         "filename": "docs/report/performance_tests.rst",
         "patchSetId": 5
@@ -220,6 +412,30 @@
       "writtenOn": "2017-01-19T16:17:46Z",
       "side": 1,
       "message": "Same comment here as in Functional test diagram.\n\n\"(marked with *****):\"\n\nReplace all \u0027/\u0027 and \u0027\\\u0027 with \u0027|\u0027",
+      "range": {
+        "startLine": 17,
+        "startChar": 56,
+        "endLine": 39,
+        "endChar": 42
+      },
+      "revId": "6402df4f66539c28ec8cfa47f5c164b15e5b343e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a2585a7_d1061fce",
+        "filename": "docs/report/performance_tests.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-01-20T11:48:18Z",
+      "side": 1,
+      "message": "It is rendered properly i think it is gerrit viewer",
+      "parentUuid": "5a2585a7_9a1c3179",
       "range": {
         "startLine": 17,
         "startChar": 56,
