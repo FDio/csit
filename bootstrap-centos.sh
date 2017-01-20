@@ -33,7 +33,8 @@ VIRL_RELEASE=$(cat ${SCRIPT_DIR}/VIRL_RELEASE_CENTOS)
 
 SSH_OPTIONS="-i ${VIRL_PKEY} -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o BatchMode=yes -o LogLevel=error"
 
-TEST_GROUPS=("l2bd,dhcp,gre,honeycomb,l2xc,lisp,softwire" "cop,telemetry,ipsec,ipv6,rpf,tap,vrf" "fds,iacl,ipv4,policer,vlan,vxlan")
+#TEST_GROUPS=("l2bd,dhcp,gre,honeycomb,l2xc,lisp,softwire" "cop,telemetry,ipsec,ipv6,rpf,tap,vrf" "fds,iacl,ipv4,policer,vlan,vxlan")
+TEST_GROUPS=("telemetry.span")
 SUITE_PATH="tests.func"
 
 # Create tmp dir
