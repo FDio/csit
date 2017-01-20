@@ -359,10 +359,10 @@ class TrafficGenerator(object):
                 "sh -c '{0}/resources/tools/t-rex/t-rex-stateless.py "
                 "--duration={1} -r {2} -s {3} "
                 "--p{4}_src_start_ip 10.10.10.1 "
-                "--p{4}_src_end_ip 10.10.10.254 "
+                "--p{4}_src_end_ip 10.10.10.1 "
                 "--p{4}_dst_start_ip 20.20.20.1 "
                 "--p{5}_src_start_ip 20.20.20.1 "
-                "--p{5}_src_end_ip 20.20.20.254 "
+                "--p{5}_src_end_ip 20.20.20.1 "
                 "--p{5}_dst_start_ip 10.10.10.1 "
                 "{6} {7} --warmup_time={8}'".format(Constants.REMOTE_FW_DIR,
                                                     duration, rate, framesize,
@@ -374,10 +374,10 @@ class TrafficGenerator(object):
                 "sh -c '{0}/resources/tools/t-rex/t-rex-stateless.py "
                 "--duration={1} -r {2} -s {3} "
                 "--p{4}_src_start_ip 10.10.10.2 "
-                "--p{4}_src_end_ip 10.10.10.254 "
+                "--p{4}_src_end_ip 10.10.10.2 "
                 "--p{4}_dst_start_ip 20.20.20.2 "
                 "--p{5}_src_start_ip 20.20.20.2 "
-                "--p{5}_src_end_ip 20.20.20.254 "
+                "--p{5}_src_end_ip 20.20.20.2 "
                 "--p{5}_dst_start_ip 10.10.10.2 "
                 "{6} {7} --warmup_time={8}'".format(Constants.REMOTE_FW_DIR,
                                                     duration, rate, framesize,
