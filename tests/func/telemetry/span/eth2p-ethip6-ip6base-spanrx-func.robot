@@ -16,8 +16,9 @@
 | Resource | resources/libraries/robot/testing_path.robot
 | Resource | resources/libraries/robot/telemetry/span.robot
 | Library  | resources.libraries.python.Trace
-| Library  | resources.libraries.python.IPv4Util
-| Library  | resources.libraries.python.IPv4Setup
+| Library  | resources.libraries.python.IPv6Util
+| Library  | resources.libraries.python.IPv6Setup
+| Library  | resources.libraries.python.Routing
 | Library  | resources.libraries.python.telemetry.SPAN
 | Force Tags | HW_ENV | VM_ENV | 3_NODE_DOUBLE_LINK_TOPO | EXPECTED_FAILING
 # TODO: Remove EXPECTED_FAILING tag once functionality is implemented (VPP-185)
@@ -50,12 +51,15 @@
 | | Given Path For 2-node Testing Is Set | ${nodes['TG']} | ${nodes['DUT1']}
 | | ... | ${nodes['TG']}
 | | And Interfaces In 2-node Path Are Up
-| | And Set interface Address | ${dut_node} | ${dut_to_tg_if1}
+| | And Vpp Ra Suppress Link Layer | ${dut_node} | ${dut_to_tg_if1}
+| | And Vpp Set If Ipv6 Addr | ${dut_node} | ${dut_to_tg_if1}
 | | ... | ${dut_to_tg_if1_ip6} | ${prefix}
-| | And Add ARP on DUT | ${dut_node} | ${dut_to_tg_if1} | ${tg_to_dut_if1_ip6}
+| | And Add Ip Neighbor | ${dut_node} | ${dut_to_tg_if1} | ${tg_to_dut_if1_ip6}
 | | ... | ${tg_to_dut_if1_mac}
+| | And Vpp Route Add | ${dut_node} | ${tg_to_dut_if1_ip6} | ${prefix}
+| | ... | ${dut_to_tg_if1_ip6} | ${dut_to_tg_if1}
 | | And Set SPAN Mirroring | ${dut_node} | ${dut_to_tg_if1} | ${dut_to_tg_if2}
 | | Then Send Packet And Check Received Copies | ${tg_node}
 | | ... | ${tg_to_dut_if1} | ${tg_to_dut_if1_mac}
 | | ... | ${dut_to_tg__if1_mac} | ${tg_to_dut_if2}
-| | ... | ${tg_to_dut_if1_ip6} | ${dut_to_tg_if1_ip6} | ICMP
+| | ... | ${tg_to_dut_if1_ip6} | ${dut_to_tg_if1_ip6} | ICMPv6

@@ -31,7 +31,7 @@
 | | ... | - rx_port - Second interface on TG. Type: string
 | | ... | - src_ip - Packet source IP address. Type: string
 | | ... | - dst_ip - Packet destination IP address. Type: string
-| | ... | - ptype - Type of payload, ARP or ICMP. Type: string
+| | ... | - ptype - Type of payload, ARP, ICMP or ICMPv6. Type: string
 | | ...
 | | ... | *Return:*
 | | ... | - No value returned
