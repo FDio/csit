@@ -15,9 +15,9 @@
 | Resource | resources/libraries/robot/performance.robot
 | Library | resources.libraries.python.QemuUtils
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDRDISC
-| ...        | NIC_Intel-X520-DA2 | ETH | L2BDMACLRN | BASE | VHOST | VM
+| ...        | NIC_Intel-XL710 | ETH | L2BDMACLRN | BASE | VHOST | VM
 | Suite Setup | 3-node Performance Suite Setup with DUT's NIC model
-| ... | L2 | Intel-X520-DA2
+| ... | L2 | Intel-XL710
 | Suite Teardown | 3-node Performance Suite Teardown
 | Test Setup | Setup all DUTs before test
 | Test Teardown | Run Keywords
