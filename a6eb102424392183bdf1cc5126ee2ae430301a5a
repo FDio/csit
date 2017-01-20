@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a2585a7_d1385fa2",
+        "filename": "resources/libraries/robot/honeycomb/interfaces.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 228,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-01-20T10:07:15Z",
+      "side": 1,
+      "message": "Update the doc",
+      "range": {
+        "startLine": 228,
+        "startChar": 12,
+        "endLine": 228,
+        "endChar": 21
+      },
+      "revId": "a6eb102424392183bdf1cc5126ee2ae430301a5a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
