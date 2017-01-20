@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a2585a7_71876bd8",
+        "filename": "tests/func/ipv4/2p1nic_ethip4_ip4base_eth_2vhost_1vm.robot",
+        "patchSetId": 13
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2017-01-20T13:41:11Z",
+      "side": 1,
+      "message": "please, change file name to\neth2p-ethip4-ip4base-eth-2vhost-1vm.robot",
+      "revId": "ca4a1603e97d31190a638807c41a9ed8e549b631",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
