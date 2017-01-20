@@ -58,4 +58,4 @@
 | | Then Send Packet And Check Received Copies | ${tg_node}
 | | ... | ${tg_to_dut_if1} | ${tg_to_dut_if1_mac}
 | | ... | ${dut_to_tg__if1_mac} | ${tg_to_dut_if2}
-| | ... | ${tg_to_dut_if1_ip6} | ${dut_to_tg_if1_ip6} | ICMP
+| | ... | ${tg_to_dut_if1_ip6} | ${dut_to_tg_if1_ip6} | ICMPv6
