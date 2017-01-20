@@ -1267,7 +1267,7 @@
 | | Run keyword | ${vm_name}.Qemu Set Mem Size | 2048
 | | Run keyword | ${vm_name}.Qemu Set Disk Image | ${glob_vm_image}
 | | ${vm}= | Run keyword | ${vm_name}.Qemu Start
-| | Run keyword | ${vm_name}.Qemu Set Affinity | 5 | 6 | 7 | 8 | 9
+| | Run keyword | ${vm_name}.Qemu Set Affinity | 23 | 24 | 25 | 26 | 27
 | | Run keyword | ${vm_name}.Qemu Set Scheduler Policy
 | | Dpdk Testpmd Start | ${vm} | eal_coremask=0x1f
 | | ...                | eal_mem_channels=4
