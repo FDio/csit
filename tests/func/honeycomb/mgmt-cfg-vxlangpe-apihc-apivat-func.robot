@@ -44,7 +44,7 @@
 | ... | Restart Honeycomb And VPP And Clear Persisted Configuration | ${node}
 
 *** Test Cases ***
-| Honeycomb creates VxLAN GPE tunnel
+| TC01: Honeycomb creates VxLAN GPE tunnel
 | | [Documentation] | Check if Honeycomb API can configure a VxLAN GPE tunnel.
 | | ...
 | | Given interface configuration from Honeycomb should be empty
@@ -62,7 +62,7 @@
 | | And VxLAN GPE Interface indices from Honeycomb and VAT should correspond
 | | ... | ${node} | ${vxlan_gpe_if1}
 
-| Honeycomb removes VxLAN GPE tunnel
+| TC02: Honeycomb removes VxLAN GPE tunnel
 | | [Documentation] | Check if Honeycomb API can remove VxLAN GPE tunnel.
 | | ...
 | | Given VxLAN GPE configuration from Honeycomb should be
@@ -77,7 +77,7 @@
 | | And VxLAN GPE configuration from VAT should be empty
 | | ... | ${node}
 
-| Honeycomb sets wrong interface type while creating VxLAN GPE tunnel
+| TC03: Honeycomb sets wrong interface type while creating VxLAN GPE tunnel
 | | [Documentation] | Check if Honeycomb refuses to create a VxLAN GPE tunnel\
 | | ... | with a wrong interface type set.
 | | ...
@@ -93,7 +93,7 @@
 | | And interface configuration from VAT should be empty
 | | ... | ${node} | ${vxlan_gpe_if2}
 
-| Honeycomb sets wrong protocol while creating VxLAN GPE tunnel
+| TC04: Honeycomb sets wrong protocol while creating VxLAN GPE tunnel
 | | [Documentation] | Check if Honeycomb refuses to create a VxLAN GPE tunnel\
 | | ... | with a wrong next-protocol set.
 | | ...
@@ -110,7 +110,7 @@
 | | And interface configuration from VAT should be empty
 | | ... | ${node} | ${vxlan_gpe_if3}
 
-| Honeycomb sets VxLAN GPE tunnel on existing interface with wrong type
+| TC05: Honeycomb sets VxLAN GPE tunnel on existing interface with wrong type
 | | [Documentation] | Check if Honeycomb refuses to create a VxLAN GPE tunnel\
 | | ... | on existing interface with wrong type.
 | | ...
@@ -123,7 +123,7 @@
 | | Then VxLAN GPE configuration from VAT should be empty
 | | ... | ${node}
 
-| Honeycomb creates VxLAN GPE tunnel with ipv6
+| TC06: Honeycomb creates VxLAN GPE tunnel with ipv6
 | | [Documentation] | Check if Honeycomb API can configure a VxLAN GPE tunnel\
 | | ... | with IPv6 addresses.
 | | ...
@@ -143,7 +143,7 @@
 | | And VxLAN GPE Interface indices from Honeycomb and VAT should correspond
 | | ... | ${node} | ${vxlan_gpe_if5}
 
-| Honeycomb creates a second VxLAN GPE tunnel with ipv6
+| TC07: Honeycomb creates a second VxLAN GPE tunnel with ipv6
 | | [Documentation] | Check if Honeycomb API can configure another VxLAN\
 | | ... | GPE tunnel with IPv6 addresses.
 | | ...

@@ -38,7 +38,7 @@
 | ... | Test suite uses the first two interfaces on the first DUT node.
 
 *** Test Cases ***
-| Honeycomb sets up l2 bridge domain
+| TC01: Honeycomb sets up l2 bridge domain
 | | [Documentation] | Check if Honeycomb can create bridge domains on VPP node.
 | | When Honeycomb creates first l2 bridge domain
 | | ... | ${node} | ${bd1_name} | ${bd_settings}
@@ -47,7 +47,7 @@
 | | And Bridge domain configuration from VAT should be
 | | ... | ${node} | ${0} | ${bd_settings}
 
-| Honeycomb manages multiple bridge domains on node
+| TC02: Honeycomb manages multiple bridge domains on node
 | | [Documentation] | Check if Honeycomb can manage multiple bridge domains on\
 | | ... | a single node.
 | | Given Bridge domain configuration from Honeycomb should be
@@ -63,7 +63,7 @@
 | | And Bridge domain configuration from VAT should be
 | | ... | ${node} | ${1} | ${bd_settings}
 
-| Honeycomb removes bridge domains
+| TC03: Honeycomb removes bridge domains
 | | [Documentation] | Check if Honeycomb can remove bridge domains from a VPP\
 | | ... | node.
 | | Given Bridge domain configuration from Honeycomb should be
@@ -72,7 +72,7 @@
 | | Then Honeycomb should show no bridge domains | ${node}
 | | And VAT should show no bridge domains | ${node}
 
-| Honeycomb assigns interfaces to bridge domain
+| TC04: Honeycomb assigns interfaces to bridge domain
 | | [Documentation] | Check if Honeycomb can assign VPP interfaces to an\
 | | ... | existing bridge domain.
 | | Given Honeycomb creates first l2 bridge domain
@@ -84,7 +84,7 @@
 | | And VAT should show interfaces assigned to bridge domain
 | | ... | ${node} | ${0} | @{interfaces} | ${if_settings}
 
-| Honeycomb removes bridge domain with an interface assigned
+| TC05: Honeycomb removes bridge domain with an interface assigned
 | | [Documentation] | Check if Honeycomb can remove a bridge domain that has an\
 | | ... | interface assigned to it.
 # Bridge domain references not cleaned up on delete (HONEYCOMB-267)

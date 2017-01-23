@@ -35,7 +35,7 @@
 | ${sub_if_name}= | ${super_if}.${sub_if_id}
 
 *** Test Cases ***
-| Honycomb creates sub-interface
+| TC01: Honycomb creates sub-interface
 | | [Documentation] | Check if Honeycomb creates a sub-interface.
 | | ...
 | | Given Honeycomb sets interface state | ${node} | ${super_if} | down
@@ -52,7 +52,7 @@
 | | And sub-interface indices from Honeycomb and VAT should correspond
 | | ... | ${node} | ${super_if} | ${sub_if_id}
 
-| Honeycomb sets interface and sub-interface up
+| TC02: Honeycomb sets interface and sub-interface up
 | | [Documentation] | Honeycomb changes the state of interface\
 | | ... | and of its sub-interface to up.
 | | ...
@@ -77,7 +77,7 @@
 | | And sub-interface state from VAT should be
 | | ... | ${node} | ${sub_if_name} | up | up
 
-| Honeycomb sets sub-interface down while its super-interface is up
+| TC03: Honeycomb sets sub-interface down while its super-interface is up
 | | [Documentation] | Honeycomb sets the sub-interface down while its \
 | | ... | super-interface is up. It must be possible.
 | | ...
@@ -103,7 +103,7 @@
 | | And sub-interface state from VAT should be
 | | ... | ${node} | ${sub_if_name} | down | up
 
-| Honeycomb sets interface and sub-interface down
+| TC04: Honeycomb sets interface and sub-interface down
 | | [Documentation] | Honeycomb changes the state of interface down and then \
 | | ... | changes the state of its sub-interface down, in this order.
 | | ...
@@ -131,7 +131,7 @@
 | | And sub-interface state from VAT should be
 | | ... | ${node} | ${sub_if_name} | down | down
 
-| Honeycomb fails to set sub-interface up while its super-interface is down
+| TC05: Honeycomb fails to set sub-interface up while its super-interface is down
 | | [Documentation] | Honeycomb tries to set the sub-interface up while its \
 | | ... | super-interface is down. It must not be possible.
 | | ...
@@ -154,7 +154,7 @@
 | | And sub-interface state from VAT should be
 | | ... | ${node} | ${sub_if_name} | down | down
 
-| Honeycomb fails to delete sub-interface
+| TC06: Honeycomb fails to delete sub-interface
 | | [Documentation] | Check if Honeycomb can delete an existing sub-interface.
 | | ...
 | | [Setup] | Set super and sub interfaces down
@@ -171,7 +171,7 @@
 | | And sub-interface configuration from VAT should be
 | | ... | ${node} | ${sub_if_name} | ${sub_if_1_oper}
 
-| Honeycomb adds sub-interface to new bridge domain
+| TC07: Honeycomb adds sub-interface to new bridge domain
 | | [Documentation] | Check if Honeycomb adds a sub-interface to bridge domain.
 | | ...
 | | [Setup] | Set super and sub interfaces down
@@ -194,7 +194,7 @@
 | | And sub-interface configuration from VAT should be
 | | ... | ${node} | ${sub_if_name} | ${sub_if_1_oper}
 
-| Honeycomb enables tag-rewrite pop 1
+| TC08: Honeycomb enables tag-rewrite pop 1
 | | [Documentation] | Check if Honeycomb enables tag-rewrite and sets its \
 | | ... | parameters correctly. Case: pop 1.
 | | ...
@@ -210,7 +210,7 @@
 | | And rewrite tag from VAT should be
 | | ... | ${node} | ${sub_if_name} | ${tag_rewrite_pop_1_VAT}
 
-| Honeycomb enables tag-rewrite push
+| TC09: Honeycomb enables tag-rewrite push
 | | [Documentation] | Check if Honeycomb enables tag-rewrite and sets its \
 | | ... | parameters correctly. Case: push.
 | | ...
@@ -226,7 +226,7 @@
 | | And rewrite tag from VAT should be
 | | ... | ${node} | ${sub_if_name} | ${tag_rewrite_push_VAT}
 
-| Honeycomb enables tag-rewrite translate 1-2
+| TC10: Honeycomb enables tag-rewrite translate 1-2
 | | [Documentation] | Check if Honeycomb enables tag-rewrite and sets its \
 | | ... | parameters correctly. Case: translate 1-2.
 | | ...
@@ -243,7 +243,7 @@
 | | And rewrite tag from VAT should be
 | | ... | ${node} | ${sub_if_name} | ${tag_rewrite_translate_1_2_VAT}
 
-| Honeycomb disables tag-rewrite
+| TC11: Honeycomb disables tag-rewrite
 | | [Documentation] | Check if Honeycomb disables the tag-rewrite.
 | | ...
 | | [Teardown] | Honeycomb disables tag rewrite
@@ -260,7 +260,7 @@
 | | And rewrite tag from VAT should be
 | | ... | ${node} | ${sub_if_name} | ${tag_rewrite_disabled_VAT}
 
-| Honeycomb enables tag-rewrite pop 1 again
+| TC12: Honeycomb enables tag-rewrite pop 1 again
 | | [Documentation] | Check if Honeycomb can enable tag-rewrite again, once it \
 | | ... | was disabled by Honeycomb.
 | | ...
@@ -276,7 +276,7 @@
 | | And rewrite tag from VAT should be
 | | ... | ${node} | ${sub_if_name} | ${tag_rewrite_pop_1_VAT}
 
-| Honeycomb modifies the tag-rewrite
+| TC13: Honeycomb modifies the tag-rewrite
 | | [Documentation] | Honeycomb sets the tag-rewrite:
 | | ... | 1. pop 1, then
 | | ... | 2. push, then
@@ -314,7 +314,7 @@
 | | And rewrite tag from VAT should be
 | | ... | ${node} | ${sub_if_name} | ${tag_rewrite_disabled_VAT}
 
-| Honeycomb fails to set wrong vlan-type in tag-rewrite
+| TC14: Honeycomb fails to set wrong vlan-type in tag-rewrite
 | | [Documentation] | Check that Honeycomb does not accept wrong values of \
 | | ... | vlan-type in tag-rewrite.
 | | ...
@@ -328,7 +328,7 @@
 | | And rewrite tag from VAT should be
 | | ... | ${node} | ${sub_if_name} | ${tag_rewrite_disabled_VAT}
 
-| Honeycomb configures sub-interface ipv4 address
+| TC15: Honeycomb configures sub-interface ipv4 address
 | | [Documentation] | Check if Honeycomb can configure an ipv4 address on the\
 | | ... | sub-interface.
 | | ...
@@ -346,7 +346,7 @@
 | | ... | ${node} | ${sub_if_name}
 | | ... | ${ipv4['address']} | ${ipv4['prefix-length']}
 
-| Honeycomb removes sub-interface ipv4 address
+| TC16: Honeycomb removes sub-interface ipv4 address
 | | [Documentation] | Check if Honeycomb can remove configured ipv4 addresses\
 | | ... | from the sub-interface.
 | | ...
@@ -364,7 +364,7 @@
 | | And sub-interface ipv4 address from VAT should be empty
 | | ... | ${node} | ${sub_if_name}
 
-| Honeycomb modifies existing sub-interface ipv4 address
+| TC17: Honeycomb modifies existing sub-interface ipv4 address
 | | [Documentation] | Check if Honeycomb can modify an ipv4 address already\
 | | ... | configured on the sub-interface.
 | | [Teardown] | Honeycomb removes all sub-interface ipv4 addresses

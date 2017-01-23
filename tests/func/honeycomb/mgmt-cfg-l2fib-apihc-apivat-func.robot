@@ -36,7 +36,7 @@
 | ${interface2}= | ${node['interfaces']['port3']['name']}
 
 *** Test Cases ***
-| Honeycomb adds L2 FIB entry (forward)
+| TC01: Honeycomb adds L2 FIB entry (forward)
 | | [Documentation] | Honeycomb creates a bridge domain and assignes an \
 | | ... | interface to it. Then adds an L2 FIB entry (forward) to the bridge \
 | | ... | domain.
@@ -71,7 +71,7 @@
 | | And L2 FIB entry from VAT should be
 | | ... | ${node} | ${bd_index} | ${l2_fib_forward_vat}
 
-| Honeycomb adds L2 FIB entry (static, forward)
+| TC02: Honeycomb adds L2 FIB entry (static, forward)
 | | [Documentation] | Honeycomb adds an L2 FIB entry (static, forward) to the \
 | | ... | bridge domain.
 | | ...
@@ -91,7 +91,7 @@
 | | And L2 FIB entry from VAT should be
 | | ... | ${node} | ${bd_index} | ${l2_fib_static_forward_vat}
 
-| Honeycomb adds L2 FIB entry (static, filter)
+| TC03: Honeycomb adds L2 FIB entry (static, filter)
 | | [Documentation] | Honeycomb adds an L2 FIB entry (static, filter) to the \
 | | ... | bridge domain.
 | | ...
@@ -111,7 +111,7 @@
 | | And L2 FIB entry from VAT should be
 | | ... | ${node} | ${bd_index} | ${l2_fib_filter_vat}
 
-| Honeycomb adds and removes L2 FIB entry (forward)
+| TC04: Honeycomb adds and removes L2 FIB entry (forward)
 | | [Documentation] | Honeycomb adds an L2 FIB entry (forward) to the bridge \
 | | ... | domain and then Honeycomb removes it from the bridge domain.
 | | ...
@@ -137,7 +137,7 @@
 | | And L2 FIB Table from VAT should be empty
 | | ... | ${node} | ${bd_index}
 
-| Honeycomb adds more than one L2 FIB entry
+| TC05: Honeycomb adds more than one L2 FIB entry
 | | [Documentation] | Honeycomb adds three L2 FIB entries to the bridge domain.
 | | ...
 | | [Teardown] | Honeycomb removes all L2 FIB entries
@@ -168,7 +168,7 @@
 | | And L2 FIB entry from VAT should be
 | | ... | ${node} | ${bd_index} | ${l2_fib_filter_vat}
 
-| Honeycomb fails to set wrong L2 FIB entry
+| TC06: Honeycomb fails to set wrong L2 FIB entry
 | | [Documentation] | Honeycomb tries to add an L2 FIB entry with wrong \
 | | ... | parameters to the bridge domain. It must fail.
 | | ...
@@ -200,7 +200,7 @@
 | | And L2 FIB Table from VAT should be empty
 | | ... | ${node} | ${bd_index}
 
-| Honeycomb fails to modify existing L2 FIB entry
+| TC07: Honeycomb fails to modify existing L2 FIB entry
 | | [Documentation] | Honeycomb tries to modify an existing L2 FIB entry. It \
 | | ... | must fail.
 | | ...
