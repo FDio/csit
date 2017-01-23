@@ -42,7 +42,7 @@
 | ... | Test suite uses the first interface of the first DUT node.
 
 *** Test Cases ***
-| Honeycomb configures and reads interface state
+| TC01: Honeycomb configures and reads interface state
 | | [Documentation] | Check if Honeycomb API can modify the admin state of\
 | | ... | VPP interfaces.
 | | Given Interface state from Honeycomb should be
@@ -57,7 +57,7 @@
 | | ... | ${node} | ${interface} | down
 | | And Interface state from VAT should be | ${node} | ${interface} | down
 
-| Honeycomb modifies interface IPv4 address with netmask
+| TC02: Honeycomb modifies interface IPv4 address with netmask
 | | [Documentation] | Check if Honeycomb API can configure interfaces for ipv4\
 | | ... | with address and netmask provided.
 | | Given IPv4 address from Honeycomb should be empty | ${node} | ${interface}
@@ -69,7 +69,7 @@
 | | And IPv4 address from VAT should be
 | | ... | ${node} | ${interface} | ${ipv4_address} | ${ipv4_mask}
 
-| Honeycomb removes IPv4 address from interface
+| TC03: Honeycomb removes IPv4 address from interface
 | | [Documentation] | Check if Honeycomb API can remove configured ipv4\
 | | ... | addresses from interface.
 | | Given IPv4 address from Honeycomb should be
@@ -80,7 +80,7 @@
 | | Then IPv4 address from Honeycomb should be empty | ${node} | ${interface}
 | | And ipv4 address from VAT should be empty | ${node} | ${interface}
 
-| Honeycomb modifies interface IPv4 address with prefix
+| TC04: Honeycomb modifies interface IPv4 address with prefix
 | | [Documentation] | Check if Honeycomb API can configure interfaces for ipv4\
 | | ... | with address and prefix provided.
 | | [Teardown] | Honeycomb removes interface ipv4 addresses | ${node}
@@ -94,7 +94,7 @@
 | | And IPv4 address from VAT should be
 | | ... | ${node} | ${interface} | ${ipv4_address2} | ${ipv4_mask}
 
-| Honeycomb modifies IPv4 neighbor table
+| TC05: Honeycomb modifies IPv4 neighbor table
 | | [Documentation] | Check if Honeycomb API can add and remove ARP entries.
 # Operational data and VAT dump not available (HONEYCOMB-111)
 | | [Tags] | EXPECTED_FAILING
@@ -105,7 +105,7 @@
 | | Then IPv4 neighbor from Honeycomb should be
 | | ... | ${node} | ${interface} | @{ipv4_neighbor}
 
-| Honeycomb modifies interface configuration - IPv6
+| TC06: Honeycomb modifies interface configuration - IPv6
 | | [Documentation] | Check if Honeycomb API can configure interfaces for ipv6.
 # Configuring IPv6 not implemented (HONEYCOMB-102)
 | | [Tags] | EXPECTED_FAILING
@@ -118,7 +118,7 @@
 
 # TODO: Honeycomb modifies IPv6 neighbor table
 
-| Honeycomb modifies interface configuration - MTU
+| TC07: Honeycomb modifies interface configuration - MTU
 | | [Documentation] | Check if Honeycomb API can configure interface\
 | | ... | MTU value.
 # Configuring MTU not implemented (HONEYCOMB-126)

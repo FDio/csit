@@ -40,7 +40,7 @@
 | ... | Test suite uses the first interface of the first DUT node.
 
 *** Test Cases ***
-| Honeycomb configures VxLAN tunnel
+| TC01: Honeycomb configures VxLAN tunnel
 | | [Documentation] | Check if Honeycomb API can configure VxLAN settings.
 | | Given VxLAN configuration from Honeycomb should be empty
 | | ... | ${node} | ${vx_interface}
@@ -55,7 +55,7 @@
 | | ... | ${node} | ${vx_interface}
 | | Set Suite Variable | ${vxlan_index}
 
-| Honeycomb disables VxLAN tunnel
+| TC02: Honeycomb disables VxLAN tunnel
 | | [Documentation] | Check if Honeycomb API can reset VxLAN configuration.
 | | Given VxLAN configuration from Honeycomb should be
 | | ... | ${node} | ${vx_interface} | ${vxlan_settings}
@@ -70,7 +70,7 @@
 | | ... | ${node} | ${vxlan_index}
 | | And VxLAN configuration from VAT should be empty | ${node}
 
-| Honeycomb can configure VXLAN tunnel after one has been disabled
+| TC03: Honeycomb can configure VXLAN tunnel after one has been disabled
 | | [Documentation] | Check if Honeycomb API can configure VxLAN settings again\
 | | ... | after previous settings have been removed.
 | | [Teardown] | Honeycomb removes VxLAN tunnel settings
@@ -89,7 +89,7 @@
 | | And VxLAN configuration from VAT should be
 | | ... | ${node} | ${vxlan_settings2}
 
-| Honeycomb does not set VxLAN configuration on another interface type
+| TC04: Honeycomb does not set VxLAN configuration on another interface type
 | | [Documentation] | Check if Honeycomb API prevents setting VxLAN\
 | | ... | on incorrect interface.
 | | Given VxLAN configuration from Honeycomb should be empty
@@ -102,7 +102,7 @@
 | | And VxLAN configuration from VAT should be empty
 | | ... | ${node}
 
-| Honeycomb does not set invalid VxLAN configuration
+| TC05: Honeycomb does not set invalid VxLAN configuration
 | | [Documentation] | Check if Honeycomb API prevents setting incorrect VxLAN\
 | | ... | settings.
 | | Given VxLAN configuration from Honeycomb should be empty
@@ -113,7 +113,7 @@
 | | Then VxLAN configuration from Honeycomb should be empty
 | | ... | ${node} | ${vx_interface}
 
-| Honeycomb configures VxLAN tunnel with ipv6
+| TC06: Honeycomb configures VxLAN tunnel with ipv6
 | | [Documentation] | Check if Honeycomb API can configure VxLAN with\
 | | ... | ipv6 settings.
 | | [Teardown] | Honeycomb removes VxLAN tunnel settings
