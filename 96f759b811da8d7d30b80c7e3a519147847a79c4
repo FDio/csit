@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3a3291f1_cc080f30",
+        "filename": "docs/report/honeycomb_tests.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-01-23T16:03:39Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "5a2585a7_f18ebbcf",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 29
+      },
+      "revId": "96f759b811da8d7d30b80c7e3a519147847a79c4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a2585a7_b1c033e1",
         "filename": "docs/report/honeycomb_tests.rst",
         "patchSetId": 3
@@ -36,6 +60,30 @@
       "writtenOn": "2017-01-20T14:54:04Z",
       "side": 1,
       "message": "Is this still true? Are Honeycomb tests executed on the newly created Centos 7.2 infrastructure?",
+      "range": {
+        "startLine": 75,
+        "startChar": 0,
+        "endLine": 76,
+        "endChar": 58
+      },
+      "revId": "96f759b811da8d7d30b80c7e3a519147847a79c4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_ac05c315",
+        "filename": "docs/report/honeycomb_tests.rst",
+        "patchSetId": 3
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-01-23T16:03:39Z",
+      "side": 1,
+      "message": "Removed entire section, it is duplicated in CSIT-func",
+      "parentUuid": "5a2585a7_b1c033e1",
       "range": {
         "startLine": 75,
         "startChar": 0,
