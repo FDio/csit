@@ -36,7 +36,7 @@
 | ...           | delete a vhost-user interface.
 
 *** Test Cases ***
-| Honycomb creates vhost-user interface - server
+| TC01: Honycomb creates vhost-user interface - server
 | | [Documentation] | Check if Honeycomb creates a vhost-user interface, role:\
 | | ... | server.
 | | ...
@@ -49,7 +49,7 @@
 | | And vhost-user configuration from VAT should be
 | | ... | ${node} | ${vhost_user_server}
 
-| Honycomb modifies vhost-user interface - server
+| TC02: Honycomb modifies vhost-user interface - server
 | | [Documentation] | Check if Honeycomb can modify properties of existing\
 | | ... | vhost-user interface, role: server.
 | | ...
@@ -74,7 +74,7 @@
 | | And vhost-user configuration from VAT should be
 | | ... | ${node} | ${vhost_user_server}
 
-| Honycomb deletes vhost-user interface - server
+| TC03: Honycomb deletes vhost-user interface - server
 | | [Documentation] | Check if Honeycomb can delete an existing vhost-user\
 | | ... | interface, role: server.
 | | ...
@@ -87,7 +87,7 @@
 | | And vhost-user configuration from VAT should be empty
 | | ... | ${node}
 
-| Honycomb creates vhost-user interface - client
+| TC04: Honycomb creates vhost-user interface - client
 | | [Documentation] | Check if Honeycomb creates a vhost-user interface, role:\
 | | ... | client.
 | | ...
@@ -100,7 +100,7 @@
 | | And vhost-user configuration from VAT should be
 | | ... | ${node} | ${vhost_user_client}
 
-| Honycomb modifies vhost-user interface - client
+| TC05: Honycomb modifies vhost-user interface - client
 | | [Documentation] | Check if Honeycomb can modify properties of existing\
 | | ... | vhost-user interface, role: client.
 | | ...
@@ -125,7 +125,7 @@
 | | And vhost-user configuration from VAT should be
 | | ... | ${node} | ${vhost_user_client}
 
-| Honycomb deletes vhost-user interface - client
+| TC06: Honycomb deletes vhost-user interface - client
 | | [Documentation] | Check if Honeycomb can delete an existing vhost-user\
 | | ... | interface, role: client.
 | | ...
@@ -138,7 +138,7 @@
 | | And vhost-user configuration from VAT should be empty
 | | ... | ${node}
 
-| Honeycomb does not set vhost-user configuration on another interface type
+| TC07: Honeycomb does not set vhost-user configuration on another interface type
 | | [Documentation] | Check if Honeycomb refuses to set vhost-user\
 | | ... | configuration for interface which is not v3po:vhost-user type.
 | | ...
@@ -149,7 +149,7 @@
 | | And vhost-user configuration from VAT should be empty
 | | ... | ${node}
 
-| Honeycomb does not set invalid vhost-user configuration
+| TC08: Honeycomb does not set invalid vhost-user configuration
 | | [Documentation] | Check if Honeycomb refuses to set invalid parameters to\
 | | ... | vhost-user interface.
 | | ...

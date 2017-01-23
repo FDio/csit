@@ -32,7 +32,7 @@
 
 *** Test Cases ***
 # TODO: Add verification once operational data is available (HONEYCOMB-306)
-| Honeycomb can configure SPAN on an interface
+| TC01: Honeycomb can configure SPAN on an interface
 | | [Documentation] | Honeycomb configures SPAN on interface and verifies/
 | | ... | against VPP SPAN dump.
 | | Given SPAN configuration from VAT should not exist
@@ -42,7 +42,7 @@
 | | Then Interface SPAN configuration from VAT should be
 | | ... | ${node} | ${interface1} | ${interface2}
 
-| Honeycomb can disable SPAN on interface
+| TC02: Honeycomb can disable SPAN on interface
 | | [Documentation] | Honeycomb removes existing SPAN configuration\
 | | ... | on interface and verifies against VPP SPAN dump.
 | | Given Interface SPAN configuration from VAT should be
@@ -52,7 +52,7 @@
 | | Then SPAN configuration from VAT should not exist
 | | ... | ${node}
 
-| Honeycomb can configure SPAN on one interface to mirror two interfaces
+| TC03: Honeycomb can configure SPAN on one interface to mirror two interfaces
 | | [Documentation] | Honeycomb configures SPAN on interface, mirroring\
 | | ... | two interfaces at the same time. Then verifies against VPP SPAN dump.
 | | [Teardown] | Honeycomb removes interface SPAN configuration
