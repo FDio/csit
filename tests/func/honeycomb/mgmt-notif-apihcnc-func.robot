@@ -35,7 +35,7 @@
 | ... | Restart Honeycomb And VPP And Clear Persisted Configuration | ${node}
 
 *** Test Cases ***
-| Honeycomb sends notification on interface state change
+| TC01: Honeycomb sends notification on interface state change
 | | [Documentation] | Check if Honeycomb sends a state-changed notification\
 | | ... | when the state of an interface is changed.
 | | Given Interface state from Honeycomb should be
@@ -47,7 +47,7 @@
 | | When Honeycomb sets interface state | ${node} | ${interface} | down
 | | And Honeycomb should send interface state notification | ${interface} | down
 
-| Honeycomb sends notification on interface deletion
+| TC02: Honeycomb sends notification on interface deletion
 | | [Documentation] | Check if Honeycomb sends an interface-deleted notification
 | | ... | when an interface is deleted.
 | | Given TAP configuration from Honeycomb should be

@@ -30,7 +30,7 @@
 | ... | unknown-unicast-flood=${True} | arp-termination=${True}
 
 *** Test Cases ***
-| Honeycomb can create and delete interfaces
+| TC01: Honeycomb can create and delete interfaces
 | | [Documentation] | Repeatedly create and delete an interface through Netconf\
 | | ... | and check the reply for any errors.
 | | Given Netconf session is established | ${node}
@@ -40,7 +40,7 @@
 | | | When Error trigger is sent | ${trigger_105}
 | | | Then Replies should not contain RPC errors
 
-| Transaction revert test case 1
+| TC02: Transaction revert test case 1
 | | [Documentation] | Configure two conflicting VxLAN tunnels, then verify\
 | | ... | that neither tunnel exists.
 | | Given Netconf session is established | ${node}
@@ -49,7 +49,7 @@
 | | ${if_data_new}= | And InterfaceAPI.Get all interfaces oper data | ${node}
 | | Then Should be equal | ${if_data} | ${if_data_new}
 
-| Transaction revert test case 2
+| TC03: Transaction revert test case 2
 | | [Documentation] | Configure two conflicting TAP interfaces, then verify\
 | | ... | that neither interface exists.
 | | Given Netconf session is established | ${node}
