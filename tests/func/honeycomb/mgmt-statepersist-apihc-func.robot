@@ -24,7 +24,7 @@
 | Documentation | *Honeycomb configuration persistence test suite.*
 
 *** Test Cases ***
-| Honeycomb persists configuration through restart of both Honeycomb and VPP
+| TC01: Honeycomb persists configuration through restart of both Honeycomb and VPP
 | | [Documentation] | Checks if Honeycomb maintains configuration after both\
 | | ... | Honeycomb and VPP are restarted.
 # Vxlan tunnel name is not properly restored (HONEYCOMB-301)
@@ -35,7 +35,7 @@
 | | Then Honeycomb and VPP should verify every setting | ${node} | ${interface}
 | | And Honeycomb should show no rogue interfaces | ${node}
 
-| Honeycomb persists configuration through restart of Honeycomb
+| TC02: Honeycomb persists configuration through restart of Honeycomb
 | | [Documentation] | Checks if Honeycomb maintains configuration after it\
 | | ... | is restarted.
 # Vxlan tunnel name is not properly restored (HONEYCOMB-301)
@@ -45,7 +45,7 @@
 | | Then Honeycomb and VPP should verify every setting | ${node} | ${interface}
 | | And Honeycomb should show no rogue interfaces | ${node}
 
-| Honeycomb persists configuration through restart of VPP
+| TC03: Honeycomb persists configuration through restart of VPP
 | | [Documentation] | Checks if Honeycomb updates VPP settings after VPP is\
 | | ... | restarted.
 # Vxlan tunnel name is not properly restored (HONEYCOMB-301)
@@ -55,7 +55,7 @@
 | | Then Honeycomb and VPP should verify every setting | ${node} | ${interface}
 | | And Honeycomb should show no rogue interfaces | ${node}
 
-| Honeycomb reverts to defaults if persistence files are invalid
+| TC04: Honeycomb reverts to defaults if persistence files are invalid
 | | [Documentation] | Checks if Honeycomb reverts to default configuration when\
 | | ... | persistence files are damaged or invalid.
 | | [Teardown] | Run keyword if test failed

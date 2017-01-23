@@ -34,7 +34,7 @@
 | ... | Test suite uses the first interface of the first DUT node.
 
 *** Test Cases ***
-| Honeycomb configures TAP interface
+| TC01: Honeycomb configures TAP interface
 | | [Documentation] | Check if Honeycomb API can configure a TAP interface.
 | | Given TAP configuration from Honeycomb should be empty
 | | ... | ${node} | ${tap_interface}
@@ -47,7 +47,7 @@
 | | And TAP configuration from VAT should be
 | | ... | ${node} | ${tap_interface} | ${tap_settings}
 
-| Honeycomb modifies existing TAP interface configuration
+| TC02: Honeycomb modifies existing TAP interface configuration
 | | [Documentation] | Check if Honeycomb API can re-configure and existing TAP\
 | | ... | interface with new settings.
 | | Given TAP configuration from Honeycomb should be
@@ -61,7 +61,7 @@
 | | And TAP configuration from VAT should be
 | | ... | ${node} | ${tap_interface} | ${tap_settings2}
 
-| Honeycomb removes TAP interface
+| TC03: Honeycomb removes TAP interface
 | | [Documentation] | Check if Honeycomb API can remove TAP interface.
 | | Given TAP configuration from Honeycomb should be
 | | ... | ${node} | ${tap_interface} | ${tap_settings2}
