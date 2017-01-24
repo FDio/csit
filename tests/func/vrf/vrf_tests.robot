@@ -29,7 +29,7 @@
 | ... | links in between nodes.
 | ... | *[Enc] Packet Encapsulations:* Eth-IPv4-ICMPv4 for L2 switching of
 | ... | IPv4.
-| ... | *[Cfg] DUT configuration:*Each DUT is configured with two VRF tables;
+| ... | *[Cfg] DUT configuration:* Each DUT is configured with two VRF tables;
 | ... | Separation of traffic is tested by IP packets; Basic ARP and ROUTES are
 | ... | set on DUT nodes; IP addresses are set on DUT interfaces.
 | ... | *[Ver] TG verification:* Test ICMPv4 Echo Request packets

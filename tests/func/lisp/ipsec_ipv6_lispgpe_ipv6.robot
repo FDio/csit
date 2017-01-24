@@ -47,7 +47,7 @@
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology\
 | ... | with single links between nodes.
-| ... | *[Enc] Packet Encapsulations:*Eth-IPv6-IPSec-LISPGPE-IPv6-ICMPv6,\
+| ... | *[Enc] Packet Encapsulations:* Eth-IPv6-IPSec-LISPGPE-IPv6-ICMPv6,\
 | ... | *[Cfg] DUT configuration:* Each DUT is configured with LISP and IPsec.\
 | ... | IPsec is in transport mode. Tests cases are for IPsec configured both\
 | ... | on RLOC interface or lisp_gpe0 interface.

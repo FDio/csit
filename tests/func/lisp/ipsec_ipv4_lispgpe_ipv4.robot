@@ -42,7 +42,7 @@
 | ... | AND | Show Vpp Settings | ${nodes['DUT2']}
 | ... | AND | Check VPP PID in Teardown
 | ...
-| Documentation | *IPv4-ip4-ipsec-lispgpe-ip4 - main fib, vrf (gpe_vni-to-vrf)
+| Documentation | *IPv4-ip4-ipsec-lispgpe-ip4 - main fib, vrf (gpe_vni-to-vrf)*
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology\
 | ... | with single links between nodes.

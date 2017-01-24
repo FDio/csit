@@ -25,7 +25,7 @@
 | ... | *[Top] Network Topologies:* TG = DUT
 | ... |        with two links between the nodes.
 | ... | *[Cfg] DUT configuration:* DUT is configured with DHCP proxy.
-| ... | *[Ver] TG verification:*Test DHCP packets are sent
+| ... | *[Ver] TG verification:* Test DHCP packets are sent
 | ... |        on TG on first link to DUT and received on TG on second link.
 | ... |        On receive TG verifies if DHCP packets are valid
 | ... | *[Ref] Applicable standard specifications:* RFC 3315
