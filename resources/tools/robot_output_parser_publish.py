@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2017 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -13,19 +13,60 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Script extracts intersted data (name, documentation, message, status) from
-robot framework output file (output.xml) and print in specified format (wiki,
-html) to stdout or, if specified by parameter, redirect to file."""
+"""
+Script extracts interested data (name, documentation, message, status) from
+robot framework output file (output.xml) and prints in specified format (wiki,
+html, rst) to defined output file.
+
+Supported formats:
+ - html
+ - rst
+
+:TODO:
+ - wiki
+ - md
+
+:Example:
+
+robot_output_parser_publish.py -i output.xml" -o "tests.rst" -f "rst" -s 3 -l 2
+
+The example reads the data from "output.xml", writes the output to "tests.rst"
+in rst format. It will start on the 3rd level of xml structure and the generated
+document hierarchy will start on the 2nd level.
+"""
 
 import argparse
 import re
 import sys
+import json
+import string
 
 from robot.api import ExecutionResult, ResultVisitor
 
 
 class ExecutionChecker(ResultVisitor):
-    """Abstract class to traverse through the test suite structure."""
+    """Class to traverse through the test suite structure.
+
+    The functionality implemented in this class generates a json file. Its
+    structure is:
+
+    [
+        {
+            "level": "Level of the suite, type: str",
+            "title": "Title of the suite, type: str",
+            "doc": "Documentation of the suite, type: str",
+            "table": [
+                ["TC name", "TC doc", "message or status"],
+                ["TC name", "TC doc", "message or status"],
+                ... other test cases ...
+                ["Name", "Documentation", "Message or Status"]
+            ]
+        },
+        ... other test suites ...
+    ]
+
+    .. note:: The header of the table with TCs is at the and of the table.
+    """
 
     def __init__(self, args):
         self.formatting = args.formatting
@@ -35,39 +76,24 @@ class ExecutionChecker(ResultVisitor):
 
         :param suite: Suite to process.
         :type suite: Suite
-        :return: Nothing.
+        :returns: Nothing.
         """
 
         if self.start_suite(suite) is not False:
             if suite.tests:
-                if self.formatting == 'html':
-                    sys.stdout.write('<table width=100% border=1><tr>'+'\n')
-                    sys.stdout.write('<th width=32%>Name</th>'+'\n')
-                    sys.stdout.write('<th width=40%>Documentation</th>'+'\n')
-                    if "ndrdisc" in suite.longname:
-                        sys.stdout.write('<th width=24%>Message</th>'+'\n')
-                    sys.stdout.write('<th width=4%>Status</th><tr/>'+'\n')
-                    sys.stdout.write('</tr>')
-                elif self.formatting == 'wiki':
-                    sys.stdout.write('{| class="wikitable"'+'\n')
-                    if "ndrdisc" in suite.longname:
-                        header = '!Name!!Documentation!!Message!!Status'
-                    else:
-                        header = '!Name!!Documentation!!Status'
-                    sys.stdout.write(header+'\n')
-                else:
-                    pass
+                sys.stdout.write(',"tests":[')
+            else:
+                sys.stdout.write('},')
 
             suite.suites.visit(self)
             suite.tests.visit(self)
 
             if suite.tests:
-                if self.formatting == 'html':
-                    sys.stdout.write('</table>'+'\n')
-                elif self.formatting == 'wiki':
-                    sys.stdout.write('|}'+'\n')
+                if "ndrdisc" in suite.longname.lower():
+                    hdr = '["Name","Documentation","Message"]'
                 else:
-                    pass
+                    hdr = '["Name","Documentation","Status"]'
+                sys.stdout.write(hdr + ']},')
 
             self.end_suite(suite)
 
@@ -76,35 +102,24 @@ class ExecutionChecker(ResultVisitor):
 
         :param suite: Suite to process.
         :type suite: Suite
-        :return: Nothing.
+        :returns: Nothing.
         """
 
         level = len(suite.longname.split("."))
-
-        if self.formatting == 'html':
-            mark_l = '<h'+str(level)+'>'
-            mark_r = '</h'+str(level)+'>'
-            sys.stdout.write(mark_l+suite.name+mark_r+'\n')
-            sys.stdout.write('<p>'+re.sub(r"(\*)(.*?)(\*)", r"<b>\2</b>",\
-                suite.doc, 0, flags=re.MULTILINE).replace(\
-                '[', '<br>[')+'</p>\n')
-
-        elif self.formatting == 'wiki':
-            mark = "=" * (level+2)
-            sys.stdout.write(mark+suite.name+mark+'\n')
-            sys.stdout.write(re.sub(r"(\*)(.*?)(\*)", r"\n*'''\2'''",\
-                suite.doc.replace('\n', ' '), 0, flags=re.MULTILINE)+'\n')
-        else:
-            pass
+        sys.stdout.write('{')
+        sys.stdout.write('"level":"' + str(level) + '",')
+        sys.stdout.write('"title":"' + suite.name.replace('"', "'") + '",')
+        sys.stdout.write('"doc":"' + suite.doc.replace('"', "'").
+                         replace('\n', ' ').replace('\r', '').
+                         replace('*[', ' |br| *[') + '"')
 
     def end_suite(self, suite):
         """Called when suite ends.
 
         :param suite: Suite to process.
         :type suite: Suite
-        :return: Nothing.
+        :returns: Nothing.
         """
-
         pass
 
     def visit_test(self, test):
@@ -112,9 +127,8 @@ class ExecutionChecker(ResultVisitor):
 
         :param test: Test to process.
         :type test: Test
-        :return: Nothing.
+        :returns: Nothing.
         """
-
         if self.start_test(test) is not False:
             self.end_test(test)
 
@@ -123,65 +137,235 @@ class ExecutionChecker(ResultVisitor):
 
         :param test: Test to process.
         :type test: Test
-        :return: Nothing.
+        :returns: Nothing.
         """
 
-        if self.formatting == 'html':
-            sys.stdout.write('<tr>'+'\n')
-            sys.stdout.write('<td>'+test.name+'</td>'+'\n')
-            sys.stdout.write('<td>'+test.doc+'</td>'+'\n')
-            if any("NDRPDRDISC" in tag for tag in test.tags):
-                sys.stdout.write('<td>'+test.message+'</td>'+'\n')
-            sys.stdout.write('<td>'+test.status+'</td>'+'\n')
-        elif self.formatting == 'wiki':
-            sys.stdout.write('|-'+'\n')
-            sys.stdout.write('|'+test.name+'\n')
-            sys.stdout.write('|'+test.doc.replace('\n', ' ').replace('\r',\
-                '')+'\n')
-            if any("NDRPDRDISC" in tag for tag in test.tags):
-                sys.stdout.write('|'+test.message+'\n')
-            sys.stdout.write('|'+test.status+'\n')
+        name = test.name.replace('"', "'")
+        doc = test.doc.replace('"', "'").replace('\n', ' ').replace('\r', '').\
+            replace('[', ' |br| [')
+        if any("NDRPDRDISC" in tag for tag in test.tags):
+            msg = test.message.replace('\n', ' |br| ').replace('\r', ''). \
+                replace('"', "'")
+
+            sys.stdout.write('["' + name + '","' + doc + '","' + msg + '"]')
         else:
-            pass
+            sys.stdout.write(
+                '["' + name + '","' + doc + '","' + test.status + '"]')
 
     def end_test(self, test):
         """Called when test ends.
 
         :param test: Test to process.
         :type test: Test
-        :return: Nothing.
+        :returns: Nothing.
         """
+        sys.stdout.write(',')
 
-        if self.formatting == 'html':
-            sys.stdout.write('</tr>'+'\n')
-        elif self.formatting == 'wiki':
-            pass
-        else:
-            pass
+
+def do_html(data, args):
+    """Generation of a html file from json data.
+
+    :param data: List of suites from json file.
+    :param args: Parsed arguments.
+    :type data: list of dict
+    :type args: ArgumentParser
+    :returns: Nothing.
+    """
+
+    shift = int(args.level)
+    start = int(args.start)
+
+    output = open(args.output, 'w')
+
+    output.write('<html>')
+    for item in data:
+        if int(item['level']) < start:
+            continue
+        level = str(int(item['level']) - start + shift)
+        output.write('<h' + level + '>' + item['title'].lower() +
+                     '</h' + level + '>')
+        output.write('<p>' + re.sub(r"(\*)(.*?)(\*)", r"<b>\2</b>", item['doc'],
+                                    0, flags=re.MULTILINE).
+                     replace(' |br| ', '<br>') + '</p>')
+        try:
+            output.write(gen_html_table(item['tests']))
+        except KeyError:
+            continue
+    output.write('</html>')
+    output.close()
+
+
+def gen_html_table(data):
+    """Generates a table with TCs' names, documentation and messages / statuses
+    in html format. There is no css used.
+
+    :param data: Json data representing a table with TCs.
+    :type data: str
+    :returns: Table with TCs' names, documentation and messages / statuses in
+    html format.
+    :rtype: str
+    """
+
+    table = '<table width=100% border=1><tr>'
+    table += '<th width=30%>Name</th>'
+    table += '<th width=50%>Documentation</th>'
+    table += '<th width=20%>Status</th></tr>'
+
+    for item in data[0:-2]:
+        table += '<tr>'
+        for element in item:
+            table += '<td>' + element.replace(' |br| ', '<br>') + '</td>'
+    table += '</tr></table>'
+
+    return table
+
+
+def do_rst(data, args):
+    """Generation of a rst file from json data.
+
+    :param data: List of suites from json file.
+    :param args: Parsed arguments.
+    :type data: list of dict
+    :type args: ArgumentParser
+    :returns: Nothing.
+    """
+
+    hdrs = ['=', '-', '`', "'", '.', '~', '*', '+', '^']
+    shift = int(args.level)
+    start = int(args.start)
+
+    output = open(args.output, 'w')
+    output.write('\n.. |br| raw:: html\n\n    <br />\n\n')
+
+    for item in data:
+        if int(item['level']) < start:
+            continue
+        if 'ndrchk' in item['title'].lower():
+            continue
+        output.write(item['title'].lower() + '\n' +
+                     hdrs[int(item['level']) - start + shift] *
+                     len(item['title']) + '\n\n')
+        output.write(item['doc'].replace('*', '**').replace('|br|', '\n\n -') +
+                     '\n\n')
+        try:
+            output.write(gen_rst_table(item['tests']) + '\n\n')
+        except KeyError:
+            continue
+    output.close()
+
+
+def gen_rst_table(data):
+    """Generates a table with TCs' names, documentation and messages / statuses
+    in rst format.
+
+    :param data: Json data representing a table with TCs.
+    :type data: str
+    :returns: Table with TCs' names, documentation and messages / statuses in
+    rst format.
+    :rtype: str
+    """
+
+    table = []
+    # max size of each column
+    lengths = map(max, zip(*[[len(str(elt)) for elt in item] for item in data]))
+
+    start_of_line = '| '
+    vert_separator = ' | '
+    end_of_line = ' |'
+    line_marker = '-'
+
+    meta_template = vert_separator.join(['{{{{{0}:{{{0}}}}}}}'.format(i)
+                                         for i in range(len(lengths))])
+    template = '{0}{1}{2}'.format(start_of_line, meta_template.format(*lengths),
+                                  end_of_line)
+    # determine top/bottom borders
+    to_separator = string.maketrans('| ', '+-')
+    start_of_line = start_of_line.translate(to_separator)
+    vert_separator = vert_separator.translate(to_separator)
+    end_of_line = end_of_line.translate(to_separator)
+    separator = '{0}{1}{2}'.format(start_of_line, vert_separator.
+                                   join([x * line_marker for x in lengths]),
+                                   end_of_line)
+    # determine header separator
+    th_separator_tr = string.maketrans('-', '=')
+    start_of_line = start_of_line.translate(th_separator_tr)
+    line_marker = line_marker.translate(th_separator_tr)
+    vertical_separator = vert_separator.translate(th_separator_tr)
+    end_of_line = end_of_line.translate(th_separator_tr)
+    th_separator = '{0}{1}{2}'.format(start_of_line, vertical_separator.
+                                      join([x * line_marker for x in lengths]),
+                                      end_of_line)
+    # prepare table
+    table.append(separator)
+    # set table header
+    titles = data[-1]
+    table.append(template.format(*titles))
+    table.append(th_separator)
+    # generate table rows
+    for d in data[0:-2]:
+        table.append(template.format(*d))
+        table.append(separator)
+    table.append(template.format(*data[-2]))
+    table.append(separator)
+    return '\n'.join(table)
+
+
+def do_md(data, args):
+    """Generation of a rst file from json data.
+
+    :param data: List of suites from json file.
+    :param args: Parsed arguments.
+    :type data: list of dict
+    :type args: ArgumentParser
+    :returns: Nothing.
+    """
+    raise NotImplementedError("Export to 'md' format is not implemented.")
+
+
+def do_wiki(data, args):
+    """Generation of a wiki page from json data.
+
+    :param data: List of suites from json file.
+    :param args: Parsed arguments.
+    :type data: list of dict
+    :type args: ArgumentParser
+    :returns: Nothing.
+    """
+    raise NotImplementedError("Export to 'wiki' format is not implemented.")
 
 
 def process_robot_file(args):
-    """Process data from robot output.xml file and return raw data.
+    """Process data from robot output.xml file and generate defined file type.
 
     :param args: Parsed arguments.
     :type args: ArgumentParser
     :return: Nothing.
     """
 
+    old_sys_stdout = sys.stdout
+    sys.stdout = open(args.output + '.json', 'w')
+
     result = ExecutionResult(args.input)
     checker = ExecutionChecker(args)
+
+    sys.stdout.write('[')
     result.visit(checker)
+    sys.stdout.write('{}]')
+    sys.stdout.close()
+    sys.stdout = old_sys_stdout
 
+    with open(args.output + '.json', 'r') as json_file:
+        data = json.load(json_file)
+    data.pop(-1)
 
-def print_error(msg):
-    """Print error message on stderr.
-
-    :param msg: Error message to print.
-    :type msg: str
-    :return: nothing
-    """
-
-    sys.stderr.write(msg+'\n')
+    if args.formatting == 'rst':
+        do_rst(data, args)
+    elif args.formatting == 'wiki':
+        do_wiki(data, args)
+    elif args.formatting == 'html':
+        do_html(data, args)
+    elif args.formatting == 'md':
+        do_md(data, args)
 
 
 def parse_args():
@@ -191,30 +375,32 @@ def parse_args():
     :rtype ArgumentParser
     """
 
-    parser = argparse.ArgumentParser()
-    parser.add_argument("-i", "--input", required=True,
+    parser = argparse.ArgumentParser(description=__doc__,
+                                     formatter_class=argparse.
+                                     RawDescriptionHelpFormatter)
+    parser.add_argument("-i", "--input",
+                        required=True,
                         type=argparse.FileType('r'),
                         help="Robot XML log file")
     parser.add_argument("-o", "--output",
-                        type=argparse.FileType('w'),
+                        type=str,
+                        required=True,
                         help="Output file")
-    parser.add_argument("-f", "--formatting", required=True,
-                        choices=['html', 'wiki'],
+    parser.add_argument("-f", "--formatting",
+                        required=True,
+                        choices=['html', 'wiki', 'rst', 'md'],
                         help="Output file format")
+    parser.add_argument("-s", "--start",
+                        type=int,
+                        default=1,
+                        help="The first level to be taken from xml file")
+    parser.add_argument("-l", "--level",
+                        type=int,
+                        default=1,
+                        help="The level of the first chapter in generated file")
 
     return parser.parse_args()
 
 
-def main():
-    """Main function."""
-
-    args = parse_args()
-
-    if args.output:
-        sys.stdout = args.output
-
-    process_robot_file(args)
-
-
 if __name__ == "__main__":
-    sys.exit(main())
+    sys.exit(process_robot_file(parse_args()))
