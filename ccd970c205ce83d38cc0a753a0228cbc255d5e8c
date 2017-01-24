@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a3291f1_efaf3d2a",
+        "filename": "resources/tools/robot_output_parser_publish.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 181,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-01-24T12:51:44Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 180,
+        "startChar": 18,
+        "endLine": 181,
+        "endChar": 58
+      },
+      "revId": "ccd970c205ce83d38cc0a753a0228cbc255d5e8c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
