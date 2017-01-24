@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a3291f1_928fbccc",
+        "filename": "docs/report/legal.rst",
+        "patchSetId": 10
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2017-01-24T16:59:25Z",
+      "side": 1,
+      "message": "2017",
+      "range": {
+        "startLine": 6,
+        "startChar": 19,
+        "endLine": 6,
+        "endChar": 23
+      },
+      "revId": "effbd73900ea71383b9e09ed87221b398f1c3f90",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
