@@ -163,7 +163,7 @@ def write_module_title(fh, module_name):
     :type fh: file
     :type module_name: str
     """
-    title = "{} module".format(module_name)
+    title = "{} suite".format(module_name)
     fh.write("\n{}\n{}\n".format(title, '-' * len(title)))
 
 
@@ -190,8 +190,8 @@ def generate_py_rst_files():
         with open(full_path, mode='a') as fh:
             if getsize(full_path) == 0:
                 package = file_name.split('.')[-2]
-                fh.write("{} package\n".format(package))
-                fh.write('=' * len("{} package".format(package)))
+                fh.write("{}\n".format(package))
+                fh.write('=' * len("{}".format(package)))
             module_path = file_name.split('.')[:-1]
             if dirs:
                 write_toc(fh, module_path, dirs)
@@ -222,8 +222,8 @@ def generate_rf_rst_files(file_names, incl_tests=True, incl_keywords=True):
         with open(full_path, mode='a') as fh:
             if getsize(full_path) == 0:
                 package = file_name.split('.')[-2]
-                fh.write("{} package\n".format(package))
-                fh.write('=' * len("{} package".format(package)) + '\n')
+                fh.write("{}\n".format(package))
+                fh.write('=' * len("{}".format(package)) + '\n')
             module_path = file_name.split('.')[:-1]
             if dirs:
                 write_toc(fh, module_path, dirs)
