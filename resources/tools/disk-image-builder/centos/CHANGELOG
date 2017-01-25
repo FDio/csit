@@ -1,3 +1,7 @@
+## [1.2] - 2017-01-24
+
+Centos 7.3-1611 -- Add dhcp client to kickstart file.
+
 ## [1.1] - 2016-12-26
 
 Centos 7.3-1611 -- Use Yum on target. Lists only include delta from distro release.
