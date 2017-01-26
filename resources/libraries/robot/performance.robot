@@ -12,6 +12,7 @@
 # limitations under the License.
 
 *** Settings ***
+| Library | Collections
 | Library | resources.libraries.python.topology.Topology
 | Library | resources.libraries.python.NodePath
 | Library | resources.libraries.python.DpdkUtil
@@ -1332,27 +1333,35 @@
 | | ... | - sock1 - Socket path for first Vhost-User interface. Type: string
 | | ... | - sock2 - Socket path for second Vhost-User interface. Type: string
 | | ... | - vm_name - QemuUtil instance name. Type: string
+| | ... | - skip - number of cpus which will be skipped. Type: int
+| | ... | - count - number of cpus which will be allocated for qemu. Type: int
 | | ...
 | | ... | *Example:*
 | | ...
 | | ... | \| Guest VM with dpdk-testpmd connected via vhost-user is setup \
-| | ... | \| ${nodes['DUT1']} \| /tmp/sock1 \| /tmp/sock2 \| DUT1_VM \|
-| | [Arguments] | ${dut_node} | ${sock1} | ${sock2} | ${vm_name}
+| | ... | \| ${nodes['DUT1']} \| /tmp/sock1 \| /tmp/sock2 \| DUT1_VM \| ${5} \
+| | ... | \| ${5} \|
+| | ...
+| | [Arguments] | ${dut_node} | ${sock1} | ${sock2} | ${vm_name} | ${skip}=${5}
+| | ... | ${count}=${5}
+| | ...
 | | Import Library | resources.libraries.python.QemuUtils
-| | ...            | WITH NAME | ${vm_name}
+| | ... | WITH NAME | ${vm_name}
+| | ${dut_numa}= | Get interfaces numa node | ${dut_node}
+| | ... | ${dut1_if1} | ${dut1_if2}
+| | ${qemu_cpus}= | Cpu list per node | ${dut_node} | ${dut_numa}
+| | ... | skip_cnt=${skip} | cpu_cnt=${count}
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock1}
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock2}
 | | Run keyword | ${vm_name}.Qemu Set Node | ${dut_node}
-| | Run keyword | ${vm_name}.Qemu Set Smp | 5 | 5 | 1 | 1
+| | Run keyword | ${vm_name}.Qemu Set Smp | ${count} | ${count} | 1 | 1
 | | Run keyword | ${vm_name}.Qemu Set Mem Size | 2048
 | | Run keyword | ${vm_name}.Qemu Set Disk Image | ${glob_vm_image}
 | | ${vm}= | Run keyword | ${vm_name}.Qemu Start
-| | Run keyword | ${vm_name}.Qemu Set Affinity | 5 | 6 | 7 | 8 | 9
+| | Run keyword | ${vm_name}.Qemu Set Affinity | ${qemu_cpus}
 | | Run keyword | ${vm_name}.Qemu Set Scheduler Policy
-| | Dpdk Testpmd Start | ${vm} | eal_coremask=0x1f
-| | ...                | eal_mem_channels=4
-| | ...                | pmd_fwd_mode=io
-| | ...                | pmd_disable_hw_vlan=${True}
+| | Dpdk Testpmd Start | ${vm} | eal_coremask=0x1f | eal_mem_channels=4
+| | ... | pmd_fwd_mode=io | pmd_disable_hw_vlan=${True}
 | | Return From Keyword | ${vm}
 
 | Guest VM with dpdk-testpmd-mac connected via vhost-user is setup
@@ -1371,31 +1380,36 @@
 | | ... | - vm_name - QemuUtil instance name. Type: string
 | | ... | - eth0_mac - MAC address of first Vhost interface. Type: string
 | | ... | - eth1_mac - MAC address of second Vhost interface. Type: string
+| | ... | - skip - number of cpus which will be skipped. Type: int
+| | ... | - count - number of cpus which will be allocated for qemu. Type: int
 | | ...
 | | ... | *Example:*
 | | ...
 | | ... | \| Guest VM with dpdk-testpmd for Vhost L2BD forwarding is setup \
 | | ... | \| ${nodes['DUT1']} \| /tmp/sock1 \| /tmp/sock2 \| DUT1_VM \
-| | ... | \| 00:00:00:00:00:01 \| 00:00:00:00:00:02 \|
+| | ... | \| 00:00:00:00:00:01 \| 00:00:00:00:00:02 \| ${5} \| ${5} \|
+| | ...
 | | [Arguments] | ${dut_node} | ${sock1} | ${sock2} | ${vm_name}
-| | ...         | ${eth0_mac} | ${eth1_mac}
+| | ... | ${eth0_mac} | ${eth1_mac} | ${skip}=${5} | ${count}=${5}
+| | ...
 | | Import Library | resources.libraries.python.QemuUtils
-| | ...            | WITH NAME | ${vm_name}
+| | ... | WITH NAME | ${vm_name}
+| | ${dut_numa}= | Get interfaces numa node | ${dut_node}
+| | ... | ${dut1_if1} | ${dut1_if2}
+| | ${qemu_cpus}= | Cpu list per node | ${dut_node} | ${dut_numa}
+| | ... | skip_cnt=${skip} | cpu_cnt=${count}
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock1}
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock2}
 | | Run keyword | ${vm_name}.Qemu Set Node | ${dut_node}
-| | Run keyword | ${vm_name}.Qemu Set Smp | 5 | 5 | 1 | 1
+| | Run keyword | ${vm_name}.Qemu Set Smp | ${count} | ${count} | 1 | 1
 | | Run keyword | ${vm_name}.Qemu Set Mem Size | 2048
 | | Run keyword | ${vm_name}.Qemu Set Disk Image | ${glob_vm_image}
 | | ${vm}= | Run keyword | ${vm_name}.Qemu Start
-| | Run keyword | ${vm_name}.Qemu Set Affinity | 5 | 6 | 7 | 8 | 9
+| | Run keyword | ${vm_name}.Qemu Set Affinity | ${qemu_cpus}
 | | Run keyword | ${vm_name}.Qemu Set Scheduler Policy
 | | Dpdk Testpmd Start | ${vm} | eal_coremask=0x1f
-| | ...                | eal_mem_channels=4
-| | ...                | pmd_fwd_mode=mac
-| | ...                | pmd_eth_peer_0=0,${eth0_mac}
-| | ...                | pmd_eth_peer_1=1,${eth1_mac}
-| | ...                | pmd_disable_hw_vlan=${True}
+| | ... | eal_mem_channels=4 | pmd_fwd_mode=mac | pmd_eth_peer_0=0,${eth0_mac}
+| | ... | pmd_eth_peer_1=1,${eth1_mac} | pmd_disable_hw_vlan=${True}
 | | Return From Keyword | ${vm}
 
 | Guest VM with Linux Bridge connected via vhost-user is setup
@@ -1409,22 +1423,32 @@
 | | ... | - sock1 - Socket path for first Vhost-User interface. Type: string
 | | ... | - sock2 - Socket path for second Vhost-User interface. Type: string
 | | ... | - vm_name - QemuUtil instance name. Type: string
+| | ... | - skip - number of cpus which will be skipped. Type: int
+| | ... | - count - number of cpus which will be allocated for qemu. Type: int
 | | ...
 | | ... | *Example:*
 | | ...
 | | ... | \| Guest VM with Linux Bridge connected via vhost-user is setup \
-| | ... | \| ${nodes['DUT1']} \| /tmp/sock1 \| /tmp/sock2 \| DUT1_VM \|
-| | [Arguments] | ${dut_node} | ${sock1} | ${sock2} | ${vm_name}
+| | ... | \| ${nodes['DUT1']} \| /tmp/sock1 \| /tmp/sock2 \| DUT1_VM \| ${5} \
+| | ... | \| ${5} \|
+| | ...
+| | [Arguments] | ${dut_node} | ${sock1} | ${sock2} | ${vm_name} | ${skip}=${5}
+| | ... | ${count}=${5}
+| | ...
 | | Import Library | resources.libraries.python.QemuUtils
-| | ...            | WITH NAME | ${vm_name}
+| | ... | WITH NAME | ${vm_name}
+| | ${dut_numa}= | Get interfaces numa node | ${dut_node}
+| | ... | ${dut1_if1} | ${dut1_if2}
+| | ${qemu_cpus}= | Cpu list per node | ${dut_node} | ${dut_numa}
+| | ... | skip_cnt=${skip} | cpu_cnt=${count}
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock1}
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock2}
 | | Run keyword | ${vm_name}.Qemu Set Node | ${dut_node}
-| | Run keyword | ${vm_name}.Qemu Set Smp | 3 | 3 | 1 | 1
+| | Run keyword | ${vm_name}.Qemu Set Smp | ${count} | ${count} | 1 | 1
 | | Run keyword | ${vm_name}.Qemu Set Mem Size | 2048
 | | Run keyword | ${vm_name}.Qemu Set Disk Image | ${glob_vm_image}
 | | ${vm}= | Run keyword | ${vm_name}.Qemu Start
-| | Run keyword | ${vm_name}.Qemu Set Affinity | 5 | 6 | 7
+| | Run keyword | ${vm_name}.Qemu Set Affinity | ${qemu_cpus}
 | | Run keyword | ${vm_name}.Qemu Set Scheduler Policy
 | | ${br}= | Set Variable | br0
 | | ${vhost1}= | Get Vhost User If Name By Sock | ${vm} | ${sock1}
