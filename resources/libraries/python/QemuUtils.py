@@ -127,7 +127,7 @@ class QemuUtils(object):
         """
         self._qemu_opt['disk_image'] = disk_image
 
-    def qemu_set_affinity(self, *host_cpus):
+    def qemu_set_affinity(self, host_cpus):
         """Set qemu affinity by getting thread PIDs via QMP and taskset to list
         of CPU cores.
 
