@@ -863,7 +863,9 @@
 | | Run Keyword If | '${loss_acceptance_type}' == 'percentage'
 | | ...            | Set Loss Acceptance Type Percentage
 | | Linear Search | ${start_rate} | ${topology_type}
-| | ${rate_per_stream} | ${latency}= | Verify Search Result
+| | ${rate_per_stream} | ${lat}= | Verify Search Result
+| | ${tmp}= | Create List | 100%PDR | ${lat}
+| | ${latency}= | Create List | ${tmp}
 | | Display result of PDR search | ${rate_per_stream} | ${framesize} | 2
 | | ...                          | ${loss_acceptance} | ${loss_acceptance_type}
 | | ...                          | ${latency}
@@ -953,7 +955,7 @@
 | | Set Binary Convergence Threshold | ${threshold}
 | | Binary Search | ${binary_min} | ${binary_max} | ${topology_type}
 | | ${rate_per_stream} | ${lat}= | Verify Search Result
-| | ${tmp}= | Create List | 100%NDR | ${lat}
+| | ${tmp}= | Create List | 100%PDR | ${lat}
 | | ${latency}= | Create List | ${tmp}
 | | Display result of PDR search | ${rate_per_stream} | ${framesize} | 2
 | | ...                          | ${loss_acceptance} | ${loss_acceptance_type}
@@ -1046,7 +1048,9 @@
 | | ...            | Set Loss Acceptance Type Percentage
 | | Set Binary Convergence Threshold | ${threshold}
 | | Combined Search | ${start_rate} | ${topology_type}
-| | ${rate_per_stream} | ${latency}= | Verify Search Result
+| | ${rate_per_stream} | ${lat}= | Verify Search Result
+| | ${tmp}= | Create List | 100%PDR | ${lat}
+| | ${latency}= | Create List | ${tmp}
 | | Display result of PDR search | ${rate_per_stream} | ${framesize} | 2
 | | ...                          | ${loss_acceptance} | ${loss_acceptance_type}
 | | ...                          | ${latency}
