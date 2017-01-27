@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3a3291f1_339ec757",
+        "filename": "resources/libraries/python/honeycomb/HoneycombSetup.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 301,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-01-27T09:42:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a3291f1_33b007f4",
+      "range": {
+        "startLine": 301,
+        "startChar": 37,
+        "endLine": 301,
+        "endChar": 46
+      },
+      "revId": "ff80ddf04137dc98e917a6c56376c9187816f69d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a3291f1_93a1fbab",
         "filename": "resources/libraries/python/honeycomb/HoneycombSetup.py",
         "patchSetId": 2
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "3a3291f1_5399536d",
+        "filename": "resources/libraries/python/honeycomb/HoneycombSetup.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 304,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-01-27T09:42:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a3291f1_93a1fbab",
+      "range": {
+        "startLine": 304,
+        "startChar": 8,
+        "endLine": 304,
+        "endChar": 13
+      },
+      "revId": "ff80ddf04137dc98e917a6c56376c9187816f69d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a3291f1_738d6f31",
         "filename": "resources/libraries/python/honeycomb/HoneycombSetup.py",
         "patchSetId": 2
@@ -59,6 +107,30 @@
       "writtenOn": "2017-01-27T09:35:05Z",
       "side": 1,
       "message": "What happens if this fails?",
+      "range": {
+        "startLine": 368,
+        "startChar": 12,
+        "endLine": 368,
+        "endChar": 33
+      },
+      "revId": "ff80ddf04137dc98e917a6c56376c9187816f69d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_f39f1f4f",
+        "filename": "resources/libraries/python/honeycomb/HoneycombSetup.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 368,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-01-27T09:42:58Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a3291f1_738d6f31",
       "range": {
         "startLine": 368,
         "startChar": 12,
