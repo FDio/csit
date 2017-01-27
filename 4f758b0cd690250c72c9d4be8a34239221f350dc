@@ -22,6 +22,30 @@
       "revId": "4f758b0cd690250c72c9d4be8a34239221f350dc",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_b3e1979c",
+        "filename": "resources/libraries/python/NAT.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-01-27T11:43:04Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a3291f1_73944f37",
+      "range": {
+        "startLine": 96,
+        "startChar": 12,
+        "endLine": 96,
+        "endChar": 40
+      },
+      "revId": "4f758b0cd690250c72c9d4be8a34239221f350dc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
