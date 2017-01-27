@@ -19,8 +19,7 @@
 | Library  | resources.libraries.python.IPv4Util
 | Library  | resources.libraries.python.IPv4Setup
 | Library  | resources.libraries.python.telemetry.SPAN
-| Force Tags | HW_ENV | VM_ENV | 3_NODE_DOUBLE_LINK_TOPO | EXPECTED_FAILING
-# TODO: Remove EXPECTED_FAILING tag once functionality is implemented (VPP-185)
+| Force Tags | HW_ENV | VM_ENV | 3_NODE_DOUBLE_LINK_TOPO
 | Test Setup | Func Test Setup
 | Test Teardown | Func Test Teardown
 | Documentation | *SPAN test suite*
@@ -58,4 +57,4 @@
 | | Then Send Packet And Check Received Copies | ${tg_node}
 | | ... | ${tg_to_dut_if1} | ${tg_to_dut_if1_mac}
 | | ... | ${dut_to_tg__if1_mac} | ${tg_to_dut_if2}
-| | ... | ${tg_to_dut_if1_ip6} | ${dut_to_tg_if1_ip6} | ICMP
+| | ... | ${tg_to_dut_if1_ip6} | ${dut_to_tg_if1_ip6} | ICMPv6
