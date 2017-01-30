@@ -139,13 +139,14 @@ fi
 
 case "$TEST_TAG" in
     # run specific performance tests based on jenkins job type variable
+    # -i NDRPDRDISC \
     PERFTEST_LONG )
         pybot ${PYBOT_ARGS} \
               -L TRACE \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s "tests.perf" \
               --exclude SKIP_PATCH \
-              -i NDRPDRDISC \
+              -i VM \
               tests/
         RETURN_STATUS=$(echo $?)
         ;;
