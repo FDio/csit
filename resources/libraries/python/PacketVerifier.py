@@ -64,8 +64,12 @@
 
 
 import os
-import socket
 import select
+import interruptingcow
+
+from scapy.config import conf
+conf.use_pcap=True
+import scapy.arch.pcapdnet
 
 from scapy.all import ETH_P_IP, ETH_P_IPV6, ETH_P_ALL, ETH_P_ARP
 from scapy.all import Ether, ARP
@@ -84,9 +88,6 @@ class PacketVerifier(object):
         os.system('sudo echo 1 > /proc/sys/net/ipv6/conf/{0}/disable_ipv6'
                   .format(interface_name))
         os.system('sudo ip link set {0} up promisc on'.format(interface_name))
-        self._sock = socket.socket(socket.AF_PACKET, socket.SOCK_RAW,
-                                   ETH_P_ALL)
-        self._sock.bind((interface_name, ETH_P_ALL))
         self._ifname = interface_name
 
 
@@ -180,8 +181,7 @@ def packet_reader(interface_name, queue):
     :type queue: multiprocessing.Queue
     :returns: None
     """
-    sock = socket.socket(socket.AF_PACKET, socket.SOCK_RAW, ETH_P_ALL)
-    sock.bind((interface_name, ETH_P_ALL))
+    sock = conf.L2listen(iface=interface_name, type=ETH_P_ALL)
 
     while True:
         pkt = sock.recv(0x7fff)
@@ -199,6 +199,7 @@ class RxQueue(PacketVerifier):
     """
     def __init__(self, interface_name):
         PacketVerifier.__init__(self, interface_name)
+        self._sock = conf.L2listen(iface=interface_name, type=ETH_P_ALL)
 
     def recv(self, timeout=3, ignore=None, verbose=True):
         """Read next received packet.
@@ -221,25 +222,27 @@ class RxQueue(PacketVerifier):
         if self._sock not in rlist:
             return None
 
-        pkt = self._sock.recv(0x7fff)
-        pkt_pad = auto_pad(pkt)
-        print'Received packet on {0} of len {1}'.format(self._ifname, len(pkt))
-        if verbose:
-            Ether(pkt).show2()
-            print
-
-        if ignore is not None:
-            for i, ig_pkt in enumerate(ignore):
-                # Auto pad all packets in ignore list
-                ignore[i] = auto_pad(ig_pkt)
-            for ig_pkt in ignore:
-                if ig_pkt == pkt_pad:
-                    # Found the packet in ignore list, get another one
-                    # TODO: subtract timeout - time_spent in here
-                    ignore.remove(ig_pkt)
-                    return self.recv(timeout, ignore, verbose)
-
-        return Ether(pkt)
+        with interruptingcow.timeout(timeout,
+                                     exception=RuntimeError('Timeout')):
+            while True:
+                pkt = self._sock.recv(0x7fff)
+                pkt_pad = auto_pad(pkt)
+                print 'Received packet on {0} of len {1}'\
+                    .format(self._ifname, len(pkt))
+                if verbose:
+                    pkt.show2()
+                    print
+                if ignore is not None:
+                    for i, ig_pkt in enumerate(ignore):
+                        # Auto pad all packets in ignore list
+                        ignore[i] = auto_pad(ig_pkt)
+                    for ig_pkt in ignore:
+                        if ig_pkt == pkt_pad:
+                            break
+                    else:
+                        return pkt
+                    continue
+                return pkt
 
 
 class TxQueue(PacketVerifier):
@@ -252,6 +255,7 @@ class TxQueue(PacketVerifier):
     """
     def __init__(self, interface_name):
         PacketVerifier.__init__(self, interface_name)
+        self._sock = conf.L2socket(iface=interface_name, type=ETH_P_ALL)
 
     def send(self, pkt, verbose=True):
         """Send packet out of the bound interface.
