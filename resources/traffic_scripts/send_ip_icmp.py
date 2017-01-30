@@ -19,6 +19,10 @@ the other one. Dot1q or Dot1ad tagging of the ethernet frame can be set.
 import sys
 import ipaddress
 
+from scapy.config import conf
+conf.use_pcap=True
+import scapy.arch.pcapdnet
+
 from scapy.layers.inet import ICMP, IP
 from scapy.layers.l2 import Ether
 from scapy.layers.l2 import Dot1Q
@@ -27,6 +31,8 @@ from scapy.layers.inet6 import IPv6
 
 from resources.libraries.python.PacketVerifier import RxQueue, TxQueue
 from resources.libraries.python.TrafficScriptArg import TrafficScriptArg
+
+
 
 
 def valid_ipv4(ip):
