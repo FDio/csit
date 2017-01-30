@@ -1,6 +1,7 @@
 ## [1.3] - 2017-02-20
 
 Added socat and psmisc as vm testing dependency.
+Added pypcap
 
 ## [1.2] - 2017-01-24
 
