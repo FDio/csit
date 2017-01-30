@@ -15,11 +15,12 @@
 
 """Traffic script for IPv6 sweep ping."""
 
-import sys
 import logging
 import os
+import sys
+
 logging.getLogger("scapy.runtime").setLevel(logging.ERROR)
-from resources.libraries.python.PacketVerifier import RxQueue, TxQueue,\
+from resources.libraries.python.PacketVerifier import RxQueue, TxQueue, \
     checksum_equal
 from resources.libraries.python.TrafficScriptArg import TrafficScriptArg
 from scapy.layers.inet6 import IPv6, ICMPv6ND_NA, ICMPv6NDOptDstLLAddr
@@ -51,19 +52,19 @@ def main():
     # send ICMPv6 neighbor advertisement message
     sent_packets = []
     pkt_send = (Ether(src=src_mac, dst=dst_mac) /
-                      IPv6(src=src_ip, dst=dst_ip) /
-                      ICMPv6ND_NA(tgt=src_ip, R=0) /
-                      ICMPv6NDOptDstLLAddr(lladdr=src_mac))
+                IPv6(src=src_ip, dst=dst_ip) /
+                ICMPv6ND_NA(tgt=src_ip, R=0) /
+                ICMPv6NDOptDstLLAddr(lladdr=src_mac))
     sent_packets.append(pkt_send)
     txq.send(pkt_send)
 
     # send ICMPv6 echo request with incremented data length and receive ICMPv6
     # echo reply
-    for echo_seq in range(start_size, end_size+1, step):
+    for echo_seq in range(start_size, end_size + 1, step):
         pkt_send = (Ether(src=src_mac, dst=dst_mac) /
-                          IPv6(src=src_ip, dst=dst_ip) /
-                          ICMPv6EchoRequest(id=echo_id, seq=echo_seq,
-                                            data=data[0:echo_seq]))
+                    IPv6(src=src_ip, dst=dst_ip) /
+                    ICMPv6EchoRequest(id=echo_id, seq=echo_seq,
+                                      data=data[0:echo_seq]))
         sent_packets.append(pkt_send)
         txq.send(pkt_send)
 
@@ -88,7 +89,7 @@ def main():
 
         if icmpv6.id != echo_id or icmpv6.seq != echo_seq:
             raise RuntimeError(
-                'Invalid ICMPv6 echo reply received ID {0} seq {1} should be ' \
+                'Invalid ICMPv6 echo reply received ID {0} seq {1} should be '
                 'ID {2} seq {3}, {0}'.format(icmpv6.id, icmpv6.seq, echo_id,
                                              echo_seq))
 
@@ -99,7 +100,10 @@ def main():
             raise RuntimeError(
                 'Invalid checksum {0} should be {1}'.format(cksum, tmp.cksum))
 
+        sent_packets.remove(pkt_send)
+
     sys.exit(0)
+
 
 if __name__ == "__main__":
     main()
