@@ -1,6 +1,10 @@
+## [1.8] - 2017-02-23
+
+Added pypcap
+
 ## [1.7] - 2017-02-20
 
-Added socat as vm testing dependency.
+Added socat as vm testing dependency
 
 ## [1.6] - 2016-12-19
 

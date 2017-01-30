@@ -1,0 +1,51 @@
+bridge-utils
+cloud-init
+dkms
+git
+glusterfs
+glusterfs-api
+glusterfs-devel
+gperftools
+ipxe-roms-qemu
+java-1.8.0-openjdk-devel
+java-1.8.0-openjdk-headless
+libibverbs
+libiscsi
+libpcap
+libpcap-devel
+libpng
+librados2
+librbd1
+librdmacm
+libseccomp
+libusb
+nfs-utils
+nss-devel
+openssl-devel
+pixman
+pkgconfig
+psmisc
+pulseaudio-libs
+python-devel
+python-pip
+python-pip
+python-setuptools
+python-virtualenv
+seabios-bin
+seavgabios-bin
+sgabios-bin
+socat
+spice-server
+strongswan
+unzip
+usbredir
+yum-utils
+zlib-devel
+qemu-img-ev-2.3.0-31.el7_2.21.1.x86_64.rpm http://cbs.centos.org/kojifiles/packages/qemu-kvm-ev/2.3.0/31.el7_2.21.1/x86_64/
+libcacard-ev-2.3.0-31.el7_2.21.1.x86_64.rpm http://cbs.centos.org/kojifiles/packages/qemu-kvm-ev/2.3.0/31.el7_2.21.1/x86_64/
+libcacard-devel-ev-2.3.0-31.el7_2.21.1.x86_64.rpm http://cbs.centos.org/kojifiles/packages/qemu-kvm-ev/2.3.0/31.el7_2.21.1/x86_64/
+qemu-kvm-ev-debuginfo-2.3.0-31.el7_2.21.1.x86_64.rpm http://cbs.centos.org/kojifiles/packages/qemu-kvm-ev/2.3.0/31.el7_2.21.1/x86_64/
+qemu-kvm-tools-ev-2.3.0-31.el7_2.21.1.x86_64.rpm http://cbs.centos.org/kojifiles/packages/qemu-kvm-ev/2.3.0/31.el7_2.21.1/x86_64/
+qemu-kvm-common-ev-2.3.0-31.el7_2.21.1.x86_64.rpm http://cbs.centos.org/kojifiles/packages/qemu-kvm-ev/2.3.0/31.el7_2.21.1/x86_64/
+qemu-kvm-ev-2.3.0-31.el7_2.21.1.x86_64.rpm http://cbs.centos.org/kojifiles/packages/qemu-kvm-ev/2.3.0/31.el7_2.21.1/x86_64/
+libcacard-tools-ev-2.3.0-31.el7_2.21.1.x86_64.rpm http://cbs.centos.org/kojifiles/packages/qemu-kvm-ev/2.3.0/31.el7_2.21.1/x86_64/

@@ -53,16 +53,19 @@
 | | Compute Path
 | | ${src_port} | ${src_node}= | First Interface
 | | ${dst_port} | ${dst_node}= | Last Interface
-| | ${src_ip}= | Get Node Port Ipv6 Address | ${src_node} | ${src_port} | ${nodes_addr}
-| | ${dst_ip}= | Get Node Port Ipv6 Address | ${dst_node} | ${dst_port} | ${nodes_addr}
+| | ${src_ip}= | Get Node Port Ipv6 Address | ${src_node} | ${src_port}
+| | ... | ${nodes_addr}
+| | ${dst_ip}= | Get Node Port Ipv6 Address | ${dst_node} | ${dst_port}
+| | ... | ${nodes_addr}
 | | ${src_mac}= | Get Interface Mac | ${src_node} | ${src_port}
 | | ${dst_mac}= | Get Interface Mac | ${dst_node} | ${dst_port}
 | | ${src_port_name}= | Get interface name | ${src_node} | ${src_port}
-| | ${args}= | Traffic Script Gen Arg | ${src_port_name} | ${src_port_name} | ${src_mac}
-| |          | ...                    | ${dst_mac} | ${src_ip} | ${dst_ip}
+| | ${args}= | Traffic Script Gen Arg | ${src_port_name} | ${src_port_name}
+| |          | ... | ${src_mac} | ${dst_mac} | ${src_ip} | ${dst_ip}
 | | ${args}= | Set Variable
 | | ...      | ${args} --start_size ${start_size} --end_size ${end_size} --step ${step}
 | | Run Traffic Script On Node | ipv6_sweep_ping.py | ${src_node} | ${args}
+| | ... | timeout=${180}
 
 | Ipv6 tg to dut1 egress
 | | [Documentation] | Send traffic from TG to first DUT egress interface
