@@ -16,16 +16,16 @@
 """Traffic script - IPFIX listener."""
 
 import sys
-from ipaddress import IPv4Address, IPv6Address, AddressValueError
 
+from ipaddress import IPv4Address, IPv6Address, AddressValueError
 from scapy.layers.inet import IP, TCP, UDP
 from scapy.layers.inet6 import IPv6
 from scapy.layers.l2 import Ether
 
-from resources.libraries.python.telemetry.IPFIXUtil import IPFIXHandler, \
-    IPFIXData
 from resources.libraries.python.PacketVerifier import RxQueue, TxQueue, auto_pad
 from resources.libraries.python.TrafficScriptArg import TrafficScriptArg
+from resources.libraries.python.telemetry.IPFIXUtil import IPFIXHandler, \
+    IPFIXData
 
 
 def valid_ipv4(ip):
@@ -117,17 +117,10 @@ def main():
 
     # allow scapy to recognize IPFIX headers and templates
     ipfix = IPFIXHandler()
-
-    # clear receive buffer
-    while True:
-        pkt = rxq.recv(1, ignore=ignore, verbose=verbose)
-        if pkt is None:
-            break
-
     data = None
     # get IPFIX template and data
     while True:
-        pkt = rxq.recv(5)
+        pkt = rxq.recv(10, ignore=ignore, verbose=verbose)
         if pkt is None:
             raise RuntimeError("RX timeout")
         if pkt.haslayer("IPFIXHeader"):
@@ -194,5 +187,4 @@ def main():
 
 
 if __name__ == "__main__":
-
     main()
