@@ -14,7 +14,7 @@
 # limitations under the License.
 
 """Script parses the data taken by robot framework (output.xml) and dumps
-intereted values into XML output file."""
+interested values into XML output file."""
 
 import argparse
 import re
@@ -93,28 +93,44 @@ class ExecutionChecker(ResultVisitor):
                 tags = []
                 for tag in test.tags:
                     tags.append(tag)
-                test_elem = ET.SubElement(self.root,
-                                          "S"+test.parent.name.replace(" ", ""))
+
+                test_elem = ET.SubElement(
+                    self.root, "S" + test.parent.name.replace(" ", ""))
                 test_elem.attrib['name'] = test.parent.name
-                test_elem.attrib['framesize'] = str(re.search(\
+                test_elem.attrib['framesize'] = str(re.search(
                     self.tc_regexp, test.name).group(1))
-                test_elem.attrib['threads'] = str(re.search(\
+                test_elem.attrib['threads'] = str(re.search(
                     self.tc_regexp, test.name).group(3))
-                test_elem.attrib['cores'] = str(re.search(\
+                test_elem.attrib['cores'] = str(re.search(
                     self.tc_regexp, test.name).group(4))
                 if any("NDRDISC" in tag for tag in test.tags):
-                    test_elem.attrib['lat_100'] = str(re.search(\
-                        self.lat_regexp, test.message).group(1)) + '/' +\
-                        str(re.search(self.lat_regexp, test.message).group(2))
-                    test_elem.attrib['lat_50'] = str(re.search(\
-                        self.lat_regexp, test.message).group(3)) + '/' +\
-                        str(re.search(self.lat_regexp, test.message).group(4))
-                    test_elem.attrib['lat_10'] = str(re.search(\
-                        self.lat_regexp, test.message).group(5)) + '/' +\
-                        str(re.search(self.lat_regexp, test.message).group(6))
+                    try:
+                        test_elem.attrib['lat_100'] = str(re.search(
+                            self.lat_regexp, test.message).group(1)) + '/' +\
+                            str(re.search(self.lat_regexp, test.message).
+                                group(2))
+                    except AttributeError:
+                        test_elem.attrib['lat_100'] = "-1/-1/-1/-1/-1/-1"
+                    try:
+                        test_elem.attrib['lat_50'] = str(re.search(
+                            self.lat_regexp, test.message).group(3)) + '/' +\
+                            str(re.search(self.lat_regexp, test.message).
+                                group(4))
+                    except AttributeError:
+                        test_elem.attrib['lat_50'] = "-1/-1/-1/-1/-1/-1"
+                    try:
+                        test_elem.attrib['lat_10'] = str(re.search(
+                            self.lat_regexp, test.message).group(5)) + '/' +\
+                            str(re.search(self.lat_regexp, test.message).
+                                group(6))
+                    except AttributeError:
+                        test_elem.attrib['lat_10'] = "-1/-1/-1/-1/-1/-1"
                 test_elem.attrib['tags'] = ', '.join(tags)
-                test_elem.text = str(re.search(\
-                    self.rate_regexp, test.message).group(1))
+                try:
+                    test_elem.text = str(re.search(
+                        self.rate_regexp, test.message).group(1))
+                except AttributeError:
+                    test_elem.text = "-1"
 
     def end_test(self, test):
         """Called when test ends.
@@ -151,7 +167,7 @@ def print_error(msg):
     :return: nothing
     """
 
-    sys.stderr.write(msg+'\n')
+    sys.stderr.write(msg + '\n')
 
 
 def parse_args():
@@ -162,13 +178,18 @@ def parse_args():
     """
 
     parser = argparse.ArgumentParser()
-    parser.add_argument("-i", "--input", required=True,
+    parser.add_argument("-i", "--input",
+                        required=True,
                         type=argparse.FileType('r'),
                         help="Robot XML log file")
-    parser.add_argument("-o", "--output", required=True,
+    parser.add_argument("-o", "--output",
+                        required=True,
                         type=argparse.FileType('w'),
                         help="XML output file")
-    parser.add_argument("-v", "--vdevice", required=True,
+    parser.add_argument("-v", "--vdevice",
+                        required=False,
+                        default="",
+                        type=str,
                         help="VPP version")
 
     return parser.parse_args()
