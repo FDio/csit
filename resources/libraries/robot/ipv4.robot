@@ -88,11 +88,12 @@
 | | ${src_mac}= | Get Interface Mac | ${src_node} | ${src_port}
 | | ${dst_mac}= | Get Interface Mac | ${dst_node} | ${dst_port}
 | | ${src_port_name}= | Get interface name | ${src_node} | ${src_port}
-| | ${args}= | Traffic Script Gen Arg | ${src_port_name} | ${src_port_name} | ${src_mac}
-| |          | ...                    | ${dst_mac} | ${src_ip} | ${dst_ip}
+| | ${args}= | Traffic Script Gen Arg | ${src_port_name} | ${src_port_name}
+| |          | ... | ${src_mac} | ${dst_mac} | ${src_ip} | ${dst_ip}
 | | ${args}= | Set Variable
 | | ... | ${args} --start_size ${start_size} --end_size ${end_size} --step ${step}
 | | Run Traffic Script On Node | ipv4_sweep_ping.py | ${src_node} | ${args}
+| | ... | timeout=${180}
 
 | Send ARP request and validate response
 | | [Arguments] | ${tg_node} | ${vpp_node}

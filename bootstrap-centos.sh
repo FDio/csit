@@ -17,8 +17,7 @@ set -x
 cat /etc/hostname
 cat /etc/hosts
 
-sudo apt-get -y update
-sudo apt-get -y install libpython2.7-dev python-virtualenv
+sudo yum -y install libpython2.7-devel python-virtualenv
 
 VIRL_SERVERS=("10.30.51.28" "10.30.51.29" "10.30.51.30")
 
@@ -28,7 +27,7 @@ VIRL_SERVER_STATUS_FILE="status"
 VIRL_SERVER_EXPECTED_STATUS="PRODUCTION"
 
 VIRL_TOPOLOGY=double-ring-nested.centos7
-VIRL_RELEASE=csit-centos-7.3-1611
+VIRL_RELEASE=csit-centos-7.3-1611_2017-02-14_1.3
 
 SSH_OPTIONS="-i ${VIRL_PKEY} -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o BatchMode=yes -o LogLevel=error"
 
