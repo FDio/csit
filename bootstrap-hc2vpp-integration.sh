@@ -34,6 +34,8 @@ VIRL_RELEASE=csit-ubuntu-14.04.4_2016-10-07_1.3
 
 SSH_OPTIONS="-i ${VIRL_PKEY} -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o BatchMode=yes -o LogLevel=error"
 
+STREAM=$1
+
 function ssh_do() {
     echo
     echo "### "  ssh $@
@@ -108,9 +110,9 @@ done
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-# Download the latest VPP and HC .deb packages
+# Download VPP and HC .deb packages from the current branch
 echo Downloading packages...
-bash ${SCRIPT_DIR}/resources/tools/download_hc_pkgs.sh
+bash ${SCRIPT_DIR}/resources/tools/download_hc_pkgs.sh ${STREAM}
 
 VPP_DEBS=(*.deb)
 echo ${VPP_DEBS[@]}
