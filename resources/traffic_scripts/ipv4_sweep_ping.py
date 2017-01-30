@@ -15,11 +15,12 @@
 
 """Traffic script for IPv4 sweep ping."""
 
-import sys
 import logging
 import os
+import sys
+
 logging.getLogger("scapy.runtime").setLevel(logging.ERROR)
-from resources.libraries.python.PacketVerifier import RxQueue, TxQueue,\
+from resources.libraries.python.PacketVerifier import RxQueue, TxQueue, \
     create_gratuitous_arp_request, checksum_equal
 from resources.libraries.python.TrafficScriptArg import TrafficScriptArg
 from scapy.layers.inet import IP, ICMP
@@ -54,7 +55,7 @@ def main():
 
     # send ICMP echo request with incremented data length and receive ICMP
     # echo reply
-    for echo_seq in range(start_size, end_size+1, step):
+    for echo_seq in range(start_size, end_size + 1, step):
         pkt_send = (Ether(src=src_mac, dst=dst_mac) /
                     IP(src=src_ip, dst=dst_ip) /
                     ICMP(id=echo_id, seq=echo_seq) /
@@ -83,7 +84,7 @@ def main():
 
         if icmpv4.id != echo_id or icmpv4.seq != echo_seq:
             raise RuntimeError(
-                'Invalid ICMP echo reply received ID {0} seq {1} should be ' \
+                'Invalid ICMP echo reply received ID {0} seq {1} should be '
                 'ID {2} seq {3}, {0}'.format(icmpv4.id, icmpv4.seq, echo_id,
                                              echo_seq))
 
@@ -102,7 +103,10 @@ def main():
             raise RuntimeError(
                 'Received ICMP payload does not match sent payload')
 
+        sent_packets.remove(pkt_send)
+
     sys.exit(0)
+
 
 if __name__ == "__main__":
     main()
