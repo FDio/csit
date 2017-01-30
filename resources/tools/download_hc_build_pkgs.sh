@@ -17,17 +17,18 @@ set -ex
 
 trap 'rm -f *.deb.md5; exit' EXIT
 trap 'rm -f *.deb.md5;rm -f *.deb; exit' ERR
+STREAM=$1
 
 # Download the latest VPP .deb packages, their matching JVPP .jar and VPP plugin .deb packages
 URL="https://nexus.fd.io/service/local/artifact/maven/content"
 VER="LATEST"
-REPO='fd.io.master.ubuntu.trusty.main'
+REPO='fd.io.'${STREAM}'.ubuntu.trusty.main'
 JVPP_REPO='fd.io.snapshot'
 VPP_GROUP="io.fd.vpp"
 HC_GROUP="io.fd.hc2vpp"
 NSH_GROUP="io.fd.nsh_sfc"
 VPP_ARTIFACTS="vpp vpp-dbg vpp-dev vpp-dpdk-dev vpp-dpdk-dkms vpp-lib vpp-plugins"
-JVPP_ARTIFACTS="jvpp-core jvpp-registry jvpp-acl jvpp-snat jvpp-ioam-pot jvpp-ioam-trace"
+JVPP_ARTIFACTS="jvpp-core jvpp-registry"
 HC_ARTIFACTS="honeycomb"
 NSH_ARTIFACTS="vpp-nsh-plugin"
 PACKAGE="deb deb.md5"
