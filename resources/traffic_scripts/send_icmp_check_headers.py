@@ -92,8 +92,8 @@ def main():
     # Compare data from packets
     if src_ip == ether[ip_format].src and dst_ip == ether[ip_format].dst:
         logger.trace("IP matched")
-        if dst_mac == ether['Ethernet'].dst and \
-                dut1_if2_mac == ether['Ethernet'].src:
+        if dst_mac == ether['Ether'].dst and \
+                dut1_if2_mac == ether['Ether'].src:
             logger.trace("MAC matched")
         else:
             raise RuntimeError("Matching packet unsuccessful: {0}"
