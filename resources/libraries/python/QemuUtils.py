@@ -18,7 +18,7 @@ import json
 
 from robot.api import logger
 
-from resources.libraries.python.ssh import SSH
+from resources.libraries.python.ssh import SSH, SSHTimeout
 from resources.libraries.python.constants import Constants
 from resources.libraries.python.topology import NodeType
 
@@ -519,7 +519,7 @@ class QemuUtils(object):
         # Wait until VM boot
         try:
             self._wait_until_vm_boot()
-        except RuntimeError:
+        except (RuntimeError, SSHTimeout):
             self.qemu_kill()
             self.qemu_clear_socks()
             raise
