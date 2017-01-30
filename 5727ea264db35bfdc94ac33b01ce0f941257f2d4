@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "3a3291f1_6ca0f0f4",
+        "filename": "resources/tools/download_hc_build_pkgs.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-01-30T13:36:11Z",
+      "side": 1,
+      "message": "JVPP version is only LATEST if STREAM\u003d\u0027master\u0027",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 12
+      },
+      "revId": "5727ea264db35bfdc94ac33b01ce0f941257f2d4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a3291f1_09771ed6",
         "filename": "resources/tools/download_hc_build_pkgs.sh",
         "patchSetId": 2
