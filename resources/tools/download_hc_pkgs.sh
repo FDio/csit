@@ -17,10 +17,11 @@ set -ex
 
 trap 'rm -f *.deb.md5; exit' EXIT
 trap 'rm -f *.deb.md5;rm -f *.deb; exit' ERR
+STREAM=$1
 
 URL="https://nexus.fd.io/service/local/artifact/maven/content"
 VER="RELEASE"
-REPO='fd.io.master.ubuntu.trusty.main'
+REPO='fd.io.'${STREAM}'.ubuntu.trusty.main'
 GROUP="io.fd.vpp"
 HC_GROUP="io.fd.hc2vpp"
 NSH_GROUP="io.fd.nsh_sfc"
