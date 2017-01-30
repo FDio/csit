@@ -102,12 +102,12 @@ def main():
             raise RuntimeError("Not an IP packet received {0}"
                                .format(ether.__repr__()))
 
-        if ether['Ethernet'].src != dut_if2_mac:
+        if ether['Ether'].src != dut_if2_mac:
             raise RuntimeError("Source MAC address error")
 
-        if ether['Ethernet'].dst == path_1_mac:
+        if ether['Ether'].dst == path_1_mac:
             path_1_counter += 1
-        elif ether['Ethernet'].dst == path_2_mac:
+        elif ether['Ether'].dst == path_2_mac:
             path_2_counter += 1
         else:
             raise RuntimeError("Destination MAC address error")

@@ -111,7 +111,7 @@ def main():
     print "DHCP magic: OK"
 
     # Check options
-    dhcp_options = ether['DHCP options'].options
+    dhcp_options = ether['DHCP'].options
 
     # Option 12
     hn = filter(lambda x: x[0] == 'hostname', dhcp_options)
