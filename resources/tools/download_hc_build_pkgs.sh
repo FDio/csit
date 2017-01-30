@@ -17,32 +17,50 @@ set -ex
 
 trap 'rm -f *.deb.md5; exit' EXIT
 trap 'rm -f *.deb.md5;rm -f *.deb; exit' ERR
+STREAM=$1
 
 # Download the latest VPP .deb packages, their matching JVPP .jar and VPP plugin .deb packages
 URL="https://nexus.fd.io/service/local/artifact/maven/content"
 VER="LATEST"
-REPO='fd.io.master.ubuntu.trusty.main'
-JVPP_REPO='fd.io.snapshot'
+REPO="fd.io.${STREAM}.ubuntu.trusty.main"
 VPP_GROUP="io.fd.vpp"
 HC_GROUP="io.fd.hc2vpp"
 NSH_GROUP="io.fd.nsh_sfc"
 VPP_ARTIFACTS="vpp vpp-dbg vpp-dev vpp-dpdk-dev vpp-dpdk-dkms vpp-lib vpp-plugins"
-JVPP_ARTIFACTS="jvpp-core jvpp-registry jvpp-acl jvpp-snat jvpp-ioam-pot jvpp-ioam-trace"
 HC_ARTIFACTS="honeycomb"
 NSH_ARTIFACTS="vpp-nsh-plugin"
 PACKAGE="deb deb.md5"
-JVPP_PACKAGE="jar jar.md5"
 CLASS="deb"
+
+if [ ${STREAM} == 'stable.1701' ]; then
+    JVPP_VER="17.01-SNAPSHOT"
+    JVPP_REPO="fd.io.snapshot"
+    JVPP_ARTIFACTS="jvpp-core jvpp-registry"
+    JVPP_PACKAGE="jar jar.md5"
+    for ART in ${JVPP_ARTIFACTS}; do
+        for PAC in $JVPP_PACKAGE; do
+            curl "${URL}?r=${JVPP_REPO}&g=${VPP_GROUP}&a=${ART}&p=${PAC}&v=${JVPP_VER}" -O -J || exit
+        done
+    done
+    # Install JVPP to maven local repo, to be used in HC2VPP build
+    JVPP_JARS=$(find . -type f -iname '*.jar')
+    for item in jvpp*.jar; do
+        # Example filename: jvpp-registry-17.01-20161206.125556-1.jar
+        # ArtifactId = jvpp-registry
+        # Version = 17.01
+        basefile=$(basename -s .jar "$item")
+        artifactId=$(echo "$basefile" | cut -d '-' -f 1-2)
+        version=$(echo "$basefile" | cut -d '-' -f 3)
+        mvn install:install-file -Dfile=${item} -DgroupId=io.fd.vpp -DartifactId=${artifactId} -Dversion=${version} -Dpackaging=jar -Dmaven.repo.local=/tmp/r -Dorg.ops4j.pax.url.mvn.localRepository=/tmp/r
+    done
+else
+    # After 17.01 JVPP jars are installed from "vpp-api-java" package
+    VPP_ARTIFACTS+=' vpp-api-java'
+fi
 
 for ART in ${VPP_ARTIFACTS}; do
     for PAC in $PACKAGE; do
         curl "${URL}?r=${REPO}&g=${VPP_GROUP}&a=${ART}&p=${PAC}&v=${VER}&c=${CLASS}" -O -J || exit
-    done
-done
-
-for ART in ${JVPP_ARTIFACTS}; do
-    for PAC in $JVPP_PACKAGE; do
-        curl "${URL}?r=${JVPP_REPO}&g=${VPP_GROUP}&a=${ART}&p=${PAC}&v=${VER}" -O -J || exit
     done
 done
 
@@ -68,16 +86,4 @@ done
 
 for MD5FILE in *.md5; do
     md5sum -c ${MD5FILE} || exit
-done
-
-# Install JVPP to maven local repo, to be used in HC2VPP build
-JVPP_JARS=$(find . -type f -iname '*.jar')
-for item in jvpp*.jar; do
-    # Example filename: jvpp-registry-17.01-20161206.125556-1.jar
-    # ArtifactId = jvpp-registry
-    # Version = 17.01
-    basefile=$(basename -s .jar "$item")
-    artifactId=$(echo "$basefile" | cut -d '-' -f 1-2)
-    version=$(echo "$basefile" | cut -d '-' -f 3)
-    mvn install:install-file -Dfile=${item} -DgroupId=io.fd.vpp -DartifactId=${artifactId} -Dversion=${version} -Dpackaging=jar -Dmaven.repo.local=/tmp/r -Dorg.ops4j.pax.url.mvn.localRepository=/tmp/r
 done
