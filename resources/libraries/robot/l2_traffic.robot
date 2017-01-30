@@ -33,6 +33,10 @@
 | | ... | - encaps - Encapsulation: Dot1q or Dot1ad (Optional). Type: string
 | | ... | - vlan1 - VLAN (outer) tag (Optional). Type: integer
 | | ... | - vlan2 - VLAN inner tag (Optional). Type: integer
+| | ... | - encaps_rx - Expected encapsulation on RX side: Dot1q or Dot1ad
+| | ... | (Optional). Type: string
+| | ... | - vlan1_rx - VLAN (outer) tag on RX side (Optional). Type: integer
+| | ... | - vlan2_rx - VLAN inner tag on RX side (Optional). Type: integer
 | | ...
 | | ... | *Return:*
 | | ...
@@ -48,23 +52,37 @@
 | | ... | \| ${tg_to_dut2} \| encaps=Dot1q \| vlan1=100 \|
 | | ... | \| Send and receive ICMP Packet \| ${nodes['TG']} \| ${tg_to_dut1} \
 | | ... | \| ${tg_to_dut2} \| encaps=Dot1ad \| vlan1=110 \| vlan2=220 \|
+| | ... | \| Send and receive ICMP Packet \| ${nodes['TG']} \| ${tg_to_dut1} \
+| | ... | \| ${tg_to_dut2} \| encaps=Dot1q \| vlan1=110 \| encaps_rx=Dot1q \|
+| | ... | \| Send and receive ICMP Packet \| ${nodes['TG']} \| ${tg_to_dut1} \
+| | ... | \| ${tg_to_dut2} \| encaps=Dot1q \| vlan1=110 \| encaps_rx=Dot1q \
+| | ... | \| vlan1_rx=120 \|
 | | ...
 | | [Arguments] | ${tg_node} | ${src_int} | ${dst_int}
 | | ... | ${src_ip}=192.168.100.1 | ${dst_ip}=192.168.100.2 | ${encaps}=${EMPTY}
-| | ... | ${vlan1}=${EMPTY} | ${vlan2}=${EMPTY}
+| | ... | ${vlan1}=${EMPTY} | ${vlan2}=${EMPTY} | ${encaps_rx}=${EMPTY}
+| | ... | ${vlan1_rx}=${EMPTY} | ${vlan2_rx}=${EMPTY}
 | | ${src_mac}= | Get Interface Mac | ${tg_node} | ${src_int}
 | | ${dst_mac}= | Get Interface Mac | ${tg_node} | ${dst_int}
 | | ${src_int_name}= | Get interface name | ${tg_node} | ${src_int}
 | | ${dst_int_name}= | Get interface name | ${tg_node} | ${dst_int}
 | | ${args}= | Traffic Script Gen Arg | ${dst_int_name} | ${src_int_name}
 | | ... | ${src_mac} | ${dst_mac} | ${src_ip} | ${dst_ip}
-| | ${args1}= | Run Keyword Unless | '${encaps}' == '${EMPTY}' | Catenate
-| | ... | --encaps ${encaps} | --vlan1 ${vlan1}
-| | ${args2}= | Run Keyword Unless | '${vlan2}' == '${EMPTY}' | Set Variable
-| | ... | --vlan2 ${vlan2}
-| | ${args}= | Run Keyword If | '${args1}' == 'None' | Set Variable | ${args}
-| | ... | ELSE IF | '${args2}' == 'None' | Catenate | ${args} | ${args1}
-| | ... | ELSE | Catenate | ${args} | ${args1} | ${args2}
+| | ${args}= | Run Keyword If | '${encaps}' == '${EMPTY}'
+| | | ...                     | Set Variable | ${args}
+| | ... | ELSE | Catenate | ${args} | --encaps ${encaps} | --vlan1 ${vlan1}
+| | ${args}= | Run Keyword If | '${vlan2}' == '${EMPTY}'
+| | | ...                     | Set Variable | ${args}
+| | ... | ELSE | Catenate | ${args} | --vlan2 ${vlan2}
+| | ${args}= | Run Keyword If | '${encaps_rx}' == '${EMPTY}'
+| | | ...                     | Set Variable | ${args}
+| | ... | ELSE | Catenate | ${args} | --encaps_rx ${encaps_rx}
+| | ${args}= | Run Keyword If | '${vlan1_rx}' == '${EMPTY}'
+| | | ...                     | Set Variable | ${args}
+| | ... | ELSE | Catenate | ${args} | --vlan1_rx ${vlan1_rx}
+| | ${args}= | Run Keyword If | '${vlan2_rx}' == '${EMPTY}'
+| | | ...                     | Set Variable | ${args}
+| | ... | ELSE | Catenate | ${args} | --vlan2_rx ${vlan2_rx}
 | | Run Traffic Script On Node | send_ip_icmp.py | ${tg_node} | ${args}
 
 | Send and receive ICMP Packet should fail
