@@ -29,6 +29,11 @@ __all__ = ["exec_cmd", "exec_cmd_no_error"]
 # TODO: load priv key
 
 
+class SSHTimeout(Exception):
+    """This exception is raised when a timeout occurs."""
+    pass
+
+
 class SSH(object):
     """Contains methods for managing and using SSH connections."""
 
@@ -118,7 +123,7 @@ class SSH(object):
         :type timeout: int
         :return return_code, stdout, stderr
         :rtype: tuple(int, str, str)
-        :raise socket.timeout: If command is not finished in timeout time.
+        :raise SSHTimeout: If command is not finished in timeout time.
         """
         start = time()
         stdout = StringIO.StringIO()
@@ -144,7 +149,7 @@ class SSH(object):
                 stderr.write(chan.recv_stderr(self.__MAX_RECV_BUF))
 
             if time() - start > timeout:
-                raise socket.timeout(
+                raise SSHTimeout(
                     'Timeout exception.\n'
                     'Current contents of stdout buffer: {0}\n'
                     'Current contents of stderr buffer: {1}\n'
