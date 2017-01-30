@@ -31,7 +31,7 @@ def is_discover(pkt):
     else return False. False is returned also if exception occurs."""
     dhcp_discover = 1
     try:
-        dhcp_options = pkt['BOOTP']['DHCP options'].options
+        dhcp_options = pkt['BOOTP']['DHCP'].options
         message_type = filter(lambda x: x[0] == 'message-type',
                               dhcp_options)
         message_type = message_type[0][1]
