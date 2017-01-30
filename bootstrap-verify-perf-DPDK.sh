@@ -122,8 +122,7 @@ echo Post-processing test data...
 
 python ${SCRIPT_DIR}/resources/tools/robot_output_parser.py \
        -i ${SCRIPT_DIR}/output.xml \
-       -o ${SCRIPT_DIR}/output_perf_data.xml \
-       -v ${VPP_STABLE_VER}
+       -o ${SCRIPT_DIR}/output_perf_data.xml
 if [ ! $? -eq 0 ]; then
     echo "Parsing ${SCRIPT_DIR}/output.xml failed"
 fi
