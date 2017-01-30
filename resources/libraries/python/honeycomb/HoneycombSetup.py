@@ -365,8 +365,8 @@ class HoneycombSetup(object):
             directory = "{0}/lib/io/fd/vpp/{1}/{2}".format(
                 Const.REMOTE_HC_DIR, artifact_id, version)
             cmd = "sudo mkdir -p {0}; " \
-                  "sudo cp /usr/share/java/{0} {1}/{2}-{3}.jar".format(
-                    item, directory, artifact_id, version)
+                  "sudo cp /usr/share/java/{1} {0}/{2}-{3}.jar".format(
+                    directory, item, artifact_id, version)
 
             (ret_code, _, stderr) = ssh.exec_command(cmd)
             if ret_code != 0:
