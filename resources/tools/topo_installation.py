@@ -22,6 +22,7 @@ from yaml import load
 
 from resources.libraries.python.ssh import SSH
 
+
 def ssh_no_error(ssh, cmd, sudo=False):
     """Execute a command over ssh channel, and log and exit if the command
     fails.
@@ -35,9 +36,9 @@ def ssh_no_error(ssh, cmd, sudo=False):
     """
 
     if sudo:
-        ret, stdo, stde = ssh.exec_command_sudo(cmd)
+        ret, stdo, stde = ssh.exec_command_sudo(cmd, timeout=60)
     else:
-        ret, stdo, stde = ssh.exec_command(cmd)
+        ret, stdo, stde = ssh.exec_command(cmd, timeout=60)
 
     if ret != 0:
         print 'Command execution failed: "{}"'.format(cmd)
@@ -46,6 +47,7 @@ def ssh_no_error(ssh, cmd, sudo=False):
         raise RuntimeError('Unexpected ssh command failure')
 
     return stdo
+
 
 def ssh_ignore_error(ssh, cmd, sudo=False):
     """Execute a command over ssh channel, ignore errors.
@@ -69,6 +71,7 @@ def ssh_ignore_error(ssh, cmd, sudo=False):
         print 'stderr: {0}'.format(stde)
 
     return stdo
+
 
 def main():
     """Copy and installation of VPP packages."""
