@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a3291f1_09771ed6",
+        "filename": "resources/tools/download_hc_build_pkgs.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2017-01-30T13:15:54Z",
+      "side": 1,
+      "message": "You can use: \"fd.io.${STREAM}.ubuntu.trusty.main\"\nto align with the rest of assignements",
+      "range": {
+        "startLine": 25,
+        "startChar": 5,
+        "endLine": 25,
+        "endChar": 43
+      },
+      "revId": "5727ea264db35bfdc94ac33b01ce0f941257f2d4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_894aee81",
+        "filename": "resources/tools/download_hc_build_pkgs.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2017-01-30T13:15:54Z",
+      "side": 1,
+      "message": "Please, use quotation marks instead of apostrophes to be aligned with another assignements here...",
+      "range": {
+        "startLine": 26,
+        "startChar": 10,
+        "endLine": 26,
+        "endChar": 26
+      },
+      "revId": "5727ea264db35bfdc94ac33b01ce0f941257f2d4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_694fc293",
+        "filename": "resources/tools/download_hc_pkgs.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2017-01-30T13:15:54Z",
+      "side": 1,
+      "message": "You can use: \"fd.io.${STREAM}.ubuntu.trusty.main\"\nto align with the rest of assignements",
+      "range": {
+        "startLine": 24,
+        "startChar": 5,
+        "endLine": 24,
+        "endChar": 43
+      },
+      "revId": "5727ea264db35bfdc94ac33b01ce0f941257f2d4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
