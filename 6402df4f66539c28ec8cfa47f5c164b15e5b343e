@@ -378,6 +378,30 @@
     },
     {
       "key": {
+        "uuid": "3a3291f1_67e7e9e5",
+        "filename": "docs/report/functional_tests.rst",
+        "patchSetId": 5
+      },
+      "lineNbr": 141,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-01-31T11:30:55Z",
+      "side": 1,
+      "message": "We can add section mentioning that CentOS images are ready to be use bot not yet tested. Can you please propose the text?",
+      "parentUuid": "3a3291f1_a7827150",
+      "range": {
+        "startLine": 122,
+        "startChar": 0,
+        "endLine": 141,
+        "endChar": 75
+      },
+      "revId": "6402df4f66539c28ec8cfa47f5c164b15e5b343e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a2585a7_ba192d8a",
         "filename": "docs/report/functional_tests.rst",
         "patchSetId": 5
