@@ -46,6 +46,16 @@
 | | ... | - rx_port - Interface of TG-if1. Type: string
 | | ... | - rx_src_mac - MAC address of DUT1-if2. Type: string
 | | ... | - rx_dst_mac - MAC address of TG-if2. Type: string
+| | ... | - encaps_tx - Expected encapsulation on TX side: Dot1q or Dot1ad
+| | ... | (Optional). Type: string
+| | ... | - vlan_tx - VLAN (inner) tag on TX side (Optional). Type: integer
+| | ... | - vlan_outer_tx - .1AD VLAN (outer) tag on TX side (Optional).
+| | ... | Type: integer
+| | ... | - encaps_rx - Expected encapsulation on RX side: Dot1q or Dot1ad
+| | ... | (Optional). Type: string
+| | ... | - vlan_rx - VLAN (inner) tag on RX side (Optional). Type: integer
+| | ... | - vlan_outer_rx - .1AD VLAN (outer) tag on RX side (Optional).
+| | ... | Type: integer
 | | ...
 | | ... | *Return:*
 | | ... | - No value returned
@@ -59,12 +69,28 @@
 | | [Arguments] | ${tg_node} | ${src_ip} | ${dst_ip} | ${tx_src_port} |
 | | ... | ${tx_src_mac} | ${tx_dst_mac} | ${rx_port} | ${rx_src_mac}
 | | ... | ${rx_dst_mac}
+| | ... | ${encaps_tx}=${EMPTY} | ${vlan_tx}=${EMPTY} | ${vlan_outer_tx}=${EMPTY}
+| | ... | ${encaps_rx}=${EMPTY} | ${vlan_rx}=${EMPTY} | ${vlan_outer_rx}=${EMPTY}
 | | ${tx_port_name}= | Get interface name | ${tg_node} | ${tx_src_port}
 | | ${rx_port_name}= | Get interface name | ${tg_node} | ${rx_port}
 | | ${args}= | Catenate | --tg_src_mac | ${tx_src_mac} | --tg_dst_mac |
 | | ... | ${rx_dst_mac} | --dut_if1_mac | ${tx_dst_mac} | --dut_if2_mac |
 | | ... | ${rx_src_mac} | --src_ip | ${src_ip} | --dst_ip | ${dst_ip} |
 | | ... | --tx_if | ${tx_port_name} | --rx_if | ${rx_port_name}
+| | ${args}= | Run Keyword If | '${encaps_tx}' == '${EMPTY}'
+| | | ... | Set Variable | ${args}
+| | ... | ELSE | Catenate
+| | ... | ${args} | --encaps_tx ${encaps_tx} | --vlan_tx ${vlan_tx}
+| | ${args}= | Run Keyword If | '${encaps_rx}' == '${EMPTY}'
+| | | ... | Set Variable | ${args}
+| | ... | ELSE | Catenate
+| | ... | ${args} | --encaps_rx ${encaps_rx} | --vlan_rx ${vlan_rx}
+| | ${args}= | Run Keyword If | '${vlan_outer_tx}' == '${EMPTY}'
+| | | ... | Set Variable | ${args}
+| | ... | ELSE | Catenate | ${args} | --vlan_outer_tx ${vlan_outer_tx}
+| | ${args}= | Run Keyword If | '${vlan_outer_rx}' == '${EMPTY}'
+| | | ... | Set Variable | ${args}
+| | ... | ELSE | Catenate | ${args} | --vlan_outer_rx ${vlan_outer_rx}
 | | Run Traffic Script On Node | send_icmp_check_headers.py | ${tg_node} |
 | | ... | ${args}
 
