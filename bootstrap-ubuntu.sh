@@ -21,19 +21,19 @@ export DEBIAN_FRONTEND=noninteractive
 sudo apt-get -y update
 sudo apt-get -y install libpython2.7-dev python-virtualenv
 
-VIRL_SERVERS=("10.30.51.28" "10.30.51.29" "10.30.51.30")
+VIRL_SERVERS=("10.30.51.29")
 
 VIRL_USERNAME=jenkins-in
 VIRL_PKEY=priv_key
 VIRL_SERVER_STATUS_FILE="status"
 VIRL_SERVER_EXPECTED_STATUS="PRODUCTION"
 
-VIRL_TOPOLOGY=double-ring-nested.xenial
-VIRL_RELEASE=csit-ubuntu-16.04.1_2017-02-23_1.8
+VIRL_TOPOLOGY=double-ring-nested.xenial.e1000
+VIRL_RELEASE=csit-ubuntu-16.04.1_e1000
 
 SSH_OPTIONS="-i ${VIRL_PKEY} -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o BatchMode=yes -o LogLevel=error"
 
-TEST_GROUPS=("l2bd,dhcp,gre,honeycomb,l2xc,lisp,softwire" "cop,telemetry,ipsec,ipv6,rpf,tap,vrf" "fds,iacl,ipv4,policer,vlan,vxlan")
+TEST_GROUPS=("vlan")
 SUITE_PATH="tests.func"
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
