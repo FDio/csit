@@ -137,6 +137,98 @@
       "revId": "4a68ba0dca1122f964846807d1faa25dbd74ea7c",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_fde36803",
+        "filename": "docs/report/vpp_performance_tests_hw/overview.rst",
+        "patchSetId": 30
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-02-01T12:20:07Z",
+      "side": 1,
+      "message": "only \"with MAC learning\"",
+      "range": {
+        "startLine": 97,
+        "startChar": 4,
+        "endLine": 98,
+        "endChar": 34
+      },
+      "revId": "4a68ba0dca1122f964846807d1faa25dbd74ea7c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_1de75414",
+        "filename": "docs/report/vpp_performance_tests_hw/overview.rst",
+        "patchSetId": 30
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-02-01T12:20:07Z",
+      "side": 1,
+      "message": "also L2BD - 10ge2p1x520-ethip4vxlan-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc.robot and 10ge2p1x520-ethip4vxlan-l2bdbasemaclrn-ndrdisc.robot",
+      "range": {
+        "startLine": 110,
+        "startChar": 58,
+        "endLine": 110,
+        "endChar": 62
+      },
+      "revId": "4a68ba0dca1122f964846807d1faa25dbd74ea7c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_ddf0accb",
+        "filename": "docs/report/vpp_performance_tests_hw/overview.rst",
+        "patchSetId": 30
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-02-01T12:20:07Z",
+      "side": 1,
+      "message": "We have also L2BD with vhost and VM - 40ge2p1xl710-eth-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc.robot",
+      "range": {
+        "startLine": 117,
+        "startChar": 4,
+        "endLine": 118,
+        "endChar": 22
+      },
+      "revId": "4a68ba0dca1122f964846807d1faa25dbd74ea7c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_bdede0f1",
+        "filename": "docs/report/vpp_performance_tests_hw/overview.rst",
+        "patchSetId": 30
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-02-01T12:20:07Z",
+      "side": 1,
+      "message": "We have also L2BD with vhost and VM - 10ge2p1x710-eth-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc.robot",
+      "range": {
+        "startLine": 124,
+        "startChar": 4,
+        "endLine": 125,
+        "endChar": 22
+      },
+      "revId": "4a68ba0dca1122f964846807d1faa25dbd74ea7c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
