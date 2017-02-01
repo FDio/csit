@@ -1,11 +1,11 @@
 Overview
 ========
 
-Testpmd Performance Test Topologies
------------------------------------
+Tested Topologies
+------------------
 
 CSIT Testpmd performance tests are executed on physical baremetal servers hosted
-by LF FD.io project. Testbed physical topology is shown in the figure below.::
+by LF FD.io project. Testbed physical topology is shown in the figure below.
 
     +------------------------+           +------------------------+
     |                        |           |                        |
@@ -25,13 +25,14 @@ by LF FD.io project. Testbed physical topology is shown in the figure below.::
                              |           |
                              +-----------+
 
-SUT1 and SUT2 are two System Under Test servers (Cisco UCS C240, each with two
-Intel XEON CPUs), TG is a Traffic Generator (TG, another Cisco UCS C240, with
-two Intel XEON CPUs). SUTs run Testpmd SW application in Linux user-mode as a
-Device Under Test (DUT). TG runs TRex SW application as a packet Traffic
-Generator. Physical connectivity between SUTs and to TG is provided using
-different NIC models that need to be tested for performance. Currently
-installed and tested NIC models include:
+SUT1 and SUT2 are two System Under Test servers (currently Cisco UCS C240,
+each with two Intel XEON CPUs), TG is a Traffic Generator (TG, currently
+another Cisco UCS C240, with two Intel XEON CPUs). SUTs run Testpmd SW
+application in Linux user-mode as a Device Under Test (DUT). TG runs TRex SW
+application as a packet Traffic Generator. Physical connectivity between SUTs
+and to TG is provided using direct links (no L2 switches) connecting different
+NIC models that need to be tested for performance. Currently installed and
+tested NIC models include:
 
 #. 2port10GE X520-DA2 Intel.
 #. 2port10GE X710 Intel.
@@ -39,26 +40,31 @@ installed and tested NIC models include:
 #. 2port40GE VIC1385 Cisco.
 #. 2port40GE XL710 Intel.
 
-Detailed LF FD.io test bed specification and topology is described on `CSIT LF
+Detailed LF FD.io test bed specification and topology is described in `CSIT LF
 testbed wiki page <https://wiki.fd.io/view/CSIT/CSIT_LF_testbed>`_.
 
-Testpmd Performance Tests Overview
-----------------------------------
+Testing Summary
+---------------
 
 Performance tests are split into two main categories:
 
 - Throughput discovery - discovery of packet forwarding rate using binary search
-  in accordance to RFC2544.
+  in accordance with RFC2544.
 
-  - NDR - discovery of Non Drop Rate, zero packet loss.
-  - PDR - discovery of Partial Drop Rate, with specified non-zero packet loss.
+  - NDR - discovery of Non Drop Rate packet throughput, at zero packet loss;
+    followed by packet one-way latency measurements at 10%, 50% and 100% of
+    discovered NDR throughput.
+  - PDR - discovery of Partial Drop Rate, with specified non-zero packet loss
+    currently set to 0.5%; followed by packet one-way latency measurements at
+    100% of discovered PDR throughput.
 
 - Throughput verification - verification of packet forwarding rate against
-  previously discovered throughput rate. These tests are currently done against
+  previously discovered NDR throughput. These tests are currently done against
   0.9 of reference NDR, with reference rates updated periodically.
 
 CSIT |release| includes following performance test suites:
 
 - 2port10GE X520-DA2 Intel
 
-  - **L2XC** - L2 Cross-Connect forwarding of untagged Ethernet frames.
+  - **L2IntLoop** - L2 Interface Loop forwarding any Ethernet frames between
+    two Interfaces.
