@@ -17,8 +17,8 @@ test case throughput measurements.
     <https://jenkins.fd.io/view/csit/job/csit-vpp-perf-1701-all/>`_ and
     `csit-vpp-perf-1701-long
     <https://jenkins.fd.io/view/csit/job/csit-vpp-perf-1701-long/>`_
-    , ii) archived FD.io jobs test result output files
-    `csit-vpp-perf-1701-all#job-number <https://nexus.fd.io/link>`_.
+    , ii) archived FD.io jobs test result `output files
+    <../../_static/archive/>`_.
 
 NDR Throughput
 ~~~~~~~~~~~~~~
@@ -91,8 +91,8 @@ git repository by filtering with specified regex as follows:
     10ge2p1x520-ethip4vxlan-l2bdbasemaclrn-ndrdisc.robot:| tc13-64B-4t4c-ethip4vxlan-l2bdbasemaclrn-ndrdisc
     10ge2p1x520-ethip4vxlan-l2xcbase-ndrdisc.robot:| tc13-64B-4t4c-ethip4vxlan-l2xcbase-ndrdisc
 
-VPP PDR Throughput
-~~~~~~~~~~~~~~~~~~
+PDR Throughput
+~~~~~~~~~~~~~~
 
 VPP PDR Throughput - running in configuration of **one worker thread (1t) on one
 physical core (1c)** - is presented in the figure below. PDR at below 0.5%
