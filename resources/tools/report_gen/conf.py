@@ -44,9 +44,9 @@ source_suffix = ['.rst', '.md']
 master_doc = 'index'
 
 # General information about the project.
-project = u'CSIT'
-copyright = u'2017, fd.io'
-author = u'CSIT'
+project = u'FD.io CSIT'
+copyright = u'2017, FD.io'
+author = u'FD.io CSIT'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -158,6 +158,3 @@ texinfo_documents = [
      author, 'CSIT1701report', 'One line description of project.',
      'Miscellaneous'),
 ]
-
-
-
