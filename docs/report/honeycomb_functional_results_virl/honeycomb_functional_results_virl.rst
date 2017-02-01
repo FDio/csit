@@ -3,6 +3,10 @@
 
     <br />
 
+honeycomb
+---------
+
+
 
 mgmt-cfg-acl-apihc-apivat-func
 ``````````````````````````````
@@ -141,15 +145,15 @@ mgmt-cfg-intvhost-apihc-apivat-func
 +---------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------+--------+
 | TC03: Honeycomb deletes vhost-user interface - server                           | Check if Honeycomb can delete an existing vhost-user interface, role: server.                                | FAIL   |
 +---------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------+--------+
-| TC04: Honeycomb creates vhost-user interface - client                           | Check if Honeycomb creates a vhost-user interface, role: client.                                             | PASS   |
+| TC04: Honeycomb creates vhost-user interface - client                           | Check if Honeycomb creates a vhost-user interface, role: client.                                             | FAIL   |
 +---------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------+--------+
 | TC05: Honeycomb modifies vhost-user interface - client                          | Check if Honeycomb can modify properties of existing vhost-user interface, role: client.                     | FAIL   |
 +---------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------+--------+
-| TC06: Honeycomb deletes vhost-user interface - client                           | Check if Honeycomb can delete an existing vhost-user interface, role: client.                                | PASS   |
+| TC06: Honeycomb deletes vhost-user interface - client                           | Check if Honeycomb can delete an existing vhost-user interface, role: client.                                | FAIL   |
 +---------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------+--------+
-| TC07: Honeycomb does not set vhost-user configuration on another interface type | Check if Honeycomb refuses to set vhost-user configuration for interface which is not v3po:vhost-user type.  | PASS   |
+| TC07: Honeycomb does not set vhost-user configuration on another interface type | Check if Honeycomb refuses to set vhost-user configuration for interface which is not v3po:vhost-user type.  | FAIL   |
 +---------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------+--------+
-| TC08: Honeycomb does not set invalid vhost-user configuration                   | Check if Honeycomb refuses to set invalid parameters to vhost-user interface.                                | PASS   |
+| TC08: Honeycomb does not set invalid vhost-user configuration                   | Check if Honeycomb refuses to set invalid parameters to vhost-user interface.                                | FAIL   |
 +---------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------+--------+
 
 mgmt-cfg-l2bd-apihc-apivat-func
@@ -361,13 +365,11 @@ mgmt-statepersist-apihc-func
 +----------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------+--------+
 | Name                                                                             | Documentation                                                                                       | Status |
 +==================================================================================+=====================================================================================================+========+
-| TC01: Honeycomb persists configuration through restart of both Honeycomb and VPP | Checks if Honeycomb maintains configuration after both Honeycomb and VPP are restarted.             | PASS   |
+| TC01: Honeycomb persists configuration through restart of both Honeycomb and VPP | Checks if Honeycomb maintains configuration after both Honeycomb and VPP are restarted.             | FAIL   |
 +----------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------+--------+
-| TC02: Honeycomb persists configuration through restart of Honeycomb              | Checks if Honeycomb maintains configuration after it is restarted.                                  | PASS   |
+| TC02: Honeycomb persists configuration through restart of Honeycomb              | Checks if Honeycomb maintains configuration after it is restarted.                                  | FAIL   |
 +----------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------+--------+
 | TC03: Honeycomb persists configuration through restart of VPP                    | Checks if Honeycomb updates VPP settings after VPP is restarted.                                    | FAIL   |
 +----------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------+--------+
 | TC04: Honeycomb reverts to defaults if persistence files are invalid             | Checks if Honeycomb reverts to default configuration when persistence files are damaged or invalid. | PASS   |
 +----------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------+--------+
-
-

@@ -1,14 +1,15 @@
 Overview
 ========
 
-Honeycombe Functional Test Topologies in VIRL
----------------------------------------------
+Tested Topologies VIRL
+----------------------
 
 CSIT Honeycomb functional tests are executed on virtualized topologies created
 using Virtual Internet Routing Lab (VIRL) simulation platform contributed by
 Cisco. VIRL runs on physical baremetal servers hosted by LF FD.io project. All
-tests are executed in two node logical test topology - TG node and SUT node.
-Used logical test topology is shown in the figure below.::
+tests are executed in two node logical test topology - Traffic Generator (TG)
+node and Systems Under Test (SUT1) node connected in a loop. Logical test
+topology is shown in the figure below.
 
                      +------------------------+
                      |                        |
@@ -28,12 +29,19 @@ Used logical test topology is shown in the figure below.::
         +------------------>           <------------------+
                            +-----------+
 
-Virtual testbeds are created dynamically whenever a verification job is
-started triggered by the patch submission to gerrit and destroyed upon
-completion of all functional tests. During test execution, all nodes are
-reachable thru the MGMT network connected to every node via dedicated NICs and
-links (not shown above for clarity). Each node is a Virtual Machine and each
-connection that is drawn on the diagram is available for use in any test case.
+SUT1 is a VM (Ubuntu or Centos, depending on the test suite), TG is a Traffic
+Generator (TG, another Ubuntu VM). SUTs run Honeycomb and VPP SW applications
+in Linux user-mode as a Device Under Test (DUT) within the VM. TG runs Scapy
+SW application as a packet Traffic Generator. Logical connectivity between
+SUTs and to TG is provided using virtual NICs using VMs' virtio driver.
+
+Virtual testbeds are created on-demand whenever a verification job is started
+(e.g. triggered by the gerrit patch submission) and destroyed upon completion
+of all functional tests. Each node is a Virtual Machine and each connection
+that is drawn on the diagram is available for use in any test case. During the
+test execution, all nodes are reachable thru the Management network connected
+to every node via dedicated virtual NICs and virtual links (not shown above
+for clarity).
 
 Honeycomb Functional Tests Overview
 -----------------------------------
