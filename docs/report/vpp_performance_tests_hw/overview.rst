@@ -1,11 +1,13 @@
 Overview
 ========
 
-VPP Performance Test Topologies
--------------------------------
+Tested Topologies HW
+--------------------
 
 CSIT VPP performance tests are executed on physical baremetal servers hosted by LF
-FD.io project. Testbed physical topology is shown in the figure below.::
+FD.io project. Testbed physical topology is shown in the figure below.
+
+::
 
     +------------------------+           +------------------------+
     |                        |           |                        |
@@ -39,13 +41,15 @@ installed and tested NIC models include:
 #. 2port40GE VIC1385 Cisco.
 #. 2port40GE XL710 Intel.
 
-Detailed LF FD.io test bed specification and topology is described on `CSIT LF
-testbed wiki page <https://wiki.fd.io/view/CSIT/CSIT_LF_testbed>`_.
+Detailed LF FD.io test bed specification and physical topology are described
+in `wiki CSIT LF testbed <https://wiki.fd.io/view/CSIT/CSIT_LF_testbed>`_.
 
 For test cases that require DUT (VPP) to communicate with VM over vhost-user
 interfaces, a VM is created on SUT1 and SUT2. DUT (VPP) test topology with VM
 is shown in the figure below including applicable packet flow thru the VM
-(marked with \*\*\*).::
+(marked in the figure with ``***``).
+
+::
 
     +------------------------+           +------------------------+
     |      +----------+      |           |      +----------+      |
@@ -70,25 +74,29 @@ is shown in the figure below including applicable packet flow thru the VM
                              +-----------+
 
 Note that for VM tests, packets are switched by DUT (VPP) twice, hence the
-throughput rates measured by TG must be multiplied by two to represent the
-actual DUT packet forwarding rate.
+throughput rates measured by TG (and listed in this report) must be multiplied
+by two to represent the actual DUT aggregate packet forwarding rate.
 
 VPP Performance Tests Overview
 ------------------------------
 
-Performance tests are split into two main categories:
+Performance tests are split into the two main categories:
 
 - Throughput discovery - discovery of packet forwarding rate using binary search
   in accordance to RFC2544.
 
-  - NDR - discovery of Non Drop Rate, zero packet loss.
-  - PDR - discovery of Partial Drop Rate, with specified non-zero packet loss.
+  - NDR - discovery of Non Drop Rate packet throughput, at zero packet loss;
+    followed by packet one-way latency measurements at 10%, 50% and 100% of
+    discovered NDR throughput.
+  - PDR - discovery of Partial Drop Rate, with specified non-zero packet loss
+    currently set to 0.5%; followed by packet one-way latency measurements at
+    100% of discovered PDR throughput.
 
 - Throughput verification - verification of packet forwarding rate against
   previously discovered throughput rate. These tests are currently done against
   0.9 of reference NDR, with reference rates updated periodically.
 
-CSIT |release| includes following performance test suites:
+CSIT |release| includes following performance test suites, listed per NIC type:
 
 - 2port10GE X520-DA2 Intel
 
@@ -137,4 +145,12 @@ CSIT |release| includes following performance test suites:
 
   - **L2BD** - L2 Bridge-Domain switched-forwarding of untagged Ethernet frames
      with MAC learning.
+
+Execution of performance tests takes time, especially the throughput discovery
+tests. Due to limited HW testbed resources available within FD.io labs hosted
+by Linux Foundation, the number of tests for NICs other than X520 (a.k.a.
+Niantic) has been limited to few baseline tests. Over time we expect the HW
+testbed resources to grow, and will be adding complete set of performance
+tests for all models of hardware to be executed regularly and(or)
+continuously.
 
