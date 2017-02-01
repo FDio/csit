@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a3291f1_dd19cc23",
+        "filename": "docs/report/vpp_performance_tests_hw/csit_release_notes.rst",
+        "patchSetId": 30
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-02-01T11:58:51Z",
+      "side": 1,
+      "message": "12671428.25 is in this patch",
+      "range": {
+        "startLine": 86,
+        "startChar": 90,
+        "endLine": 86,
+        "endChar": 99
+      },
+      "revId": "4a68ba0dca1122f964846807d1faa25dbd74ea7c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_bd1600f0",
+        "filename": "docs/report/vpp_performance_tests_hw/csit_release_notes.rst",
+        "patchSetId": 30
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-02-01T11:58:51Z",
+      "side": 1,
+      "message": "12439062.5",
+      "range": {
+        "startLine": 88,
+        "startChar": 90,
+        "endLine": 88,
+        "endChar": 99
+      },
+      "revId": "4a68ba0dca1122f964846807d1faa25dbd74ea7c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_bdff20aa",
+        "filename": "docs/report/vpp_performance_tests_hw/csit_release_notes.rst",
+        "patchSetId": 30
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-02-01T11:58:51Z",
+      "side": 1,
+      "message": "700%",
+      "range": {
+        "startLine": 92,
+        "startChar": 102,
+        "endLine": 92,
+        "endChar": 108
+      },
+      "revId": "4a68ba0dca1122f964846807d1faa25dbd74ea7c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_9d2c644c",
+        "filename": "docs/report/vpp_performance_tests_hw/csit_release_notes.rst",
+        "patchSetId": 30
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-02-01T11:58:51Z",
+      "side": 1,
+      "message": "640%",
+      "range": {
+        "startLine": 94,
+        "startChar": 102,
+        "endLine": 94,
+        "endChar": 105
+      },
+      "revId": "4a68ba0dca1122f964846807d1faa25dbd74ea7c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_dd02ecb3",
+        "filename": "docs/report/vpp_performance_tests_hw/csit_release_notes.rst",
+        "patchSetId": 30
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-02-01T11:58:51Z",
+      "side": 1,
+      "message": "0.5 - https://wiki.fd.io/view/CSIT/VPP-16.09_Test_Report#Long_Xconnect_Vhost_Intel-X520-DA2",
+      "range": {
+        "startLine": 94,
+        "startChar": 78,
+        "endLine": 94,
+        "endChar": 81
+      },
+      "revId": "4a68ba0dca1122f964846807d1faa25dbd74ea7c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
