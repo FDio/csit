@@ -6,6 +6,7 @@ SOURCE_DIR='../../../docs/report'
 STATIC_DIR="${BUILD_DIR}/_static"
 STATIC_DIR_VPP="${STATIC_DIR}/vpp"
 STATIC_DIR_TESTPMD="${STATIC_DIR}/testpmd"
+STATIC_DIR_ARCH="${STATIC_DIR}/archive"
 CSS_PATCH_FILE="${BUILD_DIR}/_static/theme_overrides.css"
 
 sudo apt-get install -y libxml2 libxml2-dev libxslt-dev build-essential zlib1g-dev
@@ -172,38 +173,40 @@ python run_plot.py --input ${STATIC_DIR_TESTPMD} --output ${STATIC_DIR_TESTPMD}/
 
 # Download raw outputs for archive
 
-#echo Downloading raw outputs for archive ...
-#JENKINS_URL='https://jenkins.fd.io/view/csit/job/'
-#JENKINS_DIR='/artifact/*zip*/'
-#JENKINS_FILE='archive.zip'
+echo Downloading raw outputs for archive ...
+mkdir -p ${STATIC_DIR_ARCH}
 
-#PERF_JENKINS_JOB='csit-vpp-perf-1701-all'
-#PERF_JENKINS_BUILD=(3 4 7)
+JENKINS_URL='https://jenkins.fd.io/view/csit/job/'
+JENKINS_DIR='/artifact/*zip*/'
+JENKINS_FILE='archive.zip'
 
-#for i in "${PERF_JENKINS_BUILD[@]}"; do
-#    wget -q ${JENKINS_URL}${PERF_JENKINS_JOB}/${i}${JENKINS_DIR}${JENKINS_FILE} -O ${STATIC_DIR}/${PERF_JENKINS_JOB}-${i}.zip
-#done
+PERF_JENKINS_JOB='csit-vpp-perf-1701-all'
+PERF_JENKINS_BUILD=(3 4 7)
 
-#PERF_JENKINS_JOB='csit-vpp-perf-1701-long'
-#PERF_JENKINS_BUILD=(2 4)
+for i in "${PERF_JENKINS_BUILD[@]}"; do
+    wget -q ${JENKINS_URL}${PERF_JENKINS_JOB}/${i}${JENKINS_DIR}${JENKINS_FILE} -O ${STATIC_DIR_ARCH}/${PERF_JENKINS_JOB}-${i}.zip
+done
 
-#for i in "${PERF_JENKINS_BUILD[@]}"; do
-#    wget -q ${JENKINS_URL}${PERF_JENKINS_JOB}/${i}${JENKINS_DIR}${JENKINS_FILE} -O ${STATIC_DIR}/${PERF_JENKINS_JOB}-${i}.zip
-#done
+PERF_JENKINS_JOB='csit-vpp-perf-1701-long'
+PERF_JENKINS_BUILD=(2 4)
 
-#FUNC_JENKINS_JOB='csit-vpp-functional-1701-virl'
-#FUNC_JENKINS_BUILD=(18)
+for i in "${PERF_JENKINS_BUILD[@]}"; do
+    wget -q ${JENKINS_URL}${PERF_JENKINS_JOB}/${i}${JENKINS_DIR}${JENKINS_FILE} -O ${STATIC_DIR_ARCH}/${PERF_JENKINS_JOB}-${i}.zip
+done
 
-#for i in "${FUNC_JENKINS_BUILD[@]}"; do
-#    wget -q ${JENKINS_URL}${FUNC_JENKINS_JOB}/${i}${JENKINS_DIR}${JENKINS_FILE} -O ${STATIC_DIR}/${FUNC_JENKINS_JOB}-${i}.zip
-#done
+PERF_JENKINS_JOB='csit-dpdk-perf-1701-all'
+PERF_JENKINS_BUILD=(2 3)
 
-#PERF_JENKINS_JOB='csit-dpdk-perf-1701-all'
-#PERF_JENKINS_BUILD=(2 3)
+for i in "${PERF_JENKINS_BUILD[@]}"; do
+    wget -q ${JENKINS_URL}${PERF_JENKINS_JOB}/${i}${JENKINS_DIR}${JENKINS_FILE} -O ${STATIC_DIR_ARCH}/${PERF_JENKINS_JOB}-${i}.zip
+done
 
-#for i in "${PERF_JENKINS_BUILD[@]}"; do
-#    wget -q ${JENKINS_URL}${PERF_JENKINS_JOB}/${i}${JENKINS_DIR}${JENKINS_FILE} -O ${STATIC_DIR}/${PERF_JENKINS_JOB}-${i}.zip
-#done
+FUNC_JENKINS_JOB='csit-vpp-functional-1701-virl'
+FUNC_JENKINS_BUILD=(18)
+
+for i in "${FUNC_JENKINS_BUILD[@]}"; do
+    wget -q ${JENKINS_URL}${FUNC_JENKINS_JOB}/${i}${JENKINS_DIR}${JENKINS_FILE} -O ${STATIC_DIR_ARCH}/${FUNC_JENKINS_JOB}-${i}.zip
+done
 
 # Create archive
 echo Creating csit.report.tar.gz ...

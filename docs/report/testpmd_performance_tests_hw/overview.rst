@@ -61,4 +61,4 @@ CSIT |release| includes following performance test suites:
 
 - 2port10GE X520-DA2 Intel
 
-  - **L2XC** - L2 Cross-Connect forwarding of untagged Ethernet frames.
+  - **L2InterfaceLoop** - L2 Interface Loop forwarding any Ethernet frames between two Interfaces.
