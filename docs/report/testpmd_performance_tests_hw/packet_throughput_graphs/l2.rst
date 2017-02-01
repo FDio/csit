@@ -12,11 +12,11 @@ test cases.
 
 .. note::
 
-    Sources of test results data: i) FD.io executor jobs `csit-dpdk-perf-1701-all
-    <https://jenkins.fd.io/view/csit/job/csit-dpdk-perf-1701-all/>`_ and
-    `csit-dpdk-perf-1701-long
-    <https://jenkins.fd.io/view/csit/job/csit-dpdk-perf-1701-long/>`_, ii)
-    FD.io jobs archieved result files.
+    Data sources for reported test results: i) FD.io test executor jobs
+    `csit-dpdk-perf-1701-all
+    <https://jenkins.fd.io/view/csit/job/csit-dpdk-perf-1701-all/>`_
+    , ii) archived FD.io jobs test result `output files
+    <../../_static/archive/>`_.
 
 NDR Throughput
 ~~~~~~~~~~~~~~

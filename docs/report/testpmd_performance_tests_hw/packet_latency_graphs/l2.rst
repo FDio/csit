@@ -13,11 +13,10 @@ test case throughput measurements.
 .. note::
 
     Data sources for reported test results: i) FD.io test executor jobs
-    `csit-dpdk-perf-1701-all <https://jenkins.fd.io/view/csit/job/csit-dpdk-perf-1701-all/>`_
-    and
-    `csit-dpdk-perf-1701-long <https://jenkins.fd.io/view/csit/job/csit-dpdk-perf-1701-long/>`_
-    , ii) archived FD.io jobs test result output files
-    `csit-dpdk-perf-1701-all#job-number <https://nexus.fd.io/link>`_.
+    `csit-dpdk-perf-1701-all
+    <https://jenkins.fd.io/view/csit/job/csit-dpdk-perf-1701-all/>`_
+    , ii) archived FD.io jobs test result `output files
+    <../../_static/archive/>`_.
 
 Testpmd packet latency - running in configuration of **one worker thread (1t) on one
 physical core (1c)** - is presented in the figure below.
