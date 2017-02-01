@@ -22,6 +22,30 @@
       "revId": "ff726d510bb611d1449b501759ab97a52fce584a",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_9deea48a",
+        "filename": "docs/report/introduction/general_remarks.rst",
+        "patchSetId": 31
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2017-02-01T14:19:28Z",
+      "side": 1,
+      "message": "ok, will fix in text.",
+      "parentUuid": "3a3291f1_dd766c06",
+      "range": {
+        "startLine": 9,
+        "startChar": 22,
+        "endLine": 9,
+        "endChar": 24
+      },
+      "revId": "ff726d510bb611d1449b501759ab97a52fce584a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
