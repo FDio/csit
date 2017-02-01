@@ -17,8 +17,8 @@ test case throughput measurements.
     <https://jenkins.fd.io/view/csit/job/csit-vpp-perf-1701-all/>`_ and
     `csit-vpp-perf-1701-long
     <https://jenkins.fd.io/view/csit/job/csit-vpp-perf-1701-long/>`_
-    , ii) archived FD.io jobs test result output files
-    `csit-vpp-perf-1701-all#job-number <https://nexus.fd.io/link>`_.
+    , ii) archived FD.io jobs test result `output files
+    <https://docs.fd.io/csit/rls1701/report/_static/archive/>`_.
 
 NDR Throughput
 ~~~~~~~~~~~~~~

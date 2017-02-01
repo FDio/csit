@@ -13,11 +13,12 @@ test case throughput measurements.
 .. note::
 
     Data sources for reported test results: i) FD.io test executor jobs
-    `csit-vpp-perf-1701-all <https://jenkins.fd.io/view/csit/job/csit-vpp-perf-1701-all/>`_
-    and
-    `csit-vpp-perf-1701-long <https://jenkins.fd.io/view/csit/job/csit-vpp-perf-1701-long/>`_
-    , ii) archived FD.io jobs test result output files
-    `csit-vpp-perf-1701-all#job-number <https://nexus.fd.io/link>`_.
+    `csit-vpp-perf-1701-all
+    <https://jenkins.fd.io/view/csit/job/csit-vpp-perf-1701-all/>`_ and
+    `csit-vpp-perf-1701-long
+    <https://jenkins.fd.io/view/csit/job/csit-vpp-perf-1701-long/>`_
+    , ii) archived FD.io jobs test result `output files
+    <https://docs.fd.io/csit/rls1701/report/_static/archive/>`_.
 
 VPP packet latency - running in configuration of **one worker thread (1t) on one
 physical core (1c)** - is presented in the figure below.
