@@ -163,6 +163,30 @@
     },
     {
       "key": {
+        "uuid": "3a3291f1_9db6a4db",
+        "filename": "docs/report/vpp_performance_tests_hw/overview.rst",
+        "patchSetId": 30
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2017-02-01T13:37:49Z",
+      "side": 1,
+      "message": "OK. we need to tests with static MACs then to compare. will update the text accordingly.",
+      "parentUuid": "3a3291f1_fde36803",
+      "range": {
+        "startLine": 97,
+        "startChar": 4,
+        "endLine": 98,
+        "endChar": 34
+      },
+      "revId": "4a68ba0dca1122f964846807d1faa25dbd74ea7c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a3291f1_1de75414",
         "filename": "docs/report/vpp_performance_tests_hw/overview.rst",
         "patchSetId": 30
@@ -174,6 +198,30 @@
       "writtenOn": "2017-02-01T12:20:07Z",
       "side": 1,
       "message": "also L2BD - 10ge2p1x520-ethip4vxlan-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc.robot and 10ge2p1x520-ethip4vxlan-l2bdbasemaclrn-ndrdisc.robot",
+      "range": {
+        "startLine": 110,
+        "startChar": 58,
+        "endLine": 110,
+        "endChar": 62
+      },
+      "revId": "4a68ba0dca1122f964846807d1faa25dbd74ea7c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_7dbbf8c4",
+        "filename": "docs/report/vpp_performance_tests_hw/overview.rst",
+        "patchSetId": 30
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2017-02-01T13:37:49Z",
+      "side": 1,
+      "message": "OK, adding that in next patch.",
+      "parentUuid": "3a3291f1_1de75414",
       "range": {
         "startLine": 110,
         "startChar": 58,
@@ -209,6 +257,30 @@
     },
     {
       "key": {
+        "uuid": "3a3291f1_5db03cdd",
+        "filename": "docs/report/vpp_performance_tests_hw/overview.rst",
+        "patchSetId": 30
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2017-02-01T13:37:49Z",
+      "side": 1,
+      "message": "Now we do indeed, thx to your work that got merged. OK, Adding it in next patch to this doc that i\u0027m working on.",
+      "parentUuid": "3a3291f1_ddf0accb",
+      "range": {
+        "startLine": 117,
+        "startChar": 4,
+        "endLine": 118,
+        "endChar": 22
+      },
+      "revId": "4a68ba0dca1122f964846807d1faa25dbd74ea7c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a3291f1_bdede0f1",
         "filename": "docs/report/vpp_performance_tests_hw/overview.rst",
         "patchSetId": 30
@@ -220,6 +292,30 @@
       "writtenOn": "2017-02-01T12:20:07Z",
       "side": 1,
       "message": "We have also L2BD with vhost and VM - 10ge2p1x710-eth-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc.robot",
+      "range": {
+        "startLine": 124,
+        "startChar": 4,
+        "endLine": 125,
+        "endChar": 22
+      },
+      "revId": "4a68ba0dca1122f964846807d1faa25dbd74ea7c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_3db570cd",
+        "filename": "docs/report/vpp_performance_tests_hw/overview.rst",
+        "patchSetId": 30
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2017-02-01T13:37:49Z",
+      "side": 1,
+      "message": "Now we do indeed, thx to your work that got merged. OK, Adding it in next patch to this doc that i\u0027m working on.",
+      "parentUuid": "3a3291f1_bdede0f1",
       "range": {
         "startLine": 124,
         "startChar": 4,
