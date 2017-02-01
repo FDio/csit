@@ -1,14 +1,14 @@
 Overview
 ========
 
-Honeycombe Functional Test Topologies in VIRL
----------------------------------------------
+Tested Topologies VIRL
+----------------------
 
 CSIT Honeycomb functional tests are executed on virtualized topologies created
 using Virtual Internet Routing Lab (VIRL) simulation platform contributed by
 Cisco. VIRL runs on physical baremetal servers hosted by LF FD.io project. All
-tests are executed in two node logical test topology - TG node and SUT node.
-Used logical test topology is shown in the figure below.::
+tests are executed in two node logical test topology - TG node and SUT1 node.
+Logical test topology is shown in the figure below.
 
                      +------------------------+
                      |                        |

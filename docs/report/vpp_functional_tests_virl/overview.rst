@@ -1,16 +1,16 @@
 Overview
 ========
 
-VPP Functional Test Topologies in VIRL
---------------------------------------
+Tested Topologies VIRL
+----------------------
 
 CSIT VPP functional tests are executed on virtualized topologies created using
 Virtual Internet Routing Lab (VIRL) simulation platform contributed by Cisco.
 VIRL runs on physical baremetal servers hosted by LF FD.io project.  Majority
 of the tests are executed in the three node logical test topology - Traffic
 Generator (TG) node and two Systems Under Test (SUT) nodes connected in a
-loop. Some tests use two node logical test topology - TG node and SUT node.
-Both logical test topologies are shown in the figures below:::
+loop. Some tests use two node logical test topology - TG node and SUT1 node.
+Both logical test topologies are shown in the figures below.
 
     +------------------------+           +------------------------+
     |                        |           |                        |
@@ -58,8 +58,8 @@ connection that is drawn on the diagram is available for use in any test case.
 For test cases that require DUT (VPP) to communicate with VM over vhost-user
 interfaces, a nested VM is created on SUT1 and/or SUT2 for the duration of
 that particular test case only. DUT (VPP) test topology with VM is shown in
-the figure below including the applicable packet flow thru the VM (marked with
-``*``).::
+the figure below including the applicable packet flow thru the VM (marked in
+the figure with ``***``).
 
     +------------------------+           +------------------------+
     |      +----------+      |           |      +----------+      |
