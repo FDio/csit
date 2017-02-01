@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "3a3291f1_7dd89853",
+        "filename": "docs/report/vpp_performance_tests_hw/csit_release_notes.rst",
+        "patchSetId": 30
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-02-01T12:00:54Z",
+      "side": 1,
+      "message": "I would add information about the number of cores as we have results for 1, 2, 4 cores.",
+      "range": {
+        "startLine": 80,
+        "startChar": 0,
+        "endLine": 81,
+        "endChar": 52
+      },
+      "revId": "4a68ba0dca1122f964846807d1faa25dbd74ea7c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a3291f1_dd19cc23",
         "filename": "docs/report/vpp_performance_tests_hw/csit_release_notes.rst",
         "patchSetId": 30
