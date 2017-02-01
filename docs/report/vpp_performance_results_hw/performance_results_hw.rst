@@ -6,6 +6,16 @@
 L2 Ethernet Switching
 =====================
 
+.. note::
+
+    Data sources for reported test results: i) FD.io test executor jobs
+    `csit-vpp-perf-1701-all
+    <https://jenkins.fd.io/view/csit/job/csit-vpp-perf-1701-all/>`_ and
+    `csit-vpp-perf-1701-long
+    <https://jenkins.fd.io/view/csit/job/csit-vpp-perf-1701-long/>`_
+    , ii) archived FD.io jobs test result `output files
+    <../../_static/archive/>`_.
+
 10ge2p1x520-dot1ad-l2xcbase-ndrpdrdisc
 ``````````````````````````````````````
 
@@ -362,6 +372,16 @@ L2 Ethernet Switching
 
 IPv4 Routed-Forwarding
 ======================
+
+.. note::
+
+    Data sources for reported test results: i) FD.io test executor jobs
+    `csit-vpp-perf-1701-all
+    <https://jenkins.fd.io/view/csit/job/csit-vpp-perf-1701-all/>`_ and
+    `csit-vpp-perf-1701-long
+    <https://jenkins.fd.io/view/csit/job/csit-vpp-perf-1701-long/>`_
+    , ii) archived FD.io jobs test result `output files
+    <../../_static/archive/>`_.
 
 10ge2p1x520-ethip4-ip4base-copwhtlistbase-ndrpdrdisc
 ````````````````````````````````````````````````````
@@ -792,6 +812,16 @@ IPv4 Routed-Forwarding
 IPv6 Routed-Forwarding
 ======================
 
+.. note::
+
+    Data sources for reported test results: i) FD.io test executor jobs
+    `csit-vpp-perf-1701-all
+    <https://jenkins.fd.io/view/csit/job/csit-vpp-perf-1701-all/>`_ and
+    `csit-vpp-perf-1701-long
+    <https://jenkins.fd.io/view/csit/job/csit-vpp-perf-1701-long/>`_
+    , ii) archived FD.io jobs test result `output files
+    <../../_static/archive/>`_.
+
 10ge2p1x520-ethip6-ip6base-copwhtlistbase-ndrpdrdisc
 ````````````````````````````````````````````````````
 
@@ -1156,6 +1186,16 @@ IPv6 Routed-Forwarding
 IPv4 Overlay Tunnels
 ====================
 
+.. note::
+
+    Data sources for reported test results: i) FD.io test executor jobs
+    `csit-vpp-perf-1701-all
+    <https://jenkins.fd.io/view/csit/job/csit-vpp-perf-1701-all/>`_ and
+    `csit-vpp-perf-1701-long
+    <https://jenkins.fd.io/view/csit/job/csit-vpp-perf-1701-long/>`_
+    , ii) archived FD.io jobs test result `output files
+    <../../_static/archive/>`_.
+
 10ge2p1x520-ethip4lispip4-ip4base-ndrpdrdisc
 ````````````````````````````````````````````
 
@@ -1379,6 +1419,16 @@ IPv4 Overlay Tunnels
 IPv6 Overlay Tunnels
 ====================
 
+.. note::
+
+    Data sources for reported test results: i) FD.io test executor jobs
+    `csit-vpp-perf-1701-all
+    <https://jenkins.fd.io/view/csit/job/csit-vpp-perf-1701-all/>`_ and
+    `csit-vpp-perf-1701-long
+    <https://jenkins.fd.io/view/csit/job/csit-vpp-perf-1701-long/>`_
+    , ii) archived FD.io jobs test result `output files
+    <../../_static/archive/>`_.
+
 10ge2p1x520-ethip6lispip4-ip6base-ndrpdrdisc
 ````````````````````````````````````````````
 
@@ -1491,6 +1541,16 @@ IPv6 Overlay Tunnels
 
 VM Vhost Connections
 ====================
+
+.. note::
+
+    Data sources for reported test results: i) FD.io test executor jobs
+    `csit-vpp-perf-1701-all
+    <https://jenkins.fd.io/view/csit/job/csit-vpp-perf-1701-all/>`_ and
+    `csit-vpp-perf-1701-long
+    <https://jenkins.fd.io/view/csit/job/csit-vpp-perf-1701-long/>`_
+    , ii) archived FD.io jobs test result `output files
+    <../../_static/archive/>`_.
 
 10ge2p1x520-dot1q-l2bdbasemaclrn-eth-2vhost-1vm-ndrpdrdisc
 ``````````````````````````````````````````````````````````

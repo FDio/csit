@@ -4,67 +4,9 @@ CSIT Release Notes
 Changes in CSIT |release|
 -------------------------
 
-#. Naming change for all Testpmd performance test suites and test cases.
-
 #. Added Testpmd tests
 
     - new NICs - Intel x520
-
-
-Performance Tests Naming
-------------------------
-
-CSIT |release| introduced a common structured naming convention for all
-performance and functional tests. This change was driven by substantially
-growing number and type of CSIT test cases. Firstly, the original practice did
-not always follow any strict naming convention. Secondly test names did not
-always clearly capture tested packet encapsulations, and the actual type or
-content of the tests. Thirdly HW configurations in terms of NICs, ports and
-their locality were not captured either. These were but few reasons that drove
-the decision to change and define a new more complete and stricter test naming
-convention, and to apply this to all existing and new test cases.
-
-The new naming should be intuitive for majority of the tests. The complete
-description of CSIT test naming convention is provided on `CSIT test naming wiki
-<https://wiki.fd.io/view/CSIT/csit-test-naming>`_.
-
-Here few illustrative examples of the new naming usage for performance test
-suites:
-
-#. **Physical port to physical port - a.k.a. NIC-to-NIC, Phy-to-Phy, P2P**
-
-    - *PortNICConfig-WireEncapsulation-PacketForwardingFunction-
-      PacketProcessingFunction1-...-PacketProcessingFunctionN-TestType*
-    - *10ge2p1x520-dot1q-l2bdbasemaclrn-ndrdisc.robot* => 2 ports of 10GE on
-      Intel x520 NIC, dot1q tagged Ethernet, L2 bridge-domain baseline switching
-      with MAC learning, NDR throughput discovery.
-    - *10ge2p1x520-ethip4vxlan-l2bdbasemaclrn-ndrchk.robot* => 2 ports of 10GE
-      on Intel x520 NIC, IPv4 VXLAN Ethernet, L2 bridge-domain baseline
-      switching with MAC learning, NDR throughput discovery.
-    - *10ge2p1x520-ethip4-ip4base-ndrdisc.robot* => 2 ports of 10GE on Intel
-      x520 NIC, IPv4 baseline routed forwarding, NDR throughput discovery.
-    - *10ge2p1x520-ethip6-ip6scale200k-ndrdisc.robot* => 2 ports of 10GE on
-      Intel x520 NIC, IPv6 scaled up routed forwarding, NDR throughput
-      discovery.
-
-#. **Physical port to VM (or VM chain) to physical port - a.k.a. NIC2VM2NIC,
-   P2V2P, NIC2VMchain2NIC, P2V2V2P**
-
-    - *PortNICConfig-WireEncapsulation-PacketForwardingFunction-
-      PacketProcessingFunction1-...-PacketProcessingFunctionN-VirtEncapsulation-
-      VirtPortConfig-VMconfig-TestType*
-    - *10ge2p1x520-dot1q-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc.robot* => 2 ports
-      of 10GE on Intel x520 NIC, dot1q tagged Ethernet, L2 bridge-domain
-      switching to/from two vhost interfaces and one VM, NDR throughput
-      discovery.
-    - *10ge2p1x520-ethip4vxlan-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc.robot* => 2
-      ports of 10GE on Intel x520 NIC, IPv4 VXLAN Ethernet, L2 bridge-domain
-      switching to/from two vhost interfaces and one VM, NDR throughput
-      discovery.
-    - *10ge2p1x520-ethip4vxlan-l2bdbasemaclrn-eth-4vhost-2vm-ndrdisc.robot* => 2
-      ports of 10GE on Intel x520 NIC, IPv4 VXLAN Ethernet, L2 bridge-domain
-      switching to/from four vhost interfaces and two VMs, NDR throughput
-      discovery.
 
 Multi-Thread and Multi-Core Measurements
 ----------------------------------------
@@ -79,12 +21,12 @@ HyperThreading Enabled (requires BIOS settings change and hard reboot).
 **Multi-core Test** - CSIT |release| multi-core tests are executed in the
 following Testpmd thread and core configurations:
 
-#. 1t1c - 1 Testpmd worker thread on 1 CPU physical core.
-#. 2t2c - 2 Testpmd worker threads on 2 CPU physical cores.
-#. 4t4c - 4 Testpmd threads on 4 CPU physical cores.
+#. 1t1c - 1 Testpmd pmd thread on 1 CPU physical core.
+#. 2t2c - 2 Testpmd pmd threads on 2 CPU physical cores.
+#. 4t4c - 4 Testpmd pmd threads on 4 CPU physical cores.
 
-Note that in quite a few test cases running Testpmd on 2 or 4 physical cores
-hits the tested NIC I/O bandwidth or packets-per-second limit.
+Note that in many tests running Testpmd reaches tested NIC I/O bandwidth
+or packets-per-second limit.
 
 Packet Throughput Measurements
 ------------------------------
@@ -137,8 +79,8 @@ Reported latency values are measured using following methodology:
   interface line.
 
 
-Report Addendum Tests - More NICs
----------------------------------
+Report Addendum Tests - Additional NICs
+---------------------------------------
 
 Adding test cases with more NIC types. Once the results become available, they
 will be published as an addendum to the current version of CSIT |release|
