@@ -6,7 +6,8 @@ SOURCE_DIR='../../../docs/report'
 STATIC_DIR="${BUILD_DIR}/_static"
 STATIC_DIR_VPP="${STATIC_DIR}/vpp"
 STATIC_DIR_TESTPMD="${STATIC_DIR}/testpmd"
-CSS_PATCH_FILE="${BUILD_DIR}/_static/theme_overrides.css"
+STATIC_DIR_ARCH="${STATIC_DIR}/archive"
+CSS_PATCH_FILE="${STATIC_DIR}/theme_overrides.css"
 
 sudo apt-get install -y libxml2 libxml2-dev libxslt-dev build-essential zlib1g-dev
 
@@ -54,33 +55,42 @@ _EOF
 echo Downloading raw outputs for plots ...
 mkdir -p ${STATIC_DIR_VPP}
 mkdir -p ${STATIC_DIR_TESTPMD}
+mkdir -p ${STATIC_DIR_ARCH}
 
-JENKINS_URL='https://jenkins.fd.io/view/csit/job/'
-JENKINS_DIR='/artifact/'
+JEN_URL='https://jenkins.fd.io/view/csit/job'
+JEN_FILE_PERF='output_perf_data.xml'
 
-PERF_JENKINS_JOB='csit-vpp-perf-1701-all'
-PERF_JENKINS_BUILD=(3 4 7)
-PERF_JENKINS_FILE='output_perf_data.xml'
+JEN_JOB='csit-vpp-perf-1701-all'
+JEN_BUILD=(3 4 7)
 
-for i in "${PERF_JENKINS_BUILD[@]}"; do
-    wget -q ${JENKINS_URL}${PERF_JENKINS_JOB}/${i}${JENKINS_DIR}${PERF_JENKINS_FILE} -O ${STATIC_DIR_VPP}/${PERF_JENKINS_JOB}-${i}.xml
+for i in "${JEN_BUILD[@]}"; do
+    wget -q ${JEN_URL}/${JEN_JOB}/${i}/artifact/${JEN_FILE_PERF} -O ${STATIC_DIR_VPP}/${JEN_JOB}-${i}.xml
+#    wget -q ${JEN_URL}/${JEN_JOB}/${i}/artifact/\*zip\*/archive.zip -O ${STATIC_DIR_ARCH}/${JEN_JOB}-${i}.zip
 done
 
-PERF_JENKINS_JOB='csit-vpp-perf-1701-long'
-PERF_JENKINS_BUILD=(2 4)
-PERF_JENKINS_FILE='output_perf_data.xml'
+JEN_JOB='csit-vpp-perf-1701-long'
+JEN_BUILD=(2 4)
 
-for i in "${PERF_JENKINS_BUILD[@]}"; do
-    wget -q ${JENKINS_URL}${PERF_JENKINS_JOB}/${i}${JENKINS_DIR}${PERF_JENKINS_FILE} -O ${STATIC_DIR_VPP}/${PERF_JENKINS_JOB}-${i}.xml
+for i in "${JEN_BUILD[@]}"; do
+    wget -q ${JEN_URL}/${JEN_JOB}/${i}/artifact/${JEN_FILE_PERF} -O ${STATIC_DIR_VPP}/${JEN_JOB}-${i}.xml
+#    wget -q ${JEN_URL}/${JEN_JOB}/${i}/artifact/\*zip\*/archive.zip -O ${STATIC_DIR_ARCH}/${JEN_JOB}-${i}.zip
 done
 
-PERF_JENKINS_JOB='csit-dpdk-perf-1701-all'
-PERF_JENKINS_BUILD=(2 3)
-PERF_JENKINS_FILE='output_perf_data.xml'
+JEN_JOB='csit-dpdk-perf-1701-all'
+JEN_BUILD=(2 3)
 
-for i in "${PERF_JENKINS_BUILD[@]}"; do
-    wget -q ${JENKINS_URL}${PERF_JENKINS_JOB}/${i}${JENKINS_DIR}${PERF_JENKINS_FILE} -O ${STATIC_DIR_TESTPMD}/${PERF_JENKINS_JOB}-${i}.xml
+for i in "${JEN_BUILD[@]}"; do
+    wget -q ${JEN_URL}/${JEN_JOB}/${i}/artifact/${JEN_FILE_PERF} -O ${STATIC_DIR_TESTPMD}/${JEN_JOB}-${i}.xml
+#    wget -q ${JEN_URL}/${JEN_JOB}/${i}/artifact/\*zip\*/archive.zip -O ${STATIC_DIR_ARCH}/${JEN_JOB}-${i}.zip
 done
+
+JEN_JOB='csit-vpp-functional-1701-virl'
+JEN_BUILD=(18)
+
+#for i in "${JEN_BUILD[@]}"; do
+#    wget -q ${JEN_URL}/${JEN_JOB}/${i}/artifact/\*zip\*/archive.zip -O ${STATIC_DIR_ARCH}/${JEN_JOB}-${i}.zip
+#done
+
 
 # Plot packets per second
 
@@ -112,13 +122,13 @@ python run_plot.py --input ${STATIC_DIR_VPP} --output ${STATIC_DIR_VPP}/64B-1t1c
 python run_plot.py --input ${STATIC_DIR_VPP} --output ${STATIC_DIR_VPP}/64B-2t2c-l2-pdrdisc --title "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-pdrdisc" --xpath '//*[@framesize="64B" and contains(@tags,"BASE") and contains(@tags,"PDRDISC") and not(contains(@tags,"NDRDISC")) and contains(@tags,"2T2C") and (contains(@tags,"L2BDMACSTAT") or contains(@tags,"L2BDMACLRN") or contains(@tags,"L2XCFWD")) and not(contains(@tags,"VHOST"))]' --lower 0 --upper 26000000
 python run_plot.py --input ${STATIC_DIR_VPP} --output ${STATIC_DIR_VPP}/64B-4t4c-l2-pdrdisc --title "64B-4t4c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-pdrdisc" --xpath '//*[@framesize="64B" and contains(@tags,"BASE") and contains(@tags,"PDRDISC") and not(contains(@tags,"NDRDISC")) and contains(@tags,"4T4C") and (contains(@tags,"L2BDMACSTAT") or contains(@tags,"L2BDMACLRN") or contains(@tags,"L2XCFWD")) and not(contains(@tags,"VHOST"))]' --lower 0 --upper 36000000
 
-python run_plot.py --input ${STATIC_DIR_VPP} --output ${STATIC_DIR_VPP}/64B-1t1c-ethip4-ip4-pdrdisc --title "64B-1t1c-ethip4-ip4[a-z0-9]+-[a-z-]*pdrdisc" --xpath '//*[@framesize="64B" and (contains(@tags,"BASE") or contains(@tags,"SCALE") and not(contains(@tags,"NDRDISC")) or contains(@tags,"FEATURE")) and contains(@tags,"PDRDISC") and contains(@tags,"1T1C") and contains(@tags,"IP4FWD") and not(contains(@tags,"VHOST"))]' --lower 0 --upper 16000000
-python run_plot.py --input ${STATIC_DIR_VPP} --output ${STATIC_DIR_VPP}/64B-2t2c-ethip4-ip4-pdrdisc --title "64B-2t2c-ethip4-ip4[a-z0-9]+-[a-z-]*pdrdisc" --xpath '//*[@framesize="64B" and (contains(@tags,"BASE") or contains(@tags,"SCALE") and not(contains(@tags,"NDRDISC")) or contains(@tags,"FEATURE")) and contains(@tags,"PDRDISC") and contains(@tags,"2T2C") and contains(@tags,"IP4FWD") and not(contains(@tags,"VHOST"))]' --lower 0 --upper 26000000
-python run_plot.py --input ${STATIC_DIR_VPP} --output ${STATIC_DIR_VPP}/64B-4t4c-ethip4-ip4-pdrdisc --title "64B-4t4c-ethip4-ip4[a-z0-9]+-[a-z-]*pdrdisc" --xpath '//*[@framesize="64B" and (contains(@tags,"BASE") or contains(@tags,"SCALE") and not(contains(@tags,"NDRDISC")) or contains(@tags,"FEATURE")) and contains(@tags,"PDRDISC") and contains(@tags,"4T4C") and contains(@tags,"IP4FWD") and not(contains(@tags,"VHOST"))]' --lower 0 --upper 36000000
+python run_plot.py --input ${STATIC_DIR_VPP} --output ${STATIC_DIR_VPP}/64B-1t1c-ethip4-ip4-pdrdisc --title "64B-1t1c-ethip4-ip4[a-z0-9]+-[a-z-]*pdrdisc" --xpath '//*[@framesize="64B" and (contains(@tags,"BASE") or contains(@tags,"SCALE") or contains(@tags,"FEATURE")) and contains(@tags,"PDRDISC") and not(contains(@tags,"NDRDISC")) and contains(@tags,"1T1C") and contains(@tags,"IP4FWD") and not(contains(@tags,"VHOST"))]' --lower 0 --upper 16000000
+python run_plot.py --input ${STATIC_DIR_VPP} --output ${STATIC_DIR_VPP}/64B-2t2c-ethip4-ip4-pdrdisc --title "64B-2t2c-ethip4-ip4[a-z0-9]+-[a-z-]*pdrdisc" --xpath '//*[@framesize="64B" and (contains(@tags,"BASE") or contains(@tags,"SCALE") or contains(@tags,"FEATURE")) and contains(@tags,"PDRDISC") and not(contains(@tags,"NDRDISC")) and contains(@tags,"2T2C") and contains(@tags,"IP4FWD") and not(contains(@tags,"VHOST"))]' --lower 0 --upper 26000000
+python run_plot.py --input ${STATIC_DIR_VPP} --output ${STATIC_DIR_VPP}/64B-4t4c-ethip4-ip4-pdrdisc --title "64B-4t4c-ethip4-ip4[a-z0-9]+-[a-z-]*pdrdisc" --xpath '//*[@framesize="64B" and (contains(@tags,"BASE") or contains(@tags,"SCALE") or contains(@tags,"FEATURE")) and contains(@tags,"PDRDISC") and not(contains(@tags,"NDRDISC")) and contains(@tags,"4T4C") and contains(@tags,"IP4FWD") and not(contains(@tags,"VHOST"))]' --lower 0 --upper 36000000
 
-python run_plot.py --input ${STATIC_DIR_VPP} --output ${STATIC_DIR_VPP}/78B-1t1c-ethip6-ip6-pdrdisc --title "78B-1t1c-ethip6-ip6[a-z0-9]+-[a-z-]*pdrdisc" --xpath '//*[@framesize="78B" and (contains(@tags,"BASE") or contains(@tags,"SCALE") and not(contains(@tags,"NDRDISC")) or contains(@tags,"FEATURE")) and contains(@tags,"PDRDISC") and contains(@tags,"1T1C") and contains(@tags,"IP6FWD") and not(contains(@tags,"VHOST"))]' --lower 0 --upper 16000000
-python run_plot.py --input ${STATIC_DIR_VPP} --output ${STATIC_DIR_VPP}/78B-2t2c-ethip6-ip6-pdrdisc --title "78B-2t2c-ethip6-ip6[a-z0-9]+-[a-z-]*pdrdisc" --xpath '//*[@framesize="78B" and (contains(@tags,"BASE") or contains(@tags,"SCALE") and not(contains(@tags,"NDRDISC")) or contains(@tags,"FEATURE")) and contains(@tags,"PDRDISC") and contains(@tags,"2T2C") and contains(@tags,"IP6FWD") and not(contains(@tags,"VHOST"))]' --lower 0 --upper 26000000
-python run_plot.py --input ${STATIC_DIR_VPP} --output ${STATIC_DIR_VPP}/78B-4t4c-ethip6-ip6-pdrdisc --title "78B-4t4c-ethip6-ip6[a-z0-9]+-[a-z-]*pdrdisc" --xpath '//*[@framesize="78B" and (contains(@tags,"BASE") or contains(@tags,"SCALE") and not(contains(@tags,"NDRDISC")) or contains(@tags,"FEATURE")) and contains(@tags,"PDRDISC") and contains(@tags,"4T4C") and contains(@tags,"IP6FWD") and not(contains(@tags,"VHOST"))]' --lower 0 --upper 36000000
+python run_plot.py --input ${STATIC_DIR_VPP} --output ${STATIC_DIR_VPP}/78B-1t1c-ethip6-ip6-pdrdisc --title "78B-1t1c-ethip6-ip6[a-z0-9]+-[a-z-]*pdrdisc" --xpath '//*[@framesize="78B" and (contains(@tags,"BASE") or contains(@tags,"SCALE") or contains(@tags,"FEATURE")) and contains(@tags,"PDRDISC") and not(contains(@tags,"NDRDISC")) and contains(@tags,"1T1C") and contains(@tags,"IP6FWD") and not(contains(@tags,"VHOST"))]' --lower 0 --upper 16000000
+python run_plot.py --input ${STATIC_DIR_VPP} --output ${STATIC_DIR_VPP}/78B-2t2c-ethip6-ip6-pdrdisc --title "78B-2t2c-ethip6-ip6[a-z0-9]+-[a-z-]*pdrdisc" --xpath '//*[@framesize="78B" and (contains(@tags,"BASE") or contains(@tags,"SCALE") or contains(@tags,"FEATURE")) and contains(@tags,"PDRDISC") and not(contains(@tags,"NDRDISC")) and contains(@tags,"2T2C") and contains(@tags,"IP6FWD") and not(contains(@tags,"VHOST"))]' --lower 0 --upper 26000000
+python run_plot.py --input ${STATIC_DIR_VPP} --output ${STATIC_DIR_VPP}/78B-4t4c-ethip6-ip6-pdrdisc --title "78B-4t4c-ethip6-ip6[a-z0-9]+-[a-z-]*pdrdisc" --xpath '//*[@framesize="78B" and (contains(@tags,"BASE") or contains(@tags,"SCALE") or contains(@tags,"FEATURE")) and contains(@tags,"PDRDISC") and not(contains(@tags,"NDRDISC")) and contains(@tags,"4T4C") and contains(@tags,"IP6FWD") and not(contains(@tags,"VHOST"))]' --lower 0 --upper 36000000
 
 python run_plot.py --input ${STATIC_DIR_VPP} --output ${STATIC_DIR_VPP}/64B-1t1c-ethip4-pdrdisc --title "64B-1t1c-ethip4[a-z0-9]+-[a-z0-9]*-pdrdisc" --xpath '//*[@framesize="64B" and contains(@tags,"ENCAP") and contains(@tags,"PDRDISC") and not(contains(@tags,"NDRDISC")) and contains(@tags,"1T1C") and (contains(@tags,"VXLAN") or contains(@tags,"VXLANGPE") or contains(@tags,"LISP") or contains(@tags,"LISPGPE") or contains(@tags,"GRE")) and not(contains(@tags,"VHOST"))]' --lower 0 --upper 16000000
 python run_plot.py --input ${STATIC_DIR_VPP} --output ${STATIC_DIR_VPP}/64B-2t2c-ethip4-pdrdisc --title "64B-2t2c-ethip4[a-z0-9]+-[a-z0-9]*-pdrdisc" --xpath '//*[@framesize="64B" and contains(@tags,"ENCAP") and contains(@tags,"PDRDISC") and not(contains(@tags,"NDRDISC")) and contains(@tags,"2T2C") and (contains(@tags,"VXLAN") or contains(@tags,"VXLANGPE") or contains(@tags,"LISP") or contains(@tags,"LISPGPE") or contains(@tags,"GRE")) and not(contains(@tags,"VHOST"))]' --lower 0 --upper 16000000
@@ -169,41 +179,6 @@ python run_plot.py --input ${STATIC_DIR_VPP} --output ${STATIC_DIR_VPP}/64B-4t4c
 python run_plot.py --input ${STATIC_DIR_TESTPMD} --output ${STATIC_DIR_TESTPMD}/64B-1t1c-l2-ndrdisc-lat50 --title "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc" --xpath '//*[@framesize="64B" and contains(@tags,"BASE") and contains(@tags,"NDRDISC") and contains(@tags,"1T1C") and (contains(@tags,"L2BDMACSTAT") or contains(@tags,"L2BDMACLRN") or contains(@tags,"L2XCFWD")) and not(contains(@tags,"VHOST"))]' --latency lat_50
 python run_plot.py --input ${STATIC_DIR_TESTPMD} --output ${STATIC_DIR_TESTPMD}/64B-2t2c-l2-ndrdisc-lat50 --title "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc" --xpath '//*[@framesize="64B" and contains(@tags,"BASE") and contains(@tags,"NDRDISC") and contains(@tags,"2T2C") and (contains(@tags,"L2BDMACSTAT") or contains(@tags,"L2BDMACLRN") or contains(@tags,"L2XCFWD")) and not(contains(@tags,"VHOST"))]' --latency lat_50
 python run_plot.py --input ${STATIC_DIR_TESTPMD} --output ${STATIC_DIR_TESTPMD}/64B-4t4c-l2-ndrdisc-lat50 --title "64B-4t4c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc" --xpath '//*[@framesize="64B" and contains(@tags,"BASE") and contains(@tags,"NDRDISC") and contains(@tags,"4T4C") and (contains(@tags,"L2BDMACSTAT") or contains(@tags,"L2BDMACLRN") or contains(@tags,"L2XCFWD")) and not(contains(@tags,"VHOST"))]' --latency lat_50
-
-# Download raw outputs for archive
-
-#echo Downloading raw outputs for archive ...
-#JENKINS_URL='https://jenkins.fd.io/view/csit/job/'
-#JENKINS_DIR='/artifact/*zip*/'
-#JENKINS_FILE='archive.zip'
-
-#PERF_JENKINS_JOB='csit-vpp-perf-1701-all'
-#PERF_JENKINS_BUILD=(3 4 7)
-
-#for i in "${PERF_JENKINS_BUILD[@]}"; do
-#    wget -q ${JENKINS_URL}${PERF_JENKINS_JOB}/${i}${JENKINS_DIR}${JENKINS_FILE} -O ${STATIC_DIR}/${PERF_JENKINS_JOB}-${i}.zip
-#done
-
-#PERF_JENKINS_JOB='csit-vpp-perf-1701-long'
-#PERF_JENKINS_BUILD=(2 4)
-
-#for i in "${PERF_JENKINS_BUILD[@]}"; do
-#    wget -q ${JENKINS_URL}${PERF_JENKINS_JOB}/${i}${JENKINS_DIR}${JENKINS_FILE} -O ${STATIC_DIR}/${PERF_JENKINS_JOB}-${i}.zip
-#done
-
-#FUNC_JENKINS_JOB='csit-vpp-functional-1701-virl'
-#FUNC_JENKINS_BUILD=(18)
-
-#for i in "${FUNC_JENKINS_BUILD[@]}"; do
-#    wget -q ${JENKINS_URL}${FUNC_JENKINS_JOB}/${i}${JENKINS_DIR}${JENKINS_FILE} -O ${STATIC_DIR}/${FUNC_JENKINS_JOB}-${i}.zip
-#done
-
-#PERF_JENKINS_JOB='csit-dpdk-perf-1701-all'
-#PERF_JENKINS_BUILD=(2 3)
-
-#for i in "${PERF_JENKINS_BUILD[@]}"; do
-#    wget -q ${JENKINS_URL}${PERF_JENKINS_JOB}/${i}${JENKINS_DIR}${JENKINS_FILE} -O ${STATIC_DIR}/${PERF_JENKINS_JOB}-${i}.zip
-#done
 
 # Create archive
 echo Creating csit.report.tar.gz ...
