@@ -21,7 +21,7 @@
 | Library | resources.libraries.python.telemetry.IPFIXSetup
 | Library | resources.libraries.python.Trace
 
-| Force Tags | HW_ENV | VM_ENV | 3_NODE_SINGLE_LINK_TOPO
+| Force Tags | HW_ENV | VM_ENV | 3_NODE_SINGLE_LINK_TOPO | EXPECTED_FAILING
 | Test Setup | Func Test Setup
 | Test Teardown | Func Test Teardown
 | Documentation | *IPFIX ipv4 test cases*
