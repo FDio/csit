@@ -48,7 +48,7 @@ import string
 import struct
 import sys
 
-sys.path.insert(0, "/opt/trex-core-2.09/scripts/automation/"+\
+sys.path.insert(0, "/opt/trex-core-2.17/scripts/automation/"+\
                    "trex_control_plane/stl/")
 from trex_stl_lib.api import *
 
@@ -421,6 +421,7 @@ def simple_burst(stream_a, stream_b, stream_lat_a, stream_lat_b, duration, rate,
             print "#####warmup statistics#####"
             print json.dumps(stats, indent=4,
                              separators=(',', ': '), sort_keys=True)
+
             lost_a = stats[0]["opackets"] - stats[1]["ipackets"]
             lost_b = stats[1]["opackets"] - stats[0]["ipackets"]
 
@@ -449,6 +450,7 @@ def simple_burst(stream_a, stream_b, stream_lat_a, stream_lat_b, duration, rate,
             print "#####statistics#####"
             print json.dumps(stats, indent=4,
                              separators=(',', ': '), sort_keys=True)
+
             lost_a = stats[0]["opackets"] - stats[1]["ipackets"]
             lost_b = stats[1]["opackets"] - stats[0]["ipackets"]
 
