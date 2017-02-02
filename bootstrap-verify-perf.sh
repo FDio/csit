@@ -173,6 +173,7 @@ case "$TEST_TAG" in
               -L TRACE \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s "tests.perf" \
+              -i NIC_Intel-X710 \
               tests/
         RETURN_STATUS=$(echo $?)
 esac
