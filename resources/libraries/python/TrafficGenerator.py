@@ -184,7 +184,7 @@ class TrafficGenerator(object):
         self._node = tg_node
 
         if tg_node['subtype'] == NodeSubTypeTG.TREX:
-            trex_path = "/opt/trex-core-2.09"
+            trex_path = "/opt/trex-core-2.16"
 
             ssh = SSH()
             ssh.connect(tg_node)
@@ -252,7 +252,7 @@ class TrafficGenerator(object):
             while max_startup_retries > 0:
                 # kill T-rex only if it is already running
                 (ret, _, _) = ssh.exec_command(
-                    "sh -c 'pgrep t-rex && sudo pkill t-rex'")
+                    "sh -c 'pgrep t-rex && sudo pkill t-rex && sleep 3'")
 
                 # configure T-rex
                 (ret, stdout, stderr) = ssh.exec_command(
