@@ -28,7 +28,7 @@ Functionality:
 
 import sys
 
-sys.path.insert(0, "/opt/trex-core-2.09/scripts/automation/"+\
+sys.path.insert(0, "/opt/trex-core-2.17/scripts/automation/"+\
                    "trex_control_plane/stl/")
 from trex_stl_lib.api import *
 
@@ -54,11 +54,16 @@ def stop_all_traffic_streams():
 
         # read the stats after the test
         stats = client.get_stats()
+        xstats0 = client.get_xstats(0)
+        xstats1 = client.get_xstats(1)
 
         print "#####statistics (approx.)#####"
         print json.dumps(stats, indent=4,
                          separators=(',', ': '), sort_keys=True)
-
+        print json.dumps(xstats0, indent=4,
+                         separators=(',', ': '), sort_keys=True)
+        print json.dumps(xstats1, indent=4,
+                         separators=(',', ': '), sort_keys=True)
         lost_a = stats[0]["opackets"] - stats[1]["ipackets"]
         lost_b = stats[1]["opackets"] - stats[0]["ipackets"]
 
