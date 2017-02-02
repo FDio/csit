@@ -48,7 +48,7 @@ import string
 import struct
 import sys
 
-sys.path.insert(0, "/opt/trex-core-2.09/scripts/automation/"+\
+sys.path.insert(0, "/opt/trex-core-2.15/scripts/automation/"+\
                    "trex_control_plane/stl/")
 from trex_stl_lib.api import *
 
@@ -406,7 +406,8 @@ def simple_burst(stream_a, stream_b, stream_lat_a, stream_lat_b, duration, rate,
             client.clear_stats()
 
             # choose rate and start traffic
-            client.start(ports=[0, 1], mult=rate, duration=warmup_time)
+            client.start(ports=[0, 1], force=True, mult=rate,
+                         duration=warmup_time)
 
             # block until done
             client.wait_on_traffic(ports=[0, 1], timeout=(warmup_time+30))
@@ -417,9 +418,15 @@ def simple_burst(stream_a, stream_b, stream_lat_a, stream_lat_b, duration, rate,
 
             # read the stats after the test
             stats = client.get_stats()
+            xstats0 = client.get_xstats(0)
+            xstats1 = client.get_xstats(1)
 
             print "#####warmup statistics#####"
             print json.dumps(stats, indent=4,
+                             separators=(',', ': '), sort_keys=True)
+            print json.dumps(xstats0, indent=4,
+                             separators=(',', ': '), sort_keys=True)
+            print json.dumps(xstats1, indent=4,
                              separators=(',', ': '), sort_keys=True)
             lost_a = stats[0]["opackets"] - stats[1]["ipackets"]
             lost_b = stats[1]["opackets"] - stats[0]["ipackets"]
@@ -433,7 +440,7 @@ def simple_burst(stream_a, stream_b, stream_lat_a, stream_lat_b, duration, rate,
         lost_b = 0
 
         # choose rate and start traffic
-        client.start(ports=[0, 1], mult=rate, duration=duration)
+        client.start(ports=[0, 1], force=True, mult=rate, duration=duration)
 
         if not async_start:
             # block until done
@@ -445,9 +452,15 @@ def simple_burst(stream_a, stream_b, stream_lat_a, stream_lat_b, duration, rate,
 
             # read the stats after the test
             stats = client.get_stats()
+            xstats0 = client.get_xstats(0)
+            xstats1 = client.get_xstats(1)
 
             print "#####statistics#####"
             print json.dumps(stats, indent=4,
+                             separators=(',', ': '), sort_keys=True)
+            print json.dumps(xstats0, indent=4,
+                             separators=(',', ': '), sort_keys=True)
+            print json.dumps(xstats1, indent=4,
                              separators=(',', ': '), sort_keys=True)
             lost_a = stats[0]["opackets"] - stats[1]["ipackets"]
             lost_b = stats[1]["opackets"] - stats[0]["ipackets"]
