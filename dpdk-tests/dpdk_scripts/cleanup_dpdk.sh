@@ -12,14 +12,27 @@ port2_driver=$3
 port2_pci=$4
 
 #kill the dpdk application
-sudo pkill testpmd
-sudo pkill l2fwd
-sudo pkill l3fwd
+sudo pgrep testpmd
+if [ $? -eq "0" ]; then
+    success=false
+    sudo pkill testpmd
+    for attempt in {1..5}; do
+        sudo pgrep testpmd
+        if [ $? -eq "1" ]; then
+            success=true
+            break
+        fi
+        sleep 1
+    done
+    if [ ${success} -eq false ]; then
+        echo "The command sudo pkill testpmd failed"
+        exit 1
+    fi
+fi
+
 sudo rm -f ${TESTPMD_PID}
 sudo rm -f /dev/hugepages/*
 cat ${TESTPMD_LOG}
-
-sleep 2
 
 cd ${ROOTDIR}/dpdk-16.07/
 ./tools/dpdk-devbind.py -b ${port1_driver} ${port1_pci}

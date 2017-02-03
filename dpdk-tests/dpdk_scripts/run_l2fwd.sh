@@ -12,16 +12,25 @@ queue_nums=$3
 jumbo_frames=$4
 
 #kill the testpmd
-sudo pkill testpmd
-sudo rm -f ${TESTPMD_PID}
-
-sleep 2
-
-pid=`pgrep testpmd`
-if [ "$pid" != "" ]; then
-    echo "terminate the testpmd failed!"
-    exit 1
+sudo pgrep testpmd
+if [ $? -eq "0" ]; then
+    success=false
+    sudo pkill testpmd
+    for attempt in {1..5}; do
+        sudo pgrep testpmd
+        if [ $? -eq "1" ]; then
+            success=true
+            break
+        fi
+        sleep 1
+    done
+    if [ ${success} -eq false ]; then
+        echo "The command sudo pkill testpmd failed"
+        exit 1
+    fi
 fi
+
+sudo rm -f ${TESTPMD_PID}
 
 #run the testpmd
 cd ${ROOTDIR}
