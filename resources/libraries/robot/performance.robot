@@ -96,11 +96,11 @@
 | | ... | - dut1_if2 - 2nd DUT interface towards TG.
 | | ...
 | | Append Nodes | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
-| | Compute Path
-| | ${tg_if1} | ${tg}= | Next Interface
-| | ${dut1_if1} | ${dut1}= | Next Interface
-| | ${dut1_if2} | ${dut1}= | Next Interface
-| | ${tg_if2} | ${tg}= | Next Interface
+| | Compute Path | always_same_link=${FALSE}
+| | ${tg_if1} | ${tg}= | First Interface
+| | ${dut1_if1} | ${dut1}= | First Ingress Interface
+| | ${dut1_if2} | ${dut1}= | Last Egress Interface
+| | ${tg_if2} | ${tg}= | Last Interface
 | | Set Suite Variable | ${tg}
 | | Set Suite Variable | ${tg_if1}
 | | Set Suite Variable | ${tg_if2}
@@ -170,10 +170,10 @@
 | | Append Node | ${nodes['DUT1']} | filter_list=${iface_model_list}
 | | Append Node | ${nodes['TG']}
 | | Compute Path | always_same_link=${FALSE}
-| | ${tg_if1} | ${tg}= | Next Interface
-| | ${dut1_if1} | ${dut1}= | Next Interface
-| | ${dut1_if2} | ${dut1}= | Next Interface
-| | ${tg_if2} | ${tg}= | Next Interface
+| | ${tg_if1} | ${tg}= | First Interface
+| | ${dut1_if1} | ${dut1}= | First Ingress Interface
+| | ${dut1_if2} | ${dut1}= | Last Egress Interface
+| | ${tg_if2} | ${tg}= | Last Interface
 | | Set Suite Variable | ${tg}
 | | Set Suite Variable | ${tg_if1}
 | | Set Suite Variable | ${tg_if2}
@@ -275,6 +275,24 @@
 | | dut2_v4.set_ip | ${dut2_if2} | 20.20.20.1 | 24
 | | dut1_v4.set_route | 20.20.20.0 | 24 | 1.1.1.2 | ${dut1_if2}
 | | dut2_v4.set_route | 10.10.10.0 | 24 | 1.1.1.1 | ${dut2_if1}
+| | All Vpp Interfaces Ready Wait | ${nodes}
+
+| IPv4 forwarding initialized in a 2-node switched topology
+| | [Documentation]
+| | ... | Set UP state on VPP interfaces in path on nodes in 2-node circular
+| | ... | topology. Get the interface MAC addresses and setup ARP on all VPP
+| | ... | interfaces. Setup IPv4 addresses with /24 prefix on DUT-TG links and
+| | ... | /30 prefix on DUT1 link. Set routing on DUT node with prefix /24 and
+| | ... | next hop of neighbour DUT interface IPv4 address.
+| | ...
+| | Set Interface State | ${dut1} | ${dut1_if1} | up
+| | Set Interface State | ${dut1} | ${dut1_if2} | up
+| | ${tg1_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
+| | ${tg1_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
+| | dut1_v4.set_arp | ${dut1_if1} | 10.10.10.3 | ${tg1_if1_mac}
+| | dut1_v4.set_arp | ${dut1_if2} | 20.20.20.3 | ${tg1_if2_mac}
+| | dut1_v4.set_ip | ${dut1_if1} | 10.10.10.2 | 24
+| | dut1_v4.set_ip | ${dut1_if2} | 20.20.20.2 | 24
 | | All Vpp Interfaces Ready Wait | ${nodes}
 
 | Scale IPv4 forwarding initialized in a 3-node circular topology
@@ -765,6 +783,33 @@
 | | Interface is added to bridge domain | ${dut2} | ${dut2_if2} | ${bd_id2}
 | | All Vpp Interfaces Ready Wait | ${nodes}
 
+| L2 bridge domains with Vhost-User initialized in a 2-node circular topology
+| | [Documentation]
+| | ... | Create two Vhost-User interfaces on all defined VPP nodes. Add each
+| | ... | Vhost-User interface into L2 bridge domains with learning enabled
+| | ... | with physical inteface.
+| | ...
+| | ... | *Arguments:*
+| | ... | - bd_id1 - Bridge domain ID. Type: integer
+| | ... | - bd_id2 - Bridge domain ID. Type: integer
+| | ... | - sock1 - Sock path for first Vhost-User interface. Type: string
+| | ... | - sock2 - Sock path for second Vhost-User interface. Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| L2 bridge domains with Vhost-User initialized in a 2-node \
+| | ... | circular topology \| 1 \| 2 \| /tmp/sock1 \| /tmp/sock2 \|
+| | ...
+| | [Arguments] | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
+| | ...
+| | VPP Vhost interfaces for L2BD forwarding are setup | ${dut1}
+| | ... | ${sock1} | ${sock2}
+| | Interface is added to bridge domain | ${dut1} | ${dut1_if1} | ${bd_id1}
+| | Interface is added to bridge domain | ${dut1} | ${vhost_if1} | ${bd_id1}
+| | Interface is added to bridge domain | ${dut1} | ${dut1_if2} | ${bd_id2}
+| | Interface is added to bridge domain | ${dut1} | ${vhost_if2} | ${bd_id2}
+| | All Vpp Interfaces Ready Wait | ${nodes}
+
 | L2 bridge domains with Vhost-User and VLAN initialized in a 3-node circular topology
 | | [Documentation]
 | | ... | Create two Vhost-User interfaces on all defined VPP nodes. Add each
@@ -809,7 +854,7 @@
 | | Interface is added to bridge domain | ${dut2} | ${dut2_if2} | ${bd_id2}
 | | All Vpp Interfaces Ready Wait | ${nodes}
 
-2-node Performance Suite Setup with DUT's NIC model
+| 2-node Performance Suite Setup with DUT's NIC model
 | | [Documentation]
 | | ... | Suite preparation phase that setup default startup configuration of
 | | ... | VPP on all DUTs. Updates interfaces on all nodes and setup global
@@ -823,18 +868,48 @@
 | | ... | *Example:*
 | | ...
 | | ... | \| 2-node Performance Suite Setup \| L2 \| Intel-X520-DA2 \|
+| | ...
 | | [Arguments] | ${topology_type} | ${nic_model}
+| | ...
 | | Show vpp version on all DUTs
 | | Setup performance global Variables
 | | 2-node circular Topology Variables Setup with DUT interface model
 | | ... | ${nic_model}
-| | Setup default startup configuration of VPP on all DUTs
+| | Setup 2-node startup configuration of VPP on all DUTs
 | | Initialize traffic generator | ${tg} | ${tg_if1} | ${tg_if2}
-| | ...                          | ${dut1} | ${dut1_if1}
-| | ...                          | ${dut1} | ${dut1_if2}
-| | ...                          | ${topology_type}
+| | ... | ${dut1} | ${dut1_if1} | ${dut1} | ${dut1_if2} | ${topology_type}
 
-3-node Performance Suite Setup with DUT's NIC model
+| 2-node-switched Performance Suite Setup with DUT's NIC model
+| | [Documentation]
+| | ... | Suite preparation phase that setup default startup configuration of
+| | ... | VPP on all DUTs. Updates interfaces on all nodes and setup global
+| | ... | variables used in test cases based on interface model provided as an
+| | ... | argument. Initializes traffic generator.
+| | ...
+| | ... | *Arguments:*
+| | ... | - topology_type - Topology type. Type: string
+| | ... | - nic_model - Interface model. Type: string
+| | ... | - tg_if1_dest_mac - Interface 1 destination MAC address. Type: string
+| | ... | - tg_if2_dest_mac - Interface 2 destination MAC address. Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| 2-node Performance Suite Setup \| L2 \| Intel-X520-DA2 \
+| | ... | \| 22:22:33:44:55:66 \| 22:22:33:44:55:55 \|
+| | ...
+| | [Arguments] | ${topology_type} | ${nic_model} | ${tg_if1_dest_mac}
+| | ... | ${tg_if2_dest_mac}
+| | ...
+| | Show vpp version on all DUTs
+| | Setup performance global Variables
+| | 2-node circular Topology Variables Setup with DUT interface model
+| | ... | ${nic_model}
+| | Setup 2-node startup configuration of VPP on all DUTs
+| | Initialize traffic generator | ${tg} | ${tg_if1} | ${tg_if2}
+| | ... | ${dut1} | ${dut1_if1} | ${dut1} | ${dut1_if2} | ${topology_type}
+| | ... | ${tg_if1_dest_mac} | ${tg_if2_dest_mac}
+
+| 3-node Performance Suite Setup with DUT's NIC model
 | | [Documentation]
 | | ... | Suite preparation phase that setup default startup configuration of
 | | ... | VPP on all DUTs. Updates interfaces on all nodes and setup global
@@ -860,6 +935,12 @@
 | | ...                          | ${topology_type}
 
 | 3-node Performance Suite Teardown
+| | [Documentation]
+| | ... | Suite teardown phase with traffic generator teardown.
+| | ...
+| | Teardown traffic generator | ${tg}
+
+| 2-node Performance Suite Teardown
 | | [Documentation]
 | | ... | Suite teardown phase with traffic generator teardown.
 | | ...
@@ -1323,6 +1404,11 @@
 | | Add PCI device | ${dut1} | ${dut1_if1_pci} | ${dut1_if2_pci}
 | | Add PCI device | ${dut2} | ${dut2_if1_pci} | ${dut2_if2_pci}
 
+| Add PCI devices to DUTs from 2-node single link topology
+| | ${dut1_if1_pci}= | Get Interface PCI Addr | ${dut1} | ${dut1_if1}
+| | ${dut1_if2_pci}= | Get Interface PCI Addr | ${dut1} | ${dut1_if2}
+| | Add PCI device | ${dut1} | ${dut1_if1_pci} | ${dut1_if2_pci}
+
 | Guest VM with dpdk-testpmd connected via vhost-user is setup
 | | [Documentation]
 | | ... | Start QEMU guest with two vhost-user interfaces and interconnecting
@@ -1688,7 +1774,7 @@
 | | dut1_v4.set_arp | ${dut1_if2} | ${dut2_dut1_ip4_address} | ${dut2_if1_mac}
 | | dut2_v4.set_arp | ${dut2_if1} | ${dut1_dut2_ip4_address} | ${dut1_if2_mac}
 
-DPDK 2-node Performance Suite Setup with DUT's NIC model
+| DPDK 2-node Performance Suite Setup with DUT's NIC model
 | | [Documentation]
 | | ... | Updates interfaces on all nodes and setup global
 | | ... | variables used in test cases based on interface model provided as an
@@ -1713,7 +1799,7 @@ DPDK 2-node Performance Suite Setup with DUT's NIC model
 | | ...                          | ${topology_type}
 | | Initialize DPDK Environment | ${dut1} | ${dut1_if1} | ${dut1_if2}
 
-DPDK 3-node Performance Suite Setup with DUT's NIC model
+| DPDK 3-node Performance Suite Setup with DUT's NIC model
 | | [Documentation]
 | | ... | Updates interfaces on all nodes and setup global
 | | ... | variables used in test cases based on interface model provided as an
@@ -1738,7 +1824,7 @@ DPDK 3-node Performance Suite Setup with DUT's NIC model
 | | Initialize DPDK Environment | ${dut1} | ${dut1_if1} | ${dut1_if2}
 | | Initialize DPDK Environment | ${dut2} | ${dut2_if1} | ${dut2_if2}
 
-DPDK 3-node Performance Suite Teardown
+| DPDK 3-node Performance Suite Teardown
 | | [Documentation]
 | | ... | Suite teardown phase with traffic generator teardown.
 | | ... | Cleanup DPDK test environment.
@@ -1747,7 +1833,7 @@ DPDK 3-node Performance Suite Teardown
 | | Cleanup DPDK Environment | ${dut1} | ${dut1_if1} | ${dut1_if2}
 | | Cleanup DPDK Environment | ${dut2} | ${dut2_if1} | ${dut2_if2}
 
-DPDK 2-node Performance Suite Teardown
+| DPDK 2-node Performance Suite Teardown
 | | [Documentation]
 | | ... | Suite teardown phase with traffic generator teardown.
 | | ... | Cleanup DPDK test environment.
@@ -1755,10 +1841,10 @@ DPDK 2-node Performance Suite Teardown
 | | Teardown traffic generator | ${tg}
 | | Cleanup DPDK Environment | ${dut1} | ${dut1_if1} | ${dut1_if2}
 
-For DPDK Performance Test
+| For DPDK Performance Test
 | | [Documentation]
 | | ... | Return TRUE if variable DPDK_TEST exist, otherwise FALSE.
-| | ${ret} | ${tmp}=  | Run Keyword And Ignore Error
+| | ${ret} | ${tmp}= | Run Keyword And Ignore Error
 | | ... | Variable Should Exist | ${DPDK_TEST}
 | | Return From Keyword If | "${ret}" == "PASS" | ${TRUE}
 | | Return From Keyword | ${FALSE}
