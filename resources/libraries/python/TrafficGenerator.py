@@ -149,7 +149,8 @@ class TrafficGenerator(object):
     def initialize_traffic_generator(self, tg_node, tg_if1, tg_if2,
                                      tg_if1_adj_node, tg_if1_adj_if,
                                      tg_if2_adj_node, tg_if2_adj_if,
-                                     test_type):
+                                     test_type,
+                                     tg_if1_dst_mac=None, tg_if2_dst_mac=None):
         """TG initialization.
 
         :param tg_node: Traffic generator node.
@@ -160,6 +161,8 @@ class TrafficGenerator(object):
         :param tg_if2_adj_node: TG if2 adjecent node.
         :param tg_if2_adj_if: TG if2 adjecent interface.
         :param test_type: 'L2' or 'L3' - src/dst MAC address.
+        :param tg_if1_dst_mac: Interface 1 destination MAC address.
+        :param tg_if2_dst_mac: Interface 2 destination MAC address.
         :type tg_node: dict
         :type tg_if1: str
         :type tg_if2: str
@@ -168,6 +171,8 @@ class TrafficGenerator(object):
         :type tg_if2_adj_node: dict
         :type tg_if2_adj_if: str
         :type test_type: str
+        :type tg_if1_dst_mac: str
+        :type tg_if2_dst_mac: str
         :returns: nothing
         :raises: RuntimeError in case of issue during initialization.
         """
@@ -207,7 +212,11 @@ class TrafficGenerator(object):
                 if2_adj_mac = topo.get_interface_mac(tg_if2_adj_node,
                                                      tg_if2_adj_if)
             else:
-                raise Exception("test_type unknown")
+                raise ValueError("test_type unknown")
+
+            if tg_if1_dst_mac is not None and tg_if2_dst_mac is not None:
+                if1_adj_mac = tg_if1_dst_mac
+                if2_adj_mac = tg_if2_dst_mac
 
             if min(if1_pci, if2_pci) != if1_pci:
                 if1_mac, if2_mac = if2_mac, if1_mac
@@ -489,6 +498,21 @@ class TrafficGenerator(object):
                                                     _p0, _p1, _async, _latency,
                                                     warmup_time),
                 timeout=int(duration)+60)
+        elif traffic_type in ["2-node-bridge"]:
+            (ret, stdout, stderr) = ssh.exec_command(
+                "sh -c '{0}/resources/tools/t-rex/t-rex-stateless.py "
+                "--duration={1} -r {2} -s {3} "
+                "--p{4}_src_start_ip 10.10.10.2 "
+                "--p{4}_src_end_ip 10.10.10.254 "
+                "--p{4}_dst_start_ip 20.20.20.2 "
+                "--p{5}_src_start_ip 20.20.20.2 "
+                "--p{5}_src_end_ip 20.20.20.254 "
+                "--p{5}_dst_start_ip 10.10.10.2 "
+                "{6} {7} --warmup_time={8}'".format(Constants.REMOTE_FW_DIR,
+                                                    duration, rate, framesize,
+                                                    _p0, _p1, _async, _latency,
+                                                    warmup_time),
+                timeout = int(duration) + 60)
         else:
             raise NotImplementedError('Unsupported traffic type')
 

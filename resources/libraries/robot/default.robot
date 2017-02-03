@@ -89,6 +89,22 @@
 | | Add rxqueues config | ${dut1} | ${rxqueues}
 | | Add rxqueues config | ${dut2} | ${rxqueues}
 
+| Add '${m}' worker threads and rxqueues '${n}' in 2-node single-link topo
+| | [Documentation] | Setup M worker threads and N rxqueues in vpp startup
+| | ... | configuration on all DUTs in 2-node single-link topology.
+| | ${m_int}= | Convert To Integer | ${m}
+| | ${dut1_numa}= | Get interfaces numa node | ${dut1}
+| | ... | ${dut1_if1} | ${dut1_if2}
+| | ${dut1_cpu_main}= | Cpu list per node str | ${dut1} | ${dut1_numa}
+| | ... | cpu_cnt=${1} | skip_cnt=${1}
+| | ${dut1_cpu_w}= | Cpu list per node str | ${dut1} | ${dut1_numa}
+| | ... | skip_cnt=${2} | cpu_cnt=${m_int}
+| | ${dut1_cpu}= | Catenate | main-core | ${dut1_cpu_main}
+| | ... | corelist-workers | ${dut1_cpu_w}
+| | ${rxqueues}= | Catenate | num-rx-queues | ${n}
+| | Add CPU config | ${dut1} | ${dut1_cpu}
+| | Add rxqueues config | ${dut1} | ${rxqueues}
+
 | Add worker threads and rxqueues to all DUTs
 | | [Documentation] | Setup worker threads and rxqueues in VPP startup
 | | ...             | configuration to all DUTs
@@ -171,6 +187,13 @@
 | | [Documentation] | Setup default startup configuration of VPP to all DUTs
 | | Remove startup configuration of VPP from all DUTs
 | | Add '1' worker threads and rxqueues '1' in 3-node single-link topo
+| | Add all PCI devices to all DUTs
+| | Apply startup configuration on all VPP DUTs
+
+| Setup 2-node startup configuration of VPP on all DUTs
+| | [Documentation] | Setup default startup configuration of VPP to all DUTs
+| | Remove startup configuration of VPP from all DUTs
+| | Add '1' worker threads and rxqueues '1' in 2-node single-link topo
 | | Add all PCI devices to all DUTs
 | | Apply startup configuration on all VPP DUTs
 
