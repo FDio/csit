@@ -56,7 +56,7 @@
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2 frame forwarding config with 1 thread, 1 phy core,\
 | | ... | 1 receive queue per NIC port.
-| | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 10GE\
+| | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 40GE\
 | | ... | linerate, step 100kpps.
 | | ...
 | | [Tags] | 1T1C | STHREAD | NDRDISC
@@ -76,7 +76,7 @@
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2 frame forwarding config with 1 thread, 1 phy core,\
 | | ... | 1 receive queue per NIC port.
-| | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 10GE\
+| | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 40GE\
 | | ... | linerate, step 100kpps, LT=0.5%.
 | | ...
 | | [Tags] | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
@@ -96,7 +96,7 @@
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2 frame forwarding config with 1 thread, 1 phy core,\
 | | ... | 1 receive queue per NIC port.
-| | ... | [Ver] Find NDR for 1518 Byte frames using binary search start at 10GE\
+| | ... | [Ver] Find NDR for 1518 Byte frames using binary search start at 40GE\
 | | ... | linerate, step 10kpps.
 | | ...
 | | [Tags] | 1T1C | STHREAD | NDRDISC
@@ -116,7 +116,7 @@
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2 frame forwarding config with 1 thread, 1 phy core,\
 | | ... | 1 receive queue per NIC port.
-| | ... | [Ver] Find PDR for 1518 Byte frames using binary search start at 10GE\
+| | ... | [Ver] Find PDR for 1518 Byte frames using binary search start at 40GE\
 | | ... | linerate, step 10kpps, LT=0.5%.
 | | ...
 | | [Tags] | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
@@ -136,7 +136,7 @@
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2 frame forwarding config with 1 thread, 1 phy core,\
 | | ... | 1 receive queue per NIC port.
-| | ... | [Ver] Find NDR for 9000 Byte frames using binary search start at 10GE\
+| | ... | [Ver] Find NDR for 9000 Byte frames using binary search start at 40GE\
 | | ... | linerate, step 10kpps.
 | | ...
 | | [Tags] | 1T1C | STHREAD | NDRDISC
@@ -156,7 +156,7 @@
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2 frame forwarding config with 1 thread, 1 phy core,\
 | | ... | 1 receive queue per NIC port.
-| | ... | [Ver] Find PDR for 9000 Byte frames using binary search start at 10GE\
+| | ... | [Ver] Find PDR for 9000 Byte frames using binary search start at 40GE\
 | | ... | linerate, step 10kpps, LT=0.5%.
 | | ...
 | | [Tags] | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
@@ -176,7 +176,7 @@
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2 frame forwarding config with 2 threads, 2 phy\
 | | ... | cores, 1 receive queue per NIC port.
-| | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 10GE\
+| | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 40GE\
 | | ... | linerate, step 100kpps.
 | | ...
 | | [Tags] | 2T2C | MTHREAD | NDRDISC
@@ -196,7 +196,7 @@
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2 frame forwarding config with 2 threads, 2 phy\
 | | ... | cores, 1 receive queue per NIC port.
-| | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 10GE\
+| | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 40GE\
 | | ... | linerate, step 100kpps, LT=0.5%.
 | | ...
 | | [Tags] | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
@@ -216,7 +216,7 @@
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2 frame forwarding config with 2 threads, 2 phy\
 | | ... | cores, 1 receive queue per NIC port.
-| | ... | [Ver] Find NDR for 1518 Byte frames using binary search start at 10GE\
+| | ... | [Ver] Find NDR for 1518 Byte frames using binary search start at 40GE\
 | | ... | linerate, step 10kpps.
 | | ...
 | | [Tags] | 2T2C | MTHREAD | NDRDISC | SKIP_PATCH
@@ -236,7 +236,7 @@
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2 frame forwarding config with 2 threads, 2 phy\
 | | ... | cores, 1 receive queue per NIC port.
-| | ... | [Ver] Find PDR for 1518 Byte frames using binary search start at 10GE\
+| | ... | [Ver] Find PDR for 1518 Byte frames using binary search start at 40GE\
 | | ... | linerate, step 10kpps, LT=0.5%.
 | | ...
 | | [Tags] | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
@@ -256,7 +256,7 @@
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2 frame forwarding config with 2 threads, 2 phy\
 | | ... | cores, 1 receive queue per NIC port.
-| | ... | [Ver] Find NDR for 9000 Byte frames using binary search start at 10GE\
+| | ... | [Ver] Find NDR for 9000 Byte frames using binary search start at 40GE\
 | | ... | linerate, step 10kpps.
 | | ...
 | | [Tags] | 2T2C | MTHREAD | NDRDISC | SKIP_PATCH
@@ -276,7 +276,7 @@
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2 frame forwarding config with 2 threads, 2 phy\
 | | ... | cores, 1 receive queue per NIC port.
-| | ... | [Ver] Find PDR for 9000 Byte frames using binary search start at 10GE\
+| | ... | [Ver] Find PDR for 9000 Byte frames using binary search start at 40GE\
 | | ... | linerate, step 10kpps, LT=0.5%.
 | | ...
 | | [Tags] | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
@@ -296,7 +296,7 @@
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2 frame forwarding config with 4 threads, 4 phy\
 | | ... | cores, 2 receive queues per NIC port.
-| | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 10GE\
+| | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 40GE\
 | | ... | linerate, step 100kpps.
 | | ...
 | | [Tags] | 4T4C | MTHREAD | NDRDISC
@@ -316,7 +316,7 @@
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2 frame forwarding config with 4 threads, 4 phy\
 | | ... | cores, 2 receive queues per NIC port.
-| | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 10GE\
+| | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 40GE\
 | | ... | linerate, step 100kpps, LT=0.5%.
 | | ...
 | | [Tags] | 4T4C | MTHREAD | PDRDISC | SKIP_PATCH
@@ -336,7 +336,7 @@
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2 frame forwarding config with 4 threads, 4 phy\
 | | ... | cores, 2 receive queues per NIC port.
-| | ... | [Ver] Find NDR for 1518 Byte frames using binary search start at 10GE\
+| | ... | [Ver] Find NDR for 1518 Byte frames using binary search start at 40GE\
 | | ... | linerate, step 10kpps.
 | | ...
 | | [Tags] | 4T4C | MTHREAD | NDRDISC | SKIP_PATCH
@@ -356,7 +356,7 @@
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2 frame forwarding config with 4 threads, 4 phy\
 | | ... | cores, 2 receive queues per NIC port.
-| | ... | [Ver] Find PDR for 1518 Byte frames using binary search start at 10GE\
+| | ... | [Ver] Find PDR for 1518 Byte frames using binary search start at 40GE\
 | | ... | linerate, step 10kpps, LT=0.5%.
 | | ...
 | | [Tags] | 4T4C | MTHREAD | PDRDISC | SKIP_PATCH
@@ -376,7 +376,7 @@
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2 frame forwarding config with 4 threads, 4 phy\
 | | ... | cores, 2 receive queues per NIC port.
-| | ... | [Ver] Find NDR for 9000 Byte frames using binary search start at 10GE\
+| | ... | [Ver] Find NDR for 9000 Byte frames using binary search start at 40GE\
 | | ... | linerate, step 10kpps.
 | | ...
 | | [Tags] | 4T4C | MTHREAD | NDRDISC | SKIP_PATCH
@@ -396,7 +396,7 @@
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2 frame forwarding config with 4 threads, 4 phy\
 | | ... | cores, 2 receive queues per NIC port.
-| | ... | [Ver] Find PDR for 9000 Byte frames using binary search start at 10GE\
+| | ... | [Ver] Find PDR for 9000 Byte frames using binary search start at 40GE\
 | | ... | linerate, step 5kpps, LT=0.5%.
 | | ...
 | | [Tags] | 4T4C | MTHREAD | PDRDISC | SKIP_PATCH
