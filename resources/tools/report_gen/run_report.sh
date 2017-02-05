@@ -64,34 +64,34 @@ JEN_URL='https://jenkins.fd.io/view/csit/job'
 JEN_FILE_PERF='output_perf_data.xml'
 
 JEN_JOB='csit-vpp-perf-1701-all'
-JEN_BUILD=(3 4 7)
+JEN_BUILD=(3 4 7 8)
 
 for i in "${JEN_BUILD[@]}"; do
-    wget -q ${JEN_URL}/${JEN_JOB}/${i}/artifact/${JEN_FILE_PERF} -O ${STATIC_DIR_VPP}/${JEN_JOB}-${i}.xml
-    wget -q ${JEN_URL}/${JEN_JOB}/${i}/artifact/\*zip\*/archive.zip -O ${STATIC_DIR_ARCH}/${JEN_JOB}-${i}.zip
+    curl -fs ${JEN_URL}/${JEN_JOB}/${i}/artifact/${JEN_FILE_PERF} -o ${STATIC_DIR_VPP}/${JEN_JOB}-${i}.xml
+    curl -fs ${JEN_URL}/${JEN_JOB}/${i}/artifact/\*zip\*/archive.zip -o ${STATIC_DIR_ARCH}/${JEN_JOB}-${i}.zip
 done
 
 JEN_JOB='csit-vpp-perf-1701-long'
-JEN_BUILD=(2 4)
+JEN_BUILD=(2 4 5 6)
 
 for i in "${JEN_BUILD[@]}"; do
-    wget -q ${JEN_URL}/${JEN_JOB}/${i}/artifact/${JEN_FILE_PERF} -O ${STATIC_DIR_VPP}/${JEN_JOB}-${i}.xml
-    wget -q ${JEN_URL}/${JEN_JOB}/${i}/artifact/\*zip\*/archive.zip -O ${STATIC_DIR_ARCH}/${JEN_JOB}-${i}.zip
+    curl -fs ${JEN_URL}/${JEN_JOB}/${i}/artifact/${JEN_FILE_PERF} -o ${STATIC_DIR_VPP}/${JEN_JOB}-${i}.xml
+    curl -fs ${JEN_URL}/${JEN_JOB}/${i}/artifact/\*zip\*/archive.zip -o ${STATIC_DIR_ARCH}/${JEN_JOB}-${i}.zip
 done
 
 JEN_JOB='csit-dpdk-perf-1701-all'
 JEN_BUILD=(2 3)
 
 for i in "${JEN_BUILD[@]}"; do
-    wget -q ${JEN_URL}/${JEN_JOB}/${i}/artifact/${JEN_FILE_PERF} -O ${STATIC_DIR_TESTPMD}/${JEN_JOB}-${i}.xml
-    wget -q ${JEN_URL}/${JEN_JOB}/${i}/artifact/\*zip\*/archive.zip -O ${STATIC_DIR_ARCH}/${JEN_JOB}-${i}.zip
+    curl -fs ${JEN_URL}/${JEN_JOB}/${i}/artifact/${JEN_FILE_PERF} -o ${STATIC_DIR_TESTPMD}/${JEN_JOB}-${i}.xml
+    curl -fs ${JEN_URL}/${JEN_JOB}/${i}/artifact/\*zip\*/archive.zip -o ${STATIC_DIR_ARCH}/${JEN_JOB}-${i}.zip
 done
 
 JEN_JOB='csit-vpp-functional-1701-virl'
 JEN_BUILD=(18)
 
 for i in "${JEN_BUILD[@]}"; do
-    wget -q ${JEN_URL}/${JEN_JOB}/${i}/artifact/\*zip\*/archive.zip -O ${STATIC_DIR_ARCH}/${JEN_JOB}-${i}.zip
+    curl -fs ${JEN_URL}/${JEN_JOB}/${i}/artifact/\*zip\*/archive.zip -o ${STATIC_DIR_ARCH}/${JEN_JOB}-${i}.zip
 done
 
 JEN_URL='https://jenkins.fd.io/view/hc2vpp/job'
@@ -99,7 +99,7 @@ JEN_JOB='hc2vpp-csit-integration-1701-ubuntu1404'
 JEN_BUILD=(1)
 
 for i in "${JEN_BUILD[@]}"; do
-    wget -q ${JEN_URL}/${JEN_JOB}/${i}/artifact/\*zip\*/archive.zip -O ${STATIC_DIR_ARCH}/${JEN_JOB}-${i}.zip
+    curl -fs ${JEN_URL}/${JEN_JOB}/${i}/artifact/\*zip\*/archive.zip -o ${STATIC_DIR_ARCH}/${JEN_JOB}-${i}.zip
 done
 
 
