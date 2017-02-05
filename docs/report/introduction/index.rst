@@ -5,4 +5,4 @@ Introduction
 
     overview
     csit_test_naming
-    general_remarks
+    general_notes
