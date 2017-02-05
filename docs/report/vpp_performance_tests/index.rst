@@ -1,5 +1,5 @@
-VPP Performance Tests HW
-========================
+VPP Performance Tests
+=====================
 
 .. toctree::
 
