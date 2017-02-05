@@ -1,5 +1,5 @@
-General Remarks
-===============
+General Notes
+=============
 
 All CSIT test results listed in this report are sourced and auto-generated
 from output.xml Robot Framework (RF) files resulting from LF FD.io Jenkins

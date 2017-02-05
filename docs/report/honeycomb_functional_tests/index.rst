@@ -1,5 +1,5 @@
-HoneyComb Functional Tests VIRL
-===============================
+HoneyComb Functional Tests
+==========================
 
 .. toctree::
 
