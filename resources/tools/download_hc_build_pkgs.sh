@@ -17,17 +17,31 @@ set -ex
 
 trap 'rm -f *.deb.md5; exit' EXIT
 trap 'rm -f *.deb.md5;rm -f *.deb; exit' ERR
+STREAM=$1
+OS=$2
 
 # Download the latest VPP and VPP plugin .deb packages
 URL="https://nexus.fd.io/service/local/artifact/maven/content"
 VER="LATEST"
-REPO='fd.io.master.ubuntu.trusty.main'
+REPO="fd.io.${STREAM}.ubuntu.trusty.main"
 VPP_GROUP="io.fd.vpp"
 NSH_GROUP="io.fd.nsh_sfc"
 VPP_ARTIFACTS="vpp vpp-dbg vpp-dev vpp-dpdk-dev vpp-dpdk-dkms vpp-lib vpp-plugins vpp-api-java"
 NSH_ARTIFACTS="vpp-nsh-plugin"
-PACKAGE="deb deb.md5"
-CLASS="deb"
+
+if [ "${OS}" == "ubuntu1404" ]; then
+    OS="ubuntu.trusty.main"
+    PACKAGE="deb deb.md5"
+    CLASS="deb"
+elif [ "${OS}" == "ubuntu1604" ]; then
+    OS="ubuntu.xenial.main"
+    PACKAGE="deb deb.md5"
+    CLASS="deb"
+elif [ "${OS}" == "centos7" ]; then
+    OS="centos7"
+    PACKAGE="rpm rpm.md5"
+    CLASS="rpm"
+fi
 
 for ART in ${VPP_ARTIFACTS}; do
     for PAC in $PACKAGE; do

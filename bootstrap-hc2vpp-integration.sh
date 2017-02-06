@@ -29,8 +29,19 @@ VIRL_PKEY=priv_key
 VIRL_SERVER_STATUS_FILE="status"
 VIRL_SERVER_EXPECTED_STATUS="PRODUCTION"
 
-VIRL_TOPOLOGY=double-ring-nested.trusty
-VIRL_RELEASE=csit-ubuntu-14.04.4_2016-10-07_1.3
+STREAM=$1
+OS=$2
+
+if [ "${OS}" == "ubuntu1404" ]; then
+    VIRL_TOPOLOGY=double-ring-nested.trusty
+    VIRL_RELEASE=csit-ubuntu-14.04.4_2016-10-07_1.3
+elif [ "${OS}" == "ubuntu1604" ]; then
+    VIRL_TOPOLOGY=double-ring-nested.xenial
+    VIRL_RELEASE=csit-ubuntu-16.04.1_2016-12-19_1.6
+elif [ "${OS}" == "centos7" ]; then
+    VIRL_TOPOLOGY=double-ring-nested.centos7
+    VIRL_RELEASE=csit-centos-7.3-1611
+fi
 
 SSH_OPTIONS="-i ${VIRL_PKEY} -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o BatchMode=yes -o LogLevel=error"
 
@@ -108,21 +119,25 @@ done
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-# Download the latest VPP and HC .deb packages
+# Download VPP and HC packages from the current branch
 echo Downloading packages...
-bash ${SCRIPT_DIR}/resources/tools/download_hc_pkgs.sh
+bash ${SCRIPT_DIR}/resources/tools/download_hc_pkgs.sh ${STREAM} ${OS}
 
-VPP_DEBS=(*.deb)
-echo ${VPP_DEBS[@]}
+if [ "${OS}" == "centos7" ]; then
+    VPP_PKGS=(*.rpm)
+else
+    VPP_PKGS=(*.deb)
+fi
+echo ${VPP_PKGS[@]}
 VIRL_DIR_LOC="/tmp"
-VPP_DEBS_FULL=(${VPP_DEBS[@]})
+VPP_PKGS_FULL=(${VPP_PKGS[@]})
 
-# Prepend directory location at remote host to deb file list
-for index in "${!VPP_DEBS_FULL[@]}"; do
-    VPP_DEBS_FULL[${index}]=${VIRL_DIR_LOC}/${VPP_DEBS_FULL[${index}]}
+# Prepend directory location at remote host to package file list
+for index in "${!VPP_PKGS_FULL[@]}"; do
+    VPP_PKGS_FULL[${index}]=${VIRL_DIR_LOC}/${VPP_PKGS_FULL[${index}]}
 done
 
-echo "Updated file names: " ${VPP_DEBS_FULL[@]}
+echo "Updated file names: " ${VPP_PKGS_FULL[@]}
 
 cat ${VIRL_PKEY}
 
@@ -133,17 +148,17 @@ for index in "${!VIRL_SERVER[@]}"; do
     [[ "${DONE[@]}" =~ "${VIRL_SERVER[${index}]}" ]] && copy=0 || copy=1
 
     if [ "${copy}" -eq "0" ]; then
-        echo "deb files have already been copied to the VIRL host ${VIRL_SERVER[${index}]}"
+        echo "files have already been copied to the VIRL host ${VIRL_SERVER[${index}]}"
     else
-        scp ${SSH_OPTIONS} *.deb \
+        scp ${SSH_OPTIONS} *.deb *.rpm \
         ${VIRL_USERNAME}@${VIRL_SERVER[${index}]}:${VIRL_DIR_LOC}/
          result=$?
         if [ "${result}" -ne "0" ]; then
-            echo "Failed to copy deb files to VIRL host ${VIRL_SERVER[${index}]}"
+            echo "Failed to copy files to VIRL host ${VIRL_SERVER[${index}]}"
             echo ${result}
             exit ${result}
         else
-            echo "deb files successfully copied to the VIRL host ${VIRL_SERVER[${index}]}"
+            echo "files successfully copied to the VIRL host ${VIRL_SERVER[${index}]}"
         fi
         DONE+=(${VIRL_SERVER[${index}]})
     fi
@@ -159,7 +174,7 @@ function stop_virl_simulation {
 
 VIRL_SID=$(ssh ${SSH_OPTIONS} \
     ${VIRL_USERNAME}@${VIRL_SERVER} \
-    "start-testcase -c ${VIRL_TOPOLOGY} -r ${VIRL_RELEASE} ${VPP_DEBS_FULL[@]}")
+    "start-testcase -c ${VIRL_TOPOLOGY} -r ${VIRL_RELEASE} ${VPP_PKGS_FULL[@]}")
 retval=$?
 if [ "${retval}" -ne "0" ]; then
     echo "VIRL simulation start failed"
