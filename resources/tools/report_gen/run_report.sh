@@ -9,7 +9,8 @@ STATIC_DIR_TESTPMD="${STATIC_DIR}/testpmd"
 STATIC_DIR_ARCH="${STATIC_DIR}/archive"
 CSS_PATCH_FILE="${STATIC_DIR}/theme_overrides.css"
 
-sudo apt-get install -y libxml2 libxml2-dev libxslt-dev build-essential zlib1g-dev
+sudo apt-get -y update
+sudo apt-get -y install libxml2 libxml2-dev libxslt-dev build-essential zlib1g-dev
 
 # Clean-up when finished:
 trap 'rm -rf ${WORKING_DIR}; exit' EXIT
