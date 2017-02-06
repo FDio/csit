@@ -207,11 +207,11 @@ def gen_html_table(data):
     """
 
     table = '<table width=100% border=1><tr>'
-    table += '<th width=30%>Name</th>'
-    table += '<th width=50%>Documentation</th>'
-    table += '<th width=20%>Status</th></tr>'
+    table += '<th width=30%>' + data[-1][0] + '</th>'
+    table += '<th width=50%>' + data[-1][1] + '</th>'
+    table += '<th width=20%>' + data[-1][2] + '</th></tr>'
 
-    for item in data[0:-2]:
+    for item in data[0:-1]:
         table += '<tr>'
         for element in item:
             table += '<td>' + element.replace(' |br| ', '<br>') + '</td>'
@@ -302,10 +302,12 @@ def gen_rst_table(data):
     table.append(template.format(*titles))
     table.append(th_separator)
     # generate table rows
-    for d in data[0:-2]:
-        table.append(template.format(*d))
+    for item in data[0:-2]:
+        desc = re.sub(r'(^ \|br\| )', r'', item[1])
+        table.append(template.format(item[0], desc, item[2]))
         table.append(separator)
-    table.append(template.format(*data[-2]))
+    desc = re.sub(r'(^ \|br\| )', r'', data[-2][1])
+    table.append(template.format(data[-2][0], desc, data[-2][2]))
     table.append(separator)
     return '\n'.join(table)
 
@@ -331,7 +333,51 @@ def do_wiki(data, args):
     :type args: ArgumentParser
     :returns: Nothing.
     """
-    raise NotImplementedError("Export to 'wiki' format is not implemented.")
+
+    shift = int(args.level)
+    start = int(args.start)
+
+    output = open(args.output, 'w')
+
+    for item in data:
+        if int(item['level']) < start:
+            continue
+        if 'ndrchk' in item['title'].lower():
+            continue
+        mark = "=" * (int(item['level']) - start + shift) + ' '
+        output.write(mark + item['title'].lower() + mark + '\n')
+        output.write(item['doc'].replace('*', "'''").replace('|br|', '\n*') +
+                     '\n')
+        try:
+            output.write(gen_wiki_table(item['tests']) + '\n\n')
+        except KeyError:
+            continue
+    output.close()
+
+
+def gen_wiki_table(data):
+    """Generates a table with TCs' names, documentation and messages / statuses
+    in wiki format.
+
+    :param data: Json data representing a table with TCs.
+    :type data: str
+    :returns: Table with TCs' names, documentation and messages / statuses in
+    wiki format.
+    :rtype: str
+    """
+
+    table = '{| class="wikitable"\n'
+    header = ""
+    for item in data[-1]:
+        header += '!{}\n'.format(item)
+    table += header
+    for item in data[0:-1]:
+        desc = re.sub(r'(^ \|br\| )', r'', item[1]).replace(' |br| ', '\n\n')
+        msg = item[2].replace(' |br| ', '\n\n')
+        table += '|-\n|{}\n|{}\n|{}\n'.format(item[0], desc, msg)
+    table += '|}\n'
+
+    return table
 
 
 def process_robot_file(args):
