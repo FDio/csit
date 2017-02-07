@@ -26,7 +26,7 @@ class CpuUtils(object):
 
         :param string: Input string.
         :type string: str
-        :return: Integer converted from string, 0 in case of ValueError.
+        :returns: Integer converted from string, 0 in case of ValueError.
         :rtype: int
         """
         try:
@@ -41,6 +41,7 @@ class CpuUtils(object):
 
         :param nodes: DICT__nodes from Topology.DICT__nodes.
         :type nodes: dict
+        :raises RuntimeError: If the ssh command "lscpu -p" fails.
         """
         ssh = SSH()
         for node in nodes.values():
@@ -67,8 +68,9 @@ class CpuUtils(object):
 
         :param node: Targeted node.
         :type node: dict
-        :return: Count of numa nodes.
+        :returns: Count of numa nodes.
         :rtype: int
+        :raises RuntimeError: If node cpuinfo is not available.
         """
         cpuinfo = node.get("cpuinfo")
         if cpuinfo is not None:
@@ -82,10 +84,11 @@ class CpuUtils(object):
 
         :param node: Node dictionary with cpuinfo.
         :param cpu_node: Numa node number.
-        :type node: int
+        :type node: dict
         :type cpu_node: int
-        :return: List of cpu numbers related to numa from argument.
+        :returns: List of cpu numbers related to numa from argument.
         :rtype: list of int
+        :raises RuntimeError: If node cpuinfo is not available.
         """
         cpu_node = int(cpu_node)
         cpuinfo = node.get("cpuinfo")
@@ -114,13 +117,13 @@ class CpuUtils(object):
         :type skip_cnt: int
         :type cpu_cnt: int
         :type sep: str
-        :return: Cpu numbers related to numa from argument.
+        :returns: Cpu numbers related to numa from argument.
         :rtype: str
+        :raises RuntimeError: If we require more cpus than available.
         """
 
         cpu_list = CpuUtils.cpu_list_per_node(node, cpu_node)
         cpu_list_len = len(cpu_list)
-        cpu_flist = ""
         if cpu_cnt == 0:
             cpu_cnt = cpu_list_len - skip_cnt
 
@@ -131,3 +134,34 @@ class CpuUtils(object):
                              cpu_list[skip_cnt:skip_cnt+cpu_cnt])
 
         return cpu_flist
+
+    @staticmethod
+    def cpu_range_per_node_str(node, cpu_node, skip_cnt=0, cpu_cnt=0, sep="-"):
+        """Return string of node related range of CPU numbers, e.g. 0-4.
+
+        :param node: Node dictionary with cpuinfo.
+        :param cpu_node: Numa node number.
+        :param skip_cnt: Skip first "skip_cnt" CPUs.
+        :param cpu_cnt: Count of cpus to return, if 0 then return all.
+        :param sep: Separator, default: 0-4.
+        :type node: dict
+        :type cpu_node: int
+        :type skip_cnt: int
+        :type cpu_cnt: int
+        :type sep: str
+        :returns: String of node related range of CPU numbers.
+        :rtype: str
+        :raises RuntimeError: If we require more cpus than available.
+        """
+
+        cpu_list = CpuUtils.cpu_list_per_node(node, cpu_node)
+        cpu_list_len = len(cpu_list)
+        if cpu_cnt == 0:
+            cpu_cnt = cpu_list_len - skip_cnt
+
+        if cpu_cnt + skip_cnt > cpu_list_len:
+            raise RuntimeError("cpu_cnt + skip_cnt > length(cpu list).")
+
+        first = cpu_list[skip_cnt]
+        last = cpu_list[skip_cnt + cpu_cnt - 1]
+        return "{}{}{}".format(first, sep, last)
