@@ -22,37 +22,23 @@
 
 *** Keywords ***
 | Start L2FWD '${m}' worker threads and rxqueues '${n}' with jumbo frames '${b}'
-| | [Documentation] |  Start the l2fwd with M worker threads without HTT
-| | ...             |  and rxqueues N and B(yes or no) jumbo frames in all DUTs
-| | ${nb-cores}= | Catenate | ${m}
-| | ${cpu}= | Run Keyword If | '${m}' == '1' | Catenate | 0x3
-| | ...     | ELSE IF        | '${m}' == '2' | Catenate | 0x403
-| | ...     | ELSE IF        | '${m}' == '4' | Catenate | 0xc07
-| | ...     | ELSE IF        | '${m}' == '6' | Catenate | 0x1c0f
-| | ...     | ELSE IF        | '${m}' == '8' | Catenate | 0x3c1f
-| | ...     | ELSE           | Fail | Not supported combination
-| | ${rxqueues}= | Catenate | ${n}
-| | ${jumbo_frames}= | Catenate | ${b}
-| | Start l2fwd to all DUTs | ${cpu} | ${nb-cores}
-| | ...     | ${rxqueues} | ${jumbo_frames}
-
-| Start l2fwd to all DUTs
-| | [Documentation] | Setup worker threads and rxqueues in l2fwd startup
-| | ...             | configuration to all DUTs
+| | [Documentation] | Start the l2fwd with M worker threads without HTT
+| | ... | and rxqueues N and B (yes or no) jumbo frames in all DUTs.
 | | ...
-| | ... | *Arguments:*
-| | ... | - ${cpu} - CPU configuration. Type: string
-| | ... | - ${nb-cores} - cores for the packet forwarding. Type: string
-| | ... | - ${rxqueues} - rxqueues configuration. Type: string
-| | ... | - ${jumbo_frames} - Enable the jumbo frames or not. Type: string
-| | ...
-| | ... | *Example:*
-| | ...
-| | ... | \| Start l2fwd to all DUTs \| 0x403 \| 2 \
-| | ... | \| 1 \| no
-| | [Arguments] | ${cpu} | ${nb-cores} | ${rxqueues} | ${jumbo_frames}
-| | ${duts}= | Get Matches | ${nodes} | DUT*
-| | :FOR | ${dut} | IN | @{duts}
-| | | Start the l2fwd test | ${nodes['${dut}']}
-| | | ...            | ${cpu} | ${nb-cores} | ${rxqueues} | ${jumbo_frames}
-
+| | ${m_int}= | Convert To Integer | ${m}
+| | ${cpu_cnt}= | Evaluate | ${m_int}+1
+| | ${nb_cores}= | Convert to String | ${m}
+| | ${rxqueues}= | Convert to String | ${n}
+| | ${jumbo_frames}= | Convert to String | ${b}
+| | ${dut1_numa}= | Get interfaces numa node | ${dut1}
+| | ... | ${dut1_if1} | ${dut1_if2}
+| | ${dut2_numa}= | Get interfaces numa node | ${dut2}
+| | ... | ${dut2_if1} | ${dut2_if2}
+| | ${dut1_cpus}= | Cpu Range Per Node Str | ${dut1} | ${dut1_numa}
+| | ... | cpu_cnt=${cpu_cnt}
+| | ${dut2_cpus}= | Cpu Range Per Node Str | ${dut2} | ${dut2_numa}
+| | ... | cpu_cnt=${cpu_cnt}
+| | Start the l2fwd test | ${dut1} | ${dut1_cpus} | ${nb_cores} | ${rxqueues}
+| | ... | ${jumbo_frames}
+| | Start the l2fwd test | ${dut2} | ${dut2_cpus} | ${nb_cores} | ${rxqueues}
+| | ... | ${jumbo_frames}

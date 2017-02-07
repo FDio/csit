@@ -46,13 +46,13 @@
 | ... | *[Ref] Applicable standard specifications:* RFC2544.
 
 *** Variables ***
-#X520-DA2 bandwidth limit
+# X520-DA2 bandwidth limit
 | ${s_limit} | ${10000000000}
 
 *** Test Cases ***
-| tc01-64B-1t1c-eth-l2xcbase-ndrdisc
+| tc01-64B-1t1c-eth-l2xcbase-testpmd-ndrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2 frame forwarding  config with 1 thread, 1 phy core,\
+| | ... | [Cfg] DUT runs L2 frame forwarding config with 1 thread, 1 phy core,\
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for 64 Byte frames\
 | | ... | using binary search start at 10GE linerate, step 100kpps.
 | | [Tags] | 1T1C | STHREAD | NDRDISC
@@ -64,11 +64,10 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Start L2FWD '1' worker threads and rxqueues '1' with jumbo frames 'no'
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-bridge
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
+| | ... | ${binary_max} | 3-node-xconnect | ${min_rate} | ${max_rate}
+| | ... | ${threshold}
 
-| tc02-64B-1t1c-eth-l2xcbase-pdrdisc
+| tc02-64B-1t1c-eth-l2xcbase-testpmd-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2 frame forwarding config with 1 thread, 1 phy core,\
 | | ... | 1 receive queue per NIC port. [Ver] Find PDR for 64 Byte frames\
@@ -82,13 +81,10 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Start L2FWD '1' worker threads and rxqueues '1' with jumbo frames 'no'
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-bridge
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
-| | ...                                       | ${glob_loss_acceptance}
-| | ...                                       | ${glob_loss_acceptance_type}
+| | ... | ${binary_max} | 3-node-xconnect | ${min_rate} | ${max_rate}
+| | ... | ${threshold} | ${glob_loss_acceptance} | ${glob_loss_acceptance_type}
 
-| tc03-1518B-1t1c-eth-l2xcbase-ndrdisc
+| tc03-1518B-1t1c-eth-l2xcbase-testpmd-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2 frame forwarding config with 1 thread, 1 phy core,\
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for 1518 Byte frames\
@@ -102,11 +98,10 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Start L2FWD '1' worker threads and rxqueues '1' with jumbo frames 'no'
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-bridge
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
+| | ... | ${binary_max} | 3-node-xconnect | ${min_rate} | ${max_rate}
+| | ... | ${threshold}
 
-| tc04-1518B-1t1c-eth-l2xcbase-pdrdisc
+| tc04-1518B-1t1c-eth-l2xcbase-testpmd-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2 frame forwarding config with 1 thread, 1 phy core,\
 | | ... | 1 receive queue per NIC port. [Ver] Find PDR for 1518 Byte frames\
@@ -120,13 +115,10 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Start L2FWD '1' worker threads and rxqueues '1' with jumbo frames 'no'
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-bridge
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
-| | ...                                       | ${glob_loss_acceptance}
-| | ...                                       | ${glob_loss_acceptance_type}
+| | ... | ${binary_max} | 3-node-xconnect | ${min_rate} | ${max_rate}
+| | ... | ${threshold} | ${glob_loss_acceptance} | ${glob_loss_acceptance_type}
 
-| tc05-9000B-1t1c-eth-l2xcbase-ndrdisc
+| tc05-9000B-1t1c-eth-l2xcbase-testpmd-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2 frame forwarding config with 1 thread, 1 phy core,\
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for 9000 Byte frames\
@@ -140,11 +132,10 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Start L2FWD '1' worker threads and rxqueues '1' with jumbo frames 'yes'
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-bridge
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
+| | ... | ${binary_max} | 3-node-xconnect | ${min_rate} | ${max_rate}
+| | ... | ${threshold}
 
-| tc06-9000B-1t1c-eth-l2xcbase-pdrdisc
+| tc06-9000B-1t1c-eth-l2xcbase-testpmd-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2 frame forwarding config with 1 thread, 1 phy core,\
 | | ... | 1 receive queue per NIC port. [Ver] Find PDR for 9000 Byte frames\
@@ -158,13 +149,10 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Start L2FWD '1' worker threads and rxqueues '1' with jumbo frames 'yes'
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-bridge
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
-| | ...                                       | ${glob_loss_acceptance}
-| | ...                                       | ${glob_loss_acceptance_type}
+| | ... | ${binary_max} | 3-node-xconnect | ${min_rate} | ${max_rate}
+| | ... | ${threshold} | ${glob_loss_acceptance} | ${glob_loss_acceptance_type}
 
-| tc07-64B-2t2c-eth-l2xcbase-ndrdisc
+| tc07-64B-2t2c-eth-l2xcbase-testpmd-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2 frame forwarding config with 2 threads, 2 phy\
 | | ... | cores, 1 receive queue per NIC port. [Ver] Find NDR for 64 Byte\
@@ -178,11 +166,10 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Start L2FWD '2' worker threads and rxqueues '1' with jumbo frames 'no'
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-bridge
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
+| | ... | ${binary_max} | 3-node-xconnect | ${min_rate} | ${max_rate}
+| | ... | ${threshold}
 
-| tc08-64B-2t2c-eth-l2xcbase-pdrdisc
+| tc08-64B-2t2c-eth-l2xcbase-testpmd-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2 frame forwarding config with 2 threads, 2 phy\
 | | ... | cores, 1 receive queue per NIC port. [Ver] Find PDR for 64 Byte\
@@ -197,13 +184,10 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Start L2FWD '2' worker threads and rxqueues '1' with jumbo frames 'no'
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-bridge
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
-| | ...                                       | ${glob_loss_acceptance}
-| | ...                                       | ${glob_loss_acceptance_type}
+| | ... | ${binary_max} | 3-node-xconnect | ${min_rate} | ${max_rate}
+| | ... | ${threshold} | ${glob_loss_acceptance} | ${glob_loss_acceptance_type}
 
-| tc09-1518B-2t2c-eth-l2xcbase-ndrdisc
+| tc09-1518B-2t2c-eth-l2xcbase-testpmd-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2 frame forwarding config with 2 threads, 2 phy\
 | | ... | cores, 1 receive queue per NIC port. [Ver] Find NDR for 1518 Byte\
@@ -217,11 +201,10 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Start L2FWD '2' worker threads and rxqueues '1' with jumbo frames 'no'
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-bridge
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
+| | ... | ${binary_max} | 3-node-xconnect | ${min_rate} | ${max_rate}
+| | ... | ${threshold}
 
-| tc10-1518B-2t2c-eth-l2xcbase-pdrdisc
+| tc10-1518B-2t2c-eth-l2xcbase-testpmd-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2 frame forwarding config with 2 threads, 2 phy\
 | | ... | cores, 1 receive queue per NIC port. [Ver] Find PDR for 1518 Byte\
@@ -236,13 +219,10 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Start L2FWD '2' worker threads and rxqueues '1' with jumbo frames 'no'
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-bridge
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
-| | ...                                       | ${glob_loss_acceptance}
-| | ...                                       | ${glob_loss_acceptance_type}
+| | ... | ${binary_max} | 3-node-xconnect | ${min_rate} | ${max_rate}
+| | ... | ${threshold} | ${glob_loss_acceptance} | ${glob_loss_acceptance_type}
 
-| tc11-9000B-2t2c-eth-l2xcbase-ndrdisc
+| tc11-9000B-2t2c-eth-l2xcbase-testpmd-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2 frame forwarding config with 2 threads, 2 phy\
 | | ... | cores, 1 receive queue per NIC port. [Ver] Find NDR for 9000 Byte\
@@ -256,11 +236,10 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Start L2FWD '2' worker threads and rxqueues '1' with jumbo frames 'yes'
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-bridge
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
+| | ... | ${binary_max} | 3-node-xconnect | ${min_rate} | ${max_rate}
+| | ... | ${threshold}
 
-| tc12-9000B-2t2c-eth-l2xcbase-pdrdisc
+| tc12-9000B-2t2c-eth-l2xcbase-testpmd-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2 frame forwarding config with 2 threads, 2 phy\
 | | ... | cores, 1 receive queue per NIC port. [Ver] Find PDR for 9000 Byte\
@@ -275,13 +254,10 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Start L2FWD '2' worker threads and rxqueues '1' with jumbo frames 'yes'
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-bridge
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
-| | ...                                       | ${glob_loss_acceptance}
-| | ...                                       | ${glob_loss_acceptance_type}
+| | ... | ${binary_max} | 3-node-xconnect | ${min_rate} | ${max_rate}
+| | ... | ${threshold} | ${glob_loss_acceptance} | ${glob_loss_acceptance_type}
 
-| tc13-64B-4t4c-eth-l2xcbase-ndrdisc
+| tc13-64B-4t4c-eth-l2xcbase-testpmd-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2 frame forwarding config with 4 threads, 4 phy\
 | | ... | cores, 2 receive queues per NIC port. [Ver] Find NDR for 64 Byte\
@@ -295,11 +271,10 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Start L2FWD '4' worker threads and rxqueues '2' with jumbo frames 'no'
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-bridge
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
+| | ... | ${binary_max} | 3-node-xconnect | ${min_rate} | ${max_rate}
+| | ... | ${threshold}
 
-| tc14-64B-4t4c-eth-l2xcbase-pdrdisc
+| tc14-64B-4t4c-eth-l2xcbase-testpmd-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2 frame forwarding config with 4 threads, 4 phy\
 | | ... | cores, 2 receive queues per NIC port. [Ver] Find PDR for 64 Byte\
@@ -314,13 +289,10 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Start L2FWD '4' worker threads and rxqueues '2' with jumbo frames 'no'
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-bridge
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
-| | ...                                       | ${glob_loss_acceptance}
-| | ...                                       | ${glob_loss_acceptance_type}
+| | ... | ${binary_max} | 3-node-xconnect | ${min_rate} | ${max_rate}
+| | ... | ${threshold} | ${glob_loss_acceptance} | ${glob_loss_acceptance_type}
 
-| tc15-1518B-4t4c-eth-l2xcbase-ndrdisc
+| tc15-1518B-4t4c-eth-l2xcbase-testpmd-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2 frame forwarding config with 4 threads, 4 phy\
 | | ... | cores, 2 receive queues per NIC port. [Ver] Find NDR for 1518 Byte\
@@ -334,11 +306,10 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Start L2FWD '4' worker threads and rxqueues '2' with jumbo frames 'no'
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-bridge
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
+| | ... | ${binary_max} | 3-node-xconnect | ${min_rate} | ${max_rate}
+| | ... | ${threshold}
 
-| tc16-1518B-4t4c-eth-l2xcbase-pdrdisc
+| tc16-1518B-4t4c-eth-l2xcbase-testpmd-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2 frame forwarding config with 4 threads, 4 phy\
 | | ... | cores, 2 receive queues per NIC port. [Ver] Find PDR for 1518 Byte\
@@ -353,13 +324,10 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Start L2FWD '4' worker threads and rxqueues '2' with jumbo frames 'no'
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-bridge
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
-| | ...                                       | ${glob_loss_acceptance}
-| | ...                                       | ${glob_loss_acceptance_type}
+| | ... | ${binary_max} | 3-node-xconnect | ${min_rate} | ${max_rate}
+| | ... | ${threshold} | ${glob_loss_acceptance} | ${glob_loss_acceptance_type}
 
-| tc17-9000B-4t4c-eth-l2xcbase-ndrdisc
+| tc17-9000B-4t4c-eth-l2xcbase-testpmd-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2 frame forwarding config with 4 threads, 4 phy\
 | | ... | cores, 2 receive queues per NIC port. [Ver] Find NDR for 9000 Byte\
@@ -373,11 +341,10 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Start L2FWD '4' worker threads and rxqueues '2' with jumbo frames 'yes'
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-bridge
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
+| | ... | ${binary_max} | 3-node-xconnect | ${min_rate} | ${max_rate}
+| | ... | ${threshold}
 
-| tc18-9000B-4t4c-eth-l2xcbase-pdrdisc
+| tc18-9000B-4t4c-eth-l2xcbase-testpmd-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2 frame forwarding config with 4 threads, 4 phy\
 | | ... | cores, 2 receive queues per NIC port. [Ver] Find PDR for 9000 Byte
@@ -392,8 +359,5 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Start L2FWD '4' worker threads and rxqueues '2' with jumbo frames 'yes'
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-bridge
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
-| | ...                                       | ${glob_loss_acceptance}
-| | ...                                       | ${glob_loss_acceptance_type}
+| | ... | ${binary_max} | 3-node-xconnect | ${min_rate} | ${max_rate}
+| | ... | ${threshold} | ${glob_loss_acceptance} | ${glob_loss_acceptance_type}
