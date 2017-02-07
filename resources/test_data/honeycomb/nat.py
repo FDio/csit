@@ -79,11 +79,13 @@ def get_variables(node, interface):
             {
                 "local_address": "192.168.0.1",
                 "remote_address": "192.168.1.1",
-                "vrf": "0"
+                "vrf": "0",
+                "protocol": "17"
             }, {
                 "local_address": "192.168.0.2",
                 "remote_address": "192.168.1.2",
-                "vrf": "0"
+                "vrf": "0",
+                "protocol": "17"
             }
         ],
         "nat_interface_vat_in": [
