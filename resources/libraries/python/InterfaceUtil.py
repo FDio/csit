@@ -45,7 +45,10 @@ class InterfaceUtil(object):
         :type interface: str or int
         :type state: str
         :type if_type: str
-        :return: nothing
+        :returns: Nothing.
+        :raises ValueError: If the interface type is unknown.
+        :raises ValueError: If the state of interface is unexpected.
+        :raises ValueError: If the node has an unknown node type.
         """
 
         if if_type == "key":
@@ -75,7 +78,7 @@ class InterfaceUtil(object):
             cmd = 'ip link set {} {}'.format(iface_name, state)
             exec_cmd_no_error(node, cmd, sudo=True)
         else:
-            raise Exception('Node {} has unknown NodeType: "{}"'.
+            raise ValueError('Node {} has unknown NodeType: "{}"'.
                             format(node['host'], node['type']))
 
     @staticmethod
@@ -85,16 +88,18 @@ class InterfaceUtil(object):
         Function can be used only for TGs.
 
         :param node: Node where the interface is.
-        :param interface: Interface key from topology file.
+        :param iface_key: Interface key from topology file.
         :param mtu: MTU to set.
         :type node: dict
         :type iface_key: str
         :type mtu: int
-        :return: nothing
+        :returns: Nothing.
+        :raises ValueError: If the node type is "DUT".
+        :raises ValueError: If the node has an unknown node type.
         """
         if node['type'] == NodeType.DUT:
-            ValueError('Node {}: Setting Ethernet MTU for interface '
-                       'on DUT nodes not supported', node['host'])
+            raise ValueError('Node {}: Setting Ethernet MTU for interface '
+                             'on DUT nodes not supported', node['host'])
         elif node['type'] == NodeType.TG:
             iface_name = Topology.get_interface_name(node, iface_key)
             cmd = 'ip link set {} mtu {}'.format(iface_name, mtu)
@@ -111,7 +116,7 @@ class InterfaceUtil(object):
 
         :param node: Node where to set default MTU.
         :type node: dict
-        :return: nothing
+        :returns: Nothing.
         """
         for ifc in node['interfaces']:
             InterfaceUtil.set_interface_ethernet_mtu(node, ifc, 1500)
@@ -124,6 +129,7 @@ class InterfaceUtil(object):
         :param timeout: Waiting timeout in seconds (optional, default 10s).
         :type node: dict
         :type timeout: int
+        :returns: Nothing.
         :raises: RuntimeError if the timeout period value has elapsed.
         """
         if_ready = False
@@ -159,7 +165,7 @@ class InterfaceUtil(object):
         :param timeout: Seconds to wait per node for all interfaces to come up.
         :type nodes: list
         :type timeout: int
-        :raises: RuntimeError if the timeout period value has elapsed.
+        :returns: Nothing.
         """
         for node in nodes:
             InterfaceUtil.vpp_node_interfaces_ready_wait(node, timeout)
@@ -173,7 +179,7 @@ class InterfaceUtil(object):
         :param timeout: Seconds to wait per node for all interfaces to come up.
         :type nodes: dict
         :type timeout: int
-        :raises: RuntimeError if the timeout period value has elapsed.
+        :returns: Nothing.
         """
         for node in nodes.values():
             if node['type'] == NodeType.DUT:
@@ -189,9 +195,11 @@ class InterfaceUtil(object):
         :param interface: Numeric index or name string of a specific interface.
         :type node: dict
         :type interface: int or str
-        :return: List of dictionaries containing data for each interface, or a
+        :returns: List of dictionaries containing data for each interface, or a
         single dictionary for the specified interface.
         :rtype: list or dict
+        :raises TypeError: if the data type of interface is neither basestring
+        nor int.
         """
         with VatTerminal(node) as vat:
             response = vat.vat_terminal_exec_cmd_from_template(
@@ -220,7 +228,7 @@ class InterfaceUtil(object):
         :param interface: Numeric index or name string of a specific interface.
         :type node: dict
         :type interface: int or str
-        :return: MAC address.
+        :returns: MAC address.
         :rtype: str
         """
 
@@ -247,7 +255,7 @@ class InterfaceUtil(object):
          :type node: dict
          :type interface: str
          :type ip_version: str
-         :return: List of dictionaries, each containing IP address, subnet
+         :returns: List of dictionaries, each containing IP address, subnet
          prefix length and also the subnet mask for ipv4 addresses.
          Note: A single interface may have multiple IP addresses assigned.
          :rtype: list
@@ -277,6 +285,9 @@ class InterfaceUtil(object):
         :type node: dict
         :type pci_addr: str
         :type driver: str
+        :returns: None.
+        :raises RuntimeError: If unbinding from the current driver fails.
+        :raises RuntimeError: If binding to the new driver fails.
         """
         old_driver = InterfaceUtil.tg_get_interface_driver(node, pci_addr)
         if old_driver == driver:
@@ -287,19 +298,20 @@ class InterfaceUtil(object):
 
         # Unbind from current driver
         if old_driver is not None:
-            cmd = 'sh -c "echo {0} > /sys/bus/pci/drivers/{1}/unbind"'.format(
-                pci_addr, old_driver)
+            cmd = 'sh -c "echo {0} > /sys/bus/pci/drivers/{1}/unbind"'\
+                .format(pci_addr, old_driver)
             (ret_code, _, _) = ssh.exec_command_sudo(cmd)
             if int(ret_code) != 0:
-                raise Exception("'{0}' failed on '{1}'".format(cmd,
-                                                               node['host']))
+                raise RuntimeError("'{0}' failed on '{1}'"
+                                   .format(cmd, node['host']))
 
         # Bind to the new driver
-        cmd = 'sh -c "echo {0} > /sys/bus/pci/drivers/{1}/bind"'.format(
-            pci_addr, driver)
+        cmd = 'sh -c "echo {0} > /sys/bus/pci/drivers/{1}/bind"'\
+            .format(pci_addr, driver)
         (ret_code, _, _) = ssh.exec_command_sudo(cmd)
         if int(ret_code) != 0:
-            raise Exception("'{0}' failed on '{1}'".format(cmd, node['host']))
+            raise RuntimeError("'{0}' failed on '{1}'"
+                               .format(cmd, node['host']))
 
     @staticmethod
     def tg_get_interface_driver(node, pci_addr):
@@ -309,8 +321,10 @@ class InterfaceUtil(object):
         :param pci_addr: PCI address of the interface.
         :type node: dict
         :type pci_addr: str
-        :return: Interface driver or None if not found.
+        :returns: Interface driver or None if not found.
         :rtype: str
+        :raises RuntimeError: If it is not possible to get the interface driver
+        information from the node.
 
         .. note::
             # lspci -vmmks 0000:00:05.0
@@ -330,7 +344,8 @@ class InterfaceUtil(object):
 
         (ret_code, stdout, _) = ssh.exec_command(cmd)
         if int(ret_code) != 0:
-            raise Exception("'{0}' failed on '{1}'".format(cmd, node['host']))
+            raise RuntimeError("'{0}' failed on '{1}'"
+                               .format(cmd, node['host']))
 
         for line in stdout.splitlines():
             if len(line) == 0:
@@ -356,6 +371,7 @@ class InterfaceUtil(object):
 
         :param node: Node to set udev rules on (must be TG node).
         :type node: dict
+        :raises RuntimeError: If setting of udev rules fails.
         """
         ssh = SSH()
         ssh.connect(node)
@@ -363,7 +379,8 @@ class InterfaceUtil(object):
         cmd = 'rm -f {0}'.format(InterfaceUtil.__UDEV_IF_RULES_FILE)
         (ret_code, _, _) = ssh.exec_command_sudo(cmd)
         if int(ret_code) != 0:
-            raise Exception("'{0}' failed on '{1}'".format(cmd, node['host']))
+            raise RuntimeError("'{0}' failed on '{1}'"
+                               .format(cmd, node['host']))
 
         for interface in node['interfaces'].values():
             rule = 'SUBSYSTEM==\\"net\\", ACTION==\\"add\\", ATTR{address}' + \
@@ -373,8 +390,8 @@ class InterfaceUtil(object):
                 rule, InterfaceUtil.__UDEV_IF_RULES_FILE)
             (ret_code, _, _) = ssh.exec_command_sudo(cmd)
             if int(ret_code) != 0:
-                raise Exception("'{0}' failed on '{1}'".format(cmd,
-                                                               node['host']))
+                raise RuntimeError("'{0}' failed on '{1}'"
+                                   .format(cmd, node['host']))
 
         cmd = '/etc/init.d/udev restart'
         ssh.exec_command_sudo(cmd)
@@ -416,6 +433,7 @@ class InterfaceUtil(object):
 
         :param node: Node selected from DICT__nodes.
         :type node: dict
+        :raises RuntimeError: If getting of interface name and MAC fails.
 
         .. note::
             # for dev in `ls /sys/class/net/`;
@@ -439,7 +457,7 @@ class InterfaceUtil(object):
 
         (ret_code, stdout, _) = ssh.exec_command(cmd)
         if int(ret_code) != 0:
-            raise Exception('Get interface name and MAC failed')
+            raise RuntimeError('Get interface name and MAC failed')
         tmp = "{" + stdout.rstrip().replace('\n', ',') + "}"
         interfaces = JsonParser().parse_data(tmp)
         for interface in node['interfaces'].values():
@@ -458,7 +476,9 @@ class InterfaceUtil(object):
 
         :param node: Node from topology.
         :type node: dict
-        :return: nothing
+        :returns: Nothing.
+        :raises ValueError: If numa node ia less than 0.
+        :raises RuntimeError: If update of numa node failes.
         """
         ssh = SSH()
         for if_key in Topology.get_node_interfaces(node):
@@ -482,6 +502,23 @@ class InterfaceUtil(object):
             else:
                 raise RuntimeError('Update numa node failed for: {0}'\
                     .format(if_pci))
+
+    @staticmethod
+    def update_all_numa_nodes(nodes, skip_tg=False):
+        """For all nodes and all their interfaces from topology file update numa
+        node information based on information from the node.
+
+        :param nodes: Nodes in the topology.
+        :param skip_tg: Skip TG node
+        :type nodes: dict
+        :type skip_tg: bool
+        :returns: Nothing.
+        """
+        for node in nodes.values():
+            if node['type'] == NodeType.DUT:
+                InterfaceUtil.iface_update_numa_node(node)
+            elif node['type'] == NodeType.TG and not skip_tg:
+                InterfaceUtil.iface_update_numa_node(node)
 
     @staticmethod
     def update_all_interface_data_on_all_nodes(nodes, skip_tg=False,
@@ -520,8 +557,10 @@ class InterfaceUtil(object):
         :type node: dict
         :type interface: str
         :type vlan: int
-        :return: Name and index of created subinterface.
+        :returns: Name and index of created subinterface.
         :rtype: tuple
+        :raises RuntimeError: if it is unable to create VLAN subinterface on the
+        node.
         """
         iface_key = Topology.get_interface_by_name(node, interface)
         sw_if_index = Topology.get_interface_sw_index(node, iface_key)
@@ -558,8 +597,10 @@ class InterfaceUtil(object):
         :type vni: int
         :type source_ip: str
         :type destination_ip: str
-        :return: SW IF INDEX of created interface.
+        :returns: SW IF INDEX of created interface.
         :rtype: int
+        :raises RuntimeError: if it is unable to create VxLAN interface on the
+        node.
         """
         output = VatExecutor.cmd_from_template(node, "vxlan_create.vat",
                                                src=source_ip,
@@ -582,9 +623,11 @@ class InterfaceUtil(object):
         If None, information about all VxLAN interfaces is returned.
         :type node: dict
         :type interface: int or str
-        :return: Dictionary containing data for the given VxLAN interface or if
+        :returns: Dictionary containing data for the given VxLAN interface or if
         interface=None, the list of dictionaries with all VxLAN interfaces.
         :rtype: dict or list
+        :raises TypeError: if the data type of interface is neither basestring
+        nor int.
         """
         param = "sw_if_index"
         if interface is None:
@@ -595,7 +638,7 @@ class InterfaceUtil(object):
         elif isinstance(interface, int):
             sw_if_index = interface
         else:
-            raise Exception("Wrong interface format {0}".format(interface))
+            raise TypeError("Wrong interface format {0}".format(interface))
 
         with VatTerminal(node) as vat:
             response = vat.vat_terminal_exec_cmd_from_template(
@@ -614,7 +657,7 @@ class InterfaceUtil(object):
 
         :param node: VPP node to get interface data from.
         :type node: dict
-        :return: List of dictionaries with all vhost-user interfaces.
+        :returns: List of dictionaries with all vhost-user interfaces.
         :rtype: list
         """
         with VatTerminal(node) as vat:
@@ -632,7 +675,7 @@ class InterfaceUtil(object):
         :param name: Optional name of a specific TAP interface.
         :type node: dict
         :type name: str
-        :return: Dictionary of information about a specific TAP interface, or
+        :returns: Dictionary of information about a specific TAP interface, or
         a List of dictionaries containing all TAP data for the given node.
         :rtype: dict or list
         """
@@ -666,7 +709,7 @@ class InterfaceUtil(object):
         :type outer_vlan_id: int
         :type inner_vlan_id: int
         :type type_subif: str
-        :return: Name and index of created sub-interface.
+        :returns: Name and index of created sub-interface.
         :rtype: tuple
         :raises RuntimeError: If it is not possible to create sub-interface.
         """
@@ -717,7 +760,7 @@ class InterfaceUtil(object):
         :type node: dict
         :type source_ip: str
         :type destination_ip: str
-        :return: Name and index of created GRE tunnel interface.
+        :returns: Name and index of created GRE tunnel interface.
         :rtype: tuple
         :raises RuntimeError: If unable to create GRE tunnel interface.
         """
@@ -745,8 +788,10 @@ class InterfaceUtil(object):
 
         :param node: Node to create loopback interface on.
         :type node: dict
-        :return: SW interface index.
+        :returns: SW interface index.
         :rtype: int
+        :raises RuntimeError: If it is not possible to create loopback on the
+        node.
         """
         out = VatExecutor.cmd_from_template(node, "create_loopback.vat")
         if out[0].get('retval') == 0:
@@ -788,7 +833,7 @@ class InterfaceUtil(object):
         :param interface: Name or sw_if_index of a specific interface.
         :type node: dict
         :type interface: str or int
-        :return: Classify table name.
+        :returns: Classify table name.
         :rtype: str
         """
         if isinstance(interface, basestring):
@@ -799,8 +844,7 @@ class InterfaceUtil(object):
         with VatTerminal(node) as vat:
             data = vat.vat_terminal_exec_cmd_from_template(
                 "classify_interface_table.vat",
-                sw_if_index=sw_if_index
-            )
+                sw_if_index=sw_if_index)
         return data[0]
 
     @staticmethod
@@ -811,7 +855,7 @@ class InterfaceUtil(object):
         :param interface_name: Name of the specific interface.
         :type node: dict
         :type interface_name: str
-        :return: sw_if_index of the given interface.
+        :returns: sw_if_index of the given interface.
         :rtype: str
         """
 
@@ -833,8 +877,8 @@ class InterfaceUtil(object):
         information about all VxLAN GPE interfaces is returned.
         :type node: dict
         :type interface_name: str
-        :return: Dictionary containing data for the given VxLAN GPE interface or
-        if interface=None, the list of dictionaries with all VxLAN GPE
+        :returns: Dictionary containing data for the given VxLAN GPE interface
+        or if interface=None, the list of dictionaries with all VxLAN GPE
         interfaces.
         :rtype: dict or list
         """
