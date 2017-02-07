@@ -43,25 +43,30 @@ class NATUtil(object):
         data = []
         # lines[0,1] are table and column headers
         for line in lines[2::]:
+            # Ignore extra data after NAT table
+            if "snat_static_mapping_dump error: Misc" in line or "vat#" in line:
+                continue
             items = line.split(" ")
             while "" in items:
                 items.remove("")
             if len(items) == 0:
                 continue
-            elif len(items) == 3:
+            elif len(items) == 4:
                 # no ports were returned
                 data.append({
                     "local_address": items[0],
                     "remote_address": items[1],
-                    "vrf": items[2]
+                    "vrf": items[2],
+                    "protocol": items[3]
                 })
-            elif len(items) == 5:
+            elif len(items) == 6:
                 data.append({
                     "local_address": items[0],
                     "local_port": items[1],
                     "remote_address": items[2],
                     "remote_port": items[3],
-                    "vrf": items[4]
+                    "vrf": items[4],
+                    "protocol": items[5]
                 })
             else:
                 raise RuntimeError("Unexpected output from snat_mapping_dump.")
