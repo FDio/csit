@@ -252,7 +252,7 @@ class TrafficGenerator(object):
             while max_startup_retries > 0:
                 # kill T-rex only if it is already running
                 (ret, _, _) = ssh.exec_command(
-                    "sh -c 'pgrep t-rex && sudo pkill t-rex'")
+                    "sh -c 'pgrep t-rex && sudo pkill t-rex && sleep 3'")
 
                 # configure T-rex
                 (ret, stdout, stderr) = ssh.exec_command(
