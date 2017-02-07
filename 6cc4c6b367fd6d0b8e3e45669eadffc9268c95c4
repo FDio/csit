@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3a3291f1_08482a5a",
+        "filename": "resources/libraries/robot/ipv4.robot",
+        "patchSetId": 23
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2017-02-07T10:28:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a3291f1_e512a7b3",
+      "range": {
+        "startLine": 95,
+        "startChar": 0,
+        "endLine": 95,
+        "endChar": 92
+      },
+      "revId": "6cc4c6b367fd6d0b8e3e45669eadffc9268c95c4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a3291f1_c517aba2",
         "filename": "resources/libraries/robot/ipv6.robot",
         "patchSetId": 23
@@ -36,6 +60,30 @@
       "writtenOn": "2017-02-07T08:17:10Z",
       "side": 1,
       "message": "line too long",
+      "range": {
+        "startLine": 65,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 92
+      },
+      "revId": "6cc4c6b367fd6d0b8e3e45669eadffc9268c95c4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_e874be9d",
+        "filename": "resources/libraries/robot/ipv6.robot",
+        "patchSetId": 23
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2017-02-07T10:28:17Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a3291f1_c517aba2",
       "range": {
         "startLine": 65,
         "startChar": 0,
