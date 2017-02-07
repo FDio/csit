@@ -69,7 +69,7 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Start L2FWD '1' worker threads and rxqueues '1' with jumbo frames 'no'
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | 3-node-bridge | ${min_rate} | ${max_rate}
+| | ... | ${binary_max} | 3-node-xconnect | ${min_rate} | ${max_rate}
 | | ... | ${threshold}
 
 | tc02-64B-1t1c-eth-l2xcbase-pdrdisc
@@ -89,7 +89,7 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Start L2FWD '1' worker threads and rxqueues '1' with jumbo frames 'no'
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | 3-node-bridge | ${min_rate} | ${max_rate}
+| | ... | ${binary_max} | 3-node-xconnect | ${min_rate} | ${max_rate}
 | | ... | ${threshold} | ${glob_loss_acceptance} | ${glob_loss_acceptance_type}
 
 | tc03-1518B-1t1c-eth-l2xcbase-ndrdisc
@@ -109,7 +109,7 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Start L2FWD '1' worker threads and rxqueues '1' with jumbo frames 'no'
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | 3-node-bridge | ${min_rate} | ${max_rate}
+| | ... | ${binary_max} | 3-node-xconnect | ${min_rate} | ${max_rate}
 | | ... | ${threshold}
 
 | tc04-1518B-1t1c-eth-l2xcbase-pdrdisc
@@ -129,7 +129,7 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Start L2FWD '1' worker threads and rxqueues '1' with jumbo frames 'no'
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | 3-node-bridge | ${min_rate} | ${max_rate}
+| | ... | ${binary_max} | 3-node-xconnect | ${min_rate} | ${max_rate}
 | | ... | ${threshold} | ${glob_loss_acceptance} | ${glob_loss_acceptance_type}
 
 | tc05-9000B-1t1c-eth-l2xcbase-ndrdisc
@@ -149,7 +149,7 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Start L2FWD '1' worker threads and rxqueues '1' with jumbo frames 'yes'
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | 3-node-bridge | ${min_rate} | ${max_rate}
+| | ... | ${binary_max} | 3-node-xconnect | ${min_rate} | ${max_rate}
 | | ... | ${threshold}
 
 | tc06-9000B-1t1c-eth-l2xcbase-pdrdisc
@@ -169,7 +169,7 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Start L2FWD '1' worker threads and rxqueues '1' with jumbo frames 'yes'
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | 3-node-bridge | ${min_rate} | ${max_rate}
+| | ... | ${binary_max} | 3-node-xconnect | ${min_rate} | ${max_rate}
 | | ... | ${threshold} | ${glob_loss_acceptance} | ${glob_loss_acceptance_type}
 
 | tc07-64B-2t2c-eth-l2xcbase-ndrdisc
@@ -189,7 +189,7 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Start L2FWD '2' worker threads and rxqueues '1' with jumbo frames 'no'
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | 3-node-bridge | ${min_rate} | ${max_rate}
+| | ... | ${binary_max} | 3-node-xconnect | ${min_rate} | ${max_rate}
 | | ... | ${threshold}
 
 | tc08-64B-2t2c-eth-l2xcbase-pdrdisc
@@ -209,7 +209,7 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Start L2FWD '2' worker threads and rxqueues '1' with jumbo frames 'no'
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | 3-node-bridge | ${min_rate} | ${max_rate}
+| | ... | ${binary_max} | 3-node-xconnect | ${min_rate} | ${max_rate}
 | | ... | ${threshold} | ${glob_loss_acceptance} | ${glob_loss_acceptance_type}
 
 | tc09-1518B-2t2c-eth-l2xcbase-ndrdisc
@@ -229,7 +229,7 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Start L2FWD '2' worker threads and rxqueues '1' with jumbo frames 'no'
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | 3-node-bridge | ${min_rate} | ${max_rate}
+| | ... | ${binary_max} | 3-node-xconnect | ${min_rate} | ${max_rate}
 | | ... | ${threshold}
 
 | tc10-1518B-2t2c-eth-l2xcbase-pdrdisc
@@ -249,7 +249,7 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Start L2FWD '2' worker threads and rxqueues '1' with jumbo frames 'no'
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | 3-node-bridge | ${min_rate} | ${max_rate}
+| | ... | ${binary_max} | 3-node-xconnect | ${min_rate} | ${max_rate}
 | | ... | ${threshold} | ${glob_loss_acceptance} | ${glob_loss_acceptance_type}
 
 | tc11-9000B-2t2c-eth-l2xcbase-ndrdisc
@@ -269,7 +269,7 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Start L2FWD '2' worker threads and rxqueues '1' with jumbo frames 'yes'
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | 3-node-bridge | ${min_rate} | ${max_rate}
+| | ... | ${binary_max} | 3-node-xconnect | ${min_rate} | ${max_rate}
 | | ... | ${threshold}
 
 | tc12-9000B-2t2c-eth-l2xcbase-pdrdisc
@@ -289,7 +289,7 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Start L2FWD '2' worker threads and rxqueues '1' with jumbo frames 'yes'
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | 3-node-bridge | ${min_rate} | ${max_rate}
+| | ... | ${binary_max} | 3-node-xconnect | ${min_rate} | ${max_rate}
 | | ... | ${threshold} | ${glob_loss_acceptance} | ${glob_loss_acceptance_type}
 
 | tc13-64B-4t4c-eth-l2xcbase-ndrdisc
@@ -309,7 +309,7 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Start L2FWD '4' worker threads and rxqueues '2' with jumbo frames 'no'
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | 3-node-bridge | ${min_rate} | ${max_rate}
+| | ... | ${binary_max} | 3-node-xconnect | ${min_rate} | ${max_rate}
 | | ... | ${threshold}
 
 | tc14-64B-4t4c-eth-l2xcbase-pdrdisc
@@ -329,7 +329,7 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Start L2FWD '4' worker threads and rxqueues '2' with jumbo frames 'no'
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | 3-node-bridge | ${min_rate} | ${max_rate}
+| | ... | ${binary_max} | 3-node-xconnect | ${min_rate} | ${max_rate}
 | | ... | ${threshold} | ${glob_loss_acceptance} | ${glob_loss_acceptance_type}
 
 | tc15-1518B-4t4c-eth-l2xcbase-ndrdisc
@@ -349,7 +349,7 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Start L2FWD '4' worker threads and rxqueues '2' with jumbo frames 'no'
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | 3-node-bridge | ${min_rate} | ${max_rate}
+| | ... | ${binary_max} | 3-node-xconnect | ${min_rate} | ${max_rate}
 | | ... | ${threshold}
 
 | tc16-1518B-4t4c-eth-l2xcbase-pdrdisc
@@ -369,7 +369,7 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Start L2FWD '4' worker threads and rxqueues '2' with jumbo frames 'no'
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | 3-node-bridge | ${min_rate} | ${max_rate}
+| | ... | ${binary_max} | 3-node-xconnect | ${min_rate} | ${max_rate}
 | | ... | ${threshold} | ${glob_loss_acceptance} | ${glob_loss_acceptance_type}
 
 | tc17-9000B-4t4c-eth-l2xcbase-ndrdisc
@@ -389,7 +389,7 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Start L2FWD '4' worker threads and rxqueues '2' with jumbo frames 'yes'
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | 3-node-bridge | ${min_rate} | ${max_rate}
+| | ... | ${binary_max} | 3-node-xconnect | ${min_rate} | ${max_rate}
 | | ... | ${threshold}
 
 | tc18-9000B-4t4c-eth-l2xcbase-pdrdisc
@@ -409,5 +409,5 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Start L2FWD '4' worker threads and rxqueues '2' with jumbo frames 'yes'
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | 3-node-bridge | ${min_rate} | ${max_rate}
+| | ... | ${binary_max} | 3-node-xconnect | ${min_rate} | ${max_rate}
 | | ... | ${threshold} | ${glob_loss_acceptance} | ${glob_loss_acceptance_type}

@@ -64,7 +64,7 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Start L2FWD '1' worker threads and rxqueues '1' with jumbo frames 'no'
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-bridge
+| | ...                                       | ${binary_max} | 3-node-xconnect
 | | ...                                       | ${min_rate} | ${max_rate}
 | | ...                                       | ${threshold}
 
@@ -82,7 +82,7 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Start L2FWD '1' worker threads and rxqueues '1' with jumbo frames 'no'
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-bridge
+| | ...                                       | ${binary_max} | 3-node-xconnect
 | | ...                                       | ${min_rate} | ${max_rate}
 | | ...                                       | ${threshold}
 | | ...                                       | ${glob_loss_acceptance}
@@ -102,7 +102,7 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Start L2FWD '1' worker threads and rxqueues '1' with jumbo frames 'no'
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-bridge
+| | ...                                       | ${binary_max} | 3-node-xconnect
 | | ...                                       | ${min_rate} | ${max_rate}
 | | ...                                       | ${threshold}
 
@@ -120,7 +120,7 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Start L2FWD '1' worker threads and rxqueues '1' with jumbo frames 'no'
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-bridge
+| | ...                                       | ${binary_max} | 3-node-xconnect
 | | ...                                       | ${min_rate} | ${max_rate}
 | | ...                                       | ${threshold}
 | | ...                                       | ${glob_loss_acceptance}
@@ -140,7 +140,7 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Start L2FWD '1' worker threads and rxqueues '1' with jumbo frames 'yes'
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-bridge
+| | ...                                       | ${binary_max} | 3-node-xconnect
 | | ...                                       | ${min_rate} | ${max_rate}
 | | ...                                       | ${threshold}
 
@@ -158,7 +158,7 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Start L2FWD '1' worker threads and rxqueues '1' with jumbo frames 'yes'
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-bridge
+| | ...                                       | ${binary_max} | 3-node-xconnect
 | | ...                                       | ${min_rate} | ${max_rate}
 | | ...                                       | ${threshold}
 | | ...                                       | ${glob_loss_acceptance}
@@ -178,7 +178,7 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Start L2FWD '2' worker threads and rxqueues '1' with jumbo frames 'no'
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-bridge
+| | ...                                       | ${binary_max} | 3-node-xconnect
 | | ...                                       | ${min_rate} | ${max_rate}
 | | ...                                       | ${threshold}
 
@@ -197,7 +197,7 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Start L2FWD '2' worker threads and rxqueues '1' with jumbo frames 'no'
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-bridge
+| | ...                                       | ${binary_max} | 3-node-xconnect
 | | ...                                       | ${min_rate} | ${max_rate}
 | | ...                                       | ${threshold}
 | | ...                                       | ${glob_loss_acceptance}
@@ -217,7 +217,7 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Start L2FWD '2' worker threads and rxqueues '1' with jumbo frames 'no'
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-bridge
+| | ...                                       | ${binary_max} | 3-node-xconnect
 | | ...                                       | ${min_rate} | ${max_rate}
 | | ...                                       | ${threshold}
 
@@ -236,7 +236,7 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Start L2FWD '2' worker threads and rxqueues '1' with jumbo frames 'no'
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-bridge
+| | ...                                       | ${binary_max} | 3-node-xconnect
 | | ...                                       | ${min_rate} | ${max_rate}
 | | ...                                       | ${threshold}
 | | ...                                       | ${glob_loss_acceptance}
@@ -256,7 +256,7 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Start L2FWD '2' worker threads and rxqueues '1' with jumbo frames 'yes'
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-bridge
+| | ...                                       | ${binary_max} | 3-node-xconnect
 | | ...                                       | ${min_rate} | ${max_rate}
 | | ...                                       | ${threshold}
 
@@ -275,7 +275,7 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Start L2FWD '2' worker threads and rxqueues '1' with jumbo frames 'yes'
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-bridge
+| | ...                                       | ${binary_max} | 3-node-xconnect
 | | ...                                       | ${min_rate} | ${max_rate}
 | | ...                                       | ${threshold}
 | | ...                                       | ${glob_loss_acceptance}
@@ -295,7 +295,7 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Start L2FWD '4' worker threads and rxqueues '2' with jumbo frames 'no'
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-bridge
+| | ...                                       | ${binary_max} | 3-node-xconnect
 | | ...                                       | ${min_rate} | ${max_rate}
 | | ...                                       | ${threshold}
 
@@ -314,7 +314,7 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Start L2FWD '4' worker threads and rxqueues '2' with jumbo frames 'no'
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-bridge
+| | ...                                       | ${binary_max} | 3-node-xconnect
 | | ...                                       | ${min_rate} | ${max_rate}
 | | ...                                       | ${threshold}
 | | ...                                       | ${glob_loss_acceptance}
@@ -334,7 +334,7 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Start L2FWD '4' worker threads and rxqueues '2' with jumbo frames 'no'
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-bridge
+| | ...                                       | ${binary_max} | 3-node-xconnect
 | | ...                                       | ${min_rate} | ${max_rate}
 | | ...                                       | ${threshold}
 
@@ -353,7 +353,7 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Start L2FWD '4' worker threads and rxqueues '2' with jumbo frames 'no'
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-bridge
+| | ...                                       | ${binary_max} | 3-node-xconnect
 | | ...                                       | ${min_rate} | ${max_rate}
 | | ...                                       | ${threshold}
 | | ...                                       | ${glob_loss_acceptance}
@@ -373,7 +373,7 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Start L2FWD '4' worker threads and rxqueues '2' with jumbo frames 'yes'
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-bridge
+| | ...                                       | ${binary_max} | 3-node-xconnect
 | | ...                                       | ${min_rate} | ${max_rate}
 | | ...                                       | ${threshold}
 
@@ -392,7 +392,7 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Start L2FWD '4' worker threads and rxqueues '2' with jumbo frames 'yes'
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-bridge
+| | ...                                       | ${binary_max} | 3-node-xconnect
 | | ...                                       | ${min_rate} | ${max_rate}
 | | ...                                       | ${threshold}
 | | ...                                       | ${glob_loss_acceptance}
