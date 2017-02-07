@@ -70,9 +70,9 @@ class DPDKTools(object):
         :raises RuntimeError: If it fails to cleanup the dpdk.
         """
         pci_address1 = Topology.get_interface_pci_addr(dut_node, dut_if1)
-        if1_driver = Topology.get_interface_driver(dut_node, dut_if1)
+        if1_driver = 'igb_uio'
         pci_address2 = Topology.get_interface_pci_addr(dut_node, dut_if2)
-        if2_driver = Topology.get_interface_driver(dut_node, dut_if2)
+        if2_driver = 'igb_uio'
 
         ssh = SSH()
         ssh.connect(dut_node)

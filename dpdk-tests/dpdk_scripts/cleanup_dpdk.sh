@@ -24,7 +24,7 @@ if [ $? -eq "0" ]; then
         fi
         sleep 1
     done
-    if [ ${success} -eq false ]; then
+    if [ "$success" = false ]; then
         echo "The command sudo pkill testpmd failed"
         exit 1
     fi
