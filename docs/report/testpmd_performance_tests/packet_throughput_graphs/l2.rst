@@ -7,8 +7,11 @@ performance illustrating NDR throughput (zero packet loss) and PDR throughput
 Testpmd worker thread (a.k.a. VPP data plane thread) and physical CPU core
 configurations.
 
-Title of each graph is a regex (regular expression) matching plotted
-test cases.
+*Title of each graph* is a regex (regular expression) matching all plotted
+throughput test cases, *X-axis labels* are indeces of csit-dpdk-perf-1701 jobs
+that created result output files used as data sources for the graph,
+*Y-axis labels* are measured Packets Per Second [pps] values, and the *graph
+legend* identifes the plotted test suites.
 
 .. note::
 
