@@ -14,6 +14,8 @@
 """Used to parse JSON files or JSON data strings to dictionaries"""
 
 import json
+from robot.api import logger
+from os import uname
 
 
 class JsonParser(object):
@@ -32,6 +34,23 @@ class JsonParser(object):
         :return: JSON data parsed as python list.
         :rtype: list
         """
+        if "4.2.0-42-generic" in uname():
+            # TODO: remove ugly workaround
+            # On Ubuntu14.04 the VAT console returns "error:misc" even after
+            # some commands execute correctly. This causes problems
+            # with parsing JSON data.
+            known_errors = ["sw_interface_dump error: Misc",
+                            "lisp_eid_table_dump error: Misc",
+                            "show_lisp_status error: Misc",
+                            "lisp_map_resolver_dump error: Misc",
+                            "show_lisp_pitr error: Misc",
+                            "snat_static_mapping_dump error: Misc",
+                            ]
+            for item in known_errors:
+                if item in json_data:
+                    json_data = json_data.replace(item, "")
+                    logger.debug("Removing API error: *{0}* "
+                                 "from JSON output.".format(item))
         parsed_data = json.loads(json_data)
         return parsed_data
 
