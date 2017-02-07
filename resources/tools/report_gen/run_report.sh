@@ -65,7 +65,7 @@ JEN_URL='https://jenkins.fd.io/view/csit/job'
 JEN_FILE_PERF='output_perf_data.xml'
 
 JEN_JOB='csit-vpp-perf-1701-all'
-JEN_BUILD=(3 4 7 8)
+JEN_BUILD=(3 4 7 8 9)
 
 for i in "${JEN_BUILD[@]}"; do
     curl -fs ${JEN_URL}/${JEN_JOB}/${i}/artifact/${JEN_FILE_PERF} -o ${STATIC_DIR_VPP}/${JEN_JOB}-${i}.xml
@@ -89,7 +89,7 @@ for i in "${JEN_BUILD[@]}"; do
 done
 
 JEN_JOB='csit-vpp-functional-1701-virl'
-JEN_BUILD=(18)
+JEN_BUILD=(48)
 
 for i in "${JEN_BUILD[@]}"; do
     curl -fs ${JEN_URL}/${JEN_JOB}/${i}/artifact/\*zip\*/archive.zip -o ${STATIC_DIR_ARCH}/${JEN_JOB}-${i}.zip
