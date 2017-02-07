@@ -15,4 +15,7 @@
 | Resource | resources/libraries/robot/default.robot
 | Resource | resources/libraries/robot/interfaces.robot
 | Library | resources.libraries.python.DPDK.SetupDPDKTest
-| Suite Setup | Run Keyword | Setup DPDK Test | ${nodes}
+| Suite Setup | Run Keywords | Setup DPDK Test | ${nodes}
+| ...         | AND          | Get CPU Layout from all nodes | ${nodes}
+| ...         | AND          | Update All Numa Nodes
+| ...                        | ${nodes} | skip_tg=${True}
