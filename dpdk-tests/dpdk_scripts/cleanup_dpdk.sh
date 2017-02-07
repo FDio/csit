@@ -15,6 +15,7 @@ port2_pci=$4
 sudo pgrep testpmd
 if [ $? -eq "0" ]; then
     success=false
+    sudo pkill tail
     sudo pkill testpmd
     for attempt in {1..5}; do
         sudo pgrep testpmd
@@ -24,15 +25,16 @@ if [ $? -eq "0" ]; then
         fi
         sleep 1
     done
-    if [ ${success} -eq false ]; then
+    if [ "$success" = false ]; then
         echo "The command sudo pkill testpmd failed"
         exit 1
     fi
+    cat ${TESTPMD_LOG}
 fi
 
+sudo rm -f ${TESTPMD_LOG}
 sudo rm -f ${TESTPMD_PID}
 sudo rm -f /dev/hugepages/*
-cat ${TESTPMD_LOG}
 
 cd ${ROOTDIR}/dpdk-16.07/
 ./tools/dpdk-devbind.py -b ${port1_driver} ${port1_pci}
