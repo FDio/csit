@@ -22,6 +22,10 @@
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | VM_ENV | HW_ENV
 | Test Setup | Func Test Setup
 | Test Teardown | Func Test Teardown
+| ... | AND | Run keyword | Qemu Teardown | ${dut1_node}
+| ...                                     | ${${qemu1}} | ${qemu1}
+| ... | AND | Run keyword | Qemu Teardown | ${dut2_node}
+| ...                                     | ${${qemu2}} | ${qemu2}
 | Documentation | *L2BD with VM combined with VXLAN test cases - IPv6*
 | ...
 | ... | *[Top] Network topologies:* TG-DUT1-DUT2-TG 3-node circular topology
@@ -111,10 +115,3 @@
 | | ...                            | ${dut2s_vxlan} | ${${dut2_vhost2}}
 | | Then Send and receive ICMPv6 bidirectionally
 | | ... | ${tg_node} | ${tg_to_dut1} | ${tg_to_dut2}
-| | [Teardown] | Run Keywords | Show Packet Trace on All DUTs | ${nodes}
-| | ... | AND | Show vpp trace dump on all DUTs
-| | ... | AND | Run keyword | Qemu Teardown | ${dut1_node}
-| | ...                                     | ${${qemu1}} | ${qemu1}
-| | ... | AND | Run keyword | Qemu Teardown | ${dut2_node}
-| | ...                                     | ${${qemu2}} | ${qemu2}
-| | ... | AND | Check VPP PID in Teardown

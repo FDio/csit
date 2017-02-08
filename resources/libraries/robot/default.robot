@@ -13,7 +13,9 @@
 
 *** Settings ***
 | Variables | resources/libraries/python/topology.py
+| Variables | resources/libraries/python/VatHistory.py
 | Library | resources.libraries.python.topology.Topology
+| Library | resources.libraries.python.VatHistory
 | Library | resources.libraries.python.CpuUtils
 | Library | resources.libraries.python.DUTSetup
 | Library | resources.libraries.python.SchedUtils
@@ -234,11 +236,12 @@
 | | Save VPP PIDs
 | | Setup all TGs before traffic script
 | | Update All Interface Data On All Nodes | ${nodes}
+| | Reset VAT History On All DUTs | ${nodes}
 
 | Func Test Teardown
 | | [Documentation] | Common test teardown for functional tests.
 | | ...
 | | Show Packet Trace on All DUTs | ${nodes}
-| | Show vpp trace dump on all DUTs
+| | Show VAT History On All DUTs | ${nodes}
 | | Vpp Show Errors On All DUTs | ${nodes}
 | | Check VPP PID in Teardown
