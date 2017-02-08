@@ -27,7 +27,8 @@
 | Test Setup | Run Keywords | Func Test Setup
 | ...        | AND          | Clean Up Namespaces | ${nodes['DUT1']}
 | Test Teardown | Run Keywords | Func Test Teardown
-| ...           | AND          | Clean Up Namespaces | ${nodes['DUT1']}
+| ... | AND | Linux Del Bridge | ${nodes['DUT1']} | ${bid_TAP}
+| ... | AND | Clean Up Namespaces | ${nodes['DUT1']}
 | Documentation | *Tap Interface Traffic Tests*
 | ... | *[Top] Network Topologies:* TG=DUT1 2-node topology with two links
 | ... | between nodes.
@@ -60,12 +61,6 @@
 | | ... | joining two linux-TAP interfaces created by VPP located in namespace.
 | | ... | [Ver] Packet sent from TG is passed through all L2BD and received
 | | ... | back on TG. Then src_ip, dst_ip and MAC are checked.
-| | ...
-| | [Teardown] | Run Keywords
-| | ... | Linux Del Bridge | ${dut_node} | ${bid_TAP} | AND
-| | ... | Show Packet Trace on All DUTs | ${nodes} | AND
-| | ... | Clean Up Namespaces | ${nodes['DUT1']} | AND
-| | ... | Check VPP PID in Teardown
 | | ...
 | | Given Path for 2-node testing is set | ${nodes['TG']} | ${nodes['DUT1']}
 | | ... | ${nodes['TG']}

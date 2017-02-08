@@ -24,10 +24,11 @@
 | ... | Update All Interface Data On All Nodes | ${nodes} | AND
 | ... | Setup DUT nodes for IPv4 testing
 | Test Setup | Run Keywords | Save VPP PIDs | AND
+| ... | Reset VAT History On All DUTs | ${nodes} | AND
 | ... | Clear interface counters on all vpp nodes in topology | ${nodes}
 | Test Teardown | Run Keywords
 | ... | Show packet trace on all DUTs | ${nodes} | AND
-| ... | Show vpp trace dump on all DUTs | AND
+| ... | Show VAT History On All DUTs | ${nodes} | AND
 | ... | Check VPP PID in Teardown
 | Documentation | *IPv4 routing test cases*
 | ...
