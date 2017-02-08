@@ -34,9 +34,10 @@
 | Test Setup | Run Keywords | Func Test Setup
 | ... | AND | Vpp All Ra Suppress Link Layer | ${nodes}
 | Test Teardown | Run Keywords | Show Packet Trace on All DUTs | ${nodes}
-| ... | AND | Show vpp trace dump on all DUTs
+| ... | AND | Show VAT History On All DUTs | ${nodes}
 | ... | AND | Show Vpp Settings | ${nodes['DUT1']}
 | ... | AND | Show Vpp Settings | ${nodes['DUT2']}
+| ... | AND | Stop and Clear QEMU | ${nodes['DUT1']} | ${vm_node}
 | ... | AND | Check VPP PID in Teardown
 | ...
 | Documentation | *ip6-lispgpe-ip6 encapsulation test cases*
@@ -67,12 +68,6 @@
 | | ... | received packets are correct.
 | | ... | [Ref] RFC6830.
 | | ...
-| | [Teardown] | Run Keywords | Show Packet Trace on All DUTs | ${nodes}
-| | ... | AND | Show vpp trace dump on all DUTs
-| | ... | AND | Show Vpp Settings | ${nodes['DUT1']}
-| | ... | AND | Show Vpp Settings | ${nodes['DUT2']}
-| | ... | AND | Stop and Clear QEMU | ${dut1_node} | ${vm_node}
-| | ... | AND | Check VPP PID in Teardown
 | | ...
 | | Given Path for 3-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}

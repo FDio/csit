@@ -35,9 +35,10 @@
 | ...
 | Test Setup | Func Test Setup
 | Test Teardown | Run Keywords | Show Packet Trace on All DUTs | ${nodes}
-| ... | AND | Show vpp trace dump on all DUTs
+| ... | AND | Show VAT History On All DUTs | ${nodes}
 | ... | AND | Show Vpp Settings | ${nodes['DUT1']}
 | ... | AND | Show Vpp Settings | ${nodes['DUT2']}
+| ... | AND | Stop and Clear QEMU | ${nodes['DUT1']} | ${vm_node}
 | ... | AND | Check VPP PID in Teardown
 | ...
 | Documentation | *ip4-lispgpe-ip4 encapsulation test cases*
@@ -67,13 +68,6 @@
 | | ... | DUTs and LISP GPE tunnel between them; verify IPv4 headers on\
 | | ... | received packets are correct.
 | | ... | [Ref] RFC6830.
-| | ...
-| | [Teardown] | Run Keywords | Show Packet Trace on All DUTs | ${nodes}
-| | ... | AND | Show vpp trace dump on all DUTs
-| | ... | AND | Show Vpp Settings | ${nodes['DUT1']}
-| | ... | AND | Show Vpp Settings | ${nodes['DUT2']}
-| | ... | AND | Stop and Clear QEMU | ${dut1_node} | ${vm_node}
-| | ... | AND | Check VPP PID in Teardown
 | | ...
 | | Given Path for 3-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}

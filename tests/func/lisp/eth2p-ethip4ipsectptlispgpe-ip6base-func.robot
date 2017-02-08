@@ -40,7 +40,7 @@
 | ...
 | Test Setup | Func Test Setup
 | Test Teardown | Run Keywords | Show Packet Trace on All DUTs | ${nodes}
-| ... | AND | Show vpp trace dump on all DUTs
+| ... | AND | Show VAT History On All DUTs | ${nodes}
 | ... | AND | Show Vpp Settings | ${nodes['DUT1']}
 | ... | AND | Show Vpp Settings | ${nodes['DUT2']}
 | ... | AND | Check VPP PID in Teardown
