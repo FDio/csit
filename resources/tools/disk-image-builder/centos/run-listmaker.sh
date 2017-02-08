@@ -61,7 +61,7 @@ echo "Storing data in ${OUTPUT_DIR}/."
 # RPM packages wanted
 
 RPM_WANTLIST_INFRA="nfs-utils cloud-init pkgconfig yum-utils"
-RPM_WANTLIST_CSIT="python-devel python-pip python-virtualenv python-setuptools python-pip openssl-devel git strongswan"
+RPM_WANTLIST_CSIT="python-devel python-pip python-virtualenv python-setuptools python-pip openssl-devel git strongswan libffi-devel libssl-devel"
 RPM_WANTLIST_VPP="dkms bridge-utils"
 RPM_WANTLIST_TREX="zlib-devel unzip"
 RPM_WANTLIST_MISC="socat psmisc gperftools glusterfs glusterfs-api libiscsi libibverbs libpcap libpcap-devel pixman libpng pulseaudio-libs librados2 librbd1 librdmacm libseccomp spice-server libusb usbredir glusterfs-devel seavgabios-bin sgabios-bin ipxe-roms-qemu nss-devel seabios-bin"

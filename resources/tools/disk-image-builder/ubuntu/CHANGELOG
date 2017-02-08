@@ -1,3 +1,8 @@
+## [1.9] - 2017-02-24
+
+Upgrade scapy to 2.3.2
+Replace pycrypto with pycryptodome
+
 ## [1.8] - 2017-02-23
 
 Added pypcap
