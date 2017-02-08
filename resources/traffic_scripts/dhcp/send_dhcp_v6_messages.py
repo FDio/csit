@@ -14,6 +14,7 @@
 
 """Traffic script that sends DHCPv6 proxy packets."""
 
+import scapy.layers.inet6  # pylint: disable=unused-import
 from scapy.layers.dhcp6 import *
 from scapy.layers.inet6 import IPv6, UDP, UDP_SERVICES
 
