@@ -555,6 +555,9 @@ class InterfaceKeywords(object):
         :rtype: bytearray
         """
 
+        interface = Topology.convert_interface_reference(
+            node, interface, "name")
+
         path = ("interfaces", ("interface", "name", interface), "ietf-ip:ipv4",
                 "neighbor")
         neighbor = [{"ip": ip_addr, "link-layer-address": link_layer_address}, ]
@@ -626,6 +629,9 @@ class InterfaceKeywords(object):
         :rtype: bytearray
         """
 
+        interface = Topology.convert_interface_reference(
+            node, interface, "name")
+
         path = ("interfaces", ("interface", "name", interface), "ietf-ip:ipv6")
         address = {"address": [{"ip": ip_addr, "prefix-length": prefix_len}, ]}
         return InterfaceKeywords._set_interface_properties(
@@ -685,6 +691,9 @@ class InterfaceKeywords(object):
         :returns: Content of response.
         :rtype: bytearray
         """
+
+        interface = Topology.convert_interface_reference(
+            node, interface, "name")
 
         path = ("interfaces", ("interface", "name", interface), "ietf-ip:ipv6",
                 "neighbor")
@@ -751,6 +760,9 @@ class InterfaceKeywords(object):
         :rtype: bytearray
         :raises HoneycombError: If the parameter is not valid.
         """
+
+        interface = Topology.convert_interface_reference(
+            node, interface, "name")
 
         if param not in InterfaceKeywords.ROUTING_PARAMS:
             raise HoneycombError("The parameter {0} is invalid.".format(param))
