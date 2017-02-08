@@ -23,8 +23,9 @@
 | Test Setup | Run Keywords | Setup all DUTs before test
 | ...        | AND          | Save VPP PIDs
 | ...        | AND          | Setup all TGs before traffic script
+| ...        | AND          | Reset VAT History On All DUTs | ${nodes}
 | Test Teardown | Run Keywords | Show Packet Trace on All DUTs | ${nodes}
-| ...           | AND          | Show vpp trace dump on all DUTs
+| ...           | AND          | Show VAT History On All DUTs | ${nodes}
 | ...           | AND          | Qemu Teardown | ${dut1_node} | ${qemu_node1}
 | ...                          | qemu_node1
 | ...           | AND          | Qemu Teardown | ${dut2_node} | ${qemu_node2}

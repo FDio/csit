@@ -19,6 +19,7 @@ from robot.api import logger
 
 from resources.libraries.python.ssh import SSH
 from resources.libraries.python.constants import Constants
+from resources.libraries.python.VatHistory import VatHistory
 
 
 __all__ = ['VatExecutor']
@@ -162,8 +163,9 @@ class VatTerminal(object):
     def __init__(self, node, json_param=True):
         json_text = ' json' if json_param else ''
         self.json = json_param
+        self._node = node
         self._ssh = SSH()
-        self._ssh.connect(node)
+        self._ssh.connect(self._node)
         self._tty = self._ssh.interactive_terminal_open()
         self._ssh.interactive_terminal_exec_command(
             self._tty,
@@ -185,6 +187,7 @@ class VatTerminal(object):
         :return: Command output in python representation of JSON format or
         None if not in JSON mode.
         """
+        VatHistory.add_to_vat_history(self._node, cmd)
         logger.debug("Executing command in VAT terminal: {}".format(cmd))
         try:
             out = self._ssh.interactive_terminal_exec_command(self._tty, cmd,
@@ -217,7 +220,7 @@ class VatTerminal(object):
 
     def vat_terminal_close(self):
         """Close VAT terminal."""
-        #interactive terminal is dead, we only need to close session
+        # interactive terminal is dead, we only need to close session
         if not self._exec_failure:
             self._ssh.interactive_terminal_exec_command(self._tty,
                                                         'quit',
