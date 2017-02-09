@@ -54,9 +54,9 @@ def main():
     #
     parser = argparse.ArgumentParser()
     parser.add_argument("topology", help="the base topology to be started")
-    parser.add_argument("packages", help="Path to the VPP .deb(s) that " +
-                        "is/are to be installed", nargs='+')
-    parser.add_argument("-c", "--copy", help="Copy the .deb packages, " +
+    parser.add_argument("packages", help="Path to the VPP .deb(s) or .rpm(s) " +
+                        "that is/are to be installed", nargs='+')
+    parser.add_argument("-c", "--copy", help="Copy the VPP packages, " +
                         "leaving the originals in place. Default is to " +
                         "move them.", action='store_true')
     parser.add_argument("-k", "--keep", help="Keep (do not delete) the " +
@@ -91,8 +91,8 @@ def main():
     parser.add_argument("-spu", "--ssh-pubkey", help="SSH public keyfile",
                         default="/home/jenkins-in/.ssh/id_rsa_virl.pub")
     parser.add_argument("-r", "--release", help="VM disk image/release " +
-                        "(ex. \"csit-ubuntu-14.04.4_2016-05-25_1.0\")",
-                        default="csit-ubuntu-14.04.4_2016-05-25_1.0")
+                        "(ex. \"csit-ubuntu-16.04.1_2016-12-19_1.6\")",
+                        default="csit-ubuntu-16.04.1_2016-12-19_1.6")
     parser.add_argument("--topology-directory", help="Topology directory",
                         default="/home/jenkins-in/testcase-infra/topologies")
 
@@ -140,9 +140,9 @@ def main():
         open(topology_virl_filename, 'r') as old_file:
         for line in old_file:
             line = line.replace("  - VIRL-USER-SSH-PUBLIC-KEY", "  - "+pub_key)
-            line = line.replace("$$NFS_SERVER_SCRATCH$$", \
+            line = line.replace("$$NFS_SERVER_SCRATCH$$",
                 args.nfs_server_ip+":"+args.nfs_scratch_directory)
-            line = line.replace("$$NFS_SERVER_COMMON$$", \
+            line = line.replace("$$NFS_SERVER_COMMON$$",
                 args.nfs_server_ip+":"+args.nfs_common_directory)
             line = line.replace("$$VM_IMAGE$$", "server-"+args.release)
             new_file.write(line)
@@ -343,8 +343,21 @@ def main():
                 client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
                 client.connect(ipaddr, username=args.ssh_user,
                                key_filename=args.ssh_privkey)
+                if 'centos' in args.topology:
+                    if args.verbosity >= 1:
+                        print "DEBUG: Installing RPM packages"
+                    vpp_install_command = 'rpm -ivh /scratch/vpp/*.rpm'
+                elif 'trusty' in args.topology or 'xenial' in args.topology:
+                    if args.verbosity >= 1:
+                        print "DEBUG: Installing DEB packages"
+                    vpp_install_command = 'sudo dpkg -i --force-all ' \
+                                          '/scratch/vpp/*.deb'
+                else:
+                    print "ERROR: Unsupported OS requested: {}"\
+                        .format(args.topology)
+                    vpp_install_command = ''
                 stdin, stdout, stderr = \
-                    client.exec_command('sudo dpkg -i --force-all /scratch/vpp/*deb')
+                    client.exec_command(vpp_install_command)
                 c_stdout = stdout.read()
                 c_stderr = stderr.read()
                 if args.verbosity >= 2:
