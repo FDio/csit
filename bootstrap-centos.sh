@@ -17,8 +17,7 @@ set -x
 cat /etc/hostname
 cat /etc/hosts
 
-sudo apt-get -y update
-sudo apt-get -y install libpython2.7-dev python-virtualenv
+sudo yum install -y python-devel python-virtualenv
 
 VIRL_SERVERS=("10.30.51.28" "10.30.51.29" "10.30.51.30")
 
@@ -28,7 +27,7 @@ VIRL_SERVER_STATUS_FILE="status"
 VIRL_SERVER_EXPECTED_STATUS="PRODUCTION"
 
 VIRL_TOPOLOGY=double-ring-nested.centos7
-VIRL_RELEASE=csit-centos-7.3-1611
+VIRL_RELEASE=csit-centos-7.3-1611_2017-02-14_1.3
 
 SSH_OPTIONS="-i ${VIRL_PKEY} -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o BatchMode=yes -o LogLevel=error"
 
@@ -125,23 +124,21 @@ done
 echo "Selected VIRL servers: ${VIRL_SERVER[@]}"
 
 # Temporarily download VPP packages from nexus.fd.io
+DPDK_STABLE_VER=$(cat ${SCRIPT_DIR}/DPDK_STABLE_VER).x86_64
+VPP_REPO_URL=$(cat ${SCRIPT_DIR}/VPP_REPO_URL_CENTOS)
+VPP_CLASSIFIER=""
 if [ "${#}" -ne "0" ]; then
     arr=(${@})
     echo ${arr[0]}
     # DPDK is not part of the vpp build
-    DPDK_STABLE_VER=$(cat ${SCRIPT_DIR}/DPDK_STABLE_VER)
-    wget -q "${VPP_REPO_URL}/vpp-dpdk-dev/${DPDK_STABLE_VER}/vpp-dpdk-dev-${DPDK_STABLE_VER}${VPP_CLASSIFIER}.rpm" || exit
-    wget -q "${VPP_REPO_URL}/vpp-dpdk-dkms/${DPDK_STABLE_VER}/vpp-dpdk-dkms-${DPDK_STABLE_VER}${VPP_CLASSIFIER}.rpm" || exit
+    wget -q "${VPP_REPO_URL}/vpp-dpdk-devel/${DPDK_STABLE_VER}/vpp-dpdk-devel-${DPDK_STABLE_VER}${VPP_CLASSIFIER}.rpm" || exit
 else
     rm -f *.rpm
-    DPDK_STABLE_VER=$(cat ${SCRIPT_DIR}/DPDK_STABLE_VER)
-    VPP_STABLE_VER=$(cat ${SCRIPT_DIR}/VPP_STABLE_VER)
-    VPP_REPO_URL=$(cat ${SCRIPT_DIR}/VPP_REPO_URL_CENTOS)
-    VPP_CLASSIFIER="-rpm"
+    VPP_STABLE_VER=$(cat ${SCRIPT_DIR}/VPP_STABLE_VER_CENTOS)
     wget -q "${VPP_REPO_URL}/vpp/${VPP_STABLE_VER}/vpp-${VPP_STABLE_VER}${VPP_CLASSIFIER}.rpm" || exit
-    wget -q "${VPP_REPO_URL}/vpp-dbg/${VPP_STABLE_VER}/vpp-dbg-${VPP_STABLE_VER}${VPP_CLASSIFIER}.rpm" || exit
-    wget -q "${VPP_REPO_URL}/vpp-dev/${VPP_STABLE_VER}/vpp-dev-${VPP_STABLE_VER}${VPP_CLASSIFIER}.rpm" || exit
-    wget -q "${VPP_REPO_URL}/vpp-dpdk-dev/${DPDK_STABLE_VER}/vpp-dpdk-dev-${VPP_STABLE_VER}${VPP_CLASSIFIER}.rpm" || exit
+    wget -q "${VPP_REPO_URL}/vpp-debuginfo/${VPP_STABLE_VER}/vpp-debuginfo-${VPP_STABLE_VER}${VPP_CLASSIFIER}.rpm" || exit
+    wget -q "${VPP_REPO_URL}/vpp-devel/${VPP_STABLE_VER}/vpp-devel-${VPP_STABLE_VER}${VPP_CLASSIFIER}.rpm" || exit
+    wget -q "${VPP_REPO_URL}/vpp-dpdk-devel/${DPDK_STABLE_VER}/vpp-dpdk-devel-${DPDK_STABLE_VER}${VPP_CLASSIFIER}.rpm" || exit
     wget -q "${VPP_REPO_URL}/vpp-lib/${VPP_STABLE_VER}/vpp-lib-${VPP_STABLE_VER}${VPP_CLASSIFIER}.rpm" || exit
     wget -q "${VPP_REPO_URL}/vpp-plugins/${VPP_STABLE_VER}/vpp-plugins-${VPP_STABLE_VER}${VPP_CLASSIFIER}.rpm" || exit
 fi
