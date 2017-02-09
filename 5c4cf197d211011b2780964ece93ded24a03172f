@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a3291f1_9458affb",
+        "filename": "bootstrap-ubuntu.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-02-09T15:11:32Z",
+      "side": 1,
+      "message": "Why separate this to Ubuntu and Centos? Shouldn\u0027t we call a VPP version \"stable\" only once it works on both systems?",
+      "range": {
+        "startLine": 140,
+        "startChar": 53,
+        "endLine": 140,
+        "endChar": 60
+      },
+      "revId": "5c4cf197d211011b2780964ece93ded24a03172f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
