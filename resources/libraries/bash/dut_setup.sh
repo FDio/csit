@@ -23,7 +23,11 @@ function cmd {
 echo
 echo "[Command_desc] Starting ${0}"
 
-cmd 'dpkg -l vpp\*'
+if [ -f "/etc/redhat-release" ]; then
+    cmd 'yum list vpp*'
+else
+    cmd 'dpkg -l vpp\*'
+fi
 
 cmd 'ps aux | grep vpp'
 
@@ -44,7 +48,11 @@ cmd 'sudo dmidecode | grep UUID'
 
 cmd 'lspci -Dnn'
 
-cmd 'tail -n 100 /var/log/syslog'
+if [ -f "/etc/redhat-release" ]; then
+    cmd 'tail -n 100 /var/log/messages'
+else
+    cmd 'tail -n 100 /var/log/syslog'
+fi
 
 echo "[Command_desc] Adding dpdk-input trace"
 cmd 'sudo vpp_api_test <<< "exec trace add dpdk-input 100"'
