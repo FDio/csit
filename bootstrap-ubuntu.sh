@@ -126,7 +126,7 @@ done
 echo "Selected VIRL servers: ${VIRL_SERVER[@]}"
 
 # Temporarily download VPP and DPDK packages from nexus.fd.io
-DPDK_STABLE_VER=$(cat ${SCRIPT_DIR}/DPDK_STABLE_VER)
+DPDK_STABLE_VER=$(cat ${SCRIPT_DIR}/DPDK_STABLE_VER)_amd64
 VPP_REPO_URL=$(cat ${SCRIPT_DIR}/VPP_REPO_URL)
 VPP_CLASSIFIER="-deb"
 if [ "${#}" -ne "0" ]; then
@@ -137,7 +137,7 @@ if [ "${#}" -ne "0" ]; then
     wget -q "${VPP_REPO_URL}/vpp-dpdk-dkms/${DPDK_STABLE_VER}/vpp-dpdk-dkms-${DPDK_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
 else
     rm -f *.deb
-    VPP_STABLE_VER=$(cat ${SCRIPT_DIR}/VPP_STABLE_VER)
+    VPP_STABLE_VER=$(cat ${SCRIPT_DIR}/VPP_STABLE_VER_UBUNTU)
     wget -q "${VPP_REPO_URL}/vpp/${VPP_STABLE_VER}/vpp-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
     wget -q "${VPP_REPO_URL}/vpp-dbg/${VPP_STABLE_VER}/vpp-dbg-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
     wget -q "${VPP_REPO_URL}/vpp-dev/${VPP_STABLE_VER}/vpp-dev-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
