@@ -20,7 +20,7 @@ cat /etc/hosts
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 if [ -f "/etc/redhat-release" ]; then
-    ${SCRIPT_DIR}/bootstrap-centos.sh
+    ${SCRIPT_DIR}/bootstrap-centos.sh $@
 else
-    ${SCRIPT_DIR}/bootstrap-ubuntu.sh
+    ${SCRIPT_DIR}/bootstrap-ubuntu.sh $@
 fi
