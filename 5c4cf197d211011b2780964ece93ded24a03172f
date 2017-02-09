@@ -22,6 +22,30 @@
       "revId": "5c4cf197d211011b2780964ece93ded24a03172f",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_149f1f61",
+        "filename": "bootstrap-ubuntu.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2017-02-09T15:29:43Z",
+      "side": 1,
+      "message": "That was our intetnion to use the same build version for ubuntu1604 and centos, but jenkins build number of the job publishing vpp pacakges to nexus is part of the vpp build sub-directory and file name (~b1234) - and for the same vpp patch the job numbers of ubuntu1604 and centos7 merge jobs could be different:\n- ubuntu1604: 17.04-rc0~200-g460bc63~b1824_amd64\n- centos7:    17.04-rc0~200_g460bc63~b1823.x86_64",
+      "parentUuid": "3a3291f1_9458affb",
+      "range": {
+        "startLine": 140,
+        "startChar": 53,
+        "endLine": 140,
+        "endChar": 60
+      },
+      "revId": "5c4cf197d211011b2780964ece93ded24a03172f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
