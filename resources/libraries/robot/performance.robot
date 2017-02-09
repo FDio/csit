@@ -258,6 +258,7 @@
 | | ... | with prefix /8 and next hop of neighbour DUT or TG interface IPv4 
 | | ... | address.
 | | ...
+| | VPP interfaces in path are up in a 3-node circular topology
 | | ${tg_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
 | | ${tg_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
 | | ${dut1_if1_mac}= | Get Interface MAC | ${dut1} | ${dut1_if1}
@@ -282,12 +283,8 @@
 | | dut1_v4.set_arp | ${dut1_if2} | ${dut2_if1_ip4} | ${dut2_if1_mac}
 | | dut2_v4.set_arp | ${dut2_if2} | ${tg_if2_ip4} | ${tg_if2_mac}
 | | dut2_v4.set_arp | ${dut2_if1} | ${dut1_if2_ip4} | ${dut1_if2_mac}
-| | dut1_v4.set_route | ${raddr_ip4} | 8 | ${dut2_if1_ip4} | ${dut1_if2}
 | | dut1_v4.set_route | ${laddr_ip4} | 8 | ${tg_if1_ip4} | ${dut1_if1}
 | | dut2_v4.set_route | ${raddr_ip4} | 8 | ${tg_if2_ip4} | ${dut2_if2}
-| | dut2_v4.set_route | ${laddr_ip4} | 8 | ${dut1_if2_ip4} | ${dut2_if1}
-| | All Vpp Interfaces Ready Wait | ${nodes}
-
 
 | IPv4 forwarding initialized in a 3-node circular topology
 | | [Documentation]

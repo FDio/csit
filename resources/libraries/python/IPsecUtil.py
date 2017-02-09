@@ -294,14 +294,15 @@ class IPsecUtil(object):
         tunnel = 'tunnel_src {0} tunnel_dst {1}'.format(tunnel_src, tunnel_dst)\
             if tunnel_src is not None and tunnel_dst is not None else ''
 
+        integ = 'integ_alg {0} integ_key {1}'.format(integ_alg.alg_name, ikey)\
+            if crypto_alg.alg_name != 'aes-gcm-128' else ''
+
         with open(tmp_filename, 'w') as tmp_file:
             for i in range(0, n_entries):
                 buf_str = 'ipsec_sad_add_del_entry esp sad_id {0} spi {1} ' \
-                          'crypto_alg {2} crypto_key {3} integ_alg {4} ' \
-                          'integ_key {5} {6}\n'.format(sad_id+i, spi+i,
-                                                       crypto_alg.alg_name,
-                                                       ckey, integ_alg.alg_name,
-                                                       ikey, tunnel)
+                          'crypto_alg {2} crypto_key {3} {4} {5}\n'.format(
+                              sad_id+i, spi+i, crypto_alg.alg_name, ckey, integ,
+                              tunnel)
                 tmp_file.write(buf_str)
         vat = VatExecutor()
         vat.scp_and_execute_script(tmp_filename, node, 300)
@@ -482,6 +483,101 @@ class IPsecUtil(object):
         vat = VatExecutor()
         vat.scp_and_execute_script(tmp_filename, node, 300)
         os.remove(tmp_filename)
+
+    @staticmethod
+    def vpp_ipsec_create_tunnel_interfaces(node1, node2, if1_ip_addr,
+                                           if2_ip_addr, n_tunnels, crypto_alg,
+                                           crypto_key, integ_alg, integ_key,
+                                           raddr_ip1, raddr_ip2, raddr_range):
+        """Create multiple IPsec tunnel interfaces between two VPP nodes.
+
+        :param node1: VPP node 1 to create tunnel interfaces.
+        :param node2: VPP node 2 to create tunnel interfaces.
+        :param if1_ip_addr: VPP node 1 interface IP4 address.
+        :param if2_ip_addr: VPP node 2 interface IP4 address.
+        :param n_tunnels: Number of tunnell interfaces to create.
+        :param crypto_alg: The encryption algorithm name.
+        :param crypto_key: The encryption key string.
+        :param integ_alg: The integrity algorithm name.
+        :param integ_key: The integrity key string.
+        :param raddr_ip1: Policy selector remote IPv4 start address for the
+        first tunnel in direction node1->node2.
+        :param raddr_ip2: Policy selector remote IPv4 start address for the
+        first tunnel in direction node2->node1.
+        :param raddr_range: Mask specifying range of Policy selector Remote IPv4
+        addresses. Valid values are from 1 to 32.
+        :type node1: dict
+        :type node2: dict
+        :type if1_ip_addr: str
+        :type if2_ip_addr: str
+        :type n_tunnels: int
+        :type crypto_alg: CryptoAlg
+        :type crypto_key: str
+        :type integ_alg: IntegAlg
+        :type integ_key: str
+        :type raddr_ip1: string
+        :type raddr_ip2: string
+        :type raddr_range: int
+        """
+
+        spi_1 = 10000
+        spi_2 = 20000
+
+        raddr_ip1_i = int(ip_address(unicode(raddr_ip1)))
+        raddr_ip2_i = int(ip_address(unicode(raddr_ip2)))
+        addr_incr = 1 << (32 - raddr_range)
+
+        tmp_fn1 = '/tmp/ipsec_create_tunnel_dut1.config'
+        tmp_fn2 = '/tmp/ipsec_create_tunnel_dut2.config'
+
+        ckey = crypto_key.encode('hex')
+        ikey = integ_key.encode('hex')
+
+        with open(tmp_fn1, 'w') as tmp_f1, open(tmp_fn2, 'w') as tmp_f2:
+            for i in range(0, n_tunnels):
+                if_s = 'ipsec{}'.format(i)
+                dut1_tunnel_s = 'create ipsec tunnel local-ip {0} local-spi ' \
+                                '{1} remote-ip {2} remote-spi {3}\n'.format(
+                                    if1_ip_addr, spi_1+i, if2_ip_addr, spi_2+i)
+                tmp_f1.write(dut1_tunnel_s)
+                dut2_tunnel_s = 'create ipsec tunnel local-ip {0} local-spi ' \
+                                '{1} remote-ip {2} remote-spi {3}\n'.format(
+                                    if2_ip_addr, spi_2+i, if1_ip_addr, spi_1+i)
+                tmp_f2.write(dut2_tunnel_s)
+                loc_c_key = 'set interface ipsec key {0} local crypto {1} ' \
+                            '{2}\n'.format(if_s, crypto_alg.alg_name, ckey)
+                tmp_f1.write(loc_c_key)
+                tmp_f2.write(loc_c_key)
+                rem_c_key = 'set interface ipsec key {0} remote crypto {1} ' \
+                            '{2}\n'.format(if_s, crypto_alg.alg_name, ckey)
+                tmp_f1.write(rem_c_key)
+                tmp_f2.write(rem_c_key)
+                if crypto_alg.alg_name != 'aes-gcm-128':
+                    loc_i_key = 'set interface ipsec key {0} local integ {1} ' \
+                                '{2}\n'.format(if_s, integ_alg.alg_name, ikey)
+                    tmp_f1.write(loc_i_key)
+                    tmp_f2.write(loc_i_key)
+                    rem_i_key = 'set interface ipsec key {0} remote integ {1}' \
+                                ' {2}\n'.format(if_s, integ_alg.alg_name, ikey)
+                    tmp_f1.write(rem_i_key)
+                    tmp_f2.write(rem_i_key)
+                raddr_ip1_s = ip_address(raddr_ip1_i + addr_incr*i)
+                raddr_ip2_s = ip_address(raddr_ip2_i + addr_incr*i)
+                dut1_rte_s = 'ip route add {0}/{1} via {2} {3}\n'.format(
+                    raddr_ip2_s, raddr_range, if2_ip_addr, if_s)
+                tmp_f1.write(dut1_rte_s)
+                dut2_rte_s = 'ip route add {0}/{1} via {2} {3}\n'.format(
+                    raddr_ip1_s, raddr_range, if1_ip_addr, if_s)
+                tmp_f2.write(dut2_rte_s)
+                up_s = 'set int state {0} up\n'.format(if_s)
+                tmp_f1.write(up_s)
+                tmp_f2.write(up_s)
+
+        vat = VatExecutor()
+        vat.scp_and_execute_cli_script(tmp_fn1, node1, 300)
+        vat.scp_and_execute_cli_script(tmp_fn2, node2, 300)
+        os.remove(tmp_fn1)
+        os.remove(tmp_fn2)
 
     @staticmethod
     def vpp_ipsec_add_multiple_tunnels(node1, node2, interface1, interface2,

@@ -96,6 +96,8 @@
 | | And Add Cryptodev to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | And IPsec initialized in a 3-node circular topology
+| | And dut1_v4.set_route | ${raddr_ip4} | 8 | ${dut2_if1_ip4} | ${dut1_if2}
+| | And dut2_v4.set_route | ${laddr_ip4} | 8 | ${dut1_if2_ip4} | ${dut2_if1}
 | | And VPP IPsec Add Multiple Tunnels
 | | ... | ${dut1} | ${dut2} | ${dut1_if2} | ${dut2_if1} | ${n_tunnels}
 | | ... | ${encr_alg} | ${encr_key} | ${auth_alg} | ${auth_key}
@@ -131,6 +133,8 @@
 | | And Add Cryptodev to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | And IPsec initialized in a 3-node circular topology
+| | And dut1_v4.set_route | ${raddr_ip4} | 8 | ${dut2_if1_ip4} | ${dut1_if2}
+| | And dut2_v4.set_route | ${laddr_ip4} | 8 | ${dut1_if2_ip4} | ${dut2_if1}
 | | And VPP IPsec Add Multiple Tunnels
 | | ... | ${dut1} | ${dut2} | ${dut1_if2} | ${dut2_if1} | ${n_tunnels}
 | | ... | ${encr_alg} | ${encr_key} | ${auth_alg} | ${auth_key}
@@ -165,6 +169,8 @@
 | | And Add Cryptodev to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | And IPsec initialized in a 3-node circular topology
+| | And dut1_v4.set_route | ${raddr_ip4} | 8 | ${dut2_if1_ip4} | ${dut1_if2}
+| | And dut2_v4.set_route | ${laddr_ip4} | 8 | ${dut1_if2_ip4} | ${dut2_if1}
 | | And VPP IPsec Add Multiple Tunnels
 | | ... | ${dut1} | ${dut2} | ${dut1_if2} | ${dut2_if1} | ${n_tunnels}
 | | ... | ${encr_alg} | ${encr_key} | ${auth_alg} | ${auth_key}
@@ -199,6 +205,8 @@
 | | And Add Cryptodev to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | And IPsec initialized in a 3-node circular topology
+| | And dut1_v4.set_route | ${raddr_ip4} | 8 | ${dut2_if1_ip4} | ${dut1_if2}
+| | And dut2_v4.set_route | ${laddr_ip4} | 8 | ${dut1_if2_ip4} | ${dut2_if1}
 | | And VPP IPsec Add Multiple Tunnels
 | | ... | ${dut1} | ${dut2} | ${dut1_if2} | ${dut2_if1} | ${n_tunnels}
 | | ... | ${encr_alg} | ${encr_key} | ${auth_alg} | ${auth_key}
@@ -234,6 +242,8 @@
 | | And Add Cryptodev to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | And IPsec initialized in a 3-node circular topology
+| | And dut1_v4.set_route | ${raddr_ip4} | 8 | ${dut2_if1_ip4} | ${dut1_if2}
+| | And dut2_v4.set_route | ${laddr_ip4} | 8 | ${dut1_if2_ip4} | ${dut2_if1}
 | | And VPP IPsec Add Multiple Tunnels
 | | ... | ${dut1} | ${dut2} | ${dut1_if2} | ${dut2_if1} | ${n_tunnels}
 | | ... | ${encr_alg} | ${encr_key} | ${auth_alg} | ${auth_key}
@@ -269,6 +279,8 @@
 | | And Add Cryptodev to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | And IPsec initialized in a 3-node circular topology
+| | And dut1_v4.set_route | ${raddr_ip4} | 8 | ${dut2_if1_ip4} | ${dut1_if2}
+| | And dut2_v4.set_route | ${laddr_ip4} | 8 | ${dut1_if2_ip4} | ${dut2_if1}
 | | And VPP IPsec Add Multiple Tunnels
 | | ... | ${dut1} | ${dut2} | ${dut1_if2} | ${dut2_if1} | ${n_tunnels}
 | | ... | ${encr_alg} | ${encr_key} | ${auth_alg} | ${auth_key}
@@ -303,6 +315,8 @@
 | | And Add Cryptodev to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | And IPsec initialized in a 3-node circular topology
+| | And dut1_v4.set_route | ${raddr_ip4} | 8 | ${dut2_if1_ip4} | ${dut1_if2}
+| | And dut2_v4.set_route | ${laddr_ip4} | 8 | ${dut1_if2_ip4} | ${dut2_if1}
 | | And VPP IPsec Add Multiple Tunnels
 | | ... | ${dut1} | ${dut2} | ${dut1_if2} | ${dut2_if1} | ${n_tunnels}
 | | ... | ${encr_alg} | ${encr_key} | ${auth_alg} | ${auth_key}
@@ -337,6 +351,8 @@
 | | And Add Cryptodev to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | And IPsec initialized in a 3-node circular topology
+| | And dut1_v4.set_route | ${raddr_ip4} | 8 | ${dut2_if1_ip4} | ${dut1_if2}
+| | And dut2_v4.set_route | ${laddr_ip4} | 8 | ${dut1_if2_ip4} | ${dut2_if1}
 | | And VPP IPsec Add Multiple Tunnels
 | | ... | ${dut1} | ${dut2} | ${dut1_if2} | ${dut2_if1} | ${n_tunnels}
 | | ... | ${encr_alg} | ${encr_key} | ${auth_alg} | ${auth_key}
@@ -374,6 +390,8 @@
 | | And Add Cryptodev to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | And IPsec initialized in a 3-node circular topology
+| | And dut1_v4.set_route | ${raddr_ip4} | 8 | ${dut2_if1_ip4} | ${dut1_if2}
+| | And dut2_v4.set_route | ${laddr_ip4} | 8 | ${dut1_if2_ip4} | ${dut2_if1}
 | | And VPP IPsec Add Multiple Tunnels
 | | ... | ${dut1} | ${dut2} | ${dut1_if2} | ${dut2_if1} | ${n_tunnels}
 | | ... | ${encr_alg} | ${encr_key} | ${auth_alg} | ${auth_key}
@@ -411,6 +429,8 @@
 | | And Add Cryptodev to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | And IPsec initialized in a 3-node circular topology
+| | And dut1_v4.set_route | ${raddr_ip4} | 8 | ${dut2_if1_ip4} | ${dut1_if2}
+| | And dut2_v4.set_route | ${laddr_ip4} | 8 | ${dut1_if2_ip4} | ${dut2_if1}
 | | And VPP IPsec Add Multiple Tunnels
 | | ... | ${dut1} | ${dut2} | ${dut1_if2} | ${dut2_if1} | ${n_tunnels}
 | | ... | ${encr_alg} | ${encr_key} | ${auth_alg} | ${auth_key}
@@ -447,6 +467,8 @@
 | | And Add Cryptodev to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | And IPsec initialized in a 3-node circular topology
+| | And dut1_v4.set_route | ${raddr_ip4} | 8 | ${dut2_if1_ip4} | ${dut1_if2}
+| | And dut2_v4.set_route | ${laddr_ip4} | 8 | ${dut1_if2_ip4} | ${dut2_if1}
 | | And VPP IPsec Add Multiple Tunnels
 | | ... | ${dut1} | ${dut2} | ${dut1_if2} | ${dut2_if1} | ${n_tunnels}
 | | ... | ${encr_alg} | ${encr_key} | ${auth_alg} | ${auth_key}
@@ -483,6 +505,8 @@
 | | And Add Cryptodev to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | And IPsec initialized in a 3-node circular topology
+| | And dut1_v4.set_route | ${raddr_ip4} | 8 | ${dut2_if1_ip4} | ${dut1_if2}
+| | And dut2_v4.set_route | ${laddr_ip4} | 8 | ${dut1_if2_ip4} | ${dut2_if1}
 | | And VPP IPsec Add Multiple Tunnels
 | | ... | ${dut1} | ${dut2} | ${dut1_if2} | ${dut2_if1} | ${n_tunnels}
 | | ... | ${encr_alg} | ${encr_key} | ${auth_alg} | ${auth_key}
