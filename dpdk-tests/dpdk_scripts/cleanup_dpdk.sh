@@ -36,14 +36,14 @@ sudo rm -f ${TESTPMD_LOG}
 sudo rm -f ${TESTPMD_PID}
 sudo rm -f /dev/hugepages/*
 
-cd ${ROOTDIR}/dpdk-16.07/
-./tools/dpdk-devbind.py -b ${port1_driver} ${port1_pci}
-./tools/dpdk-devbind.py -b ${port2_driver} ${port2_pci}
+cd ${ROOTDIR}/dpdk-17.02/
+./usertools/dpdk-devbind.py -b ${port1_driver} ${port1_pci}
+./usertools/dpdk-devbind.py -b ${port2_driver} ${port2_pci}
 
 sleep 2
 
-if1_name=`./tools/dpdk-devbind.py --s | grep "${port1_pci}" | sed -n 's/.*if=\(\S\)/\1/p' | awk -F' ' '{print $1}'`
-if2_name=`./tools/dpdk-devbind.py --s | grep "${port2_pci}" | sed -n 's/.*if=\(\S\)/\1/p' | awk -F' ' '{print $1}'`
+if1_name=`./usertools/dpdk-devbind.py --s | grep "${port1_pci}" | sed -n 's/.*if=\(\S\)/\1/p' | awk -F' ' '{print $1}'`
+if2_name=`./usertools/dpdk-devbind.py --s | grep "${port2_pci}" | sed -n 's/.*if=\(\S\)/\1/p' | awk -F' ' '{print $1}'`
 
 ifconfig ${if1_name} up
 ifconfig ${if2_name} up
