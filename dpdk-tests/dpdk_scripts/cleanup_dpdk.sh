@@ -36,7 +36,7 @@ sudo rm -f ${TESTPMD_LOG}
 sudo rm -f ${TESTPMD_PID}
 sudo rm -f /dev/hugepages/*
 
-cd ${ROOTDIR}/dpdk-16.07/
+cd ${ROOTDIR}/dpdk-17.02/
 ./tools/dpdk-devbind.py -b ${port1_driver} ${port1_pci}
 ./tools/dpdk-devbind.py -b ${port2_driver} ${port2_pci}
 

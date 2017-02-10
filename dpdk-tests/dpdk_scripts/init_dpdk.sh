@@ -3,7 +3,7 @@
 ROOTDIR=/tmp/openvpp-testing
 PWDDIR=$(pwd)
 
-cd ${ROOTDIR}/dpdk-16.07/
+cd ${ROOTDIR}/dpdk-17.02/
 modprobe uio
 lsmod | grep igb_uio
 if [ $? -eq 1 ];
