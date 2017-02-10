@@ -391,6 +391,8 @@ def simple_burst(stream_a, stream_b, stream_lat_a, stream_lat_b, duration, rate,
         client.add_streams(stream_a, ports=[0])
         client.add_streams(stream_b, ports=[1])
 
+        client.set_port_attr_line(ports=[0, 1], link="up")
+
         if latency:
             try:
                 client.add_streams(stream_lat_a, ports=[0])
