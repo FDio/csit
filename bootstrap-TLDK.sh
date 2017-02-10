@@ -31,7 +31,7 @@ VIRL_SERVER_EXPECTED_STATUS="PRODUCTION"
 
 SSH_OPTIONS="-i ${VIRL_PKEY} -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o BatchMode=yes -o LogLevel=error"
 
-DPDK_VERSION=16.07
+DPDK_VERSION=17.02
 DPDK_DIR=dpdk-${DPDK_VERSION}
 DPDK_PACKAGE=${DPDK_DIR}.tar.xz
 
@@ -131,7 +131,7 @@ fi
 VIRL_DIR_LOC="/tmp"
 TLDK_TAR_FILE="tldk_depends.tar.gz"
 
-tar zcf ${TLDK_TAR_FILE} dpdk-16.07.tar.xz ./tldk/ \
+tar zcf ${TLDK_TAR_FILE} dpdk-17.02.tar.xz ./tldk/ \
     ./TLDK-tests/tldk_testconfig/ ./TLDK-tests/tldk_deplibs/
 
 cat ${VIRL_PKEY}
