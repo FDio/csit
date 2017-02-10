@@ -37,13 +37,13 @@ sudo rm -f /dev/hugepages/*
 #run the testpmd
 cd ${ROOTDIR}
 if [ "$jumbo_frames" = "yes" ]; then
-tail -f /dev/null | nohup ./dpdk-16.07/x86_64-native-linuxapp-gcc/app/testpmd -l ${cpu_corelist} \
+tail -f /dev/null | nohup ./dpdk-17.02/x86_64-native-linuxapp-gcc/app/testpmd -l ${cpu_corelist} \
     -n 4 -- --numa --nb-ports=2 --portmask=0x3 --nb-cores=${nb_cores} \
     --max-pkt-len=9000 --txqflags=0 --forward-mode=io --rxq=${queue_nums} \
     --txq=${queue_nums} --auto-start > ${TESTPMD_LOG} 2>&1 &
 echo $! > ${TESTPMD_PID}
 else
-tail -f /dev/null | nohup ./dpdk-16.07/x86_64-native-linuxapp-gcc/app/testpmd -l ${cpu_corelist} \
+tail -f /dev/null | nohup ./dpdk-17.02/x86_64-native-linuxapp-gcc/app/testpmd -l ${cpu_corelist} \
     -n 4 -- --numa --nb-ports=2 --portmask=0x3 --nb-cores=${nb_cores} \
     --forward-mode=io --rxq=${queue_nums} --txq=${queue_nums} --auto-start > ${TESTPMD_LOG} 2>&1 &
 echo $! > ${TESTPMD_PID}
