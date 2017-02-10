@@ -273,7 +273,8 @@ class TrafficGenerator(object):
 
                 # get T-rex server info
                 (ret, _, _) = ssh.exec_command(
-                    "sh -c '{0}/resources/tools/t-rex/t-rex-server-info.py'"\
+                    "sh -c 'sleep 3; "
+                    "{0}/resources/tools/t-rex/t-rex-server-info.py'"\
                     .format(Constants.REMOTE_FW_DIR),
                     timeout=120)
                 if int(ret) == 0:
@@ -302,7 +303,7 @@ class TrafficGenerator(object):
             ssh = SSH()
             ssh.connect(node)
             (ret, stdout, stderr) = ssh.exec_command(
-                "sh -c 'sudo pkill t-rex'")
+                "sh -c 'sudo pkill t-rex && sleep 3'")
             if int(ret) != 0:
                 logger.error('pkill t-rex failed: {0}'.format(stdout + stderr))
                 raise RuntimeError('pkill t-rex failed')
