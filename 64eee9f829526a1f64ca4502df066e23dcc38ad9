@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a3291f1_6fb570cc",
+        "filename": "resources/libraries/python/VatHistory.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-02-10T09:00:50Z",
+      "side": 1,
+      "message": "Add \"\\n\" at the end - \"{0} VAT command history:{1}\\n\"",
+      "range": {
+        "startLine": 69,
+        "startChar": 25,
+        "endLine": 69,
+        "endChar": 54
+      },
+      "revId": "64eee9f829526a1f64ca4502df066e23dcc38ad9",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
