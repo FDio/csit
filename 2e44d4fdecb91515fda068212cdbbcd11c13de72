@@ -1,0 +1,245 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a3291f1_10a288ae",
+        "filename": "dpdk-tests/dpdk_scripts/run_l3fwd.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-02-13T08:43:41Z",
+      "side": 1,
+      "message": "Implement the pkill l3fwd in a way as pkill testpmd is implemented in run_l2fwd.sh\nImplement it also to cleanup_dpdk.sh",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 16
+      },
+      "revId": "2e44d4fdecb91515fda068212cdbbcd11c13de72",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_f0a6dcc0",
+        "filename": "dpdk-tests/dpdk_scripts/run_l3fwd.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-02-13T08:43:41Z",
+      "side": 1,
+      "message": "Use corelist instead of coremask, see cleanup_dpdk.sh",
+      "range": {
+        "startLine": 29,
+        "startChar": 67,
+        "endLine": 29,
+        "endChar": 85
+      },
+      "revId": "2e44d4fdecb91515fda068212cdbbcd11c13de72",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_d0abe087",
+        "filename": "dpdk-tests/perf/l3fwd_IPv4_Intel-X520-DA2.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-02-13T08:43:41Z",
+      "side": 1,
+      "message": "Change the filename and TCs\u0027 names to correspond with the naming convention. The naming convention is described here: https://docs.fd.io/csit/rls1701/report/introduction/csit_test_naming.html#naming-convention \nSee 10ge2p1x520-eth-l2xcbase-testpmd-ndrdisc.robot for example.",
+      "revId": "2e44d4fdecb91515fda068212cdbbcd11c13de72",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_b0b054f5",
+        "filename": "dpdk-tests/perf/l3fwd_IPv4_Intel-X520-DA2.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-02-13T08:43:41Z",
+      "side": 1,
+      "message": "Use tags defined in docs/tag_documentation.rst\nSee 10ge2p1x520-eth-l2xcbase-testpmd-ndrdisc.robot for example.\nAdd tag \"DPDK\" to docs/tag_documentation.rst",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 33
+      },
+      "revId": "2e44d4fdecb91515fda068212cdbbcd11c13de72",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_90955842",
+        "filename": "dpdk-tests/perf/l3fwd_IPv4_Intel-X520-DA2.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-02-13T08:43:41Z",
+      "side": 1,
+      "message": "Use tags defined in docs/tag_documentation.rst\nSee 10ge2p1x520-eth-l2xcbase-testpmd-ndrdisc.robot for example.",
+      "range": {
+        "startLine": 57,
+        "startChar": 0,
+        "endLine": 57,
+        "endChar": 73
+      },
+      "revId": "2e44d4fdecb91515fda068212cdbbcd11c13de72",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_5076d03f",
+        "filename": "resources/libraries/python/DPDK/L3fwdTest.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-02-13T08:43:41Z",
+      "side": 1,
+      "message": "Check and correct pylint (PEP8) errors: https://jenkins.fd.io/job/csit-validate-pylint-master/2738/violations/file/resources/libraries/python/DPDK/L3fwdTest.py/",
+      "revId": "2e44d4fdecb91515fda068212cdbbcd11c13de72",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_b087340f",
+        "filename": "resources/libraries/python/DPDK/L3fwdTest.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-02-13T08:43:41Z",
+      "side": 1,
+      "message": "Use core list instead of core mask, see L2fwdTest.py for example.",
+      "range": {
+        "startLine": 30,
+        "startChar": 51,
+        "endLine": 30,
+        "endChar": 63
+      },
+      "revId": "2e44d4fdecb91515fda068212cdbbcd11c13de72",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_907c3822",
+        "filename": "resources/libraries/python/DPDK/L3fwdTest.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-02-13T08:43:41Z",
+      "side": 1,
+      "message": "PEP8: Lines too long",
+      "range": {
+        "startLine": 64,
+        "startChar": 0,
+        "endLine": 65,
+        "endChar": 104
+      },
+      "revId": "2e44d4fdecb91515fda068212cdbbcd11c13de72",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_10896826",
+        "filename": "resources/libraries/robot/DPDK/default.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-02-13T08:43:41Z",
+      "side": 1,
+      "message": "Use list of cores instead of core mask, see Start L2FWD \u0027${m}\u0027 worker threads and rxqueues \u0027${n}\u0027 with jumbo frames \u0027${b}\u0027 for example.",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 63
+      },
+      "revId": "2e44d4fdecb91515fda068212cdbbcd11c13de72",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_50adb087",
+        "filename": "resources/libraries/robot/DPDK/default.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-02-13T08:43:41Z",
+      "side": 1,
+      "message": "[1,10] \\",
+      "range": {
+        "startLine": 80,
+        "startChar": 55,
+        "endLine": 80,
+        "endChar": 60
+      },
+      "revId": "2e44d4fdecb91515fda068212cdbbcd11c13de72",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_f0949c38",
+        "filename": "resources/libraries/robot/DPDK/default.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-02-13T08:43:41Z",
+      "side": 1,
+      "message": "\\| is missing at the end.",
+      "range": {
+        "startLine": 81,
+        "startChar": 18,
+        "endLine": 81,
+        "endChar": 20
+      },
+      "revId": "2e44d4fdecb91515fda068212cdbbcd11c13de72",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
