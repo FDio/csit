@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3a3291f1_90caf84d",
+        "filename": "resources/libraries/python/Classify.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 379,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-02-13T08:58:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a3291f1_6f3a1038",
+      "range": {
+        "startLine": 378,
+        "startChar": 12,
+        "endLine": 379,
+        "endChar": 56
+      },
+      "revId": "44e2771a798906ba5aa1afd9b29aca300b93852f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a3291f1_efee00b4",
         "filename": "resources/libraries/robot/honeycomb/access_control_lists.robot",
         "patchSetId": 4
@@ -36,6 +60,30 @@
       "writtenOn": "2017-02-10T11:40:19Z",
       "side": 1,
       "message": "Is this indendation neccesary?",
+      "range": {
+        "startLine": 417,
+        "startChar": 8,
+        "endLine": 417,
+        "endChar": 20
+      },
+      "revId": "44e2771a798906ba5aa1afd9b29aca300b93852f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_70c78c46",
+        "filename": "resources/libraries/robot/honeycomb/access_control_lists.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 417,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-02-13T08:58:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a3291f1_efee00b4",
       "range": {
         "startLine": 417,
         "startChar": 8,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "3a3291f1_50c4903f",
+        "filename": "resources/test_data/honeycomb/plugin_acl.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-02-13T08:58:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a3291f1_0ff26c9a",
+      "range": {
+        "startLine": 1,
+        "startChar": 16,
+        "endLine": 1,
+        "endChar": 20
+      },
+      "revId": "44e2771a798906ba5aa1afd9b29aca300b93852f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a3291f1_cf2b44ea",
         "filename": "resources/test_data/honeycomb/plugin_acl.py",
         "patchSetId": 4
@@ -82,6 +154,30 @@
       "writtenOn": "2017-02-10T11:40:19Z",
       "side": 1,
       "message": "returns",
+      "range": {
+        "startLine": 26,
+        "startChar": 5,
+        "endLine": 26,
+        "endChar": 11
+      },
+      "revId": "44e2771a798906ba5aa1afd9b29aca300b93852f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_30c1042f",
+        "filename": "resources/test_data/honeycomb/plugin_acl.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-02-13T08:58:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a3291f1_cf2b44ea",
       "range": {
         "startLine": 26,
         "startChar": 5,
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "3a3291f1_10de0812",
+        "filename": "resources/test_data/honeycomb/plugin_acl.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-02-13T08:58:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a3291f1_af30f856",
+      "range": {
+        "startLine": 29,
+        "startChar": 4,
+        "endLine": 29,
+        "endChar": 7
+      },
+      "revId": "44e2771a798906ba5aa1afd9b29aca300b93852f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a3291f1_8f353c48",
         "filename": "resources/traffic_scripts/send_icmp_type_code.py",
         "patchSetId": 4
@@ -128,6 +248,30 @@
       "writtenOn": "2017-02-10T11:40:19Z",
       "side": 1,
       "message": "returns - check everywhere",
+      "range": {
+        "startLine": 36,
+        "startChar": 5,
+        "endLine": 36,
+        "endChar": 11
+      },
+      "revId": "44e2771a798906ba5aa1afd9b29aca300b93852f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_f0e25cd4",
+        "filename": "resources/traffic_scripts/send_icmp_type_code.py",
+        "patchSetId": 4
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-02-13T08:58:56Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a3291f1_8f353c48",
       "range": {
         "startLine": 36,
         "startChar": 5,
