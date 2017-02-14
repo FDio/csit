@@ -1412,11 +1412,10 @@
 | Guest VM with dpdk-testpmd connected via vhost-user is setup
 | | [Documentation]
 | | ... | Start QEMU guest with two vhost-user interfaces and interconnecting
-| | ... | DPDK testpmd. Qemu Guest is using 5 cores pinned to physical cores
-| | ... | 5-9, and 2048M. Testpmd is using 5 cores (1 main core and 4 cores
-| | ... | dedicated to io) mem-channel=4, txq/rxq=256, burst=64,
-| | ... | disable-hw-vlan, disable-rss, driver usr/lib/librte_pmd_virtio.so
-| | ... | and fwd mode is io.
+| | ... | DPDK testpmd. Qemu Guest uses by default 5 cores and 2048M. Testpmd
+| | ... | uses 5 cores (1 main core and 4 cores dedicated to io) mem-channel=4,
+| | ... | txq/rxq=256, burst=64, disable-hw-vlan, disable-rss,
+| | ... | driver usr/lib/librte_pmd_virtio.so and fwd mode is io.
 | | ...
 | | ... | *Arguments:*
 | | ... | - dut_node - DUT node to start guest VM on. Type: dictionary
@@ -1439,9 +1438,52 @@
 | | ... | WITH NAME | ${vm_name}
 | | ${dut_numa}= | Get interfaces numa node | ${dut_node}
 | | ... | ${dut1_if1} | ${dut1_if2}
-| | ${cpus}= | Cpu list per node | ${dut_node} | ${dut_numa}
-| | ${end_idx}= | Evaluate | ${skip} + ${count}
-| | ${qemu_cpus}= | Get Slice From List | ${cpus} | ${skip} | ${end_idx}
+| | ${qemu_cpus}= | Cpu slice of list per node | ${dut_node} | ${dut_numa}
+| | ... | skip_cnt=${skip} | cpu_cnt=${count} | smt_used=${False}
+| | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock1}
+| | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock2}
+| | Run keyword | ${vm_name}.Qemu Set Node | ${dut_node}
+| | Run keyword | ${vm_name}.Qemu Set Smp | ${count} | ${count} | 1 | 1
+| | Run keyword | ${vm_name}.Qemu Set Mem Size | 2048
+| | Run keyword | ${vm_name}.Qemu Set Disk Image | ${glob_vm_image}
+| | ${vm}= | Run keyword | ${vm_name}.Qemu Start
+| | Run keyword | ${vm_name}.Qemu Set Affinity | @{qemu_cpus}
+| | Run keyword | ${vm_name}.Qemu Set Scheduler Policy
+| | Dpdk Testpmd Start | ${vm} | eal_coremask=0x1f | eal_mem_channels=4
+| | ... | pmd_fwd_mode=io | pmd_disable_hw_vlan=${True}
+| | Return From Keyword | ${vm}
+
+| Guest VM with dpdk-testpmd using SMT connected via vhost-user is setup
+| | [Documentation]
+| | ... | Start QEMU guest with two vhost-user interfaces and interconnecting
+| | ... | DPDK testpmd. Qemu Guest uses by default 5 cores and 2048M. Testpmd
+| | ... | uses 5 cores (1 main core and 4 cores dedicated to io) mem-channel=4,
+| | ... | txq/rxq=256, burst=64, disable-hw-vlan, disable-rss,
+| | ... | driver usr/lib/librte_pmd_virtio.so and fwd mode is io.
+| | ...
+| | ... | *Arguments:*
+| | ... | - dut_node - DUT node to start guest VM on. Type: dictionary
+| | ... | - sock1 - Socket path for first Vhost-User interface. Type: string
+| | ... | - sock2 - Socket path for second Vhost-User interface. Type: string
+| | ... | - vm_name - QemuUtil instance name. Type: string
+| | ... | - skip - number of cpus which will be skipped. Type: int
+| | ... | - count - number of cpus which will be allocated for qemu. Type: int
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Guest VM with dpdk-testpmd connected via vhost-user is setup \
+| | ... | \| ${nodes['DUT1']} \| /tmp/sock1 \| /tmp/sock2 \| DUT1_VM \| ${5} \
+| | ... | \| ${5} \|
+| | ...
+| | [Arguments] | ${dut_node} | ${sock1} | ${sock2} | ${vm_name} | ${skip}=${5}
+| | ... | ${count}=${5}
+| | ...
+| | Import Library | resources.libraries.python.QemuUtils
+| | ... | WITH NAME | ${vm_name}
+| | ${dut_numa}= | Get interfaces numa node | ${dut_node}
+| | ... | ${dut1_if1} | ${dut1_if2}
+| | ${qemu_cpus}= | Cpu slice of list per node | ${dut_node} | ${dut_numa}
+| | ... | skip_cnt=${skip} | cpu_cnt=${count} | smt_used=${True}
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock1}
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock2}
 | | Run keyword | ${vm_name}.Qemu Set Node | ${dut_node}
@@ -1458,11 +1500,10 @@
 | Guest VM with dpdk-testpmd-mac connected via vhost-user is setup
 | | [Documentation]
 | | ... | Start QEMU guest with two vhost-user interfaces and interconnecting
-| | ... | DPDK testpmd. Qemu Guest is using 5 cores pinned to physical cores
-| | ... | 5-9 and 2048M. Testpmd is using 5 cores (1 main core and 4 cores
-| | ... | dedicated to io) mem-channel=4, txq/rxq=256, burst=64,
-| | ... | disable-hw-vlan, disable-rss, driver usr/lib/librte_pmd_virtio.so
-| | ... | and fwd mode is mac rewrite.
+| | ... | DPDK testpmd. Qemu Guest uses by default 5 cores and 2048M. Testpmd
+| | ... | uses 5 cores (1 main core and 4 cores dedicated to io) mem-channel=4,
+| | ... | txq/rxq=256, burst=64, disable-hw-vlan, disable-rss,
+| | ... | driver usr/lib/librte_pmd_virtio.so and fwd mode is mac rewrite.
 | | ...
 | | ... | *Arguments:*
 | | ... | - dut_node - DUT node to start guest VM on. Type: dictionary
@@ -1487,9 +1528,55 @@
 | | ... | WITH NAME | ${vm_name}
 | | ${dut_numa}= | Get interfaces numa node | ${dut_node}
 | | ... | ${dut1_if1} | ${dut1_if2}
-| | ${cpus}= | Cpu list per node | ${dut_node} | ${dut_numa}
-| | ${end_idx}= | Evaluate | ${skip} + ${count}
-| | ${qemu_cpus}= | Get Slice From List | ${cpus} | ${skip} | ${end_idx}
+| | ${qemu_cpus}= | Cpu slice of list per node | ${dut_node} | ${dut_numa}
+| | ... | skip_cnt=${skip} | cpu_cnt=${count} | smt_used=${False}
+| | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock1}
+| | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock2}
+| | Run keyword | ${vm_name}.Qemu Set Node | ${dut_node}
+| | Run keyword | ${vm_name}.Qemu Set Smp | ${count} | ${count} | 1 | 1
+| | Run keyword | ${vm_name}.Qemu Set Mem Size | 2048
+| | Run keyword | ${vm_name}.Qemu Set Disk Image | ${glob_vm_image}
+| | ${vm}= | Run keyword | ${vm_name}.Qemu Start
+| | Run keyword | ${vm_name}.Qemu Set Affinity | @{qemu_cpus}
+| | Run keyword | ${vm_name}.Qemu Set Scheduler Policy
+| | Dpdk Testpmd Start | ${vm} | eal_coremask=0x1f
+| | ... | eal_mem_channels=4 | pmd_fwd_mode=mac | pmd_eth_peer_0=0,${eth0_mac}
+| | ... | pmd_eth_peer_1=1,${eth1_mac} | pmd_disable_hw_vlan=${True}
+| | Return From Keyword | ${vm}
+
+| Guest VM with dpdk-testpmd-mac using SMT connected via vhost-user is setup
+| | [Documentation]
+| | ... | Start QEMU guest with two vhost-user interfaces and interconnecting
+| | ... | DPDK testpmd. Qemu Guest uses by default 5 cores and 2048M. Testpmd
+| | ... | uses 5 cores (1 main core and 4 cores dedicated to io) mem-channel=4,
+| | ... | txq/rxq=256, burst=64, disable-hw-vlan, disable-rss,
+| | ... | driver usr/lib/librte_pmd_virtio.so and fwd mode is mac rewrite.
+| | ...
+| | ... | *Arguments:*
+| | ... | - dut_node - DUT node to start guest VM on. Type: dictionary
+| | ... | - sock1 - Socket path for first Vhost-User interface. Type: string
+| | ... | - sock2 - Socket path for second Vhost-User interface. Type: string
+| | ... | - vm_name - QemuUtil instance name. Type: string
+| | ... | - eth0_mac - MAC address of first Vhost interface. Type: string
+| | ... | - eth1_mac - MAC address of second Vhost interface. Type: string
+| | ... | - skip - number of cpus which will be skipped. Type: int
+| | ... | - count - number of cpus which will be allocated for qemu. Type: int
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Guest VM with dpdk-testpmd for Vhost L2BD forwarding is setup \
+| | ... | \| ${nodes['DUT1']} \| /tmp/sock1 \| /tmp/sock2 \| DUT1_VM \
+| | ... | \| 00:00:00:00:00:01 \| 00:00:00:00:00:02 \| ${5} \| ${5} \|
+| | ...
+| | [Arguments] | ${dut_node} | ${sock1} | ${sock2} | ${vm_name}
+| | ... | ${eth0_mac} | ${eth1_mac} | ${skip}=${5} | ${count}=${5}
+| | ...
+| | Import Library | resources.libraries.python.QemuUtils
+| | ... | WITH NAME | ${vm_name}
+| | ${dut_numa}= | Get interfaces numa node | ${dut_node}
+| | ... | ${dut1_if1} | ${dut1_if2}
+| | ${qemu_cpus}= | Cpu slice of list per node | ${dut_node} | ${dut_numa}
+| | ... | skip_cnt=${skip} | cpu_cnt=${count} | smt_used=${True}
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock1}
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock2}
 | | Run keyword | ${vm_name}.Qemu Set Node | ${dut_node}
@@ -1507,8 +1594,7 @@
 | Guest VM with Linux Bridge connected via vhost-user is setup
 | | [Documentation]
 | | ... | Start QEMU guest with two vhost-user interfaces and interconnecting
-| | ... | linux bridge. Qemu Guest is using 3 cores pinned to physical cores 5,
-| | ... | 6, 7 and 2048M.
+| | ... | linux bridge. Qemu Guest uses 2048M.
 | | ...
 | | ... | *Arguments:*
 | | ... | - dut_node - DUT node to start guest VM on. Type: dictionary
@@ -1531,9 +1617,54 @@
 | | ... | WITH NAME | ${vm_name}
 | | ${dut_numa}= | Get interfaces numa node | ${dut_node}
 | | ... | ${dut1_if1} | ${dut1_if2}
-| | ${cpus}= | Cpu list per node | ${dut_node} | ${dut_numa}
-| | ${end_idx}= | Evaluate | ${skip} + ${count}
-| | ${qemu_cpus}= | Get Slice From List | ${cpus} | ${skip} | ${end_idx}
+| | ${qemu_cpus}= | Cpu slice of list per node | ${dut_node} | ${dut_numa}
+| | ... | skip_cnt=${skip} | cpu_cnt=${count} | smt_used=${False}
+| | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock1}
+| | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock2}
+| | Run keyword | ${vm_name}.Qemu Set Node | ${dut_node}
+| | Run keyword | ${vm_name}.Qemu Set Smp | ${count} | ${count} | 1 | 1
+| | Run keyword | ${vm_name}.Qemu Set Mem Size | 2048
+| | Run keyword | ${vm_name}.Qemu Set Disk Image | ${glob_vm_image}
+| | ${vm}= | Run keyword | ${vm_name}.Qemu Start
+| | Run keyword | ${vm_name}.Qemu Set Affinity | @{qemu_cpus}
+| | Run keyword | ${vm_name}.Qemu Set Scheduler Policy
+| | ${br}= | Set Variable | br0
+| | ${vhost1}= | Get Vhost User If Name By Sock | ${vm} | ${sock1}
+| | ${vhost2}= | Get Vhost User If Name By Sock | ${vm} | ${sock2}
+| | Linux Add Bridge | ${vm} | ${br} | ${vhost1} | ${vhost2}
+| | Set Interface State | ${vm} | ${vhost1} | up | if_type=name
+| | Set Interface State | ${vm} | ${vhost2} | up | if_type=name
+| | Set Interface State | ${vm} | ${br} | up | if_type=name
+| | Return From Keyword | ${vm}
+
+| Guest VM with Linux Bridge using SMT connected via vhost-user is setup
+| | [Documentation]
+| | ... | Start QEMU guest with two vhost-user interfaces and interconnecting
+| | ... | linux bridge. Qemu Guest uses 2048M.
+| | ...
+| | ... | *Arguments:*
+| | ... | - dut_node - DUT node to start guest VM on. Type: dictionary
+| | ... | - sock1 - Socket path for first Vhost-User interface. Type: string
+| | ... | - sock2 - Socket path for second Vhost-User interface. Type: string
+| | ... | - vm_name - QemuUtil instance name. Type: string
+| | ... | - skip - number of cpus which will be skipped. Type: int
+| | ... | - count - number of cpus which will be allocated for qemu. Type: int
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Guest VM with Linux Bridge connected via vhost-user is setup \
+| | ... | \| ${nodes['DUT1']} \| /tmp/sock1 \| /tmp/sock2 \| DUT1_VM \| ${5} \
+| | ... | \| ${5} \|
+| | ...
+| | [Arguments] | ${dut_node} | ${sock1} | ${sock2} | ${vm_name} | ${skip}=${5}
+| | ... | ${count}=${5}
+| | ...
+| | Import Library | resources.libraries.python.QemuUtils
+| | ... | WITH NAME | ${vm_name}
+| | ${dut_numa}= | Get interfaces numa node | ${dut_node}
+| | ... | ${dut1_if1} | ${dut1_if2}
+| | ${qemu_cpus}= | Cpu slice of list per node | ${dut_node} | ${dut_numa}
+| | ... | skip_cnt=${skip} | cpu_cnt=${count} | smt_used=${True}
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock1}
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock2}
 | | Run keyword | ${vm_name}.Qemu Set Node | ${dut_node}

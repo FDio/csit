@@ -98,9 +98,53 @@
 | | ${dut1_numa}= | Get interfaces numa node | ${dut1}
 | | ... | ${dut1_if1} | ${dut1_if2}
 | | ${dut1_cpu_main}= | Cpu list per node str | ${dut1} | ${dut1_numa}
-| | ... | cpu_cnt=${1} | skip_cnt=${1}
+| | ... | cpu_cnt=${1}
 | | ${dut1_cpu_w}= | Cpu list per node str | ${dut1} | ${dut1_numa}
-| | ... | skip_cnt=${2} | cpu_cnt=${m_int}
+| | ... | skip_cnt=${1} | cpu_cnt=${m_int}
+| | ${dut1_cpu}= | Catenate | main-core | ${dut1_cpu_main}
+| | ... | corelist-workers | ${dut1_cpu_w}
+| | ${rxqueues}= | Catenate | num-rx-queues | ${n}
+| | Add CPU config | ${dut1} | ${dut1_cpu}
+| | Add rxqueues config | ${dut1} | ${rxqueues}
+
+| Add '${m}' worker threads using SMT and rxqueues '${n}' in 3-node single-link topo
+| | [Documentation] | Setup M worker threads using SMT and N rxqueues in vpp
+| | ... | startup configuration on all DUTs in 3-node single-link topology.
+| | ...
+| | ${m_int}= | Convert To Integer | ${m}
+| | ${dut1_numa}= | Get interfaces numa node | ${dut1}
+| | ... | ${dut1_if1} | ${dut1_if2}
+| | ${dut2_numa}= | Get interfaces numa node | ${dut2}
+| | ... | ${dut2_if1} | ${dut2_if2}
+| | ${dut1_cpu_main}= | Cpu list per node str | ${dut1} | ${dut1_numa}
+| | ... | cpu_cnt=${1} | smt_used=${True}
+| | ${dut1_cpu_w}= | Cpu list per node str | ${dut1} | ${dut1_numa}
+| | ... | skip_cnt=${1} | cpu_cnt=${m_int} | smt_used=${True}
+| | ${dut2_cpu_main}= | Cpu list per node str | ${dut2} | ${dut2_numa}
+| | ... | cpu_cnt=${1} | smt_used=${True}
+| | ${dut2_cpu_w}= | Cpu list per node str | ${dut2} | ${dut2_numa}
+| | ... | skip_cnt=${1} | cpu_cnt=${m_int} | smt_used=${True}
+| | ${dut1_cpu}= | Catenate | main-core | ${dut1_cpu_main}
+| | ... | corelist-workers | ${dut1_cpu_w}
+| | ${dut2_cpu}= | Catenate | main-core | ${dut2_cpu_main}
+| | ... | corelist-workers | ${dut2_cpu_w}
+| | ${rxqueues}= | Catenate | num-rx-queues | ${n}
+| | Add CPU config | ${dut1} | ${dut1_cpu}
+| | Add CPU config | ${dut2} | ${dut2_cpu}
+| | Add rxqueues config | ${dut1} | ${rxqueues}
+| | Add rxqueues config | ${dut2} | ${rxqueues}
+
+| Add '${m}' worker threads using SMT and rxqueues '${n}' in 2-node single-link topo
+| | [Documentation] | Setup M worker threads and N rxqueues in vpp startup
+| | ...
+| | ... | configuration on all DUTs in 2-node single-link topology.
+| | ${m_int}= | Convert To Integer | ${m}
+| | ${dut1_numa}= | Get interfaces numa node | ${dut1}
+| | ... | ${dut1_if1} | ${dut1_if2}
+| | ${dut1_cpu_main}= | Cpu list per node str | ${dut1} | ${dut1_numa}
+| | ... | cpu_cnt=${1} | smt_used=${True}
+| | ${dut1_cpu_w}= | Cpu list per node str | ${dut1} | ${dut1_numa}
+| | ... | skip_cnt=${1} | cpu_cnt=${m_int} | smt_used=${True}
 | | ${dut1_cpu}= | Catenate | main-core | ${dut1_cpu_main}
 | | ... | corelist-workers | ${dut1_cpu_w}
 | | ${rxqueues}= | Catenate | num-rx-queues | ${n}

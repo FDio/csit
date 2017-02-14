@@ -42,3 +42,26 @@
 | | ... | ${jumbo_frames}
 | | Start the l2fwd test | ${dut2} | ${dut2_cpus} | ${nb_cores} | ${rxqueues}
 | | ... | ${jumbo_frames}
+
+| Start L2FWD '${m}' worker threads using SMT and rxqueues '${n}' with jumbo frames '${b}'
+| | [Documentation] | Start the l2fwd with M worker threads without HTT
+| | ... | and rxqueues N and B (yes or no) jumbo frames in all DUTs.
+| | ...
+| | ${m_int}= | Convert To Integer | ${m}
+| | ${cpu_cnt}= | Evaluate | ${m_int}+1
+| | ${nb_cores_int}= | Evaluate | ${m_int}*2
+| | ${nb_cores}= | Convert to String | ${nb_cores_int}
+| | ${rxqueues}= | Convert to String | ${n}
+| | ${jumbo_frames}= | Convert to String | ${b}
+| | ${dut1_numa}= | Get interfaces numa node | ${dut1}
+| | ... | ${dut1_if1} | ${dut1_if2}
+| | ${dut2_numa}= | Get interfaces numa node | ${dut2}
+| | ... | ${dut2_if1} | ${dut2_if2}
+| | ${dut1_cpus}= | Cpu Range Per Node Str | ${dut1} | ${dut1_numa}
+| | ... | cpu_cnt=${cpu_cnt} | smt_used=${True}
+| | ${dut2_cpus}= | Cpu Range Per Node Str | ${dut2} | ${dut2_numa}
+| | ... | cpu_cnt=${cpu_cnt} | smt_used=${True}
+| | Start the l2fwd test | ${dut1} | ${dut1_cpus} | ${nb_cores} | ${rxqueues}
+| | ... | ${jumbo_frames}
+| | Start the l2fwd test | ${dut2} | ${dut2_cpus} | ${nb_cores} | ${rxqueues}
+| | ... | ${jumbo_frames}
