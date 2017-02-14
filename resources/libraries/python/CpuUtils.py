@@ -11,14 +11,18 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""CPU utilities library"""
+"""CPU utilities library."""
 
 from resources.libraries.python.ssh import SSH
 
 __all__ = ["CpuUtils"]
 
+
 class CpuUtils(object):
     """CPU utilities"""
+
+    # Number of threads per core.
+    NR_OF_THREADS = 2
 
     @staticmethod
     def __str2int(string):
@@ -33,6 +37,26 @@ class CpuUtils(object):
             return int(string)
         except ValueError:
             return 0
+
+    @staticmethod
+    def is_smt_enabled(cpu_info):
+        """Uses CPU mapping to find out if SMT is enabled or not. If SMT is
+        enabled, the L1d,L1i,L2,L3 setting is the same for two processors. These
+        two processors are two threads of one core.
+
+        :param cpu_info: CPU info, the output of "lscpu -p".
+        :type cpu_info: list
+        :returns: True if SMT is enabled, False if SMT is disabled.
+        :rtype: bool
+        """
+
+        cpu_mems = [item[-4:] for item in cpu_info]
+        cpu_mems_len = len(cpu_mems) / CpuUtils.NR_OF_THREADS
+        count = 0
+        for cpu_mem in cpu_mems[:cpu_mems_len]:
+            if cpu_mem in cpu_mems[cpu_mems_len:]:
+                count += 1
+        return bool(count == cpu_mems_len)
 
     @staticmethod
     def get_cpu_layout_from_all_nodes(nodes):
@@ -72,39 +96,95 @@ class CpuUtils(object):
         :rtype: int
         :raises RuntimeError: If node cpuinfo is not available.
         """
-        cpuinfo = node.get("cpuinfo")
-        if cpuinfo is not None:
+        cpu_info = node.get("cpuinfo")
+        if cpu_info is not None:
             return node["cpuinfo"][-1][3] + 1
         else:
             raise RuntimeError("Node cpuinfo not available.")
 
     @staticmethod
-    def cpu_list_per_node(node, cpu_node):
+    def cpu_list_per_node(node, cpu_node, smt_used=False):
         """Return node related list of CPU numbers.
 
         :param node: Node dictionary with cpuinfo.
         :param cpu_node: Numa node number.
+        :param smt_used: True - we want to use SMT, otherwise false.
         :type node: dict
         :type cpu_node: int
+        :type smt_used: bool
         :returns: List of cpu numbers related to numa from argument.
         :rtype: list of int
-        :raises RuntimeError: If node cpuinfo is not available.
+        :raises RuntimeError: If node cpuinfo is not available or if SMT is not
+        enabled.
         """
+
         cpu_node = int(cpu_node)
-        cpuinfo = node.get("cpuinfo")
-        cpulist = []
-        if cpuinfo is not None:
-            for cpu in cpuinfo:
-                if cpu[3] == cpu_node:
-                    cpulist.append(cpu[0])
-        else:
+        cpu_info = node.get("cpuinfo")
+        if cpu_info is None:
             raise RuntimeError("Node cpuinfo not available.")
 
-        return cpulist
+        smt_enabled = CpuUtils.is_smt_enabled(cpu_info)
+        if not smt_enabled and smt_used:
+            raise RuntimeError("SMT is not enabled.")
+
+        cpu_list = []
+        for cpu in cpu_info:
+            if cpu[3] == cpu_node:
+                cpu_list.append(cpu[0])
+
+        if not smt_enabled or smt_enabled and smt_used:
+            pass
+
+        if smt_enabled and not smt_used:
+            cpu_list_len = len(cpu_list)
+            cpu_list = cpu_list[:cpu_list_len / CpuUtils.NR_OF_THREADS]
+
+        return cpu_list
 
     @staticmethod
-    def cpu_list_per_node_str(node, cpu_node, skip_cnt=0,
-                              cpu_cnt=0, sep=","):
+    def cpu_slice_of_list_per_node(node, cpu_node, skip_cnt=0, cpu_cnt=0,
+                                   smt_used=False):
+        """Return string of node related list of CPU numbers.
+
+        :param node: Node dictionary with cpuinfo.
+        :param cpu_node: Numa node number.
+        :param skip_cnt: Skip first "skip_cnt" CPUs.
+        :param cpu_cnt: Count of cpus to return, if 0 then return all.
+        :param smt_used: True - we want to use SMT, otherwise false.
+        :type node: dict
+        :type cpu_node: int
+        :type skip_cnt: int
+        :type cpu_cnt: int
+        :type smt_used: bool
+        :returns: Cpu numbers related to numa from argument.
+        :rtype: list
+        :raises RuntimeError: If we require more cpus than available.
+        """
+
+        cpu_list = CpuUtils.cpu_list_per_node(node, cpu_node, smt_used)
+
+        cpu_list_len = len(cpu_list)
+        if cpu_cnt + skip_cnt > cpu_list_len:
+            raise RuntimeError("cpu_cnt + skip_cnt > length(cpu list).")
+
+        if cpu_cnt == 0:
+            cpu_cnt = cpu_list_len - skip_cnt
+
+        if smt_used:
+            cpu_list_0 = cpu_list[:cpu_list_len / CpuUtils.NR_OF_THREADS]
+            cpu_list_1 = cpu_list[cpu_list_len / CpuUtils.NR_OF_THREADS:]
+            cpu_list = [cpu for cpu in cpu_list_0[skip_cnt:skip_cnt + cpu_cnt]]
+            cpu_list_ex = [cpu for cpu in
+                           cpu_list_1[skip_cnt:skip_cnt + cpu_cnt]]
+            cpu_list.extend(cpu_list_ex)
+        else:
+            cpu_list = [cpu for cpu in cpu_list[skip_cnt:skip_cnt + cpu_cnt]]
+
+        return cpu_list
+
+    @staticmethod
+    def cpu_list_per_node_str(node, cpu_node, skip_cnt=0, cpu_cnt=0, sep=",",
+                              smt_used=False):
         """Return string of node related list of CPU numbers.
 
         :param node: Node dictionary with cpuinfo.
@@ -112,56 +192,57 @@ class CpuUtils(object):
         :param skip_cnt: Skip first "skip_cnt" CPUs.
         :param cpu_cnt: Count of cpus to return, if 0 then return all.
         :param sep: Separator, default: 1,2,3,4,....
+        :param smt_used: True - we want to use SMT, otherwise false.
         :type node: dict
         :type cpu_node: int
         :type skip_cnt: int
         :type cpu_cnt: int
         :type sep: str
+        :type smt_used: bool
         :returns: Cpu numbers related to numa from argument.
         :rtype: str
-        :raises RuntimeError: If we require more cpus than available.
         """
 
-        cpu_list = CpuUtils.cpu_list_per_node(node, cpu_node)
-        cpu_list_len = len(cpu_list)
-        if cpu_cnt == 0:
-            cpu_cnt = cpu_list_len - skip_cnt
-
-        if cpu_cnt + skip_cnt > cpu_list_len:
-            raise RuntimeError("cpu_cnt + skip_cnt > length(cpu list).")
-
-        cpu_flist = sep.join(str(a) for a in
-                             cpu_list[skip_cnt:skip_cnt+cpu_cnt])
-
-        return cpu_flist
+        cpu_list = CpuUtils.cpu_slice_of_list_per_node(node, cpu_node,
+                                                       skip_cnt=skip_cnt,
+                                                       cpu_cnt=cpu_cnt,
+                                                       smt_used=smt_used)
+        return sep.join(str(cpu) for cpu in cpu_list)
 
     @staticmethod
-    def cpu_range_per_node_str(node, cpu_node, skip_cnt=0, cpu_cnt=0, sep="-"):
+    def cpu_range_per_node_str(node, cpu_node, skip_cnt=0, cpu_cnt=0, sep="-",
+                               smt_used=False):
         """Return string of node related range of CPU numbers, e.g. 0-4.
 
         :param node: Node dictionary with cpuinfo.
         :param cpu_node: Numa node number.
         :param skip_cnt: Skip first "skip_cnt" CPUs.
         :param cpu_cnt: Count of cpus to return, if 0 then return all.
-        :param sep: Separator, default: 0-4.
+        :param sep: Separator, default: "-".
+        :param smt_used: True - we want to use SMT, otherwise false.
         :type node: dict
         :type cpu_node: int
         :type skip_cnt: int
         :type cpu_cnt: int
         :type sep: str
+        :type smt_used: bool
         :returns: String of node related range of CPU numbers.
         :rtype: str
-        :raises RuntimeError: If we require more cpus than available.
         """
 
-        cpu_list = CpuUtils.cpu_list_per_node(node, cpu_node)
-        cpu_list_len = len(cpu_list)
-        if cpu_cnt == 0:
-            cpu_cnt = cpu_list_len - skip_cnt
+        cpu_list = CpuUtils.cpu_slice_of_list_per_node(node, cpu_node,
+                                                       skip_cnt=skip_cnt,
+                                                       cpu_cnt=cpu_cnt,
+                                                       smt_used=smt_used)
+        if smt_used:
+            cpu_list_len = len(cpu_list)
+            cpu_list_0 = cpu_list[:cpu_list_len / CpuUtils.NR_OF_THREADS]
+            cpu_list_1 = cpu_list[cpu_list_len / CpuUtils.NR_OF_THREADS:]
+            cpu_range = "{}{}{},{}{}{}".format(cpu_list_0[0], sep,
+                                               cpu_list_0[-1],
+                                               cpu_list_1[0], sep,
+                                               cpu_list_1[-1])
+        else:
+            cpu_range = "{}{}{}".format(cpu_list[0], sep, cpu_list[-1])
 
-        if cpu_cnt + skip_cnt > cpu_list_len:
-            raise RuntimeError("cpu_cnt + skip_cnt > length(cpu list).")
-
-        first = cpu_list[skip_cnt]
-        last = cpu_list[skip_cnt + cpu_cnt - 1]
-        return "{}{}{}".format(first, sep, last)
+        return cpu_range

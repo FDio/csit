@@ -91,10 +91,10 @@
 | | When L2 bridge domains with Vhost-User initialized in a 3-node circular topology
 | | ... | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
 | | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1 | ${5} | ${5}
+| | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
 | | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
 | | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1 | ${5} | ${5}
+| | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | And Setup scheduler policy for VPP on all DUTs
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
@@ -124,10 +124,10 @@
 | | When L2 bridge domains with Vhost-User initialized in a 3-node circular topology
 | | ... | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
 | | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1 | ${5} | ${5}
+| | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
 | | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
 | | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1 | ${5} | ${5}
+| | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | And Setup scheduler policy for VPP on all DUTs
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
@@ -157,10 +157,10 @@
 | | When L2 bridge domains with Vhost-User initialized in a 3-node circular topology
 | | ... | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
 | | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1 | ${5} | ${5}
+| | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
 | | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
 | | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1 | ${5} | ${5}
+| | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | And Setup scheduler policy for VPP on all DUTs
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
@@ -190,10 +190,10 @@
 | | When L2 bridge domains with Vhost-User initialized in a 3-node circular topology
 | | ... | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
 | | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1 | ${5} | ${5}
+| | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
 | | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
 | | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1 | ${5} | ${5}
+| | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | And Setup scheduler policy for VPP on all DUTs
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
@@ -224,10 +224,10 @@
 | | When L2 bridge domains with Vhost-User initialized in a 3-node circular topology
 | | ... | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
 | | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1 | ${5} | ${5}
+| | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
 | | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
 | | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1 | ${5} | ${5}
+| | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | And Setup scheduler policy for VPP on all DUTs
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
@@ -257,10 +257,10 @@
 | | When L2 bridge domains with Vhost-User initialized in a 3-node circular topology
 | | ... | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
 | | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1 | ${5} | ${5}
+| | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
 | | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
 | | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1 | ${5} | ${5}
+| | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | And Setup scheduler policy for VPP on all DUTs
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
@@ -290,10 +290,10 @@
 | | When L2 bridge domains with Vhost-User initialized in a 3-node circular topology
 | | ... | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
 | | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1 | ${5} | ${5}
+| | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
 | | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
 | | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1 | ${5} | ${5}
+| | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | And Setup scheduler policy for VPP on all DUTs
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
@@ -323,10 +323,10 @@
 | | When L2 bridge domains with Vhost-User initialized in a 3-node circular topology
 | | ... | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
 | | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1 | ${5} | ${5}
+| | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
 | | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
 | | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1 | ${5} | ${5}
+| | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | And Setup scheduler policy for VPP on all DUTs
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
@@ -356,10 +356,10 @@
 | | When L2 bridge domains with Vhost-User initialized in a 3-node circular topology
 | | ... | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
 | | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1 | ${5} | ${5}
+| | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
 | | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
 | | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1 | ${5} | ${5}
+| | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | And Setup scheduler policy for VPP on all DUTs
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
@@ -389,10 +389,10 @@
 | | When L2 bridge domains with Vhost-User initialized in a 3-node circular topology
 | | ... | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
 | | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1 | ${5} | ${5}
+| | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
 | | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
 | | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1 | ${5} | ${5}
+| | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | And Setup scheduler policy for VPP on all DUTs
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
@@ -423,10 +423,10 @@
 | | When L2 bridge domains with Vhost-User initialized in a 3-node circular topology
 | | ... | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
 | | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1 | ${5} | ${5}
+| | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
 | | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
 | | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1 | ${5} | ${5}
+| | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | And Setup scheduler policy for VPP on all DUTs
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
@@ -457,10 +457,10 @@
 | | When L2 bridge domains with Vhost-User initialized in a 3-node circular topology
 | | ... | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
 | | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1 | ${5} | ${5}
+| | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
 | | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
 | | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1 | ${5} | ${5}
+| | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | And Setup scheduler policy for VPP on all DUTs
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
@@ -490,10 +490,10 @@
 | | When L2 bridge domains with Vhost-User initialized in a 3-node circular topology
 | | ... | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
 | | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1 | ${5} | ${5}
+| | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
 | | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
 | | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1 | ${5} | ${5}
+| | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | And Setup scheduler policy for VPP on all DUTs
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
@@ -523,10 +523,10 @@
 | | When L2 bridge domains with Vhost-User initialized in a 3-node circular topology
 | | ... | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
 | | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1 | ${5} | ${5}
+| | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
 | | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
 | | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1 | ${5} | ${5}
+| | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | And Setup scheduler policy for VPP on all DUTs
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
@@ -556,10 +556,10 @@
 | | When L2 bridge domains with Vhost-User initialized in a 3-node circular topology
 | | ... | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
 | | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1 | ${5} | ${5}
+| | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
 | | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
 | | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1 | ${5} | ${5}
+| | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | And Setup scheduler policy for VPP on all DUTs
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
@@ -589,10 +589,10 @@
 | | When L2 bridge domains with Vhost-User initialized in a 3-node circular topology
 | | ... | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
 | | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1 | ${5} | ${5}
+| | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
 | | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
 | | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1 | ${5} | ${5}
+| | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | And Setup scheduler policy for VPP on all DUTs
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
@@ -623,10 +623,10 @@
 | | When L2 bridge domains with Vhost-User initialized in a 3-node circular topology
 | | ... | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
 | | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1 | ${5} | ${5}
+| | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
 | | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
 | | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1 | ${5} | ${5}
+| | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | And Setup scheduler policy for VPP on all DUTs
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
@@ -657,10 +657,10 @@
 | | When L2 bridge domains with Vhost-User initialized in a 3-node circular topology
 | | ... | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
 | | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1 | ${5} | ${5}
+| | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
 | | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
 | | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1 | ${5} | ${5}
+| | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | And Setup scheduler policy for VPP on all DUTs
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
