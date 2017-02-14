@@ -6,15 +6,11 @@
     <node name="tg1" type="SIMPLE" subtype="server" location="570,238" vmImage="$$VM_IMAGE$$">
         <extensions>
             <entry key="config" type="String">#cloud-config
-bootcmd:
-- ln -s -t /etc/rc.d /etc/rc.local
 hostname: tg1
 manage_etc_hosts: true
 nfs_server_scratch: $$NFS_SERVER_SCRATCH$$
 nfs_server_common: $$NFS_SERVER_COMMON$$
 runcmd:
-- systemctl enable serial-getty-digi@ttyS0.service
-- systemctl start serial-getty-digi@ttyS0.service
 - systemctl start rc-local
 - touch /tmp/before-sed
 - sed -i 's/^\s*PasswordAuthentication\s\+no/PasswordAuthentication yes/' /etc/ssh/sshd_config
@@ -35,9 +31,9 @@ users:
 write_files:
 - path: /usr/local/sbin/cloud-instance-name
   content: |
-    #!/usr/bin/python3.5
+    #!/usr/bin/python2.7
     import pickle
-    print(pickle.loads(open('/var/lib/cloud/instance/obj.pkl', 'rb').read(), encoding="ACSII").metadata['name'])
+    print pickle.loads(open('/var/lib/cloud/instance/obj.pkl', 'rb').read()).metadata['name']
   owner: root:root
   permissions: '0755'
 - path: /etc/rc.local
@@ -85,17 +81,13 @@ write_files:
     <node name="sut1" type="SIMPLE" subtype="vPP" location="425,26" vmImage="$$VM_IMAGE$$">
         <extensions>
             <entry key="config" type="string">#cloud-config
-bootcmd:
-- ln -s -t /etc/rc.d /etc/rc.local
 hostname: sut1
 manage_etc_hosts: true
 nfs_server_scratch: $$NFS_SERVER_SCRATCH$$
 nfs_server_common: $$NFS_SERVER_COMMON$$
 runcmd:
-- systemctl enable serial-getty-digi@ttyS0.service
-- systemctl start serial-getty-digi@ttyS0.service
 - systemctl start rc-local
-- sed -i '/^\s*PasswordAuthentication\s\+no/d' /etc/ssh/sshd_config
+- sed -i 's/^\s*PasswordAuthentication\s\+no/PasswordAuthentication yes/' /etc/ssh/sshd_config
 - echo "UseDNS no" &gt;&gt; /etc/ssh/sshd_config
 - service ssh restart
 - service sshd restart
@@ -116,9 +108,9 @@ users:
 write_files:
 - path: /usr/local/sbin/cloud-instance-name
   content: |
-    #!/usr/bin/python3.5
+    #!/usr/bin/python2.7
     import pickle
-    print(pickle.loads(open('/var/lib/cloud/instance/obj.pkl', 'rb').read(), encoding="ACSII").metadata['name'])
+    print pickle.loads(open('/var/lib/cloud/instance/obj.pkl', 'rb').read()).metadata['name']
   owner: root:root
   permissions: '0755'
 - path: /etc/rc.local
@@ -189,17 +181,13 @@ write_files:
     <node name="sut2" type="SIMPLE" subtype="vPP" location="748,26" vmImage="$$VM_IMAGE$$">
         <extensions>
             <entry key="config" type="string">#cloud-config
-bootcmd:
-- ln -s -t /etc/rc.d /etc/rc.local
 hostname: sut2
 manage_etc_hosts: true
 nfs_server_scratch: $$NFS_SERVER_SCRATCH$$
 nfs_server_common: $$NFS_SERVER_COMMON$$
 runcmd:
-- systemctl enable serial-getty-digi@ttyS0.service
-- systemctl start serial-getty-digi@ttyS0.service
 - systemctl start rc-local
-- sed -i '/^\s*PasswordAuthentication\s\+no/d' /etc/ssh/sshd_config
+- sed -i 's/^\s*PasswordAuthentication\s\+no/PasswordAuthentication yes/' /etc/ssh/sshd_config
 - echo "UseDNS no" &gt;&gt; /etc/ssh/sshd_config
 - service ssh restart
 - service sshd restart
@@ -220,9 +208,9 @@ users:
 write_files:
 - path: /usr/local/sbin/cloud-instance-name
   content: |
-    #!/usr/bin/python3.5
+    #!/usr/bin/python2.7
     import pickle
-    print(pickle.loads(open('/var/lib/cloud/instance/obj.pkl', 'rb').read(), encoding="ACSII").metadata['name'])
+    print pickle.loads(open('/var/lib/cloud/instance/obj.pkl', 'rb').read()).metadata['name']
   owner: root:root
   permissions: '0755'
 - path: /etc/rc.local

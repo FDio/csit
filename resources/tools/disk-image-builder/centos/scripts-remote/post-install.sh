@@ -15,6 +15,18 @@
 
 TEMP_PATH="/root/temp"
 
+echo ==========================Remove NetworkManager============================
+systemctl disable NetworkManager
+systemctl enable network
+yum -y remove NetworkManager
+
+cat - > /etc/sysconfig/network-scripts/ifcfg-eth0 <<"_EOF"
+DEVICE=eth0
+BOOTPROTO=dhcp
+ONBOOT=yes
+_EOF
+echo =======================End Remove NetworkManager===========================
+
 ###
 ### RPMs
 ###
@@ -27,11 +39,9 @@ echo "********** INSTALLING RPMs **********"
 # problems during the first one(s).
 echo ==========================yum update==============================
 yum clean all
-yum install -y @base
 yum install -y deltarpm
 yum update -y
-yum -y install epel-release
-yum update -y
+yum install -y @base epel-release
 echo ==========================end yum update==============================
 attempt=1
 MAX_ATTEMPTS=3
