@@ -22,6 +22,30 @@
       "revId": "c8da7da80fecbca566fed85ce33695dae02ace30",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_763c2430",
+        "filename": "resources/test_data/honeycomb/plugin_acl.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 519,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-02-14T09:00:21Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a3291f1_f68db432",
+      "range": {
+        "startLine": 516,
+        "startChar": 4,
+        "endLine": 519,
+        "endChar": 56
+      },
+      "revId": "c8da7da80fecbca566fed85ce33695dae02ace30",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
