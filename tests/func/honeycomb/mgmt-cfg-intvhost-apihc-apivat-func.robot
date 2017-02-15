@@ -26,8 +26,7 @@
 | Resource | resources/libraries/robot/default.robot
 | Resource | resources/libraries/robot/honeycomb/honeycomb.robot
 | Resource | resources/libraries/robot/honeycomb/vhost_user.robot
-# vhost-user as server failing due to VPP bug (VPP-562)
-| Force Tags | honeycomb_sanity | EXPECTED_FAILING
+| Force Tags | honeycomb_sanity
 | Suite Teardown | Run Keyword If Any Tests Failed
 | ... | Restart Honeycomb And VPP And Clear Persisted Configuration | ${node}
 | Documentation | *Honeycomb vhost-user interface management test suite.*
