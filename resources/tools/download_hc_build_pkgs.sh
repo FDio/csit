@@ -23,7 +23,7 @@ OS=$2
 # Download the latest VPP and VPP plugin .deb packages
 URL="https://nexus.fd.io/service/local/artifact/maven/content"
 VER="LATEST"
-REPO="fd.io.${STREAM}.ubuntu.trusty.main"
+REPO="fd.io.${STREAM}.${OS}"
 VPP_GROUP="io.fd.vpp"
 NSH_GROUP="io.fd.nsh_sfc"
 VPP_ARTIFACTS="vpp vpp-dbg vpp-dev vpp-dpdk-dev vpp-dpdk-dkms vpp-lib vpp-plugins vpp-api-java"

@@ -328,6 +328,8 @@
 | | ... | to VPP interface 2 and receive it from interface 1(this should create\
 | | ... | a reflexive "permit" rule) Finally, send the original packet again\
 | | ... | and receive it from interface 2.
+| | [Tags] | EXPCETED_FAILING
+# Bug VPP-633, VPP crashes when any packet hits a reflexive rule
 | | [Teardown] | Run Keywords
 | | ... | Read plugin-ACL configuration from VAT | ${node} | AND
 | | ... | Clear plugin-acl Settings | ${node} | ${dut_to_tg_if1} | AND
@@ -625,6 +627,7 @@
 | | ... | and receive it from interface 2.
 | | [Tags] | EXPECTED_FAILING
 # routed interfaces not yet supported by ACL plugin (no Jira id available)
+# Bug VPP-633, VPP crashes when any packet hits a reflexive rule
 | | Given Setup Interface IPs And Routes For IPv4 plugin-acl Test
 | | ... | icmp | ${acl_name_reflex}
 | | And Add ARP on DUT
