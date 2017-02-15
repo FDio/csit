@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a3291f1_44c1722d",
+        "filename": "tests/perf/10ge2p1x710-ethip4ipsecifscaleip4-ip4base-ndrdisc.robot",
+        "patchSetId": 22
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-02-15T10:20:45Z",
+      "side": 1,
+      "message": "This is encapsulation part of the name (see https://docs.fd.io/csit/rls1701/report/introduction/csit_test_naming.html). \"if\" cannot be there.\nCheck also the suite name.",
+      "range": {
+        "startLine": 73,
+        "startChar": 16,
+        "endLine": 73,
+        "endChar": 38
+      },
+      "revId": "97a6d42a6cb2104ca2651d8335bcbcce7f8a058d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
