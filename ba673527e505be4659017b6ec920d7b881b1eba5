@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a3291f1_c4f8c2e7",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 21
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-02-15T09:27:45Z",
+      "side": 1,
+      "message": "Check PEP8 errors, see pylint output: https://jenkins.fd.io/job/csit-validate-pylint-master/2724/",
+      "revId": "ba673527e505be4659017b6ec920d7b881b1eba5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_24eae60f",
+        "filename": "resources/libraries/python/IPsecUtil.py",
+        "patchSetId": 21
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-02-15T09:27:45Z",
+      "side": 1,
+      "message": "\".\" should be at the end of sentence, check everywhere.",
+      "range": {
+        "startLine": 267,
+        "startChar": 26,
+        "endLine": 267,
+        "endChar": 61
+      },
+      "revId": "ba673527e505be4659017b6ec920d7b881b1eba5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_e4ca9ea0",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 21
+      },
+      "lineNbr": 395,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-02-15T09:27:45Z",
+      "side": 1,
+      "message": "Tuple would be better",
+      "range": {
+        "startLine": 395,
+        "startChar": 29,
+        "endLine": 395,
+        "endChar": 50
+      },
+      "revId": "ba673527e505be4659017b6ec920d7b881b1eba5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_e4417e0c",
+        "filename": "tests/perf/10ge2p1x710-ethip4ipsecifscaleip4-ip4base-ndrdisc.robot",
+        "patchSetId": 21
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-02-15T09:27:45Z",
+      "side": 1,
+      "message": "Use tags defined in docs/tag_documentation.rst\nOf course, you can use \"IPSEC\" as a general tag for IPSEC* tests, in that case add it to docs/tag_documentation.rst",
+      "range": {
+        "startLine": 19,
+        "startChar": 2,
+        "endLine": 19,
+        "endChar": 12
+      },
+      "revId": "ba673527e505be4659017b6ec920d7b881b1eba5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
