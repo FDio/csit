@@ -32,25 +32,43 @@ ARCHIVE_ARTIFACTS=(log.html output.xml report.html)
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 export PYTHONPATH=${SCRIPT_DIR}
 
+if [ -f "/etc/redhat-release" ]; then
+    DISTRO="CENTOS"
+else
+    DISTRO="UBUNTU"
+fi
 
 # 1st step: Download and prepare VPP packages
 
 # Temporarily download VPP packages from nexus.fd.io
-rm -f *.deb
 if [ "${#}" -ne "0" ]; then
     arr=(${@})
     echo ${arr[0]}
 else
+    case "$DISTRO" in
+        CENTOS )
+            rm -f *.rpm
+            ;;
+        UBUNTU )
+            rm -f *.deb
+    esac
     # Download the latest VPP build .deb install packages
     echo Downloading VPP packages...
     bash ${SCRIPT_DIR}/resources/tools/download_install_vpp_pkgs.sh --skip-install
 fi
 
-VPP_DEBS=(*.deb)
-echo ${VPP_DEBS[@]}
-
-VPP_VER=$(echo ${VPP_DEBS#vpp-})
-VPP_VER=$(echo ${VPP_VER%-deb.deb})
+# Take vpp package and get the vpp version
+case "$DISTRO" in
+        CENTOS )
+            VPP_PKGS="$( readlink -f *.rpm | tr '\n' ' ' )"
+            VPP_VER="$( expr match $(ls *.rpm | head -n 1) 'vpp-\(.*\).rpm' )"
+            echo ${VPP_PKGS[@]}
+            ;;
+        UBUNTU )
+            VPP_PKGS="$( readlink -f *.deb | tr '\n' ' ' )"
+            VPP_VER="$( expr match $(ls *.deb | head -n 1) 'vpp-\(.*\)-deb.deb' )"
+            echo ${VPP_PKGS[@]}
+esac
 
 set +x
 echo "****************************************************************************************************************************************"
@@ -87,8 +105,15 @@ VIRL_PKEY=priv_key
 VIRL_SERVER_STATUS_FILE="status"
 VIRL_SERVER_EXPECTED_STATUS="PRODUCTION"
 
-VIRL_TOPOLOGY=double-ring-nested.xenial
-VIRL_RELEASE=csit-ubuntu-16.04.1_2016-12-19_1.6
+case "$DISTRO" in
+        CENTOS )
+            VIRL_TOPOLOGY=double-ring-nested.centos7
+            VIRL_RELEASE=csit-centos-7.3-1611_2017-02-14_1.3
+            ;;
+        UBUNTU )
+            VIRL_TOPOLOGY=double-ring-nested.xenial
+            VIRL_RELEASE=csit-ubuntu-16.04.1_2016-12-19_1.6
+esac
 
 SSH_OPTIONS="-i ${VIRL_PKEY} -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o BatchMode=yes -o LogLevel=error"
 
@@ -166,14 +191,14 @@ done
 
 
 VIRL_DIR_LOC="/tmp"
-VPP_DEBS_VIRL=(${VPP_DEBS[@]})
+VPP_PKGS_VIRL=(${VPP_PKGS[@]})
 
 # Prepend directory location at remote host to deb file list
-for index in "${!VPP_DEBS_VIRL[@]}"; do
-    VPP_DEBS_VIRL[${index}]=${VIRL_DIR_LOC}/${VPP_DEBS_VIRL[${index}]}
+for index in "${!VPP_PKGS_VIRL[@]}"; do
+    VPP_PKGS_VIRL[${index}]=${VIRL_DIR_LOC}/${VPP_PKGS_VIRL[${index}]}
 done
 
-echo "Updated file names: " ${VPP_DEBS_VIRL[@]}
+echo "Updated file names: " ${VPP_PKGS_VIRL[@]}
 
 cat ${VIRL_PKEY}
 # Copy the files to VIRL host
@@ -197,7 +222,7 @@ function stop_virl_simulation {
 
 VIRL_SID=$(ssh ${SSH_OPTIONS} \
     ${VIRL_USERNAME}@${VIRL_SERVER} \
-    "start-testcase -c ${VIRL_TOPOLOGY} -r ${VIRL_RELEASE} ${VPP_DEBS_VIRL[@]}")
+    "start-testcase -c ${VIRL_TOPOLOGY} -r ${VIRL_RELEASE} ${VPP_PKGS_VIRL[@]}")
 retval=$?
 if [ ${retval} -ne "0" ]; then
     echo "VIRL simulation start failed"
