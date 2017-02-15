@@ -22,7 +22,7 @@
 | Documentation | *Netconf test suite. Contains test cases that need to bypass\
 | ... | REST API.*
 | Force Tags | honeycomb_sanity
-| Suite Teardown | Run Keyword If Any Tests Failed
+| Suite Teardown
 | ... | Restart Honeycomb And VPP And Clear Persisted Configuration | ${node}
 
 *** Variables ***
