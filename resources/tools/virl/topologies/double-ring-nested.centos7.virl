@@ -17,6 +17,8 @@ runcmd:
 - echo "UseDNS no" &gt;&gt; /etc/ssh/sshd_config
 - service ssh restart
 - service sshd restart
+- ln -s /sbin/lspci /usr/bin/lspci
+- ln -s /sbin/pidof /usr/bin/pidof
 users:
 - default
 - gecos: User configured by VIRL Configuration Engine 0.21.4
@@ -94,6 +96,9 @@ runcmd:
 - sed -i 's/no-pci//' /opt/cisco/vpe/etc/qn.conf
 - sed -i 's/1024/1024 decimal-interface-names/g' /opt/cisco/vpe/etc/qn.conf
 - ln -s /dev/null /etc/sysctl.d/80-vpp.conf
+- ln -s /sbin/pidof /usr/bin/pidof
+- ln -s /usr/libexec/qemu-kvm /usr/bin/qemu-system-x86_64
+- ln -s /sbin/fuser /usr/bin/fuser
 users:
 - default
 - gecos: User configured by VIRL Configuration Engine 0.21.4
@@ -194,6 +199,9 @@ runcmd:
 - sed -i 's/no-pci//' /opt/cisco/vpe/etc/qn.conf
 - sed -i 's/1024/1024 decimal-interface-names/g' /opt/cisco/vpe/etc/qn.conf
 - ln -s /dev/null /etc/sysctl.d/80-vpp.conf
+- ln -s /sbin/pidof /usr/bin/pidof
+- ln -s /usr/libexec/qemu-kvm /usr/bin/qemu-system-x86_64
+- ln -s /sbin/fuser /usr/bin/fuser
 users:
 - default
 - gecos: User configured by VIRL Configuration Engine 0.21.4
