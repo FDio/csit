@@ -15,25 +15,49 @@
 
 set -ex
 
-trap 'rm -f *.deb.md5; exit' EXIT
-trap 'rm -f *.deb.md5;rm -f *.deb; exit' ERR
-
 URL="https://nexus.fd.io/service/local/artifact/maven/content"
 VER="RELEASE"
-
-VPP_REPO_URL_PATH="./VPP_REPO_URL"
-if [ -e "$VPP_REPO_URL_PATH" ]; then
-    VPP_REPO_URL=$(cat $VPP_REPO_URL_PATH)
-    REPO=$(echo ${VPP_REPO_URL#https://nexus.fd.io/content/repositories/})
-    REPO=$(echo ${REPO%/io/fd/vpp/})
-else
-    REPO='fd.io.master.ubuntu.xenial.main'
-fi
-
 GROUP="io.fd.vpp"
-ARTIFACTS="vpp vpp-dbg vpp-dev vpp-dpdk-dev vpp-dpdk-dkms vpp-lib vpp-plugins"
-PACKAGE="deb deb.md5"
-CLASS="deb"
+
+if [ -f "/etc/redhat-release" ]; then
+    trap 'rm -f *.rpm.md5; exit' EXIT
+    trap 'rm -f *.rpm.md5;rm -f *.rpm; exit' ERR
+
+    VPP_REPO_URL_PATH="./VPP_REPO_URL_CENTOS"
+    if [ -e "$VPP_REPO_URL_PATH" ]; then
+        VPP_REPO_URL=$(cat $VPP_REPO_URL_PATH)
+        REPO=$(echo ${VPP_REPO_URL#https://nexus.fd.io/content/repositories/})
+        REPO=$(echo ${REPO%/io/fd/vpp/})
+    else
+        REPO='fd.io.master.centos7'
+    FILES=*.rpm
+    MD5FILES=*.rpm.md5
+    fi
+
+    ARTIFACTS="vpp vpp-debuginfo vpp-devel vpp-dpdk-devel vpp-lib vpp-plugins"
+    PACKAGE="rpm rpm.md5"
+    CLASS=""
+    VPP_INSTALL_COMMAND="rpm -ivh *.rpm"
+else
+    trap 'rm -f *.deb.md5; exit' EXIT
+    trap 'rm -f *.deb.md5;rm -f *.deb; exit' ERR
+
+    VPP_REPO_URL_PATH="./VPP_REPO_URL_UBUNTU"
+    if [ -e "$VPP_REPO_URL_PATH" ]; then
+        VPP_REPO_URL=$(cat $VPP_REPO_URL_PATH)
+        REPO=$(echo ${VPP_REPO_URL#https://nexus.fd.io/content/repositories/})
+        REPO=$(echo ${REPO%/io/fd/vpp/})
+    else
+        REPO='fd.io.master.ubuntu.xenial.main'
+    FILES=*.deb
+    MD5FILES=*.deb.md5
+    fi
+
+    ARTIFACTS="vpp vpp-dbg vpp-dev vpp-dpdk-dev vpp-dpdk-dkms vpp-lib vpp-plugins"
+    PACKAGE="deb deb.md5"
+    CLASS="deb"
+    VPP_INSTALL_COMMAND="dpkg -i *.deb"
+fi
 
 for ART in ${ARTIFACTS}; do
     for PAC in $PACKAGE; do
@@ -41,17 +65,17 @@ for ART in ${ARTIFACTS}; do
     done
 done
 
-for FILE in *.deb; do
+for FILE in ${FILES}; do
     echo " "${FILE} >> ${FILE}.md5
 done
 
-for MD5FILE in *.md5; do
+for MD5FILE in ${MD5FILES}; do
     md5sum -c ${MD5FILE} || exit
 done
 
 if [ "$1" != "--skip-install" ]; then
     echo Installing VPP
-    sudo dpkg -i *.deb
+    sudo ${VPP_INSTALL_COMMAND}
 else
     echo VPP Installation skipped
 fi
