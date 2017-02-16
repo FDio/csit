@@ -215,7 +215,7 @@ class SSH(object):
         chan.set_combine_stderr(True)
 
         buf = ''
-        while not buf.endswith(':~$ '):
+        while not (buf.endswith(':~$ ') or buf.endswith('~]$ ')):
             try:
                 chunk = chan.recv(self.__MAX_RECV_BUF)
                 if not chunk:
@@ -260,7 +260,9 @@ class SSH(object):
             except socket.timeout:
                 raise Exception('Socket timeout: {0}'.format(buf))
         tmp = buf.replace(cmd.replace('\n', ''), '')
-        return tmp.replace(prompt, '')
+        for p in prompt:
+            tmp.replace(p, '')
+        return tmp
 
     @staticmethod
     def interactive_terminal_close(chan):
