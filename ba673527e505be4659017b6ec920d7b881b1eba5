@@ -113,6 +113,30 @@
     },
     {
       "key": {
+        "uuid": "3a3291f1_1fef3389",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 21
+      },
+      "lineNbr": 395,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-02-16T07:36:16Z",
+      "side": 1,
+      "message": "I see. It will be changed in a separate commit.",
+      "parentUuid": "3a3291f1_9fe7a312",
+      "range": {
+        "startLine": 395,
+        "startChar": 29,
+        "endLine": 395,
+        "endChar": 50
+      },
+      "revId": "ba673527e505be4659017b6ec920d7b881b1eba5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a3291f1_e4417e0c",
         "filename": "tests/perf/10ge2p1x710-ethip4ipsecifscaleip4-ip4base-ndrdisc.robot",
         "patchSetId": 21
