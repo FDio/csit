@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a3291f1_5fe5bba6",
+        "filename": "resources/libraries/robot/DPDK/default.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 47,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-02-16T06:27:59Z",
+      "side": 1,
+      "message": "smt",
+      "range": {
+        "startLine": 47,
+        "startChar": 68,
+        "endLine": 47,
+        "endChar": 71
+      },
+      "revId": "1241fbe43f69491688bb9eb05f16b6ddbb8e2475",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
