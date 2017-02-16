@@ -158,7 +158,7 @@ class VatTerminal(object):
     """
 
     __VAT_PROMPT = "vat# "
-    __LINUX_PROMPT = ":~$ "
+    __LINUX_PROMPT = (":~$ ", "~]$ ")
 
     def __init__(self, node, json_param=True):
         json_text = ' json' if json_param else ''
