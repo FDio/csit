@@ -66,7 +66,7 @@ RPM_WANTLIST_VPP="dkms bridge-utils"
 RPM_WANTLIST_TREX="zlib-devel unzip"
 RPM_WANTLIST_MISC="gperftools glusterfs glusterfs-api libiscsi libibverbs libpcap libpcap-devel pixman libpng pulseaudio-libs librados2 librbd1 librdmacm libseccomp spice-server libusb usbredir glusterfs-devel seavgabios-bin sgabios-bin ipxe-roms-qemu nss-devel seabios-bin"
 
-RPM_WANTLIST_NESTED="qemu-img-ev-2.3.0-31.el7_2.21.1.x86_64.rpm libcacard-ev-2.3.0-31.el7_2.21.1.x86_64.rpm libcacard-devel-ev-2.3.0-31.el7_2.21.1.x86_64.rpm qemu-kvm-ev-debuginfo-2.3.0-31.el7_2.21.1.x86_64.rpm qemu-kvm-tools-ev-2.3.0-31.el7_2.21.1.x86_64.rpm qemu-kvm-common-ev-2.3.0-31.el7_2.21.1.x86_64.rpm qemu-kvm-ev-2.3.0-31.el7_2.21.1.x86_64.rpm libcacard-tools-ev-2.3.0-31.el7_2.21.1.x86_64.rpm"
+RPM_WANTLIST_NESTED="socat psmisc qemu-img-ev-2.3.0-31.el7_2.21.1.x86_64.rpm libcacard-ev-2.3.0-31.el7_2.21.1.x86_64.rpm libcacard-devel-ev-2.3.0-31.el7_2.21.1.x86_64.rpm qemu-kvm-ev-debuginfo-2.3.0-31.el7_2.21.1.x86_64.rpm qemu-kvm-tools-ev-2.3.0-31.el7_2.21.1.x86_64.rpm qemu-kvm-common-ev-2.3.0-31.el7_2.21.1.x86_64.rpm qemu-kvm-ev-2.3.0-31.el7_2.21.1.x86_64.rpm libcacard-tools-ev-2.3.0-31.el7_2.21.1.x86_64.rpm"
 RPM_WANTLIST_JAVA="java-1.8.0-openjdk-headless java-1.8.0-openjdk-devel"
 #RPM_WANTLIST_DOCKER="docker-engine"
 
