@@ -227,9 +227,9 @@ class QemuUtils(object):
             response will contain the "error" keyword instead of "return".
         """
         # To enter command mode, the qmp_capabilities command must be issued.
-        qmp_cmd = 'echo "{ \\"execute\\": \\"qmp_capabilities\\" }' + \
-            '{ \\"execute\\": \\"' + cmd + '\\" }" | sudo -S nc -U ' + \
-            self.__QMP_SOCK
+        qmp_cmd = 'echo "{ \\"execute\\": \\"qmp_capabilities\\" }{ \\"execute\\": \\"' + cmd + '\\" }" | sudo -S nc -U ' + self.__QMP_SOCK
+        qmp_cmd = 'echo "{ \\"execute\\": \\"qmp_capabilities\\" }{ \\"execute\\": \\"' + cmd + '\\" }" | sudo -S socat - UNIX-CONNECT:' + self.__QMP_SOCK
+
         (ret_code, stdout, stderr) = self._ssh.exec_command(qmp_cmd)
         if int(ret_code) != 0:
             logger.debug('QMP execute failed {0}'.format(stderr))
@@ -246,8 +246,9 @@ class QemuUtils(object):
     def _qemu_qga_flush(self):
         """Flush the QGA parser state
         """
-        qga_cmd = 'printf "\xFF" | sudo -S nc ' \
-            '-q 1 -U ' + self.__QGA_SOCK
+        qga_cmd = 'printf "\xFF" | sudo -S nc -q 1 -U ' + self.__QGA_SOCK
+        qga_cmd = '(printf "\xFF"; sleep 1) | sudo -S socat - UNIX-CONNECT:' + self.__QGA_SOCK
+        #TODO probably need something else
         (ret_code, stdout, stderr) = self._ssh.exec_command(qga_cmd)
         if int(ret_code) != 0:
             logger.debug('QGA execute failed {0}'.format(stderr))
@@ -267,8 +268,8 @@ class QemuUtils(object):
         :param cmd: QGA command to execute.
         :type cmd: str
         """
-        qga_cmd = 'echo "{ \\"execute\\": \\"' + cmd + '\\" }" | sudo -S nc ' \
-            '-q 1 -U ' + self.__QGA_SOCK
+        qga_cmd = 'echo "{ \\"execute\\": \\"' + cmd + '\\" }" | sudo -S nc -q 1 -U ' + self.__QGA_SOCK
+        qga_cmd = '(echo "{ \\"execute\\": \\"' + cmd + '\\" }"; sleep 1) | sudo -S socat - UNIX-CONNECT:' + self.__QGA_SOCK
         (ret_code, stdout, stderr) = self._ssh.exec_command(qga_cmd)
         if int(ret_code) != 0:
             logger.debug('QGA execute failed {0}'.format(stderr))
@@ -494,6 +495,9 @@ class QemuUtils(object):
         # If 'huge_allocate' is set to true try to allocate as well.
         self._huge_page_check(allocate=self._qemu_opt.get('huge_allocate'))
 
+        # Disk option
+        drive = '-drive file={},format=raw,cache=none,if=virtio'.format(
+            self._qemu_opt.get('disk_image'))
         # Setup QMP via unix socket
         qmp = '-qmp unix:{0},server,nowait'.format(self.__QMP_SOCK)
         # Setup serial console
@@ -505,11 +509,12 @@ class QemuUtils(object):
             '-device isa-serial,chardev=qga0'
         # Graphic setup
         graphic = '-monitor none -display none -vga none'
+
         # Run QEMU
-        cmd = '{0} {1} {2} {3} {4} -hda {5} {6} {7} {8} {9}'.format(
+        cmd = '{0} {1} {2} {3} {4} {5} {6} {7} {8} {9}'.format(
             self.__QEMU_BIN, self._qemu_opt.get('smp'), mem, ssh_fwd,
             self._qemu_opt.get('options'),
-            self._qemu_opt.get('disk_image'), qmp, serial, qga, graphic)
+            drive, qmp, serial, qga, graphic)
         (ret_code, _, stderr) = self._ssh.exec_command_sudo(cmd, timeout=300)
         if int(ret_code) != 0:
             logger.debug('QEMU start failed {0}'.format(stderr))
