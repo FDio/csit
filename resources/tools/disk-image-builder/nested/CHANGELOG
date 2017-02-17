@@ -1,3 +1,11 @@
+## [1.6] - 2017-02-20
+
+### Changes
+- replace /dev/sda to /dev/vda, to use with virtio disk driver
+- add noapic to bootloader's kernel line
+- bind igb_uio driver only to network device
+
+
 ## [1.5] - 2016-11-14
 
 ### Changes

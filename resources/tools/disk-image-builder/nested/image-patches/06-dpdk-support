@@ -46,10 +46,13 @@ echo 1af4 1000 > /sys/bus/pci/drivers/${TARGET_DRIVER}/new_id
 #
 for dev in $(find /sys/bus/pci/drivers/virtio-pci -type l -name '*:*:*.*' | sed -e 's/.*\///')
 do
-  echo Unbinding $dev from virtio-pci
-  echo $dev > /sys/bus/pci/drivers/virtio-pci/unbind
-  echo Binding $dev to ${TARGET_DRIVER}
-  echo $dev > /sys/bus/pci/drivers/${TARGET_DRIVER}/bind
+  class=$(cat /sys/bus/pci/drivers/virtio-pci/${dev}/class)
+  if [ "$class" = "0x020000" ]; then
+	echo Unbinding $dev from virtio-pci
+	echo $dev > /sys/bus/pci/drivers/virtio-pci/unbind
+	echo Binding $dev to ${TARGET_DRIVER}
+	echo $dev > /sys/bus/pci/drivers/${TARGET_DRIVER}/bind
+  fi
 done
 
 # RCU and IRQ affinity
