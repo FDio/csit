@@ -66,7 +66,7 @@ APT_WANTLIST_CSIT="python-dev python-pip python-virtualenv git strongswan"
 APT_WANTLIST_TLDK="libpcap0.8-dev libpcap-dev cmake"
 APT_WANTLIST_VPP="dkms bridge-utils"
 APT_WANTLIST_TREX="zlib1g-dev unzip"
-APT_WANTLIST_NESTED="qemu-system-x86"
+APT_WANTLIST_NESTED="socat qemu-system-x86"
 APT_WANTLIST_JAVA="openjdk-8-jdk-headless"
 #Docker is currently disabled due to issues with apt repositories retrieval
 #APT_WANTLIST_DOCKER="docker-engine"
