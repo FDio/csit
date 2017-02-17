@@ -44,7 +44,7 @@ class InterfaceKeywords(object):
                             "temporary-valid-lifetime",
                             "temporary-preferred-lifetime")
     ETH_PARAMS = ("mtu", )
-    ROUTING_PARAMS = ("vrf-id", )
+    ROUTING_PARAMS = ("ipv4-vrf-id", "ipv6-vrf-id")
     VXLAN_PARAMS = ("src", "dst", "vni", "encap-vrf-id")
     L2_PARAMS = ("bridge-domain", "split-horizon-group",
                  "bridged-virtual-interface")
@@ -513,9 +513,9 @@ class InterfaceKeywords(object):
         path = ("interfaces", ("interface", "name", interface), "ietf-ip:ipv4",
                 "address")
         if isinstance(network, basestring):
-            address = {"address": [{"ip": ip_addr, "netmask": network}, ]}
+            address = [{"ip": ip_addr, "netmask": network}]
         elif isinstance(network, int) and (0 < network < 33):
-            address = {"address": [{"ip": ip_addr, "prefix-length": network}, ]}
+            address = [{"ip": ip_addr, "prefix-length": network}]
         else:
             raise HoneycombError("Value {0} is not a valid netmask or network "
                                  "prefix length.".format(network))
