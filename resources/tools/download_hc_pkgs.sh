@@ -22,7 +22,6 @@ OS=$2
 
 URL="https://nexus.fd.io/service/local/artifact/maven/content"
 VER="RELEASE"
-REPO="fd.io.${STREAM}.${OS}"
 GROUP="io.fd.vpp"
 HC_GROUP="io.fd.hc2vpp"
 NSH_GROUP="io.fd.nsh_sfc"
@@ -43,6 +42,8 @@ elif [ "${OS}" == "centos7" ]; then
     PACKAGE="rpm rpm.md5"
     CLASS="rpm"
 fi
+
+REPO="fd.io.${STREAM}.${OS}"
 
 for ART in ${VPP_ARTIFACTS}; do
     for PAC in $PACKAGE; do

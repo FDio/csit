@@ -23,7 +23,6 @@ OS=$2
 # Download the latest VPP and VPP plugin .deb packages
 URL="https://nexus.fd.io/service/local/artifact/maven/content"
 VER="LATEST"
-REPO="fd.io.${STREAM}.${OS}"
 VPP_GROUP="io.fd.vpp"
 NSH_GROUP="io.fd.nsh_sfc"
 VPP_ARTIFACTS="vpp vpp-dbg vpp-dev vpp-dpdk-dev vpp-dpdk-dkms vpp-lib vpp-plugins vpp-api-java"
@@ -42,6 +41,8 @@ elif [ "${OS}" == "centos7" ]; then
     PACKAGE="rpm rpm.md5"
     CLASS="rpm"
 fi
+
+REPO="fd.io.${STREAM}.${OS}"
 
 for ART in ${VPP_ARTIFACTS}; do
     for PAC in $PACKAGE; do
