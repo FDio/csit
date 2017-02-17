@@ -27,6 +27,8 @@
     apt: name=crudini state=present
   - name: install expect
     apt: name=expect state=present
+  - name: install socat
+    apt: name=socat state=present
   - name: install qemu
     apt: name=qemu-system-x86 state=present
 - hosts: virl

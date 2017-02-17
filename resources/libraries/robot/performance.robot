@@ -80,7 +80,7 @@
 | | ...
 | | Set Suite Variable | ${glob_loss_acceptance} | 0.5
 | | Set Suite Variable | ${glob_loss_acceptance_type} | percentage
-| | Set Suite Variable | ${glob_vm_image} | /var/lib/vm/csit-nested-1.5.img
+| | Set Suite Variable | ${glob_vm_image} | /var/lib/vm/csit-nested-1.6.img
 
 | 2-node circular Topology Variables Setup
 | | [Documentation]
