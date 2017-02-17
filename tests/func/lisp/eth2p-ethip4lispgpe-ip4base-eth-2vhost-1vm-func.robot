@@ -110,9 +110,9 @@
 | | ...
 | | ${vhost1}= | Vpp Create Vhost User Interface | ${dut1_node} | ${sock1}
 | | ${vhost2}= | Vpp Create Vhost User Interface | ${dut1_node} | ${sock2}
-| | Set Interface Address | ${dut1_node} | ${vhost2} | ${vhost_ip} | ${prefix4}
 | | Assign Interface To Fib Table | ${dut1_node}
 | | ... | ${vhost2} | ${fib_table}
+| | Set Interface Address | ${dut1_node} | ${vhost2} | ${vhost_ip} | ${prefix4}
 | | Set Interface State | ${dut1_node} | ${vhost1} | up
 | | Set Interface State | ${dut1_node} | ${vhost2} | up
 | | Bridge domain on DUT node is created | ${dut1_node} | ${bid} | learn=${TRUE}
