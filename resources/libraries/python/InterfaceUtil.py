@@ -848,6 +848,29 @@ class InterfaceUtil(object):
         return data[0]
 
     @staticmethod
+    def get_interface_vrf_table(node, interface):
+        """Get vrf ID for the given interface.
+
+        :param node: VPP node.
+        :param interface: Name or sw_if_index of a specific interface.
+        :type node: dict
+        :type interface: str
+        :returns: vrf ID of the specified interface.
+        :rtype: int
+        """
+
+        if isinstance(interface, basestring):
+            sw_if_index = InterfaceUtil.get_sw_if_index(node, interface)
+        else:
+            sw_if_index = interface
+
+        with VatTerminal(node) as vat:
+            data = vat.vat_terminal_exec_cmd_from_template(
+                "interface_vrf_dump.vat",
+                sw_if_index=sw_if_index)
+        return data[0]["vrf_id"]
+
+    @staticmethod
     def get_sw_if_index(node, interface_name):
         """Get sw_if_index for the given interface from actual interface dump.
 
