@@ -950,10 +950,16 @@ class InterfaceUtil(object):
         ipv6 = 'ipv6' if ipv6 else ''
 
         with VatTerminal(node) as vat:
-            vat.vat_terminal_exec_cmd_from_template("set_fib_to_interface.vat",
-                                                    sw_index=sw_if_index,
-                                                    vrf=table_id,
-                                                    ipv6=ipv6)
+            ret = vat.vat_terminal_exec_cmd_from_template(
+                "set_fib_to_interface.vat",
+                sw_index=sw_if_index,
+                vrf=table_id,
+                ipv6=ipv6)
+
+        if ret[0]["retval"] != 0:
+            raise RuntimeError('Unable to assign interface to FIB node {}.'
+                               .format(node))
+
 
     @staticmethod
     def set_linux_interface_mac(node, interface, mac, namespace=None):

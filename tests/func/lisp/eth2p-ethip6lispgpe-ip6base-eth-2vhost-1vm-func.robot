@@ -105,10 +105,10 @@
 | | ...
 | | ${vhost1}= | Vpp Create Vhost User Interface | ${dut1_node} | ${sock1}
 | | ${vhost2}= | Vpp Create Vhost User Interface | ${dut1_node} | ${sock2}
-| | Vpp Set If IPv6 Addr | ${dut1_node} | ${vhost2} | ${vhost_ip}
-| | ... | ${prefix6}
 | | Assign Interface To Fib Table | ${dut1_node}
 | | ... | ${vhost2} | ${fib_table} | ipv6=${TRUE}
+| | Vpp Set If IPv6 Addr | ${dut1_node} | ${vhost2} | ${vhost_ip}
+| | ... | ${prefix6}
 | | Set Interface State | ${dut1_node} | ${vhost1} | up
 | | Set Interface State | ${dut1_node} | ${vhost2} | up
 | | Bridge domain on DUT node is created | ${dut1_node} | ${bid} | learn=${TRUE}
