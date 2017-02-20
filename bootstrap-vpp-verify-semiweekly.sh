@@ -52,7 +52,7 @@ else
         UBUNTU )
             rm -f *.deb
     esac
-    # Download the latest VPP build .deb install packages
+    # Download the latest VPP build install packages
     echo Downloading VPP packages...
     bash ${SCRIPT_DIR}/resources/tools/download_install_vpp_pkgs.sh --skip-install
 fi
@@ -60,12 +60,12 @@ fi
 # Take vpp package and get the vpp version
 case "$DISTRO" in
         CENTOS )
-            VPP_PKGS="$( readlink -f *.rpm | tr '\n' ' ' )"
+            VPP_PKGS=(*.rpm)
             VPP_VER="$( expr match $(ls *.rpm | head -n 1) 'vpp-\(.*\).rpm' )"
             echo ${VPP_PKGS[@]}
             ;;
         UBUNTU )
-            VPP_PKGS="$( readlink -f *.deb | tr '\n' ' ' )"
+            VPP_PKGS=(*.deb)
             VPP_VER="$( expr match $(ls *.deb | head -n 1) 'vpp-\(.*\)-deb.deb' )"
             echo ${VPP_PKGS[@]}
 esac
