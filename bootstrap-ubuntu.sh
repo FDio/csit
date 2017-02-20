@@ -29,7 +29,7 @@ VIRL_SERVER_STATUS_FILE="status"
 VIRL_SERVER_EXPECTED_STATUS="PRODUCTION"
 
 VIRL_TOPOLOGY=double-ring-nested.xenial
-VIRL_RELEASE=csit-ubuntu-16.04.1_2016-12-19_1.6
+VIRL_RELEASE=csit-ubuntu-16.04.1_2017-02-20_1.7
 
 SSH_OPTIONS="-i ${VIRL_PKEY} -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o BatchMode=yes -o LogLevel=error"
 
@@ -126,8 +126,8 @@ done
 echo "Selected VIRL servers: ${VIRL_SERVER[@]}"
 
 # Temporarily download VPP and DPDK packages from nexus.fd.io
-DPDK_STABLE_VER=$(cat ${SCRIPT_DIR}/DPDK_STABLE_VER)
-VPP_REPO_URL=$(cat ${SCRIPT_DIR}/VPP_REPO_URL)
+DPDK_STABLE_VER=$(cat ${SCRIPT_DIR}/DPDK_STABLE_VER)_amd64
+VPP_REPO_URL=$(cat ${SCRIPT_DIR}/VPP_REPO_URL_UBUNTU)
 VPP_CLASSIFIER="-deb"
 if [ "${#}" -ne "0" ]; then
     arr=(${@})
@@ -137,7 +137,7 @@ if [ "${#}" -ne "0" ]; then
     wget -q "${VPP_REPO_URL}/vpp-dpdk-dkms/${DPDK_STABLE_VER}/vpp-dpdk-dkms-${DPDK_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
 else
     rm -f *.deb
-    VPP_STABLE_VER=$(cat ${SCRIPT_DIR}/VPP_STABLE_VER)
+    VPP_STABLE_VER=$(cat ${SCRIPT_DIR}/VPP_STABLE_VER_UBUNTU)
     wget -q "${VPP_REPO_URL}/vpp/${VPP_STABLE_VER}/vpp-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
     wget -q "${VPP_REPO_URL}/vpp-dbg/${VPP_STABLE_VER}/vpp-dbg-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
     wget -q "${VPP_REPO_URL}/vpp-dev/${VPP_STABLE_VER}/vpp-dev-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit

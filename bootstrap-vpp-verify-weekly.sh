@@ -17,10 +17,6 @@ set -x
 cat /etc/hostname
 cat /etc/hosts
 
-export DEBIAN_FRONTEND=noninteractive
-sudo apt-get -y update
-sudo apt-get -y install libpython2.7-dev python-virtualenv
-
 VIRL_SERVERS=("10.30.51.28" "10.30.51.29" "10.30.51.30")
 VIRL_SERVER=""
 
@@ -29,8 +25,19 @@ VIRL_PKEY=priv_key
 VIRL_SERVER_STATUS_FILE="status"
 VIRL_SERVER_EXPECTED_STATUS="PRODUCTION"
 
-VIRL_TOPOLOGY=double-ring-nested.xenial
-VIRL_RELEASE=csit-ubuntu-16.04.1_2016-12-19_1.6
+if [ -f "/etc/redhat-release" ]; then
+    DISTRO="CENTOS"
+    sudo yum install -y python-devel python-virtualenv
+    VIRL_TOPOLOGY=double-ring-nested.centos7
+    VIRL_RELEASE=csit-centos-7.3-1611_2017-02-14_1.3
+else
+    DISTRO="UBUNTU"
+    export DEBIAN_FRONTEND=noninteractive
+    sudo apt-get -y update
+    sudo apt-get -y install libpython2.7-dev python-virtualenv
+    VIRL_TOPOLOGY=double-ring-nested.xenial
+    VIRL_RELEASE=csit-ubuntu-16.04.1_2017-02-20_1.7
+fi
 
 SSH_OPTIONS="-i ${VIRL_PKEY} -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o BatchMode=yes -o LogLevel=error"
 
@@ -109,42 +116,57 @@ done
 # Temporarily download VPP and DPDK packages from nexus.fd.io
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-DPDK_STABLE_VER=$(cat ${SCRIPT_DIR}/DPDK_STABLE_VER)
-VPP_REPO_URL=$(cat ${SCRIPT_DIR}/VPP_REPO_URL)
-VPP_CLASSIFIER="-deb"
+case "$DISTRO" in
+        CENTOS )
+            VPP_ARTIFACTS="vpp vpp-debuginfo vpp-devel vpp-lib vpp-plugins"
+            DPDK_ARTIFACTS="vpp-dpdk-devel"
+            PACKAGE="rpm"
+            VPP_CLASSIFIER=""
+            DPDK_STABLE_VER=$(cat ${SCRIPT_DIR}/DPDK_STABLE_VER).x86_64
+            VPP_REPO_URL=$(cat ${SCRIPT_DIR}/VPP_REPO_URL_CENTOS)
+            VPP_STABLE_VER=$(cat ${SCRIPT_DIR}/VPP_STABLE_VER_CENTOS)
+            ;;
+        UBUNTU )
+            VPP_ARTIFACTS="vpp vpp-dbg vpp-dev vpp-lib vpp-plugins"
+            DPDK_ARTIFACTS="vpp-dpdk-dev vpp-dpdk-dkms"
+            PACKAGE="deb"
+            VPP_CLASSIFIER="-deb"
+            DPDK_STABLE_VER=$(cat ${SCRIPT_DIR}/DPDK_STABLE_VER)_amd64
+            VPP_REPO_URL=$(cat ${SCRIPT_DIR}/VPP_REPO_URL_UBUNTU)
+            VPP_STABLE_VER=$(cat ${SCRIPT_DIR}/VPP_STABLE_VER_UBUNTU)
+esac
 
 if [ "${#}" -ne "0" ]; then
     arr=(${@})
     echo ${arr[0]}
     # DPDK is not part of the vpp build
-    wget -q "${VPP_REPO_URL}/vpp-dpdk-dev/${DPDK_STABLE_VER}/vpp-dpdk-dev-${DPDK_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
-    wget -q "${VPP_REPO_URL}/vpp-dpdk-dkms/${DPDK_STABLE_VER}/vpp-dpdk-dkms-${DPDK_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
+    for ARTIFACT in ${DPDK_ARTIFACTS}; do
+        wget -q "${VPP_REPO_URL}/${ARTIFACT}/${DPDK_STABLE_VER}/${ARTIFACT}-${DPDK_STABLE_VER}${VPP_CLASSIFIER}.${PACKAGE}" || exit
+    done
 else
-    rm -f *.deb
-    VPP_STABLE_VER=$(cat ${SCRIPT_DIR}/VPP_STABLE_VER)
-    wget -q "${VPP_REPO_URL}/vpp/${VPP_STABLE_VER}/vpp-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
-    wget -q "${VPP_REPO_URL}/vpp-dbg/${VPP_STABLE_VER}/vpp-dbg-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
-    wget -q "${VPP_REPO_URL}/vpp-dev/${VPP_STABLE_VER}/vpp-dev-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
-    wget -q "${VPP_REPO_URL}/vpp-dpdk-dev/${DPDK_STABLE_VER}/vpp-dpdk-dev-${DPDK_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
-    wget -q "${VPP_REPO_URL}/vpp-dpdk-dkms/${DPDK_STABLE_VER}/vpp-dpdk-dkms-${DPDK_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
-    wget -q "${VPP_REPO_URL}/vpp-lib/${VPP_STABLE_VER}/vpp-lib-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
-    wget -q "${VPP_REPO_URL}/vpp-plugins/${VPP_STABLE_VER}/vpp-plugins-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
+    rm -f *.${PACKAGE}
+    for ARTIFACT in ${DPDK_ARTIFACTS}; do
+        wget -q "${VPP_REPO_URL}/${ARTIFACT}/${DPDK_STABLE_VER}/${ARTIFACT}-${DPDK_STABLE_VER}${VPP_CLASSIFIER}.${PACKAGE}" || exit
+    done
+    for ARTIFACT in ${VPP_ARTIFACTS}; do
+        wget -q "${VPP_REPO_URL}/${ARTIFACT}/${VPP_STABLE_VER}/${ARTIFACT}-${VPP_STABLE_VER}${VPP_CLASSIFIER}.${PACKAGE}" || exit
+    done
 fi
 
-VPP_DEBS=(*.deb)
-echo ${VPP_DEBS[@]}
+VPP_PKGS=(*.$PACKAGE)
+echo ${VPP_PKGS[@]}
 VIRL_DIR_LOC="/tmp"
-VPP_DEBS_FULL=(${VPP_DEBS[@]})
+VPP_PKGS_FULL=(${VPP_PKGS[@]})
 
 # Prepend directory location at remote host to deb file list
-for index in "${!VPP_DEBS_FULL[@]}"; do
-    VPP_DEBS_FULL[${index}]=${VIRL_DIR_LOC}/${VPP_DEBS_FULL[${index}]}
+for index in "${!VPP_PKGS_FULL[@]}"; do
+    VPP_PKGS_FULL[${index}]=${VIRL_DIR_LOC}/${VPP_PKGS_FULL[${index}]}
 done
 
-echo "Updated file names: " ${VPP_DEBS_FULL[@]}
+echo "Updated file names: " ${VPP_PKGS_FULL[@]}
 
 # Copy the files to VIRL host
-scp ${SSH_OPTIONS} *.deb \
+scp ${SSH_OPTIONS} *.${PACKAGE} \
     ${VIRL_USERNAME}@${VIRL_SERVER}:${VIRL_DIR_LOC}/
 
 result=$?
@@ -164,7 +186,7 @@ function stop_virl_simulation {
 
 VIRL_SID=$(ssh ${SSH_OPTIONS} \
     ${VIRL_USERNAME}@${VIRL_SERVER} \
-    "start-testcase -c ${VIRL_TOPOLOGY} -r ${VIRL_RELEASE} ${VPP_DEBS_FULL[@]}")
+    "start-testcase -c ${VIRL_TOPOLOGY} -r ${VIRL_RELEASE} ${VPP_PKGS_FULL[@]}")
 retval=$?
 if [ ${retval} -ne "0" ]; then
     echo "VIRL simulation start failed"
@@ -214,7 +236,7 @@ do
         -v TOPOLOGY_PATH:${SCRIPT_DIR}/topologies/enabled/topology.yaml \
         --suite "tests.func" \
         --include vm_envAND3_node_single_link_topo \
-        --include vm_envAND3_node_double_link_topo \
+        --include vm_envAND3_nodePACAKGE_double_link_topo \
         --exclude PERFTEST \
         --noncritical EXPECTED_FAILING \
         --output log_test_set${test_set} \

@@ -21,10 +21,6 @@ RETURN_STATUS=0
 cat /etc/hostname
 cat /etc/hosts
 
-export DEBIAN_FRONTEND=noninteractive
-sudo apt-get -y update
-sudo apt-get -y install libpython2.7-dev python-virtualenv
-
 PYBOT_ARGS="--noncritical MULTI_THREAD"
 
 ARCHIVE_ARTIFACTS=(log.html output.xml report.html)
@@ -34,8 +30,12 @@ export PYTHONPATH=${SCRIPT_DIR}
 
 if [ -f "/etc/redhat-release" ]; then
     DISTRO="CENTOS"
+    sudo yum install -y python-devel python-virtualenv
 else
     DISTRO="UBUNTU"
+    export DEBIAN_FRONTEND=noninteractive
+    sudo apt-get -y update
+    sudo apt-get -y install libpython2.7-dev python-virtualenv
 fi
 
 # 1st step: Download and prepare VPP packages
@@ -47,28 +47,28 @@ if [ "${#}" -ne "0" ]; then
 else
     case "$DISTRO" in
         CENTOS )
-            rm -f *.rpm
+            PACKAGE=rpm
             ;;
         UBUNTU )
-            rm -f *.deb
+            PACKAGE=deb
     esac
     # Download the latest VPP build install packages
+    rm -f *.${PACKAGE}
     echo Downloading VPP packages...
     bash ${SCRIPT_DIR}/resources/tools/download_install_vpp_pkgs.sh --skip-install
 fi
 
 # Take vpp package and get the vpp version
+VPP_PKGS=(*.$PACKAGE)
 case "$DISTRO" in
         CENTOS )
-            VPP_PKGS=(*.rpm)
             VPP_VER="$( expr match $(ls *.rpm | head -n 1) 'vpp-\(.*\).rpm' )"
-            echo ${VPP_PKGS[@]}
             ;;
         UBUNTU )
-            VPP_PKGS=(*.deb)
             VPP_VER="$( expr match $(ls *.deb | head -n 1) 'vpp-\(.*\)-deb.deb' )"
-            echo ${VPP_PKGS[@]}
 esac
+
+echo ${VPP_PKGS[@]}
 
 set +x
 echo "****************************************************************************************************************************************"
@@ -112,7 +112,7 @@ case "$DISTRO" in
             ;;
         UBUNTU )
             VIRL_TOPOLOGY=double-ring-nested.xenial
-            VIRL_RELEASE=csit-ubuntu-16.04.1_2016-12-19_1.6
+            VIRL_RELEASE=csit-ubuntu-16.04.1_2017-02-20_1.7
 esac
 
 SSH_OPTIONS="-i ${VIRL_PKEY} -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o BatchMode=yes -o LogLevel=error"
@@ -202,7 +202,7 @@ echo "Updated file names: " ${VPP_PKGS_VIRL[@]}
 
 cat ${VIRL_PKEY}
 # Copy the files to VIRL host
-scp ${SSH_OPTIONS} *.deb \
+scp ${SSH_OPTIONS} *.${PACKAGE} \
     ${VIRL_USERNAME}@${VIRL_SERVER}:${VIRL_DIR_LOC}/
 
 result=$?
