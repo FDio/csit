@@ -146,8 +146,13 @@ for index in "${!VIRL_SERVER[@]}"; do
     if [ "${copy}" -eq "0" ]; then
         echo "files have already been copied to the VIRL host ${VIRL_SERVER[${index}]}"
     else
-        scp ${SSH_OPTIONS} *.deb *.rpm \
-        ${VIRL_USERNAME}@${VIRL_SERVER[${index}]}:${VIRL_DIR_LOC}/
+        if [ "${OS}" == "centos7" ]; then
+            scp ${SSH_OPTIONS} *.rpm \
+                ${VIRL_USERNAME}@${VIRL_SERVER[${index}]}:${VIRL_DIR_LOC}/
+        else
+            scp ${SSH_OPTIONS} *.deb \
+                ${VIRL_USERNAME}@${VIRL_SERVER[${index}]}:${VIRL_DIR_LOC}/
+        fi
          result=$?
         if [ "${result}" -ne "0" ]; then
             echo "Failed to copy files to VIRL host ${VIRL_SERVER[${index}]}"
