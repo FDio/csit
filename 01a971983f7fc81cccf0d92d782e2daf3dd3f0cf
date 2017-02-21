@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a3291f1_01b7d1d9",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-02-21T09:59:52Z",
+      "side": 1,
+      "message": "socat is currently not installed on physical TB for perf. Please include installation to csit/resources/tools/testbed-setup/playbooks/01-host-setup.yaml on all DUTs. I will schedule installation.",
+      "range": {
+        "startLine": 232,
+        "startChar": 36,
+        "endLine": 232,
+        "endChar": 41
+      },
+      "revId": "01a971983f7fc81cccf0d92d782e2daf3dd3f0cf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
