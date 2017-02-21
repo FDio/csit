@@ -42,11 +42,12 @@
 | Library | resources.libraries.python.IPv4Util
 | Library | resources.libraries.python.IPv6Util
 | Library | resources.libraries.python.Routing
-| Test Teardown | Run Keywords | Read plugin-ACL configuration from VAT
-| ... | ${node} | AND
-| ... | Clear plugin-acl settings | ${node} | ${dut_to_tg_if1}
-| Suite Teardown | Run Keywords | Show Packet Trace on All DUTs | ${nodes} | AND
-| ... | Run Keyword If Any Tests Failed
+| Test Setup | Clear Packet Trace on All DUTs | ${nodes}
+| Test Teardown | Run Keywords | Show Packet Trace on All DUTs | ${nodes}
+| ... | AND | Read plugin-ACL configuration from VAT | ${node}
+| ... | AND | Clear plugin-acl settings | ${node} | ${dut_to_tg_if1}
+| Suite Setup | Vpp All ra suppress link layer | ${nodes}
+| Suite Teardown
 | ... | Restart Honeycomb And VPP And Clear Persisted Configuration | ${node}
 | Documentation | *Honeycomb access control lists test suite for ACL plugin.*
 | Force Tags | Honeycomb_sanity
@@ -62,6 +63,7 @@
 | | ... | using different MACs. Receive all packets except those with\
 | | ... | MACs in the filtered ranges.
 | | [Teardown] | Run Keywords
+| | ... | Show Packet Trace on All DUTs | ${nodes} | AND
 | | ... | Clear plugin-acl Settings | ${node} | ${dut_to_tg_if1} | AND
 | | ... | Honeycomb Removes All Bridge Domains
 | | ... | ${node} | ${dut_to_tg_if1} | ${dut_to_tg_if2}
@@ -73,18 +75,18 @@
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${acl_name_macip}
 | | ... | ingress | macip=${True}
 | | When Send TCP Or UDP Packet | ${tg_node} | ${src_ip} | ${dst_ip}
-| | ... | ${tg_to_dut_if1} | ${src_mac}
-| | ... | ${tg_to_dut_if2} | ${dst_mac}
+| | ... | ${tg_to_dut_if1} | ${tg_to_dut_if1_mac}
+| | ... | ${tg_to_dut_if2} | ${dut_to_tg_if1_mac}
 | | ... | TCP | ${src_port} | ${dst_port}
 | | And Run Keyword And Expect Error | TCP/UDP Rx timeout
 | | ... | Send TCP Or UDP Packet | ${tg_node} | ${src_ip} | ${dst_ip}
 | | ... | ${tg_to_dut_if1} | ${classify_src}
-| | ... | ${tg_to_dut_if2} | ${dst_mac}
+| | ... | ${tg_to_dut_if2} | ${dut_to_tg_if1_mac}
 | | ... | TCP | ${src_port} | ${dst_port}
 | | And Run Keyword And Expect Error | TCP/UDP Rx timeout
 | | ... | Send TCP Or UDP Packet | ${tg_node} | ${src_ip} | ${dst_ip}
 | | ... | ${tg_to_dut_if1} | ${classify_src2}
-| | ... | ${tg_to_dut_if2} | ${dst_mac}
+| | ... | ${tg_to_dut_if2} | ${dut_to_tg_if1_mac}
 | | ... | TCP | ${src_port} | ${dst_port}
 
 | TC02: ACL IPv4 filtering through plugin-acl node - bridged
@@ -98,6 +100,7 @@
 | | ... | to the other, using different IPv4 IPs. Receive all packets except\
 | | ... | those with IPs in the filtered ranges and UDP protocol payload.
 | | [Teardown] | Run Keywords
+| | ... | Show Packet Trace on All DUTs | ${nodes} | AND
 | | ... | Read plugin-ACL configuration from VAT | ${node} | AND
 | | ... | Clear plugin-acl Settings | ${node} | ${dut_to_tg_if1} | AND
 | | ... | Honeycomb Removes All Bridge Domains
@@ -136,6 +139,7 @@
 | | ... | to the other, using different IPv6 IPs. Receive all packets except\
 | | ... | those with IPs in the filtered ranges and UDP protocol payload.
 | | [Teardown] | Run Keywords
+| | ... | Show Packet Trace on All DUTs | ${nodes} | AND
 | | ... | Read plugin-ACL configuration from VAT | ${node} | AND
 | | ... | Clear plugin-acl Settings | ${node} | ${dut_to_tg_if1} | AND
 | | ... | Honeycomb Removes All Bridge Domains
@@ -174,6 +178,7 @@
 | | ... | to the other, using different ports. Receive all packets except\
 | | ... | those with ports in the filtered ranges.
 | | [Teardown] | Run Keywords
+| | ... | Show Packet Trace on All DUTs | ${nodes} | AND
 | | ... | Read plugin-ACL configuration from VAT | ${node} | AND
 | | ... | Clear plugin-acl Settings | ${node} | ${dut_to_tg_if1} | AND
 | | ... | Honeycomb Removes All Bridge Domains
@@ -213,6 +218,7 @@
 | | ... | using IPs and ports. Receive all packets except those with\
 | | ... | both IPs and ports in the filtered ranges.
 | | [Teardown] | Run Keywords
+| | ... | Show Packet Trace on All DUTs | ${nodes} | AND
 | | ... | Read plugin-ACL configuration from VAT | ${node} | AND
 | | ... | Clear plugin-acl Settings | ${node} | ${dut_to_tg_if1} | AND
 | | ... | Honeycomb Removes All Bridge Domains
@@ -224,19 +230,19 @@
 | | And Honeycomb Assigns plugin-acl Chain To Interface
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${acl_name_mixed} | ingress
 | | Then Send TCP Or UDP Packet | ${tg_node} | ${src_ip} | ${dst_ip}
-| | ... | ${tg_to_dut_if1} | ${src_mac}
-| | ... | ${tg_to_dut_if2} | ${dst_mac}
+| | ... | ${tg_to_dut_if1} | ${tg_to_dut_if1_mac}
+| | ... | ${tg_to_dut_if2} | ${dut_to_tg_if1_mac}
 | | ... | TCP | ${src_port} | ${dst_port}
 | | Then Send TCP Or UDP Packet | ${tg_node}
 | | ... | ${classify_src_ip} | ${classify_dst_ip}
-| | ... | ${tg_to_dut_if1} | ${src_mac}
-| | ... | ${tg_to_dut_if2} | ${dst_mac}
+| | ... | ${tg_to_dut_if1} | ${tg_to_dut_if1_mac}
+| | ... | ${tg_to_dut_if2} | ${dut_to_tg_if1_mac}
 | | ... | TCP | ${src_port} | ${dst_port}
 | | And Run Keyword And Expect Error | TCP/UDP Rx timeout
 | | ... | Send TCP Or UDP Packet | ${tg_node}
 | | ... | ${classify_src_ip} | ${classify_dst_ip}
-| | ... | ${tg_to_dut_if1} | ${src_mac}
-| | ... | ${tg_to_dut_if2} | ${dst_mac}
+| | ... | ${tg_to_dut_if1} | ${tg_to_dut_if1_mac}
+| | ... | ${tg_to_dut_if2} | ${dut_to_tg_if1_mac}
 | | ... | TCP | ${classify_src_port} | ${classify_dst_port}
 
 | TC06: ACL ICMP packet filtering - bridged
@@ -251,6 +257,7 @@
 | | [Tags] | EXPECTED_FAILING
 # Bug VPP-624, ICMP type/code values are not matched
 | | [Teardown] | Run Keywords
+| | ... | Show Packet Trace on All DUTs | ${nodes} | AND
 | | ... | Read plugin-ACL configuration from VAT | ${node} | AND
 | | ... | Clear plugin-acl Settings | ${node} | ${dut_to_tg_if1} | AND
 | | ... | Honeycomb Removes All Bridge Domains
@@ -290,6 +297,7 @@
 | | [Tags] | EXPECTED_FAILING
 # Bug VPP-624, ICMP type/code values are not matched
 | | [Teardown] | Run Keywords
+| | ... | Show Packet Trace on All DUTs | ${nodes} | AND
 | | ... | Read plugin-ACL configuration from VAT | ${node} | AND
 | | ... | Clear plugin-acl Settings | ${node} | ${dut_to_tg_if1} | AND
 | | ... | Honeycomb Removes All Bridge Domains
@@ -331,6 +339,7 @@
 | | [Tags] | EXPCETED_FAILING
 # Bug VPP-633, VPP crashes when any packet hits a reflexive rule
 | | [Teardown] | Run Keywords
+| | ... | Show Packet Trace on All DUTs | ${nodes} | AND
 | | ... | Read plugin-ACL configuration from VAT | ${node} | AND
 | | ... | Clear plugin-acl Settings | ${node} | ${dut_to_tg_if1} | AND
 | | ... | Honeycomb Removes All Bridge Domains
@@ -509,18 +518,18 @@
 | | And Honeycomb Assigns plugin-acl Chain To Interface
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${acl_name_mixed} | ingress
 | | Then Send TCP Or UDP Packet | ${tg_node} | ${src_ip} | ${dst_ip}
-| | ... | ${tg_to_dut_if1} | ${src_mac}
-| | ... | ${tg_to_dut_if2} | ${dst_mac}
+| | ... | ${tg_to_dut_if1} | ${tg_to_dut_if1_mac}
+| | ... | ${tg_to_dut_if2} | ${dut_to_tg_if1_mac}
 | | ... | TCP | ${src_port} | ${dst_port}
 | | Then Send TCP Or UDP Packet | ${tg_node}
 | | ... | ${classify_src_ip} | ${classify_dst_ip}
-| | ... | ${tg_to_dut_if1} | ${src_mac}
-| | ... | ${tg_to_dut_if2} | ${dst_mac}
+| | ... | ${tg_to_dut_if1} | ${tg_to_dut_if1_mac}
+| | ... | ${tg_to_dut_if2} | ${dut_to_tg_if1_mac}
 | | ... | TCP | ${src_port} | ${dst_port}
 | | And Run Keyword And Expect Error | TCP/UDP Rx timeout
 | | ... | Send TCP Or UDP Packet | ${tg_node}
 | | ... | ${classify_src_ip} | ${classify_dst_ip}
-| | ... | ${tg_to_dut_if1} | ${src_mac}
+| | ... | ${tg_to_dut_if1} | ${tg_to_dut_if1_mac}
 | | ... | ${tg_to_dut_if2} | ${dst_mac}
 | | ... | TCP | ${classify_src_port} | ${classify_dst_port}
 
