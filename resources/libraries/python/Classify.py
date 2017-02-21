@@ -375,7 +375,7 @@ class Classify(object):
         try:
             VatExecutor.cmd_from_template(
                 node, "acl_plugin/acl_dump.vat")
-        except ValueError:
+        except (ValueError, RuntimeError):
             # Fails to parse JSON data in response, but it is still logged
             pass
 
