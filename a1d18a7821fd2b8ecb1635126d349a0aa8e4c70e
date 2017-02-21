@@ -1,0 +1,458 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a3291f1_410399b8",
+        "filename": "TLDK-tests/func/__init__.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-02-21T08:44:17Z",
+      "side": 1,
+      "message": "Consider moving the suite setup to each suite. Also, consider using a suite teardown in each suite to clean up.",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 18,
+        "endChar": 56
+      },
+      "revId": "a1d18a7821fd2b8ecb1635126d349a0aa8e4c70e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_61f695d9",
+        "filename": "TLDK-tests/func/ipv4/ipv4_assemble.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-02-21T08:44:17Z",
+      "side": 1,
+      "message": "Move to \"Settings\" part, use \"Force tags\". Add more suitable tags defined in docs/tag_documentation.rst\nApply to all files with tests.",
+      "range": {
+        "startLine": 33,
+        "startChar": 13,
+        "endLine": 33,
+        "endChar": 45
+      },
+      "revId": "a1d18a7821fd2b8ecb1635126d349a0aa8e4c70e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_21008da9",
+        "filename": "TLDK-tests/func/ipv4/ipv4_assemble.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-02-21T08:44:17Z",
+      "side": 1,
+      "message": "${1} is better",
+      "range": {
+        "startLine": 45,
+        "startChar": 46,
+        "endLine": 45,
+        "endChar": 47
+      },
+      "revId": "a1d18a7821fd2b8ecb1635126d349a0aa8e4c70e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_611d750f",
+        "filename": "TLDK-tests/tldk_scripts/run_tldk.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-02-21T08:44:17Z",
+      "side": 1,
+      "message": "consider implementation of the \"kill\" in a way as pkill testpmd is implemented in run_l2fwd.sh",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 23,
+        "endChar": 2
+      },
+      "revId": "a1d18a7821fd2b8ecb1635126d349a0aa8e4c70e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_21176def",
+        "filename": "resources/libraries/python/TLDK/SetupTLDKTest.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-02-21T08:44:17Z",
+      "side": 1,
+      "message": "Add returns, rtype and raises to the docstring.",
+      "range": {
+        "startLine": 36,
+        "startChar": 4,
+        "endLine": 36,
+        "endChar": 62
+      },
+      "revId": "a1d18a7821fd2b8ecb1635126d349a0aa8e4c70e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_e1d84555",
+        "filename": "resources/libraries/python/TLDK/SetupTLDKTest.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-02-21T08:44:17Z",
+      "side": 1,
+      "message": "Add raises to the doc.",
+      "range": {
+        "startLine": 83,
+        "startChar": 4,
+        "endLine": 83,
+        "endChar": 7
+      },
+      "revId": "a1d18a7821fd2b8ecb1635126d349a0aa8e4c70e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_01d4711e",
+        "filename": "resources/libraries/python/TLDK/SetupTLDKTest.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-02-21T08:44:17Z",
+      "side": 1,
+      "message": "PEP8: Use more specific exception, e.g. RuntimeError.\nCheck everywhere.",
+      "range": {
+        "startLine": 94,
+        "startChar": 14,
+        "endLine": 94,
+        "endChar": 23
+      },
+      "revId": "a1d18a7821fd2b8ecb1635126d349a0aa8e4c70e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_c1dd4944",
+        "filename": "resources/libraries/python/TLDK/SetupTLDKTest.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-02-21T08:44:17Z",
+      "side": 1,
+      "message": "returns (it is needed for documentation auto generation)\ncheck everywhere",
+      "range": {
+        "startLine": 104,
+        "startChar": 5,
+        "endLine": 104,
+        "endChar": 11
+      },
+      "revId": "a1d18a7821fd2b8ecb1635126d349a0aa8e4c70e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_a1e23d01",
+        "filename": "resources/libraries/python/TLDK/SetupTLDKTest.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-02-21T08:44:17Z",
+      "side": 1,
+      "message": "Add raises to the doc.",
+      "range": {
+        "startLine": 127,
+        "startChar": 4,
+        "endLine": 127,
+        "endChar": 7
+      },
+      "revId": "a1d18a7821fd2b8ecb1635126d349a0aa8e4c70e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_81e74112",
+        "filename": "resources/libraries/python/TLDK/SetupTLDKTest.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-02-21T08:44:17Z",
+      "side": 1,
+      "message": "?",
+      "range": {
+        "startLine": 152,
+        "startChar": 4,
+        "endLine": 152,
+        "endChar": 20
+      },
+      "revId": "a1d18a7821fd2b8ecb1635126d349a0aa8e4c70e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_61e4550d",
+        "filename": "resources/libraries/python/TLDK/SetupTLDKTest.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 190,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-02-21T08:44:17Z",
+      "side": 1,
+      "message": "add to doc",
+      "range": {
+        "startLine": 190,
+        "startChar": 24,
+        "endLine": 190,
+        "endChar": 29
+      },
+      "revId": "a1d18a7821fd2b8ecb1635126d349a0aa8e4c70e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_41f159cc",
+        "filename": "resources/libraries/python/TLDK/UdpTest.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-02-21T08:44:17Z",
+      "side": 1,
+      "message": "returns, rtype",
+      "range": {
+        "startLine": 38,
+        "startChar": 9,
+        "endLine": 38,
+        "endChar": 15
+      },
+      "revId": "a1d18a7821fd2b8ecb1635126d349a0aa8e4c70e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_21ee4ded",
+        "filename": "resources/libraries/python/TLDK/UdpTest.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-02-21T08:44:17Z",
+      "side": 1,
+      "message": "returns",
+      "range": {
+        "startLine": 76,
+        "startChar": 9,
+        "endLine": 76,
+        "endChar": 15
+      },
+      "revId": "a1d18a7821fd2b8ecb1635126d349a0aa8e4c70e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_01bb51e6",
+        "filename": "resources/libraries/python/TLDK/UdpTest.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-02-21T08:44:17Z",
+      "side": 1,
+      "message": "Add raises to the doc.",
+      "range": {
+        "startLine": 77,
+        "startChar": 8,
+        "endLine": 77,
+        "endChar": 11
+      },
+      "revId": "a1d18a7821fd2b8ecb1635126d349a0aa8e4c70e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_e1bf25cf",
+        "filename": "resources/libraries/python/TLDK/UdpTest.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-02-21T08:44:17Z",
+      "side": 1,
+      "message": "Use more specific exception",
+      "range": {
+        "startLine": 96,
+        "startChar": 18,
+        "endLine": 96,
+        "endChar": 27
+      },
+      "revId": "a1d18a7821fd2b8ecb1635126d349a0aa8e4c70e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_c1b429f4",
+        "filename": "resources/libraries/python/TLDK/UdpTest.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-02-21T08:44:17Z",
+      "side": 1,
+      "message": "returns, rtype, raises",
+      "range": {
+        "startLine": 110,
+        "startChar": 9,
+        "endLine": 110,
+        "endChar": 15
+      },
+      "revId": "a1d18a7821fd2b8ecb1635126d349a0aa8e4c70e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_a1b91deb",
+        "filename": "resources/libraries/python/TLDK/UdpTest.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-02-21T08:44:17Z",
+      "side": 1,
+      "message": "Use more specific exception",
+      "range": {
+        "startLine": 120,
+        "startChar": 18,
+        "endLine": 120,
+        "endChar": 27
+      },
+      "revId": "a1d18a7821fd2b8ecb1635126d349a0aa8e4c70e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_41c83974",
+        "filename": "resources/libraries/python/TLDK/constants.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-02-21T08:44:17Z",
+      "side": 1,
+      "message": "You can use resources/libraries/python/constants.py if appropriate.",
+      "revId": "a1d18a7821fd2b8ecb1635126d349a0aa8e4c70e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_81ce2182",
+        "filename": "resources/libraries/python/TLDK/constants.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-02-21T08:44:17Z",
+      "side": 1,
+      "message": "2017 - check everywhere",
+      "range": {
+        "startLine": 1,
+        "startChar": 16,
+        "endLine": 1,
+        "endChar": 20
+      },
+      "revId": "a1d18a7821fd2b8ecb1635126d349a0aa8e4c70e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_61cb3573",
+        "filename": "resources/libraries/python/TLDK/constants.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-02-21T08:44:17Z",
+      "side": 1,
+      "message": "Add empty line after this line",
+      "range": {
+        "startLine": 15,
+        "startChar": 61,
+        "endLine": 15,
+        "endChar": 64
+      },
+      "revId": "a1d18a7821fd2b8ecb1635126d349a0aa8e4c70e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
