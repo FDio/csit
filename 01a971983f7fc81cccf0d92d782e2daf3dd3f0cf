@@ -46,6 +46,29 @@
       "revId": "01a971983f7fc81cccf0d92d782e2daf3dd3f0cf",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_a1b0fdf4",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 273,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2017-02-21T15:39:29Z",
+      "side": 1,
+      "message": "Move it to previous line, please.",
+      "range": {
+        "startLine": 273,
+        "startChar": 18,
+        "endLine": 273,
+        "endChar": 25
+      },
+      "revId": "01a971983f7fc81cccf0d92d782e2daf3dd3f0cf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
