@@ -22,6 +22,30 @@
       "revId": "01a971983f7fc81cccf0d92d782e2daf3dd3f0cf",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_41c4b93f",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 232,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2017-02-21T10:31:38Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a3291f1_01b7d1d9",
+      "range": {
+        "startLine": 232,
+        "startChar": 36,
+        "endLine": 232,
+        "endChar": 41
+      },
+      "revId": "01a971983f7fc81cccf0d92d782e2daf3dd3f0cf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
