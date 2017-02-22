@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2017 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -66,21 +66,8 @@
 | | ... | \| Get Frame Size \| IMIX_v4_1
 | | [Arguments] | ${framesize}
 | | Run Keyword If | '${framesize}' == 'IMIX_v4_1'
-| | ...            | Return From Keyword | 353.83333
+| | ... | Return From Keyword | 353.83333
 | | Return From Keyword | ${framesize}
-
-| Setup performance global Variables
-| | [Documentation]
-| | ... | Setup suite Variables. Variables are used across performance testing.
-| | ...
-| | ... | _NOTE:_ This KW sets following suite variables:
-| | ... | - glob_loss_acceptance - Loss acceptance treshold
-| | ... | - glob_loss_acceptance_type - Loss acceptance treshold type
-| | ... | - glob_vm_image - Guest VM disk image
-| | ...
-| | Set Suite Variable | ${glob_loss_acceptance} | 0.5
-| | Set Suite Variable | ${glob_loss_acceptance_type} | percentage
-| | Set Suite Variable | ${glob_vm_image} | /var/lib/vm/csit-nested-1.6.img
 
 | 2-node circular Topology Variables Setup
 | | [Documentation]
@@ -125,7 +112,7 @@
 | | ... | - dut2_if2 - DUT2 interface towards DUT1.
 | | ...
 | | Append Nodes | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']}
-| | ...          | ${nodes['TG']}
+| | ... | ${nodes['TG']}
 | | Compute Path
 | | ${tg_if1} | ${tg}= | Next Interface
 | | ${dut1_if1} | ${dut1}= | Next Interface
@@ -328,13 +315,13 @@
 | | IP addresses are set on interfaces | ${dut2} | ${dut2_if1} | 2.2.2.2 | 30
 | | IP addresses are set on interfaces | ${dut2} | ${dut2_if2} | 3.3.3.2 | 30
 | | Vpp Route Add | ${dut1} | 10.0.0.0 | 32 | 1.1.1.1 | ${dut1_if1}
-| | ...           | count=${count}
+| | ... | count=${count}
 | | Vpp Route Add | ${dut1} | 20.0.0.0 | 32 | 2.2.2.2 | ${dut1_if2}
-| | ...           | count=${count}
+| | ... | count=${count}
 | | Vpp Route Add | ${dut2} | 10.0.0.0 | 32 | 2.2.2.1 | ${dut2_if1}
-| | ...           | count=${count}
+| | ... | count=${count}
 | | Vpp Route Add | ${dut2} | 20.0.0.0 | 32 | 3.3.3.1 | ${dut2_if2}
-| | ...           | count=${count}
+| | ... | count=${count}
 | | All Vpp Interfaces Ready Wait | ${nodes}
 
 | IPv4 forwarding with vhost initialized in a 3-node circular topology
@@ -362,15 +349,13 @@
 | | [Arguments] | ${sock1} | ${sock2}
 | | VPP interfaces in path are up in a 3-node circular topology
 | | VPP Vhost interfaces for L2BD forwarding are setup | ${dut1}
-| | ...                                                | ${sock1}
-| | ...                                                | ${sock2}
+| | ... | ${sock1} | ${sock2}
 | | ${dut1_vif1}= | Set Variable | ${vhost_if1}
 | | ${dut1_vif2}= | Set Variable | ${vhost_if2}
 | | Set Interface State | ${dut1} | ${dut1_vif1} | up
 | | Set Interface State | ${dut1} | ${dut1_vif2} | up
 | | VPP Vhost interfaces for L2BD forwarding are setup | ${dut2}
-| | ...                                                | ${sock1}
-| | ...                                                | ${sock2}
+| | ... | ${sock1} | ${sock2}
 | | ${dut2_vif1}= | Set Variable | ${vhost_if1}
 | | ${dut2_vif2}= | Set Variable | ${vhost_if2}
 | | Set Interface State | ${dut2} | ${dut2_vif1} | up
@@ -551,13 +536,13 @@
 | | Add Ip Neighbor | ${dut2} | ${dut2_if1} | 2001:4::1 | ${dut1_if2_mac}
 | | Add Ip Neighbor | ${dut2} | ${dut2_if2} | 2001:5::2 | ${tg1_if2_mac}
 | | Vpp Route Add | ${dut1} | 2001:2::0 | ${host_prefix} | 2001:4::2
-| | ...           | interface=${dut1_if2} | count=${count}
+| | ... | interface=${dut1_if2} | count=${count}
 | | Vpp Route Add | ${dut1} | 2001:1::0 | ${host_prefix} | 2001:3::2
-| | ...           | interface=${dut1_if1} | count=${count}
+| | ... | interface=${dut1_if1} | count=${count}
 | | Vpp Route Add | ${dut2} | 2001:1::0 | ${host_prefix} | 2001:4::1
-| | ...           | interface=${dut2_if1} | count=${count}
+| | ... | interface=${dut2_if1} | count=${count}
 | | Vpp Route Add | ${dut2} | 2001:2::0 | ${host_prefix} | 2001:5::2
-| | ...           | interface=${dut2_if2} | count=${count}
+| | ... | interface=${dut2_if2} | count=${count}
 
 | IPv6 iAcl whitelist initialized in a 3-node circular topology
 | | [Documentation]
@@ -597,19 +582,17 @@
 | | ... | interfaces.
 | | ...
 | | VPP interfaces in path are up in a 3-node circular topology
-| | IP addresses are set on interfaces | ${dut1} | ${dut1_if2} | 172.16.0.1
-| | ...                                | 24
-| | IP addresses are set on interfaces | ${dut2} | ${dut2_if1} | 172.16.0.2
-| | ...                                | 24
+| | IP addresses are set on interfaces | ${dut1} | ${dut1_if2} | 172.16.0.1 | 24
+| | IP addresses are set on interfaces | ${dut2} | ${dut2_if1} | 172.16.0.2 | 24
 | | ${dut1_if2_mac}= | Get Interface MAC | ${dut1} | ${dut1_if2}
 | | ${dut2_if1_mac}= | Get Interface MAC | ${dut2} | ${dut2_if1}
 | | Add arp on dut | ${dut1} | ${dut1_if2} | 172.16.0.2 | ${dut2_if1_mac}
 | | Add arp on dut | ${dut2} | ${dut2_if1} | 172.16.0.1 | ${dut1_if2_mac}
 | | ${dut1s_vxlan}= | Create VXLAN interface | ${dut1} | 24
-| | ...             | 172.16.0.1 | 172.16.0.2
+| | ... | 172.16.0.1 | 172.16.0.2
 | | L2 setup xconnect on DUT | ${dut1} | ${dut1_if1} | ${dut1s_vxlan}
 | | ${dut2s_vxlan}= | Create VXLAN interface | ${dut2} | 24
-| | ...             | 172.16.0.2 | 172.16.0.1
+| | ... | 172.16.0.2 | 172.16.0.1
 | | L2 setup xconnect on DUT | ${dut2} | ${dut2_if2} | ${dut2s_vxlan}
 
 | L2 xconnect with Vhost-User initialized in a 3-node circular topology
@@ -624,16 +607,14 @@
 | | ... | *Example:*
 | | ...
 | | ... | \| L2 xconnect with Vhost-User initialized in a 3-node \
-| | ... |    circular topology \| /tmp/sock1 \| /tmp/sock2 \|
+| | ... | circular topology \| /tmp/sock1 \| /tmp/sock2 \|
 | | [Arguments] | ${sock1} | ${sock2}
 | | VPP Vhost interfaces for L2BD forwarding are setup | ${dut1}
-| | ...                                                | ${sock1}
-| | ...                                                | ${sock2}
+| | ... | ${sock1} | ${sock2}
 | | L2 setup xconnect on DUT | ${dut1} | ${dut1_if1} | ${vhost_if1}
 | | L2 setup xconnect on DUT | ${dut1} | ${dut1_if2} | ${vhost_if2}
 | | VPP Vhost interfaces for L2BD forwarding are setup | ${dut2}
-| | ...                                                | ${sock1}
-| | ...                                                | ${sock2}
+| | ... | ${sock1} | ${sock2}
 | | L2 setup xconnect on DUT | ${dut2} | ${dut2_if1} | ${vhost_if1}
 | | L2 setup xconnect on DUT | ${dut2} | ${dut2_if2} | ${vhost_if2}
 | | All Vpp Interfaces Ready Wait | ${nodes}
@@ -698,18 +679,16 @@
 | | ... | *Example:*
 | | ...
 | | ... | \| L2 bridge domains with Vhost-User initialized in a 3-node \
-| | ... |    circular topology \| 1 \| 2 \| /tmp/sock1 \| /tmp/sock2 \|
+| | ... | circular topology \| 1 \| 2 \| /tmp/sock1 \| /tmp/sock2 \|
 | | [Arguments] | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
 | | VPP Vhost interfaces for L2BD forwarding are setup | ${dut1}
-| | ...                                                | ${sock1}
-| | ...                                                | ${sock2}
+| | ... | ${sock1} | ${sock2}
 | | Interface is added to bridge domain | ${dut1} | ${dut1_if1} | ${bd_id1}
 | | Interface is added to bridge domain | ${dut1} | ${vhost_if1} | ${bd_id1}
 | | Interface is added to bridge domain | ${dut1} | ${dut1_if2} | ${bd_id2}
 | | Interface is added to bridge domain | ${dut1} | ${vhost_if2} | ${bd_id2}
 | | VPP Vhost interfaces for L2BD forwarding are setup | ${dut2}
-| | ...                                                | ${sock1}
-| | ...                                                | ${sock2}
+| | ... | ${sock1} | ${sock2}
 | | Interface is added to bridge domain | ${dut2} | ${dut2_if1} | ${bd_id1}
 | | Interface is added to bridge domain | ${dut2} | ${vhost_if1} | ${bd_id1}
 | | Interface is added to bridge domain | ${dut2} | ${dut2_if2} | ${bd_id2}
@@ -872,7 +851,6 @@
 | | [Arguments] | ${topology_type} | ${nic_model}
 | | ...
 | | Show vpp version on all DUTs
-| | Setup performance global Variables
 | | 2-node circular Topology Variables Setup with DUT interface model
 | | ... | ${nic_model}
 | | Setup 2-node startup configuration of VPP on all DUTs
@@ -901,7 +879,6 @@
 | | ... | ${tg_if2_dest_mac}
 | | ...
 | | Show vpp version on all DUTs
-| | Setup performance global Variables
 | | 2-node circular Topology Variables Setup with DUT interface model
 | | ... | ${nic_model}
 | | Setup 2-node startup configuration of VPP on all DUTs
@@ -925,14 +902,11 @@
 | | ... | \| 3-node Performance Suite Setup \| L2 \| Intel-X520-DA2 \|
 | | [Arguments] | ${topology_type} | ${nic_model}
 | | Show vpp version on all DUTs
-| | Setup performance global Variables
 | | 3-node circular Topology Variables Setup with DUT interface model
 | | ... | ${nic_model}
 | | Setup default startup configuration of VPP on all DUTs
 | | Initialize traffic generator | ${tg} | ${tg_if1} | ${tg_if2}
-| | ...                          | ${dut1} | ${dut1_if1}
-| | ...                          | ${dut2} | ${dut2_if2}
-| | ...                          | ${topology_type}
+| | ... | ${dut1} | ${dut1_if1} | ${dut2} | ${dut2_if2} | ${topology_type}
 
 | 3-node Performance Suite Teardown
 | | [Documentation]
@@ -963,11 +937,13 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Find NDR using linear search and pps \| 64 \| 5000000 \| \
-| | ... | \| 100000 \| 3-node-IPv4 \| 100000 \| 14880952
+| | ... | \| Find NDR using linear search and pps \| 64 \| 5000000 \
+| | ... | \| 100000 \| 3-node-IPv4 \| 100000 \| 14880952 \|
+| | ...
 | | [Arguments] | ${framesize} | ${start_rate} | ${step_rate}
-| | ...         | ${topology_type} | ${min_rate} | ${max_rate}
-| | ${duration}= | Set Variable | 10
+| | ... | ${topology_type} | ${min_rate} | ${max_rate}
+| | ...
+| | ${duration}= | Set Variable | ${perf_trial_duration}
 | | Set Duration | ${duration}
 | | Set Search Rate Boundaries | ${max_rate} | ${min_rate}
 | | Set Search Linear Step | ${step_rate}
@@ -979,19 +955,18 @@
 | | ${latency}= | Create List | ${tmp}
 | | ${rate_50p}= | Evaluate | int(${rate_per_stream}*0.5)
 | | ${lat_50p}= | Measure latency pps | ${duration} | ${rate_50p}
-| | ...                               | ${framesize} | ${topology_type}
+| | ... | ${framesize} | ${topology_type}
 | | ${tmp}= | Create List | 50%NDR | ${lat_50p}
 | | Append To List | ${latency} | ${tmp}
 | | ${rate_10p}= | Evaluate | int(${rate_per_stream}*0.1)
 | | ${lat_10p}= | Measure latency pps | ${duration} | ${rate_10p}
-| | ...                               | ${framesize} | ${topology_type}
+| | ... | ${framesize} | ${topology_type}
 | | ${tmp}= | Create List | 10%NDR | ${lat_10p}
 | | Append To List | ${latency} | ${tmp}
 | | Display result of NDR search | ${rate_per_stream} | ${framesize} | 2
-| | ...                          | ${latency}
+| | ... | ${latency}
 | | Traffic should pass with no loss | ${duration} | ${rate_per_stream}pps
-| | ...                              | ${framesize} | ${topology_type}
-| | ...                              | fail_on_loss=${False}
+| | ... | ${framesize} | ${topology_type} | fail_on_loss=${False}
 
 | Find PDR using linear search and pps
 | | [Documentation]
@@ -1011,11 +986,13 @@
 | | ... | *Example:*
 | | ...
 | | ... | \| Find PDR using linear search and pps \| 64 \| 5000000 \
-| | ... | \| 100000 \| 3-node-IPv4 \| 100000 \| 14880952 \| 0.5 \| percentage
+| | ... | \| 100000 \| 3-node-IPv4 \| 100000 \| 14880952 \| 0.5 \| percentage \|
+| | ...
 | | [Arguments] | ${framesize} | ${start_rate} | ${step_rate}
-| | ...         | ${topology_type} | ${min_rate} | ${max_rate}
-| | ...         | ${loss_acceptance}=0 | ${loss_acceptance_type}='frames'
-| | ${duration}= | Set Variable | 10
+| | ... | ${topology_type} | ${min_rate} | ${max_rate}
+| | ... | ${loss_acceptance}=0 | ${loss_acceptance_type}='frames'
+| | ...
+| | ${duration}= | Set Variable | ${perf_trial_duration}
 | | Set Duration | ${duration}
 | | Set Search Rate Boundaries | ${max_rate} | ${min_rate}
 | | Set Search Linear Step | ${step_rate}
@@ -1023,19 +1000,16 @@
 | | Set Search Rate Type pps
 | | Set Loss Acceptance | ${loss_acceptance}
 | | Run Keyword If | '${loss_acceptance_type}' == 'percentage'
-| | ...            | Set Loss Acceptance Type Percentage
+| | ... | Set Loss Acceptance Type Percentage
 | | Linear Search | ${start_rate} | ${topology_type}
 | | ${rate_per_stream} | ${lat}= | Verify Search Result
 | | ${tmp}= | Create List | 100%PDR | ${lat}
 | | ${latency}= | Create List | ${tmp}
 | | Display result of PDR search | ${rate_per_stream} | ${framesize} | 2
-| | ...                          | ${loss_acceptance} | ${loss_acceptance_type}
-| | ...                          | ${latency}
+| | ... | ${loss_acceptance} | ${loss_acceptance_type} | ${latency}
 | | Traffic should pass with partial loss | ${duration} | ${rate_per_stream}pps
-| | ...                                   | ${framesize} | ${topology_type}
-| | ...                                   | ${loss_acceptance}
-| | ...                                   | ${loss_acceptance_type}
-| | ...                                   | fail_on_loss=${False}
+| | ... | ${framesize} | ${topology_type} | ${loss_acceptance}
+| | ... | ${loss_acceptance_type} | fail_on_loss=${False}
 
 | Find NDR using binary search and pps
 | | [Documentation]
@@ -1053,10 +1027,12 @@
 | | ... | *Example:*
 | | ...
 | | ... | \| Find NDR using binary search and pps \| 64 \| 6000000 \
-| | ... | \| 12000000 \| 3-node-IPv4 \| 100000 \| 14880952 \| 50000
+| | ... | \| 12000000 \| 3-node-IPv4 \| 100000 \| 14880952 \| 50000 \|
+| | ...
 | | [Arguments] | ${framesize} | ${binary_min} | ${binary_max}
-| | ...         | ${topology_type} | ${min_rate} | ${max_rate} | ${threshold}
-| | ${duration}= | Set Variable | 10
+| | ... | ${topology_type} | ${min_rate} | ${max_rate} | ${threshold}
+| | ...
+| | ${duration}= | Set Variable | ${perf_trial_duration}
 | | Set Duration | ${duration}
 | | Set Search Rate Boundaries | ${max_rate} | ${min_rate}
 | | Set Search Frame Size | ${framesize}
@@ -1068,19 +1044,18 @@
 | | ${latency}= | Create List | ${tmp}
 | | ${rate_50p}= | Evaluate | int(${rate_per_stream}*0.5)
 | | ${lat_50p}= | Measure latency pps | ${duration} | ${rate_50p}
-| | ...                               | ${framesize} | ${topology_type}
+| | ... | ${framesize} | ${topology_type}
 | | ${tmp}= | Create List | 50%NDR | ${lat_50p}
 | | Append To List | ${latency} | ${tmp}
 | | ${rate_10p}= | Evaluate | int(${rate_per_stream}*0.1)
 | | ${lat_10p}= | Measure latency pps | ${duration} | ${rate_10p}
-| | ...                               | ${framesize} | ${topology_type}
+| | ... | ${framesize} | ${topology_type}
 | | ${tmp}= | Create List | 10%NDR | ${lat_10p}
 | | Append To List | ${latency} | ${tmp}
 | | Display result of NDR search | ${rate_per_stream} | ${framesize} | 2
-| | ...                          | ${latency}
+| | ... | ${latency}
 | | Traffic should pass with no loss | ${duration} | ${rate_per_stream}pps
-| | ...                              | ${framesize} | ${topology_type}
-| | ...                              | fail_on_loss=${False}
+| | ... | ${framesize} | ${topology_type} | fail_on_loss=${False}
 
 | Find PDR using binary search and pps
 | | [Documentation]
@@ -1102,31 +1077,30 @@
 | | ...
 | | ... | \| Find PDR using binary search and pps \| 64 \| 6000000 \
 | | ... | \| 12000000 \| 3-node-IPv4 \| 100000 \| 14880952 \| 50000 \| 0.5 \
-| | ... | \| percentage
+| | ... | \| percentage \|
+| | ...
 | | [Arguments] | ${framesize} | ${binary_min} | ${binary_max}
-| | ...         | ${topology_type} | ${min_rate} | ${max_rate} | ${threshold}
-| | ...         | ${loss_acceptance}=0 | ${loss_acceptance_type}='frames'
-| | ${duration}= | Set Variable | 10
+| | ... | ${topology_type} | ${min_rate} | ${max_rate} | ${threshold}
+| | ... | ${loss_acceptance}=0 | ${loss_acceptance_type}='frames'
+| | ...
+| | ${duration}= | Set Variable | ${perf_trial_duration}
 | | Set Duration | ${duration}
 | | Set Search Rate Boundaries | ${max_rate} | ${min_rate}
 | | Set Search Frame Size | ${framesize}
 | | Set Search Rate Type pps
 | | Set Loss Acceptance | ${loss_acceptance}
 | | Run Keyword If | '${loss_acceptance_type}' == 'percentage'
-| | ...            | Set Loss Acceptance Type Percentage
+| | ... | Set Loss Acceptance Type Percentage
 | | Set Binary Convergence Threshold | ${threshold}
 | | Binary Search | ${binary_min} | ${binary_max} | ${topology_type}
 | | ${rate_per_stream} | ${lat}= | Verify Search Result
 | | ${tmp}= | Create List | 100%PDR | ${lat}
 | | ${latency}= | Create List | ${tmp}
 | | Display result of PDR search | ${rate_per_stream} | ${framesize} | 2
-| | ...                          | ${loss_acceptance} | ${loss_acceptance_type}
-| | ...                          | ${latency}
+| | ... | ${loss_acceptance} | ${loss_acceptance_type} | ${latency}
 | | Traffic should pass with partial loss | ${duration} | ${rate_per_stream}pps
-| | ...                                   | ${framesize} | ${topology_type}
-| | ...                                   | ${loss_acceptance}
-| | ...                                   | ${loss_acceptance_type}
-| | ...                                   | fail_on_loss=${False}
+| | ... | ${framesize} | ${topology_type} | ${loss_acceptance}
+| | ... | ${loss_acceptance_type} | fail_on_loss=${False}
 
 | Find NDR using combined search and pps
 | | [Documentation]
@@ -1145,10 +1119,12 @@
 | | ... | *Example:*
 | | ...
 | | ... | \| Find NDR using combined search and pps \| 64 \| 5000000 \
-| | ... | \| 100000 \| 3-node-IPv4 \| 100000 \| 14880952 \| 5000
+| | ... | \| 100000 \| 3-node-IPv4 \| 100000 \| 14880952 \| 5000 \|
+| | ...
 | | [Arguments] | ${framesize} | ${start_rate} | ${step_rate}
-| | ...         | ${topology_type} | ${min_rate} | ${max_rate} | ${threshold}
-| | ${duration}= | Set Variable | 10
+| | ... | ${topology_type} | ${min_rate} | ${max_rate} | ${threshold}
+| | ...
+| | ${duration}= | Set Variable | ${perf_trial_duration}
 | | Set Duration | ${duration}
 | | Set Search Rate Boundaries | ${max_rate} | ${min_rate}
 | | Set Search Linear Step | ${step_rate}
@@ -1161,19 +1137,19 @@
 | | ${latency}= | Create List | ${tmp}
 | | ${rate_50p}= | Evaluate | int(${rate_per_stream}*0.5)
 | | ${lat_50p}= | Measure latency pps | ${duration} | ${rate_50p}
-| | ...                               | ${framesize} | ${topology_type}
+| | ... | ${framesize} | ${topology_type}
 | | ${tmp}= | Create List | 50%NDR | ${lat_50p}
 | | Append To List | ${latency} | ${tmp}
 | | ${rate_10p}= | Evaluate | int(${rate_per_stream}*0.1)
 | | ${lat_10p}= | Measure latency pps | ${duration} | ${rate_10p}
-| | ...                               | ${framesize} | ${topology_type}
+| | ... | ${framesize} | ${topology_type}
 | | ${tmp}= | Create List | 10%NDR | ${lat_10p}
 | | Append To List | ${latency} | ${tmp}
 | | Display result of NDR search | ${rate_per_stream} | ${framesize} | 2
-| | ...                          | ${latency}
+| | ... | ${latency}
 | | Traffic should pass with no loss | ${duration} | ${rate_per_stream}pps
-| | ...                              | ${framesize} | ${topology_type}
-| | ...                              | fail_on_loss=${False}
+| | ... | ${framesize} | ${topology_type}
+| | ... | fail_on_loss=${False}
 
 | Find PDR using combined search and pps
 | | [Documentation]
@@ -1195,11 +1171,13 @@
 | | ...
 | | ... | \| Find PDR using combined search and pps \| 64 \| 5000000 \
 | | ... | \| 100000 \| 3-node-IPv4 \| 100000 \| 14880952 \| 5000 \| 0.5 \
-| | ... | \| percentage
+| | ... | \| percentage \|
+| | ...
 | | [Arguments] | ${framesize} | ${start_rate} | ${step_rate}
-| | ...         | ${topology_type} | ${min_rate} | ${max_rate} | ${threshold}
-| | ...         | ${loss_acceptance}=0 | ${loss_acceptance_type}='frames'
-| | ${duration}= | Set Variable | 10
+| | ... | ${topology_type} | ${min_rate} | ${max_rate} | ${threshold}
+| | ... | ${loss_acceptance}=0 | ${loss_acceptance_type}='frames'
+| | ...
+| | ${duration}= | Set Variable | ${perf_trial_duration}
 | | Set Duration | ${duration}
 | | Set Search Rate Boundaries | ${max_rate} | ${min_rate}
 | | Set Search Linear Step | ${step_rate}
@@ -1207,20 +1185,17 @@
 | | Set Search Rate Type pps
 | | Set Loss Acceptance | ${loss_acceptance}
 | | Run Keyword If | '${loss_acceptance_type}' == 'percentage'
-| | ...            | Set Loss Acceptance Type Percentage
+| | ... | Set Loss Acceptance Type Percentage
 | | Set Binary Convergence Threshold | ${threshold}
 | | Combined Search | ${start_rate} | ${topology_type}
 | | ${rate_per_stream} | ${lat}= | Verify Search Result
 | | ${tmp}= | Create List | 100%PDR | ${lat}
 | | ${latency}= | Create List | ${tmp}
 | | Display result of PDR search | ${rate_per_stream} | ${framesize} | 2
-| | ...                          | ${loss_acceptance} | ${loss_acceptance_type}
-| | ...                          | ${latency}
+| | ... | ${loss_acceptance} | ${loss_acceptance_type} | ${latency}
 | | Traffic should pass with partial loss | ${duration} | ${rate_per_stream}pps
-| | ...                                   | ${framesize} | ${topology_type}
-| | ...                                   | ${loss_acceptance}
-| | ...                                   | ${loss_acceptance_type}
-| | ...                                   | fail_on_loss=${False}
+| | ... | ${framesize} | ${topology_type} | ${loss_acceptance}
+| | ... | ${loss_acceptance_type} | fail_on_loss=${False}
 
 | Display result of NDR search
 | | [Documentation]
@@ -1241,16 +1216,16 @@
 | | ...
 | | ... | \| Display result of NDR search \| 4400000 \| 64 \| 2 \
 | | ... | \| [100%NDR, [10/10/10, 1/2/3]] \|
-| | [Arguments] | ${rate_per_stream} | ${framesize} | ${nr_streams}
-| | ...         | ${latency}
+| | ...
+| | [Arguments] | ${rate_per_stream} | ${framesize} | ${nr_streams} | ${latency}
+| | ...
 | | ${framesize}= | Get Frame Size | ${framesize}
 | | ${rate_total}= | Evaluate | ${rate_per_stream}*${nr_streams}
 | | ${bandwidth_total}= | Evaluate | ${rate_total}*(${framesize}+20)*8/(10**9)
 | | Set Test Message | FINAL_RATE: ${rate_total} pps
-| | Set Test Message | (${nr_streams}x ${rate_per_stream} pps)
-| | ...              | append=yes
+| | Set Test Message | (${nr_streams}x ${rate_per_stream} pps) | append=yes
 | | Set Test Message | ${\n}FINAL_BANDWIDTH: ${bandwidth_total} Gbps (untagged)
-| | ...              | append=yes
+| | ... | append=yes
 | | Set Test Message | ${\n}LATENCY usec [min/avg/max] | append=yes
 | | :FOR | ${lat} | IN | @{latency}
 | | | Set Test Message | ${\n}LAT_${lat[0]}: ${lat[1]} | append=yes
@@ -1276,21 +1251,23 @@
 | | ...
 | | ... | \| Display result of PDR search \| 4400000 \| 64 \| 2 \| 0.5 \
 | | ... | \| percentage \| [100%NDR, [10/10/10, 1/2/3]] \|
+| | ...
 | | [Arguments] | ${rate_per_stream} | ${framesize} | ${nr_streams}
-| | ...         | ${loss_acceptance} | ${loss_acceptance_type} | ${latency}
+| | ... | ${loss_acceptance} | ${loss_acceptance_type} | ${latency}
+| | ...
 | | ${framesize}= | Get Frame Size | ${framesize}
 | | ${rate_total}= | Evaluate | ${rate_per_stream}*${nr_streams}
 | | ${bandwidth_total}= | Evaluate | ${rate_total}*(${framesize}+20)*8/(10**9)
 | | Set Test Message | FINAL_RATE: ${rate_total} pps
-| | Set Test Message | (${nr_streams}x ${rate_per_stream} pps)
-| | ...              | append=yes
+| | Set Test Message | (${nr_streams}x ${rate_per_stream} pps) | append=yes
 | | Set Test Message | ${\n}FINAL_BANDWIDTH: ${bandwidth_total} Gbps (untagged)
-| | ...              | append=yes
+| | ... | append=yes
 | | Set Test Message | ${\n}LATENCY usec [min/avg/max] | append=yes
 | | :FOR | ${lat} | IN | @{latency}
 | | | Set Test Message | ${\n}LAT_${lat[0]}: ${lat[1]} | append=yes
-| | Set Test Message | ${\n}LOSS_ACCEPTANCE: ${loss_acceptance} ${loss_acceptance_type}
-| | ...              | append=yes
+| | Set Test Message
+| | ... | ${\n}LOSS_ACCEPTANCE: ${loss_acceptance} ${loss_acceptance_type}
+| | ... | append=yes
 
 | Measure latency pps
 | | [Documentation]
@@ -1304,13 +1281,15 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Measure latency \| 10 \| 4.0 \| 64 \| 3-node-IPv4
+| | ... | \| Measure latency \| 10 \| 4.0 \| 64 \| 3-node-IPv4 \|
+| | ...
 | | [Arguments] | ${duration} | ${rate} | ${framesize} | ${topology_type}
+| | ...
 | | Return From Keyword If | ${rate} <= 10000 | ${-1}
 | | ${ret}= | For DPDK Performance Test
 | | Run Keyword If | ${ret}==${FALSE} | Clear all counters on all DUTs
 | | Send traffic on tg | ${duration} | ${rate}pps | ${framesize}
-| | ...                | ${topology_type} | warmup_time=0
+| | ... | ${topology_type} | warmup_time=0
 | | Run Keyword If | ${ret}==${FALSE} | Show statistics on all DUTs
 | | Run keyword and return | Get latency
 
@@ -1324,19 +1303,23 @@
 | | ... | - rate - Rate for sending packets. Type: string
 | | ... | - framesize - L2 Frame Size [B]. Type: integer
 | | ... | - topology_type - Topology type. Type: string
+| | ... | - fail_on_loss - If True, the keyword fails if loss occurred.
+| | ... | Type: boolean
 | | ...
 | | ... | *Example:*
 | | ...
 | | ... | \| Traffic should pass with no loss \| 10 \| 4.0mpps \| 64 \
-| | ... | \| 3-node-IPv4
+| | ... | \| 3-node-IPv4 \|
+| | ...
 | | [Arguments] | ${duration} | ${rate} | ${framesize} | ${topology_type}
-| | ...         | ${fail_on_loss}=${True}
+| | ... | ${fail_on_loss}=${True}
+| | ...
 | | Clear and show runtime counters with running traffic | ${duration}
-| | ...  | ${rate} | ${framesize} | ${topology_type}
+| | ... | ${rate} | ${framesize} | ${topology_type}
 | | ${ret}= | For DPDK Performance Test
 | | Run Keyword If | ${ret}==${FALSE} | Clear all counters on all DUTs
 | | Send traffic on tg | ${duration} | ${rate} | ${framesize}
-| | ...                | ${topology_type} | warmup_time=0
+| | ... | ${topology_type} | warmup_time=0
 | | Run Keyword If | ${ret}==${FALSE} | Show statistics on all DUTs
 | | Run Keyword If | ${fail_on_loss} | No traffic loss occurred
 
@@ -1356,19 +1339,21 @@
 | | ... | *Example:*
 | | ...
 | | ... | \| Traffic should pass with partial loss \| 10 \| 4.0mpps \| 64 \
-| | ... | \| 3-node-IPv4 \| 0.5 \| percentage
+| | ... | \| 3-node-IPv4 \| 0.5 \| percentage \|
+| | ...
 | | [Arguments] | ${duration} | ${rate} | ${framesize} | ${topology_type}
-| | ...         | ${loss_acceptance} | ${loss_acceptance_type}
-| | ...         | ${fail_on_loss}=${True}
+| | ... | ${loss_acceptance} | ${loss_acceptance_type}
+| | ... | ${fail_on_loss}=${True}
+| | ...
 | | Clear and show runtime counters with running traffic | ${duration}
-| | ...  | ${rate} | ${framesize} | ${topology_type}
+| | ... | ${rate} | ${framesize} | ${topology_type}
 | | ${ret}= | For DPDK Performance Test
 | | Run Keyword If | ${ret}==${FALSE} | Clear all counters on all DUTs
 | | Send traffic on tg | ${duration} | ${rate} | ${framesize}
-| | ...                | ${topology_type} | warmup_time=0
+| | ... | ${topology_type} | warmup_time=0
 | | Run Keyword If | ${ret}==${FALSE} | Show statistics on all DUTs
 | | Run Keyword If | ${fail_on_loss} | Partial traffic loss accepted
-| | ...            | ${loss_acceptance} | ${loss_acceptance_type}
+| | ... | ${loss_acceptance} | ${loss_acceptance_type}
 
 | Clear and show runtime counters with running traffic
 | | [Documentation]
@@ -1385,11 +1370,12 @@
 | | ... | *Example:*
 | | ...
 | | ... | \| Traffic should pass with partial loss \| 10 \| 4.0mpps \| 64 \
-| | ... | \| 3-node-IPv4 \| 0.5 \| percentage
+| | ... | \| 3-node-IPv4 \| 0.5 \| percentage \|
+| | ...
 | | [Arguments] | ${duration} | ${rate} | ${framesize} | ${topology_type}
-| | Send traffic on tg | -1 | ${rate} | ${framesize}
-| | ...                | ${topology_type} | warmup_time=0 | async_call=${True}
-| | ...                | latency=${False}
+| | ...
+| | Send traffic on tg | -1 | ${rate} | ${framesize} | ${topology_type}
+| | ... | warmup_time=0 | async_call=${True} | latency=${False}
 | | ${ret}= | For DPDK Performance Test
 | | Run Keyword If | ${ret}==${FALSE} | Clear runtime counters on all DUTs
 | | Sleep | ${duration}
@@ -1429,10 +1415,10 @@
 | | ... | *Example:*
 | | ...
 | | ... | \| Guest VM with dpdk-testpmd connected via vhost-user is setup \
-| | ... | \| ${nodes['DUT1']} \| /tmp/sock1 \| /tmp/sock2 \| DUT1_VM \| ${5} \
+| | ... | \| ${nodes['DUT1']} \| /tmp/sock1 \| /tmp/sock2 \| DUT1_VM \| ${6} \
 | | ... | \| ${5} \|
 | | ...
-| | [Arguments] | ${dut_node} | ${sock1} | ${sock2} | ${vm_name} | ${skip}=${5}
+| | [Arguments] | ${dut_node} | ${sock1} | ${sock2} | ${vm_name} | ${skip}=${6}
 | | ... | ${count}=${5}
 | | ...
 | | Import Library | resources.libraries.python.QemuUtils
@@ -1447,7 +1433,7 @@
 | | Run keyword | ${vm_name}.Qemu Set Node | ${dut_node}
 | | Run keyword | ${vm_name}.Qemu Set Smp | ${count} | ${count} | 1 | 1
 | | Run keyword | ${vm_name}.Qemu Set Mem Size | 2048
-| | Run keyword | ${vm_name}.Qemu Set Disk Image | ${glob_vm_image}
+| | Run keyword | ${vm_name}.Qemu Set Disk Image | ${perf_vm_image}
 | | ${vm}= | Run keyword | ${vm_name}.Qemu Start
 | | Run keyword | ${vm_name}.Qemu Set Affinity | @{qemu_cpus}
 | | Run keyword | ${vm_name}.Qemu Set Scheduler Policy
@@ -1495,7 +1481,7 @@
 | | Run keyword | ${vm_name}.Qemu Set Node | ${dut_node}
 | | Run keyword | ${vm_name}.Qemu Set Smp | ${count} | ${count} | 1 | 1
 | | Run keyword | ${vm_name}.Qemu Set Mem Size | 2048
-| | Run keyword | ${vm_name}.Qemu Set Disk Image | ${glob_vm_image}
+| | Run keyword | ${vm_name}.Qemu Set Disk Image | ${perf_vm_image}
 | | ${vm}= | Run keyword | ${vm_name}.Qemu Start
 | | Run keyword | ${vm_name}.Qemu Set Affinity | @{qemu_cpus}
 | | Run keyword | ${vm_name}.Qemu Set Scheduler Policy
@@ -1539,7 +1525,7 @@
 | | Run keyword | ${vm_name}.Qemu Set Node | ${dut_node}
 | | Run keyword | ${vm_name}.Qemu Set Smp | ${count} | ${count} | 1 | 1
 | | Run keyword | ${vm_name}.Qemu Set Mem Size | 2048
-| | Run keyword | ${vm_name}.Qemu Set Disk Image | ${glob_vm_image}
+| | Run keyword | ${vm_name}.Qemu Set Disk Image | ${perf_vm_image}
 | | ${vm}= | Run keyword | ${vm_name}.Qemu Start
 | | Run keyword | ${vm_name}.Qemu Set Affinity | @{qemu_cpus}
 | | Run keyword | ${vm_name}.Qemu Set Scheduler Policy
@@ -1598,7 +1584,7 @@
 
 | Lisp IPv4 forwarding initialized in a 3-node circular topology
 | | [Documentation] | Custom setup of IPv4 addresses on all DUT nodes and TG \
-| | ...             | Don`t set route.
+| | ... | Don`t set route.
 | | ...
 | | ... | *Arguments:*
 | | ... | -${dut1_dut2_address} - Ip address from DUT1 to DUT2. Type: string
@@ -1616,8 +1602,8 @@
 | | ... | \| ${dut2_dut1_address} \| ${dut2_tg_address} \| ${duts_prefix} \|
 | | ...
 | | [Arguments] | ${dut1_dut2_address} | ${dut1_tg_address}
-| | ...         | ${dut2_dut1_address} | ${dut2_tg_address}
-| | ...         | ${duts_prefix}
+| | ... | ${dut2_dut1_address} | ${dut2_tg_address} | ${duts_prefix}
+| | ...
 | | Set Interface State | ${dut1} | ${dut1_if1} | up
 | | Set Interface State | ${dut1} | ${dut1_if2} | up
 | | Set Interface State | ${dut2} | ${dut2_if1} | up
@@ -1638,7 +1624,7 @@
 
 | Lisp IPv6 forwarding initialized in a 3-node circular topology
 | | [Documentation] | Custom setup of IPv6 topology on all DUT nodes \
-| | ...             | Don`t set route.
+| | ... | Don`t set route.
 | | ...
 | | ... | *Arguments:*
 | | ... | -${dut1_dut2_address} - Ip address from DUT1 to DUT2. Type: string
@@ -1656,56 +1642,55 @@
 | | ... | \| ${dut2_dut1_address} \| ${dut2_tg_address} \| ${duts_prefix} \|
 | | ...
 | | [Arguments] | ${dut1_dut2_address} | ${dut1_tg_address}
-| | ...         | ${dut2_dut1_address} | ${dut2_tg_address}
-| | ...         | ${prefix}
+| | ... | ${dut2_dut1_address} | ${dut2_tg_address} | ${prefix}
+| | ...
 | | ${tg1_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
 | | ${tg1_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
 | | ${dut1_if2_mac}= | Get Interface MAC | ${dut1} | ${dut1_if2}
 | | ${dut2_if1_mac}= | Get Interface MAC | ${dut2} | ${dut2_if1}
 | | VPP Set If IPv6 Addr | ${dut1} | ${dut1_if1} | ${dut1_tg_address}
-| | ...                  | ${prefix}
+| | ... | ${prefix}
 | | VPP Set If IPv6 Addr | ${dut1} | ${dut1_if2} | ${dut1_dut2_address}
-| | ...                  | ${prefix}
+| | ... | ${prefix}
 | | VPP Set If IPv6 Addr | ${dut2} | ${dut2_if1} | ${dut2_dut1_address}
-| | ...                  | ${prefix}
+| | ... | ${prefix}
 | | VPP Set If IPv6 Addr | ${dut2} | ${dut2_if2} | ${dut2_tg_address}
-| | ...                  | ${prefix}
+| | ... | ${prefix}
 | | Vpp nodes ra suppress link layer | ${nodes}
-| | Add Ip Neighbor | ${dut1} | ${dut1_if1} | 2001:1::2
-| | ...             | ${tg1_if1_mac}
-| | Add Ip Neighbor | ${dut2} | ${dut2_if2} | 2001:2::2
-| | ...             | ${tg1_if2_mac}
+| | Add Ip Neighbor | ${dut1} | ${dut1_if1} | 2001:1::2 | ${tg1_if1_mac}
+| | Add Ip Neighbor | ${dut2} | ${dut2_if2} | 2001:2::2 | ${tg1_if2_mac}
 | | Add Ip Neighbor | ${dut1} | ${dut1_if2} | ${dut2_dut1_address}
-| | ...             | ${dut2_if1_mac}
+| | ... | ${dut2_if1_mac}
 | | Add Ip Neighbor | ${dut2} | ${dut2_if1} | ${dut1_dut2_address}
-| | ...             | ${dut1_if2_mac}
+| | ... | ${dut1_if2_mac}
 
 | Lisp IPv4 over IPv6 forwarding initialized in a 3-node circular topology
 | | [Documentation] | Custom setup of IPv4 over IPv6 topology on all DUT nodes \
-| | ...             | Don`t set route.
+| | ... | Don`t set route.
 | | ...
 | | ... | *Arguments:*
-| | ... | -${dut1_dut2_ip6_address} - IPv6 address from DUT1 to DUT2.
-| | ... |                             Type: string
-| | ... | -${dut1_tg_ip4_address} - IPv4 address from DUT1 to tg. Type: string
-| | ... | -${dut2_dut1_ip6_address} - IPv6 address from DUT2 to DUT1.
-| | ... |                             Type: string
-| | ... | -${dut1_tg_ip4_address} - IPv4 address from DUT1 to tg. Type: string
-| | ... | -${prefix4} - IPv4 prefix. Type: int
-| | ... | -${prefix6} - IPv6 prefix. Type: int
+| | ... | - ${dut1_dut2_ip6_address} - IPv6 address from DUT1 to DUT2.
+| | ... | Type: string
+| | ... | - ${dut1_tg_ip4_address} - IPv4 address from DUT1 to tg. Type: string
+| | ... | - ${dut2_dut1_ip6_address} - IPv6 address from DUT2 to DUT1.
+| | ... | Type: string
+| | ... | - ${dut1_tg_ip4_address} - IPv4 address from DUT1 to tg. Type: string
+| | ... | - ${prefix4} - IPv4 prefix. Type: int
+| | ... | - ${prefix6} - IPv6 prefix. Type: int
 | | ...
 | | ... | *Return:*
 | | ... | - No value returned
 | | ...
 | | ... | *Example:*
-| | ... | \| Lisp IPv4 over IPv6 forwarding initialized in a 3-node circular topology \
-| | ... | \| ${dut1_dut2_ip6_address} \| ${dut1_tg_ip4_address} \
+| | ... | \| Lisp IPv4 over IPv6 forwarding initialized in a 3-node circular \
+| | ... | topology \| ${dut1_dut2_ip6_address} \| ${dut1_tg_ip4_address} \
 | | ... | \| ${dut2_dut1_ip6_address} \| ${dut2_tg_ip4_address} \
 | | ... | \| ${prefix4} \| ${prefix6} \|
 | | ...
 | | [Arguments] | ${dut1_dut2_ip6_address} | ${dut1_tg_ip4_address}
-| | ...         | ${dut2_dut1_ip6_address} | ${dut2_tg_ip4_address}
-| | ...         | ${prefix4} | ${prefix6}
+| | ... | ${dut2_dut1_ip6_address} | ${dut2_tg_ip4_address}
+| | ... | ${prefix4} | ${prefix6}
+| | ...
 | | Set Interface State | ${dut1} | ${dut1_if1} | up
 | | Set Interface State | ${dut1} | ${dut1_if2} | up
 | | Set Interface State | ${dut2} | ${dut2_if1} | up
@@ -1716,44 +1701,45 @@
 | | ${dut2_if1_mac}= | Get Interface MAC | ${dut2} | ${dut2_if1}
 | | dut1_v4.set_ip | ${dut1_if1} | ${dut1_tg_ip4_address} | ${prefix4}
 | | VPP Set If IPv6 Addr | ${dut1} | ${dut1_if2} | ${dut1_dut2_ip6_address}
-| | ...                  | ${prefix6}
+| | ... | ${prefix6}
 | | VPP Set If IPv6 Addr | ${dut2} | ${dut2_if1} | ${dut2_dut1_ip6_address}
-| | ...                  | ${prefix6}
+| | ... | ${prefix6}
 | | dut2_v4.set_ip | ${dut2_if2} | ${dut2_tg_ip4_address} | ${prefix4}
 | | Vpp nodes ra suppress link layer | ${nodes}
 | | dut1_v4.set_arp | ${dut1_if1} | 10.10.10.2 | ${tg1_if1_mac}
 | | dut2_v4.set_arp | ${dut2_if2} | 20.20.20.2 | ${tg1_if2_mac}
 | | Add Ip Neighbor | ${dut1} | ${dut1_if2} | ${dut2_dut1_ip6_address}
-| | ...             | ${dut2_if1_mac}
+| | ... | ${dut2_if1_mac}
 | | Add Ip Neighbor | ${dut2} | ${dut2_if1} | ${dut1_dut2_ip6_address}
-| | ...             | ${dut1_if2_mac}
+| | ... | ${dut1_if2_mac}
 
 | Lisp IPv6 over IPv4 forwarding initialized in a 3-node circular topology
 | | [Documentation] | Custom setup of IPv4 over IPv6 topology on all DUT nodes \
-| | ...             | Don`t set route.
+| | ... | Don`t set route.
 | | ...
 | | ... | *Arguments:*
-| | ... | -${dut1_dut2_ip4_address} - IPv4 address from DUT1 to DUT2.
-| | ... |                             Type: string
-| | ... | -${dut1_tg_ip6_address} - IPv6 address from DUT1 to tg. Type: string
-| | ... | -${dut2_dut1_ip4_address} - IPv4 address from DUT2 to DUT1.
-| | ... |                             Type: string
-| | ... | -${dut1_tg_ip6_address} - IPv6 address from DUT1 to tg. Type: string
-| | ... | -${prefix4} - IPv4 prefix. Type: int
-| | ... | -${prefix6} - IPv6 prefix. Type: int
+| | ... | - ${dut1_dut2_ip4_address} - IPv4 address from DUT1 to DUT2.
+| | ... | Type: string
+| | ... | - ${dut1_tg_ip6_address} - IPv6 address from DUT1 to tg. Type: string
+| | ... | - ${dut2_dut1_ip4_address} - IPv4 address from DUT2 to DUT1.
+| | ... | Type: string
+| | ... | - ${dut1_tg_ip6_address} - IPv6 address from DUT1 to tg. Type: string
+| | ... | - ${prefix4} - IPv4 prefix. Type: int
+| | ... | - ${prefix6} - IPv6 prefix. Type: int
 | | ...
 | | ... | *Return:*
 | | ... | - No value returned
 | | ...
 | | ... | *Example:*
-| | ... | \| Lisp IPv6 over IPv4 forwarding initialized in a 3-node circular topology \
-| | ... | \| ${dut1_dut2_ip4_address} \| ${dut1_tg_ip6_address} \
+| | ... | \| Lisp IPv6 over IPv4 forwarding initialized in a 3-node circular \
+| | ... | topology \| ${dut1_dut2_ip4_address} \| ${dut1_tg_ip6_address} \
 | | ... | \| ${dut2_dut1_ip4_address} \| ${dut2_tg_ip6_address} \
 | | ... | \| ${prefix6} \| ${prefix4} \|
 | | ...
 | | [Arguments] | ${dut1_dut2_ip4_address} | ${dut1_tg_ip6_address}
-| | ...         | ${dut2_dut1_ip4_address} | ${dut2_tg_ip6_address}
-| | ...         | ${prefix6} | ${prefix4}
+| | ... | ${dut2_dut1_ip4_address} | ${dut2_tg_ip6_address}
+| | ... | ${prefix6} | ${prefix4}
+| | ...
 | | Set Interface State | ${dut1} | ${dut1_if1} | up
 | | Set Interface State | ${dut1} | ${dut1_if2} | up
 | | Set Interface State | ${dut2} | ${dut2_if1} | up
@@ -1763,11 +1749,11 @@
 | | ${dut1_if2_mac}= | Get Interface MAC | ${dut1} | ${dut1_if2}
 | | ${dut2_if1_mac}= | Get Interface MAC | ${dut2} | ${dut2_if1}
 | | VPP Set If IPv6 Addr | ${dut1} | ${dut1_if1} | ${dut1_tg_ip6_address}
-| | ...                  | ${prefix6}
+| | ... | ${prefix6}
 | | dut1_v4.set_ip | ${dut1_if2} | ${dut1_dut2_ip4_address} | ${prefix4}
 | | dut2_v4.set_ip | ${dut2_if1} | ${dut2_dut1_ip4_address} | ${prefix4}
 | | VPP Set If IPv6 Addr | ${dut2} | ${dut2_if2} | ${dut2_tg_ip6_address}
-| | ...                  | ${prefix6}
+| | ... | ${prefix6}
 | | Vpp nodes ra suppress link layer | ${nodes}
 | | Add Ip Neighbor | ${dut1} | ${dut1_if1} | 2001:1::2 | ${tg1_if1_mac}
 | | Add Ip Neighbor | ${dut2} | ${dut2_if2} | 2001:2::2 | ${tg1_if2_mac}
@@ -1789,14 +1775,13 @@
 | | ...
 | | ... | \| DPDK 2-node Performance Suite Setup with DUT's NIC model \
 | | ... | \| L2 \| Intel-X520-DA2 \|
+| | ...
 | | [Arguments] | ${topology_type} | ${nic_model}
-| | Setup performance global Variables
+| | ...
 | | 2-node circular Topology Variables Setup with DUT interface model
 | | ... | ${nic_model}
 | | Initialize traffic generator | ${tg} | ${tg_if1} | ${tg_if2}
-| | ...                          | ${dut1} | ${dut1_if1}
-| | ...                          | ${dut1} | ${dut1_if2}
-| | ...                          | ${topology_type}
+| | ... | ${dut1} | ${dut1_if1} | ${dut1} | ${dut1_if2} | ${topology_type}
 | | Initialize DPDK Environment | ${dut1} | ${dut1_if1} | ${dut1_if2}
 
 | DPDK 3-node Performance Suite Setup with DUT's NIC model
@@ -1813,14 +1798,13 @@
 | | ... | *Example:*
 | | ...
 | | ... | \| 3-node Performance Suite Setup \| L2 \| Intel-X520-DA2 \|
+| | ...
 | | [Arguments] | ${topology_type} | ${nic_model}
-| | Setup performance global Variables
+| | ...
 | | 3-node circular Topology Variables Setup with DUT interface model
 | | ... | ${nic_model}
 | | Initialize traffic generator | ${tg} | ${tg_if1} | ${tg_if2}
-| | ...                          | ${dut1} | ${dut1_if1}
-| | ...                          | ${dut2} | ${dut2_if2}
-| | ...                          | ${topology_type}
+| | ... | ${dut1} | ${dut1_if1} | ${dut2} | ${dut2_if2} | ${topology_type}
 | | Initialize DPDK Environment | ${dut1} | ${dut1_if1} | ${dut1_if2}
 | | Initialize DPDK Environment | ${dut2} | ${dut2_if1} | ${dut2_if2}
 
@@ -1849,3 +1833,66 @@
 | | Return From Keyword If | "${ret}" == "PASS" | ${TRUE}
 | | Return From Keyword | ${FALSE}
 
+| Performance test setup
+| | [Documentation] | Common test setup for performance tests.
+| | ...
+| | Setup all DUTs before test
+| | Reset VAT History On All DUTs | ${nodes}
+
+| Performance test teardown
+| | [Documentation] | Common test teardown for performance tests.
+| | ...
+| | ... | *Arguments:*
+| | ... | - rate - Rate for sending packets. Type: string
+| | ... | - framesize - L2 Frame Size [B]. Type: integer
+| | ... | - topology_type - Topology type. Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Performance test teardown \| 4.0mpps \| 64 \| 3-node-IPv4 \|
+| | ...
+| | [Arguments] | ${rate} | ${framesize} | ${topology_type}
+| | ...
+| | Show VAT History On All DUTs | ${nodes}
+| | Show statistics on all DUTs
+| | Run Keyword If Test Failed
+| | ... | Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
+| | ... | ${framesize} | ${topology_type} | fail_on_loss=${False}
+| | Remove startup configuration of VPP from all DUTs
+| | Run Keyword If Test Failed | Show vpp trace dump on all DUTs
+
+| Performance test with vhost and VM with dpdk-testpmd teardown
+| | [Documentation] | Common test teardown for performance tests which use
+| | ... | vhost(s) and VM(s) with dpdk-testpmd.
+| | ...
+| | ... | *Arguments:*
+| | ... | - rate - Rate for sending packets. Type: string
+| | ... | - framesize - L2 Frame Size [B]. Type: integer
+| | ... | - topology_type - Topology type. Type: string
+| | ... | - dut1_node - Node where to clean qemu. Type: dictionary
+| | ... | - dut1_vm_refs - VM references on node. Type: dictionary
+| | ... | - dut2_node - Node where to clean qemu. Type: dictionary
+| | ... | - dut2_vm_refs - VM references on node. Type: dictionary
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Performance test with vhost and VM with dpdk-testpmd teardown \
+| | ... | \| 4.0mpps \| 64 \| 3-node-IPv4 \| ${node['DUT1']} \| ${dut_vm_refs} \
+| | ... | \| ${node['DUT2']} \| ${dut_vm_refs} \|
+| | ...
+| | [Arguments] | ${rate} | ${framesize} | ${topology_type}
+| | ... | ${dut1_node}=${None} | ${dut1_vm_refs}=${None}
+| | ... | ${dut2_node}=${None} | ${dut2_vm_refs}=${None}
+| | ...
+| | Show VAT History On All DUTs | ${nodes}
+| | Show Vpp Vhost On All DUTs
+| | Show statistics on all DUTs
+| | Run Keyword If Test Failed
+| | ... | Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
+| | ... | ${framesize} | ${topology_type} | fail_on_loss=${False}
+| | Remove startup configuration of VPP from all DUTs
+| | Run Keyword If Test Failed | Show vpp trace dump on all DUTs
+| | Run keyword unless | ${dut1_node}==${None}
+| | ... | Guest VM with dpdk-testpmd Teardown | ${dut1} | ${dut1_vm_refs}
+| | Run keyword unless | ${dut2_node}==${None}
+| | ... | Guest VM with dpdk-testpmd Teardown | ${dut2} | ${dut2_vm_refs}
