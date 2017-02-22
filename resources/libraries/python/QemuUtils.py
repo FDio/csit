@@ -300,6 +300,8 @@ class QemuUtils(object):
                 self._qemu_qga_flush()
                 out = self._qemu_qga_exec('guest-ping')
             except ValueError:
+                if not out:
+                    out = "NO OUTPUT"
                 logger.trace('QGA guest-ping unexpected output {}'.format(out))
             # Empty output - VM not booted yet
             if not out:
