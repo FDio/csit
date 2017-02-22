@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2017 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -14,23 +14,20 @@
 *** Settings ***
 | Resource | resources/libraries/robot/performance.robot
 | Library | resources.libraries.python.QemuUtils
+| ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDRDISC
-| ...        | NIC_Intel-X520-DA2 | ETH | L2BDMACLRN | BASE | VHOST | VM
+| ... | NIC_Intel-X520-DA2 | ETH | L2BDMACLRN | BASE | VHOST | VM
+| ...
 | Suite Setup | 3-node Performance Suite Setup with DUT's NIC model
 | ... | L2 | Intel-X520-DA2
 | Suite Teardown | 3-node Performance Suite Teardown
-| Test Setup | Setup all DUTs before test
-| Test Teardown | Run Keywords
-| ...           | Run Keyword If Test Failed
-| ...           | Traffic should pass with no loss | 10
-| ...           | ${min_rate}pps | ${framesize} | 3-node-bridge
-| ...           | fail_on_loss=${False}
-| ...           | AND | Show Vpp Vhost On All DUTs
-| ...           | AND | Remove startup configuration of VPP from all DUTs
-| ...           | AND | Guest VM with dpdk-testpmd Teardown | ${dut1}
-| ...                 | ${dut1_vm_refs}
-| ...           | AND | Guest VM with dpdk-testpmd Teardown | ${dut2}
-| ...                 | ${dut2_vm_refs}
+| ...
+| Test Setup | Performance test setup
+| Test Teardown | Performance test with vhost and VM with dpdk-testpmd teardown
+| ... | ${min_rate}pps | ${framesize} | 3-node-bridge
+| ... | dut1_node=${dut1} | dut1_vm_refs=${dut1_vm_refs}
+| ... | dut2_node=${dut2} | dut2_vm_refs=${dut2_vm_refs}
+| ...
 | Documentation | *RFC2544: Pkt throughput L2BD test cases with vhost*
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology
@@ -59,9 +56,9 @@
 | ... | *[Ref] Applicable standard specifications:* RFC2544.
 
 *** Variables ***
-#X520-DA2 bandwidth limit
+# X520-DA2 bandwidth limit
 | ${s_limit} | ${10000000000}
-#Socket names
+# Socket names
 | ${bd_id1}= | 1
 | ${bd_id2}= | 2
 | ${sock1}= | /tmp/sock-1-${bd_id1}
@@ -131,8 +128,8 @@
 | | ...                                       | ${binary_max} | 3-node-bridge
 | | ...                                       | ${min_rate} | ${max_rate}
 | | ...                                       | ${threshold}
-| | ...                                       | ${glob_loss_acceptance}
-| | ...                                       | ${glob_loss_acceptance_type}
+| | ...                                       | ${perf_pdr_loss_acceptance}
+| | ...                                       | ${perf_pdr_loss_acceptance_type}
 
 | tc03-1518B-1t1c-eth-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc
 | | [Documentation]
@@ -197,8 +194,8 @@
 | | ...                                       | ${binary_max} | 3-node-bridge
 | | ...                                       | ${min_rate} | ${max_rate}
 | | ...                                       | ${threshold}
-| | ...                                       | ${glob_loss_acceptance}
-| | ...                                       | ${glob_loss_acceptance_type}
+| | ...                                       | ${perf_pdr_loss_acceptance}
+| | ...                                       | ${perf_pdr_loss_acceptance_type}
 
 | tc05-IMIX-1t1c-eth-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc
 | | [Documentation]
@@ -264,8 +261,8 @@
 | | ...                                       | ${binary_max} | 3-node-bridge
 | | ...                                       | ${min_rate} | ${max_rate}
 | | ...                                       | ${threshold}
-| | ...                                       | ${glob_loss_acceptance}
-| | ...                                       | ${glob_loss_acceptance_type}
+| | ...                                       | ${perf_pdr_loss_acceptance}
+| | ...                                       | ${perf_pdr_loss_acceptance_type}
 
 | tc07-64B-2t2c-eth-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc
 | | [Documentation]
@@ -330,8 +327,8 @@
 | | ...                                       | ${binary_max} | 3-node-bridge
 | | ...                                       | ${min_rate} | ${max_rate}
 | | ...                                       | ${threshold}
-| | ...                                       | ${glob_loss_acceptance}
-| | ...                                       | ${glob_loss_acceptance_type}
+| | ...                                       | ${perf_pdr_loss_acceptance}
+| | ...                                       | ${perf_pdr_loss_acceptance_type}
 
 | tc09-1518B-2t2c-eth-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc
 | | [Documentation]
@@ -396,8 +393,8 @@
 | | ...                                       | ${binary_max} | 3-node-bridge
 | | ...                                       | ${min_rate} | ${max_rate}
 | | ...                                       | ${threshold}
-| | ...                                       | ${glob_loss_acceptance}
-| | ...                                       | ${glob_loss_acceptance_type}
+| | ...                                       | ${perf_pdr_loss_acceptance}
+| | ...                                       | ${perf_pdr_loss_acceptance_type}
 
 | tc11-IMIX-2t2c-eth-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc
 | | [Documentation]
@@ -464,8 +461,8 @@
 | | ...                                       | ${binary_max} | 3-node-bridge
 | | ...                                       | ${min_rate} | ${max_rate}
 | | ...                                       | ${threshold}
-| | ...                                       | ${glob_loss_acceptance}
-| | ...                                       | ${glob_loss_acceptance_type}
+| | ...                                       | ${perf_pdr_loss_acceptance}
+| | ...                                       | ${perf_pdr_loss_acceptance_type}
 
 | tc13-64B-4t4c-eth-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc
 | | [Documentation]
@@ -530,8 +527,8 @@
 | | ...                                       | ${binary_max} | 3-node-bridge
 | | ...                                       | ${min_rate} | ${max_rate}
 | | ...                                       | ${threshold}
-| | ...                                       | ${glob_loss_acceptance}
-| | ...                                       | ${glob_loss_acceptance_type}
+| | ...                                       | ${perf_pdr_loss_acceptance}
+| | ...                                       | ${perf_pdr_loss_acceptance_type}
 
 | tc15-1518B-4t4c-eth-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc
 | | [Documentation]
@@ -596,8 +593,8 @@
 | | ...                                       | ${binary_max} | 3-node-bridge
 | | ...                                       | ${min_rate} | ${max_rate}
 | | ...                                       | ${threshold}
-| | ...                                       | ${glob_loss_acceptance}
-| | ...                                       | ${glob_loss_acceptance_type}
+| | ...                                       | ${perf_pdr_loss_acceptance}
+| | ...                                       | ${perf_pdr_loss_acceptance_type}
 
 | tc17-IMIX-4t4c-eth-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc
 | | [Documentation]
@@ -664,5 +661,5 @@
 | | ...                                       | ${binary_max} | 3-node-bridge
 | | ...                                       | ${min_rate} | ${max_rate}
 | | ...                                       | ${threshold}
-| | ...                                       | ${glob_loss_acceptance}
-| | ...                                       | ${glob_loss_acceptance_type}
+| | ...                                       | ${perf_pdr_loss_acceptance}
+| | ...                                       | ${perf_pdr_loss_acceptance_type}

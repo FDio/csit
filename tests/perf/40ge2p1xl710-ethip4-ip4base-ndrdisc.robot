@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2017 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -16,21 +16,22 @@
 | Library | resources.libraries.python.topology.Topology
 | Library | resources.libraries.python.NodePath
 | Library | resources.libraries.python.InterfaceUtil
-| Library | resources.libraries.python.IPv4Setup.Dut | ${nodes['DUT1']} | WITH NAME | dut1_v4
-| Library | resources.libraries.python.IPv4Setup.Dut | ${nodes['DUT2']} | WITH NAME | dut2_v4
+| Library | resources.libraries.python.IPv4Setup.Dut | ${nodes['DUT1']}
+| ... | WITH NAME | dut1_v4
+| Library | resources.libraries.python.IPv4Setup.Dut | ${nodes['DUT2']}
+| ... | WITH NAME | dut2_v4
+| ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDRDISC
-| ...        | NIC_Intel-XL710 | ETH | IP4FWD | BASE
+| ... | NIC_Intel-XL710 | ETH | IP4FWD | BASE
+| ...
 | Suite Setup | 3-node Performance Suite Setup with DUT's NIC model
 | ... | L3 | Intel-XL710
 | Suite Teardown | 3-node Performance Suite Teardown
-| Test Setup | Setup all DUTs before test
-| Test Teardown | Run Keywords
-| ...           | Run Keyword If Test Failed
-| ...           | Traffic should pass with no loss | 10
-| ...           | ${min_rate}pps | ${framesize} | 3-node-IPv4
-| ...           | fail_on_loss=${False}
-| ...           | AND | Remove startup configuration of VPP from all DUTs
-| ...           | AND | Show vpp trace dump on all DUTs
+| ...
+| Test Setup | Performance test setup
+| Test Teardown | Performance test teardown | ${min_rate}pps | ${framesize}
+| ... | 3-node-IPv4
+| ...
 | Documentation | *RFC2544: Pkt throughput IPv4 routing test cases*
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology
@@ -54,9 +55,9 @@
 | ... | *[Ref] Applicable standard specifications:* RFC2544.
 
 *** Variables ***
-#XL710-DA2 bandwidth limit ~49Gbps/2=24.5Gbps
+# XL710-DA2 bandwidth limit ~49Gbps/2=24.5Gbps
 | ${s_24.5G} | ${24500000000}
-#XL710-DA2 Mpps limit 37.5Mpps/2=18.75Mpps
+# XL710-DA2 Mpps limit 37.5Mpps/2=18.75Mpps
 | ${s_18.75Mpps} | ${18750000}
 
 *** Test Cases ***

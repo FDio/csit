@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2017 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -14,15 +14,17 @@
 *** Settings ***
 | Resource | resources/libraries/robot/performance.robot
 | Library | resources.libraries.python.Classify.Classify
+| ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRCHK
-| ...        | NIC_Intel-X520-DA2 | ETH | IP6FWD | FEATURE | IACLDST
+| ... | NIC_Intel-X520-DA2 | ETH | IP6FWD | FEATURE | IACLDST
+| ...
 | Suite Setup | 3-node Performance Suite Setup with DUT's NIC model
 | ... | L3 | Intel-X520-DA2
 | Suite Teardown | 3-node Performance Suite Teardown
-| Test Setup | Setup all DUTs before test
-| Test Teardown | Run Keywords
-| ...           | Remove startup configuration of VPP from all DUTs
-| ...           | AND          | Show vpp trace dump on all DUTs
+| ...
+| Test Setup | Performance test setup
+| Test Teardown | Performance ndrchk test teardown
+| ...
 | Documentation | *Reference NDR throughput IPv6 whitelist verify test cases*
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology
@@ -52,16 +54,15 @@
 | | ... | at 2x 2.9mpps.
 | | [Tags] | 1T1C | STHREAD
 | | ${framesize}= | Set Variable | 78
-| | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 2.9mpps
 | | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | And   IPv6 forwarding initialized in a 3-node circular topology
-| | And   IPv6 iAcl whitelist initialized in a 3-node circular topology
-| | Then  Traffic should pass with no loss | ${duration} | ${rate}
-| | ...                                    | ${framesize} | 3-node-IPv6
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | And IPv6 forwarding initialized in a 3-node circular topology
+| | And IPv6 iAcl whitelist initialized in a 3-node circular topology
+| | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
+| | ... | ${framesize} | 3-node-IPv6
 
 | tc02-1518B-1t1c-ethip6-ip6base-iacldstbase-ndrchk
 | | [Documentation]
@@ -71,16 +72,15 @@
 | | ... | at 2x 812743pps.
 | | [Tags] | 1T1C | STHREAD
 | | ${framesize}= | Set Variable | 1518
-| | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 812743pps
 | | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | And   IPv6 forwarding initialized in a 3-node circular topology
-| | And   IPv6 iAcl whitelist initialized in a 3-node circular topology
-| | Then  Traffic should pass with no loss | ${duration} | ${rate}
-| | ...                                    | ${framesize} | 3-node-IPv6
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | And IPv6 forwarding initialized in a 3-node circular topology
+| | And IPv6 iAcl whitelist initialized in a 3-node circular topology
+| | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
+| | ... | ${framesize} | 3-node-IPv6
 
 | tc03-9000B-1t1c-ethip6-ip6base-iacldstbase-ndrchk
 | | [Documentation]
@@ -90,15 +90,14 @@
 | | ... | at 2x 138580pps.
 | | [Tags] | 1T1C | STHREAD
 | | ${framesize}= | Set Variable | 9000
-| | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 138580pps
 | | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Apply startup configuration on all VPP DUTs
-| | And   IPv6 forwarding initialized in a 3-node circular topology
-| | And   IPv6 iAcl whitelist initialized in a 3-node circular topology
-| | Then  Traffic should pass with no loss | ${duration} | ${rate}
-| | ...                                    | ${framesize} | 3-node-IPv6
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Apply startup configuration on all VPP DUTs
+| | And IPv6 forwarding initialized in a 3-node circular topology
+| | And IPv6 iAcl whitelist initialized in a 3-node circular topology
+| | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
+| | ... | ${framesize} | 3-node-IPv6
 
 | tc04-78B-2t2c-ethip6-ip6base-iacldstbase-ndrchk
 | | [Documentation]
@@ -108,16 +107,15 @@
 | | ... | at 2x 5.4mpps.
 | | [Tags] | 2T2C | MTHREAD
 | | ${framesize}= | Set Variable | 78
-| | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 5.4mpps
 | | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | And   IPv6 forwarding initialized in a 3-node circular topology
-| | And   IPv6 iAcl whitelist initialized in a 3-node circular topology
-| | Then  Traffic should pass with no loss | ${duration} | ${rate}
-| | ...                                    | ${framesize} | 3-node-IPv6
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | And IPv6 forwarding initialized in a 3-node circular topology
+| | And IPv6 iAcl whitelist initialized in a 3-node circular topology
+| | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
+| | ... | ${framesize} | 3-node-IPv6
 
 | tc05-1518B-2t2c-ethip6-ip6base-iacldstbase-ndrchk
 | | [Documentation]
@@ -127,16 +125,15 @@
 | | ... | at 2x 812743pps.
 | | [Tags] | 2T2C | MTHREAD
 | | ${framesize}= | Set Variable | 1518
-| | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 812743pps
 | | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | And   IPv6 forwarding initialized in a 3-node circular topology
-| | And   IPv6 iAcl whitelist initialized in a 3-node circular topology
-| | Then  Traffic should pass with no loss | ${duration} | ${rate}
-| | ...                                    | ${framesize} | 3-node-IPv6
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | And IPv6 forwarding initialized in a 3-node circular topology
+| | And IPv6 iAcl whitelist initialized in a 3-node circular topology
+| | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
+| | ... | ${framesize} | 3-node-IPv6
 
 | tc06-9000B-2t2c-ethip6-ip6base-iacldstbase-ndrchk
 | | [Documentation]
@@ -146,15 +143,14 @@
 | | ... | at 2x 138580pps.
 | | [Tags] | 2T2C | MTHREAD
 | | ${framesize}= | Set Variable | 9000
-| | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 138580pps
 | | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Apply startup configuration on all VPP DUTs
-| | And   IPv6 forwarding initialized in a 3-node circular topology
-| | And   IPv6 iAcl whitelist initialized in a 3-node circular topology
-| | Then  Traffic should pass with no loss | ${duration} | ${rate}
-| | ...                                    | ${framesize} | 3-node-IPv6
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Apply startup configuration on all VPP DUTs
+| | And IPv6 forwarding initialized in a 3-node circular topology
+| | And IPv6 iAcl whitelist initialized in a 3-node circular topology
+| | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
+| | ... | ${framesize} | 3-node-IPv6
 
 | tc07-78B-4t4c-ethip6-ip6base-iacldstbase-ndrchk
 | | [Documentation]
@@ -164,16 +160,15 @@
 | | ... | at 2x 9.5mpps.
 | | [Tags] | 4T4C | MTHREAD
 | | ${framesize}= | Set Variable | 78
-| | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 9.5mpps
 | | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | And   IPv6 forwarding initialized in a 3-node circular topology
-| | And   IPv6 iAcl whitelist initialized in a 3-node circular topology
-| | Then  Traffic should pass with no loss | ${duration} | ${rate}
-| | ...                                    | ${framesize} | 3-node-IPv6
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | And IPv6 forwarding initialized in a 3-node circular topology
+| | And IPv6 iAcl whitelist initialized in a 3-node circular topology
+| | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
+| | ... | ${framesize} | 3-node-IPv6
 
 | tc08-1518B-4t4c-ethip6-ip6base-iacldstbase-ndrchk
 | | [Documentation]
@@ -183,16 +178,15 @@
 | | ... | at 2x 812743pps.
 | | [Tags] | 4T4C | MTHREAD
 | | ${framesize}= | Set Variable | 1518
-| | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 812743pps
 | | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | And   IPv6 forwarding initialized in a 3-node circular topology
-| | And   IPv6 iAcl whitelist initialized in a 3-node circular topology
-| | Then  Traffic should pass with no loss | ${duration} | ${rate}
-| | ...                                    | ${framesize} | 3-node-IPv6
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | And IPv6 forwarding initialized in a 3-node circular topology
+| | And IPv6 iAcl whitelist initialized in a 3-node circular topology
+| | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
+| | ... | ${framesize} | 3-node-IPv6
 
 | tc09-9000B-4t4c-ethip6-ip6base-iacldstbase-ndrchk
 | | [Documentation]
@@ -202,12 +196,11 @@
 | | ... | at 2x 138580pps.
 | | [Tags] | 4T4C | MTHREAD
 | | ${framesize}= | Set Variable | 9000
-| | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 138580pps
 | | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Apply startup configuration on all VPP DUTs
-| | And   IPv6 forwarding initialized in a 3-node circular topology
-| | And   IPv6 iAcl whitelist initialized in a 3-node circular topology
-| | Then  Traffic should pass with no loss | ${duration} | ${rate}
-| | ...                                    | ${framesize} | 3-node-IPv6
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Apply startup configuration on all VPP DUTs
+| | And IPv6 forwarding initialized in a 3-node circular topology
+| | And IPv6 iAcl whitelist initialized in a 3-node circular topology
+| | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
+| | ... | ${framesize} | 3-node-IPv6

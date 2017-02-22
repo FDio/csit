@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2017 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -14,20 +14,19 @@
 *** Settings ***
 | Resource | resources/libraries/robot/performance.robot
 | Resource | resources/libraries/robot/lisp/lisp_static_adjacency.robot
-# import additional Lisp settings from resource file
 | Variables | resources/test_data/lisp/performance/lisp_static_adjacency.py
+| ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDRDISC
 | ... | NIC_Intel-X520-DA2 | IP6FWD | ENCAP | LISP | IP6UNRLAY | IP6OVRLAY
+| ...
 | Suite Setup | 3-node Performance Suite Setup with DUT's NIC model
 | ... | L3 | Intel-X520-DA2
 | Suite Teardown | 3-node Performance Suite Teardown
-| Test Setup | Setup all DUTs before test
-| Test Teardown | Run Keywords
-| ...           | Run Keyword If Test Failed
-| ...           | Traffic should pass with no loss | 10
-| ...           | ${min_rate}pps | ${framesize} | 3-node-IPv6
-| ...           | fail_on_loss=${False}
-| ...           | AND | Remove startup configuration of VPP from all DUTs
+| ...
+| Test Setup | Performance test setup
+| Test Teardown | Performance test teardown | ${min_rate}pps | ${framesize}
+| ... | 3-node-IPv6
+| ...
 | Documentation | *RFC6830: Pkt throughput Lisp test cases*
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology\
@@ -46,7 +45,7 @@
 | ... | *[Ref] Applicable standard specifications:* RFC6830.
 
 *** Variables ***
-#X520-DA2 bandwidth limit
+# X520-DA2 bandwidth limit
 | ${s_limit} | ${10000000000}
 
 *** Test Cases ***
@@ -111,8 +110,8 @@
 | | ...                                       | ${binary_max} | 3-node-IPv6
 | | ...                                       | ${min_rate} | ${max_rate}
 | | ...                                       | ${threshold}
-| | ...                                       | ${glob_loss_acceptance}
-| | ...                                       | ${glob_loss_acceptance_type}
+| | ...                                       | ${perf_pdr_loss_acceptance}
+| | ...                                       | ${perf_pdr_loss_acceptance_type}
 
 | tc03-1460B-1t1c-ethip6lispip6-ip6base-ndrdisc
 | | [Documentation]
@@ -175,8 +174,8 @@
 | | ...                                       | ${binary_max} | 3-node-IPv6
 | | ...                                       | ${min_rate} | ${max_rate}
 | | ...                                       | ${threshold}
-| | ...                                       | ${glob_loss_acceptance}
-| | ...                                       | ${glob_loss_acceptance_type}
+| | ...                                       | ${perf_pdr_loss_acceptance}
+| | ...                                       | ${perf_pdr_loss_acceptance_type}
 
 | tc05-9000B-1t1c-ethip6lispip6-ip6base-ndrdisc
 | | [Documentation]
@@ -237,8 +236,8 @@
 | | ...                                       | ${binary_max} | 3-node-IPv6
 | | ...                                       | ${min_rate} | ${max_rate}
 | | ...                                       | ${threshold}
-| | ...                                       | ${glob_loss_acceptance}
-| | ...                                       | ${glob_loss_acceptance_type}
+| | ...                                       | ${perf_pdr_loss_acceptance}
+| | ...                                       | ${perf_pdr_loss_acceptance_type}
 
 | tc07-78B-2t2c-ethip6lispip6-ip6base-ndrdisc
 | | [Documentation]
@@ -301,8 +300,8 @@
 | | ...                                       | ${binary_max} | 3-node-IPv6
 | | ...                                       | ${min_rate} | ${max_rate}
 | | ...                                       | ${threshold}
-| | ...                                       | ${glob_loss_acceptance}
-| | ...                                       | ${glob_loss_acceptance_type}
+| | ...                                       | ${perf_pdr_loss_acceptance}
+| | ...                                       | ${perf_pdr_loss_acceptance_type}
 
 | tc09-1460B-2t2c-ethip6lispip6-ip6base-ndrdisc
 | | [Documentation]
@@ -365,8 +364,8 @@
 | | ...                                       | ${binary_max} | 3-node-IPv6
 | | ...                                       | ${min_rate} | ${max_rate}
 | | ...                                       | ${threshold}
-| | ...                                       | ${glob_loss_acceptance}
-| | ...                                       | ${glob_loss_acceptance_type}
+| | ...                                       | ${perf_pdr_loss_acceptance}
+| | ...                                       | ${perf_pdr_loss_acceptance_type}
 
 | tc11-9000B-2t2c-ethip6lispip6-ip6base-ndrdisc
 | | [Documentation]
@@ -427,8 +426,8 @@
 | | ...                                       | ${binary_max} | 3-node-IPv6
 | | ...                                       | ${min_rate} | ${max_rate}
 | | ...                                       | ${threshold}
-| | ...                                       | ${glob_loss_acceptance}
-| | ...                                       | ${glob_loss_acceptance_type}
+| | ...                                       | ${perf_pdr_loss_acceptance}
+| | ...                                       | ${perf_pdr_loss_acceptance_type}
 
 | tc13-78B-4t4c-ethip6lispip6-ip6base-ndrdisc
 | | [Documentation]
@@ -491,8 +490,8 @@
 | | ...                                       | ${binary_max} | 3-node-IPv6
 | | ...                                       | ${min_rate} | ${max_rate}
 | | ...                                       | ${threshold}
-| | ...                                       | ${glob_loss_acceptance}
-| | ...                                       | ${glob_loss_acceptance_type}
+| | ...                                       | ${perf_pdr_loss_acceptance}
+| | ...                                       | ${perf_pdr_loss_acceptance_type}
 
 | tc15-1460B-4t4c-ethip6lispip6-ip6base-ndrdisc
 | | [Documentation]
@@ -555,8 +554,8 @@
 | | ...                                       | ${binary_max} | 3-node-IPv6
 | | ...                                       | ${min_rate} | ${max_rate}
 | | ...                                       | ${threshold}
-| | ...                                       | ${glob_loss_acceptance}
-| | ...                                       | ${glob_loss_acceptance_type}
+| | ...                                       | ${perf_pdr_loss_acceptance}
+| | ...                                       | ${perf_pdr_loss_acceptance_type}
 
 | tc17-9000B-4t4c-ethip6lispip6-ip6base-ndrdisc
 | | [Documentation]
@@ -617,5 +616,5 @@
 | | ...                                       | ${binary_max} | 3-node-IPv6
 | | ...                                       | ${min_rate} | ${max_rate}
 | | ...                                       | ${threshold}
-| | ...                                       | ${glob_loss_acceptance}
-| | ...                                       | ${glob_loss_acceptance_type}
+| | ...                                       | ${perf_pdr_loss_acceptance}
+| | ...                                       | ${perf_pdr_loss_acceptance_type}

@@ -13,18 +13,18 @@
 
 *** Settings ***
 | Resource | resources/libraries/robot/performance.robot
+| ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDRDISC
 | ... | NIC_Intel-X520-DA2 | L2BDMACLRN | ENCAP | VXLAN | L2OVRLAY | IP4UNRLAY
+| ...
 | Suite Setup | 3-node Performance Suite Setup with DUT's NIC model
 | ... | L2 | Intel-X520-DA2
 | Suite Teardown | 3-node Performance Suite Teardown
-| Test Setup | Setup all DUTs before test
-| Test Teardown | Run Keywords
-| ... | Run Keyword If Test Failed
-| ... | Traffic should pass with no loss | 10 | ${min_rate}pps | ${framesize}
-| ... | 3-node-bridge | fail_on_loss=${False}
-| ... | AND | Remove startup configuration of VPP from all DUTs
-| ... | AND | Show vpp trace dump on all DUTs
+| ...
+| Test Setup | Performance test setup
+| Test Teardown | Performance test teardown | ${min_rate}pps | ${framesize}
+| ... | 3-node-bridge
+| ...
 | Documentation | *RFC2544: Packet throughput L2BD with VXLANoIPv4 test cases*
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology
@@ -100,7 +100,8 @@
 | | And L2 bridge domain with VXLANoIPv4 initialized in a 3-node circular topology
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | 3-node-bridge | ${min_rate} | ${max_rate}
-| | ... | ${threshold} | ${glob_loss_acceptance} | ${glob_loss_acceptance_type}
+| | ... | ${threshold} | ${perf_pdr_loss_acceptance}
+| | ... | ${perf_pdr_loss_acceptance_type}
 
 | tc03-1518B-1t1c-ethip4vxlan-l2bdbasemaclrn-ndrdisc
 | | [Documentation]
@@ -146,7 +147,8 @@
 | | And L2 bridge domain with VXLANoIPv4 initialized in a 3-node circular topology
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | 3-node-bridge | ${min_rate} | ${max_rate}
-| | ... | ${threshold} | ${glob_loss_acceptance} | ${glob_loss_acceptance_type}
+| | ... | ${threshold} | ${perf_pdr_loss_acceptance}
+| | ... | ${perf_pdr_loss_acceptance_type}
 
 | tc05-9000B-1t1c-ethip4vxlan-l2bdbasemaclrn-ndrdisc
 | | [Documentation]
@@ -192,7 +194,8 @@
 | | And L2 bridge domain with VXLANoIPv4 initialized in a 3-node circular topology
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | 3-node-bridge | ${min_rate} | ${max_rate}
-| | ... | ${threshold} | ${glob_loss_acceptance} | ${glob_loss_acceptance_type}
+| | ... | ${threshold} | ${perf_pdr_loss_acceptance}
+| | ... | ${perf_pdr_loss_acceptance_type}
 
 | tc07-64B-2t2c-ethip4vxlan-l2bdbasemaclrn-ndrdisc
 | | [Documentation]
@@ -240,7 +243,8 @@
 | | And L2 bridge domain with VXLANoIPv4 initialized in a 3-node circular topology
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | 3-node-bridge | ${min_rate} | ${max_rate}
-| | ... | ${threshold} | ${glob_loss_acceptance} | ${glob_loss_acceptance_type}
+| | ... | ${threshold} | ${perf_pdr_loss_acceptance}
+| | ... | ${perf_pdr_loss_acceptance_type}
 
 | tc09-1518B-2t2c-ethip4vxlan-l2bdbasemaclrn-ndrdisc
 | | [Documentation]
@@ -286,7 +290,8 @@
 | | And L2 bridge domain with VXLANoIPv4 initialized in a 3-node circular topology
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | 3-node-bridge | ${min_rate} | ${max_rate}
-| | ... | ${threshold} | ${glob_loss_acceptance} | ${glob_loss_acceptance_type}
+| | ... | ${threshold} | ${perf_pdr_loss_acceptance}
+| | ... | ${perf_pdr_loss_acceptance_type}
 
 | tc11-9000B-2t2c-ethip4vxlan-l2bdbasemaclrn-ndrdisc
 | | [Documentation]
@@ -332,7 +337,8 @@
 | | And L2 bridge domain with VXLANoIPv4 initialized in a 3-node circular topology
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | 3-node-bridge | ${min_rate} | ${max_rate}
-| | ... | ${threshold} | ${glob_loss_acceptance} | ${glob_loss_acceptance_type}
+| | ... | ${threshold} | ${perf_pdr_loss_acceptance}
+| | ... | ${perf_pdr_loss_acceptance_type}
 
 | tc13-64B-4t4c-ethip4vxlan-l2bdbasemaclrn-ndrdisc
 | | [Documentation]
@@ -380,7 +386,8 @@
 | | And L2 bridge domain with VXLANoIPv4 initialized in a 3-node circular topology
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | 3-node-bridge | ${min_rate} | ${max_rate}
-| | ... | ${threshold} | ${glob_loss_acceptance} | ${glob_loss_acceptance_type}
+| | ... | ${threshold} | ${perf_pdr_loss_acceptance}
+| | ... | ${perf_pdr_loss_acceptance_type}
 
 | tc15-1518B-4t4c-ethip4vxlan-l2bdbasemaclrn-ndrdisc
 | | [Documentation]
@@ -426,7 +433,8 @@
 | | And L2 bridge domain with VXLANoIPv4 initialized in a 3-node circular topology
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | 3-node-bridge | ${min_rate} | ${max_rate}
-| | ... | ${threshold} | ${glob_loss_acceptance} | ${glob_loss_acceptance_type}
+| | ... | ${threshold} | ${perf_pdr_loss_acceptance}
+| | ... | ${perf_pdr_loss_acceptance_type}
 
 | tc17-9000B-4t4c-ethip4vxlan-l2bdbasemaclrn-ndrdisc
 | | [Documentation]
@@ -472,4 +480,5 @@
 | | And L2 bridge domain with VXLANoIPv4 initialized in a 3-node circular topology
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | 3-node-bridge | ${min_rate} | ${max_rate}
-| | ... | ${threshold} | ${glob_loss_acceptance} | ${glob_loss_acceptance_type}
+| | ... | ${threshold} | ${perf_pdr_loss_acceptance}
+| | ... | ${perf_pdr_loss_acceptance_type}
