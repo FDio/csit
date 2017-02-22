@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2017 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -15,23 +15,22 @@
 | Resource | resources/libraries/robot/performance.robot
 | Resource | resources/libraries/robot/lisp/lisp_static_adjacency.robot
 | Library | resources.libraries.python.IPv4Setup.Dut | ${nodes['DUT1']}
-| ...     | WITH NAME | dut1_v4
+| ... | WITH NAME | dut1_v4
 | Library | resources.libraries.python.IPv4Setup.Dut | ${nodes['DUT2']}
-| ...     | WITH NAME | dut2_v4
-# import additional Lisp settings from resource file
+| ... | WITH NAME | dut2_v4
 | Variables | resources/test_data/lisp/performance/lisp_static_adjacency.py
+| ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDRDISC
 | ... | NIC_Intel-X520-DA2 | IP6FWD | ENCAP | LISP | IP4UNRLAY | IP6OVRLAY
+| ...
 | Suite Setup | 3-node Performance Suite Setup with DUT's NIC model
 | ... | L3 | Intel-X520-DA2
 | Suite Teardown | 3-node Performance Suite Teardown
-| Test Setup | Setup all DUTs before test
-| Test Teardown | Run Keywords
-| ...           | Run Keyword If Test Failed
-| ...           | Traffic should pass with no loss | 10
-| ...           | ${min_rate}pps | ${framesize} | 3-node-IPv6
-| ...           | fail_on_loss=${False}
-| ...           | AND | Remove startup configuration of VPP from all DUTs
+| ...
+| Test Setup | Performance test setup
+| Test Teardown | Performance test teardown | 10 | ${min_rate}pps | ${framesize}
+| ... | 3-node-IPv6 | fail_on_loss=${False}
+| ...
 | Documentation | *RFC6830: Pkt throughput Lisp test cases*
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology\
@@ -50,7 +49,7 @@
 | ... | *[Ref] Applicable standard specifications:* RFC6830.
 
 *** Variables ***
-#X520-DA2 bandwidth limit
+# X520-DA2 bandwidth limit
 | ${s_limit} | ${10000000000}
 
 *** Test Cases ***

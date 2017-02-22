@@ -14,24 +14,22 @@
 *** Settings ***
 | Resource | resources/libraries/robot/performance.robot
 | Library | resources.libraries.python.QemuUtils
+| ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDRDISC
 | ... | NIC_Intel-X520-DA2 | L2BDMACLRN | ENCAP | VXLAN | L2OVRLAY | IP4UNRLAY
 | ... | VHOST | VM
+| ...
 | Suite Setup | 3-node Performance Suite Setup with DUT's NIC model
 | ... | L2 | Intel-X520-DA2
 | Suite Teardown | 3-node Performance Suite Teardown
-| Test Setup | Setup all DUTs before test
-| Test Teardown | Run Keywords
-| ...           | Run Keyword If Test Failed
-| ...           | Traffic should pass with no loss | 10
-| ...           | ${min_rate}pps | ${framesize} | 3-node-bridge
-| ...           | fail_on_loss=${False}
-| ...           | AND | Show Vpp Vhost On All DUTs
-| ...           | AND | Remove startup configuration of VPP from all DUTs
-| ...           | AND | Guest VM with dpdk-testpmd Teardown | ${dut1}
-| ...                 | ${dut1_vm_refs}
-| ...           | AND | Guest VM with dpdk-testpmd Teardown | ${dut2}
-| ...                 | ${dut2_vm_refs}
+| ...
+| Test Setup | Performance test setup
+| Test Teardown | Performance test with vhost and VM with dpdk-testpmd teardown
+| ... | 10 | ${min_rate}pps | ${framesize} | 3-node-bridge
+| ... | fail_on_loss=${False} | show_trace=${False}
+| ... | dut1_node=${dut1} | dut1_vm_refs=${dut1_vm_refs}
+| ... | dut2_node=${dut2} | dut2_vm_refs=${dut2_vm_refs}
+| ...
 | Documentation | *RFC2544: Packet throughput L2BD test cases with VXLANoIPv4
 | ... | and vhost*
 | ...
@@ -62,10 +60,10 @@
 | ... | *[Ref] Applicable standard specifications:* RFC2544, RFC7348.
 
 *** Variables ***
-#X520-DA2 bandwidth limit
+# X520-DA2 bandwidth limit
 | ${s_limit} | ${10000000000}
 | ${vxlan_overhead} | ${50}
-#Socket names
+# Socket names
 | ${bd_id1}= | 1
 | ${bd_id2}= | 2
 | ${sock1}= | /tmp/sock-1-${bd_id1}
