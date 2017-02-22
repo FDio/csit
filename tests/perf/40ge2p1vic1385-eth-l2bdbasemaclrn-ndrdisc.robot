@@ -14,19 +14,18 @@
 *** Settings ***
 | Resource | resources/libraries/robot/performance.robot
 | Library | resources.libraries.python.NodePath
+| ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDRDISC
-| ...        | NIC_Cisco-VIC-1385 | ETH | L2BDMACLRN | BASE
+| ... | NIC_Cisco-VIC-1385 | ETH | L2BDMACLRN | BASE
+| ...
 | Suite Setup | 3-node Performance Suite Setup with DUT's NIC model
 | ... | L2 | Cisco-VIC-1385
 | Suite Teardown | 3-node Performance Suite Teardown
-| Test Setup | Setup all DUTs before test
-| Test Teardown | Run Keywords
-| ...           | Run Keyword If Test Failed
-| ...           | Traffic should pass with no loss | 10
-| ...           | ${min_rate}pps | ${framesize} | 3-node-bridge
-| ...           | fail_on_loss=${False}
-| ...           | AND | Remove startup configuration of VPP from all DUTs
-| ...           | AND | Show vpp trace dump on all DUTs
+| ...
+| Test Setup | Performance test setup
+| Test Teardown | Performance test teardown | ${min_rate}pps | ${framesize}
+| ... | 3-node-bridge
+| ...
 | Documentation | *RFC2544: Pkt throughput L2BD test cases*
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology
@@ -102,7 +101,8 @@
 | | And L2 bridge domain initialized in a 3-node circular topology
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | 3-node-bridge | ${min_rate} | ${max_rate}
-| | ... | ${threshold} | ${glob_loss_acceptance} | ${glob_loss_acceptance_type}
+| | ... | ${threshold} | ${perf_pdr_loss_acceptance}
+| | ... | ${perf_pdr_loss_acceptance_type}
 
 | tc03-1518B-1t1c-eth-l2bdbasemaclrn-ndrdisc
 | | [Documentation]
@@ -198,7 +198,8 @@
 | | And L2 bridge domain initialized in a 3-node circular topology
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | 3-node-bridge | ${min_rate} | ${max_rate}
-| | ... | ${threshold} | ${glob_loss_acceptance} | ${glob_loss_acceptance_type}
+| | ... | ${threshold} | ${perf_pdr_loss_acceptance}
+| | ... | ${perf_pdr_loss_acceptance_type}
 
 | tc09-1518B-2t2c-eth-l2bdbasemaclrn-ndrdisc
 | | [Documentation]
