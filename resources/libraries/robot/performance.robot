@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2017 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -46,8 +46,10 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Calculate pps \| 10000000000 | 64
+| | ... | \| Calculate pps \| 10000000000 \| 64 \|
+| | ...
 | | [Arguments] | ${bps} | ${framesize}
+| | ...
 | | ${framesize}= | Get Frame Size | ${framesize}
 | | ${ret}= | Evaluate | (${bps}/((${framesize}+20)*8)).__trunc__()
 | | Return From Keyword | ${ret}
@@ -63,24 +65,13 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Get Frame Size \| IMIX_v4_1
+| | ... | \| Get Frame Size \| IMIX_v4_1 \|
+| | ...
 | | [Arguments] | ${framesize}
+| | ...
 | | Run Keyword If | '${framesize}' == 'IMIX_v4_1'
 | | ... | Return From Keyword | 353.83333
 | | Return From Keyword | ${framesize}
-
-| Setup performance global Variables
-| | [Documentation]
-| | ... | Setup suite Variables. Variables are used across performance testing.
-| | ...
-| | ... | _NOTE:_ This KW sets following suite variables:
-| | ... | - glob_loss_acceptance - Loss acceptance treshold
-| | ... | - glob_loss_acceptance_type - Loss acceptance treshold type
-| | ... | - glob_vm_image - Guest VM disk image
-| | ...
-| | Set Suite Variable | ${glob_loss_acceptance} | 0.5
-| | Set Suite Variable | ${glob_loss_acceptance_type} | percentage
-| | Set Suite Variable | ${glob_vm_image} | /var/lib/vm/csit-nested-1.6.img
 
 | 2-node circular Topology Variables Setup
 | | [Documentation]
@@ -164,7 +155,9 @@
 | | ...
 | | ... | \| 2-node circular Topology Variables Setup with DUT interface model \
 | | ... | \| Intel-X520-DA2 \|
+| | ...
 | | [Arguments] | ${iface_model}
+| | ...
 | | ${iface_model_list}= | Create list | ${iface_model}
 | | Append Node | ${nodes['TG']}
 | | Append Node | ${nodes['DUT1']} | filter_list=${iface_model_list}
@@ -205,7 +198,9 @@
 | | ...
 | | ... | \| 3-node circular Topology Variables Setup with DUT interface model \
 | | ... | \| Intel-X520-DA2 \|
+| | ...
 | | [Arguments] | ${iface_model}
+| | ...
 | | ${iface_model_list}= | Create list | ${iface_model}
 | | Append Node | ${nodes['TG']}
 | | Append Node | ${nodes['DUT1']} | filter_list=${iface_model_list}
@@ -310,7 +305,9 @@
 | | ...
 | | ... | \| Scale IPv4 forwarding initialized in a 3-node circular topology \
 | | ... | \| 100000 \|
+| | ...
 | | [Arguments] | ${count}
+| | ...
 | | Set Interface State | ${dut1} | ${dut1_if1} | up
 | | Set Interface State | ${dut1} | ${dut1_if2} | up
 | | Set Interface State | ${dut2} | ${dut2_if1} | up
@@ -359,7 +356,9 @@
 | | ...
 | | ... | \| IPv4 forwarding with vhost initialized in a 3-node circular \
 | | ... | topology \| /tmp/sock1 \| /tmp/sock2 \|
+| | ...
 | | [Arguments] | ${sock1} | ${sock2}
+| | ...
 | | VPP interfaces in path are up in a 3-node circular topology
 | | VPP Vhost interfaces for L2BD forwarding are setup | ${dut1}
 | | ... | ${sock1} | ${sock2}
@@ -430,21 +429,13 @@
 | | Set Test Variable | ${dut2_vif1_mac}
 | | Set Test Variable | ${dut2_vif2_mac}
 | | Add arp on dut | ${dut1} | ${dut1_if1} | 1.1.1.1 | ${tg1_if1_mac}
-| | ... | vrf=${fib_table_1}
 | | Add arp on dut | ${dut1} | ${dut1_if2} | 2.2.2.2 | ${dut2_if1_mac}
-| | ... | vrf=${fib_table_2}
 | | Add arp on dut | ${dut1} | ${dut1_vif1} | 4.4.4.2 | 52:54:00:00:04:01
-| | ... | vrf=${fib_table_1}
 | | Add arp on dut | ${dut1} | ${dut1_vif2} | 5.5.5.2 | 52:54:00:00:04:02
-| | ... | vrf=${fib_table_2}
 | | Add arp on dut | ${dut2} | ${dut2_if1} | 2.2.2.1 | ${dut1_if2_mac}
-| | ... | vrf=${fib_table_1}
 | | Add arp on dut | ${dut2} | ${dut2_if2} | 3.3.3.2 | ${tg1_if2_mac}
-| | ... | vrf=${fib_table_2}
 | | Add arp on dut | ${dut2} | ${dut2_vif1} | 4.4.4.2 | 52:54:00:00:04:01
-| | ... | vrf=${fib_table_1}
 | | Add arp on dut | ${dut2} | ${dut2_vif2} | 5.5.5.2 | 52:54:00:00:04:02
-| | ... | vrf=${fib_table_2}
 | | Vpp Route Add | ${dut1} | 20.20.20.0 | 24 | 4.4.4.2 | ${dut1_vif1}
 | | ... | vrf=${fib_table_1}
 | | Vpp Route Add | ${dut1} | 10.10.10.0 | 24 | 1.1.1.1 | ${dut1_if1}
@@ -532,7 +523,9 @@
 | | ...
 | | ... | \| Scale IPv6 forwarding initialized in a 3-node circular topology \
 | | ... | \| 100000 \|
+| | ...
 | | [Arguments] | ${count}
+| | ...
 | | ${subn_prefix}= | Set Variable | 64
 | | ${host_prefix}= | Set Variable | 128
 | | VPP Set If IPv6 Addr | ${dut1} | ${dut1_if1} | 2001:3::1 | ${subn_prefix}
@@ -621,7 +614,9 @@
 | | ...
 | | ... | \| L2 xconnect with Vhost-User initialized in a 3-node \
 | | ... | circular topology \| /tmp/sock1 \| /tmp/sock2 \|
+| | ...
 | | [Arguments] | ${sock1} | ${sock2}
+| | ...
 | | VPP Vhost interfaces for L2BD forwarding are setup | ${dut1}
 | | ... | ${sock1} | ${sock2}
 | | L2 setup xconnect on DUT | ${dut1} | ${dut1_if1} | ${vhost_if1}
@@ -672,7 +667,7 @@
 | | ... | Setup L2 DB topology by adding two interfaces on each DUT into BD
 | | ... | that is created automatically with index 1. Learning is enabled.
 | | ... | Interfaces are brought up.
-| | ... |
+| | ...
 | | Vpp l2bd forwarding setup | ${dut1} | ${dut1_if1} | ${dut1_if2}
 | | Vpp l2bd forwarding setup | ${dut2} | ${dut2_if1} | ${dut2_if2}
 | | All Vpp Interfaces Ready Wait | ${nodes}
@@ -693,7 +688,9 @@
 | | ...
 | | ... | \| L2 bridge domains with Vhost-User initialized in a 3-node \
 | | ... | circular topology \| 1 \| 2 \| /tmp/sock1 \| /tmp/sock2 \|
+| | ...
 | | [Arguments] | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
+| | ...
 | | VPP Vhost interfaces for L2BD forwarding are setup | ${dut1}
 | | ... | ${sock1} | ${sock2}
 | | Interface is added to bridge domain | ${dut1} | ${dut1_if1} | ${bd_id1}
@@ -864,7 +861,6 @@
 | | [Arguments] | ${topology_type} | ${nic_model}
 | | ...
 | | Show vpp version on all DUTs
-| | Setup performance global Variables
 | | 2-node circular Topology Variables Setup with DUT interface model
 | | ... | ${nic_model}
 | | Setup 2-node startup configuration of VPP on all DUTs
@@ -893,7 +889,6 @@
 | | ... | ${tg_if2_dest_mac}
 | | ...
 | | Show vpp version on all DUTs
-| | Setup performance global Variables
 | | 2-node circular Topology Variables Setup with DUT interface model
 | | ... | ${nic_model}
 | | Setup 2-node startup configuration of VPP on all DUTs
@@ -915,9 +910,10 @@
 | | ... | *Example:*
 | | ...
 | | ... | \| 3-node Performance Suite Setup \| L2 \| Intel-X520-DA2 \|
+| | ...
 | | [Arguments] | ${topology_type} | ${nic_model}
+| | ...
 | | Show vpp version on all DUTs
-| | Setup performance global Variables
 | | 3-node circular Topology Variables Setup with DUT interface model
 | | ... | ${nic_model}
 | | Setup default startup configuration of VPP on all DUTs
@@ -959,7 +955,7 @@
 | | [Arguments] | ${framesize} | ${start_rate} | ${step_rate}
 | | ... | ${topology_type} | ${min_rate} | ${max_rate}
 | | ...
-| | ${duration}= | Set Variable | 10
+| | ${duration}= | Set Variable | ${perf_trial_duration}
 | | Set Duration | ${duration}
 | | Set Search Rate Boundaries | ${max_rate} | ${min_rate}
 | | Set Search Linear Step | ${step_rate}
@@ -1008,7 +1004,7 @@
 | | ... | ${topology_type} | ${min_rate} | ${max_rate}
 | | ... | ${loss_acceptance}=0 | ${loss_acceptance_type}='frames'
 | | ...
-| | ${duration}= | Set Variable | 10
+| | ${duration}= | Set Variable | ${perf_trial_duration}
 | | Set Duration | ${duration}
 | | Set Search Rate Boundaries | ${max_rate} | ${min_rate}
 | | Set Search Linear Step | ${step_rate}
@@ -1048,7 +1044,7 @@
 | | [Arguments] | ${framesize} | ${binary_min} | ${binary_max}
 | | ... | ${topology_type} | ${min_rate} | ${max_rate} | ${threshold}
 | | ...
-| | ${duration}= | Set Variable | 10
+| | ${duration}= | Set Variable | ${perf_trial_duration}
 | | Set Duration | ${duration}
 | | Set Search Rate Boundaries | ${max_rate} | ${min_rate}
 | | Set Search Frame Size | ${framesize}
@@ -1099,7 +1095,7 @@
 | | ... | ${topology_type} | ${min_rate} | ${max_rate} | ${threshold}
 | | ... | ${loss_acceptance}=0 | ${loss_acceptance_type}='frames'
 | | ...
-| | ${duration}= | Set Variable | 10
+| | ${duration}= | Set Variable | ${perf_trial_duration}
 | | Set Duration | ${duration}
 | | Set Search Rate Boundaries | ${max_rate} | ${min_rate}
 | | Set Search Frame Size | ${framesize}
@@ -1140,7 +1136,7 @@
 | | [Arguments] | ${framesize} | ${start_rate} | ${step_rate}
 | | ... | ${topology_type} | ${min_rate} | ${max_rate} | ${threshold}
 | | ...
-| | ${duration}= | Set Variable | 10
+| | ${duration}= | Set Variable | ${perf_trial_duration}
 | | Set Duration | ${duration}
 | | Set Search Rate Boundaries | ${max_rate} | ${min_rate}
 | | Set Search Linear Step | ${step_rate}
@@ -1193,7 +1189,7 @@
 | | ... | ${topology_type} | ${min_rate} | ${max_rate} | ${threshold}
 | | ... | ${loss_acceptance}=0 | ${loss_acceptance_type}='frames'
 | | ...
-| | ${duration}= | Set Variable | 10
+| | ${duration}= | Set Variable | ${perf_trial_duration}
 | | Set Duration | ${duration}
 | | Set Search Rate Boundaries | ${max_rate} | ${min_rate}
 | | Set Search Linear Step | ${step_rate}
@@ -1319,6 +1315,8 @@
 | | ... | - rate - Rate for sending packets. Type: string
 | | ... | - framesize - L2 Frame Size [B]. Type: integer
 | | ... | - topology_type - Topology type. Type: string
+| | ... | - fail_on_loss - If True, the keyword fails if loss occurred.
+| | ... | Type: boolean
 | | ...
 | | ... | *Example:*
 | | ...
@@ -1445,7 +1443,7 @@
 | | Run keyword | ${vm_name}.Qemu Set Node | ${dut_node}
 | | Run keyword | ${vm_name}.Qemu Set Smp | ${count} | ${count} | 1 | 1
 | | Run keyword | ${vm_name}.Qemu Set Mem Size | 2048
-| | Run keyword | ${vm_name}.Qemu Set Disk Image | ${glob_vm_image}
+| | Run keyword | ${vm_name}.Qemu Set Disk Image | ${perf_vm_image}
 | | ${vm}= | Run keyword | ${vm_name}.Qemu Start
 | | Run keyword | ${vm_name}.Qemu Set Affinity | @{qemu_cpus}
 | | Run keyword | ${vm_name}.Qemu Set Scheduler Policy
@@ -1489,7 +1487,7 @@
 | | Run keyword | ${vm_name}.Qemu Set Node | ${dut_node}
 | | Run keyword | ${vm_name}.Qemu Set Smp | ${count} | ${count} | 1 | 1
 | | Run keyword | ${vm_name}.Qemu Set Mem Size | 2048
-| | Run keyword | ${vm_name}.Qemu Set Disk Image | ${glob_vm_image}
+| | Run keyword | ${vm_name}.Qemu Set Disk Image | ${perf_vm_image}
 | | ${vm}= | Run keyword | ${vm_name}.Qemu Start
 | | Run keyword | ${vm_name}.Qemu Set Affinity | @{qemu_cpus}
 | | Run keyword | ${vm_name}.Qemu Set Scheduler Policy
@@ -1535,7 +1533,7 @@
 | | Run keyword | ${vm_name}.Qemu Set Node | ${dut_node}
 | | Run keyword | ${vm_name}.Qemu Set Smp | ${count} | ${count} | 1 | 1
 | | Run keyword | ${vm_name}.Qemu Set Mem Size | 2048
-| | Run keyword | ${vm_name}.Qemu Set Disk Image | ${glob_vm_image}
+| | Run keyword | ${vm_name}.Qemu Set Disk Image | ${perf_vm_image}
 | | ${vm}= | Run keyword | ${vm_name}.Qemu Start
 | | Run keyword | ${vm_name}.Qemu Set Affinity | @{qemu_cpus}
 | | Run keyword | ${vm_name}.Qemu Set Scheduler Policy
@@ -1582,7 +1580,7 @@
 | | Run keyword | ${vm_name}.Qemu Set Node | ${dut_node}
 | | Run keyword | ${vm_name}.Qemu Set Smp | ${count} | ${count} | 1 | 1
 | | Run keyword | ${vm_name}.Qemu Set Mem Size | 2048
-| | Run keyword | ${vm_name}.Qemu Set Disk Image | ${glob_vm_image}
+| | Run keyword | ${vm_name}.Qemu Set Disk Image | ${perf_vm_image}
 | | ${vm}= | Run keyword | ${vm_name}.Qemu Start
 | | Run keyword | ${vm_name}.Qemu Set Affinity | @{qemu_cpus}
 | | Run keyword | ${vm_name}.Qemu Set Scheduler Policy
@@ -1624,7 +1622,7 @@
 | | Run keyword | ${vm_name}.Qemu Set Node | ${dut_node}
 | | Run keyword | ${vm_name}.Qemu Set Smp | ${count} | ${count} | 1 | 1
 | | Run keyword | ${vm_name}.Qemu Set Mem Size | 2048
-| | Run keyword | ${vm_name}.Qemu Set Disk Image | ${glob_vm_image}
+| | Run keyword | ${vm_name}.Qemu Set Disk Image | ${perf_vm_image}
 | | ${vm}= | Run keyword | ${vm_name}.Qemu Start
 | | Run keyword | ${vm_name}.Qemu Set Affinity | @{qemu_cpus}
 | | Run keyword | ${vm_name}.Qemu Set Scheduler Policy
@@ -1670,7 +1668,7 @@
 | | Run keyword | ${vm_name}.Qemu Set Node | ${dut_node}
 | | Run keyword | ${vm_name}.Qemu Set Smp | ${count} | ${count} | 1 | 1
 | | Run keyword | ${vm_name}.Qemu Set Mem Size | 2048
-| | Run keyword | ${vm_name}.Qemu Set Disk Image | ${glob_vm_image}
+| | Run keyword | ${vm_name}.Qemu Set Disk Image | ${perf_vm_image}
 | | ${vm}= | Run keyword | ${vm_name}.Qemu Start
 | | Run keyword | ${vm_name}.Qemu Set Affinity | @{qemu_cpus}
 | | Run keyword | ${vm_name}.Qemu Set Scheduler Policy
@@ -1923,7 +1921,6 @@
 | | ...
 | | [Arguments] | ${topology_type} | ${nic_model}
 | | ...
-| | Setup performance global Variables
 | | 2-node circular Topology Variables Setup with DUT interface model
 | | ... | ${nic_model}
 | | Initialize traffic generator | ${tg} | ${tg_if1} | ${tg_if2}
@@ -1947,7 +1944,6 @@
 | | ...
 | | [Arguments] | ${topology_type} | ${nic_model}
 | | ...
-| | Setup performance global Variables
 | | 3-node circular Topology Variables Setup with DUT interface model
 | | ... | ${nic_model}
 | | Initialize traffic generator | ${tg} | ${tg_if1} | ${tg_if2}
@@ -1979,3 +1975,73 @@
 | | ... | Variable Should Exist | ${DPDK_TEST}
 | | Return From Keyword If | "${ret}" == "PASS" | ${TRUE}
 | | Return From Keyword | ${FALSE}
+
+| Performance test setup
+| | [Documentation] | Common test setup for performance tests.
+| | ...
+| | Setup all DUTs before test
+| | Reset VAT History On All DUTs | ${nodes}
+
+| Performance test teardown
+| | [Documentation] | Common test teardown for ndrdisc and pdrdisc performance \
+| | ... | tests.
+| | ...
+| | ... | *Arguments:*
+| | ... | - rate - Rate for sending packets. Type: string
+| | ... | - framesize - L2 Frame Size [B]. Type: integer
+| | ... | - topology_type - Topology type. Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Performance test teardown \| 4.0mpps \| 64 \| 3-node-IPv4 \|
+| | ...
+| | [Arguments] | ${rate} | ${framesize} | ${topology_type}
+| | ...
+| | Show VAT History On All DUTs | ${nodes}
+| | Show statistics on all DUTs
+| | Run Keyword If Test Failed
+| | ... | Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
+| | ... | ${framesize} | ${topology_type} | fail_on_loss=${False}
+| | Remove startup configuration of VPP from all DUTs
+
+| Performance ndrchk test teardown
+| | [Documentation] | Common test teardown for ndrchk performance tests.
+| | ...
+| | Show VAT History On All DUTs | ${nodes}
+| | Show statistics on all DUTs
+| | Remove startup configuration of VPP from all DUTs
+
+| Performance test with vhost and VM with dpdk-testpmd teardown
+| | [Documentation] | Common test teardown for performance tests which use
+| | ... | vhost(s) and VM(s) with dpdk-testpmd.
+| | ...
+| | ... | *Arguments:*
+| | ... | - rate - Rate for sending packets. Type: string
+| | ... | - framesize - L2 Frame Size [B]. Type: integer
+| | ... | - topology_type - Topology type. Type: string
+| | ... | - dut1_node - Node where to clean qemu. Type: dictionary
+| | ... | - dut1_vm_refs - VM references on node. Type: dictionary
+| | ... | - dut2_node - Node where to clean qemu. Type: dictionary
+| | ... | - dut2_vm_refs - VM references on node. Type: dictionary
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Performance test with vhost and VM with dpdk-testpmd teardown \
+| | ... | \| 4.0mpps \| 64 \| 3-node-IPv4 \| ${node['DUT1']} \| ${dut_vm_refs} \
+| | ... | \| ${node['DUT2']} \| ${dut_vm_refs} \|
+| | ...
+| | [Arguments] | ${rate} | ${framesize} | ${topology_type}
+| | ... | ${dut1_node}=${None} | ${dut1_vm_refs}=${None}
+| | ... | ${dut2_node}=${None} | ${dut2_vm_refs}=${None}
+| | ...
+| | Show VAT History On All DUTs | ${nodes}
+| | Show Vpp Vhost On All DUTs
+| | Show statistics on all DUTs
+| | Run Keyword If Test Failed
+| | ... | Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
+| | ... | ${framesize} | ${topology_type} | fail_on_loss=${False}
+| | Remove startup configuration of VPP from all DUTs
+| | Run keyword unless | ${dut1_node}==${None}
+| | ... | Guest VM with dpdk-testpmd Teardown | ${dut1} | ${dut1_vm_refs}
+| | Run keyword unless | ${dut2_node}==${None}
+| | ... | Guest VM with dpdk-testpmd Teardown | ${dut2} | ${dut2_vm_refs}

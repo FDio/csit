@@ -296,6 +296,7 @@ class QemuUtils(object):
             if time() - start > timeout:
                 raise RuntimeError('timeout, VM {0} not booted on {1}'.format(
                     self._qemu_opt['disk_image'], self._node['host']))
+            out = None
             try:
                 self._qemu_qga_flush()
                 out = self._qemu_qga_exec('guest-ping')
