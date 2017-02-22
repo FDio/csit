@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2017 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -14,16 +14,22 @@
 *** Settings ***
 | Resource | resources/libraries/robot/performance.robot
 | Library | resources.libraries.python.Cop
-| Library | resources.libraries.python.IPv4Setup.Dut | ${nodes['DUT1']} | WITH NAME | dut1_v4
-| Library | resources.libraries.python.IPv4Setup.Dut | ${nodes['DUT2']} | WITH NAME | dut2_v4
+| Library | resources.libraries.python.IPv4Setup.Dut | ${nodes['DUT1']}
+| ... | WITH NAME | dut1_v4
+| Library | resources.libraries.python.IPv4Setup.Dut | ${nodes['DUT2']}
+| ... | WITH NAME | dut2_v4
+| ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRCHK
-| ...        | NIC_Intel-X520-DA2 | ETH | IP4FWD | FEATURE | COPWHLIST
+| ... | NIC_Intel-X520-DA2 | ETH | IP4FWD | FEATURE | COPWHLIST
+| ...
 | Suite Setup | 3-node Performance Suite Setup with DUT's NIC model
 | ... | L3 | Intel-X520-DA2
 | Suite Teardown | 3-node Performance Suite Teardown
-| Test Setup | Setup all DUTs before test
-| Test Teardown | Run Keywords | Remove startup configuration of VPP from all DUTs
-| ...           | AND          | Show vpp trace dump on all DUTs
+| ...
+| Test Setup | Performance test setup
+| Test Teardown | Performance test teardown | ${rate}pps | ${framesize}
+| ... | 3-node-IPv4
+| ...
 | Documentation | *Reference NDR throughput IPv4 whitelist verify test cases*
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology
@@ -54,21 +60,20 @@
 | | ... | at 2x 3.5mpps.
 | | [Tags] | 1T1C | STHREAD
 | | ${framesize}= | Set Variable | 64
-| | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 3.5mpps
 | | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | When  IPv4 forwarding initialized in a 3-node circular topology
-| | And   Add fib table | ${dut1} | 10.10.10.0 | 24 | 1 | local
-| | And   Add fib table | ${dut2} | 20.20.20.0 | 24 | 1 | local
-| | And   COP Add whitelist Entry | ${dut1} | ${dut1_if1} | ip4 | 1
-| | And   COP Add whitelist Entry | ${dut2} | ${dut2_if2} | ip4 | 1
-| | And   COP interface enable or disable | ${dut1} | ${dut1_if1} | enable
-| | And   COP interface enable or disable | ${dut2} | ${dut2_if2} | enable
-| | Then  Traffic should pass with no loss | ${duration} | ${rate}
-| | ...                                    | ${framesize} | 3-node-IPv4
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | When IPv4 forwarding initialized in a 3-node circular topology
+| | And Add fib table | ${dut1} | 10.10.10.0 | 24 | 1 | local
+| | And Add fib table | ${dut2} | 20.20.20.0 | 24 | 1 | local
+| | And COP Add whitelist Entry | ${dut1} | ${dut1_if1} | ip4 | 1
+| | And COP Add whitelist Entry | ${dut2} | ${dut2_if2} | ip4 | 1
+| | And COP interface enable or disable | ${dut1} | ${dut1_if1} | enable
+| | And COP interface enable or disable | ${dut2} | ${dut2_if2} | enable
+| | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
+| | ... | ${framesize} | 3-node-IPv4
 
 | tc02-1518B-1t1c-ethip4-ip4base-copwhtlistbase-ndrchk
 | | [Documentation]
@@ -78,21 +83,20 @@
 | | ... | at 2x 812743pps.
 | | [Tags] | 1T1C | STHREAD
 | | ${framesize}= | Set Variable | 1518
-| | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 812743pps
 | | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | When  IPv4 forwarding initialized in a 3-node circular topology
-| | And   Add fib table | ${dut1} | 10.10.10.0 | 24 | 1 | local
-| | And   Add fib table | ${dut2} | 20.20.20.0 | 24 | 1 | local
-| | And   COP Add whitelist Entry | ${dut1} | ${dut1_if1} | ip4 | 1
-| | And   COP Add whitelist Entry | ${dut2} | ${dut2_if2} | ip4 | 1
-| | And   COP interface enable or disable | ${dut1} | ${dut1_if1} | enable
-| | And   COP interface enable or disable | ${dut2} | ${dut2_if2} | enable
-| | Then  Traffic should pass with no loss | ${duration} | ${rate}
-| | ...                                    | ${framesize} | 3-node-IPv4
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | When IPv4 forwarding initialized in a 3-node circular topology
+| | And Add fib table | ${dut1} | 10.10.10.0 | 24 | 1 | local
+| | And Add fib table | ${dut2} | 20.20.20.0 | 24 | 1 | local
+| | And COP Add whitelist Entry | ${dut1} | ${dut1_if1} | ip4 | 1
+| | And COP Add whitelist Entry | ${dut2} | ${dut2_if2} | ip4 | 1
+| | And COP interface enable or disable | ${dut1} | ${dut1_if1} | enable
+| | And COP interface enable or disable | ${dut2} | ${dut2_if2} | enable
+| | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
+| | ... | ${framesize} | 3-node-IPv4
 
 | tc03-9000B-1t1c-ethip4-ip4base-copwhtlistbase-ndrchk
 | | [Documentation]
@@ -102,20 +106,19 @@
 | | ... | at 2x 138580pps.
 | | [Tags] | 1T1C | STHREAD
 | | ${framesize}= | Set Variable | 9000
-| | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 138580pps
 | | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Apply startup configuration on all VPP DUTs
-| | When  IPv4 forwarding initialized in a 3-node circular topology
-| | And   Add fib table | ${dut1} | 10.10.10.0 | 24 | 1 | local
-| | And   Add fib table | ${dut2} | 20.20.20.0 | 24 | 1 | local
-| | And   COP Add whitelist Entry | ${dut1} | ${dut1_if1} | ip4 | 1
-| | And   COP Add whitelist Entry | ${dut2} | ${dut2_if2} | ip4 | 1
-| | And   COP interface enable or disable | ${dut1} | ${dut1_if1} | enable
-| | And   COP interface enable or disable | ${dut2} | ${dut2_if2} | enable
-| | Then Traffic should pass with no loss | ${duration} | ${rate}
-| | ...                                   | ${framesize} | 3-node-IPv4
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Apply startup configuration on all VPP DUTs
+| | When IPv4 forwarding initialized in a 3-node circular topology
+| | And Add fib table | ${dut1} | 10.10.10.0 | 24 | 1 | local
+| | And Add fib table | ${dut2} | 20.20.20.0 | 24 | 1 | local
+| | And COP Add whitelist Entry | ${dut1} | ${dut1_if1} | ip4 | 1
+| | And COP Add whitelist Entry | ${dut2} | ${dut2_if2} | ip4 | 1
+| | And COP interface enable or disable | ${dut1} | ${dut1_if1} | enable
+| | And COP interface enable or disable | ${dut2} | ${dut2_if2} | enable
+| | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
+| | ... | ${framesize} | 3-node-IPv4
 
 | tc04-64B-2t2c-ethip4-ip4base-copwhtlistbase-ndrchk
 | | [Documentation]
@@ -125,21 +128,20 @@
 | | ... | at 2x 6.6mpps.
 | | [Tags] | 2T2C | MTHREAD
 | | ${framesize}= | Set Variable | 64
-| | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 6.6mpps
 | | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | When  IPv4 forwarding initialized in a 3-node circular topology
-| | And   Add fib table | ${dut1} | 10.10.10.0 | 24 | 1 | local
-| | And   Add fib table | ${dut2} | 20.20.20.0 | 24 | 1 | local
-| | And   COP Add whitelist Entry | ${dut1} | ${dut1_if1} | ip4 | 1
-| | And   COP Add whitelist Entry | ${dut2} | ${dut2_if2} | ip4 | 1
-| | And   COP interface enable or disable | ${dut1} | ${dut1_if1} | enable
-| | And   COP interface enable or disable | ${dut2} | ${dut2_if2} | enable
-| | Then Traffic should pass with no loss | ${duration} | ${rate}
-| | ...                                   | ${framesize} | 3-node-IPv4
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | When IPv4 forwarding initialized in a 3-node circular topology
+| | And Add fib table | ${dut1} | 10.10.10.0 | 24 | 1 | local
+| | And Add fib table | ${dut2} | 20.20.20.0 | 24 | 1 | local
+| | And COP Add whitelist Entry | ${dut1} | ${dut1_if1} | ip4 | 1
+| | And COP Add whitelist Entry | ${dut2} | ${dut2_if2} | ip4 | 1
+| | And COP interface enable or disable | ${dut1} | ${dut1_if1} | enable
+| | And COP interface enable or disable | ${dut2} | ${dut2_if2} | enable
+| | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
+| | ... | ${framesize} | 3-node-IPv4
 
 | tc05-1518B-2t2c-ethip4-ip4base-copwhtlistbase-ndrchk
 | | [Documentation]
@@ -149,21 +151,20 @@
 | | ... | at 2x 812743pps.
 | | [Tags] | 2T2C | MTHREAD
 | | ${framesize}= | Set Variable | 1518
-| | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 812743pps
 | | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | When  IPv4 forwarding initialized in a 3-node circular topology
-| | And   Add fib table | ${dut1} | 10.10.10.0 | 24 | 1 | local
-| | And   Add fib table | ${dut2} | 20.20.20.0 | 24 | 1 | local
-| | And   COP Add whitelist Entry | ${dut1} | ${dut1_if1} | ip4 | 1
-| | And   COP Add whitelist Entry | ${dut2} | ${dut2_if2} | ip4 | 1
-| | And   COP interface enable or disable | ${dut1} | ${dut1_if1} | enable
-| | And   COP interface enable or disable | ${dut2} | ${dut2_if2} | enable
-| | Then Traffic should pass with no loss | ${duration} | ${rate}
-| | ...                                   | ${framesize} | 3-node-IPv4
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | When IPv4 forwarding initialized in a 3-node circular topology
+| | And Add fib table | ${dut1} | 10.10.10.0 | 24 | 1 | local
+| | And Add fib table | ${dut2} | 20.20.20.0 | 24 | 1 | local
+| | And COP Add whitelist Entry | ${dut1} | ${dut1_if1} | ip4 | 1
+| | And COP Add whitelist Entry | ${dut2} | ${dut2_if2} | ip4 | 1
+| | And COP interface enable or disable | ${dut1} | ${dut1_if1} | enable
+| | And COP interface enable or disable | ${dut2} | ${dut2_if2} | enable
+| | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
+| | ... | ${framesize} | 3-node-IPv4
 
 | tc06-9000B-2t2c-ethip4-ip4base-copwhtlistbase-ndrchk
 | | [Documentation]
@@ -173,20 +174,19 @@
 | | ... | at 2x 138580pps.
 | | [Tags] | 2T2C | MTHREAD
 | | ${framesize}= | Set Variable | 9000
-| | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 138580pps
 | | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Apply startup configuration on all VPP DUTs
-| | When  IPv4 forwarding initialized in a 3-node circular topology
-| | And   Add fib table | ${dut1} | 10.10.10.0 | 24 | 1 | local
-| | And   Add fib table | ${dut2} | 20.20.20.0 | 24 | 1 | local
-| | And   COP Add whitelist Entry | ${dut1} | ${dut1_if1} | ip4 | 1
-| | And   COP Add whitelist Entry | ${dut2} | ${dut2_if2} | ip4 | 1
-| | And   COP interface enable or disable | ${dut1} | ${dut1_if1} | enable
-| | And   COP interface enable or disable | ${dut2} | ${dut2_if2} | enable
-| | Then Traffic should pass with no loss | ${duration} | ${rate}
-| | ...                                   | ${framesize} | 3-node-IPv4
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Apply startup configuration on all VPP DUTs
+| | When IPv4 forwarding initialized in a 3-node circular topology
+| | And Add fib table | ${dut1} | 10.10.10.0 | 24 | 1 | local
+| | And Add fib table | ${dut2} | 20.20.20.0 | 24 | 1 | local
+| | And COP Add whitelist Entry | ${dut1} | ${dut1_if1} | ip4 | 1
+| | And COP Add whitelist Entry | ${dut2} | ${dut2_if2} | ip4 | 1
+| | And COP interface enable or disable | ${dut1} | ${dut1_if1} | enable
+| | And COP interface enable or disable | ${dut2} | ${dut2_if2} | enable
+| | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
+| | ... | ${framesize} | 3-node-IPv4
 
 | tc07-64B-4t4c-ethip4-ip4base-copwhtlistbase-ndrchk
 | | [Documentation]
@@ -196,21 +196,20 @@
 | | ... | at 2x 10.0mpps.
 | | [Tags] | 4T4C | MTHREAD
 | | ${framesize}= | Set Variable | 64
-| | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 10.0mpps
 | | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | When  IPv4 forwarding initialized in a 3-node circular topology
-| | And   Add fib table | ${dut1} | 10.10.10.0 | 24 | 1 | local
-| | And   Add fib table | ${dut2} | 20.20.20.0 | 24 | 1 | local
-| | And   COP Add whitelist Entry | ${dut1} | ${dut1_if1} | ip4 | 1
-| | And   COP Add whitelist Entry | ${dut2} | ${dut2_if2} | ip4 | 1
-| | And   COP interface enable or disable | ${dut1} | ${dut1_if1} | enable
-| | And   COP interface enable or disable | ${dut2} | ${dut2_if2} | enable
-| | Then Traffic should pass with no loss | ${duration} | ${rate}
-| | ...                                   | ${framesize} | 3-node-IPv4
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | When IPv4 forwarding initialized in a 3-node circular topology
+| | And Add fib table | ${dut1} | 10.10.10.0 | 24 | 1 | local
+| | And Add fib table | ${dut2} | 20.20.20.0 | 24 | 1 | local
+| | And COP Add whitelist Entry | ${dut1} | ${dut1_if1} | ip4 | 1
+| | And COP Add whitelist Entry | ${dut2} | ${dut2_if2} | ip4 | 1
+| | And COP interface enable or disable | ${dut1} | ${dut1_if1} | enable
+| | And COP interface enable or disable | ${dut2} | ${dut2_if2} | enable
+| | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
+| | ... | ${framesize} | 3-node-IPv4
 
 | tc08-1518B-4t4c-ethip4-ip4base-copwhtlistbase-ndrchk
 | | [Documentation]
@@ -220,21 +219,20 @@
 | | ... | at 2x 812743pps.
 | | [Tags] | 4T4C | MTHREAD
 | | ${framesize}= | Set Variable | 1518
-| | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 812743pps
 | | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | When  IPv4 forwarding initialized in a 3-node circular topology
-| | And   Add fib table | ${dut1} | 10.10.10.0 | 24 | 1 | local
-| | And   Add fib table | ${dut2} | 20.20.20.0 | 24 | 1 | local
-| | And   COP Add whitelist Entry | ${dut1} | ${dut1_if1} | ip4 | 1
-| | And   COP Add whitelist Entry | ${dut2} | ${dut2_if2} | ip4 | 1
-| | And   COP interface enable or disable | ${dut1} | ${dut1_if1} | enable
-| | And   COP interface enable or disable | ${dut2} | ${dut2_if2} | enable
-| | Then Traffic should pass with no loss | ${duration} | ${rate}
-| | ...                                   | ${framesize} | 3-node-IPv4
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | When IPv4 forwarding initialized in a 3-node circular topology
+| | And Add fib table | ${dut1} | 10.10.10.0 | 24 | 1 | local
+| | And Add fib table | ${dut2} | 20.20.20.0 | 24 | 1 | local
+| | And COP Add whitelist Entry | ${dut1} | ${dut1_if1} | ip4 | 1
+| | And COP Add whitelist Entry | ${dut2} | ${dut2_if2} | ip4 | 1
+| | And COP interface enable or disable | ${dut1} | ${dut1_if1} | enable
+| | And COP interface enable or disable | ${dut2} | ${dut2_if2} | enable
+| | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
+| | ... | ${framesize} | 3-node-IPv4
 
 | tc09-9000B-4t4c-ethip4-ip4base-copwhtlistbase-ndrchk
 | | [Documentation]
@@ -244,17 +242,16 @@
 | | ... | at 2x 138580pps.
 | | [Tags] | 4T4C | MTHREAD
 | | ${framesize}= | Set Variable | 9000
-| | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 138580pps
 | | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Apply startup configuration on all VPP DUTs
-| | When  IPv4 forwarding initialized in a 3-node circular topology
-| | And   Add fib table | ${dut1} | 10.10.10.0 | 24 | 1 | local
-| | And   Add fib table | ${dut2} | 20.20.20.0 | 24 | 1 | local
-| | And   COP Add whitelist Entry | ${dut1} | ${dut1_if1} | ip4 | 1
-| | And   COP Add whitelist Entry | ${dut2} | ${dut2_if2} | ip4 | 1
-| | And   COP interface enable or disable | ${dut1} | ${dut1_if1} | enable
-| | And   COP interface enable or disable | ${dut2} | ${dut2_if2} | enable
-| | Then Traffic should pass with no loss | ${duration} | ${rate}
-| | ...                                   | ${framesize} | 3-node-IPv4
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Apply startup configuration on all VPP DUTs
+| | When IPv4 forwarding initialized in a 3-node circular topology
+| | And Add fib table | ${dut1} | 10.10.10.0 | 24 | 1 | local
+| | And Add fib table | ${dut2} | 20.20.20.0 | 24 | 1 | local
+| | And COP Add whitelist Entry | ${dut1} | ${dut1_if1} | ip4 | 1
+| | And COP Add whitelist Entry | ${dut2} | ${dut2_if2} | ip4 | 1
+| | And COP interface enable or disable | ${dut1} | ${dut1_if1} | enable
+| | And COP interface enable or disable | ${dut2} | ${dut2_if2} | enable
+| | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
+| | ... | ${framesize} | 3-node-IPv4
