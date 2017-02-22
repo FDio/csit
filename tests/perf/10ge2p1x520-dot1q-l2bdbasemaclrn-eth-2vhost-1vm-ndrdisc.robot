@@ -14,23 +14,20 @@
 *** Settings ***
 | Resource | resources/libraries/robot/performance.robot
 | Library | resources.libraries.python.QemuUtils
+| ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDRDISC
-| ...        | NIC_Intel-X520-DA2 | DOT1Q | L2BDMACLRN | BASE | VHOST | VM
+| ... | NIC_Intel-X520-DA2 | DOT1Q | L2BDMACLRN | BASE | VHOST | VM
+| ...
 | Suite Setup | 3-node Performance Suite Setup with DUT's NIC model
 | ... | L2 | Intel-X520-DA2
 | Suite Teardown | 3-node Performance Suite Teardown
-| Test Setup | Setup all DUTs before test
-| Test Teardown | Run Keywords
-| ...           | Run Keyword If Test Failed
-| ...           | Traffic should pass with no loss | 10
-| ...           | ${min_rate}pps | ${framesize} | 3-node-bridge
-| ...           | fail_on_loss=${False}
-| ...           | AND | Show Vpp Vhost On All DUTs
-| ...           | AND | Remove startup configuration of VPP from all DUTs
-| ...           | AND | Guest VM with dpdk-testpmd Teardown | ${dut1}
-| ...                 | ${dut1_vm_refs}
-| ...           | AND | Guest VM with dpdk-testpmd Teardown | ${dut2}
-| ...                 | ${dut2_vm_refs}
+| ...
+| Test Setup | Performance test setup
+| Test Teardown | Performance test with vhost and VM with dpdk-testpmd teardown
+| ... | ${min_rate}pps | ${framesize} | 3-node-bridge
+| ... | dut1_node=${dut1} | dut1_vm_refs=${dut1_vm_refs}
+| ... | dut2_node=${dut2} | dut2_vm_refs=${dut2_vm_refs}
+| ...
 | Documentation | *RFC2544: Packet throughput L2BD test cases with vhost*
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology
@@ -141,7 +138,7 @@
 | | And Setup scheduler policy for VPP on all DUTs
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | 3-node-bridge | ${min_rate} | ${max_rate}
-| | ... | ${threshold} | ${glob_loss_acceptance} | ${glob_loss_acceptance_type}
+| | ... | ${threshold} | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
 | tc03-1518B-1t1c-dot1q-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc
 | | [Documentation]
@@ -211,7 +208,7 @@
 | | And Setup scheduler policy for VPP on all DUTs
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | 3-node-bridge | ${min_rate} | ${max_rate}
-| | ... | ${threshold} | ${glob_loss_acceptance} | ${glob_loss_acceptance_type}
+| | ... | ${threshold} | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
 | tc05-IMIX-1t1c-dot1q-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc
 | | [Documentation]
@@ -285,7 +282,7 @@
 | | And Setup scheduler policy for VPP on all DUTs
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | 3-node-bridge | ${min_rate} | ${max_rate}
-| | ... | ${threshold} | ${glob_loss_acceptance} | ${glob_loss_acceptance_type}
+| | ... | ${threshold} | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
 | tc07-64B-2t2c-dot1q-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc
 | | [Documentation]
@@ -355,7 +352,7 @@
 | | And Setup scheduler policy for VPP on all DUTs
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | 3-node-bridge | ${min_rate} | ${max_rate}
-| | ... | ${threshold} | ${glob_loss_acceptance} | ${glob_loss_acceptance_type}
+| | ... | ${threshold} | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
 | tc09-1518B-2t2c-dot1q-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc
 | | [Documentation]
@@ -425,7 +422,7 @@
 | | And Setup scheduler policy for VPP on all DUTs
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | 3-node-bridge | ${min_rate} | ${max_rate}
-| | ... | ${threshold} | ${glob_loss_acceptance} | ${glob_loss_acceptance_type}
+| | ... | ${threshold} | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
 | tc11-IMIX-2t2c-dot1q-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc
 | | [Documentation]
@@ -499,7 +496,7 @@
 | | And Setup scheduler policy for VPP on all DUTs
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | 3-node-bridge | ${min_rate} | ${max_rate}
-| | ... | ${threshold} | ${glob_loss_acceptance} | ${glob_loss_acceptance_type}
+| | ... | ${threshold} | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
 | tc13-64B-4t4c-dot1q-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc
 | | [Documentation]
@@ -569,7 +566,7 @@
 | | And Setup scheduler policy for VPP on all DUTs
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | 3-node-bridge | ${min_rate} | ${max_rate}
-| | ... | ${threshold} | ${glob_loss_acceptance} | ${glob_loss_acceptance_type}
+| | ... | ${threshold} | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
 | tc15-1518B-4t4c-dot1q-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc
 | | [Documentation]
@@ -639,7 +636,7 @@
 | | And Setup scheduler policy for VPP on all DUTs
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | 3-node-bridge | ${min_rate} | ${max_rate}
-| | ... | ${threshold} | ${glob_loss_acceptance} | ${glob_loss_acceptance_type}
+| | ... | ${threshold} | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
 | tc17-IMIX-4t4c-dot1q-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc
 | | [Documentation]
@@ -713,4 +710,4 @@
 | | And Setup scheduler policy for VPP on all DUTs
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | 3-node-bridge | ${min_rate} | ${max_rate}
-| | ... | ${threshold} | ${glob_loss_acceptance} | ${glob_loss_acceptance_type}
+| | ... | ${threshold} | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
