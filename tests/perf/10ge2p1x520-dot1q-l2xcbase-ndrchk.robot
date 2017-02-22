@@ -14,14 +14,18 @@
 *** Settings ***
 | Resource | resources/libraries/robot/performance.robot
 | Resource | resources/libraries/robot/tagging.robot
+| ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRCHK
-| ...        | NIC_Intel-X520-DA2 | L2XCFWD | BASE | DOT1Q
+| ... | NIC_Intel-X520-DA2 | L2XCFWD | BASE | DOT1Q
+| ...
 | Suite Setup | 3-node Performance Suite Setup with DUT's NIC model
 | ... | L2 | Intel-X520-DA2
 | Suite Teardown | 3-node Performance Suite Teardown
-| Test Setup | Setup all DUTs before test
-| Test Teardown | Run Keywords | Remove startup configuration of VPP from all DUTs
-| ...           | AND          | Show vpp trace dump on all DUTs
+| ...
+| Test Setup | Performance test setup
+| Test Teardown | Performance test teardown | 10 | ${min_rate}pps | ${framesize}
+| ... | 3-node-xconnect | fail_on_loss=${False} | show_trace=${True}
+| ...
 | Documentation | *Reference NDR throughput L2XC with 802.1q verify test cases*
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology

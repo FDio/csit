@@ -14,19 +14,18 @@
 *** Settings ***
 | Resource | resources/libraries/robot/performance.robot
 | Resource | resources/libraries/robot/tagging.robot
+| ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDRDISC
-| ...        | NIC_Intel-X520-DA2 | L2XCFWD | BASE | DOT1AD
+| ... | NIC_Intel-X520-DA2 | L2XCFWD | BASE | DOT1AD
+| ...
 | Suite Setup | 3-node Performance Suite Setup with DUT's NIC model
 | ... | L2 | Intel-X520-DA2
 | Suite Teardown | 3-node Performance Suite Teardown
-| Test Setup | Setup all DUTs before test
-| Test Teardown | Run Keywords
-| ...           | Run Keyword If Test Failed
-| ...           | Traffic should pass with no loss | 10
-| ...           | ${min_rate}pps | ${framesize} | 3-node-xconnect
-| ...           | fail_on_loss=${False}
-| ...           | AND | Remove startup configuration of VPP from all DUTs
-| ...           | AND | Show vpp trace dump on all DUTs
+| ...
+| Test Setup | Performance test setup
+| Test Teardown | Performance test teardown | 10 | ${min_rate}pps | ${framesize}
+| ... | 3-node-xconnect | fail_on_loss=${False} | show_trace=${True}
+| ...
 | Documentation | *RFC2544: Pkt throughput L2XC with 802.1ad test cases*
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology

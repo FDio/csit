@@ -16,21 +16,22 @@
 | Library | resources.libraries.python.topology.Topology
 | Library | resources.libraries.python.NodePath
 | Library | resources.libraries.python.InterfaceUtil
-| Library | resources.libraries.python.IPv4Setup.Dut | ${nodes['DUT1']} | WITH NAME | dut1_v4
-| Library | resources.libraries.python.IPv4Setup.Dut | ${nodes['DUT2']} | WITH NAME | dut2_v4
+| Library | resources.libraries.python.IPv4Setup.Dut | ${nodes['DUT1']}
+| ... | WITH NAME | dut1_v4
+| Library | resources.libraries.python.IPv4Setup.Dut | ${nodes['DUT2']}
+| ... | WITH NAME | dut2_v4
+| ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDRDISC
-| ...        | NIC_Intel-X520-DA2 | ETH | IP4FWD | BASE
+| ... | NIC_Intel-X520-DA2 | ETH | IP4FWD | BASE
+| ...
 | Suite Setup | 3-node Performance Suite Setup with DUT's NIC model
 | ... | L3 | Intel-X520-DA2
 | Suite Teardown | 3-node Performance Suite Teardown
-| Test Setup | Setup all DUTs before test
-| Test Teardown | Run Keywords
-| ...           | Run Keyword If Test Failed
-| ...           | Traffic should pass with no loss | 10
-| ...           | ${min_rate}pps | ${framesize} | 3-node-IPv4
-| ...           | fail_on_loss=${False}
-| ...           | AND | Remove startup configuration of VPP from all DUTs
-| ...           | AND | Show vpp trace dump on all DUTs
+| ...
+| Test Setup | Performance test setup
+| Test Teardown | Performance test teardown | 10 | ${min_rate}pps | ${framesize}
+| ... | 3-node-IPv4 | fail_on_loss=${False} | show_trace=${True}
+| ...
 | Documentation | *RFC2544: Pkt throughput IPv4 routing test cases*
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology

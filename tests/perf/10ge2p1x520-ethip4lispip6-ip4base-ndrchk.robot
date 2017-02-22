@@ -15,18 +15,22 @@
 | Resource | resources/libraries/robot/performance.robot
 | Resource | resources/libraries/robot/lisp/lisp_static_adjacency.robot
 | Library | resources.libraries.python.IPv4Setup.Dut | ${nodes['DUT1']}
-| ...     | WITH NAME | dut1_v4
+| ... | WITH NAME | dut1_v4
 | Library | resources.libraries.python.IPv4Setup.Dut | ${nodes['DUT2']}
-| ...     | WITH NAME | dut2_v4
-# import additional Lisp settings from resource file
+| ... | WITH NAME | dut2_v4
 | Variables | resources/test_data/lisp/performance/lisp_static_adjacency.py
+| ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRCHK
 | ... | NIC_Intel-X520-DA2 | IP4FWD | ENCAP | LISP | IP6UNRLAY | IP4OVRLAY
+| ...
 | Suite Setup | 3-node Performance Suite Setup with DUT's NIC model
 | ... | L3 | Intel-X520-DA2
 | Suite Teardown | 3-node Performance Suite Teardown
-| Test Setup | Setup all DUTs before test
-| Test Teardown | Run Keyword | Remove startup configuration of VPP from all DUTs
+| ...
+| Test Setup | Performance test setup
+| Test Teardown | Performance test teardown | 10 | ${min_rate}pps | ${framesize}
+| ... | 3-node-IPv4 | fail_on_loss=${False}
+| ...
 | Documentation | *Reference NDR throughput Lisp tunnel verify test cases*
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology
