@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2017 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -15,18 +15,22 @@
 | Resource | resources/libraries/robot/performance.robot
 | Resource | resources/libraries/robot/lisp/lisp_static_adjacency.robot
 | Library | resources.libraries.python.IPv4Setup.Dut | ${nodes['DUT1']}
-| ...     | WITH NAME | dut1_v4
+| ... | WITH NAME | dut1_v4
 | Library | resources.libraries.python.IPv4Setup.Dut | ${nodes['DUT2']}
-| ...     | WITH NAME | dut2_v4
-# import additional Lisp settings from resource file
+| ... | WITH NAME | dut2_v4
 | Variables | resources/test_data/lisp/performance/lisp_static_adjacency.py
+| ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRCHK
 | ... | NIC_Intel-X520-DA2 | IP4FWD | ENCAP | LISP | IP4UNRLAY | IP4OVRLAY
+| ...
 | Suite Setup | 3-node Performance Suite Setup with DUT's NIC model
 | ... | L3 | Intel-X520-DA2
 | Suite Teardown | 3-node Performance Suite Teardown
-| Test Setup | Setup all DUTs before test
-| Test Teardown | Run Keyword | Remove startup configuration of VPP from all DUTs
+| ...
+| Test Setup | Performance test setup
+| Test Teardown | Performance test teardown | ${rate}pps | ${framesize}
+| ... | 3-node-IPv4
+| ...
 | Documentation | *Reference NDR throughput Lisp tunnel verify test cases*
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology\
@@ -57,22 +61,21 @@
 | | ... | test at 2x 1.9mpps.
 | | [Tags] | 1T1C | STHREAD
 | | ${framesize}= | Set Variable | 64
-| | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 1.9mpps
 | | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
 | | When Lisp IPv4 forwarding initialized in a 3-node circular topology
-| | ...  | ${dut1_to_dut2_ip4} | ${dut1_to_tg_ip4} | ${dut2_to_dut1_ip4}
-| | ...  | ${dut2_to_tg_ip4} | ${prefix4}
-| | And  Set up Lisp topology
-| | ...  | ${dut1} | ${dut1_if2} | ${NONE}
-| | ...  | ${dut2} | ${dut2_if1} | ${NONE}
-| | ...  | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
-| | ...  | ${dut1_ip4_static_adjacency} | ${dut2_ip4_static_adjacency}
-| | Then Traffic should pass with no loss | ${duration} | ${rate}
-| | ...                                   | ${framesize} | 3-node-IPv4
+| | ... | ${dut1_to_dut2_ip4} | ${dut1_to_tg_ip4} | ${dut2_to_dut1_ip4}
+| | ... | ${dut2_to_tg_ip4} | ${prefix4}
+| | And Set up Lisp topology
+| | ... | ${dut1} | ${dut1_if2} | ${NONE}
+| | ... | ${dut2} | ${dut2_if1} | ${NONE}
+| | ... | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
+| | ... | ${dut1_ip4_static_adjacency} | ${dut2_ip4_static_adjacency}
+| | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
+| | ... | ${framesize} | 3-node-IPv4
 
 | tc02-1480B-1t1c-ethip4lispip4-ip4base-ndrchk
 | | [Documentation]
@@ -82,22 +85,21 @@
 | | ... | throughput test at 2x 740000pps.
 | | [Tags] | 1T1C | STHREAD
 | | ${framesize}= | Set Variable | 1480
-| | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 740000pps
 | | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
 | | When Lisp IPv4 forwarding initialized in a 3-node circular topology
-| | ...  | ${dut1_to_dut2_ip4} | ${dut1_to_tg_ip4} | ${dut2_to_dut1_ip4}
-| | ...  | ${dut2_to_tg_ip4} | ${prefix4}
-| | And  Set up Lisp topology
-| | ...  | ${dut1} | ${dut1_if2} | ${NONE}
-| | ...  | ${dut2} | ${dut2_if1} | ${NONE}
-| | ...  | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
-| | ...  | ${dut1_ip4_static_adjacency} | ${dut2_ip4_static_adjacency}
-| | Then Traffic should pass with no loss | ${duration} | ${rate}
-| | ...                                   | ${framesize} | 3-node-IPv4
+| | ... | ${dut1_to_dut2_ip4} | ${dut1_to_tg_ip4} | ${dut2_to_dut1_ip4}
+| | ... | ${dut2_to_tg_ip4} | ${prefix4}
+| | And Set up Lisp topology
+| | ... | ${dut1} | ${dut1_if2} | ${NONE}
+| | ... | ${dut2} | ${dut2_if1} | ${NONE}
+| | ... | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
+| | ... | ${dut1_ip4_static_adjacency} | ${dut2_ip4_static_adjacency}
+| | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
+| | ... | ${framesize} | 3-node-IPv4
 
 | tc03-9000B-1t1c-ethip4lispip4-ip4base-ndrchk
 | | [Documentation]
@@ -107,21 +109,20 @@
 | | ... | throughput test at 2x 120000pps.
 | | [Tags] | 1T1C | STHREAD
 | | ${framesize}= | Set Variable | 9000
-| | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 120000pps
 | | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Apply startup configuration on all VPP DUTs
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Apply startup configuration on all VPP DUTs
 | | When Lisp IPv4 forwarding initialized in a 3-node circular topology
-| | ...  | ${dut1_to_dut2_ip4} | ${dut1_to_tg_ip4} | ${dut2_to_dut1_ip4}
-| | ...  | ${dut2_to_tg_ip4} | ${prefix4}
-| | And  Set up Lisp topology
-| | ...  | ${dut1} | ${dut1_if2} | ${NONE}
-| | ...  | ${dut2} | ${dut2_if1} | ${NONE}
-| | ...  | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
-| | ...  | ${dut1_ip4_static_adjacency} | ${dut2_ip4_static_adjacency}
-| | Then Traffic should pass with no loss | ${duration} | ${rate}
-| | ...                                   | ${framesize} | 3-node-IPv4
+| | ... | ${dut1_to_dut2_ip4} | ${dut1_to_tg_ip4} | ${dut2_to_dut1_ip4}
+| | ... | ${dut2_to_tg_ip4} | ${prefix4}
+| | And Set up Lisp topology
+| | ... | ${dut1} | ${dut1_if2} | ${NONE}
+| | ... | ${dut2} | ${dut2_if1} | ${NONE}
+| | ... | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
+| | ... | ${dut1_ip4_static_adjacency} | ${dut2_ip4_static_adjacency}
+| | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
+| | ... | ${framesize} | 3-node-IPv4
 
 | tc04-64B-2t2c-ethip4lispip4-ip4base-ndrchk
 | | [Documentation]
@@ -131,22 +132,21 @@
 | | ... | throughput test at 2x 3.6mpps.
 | | [Tags] | 2T2C | MTHREAD
 | | ${framesize}= | Set Variable | 64
-| | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 3.6mpps
 | | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
 | | When Lisp IPv4 forwarding initialized in a 3-node circular topology
-| | ...  | ${dut1_to_dut2_ip4} | ${dut1_to_tg_ip4} | ${dut2_to_dut1_ip4}
-| | ...  | ${dut2_to_tg_ip4} | ${prefix4}
-| | And  Set up Lisp topology
-| | ...  | ${dut1} | ${dut1_if2} | ${NONE}
-| | ...  | ${dut2} | ${dut2_if1} | ${NONE}
-| | ...  | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
-| | ...  | ${dut1_ip4_static_adjacency} | ${dut2_ip4_static_adjacency}
-| | Then Traffic should pass with no loss | ${duration} | ${rate}
-| | ...                                   | ${framesize} | 3-node-IPv4
+| | ... | ${dut1_to_dut2_ip4} | ${dut1_to_tg_ip4} | ${dut2_to_dut1_ip4}
+| | ... | ${dut2_to_tg_ip4} | ${prefix4}
+| | And Set up Lisp topology
+| | ... | ${dut1} | ${dut1_if2} | ${NONE}
+| | ... | ${dut2} | ${dut2_if1} | ${NONE}
+| | ... | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
+| | ... | ${dut1_ip4_static_adjacency} | ${dut2_ip4_static_adjacency}
+| | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
+| | ... | ${framesize} | 3-node-IPv4
 
 | tc05-1480B-2t2c-ethip4lispip4-ip4base-ndrchk
 | | [Documentation]
@@ -156,22 +156,21 @@
 | | ... | throughput test at 2x 740000pps.
 | | [Tags] | 2T2C | MTHREAD
 | | ${framesize}= | Set Variable | 1480
-| | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 740000pps
 | | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
 | | When Lisp IPv4 forwarding initialized in a 3-node circular topology
-| | ...  | ${dut1_to_dut2_ip4} | ${dut1_to_tg_ip4} | ${dut2_to_dut1_ip4}
-| | ...  | ${dut2_to_tg_ip4} | ${prefix4}
-| | And  Set up Lisp topology
-| | ...  | ${dut1} | ${dut1_if2} | ${NONE}
-| | ...  | ${dut2} | ${dut2_if1} | ${NONE}
-| | ...  | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
-| | ...  | ${dut1_ip4_static_adjacency} | ${dut2_ip4_static_adjacency}
-| | Then Traffic should pass with no loss | ${duration} | ${rate}
-| | ...                                   | ${framesize} | 3-node-IPv4
+| | ... | ${dut1_to_dut2_ip4} | ${dut1_to_tg_ip4} | ${dut2_to_dut1_ip4}
+| | ... | ${dut2_to_tg_ip4} | ${prefix4}
+| | And Set up Lisp topology
+| | ... | ${dut1} | ${dut1_if2} | ${NONE}
+| | ... | ${dut2} | ${dut2_if1} | ${NONE}
+| | ... | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
+| | ... | ${dut1_ip4_static_adjacency} | ${dut2_ip4_static_adjacency}
+| | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
+| | ... | ${framesize} | 3-node-IPv4
 
 | tc06-9000B-2t2c-ethip4lispip4-ip4base-ndrchk
 | | [Documentation]
@@ -181,21 +180,20 @@
 | | ... | throughput test at 2x 120000pps.
 | | [Tags] | 2T2C | MTHREAD
 | | ${framesize}= | Set Variable | 9000
-| | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 120000pps
 | | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Apply startup configuration on all VPP DUTs
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Apply startup configuration on all VPP DUTs
 | | When Lisp IPv4 forwarding initialized in a 3-node circular topology
-| | ...  | ${dut1_to_dut2_ip4} | ${dut1_to_tg_ip4} | ${dut2_to_dut1_ip4}
-| | ...  | ${dut2_to_tg_ip4} | ${prefix4}
-| | And  Set up Lisp topology
-| | ...  | ${dut1} | ${dut1_if2} | ${NONE}
-| | ...  | ${dut2} | ${dut2_if1} | ${NONE}
-| | ...  | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
-| | ...  | ${dut1_ip4_static_adjacency} | ${dut2_ip4_static_adjacency}
-| | Then Traffic should pass with no loss | ${duration} | ${rate}
-| | ...                                   | ${framesize} | 3-node-IPv4
+| | ... | ${dut1_to_dut2_ip4} | ${dut1_to_tg_ip4} | ${dut2_to_dut1_ip4}
+| | ... | ${dut2_to_tg_ip4} | ${prefix4}
+| | And Set up Lisp topology
+| | ... | ${dut1} | ${dut1_if2} | ${NONE}
+| | ... | ${dut2} | ${dut2_if1} | ${NONE}
+| | ... | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
+| | ... | ${dut1_ip4_static_adjacency} | ${dut2_ip4_static_adjacency}
+| | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
+| | ... | ${framesize} | 3-node-IPv4
 
 | tc07-64B-4t4c-ethip4lispip4-ip4base-ndrchk
 | | [Documentation]
@@ -205,22 +203,21 @@
 | | ... | throughput test at 2x 3.5mpps.
 | | [Tags] | 4T4C | MTHREAD
 | | ${framesize}= | Set Variable | 64
-| | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 3.5mpps
 | | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
 | | When Lisp IPv4 forwarding initialized in a 3-node circular topology
-| | ...  | ${dut1_to_dut2_ip4} | ${dut1_to_tg_ip4} | ${dut2_to_dut1_ip4}
-| | ...  | ${dut2_to_tg_ip4} | ${prefix4}
-| | And  Set up Lisp topology
-| | ...  | ${dut1} | ${dut1_if2} | ${NONE}
-| | ...  | ${dut2} | ${dut2_if1} | ${NONE}
-| | ...  | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
-| | ...  | ${dut1_ip4_static_adjacency} | ${dut2_ip4_static_adjacency}
-| | Then Traffic should pass with no loss | ${duration} | ${rate}
-| | ...                                   | ${framesize} | 3-node-IPv4
+| | ... | ${dut1_to_dut2_ip4} | ${dut1_to_tg_ip4} | ${dut2_to_dut1_ip4}
+| | ... | ${dut2_to_tg_ip4} | ${prefix4}
+| | And Set up Lisp topology
+| | ... | ${dut1} | ${dut1_if2} | ${NONE}
+| | ... | ${dut2} | ${dut2_if1} | ${NONE}
+| | ... | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
+| | ... | ${dut1_ip4_static_adjacency} | ${dut2_ip4_static_adjacency}
+| | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
+| | ... | ${framesize} | 3-node-IPv4
 
 | tc08-1480B-4t4c-ethip4lispip4-ip4base-ndrchk
 | | [Documentation]
@@ -230,22 +227,21 @@
 | | ... | throughput test at 2x 740000pps.
 | | [Tags] | 4T4C | MTHREAD
 | | ${framesize}= | Set Variable | 1480
-| | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 740000pps
 | | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
 | | When Lisp IPv4 forwarding initialized in a 3-node circular topology
-| | ...  | ${dut1_to_dut2_ip4} | ${dut1_to_tg_ip4} | ${dut2_to_dut1_ip4}
-| | ...  | ${dut2_to_tg_ip4} | ${prefix4}
-| | And  Set up Lisp topology
-| | ...  | ${dut1} | ${dut1_if2} | ${NONE}
-| | ...  | ${dut2} | ${dut2_if1} | ${NONE}
-| | ...  | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
-| | ...  | ${dut1_ip4_static_adjacency} | ${dut2_ip4_static_adjacency}
-| | Then Traffic should pass with no loss | ${duration} | ${rate}
-| | ...                                   | ${framesize} | 3-node-IPv4
+| | ... | ${dut1_to_dut2_ip4} | ${dut1_to_tg_ip4} | ${dut2_to_dut1_ip4}
+| | ... | ${dut2_to_tg_ip4} | ${prefix4}
+| | And Set up Lisp topology
+| | ... | ${dut1} | ${dut1_if2} | ${NONE}
+| | ... | ${dut2} | ${dut2_if1} | ${NONE}
+| | ... | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
+| | ... | ${dut1_ip4_static_adjacency} | ${dut2_ip4_static_adjacency}
+| | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
+| | ... | ${framesize} | 3-node-IPv4
 
 | tc09-9000B-4t4c-ethip4lispip4-ip4base-ndrchk
 | | [Documentation]
@@ -255,19 +251,18 @@
 | | ... | throughput test at 2x 120000pps.
 | | [Tags] | 4T4C | MTHREAD
 | | ${framesize}= | Set Variable | 9000
-| | ${duration}= | Set Variable | 10
 | | ${rate}= | Set Variable | 120000pps
 | | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Apply startup configuration on all VPP DUTs
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Apply startup configuration on all VPP DUTs
 | | When Lisp IPv4 forwarding initialized in a 3-node circular topology
-| | ...  | ${dut1_to_dut2_ip4} | ${dut1_to_tg_ip4} | ${dut2_to_dut1_ip4}
-| | ...  | ${dut2_to_tg_ip4} | ${prefix4}
-| | And  Set up Lisp topology
-| | ...  | ${dut1} | ${dut1_if2} | ${NONE}
-| | ...  | ${dut2} | ${dut2_if1} | ${NONE}
-| | ...  | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
-| | ...  | ${dut1_ip4_static_adjacency} | ${dut2_ip4_static_adjacency}
-| | Then Traffic should pass with no loss | ${duration} | ${rate}
-| | ...                                   | ${framesize} | 3-node-IPv4
+| | ... | ${dut1_to_dut2_ip4} | ${dut1_to_tg_ip4} | ${dut2_to_dut1_ip4}
+| | ... | ${dut2_to_tg_ip4} | ${prefix4}
+| | And Set up Lisp topology
+| | ... | ${dut1} | ${dut1_if2} | ${NONE}
+| | ... | ${dut2} | ${dut2_if1} | ${NONE}
+| | ... | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
+| | ... | ${dut1_ip4_static_adjacency} | ${dut2_ip4_static_adjacency}
+| | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
+| | ... | ${framesize} | 3-node-IPv4
 
