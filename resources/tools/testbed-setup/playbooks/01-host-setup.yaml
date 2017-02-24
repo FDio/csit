@@ -57,6 +57,8 @@
     apt: name=python-virtualenv state=present
   - name: Install python pip
     apt: name=python-pip state=present
+  - name: Install libpcap-dev
+    apt: name=libpcap-dev state=present
   - name: Install cpufrequtils
     apt: name=cpufrequtils state=present
   - name: Set cpufrequtils defaults
