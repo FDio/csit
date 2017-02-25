@@ -111,7 +111,7 @@ class IPv6Util(object):
             n=node['host'], p=interface))
 
     @staticmethod
-    def add_ip_neighbor(node, interface, ip_address, mac_address, vrf=None):
+    def add_ip_neighbor(node, interface, ip_address, mac_address):
         """Add IP neighbor.
 
         :param node: VPP node to add ip neighbor.
@@ -136,5 +136,4 @@ class IPv6Util(object):
             vat.vat_terminal_exec_cmd_from_template("add_ip_neighbor.vat",
                                                     sw_if_index=sw_if_index,
                                                     ip_address=ip_address,
-                                                    mac_address=mac_address,
-                                                    vrf=vrf)
+                                                    mac_address=mac_address)
