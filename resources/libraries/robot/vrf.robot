@@ -67,9 +67,9 @@
 | | ... | ${node} | ${vrf_src_if} | ${table}
 | | ...
 | | Add IP Neighbor | ${node} | ${vrf_src_if}
-| | ... | ${src_if_ip} | ${src_if_mac} | vrf=${table}
+| | ... | ${src_if_ip} | ${src_if_mac}
 | | Add IP Neighbor | ${node} | ${route_interface}
-| | ... | ${route_gateway_ip} | ${route_gateway_mac} | vrf=${table}
+| | ... | ${route_gateway_ip} | ${route_gateway_mac}
 | | ...
 | | Vpp Route Add | ${node} | ${route_dst_ip} | ${prefix_len}
 | | ... | ${route_gateway_ip} | ${route_interface} | vrf=${table}
