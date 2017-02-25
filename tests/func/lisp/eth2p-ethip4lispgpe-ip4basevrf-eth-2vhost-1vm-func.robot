@@ -76,7 +76,7 @@
 | | ... | ${dut1_to_tg} | ${fib_table_1}
 | | And Assign Interface To Fib Table | ${dut2_node}
 | | ... | ${dut2_to_tg} | ${fib_table_1}
-| | And Add IP Neighbors | ${fib_table_1}
+| | And Add IP Neighbors
 | | And IP addresses are set on interfaces
 | | ... | ${dut1_node} | ${dut1_to_dut2} | ${dut1_to_dut2_ip4} | ${prefix4}
 | | ... | ${dut1_node} | ${dut1_to_tg} | ${dut1_to_tg_ip4} | ${prefix4}
@@ -125,14 +125,12 @@
 
 | Add IP Neighbors
 | | [Documentation]
-| | ... | Add IP neighbors to physical interfaces on DUTs.\
-| | ... | You can specify fib table ID for DUT-TG interfaces. Default is 0.
+| | ... | Add IP neighbors to physical interfaces on DUTs.
 | | ...
-| | [Arguments] | ${fib_id}=0
 | | Add IP Neighbor | ${dut1_node} | ${dut1_to_tg} | ${tg1_ip4}
-| | ... | ${tg_to_dut1_mac} | ${fib_id}
+| | ... | ${tg_to_dut1_mac}
 | | Add IP Neighbor | ${dut2_node} | ${dut2_to_tg} | ${tg2_ip4}
-| | ... | ${tg_to_dut2_mac} | ${fib_id}
+| | ... | ${tg_to_dut2_mac}
 | | Add IP Neighbor | ${dut1_node} | ${dut1_to_dut2} | ${dut2_to_dut1_ip4}
 | | ... | ${dut2_to_dut1_mac}
 | | Add IP Neighbor | ${dut2_node} | ${dut2_to_dut1} | ${dut1_to_dut2_ip4}
