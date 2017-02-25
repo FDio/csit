@@ -163,7 +163,7 @@
 | | ${encr_alg}= | Crypto Alg AES CBC 128
 | | ${auth_alg}= | Integ Alg SHA1 96
 | | Given Setup 3-node Topology | ${fib_table_1}
-| | And Add IP Neighbors | ${fib_table_1}
+| | And Add IP Neighbors
 | | When IPsec Generate Keys | ${encr_alg} | ${auth_alg}
 | | And Set up LISP GPE topology
 | | ... | ${dut1_node} | ${dut1_to_dut2} | ${NONE}
@@ -205,7 +205,7 @@
 | | ${encr_alg}= | Crypto Alg AES CBC 128
 | | ${auth_alg}= | Integ Alg SHA1 96
 | | Given Setup 3-node Topology | ${fib_table_1}
-| | And Add IP Neighbors | ${fib_table_1}
+| | And Add IP Neighbors
 | | And Set up LISP GPE topology
 | | ... | ${dut1_node} | ${dut1_to_dut2} | ${NONE}
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${NONE}
@@ -260,14 +260,12 @@
 
 | Add IP Neighbors
 | | [Documentation]
-| | ... | Add IP neighbors to physical interfaces on DUTs.\
-| | ... | You can specify fib table ID for DUT-TG interfaces. Default is 0.
+| | ... | Add IP neighbors to physical interfaces on DUTs.
 | | ...
-| | [Arguments] | ${fib_id}=0
 | | Add IP Neighbor | ${dut1_node} | ${dut1_to_tg} | ${tg1_ip4}
-| | ... | ${tg_to_dut1_mac} | ${fib_id}
+| | ... | ${tg_to_dut1_mac}
 | | Add IP Neighbor | ${dut2_node} | ${dut2_to_tg} | ${tg2_ip4}
-| | ... | ${tg_to_dut2_mac} | ${fib_id}
+| | ... | ${tg_to_dut2_mac}
 | | Add IP Neighbor | ${dut1_node} | ${dut1_to_dut2} | ${dut2_to_dut1_ip4}
 | | ... | ${dut2_to_dut1_mac}
 | | Add IP Neighbor | ${dut2_node} | ${dut2_to_dut1} | ${dut1_to_dut2_ip4}

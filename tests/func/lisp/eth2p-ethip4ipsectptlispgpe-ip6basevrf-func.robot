@@ -118,13 +118,13 @@
 | | Vpp Set If IPv6 Addr | ${dut2_node} | ${dut2_to_tg} | ${dut2_to_tg_ip6}
 | | ... | ${prefix6}
 | | Add IP Neighbor | ${dut2_node} | ${dut2_to_tg} | ${tg2_ip6}
-| | ... | ${tg_to_dut2_mac} | ${fib_table}
+| | ... | ${tg_to_dut2_mac}
 | | Add IP Neighbor | ${dut1_node} | ${dut1_to_dut2} | ${dut2_to_dut1_ip4}
 | | ... | ${dut2_to_dut1_mac}
 | | Add IP Neighbor | ${dut2_node} | ${dut2_to_dut1} | ${dut1_to_dut2_ip4}
 | | ... | ${dut1_to_dut2_mac}
 | | Add IP Neighbor | ${dut1_node} | ${dut1_to_tg} | ${tg1_ip6}
-| | ... | ${tg_to_dut1_mac} | ${fib_table}
+| | ... | ${tg_to_dut1_mac}
 | | Set up LISP GPE topology
 | | ... | ${dut1_node} | ${dut1_to_dut2} | ${NONE}
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${NONE}

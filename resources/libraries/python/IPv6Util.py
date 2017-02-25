@@ -111,22 +111,18 @@ class IPv6Util(object):
             n=node['host'], p=interface))
 
     @staticmethod
-    def add_ip_neighbor(node, interface, ip_address, mac_address, vrf=None):
+    def add_ip_neighbor(node, interface, ip_address, mac_address):
         """Add IP neighbor.
 
         :param node: VPP node to add ip neighbor.
         :param interface: Interface name or sw_if_index.
         :param ip_address: IP address.
         :param mac_address: MAC address.
-        :param vrf: VRF table ID (Optional).
         :type node: dict
         :type interface: str or int
         :type ip_address: str
         :type mac_address: str
-        :type vrf: int
         """
-        vrf = "vrf {}".format(vrf) if vrf else ''
-
         if isinstance(interface, basestring):
             sw_if_index = Topology.get_interface_sw_index(node, interface)
         else:
@@ -136,5 +132,4 @@ class IPv6Util(object):
             vat.vat_terminal_exec_cmd_from_template("add_ip_neighbor.vat",
                                                     sw_if_index=sw_if_index,
                                                     ip_address=ip_address,
-                                                    mac_address=mac_address,
-                                                    vrf=vrf)
+                                                    mac_address=mac_address)
