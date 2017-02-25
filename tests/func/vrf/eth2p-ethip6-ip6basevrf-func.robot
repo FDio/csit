@@ -379,22 +379,22 @@
 | | ... | ${dut2_to_dut1_ip2} | ${ip_prefix}
 
 | | And Add IP Neighbor | ${dut1_node} | ${dut1_to_tg_if1}
-| | ... | ${tg_dut1_ip1} | ${tg_to_dut1_if1_mac} | vrf=${fib_table_1}
+| | ... | ${tg_dut1_ip1} | ${tg_to_dut1_if1_mac}
 | | And Add IP Neighbor | ${dut1_node} | ${dut1_to_dut2_if1}
-| | ... | ${dut2_to_dut1_ip1} | ${dut2_to_dut1_if1_mac} | vrf=${fib_table_1}
+| | ... | ${dut2_to_dut1_ip1} | ${dut2_to_dut1_if1_mac}
 | | And Add IP Neighbor | ${dut2_node} | ${dut2_to_tg_if1}
-| | ... | ${tg_dut2_ip1} | ${tg_to_dut2_if1_mac} | vrf=${fib_table_1}
+| | ... | ${tg_dut2_ip1} | ${tg_to_dut2_if1_mac}
 | | And Add IP Neighbor | ${dut2_node} | ${dut2_to_dut1_if1}
-| | ... | ${dut1_to_dut2_ip1} | ${dut1_to_dut2_if1_mac} | vrf=${fib_table_1}
+| | ... | ${dut1_to_dut2_ip1} | ${dut1_to_dut2_if1_mac}
 
 | | And Add IP Neighbor | ${dut1_node} | ${dut1_to_tg_if2}
-| | ... | ${tg_dut1_ip2} | ${tg_to_dut1_if2_mac} | vrf=${fib_table_2}
+| | ... | ${tg_dut1_ip2} | ${tg_to_dut1_if2_mac}
 | | And Add IP Neighbor | ${dut1_node} | ${dut1_to_dut2_if2}
-| | ... | ${dut2_to_dut1_ip2} | ${dut2_to_dut1_if2_mac} | vrf=${fib_table_2}
+| | ... | ${dut2_to_dut1_ip2} | ${dut2_to_dut1_if2_mac}
 | | And Add IP Neighbor | ${dut2_node} | ${dut2_to_tg_if2}
-| | ... | ${tg_dut2_ip2} | ${tg_to_dut2_if2_mac} | vrf=${fib_table_2}
+| | ... | ${tg_dut2_ip2} | ${tg_to_dut2_if2_mac}
 | | And Add IP Neighbor | ${dut2_node} | ${dut2_to_dut1_if2}
-| | ... | ${dut1_to_dut2_ip2} | ${dut1_to_dut2_if2_mac} | vrf=${fib_table_2}
+| | ... | ${dut1_to_dut2_ip2} | ${dut1_to_dut2_if2_mac}
 
 | | And Vpp Route Add | ${dut1_node} | ${tg_dut2_ip1} | ${ip_prefix}
 | | ... | ${dut2_to_dut1_ip1} | ${dut1_to_dut2_if1} | vrf=${fib_table_1}

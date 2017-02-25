@@ -89,7 +89,7 @@
 | | ... | vrf=${fib_table_2}
 | | Add IP Neighbor | ${dut_node} | ${vhost1} | ${net2_ip2} | ${vhost2_mac}
 | | Add IP Neighbor | ${dut_node} | ${dut_to_tg_if2} | ${net3_ip2}
-| | ... | ${tg_to_dut_if2_mac} | vrf=${fib_table_2}
+| | ... | ${tg_to_dut_if2_mac}
 | | When VM for Vhost L2BD forwarding is setup
 | | ... | ${dut_node} | ${sock1} | ${sock2}
 | | Then Send Packet And Check Headers
