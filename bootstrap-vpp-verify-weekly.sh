@@ -25,18 +25,20 @@ VIRL_PKEY=priv_key
 VIRL_SERVER_STATUS_FILE="status"
 VIRL_SERVER_EXPECTED_STATUS="PRODUCTION"
 
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
 if [ -f "/etc/redhat-release" ]; then
     DISTRO="CENTOS"
     sudo yum install -y python-devel python-virtualenv
-    VIRL_TOPOLOGY=double-ring-nested.centos7
-    VIRL_RELEASE=csit-centos-7.3-1611_2017-02-14_1.3
+    VIRL_TOPOLOGY=$(cat ${SCRIPT_DIR}/VIRL_TOPOLOGY_CENTOS)
+    VIRL_RELEASE=$(cat ${SCRIPT_DIR}/VIRL_RELEASE_CENTOS)
 else
     DISTRO="UBUNTU"
     export DEBIAN_FRONTEND=noninteractive
     sudo apt-get -y update
     sudo apt-get -y install libpython2.7-dev python-virtualenv
-    VIRL_TOPOLOGY=double-ring-nested.xenial
-    VIRL_RELEASE=csit-ubuntu-16.04.1_2017-02-20_1.7
+    VIRL_TOPOLOGY=$(cat ${SCRIPT_DIR}/VIRL_TOPOLOGY_UBUNTU)
+    VIRL_RELEASE=$(cat ${SCRIPT_DIR}/VIRL_RELEASE_UBUNTU)
 fi
 
 SSH_OPTIONS="-i ${VIRL_PKEY} -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o BatchMode=yes -o LogLevel=error"
@@ -114,8 +116,6 @@ do
 done
 
 # Temporarily download VPP and DPDK packages from nexus.fd.io
-SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-
 case "$DISTRO" in
         CENTOS )
             VPP_ARTIFACTS="vpp vpp-debuginfo vpp-devel vpp-lib vpp-plugins"
