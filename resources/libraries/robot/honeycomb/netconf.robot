@@ -35,12 +35,13 @@
 | | ...
 | | ... | *Arguments:*
 | | ... | - trigger - RPC sequence that triggers a specific error. Type: string
+| | ... | - params - Parameters for the trigger template. Type: string
 | | ...
 | | ... | *Example:*
 | | ...
 | | ... | \| Error trigger is sent \| <rpc>_some data_</rpc>]]>]]> \|
-| | [Arguments] | ${trigger}
-| | Send | ${trigger}
+| | [Arguments] | ${trigger} | &{params}
+| | Send | ${trigger} | &{params}
 
 | Replies should not contain RPC errors
 | | [Documentation] | Read response received through the channel, and check if\
