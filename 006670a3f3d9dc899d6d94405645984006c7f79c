@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a3291f1_f1112cad",
+        "filename": "resources/libraries/robot/traffic.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-02-27T09:51:59Z",
+      "side": 1,
+      "message": "Use \"Run keyword unless\" to simplify this part of code",
+      "range": {
+        "startLine": 80,
+        "startChar": 0,
+        "endLine": 83,
+        "endChar": 67
+      },
+      "revId": "006670a3f3d9dc899d6d94405645984006c7f79c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
