@@ -26,6 +26,7 @@
 | ... | Restart Honeycomb And VPP And Clear Persisted Configuration | ${node}
 
 *** Variables ***
+| ${interface}= | ${node['interfaces']['port1']['name']}
 | &{bd_settings}= | flood=${True} | forward=${True} | learn=${True}
 | ... | unknown-unicast-flood=${True} | arp-termination=${True}
 
@@ -57,3 +58,10 @@
 | | When Error trigger is sent | ${trigger_revert1}
 | | ${if_data_new}= | And InterfaceAPI.Get all interfaces oper data | ${node}
 | | Then Should be equal | ${if_data} | ${if_data_new}
+
+| TC04: Vlan subinterface creation
+| | [Documentation] | Configure a Vlan sub-interface under a physical interface.
+| | Given Netconf session is established | ${node}
+| | When Error Trigger Is Sent
+| | ... | ${trigger_vlan} | interface=${interface}
+| | Then Replies should not contain RPC errors

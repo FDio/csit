@@ -154,14 +154,20 @@ class Netconf(object):
 
         return response
 
-    def send(self, message):
+    def send(self, message, **params):
         """Sends provided message through the channel.
 
         :param message: Message to be sent to Honeycomb.
+        :param params: Format the message string with these parameters.
         :type message: str
+        :type params: dict
         """
+
+        message = message.format(**params)
 
         if not message.endswith(self.delimiter):
             message += self.delimiter
+
+        logger.debug(message)
 
         self.channel.send(message)

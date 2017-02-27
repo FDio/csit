@@ -363,7 +363,7 @@ trigger_revert1 = u"""
 </rpc>
 ]]>]]>
 
-<rpc message-id="101" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+<rpc message-id="102" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
 <edit-config>
 <target>
 <candidate/>
@@ -388,7 +388,7 @@ trigger_revert1 = u"""
 </rpc>
 ]]>]]>
 
- <rpc message-id="102"
+ <rpc message-id="103"
       xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
    <commit/>
  </rpc>
@@ -418,7 +418,7 @@ trigger_revert2 = u"""
 </rpc>
 ]]>]]>
 
-<rpc message-id="101" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+<rpc message-id="102" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
 <edit-config>
 <target>
 <candidate/>
@@ -439,8 +439,93 @@ trigger_revert2 = u"""
 </rpc>
 ]]>]]>
 
- <rpc message-id="102"
-      xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
-   <commit/>
- </rpc>
- ]]>]]>"""
+<rpc message-id="103" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+<commit/>
+</rpc>
+]]>]]>"""
+
+
+# Test data for issue HC2VPP-60
+# Creating Vlan sub-interface over netconf fails due to ODL bug
+trigger_vlan = u"""
+<rpc message-id="101" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+<edit-config>
+<target>
+<candidate/>
+</target>
+<config>
+<interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+<interface>
+<name>{interface}</name>
+<sub-interfaces xmlns="urn:opendaylight:params:xml:ns:yang:vpp:vlan"/>
+</interface>
+</interfaces>
+</config>
+</edit-config>
+</rpc>
+]]>]]>
+
+<rpc message-id="102" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+<edit-config>
+<target>
+<candidate/>
+</target>
+<config>
+<interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+<interface>
+<name>{interface}</name>
+<sub-interfaces xmlns="urn:opendaylight:params:xml:ns:yang:vpp:vlan">
+<sub-interface>
+<identifier>2420</identifier>
+</sub-interface>
+</sub-interfaces>
+</interface>
+</interfaces>
+</config>
+</edit-config>
+</rpc>
+]]>]]>
+
+<rpc message-id="103" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+<edit-config>
+<target>
+<candidate/>
+</target>
+<default-operation>none</default-operation>
+<config>
+<interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+<interface>
+<name>{interface}</name>
+<sub-interfaces xmlns="urn:opendaylight:params:xml:ns:yang:vpp:vlan">
+<sub-interface xmlns:a="urn:ietf:params:xml:ns:netconf:base:1.0" a:operation="replace">
+<identifier>2420</identifier>
+<match>
+<vlan-tagged>
+<match-exact-tags>true</match-exact-tags>
+</vlan-tagged>
+</match>
+<vlan-type>802dot1q</vlan-type>
+<enabled>false</enabled>
+<tags>
+<tag>
+<index>0</index>
+<dot1q-tag>
+<tag-type xmlns:x="urn:ieee:params:xml:ns:yang:dot1q-types">x:s-vlan</tag-type>
+<vlan-id>2420</vlan-id>
+</dot1q-tag>
+</tag>
+</tags>
+</sub-interface>
+</sub-interfaces>
+</interface>
+</interfaces>
+</config>
+</edit-config>
+</rpc>
+]]>]]>
+
+<rpc message-id="104" xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+<commit/>
+</rpc>
+]]>]]>
+"""
