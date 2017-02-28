@@ -71,10 +71,9 @@ class TGDropRateSearchImpl(DropRateSearch):
             logger.trace("comparing: {} < {} {}".format(loss,
                                                         loss_acceptance,
                                                         loss_acceptance_type))
-            if float(loss) > float(loss_acceptance):
-                return False
-            else:
-                return True
+
+            return bool(not (float(loss) > float(loss_acceptance)))
+
         else:
             raise NotImplementedError("TG subtype not supported")
 
@@ -95,6 +94,59 @@ class TrafficGenerator(object):
     # use one instance of TrafficGenerator for all tests in test suite
     ROBOT_LIBRARY_SCOPE = 'TEST SUITE'
 
+    TREX = ("sh -c '{0}/resources/tools/t-rex/t-rex-stateless.py "
+            "--duration={1} -r {2} -s {3} {6} {7} --warmup_time={8} ")
+    CMD = {("3-node-xconnect", "3-node-bridge",): TREX +
+           "--p{4}_src_start_ip 10.10.10.1 --p{4}_src_end_ip 10.10.10.254 "
+           "--p{4}_dst_start_ip 20.20.20.1 --p{5}_src_start_ip 20.20.20.1 "
+           "--p{5}_src_end_ip 20.20.20.254 --p{5}_dst_start_ip 10.10.10.1'",
+
+           ("3-node-IPv4",): TREX +
+           "--p{4}_src_start_ip 10.10.10.2 --p{4}_src_end_ip 10.10.10.254 "
+           "--p{4}_dst_start_ip 20.20.20.2 --p{5}_src_start_ip 20.20.20.2 "
+           "--p{5}_src_end_ip 20.20.20.254 --p{5}_dst_start_ip 10.10.10.2'",
+
+           ("3-node-IPv4-dst-10000",): TREX +
+           "--p{4}_src_start_ip 10.0.0.1 --p{4}_dst_start_ip 20.0.0.0 "
+           "--p{4}_dst_end_ip 20.0.39.15 --p{5}_src_start_ip 20.0.0.1 "
+           "--p{5}_dst_start_ip 10.0.0.0 --p{5}_dst_end_ip 10.0.39.15'",
+
+           ("3-node-IPv4-dst-100000",): TREX +
+           "--p{4}_src_start_ip 10.0.0.1 --p{4}_dst_start_ip 20.0.0.0 "
+           "--p{4}_dst_end_ip 20.1.134.159 --p{5}_src_start_ip 20.0.0.1 "
+           "--p{5}_dst_start_ip 10.0.0.0 --p{5}_dst_end_ip 10.1.134.159'",
+
+           ("3-node-IPv4-dst-1000000",): TREX +
+           "--p{4}_src_start_ip 10.0.0.1 --p{4}_dst_start_ip 20.0.0.0 "
+           "--p{4}_dst_end_ip 20.15.66.63 --p{5}_src_start_ip 20.0.0.1 "
+           "--p{5}_dst_start_ip 10.0.0.0 --p{5}_dst_end_ip 10.15.66.63'",
+
+           ("3-node-IPv6",): TREX +
+           "--p{4}_src_start_ip 10.0.0.1 --p{4}_dst_start_ip 20.0.0.0 "
+           "--p{4}_dst_end_ip 20.15.66.63 --p{5}_src_start_ip 20.0.0.1 "
+           "--p{5}_dst_start_ip 10.0.0.0 --p{5}_dst_end_ip 10.15.66.63'",
+
+           ("3-node-IPv6-dst-10000",): TREX +
+           "--p{4}_src_start_ip 2001:1::1 --p{4}_dst_start_ip 2001:2::0 "
+           "--p{4}_dst_end_ip 2001:2::270F --p{5}_src_start_ip 2001:2::1 "
+           "--p{5}_dst_start_ip 2001:1::0 --p{5}_dst_end_ip 2001:1::270F'",
+
+           ("3-node-IPv6-dst-100000",): TREX +
+           "--p{4}_src_start_ip 2001:1::1 --p{4}_dst_start_ip 2001:2::0 "
+           "--p{4}_dst_end_ip 2001:2::1:869F --p{5}_src_start_ip 2001:2::1 "
+           "--p{5}_dst_start_ip 2001:1::0 --p{5}_dst_end_ip 2001:1::1:869F'",
+
+           ("3-node-IPv6-dst-1000000",): TREX +
+           "--p{4}_src_start_ip 2001:1::1 --p{4}_dst_start_ip 2001:2::0 "
+           "--p{4}_dst_end_ip 2001:2::F:423F --p{5}_src_start_ip 2001:2::1 "
+           "--p{5}_dst_start_ip 2001:1::0 --p{5}_dst_end_ip 2001:1::F:423F'",
+
+           ("2-node-bridge",): TREX +
+           "--p{4}_src_start_ip 10.10.10.2 --p{4}_src_end_ip 10.10.10.254 "
+           "--p{4}_dst_start_ip 20.20.20.2 --p{5}_src_start_ip 20.20.20.2 "
+           "--p{5}_src_end_ip 20.20.20.254 --p{5}_dst_start_ip 10.10.10.2'",
+           }
+
     def __init__(self):
         self._result = None
         self._loss = None
@@ -103,7 +155,7 @@ class TrafficGenerator(object):
         self._received = None
         self._node = None
         # T-REX interface order mapping
-        self._ifaces_reordered = 0
+        self._ifaces_reordered = False
 
     @property
     def node(self):
@@ -222,7 +274,7 @@ class TrafficGenerator(object):
                 if1_mac, if2_mac = if2_mac, if1_mac
                 if1_pci, if2_pci = if2_pci, if1_pci
                 if1_adj_mac, if2_adj_mac = if2_adj_mac, if1_adj_mac
-                self._ifaces_reordered = 1
+                self._ifaces_reordered = True
 
             if1_mac_hex = "0x"+if1_mac.replace(":", ",0x")
             if2_mac_hex = "0x"+if2_mac.replace(":", ",0x")
@@ -239,13 +291,13 @@ class TrafficGenerator(object):
                 "            src_mac         :   [{}]\n"
                 "          - dest_mac        :   [{}]\n"
                 "            src_mac         :   [{}]\n"
-                "EOF'"\
-                .format(if1_pci, if2_pci,
-                        if1_adj_mac_hex, if1_mac_hex,
-                        if2_adj_mac_hex, if2_mac_hex))
+                "EOF'".
+                format(if1_pci, if2_pci,
+                       if1_adj_mac_hex, if1_mac_hex,
+                       if2_adj_mac_hex, if2_mac_hex))
             if int(ret) != 0:
-                logger.error("failed to create t-rex config: {}"\
-                .format(stdout + stderr))
+                logger.error("failed to create t-rex config: {}".
+                             format(stdout + stderr))
                 raise RuntimeError('trex config generation error')
 
             max_startup_retries = 3
@@ -256,8 +308,8 @@ class TrafficGenerator(object):
 
                 # configure T-rex
                 (ret, stdout, stderr) = ssh.exec_command(
-                    "sh -c 'cd {0}/scripts/ && sudo ./trex-cfg'"\
-                    .format(trex_path))
+                    "sh -c 'cd {0}/scripts/ && sudo ./trex-cfg'".
+                    format(trex_path))
                 if int(ret) != 0:
                     logger.error('trex-cfg failed: {0}'.format(stdout + stderr))
                     raise RuntimeError('trex-cfg failed')
@@ -266,25 +318,22 @@ class TrafficGenerator(object):
                 (ret, _, _) = ssh.exec_command(
                     "sh -c 'cd {0}/scripts/ && "
                     "sudo nohup ./t-rex-64 -i -c 7 --iom 0 > /dev/null 2>&1 &'"
-                    "> /dev/null"\
-                    .format(trex_path))
+                    "> /dev/null".format(trex_path))
                 if int(ret) != 0:
                     raise RuntimeError('t-rex-64 startup failed')
 
                 # get T-rex server info
                 (ret, _, _) = ssh.exec_command(
-                    "sh -c '{0}/resources/tools/t-rex/t-rex-server-info.py'"\
-                    .format(Constants.REMOTE_FW_DIR),
-                    timeout=120)
+                    "sh -c '{0}/resources/tools/t-rex/t-rex-server-info.py'".
+                    format(Constants.REMOTE_FW_DIR), timeout=120)
                 if int(ret) == 0:
                     # If we get info T-rex is running
                     return
                 # try again
                 max_startup_retries -= 1
             # after max retries T-rex is still not responding to API
-            # critical error occured
+            # critical error occurred
             raise RuntimeError('t-rex-64 startup failed')
-
 
     @staticmethod
     def teardown_traffic_generator(node):
@@ -352,169 +401,25 @@ class TrafficGenerator(object):
         :raises: NotImplementedError if traffic type is not supported.
         :raises: RuntimeError in case of TG driver issue.
         """
+
+        _async = "--async" if async_call else ""
+        _latency = "--latency" if latency else ""
+        _p0, _p1 = (2, 1) if self._ifaces_reordered else (1, 2)
+
+        for traffic_types in self.CMD.keys():
+            if traffic_type in traffic_types:
+                cmd = self.CMD[traffic_type].format(Constants.REMOTE_FW_DIR,
+                                                    duration, rate, framesize,
+                                                    _p0, _p1, _async, _latency,
+                                                    warmup_time)
+                break
+        else:
+            raise NotImplementedError('Unsupported traffic type.')
+
         ssh = SSH()
         ssh.connect(self._node)
 
-        _p0 = 1
-        _p1 = 2
-        _async = "--async" if async_call else ""
-        _latency = "--latency" if latency else ""
-
-        if self._ifaces_reordered != 0:
-            _p0, _p1 = _p1, _p0
-
-        if traffic_type in ["3-node-xconnect", "3-node-bridge"]:
-            (ret, stdout, stderr) = ssh.exec_command(
-                "sh -c '{0}/resources/tools/t-rex/t-rex-stateless.py "
-                "--duration={1} -r {2} -s {3} "
-                "--p{4}_src_start_ip 10.10.10.1 "
-                "--p{4}_src_end_ip 10.10.10.254 "
-                "--p{4}_dst_start_ip 20.20.20.1 "
-                "--p{5}_src_start_ip 20.20.20.1 "
-                "--p{5}_src_end_ip 20.20.20.254 "
-                "--p{5}_dst_start_ip 10.10.10.1 "
-                "{6} {7} --warmup_time={8}'".format(Constants.REMOTE_FW_DIR,
-                                                    duration, rate, framesize,
-                                                    _p0, _p1, _async, _latency,
-                                                    warmup_time),
-                timeout=int(duration)+60)
-        elif traffic_type in ["3-node-IPv4"]:
-            (ret, stdout, stderr) = ssh.exec_command(
-                "sh -c '{0}/resources/tools/t-rex/t-rex-stateless.py "
-                "--duration={1} -r {2} -s {3} "
-                "--p{4}_src_start_ip 10.10.10.2 "
-                "--p{4}_src_end_ip 10.10.10.254 "
-                "--p{4}_dst_start_ip 20.20.20.2 "
-                "--p{5}_src_start_ip 20.20.20.2 "
-                "--p{5}_src_end_ip 20.20.20.254 "
-                "--p{5}_dst_start_ip 10.10.10.2 "
-                "{6} {7} --warmup_time={8}'".format(Constants.REMOTE_FW_DIR,
-                                                    duration, rate, framesize,
-                                                    _p0, _p1, _async, _latency,
-                                                    warmup_time),
-                timeout=int(duration)+60)
-        elif traffic_type in ["3-node-IPv4-dst-10000"]:
-            (ret, stdout, stderr) = ssh.exec_command(
-                "sh -c '{0}/resources/tools/t-rex/t-rex-stateless.py "
-                "--duration={1} -r {2} -s {3} "
-                "--p{4}_src_start_ip 10.0.0.1 "
-                "--p{4}_dst_start_ip 20.0.0.0 "
-                "--p{4}_dst_end_ip 20.0.39.15 "
-                "--p{5}_src_start_ip 20.0.0.1 "
-                "--p{5}_dst_start_ip 10.0.0.0 "
-                "--p{5}_dst_end_ip 10.0.39.15 "
-                "{6} {7} --warmup_time={8}'".format(Constants.REMOTE_FW_DIR,
-                                                    duration, rate, framesize,
-                                                    _p0, _p1, _async, _latency,
-                                                    warmup_time),
-                timeout=int(duration)+60)
-        elif traffic_type in ["3-node-IPv4-dst-100000"]:
-            (ret, stdout, stderr) = ssh.exec_command(
-                "sh -c '{0}/resources/tools/t-rex/t-rex-stateless.py "
-                "--duration={1} -r {2} -s {3} "
-                "--p{4}_src_start_ip 10.0.0.1 "
-                "--p{4}_dst_start_ip 20.0.0.0 "
-                "--p{4}_dst_end_ip 20.1.134.159 "
-                "--p{5}_src_start_ip 20.0.0.1 "
-                "--p{5}_dst_start_ip 10.0.0.0 "
-                "--p{5}_dst_end_ip 10.1.134.159 "
-                "{6} {7} --warmup_time={8}'".format(Constants.REMOTE_FW_DIR,
-                                                    duration, rate, framesize,
-                                                    _p0, _p1, _async, _latency,
-                                                    warmup_time),
-                timeout=int(duration)+60)
-        elif traffic_type in ["3-node-IPv4-dst-1000000"]:
-            (ret, stdout, stderr) = ssh.exec_command(
-                "sh -c '{0}/resources/tools/t-rex/t-rex-stateless.py "
-                "--duration={1} -r {2} -s {3} "
-                "--p{4}_src_start_ip 10.0.0.1 "
-                "--p{4}_dst_start_ip 20.0.0.0 "
-                "--p{4}_dst_end_ip 20.15.66.63 "
-                "--p{5}_src_start_ip 20.0.0.1 "
-                "--p{5}_dst_start_ip 10.0.0.0 "
-                "--p{5}_dst_end_ip 10.15.66.63 "
-                "{6} {7} --warmup_time={8}'".format(Constants.REMOTE_FW_DIR,
-                                                    duration, rate, framesize,
-                                                    _p0, _p1, _async, _latency,
-                                                    warmup_time),
-                timeout=int(duration)+60)
-        elif traffic_type in ["3-node-IPv6"]:
-            (ret, stdout, stderr) = ssh.exec_command(
-                "sh -c '{0}/resources/tools/t-rex/t-rex-stateless.py "
-                "--duration={1} -r {2} -s {3} -6 "
-                "--p{4}_src_start_ip 2001:1::2 "
-                "--p{4}_src_end_ip 2001:1::FE "
-                "--p{4}_dst_start_ip 2001:2::2 "
-                "--p{5}_src_start_ip 2001:2::2 "
-                "--p{5}_src_end_ip 2001:2::FE "
-                "--p{5}_dst_start_ip 2001:1::2 "
-                "{6} {7} --warmup_time={8}'".format(Constants.REMOTE_FW_DIR,
-                                                    duration, rate, framesize,
-                                                    _p0, _p1, _async, _latency,
-                                                    warmup_time),
-                timeout=int(duration)+60)
-        elif traffic_type in ["3-node-IPv6-dst-10000"]:
-            (ret, stdout, stderr) = ssh.exec_command(
-                "sh -c '{0}/resources/tools/t-rex/t-rex-stateless.py "
-                "--duration={1} -r {2} -s {3} -6 "
-                "--p{4}_src_start_ip 2001:1::1 "
-                "--p{4}_dst_start_ip 2001:2::0 "
-                "--p{4}_dst_end_ip 2001:2::270F "
-                "--p{5}_src_start_ip 2001:2::1 "
-                "--p{5}_dst_start_ip 2001:1::0 "
-                "--p{5}_dst_end_ip 2001:1::270F "
-                "{6} {7} --warmup_time={8}'".format(Constants.REMOTE_FW_DIR,
-                                                    duration, rate, framesize,
-                                                    _p0, _p1, _async, _latency,
-                                                    warmup_time),
-                timeout=int(duration)+60)
-        elif traffic_type in ["3-node-IPv6-dst-100000"]:
-            (ret, stdout, stderr) = ssh.exec_command(
-                "sh -c '{0}/resources/tools/t-rex/t-rex-stateless.py "
-                "--duration={1} -r {2} -s {3} -6 "
-                "--p{4}_src_start_ip 2001:1::1 "
-                "--p{4}_dst_start_ip 2001:2::0 "
-                "--p{4}_dst_end_ip 2001:2::1:869F "
-                "--p{5}_src_start_ip 2001:2::1 "
-                "--p{5}_dst_start_ip 2001:1::0 "
-                "--p{5}_dst_end_ip 2001:1::1:869F "
-                "{6} {7} --warmup_time={8}'".format(Constants.REMOTE_FW_DIR,
-                                                    duration, rate, framesize,
-                                                    _p0, _p1, _async, _latency,
-                                                    warmup_time),
-                timeout=int(duration)+60)
-        elif traffic_type in ["3-node-IPv6-dst-1000000"]:
-            (ret, stdout, stderr) = ssh.exec_command(
-                "sh -c '{0}/resources/tools/t-rex/t-rex-stateless.py "
-                "--duration={1} -r {2} -s {3} -6 "
-                "--p{4}_src_start_ip 2001:1::1 "
-                "--p{4}_dst_start_ip 2001:2::0 "
-                "--p{4}_dst_end_ip 2001:2::F:423F "
-                "--p{5}_src_start_ip 2001:2::1 "
-                "--p{5}_dst_start_ip 2001:1::0 "
-                "--p{5}_dst_end_ip 2001:1::F:423F "
-                "{6} {7} --warmup_time={8}'".format(Constants.REMOTE_FW_DIR,
-                                                    duration, rate, framesize,
-                                                    _p0, _p1, _async, _latency,
-                                                    warmup_time),
-                timeout=int(duration)+60)
-        elif traffic_type in ["2-node-bridge"]:
-            (ret, stdout, stderr) = ssh.exec_command(
-                "sh -c '{0}/resources/tools/t-rex/t-rex-stateless.py "
-                "--duration={1} -r {2} -s {3} "
-                "--p{4}_src_start_ip 10.10.10.2 "
-                "--p{4}_src_end_ip 10.10.10.254 "
-                "--p{4}_dst_start_ip 20.20.20.2 "
-                "--p{5}_src_start_ip 20.20.20.2 "
-                "--p{5}_src_end_ip 20.20.20.254 "
-                "--p{5}_dst_start_ip 10.10.10.2 "
-                "{6} {7} --warmup_time={8}'".format(Constants.REMOTE_FW_DIR,
-                                                    duration, rate, framesize,
-                                                    _p0, _p1, _async, _latency,
-                                                    warmup_time),
-                timeout = int(duration) + 60)
-        else:
-            raise NotImplementedError('Unsupported traffic type')
+        ret, stdout, stderr = ssh.exec_command(cmd, timeout=int(duration)+60)
 
         logger.trace(ret)
         logger.trace(stdout)
@@ -523,7 +428,7 @@ class TrafficGenerator(object):
         if int(ret) != 0:
             raise RuntimeError('T-rex stateless runtime error')
         elif async_call:
-            #no result
+            # no result
             self._received = None
             self._sent = None
             self._loss = None
