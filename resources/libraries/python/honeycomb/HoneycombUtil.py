@@ -409,6 +409,7 @@ class HoneycombUtil(object):
         ssh = SSH()
         ssh.connect(node)
 
-        cmd = "cp /var/log/honeycomb/honeycomb.log /scratch/"
+        cmd = "tar -C /var/log/honeycomb -czf /scratch/honeycomb_log.tar.gz" \
+              " honeycomb.log"
 
         ssh.exec_command_sudo(cmd)
