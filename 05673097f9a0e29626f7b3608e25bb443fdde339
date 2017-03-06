@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a3291f1_c45d4617",
+        "filename": "resources/libraries/robot/performance.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 2014,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-03-06T06:35:41Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 2014,
+        "startChar": 0,
+        "endLine": 2014,
+        "endChar": 64
+      },
+      "revId": "05673097f9a0e29626f7b3608e25bb443fdde339",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_e46282d7",
+        "filename": "resources/libraries/robot/performance.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 2022,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-03-06T06:35:41Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 2022,
+        "startChar": 0,
+        "endLine": 2022,
+        "endChar": 64
+      },
+      "revId": "05673097f9a0e29626f7b3608e25bb443fdde339",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
