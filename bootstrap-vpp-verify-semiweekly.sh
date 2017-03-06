@@ -207,9 +207,11 @@ scp ${SSH_OPTIONS} *.${PACKAGE} \
 
 result=$?
 if [ "${result}" -ne "0" ]; then
-    echo "Failed to copy vpp deb files to virl host"
+    echo "Failed to copy vpp package files to VIRL host"
     echo ${result}
     exit ${result}
+else
+    echo "VPP packages successfully copied to VIRL host ${VIRL_SERVER}"
 fi
 
 # Start a simulation on VIRL server
