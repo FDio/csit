@@ -18,8 +18,10 @@
 *** Settings ***
 | Resource | resources/libraries/robot/default.robot
 | Resource | resources/libraries/robot/honeycomb/persistence.robot
-| Suite Setup | Restart Honeycomb And VPP And Clear Persisted Configuration
-| ... | ${node}
+| Suite Setup | Run Keywords
+| ... | Restart Honeycomb And VPP And Clear Persisted Configuration | ${node}
+| ... | AND | Configure Persistence | ${node} | enable
+| Suite Teardown | Configure Persistence | ${node} | disable
 | Force Tags | honeycomb_sanity
 | Documentation | *Honeycomb configuration persistence test suite.*
 

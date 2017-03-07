@@ -20,7 +20,7 @@
 # | Force Tags | honeycomb_sanity
 | Suite Setup | Add Interface local0 To Topology | ${node}
 | Suite Teardown | Run Keyword If Any Tests Failed
-| | ... | Restart Honeycomb And VPP And Clear Persisted Configuration | ${node}
+| | ... | Restart Honeycomb and VPP | ${node}
 | Documentation | *Honeycomb port mirroring test suite.*
 
 *** Variables ***

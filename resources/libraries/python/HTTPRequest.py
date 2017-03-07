@@ -22,6 +22,7 @@ from enum import IntEnum, unique
 
 from robot.api.deco import keyword
 from robot.api import logger
+from robot.libraries.BuiltIn import BuiltIn
 
 from requests import request, RequestException, Timeout, TooManyRedirects, \
     HTTPError, ConnectionError
@@ -36,6 +37,7 @@ class HTTPCodes(IntEnum):
     UNAUTHORIZED = 401
     FORBIDDEN = 403
     NOT_FOUND = 404
+    CONFLICT = 409
     INTERNAL_SERVER_ERROR = 500
     SERVICE_UNAVAILABLE = 503
 
@@ -167,8 +169,23 @@ class HTTPRequest(object):
         5. there is any other unexpected HTTP request exception.
         """
         timeout = kwargs["timeout"]
+
+        if BuiltIn().get_variable_value("${use_odl_client}"):
+            # TODO: node["honeycomb"]["odl_port"]
+            port = 8181
+            odl_url_part = "/network-topology:network-topology/topology/" \
+                           "topology-netconf/node/vpp/yang-ext:mount"
+        else:
+            port = node["honeycomb"]["port"]
+            odl_url_part = ""
+
+        try:
+            path = path.format(odl_url_part=odl_url_part)
+        except KeyError:
+            pass
+
         url = HTTPRequest.create_full_url(node['host'],
-                                          node['honeycomb']['port'],
+                                          port,
                                           path)
         try:
             auth = HTTPBasicAuth(node['honeycomb']['user'],
@@ -254,7 +271,8 @@ class HTTPRequest(object):
 
     @staticmethod
     @keyword(name="HTTP Post")
-    def post(node, path, headers=None, payload=None, json=None, timeout=10):
+    def post(node, path, headers=None, payload=None, json=None, timeout=10,
+             enable_logging=True):
         """Sends a POST request and returns the response and status code.
 
         :param node: Honeycomb node.
@@ -265,18 +283,23 @@ class HTTPRequest(object):
         :param json: JSON formatted string to send in the body of the Request.
         :param timeout: How long to wait for the server to send data before
         giving up, as a float, or a (connect timeout, read timeout) tuple.
+        :param enable_logging: Used to suppress errors when checking ODL
+        state during suite setup and teardown. When True, logging is enabled,
+        otherwise logging is disabled.
         :type node: dict
         :type path: str
         :type headers: dict
         :type payload: dict, bytes, or file-like object
         :type json: str
         :type timeout: float or tuple
+        :type enable_logging: bool
         :return: Status code and content of response.
         :rtype: tuple
         """
-        return HTTPRequest._http_request('POST', node, path, headers=headers,
-                                         data=payload, json=json,
-                                         timeout=timeout)
+        return HTTPRequest._http_request('POST', node, path,
+                                         enable_logging=enable_logging,
+                                         headers=headers, data=payload,
+                                         json=json, timeout=timeout)
 
     @staticmethod
     @keyword(name="HTTP Delete")
