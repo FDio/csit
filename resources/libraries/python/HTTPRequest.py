@@ -22,6 +22,7 @@ from enum import IntEnum, unique
 
 from robot.api.deco import keyword
 from robot.api import logger
+from robot.libraries.BuiltIn import BuiltIn
 
 from requests import request, RequestException, Timeout, TooManyRedirects, \
     HTTPError, ConnectionError
@@ -36,6 +37,7 @@ class HTTPCodes(IntEnum):
     UNAUTHORIZED = 401
     FORBIDDEN = 403
     NOT_FOUND = 404
+    CONFLICT = 409
     INTERNAL_SERVER_ERROR = 500
     SERVICE_UNAVAILABLE = 503
 
@@ -167,8 +169,23 @@ class HTTPRequest(object):
         5. there is any other unexpected HTTP request exception.
         """
         timeout = kwargs["timeout"]
+
+        if BuiltIn().get_variable_value("${use_odl_client}"):
+            # TODO: node["honeycomb"]["odl_port"]
+            port = 8181
+            odl_url_part = "/network-topology:network-topology/topology/" \
+                           "topology-netconf/node/vpp/yang-ext:mount"
+        else:
+            port = node["honeycomb"]["port"]
+            odl_url_part = ""
+
+        try:
+            path = path.format(odl_url_part=odl_url_part)
+        except KeyError:
+            pass
+
         url = HTTPRequest.create_full_url(node['host'],
-                                          node['honeycomb']['port'],
+                                          port,
                                           path)
         try:
             auth = HTTPBasicAuth(node['honeycomb']['user'],

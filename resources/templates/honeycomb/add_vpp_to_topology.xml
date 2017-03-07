@@ -1,9 +1,0 @@
-<node xmlns="urn:TBD:params:xml:ns:yang:network-topology">
-    <node-id>{vpp_host}</node-id>
-    <host xmlns="urn:opendaylight:netconf-node-topology">{vpp_ip}</host>
-    <port xmlns="urn:opendaylight:netconf-node-topology">{vpp_port}</port>
-    <username xmlns="urn:opendaylight:netconf-node-topology">{user}</username>
-    <password xmlns="urn:opendaylight:netconf-node-topology">{passwd}</password>
-    <tcp-only xmlns="urn:opendaylight:netconf-node-topology">false</tcp-only>
-    <keepalive-delay xmlns="urn:opendaylight:netconf-node-topology">0</keepalive-delay>
-</node>

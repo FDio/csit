@@ -20,9 +20,9 @@
 | Resource | resources/libraries/robot/honeycomb/provider_backbone_bridge.robot
 | Variables | resources/test_data/honeycomb/pbb/pbb.py
 | Documentation | *Honeycomb provider backbone bridge test suite.*
-| Suite Teardown | Run Keyword If Any Tests Failed
-| ... | Restart Honeycomb And VPP And Clear Persisted Configuration | ${node}
-| Force Tags | honeycomb_sanity
+#| Suite Teardown | Run Keyword If Any Tests Failed
+#| ... | Restart Honeycomb and VPP | ${node}
+| Force Tags | honeycomb_sanity | honeycomb_odl
 
 *** Test Cases ***
 # TODO: add verifications once operational data or VPP dump is available.
