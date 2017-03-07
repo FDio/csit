@@ -1,1 +1,1 @@
-/restconf/operational/ietf-interfaces:interfaces-state
+/restconf/operational{odl_url_part}/ietf-interfaces:interfaces-state

@@ -20,13 +20,22 @@
 | Resource | resources/libraries/robot/default.robot
 | Resource | resources/libraries/robot/honeycomb/honeycomb.robot
 | Suite Setup | Run Keywords | Setup All DUTs Before Test | AND
-| ... | Clear Persisted Honeycomb Configuration | ${node} | AND
-| ... | Copy Java Libraries | ${node} | AND
-| ... | Configure Unsecured Access | ${node} | AND
-| ... | Enable Module Features | ${node} | AND
-| ... | Configure Log Level | ${node} | TRACE | AND
-| ... | Setup Honeycomb Service On DUTs | ${node} | AND
+| ... | Configure Honeycomb for testing | ${node} | AND
 | ... | Set Global Variable | ${node}
-| Suite Teardown | Run keywords
-| ... | Stop Honeycomb Service On DUTs | ${node} | AND
+| Suite Teardown
 | ... | Archive Honeycomb log file | ${node}
+
+*** Keywords ***
+| Configure Honeycomb for testing
+| | [Arguments] | ${node}
+| | Copy Java Libraries | ${node}
+| | Configure Unsecured Access | ${node}
+| | Enable Module Features | ${node}
+| | Configure Log Level | ${node} | TRACE
+| | Configure Persistence | ${node} | disable
+| | Clear Persisted Honeycomb Configuration | ${node}
+| | Setup Honeycomb Service On DUTs | ${node}
+| | ${use_odl_client}= | Find ODL client on node | ${node}
+| | Set Global Variable | ${use_odl_client}
+| | Run Keyword If | ${use_odl_client}
+| | ... | Start ODL Client on node | ${node}

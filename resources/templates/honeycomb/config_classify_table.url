@@ -1,1 +1,1 @@
-/restconf/config/vpp-classifier:vpp-classifier
+/restconf/config{odl_url_part}/vpp-classifier:vpp-classifier
