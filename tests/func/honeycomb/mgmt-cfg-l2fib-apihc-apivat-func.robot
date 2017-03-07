@@ -24,11 +24,11 @@
 | ... | Set test interface down
 | Suite Teardown | Run keywords
 | ... | Run Keyword If Any Tests Failed
-| ... | Restart Honeycomb And VPP And Clear Persisted Configuration | ${node}
+| ... | Restart Honeycomb and VPP | ${node}
 | ... | AND
 | ... | Honeycomb removes all bridge domains
 | ... | ${node} | ${interface} | ${interface2}
-| Force tags | honeycomb_sanity
+| Force tags | honeycomb_sanity | honeycomb_odl
 
 *** Variables ***
 # Interface to run tests on.

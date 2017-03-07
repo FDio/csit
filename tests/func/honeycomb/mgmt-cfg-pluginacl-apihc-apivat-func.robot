@@ -48,9 +48,9 @@
 | ... | AND | Clear plugin-acl settings | ${node} | ${dut_to_tg_if1}
 | Suite Setup | Vpp All ra suppress link layer | ${nodes}
 | Suite Teardown
-| ... | Restart Honeycomb And VPP And Clear Persisted Configuration | ${node}
+| ... | Restart Honeycomb and VPP | ${node}
 | Documentation | *Honeycomb access control lists test suite for ACL plugin.*
-| Force Tags | Honeycomb_sanity
+| Force Tags | honeycomb_sanity | honeycomb_odl
 
 *** Test Cases ***
 | TC01: ACL MAC filtering through plugin-acl node - bridged

@@ -19,8 +19,8 @@
 | Resource | resources/libraries/robot/honeycomb/interfaces.robot
 | Variables | resources/test_data/honeycomb/sub_interfaces.py
 | Suite Teardown
-| ... | Restart Honeycomb And VPP And Clear Persisted Configuration | ${node}
-| Force Tags | honeycomb_sanity
+| ... | Restart Honeycomb and VPP | ${node}
+| Force Tags | honeycomb_sanity | honeycomb_odl
 | Documentation | *Honeycomb sub-interface management test suite.*
 
 *** Variables ***
