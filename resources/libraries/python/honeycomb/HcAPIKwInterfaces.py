@@ -1476,7 +1476,7 @@ class InterfaceKeywords(object):
         interface = interface.replace("/", "%2F")
 
         data = {
-            "v3po:acl": {
+            "vpp-interface-acl:acl": {
                 "ingress": {
                     "ip4-acl": {
                         "classify-table": table_name
@@ -1488,7 +1488,7 @@ class InterfaceKeywords(object):
             }
         }
 
-        path = "/interface/" + interface + "/v3po:acl"
+        path = "/interface/" + interface + "/vpp-interface-acl:acl"
         status_code, resp = HcUtil.\
             put_honeycomb_data(node, "config_vpp_interfaces", data, path,
                                data_representation=DataRepresentation.JSON)
@@ -1514,7 +1514,7 @@ class InterfaceKeywords(object):
 
         interface = interface.replace("/", "%2F")
 
-        path = "/interface/" + interface + "/v3po:acl"
+        path = "/interface/" + interface + "/vpp-interface-acl:acl"
 
         status_code, resp = HcUtil.\
             delete_honeycomb_data(node, "config_vpp_interfaces", path)
