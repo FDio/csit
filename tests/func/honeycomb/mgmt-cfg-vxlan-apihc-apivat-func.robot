@@ -32,9 +32,9 @@
 | Resource | resources/libraries/robot/honeycomb/vxlan.robot
 # import additional VxLAN settings from resource file
 | Variables | resources/test_data/honeycomb/vxlan.py
-| Force Tags | honeycomb_sanity
+| Force Tags | honeycomb_sanity | honeycomb_odl
 | Suite Teardown | Run Keyword If Any Tests Failed
-| ... | Restart Honeycomb And VPP And Clear Persisted Configuration | ${node}
+| ... | Restart Honeycomb and VPP | ${node}
 | Documentation | *Honeycomb VxLAN management test suite.*
 
 *** Test Cases ***

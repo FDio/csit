@@ -30,9 +30,9 @@
 | ... | Honeycomb creates TAP interface
 | ... | ${node} | ${tap_interface} | ${tap_settings}
 | Documentation | *Honeycomb notifications test suite.*
-| Force Tags | honeycomb_sanity
+| Force Tags | honeycomb_sanity | honeycomb_odl
 | Suite Teardown | Run Keyword If Any Tests Failed
-| ... | Restart Honeycomb And VPP And Clear Persisted Configuration | ${node}
+| ... | Restart Honeycomb and VPP | ${node}
 
 *** Test Cases ***
 | TC01: Honeycomb sends notification on interface state change
