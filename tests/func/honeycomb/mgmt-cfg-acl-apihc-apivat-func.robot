@@ -122,7 +122,7 @@
 | | ... | ${node} | ${table_index} | ${session_index} | ${vat_acl_session}
 | | When Honeycomb enables ACL on interface
 | | ... | ${node} | ${interface} | ${hc_acl_table['name']}
-| | Then Interface ACL settings from Honeycomb should be
+| | Run keyword and continue on failure | Interface ACL settings from Honeycomb should be
 | | ... | ${node} | ${interface} | ${hc_acl_table['name']}
 | | And Interface ACL settings from VAT should be
 | | ... | ${node} | ${interface} | ${table_index}
