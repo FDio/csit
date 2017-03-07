@@ -23,9 +23,9 @@
 | Variables | resources/test_data/honeycomb/vxlan_gpe.py
 | Documentation | *Honeycomb NSH test suite.*
 | Suite Teardown | Run Keyword If Any Tests Failed
-| ... | Restart Honeycomb And VPP And Clear Persisted Configuration | ${node}
+| ... | Restart Honeycomb and VPP | ${node}
 # disabled pending NSH version 17.04
-#| Force Tags | honeycomb_sanity
+#| Force Tags | honeycomb_sanity | honeycomb_odl
 
 *** Test Cases ***
 | TC01: Honeycomb can configure NSH entry

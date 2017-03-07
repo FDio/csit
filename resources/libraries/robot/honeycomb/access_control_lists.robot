@@ -155,7 +155,7 @@
 | | ... | \| ACL table from Honeycomb should not exist \| ${nodes['DUT1']} \
 | | ... | \| table0 \|
 | | [Arguments] | ${node} | ${table_name}
-| | Run keyword and expect error | ValueError: No JSON object could be decoded
+| | Run keyword and expect error | *
 | | ... | Get classify table oper data | ${node} | ${table_name}
 
 | ACL table from VAT should not exist

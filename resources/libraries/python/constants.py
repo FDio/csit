@@ -37,3 +37,6 @@ class Constants(object):
 
     # Honeycomb templates location
     RESOURCES_TPL_HC = 'resources/templates/honeycomb'
+
+    # ODL Client Restconf listener port
+    ODL_PORT = 8181

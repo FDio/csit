@@ -1,1 +1,1 @@
-/restconf/config/vpp-nsh:vpp-nsh
+/restconf/config{odl_url_part}/vpp-nsh:vpp-nsh
