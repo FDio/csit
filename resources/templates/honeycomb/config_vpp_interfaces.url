@@ -1,1 +1,1 @@
-/restconf/config/ietf-interfaces:interfaces
+/restconf/config{odl_url_part}/ietf-interfaces:interfaces
