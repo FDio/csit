@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a3291f1_6da0b543",
+        "filename": "resources/libraries/python/honeycomb/Routing.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-03-07T12:28:18Z",
+      "side": 1,
+      "message": "PEP8: add empty line",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 4
+      },
+      "revId": "0e839b33a85e68e433fb3dde687c85ef1f3568f6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_0d85b1ac",
+        "filename": "resources/libraries/python/honeycomb/Routing.py",
+        "patchSetId": 5
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-03-07T12:28:18Z",
+      "side": 1,
+      "message": "pylint: https://jenkins.fd.io/job/csit-validate-pylint-master/2923/violations/file/resources/libraries/python/honeycomb/Routing.py/",
+      "range": {
+        "startLine": 106,
+        "startChar": 0,
+        "endLine": 106,
+        "endChar": 44
+      },
+      "revId": "0e839b33a85e68e433fb3dde687c85ef1f3568f6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_8dc081e1",
+        "filename": "resources/libraries/robot/honeycomb/routing.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-03-07T12:28:18Z",
+      "side": 1,
+      "message": "Add doc",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 16
+      },
+      "revId": "0e839b33a85e68e433fb3dde687c85ef1f3568f6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_6db79587",
+        "filename": "resources/libraries/robot/honeycomb/routing.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-03-07T12:28:18Z",
+      "side": 1,
+      "message": "add \\|",
+      "range": {
+        "startLine": 32,
+        "startChar": 50,
+        "endLine": 32,
+        "endChar": 57
+      },
+      "revId": "0e839b33a85e68e433fb3dde687c85ef1f3568f6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_2db18d8f",
+        "filename": "resources/libraries/robot/honeycomb/routing.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-03-07T12:28:18Z",
+      "side": 1,
+      "message": "remove redundant white spaces",
+      "range": {
+        "startLine": 92,
+        "startChar": 8,
+        "endLine": 92,
+        "endChar": 20
+      },
+      "revId": "0e839b33a85e68e433fb3dde687c85ef1f3568f6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
