@@ -26,8 +26,8 @@
 | Variables | resources/test_data/honeycomb/lisp.py
 | Documentation | *Honeycomb Lisp test suite.*
 | Suite Teardown | Run Keyword If Any Tests Failed
-| ... | Restart Honeycomb And VPP And Clear Persisted Configuration | ${node}
-| Force Tags | honeycomb_sanity
+| ... | Restart Honeycomb and VPP | ${node}
+| Force Tags | honeycomb_sanity | honeycomb_odl
 
 *** Test Cases ***
 | TC01: Honeycomb enables Lisp feature
