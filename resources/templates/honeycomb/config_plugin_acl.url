@@ -1,1 +1,1 @@
-/restconf/config/ietf-access-control-list:access-lists
+/restconf/config{odl_url_part}/ietf-access-control-list:access-lists

@@ -39,9 +39,9 @@
 # Import additional VxLAN GPE settings from resource file
 | Variables | resources/test_data/honeycomb/vxlan_gpe.py
 | Documentation | *Honeycomb VxLAN-GPE management test suite.*
-| Force Tags | honeycomb_sanity
+| Force Tags | honeycomb_sanity | honeycomb_odl
 | Suite Setup
-| ... | Restart Honeycomb And VPP And Clear Persisted Configuration | ${node}
+| ... | Restart Honeycomb and VPP | ${node}
 
 *** Test Cases ***
 | TC01: Honeycomb creates VxLAN GPE tunnel

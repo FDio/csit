@@ -104,6 +104,36 @@ class HoneycombSetup(object):
                                  format(errors))
 
     @staticmethod
+    def restart_honeycomb_and_vpp_on_duts(*nodes):
+        """Restart the Honeycomb service on specified DUT nodes.
+
+        Use the keyword "Check Honeycomb Startup State" to check when Honeycomb
+        is fully restarted.
+        :param nodes: List of nodes to restart Honeycomb on.
+        :type nodes: list
+        :raises HoneycombError: If Honeycomb failed to restart.
+        """
+        logger.console("\nRestarting Honeycomb service ...")
+
+        cmd = "sudo service honeycomb restart && sudo service vpp restart"
+        errors = []
+
+        for node in nodes:
+            if node['type'] == NodeType.DUT:
+                ssh = SSH()
+                ssh.connect(node)
+                (ret_code, _, _) = ssh.exec_command_sudo(cmd)
+                if int(ret_code) != 0:
+                    errors.append(node['host'])
+                else:
+                    logger.info("Restart of Honeycomb and VPP on node {0} is "
+                                "in progress ...".format(node['host']))
+        if errors:
+            raise HoneycombError('Node(s) {0} failed to restart Honeycomb'
+                                 ' and/or VPP.'.
+                                 format(errors))
+
+    @staticmethod
     def check_honeycomb_startup_state(*nodes):
         """Check state of Honeycomb service during startup on specified nodes.
 
@@ -372,3 +402,111 @@ class HoneycombSetup(object):
             if ret_code != 0:
                 raise HoneycombError("Failed to copy JVPP libraries on "
                                      "node {0}, {1}".format(node, stderr))
+
+    @staticmethod
+    def find_odl_client(node):
+        """Check if there is a karaf directory in home.
+
+        :param node: Honeycomb node.
+        :type node: dict
+        :returns: True if ODL client is present on node, else False.
+        :rtype: bool
+        """
+
+        ssh = SSH()
+        ssh.connect(node)
+        (ret_code, stdout, _) = ssh.exec_command_sudo(
+            "ls ~ | grep karaf")
+
+        logger.debug(stdout)
+        return not bool(ret_code)
+
+    @staticmethod
+    def start_odl_client(node):
+        """Start ODL client on the specified node.
+
+        karaf should be located in home directory, and VPP and Honeycomb should
+        already be running, otherwise the start will fail.
+        :param node: Nodes to start ODL client on.
+        :type node: dict
+        :raises HoneycombError: If Honeycomb fails to start.
+        """
+
+        logger.console("\nStarting ODL client ...")
+
+        cmd = "~/*karaf*/bin/start"
+
+        ssh = SSH()
+        ssh.connect(node)
+        (ret_code, _, _) = ssh.exec_command_sudo(cmd)
+        if int(ret_code) != 0:
+            raise HoneycombError('Node {0} failed to start ODL.'.
+                                 format(node['host']))
+        else:
+            logger.info("Starting the ODL client on node {0} is "
+                        "in progress ...".format(node['host']))
+
+    @staticmethod
+    def check_odl_startup_state(node):
+        """Check the status of ODL client startup.
+
+        :param node: Honeycomb node.
+        :param node: dict
+        :returns: True when ODL is started.
+        :rtype: bool
+        :raises HoneycombError: When the response is not code 200: OK.
+        """
+
+        path = HcUtil.read_path_from_url_file(
+            "odl_client/odl_netconf_connector")
+        expected_status_codes = (HTTPCodes.UNAUTHORIZED,
+                                 HTTPCodes.FORBIDDEN,
+                                 HTTPCodes.NOT_FOUND,
+                                 HTTPCodes.SERVICE_UNAVAILABLE,
+                                 HTTPCodes.INTERNAL_SERVER_ERROR)
+
+        status_code, _ = HTTPRequest.get(node, path, timeout=10,
+                                         enable_logging=False)
+        if status_code == HTTPCodes.OK:
+            logger.info("ODL client on node {0} is up and running".
+                        format(node['host']))
+        elif status_code in expected_status_codes:
+            if status_code == HTTPCodes.UNAUTHORIZED:
+                logger.info('Unauthorized. If this triggers keyword '
+                            'timeout, verify username and password.')
+            raise HoneycombError('ODL client on node {0} running but '
+                                 'not yet ready.'.format(node['host']),
+                                 enable_logging=False)
+        else:
+            raise HoneycombError('Unexpected return code: {0}.'.
+                                 format(status_code))
+        return True
+
+    @staticmethod
+    def mount_honeycomb_on_odl(node):
+        """Tell ODL client to mount Honeycomb instance over netconf.
+
+        :param node: Honeycomb node.
+        :type node: dict
+        :raises HoneycombError: When the response is not code 200: OK.
+        """
+
+        path = HcUtil.read_path_from_url_file(
+            "odl_client/odl_netconf_connector")
+
+        url_file = "{0}/{1}".format(Const.RESOURCES_TPL_HC,
+                                    "odl_client/mount_honeycomb.xml")
+
+        with open(url_file) as template:
+            data = template.read()
+
+        status_code, _ = HTTPRequest.post(
+            node, path, headers={"Content-Type": "application/xml"},
+            payload=data, timeout=10, enable_logging=False)
+
+        if status_code == HTTPCodes.OK:
+            logger.info("ODL mount point configured successfully.")
+        elif status_code == HTTPCodes.CONFLICT:
+            logger.warn("ODL mount point was already configured.")
+        else:
+            raise HoneycombError('Mount point configuration not successful')

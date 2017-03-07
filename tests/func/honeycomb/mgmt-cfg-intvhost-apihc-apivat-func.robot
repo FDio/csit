@@ -26,9 +26,9 @@
 | Resource | resources/libraries/robot/default.robot
 | Resource | resources/libraries/robot/honeycomb/honeycomb.robot
 | Resource | resources/libraries/robot/honeycomb/vhost_user.robot
-| Force Tags | honeycomb_sanity
+| Force Tags | honeycomb_sanity | honeycomb_odl
 | Suite Teardown | Run Keyword If Any Tests Failed
-| ... | Restart Honeycomb And VPP And Clear Persisted Configuration | ${node}
+| ... | Restart Honeycomb and VPP | ${node}
 | Documentation | *Honeycomb vhost-user interface management test suite.*
 
 *** Test Cases ***

@@ -1544,7 +1544,7 @@ class InterfaceKeywords(object):
         """
 
         interface = intf.replace("/", "%2F")
-        path = "/interface/{0}/pbb-rewrite/".format(interface)
+        path = "/interface/{0}/pbb-rewrite".format(interface)
         status_code, resp = HcUtil. \
             put_honeycomb_data(node, "config_vpp_interfaces", params, path,
                                data_representation=DataRepresentation.JSON)

@@ -102,3 +102,43 @@ class HcPersistence(object):
         for command in commands:
             (_, stdout, _) = ssh.exec_command_sudo(command)
             logger.info(stdout)
+
+
+    @staticmethod
+    def configure_persistence(node, state):
+        """Enable or disable Honeycomb configuration data persistence.
+
+        :param node: Honeycomb node.
+        :param state: Enable or Disable.
+        :type node: dict
+        :type state: str
+        :raises ValueError: If the state argument is incorrect.
+        :raises HoneycombError: If the operation fails.
+        """
+
+        state = state.lower()
+        if state == "enable":
+            state = "true"
+        elif state == "disable":
+            state = "false"
+        else:
+            raise ValueError("Unexpected value of state argument:"
+                             " {0} provided. Must be enable or disable."
+                             .format(state))
+
+        for setting in ("persist-config", "persist-context"):
+            # find the setting, replace entire line with 'setting: state'
+            find = '\\"{setting}\\":'.format(setting=setting)
+            replace = '\\"{setting}\\": \\"{state}\\",'.format(
+                setting=setting, state=state)
+
+            argument = '"/{0}/c\\ {1}"'.format(find, replace)
+            path = "{0}/config/honeycomb.json".format(Const.REMOTE_HC_DIR)
+            command = "sed -i {0} {1}".format(argument, path)
+
+            ssh = SSH()
+            ssh.connect(node)
+            (ret_code, _, stderr) = ssh.exec_command_sudo(command)
+            if ret_code != 0:
+                raise HoneycombError("Failed to modify configuration on "
+                                     "node {0}, {1}".format(node, stderr))

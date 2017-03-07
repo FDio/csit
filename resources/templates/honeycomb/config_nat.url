@@ -1,1 +1,1 @@
-/restconf/config/ietf-nat:nat-config
+/restconf/config{odl_url_part}/ietf-nat:nat-config
