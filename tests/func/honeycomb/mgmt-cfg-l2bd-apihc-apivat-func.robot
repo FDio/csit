@@ -30,9 +30,9 @@
 | Resource | resources/libraries/robot/honeycomb/bridge_domain.robot
 | Suite Teardown | Run keywords
 | ... | Run Keyword If Any Tests Failed
-| ... | Restart Honeycomb And VPP And Clear Persisted Configuration | ${node}
+| ... | Restart Honeycomb and VPP | ${node}
 | ... | AND | Honeycomb removes all bridge domains | ${node} | @{interfaces}
-| Force Tags | honeycomb_sanity
+| Force Tags | honeycomb_sanity | honeycomb_odl
 | Documentation | *Honeycomb bridge domain management test suite.*
 
 *** Test Cases ***

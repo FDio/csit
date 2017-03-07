@@ -20,9 +20,9 @@
 | Variables | resources/test_data/honeycomb/sub_interfaces.py
 | Suite Teardown | Run keywords
 | ... | Run Keyword If Any Tests Failed
-| ... | Restart Honeycomb And VPP And Clear Persisted Configuration | ${node}
+| ... | Restart Honeycomb and VPP | ${node}
 | ... | AND | Honeycomb removes all bridge domains | ${node}
-| Force Tags | honeycomb_sanity
+| Force Tags | honeycomb_sanity | honeycomb_odl
 | Documentation | *Honeycomb sub-interface management test suite.*
 
 *** Variables ***

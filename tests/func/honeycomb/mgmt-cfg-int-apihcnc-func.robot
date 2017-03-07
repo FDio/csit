@@ -23,7 +23,7 @@
 | ... | REST API.*
 | Force Tags | honeycomb_sanity
 | Suite Teardown
-| ... | Restart Honeycomb And VPP And Clear Persisted Configuration | ${node}
+| ... | Restart Honeycomb and VPP | ${node}
 
 *** Variables ***
 | &{bd_settings}= | flood=${True} | forward=${True} | learn=${True}

@@ -1,1 +1,1 @@
-/restconf/operational/ietf-nat:nat-state
+/restconf/operational{odl_url_part}/ietf-nat:nat-state

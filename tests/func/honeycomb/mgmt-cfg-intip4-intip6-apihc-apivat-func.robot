@@ -39,10 +39,10 @@
 | Resource | resources/libraries/robot/honeycomb/honeycomb.robot
 | Resource | resources/libraries/robot/testing_path.robot
 | Resource | resources/libraries/robot/ipv6.robot
-| Force Tags | honeycomb_sanity
+| Force Tags | honeycomb_sanity | honeycomb_odl
 | Suite Setup | Vpp nodes ra suppress link layer | ${nodes}
 | Suite Teardown
-| | ... | Restart Honeycomb And VPP And Clear Persisted Configuration | ${node}
+| | ... | Restart Honeycomb and VPP | ${node}
 | Documentation | *Honeycomb interface management test suite.*
 
 *** Test Cases ***

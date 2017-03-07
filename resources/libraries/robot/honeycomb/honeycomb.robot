@@ -37,7 +37,7 @@
 | | ...
 | | [Arguments] | @{duts}
 | | Start honeycomb on DUTs | @{duts}
-| | Wait until keyword succeeds | 4min | 15sec
+| | Wait until keyword succeeds | 4min | 20sec
 | | ... | Check honeycomb startup state | @{duts}
 
 | Stop honeycomb service on DUTs
@@ -59,7 +59,7 @@
 | | ...
 | | [Arguments] | @{duts}
 | | Stop honeycomb on DUTs | @{duts}
-| | Wait until keyword succeeds | 30sec | 5sec
+| | Wait until keyword succeeds | 60sec | 10sec
 | | ... | Check honeycomb shutdown state | @{duts}
 
 | Clear persisted Honeycomb configuration
@@ -91,6 +91,21 @@
 | | Setup DUT | ${node}
 | | Setup Honeycomb service on DUTs | ${node}
 
+| Restart Honeycomb and VPP
+| | [Documentation] | Restarts Honeycomb service and wait until it starts up.
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - information about a DUT node. Type: dictionary
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Restart Honeycomb and VPP \| ${nodes['DUT1']} \|
+| | [Arguments] | ${node}
+| | Log | Performing clean restart of Honeycomb and VPP. | console=True
+| | Restart Honeycomb and VPP on DUTs | ${node}
+| | Wait until keyword succeeds | 4min | 20sec
+| | ... | Check honeycomb startup state | ${node}
+
 | Archive Honeycomb log file
 | | [Documentation] | Copy honeycomb.log file from Honeycomb node\
 | | ... | to test executor.
@@ -102,3 +117,17 @@
 | | ... | \| Archive Honeycomb log file \| ${nudes['DUT1']} \|
 | | [Arguments] | ${node}
 | | Archive Honeycomb log | ${node}
+
+| Find ODL client on node
+| | [Arguments] | ${node}
+| | ${odl_present}= | Find ODL Client | ${node}
+| | Return from keyword | ${odl_present}
+
+| Start ODL client on node
+| | [Arguments] | ${node}
+| | Start ODL client | ${node}
+| | Wait until keyword succeeds | 3min | 20sec
+| | ... | Check ODL startup state | ${node}
+| | Mount Honeycomb on ODL | ${node}
+| | Wait until keyword succeeds | 1min | 10sec
+| | ... | Check honeycomb startup state | ${node}
