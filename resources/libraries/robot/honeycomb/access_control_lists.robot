@@ -271,8 +271,8 @@
 | | ${data}= | InterfaceAPI.Get interface oper data | ${node} | ${interface}
 | | Should be equal
 | | ... | ${table_name}
-| | ... | ${data['v3po:acl']['ingress']['l2-acl']['classify-table']}
-| | ... | ${data['v3po:acl']['ingress']['ip4-acl']['classify-table']}
+| | ... | ${data['vpp-interface-acl:acl']['ingress']['l2-acl']['classify-table']}
+| | ... | ${data['vpp-interface-acl:acl']['ingress']['ip4-acl']['classify-table']}
 
 | Interface ACL settings from VAT should be
 | | [Documentation] | Retrieves ACL interface settings from VAT\
@@ -306,8 +306,9 @@
 | | ... | \| ${nodes['DUT1']} \| GigabithEthernet0/8/0 \|
 | | [Arguments] | ${node} | ${interface}
 | | ${data}= | InterfaceAPI.Get interface oper data | ${node} | ${interface}
-| | Run keyword and expect error | *KeyError: 'v3po:acl'
-| | ... | Set Variable | ${data['v3po:acl']['l2-acl']['classify-table']}
+| | Run keyword and expect error | *KeyError: 'vpp-interface-acl:acl'
+| | ... | Set Variable
+| | ... | ${data['vpp-interface-acl:acl']['l2-acl']['classify-table']}
 
 | Interface ACL settings from VAT should be empty
 | | [Documentation] | Retrieves ACL interface settings from VAT\
