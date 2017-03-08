@@ -13,6 +13,8 @@
 
 """Test variables for Honeycomb sub-interface test suite."""
 
+from copy import deepcopy
+
 # Sub-interface 1 and its settings:
 sub_if_1_settings = {
     "identifier": "1",
@@ -37,7 +39,7 @@ sub_if_1_tags = [
     }
 ]
 
-sub_if_1_match = "vlan-tagged-exact-match"
+sub_if_1_match = "vlan-tagged"
 
 # Expected operational data: sub-interface.
 sub_if_1_oper = {
@@ -285,3 +287,9 @@ ipv4_2 = {
     "address": "192.168.0.5",
     "netmask": "255.255.0.0",
     "prefix-length": 16}
+
+sub_if_2_settings = sub_if_1_settings
+sub_if_2_tags = sub_if_1_tags
+sub_if_2_match = "vlan-tagged-exact-match"
+sub_if_2_oper = deepcopy(sub_if_1_oper)
+sub_if_2_oper["match"]["vlan-tagged"]["match-exact-tags"] = True
