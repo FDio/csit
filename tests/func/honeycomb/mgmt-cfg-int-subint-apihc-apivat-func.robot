@@ -18,18 +18,18 @@
 | Resource | resources/libraries/robot/honeycomb/bridge_domain.robot
 | Resource | resources/libraries/robot/honeycomb/interfaces.robot
 | Variables | resources/test_data/honeycomb/sub_interfaces.py
-| Suite Teardown | Run keywords
-| ... | Run Keyword If Any Tests Failed
+| Suite Teardown
 | ... | Restart Honeycomb And VPP And Clear Persisted Configuration | ${node}
-| ... | AND | Honeycomb removes all bridge domains | ${node}
 | Force Tags | honeycomb_sanity
 | Documentation | *Honeycomb sub-interface management test suite.*
 
 *** Variables ***
 # Test interface 1 and its sub-interface parameters:
 | ${super_if}= | ${node['interfaces']['port1']['name']}
+| ${super_if2}= | ${node['interfaces']['port3']['name']}
 | ${sub_if_id}= | ${sub_if_1_settings['identifier']}
 | ${sub_if_name}= | ${super_if}.${sub_if_id}
+| ${sub_if2_name}= | ${super_if2}.${sub_if_id}
 
 *** Test Cases ***
 | TC01: Honycomb creates sub-interface
@@ -382,6 +382,23 @@
 | | And sub-interface ipv4 address from VAT should be
 | | ... | ${node} | ${sub_if_name}
 | | ... | ${ipv4_2['address']} | ${ipv4_2['prefix-length']}
+
+| TC18: Honeycomb modifies sub-interface exact tag match
+| | [Documentation] | Check if Honeycomb can modify a sub-interface with exact\
+| | ... | tag match.
+| | Given Honeycomb sets interface state | ${node} | ${super_if2} | down
+| | And sub-interface configuration from Honeycomb should be empty
+| | ... | ${node} | ${super_if2} | ${sub_if_id}
+| | And interface configuration from VAT should be empty
+| | ... | ${node} | ${sub_if2_name}
+| | When Honeycomb creates sub-interface | ${node} | ${super_if2}
+| | ... | ${sub_if_2_match} | ${sub_if_2_tags} | ${sub_if_2_settings}
+| | Then Sub-interface configuration from Honeycomb should be
+| | ... | ${node} | ${super_if2} | ${sub_if_id} | ${sub_if_2_oper}
+| | And Sub-interface configuration from VAT should be
+| | ... | ${node} | ${sub_if2_name} | ${sub_if_2_oper}
+| | And sub-interface indices from Honeycomb and VAT should correspond
+| | ... | ${node} | ${super_if2} | ${sub_if_id}
 
 *** Keywords ***
 | Set super and sub interfaces up
