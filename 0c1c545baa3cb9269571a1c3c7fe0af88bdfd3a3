@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a3291f1_ab9fa2b3",
+        "filename": "resources/libraries/robot/telemetry/span.robot",
+        "patchSetId": 12
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-03-09T13:09:05Z",
+      "side": 1,
+      "message": "not necessary",
+      "range": {
+        "startLine": 55,
+        "startChar": 59,
+        "endLine": 55,
+        "endChar": 61
+      },
+      "revId": "0c1c545baa3cb9269571a1c3c7fe0af88bdfd3a3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
