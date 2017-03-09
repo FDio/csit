@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a3291f1_abd44247",
+        "filename": "dpdk-tests/dpdk_scripts/cleanup_dpdk.sh",
+        "patchSetId": 9
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-03-09T14:22:14Z",
+      "side": 1,
+      "message": "Consider using DPDK_VERSION\u003d17.02",
+      "range": {
+        "startLine": 10,
+        "startChar": 13,
+        "endLine": 10,
+        "endChar": 18
+      },
+      "revId": "19185329c99664e014cce9312017871ee601b1e8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
