@@ -366,7 +366,7 @@
 | | ... | Honeycomb adds interface ipv6 address
 | | ... | ${node} | ${interface} | ${address} | ${prefix}
 
-| IPv6 address from Honeycomb should be
+| IPv6 address from Honeycomb should contain
 | | [Documentation] | Retrieves interface ipv6 address through Honeycomb\
 | | ... | and compares with state supplied in argument.
 | | ...
@@ -378,7 +378,7 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| IPv6 address from Honeycomb should be \| ${nodes['DUT1']} \
+| | ... | \| IPv6 address from Honeycomb should contain \| ${nodes['DUT1']} \
 | | ... | \| GigabitEthernet0/8/0 \| 10::10 \| 64 \|
 | | [Arguments] | ${node} | ${interface} | ${address} | ${prefix}
 | | ${api_data}= | interfaceAPI.Get interface oper data | ${node} | ${interface}
@@ -386,7 +386,7 @@
 | | ... | ip=${address} | prefix-length=${prefix}
 | | Should contain | ${api_data['ietf-ip:ipv6']['address']} | ${settings}
 
-| IPv6 address from VAT should be
+| IPv6 address from VAT should contain
 | | [Documentation] | Retrieves interface ipv6 address through VAT and\
 | | ... | compares with state supplied in argument.
 | | ...
@@ -398,7 +398,7 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| IPv6 address from VAT should be \| ${nodes['DUT1']} \
+| | ... | \| IPv6 address from VAT should contain \| ${nodes['DUT1']} \
 | | ... | \| GigabitEthernet0/8/0 \| 10::10 \| 64 \|
 | | [Arguments] | ${node} | ${interface} | ${address} | ${prefix}
 | | ${vpp_data}= | interfaceCLI.VPP get interface ip addresses

@@ -39,7 +39,7 @@
 | Resource | resources/libraries/robot/honeycomb/honeycomb.robot
 | Resource | resources/libraries/robot/testing_path.robot
 | Resource | resources/libraries/robot/ipv6.robot
-| Force Tags | honeycomb_sanity
+| Force Tags | honeycomb_sanity | honeycomb_test
 | Suite Setup | Vpp nodes ra suppress link layer | ${nodes}
 | Suite Teardown
 | | ... | Restart Honeycomb And VPP And Clear Persisted Configuration | ${node}
@@ -119,9 +119,9 @@
 | | ... | ${node} | ${interface}
 | | When Honeycomb sets interface ipv6 address
 | | ... | ${node} | ${interface} | @{ipv6_address}
-| | Then IPv6 address from Honeycomb should be
+| | Then IPv6 address from Honeycomb should contain
 | | ... | ${node} | ${interface} | @{ipv6_address}
-| | And IPv6 address from VAT should be
+| | And IPv6 address from VAT should contain
 | | ... | ${node} | ${interface} | @{ipv6_address}
 
 | TC07: Honeycomb modifies IPv6 neighbor table
@@ -178,9 +178,9 @@
 | | ... | ${node} | ${interface} | @{ipv4_address}
 | | And IPv4 address from VAT should be
 | | ... | ${node} | ${interface} | @{ipv4_address} | ${ipv4_mask}
-| | And IPv6 address from Honeycomb should be
+| | And IPv6 address from Honeycomb should contain
 | | ... | ${node} | ${interface} | @{ipv6_address}
-| | And IPv6 address from VAT should be
+| | And IPv6 address from VAT should contain
 | | ... | ${node} | ${interface} | @{ipv6_address}
 | | When Path for 2-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}

@@ -466,8 +466,8 @@
 | | ... | \| 192.168.0.2 \| ${24} \|
 | | ...
 | | [Arguments] | ${node} | ${super_if} | ${identifier} | ${address} | ${prefix}
-| | Add ipv4 address to sub_interface
-| | ... | ${node} | ${super_if} | ${identifier} | ${address} | ${prefix}
+| | Add ip address to sub_interface
+| | ... | ${node} | ${super_if} | ${identifier} | ${address} | ${prefix} | ipv4
 
 | Sub-interface ipv4 address from Honeycomb should be
 | | [Documentation] | Uses Honeycomb API to verify ipv4 address configuration\
@@ -509,10 +509,9 @@
 | | ... | \| ${nodes['DUT1']} \| GigabitEthernet0/8/0.1 \|
 | | ...
 | | [Arguments] | ${node} | ${sub_interface} | ${address} | ${prefix}
-| | ${data}= | VPP get interface ip addresses
+| | ${data}= | interfaceCLI.VPP get interface ip addresses
 | | ... | ${node} | ${sub_interface} | ipv4
 | | Should be equal | ${data[0]['ip']} | ${address}
-#TODO: update based on resolution of bug https://jira.fd.io/browse/VPP-132
 | | Should be equal | ${data[0]['prefix_length']} | ${prefix}
 
 | Honeycomb removes all sub-interface ipv4 addresses
@@ -529,8 +528,8 @@
 | | ... | \| ${nodes['DUT1']} \| GigabitEthernet0/8/0 \| ${1} \|
 | | ...
 | | [Arguments] | ${node} | ${super_if} | ${identifier}
-| | Remove all ipv4 addresses from sub_interface
-| | ... | ${node} | ${super_if} | ${identifier}
+| | Remove all ip addresses from sub_interface
+| | ... | ${node} | ${super_if} | ${identifier} | ipv4
 
 | Sub-interface ipv4 address from Honeycomb should be empty
 | | [Documentation] | Uses Honeycomb API to verify that ipv4 address\
@@ -566,4 +565,123 @@
 | | ...
 | | [Arguments] | ${node} | ${sub_interface}
 | | Run keyword and expect error | *No JSON object could be decoded*
-| | ... | VPP get interface ip addresses | ${node} | ${sub_interface} | ipv4
+| | ... | interfaceCLI.VPP get interface ip addresses
+| | ... | ${node} | ${sub_interface} | ipv4
+
+| Honeycomb sets sub-interface ipv6 address
+| | [Documentation] | Uses Honeycomb API to configure an ipv6 address on the\
+| | ... | spcified sub-interface. Replaces any existing ipv6 addresses.
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - Information about a DUT node. Type: dictionary
+| | ... | - super_if - Super-interface. Type: string
+| | ... | - identifier - Sub-interface ID. Type: integer or string
+| | ... | - address - IPv6 address to set. Type: string
+| | ... | - prefix - IPv6 network prefix length to set. Type: integer
+| | ...
+| | ... | *Example:*
+| | ... | \| | Honeycomb sets sub-interface ipv6 address\
+| | ... | \| ${nodes['DUT1']} \| GigabitEthernet0/8/0 \| ${1} \
+| | ... | \| 10::10 \| ${64} \|
+| | ...
+| | [Arguments] | ${node} | ${super_if} | ${identifier} | ${address} | ${prefix}
+| | Add ip address to sub_interface
+| | ... | ${node} | ${super_if} | ${identifier} | ${address} | ${prefix} | ipv6
+
+| Sub-interface IPv6 address from Honeycomb should contain
+| | [Documentation] | Uses Honeycomb API to verify ipv6 address configuration\
+| | ... | on the specified sub-interface.
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - Information about a DUT node. Type: dictionary
+| | ... | - super_if - Super-interface. Type: string
+| | ... | - identifier - Sub-interface ID. Type: integer or string
+| | ... | - address - IPv6 address to expect. Type: string
+| | ... | - prefix - IPv6 network prefix length to expect. Type: integer
+| | ...
+| | ... | *Example:*
+| | ... | \| sub-interface IPv6 address from Honeycomb should contain\
+| | ... | \| ${nodes['DUT1']} \| GigabitEthernet0/8/0 \| ${1} \
+| | ... | \| 10::10 \| ${64} \|
+| | ...
+| | [Arguments] | ${node} | ${super_if} | ${identifier} | ${address} | ${prefix}
+| | ${if_data}= | interfaceAPI.Get sub interface oper data
+| | ... | ${node} | ${super_if} | ${identifier}
+| | ${settings}= | Create Dictionary
+| | ... | ip=${address} | prefix-length=${prefix}
+| | Should contain | ${if_data['ipv6']['address']} | ${settings}
+
+| Sub-interface IPv6 address from VAT should contain
+| | [Documentation] | Uses VAT to verify ipv6 address configuration\
+| | ... | on the specified sub-interface.
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - Information about a DUT node. Type: dictionary
+| | ... | - sub_interface - Name of an sub-interface on the specified node.\
+| | ... | Type: string
+| | ... | - address - IPv6 address to expect. Type: string
+| | ... | - prefix - IPv6 network prefix length to expect. Type: integer
+| | ...
+| | ... | *Example:*
+| | ... | \| sub-interface IPv6 address from VAT should contain\
+| | ... | \| ${nodes['DUT1']} \| GigabitEthernet0/8/0.1 \|
+| | ...
+| | [Arguments] | ${node} | ${sub_interface} | ${address} | ${prefix}
+| | ${data}= | interfaceCLI.VPP get interface ip addresses
+| | ... | ${node} | ${sub_interface} | ipv6
+| | Should be equal | ${data[0]['ip']} | ${address}
+| | Should be equal | ${data[0]['prefix_length']} | ${prefix}
+
+| Honeycomb removes all sub-interface ipv6 addresses
+| | [Documentation] | Uses Honeycomb API to remove all configured ipv6\
+| | ... | addresses from the sub-interface.
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - Information about a DUT node. Type: dictionary
+| | ... | - super_if - Super-interface. Type: string
+| | ... | - identifier - Sub-interface ID. Type: integer or string
+| | ...
+| | ... | *Example:*
+| | ... | \| Honeycomb removes all sub-interface ipv6 addresses\
+| | ... | \| ${nodes['DUT1']} \| GigabitEthernet0/8/0 \| ${1} \|
+| | ...
+| | [Arguments] | ${node} | ${super_if} | ${identifier}
+| | Remove all ip addresses from sub_interface
+| | ... | ${node} | ${super_if} | ${identifier} | ipv6
+
+| Sub-interface ipv6 address from Honeycomb should be empty
+| | [Documentation] | Uses Honeycomb API to verify that ipv6 address\
+| | ... | configuration on the specified sub-interface is empty.
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - Information about a DUT node. Type: dictionary
+| | ... | - super_if - Super-interface. Type: string
+| | ... | - identifier - Sub-interface ID. Type: integer or string
+| | ...
+| | ... | *Example:*
+| | ... | \| sub-interface ipv6 address from Honeycomb should be empty\
+| | ... | \| ${nodes['DUT1']} \| GigabitEthernet0/8/0 \| ${1} \|
+| | ...
+| | [Arguments] | ${node} | ${super_if} | ${identifier}
+| | ${if_data}= | interfaceAPI.Get sub interface oper data
+| | ... | ${node} | ${super_if} | ${identifier}
+| | Run keyword and expect error | *KeyError: 'ipv6'*
+| | ... | Set Variable | ${if_data['ipv6']['address'][0]['ip']}
+
+| Sub-interface ipv6 address from VAT should be empty
+| | [Documentation] | Uses VAT to verify that ipv6 address\
+| | ... | configuration on the specified sub-interface is empty.
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - Information about a DUT node. Type: dictionary
+| | ... | - sub_interface - Name of an sub-interface on the specified node.\
+| | ... | Type: string
+| | ...
+| | ... | *Example:*
+| | ... | \| sub-interface ipv6 address from VAT should be empty\
+| | ... | \| ${nodes['DUT1']} \| GigabitEthernet0/8/0.1 \|
+| | ...
+| | [Arguments] | ${node} | ${sub_interface}
+| | Run keyword and expect error | *No JSON object could be decoded*
+| | ... | interfaceCLI.VPP get interface ip addresses
+| | ... | ${node} | ${sub_interface} | ipv6
