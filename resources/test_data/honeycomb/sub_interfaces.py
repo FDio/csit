@@ -293,3 +293,10 @@ sub_if_2_tags = sub_if_1_tags
 sub_if_2_match = "vlan-tagged-exact-match"
 sub_if_2_oper = deepcopy(sub_if_1_oper)
 sub_if_2_oper["match"]["vlan-tagged"]["match-exact-tags"] = True
+
+ipv6 = {
+    "address": "10::10",
+    "prefix-length": 24}
+ipv6_2 = {
+    "address": "10::11",
+    "prefix-length": 16}

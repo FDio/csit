@@ -1248,8 +1248,8 @@ class InterfaceKeywords(object):
                                  "information about the tag-rewrite.")
 
     @staticmethod
-    def add_ipv4_address_to_sub_interface(node, super_interface, identifier,
-                                          ip_addr, network):
+    def add_ip_address_to_sub_interface(node, super_interface, identifier,
+                                        ip_addr, network, ip_version):
         """Add an ipv4 address to the specified sub-interface, with the provided
         netmask or network prefix length. Any existing ipv4 addresses on the
         sub-interface will be replaced.
@@ -1259,11 +1259,13 @@ class InterfaceKeywords(object):
         :param identifier: The ID of sub-interface.
         :param ip_addr: IPv4 address to be set.
         :param network: Network mask or network prefix length.
+        :param ip_version: ipv4 or ipv6
         :type node: dict
         :type super_interface: str
         :type identifier: int
         :type ip_addr: str
         :type network: str or int
+        :type ip_version: string
         :returns: Content of response.
         :rtype: bytearray
         :raises HoneycombError: If the provided netmask or prefix is not valid.
@@ -1273,9 +1275,9 @@ class InterfaceKeywords(object):
                 ("interface", "name", super_interface),
                 "vpp-vlan:sub-interfaces",
                 ("sub-interface", "identifier", int(identifier)),
-                "ipv4")
+                ip_version.lower())
 
-        if isinstance(network, basestring):
+        if isinstance(network, basestring) and ip_version.lower() == "ipv4":
             address = {"address": [{"ip": ip_addr, "netmask": network}, ]}
 
         elif isinstance(network, int) and 0 < network < 33:
@@ -1289,16 +1291,18 @@ class InterfaceKeywords(object):
             node, super_interface, path, address)
 
     @staticmethod
-    def remove_all_ipv4_addresses_from_sub_interface(node, super_interface,
-                                                     identifier):
+    def remove_all_ip_addresses_from_sub_interface(node, super_interface,
+                                                   identifier, ip_version):
         """Remove all ipv4 addresses from the specified sub-interface.
 
         :param node: Honeycomb node.
         :param super_interface: Super interface.
         :param identifier: The ID of sub-interface.
+        :param ip_version: ipv4 or ipv6
         :type node: dict
         :type super_interface: str
         :type identifier: int
+        :type ip_version: string
         :returns: Content of response.
         :rtype: bytearray
         """
@@ -1307,7 +1311,7 @@ class InterfaceKeywords(object):
                 ("interface", "name", super_interface),
                 "vpp-vlan:sub-interfaces",
                 ("sub-interface", "identifier", int(identifier)),
-                "ipv4", "address")
+                str(ip_version), "address")
 
         return InterfaceKeywords._set_interface_properties(
             node, super_interface, path, None)

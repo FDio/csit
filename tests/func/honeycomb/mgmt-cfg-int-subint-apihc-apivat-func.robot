@@ -26,13 +26,11 @@
 *** Variables ***
 # Test interface 1 and its sub-interface parameters:
 | ${super_if}= | ${node['interfaces']['port1']['name']}
-| ${super_if2}= | ${node['interfaces']['port3']['name']}
 | ${sub_if_id}= | ${sub_if_1_settings['identifier']}
 | ${sub_if_name}= | ${super_if}.${sub_if_id}
-| ${sub_if2_name}= | ${super_if2}.${sub_if_id}
 
 *** Test Cases ***
-| TC01: Honycomb creates sub-interface
+| TC01: Honeycomb creates sub-interface
 | | [Documentation] | Check if Honeycomb creates a sub-interface.
 | | ...
 | | Given Honeycomb sets interface state | ${node} | ${super_if} | down
@@ -399,6 +397,65 @@
 | | ... | ${node} | ${sub_if2_name} | ${sub_if_2_oper}
 | | And sub-interface indices from Honeycomb and VAT should correspond
 | | ... | ${node} | ${super_if2} | ${sub_if_id}
+
+| TC19: Honeycomb configures sub-interface ipv6 address
+| | [Documentation] | Check if Honeycomb can configure an ipv6 address on the\
+| | ... | sub-interface.
+| | ...
+| | Given sub-interface ipv6 address from Honeycomb should be empty
+| | ... | ${node} | ${super_if} | ${sub_if_id}
+| | And sub-interface ipv6 address from VAT should be empty
+| | ... | ${node} | ${sub_if_name}
+| | When Honeycomb sets sub-interface ipv6 address
+| | ... | ${node} | ${super_if} | ${sub_if_id}
+| | ... | ${ipv6['address']} | ${ipv6['prefix-length']}
+| | Then sub-interface IPv6 address from Honeycomb should contain
+| | ... | ${node} | ${super_if} | ${sub_if_id}
+| | ... | ${ipv6['address']} | ${ipv6['prefix-length']}
+| | And sub-interface IPv6 address from VAT should contain
+| | ... | ${node} | ${sub_if_name}
+| | ... | ${ipv6['address']} | ${ipv6['prefix-length']}
+
+| TC20: Honeycomb removes sub-interface ipv6 address
+| | [Documentation] | Check if Honeycomb can remove configured ipv6 addresses\
+| | ... | from the sub-interface.
+| | ...
+| | Given sub-interface IPv6 address from Honeycomb should contain
+| | ... | ${node} | ${super_if} | ${sub_if_id}
+| | ... | ${ipv6['address']} | ${ipv6['prefix-length']}
+| | Run Keyword And Continue On Failure
+| | ... | And sub-interface IPv6 address from VAT should contain
+| | ... | ${node} | ${sub_if_name}
+| | ... | ${ipv6['address']} | ${ipv6['prefix-length']}
+| | When Honeycomb removes all sub-interface ipv6 addresses
+| | ... | ${node} | ${super_if} | ${sub_if_id}
+| | Then sub-interface ipv6 address from Honeycomb should be empty
+| | ... | ${node} | ${super_if} | ${sub_if_id}
+| | And sub-interface ipv6 address from VAT should be empty
+| | ... | ${node} | ${sub_if_name}
+
+| TC21: Honeycomb modifies existing sub-interface ipv6 address
+| | [Documentation] | Check if Honeycomb can modify an ipv6 address already\
+| | ... | configured on the sub-interface.
+| | [Teardown] | Honeycomb removes all sub-interface ipv6 addresses
+| | ... | ${node} | ${super_if} | ${sub_if_id}
+| | Given sub-interface ipv6 address from Honeycomb should be empty
+| | ... | ${node} | ${super_if} | ${sub_if_id}
+| | And sub-interface ipv6 address from VAT should be empty
+| | ... | ${node} | ${sub_if_name}
+| | When Honeycomb sets sub-interface ipv6 address
+| | ... | ${node} | ${super_if} | ${sub_if_id}
+| | ... | ${ipv6['address']} | ${ipv6['prefix-length']}
+| | And Honeycomb sets sub-interface ipv6 address
+| | ... | ${node} | ${super_if} | ${sub_if_id}
+| | ... | ${ipv6_2['address']} | ${ipv6_2['prefix-length']}
+| | Then sub-interface IPv6 address from Honeycomb should contain
+| | ... | ${node} | ${super_if} | ${sub_if_id}
+| | ... | ${ipv6_2['address']} | ${ipv6_2['prefix-length']}
+| | And sub-interface IPv6 address from VAT should contain
+| | ... | ${node} | ${sub_if_name}
+| | ... | ${ipv6_2['address']} | ${ipv6_2['prefix-length']}
+
 
 *** Keywords ***
 | Set super and sub interfaces up
