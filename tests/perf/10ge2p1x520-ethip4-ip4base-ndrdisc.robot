@@ -22,7 +22,7 @@
 | ... | WITH NAME | dut2_v4
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDRDISC
-| ... | NIC_Intel-X520-DA2 | ETH | IP4FWD | BASE
+| ... | NIC_Intel-X520-DA2 | ETH | IP4FWD | BASE | THIS
 | ...
 | Suite Setup | 3-node Performance Suite Setup with DUT's NIC model
 | ... | L3 | Intel-X520-DA2

@@ -393,6 +393,161 @@ class TrafficGenerator(object):
                                                     _p0, _p1, _async, _latency,
                                                     warmup_time),
                 timeout=int(duration)+60)
+
+        elif traffic_type in ["3-node-IPv4-SNAT-1u-1p"]:
+            (ret, stdout, stderr) = ssh.exec_command(
+                "sh -c '{0}/resources/tools/t-rex/t-rex-stateless.py "
+                "--duration={1} -r {2} -s {3} "
+                "--p{4}_src_start_ip 20.0.0.0 "
+                "--p{4}_src_end_ip 20.0.0.0 "
+                "--p{4}_dst_start_ip 12.0.0.2 "
+                "--p{5}_src_start_ip 12.0.0.2 "
+                "--p{5}_src_end_ip 12.0.0.2 "
+                "--p{5}_dst_start_ip 200.0.0.0 "
+                "--p{4}_src_start_udp_port 1024 "
+                "--p{4}_src_end_udp_port 1024 "
+                "--p{4}_dst_start_udp_port 1024 "
+                "--p{5}_src_start_udp_port 1024 "
+                "--p{5}_dst_start_udp_port 1028 "
+                "--p{5}_dst_end_udp_port 1028 "
+                "{6} {7} --warmup_time={8}'".format(Constants.REMOTE_FW_DIR,
+                                                    duration, rate, framesize,
+                                                    _p0, _p1, _async, _latency,
+                                                    warmup_time),
+                timeout=int(duration) + 60)
+
+        elif traffic_type in ["3-node-IPv4-SNAT-1u-15p"]:
+            (ret, stdout, stderr) = ssh.exec_command(
+                "sh -c '{0}/resources/tools/t-rex/t-rex-stateless.py "
+                "--duration={1} -r {2} -s {3} "
+                "--p{4}_src_start_ip 20.0.0.0 "
+                "--p{4}_src_end_ip 20.0.0.0 "
+                "--p{4}_dst_start_ip 12.0.0.2 "
+                "--p{5}_src_start_ip 12.0.0.2 "
+                "--p{5}_src_end_ip 12.0.0.2 "
+                "--p{5}_dst_start_ip 200.0.0.0 "
+                "--p{4}_src_start_udp_port 1024 "
+                "--p{4}_src_end_udp_port 1038 "
+                "--p{4}_dst_start_udp_port 1024 "
+                "--p{5}_src_start_udp_port 1024 "
+                "--p{5}_dst_start_udp_port 1024 "
+                "--p{5}_dst_end_udp_port 1038 "
+                "{6} {7} --warmup_time={8}'".format(Constants.REMOTE_FW_DIR,
+                                                    duration, rate, framesize,
+                                                    _p0, _p1, _async, _latency,
+                                                    warmup_time),
+                timeout=int(duration)+60)
+
+        elif traffic_type in ["3-node-IPv4-SNAT-10u-15p"]:
+            (ret, stdout, stderr) = ssh.exec_command(
+                "sh -c '{0}/resources/tools/t-rex/t-rex-stateless.py "
+                "--duration={1} -r {2} -s {3} "
+                "--p{4}_src_start_ip 20.0.0.0 "
+                "--p{4}_src_end_ip 20.0.0.9 "
+                "--p{4}_dst_start_ip 12.0.0.2 "
+                "--p{5}_src_start_ip 12.0.0.2 "
+                "--p{5}_src_end_ip 12.0.0.2 "
+                "--p{5}_dst_start_ip 200.0.0.0 "
+                "--p{4}_src_start_udp_port 1024 "
+                "--p{4}_src_end_udp_port 1038 "
+                "--p{4}_dst_start_udp_port 1024 "
+                "--p{5}_src_start_udp_port 1024 "
+                "--p{5}_dst_start_udp_port 1024 "
+                "--p{5}_dst_end_udp_port 1173 "
+                "{6} {7} --warmup_time={8}'".format(Constants.REMOTE_FW_DIR,
+                                                    duration, rate, framesize,
+                                                    _p0, _p1, _async, _latency,
+                                                    warmup_time),
+                timeout=int(duration)+60)
+
+        elif traffic_type in ["3-node-IPv4-SNAT-100u-15p"]:
+            (ret, stdout, stderr) = ssh.exec_command(
+                "sh -c '{0}/resources/tools/t-rex/t-rex-stateless.py "
+                "--duration={1} -r {2} -s {3} "
+                "--p{4}_src_start_ip 20.0.0.0 "
+                "--p{4}_src_end_ip 20.0.0.99 "
+                "--p{4}_dst_start_ip 12.0.0.2 "
+                "--p{5}_src_start_ip 12.0.0.2 "
+                "--p{5}_src_end_ip 12.0.0.2 "
+                "--p{5}_dst_start_ip 200.0.0.0 "
+                "--p{4}_src_start_udp_port 1024 "
+                "--p{4}_src_end_udp_port 1038 "
+                "--p{4}_dst_start_udp_port 1024 "
+                "--p{5}_src_start_udp_port 1024 "
+                "--p{5}_dst_start_udp_port 1024 "
+                "--p{5}_dst_end_udp_port 2523 "
+                "{6} {7} --warmup_time={8}'".format(Constants.REMOTE_FW_DIR,
+                                                    duration, rate, framesize,
+                                                    _p0, _p1, _async, _latency,
+                                                    warmup_time),
+                timeout=int(duration) + 60)
+
+        elif traffic_type in ["3-node-IPv4-SNAT-1000u-15p"]:
+            (ret, stdout, stderr) = ssh.exec_command(
+                "sh -c '{0}/resources/tools/t-rex/t-rex-stateless.py "
+                "--duration={1} -r {2} -s {3} "
+                "--p{4}_src_start_ip 20.0.0.0 "
+                "--p{4}_src_end_ip 20.0.3.231 "
+                "--p{4}_dst_start_ip 12.0.0.2 "
+                "--p{5}_src_start_ip 12.0.0.2 "
+                "--p{5}_src_end_ip 12.0.0.2 "
+                "--p{5}_dst_start_ip 200.0.0.0 "
+                "--p{4}_src_start_udp_port 1024 "
+                "--p{4}_src_end_udp_port 1038 "
+                "--p{4}_dst_start_udp_port 1024 "
+                "--p{5}_src_start_udp_port 1024 "
+                "--p{5}_dst_start_udp_port 1024 "
+                "--p{5}_dst_end_udp_port 16023 "
+                "{6} {7} --warmup_time={8}'".format(Constants.REMOTE_FW_DIR,
+                                                    duration, rate, framesize,
+                                                    _p0, _p1, _async, _latency,
+                                                    warmup_time),
+                timeout=int(duration)+60)
+
+        elif traffic_type in ["3-node-IPv4-SNAT-2000u-15p"]:
+            (ret, stdout, stderr) = ssh.exec_command(
+                "sh -c '{0}/resources/tools/t-rex/t-rex-stateless.py "
+                "--duration={1} -r {2} -s {3} "
+                "--p{4}_src_start_ip 20.0.0.0 "
+                "--p{4}_src_end_ip 20.0.7.207 "
+                "--p{4}_dst_start_ip 12.0.0.2 "
+                "--p{5}_src_start_ip 12.0.0.2 "
+                "--p{5}_src_end_ip 12.0.0.2 "
+                "--p{5}_dst_start_ip 200.0.0.0 "
+                "--p{4}_src_start_udp_port 1024 "
+                "--p{4}_src_end_udp_port 1038 "
+                "--p{4}_dst_start_udp_port 1024 "
+                "--p{5}_src_start_udp_port 1024 "
+                "--p{5}_dst_start_udp_port 1024 "
+                "--p{5}_dst_end_udp_port 31022 "
+                "{6} {7} --warmup_time={8}'".format(Constants.REMOTE_FW_DIR,
+                                                    duration, rate, framesize,
+                                                    _p0, _p1, _async, _latency,
+                                                    warmup_time),
+                timeout=int(duration)+60)
+
+        elif traffic_type in ["3-node-IPv4-SNAT-4000u-15p"]:
+            (ret, stdout, stderr) = ssh.exec_command(
+                "sh -c '{0}/resources/tools/t-rex/t-rex-stateless.py "
+                "--duration={1} -r {2} -s {3} "
+                "--p{4}_src_start_ip 20.0.0.0 "
+                "--p{4}_src_end_ip 20.0.15.159 "
+                "--p{4}_dst_start_ip 12.0.0.2 "
+                "--p{5}_src_start_ip 12.0.0.2 "
+                "--p{5}_src_end_ip 12.0.0.2 "
+                "--p{5}_dst_start_ip 200.0.0.0 "
+                "--p{4}_src_start_udp_port 1024 "
+                "--p{4}_src_end_udp_port 1038 "
+                "--p{4}_dst_start_udp_port 1024 "
+                "--p{5}_src_start_udp_port 1024 "
+                "--p{5}_dst_start_udp_port 1024 "
+                "--p{5}_dst_end_udp_port 61022 "
+                "{6} {7} --warmup_time={8}'".format(Constants.REMOTE_FW_DIR,
+                                                    duration, rate, framesize,
+                                                    _p0, _p1, _async, _latency,
+                                                    warmup_time),
+                timeout=int(duration)+60)
+
         elif traffic_type in ["3-node-IPv4-dst-10000"]:
             (ret, stdout, stderr) = ssh.exec_command(
                 "sh -c '{0}/resources/tools/t-rex/t-rex-stateless.py "
