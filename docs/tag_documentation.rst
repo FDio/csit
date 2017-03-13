@@ -289,6 +289,10 @@ Feature tags
 
     COP whitelist.
 
+.. topic:: SNAT
+
+    SNAT configured and tested.
+
 
 Encryption tags
 ---------------
