@@ -90,7 +90,7 @@ class DUTSetup(object):
         (ret_code, stdout, stderr) = \
             ssh.exec_command('sudo -Sn bash {0}/{1}/dut_setup.sh'.
                              format(Constants.REMOTE_FW_DIR,
-                                    Constants.RESOURCES_LIB_SH), timeout=120)
+                                    Constants.RESOURCES_LIB_SH), timeout=240)
         logger.trace(stdout)
         logger.trace(stderr)
         if int(ret_code) != 0:
