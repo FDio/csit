@@ -113,7 +113,7 @@ class SSH(object):
         logger.debug('Reconnecting peer done: {}'.
                      format(self._ssh.get_transport().getpeername()))
 
-    def exec_command(self, cmd, timeout=10):
+    def exec_command(self, cmd, timeout=60):
         """Execute SSH command on a new channel on the connected Node.
 
         :param cmd: Command to run on the Node.
@@ -129,13 +129,13 @@ class SSH(object):
         stdout = StringIO.StringIO()
         stderr = StringIO.StringIO()
         try:
-            chan = self._ssh.get_transport().open_session(timeout=5)
+            chan = self._ssh.get_transport().open_session(timeout=50)
         except AttributeError:
             self._reconnect()
-            chan = self._ssh.get_transport().open_session(timeout=5)
+            chan = self._ssh.get_transport().open_session(timeout=50)
         except SSHException:
             self._reconnect()
-            chan = self._ssh.get_transport().open_session(timeout=5)
+            chan = self._ssh.get_transport().open_session(timeout=50)
         chan.settimeout(timeout)
         logger.trace('exec_command on {0}: {1}'
                      .format(self._ssh.get_transport().getpeername(), cmd))
@@ -176,7 +176,7 @@ class SSH(object):
         logger.trace('return STDERR {}'.format(stderr.getvalue()))
         return return_code, stdout.getvalue(), stderr.getvalue()
 
-    def exec_command_sudo(self, cmd, cmd_input=None, timeout=30):
+    def exec_command_sudo(self, cmd, cmd_input=None, timeout=60):
         """Execute SSH command with sudo on a new channel on the connected Node.
 
         :param cmd: Command to be executed.
@@ -200,7 +200,7 @@ class SSH(object):
             command = 'sudo -S {c} <<< "{i}"'.format(c=cmd, i=cmd_input)
         return self.exec_command(command, timeout)
 
-    def interactive_terminal_open(self, time_out=30):
+    def interactive_terminal_open(self, time_out=60):
         """Open interactive terminal on a new channel on the connected Node.
 
         :param time_out: Timeout in seconds.
@@ -285,7 +285,7 @@ class SSH(object):
         logger.trace('SCP {0} to {1}:{2}'.format(
             local_path, self._ssh.get_transport().getpeername(), remote_path))
         # SCPCLient takes a paramiko transport as its only argument
-        scp = SCPClient(self._ssh.get_transport())
+        scp = SCPClient(self._ssh.get_transport(), socket_timeout=60)
         start = time()
         scp.put(local_path, remote_path)
         scp.close()

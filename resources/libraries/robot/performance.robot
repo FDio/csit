@@ -1980,6 +1980,7 @@
 | | [Documentation] | Common test setup for performance tests.
 | | ...
 | | Setup all DUTs before test
+| | Setup all TGs before traffic script
 | | Reset VAT History On All DUTs | ${nodes}
 
 | Performance test teardown
