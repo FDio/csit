@@ -20,6 +20,7 @@
 | Library | resources.libraries.python.DUTSetup
 | Library | resources.libraries.python.SchedUtils
 | Library | resources.libraries.python.TGSetup
+| Library | resources.libraries.python.L2Util
 | Library | resources/libraries/python/VppConfigGenerator.py
 | Library | resources/libraries/python/VppCounters.py
 | Library | Collections
@@ -63,6 +64,13 @@
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | Vpp Show Vhost | ${nodes['${dut}']}
+
+| Show Bridge Domain Data On All DUTs
+| | [Documentation] | Show Bridge Domain data on all DUTs.
+| | ...
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | Vpp Get Bridge Domain Data | ${nodes['${dut}']}
 
 | Setup Scheduler Policy for Vpp On All DUTs
 | | [Documentation] | Set realtime scheduling policy (SCHED_RR) with priority 1
