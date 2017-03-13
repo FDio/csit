@@ -172,12 +172,13 @@ def create_streams_v46(base_pkt_a, base_pkt_b, vm1, vm2, frame_size):
 
     return (stream1, stream2, lat_stream1, lat_stream2)
 
+
 def create_streams(traffic_options, frame_size=64):
     """Create two IP packets to be used in stream.
 
     :param traffic_options: Parameters for packets.
     :param frame_size: Size of L2 frame.
-    :type traffic_options: list
+    :type traffic_options: dict
     :type frame_size: int
     :return: Packet instances.
     :rtype: Tuple of STLPktBuilder
@@ -197,13 +198,62 @@ def create_streams(traffic_options, frame_size=64):
     p1_dst_end_ip = traffic_options['p1_dst_end_ip']
     p2_dst_end_ip = traffic_options['p2_dst_end_ip']
 
-    base_pkt_a = Ether()/IP(src=p1_src_start_ip, dst=p1_dst_start_ip, proto=61)
-    base_pkt_b = Ether()/IP(src=p2_src_start_ip, dst=p2_dst_start_ip, proto=61)
+    p1_src_udp_port = traffic_options['p1_src_udp_port']
+    p1_dst_udp_port = traffic_options['p1_dst_udp_port']
+    p2_src_udp_port = traffic_options['p2_src_udp_port']
+    p2_dst_udp_port = traffic_options['p2_dst_udp_port']
+
+    nr_of_ports = traffic_options['ports_nr']
+
+    if (p1_src_udp_port is None) or (p1_dst_udp_port is None) or \
+            (p2_src_udp_port is None) or (p2_dst_udp_port is None):
+        base_pkt_a = Ether()/IP(src=p1_src_start_ip, dst=p1_dst_start_ip,
+                                proto=61)
+        base_pkt_b = Ether()/IP(src=p2_src_start_ip, dst=p2_dst_start_ip,
+                                proto=61)
+    else:
+        base_pkt_a = (Ether() /
+                      IP(src=p1_src_start_ip, dst=p1_dst_start_ip, proto=17) /
+                      UDP(sport=int(p1_src_udp_port),
+                          dport=int(p1_dst_udp_port)))
+        base_pkt_b = (Ether() /
+                      IP(src=p2_src_start_ip, dst=p2_dst_start_ip, proto=17) /
+                      UDP(sport=int(p2_src_udp_port),
+                          dport=int(p2_dst_udp_port)))
 
     # The following code applies raw instructions to packet (IP src/dst
     # increment). It splits the generated traffic by "ip_src"/"ip_dst" variable
     # to cores and fix IPv4 header checksum.
-    if p1_dst_end_ip and p2_dst_end_ip:
+    if nr_of_ports > 1:
+        vm1 = STLScVmRaw([
+            # define tuple gen
+            STLVmTupleGen(ip_min=p1_src_start_ip,
+                          ip_max=p1_src_end_ip,
+                          port_min=p1_src_udp_port,
+                          port_max=p1_src_udp_port + nr_of_ports - 1,
+                          name="tuple"),
+            # write ip to packet IP.src
+            STLVmWrFlowVar(fv_name="tuple.ip", pkt_offset="IP.src"),
+            # fix checksum
+            STLVmFixIpv4(offset="IP"),
+            # write udp.port
+            STLVmWrFlowVar(fv_name="tuple.port", pkt_offset="UDP.sport")
+        ])
+        vm2 = STLScVmRaw([
+            # define tuple gen
+            STLVmTupleGen(ip_min=p2_dst_start_ip,
+                          ip_max=p2_dst_start_ip,
+                          port_min=p2_dst_udp_port,
+                          port_max=p2_dst_udp_port + nr_of_ports * 10 - 1,
+                          name="tuple"),
+            # write ip to packet IP.src
+            STLVmWrFlowVar(fv_name="tuple.ip", pkt_offset="IP.dst"),
+            # fix checksum
+            STLVmFixIpv4(offset="IP"),
+            # write udp.port
+            STLVmWrFlowVar(fv_name="tuple.port", pkt_offset="UDP.dport")
+        ])
+    elif p1_dst_end_ip and p2_dst_end_ip:
         vm1 = STLScVmRaw([STLVmFlowVar(name="dst",
                                        min_value=p1_dst_start_ip,
                                        max_value=p1_dst_end_ip,
@@ -534,6 +584,12 @@ def parse_args():
     parser.add_argument("--p1_dst_end_ip",
                         default=False,
                         help="Port 1 destination end IP address")
+    parser.add_argument("--p1_src_udp_port",
+                        default=None,
+                        help="Port 1 source UDP port.")
+    parser.add_argument("--p1_dst_udp_port",
+                        default=None,
+                        help="Port 1 destination UDP port.")
 #    parser.add_argument("--p2_src_mac",
 #                        help="Port 2 source MAC address")
 #    parser.add_argument("--p2_dst_mac",
@@ -548,6 +604,15 @@ def parse_args():
     parser.add_argument("--p2_dst_end_ip",
                         default=False,
                         help="Port 2 destination end IP address")
+    parser.add_argument("--p2_src_udp_port",
+                        default=None,
+                        help="Port 2 source UDP port.")
+    parser.add_argument("--p2_dst_udp_port",
+                        default=None,
+                        help="Port 2 destination UDP port.")
+    parser.add_argument("--ports_nr",
+                        default=1,
+                        help="Number of UDP ports per user.")
 
     return parser.parse_args()
 
