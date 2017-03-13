@@ -65,7 +65,7 @@ ip6 {{
   hash-buckets 2000000
   heap-size 3G
 }}
-
+{snatconfig}
 """
 # End VPP configuration template.
 
@@ -81,22 +81,21 @@ class VppConfigGenerator(object):
 
         :param node: DUT node
         :type node: dict
-        :return: nothing
+        :returns: nothing
         """
         for port in node['interfaces'].keys():
             pci_addr = Topology.get_interface_pci_addr(node, port)
             if pci_addr:
                 self.add_pci_device(node, pci_addr)
 
-
     def add_pci_device(self, node, *pci_devices):
         """Add PCI device configuration for node.
 
         :param node: DUT node.
-        :param pci_device: PCI devices (format 0000:00:00.0 or 00:00.0)
+        :param pci_devices: PCI devices (format 0000:00:00.0 or 00:00.0)
         :type node: dict
         :type pci_devices: tuple
-        :return: nothing
+        :returns: nothing
         """
         if node['type'] != NodeType.DUT:
             raise ValueError('Node type is not a DUT')
@@ -127,7 +126,7 @@ class VppConfigGenerator(object):
         :param cpu_config: CPU configuration option, as a string.
         :type node: dict
         :type cpu_config: str
-        :return: nothing
+        :returns: nothing
         """
         if node['type'] != NodeType.DUT:
             raise ValueError('Node type is not a DUT')
@@ -148,7 +147,7 @@ class VppConfigGenerator(object):
         as a string.
         :type node: dict
         :type socketmem_config: str
-        :return: nothing
+        :returns: nothing
         """
         if node['type'] != NodeType.DUT:
             raise ValueError('Node type is not a DUT')
@@ -166,7 +165,7 @@ class VppConfigGenerator(object):
         :param heapsize_config: Heap Size configuration, as a string.
         :type node: dict
         :type heapsize_config: str
-        :return: nothing
+        :returns: nothing
         """
         if node['type'] != NodeType.DUT:
             raise ValueError('Node type is not a DUT')
@@ -184,63 +183,80 @@ class VppConfigGenerator(object):
         :param rxqueues_config: Rxqueues configuration, as a string.
         :type node: dict
         :type rxqueues_config: str
-        :return: nothing
+        :returns: nothing
         """
         if node['type'] != NodeType.DUT:
             raise ValueError('Node type is not a DUT')
         hostname = Topology.get_node_hostname(node)
-        if not hostname in self._nodeconfig:
+        if hostname not in self._nodeconfig:
             self._nodeconfig[hostname] = {}
-        if not 'rxqueues_config' in self._nodeconfig[hostname]:
+        if 'rxqueues_config' not in self._nodeconfig[hostname]:
             self._nodeconfig[hostname]['rxqueues_config'] = []
         self._nodeconfig[hostname]['rxqueues_config'].append(rxqueues_config)
-        logger.debug('Setting hostname {} rxqueues config to {}'.\
-            format(hostname, rxqueues_config))
+        logger.debug('Setting hostname {} rxqueues config to {}'.
+                     format(hostname, rxqueues_config))
 
     def add_no_multi_seg_config(self, node):
         """Add No Multi Seg configuration for node.
 
         :param node: DUT node.
         :type node: dict
-        :return: nothing
+        :returns: nothing
         """
         if node['type'] != NodeType.DUT:
             raise ValueError('Node type is not a DUT')
         hostname = Topology.get_node_hostname(node)
-        if not hostname in self._nodeconfig:
+        if hostname not in self._nodeconfig:
             self._nodeconfig[hostname] = {}
-        if not 'no_multi_seg_config' in self._nodeconfig[hostname]:
+        if 'no_multi_seg_config' not in self._nodeconfig[hostname]:
             self._nodeconfig[hostname]['no_multi_seg_config'] = []
-        self._nodeconfig[hostname]['no_multi_seg_config'].append(
-            "no-multi-seg")
-        logger.debug('Setting hostname {} config with {}'.\
-            format(hostname, "no-multi-seg"))
+        self._nodeconfig[hostname]['no_multi_seg_config'].append("no-multi-seg")
+        logger.debug('Setting hostname {} config with {}'.
+                     format(hostname, "no-multi-seg"))
 
     def add_enable_vhost_user_config(self, node):
         """Add enable-vhost-user configuration for node.
 
         :param node: DUT node.
         :type node: dict
-        :return: nothing
+        :returns: nothing
         """
         if node['type'] != NodeType.DUT:
             raise ValueError('Node type is not a DUT')
         hostname = Topology.get_node_hostname(node)
-        if not hostname in self._nodeconfig:
+        if hostname not in self._nodeconfig:
             self._nodeconfig[hostname] = {}
-        if not 'enable_vhost_user' in self._nodeconfig[hostname]:
+        if 'enable_vhost_user' not in self._nodeconfig[hostname]:
             self._nodeconfig[hostname]['enable_vhost_user'] = []
-        self._nodeconfig[hostname]['enable_vhost_user'].append(
-            "enable-vhost-user")
-        logger.debug('Setting hostname {} config with {}'.\
-            format(hostname, "enable-vhost-user"))
+        self._nodeconfig[hostname]['enable_vhost_user'].\
+            append("enable-vhost-user")
+        logger.debug('Setting hostname {} config with {}'.
+                     format(hostname, "enable-vhost-user"))
+
+    def add_snat_config(self, node):
+        """Add SNAT configuration for the node.
+
+        :param node: DUT node.
+        :type node: dict
+        :returns: nothing
+        """
+        if node['type'] != NodeType.DUT:
+            raise ValueError('Node type is not a DUT')
+        hostname = Topology.get_node_hostname(node)
+        if hostname not in self._nodeconfig:
+            self._nodeconfig[hostname] = {}
+        if 'snat_config' not in self._nodeconfig[hostname]:
+            self._nodeconfig[hostname]['snat_config'] = []
+        self._nodeconfig[hostname]['snat_config'].append("deterministic")
+        logger.debug('Setting hostname {} config with {}'.
+                     format(hostname, "SNAT"))
 
     def remove_all_pci_devices(self, node):
         """Remove PCI device configuration from node.
 
         :param node: DUT node.
         :type node: dict
-        :return: nothing
+        :returns: nothing
         """
         if node['type'] != NodeType.DUT:
             raise ValueError('Node type is not a DUT')
@@ -255,7 +271,7 @@ class VppConfigGenerator(object):
 
         :param node: DUT node.
         :type node: dict
-        :return: nothing
+        :returns: nothing
         """
         if node['type'] != NodeType.DUT:
             raise ValueError('Node type is not a DUT')
@@ -270,7 +286,7 @@ class VppConfigGenerator(object):
 
         :param node: DUT node.
         :type node: dict
-        :return: nothing
+        :returns: nothing
         """
         if node['type'] != NodeType.DUT:
             raise ValueError('Node type is not a DUT')
@@ -285,7 +301,7 @@ class VppConfigGenerator(object):
 
         :param node: DUT node.
         :type node: dict
-        :return: nothing
+        :returns: nothing
         """
         if node['type'] != NodeType.DUT:
             raise ValueError('Node type is not a DUT')
@@ -300,45 +316,59 @@ class VppConfigGenerator(object):
 
         :param node: DUT node.
         :type node: dict
-        :return: nothing
+        :returns: nothing
         """
         if node['type'] != NodeType.DUT:
             raise ValueError('Node type is not a DUT')
         hostname = Topology.get_node_hostname(node)
         if hostname in self._nodeconfig:
             self._nodeconfig[hostname]['rxqueues_config'] = []
-        logger.debug('Clearing rxqueues config for hostname {}.'.\
-            format(hostname))
+        logger.debug('Clearing rxqueues config for hostname {}.'.
+                     format(hostname))
 
     def remove_no_multi_seg_config(self, node):
         """Remove No Multi Seg configuration from node.
 
         :param node: DUT node.
         :type node: dict
-        :return: nothing
+        :returns: nothing
         """
         if node['type'] != NodeType.DUT:
             raise ValueError('Node type is not a DUT')
         hostname = Topology.get_node_hostname(node)
         if hostname in self._nodeconfig:
             self._nodeconfig[hostname]['no_multi_seg_config'] = []
-        logger.debug('Clearing No Multi Seg config for hostname {}.'.\
-            format(hostname))
+        logger.debug('Clearing No Multi Seg config for hostname {}.'.
+                     format(hostname))
 
     def remove_enable_vhost_user_config(self, node):
         """Remove enable-vhost-user configuration from node.
 
         :param node: DUT node.
         :type node: dict
-        :return: nothing
+        :returns: nothing
         """
         if node['type'] != NodeType.DUT:
             raise ValueError('Node type is not a DUT')
         hostname = Topology.get_node_hostname(node)
         if hostname in self._nodeconfig:
             self._nodeconfig[hostname]['enable_vhost_user'] = []
-        logger.debug('Clearing enable-vhost-user config for hostname {}.'.\
-            format(hostname))
+        logger.debug('Clearing enable-vhost-user config for hostname {}.'.
+                     format(hostname))
+
+    def remove_snat_config(self, node):
+        """Remove SNAT configuration for the node.
+
+        :param node: DUT node.
+        :type node: dict
+        :returns: nothing
+        """
+        if node['type'] != NodeType.DUT:
+            raise ValueError('Node type is not a DUT')
+        hostname = Topology.get_node_hostname(node)
+        if hostname in self._nodeconfig:
+            self._nodeconfig[hostname]['snat_config'] = []
+        logger.debug('Clearing SNAT config for hostname {}.'.format(hostname))
 
     def apply_config(self, node, waittime=5, retries=12):
         """Generate and apply VPP configuration for node.
@@ -352,6 +382,8 @@ class VppConfigGenerator(object):
         :type node: dict
         :type waittime: int
         :type retries: int
+        :raises RuntimeError: If writing config file failed, or restarting of
+        VPP failed.
         """
 
         if node['type'] != NodeType.DUT:
@@ -366,6 +398,7 @@ class VppConfigGenerator(object):
         txqueuesconfig = ""
         nomultiseg = ""
         enablevhostuser = ""
+        snatconfig = ""
 
         if hostname in self._nodeconfig:
             cfg = self._nodeconfig[hostname]
@@ -391,6 +424,11 @@ class VppConfigGenerator(object):
             if 'enable_vhost_user' in cfg:
                 enablevhostuser = "  " + "\n  ".join(cfg['enable_vhost_user'])
 
+            if 'snat_config' in cfg:
+                snatconfig = "snat\n{"
+                snatconfig += "  " + "\n  ".join(cfg['snat_config'])
+                snatconfig += "\n}"
+
         vppconfig = VPP_CONFIG_TEMPLATE.format(cpuconfig=cpuconfig,
                                                pciconfig=pciconfig,
                                                socketmemconfig=socketmemconfig,
@@ -398,7 +436,8 @@ class VppConfigGenerator(object):
                                                rxqueuesconfig=rxqueuesconfig,
                                                txqueuesconfig=txqueuesconfig,
                                                nomultiseg=nomultiseg,
-                                               enablevhostuser=enablevhostuser)
+                                               enablevhostuser=enablevhostuser,
+                                               snatconfig=snatconfig)
 
         logger.debug('Writing VPP config to host {}: "{}"'.format(hostname,
                                                                   vppconfig))
@@ -455,7 +494,6 @@ class VppConfigGenerator(object):
             (ret, stdout, stderr) = \
                 ssh.exec_command('echo show hardware-interfaces | '
                                  'nc 0 5002')
-
             if ret == 0:
                 vpp_is_running = True
             else:
