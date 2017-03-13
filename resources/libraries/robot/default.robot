@@ -236,6 +236,13 @@
 | | :FOR | ${dut} | IN | @{duts}
 | | | Add Enable Vhost User Config | ${nodes['${dut}']}
 
+| Add SNAT to all DUTs
+| | [Documentation] | Add SNAT configuration to all DUTs.
+| | ...
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | Add SNAT Config | ${nodes['${dut}']}
+
 | Remove startup configuration of VPP from all DUTs
 | | [Documentation] | Remove VPP startup configuration from all DUTs.
 | | ...
@@ -248,6 +255,7 @@
 | | | Remove Rxqueues Config | ${nodes['${dut}']}
 | | | Remove No Multi Seg Config | ${nodes['${dut}']}
 | | | Remove Enable Vhost User Config | ${nodes['${dut}']}
+| | | Remove SNAT Config | ${nodes['${dut}']}
 
 | Setup default startup configuration of VPP on all DUTs
 | | [Documentation] | Setup default startup configuration of VPP to all DUTs.
