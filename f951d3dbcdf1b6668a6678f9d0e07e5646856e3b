@@ -16,6 +16,24 @@
       "revId": "f951d3dbcdf1b6668a6678f9d0e07e5646856e3b",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_154c8b6f",
+        "filename": "resources/test_data/honeycomb/routing.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-03-13T13:03:47Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a3291f1_5a6ec230",
+      "revId": "f951d3dbcdf1b6668a6678f9d0e07e5646856e3b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
