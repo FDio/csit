@@ -285,7 +285,7 @@ class SSH(object):
         logger.trace('SCP {0} to {1}:{2}'.format(
             local_path, self._ssh.get_transport().getpeername(), remote_path))
         # SCPCLient takes a paramiko transport as its only argument
-        scp = SCPClient(self._ssh.get_transport())
+        scp = SCPClient(self._ssh.get_transport(), socket_timeout=30)
         start = time()
         scp.put(local_path, remote_path)
         scp.close()
