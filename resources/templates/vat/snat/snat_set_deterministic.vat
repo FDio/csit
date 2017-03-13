@@ -1,0 +1,1 @@
+exec snat deterministic add in {ip_in}/{range_in} out {ip_out}/{range_out}
