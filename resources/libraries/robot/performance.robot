@@ -2242,6 +2242,43 @@
 | | dut1_v4.set_arp | ${dut1_if2} | ${dut2_dut1_ip4_address} | ${dut2_if1_mac}
 | | dut2_v4.set_arp | ${dut2_if1} | ${dut1_dut2_ip4_address} | ${dut1_if2_mac}
 
+| SNAT is initialized in a 3-node circular topology for performance test
+| | [Documentation] | Initialization of 3-node topology with SNAT between DUTs:
+| | ... | - set interfaces up
+| | ... | - set IP addresses
+| | ... | - set ARP
+| | ... | - create routes
+| | ... | - set SNAT - only on DUT1
+| | ...
+| | Set Interface State | ${dut1} | ${dut1_if1} | up
+| | Set Interface State | ${dut1} | ${dut1_if2} | up
+| | Set Interface State | ${dut2} | ${dut2_if1} | up
+| | Set Interface State | ${dut2} | ${dut2_if2} | up
+| | All Vpp Interfaces Ready Wait | ${nodes}
+| | ...
+| | IP addresses are set on interfaces | ${dut1} | ${dut1_if1} | 10.0.0.1 | 20
+| | IP addresses are set on interfaces | ${dut1} | ${dut1_if2} | 11.0.0.1 | 20
+| | IP addresses are set on interfaces | ${dut2} | ${dut2_if1} | 11.0.0.2 | 20
+| | IP addresses are set on interfaces | ${dut2} | ${dut2_if2} | 12.0.0.1 | 20
+| | ...
+| | ${tg_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
+| | ${tg_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
+| | ${dut1_if2_mac}= | Get Interface MAC | ${dut1} | ${dut1_if2}
+| | ${dut2_if1_mac}= | Get Interface MAC | ${dut2} | ${dut2_if1}
+| | ...
+| | Add arp on dut | ${dut1} | ${dut1_if1} | 10.0.0.2 | ${tg_if1_mac}
+| | Add arp on dut | ${dut1} | ${dut1_if2} | 11.0.0.2 | ${dut2_if1_mac}
+| | Add arp on dut | ${dut2} | ${dut2_if1} | 11.0.0.1 | ${dut1_if2_mac}
+| | Add arp on dut | ${dut2} | ${dut2_if2} | 12.0.0.2 | ${tg_if2_mac}
+| | ...
+| | Vpp Route Add | ${dut1} | 12.0.0.2 | 24 | 11.0.0.2 | ${dut1_if2}
+| | Vpp Route Add | ${dut1} | 20.0.0.0 | 20 | 10.0.0.2 | ${dut1_if1}
+| | Vpp Route Add | ${dut2} | 12.0.0.0 | 20 | 12.0.0.2 | ${dut2_if2}
+| | Vpp Route Add | ${dut2} | 200.0.0.0 | 24 | 11.0.0.1 | ${dut2_if1}
+| | ...
+| | Set inside and outside interfaces | ${dut1} | ${dut1_if1} | ${dut1_if2}
+| | Set deterministic mode for SNAT | ${dut1} | 20.0.0.0 | 18 | 200.0.0.0 | 30
+
 | DPDK 2-node Performance Suite Setup with DUT's NIC model
 | | [Documentation]
 | | ... | Updates interfaces on all nodes and setup global
