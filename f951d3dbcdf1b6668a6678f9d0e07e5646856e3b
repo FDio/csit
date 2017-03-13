@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a3291f1_5a6ec230",
+        "filename": "resources/test_data/honeycomb/routing.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-03-13T10:21:30Z",
+      "side": 1,
+      "message": "Add copyright",
+      "revId": "f951d3dbcdf1b6668a6678f9d0e07e5646856e3b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
