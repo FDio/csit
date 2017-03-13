@@ -705,6 +705,48 @@
 | | Interface is added to bridge domain | ${dut2} | ${vhost_if2} | ${bd_id2}
 | | All Vpp Interfaces Ready Wait | ${nodes}
 
+| L2 bridge domains with Vhost-User for '${nr}' VMs initialized in a 3-node circular topology
+| | [Documentation]
+| | ... | Create pairs of Vhost-User interfaces for defined number of VMs on all
+| | ... | defined VPP nodes. Add each Vhost-User interface into L2 bridge
+| | ... | domains with learning enabled with physical inteface or Vhost-User
+| | ... | interface of another VM.
+| | ...
+| | ... | *Arguments:*
+| | ... | _None_
+| | ...
+| | ... | *Note:*
+| | ... | Socket paths for VM are defined in following fromat:
+| | ... | - /tmp/sock-${VM_ID}-1
+| | ... | - /tmp/sock-${VM_ID}-2
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| L2 bridge domains with Vhost-User for '2' VMs initialized in \
+| | ... | a 3-node circular topology \|
+| | ...
+| | Interface is added to bridge domain | ${dut1} | ${dut1_if1} | ${1}
+| | Interface is added to bridge domain | ${dut1} | ${dut1_if2} | ${nr}+1
+| | Interface is added to bridge domain | ${dut2} | ${dut2_if1} | ${1}
+| | Interface is added to bridge domain | ${dut2} | ${dut2_if2} | ${nr}+1
+| | :FOR | ${number} | IN RANGE | 1 | ${nr}+1
+| |      | ${sock1}= | Set Variable | /tmp/sock-${number}-1
+| |      | ${sock2}= | Set Variable | /tmp/sock-${number}-2
+| |      | VPP Vhost interfaces for L2BD forwarding are setup | ${dut1}
+| |      | ... | ${sock1} | ${sock2} | dut1-vhost-${number}-if1
+| |      | ... | dut1-vhost-${number}-if2
+| |      | Interface is added to bridge domain | ${dut1}
+| |      | ... | ${dut1-vhost-${number}-if1} | ${number}
+| |      | Interface is added to bridge domain | ${dut1}
+| |      | ... | ${dut1-vhost-${number}-if2} | ${number}+1
+| |      | VPP Vhost interfaces for L2BD forwarding are setup | ${dut2}
+| |      | ... | ${sock1} | ${sock2} | dut2-vhost-${number}-if1
+| |      | ... | dut2-vhost-${number}-if2
+| |      | Interface is added to bridge domain | ${dut2}
+| |      | ... | ${dut2-vhost-${number}-if1} | ${number}
+| |      | Interface is added to bridge domain | ${dut2}
+| |      | ... | ${dut2-vhost-${number}-if2} | ${number}+1
+
 | L2 bridge domain with VXLANoIPv4 initialized in a 3-node circular topology
 | | [Documentation]
 | | ... | Setup L2 bridge domain topology with VXLANoIPv4 by connecting
@@ -1430,16 +1472,18 @@
 | | ... | \| ${5} \|
 | | ...
 | | [Arguments] | ${dut_node} | ${sock1} | ${sock2} | ${vm_name} | ${skip}=${6}
-| | ... | ${count}=${5}
+| | ... | ${count}=${5} | ${qemu_id}=${1}
 | | ...
-| | Import Library | resources.libraries.python.QemuUtils
+| | Import Library | resources.libraries.python.QemuUtils | qemu_id=${qemu_id}
 | | ... | WITH NAME | ${vm_name}
 | | ${dut_numa}= | Get interfaces numa node | ${dut_node}
 | | ... | ${dut1_if1} | ${dut1_if2}
 | | ${qemu_cpus}= | Cpu slice of list per node | ${dut_node} | ${dut_numa}
 | | ... | skip_cnt=${skip} | cpu_cnt=${count} | smt_used=${False}
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock1}
+| | ... | qemu_id=${qemu_id}
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock2}
+| | ... | qemu_id=${qemu_id}
 | | Run keyword | ${vm_name}.Qemu Set Node | ${dut_node}
 | | Run keyword | ${vm_name}.Qemu Set Smp | ${count} | ${count} | 1 | 1
 | | Run keyword | ${vm_name}.Qemu Set Mem Size | 2048
@@ -1450,6 +1494,31 @@
 | | Dpdk Testpmd Start | ${vm} | eal_coremask=0x1f | eal_mem_channels=4
 | | ... | pmd_fwd_mode=io | pmd_disable_hw_vlan=${True}
 | | Return From Keyword | ${vm}
+
+| '${nr}' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
+| | [Documentation]
+| | ... | Start QEMU guests with two vhost-user interfaces and interconnecting
+| | ... | DPDK testpmd for defined number of VMs on all defined VPP nodes.
+| | ...
+| | ... | *Arguments:*
+| | ... | _None_
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| '2' Guest VM with dpdk-testpmd connected via vhost-user is setup \
+| | ... | in a 3-node circular topology \|
+| | ...
+| | :FOR | ${number} | IN RANGE | 1 | ${nr}+1
+| |      | ${sock1}= | Set Variable | /tmp/sock-${number}-1
+| |      | ${sock2}= | Set Variable | /tmp/sock-${number}-2
+| |      | ${vm1}= | Guest VM with dpdk-testpmd connected via vhost-user is setup
+| |      | ...     | ${dut1} | ${sock1} | ${sock2} | DUT1_VM${number}
+| |      | ...     | qemu_id=${number}
+| |      | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM${number} | ${vm1}
+| |      | ${vm2}= | Guest VM with dpdk-testpmd connected via vhost-user is setup
+| |      | ...     | ${dut2} | ${sock1} | ${sock2} | DUT2_VM${number}
+| |      | ...     | qemu_id=${number}
+| |      | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM${number} | ${vm2}
 
 | Guest VM with dpdk-testpmd using SMT connected via vhost-user is setup
 | | [Documentation]
