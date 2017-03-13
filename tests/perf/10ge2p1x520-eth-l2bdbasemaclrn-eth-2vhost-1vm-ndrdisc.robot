@@ -247,6 +247,7 @@
 | | ${dut2_vm_refs}= | Create Dictionary
 | | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
+| | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
 | | When  L2 bridge domains with Vhost-User initialized in a 3-node circular topology
 | | ...   | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
