@@ -13,6 +13,8 @@
 
 """Implementation of keywords for Honeycomb setup."""
 
+from ipaddress import IPv6Address, AddressValueError
+
 from robot.api import logger
 
 from resources.libraries.python.HTTPRequest import HTTPRequest, HTTPCodes, \
@@ -228,31 +230,33 @@ class HoneycombSetup(object):
         return True
 
     @staticmethod
-    def configure_unsecured_access(*nodes):
-        """Configure Honeycomb to allow restconf requests through insecure HTTP
-        used by tests. By default this is only allowed for localhost.
+    def configure_restconf_binding_address(node):
+        """Configure Honeycomb to accept restconf requests from all IP
+        addresses. IP version is determined by node data.
 
-         :param nodes: All nodes in test topology.
-         :type nodes: dict
+         :param node: Information about a DUT node.
+         :type node: dict
          :raises HoneycombError: If the configuration could not be changed.
          """
-        # TODO: Modify tests to use HTTPS instead.
 
-        find = "restconf-binding-address"
-        replace = '\\"restconf-binding-address\\": \\"0.0.0.0\\",'
+        find = "restconf-https-binding-address"
+        try:
+            IPv6Address(unicode(node["host"]))
+            # if management IP of the node is in IPv6 format
+            replace = '\\"restconf-https-binding-address\\": \\"0::0\\",'
+        except (AttributeError, AddressValueError):
+            replace = '\\"restconf-https-binding-address\\": \\"0.0.0.0\\",'
 
         argument = '"/{0}/c\\ {1}"'.format(find, replace)
         path = "{0}/config/honeycomb.json".format(Const.REMOTE_HC_DIR)
         command = "sed -i {0} {1}".format(argument, path)
 
         ssh = SSH()
-        for node in nodes:
-            if node['type'] == NodeType.DUT:
-                ssh.connect(node)
-                (ret_code, _, stderr) = ssh.exec_command_sudo(command)
-                if ret_code != 0:
-                    raise HoneycombError("Failed to modify configuration on "
-                                         "node {0}, {1}".format(node, stderr))
+        ssh.connect(node)
+        (ret_code, _, stderr) = ssh.exec_command_sudo(command)
+        if ret_code != 0:
+            raise HoneycombError("Failed to modify configuration on "
+                                 "node {0}, {1}".format(node, stderr))
 
     @staticmethod
     def print_environment(nodes):
