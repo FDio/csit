@@ -638,7 +638,7 @@
 # routed interfaces not yet supported by ACL plugin (no Jira id available)
 # Bug VPP-633, VPP crashes when any packet hits a reflexive rule
 | | Given Setup Interface IPs And Routes For IPv4 plugin-acl Test
-| | ... | icmp | ${acl_name_reflex}
+| | ... | reflex | ${acl_name_reflex}
 | | And Add ARP on DUT
 | | ... | ${node} | ${dut_to_tg_if1} | ${gateway2} | ${tg_to_dut_if1_mac}
 | | And VPP Route Add

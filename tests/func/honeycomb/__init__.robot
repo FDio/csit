@@ -29,7 +29,7 @@
 | Configure Honeycomb for testing
 | | [Arguments] | ${node}
 | | Copy Java Libraries | ${node}
-| | Configure Unsecured Access | ${node}
+| | Configure Restconf binding address | ${node}
 | | Enable Module Features | ${node}
 | | Configure Log Level | ${node} | TRACE
 | | Configure Persistence | ${node} | disable
