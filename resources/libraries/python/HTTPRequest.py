@@ -18,6 +18,7 @@ The HTTP requests are implemented in the class HTTPRequest which uses
 requests.request.
 """
 
+from ipaddress import IPv6Address, AddressValueError
 from enum import IntEnum, unique
 
 from robot.api.deco import keyword
@@ -26,6 +27,8 @@ from robot.libraries.BuiltIn import BuiltIn
 
 from requests import request, RequestException, Timeout, TooManyRedirects, \
     HTTPError, ConnectionError
+from requests.packages.urllib3 import disable_warnings
+from requests.packages.urllib3.exceptions import InsecureRequestWarning
 from requests.auth import HTTPBasicAuth
 
 
@@ -75,6 +78,9 @@ class HTTPRequestError(Exception):
             logger.error(self._msg)
             logger.debug(self._details)
 
+        # suppress warnings about disabled SLL verification
+        disable_warnings(InsecureRequestWarning)
+
     def __repr__(self):
         return repr(self._msg)
 
@@ -115,8 +121,16 @@ class HTTPRequest(object):
         :return: Full url.
         :rtype: str
         """
-        return "http://{ip}:{port}{path}".format(ip=ip_addr, port=port,
-                                                 path=path)
+
+        try:
+            IPv6Address(unicode(ip_addr))
+            # IPv6 address must be in brackets
+            ip_addr = "[{0}]".format(ip_addr)
+        except (AttributeError, AddressValueError):
+            pass
+
+        return "https://{ip}:{port}{path}".format(ip=ip_addr, port=port,
+                                                  path=path)
 
     @staticmethod
     def _http_request(method, node, path, enable_logging=True, **kwargs):
@@ -187,10 +201,11 @@ class HTTPRequest(object):
         url = HTTPRequest.create_full_url(node['host'],
                                           port,
                                           path)
+        logger.debug(url)
         try:
             auth = HTTPBasicAuth(node['honeycomb']['user'],
                                  node['honeycomb']['passwd'])
-            rsp = request(method, url, auth=auth, **kwargs)
+            rsp = request(method, url, auth=auth, verify=False, **kwargs)
 
             logger.debug("Status code: {0}".format(rsp.status_code))
             logger.debug("Response: {0}".format(rsp.content))
