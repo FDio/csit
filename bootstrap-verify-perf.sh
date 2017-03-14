@@ -15,9 +15,7 @@
 set -x
 
 # Space separated list of available testbeds, described by topology files
-TOPOLOGIES="topologies/available/lf_testbed1.yaml \
-            topologies/available/lf_testbed2.yaml \
-            topologies/available/lf_testbed3.yaml"
+TOPOLOGIES="topologies/available/lf_testbed1.yaml"
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
@@ -145,7 +143,7 @@ case "$TEST_TAG" in
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s "tests.perf" \
               --exclude SKIP_PATCH \
-              -i NDRPDRDISC \
+              -i THIS \
               tests/
         RETURN_STATUS=$(echo $?)
         ;;

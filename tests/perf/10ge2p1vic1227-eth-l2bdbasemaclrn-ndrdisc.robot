@@ -15,7 +15,7 @@
 | Resource | resources/libraries/robot/performance.robot
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDRDISC
-| ... | NIC_Cisco-VIC-1227 | ETH | L2BDMACLRN | BASE
+| ... | NIC_Cisco-VIC-1227 | ETH | L2BDMACLRN | BASE | THIS
 | ...
 | Suite Setup | 3-node Performance Suite Setup with DUT's NIC model
 | ... | L2 | Cisco-VIC-1227
