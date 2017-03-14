@@ -1,1 +1,1 @@
-/restconf/operational{odl_url_part}/v3po:vpp-state/version
+/restconf/operational{odl_url_part}/vpp-management:vpp-state/version
