@@ -119,7 +119,7 @@ def main():
                     print "###TI {}".format(stdout)
             else:
                 # Create installation directory on DUT
-                cmd = "mkdir {}".format(install_dir)
+                cmd = "rm -r {0}; mkdir {0}".format(install_dir)
                 stdout = ssh_no_error(ssh, cmd)
                 print "###TI {}".format(stdout)
 
