@@ -12,8 +12,8 @@
 # limitations under the License.
 
 *** Settings ***
-| Library | resources.libraries.python.honeycomb.proxyARP.ProxyARPKeywords
-| Documentation | Keywords used to test Honeycomb proxyARP.
+| Library | resources.libraries.python.honeycomb.proxyARP.IPv6NDProxyKeywords
+| Documentation | Keywords used to test Honeycomb ARP proxy and IPv6ND proxy.
 
 *** Keywords ***
 | Honeycomb configures proxyARP
@@ -55,6 +55,7 @@
 | | ...
 | | ... | \| Honeycomb enables proxyARP on interface \| ${nodes['DUT1']} \
 | | ... | \| GigabitEthernet0/8/0 \|
+| | ...
 | | [Arguments] | ${node} | ${interface}
 | | Set proxyARP interface config | ${node} | ${interface} | enable
 
@@ -72,3 +73,120 @@
 | | ... | \| GigabitEthernet0/8/0 \|
 | | [Arguments] | ${node} | ${interface}
 | | Set proxyARP interface config | ${node} | ${interface} | disable
+
+| Honeycomb configures IPv6 ND proxy on interface
+| | [Documentation] | Uses Honeycomb API to enable the IPv6 ND proxy\
+| | ... | feature on an interface.
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - information about a DUT node. Type: dictionary
+| | ... | - interface - name of an interface on the node. Type: string
+| | ... | - addresses - one or more addresses to configure ND proxy with.\
+| | ... | Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Honeycomb configures IPv6 ND proxy on interface \
+| | ... | \| ${nodes['DUT1']} \| GigabitEthernet0/8/0 \| 10::10 \| 10::11 \|
+| | ...
+| | [Arguments] | ${node} | ${interface} | @{addresses}
+| | Configure IPv6ND | ${node} | ${interface} | ${addresses}
+
+| Honeycomb disables IPv6 ND proxy on interface
+| | [Documentation] | Uses Honeycomb API to disable the IPv6 ND proxy\
+| | ... | feature on an interface.
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - information about a DUT node. Type: dictionary
+| | ... | - interface - name of an interface on the node. Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Honeycomb disables IPv6 ND proxy on interface \| ${nodes['DUT1']} \
+| | ... | \| GigabitEthernet0/8/0 \|
+| | [Arguments] | ${node} | ${interface}
+| | Configure IPv6ND | ${node} | ${interface}
+
+| IPv6 ND proxy from Honeycomb should be
+| | [Documentation] | Retrieves IPv6 ND proxy operational data and compares\
+| | ... | with expected values.
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - information about a DUT node. Type: dictionary
+| | ... | - interface - name of an interface on the node. Type: string
+| | ... | - addresses - one or more addresses to expect. Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| IPv6 ND proxy from Honeycomb should be \| ${nodes['DUT1']} \
+| | ... | \| GigabitEthernet0/8/0 \| 10::10 \| 10::11 \|
+| | ...
+| | [Arguments] | ${node} | ${interface} | @{addresses}
+| | ${oper_data}= | Get interface oper data | ${node} | ${interface}
+| | ${oper_data}= | Set Variable
+| | ... | ${oper_data['ietf-ip:ipv6']['nd-proxy:nd-proxies']['nd-proxy']}
+| | ${data}= | Evaluate | [{"address":x} for x in $addresses]
+| | Sort List | ${oper_data}
+| | Sort List | ${data}
+| | Should be equal | ${oper_data} | ${data}
+
+| IPv6 ND proxy from Honeycomb should be empty
+| | [Documentation] | Retrieves IPv6 ND proxy operational data and expects\
+| | ... | to fail due to no data present.
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - information about a DUT node. Type: dictionary
+| | ... | - interface - name of an interface on the node. Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \|IPv6 ND proxy from Honeycomb should be empty \| ${nodes['DUT1']} \
+| | ... | \| GigabitEthernet0/8/0 \|
+| | ...
+| | [Arguments] | ${node} | ${interface}
+| | ${oper_data}= | Get interface oper data | ${node} | ${interface}
+| | Variable Should Not Exist
+| | ... | ${oper_data['ietf-ip:ipv6']['nd-proxy:nd-proxies']['nd-proxy']}
+
+| Verify IPv6ND Proxy
+| | [Documentation] | Send and receive ICMPv6 messages between TG interfaces
+| | ... | through Neighbor Discovery proxy.
+| | ...
+| | ... | *Arguments:*
+| | ... | - tg_node - TG node. Type: dictionary
+| | ... | - tg_interface1 - TG interface. Type: string
+| | ... | - tg_interface2 - TG interface. Type: string
+| | ... | - src_ip - Source IPv6 address to use. Type: string
+| | ... | - dst_ip - Destination IPv6 address to use. Type: string
+| | ... | - src_mac - MAC address of source interface. Type: string
+| | ... | - dst_mac - MAC address of destination interface. Type: string
+| | ... | - proxy_to_src_mac - MAC address of DUT interface on link to source\
+| | ... | TG interface. Type: string
+| | ... | - proxy_to_dst_mac - MAC address of DUT interface on link to dest\
+| | ... | TG interface. Type: string
+| | ...
+| | ... | *Return:*
+| | ... | - No value returned.
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Verify IPv6ND Proxy \| ${nodes['TG']} \
+| | ... | \| eth3 \| eth4 \| 3ffe:62::1 \| 3ffe:63::2 \
+| | ... | \| 08:00:27:cc:4f:54 \| 08:00:27:64:18:d2 \
+| | ... | \| 08:00:27:c9:6a:d5 \| 08:00:27:c4:75:3a \|
+| | ...
+| | [Arguments] | ${tg_node} | ${tg_interface1} | ${tg_interface2}
+| | ... | ${src_ip} | ${dst_ip} | ${src_mac} | ${dst_mac}
+| | ... | ${proxy_to_src_mac} | ${proxy_to_dst_mac}
+| | ${tg_interface_name1}= | Get interface name | ${tg_node} | ${tg_interface1}
+| | ${tg_interface_name2}= | Get interface name | ${tg_node} | ${tg_interface2}
+| | ${args}= | Catenate | --tx_if | ${tg_interface_name1}
+| | ...                 | --rx_if | ${tg_interface_name2}
+| | ...                 | --src_ip | ${src_ip}
+| | ...                 | --dst_ip | ${dst_ip}
+| | ...                 | --src_mac | ${src_mac}
+| | ...                 | --dst_mac | ${dst_mac}
+| | ...                 | --proxy_to_src_mac | ${proxy_to_src_mac}
+| | ...                 | --proxy_to_dst_mac | ${proxy_to_dst_mac}
+| | Run Traffic Script On Node | ipv6_nd_proxy_check.py
+| | ... | ${tg_node} | ${args}
