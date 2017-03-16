@@ -34,7 +34,7 @@ if [ -f "/etc/redhat-release" ]; then
     MD5FILES=*.rpm.md5
     fi
 
-    ARTIFACTS="vpp vpp-debuginfo vpp-devel vpp-dpdk-devel vpp-lib vpp-plugins"
+    ARTIFACTS="vpp vpp-debuginfo vpp-devel vpp-lib vpp-plugins"
     PACKAGE="rpm rpm.md5"
     CLASS=""
     VPP_INSTALL_COMMAND="rpm -ivh *.rpm"
@@ -53,7 +53,7 @@ else
     MD5FILES=*.deb.md5
     fi
 
-    ARTIFACTS="vpp vpp-dbg vpp-dev vpp-dpdk-dev vpp-dpdk-dkms vpp-lib vpp-plugins"
+    ARTIFACTS="vpp vpp-dbg vpp-dev vpp-dpdk-dkms vpp-lib vpp-plugins"
     PACKAGE="deb deb.md5"
     CLASS="deb"
     VPP_INSTALL_COMMAND="dpkg -i *.deb"
