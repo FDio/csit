@@ -150,3 +150,83 @@ class ProxyARPKeywords(object):
         """
 
         raise NotImplementedError("Not supported in VPP.")
+
+
+class IPv6NDProxyKeywords(object):
+    """Keywords for IPv6 Neighbor Discovery proxy configuration."""
+
+    def __init__(self):
+        pass
+
+    @staticmethod
+    def configure_ipv6nd(node, interface, addresses=None):
+        """Configure IPv6 Neighbor Discovery proxy on the specified interface,
+        or remove/replace an existing configuration.
+
+        :param node: Honeycomb node.
+        :param interface: Name of an interface on the node.
+        :param addresses: IPv6 addresses to configure ND proxy with. If no
+        address is provided, ND proxy configuration will be removed.
+        :type node: dict
+        :type interface: str
+        :type addresses: list
+        :returns: Content of response.
+        :rtype: bytearray
+        :raises HoneycombError: If the operation fails.
+        """
+
+        interface = Topology.convert_interface_reference(
+            node, interface, "name")
+        interface = interface.replace("/", "%2F")
+
+        path = "/interface/{0}/ietf-ip:ipv6/nd-proxies".format(interface)
+
+        if addresses is None:
+            status_code, resp = HcUtil. \
+                delete_honeycomb_data(node, "config_vpp_interfaces", path)
+        else:
+            data = {
+                "nd-proxies": {
+                    "nd-proxy": [{"address": x} for x in addresses]
+                }
+            }
+
+            status_code, resp = HcUtil. \
+                put_honeycomb_data(node, "config_vpp_interfaces", data, path,
+                                   data_representation=DataRepresentation.JSON)
+
+        if status_code not in (HTTPCodes.OK, HTTPCodes.ACCEPTED):
+            raise HoneycombError(
+                "IPv6 ND proxy configuration unsuccessful. "
+                "Status code: {0}.".format(status_code))
+        else:
+            return resp
+
+    @staticmethod
+    def get_ipv6nd_configuration(node, interface):
+        """Read IPv6 Neighbor Discovery proxy configuration on the specified
+        interface.
+
+        :param node: Honeycomb node.
+        :param interface: Name of an interface on the node.
+        :type node: dict
+        :type interface: str
+        :returns: Content of response.
+        :rtype: bytearray
+        :raises HoneycombError: If the configuration could not be read.
+        """
+
+        interface = Topology.convert_interface_reference(
+            node, interface, "name")
+        interface = interface.replace("/", "%2F")
+
+        path = "/interface/{0}/ietf-ip:ipv6/nd-proxies".format(interface)
+
+        status_code, resp = HcUtil.get_honeycomb_data(
+            node, "config_vpp_interfaces", path)
+        if status_code != HTTPCodes.OK:
+            raise HoneycombError(
+                "Could not read IPv6 ND proxy configuration. "
+                "Status code: {0}.".format(status_code))
+        else:
+            return resp
