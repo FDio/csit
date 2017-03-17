@@ -145,13 +145,13 @@
 | | [Template] | L2 Bridge Domain PDR Binary Search
 
 | tc05-9000B-1t1c-eth-l2bdbasemaclrn-ndrdisc
-| | ... | ${9000} | ${10000} | 1 | 1
+| | ... | ${8500} | ${10000} | 1 | 1
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for 9000 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 10kpps.
-| | [Tags] | 1T1C | STHREAD | NDRDISC
+| | [Tags] | 1T1C | STHREAD | NDRDISC | THIS
 | | [Template] | L2 Bridge Domain NDR Binary Search
 
 | tc06-9000B-1t1c-eth-l2bdbasemaclrn-pdrdisc

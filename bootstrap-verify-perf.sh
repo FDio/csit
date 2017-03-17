@@ -145,7 +145,7 @@ case "$TEST_TAG" in
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s "tests.perf" \
               --exclude SKIP_PATCH \
-              -i NDRPDRDISC \
+              -i THIS \
               tests/
         RETURN_STATUS=$(echo $?)
         ;;
