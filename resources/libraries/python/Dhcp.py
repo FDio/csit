@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2017 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -73,3 +73,20 @@ class DhcpProxy(object):
         if output["retval"] != 0:
             raise RuntimeError('Unable to set DHCP proxy on node {}'
                                .format(vpp_node))
+
+    @staticmethod
+    def vpp_get_dhcp_proxy(node, ip_version):
+        """Retrieve DHCP relay configuration.
+
+        :param node: VPP node.
+        :param ip_version: IP protocol version: ipv4 or ipv6.
+        :type node: dict
+        :type ip_version: str
+        :returns: DHCP relay data.
+        :rtype: list
+        :raises RuntimeError: If the VAT operation fails.
+        """
+
+        return VatExecutor.cmd_from_template(
+            node, "dhcp_proxy_dump.vat",
+            ipv6="ipv6" if ip_version == "ipv6" else "")
