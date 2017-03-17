@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a3291f1_a590e295",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 21
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 122
+      },
+      "writtenOn": "2017-03-17T10:14:46Z",
+      "side": 1,
+      "message": "how about replace with \n    __QEMU_BIN \u003d \u0027/usr/bin/qemu-system-x86_64\u0027\n    _ID \u003d itertools.count()\n\n    def __init__(self):\n        self._qemu_id \u003d QemuUtils._ID.next()",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 31
+      },
+      "revId": "66778064f490bebc1bdef75f3e068be4b8af76bc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
