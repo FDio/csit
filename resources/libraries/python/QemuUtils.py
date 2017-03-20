@@ -34,6 +34,8 @@ class QemuUtils(object):
         self._qmp_sock = '/tmp/qmp{0}.sock'.format(self._qemu_id)
         # QEMU Guest Agent socket
         self._qga_sock = '/tmp/qga{0}.sock'.format(self._qemu_id)
+        # QEMU PID file
+        self._pid_file = '/tmp/qemu{0}.pid'.format(self._qemu_id)
         self._qemu_opt = {}
         # Default 1 CPU.
         self._qemu_opt['smp'] = '-smp 1,sockets=1,cores=1,threads=1'
@@ -517,12 +519,14 @@ class QemuUtils(object):
             '-device isa-serial,chardev=qga0'.format(self._qga_sock)
         # Graphic setup
         graphic = '-monitor none -display none -vga none'
+        # PID file
+        pid = '-pidfile {}'.format(self._pid_file)
 
         # Run QEMU
-        cmd = '{0} {1} {2} {3} {4} {5} {6} {7} {8} {9}'.format(
+        cmd = '{0} {1} {2} {3} {4} {5} {6} {7} {8} {9} {10}'.format(
             self.__QEMU_BIN, self._qemu_opt.get('smp'), mem, ssh_fwd,
             self._qemu_opt.get('options'),
-            drive, qmp, serial, qga, graphic)
+            drive, qmp, serial, qga, graphic, pid)
         (ret_code, _, stderr) = self._ssh.exec_command_sudo(cmd, timeout=300)
         if int(ret_code) != 0:
             logger.debug('QEMU start failed {0}'.format(stderr))
@@ -570,10 +574,13 @@ class QemuUtils(object):
 
     def qemu_kill(self):
         """Kill qemu process."""
-        # TODO: add PID storage so that we can kill specific PID
         # Note: in QEMU start phase there are 3 QEMU processes because we
         # daemonize QEMU
-        self._ssh.exec_command_sudo('pkill -SIGKILL qemu')
+        self._ssh.exec_command_sudo('kill -SIGKILL $(cat {})'
+                                    .format(self._pid_file))
+        # Delete PID file
+        cmd = 'rm -f {}'.format(self._pid_file)
+        self._ssh.exec_command_sudo(cmd)
 
     def qemu_clear_socks(self):
         """Remove all sockets created by QEMU."""
