@@ -22,6 +22,30 @@
       "revId": "66778064f490bebc1bdef75f3e068be4b8af76bc",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_30e9ce80",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 21
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2017-03-20T15:56:46Z",
+      "side": 1,
+      "message": "We would have all qemu instances started with ID\u003d1 with the proposed change above. But we need to have different IDs for qemu instances under same VPP node.",
+      "parentUuid": "3a3291f1_a590e295",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 31
+      },
+      "revId": "66778064f490bebc1bdef75f3e068be4b8af76bc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
