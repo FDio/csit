@@ -94,3 +94,25 @@
 | | Set Test Variable | ${dut1s_vlan_index}
 | | Set Test Variable | ${dut2s_vlan_name}
 | | Set Test Variable | ${dut2s_vlan_index}
+
+| Send VXLAN receive VXLAN Packet
+| | [Documentation]
+| | ...
+| | [Arguments] | ${tg_node} | ${tx_if} | ${rx_if}
+| | ... | ${tx_src_mac} | ${tx_dst_mac}
+| | ... | ${tx_src_ip} | ${tx_dst_ip} | ${tx_vni}
+| | ... | ${rx_src_ip} | ${rx_dst_ip} | ${rx_vni}
+| | ${tx_if_name}= | Get interface name | ${tg_node} | ${tx_if}
+| | ${rx_if_name}= | Get interface name | ${tg_node} | ${rx_if}
+| | ${args}= | Catenate
+| | ... | --tx_if ${tx_if_name}
+| | ... | --rx_if ${rx_if_name}
+| | ... | --tx_src_mac ${tx_src_mac}
+| | ... | --tx_dst_mac ${tx_dst_mac}
+| | ... | --tx_src_ip ${tx_src_ip}
+| | ... | --tx_dst_ip ${tx_dst_ip}
+| | ... | --tx_vni ${tx_vni}
+| | ... | --rx_src_ip ${rx_src_ip}
+| | ... | --rx_dst_ip ${rx_dst_ip}
+| | ... | --rx_vni ${rx_vni}
+| | Run Traffic Script On Node | send_vxlan_check_vxlan.py | ${tg_node} | ${args}
