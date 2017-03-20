@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3a3291f1_90c3e256",
+        "filename": "resources/libraries/python/honeycomb/HcPersistence.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-03-20T11:59:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a3291f1_50be9ad5",
+      "range": {
+        "startLine": 115,
+        "startChar": 8,
+        "endLine": 115,
+        "endChar": 11
+      },
+      "revId": "98a894412143121f134461f283ff826c41cfb23d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a3291f1_30b54eee",
         "filename": "resources/libraries/python/honeycomb/HoneycombSetup.py",
         "patchSetId": 8
@@ -36,6 +60,30 @@
       "writtenOn": "2017-03-20T11:12:59Z",
       "side": 1,
       "message": "\u0026\u0026",
+      "range": {
+        "startLine": 118,
+        "startChar": 45,
+        "endLine": 118,
+        "endChar": 46
+      },
+      "revId": "98a894412143121f134461f283ff826c41cfb23d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_70a2b6af",
+        "filename": "resources/libraries/python/honeycomb/HoneycombSetup.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-03-20T11:59:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a3291f1_30b54eee",
       "range": {
         "startLine": 118,
         "startChar": 45,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "3a3291f1_50a57ab3",
+        "filename": "resources/libraries/python/honeycomb/HoneycombSetup.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 423,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-03-20T11:59:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a3291f1_10b812e4",
+      "range": {
+        "startLine": 420,
+        "startChar": 8,
+        "endLine": 423,
+        "endChar": 24
+      },
+      "revId": "98a894412143121f134461f283ff826c41cfb23d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a3291f1_f0cea682",
         "filename": "resources/libraries/python/honeycomb/HoneycombSetup.py",
         "patchSetId": 8
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "3a3291f1_30ac2ea0",
+        "filename": "resources/libraries/python/honeycomb/HoneycombSetup.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 510,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-03-20T11:59:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a3291f1_f0cea682",
+      "range": {
+        "startLine": 510,
+        "startChar": 8,
+        "endLine": 510,
+        "endChar": 10
+      },
+      "revId": "98a894412143121f134461f283ff826c41cfb23d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a3291f1_d0c96a7a",
         "filename": "resources/libraries/python/honeycomb/HoneycombUtil.py",
         "patchSetId": 8
@@ -105,6 +201,30 @@
       "writtenOn": "2017-03-20T11:12:59Z",
       "side": 1,
       "message": "remove",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 43
+      },
+      "revId": "98a894412143121f134461f283ff826c41cfb23d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_10aff295",
+        "filename": "resources/libraries/python/honeycomb/HoneycombUtil.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-03-20T11:59:59Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a3291f1_d0c96a7a",
       "range": {
         "startLine": 29,
         "startChar": 0,
