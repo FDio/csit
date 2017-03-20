@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a3291f1_50be9ad5",
+        "filename": "resources/libraries/python/honeycomb/HcPersistence.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-03-20T11:12:59Z",
+      "side": 1,
+      "message": "add raises",
+      "range": {
+        "startLine": 115,
+        "startChar": 8,
+        "endLine": 115,
+        "endChar": 11
+      },
+      "revId": "98a894412143121f134461f283ff826c41cfb23d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_30b54eee",
+        "filename": "resources/libraries/python/honeycomb/HoneycombSetup.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-03-20T11:12:59Z",
+      "side": 1,
+      "message": "\u0026\u0026",
+      "range": {
+        "startLine": 118,
+        "startChar": 45,
+        "endLine": 118,
+        "endChar": 46
+      },
+      "revId": "98a894412143121f134461f283ff826c41cfb23d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_10b812e4",
+        "filename": "resources/libraries/python/honeycomb/HoneycombSetup.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 423,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-03-20T11:12:59Z",
+      "side": 1,
+      "message": "return not bool(ret_code)",
+      "range": {
+        "startLine": 420,
+        "startChar": 8,
+        "endLine": 423,
+        "endChar": 24
+      },
+      "revId": "98a894412143121f134461f283ff826c41cfb23d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_f0cea682",
+        "filename": "resources/libraries/python/honeycomb/HoneycombSetup.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 510,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-03-20T11:12:59Z",
+      "side": 1,
+      "message": "elif",
+      "range": {
+        "startLine": 510,
+        "startChar": 8,
+        "endLine": 510,
+        "endChar": 10
+      },
+      "revId": "98a894412143121f134461f283ff826c41cfb23d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_d0c96a7a",
+        "filename": "resources/libraries/python/honeycomb/HoneycombUtil.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-03-20T11:12:59Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 29,
+        "startChar": 0,
+        "endLine": 29,
+        "endChar": 43
+      },
+      "revId": "98a894412143121f134461f283ff826c41cfb23d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
