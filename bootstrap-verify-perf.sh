@@ -172,6 +172,7 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -L TRACE \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+              - i TEST \
               -s "tests.perf" \
               tests/
         RETURN_STATUS=$(echo $?)
