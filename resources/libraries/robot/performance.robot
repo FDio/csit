@@ -20,6 +20,7 @@
 | Library | resources.libraries.python.VhostUser
 | Library | resources.libraries.python.TrafficGenerator
 | Library | resources.libraries.python.TrafficGenerator.TGDropRateSearchImpl
+| Library | resources.libraries.python.Trace
 | Resource | resources/libraries/robot/default.robot
 | Resource | resources/libraries/robot/interfaces.robot
 | Resource | resources/libraries/robot/counters.robot
@@ -452,6 +453,149 @@
 | | ... | vrf=${fib_table_2}
 | | Vpp Route Add | ${dut2} | 10.10.10.0 | 24 | 5.5.5.2 | ${dut2_vif2}
 | | ... | vrf=${fib_table_2}
+
+| IPv4 forwarding with Vhost-User for '${nr}' VMs initialized in a 3-node circular topology
+| | [Documentation]
+| | ... | Create pairs of Vhost-User interfaces for defined number of VMs on all
+| | ... | VPP nodes. Set UP state of all VPP interfaces in path. Create ${nr}+1
+| | ... | FIB tables on each DUT with multipath routing. Assign each Virtual
+| | ... | interface to FIB table with Physical interface or Virtual interface on
+| | ... | both nodes. Setup IPv4 addresses with /30 prefix on DUT-TG links and
+| | ... | /30 prefix on DUT1-DUT2 link. Set routing on all DUT nodes in all FIB
+| | ... | tables with prefix /24 and next hop of neighbour IPv4 address. Setup
+| | ... | ARP on all VPP interfaces.
+| | ...
+| | ... | *Arguments:*
+| | ... | _None_
+| | ...
+| | ... | *Return:*
+| | ... | - No value returned
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| IPv4 forwarding with Vhost-User for '2' VMs initialized in \
+| | ... | a 3-node circular topology \|
+| | ...
+| | VPP interfaces in path are up in a 3-node circular topology
+| | ${fib_table_1}= | Set Variable | ${101}
+| | ${fib_table_2}= | Evaluate | ${fib_table_1}+${nr}
+| | ${dut1_if1_idx}= | Get Interface SW Index | ${dut1} | ${dut1_if1}
+| | ${dut1_if2_idx}= | Get Interface SW Index | ${dut1} | ${dut1_if2}
+| | Add fib table | ${dut1} | 10.10.10.0 | 24 | ${fib_table_1}
+| | ... | via 1.1.1.2 sw_if_index ${dut1_if1_idx} multipath
+| | Add fib table | ${dut1} | 20.20.20.0 | 24 | ${fib_table_2}
+| | ... | via 2.2.2.2 sw_if_index ${dut1_if2_idx} multipath
+| | ${dut2_if1_idx}= | Get Interface SW Index | ${dut2} | ${dut2_if1}
+| | ${dut2_if2_idx}= | Get Interface SW Index | ${dut2} | ${dut2_if2}
+| | Add fib table | ${dut2} | 10.10.10.0 | 24 | ${fib_table_1}
+| | ... | via 2.2.2.1 sw_if_index ${dut2_if1_idx} multipath
+| | Add fib table | ${dut2} | 20.20.20.0 | 24 | ${fib_table_2}
+| | ... | via 3.3.3.2 sw_if_index ${dut2_if2_idx} multipath
+| | Assign Interface To Fib Table | ${dut1} | ${dut1_if1} | ${fib_table_1}
+| | Assign Interface To Fib Table | ${dut1} | ${dut1_if2} | ${fib_table_2}
+| | Assign Interface To Fib Table | ${dut2} | ${dut2_if1} | ${fib_table_1}
+| | Assign Interface To Fib Table | ${dut2} | ${dut2_if2} | ${fib_table_2}
+| | IP addresses are set on interfaces | ${dut1} | ${dut1_if1} | 1.1.1.2 | 30
+| | IP addresses are set on interfaces | ${dut1} | ${dut1_if2} | 2.2.2.1 | 30
+| | IP addresses are set on interfaces | ${dut2} | ${dut2_if1} | 2.2.2.2 | 30
+| | IP addresses are set on interfaces | ${dut2} | ${dut2_if2} | 3.3.3.1 | 30
+| | ${tg1_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
+| | ${tg1_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
+| | ${dut1_if2_mac}= | Get Interface MAC | ${dut1} | ${dut1_if2}
+| | ${dut2_if1_mac}= | Get Interface MAC | ${dut2} | ${dut2_if1}
+| | Add arp on dut | ${dut1} | ${dut1_if1} | 1.1.1.1 | ${tg1_if1_mac}
+| | Add arp on dut | ${dut1} | ${dut1_if2} | 2.2.2.2 | ${dut2_if1_mac}
+| | Add arp on dut | ${dut2} | ${dut2_if1} | 2.2.2.1 | ${dut1_if2_mac}
+| | Add arp on dut | ${dut2} | ${dut2_if2} | 3.3.3.2 | ${tg1_if2_mac}
+| | Vpp Route Add | ${dut1} | 10.10.10.0 | 24 | 1.1.1.1 | ${dut1_if1}
+| | ... | vrf=${fib_table_1}
+| | Vpp Route Add | ${dut1} | 20.20.20.0 | 24 | 2.2.2.2 | ${dut1_if2}
+| | ... | vrf=${fib_table_2}
+| | Vpp Route Add | ${dut2} | 10.10.10.0 | 24 | 2.2.2.1 | ${dut2_if1}
+| | ... | vrf=${fib_table_1}
+| | Vpp Route Add | ${dut2} | 20.20.20.0 | 24 | 3.3.3.2 | ${dut2_if2}
+| | ... | vrf=${fib_table_2}
+| | ${ip_base_start}= | Set Variable | ${4}
+| | :FOR | ${number} | IN RANGE | 1 | ${nr}+1
+| |      | ${sock1}= | Set Variable | /tmp/sock-${number}-1
+| |      | ${sock2}= | Set Variable | /tmp/sock-${number}-2
+| |      | ${fib_table_1}= | Evaluate | ${100}+${number}
+| |      | ${fib_table_2}= | Evaluate | ${fib_table_1}+${1}
+| |      | ${ip_base_vif1}= | Evaluate | ${ip_base_start}+(${number}-1)*2
+| |      | ${ip_base_vif2}= | Evaluate | ${ip_base_vif1}+1
+| |      | ${ip_net_vif1}= | Set Variable
+| |      | ... | ${ip_base_vif1}.${ip_base_vif1}.${ip_base_vif1}
+| |      | ${ip_net_vif2}= | Set Variable
+| |      | ... | ${ip_base_vif2}.${ip_base_vif2}.${ip_base_vif2}
+| |      | VPP Vhost interfaces for L2BD forwarding are setup | ${dut1}
+| |      | ... | ${sock1} | ${sock2} | dut1-vhost-${number}-if1
+| |      | ... | dut1-vhost-${number}-if2
+| |      | Set Interface State | ${dut1} | ${dut1-vhost-${number}-if1} | up
+| |      | Set Interface State | ${dut1} | ${dut1-vhost-${number}-if2} | up
+| |      | ${dut1_vif1_idx}= | Get Interface SW Index | ${dut1}
+| |      | ... | ${dut1-vhost-${number}-if1}
+| |      | ${dut1_vif2_idx}= | Get Interface SW Index | ${dut1}
+| |      | ... | ${dut1-vhost-${number}-if2}
+| |      | VPP Vhost interfaces for L2BD forwarding are setup | ${dut2}
+| |      | ... | ${sock1} | ${sock2} | dut2-vhost-${number}-if1
+| |      | ... | dut2-vhost-${number}-if2
+| |      | Set Interface State | ${dut2} | ${dut2-vhost-${number}-if1} | up
+| |      | Set Interface State | ${dut2} | ${dut2-vhost-${number}-if2} | up
+| |      | ${dut2_vif1_idx}= | Get Interface SW Index | ${dut2}
+| |      | ... | ${dut2-vhost-${number}-if1}
+| |      | ${dut2_vif2_idx}= | Get Interface SW Index | ${dut2}
+| |      | ... | ${dut2-vhost-${number}-if2}
+| |      | Add fib table | ${dut1} | 20.20.20.0 | 24 | ${fib_table_1}
+| |      | ... | via ${ip_net_vif1}.1 sw_if_index ${dut1_vif1_idx} multipath
+| |      | Add fib table | ${dut1} | 10.10.10.0 | 24 | ${fib_table_2}
+| |      | ... | via ${ip_net_vif2}.2 sw_if_index ${dut1_vif2_idx} multipath
+| |      | Add fib table | ${dut2} | 20.20.20.0 | 24 | ${fib_table_1}
+| |      | ... | via ${ip_net_vif1}.1 sw_if_index ${dut2_vif1_idx} multipath
+| |      | Add fib table | ${dut2} | 10.10.10.0 | 24 | ${fib_table_2}
+| |      | ... | via ${ip_net_vif2}.2 sw_if_index ${dut2_vif2_idx} multipath
+| |      | Assign Interface To Fib Table | ${dut1} | ${dut1-vhost-${number}-if1}
+| |      | ... | ${fib_table_1}
+| |      | Assign Interface To Fib Table | ${dut1} | ${dut1-vhost-${number}-if2}
+| |      | ... | ${fib_table_2}
+| |      | Assign Interface To Fib Table | ${dut2} | ${dut2-vhost-${number}-if1}
+| |      | ... | ${fib_table_1}
+| |      | Assign Interface To Fib Table | ${dut2} | ${dut2-vhost-${number}-if2}
+| |      | ... | ${fib_table_2}
+| |      | IP addresses are set on interfaces
+| |      | ... | ${dut1} | ${dut1-vhost-${number}-if1} | ${ip_net_vif1}.1 | 30
+| |      | ... | ${dut1} | ${dut1-vhost-${number}-if2} | ${ip_net_vif2}.1 | 30
+| |      | ... | ${dut2} | ${dut2-vhost-${number}-if1} | ${ip_net_vif1}.1 | 30
+| |      | ... | ${dut2} | ${dut2-vhost-${number}-if2} | ${ip_net_vif2}.1 | 30
+| |      | ${dut1-vhost-${number}-if1_mac}= | Get Vhost User Mac By Sw Index
+| |      | ... | ${dut1} | ${dut1_vif1_idx}
+| |      | ${dut1-vhost-${number}-if2_mac}= | Get Vhost User Mac By Sw Index
+| |      | ... | ${dut1} | ${dut1_vif2_idx}
+| |      | ${dut2-vhost-${number}-if1_mac}= | Get Vhost User Mac By Sw Index
+| |      | ... | ${dut2} | ${dut2_vif1_idx}
+| |      | ${dut2-vhost-${number}-if2_mac}= | Get Vhost User Mac By Sw Index
+| |      | ... | ${dut2} | ${dut2_vif2_idx}
+| |      | Set Test Variable | ${dut1-vhost-${number}-if1_mac}
+| |      | Set Test Variable | ${dut1-vhost-${number}-if2_mac}
+| |      | Set Test Variable | ${dut2-vhost-${number}-if1_mac}
+| |      | Set Test Variable | ${dut2-vhost-${number}-if2_mac}
+| |      | ${qemu_id}= | Set Variable If | ${number} < 10 | 0${number}
+| |      | ... | ${number}
+| |      | Add arp on dut | ${dut1} | ${dut1-vhost-${number}-if1}
+| |      | ... | ${ip_net_vif1}.2 | 52:54:00:00:${qemu_id}:01
+| |      | Add arp on dut | ${dut1} | ${dut1-vhost-${number}-if2}
+| |      | ... | ${ip_net_vif2}.2 | 52:54:00:00:${qemu_id}:02
+| |      | Add arp on dut | ${dut2} | ${dut2-vhost-${number}-if1}
+| |      | ... | ${ip_net_vif1}.2 | 52:54:00:00:${qemu_id}:01
+| |      | Add arp on dut | ${dut2} | ${dut2-vhost-${number}-if2}
+| |      | ... | ${ip_net_vif2}.2 | 52:54:00:00:${qemu_id}:02
+| |      | Vpp Route Add | ${dut1} | 20.20.20.0 | 24 | ${ip_net_vif1}.2
+| |      | ... | ${dut1-vhost-${number}-if1} | vrf=${fib_table_1}
+| |      | Vpp Route Add | ${dut1} | 10.10.10.0 | 24 | ${ip_net_vif2}.2
+| |      | ... | ${dut1-vhost-${number}-if2} | vrf=${fib_table_2}
+| |      | Vpp Route Add | ${dut2} | 20.20.20.0 | 24 | ${ip_net_vif1}.2
+| |      | ... | ${dut2-vhost-${number}-if1} | vrf=${fib_table_1}
+| |      | Vpp Route Add | ${dut2} | 10.10.10.0 | 24 | ${ip_net_vif2}.2
+| |      | ... | ${dut2-vhost-${number}-if2} | vrf=${fib_table_2}
 
 | IPv4 policer 2r3c-${t} initialized in a 3-node circular topology
 | | [Documentation]
@@ -1513,6 +1657,10 @@
 | | ... | *Arguments:*
 | | ... | _None_
 | | ...
+| | ... | _NOTE:_ This KW expects following test case variables to be set:
+| | ... | - ${vpp_cpus} - Number of CPUs allocated for VPP.
+| | ... | - ${vm_cpus} - Number of CPUs to be allocated per QEMU instance.
+| | ...
 | | ... | *Example:*
 | | ...
 | | ... | \| '2' Guest VM with dpdk-testpmd connected via vhost-user is setup \
@@ -1523,11 +1671,11 @@
 | |      | ${sock2}= | Set Variable | /tmp/sock-${number}-2
 | |      | ${vm1}= | Guest VM with dpdk-testpmd connected via vhost-user is setup
 | |      | ...     | ${dut1} | ${sock1} | ${sock2} | DUT1_VM${number}
-| |      | ...     | qemu_id=${number}
+| |      | ...     | skip=${vpp_cpus} | count=${vm_cpus} | qemu_id=${number}
 | |      | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM${number} | ${vm1}
 | |      | ${vm2}= | Guest VM with dpdk-testpmd connected via vhost-user is setup
 | |      | ...     | ${dut2} | ${sock1} | ${sock2} | DUT2_VM${number}
-| |      | ...     | qemu_id=${number}
+| |      | ...     | skip=${vpp_cpus} | count=${vm_cpus} | qemu_id=${number}
 | |      | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM${number} | ${vm2}
 
 | Guest VM with dpdk-testpmd using SMT connected via vhost-user is setup
@@ -1591,6 +1739,8 @@
 | | ... | - eth1_mac - MAC address of second Vhost interface. Type: string
 | | ... | - skip - number of cpus which will be skipped. Type: int
 | | ... | - count - number of cpus which will be allocated for qemu. Type: int
+| | ... | - qemu_id - Qemu Id when starting more then one guest VM on DUT node.
+| | ... | Type: int
 | | ...
 | | ... | *Example:*
 | | ...
@@ -1600,13 +1750,19 @@
 | | ...
 | | [Arguments] | ${dut_node} | ${sock1} | ${sock2} | ${vm_name}
 | | ... | ${eth0_mac} | ${eth1_mac} | ${skip}=${6} | ${count}=${5}
+| | ... | ${qemu_id}=${1}
 | | ...
 | | Import Library | resources.libraries.python.QemuUtils
 | | ... | WITH NAME | ${vm_name}
+| | ${serial_port}= | Evaluate | ${qemu_id} + ${4555}
+| | Run keyword | ${vm_name}.Qemu Set Serial Port | ${serial_port}
+| | ${ssh_fwd_port}= | Evaluate | ${qemu_id} + ${10021}
+| | Run keyword | ${vm_name}.Qemu Set Ssh Fwd Port | ${ssh_fwd_port}
 | | ${dut_numa}= | Get interfaces numa node | ${dut_node}
 | | ... | ${dut1_if1} | ${dut1_if2}
+| | ${skip_cnt}= | Evaluate | ${skip} + (${qemu_id} - 1) * ${count}
 | | ${qemu_cpus}= | Cpu slice of list per node | ${dut_node} | ${dut_numa}
-| | ... | skip_cnt=${skip} | cpu_cnt=${count} | smt_used=${False}
+| | ... | skip_cnt=${skip_cnt} | cpu_cnt=${count} | smt_used=${False}
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock1}
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock2}
 | | Run keyword | ${vm_name}.Qemu Set Node | ${dut_node}
@@ -1620,6 +1776,46 @@
 | | ... | eal_mem_channels=4 | pmd_fwd_mode=mac | pmd_eth_peer_0=0,${eth0_mac}
 | | ... | pmd_eth_peer_1=1,${eth1_mac} | pmd_disable_hw_vlan=${True}
 | | Return From Keyword | ${vm}
+
+| '${nr}' Guest VMs with dpdk-testpmd-mac connected via vhost-user is setup in a 3-node circular topology
+| | [Documentation]
+| | ... | Start QEMU guests with two vhost-user interfaces and interconnecting
+| | ... | DPDK testpmd with fwd mode set to mac rewrite for defined number of
+| | ... | VMs on all defined VPP nodes.
+| | ...
+| | ... | *Arguments:*
+| | ... | _None_
+| | ...
+| | ... | _NOTE:_ This KW expects following test case variables to be set:
+| | ... | - ${vpp_cpus} - Number of CPUs allocated for VPP.
+| | ... | - ${vm_cpus} - Number of CPUs to be allocated per QEMU instance.
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| '2' Guest VMs with dpdk-testpmd-mac connected via vhost-user is \
+| | ... | setup in a 3-node circular topology \|
+| | ...
+| | :FOR | ${number} | IN RANGE | 1 | ${nr}+1
+| |      | ${sock1}= | Set Variable | /tmp/sock-${number}-1
+| |      | ${sock2}= | Set Variable | /tmp/sock-${number}-2
+| |      | ${dut1_vif1_mac}=
+| |      | ... | Replace Variables | ${dut1-vhost-${number}-if1_mac}
+| |      | ${dut1_vif2_mac}=
+| |      | ... | Replace Variables | ${dut1-vhost-${number}-if2_mac}
+| |      | ${dut2_vif1_mac}=
+| |      | ... | Replace Variables | ${dut2-vhost-${number}-if1_mac}
+| |      | ${dut2_vif2_mac}=
+| |      | ... | Replace Variables | ${dut2-vhost-${number}-if2_mac}
+| |      | ${vm1}= | Guest VM with dpdk-testpmd-mac connected via vhost-user is setup
+| |      | ...     | ${dut1} | ${sock1} | ${sock2} | DUT1_VM${number}
+| |      | ...     | ${dut1_vif1_mac} | ${dut1_vif2_mac} | skip=${vpp_cpus}
+| |      | ...     | count=${vm_cpus} | qemu_id=${number}
+| |      | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM${number} | ${vm1}
+| |      | ${vm2}= | Guest VM with dpdk-testpmd-mac connected via vhost-user is setup
+| |      | ...     | ${dut2} | ${sock1} | ${sock2} | DUT2_VM${number}
+| |      | ...     | ${dut2_vif1_mac} | ${dut2_vif2_mac} | skip=${vpp_cpus}
+| |      | ...     | count=${vm_cpus} | qemu_id=${number}
+| |      | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM${number} | ${vm2}
 
 | Guest VM with dpdk-testpmd-mac using SMT connected via vhost-user is setup
 | | [Documentation]
@@ -2121,6 +2317,7 @@
 | | ...
 | | Show VAT History On All DUTs | ${nodes}
 | | Show Vpp Vhost On All DUTs
+| | Show Packet Trace on All DUTs | ${nodes}
 | | Show statistics on all DUTs
 | | Run Keyword If Test Failed
 | | ... | Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
