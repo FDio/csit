@@ -53,7 +53,7 @@ then
         wget -q "${VPP_REPO_URL}/vpp/${VPP_STABLE_VER}/vpp-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
         wget -q "${VPP_REPO_URL}/vpp-dbg/${VPP_STABLE_VER}/vpp-dbg-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
         wget -q "${VPP_REPO_URL}/vpp-dev/${VPP_STABLE_VER}/vpp-dev-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
-        wget -q "${VPP_REPO_URL}/vpp-dpdk-dev/${DPDK_STABLE_VER}/vpp-dpdk-dev-${DPDK_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
+        #wget -q "${VPP_REPO_URL}/vpp-dpdk-dev/${DPDK_STABLE_VER}/vpp-dpdk-dev-${DPDK_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
         wget -q "${VPP_REPO_URL}/vpp-dpdk-dkms/${DPDK_STABLE_VER}/vpp-dpdk-dkms-${DPDK_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
         wget -q "${VPP_REPO_URL}/vpp-lib/${VPP_STABLE_VER}/vpp-lib-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
         wget -q "${VPP_REPO_URL}/vpp-plugins/${VPP_STABLE_VER}/vpp-plugins-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
@@ -172,6 +172,7 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -L TRACE \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+              -i TEST \
               -s "tests.perf" \
               tests/
         RETURN_STATUS=$(echo $?)
