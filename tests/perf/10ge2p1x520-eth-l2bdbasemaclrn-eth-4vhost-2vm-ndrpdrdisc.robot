@@ -61,7 +61,10 @@
 
 *** Variables ***
 #X520-DA2 bandwidth limit
-| ${s_limit} | ${10000000000}
+| ${s_limit} | 10000000000
+#CPU settings
+| ${vpp_cpus}= | 6
+| ${vm_cpus}= | 5
 
 *** Test Cases ***
 | tc01-64B-1t1c-eth-l2bdbasemaclrn-eth-4vhost-2vm-ndrdisc
