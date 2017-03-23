@@ -25,7 +25,7 @@
 | | ... | - node - information about a DUT node. Type: dictionary
 | | ... | - dst_interface - Mirroring destination interface. Type: string
 | | ... | - src_interfaces - Mirroring source interfaces. Type: Argument list -\
-| | ... | any number of strings
+| | ... | any number of dictionaries
 | | ...
 | | ... | *Example:*
 | | ...
@@ -34,7 +34,7 @@
 | | ...
 | | [Arguments] | ${node} | ${dst_interface} | @{src_interfaces}
 | | InterfaceAPI.Configure interface SPAN
-| | ... | ${node} | ${dst_interface} | @{src_interfaces}
+| | ... | ${node} | ${dst_interface} | ${src_interfaces}
 
 | Interface SPAN configuration from Honeycomb should be
 | | [Documentation] | Retrieves interface operational data and verifies that\
@@ -54,10 +54,26 @@
 | | [Arguments] | ${node} | ${dst_interface} | @{src_interfaces}
 | | ${data}= | InterfaceAPI.Get interface oper data | ${node} | ${dst_interface}
 | | ${data}= | Set Variable
-| | ... | ${data['span']['mirrored-interfaces']['mirrored-interface']}
+| | ... | ${data['v3po:span']['mirrored-interfaces']['mirrored-interface']}
 | | Sort list | ${data}
 | | Sort list | ${src_interfaces}
 | | Lists should be equal | ${data} | ${src_interfaces}
+
+| Interface SPAN configuration from Honeycomb should be empty
+| | [Documentation] | Checks whether SPAN configuration from Honeycomb is empty
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - information about a DUT node. Type: dictionary
+| | ... | - dst_interface - Mirroring destination interface. Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Interface SPAN configuration from Honeycomb should be empty \
+| | ... | \| ${node} \| GigabitEthernetO/8/0 \|
+| | ...
+| | [Arguments] | ${node} | ${dst_interface}
+| | ${data}= | Get interface oper data | ${node} | ${dst_interface}
+| | Variable should not exist | ${data['v3po:span']['mirrored-interfaces']['mirrored-interface']}
 
 | Interface SPAN configuration from VAT should be
 | | [Documentation] | Retrieves SPAN configuration from VAT dump and verifies\

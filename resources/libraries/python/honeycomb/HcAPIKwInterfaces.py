@@ -1622,7 +1622,7 @@ class InterfaceKeywords(object):
                              " of disabled interfaces.".format(interface))
 
     @staticmethod
-    def configure_interface_span(node, dst_interface, *src_interfaces):
+    def configure_interface_span(node, dst_interface, src_interfaces=None):
         """Configure SPAN port mirroring on the specified interfaces. If no
          source interface is provided, SPAN will be disabled.
 
@@ -1637,23 +1637,28 @@ class InterfaceKeywords(object):
         :raises HoneycombError: If SPAN could not be configured.
         """
 
-        interface = dst_interface.replace("/", "%2F")
+        interface = Topology.convert_interface_reference(
+            node, dst_interface, "name")
+        interface = interface.replace("/", "%2F")
         path = "/interface/" + interface + "/span"
 
         if not src_interfaces:
             status_code, _ = HcUtil.delete_honeycomb_data(
                 node, "config_vpp_interfaces", path)
-
-        data = {
-            "span": {
-                "mirrored-interfaces": {
-                    "mirrored-interface": src_interfaces
+        else:
+            for src_interface in src_interfaces:
+                src_interface["iface-ref"] = Topology.convert_interface_reference(
+                    node, src_interface["iface-ref"], "name")
+            data = {
+                "span": {
+                    "mirrored-interfaces": {
+                        "mirrored-interface": src_interfaces
+                    }
                 }
             }
-        }
 
-        status_code, _ = HcUtil.put_honeycomb_data(
-            node, "config_vpp_interfaces", data, path)
+            status_code, _ = HcUtil.put_honeycomb_data(
+                node, "config_vpp_interfaces", data, path)
 
         if status_code not in (HTTPCodes.OK, HTTPCodes.ACCEPTED):
             raise HoneycombError(
