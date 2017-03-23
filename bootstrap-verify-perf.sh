@@ -146,8 +146,7 @@ case "$TEST_TAG" in
               -L TRACE \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s "tests.perf" \
-              --exclude SKIP_PATCH \
-              -i ipsec \
+              --exclude SKIP_PATCH -i THIS \
               tests/
         RETURN_STATUS=$(echo $?)
         ;;
@@ -174,7 +173,7 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -L TRACE \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.perf" -i ipsecANDmthread \
+              -s "tests.perf" -i THIS \
               tests/
         RETURN_STATUS=$(echo $?)
 esac
