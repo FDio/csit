@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a3291f1_f16d859a",
+        "filename": "resources/libraries/python/honeycomb/HcAPIKwInterfaces.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1634,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-03-23T12:57:12Z",
+      "side": 1,
+      "message": "dict?",
+      "range": {
+        "startLine": 1634,
+        "startChar": 38,
+        "endLine": 1634,
+        "endChar": 41
+      },
+      "revId": "864dd9890d6843a2e8a25044f18c6fda18cb6ef2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_315c2ded",
+        "filename": "resources/libraries/robot/honeycomb/port_mirroring.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-03-23T12:57:12Z",
+      "side": 1,
+      "message": "list of dictionaries",
+      "range": {
+        "startLine": 27,
+        "startChar": 64,
+        "endLine": 28,
+        "endChar": 36
+      },
+      "revId": "864dd9890d6843a2e8a25044f18c6fda18cb6ef2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_11737181",
+        "filename": "resources/libraries/robot/honeycomb/port_mirroring.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-03-23T12:57:12Z",
+      "side": 1,
+      "message": "it should be a list of dicts as described in doc",
+      "range": {
+        "startLine": 33,
+        "startChar": 37,
+        "endLine": 33,
+        "endChar": 57
+      },
+      "revId": "864dd9890d6843a2e8a25044f18c6fda18cb6ef2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_d16cc99e",
+        "filename": "resources/libraries/robot/honeycomb/port_mirroring.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-03-23T12:57:12Z",
+      "side": 1,
+      "message": "full stop",
+      "range": {
+        "startLine": 63,
+        "startChar": 74,
+        "endLine": 63,
+        "endChar": 79
+      },
+      "revId": "864dd9890d6843a2e8a25044f18c6fda18cb6ef2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_b167fdb6",
+        "filename": "resources/libraries/robot/honeycomb/port_mirroring.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-03-23T12:57:12Z",
+      "side": 1,
+      "message": "capital I",
+      "range": {
+        "startLine": 66,
+        "startChar": 19,
+        "endLine": 66,
+        "endChar": 30
+      },
+      "revId": "864dd9890d6843a2e8a25044f18c6fda18cb6ef2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_910641cd",
+        "filename": "tests/func/honeycomb/mgmt-cfg-spanrx-apihc-apivat-func.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-03-23T12:57:12Z",
+      "side": 1,
+      "message": "Try not to use python libs in tests.",
+      "range": {
+        "startLine": 21,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 45
+      },
+      "revId": "864dd9890d6843a2e8a25044f18c6fda18cb6ef2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_710995dc",
+        "filename": "tests/func/honeycomb/mgmt-cfg-spanrx-apihc-apivat-func.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-03-23T12:57:12Z",
+      "side": 1,
+      "message": "Consider using separate variable file.",
+      "range": {
+        "startLine": 31,
+        "startChar": 0,
+        "endLine": 43,
+        "endChar": 20
+      },
+      "revId": "864dd9890d6843a2e8a25044f18c6fda18cb6ef2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_5110d900",
+        "filename": "tests/func/honeycomb/mgmt-cfg-spanrx-apihc-apivat-func.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-03-23T12:57:12Z",
+      "side": 1,
+      "message": "move to suite doc",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 46,
+        "endChar": 75
+      },
+      "revId": "864dd9890d6843a2e8a25044f18c6fda18cb6ef2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
