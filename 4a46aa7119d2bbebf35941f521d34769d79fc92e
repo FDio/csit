@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a3291f1_9605177c",
+        "filename": "tests/perf/10ge2p1x520-eth-l2bdbasemaclrn-eth-4vhost-2vm-ndrpdrdisc.robot",
+        "patchSetId": 25
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-03-23T05:45:43Z",
+      "side": 1,
+      "message": "3-node-bridge",
+      "range": {
+        "startLine": 26,
+        "startChar": 46,
+        "endLine": 26,
+        "endChar": 57
+      },
+      "revId": "4a46aa7119d2bbebf35941f521d34769d79fc92e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_76086b91",
+        "filename": "tests/perf/10ge2p1x520-eth-l2bdbasemaclrn-eth-4vhost-2vm-ndrpdrdisc.robot",
+        "patchSetId": 25
+      },
+      "lineNbr": 58,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-03-23T05:45:43Z",
+      "side": 1,
+      "message": "Why there is no \"\u003d\" and the other variables have \"\u003d\"?",
+      "range": {
+        "startLine": 58,
+        "startChar": 2,
+        "endLine": 58,
+        "endChar": 29
+      },
+      "revId": "4a46aa7119d2bbebf35941f521d34769d79fc92e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
