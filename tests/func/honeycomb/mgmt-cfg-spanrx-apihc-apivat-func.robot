@@ -16,48 +16,87 @@
 | Resource | resources/libraries/robot/honeycomb/port_mirroring.robot
 | Resource | resources/libraries/robot/honeycomb/interfaces.robot
 | Resource | resources/libraries/robot/honeycomb/honeycomb.robot
-# Test suite out of date since https://gerrit.fd.io/r/4272
-# | Force Tags | honeycomb_sanity
+| Resource | resources/libraries/robot/testing_path.robot
+| Resource | resources/libraries/robot/telemetry/span.robot
+| Variables | resources/test_data/honeycomb/spanrx-apihc-apivat.py | ${node}
+| Force Tags | honeycomb_sanity | honeycomb_test
 | Suite Setup | Add Interface local0 To Topology | ${node}
-| Suite Teardown | Run Keyword If Any Tests Failed
-| | ... | Restart Honeycomb and VPP | ${node}
+| Suite Teardown | Restart Honeycomb and VPP | ${node}
 | Documentation | *Honeycomb port mirroring test suite.*
 
-*** Variables ***
-| ${interface1}= | ${node['interfaces']['port1']['name']}
-| ${interface2}= | ${node['interfaces']['port3']['name']}
-| ${interface3}= | local0
-
 *** Test Cases ***
-# TODO: Add verification once operational data is available (HONEYCOMB-306)
-| TC01: Honeycomb can configure SPAN on an interface
+| TC01: Honeycomb can configure SPAN on an interface receive
 | | [Documentation] | Honeycomb configures SPAN on interface and verifies/
-| | ... | against VPP SPAN dump.
-| | Given SPAN configuration from VAT should not exist
-| | ... | ${node}
+| | ... | against VPP SPAN dump in state receive.
+| | ...
 | | When Honeycomb Configures SPAN on interface
-| | ... | ${node} | ${interface1} | ${interface2}
-| | Then Interface SPAN configuration from VAT should be
-| | ... | ${node} | ${interface1} | ${interface2}
+| | ... | ${node} | ${interface1} | ${settings_1}
+| | Then Interface SPAN configuration from Honeycomb should be
+| | ... | ${node} | ${interface1} | ${settings_1}
 
-| TC02: Honeycomb can disable SPAN on interface
+| TC02: Honeycomb can configure SPAN on an interface transmit
+| | [Documentation] | Honeycomb configures SPAN on interface and verifies/
+| | ... | against VPP SPAN dump in state transmit.
+| | ...
+| | When Honeycomb Configures SPAN on interface
+| | ... | ${node} | ${interface1} | ${settings_2}
+| | Then Interface SPAN configuration from Honeycomb should be
+| | ... | ${node} | ${interface1} | ${settings_2}
+
+| TC03: Honeycomb can configure SPAN on an interface both
+| | [Documentation] | Honeycomb configures SPAN on interface and verifies/
+| | ... | against VPP SPAN dump in state both.
+| | ...
+| | When Honeycomb Configures SPAN on interface
+| | ... | ${node} | ${interface1} | ${settings_3}
+| | Then Interface SPAN configuration from Honeycomb should be
+| | ... | ${node} | ${interface1} | ${settings_3}
+
+| TC04: Honeycomb can configure SPAN on two interfaces
+| | [Documentation] | Honeycomb configures SPAN on interface and verifies/
+| | ... | against VPP SPAN dump in state both.
+| | ...
+| | When Honeycomb Configures SPAN on interface
+| | ... | ${node} | ${interface1} | ${settings_2} | ${settings_4}
+| | Then Interface SPAN configuration from Honeycomb should be
+| | ... | ${node} | ${interface1} | ${settings_2} | ${settings_4}
+
+| TC05: Honeycomb can disable SPAN on interface
 | | [Documentation] | Honeycomb removes existing SPAN configuration\
-| | ... | on interface and verifies against VPP SPAN dump.
-| | Given Interface SPAN configuration from VAT should be
-| | ... | ${node} | ${interface1} | ${interface2}
+| | ... | on interface.
+| | ...
+| | Given Interface SPAN configuration from Honeycomb should be
+| | ... | ${node} | ${interface1} | ${settings_2} | ${settings_4}
 | | When Honeycomb removes interface SPAN configuration
 | | ... | ${node} | ${interface1}
-| | Then SPAN configuration from VAT should not exist
-| | ... | ${node}
+| | Then Interface SPAN configuration from Honeycomb should be empty
+| | ... | ${node} | ${interface1}
 
-| TC03: Honeycomb can configure SPAN on one interface to mirror two interfaces
-| | [Documentation] | Honeycomb configures SPAN on interface, mirroring\
-| | ... | two interfaces at the same time. Then verifies against VPP SPAN dump.
-| | [Teardown] | Honeycomb removes interface SPAN configuration
-| | ... | ${node} | ${interface1}
-| | Given SPAN configuration from VAT should not exist
-| | ... | ${node}
+| TC06: DUT mirrors IPv4 packets from one interface to another
+| | [TearDown] | Show Packet Trace on All DUTs | ${nodes}
+| | [Documentation]
+| | ... | [Top] TG=DUT1
+| | ... | [Cfg] (using Honeycomb) On DUT1 configure IPv4 address and set SPAN\
+| | ... | mirroring from one DUT interface to the other.
+| | ... | [Ver] Make TG send an ARP packet to DUT through one interface,\
+| | ... | then receive a copy of sent packet and of DUT's ARP reply\
+| | ... | on the second interface.
+| | ...
+| | Path for 2-node testing is set
+| | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
+| | Honeycomb sets interface state | ${dut_node} | ${dut_to_tg_if1} | up
+| | Honeycomb sets interface state | ${dut_node} | ${dut_to_tg_if2} | up
+| | Honeycomb sets interface ipv4 address with prefix | ${dut_node}
+| | ... | ${dut_to_tg_if1} | ${dut_to_tg_if1_ip} | ${prefix}
+| | Add ARP on DUT
+| | ... | ${node} | ${dut_to_tg_if1} | ${tg_to_dut_if1_ip}
+| | ... | ${tg_to_dut_if1_mac}
+| | ${settings_5}= | create dictionary | state=both
+| | ... | iface-ref=${dut_to_tg_if1}
+| | InterfaceCLI.All Vpp Interfaces Ready Wait | ${nodes}
 | | When Honeycomb Configures SPAN on interface
-| | ... | ${node} | ${interface1} | ${interface2} | ${interface3}
-| | Then Interface SPAN configuration from VAT should be
-| | ... | ${node} | ${interface1} | ${interface2} | ${interface3}
+| | ... | ${node} | ${dut_to_tg_if2} | ${settings_5}
+| | Then Send Packet And Check Received Copies | ${tg_node}
+| | ... | ${tg_to_dut_if1} | ${tg_to_dut_if1_mac}
+| | ... | ${dut_to_tg_if1_mac} | ${tg_to_dut_if2}
+| | ... | ${tg_to_dut_if1_ip} | ${dut_to_tg_if1_ip} | ICMP
