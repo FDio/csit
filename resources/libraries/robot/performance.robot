@@ -1796,15 +1796,22 @@
 | | ${tg1_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
 | | ${dut1_if2_mac}= | Get Interface MAC | ${dut1} | ${dut1_if2}
 | | ${dut2_if1_mac}= | Get Interface MAC | ${dut2} | ${dut2_if1}
-| | dut1_v4.set_arp | ${dut1_if1} | 10.10.10.2 | ${tg1_if1_mac}
-| | dut1_v4.set_arp | ${dut1_if2} | ${dut2_dut1_address} | ${dut2_if1_mac}
-| | dut2_v4.set_arp | ${dut2_if1} | ${dut1_dut2_address} | ${dut1_if2_mac}
-| | dut2_v4.set_arp | ${dut2_if2} | 20.20.20.2 | ${tg1_if2_mac}
-| | dut1_v4.set_ip | ${dut1_if1} | ${dut1_tg_address} | ${duts_prefix}
-| | dut1_v4.set_ip | ${dut1_if2} | ${dut1_dut2_address} | ${duts_prefix}
-| | dut2_v4.set_ip | ${dut2_if1} | ${dut2_dut1_address} | ${duts_prefix}
-| | dut2_v4.set_ip | ${dut2_if2} | ${dut2_tg_address} | ${duts_prefix}
+| | Add arp on dut | ${dut1} | ${dut1_if1} | 10.10.10.2 | ${tg1_if1_mac}
+| | Add arp on dut | ${dut1} | ${dut1_if2} | ${dut2_dut1_address}
+| | ... | ${dut2_if1_mac}
+| | Add arp on dut | ${dut2} | ${dut2_if1} | ${dut1_dut2_address}
+| | ... | ${dut1_if2_mac}
+| | Add arp on dut | ${dut2} | ${dut2_if2} | 20.20.20.2 | ${tg1_if2_mac}
+| | IP addresses are set on interfaces | ${dut1} | ${dut1_if1}
+| | ... | ${dut1_tg_address} | ${duts_prefix}
+| | IP addresses are set on interfaces | ${dut1} | ${dut1_if2}
+| | ... | ${dut1_dut2_address} | ${duts_prefix}
+| | IP addresses are set on interfaces | ${dut2} | ${dut2_if1}
+| | ... | ${dut2_dut1_address} | ${duts_prefix}
+| | IP addresses are set on interfaces | ${dut2} | ${dut2_if2}
+| | ... | ${dut2_tg_address} | ${duts_prefix}
 | | All Vpp Interfaces Ready Wait | ${nodes}
+
 
 | Lisp IPv6 forwarding initialized in a 3-node circular topology
 | | [Documentation] | Custom setup of IPv6 topology on all DUT nodes \
