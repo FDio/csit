@@ -201,6 +201,16 @@ class InterfaceKeywords(object):
         :rtype: dict
         """
 
+        try:
+            interface = Topology.convert_interface_reference(
+                node, interface, "name")
+        except RuntimeError:
+            if isinstance(interface, basestring):
+                # Probably name of a custom interface (TAP, VxLAN, Vhost, ...)
+                pass
+            else:
+                raise
+
         intfs = InterfaceKeywords.get_all_interfaces_oper_data(node)
         for intf in intfs:
             if intf["name"] == interface:
@@ -652,6 +662,9 @@ class InterfaceKeywords(object):
         :returns: Content of response.
         :rtype: bytearray
         """
+
+        interface = Topology.convert_interface_reference(
+            node, interface, "name")
 
         path = ("interfaces", ("interface", "name", interface), "ietf-ip:ipv6",
                 "address")

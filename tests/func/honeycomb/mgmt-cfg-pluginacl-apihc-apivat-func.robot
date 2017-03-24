@@ -46,7 +46,6 @@
 | Test Teardown | Run Keywords | Show Packet Trace on All DUTs | ${nodes}
 | ... | AND | Read plugin-ACL configuration from VAT | ${node}
 | ... | AND | Clear plugin-acl settings | ${node} | ${dut_to_tg_if1}
-| Suite Setup | Vpp All ra suppress link layer | ${nodes}
 | Suite Teardown
 | ... | Restart Honeycomb and VPP | ${node}
 | Documentation | *Honeycomb access control lists test suite for ACL plugin.*
@@ -254,8 +253,6 @@
 | | ... | [Ver] Send ICMP packets from one TG interface\
 | | ... | to the other, using different codes and types. Receive all packets\
 | | ... | except those with types and codes in the filtered ranges.
-| | [Tags] | EXPECTED_FAILING
-# Bug VPP-624, ICMP type/code values are not matched
 | | [Teardown] | Run Keywords
 | | ... | Show Packet Trace on All DUTs | ${nodes} | AND
 | | ... | Read plugin-ACL configuration from VAT | ${node} | AND
@@ -294,8 +291,6 @@
 | | ... | [Ver] Send ICMPv6 packets from one TG interface\
 | | ... | to the other, using different codes and types. Receive all packets\
 | | ... | except those with the filtered type and code.
-| | [Tags] | EXPECTED_FAILING
-# Bug VPP-624, ICMP type/code values are not matched
 | | [Teardown] | Run Keywords
 | | ... | Show Packet Trace on All DUTs | ${nodes} | AND
 | | ... | Read plugin-ACL configuration from VAT | ${node} | AND
@@ -336,8 +331,6 @@
 | | ... | to VPP interface 2 and receive it from interface 1(this should create\
 | | ... | a reflexive "permit" rule) Finally, send the original packet again\
 | | ... | and receive it from interface 2.
-| | [Tags] | EXPCETED_FAILING
-# Bug VPP-633, VPP crashes when any packet hits a reflexive rule
 | | [Teardown] | Run Keywords
 | | ... | Show Packet Trace on All DUTs | ${nodes} | AND
 | | ... | Read plugin-ACL configuration from VAT | ${node} | AND
@@ -386,8 +379,6 @@
 | | ... | [Ver] Send simple TCP and UDP packets from one TG interface\
 | | ... | to the other, using different IPv4 IPs. Receive all packets except\
 | | ... | those with IPs in the filtered ranges and UDP protocol payload.
-| | [Tags] | EXPECTED_FAILING
-# routed interfaces not yet supported by ACL plugin (no Jira id available)
 | | Given Setup Interface IPs And Routes For IPv4 plugin-acl Test
 | | ... | l3_ip4 | ${acl_name_l3_ip4}
 | | When Honeycomb Creates ACL Chain Through ACL plugin
@@ -421,8 +412,6 @@
 | | ... | [Ver] Send simple TCP and UDP packets from one TG interface\
 | | ... | to the other, using different IPv6 IPs. Receive all packets except\
 | | ... | those with IPs in the filtered ranges and UDP protocol payload.
-| | [Tags] | EXPECTED_FAILING
-# routed interfaces not yet supported by ACL plugin (no Jira id available)
 | | Given Path for 2-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | And Import Variables | resources/test_data/honeycomb/plugin_acl.py
@@ -473,8 +462,6 @@
 | | ... | [Ver] Send simple TCP and UDP packets from one TG interface\
 | | ... | to the other, using different ports. Receive all packets except\
 | | ... | those with ports in the filtered ranges.
-| | [Tags] | EXPECTED_FAILING
-# routed interfaces not yet supported by ACL plugin (no Jira id available)
 | | Given Setup Interface IPs And Routes For IPv4 plugin-acl Test
 | | ... | L4 | ${acl_name_l4}
 | | When Honeycomb Creates ACL Chain Through ACL plugin
@@ -509,8 +496,6 @@
 | | ... | [Ver] Send simple TCP packets from one TG interface to the other,\
 | | ... | using IPs and ports. Receive all packets except those with\
 | | ... | both IPs and ports in the filtered ranges.
-| | [Tags] | EXPECTED_FAILING
-# routed interfaces not yet supported by ACL plugin (no Jira id available)
 | | Given Setup Interface IPs And Routes For IPv4 plugin-acl Test
 | | ... | mixed | ${acl_name_mixed}
 | | When Honeycomb Creates ACL Chain Through ACL plugin
@@ -543,9 +528,6 @@
 | | ... | [Ver] Send ICMP packets from one TG interface\
 | | ... | to the other, using different codes and types. Receive all packets\
 | | ... | except those with the filtered type and code.
-| | [Tags] | EXPECTED_FAILING
-# Bug VPP-624, ICMP type/code values are not matched
-# routed interfaces not yet supported by ACL plugin (no Jira id available)
 | | Given Setup Interface IPs And Routes For IPv4 plugin-acl Test
 | | ... | icmp | ${acl_name_icmp}
 | | When Honeycomb Creates ACL Chain Through ACL plugin
@@ -562,7 +544,7 @@
 | | ... | ${tg_to_dut_if1} | ${tg_to_dut_if1_mac}
 | | ... | ${tg_to_dut_if2} | ${dut_to_tg_if1_mac}
 | | ... | ${classify_type} | ${icmp_code}
-| | And Run Keyword And Expect Error | TCP/UDP Rx timeout
+| | And Run Keyword And Expect Error | ICMP echo Rx timeout
 | | ... | Send ICMP packet with type and code | ${tg_node}
 | | ... | ${src_ip} | ${dst_ip}
 | | ... | ${tg_to_dut_if1} | ${tg_to_dut_if1_mac}
@@ -579,9 +561,6 @@
 | | ... | [Ver] Send ICMPv6 packets from one TG interface\
 | | ... | to the other, using different codes and types. Receive all packets\
 | | ... | except those with the filtered type and code.
-| | [Tags] | EXPECTED_FAILING
-# Bug VPP-624, ICMP type/code values are not matched
-# routed interfaces not yet supported by ACL plugin (no Jira id available)
 | | Given Path for 2-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | And Import Variables | resources/test_data/honeycomb/plugin_acl.py
@@ -615,14 +594,14 @@
 | | ... | ${tg_to_dut_if1} | ${tg_to_dut_if1_mac}
 | | ... | ${tg_to_dut_if2} | ${dut_to_tg_if1_mac}
 | | ... | ${classify_type} | ${icmp_code}
-| | And Run Keyword And Expect Error | TCP/UDP Rx timeout
+| | And Run Keyword And Expect Error | ICMP echo Rx timeout
 | | ... | Send ICMP packet with type and code | ${tg_node}
 | | ... | ${src_ip} | ${dst_ip}
 | | ... | ${tg_to_dut_if1} | ${tg_to_dut_if1_mac}
 | | ... | ${tg_to_dut_if2} | ${dut_to_tg_if1_mac}
 | | ... | ${classify_type} | ${classify_code}
 
-| TC15: ACL reflexive IPv4 filtering through plugin-acl node - bridged
+| TC15: ACL reflexive IPv4 filtering through plugin-acl node - routed
 | | [Documentation]
 | | ... | [Top] TG=DUT1=TG.
 | | ... | [Enc] Eth-IPv4-TCP.
@@ -634,11 +613,8 @@
 | | ... | to VPP interface 2 and receive it from interface 1(this should create\
 | | ... | a reflexive "permit" rule) Finally, send the original packet again\
 | | ... | and receive it from interface 2.
-| | [Tags] | EXPECTED_FAILING
-# routed interfaces not yet supported by ACL plugin (no Jira id available)
-# Bug VPP-633, VPP crashes when any packet hits a reflexive rule
 | | Given Setup Interface IPs And Routes For IPv4 plugin-acl Test
-| | ... | icmp | ${acl_name_reflex}
+| | ... | reflex | ${acl_name_reflex}
 | | And Add ARP on DUT
 | | ... | ${node} | ${dut_to_tg_if1} | ${gateway2} | ${tg_to_dut_if1_mac}
 | | And VPP Route Add

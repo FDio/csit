@@ -77,11 +77,8 @@
 | | ... | \| Lisp should not be configured \| ${nodes['DUT1']} \|
 | | [Arguments] | ${node}
 | | ...
-| | ${data}= | Get Lisp operational data | ${node}
-| | Should be equal as strings | ${data['lisp-state']['enable']} | False
-| | ${data}= | Set Variable | ${data['lisp-state']['lisp-feature-data']}
-| | Should match | ${data['pitr-cfg']['locator-set']} | N/A
-| | Variable should not exist | ${data['eid-table']['vni-table'][0]}
+| | Run keyword and Expect Error | KeyError: 'lisp-feature-data'
+| | ... | Get Lisp operational data | ${node}
 
 | Lisp state From Honeycomb Should Be
 | | [Documentation] | Retrieves Lisp state from Honeycomb operational\

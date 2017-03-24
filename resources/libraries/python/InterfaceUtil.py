@@ -260,7 +260,9 @@ class InterfaceUtil(object):
          Note: A single interface may have multiple IP addresses assigned.
          :rtype: list
         """
-        sw_if_index = InterfaceUtil.get_sw_if_index(node, interface)
+
+        sw_if_index = Topology.convert_interface_reference(
+            node, interface, "sw_if_index")
 
         with VatTerminal(node) as vat:
             response = vat.vat_terminal_exec_cmd_from_template(

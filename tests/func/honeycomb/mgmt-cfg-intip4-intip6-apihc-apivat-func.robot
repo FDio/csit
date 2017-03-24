@@ -40,7 +40,6 @@
 | Resource | resources/libraries/robot/testing_path.robot
 | Resource | resources/libraries/robot/ipv6.robot
 | Force Tags | honeycomb_sanity | honeycomb_odl
-| Suite Setup | Vpp nodes ra suppress link layer | ${nodes}
 | Suite Teardown
 | | ... | Restart Honeycomb and VPP | ${node}
 | Documentation | *Honeycomb interface management test suite.*
@@ -166,33 +165,35 @@
 | | ... | [Ver] Send ICMP packets from TG to DUT, using different sets\
 | | ... | of source and destination IP addresses. Receive an ICMP reply\
 | | ... | for every packet sent.
-| | When Honeycomb sets interface ipv4 address with prefix
-| | ... | ${node} | ${interface} | @{ipv4_address}
-| | And Honeycomb adds interface ipv4 address
-| | ... | ${node} | ${interface} | @{ipv4_address2}
-| | And Honeycomb sets interface ipv6 address
-| | ... | ${node} | ${interface} | @{ipv6_address}
-| | And Honeycomb adds interface ipv6 address
-| | ... | ${node} | ${interface} | @{ipv6_address2}
-| | Then IPv4 address from Honeycomb should be
-| | ... | ${node} | ${interface} | @{ipv4_address}
-| | And IPv4 address from VAT should be
-| | ... | ${node} | ${interface} | @{ipv4_address} | ${ipv4_mask}
-| | And IPv6 address from Honeycomb should contain
-| | ... | ${node} | ${interface} | @{ipv6_address}
-| | And IPv6 address from VAT should contain
-| | ... | ${node} | ${interface} | @{ipv6_address}
-| | When Path for 2-node testing is set
+| | ...
+| | Given Path for 2-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
-| | And Honeycomb sets interface state | ${dut_node} | ${interface} | up
-| | And Honeycomb adds interface ipv4 neighbor | ${dut_node} | ${interface}
+| | When Honeycomb sets interface ipv4 address with prefix
+| | ... | ${dut_node} | ${dut_to_tg_if1} | @{ipv4_address}
+| | And Honeycomb adds interface ipv4 address
+| | ... | ${dut_node} | ${dut_to_tg_if1} | @{ipv4_address2}
+| | And Honeycomb sets interface ipv6 address
+| | ... | ${dut_node} | ${dut_to_tg_if1} | @{ipv6_address}
+| | And Honeycomb adds interface ipv6 address
+| | ... | ${dut_node} | ${dut_to_tg_if1} | @{ipv6_address2}
+| | Then IPv4 address from Honeycomb should be
+| | ... | ${dut_node} | ${dut_to_tg_if1} | @{ipv4_address}
+| | And IPv4 address from VAT should be
+| | ... | ${dut_node} | ${dut_to_tg_if1} | @{ipv4_address} | ${ipv4_mask}
+| | And IPv6 address from Honeycomb should contain
+| | ... | ${dut_node} | ${dut_to_tg_if1} | @{ipv6_address}
+| | And IPv6 address from VAT should contain
+| | ... | ${dut_node} | ${dut_to_tg_if1} | @{ipv6_address}
+| | And Honeycomb sets interface state | ${dut_node} | ${dut_to_tg_if1} | up
+| | And Honeycomb adds interface ipv4 neighbor | ${dut_node} | ${dut_to_tg_if1}
 | | ... | @{ipv4_neighbor}
-| | And Honeycomb adds interface ipv4 neighbor | ${dut_node} | ${interface}
+| | And Honeycomb adds interface ipv4 neighbor | ${dut_node} | ${dut_to_tg_if1}
 | | ... | @{ipv4_neighbor2}
-| | And Honeycomb adds interface ipv6 neighbor | ${dut_node} | ${interface}
+| | And Honeycomb adds interface ipv6 neighbor | ${dut_node} | ${dut_to_tg_if1}
 | | ... | @{ipv6_neighbor}
-| | And Honeycomb adds interface ipv6 neighbor | ${dut_node} | ${interface}
+| | And Honeycomb adds interface ipv6 neighbor | ${dut_node} | ${dut_to_tg_if1}
 | | ... | @{ipv6_neighbor2}
+| | And Vpp nodes ra suppress link layer | ${nodes}
 | | Then Ping and Verify IP address | ${nodes['TG']}
 | | ... | ${ipv4_neighbor[0]} | ${ipv4_address[0]}
 | | ... | ${tg_to_dut_if1} | ${tg_to_dut_if1_mac}
@@ -215,6 +216,8 @@ TC11: Honeycomb fails to configure two IPv4 addresses from the same subnet
 | | ... | the same subnet onto a single interface. It should not be possible.
 | | [Teardown] | Honeycomb removes interface ipv4 addresses | ${node}
 | | ... | ${interface}
+| | [Tags] | EXPECTED_FAILING
+# VPP API does not configure the second address, but returns success. VPP-649
 | | When Honeycomb sets interface ipv4 address with prefix
 | | ... | ${node} | ${interface} | 192.168.0.1 | ${9}
 | | Then Honeycomb fails to add interface ipv4 address
@@ -226,7 +229,7 @@ TC12: Honeycomb fails to configure two IPv6 addresses from the same subnet
 | | [Documentation] | Check if Honeycomb can configure two IPv6 addresses in\
 | | ... | the same subnet onto a single interface. It should not be possible.
 | | [Tags] | EXPECTED_FAILING
-# Subnet validation on IPv6 not supported.
+# VPP API does not configure the second address, but returns success. VPP-649
 | | [Teardown] | Honeycomb removes interface ipv6 addresses | ${node}
 | | ... | ${interface}
 | | When Honeycomb sets interface ipv6 address

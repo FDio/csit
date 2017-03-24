@@ -34,6 +34,7 @@ def get_variables(test_case, name):
         # Variables for control packet
         "src_ip": "16.0.0.1",
         "dst_ip": "16.0.1.1",
+        "src_net": "16.0.0.0",
         "dst_net": "16.0.1.0",
         "src_port": "1234",
         "dst_port": "1234",
