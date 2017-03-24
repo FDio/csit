@@ -16,7 +16,7 @@
 | Library | resources.libraries.python.NodePath
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDRDISC
-| ... | NIC_Intel-X520-DA2 | ETH | L2XCFWD | BASE | VHOST | VM
+| ... | NIC_Intel-X520-DA2 | ETH | L2XCFWD | BASE | VHOST | VM |TEST
 | ...
 | Suite Setup | 3-node Performance Suite Setup with DUT's NIC model
 | ... | L2 | Intel-X520-DA2
@@ -34,11 +34,11 @@
 | ... | with single links between nodes.
 | ... | *[Enc] Packet Encapsulations:* Eth-IPv4 for L2 cross connect.
 | ... | *[Cfg] DUT configuration:* DUT1 and DUT2 are configured with L2 cross-
-| ... | connect. Qemu Guest is connected to VPP via vhost-user interfaces.
-| ... | Guest is running DPDK testpmd interconnecting vhost-user interfaces
-| ... | using 5 cores pinned to cpus 5-9 and 2048M memory. Testpmd is using
-| ... | socket-mem=1024M (512x2M hugepages), 5 cores (1 main core and 4 cores
-| ... | dedicated for io), forwarding mode is set to io, rxd/txd=256,
+| ... | connects. Qemu Guests are connected to VPP via vhost-user interfaces.
+| ... | Guests are running DPDK testpmd interconnecting vhost-user interfaces
+| ... | using 5 cores pinned to cpus 6-10 and 11-15 and 2048M memory. Testpmd is
+| ... | using socket-mem=1024M (512x2M hugepages), 5 cores (1 main core and 4
+| ... | cores dedicated for io), forwarding mode is set to io, rxd/txd=256,
 | ... | burst=64. DUT1, DUT2 are tested with 2p10GE NIC X520 Niantic by Intel.
 | ... | *[Ver] TG verification:* TG finds and reports throughput NDR (Non Drop
 | ... | Rate) with zero packet loss tolerance or throughput PDR (Partial Drop
@@ -55,15 +55,15 @@
 | ... | *[Ref] Applicable standard specifications:* RFC2544.
 
 *** Variables ***
-| ${bd_id1}= | 1
-| ${bd_id2}= | 2
-| ${sock1}= | /tmp/sock-1-${bd_id1}
-| ${sock2}= | /tmp/sock-1-${bd_id2}
 # X520-DA2 bandwidth limit
 | ${s_limit} | ${10000000000}
+#CPU settings
+| ${system_cpus}= | ${1}
+| ${vpp_cpus}= | ${5}
+| ${vm_cpus}= | ${5}
 
 *** Test Cases ***
-| tc01-64B-1t1c-eth-l2xcbase-eth-2vhost-1vm-ndrdisc
+| tc01-64B-1t1c-eth-l2xcbase-eth-4vhost-2vm-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC switching config with 1 thread, 1 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for 64 Byte frames \
@@ -77,25 +77,20 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
+| | Set Test Variable | ${dut1_vm_refs}
+| | Set Test Variable | ${dut2_vm_refs}
 | | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
-| | When  L2 xconnect with Vhost-User initialized in a 3-node circular topology
-| | ...   | ${sock1} | ${sock2}
-| | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ...     | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
-| | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
-| | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ...     | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
-| | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
-| | And Setup scheduler policy for VPP on all DUTs
-| | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-xconnect
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
+| | When  L2 xconnect with Vhost-User for '2' initialized in a 3-node circular topology
+| | And   '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
+| | And   Setup scheduler policy for VPP on all DUTs
+| | Then  Find NDR using binary search and pps
+| | ...   | ${framesize} | ${binary_min} | ${binary_max} | 3-node-xconnect
+| | ...   | ${min_rate} | ${max_rate} | ${threshold}
 
-| tc02-64B-1t1c-eth-l2xcbase-eth-2vhost-1vm-pdrdisc
+| tc02-64B-1t1c-eth-l2xcbase-eth-4vhost-2vm-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC switching config with 1 thread, 1 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Find PDR for 64 Byte frames \
@@ -109,27 +104,21 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
+| | Set Test Variable | ${dut1_vm_refs}
+| | Set Test Variable | ${dut2_vm_refs}
 | | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
-| | When  L2 xconnect with Vhost-User initialized in a 3-node circular topology
-| | ...   | ${sock1} | ${sock2}
-| | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ...     | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
-| | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
-| | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ...     | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
-| | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
-| | And Setup scheduler policy for VPP on all DUTs
-| | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-xconnect
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
-| | ...                                       | ${perf_pdr_loss_acceptance}
-| | ...                                       | ${perf_pdr_loss_acceptance_type}
+| | When  L2 xconnect with Vhost-User for '2' initialized in a 3-node circular topology
+| | And   '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
+| | And   Setup scheduler policy for VPP on all DUTs
+| | Then  Find PDR using binary search and pps
+| | ...   | ${framesize} | ${binary_min} | ${binary_max} | 3-node-xconnect
+| | ...   | ${min_rate} | ${max_rate} | ${threshold}
+| | ...   | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
-| tc03-1518B-1t1c-eth-l2xcbase-eth-2vhost-1vm-ndrdisc
+| tc03-1518B-1t1c-eth-l2xcbase-eth-4vhost-2vm-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC switching config with 1 thread, 1 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for 1518 Byte frames \
@@ -143,25 +132,20 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
+| | Set Test Variable | ${dut1_vm_refs}
+| | Set Test Variable | ${dut2_vm_refs}
 | | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
-| | When  L2 xconnect with Vhost-User initialized in a 3-node circular topology
-| | ...   | ${sock1} | ${sock2}
-| | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ...     | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
-| | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
-| | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ...     | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
-| | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
-| | And Setup scheduler policy for VPP on all DUTs
-| | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-xconnect
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
+| | When  L2 xconnect with Vhost-User for '2' initialized in a 3-node circular topology
+| | And   '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
+| | And   Setup scheduler policy for VPP on all DUTs
+| | Then  Find NDR using binary search and pps
+| | ...   | ${framesize} | ${binary_min} | ${binary_max} | 3-node-xconnect
+| | ...   | ${min_rate} | ${max_rate} | ${threshold}
 
-| tc04-1518B-1t1c-eth-l2xcbase-eth-2vhost-1vm-pdrdisc
+| tc04-1518B-1t1c-eth-l2xcbase-eth-4vhost-2vm-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC switching config with 1 thread, 1 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Find PDR for 1518 Byte frames \
@@ -175,27 +159,21 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
+| | Set Test Variable | ${dut1_vm_refs}
+| | Set Test Variable | ${dut2_vm_refs}
 | | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
-| | When  L2 xconnect with Vhost-User initialized in a 3-node circular topology
-| | ...   | ${sock1} | ${sock2}
-| | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ...     | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
-| | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
-| | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ...     | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
-| | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
-| | And Setup scheduler policy for VPP on all DUTs
-| | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-xconnect
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
-| | ...                                       | ${perf_pdr_loss_acceptance}
-| | ...                                       | ${perf_pdr_loss_acceptance_type}
+| | When  L2 xconnect with Vhost-User for '2' initialized in a 3-node circular topology
+| | And   '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
+| | And   Setup scheduler policy for VPP on all DUTs
+| | Then  Find PDR using binary search and pps
+| | ...   | ${framesize} | ${binary_min} | ${binary_max} | 3-node-xconnect
+| | ...   | ${min_rate} | ${max_rate} | ${threshold}
+| | ...   | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
-| tc05-IMIX-1t1c-eth-l2xcbase-eth-2vhost-1vm-ndrdisc
+| tc05-IMIX-1t1c-eth-l2xcbase-eth-4vhost-2vm-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC switching config with 1 thread, 1 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for IMIX_v4_1 frame \
@@ -210,25 +188,20 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
+| | Set Test Variable | ${dut1_vm_refs}
+| | Set Test Variable | ${dut2_vm_refs}
 | | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
-| | When  L2 xconnect with Vhost-User initialized in a 3-node circular topology
-| | ...   | ${sock1} | ${sock2}
-| | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ...     | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
-| | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
-| | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ...     | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
-| | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
-| | And Setup scheduler policy for VPP on all DUTs
-| | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-xconnect
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
+| | When  L2 xconnect with Vhost-User for '2' initialized in a 3-node circular topology
+| | And   '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
+| | And   Setup scheduler policy for VPP on all DUTs
+| | Then  Find NDR using binary search and pps
+| | ...   | ${framesize} | ${binary_min} | ${binary_max} | 3-node-xconnect
+| | ...   | ${min_rate} | ${max_rate} | ${threshold}
 
-| tc06-IMIX-1t1c-eth-l2xcbase-eth-2vhost-1vm-pdrdisc
+| tc06-IMIX-1t1c-eth-l2xcbase-eth-4vhost-2vm-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC switching config with 1 thread, 1 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Find PDR for IMIX_v4_1 frame \
@@ -243,27 +216,21 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
+| | Set Test Variable | ${dut1_vm_refs}
+| | Set Test Variable | ${dut2_vm_refs}
 | | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
-| | When  L2 xconnect with Vhost-User initialized in a 3-node circular topology
-| | ...   | ${sock1} | ${sock2}
-| | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ...     | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
-| | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
-| | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ...     | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
-| | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
-| | And Setup scheduler policy for VPP on all DUTs
-| | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-xconnect
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
-| | ...                                       | ${perf_pdr_loss_acceptance}
-| | ...                                       | ${perf_pdr_loss_acceptance_type}
+| | When  L2 xconnect with Vhost-User for '2' initialized in a 3-node circular topology
+| | And   '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
+| | And   Setup scheduler policy for VPP on all DUTs
+| | Then  Find PDR using binary search and pps
+| | ...   | ${framesize} | ${binary_min} | ${binary_max} | 3-node-xconnect
+| | ...   | ${min_rate} | ${max_rate} | ${threshold}
+| | ...   | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
-| tc07-64B-2t2c-eth-l2xcbase-eth-2vhost-1vm-ndrdisc
+| tc07-64B-2t2c-eth-l2xcbase-eth-4vhost-2vm-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC switching config with 2 threads, 2 phy cores, \
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for 64 Byte frames \
@@ -277,25 +244,20 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
+| | Set Test Variable | ${dut1_vm_refs}
+| | Set Test Variable | ${dut2_vm_refs}
 | | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
-| | When  L2 xconnect with Vhost-User initialized in a 3-node circular topology
-| | ...   | ${sock1} | ${sock2}
-| | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ...     | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
-| | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
-| | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ...     | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
-| | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
-| | And Setup scheduler policy for VPP on all DUTs
-| | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-xconnect
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
+| | When  L2 xconnect with Vhost-User for '2' initialized in a 3-node circular topology
+| | And   '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
+| | And   Setup scheduler policy for VPP on all DUTs
+| | Then  Find NDR using binary search and pps
+| | ...   | ${framesize} | ${binary_min} | ${binary_max} | 3-node-xconnect
+| | ...   | ${min_rate} | ${max_rate} | ${threshold}
 
-| tc08-64B-2t2c-eth-l2xcbase-eth-2vhost-1vm-pdrdisc
+| tc08-64B-2t2c-eth-l2xcbase-eth-4vhost-2vm-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC switching config with 2 threads, 2 phy cores, \
 | | ... | 1 receive queue per NIC port. [Ver] Find PDR for 64 Byte frames \
@@ -309,27 +271,21 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
+| | Set Test Variable | ${dut1_vm_refs}
+| | Set Test Variable | ${dut2_vm_refs}
 | | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
-| | When  L2 xconnect with Vhost-User initialized in a 3-node circular topology
-| | ...   | ${sock1} | ${sock2}
-| | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ...     | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
-| | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
-| | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ...     | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
-| | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
-| | And Setup scheduler policy for VPP on all DUTs
-| | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-xconnect
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
-| | ...                                       | ${perf_pdr_loss_acceptance}
-| | ...                                       | ${perf_pdr_loss_acceptance_type}
+| | When  L2 xconnect with Vhost-User for '2' initialized in a 3-node circular topology
+| | And   '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
+| | And   Setup scheduler policy for VPP on all DUTs
+| | Then  Find PDR using binary search and pps
+| | ...   | ${framesize} | ${binary_min} | ${binary_max} | 3-node-xconnect
+| | ...   | ${min_rate} | ${max_rate} | ${threshold}
+| | ...   | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
-| tc09-1518B-2t2c-eth-l2xcbase-eth-2vhost-1vm-ndrdisc
+| tc09-1518B-2t2c-eth-l2xcbase-eth-4vhost-2vm-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC switching config with 2 threads, 2 phy cores, \
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for 1518 Byte frames \
@@ -343,25 +299,20 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
+| | Set Test Variable | ${dut1_vm_refs}
+| | Set Test Variable | ${dut2_vm_refs}
 | | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
-| | When  L2 xconnect with Vhost-User initialized in a 3-node circular topology
-| | ...   | ${sock1} | ${sock2}
-| | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ...     | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
-| | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
-| | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ...     | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
-| | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
-| | And Setup scheduler policy for VPP on all DUTs
-| | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-xconnect
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
+| | When  L2 xconnect with Vhost-User for '2' initialized in a 3-node circular topology
+| | And   '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
+| | And   Setup scheduler policy for VPP on all DUTs
+| | Then  Find NDR using binary search and pps
+| | ...   | ${framesize} | ${binary_min} | ${binary_max} | 3-node-xconnect
+| | ...   | ${min_rate} | ${max_rate} | ${threshold}
 
-| tc10-1518B-2t2c-eth-l2xcbase-eth-2vhost-1vm-pdrdisc
+| tc10-1518B-2t2c-eth-l2xcbase-eth-4vhost-2vm-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC switching config with 2 threads, 2 phy cores, \
 | | ... | 1 receive queue per NIC port. [Ver] Find PDR for 1518 Byte frames \
@@ -375,27 +326,21 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
+| | Set Test Variable | ${dut1_vm_refs}
+| | Set Test Variable | ${dut2_vm_refs}
 | | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
-| | When  L2 xconnect with Vhost-User initialized in a 3-node circular topology
-| | ...   | ${sock1} | ${sock2}
-| | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ...     | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
-| | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
-| | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ...     | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
-| | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
-| | And Setup scheduler policy for VPP on all DUTs
-| | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-xconnect
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
-| | ...                                       | ${perf_pdr_loss_acceptance}
-| | ...                                       | ${perf_pdr_loss_acceptance_type}
+| | When  L2 xconnect with Vhost-User for '2' initialized in a 3-node circular topology
+| | And   '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
+| | And   Setup scheduler policy for VPP on all DUTs
+| | Then  Find PDR using binary search and pps
+| | ...   | ${framesize} | ${binary_min} | ${binary_max} | 3-node-xconnect
+| | ...   | ${min_rate} | ${max_rate} | ${threshold}
+| | ...   | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
-| tc11-IMIX-2t2c-eth-l2xcbase-eth-2vhost-1vm-ndrdisc
+| tc11-IMIX-2t2c-eth-l2xcbase-eth-4vhost-2vm-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC switching config with 2 threads, 2 phy cores, \
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for IMIX_v4_1 frame \
@@ -410,25 +355,20 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
+| | Set Test Variable | ${dut1_vm_refs}
+| | Set Test Variable | ${dut2_vm_refs}
 | | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
-| | When  L2 xconnect with Vhost-User initialized in a 3-node circular topology
-| | ...   | ${sock1} | ${sock2}
-| | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ...     | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
-| | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
-| | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ...     | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
-| | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
-| | And Setup scheduler policy for VPP on all DUTs
-| | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-xconnect
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
+| | When  L2 xconnect with Vhost-User for '2' initialized in a 3-node circular topology
+| | And   '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
+| | And   Setup scheduler policy for VPP on all DUTs
+| | Then  Find NDR using binary search and pps
+| | ...   | ${framesize} | ${binary_min} | ${binary_max} | 3-node-xconnect
+| | ...   | ${min_rate} | ${max_rate} | ${threshold}
 
-| tc12-IMIX-2t2c-eth-l2xcbase-eth-2vhost-1vm-pdrdisc
+| tc12-IMIX-2t2c-eth-l2xcbase-eth-4vhost-2vm-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC switching config with 2 threads, 2 phy cores, \
 | | ... | 1 receive queue per NIC port. [Ver] Find PDR for IMIX_v4_1 frame \
@@ -443,27 +383,21 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
+| | Set Test Variable | ${dut1_vm_refs}
+| | Set Test Variable | ${dut2_vm_refs}
 | | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
-| | When  L2 xconnect with Vhost-User initialized in a 3-node circular topology
-| | ...   | ${sock1} | ${sock2}
-| | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ...     | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
-| | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
-| | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ...     | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
-| | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
-| | And Setup scheduler policy for VPP on all DUTs
-| | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-xconnect
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
-| | ...                                       | ${perf_pdr_loss_acceptance}
-| | ...                                       | ${perf_pdr_loss_acceptance_type}
+| | When  L2 xconnect with Vhost-User for '2' initialized in a 3-node circular topology
+| | And   '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
+| | And   Setup scheduler policy for VPP on all DUTs
+| | Then  Find PDR using binary search and pps
+| | ...   | ${framesize} | ${binary_min} | ${binary_max} | 3-node-xconnect
+| | ...   | ${min_rate} | ${max_rate} | ${threshold}
+| | ...   | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
-| tc13-64B-4t4c-eth-l2xcbase-eth-2vhost-1vm-ndrdisc
+| tc13-64B-4t4c-eth-l2xcbase-eth-4vhost-2vm-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC switching config with 4 threads, 4 phy cores, \
 | | ... | 2 receive queues per NIC port. [Ver] Find NDR for 64 Byte frames \
@@ -477,25 +411,20 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
+| | Set Test Variable | ${dut1_vm_refs}
+| | Set Test Variable | ${dut2_vm_refs}
 | | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
-| | When  L2 xconnect with Vhost-User initialized in a 3-node circular topology
-| | ...   | ${sock1} | ${sock2}
-| | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ...     | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
-| | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
-| | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ...     | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
-| | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
-| | And Setup scheduler policy for VPP on all DUTs
-| | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-xconnect
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
+| | When  L2 xconnect with Vhost-User for '2' initialized in a 3-node circular topology
+| | And   '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
+| | And   Setup scheduler policy for VPP on all DUTs
+| | Then  Find NDR using binary search and pps
+| | ...   | ${framesize} | ${binary_min} | ${binary_max} | 3-node-xconnect
+| | ...   | ${min_rate} | ${max_rate} | ${threshold}
 
-| tc14-64B-4t4c-eth-l2xcbase-eth-2vhost-1vm-pdrdisc
+| tc14-64B-4t4c-eth-l2xcbase-eth-4vhost-2vm-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC switching config with 4 threads, 4 phy cores, \
 | | ... | 2 receive queues per NIC port. [Ver] Find PDR for 64 Byte frames \
@@ -509,27 +438,21 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
+| | Set Test Variable | ${dut1_vm_refs}
+| | Set Test Variable | ${dut2_vm_refs}
 | | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
-| | When  L2 xconnect with Vhost-User initialized in a 3-node circular topology
-| | ...   | ${sock1} | ${sock2}
-| | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ...     | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
-| | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
-| | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ...     | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
-| | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
-| | And Setup scheduler policy for VPP on all DUTs
-| | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-xconnect
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
-| | ...                                       | ${perf_pdr_loss_acceptance}
-| | ...                                       | ${perf_pdr_loss_acceptance_type}
+| | When  L2 xconnect with Vhost-User for '2' initialized in a 3-node circular topology
+| | And   '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
+| | And   Setup scheduler policy for VPP on all DUTs
+| | Then  Find PDR using binary search and pps
+| | ...   | ${framesize} | ${binary_min} | ${binary_max} | 3-node-xconnect
+| | ...   | ${min_rate} | ${max_rate} | ${threshold}
+| | ...   | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
-| tc15-1518B-4t4c-eth-l2xcbase-eth-2vhost-1vm-ndrdisc
+| tc15-1518B-4t4c-eth-l2xcbase-eth-4vhost-2vm-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC switching config with 4 threads, 4 phy cores, \
 | | ... | 2 receive queues per NIC port. [Ver] Find NDR for 1518 Byte frames \
@@ -543,25 +466,20 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
+| | Set Test Variable | ${dut1_vm_refs}
+| | Set Test Variable | ${dut2_vm_refs}
 | | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
-| | When  L2 xconnect with Vhost-User initialized in a 3-node circular topology
-| | ...   | ${sock1} | ${sock2}
-| | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ...     | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
-| | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
-| | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ...     | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
-| | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
-| | And Setup scheduler policy for VPP on all DUTs
-| | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-xconnect
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
+| | When  L2 xconnect with Vhost-User for '2' initialized in a 3-node circular topology
+| | And   '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
+| | And   Setup scheduler policy for VPP on all DUTs
+| | Then  Find NDR using binary search and pps
+| | ...   | ${framesize} | ${binary_min} | ${binary_max} | 3-node-xconnect
+| | ...   | ${min_rate} | ${max_rate} | ${threshold}
 
-| tc16-1518B-4t4c-eth-l2xcbase-eth-2vhost-1vm-pdrdisc
+| tc16-1518B-4t4c-eth-l2xcbase-eth-4vhost-2vm-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC switching config with 4 threads, 4 phy cores, \
 | | ... | 2 receive queues per NIC port. [Ver] Find PDR for 1518 Byte frames \
@@ -575,27 +493,21 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
+| | Set Test Variable | ${dut1_vm_refs}
+| | Set Test Variable | ${dut2_vm_refs}
 | | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
-| | When  L2 xconnect with Vhost-User initialized in a 3-node circular topology
-| | ...   | ${sock1} | ${sock2}
-| | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ...     | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
-| | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
-| | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ...     | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
-| | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
-| | And Setup scheduler policy for VPP on all DUTs
-| | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-xconnect
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
-| | ...                                       | ${perf_pdr_loss_acceptance}
-| | ...                                       | ${perf_pdr_loss_acceptance_type}
+| | When  L2 xconnect with Vhost-User for '2' initialized in a 3-node circular topology
+| | And   '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
+| | And   Setup scheduler policy for VPP on all DUTs
+| | Then  Find PDR using binary search and pps
+| | ...   | ${framesize} | ${binary_min} | ${binary_max} | 3-node-xconnect
+| | ...   | ${min_rate} | ${max_rate} | ${threshold}
+| | ...   | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
-| tc17-IMIX-4t4c-eth-l2xcbase-eth-2vhost-1vm-ndrdisc
+| tc17-IMIX-4t4c-eth-l2xcbase-eth-4vhost-2vm-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC switching config with 4 threads, 4 phy cores, \
 | | ... | 2 receive queues per NIC port. [Ver] Find NDR for IMIX_v4_1 frame \
@@ -610,25 +522,20 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
+| | Set Test Variable | ${dut1_vm_refs}
+| | Set Test Variable | ${dut2_vm_refs}
 | | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
-| | When  L2 xconnect with Vhost-User initialized in a 3-node circular topology
-| | ...   | ${sock1} | ${sock2}
-| | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ...     | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
-| | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
-| | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ...     | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
-| | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
-| | And Setup scheduler policy for VPP on all DUTs
-| | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-xconnect
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
+| | When  L2 xconnect with Vhost-User for '2' initialized in a 3-node circular topology
+| | And   '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
+| | And   Setup scheduler policy for VPP on all DUTs
+| | Then  Find NDR using binary search and pps
+| | ...   | ${framesize} | ${binary_min} | ${binary_max} | 3-node-xconnect
+| | ...   | ${min_rate} | ${max_rate} | ${threshold}
 
-| tc18-IMIX-4t4c-eth-l2xcbase-eth-2vhost-1vm-pdrdisc
+| tc18-IMIX-4t4c-eth-l2xcbase-eth-4vhost-2vm-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC switching config with 4 threads, 4 phy cores, \
 | | ... | 2 receive queues per NIC port. [Ver] Find PDR for IMIX_v4_1 frame \
@@ -643,22 +550,16 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
+| | Set Test Variable | ${dut1_vm_refs}
+| | Set Test Variable | ${dut2_vm_refs}
 | | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
 | | And   Add PCI devices to DUTs from 3-node single link topology
 | | And   Add No Multi Seg to all DUTs
 | | And   Apply startup configuration on all VPP DUTs
-| | When  L2 xconnect with Vhost-User initialized in a 3-node circular topology
-| | ...   | ${sock1} | ${sock2}
-| | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ...     | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
-| | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
-| | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ...     | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
-| | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
-| | And Setup scheduler policy for VPP on all DUTs
-| | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-xconnect
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
-| | ...                                       | ${perf_pdr_loss_acceptance}
-| | ...                                       | ${perf_pdr_loss_acceptance_type}
+| | When  L2 xconnect with Vhost-User for '2' initialized in a 3-node circular topology
+| | And   '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
+| | And   Setup scheduler policy for VPP on all DUTs
+| | Then  Find PDR using binary search and pps
+| | ...   | ${framesize} | ${binary_min} | ${binary_max} | 3-node-xconnect
+| | ...   | ${min_rate} | ${max_rate} | ${threshold}
+| | ...   | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
