@@ -20,12 +20,12 @@
 | Resource | resources/libraries/robot/honeycomb/honeycomb.robot
 | Resource | resources/libraries/robot/honeycomb/access_control_lists.robot
 | Variables | resources/test_data/honeycomb/acl.py
-| Suite Teardown | Run keywords
-| ... | Run Keyword If Any Tests Failed
-| ... | Restart Honeycomb and VPP | ${node}
-| ... | AND | Clear all ACL settings | ${node}
+#| Suite Teardown | Run keywords
+#| ... | Run Keyword If Any Tests Failed
+#| ... | Restart Honeycomb and VPP | ${node}
+#| ... | AND | Clear all ACL settings | ${node}
 | Documentation | *Honeycomb access control lists test suite.*
-| Force Tags | honeycomb_sanity | honeycomb_odl
+| Force Tags | honeycomb_sanity | honeycomb_odl | honeycomb_test
 
 *** Test Cases ***
 | TC01: Honeycomb can create ACL classify table

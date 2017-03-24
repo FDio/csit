@@ -47,7 +47,7 @@ class ACLKeywords(object):
         :type node: dict
         :type path: str
         :type data: dict
-        :return: Content of response.
+        :returns: Content of response.
         :rtype: bytearray
         :raises HoneycombError: If the status code in response to PUT is not
         200 = OK.
@@ -79,7 +79,7 @@ class ACLKeywords(object):
         :param table: Classify table to be added.
         :type node: dict
         :type table: dict
-        :return: Content of response.
+        :returns: Content of response.
         :rtype: bytearray
         """
 
@@ -93,7 +93,7 @@ class ACLKeywords(object):
 
         :param node: Honeycomb node.
         :type node: dict
-        :return: Content of response.
+        :returns: Content of response.
         :rtype: bytearray
         """
 
@@ -107,7 +107,7 @@ class ACLKeywords(object):
         :param table_name: Name of the classify table to be removed.
         :type node: dict
         :type table_name: str
-        :return: Content of response.
+        :returns: Content of response.
         :rtype: bytearray
         """
 
@@ -120,7 +120,7 @@ class ACLKeywords(object):
 
         :param node: Honeycomb node.
         :type node: dict
-        :return: List of classify tables.
+        :returns: List of classify tables.
         :rtype: list
         """
 
@@ -131,10 +131,8 @@ class ACLKeywords(object):
             raise HoneycombError(
                 "Not possible to get operational information about the "
                 "classify tables. Status code: {0}.".format(status_code))
-        try:
-            return resp["vpp-classifier"]["classify-table"]
-        except (KeyError, TypeError):
-            return []
+
+        return resp["vpp-classifier-state"]["classify-table"]
 
     @staticmethod
     def get_classify_table_oper_data(node, table_name):
@@ -144,22 +142,16 @@ class ACLKeywords(object):
         :param table_name: Name of the classify table.
         :type node: dict
         :type table_name: str
-        :return: Operational data about the given classify table.
+        :returns: Operational data about the given classify table.
         :rtype: dict
         """
 
-        path = "/classify-table/" + table_name
-        status_code, resp = HcUtil.\
-            get_honeycomb_data(node, "oper_classify_table", path)
-
-        if status_code != HTTPCodes.OK:
-            raise HoneycombError(
-                "Not possible to get operational information about the "
-                "classify tables. Status code: {0}.".format(status_code))
-        try:
-            return resp["classify-table"][0]
-        except (KeyError, TypeError):
-            return []
+        tables = ACLKeywords.get_all_classify_tables_oper_data(node)
+        for table in tables:
+            if table["name"] == table_name:
+                return table
+        raise HoneycombError("Table {0} not found in ACL table list.".format(
+            table_name))
 
     @staticmethod
     def get_all_classify_tables_cfg_data(node):
@@ -167,7 +159,7 @@ class ACLKeywords(object):
 
         :param node: Honeycomb node.
         :type node: dict
-        :return: List of classify tables.
+        :returns: List of classify tables.
         :rtype: list
         """
 
@@ -193,7 +185,7 @@ class ACLKeywords(object):
         :type node: dict
         :type table_name: str
         :type session: dict
-        :return: Content of response.
+        :returns: Content of response.
         :rtype: bytearray
         """
 
@@ -212,7 +204,7 @@ class ACLKeywords(object):
         :type node: dict
         :type table_name: str
         :type session_match: str
-        :return: Content of response.
+        :returns: Content of response.
         :rtype: bytearray
         """
 
@@ -229,15 +221,13 @@ class ACLKeywords(object):
         :param table_name: Name of the classify table.
         :type node: dict
         :type table_name: str
-        :return: List of classify sessions present in the classify table.
+        :returns: List of classify sessions present in the classify table.
         :rtype: list
         """
 
         table_data = ACLKeywords.get_classify_table_oper_data(node, table_name)
-        try:
-            return table_data["classify-table"][0]["classify-session"]
-        except (KeyError, TypeError):
-            return []
+
+        return table_data["classify-session"]
 
     @staticmethod
     def get_classify_session_oper_data(node, table_name, session_match):
@@ -250,23 +240,18 @@ class ACLKeywords(object):
         :type node: dict
         :type table_name: str
         :type session_match: str
-        :return: Classify session operational data.
+        :returns: Classify session operational data.
         :rtype: dict
         """
 
-        path = "/classify-table/" + table_name + \
-               "/classify-session/" + session_match
-        status_code, resp = HcUtil.\
-            get_honeycomb_data(node, "oper_classify_table", path)
-
-        if status_code != HTTPCodes.OK:
-            raise HoneycombError(
-                "Not possible to get operational information about the "
-                "classify tables. Status code: {0}.".format(status_code))
-        try:
-            return resp["classify-session"][0]
-        except (KeyError, TypeError):
-            return {}
+        sessions = ACLKeywords.get_all_classify_sessions_oper_data(
+            node, table_name)
+        for session in sessions:
+            if session["match"] == session_match:
+                return session
+        raise HoneycombError(
+            "Session with match value \"{0}\" not found"
+            " under ACL table {1}.".format(session_match, table_name))
 
     @staticmethod
     def create_acl_plugin_classify_chain(node, list_name, data, macip=False):
@@ -281,7 +266,7 @@ class ACLKeywords(object):
         :type data: dict
         :type macip: bool
 
-        :return: Content of response.
+        :returns: Content of response.
         :rtype: bytearray
         :raises HoneycombError: If the operation fails.
         """
@@ -318,7 +303,7 @@ class ACLKeywords(object):
         :type direction: str
         :type macip: bool
 
-        :return: Content of response.
+        :returns: Content of response.
         :rtype: bytearray
         :raises HoneycombError: If the operation fails.
         """
