@@ -467,6 +467,11 @@
 | | ... | *Arguments:*
 | | ... | _None_
 | | ...
+| | ... | *Note:*
+| | ... | Socket paths for VM are defined in following format:
+| | ... | - /tmp/sock-${VM_ID}-1
+| | ... | - /tmp/sock-${VM_ID}-2
+| | ...
 | | ... | *Return:*
 | | ... | - No value returned
 | | ...
@@ -773,6 +778,48 @@
 | | L2 setup xconnect on DUT | ${dut2} | ${dut2_if1} | ${vhost_if1}
 | | L2 setup xconnect on DUT | ${dut2} | ${dut2_if2} | ${vhost_if2}
 | | All Vpp Interfaces Ready Wait | ${nodes}
+
+| L2 xconnect with Vhost-User for '${nr}' initialized in a 3-node circular topology
+| | [Documentation]
+| | ... | Create pairs of Vhost-User interfaces on all defined VPP nodes. Cross
+| | ... | connect each Vhost interface with one physical interface or virtual
+| | ... | interface to create a chain accross DUT node.
+| | ...
+| | ... | *Arguments:*
+| | ... | _None_
+| | ...
+| | ... | *Note:*
+| | ... | Socket paths for VM are defined in following format:
+| | ... | - /tmp/sock-${VM_ID}-1
+| | ... | - /tmp/sock-${VM_ID}-2
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| L2 xconnect with Vhost-User for '2' initialized in a 3-node \
+| | ... | circular topology \|
+| | ...
+| | :FOR | ${number} | IN RANGE | 1 | ${nr}+1
+| |      | ${sock1}= | Set Variable | /tmp/sock-${number}-1
+| |      | ${sock2}= | Set Variable | /tmp/sock-${number}-2
+| |      | ${prev_index}= | Evaluate | ${number}-1
+| |      | VPP Vhost interfaces for L2BD forwarding are setup | ${dut1}
+| |      | ... | ${sock1} | ${sock2} | dut1-vhost-${number}-if1
+| |      | ... | dut1-vhost-${number}-if2
+| |      | ${dut1_xconnect_if1}= | Set Variable If | ${number}==1 | ${dut1_if1}
+| |      | ... | ${dut1-vhost-${prev_index}-if2}
+| |      | L2 setup xconnect on DUT | ${dut1} | ${dut1_xconnect_if1}
+| |      | ... | ${dut1-vhost-${number}-if1}
+| |      | VPP Vhost interfaces for L2BD forwarding are setup | ${dut2}
+| |      | ... | ${sock1} | ${sock2} | dut2-vhost-${number}-if1
+| |      | ... | dut2-vhost-${number}-if2
+| |      | ${dut2_xconnect_if1}= | Set Variable If | ${number}==1 | ${dut2_if1}
+| |      | ... | ${dut2-vhost-${prev_index}-if2}
+| |      | L2 setup xconnect on DUT | ${dut2} | ${dut2_xconnect_if1}
+| |      | ... | ${dut2-vhost-${number}-if1}
+| |      | Run Keyword If | ${number}==${nr} | L2 setup xconnect on DUT
+| |      | ... | ${dut1} | ${dut1-vhost-${number}-if2} | ${dut1_if2}
+| |      | Run Keyword If | ${number}==${nr} | L2 setup xconnect on DUT
+| |      | ... | ${dut2} | ${dut2-vhost-${number}-if2} | ${dut2_if2}
 
 | L2 xconnect with Vhost-User and VLAN initialized in a 3-node circular topology
 | | [Documentation]
@@ -1743,10 +1790,11 @@
 | | ... | - vm_name - QemuUtil instance name. Type: string
 | | ... | - eth0_mac - MAC address of first Vhost interface. Type: string
 | | ... | - eth1_mac - MAC address of second Vhost interface. Type: string
-| | ... | - skip - number of cpus which will be skipped. Type: int
-| | ... | - count - number of cpus which will be allocated for qemu. Type: int
+| | ... | - skip - number of cpus which will be skipped. Type: integer
+| | ... | - count - number of cpus which will be allocated for qemu.
+| | ... | Type: integer
 | | ... | - qemu_id - Qemu Id when starting more then one guest VM on DUT node.
-| | ... | Type: int
+| | ... | Type: integer
 | | ...
 | | ... | *Example:*
 | | ...
