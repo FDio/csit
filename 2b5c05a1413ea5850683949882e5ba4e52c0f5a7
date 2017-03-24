@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a3291f1_476ffbc5",
+        "filename": "resources/libraries/robot/honeycomb/port_mirroring.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-03-24T12:59:16Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 31,
+        "startChar": 69,
+        "endLine": 31,
+        "endChar": 70
+      },
+      "revId": "2b5c05a1413ea5850683949882e5ba4e52c0f5a7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_0769f3bd",
+        "filename": "resources/libraries/robot/honeycomb/port_mirroring.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-03-24T12:59:16Z",
+      "side": 1,
+      "message": "give an example",
+      "range": {
+        "startLine": 37,
+        "startChar": 37,
+        "endLine": 37,
+        "endChar": 57
+      },
+      "revId": "2b5c05a1413ea5850683949882e5ba4e52c0f5a7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_27a98fdf",
+        "filename": "resources/test_data/honeycomb/spanrx-apihc-apivat.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-03-24T12:59:16Z",
+      "side": 1,
+      "message": "pass the interfaces as arguments",
+      "range": {
+        "startLine": 19,
+        "startChar": 4,
+        "endLine": 21,
+        "endChar": 25
+      },
+      "revId": "2b5c05a1413ea5850683949882e5ba4e52c0f5a7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
