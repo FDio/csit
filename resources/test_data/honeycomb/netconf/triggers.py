@@ -285,10 +285,9 @@ a:operation="replace">
 </target>
 <default-operation>none</default-operation>
 <config>
-<vpp xmlns="urn:opendaylight:params:xml:ns:yang:v3po">
-<bridge-domains>
-<bridge-domain xmlns:a="urn:ietf:params:xml:ns:netconf:base:1.0"
-a:operation="replace">
+<bridge-domains xmlns="urn:opendaylight:params:xml:ns:yang:v3po"
+xmlns:a="urn:ietf:params:xml:ns:netconf:base:1.0" a:operation="replace">
+<bridge-domain>
 <name>e86740a2-042c-4e64-a43b-cc224e0d5240</name>
 <unknown-unicast-flood>true</unknown-unicast-flood>
 <forward>true</forward>
@@ -297,7 +296,6 @@ a:operation="replace">
 <arp-termination>false</arp-termination>
 </bridge-domain>
 </bridge-domains>
-</vpp>
 </config>
 </edit-config>
 </rpc>
