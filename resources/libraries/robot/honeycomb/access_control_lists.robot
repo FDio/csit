@@ -225,7 +225,7 @@
 | | ... | \| ACL session from Honeycomb should not exist \| ${nodes['DUT1']} \
 | | ... | \| table0 \| 00:00:00:00:00:00:01:02:03:04:05:06:00:00:00:00 \|
 | | [Arguments] | ${node} | ${table_name} | ${session_match}
-| | Run keyword and expect error | *HoneycombError: *Status code: 404.
+| | Run keyword and expect error | *KeyError:*
 | | ... | Get classify session oper data
 | | ... | ${node} | ${table_name} | ${session_match}
 

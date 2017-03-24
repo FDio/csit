@@ -31,12 +31,10 @@
 | | ... | ${node} | ${nat_empty}
 | | When Honeycomb Configures NAT Entry | ${node} | ${entry1}
 | | Then NAT Entries From Honeycomb Should Be | ${node} | ${entry1}
-| | And NAT Entries From VAT Should Be | ${node} | ${entry1_vat}
 
 | TC02: Honeycomb removes NAT entry
 | | [Documentation] | Honeycomb removes a configured static NAT entry.
 | | Given NAT Entries From Honeycomb Should Be | ${node} | ${entry1}
-| | And NAT Entries From VAT Should Be | ${node} | ${entry1_vat}
 | | When Honeycomb Configures NAT Entry | ${node} | ${NONE}
 | | Then NAT configuration from Honeycomb should be empty
 | | ... | ${node} | ${nat_empty}
@@ -50,7 +48,6 @@
 | | And Honeycomb Configures NAT Entry | ${node} | ${entry2} | ${0} | ${2}
 | | Then NAT Entries From Honeycomb Should Be
 | | ... | ${node} | ${entry1_2_oper} | ${0}
-| | And NAT Entries From VAT Should Be | ${node} | ${entry1_2_vat}
 
 | TC04: Honeycomb enables NAT on interface - inbound
 | | [Documentation] | Honeycomb configures NAT on an interface\
@@ -63,8 +60,6 @@
 | | ... | ${node} | ${interface} | inbound
 | | Then NAT Interface Configuration From Honeycomb Should Be
 | | ... | ${node} | ${interface} | inbound
-| | And NAT Interface Configuration From VAT Should Be
-| | ... | ${node} | ${nat_interface_vat_in}
 | | And NAT Interface Configuration From Honeycomb Should be empty
 | | ... | ${node} | ${interface} | outbound
 
@@ -96,5 +91,3 @@
 | | ... | ${node} | ${interface} | inbound
 | | And NAT Interface Configuration From Honeycomb Should Be
 | | ... | ${node} | ${interface} | outbound
-| | And NAT Interface Configuration From VAT Should Be
-| | ... | ${node} | ${nat_interface_vat_out}
