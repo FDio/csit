@@ -21,14 +21,12 @@
 | Resource | resources/libraries/robot/honeycomb/honeycomb.robot
 | Resource | resources/libraries/robot/honeycomb/interfaces.robot
 | Resource | resources/libraries/robot/honeycomb/routing.robot
-| Suite Setup | Vpp nodes ra suppress link layer | ${nodes}
 | Test Setup | Clear Packet Trace on All DUTs | ${nodes}
-| Suite Teardown | Run Keyword If Any Tests Failed
-| ... | Restart Honeycomb And VPP And Clear Persisted Configuration | ${node}
+| Suite Teardown | Restart Honeycomb And VPP | ${node}
 | Test Teardown | Honeycomb routing test teardown
 | ... | ${node} | ${table}
 | Documentation | *Honeycomb routing test suite.*
-| Force Tags | Honeycomb_sanity
+| Force Tags | Honeycomb_sanity | honeycomb_odl
 
 *** Test Cases ***
 | TC01: Single hop IPv4 route
@@ -169,10 +167,8 @@
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | Import Variables | resources/test_data/honeycomb/routing.py
 | | ... | ${nodes['DUT1']} | ipv4 | ${dut_to_tg_if2}
-| | Honeycomb sets interface vrf ID
-| | ... | ${dut_node} | ${dut_to_tg_if1} | ${1} | ipv4
-| | Honeycomb sets interface vrf ID
-| | ... | ${dut_node} | ${dut_to_tg_if2} | ${1} | ipv4
+| | Setup vrf IDs | ${dut_node} | ${dut_to_tg_if1} | ${1}
+| | Setup vrf IDs | ${dut_node} | ${dut_to_tg_if2} | ${1}
 | | Honeycomb sets interface state | ${dut_node} | ${dut_to_tg_if1} | up
 | | Honeycomb sets interface state | ${dut_node} | ${dut_to_tg_if2} | up
 | | Honeycomb sets interface ipv4 address with prefix | ${dut_node}
@@ -203,9 +199,17 @@
 | | ... | ${src_ip} | ${tg_to_dut_if1_mac}
 | | Honeycomb adds interface ipv6 neighbor | ${dut_node} | ${dut_to_tg_if2}
 | | ... | ${next_hop} | ${tg_to_dut_if2_mac}
+| | Vpp all ra suppress link layer | ${nodes}
 
 | Honeycomb routing test teardown
 | | [arguments] | ${node} | ${routing_table}
 | | Show Packet Trace on All DUTs | ${nodes}
 | | Log routing configuration from VAT | ${node}
 | | Honeycomb removes routing configuration | ${node} | ${routing_table}
+
+| Setup vrf IDs
+| | [Arguments] | ${node} | ${interface} | ${vrf}
+| | Honeycomb sets interface vrf ID
+| | ... | ${node} | ${interface} | ${vrf} | ipv4
+| | Honeycomb sets interface vrf ID
+| | ... | ${node} | ${interface} | ${vrf} | ipv6

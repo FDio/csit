@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2017 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -22,7 +22,7 @@ OS=$2
 
 # Download the latest VPP and VPP plugin .deb packages
 URL="https://nexus.fd.io/service/local/artifact/maven/content"
-VER="LATEST"
+VER="RELEASE"
 VPP_GROUP="io.fd.vpp"
 NSH_GROUP="io.fd.nsh_sfc"
 VPP_ARTIFACTS="vpp vpp-dbg vpp-dev vpp-dpdk-dev vpp-dpdk-dkms vpp-lib vpp-plugins vpp-api-java"

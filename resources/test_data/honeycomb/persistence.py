@@ -102,7 +102,7 @@ def get_variables(interface):
             },
             "match": {
                 "vlan-tagged": {
-                    "match-exact-tags": False
+                    "match-exact-tags": True
                 }
             }
         },
@@ -123,7 +123,7 @@ def get_variables(interface):
         'tag_rewrite_pop_1_VAT': {
             'sub_default': 0,
             'sub_dot1ad': 0,
-            'sub_exact_match': 0,
+            'sub_exact_match': 1,
             'sub_inner_vlan_id': 0,
             'sub_inner_vlan_id_any': 1,
             'sub_number_of_tags': 2,
