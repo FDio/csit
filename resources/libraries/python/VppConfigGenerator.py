@@ -466,3 +466,6 @@ class VppConfigGenerator(object):
                                format(hostname))
         logger.debug('VPP interfaces found on node {}'.
                      format(stdout))
+
+        ssh.exec_command('sudo vpp_api_test <<< "exec trace add dpdk-input 100"')
+        ssh.exec_command('sudo vpp_api_test <<< "exec trace add vhost-user-input 100"')
