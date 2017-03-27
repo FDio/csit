@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a3291f1_080ea38d",
+        "filename": "resources/libraries/python/honeycomb/HcAPIKwInterfaces.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1650,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-03-27T14:11:21Z",
+      "side": 1,
+      "message": "line too long",
+      "range": {
+        "startLine": 1650,
+        "startChar": 80,
+        "endLine": 1650,
+        "endChar": 82
+      },
+      "revId": "1c806778909825106c04108265bc9541208ce59f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_c8277b11",
+        "filename": "resources/libraries/robot/honeycomb/port_mirroring.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 82,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-03-27T14:11:21Z",
+      "side": 1,
+      "message": "line too long",
+      "range": {
+        "startLine": 82,
+        "startChar": 80,
+        "endLine": 82,
+        "endChar": 97
+      },
+      "revId": "1c806778909825106c04108265bc9541208ce59f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_a869cf26",
+        "filename": "resources/test_data/honeycomb/spanrx-apihc-apivat.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-03-27T14:11:21Z",
+      "side": 1,
+      "message": "SPAN port mirroring test suite",
+      "range": {
+        "startLine": 14,
+        "startChar": 22,
+        "endLine": 14,
+        "endChar": 46
+      },
+      "revId": "1c806778909825106c04108265bc9541208ce59f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_6873e715",
+        "filename": "resources/test_data/honeycomb/spanrx-apihc-apivat.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-03-27T14:11:21Z",
+      "side": 1,
+      "message": "add documentation\nsee resources/test_data/honeycomb/nat.py for an example",
+      "range": {
+        "startLine": 17,
+        "startChar": 4,
+        "endLine": 17,
+        "endChar": 17
+      },
+      "revId": "1c806778909825106c04108265bc9541208ce59f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_2865df44",
+        "filename": "tests/func/honeycomb/mgmt-cfg-spanrx-apihc-apivat-func.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-03-27T14:11:21Z",
+      "side": 1,
+      "message": "remove test tag",
+      "range": {
+        "startLine": 24,
+        "startChar": 31,
+        "endLine": 24,
+        "endChar": 48
+      },
+      "revId": "1c806778909825106c04108265bc9541208ce59f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
