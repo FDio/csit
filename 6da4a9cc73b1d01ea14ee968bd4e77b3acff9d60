@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a3291f1_e28495b2",
+        "filename": "tests/perf/10ge2p1x520-eth-l2bdbasemaclrn-eth-4vhost-2vm-ndrpdrdisc.robot",
+        "patchSetId": 30
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-03-27T10:10:17Z",
+      "side": 1,
+      "message": "| | And   Add No Multi Seg to all DUTs\n| | And   Apply startup configuration on all VPP DUTs",
+      "revId": "6da4a9cc73b1d01ea14ee968bd4e77b3acff9d60",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
