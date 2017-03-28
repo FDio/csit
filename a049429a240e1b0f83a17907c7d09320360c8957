@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a3291f1_8eae1b84",
+        "filename": "tests/perf/10ge2p1x520-eth-l2xcbase-eth-2vhost-1vm-ndrdisc.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2017-03-28T12:46:17Z",
+      "side": 1,
+      "message": "xconnect\n\n- all occurences",
+      "range": {
+        "startLine": 94,
+        "startChar": 71,
+        "endLine": 94,
+        "endChar": 77
+      },
+      "revId": "a049429a240e1b0f83a17907c7d09320360c8957",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_ae9f974f",
+        "filename": "tests/perf/10ge2p1x520-eth-l2xcbase-eth-4vhost-2vm-ndrpdrdisc.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2017-03-28T12:46:17Z",
+      "side": 1,
+      "message": "xconnect\n\n- all occurences",
+      "range": {
+        "startLine": 90,
+        "startChar": 66,
+        "endLine": 90,
+        "endChar": 72
+      },
+      "revId": "a049429a240e1b0f83a17907c7d09320360c8957",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
