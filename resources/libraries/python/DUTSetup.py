@@ -123,10 +123,14 @@ class DUTSetup(object):
             raise RuntimeError('Not possible to get PID of VPP process on node:'
                                ' {}'.format(node['host']))
 
-        if len(stdout.splitlines()) != 1:
+        if len(stdout.splitlines()) == 1:
+            return int(stdout)
+        elif len(stdout.splitlines()) == 0:
+            raise RuntimeError("No VPP PID found on node {0}".
+                               format(node['host']))
+        else:
             raise RuntimeError("More then one VPP PID found on node {0}".
                                format(node['host']))
-        return int(stdout)
 
     @staticmethod
     def get_vpp_pids(nodes):
