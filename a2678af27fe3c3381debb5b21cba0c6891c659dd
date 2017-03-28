@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a3291f1_ee135f0b",
+        "filename": "resources/libraries/python/honeycomb/proxyARP.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 230,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-03-28T11:20:09Z",
+      "side": 1,
+      "message": "add to doc",
+      "range": {
+        "startLine": 230,
+        "startChar": 12,
+        "endLine": 230,
+        "endChar": 18
+      },
+      "revId": "a2678af27fe3c3381debb5b21cba0c6891c659dd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_aef557cc",
+        "filename": "resources/traffic_scripts/ipv6_nd_proxy_check.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-03-28T11:20:09Z",
+      "side": 1,
+      "message": "not neccessary",
+      "range": {
+        "startLine": 122,
+        "startChar": 4,
+        "endLine": 122,
+        "endChar": 21
+      },
+      "revId": "a2678af27fe3c3381debb5b21cba0c6891c659dd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
