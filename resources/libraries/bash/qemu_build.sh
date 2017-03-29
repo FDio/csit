@@ -12,12 +12,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-QEMU_VERSION="qemu-2.2.1"
+set -x
 
-QEMU_DOWNLOAD_REPO="http://wiki.qemu-project.org/download/"
-QEMU_DOWNLOAD_PACKAGE="${QEMU_VERSION}.tar.bz2"
+QEMU_VERSION="qemu-2.5.0"
+
+QEMU_DOWNLOAD_REPO="http://download.qemu-project.org/"
+QEMU_DOWNLOAD_PACKAGE="${QEMU_VERSION}.tar.xz"
 QEMU_PACKAGE_URL="${QEMU_DOWNLOAD_REPO}${QEMU_DOWNLOAD_PACKAGE}"
 QEMU_INSTALL_DIR="/opt/qemu"
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 if test "$(id -u)" -ne 0
 then
@@ -25,45 +28,33 @@ then
     exit 1
 fi
 
-WORKING_DIR=$(mktemp -d)
-test $? -eq 0 || exit 1
+WORKING_DIR=$(mktemp -d) || exit 1
+trap "rm -r ${WORKING_DIR}" EXIT
 
-cleanup () {
-    rm -r ${WORKING_DIR}
-}
-
-trap cleanup EXIT
-
-if [[ "$@" == "--force" ]]
-then
+if [[ "$@" == "--force" ]]; then
     rm -rf ${QEMU_INSTALL_DIR}
 else
     test -d ${QEMU_INSTALL_DIR} && echo "Qemu already installed: ${QEMU_INSTALL_DIR}" && exit 0
 fi
 
-echo
-echo Downloading QEMU source
-echo
-wget -P ${WORKING_DIR} -q ${QEMU_PACKAGE_URL} || exit
-test $? -eq 0 || exit 1
+wget -P ${WORKING_DIR} -q ${QEMU_PACKAGE_URL} || \
+    echo "Failed to download ${QEMU_VERSION}" || exit 1
+tar --strip-components 1 -xjf ${WORKING_DIR}/${QEMU_DOWNLOAD_PACKAGE} -C ${WORKING_DIR} && \
+    echo "Failed to exctract ${QEMU_VERSION}.tar.xz" || exit 1
 
-echo
-echo Extracting QEMU
-echo
-tar --strip-components 1 -xjf ${WORKING_DIR}/${QEMU_DOWNLOAD_PACKAGE} -C ${WORKING_DIR} || exit
-test $? -eq 0 || exit 1
-
-echo
-echo Building QEMU
-echo
 cd ${WORKING_DIR}
-mkdir ${QEMU_INSTALL_DIR}
-mkdir build
-cd build
-../configure --target-list=x86_64-softmmu --prefix=${QEMU_INSTALL_DIR} || exit
-make -j`nproc` || exit 1
-make install || exit 1
+rm -r ${QEMU_INSTALL_DIR}; mkdir ${QEMU_INSTALL_DIR} || \
+    echo "Failed to create ${qemu_install_dir}" || exit 1
 
-echo
-echo QEMU ready
-echo
+if [[ "$@" == "--patch" ]]; then
+    run-parts -v  ${SCRIPT_DIR}/qemu_patches/${QEMU_VERSION}
+fi
+./configure --target-list=x86_64-softmmu --prefix=${QEMU_INSTALL_DIR} || \
+    echo "Failed to configure ${QEMU_VERSION}" || exit 1
+make -j`nproc` || \
+    echo "Failed to compile ${QEMU_VERSION}" || exit 1
+make install || \
+    echo "Failed to install ${QEMU_VERSION}" || exit 1
+
+echo QEMU ${QEMU_VERSION} ready
+
