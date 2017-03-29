@@ -628,19 +628,31 @@ class QemuUtils(object):
                 'error: {1}'.format(self._node['host'], json.dumps(err)))
 
     @staticmethod
-    def build_qemu(node):
+    def build_qemu(node, force_install=False, apply_patch=False):
         """Build QEMU from sources.
 
         :param node: Node to build QEMU on.
+        :param force_install: If True, then remove previous build.
+        :param apply_patch: If True, then apply patches from qemu_patches dir.
         :type node: dict
+        :type force_install: bool
+        :type apply_patch: bool
+        :raises: RuntimeError if building QEMU failed.
         """
         ssh = SSH()
         ssh.connect(node)
 
+        directory = ' --directory={0}'.format(Constants.QEMU_INSTALL_DIR)
+        version = ' --version={0}'.format(Constants.QEMU_INSTALL_VERSION)
+        force = ' --force' if force_install else ''
+        patch = ' --patch' if apply_patch else ''
+
         (ret_code, stdout, stderr) = \
-            ssh.exec_command('sudo -Sn bash {0}/{1}/qemu_build.sh'.format(
-                Constants.REMOTE_FW_DIR, Constants.RESOURCES_LIB_SH), 1000)
-        logger.trace(stdout)
+            ssh.exec_command(
+                "sudo -E sh -c '{0}/{1}/qemu_build.sh{2}{3}{4}{5}'"\
+                .format(Constants.REMOTE_FW_DIR, Constants.RESOURCES_LIB_SH,
+                        version, directory, force, patch), 1000)
+
         if int(ret_code) != 0:
-            logger.debug('QEMU build failed {0}'.format(stderr))
+            logger.debug('QEMU build failed {0}'.format(stdout + stderr))
             raise RuntimeError('QEMU build failed on {0}'.format(node['host']))
