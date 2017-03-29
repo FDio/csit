@@ -45,7 +45,18 @@
 | Build QEMU on Node
 | | [Documentation] | Build QEMU from sources on the Node. Nodes with successful
 | | ...             | QEMU build are stored in global variable list QEMU_BUILD
-| | [Arguments] | ${node}
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - Node on which to build qemu. Type: dictionary
+| | ... | - force_install - If True, then remove previous build. Type: bool
+| | ... | - apply_patch - If True, then apply patches from qemu_patches dir.
+| | ... | Type: bool
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Build QEMU on Node \| ${node['DUT1']} \| False \| False \|
+| | ...
+| | [Arguments] | ${node} | ${force_install}=${False} | ${apply_patch}=${False}
 | | ${ready}= | Is QEMU Ready on Node | ${node}
 | | Return From Keyword If | ${ready} == ${TRUE}
 | | Build QEMU | ${node}
@@ -54,9 +65,21 @@
 | Build QEMU on all DUTs
 | | [Documentation] | Build QEMU from sources on all DUTs. Nodes with successful
 | | ...             | QEMU build are stored in global variable list QEMU_BUILD
+| | ...
+| | ... | *Arguments:*
+| | ... | - force_install - If True, then remove previous build. Type: bool
+| | ... | - apply_patch - If True, then apply patches from qemu_patches dir.
+| | ... | Type: bool
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Build QEMU on all DUTs \| False \| False \|
+| | ...
+| | [Arguments] | ${force_install}=${False} | ${apply_patch}=${False}
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
-| | | Build QEMU on Node | ${nodes['${dut}']}
+| | | Build QEMU on Node | ${nodes['${dut}']} | ${force_install} |
+| | | ... | ${apply_patch}
 
 | Stop and Clear QEMU
 | | [Documentation] | Stop QEMU, clear used sockets and close SSH connection
