@@ -29,6 +29,12 @@ class Constants(object):
     # OpenVPP VAT binary name
     VAT_BIN_NAME = 'vpp_api_test'
 
+    # QEMU version to install
+    QEMU_INSTALL_VERSION = 'qemu-2.5.0'
+
+    # QEMU install directory
+    QEMU_INSTALL_DIR = '/opt/qemu-2.5.0'
+
     # Honeycomb directory location at topology nodes:
     REMOTE_HC_DIR = '/opt/honeycomb'
 
