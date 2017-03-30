@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a3291f1_3d875763",
+        "filename": "resources/libraries/robot/honeycomb/proxyarp.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-03-30T10:01:00Z",
+      "side": 1,
+      "message": "\\",
+      "range": {
+        "startLine": 175,
+        "startChar": 52,
+        "endLine": 175,
+        "endChar": 54
+      },
+      "revId": "e24c551f20e608eeae96b4f984df4438f4d0f273",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
