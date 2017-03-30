@@ -220,6 +220,10 @@ Test type tags
 
     At least one feature is configured in test cases. Use also feature tag(s).
 
+.. topic:: TLDK
+    
+    Functional test cases for TLDK.
+
 
 Forwarding mode tags
 --------------------
