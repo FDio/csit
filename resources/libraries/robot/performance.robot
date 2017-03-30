@@ -1655,7 +1655,8 @@
 | | Run keyword | ${vm_name}.Qemu Set Affinity | @{qemu_cpus}
 | | Run keyword | ${vm_name}.Qemu Set Scheduler Policy
 | | Dpdk Testpmd Start | ${vm} | eal_coremask=0x1f | eal_mem_channels=4
-| | ... | pmd_fwd_mode=io | pmd_disable_hw_vlan=${True}
+| | ... | pmd_fwd_mode=io | pmd_disable_hw_vlan=${True} | pmd_txd=${256}
+| | ... | pmd_rxd=${256}
 | | Return From Keyword | ${vm}
 
 | '${nr}' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
@@ -1730,7 +1731,8 @@
 | | Run keyword | ${vm_name}.Qemu Set Affinity | @{qemu_cpus}
 | | Run keyword | ${vm_name}.Qemu Set Scheduler Policy
 | | Dpdk Testpmd Start | ${vm} | eal_coremask=0x1f | eal_mem_channels=4
-| | ... | pmd_fwd_mode=io | pmd_disable_hw_vlan=${True}
+| | ... | pmd_fwd_mode=io | pmd_disable_hw_vlan=${True} | pmd_txd=${256}
+| | ... | pmd_rxd=${256}
 | | Return From Keyword | ${vm}
 
 | Guest VM with dpdk-testpmd-mac connected via vhost-user is setup
@@ -1791,6 +1793,7 @@
 | | Dpdk Testpmd Start | ${vm} | eal_coremask=0x1f
 | | ... | eal_mem_channels=4 | pmd_fwd_mode=mac | pmd_eth_peer_0=0,${eth0_mac}
 | | ... | pmd_eth_peer_1=1,${eth1_mac} | pmd_disable_hw_vlan=${True}
+| | ... | pmd_txd=${256} | pmd_rxd=${256}
 | | Return From Keyword | ${vm}
 
 | '${nr}' Guest VMs with dpdk-testpmd-mac connected via vhost-user is setup in a 3-node circular topology
@@ -1874,6 +1877,7 @@
 | | Dpdk Testpmd Start | ${vm} | eal_coremask=0x1f
 | | ... | eal_mem_channels=4 | pmd_fwd_mode=mac | pmd_eth_peer_0=0,${eth0_mac}
 | | ... | pmd_eth_peer_1=1,${eth1_mac} | pmd_disable_hw_vlan=${True}
+| | ... | pmd_txd=${256} | pmd_rxd=${256}
 | | Return From Keyword | ${vm}
 
 | Guest VM with Linux Bridge connected via vhost-user is setup
