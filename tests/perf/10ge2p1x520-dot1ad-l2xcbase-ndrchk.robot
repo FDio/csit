@@ -58,10 +58,10 @@
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC with 802.1ad config with 1 thread, 1 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Verify ref-NDR for 64 Byte
-| | ... | frames using single trial throughput test at 2x 2.9mpps.
+| | ... | frames using single trial throughput test at 2x 4.0mpps.
 | | [Tags] | 1T1C | STHREAD
-| | ${framesize}= | Set Variable | 64
-| | ${rate}= | Set Variable | 2.9mpps
+| | ${framesize}= | Set Variable | ${64}
+| | ${rate}= | Set Variable | 4.0mpps
 | | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
 | | And Add PCI devices to DUTs from 3-node single link topology
 | | And Add No Multi Seg to all DUTs
@@ -85,7 +85,7 @@
 | | ... | 1 receive queue per NIC port. [Ver] Verify ref-NDR for 1514 Byte
 | | ... | frames using single trial throughput test at 2x 810635pps.
 | | [Tags] | 1T1C | STHREAD
-| | ${framesize}= | Set Variable | 1514
+| | ${framesize}= | Set Variable | ${1514}
 | | ${rate}= | Set Variable | 810635pps
 | | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
 | | And Add PCI devices to DUTs from 3-node single link topology
@@ -110,7 +110,7 @@
 | | ... | 1 receive queue per NIC port. [Ver] Verify ref-NDR for 9000 Byte
 | | ... | frames using single trial throughput test at 2x 138458pps.
 | | [Tags] | 1T1C | STHREAD
-| | ${framesize}= | Set Variable | 9000
+| | ${framesize}= | Set Variable | ${9000}
 | | ${rate}= | Set Variable | 138458pps
 | | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
 | | And Add PCI devices to DUTs from 3-node single link topology
@@ -132,10 +132,10 @@
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC with 802.1ad config with 2 thread, 2 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Verify ref-NDR for 64 Byte
-| | ... | frames using single trial throughput test at 2x 7.0mpps.
+| | ... | frames using single trial throughput test at 2x 8.5mpps.
 | | [Tags] | 2T2C | MTHREAD
-| | ${framesize}= | Set Variable | 64
-| | ${rate}= | Set Variable | 7.0mpps
+| | ${framesize}= | Set Variable | ${64}
+| | ${rate}= | Set Variable | 8.5mpps
 | | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
 | | And Add PCI devices to DUTs from 3-node single link topology
 | | And Add No Multi Seg to all DUTs
@@ -159,7 +159,7 @@
 | | ... | 1 receive queue per NIC port. [Ver] Verify ref-NDR for 1514 Byte
 | | ... | frames using single trial throughput test at 2x 810635pps.
 | | [Tags] | 2T2C | MTHREAD
-| | ${framesize}= | Set Variable | 1514
+| | ${framesize}= | Set Variable | ${1514}
 | | ${rate}= | Set Variable | 810635pps
 | | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
 | | And Add PCI devices to DUTs from 3-node single link topology
@@ -184,7 +184,7 @@
 | | ... | 1 receive queue per NIC port. [Ver] Verify ref-NDR for 9000 Byte
 | | ... | frames using single trial throughput test at 2x 138458pps.
 | | [Tags] | 2T2C | MTHREAD
-| | ${framesize}= | Set Variable | 9000
+| | ${framesize}= | Set Variable | ${9000}
 | | ${rate}= | Set Variable | 138458pps
 | | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
 | | And Add PCI devices to DUTs from 3-node single link topology
@@ -206,10 +206,10 @@
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2XC with 802.1ad config with 4 thread, 4 phy core, \
 | | ... | 2 receive queue per NIC port. [Ver] Verify ref-NDR for 64 Byte
-| | ... | frames using single trial throughput test at 2x 8.0mpps.
+| | ... | frames using single trial throughput test at 2x 8.6mpps.
 | | [Tags] | 4T4C | MTHREAD
-| | ${framesize}= | Set Variable | 64
-| | ${rate}= | Set Variable | 8.0mpps
+| | ${framesize}= | Set Variable | ${64}
+| | ${rate}= | Set Variable | 8.6mpps
 | | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
 | | And Add PCI devices to DUTs from 3-node single link topology
 | | And Add No Multi Seg to all DUTs
@@ -233,7 +233,7 @@
 | | ... | 2 receive queue per NIC port. [Ver] Verify ref-NDR for 1514 Byte
 | | ... | frames using single trial throughput test at 2x 810635pps.
 | | [Tags] | 4T4C | MTHREAD
-| | ${framesize}= | Set Variable | 1514
+| | ${framesize}= | Set Variable | ${1514}
 | | ${rate}= | Set Variable | 810635pps
 | | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
 | | And Add PCI devices to DUTs from 3-node single link topology
@@ -258,7 +258,7 @@
 | | ... | 2 receive queue per NIC port. [Ver] Verify ref-NDR for 9000 Byte
 | | ... | frames using single trial throughput test at 2x 138458pps.
 | | [Tags] | 4T4C | MTHREAD
-| | ${framesize}= | Set Variable | 9000
+| | ${framesize}= | Set Variable | ${9000}
 | | ${rate}= | Set Variable | 138458pps
 | | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
 | | And Add PCI devices to DUTs from 3-node single link topology

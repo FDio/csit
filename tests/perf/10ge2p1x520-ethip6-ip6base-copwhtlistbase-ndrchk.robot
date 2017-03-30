@@ -52,10 +52,10 @@
 | | ... | [Cfg] DUT runs IPv6 routing and whitelist filters config with \
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port. [Ver] Verify
 | | ... | ref-NDR for 78 Byte frames using single trial throughput test
-| | ... | at 2x 2.8mpps.
+| | ... | at 2x 3.1mpps.
 | | [Tags] | 1T1C | STHREAD
-| | ${framesize}= | Set Variable | 78
-| | ${rate}= | Set Variable | 2.8mpps
+| | ${framesize}= | Set Variable | ${78}
+| | ${rate}= | Set Variable | 3.1mpps
 | | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
 | | And Add PCI devices to DUTs from 3-node single link topology
 | | And Add No Multi Seg to all DUTs
@@ -77,7 +77,7 @@
 | | ... | ref-NDR for 1518 Byte frames using single trial throughput test
 | | ... | at 2x 812743pps.
 | | [Tags] | 1T1C | STHREAD
-| | ${framesize}= | Set Variable | 1518
+| | ${framesize}= | Set Variable | ${1518}
 | | ${rate}= | Set Variable | 812743pps
 | | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
 | | And Add PCI devices to DUTs from 3-node single link topology
@@ -100,7 +100,7 @@
 | | ... | ref-NDR for 9000 Byte frames using single trial throughput test
 | | ... | at 2x 138580pps.
 | | [Tags] | 1T1C | STHREAD
-| | ${framesize}= | Set Variable | 9000
+| | ${framesize}= | Set Variable | ${9000}
 | | ${rate}= | Set Variable | 138580pps
 | | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
 | | And Add PCI devices to DUTs from 3-node single link topology
@@ -120,10 +120,10 @@
 | | ... | [Cfg] DUT runs IPv6 routing and whitelist filters config with \
 | | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port. [Ver] Verify
 | | ... | ref-NDR for 78 Byte frames using single trial throughput test
-| | ... | at 2x 4.9mpps.
+| | ... | at 2x 5.9mpps.
 | | [Tags] | 2T2C | MTHREAD
-| | ${framesize}= | Set Variable | 78
-| | ${rate}= | Set Variable | 4.9mpps
+| | ${framesize}= | Set Variable | ${78}
+| | ${rate}= | Set Variable | 5.9mpps
 | | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
 | | And Add PCI devices to DUTs from 3-node single link topology
 | | And Add No Multi Seg to all DUTs
@@ -145,7 +145,7 @@
 | | ... | ref-NDR for 1518 Byte frames using single trial throughput test
 | | ... | at 2x 812743pps.
 | | [Tags] | 2T2C | MTHREAD
-| | ${framesize}= | Set Variable | 1518
+| | ${framesize}= | Set Variable | ${1518}
 | | ${rate}= | Set Variable | 812743pps
 | | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
 | | And Add PCI devices to DUTs from 3-node single link topology
@@ -168,7 +168,7 @@
 | | ... | ref-NDR for 9000 Byte frames using single trial throughput test
 | | ... | at 2x 138580pps.
 | | [Tags] | 2T2C | MTHREAD
-| | ${framesize}= | Set Variable | 9000
+| | ${framesize}= | Set Variable | ${9000}
 | | ${rate}= | Set Variable | 138580pps
 | | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
 | | And Add PCI devices to DUTs from 3-node single link topology
@@ -186,12 +186,12 @@
 | tc07-78B-4t4c-ethip6-ip6base-copwhtlistbase-ndrchk
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv6 routing and whitelist filters config with \
-| | ... | 4 thread, 4 phy core, 2 receive queue per NIC port. [Ver] Verify
+| | ... | 4 threads, 4 phy cores, 2 receive queue per NIC port. [Ver] Verify
 | | ... | ref-NDR for 78 Byte frames using single trial throughput test
-| | ... | at 2x 10.1mpps.
+| | ... | at 2x 9.4mpps.
 | | [Tags] | 4T4C | MTHREAD
-| | ${framesize}= | Set Variable | 78
-| | ${rate}= | Set Variable | 10.1mpps
+| | ${framesize}= | Set Variable | ${78}
+| | ${rate}= | Set Variable | 9.4mpps
 | | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
 | | And Add PCI devices to DUTs from 3-node single link topology
 | | And Add No Multi Seg to all DUTs
@@ -209,11 +209,11 @@
 | tc08-1518B-4t4c-ethip6-ip6base-copwhtlistbase-ndrchk
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv6 routing and whitelist filters config with \
-| | ... | 4 thread, 4 phy core, 2 receive queue per NIC port. [Ver] Verify
+| | ... | 4 threads, 4 phy cores, 2 receive queue per NIC port. [Ver] Verify
 | | ... | ref-NDR for 1518 Byte frames using single trial throughput test
 | | ... | at 2x 812743pps.
 | | [Tags] | 4T4C | MTHREAD
-| | ${framesize}= | Set Variable | 1518
+| | ${framesize}= | Set Variable | ${1518}
 | | ${rate}= | Set Variable | 812743pps
 | | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
 | | And Add PCI devices to DUTs from 3-node single link topology
@@ -232,11 +232,11 @@
 | tc09-9000B-4t4c-ethip6-ip6base-copwhtlistbase-ndrchk
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv6 routing and whitelist filters config with \
-| | ... | 4 thread, 4 phy core, 2 receive queue per NIC port. [Ver] Verify
+| | ... | 4 threads, 4 phy cores, 2 receive queue per NIC port. [Ver] Verify
 | | ... | ref-NDR for 9000 Byte frames using single trial throughput test
 | | ... | at 2x 138580pps.
 | | [Tags] | 4T4C | MTHREAD
-| | ${framesize}= | Set Variable | 9000
+| | ${framesize}= | Set Variable | ${9000}
 | | ${rate}= | Set Variable | 138580pps
 | | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
 | | And Add PCI devices to DUTs from 3-node single link topology

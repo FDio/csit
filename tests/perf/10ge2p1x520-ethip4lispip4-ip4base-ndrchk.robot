@@ -59,7 +59,7 @@
 | | ... | [Ver] Verify ref-NDR for 64 Byte frames using single trial throughput\
 | | ... | test at 2x 1.9mpps.
 | | [Tags] | 1T1C | STHREAD
-| | ${framesize}= | Set Variable | 64
+| | ${framesize}= | Set Variable | ${64}
 | | ${rate}= | Set Variable | 1.9mpps
 | | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
 | | And Add PCI devices to DUTs from 3-node single link topology
@@ -83,7 +83,7 @@
 | | ... | [Ver] Verify ref-NDR for 1480 Byte frames using single trial\
 | | ... | throughput test at 2x 740000pps.
 | | [Tags] | 1T1C | STHREAD
-| | ${framesize}= | Set Variable | 1480
+| | ${framesize}= | Set Variable | ${1480}
 | | ${rate}= | Set Variable | 740000pps
 | | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
 | | And Add PCI devices to DUTs from 3-node single link topology
@@ -107,7 +107,7 @@
 | | ... | [Ver] Verify ref-NDR for 9000 Byte frames using single trial\
 | | ... | throughput test at 2x 120000pps.
 | | [Tags] | 1T1C | STHREAD
-| | ${framesize}= | Set Variable | 9000
+| | ${framesize}= | Set Variable | ${9000}
 | | ${rate}= | Set Variable | 120000pps
 | | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
 | | And Add PCI devices to DUTs from 3-node single link topology
@@ -130,7 +130,7 @@
 | | ... | [Ver] Verify ref-NDR for 64 Byte frames using single trial\
 | | ... | throughput test at 2x 3.6mpps.
 | | [Tags] | 2T2C | MTHREAD
-| | ${framesize}= | Set Variable | 64
+| | ${framesize}= | Set Variable | ${64}
 | | ${rate}= | Set Variable | 3.6mpps
 | | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
 | | And Add PCI devices to DUTs from 3-node single link topology
@@ -154,7 +154,7 @@
 | | ... | [Ver] Verify ref-NDR for 1480 Byte frames using single trial\
 | | ... | throughput test at 2x 740000pps.
 | | [Tags] | 2T2C | MTHREAD
-| | ${framesize}= | Set Variable | 1480
+| | ${framesize}= | Set Variable | ${1480}
 | | ${rate}= | Set Variable | 740000pps
 | | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
 | | And Add PCI devices to DUTs from 3-node single link topology
@@ -178,7 +178,7 @@
 | | ... | [Ver] Verify ref-NDR for 9000 Byte frames using single trial\
 | | ... | throughput test at 2x 120000pps.
 | | [Tags] | 2T2C | MTHREAD
-| | ${framesize}= | Set Variable | 9000
+| | ${framesize}= | Set Variable | ${9000}
 | | ${rate}= | Set Variable | 120000pps
 | | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
 | | And Add PCI devices to DUTs from 3-node single link topology
@@ -201,7 +201,7 @@
 | | ... | [Ver] Verify ref-NDR for 64 Byte frames using single trial\
 | | ... | throughput test at 2x 3.5mpps.
 | | [Tags] | 4T4C | MTHREAD
-| | ${framesize}= | Set Variable | 64
+| | ${framesize}= | Set Variable | ${64}
 | | ${rate}= | Set Variable | 3.5mpps
 | | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
 | | And Add PCI devices to DUTs from 3-node single link topology
@@ -225,7 +225,7 @@
 | | ... | [Ver] Verify ref-NDR for 1480 Byte frames using single trial\
 | | ... | throughput test at 2x 740000pps.
 | | [Tags] | 4T4C | MTHREAD
-| | ${framesize}= | Set Variable | 1480
+| | ${framesize}= | Set Variable | ${1480}
 | | ${rate}= | Set Variable | 740000pps
 | | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
 | | And Add PCI devices to DUTs from 3-node single link topology
@@ -249,7 +249,7 @@
 | | ... | [Ver] Verify ref-NDR for 9000 Byte frames using single trial\
 | | ... | throughput test at 2x 120000pps.
 | | [Tags] | 4T4C | MTHREAD
-| | ${framesize}= | Set Variable | 9000
+| | ${framesize}= | Set Variable | ${9000}
 | | ${rate}= | Set Variable | 120000pps
 | | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
 | | And Add PCI devices to DUTs from 3-node single link topology
