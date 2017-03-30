@@ -26,7 +26,7 @@ class DpdkUtil(object):
         :param node: VM Node to start testpmd on.
         :param args: List of testpmd parameters.
         :type node: dict
-        :type args: list
+        :type args: dict
         :return: nothing
         """
         # Set the hexadecimal bitmask of the cores to run on.
@@ -49,13 +49,17 @@ class DpdkUtil(object):
         # Set the number of packets per burst to N.
         pmd_burst = '--burst=64 '
         # Set the number of descriptors in the TX rings to N.
-        pmd_txd = '--txd=256 '
+        pmd_txd = '--txd={} '.format(args.get('pmd_txd', '256')) \
+            if args.get('pmd_txd', '256') else ''
         # Set the number of descriptors in the RX rings to N.
-        pmd_rxd = '--rxd=256 '
+        pmd_rxd = '--rxd={} '.format(args.get('pmd_rxd', '256')) \
+            if args.get('pmd_rxd', '256') else ''
         # Set the number of queues in the TX to N.
-        pmd_txq = '--txq=1 '
+        pmd_txq = '--txq={} '.format(args.get('pmd_txq', '1')) \
+            if args.get('pmd_txq', '1') else ''
         # Set the number of queues in the RX to N.
-        pmd_rxq = '--rxq=1 '
+        pmd_rxq = '--rxq={} '.format(args.get('pmd_rxq', '1')) \
+            if args.get('pmd_rxq', '1') else ''
         # Set the hexadecimal bitmask of TX queue flags.
         pmd_txqflags = '--txqflags=0xf00 '
         # Set the number of mbufs to be allocated in the mbuf pools.
