@@ -16,6 +16,7 @@ Honeycomb REST API."""
 
 from robot.api import logger
 
+from resources.libraries.python.topology import Topology
 from resources.libraries.python.HTTPRequest import HTTPCodes
 from resources.libraries.python.honeycomb.HoneycombSetup import HoneycombError
 from resources.libraries.python.honeycomb.HoneycombUtil \
@@ -199,3 +200,76 @@ class RoutingKeywords(object):
 
         with VatTerminal(node) as vat:
             vat.vat_terminal_exec_cmd("ip_fib_dump")
+
+    @staticmethod
+    def configure_interface_slaac(node, interface, slaac_data=None):
+        """Configure SLAAC on the specified interfaces.
+
+        :param node: Honeycomb node.
+        :param interface: Interface to configure SLAAC.
+        :param slaac_data: Dictionary of configurations to apply. \
+               If it is None then the existing configuration is removed.
+        :type node: dict
+        :type interface: str
+        :type slaac_data: dict of dicts
+        :returns: Content of response.
+        :rtype: bytearray
+        :raises HoneycombError: If RA could not be configured.
+        """
+
+        interface = Topology.convert_interface_reference(
+            node, interface, 'name')
+        interface_orig = interface
+        interface = interface.replace('/', '%2F')
+        path = 'interface/' + interface
+
+        if not slaac_data:
+            status_code, _ = HcUtil.delete_honeycomb_data(
+                node, 'config_slaac', path)
+        else:
+            data = {
+                'interface': [
+                    {
+                        'name': interface_orig,
+                        'ipv6-router-advertisements': slaac_data
+                    }
+                ]
+            }
+
+            status_code, _ = HcUtil.put_honeycomb_data(
+                node, 'config_slaac', data, path)
+
+        if status_code not in (HTTPCodes.OK, HTTPCodes.ACCEPTED):
+            raise HoneycombError(
+                'Configuring SLAAC failed. Status code:{0}'.format(status_code))
+
+    @staticmethod
+    def get_interface_slaac_oper_data(node, interface):
+        """Get operational data about SLAAC table present on the node.
+
+        :param node: Honeycomb node.
+        :param interface: Interface SLAAC data are retrieved from.
+        :type node: dict
+        :type interface: str
+        :returns: dict of SLAAC operational data.
+        :rtype: dict
+        :raises: HoneycombError: if status code differs from successful.
+        """
+        interface = Topology.convert_interface_reference(
+            node, interface, 'name')
+        interface = interface.replace('/', '%2F')
+        path = 'interface/' + interface
+
+        status_code, resp = HcUtil.\
+            get_honeycomb_data(node, "config_slaac", path)
+
+        if status_code != HTTPCodes.OK:
+            raise HoneycombError(
+                "Not possible to get operational information about SLAAC. "
+                "Status code: {0}.".format(status_code))
+        try:
+            dict_of_str = resp['interface'][0][
+                'hc2vpp-ietf-ipv6-unicast-routing:ipv6-router-advertisements']
+            return {k: str(v) for k, v in dict_of_str.items()}
+        except (KeyError, TypeError):
+            return {}
