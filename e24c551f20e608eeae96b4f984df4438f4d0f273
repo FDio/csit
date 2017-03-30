@@ -22,6 +22,30 @@
       "revId": "e24c551f20e608eeae96b4f984df4438f4d0f273",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_dd97338f",
+        "filename": "resources/libraries/robot/honeycomb/proxyarp.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-03-30T10:13:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a3291f1_3d875763",
+      "range": {
+        "startLine": 175,
+        "startChar": 52,
+        "endLine": 175,
+        "endChar": 54
+      },
+      "revId": "e24c551f20e608eeae96b4f984df4438f4d0f273",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
