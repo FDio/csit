@@ -59,10 +59,10 @@
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 routing and policer config with 1 thread, 1 phy \
 | | ... | core, 1 receive queue per NIC port. [Ver] Verify ref-NDR for 64 \
-| | ... | Byte frames using single trial throughput test at 2x 3.1mpps.
+| | ... | Byte frames using single trial throughput test at 2x 3.6mpps.
 | | [Tags] | 1T1C | STHREAD
-| | ${framesize}= | Set Variable | 64
-| | ${rate}= | Set Variable | 3.1mpps
+| | ${framesize}= | Set Variable | ${64}
+| | ${rate}= | Set Variable | 3.6mpps
 | | Set Test Variable | ${cb} | ${framesize}
 | | Set Test Variable | ${eb} | ${framesize}
 | | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
@@ -80,7 +80,7 @@
 | | ... | core, 1 receive queue per NIC port. [Ver] Verify ref-NDR for 1518 \
 | | ... | Byte frames using single trial throughput test at 2x 812743pps.
 | | [Tags] | 1T1C | STHREAD
-| | ${framesize}= | Set Variable | 1518
+| | ${framesize}= | Set Variable | ${1518}
 | | ${rate}= | Set Variable | 812743pps
 | | Set Test Variable | ${cb} | ${framesize}
 | | Set Test Variable | ${eb} | ${framesize}
@@ -99,7 +99,7 @@
 | | ... | core, 1 receive queue per NIC port. [Ver] Verify ref-NDR for 9000 \
 | | ... | Byte frames using single trial throughput test at 2x 138580pps.
 | | [Tags] | 1T1C | STHREAD
-| | ${framesize}= | Set Variable | 9000
+| | ${framesize}= | Set Variable | ${9000}
 | | ${rate}= | Set Variable | 138580pps
 | | Set Test Variable | ${cb} | ${framesize}
 | | Set Test Variable | ${eb} | ${framesize}
@@ -115,10 +115,10 @@
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 routing and policer config with 2 threads, 2 \
 | | ... | phy cores, 1 receive queue per NIC port. [Ver] Verify ref-NDR for \
-| | ... | 64 Byte frames using single trial throughput test at 2x 5.6mpps.
+| | ... | 64 Byte frames using single trial throughput test at 2x 6.2mpps.
 | | [Tags] | 2T2C | MTHREAD
-| | ${framesize}= | Set Variable | 64
-| | ${rate}= | Set Variable | 5.6mpps
+| | ${framesize}= | Set Variable | ${64}
+| | ${rate}= | Set Variable | 6.2mpps
 | | Set Test Variable | ${cb} | ${framesize}
 | | Set Test Variable | ${eb} | ${framesize}
 | | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
@@ -136,7 +136,7 @@
 | | ... | phy cores, 1 receive queue per NIC port. [Ver] Verify ref-NDR for \
 | | ... | 1518 Byte frames using single trial throughput test at 2x 812743pps.
 | | [Tags] | 2T2C | MTHREAD
-| | ${framesize}= | Set Variable | 1518
+| | ${framesize}= | Set Variable | ${1518}
 | | ${rate}= | Set Variable | 812743pps
 | | Set Test Variable | ${cb} | ${framesize}
 | | Set Test Variable | ${eb} | ${framesize}
@@ -155,7 +155,7 @@
 | | ... | phy cores, 1 receive queue per NIC port. [Ver] Verify ref-NDR for \
 | | ... | 9000 Byte frames using single trial throughput test at 2x 138580pps.
 | | [Tags] | 2T2C | MTHREAD
-| | ${framesize}= | Set Variable | 9000
+| | ${framesize}= | Set Variable | ${9000}
 | | ${rate}= | Set Variable | 138580pps
 | | Set Test Variable | ${cb} | ${framesize}
 | | Set Test Variable | ${eb} | ${framesize}
@@ -171,10 +171,10 @@
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 routing and policer config with 4 thread, 4 \
 | | ... | phy core, 2 receive queue per NIC port. [Ver] Verify ref-NDR for 64 \
-| | ... | Byte frames using single trial throughput test at 2x 8.9mpps.
+| | ... | Byte frames using single trial throughput test at 2x 10.4mpps.
 | | [Tags] | 4T4C | MTHREAD
-| | ${framesize}= | Set Variable | 64
-| | ${rate}= | Set Variable | 8.9mpps
+| | ${framesize}= | Set Variable | ${64}
+| | ${rate}= | Set Variable | 10.4mpps
 | | Set Test Variable | ${cb} | ${framesize}
 | | Set Test Variable | ${eb} | ${framesize}
 | | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
@@ -192,7 +192,7 @@
 | | ... | phy core, 2 receive queue per NIC port. [Ver] Verify ref-NDR for \
 | | ... | 1518 Byte frames using single trial throughput test at 2x 812743pps.
 | | [Tags] | 4T4C | MTHREAD
-| | ${framesize}= | Set Variable | 1518
+| | ${framesize}= | Set Variable | ${1518}
 | | ${rate}= | Set Variable | 812743pps
 | | Set Test Variable | ${cb} | ${framesize}
 | | Set Test Variable | ${eb} | ${framesize}
@@ -211,7 +211,7 @@
 | | ... | phy core, 2 receive queue per NIC port. [Ver] Verify ref-NDR for \
 | | ... | 9000 Byte frames using single trial throughput test at 2x 138580pps.
 | | [Tags] | 4T4C | MTHREAD
-| | ${framesize}= | Set Variable | 9000
+| | ${framesize}= | Set Variable | ${9000}
 | | ${rate}= | Set Variable | 138580pps
 | | Set Test Variable | ${cb} | ${framesize}
 | | Set Test Variable | ${eb} | ${framesize}
