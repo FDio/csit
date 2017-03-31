@@ -27,8 +27,6 @@ from robot.libraries.BuiltIn import BuiltIn
 
 from requests import request, RequestException, Timeout, TooManyRedirects, \
     HTTPError, ConnectionError
-from requests.packages.urllib3 import disable_warnings
-from requests.packages.urllib3.exceptions import InsecureRequestWarning
 from requests.auth import HTTPBasicAuth
 
 
@@ -78,9 +76,6 @@ class HTTPRequestError(Exception):
             logger.error(self._msg)
             logger.debug(self._details)
 
-        # suppress warnings about disabled SSL verification
-        disable_warnings(InsecureRequestWarning)
-
     def __repr__(self):
         return repr(self._msg)
 
@@ -129,8 +124,8 @@ class HTTPRequest(object):
         except (AttributeError, AddressValueError):
             pass
 
-        return "https://{ip}:{port}{path}".format(ip=ip_addr, port=port,
-                                                  path=path)
+        return "http://{ip}:{port}{path}".format(ip=ip_addr, port=port,
+                                                 path=path)
 
     @staticmethod
     def _http_request(method, node, path, enable_logging=True, **kwargs):

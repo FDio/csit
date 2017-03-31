@@ -12,6 +12,7 @@
 # limitations under the License.
 
 *** Settings ***
+| Library | resources.libraries.python.honeycomb.proxyARP.ProxyARPKeywords
 | Library | resources.libraries.python.honeycomb.proxyARP.IPv6NDProxyKeywords
 | Documentation | Keywords used to test Honeycomb ARP proxy and IPv6ND proxy.
 
