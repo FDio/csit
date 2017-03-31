@@ -261,8 +261,14 @@ class InterfaceUtil(object):
          :rtype: list
         """
 
-        sw_if_index = Topology.convert_interface_reference(
-            node, interface, "sw_if_index")
+        try:
+            sw_if_index = Topology.convert_interface_reference(
+                node, interface, "sw_if_index")
+        except RuntimeError:
+            if isinstance(interface, basestring):
+                sw_if_index = InterfaceUtil.get_sw_if_index(node, interface)
+            else:
+                raise
 
         with VatTerminal(node) as vat:
             response = vat.vat_terminal_exec_cmd_from_template(

@@ -239,13 +239,13 @@ class HoneycombSetup(object):
          :raises HoneycombError: If the configuration could not be changed.
          """
 
-        find = "restconf-https-binding-address"
+        find = "restconf-http-binding-address"
         try:
             IPv6Address(unicode(node["host"]))
             # if management IP of the node is in IPv6 format
-            replace = '\\"restconf-https-binding-address\\": \\"0::0\\",'
+            replace = '\\"restconf-binding-address\\": \\"0::0\\",'
         except (AttributeError, AddressValueError):
-            replace = '\\"restconf-https-binding-address\\": \\"0.0.0.0\\",'
+            replace = '\\"restconf-binding-address\\": \\"0.0.0.0\\",'
 
         argument = '"/{0}/c\\ {1}"'.format(find, replace)
         path = "{0}/config/honeycomb.json".format(Const.REMOTE_HC_DIR)
