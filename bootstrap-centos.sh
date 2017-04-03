@@ -124,21 +124,17 @@ done
 echo "Selected VIRL servers: ${VIRL_SERVER[@]}"
 
 # Temporarily download VPP packages from nexus.fd.io
-DPDK_STABLE_VER=$(cat ${SCRIPT_DIR}/DPDK_STABLE_VER).x86_64
 VPP_REPO_URL=$(cat ${SCRIPT_DIR}/VPP_REPO_URL_CENTOS)
 VPP_CLASSIFIER=""
 if [ "${#}" -ne "0" ]; then
     arr=(${@})
     echo ${arr[0]}
-    # DPDK is not part of the vpp build
-    wget -q "${VPP_REPO_URL}/vpp-dpdk-devel/${DPDK_STABLE_VER}/vpp-dpdk-devel-${DPDK_STABLE_VER}${VPP_CLASSIFIER}.rpm" || exit
 else
     rm -f *.rpm
     VPP_STABLE_VER=$(cat ${SCRIPT_DIR}/VPP_STABLE_VER_CENTOS)
     wget -q "${VPP_REPO_URL}/vpp/${VPP_STABLE_VER}/vpp-${VPP_STABLE_VER}${VPP_CLASSIFIER}.rpm" || exit
     wget -q "${VPP_REPO_URL}/vpp-debuginfo/${VPP_STABLE_VER}/vpp-debuginfo-${VPP_STABLE_VER}${VPP_CLASSIFIER}.rpm" || exit
     wget -q "${VPP_REPO_URL}/vpp-devel/${VPP_STABLE_VER}/vpp-devel-${VPP_STABLE_VER}${VPP_CLASSIFIER}.rpm" || exit
-    wget -q "${VPP_REPO_URL}/vpp-dpdk-devel/${DPDK_STABLE_VER}/vpp-dpdk-devel-${DPDK_STABLE_VER}${VPP_CLASSIFIER}.rpm" || exit
     wget -q "${VPP_REPO_URL}/vpp-lib/${VPP_STABLE_VER}/vpp-lib-${VPP_STABLE_VER}${VPP_CLASSIFIER}.rpm" || exit
     wget -q "${VPP_REPO_URL}/vpp-plugins/${VPP_STABLE_VER}/vpp-plugins-${VPP_STABLE_VER}${VPP_CLASSIFIER}.rpm" || exit
 fi
