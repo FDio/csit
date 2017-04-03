@@ -12,14 +12,14 @@ PWDDIR=$(pwd)
 # Download the DPDK package
 cd ${ROOTDIR}
 wget "fast.dpdk.org/rel/${DPDK_PACKAGE}" || \
-    echo "Failed to download $DPDK_PACKAGE" || exit 1
+    { echo "Failed to download $DPDK_PACKAGE"; exit 1; }
 tar xJvf ${DPDK_PACKAGE} || \
-    echo "Failed to extract $DPDK_PACKAGE" || exit 1
+    { echo "Failed to extract $DPDK_PACKAGE"; exit 1; }
 
 # Compile the DPDK
 cd ./${DPDK_DIR}
 make install T=x86_64-native-linuxapp-gcc -j || \
-    echo "Failed to compile $DPDK_VERSION" || exit 1
+    { echo "Failed to compile $DPDK_VERSION"; exit 1; }
 cd ${PWDDIR}
 
 # Compile the l3fwd
@@ -27,7 +27,7 @@ export RTE_SDK=${ROOTDIR}/${DPDK_DIR}/
 export RTE_TARGET=x86_64-native-linuxapp-gcc
 cd ${RTE_SDK}/examples/l3fwd
 make -j || \
-    echo "Failed to compile l3fwd" || exit 1
+    { echo "Failed to compile l3fwd"; exit 1; }
 cd ${PWDDIR}
 
 # Check and setup the hugepages
@@ -49,7 +49,7 @@ if [ ${SYS_HUGEPAGE} -lt 4096 ]; then
     echo "  Mounting hugepages"
     sudo mkdir -p /mnt/huge
     sudo mount -t hugetlbfs nodev /mnt/huge/ || \
-        echo "Failed to mount hugepages" || exit 1
+        { echo "Failed to mount hugepages"; exit 1; }
 fi
 
 # Check and set the max map count
