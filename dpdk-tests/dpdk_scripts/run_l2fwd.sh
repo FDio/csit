@@ -49,16 +49,39 @@ sleep 2
 cd ${ROOTDIR}/${DPDK_VERSION}/
 rm -f ${TESTPMDLOG}
 if [ "$jumbo_frames" = "yes" ]; then
-    sudo sh -c "screen -dmSL DPDK-test ./x86_64-native-linuxapp-gcc/app/testpmd -l ${cpu_corelist} \
-        -n 4 -- --numa --nb-ports=2 --portmask=0x3 --nb-cores=${nb_cores} \
-        --max-pkt-len=9000 --txqflags=0 --forward-mode=io --rxq=${queue_nums} \
-        --txq=${queue_nums} --auto-start"
+    sudo sh -c "screen -dmSL DPDK-test ./x86_64-native-linuxapp-gcc/app/testpmd \
+        -l ${cpu_corelist} -n 4 -- \
+        --numa \
+        --nb-ports=2 \
+        --portmask=0x3 \
+        --nb-cores=${nb_cores} \
+        --max-pkt-len=9000 \
+        --txqflags=0 \
+        --forward-mode=io \
+        --rxq=${queue_nums} \
+        --txq=$((${nb_cores} + 1)) \
+        --burst=64 \
+        --rxd=1024 \
+        --txd=1024 \
+        --disable-link-check \
+        --auto-start"
     sleep 10
     cat ${TESTPMDLOG}
 else
-    sudo sh -c "screen -dmSL DPDK-test ./x86_64-native-linuxapp-gcc/app/testpmd -l ${cpu_corelist} \
-        -n 4 -- --numa --nb-ports=2 --portmask=0x3 --nb-cores=${nb_cores} \
-        --forward-mode=io --rxq=${queue_nums} --txq=${queue_nums} --auto-start"
+    sudo sh -c "screen -dmSL DPDK-test ./x86_64-native-linuxapp-gcc/app/testpmd \
+        -l ${cpu_corelist} -n 4 -- \
+        --numa \
+        --nb-ports=2 \
+        --portmask=0x3 \
+        --nb-cores=${nb_cores} \
+        --forward-mode=io \
+        --rxq=${queue_nums} \
+        --txq=$((${nb_cores} + 1)) \
+        --burst=64 \
+        --rxd=1024 \
+        --txd=1024 \
+        --disable-link-check \
+        --auto-start"
     sleep 10
     cat ${TESTPMDLOG}
 fi
