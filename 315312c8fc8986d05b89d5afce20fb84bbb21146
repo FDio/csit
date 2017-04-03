@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a3291f1_c8809048",
+        "filename": "resources/libraries/python/DpdkUtil.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-04-03T08:10:45Z",
+      "side": 1,
+      "message": "dict",
+      "range": {
+        "startLine": 29,
+        "startChar": 20,
+        "endLine": 29,
+        "endChar": 24
+      },
+      "revId": "315312c8fc8986d05b89d5afce20fb84bbb21146",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
