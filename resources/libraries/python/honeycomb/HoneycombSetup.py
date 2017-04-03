@@ -239,7 +239,7 @@ class HoneycombSetup(object):
          :raises HoneycombError: If the configuration could not be changed.
          """
 
-        find = "restconf-http-binding-address"
+        find = "restconf-binding-address"
         try:
             IPv6Address(unicode(node["host"]))
             # if management IP of the node is in IPv6 format
