@@ -47,9 +47,9 @@ sudo rm -f /dev/hugepages/*
 # Unbind interfaces
 cd ${ROOTDIR}/${DPDK_VERSION}/
 sudo ./usertools/dpdk-devbind.py -b ${port1_driver} ${port1_pci} || \
-    echo "Unbind ${port1_pci} failed" || exit 1
+    { echo "Unbind ${port1_pci} failed"; exit 1; }
 sudo ./usertools/dpdk-devbind.py -b ${port2_driver} ${port2_pci} || \
-    echo "Unbind ${port1_pci} failed" || exit 1
+    { echo "Unbind ${port1_pci} failed"; exit 1; }
 
 sleep 2
 
@@ -58,6 +58,6 @@ if2_name=`./usertools/dpdk-devbind.py --s | grep "${port2_pci}" | sed -n 's/.*if
 
 # Remove igb_uio driver
 rmmod igb_uio || \
-    echo "Removing igb_uio failed" || exit 1
+    { echo "Removing igb_uio failed"; exit 1 }
 
 cd ${PWDDIR}
