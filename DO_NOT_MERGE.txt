@@ -1,0 +1,2 @@
+This patch is created to force manual triggering of
+csit-vpp-verify-master-centos7-semiweekly job.
