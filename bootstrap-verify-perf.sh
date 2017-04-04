@@ -336,9 +336,9 @@ if [ ! $? -eq 0 ]; then
 fi
 
 # Archive artifacts
-mkdir archive
+mkdir -p csit/archive
 for i in ${ARCHIVE_ARTIFACTS[@]}; do
-    cp $( readlink -f ${i} | tr '\n' ' ' ) archive/
+    cp $( readlink -f ${i} | tr '\n' ' ' ) csit/archive/
 done
 
 echo Post-processing finished.
