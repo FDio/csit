@@ -45,16 +45,21 @@
 | ... | *[Ref] Applicable standard specifications:* RFC2544.
 
 *** Variables ***
-#X520-DA2 bandwidth limit
+# X520-DA2 bandwidth limit
 | ${s_limit} | ${10000000000}
+# Traffic profile:
+| ${traffic_profile} | trex-sl-3n-ethip4-ip4dst253
 
 *** Test Cases ***
 | tc01-64B-1t1c-ethip4-ip4base-l3fwd-ndrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs L3 IPv4 routing  config with 1 thread, 1 phy core, \
-| | ... | 1 receive queue per NIC port. [Ver] Find NDR for 64 Byte frames
-| | ... | using binary search start at 10GE linerate, step 100kpps.
+| | ... | [Cfg] DUT runs L3 IPv4 routing config with 1 thread, 1 phy core,\
+| | ... | 1 receive queue per NIC port.
+| | ... | [Ver] Find NDR for 64 Byte frames using binary search start\
+| | ... | at 10GE linerate, step 100kpps.
+| | ...
 | | [Tags] | 1T1C | STHREAD | NDRDISC
+| | ...
 | | ${framesize}= | Set Variable | ${64}
 | | ${min_rate}= | Set Variable | ${100000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
@@ -63,16 +68,18 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Start L3FWD '1' worker threads and rxqueues '1' with jumbo frames 'no'
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                        | ${binary_max} | 3-node-IPv4-l3fwd
-| | ...                        | ${min_rate} | ${max_rate}
-| | ...                        | ${threshold}
+| | ... | ${binary_max} | ${traffic_profile} | ${min_rate} | ${max_rate}
+| | ... | ${threshold}
 
 | tc02-64B-1t1c-ethip4-ip4base-l3fwd-pdrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs L3 IPv4 routing config with 1 thread, 1 phy core, \
-| | ... | 1 receive queue per NIC port. [Ver] Find PDR for 64 Byte frames
-| | ... | using binary search start at 10GE linerate, step 100kpps, LT=0.5%.
+| | ... | [Cfg] DUT runs L3 IPv4 routing config with 1 thread, 1 phy core,\
+| | ... | 1 receive queue per NIC port.
+| | ... | [Ver] Find PDR for 64 Byte frames using binary search start\
+| | ... | at 10GE linerate, step 100kpps, LT=0.5%.
+| | ...
 | | [Tags] | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
+| | ...
 | | ${framesize}= | Set Variable | ${64}
 | | ${min_rate}= | Set Variable | ${100000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
@@ -81,18 +88,19 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Start L3FWD '1' worker threads and rxqueues '1' with jumbo frames 'no'
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                        | ${binary_max} | 3-node-IPv4-l3fwd
-| | ...                        | ${min_rate} | ${max_rate}
-| | ...                        | ${threshold}
-| | ...                        | ${perf_pdr_loss_acceptance}
-| | ...                        | ${perf_pdr_loss_acceptance_type}
+| | ... | ${binary_max} | ${traffic_profile} | ${min_rate} | ${max_rate}
+| | ... | ${threshold} | ${perf_pdr_loss_acceptance}
+| | ... | ${perf_pdr_loss_acceptance_type}
 
 | tc03-1518B-1t1c-ethip4-ip4base-l3fwd-ndrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs L3 IPv4 routing config with 1 thread, 1 phy core, \
-| | ... | 1 receive queue per NIC port. [Ver] Find NDR for 1518 Byte frames
-| | ... | using binary search start at 10GE linerate, step 10kpps.
+| | ... | [Cfg] DUT runs L3 IPv4 routing config with 1 thread, 1 phy core,\
+| | ... | 1 receive queue per NIC port.
+| | ... | [Ver] Find NDR for 1518 Byte frames using binary search start\
+| | ... | at 10GE linerate, step 10kpps.
+| | ...
 | | [Tags] | 1T1C | STHREAD | NDRDISC
+| | ...
 | | ${framesize}= | Set Variable | ${1518}
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
@@ -101,16 +109,18 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Start L3FWD '1' worker threads and rxqueues '1' with jumbo frames 'no'
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                        | ${binary_max} | 3-node-IPv4-l3fwd
-| | ...                        | ${min_rate} | ${max_rate}
-| | ...                        | ${threshold}
+| | ... | ${binary_max} | ${traffic_profile} | ${min_rate} | ${max_rate}
+| | ... | ${threshold}
 
 | tc04-1518B-1t1c-ethip4-ip4base-l3fwd-pdrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs L3 IPv4 routing config with 1 thread, 1 phy core, \
-| | ... | 1 receive queue per NIC port. [Ver] Find PDR for 1518 Byte frames
-| | ... | using binary search start at 10GE linerate, step 10kpps, LT=0.5%.
+| | ... | [Cfg] DUT runs L3 IPv4 routing config with 1 thread, 1 phy core,\
+| | ... | 1 receive queue per NIC port.
+| | ... | [Ver] Find PDR for 1518 Byte frames using binary search start\
+| | ... | at 10GE linerate, step 10kpps, LT=0.5%.
+| | ...
 | | [Tags] | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
+| | ...
 | | ${framesize}= | Set Variable | ${1518}
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
@@ -119,18 +129,19 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Start L3FWD '1' worker threads and rxqueues '1' with jumbo frames 'no'
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                        | ${binary_max} | 3-node-IPv4-l3fwd
-| | ...                        | ${min_rate} | ${max_rate}
-| | ...                        | ${threshold}
-| | ...                        | ${perf_pdr_loss_acceptance}
-| | ...                        | ${perf_pdr_loss_acceptance_type}
+| | ... | ${binary_max} | ${traffic_profile} | ${min_rate} | ${max_rate}
+| | ... | ${threshold} | ${perf_pdr_loss_acceptance}
+| | ... | ${perf_pdr_loss_acceptance_type}
 
 | tc05-9000B-1t1c-ethip4-ip4base-l3fwd-ndrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs L3 IPv4 routing config with 1 thread, 1 phy core, \
-| | ... | 1 receive queue per NIC port. [Ver] Find NDR for 9000 Byte frames
-| | ... | using binary search start at 10GE linerate, step 5kpps.
+| | ... | [Cfg] DUT runs L3 IPv4 routing config with 1 thread, 1 phy core,\
+| | ... | 1 receive queue per NIC port.
+| | ... | [Ver] Find NDR for 9000 Byte frames using binary search start\
+| | ... | at 10GE linerate, step 5kpps.
+| | ...
 | | [Tags] | 1T1C | STHREAD | NDRDISC
+| | ...
 | | ${framesize}= | Set Variable | ${9000}
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
@@ -139,16 +150,18 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Start L3FWD '1' worker threads and rxqueues '1' with jumbo frames 'yes'
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                        | ${binary_max} | 3-node-IPv4-l3fwd
-| | ...                        | ${min_rate} | ${max_rate}
-| | ...                        | ${threshold}
+| | ... | ${binary_max} | ${traffic_profile} | ${min_rate} | ${max_rate}
+| | ... | ${threshold}
 
 | tc06-9000B-1t1c-ethip4-ip4base-l3fwd-pdrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs L3 IPv4 routing config with 1 thread, 1 phy core, \
-| | ... | 1 receive queue per NIC port. [Ver] Find PDR for 9000 Byte frames
-| | ... | using binary search start at 10GE linerate, step 5kpps, LT=0.5%.
+| | ... | [Cfg] DUT runs L3 IPv4 routing config with 1 thread, 1 phy core,\
+| | ... | 1 receive queue per NIC port.
+| | ... | [Ver] Find PDR for 9000 Byte frames using binary search start\
+| | ... | at 10GE linerate, step 5kpps, LT=0.5%.
+| | ...
 | | [Tags] | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
+| | ...
 | | ${framesize}= | Set Variable | ${9000}
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
@@ -157,18 +170,19 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Start L3FWD '1' worker threads and rxqueues '1' with jumbo frames 'yes'
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                        | ${binary_max} | 3-node-IPv4-l3fwd
-| | ...                        | ${min_rate} | ${max_rate}
-| | ...                        | ${threshold}
-| | ...                        | ${perf_pdr_loss_acceptance}
-| | ...                        | ${perf_pdr_loss_acceptance_type}
+| | ... | ${binary_max} | ${traffic_profile} | ${min_rate} | ${max_rate}
+| | ... | ${threshold} | ${perf_pdr_loss_acceptance}
+| | ... | ${perf_pdr_loss_acceptance_type}
 
 | tc07-64B-2t2c-ethip4-ip4base-l3fwd-ndrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs L3 IPv4 routing config with 2 threads, 2 phy cores, \
-| | ... | 1 receive queue per NIC port. [Ver] Find NDR for 64 Byte frames
-| | ... | using binary search start at 10GE linerate, step 100kpps.
+| | ... | [Cfg] DUT runs L3 IPv4 routing config with 2 threads, 2 phy cores,\
+| | ... | 1 receive queue per NIC port.
+| | ... | [Ver] Find NDR for 64 Byte frames using binary search start\
+| | ... | at 10GE linerate, step 100kpps.
+| | ...
 | | [Tags] | 2T2C | MTHREAD | NDRDISC
+| | ...
 | | ${framesize}= | Set Variable | ${64}
 | | ${min_rate}= | Set Variable | ${100000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
@@ -177,16 +191,18 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Start L3FWD '2' worker threads and rxqueues '1' with jumbo frames 'no'
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                        | ${binary_max} | 3-node-IPv4-l3fwd
-| | ...                        | ${min_rate} | ${max_rate}
-| | ...                        | ${threshold}
+| | ... | ${binary_max} | ${traffic_profile} | ${min_rate} | ${max_rate}
+| | ... | ${threshold}
 
 | tc08-64B-2t2c-ethip4-ip4base-l3fwd-pdrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs L3 IPv4 routing config with 2 threads, 2 phy cores, \
-| | ... | 1 receive queue per NIC port. [Ver] Find PDR for 64 Byte frames
-| | ... | using binary search start at 10GE linerate, step 100kpps, LT=0.5%.
+| | ... | [Cfg] DUT runs L3 IPv4 routing config with 2 threads, 2 phy cores,\
+| | ... | 1 receive queue per NIC port.
+| | ... | [Ver] Find PDR for 64 Byte frames using binary search start\
+| | ... | at 10GE linerate, step 100kpps, LT=0.5%.
+| | ...
 | | [Tags] | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
+| | ...
 | | ${framesize}= | Set Variable | ${64}
 | | ${min_rate}= | Set Variable | ${100000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
@@ -195,18 +211,19 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Start L3FWD '2' worker threads and rxqueues '1' with jumbo frames 'no'
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                        | ${binary_max} | 3-node-IPv4-l3fwd
-| | ...                        | ${min_rate} | ${max_rate}
-| | ...                        | ${threshold}
-| | ...                        | ${perf_pdr_loss_acceptance}
-| | ...                        | ${perf_pdr_loss_acceptance_type}
+| | ... | ${binary_max} | ${traffic_profile} | ${min_rate} | ${max_rate}
+| | ... | ${threshold} | ${perf_pdr_loss_acceptance}
+| | ... | ${perf_pdr_loss_acceptance_type}
 
 | tc09-1518B-2t2c-ethip4-ip4base-l3fwd-ndrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs L3 IPv4 routing config with 2 threads, 2 phy cores, \
-| | ... | 1 receive queue per NIC port. [Ver] Find NDR for 1518 Byte frames
-| | ... | using binary search start at 10GE linerate, step 10kpps.
+| | ... | [Cfg] DUT runs L3 IPv4 routing config with 2 threads, 2 phy cores,\
+| | ... | 1 receive queue per NIC port.
+| | ... | [Ver] Find NDR for 1518 Byte frames using binary search start\
+| | ... | at 10GE linerate, step 10kpps.
+| | ...
 | | [Tags] | 2T2C | MTHREAD | NDRDISC
+| | ...
 | | ${framesize}= | Set Variable | ${1518}
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
@@ -215,16 +232,18 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Start L3FWD '2' worker threads and rxqueues '1' with jumbo frames 'no'
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                        | ${binary_max} | 3-node-IPv4-l3fwd
-| | ...                        | ${min_rate} | ${max_rate}
-| | ...                        | ${threshold}
+| | ... | ${binary_max} | ${traffic_profile} | ${min_rate} | ${max_rate}
+| | ... | ${threshold}
 
 | tc10-1518B-2t2c-ethip4-ip4base-l3fwd-pdrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs L3 IPv4 routing config with 2 threads, 2 phy cores, \
-| | ... | 1 receive queue per NIC port. [Ver] Find PDR for 1518 Byte frames
-| | ... | using binary search start at 10GE linerate, step 10kpps, LT=0.5%.
+| | ... | [Cfg] DUT runs L3 IPv4 routing config with 2 threads, 2 phy cores,\
+| | ... | 1 receive queue per NIC port.
+| | ... | [Ver] Find PDR for 1518 Byte frames using binary search start\
+| | ... | at 10GE linerate, step 10kpps, LT=0.5%.
+| | ...
 | | [Tags] | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
+| | ...
 | | ${framesize}= | Set Variable | ${1518}
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
@@ -233,18 +252,19 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Start L3FWD '2' worker threads and rxqueues '1' with jumbo frames 'no'
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                        | ${binary_max} | 3-node-IPv4-l3fwd
-| | ...                        | ${min_rate} | ${max_rate}
-| | ...                        | ${threshold}
-| | ...                        | ${perf_pdr_loss_acceptance}
-| | ...                        | ${perf_pdr_loss_acceptance_type}
+| | ... | ${binary_max} | ${traffic_profile} | ${min_rate} | ${max_rate}
+| | ... | ${threshold} | ${perf_pdr_loss_acceptance}
+| | ... | ${perf_pdr_loss_acceptance_type}
 
 | tc11-9000B-2t2c-ethip4-ip4base-l3fwd-ndrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs L3 IPv4 routing config with 2 threads, 2 phy cores, \
-| | ... | 1 receive queue per NIC port. [Ver] Find NDR for 9000 Byte frames
-| | ... | using binary search start at 10GE linerate, step 5kpps.
+| | ... | [Cfg] DUT runs L3 IPv4 routing config with 2 threads, 2 phy cores,\
+| | ... | 1 receive queue per NIC port.
+| | ... | [Ver] Find NDR for 9000 Byte frames using binary search start\
+| | ... | at 10GE linerate, step 5kpps.
+| | ...
 | | [Tags] | 2T2C | MTHREAD | NDRDISC
+| | ...
 | | ${framesize}= | Set Variable | ${9000}
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
@@ -253,16 +273,18 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Start L3FWD '2' worker threads and rxqueues '1' with jumbo frames 'yes'
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                        | ${binary_max} | 3-node-IPv4-l3fwd
-| | ...                        | ${min_rate} | ${max_rate}
-| | ...                        | ${threshold}
+| | ... | ${binary_max} | ${traffic_profile} | ${min_rate} | ${max_rate}
+| | ... | ${threshold}
 
 | tc12-9000B-2t2c-ethip4-ip4base-l3fwd-pdrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs L3 IPv4 routing config with 2 threads, 2 phy cores, \
-| | ... | 1 receive queue per NIC port. [Ver] Find PDR for 9000 Byte frames
-| | ... | using binary search start at 10GE linerate, step 5kpps, LT=0.5%.
+| | ... | [Cfg] DUT runs L3 IPv4 routing config with 2 threads, 2 phy cores,\
+| | ... | 1 receive queue per NIC port.
+| | ... | [Ver] Find PDR for 9000 Byte frames using binary search start\
+| | ... | at 10GE linerate, step 5kpps, LT=0.5%.
+| | ...
 | | [Tags] | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
+| | ...
 | | ${framesize}= | Set Variable | ${9000}
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
@@ -271,18 +293,19 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Start L3FWD '2' worker threads and rxqueues '1' with jumbo frames 'yes'
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                        | ${binary_max} | 3-node-IPv4-l3fwd
-| | ...                        | ${min_rate} | ${max_rate}
-| | ...                        | ${threshold}
-| | ...                        | ${perf_pdr_loss_acceptance}
-| | ...                        | ${perf_pdr_loss_acceptance_type}
+| | ... | ${binary_max} | ${traffic_profile} | ${min_rate} | ${max_rate}
+| | ... | ${threshold} | ${perf_pdr_loss_acceptance}
+| | ... | ${perf_pdr_loss_acceptance_type}
 
 | tc13-64B-4t4c-ethip4-ip4base-l3fwd-ndrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs L3 IPv4 routing config with 4 threads, 4 phy cores, \
-| | ... | 2 receive queues per NIC port. [Ver] Find NDR for 64 Byte frames
-| | ... | using binary search start at 10GE linerate, step 100kpps.
+| | ... | [Cfg] DUT runs L3 IPv4 routing config with 4 threads, 4 phy cores,\
+| | ... | 2 receive queues per NIC port.
+| | ... | [Ver] Find NDR for 64 Byte frames using binary search start\
+| | ... | at 10GE linerate, step 100kpps.
+| | ...
 | | [Tags] | 4T4C | MTHREAD | NDRDISC
+| | ...
 | | ${framesize}= | Set Variable | ${64}
 | | ${min_rate}= | Set Variable | ${100000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
@@ -291,16 +314,18 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Start L3FWD '4' worker threads and rxqueues '2' with jumbo frames 'no'
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                        | ${binary_max} | 3-node-IPv4-l3fwd
-| | ...                        | ${min_rate} | ${max_rate}
-| | ...                        | ${threshold}
+| | ... | ${binary_max} | ${traffic_profile} | ${min_rate} | ${max_rate}
+| | ... | ${threshold}
 
 | tc14-64B-4t4c-ethip4-ip4base-l3fwd-pdrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs L3 IPv4 routing config with 4 threads, 4 phy cores, \
-| | ... | 2 receive queues per NIC port. [Ver] Find PDR for 64 Byte frames
-| | ... | using binary search start at 10GE linerate, step 100kpps, LT=0.5%.
+| | ... | [Cfg] DUT runs L3 IPv4 routing config with 4 threads, 4 phy cores,\
+| | ... | 2 receive queues per NIC port.
+| | ... | [Ver] Find PDR for 64 Byte frames using binary search start\
+| | ... | at 10GE linerate, step 100kpps, LT=0.5%.
+| | ...
 | | [Tags] | 4T4C | MTHREAD | PDRDISC | SKIP_PATCH
+| | ...
 | | ${framesize}= | Set Variable | ${64}
 | | ${min_rate}= | Set Variable | ${100000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
@@ -309,18 +334,19 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Start L3FWD '4' worker threads and rxqueues '2' with jumbo frames 'no'
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                        | ${binary_max} | 3-node-IPv4-l3fwd
-| | ...                        | ${min_rate} | ${max_rate}
-| | ...                        | ${threshold}
-| | ...                        | ${perf_pdr_loss_acceptance}
-| | ...                        | ${perf_pdr_loss_acceptance_type}
+| | ... | ${binary_max} | ${traffic_profile} | ${min_rate} | ${max_rate}
+| | ... | ${threshold} | ${perf_pdr_loss_acceptance}
+| | ... | ${perf_pdr_loss_acceptance_type}
 
 | tc15-1518B-4t4c-ethip4-ip4base-l3fwd-ndrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs L3 IPv4 routing config with 4 threads, 4 phy cores, \
-| | ... | 2 receive queues per NIC port. [Ver] Find NDR for 1518 Byte frames
-| | ... | using binary search start at 10GE linerate, step 10kpps.
+| | ... | [Cfg] DUT runs L3 IPv4 routing config with 4 threads, 4 phy cores,\
+| | ... | 2 receive queues per NIC port.
+| | ... | [Ver] Find NDR for 1518 Byte frames using binary search start\
+| | ... | at 10GE linerate, step 10kpps.
+| | ...
 | | [Tags] | 4T4C | MTHREAD | NDRDISC | SKIP_PATCH
+| | ...
 | | ${framesize}= | Set Variable | ${1518}
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
@@ -329,16 +355,18 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Start L3FWD '4' worker threads and rxqueues '2' with jumbo frames 'no'
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                        | ${binary_max} | 3-node-IPv4-l3fwd
-| | ...                        | ${min_rate} | ${max_rate}
-| | ...                        | ${threshold}
+| | ... | ${binary_max} | ${traffic_profile} | ${min_rate} | ${max_rate}
+| | ... | ${threshold}
 
 | tc16-1518B-4t4c-ethip4-ip4base-l3fwd-pdrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs L3 IPv4 routing config with 4 threads, 4 phy cores, \
-| | ... | 2 receive queues per NIC port. [Ver] Find PDR for 1518 Byte frames
-| | ... | using binary search start at 10GE linerate, step 10kpps, LT=0.5%.
+| | ... | [Cfg] DUT runs L3 IPv4 routing config with 4 threads, 4 phy cores,\
+| | ... | 2 receive queues per NIC port.
+| | ... | [Ver] Find PDR for 1518 Byte frames using binary search start\
+| | ... | at 10GE linerate, step 10kpps, LT=0.5%.
+| | ...
 | | [Tags] | 4T4C | MTHREAD | PDRDISC | SKIP_PATCH
+| | ...
 | | ${framesize}= | Set Variable | ${1518}
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
@@ -347,18 +375,19 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Start L3FWD '4' worker threads and rxqueues '2' with jumbo frames 'no'
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                        | ${binary_max} | 3-node-IPv4-l3fwd
-| | ...                        | ${min_rate} | ${max_rate}
-| | ...                        | ${threshold}
-| | ...                        | ${perf_pdr_loss_acceptance}
-| | ...                        | ${perf_pdr_loss_acceptance_type}
+| | ... | ${binary_max} | ${traffic_profile} | ${min_rate} | ${max_rate}
+| | ... | ${threshold} | ${perf_pdr_loss_acceptance}
+| | ... | ${perf_pdr_loss_acceptance_type}
 
 | tc17-9000B-4t4c-ethip4-ip4base-l3fwd-ndrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs L3 IPv4 routing config with 4 threads, 4 phy cores, \
-| | ... | 2 receive queues per NIC port. [Ver] Find NDR for 9000 Byte frames
-| | ... | using binary search start at 10GE linerate, step 5kpps.
+| | ... | [Cfg] DUT runs L3 IPv4 routing config with 4 threads, 4 phy cores,\
+| | ... | 2 receive queues per NIC port.
+| | ... | [Ver] Find NDR for 9000 Byte frames using binary search start\
+| | ... | at 10GE linerate, step 5kpps.
+| | ...
 | | [Tags] | 4T4C | MTHREAD | NDRDISC | SKIP_PATCH
+| | ...
 | | ${framesize}= | Set Variable | ${9000}
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
@@ -367,16 +396,18 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Start L3FWD '4' worker threads and rxqueues '2' with jumbo frames 'yes'
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                        | ${binary_max} | 3-node-IPv4-l3fwd
-| | ...                        | ${min_rate} | ${max_rate}
-| | ...                        | ${threshold}
+| | ... | ${binary_max} | ${traffic_profile} | ${min_rate} | ${max_rate}
+| | ... | ${threshold}
 
 | tc18-9000B-4t4c-ethip4-ip4base-l3fwd-pdrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs L3 IPv4 routing config with 4 threads, 4 phy cores, \
-| | ... | 2 receive queues per NIC port. [Ver] Find PDR for 9000 Byte frames
-| | ... | using binary search start at 10GE linerate, step 5kpps, LT=0.5%.
+| | ... | [Cfg] DUT runs L3 IPv4 routing config with 4 threads, 4 phy cores,\
+| | ... | 2 receive queues per NIC port.
+| | ... | [Ver] Find PDR for 9000 Byte frames using binary search start\
+| | ... | at 10GE linerate, step 5kpps, LT=0.5%.
+| | ...
 | | [Tags] | 4T4C | MTHREAD | PDRDISC | SKIP_PATCH
+| | ...
 | | ${framesize}= | Set Variable | ${9000}
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
@@ -385,8 +416,6 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Start L3FWD '4' worker threads and rxqueues '2' with jumbo frames 'yes'
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                        | ${binary_max} | 3-node-IPv4-l3fwd
-| | ...                        | ${min_rate} | ${max_rate}
-| | ...                        | ${threshold}
-| | ...                        | ${perf_pdr_loss_acceptance}
-| | ...                        | ${perf_pdr_loss_acceptance_type}
+| | ... | ${binary_max} | ${traffic_profile} | ${min_rate} | ${max_rate}
+| | ... | ${threshold} | ${perf_pdr_loss_acceptance}
+| | ... | ${perf_pdr_loss_acceptance_type}
