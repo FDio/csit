@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a3291f1_7e77123b",
+        "filename": "tests/perf/40ge2p1xl710-eth-l2xcbase-eth-4vhost-2vm-ndrpdrdisc.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-04-04T13:13:31Z",
+      "side": 1,
+      "message": "24-28 and 29-34 based on lscpu",
+      "range": {
+        "startLine": 39,
+        "startChar": 52,
+        "endLine": 39,
+        "endChar": 56
+      },
+      "revId": "fb25f08191a8f469acadb6e0ecea7b8cdc2efad4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_5e72164a",
+        "filename": "tests/perf/40ge2p1xl710-ethip4-ip4base-eth-4vhost-2vm-ndrpdrdisc.robot",
+        "patchSetId": 6
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-04-04T13:13:31Z",
+      "side": 1,
+      "message": "24-28 and 29-34 based on lscpu",
+      "range": {
+        "startLine": 40,
+        "startChar": 20,
+        "endLine": 40,
+        "endChar": 34
+      },
+      "revId": "fb25f08191a8f469acadb6e0ecea7b8cdc2efad4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
