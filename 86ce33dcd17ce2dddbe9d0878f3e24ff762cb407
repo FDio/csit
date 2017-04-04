@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a3291f1_487dc0b0",
+        "filename": "resources/libraries/python/SNATUtil.py",
+        "patchSetId": 61
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2017-04-04T14:57:58Z",
+      "side": 1,
+      "message": "Please, add \"raises\" part.\n\n - valid for all occurences",
+      "range": {
+        "startLine": 37,
+        "startChar": 8,
+        "endLine": 37,
+        "endChar": 11
+      },
+      "revId": "86ce33dcd17ce2dddbe9d0878f3e24ff762cb407",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_de8726d6",
+        "filename": "resources/libraries/robot/snat.robot",
+        "patchSetId": 61
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2017-04-04T14:57:58Z",
+      "side": 1,
+      "message": "missing \"\\| \" before 1025",
+      "range": {
+        "startLine": 115,
+        "startChar": 10,
+        "endLine": 115,
+        "endChar": 14
+      },
+      "revId": "86ce33dcd17ce2dddbe9d0878f3e24ff762cb407",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_be6e9a2d",
+        "filename": "resources/libraries/robot/snat.robot",
+        "patchSetId": 61
+      },
+      "lineNbr": 184,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2017-04-04T14:57:58Z",
+      "side": 1,
+      "message": "What about to move this KW to performance.robot resource file? There are such KWs with configuration for perf tests...",
+      "range": {
+        "startLine": 149,
+        "startChar": 0,
+        "endLine": 184,
+        "endChar": 78
+      },
+      "revId": "86ce33dcd17ce2dddbe9d0878f3e24ff762cb407",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
