@@ -103,7 +103,7 @@ class TrafficGenerator(object):
         self._received = None
         self._node = None
         # T-REX interface order mapping
-        self._ifaces_reordered = 0
+        self._ifaces_reordered = False
 
     @property
     def node(self):
@@ -222,7 +222,7 @@ class TrafficGenerator(object):
                 if1_mac, if2_mac = if2_mac, if1_mac
                 if1_pci, if2_pci = if2_pci, if1_pci
                 if1_adj_mac, if2_adj_mac = if2_adj_mac, if1_adj_mac
-                self._ifaces_reordered = 1
+                self._ifaces_reordered = True
 
             if1_mac_hex = "0x"+if1_mac.replace(":", ",0x")
             if2_mac_hex = "0x"+if2_mac.replace(":", ",0x")
@@ -263,11 +263,14 @@ class TrafficGenerator(object):
                     raise RuntimeError('trex-cfg failed')
 
                 # start T-rex
+                # (ret, _, _) = ssh.exec_command(
+                #     "sh -c 'cd {0}/scripts/ && "
+                #     "sudo nohup ./t-rex-64 -i -c 7 --iom 0 > /dev/null 2>&1 &'"
+                #     "> /dev/null"\
+                #     .format(trex_path))
                 (ret, _, _) = ssh.exec_command(
-                    "sh -c 'cd {0}/scripts/ && "
-                    "sudo nohup ./t-rex-64 -i -c 7 --iom 0 > /dev/null 2>&1 &'"
-                    "> /dev/null"\
-                    .format(trex_path))
+                    "sh -c 'cd {0}/scripts/ && sudo nohup ./t-rex-64 -i -c 7 --iom 0'" \
+                        .format(trex_path))
                 if int(ret) != 0:
                     raise RuntimeError('t-rex-64 startup failed')
 
@@ -360,11 +363,37 @@ class TrafficGenerator(object):
         _p1 = 2
         _async = "--async" if async_call else ""
         _latency = "--latency" if latency else ""
+        _ifs_reordered = "--ifaces_reordered" if self._ifaces_reordered else ""
 
-        if self._ifaces_reordered != 0:
+        if self._ifaces_reordered:
             _p0, _p1 = _p1, _p0
 
-        if traffic_type in ["3-node-xconnect", "3-node-bridge"]:
+        if traffic_type.startswith("profile-"):
+            profile_lst = traffic_type.split("-")
+            if profile_lst[1] == "trex":
+                profile_path = ("{0}/resources/tools/t-rex/stream_profiles/"
+                                "{1}.py".format(Constants.REMOTE_FW_DIR,
+                                                traffic_type))
+                (ret, stdout, stderr) = ssh.exec_command(
+                    "sh -c "
+                    "'{0}/resources/tools/t-rex/t-rex-stateless-profile.py "
+                    "--profile {1} "
+                    "--duration {2} "
+                    "--frame_size {3} "
+                    "--rate {4} "
+                    "--warmup_time {5} "
+                    "{6} "  # --async
+                    "{7} "  # --latency
+                    "{8}'".  # --ifaces_reordered
+                    format(Constants.REMOTE_FW_DIR, profile_path, duration,
+                           framesize, rate, warmup_time, _async, _latency,
+                           _ifs_reordered))
+            elif profile_lst[1] == "ixia":
+                raise NotImplementedError
+            else:
+                raise ValueError("This traffic generator is not supported.")
+
+        elif traffic_type in ["3-node-xconnect", "3-node-bridge"]:
             (ret, stdout, stderr) = ssh.exec_command(
                 "sh -c '{0}/resources/tools/t-rex/t-rex-stateless.py "
                 "--duration={1} -r {2} -s {3} "
@@ -668,7 +697,7 @@ class TrafficGenerator(object):
                                                     duration, rate, framesize,
                                                     _p0, _p1, _async, _latency,
                                                     warmup_time),
-                timeout = int(duration) + 60)
+                timeout=int(duration) + 60)
         else:
             raise NotImplementedError('Unsupported traffic type')
 
