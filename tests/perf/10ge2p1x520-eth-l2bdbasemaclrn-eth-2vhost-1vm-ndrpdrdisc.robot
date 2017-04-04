@@ -24,7 +24,7 @@
 | ...
 | Test Setup | Performance test setup
 | Test Teardown | Performance test with vhost and VM with dpdk-testpmd teardown
-| ... | ${min_rate}pps | ${framesize} | 3-node-bridge
+| ... | ${min_rate}pps | ${framesize} | ${traffic_profile}
 | ... | dut1_node=${dut1} | dut1_vm_refs=${dut1_vm_refs}
 | ... | dut2_node=${dut2} | dut2_vm_refs=${dut2_vm_refs}
 | ...
@@ -63,6 +63,8 @@
 | ${bd_id2}= | 2
 | ${sock1}= | /tmp/sock-1-${bd_id1}
 | ${sock2}= | /tmp/sock-1-${bd_id2}
+# Traffic profile:
+| ${traffic_profile} | trex-sl-3n-ethip4-ip4src254
 
 *** Test Cases ***
 | tc01-64B-1t1c-eth-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc
@@ -80,21 +82,20 @@
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
 | | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | When  L2 bridge domains with Vhost-User initialized in a 3-node circular topology
-| | ...   | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | When L2 bridge domains with Vhost-User initialized in a 3-node circular topology
+| | ... | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
 | | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ...     | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
+| | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
 | | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
 | | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ...     | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
+| | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-bridge
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc02-64B-1t1c-eth-l2bdbasemaclrn-eth-2vhost-1vm-pdrdisc
 | | [Documentation]
@@ -111,23 +112,21 @@
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
 | | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | When  L2 bridge domains with Vhost-User initialized in a 3-node circular topology
-| | ...   | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | When L2 bridge domains with Vhost-User initialized in a 3-node circular topology
+| | ... | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
 | | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ...     | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
+| | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
 | | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
 | | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ...     | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
+| | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-bridge
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
-| | ...                                       | ${perf_pdr_loss_acceptance}
-| | ...                                       | ${perf_pdr_loss_acceptance_type}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
+| | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
 | tc03-1518B-1t1c-eth-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc
 | | [Documentation]
@@ -144,21 +143,20 @@
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
 | | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | When  L2 bridge domains with Vhost-User initialized in a 3-node circular topology
-| | ...   | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | When L2 bridge domains with Vhost-User initialized in a 3-node circular topology
+| | ... | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
 | | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ...     | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
+| | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
 | | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
 | | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ...     | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
+| | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-bridge
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc04-1518B-1t1c-eth-l2bdbasemaclrn-eth-2vhost-1vm-pdrdisc
 | | [Documentation]
@@ -175,23 +173,21 @@
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
 | | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | When  L2 bridge domains with Vhost-User initialized in a 3-node circular topology
-| | ...   | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | When L2 bridge domains with Vhost-User initialized in a 3-node circular topology
+| | ... | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
 | | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ...     | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
+| | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
 | | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
 | | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ...     | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
+| | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-bridge
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
-| | ...                                       | ${perf_pdr_loss_acceptance}
-| | ...                                       | ${perf_pdr_loss_acceptance_type}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
+| | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
 | tc05-IMIX-1t1c-eth-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc
 | | [Documentation]
@@ -209,21 +205,20 @@
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
 | | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | When  L2 bridge domains with Vhost-User initialized in a 3-node circular topology
-| | ...   | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | When L2 bridge domains with Vhost-User initialized in a 3-node circular topology
+| | ... | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
 | | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ...     | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
+| | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
 | | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
 | | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ...     | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
+| | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-bridge
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc06-IMIX-1t1c-eth-l2bdbasemaclrn-eth-2vhost-1vm-pdrdisc
 | | [Documentation]
@@ -241,23 +236,21 @@
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
 | | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | When  L2 bridge domains with Vhost-User initialized in a 3-node circular topology
-| | ...   | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | When L2 bridge domains with Vhost-User initialized in a 3-node circular topology
+| | ... | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
 | | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ...     | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
+| | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
 | | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
 | | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ...     | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
+| | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-bridge
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
-| | ...                                       | ${perf_pdr_loss_acceptance}
-| | ...                                       | ${perf_pdr_loss_acceptance_type}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
+| | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
 | tc07-64B-2t2c-eth-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc
 | | [Documentation]
@@ -274,21 +267,20 @@
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
 | | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | When  L2 bridge domains with Vhost-User initialized in a 3-node circular topology
-| | ...   | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | When L2 bridge domains with Vhost-User initialized in a 3-node circular topology
+| | ... | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
 | | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ...     | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
+| | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
 | | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
 | | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ...     | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
+| | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-bridge
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc08-64B-2t2c-eth-l2bdbasemaclrn-eth-2vhost-1vm-pdrdisc
 | | [Documentation]
@@ -305,23 +297,21 @@
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
 | | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | When  L2 bridge domains with Vhost-User initialized in a 3-node circular topology
-| | ...   | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | When L2 bridge domains with Vhost-User initialized in a 3-node circular topology
+| | ... | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
 | | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ...     | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
+| | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
 | | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
 | | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ...     | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
+| | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-bridge
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
-| | ...                                       | ${perf_pdr_loss_acceptance}
-| | ...                                       | ${perf_pdr_loss_acceptance_type}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
+| | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
 | tc09-1518B-2t2c-eth-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc
 | | [Documentation]
@@ -338,21 +328,20 @@
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
 | | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | When  L2 bridge domains with Vhost-User initialized in a 3-node circular topology
-| | ...   | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | When L2 bridge domains with Vhost-User initialized in a 3-node circular topology
+| | ... | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
 | | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ...     | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
+| | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
 | | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
 | | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ...     | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
+| | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-bridge
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc10-1518B-2t2c-eth-l2bdbasemaclrn-eth-2vhost-1vm-pdrdisc
 | | [Documentation]
@@ -369,23 +358,21 @@
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
 | | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | When  L2 bridge domains with Vhost-User initialized in a 3-node circular topology
-| | ...   | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | When L2 bridge domains with Vhost-User initialized in a 3-node circular topology
+| | ... | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
 | | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ...     | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
+| | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
 | | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
 | | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ...     | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
+| | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-bridge
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
-| | ...                                       | ${perf_pdr_loss_acceptance}
-| | ...                                       | ${perf_pdr_loss_acceptance_type}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
+| | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
 | tc11-IMIX-2t2c-eth-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc
 | | [Documentation]
@@ -403,21 +390,20 @@
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
 | | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | When  L2 bridge domains with Vhost-User initialized in a 3-node circular topology
-| | ...   | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | When L2 bridge domains with Vhost-User initialized in a 3-node circular topology
+| | ... | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
 | | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ...     | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
+| | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
 | | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
 | | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ...     | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
+| | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-bridge
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc12-IMIX-2t2c-eth-l2bdbasemaclrn-eth-2vhost-1vm-pdrdisc
 | | [Documentation]
@@ -435,23 +421,21 @@
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
 | | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | When  L2 bridge domains with Vhost-User initialized in a 3-node circular topology
-| | ...   | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | When L2 bridge domains with Vhost-User initialized in a 3-node circular topology
+| | ... | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
 | | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ...     | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
+| | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
 | | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
 | | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ...     | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
+| | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-bridge
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
-| | ...                                       | ${perf_pdr_loss_acceptance}
-| | ...                                       | ${perf_pdr_loss_acceptance_type}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
+| | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
 | tc13-64B-4t4c-eth-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc
 | | [Documentation]
@@ -468,21 +452,20 @@
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
 | | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | When  L2 bridge domains with Vhost-User initialized in a 3-node circular topology
-| | ...   | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | When L2 bridge domains with Vhost-User initialized in a 3-node circular topology
+| | ... | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
 | | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ...     | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
+| | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
 | | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
 | | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ...     | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
+| | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-bridge
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc14-64B-4t4c-eth-l2bdbasemaclrn-eth-2vhost-1vm-pdrdisc
 | | [Documentation]
@@ -499,23 +482,21 @@
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
 | | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | When  L2 bridge domains with Vhost-User initialized in a 3-node circular topology
-| | ...   | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | When L2 bridge domains with Vhost-User initialized in a 3-node circular topology
+| | ... | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
 | | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ...     | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
+| | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
 | | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
 | | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ...     | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
+| | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-bridge
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
-| | ...                                       | ${perf_pdr_loss_acceptance}
-| | ...                                       | ${perf_pdr_loss_acceptance_type}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
+| | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
 | tc15-1518B-4t4c-eth-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc
 | | [Documentation]
@@ -532,21 +513,20 @@
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
 | | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | When  L2 bridge domains with Vhost-User initialized in a 3-node circular topology
-| | ...   | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | When L2 bridge domains with Vhost-User initialized in a 3-node circular topology
+| | ... | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
 | | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ...     | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
+| | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
 | | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
 | | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ...     | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
+| | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-bridge
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc16-1518B-4t4c-eth-l2bdbasemaclrn-eth-2vhost-1vm-pdrdisc
 | | [Documentation]
@@ -563,23 +543,21 @@
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
 | | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | When  L2 bridge domains with Vhost-User initialized in a 3-node circular topology
-| | ...   | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | When L2 bridge domains with Vhost-User initialized in a 3-node circular topology
+| | ... | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
 | | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ...     | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
+| | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
 | | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
 | | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ...     | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
+| | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-bridge
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
-| | ...                                       | ${perf_pdr_loss_acceptance}
-| | ...                                       | ${perf_pdr_loss_acceptance_type}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
+| | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
 | tc17-IMIX-4t4c-eth-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc
 | | [Documentation]
@@ -597,21 +575,20 @@
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
 | | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | When  L2 bridge domains with Vhost-User initialized in a 3-node circular topology
-| | ...   | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | When L2 bridge domains with Vhost-User initialized in a 3-node circular topology
+| | ... | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
 | | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ...     | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
+| | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
 | | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
 | | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ...     | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
+| | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-bridge
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc18-IMIX-4t4c-eth-l2bdbasemaclrn-eth-2vhost-1vm-pdrdisc
 | | [Documentation]
@@ -629,20 +606,18 @@
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
 | | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | When  L2 bridge domains with Vhost-User initialized in a 3-node circular topology
-| | ...   | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | When L2 bridge domains with Vhost-User initialized in a 3-node circular topology
+| | ... | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
 | | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ...     | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
+| | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
 | | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
 | | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
-| | ...     | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
+| | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-bridge
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
-| | ...                                       | ${perf_pdr_loss_acceptance}
-| | ...                                       | ${perf_pdr_loss_acceptance_type}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
+| | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
