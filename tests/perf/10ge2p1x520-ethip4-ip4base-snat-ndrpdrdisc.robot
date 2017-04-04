@@ -73,11 +73,11 @@
 | | ... | linerate, step 100kpps.
 | | ...
 | | [Teardown] | Run keywords | Performance test teardown | ${min_rate}pps
-| | ... | ${framesize} | 3-node-IPv4-SNAT-1u-1p
+| | ... | ${framesize} | profile-trex-stateless-eth-ip-udp-snat-1u1p
 | | ... | AND | Show SNAT verbose | ${dut1}
 | | ... | AND | Show SNAT verbose | ${dut2}
 | | ...
-| | [Tags] | 1T1C | STHREAD | NDRDISC
+| | [Tags] | 1T1C | STHREAD | NDRDISC | THIS
 | | ...
 | | ${framesize}= | Set Variable | ${64}
 | | ${min_rate}= | Set Variable | ${100000}
@@ -92,8 +92,8 @@
 | | And Apply startup configuration on all VPP DUTs
 | | When SNAT is initialized in a 3-node circular topology
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | 3-node-IPv4-SNAT-1u-1p | ${min_rate} | ${max_rate}
-| | ... | ${threshold}
+| | ... | ${binary_max} | profile-trex-stateless-eth-ip-udp-snat-1u1p
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc02-64B-1t1c-ethip4-ip4base-snat-1u-1p-pdrdisc
 | | [Documentation]
@@ -195,7 +195,7 @@
 | | ... | linerate, step 100kpps.
 | | ...
 | | [Teardown] | Run keywords | Performance test teardown | ${min_rate}pps
-| | ... | ${framesize} | 3-node-IPv4-SNAT-1u-1p
+| | ... | ${framesize} | profile-trex-stateless-eth-ip-udp-snat-1u1p
 | | ... | AND | Show SNAT verbose | ${dut1}
 | | ... | AND | Show SNAT verbose | ${dut2}
 | | ...
@@ -214,8 +214,8 @@
 | | And Apply startup configuration on all VPP DUTs
 | | When SNAT is initialized in a 3-node circular topology
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | 3-node-IPv4-SNAT-1u-1p | ${min_rate} | ${max_rate}
-| | ... | ${threshold}
+| | ... | ${binary_max} | profile-trex-stateless-eth-ip-udp-snat-1u1p
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc06-IMIX-1t1c-ethip4-ip4base-snat-1u-1p-pdrdisc
 | | [Documentation]
