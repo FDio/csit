@@ -27,6 +27,7 @@ Functionality:
 """
 
 import sys
+import json
 
 sys.path.insert(0, "/opt/trex-core-2.25/scripts/automation/"+\
                    "trex_control_plane/stl/")
@@ -40,12 +41,9 @@ def stop_all_traffic_streams():
     """
 
     # create client
-    client = STLClient()
+    client = STLClient(verbose_level=LoggerApi.VERBOSE_QUIET)
 
     try:
-        # turn this off if too many logs
-        #client.set_verbose("high")
-
         # connect to server
         client.connect()
 
@@ -55,18 +53,15 @@ def stop_all_traffic_streams():
         # read the stats after the test
         stats = client.get_stats()
 
-        print "#####statistics (approx.)#####"
-        print json.dumps(stats, indent=4,
-                         separators=(',', ': '), sort_keys=True)
+        print("#####statistics (approx.)#####")
+        print(json.dumps(stats, indent=4,
+                         separators=(',', ': '), sort_keys=True))
 
         lost_a = stats[0]["opackets"] - stats[1]["ipackets"]
         lost_b = stats[1]["opackets"] - stats[0]["ipackets"]
 
-        total_sent = stats[0]["opackets"] + stats[1]["opackets"]
-        total_rcvd = stats[0]["ipackets"] + stats[1]["ipackets"]
-
-        print "\npackets lost from 0 --> 1:   {0} pkts".format(lost_a)
-        print "packets lost from 1 --> 0:   {0} pkts".format(lost_b)
+        print("\npackets lost from 0 --> 1:   {0} pkts".format(lost_a))
+        print("packets lost from 1 --> 0:   {0} pkts".format(lost_b))
 
     except STLError as ex_error:
         print_error(str(ex_error))
@@ -74,7 +69,6 @@ def stop_all_traffic_streams():
 
     finally:
         client.disconnect()
-
 
 
 def print_error(msg):

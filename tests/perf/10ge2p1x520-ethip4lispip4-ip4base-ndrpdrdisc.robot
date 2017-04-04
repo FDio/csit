@@ -25,7 +25,7 @@
 | ...
 | Test Setup | Performance test setup
 | Test Teardown | Performance test teardown | ${min_rate}pps | ${framesize}
-| ... | 3-node-IPv4
+| ... | ${traffic_profile}
 | ...
 | Documentation | *RFC6830: Pkt throughput Lisp test cases*
 | ...
@@ -46,6 +46,8 @@
 *** Variables ***
 # X520-DA2 bandwidth limit
 | ${s_limit} | ${10000000000}
+# Traffic profile:
+| ${traffic_profile} | trex-sl-3n-ethip4-ip4src253
 
 *** Test Cases ***
 | tc01-64B-1t1c-ethip4lispip4-ip4base-ndrdisc
@@ -63,21 +65,20 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
 | | When Lisp IPv4 forwarding initialized in a 3-node circular topology
-| | ...  | ${dut1_to_dut2_ip4} | ${dut1_to_tg_ip4} | ${dut2_to_dut1_ip4}
-| | ...  | ${dut2_to_tg_ip4} | ${prefix4}
-| | And  Set up Lisp topology
-| | ...  | ${dut1} | ${dut1_if2} | ${NONE}
-| | ...  | ${dut2} | ${dut2_if1} | ${NONE}
-| | ...  | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
-| | ...  | ${dut1_ip4_static_adjacency} | ${dut2_ip4_static_adjacency}
+| | ... | ${dut1_to_dut2_ip4} | ${dut1_to_tg_ip4} | ${dut2_to_dut1_ip4}
+| | ... | ${dut2_to_tg_ip4} | ${prefix4}
+| | And Set up Lisp topology
+| | ... | ${dut1} | ${dut1_if2} | ${NONE}
+| | ... | ${dut2} | ${dut2_if1} | ${NONE}
+| | ... | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
+| | ... | ${dut1_ip4_static_adjacency} | ${dut2_ip4_static_adjacency}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-IPv4
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc02-64B-1t1c-ethip4lispip4-ip4base-pdrdisc
 | | [Documentation]
@@ -94,23 +95,21 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
 | | When Lisp IPv4 forwarding initialized in a 3-node circular topology
-| | ...  | ${dut1_to_dut2_ip4} | ${dut1_to_tg_ip4} | ${dut2_to_dut1_ip4}
-| | ...  | ${dut2_to_tg_ip4} | ${prefix4}
-| | And  Set up Lisp topology
-| | ...  | ${dut1} | ${dut1_if2} | ${NONE}
-| | ...  | ${dut2} | ${dut2_if1} | ${NONE}
-| | ...  | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
-| | ...  | ${dut1_ip4_static_adjacency} | ${dut2_ip4_static_adjacency}
+| | ... | ${dut1_to_dut2_ip4} | ${dut1_to_tg_ip4} | ${dut2_to_dut1_ip4}
+| | ... | ${dut2_to_tg_ip4} | ${prefix4}
+| | And Set up Lisp topology
+| | ... | ${dut1} | ${dut1_if2} | ${NONE}
+| | ... | ${dut2} | ${dut2_if1} | ${NONE}
+| | ... | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
+| | ... | ${dut1_ip4_static_adjacency} | ${dut2_ip4_static_adjacency}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-IPv4
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
-| | ...                                       | ${perf_pdr_loss_acceptance}
-| | ...                                       | ${perf_pdr_loss_acceptance_type}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
+| | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
 | tc03-1480B-1t1c-ethip4lispip4-ip4base-ndrdisc
 | | [Documentation]
@@ -127,21 +126,20 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
 | | When Lisp IPv4 forwarding initialized in a 3-node circular topology
-| | ...  | ${dut1_to_dut2_ip4} | ${dut1_to_tg_ip4} | ${dut2_to_dut1_ip4}
-| | ...  | ${dut2_to_tg_ip4} | ${prefix4}
-| | And  Set up Lisp topology
-| | ...  | ${dut1} | ${dut1_if2} | ${NONE}
-| | ...  | ${dut2} | ${dut2_if1} | ${NONE}
-| | ...  | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
-| | ...  | ${dut1_ip4_static_adjacency} | ${dut2_ip4_static_adjacency}
+| | ... | ${dut1_to_dut2_ip4} | ${dut1_to_tg_ip4} | ${dut2_to_dut1_ip4}
+| | ... | ${dut2_to_tg_ip4} | ${prefix4}
+| | And Set up Lisp topology
+| | ... | ${dut1} | ${dut1_if2} | ${NONE}
+| | ... | ${dut2} | ${dut2_if1} | ${NONE}
+| | ... | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
+| | ... | ${dut1_ip4_static_adjacency} | ${dut2_ip4_static_adjacency}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-IPv4
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc04-1480B-1t1c-ethip4lispip4-ip4base-pdrdisc
 | | [Documentation]
@@ -158,23 +156,21 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
 | | When Lisp IPv4 forwarding initialized in a 3-node circular topology
-| | ...  | ${dut1_to_dut2_ip4} | ${dut1_to_tg_ip4} | ${dut2_to_dut1_ip4}
-| | ...  | ${dut2_to_tg_ip4} | ${prefix4}
-| | And  Set up Lisp topology
-| | ...  | ${dut1} | ${dut1_if2} | ${NONE}
-| | ...  | ${dut2} | ${dut2_if1} | ${NONE}
-| | ...  | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
-| | ...  | ${dut1_ip4_static_adjacency} | ${dut2_ip4_static_adjacency}
+| | ... | ${dut1_to_dut2_ip4} | ${dut1_to_tg_ip4} | ${dut2_to_dut1_ip4}
+| | ... | ${dut2_to_tg_ip4} | ${prefix4}
+| | And Set up Lisp topology
+| | ... | ${dut1} | ${dut1_if2} | ${NONE}
+| | ... | ${dut2} | ${dut2_if1} | ${NONE}
+| | ... | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
+| | ... | ${dut1_ip4_static_adjacency} | ${dut2_ip4_static_adjacency}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-IPv4
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
-| | ...                                       | ${perf_pdr_loss_acceptance}
-| | ...                                       | ${perf_pdr_loss_acceptance_type}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
+| | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
 | tc05-9000B-1t1c-ethip4lispip4-ip4base-ndrdisc
 | | [Documentation]
@@ -191,20 +187,19 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Apply startup configuration on all VPP DUTs
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Apply startup configuration on all VPP DUTs
 | | When Lisp IPv4 forwarding initialized in a 3-node circular topology
-| | ...  | ${dut1_to_dut2_ip4} | ${dut1_to_tg_ip4} | ${dut2_to_dut1_ip4}
-| | ...  | ${dut2_to_tg_ip4} | ${prefix4}
-| | And  Set up Lisp topology
-| | ...  | ${dut1} | ${dut1_if2} | ${NONE}
-| | ...  | ${dut2} | ${dut2_if1} | ${NONE}
-| | ...  | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
-| | ...  | ${dut1_ip4_static_adjacency} | ${dut2_ip4_static_adjacency}
+| | ... | ${dut1_to_dut2_ip4} | ${dut1_to_tg_ip4} | ${dut2_to_dut1_ip4}
+| | ... | ${dut2_to_tg_ip4} | ${prefix4}
+| | And Set up Lisp topology
+| | ... | ${dut1} | ${dut1_if2} | ${NONE}
+| | ... | ${dut2} | ${dut2_if1} | ${NONE}
+| | ... | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
+| | ... | ${dut1_ip4_static_adjacency} | ${dut2_ip4_static_adjacency}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-IPv4
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc06-9000B-1t1c-ethip4lispip4-ip4base-pdrdisc
 | | [Documentation]
@@ -221,22 +216,20 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Apply startup configuration on all VPP DUTs
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Apply startup configuration on all VPP DUTs
 | | When Lisp IPv4 forwarding initialized in a 3-node circular topology
-| | ...  | ${dut1_to_dut2_ip4} | ${dut1_to_tg_ip4} | ${dut2_to_dut1_ip4}
-| | ...  | ${dut2_to_tg_ip4} | ${prefix4}
-| | And  Set up Lisp topology
-| | ...  | ${dut1} | ${dut1_if2} | ${NONE}
-| | ...  | ${dut2} | ${dut2_if1} | ${NONE}
-| | ...  | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
-| | ...  | ${dut1_ip4_static_adjacency} | ${dut2_ip4_static_adjacency}
+| | ... | ${dut1_to_dut2_ip4} | ${dut1_to_tg_ip4} | ${dut2_to_dut1_ip4}
+| | ... | ${dut2_to_tg_ip4} | ${prefix4}
+| | And Set up Lisp topology
+| | ... | ${dut1} | ${dut1_if2} | ${NONE}
+| | ... | ${dut2} | ${dut2_if1} | ${NONE}
+| | ... | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
+| | ... | ${dut1_ip4_static_adjacency} | ${dut2_ip4_static_adjacency}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-IPv4
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
-| | ...                                       | ${perf_pdr_loss_acceptance}
-| | ...                                       | ${perf_pdr_loss_acceptance_type}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
+| | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
 | tc07-64B-2t2c-ethip4lispip4-ip4base-ndrdisc
 | | [Documentation]
@@ -253,21 +246,20 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
 | | When Lisp IPv4 forwarding initialized in a 3-node circular topology
-| | ...  | ${dut1_to_dut2_ip4} | ${dut1_to_tg_ip4} | ${dut2_to_dut1_ip4}
-| | ...  | ${dut2_to_tg_ip4} | ${prefix4}
-| | And  Set up Lisp topology
-| | ...  | ${dut1} | ${dut1_if2} | ${NONE}
-| | ...  | ${dut2} | ${dut2_if1} | ${NONE}
-| | ...  | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
-| | ...  | ${dut1_ip4_static_adjacency} | ${dut2_ip4_static_adjacency}
+| | ... | ${dut1_to_dut2_ip4} | ${dut1_to_tg_ip4} | ${dut2_to_dut1_ip4}
+| | ... | ${dut2_to_tg_ip4} | ${prefix4}
+| | And Set up Lisp topology
+| | ... | ${dut1} | ${dut1_if2} | ${NONE}
+| | ... | ${dut2} | ${dut2_if1} | ${NONE}
+| | ... | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
+| | ... | ${dut1_ip4_static_adjacency} | ${dut2_ip4_static_adjacency}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-IPv4
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc08-64B-2t2c-ethip4lispip4-ip4base-pdrdisc
 | | [Documentation]
@@ -284,23 +276,21 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
 | | When Lisp IPv4 forwarding initialized in a 3-node circular topology
-| | ...  | ${dut1_to_dut2_ip4} | ${dut1_to_tg_ip4} | ${dut2_to_dut1_ip4}
-| | ...  | ${dut2_to_tg_ip4} | ${prefix4}
-| | And  Set up Lisp topology
-| | ...  | ${dut1} | ${dut1_if2} | ${NONE}
-| | ...  | ${dut2} | ${dut2_if1} | ${NONE}
-| | ...  | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
-| | ...  | ${dut1_ip4_static_adjacency} | ${dut2_ip4_static_adjacency}
+| | ... | ${dut1_to_dut2_ip4} | ${dut1_to_tg_ip4} | ${dut2_to_dut1_ip4}
+| | ... | ${dut2_to_tg_ip4} | ${prefix4}
+| | And Set up Lisp topology
+| | ... | ${dut1} | ${dut1_if2} | ${NONE}
+| | ... | ${dut2} | ${dut2_if1} | ${NONE}
+| | ... | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
+| | ... | ${dut1_ip4_static_adjacency} | ${dut2_ip4_static_adjacency}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-IPv4
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
-| | ...                                       | ${perf_pdr_loss_acceptance}
-| | ...                                       | ${perf_pdr_loss_acceptance_type}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
+| | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
 | tc09-1480B-2t2c-ethip4lispip4-ip4base-ndrdisc
 | | [Documentation]
@@ -317,21 +307,20 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
 | | When Lisp IPv4 forwarding initialized in a 3-node circular topology
-| | ...  | ${dut1_to_dut2_ip4} | ${dut1_to_tg_ip4} | ${dut2_to_dut1_ip4}
-| | ...  | ${dut2_to_tg_ip4} | ${prefix4}
-| | And  Set up Lisp topology
-| | ...  | ${dut1} | ${dut1_if2} | ${NONE}
-| | ...  | ${dut2} | ${dut2_if1} | ${NONE}
-| | ...  | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
-| | ...  | ${dut1_ip4_static_adjacency} | ${dut2_ip4_static_adjacency}
+| | ... | ${dut1_to_dut2_ip4} | ${dut1_to_tg_ip4} | ${dut2_to_dut1_ip4}
+| | ... | ${dut2_to_tg_ip4} | ${prefix4}
+| | And Set up Lisp topology
+| | ... | ${dut1} | ${dut1_if2} | ${NONE}
+| | ... | ${dut2} | ${dut2_if1} | ${NONE}
+| | ... | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
+| | ... | ${dut1_ip4_static_adjacency} | ${dut2_ip4_static_adjacency}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-IPv4
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc10-1480B-2t2c-ethip4lispip4-ip4base-pdrdisc
 | | [Documentation]
@@ -348,23 +337,21 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
 | | When Lisp IPv4 forwarding initialized in a 3-node circular topology
-| | ...  | ${dut1_to_dut2_ip4} | ${dut1_to_tg_ip4} | ${dut2_to_dut1_ip4}
-| | ...  | ${dut2_to_tg_ip4} | ${prefix4}
-| | And  Set up Lisp topology
-| | ...  | ${dut1} | ${dut1_if2} | ${NONE}
-| | ...  | ${dut2} | ${dut2_if1} | ${NONE}
-| | ...  | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
-| | ...  | ${dut1_ip4_static_adjacency} | ${dut2_ip4_static_adjacency}
+| | ... | ${dut1_to_dut2_ip4} | ${dut1_to_tg_ip4} | ${dut2_to_dut1_ip4}
+| | ... | ${dut2_to_tg_ip4} | ${prefix4}
+| | And Set up Lisp topology
+| | ... | ${dut1} | ${dut1_if2} | ${NONE}
+| | ... | ${dut2} | ${dut2_if1} | ${NONE}
+| | ... | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
+| | ... | ${dut1_ip4_static_adjacency} | ${dut2_ip4_static_adjacency}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-IPv4
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
-| | ...                                       | ${perf_pdr_loss_acceptance}
-| | ...                                       | ${perf_pdr_loss_acceptance_type}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
+| | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
 | tc11-9000B-2t2c-ethip4lispip4-ip4base-ndrdisc
 | | [Documentation]
@@ -381,20 +368,19 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Apply startup configuration on all VPP DUTs
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Apply startup configuration on all VPP DUTs
 | | When Lisp IPv4 forwarding initialized in a 3-node circular topology
-| | ...  | ${dut1_to_dut2_ip4} | ${dut1_to_tg_ip4} | ${dut2_to_dut1_ip4}
-| | ...  | ${dut2_to_tg_ip4} | ${prefix4}
-| | And  Set up Lisp topology
-| | ...  | ${dut1} | ${dut1_if2} | ${NONE}
-| | ...  | ${dut2} | ${dut2_if1} | ${NONE}
-| | ...  | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
-| | ...  | ${dut1_ip4_static_adjacency} | ${dut2_ip4_static_adjacency}
+| | ... | ${dut1_to_dut2_ip4} | ${dut1_to_tg_ip4} | ${dut2_to_dut1_ip4}
+| | ... | ${dut2_to_tg_ip4} | ${prefix4}
+| | And Set up Lisp topology
+| | ... | ${dut1} | ${dut1_if2} | ${NONE}
+| | ... | ${dut2} | ${dut2_if1} | ${NONE}
+| | ... | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
+| | ... | ${dut1_ip4_static_adjacency} | ${dut2_ip4_static_adjacency}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-IPv4
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc12-9000B-2t2c-ethip4lispip4-ip4base-pdrdisc
 | | [Documentation]
@@ -411,22 +397,20 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Apply startup configuration on all VPP DUTs
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Apply startup configuration on all VPP DUTs
 | | When Lisp IPv4 forwarding initialized in a 3-node circular topology
-| | ...  | ${dut1_to_dut2_ip4} | ${dut1_to_tg_ip4} | ${dut2_to_dut1_ip4}
-| | ...  | ${dut2_to_tg_ip4} | ${prefix4}
-| | And  Set up Lisp topology
-| | ...  | ${dut1} | ${dut1_if2} | ${NONE}
-| | ...  | ${dut2} | ${dut2_if1} | ${NONE}
-| | ...  | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
-| | ...  | ${dut1_ip4_static_adjacency} | ${dut2_ip4_static_adjacency}
+| | ... | ${dut1_to_dut2_ip4} | ${dut1_to_tg_ip4} | ${dut2_to_dut1_ip4}
+| | ... | ${dut2_to_tg_ip4} | ${prefix4}
+| | And Set up Lisp topology
+| | ... | ${dut1} | ${dut1_if2} | ${NONE}
+| | ... | ${dut2} | ${dut2_if1} | ${NONE}
+| | ... | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
+| | ... | ${dut1_ip4_static_adjacency} | ${dut2_ip4_static_adjacency}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-IPv4
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
-| | ...                                       | ${perf_pdr_loss_acceptance}
-| | ...                                       | ${perf_pdr_loss_acceptance_type}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
+| | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
 | tc13-64B-4t4c-ethip4lispip4-ip4base-ndrdisc
 | | [Documentation]
@@ -443,21 +427,20 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
 | | When Lisp IPv4 forwarding initialized in a 3-node circular topology
-| | ...  | ${dut1_to_dut2_ip4} | ${dut1_to_tg_ip4} | ${dut2_to_dut1_ip4}
-| | ...  | ${dut2_to_tg_ip4} | ${prefix4}
-| | And  Set up Lisp topology
-| | ...  | ${dut1} | ${dut1_if2} | ${NONE}
-| | ...  | ${dut2} | ${dut2_if1} | ${NONE}
-| | ...  | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
-| | ...  | ${dut1_ip4_static_adjacency} | ${dut2_ip4_static_adjacency}
+| | ... | ${dut1_to_dut2_ip4} | ${dut1_to_tg_ip4} | ${dut2_to_dut1_ip4}
+| | ... | ${dut2_to_tg_ip4} | ${prefix4}
+| | And Set up Lisp topology
+| | ... | ${dut1} | ${dut1_if2} | ${NONE}
+| | ... | ${dut2} | ${dut2_if1} | ${NONE}
+| | ... | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
+| | ... | ${dut1_ip4_static_adjacency} | ${dut2_ip4_static_adjacency}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-IPv4
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc14-64B-4t4c-ethip4lispip4-ip4base-pdrdisc
 | | [Documentation]
@@ -474,23 +457,21 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
 | | When Lisp IPv4 forwarding initialized in a 3-node circular topology
-| | ...  | ${dut1_to_dut2_ip4} | ${dut1_to_tg_ip4} | ${dut2_to_dut1_ip4}
-| | ...  | ${dut2_to_tg_ip4} | ${prefix4}
-| | And  Set up Lisp topology
-| | ...  | ${dut1} | ${dut1_if2} | ${NONE}
-| | ...  | ${dut2} | ${dut2_if1} | ${NONE}
-| | ...  | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
-| | ...  | ${dut1_ip4_static_adjacency} | ${dut2_ip4_static_adjacency}
+| | ... | ${dut1_to_dut2_ip4} | ${dut1_to_tg_ip4} | ${dut2_to_dut1_ip4}
+| | ... | ${dut2_to_tg_ip4} | ${prefix4}
+| | And Set up Lisp topology
+| | ... | ${dut1} | ${dut1_if2} | ${NONE}
+| | ... | ${dut2} | ${dut2_if1} | ${NONE}
+| | ... | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
+| | ... | ${dut1_ip4_static_adjacency} | ${dut2_ip4_static_adjacency}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-IPv4
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
-| | ...                                       | ${perf_pdr_loss_acceptance}
-| | ...                                       | ${perf_pdr_loss_acceptance_type}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
+| | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
 | tc15-1480B-4t4c-ethip4lispip4-ip4base-ndrdisc
 | | [Documentation]
@@ -507,21 +488,20 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
 | | When Lisp IPv4 forwarding initialized in a 3-node circular topology
-| | ...  | ${dut1_to_dut2_ip4} | ${dut1_to_tg_ip4} | ${dut2_to_dut1_ip4}
-| | ...  | ${dut2_to_tg_ip4} | ${prefix4}
-| | And  Set up Lisp topology
-| | ...  | ${dut1} | ${dut1_if2} | ${NONE}
-| | ...  | ${dut2} | ${dut2_if1} | ${NONE}
-| | ...  | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
-| | ...  | ${dut1_ip4_static_adjacency} | ${dut2_ip4_static_adjacency}
+| | ... | ${dut1_to_dut2_ip4} | ${dut1_to_tg_ip4} | ${dut2_to_dut1_ip4}
+| | ... | ${dut2_to_tg_ip4} | ${prefix4}
+| | And Set up Lisp topology
+| | ... | ${dut1} | ${dut1_if2} | ${NONE}
+| | ... | ${dut2} | ${dut2_if1} | ${NONE}
+| | ... | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
+| | ... | ${dut1_ip4_static_adjacency} | ${dut2_ip4_static_adjacency}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-IPv4
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc16-1480B-4t4c-ethip4lispip4-ip4base-pdrdisc
 | | [Documentation]
@@ -538,23 +518,21 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
 | | When Lisp IPv4 forwarding initialized in a 3-node circular topology
-| | ...  | ${dut1_to_dut2_ip4} | ${dut1_to_tg_ip4} | ${dut2_to_dut1_ip4}
-| | ...  | ${dut2_to_tg_ip4} | ${prefix4}
-| | And  Set up Lisp topology
-| | ...  | ${dut1} | ${dut1_if2} | ${NONE}
-| | ...  | ${dut2} | ${dut2_if1} | ${NONE}
-| | ...  | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
-| | ...  | ${dut1_ip4_static_adjacency} | ${dut2_ip4_static_adjacency}
+| | ... | ${dut1_to_dut2_ip4} | ${dut1_to_tg_ip4} | ${dut2_to_dut1_ip4}
+| | ... | ${dut2_to_tg_ip4} | ${prefix4}
+| | And Set up Lisp topology
+| | ... | ${dut1} | ${dut1_if2} | ${NONE}
+| | ... | ${dut2} | ${dut2_if1} | ${NONE}
+| | ... | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
+| | ... | ${dut1_ip4_static_adjacency} | ${dut2_ip4_static_adjacency}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-IPv4
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
-| | ...                                       | ${perf_pdr_loss_acceptance}
-| | ...                                       | ${perf_pdr_loss_acceptance_type}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
+| | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
 | tc17-9000B-4t4c-ethip4lispip4-ip4base-ndrdisc
 | | [Documentation]
@@ -571,20 +549,19 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Apply startup configuration on all VPP DUTs
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Apply startup configuration on all VPP DUTs
 | | When Lisp IPv4 forwarding initialized in a 3-node circular topology
-| | ...  | ${dut1_to_dut2_ip4} | ${dut1_to_tg_ip4} | ${dut2_to_dut1_ip4}
-| | ...  | ${dut2_to_tg_ip4} | ${prefix4}
-| | And  Set up Lisp topology
-| | ...  | ${dut1} | ${dut1_if2} | ${NONE}
-| | ...  | ${dut2} | ${dut2_if1} | ${NONE}
-| | ...  | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
-| | ...  | ${dut1_ip4_static_adjacency} | ${dut2_ip4_static_adjacency}
+| | ... | ${dut1_to_dut2_ip4} | ${dut1_to_tg_ip4} | ${dut2_to_dut1_ip4}
+| | ... | ${dut2_to_tg_ip4} | ${prefix4}
+| | And Set up Lisp topology
+| | ... | ${dut1} | ${dut1_if2} | ${NONE}
+| | ... | ${dut2} | ${dut2_if1} | ${NONE}
+| | ... | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
+| | ... | ${dut1_ip4_static_adjacency} | ${dut2_ip4_static_adjacency}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-IPv4
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc18-9000B-4t4c-ethip4lispip4-ip4base-pdrdisc
 | | [Documentation]
@@ -601,19 +578,17 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Apply startup configuration on all VPP DUTs
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Apply startup configuration on all VPP DUTs
 | | When Lisp IPv4 forwarding initialized in a 3-node circular topology
-| | ...  | ${dut1_to_dut2_ip4} | ${dut1_to_tg_ip4} | ${dut2_to_dut1_ip4}
-| | ...  | ${dut2_to_tg_ip4} | ${prefix4}
-| | And  Set up Lisp topology
-| | ...  | ${dut1} | ${dut1_if2} | ${NONE}
-| | ...  | ${dut2} | ${dut2_if1} | ${NONE}
-| | ...  | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
-| | ...  | ${dut1_ip4_static_adjacency} | ${dut2_ip4_static_adjacency}
+| | ... | ${dut1_to_dut2_ip4} | ${dut1_to_tg_ip4} | ${dut2_to_dut1_ip4}
+| | ... | ${dut2_to_tg_ip4} | ${prefix4}
+| | And Set up Lisp topology
+| | ... | ${dut1} | ${dut1_if2} | ${NONE}
+| | ... | ${dut2} | ${dut2_if1} | ${NONE}
+| | ... | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
+| | ... | ${dut1_ip4_static_adjacency} | ${dut2_ip4_static_adjacency}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-IPv4
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
-| | ...                                       | ${perf_pdr_loss_acceptance}
-| | ...                                       | ${perf_pdr_loss_acceptance_type}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
+| | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
