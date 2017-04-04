@@ -23,7 +23,7 @@
 | ...
 | Test Setup | Performance test setup
 | Test Teardown | Performance test teardown | ${min_rate}pps | ${framesize}
-| ... | 3-node-bridge
+| ... | ${traffic_profile}
 | ...
 | Documentation | *RFC2544: Pkt throughput L2BD test cases*
 | ...
@@ -50,6 +50,8 @@
 *** Variables ***
 # X710 bandwidth limit
 | ${s_limit} | ${10000000000}
+# Traffic profile:
+| ${traffic_profile} | trex-sl-3n-ethip4-ip4src254
 
 *** Keywords ***
 | L2 Bridge Domain NDR Binary Search
@@ -67,7 +69,7 @@
 | | Apply startup configuration on all VPP DUTs
 | | L2 bridge domain initialized in a 3-node circular topology
 | | Find NDR using binary search and pps
-| | ... | ${framesize} | ${binary_min} | ${binary_max} | 3-node-bridge
+| | ... | ${framesize} | ${binary_min} | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | L2 Bridge Domain PDR Binary Search
@@ -85,7 +87,7 @@
 | | Apply startup configuration on all VPP DUTs
 | | L2 bridge domain initialized in a 3-node circular topology
 | | Find PDR using binary search and pps
-| | ... | ${framesize} | ${binary_min} | ${binary_max} | 3-node-bridge
+| | ... | ${framesize} | ${binary_min} | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
 | | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 

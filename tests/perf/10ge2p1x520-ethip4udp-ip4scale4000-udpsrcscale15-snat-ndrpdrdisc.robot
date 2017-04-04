@@ -63,6 +63,8 @@
 *** Variables ***
 # X520-DA2 bandwidth limit
 | ${s_limit} | ${10000000000}
+# Traffic profile:
+| ${traffic_profile} | trex-sl-3n-ethip4udp-4000u15p
 
 *** Test Cases ***
 | tc01-64B-1t1c-ethip4udp-ip4scale4000-udpsrcscale15-snat-ndrdisc
@@ -74,11 +76,11 @@
 | | ... | linerate, step 100kpps.
 | | ...
 | | [Teardown] | Run keywords | Performance test teardown | ${min_rate}pps
-| | ... | ${framesize} | 3-node-IPv4-SNAT-4000u-15p
+| | ... | ${framesize} | ${traffic_profile}
 | | ... | AND | Show SNAT verbose | ${dut1}
 | | ... | AND | Show SNAT verbose | ${dut2}
 | | ...
-| | [Tags] | 64B | 1T1C | STHREAD | NDRDISC
+| | [Tags] | 64B | 1T1C | STHREAD | NDRDISC | THIS
 | | ...
 | | ${framesize}= | Set Variable | ${64}
 | | ${min_rate}= | Set Variable | ${100000}
@@ -93,8 +95,8 @@
 | | And Apply startup configuration on all VPP DUTs
 | | When SNAT is initialized in a 3-node circular topology
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | 3-node-IPv4-SNAT-4000u-15p | ${min_rate} | ${max_rate}
-| | ... | ${threshold}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc02-64B-1t1c-ethip4udp-ip4scale4000-udpsrcscale15-snat-pdrdisc
 | | [Documentation]
@@ -105,7 +107,7 @@
 | | ... | linerate, step 100kpps.
 | | ...
 | | [Teardown] | Performance test teardown | ${min_rate}pps | ${framesize}
-| | ... | 3-node-IPv4-SNAT-4000u-15p
+| | ... | ${traffic_profile}
 | | ...
 | | [Tags] | 64B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
 | | ...
@@ -122,6 +124,6 @@
 | | And Apply startup configuration on all VPP DUTs
 | | When SNAT is initialized in a 3-node circular topology
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | 3-node-IPv4-SNAT-4000u-15p | ${min_rate} | ${max_rate}
-| | ... | ${threshold} | ${perf_pdr_loss_acceptance}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold} | ${perf_pdr_loss_acceptance}
 | | ... | ${perf_pdr_loss_acceptance_type}
