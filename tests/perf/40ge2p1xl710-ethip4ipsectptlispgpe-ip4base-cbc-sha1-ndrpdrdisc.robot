@@ -29,7 +29,7 @@
 | ...
 | Test Setup | Performance test setup
 | Test Teardown | Performance test teardown | ${min_rate}pps | ${framesize}
-| ... | 3-node-IPv4
+| ... | ${traffic_profile}
 | ...
 | Documentation | *IPv4 IPsec transport mode performance test suite.*
 | ...
@@ -67,6 +67,8 @@
 | ${dut1_spi}= | ${1001}
 | ${ESP_PROTO}= | ${50}
 | ${ipsec_overhead}= | ${54}
+# Traffic profile:
+| ${traffic_profile} | trex-sl-3n-ethip4-ip4src253
 
 *** Test Cases ***
 | tc01-64B-1t1c-ethip4ipsectptlispgpe-ip4base-cbc-sha1-ndrdisc
@@ -96,7 +98,8 @@
 | | When Lisp GPE IPv4 over IPsec initialized in a 3-node circular topology
 | | ... | ${encr_alg} | ${auth_alg}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | 3-node-IPv4 | ${min_rate} | ${max_rate} | ${threshold}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc02-64B-1t1c-ethip4ipsectptlispgpe-ip4base-cbc-sha1-pdrdisc
 | | [Documentation]
@@ -125,7 +128,8 @@
 | | When Lisp GPE IPv4 over IPsec initialized in a 3-node circular topology
 | | ... | ${encr_alg} | ${auth_alg}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | 3-node-IPv4 | ${min_rate} | ${max_rate} | ${threshold}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 | | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
 | tc03-1518B-1t1c-ethip4ipsectptlispgpe-ip4base-cbc-sha1-ndrdisc
@@ -154,7 +158,8 @@
 | | When Lisp GPE IPv4 over IPsec initialized in a 3-node circular topology
 | | ... | ${encr_alg} | ${auth_alg}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | 3-node-IPv4 | ${min_rate} | ${max_rate} | ${threshold}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc04-1518B-1t1c-ethip4ipsectptlispgpe-ip4base-cbc-sha1-pdrdisc
 | | [Documentation]
@@ -182,7 +187,8 @@
 | | When Lisp GPE IPv4 over IPsec initialized in a 3-node circular topology
 | | ... | ${encr_alg} | ${auth_alg}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | 3-node-IPv4 | ${min_rate} | ${max_rate} | ${threshold}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 | | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
 | tc05-IMIX-1t1c-ethip4ipsectptlispgpe-ip4base-cbc-sha1-ndrdisc
@@ -212,7 +218,8 @@
 | | When Lisp GPE IPv4 over IPsec initialized in a 3-node circular topology
 | | ... | ${encr_alg} | ${auth_alg}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | 3-node-IPv4 | ${min_rate} | ${max_rate} | ${threshold}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc06-IMIX-1t1c-ethip4ipsectptlispgpe-ip4base-cbc-sha1-pdrdisc
 | | [Documentation]
@@ -241,7 +248,8 @@
 | | When Lisp GPE IPv4 over IPsec initialized in a 3-node circular topology
 | | ... | ${encr_alg} | ${auth_alg}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | 3-node-IPv4 | ${min_rate} | ${max_rate} | ${threshold}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 | | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
 | tc07-64B-2t2c-ethip4ipsectptlispgpe-ip4base-cbc-sha1-ndrdisc
@@ -271,7 +279,8 @@
 | | When Lisp GPE IPv4 over IPsec initialized in a 3-node circular topology
 | | ... | ${encr_alg} | ${auth_alg}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | 3-node-IPv4 | ${min_rate} | ${max_rate} | ${threshold}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc08-64B-2t2c-ethip4ipsectptlispgpe-ip4base-cbc-sha1-pdrdisc
 | | [Documentation]
@@ -300,7 +309,8 @@
 | | When Lisp GPE IPv4 over IPsec initialized in a 3-node circular topology
 | | ... | ${encr_alg} | ${auth_alg}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | 3-node-IPv4 | ${min_rate} | ${max_rate} | ${threshold}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 | | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
 | tc13-64B-4t4c-ethip4ipsectptlispgpe-ip4base-cbc-sha1-ndrdisc
@@ -330,7 +340,8 @@
 | | When Lisp GPE IPv4 over IPsec initialized in a 3-node circular topology
 | | ... | ${encr_alg} | ${auth_alg}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | 3-node-IPv4 | ${min_rate} | ${max_rate} | ${threshold}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc14-64B-4t4c-ethip4ipsectptlispgpe-ip4base-cbc-sha1-pdrdisc
 | | [Documentation]
@@ -359,5 +370,6 @@
 | | When Lisp GPE IPv4 over IPsec initialized in a 3-node circular topology
 | | ... | ${encr_alg} | ${auth_alg}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | 3-node-IPv4 | ${min_rate} | ${max_rate} | ${threshold}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 | | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
