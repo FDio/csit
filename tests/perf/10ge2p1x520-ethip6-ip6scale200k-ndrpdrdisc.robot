@@ -23,7 +23,7 @@
 | ...
 | Test Setup | Performance test setup
 | Test Teardown | Performance test teardown | ${min_rate}pps | ${framesize}
-| ... | 3-node-IPv6-dst-${rts_per_flow}
+| ... | ${traffic_profile}
 | ...
 | Documentation | *RFC2544: Pkt throughput IPv6 routing test cases*
 | ...
@@ -52,6 +52,8 @@
 # X520-DA2 bandwidth limit
 | ${s_limit} | ${10000000000}
 | ${rts_per_flow}= | ${100000}
+# Traffic profile:
+| ${traffic_profile} | trex-sl-3n-ethip6-ip6dst${rts_per_flow}
 
 *** Test Cases ***
 | tc01-78B-1t1c-ethip6-ip6scale200k-ndrdisc
@@ -67,16 +69,14 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | And   Scale IPv6 forwarding initialized in a 3-node circular topology
-| | ...   | ${rts_per_flow}
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | And Scale IPv6 forwarding initialized in a 3-node circular topology
+| | ... | ${rts_per_flow}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max}
-| | ...                                       | 3-node-IPv6-dst-${rts_per_flow}
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc02-78B-1t1c-ethip6-ip6scale200k-pdrdisc
 | | [Documentation]
@@ -91,18 +91,15 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | And   Scale IPv6 forwarding initialized in a 3-node circular topology
-| | ...   | ${rts_per_flow}
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | And Scale IPv6 forwarding initialized in a 3-node circular topology
+| | ... | ${rts_per_flow}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max}
-| | ...                                       | 3-node-IPv6-dst-${rts_per_flow}
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
-| | ...                                       | ${perf_pdr_loss_acceptance}
-| | ...                                       | ${perf_pdr_loss_acceptance_type}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
+| | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
 | tc03-1518B-1t1c-ethip6-ip6scale200k-ndrdisc
 | | [Documentation]
@@ -117,16 +114,14 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | And   Scale IPv6 forwarding initialized in a 3-node circular topology
-| | ...   | ${rts_per_flow}
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | And Scale IPv6 forwarding initialized in a 3-node circular topology
+| | ... | ${rts_per_flow}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max}
-| | ...                                       | 3-node-IPv6-dst-${rts_per_flow}
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc04-1518B-1t1c-ethip6-ip6scale200k-pdrdisc
 | | [Documentation]
@@ -141,18 +136,15 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | And   Scale IPv6 forwarding initialized in a 3-node circular topology
-| | ...   | ${rts_per_flow}
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | And Scale IPv6 forwarding initialized in a 3-node circular topology
+| | ... | ${rts_per_flow}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max}
-| | ...                                       | 3-node-IPv6-dst-${rts_per_flow}
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
-| | ...                                       | ${perf_pdr_loss_acceptance}
-| | ...                                       | ${perf_pdr_loss_acceptance_type}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
+| | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
 | tc05-9000B-1t1c-ethip6-ip6scale200k-ndrdisc
 | | [Documentation]
@@ -167,15 +159,13 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Apply startup configuration on all VPP DUTs
-| | And   Scale IPv6 forwarding initialized in a 3-node circular topology
-| | ...   | ${rts_per_flow}
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Apply startup configuration on all VPP DUTs
+| | And Scale IPv6 forwarding initialized in a 3-node circular topology
+| | ... | ${rts_per_flow}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max}
-| | ...                                       | 3-node-IPv6-dst-${rts_per_flow}
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc06-9000B-1t1c-ethip6-ip6scale200k-pdrdisc
 | | [Documentation]
@@ -190,17 +180,14 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Apply startup configuration on all VPP DUTs
-| | And   Scale IPv6 forwarding initialized in a 3-node circular topology
-| | ...   | ${rts_per_flow}
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Apply startup configuration on all VPP DUTs
+| | And Scale IPv6 forwarding initialized in a 3-node circular topology
+| | ... | ${rts_per_flow}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max}
-| | ...                                       | 3-node-IPv6-dst-${rts_per_flow}
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
-| | ...                                       | ${perf_pdr_loss_acceptance}
-| | ...                                       | ${perf_pdr_loss_acceptance_type}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
+| | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
 | tc07-78B-2t2c-ethip6-ip6scale200k-ndrdisc
 | | [Documentation]
@@ -215,16 +202,14 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | And   Scale IPv6 forwarding initialized in a 3-node circular topology
-| | ...   | ${rts_per_flow}
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | And Scale IPv6 forwarding initialized in a 3-node circular topology
+| | ... | ${rts_per_flow}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max}
-| | ...                                       | 3-node-IPv6-dst-${rts_per_flow}
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc08-78B-2t2c-ethip6-ip6scale200k-pdrdisc
 | | [Documentation]
@@ -239,18 +224,15 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | And   Scale IPv6 forwarding initialized in a 3-node circular topology
-| | ...   | ${rts_per_flow}
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | And Scale IPv6 forwarding initialized in a 3-node circular topology
+| | ... | ${rts_per_flow}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max}
-| | ...                                       | 3-node-IPv6-dst-${rts_per_flow}
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
-| | ...                                       | ${perf_pdr_loss_acceptance}
-| | ...                                       | ${perf_pdr_loss_acceptance_type}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
+| | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
 | tc09-1518B-2t2c-ethip6-ip6scale200k-ndrdisc
 | | [Documentation]
@@ -265,16 +247,14 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | And   Scale IPv6 forwarding initialized in a 3-node circular topology
-| | ...   | ${rts_per_flow}
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | And Scale IPv6 forwarding initialized in a 3-node circular topology
+| | ... | ${rts_per_flow}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max}
-| | ...                                       | 3-node-IPv6-dst-${rts_per_flow}
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc10-1518B-2t2c-ethip6-ip6scale200k-pdrdisc
 | | [Documentation]
@@ -289,18 +269,15 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | And   Scale IPv6 forwarding initialized in a 3-node circular topology
-| | ...   | ${rts_per_flow}
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | And Scale IPv6 forwarding initialized in a 3-node circular topology
+| | ... | ${rts_per_flow}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max}
-| | ...                                       | 3-node-IPv6-dst-${rts_per_flow}
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
-| | ...                                       | ${perf_pdr_loss_acceptance}
-| | ...                                       | ${perf_pdr_loss_acceptance_type}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
+| | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
 | tc11-9000B-2t2c-ethip6-ip6scale200k-ndrdisc
 | | [Documentation]
@@ -315,15 +292,13 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Apply startup configuration on all VPP DUTs
-| | And   Scale IPv6 forwarding initialized in a 3-node circular topology
-| | ...   | ${rts_per_flow}
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Apply startup configuration on all VPP DUTs
+| | And Scale IPv6 forwarding initialized in a 3-node circular topology
+| | ... | ${rts_per_flow}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max}
-| | ...                                       | 3-node-IPv6-dst-${rts_per_flow}
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc12-9000B-2t2c-ethip6-ip6scale200k-pdrdisc
 | | [Documentation]
@@ -338,17 +313,14 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Apply startup configuration on all VPP DUTs
-| | And   Scale IPv6 forwarding initialized in a 3-node circular topology
-| | ...   | ${rts_per_flow}
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Apply startup configuration on all VPP DUTs
+| | And Scale IPv6 forwarding initialized in a 3-node circular topology
+| | ... | ${rts_per_flow}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max}
-| | ...                                       | 3-node-IPv6-dst-${rts_per_flow}
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
-| | ...                                       | ${perf_pdr_loss_acceptance}
-| | ...                                       | ${perf_pdr_loss_acceptance_type}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
+| | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
 | tc13-78B-4t4c-ethip6-ip6scale200k-ndrdisc
 | | [Documentation]
@@ -363,16 +335,14 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | And   Scale IPv6 forwarding initialized in a 3-node circular topology
-| | ...   | ${rts_per_flow}
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | And Scale IPv6 forwarding initialized in a 3-node circular topology
+| | ... | ${rts_per_flow}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max}
-| | ...                                       | 3-node-IPv6-dst-${rts_per_flow}
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc14-78B-4t4c-ethip6-ip6scale200k-pdrdisc
 | | [Documentation]
@@ -387,18 +357,15 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | And   Scale IPv6 forwarding initialized in a 3-node circular topology
-| | ...   | ${rts_per_flow}
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | And Scale IPv6 forwarding initialized in a 3-node circular topology
+| | ... | ${rts_per_flow}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max}
-| | ...                                       | 3-node-IPv6-dst-${rts_per_flow}
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
-| | ...                                       | ${perf_pdr_loss_acceptance}
-| | ...                                       | ${perf_pdr_loss_acceptance_type}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
+| | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
 | tc15-1518B-4t4c-ethip6-ip6scale200k-ndrdisc
 | | [Documentation]
@@ -413,16 +380,14 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | And   Scale IPv6 forwarding initialized in a 3-node circular topology
-| | ...   | ${rts_per_flow}
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | And Scale IPv6 forwarding initialized in a 3-node circular topology
+| | ... | ${rts_per_flow}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max}
-| | ...                                       | 3-node-IPv6-dst-${rts_per_flow}
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc16-1518B-4t4c-ethip6-ip6scale200k-pdrdisc
 | | [Documentation]
@@ -437,18 +402,15 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | And   Scale IPv6 forwarding initialized in a 3-node circular topology
-| | ...   | ${rts_per_flow}
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | And Scale IPv6 forwarding initialized in a 3-node circular topology
+| | ... | ${rts_per_flow}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max}
-| | ...                                       | 3-node-IPv6-dst-${rts_per_flow}
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
-| | ...                                       | ${perf_pdr_loss_acceptance}
-| | ...                                       | ${perf_pdr_loss_acceptance_type}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
+| | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
 | tc17-9000B-4t4c-ethip6-ip6scale200k-ndrdisc
 | | [Documentation]
@@ -463,15 +425,13 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Apply startup configuration on all VPP DUTs
-| | And   Scale IPv6 forwarding initialized in a 3-node circular topology
-| | ...   | ${rts_per_flow}
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Apply startup configuration on all VPP DUTs
+| | And Scale IPv6 forwarding initialized in a 3-node circular topology
+| | ... | ${rts_per_flow}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max}
-| | ...                                       | 3-node-IPv6-dst-${rts_per_flow}
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc18-9000B-4t4c-ethip6-ip6scale200k-pdrdisc
 | | [Documentation]
@@ -486,14 +446,11 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Apply startup configuration on all VPP DUTs
-| | And   Scale IPv6 forwarding initialized in a 3-node circular topology
-| | ...   | ${rts_per_flow}
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Apply startup configuration on all VPP DUTs
+| | And Scale IPv6 forwarding initialized in a 3-node circular topology
+| | ... | ${rts_per_flow}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max}
-| | ...                                       | 3-node-IPv6-dst-${rts_per_flow}
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
-| | ...                                       | ${perf_pdr_loss_acceptance}
-| | ...                                       | ${perf_pdr_loss_acceptance_type}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
+| | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
