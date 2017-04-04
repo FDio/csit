@@ -27,7 +27,7 @@ INSTALLATION_DIR="/tmp/install_dir"
 
 PYBOT_ARGS="-W 150 -L TRACE"
 
-ARCHIVE_ARTIFACTS=(log.html output.xml report.html output_perf_data.xml output_perf_data.json)
+ARCHIVE_ARTIFACTS=(log.html output.xml report.html output_perf_data.xml)
 
 # If we run this script from CSIT jobs we want to use stable vpp version
 if [[ ${JOB_NAME} == csit-* ]] ;
@@ -136,185 +136,194 @@ else
     exit 1
 fi
 
-case "$TEST_TAG" in
-    # run specific performance tests based on jenkins job type variable
-    PERFTEST_DAILY )
-        pybot ${PYBOT_ARGS} \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.perf" \
-              --include ndrdiscANDnic_intel-x520-da2AND1t1cORndrdiscANDnic_intel-x520-da2AND2t2c \
-              tests/
-        RETURN_STATUS=$(echo $?)
-        ;;
-    PERFTEST_SEMI_WEEKLY )
-        pybot ${PYBOT_ARGS} \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.perf" \
-              --include ndrdiscANDnic_intel-x710AND1t1cORndrdiscANDnic_intel-x710AND2t2cORndrdiscANDnic_intel-xl710AND1t1cORndrdiscANDnic_intel-xl710AND2t2c \
-              tests/
-        RETURN_STATUS=$(echo $?)
-        ;;
-    VERIFY-PERF-NDRDISC )
-        pybot ${PYBOT_ARGS} \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.perf" \
-              --include ndrdiscAND1t1cORndrdiscAND2t2c \
-              tests/
-        RETURN_STATUS=$(echo $?)
-        ;;
-    VERIFY-PERF-PDRDISC )
-        pybot ${PYBOT_ARGS} \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.perf" \
-              --include pdrdiscAND1t1cORpdrdiscAND2t2c \
-              tests/
-        RETURN_STATUS=$(echo $?)
-        ;;
-    VERIFY-PERF-NDRCHK )
-        pybot ${PYBOT_ARGS} \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.perf" \
-              --include ndrchkAND1t1cORndrchkAND2t2c \
-              tests/
-        RETURN_STATUS=$(echo $?)
-        ;;
-    PERFTEST_NDRCHK_DAILY )
-        pybot ${PYBOT_ARGS} \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.perf" \
-              --include ndrchkAND1t1cORndrchkAND2t2c \
-              tests/
-        RETURN_STATUS=$(echo $?)
-        ;;
-    VERIFY-PERF-IP4 )
-        pybot ${PYBOT_ARGS} \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.perf" \
-              --include ndrdiscANDnic_intel-x520-da2AND1t1cANDip4baseORndrdiscANDnic_intel-x520-da2AND1t1cANDip4fwdANDfib_2m \
-              tests/
-        RETURN_STATUS=$(echo $?)
-        ;;
-    VERIFY-PERF-IP6 )
-        pybot ${PYBOT_ARGS} \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.perf" \
-              --include ndrdiscANDnic_intel-x520-da2AND1t1cANDip6baseORndrdiscANDnic_intel-x520-da2AND1t1cANDip6fwdANDfib_2m \
-              tests/
-        RETURN_STATUS=$(echo $?)
-        ;;
-    VERIFY-PERF-L2 )
-        pybot ${PYBOT_ARGS} \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.perf" \
-              --include ndrdiscANDnic_intel-x520-da2AND1t1cANDl2xcbaseORndrdiscANDnic_intel-x520-da2AND1t1cANDl2bdbase \
-              tests/
-        RETURN_STATUS=$(echo $?)
-        ;;
-    VERIFY-PERF-LISP )
-        pybot ${PYBOT_ARGS} \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.perf" \
-              --include ndrdiscANDnic_intel-x520-da2AND1t1cANDlisp \
-              tests/
-        RETURN_STATUS=$(echo $?)
-        ;;
-    VERIFY-PERF-VXLAN )
-        pybot ${PYBOT_ARGS} \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.perf" \
-              --include ndrdiscANDnic_intel-x520-da2AND1t1cANDvxlan \
-              tests/
-        RETURN_STATUS=$(echo $?)
-        ;;
-    VERIFY-PERF-VHOST )
-        pybot ${PYBOT_ARGS} \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.perf" \
-              --include ndrdiscANDnic_intel-x520-da2AND1t1cANDvhost \
-              tests/
-        RETURN_STATUS=$(echo $?)
-        ;;
-    VPP-VERIFY-PERF-IP4 )
-        pybot ${PYBOT_ARGS} \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.perf" \
-              --include ndrchkANDnic_intel-x520-da2AND1t1cANDip4baseORndrchkANDnic_intel-x520-da2AND1t1cANDip4fwdANDfib_2m \
-              tests/
-        RETURN_STATUS=$(echo $?)
-        ;;
-    VPP-VERIFY-PERF-IP6 )
-        pybot ${PYBOT_ARGS} \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.perf" \
-              --include ndrchkANDnic_intel-x520-da2AND1t1cANDip6baseORndrchkANDnic_intel-x520-da2AND1t1cANDip6fwdANDfib_2m \
-              tests/
-        RETURN_STATUS=$(echo $?)
-        ;;
-    VPP-VERIFY-PERF-L2 )
-        pybot ${PYBOT_ARGS} \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.perf" \
-              --include ndrchkANDnic_intel-x520-da2AND1t1cANDl2xcbaseORndrchkANDnic_intel-x520-da2AND1t1cANDl2bdbase \
-              tests/
-        RETURN_STATUS=$(echo $?)
-        ;;
-    VPP-VERIFY-PERF-LISP )
-        pybot ${PYBOT_ARGS} \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.perf" \
-              --include ndrchkANDnic_intel-x520-da2AND1t1cANDlisp \
-              tests/
-        RETURN_STATUS=$(echo $?)
-        ;;
-    VPP-VERIFY-PERF-VXLAN )
-        pybot ${PYBOT_ARGS} \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.perf" \
-              --include ndrchkANDnic_intel-x520-da2AND1t1cANDvxlan \
-              tests/
-        RETURN_STATUS=$(echo $?)
-        ;;
-    VPP-VERIFY-PERF-VHOST )
-        pybot ${PYBOT_ARGS} \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.perf" \
-              --include ndrchkANDnic_intel-x520-da2AND1t1cANDvhost \
-              tests/
-        RETURN_STATUS=$(echo $?)
-        ;;
-    PERFTEST_LONG )
-        pybot ${PYBOT_ARGS} \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.perf" \
-              --exclude SKIP_PATCH \
-              -i NDRPDRDISC \
-              tests/
-        RETURN_STATUS=$(echo $?)
-        ;;
-    PERFTEST_SHORT )
-        pybot ${PYBOT_ARGS} \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.perf" \
-              -i NDRCHK \
-              tests/
-        RETURN_STATUS=$(echo $?)
-        ;;
-    PERFTEST_NIGHTLY )
-        #run all available tests
-        pybot ${PYBOT_ARGS} \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.perf" \
-              tests/
-        RETURN_STATUS=$(echo $?)
-        ;;
-    * )
-        # run full performance test suite and exit on fail
-        pybot ${PYBOT_ARGS} \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.perf" \
-              tests/
-        RETURN_STATUS=$(echo $?)
-esac
+#case "$TEST_TAG" in
+#    # run specific performance tests based on jenkins job type variable
+#    PERFTEST_DAILY )
+#        pybot ${PYBOT_ARGS} \
+#              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+#              -s "tests.perf" \
+#              --include ndrdiscANDnic_intel-x520-da2AND1t1cORndrdiscANDnic_intel-x520-da2AND2t2c \
+#              tests/
+#        RETURN_STATUS=$(echo $?)
+#        ;;
+#    PERFTEST_SEMI_WEEKLY )
+#        pybot ${PYBOT_ARGS} \
+#              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+#              -s "tests.perf" \
+#              --include ndrdiscANDnic_intel-x710AND1t1cORndrdiscANDnic_intel-x710AND2t2cORndrdiscANDnic_intel-xl710AND1t1cORndrdiscANDnic_intel-xl710AND2t2c \
+#              tests/
+#        RETURN_STATUS=$(echo $?)
+#        ;;
+#    VERIFY-PERF-NDRDISC )
+#        pybot ${PYBOT_ARGS} \
+#              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+#              -s "tests.perf" \
+#              --include ndrdiscAND1t1cORndrdiscAND2t2c \
+#              tests/
+#        RETURN_STATUS=$(echo $?)
+#        ;;
+#    VERIFY-PERF-PDRDISC )
+#        pybot ${PYBOT_ARGS} \
+#              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+#              -s "tests.perf" \
+#              --include pdrdiscAND1t1cORpdrdiscAND2t2c \
+#              tests/
+#        RETURN_STATUS=$(echo $?)
+#        ;;
+#    VERIFY-PERF-NDRCHK )
+#        pybot ${PYBOT_ARGS} \
+#              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+#              -s "tests.perf" \
+#              --include ndrchkAND1t1cORndrchkAND2t2c \
+#              tests/
+#        RETURN_STATUS=$(echo $?)
+#        ;;
+#    PERFTEST_NDRCHK_DAILY )
+#        pybot ${PYBOT_ARGS} \
+#              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+#              -s "tests.perf" \
+#              --include ndrchkAND1t1cORndrchkAND2t2c \
+#              tests/
+#        RETURN_STATUS=$(echo $?)
+#        ;;
+#    VERIFY-PERF-IP4 )
+#        pybot ${PYBOT_ARGS} \
+#              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+#              -s "tests.perf" \
+#              --include ndrdiscANDnic_intel-x520-da2AND1t1cANDip4baseORndrdiscANDnic_intel-x520-da2AND1t1cANDip4fwdANDfib_2m \
+#              tests/
+#        RETURN_STATUS=$(echo $?)
+#        ;;
+#    VERIFY-PERF-IP6 )
+#        pybot ${PYBOT_ARGS} \
+#              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+#              -s "tests.perf" \
+#              --include ndrdiscANDnic_intel-x520-da2AND1t1cANDip6baseORndrdiscANDnic_intel-x520-da2AND1t1cANDip6fwdANDfib_2m \
+#              tests/
+#        RETURN_STATUS=$(echo $?)
+#        ;;
+#    VERIFY-PERF-L2 )
+#        pybot ${PYBOT_ARGS} \
+#              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+#              -s "tests.perf" \
+#              --include ndrdiscANDnic_intel-x520-da2AND1t1cANDl2xcbaseORndrdiscANDnic_intel-x520-da2AND1t1cANDl2bdbase \
+#              tests/
+#        RETURN_STATUS=$(echo $?)
+#        ;;
+#    VERIFY-PERF-LISP )
+#        pybot ${PYBOT_ARGS} \
+#              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+#              -s "tests.perf" \
+#              --include ndrdiscANDnic_intel-x520-da2AND1t1cANDlisp \
+#              tests/
+#        RETURN_STATUS=$(echo $?)
+#        ;;
+#    VERIFY-PERF-VXLAN )
+#        pybot ${PYBOT_ARGS} \
+#              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+#              -s "tests.perf" \
+#              --include ndrdiscANDnic_intel-x520-da2AND1t1cANDvxlan \
+#              tests/
+#        RETURN_STATUS=$(echo $?)
+#        ;;
+#    VERIFY-PERF-VHOST )
+#        pybot ${PYBOT_ARGS} \
+#              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+#              -s "tests.perf" \
+#              --include ndrdiscANDnic_intel-x520-da2AND1t1cANDvhost \
+#              tests/
+#        RETURN_STATUS=$(echo $?)
+#        ;;
+#    VPP-VERIFY-PERF-IP4 )
+#        pybot ${PYBOT_ARGS} \
+#              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+#              -s "tests.perf" \
+#              --include ndrchkANDnic_intel-x520-da2AND1t1cANDip4baseORndrchkANDnic_intel-x520-da2AND1t1cANDip4fwdANDfib_2m \
+#              tests/
+#        RETURN_STATUS=$(echo $?)
+#        ;;
+#    VPP-VERIFY-PERF-IP6 )
+#        pybot ${PYBOT_ARGS} \
+#              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+#              -s "tests.perf" \
+#              --include ndrchkANDnic_intel-x520-da2AND1t1cANDip6baseORndrchkANDnic_intel-x520-da2AND1t1cANDip6fwdANDfib_2m \
+#              tests/
+#        RETURN_STATUS=$(echo $?)
+#        ;;
+#    VPP-VERIFY-PERF-L2 )
+#        pybot ${PYBOT_ARGS} \
+#              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+#              -s "tests.perf" \
+#              --include ndrchkANDnic_intel-x520-da2AND1t1cANDl2xcbaseORndrchkANDnic_intel-x520-da2AND1t1cANDl2bdbase \
+#              tests/
+#        RETURN_STATUS=$(echo $?)
+#        ;;
+#    VPP-VERIFY-PERF-LISP )
+#        pybot ${PYBOT_ARGS} \
+#              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+#              -s "tests.perf" \
+#              --include ndrchkANDnic_intel-x520-da2AND1t1cANDlisp \
+#              tests/
+#        RETURN_STATUS=$(echo $?)
+#        ;;
+#    VPP-VERIFY-PERF-VXLAN )
+#        pybot ${PYBOT_ARGS} \
+#              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+#              -s "tests.perf" \
+#              --include ndrchkANDnic_intel-x520-da2AND1t1cANDvxlan \
+#              tests/
+#        RETURN_STATUS=$(echo $?)
+#        ;;
+#    VPP-VERIFY-PERF-VHOST )
+#        pybot ${PYBOT_ARGS} \
+#              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+#              -s "tests.perf" \
+#              --include ndrchkANDnic_intel-x520-da2AND1t1cANDvhost \
+#              tests/
+#        RETURN_STATUS=$(echo $?)
+#        ;;
+#    PERFTEST_LONG )
+#        pybot ${PYBOT_ARGS} \
+#              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+#              -s "tests.perf" \
+#              --exclude SKIP_PATCH \
+#              -i NDRPDRDISC \
+#              tests/
+#        RETURN_STATUS=$(echo $?)
+#        ;;
+#    PERFTEST_SHORT )
+#        pybot ${PYBOT_ARGS} \
+#              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+#              -s "tests.perf" \
+#              -i NDRCHK \
+#              tests/
+#        RETURN_STATUS=$(echo $?)
+#        ;;
+#    PERFTEST_NIGHTLY )
+#        #run all available tests
+#        pybot ${PYBOT_ARGS} \
+#              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+#              -s "tests.perf" \
+#              tests/
+#        RETURN_STATUS=$(echo $?)
+#        ;;
+#    * )
+#        # run full performance test suite and exit on fail
+#        pybot ${PYBOT_ARGS} \
+#              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+#              -s "tests.perf" \
+#              tests/
+#        RETURN_STATUS=$(echo $?)
+#esac
+#      --include ndrdiscANDnic_intel-x520-da2AND1t1cAND64bORndrdiscANDnic_intel-x520-da2AND1t1cAND78b \
+#      --include ndrchkANDnic_intel-x520-da2AND1t1cAND64bORndrchkANDnic_intel-x520-da2AND1t1cAND78b \
+
+pybot ${PYBOT_ARGS} \
+      -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+      -s "tests.perf" \
+      --include THIS \
+      tests/
+RETURN_STATUS=$(echo $?)
 
 # Pybot output post-processing
 echo Post-processing test data...
@@ -327,18 +336,10 @@ if [ ! $? -eq 0 ]; then
     echo "Parsing ${SCRIPT_DIR}/output.xml failed"
 fi
 
-python ${SCRIPT_DIR}/resources/tools/report_gen/run_robot_json_data.py \
-       --input ${SCRIPT_DIR}/output.xml \
-       --output ${SCRIPT_DIR}/output_perf_data.json \
-       --vdevice ${VPP_STABLE_VER}
-if [ ! $? -eq 0 ]; then
-    echo "Generating JSON data for report from ${SCRIPT_DIR}/output.xml failed"
-fi
-
 # Archive artifacts
-mkdir archive
+mkdir -p csit/archive
 for i in ${ARCHIVE_ARTIFACTS[@]}; do
-    cp $( readlink -f ${i} | tr '\n' ' ' ) archive/
+    cp $( readlink -f ${i} | tr '\n' ' ' ) csit/archive/
 done
 
 echo Post-processing finished.
