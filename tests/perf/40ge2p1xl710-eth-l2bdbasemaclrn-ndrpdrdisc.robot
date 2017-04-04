@@ -23,7 +23,7 @@
 | ...
 | Test Setup | Performance test setup
 | Test Teardown | Performance test teardown | ${min_rate}pps | ${framesize}
-| ... | 3-node-bridge
+| ... | trex-sl-3n-ethip4-ip4src254
 | ...
 | Documentation | *RFC2544: Pkt throughput L2BD test cases*
 | ...
@@ -69,7 +69,8 @@
 | | Apply startup configuration on all VPP DUTs
 | | L2 bridge domain initialized in a 3-node circular topology
 | | Find NDR using binary search and pps
-| | ... | ${framesize} | ${binary_min} | ${binary_max} | 3-node-bridge
+| | ... | ${framesize} | ${binary_min} | ${binary_max}
+| | ... | trex-sl-3n-ethip4-ip4src254
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | L2 Bridge Domain NDR Binary Search
@@ -87,7 +88,8 @@
 | | Apply startup configuration on all VPP DUTs
 | | L2 bridge domain initialized in a 3-node circular topology
 | | Find NDR using binary search and pps
-| | ... | ${framesize} | ${binary_min} | ${binary_max} | 3-node-bridge
+| | ... | ${framesize} | ${binary_min} | ${binary_max}
+| | ... | trex-sl-3n-ethip4-ip4src254
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | L2 Bridge Domain PDR Binary Search BW limit
@@ -105,7 +107,8 @@
 | | Apply startup configuration on all VPP DUTs
 | | L2 bridge domain initialized in a 3-node circular topology
 | | Find PDR using binary search and pps
-| | ... | ${framesize} | ${binary_min} | ${binary_max} | 3-node-bridge
+| | ... | ${framesize} | ${binary_min} | ${binary_max}
+| | ... | trex-sl-3n-ethip4-ip4src254
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
 | | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
@@ -124,7 +127,8 @@
 | | Apply startup configuration on all VPP DUTs
 | | L2 bridge domain initialized in a 3-node circular topology
 | | Find PDR using binary search and pps
-| | ... | ${framesize} | ${binary_min} | ${binary_max} | 3-node-bridge
+| | ... | ${framesize} | ${binary_min} | ${binary_max}
+| | ... | trex-sl-3n-ethip4-ip4src254
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
 | | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 

@@ -26,7 +26,7 @@
 | ...
 | Test Setup | Performance test setup
 | Test Teardown | Performance test teardown | ${min_rate}pps | ${framesize}
-| ... | 3-node-IPv4-dst-${n_tunnels}
+| ... | trex-sl-3n-ethip6-ip6dst${n_tunnels}
 | ...
 | Documentation | *IPv4 IPsec tunnel mode performance test suite.*
 | ...
@@ -100,7 +100,7 @@
 | | ... | ${encr_alg} | ${encr_key} | ${auth_alg} | ${auth_key} | ${laddr_ip4}
 | | ... | ${raddr_ip4} | ${addr_range}
 | | Then Find NDR using binary search and pps | ${framesize}
-| | ... | ${binary_min} | ${binary_max} | 3-node-IPv4-dst-${n_tunnels}
+| | ... | ${binary_min} | ${binary_max} | trex-sl-3n-ethip6-ip6dst${n_tunnels}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc02-64B-1t1c-ethip4ipsecbasetnl-ip4base-int-aes-gcm-pdrdisc
@@ -133,7 +133,7 @@
 | | ... | ${encr_alg} | ${encr_key} | ${auth_alg} | ${auth_key} | ${laddr_ip4}
 | | ... | ${raddr_ip4} | ${addr_range}
 | | Then Find PDR using binary search and pps | ${framesize}
-| | ... | ${binary_min} | ${binary_max} | 3-node-IPv4-dst-${n_tunnels}
+| | ... | ${binary_min} | ${binary_max} | trex-sl-3n-ethip6-ip6dst${n_tunnels}
 | | ... | ${min_rate} | ${max_rate} | ${threshold} | ${perf_pdr_loss_acceptance}
 | | ... | ${perf_pdr_loss_acceptance_type}
 
@@ -167,7 +167,7 @@
 | | ... | ${encr_alg} | ${encr_key} | ${auth_alg} | ${auth_key} | ${laddr_ip4}
 | | ... | ${raddr_ip4} | ${addr_range}
 | | Then Find NDR using binary search and pps | ${framesize}
-| | ... | ${binary_min} | ${binary_max} | 3-node-IPv4-dst-${n_tunnels}
+| | ... | ${binary_min} | ${binary_max} | trex-sl-3n-ethip6-ip6dst${n_tunnels}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc04-1518B-1t1c-ethip4ipsecbasetnl-ip4base-int-aes-gcm-pdrdisc
@@ -200,7 +200,7 @@
 | | ... | ${encr_alg} | ${encr_key} | ${auth_alg} | ${auth_key} | ${laddr_ip4}
 | | ... | ${raddr_ip4} | ${addr_range}
 | | Then Find PDR using binary search and pps | ${framesize}
-| | ... | ${binary_min} | ${binary_max} | 3-node-IPv4-dst-${n_tunnels}
+| | ... | ${binary_min} | ${binary_max} | trex-sl-3n-ethip6-ip6dst${n_tunnels}
 | | ... | ${min_rate} | ${max_rate} | ${threshold} | ${perf_pdr_loss_acceptance}
 | | ... | ${perf_pdr_loss_acceptance_type}
 
@@ -236,7 +236,7 @@
 | | ... | ${encr_alg} | ${encr_key} | ${auth_alg} | ${auth_key} | ${laddr_ip4}
 | | ... | ${raddr_ip4} | ${addr_range}
 | | Then Find NDR using binary search and pps | ${framesize}
-| | ... | ${binary_min} | ${binary_max} | 3-node-IPv4-dst-${n_tunnels}
+| | ... | ${binary_min} | ${binary_max} | trex-sl-3n-ethip6-ip6dst${n_tunnels}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc06-IMIX-1t1c-ethip4ipsecbasetnl-ip4base-int-aes-gcm-pdrdisc
@@ -271,7 +271,7 @@
 | | ... | ${encr_alg} | ${encr_key} | ${auth_alg} | ${auth_key} | ${laddr_ip4}
 | | ... | ${raddr_ip4} | ${addr_range}
 | | Then Find PDR using binary search and pps | ${framesize}
-| | ... | ${binary_min} | ${binary_max} | 3-node-IPv4-dst-${n_tunnels}
+| | ... | ${binary_min} | ${binary_max} | trex-sl-3n-ethip6-ip6dst${n_tunnels}
 | | ... | ${min_rate} | ${max_rate} | ${threshold} | ${perf_pdr_loss_acceptance}
 | | ... | ${perf_pdr_loss_acceptance_type}
 
@@ -305,7 +305,7 @@
 | | ... | ${encr_alg} | ${encr_key} | ${auth_alg} | ${auth_key} | ${laddr_ip4}
 | | ... | ${raddr_ip4} | ${addr_range}
 | | Then Find NDR using binary search and pps | ${framesize}
-| | ... | ${binary_min} | ${binary_max} | 3-node-IPv4-dst-${n_tunnels}
+| | ... | ${binary_min} | ${binary_max} | trex-sl-3n-ethip6-ip6dst${n_tunnels}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc08-64B-2t2c-ethip4ipsecbasetnl-ip4base-int-aes-gcm-pdrdisc
@@ -338,6 +338,6 @@
 | | ... | ${encr_alg} | ${encr_key} | ${auth_alg} | ${auth_key} | ${laddr_ip4}
 | | ... | ${raddr_ip4} | ${addr_range}
 | | Then Find PDR using binary search and pps | ${framesize}
-| | ... | ${binary_min} | ${binary_max} | 3-node-IPv4-dst-${n_tunnels}
+| | ... | ${binary_min} | ${binary_max} | trex-sl-3n-ethip6-ip6dst${n_tunnels}
 | | ... | ${min_rate} | ${max_rate} | ${threshold} | ${perf_pdr_loss_acceptance}
 | | ... | ${perf_pdr_loss_acceptance_type}

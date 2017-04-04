@@ -70,7 +70,7 @@
 | | ... | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
 | | ... | ${dut1_ip4_static_adjacency} | ${dut2_ip4_static_adjacency}
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
-| | ... | ${framesize} | 3-node-IPv4
+| | ... | ${framesize} | trex-sl-3n-ethip4-ip4src253
 
 | tc02-1480B-1t1c-ethip4lispip4-ip4base-ndrchk
 | | [Documentation]
@@ -94,7 +94,7 @@
 | | ... | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
 | | ... | ${dut1_ip4_static_adjacency} | ${dut2_ip4_static_adjacency}
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
-| | ... | ${framesize} | 3-node-IPv4
+| | ... | ${framesize} | trex-sl-3n-ethip4-ip4src253
 
 | tc03-9000B-1t1c-ethip4lispip4-ip4base-ndrchk
 | | [Documentation]
@@ -117,7 +117,7 @@
 | | ... | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
 | | ... | ${dut1_ip4_static_adjacency} | ${dut2_ip4_static_adjacency}
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
-| | ... | ${framesize} | 3-node-IPv4
+| | ... | ${framesize} | trex-sl-3n-ethip4-ip4src253
 
 | tc04-64B-2t2c-ethip4lispip4-ip4base-ndrchk
 | | [Documentation]
@@ -141,7 +141,7 @@
 | | ... | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
 | | ... | ${dut1_ip4_static_adjacency} | ${dut2_ip4_static_adjacency}
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
-| | ... | ${framesize} | 3-node-IPv4
+| | ... | ${framesize} | trex-sl-3n-ethip4-ip4src253
 
 | tc05-1480B-2t2c-ethip4lispip4-ip4base-ndrchk
 | | [Documentation]
@@ -165,7 +165,7 @@
 | | ... | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
 | | ... | ${dut1_ip4_static_adjacency} | ${dut2_ip4_static_adjacency}
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
-| | ... | ${framesize} | 3-node-IPv4
+| | ... | ${framesize} | trex-sl-3n-ethip4-ip4src253
 
 | tc06-9000B-2t2c-ethip4lispip4-ip4base-ndrchk
 | | [Documentation]
@@ -188,7 +188,7 @@
 | | ... | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
 | | ... | ${dut1_ip4_static_adjacency} | ${dut2_ip4_static_adjacency}
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
-| | ... | ${framesize} | 3-node-IPv4
+| | ... | ${framesize} | trex-sl-3n-ethip4-ip4src253
 
 | tc07-64B-4t4c-ethip4lispip4-ip4base-ndrchk
 | | [Documentation]
@@ -212,7 +212,7 @@
 | | ... | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
 | | ... | ${dut1_ip4_static_adjacency} | ${dut2_ip4_static_adjacency}
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
-| | ... | ${framesize} | 3-node-IPv4
+| | ... | ${framesize} | trex-sl-3n-ethip4-ip4src253
 
 | tc08-1480B-4t4c-ethip4lispip4-ip4base-ndrchk
 | | [Documentation]
@@ -236,7 +236,7 @@
 | | ... | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
 | | ... | ${dut1_ip4_static_adjacency} | ${dut2_ip4_static_adjacency}
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
-| | ... | ${framesize} | 3-node-IPv4
+| | ... | ${framesize} | trex-sl-3n-ethip4-ip4src253
 
 | tc09-9000B-4t4c-ethip4lispip4-ip4base-ndrchk
 | | [Documentation]
@@ -259,5 +259,4 @@
 | | ... | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
 | | ... | ${dut1_ip4_static_adjacency} | ${dut2_ip4_static_adjacency}
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
-| | ... | ${framesize} | 3-node-IPv4
-
+| | ... | ${framesize} | trex-sl-3n-ethip4-ip4src253

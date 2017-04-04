@@ -59,7 +59,7 @@
 | | And Apply startup configuration on all VPP DUTs
 | | And IPv6 forwarding initialized in a 3-node circular topology
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
-| | ... | ${framesize} | 3-node-IPv6
+| | ... | ${framesize} | trex-sl-3n-ethip6-ip6src253
 
 | tc02-1518B-1t1c-ethip6-ip6base-ndrchk
 | | [Documentation]
@@ -75,7 +75,7 @@
 | | And Apply startup configuration on all VPP DUTs
 | | And IPv6 forwarding initialized in a 3-node circular topology
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
-| | ... | ${framesize} | 3-node-IPv6
+| | ... | ${framesize} | trex-sl-3n-ethip6-ip6src253
 
 | tc03-9000B-1t1c-ethip6-ip6base-ndrchk
 | | [Documentation]
@@ -90,7 +90,7 @@
 | | And Apply startup configuration on all VPP DUTs
 | | And IPv6 forwarding initialized in a 3-node circular topology
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
-| | ... | ${framesize} | 3-node-IPv6
+| | ... | ${framesize} | trex-sl-3n-ethip6-ip6src253
 
 | tc04-78B-2t2c-ethip6-ip6base-ndrchk
 | | [Documentation]
@@ -106,7 +106,7 @@
 | | And Apply startup configuration on all VPP DUTs
 | | And IPv6 forwarding initialized in a 3-node circular topology
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
-| | ... | ${framesize} | 3-node-IPv6
+| | ... | ${framesize} | trex-sl-3n-ethip6-ip6src253
 
 | tc05-1518B-2t2c-ethip6-ip6base-ndrchk
 | | [Documentation]
@@ -122,7 +122,7 @@
 | | And Apply startup configuration on all VPP DUTs
 | | And IPv6 forwarding initialized in a 3-node circular topology
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
-| | ... | ${framesize} | 3-node-IPv6
+| | ... | ${framesize} | trex-sl-3n-ethip6-ip6src253
 
 | tc06-9000B-2t2c-ethip6-ip6base-ndrchk
 | | [Documentation]
@@ -137,7 +137,7 @@
 | | And Apply startup configuration on all VPP DUTs
 | | And IPv6 forwarding initialized in a 3-node circular topology
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
-| | ... | ${framesize} | 3-node-IPv6
+| | ... | ${framesize} | trex-sl-3n-ethip6-ip6src253
 
 | tc07-78B-4t4c-ethip6-ip6base-ndrchk
 | | [Documentation]
@@ -153,7 +153,7 @@
 | | And Apply startup configuration on all VPP DUTs
 | | And IPv6 forwarding initialized in a 3-node circular topology
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
-| | ... | ${framesize} | 3-node-IPv6
+| | ... | ${framesize} | trex-sl-3n-ethip6-ip6src253
 
 | tc08-1518B-4t4c-ethip6-ip6base-ndrchk
 | | [Documentation]
@@ -169,7 +169,7 @@
 | | And Apply startup configuration on all VPP DUTs
 | | And IPv6 forwarding initialized in a 3-node circular topology
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
-| | ... | ${framesize} | 3-node-IPv6
+| | ... | ${framesize} | trex-sl-3n-ethip6-ip6src253
 
 | tc09-9000B-4t4c-ethip6-ip6base-ndrchk
 | | [Documentation]
@@ -184,4 +184,4 @@
 | | And Apply startup configuration on all VPP DUTs
 | | And IPv6 forwarding initialized in a 3-node circular topology
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
-| | ... | ${framesize} | 3-node-IPv6
+| | ... | ${framesize} | trex-sl-3n-ethip6-ip6src253

@@ -63,7 +63,8 @@
 | | And Scale IPv6 forwarding initialized in a 3-node circular topology
 | | ... | ${rts_per_flow}
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
-| | ... | ${framesize} | 3-node-IPv6-dst-${rts_per_flow}
+| | ... | ${framesize}
+| | ... | trex-sl-3n-ethip6-ip6dst${rts_per_flow}
 
 | tc02-1518B-1t1c-ethip6-ip6scale200k-ndrchk
 | | [Documentation]
@@ -80,7 +81,8 @@
 | | And Scale IPv6 forwarding initialized in a 3-node circular topology
 | | ... | ${rts_per_flow}
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
-| | ... | ${framesize} | 3-node-IPv6-dst-${rts_per_flow}
+| | ... | ${framesize}
+| | ... | trex-sl-3n-ethip6-ip6dst${rts_per_flow}
 
 | tc03-9000B-1t1c-ethip6-ip6scale200k-ndrchk
 | | [Documentation]
@@ -96,7 +98,8 @@
 | | And Scale IPv6 forwarding initialized in a 3-node circular topology
 | | ... | ${rts_per_flow}
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
-| | ... | ${framesize} | 3-node-IPv6-dst-${rts_per_flow}
+| | ... | ${framesize}
+| | ... | trex-sl-3n-ethip6-ip6dst${rts_per_flow}
 
 | tc04-78B-2t2c-ethip6-ip6scale200k-ndrchk
 | | [Documentation]
@@ -113,7 +116,8 @@
 | | And Scale IPv6 forwarding initialized in a 3-node circular topology
 | | ... | ${rts_per_flow}
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
-| | ... | ${framesize} | 3-node-IPv6-dst-${rts_per_flow}
+| | ... | ${framesize}
+| | ... | trex-sl-3n-ethip6-ip6dst${rts_per_flow}
 
 | tc05-1518B-2t2c-ethip6-ip6scale200k-ndrchk
 | | [Documentation]
@@ -130,7 +134,8 @@
 | | And Scale IPv6 forwarding initialized in a 3-node circular topology
 | | ... | ${rts_per_flow}
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
-| | ... | ${framesize} | 3-node-IPv6-dst-${rts_per_flow}
+| | ... | ${framesize}
+| | ... | trex-sl-3n-ethip6-ip6dst${rts_per_flow}
 
 | tc06-9000B-2t2c-ethip6-ip6scale200k-ndrchk
 | | [Documentation]
@@ -146,7 +151,8 @@
 | | And Scale IPv6 forwarding initialized in a 3-node circular topology
 | | ... | ${rts_per_flow}
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
-| | ... | ${framesize} | 3-node-IPv6-dst-${rts_per_flow}
+| | ... | ${framesize}
+| | ... | trex-sl-3n-ethip6-ip6dst${rts_per_flow}
 
 | tc07-78B-4t4c-ethip6-ip6scale200k-ndrchk
 | | [Documentation]
@@ -163,7 +169,8 @@
 | | And Scale IPv6 forwarding initialized in a 3-node circular topology
 | | ... | ${rts_per_flow}
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
-| | ... | ${framesize} | 3-node-IPv6-dst-${rts_per_flow}
+| | ... | ${framesize}
+| | ... | trex-sl-3n-ethip6-ip6dst${rts_per_flow}
 
 | tc08-1518B-4t4c-ethip6-ip6scale200k-ndrchk
 | | [Documentation]
@@ -180,7 +187,8 @@
 | | And Scale IPv6 forwarding initialized in a 3-node circular topology
 | | ... | ${rts_per_flow}
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
-| | ... | ${framesize} | 3-node-IPv6-dst-${rts_per_flow}
+| | ... | ${framesize}
+| | ... | trex-sl-3n-ethip6-ip6dst${rts_per_flow}
 
 | tc09-9000B-4t4c-ethip6-ip6scale200k-ndrchk
 | | [Documentation]
@@ -196,4 +204,5 @@
 | | And Scale IPv6 forwarding initialized in a 3-node circular topology
 | | ... | ${rts_per_flow}
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
-| | ... | ${framesize} | 3-node-IPv6-dst-${rts_per_flow}
+| | ... | ${framesize}
+| | ... | trex-sl-3n-ethip6-ip6dst${rts_per_flow}

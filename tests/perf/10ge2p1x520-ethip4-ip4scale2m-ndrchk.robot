@@ -64,7 +64,8 @@
 | | And Scale IPv4 forwarding initialized in a 3-node circular topology
 | | ... | ${rts_per_flow}
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
-| | ... | ${framesize} | 3-node-IPv4-dst-${rts_per_flow}
+| | ... | ${framesize}
+| | ... | trex-sl-3n-ethip4-ip4dst${rts_per_flow}
 
 | tc02-1518B-1t1c-ethip4-ip4scale2m-ndrchk
 | | [Documentation]
@@ -82,7 +83,8 @@
 | | And Scale IPv4 forwarding initialized in a 3-node circular topology
 | | ... | ${rts_per_flow}
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
-| | ... | ${framesize} | 3-node-IPv4-dst-${rts_per_flow}
+| | ... | ${framesize}
+| | ... | trex-sl-3n-ethip4-ip4dst${rts_per_flow}
 
 | tc03-9000B-1t1c-ethip4-ip4scale2m-ndrchk
 | | [Documentation]
@@ -99,7 +101,8 @@
 | | And Scale IPv4 forwarding initialized in a 3-node circular topology
 | | ... | ${rts_per_flow}
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
-| | ... | ${framesize} | 3-node-IPv4-dst-${rts_per_flow}
+| | ... | ${framesize}
+| | ... | trex-sl-3n-ethip4-ip4dst${rts_per_flow}
 
 | tc04-64B-2t2c-ethip4-ip4scale2m-ndrchk
 | | [Documentation]
@@ -117,7 +120,8 @@
 | | And Scale IPv4 forwarding initialized in a 3-node circular topology
 | | ... | ${rts_per_flow}
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
-| | ... | ${framesize} | 3-node-IPv4-dst-${rts_per_flow}
+| | ... | ${framesize}
+| | ... | trex-sl-3n-ethip4-ip4dst${rts_per_flow}
 
 | tc05-1518B-2t2c-ethip4-ip4scale2m-ndrchk
 | | [Documentation]
@@ -135,7 +139,8 @@
 | | And Scale IPv4 forwarding initialized in a 3-node circular topology
 | | ... | ${rts_per_flow}
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
-| | ... | ${framesize} | 3-node-IPv4-dst-${rts_per_flow}
+| | ... | ${framesize}
+| | ... | trex-sl-3n-ethip4-ip4dst${rts_per_flow}
 
 | tc06-9000B-2t2c-ethip4-ip4scale2m-ndrchk
 | | [Documentation]
@@ -152,7 +157,8 @@
 | | And Scale IPv4 forwarding initialized in a 3-node circular topology
 | | ... | ${rts_per_flow}
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
-| | ... | ${framesize} | 3-node-IPv4-dst-${rts_per_flow}
+| | ... | ${framesize}
+| | ... | trex-sl-3n-ethip4-ip4dst${rts_per_flow}
 
 | tc07-64B-4t4c-ethip4-ip4scale2m-ndrchk
 | | [Documentation]
@@ -170,7 +176,8 @@
 | | And Scale IPv4 forwarding initialized in a 3-node circular topology
 | | ... | ${rts_per_flow}
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
-| | ... | ${framesize} | 3-node-IPv4-dst-${rts_per_flow}
+| | ... | ${framesize}
+| | ... | trex-sl-3n-ethip4-ip4dst${rts_per_flow}
 
 | tc08-1518B-4t4c-ethip4-ip4scale2m-ndrchk
 | | [Documentation]
@@ -188,7 +195,8 @@
 | | And Scale IPv4 forwarding initialized in a 3-node circular topology
 | | ... | ${rts_per_flow}
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
-| | ... | ${framesize} | 3-node-IPv4-dst-${rts_per_flow}
+| | ... | ${framesize}
+| | ... | trex-sl-3n-ethip4-ip4dst${rts_per_flow}
 
 | tc09-9000B-4t4c-ethip4-ip4scale2m-ndrchk
 | | [Documentation]
@@ -205,4 +213,5 @@
 | | And Scale IPv4 forwarding initialized in a 3-node circular topology
 | | ... | ${rts_per_flow}
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
-| | ... | ${framesize} | 3-node-IPv4-dst-${rts_per_flow}
+| | ... | ${framesize}
+| | ... | trex-sl-3n-ethip4-ip4dst${rts_per_flow}

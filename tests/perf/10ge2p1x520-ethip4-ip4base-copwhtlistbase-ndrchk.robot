@@ -72,7 +72,7 @@
 | | And COP interface enable or disable | ${dut1} | ${dut1_if1} | enable
 | | And COP interface enable or disable | ${dut2} | ${dut2_if2} | enable
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
-| | ... | ${framesize} | 3-node-IPv4
+| | ... | ${framesize} | trex-sl-3n-ethip4-ip4src253
 
 | tc02-1518B-1t1c-ethip4-ip4base-copwhtlistbase-ndrchk
 | | [Documentation]
@@ -95,7 +95,7 @@
 | | And COP interface enable or disable | ${dut1} | ${dut1_if1} | enable
 | | And COP interface enable or disable | ${dut2} | ${dut2_if2} | enable
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
-| | ... | ${framesize} | 3-node-IPv4
+| | ... | ${framesize} | trex-sl-3n-ethip4-ip4src253
 
 | tc03-9000B-1t1c-ethip4-ip4base-copwhtlistbase-ndrchk
 | | [Documentation]
@@ -117,7 +117,7 @@
 | | And COP interface enable or disable | ${dut1} | ${dut1_if1} | enable
 | | And COP interface enable or disable | ${dut2} | ${dut2_if2} | enable
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
-| | ... | ${framesize} | 3-node-IPv4
+| | ... | ${framesize} | trex-sl-3n-ethip4-ip4src253
 
 | tc04-64B-2t2c-ethip4-ip4base-copwhtlistbase-ndrchk
 | | [Documentation]
@@ -140,7 +140,7 @@
 | | And COP interface enable or disable | ${dut1} | ${dut1_if1} | enable
 | | And COP interface enable or disable | ${dut2} | ${dut2_if2} | enable
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
-| | ... | ${framesize} | 3-node-IPv4
+| | ... | ${framesize} | trex-sl-3n-ethip4-ip4src253
 
 | tc05-1518B-2t2c-ethip4-ip4base-copwhtlistbase-ndrchk
 | | [Documentation]
@@ -163,7 +163,7 @@
 | | And COP interface enable or disable | ${dut1} | ${dut1_if1} | enable
 | | And COP interface enable or disable | ${dut2} | ${dut2_if2} | enable
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
-| | ... | ${framesize} | 3-node-IPv4
+| | ... | ${framesize} | trex-sl-3n-ethip4-ip4src253
 
 | tc06-9000B-2t2c-ethip4-ip4base-copwhtlistbase-ndrchk
 | | [Documentation]
@@ -185,7 +185,7 @@
 | | And COP interface enable or disable | ${dut1} | ${dut1_if1} | enable
 | | And COP interface enable or disable | ${dut2} | ${dut2_if2} | enable
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
-| | ... | ${framesize} | 3-node-IPv4
+| | ... | ${framesize} | trex-sl-3n-ethip4-ip4src253
 
 | tc07-64B-4t4c-ethip4-ip4base-copwhtlistbase-ndrchk
 | | [Documentation]
@@ -208,7 +208,7 @@
 | | And COP interface enable or disable | ${dut1} | ${dut1_if1} | enable
 | | And COP interface enable or disable | ${dut2} | ${dut2_if2} | enable
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
-| | ... | ${framesize} | 3-node-IPv4
+| | ... | ${framesize} | trex-sl-3n-ethip4-ip4src253
 
 | tc08-1518B-4t4c-ethip4-ip4base-copwhtlistbase-ndrchk
 | | [Documentation]
@@ -231,7 +231,7 @@
 | | And COP interface enable or disable | ${dut1} | ${dut1_if1} | enable
 | | And COP interface enable or disable | ${dut2} | ${dut2_if2} | enable
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
-| | ... | ${framesize} | 3-node-IPv4
+| | ... | ${framesize} | trex-sl-3n-ethip4-ip4src253
 
 | tc09-9000B-4t4c-ethip4-ip4base-copwhtlistbase-ndrchk
 | | [Documentation]
@@ -253,4 +253,4 @@
 | | And COP interface enable or disable | ${dut1} | ${dut1_if1} | enable
 | | And COP interface enable or disable | ${dut2} | ${dut2_if2} | enable
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
-| | ... | ${framesize} | 3-node-IPv4
+| | ... | ${framesize} | trex-sl-3n-ethip4-ip4src253

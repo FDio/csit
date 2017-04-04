@@ -73,7 +73,7 @@
 | | ... | linerate, step 100kpps.
 | | ...
 | | [Teardown] | Run keywords | Performance test teardown | ${min_rate}pps
-| | ... | ${framesize} | 3-node-IPv4-SNAT-1u-15p
+| | ... | ${framesize} | trex-sl-3n-ethip4udp-1u15p
 | | ... | AND | Show SNAT verbose | ${dut1}
 | | ... | AND | Show SNAT verbose | ${dut2}
 | | ...
@@ -92,8 +92,8 @@
 | | And Apply startup configuration on all VPP DUTs
 | | When SNAT is initialized in a 3-node circular topology
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | 3-node-IPv4-SNAT-1u-15p | ${min_rate} | ${max_rate}
-| | ... | ${threshold}
+| | ... | ${binary_max} | trex-sl-3n-ethip4udp-1u15p
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc02-64B-1t1c-ethip4udp-ip4base-udpsrcscale15-snat-pdrdisc
 | | [Documentation]
@@ -104,7 +104,7 @@
 | | ... | linerate, step 100kpps.
 | | ...
 | | [Teardown] | Performance test teardown | ${min_rate}pps | ${framesize}
-| | ... | 3-node-IPv4-SNAT-1u-15p
+| | ... | trex-sl-3n-ethip4udp-1u15p
 | | ...
 | | [Tags] | 64B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
 | | ...
@@ -121,8 +121,8 @@
 | | And Apply startup configuration on all VPP DUTs
 | | When SNAT is initialized in a 3-node circular topology
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | 3-node-IPv4-SNAT-1u-15p | ${min_rate} | ${max_rate}
-| | ... | ${threshold} | ${perf_pdr_loss_acceptance}
+| | ... | ${binary_max} | trex-sl-3n-ethip4udp-1u15p
+| | ... | ${min_rate} | ${max_rate} | ${threshold} | ${perf_pdr_loss_acceptance}
 | | ... | ${perf_pdr_loss_acceptance_type}
 
 | tc03-1518B-1t1c-ethip4udp-ip4base-udpsrcscale15-snat-ndrdisc
@@ -134,7 +134,7 @@
 | | ... | linerate, step 100kpps.
 | | ...
 | | [Teardown] | Run keywords | Performance test teardown | ${min_rate}pps
-| | ... | ${framesize} | 3-node-IPv4-SNAT-1u-15p
+| | ... | ${framesize} | trex-sl-3n-ethip4udp-1u15p
 | | ... | AND | Show SNAT verbose | ${dut1}
 | | ... | AND | Show SNAT verbose | ${dut2}
 | | ...
@@ -153,8 +153,8 @@
 | | And Apply startup configuration on all VPP DUTs
 | | When SNAT is initialized in a 3-node circular topology
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | 3-node-IPv4-SNAT-1u-15p | ${min_rate} | ${max_rate}
-| | ... | ${threshold}
+| | ... | ${binary_max} | trex-sl-3n-ethip4udp-1u15p
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc04-1518B-1t1c-ethip4udp-ip4base-udpsrcscale15-snat-pdrdisc
 | | [Documentation]
@@ -165,7 +165,7 @@
 | | ... | linerate, step 100kpps.
 | | ...
 | | [Teardown] | Performance test teardown | ${min_rate}pps | ${framesize}
-| | ... | 3-node-IPv4-SNAT-1u-15p
+| | ... | trex-sl-3n-ethip4udp-1u15p
 | | ...
 | | [Tags] | 1518B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
 | | ...
@@ -182,41 +182,11 @@
 | | And Apply startup configuration on all VPP DUTs
 | | When SNAT is initialized in a 3-node circular topology
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | 3-node-IPv4-SNAT-1u-15p | ${min_rate} | ${max_rate}
-| | ... | ${threshold} | ${perf_pdr_loss_acceptance}
+| | ... | ${binary_max} | trex-sl-3n-ethip4udp-1u15p
+| | ... | ${min_rate} | ${max_rate} | ${threshold} | ${perf_pdr_loss_acceptance}
 | | ... | ${perf_pdr_loss_acceptance_type}
 
-| tc05-1518B-1t1c-ethip4udp-ip4base-udpsrcscale15-snat-pdrdisc
-| | [Documentation]
-| | ... | [Cfg] DUT runs IPv4 routing config with 1 thread, 1 phy core,\
-| | ... | 1 receive queue per NIC port. SNAT is configured between DUTs -\
-| | ... | 1 user and 15 ports (sessions) per user.
-| | ... | [Ver] Find PDR for 1518 Byte frames using binary search start at 10GE\
-| | ... | linerate, step 100kpps.
-| | ...
-| | [Teardown] | Performance test teardown | ${min_rate}pps | ${framesize}
-| | ... | 3-node-IPv4-SNAT-1u-15p
-| | ...
-| | [Tags] | 1518B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
-| | ...
-| | ${framesize}= | Set Variable | ${1518}
-| | ${min_rate}= | Set Variable | ${100000}
-| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
-| | ${binary_min}= | Set Variable | ${min_rate}
-| | ${binary_max}= | Set Variable | ${max_rate}
-| | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
-| | And Add SNAT to all DUTs
-| | And Apply startup configuration on all VPP DUTs
-| | When SNAT is initialized in a 3-node circular topology
-| | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | 3-node-IPv4-SNAT-1u-15p | ${min_rate} | ${max_rate}
-| | ... | ${threshold} | ${perf_pdr_loss_acceptance}
-| | ... | ${perf_pdr_loss_acceptance_type}
-
-| tc06-IMIX-1t1c-ethip4udp-ip4base-udpsrcscale15-snat-ndrdisc
+| tc05-IMIX-1t1c-ethip4udp-ip4base-udpsrcscale15-snat-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 routing config with 1 thread, 1 phy core,\
 | | ... | 1 receive queue per NIC port. SNAT is configured between DUTs -\
@@ -225,7 +195,7 @@
 | | ... | linerate, step 100kpps.
 | | ...
 | | [Teardown] | Run keywords | Performance test teardown | ${min_rate}pps
-| | ... | ${framesize} | 3-node-IPv4-SNAT-1u-15p
+| | ... | ${framesize} | trex-sl-3n-ethip4udp-1u15p
 | | ... | AND | Show SNAT verbose | ${dut1}
 | | ... | AND | Show SNAT verbose | ${dut2}
 | | ...
@@ -244,5 +214,35 @@
 | | And Apply startup configuration on all VPP DUTs
 | | When SNAT is initialized in a 3-node circular topology
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | 3-node-IPv4-SNAT-1u-15p | ${min_rate} | ${max_rate}
-| | ... | ${threshold}
+| | ... | ${binary_max} | trex-sl-3n-ethip4udp-1u15p
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
+
+| tc06-IMIX-1t1c-ethip4udp-ip4base-udpsrcscale15-snat-pdrdisc
+| | [Documentation]
+| | ... | [Cfg] DUT runs IPv4 routing config with 1 thread, 1 phy core,\
+| | ... | 1 receive queue per NIC port. SNAT is configured between DUTs -\
+| | ... | 1 user and 15 ports (sessions) per user.
+| | ... | [Ver] Find PDR for IMIX frames using binary search start at 10GE\
+| | ... | linerate, step 100kpps.
+| | ...
+| | [Teardown] | Performance test teardown | ${min_rate}pps | ${framesize}
+| | ... | trex-sl-3n-ethip4udp-1u15p
+| | ...
+| | [Tags] | IMIX | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
+| | ...
+| | ${framesize}= | Set Variable | IMIX_v4_1
+| | ${min_rate}= | Set Variable | ${100000}
+| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
+| | ${binary_min}= | Set Variable | ${min_rate}
+| | ${binary_max}= | Set Variable | ${max_rate}
+| | ${threshold}= | Set Variable | ${min_rate}
+| | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Add SNAT to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | When SNAT is initialized in a 3-node circular topology
+| | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
+| | ... | ${binary_max} | trex-sl-3n-ethip4udp-1u15p
+| | ... | ${min_rate} | ${max_rate} | ${threshold} | ${perf_pdr_loss_acceptance}
+| | ... | ${perf_pdr_loss_acceptance_type}
