@@ -60,7 +60,7 @@
 | | And Apply startup configuration on all VPP DUTs
 | | And L2 xconnect initialized in a 3-node circular topology
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
-| | ... | ${framesize} | 3-node-xconnect
+| | ... | ${framesize} | profile-trex-stateless-eth-ip-3-node-xconnect
 
 | tc02-1518B-1t1c-eth-l2xcbase-ndrchk
 | | [Documentation]
@@ -76,7 +76,7 @@
 | | And Apply startup configuration on all VPP DUTs
 | | And L2 xconnect initialized in a 3-node circular topology
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
-| | ... | ${framesize} | 3-node-xconnect
+| | ... | ${framesize} | profile-trex-stateless-eth-ip-3-node-xconnect
 
 | tc03-9000B-1t1c-eth-l2xcbase-ndrchk
 | | [Documentation]
@@ -91,7 +91,7 @@
 | | And Apply startup configuration on all VPP DUTs
 | | And L2 xconnect initialized in a 3-node circular topology
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
-| | ... | ${framesize} | 3-node-xconnect
+| | ... | ${framesize} | profile-trex-stateless-eth-ip-3-node-xconnect
 
 | tc04-64B-2t2c-eth-l2xcbase-ndrchk
 | | [Documentation]
@@ -107,7 +107,7 @@
 | | And Apply startup configuration on all VPP DUTs
 | | And L2 xconnect initialized in a 3-node circular topology
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
-| | ... | ${framesize} | 3-node-xconnect
+| | ... | ${framesize} | profile-trex-stateless-eth-ip-3-node-xconnect
 
 | tc05-1518B-2t2c-eth-l2xcbase-ndrchk
 | | [Documentation]
@@ -123,7 +123,7 @@
 | | And Apply startup configuration on all VPP DUTs
 | | And L2 xconnect initialized in a 3-node circular topology
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
-| | ... | ${framesize} | 3-node-xconnect
+| | ... | ${framesize} | profile-trex-stateless-eth-ip-3-node-xconnect
 
 | tc06-9000B-2t2c-eth-l2xcbase-ndrchk
 | | [Documentation]
@@ -138,7 +138,7 @@
 | | And Apply startup configuration on all VPP DUTs
 | | And L2 xconnect initialized in a 3-node circular topology
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
-| | ... | ${framesize} | 3-node-xconnect
+| | ... | ${framesize} | profile-trex-stateless-eth-ip-3-node-xconnect
 
 | tc07-64B-4t4c-eth-l2xcbase-ndrchk
 | | [Documentation]
@@ -154,7 +154,7 @@
 | | And Apply startup configuration on all VPP DUTs
 | | And L2 xconnect initialized in a 3-node circular topology
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
-| | ... | ${framesize} | 3-node-xconnect
+| | ... | ${framesize} | profile-trex-stateless-eth-ip-3-node-xconnect
 
 | tc08-1518B-4t4c-eth-l2xcbase-ndrchk
 | | [Documentation]
@@ -170,7 +170,7 @@
 | | And Apply startup configuration on all VPP DUTs
 | | And L2 xconnect initialized in a 3-node circular topology
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
-| | ... | ${framesize} | 3-node-xconnect
+| | ... | ${framesize} | profile-trex-stateless-eth-ip-3-node-xconnect
 
 | tc09-9000B-4t4c-eth-l2xcbase-ndrchk
 | | [Documentation]
@@ -185,4 +185,4 @@
 | | And Apply startup configuration on all VPP DUTs
 | | And L2 xconnect initialized in a 3-node circular topology
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
-| | ... | ${framesize} | 3-node-xconnect
+| | ... | ${framesize} | profile-trex-stateless-eth-ip-3-node-xconnect
