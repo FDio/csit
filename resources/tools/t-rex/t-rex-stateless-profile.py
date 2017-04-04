@@ -1,0 +1,256 @@
+#!/usr/bin/python
+
+# Copyright (c) 2017 Cisco and/or its affiliates.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at:
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+"""
+
+"""
+
+import sys
+import argparse
+import json
+
+sys.path.insert(0, "/opt/trex-core-2.22/scripts/automation/"
+                   "trex_control_plane/stl/")
+from trex_stl_lib.api import *
+
+
+def fmt_latency(lat_min, lat_avg, lat_max):
+    """ Return formatted, rounded latency
+
+    :param lat_min: Min latency
+    :param lat_avg: Average latency
+    :param lat_max: Max latency
+    :type lat_min: string
+    :type lat_avg: string
+    :type lat_max: string
+    :return: Formatted and rounded output "min/avg/max"
+    :rtype: string
+    """
+
+    try:
+        t_min = int(round(float(lat_min)))
+    except ValueError:
+        t_min = int(-1)
+    try:
+        t_avg = int(round(float(lat_avg)))
+    except ValueError:
+        t_avg = int(-1)
+    try:
+        t_max = int(round(float(lat_max)))
+    except ValueError:
+        t_max = int(-1)
+
+    return "/".join(str(tmp) for tmp in (t_min, t_avg, t_max))
+
+
+def simple_burst(profile_file, framesize, rate, duration, latency,
+                 warmup_time=5, async_start=False, ifaces_reordered=False):
+    """
+
+    :param profile_file:
+    :param framesize:
+    :param rate:
+    :param duration:
+    :param latency:
+    :param warmup_time:
+    :param async_start:
+    :param ifaces_reordered:
+    :return:
+    """
+
+    client = None
+    total_rcvd = 0
+    total_sent = 0
+    lost_a = 0
+    lost_b = 0
+    lat_a = "-1/-1/-1"
+    lat_b = "-1/-1/-1"
+
+    ports = [0, 1]
+
+    # Read the profile:
+    try:
+        profile = STLProfile.load(profile_file)
+        print(profile.dump_to_yaml())
+        if ifaces_reordered:
+            stream_b, stream_a, stream_lat_b, stream_lat_a = \
+                profile.get_streams(framesize=framesize)
+        else:
+            stream_a, stream_b, stream_lat_a, stream_lat_b = \
+                profile.get_streams(framesize=framesize)
+    except STLError:
+        print("Error while loading profile '{0}'\n".format(profile_file))
+        sys.exit(1)
+
+    try:
+        # Create the client:
+        client = STLClient(verbose_level=LoggerApi.VERBOSE_REGULAR)
+        # Connect to server:
+        client.connect()
+        # Prepare our ports (the machine has 0 <--> 1 with static route):
+        client.reset(ports=ports)
+        client.remove_all_streams(ports)
+
+        client.add_streams(stream_a, ports=[0])
+        client.add_streams(stream_b, ports=[1])
+
+        if latency:
+            try:
+                client.add_streams(stream_lat_a, ports=[0])
+                client.add_streams(stream_lat_b, ports=[1])
+            except STLError:
+                # Disable latency if NIC does not support requested stream type
+                print("##### FAILED to add latency streams #####")
+                latency = False
+
+        # Warm-up phase:
+        if warmup_time > 0:
+            # Clear the stats before injecting:
+            client.clear_stats()
+
+            # Choose rate and start traffic:
+            client.start(ports=[0, 1], mult=rate, duration=warmup_time)
+
+            # Block until done:
+            client.wait_on_traffic(ports=[0, 1], timeout=(warmup_time + 30))
+
+            if client.get_warnings():
+                for warning in client.get_warnings():
+                    print(warning)
+
+            # Read the stats after the test:
+            stats = client.get_stats()
+
+            print("#####warmup statistics#####")
+            print(json.dumps(stats, indent=4, separators=(',', ': '),
+                             sort_keys=True))
+
+            lost_a = stats[0]["opackets"] - stats[1]["ipackets"]
+            lost_b = stats[1]["opackets"] - stats[0]["ipackets"]
+
+            print("\npackets lost from 0 --> 1: {0} pkts".format(lost_a))
+            print("packets lost from 1 --> 0: {0} pkts".format(lost_b))
+
+        # Clear the stats before injecting:
+        client.clear_stats()
+        lost_a = 0
+        lost_b = 0
+
+        # Choose rate and start traffic:
+        client.start(ports=[0, 1], mult=rate, duration=duration)
+
+        if not async_start:
+            # Block until done:
+            client.wait_on_traffic(ports=[0, 1], timeout=(duration+30))
+
+            if client.get_warnings():
+                for warning in client.get_warnings():
+                    print(warning)
+
+            # Read the stats after the test
+            stats = client.get_stats()
+
+            print("##### Statistics #####")
+            print(json.dumps(stats, indent=4, separators=(',', ': '),
+                             sort_keys=True))
+
+            lost_a = stats[0]["opackets"] - stats[1]["ipackets"]
+            lost_b = stats[1]["opackets"] - stats[0]["ipackets"]
+
+            if latency:
+                lat_a = fmt_latency(
+                    str(stats["latency"][0]["latency"]["total_min"]),
+                    str(stats["latency"][0]["latency"]["average"]),
+                    str(stats["latency"][0]["latency"]["total_max"]))
+                lat_b = fmt_latency(
+                    str(stats["latency"][1]["latency"]["total_min"]),
+                    str(stats["latency"][1]["latency"]["average"]),
+                    str(stats["latency"][1]["latency"]["total_max"]))
+
+            total_sent = stats[0]["opackets"] + stats[1]["opackets"]
+            total_rcvd = stats[0]["ipackets"] + stats[1]["ipackets"]
+
+            print("\npackets lost from 0 --> 1:   {0} pkts".format(lost_a))
+            print("packets lost from 1 --> 0:   {0} pkts".format(lost_b))
+
+    except STLError as err:
+        sys.stderr.write("{0}\n".format(err))
+        sys.exit(1)
+
+    finally:
+        if async_start:
+            if client:
+                client.disconnect(stop_traffic=False, release_ports=True)
+        else:
+            if client:
+                client.disconnect()
+            print("rate = {0}".format(rate))
+            print("totalSent = {0}".format(total_sent))
+            print("totalReceived = {0}".format(total_rcvd))
+            print("frameLoss = {0}".format(lost_a + lost_b))
+            print("latencyStream0(usec) = {0}".format(lat_a))
+            print("latencyStream1(usec) = {0}".format(lat_b))
+
+
+def main():
+    """
+
+    :return:
+    """
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-p", "--profile",
+                        required=True,
+                        type=str,
+                        help="Duration of traffic run.")
+    parser.add_argument("-d", "--duration",
+                        required=True,
+                        type=int,
+                        help="Duration of traffic run.")
+    parser.add_argument("-s", "--frame_size",
+                        required=True,
+                        help="Size of a Frame without padding and IPG.")
+    parser.add_argument("-r", "--rate",
+                        required=True,
+                        help="Traffic rate with included units (%, pps).")
+    parser.add_argument("--async",
+                        action="store_true",
+                        default=False,
+                        help="Non-blocking call of the script.")
+    parser.add_argument("--latency",
+                        action="store_true",
+                        default=False,
+                        help="Add latency stream")
+    parser.add_argument("-w", "--warmup_time",
+                        type=int,
+                        default=5,
+                        help="Traffic warm-up time in seconds, 0 = disable.")
+    parser.add_argument("--ifaces_reordered",
+                        action="store_true",
+                        default=False,
+                        help="T-REX interface order mapping.")
+    args = parser.parse_args()
+
+    simple_burst(profile_file=args.profile,
+                 framesize=args.frame_size,
+                 rate=args.rate,
+                 duration=args.duration,
+                 latency=args.latency,
+                 warmup_time=args.warmup_time,
+                 async_start=args.async,
+                 ifaces_reordered=args.ifaces_reordered)
+
+if __name__ == '__main__':
+    main()
