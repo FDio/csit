@@ -47,6 +47,10 @@
 | ... | IP protocol=61 and generated payload.
 | ... | *[Ref] Applicable standard specifications:* RFC2544.
 
+*** Variables ***
+# Traffic profile:
+| ${traffic_profile} | trex-sl-3n-ethip6-ip6src253
+
 *** Test Cases ***
 | tc01-78B-1t1c-ethip6lispip4-ip6base-ndrchk
 | | [Documentation]
@@ -70,7 +74,7 @@
 | | ... | ${duts_locator_set} | ${dut1_ip6o4_eid} | ${dut2_ip6o4_eid}
 | | ... | ${dut1_ip6o4_static_adjacency} | ${dut2_ip6o4_static_adjacency}
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
-| | ... | ${framesize} | 3-node-IPv6
+| | ... | ${framesize} | ${traffic_profile}
 
 | tc02-1460B-1t1c-ethip6lispip4-ip6base-ndrchk
 | | [Documentation]
@@ -94,7 +98,7 @@
 | | ... | ${duts_locator_set} | ${dut1_ip6o4_eid} | ${dut2_ip6o4_eid}
 | | ... | ${dut1_ip6o4_static_adjacency} | ${dut2_ip6o4_static_adjacency}
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
-| | ... | ${framesize} | 3-node-IPv6
+| | ... | ${framesize} | ${traffic_profile}
 
 | tc03-9000B-1t1c-ethip6lispip4-ip6base-ndrchk
 | | [Documentation]
@@ -117,7 +121,7 @@
 | | ... | ${duts_locator_set} | ${dut1_ip6o4_eid} | ${dut2_ip6o4_eid}
 | | ... | ${dut1_ip6o4_static_adjacency} | ${dut2_ip6o4_static_adjacency}
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
-| | ... | ${framesize} | 3-node-IPv6
+| | ... | ${framesize} | ${traffic_profile}
 
 | tc04-78B-2t2c-ethip6lispip4-ip6base-ndrchk
 | | [Documentation]
@@ -141,7 +145,7 @@
 | | ... | ${duts_locator_set} | ${dut1_ip6o4_eid} | ${dut2_ip6o4_eid}
 | | ... | ${dut1_ip6o4_static_adjacency} | ${dut2_ip6o4_static_adjacency}
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
-| | ... | ${framesize} | 3-node-IPv6
+| | ... | ${framesize} | ${traffic_profile}
 
 | tc05-1460B-2t2c-ethip6lispip4-ip6base-ndrchk
 | | [Documentation]
@@ -165,7 +169,7 @@
 | | ... | ${duts_locator_set} | ${dut1_ip6o4_eid} | ${dut2_ip6o4_eid}
 | | ... | ${dut1_ip6o4_static_adjacency} | ${dut2_ip6o4_static_adjacency}
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
-| | ... | ${framesize} | 3-node-IPv6
+| | ... | ${framesize} | ${traffic_profile}
 
 | tc06-9000B-2t2c-ethip6lispip4-ip6base-ndrchk
 | | [Documentation]
@@ -188,7 +192,7 @@
 | | ... | ${duts_locator_set} | ${dut1_ip6o4_eid} | ${dut2_ip6o4_eid}
 | | ... | ${dut1_ip6o4_static_adjacency} | ${dut2_ip6o4_static_adjacency}
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
-| | ... | ${framesize} | 3-node-IPv6
+| | ... | ${framesize} | ${traffic_profile}
 
 | tc07-78B-4t4c-ethip6lispip4-ip6base-ndrchk
 | | [Documentation]
@@ -212,7 +216,7 @@
 | | ... | ${duts_locator_set} | ${dut1_ip6o4_eid} | ${dut2_ip6o4_eid}
 | | ... | ${dut1_ip6o4_static_adjacency} | ${dut2_ip6o4_static_adjacency}
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
-| | ... | ${framesize} | 3-node-IPv6
+| | ... | ${framesize} | ${traffic_profile}
 
 | tc08-1460B-4t4c-ethip6lispip4-ip6base-ndrchk
 | | [Documentation]
@@ -236,7 +240,7 @@
 | | ... | ${duts_locator_set} | ${dut1_ip6o4_eid} | ${dut2_ip6o4_eid}
 | | ... | ${dut1_ip6o4_static_adjacency} | ${dut2_ip6o4_static_adjacency}
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
-| | ... | ${framesize} | 3-node-IPv6
+| | ... | ${framesize} | ${traffic_profile}
 
 | tc09-9000B-4t4c-ethip6lispip4-ip6base-ndrchk
 | | [Documentation]
@@ -259,4 +263,4 @@
 | | ... | ${duts_locator_set} | ${dut1_ip6o4_eid} | ${dut2_ip6o4_eid}
 | | ... | ${dut1_ip6o4_static_adjacency} | ${dut2_ip6o4_static_adjacency}
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
-| | ... | ${framesize} | 3-node-IPv6
+| | ... | ${framesize} | ${traffic_profile}

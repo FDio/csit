@@ -28,7 +28,7 @@
 | ...
 | Test Setup | Performance test setup
 | Test Teardown | Performance test teardown | ${min_rate}pps | ${framesize}
-| ... | 3-node-IPv4
+| ... | ${traffic_profile}
 | ...
 | Documentation | *RFC2544: Pkt throughput IPv4 iAcl whitelist test cases*
 | ...
@@ -56,6 +56,8 @@
 *** Variables ***
 # X520-DA2 bandwidth limit
 | ${s_limit} | ${10000000000}
+# Traffic profile:
+| ${traffic_profile} | trex-sl-3n-ethip4-ip4src253
 
 *** Test Cases ***
 | tc01-64B-1t1c-ethip4-ip4base-iacldstbase-ndrdisc
@@ -72,10 +74,10 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | When  IPv4 forwarding initialized in a 3-node circular topology
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | When IPv4 forwarding initialized in a 3-node circular topology
 | | ${table_idx} | ${skip_n} | ${match_n}= | And Vpp Creates Classify Table L3
 | | ... | ${dut1} | ip4 | dst
 | | And Vpp Configures Classify Session L3
@@ -91,9 +93,8 @@
 | | And Vpp Enable Input Acl Interface
 | | ... | ${dut2} | ${dut2_if2} | ip4 | ${table_idx}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-IPv4
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc02-64B-1t1c-ethip4-ip4base-iacldstbase-pdrdisc
 | | [Documentation]
@@ -109,10 +110,10 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | When  IPv4 forwarding initialized in a 3-node circular topology
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | When IPv4 forwarding initialized in a 3-node circular topology
 | | ${table_idx} | ${skip_n} | ${match_n}= | And Vpp Creates Classify Table L3
 | | ... | ${dut1} | ip4 | dst
 | | And Vpp Configures Classify Session L3
@@ -128,11 +129,9 @@
 | | And Vpp Enable Input Acl Interface
 | | ... | ${dut2} | ${dut2_if2} | ip4 | ${table_idx}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-IPv4
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
-| | ...                                       | ${perf_pdr_loss_acceptance}
-| | ...                                       | ${perf_pdr_loss_acceptance_type}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
+| | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
 | tc03-1518B-1t1c-ethip4-ip4base-iacldstbase-ndrdisc
 | | [Documentation]
@@ -148,10 +147,10 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | When  IPv4 forwarding initialized in a 3-node circular topology
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | When IPv4 forwarding initialized in a 3-node circular topology
 | | ${table_idx} | ${skip_n} | ${match_n}= | And Vpp Creates Classify Table L3
 | | ... | ${dut1} | ip4 | dst
 | | And Vpp Configures Classify Session L3
@@ -167,9 +166,8 @@
 | | And Vpp Enable Input Acl Interface
 | | ... | ${dut2} | ${dut2_if2} | ip4 | ${table_idx}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-IPv4
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc04-1518B-1t1c-ethip4-ip4base-iacldstbase-pdrdisc
 | | [Documentation]
@@ -185,10 +183,10 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | When  IPv4 forwarding initialized in a 3-node circular topology
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | When IPv4 forwarding initialized in a 3-node circular topology
 | | ${table_idx} | ${skip_n} | ${match_n}= | And Vpp Creates Classify Table L3
 | | ... | ${dut1} | ip4 | dst
 | | And Vpp Configures Classify Session L3
@@ -204,11 +202,9 @@
 | | And Vpp Enable Input Acl Interface
 | | ... | ${dut2} | ${dut2_if2} | ip4 | ${table_idx}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-IPv4
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
-| | ...                                       | ${perf_pdr_loss_acceptance}
-| | ...                                       | ${perf_pdr_loss_acceptance_type}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
+| | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
 | tc05-9000B-1t1c-ethip4-ip4base-iacldstbase-ndrdisc
 | | [Documentation]
@@ -224,9 +220,9 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Apply startup configuration on all VPP DUTs
-| | When  IPv4 forwarding initialized in a 3-node circular topology
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Apply startup configuration on all VPP DUTs
+| | When IPv4 forwarding initialized in a 3-node circular topology
 | | ${table_idx} | ${skip_n} | ${match_n}= | And Vpp Creates Classify Table L3
 | | ... | ${dut1} | ip4 | dst
 | | And Vpp Configures Classify Session L3
@@ -242,9 +238,8 @@
 | | And Vpp Enable Input Acl Interface
 | | ... | ${dut2} | ${dut2_if2} | ip4 | ${table_idx}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-IPv4
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc06-9000B-1t1c-ethip4-ip4base-iacldstbase-pdrdisc
 | | [Documentation]
@@ -260,9 +255,9 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Apply startup configuration on all VPP DUTs
-| | When  IPv4 forwarding initialized in a 3-node circular topology
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Apply startup configuration on all VPP DUTs
+| | When IPv4 forwarding initialized in a 3-node circular topology
 | | ${table_idx} | ${skip_n} | ${match_n}= | And Vpp Creates Classify Table L3
 | | ... | ${dut1} | ip4 | dst
 | | And Vpp Configures Classify Session L3
@@ -278,11 +273,9 @@
 | | And Vpp Enable Input Acl Interface
 | | ... | ${dut2} | ${dut2_if2} | ip4 | ${table_idx}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-IPv4
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
-| | ...                                       | ${perf_pdr_loss_acceptance}
-| | ...                                       | ${perf_pdr_loss_acceptance_type}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
+| | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
 | tc07-64B-2t2c-ethip4-ip4base-iacldstbase-ndrdisc
 | | [Documentation]
@@ -298,10 +291,10 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | When  IPv4 forwarding initialized in a 3-node circular topology
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | When IPv4 forwarding initialized in a 3-node circular topology
 | | ${table_idx} | ${skip_n} | ${match_n}= | And Vpp Creates Classify Table L3
 | | ... | ${dut1} | ip4 | dst
 | | And Vpp Configures Classify Session L3
@@ -317,9 +310,8 @@
 | | And Vpp Enable Input Acl Interface
 | | ... | ${dut2} | ${dut2_if2} | ip4 | ${table_idx}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-IPv4
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc08-64B-2t2c-ethip4-ip4base-iacldstbase-pdrdisc
 | | [Documentation]
@@ -335,10 +327,10 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | When  IPv4 forwarding initialized in a 3-node circular topology
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | When IPv4 forwarding initialized in a 3-node circular topology
 | | ${table_idx} | ${skip_n} | ${match_n}= | And Vpp Creates Classify Table L3
 | | ... | ${dut1} | ip4 | dst
 | | And Vpp Configures Classify Session L3
@@ -354,11 +346,9 @@
 | | And Vpp Enable Input Acl Interface
 | | ... | ${dut2} | ${dut2_if2} | ip4 | ${table_idx}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-IPv4
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
-| | ...                                       | ${perf_pdr_loss_acceptance}
-| | ...                                       | ${perf_pdr_loss_acceptance_type}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
+| | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
 | tc09-1518B-2t2c-ethip4-ip4base-iacldstbase-ndrdisc
 | | [Documentation]
@@ -374,10 +364,10 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | When  IPv4 forwarding initialized in a 3-node circular topology
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | When IPv4 forwarding initialized in a 3-node circular topology
 | | ${table_idx} | ${skip_n} | ${match_n}= | And Vpp Creates Classify Table L3
 | | ... | ${dut1} | ip4 | dst
 | | And Vpp Configures Classify Session L3
@@ -393,9 +383,8 @@
 | | And Vpp Enable Input Acl Interface
 | | ... | ${dut2} | ${dut2_if2} | ip4 | ${table_idx}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-IPv4
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc10-1518B-2t2c-ethip4-ip4base-iacldstbase-pdrdisc
 | | [Documentation]
@@ -411,10 +400,10 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | When  IPv4 forwarding initialized in a 3-node circular topology
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | When IPv4 forwarding initialized in a 3-node circular topology
 | | ${table_idx} | ${skip_n} | ${match_n}= | And Vpp Creates Classify Table L3
 | | ... | ${dut1} | ip4 | dst
 | | And Vpp Configures Classify Session L3
@@ -430,11 +419,9 @@
 | | And Vpp Enable Input Acl Interface
 | | ... | ${dut2} | ${dut2_if2} | ip4 | ${table_idx}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-IPv4
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
-| | ...                                       | ${perf_pdr_loss_acceptance}
-| | ...                                       | ${perf_pdr_loss_acceptance_type}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
+| | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
 | tc11-9000B-2t2c-ethip4-ip4base-iacldstbase-ndrdisc
 | | [Documentation]
@@ -450,9 +437,9 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Apply startup configuration on all VPP DUTs
-| | When  IPv4 forwarding initialized in a 3-node circular topology
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Apply startup configuration on all VPP DUTs
+| | When IPv4 forwarding initialized in a 3-node circular topology
 | | ${table_idx} | ${skip_n} | ${match_n}= | And Vpp Creates Classify Table L3
 | | ... | ${dut1} | ip4 | dst
 | | And Vpp Configures Classify Session L3
@@ -468,9 +455,8 @@
 | | And Vpp Enable Input Acl Interface
 | | ... | ${dut2} | ${dut2_if2} | ip4 | ${table_idx}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-IPv4
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc12-9000B-2t2c-ethip4-ip4base-iacldstbase-pdrdisc
 | | [Documentation]
@@ -486,9 +472,9 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Apply startup configuration on all VPP DUTs
-| | When  IPv4 forwarding initialized in a 3-node circular topology
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Apply startup configuration on all VPP DUTs
+| | When IPv4 forwarding initialized in a 3-node circular topology
 | | ${table_idx} | ${skip_n} | ${match_n}= | And Vpp Creates Classify Table L3
 | | ... | ${dut1} | ip4 | dst
 | | And Vpp Configures Classify Session L3
@@ -504,11 +490,9 @@
 | | And Vpp Enable Input Acl Interface
 | | ... | ${dut2} | ${dut2_if2} | ip4 | ${table_idx}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-IPv4
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
-| | ...                                       | ${perf_pdr_loss_acceptance}
-| | ...                                       | ${perf_pdr_loss_acceptance_type}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
+| | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
 | tc13-64B-4t4c-ethip4-ip4base-iacldstbase-ndrdisc
 | | [Documentation]
@@ -524,10 +508,10 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | When  IPv4 forwarding initialized in a 3-node circular topology
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | When IPv4 forwarding initialized in a 3-node circular topology
 | | ${table_idx} | ${skip_n} | ${match_n}= | And Vpp Creates Classify Table L3
 | | ... | ${dut1} | ip4 | dst
 | | And Vpp Configures Classify Session L3
@@ -543,9 +527,8 @@
 | | And Vpp Enable Input Acl Interface
 | | ... | ${dut2} | ${dut2_if2} | ip4 | ${table_idx}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-IPv4
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc14-64B-4t4c-ethip4-ip4base-iacldstbase-pdrdisc
 | | [Documentation]
@@ -561,10 +544,10 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | When  IPv4 forwarding initialized in a 3-node circular topology
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | When IPv4 forwarding initialized in a 3-node circular topology
 | | ${table_idx} | ${skip_n} | ${match_n}= | And Vpp Creates Classify Table L3
 | | ... | ${dut1} | ip4 | dst
 | | And Vpp Configures Classify Session L3
@@ -580,11 +563,9 @@
 | | And Vpp Enable Input Acl Interface
 | | ... | ${dut2} | ${dut2_if2} | ip4 | ${table_idx}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-IPv4
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
-| | ...                                       | ${perf_pdr_loss_acceptance}
-| | ...                                       | ${perf_pdr_loss_acceptance_type}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
+| | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
 | tc15-1518B-4t4c-ethip4-ip4base-iacldstbase-ndrdisc
 | | [Documentation]
@@ -600,10 +581,10 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | When  IPv4 forwarding initialized in a 3-node circular topology
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | When IPv4 forwarding initialized in a 3-node circular topology
 | | ${table_idx} | ${skip_n} | ${match_n}= | And Vpp Creates Classify Table L3
 | | ... | ${dut1} | ip4 | dst
 | | And Vpp Configures Classify Session L3
@@ -619,9 +600,8 @@
 | | And Vpp Enable Input Acl Interface
 | | ... | ${dut2} | ${dut2_if2} | ip4 | ${table_idx}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-IPv4
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc16-1518B-4t4c-ethip4-ip4base-iacldstbase-pdrdisc
 | | [Documentation]
@@ -637,10 +617,10 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | When  IPv4 forwarding initialized in a 3-node circular topology
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | When IPv4 forwarding initialized in a 3-node circular topology
 | | ${table_idx} | ${skip_n} | ${match_n}= | And Vpp Creates Classify Table L3
 | | ... | ${dut1} | ip4 | dst
 | | And Vpp Configures Classify Session L3
@@ -656,11 +636,9 @@
 | | And Vpp Enable Input Acl Interface
 | | ... | ${dut2} | ${dut2_if2} | ip4 | ${table_idx}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-IPv4
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
-| | ...                                       | ${perf_pdr_loss_acceptance}
-| | ...                                       | ${perf_pdr_loss_acceptance_type}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
+| | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
 | tc17-9000B-4t4c-ethip4-ip4base-iacldstbase-ndrdisc
 | | [Documentation]
@@ -676,9 +654,9 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Apply startup configuration on all VPP DUTs
-| | When  IPv4 forwarding initialized in a 3-node circular topology
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Apply startup configuration on all VPP DUTs
+| | When IPv4 forwarding initialized in a 3-node circular topology
 | | ${table_idx} | ${skip_n} | ${match_n}= | And Vpp Creates Classify Table L3
 | | ... | ${dut1} | ip4 | dst
 | | And Vpp Configures Classify Session L3
@@ -694,9 +672,8 @@
 | | And Vpp Enable Input Acl Interface
 | | ... | ${dut2} | ${dut2_if2} | ip4 | ${table_idx}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-IPv4
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc18-9000B-4t4c-ethip4-ip4base-iacldstbase-pdrdisc
 | | [Documentation]
@@ -712,9 +689,9 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Apply startup configuration on all VPP DUTs
-| | When  IPv4 forwarding initialized in a 3-node circular topology
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Apply startup configuration on all VPP DUTs
+| | When IPv4 forwarding initialized in a 3-node circular topology
 | | ${table_idx} | ${skip_n} | ${match_n}= | And Vpp Creates Classify Table L3
 | | ... | ${dut1} | ip4 | dst
 | | And Vpp Configures Classify Session L3
@@ -730,8 +707,6 @@
 | | And Vpp Enable Input Acl Interface
 | | ... | ${dut2} | ${dut2_if2} | ip4 | ${table_idx}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-IPv4
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
-| | ...                                       | ${perf_pdr_loss_acceptance}
-| | ...                                       | ${perf_pdr_loss_acceptance_type}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
+| | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}

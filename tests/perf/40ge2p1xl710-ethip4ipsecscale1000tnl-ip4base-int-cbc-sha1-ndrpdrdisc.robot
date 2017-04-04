@@ -26,7 +26,7 @@
 | ...
 | Test Setup | Performance test setup
 | Test Teardown | Performance test teardown | ${min_rate}pps | ${framesize}
-| ... | 3-node-IPv4-dst-${n_tunnels}
+| ... | ${traffic_profile}
 | ...
 | Documentation | *IPv4 IPsec tunnel mode performance test suite.*
 | ...
@@ -68,6 +68,9 @@
 | ${laddr_ip4}= | 10.0.0.0
 | ${addr_range}= | ${32}
 | ${ipsec_overhead}= | ${58}
+| ${n_tunnels}= | ${1000}
+# Traffic profile:
+| ${traffic_profile} | trex-sl-3n-ethip4-ip4dst${n_tunnels}
 
 *** Test Cases ***
 | tc01-64B-1t1c-ethip4ipsecscale1000tnl-ip4base-int-cbc-sha1-ndrdisc
@@ -79,7 +82,6 @@
 | | ...
 | | [Tags] | 64B | 1T1C | STHREAD | NDRDISC
 | | ...
-| | ${n_tunnels}= | Set Variable | ${1000}
 | | ${framesize}= | Set Variable | ${64}
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Set Variable | ${s_18.75Mpps}
@@ -100,7 +102,7 @@
 | | ... | ${encr_alg} | ${encr_key} | ${auth_alg} | ${auth_key} | ${laddr_ip4}
 | | ... | ${raddr_ip4} | ${addr_range}
 | | Then Find NDR using binary search and pps | ${framesize}
-| | ... | ${binary_min} | ${binary_max} | 3-node-IPv4-dst-${n_tunnels}
+| | ... | ${binary_min} | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc02-64B-1t1c-ethip4ipsecscale1000tnl-ip4base-int-cbc-sha1-pdrdisc
@@ -112,7 +114,6 @@
 | | ...
 | | [Tags] | 64B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
 | | ...
-| | ${n_tunnels}= | Set Variable | ${1000}
 | | ${framesize}= | Set Variable | ${64}
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Set Variable | ${s_18.75Mpps}
@@ -133,7 +134,7 @@
 | | ... | ${encr_alg} | ${encr_key} | ${auth_alg} | ${auth_key} | ${laddr_ip4}
 | | ... | ${raddr_ip4} | ${addr_range}
 | | Then Find PDR using binary search and pps | ${framesize}
-| | ... | ${binary_min} | ${binary_max} | 3-node-IPv4-dst-${n_tunnels}
+| | ... | ${binary_min} | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold} | ${perf_pdr_loss_acceptance}
 | | ... | ${perf_pdr_loss_acceptance_type}
 
@@ -146,7 +147,6 @@
 | | ...
 | | [Tags] | 1518B | 1T1C | STHREAD | NDRDISC
 | | ...
-| | ${n_tunnels}= | Set Variable | ${1000}
 | | ${framesize}= | Set Variable | ${1518}
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_24.5G} | ${framesize + ${ipsec_overhead}}
@@ -166,7 +166,7 @@
 | | ... | ${encr_alg} | ${encr_key} | ${auth_alg} | ${auth_key} | ${laddr_ip4}
 | | ... | ${raddr_ip4} | ${addr_range}
 | | Then Find NDR using binary search and pps | ${framesize}
-| | ... | ${binary_min} | ${binary_max} | 3-node-IPv4-dst-${n_tunnels}
+| | ... | ${binary_min} | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc04-1518B-1t1c-ethip4ipsecscale1000tnl-ip4base-int-cbc-sha1-pdrdisc
@@ -178,7 +178,6 @@
 | | ...
 | | [Tags] | 1518B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
 | | ...
-| | ${n_tunnels}= | Set Variable | ${1000}
 | | ${framesize}= | Set Variable | ${1518}
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_24.5G} | ${framesize + ${ipsec_overhead}}
@@ -198,7 +197,7 @@
 | | ... | ${encr_alg} | ${encr_key} | ${auth_alg} | ${auth_key} | ${laddr_ip4}
 | | ... | ${raddr_ip4} | ${addr_range}
 | | Then Find PDR using binary search and pps | ${framesize}
-| | ... | ${binary_min} | ${binary_max} | 3-node-IPv4-dst-${n_tunnels}
+| | ... | ${binary_min} | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold} | ${perf_pdr_loss_acceptance}
 | | ... | ${perf_pdr_loss_acceptance_type}
 
@@ -212,7 +211,6 @@
 | | ...
 | | [Tags] | IMIX | 1T1C | STHREAD | NDRDISC
 | | ...
-| | ${n_tunnels}= | Set Variable | ${1000}
 | | ${framesize}= | Set Variable | IMIX_v4_1
 | | ${imix_size}= | Get Frame Size | ${framesize}
 | | ${min_rate}= | Set Variable | ${10000}
@@ -233,7 +231,7 @@
 | | ... | ${encr_alg} | ${encr_key} | ${auth_alg} | ${auth_key} | ${laddr_ip4}
 | | ... | ${raddr_ip4} | ${addr_range}
 | | Then Find NDR using binary search and pps | ${framesize}
-| | ... | ${binary_min} | ${binary_max} | 3-node-IPv4-dst-${n_tunnels}
+| | ... | ${binary_min} | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc06-IMIX-1t1c-ethip4ipsecscale1000tnl-ip4base-int-cbc-sha1-pdrdisc
@@ -246,7 +244,6 @@
 | | ...
 | | [Tags] | IMIX | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
 | | ...
-| | ${n_tunnels}= | Set Variable | ${1000}
 | | ${framesize}= | Set Variable | IMIX_v4_1
 | | ${imix_size}= | Get Frame Size | ${framesize}
 | | ${min_rate}= | Set Variable | ${10000}
@@ -267,7 +264,7 @@
 | | ... | ${encr_alg} | ${encr_key} | ${auth_alg} | ${auth_key} | ${laddr_ip4}
 | | ... | ${raddr_ip4} | ${addr_range}
 | | Then Find PDR using binary search and pps | ${framesize}
-| | ... | ${binary_min} | ${binary_max} | 3-node-IPv4-dst-${n_tunnels}
+| | ... | ${binary_min} | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold} | ${perf_pdr_loss_acceptance}
 | | ... | ${perf_pdr_loss_acceptance_type}
 
@@ -280,7 +277,6 @@
 | | ...
 | | [Tags] | 64B | 2T2C | MTHREAD | NDRDISC
 | | ...
-| | ${n_tunnels}= | Set Variable | ${1000}
 | | ${framesize}= | Set Variable | ${64}
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Set Variable | ${s_18.75Mpps}
@@ -301,7 +297,7 @@
 | | ... | ${encr_alg} | ${encr_key} | ${auth_alg} | ${auth_key} | ${laddr_ip4}
 | | ... | ${raddr_ip4} | ${addr_range}
 | | Then Find NDR using binary search and pps | ${framesize}
-| | ... | ${binary_min} | ${binary_max} | 3-node-IPv4-dst-${n_tunnels}
+| | ... | ${binary_min} | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc08-64B-2t2c-ethip4ipsecscale1000tnl-ip4base-int-cbc-sha1-pdrdisc
@@ -313,7 +309,6 @@
 | | ...
 | | [Tags] | 64B | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
 | | ...
-| | ${n_tunnels}= | Set Variable | ${1000}
 | | ${framesize}= | Set Variable | ${64}
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Set Variable | ${s_18.75Mpps}
@@ -334,6 +329,6 @@
 | | ... | ${encr_alg} | ${encr_key} | ${auth_alg} | ${auth_key} | ${laddr_ip4}
 | | ... | ${raddr_ip4} | ${addr_range}
 | | Then Find PDR using binary search and pps | ${framesize}
-| | ... | ${binary_min} | ${binary_max} | 3-node-IPv4-dst-${n_tunnels}
+| | ... | ${binary_min} | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold} | ${perf_pdr_loss_acceptance}
 | | ... | ${perf_pdr_loss_acceptance_type}
