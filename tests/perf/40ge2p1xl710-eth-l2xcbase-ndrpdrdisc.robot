@@ -25,7 +25,7 @@
 | ...
 | Test Setup | Performance test setup
 | Test Teardown | Performance test teardown | ${min_rate}pps | ${framesize}
-| ... | 3-node-xconnect
+| ... | ${traffic_profile}
 | ...
 | Documentation | *RFC2544: Pkt throughput L2XC test cases*
 | ...
@@ -53,6 +53,8 @@
 | ${s_24.5G} | ${24500000000}
 # XL710-DA2 Mpps limit 37.5Mpps/2=18.75Mpps
 | ${s_18.75Mpps} | ${18750000}
+# Traffic profile:
+| ${traffic_profile} | trex-sl-3n-ethip4-ip4src254
 
 *** Test Cases ***
 | tc01-64B-1t1c-eth-l2xcbase-ndrdisc
@@ -68,14 +70,13 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | And   L2 xconnect initialized in a 3-node circular topology
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | And L2 xconnect initialized in a 3-node circular topology
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-xconnect
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc03-1518B-1t1c-eth-l2xcbase-ndrdisc
 | | [Documentation]
@@ -90,14 +91,13 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | And   L2 xconnect initialized in a 3-node circular topology
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | And L2 xconnect initialized in a 3-node circular topology
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-xconnect
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc07-64B-2t2c-eth-l2xcbase-ndrdisc
 | | [Documentation]
@@ -112,14 +112,13 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | And   L2 xconnect initialized in a 3-node circular topology
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | And L2 xconnect initialized in a 3-node circular topology
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-xconnect
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc09-1518B-2t2c-eth-l2xcbase-ndrdisc
 | | [Documentation]
@@ -134,14 +133,13 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | And   L2 xconnect initialized in a 3-node circular topology
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | And L2 xconnect initialized in a 3-node circular topology
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-xconnect
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc13-64B-4t4c-eth-l2xcbase-ndrdisc
 | | [Documentation]
@@ -156,14 +154,13 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | And   L2 xconnect initialized in a 3-node circular topology
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | And L2 xconnect initialized in a 3-node circular topology
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-xconnect
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc15-1518B-4t4c-eth-l2xcbase-ndrdisc
 | | [Documentation]
@@ -178,14 +175,13 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | And   L2 xconnect initialized in a 3-node circular topology
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | And L2 xconnect initialized in a 3-node circular topology
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-xconnect
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc19-IMIX-1t1c-eth-l2xcbase-ndrdisc
 | | [Documentation]
@@ -201,14 +197,13 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And   Add all PCI devices to all DUTs
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | And   L2 xconnect initialized in a 3-node circular topology
+| | And Add all PCI devices to all DUTs
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | And L2 xconnect initialized in a 3-node circular topology
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-xconnect
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc20-IMIX-2t2c-eth-l2xcbase-ndrdisc
 | | [Documentation]
@@ -224,14 +219,13 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
-| | And   Add all PCI devices to all DUTs
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | And   L2 xconnect initialized in a 3-node circular topology
+| | And Add all PCI devices to all DUTs
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | And L2 xconnect initialized in a 3-node circular topology
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-xconnect
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc21-IMIX-4t4c-eth-l2xcbase-ndrdisc
 | | [Documentation]
@@ -247,11 +241,10 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
-| | And   Add all PCI devices to all DUTs
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | And   L2 xconnect initialized in a 3-node circular topology
+| | And Add all PCI devices to all DUTs
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | And L2 xconnect initialized in a 3-node circular topology
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ...                                       | ${binary_max} | 3-node-xconnect
-| | ...                                       | ${min_rate} | ${max_rate}
-| | ...                                       | ${threshold}
+| | ... | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}

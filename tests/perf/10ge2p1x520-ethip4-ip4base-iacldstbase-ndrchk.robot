@@ -50,6 +50,10 @@
 | ... | TG node interfaces.
 | ... | *[Ref] Applicable standard specifications:* RFC2544.
 
+*** Variables ***
+# Traffic profile:
+| ${traffic_profile} | trex-sl-3n-ethip4-ip4src253
+
 *** Test Cases ***
 | tc01-64B-1t1c-ethip4-ip4base-iacldstbase-ndrchk
 | | [Documentation]
@@ -80,7 +84,7 @@
 | | And Vpp Enable Input Acl Interface
 | | ... | ${dut2} | ${dut2_if2} | ip4 | ${table_idx}
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
-| | ... | ${framesize} | 3-node-IPv4
+| | ... | ${framesize} | ${traffic_profile}
 
 | tc02-1518B-1t1c-ethip4-ip4base-iacldstbase-ndrchk
 | | [Documentation]
@@ -111,7 +115,7 @@
 | | And Vpp Enable Input Acl Interface
 | | ... | ${dut2} | ${dut2_if2} | ip4 | ${table_idx}
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
-| | ... | ${framesize} | 3-node-IPv4
+| | ... | ${framesize} | ${traffic_profile}
 
 | tc03-9000B-1t1c-ethip4-ip4base-iacldstbase-ndrchk
 | | [Documentation]
@@ -141,7 +145,7 @@
 | | And Vpp Enable Input Acl Interface
 | | ... | ${dut2} | ${dut2_if2} | ip4 | ${table_idx}
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
-| | ... | ${framesize} | 3-node-IPv4
+| | ... | ${framesize} | ${traffic_profile}
 
 | tc04-64B-2t2c-ethip4-ip4base-iacldstbase-ndrchk
 | | [Documentation]
@@ -172,7 +176,7 @@
 | | And Vpp Enable Input Acl Interface
 | | ... | ${dut2} | ${dut2_if2} | ip4 | ${table_idx}
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
-| | ... | ${framesize} | 3-node-IPv4
+| | ... | ${framesize} | ${traffic_profile}
 
 | tc05-1518B-2t2c-ethip4-ip4base-iacldstbase-ndrchk
 | | [Documentation]
@@ -203,7 +207,7 @@
 | | And Vpp Enable Input Acl Interface
 | | ... | ${dut2} | ${dut2_if2} | ip4 | ${table_idx}
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
-| | ... | ${framesize} | 3-node-IPv4
+| | ... | ${framesize} | ${traffic_profile}
 
 | tc06-9000B-2t2c-ethip4-ip4base-iacldstbase-ndrchk
 | | [Documentation]
@@ -233,7 +237,7 @@
 | | And Vpp Enable Input Acl Interface
 | | ... | ${dut2} | ${dut2_if2} | ip4 | ${table_idx}
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
-| | ... | ${framesize} | 3-node-IPv4
+| | ... | ${framesize} | ${traffic_profile}
 
 | tc07-64B-4t4c-ethip4-ip4base-iacldstbase-ndrchk
 | | [Documentation]
@@ -264,7 +268,7 @@
 | | And Vpp Enable Input Acl Interface
 | | ... | ${dut2} | ${dut2_if2} | ip4 | ${table_idx}
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
-| | ... | ${framesize} | 3-node-IPv4
+| | ... | ${framesize} | ${traffic_profile}
 
 | tc08-1518B-4t4c-ethip4-ip4base-iacldstbase-ndrchk
 | | [Documentation]
@@ -295,7 +299,7 @@
 | | And Vpp Enable Input Acl Interface
 | | ... | ${dut2} | ${dut2_if2} | ip4 | ${table_idx}
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
-| | ... | ${framesize} | 3-node-IPv4
+| | ... | ${framesize} | ${traffic_profile}
 
 | tc09-9000B-4t4c-ethip4-ip4base-iacldstbase-ndrchk
 | | [Documentation]
@@ -325,4 +329,4 @@
 | | And Vpp Enable Input Acl Interface
 | | ... | ${dut2} | ${dut2_if2} | ip4 | ${table_idx}
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
-| | ... | ${framesize} | 3-node-IPv4
+| | ... | ${framesize} | ${traffic_profile}
