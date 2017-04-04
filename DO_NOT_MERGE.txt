@@ -1,0 +1,3 @@
+This patch is to force manual triggering of
+csit-vpp-verify-master-centos7-semiweekly job.
+Another try now that Jenkins is rebooted.
