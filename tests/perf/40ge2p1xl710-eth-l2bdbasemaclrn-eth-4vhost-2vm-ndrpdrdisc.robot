@@ -24,7 +24,8 @@
 | ...
 | Test Setup | Performance test setup
 | Test Teardown | Performance test with vhost and VM with dpdk-testpmd teardown
-| ... | ${min_rate}pps | ${framesize} | 3-node-bridge
+| ... | ${min_rate}pps | ${framesize}
+| ... | profile-trex-stateless-eth-ip-3-node-bridge
 | ... | dut1_node=${dut1} | dut1_vm_refs=${dut1_vm_refs}
 | ... | dut2_node=${dut2} | dut2_vm_refs=${dut2_vm_refs}
 | ...
@@ -60,7 +61,7 @@
 | ${s_24.5G} | ${24500000000}
 # XL710-DA2 Mpps limit 37.5Mpps/2=18.75Mpps
 | ${s_18.75Mpps} | ${18750000}
-#CPU settings
+# CPU settings
 | ${system_cpus}= | ${1}
 | ${vpp_cpus}= | ${5}
 | ${vm_cpus}= | ${5}
@@ -85,14 +86,15 @@
 | | Set Test Variable | ${dut1_vm_refs}
 | | Set Test Variable | ${dut2_vm_refs}
 | | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | When  L2 bridge domains with Vhost-User for '2' VMs initialized in a 3-node circular topology
-| | And   '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
-| | Then  Find NDR using binary search and pps
-| | ...   | ${framesize} | ${binary_min} | ${binary_max} | 3-node-bridge
-| | ...   | ${min_rate} | ${max_rate} | ${threshold}
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | When L2 bridge domains with Vhost-User for '2' VMs initialized in a 3-node circular topology
+| | And '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
+| | Then Find NDR using binary search and pps
+| | ... | ${framesize} | ${binary_min} | ${binary_max}
+| | ... | profile-trex-stateless-eth-ip-3-node-bridge
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc02-64B-1t1c-eth-l2bdbasemaclrn-eth-4vhost-2vm-pdrdisc
 | | [Documentation]
@@ -113,15 +115,16 @@
 | | Set Test Variable | ${dut1_vm_refs}
 | | Set Test Variable | ${dut2_vm_refs}
 | | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | When  L2 bridge domains with Vhost-User for '2' VMs initialized in a 3-node circular topology
-| | And   '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
-| | Then  Find PDR using binary search and pps
-| | ...   | ${framesize} | ${binary_min} | ${binary_max} | 3-node-bridge
-| | ...   | ${min_rate} | ${max_rate} | ${threshold}
-| | ...   | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | When L2 bridge domains with Vhost-User for '2' VMs initialized in a 3-node circular topology
+| | And '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
+| | Then Find PDR using binary search and pps
+| | ... | ${framesize} | ${binary_min} | ${binary_max}
+| | ... | profile-trex-stateless-eth-ip-3-node-bridge
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
+| | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
 | tc03-1518B-1t1c-eth-l2bdbasemaclrn-eth-4vhost-2vm-ndrdisc
 | | [Documentation]
@@ -142,14 +145,15 @@
 | | Set Test Variable | ${dut1_vm_refs}
 | | Set Test Variable | ${dut2_vm_refs}
 | | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | When  L2 bridge domains with Vhost-User for '2' VMs initialized in a 3-node circular topology
-| | And   '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
-| | Then  Find NDR using binary search and pps
-| | ...   | ${framesize} | ${binary_min} | ${binary_max} | 3-node-bridge
-| | ...   | ${min_rate} | ${max_rate} | ${threshold}
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | When L2 bridge domains with Vhost-User for '2' VMs initialized in a 3-node circular topology
+| | And '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
+| | Then Find NDR using binary search and pps
+| | ... | ${framesize} | ${binary_min} | ${binary_max}
+| | ... | profile-trex-stateless-eth-ip-3-node-bridge
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc04-1518B-1t1c-eth-l2bdbasemaclrn-eth-4vhost-2vm-pdrdisc
 | | [Documentation]
@@ -170,15 +174,16 @@
 | | Set Test Variable | ${dut1_vm_refs}
 | | Set Test Variable | ${dut2_vm_refs}
 | | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | When  L2 bridge domains with Vhost-User for '2' VMs initialized in a 3-node circular topology
-| | And   '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
-| | Then  Find PDR using binary search and pps
-| | ...   | ${framesize} | ${binary_min} | ${binary_max} | 3-node-bridge
-| | ...   | ${min_rate} | ${max_rate} | ${threshold}
-| | ...   | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | When L2 bridge domains with Vhost-User for '2' VMs initialized in a 3-node circular topology
+| | And '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
+| | Then Find PDR using binary search and pps
+| | ... | ${framesize} | ${binary_min} | ${binary_max}
+| | ... | profile-trex-stateless-eth-ip-3-node-bridge
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
+| | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
 | tc05-IMIX-1t1c-eth-l2bdbasemaclrn-eth-4vhost-2vm-ndrdisc
 | | [Documentation]
@@ -200,14 +205,15 @@
 | | Set Test Variable | ${dut1_vm_refs}
 | | Set Test Variable | ${dut2_vm_refs}
 | | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | When  L2 bridge domains with Vhost-User for '2' VMs initialized in a 3-node circular topology
-| | And   '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
-| | Then  Find NDR using binary search and pps
-| | ...   | ${framesize} | ${binary_min} | ${binary_max} | 3-node-bridge
-| | ...   | ${min_rate} | ${max_rate} | ${threshold}
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | When L2 bridge domains with Vhost-User for '2' VMs initialized in a 3-node circular topology
+| | And '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
+| | Then Find NDR using binary search and pps
+| | ... | ${framesize} | ${binary_min} | ${binary_max}
+| | ... | profile-trex-stateless-eth-ip-3-node-bridge
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc06-IMIX-1t1c-eth-l2bdbasemaclrn-eth-4vhost-2vm-pdrdisc
 | | [Documentation]
@@ -229,15 +235,16 @@
 | | Set Test Variable | ${dut1_vm_refs}
 | | Set Test Variable | ${dut2_vm_refs}
 | | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | When  L2 bridge domains with Vhost-User for '2' VMs initialized in a 3-node circular topology
-| | And   '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
-| | Then  Find PDR using binary search and pps
-| | ...   | ${framesize} | ${binary_min} | ${binary_max} | 3-node-bridge
-| | ...   | ${min_rate} | ${max_rate} | ${threshold}
-| | ...   | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | When L2 bridge domains with Vhost-User for '2' VMs initialized in a 3-node circular topology
+| | And '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
+| | Then Find PDR using binary search and pps
+| | ... | ${framesize} | ${binary_min} | ${binary_max}
+| | ... | profile-trex-stateless-eth-ip-3-node-bridge
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
+| | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
 | tc07-64B-2t2c-eth-l2bdbasemaclrn-eth-4vhost-2vm-ndrdisc
 | | [Documentation]
@@ -258,14 +265,15 @@
 | | Set Test Variable | ${dut1_vm_refs}
 | | Set Test Variable | ${dut2_vm_refs}
 | | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | When  L2 bridge domains with Vhost-User for '2' VMs initialized in a 3-node circular topology
-| | And   '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
-| | Then  Find NDR using binary search and pps
-| | ...   | ${framesize} | ${binary_min} | ${binary_max} | 3-node-bridge
-| | ...   | ${min_rate} | ${max_rate} | ${threshold}
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | When L2 bridge domains with Vhost-User for '2' VMs initialized in a 3-node circular topology
+| | And '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
+| | Then Find NDR using binary search and pps
+| | ... | ${framesize} | ${binary_min} | ${binary_max}
+| | ... | profile-trex-stateless-eth-ip-3-node-bridge
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc08-64B-2t2c-eth-l2bdbasemaclrn-eth-4vhost-2vm-pdrdisc
 | | [Documentation]
@@ -286,15 +294,16 @@
 | | Set Test Variable | ${dut1_vm_refs}
 | | Set Test Variable | ${dut2_vm_refs}
 | | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | When  L2 bridge domains with Vhost-User for '2' VMs initialized in a 3-node circular topology
-| | And   '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
-| | Then  Find PDR using binary search and pps
-| | ...   | ${framesize} | ${binary_min} | ${binary_max} | 3-node-bridge
-| | ...   | ${min_rate} | ${max_rate} | ${threshold}
-| | ...   | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | When L2 bridge domains with Vhost-User for '2' VMs initialized in a 3-node circular topology
+| | And '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
+| | Then Find PDR using binary search and pps
+| | ... | ${framesize} | ${binary_min} | ${binary_max}
+| | ... | profile-trex-stateless-eth-ip-3-node-bridge
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
+| | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
 | tc09-1518B-2t2c-eth-l2bdbasemaclrn-eth-4vhost-2vm-ndrdisc
 | | [Documentation]
@@ -315,14 +324,15 @@
 | | Set Test Variable | ${dut1_vm_refs}
 | | Set Test Variable | ${dut2_vm_refs}
 | | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | When  L2 bridge domains with Vhost-User for '2' VMs initialized in a 3-node circular topology
-| | And   '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
-| | Then  Find NDR using binary search and pps
-| | ...   | ${framesize} | ${binary_min} | ${binary_max} | 3-node-bridge
-| | ...   | ${min_rate} | ${max_rate} | ${threshold}
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | When L2 bridge domains with Vhost-User for '2' VMs initialized in a 3-node circular topology
+| | And '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
+| | Then Find NDR using binary search and pps
+| | ... | ${framesize} | ${binary_min} | ${binary_max}
+| | ... | profile-trex-stateless-eth-ip-3-node-bridge
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc10-1518B-2t2c-eth-l2bdbasemaclrn-eth-4vhost-2vm-pdrdisc
 | | [Documentation]
@@ -343,15 +353,16 @@
 | | Set Test Variable | ${dut1_vm_refs}
 | | Set Test Variable | ${dut2_vm_refs}
 | | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | When  L2 bridge domains with Vhost-User for '2' VMs initialized in a 3-node circular topology
-| | And   '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
-| | Then  Find PDR using binary search and pps
-| | ...   | ${framesize} | ${binary_min} | ${binary_max} | 3-node-bridge
-| | ...   | ${min_rate} | ${max_rate} | ${threshold}
-| | ...   | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | When L2 bridge domains with Vhost-User for '2' VMs initialized in a 3-node circular topology
+| | And '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
+| | Then Find PDR using binary search and pps
+| | ... | ${framesize} | ${binary_min} | ${binary_max}
+| | ... | profile-trex-stateless-eth-ip-3-node-bridge
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
+| | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
 | tc11-IMIX-2t2c-eth-l2bdbasemaclrn-eth-4vhost-2vm-ndrdisc
 | | [Documentation]
@@ -373,14 +384,15 @@
 | | Set Test Variable | ${dut1_vm_refs}
 | | Set Test Variable | ${dut2_vm_refs}
 | | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | When  L2 bridge domains with Vhost-User for '2' VMs initialized in a 3-node circular topology
-| | And   '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
-| | Then  Find NDR using binary search and pps
-| | ...   | ${framesize} | ${binary_min} | ${binary_max} | 3-node-bridge
-| | ...   | ${min_rate} | ${max_rate} | ${threshold}
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | When L2 bridge domains with Vhost-User for '2' VMs initialized in a 3-node circular topology
+| | And '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
+| | Then Find NDR using binary search and pps
+| | ... | ${framesize} | ${binary_min} | ${binary_max}
+| | ... | profile-trex-stateless-eth-ip-3-node-bridge
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc12-IMIX-2t2c-eth-l2bdbasemaclrn-eth-4vhost-2vm-pdrdisc
 | | [Documentation]
@@ -402,15 +414,16 @@
 | | Set Test Variable | ${dut1_vm_refs}
 | | Set Test Variable | ${dut2_vm_refs}
 | | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | When  L2 bridge domains with Vhost-User for '2' VMs initialized in a 3-node circular topology
-| | And   '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
-| | Then  Find PDR using binary search and pps
-| | ...   | ${framesize} | ${binary_min} | ${binary_max} | 3-node-bridge
-| | ...   | ${min_rate} | ${max_rate} | ${threshold}
-| | ...   | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | When L2 bridge domains with Vhost-User for '2' VMs initialized in a 3-node circular topology
+| | And '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
+| | Then Find PDR using binary search and pps
+| | ... | ${framesize} | ${binary_min} | ${binary_max}
+| | ... | profile-trex-stateless-eth-ip-3-node-bridge
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
+| | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
 | tc13-64B-4t4c-eth-l2bdbasemaclrn-eth-4vhost-2vm-ndrdisc
 | | [Documentation]
@@ -431,14 +444,15 @@
 | | Set Test Variable | ${dut1_vm_refs}
 | | Set Test Variable | ${dut2_vm_refs}
 | | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | When  L2 bridge domains with Vhost-User for '2' VMs initialized in a 3-node circular topology
-| | And   '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
-| | Then  Find NDR using binary search and pps
-| | ...   | ${framesize} | ${binary_min} | ${binary_max} | 3-node-bridge
-| | ...   | ${min_rate} | ${max_rate} | ${threshold}
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | When L2 bridge domains with Vhost-User for '2' VMs initialized in a 3-node circular topology
+| | And '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
+| | Then Find NDR using binary search and pps
+| | ... | ${framesize} | ${binary_min} | ${binary_max}
+| | ... | profile-trex-stateless-eth-ip-3-node-bridge
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc14-64B-4t4c-eth-l2bdbasemaclrn-eth-4vhost-2vm-pdrdisc
 | | [Documentation]
@@ -459,15 +473,16 @@
 | | Set Test Variable | ${dut1_vm_refs}
 | | Set Test Variable | ${dut2_vm_refs}
 | | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | When  L2 bridge domains with Vhost-User for '2' VMs initialized in a 3-node circular topology
-| | And   '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
-| | Then  Find PDR using binary search and pps
-| | ...   | ${framesize} | ${binary_min} | ${binary_max} | 3-node-bridge
-| | ...   | ${min_rate} | ${max_rate} | ${threshold}
-| | ...   | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | When L2 bridge domains with Vhost-User for '2' VMs initialized in a 3-node circular topology
+| | And '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
+| | Then Find PDR using binary search and pps
+| | ... | ${framesize} | ${binary_min} | ${binary_max}
+| | ... | profile-trex-stateless-eth-ip-3-node-bridge
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
+| | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
 | tc15-1518B-4t4c-eth-l2bdbasemaclrn-eth-4vhost-2vm-ndrdisc
 | | [Documentation]
@@ -488,14 +503,15 @@
 | | Set Test Variable | ${dut1_vm_refs}
 | | Set Test Variable | ${dut2_vm_refs}
 | | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | When  L2 bridge domains with Vhost-User for '2' VMs initialized in a 3-node circular topology
-| | And   '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
-| | Then  Find NDR using binary search and pps
-| | ...   | ${framesize} | ${binary_min} | ${binary_max} | 3-node-bridge
-| | ...   | ${min_rate} | ${max_rate} | ${threshold}
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | When L2 bridge domains with Vhost-User for '2' VMs initialized in a 3-node circular topology
+| | And '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
+| | Then Find NDR using binary search and pps
+| | ... | ${framesize} | ${binary_min} | ${binary_max}
+| | ... | profile-trex-stateless-eth-ip-3-node-bridge
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc16-1518B-4t4c-eth-l2bdbasemaclrn-eth-4vhost-2vm-pdrdisc
 | | [Documentation]
@@ -516,15 +532,16 @@
 | | Set Test Variable | ${dut1_vm_refs}
 | | Set Test Variable | ${dut2_vm_refs}
 | | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | When  L2 bridge domains with Vhost-User for '2' VMs initialized in a 3-node circular topology
-| | And   '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
-| | Then  Find PDR using binary search and pps
-| | ...   | ${framesize} | ${binary_min} | ${binary_max} | 3-node-bridge
-| | ...   | ${min_rate} | ${max_rate} | ${threshold}
-| | ...   | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | When L2 bridge domains with Vhost-User for '2' VMs initialized in a 3-node circular topology
+| | And '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
+| | Then Find PDR using binary search and pps
+| | ... | ${framesize} | ${binary_min} | ${binary_max}
+| | ... | profile-trex-stateless-eth-ip-3-node-bridge
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
+| | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
 | tc17-IMIX-4t4c-eth-l2bdbasemaclrn-eth-4vhost-2vm-ndrdisc
 | | [Documentation]
@@ -546,14 +563,15 @@
 | | Set Test Variable | ${dut1_vm_refs}
 | | Set Test Variable | ${dut2_vm_refs}
 | | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | When  L2 bridge domains with Vhost-User for '2' VMs initialized in a 3-node circular topology
-| | And   '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
-| | Then  Find NDR using binary search and pps
-| | ...   | ${framesize} | ${binary_min} | ${binary_max} | 3-node-bridge
-| | ...   | ${min_rate} | ${max_rate} | ${threshold}
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | When L2 bridge domains with Vhost-User for '2' VMs initialized in a 3-node circular topology
+| | And '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
+| | Then Find NDR using binary search and pps
+| | ... | ${framesize} | ${binary_min} | ${binary_max}
+| | ... | profile-trex-stateless-eth-ip-3-node-bridge
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc18-IMIX-4t4c-eth-l2bdbasemaclrn-eth-4vhost-2vm-pdrdisc
 | | [Documentation]
@@ -575,12 +593,13 @@
 | | Set Test Variable | ${dut1_vm_refs}
 | | Set Test Variable | ${dut2_vm_refs}
 | | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
-| | And   Add PCI devices to DUTs from 3-node single link topology
-| | And   Add No Multi Seg to all DUTs
-| | And   Apply startup configuration on all VPP DUTs
-| | When  L2 bridge domains with Vhost-User for '2' VMs initialized in a 3-node circular topology
-| | And   '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
-| | Then  Find PDR using binary search and pps
-| | ...   | ${framesize} | ${binary_min} | ${binary_max} | 3-node-bridge
-| | ...   | ${min_rate} | ${max_rate} | ${threshold}
-| | ...   | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
+| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add No Multi Seg to all DUTs
+| | And Apply startup configuration on all VPP DUTs
+| | When L2 bridge domains with Vhost-User for '2' VMs initialized in a 3-node circular topology
+| | And '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
+| | Then Find PDR using binary search and pps
+| | ... | ${framesize} | ${binary_min} | ${binary_max}
+| | ... | profile-trex-stateless-eth-ip-3-node-bridge
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
+| | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}

@@ -24,7 +24,8 @@
 | ...
 | Test Setup | Performance test setup
 | Test Teardown | Performance test with vhost and VM with dpdk-testpmd teardown
-| ... | ${min_rate}pps | ${framesize} | 3-node-xconnect
+| ... | ${min_rate}pps | ${framesize}
+| ... | profile-trex-stateless-eth-ip-3-node-xconnect
 | ... | dut1_node=${dut1} | dut1_vm_refs=${dut1_vm_refs}
 | ... | dut2_node=${dut2} | dut2_vm_refs=${dut2_vm_refs}
 | ...
@@ -96,8 +97,8 @@
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | 3-node-bridge | ${min_rate} | ${max_rate}
-| | ... | ${threshold}
+| | ... | ${binary_max} | profile-trex-stateless-eth-ip-3-node-bridge
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc02-64B-1t1c-eth-l2xcbase-eth-2vhost-1vm-pdrdisc
 | | [Documentation]
@@ -129,8 +130,8 @@
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | 3-node-bridge | ${min_rate} | ${max_rate}
-| | ... | ${threshold} | ${perf_pdr_loss_acceptance}
+| | ... | ${binary_max} | profile-trex-stateless-eth-ip-3-node-bridge
+| | ... | ${min_rate} | ${max_rate} | ${threshold} | ${perf_pdr_loss_acceptance}
 | | ... | ${perf_pdr_loss_acceptance_type}
 
 | tc03-1518B-1t1c-eth-l2xcbase-eth-2vhost-1vm-ndrdisc
@@ -163,8 +164,8 @@
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | 3-node-bridge | ${min_rate} | ${max_rate}
-| | ... | ${threshold}
+| | ... | ${binary_max} | profile-trex-stateless-eth-ip-3-node-bridge
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc04-1518B-1t1c-eth-l2xcbase-eth-2vhost-1vm-pdrdisc
 | | [Documentation]
@@ -196,9 +197,9 @@
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | 3-node-bridge | ${min_rate} | ${max_rate}
+| | ... | ${binary_max} | profile-trex-stateless-eth-ip-3-node-bridge
 | | ... | ${threshold} | ${perf_pdr_loss_acceptance}
-| | ... | ${perf_pdr_loss_acceptance_type}
+| | ... | ${min_rate} | ${max_rate} | ${perf_pdr_loss_acceptance_type}
 
 | tc05-IMIX-1t1c-eth-l2xcbase-eth-2vhost-1vm-ndrdisc
 | | [Documentation]
@@ -232,8 +233,8 @@
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | 3-node-bridge | ${min_rate} | ${max_rate}
-| | ... | ${threshold}
+| | ... | ${binary_max} | profile-trex-stateless-eth-ip-3-node-bridge
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc06-IMIX-1t1c-eth-l2xcbase-eth-2vhost-1vm-pdrdisc
 | | [Documentation]
@@ -267,8 +268,8 @@
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | 3-node-bridge | ${min_rate} | ${max_rate}
-| | ... | ${threshold} | ${perf_pdr_loss_acceptance}
+| | ... | ${binary_max} | profile-trex-stateless-eth-ip-3-node-bridge
+| | ... | ${min_rate} | ${max_rate} | ${threshold} | ${perf_pdr_loss_acceptance}
 | | ... | ${perf_pdr_loss_acceptance_type}
 
 | tc07-64B-2t2c-eth-l2xcbase-eth-2vhost-1vm-ndrdisc
@@ -301,8 +302,8 @@
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | 3-node-bridge | ${min_rate} | ${max_rate}
-| | ... | ${threshold}
+| | ... | ${binary_max} | profile-trex-stateless-eth-ip-3-node-bridge
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc08-64B-2t2c-eth-l2xcbase-eth-2vhost-1vm-pdrdisc
 | | [Documentation]
@@ -334,8 +335,8 @@
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | 3-node-bridge | ${min_rate} | ${max_rate}
-| | ... | ${threshold} | ${perf_pdr_loss_acceptance}
+| | ... | ${binary_max} | profile-trex-stateless-eth-ip-3-node-bridge
+| | ... | ${min_rate} | ${max_rate} | ${threshold} | ${perf_pdr_loss_acceptance}
 | | ... | ${perf_pdr_loss_acceptance_type}
 
 | tc09-1518B-2t2c-eth-l2xcbase-eth-2vhost-1vm-ndrdisc
@@ -368,8 +369,8 @@
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | 3-node-bridge | ${min_rate} | ${max_rate}
-| | ... | ${threshold}
+| | ... | ${binary_max} | profile-trex-stateless-eth-ip-3-node-bridge
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc10-1518B-2t2c-eth-l2xcbase-eth-2vhost-1vm-pdrdisc
 | | [Documentation]
@@ -401,8 +402,8 @@
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | 3-node-bridge | ${min_rate} | ${max_rate}
-| | ... | ${threshold} | ${perf_pdr_loss_acceptance}
+| | ... | ${binary_max} | profile-trex-stateless-eth-ip-3-node-bridge
+| | ... | ${min_rate} | ${max_rate} | ${threshold} | ${perf_pdr_loss_acceptance}
 | | ... | ${perf_pdr_loss_acceptance_type}
 
 | tc11-IMIX-2t2c-eth-l2xcbase-eth-2vhost-1vm-ndrdisc
@@ -437,8 +438,8 @@
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | 3-node-bridge | ${min_rate} | ${max_rate}
-| | ... | ${threshold}
+| | ... | ${binary_max} | profile-trex-stateless-eth-ip-3-node-bridge
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc12-IMIX-2t2c-eth-l2xcbase-eth-2vhost-1vm-pdrdisc
 | | [Documentation]
@@ -472,8 +473,8 @@
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | 3-node-bridge | ${min_rate} | ${max_rate}
-| | ... | ${threshold} | ${perf_pdr_loss_acceptance}
+| | ... | ${binary_max} | profile-trex-stateless-eth-ip-3-node-bridge
+| | ... | ${min_rate} | ${max_rate} | ${threshold} | ${perf_pdr_loss_acceptance}
 | | ... | ${perf_pdr_loss_acceptance_type}
 
 | tc13-64B-4t4c-eth-l2xcbase-eth-2vhost-1vm-ndrdisc
@@ -506,8 +507,8 @@
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | 3-node-bridge | ${min_rate} | ${max_rate}
-| | ... | ${threshold}
+| | ... | ${binary_max} | profile-trex-stateless-eth-ip-3-node-bridge
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc14-64B-4t4c-eth-l2xcbase-eth-2vhost-1vm-pdrdisc
 | | [Documentation]
@@ -539,8 +540,8 @@
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | 3-node-bridge | ${min_rate} | ${max_rate}
-| | ... | ${threshold} | ${perf_pdr_loss_acceptance}
+| | ... | ${binary_max} | profile-trex-stateless-eth-ip-3-node-bridge
+| | ... | ${min_rate} | ${max_rate} | ${threshold} | ${perf_pdr_loss_acceptance}
 | | ... | ${perf_pdr_loss_acceptance_type}
 
 | tc15-1518B-4t4c-eth-l2xcbase-eth-2vhost-1vm-ndrdisc
@@ -573,8 +574,8 @@
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | 3-node-bridge | ${min_rate} | ${max_rate}
-| | ... | ${threshold}
+| | ... | ${binary_max} | profile-trex-stateless-eth-ip-3-node-bridge
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc16-1518B-4t4c-eth-l2xcbase-eth-2vhost-1vm-pdrdisc
 | | [Documentation]
@@ -606,8 +607,8 @@
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | 3-node-bridge | ${min_rate} | ${max_rate}
-| | ... | ${threshold} | ${perf_pdr_loss_acceptance}
+| | ... | ${binary_max} | profile-trex-stateless-eth-ip-3-node-bridge
+| | ... | ${min_rate} | ${max_rate} | ${threshold} | ${perf_pdr_loss_acceptance}
 | | ... | ${perf_pdr_loss_acceptance_type}
 
 | tc17-IMIX-4t4c-eth-l2xcbase-eth-2vhost-1vm-ndrdisc
@@ -642,8 +643,8 @@
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | 3-node-bridge | ${min_rate} | ${max_rate}
-| | ... | ${threshold}
+| | ... | ${binary_max} | profile-trex-stateless-eth-ip-3-node-bridge
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc18-IMIX-4t4c-eth-l2xcbase-eth-2vhost-1vm-pdrdisc
 | | [Documentation]
@@ -677,6 +678,6 @@
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | 3-node-bridge | ${min_rate} | ${max_rate}
-| | ... | ${threshold} | ${perf_pdr_loss_acceptance}
+| | ... | ${binary_max} | profile-trex-stateless-eth-ip-3-node-bridge
+| | ... | ${min_rate} | ${max_rate} | ${threshold} | ${perf_pdr_loss_acceptance}
 | | ... | ${perf_pdr_loss_acceptance_type}

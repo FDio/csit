@@ -23,7 +23,7 @@
 | ...
 | Test Setup | Performance test setup
 | Test Teardown | Performance test teardown | ${min_rate}pps | ${framesize}
-| ... | 3-node-bridge
+| ... | profile-trex-stateless-eth-ip-3-node-bridge
 | ...
 | Documentation | *RFC2544: Pkt throughput L2BD test cases*
 | ...
@@ -67,7 +67,8 @@
 | | Apply startup configuration on all VPP DUTs
 | | L2 bridge domain initialized in a 3-node circular topology
 | | Find NDR using binary search and pps
-| | ... | ${framesize} | ${binary_min} | ${binary_max} | 3-node-bridge
+| | ... | ${framesize} | ${binary_min} | ${binary_max}
+| | ... | profile-trex-stateless-eth-ip-3-node-bridge
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | L2 Bridge Domain PDR Binary Search
@@ -85,7 +86,8 @@
 | | Apply startup configuration on all VPP DUTs
 | | L2 bridge domain initialized in a 3-node circular topology
 | | Find PDR using binary search and pps
-| | ... | ${framesize} | ${binary_min} | ${binary_max} | 3-node-bridge
+| | ... | ${framesize} | ${binary_min} | ${binary_max}
+| | ... | profile-trex-stateless-eth-ip-3-node-bridge
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
 | | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
