@@ -73,11 +73,11 @@
 | | ... | linerate, step 100kpps.
 | | ...
 | | [Teardown] | Run keywords | Performance test teardown | ${min_rate}pps
-| | ... | ${framesize} | 3-node-IPv4-SNAT-1u-15p
+| | ... | ${framesize} | profile-trex-stateless-eth-ip-udp-snat-1u15p
 | | ... | AND | Show SNAT verbose | ${dut1}
 | | ... | AND | Show SNAT verbose | ${dut2}
 | | ...
-| | [Tags] | 1T1C | STHREAD | NDRDISC
+| | [Tags] | 1T1C | STHREAD | NDRDISC | THIS
 | | ...
 | | ${framesize}= | Set Variable | ${64}
 | | ${min_rate}= | Set Variable | ${100000}
@@ -92,8 +92,8 @@
 | | And Apply startup configuration on all VPP DUTs
 | | When SNAT is initialized in a 3-node circular topology
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | 3-node-IPv4-SNAT-1u-15p | ${min_rate} | ${max_rate}
-| | ... | ${threshold}
+| | ... | ${binary_max} | profile-trex-stateless-eth-ip-udp-snat-1u15p
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc02-64B-1t1c-ethip4-ip4base-snat-1u-15p-pdrdisc
 | | [Documentation]
@@ -104,9 +104,9 @@
 | | ... | linerate, step 100kpps.
 | | ...
 | | [Teardown] | Performance test teardown | ${min_rate}pps | ${framesize}
-| | ... | 3-node-IPv4-SNAT-1u-15p
+| | ... | profile-trex-stateless-eth-ip-udp-snat-1u15p
 | | ...
-| | [Tags] | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 1T1C | STHREAD | PDRDISC | SKIP_PATCH | THIS
 | | ...
 | | ${framesize}= | Set Variable | ${64}
 | | ${min_rate}= | Set Variable | ${100000}
@@ -121,8 +121,8 @@
 | | And Apply startup configuration on all VPP DUTs
 | | When SNAT is initialized in a 3-node circular topology
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | 3-node-IPv4-SNAT-1u-15p | ${min_rate} | ${max_rate}
-| | ... | ${threshold} | ${perf_pdr_loss_acceptance}
+| | ... | ${binary_max} | profile-trex-stateless-eth-ip-udp-snat-1u15p
+| | ... | ${min_rate} | ${max_rate} | ${threshold} | ${perf_pdr_loss_acceptance}
 | | ... | ${perf_pdr_loss_acceptance_type}
 
 | tc03-64B-1t1c-ethip4-ip4base-snat-10u-15p-ndrdisc
@@ -439,11 +439,11 @@
 | | ... | linerate, step 100kpps.
 | | ...
 | | [Teardown] | Run keywords | Performance test teardown | ${min_rate}pps
-| | ... | ${framesize} | 3-node-IPv4-SNAT-1u-15p
+| | ... | ${framesize} | profile-trex-stateless-eth-ip-udp-snat-1u15p
 | | ... | AND | Show SNAT verbose | ${dut1}
 | | ... | AND | Show SNAT verbose | ${dut2}
 | | ...
-| | [Tags] | 1T1C | STHREAD | NDRDISC
+| | [Tags] | 1T1C | STHREAD | NDRDISC | THIS
 | | ...
 | | ${framesize}= | Set Variable | ${1518}
 | | ${min_rate}= | Set Variable | ${100000}
@@ -458,8 +458,8 @@
 | | And Apply startup configuration on all VPP DUTs
 | | When SNAT is initialized in a 3-node circular topology
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | 3-node-IPv4-SNAT-1u-15p | ${min_rate} | ${max_rate}
-| | ... | ${threshold}
+| | ... | ${binary_max} | profile-trex-stateless-eth-ip-udp-snat-1u15p
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc14-1518B-1t1c-ethip4-ip4base-snat-1u-15p-pdrdisc
 | | [Documentation]
@@ -470,9 +470,9 @@
 | | ... | linerate, step 100kpps.
 | | ...
 | | [Teardown] | Performance test teardown | ${min_rate}pps | ${framesize}
-| | ... | 3-node-IPv4-SNAT-1u-15p
+| | ... | profile-trex-stateless-eth-ip-udp-snat-1u15p
 | | ...
-| | [Tags] | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 1T1C | STHREAD | PDRDISC | SKIP_PATCH | THIS
 | | ...
 | | ${framesize}= | Set Variable | ${1518}
 | | ${min_rate}= | Set Variable | ${100000}
@@ -487,8 +487,8 @@
 | | And Apply startup configuration on all VPP DUTs
 | | When SNAT is initialized in a 3-node circular topology
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | 3-node-IPv4-SNAT-1u-15p | ${min_rate} | ${max_rate}
-| | ... | ${threshold} | ${perf_pdr_loss_acceptance}
+| | ... | ${binary_max} | profile-trex-stateless-eth-ip-udp-snat-1u15p
+| | ... | ${min_rate} | ${max_rate} | ${threshold} | ${perf_pdr_loss_acceptance}
 | | ... | ${perf_pdr_loss_acceptance_type}
 
 | tc15-1518B-1t1c-ethip4-ip4base-snat-10u-15p-ndrdisc
@@ -683,11 +683,11 @@
 | | ... | linerate, step 100kpps.
 | | ...
 | | [Teardown] | Run keywords | Performance test teardown | ${min_rate}pps
-| | ... | ${framesize} | 3-node-IPv4-SNAT-1u-15p
+| | ... | ${framesize} | profile-trex-stateless-eth-ip-udp-snat-1u15p
 | | ... | AND | Show SNAT verbose | ${dut1}
 | | ... | AND | Show SNAT verbose | ${dut2}
 | | ...
-| | [Tags] | 1T1C | STHREAD | NDRDISC
+| | [Tags] | 1T1C | STHREAD | NDRDISC | THIS
 | | ...
 | | ${framesize}= | Set Variable | IMIX_v4_1
 | | ${min_rate}= | Set Variable | ${100000}
@@ -702,8 +702,8 @@
 | | And Apply startup configuration on all VPP DUTs
 | | When SNAT is initialized in a 3-node circular topology
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | 3-node-IPv4-SNAT-1u-15p | ${min_rate} | ${max_rate}
-| | ... | ${threshold}
+| | ... | ${binary_max} | profile-trex-stateless-eth-ip-udp-snat-1u15p
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc22-IMIX-1t1c-ethip4-ip4base-snat-1u-15p-pdrdisc
 | | [Documentation]
@@ -714,9 +714,9 @@
 | | ... | linerate, step 100kpps.
 | | ...
 | | [Teardown] | Performance test teardown | ${min_rate}pps | ${framesize}
-| | ... | 3-node-IPv4-SNAT-1u-15p
+| | ... | profile-trex-stateless-eth-ip-udp-snat-1u15p
 | | ...
-| | [Tags] | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 1T1C | STHREAD | PDRDISC | SKIP_PATCH | THIS
 | | ...
 | | ${framesize}= | Set Variable | IMIX_v4_1
 | | ${min_rate}= | Set Variable | ${100000}
@@ -731,8 +731,8 @@
 | | And Apply startup configuration on all VPP DUTs
 | | When SNAT is initialized in a 3-node circular topology
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | 3-node-IPv4-SNAT-1u-15p | ${min_rate} | ${max_rate}
-| | ... | ${threshold} | ${perf_pdr_loss_acceptance}
+| | ... | ${binary_max} | profile-trex-stateless-eth-ip-udp-snat-1u15p
+| | ... | ${min_rate} | ${max_rate} | ${threshold} | ${perf_pdr_loss_acceptance}
 | | ... | ${perf_pdr_loss_acceptance_type}
 
 | tc23-IMIX-1t1c-ethip4-ip4base-snat-10u-15p-ndrdisc
