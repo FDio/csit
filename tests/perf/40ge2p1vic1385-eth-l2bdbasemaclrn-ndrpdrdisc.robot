@@ -24,7 +24,7 @@
 | ...
 | Test Setup | Performance test setup
 | Test Teardown | Performance test teardown | ${min_rate}pps | ${framesize}
-| ... | 3-node-bridge
+| ... | profile-trex-stateless-eth-ip-3-node-bridge
 | ...
 | Documentation | *RFC2544: Pkt throughput L2BD test cases*
 | ...
@@ -76,8 +76,8 @@
 | | And Apply startup configuration on all VPP DUTs
 | | And L2 bridge domain initialized in a 3-node circular topology
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | 3-node-bridge | ${min_rate} | ${max_rate}
-| | ... | ${threshold}
+| | ... | ${binary_max} | profile-trex-stateless-eth-ip-3-node-bridge
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc02-64B-1t1c-eth-l2bdbasemaclrn-pdrdisc
 | | [Documentation]
@@ -100,8 +100,8 @@
 | | And Apply startup configuration on all VPP DUTs
 | | And L2 bridge domain initialized in a 3-node circular topology
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | 3-node-bridge | ${min_rate} | ${max_rate}
-| | ... | ${threshold} | ${perf_pdr_loss_acceptance}
+| | ... | ${binary_max} | profile-trex-stateless-eth-ip-3-node-bridge
+| | ... | ${min_rate} | ${max_rate} | ${threshold} | ${perf_pdr_loss_acceptance}
 | | ... | ${perf_pdr_loss_acceptance_type}
 
 | tc03-1518B-1t1c-eth-l2bdbasemaclrn-ndrdisc
@@ -125,8 +125,8 @@
 | | And Apply startup configuration on all VPP DUTs
 | | And L2 bridge domain initialized in a 3-node circular topology
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | 3-node-bridge | ${min_rate} | ${max_rate}
-| | ... | ${threshold}
+| | ... | ${binary_max} | profile-trex-stateless-eth-ip-3-node-bridge
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc05-9000B-1t1c-eth-l2bdbasemaclrn-ndrdisc
 | | [Documentation]
@@ -149,8 +149,8 @@
 | | And Apply startup configuration on all VPP DUTs
 | | And L2 bridge domain initialized in a 3-node circular topology
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | 3-node-bridge | ${min_rate} | ${max_rate}
-| | ... | ${threshold}
+| | ... | ${binary_max} | profile-trex-stateless-eth-ip-3-node-bridge
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc07-64B-2t2c-eth-l2bdbasemaclrn-ndrdisc
 | | [Documentation]
@@ -173,8 +173,8 @@
 | | And Apply startup configuration on all VPP DUTs
 | | And L2 bridge domain initialized in a 3-node circular topology
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | 3-node-bridge | ${min_rate} | ${max_rate}
-| | ... | ${threshold}
+| | ... | ${binary_max} | profile-trex-stateless-eth-ip-3-node-bridge
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc08-64B-2t2c-eth-l2bdbasemaclrn-pdrdisc
 | | [Documentation]
@@ -197,8 +197,8 @@
 | | And Apply startup configuration on all VPP DUTs
 | | And L2 bridge domain initialized in a 3-node circular topology
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | 3-node-bridge | ${min_rate} | ${max_rate}
-| | ... | ${threshold} | ${perf_pdr_loss_acceptance}
+| | ... | ${binary_max} | profile-trex-stateless-eth-ip-3-node-bridge
+| | ... | ${min_rate} | ${max_rate} | ${threshold} | ${perf_pdr_loss_acceptance}
 | | ... | ${perf_pdr_loss_acceptance_type}
 
 | tc09-1518B-2t2c-eth-l2bdbasemaclrn-ndrdisc
@@ -222,8 +222,8 @@
 | | And Apply startup configuration on all VPP DUTs
 | | And L2 bridge domain initialized in a 3-node circular topology
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | 3-node-bridge | ${min_rate} | ${max_rate}
-| | ... | ${threshold}
+| | ... | ${binary_max} | profile-trex-stateless-eth-ip-3-node-bridge
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc13-64B-4t4c-eth-l2bdbasemaclrn-ndrdisc
 | | [Documentation]
@@ -246,8 +246,8 @@
 | | And Apply startup configuration on all VPP DUTs
 | | And L2 bridge domain initialized in a 3-node circular topology
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | 3-node-bridge | ${min_rate} | ${max_rate}
-| | ... | ${threshold}
+| | ... | ${binary_max} | profile-trex-stateless-eth-ip-3-node-bridge
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc15-1518B-4t4c-eth-l2bdbasemaclrn-ndrdisc
 | | [Documentation]
@@ -270,8 +270,8 @@
 | | And Apply startup configuration on all VPP DUTs
 | | And L2 bridge domain initialized in a 3-node circular topology
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | 3-node-bridge | ${min_rate} | ${max_rate}
-| | ... | ${threshold}
+| | ... | ${binary_max} | profile-trex-stateless-eth-ip-3-node-bridge
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc19-IMIX-1t1c-eth-l2bdbasemaclrn-ndrdisc
 | | [Documentation]
@@ -295,8 +295,8 @@
 | | And Apply startup configuration on all VPP DUTs
 | | And L2 bridge domain initialized in a 3-node circular topology
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | 3-node-bridge | ${min_rate} | ${max_rate}
-| | ... | ${threshold}
+| | ... | ${binary_max} | profile-trex-stateless-eth-ip-3-node-bridge
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc20-IMIX-2t2c-eth-l2bdbasemaclrn-ndrdisc
 | | [Documentation]
@@ -320,8 +320,8 @@
 | | And Apply startup configuration on all VPP DUTs
 | | And L2 bridge domain initialized in a 3-node circular topology
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | 3-node-bridge | ${min_rate} | ${max_rate}
-| | ... | ${threshold}
+| | ... | ${binary_max} | profile-trex-stateless-eth-ip-3-node-bridge
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc21-IMIX-4t4c-eth-l2bdbasemaclrn-ndrdisc
 | | [Documentation]
@@ -345,5 +345,5 @@
 | | And Apply startup configuration on all VPP DUTs
 | | And L2 bridge domain initialized in a 3-node circular topology
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | 3-node-bridge | ${min_rate} | ${max_rate}
-| | ... | ${threshold}
+| | ... | ${binary_max} | profile-trex-stateless-eth-ip-3-node-bridge
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
