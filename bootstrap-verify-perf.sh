@@ -311,6 +311,7 @@ case "$TEST_TAG" in
         # run full performance test suite and exit on fail
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+              -i TEST \
               -s "tests.perf" \
               tests/
         RETURN_STATUS=$(echo $?)
