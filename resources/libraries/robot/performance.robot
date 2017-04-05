@@ -13,6 +13,7 @@
 
 *** Settings ***
 | Library | Collections
+| Library | String
 | Library | resources.libraries.python.topology.Topology
 | Library | resources.libraries.python.NodePath
 | Library | resources.libraries.python.DpdkUtil
@@ -20,6 +21,7 @@
 | Library | resources.libraries.python.VhostUser
 | Library | resources.libraries.python.TrafficGenerator
 | Library | resources.libraries.python.TrafficGenerator.TGDropRateSearchImpl
+| Library | resources.libraries.python.Classify
 | Resource | resources/libraries/robot/default.robot
 | Resource | resources/libraries/robot/interfaces.robot
 | Resource | resources/libraries/robot/counters.robot
@@ -908,6 +910,83 @@
 | | Configure L2BD forwarding | ${dut1} | ${dut1_if1} | ${dut1_if2}
 | | Configure L2BD forwarding | ${dut2} | ${dut2_if1} | ${dut2_if2}
 | | All Vpp Interfaces Ready Wait | ${nodes}
+
+| Configure IPv4 ACLs
+| | [Documentation]
+| | ... | TODO
+| | ...
+| | [Arguments] | ${dut} | ${dut_if1}=${None} | ${dut_if2}=${None}
+| | ${src_ip_int} = | Evaluate
+| | ... | int(ipaddress.ip_address(unicode($src_ip_start))) - $ip_step
+| | ... | modules=ipaddress
+| | ${dst_ip_int} = | Evaluate
+| | ... | int(ipaddress.ip_address(unicode($dst_ip_start))) - $ip_step
+| | ... | modules=ipaddress
+| | ${ip_limit} = | Set Variable | 255.255.255.255
+| | ${ip_limit_int} = | Evaluate
+| | ... | int(ipaddress.ip_address(unicode($ip_limit))) | modules=ipaddress
+| | ${sport}= | Evaluate | $sport_start - $port_step
+| | ${dport}= | Evaluate | $dport_start - $port_step
+| | ${port_limit}= | Set Variable | ${65535}
+| | ${acl}= | Set Variable | ipv4 permit
+| | :FOR | ${nr} | IN RANGE | 0 | ${no_hit_aces_number}
+| |      | ${src_ip_int} = | Evaluate | $src_ip_int + $ip_step
+| |      | ${dst_ip_int} = | Evaluate | $dst_ip_int + $ip_step
+| |      | ${sport}= | Evaluate | $sport + $port_step
+| |      | ${dport}= | Evaluate | $dport + $port_step
+| |      | ${ipv4_limit_reached}= | Set Variable If
+| |      | ... | $src_ip_int > $ip_limit_int or $src_ip_int > $ip_limit_int
+| |      | ... | ${True}
+| |      | ${udp_limit_reached}= | Set Variable If
+| |      | ... | $sport > $port_limit or $dport > $port_limit | ${True}
+| |      | Run Keyword If | $ipv4_limit_reached is True | Log
+| |      | ... | Can't do more iterations - IPv4 address limit has been reached.
+| |      | ... | WARN
+| |      | Run Keyword If | $udp_limit_reached is True | Log
+| |      | ... | Can't do more iterations - UDP port limit has been reached.
+| |      | ... | WARN
+| |      | ${src_ip} = | Run Keyword If | $ipv4_limit_reached is True
+| |      | ... | Set Variable | ${ip_limit}
+| |      | ... | ELSE | Evaluate | str(ipaddress.ip_address($src_ip_int))
+| |      | ... | modules=ipaddress
+| |      | ${dst_ip} = | Run Keyword If | $ipv4_limit_reached is True
+| |      | ... | Set Variable | ${ip_limit}
+| |      | ... | ELSE | Evaluate | str(ipaddress.ip_address($dst_ip_int))
+| |      | ... | modules=ipaddress
+| |      | ${sport}= | Set Variable If | ${sport} > $port_limit | $port_limit
+| |      | ... | ${sport}
+| |      | ${dport}= | Set Variable If | ${dport} > $port_limit | $port_limit
+| |      | ... | ${dport}
+| |      | ${acl}= | Catenate | ${acl} | src ${src_ip}/32 dst ${dst_ip}/32
+| |      | ... | sport ${sport} | dport ${dport},
+| |      | Exit For Loop If
+| |      | ... | $ipv4_limit_reached is True or $udp_limit_reached is True
+| | ${acl}= | Catenate | ${acl}
+| | ...     | ipv4 ${acl_action} src ${trex_stream1_subnet},
+| | ...     | ipv4 ${acl_action} src ${trex_stream2_subnet}
+| | Add Replace Acl Multi Entries | ${dut} | rules=${acl}
+| | @{acl_list}= | Create List | ${0}
+| | Run Keyword If | 'input' in $acl_apply_type and $dut_if1 is not None
+| | ... | Set Acl List For Interface | ${dut} | ${dut_if1} | input | ${acl_list}
+| | Run Keyword If | 'input' in $acl_apply_type and $dut_if2 is not None
+| | ... | Set Acl List For Interface | ${dut} | ${dut_if2} | input | ${acl_list}
+| | Run Keyword If | 'output' in $acl_apply_type and $dut_if1 is not None
+| | ... | Set Acl List For Interface | ${dut} | ${dut_if1} | output
+| | ... | ${acl_list}
+| | Run Keyword If | 'output' in $acl_apply_type and $dut_if2 is not None
+| | ... | Set Acl List For Interface | ${dut} | ${dut_if2} | output
+| | ... | ${acl_list}
+
+| Initialize L2 bridge domain with IPv4 ACLs on DUT1 in 3-node circular topology
+| | [Documentation]
+| | ... | Setup L2 DB topology by adding two interfaces on DUT1 into BD
+| | ... | that is created automatically with index 1. Learning is enabled.
+| | ... | Interfaces are brought up.
+| | ...
+| | Configure L2BD forwarding | ${dut1} | ${dut1_if1} | ${dut1_if2}
+| | Configure L2XC | ${dut2} | ${dut2_if1} | ${dut2_if2}
+| | All Vpp Interfaces Ready Wait | ${nodes}
+| | Configure IPv4 ACLs | ${dut1} | ${dut1_if1} | ${dut1_if2}
 
 | Initialize L2 bridge domains with Vhost-User in 3-node circular topology
 | | [Documentation]
