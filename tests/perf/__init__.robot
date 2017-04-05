@@ -29,12 +29,16 @@
 | | ... | Setup suite Variables. Variables are used across performance testing.
 | | ...
 | | ... | _NOTE:_ This KW sets following suite variables:
-| | ... | - perf_trial_duration - Duration of traffic run [s].
+| | ... | - perf_trial_duration - Duration of traffic run [s]
 | | ... | - perf_pdr_loss_acceptance - Loss acceptance treshold
 | | ... | - perf_pdr_loss_acceptance_type - Loss acceptance treshold type
 | | ... | - perf_vm_image - Guest VM disk image
+| | ... | - perf_qemu_bin - Path to QEMU binary
+| | ... | - perf_qemu_qsz - QEMU virtio queue size
 | | ...
 | | Set Global Variable | ${perf_trial_duration} | 10
 | | Set Global Variable | ${perf_pdr_loss_acceptance} | 0.5
 | | Set Global Variable | ${perf_pdr_loss_acceptance_type} | percentage
 | | Set Global Variable | ${perf_vm_image} | /var/lib/vm/csit-nested-1.6.img
+| | Set Global Variable | ${perf_qemu_bin} | /usr/bin/qemu-system-x86_64
+| | Set Global Variable | ${perf_qemu_qsz} | 256

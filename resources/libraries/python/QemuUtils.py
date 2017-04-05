@@ -26,10 +26,10 @@ from resources.libraries.python.topology import NodeType
 class QemuUtils(object):
     """QEMU utilities."""
 
-    __QEMU_BIN = '/usr/bin/qemu-system-x86_64'
-
     def __init__(self, qemu_id=1):
         self._qemu_id = qemu_id
+        # Path to QEMU binary
+        self._qemu_bin = '/usr/bin/qemu-system-x86_64'
         # QEMU Machine Protocol socket
         self._qmp_sock = '/tmp/qmp{0}.sock'.format(self._qemu_id)
         # QEMU Guest Agent socket
@@ -69,8 +69,16 @@ class QemuUtils(object):
         self._node = None
         self._socks = [self._qmp_sock, self._qga_sock]
 
+    def qemu_set_bin(self, path):
+        """Set binary path for QEMU.
+
+        :param path: Absolute path in filesystem.
+        :type path: str
+        """
+        self._qemu_bin = path
+
     def qemu_set_smp(self, cpus, cores, threads, sockets):
-        """Set SMP option for QEMU
+        """Set SMP option for QEMU.
 
         :param cpus: Number of CPUs.
         :param cores: Number of CPU cores on one socket.
