@@ -375,6 +375,36 @@ class TrafficGenerator(object):
                                                     _p0, _p1, _async, _latency,
                                                     warmup_time),
                 timeout=int(duration)+60)
+        elif traffic_type in ["3-node-bridge-src-100"]:
+            (ret, stdout, stderr) = ssh.exec_command(
+                "sh -c '{0}/resources/tools/t-rex/t-rex-stateless.py "
+                "--duration={1} -r {2} -s {3} "
+                "--p{4}_src_start_ip 10.0.0.2 "
+                "--p{4}_src_end_ip 10.0.0.101 "
+                "--p{4}_dst_start_ip 20.0.0.1 "
+                "--p{5}_src_start_ip 20.0.0.2 "
+                "--p{5}_src_end_ip 20.0.0.101 "
+                "--p{5}_dst_start_ip 10.0.0.1 "
+                "{6} {7} --warmup_time={8}'".format(Constants.REMOTE_FW_DIR,
+                                                    duration, rate, framesize,
+                                                    _p0, _p1, _async, _latency,
+                                                    warmup_time),
+                timeout=int(duration)+60)
+        elif traffic_type in ["3-node-bridge-src-100k"]:
+            (ret, stdout, stderr) = ssh.exec_command(
+                "sh -c '{0}/resources/tools/t-rex/t-rex-stateless.py "
+                "--duration={1} -r {2} -s {3} "
+                "--p{4}_src_start_ip 10.0.0.2 "
+                "--p{4}_src_end_ip 10.1.134.161 "
+                "--p{4}_dst_start_ip 20.0.0.1 "
+                "--p{5}_src_start_ip 20.0.0.2 "
+                "--p{5}_src_end_ip 20.1.134.161 "
+                "--p{5}_dst_start_ip 10.0.0.1 "
+                "{6} {7} --warmup_time={8}'".format(Constants.REMOTE_FW_DIR,
+                                                    duration, rate, framesize,
+                                                    _p0, _p1, _async, _latency,
+                                                    warmup_time),
+                timeout=int(duration)+60)
         elif traffic_type in ["3-node-IPv4"]:
             (ret, stdout, stderr) = ssh.exec_command(
                 "sh -c '{0}/resources/tools/t-rex/t-rex-stateless.py "

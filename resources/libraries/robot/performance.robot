@@ -20,6 +20,7 @@
 | Library | resources.libraries.python.VhostUser
 | Library | resources.libraries.python.TrafficGenerator
 | Library | resources.libraries.python.TrafficGenerator.TGDropRateSearchImpl
+| Library | resources.libraries.python.Classify
 | Resource | resources/libraries/robot/default.robot
 | Resource | resources/libraries/robot/interfaces.robot
 | Resource | resources/libraries/robot/counters.robot
@@ -908,6 +909,32 @@
 | | Vpp l2bd forwarding setup | ${dut1} | ${dut1_if1} | ${dut1_if2}
 | | Vpp l2bd forwarding setup | ${dut2} | ${dut2_if1} | ${dut2_if2}
 | | All Vpp Interfaces Ready Wait | ${nodes}
+
+| L2 bridge domain with '${acl_entries}' permit + 2 '${action}' entries in one '${type}' ACL initialized in a 3-node circular topology
+| | [Documentation]
+| | ... | Setup L2 DB topology by adding two interfaces on DUT1 into BD
+| | ... | that is created automatically with index 1. Learning is enabled.
+| | ... | Interfaces are brought up.
+| | ...
+| | Vpp l2bd forwarding setup | ${dut1} | ${dut1_if1} | ${dut1_if2}
+| | L2 setup xconnect on DUT | ${dut2} | ${dut2_if1} | ${dut2_if2}
+| | All Vpp Interfaces Ready Wait | ${nodes}
+| | ${acl}= | Set Variable | ipv4 permit
+| | :FOR | ${nr} | IN RANGE | 1 | ${acl_entries}+1
+| |      | ${acl}= | Catenate | ${acl} | src 30.30.30.${nr}/32
+| |      | ... | dst 40.40.40.${nr}/32 | sport ${nr} | dport ${nr},
+| | ${acl}= | Catenate | ${acl}
+| | ...     | ipv4 ${action} src 10.10.10.0/24, ipv4 ${action} src 20.20.20.0/24
+| | Add Replace Acl Multi Entries | ${dut1} | rules=${acl}
+| | @{acl_list}= | Create List | ${0}
+| | Run Keyword If | 'input' in $type | Set Acl List For Interface | ${dut1}
+| | ... | ${dut1_if1} | input | ${acl_list}
+| | Run Keyword If | 'input' in $type | Set Acl List For Interface | ${dut1}
+| | ... | ${dut1_if2} | input | ${acl_list}
+| | Run Keyword If | 'output' in $type | Set Acl List For Interface | ${dut1}
+| | ... | ${dut1_if1} | output | ${acl_list}
+| | Run Keyword If | 'output' in $type | Set Acl List For Interface | ${dut1}
+| | ... | ${dut1_if2} | output | ${acl_list}
 
 | L2 bridge domains with Vhost-User initialized in a 3-node circular topology
 | | [Documentation]
