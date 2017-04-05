@@ -1,0 +1,487 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a3291f1_74a0519f",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-04-05T09:40:06Z",
+      "side": 1,
+      "message": "CSIT-529 HC Test: SLAAC\n\nadd some documentation here",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 5
+      },
+      "revId": "70f183eda518e71345c59e4cb44e2fca9dc996e2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_d486e512",
+        "filename": "resources/libraries/python/honeycomb/Routing.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-04-05T09:40:06Z",
+      "side": 1,
+      "message": "stateless address autoconfiguration, or SLAAC",
+      "range": {
+        "startLine": 206,
+        "startChar": 21,
+        "endLine": 206,
+        "endChar": 42
+      },
+      "revId": "70f183eda518e71345c59e4cb44e2fca9dc996e2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_148d8d31",
+        "filename": "resources/libraries/python/honeycomb/Routing.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 206,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-04-05T09:40:06Z",
+      "side": 1,
+      "message": "remove whitespace",
+      "range": {
+        "startLine": 206,
+        "startChar": 71,
+        "endLine": 206,
+        "endChar": 72
+      },
+      "revId": "70f183eda518e71345c59e4cb44e2fca9dc996e2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_b47d991e",
+        "filename": "resources/libraries/python/honeycomb/Routing.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-04-05T09:40:06Z",
+      "side": 1,
+      "message": "same as above",
+      "range": {
+        "startLine": 209,
+        "startChar": 49,
+        "endLine": 209,
+        "endChar": 70
+      },
+      "revId": "70f183eda518e71345c59e4cb44e2fca9dc996e2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_7477313b",
+        "filename": "resources/libraries/python/honeycomb/Routing.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-04-05T09:40:06Z",
+      "side": 1,
+      "message": "config_slaac\n\nthis has nothing to do with routing tables",
+      "range": {
+        "startLine": 227,
+        "startChar": 23,
+        "endLine": 227,
+        "endChar": 49
+      },
+      "revId": "70f183eda518e71345c59e4cb44e2fca9dc996e2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_d49dc55a",
+        "filename": "resources/libraries/python/honeycomb/Routing.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 239,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-04-05T09:40:06Z",
+      "side": 1,
+      "message": "config_slaac, same as above",
+      "range": {
+        "startLine": 239,
+        "startChar": 23,
+        "endLine": 239,
+        "endChar": 50
+      },
+      "revId": "70f183eda518e71345c59e4cb44e2fca9dc996e2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_f4b1e1e1",
+        "filename": "resources/libraries/python/honeycomb/Routing.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-04-05T09:40:06Z",
+      "side": 1,
+      "message": "config_slaac",
+      "range": {
+        "startLine": 263,
+        "startChar": 38,
+        "endLine": 263,
+        "endChar": 64
+      },
+      "revId": "70f183eda518e71345c59e4cb44e2fca9dc996e2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_d4b4a5d2",
+        "filename": "resources/libraries/python/honeycomb/Routing.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 268,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-04-05T09:40:06Z",
+      "side": 1,
+      "message": "SLAAC",
+      "range": {
+        "startLine": 267,
+        "startChar": 67,
+        "endLine": 268,
+        "endChar": 32
+      },
+      "revId": "70f183eda518e71345c59e4cb44e2fca9dc996e2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_94c61d48",
+        "filename": "resources/libraries/python/honeycomb/Routing.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-04-05T09:40:06Z",
+      "side": 1,
+      "message": "do not commit disabled code",
+      "range": {
+        "startLine": 270,
+        "startChar": 12,
+        "endLine": 270,
+        "endChar": 61
+      },
+      "revId": "70f183eda518e71345c59e4cb44e2fca9dc996e2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_34df690f",
+        "filename": "resources/libraries/robot/honeycomb/slaac.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-04-05T09:40:06Z",
+      "side": 1,
+      "message": "unused import",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 36
+      },
+      "revId": "70f183eda518e71345c59e4cb44e2fca9dc996e2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_54c0b529",
+        "filename": "resources/libraries/robot/honeycomb/slaac.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-04-05T09:40:06Z",
+      "side": 1,
+      "message": "unused imports",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 44
+      },
+      "revId": "70f183eda518e71345c59e4cb44e2fca9dc996e2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_d4eb85ae",
+        "filename": "resources/libraries/robot/honeycomb/slaac.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-04-05T09:40:06Z",
+      "side": 1,
+      "message": "Name of an interface on the node. \n\ncheck in entire file",
+      "range": {
+        "startLine": 33,
+        "startChar": 24,
+        "endLine": 33,
+        "endChar": 33
+      },
+      "revId": "70f183eda518e71345c59e4cb44e2fca9dc996e2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_94cdfd5f",
+        "filename": "resources/libraries/robot/honeycomb/slaac.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-04-05T09:40:06Z",
+      "side": 1,
+      "message": "IP address autoconfiguration, or SLAAC",
+      "range": {
+        "startLine": 34,
+        "startChar": 58,
+        "endLine": 34,
+        "endChar": 60
+      },
+      "revId": "70f183eda518e71345c59e4cb44e2fca9dc996e2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_f4e8c1b5",
+        "filename": "resources/libraries/robot/honeycomb/slaac.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-04-05T09:40:06Z",
+      "side": 1,
+      "message": "Get interface SLAAC oper data",
+      "range": {
+        "startLine": 77,
+        "startChar": 15,
+        "endLine": 77,
+        "endChar": 38
+      },
+      "revId": "70f183eda518e71345c59e4cb44e2fca9dc996e2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_14e22dd5",
+        "filename": "resources/libraries/robot/honeycomb/slaac.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-04-05T09:40:06Z",
+      "side": 1,
+      "message": "you are verifying SPAN mirrored interfaces here, not SLAAC configuration",
+      "range": {
+        "startLine": 79,
+        "startChar": 17,
+        "endLine": 79,
+        "endChar": 73
+      },
+      "revId": "70f183eda518e71345c59e4cb44e2fca9dc996e2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_74dcd112",
+        "filename": "resources/test_data/honeycomb/slaac_variables.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-04-05T09:40:06Z",
+      "side": 1,
+      "message": "add documentation",
+      "range": {
+        "startLine": 17,
+        "startChar": 4,
+        "endLine": 17,
+        "endChar": 20
+      },
+      "revId": "70f183eda518e71345c59e4cb44e2fca9dc996e2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_d402656e",
+        "filename": "resources/test_data/honeycomb/slaac_variables.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-04-05T09:40:06Z",
+      "side": 1,
+      "message": "where are _02 and _03?",
+      "range": {
+        "startLine": 30,
+        "startChar": 20,
+        "endLine": 30,
+        "endChar": 22
+      },
+      "revId": "70f183eda518e71345c59e4cb44e2fca9dc996e2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_34064987",
+        "filename": "tests/func/honeycomb/mgmt-cfg-slaac-apihc-func.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-04-05T09:40:06Z",
+      "side": 1,
+      "message": "do not commit the test tag",
+      "range": {
+        "startLine": 26,
+        "startChar": 47,
+        "endLine": 26,
+        "endChar": 60
+      },
+      "revId": "70f183eda518e71345c59e4cb44e2fca9dc996e2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_54d795ed",
+        "filename": "tests/func/honeycomb/mgmt-cfg-slaac-apihc-func.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-04-05T09:40:06Z",
+      "side": 1,
+      "message": "remove trailing whitespace\n\ncheck in entire file",
+      "range": {
+        "startLine": 36,
+        "startChar": 70,
+        "endLine": 36,
+        "endChar": 71
+      },
+      "revId": "70f183eda518e71345c59e4cb44e2fca9dc996e2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_f4ffa165",
+        "filename": "tests/func/honeycomb/mgmt-cfg-slaac-apihc-func.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-04-05T09:40:06Z",
+      "side": 1,
+      "message": "duplicate test case name, the name should be unique and identify what is being tested",
+      "range": {
+        "startLine": 50,
+        "startChar": 8,
+        "endLine": 50,
+        "endChar": 37
+      },
+      "revId": "70f183eda518e71345c59e4cb44e2fca9dc996e2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_14090d95",
+        "filename": "tests/func/honeycomb/mgmt-cfg-slaac-apihc-func.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-04-05T09:40:06Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 62,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 22
+      },
+      "revId": "70f183eda518e71345c59e4cb44e2fca9dc996e2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
