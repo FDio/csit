@@ -16,6 +16,7 @@
 from robot.api import logger
 
 from resources.libraries.python.VatExecutor import VatExecutor, VatTerminal
+from resources.libraries.python.topology import Topology
 
 
 class Classify(object):
@@ -387,10 +388,163 @@ class Classify(object):
         :param node: VPP node.
         :type node: dict
         """
-
         try:
             VatExecutor.cmd_from_template(
                 node, "acl_plugin/acl_interface_dump.vat", json_out=False)
         except RuntimeError:
             # Fails to parse response, but it is still logged
             pass
+
+    @staticmethod
+    def set_acl_list_for_interface(node, interface, acl_type, acl_idx=None):
+        """Set the list of input or output ACLs applied to the interface. It
+        unapplies any previously applied ACLs.
+
+        :param node: VPP node to set ACL on.
+        :param interface: Interface name or sw_if_index.
+        :param acl_type: Type of ACL(s) - input or output.
+        :param acl_idx: Index(ies) of ACLs to be applied on the interface.
+        :type node: dict
+        :type interface: str or int
+        :type acl_type: str
+        :type acl_idx: list
+        :raises RuntimeError: If unable to set ACL list for the interface.
+        """
+        sw_if_index = Topology.get_interface_sw_index(node, interface) \
+            if isinstance(interface, basestring) else interface
+
+        acl_list = acl_type + ' ' + ' '.join(str(idx) for idx in acl_idx) \
+            if acl_idx else acl_type
+
+        try:
+            with VatTerminal(node, json_param=False) as vat:
+                vat.vat_terminal_exec_cmd_from_template(
+                    "acl_plugin/acl_interface_set_acl_list.vat",
+                    interface=sw_if_index, acl_list=acl_list)
+        except:
+            raise RuntimeError("Setting of ACL list for interface {0} failed "
+                               "on node {1}".format(interface, node['host']))
+
+    @staticmethod
+    def add_replace_acl(node, acl_idx=None, ip_ver="ipv4", action="permit",
+                        src=None, dst=None, sport=None, dport=None, proto=None,
+                        tcpflg_val=None, tcpflg_mask=None):
+        """Add a new ACL or replace the existing one. To replace an existing
+        ACL, pass the ID of this ACL.
+
+        :param node: VPP node to set ACL on.
+        :param acl_idx: ID of ACL. (Optional)
+        :param ip_ver: IP version. (Optional)
+        :param action: ACL action. (Optional)
+        :param src: Source IP in format IP/plen. (Optional)
+        :param dst: Destination IP in format IP/plen. (Optional)
+        :param sport: Source port or ICMP4/6 type - range format X-Y allowed.
+         (Optional)
+        :param dport: Destination port or ICMP4/6 code - range format X-Y
+         allowed. (Optional)
+        :param proto: L4 protocol (http://www.iana.org/assignments/protocol-
+         numbers/protocol-numbers.xhtml). (Optional)
+        :param tcpflg_val: TCP flags value. (Optional)
+        :param tcpflg_mask: TCP flags mask. (Optional)
+        :type node: dict
+        :type acl_idx: int
+        :type ip_ver: str
+        :type action: str
+        :type src: str
+        :type dst: str
+        :type sport: str or int
+        :type dport: str or int
+        :type proto: int
+        :type tcpflg_val: int
+        :type tcpflg_mask: int
+        :raises RuntimeError: If unable to add or replace ACL.
+        """
+        acl_idx = '{0}'.format(acl_idx) if acl_idx else ''
+
+        src = 'src {0}'.format(src) if src else ''
+
+        dst = 'dst {0}'.format(dst) if dst else ''
+
+        sport = 'sport {0}'.format(sport) if sport else ''
+
+        dport = 'dport {0}'.format(dport) if dport else ''
+
+        proto = 'proto {0}'.format(proto) if proto else ''
+
+        tcpflags = 'tcpflags {0} {1}'.format(tcpflg_val, tcpflg_mask) \
+            if tcpflg_val and tcpflg_mask else ''
+
+        try:
+            with VatTerminal(node, json_param=False) as vat:
+                vat.vat_terminal_exec_cmd_from_template(
+                    "acl_plugin/acl_add_replace.vat", acl_idx=acl_idx,
+                    ip_ver=ip_ver, action=action, src=src, dst=dst, sport=sport,
+                    dport=dport, proto=proto, tcpflags=tcpflags)
+        except:
+            raise RuntimeError("Adding or replacing of ACL failed on "
+                               "node {0}".format(node['host']))
+
+    @staticmethod
+    def add_replace_acl_multi_entries(node, acl_idx=None, rules=None):
+        """Add a new ACL or replace the existing one. To replace an existing
+        ACL, pass the ID of this ACL.
+
+        :param node: VPP node to set ACL on.
+        :param acl_idx: ID of ACL. (Optional)
+        :param rules: Required rules. (Optional)
+        :type node: dict
+        :type acl_idx: int
+        :type rules: str
+        :raises RuntimeError: If unable to add or replace ACL.
+        """
+        acl_idx = '{0}'.format(acl_idx) if acl_idx else ''
+
+        rules = '{0}'.format(rules) if rules else ''
+
+        try:
+            with VatTerminal(node, json_param=False) as vat:
+                vat.vat_terminal_exec_cmd_from_template(
+                    "acl_plugin/acl_add_replace.vat", acl_idx=acl_idx,
+                    ip_ver=rules, action='', src='', dst='', sport='',
+                    dport='', proto='', tcpflags='')
+        except:
+            raise RuntimeError("Adding or replacing of ACL failed on "
+                               "node {0}".format(node['host']))
+
+    @staticmethod
+    def delete_acl(node, idx):
+        """Delete required ACL.
+
+        :param node: VPP node to delete ACL on.
+        :param idx: Index of ACL to be deleted.
+        :type node: dict
+        :type idx: int or str
+        :raises RuntimeError: If unable to delete ACL.
+        """
+        try:
+            with VatTerminal(node, json_param=False) as vat:
+                vat.vat_terminal_exec_cmd_from_template(
+                    "acl_plugin/acl_delete.vat", idx=idx)
+        except:
+            raise RuntimeError("Deletion of ACL failed on node {0}".
+                               format(node['host']))
+
+    @staticmethod
+    def cli_show_acl(node, acl_idx=None):
+        """Show ACLs.
+
+        :param node: VPP node to show ACL on.
+        :param acl_idx: Index of ACL to be shown.
+        :type node: dict
+        :type acl_idx: int or str
+        :raises RuntimeError: If unable to delete ACL.
+        """
+        acl_idx = '{0}'.format(acl_idx) if acl_idx else ''
+
+        try:
+            with VatTerminal(node, json_param=False) as vat:
+                vat.vat_terminal_exec_cmd_from_template(
+                    "acl_plugin/show_acl.vat", idx=acl_idx)
+        except:
+            raise RuntimeError("Failed to show ACL on node {0}".
+                               format(node['host']))
