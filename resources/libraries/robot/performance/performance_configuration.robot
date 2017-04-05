@@ -13,6 +13,7 @@
 
 *** Settings ***
 | Library | Collections
+| Library | String
 | Library | resources.libraries.python.topology.Topology
 | Library | resources.libraries.python.NodePath
 | Library | resources.libraries.python.DpdkUtil
@@ -733,6 +734,111 @@
 | | Configure L2BD forwarding | ${dut1} | ${dut1_if1} | ${dut1_if2}
 | | Configure L2BD forwarding | ${dut2} | ${dut2_if1} | ${dut2_if2}
 | | All Vpp Interfaces Ready Wait | ${nodes}
+
+| Configure IPv4 ACLs
+| | [Documentation]
+| | ... | Configure ACL with required number of not-hitting permit ACEs plus two
+| | ... | hitting ACEs for both traffic directions.
+| | ...
+| | ... | _NOTE:_ This KW uses following test case variables:
+| | ... | - ${src_ip_start} - Source IP address start. Type: string.
+| | ... | - ${dst_ip_start} - Destination IP address start. Type: string.
+| | ... | - ${ip_step} - IP address step. Type: string.
+| | ... | - ${sport_start} - Source port number start. Type: string.
+| | ... | - ${dport_start} - Destination port number start. Type: string.
+| | ... | - ${port_step} - Port number step. Type: string.
+| | ... | - ${no_hit_aces_number} - Number of not-hitting ACEs to be configured.
+| | ... | Type: integer
+| | ... | - ${acl_apply_type} - To what path aplly the ACL - input or output.
+| | ... | Type: string
+| | ... | - ${acl_action} - Action for the rule - deny, permit, permit+reflect.
+| | ... | Type: stringe
+| | ... | - ${trex_stream1_subnet} - IP subnet used by T-Rex in direction 0->1.
+| | ... | Type: string
+| | ... | - ${trex_stream2_subnet} - IP subnet used by T-Rex in direction 1->0.
+| | ... | Type: string
+| | ...
+| | [Arguments] | ${dut} | ${dut_if1}=${None} | ${dut_if2}=${None}
+| | ${src_ip_int} = | Evaluate
+| | ... | int(ipaddress.ip_address(unicode($src_ip_start))) - $ip_step
+| | ... | modules=ipaddress
+| | ${dst_ip_int} = | Evaluate
+| | ... | int(ipaddress.ip_address(unicode($dst_ip_start))) - $ip_step
+| | ... | modules=ipaddress
+| | ${ip_limit} = | Set Variable | 255.255.255.255
+| | ${ip_limit_int} = | Evaluate
+| | ... | int(ipaddress.ip_address(unicode($ip_limit))) | modules=ipaddress
+| | ${sport}= | Evaluate | $sport_start - $port_step
+| | ${dport}= | Evaluate | $dport_start - $port_step
+| | ${port_limit}= | Set Variable | ${65535}
+| | ${acl}= | Set Variable | ipv4 permit
+| | :FOR | ${nr} | IN RANGE | 0 | ${no_hit_aces_number}
+| |      | ${src_ip_int} = | Evaluate | $src_ip_int + $ip_step
+| |      | ${dst_ip_int} = | Evaluate | $dst_ip_int + $ip_step
+| |      | ${sport}= | Evaluate | $sport + $port_step
+| |      | ${dport}= | Evaluate | $dport + $port_step
+| |      | ${ipv4_limit_reached}= | Set Variable If
+| |      | ... | $src_ip_int > $ip_limit_int or $src_ip_int > $ip_limit_int
+| |      | ... | ${True}
+| |      | ${udp_limit_reached}= | Set Variable If
+| |      | ... | $sport > $port_limit or $dport > $port_limit | ${True}
+| |      | Run Keyword If | $ipv4_limit_reached is True | Log
+| |      | ... | Can't do more iterations - IPv4 address limit has been reached.
+| |      | ... | WARN
+| |      | Run Keyword If | $udp_limit_reached is True | Log
+| |      | ... | Can't do more iterations - UDP port limit has been reached.
+| |      | ... | WARN
+| |      | ${src_ip} = | Run Keyword If | $ipv4_limit_reached is True
+| |      | ... | Set Variable | ${ip_limit}
+| |      | ... | ELSE | Evaluate | str(ipaddress.ip_address($src_ip_int))
+| |      | ... | modules=ipaddress
+| |      | ${dst_ip} = | Run Keyword If | $ipv4_limit_reached is True
+| |      | ... | Set Variable | ${ip_limit}
+| |      | ... | ELSE | Evaluate | str(ipaddress.ip_address($dst_ip_int))
+| |      | ... | modules=ipaddress
+| |      | ${sport}= | Set Variable If | ${sport} > $port_limit | $port_limit
+| |      | ... | ${sport}
+| |      | ${dport}= | Set Variable If | ${dport} > $port_limit | $port_limit
+| |      | ... | ${dport}
+| |      | ${acl}= | Catenate | ${acl} | src ${src_ip}/32 dst ${dst_ip}/32
+| |      | ... | sport ${sport} | dport ${dport},
+| |      | Exit For Loop If
+| |      | ... | $ipv4_limit_reached is True or $udp_limit_reached is True
+| | ${acl}= | Catenate | ${acl}
+| | ...     | ipv4 ${acl_action} src ${trex_stream1_subnet},
+| | ...     | ipv4 ${acl_action} src ${trex_stream2_subnet}
+| | Add Replace Acl Multi Entries | ${dut} | rules=${acl}
+| | @{acl_list}= | Create List | ${0}
+| | Run Keyword If | 'input' in $acl_apply_type and $dut_if1 is not None
+| | ... | Set Acl List For Interface | ${dut} | ${dut_if1} | input | ${acl_list}
+| | Run Keyword If | 'input' in $acl_apply_type and $dut_if2 is not None
+| | ... | Set Acl List For Interface | ${dut} | ${dut_if2} | input | ${acl_list}
+| | Run Keyword If | 'output' in $acl_apply_type and $dut_if1 is not None
+| | ... | Set Acl List For Interface | ${dut} | ${dut_if1} | output
+| | ... | ${acl_list}
+| | Run Keyword If | 'output' in $acl_apply_type and $dut_if2 is not None
+| | ... | Set Acl List For Interface | ${dut} | ${dut_if2} | output
+| | ... | ${acl_list}
+
+| Initialize L2 bridge domain with IPv4 ACLs on DUT1 in 3-node circular topology
+| | [Documentation]
+| | ... | Setup L2BD topology by adding two interfaces on DUT1 into bridge
+| | ... | domain that is created automatically with index 1. Learning is
+| | ... | enabled. Interfaces are brought up. Apply required ACL rules to DUT1
+| | ... | interfaces.
+| | ...
+| | ... | _NOTE:_ This KW uses following test case variables:
+| | ... | - ${dut1} - DUT1 node.
+| | ... | - ${dut2} - DUT2 node.
+| | ... | - ${dut1_if1} - DUT1 interface towards TG.
+| | ... | - ${dut1_if2} - DUT1 interface towards DUT2.
+| | ... | - ${dut2_if1} - DUT2 interface towards DUT1.
+| | ... | - ${dut2_if2} - DUT2 interface towards TG.
+| | ...
+| | Configure L2BD forwarding | ${dut1} | ${dut1_if1} | ${dut1_if2}
+| | Configure L2XC | ${dut2} | ${dut2_if1} | ${dut2_if2}
+| | All Vpp Interfaces Ready Wait | ${nodes}
+| | Configure IPv4 ACLs | ${dut1} | ${dut1_if1} | ${dut1_if2}
 
 | Initialize L2 bridge domains with Vhost-User in 3-node circular topology
 | | [Documentation]
