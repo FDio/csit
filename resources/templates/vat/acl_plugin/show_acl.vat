@@ -1,0 +1,1 @@
+exec show acl-plugin {idx}
