@@ -13,6 +13,7 @@
 
 *** Settings ***
 | Library | Collections
+| Library | String
 | Library | resources.libraries.python.topology.Topology
 | Library | resources.libraries.python.NodePath
 | Library | resources.libraries.python.DpdkUtil
@@ -20,6 +21,7 @@
 | Library | resources.libraries.python.VhostUser
 | Library | resources.libraries.python.TrafficGenerator
 | Library | resources.libraries.python.TrafficGenerator.TGDropRateSearchImpl
+| Library | resources.libraries.python.Classify
 | Resource | resources/libraries/robot/default.robot
 | Resource | resources/libraries/robot/interfaces.robot
 | Resource | resources/libraries/robot/counters.robot
@@ -908,6 +910,91 @@
 | | Configure L2BD forwarding | ${dut1} | ${dut1_if1} | ${dut1_if2}
 | | Configure L2BD forwarding | ${dut2} | ${dut2_if1} | ${dut2_if2}
 | | All Vpp Interfaces Ready Wait | ${nodes}
+
+| Configure IPv4 ACLs
+| | [Documentation]
+| | ... | TODO
+| | ...
+| | [Arguments] | ${dut} | ${dut_if1}=${None} | ${dut_if2}=${None}
+| | @{src_ip}= | Split String | ${src_ip_start} | .
+| | @{dst_ip}= | Split String | ${src_ip_start} | .
+| | :FOR | ${i} | IN RANGE | 0 | 4
+| |      | ${src_ip_value}= | Convert To Integer | ${src_ip}[i]
+| |      | ${dst_ip_value}= | Convert To Integer | ${dst_ip}[i]
+| |      | Set List Value | ${src_ip} | ${i} |  ${src_ip_value}
+| |      | Set List Value | ${dst_ip} | ${i} |  ${dst_ip_value}
+| | ${ip0_step}= | Evaluate | $ip_step/256**3
+| | ${ip0_remain}= | Evaluate | $ip_step%256**3
+| | ${ip1_step}= | Evaluate | $ip0_remain/256**2
+| | ${ip1_remain}= | Evaluate | $ip0_remain%256**2
+| | ${ip2_step}= | Evaluate | $ip1_remain/256
+| | ${ip3_step}= | Evaluate | $ip1_remain%256
+| | ${sport}= | Evaluate | $sport_start-$port_step
+| | ${dport}= | Evaluate | $dport_start-$port_step
+| | ${acl}= | Set Variable | ipv4 permit
+| | :FOR | ${nr} | IN RANGE | 0 | ${acls_number}
+| |      | @{src_ip}[3]= | Evaluate
+| |      | ... | ($src_ip[3]+$ip3_step)%256+($src_ip[2]+$ip2_step)/256
+| |      | ${src_ip}[2]= | Evaluate
+| |      | ... | ($src_ip[2]+$ip2_step)%256+($src_ip[1]+$ip1_step)/256
+| |      | ${src_ip}[1]= | Evaluate
+| |      | ... | ($src_ip[1]+$ip1_step)%256+($src_ip[0]+$ip0_step)/256
+| |      | ${src_ip}[0]= | Evaluate | ($src_ip[0]+$ip0_step)%256
+| |      | ${dst_ip}[3]= | Evaluate
+| |      | ... | ($dst_ip[3]+$ip3_step)%256+($dst_ip[2]+$ip2_step)/256
+| |      | ${dst_ip}[2]= | Evaluate
+| |      | ... | ($dst_ip[2]+$ip2_step)%256+($dst_ip[1]+$ip1_step)/256
+| |      | ${dst_ip}[1]= | Evaluate
+| |      | ... | ($dst_ip[1]+$ip1_step)%256+($dst_ip[0]+$ip0_step)/256
+| |      | ${dst_ip}[0]= | Evaluate | ($dst_ip[0]+$ip0_step)%256
+| |      | ${sport}= | Evaluate | $sport+$port_step
+| |      | ${dport}= | Evaluate | $dport+$port_step
+| |      | ${ipv4_limit_reached}= | Set Variable If
+| |      | ... | ${src_ip}[3]>255 or ${dst_ip}[3]>255 | ${True}
+| |      | ${udp_limit_reached}= | Set Variable If
+| |      | ... | $sport>65535 or $dport>65535 | ${True}
+| |      | Run Keyword If | $ipv4_limit_reached is True | Log
+| |      | ... | Can't do more iterations - IPv4 address limit has been reached.
+| |      | ... | WARN
+| |      | Run Keyword If | $udp_limit_reached is True | Log
+| |      | ... | Can't do more iterations - UDP port limit has been reached.
+| |      | ... | WARN
+| |      | ${src_ip3}= | Set Variable If | ${src_ip3}>255 | 255 | ${src_ip3}
+| |      | ${dst_ip3}= | Set Variable If | ${dst_ip3}>255 | 255 | ${dst_ip3}
+| |      | ${sport}= | Set Variable If | ${sport}>65535 | 65535 | ${sport}
+| |      | ${dport}= | Set Variable If | ${dport}>65535 | 65535 | ${dport}
+| |      | ${acl}= | Catenate | ${acl}
+| |      | ... | src ${src_ip0}.${src_ip1}.${src_ip2}.${src_ip3}/32
+| |      | ... | dst ${dst_ip0}.${dst_ip1}.${dst_ip2}.${dst_ip3}/32
+| |      | ... | sport ${sport} | dport ${dport},
+| |      | Exit For Loop If
+| |      | ... | $ipv4_limit_reached is True or $udp_limit_reached is True
+| | ${acl}= | Catenate | ${acl}
+| | ...     | ipv4 ${acl_action} src 10.10.10.0/24,
+| | ...     | ipv4 ${acl_action} src 20.20.20.0/24
+| | Add Replace Acl Multi Entries | ${dut} | rules=${acl}
+| | @{acl_list}= | Create List | ${0}
+| | Run Keyword If | 'input' in $acl_apply_type and $dut_if1 is not None
+| | ... | Set Acl List For Interface | ${dut} | ${dut_if1} | input | ${acl_list}
+| | Run Keyword If | 'input' in $acl_apply_type and $dut_if2 is not None
+| | ... | Set Acl List For Interface | ${dut} | ${dut_if2} | input | ${acl_list}
+| | Run Keyword If | 'output' in $acl_apply_type and $dut_if1 is not None
+| | ... | Set Acl List For Interface | ${dut} | ${dut_if1} | output
+| | ... | ${acl_list}
+| | Run Keyword If | 'output' in $acl_apply_type and $dut_if2 is not None
+| | ... | Set Acl List For Interface | ${dut} | ${dut_if2} | output
+| | ... | ${acl_list}
+
+| Initialize L2 bridge domain with IPv4 ACLs on DUT1 in 3-node circular topology
+| | [Documentation]
+| | ... | Setup L2 DB topology by adding two interfaces on DUT1 into BD
+| | ... | that is created automatically with index 1. Learning is enabled.
+| | ... | Interfaces are brought up.
+| | ...
+| | Configure L2BD forwarding | ${dut1} | ${dut1_if1} | ${dut1_if2}
+| | Configure L2XC | ${dut2} | ${dut2_if1} | ${dut2_if2}
+| | All Vpp Interfaces Ready Wait | ${nodes}
+| | Configure IPv4 ACLs | ${dut1} | ${dut1_if1} | ${dut1_if2}
 
 | Initialize L2 bridge domains with Vhost-User in 3-node circular topology
 | | [Documentation]
