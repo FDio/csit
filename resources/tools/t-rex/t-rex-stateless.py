@@ -20,7 +20,7 @@ Requirements:
  - compiled and running T-REX process (eg. ./t-rex-64 -i -c 4)
  - trex_stl_lib.api library
 - Script must be executed on a node with T-REX instance
-- 2 interfaces must be configured in configuretion file /etc/trex_cfg.yaml
+- 2 interfaces must be configured in configuration file /etc/trex_cfg.yaml
 
 ##################### Example of /etc/trex_cfg.yaml ##########################
 - port_limit      : 2 # numbers of ports to use
@@ -36,7 +36,7 @@ Requirements:
 Functionality:
 1. Configure traffic on running T-REX instance
 2. Clear statistics on all ports
-3. Ctart traffic with specified duration
+3. Start traffic with specified duration
 4. Print statistics to stdout
 
 """
@@ -56,6 +56,7 @@ stream_table = {'IMIX_v4_1': [{'size': 64, 'pps': 28, 'isg':0},
                               {'size': 570, 'pps': 16, 'isg':0.1},
                               {'size': 1518, 'pps': 4, 'isg':0.2}]
                }
+
 
 def generate_payload(length):
     """Generate payload.
@@ -104,6 +105,7 @@ def get_start_end_ipv6(start_ip, end_ip):
 
     return base_p1, max_p1
 
+
 def create_streams_v46(base_pkt_a, base_pkt_b, vm1, vm2, frame_size):
     """Create STLStream streams
 
@@ -123,7 +125,7 @@ def create_streams_v46(base_pkt_a, base_pkt_b, vm1, vm2, frame_size):
 
     if type(frame_size) is int:
 
-        fsize_no_fcs = frame_size - 4 # no FCS
+        fsize_no_fcs = frame_size - 4  # no FCS
         pkt_a = STLPktBuilder(pkt=base_pkt_a/generate_payload(
             max(0, fsize_no_fcs-len(base_pkt_a))), vm=vm1)
         pkt_b = STLPktBuilder(pkt=base_pkt_b/generate_payload(
@@ -170,7 +172,8 @@ def create_streams_v46(base_pkt_a, base_pkt_b, vm1, vm2, frame_size):
     else:
         raise ValueError("Unknown frame_size type")
 
-    return (stream1, stream2, lat_stream1, lat_stream2)
+    return stream1, stream2, lat_stream1, lat_stream2
+
 
 
 def create_streams(traffic_options, frame_size=64):
@@ -394,6 +397,7 @@ def create_streams_v6(traffic_options, frame_size=78):
 
     return create_streams_v46(base_pkt_a, base_pkt_b, vm1, vm2, frame_size)
 
+
 def fmt_latency(lat_min, lat_avg, lat_max):
     """ Return formatted, rounded latency
 
@@ -421,6 +425,7 @@ def fmt_latency(lat_min, lat_avg, lat_max):
         t_max = int(-1)
 
     return "/".join(str(tmp) for tmp in (t_min, t_avg, t_max))
+
 
 def simple_burst(stream_a, stream_b, stream_lat_a, stream_lat_b, duration, rate,
                  warmup_time, async_start, latency):
@@ -459,7 +464,7 @@ def simple_burst(stream_a, stream_b, stream_lat_a, stream_lat_b, duration, rate,
 
     try:
         # turn this off if too many logs
-        #client.set_verbose("high")
+        # client.set_verbose("high")
 
         # connect to server
         client.connect()
@@ -475,11 +480,11 @@ def simple_burst(stream_a, stream_b, stream_lat_a, stream_lat_b, duration, rate,
                 client.add_streams(stream_lat_a, ports=[0])
                 client.add_streams(stream_lat_b, ports=[1])
             except:
-                #Disable latency if NIC does not support requested stream type
+                # Disable latency if NIC does not support requested stream type
                 print "##### FAILED to add latency streams #####"
                 latency = False
 
-        #warmup phase
+        # warmup phase
         if warmup_time > 0:
             # clear the stats before injecting
             client.clear_stats()
@@ -532,13 +537,13 @@ def simple_burst(stream_a, stream_b, stream_lat_a, stream_lat_b, duration, rate,
             lost_b = stats[1]["opackets"] - stats[0]["ipackets"]
 
             if latency:
-                lat_a = fmt_latency(\
-                    str(stats["latency"][0]["latency"]["total_min"]),\
-                    str(stats["latency"][0]["latency"]["average"]),\
+                lat_a = fmt_latency(
+                    str(stats["latency"][0]["latency"]["total_min"]),
+                    str(stats["latency"][0]["latency"]["average"]),
                     str(stats["latency"][0]["latency"]["total_max"]))
-                lat_b = fmt_latency(\
-                    str(stats["latency"][1]["latency"]["total_min"]),\
-                    str(stats["latency"][1]["latency"]["average"]),\
+                lat_b = fmt_latency(
+                    str(stats["latency"][1]["latency"]["total_min"]),
+                    str(stats["latency"][1]["latency"]["average"]),
                     str(stats["latency"][1]["latency"]["total_max"]))
 
             total_sent = stats[0]["opackets"] + stats[1]["opackets"]
@@ -558,8 +563,9 @@ def simple_burst(stream_a, stream_b, stream_lat_a, stream_lat_b, duration, rate,
             client.disconnect()
             print "rate={0}, totalReceived={1}, totalSent={2}, "\
                 "frameLoss={3}, latencyStream0(usec)={4}, "\
-                "latencyStream1(usec)={5}".format(rate, total_rcvd,\
-                total_sent, lost_a+lost_b, lat_a, lat_b)
+                "latencyStream1(usec)={5}".format(rate, total_rcvd,
+                                                  total_sent, lost_a+lost_b,
+                                                  lat_a, lat_b)
 
 
 def print_error(msg):
