@@ -137,6 +137,8 @@
 | | ... | [Ver] Send simple TCP and UDP packets from one TG interface\
 | | ... | to the other, using different IPv6 IPs. Receive all packets except\
 | | ... | those with IPs in the filtered ranges and UDP protocol payload.
+| | [Tags] | EXPECTED_FAILING
+# VPP-687: IPv6 next-header does not match for UDP values
 | | [Teardown] | Run Keywords
 | | ... | Show Packet Trace on All DUTs | ${nodes} | AND
 | | ... | Read plugin-ACL configuration from VAT | ${node} | AND
@@ -291,6 +293,8 @@
 | | ... | [Ver] Send ICMPv6 packets from one TG interface\
 | | ... | to the other, using different codes and types. Receive all packets\
 | | ... | except those with the filtered type and code.
+| | [Tags] | EXPECTED_FAILING
+# VPP-687: IPv6 next-header does not match for UDP values
 | | [Teardown] | Run Keywords
 | | ... | Show Packet Trace on All DUTs | ${nodes} | AND
 | | ... | Read plugin-ACL configuration from VAT | ${node} | AND
@@ -357,8 +361,8 @@
 | | ... | TCP | ${src_port} | ${dst_port}
 | | And Send TCP Or UDP Packet | ${tg_node}
 | | ... | ${classify_dst} | ${classify_src}
-| | ... | ${tg_to_dut_if2} | ${dut_to_tg_if2_mac}
-| | ... | ${tg_to_dut_if1} | ${tg_to_dut_if2_mac}
+| | ... | ${tg_to_dut_if2} | ${tg_to_dut_if2_mac}
+| | ... | ${tg_to_dut_if1} | ${dut_to_tg_if2_mac}
 | | ... | TCP | ${dst_port} | ${src_port}
 | | And Send TCP Or UDP Packet | ${tg_node}
 | | ... | ${classify_src} | ${classify_dst}
@@ -412,6 +416,8 @@
 | | ... | [Ver] Send simple TCP and UDP packets from one TG interface\
 | | ... | to the other, using different IPv6 IPs. Receive all packets except\
 | | ... | those with IPs in the filtered ranges and UDP protocol payload.
+| | [Tags] | EXPECTED_FAILING
+# VPP-687: IPv6 next-header does not match for UDP values
 | | Given Path for 2-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | And Import Variables | resources/test_data/honeycomb/plugin_acl.py
@@ -561,6 +567,8 @@
 | | ... | [Ver] Send ICMPv6 packets from one TG interface\
 | | ... | to the other, using different codes and types. Receive all packets\
 | | ... | except those with the filtered type and code.
+| | [Tags] | EXPECTED_FAILING
+# VPP-687: IPv6 next-header does not match for UDP values
 | | Given Path for 2-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | And Import Variables | resources/test_data/honeycomb/plugin_acl.py
@@ -641,8 +649,8 @@
 | | ... | TCP | ${src_port} | ${dst_port}
 | | And Send TCP Or UDP Packet | ${tg_node}
 | | ... | ${classify_dst} | ${classify_src}
-| | ... | ${tg_to_dut_if2} | ${dut_to_tg_if2_mac}
-| | ... | ${tg_to_dut_if1} | ${tg_to_dut_if2_mac}
+| | ... | ${tg_to_dut_if2} | ${tg_to_dut_if2_mac}
+| | ... | ${tg_to_dut_if1} | ${dut_to_tg_if2_mac}
 | | ... | TCP | ${dst_port} | ${src_port}
 | | And Send TCP Or UDP Packet | ${tg_node}
 | | ... | ${classify_src} | ${classify_dst}
