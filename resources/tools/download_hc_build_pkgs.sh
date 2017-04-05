@@ -45,13 +45,13 @@ fi
 REPO="fd.io.${STREAM}.${OS}"
 
 for ART in ${VPP_ARTIFACTS}; do
-    for PAC in $PACKAGE; do
+    for PAC in ${PACKAGE}; do
         curl "${URL}?r=${REPO}&g=${VPP_GROUP}&a=${ART}&p=${PAC}&v=${VER}&c=${CLASS}" -O -J || exit
     done
 done
 
 for ART in ${NSH_ARTIFACTS}; do
-    for PAC in $PACKAGE; do
+    for PAC in ${PACKAGE}; do
         curl "${URL}?r=${REPO}&g=${NSH_GROUP}&a=${ART}&p=${PAC}&v=${VER}&c=${CLASS}" -O -J || exit
     done
 done
@@ -63,3 +63,20 @@ done
 for MD5FILE in *.md5; do
     md5sum -c ${MD5FILE} || exit
 done
+
+# installing vpp-api-java places jvpp jars into /usr/share/java
+# install jvpp jars into maven repo, so that maven picks them up when building hc2vpp
+current_dir=`pwd`
+cd /usr/share/java
+
+for item in jvpp*.jar; do
+    # Example filename: jvpp-registry-17.01-20161206.125556-1.jar
+    # ArtifactId = jvpp-registry
+    # Version = 17.01
+    basefile=$(basename -s .jar "$item")
+    artifactId=$(echo "$basefile" | cut -d '-' -f 1-2)
+    version=$(echo "$basefile" | cut -d '-' -f 3)
+    mvn install:install-file -Dfile=${item} -DgroupId=io.fd.vpp -DartifactId=${artifactId} -Dversion=${version} -Dpackaging=jar -Dmaven.repo.local=/tmp/r -Dorg.ops4j.pax.url.mvn.localRepository=/tmp/r
+done
+
+cd current_dir
