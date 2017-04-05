@@ -1,0 +1,1 @@
+acl_interface_set_acl_list sw_if_index {interface} {input_acl} {output_acl}
