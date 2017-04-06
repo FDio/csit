@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3a3291f1_408fd0cc",
+        "filename": "resources/libraries/python/SNATUtil.py",
+        "patchSetId": 63
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-04-06T11:45:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a3291f1_e0423c0f",
+      "range": {
+        "startLine": 57,
+        "startChar": 35,
+        "endLine": 57,
+        "endChar": 40
+      },
+      "revId": "8c7b656a34cacb0d2448903da278d94bd2b1ae2c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a3291f1_80d93885",
         "filename": "resources/libraries/robot/performance.robot",
         "patchSetId": 63
@@ -36,6 +60,30 @@
       "writtenOn": "2017-04-06T08:58:03Z",
       "side": 1,
       "message": "Can we follow naming logic as all other KW?\n\nin a 3-node circular topology",
+      "range": {
+        "startLine": 2245,
+        "startChar": 22,
+        "endLine": 2245,
+        "endChar": 72
+      },
+      "revId": "8c7b656a34cacb0d2448903da278d94bd2b1ae2c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_60940ce2",
+        "filename": "resources/libraries/robot/performance.robot",
+        "patchSetId": 63
+      },
+      "lineNbr": 2245,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-04-06T11:45:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a3291f1_80d93885",
       "range": {
         "startLine": 2245,
         "startChar": 22,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "3a3291f1_00c1c8e3",
+        "filename": "resources/libraries/robot/snat.robot",
+        "patchSetId": 63
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-04-06T11:45:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a3291f1_0079c892",
+      "range": {
+        "startLine": 45,
+        "startChar": 33,
+        "endLine": 45,
+        "endChar": 38
+      },
+      "revId": "8c7b656a34cacb0d2448903da278d94bd2b1ae2c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a3291f1_a069d4bf",
         "filename": "resources/libraries/robot/snat.robot",
         "patchSetId": 63
@@ -82,6 +154,30 @@
       "writtenOn": "2017-04-06T08:58:03Z",
       "side": 1,
       "message": "DUT node to set SNAT workers on?",
+      "range": {
+        "startLine": 63,
+        "startChar": 19,
+        "endLine": 63,
+        "endChar": 47
+      },
+      "revId": "8c7b656a34cacb0d2448903da278d94bd2b1ae2c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_a0b1d490",
+        "filename": "resources/libraries/robot/snat.robot",
+        "patchSetId": 63
+      },
+      "lineNbr": 63,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-04-06T11:45:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a3291f1_a069d4bf",
       "range": {
         "startLine": 63,
         "startChar": 19,
@@ -117,6 +213,30 @@
     },
     {
       "key": {
+        "uuid": "3a3291f1_2065e41d",
+        "filename": "resources/libraries/robot/snat.robot",
+        "patchSetId": 63
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-04-06T11:45:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a3291f1_e06fdcc3",
+      "range": {
+        "startLine": 83,
+        "startChar": 13,
+        "endLine": 83,
+        "endChar": 30
+      },
+      "revId": "8c7b656a34cacb0d2448903da278d94bd2b1ae2c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a3291f1_80ab78d5",
         "filename": "resources/libraries/robot/snat.robot",
         "patchSetId": 63
@@ -128,6 +248,30 @@
       "writtenOn": "2017-04-06T08:58:03Z",
       "side": 1,
       "message": "DUT node to set SNAT workers on?",
+      "range": {
+        "startLine": 93,
+        "startChar": 19,
+        "endLine": 93,
+        "endChar": 48
+      },
+      "revId": "8c7b656a34cacb0d2448903da278d94bd2b1ae2c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_0068a8f3",
+        "filename": "resources/libraries/robot/snat.robot",
+        "patchSetId": 63
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-04-06T11:45:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a3291f1_80ab78d5",
       "range": {
         "startLine": 93,
         "startChar": 19,
@@ -163,6 +307,30 @@
     },
     {
       "key": {
+        "uuid": "3a3291f1_e06ebc00",
+        "filename": "resources/libraries/robot/snat.robot",
+        "patchSetId": 63
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-04-06T11:45:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a3291f1_00878862",
+      "range": {
+        "startLine": 108,
+        "startChar": 19,
+        "endLine": 108,
+        "endChar": 48
+      },
+      "revId": "8c7b656a34cacb0d2448903da278d94bd2b1ae2c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a3291f1_a097948f",
         "filename": "resources/libraries/robot/snat.robot",
         "patchSetId": 63
@@ -174,6 +342,30 @@
       "writtenOn": "2017-04-06T08:58:03Z",
       "side": 1,
       "message": "DUT node to set SNAT workers on?",
+      "range": {
+        "startLine": 125,
+        "startChar": 19,
+        "endLine": 125,
+        "endChar": 48
+      },
+      "revId": "8c7b656a34cacb0d2448903da278d94bd2b1ae2c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_c07180e1",
+        "filename": "resources/libraries/robot/snat.robot",
+        "patchSetId": 63
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-04-06T11:45:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a3291f1_a097948f",
       "range": {
         "startLine": 125,
         "startChar": 19,
@@ -203,6 +395,24 @@
     },
     {
       "key": {
+        "uuid": "3a3291f1_004f8893",
+        "filename": "tests/perf/10ge2p1x520-ethip4-ip4base-snat-ndrpdrdisc.robot",
+        "patchSetId": 63
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-04-06T11:45:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a3291f1_00a668c1",
+      "revId": "8c7b656a34cacb0d2448903da278d94bd2b1ae2c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a3291f1_40ed90ee",
         "filename": "tests/perf/10ge2p1x520-ethip4-ip4base-snat-ndrpdrdisc.robot",
         "patchSetId": 63
@@ -214,6 +424,24 @@
       "writtenOn": "2017-04-06T08:58:03Z",
       "side": 1,
       "message": "+ snat config ag. 1p-1u",
+      "revId": "8c7b656a34cacb0d2448903da278d94bd2b1ae2c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_6082cc95",
+        "filename": "tests/perf/10ge2p1x520-ethip4-ip4base-snat-ndrpdrdisc.robot",
+        "patchSetId": 63
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-04-06T11:45:18Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a3291f1_40ed90ee",
       "revId": "8c7b656a34cacb0d2448903da278d94bd2b1ae2c",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
