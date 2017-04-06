@@ -61,8 +61,6 @@
 | | ... | IP is in the configured range.
 | | [Teardown] | Run Keywords
 | | ... | Honeycomb removes proxyARP configuration | ${node}
-| | ... | AND | Honeycomb disables proxyARP on interface
-| | ... | ${node} | ${interface}
 | | ... | AND | Honeycomb sets interface state
 | | ... | ${dut_node} | ${dut_to_tg_if1} | down
 | | ... | AND | Honeycomb removes interface ipv4 addresses
