@@ -134,7 +134,7 @@ class ProxyARPKeywords(object):
         if status_code not in (HTTPCodes.OK, HTTPCodes.ACCEPTED):
             raise HoneycombError(
                 "Interface proxyARP configuration on node {0} was not"
-                " successful.".format(node))
+                " successful.".format(node["host"]))
 
     @staticmethod
     def get_proxyarp_interface_assignment(node, interface):
