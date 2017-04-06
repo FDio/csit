@@ -1,0 +1,326 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a3291f1_bd3fbdd5",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 94
+      },
+      "lineNbr": 175,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-04-06T07:46:02Z",
+      "side": 1,
+      "message": "returns",
+      "range": {
+        "startLine": 175,
+        "startChar": 9,
+        "endLine": 175,
+        "endChar": 15
+      },
+      "revId": "61f08a53b6ae381b15eebf225308b374d1f041d7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_5d07b91c",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 94
+      },
+      "lineNbr": 176,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-04-06T07:46:02Z",
+      "side": 1,
+      "message": ":raises RuntimeError: If QAT is not initialized or failed to initialize.\nCheck everywhere",
+      "range": {
+        "startLine": 176,
+        "startChar": 8,
+        "endLine": 176,
+        "endChar": 79
+      },
+      "revId": "61f08a53b6ae381b15eebf225308b374d1f041d7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_9d2641cd",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 94
+      },
+      "lineNbr": 215,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-04-06T07:46:02Z",
+      "side": 1,
+      "message": "returns",
+      "range": {
+        "startLine": 215,
+        "startChar": 9,
+        "endLine": 215,
+        "endChar": 15
+      },
+      "revId": "61f08a53b6ae381b15eebf225308b374d1f041d7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_7d2155b3",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 94
+      },
+      "lineNbr": 245,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-04-06T07:46:02Z",
+      "side": 1,
+      "message": "returns",
+      "range": {
+        "startLine": 245,
+        "startChar": 9,
+        "endLine": 245,
+        "endChar": 15
+      },
+      "revId": "61f08a53b6ae381b15eebf225308b374d1f041d7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_5d30d900",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 94
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-04-06T07:46:02Z",
+      "side": 1,
+      "message": "returns",
+      "range": {
+        "startLine": 270,
+        "startChar": 9,
+        "endLine": 270,
+        "endChar": 15
+      },
+      "revId": "61f08a53b6ae381b15eebf225308b374d1f041d7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_3d2bcd95",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 94
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-04-06T07:46:02Z",
+      "side": 1,
+      "message": "returns",
+      "range": {
+        "startLine": 296,
+        "startChar": 9,
+        "endLine": 296,
+        "endChar": 15
+      },
+      "revId": "61f08a53b6ae381b15eebf225308b374d1f041d7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_1d1a517d",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 94
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-04-06T07:46:02Z",
+      "side": 1,
+      "message": "returns",
+      "range": {
+        "startLine": 322,
+        "startChar": 9,
+        "endLine": 322,
+        "endChar": 15
+      },
+      "revId": "61f08a53b6ae381b15eebf225308b374d1f041d7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_e00a3c20",
+        "filename": "resources/libraries/python/VatExecutor.py",
+        "patchSetId": 94
+      },
+      "lineNbr": 137,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-04-06T07:46:02Z",
+      "side": 1,
+      "message": ":rtype:",
+      "range": {
+        "startLine": 137,
+        "startChar": 8,
+        "endLine": 137,
+        "endChar": 14
+      },
+      "revId": "61f08a53b6ae381b15eebf225308b374d1f041d7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_e0211ca0",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 94
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-04-06T07:46:02Z",
+      "side": 1,
+      "message": "not needed",
+      "range": {
+        "startLine": 263,
+        "startChar": 8,
+        "endLine": 263,
+        "endChar": 28
+      },
+      "revId": "61f08a53b6ae381b15eebf225308b374d1f041d7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_c024e0b0",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 94
+      },
+      "lineNbr": 270,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-04-06T07:46:02Z",
+      "side": 1,
+      "message": "not needed",
+      "range": {
+        "startLine": 270,
+        "startChar": 8,
+        "endLine": 270,
+        "endChar": 29
+      },
+      "revId": "61f08a53b6ae381b15eebf225308b374d1f041d7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_204f246d",
+        "filename": "resources/libraries/robot/default.robot",
+        "patchSetId": 94
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-04-06T07:46:02Z",
+      "side": 1,
+      "message": "${True}",
+      "range": {
+        "startLine": 93,
+        "startChar": 49,
+        "endLine": 93,
+        "endChar": 53
+      },
+      "revId": "61f08a53b6ae381b15eebf225308b374d1f041d7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_0052e812",
+        "filename": "resources/libraries/robot/default.robot",
+        "patchSetId": 94
+      },
+      "lineNbr": 111,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-04-06T07:46:02Z",
+      "side": 1,
+      "message": "${True}",
+      "range": {
+        "startLine": 111,
+        "startChar": 49,
+        "endLine": 111,
+        "endChar": 53
+      },
+      "revId": "61f08a53b6ae381b15eebf225308b374d1f041d7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_e058fc33",
+        "filename": "resources/libraries/robot/default.robot",
+        "patchSetId": 94
+      },
+      "lineNbr": 289,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-04-06T07:46:02Z",
+      "side": 1,
+      "message": "Type is missing.",
+      "range": {
+        "startLine": 289,
+        "startChar": 10,
+        "endLine": 289,
+        "endChar": 44
+      },
+      "revId": "61f08a53b6ae381b15eebf225308b374d1f041d7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_c05bc02c",
+        "filename": "resources/libraries/robot/default.robot",
+        "patchSetId": 94
+      },
+      "lineNbr": 293,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-04-06T07:46:02Z",
+      "side": 1,
+      "message": "Depending on \"Add Cryptodev Config\" it should be int, so ${4}",
+      "range": {
+        "startLine": 293,
+        "startChar": 42,
+        "endLine": 293,
+        "endChar": 43
+      },
+      "revId": "61f08a53b6ae381b15eebf225308b374d1f041d7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
