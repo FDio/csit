@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a3291f1_2ec03529",
+        "filename": "resources/test_data/honeycomb/slaac_variables.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-04-07T13:01:41Z",
+      "side": 1,
+      "message": "2017",
+      "range": {
+        "startLine": 1,
+        "startChar": 16,
+        "endLine": 1,
+        "endChar": 20
+      },
+      "revId": "afa2b0644887888a93ba91e3e800525274093b7a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_4ec5c13a",
+        "filename": "tests/func/honeycomb/mgmt-cfg-slaac-apihc-func.robot",
+        "patchSetId": 8
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-04-07T13:01:41Z",
+      "side": 1,
+      "message": "DUT retransmits RA on IPv6 enabled interface after a set interval\n\nto mirror CSIT equivalent test case in \ncsit/tests/func/ipv6/eth2p-ethip6-ip6base-ip6ra-func.robot",
+      "range": {
+        "startLine": 103,
+        "startChar": 8,
+        "endLine": 103,
+        "endChar": 70
+      },
+      "revId": "afa2b0644887888a93ba91e3e800525274093b7a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
