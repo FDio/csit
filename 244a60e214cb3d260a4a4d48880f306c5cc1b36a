@@ -1,0 +1,349 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a3291f1_a3b1de90",
+        "filename": "resources/libraries/robot/honeycomb/slaac.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-04-07T08:09:38Z",
+      "side": 1,
+      "message": "2017",
+      "range": {
+        "startLine": 1,
+        "startChar": 16,
+        "endLine": 1,
+        "endChar": 20
+      },
+      "revId": "244a60e214cb3d260a4a4d48880f306c5cc1b36a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_23be0e66",
+        "filename": "resources/libraries/robot/honeycomb/slaac.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-04-07T08:09:38Z",
+      "side": 1,
+      "message": "to configure SLAAC",
+      "range": {
+        "startLine": 26,
+        "startChar": 37,
+        "endLine": 26,
+        "endChar": 58
+      },
+      "revId": "244a60e214cb3d260a4a4d48880f306c5cc1b36a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_03c1d2e3",
+        "filename": "resources/libraries/robot/honeycomb/slaac.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-04-07T08:09:38Z",
+      "side": 1,
+      "message": "SLAAC",
+      "range": {
+        "startLine": 38,
+        "startChar": 32,
+        "endLine": 38,
+        "endChar": 41
+      },
+      "revId": "244a60e214cb3d260a4a4d48880f306c5cc1b36a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_e3b7e684",
+        "filename": "resources/libraries/robot/honeycomb/slaac.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-04-07T08:09:38Z",
+      "side": 1,
+      "message": "SLAAC with.",
+      "range": {
+        "startLine": 44,
+        "startChar": 55,
+        "endLine": 44,
+        "endChar": 60
+      },
+      "revId": "244a60e214cb3d260a4a4d48880f306c5cc1b36a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_c3baaa6d",
+        "filename": "resources/test_data/honeycomb/slaac_variables.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-04-07T08:09:38Z",
+      "side": 1,
+      "message": "2017",
+      "range": {
+        "startLine": 1,
+        "startChar": 16,
+        "endLine": 1,
+        "endChar": 20
+      },
+      "revId": "244a60e214cb3d260a4a4d48880f306c5cc1b36a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_837382e6",
+        "filename": "resources/test_data/honeycomb/slaac_variables.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-04-07T08:09:38Z",
+      "side": 1,
+      "message": "reduce number of cases to extreme values only,\naccording to YANG spec in: \n\nhc2vpp/routing/routing-api/src/main/yang/hc2vpp-ietf-ipv6-unicast-routing@2014-05-25.yang\n\nhc2vpp/routing/routing-api/src/main/yang/vpp-routing-ra.yang\n\nor see value ranges below",
+      "range": {
+        "startLine": 24,
+        "startChar": 4,
+        "endLine": 24,
+        "endChar": 14
+      },
+      "revId": "244a60e214cb3d260a4a4d48880f306c5cc1b36a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_43547a20",
+        "filename": "resources/test_data/honeycomb/slaac_variables.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-04-07T08:09:38Z",
+      "side": 1,
+      "message": "range 3 to 1350",
+      "range": {
+        "startLine": 29,
+        "startChar": 36,
+        "endLine": 29,
+        "endChar": 40
+      },
+      "revId": "244a60e214cb3d260a4a4d48880f306c5cc1b36a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_2333ae15",
+        "filename": "resources/test_data/honeycomb/slaac_variables.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-04-07T08:09:38Z",
+      "side": 1,
+      "message": "range 4 to 1800",
+      "range": {
+        "startLine": 30,
+        "startChar": 36,
+        "endLine": 30,
+        "endChar": 42
+      },
+      "revId": "244a60e214cb3d260a4a4d48880f306c5cc1b36a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_03367203",
+        "filename": "resources/test_data/honeycomb/slaac_variables.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-04-07T08:09:38Z",
+      "side": 1,
+      "message": "range 0 to 9000",
+      "range": {
+        "startLine": 31,
+        "startChar": 32,
+        "endLine": 31,
+        "endChar": 38
+      },
+      "revId": "244a60e214cb3d260a4a4d48880f306c5cc1b36a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_6382d695",
+        "filename": "resources/test_data/honeycomb/slaac_variables.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-04-07T08:09:38Z",
+      "side": 1,
+      "message": "range 1 to 3",
+      "range": {
+        "startLine": 33,
+        "startChar": 44,
+        "endLine": 33,
+        "endChar": 48
+      },
+      "revId": "244a60e214cb3d260a4a4d48880f306c5cc1b36a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_437d9ab0",
+        "filename": "resources/test_data/honeycomb/slaac_variables.py",
+        "patchSetId": 7
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-04-07T08:09:38Z",
+      "side": 1,
+      "message": "range 1 to 16",
+      "range": {
+        "startLine": 34,
+        "startChar": 47,
+        "endLine": 34,
+        "endChar": 51
+      },
+      "revId": "244a60e214cb3d260a4a4d48880f306c5cc1b36a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_83aca236",
+        "filename": "tests/func/honeycomb/mgmt-cfg-slaac-apihc-func.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-04-07T08:09:38Z",
+      "side": 1,
+      "message": "Suite Teardown | Restart Honeycomb and VPP | ${node}\n\nPersistence is now disabled by default.",
+      "range": {
+        "startLine": 25,
+        "startChar": 0,
+        "endLine": 27,
+        "endChar": 77
+      },
+      "revId": "244a60e214cb3d260a4a4d48880f306c5cc1b36a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_63abf61d",
+        "filename": "tests/func/honeycomb/mgmt-cfg-slaac-apihc-func.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-04-07T08:09:38Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 33,
+        "startChar": 37,
+        "endLine": 33,
+        "endChar": 54
+      },
+      "revId": "244a60e214cb3d260a4a4d48880f306c5cc1b36a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_2365ee1d",
+        "filename": "tests/func/honeycomb/mgmt-cfg-slaac-apihc-func.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-04-07T08:09:38Z",
+      "side": 1,
+      "message": "with suppress link layer disabled,\nwith sending RA packets disabled,\nwith max interval values,\nwith min interval values",
+      "range": {
+        "startLine": 52,
+        "startChar": 38,
+        "endLine": 52,
+        "endChar": 51
+      },
+      "revId": "244a60e214cb3d260a4a4d48880f306c5cc1b36a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_e33c86e4",
+        "filename": "tests/func/honeycomb/mgmt-cfg-slaac-apihc-func.robot",
+        "patchSetId": 7
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-04-07T08:09:38Z",
+      "side": 1,
+      "message": "line too long",
+      "range": {
+        "startLine": 128,
+        "startChar": 79,
+        "endLine": 128,
+        "endChar": 87
+      },
+      "revId": "244a60e214cb3d260a4a4d48880f306c5cc1b36a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
