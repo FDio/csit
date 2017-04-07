@@ -14,7 +14,8 @@ runcmd:
 - systemctl start rc-local
 - touch /tmp/before-sed
 - sed -i 's/^\s*PasswordAuthentication\s\+no/PasswordAuthentication yes/' /etc/ssh/sshd_config
-- echo "UseDNS no" &gt;&gt; /etc/ssh/sshd_config
+- sed -i 's/#UseDNS yes/UseDNS no/' /etc/ssh/sshd_config
+- sed -i 's/GSSAPIAuthentication yes/GSSAPIAuthentication no/' /etc/ssh/sshd_config
 - service ssh restart
 - service sshd restart
 - ln -s /sbin/lspci /usr/bin/lspci
@@ -90,7 +91,8 @@ nfs_server_common: $$NFS_SERVER_COMMON$$
 runcmd:
 - systemctl start rc-local
 - sed -i 's/^\s*PasswordAuthentication\s\+no/PasswordAuthentication yes/' /etc/ssh/sshd_config
-- echo "UseDNS no" &gt;&gt; /etc/ssh/sshd_config
+- sed -i 's/#UseDNS yes/UseDNS no/' /etc/ssh/sshd_config
+- sed -i 's/GSSAPIAuthentication yes/GSSAPIAuthentication no/' /etc/ssh/sshd_config
 - service ssh restart
 - service sshd restart
 - sed -i 's/no-pci//' /opt/cisco/vpe/etc/qn.conf
@@ -193,7 +195,8 @@ nfs_server_common: $$NFS_SERVER_COMMON$$
 runcmd:
 - systemctl start rc-local
 - sed -i 's/^\s*PasswordAuthentication\s\+no/PasswordAuthentication yes/' /etc/ssh/sshd_config
-- echo "UseDNS no" &gt;&gt; /etc/ssh/sshd_config
+- sed -i 's/#UseDNS yes/UseDNS no/' /etc/ssh/sshd_config
+- sed -i 's/GSSAPIAuthentication yes/GSSAPIAuthentication no/' /etc/ssh/sshd_config
 - service ssh restart
 - service sshd restart
 - sed -i 's/no-pci//' /opt/cisco/vpe/etc/qn.conf
