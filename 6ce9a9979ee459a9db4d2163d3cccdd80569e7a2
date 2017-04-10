@@ -2,6 +2,29 @@
   "comments": [
     {
       "key": {
+        "uuid": "3a3291f1_c99acb62",
+        "filename": "nsh_sfc_tests/sfc_scripts/install_sfc.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 580
+      },
+      "writtenOn": "2017-04-10T05:18:52Z",
+      "side": 1,
+      "message": "pls. chanage to git clone",
+      "range": {
+        "startLine": 7,
+        "startChar": 22,
+        "endLine": 7,
+        "endChar": 24
+      },
+      "revId": "6ce9a9979ee459a9db4d2163d3cccdd80569e7a2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a3291f1_2916eff1",
         "filename": "resources/traffic_scripts/send_tcp_for_classifier_test.py",
         "patchSetId": 2
