@@ -132,8 +132,7 @@ VPP_CLASSIFIER="-deb"
 if [ "${#}" -ne "0" ]; then
     arr=(${@})
     echo ${arr[0]}
-    # DPDK is not part of the vpp build
-    wget -q "${VPP_REPO_URL}/vpp-dpdk-dev/${DPDK_STABLE_VER}/vpp-dpdk-dev-${DPDK_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
+    # Download DPDK parts not included in dpdk plugin of vpp build
     wget -q "${VPP_REPO_URL}/vpp-dpdk-dkms/${DPDK_STABLE_VER}/vpp-dpdk-dkms-${DPDK_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
 else
     rm -f *.deb
@@ -141,7 +140,6 @@ else
     wget -q "${VPP_REPO_URL}/vpp/${VPP_STABLE_VER}/vpp-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
     wget -q "${VPP_REPO_URL}/vpp-dbg/${VPP_STABLE_VER}/vpp-dbg-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
     wget -q "${VPP_REPO_URL}/vpp-dev/${VPP_STABLE_VER}/vpp-dev-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
-    wget -q "${VPP_REPO_URL}/vpp-dpdk-dev/${DPDK_STABLE_VER}/vpp-dpdk-dev-${DPDK_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
     wget -q "${VPP_REPO_URL}/vpp-dpdk-dkms/${DPDK_STABLE_VER}/vpp-dpdk-dkms-${DPDK_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
     wget -q "${VPP_REPO_URL}/vpp-lib/${VPP_STABLE_VER}/vpp-lib-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
     wget -q "${VPP_REPO_URL}/vpp-plugins/${VPP_STABLE_VER}/vpp-plugins-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
