@@ -14,10 +14,6 @@
 *** Settings ***
 | Resource | resources/libraries/robot/performance.robot
 | Resource | resources/libraries/robot/lisp/lisp_static_adjacency.robot
-| Library | resources.libraries.python.IPv4Setup.Dut | ${nodes['DUT1']}
-| ... | WITH NAME | dut1_v4
-| Library | resources.libraries.python.IPv4Setup.Dut | ${nodes['DUT2']}
-| ... | WITH NAME | dut2_v4
 | Variables | resources/test_data/lisp/performance/lisp_static_adjacency.py
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDRDISC
@@ -59,7 +55,7 @@
 | | ... | port.
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start\
 | | ... | at 10GE linerate, step 100kpps.
-| | [Tags] | 1T1C | STHREAD | NDRDISC
+| | [Tags] | 1T1C | STHREAD | NDRDISC | THIS
 | | ${framesize}= | Set Variable | ${64}
 | | ${min_rate}= | Set Variable | ${100000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 8}
