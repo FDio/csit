@@ -1,0 +1,344 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a3291f1_2916eff1",
+        "filename": "resources/traffic_scripts/send_tcp_for_classifier_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 499
+      },
+      "writtenOn": "2017-04-10T02:02:19Z",
+      "side": 1,
+      "message": "Pls move common functions valid_ipv4/valid_ipv6 to a shared file.",
+      "revId": "6ce9a9979ee459a9db4d2163d3cccdd80569e7a2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_8973a37f",
+        "filename": "resources/traffic_scripts/send_vxlangpe_nsh_for_proxy_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 76,
+      "author": {
+        "id": 499
+      },
+      "writtenOn": "2017-04-10T02:02:19Z",
+      "side": 1,
+      "message": "Change the comment to \"No packet is received!\"",
+      "revId": "6ce9a9979ee459a9db4d2163d3cccdd80569e7a2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_696e3798",
+        "filename": "resources/traffic_scripts/send_vxlangpe_nsh_for_proxy_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 499
+      },
+      "writtenOn": "2017-04-10T02:02:19Z",
+      "side": 1,
+      "message": "\"Receive\" to \"Received\"",
+      "revId": "6ce9a9979ee459a9db4d2163d3cccdd80569e7a2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_496dbb97",
+        "filename": "resources/traffic_scripts/send_vxlangpe_nsh_for_proxy_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 499
+      },
+      "writtenOn": "2017-04-10T02:02:19Z",
+      "side": 1,
+      "message": "\"Not a IPv4 packet\"",
+      "revId": "6ce9a9979ee459a9db4d2163d3cccdd80569e7a2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_29682f86",
+        "filename": "resources/traffic_scripts/send_vxlangpe_nsh_for_proxy_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 499
+      },
+      "writtenOn": "2017-04-10T02:02:19Z",
+      "side": 1,
+      "message": "\"Not a UDP packet\"",
+      "revId": "6ce9a9979ee459a9db4d2163d3cccdd80569e7a2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_0907b3cb",
+        "filename": "resources/traffic_scripts/send_vxlangpe_nsh_for_proxy_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 499
+      },
+      "writtenOn": "2017-04-10T02:02:19Z",
+      "side": 1,
+      "message": "\"UDP dest port must be ...\"",
+      "revId": "6ce9a9979ee459a9db4d2163d3cccdd80569e7a2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_e90907de",
+        "filename": "resources/traffic_scripts/send_vxlangpe_nsh_for_proxy_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 499
+      },
+      "writtenOn": "2017-04-10T02:02:19Z",
+      "side": 1,
+      "message": "\"Unexpected VNI flag\"",
+      "revId": "6ce9a9979ee459a9db4d2163d3cccdd80569e7a2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_c9108b03",
+        "filename": "resources/traffic_scripts/send_vxlangpe_nsh_for_proxy_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 125,
+      "author": {
+        "id": 499
+      },
+      "writtenOn": "2017-04-10T02:02:19Z",
+      "side": 1,
+      "message": "Do you want to change \"1234\" and \"4567\" to macros?",
+      "revId": "6ce9a9979ee459a9db4d2163d3cccdd80569e7a2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_a913ff0b",
+        "filename": "resources/traffic_scripts/send_vxlangpe_nsh_for_sff_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 499
+      },
+      "writtenOn": "2017-04-10T02:02:19Z",
+      "side": 1,
+      "message": "Change constant to the macro pls",
+      "revId": "6ce9a9979ee459a9db4d2163d3cccdd80569e7a2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_89fa83bb",
+        "filename": "resources/traffic_scripts/send_vxlangpe_nsh_for_sff_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 113,
+      "author": {
+        "id": 499
+      },
+      "writtenOn": "2017-04-10T02:02:19Z",
+      "side": 1,
+      "message": "Change constant to the macro pls",
+      "revId": "6ce9a9979ee459a9db4d2163d3cccdd80569e7a2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_69f517ca",
+        "filename": "resources/traffic_scripts/send_vxlangpe_nsh_for_sff_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 499
+      },
+      "writtenOn": "2017-04-10T02:02:19Z",
+      "side": 1,
+      "message": "Change constant to the macro pls",
+      "revId": "6ce9a9979ee459a9db4d2163d3cccdd80569e7a2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_49049bbf",
+        "filename": "resources/traffic_scripts/send_vxlangpe_nsh_for_sff_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 499
+      },
+      "writtenOn": "2017-04-10T02:02:19Z",
+      "side": 1,
+      "message": "Change constant to the macro pls",
+      "revId": "6ce9a9979ee459a9db4d2163d3cccdd80569e7a2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_29ff0fac",
+        "filename": "resources/traffic_scripts/send_vxlangpe_nsh_for_sff_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 122,
+      "author": {
+        "id": 499
+      },
+      "writtenOn": "2017-04-10T02:02:19Z",
+      "side": 1,
+      "message": "Change constant to the macro pls",
+      "revId": "6ce9a9979ee459a9db4d2163d3cccdd80569e7a2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_092e9343",
+        "filename": "resources/traffic_scripts/send_vxlangpe_nsh_for_sff_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 499
+      },
+      "writtenOn": "2017-04-10T02:02:19Z",
+      "side": 1,
+      "message": "Change constant to the macro pls",
+      "revId": "6ce9a9979ee459a9db4d2163d3cccdd80569e7a2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_e930e79f",
+        "filename": "resources/traffic_scripts/send_vxlangpe_nsh_for_sff_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 499
+      },
+      "writtenOn": "2017-04-10T02:02:19Z",
+      "side": 1,
+      "message": "Change constant to the macro pls",
+      "revId": "6ce9a9979ee459a9db4d2163d3cccdd80569e7a2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_c9276b63",
+        "filename": "resources/traffic_scripts/send_vxlangpe_nsh_for_sff_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 140,
+      "author": {
+        "id": 499
+      },
+      "writtenOn": "2017-04-10T02:02:19Z",
+      "side": 1,
+      "message": "Change constant to the macro pls",
+      "revId": "6ce9a9979ee459a9db4d2163d3cccdd80569e7a2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_a92adf29",
+        "filename": "resources/traffic_scripts/send_vxlangpe_nsh_for_sff_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 144,
+      "author": {
+        "id": 499
+      },
+      "writtenOn": "2017-04-10T02:02:19Z",
+      "side": 1,
+      "message": "Change constant to the macro pls",
+      "revId": "6ce9a9979ee459a9db4d2163d3cccdd80569e7a2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_8921634f",
+        "filename": "resources/traffic_scripts/send_vxlangpe_nsh_for_sff_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 148,
+      "author": {
+        "id": 499
+      },
+      "writtenOn": "2017-04-10T02:02:19Z",
+      "side": 1,
+      "message": "Change constant to the macro pls",
+      "revId": "6ce9a9979ee459a9db4d2163d3cccdd80569e7a2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_691cf713",
+        "filename": "resources/traffic_scripts/send_vxlangpe_nsh_for_sff_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 499
+      },
+      "writtenOn": "2017-04-10T02:02:19Z",
+      "side": 1,
+      "message": "Change constant to the macro pls",
+      "revId": "6ce9a9979ee459a9db4d2163d3cccdd80569e7a2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_491b7b1b",
+        "filename": "resources/traffic_scripts/send_vxlangpe_nsh_for_sff_test.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 499
+      },
+      "writtenOn": "2017-04-10T02:02:19Z",
+      "side": 1,
+      "message": "Change constant to the macro pls",
+      "revId": "6ce9a9979ee459a9db4d2163d3cccdd80569e7a2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
