@@ -15,9 +15,11 @@
 set -x
 
 # Space separated list of available testbeds, described by topology files
-TOPOLOGIES="topologies/available/lf_testbed1.yaml \
-            topologies/available/lf_testbed2.yaml \
-            topologies/available/lf_testbed3.yaml"
+#TOPOLOGIES="topologies/available/lf_testbed1.yaml \
+#            topologies/available/lf_testbed2.yaml \
+#            topologies/available/lf_testbed3.yaml"
+
+TOPOLOGIES="topologies/available/lf_testbed2.yaml"
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
@@ -53,7 +55,6 @@ then
         wget -q "${VPP_REPO_URL}/vpp/${VPP_STABLE_VER}/vpp-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
         wget -q "${VPP_REPO_URL}/vpp-dbg/${VPP_STABLE_VER}/vpp-dbg-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
         wget -q "${VPP_REPO_URL}/vpp-dev/${VPP_STABLE_VER}/vpp-dev-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
-        wget -q "${VPP_REPO_URL}/vpp-dpdk-dev/${DPDK_STABLE_VER}/vpp-dpdk-dev-${DPDK_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
         wget -q "${VPP_REPO_URL}/vpp-dpdk-dkms/${DPDK_STABLE_VER}/vpp-dpdk-dkms-${DPDK_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
         wget -q "${VPP_REPO_URL}/vpp-lib/${VPP_STABLE_VER}/vpp-lib-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
         wget -q "${VPP_REPO_URL}/vpp-plugins/${VPP_STABLE_VER}/vpp-plugins-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
@@ -74,9 +75,7 @@ then
     DPDK_STABLE_VER=$(cat ${SCRIPT_DIR}/DPDK_STABLE_VER)_amd64
     VPP_REPO_URL=$(cat ${SCRIPT_DIR}/VPP_REPO_URL_UBUNTU)
     VPP_CLASSIFIER="-deb"
-    wget -q "${VPP_REPO_URL}/vpp-dpdk-dev/${DPDK_STABLE_VER}/vpp-dpdk-dev-${DPDK_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
     wget -q "${VPP_REPO_URL}/vpp-dpdk-dkms/${DPDK_STABLE_VER}/vpp-dpdk-dkms-${DPDK_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
-    VPP_DEBS+=($( readlink -f vpp-dpdk-dev-${DPDK_STABLE_VER}${VPP_CLASSIFIER}.deb ))
     VPP_DEBS+=($( readlink -f vpp-dpdk-dkms-${DPDK_STABLE_VER}${VPP_CLASSIFIER}.deb ))
 else
     echo "Unable to identify job type based on JOB_NAME variable: ${JOB_NAME}"
@@ -137,45 +136,48 @@ else
     exit 1
 fi
 
-case "$TEST_TAG" in
-    # run specific performance tests based on jenkins job type variable
-    PERFTEST_LONG )
-        pybot ${PYBOT_ARGS} \
-              -L TRACE \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.perf" \
-              --exclude SKIP_PATCH \
-              -i NDRPDRDISC \
-              tests/
-        RETURN_STATUS=$(echo $?)
-        ;;
-    PERFTEST_SHORT )
-        pybot ${PYBOT_ARGS} \
-              -L TRACE \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.perf" \
-              -i NDRCHK \
-              tests/
-        RETURN_STATUS=$(echo $?)
-        ;;
-   PERFTEST_NIGHTLY )
-        #run all available tests
-        pybot ${PYBOT_ARGS} \
-              -L TRACE \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.perf" \
-              tests/
-        RETURN_STATUS=$(echo $?)
-        ;;
-    * )
-        # run full performance test suite and exit on fail
-        pybot ${PYBOT_ARGS} \
-              -L TRACE \
-              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.perf" \
-              tests/
-        RETURN_STATUS=$(echo $?)
-esac
+#case "$TEST_TAG" in
+#    # run specific performance tests based on jenkins job type variable
+#    PERFTEST_LONG )
+#        pybot ${PYBOT_ARGS} \
+#              -L TRACE \
+#              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+#              -s "tests.perf" \
+#              --exclude SKIP_PATCH \
+#              -i NDRPDRDISC \
+#              tests/
+#        RETURN_STATUS=$(echo $?)
+#        ;;
+#    PERFTEST_SHORT )
+#        pybot ${PYBOT_ARGS} \
+#              -L TRACE \
+#              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+#              -s "tests.perf" \
+#              -i NDRCHK \
+#              tests/
+#        RETURN_STATUS=$(echo $?)
+#        ;;
+#   PERFTEST_NIGHTLY )
+#        #run all available tests
+#        pybot ${PYBOT_ARGS} \
+#              -L TRACE \
+#              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+#              -s "tests.perf" \
+#              tests/
+#        RETURN_STATUS=$(echo $?)
+#        ;;
+#    * )
+#        # run full performance test suite and exit on fail
+#        pybot ${PYBOT_ARGS} \
+#              -L TRACE \
+#              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+#              -s "tests.perf" \
+#              tests/
+#        RETURN_STATUS=$(echo $?)
+#esac
+
+pybot ${PYBOT_ARGS} -L TRACE -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} -s "tests.perf" -i THIS tests/
+RETURN_STATUS=$(echo $?)
 
 # Pybot output post-processing
 echo Post-processing test data...
