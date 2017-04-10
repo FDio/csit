@@ -92,7 +92,7 @@
 *** Test Cases ***
 | tc01-64B-1t1c-eth-l2bdbasemaclrn-ndrdisc
 | | ... | ${64} | ${100000} | 1 | 1
-| | [Tags] | 1T1C | STHREAD | NDRDISC
+| | [Tags] | 1T1C | STHREAD | NDRDISC | THIS
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
