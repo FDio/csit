@@ -2364,6 +2364,7 @@
 | Performance test setup
 | | [Documentation] | Common test setup for performance tests.
 | | ...
+| | Setup all DUTs before test
 | | Reset VAT History On All DUTs | ${nodes}
 
 | Performance test teardown
