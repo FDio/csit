@@ -2140,15 +2140,55 @@
 | | ${tg1_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
 | | ${dut1_if2_mac}= | Get Interface MAC | ${dut1} | ${dut1_if2}
 | | ${dut2_if1_mac}= | Get Interface MAC | ${dut2} | ${dut2_if1}
-| | dut1_v4.set_arp | ${dut1_if1} | 10.10.10.2 | ${tg1_if1_mac}
-| | dut1_v4.set_arp | ${dut1_if2} | ${dut2_dut1_address} | ${dut2_if1_mac}
-| | dut2_v4.set_arp | ${dut2_if1} | ${dut1_dut2_address} | ${dut1_if2_mac}
-| | dut2_v4.set_arp | ${dut2_if2} | 20.20.20.2 | ${tg1_if2_mac}
-| | dut1_v4.set_ip | ${dut1_if1} | ${dut1_tg_address} | ${duts_prefix}
-| | dut1_v4.set_ip | ${dut1_if2} | ${dut1_dut2_address} | ${duts_prefix}
-| | dut2_v4.set_ip | ${dut2_if1} | ${dut2_dut1_address} | ${duts_prefix}
-| | dut2_v4.set_ip | ${dut2_if2} | ${dut2_tg_address} | ${duts_prefix}
+| | Add arp on dut | ${dut1} | ${dut1_if1} | 10.10.10.2 | ${tg1_if1_mac}
+| | Add arp on dut | ${dut1} | ${dut1_if2} | ${dut2_dut1_address}
+| | ... | ${dut2_if1_mac}
+| | Add arp on dut | ${dut2} | ${dut2_if1} | ${dut1_dut2_address}
+| | ... | ${dut1_if2_mac}
+| | Add arp on dut | ${dut2} | ${dut2_if2} | 20.20.20.2 | ${tg1_if2_mac}
+| | IP addresses are set on interfaces | ${dut1} | ${dut1_if1}
+| | ... | ${dut1_tg_address} | ${duts_prefix}
+| | IP addresses are set on interfaces | ${dut1} | ${dut1_if2}
+| | ... | ${dut1_dut2_address} | ${duts_prefix}
+| | IP addresses are set on interfaces | ${dut2} | ${dut2_if1}
+| | ... | ${dut2_dut1_address} | ${duts_prefix}
+| | IP addresses are set on interfaces | ${dut2} | ${dut2_if2}
+| | ... | ${dut2_tg_address} | ${duts_prefix}
 | | All Vpp Interfaces Ready Wait | ${nodes}
+
+| Lisp GPE IPv4 over IPsec initialized in a 3-node circular topology
+| | [Documentation] | Setup Lisp GPE IPv4 forwarding over IPsec.
+| | ...
+| | ... | *Arguments:*
+| | ... | -${encr_alg} - Encryption algorithm. Type: string
+| | ... | -${auth_alg} - Authentication algorithm. Type: string
+| | ...
+| | ... | *Return:*
+| | ... | - No value returned
+| | ...
+| | ... | *Example:*
+| | ... | \| Lisp GPE IPv4 over IPsec initialized in a 3-node circular topology\
+| | ... | \| ${encr_alg} \| ${auth_alg}
+| | ...
+| | [Arguments] | ${encr_alg} | ${auth_alg}
+| | ...
+| | IPsec Generate Keys | ${encr_alg} | ${auth_alg}
+| | Lisp IPv4 forwarding initialized in a 3-node circular topology
+| | ... | ${dut1_to_dut2_ip4} | ${dut1_to_tg_ip4} | ${dut2_to_dut1_ip4}
+| | ... | ${dut2_to_tg_ip4} | ${prefix4}
+| | Set up LISP GPE topology
+| | ... | ${dut1} | ${dut1_if2} | ${NONE}
+| | ... | ${dut2} | ${dut2_if1} | ${NONE}
+| | ... | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
+| | ... | ${dut1_ip4_static_adjacency} | ${dut2_ip4_static_adjacency}
+| | VPP Setup IPsec Manual Keyed Connection
+| | ... | ${dut1} | ${dut1_if2} | ${encr_alg} | ${encr_key}
+| | ... | ${auth_alg} | ${auth_key} | ${dut1_spi} | ${dut2_spi}
+| | ... | ${dut1_to_dut2_ip4} | ${dut2_to_dut1_ip4}
+| | VPP Setup IPsec Manual Keyed Connection
+| | ... | ${dut2} | ${dut2_if1} | ${encr_alg} | ${encr_key}
+| | ... | ${auth_alg} | ${auth_key} | ${dut2_spi} | ${dut1_spi}
+| | ... | ${dut2_to_dut1_ip4} | ${dut1_to_dut2_ip4}
 
 | Lisp IPv6 forwarding initialized in a 3-node circular topology
 | | [Documentation] | Custom setup of IPv6 topology on all DUT nodes \
@@ -2227,15 +2267,17 @@
 | | ${tg1_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
 | | ${dut1_if2_mac}= | Get Interface MAC | ${dut1} | ${dut1_if2}
 | | ${dut2_if1_mac}= | Get Interface MAC | ${dut2} | ${dut2_if1}
-| | dut1_v4.set_ip | ${dut1_if1} | ${dut1_tg_ip4_address} | ${prefix4}
+| | IP addresses are set on interfaces | ${dut1} | ${dut1_if1}
+| | ... | ${dut1_tg_ip4_address} | ${prefix4}
 | | VPP Set If IPv6 Addr | ${dut1} | ${dut1_if2} | ${dut1_dut2_ip6_address}
 | | ... | ${prefix6}
 | | VPP Set If IPv6 Addr | ${dut2} | ${dut2_if1} | ${dut2_dut1_ip6_address}
 | | ... | ${prefix6}
-| | dut2_v4.set_ip | ${dut2_if2} | ${dut2_tg_ip4_address} | ${prefix4}
+| | IP addresses are set on interfaces | ${dut2} | ${dut2_if2}
+| | ... | ${dut2_tg_ip4_address} | ${prefix4}
 | | Vpp nodes ra suppress link layer | ${nodes}
-| | dut1_v4.set_arp | ${dut1_if1} | 10.10.10.2 | ${tg1_if1_mac}
-| | dut2_v4.set_arp | ${dut2_if2} | 20.20.20.2 | ${tg1_if2_mac}
+| | Add arp on dut | ${dut1} | ${dut1_if1} | 10.10.10.2 | ${tg1_if1_mac}
+| | Add arp on dut | ${dut2} | ${dut2_if2} | 20.20.20.2 | ${tg1_if2_mac}
 | | Add Ip Neighbor | ${dut1} | ${dut1_if2} | ${dut2_dut1_ip6_address}
 | | ... | ${dut2_if1_mac}
 | | Add Ip Neighbor | ${dut2} | ${dut2_if1} | ${dut1_dut2_ip6_address}
@@ -2278,15 +2320,19 @@
 | | ${dut2_if1_mac}= | Get Interface MAC | ${dut2} | ${dut2_if1}
 | | VPP Set If IPv6 Addr | ${dut1} | ${dut1_if1} | ${dut1_tg_ip6_address}
 | | ... | ${prefix6}
-| | dut1_v4.set_ip | ${dut1_if2} | ${dut1_dut2_ip4_address} | ${prefix4}
-| | dut2_v4.set_ip | ${dut2_if1} | ${dut2_dut1_ip4_address} | ${prefix4}
+| | IP addresses are set on interfaces | ${dut1} | ${dut1_if2}
+| | ... | ${dut1_dut2_ip4_address} | ${prefix4}
+| | IP addresses are set on interfaces | ${dut2} | ${dut2_if1}
+| | ... | ${dut2_dut1_ip4_address} | ${prefix4}
 | | VPP Set If IPv6 Addr | ${dut2} | ${dut2_if2} | ${dut2_tg_ip6_address}
 | | ... | ${prefix6}
 | | Vpp nodes ra suppress link layer | ${nodes}
 | | Add Ip Neighbor | ${dut1} | ${dut1_if1} | 2001:1::2 | ${tg1_if1_mac}
 | | Add Ip Neighbor | ${dut2} | ${dut2_if2} | 2001:2::2 | ${tg1_if2_mac}
-| | dut1_v4.set_arp | ${dut1_if2} | ${dut2_dut1_ip4_address} | ${dut2_if1_mac}
-| | dut2_v4.set_arp | ${dut2_if1} | ${dut1_dut2_ip4_address} | ${dut1_if2_mac}
+| | Add arp on dut | ${dut1} | ${dut1_if2} | ${dut2_dut1_ip4_address}
+| | ... | ${dut2_if1_mac}
+| | Add arp on dut | ${dut2} | ${dut2_if1} | ${dut1_dut2_ip4_address}
+| | ... | ${dut1_if2_mac}
 
 | DPDK 2-node Performance Suite Setup with DUT's NIC model
 | | [Documentation]
