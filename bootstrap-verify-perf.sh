@@ -53,7 +53,6 @@ then
         wget -q "${VPP_REPO_URL}/vpp/${VPP_STABLE_VER}/vpp-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
         wget -q "${VPP_REPO_URL}/vpp-dbg/${VPP_STABLE_VER}/vpp-dbg-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
         wget -q "${VPP_REPO_URL}/vpp-dev/${VPP_STABLE_VER}/vpp-dev-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
-        wget -q "${VPP_REPO_URL}/vpp-dpdk-dev/${DPDK_STABLE_VER}/vpp-dpdk-dev-${DPDK_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
         wget -q "${VPP_REPO_URL}/vpp-dpdk-dkms/${DPDK_STABLE_VER}/vpp-dpdk-dkms-${DPDK_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
         wget -q "${VPP_REPO_URL}/vpp-lib/${VPP_STABLE_VER}/vpp-lib-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
         wget -q "${VPP_REPO_URL}/vpp-plugins/${VPP_STABLE_VER}/vpp-plugins-${VPP_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
@@ -70,13 +69,11 @@ then
     VPP_DEBS="$( readlink -f $@ | tr '\n' ' ' )"
     # Take vpp package and get the vpp version
     VPP_STABLE_VER="$( expr match $1 'vpp-\(.*\)-deb.deb' )"
-    # DPDK is not part of the vpp build
+    # Download DPDK parts not included in dpdk plugin of vpp build
     DPDK_STABLE_VER=$(cat ${SCRIPT_DIR}/DPDK_STABLE_VER)_amd64
     VPP_REPO_URL=$(cat ${SCRIPT_DIR}/VPP_REPO_URL_UBUNTU)
     VPP_CLASSIFIER="-deb"
-    wget -q "${VPP_REPO_URL}/vpp-dpdk-dev/${DPDK_STABLE_VER}/vpp-dpdk-dev-${DPDK_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
     wget -q "${VPP_REPO_URL}/vpp-dpdk-dkms/${DPDK_STABLE_VER}/vpp-dpdk-dkms-${DPDK_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
-    VPP_DEBS+=($( readlink -f vpp-dpdk-dev-${DPDK_STABLE_VER}${VPP_CLASSIFIER}.deb ))
     VPP_DEBS+=($( readlink -f vpp-dpdk-dkms-${DPDK_STABLE_VER}${VPP_CLASSIFIER}.deb ))
 else
     echo "Unable to identify job type based on JOB_NAME variable: ${JOB_NAME}"

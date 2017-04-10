@@ -119,7 +119,7 @@ done
 case "$DISTRO" in
         CENTOS )
             VPP_ARTIFACTS="vpp vpp-debuginfo vpp-devel vpp-lib vpp-plugins"
-            DPDK_ARTIFACTS="vpp-dpdk-devel"
+            DPDK_ARTIFACTS=""
             PACKAGE="rpm"
             VPP_CLASSIFIER=""
             DPDK_STABLE_VER=$(cat ${SCRIPT_DIR}/DPDK_STABLE_VER).x86_64
@@ -128,7 +128,7 @@ case "$DISTRO" in
             ;;
         UBUNTU )
             VPP_ARTIFACTS="vpp vpp-dbg vpp-dev vpp-lib vpp-plugins"
-            DPDK_ARTIFACTS="vpp-dpdk-dev vpp-dpdk-dkms"
+            DPDK_ARTIFACTS="vpp-dpdk-dkms"
             PACKAGE="deb"
             VPP_CLASSIFIER="-deb"
             DPDK_STABLE_VER=$(cat ${SCRIPT_DIR}/DPDK_STABLE_VER)_amd64
@@ -139,7 +139,7 @@ esac
 if [ "${#}" -ne "0" ]; then
     arr=(${@})
     echo ${arr[0]}
-    # DPDK is not part of the vpp build
+    # Download DPDK parts not included in dpdk plugin of vpp build
     for ARTIFACT in ${DPDK_ARTIFACTS}; do
         wget -q "${VPP_REPO_URL}/${ARTIFACT}/${DPDK_STABLE_VER}/${ARTIFACT}-${DPDK_STABLE_VER}${VPP_CLASSIFIER}.${PACKAGE}" || exit
     done
