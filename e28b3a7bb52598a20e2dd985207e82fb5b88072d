@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a3291f1_947856c5",
+        "filename": "resources/libraries/python/honeycomb/Routing.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-04-10T10:56:14Z",
+      "side": 1,
+      "message": "remove the white space at the end, and add .",
+      "range": {
+        "startLine": 251,
+        "startChar": 36,
+        "endLine": 251,
+        "endChar": 66
+      },
+      "revId": "e28b3a7bb52598a20e2dd985207e82fb5b88072d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_b47112e2",
+        "filename": "resources/libraries/python/honeycomb/Routing.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-04-10T10:56:14Z",
+      "side": 1,
+      "message": "return {k: str(v) for k, v in dict_of_str.items()}",
+      "range": {
+        "startLine": 273,
+        "startChar": 12,
+        "endLine": 274,
+        "endChar": 24
+      },
+      "revId": "e28b3a7bb52598a20e2dd985207e82fb5b88072d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_7473aae7",
+        "filename": "resources/libraries/robot/honeycomb/slaac.robot",
+        "patchSetId": 9
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-04-10T10:56:14Z",
+      "side": 1,
+      "message": "Keywords used to test SLAAC using Honeycomb?",
+      "range": {
+        "startLine": 17,
+        "startChar": 18,
+        "endLine": 17,
+        "endChar": 55
+      },
+      "revId": "e28b3a7bb52598a20e2dd985207e82fb5b88072d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
