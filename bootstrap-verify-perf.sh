@@ -170,6 +170,7 @@ case "$TEST_TAG" in
               -L TRACE \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s "tests.perf" \
+              -i LISP \
               tests/
         RETURN_STATUS=$(echo $?)
 esac
