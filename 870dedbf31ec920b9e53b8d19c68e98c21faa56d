@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a3291f1_0f65731d",
+        "filename": "tests/func/honeycomb/mgmt-cfg-slaac-apihc-func.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-04-10T16:36:12Z",
+      "side": 1,
+      "message": "DUT retransmits RA on IPv6 enabled interface after a set interval",
+      "range": {
+        "startLine": 103,
+        "startChar": 8,
+        "endLine": 103,
+        "endChar": 70
+      },
+      "revId": "870dedbf31ec920b9e53b8d19c68e98c21faa56d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
