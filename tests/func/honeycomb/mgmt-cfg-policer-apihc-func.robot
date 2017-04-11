@@ -1,0 +1,139 @@
+# Copyright (c) 2017 Cisco and/or its affiliates.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at:
+#
+#   http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+*** Variables ***
+| ${interface}= | ${node['interfaces']['port1']['name']}
+| ${tg_to_dut_if1_ip}= | 192.168.122.1
+| ${dut_to_tg_if1_ip}= | 192.168.122.2
+| ${dut_to_tg_if2_ip}= | 192.168.123.1
+| ${tg_to_dut_if2_ip}= | 192.168.123.2
+| ${prefix_length}= | ${24}
+| ${dscp_number}= | ${20}
+
+*** Settings ***
+| Resource | resources/libraries/robot/default.robot
+| Resource | resources/libraries/robot/honeycomb/honeycomb.robot
+| Resource | resources/libraries/robot/honeycomb/interfaces.robot
+| Resource | resources/libraries/robot/honeycomb/policer.robot
+| Resource | resources/libraries/robot/honeycomb/access_control_lists.robot
+| Resource | resources/libraries/robot/testing_path.robot
+| Resource | resources/libraries/robot/traffic.robot
+| Resource | resources/libraries/robot/policer.robot
+| Library | resources.libraries.python.Trace
+| Variables | resources/test_data/honeycomb/policer_variables.py
+| Suite Teardown
+| ... | Run Keyword If Any Tests Failed
+| ... | Restart Honeycomb and VPP | ${node}
+| Force Tags | honeycomb_sanity | honeycomb_odl
+| Documentation | *Honeycomb Policer management test suite.*
+
+*** Test Cases ***
+| TC01: Honeycomb can configure Policer
+| | [Documentation] | Checks if Honeycomb can configure Policer.
+| | Given Policer configuration from Honeycomb should be empty | ${node}
+| | When Honeycomb configures Policer | ${node} | ${policer_data}
+| | Then Policer configuration from Honeycomb should be | ${node}
+| | ... | ${policer_data_oper}
+
+| TC02: Honeycomb can disable Policer
+| | [Documentation] | Checks if Honeycomb can disable Policer.
+| | Given Policer configuration from Honeycomb should be | ${node}
+| | ... | ${policer_data_oper}
+| | When Honeycomb removes Policer configuration | ${node}
+| | Then Policer configuration from Honeycomb should be empty | ${node}
+
+| TC03: Honeycomb can configure Policer with suppress link layer disabled
+| | [Documentation] | Checks if Honeycomb can congigure Policer with\
+| | ... | suppresed link layer disabled.
+| | [Teardown] | Policer test teardown | ${node}
+| | Given Policer configuration from Honeycomb should be empty | ${node}
+| | When Honeycomb configures Policer | ${node} | ${policer_data}
+| | Then Policer configuration from Honeycomb should be | ${node}
+| | ... | ${policer_data_oper}
+
+| TC04: Honeycomb can configure Policer with increased values of CIR (900kbps)
+| | [Documentation] | Checks if Honeycomb can configure Policer\
+| | ... | with increased values of CIR.
+| | [Teardown] | Policer test teardown | ${node}
+| | Given Policer configuration from Honeycomb should be empty | ${node}
+| | When Honeycomb configures Policer | ${node} | ${policer_data_2}
+| | Then Policer configuration from Honeycomb should be | ${node}
+| | ... | ${policer_data_oper_2}
+
+| TC05: Honeycomb can configure Policer with increased values of CIR (1200kbps)
+| | [Documentation] | Checks if Honeycomb can configure Policer\
+| | ... | with increased values of CIR.
+| | [Teardown] | Policer test teardown | ${node}
+| | Given Policer configuration from Honeycomb should be empty | ${node}
+| | When Honeycomb configures Policer | ${node} | ${policer_data_3}
+| | Then Policer configuration from Honeycomb should be | ${node}
+| | ... | ${policer_data_oper_3}
+
+| TC06: Configure Policer on Interface
+| | [Documentation] | Honeycomb can configure Policer\
+| | ... | on a given interface.
+| | [Teardown] | Run Keywords
+| | ... | Honeycomb disables Policer on interface | ${node} | ${interface} | AND
+| | ... | Honeycomb removes ACL session
+| | ... | ${node} | ${acl_tables['hc_acl_table']['name']}
+| | ... | ${acl_tables['hc_acl_session']['match']} | AND
+| | ... | Honeycomb removes ACL table | ${node}
+| | ... | ${acl_tables['hc_acl_table']['name']} | AND
+| | ... | Policer test teardown | ${node}
+| | Given Honeycomb configures Policer | ${node} | ${policer_data}
+| | And ACL table from Honeycomb should not exist
+| | ... | ${node} | ${acl_tables['hc_acl_table']['name']}
+| | When Honeycomb creates ACL table
+| | ... | ${node} | ${acl_tables['hc_acl_table']}
+| | And Honeycomb adds ACL session
+| | ... | ${node} | ${acl_tables['hc_acl_table']['name']}
+| | ... | ${acl_tables['hc_acl_session']}
+| | Then Honeycomb enables policer on interface
+| | ... | ${node} | ${interface} | ${acl_tables['hc_acl_table']['name']}
+
+| TC07: VPP policer 2R3C Color-aware marks packet
+| | [Documentation]
+| | ... | [Top] TG=DUT1.
+| | ... | [Ref] RFC2474, RFC2698.
+| | ... | [Cfg] On DUT1 configure 2R3C color-aware policer on the first\
+| | ... | interface.
+| | ... | [Ver] TG sends IPv4 TCP packet on the first link to DUT1.\
+| | ... | On DUT1 packet is marked with DSCP tag. Verify if DUT1 sends\
+| | ... | correct IPv4 TCP packet with correct DSCP on the second link to TG.
+| | [Teardown] | Show Packet Trace on All DUTs | ${nodes}
+| | Given Path for 2-node testing is set
+| | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
+| | Given Honeycomb configures Policer | ${dut_node} | ${policer_data_4}
+| | And ACL table from Honeycomb should not exist
+| | ... | ${dut_node} | ${acl_tables['hc_acl_table']['name']}
+| | When Honeycomb creates ACL table
+| | ... | ${dut_node} | ${acl_tables['hc_acl_table']}
+| | And Honeycomb adds ACL session
+| | ... | ${dut_node} | ${acl_tables['hc_acl_table']['name']}
+| | ... | ${acl_tables['hc_acl_session']}
+| | Then Honeycomb enables policer on interface
+| | ... | ${dut_node} | ${dut_to_tg_if1} | ${acl_tables['hc_acl_table']['name']}
+| | And Honeycomb sets interface state | ${dut_node} | ${dut_to_tg_if1} | up
+| | And Honeycomb sets interface state | ${dut_node} | ${dut_to_tg_if2} | up
+| | And Honeycomb sets interface ipv4 address with prefix | ${dut_node}
+| | ... | ${dut_to_tg_if1} | ${dut_to_tg_if1_ip} | ${prefix_length}
+| | And Honeycomb sets interface ipv4 address with prefix | ${dut_node}
+| | ... | ${dut_to_tg_if2} | ${dut_to_tg_if2_ip} | ${prefix_length}
+| | Then Honeycomb adds interface ipv4 neighbor
+| | ... | ${dut_node} | ${dut_to_tg_if2} | ${tg_to_dut_if2_ip}
+| | ... | ${tg_to_dut_if2_mac}
+| | And interfaceCLI.VPP Node Interfaces Ready Wait | ${dut_node}
+| | Then Honeycomb Send Packet and Verify Marking | ${tg_node}
+| | ... | ${tg_to_dut_if1}
+| | ... | ${tg_to_dut_if2} | ${tg_to_dut_if1_mac} | ${dut_to_tg_if1_mac}
+| | ... | ${tg_to_dut_if1_ip} | ${tg_to_dut_if2_ip} | ${dscp_number}
