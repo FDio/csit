@@ -254,6 +254,8 @@ def main():
                        '/simengine/rest/interfaces/' + session_id +
                        '?fetch-state=1', auth=(args.username, args.password))
     data = req.json()
+    print "DEBUG: response data "
+    print data
 
     # Populate node addresses
     nodeaddrs = {}
