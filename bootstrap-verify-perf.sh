@@ -25,7 +25,7 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 RESERVATION_DIR="/tmp/reservation_dir"
 INSTALLATION_DIR="/tmp/install_dir"
 
-PYBOT_ARGS="-W 150"
+PYBOT_ARGS="-W 150 -L TRACE"
 
 ARCHIVE_ARTIFACTS=(log.html output.xml report.html output_perf_data.xml)
 
@@ -139,9 +139,24 @@ fi
 
 case "$TEST_TAG" in
     # run specific performance tests based on jenkins job type variable
+    PERFTEST_DAILY )
+        pybot ${PYBOT_ARGS} \
+              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+              -s "tests.perf" \
+              --include ndrdiscANDnic_intel-x520-da2AND1t1cORndrdiscANDnic_intel-x520-da2AND2t2c \
+              tests/
+        RETURN_STATUS=$(echo $?)
+        ;;
+    PERFTEST_SEMI_WEEKLY )
+        pybot ${PYBOT_ARGS} \
+              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+              -s "tests.perf" \
+              --include ndrdiscANDnic_intel-x710AND1t1cORndrdiscANDnic_intel-x710AND2t2cORndrdiscANDnic_intel-xl710AND1t1cORndrdiscANDnic_intel-xl710AND2t2c \
+              tests/
+        RETURN_STATUS=$(echo $?)
+        ;;
     PERFTEST_LONG )
         pybot ${PYBOT_ARGS} \
-              -L TRACE \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s "tests.perf" \
               --exclude SKIP_PATCH \
@@ -151,7 +166,6 @@ case "$TEST_TAG" in
         ;;
     PERFTEST_SHORT )
         pybot ${PYBOT_ARGS} \
-              -L TRACE \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s "tests.perf" \
               -i NDRCHK \
@@ -161,7 +175,6 @@ case "$TEST_TAG" in
    PERFTEST_NIGHTLY )
         #run all available tests
         pybot ${PYBOT_ARGS} \
-              -L TRACE \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s "tests.perf" \
               tests/
@@ -170,7 +183,6 @@ case "$TEST_TAG" in
     * )
         # run full performance test suite and exit on fail
         pybot ${PYBOT_ARGS} \
-              -L TRACE \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s "tests.perf" \
               tests/
