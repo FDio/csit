@@ -136,6 +136,24 @@ fi
 
 case "$TEST_TAG" in
     # run specific performance tests based on jenkins job type variable
+    PERFTEST_DAILY )
+        pybot ${PYBOT_ARGS} \
+              -L TRACE \
+              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+              -s "tests.perf" \
+              --include ndrdiscANDnic_intel-x520-da2AND1t1c OR ndrdiscANDnic_intel-x520-da2AND2t2c \
+              tests/
+        RETURN_STATUS=$(echo $?)
+        ;;
+    PERFTEST_SEMI_WEEKLY )
+        pybot ${PYBOT_ARGS} \
+              -L TRACE \
+              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+              -s "tests.perf" \
+              --include ndrdiscANDnic_intel-x520-da2ANDnic_intel-x710ANDnic_intel-xl710AND1t1cORndrdiscANDnic_intel-x520-da2ANDnic_intel-x710ANDnic_intel-xl710AND2t2c \
+              tests/
+        RETURN_STATUS=$(echo $?)
+        ;;
     PERFTEST_LONG )
         pybot ${PYBOT_ARGS} \
               -L TRACE \
