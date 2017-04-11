@@ -273,3 +273,64 @@ class RoutingKeywords(object):
             return {k: str(v) for k, v in dict_of_str.items()}
         except (KeyError, TypeError):
             return {}
+
+    @staticmethod
+    def configure_policer(node, policer_data=None):
+        """Configure Policer on the specified node.
+
+        :param node: Honeycomb node.
+        :param policer_data: Dictionary of configurations to apply. \
+        If it is None then the existing configuration is removed.
+        :type node: dict
+        :type slaac_data: dict of dicts
+        :returns: Content of response.
+        :rtype: bytearray
+        :raises HoneycombError: If RA could not be configured.
+        """
+
+        # interface = Topology.convert_interface_reference(
+        #     node, 'name')
+        # interface_orig = interface
+        # interface = interface.replace('/', '%2F')
+        # path = 'interface/' + interface
+
+        if not policer_data:
+            status_code, _ = HcUtil.delete_honeycomb_data(
+                node, 'config_policer')
+        else:
+            data = {
+                'policer': policer_data
+            }
+
+            status_code, _ = HcUtil.put_honeycomb_data(
+                node, 'config_policer', data)
+
+        if status_code not in (HTTPCodes.OK, HTTPCodes.ACCEPTED):
+            raise HoneycombError(
+                'Configuring SLAAC failed. Status code:{0}'.format(status_code))
+
+    @staticmethod
+    def get_policer_oper_data(node):
+        """Get operational data about Policer on the node.
+
+        :param node: Honeycomb node.
+        :type node: dict
+        :returns: dict of Policer operational data.
+        :rtype: dict
+        :raises HoneycombError: If status code differs from successful.
+        """
+
+        status_code, resp = HcUtil.\
+            get_honeycomb_data(node, "config_policer")
+
+        if status_code != HTTPCodes.OK:
+            raise HoneycombError(
+                "Not possible to get operational information about Policer. "
+                "Status code: {0}.".format(status_code))
+        try:
+            return resp['policer']
+            # return resp['policer']
+            # dict_of_str = resp['policer']
+            # return {k: str(v) for k, v in dict_of_str.items()}
+        except (KeyError, TypeError):
+            return {}

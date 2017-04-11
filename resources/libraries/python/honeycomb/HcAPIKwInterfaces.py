@@ -1512,6 +1512,40 @@ class InterfaceKeywords(object):
         return resp
 
     @staticmethod
+    def enable_policer_on_interface(node, interface, table_name):
+        """Enable Policer on the given interface.
+
+        :param node: Honeycomb node.
+        :param interface: The interface where the ACL will be enabled.
+        :param table_name: Name of the classify table.
+        :type node: dict
+        :type interface: str
+        :type table_name: str
+        :returns: Content of response.
+        :rtype: bytearray
+        :raises HoneycombError: If the configuration of interface is not
+        successful.
+        """
+
+        interface = interface.replace("/", "%2F")
+
+        data = {
+                    "interface-policer:policer": {
+                        "ip4-table": table_name
+                    }
+                }
+
+        path = "/interface/" + interface + "/interface-policer:policer"
+        status_code, resp = HcUtil.\
+            put_honeycomb_data(node, "config_vpp_interfaces", data, path,
+                               data_representation=DataRepresentation.JSON)
+        if status_code not in (HTTPCodes.OK, HTTPCodes.ACCEPTED):
+            raise HoneycombError(
+                "The configuration of interface '{0}' was not successful. "
+                "Status code: {1}.".format(interface, status_code))
+        return resp
+
+    @staticmethod
     def disable_acl_on_interface(node, interface):
         """Disable ACL on the given interface.
 
