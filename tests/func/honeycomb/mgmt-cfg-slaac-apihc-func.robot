@@ -25,7 +25,7 @@
 | Suite Teardown
 | ... | Run Keyword If Any Tests Failed
 | ... | Restart Honeycomb and VPP | ${node}
-| Force Tags | honeycomb_sanity | honeycomb_odl
+| Force Tags | honeycomb_sanity | honeycomb_odl | test_slaac
 | Documentation | *Honeycomb SLAAC management test suite.*
 | Variables | resources/test_data/honeycomb/slaac_variables.py
 
