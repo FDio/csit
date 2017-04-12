@@ -73,6 +73,7 @@ if [ "${OS}" == "centos7" ]; then
     VER=${VER}.x86_64
 else
     VER=`dpkg -I honeycomb*.deb | grep -oP 'vpp \(= \K[^\)]+'`
+    VER=${VER}_amd64
 fi
 
 # download VPP packages
