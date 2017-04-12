@@ -1,0 +1,285 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a3291f1_35e639b5",
+        "filename": "dpdk-tests/dpdk_scripts/cleanup_dpdk.sh",
+        "patchSetId": 11
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-04-12T13:37:46Z",
+      "side": 1,
+      "message": "We change the nohup back to screen and install screen on all testbeds. This code is not necessary anymore, please remove.",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 24
+      },
+      "revId": "76e616f05167bc6481d48488402a5f0ab43785fb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_75dcc1e4",
+        "filename": "dpdk-tests/dpdk_scripts/cleanup_dpdk.sh",
+        "patchSetId": 11
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-04-12T13:37:46Z",
+      "side": 1,
+      "message": "We change the nohup back to screen and install screen on all testbeds. This code is not necessary anymore, please remove.",
+      "range": {
+        "startLine": 76,
+        "startChar": 0,
+        "endLine": 79,
+        "endChar": 23
+      },
+      "revId": "76e616f05167bc6481d48488402a5f0ab43785fb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_55d785bf",
+        "filename": "dpdk-tests/dpdk_scripts/cleanup_dpdk.sh",
+        "patchSetId": 11
+      },
+      "lineNbr": 97,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-04-12T13:37:46Z",
+      "side": 1,
+      "message": "please remove no need to bring interface up",
+      "range": {
+        "startLine": 96,
+        "startChar": 0,
+        "endLine": 97,
+        "endChar": 23
+      },
+      "revId": "76e616f05167bc6481d48488402a5f0ab43785fb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_15e1fd99",
+        "filename": "dpdk-tests/dpdk_scripts/run_l2fwd.sh",
+        "patchSetId": 11
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-04-12T13:37:46Z",
+      "side": 1,
+      "message": "We change the nohup back to screen and install screen on all testbeds. This code is not necessary anymore, please remove.",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 28
+      },
+      "revId": "76e616f05167bc6481d48488402a5f0ab43785fb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_55fe6539",
+        "filename": "dpdk-tests/dpdk_scripts/run_l3fwd.sh",
+        "patchSetId": 11
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-04-12T13:37:46Z",
+      "side": 1,
+      "message": "consider adding set -x for more verbose output for troubleshooting",
+      "revId": "76e616f05167bc6481d48488402a5f0ab43785fb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_95a3ad4e",
+        "filename": "dpdk-tests/dpdk_scripts/run_l3fwd.sh",
+        "patchSetId": 11
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-04-12T13:37:46Z",
+      "side": 1,
+      "message": "TESTPMDLOG\u003dscreenlog.0",
+      "revId": "76e616f05167bc6481d48488402a5f0ab43785fb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_95eccd90",
+        "filename": "dpdk-tests/dpdk_scripts/run_l3fwd.sh",
+        "patchSetId": 11
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-04-12T13:37:46Z",
+      "side": 1,
+      "message": "Not needed",
+      "range": {
+        "startLine": 9,
+        "startChar": 0,
+        "endLine": 10,
+        "endChar": 24
+      },
+      "revId": "76e616f05167bc6481d48488402a5f0ab43785fb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_15f8dd47",
+        "filename": "dpdk-tests/dpdk_scripts/run_l3fwd.sh",
+        "patchSetId": 11
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-04-12T13:37:46Z",
+      "side": 1,
+      "message": "please remove",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 23
+      },
+      "revId": "76e616f05167bc6481d48488402a5f0ab43785fb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_d5993520",
+        "filename": "dpdk-tests/dpdk_scripts/run_l3fwd.sh",
+        "patchSetId": 11
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-04-12T13:37:46Z",
+      "side": 1,
+      "message": "sudo sh -c \"screen -dmSL DPDK-test ./examples/l3fwd/build/app/l3fwd -l ${cpu_corelist} \\\n    -n 4 -- -P -L -p 0x3 --config\u003d\u0027${port_config}\u0027 --enable-jumbo \\\n    --max-pkt-len\u003d9000 --eth-dest\u003d0,${adj_mac0} --eth-dest\u003d1,${adj_mac1}\n\nWe installed screen so it is safe to use on all testbeds",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 22
+      },
+      "revId": "76e616f05167bc6481d48488402a5f0ab43785fb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_558545ab",
+        "filename": "dpdk-tests/dpdk_scripts/run_l3fwd.sh",
+        "patchSetId": 11
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-04-12T13:37:46Z",
+      "side": 1,
+      "message": "Please add sleep for 10s to ensure l3wfd is initialized and topology converged (e.g interfaces up).\n\nsleep 10\nless -r ${TESTPMDLOG}",
+      "revId": "76e616f05167bc6481d48488402a5f0ab43785fb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_55ac2535",
+        "filename": "resources/libraries/python/DPDK/L3fwdTest.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 29,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-04-12T13:37:46Z",
+      "side": 1,
+      "message": "not needed i think",
+      "range": {
+        "startLine": 29,
+        "startChar": 74,
+        "endLine": 29,
+        "endChar": 75
+      },
+      "revId": "76e616f05167bc6481d48488402a5f0ab43785fb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_15a69d53",
+        "filename": "resources/libraries/python/TrafficGenerator.py",
+        "patchSetId": 11
+      },
+      "lineNbr": 575,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-04-12T13:37:46Z",
+      "side": 1,
+      "message": "Is there any reason to not use: _p0, _p1? What if TG interfaces will be reverted?",
+      "range": {
+        "startLine": 575,
+        "startChar": 52,
+        "endLine": 575,
+        "endChar": 56
+      },
+      "revId": "76e616f05167bc6481d48488402a5f0ab43785fb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_f5643123",
+        "filename": "resources/libraries/robot/DPDK/default.robot",
+        "patchSetId": 11
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-04-12T13:37:46Z",
+      "side": 1,
+      "message": "Consider per example above with L2fwd to update KW to be able to run on SMT as well (optional)",
+      "range": {
+        "startLine": 70,
+        "startChar": 0,
+        "endLine": 88,
+        "endChar": 39
+      },
+      "revId": "76e616f05167bc6481d48488402a5f0ab43785fb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
