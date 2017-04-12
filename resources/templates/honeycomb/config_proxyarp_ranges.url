@@ -1,1 +1,1 @@
-/restconf/config/proxy-arp:proxy-ranges
+/restconf/config{odl_url_part}/proxy-arp:proxy-ranges

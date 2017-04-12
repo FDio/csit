@@ -116,4 +116,4 @@
 | | ... | ${slaac_data}
 | | :FOR | ${n} | IN RANGE | ${2}
 | | | Then Receive And Check Router Advertisement Packet
-| | | ... | ${tg_node} | ${tg_to_dut_if1} | ${dut_to_tg_if1_mac} | ${5}
+| | | ... | ${tg_node} | ${tg_to_dut_if1} | ${dut_to_tg_if1_mac} | ${20}

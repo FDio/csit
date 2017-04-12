@@ -32,7 +32,7 @@
 | Library | resources.libraries.python.Trace
 | Suite Teardown
 | ... | Run Keyword If Any Tests Failed
-| ... | Restart Honeycomb And VPP And Clear Persisted Configuration | ${node}
+| ... | Restart Honeycomb And VPP | ${node}
 | Force Tags | honeycomb_sanity | honeycomb_odl
 | Documentation | *Honeycomb proxyARP management test suite.*
 
