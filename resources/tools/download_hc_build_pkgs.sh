@@ -15,8 +15,6 @@
 
 set -ex
 
-trap 'rm -f *.deb.md5; exit' EXIT
-trap 'rm -f *.deb.md5;rm -f *.deb; exit' ERR
 STREAM=$1
 OS=$2
 
@@ -25,21 +23,23 @@ URL="https://nexus.fd.io/service/local/artifact/maven/content"
 VER="RELEASE"
 VPP_GROUP="io.fd.vpp"
 NSH_GROUP="io.fd.nsh_sfc"
-VPP_ARTIFACTS="vpp vpp-dbg vpp-dev vpp-dpdk-dev vpp-dpdk-dkms vpp-lib vpp-plugins vpp-api-java"
 NSH_ARTIFACTS="vpp-nsh-plugin"
 
 if [ "${OS}" == "ubuntu1404" ]; then
     OS="ubuntu.trusty.main"
     PACKAGE="deb deb.md5"
     CLASS="deb"
+    VPP_ARTIFACTS="vpp vpp-dbg vpp-dev vpp-dpdk-dev vpp-dpdk-dkms vpp-lib vpp-plugins vpp-api-java"
 elif [ "${OS}" == "ubuntu1604" ]; then
     OS="ubuntu.xenial.main"
     PACKAGE="deb deb.md5"
     CLASS="deb"
+    VPP_ARTIFACTS="vpp vpp-dbg vpp-dev vpp-dpdk-dev vpp-dpdk-dkms vpp-lib vpp-plugins vpp-api-java"
 elif [ "${OS}" == "centos7" ]; then
     OS="centos7"
     PACKAGE="rpm rpm.md5"
-    CLASS="rpm"
+    CLASS=""
+    VPP_ARTIFACTS="vpp vpp-debuginfo vpp-devel vpp-dpdk-devel vpp-lib vpp-plugins vpp-api-java"
 fi
 
 REPO="fd.io.${STREAM}.${OS}"
@@ -56,19 +56,31 @@ for ART in ${NSH_ARTIFACTS}; do
     done
 done
 
-for FILE in *.deb; do
+# verify downloaded packages
+if [ "${OS}" == "centos7" ]; then
+    FILES=*.rpm
+else
+    FILES=*.deb
+fi
+
+for FILE in ${FILES}; do
     echo " "${FILE} >> ${FILE}.md5
 done
-
 for MD5FILE in *.md5; do
     md5sum -c ${MD5FILE} || exit
+    rm ${MD5FILE}
 done
 
-# installing vpp-api-java places jvpp jars into /usr/share/java
-sudo dpkg -i *.deb
+# install vpp-api-java, this extracts jvpp .jar files into usr/share/java
+if [ "${OS}" == "centos7" ]; then
+    sudo rpm --nodeps --install vpp-api-java*
+else
+    sudo dpkg --ignore-depends=vpp --install vpp-api-java*
+fi
+rm vpp-api-java*
 
 # install jvpp jars into maven repo, so that maven picks them up when building hc2vpp
-version=`./jvpp-version`
+version=`../jvpp-version`
 
 current_dir=`pwd`
 cd /usr/share/java
@@ -82,4 +94,4 @@ for item in jvpp*.jar; do
     mvn install:install-file -Dfile=${item} -DgroupId=io.fd.vpp -DartifactId=${artifactId} -Dversion=${version} -Dpackaging=jar -Dmaven.repo.local=/tmp/r -Dorg.ops4j.pax.url.mvn.localRepository=/tmp/r
 done
 
-cd current_dir
+cd ${current_dir}
