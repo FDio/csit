@@ -31,19 +31,19 @@ if [ "${OS}" == "ubuntu1404" ]; then
     PACKAGE="deb deb.md5"
     CLASS="deb"
     VPP_ARTIFACTS="vpp vpp-dbg vpp-dev vpp-lib vpp-plugins vpp-api-java"
-    DPDK_ARTIFACTS="vpp-dpdk-dkms vpp-dpdk-dev"
+    DPDK_ARTIFACTS="vpp-dpdk-dkms"
 elif [ "${OS}" == "ubuntu1604" ]; then
     OS="ubuntu.xenial.main"
     PACKAGE="deb deb.md5"
     CLASS="deb"
     VPP_ARTIFACTS="vpp vpp-dbg vpp-dev vpp-lib vpp-plugins vpp-api-java"
-    DPDK_ARTIFACTS="vpp-dpdk-dkms vpp-dpdk-dev"
+    DPDK_ARTIFACTS="vpp-dpdk-dkms"
 elif [ "${OS}" == "centos7" ]; then
     OS="centos7"
     PACKAGE="rpm rpm.md5"
     CLASS=""
     VPP_ARTIFACTS="vpp vpp-debuginfo vpp-devel vpp-lib vpp-plugins vpp-api-java"
-    DPDK_ARTIFACTS="vpp-dpdk-devel"
+    DPDK_ARTIFACTS=""
 fi
 
 REPO="fd.io.${STREAM}.${OS}"
@@ -73,6 +73,7 @@ if [ "${OS}" == "centos7" ]; then
     VER=${VER}.x86_64
 else
     VER=`dpkg -I honeycomb*.deb | grep -oP 'vpp \(= \K[^\)]+'`
+    VER=${VER}_amd64
 fi
 
 # download VPP packages
