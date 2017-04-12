@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a3291f1_d551350f",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2017-04-12T09:58:47Z",
+      "side": 1,
+      "message": "How this will look if we further split this job, to have separate jobs for each NIC model? this would be in order to reduce the test duration and size of log files..",
+      "range": {
+        "startLine": 153,
+        "startChar": 0,
+        "endLine": 153,
+        "endChar": 168
+      },
+      "revId": "3a5a846017737edcf768301fd240996ce9e24b71",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
