@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a3291f1_757841c4",
+        "filename": "nsh_sfc_tests/sfc_scripts/dpdk-devbind.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-04-12T13:47:32Z",
+      "side": 1,
+      "message": "Is it possible to move this file to /resources/tools/...\nAlso is the licence compatible for including/copying into this LF project?",
+      "revId": "1ff0d99fe7b2110941197bce7607628aebe865ce",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
