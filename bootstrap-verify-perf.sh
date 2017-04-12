@@ -1,5 +1,5 @@
 #!/bin/bash
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2017 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -152,6 +152,30 @@ case "$TEST_TAG" in
               tests/
         RETURN_STATUS=$(echo $?)
         ;;
+    verify-perf-ndrdisc )
+        pybot ${PYBOT_ARGS} \
+              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+              -s "tests.perf" \
+              --include ndrdiscAND1t1cORndrdiscAND2t2c \
+              tests/
+        RETURN_STATUS=$(echo $?)
+        ;;
+    verify-perf-pdrdisc )
+        pybot ${PYBOT_ARGS} \
+              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+              -s "tests.perf" \
+              --include pdrdiscAND1t1cORpdrdiscAND2t2c \
+              tests/
+        RETURN_STATUS=$(echo $?)
+        ;;
+    verify-perf-ndrchk )
+        pybot ${PYBOT_ARGS} \
+              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+              -s "tests.perf" \
+              --include ndrchkAND1t1cORndrchkAND2t2c \
+              tests/
+        RETURN_STATUS=$(echo $?)
+        ;;
     PERFTEST_LONG )
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
@@ -169,7 +193,7 @@ case "$TEST_TAG" in
               tests/
         RETURN_STATUS=$(echo $?)
         ;;
-   PERFTEST_NIGHTLY )
+    PERFTEST_NIGHTLY )
         #run all available tests
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
