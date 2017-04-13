@@ -1,0 +1,371 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a3291f1_cba518b6",
+        "filename": "resources/libraries/robot/performance.robot",
+        "patchSetId": 68
+      },
+      "lineNbr": 2366,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-04-13T06:16:34Z",
+      "side": 1,
+      "message": "I would expect that if you route only on HOST IP then route would be /32 other wise if you want to route all 12.0.0.0 then same subnet as per above interface subnet.",
+      "range": {
+        "startLine": 2366,
+        "startChar": 41,
+        "endLine": 2366,
+        "endChar": 43
+      },
+      "revId": "0ea3db4550af3f4ec9fb60cf79b9a379ab279b58",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_0bc4405d",
+        "filename": "resources/libraries/robot/performance.robot",
+        "patchSetId": 68
+      },
+      "lineNbr": 2367,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-04-13T06:16:34Z",
+      "side": 1,
+      "message": "SNAT src inside is 20.0.0.0/18 so i expect this route to be same. Otherwise you will lost some address from routing.",
+      "range": {
+        "startLine": 2367,
+        "startChar": 41,
+        "endLine": 2367,
+        "endChar": 43
+      },
+      "revId": "0ea3db4550af3f4ec9fb60cf79b9a379ab279b58",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_abac0ca1",
+        "filename": "resources/libraries/robot/performance.robot",
+        "patchSetId": 68
+      },
+      "lineNbr": 2369,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-04-13T06:16:34Z",
+      "side": 1,
+      "message": "Same here if SNAT outside is /30 then we need to route full range /30",
+      "range": {
+        "startLine": 2369,
+        "startChar": 42,
+        "endLine": 2369,
+        "endChar": 44
+      },
+      "revId": "0ea3db4550af3f4ec9fb60cf79b9a379ab279b58",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_6b73c480",
+        "filename": "tests/perf/10ge2p1x520-ethip4-ip4base-snat-ndrpdrdisc.robot",
+        "patchSetId": 68
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-04-13T06:16:34Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 37,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 34
+      },
+      "revId": "0ea3db4550af3f4ec9fb60cf79b9a379ab279b58",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_0b68c085",
+        "filename": "tests/perf/10ge2p1x520-ethip4-ip4base-snat-ndrpdrdisc.robot",
+        "patchSetId": 68
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-04-13T06:16:34Z",
+      "side": 1,
+      "message": "Eth-IPv4-UDP",
+      "range": {
+        "startLine": 44,
+        "startChar": 39,
+        "endLine": 44,
+        "endChar": 47
+      },
+      "revId": "0ea3db4550af3f4ec9fb60cf79b9a379ab279b58",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_eb0694cd",
+        "filename": "tests/perf/10ge2p1x520-ethip4-ip4base-snat-ndrpdrdisc.robot",
+        "patchSetId": 68
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-04-13T06:16:34Z",
+      "side": 1,
+      "message": "(IPv4 /24 and IPv4/20)",
+      "range": {
+        "startLine": 46,
+        "startChar": 31,
+        "endLine": 46,
+        "endChar": 39
+      },
+      "revId": "0ea3db4550af3f4ec9fb60cf79b9a379ab279b58",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_4b6ec897",
+        "filename": "tests/perf/10ge2p1x520-ethip4-ip4base-snat-ndrpdrdisc.robot",
+        "patchSetId": 68
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-04-13T06:16:34Z",
+      "side": 1,
+      "message": "there is only one flow",
+      "range": {
+        "startLine": 56,
+        "startChar": 35,
+        "endLine": 56,
+        "endChar": 44
+      },
+      "revId": "0ea3db4550af3f4ec9fb60cf79b9a379ab279b58",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_8b13900c",
+        "filename": "tests/perf/10ge2p1x520-ethip4-ip4base-snat-ndrpdrdisc.robot",
+        "patchSetId": 68
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-04-13T06:16:34Z",
+      "side": 1,
+      "message": "UDP header",
+      "range": {
+        "startLine": 57,
+        "startChar": 53,
+        "endLine": 57,
+        "endChar": 67
+      },
+      "revId": "0ea3db4550af3f4ec9fb60cf79b9a379ab279b58",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_6bfaa4be",
+        "filename": "tests/perf/10ge2p1x520-ethip4-ip4base-snat-ndrpdrdisc.robot",
+        "patchSetId": 68
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-04-13T06:16:34Z",
+      "side": 1,
+      "message": "no space",
+      "range": {
+        "startLine": 69,
+        "startChar": 71,
+        "endLine": 69,
+        "endChar": 72
+      },
+      "revId": "0ea3db4550af3f4ec9fb60cf79b9a379ab279b58",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_4bf5a8c9",
+        "filename": "tests/perf/10ge2p1x520-ethip4-ip4base-snat-ndrpdrdisc.robot",
+        "patchSetId": 68
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-04-13T06:16:34Z",
+      "side": 1,
+      "message": "\\",
+      "revId": "0ea3db4550af3f4ec9fb60cf79b9a379ab279b58",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_2b049cbe",
+        "filename": "tests/perf/10ge2p1x520-ethip4-ip4base-snat-ndrpdrdisc.robot",
+        "patchSetId": 68
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-04-13T06:16:34Z",
+      "side": 1,
+      "message": "\\",
+      "revId": "0ea3db4550af3f4ec9fb60cf79b9a379ab279b58",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_4b1c8813",
+        "filename": "tests/perf/10ge2p1x520-ethip4-ip4scale-snat-ndrpdrdisc.robot",
+        "patchSetId": 68
+      },
+      "lineNbr": 46,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-04-13T06:16:34Z",
+      "side": 1,
+      "message": "(IPv4 /24 and IPv4 /20)",
+      "range": {
+        "startLine": 46,
+        "startChar": 31,
+        "endLine": 46,
+        "endChar": 39
+      },
+      "revId": "0ea3db4550af3f4ec9fb60cf79b9a379ab279b58",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_0b1680f1",
+        "filename": "tests/perf/10ge2p1x520-ethip4-ip4scale-snat-ndrpdrdisc.robot",
+        "patchSetId": 68
+      },
+      "lineNbr": 56,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-04-13T06:16:34Z",
+      "side": 1,
+      "message": "This need to be either removed or reflect actual traffic profile",
+      "range": {
+        "startLine": 56,
+        "startChar": 35,
+        "endLine": 56,
+        "endChar": 59
+      },
+      "revId": "0ea3db4550af3f4ec9fb60cf79b9a379ab279b58",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_2b1b7c1c",
+        "filename": "tests/perf/10ge2p1x520-ethip4-ip4scale-snat-ndrpdrdisc.robot",
+        "patchSetId": 68
+      },
+      "lineNbr": 57,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-04-13T06:16:34Z",
+      "side": 1,
+      "message": "UDP header",
+      "range": {
+        "startLine": 57,
+        "startChar": 53,
+        "endLine": 57,
+        "endChar": 67
+      },
+      "revId": "0ea3db4550af3f4ec9fb60cf79b9a379ab279b58",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_ebd45421",
+        "filename": "tests/perf/10ge2p1x520-ethip4-ip4scale-snat-ndrpdrdisc.robot",
+        "patchSetId": 68
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-04-13T06:16:34Z",
+      "side": 1,
+      "message": "no space",
+      "range": {
+        "startLine": 69,
+        "startChar": 71,
+        "endLine": 69,
+        "endChar": 72
+      },
+      "revId": "0ea3db4550af3f4ec9fb60cf79b9a379ab279b58",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_cbd75822",
+        "filename": "tests/perf/10ge2p1x520-ethip4-ip4scale-snat-ndrpdrdisc.robot",
+        "patchSetId": 68
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-04-13T06:16:34Z",
+      "side": 1,
+      "message": "\\",
+      "revId": "0ea3db4550af3f4ec9fb60cf79b9a379ab279b58",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_abde4c3d",
+        "filename": "tests/perf/10ge2p1x520-ethip4-ip4scale-snat-ndrpdrdisc.robot",
+        "patchSetId": 68
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-04-13T06:16:34Z",
+      "side": 1,
+      "message": "\\",
+      "revId": "0ea3db4550af3f4ec9fb60cf79b9a379ab279b58",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
