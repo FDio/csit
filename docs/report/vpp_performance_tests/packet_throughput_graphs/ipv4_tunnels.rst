@@ -71,29 +71,6 @@ git repository by filtering with specified regex as follows:
     10ge2p1x520-ethip4vxlan-l2bdbasemaclrn-ndrdisc.robot:| tc07-64B-2t2c-ethip4vxlan-l2bdbasemaclrn-ndrdisc
     10ge2p1x520-ethip4vxlan-l2xcbase-ndrdisc.robot:| tc07-64B-2t2c-ethip4vxlan-l2xcbase-ndrdisc
 
-VPP NDR Throughput - running in configuration of **four worker threads (4t) on
-four physical cores (4c)** - is presented in the figure below.
-
-.. raw:: html
-
-    <iframe width="700" height="700" frameborder="0" scrolling="no" src="../../_static/vpp/64B-4t4c-ethip4-ndrdisc.html"></iframe>
-
-*Figure 3. VPP 4threads 4cores - NDR Throughput for Phy-to-Phy IPv4 Overlay
-Tunnels.*
-
-CSIT test cases used to generate results presented above can be found in CSIT
-git repository by filtering with specified regex as follows:
-
-.. code-block:: bash
-
-    $ csit/tests/perf
-    $ grep -E "64B-4t4c-ethip4[a-z0-9]+-[a-z0-9]*-ndrdisc" *
-
-    10ge2p1x520-ethip4lispip4-ip4base-ndrdisc.robot:| tc13-64B-4t4c-ethip4lispip4-ip4base-ndrdisc
-    10ge2p1x520-ethip4lispip6-ip4base-ndrdisc.robot:| tc13-64B-4t4c-ethip4lispip6-ip4base-ndrdisc
-    10ge2p1x520-ethip4vxlan-l2bdbasemaclrn-ndrdisc.robot:| tc13-64B-4t4c-ethip4vxlan-l2bdbasemaclrn-ndrdisc
-    10ge2p1x520-ethip4vxlan-l2xcbase-ndrdisc.robot:| tc13-64B-4t4c-ethip4vxlan-l2xcbase-ndrdisc
-
 PDR Throughput
 ~~~~~~~~~~~~~~
 
@@ -105,7 +82,7 @@ packet loss ratio.
 
     <iframe width="700" height="700" frameborder="0" scrolling="no" src="../../_static/vpp/64B-1t1c-ethip4-pdrdisc.html"></iframe>
 
-*Figure 4. VPP 1thread 1core - PDR Throughput for Phy-to-Phy IPv4 Overlay
+*Figure 3. VPP 1thread 1core - PDR Throughput for Phy-to-Phy IPv4 Overlay
 Tunnels.*
 
 CSIT test cases used to generate results presented above can be found in CSIT
@@ -128,7 +105,7 @@ two physical cores (2c)** - is presented in the figure below.
 
     <iframe width="700" height="700" frameborder="0" scrolling="no" src="../../_static/vpp/64B-2t2c-ethip4-pdrdisc.html"></iframe>
 
-*Figure 5. VPP 2thread 2core - PDR Throughput for Phy-to-Phy IPv4 Overlay Tunnels.*
+*Figure 4. VPP 2thread 2core - PDR Throughput for Phy-to-Phy IPv4 Overlay Tunnels.*
 
 CSIT test cases used to generate results presented above can be found in CSIT
 git repository by filtering with specified regex as follows:
@@ -142,27 +119,4 @@ git repository by filtering with specified regex as follows:
     10ge2p1x520-ethip4lispip6-ip4base-ndrdisc.robot:| tc08-64B-2t2c-ethip4lispip6-ip4base-pdrdisc
     10ge2p1x520-ethip4vxlan-l2bdbasemaclrn-ndrdisc.robot:| tc08-64B-2t2c-ethip4vxlan-l2bdbasemaclrn-pdrdisc
     10ge2p1x520-ethip4vxlan-l2xcbase-ndrdisc.robot:| tc08-64B-2t2c-ethip4vxlan-l2xcbase-pdrdisc
-
-VPP PDR Throughput - running in configuration of **four worker threads (4t) on
-four physical cores (4c)** - is presented in the figure below.
-
-.. raw:: html
-
-    <iframe width="700" height="700" frameborder="0" scrolling="no" src="../../_static/vpp/64B-4t4c-ethip4-pdrdisc.html"></iframe>
-
-*Figure 6. VPP 4thread 4core - PDR Throughput for Phy-to-Phy IPv4 Overlay
-Tunnels.*
-
-CSIT test cases used to generate results presented above can be found in CSIT
-git repository by filtering with specified regex as follows:
-
-.. code-block:: bash
-
-    $ csit/tests/perf
-    $ grep -E "64B-4t4c-ethip4[a-z0-9]+-[a-z0-9]*-pdrdisc" *
-
-    10ge2p1x520-ethip4lispip4-ip4base-ndrdisc.robot:| tc14-64B-4t4c-ethip4lispip4-ip4base-pdrdisc
-    10ge2p1x520-ethip4lispip6-ip4base-ndrdisc.robot:| tc14-64B-4t4c-ethip4lispip6-ip4base-pdrdisc
-    10ge2p1x520-ethip4vxlan-l2bdbasemaclrn-ndrdisc.robot:| tc14-64B-4t4c-ethip4vxlan-l2bdbasemaclrn-pdrdisc
-    10ge2p1x520-ethip4vxlan-l2xcbase-ndrdisc.robot:| tc14-64B-4t4c-ethip4vxlan-l2xcbase-pdrdisc
 

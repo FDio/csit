@@ -75,29 +75,3 @@ git repository by filtering with specified regex as follows:
     10ge2p1x520-ethip4-ip4scale2m-ndrdisc.robot:| tc07-64B-2t2c-ethip4-ip4scale2m-ndrdisc
     40ge2p1xl710-ethip4-ip4base-ndrdisc.robot:| tc07-64B-2t2c-ethip4-ip4base-ndrdisc
 
-VPP packet latency - running in configuration of **four worker threads (4t) on four
-physical cores (4c)** - is presented in the figure below.
-
-.. raw:: html
-
-    <iframe width="700" height="700" frameborder="0" scrolling="no" src="../../_static/vpp/64B-4t4c-ethip4-ip4-ndrdisc-lat50.html"></iframe>
-
-*Figure 3. VPP 4threads 4cores - packet latency for Phy-to-Phy IPv4 Routed-Forwarding.*
-
-CSIT test cases used to generate results presented above can be found in CSIT
-git repository by filtering with specified regex as follows:
-
-.. code-block:: bash
-
-    $ csit/tests/perf
-    $ grep -E "64B-4t4c-ethip4-ip4[a-z0-9]+-[a-z-]*ndrdisc" *
-
-    10ge2p1x520-ethip4-ip4base-copwhtlistbase-ndrdisc.robot:| tc13-64B-4t4c-ethip4-ip4base-copwhtlistbase-ndrdisc
-    10ge2p1x520-ethip4-ip4base-iacldstbase-ndrdisc.robot:| tc13-64B-4t4c-ethip4-ip4base-iacldstbase-ndrdisc
-    10ge2p1x520-ethip4-ip4base-ipolicemarkbase-ndrdisc.robot:| tc13-64B-4t4c-ethip4-ip4base-ipolicemarkbase-ndrdisc
-    10ge2p1x520-ethip4-ip4base-ndrdisc.robot:| tc13-64B-4t4c-ethip4-ip4base-ndrdisc
-    10ge2p1x520-ethip4-ip4scale200k-ndrdisc.robot:| tc13-64B-4t4c-ethip4-ip4scale200k-ndrdisc
-    10ge2p1x520-ethip4-ip4scale20k-ndrdisc.robot:| tc13-64B-4t4c-ethip4-ip4scale20k-ndrdisc
-    10ge2p1x520-ethip4-ip4scale2m-ndrdisc.robot:| tc13-64B-4t4c-ethip4-ip4scale2m-ndrdisc
-    40ge2p1xl710-ethip4-ip4base-ndrdisc.robot:| tc13-64B-4t4c-ethip4-ip4base-ndrdisc
-

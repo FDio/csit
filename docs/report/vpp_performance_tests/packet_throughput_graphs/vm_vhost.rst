@@ -80,33 +80,6 @@ git repository by filtering with specified regex as follows:
     10ge2p1x710-eth-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc.robot:| tc07-64B-2t2c-eth-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc
     40ge2p1xl710-eth-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc.robot:| tc07-64B-2t2c-eth-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc
 
-VPP NDR Throughput - running in configuration of **four worker threads (4t) on
-four physical cores (4c)** - is presented in the figure below.
-
-.. raw:: html
-
-    <iframe width="700" height="700" frameborder="0" scrolling="no" src="../../_static/vpp/64B-4t4c-vhost-ndrdisc.html"></iframe>
-
-*Figure 3. VPP 4threads 4cores - NDR Throughput for Phy-to-VM-to-Phy VM
-vhost-user.*
-
-CSIT test cases used to generate results presented above can be found in CSIT
-git repository by filtering with specified regex as follows:
-
-.. code-block:: bash
-
-    $ csit/tests/perf
-    $ grep -E "64B-4t4c-.*vhost.*-ndrdisc" *
-
-    10ge2p1x520-dot1q-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc.robot:| tc13-64B-4t4c-dot1q-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc
-    10ge2p1x520-dot1q-l2xcbase-eth-2vhost-1vm-ndrdisc.robot:| tc13-64B-4t4c-eth-l2xcbase-eth-2vhost-1vm-ndrdisc
-    10ge2p1x520-ethip4-ip4base-eth-2vhost-1vm-ndrdisc.robot:| tc13-64B-4t4c-ethip4-ip4base-eth-2vhost-1vm-ndrdisc
-    10ge2p1x520-ethip4vxlan-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc.robot:| tc13-64B-4t4c-ethip4vxlan-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc
-    10ge2p1x520-eth-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc.robot:| tc13-64B-4t4c-eth-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc
-    10ge2p1x520-eth-l2xcbase-eth-2vhost-1vm-ndrdisc.robot:| tc13-64B-4t4c-eth-l2xcbase-eth-2vhost-1vm-ndrdisc
-    10ge2p1x710-eth-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc.robot:| tc13-64B-4t4c-eth-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc
-    40ge2p1xl710-eth-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc.robot:| tc13-64B-4t4c-eth-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc
-
 PDR Throughput
 ~~~~~~~~~~~~~~
 
@@ -118,7 +91,7 @@ packet loss ratio.
 
     <iframe width="700" height="700" frameborder="0" scrolling="no" src="../../_static/vpp/64B-1t1c-vhost-pdrdisc.html"></iframe>
 
-*Figure 4. VPP 1thread 1core - PDR Throughput for Phy-to-VM-to-Phy VM
+*Figure 3. VPP 1thread 1core - PDR Throughput for Phy-to-VM-to-Phy VM
 vhost-user.*
 
 CSIT test cases used to generate results presented above can be found in CSIT
@@ -145,7 +118,7 @@ two physical cores (2c)** - is presented in the figure below.
 
     <iframe width="700" height="700" frameborder="0" scrolling="no" src="../../_static/vpp/64B-2t2c-vhost-pdrdisc.html"></iframe>
 
-*Figure 5. VPP 2thread 2core - PDR Throughput for Phy-to-VM-to-Phy VM
+*Figure 4. VPP 2thread 2core - PDR Throughput for Phy-to-VM-to-Phy VM
 vhost-user.*
 
 CSIT test cases used to generate results presented above can be found in CSIT
@@ -164,31 +137,4 @@ git repository by filtering with specified regex as follows:
     10ge2p1x520-eth-l2xcbase-eth-2vhost-1vm-ndrdisc.robot:| tc08-64B-2t2c-eth-l2xcbase-eth-2vhost-1vm-pdrdisc
     10ge2p1x710-eth-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc.robot:| tc08-64B-2t2c-eth-l2bdbasemaclrn-eth-2vhost-1vm-pdrdisc
     40ge2p1xl710-eth-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc.robot:| tc08-64B-2t2c-eth-l2bdbasemaclrn-eth-2vhost-1vm-pdrdisc
-
-VPP PDR Throughput - running in configuration of **four worker threads (4t) on
-four physical cores (4c)** - is presented in the figure below.
-
-.. raw:: html
-
-    <iframe width="700" height="700" frameborder="0" scrolling="no" src="../../_static/vpp/64B-4t4c-vhost-pdrdisc.html"></iframe>
-
-*Figure 6. VPP 4thread 4core - PDR Throughput for Phy-to-VM-to-Phy VM
-vhost-user.*
-
-CSIT test cases used to generate results presented above can be found in CSIT
-git repository by filtering with specified regex as follows:
-
-.. code-block:: bash
-
-    $ csit/tests/perf
-    $ grep -E "64B-4t4c-.*vhost.*-pdrdisc" *
-
-    10ge2p1x520-dot1q-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc.robot:| tc14-64B-4t4c-dot1q-l2bdbasemaclrn-eth-2vhost-1vm-pdrdisc
-    10ge2p1x520-dot1q-l2xcbase-eth-2vhost-1vm-ndrdisc.robot:| tc14-64B-4t4c-eth-l2xcbase-eth-2vhost-1vm-pdrdisc
-    10ge2p1x520-ethip4-ip4base-eth-2vhost-1vm-ndrdisc.robot:| tc14-64B-4t4c-ethip4-ip4base-eth-2vhost-1vm-pdrdisc
-    10ge2p1x520-ethip4vxlan-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc.robot:| tc14-64B-4t4c-ethip4vxlan-l2bdbasemaclrn-eth-2vhost-1vm-pdrdisc
-    10ge2p1x520-eth-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc.robot:| tc14-64B-4t4c-eth-l2bdbasemaclrn-eth-2vhost-1vm-pdrdisc
-    10ge2p1x520-eth-l2xcbase-eth-2vhost-1vm-ndrdisc.robot:| tc14-64B-4t4c-eth-l2xcbase-eth-2vhost-1vm-pdrdisc
-    10ge2p1x710-eth-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc.robot:| tc14-64B-4t4c-eth-l2bdbasemaclrn-eth-2vhost-1vm-pdrdisc
-    40ge2p1xl710-eth-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc.robot:| tc14-64B-4t4c-eth-l2bdbasemaclrn-eth-2vhost-1vm-pdrdisc
 

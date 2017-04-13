@@ -63,24 +63,3 @@ git repository by filtering with specified regex as follows:
     10ge2p1x520-ethip6lispip4-ip6base-ndrdisc.robot:| tc07-78B-2t2c-ethip6lispip4-ip6base-ndrdisc
     10ge2p1x520-ethip6lispip6-ip6base-ndrdisc.robot:| tc07-78B-2t2c-ethip6lispip6-ip6base-ndrdisc
 
-VPP packet latency - running in configuration of **four worker threads (4t) on four
-physical cores (4c)** - is presented in the figure below.
-
-.. raw:: html
-
-    <iframe width="700" height="700" frameborder="0" scrolling="no" src="../../_static/vpp/78B-4t4c-ethip6-ndrdisc-lat50.html"></iframe>
-
-*Figure 3. VPP 4threads 4cores - packet latency for Phy-to-Phy IPv6 Overlay Tunnels.*
-
-CSIT test cases used to generate results presented above can be found in CSIT
-git repository by filtering with specified regex as follows:
-
-.. code-block:: bash
-
-    $ csit/tests/perf
-    $ grep -E "78B-4t4c-ethip6[a-z0-9]+-[a-z0-9]*-ndrdisc" *
-
-    10ge2p1x520-ethip6lispip4-ip6base-ndrdisc.robot:| tc13-78B-4t4c-ethip6lispip4-ip6base-ndrdisc
-    10ge2p1x520-ethip6lispip6-ip6base-ndrdisc.robot:| tc13-78B-4t4c-ethip6lispip6-ip6base-ndrdisc
-
-
