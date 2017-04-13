@@ -19,7 +19,7 @@ the other one. Dot1q or Dot1ad tagging of the ethernet frame can be set.
 import sys
 import ipaddress
 
-from scapy.layers.inet import ICMP, IP
+from scapy.layers.inet import ICMP, IP, Raw
 from scapy.layers.l2 import Ether
 from scapy.layers.inet6 import ICMPv6EchoRequest
 from scapy.layers.inet6 import IPv6
@@ -93,7 +93,10 @@ def main():
     elif valid_ipv6(src_ip) and valid_ipv6(dst_ip):
         pkt_raw = (Ether(src=src_mac, dst=dst_mac) /
                    IPv6(src=src_ip, dst=dst_ip) /
-                   ICMPv6EchoRequest(code=icmp_code, type=icmp_type))
+                   ICMPv6EchoRequest(code=icmp_code, type=icmp_type) /
+                   Raw("somepaddingdata"))
+        # classifier expects at least 8 bytes after last header
+        # todo: remove padding once https://gerrit.fd.io/r/6225 is merged
         ip_format = 'IPv6'
         icmp_format = 'ICMPv6'
     else:

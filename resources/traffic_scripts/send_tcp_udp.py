@@ -64,7 +64,7 @@ def main():
     """
     args = TrafficScriptArg(
         ['tx_mac', 'rx_mac', 'src_ip', 'dst_ip', 'protocol',
-         'source_port', 'destination_port'])
+         'source_port', 'destination_port', 'extra_padding'])
 
     src_mac = args.get_arg('tx_mac')
     dst_mac = args.get_arg('rx_mac')
@@ -76,6 +76,8 @@ def main():
     protocol = args.get_arg('protocol')
     source_port = args.get_arg('source_port')
     destination_port = args.get_arg('destination_port')
+
+    extra_padding = args.get_arg('extra_padding')
 
     ip_version = None
     if valid_ipv4(src_ip) and valid_ipv4(dst_ip):
@@ -98,8 +100,13 @@ def main():
     pkt_raw = (Ether(src=src_mac, dst=dst_mac) /
                ip_version(src=src_ip, dst=dst_ip) /
                protocol(sport=int(source_port), dport=int(destination_port)))
+    if extra_padding:
+        # Limitation of ACL-plugin, expects at least 8 bytes after L4 header
+        pkt = str(pkt_raw) + ('\0' * (70 - len(pkt_raw)))
+    else:
+        pkt = str(pkt_raw)
 
-    txq.send(pkt_raw)
+    txq.send(pkt)
     ether = rxq.recv(2)
 
     if ether is None:

@@ -214,7 +214,7 @@
 | | ...
 | | [Arguments] | ${tg_node} | ${src_ip} | ${dst_ip} | ${tx_port} |
 | | ... | ${tx_mac} | ${rx_port} | ${rx_mac} | ${protocol} | ${source_port}
-| | ... | ${destination_port}
+| | ... | ${destination_port} | ${extra_padding}=${0}
 | | ${tx_port_name}= | Get interface name | ${tg_node} | ${tx_port}
 | | ${rx_port_name}= | Get interface name | ${tg_node} | ${rx_port}
 | | ${args}= | Catenate | --tx_mac | ${tx_mac}
@@ -226,6 +226,7 @@
 | | ...                 | --protocol | ${protocol}
 | | ...                 | --source_port | ${source_port}
 | | ...                 | --destination_port | ${destination_port}
+| | ...                 | --extra_padding | ${extra_padding}
 | | Run Traffic Script On Node | send_tcp_udp.py
 | | ... | ${tg_node} | ${args}
 

@@ -121,6 +121,11 @@ def get_variables(test_case, name):
             "src_ip": "10::1",
             "dst_ip": "11::1",
             "dst_net": "11::",
+            # IPs for DUT interface setup
+            "dut_to_tg_if1_ip": "10::2",
+            "dut_to_tg_if2_ip": "20::2",
+            "prefix_length": 64,
+            "gateway": "20::1",
             # ICMP code and type for control packet
             "icmp_type": 1,
             "icmp_code": 0,
