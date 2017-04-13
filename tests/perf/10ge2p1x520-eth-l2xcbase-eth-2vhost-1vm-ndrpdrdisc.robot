@@ -61,6 +61,9 @@
 | ${sock2}= | /tmp/sock-1-${bd_id2}
 # X520-DA2 bandwidth limit
 | ${s_limit} | ${10000000000}
+# Qemu - override default values
+| ${perf_qemu_qsz}= | 1024
+| ${perf_qemu_bin}= | ${QEMU_INSTALL_DIR}
 
 *** Test Cases ***
 | tc01-64B-1t1c-eth-l2xcbase-eth-2vhost-1vm-ndrdisc
