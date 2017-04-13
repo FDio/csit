@@ -62,6 +62,7 @@
 # X520-DA2 bandwidth limit
 | ${s_limit} | ${10000000000}
 
+
 *** Test Cases ***
 | tc01-64B-1t1c-eth-l2xcbase-eth-2vhost-1vm-ndrdisc
 | | [Documentation]
@@ -89,7 +90,6 @@
 | | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
 | | ...     | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
-| | And Setup scheduler policy for VPP on all DUTs
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
 | | ...                                       | ${binary_max} | 3-node-xconnect
 | | ...                                       | ${min_rate} | ${max_rate}
@@ -121,7 +121,6 @@
 | | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
 | | ...     | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
-| | And Setup scheduler policy for VPP on all DUTs
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
 | | ...                                       | ${binary_max} | 3-node-xconnect
 | | ...                                       | ${min_rate} | ${max_rate}
@@ -155,7 +154,6 @@
 | | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
 | | ...     | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
-| | And Setup scheduler policy for VPP on all DUTs
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
 | | ...                                       | ${binary_max} | 3-node-xconnect
 | | ...                                       | ${min_rate} | ${max_rate}
@@ -187,7 +185,6 @@
 | | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
 | | ...     | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
-| | And Setup scheduler policy for VPP on all DUTs
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
 | | ...                                       | ${binary_max} | 3-node-xconnect
 | | ...                                       | ${min_rate} | ${max_rate}
@@ -222,7 +219,6 @@
 | | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
 | | ...     | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
-| | And Setup scheduler policy for VPP on all DUTs
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
 | | ...                                       | ${binary_max} | 3-node-xconnect
 | | ...                                       | ${min_rate} | ${max_rate}
@@ -255,7 +251,6 @@
 | | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
 | | ...     | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
-| | And Setup scheduler policy for VPP on all DUTs
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
 | | ...                                       | ${binary_max} | 3-node-xconnect
 | | ...                                       | ${min_rate} | ${max_rate}
@@ -289,7 +284,6 @@
 | | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
 | | ...     | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
-| | And Setup scheduler policy for VPP on all DUTs
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
 | | ...                                       | ${binary_max} | 3-node-xconnect
 | | ...                                       | ${min_rate} | ${max_rate}
@@ -321,7 +315,6 @@
 | | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
 | | ...     | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
-| | And Setup scheduler policy for VPP on all DUTs
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
 | | ...                                       | ${binary_max} | 3-node-xconnect
 | | ...                                       | ${min_rate} | ${max_rate}
@@ -355,7 +348,6 @@
 | | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
 | | ...     | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
-| | And Setup scheduler policy for VPP on all DUTs
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
 | | ...                                       | ${binary_max} | 3-node-xconnect
 | | ...                                       | ${min_rate} | ${max_rate}
@@ -387,7 +379,6 @@
 | | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
 | | ...     | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
-| | And Setup scheduler policy for VPP on all DUTs
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
 | | ...                                       | ${binary_max} | 3-node-xconnect
 | | ...                                       | ${min_rate} | ${max_rate}
@@ -422,7 +413,6 @@
 | | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
 | | ...     | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
-| | And Setup scheduler policy for VPP on all DUTs
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
 | | ...                                       | ${binary_max} | 3-node-xconnect
 | | ...                                       | ${min_rate} | ${max_rate}
@@ -455,7 +445,6 @@
 | | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
 | | ...     | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
-| | And Setup scheduler policy for VPP on all DUTs
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
 | | ...                                       | ${binary_max} | 3-node-xconnect
 | | ...                                       | ${min_rate} | ${max_rate}
@@ -489,7 +478,6 @@
 | | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
 | | ...     | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
-| | And Setup scheduler policy for VPP on all DUTs
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
 | | ...                                       | ${binary_max} | 3-node-xconnect
 | | ...                                       | ${min_rate} | ${max_rate}
@@ -521,7 +509,6 @@
 | | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
 | | ...     | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
-| | And Setup scheduler policy for VPP on all DUTs
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
 | | ...                                       | ${binary_max} | 3-node-xconnect
 | | ...                                       | ${min_rate} | ${max_rate}
@@ -555,7 +542,6 @@
 | | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
 | | ...     | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
-| | And Setup scheduler policy for VPP on all DUTs
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
 | | ...                                       | ${binary_max} | 3-node-xconnect
 | | ...                                       | ${min_rate} | ${max_rate}
@@ -587,7 +573,6 @@
 | | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
 | | ...     | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
-| | And Setup scheduler policy for VPP on all DUTs
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
 | | ...                                       | ${binary_max} | 3-node-xconnect
 | | ...                                       | ${min_rate} | ${max_rate}
@@ -622,7 +607,6 @@
 | | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
 | | ...     | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
-| | And Setup scheduler policy for VPP on all DUTs
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
 | | ...                                       | ${binary_max} | 3-node-xconnect
 | | ...                                       | ${min_rate} | ${max_rate}
@@ -655,7 +639,6 @@
 | | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
 | | ...     | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
-| | And Setup scheduler policy for VPP on all DUTs
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
 | | ...                                       | ${binary_max} | 3-node-xconnect
 | | ...                                       | ${min_rate} | ${max_rate}
