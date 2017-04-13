@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a3291f1_9c299539",
+        "filename": "resources/libraries/robot/performance.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 1733,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-04-13T17:39:50Z",
+      "side": 1,
+      "message": "There cannot be any IF. We will either use builded version or not (no way back)",
+      "range": {
+        "startLine": 1732,
+        "startChar": 0,
+        "endLine": 1733,
+        "endChar": 65
+      },
+      "revId": "c4ea8226614127751c73cfb3ac356bbcd519d768",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_1c15a5e4",
+        "filename": "resources/libraries/robot/performance.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 1741,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-04-13T17:39:50Z",
+      "side": 1,
+      "message": "Please remove",
+      "range": {
+        "startLine": 1741,
+        "startChar": 0,
+        "endLine": 1741,
+        "endChar": 54
+      },
+      "revId": "c4ea8226614127751c73cfb3ac356bbcd519d768",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_5c1fad08",
+        "filename": "tests/perf/10ge2p1x520-dot1q-l2bdbasemaclrn-eth-2vhost-1vm-ndrpdrdisc.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-04-13T17:39:50Z",
+      "side": 1,
+      "message": "Why not use global VARs?",
+      "range": {
+        "startLine": 70,
+        "startChar": 0,
+        "endLine": 72,
+        "endChar": 41
+      },
+      "revId": "c4ea8226614127751c73cfb3ac356bbcd519d768",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_3c18611d",
+        "filename": "tests/perf/10ge2p1x520-dot1q-l2bdbasemaclrn-eth-2vhost-1vm-ndrpdrdisc.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-04-13T17:39:50Z",
+      "side": 1,
+      "message": "Please remove everywhere",
+      "range": {
+        "startLine": 106,
+        "startChar": 0,
+        "endLine": 106,
+        "endChar": 50
+      },
+      "revId": "c4ea8226614127751c73cfb3ac356bbcd519d768",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
