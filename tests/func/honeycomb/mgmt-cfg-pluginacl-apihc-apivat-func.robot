@@ -43,9 +43,6 @@
 | Library | resources.libraries.python.IPv6Util
 | Library | resources.libraries.python.Routing
 | Test Setup | Clear Packet Trace on All DUTs | ${nodes}
-| Test Teardown | Run Keywords | Show Packet Trace on All DUTs | ${nodes}
-| ... | AND | Read plugin-ACL configuration from VAT | ${node}
-| ... | AND | Clear plugin-acl settings | ${node} | ${dut_to_tg_if1}
 | Suite Teardown
 | ... | Restart Honeycomb and VPP | ${node}
 | Documentation | *Honeycomb access control lists test suite for ACL plugin.*
@@ -61,11 +58,7 @@
 | | ... | [Ver] Send simple TCP packets from one TG interface to the other,\
 | | ... | using different MACs. Receive all packets except those with\
 | | ... | MACs in the filtered ranges.
-| | [Teardown] | Run Keywords
-| | ... | Show Packet Trace on All DUTs | ${nodes} | AND
-| | ... | Clear plugin-acl Settings | ${node} | ${dut_to_tg_if1} | AND
-| | ... | Honeycomb Removes All Bridge Domains
-| | ... | ${node} | ${dut_to_tg_if1} | ${dut_to_tg_if2}
+| | [Teardown] | Bridged ACL test teardown
 | | Given Setup Interfaces And Bridge Domain For plugin-acl Test
 | | ... | macip | ${acl_name_macip}
 | | When Honeycomb Creates ACL Chain Through ACL plugin
@@ -98,12 +91,7 @@
 | | ... | [Ver] Send simple TCP and UDP packets from one TG interface\
 | | ... | to the other, using different IPv4 IPs. Receive all packets except\
 | | ... | those with IPs in the filtered ranges and UDP protocol payload.
-| | [Teardown] | Run Keywords
-| | ... | Show Packet Trace on All DUTs | ${nodes} | AND
-| | ... | Read plugin-ACL configuration from VAT | ${node} | AND
-| | ... | Clear plugin-acl Settings | ${node} | ${dut_to_tg_if1} | AND
-| | ... | Honeycomb Removes All Bridge Domains
-| | ... | ${node} | ${dut_to_tg_if1} | ${dut_to_tg_if2}
+| | [Teardown] | Bridged ACL test teardown
 | | Given Setup Interfaces And Bridge Domain For plugin-acl Test
 | | ... | l3_ip4 | ${acl_name_l3_ip4}
 | | When Honeycomb Creates ACL Chain Through ACL plugin
@@ -137,14 +125,7 @@
 | | ... | [Ver] Send simple TCP and UDP packets from one TG interface\
 | | ... | to the other, using different IPv6 IPs. Receive all packets except\
 | | ... | those with IPs in the filtered ranges and UDP protocol payload.
-| | [Tags] | EXPECTED_FAILING
-# VPP-687: IPv6 next-header does not match for UDP values
-| | [Teardown] | Run Keywords
-| | ... | Show Packet Trace on All DUTs | ${nodes} | AND
-| | ... | Read plugin-ACL configuration from VAT | ${node} | AND
-| | ... | Clear plugin-acl Settings | ${node} | ${dut_to_tg_if1} | AND
-| | ... | Honeycomb Removes All Bridge Domains
-| | ... | ${node} | ${dut_to_tg_if1} | ${dut_to_tg_if2}
+| | [Teardown] | Bridged ACL test teardown
 | | Given Setup interfaces and bridge domain for plugin-acl test
 | | ... | l3_ip6 | ${acl_name_l3_ip6}
 | | When Honeycomb Creates ACL Chain Through ACL plugin
@@ -178,12 +159,7 @@
 | | ... | [Ver] Send simple TCP and UDP packets from one TG interface\
 | | ... | to the other, using different ports. Receive all packets except\
 | | ... | those with ports in the filtered ranges.
-| | [Teardown] | Run Keywords
-| | ... | Show Packet Trace on All DUTs | ${nodes} | AND
-| | ... | Read plugin-ACL configuration from VAT | ${node} | AND
-| | ... | Clear plugin-acl Settings | ${node} | ${dut_to_tg_if1} | AND
-| | ... | Honeycomb Removes All Bridge Domains
-| | ... | ${node} | ${dut_to_tg_if1} | ${dut_to_tg_if2}
+| | [Teardown] | Bridged ACL test teardown
 | | Given Setup interfaces and bridge domain for plugin-acl test
 | | ... | L4 | ${acl_name_l4}
 | | When Honeycomb Creates ACL Chain Through ACL plugin
@@ -218,12 +194,7 @@
 | | ... | [Ver] Send simple TCP packets from one TG interface to the other,\
 | | ... | using IPs and ports. Receive all packets except those with\
 | | ... | both IPs and ports in the filtered ranges.
-| | [Teardown] | Run Keywords
-| | ... | Show Packet Trace on All DUTs | ${nodes} | AND
-| | ... | Read plugin-ACL configuration from VAT | ${node} | AND
-| | ... | Clear plugin-acl Settings | ${node} | ${dut_to_tg_if1} | AND
-| | ... | Honeycomb Removes All Bridge Domains
-| | ... | ${node} | ${dut_to_tg_if1} | ${dut_to_tg_if2}
+| | [Teardown] | Bridged ACL test teardown
 | | Given Setup Interfaces And Bridge Domain For plugin-acl Test
 | | ... | mixed | ${acl_name_mixed}
 | | When Honeycomb Creates ACL Chain Through ACL plugin
@@ -255,12 +226,7 @@
 | | ... | [Ver] Send ICMP packets from one TG interface\
 | | ... | to the other, using different codes and types. Receive all packets\
 | | ... | except those with types and codes in the filtered ranges.
-| | [Teardown] | Run Keywords
-| | ... | Show Packet Trace on All DUTs | ${nodes} | AND
-| | ... | Read plugin-ACL configuration from VAT | ${node} | AND
-| | ... | Clear plugin-acl Settings | ${node} | ${dut_to_tg_if1} | AND
-| | ... | Honeycomb Removes All Bridge Domains
-| | ... | ${node} | ${dut_to_tg_if1} | ${dut_to_tg_if2}
+| | [Teardown] | Bridged ACL test teardown
 | | Given Setup interfaces and bridge domain for plugin-acl test
 | | ... | icmp | ${acl_name_icmp}
 | | When Honeycomb Creates ACL Chain Through ACL plugin
@@ -293,14 +259,7 @@
 | | ... | [Ver] Send ICMPv6 packets from one TG interface\
 | | ... | to the other, using different codes and types. Receive all packets\
 | | ... | except those with the filtered type and code.
-| | [Tags] | EXPECTED_FAILING
-# VPP-687: IPv6 next-header does not match for UDP values
-| | [Teardown] | Run Keywords
-| | ... | Show Packet Trace on All DUTs | ${nodes} | AND
-| | ... | Read plugin-ACL configuration from VAT | ${node} | AND
-| | ... | Clear plugin-acl Settings | ${node} | ${dut_to_tg_if1} | AND
-| | ... | Honeycomb Removes All Bridge Domains
-| | ... | ${node} | ${dut_to_tg_if1} | ${dut_to_tg_if2}
+| | [Teardown] | Bridged ACL test teardown
 | | Given Setup interfaces and bridge domain for plugin-acl test
 | | ... | icmpv6 | ${acl_name_icmpv6}
 | | When Honeycomb Creates ACL Chain Through ACL plugin
@@ -335,12 +294,7 @@
 | | ... | to VPP interface 2 and receive it from interface 1(this should create\
 | | ... | a reflexive "permit" rule) Finally, send the original packet again\
 | | ... | and receive it from interface 2.
-| | [Teardown] | Run Keywords
-| | ... | Show Packet Trace on All DUTs | ${nodes} | AND
-| | ... | Read plugin-ACL configuration from VAT | ${node} | AND
-| | ... | Clear plugin-acl Settings | ${node} | ${dut_to_tg_if1} | AND
-| | ... | Honeycomb Removes All Bridge Domains
-| | ... | ${node} | ${dut_to_tg_if1} | ${dut_to_tg_if2}
+| | [Teardown] | Bridged ACL test teardown
 | | Given Setup Interfaces And Bridge Domain For plugin-acl Test
 | | ... | reflex | ${acl_name_reflex}
 | | When Honeycomb Creates ACL Chain Through ACL plugin
@@ -383,6 +337,7 @@
 | | ... | [Ver] Send simple TCP and UDP packets from one TG interface\
 | | ... | to the other, using different IPv4 IPs. Receive all packets except\
 | | ... | those with IPs in the filtered ranges and UDP protocol payload.
+| | [Teardown] | Routed ACL test teardown - ipv4
 | | Given Setup Interface IPs And Routes For IPv4 plugin-acl Test
 | | ... | l3_ip4 | ${acl_name_l3_ip4}
 | | When Honeycomb Creates ACL Chain Through ACL plugin
@@ -416,22 +371,19 @@
 | | ... | [Ver] Send simple TCP and UDP packets from one TG interface\
 | | ... | to the other, using different IPv6 IPs. Receive all packets except\
 | | ... | those with IPs in the filtered ranges and UDP protocol payload.
-| | [Tags] | EXPECTED_FAILING
-# VPP-687: IPv6 next-header does not match for UDP values
+| | [Teardown] | Routed ACL test teardown - ipv6
 | | Given Path for 2-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | And Import Variables | resources/test_data/honeycomb/plugin_acl.py
 | | ... | L3_IP6 | ${acl_name_l3_ip6}
 | | And Honeycomb sets interface state | ${dut_node} | ${dut_to_tg_if1} | up
 | | And Honeycomb sets interface state | ${dut_node} | ${dut_to_tg_if2} | up
-# TODO: Configure addresses through Honeycomb when implemented. (Honeycomb-102)
-| | And Set Interface Address | ${dut_node}
+| | And Honeycomb sets interface ipv6 address | ${dut_node}
 | | ... | ${dut_to_tg_if1} | ${dut_to_tg_if1_ip} | ${prefix_length}
-| | And Set Interface Address | ${dut_node}
+| | And Honeycomb sets interface ipv6 address | ${dut_node}
 | | ... | ${dut_to_tg_if2} | ${dut_to_tg_if2_ip} | ${prefix_length}
 | | And VPP RA suppress link layer | ${dut_node} | ${dut_to_tg_if2}
-# TODO: Configure route through Honeycomb when implemented.(Honeycomb-58)
-| | And Add IP Neighbor
+| | And Honeycomb adds interface ipv6 neighbor
 | | ... | ${node} | ${dut_to_tg_if2} | ${gateway} | ${tg_to_dut_if2_mac}
 | | And VPP Route Add | ${node} | ${dst_net} | ${prefix_length}
 | | ... | ${gateway} | interface=${dut_to_tg_if2} | use_sw_index=False
@@ -468,6 +420,7 @@
 | | ... | [Ver] Send simple TCP and UDP packets from one TG interface\
 | | ... | to the other, using different ports. Receive all packets except\
 | | ... | those with ports in the filtered ranges.
+| | [Teardown] | Routed ACL test teardown - ipv4
 | | Given Setup Interface IPs And Routes For IPv4 plugin-acl Test
 | | ... | L4 | ${acl_name_l4}
 | | When Honeycomb Creates ACL Chain Through ACL plugin
@@ -502,6 +455,7 @@
 | | ... | [Ver] Send simple TCP packets from one TG interface to the other,\
 | | ... | using IPs and ports. Receive all packets except those with\
 | | ... | both IPs and ports in the filtered ranges.
+| | [Teardown] | Routed ACL test teardown - ipv4
 | | Given Setup Interface IPs And Routes For IPv4 plugin-acl Test
 | | ... | mixed | ${acl_name_mixed}
 | | When Honeycomb Creates ACL Chain Through ACL plugin
@@ -534,6 +488,7 @@
 | | ... | [Ver] Send ICMP packets from one TG interface\
 | | ... | to the other, using different codes and types. Receive all packets\
 | | ... | except those with the filtered type and code.
+| | [Teardown] | Routed ACL test teardown - ipv4
 | | Given Setup Interface IPs And Routes For IPv4 plugin-acl Test
 | | ... | icmp | ${acl_name_icmp}
 | | When Honeycomb Creates ACL Chain Through ACL plugin
@@ -567,31 +522,28 @@
 | | ... | [Ver] Send ICMPv6 packets from one TG interface\
 | | ... | to the other, using different codes and types. Receive all packets\
 | | ... | except those with the filtered type and code.
-| | [Tags] | EXPECTED_FAILING
-# VPP-687: IPv6 next-header does not match for UDP values
+| | [Teardown] | Routed ACL test teardown - ipv6
 | | Given Path for 2-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | And Import Variables | resources/test_data/honeycomb/plugin_acl.py
-| | ... | L3_IP6 | ${acl_name_l3_ip6}
+| | ... | icmpv6 | ${acl_name_icmpv6}
 | | And Honeycomb sets interface state | ${dut_node} | ${dut_to_tg_if1} | up
 | | And Honeycomb sets interface state | ${dut_node} | ${dut_to_tg_if2} | up
-# TODO: Configure addresses through Honeycomb when implemented. (Honeycomb-102)
-| | And Set Interface Address | ${dut_node}
+| | And Honeycomb sets interface ipv6 address | ${dut_node}
 | | ... | ${dut_to_tg_if1} | ${dut_to_tg_if1_ip} | ${prefix_length}
-| | And Set Interface Address | ${dut_node}
+| | And Honeycomb sets interface ipv6 address | ${dut_node}
 | | ... | ${dut_to_tg_if2} | ${dut_to_tg_if2_ip} | ${prefix_length}
-| | And VPP RA suppress link layer | ${dut_node} | ${dut_to_tg_if2}
-# TODO: Configure route through Honeycomb when implemented.(Honeycomb-58)
-| | And Add IP Neighbor
+| | And Honeycomb adds interface ipv6 neighbor
 | | ... | ${node} | ${dut_to_tg_if2} | ${gateway} | ${tg_to_dut_if2_mac}
+| | And VPP RA suppress link layer | ${dut_node} | ${dut_to_tg_if2}
 | | And VPP Route Add | ${node} | ${dst_net} | ${prefix_length}
 | | ... | ${gateway} | interface=${dut_to_tg_if2} | use_sw_index=False
 | | And VPP Route Add | ${node} | ${classify_dst_net} | ${prefix_length}
 | | ... | ${gateway} | interface=${dut_to_tg_if2} | use_sw_index=False
 | | When Honeycomb Creates ACL Chain Through ACL plugin
-| | ... | ${dut_node} | ${acl_name_icmp} | ${acl_settings}
+| | ... | ${dut_node} | ${acl_name_icmpv6} | ${acl_settings}
 | | And Honeycomb Assigns plugin-acl Chain To Interface
-| | ... | ${dut_node} | ${dut_to_tg_if1} | ${acl_name_icmp} | ingress
+| | ... | ${dut_node} | ${dut_to_tg_if1} | ${acl_name_icmpv6} | ingress
 | | Then Send ICMP packet with type and code | ${tg_node}
 | | ... | ${src_ip} | ${dst_ip}
 | | ... | ${tg_to_dut_if1} | ${tg_to_dut_if1_mac}
@@ -621,6 +573,7 @@
 | | ... | to VPP interface 2 and receive it from interface 1(this should create\
 | | ... | a reflexive "permit" rule) Finally, send the original packet again\
 | | ... | and receive it from interface 2.
+| | [Teardown] | Routed ACL test teardown - ipv4
 | | Given Setup Interface IPs And Routes For IPv4 plugin-acl Test
 | | ... | reflex | ${acl_name_reflex}
 | | And Add ARP on DUT
@@ -660,6 +613,8 @@
 
 *** Keywords ***
 | Setup interface IPs and routes for IPv4 plugin-acl test
+| | [Documentation] | Import test variables, set interfaces up,
+| | ... | configure IPv4 addresses, add neighbor entry and routes.
 | | [Arguments] | ${test_data_id} | ${acl_name}
 | | Path for 2-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
@@ -671,8 +626,7 @@
 | | ... | ${dut_to_tg_if1} | ${dut_to_tg_if1_ip} | ${prefix_length}
 | | Honeycomb sets interface ipv4 address with prefix | ${dut_node}
 | | ... | ${dut_to_tg_if2} | ${dut_to_tg_if2_ip} | ${prefix_length}
-# TODO: Configure routes through Honeycomb once routing tests are added
-| | Add ARP on DUT
+| | And Honeycomb adds interface ipv4 neighbor
 | | ... | ${node} | ${dut_to_tg_if2} | ${gateway} | ${tg_to_dut_if2_mac}
 | | VPP Route Add
 | | ... | ${node} | ${dst_net} | ${prefix_length} | ${gateway}
@@ -682,6 +636,7 @@
 | | ... | interface=${dut_to_tg_if2} | use_sw_index=False
 
 | Setup interfaces and bridge domain for plugin-acl test
+| | [Documentation] | Import test variables, set interfaces up and bridge them.
 | | [Arguments] | ${test_data_id} | ${acl_name}
 | | Path For 2-node Testing Is Set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
@@ -694,3 +649,30 @@
 | | Honeycomb Adds Interfaces To Bridge Domain
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${dut_to_tg_if2}
 | | ... | ${bd_name} | ${bd_if_settings}
+
+| Bridged ACL test teardown
+| | [Documentation] | Log packet trace and ACL settings,
+| | ... | then clean up bridge domains.
+| | Show Packet Trace on All DUTs | ${nodes}
+| | Read plugin-ACL configuration from VAT | ${node}
+| | Clear plugin-acl Settings | ${node} | ${dut_to_tg_if1}
+| | Honeycomb Removes All Bridge Domains
+| | ... | ${node} | ${dut_to_tg_if1} | ${dut_to_tg_if2}
+
+| Routed ACL test teardown - ipv4
+| | [Documentation] | Log packet trace and ACL settings,
+| | ... | then clean up IPv4 addresses and neighbors.
+| | Show Packet Trace on All DUTs | ${nodes}
+| | Read plugin-ACL configuration from VAT | ${node}
+| | Clear plugin-acl Settings | ${node} | ${dut_to_tg_if1}
+| | Honeycomb removes interface ipv4 addresses | ${node} | ${dut_to_tg_if1}
+| | Honeycomb clears all interface ipv4 neighbors | ${node} | ${dut_to_tg_if1}
+
+| Routed ACL test teardown - ipv6
+| | [Documentation] | Log packet trace and ACL settings,
+| | ... | then clean up IPv6 addresses and neighbors.
+| | Show Packet Trace on All DUTs | ${nodes}
+| | Clear plugin-acl Settings | ${node} | ${dut_to_tg_if1}
+| | Read plugin-ACL configuration from VAT | ${node}
+| | Honeycomb removes interface ipv6 addresses | ${node} | ${dut_to_tg_if1}
+| | Honeycomb clears all interface ipv6 neighbors | ${node} | ${dut_to_tg_if1}
