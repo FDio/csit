@@ -143,6 +143,10 @@ def parse_args():
     parser.add_argument("-d", "--latency",
                         choices=['lat_10', 'lat_50', 'lat_100'],
                         help="Latency to draw")
+    parser.add_argument("-p", "--plot",
+                        choices=['box', 'scatter'],
+                        default='box',
+                        help="Throughput plot type")
     parser.add_argument("-i", "--input",
                         help="Input folder")
     parser.add_argument("-o", "--output", required=True,
@@ -160,13 +164,9 @@ def main():
         xdata, ydata = parse_data_pps(args)
 
     # Print data into console for debug
-    row_format = "{:>60}" * (len(xdata) + 1)
-    print row_format.format(args.title, *xdata)
+    print args.title
     for data in ydata:
-        try:
-            print row_format.format(data, *ydata[data][1::2])
-        except IndexError:
-            print "{:>60}".format(data), ydata[data]
+        print data + ";" + ";".join(str(val) for val in ydata[data][1::2])
 
     if xdata and ydata:
         traces = []
@@ -193,12 +193,23 @@ def main():
                     boxmean=False,
                 ))
             else:
-                traces.append(plgo.Scatter(
-                    x=ydata[suite][0::2],
-                    y=ydata[suite][1::2],
-                    mode='lines+markers',
-                    name=str(i+1)+'. '+suite.lower().replace('-ndrdisc',''),
-                ))
+                if args.plot == 'box':
+                    traces.append(plgo.Box(
+                        x=[str(i+1)+'. TC'] * len(ydata[suite][1::2]),
+                        y=ydata[suite][1::2],
+                        name=str(i+1)+'. '+suite.lower().replace('-ndrdisc',''),
+                        hoverinfo='x+y',
+                        boxpoints='outliers',
+                    ))
+                elif args.plot == 'scatter':
+                    traces.append(plgo.Scatter(
+                        x=ydata[suite][0::2],
+                        y=ydata[suite][1::2],
+                        mode='lines+markers',
+                        name=str(i+1)+'. '+suite.lower().replace('-ndrdisc',''),
+                    ))
+                else:
+                    pass
 
         # Add plot layout
         layout = plgo.Layout(
@@ -215,6 +226,8 @@ def main():
                 showticklabels=True,
                 tickcolor='rgb(238, 238, 238)',
                 tickmode='linear',
+                title='Indexed Test Cases (see Legend)' if args.plot == 'box'\
+                    else '',
                 zeroline=False,
             ),
             yaxis=dict(
@@ -222,7 +235,8 @@ def main():
                 hoverformat='' if args.latency else '.4s',
                 linecolor='rgb(238, 238, 238)',
                 linewidth=1,
-                range=[args.lower, args.upper],
+                range=[args.lower, args.upper] if args.lower and args.upper\
+                    else [],
                 showgrid=True,
                 showline=True,
                 showticklabels=True,
@@ -243,6 +257,8 @@ def main():
             showlegend=True,
             legend=dict(
                 orientation='h',
+                y=-1,
+                yanchor='bottom',
             ),
             width=700,
             height=700,
