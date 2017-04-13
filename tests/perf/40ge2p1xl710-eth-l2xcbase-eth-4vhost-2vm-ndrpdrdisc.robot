@@ -90,7 +90,6 @@
 | | And   Apply startup configuration on all VPP DUTs
 | | When  L2 xconnect with Vhost-User for '2' initialized in a 3-node circular topology
 | | And   '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
-| | And   Setup scheduler policy for VPP on all DUTs
 | | Then  Find NDR using binary search and pps
 | | ...   | ${framesize} | ${binary_min} | ${binary_max} | 3-node-xconnect
 | | ...   | ${min_rate} | ${max_rate} | ${threshold}
@@ -119,8 +118,6 @@
 | | And   Apply startup configuration on all VPP DUTs
 | | When  L2 xconnect with Vhost-User for '2' initialized in a 3-node circular topology
 | | And   '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
-| | And   Setup scheduler policy for VPP on all DUTs
-| | Then  Find PDR using binary search and pps
 | | ...   | ${framesize} | ${binary_min} | ${binary_max} | 3-node-xconnect
 | | ...   | ${min_rate} | ${max_rate} | ${threshold}
 | | ...   | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
@@ -149,7 +146,6 @@
 | | And   Apply startup configuration on all VPP DUTs
 | | When  L2 xconnect with Vhost-User for '2' initialized in a 3-node circular topology
 | | And   '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
-| | And   Setup scheduler policy for VPP on all DUTs
 | | Then  Find NDR using binary search and pps
 | | ...   | ${framesize} | ${binary_min} | ${binary_max} | 3-node-xconnect
 | | ...   | ${min_rate} | ${max_rate} | ${threshold}
@@ -178,7 +174,6 @@
 | | And   Apply startup configuration on all VPP DUTs
 | | When  L2 xconnect with Vhost-User for '2' initialized in a 3-node circular topology
 | | And   '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
-| | And   Setup scheduler policy for VPP on all DUTs
 | | Then  Find PDR using binary search and pps
 | | ...   | ${framesize} | ${binary_min} | ${binary_max} | 3-node-xconnect
 | | ...   | ${min_rate} | ${max_rate} | ${threshold}
@@ -209,7 +204,6 @@
 | | And   Apply startup configuration on all VPP DUTs
 | | When  L2 xconnect with Vhost-User for '2' initialized in a 3-node circular topology
 | | And   '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
-| | And   Setup scheduler policy for VPP on all DUTs
 | | Then  Find NDR using binary search and pps
 | | ...   | ${framesize} | ${binary_min} | ${binary_max} | 3-node-xconnect
 | | ...   | ${min_rate} | ${max_rate} | ${threshold}
@@ -239,7 +233,6 @@
 | | And   Apply startup configuration on all VPP DUTs
 | | When  L2 xconnect with Vhost-User for '2' initialized in a 3-node circular topology
 | | And   '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
-| | And   Setup scheduler policy for VPP on all DUTs
 | | Then  Find PDR using binary search and pps
 | | ...   | ${framesize} | ${binary_min} | ${binary_max} | 3-node-xconnect
 | | ...   | ${min_rate} | ${max_rate} | ${threshold}
@@ -269,7 +262,6 @@
 | | And   Apply startup configuration on all VPP DUTs
 | | When  L2 xconnect with Vhost-User for '2' initialized in a 3-node circular topology
 | | And   '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
-| | And   Setup scheduler policy for VPP on all DUTs
 | | Then  Find NDR using binary search and pps
 | | ...   | ${framesize} | ${binary_min} | ${binary_max} | 3-node-xconnect
 | | ...   | ${min_rate} | ${max_rate} | ${threshold}
@@ -298,7 +290,6 @@
 | | And   Apply startup configuration on all VPP DUTs
 | | When  L2 xconnect with Vhost-User for '2' initialized in a 3-node circular topology
 | | And   '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
-| | And   Setup scheduler policy for VPP on all DUTs
 | | Then  Find PDR using binary search and pps
 | | ...   | ${framesize} | ${binary_min} | ${binary_max} | 3-node-xconnect
 | | ...   | ${min_rate} | ${max_rate} | ${threshold}
@@ -328,7 +319,6 @@
 | | And   Apply startup configuration on all VPP DUTs
 | | When  L2 xconnect with Vhost-User for '2' initialized in a 3-node circular topology
 | | And   '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
-| | And   Setup scheduler policy for VPP on all DUTs
 | | Then  Find NDR using binary search and pps
 | | ...   | ${framesize} | ${binary_min} | ${binary_max} | 3-node-xconnect
 | | ...   | ${min_rate} | ${max_rate} | ${threshold}
@@ -357,7 +347,6 @@
 | | And   Apply startup configuration on all VPP DUTs
 | | When  L2 xconnect with Vhost-User for '2' initialized in a 3-node circular topology
 | | And   '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
-| | And   Setup scheduler policy for VPP on all DUTs
 | | Then  Find PDR using binary search and pps
 | | ...   | ${framesize} | ${binary_min} | ${binary_max} | 3-node-xconnect
 | | ...   | ${min_rate} | ${max_rate} | ${threshold}
@@ -388,7 +377,6 @@
 | | And   Apply startup configuration on all VPP DUTs
 | | When  L2 xconnect with Vhost-User for '2' initialized in a 3-node circular topology
 | | And   '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
-| | And   Setup scheduler policy for VPP on all DUTs
 | | Then  Find NDR using binary search and pps
 | | ...   | ${framesize} | ${binary_min} | ${binary_max} | 3-node-xconnect
 | | ...   | ${min_rate} | ${max_rate} | ${threshold}
@@ -418,7 +406,6 @@
 | | And   Apply startup configuration on all VPP DUTs
 | | When  L2 xconnect with Vhost-User for '2' initialized in a 3-node circular topology
 | | And   '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
-| | And   Setup scheduler policy for VPP on all DUTs
 | | Then  Find PDR using binary search and pps
 | | ...   | ${framesize} | ${binary_min} | ${binary_max} | 3-node-xconnect
 | | ...   | ${min_rate} | ${max_rate} | ${threshold}
@@ -448,7 +435,6 @@
 | | And   Apply startup configuration on all VPP DUTs
 | | When  L2 xconnect with Vhost-User for '2' initialized in a 3-node circular topology
 | | And   '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
-| | And   Setup scheduler policy for VPP on all DUTs
 | | Then  Find NDR using binary search and pps
 | | ...   | ${framesize} | ${binary_min} | ${binary_max} | 3-node-xconnect
 | | ...   | ${min_rate} | ${max_rate} | ${threshold}
@@ -477,7 +463,6 @@
 | | And   Apply startup configuration on all VPP DUTs
 | | When  L2 xconnect with Vhost-User for '2' initialized in a 3-node circular topology
 | | And   '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
-| | And   Setup scheduler policy for VPP on all DUTs
 | | Then  Find PDR using binary search and pps
 | | ...   | ${framesize} | ${binary_min} | ${binary_max} | 3-node-xconnect
 | | ...   | ${min_rate} | ${max_rate} | ${threshold}
@@ -507,7 +492,6 @@
 | | And   Apply startup configuration on all VPP DUTs
 | | When  L2 xconnect with Vhost-User for '2' initialized in a 3-node circular topology
 | | And   '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
-| | And   Setup scheduler policy for VPP on all DUTs
 | | Then  Find NDR using binary search and pps
 | | ...   | ${framesize} | ${binary_min} | ${binary_max} | 3-node-xconnect
 | | ...   | ${min_rate} | ${max_rate} | ${threshold}
@@ -536,7 +520,6 @@
 | | And   Apply startup configuration on all VPP DUTs
 | | When  L2 xconnect with Vhost-User for '2' initialized in a 3-node circular topology
 | | And   '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
-| | And   Setup scheduler policy for VPP on all DUTs
 | | Then  Find PDR using binary search and pps
 | | ...   | ${framesize} | ${binary_min} | ${binary_max} | 3-node-xconnect
 | | ...   | ${min_rate} | ${max_rate} | ${threshold}
@@ -567,7 +550,6 @@
 | | And   Apply startup configuration on all VPP DUTs
 | | When  L2 xconnect with Vhost-User for '2' initialized in a 3-node circular topology
 | | And   '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
-| | And   Setup scheduler policy for VPP on all DUTs
 | | Then  Find NDR using binary search and pps
 | | ...   | ${framesize} | ${binary_min} | ${binary_max} | 3-node-xconnect
 | | ...   | ${min_rate} | ${max_rate} | ${threshold}
@@ -597,7 +579,6 @@
 | | And   Apply startup configuration on all VPP DUTs
 | | When  L2 xconnect with Vhost-User for '2' initialized in a 3-node circular topology
 | | And   '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
-| | And   Setup scheduler policy for VPP on all DUTs
 | | Then  Find PDR using binary search and pps
 | | ...   | ${framesize} | ${binary_min} | ${binary_max} | 3-node-xconnect
 | | ...   | ${min_rate} | ${max_rate} | ${threshold}

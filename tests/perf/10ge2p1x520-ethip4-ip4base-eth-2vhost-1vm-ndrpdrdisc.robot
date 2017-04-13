@@ -92,7 +92,6 @@
 | | ...     | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1 | ${dut2_vif1_mac}
 | | ...     | ${dut2_vif2_mac}
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
-| | And Setup scheduler policy for VPP on all DUTs
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
 | | ...                                       | ${binary_max} | 3-node-IPv4
 | | ...                                       | ${min_rate} | ${max_rate}
@@ -126,7 +125,6 @@
 | | ...     | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1 | ${dut2_vif1_mac}
 | | ...     | ${dut2_vif2_mac}
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
-| | And Setup scheduler policy for VPP on all DUTs
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
 | | ...                                       | ${binary_max} | 3-node-IPv4
 | | ...                                       | ${min_rate} | ${max_rate}
@@ -162,7 +160,6 @@
 | | ...     | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1 | ${dut2_vif1_mac}
 | | ...     | ${dut2_vif2_mac}
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
-| | And Setup scheduler policy for VPP on all DUTs
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
 | | ...                                       | ${binary_max} | 3-node-IPv4
 | | ...                                       | ${min_rate} | ${max_rate}
@@ -196,7 +193,6 @@
 | | ...     | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1 | ${dut2_vif1_mac}
 | | ...     | ${dut2_vif2_mac}
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
-| | And Setup scheduler policy for VPP on all DUTs
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
 | | ...                                       | ${binary_max} | 3-node-IPv4
 | | ...                                       | ${min_rate} | ${max_rate}
@@ -233,7 +229,6 @@
 | | ...     | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1 | ${dut2_vif1_mac}
 | | ...     | ${dut2_vif2_mac}
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
-| | And Setup scheduler policy for VPP on all DUTs
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
 | | ...                                       | ${binary_max} | 3-node-IPv4
 | | ...                                       | ${min_rate} | ${max_rate}
@@ -268,7 +263,6 @@
 | | ...     | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1 | ${dut2_vif1_mac}
 | | ...     | ${dut2_vif2_mac}
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
-| | And Setup scheduler policy for VPP on all DUTs
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
 | | ...                                       | ${binary_max} | 3-node-IPv4
 | | ...                                       | ${min_rate} | ${max_rate}
@@ -304,7 +298,6 @@
 | | ...     | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1 | ${dut2_vif1_mac}
 | | ...     | ${dut2_vif2_mac}
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
-| | And Setup scheduler policy for VPP on all DUTs
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
 | | ...                                       | ${binary_max} | 3-node-IPv4
 | | ...                                       | ${min_rate} | ${max_rate}
@@ -338,7 +331,6 @@
 | | ...     | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1 | ${dut2_vif1_mac}
 | | ...     | ${dut2_vif2_mac}
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
-| | And Setup scheduler policy for VPP on all DUTs
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
 | | ...                                       | ${binary_max} | 3-node-IPv4
 | | ...                                       | ${min_rate} | ${max_rate}
@@ -374,7 +366,6 @@
 | | ...     | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1 | ${dut2_vif1_mac}
 | | ...     | ${dut2_vif2_mac}
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
-| | And Setup scheduler policy for VPP on all DUTs
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
 | | ...                                       | ${binary_max} | 3-node-IPv4
 | | ...                                       | ${min_rate} | ${max_rate}
@@ -408,7 +399,6 @@
 | | ...     | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1 | ${dut2_vif1_mac}
 | | ...     | ${dut2_vif2_mac}
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
-| | And Setup scheduler policy for VPP on all DUTs
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
 | | ...                                       | ${binary_max} | 3-node-IPv4
 | | ...                                       | ${min_rate} | ${max_rate}
@@ -445,7 +435,6 @@
 | | ...     | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1 | ${dut2_vif1_mac}
 | | ...     | ${dut2_vif2_mac}
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
-| | And Setup scheduler policy for VPP on all DUTs
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
 | | ...                                       | ${binary_max} | 3-node-IPv4
 | | ...                                       | ${min_rate} | ${max_rate}
@@ -480,7 +469,6 @@
 | | ...     | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1 | ${dut2_vif1_mac}
 | | ...     | ${dut2_vif2_mac}
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
-| | And Setup scheduler policy for VPP on all DUTs
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
 | | ...                                       | ${binary_max} | 3-node-IPv4
 | | ...                                       | ${min_rate} | ${max_rate}
@@ -516,7 +504,6 @@
 | | ...     | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1 | ${dut2_vif1_mac}
 | | ...     | ${dut2_vif2_mac}
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
-| | And Setup scheduler policy for VPP on all DUTs
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
 | | ...                                       | ${binary_max} | 3-node-IPv4
 | | ...                                       | ${min_rate} | ${max_rate}
@@ -550,7 +537,6 @@
 | | ...     | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1 | ${dut2_vif1_mac}
 | | ...     | ${dut2_vif2_mac}
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
-| | And Setup scheduler policy for VPP on all DUTs
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
 | | ...                                       | ${binary_max} | 3-node-IPv4
 | | ...                                       | ${min_rate} | ${max_rate}
@@ -586,7 +572,6 @@
 | | ...     | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1 | ${dut2_vif1_mac}
 | | ...     | ${dut2_vif2_mac}
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
-| | And Setup scheduler policy for VPP on all DUTs
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
 | | ...                                       | ${binary_max} | 3-node-IPv4
 | | ...                                       | ${min_rate} | ${max_rate}
@@ -620,7 +605,6 @@
 | | ...     | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1 | ${dut2_vif1_mac}
 | | ...     | ${dut2_vif2_mac}
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
-| | And Setup scheduler policy for VPP on all DUTs
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
 | | ...                                       | ${binary_max} | 3-node-IPv4
 | | ...                                       | ${min_rate} | ${max_rate}
@@ -657,7 +641,6 @@
 | | ...     | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1 | ${dut2_vif1_mac}
 | | ...     | ${dut2_vif2_mac}
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
-| | And Setup scheduler policy for VPP on all DUTs
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
 | | ...                                       | ${binary_max} | 3-node-IPv4
 | | ...                                       | ${min_rate} | ${max_rate}
@@ -692,7 +675,6 @@
 | | ...     | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1 | ${dut2_vif1_mac}
 | | ...     | ${dut2_vif2_mac}
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
-| | And Setup scheduler policy for VPP on all DUTs
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
 | | ...                                       | ${binary_max} | 3-node-IPv4
 | | ...                                       | ${min_rate} | ${max_rate}
