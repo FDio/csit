@@ -1729,6 +1729,8 @@
 | | ... | skip_cnt=${skip_cnt} | cpu_cnt=${count} | smt_used=${False}
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock1}
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock2}
+| | Run Keyword If | '${perf_qemu_qsz}' == '1024'
+| | ...            |  ${vm_name}.Build QEMU on all DUTs | apply_patch=${True}
 | | Run keyword | ${vm_name}.Qemu Set Bin | ${perf_qemu_bin}
 | | Run keyword | ${vm_name}.Qemu Set Node | ${dut_node}
 | | Run keyword | ${vm_name}.Qemu Set Smp | ${count} | ${count} | 1 | 1
