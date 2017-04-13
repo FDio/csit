@@ -16,7 +16,7 @@
 | Library | resources.libraries.python.NodePath
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDRDISC
-| ... | NIC_Intel-X520-DA2 | ETH | L2XCFWD | BASE | VHOST | VM
+| ... | NIC_Intel-X520-DA2 | ETH | L2XCFWD | BASE | VHOST | VM | TEST
 | ...
 | Suite Setup | 3-node Performance Suite Setup with DUT's NIC model
 | ... | L2 | Intel-X520-DA2
@@ -61,6 +61,9 @@
 | ${sock2}= | /tmp/sock-1-${bd_id2}
 # X520-DA2 bandwidth limit
 | ${s_limit} | ${10000000000}
+# Qemu - override default values
+${perf_qemu_qsz}= | 1024
+${perf_qemu_bin}= | ${QEMU_INSTALL_DIR}
 
 *** Test Cases ***
 | tc01-64B-1t1c-eth-l2xcbase-eth-2vhost-1vm-ndrdisc
