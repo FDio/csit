@@ -3,8 +3,6 @@
   remote_user: testuser
   sudo: yes
   tasks:
-  - name: install python-apt
-    raw: apt-get update && apt-get install python-apt -y -q
   - name: copy sudoers file
     copy: src=files/sudoers dest=/etc/sudoers.d/testuser owner=root group=root mode=660
   - name: copy hosts file
@@ -19,6 +17,8 @@
     command: update-grub
   - name: copy apt sources file
     template: src=files/apt-sources.list dest=/etc/apt/sources.list
+  - name: install python-apt
+    raw: apt-get update && apt-get install python-apt -y -q
   - name: update repositories
     apt: update_cache=yes
   - name: install git

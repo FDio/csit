@@ -27,10 +27,13 @@ is available on the PXE bootstrap server in ~testuser/host-setup.
 ### Prepare the PXE bootstrap server (one-time)
 
   - `sudo apt-get install isc-dhcp-server tftpd-hpa nginx-light ansible`
+  - `sudo service isc-dhcp-server restart`
+  - edit dhcpd.conf and place it to /etc/dhcp/
+  - `sudo cp dhcpd.cfg /etc/dhcp/`
   - `cd ~testuser/host-setup`
-  - `wget 'http://releases.ubuntu.com/16.04.1/ubuntu-16.04.1-server-amd64.iso'`
+  - `wget 'http://releases.ubuntu.com/16.04.2/ubuntu-16.04.2-server-amd64.iso'`
   - `sudo mkdir /mnt/cdrom`
-  - `sudo mount -o loop ubuntu-16.04.1-server-amd64.iso /mnt/cdrom/`
+  - `sudo mount -o loop ubuntu-16.04.2-server-amd64.iso /mnt/cdrom/`
   - `sudo cp -r /mnt/cdrom/install/netboot/* /var/lib/tftpboot/`
   - `sudo mkdir /usr/share/nginx/html/ubuntu`
   - `sudo cp -r /mnt/cdrom/* /usr/share/nginx/html/ubuntu/`
@@ -42,6 +45,30 @@ is available on the PXE bootstrap server in ~testuser/host-setup.
   - edit ks.cfg and replace IP address with that of your PXE bootstrap server
   - `sudo cp ks.cfg /usr/share/nginx/html/ks.cfg`
   - edit boot-screens_txt.cfg and replace IP address with that of your PXE bootstrap server
+  - `sudo cp boot-screens_txt.cfg /var/lib/tftpboot/ubuntu-installer/amd64/boot-screens/txt.cfg`
+  - `sudo cp syslinux.cfg /var/lib/tftpboot/ubuntu-installer/amd64/boot-screens/syslinux.cfg`
+
+### Prepare the PXE bootstrap server (alternative way without NGINX)
+
+  - `sudo apt-get install isc-dhcp-server tftpd-hpa ansible`
+  - `sudo service isc-dhcp-server restart`
+  - edit dhcpd.conf and place it to /etc/dhcp/
+  - `sudo cp dhcpd.cfg /etc/dhcp/`
+  - `cd ~testuser/host-setup`
+  - `wget 'http://releases.ubuntu.com/16.04.2/ubuntu-16.04.2-server-amd64.iso'`
+  - `sudo mkdir /mnt/cdrom`
+  - `sudo mount -o loop ubuntu-16.04.1-server-amd64.iso /mnt/cdrom/`
+  - `sudo cp -r /mnt/cdrom/install/netboot/* /var/lib/tftpboot/`
+  - `sudo mkdir /var/www/download/ubuntu`
+  - `sudo cp -r /mnt/cdrom/* /var/www/download/ubuntu/`
+  - `sudo cp /mnt/cdrom/ubuntu/isolinux/ldlinux.c32 /var/lib/tftpboot`
+  - `sudo cp /mnt/cdrom/ubuntu/isolinux/libcom32.c32 /var/lib/tftpboot`
+  - `sudo cp /mnt/cdrom/ubuntu/isolinux/libutil.c32 /var/lib/tftpboot`
+  - `sudo cp /mnt/cdrom/ubuntu/isolinux/chain.c32 /var/lib/tftpboot`
+  - `sudo umount /mnt/cdrom`
+  - edit ks.cfg and replace IP address with that of your PXE bootstrap server and subdir in /var/www (in this case /download)
+  - `sudo cp ks.cfg /var/www/download/ks.cfg`
+  - edit boot-screens_txt.cfg and replace IP address with that of your PXE bootstrap server and subdir in /var/www (in this case /download)
   - `sudo cp boot-screens_txt.cfg /var/lib/tftpboot/ubuntu-installer/amd64/boot-screens/txt.cfg`
   - `sudo cp syslinux.cfg /var/lib/tftpboot/ubuntu-installer/amd64/boot-screens/syslinux.cfg`
 
