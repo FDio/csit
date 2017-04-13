@@ -16,13 +16,16 @@
 | Library | resources.libraries.python.NodePath
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDRDISC
-| ... | NIC_Intel-X520-DA2 | ETH | L2XCFWD | BASE | VHOST | VM
+| ... | NIC_Intel-X520-DA2 | ETH | L2XCFWD | BASE | VHOST | VM | TEST
 | ...
 | Suite Setup | 3-node Performance Suite Setup with DUT's NIC model
 | ... | L2 | Intel-X520-DA2
 | Suite Teardown | 3-node Performance Suite Teardown
 | ...
-| Test Setup | Performance test setup
+| Test Setup | Run Keywords | Performance test setup
+| ...        | AND | Set Suite Variable | ${perf_qemu_qsz} | 1024
+| ...        | AND | Set Suite Variable | ${perf_qemu_bin}
+| ...        | /opt/qemu-2.5.0/bin/qemu-system-x86_64
 | Test Teardown | Performance test with vhost and VM with dpdk-testpmd teardown
 | ... | ${min_rate}pps | ${framesize} | 3-node-xconnect
 | ... | dut1_node=${dut1} | dut1_vm_refs=${dut1_vm_refs}
@@ -61,6 +64,9 @@
 | ${sock2}= | /tmp/sock-1-${bd_id2}
 # X520-DA2 bandwidth limit
 | ${s_limit} | ${10000000000}
+# Qemu - override default values
+| ${perf_qemu_qsz}= | 1024
+| ${perf_qemu_bin}= | ${QEMU_INSTALL_DIR}
 
 *** Test Cases ***
 | tc01-64B-1t1c-eth-l2xcbase-eth-2vhost-1vm-ndrdisc

@@ -14,15 +14,19 @@
 *** Settings ***
 | Resource | resources/libraries/robot/performance.robot
 | Library | resources.libraries.python.QemuUtils
+| Variables | resources/libraries/python/constants.py
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDRDISC
-| ... | NIC_Intel-X520-DA2 | DOT1Q | L2BDMACLRN | BASE | VHOST | VM
+| ... | NIC_Intel-X520-DA2 | DOT1Q | L2BDMACLRN | BASE | VHOST | VM | TEST
 | ...
 | Suite Setup | 3-node Performance Suite Setup with DUT's NIC model
 | ... | L2 | Intel-X520-DA2
 | Suite Teardown | 3-node Performance Suite Teardown
 | ...
-| Test Setup | Performance test setup
+| Test Setup | Run Keywords | Performance test setup
+| ...        | AND | Set Suite Variable | ${perf_qemu_qsz} | 1024
+| ...        | AND | Set Suite Variable | ${perf_qemu_bin}
+| ...        | /opt/qemu-2.5.0/bin/qemu-system-x86_64
 | Test Teardown | Performance test with vhost and VM with dpdk-testpmd teardown
 | ... | ${min_rate}pps | ${framesize} | 3-node-bridge
 | ... | dut1_node=${dut1} | dut1_vm_refs=${dut1_vm_refs}
@@ -67,7 +71,6 @@
 | ${bd_id2}= | 2
 | ${sock1}= | /tmp/sock-1-${bd_id1}
 | ${sock2}= | /tmp/sock-1-${bd_id2}
-
 
 *** Test Cases ***
 | tc01-64B-1t1c-dot1q-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc
