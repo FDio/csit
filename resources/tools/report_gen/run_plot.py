@@ -143,6 +143,10 @@ def parse_args():
     parser.add_argument("-d", "--latency",
                         choices=['lat_10', 'lat_50', 'lat_100'],
                         help="Latency to draw")
+    parser.add_argument("-p", "--plot",
+                        choices=['box', 'scatter'],
+                        default='box',
+                        help="Throughput plot type")
     parser.add_argument("-i", "--input",
                         help="Input folder")
     parser.add_argument("-o", "--output", required=True,
@@ -193,12 +197,21 @@ def main():
                     boxmean=False,
                 ))
             else:
-                traces.append(plgo.Scatter(
-                    x=ydata[suite][0::2],
-                    y=ydata[suite][1::2],
-                    mode='lines+markers',
-                    name=str(i+1)+'. '+suite.lower().replace('-ndrdisc',''),
-                ))
+                if args.plot == 'box':
+                    traces.append(plgo.Box(
+                        y=ydata[suite][1::2],
+                        name=str(i+1)+'. '+suite.lower().replace('-ndrdisc',''),
+                        boxpoints='outliers',
+                    ))
+                elif args.plot == 'scatter':
+                    traces.append(plgo.Scatter(
+                        x=ydata[suite][0::2],
+                        y=ydata[suite][1::2],
+                        mode='lines+markers',
+                        name=str(i+1)+'. '+suite.lower().replace('-ndrdisc',''),
+                    ))
+                else:
+                    pass
 
         # Add plot layout
         layout = plgo.Layout(
@@ -212,7 +225,7 @@ def main():
                 linewidth=1,
                 showgrid=True,
                 showline=True,
-                showticklabels=True,
+                showticklabels=False if args.plot == 'box' else True,
                 tickcolor='rgb(238, 238, 238)',
                 tickmode='linear',
                 zeroline=False,
@@ -222,7 +235,8 @@ def main():
                 hoverformat='' if args.latency else '.4s',
                 linecolor='rgb(238, 238, 238)',
                 linewidth=1,
-                range=[args.lower, args.upper],
+                range=[args.lower, args.upper] if args.lower and args.upper\
+                    else [],
                 showgrid=True,
                 showline=True,
                 showticklabels=True,
