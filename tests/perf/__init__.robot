@@ -40,5 +40,6 @@
 | | Set Global Variable | ${perf_pdr_loss_acceptance} | 0.5
 | | Set Global Variable | ${perf_pdr_loss_acceptance_type} | percentage
 | | Set Global Variable | ${perf_vm_image} | /var/lib/vm/csit-nested-1.6.img
-| | Set Global Variable | ${perf_qemu_bin} | /usr/bin/qemu-system-x86_64
-| | Set Global Variable | ${perf_qemu_qsz} | 256
+| | Set Global Variable | ${perf_qemu_bin}
+| | ...                 | /opt/qemu-2.5.0/bin/qemu-system-x86_64
+| | Set Global Variable | ${perf_qemu_qsz} | 1024
