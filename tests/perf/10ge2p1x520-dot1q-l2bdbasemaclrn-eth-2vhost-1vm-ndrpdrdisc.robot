@@ -16,7 +16,7 @@
 | Library | resources.libraries.python.QemuUtils
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDRDISC
-| ... | NIC_Intel-X520-DA2 | DOT1Q | L2BDMACLRN | BASE | VHOST | VM
+| ... | NIC_Intel-X520-DA2 | DOT1Q | L2BDMACLRN | BASE | VHOST | VM | TEST
 | ...
 | Suite Setup | 3-node Performance Suite Setup with DUT's NIC model
 | ... | L2 | Intel-X520-DA2
@@ -67,6 +67,9 @@
 | ${bd_id2}= | 2
 | ${sock1}= | /tmp/sock-1-${bd_id1}
 | ${sock2}= | /tmp/sock-1-${bd_id2}
+# Qemu - override default values
+| ${perf_qemu_qsz}= | 1024
+| ${perf_qemu_bin}= | ${QEMU_INSTALL_DIR}
 
 
 *** Test Cases ***
