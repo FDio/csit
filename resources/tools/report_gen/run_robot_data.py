@@ -247,6 +247,11 @@ def do_rst(data, args):
     output = open(args.output, 'w')
     output.write('\n.. |br| raw:: html\n\n    <br />\n\n')
 
+    if (args.title):
+        output.write(args.title + '\n' +
+                     hdrs[shift - 1] *
+                     len(args.title) + '\n\n')
+
     for item in data:
         if int(item['level']) < start:
             continue
@@ -468,6 +473,10 @@ def parse_args():
                         default=None,
                         help="Regular expression used to select test suites. "
                              "If None, all test suites are selected.")
+    parser.add_argument("-t", "--title",
+                        type=str,
+                        default=None,
+                        help="Title of the output.")
 
     return parser.parse_args()
 
