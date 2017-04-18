@@ -35,6 +35,7 @@
 | | ... | *Example:*
 | | ...
 | | ... | \| Honeycomb is restarted \| ${nodes['DUT1']} \|
+| | ...
 | | [Arguments] | ${node}
 | | Stop Honeycomb service on DUTs | ${node}
 | | Log Persisted Configuration | ${node}
@@ -49,6 +50,7 @@
 | | ... | *Example:*
 | | ...
 | | ... | \| VPP is restarted \| ${nodes['DUT1']} \|
+| | ...
 | | [Arguments] | ${node}
 | | Setup DUT | ${node}
 | | Check VPP connection | ${node}
@@ -63,6 +65,7 @@
 | | ... | *Example:*
 | | ...
 | | ... | \| Check VPP connection \| ${nodes['DUT1']} \|
+| | ...
 | | [Arguments] | ${node}
 | | Wait until keyword succeeds | 2min | 20sec
 | | ... | Check Honeycomb startup state | ${node}
@@ -77,6 +80,7 @@
 | | ... | *Example:*
 | | ...
 | | ... | \| Honeycomb and VPP are restarted \| ${nodes['DUT1']} \|
+| | ...
 | | [Arguments] | ${node}
 | | Stop Honeycomb service on DUTs | ${node}
 | | Log Persisted Configuration | ${node}
@@ -95,6 +99,7 @@
 | | ...
 | | ... | \| Honeycomb configures every setting \| ${nodes['DUT1']} \
 | | ... | \| GigabitEthernet0/8/0 \|
+| | ...
 | | [Arguments] | ${node} | ${interface}
 | | Honeycomb sets interface VxLAN configuration
 | | ... | ${node} | ${vx_interface} | ${vxlan_settings}
@@ -126,6 +131,7 @@
 | | ...
 | | ... | \| Honeycomb and VPP should verify every setting \| ${nodes['DUT1']} \
 | | ... | \| GigabitEthernet0/8/0 \|
+| | ...
 | | [Arguments] | ${node} | ${interface}
 | | VxLAN configuration from Honeycomb should be
 | | ... | ${node} | ${vx_interface} | ${vxlan_settings}
@@ -170,6 +176,7 @@
 | | ...
 | | ... | \| Honeycomb and VPP should have default configuration \|
 | | ... | ${nodes['DUT1']} \|
+| | ...
 | | [Arguments] | ${node}
 | | VxLAN configuration from Honeycomb should be empty
 | | ... | ${node} | ${vx_interface}
@@ -201,10 +208,10 @@
 | | ...
 | | ... | \| Honeycomb and VPP should not have default configuration \
 | | ... | \| ${nodes['DUT1']} \|
+| | ...
 | | [Arguments] | ${node}
 | | Run keyword and expect error | *
 | | ... | Honeycomb and VPP should have default configuration | ${node}
-
 
 | Honeycomb should show no rogue interfaces
 | | [Documentation] | Checks if operational data contains interfaces not\
@@ -216,6 +223,7 @@
 | | ... | *Example:*
 | | ...
 | | ... | \| Honeycomb should show no rogue interfaces \| ${nodes['DUT1']} \|
+| | ...
 | | [Arguments] | ${node}
 | | ${data_conf}= | InterfaceAPI.Get all interfaces cfg data | ${node}
 | | ${data_oper}= | InterfaceAPI.Get all interfaces oper data | ${node}
@@ -231,8 +239,22 @@
 | | ... | *Example:*
 | | ...
 | | ... | \| Persistence file is damaged during restart \| ${nodes['DUT1']} \|
+| | ...
 | | [Arguments] | ${node}
 | | Stop Honeycomb service on DUTs | ${node}
 | | Modify persistence files | ${node} | { | abc
 | | Setup DUT | ${node}
 | | Setup Honeycomb service on DUTs | ${node}
+
+| Log persisted configuration on node
+| | [Documentation] | Logs the content of Honeycomb's persitence files.
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - information about a DUT node. Type: dictionary
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Log persisted configuration on node \| ${nodes['DUT1']} \|
+| | ...
+| | [Arguments] | ${node}
+| | Log persisted configuration | ${node}
