@@ -205,7 +205,6 @@
 | | Run keyword and expect error | *
 | | ... | Honeycomb and VPP should have default configuration | ${node}
 
-
 | Honeycomb should show no rogue interfaces
 | | [Documentation] | Checks if operational data contains interfaces not\
 | | ... | present in configuration and vice versa.
@@ -236,3 +235,15 @@
 | | Modify persistence files | ${node} | { | abc
 | | Setup DUT | ${node}
 | | Setup Honeycomb service on DUTs | ${node}
+
+| Log persisted configuration on node
+| | [Documentation] | Logs the content of Honeycomb's persitence files.
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - information about a DUT node. Type: dictionary
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Log persisted configuration on node \| ${nodes['DUT1']} \|
+| | [Arguments] | ${node}
+| | Log persisted configuration | ${node}
