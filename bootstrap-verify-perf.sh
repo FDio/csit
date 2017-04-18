@@ -176,6 +176,14 @@ case "$TEST_TAG" in
               tests/
         RETURN_STATUS=$(echo $?)
         ;;
+    PERFTEST_NDRCHK_DAILY )
+        pybot ${PYBOT_ARGS} \
+              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+              -s "tests.perf" \
+              --include ndrchkAND1t1cORndrchkAND2t2c \
+              tests/
+        RETURN_STATUS=$(echo $?)
+        ;;
     PERFTEST_LONG )
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
