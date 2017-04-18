@@ -19,8 +19,8 @@
 | Resource | resources/libraries/robot/default.robot
 | Resource | resources/libraries/robot/honeycomb/persistence.robot
 | Suite Setup | Run Keywords
+| ... | Configure Persistence | ${node} | enable | AND
 | ... | Restart Honeycomb And VPP And Clear Persisted Configuration | ${node}
-| ... | AND | Configure Persistence | ${node} | enable
 | Suite Teardown | Configure Persistence | ${node} | disable
 | Force Tags | honeycomb_sanity
 | Documentation | *Honeycomb configuration persistence test suite.*
@@ -29,10 +29,11 @@
 | TC01: Honeycomb persists configuration through restart of both Honeycomb and VPP
 | | [Documentation] | Checks if Honeycomb maintains configuration after both\
 | | ... | Honeycomb and VPP are restarted.
-# Vxlan tunnel name is sometimes not properly restored (HONEYCOMB-301)
+# Vxlan tunnel name is sometimes not properly restored (HC2VPP-47)
 | | [Tags] | EXPECTED_FAILING
 | | Given Honeycomb configures every setting | ${node} | ${interface}
 | | And Honeycomb and VPP should verify every setting | ${node} | ${interface}
+| | And Log persisted configuration on node | ${node}
 | | When Honeycomb and VPP are restarted | ${node}
 | | Then Honeycomb and VPP should verify every setting | ${node} | ${interface}
 | | And Honeycomb should show no rogue interfaces | ${node}
@@ -40,9 +41,10 @@
 | TC02: Honeycomb persists configuration through restart of Honeycomb
 | | [Documentation] | Checks if Honeycomb maintains configuration after it\
 | | ... | is restarted.
-# Vxlan tunnel name is sometimes not properly restored (HONEYCOMB-301)
+# Vxlan tunnel name is sometimes not properly restored (HC2VPP-47)
 | | [Tags] | EXPECTED_FAILING
 | | Given Honeycomb and VPP should verify every setting | ${node} | ${interface}
+| | And Log persisted configuration on node | ${node}
 | | When Honeycomb is restarted | ${node}
 | | Then Honeycomb and VPP should verify every setting | ${node} | ${interface}
 | | And Honeycomb should show no rogue interfaces | ${node}
@@ -50,9 +52,10 @@
 | TC03: Honeycomb persists configuration through restart of VPP
 | | [Documentation] | Checks if Honeycomb updates VPP settings after VPP is\
 | | ... | restarted.
-# Vxlan tunnel name is sometimes not properly restored (HONEYCOMB-301)
+# Vxlan tunnel name is sometimes not properly restored (HC2VPP-47)
 | | [Tags] | EXPECTED_FAILING
 | | Given Honeycomb and VPP should verify every setting | ${node} | ${interface}
+| | And Log persisted configuration on node | ${node}
 | | When VPP is restarted | ${node}
 | | Then Honeycomb and VPP should verify every setting | ${node} | ${interface}
 | | And Honeycomb should show no rogue interfaces | ${node}
