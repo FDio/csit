@@ -1,0 +1,464 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a3291f1_c29df60b",
+        "filename": "resources/libraries/python/honeycomb/Routing.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-04-18T09:00:11Z",
+      "side": 1,
+      "message": "policer_data?",
+      "range": {
+        "startLine": 285,
+        "startChar": 14,
+        "endLine": 285,
+        "endChar": 24
+      },
+      "revId": "93cff7b86a16956517bd866718865e5b437d10d8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_a2a2ea48",
+        "filename": "resources/libraries/python/honeycomb/Routing.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-04-18T09:00:11Z",
+      "side": 1,
+      "message": "dict is enough",
+      "range": {
+        "startLine": 285,
+        "startChar": 26,
+        "endLine": 285,
+        "endChar": 39
+      },
+      "revId": "93cff7b86a16956517bd866718865e5b437d10d8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_429106f0",
+        "filename": "resources/libraries/python/honeycomb/Routing.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 288,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-04-18T09:00:11Z",
+      "side": 1,
+      "message": "policer?",
+      "range": {
+        "startLine": 288,
+        "startChar": 35,
+        "endLine": 288,
+        "endChar": 37
+      },
+      "revId": "93cff7b86a16956517bd866718865e5b437d10d8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_228efad0",
+        "filename": "resources/libraries/python/honeycomb/Routing.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 295,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-04-18T09:00:11Z",
+      "side": 1,
+      "message": "Do not commit disabled code.",
+      "range": {
+        "startLine": 291,
+        "startChar": 8,
+        "endLine": 295,
+        "endChar": 41
+      },
+      "revId": "93cff7b86a16956517bd866718865e5b437d10d8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_828b6ec2",
+        "filename": "resources/libraries/python/honeycomb/Routing.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 310,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-04-18T09:00:11Z",
+      "side": 1,
+      "message": "policer?",
+      "range": {
+        "startLine": 310,
+        "startChar": 29,
+        "endLine": 310,
+        "endChar": 34
+      },
+      "revId": "93cff7b86a16956517bd866718865e5b437d10d8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_02bf7e62",
+        "filename": "resources/libraries/python/honeycomb/Routing.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 334,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-04-18T09:00:11Z",
+      "side": 1,
+      "message": "Do not commit disabled code.",
+      "range": {
+        "startLine": 332,
+        "startChar": 12,
+        "endLine": 334,
+        "endChar": 64
+      },
+      "revId": "93cff7b86a16956517bd866718865e5b437d10d8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_e2c352eb",
+        "filename": "resources/libraries/robot/honeycomb/policer.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-04-18T09:00:11Z",
+      "side": 1,
+      "message": "Do we need this library?",
+      "range": {
+        "startLine": 15,
+        "startChar": 0,
+        "endLine": 15,
+        "endChar": 73
+      },
+      "revId": "93cff7b86a16956517bd866718865e5b437d10d8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_c2b4d683",
+        "filename": "resources/libraries/robot/honeycomb/policer.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-04-18T09:00:11Z",
+      "side": 1,
+      "message": "\\",
+      "range": {
+        "startLine": 33,
+        "startChar": 53,
+        "endLine": 33,
+        "endChar": 55
+      },
+      "revId": "93cff7b86a16956517bd866718865e5b437d10d8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_a2b9ca7a",
+        "filename": "resources/libraries/robot/honeycomb/policer.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-04-18T09:00:11Z",
+      "side": 1,
+      "message": "if",
+      "range": {
+        "startLine": 41,
+        "startChar": 70,
+        "endLine": 41,
+        "endChar": 74
+      },
+      "revId": "93cff7b86a16956517bd866718865e5b437d10d8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_82b24e92",
+        "filename": "resources/libraries/robot/honeycomb/policer.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-04-18T09:00:11Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 52,
+        "startChar": 21,
+        "endLine": 52,
+        "endChar": 24
+      },
+      "revId": "93cff7b86a16956517bd866718865e5b437d10d8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_42a8e61f",
+        "filename": "resources/libraries/robot/honeycomb/policer.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 75,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-04-18T09:00:11Z",
+      "side": 1,
+      "message": "configuration",
+      "range": {
+        "startLine": 75,
+        "startChar": 59,
+        "endLine": 75,
+        "endChar": 72
+      },
+      "revId": "93cff7b86a16956517bd866718865e5b437d10d8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_62af622b",
+        "filename": "resources/libraries/robot/honeycomb/policer.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-04-18T09:00:11Z",
+      "side": 1,
+      "message": "configuration",
+      "range": {
+        "startLine": 90,
+        "startChar": 59,
+        "endLine": 90,
+        "endChar": 72
+      },
+      "revId": "93cff7b86a16956517bd866718865e5b437d10d8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_22a5da46",
+        "filename": "resources/libraries/robot/honeycomb/policer.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-04-18T09:00:11Z",
+      "side": 1,
+      "message": "Do not commit disabled code.",
+      "range": {
+        "startLine": 103,
+        "startChar": 0,
+        "endLine": 104,
+        "endChar": 57
+      },
+      "revId": "93cff7b86a16956517bd866718865e5b437d10d8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_02665e2a",
+        "filename": "resources/libraries/robot/honeycomb/policer.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-04-18T09:00:11Z",
+      "side": 1,
+      "message": "add an empty line",
+      "range": {
+        "startLine": 117,
+        "startChar": 46,
+        "endLine": 117,
+        "endChar": 47
+      },
+      "revId": "93cff7b86a16956517bd866718865e5b437d10d8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_e26a32ed",
+        "filename": "resources/templates/honeycomb/config_policer.url",
+        "patchSetId": 2
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-04-18T09:00:11Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 1,
+        "startChar": 42,
+        "endLine": 1,
+        "endChar": 49
+      },
+      "revId": "93cff7b86a16956517bd866718865e5b437d10d8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_c26bb6ef",
+        "filename": "tests/func/honeycomb/mgmt-cfg-policer-apihc-func.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-04-18T09:00:11Z",
+      "side": 1,
+      "message": "configure",
+      "range": {
+        "startLine": 37,
+        "startChar": 46,
+        "endLine": 37,
+        "endChar": 55
+      },
+      "revId": "93cff7b86a16956517bd866718865e5b437d10d8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_82792eca",
+        "filename": "tests/func/honeycomb/mgmt-cfg-policer-apihc-func.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-04-18T09:00:11Z",
+      "side": 1,
+      "message": "expected_policer_data or expected_oper_policer_data or expected_cfg_policer_data",
+      "range": {
+        "startLine": 41,
+        "startChar": 12,
+        "endLine": 41,
+        "endChar": 32
+      },
+      "revId": "93cff7b86a16956517bd866718865e5b437d10d8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_427fc6ab",
+        "filename": "tests/func/honeycomb/mgmt-cfg-policer-apihc-func.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-04-18T09:00:11Z",
+      "side": 1,
+      "message": "Add doc",
+      "range": {
+        "startLine": 77,
+        "startChar": 0,
+        "endLine": 77,
+        "endChar": 38
+      },
+      "revId": "93cff7b86a16956517bd866718865e5b437d10d8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_024d3e9a",
+        "filename": "tests/func/honeycomb/mgmt-cfg-policer-apihc-func.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-04-18T09:00:11Z",
+      "side": 1,
+      "message": "And",
+      "range": {
+        "startLine": 83,
+        "startChar": 4,
+        "endLine": 83,
+        "endChar": 8
+      },
+      "revId": "93cff7b86a16956517bd866718865e5b437d10d8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_c2429667",
+        "filename": "tests/func/honeycomb/mgmt-cfg-policer-apihc-func.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 86,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-04-18T09:00:11Z",
+      "side": 1,
+      "message": "And? or Then? There is the verify part?",
+      "range": {
+        "startLine": 86,
+        "startChar": 4,
+        "endLine": 86,
+        "endChar": 8
+      },
+      "revId": "93cff7b86a16956517bd866718865e5b437d10d8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
