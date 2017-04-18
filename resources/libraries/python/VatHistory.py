@@ -22,10 +22,14 @@ __all__ = ["DICT__duts_vat_history", "VatHistory"]
 
 def setup_vat_history(nodes):
     duts_vat_history = {}
-    for node in nodes.values():
-        if node['type'] == NodeType.DUT:
-            duts_vat_history[node['host']] = []
-    return duts_vat_history
+    try:
+        for node in nodes.values():
+            if node['type'] == NodeType.DUT:
+                duts_vat_history[node['host']] = []
+        return duts_vat_history
+    except AttributeError:
+        # Necessary for the generation of source code documentation.
+        pass
 
 DICT__duts_vat_history = setup_vat_history(DICT__nodes)
 
