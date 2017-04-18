@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a3291f1_509d4c65",
+        "filename": "tests/perf/10ge2p1x520-dot1q-l2bdbasemaclrn-eth-2vhost-1vm-ndrpdrdisc.robot",
+        "patchSetId": 19
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-04-18T18:48:32Z",
+      "side": 1,
+      "message": "Is it required?",
+      "range": {
+        "startLine": 17,
+        "startChar": 0,
+        "endLine": 17,
+        "endChar": 53
+      },
+      "revId": "77d4d5badf2fd79e37b671eba380f21102f51413",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
