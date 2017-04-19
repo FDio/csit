@@ -163,6 +163,26 @@ Test type tags
 
     Baseline test cases, no encapsulation, no feature(s) configured in tests.
 
+.. topic:: IP4BASE
+
+    IPv4 baseline test cases, no encapsulation, no feature(s) configured in
+    tests.
+
+.. topic:: IP6BASE
+
+    IPv6 baseline test cases, no encapsulation, no feature(s) configured in
+    tests.
+
+.. topic:: L2XCBASE
+
+    L2XC baseline test cases, no encapsulation, no feature(s) configured in
+    tests.
+
+.. topic:: L2BDBASE
+
+    L2BD baseline test cases, no encapsulation, no feature(s) configured in
+    tests.
+
 .. topic:: SCALE
 
     Scale test cases.
