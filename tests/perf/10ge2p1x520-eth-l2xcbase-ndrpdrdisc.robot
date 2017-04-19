@@ -17,7 +17,7 @@
 | Library | resources.libraries.python.NodePath
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDRDISC
-| ... | NIC_Intel-X520-DA2 | ETH | L2XCFWD | BASE
+| ... | NIC_Intel-X520-DA2 | ETH | L2XCFWD | BASE | L2XCBASE
 | ...
 | Suite Setup | 3-node Performance Suite Setup with DUT's NIC model
 | ... | L2 | Intel-X520-DA2
