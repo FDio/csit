@@ -21,18 +21,28 @@ html, rst) to defined output file.
 Supported formats:
  - html
  - rst
+ - wiki
 
 :TODO:
- - wiki
  - md
 
 :Example:
 
-robot_output_parser_publish.py -i output.xml" -o "tests.rst" -f "rst" -s 3 -l 2
+run_robot_data.py -i "output.xml" -o "tests.rst" -f "rst" -s 3 -l 2
 
 The example reads the data from "output.xml", writes the output to "tests.rst"
 in rst format. It will start on the 3rd level of xml structure and the generated
 document hierarchy will start on the 2nd level.
+All test suites will be processed.
+
+:Example:
+
+run_robot_data.py -i "output.xml" -o "tests.rst" -f "rst" -r "(.*)(lisp)(.*)"
+
+The example reads the data from "output.xml", writes the output to "tests.rst"
+in rst format. It will start on the 1st level of xml structure and the generated
+document hierarchy will start on the 1st level (default values).
+Only the test suites which match the given regular expression are processed.
 """
 
 import argparse
@@ -404,14 +414,23 @@ def process_robot_file(args):
         data = json.load(json_file)
     data.pop(-1)
 
+    if args.regex:
+        results = list()
+        regex = re.compile(args.regex)
+        for item in data:
+            if re.search(regex, item['title'].lower()):
+                results.append(item)
+    else:
+        results = data
+
     if args.formatting == 'rst':
-        do_rst(data, args)
+        do_rst(results, args)
     elif args.formatting == 'wiki':
-        do_wiki(data, args)
+        do_wiki(results, args)
     elif args.formatting == 'html':
-        do_html(data, args)
+        do_html(results, args)
     elif args.formatting == 'md':
-        do_md(data, args)
+        do_md(results, args)
 
 
 def parse_args():
@@ -444,6 +463,11 @@ def parse_args():
                         type=int,
                         default=1,
                         help="The level of the first chapter in generated file")
+    parser.add_argument("-r", "--regex",
+                        type=str,
+                        default=None,
+                        help="Regular expression used to select test suites. "
+                             "If None, all test suites are selected.")
 
     return parser.parse_args()
 
