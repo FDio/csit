@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a3291f1_eba20dfc",
+        "filename": "resources/libraries/robot/traffic.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 217,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-04-19T06:47:27Z",
+      "side": 1,
+      "message": "add to doc and example",
+      "range": {
+        "startLine": 217,
+        "startChar": 32,
+        "endLine": 217,
+        "endChar": 53
+      },
+      "revId": "ec2aebfd641173d1b7802679d5a674edc9782335",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_2b8b7569",
+        "filename": "tests/func/honeycomb/mgmt-cfg-pluginacl-apihc-apivat-func.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 618,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-04-19T06:47:27Z",
+      "side": 1,
+      "message": "Why is there no doc in these keywords?",
+      "range": {
+        "startLine": 618,
+        "startChar": 0,
+        "endLine": 618,
+        "endChar": 16
+      },
+      "revId": "ec2aebfd641173d1b7802679d5a674edc9782335",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
