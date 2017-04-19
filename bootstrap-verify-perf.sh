@@ -187,6 +187,54 @@ case "$TEST_TAG" in
               tests/
         RETURN_STATUS=$(echo $?)
         ;;
+    VERIFY-PERF-IP4 )
+        pybot ${PYBOT_ARGS} \
+              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+              -s "tests.perf" \
+              --include ndrdiscANDnic_intel-x520-da2AND1t1cANDip4baseORndrdiscANDnic_intel-x520-da2AND1t1cANDip4fwdANDfib_2m \
+              tests/
+        RETURN_STATUS=$(echo $?)
+        ;;
+    VERIFY-PERF-IP6 )
+        pybot ${PYBOT_ARGS} \
+              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+              -s "tests.perf" \
+              --include ndrdiscANDnic_intel-x520-da2AND1t1cANDip6baseORndrdiscANDnic_intel-x520-da2AND1t1cANDip6fwdANDfib_2m \
+              tests/
+        RETURN_STATUS=$(echo $?)
+        ;;
+    VERIFY-PERF-L2 )
+        pybot ${PYBOT_ARGS} \
+              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+              -s "tests.perf" \
+              --include ndrdiscANDnic_intel-x520-da2AND1t1cANDl2xcbaseORndrdiscANDnic_intel-x520-da2AND1t1cANDl2bdbase \
+              tests/
+        RETURN_STATUS=$(echo $?)
+        ;;
+    VERIFY-PERF-LISP )
+        pybot ${PYBOT_ARGS} \
+              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+              -s "tests.perf" \
+              --include ndrdiscANDnic_intel-x520-da2AND1t1cANDlisp \
+              tests/
+        RETURN_STATUS=$(echo $?)
+        ;;
+    VERIFY-PERF-VXLAN )
+        pybot ${PYBOT_ARGS} \
+              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+              -s "tests.perf" \
+              --include ndrdiscANDnic_intel-x520-da2AND1t1cANDvxlan \
+              tests/
+        RETURN_STATUS=$(echo $?)
+        ;;
+    VERIFY-PERF-VHOST )
+        pybot ${PYBOT_ARGS} \
+              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+              -s "tests.perf" \
+              --include ndrdiscANDnic_intel-x520-da2AND1t1cANDvhost \
+              tests/
+        RETURN_STATUS=$(echo $?)
+        ;;
     PERFTEST_LONG )
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
