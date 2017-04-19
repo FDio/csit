@@ -312,6 +312,8 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s "tests.perf" \
+              --exclude NDRCHK \
+              --exclude 4T4C \
               tests/
         RETURN_STATUS=$(echo $?)
 esac
