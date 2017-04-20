@@ -6,9 +6,11 @@ consists of two SUTs and one TG.
 
 SUT Configuration - Host HW
 ---------------------------
-Hardware details (CPU, memory, NIC layout) are described in
-`CSIT/CSIT_LF_testbed <https://wiki.fd.io/view/CSIT/CSIT_LF_testbed>`_ in
-summary:
+Host hardware details (CPU, memory, NIC layout) and physical topology are
+described in detail in
+`LF FDio CSIT testbed wiki page <https://wiki.fd.io/view/CSIT/CSIT_LF_testbed>`_.
+
+**Host configuration**
 
 - All hosts are Cisco UCS C240-M4 (2x Intel(R) Xeon(R) CPU E5-2699 v3 @ 2.30GHz,
   18c, 512GB RAM),
@@ -35,7 +37,7 @@ summary:
   - This allows for a total of five ring topologies, each using ports on
     specific NIC model, enabling per NIC model benchmarking.
 
-**NIC types**
+**NIC models and placement**
 
 - 0a:00.0 Ethernet controller: Intel Corporation 82599ES 10-Gigabit SFI/SFP+
   Network Connection (rev 01) Subsystem: Intel Corporation Ethernet Server
@@ -67,9 +69,10 @@ summary:
 SUT Configuration - Host OS Linux
 ---------------------------------
 
-Software details (OS, configuration) is described in
-`CSIT/CSIT_LF_testbed <https://wiki.fd.io/view/CSIT/CSIT_LF_testbed>`_ in
-summary:
+Software details (OS, configuration) are described in
+`CSIT/CSIT_LF_testbed <https://wiki.fd.io/view/CSIT/CSIT_LF_testbed>`_.
+
+Below a subset of the configuration:
 
 .. code-block:: xml
 
@@ -2107,10 +2110,10 @@ summary:
         <exec_command><![CDATA[lsblk -l]]></exec_command>
         <exec_return_code>0</exec_return_code>
         <exec_output><![CDATA[NAME MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
-  sda    8:0    0  1.8T  0 disk 
+  sda    8:0    0  1.8T  0 disk
   sda1   8:1    0  243M  0 part /boot
   sda2   8:2    0  1.8T  0 part /
-  sda3   8:3    0    1K  0 part 
+  sda3   8:3    0    1K  0 part
   sda5   8:5    0  976M  0 part [SWAP]
   ]]></exec_output>
       </function>
@@ -2192,29 +2195,29 @@ summary:
   dev.cdrom.check_media = 0
   dev.cdrom.debug = 0
   dev.cdrom.info = CD-ROM information, Id: cdrom.c 3.20 2003/12/17
-  dev.cdrom.info = 
-  dev.cdrom.info = drive name:	
-  dev.cdrom.info = drive speed:	
+  dev.cdrom.info =
+  dev.cdrom.info = drive name:
+  dev.cdrom.info = drive speed:
   dev.cdrom.info = drive # of slots:
-  dev.cdrom.info = Can close tray:	
-  dev.cdrom.info = Can open tray:	
-  dev.cdrom.info = Can lock tray:	
+  dev.cdrom.info = Can close tray:
+  dev.cdrom.info = Can open tray:
+  dev.cdrom.info = Can lock tray:
   dev.cdrom.info = Can change speed:
   dev.cdrom.info = Can select disk:
   dev.cdrom.info = Can read multisession:
-  dev.cdrom.info = Can read MCN:	
+  dev.cdrom.info = Can read MCN:
   dev.cdrom.info = Reports media changed:
-  dev.cdrom.info = Can play audio:	
-  dev.cdrom.info = Can write CD-R:	
+  dev.cdrom.info = Can play audio:
+  dev.cdrom.info = Can write CD-R:
   dev.cdrom.info = Can write CD-RW:
-  dev.cdrom.info = Can read DVD:	
+  dev.cdrom.info = Can read DVD:
   dev.cdrom.info = Can write DVD-R:
   dev.cdrom.info = Can write DVD-RAM:
-  dev.cdrom.info = Can read MRW:	
-  dev.cdrom.info = Can write MRW:	
-  dev.cdrom.info = Can write RAM:	
-  dev.cdrom.info = 
-  dev.cdrom.info = 
+  dev.cdrom.info = Can read MRW:
+  dev.cdrom.info = Can write MRW:
+  dev.cdrom.info = Can write RAM:
+  dev.cdrom.info =
+  dev.cdrom.info =
   dev.cdrom.lock = 0
   dev.hpet.max-user-freq = 64
   dev.mac_hid.mouse_button2_keycode = 97
@@ -2276,7 +2279,7 @@ summary:
   kernel.hardlockup_all_cpu_backtrace = 0
   kernel.hardlockup_panic = 0
   kernel.hostname = t1-sut1
-  kernel.hotplug = 
+  kernel.hotplug =
   kernel.hung_task_check_count = 4194304
   kernel.hung_task_panic = 0
   kernel.hung_task_timeout_secs = 120
@@ -2577,7 +2580,7 @@ summary:
   net.ipv4.ip_forward = 0
   net.ipv4.ip_forward_use_pmtu = 0
   net.ipv4.ip_local_port_range = 32768	60999
-  net.ipv4.ip_local_reserved_ports = 
+  net.ipv4.ip_local_reserved_ports =
   net.ipv4.ip_no_pmtu_disc = 0
   net.ipv4.ip_nonlocal_bind = 0
   net.ipv4.ipfrag_high_thresh = 4194304
@@ -3495,7 +3498,7 @@ DUT Configuration - DPDK
 
 **DPDK Version**
 
-16.09
+17.02
 
 **DPDK Compile Parameters**
 
