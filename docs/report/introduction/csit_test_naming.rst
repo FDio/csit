@@ -4,21 +4,13 @@ CSIT Test Naming
 Background
 ----------
 
-CSIT |release| introduced a common structured naming convention for all
-performance and functional tests. This change was driven by substantially
-growing number and type of CSIT test cases. Firstly, the original practice did
-not always follow any strict naming convention. Secondly test names did not
-always clearly capture tested packet encapsulations, and the actual type or
-content of the tests. Thirdly HW configurations in terms of NICs, ports and
-their locality were not captured either. These were but few reasons that drove
-the decision to change and define a new more complete and stricter test naming
-convention. And to apply it to all existing and new test suites and test
-cases.
+CSIT |release| follows a common structured naming convention for all
+performance and system functional tests, introduced in CSIT rls1701.
 
-The new naming should be intuitive for majority of the tests. Complete
-description of the newly adopted CSIT test naming convention is provided on
-`CSIT test naming page <https://wiki.fd.io/view/CSIT/csit-test-naming>`_. Here
-few illustrative examples of the new naming usage for test suites across CSIT
+The naming should be intuitive for majority of the tests. Complete
+description of CSIT test naming convention is provided on
+`CSIT test naming wiki page <https://wiki.fd.io/view/CSIT/csit-test-naming>`_. Below
+few illustrative examples of the naming usage for test suites across CSIT
 performance, functional and HoneyComb management test areas.
 
 Naming Convention
@@ -123,4 +115,4 @@ topologies:
     sub-interface events with HoneyComb NetConf Notifications, functional tests.
 
 For complete description of CSIT test naming convention please refer to `CSIT
-test naming page <https://wiki.fd.io/view/CSIT/csit-test-naming>`_.
+test naming wiki page <https://wiki.fd.io/view/CSIT/csit-test-naming>`_.
