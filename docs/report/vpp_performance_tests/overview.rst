@@ -52,53 +52,56 @@ Going forward CSIT project will be looking to add more hardware into FD.io
 performance labs to address larger scale multi-interface and multi-NIC
 performance testing scenarios.
 
-For test cases that require DUT (VPP) to communicate with VM over vhost-user
-interfaces, a VM is created on SUT1 and SUT2. DUT (VPP) test topology with VM
-is shown in the figure below including applicable packet flow thru the VM
+For test cases that require DUT (VPP) to communicate with VM(s) over vhost-user
+interfaces, N of VM instances are created on SUT1 and SUT2. For N=1 DUT (VPP) forwards packets between vhostuser and physical interfaces. For N>1 DUT (VPP) a logical service chain forwarding topology is created on DUT (VPP) by applying L2 or IPv4/IPv6 configuration depending on the test suite.
+DUT (VPP) test topology with N VM instances
+is shown in the figure below including applicable packet flow thru the DUTs and VMs
 (marked in the figure with ``***``).
 
 ::
 
-    +------------------------+           +------------------------+
-    |      +----------+      |           |      +----------+      |
-    |      |    VM    |      |           |      |    VM    |      |
-    |      |  ******  |      |           |      |  ******  |      |
-    |      +--^----^--+      |           |      +--^----^--+      |
-    |        *|    |*        |           |        *|    |*        |
-    |  +------v----v------+  |           |  +------v----v------+  |
-    |  |      *    *      |**|***********|**|      *    *      |  |
-    |  |  *****    *******<----------------->*******    *****  |  |
-    |  |  *    DUT1       |  |           |  |       DUT2    *  |  |
-    |  +--^---------------+  |           |  +---------------^--+  |
-    |    *|                  |           |                  |*    |
-    |    *|            SUT1  |           |  SUT2            |*    |
-    +------------------------+           +------------------^-----+
-         *|                                                 |*
-         *|                                                 |*
-         *|                  +-----------+                  |*
-         *|                  |           |                  |*
-         *+------------------>    TG     <------------------+*
-         ******************* |           |********************
-                             +-----------+
+    +-------------------------+           +-------------------------+
+    | +---------+ +---------+ |           | +---------+ +---------+ |
+    | |  VM[1]  | |  VM[N]  | |           | |  VM[1]  | |  VM[N]  | |
+    | |  *****  | |  *****  | |           | |  *****  | |  *****  | |
+    | +--^---^--+ +--^---^--+ |           | +--^---^--+ +--^---^--+ |
+    |   *|   |*     *|   |*   |           |   *|   |*     *|   |*   |
+    | +--v---v-------v---v--+ |           | +--v---v-------v---v--+ |
+    | |  *   *       *   *  |*|***********|*|  *   *       *   *  | |
+    | |  *   *********   ***<-|-----------|->***   *********   *  | |
+    | |  *    DUT1          | |           | |       DUT2       *  | |
+    | +--^------------------+ |           | +------------------^--+ |
+    |   *|                    |           |                    |*   |
+    |   *|            SUT1    |           |  SUT2              |*   |
+    +-------------------------+           +-------------------------+
+        *|                                                     |*
+        *|                                                     |*
+        *|                    +-----------+                    |*
+        *|                    |           |                    |*
+        *+-------------------->    TG     <--------------------+*
+        **********************|           |**********************
+                              +-----------+
 
-For VM tests, packets are switched by DUT (VPP) twice, hence the
-throughput rates measured by TG (and listed in this report) must be multiplied
-by two to represent the actual DUT aggregate packet forwarding rate.
+For VM tests, packets are switched by DUT (VPP) multiple times: twice for a single VM, three times for two VMs, N+1 times for N VMs.
+Hence the external
+throughput rates measured by TG and listed in this report must be multiplied
+by (N+1) to represent the actual DUT aggregate packet forwarding rate.
 
-Note that reported VPP performance results are specific to the SUT tested.
+CSIT |release|
+
+Note that reported VPP performance results are specific to the SUTs tested.
 Current LF FD.io SUTs are based on Intel XEON E5-2699v3 2.3GHz CPUs. SUTs with
 other CPUs are likely to yield different results. A good rule of thumb, that
 can be applied to estimate VPP packet thoughput for Phy-to-Phy (NIC-to-NIC,
 PCI-to-PCI) topology, is to expect the forwarding performance to be
 proportional to CPU core frequency, assuming CPU is the only limiting factor
-and all other SUT aspects equal to FD.io CSIT environment. The same rule of
+and all other SUT parameters equivalent to FD.io CSIT environment. The same rule of
 thumb can be also applied for Phy-to-VM-to-Phy (NIC-to-VM-to-NIC) topology,
-but due to much higher dependency on very high frequency memory operations and
+but due to much higher dependency on intensive memory operations and
 sensitivity to Linux kernel scheduler settings and behaviour, this estimation
 may not always yield good enough accuracy.
 
-Detailed LF FD.io test bed specification and physical topology are described
-in `wiki CSIT LF FDio testbed <https://wiki.fd.io/view/CSIT/CSIT_LF_testbed>`_.
+For detailed LF FD.io test bed specification and physical topology please refer to `LF FDio CSIT testbed wiki page <https://wiki.fd.io/view/CSIT/CSIT_LF_testbed>`_.
 
 Performance Tests Coverage
 --------------------------
@@ -109,10 +112,10 @@ Performance tests are split into the two main categories:
   in accordance to RFC2544.
 
   - NDR - discovery of Non Drop Rate packet throughput, at zero packet loss;
-    followed by packet one-way latency measurements at 10%, 50% and 100% of
+    followed by one-way packet latency measurements at 10%, 50% and 100% of
     discovered NDR throughput.
   - PDR - discovery of Partial Drop Rate, with specified non-zero packet loss
-    currently set to 0.5%; followed by packet one-way latency measurements at
+    currently set to 0.5%; followed by one-way packet latency measurements at
     100% of discovered PDR throughput.
 
 - Throughput verification - verification of packet forwarding rate against
@@ -180,17 +183,10 @@ continuously.
 Performance Tests Naming
 ------------------------
 
-CSIT |release| introduced a common structured naming convention for all
-performance and functional tests. This change was driven by substantially
-growing number and type of CSIT test cases. Firstly, the original practice did
-not always follow any strict naming convention. Secondly test names did not
-always clearly capture tested packet encapsulations, and the actual type or
-content of the tests. Thirdly HW configurations in terms of NICs, ports and
-their locality were not captured either. These were but few reasons that drove
-the decision to change and define a new more complete and stricter test naming
-convention, and to apply this to all existing and new test cases.
+CSIT |release| follows a common structured naming convention for all
+performance and system functional tests, introduced in CSIT rls1701.
 
-The new naming should be intuitive for majority of the tests. The complete
+The naming should be intuitive for majority of the tests. Complete
 description of CSIT test naming convention is provided on `CSIT test naming wiki
 <https://wiki.fd.io/view/CSIT/csit-test-naming>`_.
 
@@ -247,9 +243,8 @@ following VPP thread and core configurations:
 
 #. 1t1c - 1 VPP worker thread on 1 CPU physical core.
 #. 2t2c - 2 VPP worker threads on 2 CPU physical cores.
-#. 4t4c - 4 VPP threads on 4 CPU physical cores.
 
-Note that in quite a few test cases running VPP on 2 or 4 physical cores hits
+Note that in quite a few test cases running VPP on 2 physical cores hits
 the tested NIC I/O bandwidth or packets-per-second limit.
 
 Methodology: Packet Throughput

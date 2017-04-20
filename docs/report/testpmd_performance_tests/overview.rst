@@ -42,8 +42,7 @@ tested NIC models include:
 #. 2port40GE VIC1385 Cisco.
 #. 2port40GE XL710 Intel.
 
-Detailed LF FD.io test bed specification and topology is described in
-`wiki CSIT LF testbed <https://wiki.fd.io/view/CSIT/CSIT_LF_testbed>`_.
+For detailed LF FD.io test bed specification and physical topology please refer to `LF FDio CSIT testbed wiki page <https://wiki.fd.io/view/CSIT/CSIT_LF_testbed>`_.
 
 Performance Tests Coverage
 --------------------------
@@ -71,6 +70,11 @@ CSIT |release| includes following performance test suites, listed per NIC type:
   - **L2IntLoop** - L2 Interface Loop forwarding any Ethernet frames between
     two Interfaces.
 
+- 2port40GE XL710 Intel
+
+  - **L2IntLoop** - L2 Interface Loop forwarding any Ethernet frames between
+    two Interfaces.
+
 Execution of performance tests takes time, especially the throughput discovery
 tests. Due to limited HW testbed resources available within FD.io labs hosted
 by Linux Foundation, the number of tests for NICs other than X520 (a.k.a.
@@ -94,7 +98,6 @@ following Testpmd thread and core configurations:
 
 #. 1t1c - 1 Testpmd pmd thread on 1 CPU physical core.
 #. 2t2c - 2 Testpmd pmd threads on 2 CPU physical cores.
-#. 4t4c - 4 Testpmd pmd threads on 4 CPU physical cores.
 
 Note that in many tests running Testpmd reaches tested NIC I/O bandwidth
 or packets-per-second limit.

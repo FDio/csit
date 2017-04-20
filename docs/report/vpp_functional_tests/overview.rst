@@ -38,7 +38,7 @@ Both logical test topologies are shown in the figures below.
           +--------------->                  <--------------+
           |            |  |                  |  |           |
           |  |------------>       DUT1       <-----------+  |
-          |  |         |  +--^--^------------+  |        |  |
+          |  |         |  +------------------+  |        |  |
           |  |         |                        |        |  |
           |  |         |                  SUT1  |        |  |
           |  |         +------------------------+        |  |
@@ -131,17 +131,10 @@ results listed in this report:
 Functional Tests Naming
 -----------------------
 
-CSIT |release| introduced a common structured naming convention for all
-performance and functional tests. This change was driven by substantially
-growing number and type of CSIT test cases. Firstly, the original practice did
-not always follow any strict naming convention. Secondly test names did not
-always clearly capture tested packet encapsulations, and the actual type or
-content of the tests. Thirdly HW configurations in terms of NICs, ports and
-their locality were not captured either. These were but few reasons that drove
-the decision to change and define a new more complete and stricter test naming
-convention, and to apply this to all existing and new test cases.
+CSIT |release| follows a common structured naming convention for all
+performance and system functional tests, introduced in CSIT rls1701.
 
-The new naming should be intuitive for majority of the tests. The complete
+The naming should be intuitive for majority of the tests. Complete
 description of CSIT test naming convention is provided on `CSIT test naming
 page <https://wiki.fd.io/view/CSIT/csit-test-naming>`_.
 

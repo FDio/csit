@@ -1,24 +1,10 @@
-
-.. |br| raw:: html
-
-    <br />
-
 CSIT Release Notes
 ==================
 
 Changes in CSIT |release|
 -------------------------
 
-#. Naming change for all VPP functional test suites in VIRL
-
-    - VPP functional test case names stayed unchanged
-
-#. VPP functional test environment changes
-
-    - upgrade to Ubuntu 16.04
-    - VM and vhost-user test environment optimizations
-
-#. Introduction of Centos tests
+#. Introduction of Centos7 tests
 
 #. Added VPP functional tests
 
@@ -66,11 +52,3 @@ Here is the list of known issues in CSIT |release| for VPP functional tests in V
 |   |                                                 | The (Rx) traffic is mirrored to correct destination port.       |
 +---+-------------------------------------------------+-----------------------------------------------------------------+
 
-Tests to be Added - Centos
---------------------------
-
-CSIT |release| added Centos functional test execution environment in FD.io
-VIRL testbeds.However due to the factors beyond CSIT project control execution
-of those tests within the LF FD.io test environment still need to complete.
-Once the results become available, they will be published as an addendum to
-the current version of CSIT |release| report.

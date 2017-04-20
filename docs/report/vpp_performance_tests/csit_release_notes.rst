@@ -4,12 +4,10 @@ CSIT Release Notes
 Changes in CSIT |release|
 -------------------------
 
-#. Naming change for all VPP performance test suites and test cases.
 #. VPP performance test environment changes
 
-    - upgrade to Ubuntu 16.04
-    - VM and vhost-user test environment optimizations
-    - addition of HW cryptodev devices in LFD FD.io physical testbed
+    - further VM and vhost-user test environment optimizations - Qemu virtio queue size increased from default value of 256 to 1024
+    - addition of HW cryptodev devices in all three LF FD.io physical testbeds
 
 #. Added tests
 
@@ -37,7 +35,7 @@ Performance Improvements
 Substantial improvements in measured packet throughput, with relative increase
 of double-digit percentage points, have been observed in a number of CSIT
 |release| tests listed below. Relative improvements are calculated against the
-test results in CSIT rls1609 report.
+test results in CSIT rls1701 report.
 
 NDR Throughput
 ~~~~~~~~~~~~~~
@@ -119,7 +117,7 @@ Other Performance Changes
 Other changes in measured packet throughput, with either minor relative
 increase or decrease, have been observed in a number of CSIT |release| tests
 listed below. Relative changes are calculated against the test results in CSIT
-rls1609 report.
+rls1701 report.
 
 NDR Throughput
 ~~~~~~~~~~~~~~
@@ -208,21 +206,3 @@ Here is the list of known issues in CSIT |release| for VPP performance tests:
 |   | - 2t2c, 4t4c - for some tested NICs.            |                                                                 |
 +---+-------------------------------------------------+-----------------------------------------------------------------+
 
-Tests to be Added - Cryptodev
------------------------------
-
-DPDK Cryptodev functionality support for both SW and HW crypto devices has
-been introduced in VPP-17.01 release. CSIT functional and performance tests
-have been also developed and merged. However due to the factors beyond CSIT
-project control execution of those tests within the LF FD.io test environment
-still need to complete. Once the results become available, they will be
-published as an addendum to the current version of CSIT |release| report.
-
-Tests to be Added - SNAT44
---------------------------
-
-VPP SNAT44 functionality has been introduced in VPP-17.01 release. CSIT
-performance tests are still in development and integration into LFD FD.io test
-environment. Once the tests are fully integrated and results become available,
-they will be published as an addendum to the current version of CSIT |release|
-report.

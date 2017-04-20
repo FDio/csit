@@ -3,14 +3,14 @@ Overview
 
 This is the **F**\ast **D**\ata **I**/**O** Project (**FD.io**) **C**\ontinuous
 **S**\ystem **I**\ntegration and **T**\esting (**CSIT**) project report for CSIT
-|release| system testing of VPP-17.01 release.
+|release| system testing of VPP-17.04 release.
 
 The report describes CSIT functional and performance tests and their
 continuous execution delivered in CSIT |release|. A high-level overview is
 provided for each CSIT test environment running in Linux Foundation (LF) FD.io
 Continuous Performance Labs. This is followed by summary of all executed tests
-against the VPP-17.01 release and associated sub-systems (HoneyComb, DPDK),
-CSIT |release| release notes, result highlights and known issues. More
+against the VPP-17.04 release and associated FD.io projects and sub-systems (HoneyComb, DPDK),
+CSIT |release| release notes, result highlights and known issues discovered in CSIT. More
 detailed description of each environment, pointers to CSIT test code
 documentation and detailed test resuls with links to the source data files are
 also provided.
@@ -28,19 +28,18 @@ CSIT |release| report contains following main sections and sub-sections:
    specifics, methodology for multi-core, packet throughput and latency, and
    KVM VM vhost tests; *CSIT Release Notes* - changes in CSIT |release|, added
    tests, performance changes, environment or methodology changes, known CSIT
-   issues, tests to be added; *Packet Throughput Graphs* and *Packet Latency
+   issues; *Packet Throughput Graphs* and *Packet Latency
    Graphs* - plotted NDR, PDR throughput and latency results from multiple
-   test job executions; *Test Environment* - environment description ;
-   *Documentation* - source code documentation for VPP performance tests.
+   test job executions; *Test Environment* - environment description;
+   *Documentation* - CSIT source code documentation for VPP performance tests.
 
 #. **Testpmd Performance Tests** - Testpmd performance tests executed in
    physical FD.io testbeds; *Overview* - tested topologies, test coverage;
    *CSIT Release Notes* - changes in CSIT |release|, any known CSIT issues;
-   *Tests to Be Added* - performance tests to be added in the next revision of
-   CSIT |release| report; *Packet Throughput Graphs* and *Packet Latency Graphs*
+   *Packet Throughput Graphs* and *Packet Latency Graphs*
    - plotted NDR, PDR throughput and latency results from multiple test job
    executions; *Test Environment* - environment description; *Documentation* -
-   source code documentation for Testpmd performance tests.
+   CSIT source code documentation for Testpmd performance tests.
 
 #. **VPP Functional Tests** - VPP functional tests executed in virtual
    FD.io testbeds; *Overview* - tested virtual topologies, test coverage and
@@ -52,8 +51,8 @@ CSIT |release| report contains following main sections and sub-sections:
 #. **HoneyComb Functional Tests** - HoneyComb functional tests executed in
    virtual FD.io testbeds; *Overview* - tested virtual topologies, test
    coverage and naming specifics; *CSIT Release Notes* - changes in CSIT
-   |release|, added tests, environment or methodology changes, known CSIT issues,
-   tests to be added; *Test Environment* - environment description ;
+   |release|, added tests, environment or methodology changes, known CSIT issues;
+   *Test Environment* - environment description ;
    *Documentation* - source code documentation for Honeycomb functional tests.
 
 #. **VPP Unit Tests** - refers to VPP functional unit tests executed as

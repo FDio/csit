@@ -3,7 +3,7 @@ General Notes
 
 All CSIT test results listed in this report are sourced and auto-generated
 from output.xml Robot Framework (RF) files resulting from LF FD.io Jenkins
-jobs execution against VPP-17.01 release artifacts. References are provided
+jobs execution against VPP-17.04 release artifacts. References are provided
 to the original LF FD.io Jenkins job results. However, as LF FD.io Jenkins
 infrastructure does not automatically archive all jobs (history record is
 provided for the last 30 days or 40 jobs only), additional references are
@@ -12,10 +12,10 @@ storage system.
 
 FD.io CSIT project currently covers multiple FD.io system and sub-system
 testing areas and this is  reflected in this report, where each testing area
-is listed separately, as follows
+is listed separately, as follows:
 
-#. **VPP Performance Tests** - VPP performance are tests executed in physical
-   FD.io testbeds,  focusing on VPP network data plane performance at this stage,
+#. **VPP Performance Tests** - VPP performance tests are executed in physical
+   FD.io testbeds, focusing on VPP network data plane performance at this stage,
    both for Phy-to-Phy (NIC-to-NIC) and Phy-to-VM-to-Phy (NIC-to-VM-to-NIC)
    forwarding topologies. Tested across a range of NICs, 10GE and 40GE
    interfaces, range of multi-thread and multi-core configurations. VPP
@@ -40,11 +40,9 @@ is listed separately, as follows
    functionality of VPP. Tests cover a range of CRUD operations executed
    against VPP.
 
-CSIT |release| report does also include VPP unit test results. These tests
-have been developed within the FD.io VPP project, and not in CSIT, but they do
-complement tests done by CSIT. They are provided mainly as a reference, to
-give the reader a more complete view of automated testing executed against
-VPP-17.01 release.
+In addition to above, CSIT |release| report does also include VPP unit test results. VPP unit tests are developed within the FD.io VPP project and as they complement CSIT system functional tests, they are provided mainly as a reference and to
+provide a more complete view of automated testing executed against
+VPP-17.04 release.
 
 FD.io CSIT system is developed using two main coding platforms: Robot
 Framework (RF) and Python. CSIT |release| source code for the executed test
