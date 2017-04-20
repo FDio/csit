@@ -235,6 +235,54 @@ case "$TEST_TAG" in
               tests/
         RETURN_STATUS=$(echo $?)
         ;;
+    VPP-VERIFY-PERF-IP4 )
+        pybot ${PYBOT_ARGS} \
+              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+              -s "tests.perf" \
+              --include ndrchkANDnic_intel-x520-da2AND1t1cANDip4baseORndrchkANDnic_intel-x520-da2AND1t1cANDip4fwdANDfib_2m \
+              tests/
+        RETURN_STATUS=$(echo $?)
+        ;;
+    VPP-VERIFY-PERF-IP6 )
+        pybot ${PYBOT_ARGS} \
+              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+              -s "tests.perf" \
+              --include ndrchkANDnic_intel-x520-da2AND1t1cANDip6baseORndrchkANDnic_intel-x520-da2AND1t1cANDip6fwdANDfib_2m \
+              tests/
+        RETURN_STATUS=$(echo $?)
+        ;;
+    VPP-VERIFY-PERF-L2 )
+        pybot ${PYBOT_ARGS} \
+              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+              -s "tests.perf" \
+              --include ndrchkANDnic_intel-x520-da2AND1t1cANDl2xcbaseORndrchkANDnic_intel-x520-da2AND1t1cANDl2bdbase \
+              tests/
+        RETURN_STATUS=$(echo $?)
+        ;;
+    VPP-VERIFY-PERF-LISP )
+        pybot ${PYBOT_ARGS} \
+              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+              -s "tests.perf" \
+              --include ndrchkANDnic_intel-x520-da2AND1t1cANDlisp \
+              tests/
+        RETURN_STATUS=$(echo $?)
+        ;;
+    VPP-VERIFY-PERF-VXLAN )
+        pybot ${PYBOT_ARGS} \
+              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+              -s "tests.perf" \
+              --include ndrchkANDnic_intel-x520-da2AND1t1cANDvxlan \
+              tests/
+        RETURN_STATUS=$(echo $?)
+        ;;
+    VPP-VERIFY-PERF-VHOST )
+        pybot ${PYBOT_ARGS} \
+              -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+              -s "tests.perf" \
+              --include ndrchkANDnic_intel-x520-da2AND1t1cANDvhost \
+              tests/
+        RETURN_STATUS=$(echo $?)
+        ;;
     PERFTEST_LONG )
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
