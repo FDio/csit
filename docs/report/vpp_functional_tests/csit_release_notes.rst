@@ -1,14 +1,14 @@
 CSIT Release Notes
 ==================
 
-Changes in CSIT |release|
+Changes in CSIT |release| - to be updated
 -------------------------
 
 #. Introduction of Centos7 tests
 
 #. Added VPP functional tests
 
-    - more VM vhost-user tests
+    - more VM vhost-user tests incl. two VM four vhost interface tests
     - more LISP tests
     - more IPSec crypto tests
     - IPv4 and IPv6 Equal-Cost Multi-Path routing tests
@@ -16,10 +16,10 @@ Changes in CSIT |release|
       - IPFIX tests
       - SPAN tests
 
-Known Issues
+Known Issues - to be updated
 ------------
 
-Here is the list of known issues in CSIT |release| for VPP functional tests in VIRL:
+Here is the list of known issues in CSIT |release| for VPP functional tests in VIRL: (to be updated)
 
 +---+-------------------------------------------------+-----------------------------------------------------------------+
 | # | Issue                                           | Description                                                     |
@@ -44,11 +44,11 @@ Here is the list of known issues in CSIT |release| for VPP functional tests in V
 |   |                                                 | Anyhow the correct IPv6 destination address is reported.        |
 +---+-------------------------------------------------+-----------------------------------------------------------------+
 | 6 | SPAN: Tx traffic is not mirrored                | Tx traffic is not mirrored from SPAN source port to SPAN        |
-|   |                                                 | destination port. |br|                                          |
+|   |                                                 | destination port.                                               |
 |   |                                                 | NOTE: Fix is going to be merged in vpp stable/1701.             |
 +---+-------------------------------------------------+-----------------------------------------------------------------+
 | 7 | SPAN: Packet trace always contains local0 as    | There is reported wrong destination port in the traffic trace:  |
-|   | destination port                                | |br|    SPAN: mirrored GigabitEthernet0/5/0 -> local0    |br|   |
+|   | destination port                                |         SPAN: mirrored GigabitEthernet0/5/0 -> local0           |
 |   |                                                 | The (Rx) traffic is mirrored to correct destination port.       |
 +---+-------------------------------------------------+-----------------------------------------------------------------+
 
