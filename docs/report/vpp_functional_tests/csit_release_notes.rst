@@ -6,9 +6,9 @@ Changes in CSIT |release|
 
 #. Introduction of Centos7 tests
 
-#. Added VPP functional tests
+#. Added VPP functional tests (to be updated)
 
-    - more VM vhost-user tests
+    - more VM vhost-user tests incl. two VM four vhost interface tests
     - more LISP tests
     - more IPSec crypto tests
     - IPv4 and IPv6 Equal-Cost Multi-Path routing tests
@@ -19,7 +19,7 @@ Changes in CSIT |release|
 Known Issues
 ------------
 
-Here is the list of known issues in CSIT |release| for VPP functional tests in VIRL:
+Here is the list of known issues in CSIT |release| for VPP functional tests in VIRL: (to be updated)
 
 +---+-------------------------------------------------+-----------------------------------------------------------------+
 | # | Issue                                           | Description                                                     |
