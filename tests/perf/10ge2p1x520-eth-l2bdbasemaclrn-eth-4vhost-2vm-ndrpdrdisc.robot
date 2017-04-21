@@ -67,7 +67,7 @@
 | | ... | [Cfg] DUT runs L2BD switching config with 1 thread, 1 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for 64 Byte frames \
 | | ... | using binary search start at 10GE linerate, step 10kpps.
-| | [Tags] | 1T1C | STHREAD | NDRDISC
+| | [Tags] | 64B | 1T1C | STHREAD | NDRDISC
 | | ${framesize}= | Set Variable | ${64}
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
@@ -93,7 +93,7 @@
 | | ... | [Cfg] DUT runs L2BD switching config with 1 thread, 1 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Find PDR for 64 Byte frames \
 | | ... | using binary search start at 10GE linerate, step 10kpps, LT=0.5%.
-| | [Tags] | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 64B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${64}
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
@@ -120,7 +120,7 @@
 | | ... | [Cfg] DUT runs L2BD switching config with 1 thread, 1 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for 1518 Byte frames \
 | | ... | using binary search start at 10GE linerate, step 10kpps.
-| | [Tags] | 1T1C | STHREAD | NDRDISC
+| | [Tags] | 1518B | 1T1C | STHREAD | NDRDISC
 | | ${framesize}= | Set Variable | ${1518}
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
@@ -146,7 +146,7 @@
 | | ... | [Cfg] DUT runs L2BD switching config with 1 thread, 1 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Find PDR for 1518 Byte frames \
 | | ... | using binary search start at 10GE linerate, step 10kpps, LT=0.5%.
-| | [Tags] | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 1518B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${1518}
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
@@ -174,7 +174,7 @@
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for IMIX_v4_1 frame \
 | | ... | size using binary search start at 10GE linerate, step 10kpps.
 | | ... | IMIX_v4_1 = (28x64B;16x570B;4x1518B)
-| | [Tags] | 1T1C | STHREAD | NDRDISC
+| | [Tags] | IMIX | 1T1C | STHREAD | NDRDISC
 | | ${framesize}= | Set Variable | IMIX_v4_1
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
@@ -201,7 +201,7 @@
 | | ... | 1 receive queue per NIC port. [Ver] Find PDR for IMIX_v4_1 frame \
 | | ... | size using binary search start at 10GE linerate, step 10kpps, LT=0.5%.
 | | ... | IMIX_v4_1 = (28x64B;16x570B;4x1518B)
-| | [Tags] | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | IMIX | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | IMIX_v4_1
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
@@ -228,7 +228,7 @@
 | | ... | [Cfg] DUT runs L2BD switching config with 2 threads, 2 phy cores, \
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for 64 Byte frames \
 | | ... | using binary search start at 10GE linerate, step 10kpps.
-| | [Tags] | 2T2C | MTHREAD | NDRDISC
+| | [Tags] | 64B | 2T2C | MTHREAD | NDRDISC
 | | ${framesize}= | Set Variable | ${64}
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
@@ -254,7 +254,7 @@
 | | ... | [Cfg] DUT runs L2BD switching config with 2 threads, 2 phy cores, \
 | | ... | 1 receive queue per NIC port. [Ver] Find PDR for 64 Byte frames \
 | | ... | using binary search start at 10GE linerate, step 10kpps, LT=0.5%.
-| | [Tags] | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 64B | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${64}
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
@@ -281,7 +281,7 @@
 | | ... | [Cfg] DUT runs L2BD switching config with 2 threads, 2 phy cores, \
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for 1518 Byte frames \
 | | ... | using binary search start at 10GE linerate, step 10kpps.
-| | [Tags] | 2T2C | MTHREAD | NDRDISC | SKIP_PATCH
+| | [Tags] | 1518B | 2T2C | MTHREAD | NDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${1518}
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
@@ -307,7 +307,7 @@
 | | ... | [Cfg] DUT runs L2BD switching config with 2 threads, 2 phy cores, \
 | | ... | 1 receive queue per NIC port. [Ver] Find PDR for 1518 Byte frames \
 | | ... | using binary search start at 10GE linerate, step 10kpps, LT=0.5%.
-| | [Tags] | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 1518B | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${1518}
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
@@ -335,7 +335,7 @@
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for IMIX_v4_1 frame \
 | | ... | size using binary search start at 10GE linerate, step 10kpps.
 | | ... | IMIX_v4_1 = (28x64B;16x570B;4x1518B)
-| | [Tags] | 2T2C | MTHREAD | NDRDISC | SKIP_PATCH
+| | [Tags] | IMIX | 2T2C | MTHREAD | NDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | IMIX_v4_1
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
@@ -362,7 +362,7 @@
 | | ... | 1 receive queue per NIC port. [Ver] Find PDR for IMIX_v4_1 frame \
 | | ... | size using binary search start at 10GE linerate, step 10kpps, LT=0.5%.
 | | ... | IMIX_v4_1 = (28x64B;16x570B;4x1518B)
-| | [Tags] | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | IMIX | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | IMIX_v4_1
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
@@ -389,7 +389,7 @@
 | | ... | [Cfg] DUT runs L2BD switching config with 4 threads, 4 phy cores, \
 | | ... | 2 receive queues per NIC port. [Ver] Find NDR for 64 Byte frames \
 | | ... | using binary search start at 10GE linerate, step 10kpps.
-| | [Tags] | 4T4C | MTHREAD | NDRDISC
+| | [Tags] | 64B | 4T4C | MTHREAD | NDRDISC
 | | ${framesize}= | Set Variable | ${64}
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
@@ -415,7 +415,7 @@
 | | ... | [Cfg] DUT runs L2BD switching config with 4 threads, 4 phy cores, \
 | | ... | 2 receive queues per NIC port. [Ver] Find PDR for 64 Byte frames \
 | | ... | using binary search start at 10GE linerate, step 10kpps, LT=0.5%.
-| | [Tags] | 4T4C | MTHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 64B | 4T4C | MTHREAD | PDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${64}
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
@@ -442,7 +442,7 @@
 | | ... | [Cfg] DUT runs L2BD switching config with 4 threads, 4 phy cores, \
 | | ... | 2 receive queues per NIC port. [Ver] Find NDR for 1518 Byte frames \
 | | ... | using binary search start at 10GE linerate, step 10kpps.
-| | [Tags] | 4T4C | MTHREAD | NDRDISC | SKIP_PATCH
+| | [Tags] | 1518B | 4T4C | MTHREAD | NDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${1518}
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
@@ -468,7 +468,7 @@
 | | ... | [Cfg] DUT runs L2BD switching config with 4 threads, 4 phy cores, \
 | | ... | 2 receive queues per NIC port. [Ver] Find PDR for 1518 Byte frames \
 | | ... | using binary search start at 10GE linerate, step 10kpps, LT=0.5%.
-| | [Tags] | 4T4C | MTHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 1518B | 4T4C | MTHREAD | PDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${1518}
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
@@ -496,7 +496,7 @@
 | | ... | 2 receive queues per NIC port. [Ver] Find NDR for IMIX_v4_1 frame \
 | | ... | size using binary search start at 10GE linerate, step 10kpps.
 | | ... | IMIX_v4_1 = (28x64B;16x570B;4x1518B)
-| | [Tags] | 4T4C | MTHREAD | NDRDISC | SKIP_PATCH
+| | [Tags] | IMIX | 4T4C | MTHREAD | NDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | IMIX_v4_1
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
@@ -523,7 +523,7 @@
 | | ... | 2 receive queues per NIC port. [Ver] Find PDR for IMIX_v4_1 frame \
 | | ... | size using binary search start at 10GE linerate, step 10kpps, LT=0.5%.
 | | ... | IMIX_v4_1 = (28x64B;16x570B;4x1518B)
-| | [Tags] | 4T4C | MTHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | IMIX | 4T4C | MTHREAD | PDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | IMIX_v4_1
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
