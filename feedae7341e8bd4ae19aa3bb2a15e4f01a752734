@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a3291f1_19612ca9",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-04-21T08:15:37Z",
+      "side": 1,
+      "message": "What if this file exists?",
+      "range": {
+        "startLine": 38,
+        "startChar": 8,
+        "endLine": 38,
+        "endChar": 65
+      },
+      "revId": "feedae7341e8bd4ae19aa3bb2a15e4f01a752734",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
