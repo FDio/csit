@@ -87,8 +87,6 @@ Hence the external
 throughput rates measured by TG and listed in this report must be multiplied
 by (N+1) to represent the actual DUT aggregate packet forwarding rate.
 
-CSIT |release|
-
 Note that reported VPP performance results are specific to the SUTs tested.
 Current LF FD.io SUTs are based on Intel XEON E5-2699v3 2.3GHz CPUs. SUTs with
 other CPUs are likely to yield different results. A good rule of thumb, that
@@ -134,12 +132,12 @@ CSIT |release| includes following performance test suites, listed per NIC type:
   - **IPv6** - IPv6 routed-forwarding.
   - **IPv4 Scale** - IPv4 routed-forwarding with 20k, 200k and 2M FIB entries.
   - **IPv6 Scale** - IPv6 routed-forwarding with 20k, 200k and 2M FIB entries.
-  - **VM with vhost-user** - switching between NIC ports and VM over vhost-user
-    interfaces in different switching modes incl. L2 Cross-Connect, L2
-    Bridge-Domain, VXLAN with L2BD, IPv4 routed-forwarding.
+  - **VMs with vhost-user** - virtual topologies with 1 VM and service chains
+    of 2 VMs using vhost-user interfaces, with VPP forwarding modes incl. L2
+    Cross-Connect, L2 Bridge-Domain, VXLAN with L2BD, IPv4 routed-forwarding.
   - **COP** - IPv4 and IPv6 routed-forwarding with COP address security.
   - **iACL** - IPv4 and IPv6 routed-forwarding with iACL address security.
-  - **LISP** - LISP overlay tunneling for IPv4-over-IPV4, IPv6-over-IPv4,
+  - **LISP** - LISP overlay tunneling for IPv4-over-IPv4, IPv6-over-IPv4,
     IPv6-over-IPv6, IPv4-over-IPv6 in IPv4 and IPv6 routed-forwarding modes.
   - **VXLAN** - VXLAN overlay tunnelling integration with L2XC and L2BD.
   - **QoS Policer** - ingress packet rate measuring, marking and limiting
@@ -152,15 +150,20 @@ CSIT |release| includes following performance test suites, listed per NIC type:
     with MAC learning.
   - **IPv4** - IPv4 routed-forwarding.
   - **IPv6** - IPv6 routed-forwarding.
-  - **VM with vhost-user** - switching between NIC ports and VM over vhost-user
-    interfaces in different switching modes incl. L2 Bridge-Domain.
+  - **VMs with vhost-user** - virtual topologies with 1 VM and service chains
+    of 2 VMs using vhost-user interfaces, with VPP forwarding modes incl. L2
+    Cross-Connect, L2 Bridge-Domain, VXLAN with L2BD, IPv4 routed-forwarding.
+  - **IPSec** - IPSec encryption with AES-GCM, CBC-SHA1 ciphers, in combination
+    with IPv4 routed-forwarding.
+  - **IPSec+LISP** - IPSec encryption with CBC-SHA1 ciphers, in combination
+    with LISP-GPE overlay tunneling for IPv4-over-IPv4.
 
 - 2port10GE X710 Intel
 
   - **L2BD** - L2 Bridge-Domain switched-forwarding of untagged Ethernet frames
     with MAC learning.
-  - **VM with vhost-user** - switching between NIC ports and VM over vhost-user
-    interfaces in different switching modes incl. L2 Bridge-Domain.
+  - **VMs with vhost-user** - virtual topologies with 1 VM using vhost-user
+    interfaces, with VPP forwarding modes incl. L2 Bridge-Domain.
 
 - 2port10GE VIC1227 Cisco
 
@@ -303,13 +306,14 @@ Methodology: KVM VM vhost
 -------------------------
 
 CSIT |release| introduced environment configuration changes to KVM Qemu vhost-
-user tests in order to more representatively measure VPP-17.01 performance in
+user tests in order to more representatively measure VPP-17.04 performance in
 configurations with vhost-user interfaces and VMs.
 
 Current setup of CSIT FD.io performance lab is using tuned settings for more
 optimal performance of KVM Qemu:
 
-- Default Qemu virtio queue size of 256 descriptors.
+- Qemu virtio queue size has been increased from default value of 256 to 1024
+  descriptors.
 - Adjusted Linux kernel CFS scheduler settings, as detailed on this CSIT wiki
   page: https://wiki.fd.io/view/CSIT/csit-perf-env-tuning-ubuntu1604.
 
