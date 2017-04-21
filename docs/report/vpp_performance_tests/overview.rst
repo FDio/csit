@@ -87,8 +87,6 @@ Hence the external
 throughput rates measured by TG and listed in this report must be multiplied
 by (N+1) to represent the actual DUT aggregate packet forwarding rate.
 
-CSIT |release|
-
 Note that reported VPP performance results are specific to the SUTs tested.
 Current LF FD.io SUTs are based on Intel XEON E5-2699v3 2.3GHz CPUs. SUTs with
 other CPUs are likely to yield different results. A good rule of thumb, that
