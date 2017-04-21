@@ -102,8 +102,8 @@ Scaling TAGs
     2x1,000,000 entries in single fib table
 
 
-Tags marking the kinds of tags
-------------------------------
+Tags marking functional vs. performance of tests
+------------------------------------------------
 
 .. topic:: FUNCTEST
 
@@ -137,6 +137,24 @@ Performance testing tags
     Find performance of DUT based on RFC2544 with linear / binary / combined
     search. (Previous LONG tests.)
 
+Ethernet frame size tags for performance tests
+----------------------------------------------
+
+.. topic:: 64B
+
+    64B frames used for test.
+
+.. topic:: IMIX
+
+    IMIX frame sequence (28x 64B, 16x 570B, 4x 1518B) used for test.
+
+.. topic:: 1518B
+
+    1518B frames used for test.
+
+.. topic:: 9000B
+
+    9000B frames used for test.
 
 Test type tags
 --------------
@@ -183,7 +201,7 @@ Forwarding mode tags
 
 
 Underlay tags
-----------
+-------------
 
 .. topic:: IP4UNRLAY
 
@@ -199,7 +217,7 @@ Underlay tags
 
 
 Overlay tags
-----------
+------------
 
 .. topic:: L2OVRLAY
 
