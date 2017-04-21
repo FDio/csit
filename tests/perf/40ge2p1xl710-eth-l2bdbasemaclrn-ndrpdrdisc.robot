@@ -131,7 +131,7 @@
 *** Test Cases ***
 | tc01-64B-1t1c-eth-l2bdbasemaclrn-ndrdisc
 | | ... | ${64} | ${100000} | 1 | 1 | ${s_18.75Mpps}
-| | [Tags] | 1T1C | STHREAD | NDRDISC
+| | [Tags] | 64B | 1T1C | STHREAD | NDRDISC
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
@@ -141,7 +141,7 @@
 
 | tc03-1518B-1t1c-eth-l2bdbasemaclrn-ndrdisc
 | | ... | ${1518} | ${10000} | 1 | 1 | ${s_24.5G}
-| | [Tags] | 1T1C | STHREAD | NDRDISC
+| | [Tags] | 1518B | 1T1C | STHREAD | NDRDISC
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
@@ -151,7 +151,7 @@
 
 | tc07-64B-2t2c-eth-l2bdbasemaclrn-ndrdisc
 | | ... | ${64} | ${100000} | 2 | 1 | ${s_18.75Mpps}
-| | [Tags] | 2T2C | MTHREAD | NDRDISC
+| | [Tags] | 64B | 2T2C | MTHREAD | NDRDISC
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
@@ -161,7 +161,7 @@
 
 | tc09-1518B-2t2c-eth-l2bdbasemaclrn-ndrdisc
 | | ... | ${1518} | ${10000} | 2 | 1 | ${s_24.5G}
-| | [Tags] | 2T2C | MTHREAD | NDRDISC | SKIP_PATCH
+| | [Tags] | 1518B | 2T2C | MTHREAD | NDRDISC | SKIP_PATCH
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
@@ -171,7 +171,7 @@
 
 | tc13-64B-4t4c-eth-l2bdbasemaclrn-ndrdisc
 | | ... | ${64} | ${100000} | 4 | 2 | ${s_18.75Mpps}
-| | [Tags] | 4T4C | MTHREAD | NDRDISC
+| | [Tags] | 64B | 4T4C | MTHREAD | NDRDISC
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 4 threads, 4 phy cores, 2 receive queues per NIC port.
@@ -181,7 +181,7 @@
 
 | tc15-1518B-4t4c-eth-l2bdbasemaclrn-ndrdisc
 | | ... | ${1518} | ${10000} | 4 | 2 | ${s_24.5G}
-| | [Tags] | 4T4C | MTHREAD | NDRDISC | SKIP_PATCH
+| | [Tags] | 1518B | 4T4C | MTHREAD | NDRDISC | SKIP_PATCH
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 4 threads, 4 phy cores, 2 receive queues per NIC port.
@@ -191,7 +191,7 @@
 
 | tc19-IMIX-1t1c-eth-l2bdbasemaclrn-ndrdisc
 | | ... | IMIX_v4_1 | ${100000} | 1 | 1 | ${s_24.5G}
-| | [Tags] | 1T1C | STHREAD | NDRDISC
+| | [Tags] | IMIX | 1T1C | STHREAD | NDRDISC
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
@@ -201,7 +201,7 @@
 
 | tc20-IMIX-2t2c-eth-l2bdbasemaclrn-ndrdisc
 | | ... | IMIX_v4_1 | ${100000} | 2 | 1 | ${s_24.5G}
-| | [Tags] | 2T2C | MTHREAD | NDRDISC | SKIP_PATCH
+| | [Tags] | IMIX | 2T2C | MTHREAD | NDRDISC | SKIP_PATCH
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
@@ -211,7 +211,7 @@
 
 | tc21-IMIX-4t4c-eth-l2bdbasemaclrn-ndrdisc
 | | ... | IMIX_v4_1 | ${100000} | 4 | 2 | ${s_24.5G}
-| | [Tags] | 4T4C | MTHREAD | NDRDISC | SKIP_PATCH
+| | [Tags] | IMIX | 4T4C | MTHREAD | NDRDISC | SKIP_PATCH
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 4 threads, 4 phy cores, 2 receive queues per NIC port.

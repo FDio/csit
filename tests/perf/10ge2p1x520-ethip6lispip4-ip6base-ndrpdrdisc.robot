@@ -56,7 +56,7 @@
 | | ... | port.
 | | ... | [Ver] Find NDR for 78 Byte frames using binary search start\
 | | ... | at 10GE linerate, step 100kpps.
-| | [Tags] | 1T1C | STHREAD | NDRDISC
+| | [Tags] | 78B | 1T1C | STHREAD | NDRDISC
 | | ${framesize}= | Set Variable | ${78}
 | | ${min_rate}= | Set Variable | ${100000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 48}
@@ -87,7 +87,7 @@
 | | ... | port.
 | | ... | [Ver] Find PDR for 78 Byte frames using binary search start\
 | | ... | at 10GE linerate, step 100kpps, LT=0.5%.
-| | [Tags] | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 78B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${78}
 | | ${min_rate}= | Set Variable | ${100000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 48}
@@ -120,7 +120,7 @@
 | | ... | port.
 | | ... | [Ver] Find NDR for 1460 Byte frames using binary search start\
 | | ... | at 10GE linerate, step 10kpps.
-| | [Tags] | 1T1C | STHREAD | NDRDISC
+| | [Tags] | 1460B | 1T1C | STHREAD | NDRDISC
 | | ${framesize}= | Set Variable | ${1460}
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 48}
@@ -151,7 +151,7 @@
 | | ... | port.
 | | ... | [Ver] Find PDR for 1460 Byte frames using binary search start\
 | | ... | at 10GE linerate, step 10kpps, LT=0.5%.
-| | [Tags] | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 1460B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${1460}
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 48}
@@ -184,7 +184,7 @@
 | | ... | port.
 | | ... | [Ver] Find NDR for 9000 Byte frames using binary search start\
 | | ... | at 10GE linerate, step 5kpps.
-| | [Tags] | 1T1C | STHREAD | NDRDISC
+| | [Tags] | 9000B | 1T1C | STHREAD | NDRDISC
 | | ${framesize}= | Set Variable | ${9000}
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 48}
@@ -214,7 +214,7 @@
 | | ... | port.
 | | ... | [Ver] Find PDR for 9000 Byte frames using binary search start\
 | | ... | at 10GE linerate, step 5kpps, LT=0.5%.
-| | [Tags] | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 9000B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${9000}
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 48}
@@ -246,7 +246,7 @@
 | | ... | port.
 | | ... | [Ver] Find NDR for 78 Byte frames using binary search start\
 | | ... | at 10GE linerate, step 100kpps.
-| | [Tags] | 2T2C | MTHREAD | NDRDISC
+| | [Tags] | 78B | 2T2C | MTHREAD | NDRDISC
 | | ${framesize}= | Set Variable | ${78}
 | | ${min_rate}= | Set Variable | ${100000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 48}
@@ -277,7 +277,7 @@
 | | ... | port.
 | | ... | [Ver] Find PDR for 78 Byte frames using binary search start\
 | | ... | at 10GE linerate, step 100kpps, LT=0.5%.
-| | [Tags] | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 78B | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${78}
 | | ${min_rate}= | Set Variable | ${100000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 48}
@@ -310,7 +310,7 @@
 | | ... | port.
 | | ... | [Ver] Find NDR for 1460 Byte frames using binary search start\
 | | ... | at 10GE linerate, step 10kpps.
-| | [Tags] | 2T2C | MTHREAD | NDRDISC | SKIP_PATCH
+| | [Tags] | 1460B | 2T2C | MTHREAD | NDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${1460}
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 48}
@@ -341,7 +341,7 @@
 | | ... | port.
 | | ... | [Ver] Find PDR for 1460 Byte frames using binary search start\
 | | ... | at 10GE linerate, step 10kpps, LT=0.5%.
-| | [Tags] | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 1460B | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${1460}
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 48}
@@ -374,7 +374,7 @@
 | | ... | port.
 | | ... | [Ver] Find NDR for 9000 Byte frames using binary search start\
 | | ... | at 10GE linerate, step 10kpps.
-| | [Tags] | 2T2C | MTHREAD | NDRDISC | SKIP_PATCH
+| | [Tags] | 9000B | 2T2C | MTHREAD | NDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${9000}
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 48}
@@ -404,7 +404,7 @@
 | | ... | port.
 | | ... | [Ver] Find PDR for 9000 Byte frames using binary search start\
 | | ... | at 10GE linerate, step 5kpps, LT=0.5%.
-| | [Tags] | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 9000B | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${9000}
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 48}
@@ -436,7 +436,7 @@
 | | ... | port.
 | | ... | [Ver] Find NDR for 78 Byte frames using binary search start\
 | | ... | at 10GE linerate, step 100kpps.
-| | [Tags] | 4T4C | MTHREAD | NDRDISC
+| | [Tags] | 78B | 4T4C | MTHREAD | NDRDISC
 | | ${framesize}= | Set Variable | ${78}
 | | ${min_rate}= | Set Variable | ${100000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 48}
@@ -467,7 +467,7 @@
 | | ... | port.
 | | ... | [Ver] Find PDR for 78 Byte frames using binary search start\
 | | ... | at 10GE linerate, step 100kpps, LT=0.5%.
-| | [Tags] | 4T4C | MTHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 78B | 4T4C | MTHREAD | PDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${78}
 | | ${min_rate}= | Set Variable | ${100000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 48}
@@ -500,7 +500,7 @@
 | | ... | port.
 | | ... | [Ver] Find NDR for 1460 Byte frames using binary search start\
 | | ... | at 10GE linerate, step 10kpps.
-| | [Tags] | 4T4C | MTHREAD | NDRDISC | SKIP_PATCH
+| | [Tags] | 1460B | 4T4C | MTHREAD | NDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${1460}
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 48}
@@ -531,7 +531,7 @@
 | | ... | port.
 | | ... | [Ver] Find PDR for 1460 Byte frames using binary search start\
 | | ... | at 10GE linerate, step 10kpps, LT=0.5%.
-| | [Tags] | 4T4C | MTHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 1460B | 4T4C | MTHREAD | PDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${1460}
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 48}
@@ -564,7 +564,7 @@
 | | ... | port.
 | | ... | [Ver] Find NDR for 9000 Byte frames using binary search start\
 | | ... | at 10GE linerate, step 5kpps.
-| | [Tags] | 4T4C | MTHREAD | NDRDISC | SKIP_PATCH
+| | [Tags] | 9000B | 4T4C | MTHREAD | NDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${9000}
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 48}
@@ -594,7 +594,7 @@
 | | ... | port.
 | | ... | [Ver] Find PDR for 9000 Byte frames using binary search start\
 | | ... | at 10GE linerate, step 5kpps, LT=0.5%.
-| | [Tags] | 4T4C | MTHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 9000B | 4T4C | MTHREAD | PDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${9000}
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + 48}

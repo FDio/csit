@@ -75,7 +75,7 @@
 | | ... | AND | Show SNAT verbose | ${dut1}
 | | ... | AND | Show SNAT verbose | ${dut2}
 | | ...
-| | [Tags] | 1T1C | STHREAD | NDRDISC
+| | [Tags] | 64B | 1T1C | STHREAD | NDRDISC
 | | ...
 | | ${framesize}= | Set Variable | ${64}
 | | ${min_rate}= | Set Variable | ${100000}
@@ -104,7 +104,7 @@
 | | [Teardown] | Performance test teardown | ${min_rate}pps | ${framesize}
 | | ... | 3-node-IPv4-SNAT-1u-1p
 | | ...
-| | [Tags] | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 64B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
 | | ...
 | | ${framesize}= | Set Variable | ${64}
 | | ${min_rate}= | Set Variable | ${100000}
@@ -136,7 +136,7 @@
 | | ... | AND | Show SNAT verbose | ${dut1}
 | | ... | AND | Show SNAT verbose | ${dut2}
 | | ...
-| | [Tags] | 1T1C | STHREAD | NDRDISC
+| | [Tags] | 1518B | 1T1C | STHREAD | NDRDISC
 | | ...
 | | ${framesize}= | Set Variable | ${1518}
 | | ${min_rate}= | Set Variable | ${100000}
@@ -165,7 +165,7 @@
 | | [Teardown] | Performance test teardown | ${min_rate}pps | ${framesize}
 | | ... | 3-node-IPv4-SNAT-1u-1p
 | | ...
-| | [Tags] | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 1518B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
 | | ...
 | | ${framesize}= | Set Variable | ${1518}
 | | ${min_rate}= | Set Variable | ${100000}
@@ -197,7 +197,7 @@
 | | ... | AND | Show SNAT verbose | ${dut1}
 | | ... | AND | Show SNAT verbose | ${dut2}
 | | ...
-| | [Tags] | 1T1C | STHREAD | NDRDISC
+| | [Tags] | IMIX | 1T1C | STHREAD | NDRDISC
 | | ...
 | | ${framesize}= | Set Variable | IMIX_v4_1
 | | ${min_rate}= | Set Variable | ${100000}
@@ -226,7 +226,7 @@
 | | [Teardown] | Performance test teardown | ${min_rate}pps | ${framesize}
 | | ... | 3-node-IPv4-SNAT-1u-1p
 | | ...
-| | [Tags] | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | IMIX | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
 | | ...
 | | ${framesize}= | Set Variable | IMIX_v4_1
 | | ${min_rate}= | Set Variable | ${100000}
