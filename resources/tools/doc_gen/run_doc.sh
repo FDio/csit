@@ -45,7 +45,8 @@ export PYTHONPATH=`pwd`
 find ./${WORKING_DIR}/env -type f -name '*.rst' | xargs rm -f
 
 # Generate the documentation:
-sphinx-build -v -b html ${WORKING_DIR} ${BUILD_DIR}/
+DATE=$(date -u '+%d-%b-%Y')
+sphinx-build -v -c ${WORKING_DIR} -a  -b html -E -D release=$1 -D version="$1 documentation - $DATE" ${WORKING_DIR} ${BUILD_DIR}/
 
 find . -type d -name 'env' | xargs rm -rf
 
