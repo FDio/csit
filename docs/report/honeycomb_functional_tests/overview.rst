@@ -143,7 +143,7 @@ with results listed in this report:
   - Configure multi-hop routes.
   - Configure blackhole route.
   - IPv4 and IPv6 variants.
-    - Test case count: 6
+  - Test case count: 6
 - **Honeycomb Infractructure** - configuration persistence,
   - Netconf notifications for interface events,
   - Netconf negative tests aimed at specific issues
