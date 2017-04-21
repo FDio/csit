@@ -52,7 +52,7 @@
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port. [Ver] Verify
 | | ... | ref-NDR for 78 Byte frames using single trial throughput test
 | | ... | at 2x 3.2mpps.
-| | [Tags] | 1T1C | STHREAD
+| | [Tags] | 78B | 1T1C | STHREAD
 | | ${framesize}= | Set Variable | ${78}
 | | ${rate}= | Set Variable | 3.2mpps
 | | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
@@ -70,7 +70,7 @@
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port. [Ver] Verify
 | | ... | ref-NDR for 1518 Byte frames using single trial throughput test
 | | ... | at 2x 812743pps.
-| | [Tags] | 1T1C | STHREAD
+| | [Tags] | 1518B | 1T1C | STHREAD
 | | ${framesize}= | Set Variable | ${1518}
 | | ${rate}= | Set Variable | 812743pps
 | | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
@@ -88,7 +88,7 @@
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port. [Ver] Verify
 | | ... | ref-NDR for 9000 Byte frames using single trial throughput test
 | | ... | at 2x 138580pps.
-| | [Tags] | 1T1C | STHREAD
+| | [Tags] | 9000B | 1T1C | STHREAD
 | | ${framesize}= | Set Variable | ${9000}
 | | ${rate}= | Set Variable | 138580pps
 | | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
@@ -105,7 +105,7 @@
 | | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port. [Ver] Verify
 | | ... | ref-NDR for 78 Byte frames using single trial throughput test
 | | ... | at 2x 5.7mpps.
-| | [Tags] | 2T2C | MTHREAD
+| | [Tags] | 78B | 2T2C | MTHREAD
 | | ${framesize}= | Set Variable | ${78}
 | | ${rate}= | Set Variable | 5.7mpps
 | | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
@@ -123,7 +123,7 @@
 | | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port. [Ver] Verify
 | | ... | ref-NDR for 1518 Byte frames using single trial throughput test
 | | ... | at 2x 812743pps.
-| | [Tags] | 2T2C | MTHREAD
+| | [Tags] | 1518B | 2T2C | MTHREAD
 | | ${framesize}= | Set Variable | ${1518}
 | | ${rate}= | Set Variable | 812743pps
 | | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
@@ -141,7 +141,7 @@
 | | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port. [Ver] Verify
 | | ... | ref-NDR for 9000 Byte frames using single trial throughput test
 | | ... | at 2x 138580pps.
-| | [Tags] | 2T2C | MTHREAD
+| | [Tags] | 9000B | 2T2C | MTHREAD
 | | ${framesize}= | Set Variable | ${9000}
 | | ${rate}= | Set Variable | 138580pps
 | | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
@@ -158,7 +158,7 @@
 | | ... | 4 thread, 4 phy core, 2 receive queue per NIC port. [Ver] Verify
 | | ... | ref-NDR for 78 Byte frames using single trial throughput test
 | | ... | at 2x 9.2mpps.
-| | [Tags] | 4T4C | MTHREAD
+| | [Tags] | 78B | 4T4C | MTHREAD
 | | ${framesize}= | Set Variable | ${78}
 | | ${rate}= | Set Variable | 9.2mpps
 | | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
@@ -176,7 +176,7 @@
 | | ... | 4 thread, 4 phy core, 2 receive queue per NIC port. [Ver] Verify
 | | ... | ref-NDR for 1518 Byte frames using single trial throughput test
 | | ... | at 2x 812743pps.
-| | [Tags] | 4T4C | MTHREAD
+| | [Tags] | 1518B | 4T4C | MTHREAD
 | | ${framesize}= | Set Variable | ${1518}
 | | ${rate}= | Set Variable | 812743pps
 | | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
@@ -194,7 +194,7 @@
 | | ... | 4 thread, 4 phy core, 2 receive queue per NIC port. [Ver] Verify
 | | ... | ref-NDR for 9000 Byte frames using single trial throughput test
 | | ... | at 2x 138580pps.
-| | [Tags] | 4T4C | MTHREAD
+| | [Tags] | 9000B | 4T4C | MTHREAD
 | | ${framesize}= | Set Variable | ${9000}
 | | ${rate}= | Set Variable | 138580pps
 | | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo

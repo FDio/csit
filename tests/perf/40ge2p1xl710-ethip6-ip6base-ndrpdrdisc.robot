@@ -58,7 +58,7 @@
 | | ... | [Cfg] DUT runs IPv6 routing config with 1 thread, 1 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for 78 Byte frames
 | | ... | using binary search start at 18.75Mpps rate, step 100kpps.
-| | [Tags] | 1T1C | STHREAD | NDRDISC
+| | [Tags] | 78B | 1T1C | STHREAD | NDRDISC
 | | ${framesize}= | Set Variable | ${78}
 | | ${min_rate}= | Set Variable | ${100000}
 | | ${max_rate}= | Set Variable | ${s_18.75Mpps}
@@ -80,7 +80,7 @@
 | | ... | [Cfg] DUT runs IPv6 routing config with 1 thread, 1 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for 1518 Byte frames
 | | ... | using binary search start at 24.5G rate, step 10kpps.
-| | [Tags] | 1T1C | STHREAD | NDRDISC
+| | [Tags] | 1518B | 1T1C | STHREAD | NDRDISC
 | | ${framesize}= | Set Variable | ${1518}
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_24.5G} | ${framesize}
@@ -102,7 +102,7 @@
 | | ... | [Cfg] DUT runs IPv6 routing config with 2 threads, 2 phy cores, \
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for 78 Byte frames
 | | ... | using binary search start at 18.75Mpps rate, step 100kpps.
-| | [Tags] | 2T2C | MTHREAD | NDRDISC
+| | [Tags] | 78B | 2T2C | MTHREAD | NDRDISC
 | | ${framesize}= | Set Variable | ${78}
 | | ${min_rate}= | Set Variable | ${100000}
 | | ${max_rate}= | Set Variable | ${s_18.75Mpps}
@@ -124,7 +124,7 @@
 | | ... | [Cfg] DUT runs IPv6 routing config with 2 threads, 2 phy cores, \
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for 1518 Byte frames
 | | ... | using binary search start at 24.5G rate, step 10kpps.
-| | [Tags] | 2T2C | MTHREAD | NDRDISC | SKIP_PATCH
+| | [Tags] | 1518B | 2T2C | MTHREAD | NDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${1518}
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_24.5G} | ${framesize}
@@ -146,7 +146,7 @@
 | | ... | [Cfg] DUT runs IPv6 routing config with 4 threads, 4 phy cores, \
 | | ... | 2 receive queues per NIC port. [Ver] Find NDR for 78 Byte frames
 | | ... | using binary search start at 18.75Mpps rate, step 100kpps.
-| | [Tags] | 4T4C | MTHREAD | NDRDISC
+| | [Tags] | 78B | 4T4C | MTHREAD | NDRDISC
 | | ${framesize}= | Set Variable | ${78}
 | | ${min_rate}= | Set Variable | ${100000}
 | | ${max_rate}= | Set Variable | ${s_18.75Mpps}
@@ -168,7 +168,7 @@
 | | ... | [Cfg] DUT runs IPv6 routing config with 4 threads, 4 phy cores, \
 | | ... | 2 receive queues per NIC port. [Ver] Find NDR for 1518 Byte frames
 | | ... | using binary search start at 24.5G rate, step 10kpps.
-| | [Tags] | 4T4C | MTHREAD | NDRDISC | SKIP_PATCH
+| | [Tags] | 1518B | 4T4C | MTHREAD | NDRDISC | SKIP_PATCH
 | | ${framesize}= | Set Variable | ${1518}
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Calculate pps | ${s_24.5G} | ${framesize}
