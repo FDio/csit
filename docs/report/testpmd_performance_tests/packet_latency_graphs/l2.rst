@@ -1,23 +1,32 @@
-L2 Ethernet Switching
-=====================
+L2 Ethernet Interface Loop
+==========================
 
-This section provides a summary of Testpmd Phy-to-Phy L2 Ethernet looping
-performance illustrating packet latency measured at 50% of discovered NDR
-throughput rate. Latency is reported for Testpmd running in multiple
-configurations of Testpmd worker thread(s), a.k.a. Testpmd data plane thread
-(s), and their physical CPU core(s) placement.
+This section includes summary graphs of Testpmd Phy-to-Phy packet
+latency with L2 Ethernet Interface Loop measured at 50% of discovered
+NDR throughput rate. Latency is reported for VPP running in multiple
+configurations of VPP worker thread(s), a.k.a. VPP data plane thread(s),
+and their physical CPU core(s) placement.
 
-*Title of each graph* is a regex (regular expression) matching all plotted
-latency test cases, *X-axis labels* are indeces of csit-dpdk-perf-1704 jobs
-that created result output files used as data sources for the graph,
-*Y-axis labels* are measured packet Latency [uSec] values, and the *graph
-legend* identifes the plotted test suites.
+Results are generated from a single execution of CSIT NDR discovery
+test. Box plots are used to show the Minimum, Average and Maximum packet
+latency per test.
+
+*Title of each graph* is a regex (regular expression) matching all
+throughput test cases plotted on this graph, *X-axis labels* are indeces
+of individual test suites executed by csit-dpdk-perf-1704 job that
+created result output file used as data source for the graph, *Y-axis
+labels* are measured packet Latency [uSec] values, and the *Graph
+legend* lists the plotted test suites and their indeces. Latency is
+reported for concurrent symmetric bi-directional flows, separately for
+each direction: i) West-to-East: TGint1-to-SUT1-to-SUT2-to-TGint2, and
+ii) East-to-West: TGint2-to-SUT2-to-SUT1-to-TGint1.
 
 .. note::
 
     Data sources for reported test results: i) FD.io test executor jobs
-    `csit-dpdk-perf-1704-all <https://jenkins.fd.io/view/csit/job/csit-dpdk-perf-1704-all/>`_ ,
-    ii) archived FD.io jobs test result output files
+    `csit-dpdk-perf-1704-all
+    <https://jenkins.fd.io/view/csit/job/csit-dpdk-perf-1704-all/>`_ ,
+    ii) archived FD.io jobs test result
     `csit-dpdk-perf-1704-all#job-number <https://nexus.fd.io/link>`_.
 
 Testpmd packet latency - running in configuration of **one worker thread (1t) on one
