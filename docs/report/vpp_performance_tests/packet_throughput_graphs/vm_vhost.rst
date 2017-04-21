@@ -24,8 +24,8 @@ legend* identifes the plotted test suites.
 NDR Throughput
 ~~~~~~~~~~~~~~
 
-VPP NDR Throughput - running in configuration of **one worker thread (1t) on one
-physical core (1c)** - is presented in the figure below.
+VPP NDR 64B packet throughput in 1t1c setup (1thread, 1core) is presented
+in the graph below.
 
 .. raw:: html
 
@@ -34,8 +34,8 @@ physical core (1c)** - is presented in the figure below.
 *Figure 1. VPP 1thread 1core - NDR Throughput for Phy-to-VM-to-Phy VM
 vhost-user.*
 
-CSIT test cases used to generate results presented above can be found in CSIT
-git repository by filtering with specified regex as follows:
+Test cases executed to plot above results can be found in CSIT git repository
+using following regex:
 
 .. code-block:: bash
 
@@ -51,8 +51,8 @@ git repository by filtering with specified regex as follows:
     10ge2p1x710-eth-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc.robot:| tc01-64B-1t1c-eth-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc
     40ge2p1xl710-eth-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc.robot:| tc01-64B-1t1c-eth-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc
 
-VPP NDR Throughput - running in configuration of **two worker threads (2t) on
-two physical cores (2c)** - is presented in the figure below.
+VPP NDR 64B packet throughput in 2t2c setup (2thread, 2core) is presented
+in the graph below.
 
 .. raw:: html
 
@@ -61,8 +61,8 @@ two physical cores (2c)** - is presented in the figure below.
 *Figure 2. VPP 2threads 2cores - NDR Throughput for Phy-to-VM-to-Phy VM
 vhost-user.*
 
-CSIT test cases used to generate results presented above can be found in CSIT
-git repository by filtering with specified regex as follows:
+Test cases executed to plot above results can be found in CSIT git repository
+using following regex:
 
 .. code-block:: bash
 
@@ -88,9 +88,8 @@ four physical cores (4c)** - is presented in the figure below.
 PDR Throughput
 ~~~~~~~~~~~~~~
 
-VPP PDR Throughput - running in configuration of **one worker thread (1t) on one
-physical core (1c)** - is presented in the figure below. PDR at below 0.5%
-packet loss ratio.
+VPP PDR 64B packet throughput in 1t1c setup (1thread, 1core) is presented
+in the graph below. PDR measured for 0.5% packet loss ratio.
 
 .. raw:: html
 
@@ -99,8 +98,8 @@ packet loss ratio.
 *Figure 3. VPP 1thread 1core - PDR Throughput for Phy-to-VM-to-Phy VM
 vhost-user.*
 
-CSIT test cases used to generate results presented above can be found in CSIT
-git repository by filtering with specified regex as follows:
+Test cases executed to plot above results can be found in CSIT git repository
+using following regex:
 
 .. code-block:: bash
 
@@ -116,8 +115,8 @@ git repository by filtering with specified regex as follows:
     10ge2p1x710-eth-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc.robot:| tc02-64B-1t1c-eth-l2bdbasemaclrn-eth-2vhost-1vm-pdrdisc
     40ge2p1xl710-eth-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc.robot:| tc02-64B-1t1c-eth-l2bdbasemaclrn-eth-2vhost-1vm-pdrdisc
 
-VPP PDR Throughput - running in configuration of **two worker threads (2t) on
-two physical cores (2c)** - is presented in the figure below.
+VPP PDR 64B packet throughput in 2t2c setup (2thread, 2core) is presented
+in the graph below. PDR measured for 0.5% packet loss ratio.
 
 .. raw:: html
 
@@ -126,8 +125,8 @@ two physical cores (2c)** - is presented in the figure below.
 *Figure 4. VPP 2thread 2core - PDR Throughput for Phy-to-VM-to-Phy VM
 vhost-user.*
 
-CSIT test cases used to generate results presented above can be found in CSIT
-git repository by filtering with specified regex as follows:
+Test cases executed to plot above results can be found in CSIT git repository
+using following regex:
 
 .. code-block:: bash
 
