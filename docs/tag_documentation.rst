@@ -144,9 +144,17 @@ Ethernet frame size tags for performance tests
 
     64B frames used for test.
 
+.. topic:: 78B
+
+    78B frames used for test.
+
 .. topic:: IMIX
 
     IMIX frame sequence (28x 64B, 16x 570B, 4x 1518B) used for test.
+
+.. topic:: 1514B
+
+    1514B frames used for test.
 
 .. topic:: 1518B
 
