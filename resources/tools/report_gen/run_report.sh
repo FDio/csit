@@ -115,7 +115,7 @@ rm -f ${DTR_PERF_SOURCE_DIR}/*.json
 ### DPDK PERFORMANCE SOURCE DATA
 
 JEN_JOB='csit-dpdk-perf-1704-all'
-JEN_BUILD=(1)
+JEN_BUILD=(1 2)
 
 for i in "${JEN_BUILD[@]}"; do
     curl -fs ${JEN_URL}/${JEN_JOB}/${i}/artifact/${JEN_FILE_PERF} \
@@ -141,7 +141,7 @@ rm -f ${DTR_TESTPMD_SOURCE_DIR}/*.json
 ### FUNCTIONAL SOURCE DATA
 
 JEN_JOB='csit-vpp-functional-1704-ubuntu1604-virl'
-JEN_BUILD=12
+JEN_BUILD=22
 
 curl -fs ${JEN_URL}/${JEN_JOB}/${JEN_BUILD}/artifact/\*zip\*/archive.zip \
     -o ${STATIC_DIR_ARCH}/${JEN_JOB}-${JEN_BUILD}.zip
@@ -268,7 +268,7 @@ rm -f ${DTR_FUNC_SOURCE_DIR}/*.json
 
 JEN_URL='https://jenkins.fd.io/view/hc2vpp/job'
 JEN_JOB='hc2vpp-csit-integration-1704-ubuntu1604'
-JEN_BUILD=27
+JEN_BUILD=37
 
 curl -fs ${JEN_URL}/${JEN_JOB}/${JEN_BUILD}/artifact/\*zip\*/archive.zip \
     -o ${STATIC_DIR_ARCH}/${JEN_JOB}-${JEN_BUILD}.zip
