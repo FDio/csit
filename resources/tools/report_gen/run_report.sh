@@ -106,9 +106,9 @@ python run_robot_data.py -i ${WORKING_DIR}/archive/output.xml \
     --formatting rst --start 3 --level 2 \
     --regex ".+ipsec.*" \
     --title "Crypto in hardware: IP4FWD, IP6FWD"
-sed -i -e "s/###JOB###/${JEN_JOB}\/${JEN_BUILD[-1]}/g" \
+sed -i -e "s@###JOB###@${JEN_JOB}\/${JEN_BUILD[-1]}@g" \
     ${DTR_PERF_SOURCE_DIR}/index.rst
-sed -i -e "s/###LINK###/${JEN_URL}\/${JEN_JOB}\/${JEN_BUILD[-1]}/g" \
+sed -i -e "s@###LINK###@${JEN_URL}\/${JEN_JOB}\/${JEN_BUILD[-1]}@g" \
     ${DTR_PERF_SOURCE_DIR}/index.rst
 rm -f ${DTR_PERF_SOURCE_DIR}/*.json
 
@@ -132,9 +132,9 @@ unzip -o ${STATIC_DIR_ARCH}/${JEN_JOB}-${JEN_BUILD[-1]}.zip -d ${WORKING_DIR}/
 python run_robot_data.py -i ${WORKING_DIR}/archive/output.xml \
     --output ${DTR_TESTPMD_SOURCE_DIR}/testpmd_performance_results.rst \
     --formatting rst --start 3 --level 2
-sed -i -e "s/###JOB###/${JEN_JOB}\/${JEN_BUILD[-1]}/g" \
+sed -i -e "s@###JOB###@${JEN_JOB}\/${JEN_BUILD[-1]}@g" \
     ${DTR_TESTPMD_SOURCE_DIR}/index.rst
-sed -i -e "s/###LINK###/${JEN_URL}\/${JEN_JOB}\/${JEN_BUILD[-1]}/g" \
+sed -i -e "s@###LINK###@${JEN_URL}\/${JEN_JOB}\/${JEN_BUILD[-1]}@g" \
     ${DTR_TESTPMD_SOURCE_DIR}/index.rst
 rm -f ${DTR_TESTPMD_SOURCE_DIR}/*.json
 
@@ -258,9 +258,9 @@ python run_robot_data.py -i ${WORKING_DIR}/archive/output.xml \
     --formatting rst --start 4 --level 2 \
     --regex ".+(ip4vxlan|ip6vxlan).*" \
     --title "VXLAN Overlay Tunnels"
-sed -i -e "s/###JOB###/${JEN_JOB}\/${JEN_BUILD}/g" \
+sed -i -e "s@###JOB###@${JEN_JOB}\/${JEN_BUILD}@g" \
     ${DTR_FUNC_SOURCE_DIR}/index.rst
-sed -i -e "s/###LINK###/${JEN_URL}\/${JEN_JOB}\/${JEN_BUILD}/g" \
+sed -i -e "s@###LINK###@${JEN_URL}\/${JEN_JOB}\/${JEN_BUILD}@g" \
     ${DTR_FUNC_SOURCE_DIR}/index.rst
 rm -f ${DTR_FUNC_SOURCE_DIR}/*.json
 
@@ -280,9 +280,9 @@ unzip -o ${STATIC_DIR_ARCH}/${JEN_JOB}-${JEN_BUILD}.zip -d ${WORKING_DIR}/
 python run_robot_data.py -i ${WORKING_DIR}/archive/csit/output.xml \
     --output ${DTR_HONEYCOMB_SOURCE_DIR}/honeycomb_functional_results.rst \
     --formatting rst --start 3 --level 2
-sed -i -e "s/###JOB###/${JEN_JOB}\/${JEN_BUILD}/g" \
+sed -i -e "s@###JOB###@${JEN_JOB}\/${JEN_BUILD}@g" \
     ${DTR_HONEYCOMB_SOURCE_DIR}/index.rst
-sed -i -e "s/###LINK###/${JEN_URL}\/${JEN_JOB}\/${JEN_BUILD}/g" \
+sed -i -e "s@###LINK###@${JEN_URL}\/${JEN_JOB}\/${JEN_BUILD}@g" \
     ${DTR_HONEYCOMB_SOURCE_DIR}/index.rst
 rm -f ${DTR_HONEYCOMB_SOURCE_DIR}/*.json
 
