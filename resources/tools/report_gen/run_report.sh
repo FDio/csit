@@ -143,7 +143,7 @@ rm -f ${DTR_TESTPMD_SOURCE_DIR}/*.json
 JEN_JOB='csit-vpp-functional-1704-ubuntu1604-virl'
 JEN_BUILD=12
 
-curl -fs ${JEN_URL}/${JEN_JOB}/${i}/artifact/\*zip\*/archive.zip \
+curl -fs ${JEN_URL}/${JEN_JOB}/${JEN_BUILD}/artifact/\*zip\*/archive.zip \
     -o ${STATIC_DIR_ARCH}/${JEN_JOB}-${JEN_BUILD}.zip
 
 # DELETE ME
