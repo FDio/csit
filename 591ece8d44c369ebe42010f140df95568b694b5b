@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a3291f1_8ddcb674",
+        "filename": "resources/tools/report_gen/run_robot_teardown_data.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-04-24T09:01:48Z",
+      "side": 1,
+      "message": "Consider adding the parameter -r / --regex - Only the test suites which match the given regular expression are processed.\nSee run_robot_data.py",
+      "range": {
+        "startLine": 35,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 9
+      },
+      "revId": "591ece8d44c369ebe42010f140df95568b694b5b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
