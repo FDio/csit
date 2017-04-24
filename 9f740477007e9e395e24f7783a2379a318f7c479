@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a3291f1_0d1a06cc",
+        "filename": "resources/templates/honeycomb/oper_policer.url",
+        "patchSetId": 7
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-04-24T11:58:25Z",
+      "side": 1,
+      "message": "/restconf/operational{odl_url_part}/policer:policers-state/policer",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 41
+      },
+      "revId": "9f740477007e9e395e24f7783a2379a318f7c479",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
