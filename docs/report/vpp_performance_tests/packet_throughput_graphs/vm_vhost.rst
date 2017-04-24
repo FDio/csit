@@ -29,7 +29,7 @@ physical core (1c)** - is presented in the figure below.
 
 .. raw:: html
 
-    <iframe width="700" height="700" frameborder="0" scrolling="no" src="../../_static/vpp/64B-1t1c-vhost-ndrdisc.html"></iframe>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/64B-1t1c-vhost-ndrdisc.html"></iframe>
 
 *Figure 1. VPP 1thread 1core - NDR Throughput for Phy-to-VM-to-Phy VM
 vhost-user.*
@@ -56,7 +56,7 @@ two physical cores (2c)** - is presented in the figure below.
 
 .. raw:: html
 
-    <iframe width="700" height="700" frameborder="0" scrolling="no" src="../../_static/vpp/64B-2t2c-vhost-ndrdisc.html"></iframe>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/64B-2t2c-vhost-ndrdisc.html"></iframe>
 
 *Figure 2. VPP 2threads 2cores - NDR Throughput for Phy-to-VM-to-Phy VM
 vhost-user.*
@@ -83,7 +83,7 @@ four physical cores (4c)** - is presented in the figure below.
 
 .. raw:: html
 
-    <iframe width="700" height="700" frameborder="0" scrolling="no" src="../../_static/vpp/64B-4t4c-vhost-ndrdisc.html"></iframe>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/64B-4t4c-vhost-ndrdisc.html"></iframe>
 
 PDR Throughput
 ~~~~~~~~~~~~~~
@@ -94,7 +94,7 @@ packet loss ratio.
 
 .. raw:: html
 
-    <iframe width="700" height="700" frameborder="0" scrolling="no" src="../../_static/vpp/64B-1t1c-vhost-pdrdisc.html"></iframe>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/64B-1t1c-vhost-pdrdisc.html"></iframe>
 
 *Figure 3. VPP 1thread 1core - PDR Throughput for Phy-to-VM-to-Phy VM
 vhost-user.*
@@ -121,7 +121,7 @@ two physical cores (2c)** - is presented in the figure below.
 
 .. raw:: html
 
-    <iframe width="700" height="700" frameborder="0" scrolling="no" src="../../_static/vpp/64B-2t2c-vhost-pdrdisc.html"></iframe>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/64B-2t2c-vhost-pdrdisc.html"></iframe>
 
 *Figure 4. VPP 2thread 2core - PDR Throughput for Phy-to-VM-to-Phy VM
 vhost-user.*

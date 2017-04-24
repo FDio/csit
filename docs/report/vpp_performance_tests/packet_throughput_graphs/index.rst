@@ -9,3 +9,4 @@ Packet Throughput Graphs
     ipv4_tunnels
     ipv6_tunnels
     vm_vhost
+    ipsec

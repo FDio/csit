@@ -195,7 +195,7 @@ def main():
             else:
                 if args.plot == 'box':
                     traces.append(plgo.Box(
-                        x=[str(i+1)+'. TC'] * len(ydata[suite][1::2]),
+                        x=[str(i+1)+'.'] * len(ydata[suite][1::2]),
                         y=ydata[suite][1::2],
                         name=str(i+1)+'. '+suite.lower().replace('-ndrdisc',''),
                         hoverinfo='x+y',
@@ -249,19 +249,17 @@ def main():
             boxgroupgap=0.5,
             autosize=False,
             margin=dict(
-                autoexpand=False,
-                b=200,
+                t=50,
+                b=20,
                 l=50,
-                r=50,
+                r=20,
             ),
             showlegend=True,
             legend=dict(
                 orientation='h',
-                y=-1,
-                yanchor='bottom',
             ),
             width=700,
-            height=700,
+            height=1000,
         )
         # Create plot
         plpl = plgo.Figure(data=traces, layout=layout)
