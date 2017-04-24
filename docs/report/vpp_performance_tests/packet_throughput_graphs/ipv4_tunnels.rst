@@ -29,7 +29,7 @@ one physical core (1c)** - is presented in the figure below.
 
 .. raw:: html
 
-    <iframe width="700" height="700" frameborder="0" scrolling="no" src="../../_static/vpp/64B-1t1c-ethip4-ndrdisc.html"></iframe>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/64B-1t1c-ethip4-ndrdisc.html"></iframe>
 
 *Figure 1. VPP 1thread 1core - NDR Throughput for Phy-to-Phy IPv4 Overlay
 Tunnels.*
@@ -52,7 +52,7 @@ two physical cores (2c)** - is presented in the figure below.
 
 .. raw:: html
 
-    <iframe width="700" height="700" frameborder="0" scrolling="no" src="../../_static/vpp/64B-2t2c-ethip4-ndrdisc.html"></iframe>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/64B-2t2c-ethip4-ndrdisc.html"></iframe>
 
 *Figure 2. VPP 2threads 2cores - NDR Throughput for Phy-to-Phy IPv4 Overlay Tunnels.*
 
@@ -78,7 +78,7 @@ packet loss ratio.
 
 .. raw:: html
 
-    <iframe width="700" height="700" frameborder="0" scrolling="no" src="../../_static/vpp/64B-1t1c-ethip4-pdrdisc.html"></iframe>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/64B-1t1c-ethip4-pdrdisc.html"></iframe>
 
 *Figure 3. VPP 1thread 1core - PDR Throughput for Phy-to-Phy IPv4 Overlay
 Tunnels.*
@@ -101,7 +101,7 @@ two physical cores (2c)** - is presented in the figure below.
 
 .. raw:: html
 
-    <iframe width="700" height="700" frameborder="0" scrolling="no" src="../../_static/vpp/64B-2t2c-ethip4-pdrdisc.html"></iframe>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/64B-2t2c-ethip4-pdrdisc.html"></iframe>
 
 *Figure 4. VPP 2thread 2core - PDR Throughput for Phy-to-Phy IPv4 Overlay Tunnels.*
 

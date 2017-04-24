@@ -29,7 +29,7 @@ one physical core (1c)** - is presented in the figure below.
 
 .. raw:: html
 
-    <iframe width="700" height="700" frameborder="0" scrolling="no" src="../../_static/vpp/78B-1t1c-ethip6-ip6-ndrdisc.html"></iframe>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/78B-1t1c-ethip6-ip6-ndrdisc.html"></iframe>
 
 *Figure 1. VPP 1thread 1core - NDR Throughput for Phy-to-Phy IPv6
 Routed-Forwarding.*
@@ -55,7 +55,7 @@ two physical cores (2c)** - is presented in the figure below.
 
 .. raw:: html
 
-    <iframe width="700" height="700" frameborder="0" scrolling="no" src="../../_static/vpp/78B-2t2c-ethip6-ip6-ndrdisc.html"></iframe>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/78B-2t2c-ethip6-ip6-ndrdisc.html"></iframe>
 
 *Figure 2. VPP 2threads 2cores - NDR Throughput for Phy-to-Phy IPv6
 Routed-Forwarding.*
@@ -85,7 +85,7 @@ packet loss ratio.
 
 .. raw:: html
 
-    <iframe width="700" height="700" frameborder="0" scrolling="no" src="../../_static/vpp/78B-1t1c-ethip6-ip6-pdrdisc.html"></iframe>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/78B-1t1c-ethip6-ip6-pdrdisc.html"></iframe>
 
 *Figure 3. VPP 1thread 1core - PDR Throughput for Phy-to-Phy IPv6
 Routed-Forwarding.*
@@ -110,7 +110,7 @@ two physical cores (2c)** - is presented in the figure below.
 
 .. raw:: html
 
-    <iframe width="700" height="700" frameborder="0" scrolling="no" src="../../_static/vpp/78B-2t2c-ethip6-ip6-pdrdisc.html"></iframe>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/78B-2t2c-ethip6-ip6-pdrdisc.html"></iframe>
 
 *Figure 4. VPP 2thread 2core - PDR Throughput for Phy-to-Phy IPv6
 Routed-Forwarding.*
