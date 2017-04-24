@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a3291f1_4da80e77",
+        "filename": "resources/tools/report_gen/run_robot_teardown_data.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-04-24T11:14:13Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 17,
+        "startChar": 54,
+        "endLine": 17,
+        "endChar": 61
+      },
+      "revId": "c28d6be7ae9a335f04fa75eee5a6dc3f9941c6ab",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_2db942cc",
+        "filename": "resources/tools/report_gen/run_robot_teardown_data.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-04-24T11:14:13Z",
+      "side": 1,
+      "message": "it is supported",
+      "range": {
+        "startLine": 27,
+        "startChar": 3,
+        "endLine": 27,
+        "endChar": 7
+      },
+      "revId": "c28d6be7ae9a335f04fa75eee5a6dc3f9941c6ab",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
