@@ -35,7 +35,9 @@ then
     mkdir vpp_download
     cd vpp_download
 
-    if [[ ${TEST_TAG} == "PERFTEST_NIGHTLY" ]] ;
+    if [[ ${TEST_TAG} == *NIGHTLY ]] || \
+       [[ ${TEST_TAG} == *DAILY ]] || \
+       [[ ${TEST_TAG} == *WEEKLY ]];
     then
         # Download the latest VPP build .deb install packages
         echo Downloading VPP packages...
