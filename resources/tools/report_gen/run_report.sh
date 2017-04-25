@@ -354,7 +354,7 @@ python run_robot_data.py -i ${WORKING_DIR}/archive/output.xml \
     --regex ".+ipolicemark.*" \
     --title "QoS Policer Metering"
 python run_robot_teardown_data.py -i ${WORKING_DIR}/archive/output.xml \
-    --output ${DTC_FUNC_SOURCE_DIR}/vpp_performancefunctional_configuration_policer.rst \
+    --output ${DTC_FUNC_SOURCE_DIR}/vpp_functional_configuration_policer.rst \
     --data "VAT_H" -f "rst" --start 4 --level 2 \
     --regex ".+ipolicemark.*" \
     --title "QoS Policer Metering"
