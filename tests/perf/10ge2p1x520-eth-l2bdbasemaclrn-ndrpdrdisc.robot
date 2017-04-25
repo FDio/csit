@@ -91,7 +91,7 @@
 
 *** Test Cases ***
 | tc01-64B-1t1c-eth-l2bdbasemaclrn-ndrdisc
-| | ... | ${64} | ${100000} | 1 | 1
+| | ... | framesize=${64} | min_rate=${100000} | wt=1 | rxq=1
 | | [Tags] | 64B | 1T1C | STHREAD | NDRDISC
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
@@ -101,7 +101,7 @@
 | | [Template] | L2 Bridge Domain NDR Binary Search
 
 | tc02-64B-1t1c-eth-l2bdbasemaclrn-pdrdisc
-| | ... | ${64} | ${100000} | 1 | 1
+| | ... | framesize=${64} | min_rate=${100000} | wt=1 | rxq=1
 | | [Tags] | 64B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
@@ -111,7 +111,7 @@
 | | [Template] | L2 Bridge Domain PDR Binary Search
 
 | tc03-1518B-1t1c-eth-l2bdbasemaclrn-ndrdisc
-| | ... | ${1518} | ${10000} | 1 | 1
+| | ... | framesize=${1518} | min_rate=${10000} | wt=1 | rxq=1
 | | [Tags] | 1518B | 1T1C | STHREAD | NDRDISC
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
@@ -121,7 +121,7 @@
 | | [Template] | L2 Bridge Domain NDR Binary Search
 
 | tc04-1518B-1t1c-eth-l2bdbasemaclrn-pdrdisc
-| | ... | ${1518} | ${10000} | 1 | 1
+| | ... | framesize=${1518} | min_rate=${10000} | wt=1 | rxq=1
 | | [Tags] | 1518B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
@@ -131,7 +131,7 @@
 | | [Template] | L2 Bridge Domain PDR Binary Search
 
 | tc05-9000B-1t1c-eth-l2bdbasemaclrn-ndrdisc
-| | ... | ${9000} | ${10000} | 1 | 1
+| | ... | framesize=${9000} | min_rate=${10000} | wt=1 | rxq=1
 | | [Tags] | 9000B | 1T1C | STHREAD | NDRDISC
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
@@ -141,7 +141,7 @@
 | | [Template] | L2 Bridge Domain NDR Binary Search
 
 | tc06-9000B-1t1c-eth-l2bdbasemaclrn-pdrdisc
-| | ... | ${9000} | ${10000} | 1 | 1
+| | ... | framesize=${9000} | min_rate=${10000} | wt=1 | rxq=1
 | | [Tags] | 9000B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
@@ -151,7 +151,7 @@
 | | [Template] | L2 Bridge Domain PDR Binary Search
 
 | tc07-64B-2t2c-eth-l2bdbasemaclrn-ndrdisc
-| | ... | ${64} | ${100000} | 2 | 1
+| | ... | framesize=${64} | min_rate=${100000} | wt=2 | rxq=1
 | | [Tags] | 64B | 2T2C | MTHREAD | NDRDISC
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
@@ -161,7 +161,7 @@
 | | [Template] | L2 Bridge Domain NDR Binary Search
 
 | tc08-64B-2t2c-eth-l2bdbasemaclrn-pdrdisc
-| | ... | ${64} | ${100000} | 2 | 1
+| | ... | framesize=${64} | min_rate=${100000} | wt=2 | rxq=1
 | | [Tags] | 64B | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
@@ -171,7 +171,7 @@
 | | [Template] | L2 Bridge Domain PDR Binary Search
 
 | tc09-1518B-2t2c-eth-l2bdbasemaclrn-ndrdisc
-| | ... | ${1518} | ${10000} | 2 | 1
+| | ... | framesize=${1518} | min_rate=${10000} | wt=2 | rxq=1
 | | [Tags] | 1518B | 2T2C | MTHREAD | NDRDISC | SKIP_PATCH
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
@@ -181,7 +181,7 @@
 | | [Template] | L2 Bridge Domain NDR Binary Search
 
 | tc10-1518B-2t2c-eth-l2bdbasemaclrn-pdrdisc
-| | ... | ${1518} | ${10000} | 2 | 1
+| | ... | framesize=${1518} | min_rate=${10000} | wt=2 | rxq=1
 | | [Tags] | 1518B | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
@@ -191,7 +191,7 @@
 | | [Template] | L2 Bridge Domain PDR Binary Search
 
 | tc11-9000B-2t2c-eth-l2bdbasemaclrn-ndrdisc
-| | ... | ${9000} | ${10000} | 2 | 1
+| | ... | framesize=${9000} | min_rate=${10000} | wt=2 | rxq=1
 | | [Tags] | 9000B | 2T2C | MTHREAD | NDRDISC | SKIP_PATCH
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
@@ -201,7 +201,7 @@
 | | [Template] | L2 Bridge Domain NDR Binary Search
 
 | tc12-9000B-2t2c-eth-l2bdbasemaclrn-pdrdisc
-| | ... | ${9000} | ${10000} | 2 | 1
+| | ... | framesize=${9000} | min_rate=${10000} | wt=2 | rxq=1
 | | [Tags] | 9000B | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
@@ -211,7 +211,7 @@
 | | [Template] | L2 Bridge Domain PDR Binary Search
 
 | tc13-64B-4t4c-eth-l2bdbasemaclrn-ndrdisc
-| | ... | ${64} | ${100000} | 4 | 2
+| | ... | framesize=${64} | min_rate=${100000} | wt=4 | rxq=2
 | | [Tags] | 64B | 4T4C | MTHREAD | NDRDISC
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
@@ -221,7 +221,7 @@
 | | [Template] | L2 Bridge Domain NDR Binary Search
 
 | tc14-64B-4t4c-eth-l2bdbasemaclrn-pdrdisc
-| | ... | ${64} | ${100000} | 4 | 2
+| | ... | framesize=${64} | min_rate=${100000} | wt=4 | rxq=2
 | | [Tags] | 64B | 4T4C | MTHREAD | PDRDISC | SKIP_PATCH
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
@@ -231,7 +231,7 @@
 | | [Template] | L2 Bridge Domain PDR Binary Search
 
 | tc15-1518B-4t4c-eth-l2bdbasemaclrn-ndrdisc
-| | ... | ${1518} | ${10000} | 4 | 2
+| | ... | framesize=${1518} | min_rate=${10000} | wt=4 | rxq=2
 | | [Tags] | 1518B | 4T4C | MTHREAD | NDRDISC | SKIP_PATCH
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
@@ -241,7 +241,7 @@
 | | [Template] | L2 Bridge Domain NDR Binary Search
 
 | tc16-1518B-4t4c-eth-l2bdbasemaclrn-pdrdisc
-| | ... | ${1518} | ${10000} | 4 | 2
+| | ... | framesize=${1518} | min_rate=${10000} | wt=4 | rxq=2
 | | [Tags] | 1518B | 4T4C | MTHREAD | PDRDISC | SKIP_PATCH
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
@@ -251,7 +251,7 @@
 | | [Template] | L2 Bridge Domain PDR Binary Search
 
 | tc17-9000B-4t4c-eth-l2bdbasemaclrn-ndrdisc
-| | ... | ${9000} | ${10000} | 4 | 2
+| | ... | framesize=${9000} | min_rate=${10000} | wt=4 | rxq=2
 | | [Tags] | 9000B | 4T4C | MTHREAD | NDRDISC | SKIP_PATCH
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
@@ -261,7 +261,7 @@
 | | [Template] | L2 Bridge Domain NDR Binary Search
 
 | tc18-9000B-4t4c-eth-l2bdbasemaclrn-pdrdisc
-| | ... | ${9000} | ${10000} | 4 | 2
+| | ... | framesize=${9000} | min_rate=${10000} | wt=4 | rxq=2
 | | [Tags] | 9000B | 4T4C | MTHREAD | PDRDISC | SKIP_PATCH
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\

@@ -52,6 +52,19 @@
 | TC01: MAP-T test
 | | [Documentation] |
 | | ... | Test to check map-t address translation.
+| | ...
+| | ... | Arguments:
+| | ...
+| | ... | - ipv4_pfx
+| | ... | - ipv6_dst_pfx
+| | ... | - ipv6_src_pfx
+| | ... | - ea_bit_len
+| | ... | - psid_offset
+| | ... | - psid_len
+| | ... | - ipv4_src
+| | ... | - ipv4_dst
+| | ... | - dst_port
+| | ...
 | | [Template] | Check MAP-T configuration with traffic script
 # |===================|===============|================|============|=============|==========|===========|================|==========|
 # | ipv4_pfx          | ipv6_dst_pfx  | ipv6_src_pfx   | ea_bit_len | psid_offset | psid_len | ipv4_src  | ipv4_dst       | dst_port |
