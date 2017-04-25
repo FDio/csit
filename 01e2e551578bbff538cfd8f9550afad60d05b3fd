@@ -22,6 +22,30 @@
       "revId": "01e2e551578bbff538cfd8f9550afad60d05b3fd",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_f43e5ed9",
+        "filename": "docs/report/vpp_functional_tests/csit_release_notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2017-04-25T18:47:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a3291f1_747caeb5",
+      "range": {
+        "startLine": 50,
+        "startChar": 91,
+        "endLine": 50,
+        "endChar": 96
+      },
+      "revId": "01e2e551578bbff538cfd8f9550afad60d05b3fd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
