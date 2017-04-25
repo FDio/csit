@@ -148,7 +148,7 @@ with results listed in this report:
   - Netconf notifications for interface events,
   - Netconf negative tests aimed at specific issues
 
-Total 111 Honeycomb tests in the CSIT |release|.
+Total 158 Honeycomb tests in the CSIT |release|.
 
 Operational data in Honeycomb should mirror configuration data at all times.
 Because of this, test cases follow this general pattern:
