@@ -130,7 +130,8 @@
 
 *** Test Cases ***
 | tc01-64B-1t1c-eth-l2bdbasemaclrn-ndrdisc
-| | ... | ${64} | ${100000} | 1 | 1 | ${s_18.75Mpps}
+| | ... | framesize=${64} | min_rate=${100000} | wt=1 | rxq=1
+| | ... | s_limit=${s_18.75Mpps}
 | | [Tags] | 64B | 1T1C | STHREAD | NDRDISC
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
@@ -140,7 +141,8 @@
 | | [Template] | L2 Bridge Domain NDR Binary Search
 
 | tc03-1518B-1t1c-eth-l2bdbasemaclrn-ndrdisc
-| | ... | ${1518} | ${10000} | 1 | 1 | ${s_24.5G}
+| | ... | framesize=${1518} | min_rate=${10000} | wt=1 | rxq=1
+| | ... | s_limit=${s_24.5G}
 | | [Tags] | 1518B | 1T1C | STHREAD | NDRDISC
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
@@ -150,7 +152,8 @@
 | | [Template] | L2 Bridge Domain NDR Binary Search BW limit
 
 | tc07-64B-2t2c-eth-l2bdbasemaclrn-ndrdisc
-| | ... | ${64} | ${100000} | 2 | 1 | ${s_18.75Mpps}
+| | ... | framesize=${64} | min_rate=${100000} | wt=2 | rxq=1
+| | ... | s_limit=${s_18.75Mpps}
 | | [Tags] | 64B | 2T2C | MTHREAD | NDRDISC
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
@@ -160,7 +163,8 @@
 | | [Template] | L2 Bridge Domain NDR Binary Search
 
 | tc09-1518B-2t2c-eth-l2bdbasemaclrn-ndrdisc
-| | ... | ${1518} | ${10000} | 2 | 1 | ${s_24.5G}
+| | ... | framesize=${1518} | min_rate=${10000} | wt=2 | rxq=1
+| | ... | s_limit=${s_24.5G}
 | | [Tags] | 1518B | 2T2C | MTHREAD | NDRDISC | SKIP_PATCH
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
@@ -170,7 +174,8 @@
 | | [Template] | L2 Bridge Domain NDR Binary Search BW limit
 
 | tc13-64B-4t4c-eth-l2bdbasemaclrn-ndrdisc
-| | ... | ${64} | ${100000} | 4 | 2 | ${s_18.75Mpps}
+| | ... | framesize=${64} | min_rate=${100000} | wt=4 | rxq=2
+| | ... | s_limit=${s_18.75Mpps}
 | | [Tags] | 64B | 4T4C | MTHREAD | NDRDISC
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
@@ -180,7 +185,8 @@
 | | [Template] | L2 Bridge Domain NDR Binary Search
 
 | tc15-1518B-4t4c-eth-l2bdbasemaclrn-ndrdisc
-| | ... | ${1518} | ${10000} | 4 | 2 | ${s_24.5G}
+| | ... | framesize=${1518} | min_rate=${10000} | wt=4 | rxq=2
+| | ... | s_limit=${s_24.5G}
 | | [Tags] | 1518B | 4T4C | MTHREAD | NDRDISC | SKIP_PATCH
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
@@ -190,7 +196,8 @@
 | | [Template] | L2 Bridge Domain NDR Binary Search BW limit
 
 | tc19-IMIX-1t1c-eth-l2bdbasemaclrn-ndrdisc
-| | ... | IMIX_v4_1 | ${100000} | 1 | 1 | ${s_24.5G}
+| | ... | framesize=IMIX_v4_1 | min_rate=${100000} | wt=1 | rxq=1
+| | ... | s_limit=${s_24.5G}
 | | [Tags] | IMIX | 1T1C | STHREAD | NDRDISC
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
@@ -200,7 +207,8 @@
 | | [Template] | L2 Bridge Domain NDR Binary Search BW limit
 
 | tc20-IMIX-2t2c-eth-l2bdbasemaclrn-ndrdisc
-| | ... | IMIX_v4_1 | ${100000} | 2 | 1 | ${s_24.5G}
+| | ... | framesize=IMIX_v4_1 | min_rate=${100000} | wt=2 | rxq=1
+| | ... | s_limit=${s_24.5G}
 | | [Tags] | IMIX | 2T2C | MTHREAD | NDRDISC | SKIP_PATCH
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
@@ -210,7 +218,8 @@
 | | [Template] | L2 Bridge Domain NDR Binary Search BW limit
 
 | tc21-IMIX-4t4c-eth-l2bdbasemaclrn-ndrdisc
-| | ... | IMIX_v4_1 | ${100000} | 4 | 2 | ${s_24.5G}
+| | ... | framesize=IMIX_v4_1 | min_rate=${100000} | wt=4 | rxq=2
+| | ... | s_limit=${s_24.5G}
 | | [Tags] | IMIX | 4T4C | MTHREAD | NDRDISC | SKIP_PATCH
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\

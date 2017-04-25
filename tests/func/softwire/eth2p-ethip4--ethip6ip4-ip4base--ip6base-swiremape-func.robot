@@ -56,6 +56,18 @@
 | | ... | IPv4 prefix length + ea bits length < 32 (o + r < 32)
 | | ... | psid_length = 0, ip6_prefix < 64, ip4_prefix <= 32
 | | ...
+| | ... | Arguments:
+| | ...
+| | ... | - ipv4_pfx
+| | ... | - ipv6_pfx
+| | ... | - ipv6_src
+| | ... | - ea_bit_len
+| | ... | - psid_offset
+| | ... | - psid_len
+| | ... | - ipv4_dst
+| | ... | - dst_port
+| | ... | - expected_ipv6_dst
+| | ...
 # TODO: replace setup when VPP-312 fixed
 #| | [Setup] | Set Interfaces IP Addresses And Routes
 | | [Setup] | Run Keywords
@@ -80,6 +92,18 @@
 | | ... | Basic Mapping Rule https://tools.ietf.org/html/rfc7597#section-5.2\
 | | ... | IPv4 prefix length + ea bits length == 32 (o + r == 32)
 | | ... | psid_length = 0, ip6_prefix < 64, ip4_prefix <= 32
+| | ...
+| | ... | Arguments:
+| | ...
+| | ... | - ipv4_pfx
+| | ... | - ipv6_pfx
+| | ... | - ipv6_src
+| | ... | - ea_bit_len
+| | ... | - psid_offset
+| | ... | - psid_len
+| | ... | - ipv4_dst
+| | ... | - dst_port
+| | ... | - expected_ipv6_dst
 | | ...
 # TODO: replace setup when VPP-312 fixed
 #| | [Setup] | Set Interfaces IP Addresses And Routes
@@ -108,6 +132,18 @@
 | | ... | Basic Mapping Rule https://tools.ietf.org/html/rfc7597#section-5.2\
 | | ... | IPv4 prefix length + ea bits length > 32 (o + r > 32)
 | | ... | ip6_prefix < 64, ip4_prefix <= 32
+| | ...
+| | ... | Arguments:
+| | ...
+| | ... | - ipv4_pfx
+| | ... | - ipv6_pfx
+| | ... | - ipv6_src
+| | ... | - ea_bit_len
+| | ... | - psid_offset
+| | ... | - psid_len
+| | ... | - ipv4_dst
+| | ... | - dst_port
+| | ... | - expected_ipv6_dst
 | | ...
 # TODO: replace setup when VPP-312 fixed
 #| | [Setup] | Set Interfaces IP Addresses And Routes
@@ -155,6 +191,17 @@
 | TC04: End user IPv6 prefix is 64
 | | [Documentation]
 | | ... | Supported End-User IPv6 prefix length is 64 bit.
+| | ...
+| | ... | Arguments:
+| | ...
+| | ... | - ipv4_pfx
+| | ... | - ipv6_pfx
+| | ... | - ipv6_src
+| | ... | - ea_bit_len
+| | ... | - psid_offset
+| | ... | - psid_len
+| | ... | - ipv4_dst
+| | ... | - dst_port
 | | ...
 # TODO: replace setup when VPP-312 fixed
 #| | [Setup] | Set Interfaces IP Addresses And Routes
