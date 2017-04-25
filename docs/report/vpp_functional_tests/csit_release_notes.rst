@@ -1,7 +1,7 @@
 CSIT Release Notes
 ==================
 
-Changes in CSIT |release| - to be updated
+Changes in CSIT |release|
 -------------------------
 
 #. Introduction of Centos7 tests

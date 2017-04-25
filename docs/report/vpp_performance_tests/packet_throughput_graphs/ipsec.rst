@@ -34,8 +34,8 @@ legend* lists the plotted test suites and their indices.
 NDR Throughput
 ~~~~~~~~~~~~~~
 
-VPP NDR Throughput - running in configuration of **one worker thread (1t) on
-one physical core (1c)** - is presented in the figure below.
+VPP NDR 64B packet throughput in 1t1c setup (1thread, 1core) is presented
+in the graph below.
 
 .. raw:: html
 
@@ -62,8 +62,8 @@ git repository:
     40ge2p1xl710-ethip4ipsectptlispgpe-ip4base-cbc-sha1-ndrpdrdisc.robot:| tc01-64B-1t1c-ethip4ipsectptlispgpe-ip4base-cbc-sha1-ndrdisc
 
 
-VPP NDR Throughput - running in configuration of **two worker threads (2t) on
-two physical cores (2c)** - is presented in the figure below.
+VPP NDR 64B packet throughput in 2t2c setup (2thread, 2core) is presented
+in the graph below.
 
 .. raw:: html
 
@@ -92,9 +92,8 @@ git repository:
 PDR Throughput
 ~~~~~~~~~~~~~~
 
-VPP PDR Throughput - running in configuration of **one worker thread (1t) on one
-physical core (1c)** - is presented in the figure below. PDR at below 0.5%
-packet loss ratio.
+VPP PDR 64B packet throughput in 1t1c setup (1thread, 1core) is presented
+in the graph below. PDR measured for 0.5% packet loss ratio.
 
 .. raw:: html
 
@@ -121,8 +120,8 @@ git repository:
     40ge2p1xl710-ethip4ipsectptlispgpe-ip4base-cbc-sha1-ndrpdrdisc.robot:| tc02-64B-1t1c-ethip4ipsectptlispgpe-ip4base-cbc-sha1-pdrdisc
 
 
-VPP PDR Throughput - running in configuration of **two worker threads (2t) on
-two physical cores (2c)** - is presented in the figure below.
+VPP PDR 64B packet throughput in 2t2c setup (2thread, 2core) is presented
+in the graph below. PDR measured for 0.5% packet loss ratio.
 
 .. raw:: html
 
