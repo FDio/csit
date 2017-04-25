@@ -8,13 +8,12 @@ Changes in CSIT |release|
 
 #. Added VPP functional tests
 
-    - more VM vhost-user tests incl. two VM four vhost interface tests
-    - more LISP tests
-    - more IPSec crypto tests
-    - IPv4 and IPv6 Equal-Cost Multi-Path routing tests
-    - Telemetry:
-      - IPFIX tests
-      - SPAN tests
+    - IPv4 routed-forwarding with dot1q VLAN sub-interfaces
+    - L2BD switched-forwarding with dot1q VLAN sub-interfaces and vhost-user to VM
+    - IPv4 routed-forwarding with vhost-user interfaces to VM
+    - Vhost-User interface re-connect tests
+
+#. Implemented VAT command history collection for every test case as part of teardown.
 
 Known Issues - to be updated
 ------------
