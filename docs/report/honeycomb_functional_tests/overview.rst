@@ -117,6 +117,33 @@ with results listed in this report:
   - up to 2 interfaces.
   - Remove SPAN configuration from interfaces.
   - Test case count: 3
+- **ACL-PLUGIN** - CRD for high-level classifier
+  - MAC + IP address classification.
+  - IPv4, IPv6 address classification.
+  - TCP, UDP, ICMP, ICMPv6 protocol/next-header classification.
+  - port number classification.
+  - ICMP, ICMPv6 code and type classification.
+  - Test case count: 15
+- **ProxyARP** - CRD for proxyARP feature.
+  - Configure proxyARP.
+  - Assign to interface.
+  - Test case count: 3
+- **ProxyND6** - CRD for Neighbor Discovery Proxy.
+  - Configure ProxyND6 feature on interface.
+  - Test case count: 4
+- **DHCP Relay** - CRD for DHCP relay feature.
+  - Configure DHCP Relays.
+  - IPv4 and IPv6 variants.
+  - Test case count: 4
+- **SLAAC** - CRD for Stateless Address AutoConfiguration.
+  - Configure SLAAC feature on interfaces.
+  - Test case count: 7
+- **Routing** - CRD for routing.
+  - Configure single-hop route.
+  - Configure multi-hop routes.
+  - Configure blackhole route.
+  - IPv4 and IPv6 variants.
+    - Test case count: 6
 - **Honeycomb Infractructure** - configuration persistence,
   - Netconf notifications for interface events,
   - Netconf negative tests aimed at specific issues
@@ -130,7 +157,8 @@ Because of this, test cases follow this general pattern:
 #. read status of the feature using VPP API dump.
 #. modify configuration of the feature using restconf.
 #. verify changes to operational data using restconf.
-#. verify changes using VPP API dump.
+#. verify changes using VPP API dump, OR
+#. send a packet to VPP node and observe behaviour to verify configuration
 
 Test cases involving network interfaces utilize the first two interfaces on
 the DUT node.

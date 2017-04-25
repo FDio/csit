@@ -13,21 +13,21 @@ versions:
 Current VPP tests have been executed on a single VM operating system and
 version only, as described in the following paragraphs.
 
-In CSIT terminology, the VM operating system for both SUTs and TG that VPP 17.01
+In CSIT terminology, the VM operating system for both SUTs and TG that VPP 17.04
 has been tested with, is the following:
 
-  ubuntu-14.04.4_2016-10-07_1.3
+  ubuntu-16.04.1_2017-02-23_1.8
 
-which implies Ubuntu 14.04.3 LTS, current as of 2016/10/07 (that is, package
-versions are those that would have been installed by a "apt-get update",
-"apt-get upgrade" on October 7), produced by CSIT disk image build scripts
-version 1.6.
+This image implies Ubuntu 16.04.1 LTS, current as of 2017/02/23 (that is,
+package versions are those that would have been installed by a "apt-get update",
+"apt-get upgrade" on February 23), produced by CSIT disk image build scripts
+version 1.8.
 
 The exact list of installed packages and their versions (including the Linux
 kernel package version) are included in CSIT source repository:
 
-  resources/tools/disk-image-builder/ubuntu/lists/ubuntu-14.04.4_2016-10-07_1.3
+  resources/tools/disk-image-builder/ubuntu/lists/ubuntu-16.04.1_2017-02-23_1.8
 
 A replica of this VM image can be built by running the "build.sh" script in CSIT
-repository resources/tools/disk-image-builder/.
+repository resources/tools/disk-image-builder/ubuntu.
 
