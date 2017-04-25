@@ -244,7 +244,7 @@ python run_robot_data.py -i ${WORKING_DIR}/archive/output.xml \
     --regex ".+cop.*" \
     --title "Cop Address Security"
 python run_robot_teardown_data.py -i ${WORKING_DIR}/archive/output.xml \
-    --output ${DTC_FUNC_SOURCE_DIR}/vpp_performance_configuration_cop.rst \
+    --output ${DTC_FUNC_SOURCE_DIR}/vpp_functional_configuration_cop.rst \
     --data "VAT_H" -f "rst" --start 4 --level 2 \
     --regex ".+cop.*" \
     --title "Cop Address Security"
@@ -255,7 +255,7 @@ python run_robot_data.py -i ${WORKING_DIR}/archive/output.xml \
     --regex ".+dhcp.*" \
     --title "DHCP - Client and Proxy"
 python run_robot_teardown_data.py -i ${WORKING_DIR}/archive/output.xml \
-    --output ${DTC_FUNC_SOURCE_DIR}/vpp_performance_configuration_dhcp.rst \
+    --output ${DTC_FUNC_SOURCE_DIR}/vpp_functional_configuration_dhcp.rst \
     --data "VAT_H" -f "rst" --start 4 --level 2 \
     --regex ".+dhcp.*" \
     --title "DHCP - Client and Proxy"
@@ -266,7 +266,7 @@ python run_robot_data.py -i ${WORKING_DIR}/archive/output.xml \
     --regex ".+ethip4gre.*" \
     --title "GRE Overlay Tunnels"
 python run_robot_teardown_data.py -i ${WORKING_DIR}/archive/output.xml \
-    --output ${DTC_FUNC_SOURCE_DIR}/vpp_performance_configuration_gre.rst \
+    --output ${DTC_FUNC_SOURCE_DIR}/vpp_functional_configuration_gre.rst \
     --data "VAT_H" -f "rst" --start 4 --level 2 \
     --regex ".+ethip4gre.*" \
     --title "GRE Overlay Tunnels"
@@ -277,7 +277,7 @@ python run_robot_data.py -i ${WORKING_DIR}/archive/output.xml \
     --regex ".+iacl.*" \
     --title "iACL Security"
 python run_robot_teardown_data.py -i ${WORKING_DIR}/archive/output.xml \
-    --output ${DTC_FUNC_SOURCE_DIR}/vpp_performance_configuration_iacl.rst \
+    --output ${DTC_FUNC_SOURCE_DIR}/vpp_functional_configuration_iacl.rst \
     --data "VAT_H" -f "rst" --start 4 --level 2 \
     --regex ".+iacl.*" \
     --title "iACL Security"
@@ -288,7 +288,7 @@ python run_robot_data.py -i ${WORKING_DIR}/archive/output.xml \
     --regex ".+ipsec(tnl|tpt)+-.*" \
     --title "IPSec - Tunnels and Transport"
 python run_robot_teardown_data.py -i ${WORKING_DIR}/archive/output.xml \
-    --output ${DTC_FUNC_SOURCE_DIR}/vpp_performance_configuration_ipsec.rst \
+    --output ${DTC_FUNC_SOURCE_DIR}/vpp_functional_configuration_ipsec.rst \
     --data "VAT_H" -f "rst" --start 4 --level 2 \
     --regex ".+ipsec(tnl|tpt)+-.*" \
     --title "IPSec - Tunnels and Transport"
@@ -299,7 +299,7 @@ python run_robot_data.py -i ${WORKING_DIR}/archive/output.xml \
     --regex ".+ethip4-ip4base-(func|ip4ecmp\-func|ip4proxyarp\-func|ip4arp\-func)+" \
     --title "IPv4 Routed-Forwarding"
 python run_robot_teardown_data.py -i ${WORKING_DIR}/archive/output.xml \
-    --output ${DTC_FUNC_SOURCE_DIR}/vpp_performance_configuration_ipv4.rst \
+    --output ${DTC_FUNC_SOURCE_DIR}/vpp_functional_configuration_ipv4.rst \
     --data "VAT_H" -f "rst" --start 4 --level 2 \
     --regex ".+ethip4-ip4base-(func|ip4ecmp\-func|ip4proxyarp\-func|ip4arp\-func)+" \
     --title "IPv4 Routed-Forwarding"
@@ -310,7 +310,7 @@ python run_robot_data.py -i ${WORKING_DIR}/archive/output.xml \
     --regex ".+ethip6-ip6base-(func|ip6ecmp\-func|ip6ra\-func)+" \
     --title "IPv6 Routed-Forwarding"
 python run_robot_teardown_data.py -i ${WORKING_DIR}/archive/output.xml \
-    --output ${DTC_FUNC_SOURCE_DIR}/vpp_performance_configuration_ipv6.rst \
+    --output ${DTC_FUNC_SOURCE_DIR}/vpp_functional_configuration_ipv6.rst \
     --data "VAT_H" -f "rst" --start 4 --level 2 \
     --regex ".+ethip6-ip6base-(func|ip6ecmp\-func|ip6ra\-func)+" \
     --title "IPv6 Routed-Forwarding"
@@ -321,7 +321,7 @@ python run_robot_data.py -i ${WORKING_DIR}/archive/output.xml \
     --regex ".+eth-l2bdbasemac(lrn|stc)+-(func|eth\-2vhost|l2shg\-func).*" \
     --title "L2BD Ethernet Switching"
 python run_robot_teardown_data.py -i ${WORKING_DIR}/archive/output.xml \
-    --output ${DTC_FUNC_SOURCE_DIR}/vpp_performance_configuration_l2bd.rst \
+    --output ${DTC_FUNC_SOURCE_DIR}/vpp_functional_configuration_l2bd.rst \
     --data "VAT_H" -f "rst" --start 4 --level 2 \
     --regex ".+eth-l2bdbasemac(lrn|stc)+-(func|eth\-2vhost|l2shg\-func).*" \
     --title "L2BD Ethernet Switching"
@@ -332,7 +332,7 @@ python run_robot_data.py -i ${WORKING_DIR}/archive/output.xml \
     --regex ".+eth-l2xcbase-(eth|func).*" \
     --title "L2XC Ethernet Switching"
 python run_robot_teardown_data.py -i ${WORKING_DIR}/archive/output.xml \
-    --output ${DTC_FUNC_SOURCE_DIR}/vpp_performance_configuration_l2xc.rst \
+    --output ${DTC_FUNC_SOURCE_DIR}/vpp_functional_configuration_l2xc.rst \
     --data "VAT_H" -f "rst" --start 4 --level 2 \
     --regex ".+eth-l2xcbase-(eth|func).*" \
     --title "L2XC Ethernet Switching"
@@ -343,7 +343,7 @@ python run_robot_data.py -i ${WORKING_DIR}/archive/output.xml \
     --regex ".+lisp.*" \
     --title "LISP Overlay Tunnels"
 python run_robot_teardown_data.py -i ${WORKING_DIR}/archive/output.xml \
-    --output ${DTC_FUNC_SOURCE_DIR}/vpp_performance_configuration_lisp.rst \
+    --output ${DTC_FUNC_SOURCE_DIR}/vpp_functional_configuration_lisp.rst \
     --data "VAT_H" -f "rst" --start 4 --level 2 \
     --regex ".+lisp.*" \
     --title "LISP Overlay Tunnels"
@@ -354,7 +354,7 @@ python run_robot_data.py -i ${WORKING_DIR}/archive/output.xml \
     --regex ".+ipolicemark.*" \
     --title "QoS Policer Metering"
 python run_robot_teardown_data.py -i ${WORKING_DIR}/archive/output.xml \
-    --output ${DTC_FUNC_SOURCE_DIR}/vpp_performance_configuration_policer.rst \
+    --output ${DTC_FUNC_SOURCE_DIR}/vpp_performancefunctional_configuration_policer.rst \
     --data "VAT_H" -f "rst" --start 4 --level 2 \
     --regex ".+ipolicemark.*" \
     --title "QoS Policer Metering"
@@ -365,7 +365,7 @@ python run_robot_data.py -i ${WORKING_DIR}/archive/output.xml \
     --regex ".+rpf.*" \
     --title "RPF Source Security"
 python run_robot_teardown_data.py -i ${WORKING_DIR}/archive/output.xml \
-    --output ${DTC_FUNC_SOURCE_DIR}/vpp_performance_configuration_rpf.rst \
+    --output ${DTC_FUNC_SOURCE_DIR}/vpp_functional_configuration_rpf.rst \
     --data "VAT_H" -f "rst" --start 4 --level 2 \
     --regex ".+rpf.*" \
     --title "RPF Source Security"
@@ -376,7 +376,7 @@ python run_robot_data.py -i ${WORKING_DIR}/archive/output.xml \
     --regex ".+swire.*" \
     --title "Softwire Tunnels"
 python run_robot_teardown_data.py -i ${WORKING_DIR}/archive/output.xml \
-    --output ${DTC_FUNC_SOURCE_DIR}/vpp_performance_configuration_softwire.rst \
+    --output ${DTC_FUNC_SOURCE_DIR}/vpp_functional_configuration_softwire.rst \
     --data "VAT_H" -f "rst" --start 4 --level 2 \
     --regex ".+swire.*" \
     --title "Softwire Tunnels"
@@ -387,7 +387,7 @@ python run_robot_data.py -i ${WORKING_DIR}/archive/output.xml \
     --regex ".+tap.*" \
     --title "Tap Interface"
 python run_robot_teardown_data.py -i ${WORKING_DIR}/archive/output.xml \
-    --output ${DTC_FUNC_SOURCE_DIR}/vpp_performance_configuration_tap.rst \
+    --output ${DTC_FUNC_SOURCE_DIR}/vpp_functional_configuration_tap.rst \
     --data "VAT_H" -f "rst" --start 4 --level 2 \
     --regex ".+tap.*" \
     --title "Tap Interface"
@@ -398,7 +398,7 @@ python run_robot_data.py -i ${WORKING_DIR}/archive/output.xml \
     --regex ".+(ipfix|spanrx).*" \
     --title "Telemetry - IPFIX and SPAN"
 python run_robot_teardown_data.py -i ${WORKING_DIR}/archive/output.xml \
-    --output ${DTC_FUNC_SOURCE_DIR}/vpp_performance_configuration_telemetry.rst \
+    --output ${DTC_FUNC_SOURCE_DIR}/vpp_functional_configuration_telemetry.rst \
     --data "VAT_H" -f "rst" --start 4 --level 2 \
     --regex ".+(ipfix|spanrx).*" \
     --title "Telemetry - IPFIX and SPAN"
@@ -409,7 +409,7 @@ python run_robot_data.py -i ${WORKING_DIR}/archive/output.xml \
     --regex ".+(dot1q\-|dot1ad\-).*" \
     --title "VLAN Tag Translation"
 python run_robot_teardown_data.py -i ${WORKING_DIR}/archive/output.xml \
-    --output ${DTC_FUNC_SOURCE_DIR}/vpp_performance_configuration_vlan.rst \
+    --output ${DTC_FUNC_SOURCE_DIR}/vpp_functional_configuration_vlan.rst \
     --data "VAT_H" -f "rst" --start 4 --level 2 \
     --regex ".+(dot1q\-|dot1ad\-).*" \
     --title "VLAN Tag Translation"
@@ -420,7 +420,7 @@ python run_robot_data.py -i ${WORKING_DIR}/archive/output.xml \
     --regex ".+ethip(4|6)+-ip(4|6)+basevrf.*" \
     --title "VRF Routed-Forwarding"
 python run_robot_teardown_data.py -i ${WORKING_DIR}/archive/output.xml \
-    --output ${DTC_FUNC_SOURCE_DIR}/vpp_performance_configuration_vrf.rst \
+    --output ${DTC_FUNC_SOURCE_DIR}/vpp_functional_configuration_vrf.rst \
     --data "VAT_H" -f "rst" --start 4 --level 2 \
     --regex ".+ethip(4|6)+-ip(4|6)+basevrf.*" \
     --title "VRF Routed-Forwarding"
@@ -431,7 +431,7 @@ python run_robot_data.py -i ${WORKING_DIR}/archive/output.xml \
     --regex ".+(ip4vxlan|ip6vxlan).*" \
     --title "VXLAN Overlay Tunnels"
 python run_robot_teardown_data.py -i ${WORKING_DIR}/archive/output.xml \
-    --output ${DTC_FUNC_SOURCE_DIR}/vpp_performance_configuration_vxlan.rst \
+    --output ${DTC_FUNC_SOURCE_DIR}/vpp_functional_configuration_vxlan.rst \
     --data "VAT_H" -f "rst" --start 4 --level 2 \
     --regex ".+(ip4vxlan|ip6vxlan).*" \
     --title "VXLAN Overlay Tunnels"

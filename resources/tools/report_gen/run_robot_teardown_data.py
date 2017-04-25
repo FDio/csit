@@ -395,7 +395,13 @@ def do_rst(data, args):
         output.write(item['doc'].replace('*', '**').replace('|br|', '\n\n -') +
                      '\n\n')
         try:
-            output.write(gen_rst_table(item['tests']) + '\n\n')
+            test_set = list()
+            for test in item['tests']:
+                test_data = list()
+                test_data.append(test[0])
+                test_data.append(test[1].replace('*', '**'))
+                test_set.append(test_data)
+            output.write(gen_rst_table(test_set) + '\n\n')
         except KeyError:
             continue
     output.close()
@@ -450,9 +456,9 @@ def gen_rst_table(data):
     table.append(th_separator)
     # generate table rows
     for item in data[0:-2]:
-        table.append(template.format(item[0], item[1].replace('*', '**')))
+        table.append(template.format(item[0], item[1]))
         table.append(separator)
-    table.append(template.format(data[-2][0], data[-2][1].replace('*', '**')))
+    table.append(template.format(data[-2][0], data[-2][1]))
     table.append(separator)
     return '\n'.join(table)
 
