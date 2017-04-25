@@ -146,6 +146,8 @@
 | | And PITR config from VAT should be | ${node} | ${locator_set}
 
 | TC11: Honeycomb can remove configuration of Lisp features
+| | [Tags] | EXPECTED_FAILING
+# HC2VPP-131 incorrect write order when removing Lisp configuration
 | | [Documentation] | Check if Honeycomb can disable all Lisp features.
 | | Given Map resolver from Honeycomb should be | ${node} | 192.168.0.4
 | | And PITR config from Honeycomb should be | ${node} | ${locator_set}
