@@ -105,7 +105,7 @@
 
 *** Test Cases ***
 | tc01-64B-1t1c-eth-l2bdbasemaclrn-ndrdisc
-| | ... | ${64} | ${100000} | 1 | 1
+| | ... | framesize=${64} | min_rate=${100000} | wt=1 | rxq=1
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
@@ -115,7 +115,7 @@
 | | [Template] | L2 Bridge Domain NDR Binary Search
 
 | tc02-64B-1t1c-eth-l2bdbasemaclrn-pdrdisc
-| | ... | ${64} | ${100000} | 1 | 1
+| | ... | framesize=${64} | min_rate=${100000} | wt=1 | rxq=1
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
@@ -125,7 +125,7 @@
 | | [Template] | L2 Bridge Domain PDR Binary Search
 
 | tc03-1518B-1t1c-eth-l2bdbasemaclrn-ndrdisc
-| | ... | ${1518} | ${10000} | 1 | 1
+| | ... | framesize=${1518} | min_rate=${10000} | wt=1 | rxq=1
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
@@ -135,7 +135,7 @@
 | | [Template] | L2 Bridge Domain NDR Binary Search
 
 | tc04-1518B-1t1c-eth-l2bdbasemaclrn-pdrdisc
-| | ... | ${1518} | ${10000} | 1 | 1
+| | ... | framesize=${1518} | min_rate=${10000} | wt=1 | rxq=1
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
@@ -145,7 +145,7 @@
 | | [Template] | L2 Bridge Domain PDR Binary Search
 
 | tc05-9000B-1t1c-eth-l2bdbasemaclrn-ndrdisc
-| | ... | ${9000} | ${10000} | 1 | 1
+| | ... | framesize=${9000} | min_rate=${10000} | wt=1 | rxq=1
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
@@ -155,7 +155,7 @@
 | | [Template] | L2 Bridge Domain NDR Binary Search
 
 | tc06-9000B-1t1c-eth-l2bdbasemaclrn-pdrdisc
-| | ... | ${9000} | ${10000} | 1 | 1
+| | ... | framesize=${9000} | min_rate=${10000} | wt=1 | rxq=1
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
@@ -165,7 +165,7 @@
 | | [Template] | L2 Bridge Domain PDR Binary Search
 
 | tc07-64B-2t2c-eth-l2bdbasemaclrn-ndrdisc
-| | ... | ${64} | ${100000} | 2 | 1
+| | ... | framesize=${64} | min_rate=${100000} | wt=2 | rxq=1
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
@@ -175,7 +175,7 @@
 | | [Template] | L2 Bridge Domain NDR Binary Search
 
 | tc08-64B-2t2c-eth-l2bdbasemaclrn-pdrdisc
-| | ... | ${64} | ${100000} | 2 | 1
+| | ... | framesize=${64} | min_rate=${100000} | wt=2 | rxq=1
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
@@ -185,7 +185,7 @@
 | | [Template] | L2 Bridge Domain PDR Binary Search
 
 | tc09-1518B-2t2c-eth-l2bdbasemaclrn-ndrdisc
-| | ... | ${1518} | ${10000} | 2 | 1
+| | ... | framesize=${1518} | min_rate=${10000} | wt=2 | rxq=1
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
@@ -195,7 +195,7 @@
 | | [Template] | L2 Bridge Domain NDR Binary Search
 
 | tc10-1518B-2t2c-eth-l2bdbasemaclrn-pdrdisc
-| | ... | ${1518} | ${10000} | 2 | 1
+| | ... | framesize=${1518} | min_rate=${10000} | wt=2 | rxq=1
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
@@ -205,7 +205,7 @@
 | | [Template] | L2 Bridge Domain PDR Binary Search
 
 | tc11-9000B-2t2c-eth-l2bdbasemaclrn-ndrdisc
-| | ... | ${9000} | ${10000} | 2 | 1
+| | ... | framesize=${9000} | min_rate=${10000} | wt=2 | rxq=1
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
@@ -215,7 +215,7 @@
 | | [Template] | L2 Bridge Domain NDR Binary Search
 
 | tc12-9000B-2t2c-eth-l2bdbasemaclrn-pdrdisc
-| | ... | ${9000} | ${10000} | 2 | 1
+| | ... | framesize=${9000} | min_rate=${10000} | wt=2 | rxq=1
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
@@ -225,7 +225,7 @@
 | | [Template] | L2 Bridge Domain PDR Binary Search
 
 | tc13-64B-4t4c-eth-l2bdbasemaclrn-ndrdisc
-| | ... | ${64} | ${100000} | 4 | 2
+| | ... | framesize=${64} | min_rate=${100000} | wt=4 | rxq=2
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 4 threads, 4 phy cores, 2 receive queues per NIC port.
@@ -235,7 +235,7 @@
 | | [Template] | L2 Bridge Domain NDR Binary Search
 
 | tc14-64B-4t4c-eth-l2bdbasemaclrn-pdrdisc
-| | ... | ${64} | ${100000} | 4 | 2
+| | ... | framesize=${64} | min_rate=${100000} | wt=4 | rxq=2
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 4 threads, 4 phy cores, 2 receive queues per NIC port.
@@ -245,7 +245,7 @@
 | | [Template] | L2 Bridge Domain PDR Binary Search
 
 | tc15-1518B-4t4c-eth-l2bdbasemaclrn-ndrdisc
-| | ... | ${1518} | ${10000} | 4 | 2
+| | ... | framesize=${1518} | min_rate=${10000} | wt=4 | rxq=2
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 4 threads, 4 phy cores, 2 receive queues per NIC port.
@@ -255,7 +255,7 @@
 | | [Template] | L2 Bridge Domain NDR Binary Search
 
 | tc16-1518B-4t4c-eth-l2bdbasemaclrn-pdrdisc
-| | ... | ${1518} | ${10000} | 4 | 2
+| | ... | framesize=${1518} | min_rate=${10000} | wt=4 | rxq=2
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 4 threads, 4 phy cores, 2 receive queues per NIC port.
@@ -265,7 +265,7 @@
 | | [Template] | L2 Bridge Domain PDR Binary Search
 
 | tc17-9000B-4t4c-eth-l2bdbasemaclrn-ndrdisc
-| | ... | ${9000} | ${10000} | 4 | 2
+| | ... | framesize=${9000} | min_rate=${10000} | wt=4 | rxq=2
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 4 threads, 4 phy cores, 2 receive queues per NIC port.
@@ -275,7 +275,7 @@
 | | [Template] | L2 Bridge Domain NDR Binary Search
 
 | tc18-9000B-4t4c-eth-l2bdbasemaclrn-pdrdisc
-| | ... | ${9000} | ${10000} | 4 | 2
+| | ... | framesize=${9000} | min_rate=${10000} | wt=4 | rxq=2
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 4 threads, 4 phy cores, 2 receive queues per NIC port.
