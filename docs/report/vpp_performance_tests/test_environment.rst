@@ -3608,15 +3608,15 @@ TG Configuration - TRex
 
 **TG Version**
 
-TRex v2.09
+TRex v2.22
 
 **DPDK version**
 
-DPDK v16.07 (20e2b6eba13d9eb61b23ea75f09f2aa966fa6325 - in DPDK repo)
+DPDK v17.02 (f4decdc59e9323ecff5ddb5de7ebf0c79d50a960 - in DPDK repo)
 
 **TG Build Script used**
 
-https://gerrit.fd.io/r/gitweb?p=csit.git;a=blob;f=resources/tools/t-rex/t-rex-installer.sh;h=e89b06f9b12499996df18e5e3399fcd660ebc017;hb=refs/heads/rls1701
+https://gerrit.fd.io/r/gitweb?p=csit.git;a=blob;f=resources/tools/t-rex/t-rex-installer.sh;h=8090b7568327ac5f869e82664bc51b24f89f603f;hb=refs/heads/rls1704
 
 **TG Startup Configuration**
 
@@ -3634,4 +3634,4 @@ https://gerrit.fd.io/r/gitweb?p=csit.git;a=blob;f=resources/tools/t-rex/t-rex-in
 
 **TG common API - pointer to driver**
 
-https://gerrit.fd.io/r/gitweb?p=csit.git;a=blob;f=resources/tools/t-rex/t-rex-stateless.py;h=24f4a997389ba3f10ad42e1f9564ef915fd58b44;hb=refs/heads/rls1701
+https://gerrit.fd.io/r/gitweb?p=csit.git;a=blob;f=resources/tools/t-rex/t-rex-stateless.py;h=ae8d18767013ebecb0bec6c732ac66e483408661;hb=refs/heads/rls1704
