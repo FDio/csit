@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a3291f1_747caeb5",
+        "filename": "docs/report/vpp_functional_tests/csit_release_notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-04-25T18:29:01Z",
+      "side": 1,
+      "message": "please remove |br| it can\u0027t be replaced in current context",
+      "range": {
+        "startLine": 50,
+        "startChar": 91,
+        "endLine": 50,
+        "endChar": 96
+      },
+      "revId": "01e2e551578bbff538cfd8f9550afad60d05b3fd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
