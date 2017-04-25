@@ -4,12 +4,19 @@ set -x
 
 WORKING_DIR='_tmp'
 BUILD_DIR='_build'
+
 SOURCE_DIR='../../../docs/report'
 DTR_SOURCE_DIR="${SOURCE_DIR}/detailed_test_results"
 DTR_PERF_SOURCE_DIR=${DTR_SOURCE_DIR}/vpp_performance_results
 DTR_TESTPMD_SOURCE_DIR=${DTR_SOURCE_DIR}/testpmd_performance_results
 DTR_FUNC_SOURCE_DIR=${DTR_SOURCE_DIR}/vpp_functional_results
 DTR_HONEYCOMB_SOURCE_DIR=${DTR_SOURCE_DIR}/honeycomb_functional_results
+
+DTC_SOURCE_DIR="${SOURCE_DIR}/detailed_test_configuration"
+DTC_PERF_SOURCE_DIR=${DTC_SOURCE_DIR}/vpp_performance_configuration
+DTC_PERF_SOURCE_OPER_DIR=${DTC_SOURCE_DIR}/vpp_performance_operational_data
+DTC_FUNC_SOURCE_DIR=${DTC_SOURCE_DIR}/vpp_functional_configuration
+
 STATIC_DIR="${BUILD_DIR}/_static"
 STATIC_DIR_VPP="${STATIC_DIR}/vpp"
 STATIC_DIR_TESTPMD="${STATIC_DIR}/testpmd"
@@ -51,7 +58,7 @@ mkdir -p ${STATIC_DIR_ARCH}
 
 JEN_FILE_PERF='output_perf_data.xml'
 JEN_JOB='csit-vpp-perf-1704-all'
-JEN_BUILD=(3)
+JEN_BUILD=(5)
 
 for i in "${JEN_BUILD[@]}"; do
     curl -fs ${JEN_URL}/${JEN_JOB}/${i}/artifact/${JEN_FILE_PERF} \
@@ -70,10 +77,30 @@ python run_robot_data.py -i ${WORKING_DIR}/archive/output.xml \
     --formatting rst --start 3 --level 2 \
     --regex ".+(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndr" \
     --title "L2 Ethernet Switching"
+python run_robot_teardown_data.py -i ${WORKING_DIR}/archive/output.xml \
+    --output ${DTC_PERF_SOURCE_DIR}/vpp_performance_configuration_l2.rst \
+    --data "VAT_H" -f "rst" --start 3 --level 2 \
+    --regex ".+(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndr" \
+    --title "L2 Ethernet Switching"
+python run_robot_teardown_data.py -i ${WORKING_DIR}/archive/output.xml \
+    -o ${DTC_PERF_SOURCE_OPER_DIR}/vpp_performance_operational_data_l2.rst \
+    --data "SH_RUN" -f "rst" --start 3 --level 2 \
+    --regex ".+(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndr" \
+    --title "L2 Ethernet Switching"
 # IPv4 Routed-Forwarding
 python run_robot_data.py -i ${WORKING_DIR}/archive/output.xml \
     --output ${DTR_PERF_SOURCE_DIR}/vpp_performance_results_ipv4.rst \
     --formatting rst --start 3 --level 2 \
+    --regex ".+ethip4-ip4[a-z0-9]+-[a-z-]*ndr" \
+    --title "IPv4 Routed-Forwarding"
+python run_robot_teardown_data.py -i ${WORKING_DIR}/archive/output.xml \
+    --output ${DTC_PERF_SOURCE_DIR}/vpp_performance_configuration_ipv4.rst \
+    --data "VAT_H" -f "rst" --start 3 --level 2 \
+    --regex ".+ethip4-ip4[a-z0-9]+-[a-z-]*ndr" \
+    --title "IPv4 Routed-Forwarding"
+python run_robot_teardown_data.py -i ${WORKING_DIR}/archive/output.xml \
+    -o ${DTC_PERF_SOURCE_OPER_DIR}/vpp_performance_operational_data_ipv4.rst \
+    --data "SH_RUN" -f "rst" --start 3 --level 2 \
     --regex ".+ethip4-ip4[a-z0-9]+-[a-z-]*ndr" \
     --title "IPv4 Routed-Forwarding"
 # IPv6 Routed-Forwarding
@@ -82,10 +109,30 @@ python run_robot_data.py -i ${WORKING_DIR}/archive/output.xml \
     --formatting rst --start 3 --level 2 \
     --regex ".+ethip6-ip6[a-z0-9]+-[a-z-]*ndr" \
     --title "IPv6 Routed-Forwarding"
+python run_robot_teardown_data.py -i ${WORKING_DIR}/archive/output.xml \
+    --output ${DTC_PERF_SOURCE_DIR}/vpp_performance_configuration_ipv6.rst \
+    --data "VAT_H" -f "rst" --start 3 --level 2 \
+    --regex ".+ethip6-ip6[a-z0-9]+-[a-z-]*ndr" \
+    --title "IPv6 Routed-Forwarding"
+python run_robot_teardown_data.py -i ${WORKING_DIR}/archive/output.xml \
+    -o ${DTC_PERF_SOURCE_OPER_DIR}/vpp_performance_operational_data_ipv6.rst \
+    --data "SH_RUN" -f "rst" --start 3 --level 2 \
+    --regex ".+ethip6-ip6[a-z0-9]+-[a-z-]*ndr" \
+    --title "IPv6 Routed-Forwarding"
 # IPv4 Overlay Tunnels
 python run_robot_data.py -i ${WORKING_DIR}/archive/output.xml \
     --output ${DTR_PERF_SOURCE_DIR}/vpp_performance_results_ipv4o.rst \
     --formatting rst --start 3 --level 2 \
+    --regex ".+ethip4[a-z0-9]+-[a-z0-9]*-ndr" \
+    --title "IPv4 Overlay Tunnels"
+python run_robot_teardown_data.py -i ${WORKING_DIR}/archive/output.xml \
+    --output ${DTC_PERF_SOURCE_DIR}/vpp_performance_configuration_ipv4o.rst \
+    --data "VAT_H" -f "rst" --start 3 --level 2 \
+    --regex ".+ethip4[a-z0-9]+-[a-z0-9]*-ndr" \
+    --title "IPv4 Overlay Tunnels"
+python run_robot_teardown_data.py -i ${WORKING_DIR}/archive/output.xml \
+    -o ${DTC_PERF_SOURCE_OPER_DIR}/vpp_performance_operational_data_ipv4o.rst \
+    --data "SH_RUN" -f "rst" --start 3 --level 2 \
     --regex ".+ethip4[a-z0-9]+-[a-z0-9]*-ndr" \
     --title "IPv4 Overlay Tunnels"
 # IPv6 Overlay Tunnels
@@ -94,10 +141,30 @@ python run_robot_data.py -i ${WORKING_DIR}/archive/output.xml \
     --formatting rst --start 3 --level 2 \
     --regex ".+ethip6[a-z0-9]+-[a-z0-9]*-ndr" \
     --title "IPv6 Overlay Tunnels"
+python run_robot_teardown_data.py -i ${WORKING_DIR}/archive/output.xml \
+    --output ${DTC_PERF_SOURCE_DIR}/vpp_performance_configuration_ipv6o.rst \
+    --data "VAT_H" -f "rst" --start 3 --level 2 \
+    --regex ".+ethip6[a-z0-9]+-[a-z0-9]*-ndr" \
+    --title "IPv6 Overlay Tunnels"
+python run_robot_teardown_data.py -i ${WORKING_DIR}/archive/output.xml \
+    -o ${DTC_PERF_SOURCE_OPER_DIR}/vpp_performance_operational_data_ipv6o.rst \
+    --data "SH_RUN" -f "rst" --start 3 --level 2 \
+    --regex ".+ethip6[a-z0-9]+-[a-z0-9]*-ndr" \
+    --title "IPv6 Overlay Tunnels"
 # VM Vhost Connections
 python run_robot_data.py -i ${WORKING_DIR}/archive/output.xml \
     --output ${DTR_PERF_SOURCE_DIR}/vpp_performance_results_vhost.rst \
     --formatting rst --start 3 --level 2 \
+    --regex ".+vhost.*" \
+    --title "VM Vhost Connections"
+python run_robot_teardown_data.py -i ${WORKING_DIR}/archive/output.xml \
+    --output ${DTC_PERF_SOURCE_DIR}/vpp_performance_configuration_vhost.rst \
+    --data "VAT_H" -f "rst" --start 3 --level 2 \
+    --regex ".+vhost.*" \
+    --title "VM Vhost Connections"
+python run_robot_teardown_data.py -i ${WORKING_DIR}/archive/output.xml \
+    -o ${DTC_PERF_SOURCE_OPER_DIR}/vpp_performance_operational_data_vhost.rst \
+    --data "SH_RUN" -f "rst" --start 3 --level 2 \
     --regex ".+vhost.*" \
     --title "VM Vhost Connections"
 # Crypto in hardware: IP4FWD, IP6FWD
@@ -106,16 +173,36 @@ python run_robot_data.py -i ${WORKING_DIR}/archive/output.xml \
     --formatting rst --start 3 --level 2 \
     --regex ".+ipsec.*" \
     --title "Crypto in hardware: IP4FWD, IP6FWD"
+python run_robot_teardown_data.py -i ${WORKING_DIR}/archive/output.xml \
+    --output ${DTC_PERF_SOURCE_DIR}/vpp_performance_configuration_ipsec.rst \
+    --data "VAT_H" -f "rst" --start 3 --level 2 \
+    --regex ".+ipsec.*" \
+    --title "Crypto in hardware: IP4FWD, IP6FWD"
+python run_robot_teardown_data.py -i ${WORKING_DIR}/archive/output.xml \
+    -o ${DTC_PERF_SOURCE_OPER_DIR}/vpp_performance_operational_data_ipsec.rst \
+    --data "SH_RUN" -f "rst" --start 3 --level 2 \
+    --regex ".+ipsec.*" \
+    --title "Crypto in hardware: IP4FWD, IP6FWD"
 sed -i -e "s@###JOB###@${JEN_JOB}\/${JEN_BUILD[-1]}@g" \
     ${DTR_PERF_SOURCE_DIR}/index.rst
 sed -i -e "s@###LINK###@${JEN_URL}\/${JEN_JOB}\/${JEN_BUILD[-1]}@g" \
     ${DTR_PERF_SOURCE_DIR}/index.rst
+sed -i -e "s@###JOB###@${JEN_JOB}\/${JEN_BUILD[-1]}@g" \
+    ${DTC_PERF_SOURCE_DIR}/index.rst
+sed -i -e "s@###LINK###@${JEN_URL}\/${JEN_JOB}\/${JEN_BUILD[-1]}@g" \
+    ${DTC_PERF_SOURCE_DIR}/index.rst
+sed -i -e "s@###JOB###@${JEN_JOB}\/${JEN_BUILD[-1]}@g" \
+    ${DTC_PERF_SOURCE_OPER_DIR}/index.rst
+sed -i -e "s@###LINK###@${JEN_URL}\/${JEN_JOB}\/${JEN_BUILD[-1]}@g" \
+    ${DTC_PERF_SOURCE_OPER_DIR}/index.rst
 rm -f ${DTR_PERF_SOURCE_DIR}/*.json
+rm -f ${DTC_PERF_SOURCE_DIR}/*.json
+rm -f ${DTC_PERF_SOURCE_OPER_DIR}/*.json
 
 ### DPDK PERFORMANCE SOURCE DATA
 
 JEN_JOB='csit-dpdk-perf-1704-all'
-JEN_BUILD=(1 2 3)
+JEN_BUILD=(1 2 3 4 5)
 
 for i in "${JEN_BUILD[@]}"; do
     curl -fs ${JEN_URL}/${JEN_JOB}/${i}/artifact/${JEN_FILE_PERF} \
@@ -141,7 +228,7 @@ rm -f ${DTR_TESTPMD_SOURCE_DIR}/*.json
 ### FUNCTIONAL SOURCE DATA
 
 JEN_JOB='csit-vpp-functional-1704-ubuntu1604-virl'
-JEN_BUILD=33
+JEN_BUILD=45
 
 curl -fs ${JEN_URL}/${JEN_JOB}/${JEN_BUILD}/artifact/\*zip\*/archive.zip \
     -o ${STATIC_DIR_ARCH}/${JEN_JOB}-${JEN_BUILD}.zip
@@ -156,10 +243,20 @@ python run_robot_data.py -i ${WORKING_DIR}/archive/output.xml \
     --formatting rst --start 4 --level 2 \
     --regex ".+cop.*" \
     --title "Cop Address Security"
+python run_robot_teardown_data.py -i ${WORKING_DIR}/archive/output.xml \
+    --output ${DTC_FUNC_SOURCE_DIR}/vpp_performance_configuration_cop.rst \
+    --data "VAT_H" -f "rst" --start 3 --level 2 \
+    --regex ".+cop.*" \
+    --title "Cop Address Security"
 # DHCP Client and proxy
 python run_robot_data.py -i ${WORKING_DIR}/archive/output.xml \
     --output ${DTR_FUNC_SOURCE_DIR}/vpp_functional_results_dhcp.rst \
     --formatting rst --start 4 --level 2 \
+    --regex ".+dhcp.*" \
+    --title "DHCP - Client and Proxy"
+python run_robot_teardown_data.py -i ${WORKING_DIR}/archive/output.xml \
+    --output ${DTC_FUNC_SOURCE_DIR}/vpp_performance_configuration_dhcp.rst \
+    --data "VAT_H" -f "rst" --start 3 --level 2 \
     --regex ".+dhcp.*" \
     --title "DHCP - Client and Proxy"
 # GRE Overlay Tunnels
@@ -168,10 +265,20 @@ python run_robot_data.py -i ${WORKING_DIR}/archive/output.xml \
     --formatting rst --start 4 --level 2 \
     --regex ".+ethip4gre.*" \
     --title "GRE Overlay Tunnels"
+python run_robot_teardown_data.py -i ${WORKING_DIR}/archive/output.xml \
+    --output ${DTC_FUNC_SOURCE_DIR}/vpp_performance_configuration_gre.rst \
+    --data "VAT_H" -f "rst" --start 3 --level 2 \
+    --regex ".+ethip4gre.*" \
+    --title "GRE Overlay Tunnels"
 # iACL Security
 python run_robot_data.py -i ${WORKING_DIR}/archive/output.xml \
     --output ${DTR_FUNC_SOURCE_DIR}/vpp_functional_results_iacl.rst \
     --formatting rst --start 4 --level 2 \
+    --regex ".+iacl.*" \
+    --title "iACL Security"
+python run_robot_teardown_data.py -i ${WORKING_DIR}/archive/output.xml \
+    --output ${DTC_FUNC_SOURCE_DIR}/vpp_performance_configuration_iacl.rst \
+    --data "VAT_H" -f "rst" --start 3 --level 2 \
     --regex ".+iacl.*" \
     --title "iACL Security"
 # IPSec - Tunnels and Transport
@@ -180,10 +287,20 @@ python run_robot_data.py -i ${WORKING_DIR}/archive/output.xml \
     --formatting rst --start 4 --level 2 \
     --regex ".+ipsec(tnl|tpt)+-.*" \
     --title "IPSec - Tunnels and Transport"
+python run_robot_teardown_data.py -i ${WORKING_DIR}/archive/output.xml \
+    --output ${DTC_FUNC_SOURCE_DIR}/vpp_performance_configuration_ipsec.rst \
+    --data "VAT_H" -f "rst" --start 3 --level 2 \
+    --regex ".+ipsec(tnl|tpt)+-.*" \
+    --title "IPSec - Tunnels and Transport"
 # IPv4 Routed-Forwarding
 python run_robot_data.py -i ${WORKING_DIR}/archive/output.xml \
     --output ${DTR_FUNC_SOURCE_DIR}/vpp_functional_results_ipv4.rst \
     --formatting rst --start 4 --level 2 \
+    --regex ".+ethip4-ip4base-(func|ip4ecmp\-func|ip4proxyarp\-func|ip4arp\-func)+" \
+    --title "IPv4 Routed-Forwarding"
+python run_robot_teardown_data.py -i ${WORKING_DIR}/archive/output.xml \
+    --output ${DTC_FUNC_SOURCE_DIR}/vpp_performance_configuration_ipv4.rst \
+    --data "VAT_H" -f "rst" --start 3 --level 2 \
     --regex ".+ethip4-ip4base-(func|ip4ecmp\-func|ip4proxyarp\-func|ip4arp\-func)+" \
     --title "IPv4 Routed-Forwarding"
 # IPv6 Routed-Forwarding
@@ -192,10 +309,20 @@ python run_robot_data.py -i ${WORKING_DIR}/archive/output.xml \
     --formatting rst --start 4 --level 2 \
     --regex ".+ethip6-ip6base-(func|ip6ecmp\-func|ip6ra\-func)+" \
     --title "IPv6 Routed-Forwarding"
+python run_robot_teardown_data.py -i ${WORKING_DIR}/archive/output.xml \
+    --output ${DTC_FUNC_SOURCE_DIR}/vpp_performance_configuration_ipv6.rst \
+    --data "VAT_H" -f "rst" --start 3 --level 2 \
+    --regex ".+ethip6-ip6base-(func|ip6ecmp\-func|ip6ra\-func)+" \
+    --title "IPv6 Routed-Forwarding"
 # L2BD Ethernet Switching
 python run_robot_data.py -i ${WORKING_DIR}/archive/output.xml \
     --output ${DTR_SOURCE_DIR}/vpp_functional_results/vpp_functional_results_l2bd.rst \
     --formatting rst --start 4 --level 2 \
+    --regex ".+eth-l2bdbasemac(lrn|stc)+-(func|eth\-2vhost|l2shg\-func).*" \
+    --title "L2BD Ethernet Switching"
+python run_robot_teardown_data.py -i ${WORKING_DIR}/archive/output.xml \
+    --output ${DTC_FUNC_SOURCE_DIR}/vpp_performance_configuration_l2bd.rst \
+    --data "VAT_H" -f "rst" --start 3 --level 2 \
     --regex ".+eth-l2bdbasemac(lrn|stc)+-(func|eth\-2vhost|l2shg\-func).*" \
     --title "L2BD Ethernet Switching"
 # L2XC Ethernet Switching
@@ -204,10 +331,20 @@ python run_robot_data.py -i ${WORKING_DIR}/archive/output.xml \
     --formatting rst --start 4 --level 2 \
     --regex ".+eth-l2xcbase-(eth|func).*" \
     --title "L2XC Ethernet Switching"
+python run_robot_teardown_data.py -i ${WORKING_DIR}/archive/output.xml \
+    --output ${DTC_FUNC_SOURCE_DIR}/vpp_performance_configuration_l2xc.rst \
+    --data "VAT_H" -f "rst" --start 3 --level 2 \
+    --regex ".+eth-l2xcbase-(eth|func).*" \
+    --title "L2XC Ethernet Switching"
 # LISP Overlay Tunnels
 python run_robot_data.py -i ${WORKING_DIR}/archive/output.xml \
     --output ${DTR_FUNC_SOURCE_DIR}/vpp_functional_results_lisp.rst \
     --formatting rst --start 4 --level 2 \
+    --regex ".+lisp.*" \
+    --title "LISP Overlay Tunnels"
+python run_robot_teardown_data.py -i ${WORKING_DIR}/archive/output.xml \
+    --output ${DTC_FUNC_SOURCE_DIR}/vpp_performance_configuration_lisp.rst \
+    --data "VAT_H" -f "rst" --start 3 --level 2 \
     --regex ".+lisp.*" \
     --title "LISP Overlay Tunnels"
 # QoS Policer Metering
@@ -216,10 +353,20 @@ python run_robot_data.py -i ${WORKING_DIR}/archive/output.xml \
     --formatting rst --start 4 --level 2 \
     --regex ".+ipolicemark.*" \
     --title "QoS Policer Metering"
+python run_robot_teardown_data.py -i ${WORKING_DIR}/archive/output.xml \
+    --output ${DTC_FUNC_SOURCE_DIR}/vpp_performance_configuration_policer.rst \
+    --data "VAT_H" -f "rst" --start 3 --level 2 \
+    --regex ".+ipolicemark.*" \
+    --title "QoS Policer Metering"
 # RPF Source Security
 python run_robot_data.py -i ${WORKING_DIR}/archive/output.xml \
     --output ${DTR_FUNC_SOURCE_DIR}/vpp_functional_results_rpf.rst \
     --formatting rst --start 4 --level 2 \
+    --regex ".+rpf.*" \
+    --title "RPF Source Security"
+python run_robot_teardown_data.py -i ${WORKING_DIR}/archive/output.xml \
+    --output ${DTC_FUNC_SOURCE_DIR}/vpp_performance_configuration_rpf.rst \
+    --data "VAT_H" -f "rst" --start 3 --level 2 \
     --regex ".+rpf.*" \
     --title "RPF Source Security"
 # Softwire Tunnels
@@ -228,10 +375,20 @@ python run_robot_data.py -i ${WORKING_DIR}/archive/output.xml \
     --formatting rst --start 4 --level 2 \
     --regex ".+swire.*" \
     --title "Softwire Tunnels"
+python run_robot_teardown_data.py -i ${WORKING_DIR}/archive/output.xml \
+    --output ${DTC_FUNC_SOURCE_DIR}/vpp_performance_configuration_softwire.rst \
+    --data "VAT_H" -f "rst" --start 3 --level 2 \
+    --regex ".+swire.*" \
+    --title "Softwire Tunnels"
 # Tap Interface
 python run_robot_data.py -i ${WORKING_DIR}/archive/output.xml \
     --output ${DTR_FUNC_SOURCE_DIR}/vpp_functional_results_tap.rst \
     --formatting rst --start 4 --level 2 \
+    --regex ".+tap.*" \
+    --title "Tap Interface"
+python run_robot_teardown_data.py -i ${WORKING_DIR}/archive/output.xml \
+    --output ${DTC_FUNC_SOURCE_DIR}/vpp_performance_configuration_tap.rst \
+    --data "VAT_H" -f "rst" --start 3 --level 2 \
     --regex ".+tap.*" \
     --title "Tap Interface"
 # Telemetry - IPFIX and SPAN
@@ -240,10 +397,20 @@ python run_robot_data.py -i ${WORKING_DIR}/archive/output.xml \
     --formatting rst --start 4 --level 2 \
     --regex ".+(ipfix|spanrx).*" \
     --title "Telemetry - IPFIX and SPAN"
+python run_robot_teardown_data.py -i ${WORKING_DIR}/archive/output.xml \
+    --output ${DTC_FUNC_SOURCE_DIR}/vpp_performance_configuration_telemetry.rst \
+    --data "VAT_H" -f "rst" --start 3 --level 2 \
+    --regex ".+(ipfix|spanrx).*" \
+    --title "Telemetry - IPFIX and SPAN"
 # VLAN Tag Translation
 python run_robot_data.py -i ${WORKING_DIR}/archive/output.xml \
     --output ${DTR_FUNC_SOURCE_DIR}/vpp_functional_results_vlan.rst \
     --formatting rst --start 4 --level 2 \
+    --regex ".+(dot1q\-|dot1ad\-).*" \
+    --title "VLAN Tag Translation"
+python run_robot_teardown_data.py -i ${WORKING_DIR}/archive/output.xml \
+    --output ${DTC_FUNC_SOURCE_DIR}/vpp_performance_configuration_vlan.rst \
+    --data "VAT_H" -f "rst" --start 3 --level 2 \
     --regex ".+(dot1q\-|dot1ad\-).*" \
     --title "VLAN Tag Translation"
 # VRF Routed-Forwarding
@@ -252,23 +419,38 @@ python run_robot_data.py -i ${WORKING_DIR}/archive/output.xml \
     --formatting rst --start 4 --level 2 \
     --regex ".+ethip(4|6)+-ip(4|6)+basevrf.*" \
     --title "VRF Routed-Forwarding"
+python run_robot_teardown_data.py -i ${WORKING_DIR}/archive/output.xml \
+    --output ${DTC_FUNC_SOURCE_DIR}/vpp_performance_configuration_vrf.rst \
+    --data "VAT_H" -f "rst" --start 3 --level 2 \
+    --regex ".+ethip(4|6)+-ip(4|6)+basevrf.*" \
+    --title "VRF Routed-Forwarding"
 # VXLAN Overlay Tunnels
 python run_robot_data.py -i ${WORKING_DIR}/archive/output.xml \
     --output ${DTR_FUNC_SOURCE_DIR}/vpp_functional_results_vxlan.rst \
     --formatting rst --start 4 --level 2 \
     --regex ".+(ip4vxlan|ip6vxlan).*" \
     --title "VXLAN Overlay Tunnels"
+python run_robot_teardown_data.py -i ${WORKING_DIR}/archive/output.xml \
+    --output ${DTC_FUNC_SOURCE_DIR}/vpp_performance_configuration_vxlan.rst \
+    --data "VAT_H" -f "rst" --start 3 --level 2 \
+    --regex ".+(ip4vxlan|ip6vxlan).*" \
+    --title "VXLAN Overlay Tunnels"
 sed -i -e "s@###JOB###@${JEN_JOB}\/${JEN_BUILD}@g" \
     ${DTR_FUNC_SOURCE_DIR}/index.rst
 sed -i -e "s@###LINK###@${JEN_URL}\/${JEN_JOB}\/${JEN_BUILD}@g" \
     ${DTR_FUNC_SOURCE_DIR}/index.rst
+sed -i -e "s@###JOB###@${JEN_JOB}\/${JEN_BUILD}@g" \
+    ${DTC_FUNC_SOURCE_DIR}/index.rst
+sed -i -e "s@###LINK###@${JEN_URL}\/${JEN_JOB}\/${JEN_BUILD}@g" \
+    ${DTC_FUNC_SOURCE_DIR}/index.rst
 rm -f ${DTR_FUNC_SOURCE_DIR}/*.json
+rm -f ${DTC_FUNC_SOURCE_DIR}/*.json
 
 ### HONEYCOMB SOURCE DATA
 
 JEN_URL='https://jenkins.fd.io/view/hc2vpp/job'
 JEN_JOB='hc2vpp-csit-integration-1704-ubuntu1604'
-JEN_BUILD=37
+JEN_BUILD=41
 
 curl -fs ${JEN_URL}/${JEN_JOB}/${JEN_BUILD}/artifact/\*zip\*/archive.zip \
     -o ${STATIC_DIR_ARCH}/${JEN_JOB}-${JEN_BUILD}.zip
