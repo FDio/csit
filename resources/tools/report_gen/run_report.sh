@@ -58,7 +58,7 @@ mkdir -p ${STATIC_DIR_ARCH}
 
 JEN_FILE_PERF='output_perf_data.xml'
 JEN_JOB='csit-vpp-perf-1704-all'
-JEN_BUILD=(5)
+JEN_BUILD=(6)
 
 for i in "${JEN_BUILD[@]}"; do
     curl -fs ${JEN_URL}/${JEN_JOB}/${i}/artifact/${JEN_FILE_PERF} \
