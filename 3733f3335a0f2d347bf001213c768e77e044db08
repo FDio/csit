@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a3291f1_b14a2824",
+        "filename": "docs/report/vpp_performance_tests/packet_throughput_graphs/l2.rst",
+        "patchSetId": 4
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-04-25T09:43:17Z",
+      "side": 1,
+      "message": "???",
+      "range": {
+        "startLine": 42,
+        "startChar": 6,
+        "endLine": 42,
+        "endChar": 14
+      },
+      "revId": "3733f3335a0f2d347bf001213c768e77e044db08",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
