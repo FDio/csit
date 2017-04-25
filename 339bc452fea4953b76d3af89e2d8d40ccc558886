@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3a3291f1_77b4b034",
+        "filename": "docs/report/vpp_functional_tests/csit_release_notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2017-04-25T19:36:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a3291f1_97495c62",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 69
+      },
+      "revId": "339bc452fea4953b76d3af89e2d8d40ccc558886",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a3291f1_577774a0",
         "filename": "docs/report/vpp_functional_tests/csit_release_notes.rst",
         "patchSetId": 2
@@ -36,6 +60,30 @@
       "writtenOn": "2017-04-25T19:08:26Z",
       "side": 1,
       "message": "suggested edit - replace with:\n- IPv4 routed-forwarding with dot1q VLAN sub-interfaces.\n- L2BD switched-forwarding with dot1q VLAN sub-interfaces and vhost-user to VM.",
+      "range": {
+        "startLine": 11,
+        "startChar": 6,
+        "endLine": 11,
+        "endChar": 50
+      },
+      "revId": "339bc452fea4953b76d3af89e2d8d40ccc558886",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_378aa86a",
+        "filename": "docs/report/vpp_functional_tests/csit_release_notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2017-04-25T19:36:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a3291f1_577774a0",
       "range": {
         "startLine": 11,
         "startChar": 6,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "3a3291f1_97e5dc39",
+        "filename": "docs/report/vpp_functional_tests/csit_release_notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2017-04-25T19:36:44Z",
+      "side": 1,
+      "message": "reworked",
+      "parentUuid": "3a3291f1_377ce882",
+      "range": {
+        "startLine": 12,
+        "startChar": 6,
+        "endLine": 12,
+        "endChar": 37
+      },
+      "revId": "339bc452fea4953b76d3af89e2d8d40ccc558886",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a3291f1_176d6ccc",
         "filename": "docs/report/vpp_functional_tests/csit_release_notes.rst",
         "patchSetId": 2
@@ -82,6 +154,30 @@
       "writtenOn": "2017-04-25T19:08:26Z",
       "side": 1,
       "message": "suggested edit - replace with:\n#. Implemented VAT command history collection for every test case as part of teardown.",
+      "range": {
+        "startLine": 13,
+        "startChar": 6,
+        "endLine": 13,
+        "endChar": 74
+      },
+      "revId": "339bc452fea4953b76d3af89e2d8d40ccc558886",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_f77f8064",
+        "filename": "docs/report/vpp_functional_tests/csit_release_notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2017-04-25T19:36:44Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a3291f1_176d6ccc",
       "range": {
         "startLine": 13,
         "startChar": 6,
