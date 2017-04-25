@@ -228,7 +228,7 @@ rm -f ${DTR_TESTPMD_SOURCE_DIR}/*.json
 ### FUNCTIONAL SOURCE DATA
 
 JEN_JOB='csit-vpp-functional-1704-ubuntu1604-virl'
-JEN_BUILD=45
+JEN_BUILD=54
 
 curl -fs ${JEN_URL}/${JEN_JOB}/${JEN_BUILD}/artifact/\*zip\*/archive.zip \
     -o ${STATIC_DIR_ARCH}/${JEN_JOB}-${JEN_BUILD}.zip

@@ -147,6 +147,8 @@ CSIT |release| includes following performance test suites, listed per NIC type:
   - **VXLAN** - VXLAN overlay tunnelling integration with L2XC and L2BD.
   - **QoS Policer** - ingress packet rate measuring, marking and limiting
     (IPv4).
+  - **CGNAT** - Carrier Grade Network Address Translation tests with varying
+    number of users and ports per user.
 
 - 2port40GE XL710 Intel
 
@@ -235,6 +237,11 @@ suites:
       ports of 10GE on Intel x520 NIC, IPv4 VXLAN Ethernet, L2 bridge-domain
       switching to/from four vhost interfaces and two VMs, NDR throughput
       discovery.
+
+Methodology: TRex Traffic Generator Usage
+-----------------------------------------
+
+TODO Description to be added.
 
 Methodology: Multi-Thread and Multi-Core
 ----------------------------------------
@@ -327,3 +334,9 @@ of VPP+VM system less sensitive to other Linux OS system tasks by reducing
 their interference on CPU cores that are designated for critical software
 tasks under test, namely VPP worker threads in host and Testpmd threads in
 guest dealing with data plan.
+
+Methodology: IPSec with Intel QAT HW cards
+------------------------------------------
+
+TODO Description to be added.
+Intel QAT 8950 50G (Walnut Hill)
