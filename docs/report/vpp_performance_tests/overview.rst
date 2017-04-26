@@ -238,11 +238,6 @@ suites:
       switching to/from four vhost interfaces and two VMs, NDR throughput
       discovery.
 
-Methodology: TRex Traffic Generator Usage
------------------------------------------
-
-TODO Description to be added.
-
 Methodology: Multi-Thread and Multi-Core
 ----------------------------------------
 
@@ -338,5 +333,56 @@ guest dealing with data plan.
 Methodology: IPSec with Intel QAT HW cards
 ------------------------------------------
 
-TODO Description to be added.
-Intel QAT 8950 50G (Walnut Hill)
+VPP IPSec performance tests are using DPDK cryptodev device driver in
+combination with HW cryptodev devices - Intel QAT 8950 50G - present in
+LF FD.io physical testbeds. DPDK cryptodev can be used for all IPSec
+data plane functions supported by VPP.
+
+Currently CSIT |release| implements following IPSec test cases:
+
+- AES-GCM, CBC-SHA1 ciphers, in combination with IPv4 routed-forwarding
+  with Intel xl710 NIC.
+- CBC-SHA1 ciphers, in combination with LISP-GPE overlay tunneling for
+  IPv4-over-IPv4 with Intel xl710 NIC.
+
+Methodology: TRex Traffic Generator Usage
+-----------------------------------------
+
+The `TRex traffic generator <https://wiki.fd.io/view/TRex>`_ is used for all
+CSIT performance tests. TRex stateless mode is used to measure NDR and PDR
+throughputs using binary search (NDR and PDR discovery tests) and for quick
+checks of DUT performance against the reference NDRs (NDR check tests) for
+specific configuration.
+
+TRex is installed and run on the TG compute node. The typical procedure is:
+
+    - If the TRex is not already installed on TG, it is installed in the
+      suite setup phase - see `TRex intallation <https://gerrit.fd.io/r/gitweb?p=csit.git;a=blob;f=resources/tools/t-rex/t-rex-installer.sh;h=8090b7568327ac5f869e82664bc51b24f89f603f;hb=refs/heads/rls1704>`_.
+    - TRex configuration is set in its configuration file::
+
+      /etc/trex_cfg.yaml
+
+    - TRex is started in the background mode::
+
+      sh -c 'cd /opt/trex-core-2.22/scripts/ && sudo nohup ./t-rex-64 -i -c 7 --iom 0 > /dev/null 2>&1 &' > /dev/null
+
+    - There are traffic streams dynamically prepared for each test. The traffic
+      is sent and the statistics obtained using trex_stl_lib.api.STLClient.
+
+**Measuring packet loss**
+
+    - Create an instance of STLClient
+    - Connect to the client
+    - Add all streams
+    - Clear statistics
+    - Send the traffic for defined time
+    - Get the statistics
+
+If there is a warm-up phase required, the traffic is sent also before test and
+the statistics are ignored.
+
+**Measuring latency**
+
+If measurement of latency is requested, two more packet streams are created (one
+for each direction) with TRex flow_stats parameter set to STLFlowLatencyStats. In
+that case, returned statistics will also include min/avg/max latency values.
