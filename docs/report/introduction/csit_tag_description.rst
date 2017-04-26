@@ -1,8 +1,11 @@
 CSIT TAGs Descriptions
 ======================
 
-Documentation for tags used to select and identify test cases.
-
+All CSIT test cases are labelled with Robot Framework tags used to allow for
+easy test case type identification, test case grouping and selection for
+execution. Following sections list currently used CSIT TAGs and their
+documentation based on the content of
+`tag_documentation rst file <https://git.fd.io/csit/tree/docs/tag_documentation.rst?h=rls1704>`_.
 
 Topology TAGs
 -------------
