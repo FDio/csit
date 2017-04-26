@@ -6,31 +6,36 @@ Changes in CSIT |release|
 
 #. VPP performance test environment changes
 
-    - Further VM and vhost-user test environment optimizations - Qemu virtio
+    - Further optimizations of VM and vhost-user test environment - Qemu virtio
       queue size increased from default value of 256 to 1024.
-    - Addition of HW cryptodev devices in all three LF FD.io physical testbeds.
+    - Addition of HW cryptodev devices - Intel QAT 8950 50G - in all three
+      LF FD.io physical testbeds.
 
-#. Added tests
+#. VPP performance test framework changes
 
-    - CGNAT
+    - Added VAT command history collection for every test case as part of teardown.
+
+#. Added VPP performance tests
+
+    - **CGNAT**
 
       - Carrier Grade Network Address Translation tests with varying number
         of users and ports per user: 1u-15p, 10u-15p, 100u-15p, 1000u-15p,
         2000u-15p, 4000u-15p - with Intel x520 NIC.
 
-    - vhost-user tests with one VM
+    - **vhost-user tests with one VM**
 
       - L2 Bridge Domain switched-forwarding with Intel x710 NIC, Intel x520 NIC,
         Intel xl710 NIC.
       - VXLAN and L2 Bridge Domain switched-forwarding with Intel x520 NIC.
 
-    - vhost-user tests with two VM service chain
+    - **vhost-user tests with two VMs service chain**
 
       - L2 cross-connect switched-forwarding with Intel x520 NIC, Intel xl710 NIC.
       - L2 Bridge Domain switched-forwarding with Intel x520 NIC, Intel xl710 NIC.
       - IPv4 routed-forwarding with Intel x520 NIC, Intel xl710 NIC.
 
-    - IPSec encryption with
+    - **IPSec encryption with**
 
       - AES-GCM, CBC-SHA1 ciphers, in combination with IPv4 routed-forwarding
         with Intel xl710 NIC.
@@ -205,22 +210,21 @@ Here is the list of known issues in CSIT |release| for VPP performance tests:
 |   | for ip4scale200k, ip4scale2m scale IPv4 routed- |            | Observed frequency: all test runs.                              |
 |   | forwarding tests. ip4scale20k tests are fine.   |            |                                                                 |
 +---+-------------------------------------------------+------------+-----------------------------------------------------------------+
-| 2 | VAT API timeouts during ip6scale2m scale IPv6   |            | Needs fixing VPP VAT API timeouts for large volume of IPv6      |
-|   | routed-forwarding tests when volume adding IPv6 | VPP-?      | routes.                                                         |
+| 2 | VAT API timeouts during ip6scale2m scale IPv6   | VPP-712    | Needs fixing VPP VAT API timeouts for large volume of IPv6      |
+|   | routed-forwarding tests when volume adding IPv6 |            | routes.                                                         |
 |   | routes - 2M in this case. ip6scale2kk works.    |            |                                                                 |
 +---+-------------------------------------------------+------------+-----------------------------------------------------------------+
-| 3 | Vic1385 and Vic1227 low performance             | CSIT-?     | Low NDR performance.                                            |
+| 3 | Vic1385 and Vic1227 low performance             | VPP-664    | Low NDR performance.                                            |
 |   |                                                 |            |                                       .                         |
 +---+-------------------------------------------------+------------+-----------------------------------------------------------------+
-| 4 | Sporadic NDR discovery test failures on x520    | CSIT-?     | Suspected issue with HW settings (BIOS, FW) in LF               |
+| 4 | Sporadic NDR discovery test failures on x520    | CSIT-750   | Suspected issue with HW settings (BIOS, FW) in LF               |
 |   |                                                 |            | infrastructure. Issue can't be replicated outside LF.           |
 +---+-------------------------------------------------+------------+-----------------------------------------------------------------+
-| 5 | Testpmd - Non-repeatible zig-zagging NDR        | CSIT-?     | Suspected NIC firmware or driver issue affecting NDR            |
-|   | throughput in multi-thread/-core tests          |            | in multi-thread/-core operation. Need to update to latest       |
-|   | - 2t2c - for some tested NICs.                  |            | firmware in NICs. Applies to XL710 and X710 NICs.               |
+| 5 | VPP in 2t2c setups - large variation            | CSIT-568   | Suspected NIC firmware or DPDK driver issue affecting NDR       |
+|   | of discovered NDR throughput values across      |            | throughput. Applies to XL710 and X710 NICs, x520 NICs are fine. |
+|   | multiple test runs with xl710 and x710 NICs.    |            |                                       .                         |
 +---+-------------------------------------------------+------------+-----------------------------------------------------------------+
-| 6 | VPP - Non-repeatible zig-zagging NDR            | CSIT-?     | Suspected NIC firmware or driver issue affecting NDR            |
-|   | throughput in multi-thread/-core tests          |            | in multi-thread/-core operation. Need to update to latest       |
-|   | - 2t2c - for some tested NICs.                  |            | firmware in NICs. Applies to XL710 and X710 NICs.               |
+| 6 | Lower than expected NDR and PDR throughput with | CSIT-569   | Suspected NIC firmware or DPDK driver issue affecting NDR and   |
+|   | xl710 and x710 NICs, compared to x520 NICs.     |            | PDR throughput. Applies to XL710 and X710 NICs.                 |
 +---+-------------------------------------------------+------------+-----------------------------------------------------------------+
 
