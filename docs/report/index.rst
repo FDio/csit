@@ -11,4 +11,5 @@ CSIT 17.04
     honeycomb_functional_tests/index
     vpp_unit_tests/index
     detailed_test_results/index
-    detailed_test_configuration/index
+    test_configuration/index
+    test_operational_data/index
