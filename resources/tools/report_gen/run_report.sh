@@ -238,7 +238,7 @@ sed -i -e "s@###LINK###@${JEN_URL}\/${JEN_JOB}\/${JEN_BUILD[-1]}@g" \
 ### FUNCTIONAL SOURCE DATA
 
 JEN_JOB='csit-vpp-functional-1704-ubuntu1604-virl'
-JEN_BUILD=57
+JEN_BUILD=63
 
 if [[ ${DEBUG} -eq 1 ]] ;
 then

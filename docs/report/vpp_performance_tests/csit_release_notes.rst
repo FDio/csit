@@ -215,14 +215,14 @@ Here is the list of known issues in CSIT |release| for VPP performance tests:
 |   | routes - 2M in this case. ip6scale2kk works.    |            |                                                                 |
 +---+-------------------------------------------------+------------+-----------------------------------------------------------------+
 | 3 | Vic1385 and Vic1227 low performance             | VPP-664    | Low NDR performance.                                            |
-|   |                                                 |            |                                       .                         |
+|   |                                                 |            |                                                                 |
 +---+-------------------------------------------------+------------+-----------------------------------------------------------------+
 | 4 | Sporadic NDR discovery test failures on x520    | CSIT-750   | Suspected issue with HW settings (BIOS, FW) in LF               |
 |   |                                                 |            | infrastructure. Issue can't be replicated outside LF.           |
 +---+-------------------------------------------------+------------+-----------------------------------------------------------------+
 | 5 | VPP in 2t2c setups - large variation            | CSIT-568   | Suspected NIC firmware or DPDK driver issue affecting NDR       |
 |   | of discovered NDR throughput values across      |            | throughput. Applies to XL710 and X710 NICs, x520 NICs are fine. |
-|   | multiple test runs with xl710 and x710 NICs.    |            |                                       .                         |
+|   | multiple test runs with xl710 and x710 NICs.    |            |                                                                 |
 +---+-------------------------------------------------+------------+-----------------------------------------------------------------+
 | 6 | Lower than expected NDR and PDR throughput with | CSIT-569   | Suspected NIC firmware or DPDK driver issue affecting NDR and   |
 |   | xl710 and x710 NICs, compared to x520 NICs.     |            | PDR throughput. Applies to XL710 and X710 NICs.                 |

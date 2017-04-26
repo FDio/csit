@@ -20,6 +20,6 @@ Here is the list of known issues in CSIT |release| for Testpmd performance tests
 |   | of discovered NDR throughput values across        |            | throughput. Applies to XL710 and X710 NICs, no issues observed  |
 |   | multiple test runs with xl710 and x710 NICs.      |            | on x520 NICs.                                                   |
 +---+---------------------------------------------------+------------+-----------------------------------------------------------------+
-| 2 | Lower than expected NDR throughput with xl710     | CSIT-?     | Suspected NIC firmware or DPDK driver issue affecting NDR       |
+| 2 | Lower than expected NDR throughput with xl710     | CSIT-571   | Suspected NIC firmware or DPDK driver issue affecting NDR       |
 |   | and x710 NICs, compared to x520 NICs.             |            | throughput. Applies to XL710 and X710 NICs.                     |
 +---+---------------------------------------------------+------------+-----------------------------------------------------------------+

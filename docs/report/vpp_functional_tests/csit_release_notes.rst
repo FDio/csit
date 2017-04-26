@@ -21,7 +21,6 @@ Changes in CSIT |release|
     - IPv4 routed-forwarding with vhost-user interfaces to VM.
     - Vhost-user interface re-connect tests.
 
->>>>>>> csit rls1704 report - updated csit_release_notes.rst and overview.rst files.
 Known Issues
 ------------
 
@@ -64,8 +63,8 @@ Here is the list of known issues in CSIT |release| for VPP functional tests in V
 | 8 | Centos7: LISP and VXLAN test failures           | CSIT-566 | We can observe crash of SUT1 VM during LISP tests    |
 |   |                                                 |          | execution, that leads to failure of all other tests  |
 |   |                                                 |          | (sometimes observed  during VXLAN tests execution    |
-|   |                                                 |          | too). NOTE: Possible root cause identified after     |
-|   |                                                 |          | upgrade of one of VIRL servers. When fix is          |
-|   |                                                 |          | confirmed in a short time it will be merged to CSIT  |
-|   |                                                 |          | rls1704 branch.                                      |
+|   |                                                 |          | too). NOTE: Possible root cause identified (spurious |
+|   |                                                 |          | IPv6 RA packets) after upgrade of one of VIRL        |
+|   |                                                 |          | servers. When fix is confirmed in a short time it    |
+|   |                                                 |          | will be merged to CSIT rls1704 branch.               |
 +---+-------------------------------------------------+----------+------------------------------------------------------+
