@@ -502,7 +502,7 @@ cat - > ${CSS_PATCH_FILE} <<"_EOF"
         font-size: small;
         margin-bottom: 24px;
         max-width: 100%;
-        overflow: visible !important;
+        /* overflow: visible !important; ###temporary fix### */
     }
 }
 _EOF
