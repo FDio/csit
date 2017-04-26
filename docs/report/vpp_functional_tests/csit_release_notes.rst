@@ -6,11 +6,10 @@ Changes in CSIT |release|
 
 #. VPP functional test environment changes
 
-#. Implemented VAT command history collection for every test case as part of teardown
-
+    - Implemented VAT command history collection for every test case as part of teardown.
     - Introduction of Centos7 tests in VIRL environment.
 
-#. VPP performance test framework changes
+#. VPP functional test framework changes
 
     - Added VAT command history collection for every test case as part of teardown.
 
@@ -21,7 +20,6 @@ Changes in CSIT |release|
     - IPv4 routed-forwarding with vhost-user interfaces to VM.
     - Vhost-user interface re-connect tests.
 
->>>>>>> csit rls1704 report - updated csit_release_notes.rst and overview.rst files.
 Known Issues
 ------------
 
@@ -55,17 +53,21 @@ Here is the list of known issues in CSIT |release| for VPP functional tests in V
 |   |                                                 |          | destination address is reported.                     |
 +---+-------------------------------------------------+----------+------------------------------------------------------+
 | 6 | IPv4 + VLAN: Processing of tagged frame doesn't | CSIT-564 | Dot1q tagged packets are thrown away in case of IPv4 |
-|   | work with virtio driver                         |          | routing on interface binded to virtio driver.        |
+|   | work with virtio driver                         |          | routing on interface binded to virtio driver. Issue  |
+|   |                                                 |          | with VIRL test simulation environment                |
 +---+-------------------------------------------------+----------+------------------------------------------------------+
-| 7 | VHOST-user: QEMU re-connect doesn't work        | CSIT-565 | Used QEMU 2.5.0 doesn't support re-connection. Usage |
-|   |                                                 |          | of QEMU 2.7.0 is not recommended by vpp-dev team at  |
-|   |                                                 |          | the moment.                                          |
+| 7 | Vhost-user: QEMU reconnect doesn't work         | CSIT-565 | Using QEMU 2.5.0 that does not support vhost-user    |
+|   |                                                 |          | reconnect. It requires moving CSIT VIRL environment  |
+|   |                                                 |          | to QEMU 2.7.0.                                       |
 +---+-------------------------------------------------+----------+------------------------------------------------------+
-| 8 | Centos7: LISP and VXLAN test failures           | CSIT-566 | We can observe crash of SUT1 VM during LISP tests    |
-|   |                                                 |          | execution, that leads to failure of all other tests  |
-|   |                                                 |          | (sometimes observed  during VXLAN tests execution    |
-|   |                                                 |          | too). NOTE: Possible root cause identified after     |
-|   |                                                 |          | upgrade of one of VIRL servers. When fix is          |
-|   |                                                 |          | confirmed in a short time it will be merged to CSIT  |
-|   |                                                 |          | rls1704 branch.                                      |
+| 8 | Centos7: LISP and VXLAN sporadic test failures  | CSIT-566 | Observing sporadic crashes of DUT1 VM during LISP    |
+|   |                                                 |          | and VXLAN test executions, what leads to failure of  |
+|   |                                                 |          | all other tests in the suite. NOTE: After upgrading  |
+|   |                                                 |          | one of the VIRL servers host from Ubuntu14.04 to     |
+|   |                                                 |          | 16.04, DUT1 VM stops crashing, but tests keep        |
+|   |                                                 |          | failing sporadically 1-in-100. Possible root cause   |
+|   |                                                 |          | identified - unexpected IPv6 RA packets upsetting    |
+|   |                                                 |          | some test component. Currently suspecting            |
+|   |                                                 |          | environment or CSIT issue, but can not exclude VPP,  |
+|   |                                                 |          | further troubleshooting in progress.                 |
 +---+-------------------------------------------------+----------+------------------------------------------------------+

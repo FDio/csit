@@ -33,7 +33,7 @@ Unit Tests Coverage
 -------------------
 
 Following VPP functional test areas are covered in VPP unit test code included
-in VPP rls1701 with results listed in this report:
+in VPP rls1704 with results listed in this report:
 
 - CRUD Loopback - create, read, update, delete Loopback interfaces.
 - Flow-per-packet plugin - collect and report L2 and IP4 flow statistics.
