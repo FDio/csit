@@ -1,5 +1,5 @@
-VPP Performance Configuration
-=============================
+VPP Performance Test Configs
+============================
 
 .. note::
 
