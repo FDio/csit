@@ -82,12 +82,16 @@ class ExecutionChecker(ResultVisitor):
     def __init__(self, args):
         self.formatting = args.formatting
         self.data = args.data
+        self.tagin = " |prein| "
+        self.tagout = " |preout| "
         if self.data == "VAT_H":
             self.lookup_kw = "Show Vat History On All Duts"
-            self.column_name = "VAT command history"
+            self.column_name = "VPP API Test (VAT) Commands History - " \
+                               "Commands Used Per Test Case"
         elif self.data == "SH_RUN":
             self.lookup_kw = "Vpp Show Runtime"
-            self.column_name = "VPP operational data"
+            self.column_name = "VPP Operational Data - Outputs of " \
+                               "'show runtime' at NDR packet rate"
         else:
             raise ValueError("{0} look-up not implemented.".format(self.data))
         self.lookup_kw_nr = 0
@@ -161,7 +165,7 @@ class ExecutionChecker(ResultVisitor):
         """
 
         name = test.name.replace('"', "'")
-        sys.stdout.write('["' + name + '","')
+        sys.stdout.write('["' + name + '","' + self.tagin)
 
     def end_test(self, test):
         """Called when test ends.
@@ -170,7 +174,7 @@ class ExecutionChecker(ResultVisitor):
         :type test: Test
         :returns: Nothing.
         """
-        sys.stdout.write('"],')
+        sys.stdout.write(self.tagout + '"],')
 
     def visit_keyword(self, kw):
         """Implements traversing through the keyword and its child keywords.
@@ -283,6 +287,8 @@ class ExecutionChecker(ResultVisitor):
             text = re.sub("[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3} "
                           "VAT command history:", "", msg.message, count=1).\
                 replace('\n', ' |br| ').replace('\r', '').replace('"', "'")
+            if self.lookup_msg_nr > 1:
+                sys.stdout.write(" |br| ")
             sys.stdout.write("*DUT" + str(self.lookup_msg_nr) + ":*" + text)
 
     def show_run(self, msg):
@@ -356,7 +362,8 @@ def gen_html_table(data):
         for element in item:
             table += '<td>' + re.sub(r"(\*)(.*?)(\*)", r"<b>\2</b>", element,
                                      0, flags=re.MULTILINE).\
-                replace(' |br| ', '<br>') + '</td>'
+                replace(' |br| ', '<br>').replace(' |prein| ', '<pre>').\
+                replace(' |preout| ', '</pre>') + '</td>'
     table += '</tr></table>'
 
     return table
@@ -378,6 +385,8 @@ def do_rst(data, args):
 
     output = open(args.output, 'w')
     output.write('\n.. |br| raw:: html\n\n    <br />\n\n')
+    output.write('\n.. |prein| raw:: html\n\n    <pre>\n\n')
+    output.write('\n.. |preout| raw:: html\n\n    </pre>\n\n')
 
     if args.title:
         output.write(args.title + '\n' +
@@ -523,7 +532,8 @@ def gen_wiki_table(data, mark):
         header += '!{}\n'.format(item)
     table += header
     for item in data[0:-1]:
-        msg = item[1].replace('*', mark).replace(' |br| ', '\n\n')
+        msg = item[1].replace('*', mark).replace(' |br| ', '\n\n').\
+            replace(' |prein| ', '<pre>').replace(' |preout| ', '</pre>')
         table += '|-\n|{}\n|{}\n'.format(item[0], msg)
     table += '|}\n'
 
