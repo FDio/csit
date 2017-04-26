@@ -58,7 +58,7 @@ mkdir -p ${STATIC_DIR_ARCH}
 
 JEN_FILE_PERF='output_perf_data.xml'
 JEN_JOB='csit-vpp-perf-1704-all'
-JEN_BUILD=(6)
+JEN_BUILD=(6 7 8)
 
 for i in "${JEN_BUILD[@]}"; do
     curl -fs ${JEN_URL}/${JEN_JOB}/${i}/artifact/${JEN_FILE_PERF} \
@@ -202,7 +202,7 @@ rm -f ${DTC_PERF_SOURCE_OPER_DIR}/*.json
 ### DPDK PERFORMANCE SOURCE DATA
 
 JEN_JOB='csit-dpdk-perf-1704-all'
-JEN_BUILD=(1 2 3 4 5)
+JEN_BUILD=(1 2 3 4)
 
 for i in "${JEN_BUILD[@]}"; do
     curl -fs ${JEN_URL}/${JEN_JOB}/${i}/artifact/${JEN_FILE_PERF} \
@@ -228,7 +228,7 @@ rm -f ${DTR_TESTPMD_SOURCE_DIR}/*.json
 ### FUNCTIONAL SOURCE DATA
 
 JEN_JOB='csit-vpp-functional-1704-ubuntu1604-virl'
-JEN_BUILD=54
+JEN_BUILD=57
 
 curl -fs ${JEN_URL}/${JEN_JOB}/${JEN_BUILD}/artifact/\*zip\*/archive.zip \
     -o ${STATIC_DIR_ARCH}/${JEN_JOB}-${JEN_BUILD}.zip
