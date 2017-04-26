@@ -1,5 +1,5 @@
-VPP Functional Configuration
-============================
+VPP Functional Test Configs
+===========================
 
 .. note::
 

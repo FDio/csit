@@ -4,18 +4,30 @@ CSIT Release Notes
 Changes in CSIT |release|
 -------------------------
 
-#. Introduction of Centos7 tests
+#. VPP functional test environment changes
+
+#. Implemented VAT command history collection for every test case as part of teardown
+
+    - Introduction of Centos7 tests in VIRL environment.
+
+#. VPP performance test framework changes
+
+    - Added VAT command history collection for every test case as part of teardown.
 
 #. Added VPP functional tests
 
-    - IPv4 routed-forwarding with dot1q VLAN sub-interfaces
-    - L2BD switched-forwarding with dot1q VLAN sub-interfaces and vhost-user to VM
-    - IPv4 routed-forwarding with vhost-user interfaces to VM
-    - Vhost-User interface re-connect tests
+    - IPv4 routed-forwarding with dot1q VLAN sub-interfaces.
+    - L2BD switched-forwarding with dot1q VLAN sub-interfaces and vhost-user to VM.
+    - IPv4 routed-forwarding with vhost-user interfaces to VM.
+    - Vhost-user interface re-connect tests.
 
 #. Implemented VAT command history collection for every test case as part of teardown.
 
 Known Issues - to be updated
+=======
+>>>>>>> csit rls1704 report - updated csit_release_notes.rst and overview.rst files.
+Known Issues
+>>>>>>> 01f9e5c... csit rls1704 report - updated csit_release_notes.rst and overview.rst files.
 ------------
 
 Here is the list of known issues in CSIT |release| for VPP functional tests in VIRL: (to be updated)
