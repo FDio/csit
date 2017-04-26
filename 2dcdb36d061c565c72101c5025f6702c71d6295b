@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a3291f1_e2b9007a",
+        "filename": "docs/report/testpmd_performance_tests/csit_release_notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-04-26T13:18:31Z",
+      "side": 1,
+      "message": "Rephrase:\n\nno issue observed with x520-da2 NIC.",
+      "range": {
+        "startLine": 20,
+        "startChar": 115,
+        "endLine": 20,
+        "endChar": 133
+      },
+      "revId": "2dcdb36d061c565c72101c5025f6702c71d6295b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_02b52c7d",
+        "filename": "docs/report/testpmd_performance_tests/csit_release_notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-04-26T13:18:31Z",
+      "side": 1,
+      "message": "no PDR here",
+      "range": {
+        "startLine": 24,
+        "startChar": 71,
+        "endLine": 24,
+        "endChar": 85
+      },
+      "revId": "2dcdb36d061c565c72101c5025f6702c71d6295b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
