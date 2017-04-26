@@ -5,7 +5,7 @@ Overview
 
     This section includes an abbreviated version of the VPP Test Framework
     overview maintained within the VPP project. Complete overview can be found
-    in `VPP unit test documentation <link>`_
+    in `VPP test framework documentation <https://docs.fd.io/vpp/17.04/vpp_make_test/html/>`_.
 
 VPP Unit Test Framework
 -----------------------
@@ -27,7 +27,7 @@ Framework.
 
 For complete description of the VPP Test Framework including anatomy of a test
 case and detailed documentation of existing VPP unit test cases please refer
-to the `VPP unit test documentation <link>`_
+to the `VPP test framework documentation <https://docs.fd.io/vpp/17.04/vpp_make_test/html/>`_
 
 Unit Tests Coverage
 -------------------
@@ -39,7 +39,8 @@ in VPP rls1701 with results listed in this report:
 - Flow-per-packet plugin - collect and report L2 and IP4 flow statistics.
 - DHCP - DHCPv4 and DHCPv6 Proxy.
 - IP4 VRF Multi-instance - create, read, update, delete and verify IPv4 VRFs.
-- Load Balancer - IP4 GRE4, IP4 GRE6, IP6 GRE4, IP6 GRE6
+- Load Balancer - IP4 GRE4, IP4 GRE6, IP6 GRE4, IP6 GRE6.
+- FIB Unit Tests.
 - Bidirectional Forwarding Detection (BFD) IPv4 - baseline BFD session operation.
 - Bidirectional Forwarding Detection (BFD) IPv6 - baseline BFD session operation.
 - Bidirectional Forwarding Detection (BFD) - API tests.
@@ -53,8 +54,11 @@ in VPP rls1701 with results listed in this report:
 - IPv4 Tests - baseline FIB tests.
 - IPv4 FIB CRUD - add/update/delete IPv4 routes.
 - IRB Tests - Integrated Routing and Bridging tests.
+- ACL plugin tests.
 - MPLS Tests - MPLS baseline tests.
 - L2XC Tests - L2 cross-connect baseline tests incl. single- and dual-loop.
+- MFIB Unit Tests.
+- IP Multicast Tests - IPv4/IPv6 multicast replication, connected source check.
 - Classifier - classification with IP ACL, MAC ACL, IP PBR.
 - VXLAN Tests - baseline VXLAN tunneling.
 - L2 FIB CRUD - add/update/delete L2 MAC entries.
