@@ -182,6 +182,7 @@
 | | ... | ${dut2_to_dut1_mac}
 | | Add IP Neighbor | ${dut2_node} | ${dut2_to_dut1} | ${dut1_to_dut2_ip6}
 | | ... | ${dut1_to_dut2_mac}
+| | Vpp All RA Suppress Link Layer | ${nodes}
 
 | Setup Qemu DUT1
 | | [Documentation] | Setup Vhosts on DUT1 and setup IP to one of them. Setup \
@@ -192,6 +193,7 @@
 | | ... | ${prefix6}
 | | Set Interface State | ${dut1_node} | ${vhost1} | up
 | | Set Interface State | ${dut1_node} | ${vhost2} | up
+| | Vpp RA Suppress Link Layer | ${dut1_node} | ${vhost2}
 | | Bridge domain on DUT node is created | ${dut1_node} | ${bid} | learn=${TRUE}
 | | Interface is added to bridge domain | ${dut1_node}
 | | ... | ${dut1_to_tg} | ${bid} | 0
