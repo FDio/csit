@@ -76,6 +76,7 @@
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${dut2_to_dut1_ip6o4}
 | | ... | ${dut_prefix6o4}
 | | ... | ${dut2_node} | ${dut2_to_tg} | ${dut2_to_tg_ip6o4} | ${tg_prefix6o4}
+| | And Vpp All RA Suppress Link Layer | ${nodes}
 | | When Set up LISP GPE topology
 | | ... | ${dut1_node} | ${dut1_to_dut2} | ${NONE}
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${NONE}

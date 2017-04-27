@@ -169,3 +169,4 @@
 | | ... | ${dut2_to_dut1_mac}
 | | Add IP Neighbor | ${dut2_node} | ${dut2_to_dut1} | ${dut1_to_dut2_ip6}
 | | ... | ${dut1_to_dut2_mac}
+| | Vpp All RA Suppress Link Layer | ${nodes}

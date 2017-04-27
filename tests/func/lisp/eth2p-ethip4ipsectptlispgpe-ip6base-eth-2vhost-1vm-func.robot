@@ -160,6 +160,7 @@
 | | ... | ${dut1_to_dut2_mac}
 | | Add IP Neighbor | ${dut1_node} | ${dut1_to_tg} | ${tg1_ip6}
 | | ... | ${tg_to_dut1_mac}
+| | Vpp All RA Suppress Link Layer | ${nodes}
 | | Set up LISP GPE topology
 | | ... | ${dut1_node} | ${dut1_to_dut2} | ${NONE}
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${NONE}
@@ -176,6 +177,7 @@
 | | Set Interface Address | ${dut1_node} | ${vhost2} | ${vhost_ip} | ${prefix6}
 | | Set Interface State | ${dut1_node} | ${vhost1} | up
 | | Set Interface State | ${dut1_node} | ${vhost2} | up
+| | Vpp RA Suppress Link Layer | ${dut1_node} | ${vhost2}
 | | Bridge domain on DUT node is created | ${dut1_node} | ${bid} | learn=${TRUE}
 | | Interface is added to bridge domain | ${dut1_node}
 | | ... | ${dut1_to_tg} | ${bid} | 0
