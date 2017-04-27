@@ -25,6 +25,75 @@
     },
     {
       "key": {
+        "uuid": "3a3291f1_63c3d257",
+        "filename": "resources/libraries/python/honeycomb/Lisp.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-04-27T12:00:41Z",
+      "side": 1,
+      "message": "argument not used, it should determine map request mode",
+      "range": {
+        "startLine": 188,
+        "startChar": 46,
+        "endLine": 188,
+        "endChar": 50
+      },
+      "revId": "1889e84c1645bb82cb854959ef4bf0b3e233dbb0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_83c6be66",
+        "filename": "resources/libraries/python/honeycomb/Lisp.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-04-27T12:00:41Z",
+      "side": 1,
+      "message": "map request mode",
+      "range": {
+        "startLine": 192,
+        "startChar": 43,
+        "endLine": 192,
+        "endChar": 51
+      },
+      "revId": "1889e84c1645bb82cb854959ef4bf0b3e233dbb0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_438b361f",
+        "filename": "resources/libraries/python/honeycomb/Lisp.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-04-27T12:00:41Z",
+      "side": 1,
+      "message": "according to hc2vpp/lisp/api/src/main/yang/lisp.yang, line 97\n\nthe options here are:\n\"destination-only\"\n\"source-destination\"",
+      "range": {
+        "startLine": 201,
+        "startChar": 25,
+        "endLine": 201,
+        "endChar": 43
+      },
+      "revId": "1889e84c1645bb82cb854959ef4bf0b3e233dbb0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a3291f1_a31f7a07",
         "filename": "resources/libraries/python/honeycomb/Lisp.py",
         "patchSetId": 1
@@ -48,6 +117,52 @@
     },
     {
       "key": {
+        "uuid": "3a3291f1_03988e68",
+        "filename": "resources/libraries/python/honeycomb/Lisp.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-04-27T12:00:41Z",
+      "side": 1,
+      "message": "add to documentation",
+      "range": {
+        "startLine": 263,
+        "startChar": 31,
+        "endLine": 263,
+        "endChar": 43
+      },
+      "revId": "1889e84c1645bb82cb854959ef4bf0b3e233dbb0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_63719243",
+        "filename": "resources/libraries/python/honeycomb/Lisp.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-04-27T12:00:41Z",
+      "side": 1,
+      "message": "where is IP address specified?",
+      "range": {
+        "startLine": 264,
+        "startChar": 34,
+        "endLine": 264,
+        "endChar": 63
+      },
+      "revId": "1889e84c1645bb82cb854959ef4bf0b3e233dbb0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a3291f1_c3228651",
         "filename": "resources/libraries/python/honeycomb/Lisp.py",
         "patchSetId": 1
@@ -64,6 +179,52 @@
         "startChar": 8,
         "endLine": 267,
         "endChar": 69
+      },
+      "revId": "1889e84c1645bb82cb854959ef4bf0b3e233dbb0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_4392164d",
+        "filename": "resources/libraries/python/honeycomb/Lisp.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-04-27T12:00:41Z",
+      "side": 1,
+      "message": "argument not present",
+      "range": {
+        "startLine": 267,
+        "startChar": 15,
+        "endLine": 267,
+        "endChar": 25
+      },
+      "revId": "1889e84c1645bb82cb854959ef4bf0b3e233dbb0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_23970a3d",
+        "filename": "resources/libraries/python/honeycomb/Lisp.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 269,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-04-27T12:00:41Z",
+      "side": 1,
+      "message": "argument not present",
+      "range": {
+        "startLine": 269,
+        "startChar": 14,
+        "endLine": 269,
+        "endChar": 24
       },
       "revId": "1889e84c1645bb82cb854959ef4bf0b3e233dbb0",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
@@ -117,6 +278,52 @@
     },
     {
       "key": {
+        "uuid": "3a3291f1_63a87277",
+        "filename": "resources/libraries/python/honeycomb/Lisp.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-04-27T12:00:41Z",
+      "side": 1,
+      "message": "add to documentation",
+      "range": {
+        "startLine": 285,
+        "startChar": 35,
+        "endLine": 285,
+        "endChar": 42
+      },
+      "revId": "1889e84c1645bb82cb854959ef4bf0b3e233dbb0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_83ab5e74",
+        "filename": "resources/libraries/python/honeycomb/Lisp.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 286,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-04-27T12:00:41Z",
+      "side": 1,
+      "message": "there is no IP address",
+      "range": {
+        "startLine": 286,
+        "startChar": 38,
+        "endLine": 286,
+        "endChar": 67
+      },
+      "revId": "1889e84c1645bb82cb854959ef4bf0b3e233dbb0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a3291f1_8318fe1e",
         "filename": "resources/libraries/python/honeycomb/Lisp.py",
         "patchSetId": 1
@@ -133,6 +340,121 @@
         "startChar": 8,
         "endLine": 289,
         "endChar": 73
+      },
+      "revId": "1889e84c1645bb82cb854959ef4bf0b3e233dbb0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_23beeab4",
+        "filename": "resources/libraries/python/honeycomb/Lisp.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 289,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-04-27T12:00:41Z",
+      "side": 1,
+      "message": "argument not present",
+      "range": {
+        "startLine": 289,
+        "startChar": 15,
+        "endLine": 289,
+        "endChar": 25
+      },
+      "revId": "1889e84c1645bb82cb854959ef4bf0b3e233dbb0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_03af6e7e",
+        "filename": "resources/libraries/python/honeycomb/Lisp.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-04-27T12:00:41Z",
+      "side": 1,
+      "message": "argument not present",
+      "range": {
+        "startLine": 291,
+        "startChar": 14,
+        "endLine": 291,
+        "endChar": 24
+      },
+      "revId": "1889e84c1645bb82cb854959ef4bf0b3e233dbb0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_e3b342e7",
+        "filename": "resources/libraries/python/honeycomb/Lisp.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 299,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-04-27T12:00:41Z",
+      "side": 1,
+      "message": "map-request-mode",
+      "range": {
+        "startLine": 299,
+        "startChar": 13,
+        "endLine": 299,
+        "endChar": 29
+      },
+      "revId": "1889e84c1645bb82cb854959ef4bf0b3e233dbb0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_c3a5e6a2",
+        "filename": "resources/libraries/python/honeycomb/Lisp.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 300,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-04-27T12:00:41Z",
+      "side": 1,
+      "message": "source-destination",
+      "range": {
+        "startLine": 300,
+        "startChar": 25,
+        "endLine": 300,
+        "endChar": 43
+      },
+      "revId": "1889e84c1645bb82cb854959ef4bf0b3e233dbb0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_e39c625f",
+        "filename": "resources/libraries/python/honeycomb/Lisp.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 301,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-04-27T12:00:41Z",
+      "side": 1,
+      "message": "destination-only",
+      "range": {
+        "startLine": 301,
+        "startChar": 26,
+        "endLine": 301,
+        "endChar": 44
       },
       "revId": "1889e84c1645bb82cb854959ef4bf0b3e233dbb0",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
@@ -186,6 +508,75 @@
     },
     {
       "key": {
+        "uuid": "3a3291f1_a3c9ba5a",
+        "filename": "resources/libraries/python/honeycomb/Lisp.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 326,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-04-27T12:00:41Z",
+      "side": 1,
+      "message": "addresses",
+      "range": {
+        "startLine": 326,
+        "startChar": 30,
+        "endLine": 326,
+        "endChar": 37
+      },
+      "revId": "1889e84c1645bb82cb854959ef4bf0b3e233dbb0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_63bf52ab",
+        "filename": "resources/libraries/python/honeycomb/Lisp.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 326,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-04-27T12:00:41Z",
+      "side": 1,
+      "message": "ip_addresses",
+      "range": {
+        "startLine": 326,
+        "startChar": 15,
+        "endLine": 326,
+        "endChar": 25
+      },
+      "revId": "1889e84c1645bb82cb854959ef4bf0b3e233dbb0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_43e0d6cc",
+        "filename": "resources/libraries/python/honeycomb/Lisp.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 328,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-04-27T12:00:41Z",
+      "side": 1,
+      "message": "ip_addresses",
+      "range": {
+        "startLine": 328,
+        "startChar": 14,
+        "endLine": 328,
+        "endChar": 24
+      },
+      "revId": "1889e84c1645bb82cb854959ef4bf0b3e233dbb0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a3291f1_03dc0e45",
         "filename": "resources/libraries/python/honeycomb/Lisp.py",
         "patchSetId": 1
@@ -200,6 +591,29 @@
       "range": {
         "startLine": 337,
         "startChar": 8,
+        "endLine": 343,
+        "endChar": 11
+      },
+      "revId": "1889e84c1645bb82cb854959ef4bf0b3e233dbb0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_23e5cadc",
+        "filename": "resources/libraries/python/honeycomb/Lisp.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-04-27T12:00:41Z",
+      "side": 1,
+      "message": "do not commit disabled code",
+      "range": {
+        "startLine": 337,
+        "startChar": 0,
         "endLine": 343,
         "endChar": 11
       },
@@ -225,6 +639,52 @@
         "startChar": 8,
         "endLine": 352,
         "endChar": 55
+      },
+      "revId": "1889e84c1645bb82cb854959ef4bf0b3e233dbb0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_03e64ee8",
+        "filename": "resources/libraries/python/honeycomb/Lisp.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 352,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-04-27T12:00:41Z",
+      "side": 1,
+      "message": "do not commit disabled code",
+      "range": {
+        "startLine": 349,
+        "startChar": 0,
+        "endLine": 352,
+        "endChar": 55
+      },
+      "revId": "1889e84c1645bb82cb854959ef4bf0b3e233dbb0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_c3d3a602",
+        "filename": "resources/libraries/python/honeycomb/Lisp.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 358,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-04-27T12:00:41Z",
+      "side": 1,
+      "message": "This deletes all map servers. Update keyword name and documentation to reflect this, or modify keyword to delete one specific map server.",
+      "range": {
+        "startLine": 358,
+        "startChar": 10,
+        "endLine": 358,
+        "endChar": 41
       },
       "revId": "1889e84c1645bb82cb854959ef4bf0b3e233dbb0",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
