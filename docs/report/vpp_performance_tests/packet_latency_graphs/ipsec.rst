@@ -30,7 +30,7 @@ ii) East-to-West: TGint2-to-SUT2-to-SUT1-to-TGint1.
     `csit-vpp-perf-1704-all
     <https://jenkins.fd.io/view/csit/job/csit-vpp-perf-1704-all/>`_,
     with Robot Framework result files csit-vpp-perf-1704-all-<id>.zip
-    `archived here <../../_static/archive/>`_
+    `archived here <../../_static/archive/>`_.
 
 VPP packet latency in 1t1c setup (1thread, 1core) is presented in the graph below.
 
