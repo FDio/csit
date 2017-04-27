@@ -1,0 +1,579 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a3291f1_e3290238",
+        "filename": "resources/libraries/python/honeycomb/Lisp.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-04-27T11:43:01Z",
+      "side": 1,
+      "message": "Can it be boolean?",
+      "range": {
+        "startLine": 117,
+        "startChar": 32,
+        "endLine": 117,
+        "endChar": 37
+      },
+      "revId": "1889e84c1645bb82cb854959ef4bf0b3e233dbb0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_a31f7a07",
+        "filename": "resources/libraries/python/honeycomb/Lisp.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 263,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-04-27T11:43:01Z",
+      "side": 1,
+      "message": "Add to doc",
+      "range": {
+        "startLine": 263,
+        "startChar": 31,
+        "endLine": 263,
+        "endChar": 43
+      },
+      "revId": "1889e84c1645bb82cb854959ef4bf0b3e233dbb0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_c3228651",
+        "filename": "resources/libraries/python/honeycomb/Lisp.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 267,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-04-27T11:43:01Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 267,
+        "startChar": 8,
+        "endLine": 267,
+        "endChar": 69
+      },
+      "revId": "1889e84c1645bb82cb854959ef4bf0b3e233dbb0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_03252e5b",
+        "filename": "resources/libraries/python/honeycomb/Lisp.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 278,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-04-27T11:43:01Z",
+      "side": 1,
+      "message": "map_register is enough",
+      "range": {
+        "startLine": 278,
+        "startChar": 27,
+        "endLine": 278,
+        "endChar": 58
+      },
+      "revId": "1889e84c1645bb82cb854959ef4bf0b3e233dbb0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_631512e4",
+        "filename": "resources/libraries/python/honeycomb/Lisp.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 285,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-04-27T11:43:01Z",
+      "side": 1,
+      "message": "add to doc",
+      "range": {
+        "startLine": 285,
+        "startChar": 35,
+        "endLine": 285,
+        "endChar": 42
+      },
+      "revId": "1889e84c1645bb82cb854959ef4bf0b3e233dbb0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_8318fe1e",
+        "filename": "resources/libraries/python/honeycomb/Lisp.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 289,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-04-27T11:43:01Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 289,
+        "startChar": 8,
+        "endLine": 289,
+        "endChar": 73
+      },
+      "revId": "1889e84c1645bb82cb854959ef4bf0b3e233dbb0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_23db8a51",
+        "filename": "resources/libraries/python/honeycomb/Lisp.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 322,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-04-27T11:43:01Z",
+      "side": 1,
+      "message": "add to doc",
+      "range": {
+        "startLine": 322,
+        "startChar": 29,
+        "endLine": 322,
+        "endChar": 42
+      },
+      "revId": "1889e84c1645bb82cb854959ef4bf0b3e233dbb0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_43d69629",
+        "filename": "resources/libraries/python/honeycomb/Lisp.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 326,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-04-27T11:43:01Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 326,
+        "startChar": 8,
+        "endLine": 326,
+        "endChar": 67
+      },
+      "revId": "1889e84c1645bb82cb854959ef4bf0b3e233dbb0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_03dc0e45",
+        "filename": "resources/libraries/python/honeycomb/Lisp.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 343,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-04-27T11:43:01Z",
+      "side": 1,
+      "message": "do not commit disabled code",
+      "range": {
+        "startLine": 337,
+        "startChar": 8,
+        "endLine": 343,
+        "endChar": 11
+      },
+      "revId": "1889e84c1645bb82cb854959ef4bf0b3e233dbb0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_e3e0e2fb",
+        "filename": "resources/libraries/python/honeycomb/Lisp.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 352,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-04-27T11:43:01Z",
+      "side": 1,
+      "message": "do not commit disabled code",
+      "range": {
+        "startLine": 349,
+        "startChar": 8,
+        "endLine": 352,
+        "endChar": 55
+      },
+      "revId": "1889e84c1645bb82cb854959ef4bf0b3e233dbb0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_c3e966e7",
+        "filename": "resources/libraries/python/honeycomb/Lisp.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 402,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-04-27T11:43:01Z",
+      "side": 1,
+      "message": "???",
+      "range": {
+        "startLine": 402,
+        "startChar": 41,
+        "endLine": 402,
+        "endChar": 49
+      },
+      "revId": "1889e84c1645bb82cb854959ef4bf0b3e233dbb0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_a3e65a13",
+        "filename": "resources/libraries/robot/honeycomb/lisp.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 297,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-04-27T11:43:01Z",
+      "side": 1,
+      "message": "${True}",
+      "range": {
+        "startLine": 297,
+        "startChar": 13,
+        "endLine": 297,
+        "endChar": 17
+      },
+      "revId": "1889e84c1645bb82cb854959ef4bf0b3e233dbb0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_63ecf2f3",
+        "filename": "resources/libraries/robot/honeycomb/lisp.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 313,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-04-27T11:43:01Z",
+      "side": 1,
+      "message": "???",
+      "range": {
+        "startLine": 313,
+        "startChar": 13,
+        "endLine": 313,
+        "endChar": 17
+      },
+      "revId": "1889e84c1645bb82cb854959ef4bf0b3e233dbb0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_83efdee8",
+        "filename": "resources/libraries/robot/honeycomb/lisp.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 315,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-04-27T11:43:01Z",
+      "side": 1,
+      "message": "map_request?",
+      "range": {
+        "startLine": 315,
+        "startChar": 30,
+        "endLine": 315,
+        "endChar": 42
+      },
+      "revId": "1889e84c1645bb82cb854959ef4bf0b3e233dbb0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_43bd76d7",
+        "filename": "resources/libraries/robot/honeycomb/lisp.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 407,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-04-27T11:43:01Z",
+      "side": 1,
+      "message": "${True}, as described in doc",
+      "range": {
+        "startLine": 407,
+        "startChar": 13,
+        "endLine": 407,
+        "endChar": 20
+      },
+      "revId": "1889e84c1645bb82cb854959ef4bf0b3e233dbb0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_03b3ee0a",
+        "filename": "resources/libraries/robot/honeycomb/lisp.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 442,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-04-27T11:43:01Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 442,
+        "startChar": 60,
+        "endLine": 442,
+        "endChar": 72
+      },
+      "revId": "1889e84c1645bb82cb854959ef4bf0b3e233dbb0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_e3b7c2f3",
+        "filename": "resources/libraries/robot/honeycomb/lisp.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 509,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-04-27T11:43:01Z",
+      "side": 1,
+      "message": "can I use also \"disable\"?",
+      "range": {
+        "startLine": 509,
+        "startChar": 36,
+        "endLine": 509,
+        "endChar": 44
+      },
+      "revId": "1889e84c1645bb82cb854959ef4bf0b3e233dbb0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_c3d04621",
+        "filename": "resources/libraries/robot/honeycomb/lisp.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 592,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-04-27T11:43:01Z",
+      "side": 1,
+      "message": "${True}",
+      "range": {
+        "startLine": 592,
+        "startChar": 13,
+        "endLine": 592,
+        "endChar": 17
+      },
+      "revId": "1889e84c1645bb82cb854959ef4bf0b3e233dbb0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_a3cd3a87",
+        "filename": "resources/libraries/robot/honeycomb/lisp.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 594,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-04-27T11:43:01Z",
+      "side": 1,
+      "message": "???",
+      "range": {
+        "startLine": 594,
+        "startChar": 28,
+        "endLine": 594,
+        "endChar": 41
+      },
+      "revId": "1889e84c1645bb82cb854959ef4bf0b3e233dbb0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_43a456b9",
+        "filename": "resources/libraries/robot/honeycomb/lisp.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 608,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-04-27T11:43:01Z",
+      "side": 1,
+      "message": "Can I use also \"disabled\"?",
+      "range": {
+        "startLine": 608,
+        "startChar": 43,
+        "endLine": 608,
+        "endChar": 50
+      },
+      "revId": "1889e84c1645bb82cb854959ef4bf0b3e233dbb0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_23a94a91",
+        "filename": "resources/libraries/robot/honeycomb/lisp.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 614,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-04-27T11:43:01Z",
+      "side": 1,
+      "message": "???",
+      "range": {
+        "startLine": 614,
+        "startChar": 13,
+        "endLine": 614,
+        "endChar": 25
+      },
+      "revId": "1889e84c1645bb82cb854959ef4bf0b3e233dbb0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_03aace84",
+        "filename": "resources/libraries/robot/honeycomb/lisp.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 627,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-04-27T11:43:01Z",
+      "side": 1,
+      "message": "or disabled?",
+      "range": {
+        "startLine": 627,
+        "startChar": 43,
+        "endLine": 627,
+        "endChar": 50
+      },
+      "revId": "1889e84c1645bb82cb854959ef4bf0b3e233dbb0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_e3aea297",
+        "filename": "resources/libraries/robot/honeycomb/lisp.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 633,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-04-27T11:43:01Z",
+      "side": 1,
+      "message": "???",
+      "range": {
+        "startLine": 633,
+        "startChar": 13,
+        "endLine": 633,
+        "endChar": 24
+      },
+      "revId": "1889e84c1645bb82cb854959ef4bf0b3e233dbb0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_c3972647",
+        "filename": "tests/func/honeycomb/mgmt-cfg-lisp-apihc-apivat-func.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 132,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-04-27T11:43:01Z",
+      "side": 1,
+      "message": "Add description why it is disabled",
+      "range": {
+        "startLine": 116,
+        "startChar": 0,
+        "endLine": 132,
+        "endChar": 36
+      },
+      "revId": "1889e84c1645bb82cb854959ef4bf0b3e233dbb0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_a3941a43",
+        "filename": "tests/func/honeycomb/mgmt-cfg-lisp-apihc-apivat-func.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 150,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-04-27T11:43:01Z",
+      "side": 1,
+      "message": "10?",
+      "range": {
+        "startLine": 150,
+        "startChar": 2,
+        "endLine": 150,
+        "endChar": 6
+      },
+      "revId": "1889e84c1645bb82cb854959ef4bf0b3e233dbb0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
