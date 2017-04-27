@@ -100,9 +100,7 @@ class HcPersistence(object):
         ssh = SSH()
         ssh.connect(node)
         for command in commands:
-            (_, stdout, _) = ssh.exec_command_sudo(command)
-            logger.info(stdout)
-
+            (_, _, _) = ssh.exec_command_sudo(command)
 
     @staticmethod
     def configure_persistence(node, state):
@@ -142,19 +140,3 @@ class HcPersistence(object):
             if ret_code != 0:
                 raise HoneycombError("Failed to modify configuration on "
                                      "node {0}, {1}".format(node, stderr))
-
-    @staticmethod
-    def log_persisted_configuration(node):
-        """Read contents of Honeycomb persistence files and print to Robot log.
-
-        :param node: Honeycomb node.
-        :type node: dict
-        """
-
-        command = "cat /var/lib/honeycomb/persist/{0}/data.json"
-
-        ssh = SSH()
-        ssh.connect(node)
-
-        ssh.exec_command_sudo(command.format("config"))
-        ssh.exec_command_sudo(command.format("context"))

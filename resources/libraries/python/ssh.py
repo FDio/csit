@@ -271,8 +271,8 @@ class SSH(object):
             except socket.timeout:
                 raise Exception('Socket timeout: {0}'.format(buf))
         tmp = buf.replace(cmd.replace('\n', ''), '')
-        for p in prompt:
-            tmp.replace(p, '')
+        for one_prompt in prompt:
+            tmp.replace(one_prompt, '')
         return tmp
 
     @staticmethod

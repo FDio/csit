@@ -17,10 +17,11 @@ from robot.api import logger
 
 from resources.libraries.python.topology import NodeType, DICT__nodes
 
-__all__ = ["DICT__duts_vat_history", "VatHistory"]
+__all__ = ["DICT__DUTS_VAT_HISTORY", "VatHistory"]
 
 
 def setup_vat_history(nodes):
+    """Setup VAT history."""
     duts_vat_history = {}
     try:
         for node in nodes.values():
@@ -31,7 +32,7 @@ def setup_vat_history(nodes):
         # Necessary for the generation of source code documentation.
         pass
 
-DICT__duts_vat_history = setup_vat_history(DICT__nodes)
+DICT__DUTS_VAT_HISTORY = setup_vat_history(DICT__nodes)
 
 
 class VatHistory(object):
@@ -45,7 +46,7 @@ class VatHistory(object):
         :type node: dict
         """
         if node['type'] == NodeType.DUT:
-            DICT__duts_vat_history[node['host']] = []
+            DICT__DUTS_VAT_HISTORY[node['host']] = []
 
     @staticmethod
     def reset_vat_history_on_all_duts(nodes):
@@ -67,9 +68,9 @@ class VatHistory(object):
         """
         if node['type'] == NodeType.DUT:
             sequence = "\nno VAT command executed"\
-                if len(DICT__duts_vat_history[node['host']]) == 0\
+                if len(DICT__DUTS_VAT_HISTORY[node['host']]) == 0\
                 else "".join("\n{}".format(cmd)
-                             for cmd in DICT__duts_vat_history[node['host']])
+                             for cmd in DICT__DUTS_VAT_HISTORY[node['host']])
             logger.trace("{0} VAT command history:{1}\n".
                          format(node['host'], sequence))
 
@@ -94,4 +95,4 @@ class VatHistory(object):
         :type cmd: str
         """
         if node['type'] == NodeType.DUT:
-            DICT__duts_vat_history[node['host']].append(cmd)
+            DICT__DUTS_VAT_HISTORY[node['host']].append(cmd)
