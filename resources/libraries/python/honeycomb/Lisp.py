@@ -114,6 +114,28 @@ class LispKeywords(object):
         return LispKeywords._set_lisp_properties(node, '', data)
 
     @staticmethod
+    def enable_rloc_probe(node, state):
+        """Enable or disable the Routing Locator.
+
+        :param node: Honeycomb node.
+        :param state: Desired Lisp state, enable or disable.
+        :type node: dict
+        :type state: str
+        :returns: Content of response.
+        :rtype: bytearray
+        """
+
+        path = "/lisp-feature-data/rloc-probe"
+
+        data = {
+            "rloc-probe": {
+                "enabled": True if state.lower() == "enable" else False
+            }
+        }
+
+        return LispKeywords._set_lisp_properties(node, path, data)
+
+    @staticmethod
     def add_locator(node, interface, locator_set, priority=1, weight=1):
         """Configure a new Lisp locator set.
 
@@ -160,6 +182,27 @@ class LispKeywords(object):
         """
 
         path = "/lisp-feature-data/eid-table"
+        return LispKeywords._set_lisp_properties(node, path, data)
+
+    @staticmethod
+    def configure_lisp_map_request_mode(node, data):
+        """Modify Lisp Map Request Mode configuration to the data provided.
+
+        :param node: Honeycomb node.
+        :param data: Settings for the Lisp mappings.
+        :type node: dict
+        :type data: dict
+        :returns: Content of response.
+        :rtype: bytearray
+        """
+
+        data = {
+            "map-request-mode": {
+                "mode": "source-destination",
+            }
+        }
+
+        path = "/lisp-feature-data/map-request-mode"
         return LispKeywords._set_lisp_properties(node, path, data)
 
     @staticmethod
@@ -217,6 +260,51 @@ class LispKeywords(object):
         return LispKeywords._set_lisp_properties(node, path, data)
 
     @staticmethod
+    def set_map_register(node, map_register=True):
+        """Configure Map Register with the specified IP address.
+
+        :param node: Honeycomb node.
+        :param ip_address: IP address to configure Map Register with.
+        :type node: dict
+        :type ip_address: str
+        :returns: Content of response.
+        :rtype: bytearray
+        """
+
+        path = "/lisp-feature-data/map-register"
+
+        data = {
+            "map-register": {
+                "enabled": True if map_register else False
+            }
+        }
+
+        return LispKeywords._set_lisp_properties(node, path, data)
+
+    @staticmethod
+    def set_map_request_mode(node, src_dst=True):
+        """Configure Map Request Mode with the specified IP address.
+
+        :param node: Honeycomb node.
+        :param ip_address: IP address to configure Map Request Mode with.
+        :type node: dict
+        :type ip_address: str
+        :returns: Content of response.
+        :rtype: bytearray
+        """
+
+        path = "/lisp-feature-data/map-request_mode"
+
+        data = {
+            "map-request_mode": {
+                "mode": "source_destination" if src_dst\
+                    else "target_destination"
+            }
+        }
+
+        return LispKeywords._set_lisp_properties(node, path, data)
+
+    @staticmethod
     def delete_map_resolver(node):
         """Delete an existing map resolver.
 
@@ -227,6 +315,55 @@ class LispKeywords(object):
         """
 
         path = "/lisp-feature-data/map-resolvers"
+
+        return LispKeywords._set_lisp_properties(node, path)
+
+    @staticmethod
+    def add_map_server(node, *ip_addresses):
+        """Configure map server with the specified IP addresses.
+
+        :param node: Honeycomb node.
+        :param ip_address: IP address to configure map server with.
+        :type node: dict
+        :type ip_address: str
+        :returns: Content of response.
+        :rtype: bytearray
+        """
+        ip_address = ip_addresses[0]
+
+        path = "/lisp-feature-data/map-servers/map-server/{0}".format(
+            ip_address)
+
+        # data = {
+        #     "map-servers": {
+        #         "map-server": [
+        #             {"ip-address": ip_address} for ip_address in ip_addresses
+        #         ]
+        #     }
+        # }
+        data = {
+            "map-server": [
+                {"ip-address": ip_address} for ip_address in ip_addresses
+            ]
+        }
+        # "{\"map-servers\":{\"map-server\":[" \
+        # "{\"ip-address\":\"192.168.2.1\"}," \
+        # "{\"ip-address\":\"192.168.2.5\"}," \
+        # "{\"ip-address\":\"2001:db8:a0b:12f0::1\"}]}"
+
+        return LispKeywords._set_lisp_properties(node, path, data)
+
+    @staticmethod
+    def delete_map_server(node):
+        """Delete an existing map server.
+
+        :param node: Honeycomb node
+        :type node: dict
+        :returns: Content of response
+        :rtype: bytearray
+        """
+
+        path = "/lisp-feature-data/map-servers"
 
         return LispKeywords._set_lisp_properties(node, path)
 
@@ -249,6 +386,32 @@ class LispKeywords(object):
             data = {
                 "pitr-cfg": {
                     "locator-set": locator_set
+                }
+            }
+        else:
+            data = None
+
+        return LispKeywords._set_lisp_properties(node, path, data)
+
+    @staticmethod
+    def configure_petr(node, ip_address):
+        """Configure PETR feature with the specified IP. If no IP
+        specified, disable PETR instead.
+
+        :param node: Honeycomb node.
+        :param ip_address: IPv6 address. Optional.
+        :type node: dict
+        :type ip_address: str
+        :returns: Content of response.
+        :rtype: bytearray
+        """
+
+        path = "/lisp-feature-data/petr-cfg"
+
+        if ip_address:
+            data = {
+                "petr-cfg": {
+                    "petr-address": ip_address
                 }
             }
         else:
