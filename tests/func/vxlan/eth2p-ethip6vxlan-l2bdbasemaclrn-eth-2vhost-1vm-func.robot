@@ -19,6 +19,7 @@
 | Resource | resources/libraries/robot/qemu.robot
 | Resource | resources/libraries/robot/double_qemu_setup.robot
 | Library  | resources.libraries.python.Trace
+| Library | resources.libraries.python.IPv6Setup
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | VM_ENV | HW_ENV
 | Test Setup | Func Test Setup
 | Test Teardown | Run Keywords | Func Test Teardown
@@ -101,6 +102,7 @@
 | | ...                       | ${ip6_prefix}
 | | And VPP IP Probe | ${dut1_node} | ${dut1_to_dut2} | ${ip6_addr2}
 | | And VPP IP Probe | ${dut2_node} | ${dut2_to_dut1} | ${ip6_addr1}
+| | And Vpp All RA Suppress Link Layer | ${nodes}
 | | ${dut1s_vxlan}= | And Create VXLAN interface | ${dut1_node} | ${vni_1}
 | |                 | ...                        | ${ip6_addr1} | ${ip6_addr2}
 | | ${dut2s_vxlan}= | And Create VXLAN interface | ${dut2_node} | ${vni_1}
