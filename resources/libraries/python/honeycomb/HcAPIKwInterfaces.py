@@ -1531,10 +1531,10 @@ class InterfaceKeywords(object):
         interface = interface.replace("/", "%2F")
 
         data = {
-                    "interface-policer:policer": {
-                        "ip4-table": table_name
-                    }
+            "interface-policer:policer": {
+                "ip4-table": table_name
                 }
+            }
 
         path = "/interface/" + interface + "/interface-policer:policer"
         status_code, resp = HcUtil.\
@@ -1725,7 +1725,7 @@ class InterfaceKeywords(object):
             for src_interface in src_interfaces:
                 src_interface["iface-ref"] = Topology.\
                     convert_interface_reference(
-                    node, src_interface["iface-ref"], "name")
+                        node, src_interface["iface-ref"], "name")
             data = {
                 "span": {
                     "mirrored-interfaces": {
