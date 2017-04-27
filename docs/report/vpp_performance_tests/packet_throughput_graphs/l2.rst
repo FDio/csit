@@ -140,11 +140,11 @@ git repository:
     $ cd $CSIT/tests/perf
     $ grep -E "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-pdrdisc" *
 
-10ge2p1vic1227-eth-l2bdbasemaclrn-ndrpdrdisc.robot:| tc08-64B-2t2c-eth-l2bdbasemaclrn-pdrdisc
-10ge2p1x520-dot1ad-l2xcbase-ndrpdrdisc.robot:| tc08-64B-2t2c-dot1ad-l2xcbase-pdrdisc
-10ge2p1x520-dot1q-l2xcbase-ndrpdrdisc.robot:| tc08-64B-2t2c-dot1q-l2xcbase-pdrdisc
-10ge2p1x520-eth-l2bdbasemaclrn-ndrpdrdisc.robot:| tc08-64B-2t2c-eth-l2bdbasemaclrn-pdrdisc
-10ge2p1x520-eth-l2xcbase-ndrpdrdisc.robot:| tc08-64B-2t2c-eth-l2xcbase-pdrdisc
-10ge2p1x710-eth-l2bdbasemaclrn-ndrpdrdisc.robot:| tc08-64B-2t2c-eth-l2bdbasemaclrn-pdrdisc
-40ge2p1vic1385-eth-l2bdbasemaclrn-ndrpdrdisc.robot:| tc08-64B-2t2c-eth-l2bdbasemaclrn-pdrdisc
+    10ge2p1vic1227-eth-l2bdbasemaclrn-ndrpdrdisc.robot:| tc08-64B-2t2c-eth-l2bdbasemaclrn-pdrdisc
+    10ge2p1x520-dot1ad-l2xcbase-ndrpdrdisc.robot:| tc08-64B-2t2c-dot1ad-l2xcbase-pdrdisc
+    10ge2p1x520-dot1q-l2xcbase-ndrpdrdisc.robot:| tc08-64B-2t2c-dot1q-l2xcbase-pdrdisc
+    10ge2p1x520-eth-l2bdbasemaclrn-ndrpdrdisc.robot:| tc08-64B-2t2c-eth-l2bdbasemaclrn-pdrdisc
+    10ge2p1x520-eth-l2xcbase-ndrpdrdisc.robot:| tc08-64B-2t2c-eth-l2xcbase-pdrdisc
+    10ge2p1x710-eth-l2bdbasemaclrn-ndrpdrdisc.robot:| tc08-64B-2t2c-eth-l2bdbasemaclrn-pdrdisc
+    40ge2p1vic1385-eth-l2bdbasemaclrn-ndrpdrdisc.robot:| tc08-64B-2t2c-eth-l2bdbasemaclrn-pdrdisc
 
