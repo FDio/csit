@@ -1,0 +1,12 @@
+--- api/metadata/base.py.old	2017-04-26 12:38:52.522991596 +0000
++++ api/metadata/base.py	2017-04-26 10:06:46.396450566 +0000
+@@ -493,7 +493,7 @@
+                 path = 'openstack/%s/%s' % (version, VD_JSON_NAME)
+                 yield (path, self.lookup(path))
+
+-            if self._check_version(LIBERTY, version, ALL_OPENSTACK_VERSIONS):
++            if False and self._check_version(LIBERTY, version, ALL_OPENSTACK_VERSIONS):
+                 path = 'openstack/%s/%s' % (version, NW_JSON_NAME)
+                 yield (path, self.lookup(path))
+ 
+

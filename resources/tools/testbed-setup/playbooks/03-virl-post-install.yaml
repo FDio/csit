@@ -17,10 +17,18 @@
     shell: ln -s /nfs/scratch /scratch
     args:
       creates: /scratch
-  - name: upate Nova CPU mode
+  - name: Patch nova scripts
+    patch:
+      src: ./files/nova_os_ip.patch
+      basedir: /usr/lib/python2.7/dist-packages/nova
+  - name: Upate Nova CPU mode
     ini_file: dest=/etc/nova/nova.conf section=libvirt option=cpu_mode value=host-passthrough
   - name: Restart nova-compute service
     service: name=nova-compute state=restarted
+  - name: Upate Neutron bridge ageing time
+    ini_file: dest=/etc/neutron/neutron.conf section=DEFAULT option=network_bridge_ageing value=0
+  - name: Restart neutron-linuxbridge-agent service
+    service: name=neutron-linuxbridge-agent state=restarted
   - name: Permit SSH user environment
     lineinfile: dest=/etc/ssh/sshd_config state=present regexp='PermitUserEnvironment.*' line='PermitUserEnvironment yes'
   - name: Restart SSH daemon
