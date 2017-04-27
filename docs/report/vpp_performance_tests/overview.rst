@@ -358,13 +358,15 @@ TRex is installed and run on the TG compute node. The typical procedure is:
 
     - If the TRex is not already installed on TG, it is installed in the
       suite setup phase - see `TRex intallation <https://gerrit.fd.io/r/gitweb?p=csit.git;a=blob;f=resources/tools/t-rex/t-rex-installer.sh;h=8090b7568327ac5f869e82664bc51b24f89f603f;hb=refs/heads/rls1704>`_.
-    - TRex configuration is set in its configuration file::
+    - TRex configuration is set in its configuration file
+      ::
 
-      /etc/trex_cfg.yaml
+        /etc/trex_cfg.yaml
 
-    - TRex is started in the background mode::
+    - TRex is started in the background mode
+      ::
 
-      sh -c 'cd /opt/trex-core-2.22/scripts/ && sudo nohup ./t-rex-64 -i -c 7 --iom 0 > /dev/null 2>&1 &' > /dev/null
+        sh -c 'cd /opt/trex-core-2.22/scripts/ && sudo nohup ./t-rex-64 -i -c 7 --iom 0 > /dev/null 2>&1 &' > /dev/null
 
     - There are traffic streams dynamically prepared for each test. The traffic
       is sent and the statistics obtained using trex_stl_lib.api.STLClient.
