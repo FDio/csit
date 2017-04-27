@@ -89,6 +89,76 @@ class LispUtil(object):
         return JsonParser().parse_data(vat.get_script_stdout())
 
     @staticmethod
+    def vpp_show_lisp_map_register(node):
+        """Get LISP Map Register from VPP node.
+
+        :param node: VPP node.
+        :type node: dict
+        :returns: LISP Map Register as python list.
+        :rtype: list
+        """
+
+        vat = VatExecutor()
+        vat.execute_script_json_out('lisp/show_lisp_map_register.vat', node)
+        return JsonParser().parse_data(vat.get_script_stdout())
+
+    @staticmethod
+    def vpp_show_lisp_map_request_mode(node):
+        """Get LISP Map Request mode from VPP node.
+
+        :param node: VPP node.
+        :type node: dict
+        :returns: LISP Map Request mode as python list.
+        :rtype: list
+        """
+
+        vat = VatExecutor()
+        vat.execute_script_json_out('lisp/show_lisp_map_request_mode.vat', node)
+        return JsonParser().parse_data(vat.get_script_stdout())
+
+    @staticmethod
+    def vpp_show_lisp_map_server(node):
+        """Get LISP Map Server from VPP node.
+
+        :param node: VPP node.
+        :type node: dict
+        :returns: LISP Map Server as python list.
+        :rtype: list
+        """
+
+        vat = VatExecutor()
+        vat.execute_script_json_out('lisp/show_lisp_map_server.vat', node)
+        return JsonParser().parse_data(vat.get_script_stdout())
+
+    @staticmethod
+    def vpp_show_lisp_petr_config(node):
+        """Get LISP PETR configuration from VPP node.
+
+        :param node: VPP node.
+        :type node: dict
+        :returns: LISP PETR configuration as python list.
+        :rtype: list
+        """
+
+        vat = VatExecutor()
+        vat.execute_script_json_out('lisp/show_lisp_petr_config.vat', node)
+        return JsonParser().parse_data(vat.get_script_stdout())
+
+    @staticmethod
+    def vpp_show_lisp_rloc_config(node):
+        """Get LISP RLOC configuration from VPP node.
+
+        :param node: VPP node.
+        :type node: dict
+        :returns: LISP RLOC configuration as python list.
+        :rtype: list
+        """
+
+        vat = VatExecutor()
+        vat.execute_script_json_out('lisp/show_lisp_rloc_config.vat', node)
+        return JsonParser().parse_data(vat.get_script_stdout())
+
+    @staticmethod
     def vpp_show_lisp_pitr(node):
         """Get Lisp PITR feature config from VPP node.
 
