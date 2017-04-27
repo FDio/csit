@@ -592,6 +592,11 @@ class QemuUtils(object):
         self._ssh.exec_command_sudo(cmd)
 
     def qemu_kill_all(self, node=None):
+        """Kill all qemu processes on DUT node if specified.
+
+        :param node: Node to kill all QEMU processes on.
+        :type node: dict
+        """
         if node:
             self.qemu_set_node(node)
         self._ssh.exec_command_sudo('pkill -SIGKILL qemu')

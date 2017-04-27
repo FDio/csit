@@ -90,7 +90,8 @@ class SSH(object):
 
             logger.debug('Connect peer: {0}'.
                          format(self._ssh.get_transport().getpeername()))
-            logger.debug('Connections: {0}'.format(str(SSH.__existing_connections)))
+            logger.debug('Connections: {0}'.
+                         format(str(SSH.__existing_connections)))
         except:
             if attempts > 0:
                 self._reconnect(attempts-1)
@@ -271,8 +272,8 @@ class SSH(object):
             except socket.timeout:
                 raise Exception('Socket timeout: {0}'.format(buf))
         tmp = buf.replace(cmd.replace('\n', ''), '')
-        for p in prompt:
-            tmp.replace(p, '')
+        for item in prompt:
+            tmp.replace(item, '')
         return tmp
 
     @staticmethod

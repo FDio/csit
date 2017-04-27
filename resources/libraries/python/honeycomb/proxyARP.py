@@ -122,11 +122,11 @@ class ProxyARPKeywords(object):
         path = "/interface/{0}/proxy-arp".format(interface)
 
         if state == "disable":
-            status_code, resp = HcUtil.delete_honeycomb_data(
+            status_code, _ = HcUtil.delete_honeycomb_data(
                 node, "config_vpp_interfaces", path)
         elif state == "enable":
             data = {"proxy-arp": {}}
-            status_code, resp = HcUtil.put_honeycomb_data(
+            status_code, _ = HcUtil.put_honeycomb_data(
                 node, "config_vpp_interfaces", data, path)
         else:
             raise ValueError("State argument has to be enable or disable.")

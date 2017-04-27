@@ -44,7 +44,7 @@ class JsonParser(object):
                             "lisp_map_resolver_dump error: Misc",
                             "show_lisp_pitr error: Misc",
                             "snat_static_mapping_dump error: Misc",
-                            ]
+                           ]
             for item in known_errors:
                 if item in json_data:
                     json_data = json_data.replace(item, "")
