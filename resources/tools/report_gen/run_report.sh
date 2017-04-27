@@ -68,21 +68,21 @@ mkdir -p ${PLOT_TESTPMD_SOURCE_DIR}
 
 JEN_FILE_PERF='output_perf_data.xml'
 JEN_JOB='csit-vpp-perf-1704-all'
-JEN_BUILD=(6 7 8)
+JEN_BUILD=(6 7 8 9 10)
 
 for i in "${JEN_BUILD[@]}"; do
-    curl -fs ${JEN_URL}/${JEN_JOB}/${i}/artifact/${JEN_FILE_PERF} \
+    curl --fail -fs ${JEN_URL}/${JEN_JOB}/${i}/artifact/${JEN_FILE_PERF} \
         -o ${PLOT_VPP_SOURCE_DIR}/${JEN_JOB}-${i}.xml
     if [[ ${DEBUG} -eq 1 ]] ;
     then
         cp ./${JEN_JOB}-${JEN_BUILD[-1]}.zip ${STATIC_DIR_ARCH}/${JEN_JOB}-${JEN_BUILD[-1]}.zip
     else
-        curl -fs ${JEN_URL}/${JEN_JOB}/${i}/artifact/\*zip\*/archive.zip \
+        curl --fail -fs ${JEN_URL}/${JEN_JOB}/${i}/artifact/\*zip\*/archive.zip \
             -o ${STATIC_DIR_ARCH}/${JEN_JOB}-${i}.zip
     fi
 done
 
-unzip -o ${STATIC_DIR_ARCH}/${JEN_JOB}-${JEN_BUILD[-1]}.zip -d ${WORKING_DIR}/
+unzip -o ${STATIC_DIR_ARCH}/${JEN_JOB}-10.zip -d ${WORKING_DIR}/
 # L2 Ethernet Switching
 python run_robot_data.py -i ${WORKING_DIR}/archive/output.xml \
     --output ${DTR_PERF_SOURCE_DIR}/vpp_performance_results_l2.rst \
@@ -179,22 +179,22 @@ python run_robot_teardown_data.py -i ${WORKING_DIR}/archive/output.xml \
     --data "SH_RUN" -f "rst" --start 3 --level 2 \
     --regex ".+vhost.*" \
     --title "VM Vhost Connections"
-# Crypto in hardware: IP4FWD, IP6FWD
+# IPSec Crypto HW: IP4 Routed-Forwarding
 python run_robot_data.py -i ${WORKING_DIR}/archive/output.xml \
     --output ${DTR_PERF_SOURCE_DIR}/vpp_performance_results_ipsec.rst \
     --formatting rst --start 3 --level 2 \
     --regex ".+ipsec.*" \
-    --title "Crypto in hardware: IP4FWD, IP6FWD"
+    --title "IPSec Crypto HW: IP4 Routed-Forwarding"
 python run_robot_teardown_data.py -i ${WORKING_DIR}/archive/output.xml \
     --output ${DTC_PERF_SOURCE_DIR}/vpp_performance_configuration_ipsec.rst \
     --data "VAT_H" -f "rst" --start 3 --level 2 \
     --regex ".+ipsec.*" \
-    --title "Crypto in hardware: IP4FWD, IP6FWD"
+    --title "IPSec Crypto HW: IP4 Routed-Forwarding"
 python run_robot_teardown_data.py -i ${WORKING_DIR}/archive/output.xml \
     -o ${DTO_PERF_SOURCE_OPER_DIR}/vpp_performance_operational_data_ipsec.rst \
     --data "SH_RUN" -f "rst" --start 3 --level 2 \
     --regex ".+ipsec.*" \
-    --title "Crypto in hardware: IP4FWD, IP6FWD"
+    --title "IPSec Crypto HW: IP4 Routed-Forwarding"
 sed -i -e "s@###JOB###@${JEN_JOB}\/${JEN_BUILD[-1]}@g" \
     ${DTR_PERF_SOURCE_DIR}/index.rst
 sed -i -e "s@###LINK###@${JEN_URL}\/${JEN_JOB}\/${JEN_BUILD[-1]}@g" \
@@ -214,13 +214,13 @@ JEN_JOB='csit-dpdk-perf-1704-all'
 JEN_BUILD=(1 2 3 4)
 
 for i in "${JEN_BUILD[@]}"; do
-    curl -fs ${JEN_URL}/${JEN_JOB}/${i}/artifact/${JEN_FILE_PERF} \
+    curl --fail -fs ${JEN_URL}/${JEN_JOB}/${i}/artifact/${JEN_FILE_PERF} \
         -o ${PLOT_TESTPMD_SOURCE_DIR}/${JEN_JOB}-${i}.xml
     if [[ ${DEBUG} -eq 1 ]] ;
     then
         cp ./${JEN_JOB}-${JEN_BUILD[-1]}.zip ${STATIC_DIR_ARCH}/${JEN_JOB}-${JEN_BUILD[-1]}.zip
     else
-        curl -fs ${JEN_URL}/${JEN_JOB}/${i}/artifact/\*zip\*/archive.zip \
+        curl --fail -fs ${JEN_URL}/${JEN_JOB}/${i}/artifact/\*zip\*/archive.zip \
             -o ${STATIC_DIR_ARCH}/${JEN_JOB}-${i}.zip
     fi
 done
@@ -502,7 +502,7 @@ cat - > ${CSS_PATCH_FILE} <<"_EOF"
         font-size: small;
         margin-bottom: 24px;
         max-width: 100%;
-        /* overflow: visible !important; ###temporary fix### */
+        overflow: visible !important;
     }
 }
 _EOF
