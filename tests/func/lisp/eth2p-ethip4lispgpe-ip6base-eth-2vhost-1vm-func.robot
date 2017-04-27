@@ -81,6 +81,7 @@
 | | ... | ${dut2_to_dut1_mac}
 | | And Add Arp On Dut | ${dut2_node} | ${dut2_to_dut1} | ${dut1_to_dut2_ip6o4}
 | | ... | ${dut1_to_dut2_mac}
+| | Vpp All RA Suppress Link Layer | ${nodes}
 | | When Set up LISP GPE topology
 | | ... | ${dut1_node} | ${dut1_to_dut2} | ${NONE}
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${NONE}

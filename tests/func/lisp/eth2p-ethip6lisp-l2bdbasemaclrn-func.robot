@@ -74,6 +74,7 @@
 | | ... | ${dut2_to_dut1_mac}
 | | And Add Arp On Dut | ${dut2_node} | ${dut2_to_dut1} | ${dut1_to_dut2_ip6}
 | | ... | ${dut1_to_dut2_mac}
+| | Vpp All RA Suppress Link Layer | ${nodes}
 | | When Create L2 BD | ${dut1_node} | ${vpp_bd_id}
 | | And Add Interface To L2 BD | ${dut1_node} | ${dut1_to_tg} | ${vpp_bd_id}
 | | And Create L2 BD | ${dut2_node} | ${vpp_bd_id}
