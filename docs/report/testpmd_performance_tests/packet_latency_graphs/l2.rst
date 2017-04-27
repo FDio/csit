@@ -27,7 +27,7 @@ ii) East-to-West: TGint2-to-SUT2-to-SUT1-to-TGint1.
     `csit-dpdk-perf-1704-all
     <https://jenkins.fd.io/view/csit/job/csit-dpdk-perf-1704-all/>`_,
     with Robot Framework result files csit-dpdk-perf-1704-all-<id>.zip
-    `archived here <../../_static/archive/>`_
+    `archived here <../../_static/archive/>`_.
 
 Testpmd packet latency - running in configuration of **one worker thread (1t) on one
 physical core (1c)** - is presented in the figure below.
