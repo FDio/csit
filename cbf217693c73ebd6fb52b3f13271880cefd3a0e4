@@ -22,6 +22,30 @@
       "revId": "cbf217693c73ebd6fb52b3f13271880cefd3a0e4",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_5807a019",
+        "filename": "tests/func/lisp/eth2p-ethip4ipsectptlispgpe-ip6base-eth-2vhost-1vm-func.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 180,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2017-04-28T08:12:31Z",
+      "side": 1,
+      "message": "Re Q1 and Q2 - we suppress RA packet sending only on VHOST interfaces where the IPv6 address has been set on.",
+      "parentUuid": "3a3291f1_d5259909",
+      "range": {
+        "startLine": 180,
+        "startChar": 0,
+        "endLine": 180,
+        "endChar": 57
+      },
+      "revId": "cbf217693c73ebd6fb52b3f13271880cefd3a0e4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
