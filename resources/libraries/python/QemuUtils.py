@@ -34,8 +34,6 @@ class QemuUtils(object):
         self._qmp_sock = '/tmp/qmp{0}.sock'.format(self._qemu_id)
         # QEMU Guest Agent socket
         self._qga_sock = '/tmp/qga{0}.sock'.format(self._qemu_id)
-        # QEMU PID file
-        self._pid_file = '/tmp/qemu{0}.pid'.format(self._qemu_id)
         self._qemu_opt = {}
         # Default 1 CPU.
         self._qemu_opt['smp'] = '-smp 1,sockets=1,cores=1,threads=1'
@@ -43,11 +41,11 @@ class QemuUtils(object):
         # management interface.
         self._qemu_opt['options'] = '-cpu host -daemonize -enable-kvm ' \
             '-machine pc,accel=kvm,usb=off,mem-merge=off ' \
-            '-net nic,macaddr=52:54:00:00:{0:02x}:ff -balloon none'\
+            '-net nic,macaddr=52:54:00:00:00:{0:02x} -balloon none'\
             .format(self._qemu_id)
-        self._qemu_opt['ssh_fwd_port'] = 10021 + qemu_id
+        self._qemu_opt['ssh_fwd_port'] = 10022
         # Default serial console port
-        self._qemu_opt['serial_port'] = 4555 + qemu_id
+        self._qemu_opt['serial_port'] = 4556
         # Default 512MB virtual RAM
         self._qemu_opt['mem_size'] = 512
         # Default huge page mount point, required for Vhost-user interfaces.
@@ -207,8 +205,8 @@ class QemuUtils(object):
             chardev += ',server'
         self._qemu_opt['options'] += chardev
         # Create Vhost-user network backend.
-        netdev = (' -netdev vhost-user,id=vhost{0},chardev=char{0},queues={1}'
-                  .format(self._vhost_id, self._qemu_opt['queues']))
+        netdev = ' -netdev vhost-user,id=vhost{0},chardev=char{0},'\
+            'queues={1}'.format(self._vhost_id, self._qemu_opt['queues'])
         self._qemu_opt['options'] += netdev
         # If MAC is not specified use auto-generated MAC address based on
         # template 52:54:00:00:<qemu_id>:<vhost_id>, e.g. vhost1 MAC of QEMU
@@ -527,14 +525,12 @@ class QemuUtils(object):
             '-device isa-serial,chardev=qga0'.format(self._qga_sock)
         # Graphic setup
         graphic = '-monitor none -display none -vga none'
-        # PID file
-        pid = '-pidfile {}'.format(self._pid_file)
 
         # Run QEMU
-        cmd = '{0} {1} {2} {3} {4} {5} {6} {7} {8} {9} {10}'.format(
+        cmd = '{0} {1} {2} {3} {4} {5} {6} {7} {8} {9}'.format(
             self._qemu_bin, self._qemu_opt.get('smp'), mem, ssh_fwd,
             self._qemu_opt.get('options'),
-            drive, qmp, serial, qga, graphic, pid)
+            drive, qmp, serial, qga, graphic)
         (ret_code, _, stderr) = self._ssh.exec_command_sudo(cmd, timeout=300)
         if int(ret_code) != 0:
             logger.debug('QEMU start failed {0}'.format(stderr))
@@ -582,18 +578,9 @@ class QemuUtils(object):
 
     def qemu_kill(self):
         """Kill qemu process."""
+        # TODO: add PID storage so that we can kill specific PID
         # Note: in QEMU start phase there are 3 QEMU processes because we
         # daemonize QEMU
-        self._ssh.exec_command_sudo('chmod +r {}'.format(self._pid_file))
-        self._ssh.exec_command_sudo('kill -SIGKILL $(cat {})'
-                                    .format(self._pid_file))
-        # Delete PID file
-        cmd = 'rm -f {}'.format(self._pid_file)
-        self._ssh.exec_command_sudo(cmd)
-
-    def qemu_kill_all(self, node=None):
-        if node:
-            self.qemu_set_node(node)
         self._ssh.exec_command_sudo('pkill -SIGKILL qemu')
 
     def qemu_clear_socks(self):
