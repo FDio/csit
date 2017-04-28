@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a3291f1_b8b7a439",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 595,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-04-28T08:35:08Z",
+      "side": 1,
+      "message": "Add arguments",
+      "range": {
+        "startLine": 595,
+        "startChar": 8,
+        "endLine": 595,
+        "endChar": 38
+      },
+      "revId": "828550f28cc3a3aa9d0ac461acc73e385c0f2dc8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_98b4e835",
+        "filename": "resources/libraries/python/VatHistory.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-04-28T08:35:08Z",
+      "side": 1,
+      "message": "Add arguments",
+      "range": {
+        "startLine": 24,
+        "startChar": 4,
+        "endLine": 24,
+        "endChar": 28
+      },
+      "revId": "828550f28cc3a3aa9d0ac461acc73e385c0f2dc8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_7885bc58",
+        "filename": "resources/libraries/python/ssh.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 274,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-04-28T08:35:08Z",
+      "side": 1,
+      "message": "item ?",
+      "range": {
+        "startLine": 274,
+        "startChar": 12,
+        "endLine": 274,
+        "endChar": 22
+      },
+      "revId": "828550f28cc3a3aa9d0ac461acc73e385c0f2dc8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
