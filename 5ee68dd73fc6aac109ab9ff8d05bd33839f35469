@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a3291f1_38af347f",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 595,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-04-28T11:35:54Z",
+      "side": 1,
+      "message": "Kill all qemu ....",
+      "range": {
+        "startLine": 595,
+        "startChar": 11,
+        "endLine": 595,
+        "endChar": 24
+      },
+      "revId": "5ee68dd73fc6aac109ab9ff8d05bd33839f35469",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_18b478cf",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 597,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-04-28T11:35:54Z",
+      "side": 1,
+      "message": "all QEMU",
+      "range": {
+        "startLine": 597,
+        "startChar": 34,
+        "endLine": 597,
+        "endChar": 42
+      },
+      "revId": "5ee68dd73fc6aac109ab9ff8d05bd33839f35469",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
