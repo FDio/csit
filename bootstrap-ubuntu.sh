@@ -21,12 +21,13 @@ export DEBIAN_FRONTEND=noninteractive
 sudo apt-get -y update
 sudo apt-get -y install libpython2.7-dev python-virtualenv
 
-VIRL_SERVERS=("10.30.51.28" "10.30.51.29" "10.30.51.30")
+#VIRL_SERVERS=("10.30.51.28" "10.30.51.29" "10.30.51.30")
+VIRL_SERVERS=("10.30.51.28")
 
 VIRL_USERNAME=jenkins-in
 VIRL_PKEY=priv_key
 VIRL_SERVER_STATUS_FILE="status"
-VIRL_SERVER_EXPECTED_STATUS="PRODUCTION"
+VIRL_SERVER_EXPECTED_STATUS="TESTING"
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
@@ -35,7 +36,7 @@ VIRL_RELEASE=$(cat ${SCRIPT_DIR}/VIRL_RELEASE_UBUNTU)
 
 SSH_OPTIONS="-i ${VIRL_PKEY} -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o BatchMode=yes -o LogLevel=error"
 
-TEST_GROUPS=("l2bd,dhcp,gre,honeycomb,l2xc,lisp,softwire" "cop,telemetry,ipsec,ipv6,rpf,tap,vrf" "fds,iacl,ipv4,policer,vlan,vxlan,vhost")
+TEST_GROUPS=("lisp" "lisp" "lisp")
 SUITE_PATH="tests.func"
 
 # Create tmp dir
@@ -270,18 +271,25 @@ function run_test_set() {
         --output ${LOG_PATH}/log_test_set_run${nr} \
         tests/"
 
-    PYTHONPATH=`pwd` pybot -L TRACE -W 136\
-        -v TOPOLOGY_PATH:${SCRIPT_DIR}/topologies/enabled/topology${nr}.yaml \
-        ${suite_str} \
-        --include vm_envAND3_node_single_link_topo \
-        --include vm_envAND3_node_double_link_topo \
-        --exclude PERFTEST \
-        --exclude SKIP_PATCH \
-        --noncritical EXPECTED_FAILING \
-        --output ${LOG_PATH}/log_test_set_run${nr} \
-        tests/
+    RC=0
+    for i in `seq 15` ; do
+        echo
+        echo ${i}. test loop
+        PYTHONPATH=`pwd` pybot -L TRACE -W 136\
+            -v TOPOLOGY_PATH:${SCRIPT_DIR}/topologies/enabled/topology${nr}.yaml \
+            ${suite_str} \
+            --include TEST \
+            --noncritical EXPECTED_FAILING \
+            --output ${LOG_PATH}/log_test_set_run${nr}-${i} \
+            tests/
+        PARTIAL_RC=$(echo $?)
+        RC=$((RC+PARTIAL_RC))
+    done
+    rebot --noncritical EXPECTED_FAILING \
+        --output ${LOG_PATH}/log_test_set_run${nr}.xml ${LOG_PATH}/log_test_set_run${nr}-*.xml
+    rm -f ${LOG_PATH}/log_test_set_run${nr}-*.xml
 
-    local_run_rc=$?
+    local_run_rc=${RC}
     echo ${local_run_rc} > ${SHARED_MEMORY_PATH}/rc_test_run${nr}
     set -x
 }
