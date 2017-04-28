@@ -16,7 +16,7 @@
 | Library | resources.libraries.python.QemuUtils
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDRDISC
-| ... | NIC_Intel-XL710 | ETH | IP4FWD | BASE | VHOST | VM
+| ... | NIC_Intel-XL710 | ETH | IP4FWD | BASE | VHOST | VM | TEST
 | ...
 | Suite Setup | 3-node Performance Suite Setup with DUT's NIC model
 | ... | L3 | Intel-XL710
