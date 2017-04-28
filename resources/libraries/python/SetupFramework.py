@@ -50,7 +50,11 @@ def pack_framework_dir():
     tmpfile.close()
 
     proc = Popen(
-        split("tar --exclude-vcs --exclude=./tmp --exclude=*.deb -zcf {0} .".
+        split("tar --sparse --exclude-vcs "
+              "--exclude=./tmp "
+              "--exclude=*.deb "
+              "--warning=no-file-changed"
+              "-zcf {0} .".
               format(file_name)), stdout=PIPE, stderr=PIPE)
     (stdout, stderr) = proc.communicate()
 
