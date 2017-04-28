@@ -56,46 +56,40 @@ class SSH(object):
 
         return hash(frozenset([node['host'], node['port']]))
 
-    def connect(self, node, attempts=5):
+    def connect(self, node):
         """Connect to node prior to running exec_command or scp.
 
         If there already is a connection to the node, this method reuses it.
         """
-        try:
-            self._node = node
-            node_hash = self._node_hash(node)
-            if node_hash in SSH.__existing_connections:
-                self._ssh = SSH.__existing_connections[node_hash]
-                logger.debug('reusing ssh: {0}'.format(self._ssh))
-            else:
-                start = time()
-                pkey = None
-                if 'priv_key' in node:
-                    pkey = RSAKey.from_private_key(
-                        StringIO.StringIO(node['priv_key']))
+        self._node = node
+        node_hash = self._node_hash(node)
+        if node_hash in SSH.__existing_connections:
+            self._ssh = SSH.__existing_connections[node_hash]
+            logger.debug('reusing ssh: {0}'.format(self._ssh))
+        else:
+            start = time()
+            pkey = None
+            if 'priv_key' in node:
+                pkey = RSAKey.from_private_key(
+                    StringIO.StringIO(node['priv_key']))
 
-                self._ssh = paramiko.SSHClient()
-                self._ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+            self._ssh = paramiko.SSHClient()
+            self._ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 
-                self._ssh.connect(node['host'], username=node['username'],
-                                  password=node.get('password'), pkey=pkey,
-                                  port=node['port'])
+            self._ssh.connect(node['host'], username=node['username'],
+                              password=node.get('password'), pkey=pkey,
+                              port=node['port'])
 
-                self._ssh.get_transport().set_keepalive(10)
+            self._ssh.get_transport().set_keepalive(10)
 
-                SSH.__existing_connections[node_hash] = self._ssh
+            SSH.__existing_connections[node_hash] = self._ssh
 
-                logger.trace('connect took {} seconds'.format(time() - start))
-                logger.debug('new ssh: {0}'.format(self._ssh))
+            logger.trace('connect took {} seconds'.format(time() - start))
+            logger.debug('new ssh: {0}'.format(self._ssh))
 
-            logger.debug('Connect peer: {0}'.
-                         format(self._ssh.get_transport().getpeername()))
-            logger.debug('Connections: {0}'.format(str(SSH.__existing_connections)))
-        except:
-            if attempts > 0:
-                self._reconnect(attempts-1)
-            else:
-                raise
+        logger.debug('Connect peer: {0}'.
+                     format(self._ssh.get_transport().getpeername()))
+        logger.debug('Connections: {0}'.format(str(SSH.__existing_connections)))
 
     def disconnect(self, node):
         """Close SSH connection to the node.
@@ -110,12 +104,12 @@ class SSH(object):
             ssh = SSH.__existing_connections.pop(node_hash)
             ssh.close()
 
-    def _reconnect(self, attempts=0):
+    def _reconnect(self):
         """Close the SSH connection and open it again."""
 
         node = self._node
         self.disconnect(node)
-        self.connect(node, attempts)
+        self.connect(node)
         logger.debug('Reconnecting peer done: {}'.
                      format(self._ssh.get_transport().getpeername()))
 
