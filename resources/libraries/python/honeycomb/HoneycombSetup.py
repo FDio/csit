@@ -259,6 +259,31 @@ class HoneycombSetup(object):
                                  "node {0}, {1}".format(node, stderr))
 
     @staticmethod
+    def configure_jvpp_timeout(node, timeout=10):
+        """Configure timeout value for Java API commands Honeycomb sends to VPP.
+
+         :param node: Information about a DUT node.
+         :param timeout: Timeout value in seconds.
+         :type node: dict
+         :type timeout: int
+         :raises HoneycombError: If the configuration could not be changed.
+         """
+
+        find = "jvpp-request-timeout"
+        replace = '\\"jvpp-request-timeout\\": {0}'.format(timeout)
+
+        argument = '"/{0}/c\\ {1}"'.format(find, replace)
+        path = "{0}/config/jvpp.json".format(Const.REMOTE_HC_DIR)
+        command = "sed -i {0} {1}".format(argument, path)
+
+        ssh = SSH()
+        ssh.connect(node)
+        (ret_code, _, stderr) = ssh.exec_command_sudo(command)
+        if ret_code != 0:
+            raise HoneycombError("Failed to modify configuration on "
+                                 "node {0}, {1}".format(node, stderr))
+
+    @staticmethod
     def print_environment(nodes):
         """Print information about the nodes to log. The information is defined
         by commands in cmds tuple at the beginning of this method.
