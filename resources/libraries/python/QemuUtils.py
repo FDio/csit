@@ -545,7 +545,7 @@ class QemuUtils(object):
         try:
             self._wait_until_vm_boot()
         except (RuntimeError, SSHTimeout):
-            self.qemu_kill()
+            self.qemu_kill_all()
             self.qemu_clear_socks()
             raise
         # Update interface names in VM node dict

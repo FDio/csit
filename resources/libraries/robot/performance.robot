@@ -1854,7 +1854,7 @@
 | | ... | ${eth0_mac} | ${eth1_mac} | ${skip}=${6} | ${count}=${5}
 | | ... | ${qemu_id}=${1}
 | | ...
-| | Import Library | resources.libraries.python.QemuUtils
+| | Import Library | resources.libraries.python.QemuUtils | qemu_id=${qemu_id}
 | | ... | WITH NAME | ${vm_name}
 | | ${serial_port}= | Evaluate | ${qemu_id} + ${4555}
 | | Run keyword | ${vm_name}.Qemu Set Serial Port | ${serial_port}
@@ -2084,7 +2084,7 @@
 | | | Dpdk Testpmd Stop | ${vm}
 | | | Run Keyword | ${vm_name}.Qemu Set Node | ${dut_node}
 | | | Run Keyword | ${vm_name}.Qemu Clear Socks
-| | | Run Keyword If | '${index}' == '${vms_number}' | ${vm_name}.Qemu Kill
+| | | Run Keyword If | '${index}' == '${vms_number}' | ${vm_name}.Qemu Kill All
 
 | Guest VM Teardown
 | | [Documentation]
@@ -2108,7 +2108,7 @@
 | | | ${index}= | Evaluate | ${index} + 1
 | | | Run Keyword | ${vm_name}.Qemu Set Node | ${dut_node}
 | | | Run Keyword | ${vm_name}.Qemu Clear Socks
-| | | Run Keyword If | '${index}' == '${vms_number}' | ${vm_name}.Qemu Kill
+| | | Run Keyword If | '${index}' == '${vms_number}' | ${vm_name}.Qemu Kill All
 
 | Lisp IPv4 forwarding initialized in a 3-node circular topology
 | | [Documentation] | Custom setup of IPv4 addresses on all DUT nodes and TG \
