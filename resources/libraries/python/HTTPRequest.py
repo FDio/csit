@@ -228,7 +228,7 @@ class HTTPRequest(object):
 
     @staticmethod
     @keyword(name="HTTP Get")
-    def get(node, path, headers=None, timeout=10, enable_logging=True):
+    def get(node, path, headers=None, timeout=15, enable_logging=True):
         """Sends a GET request and returns the response and status code.
 
         :param node: Honeycomb node.
@@ -254,7 +254,7 @@ class HTTPRequest(object):
 
     @staticmethod
     @keyword(name="HTTP Put")
-    def put(node, path, headers=None, payload=None, json=None, timeout=10):
+    def put(node, path, headers=None, payload=None, json=None, timeout=15):
         """Sends a PUT request and returns the response and status code.
 
         :param node: Honeycomb node.
@@ -280,7 +280,7 @@ class HTTPRequest(object):
 
     @staticmethod
     @keyword(name="HTTP Post")
-    def post(node, path, headers=None, payload=None, json=None, timeout=10,
+    def post(node, path, headers=None, payload=None, json=None, timeout=15,
              enable_logging=True):
         """Sends a POST request and returns the response and status code.
 
@@ -312,7 +312,7 @@ class HTTPRequest(object):
 
     @staticmethod
     @keyword(name="HTTP Delete")
-    def delete(node, path, timeout=10):
+    def delete(node, path, timeout=15):
         """Sends a DELETE request and returns the response and status code.
 
         :param node: Honeycomb node.
