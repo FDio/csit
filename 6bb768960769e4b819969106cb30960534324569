@@ -1,0 +1,1318 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a3291f1_7f5d9e14",
+        "filename": "NSH_SFC_VER",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-02T08:28:37Z",
+      "side": 1,
+      "message": "As this is quite old commit, update the versions.",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 2,
+        "endChar": 20
+      },
+      "revId": "6bb768960769e4b819969106cb30960534324569",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_5f9e62ba",
+        "filename": "nsh_sfc_tests/func/__init__.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-02T08:28:37Z",
+      "side": 1,
+      "message": "2017",
+      "range": {
+        "startLine": 1,
+        "startChar": 16,
+        "endLine": 1,
+        "endChar": 20
+      },
+      "revId": "6bb768960769e4b819969106cb30960534324569",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_3fa39602",
+        "filename": "nsh_sfc_tests/func/classifier/eth2p-ethip4-sfc-classifier-func.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-02T08:28:37Z",
+      "side": 1,
+      "message": "2017",
+      "range": {
+        "startLine": 1,
+        "startChar": 16,
+        "endLine": 1,
+        "endChar": 20
+      },
+      "revId": "6bb768960769e4b819969106cb30960534324569",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_bfae66e4",
+        "filename": "nsh_sfc_tests/func/classifier/eth2p-ethip4-sfc-classifier-func.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-02T08:28:37Z",
+      "side": 1,
+      "message": "Will you run these tests on HW? Or in virtual environment (VIRL)? Or both?",
+      "range": {
+        "startLine": 21,
+        "startChar": 15,
+        "endLine": 21,
+        "endChar": 21
+      },
+      "revId": "6bb768960769e4b819969106cb30960534324569",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_1f7b3a7c",
+        "filename": "nsh_sfc_tests/func/classifier/eth2p-ethip4-sfc-classifier-func.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-02T08:28:37Z",
+      "side": 1,
+      "message": "Check if it is possible to use common test setup and teardown defined in resources/libraries/robot/default.robot (\"Func Test Setup\" and \"Func Test Teardown\"), or create your own which will be used in all NSH SFC func tests.",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 33
+      },
+      "revId": "6bb768960769e4b819969106cb30960534324569",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_dfb13248",
+        "filename": "nsh_sfc_tests/func/classifier/eth2p-ethip4-sfc-classifier-func.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-02T08:28:37Z",
+      "side": 1,
+      "message": "Remove",
+      "range": {
+        "startLine": 40,
+        "startChar": 74,
+        "endLine": 40,
+        "endChar": 75
+      },
+      "revId": "6bb768960769e4b819969106cb30960534324569",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_1fa45a06",
+        "filename": "nsh_sfc_tests/func/classifier/eth2p-ethip4-sfc-classifier-func.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-02T08:28:37Z",
+      "side": 1,
+      "message": "Remove, it is defined in \"Force tags\" section.\nCheck everywhere.",
+      "range": {
+        "startLine": 48,
+        "startChar": 39,
+        "endLine": 48,
+        "endChar": 45
+      },
+      "revId": "6bb768960769e4b819969106cb30960534324569",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_df9812c2",
+        "filename": "nsh_sfc_tests/func/proxy/eth2p-ethip4-nsh-proxy-inbound-func.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-02T08:28:37Z",
+      "side": 1,
+      "message": "See my comments in  nsh_sfc_tests/func/classifier/eth2p-ethip4-sfc-classifier-func.robot",
+      "revId": "6bb768960769e4b819969106cb30960534324569",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_9f8e0a78",
+        "filename": "nsh_sfc_tests/func/proxy/eth2p-ethip4-nsh-proxy-inbound-func.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-02T08:28:37Z",
+      "side": 1,
+      "message": "2017",
+      "range": {
+        "startLine": 1,
+        "startChar": 16,
+        "endLine": 1,
+        "endChar": 20
+      },
+      "revId": "6bb768960769e4b819969106cb30960534324569",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_7f8b5e68",
+        "filename": "nsh_sfc_tests/func/proxy/eth2p-ethip4-nsh-proxy-inbound-func.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-02T08:28:37Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 36,
+        "startChar": 71,
+        "endLine": 36,
+        "endChar": 72
+      },
+      "revId": "6bb768960769e4b819969106cb30960534324569",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_5fec222a",
+        "filename": "nsh_sfc_tests/func/proxy/eth2p-ethip4-nsh-proxy-inbound-func.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-02T08:28:37Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 37,
+        "startChar": 62,
+        "endLine": 37,
+        "endChar": 63
+      },
+      "revId": "6bb768960769e4b819969106cb30960534324569",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_df97f246",
+        "filename": "nsh_sfc_tests/func/proxy/eth2p-ethip4-nsh-proxy-outbound-func.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-02T08:28:37Z",
+      "side": 1,
+      "message": "See my comments in nsh_sfc_tests/func/classifier/eth2p-ethip4-sfc-classifier-func.robot",
+      "revId": "6bb768960769e4b819969106cb30960534324569",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_bf942643",
+        "filename": "nsh_sfc_tests/func/proxy/eth2p-ethip4-nsh-proxy-outbound-func.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-02T08:28:37Z",
+      "side": 1,
+      "message": "2017",
+      "range": {
+        "startLine": 1,
+        "startChar": 16,
+        "endLine": 1,
+        "endChar": 20
+      },
+      "revId": "6bb768960769e4b819969106cb30960534324569",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_9f9dea68",
+        "filename": "nsh_sfc_tests/func/sff/eth2p-ethip4-sfc-sff-func.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-02T08:28:37Z",
+      "side": 1,
+      "message": "See my comments in nsh_sfc_tests/func/classifier/eth2p-ethip4-sfc-classifier-func.robot",
+      "revId": "6bb768960769e4b819969106cb30960534324569",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_7f9a3e6f",
+        "filename": "nsh_sfc_tests/func/sff/eth2p-ethip4-sfc-sff-func.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-02T08:28:37Z",
+      "side": 1,
+      "message": "2017",
+      "range": {
+        "startLine": 1,
+        "startChar": 16,
+        "endLine": 1,
+        "endChar": 20
+      },
+      "revId": "6bb768960769e4b819969106cb30960534324569",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_bf7b0627",
+        "filename": "nsh_sfc_tests/sfc_scripts/install_sfc.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 12,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-02T08:28:37Z",
+      "side": 1,
+      "message": "Use \"# \"\nCheck everywhere",
+      "range": {
+        "startLine": 12,
+        "startChar": 0,
+        "endLine": 12,
+        "endChar": 1
+      },
+      "revId": "6bb768960769e4b819969106cb30960534324569",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_7f711e43",
+        "filename": "nsh_sfc_tests/sfc_scripts/install_sfc.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-02T08:28:37Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 70,
+        "startChar": 66,
+        "endLine": 70,
+        "endChar": 67
+      },
+      "revId": "6bb768960769e4b819969106cb30960534324569",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_3f68361c",
+        "filename": "nsh_sfc_tests/sfc_scripts/set_nsh_proxy_inbound.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-02T08:28:37Z",
+      "side": 1,
+      "message": "Consider implementation using VAT commands and VATExecutor.",
+      "revId": "6bb768960769e4b819969106cb30960534324569",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_1f59fa8d",
+        "filename": "nsh_sfc_tests/sfc_scripts/set_nsh_proxy_outbound.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-02T08:28:37Z",
+      "side": 1,
+      "message": "Consider implementation using VAT commands and VATExecutor.",
+      "revId": "6bb768960769e4b819969106cb30960534324569",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_ff5d0e7a",
+        "filename": "nsh_sfc_tests/sfc_scripts/set_sfc_classifier.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-02T08:28:37Z",
+      "side": 1,
+      "message": "Consider implementation using VAT commands and VATExecutor.",
+      "revId": "6bb768960769e4b819969106cb30960534324569",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_df56d25b",
+        "filename": "nsh_sfc_tests/sfc_scripts/set_sfc_sff.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-02T08:28:37Z",
+      "side": 1,
+      "message": "Consider implementation using VAT commands and VATExecutor.",
+      "revId": "6bb768960769e4b819969106cb30960534324569",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_bf53066a",
+        "filename": "nsh_sfc_tests/sfc_scripts/start_tcpdump.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-02T08:28:37Z",
+      "side": 1,
+      "message": "Add copyright\nCheck everywhere",
+      "revId": "6bb768960769e4b819969106cb30960534324569",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_ff9cee5e",
+        "filename": "resources/libraries/python/SFC/SFCTest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-02T08:28:37Z",
+      "side": 1,
+      "message": "2017",
+      "range": {
+        "startLine": 1,
+        "startChar": 16,
+        "endLine": 1,
+        "endChar": 20
+      },
+      "revId": "6bb768960769e4b819969106cb30960534324569",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_dfa5b2a2",
+        "filename": "resources/libraries/python/SFC/SetupSFCTest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-02T08:28:37Z",
+      "side": 1,
+      "message": "2017",
+      "range": {
+        "startLine": 1,
+        "startChar": 16,
+        "endLine": 1,
+        "endChar": 20
+      },
+      "revId": "6bb768960769e4b819969106cb30960534324569",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_9fabaa74",
+        "filename": "resources/libraries/python/SFC/SetupSFCTest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-02T08:28:37Z",
+      "side": 1,
+      "message": "Too broad exception, use e.g. RuntimeErrror\nAdd to doc",
+      "range": {
+        "startLine": 53,
+        "startChar": 14,
+        "endLine": 53,
+        "endChar": 23
+      },
+      "revId": "6bb768960769e4b819969106cb30960534324569",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_7fa8fe76",
+        "filename": "resources/libraries/python/SFC/SetupSFCTest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-02T08:28:37Z",
+      "side": 1,
+      "message": "add to doc",
+      "range": {
+        "startLine": 55,
+        "startChar": 4,
+        "endLine": 55,
+        "endChar": 20
+      },
+      "revId": "6bb768960769e4b819969106cb30960534324569",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_5fb9c2ca",
+        "filename": "resources/libraries/python/SFC/SetupSFCTest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-02T08:28:37Z",
+      "side": 1,
+      "message": "E.g.: Node where the tarball is copied.\nCheck everywhere",
+      "range": {
+        "startLine": 62,
+        "startChar": 17,
+        "endLine": 62,
+        "endChar": 50
+      },
+      "revId": "6bb768960769e4b819969106cb30960534324569",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_3fbef6b4",
+        "filename": "resources/libraries/python/SFC/SetupSFCTest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-02T08:28:37Z",
+      "side": 1,
+      "message": "Too broad exception, use e.g. RuntimeErrror\nAdd to doc",
+      "range": {
+        "startLine": 95,
+        "startChar": 8,
+        "endLine": 95,
+        "endChar": 23
+      },
+      "revId": "6bb768960769e4b819969106cb30960534324569",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_1fafba7e",
+        "filename": "resources/libraries/python/SFC/SetupSFCTest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-02T08:28:37Z",
+      "side": 1,
+      "message": "Too broad exception, use e.g. RuntimeErrror\nAdd do doc",
+      "range": {
+        "startLine": 118,
+        "startChar": 8,
+        "endLine": 118,
+        "endChar": 23
+      },
+      "revId": "6bb768960769e4b819969106cb30960534324569",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_ffb3cee6",
+        "filename": "resources/libraries/python/SFC/SetupSFCTest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 147,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-02T08:28:37Z",
+      "side": 1,
+      "message": "Too broad exception, use e.g. RuntimeErrror\nAdd to doc",
+      "range": {
+        "startLine": 147,
+        "startChar": 8,
+        "endLine": 147,
+        "endChar": 23
+      },
+      "revId": "6bb768960769e4b819969106cb30960534324569",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_9fc28a32",
+        "filename": "resources/libraries/python/SFC/SetupSFCTest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-02T08:28:37Z",
+      "side": 1,
+      "message": "Remove",
+      "range": {
+        "startLine": 152,
+        "startChar": 0,
+        "endLine": 152,
+        "endChar": 29
+      },
+      "revId": "6bb768960769e4b819969106cb30960534324569",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_7fbfdeaa",
+        "filename": "resources/libraries/python/SFC/SetupSFCTest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 172,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-02T08:28:37Z",
+      "side": 1,
+      "message": "Too broad exception, be more specific",
+      "range": {
+        "startLine": 172,
+        "startChar": 4,
+        "endLine": 172,
+        "endChar": 20
+      },
+      "revId": "6bb768960769e4b819969106cb30960534324569",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_ffeaaeaa",
+        "filename": "resources/libraries/python/SFC/TunnelProtocol.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-02T08:28:37Z",
+      "side": 1,
+      "message": "2017",
+      "range": {
+        "startLine": 1,
+        "startChar": 16,
+        "endLine": 1,
+        "endChar": 20
+      },
+      "revId": "6bb768960769e4b819969106cb30960534324569",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_bfd0a6f6",
+        "filename": "resources/libraries/python/SFC/TunnelProtocol.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-02T08:28:37Z",
+      "side": 1,
+      "message": "Capital letter at the beginning, full stop at the end.\nCheck everywhere.",
+      "range": {
+        "startLine": 23,
+        "startChar": 7,
+        "endLine": 23,
+        "endChar": 55
+      },
+      "revId": "6bb768960769e4b819969106cb30960534324569",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_9fd96a24",
+        "filename": "resources/libraries/python/SFC/VerifyPacket.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-02T08:28:37Z",
+      "side": 1,
+      "message": "2017",
+      "range": {
+        "startLine": 2,
+        "startChar": 16,
+        "endLine": 2,
+        "endChar": 20
+      },
+      "revId": "6bb768960769e4b819969106cb30960534324569",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_3f0cb6a4",
+        "filename": "resources/libraries/python/SFC/VerifyPacket.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-02T08:28:37Z",
+      "side": 1,
+      "message": "There are no constants defined.",
+      "range": {
+        "startLine": 16,
+        "startChar": 48,
+        "endLine": 16,
+        "endChar": 57
+      },
+      "revId": "6bb768960769e4b819969106cb30960534324569",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_7fd6bef2",
+        "filename": "resources/libraries/python/SFC/VerifyPacket.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-02T08:28:37Z",
+      "side": 1,
+      "message": "defines",
+      "range": {
+        "startLine": 16,
+        "startChar": 12,
+        "endLine": 16,
+        "endChar": 18
+      },
+      "revId": "6bb768960769e4b819969106cb30960534324569",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_5f078282",
+        "filename": "resources/libraries/python/SFC/VerifyPacket.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-02T08:28:37Z",
+      "side": 1,
+      "message": "functions?",
+      "range": {
+        "startLine": 16,
+        "startChar": 30,
+        "endLine": 16,
+        "endChar": 38
+      },
+      "revId": "6bb768960769e4b819969106cb30960534324569",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_ff018e6a",
+        "filename": "resources/libraries/python/SFC/VerifyPacket.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-02T08:28:37Z",
+      "side": 1,
+      "message": "returns\ncheck everywhere",
+      "range": {
+        "startLine": 37,
+        "startChar": 5,
+        "endLine": 37,
+        "endChar": 11
+      },
+      "revId": "6bb768960769e4b819969106cb30960534324569",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_bff7868a",
+        "filename": "resources/libraries/python/SFC/VerifyPacket.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-02T08:28:37Z",
+      "side": 1,
+      "message": "There are no constants defined.",
+      "range": {
+        "startLine": 66,
+        "startChar": 4,
+        "endLine": 66,
+        "endChar": 52
+      },
+      "revId": "6bb768960769e4b819969106cb30960534324569",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_9ff04a92",
+        "filename": "resources/libraries/python/SFC/VerifyPacket.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-02T08:28:37Z",
+      "side": 1,
+      "message": "Capital letter at the beginning, full stop at the end.\nCheck everywhere.",
+      "range": {
+        "startLine": 72,
+        "startChar": 8,
+        "endLine": 72,
+        "endChar": 54
+      },
+      "revId": "6bb768960769e4b819969106cb30960534324569",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_7fed9eb6",
+        "filename": "resources/libraries/python/SFC/VerifyPacket.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-02T08:28:37Z",
+      "side": 1,
+      "message": "\"# get\"\nCheck everywhere",
+      "range": {
+        "startLine": 80,
+        "startChar": 8,
+        "endLine": 80,
+        "endChar": 13
+      },
+      "revId": "6bb768960769e4b819969106cb30960534324569",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_5f2e62fc",
+        "filename": "resources/libraries/python/SFC/VerifyPacket.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-02T08:28:37Z",
+      "side": 1,
+      "message": "no empty spaces",
+      "range": {
+        "startLine": 100,
+        "startChar": 8,
+        "endLine": 100,
+        "endChar": 30
+      },
+      "revId": "6bb768960769e4b819969106cb30960534324569",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_1f345a48",
+        "filename": "resources/libraries/python/SFC/VerifyPacket.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 191,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-02T08:28:37Z",
+      "side": 1,
+      "message": "Do not use hard coded constants if possible.",
+      "range": {
+        "startLine": 191,
+        "startChar": 43,
+        "endLine": 191,
+        "endChar": 49
+      },
+      "revId": "6bb768960769e4b819969106cb30960534324569",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_ff386e3e",
+        "filename": "resources/libraries/python/SFC/__init__.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-02T08:28:37Z",
+      "side": 1,
+      "message": "2017",
+      "range": {
+        "startLine": 1,
+        "startChar": 16,
+        "endLine": 1,
+        "endChar": 20
+      },
+      "revId": "6bb768960769e4b819969106cb30960534324569",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_bf3e6626",
+        "filename": "resources/libraries/python/SFC/constants.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-02T08:28:37Z",
+      "side": 1,
+      "message": "Is it needed?",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 1,
+        "endChar": 21
+      },
+      "revId": "6bb768960769e4b819969106cb30960534324569",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_9f472abc",
+        "filename": "resources/libraries/python/SFC/constants.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-02T08:28:37Z",
+      "side": 1,
+      "message": "2017",
+      "range": {
+        "startLine": 2,
+        "startChar": 16,
+        "endLine": 2,
+        "endChar": 20
+      },
+      "revId": "6bb768960769e4b819969106cb30960534324569",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_df4132aa",
+        "filename": "resources/libraries/python/SFC/constants.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-02T08:28:37Z",
+      "side": 1,
+      "message": "Capital letter",
+      "range": {
+        "startLine": 21,
+        "startChar": 4,
+        "endLine": 21,
+        "endChar": 10
+      },
+      "revId": "6bb768960769e4b819969106cb30960534324569",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_7f447eb6",
+        "filename": "resources/libraries/robot/nsh_sfc/default.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-02T08:28:37Z",
+      "side": 1,
+      "message": "2017",
+      "range": {
+        "startLine": 1,
+        "startChar": 16,
+        "endLine": 1,
+        "endChar": 20
+      },
+      "revId": "6bb768960769e4b819969106cb30960534324569",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_5f15429a",
+        "filename": "resources/libraries/robot/nsh_sfc/default.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-02T08:28:37Z",
+      "side": 1,
+      "message": "Add the description of arguments.\nAdd an example of the typical usage.\n\nCheck everywhere.",
+      "range": {
+        "startLine": 25,
+        "startChar": 4,
+        "endLine": 25,
+        "endChar": 19
+      },
+      "revId": "6bb768960769e4b819969106cb30960534324569",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_ff0f4e86",
+        "filename": "resources/traffic_scripts/send_tcp_for_classifier_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-02T08:28:37Z",
+      "side": 1,
+      "message": "2017",
+      "range": {
+        "startLine": 2,
+        "startChar": 16,
+        "endLine": 2,
+        "endChar": 20
+      },
+      "revId": "6bb768960769e4b819969106cb30960534324569",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_df2812e4",
+        "filename": "resources/traffic_scripts/send_tcp_for_classifier_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-02T08:28:37Z",
+      "side": 1,
+      "message": "move below and use e.g. \nfsize_no_fcs \u003d frame_size - 4 \npad_len \u003d max(0, fsize_no_fcs - len(pkt_raw)) \nthen add payload to packet",
+      "range": {
+        "startLine": 49,
+        "startChar": 4,
+        "endLine": 50,
+        "endChar": 28
+      },
+      "revId": "6bb768960769e4b819969106cb30960534324569",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_bf25460a",
+        "filename": "resources/traffic_scripts/send_tcp_for_classifier_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-02T08:28:37Z",
+      "side": 1,
+      "message": "add raise, add to doc string",
+      "range": {
+        "startLine": 62,
+        "startChar": 8,
+        "endLine": 62,
+        "endChar": 41
+      },
+      "revId": "6bb768960769e4b819969106cb30960534324569",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_7f1b5eca",
+        "filename": "resources/traffic_scripts/send_vxlan_for_proxy_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-02T08:28:37Z",
+      "side": 1,
+      "message": "See my notes in resources/traffic_scripts/send_tcp_for_classifier_test.py",
+      "revId": "6bb768960769e4b819969106cb30960534324569",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_5f7c22ec",
+        "filename": "resources/traffic_scripts/send_vxlan_for_proxy_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-02T08:28:37Z",
+      "side": 1,
+      "message": "2017",
+      "range": {
+        "startLine": 2,
+        "startChar": 16,
+        "endLine": 2,
+        "endChar": 20
+      },
+      "revId": "6bb768960769e4b819969106cb30960534324569",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_1f821ac8",
+        "filename": "resources/traffic_scripts/send_vxlangpe_nsh_for_proxy_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-02T08:28:37Z",
+      "side": 1,
+      "message": "See my notes in resources/traffic_scripts/send_tcp_for_classifier_test.py",
+      "revId": "6bb768960769e4b819969106cb30960534324569",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_ff862eda",
+        "filename": "resources/traffic_scripts/send_vxlangpe_nsh_for_proxy_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-02T08:28:37Z",
+      "side": 1,
+      "message": "2017",
+      "range": {
+        "startLine": 2,
+        "startChar": 16,
+        "endLine": 2,
+        "endChar": 20
+      },
+      "revId": "6bb768960769e4b819969106cb30960534324569",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_df6ff229",
+        "filename": "resources/traffic_scripts/send_vxlangpe_nsh_for_proxy_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 52,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-02T08:28:37Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 52,
+        "startChar": 37,
+        "endLine": 52,
+        "endChar": 38
+      },
+      "revId": "6bb768960769e4b819969106cb30960534324569",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_9f75eafb",
+        "filename": "resources/traffic_scripts/send_vxlangpe_nsh_for_sff_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-02T08:28:37Z",
+      "side": 1,
+      "message": "See my notes in resources/traffic_scripts/send_tcp_for_classifier_test.py",
+      "revId": "6bb768960769e4b819969106cb30960534324569",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_7f723e12",
+        "filename": "resources/traffic_scripts/send_vxlangpe_nsh_for_sff_test.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-02T08:28:37Z",
+      "side": 1,
+      "message": "2017",
+      "range": {
+        "startLine": 2,
+        "startChar": 16,
+        "endLine": 2,
+        "endChar": 20
+      },
+      "revId": "6bb768960769e4b819969106cb30960534324569",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
