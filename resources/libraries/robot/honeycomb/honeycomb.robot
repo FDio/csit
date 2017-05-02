@@ -37,7 +37,7 @@
 | | ...
 | | [Arguments] | @{duts}
 | | Start honeycomb on DUTs | @{duts}
-| | Wait until keyword succeeds | 4min | 20sec
+| | Wait until keyword succeeds | 4min | 16sec
 | | ... | Check honeycomb startup state | @{duts}
 
 | Stop honeycomb service on DUTs
@@ -59,7 +59,7 @@
 | | ...
 | | [Arguments] | @{duts}
 | | Stop honeycomb on DUTs | @{duts}
-| | Wait until keyword succeeds | 60sec | 10sec
+| | Wait until keyword succeeds | 60sec | 16sec
 | | ... | Check honeycomb shutdown state | @{duts}
 
 | Clear persisted Honeycomb configuration
@@ -103,7 +103,7 @@
 | | [Arguments] | ${node}
 | | Log | Performing clean restart of Honeycomb and VPP. | console=True
 | | Restart Honeycomb and VPP on DUTs | ${node}
-| | Wait until keyword succeeds | 4min | 20sec
+| | Wait until keyword succeeds | 4min | 16sec
 | | ... | Check honeycomb startup state | ${node}
 
 | Archive Honeycomb log file
@@ -126,9 +126,9 @@
 | Start ODL client on node
 | | [Arguments] | ${node}
 | | Start ODL client | ${node}
-| | Wait until keyword succeeds | 4min | 20sec
+| | Wait until keyword succeeds | 4min | 16sec
 | | ... | Mount Honeycomb on ODL | ${node}
-| | Wait until keyword succeeds | 2min | 10sec
+| | Wait until keyword succeeds | 2min | 16sec
 | | ... | Check ODL startup state | ${node}
-| | Wait until keyword succeeds | 2min | 10sec
+| | Wait until keyword succeeds | 2min | 16sec
 | | ... | Check honeycomb startup state | ${node}

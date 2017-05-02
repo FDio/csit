@@ -159,7 +159,7 @@ class HoneycombSetup(object):
         for node in nodes:
             if node['type'] == NodeType.DUT:
                 HoneycombSetup.print_ports(node)
-                status_code, _ = HTTPRequest.get(node, path, timeout=10,
+                status_code, _ = HTTPRequest.get(node, path,
                                                  enable_logging=False)
                 if status_code == HTTPCodes.OK:
                     logger.info("Honeycomb on node {0} is up and running".
@@ -201,7 +201,6 @@ class HoneycombSetup(object):
             if node['type'] == NodeType.DUT:
                 try:
                     status_code, _ = HTTPRequest.get(node, '/index.html',
-                                                     timeout=5,
                                                      enable_logging=False)
                     if status_code == HTTPCodes.OK:
                         raise HoneycombError('Honeycomb on node {0} is still '
@@ -249,6 +248,31 @@ class HoneycombSetup(object):
 
         argument = '"/{0}/c\\ {1}"'.format(find, replace)
         path = "{0}/config/honeycomb.json".format(Const.REMOTE_HC_DIR)
+        command = "sed -i {0} {1}".format(argument, path)
+
+        ssh = SSH()
+        ssh.connect(node)
+        (ret_code, _, stderr) = ssh.exec_command_sudo(command)
+        if ret_code != 0:
+            raise HoneycombError("Failed to modify configuration on "
+                                 "node {0}, {1}".format(node, stderr))
+
+    @staticmethod
+    def configure_jvpp_timeout(node, timeout=10):
+        """Configure timeout value for Java API commands Honeycomb sends to VPP.
+
+         :param node: Information about a DUT node.
+         :param timeout: Timeout value in seconds.
+         :type node: dict
+         :type timeout: int
+         :raises HoneycombError: If the configuration could not be changed.
+         """
+
+        find = "jvpp-request-timeout"
+        replace = '\\"jvpp-request-timeout\\": {0}'.format(timeout)
+
+        argument = '"/{0}/c\\ {1}"'.format(find, replace)
+        path = "{0}/config/jvpp.json".format(Const.REMOTE_HC_DIR)
         command = "sed -i {0} {1}".format(argument, path)
 
         ssh = SSH()
