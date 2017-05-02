@@ -28,11 +28,11 @@
 *** Keywords ***
 | Configure Honeycomb for testing
 | | [Arguments] | ${node}
-| | Copy Java Libraries | ${node}
 | | Configure Restconf binding address | ${node}
 | | Enable Module Features | ${node}
 | | Configure Log Level | ${node} | TRACE
 | | Configure Persistence | ${node} | disable
+| | Configure jVPP timeout | ${node} | ${15}
 | | Clear Persisted Honeycomb Configuration | ${node}
 | | Setup Honeycomb Service On DUTs | ${node}
 | | ${use_odl_client}= | Find ODL client on node | ${node}
