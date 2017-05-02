@@ -166,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "3a3291f1_bf40a634",
+        "filename": "TLDK-tests/func/ipv4/ipv4_assemble.robot",
+        "patchSetId": 10
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-02T06:49:32Z",
+      "side": 1,
+      "message": "You use 3-node topology, but only one DUT is configured for test (DUT1). But the traffic goes also via DUT2 as you use 3-node topology. How is DUT2 configured? L2XC, L2BD, IP forwarding, ... ?",
+      "parentUuid": "3a3291f1_249eed07",
+      "range": {
+        "startLine": 25,
+        "startChar": 42,
+        "endLine": 25,
+        "endChar": 58
+      },
+      "revId": "dbbfcec100e1bee2511ee08e67fbd5382d0e2f4f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a3291f1_78501c0b",
         "filename": "TLDK-tests/func/ipv4/ipv4_assemble.robot",
         "patchSetId": 10
@@ -201,6 +225,30 @@
       "side": 1,
       "message": "Would you list which tag in detail?",
       "parentUuid": "3a3291f1_78501c0b",
+      "range": {
+        "startLine": 33,
+        "startChar": 4,
+        "endLine": 33,
+        "endChar": 10
+      },
+      "revId": "dbbfcec100e1bee2511ee08e67fbd5382d0e2f4f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_ff718ea8",
+        "filename": "TLDK-tests/func/ipv4/ipv4_assemble.robot",
+        "patchSetId": 10
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-02T06:49:32Z",
+      "side": 1,
+      "message": "See docs/tag_documentation.rst for existing tags, if needed you can introduce also new ones. We usually use:\n- topology,\n- environment,\n- NIC,\n- test type,\n- feature,\n- encapsulation tags.\nYou can introduce e.g. \"TLDK\" tag for TLDK tests.",
+      "parentUuid": "3a3291f1_84536138",
       "range": {
         "startLine": 33,
         "startChar": 4,
