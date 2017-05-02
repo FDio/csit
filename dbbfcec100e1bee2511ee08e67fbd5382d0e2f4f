@@ -214,6 +214,30 @@
     },
     {
       "key": {
+        "uuid": "3a3291f1_3fcf162c",
+        "filename": "TLDK-tests/func/ipv4/ipv4_assemble.robot",
+        "patchSetId": 10
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-02T08:31:57Z",
+      "side": 1,
+      "message": "Thank you for explanation, can you add it also to doc, please?",
+      "parentUuid": "3a3291f1_7fb47e34",
+      "range": {
+        "startLine": 25,
+        "startChar": 42,
+        "endLine": 25,
+        "endChar": 58
+      },
+      "revId": "dbbfcec100e1bee2511ee08e67fbd5382d0e2f4f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a3291f1_78501c0b",
         "filename": "TLDK-tests/func/ipv4/ipv4_assemble.robot",
         "patchSetId": 10
