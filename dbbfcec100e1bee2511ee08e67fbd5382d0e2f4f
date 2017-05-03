@@ -1097,6 +1097,30 @@
     },
     {
       "key": {
+        "uuid": "3a3291f1_a09766eb",
+        "filename": "resources/libraries/python/TLDK/SetupTLDKTest.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-03T06:49:37Z",
+      "side": 1,
+      "message": "I mean, the imports should be in this order:\nimport os\nfrom shlex import split\nfrom subprocess import Popen, PIPE, call\nfrom multiprocessing import Pool\nfrom tempfile import NamedTemporaryFile\nfrom os.path import basename\n\nthen the others.\nIt is defined in PEP8.",
+      "parentUuid": "3a3291f1_e0d8ce1f",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 9
+      },
+      "revId": "dbbfcec100e1bee2511ee08e67fbd5382d0e2f4f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a3291f1_b5044d18",
         "filename": "resources/libraries/python/TLDK/SetupTLDKTest.py",
         "patchSetId": 10
@@ -1132,6 +1156,30 @@
       "side": 1,
       "message": "We\u0027d keep the same since we will import all classes",
       "parentUuid": "3a3291f1_b5044d18",
+      "range": {
+        "startLine": 32,
+        "startChar": 53,
+        "endLine": 32,
+        "endChar": 54
+      },
+      "revId": "dbbfcec100e1bee2511ee08e67fbd5382d0e2f4f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_00019a37",
+        "filename": "resources/libraries/python/TLDK/SetupTLDKTest.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-03T06:49:37Z",
+      "side": 1,
+      "message": "ack",
+      "parentUuid": "3a3291f1_00d07af4",
       "range": {
         "startLine": 32,
         "startChar": 53,
@@ -1273,6 +1321,30 @@
       "side": 1,
       "message": "is there any definition of the rule for the rtype, here nothing returned, so i think rtype is not needed",
       "parentUuid": "3a3291f1_95015108",
+      "range": {
+        "startLine": 78,
+        "startChar": 5,
+        "endLine": 78,
+        "endChar": 11
+      },
+      "revId": "dbbfcec100e1bee2511ee08e67fbd5382d0e2f4f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_20049648",
+        "filename": "resources/libraries/python/TLDK/SetupTLDKTest.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-03T06:49:37Z",
+      "side": 1,
+      "message": "I am sorry, my mistake. If a function returns nothing, rtype is not used.",
+      "parentUuid": "3a3291f1_00251a08",
       "range": {
         "startLine": 78,
         "startChar": 5,
