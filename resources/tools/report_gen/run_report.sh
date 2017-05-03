@@ -68,7 +68,7 @@ mkdir -p ${PLOT_TESTPMD_SOURCE_DIR}
 
 JEN_FILE_PERF='output_perf_data.xml'
 JEN_JOB='csit-vpp-perf-1704-all'
-JEN_BUILD=(6 7 8 9 10)
+JEN_BUILD=(6 7 8 9 10 12 14 15 16 17)
 
 for i in "${JEN_BUILD[@]}"; do
     curl --fail -fs ${JEN_URL}/${JEN_JOB}/${i}/artifact/${JEN_FILE_PERF} \
@@ -211,7 +211,7 @@ sed -i -e "s@###LINK###@${JEN_URL}\/${JEN_JOB}\/${JEN_BUILD[-1]}@g" \
 ### DPDK PERFORMANCE SOURCE DATA
 
 JEN_JOB='csit-dpdk-perf-1704-all'
-JEN_BUILD=(1 2 3 4 5)
+JEN_BUILD=(1 2 3 4 6 7 8 9 10 11)
 
 for i in "${JEN_BUILD[@]}"; do
     curl --fail -fs ${JEN_URL}/${JEN_JOB}/${i}/artifact/${JEN_FILE_PERF} \
@@ -238,7 +238,7 @@ sed -i -e "s@###LINK###@${JEN_URL}\/${JEN_JOB}\/${JEN_BUILD[-1]}@g" \
 ### FUNCTIONAL SOURCE DATA
 
 JEN_JOB='csit-vpp-functional-1704-ubuntu1604-virl'
-JEN_BUILD=71
+JEN_BUILD=81
 
 if [[ ${DEBUG} -eq 1 ]] ;
 then
