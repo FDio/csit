@@ -238,6 +238,54 @@
     },
     {
       "key": {
+        "uuid": "3a3291f1_60ae1e83",
+        "filename": "TLDK-tests/func/ipv4/ipv4_assemble.robot",
+        "patchSetId": 10
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 580
+      },
+      "writtenOn": "2017-05-03T05:46:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a3291f1_7fb47e34",
+      "range": {
+        "startLine": 25,
+        "startChar": 42,
+        "endLine": 25,
+        "endChar": 58
+      },
+      "revId": "dbbfcec100e1bee2511ee08e67fbd5382d0e2f4f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_40b322e9",
+        "filename": "TLDK-tests/func/ipv4/ipv4_assemble.robot",
+        "patchSetId": 10
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 580
+      },
+      "writtenOn": "2017-05-03T05:46:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a3291f1_3fcf162c",
+      "range": {
+        "startLine": 25,
+        "startChar": 42,
+        "endLine": 25,
+        "endChar": 58
+      },
+      "revId": "dbbfcec100e1bee2511ee08e67fbd5382d0e2f4f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a3291f1_78501c0b",
         "filename": "TLDK-tests/func/ipv4/ipv4_assemble.robot",
         "patchSetId": 10
@@ -1025,6 +1073,30 @@
     },
     {
       "key": {
+        "uuid": "3a3291f1_e0d8ce1f",
+        "filename": "resources/libraries/python/TLDK/SetupTLDKTest.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 580
+      },
+      "writtenOn": "2017-05-03T05:46:49Z",
+      "side": 1,
+      "message": "import os is ok",
+      "parentUuid": "3a3291f1_15168155",
+      "range": {
+        "startLine": 24,
+        "startChar": 0,
+        "endLine": 24,
+        "endChar": 9
+      },
+      "revId": "dbbfcec100e1bee2511ee08e67fbd5382d0e2f4f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a3291f1_b5044d18",
         "filename": "resources/libraries/python/TLDK/SetupTLDKTest.py",
         "patchSetId": 10
@@ -1036,6 +1108,30 @@
       "writtenOn": "2017-04-28T08:27:07Z",
       "side": 1,
       "message": "Is it necessary? Be more specific if possible.",
+      "range": {
+        "startLine": 32,
+        "startChar": 53,
+        "endLine": 32,
+        "endChar": 54
+      },
+      "revId": "dbbfcec100e1bee2511ee08e67fbd5382d0e2f4f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_00d07af4",
+        "filename": "resources/libraries/python/TLDK/SetupTLDKTest.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 580
+      },
+      "writtenOn": "2017-05-03T05:46:49Z",
+      "side": 1,
+      "message": "We\u0027d keep the same since we will import all classes",
+      "parentUuid": "3a3291f1_b5044d18",
       "range": {
         "startLine": 32,
         "startChar": 53,
@@ -1071,6 +1167,30 @@
     },
     {
       "key": {
+        "uuid": "3a3291f1_20cc9669",
+        "filename": "resources/libraries/python/TLDK/SetupTLDKTest.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 580
+      },
+      "writtenOn": "2017-05-03T05:46:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a3291f1_d50b5928",
+      "range": {
+        "startLine": 40,
+        "startChar": 4,
+        "endLine": 40,
+        "endChar": 47
+      },
+      "revId": "dbbfcec100e1bee2511ee08e67fbd5382d0e2f4f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a3291f1_f50e553a",
         "filename": "resources/libraries/python/TLDK/SetupTLDKTest.py",
         "patchSetId": 10
@@ -1094,6 +1214,30 @@
     },
     {
       "key": {
+        "uuid": "3a3291f1_00c99a58",
+        "filename": "resources/libraries/python/TLDK/SetupTLDKTest.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 580
+      },
+      "writtenOn": "2017-05-03T05:46:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a3291f1_f50e553a",
+      "range": {
+        "startLine": 66,
+        "startChar": 14,
+        "endLine": 66,
+        "endChar": 23
+      },
+      "revId": "dbbfcec100e1bee2511ee08e67fbd5382d0e2f4f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a3291f1_95015108",
         "filename": "resources/libraries/python/TLDK/SetupTLDKTest.py",
         "patchSetId": 10
@@ -1105,6 +1249,30 @@
       "writtenOn": "2017-04-28T08:27:07Z",
       "side": 1,
       "message": "returns\nadd rtype\nCheck everywhere",
+      "range": {
+        "startLine": 78,
+        "startChar": 5,
+        "endLine": 78,
+        "endChar": 11
+      },
+      "revId": "dbbfcec100e1bee2511ee08e67fbd5382d0e2f4f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_00251a08",
+        "filename": "resources/libraries/python/TLDK/SetupTLDKTest.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 78,
+      "author": {
+        "id": 580
+      },
+      "writtenOn": "2017-05-03T05:46:49Z",
+      "side": 1,
+      "message": "is there any definition of the rule for the rtype, here nothing returned, so i think rtype is not needed",
+      "parentUuid": "3a3291f1_95015108",
       "range": {
         "startLine": 78,
         "startChar": 5,
@@ -1234,6 +1402,30 @@
     },
     {
       "key": {
+        "uuid": "3a3291f1_a0df660c",
+        "filename": "resources/libraries/python/TLDK/SetupTLDKTest.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 130,
+      "author": {
+        "id": 580
+      },
+      "writtenOn": "2017-05-03T05:46:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a3291f1_f8152c40",
+      "range": {
+        "startLine": 130,
+        "startChar": 14,
+        "endLine": 130,
+        "endChar": 23
+      },
+      "revId": "dbbfcec100e1bee2511ee08e67fbd5382d0e2f4f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a3291f1_78293c89",
         "filename": "resources/libraries/python/TLDK/SetupTLDKTest.py",
         "patchSetId": 10
@@ -1281,6 +1473,30 @@
     },
     {
       "key": {
+        "uuid": "3a3291f1_80e46ae1",
+        "filename": "resources/libraries/python/TLDK/SetupTLDKTest.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 580
+      },
+      "writtenOn": "2017-05-03T05:46:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a3291f1_a4a89d20",
+      "range": {
+        "startLine": 135,
+        "startChar": 4,
+        "endLine": 136,
+        "endChar": 37
+      },
+      "revId": "dbbfcec100e1bee2511ee08e67fbd5382d0e2f4f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a3291f1_d8127056",
         "filename": "resources/libraries/python/TLDK/SetupTLDKTest.py",
         "patchSetId": 10
@@ -1292,6 +1508,30 @@
       "writtenOn": "2017-04-28T08:27:07Z",
       "side": 1,
       "message": "Too broad exception, use e.g. RuntimeError",
+      "range": {
+        "startLine": 153,
+        "startChar": 14,
+        "endLine": 153,
+        "endChar": 23
+      },
+      "revId": "dbbfcec100e1bee2511ee08e67fbd5382d0e2f4f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_60e5feda",
+        "filename": "resources/libraries/python/TLDK/SetupTLDKTest.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 153,
+      "author": {
+        "id": 580
+      },
+      "writtenOn": "2017-05-03T05:46:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a3291f1_d8127056",
       "range": {
         "startLine": 153,
         "startChar": 14,
@@ -1351,6 +1591,30 @@
     },
     {
       "key": {
+        "uuid": "3a3291f1_40ea02ad",
+        "filename": "resources/libraries/python/TLDK/SetupTLDKTest.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 580
+      },
+      "writtenOn": "2017-05-03T05:46:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a3291f1_84a5a148",
+      "range": {
+        "startLine": 157,
+        "startChar": 0,
+        "endLine": 157,
+        "endChar": 29
+      },
+      "revId": "dbbfcec100e1bee2511ee08e67fbd5382d0e2f4f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a3291f1_b81b2472",
         "filename": "resources/libraries/python/TLDK/SetupTLDKTest.py",
         "patchSetId": 10
@@ -1362,6 +1626,30 @@
       "writtenOn": "2017-04-28T08:27:07Z",
       "side": 1,
       "message": "Too broad exception, use e.g. RuntimeError",
+      "range": {
+        "startLine": 178,
+        "startChar": 11,
+        "endLine": 178,
+        "endChar": 20
+      },
+      "revId": "dbbfcec100e1bee2511ee08e67fbd5382d0e2f4f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_20d37605",
+        "filename": "resources/libraries/python/TLDK/SetupTLDKTest.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 178,
+      "author": {
+        "id": 580
+      },
+      "writtenOn": "2017-05-03T05:46:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a3291f1_b81b2472",
       "range": {
         "startLine": 178,
         "startChar": 11,
@@ -1996,6 +2284,30 @@
       "side": 1,
       "message": "will do later today",
       "parentUuid": "3a3291f1_1571e1df",
+      "range": {
+        "startLine": 16,
+        "startChar": 6,
+        "endLine": 16,
+        "endChar": 15
+      },
+      "revId": "dbbfcec100e1bee2511ee08e67fbd5382d0e2f4f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_c0d5d2e5",
+        "filename": "resources/libraries/python/TLDK/constants.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 580
+      },
+      "writtenOn": "2017-05-03T05:46:49Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a3291f1_641bd581",
       "range": {
         "startLine": 16,
         "startChar": 6,
