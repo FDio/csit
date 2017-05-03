@@ -65,3 +65,15 @@ CSIT |release| report contains following main sections and sub-sections:
    executions using CSIT Robot Framework output files as source data; *VPP
    Performance Results*, *Testpmd Performance Results*, *VPP Functional
    Results*, *HoneyComb Functional Results*, *VPPtest Functional Results*.
+
+#. **Test Configuration** - auto-generated DUT configuration data from CSIT jobs
+   executions using CSIT Robot Framework output files as source data; *VPP
+   Performance Test Configs*, *VPP Functional Test Configs*.
+
+#. **Test Operational Data** - auto-generated DUT operational data from CSIT jobs
+   executions using CSIT Robot Framework output files as source data; *VPP
+   Performance Test Configs*, *VPP Functional Test Configs*.
+
+#. **Test Operational Data** - auto-generated results from CSIT jobs
+   executions using CSIT Robot Framework output files as source data; *VPP
+   Performance Operational Data*.
