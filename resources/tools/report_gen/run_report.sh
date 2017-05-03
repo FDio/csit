@@ -471,7 +471,7 @@ else
 fi
 
 unzip -o ${STATIC_DIR_ARCH}/${JEN_JOB}-${JEN_BUILD}.zip -d ${WORKING_DIR}/
-python run_robot_data.py -i ${WORKING_DIR}/robot-plugin/csit/output.xml \
+python run_robot_data.py -i ${WORKING_DIR}/robot-plugin/output.xml \
     --output ${DTR_HONEYCOMB_SOURCE_DIR}/honeycomb_functional_results.rst \
     --formatting rst --start 3 --level 2
 sed -i -e "s@###JOB###@${JEN_JOB}\/${JEN_BUILD}@g" \
