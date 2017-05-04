@@ -81,6 +81,10 @@ Scaling TAGs
 
     2x1,000,000 entries in single fib table
 
+.. topic:: TNL_1000
+
+    IPSec in tunnel mode - 1000 tunnels.
+
 
 Tags marking functional vs. performance of tests
 ------------------------------------------------
