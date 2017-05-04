@@ -347,6 +347,10 @@ Encryption tags
 
     IPSec in tunnel mode.
 
+.. topic:: TNL_1000
+
+    IPSec in tunnel mode - 1000 tunnels.
+
 
 Client-workload tags
 --------------------
