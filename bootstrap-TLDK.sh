@@ -1,5 +1,5 @@
 #!/bin/bash
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2017 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -31,8 +31,8 @@ VIRL_SERVER_EXPECTED_STATUS="PRODUCTION"
 
 SSH_OPTIONS="-i ${VIRL_PKEY} -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o BatchMode=yes -o LogLevel=error"
 
-DPDK_VERSION=17.02
-DPDK_DIR=dpdk-${DPDK_VERSION}
+DPDK_VERSION=16.11.1
+DPDK_DIR=dpdk
 DPDK_PACKAGE=${DPDK_DIR}.tar.xz
 
 function ssh_do() {
@@ -107,31 +107,12 @@ do
     fi
 done
 
-# Temporarily download TLDK packages from nexus.fd.io
-SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-
-if [ "${#}" -ne "0" ]; then
-    arr=(${@})
-    echo ${arr[0]}
-else
-    ## we need to download the TLDK and DPDK test files to this local host, maybe use scp or wget
-    ## download DPDK source code from the fast.dpdk.org
-    ## download TLDK source code from the gerrit.fd.io
-    ## download some pcap file and .deb packages from the nexus.fd.io
-    wget -q "fast.dpdk.org/rel/${DPDK_PACKAGE}"
-    git clone https://gerrit.fd.io/r/tldk
-    wget -q "https://nexus.fd.io/tldk/test_ipv4_assemble_rx.pcap" -P ./TLDK-tests/tldk_testconfig
-    wget -q "https://nexus.fd.io/tldk/test_ipv4_checksum_rx.pcap" -P ./TLDK-tests/tldk_testconfig
-    wget -q "https://nexus.fd.io/tldk/test_ipv4_fragment_rx.pcap" -P ./TLDK-tests/tldk_testconfig
-    wget -q "https://nexus.fd.io/tldk/test_ipv6_checksum_rx.pcap" -P ./TLDK-tests/tldk_testconfig
-    wget -q "https://nexus.fd.io/tldk/test_ipv6_fragment_rx.pcap" -P ./TLDK-tests/tldk_testconfig
-fi
 
 #we will pack all the TLDK depend files and copy it to the VIRL_SERVER
 VIRL_DIR_LOC="/tmp"
 TLDK_TAR_FILE="tldk_depends.tar.gz"
 
-tar zcf ${TLDK_TAR_FILE} dpdk-17.02.tar.xz ./tldk/ \
+tar zcf ${TLDK_TAR_FILE} dpdk-${DPDK_VERSION}.tar.xz ./tldk/ \
     ./TLDK-tests/tldk_testconfig/ ./TLDK-tests/tldk_deplibs/
 
 cat ${VIRL_PKEY}
@@ -211,7 +192,5 @@ PYTHONPATH=`pwd` pybot -L TRACE -W 150 \
     -v TOPOLOGY_PATH:${SCRIPT_DIR}/topologies/enabled/topology.yaml \
     --suite "TLDK-tests.func" \
     --include vm_envAND3_node_single_link_topo \
-    --exclude PERFTEST \
-    --exclude SKIP_PATCH \
     --noncritical EXPECTED_FAILING \
     TLDK-tests/
