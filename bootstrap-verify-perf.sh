@@ -27,7 +27,7 @@ INSTALLATION_DIR="/tmp/install_dir"
 
 PYBOT_ARGS="-W 150 -L TRACE"
 
-ARCHIVE_ARTIFACTS=(log.html output.xml report.html output_perf_data.xml)
+ARCHIVE_ARTIFACTS=(log.html output.xml report.html output_perf_data.xml output_perf_json_data.xml)
 
 # If we run this script from CSIT jobs we want to use stable vpp version
 if [[ ${JOB_NAME} == csit-* ]] ;
@@ -325,6 +325,14 @@ python ${SCRIPT_DIR}/resources/tools/robot_output_parser.py \
        -v ${VPP_STABLE_VER}
 if [ ! $? -eq 0 ]; then
     echo "Parsing ${SCRIPT_DIR}/output.xml failed"
+fi
+
+python ${SCRIPT_DIR}/resources/tools/report_gen/run_robot_json_data.py \
+       --input ${SCRIPT_DIR}/output.xml \
+       --output ${SCRIPT_DIR}/output_perf_json_data.xml \
+       --vdevice ${VPP_STABLE_VER}
+if [ ! $? -eq 0 ]; then
+    echo "Generating JSON data for report from ${SCRIPT_DIR}/output.xml failed"
 fi
 
 # Archive artifacts
