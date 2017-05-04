@@ -81,6 +81,14 @@ Scaling TAGs
 
     2x1,000,000 entries in single fib table
 
+.. topic:: TNL_1000
+
+    IPSec in tunnel mode - 1000 tunnels.
+
+.. topic:: SCALE
+
+    Scale test cases.
+
 
 Tags marking functional vs. performance of tests
 ------------------------------------------------
@@ -178,10 +186,6 @@ Test type tags
 
     L2BD baseline test cases, no encapsulation, no feature(s) configured in
     tests.
-
-.. topic:: SCALE
-
-    Scale test cases.
 
 .. topic:: ENCAP
 
