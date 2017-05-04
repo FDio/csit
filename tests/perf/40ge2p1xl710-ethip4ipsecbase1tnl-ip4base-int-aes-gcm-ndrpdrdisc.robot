@@ -70,7 +70,7 @@
 | ${ipsec_overhead_gcm}= | ${54}
 
 *** Test Cases ***
-| tc01-64B-1t1c-ethip4ipsecscale1ip4-ip4base-interfaces-aes-gcm-ndrdisc
+| tc01-64B-1t1c-ethip4ipsecbase1tnl-ip4base-int-aes-gcm-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUTs run 1 IPsec tunnel AES GCM in each direction, configured\
 | | ... | with 1 thread, 1 phy core, 1 receive queue per NIC port.
@@ -103,7 +103,7 @@
 | | ... | ${binary_min} | ${binary_max} | 3-node-IPv4-dst-${n_tunnels}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
 
-| tc02-64B-1t1c-ethip4ipsecscale1ip4-ip4base-interfaces-aes-gcm-pdrdisc
+| tc02-64B-1t1c-ethip4ipsecbase1tnl-ip4base-int-aes-gcm-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUTs run 1 IPsec tunnel AES GCM in each direction, configured\
 | | ... | with 1 thread, 1 phy core, 1 receive queue per NIC port.
@@ -137,74 +137,7 @@
 | | ... | ${min_rate} | ${max_rate} | ${threshold} | ${perf_pdr_loss_acceptance}
 | | ... | ${perf_pdr_loss_acceptance_type}
 
-| tc03-64B-1t1c-ethip4ipsecscale1000ip4-ip4base-interfaces-aes-gcm-ndrdisc
-| | [Documentation]
-| | ... | [Cfg] DUTs run 1000 IPsec tunnels AES GCM in each direction,\
-| | ... | configured with 1 thread, 1 phy core, 1 receive queue per NIC port.
-| | ... | [Ver] Find NDR for 64 Byte frames\
-| | ... | using binary search start at 40GE linerate, step 100kpps.
-| | ...
-| | [Tags] | 64B | 1T1C | STHREAD | NDRDISC
-| | ...
-| | ${n_tunnels}= | Set Variable | ${1000}
-| | ${framesize}= | Set Variable | ${64}
-| | ${min_rate}= | Set Variable | ${10000}
-| | ${max_rate}= | Set Variable | ${s_18.75Mpps}
-| | ${binary_min}= | Set Variable | ${min_rate}
-| | ${binary_max}= | Set Variable | ${max_rate}
-| | ${threshold}= | Set Variable | ${min_rate}
-| | ${encr_alg}= | Crypto Alg AES GCM 128
-| | ${auth_alg}= | Integ Alg AES GCM 128
-| | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And IPsec Generate Keys | ${encr_alg} | ${auth_alg}
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
-| | And Add Cryptodev to all DUTs | ${1}
-| | And Apply startup configuration on all VPP DUTs
-| | And IPsec initialized in a 3-node circular topology
-| | And VPP IPsec Create Tunnel Interfaces
-| | ... | ${dut1} | ${dut2} | ${dut1_if2_ip4} | ${dut2_if1_ip4} | ${n_tunnels}
-| | ... | ${encr_alg} | ${encr_key} | ${auth_alg} | ${auth_key} | ${laddr_ip4}
-| | ... | ${raddr_ip4} | ${addr_range}
-| | Then Find NDR using binary search and pps | ${framesize}
-| | ... | ${binary_min} | ${binary_max} | 3-node-IPv4-dst-${n_tunnels}
-| | ... | ${min_rate} | ${max_rate} | ${threshold}
-
-| tc04-64B-1t1c-ethip4ipsecscale1000ip4-ip4base-interfaces-aes-gcm-pdrdisc
-| | [Documentation]
-| | ... | [Cfg] DUTs run 1000 IPsec tunnels AES GCM in each direction,\
-| | ... | configured with 1 thread, 1 phy core, 1 receive queue per NIC port.
-| | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 40GE\
-| | ... | linerate, step 100kpps and loss tolerance of 0.5%.
-| | ...
-| | [Tags] | 64B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
-| | ...
-| | ${n_tunnels}= | Set Variable | ${1000}
-| | ${framesize}= | Set Variable | ${64}
-| | ${min_rate}= | Set Variable | ${10000}
-| | ${max_rate}= | Set Variable | ${s_18.75Mpps}
-| | ${binary_min}= | Set Variable | ${min_rate}
-| | ${binary_max}= | Set Variable | ${max_rate}
-| | ${threshold}= | Set Variable | ${min_rate}
-| | ${encr_alg}= | Crypto Alg AES GCM 128
-| | ${auth_alg}= | Integ Alg AES GCM 128
-| | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And IPsec Generate Keys | ${encr_alg} | ${auth_alg}
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
-| | And Add Cryptodev to all DUTs | ${1}
-| | And Apply startup configuration on all VPP DUTs
-| | And IPsec initialized in a 3-node circular topology
-| | And VPP IPsec Create Tunnel Interfaces
-| | ... | ${dut1} | ${dut2} | ${dut1_if2_ip4} | ${dut2_if1_ip4} | ${n_tunnels}
-| | ... | ${encr_alg} | ${encr_key} | ${auth_alg} | ${auth_key} | ${laddr_ip4}
-| | ... | ${raddr_ip4} | ${addr_range}
-| | Then Find PDR using binary search and pps | ${framesize}
-| | ... | ${binary_min} | ${binary_max} | 3-node-IPv4-dst-${n_tunnels}
-| | ... | ${min_rate} | ${max_rate} | ${threshold} | ${perf_pdr_loss_acceptance}
-| | ... | ${perf_pdr_loss_acceptance_type}
-
-| tc05-1518B-1t1c-ethip4ipsecscale1ip4-ip4base-interfaces-aes-gcm-ndrdisc
+| tc03-1518B-1t1c-ethip4ipsecbase1tnl-ip4base-int-aes-gcm-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUTs run 1 IPsec tunnel AES GCM in each direction, configured\
 | | ... | with 1 thread, 1 phy core, 1 receive queue per NIC port.
@@ -237,7 +170,7 @@
 | | ... | ${binary_min} | ${binary_max} | 3-node-IPv4-dst-${n_tunnels}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
 
-| tc06-1518B-1t1c-ethip4ipsecscale1ip4-ip4base-interfaces-aes-gcm-pdrdisc
+| tc04-1518B-1t1c-ethip4ipsecbase1tnl-ip4base-int-aes-gcm-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUTs run 1 IPsec tunnel AES GCM in each direction, configured\
 | | ... | with 1 thread, 1 phy core, 1 receive queue per NIC port.
@@ -271,74 +204,7 @@
 | | ... | ${min_rate} | ${max_rate} | ${threshold} | ${perf_pdr_loss_acceptance}
 | | ... | ${perf_pdr_loss_acceptance_type}
 
-| tc07-1518B-1t1c-ethip4ipsecscale1000ip4-ip4base-interfaces-aes-gcm-ndrdisc
-| | [Documentation]
-| | ... | [Cfg] DUTs run 1000 IPsec tunnels AES GCM in each direction,\
-| | ... | configured with 1 thread, 1 phy core, 1 receive queue per NIC port.
-| | ... | [Ver] Find NDR for 1518 Byte frames\
-| | ... | using binary search start at 40GE linerate, step 100kpps.
-| | ...
-| | [Tags] | 1518B | 1T1C | STHREAD | NDRDISC
-| | ...
-| | ${n_tunnels}= | Set Variable | ${1000}
-| | ${framesize}= | Set Variable | ${1518}
-| | ${min_rate}= | Set Variable | ${10000}
-| | ${max_rate}= | Calculate pps | ${s_24.5G}
-| | ... | ${framesize + ${ipsec_overhead_gcm}}
-| | ${binary_min}= | Set Variable | ${min_rate}
-| | ${binary_max}= | Set Variable | ${max_rate}
-| | ${threshold}= | Set Variable | ${min_rate}
-| | ${encr_alg}= | Crypto Alg AES GCM 128
-| | ${auth_alg}= | Integ Alg AES GCM 128
-| | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And IPsec Generate Keys | ${encr_alg} | ${auth_alg}
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add Cryptodev to all DUTs | ${1}
-| | And Apply startup configuration on all VPP DUTs
-| | And IPsec initialized in a 3-node circular topology
-| | And VPP IPsec Create Tunnel Interfaces
-| | ... | ${dut1} | ${dut2} | ${dut1_if2_ip4} | ${dut2_if1_ip4} | ${n_tunnels}
-| | ... | ${encr_alg} | ${encr_key} | ${auth_alg} | ${auth_key} | ${laddr_ip4}
-| | ... | ${raddr_ip4} | ${addr_range}
-| | Then Find NDR using binary search and pps | ${framesize}
-| | ... | ${binary_min} | ${binary_max} | 3-node-IPv4-dst-${n_tunnels}
-| | ... | ${min_rate} | ${max_rate} | ${threshold}
-
-| tc08-1518B-1t1c-ethip4ipsecscale1000ip4-ip4base-interfaces-aes-gcm-pdrdisc
-| | [Documentation]
-| | ... | [Cfg] DUTs run 1000 IPsec tunnel AES GCM in each direction,\
-| | ... | configured with 1 thread, 1 phy core, 1 receive queue per NIC port.
-| | ... | [Ver] Find PDR for 1518 Byte frames using binary search start at 40GE\
-| | ... | linerate, step 100kpps and loss tolerance of 0.5%.
-| | ...
-| | [Tags] | 1518B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
-| | ...
-| | ${n_tunnels}= | Set Variable | ${1000}
-| | ${framesize}= | Set Variable | ${1518}
-| | ${min_rate}= | Set Variable | ${10000}
-| | ${max_rate}= | Calculate pps | ${s_24.5G}
-| | ... | ${framesize + ${ipsec_overhead_gcm}}
-| | ${binary_min}= | Set Variable | ${min_rate}
-| | ${binary_max}= | Set Variable | ${max_rate}
-| | ${threshold}= | Set Variable | ${min_rate}
-| | ${encr_alg}= | Crypto Alg AES GCM 128
-| | ${auth_alg}= | Integ Alg AES GCM 128
-| | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And IPsec Generate Keys | ${encr_alg} | ${auth_alg}
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add Cryptodev to all DUTs | ${1}
-| | And Apply startup configuration on all VPP DUTs
-| | And IPsec initialized in a 3-node circular topology
-| | And VPP IPsec Create Tunnel Interfaces
-| | ... | ${dut1} | ${dut2} | ${dut1_if2_ip4} | ${dut2_if1_ip4} | ${n_tunnels}
-| | ... | ${encr_alg} | ${encr_key} | ${auth_alg} | ${auth_key} | ${laddr_ip4}
-| | ... | ${raddr_ip4} | ${addr_range}
-| | Then Find PDR using binary search and pps | ${framesize}
-| | ... | ${binary_min} | ${binary_max} | 3-node-IPv4-dst-${n_tunnels}
-| | ... | ${min_rate} | ${max_rate} | ${threshold} | ${perf_pdr_loss_acceptance}
-| | ... | ${perf_pdr_loss_acceptance_type}
-
-| tc09-IMIX-1t1c-ethip4ipsecscale1ip4-ip4base-interfaces-aes-gcm-ndrdisc
+| tc05-IMIX-1t1c-ethip4ipsecbase1tnl-ip4base-int-aes-gcm-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUTs run 1 IPsec tunnel AES GCM in each direction, configured\
 | | ... | with 1 thread, 1 phy core, 1 receive queue per NIC port.
@@ -373,7 +239,7 @@
 | | ... | ${binary_min} | ${binary_max} | 3-node-IPv4-dst-${n_tunnels}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
 
-| tc10-IMIX-1t1c-ethip4ipsecscale1ip4-ip4base-interfaces-aes-gcm-pdrdisc
+| tc06-IMIX-1t1c-ethip4ipsecbase1tnl-ip4base-int-aes-gcm-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUTs run 1 IPsec tunnel AES GCM in each direction, configured\
 | | ... | with 1 thread, 1 phy core, 1 receive queue per NIC port.
@@ -409,78 +275,7 @@
 | | ... | ${min_rate} | ${max_rate} | ${threshold} | ${perf_pdr_loss_acceptance}
 | | ... | ${perf_pdr_loss_acceptance_type}
 
-| tc11-IMIX-1t1c-ethip4ipsecscale1000ip4-ip4base-interfaces-aes-gcm-ndrdisc
-| | [Documentation]
-| | ... | [Cfg] DUTs run 1000 IPsec tunnels AES GCM in each direction,\
-| | ... | configured with 1 thread, 1 phy core, 1 receive queue per NIC port.
-| | ... | [Ver] Find NDR for IMIX_v4_1 frames\
-| | ... | using binary search start at 40GE linerate, step 100kpps.
-| | ... | IMIX_v4_1 = (28x64B; 16x570B; 4x1518B)
-| | ...
-| | [Tags] | IMIX | 1T1C | STHREAD | NDRDISC
-| | ...
-| | ${n_tunnels}= | Set Variable | ${1000}
-| | ${framesize}= | Set Variable | IMIX_v4_1
-| | ${imix_size}= | Get Frame Size | ${framesize}
-| | ${min_rate}= | Set Variable | ${10000}
-| | ${max_rate}= | Calculate pps | ${s_24.5G}
-| | ... | ${imix_size} + ${ipsec_overhead_gcm}
-| | ${binary_min}= | Set Variable | ${min_rate}
-| | ${binary_max}= | Set Variable | ${max_rate}
-| | ${threshold}= | Set Variable | ${min_rate}
-| | ${encr_alg}= | Crypto Alg AES GCM 128
-| | ${auth_alg}= | Integ Alg AES GCM 128
-| | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And IPsec Generate Keys | ${encr_alg} | ${auth_alg}
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add Cryptodev to all DUTs | ${1}
-| | And Apply startup configuration on all VPP DUTs
-| | And IPsec initialized in a 3-node circular topology
-| | And VPP IPsec Create Tunnel Interfaces
-| | ... | ${dut1} | ${dut2} | ${dut1_if2_ip4} | ${dut2_if1_ip4} | ${n_tunnels}
-| | ... | ${encr_alg} | ${encr_key} | ${auth_alg} | ${auth_key} | ${laddr_ip4}
-| | ... | ${raddr_ip4} | ${addr_range}
-| | Then Find NDR using binary search and pps | ${framesize}
-| | ... | ${binary_min} | ${binary_max} | 3-node-IPv4-dst-${n_tunnels}
-| | ... | ${min_rate} | ${max_rate} | ${threshold}
-
-| tc12-IMIX-1t1c-ethip4ipsecscale1000ip4-ip4base-interfaces-aes-gcm-pdrdisc
-| | [Documentation]
-| | ... | [Cfg] DUTs run 1000 IPsec tunnels AES GCM in each direction,\
-| | ... | configured with 1 thread, 1 phy core, 1 receive queue per NIC port.
-| | ... | [Ver] Find PDR for IMIX_v4_1 frames using binary search start at 40GE\
-| | ... | linerate, step 100kpps and loss tolerance of 0.5%.
-| | ... | IMIX_v4_1 = (28x64B; 16x570B; 4x1518B)
-| | ...
-| | [Tags] | IMIX | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
-| | ...
-| | ${n_tunnels}= | Set Variable | ${1000}
-| | ${framesize}= | Set Variable | IMIX_v4_1
-| | ${imix_size}= | Get Frame Size | ${framesize}
-| | ${min_rate}= | Set Variable | ${10000}
-| | ${max_rate}= | Calculate pps | ${s_24.5G}
-| | ... | ${imix_size} + ${ipsec_overhead_gcm}
-| | ${binary_min}= | Set Variable | ${min_rate}
-| | ${binary_max}= | Set Variable | ${max_rate}
-| | ${threshold}= | Set Variable | ${min_rate}
-| | ${encr_alg}= | Crypto Alg AES GCM 128
-| | ${auth_alg}= | Integ Alg AES GCM 128
-| | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And IPsec Generate Keys | ${encr_alg} | ${auth_alg}
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add Cryptodev to all DUTs | ${1}
-| | And Apply startup configuration on all VPP DUTs
-| | And IPsec initialized in a 3-node circular topology
-| | And VPP IPsec Create Tunnel Interfaces
-| | ... | ${dut1} | ${dut2} | ${dut1_if2_ip4} | ${dut2_if1_ip4} | ${n_tunnels}
-| | ... | ${encr_alg} | ${encr_key} | ${auth_alg} | ${auth_key} | ${laddr_ip4}
-| | ... | ${raddr_ip4} | ${addr_range}
-| | Then Find PDR using binary search and pps | ${framesize}
-| | ... | ${binary_min} | ${binary_max} | 3-node-IPv4-dst-${n_tunnels}
-| | ... | ${min_rate} | ${max_rate} | ${threshold} | ${perf_pdr_loss_acceptance}
-| | ... | ${perf_pdr_loss_acceptance_type}
-
-| tc13-64B-2t2c-ethip4ipsecscale1ip4-ip4base-interfaces-aes-gcm-ndrdisc
+| tc07-64B-2t2c-ethip4ipsecbase1tnl-ip4base-int-aes-gcm-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUTs run 1 IPsec tunnel AES GCM in each direction, configured\
 | | ... | with 2 thread, 2 phy core, 1 receive queue per NIC port.
@@ -513,7 +308,7 @@
 | | ... | ${binary_min} | ${binary_max} | 3-node-IPv4-dst-${n_tunnels}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
 
-| tc14-64B-2t2c-ethip4ipsecscale1ip4-ip4base-interfaces-aes-gcm-pdrdisc
+| tc08-64B-2t2c-ethip4ipsecbase1tnl-ip4base-int-aes-gcm-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUTs run 1 IPsec tunnel AES GCM in each direction, configured\
 | | ... | with 2 thread, 2 phy core, 1 receive queue per NIC port.
@@ -523,73 +318,6 @@
 | | [Tags] | 64B | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
 | | ...
 | | ${n_tunnels}= | Set Variable | ${1}
-| | ${framesize}= | Set Variable | ${64}
-| | ${min_rate}= | Set Variable | ${10000}
-| | ${max_rate}= | Set Variable | ${s_18.75Mpps}
-| | ${binary_min}= | Set Variable | ${min_rate}
-| | ${binary_max}= | Set Variable | ${max_rate}
-| | ${threshold}= | Set Variable | ${min_rate}
-| | ${encr_alg}= | Crypto Alg AES GCM 128
-| | ${auth_alg}= | Integ Alg AES GCM 128
-| | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
-| | And IPsec Generate Keys | ${encr_alg} | ${auth_alg}
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
-| | And Add Cryptodev to all DUTs | ${2}
-| | And Apply startup configuration on all VPP DUTs
-| | And IPsec initialized in a 3-node circular topology
-| | And VPP IPsec Create Tunnel Interfaces
-| | ... | ${dut1} | ${dut2} | ${dut1_if2_ip4} | ${dut2_if1_ip4} | ${n_tunnels}
-| | ... | ${encr_alg} | ${encr_key} | ${auth_alg} | ${auth_key} | ${laddr_ip4}
-| | ... | ${raddr_ip4} | ${addr_range}
-| | Then Find PDR using binary search and pps | ${framesize}
-| | ... | ${binary_min} | ${binary_max} | 3-node-IPv4-dst-${n_tunnels}
-| | ... | ${min_rate} | ${max_rate} | ${threshold} | ${perf_pdr_loss_acceptance}
-| | ... | ${perf_pdr_loss_acceptance_type}
-
-| tc15-64B-2t2c-ethip4ipsecscale1000ip4-ip4base-interfaces-aes-gcm-ndrdisc
-| | [Documentation]
-| | ... | [Cfg] DUTs run 1000 IPsec tunnels AES GCM in each direction,\
-| | ... | configured with 2 thread, 2 phy core, 1 receive queue per NIC port.
-| | ... | [Ver] Find NDR for 64 Byte frames\
-| | ... | using binary search start at 40GE linerate, step 100kpps.
-| | ...
-| | [Tags] | 64B | 2T2C | MTHREAD | NDRDISC
-| | ...
-| | ${n_tunnels}= | Set Variable | ${1000}
-| | ${framesize}= | Set Variable | ${64}
-| | ${min_rate}= | Set Variable | ${10000}
-| | ${max_rate}= | Set Variable | ${s_18.75Mpps}
-| | ${binary_min}= | Set Variable | ${min_rate}
-| | ${binary_max}= | Set Variable | ${max_rate}
-| | ${threshold}= | Set Variable | ${min_rate}
-| | ${encr_alg}= | Crypto Alg AES GCM 128
-| | ${auth_alg}= | Integ Alg AES GCM 128
-| | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
-| | And IPsec Generate Keys | ${encr_alg} | ${auth_alg}
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
-| | And Add Cryptodev to all DUTs | ${2}
-| | And Apply startup configuration on all VPP DUTs
-| | And IPsec initialized in a 3-node circular topology
-| | And VPP IPsec Create Tunnel Interfaces
-| | ... | ${dut1} | ${dut2} | ${dut1_if2_ip4} | ${dut2_if1_ip4} | ${n_tunnels}
-| | ... | ${encr_alg} | ${encr_key} | ${auth_alg} | ${auth_key} | ${laddr_ip4}
-| | ... | ${raddr_ip4} | ${addr_range}
-| | Then Find NDR using binary search and pps | ${framesize}
-| | ... | ${binary_min} | ${binary_max} | 3-node-IPv4-dst-${n_tunnels}
-| | ... | ${min_rate} | ${max_rate} | ${threshold}
-
-| tc16-64B-2t2c-ethip4ipsecscale1000ip4-ip4base-interfaces-aes-gcm-pdrdisc
-| | [Documentation]
-| | ... | [Cfg] DUTs run 1000 IPsec tunnels AES GCM in each direction,\
-| | ... | configured with 2 thread, 2 phy core, 1 receive queue per NIC port.
-| | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 40GE\
-| | ... | linerate, step 100kpps and loss tolerance of 0.5%.
-| | ...
-| | [Tags] | 64B | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
-| | ...
-| | ${n_tunnels}= | Set Variable | ${1000}
 | | ${framesize}= | Set Variable | ${64}
 | | ${min_rate}= | Set Variable | ${10000}
 | | ${max_rate}= | Set Variable | ${s_18.75Mpps}
