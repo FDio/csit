@@ -81,6 +81,26 @@ Scaling TAGs
 
     2x1,000,000 entries in single fib table
 
+.. topic:: SRC_USER_10
+
+    Traffic flow with 10 unique IPs (users) in one direction.
+
+.. topic:: SRC_USER_100
+
+    Traffic flow with 100 unique IPs (users) in one direction.
+
+.. topic:: SRC_USER_1000
+
+    Traffic flow with 1000 unique IPs (users) in one direction.
+
+.. topic:: SRC_USER_2000
+
+    Traffic flow with 2000 unique IPs (users) in one direction.
+
+.. topic:: SRC_USER_4000
+
+    Traffic flow with 4000 unique IPs (users) in one direction.
+
 
 Tags marking functional vs. performance of tests
 ------------------------------------------------
