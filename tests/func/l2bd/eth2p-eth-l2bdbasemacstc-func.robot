@@ -17,7 +17,7 @@
 | Resource | resources/libraries/robot/testing_path.robot
 | Resource | resources/libraries/robot/qemu.robot
 | Library  | resources.libraries.python.Trace
-| Force Tags | HW_ENV | VM_ENV
+| Force Tags | HW_ENV | VM_ENV | SKIP_VPP_PATCH
 | Test Setup | Func Test Setup
 | Test Teardown | Func Test Teardown
 | Documentation | *L2 bridge-domain test cases*

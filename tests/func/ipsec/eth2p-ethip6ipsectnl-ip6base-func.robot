@@ -15,7 +15,7 @@
 | Resource | resources/libraries/robot/ipsec.robot
 | Library | resources.libraries.python.Trace
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | 3_NODE_DOUBLE_LINK_TOPO
-| ...        | VM_ENV | HW_ENV
+| ...        | VM_ENV | HW_ENV | SKIP_VPP_PATCH
 | Test Setup | Run Keywords | Func Test Setup
 | ...        | AND          | Setup Topology for IPv6 IPsec testing
 | Test Teardown | Run Keywords | VPP IPsec Show | ${dut_node}
