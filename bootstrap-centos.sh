@@ -33,8 +33,10 @@ VIRL_RELEASE=$(cat ${SCRIPT_DIR}/VIRL_RELEASE_CENTOS)
 
 SSH_OPTIONS="-i ${VIRL_PKEY} -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o BatchMode=yes -o LogLevel=error"
 
-TEST_GROUPS=("l2bd,dhcp,gre,honeycomb,l2xc,lisp,softwire" "cop,telemetry,ipsec,ipv6,rpf,tap,vrf" "fds,iacl,ipv4,policer,vlan,vxlan,vhost")
+TEST_GROUPS=("gre,ipv6,lisp,policer,rpf,softwire" "dhcp,ipsec,l2bd,l2xc,telemetry,vrf,vxlan" "cop,fds,honeycomb,iacl,ipv4,tap,vhost,vlan")
 SUITE_PATH="tests.func"
+#SKIP_PATCH="SKIP_PATCH"
+SKIP_PATCH="skip_patchORskip_vpp_patch"
 
 # Create tmp dir
 mkdir ${SCRIPT_DIR}/tmp
@@ -129,6 +131,7 @@ VPP_CLASSIFIER=""
 if [ "${#}" -ne "0" ]; then
     arr=(${@})
     echo ${arr[0]}
+    SKIP_PATCH="skip_patchORskip_vpp_patch"
 else
     rm -f *.rpm
     VPP_STABLE_VER=$(cat ${SCRIPT_DIR}/VPP_STABLE_VER_CENTOS)
@@ -259,7 +262,7 @@ function run_test_set() {
         --include vm_envAND3_node_single_link_topo \
         --include vm_envAND3_node_double_link_topo \
         --exclude PERFTEST \
-        --exclude SKIP_PATCH \
+        --exclude ${SKIP_PATCH} \
         --noncritical EXPECTED_FAILING \
         --output ${LOG_PATH}/log_test_set_run${nr} \
         tests/"
@@ -270,7 +273,7 @@ function run_test_set() {
         --include vm_envAND3_node_single_link_topo \
         --include vm_envAND3_node_double_link_topo \
         --exclude PERFTEST \
-        --exclude SKIP_PATCH \
+        --exclude ${SKIP_PATCH} \
         --noncritical EXPECTED_FAILING \
         --output ${LOG_PATH}/log_test_set_run${nr} \
         tests/

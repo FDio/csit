@@ -35,7 +35,7 @@
 | Resource | resources/libraries/robot/bridge_domain.robot
 # Import configuration and test data:
 | Variables | resources/test_data/lisp/ipv4_lispgpe_ipv6/ipv4_lispgpe_ipsec_ipv6.py
-| Force Tags | 3_NODE_SINGLE_LINK_TOPO | VM_ENV | LISP
+| Force Tags | 3_NODE_SINGLE_LINK_TOPO | VM_ENV | LISP | SKIP_VPP_PATCH
 | ...
 | Test Setup | Func Test Setup
 | Test Teardown | Func Test Teardown
