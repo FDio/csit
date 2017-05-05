@@ -20,7 +20,7 @@
 | Resource | resources/libraries/robot/l2_traffic.robot
 | Library | resources.libraries.python.Classify.Classify
 | Library | resources.libraries.python.Trace
-| Force Tags | HW_ENV | VM_ENV | 3_NODE_SINGLE_LINK_TOPO
+| Force Tags | HW_ENV | VM_ENV | 3_NODE_SINGLE_LINK_TOPO | SKIP_VPP_PATCH
 | Test Setup | Func Test Setup
 | Test Teardown | Func Test Teardown
 | Documentation | *Ingress ACL test cases*

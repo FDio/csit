@@ -18,7 +18,7 @@
 | Resource | resources/libraries/robot/qemu.robot
 | Resource | resources/libraries/robot/vxlan.robot
 | Library  | resources.libraries.python.Trace
-| Force Tags | HW_ENV | VM_ENV | 2_NODE_DOUBLE_LINK_TOPO | VPP_VM_ENV
+| Force Tags | HW_ENV | VM_ENV | 3_NODE_DOUBLE_LINK_TOPO | VPP_VM_ENV
 | Test Setup | Func Test Setup
 | Test Teardown | Run Keywords
 | ... | resources.libraries.python.QemuUtils.Qemu Kill All | ${dut_node} | AND
