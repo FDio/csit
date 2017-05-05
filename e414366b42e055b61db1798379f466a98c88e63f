@@ -1,0 +1,90 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a3291f1_c9297d9c",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-05T06:27:48Z",
+      "side": 1,
+      "message": "CSIT-573: Split SNAT scale tests to multiple files",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 46
+      },
+      "revId": "e414366b42e055b61db1798379f466a98c88e63f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_f41acc6d",
+        "filename": "tests/perf/10ge2p1x520-ethip4-ip4scale-snat-1000u-15p-ndrpdrdisc.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-05T06:27:48Z",
+      "side": 1,
+      "message": "change the file name to *snat1000u15p*\nCheck everywhere",
+      "revId": "e414366b42e055b61db1798379f466a98c88e63f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_b428c486",
+        "filename": "tests/perf/10ge2p1x520-ethip4-ip4scale-snat-100u-15p-ndrpdrdisc.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-05T06:27:48Z",
+      "side": 1,
+      "message": "remove empty line\ncheck everywhere",
+      "range": {
+        "startLine": 66,
+        "startChar": 0,
+        "endLine": 66,
+        "endChar": 18
+      },
+      "revId": "e414366b42e055b61db1798379f466a98c88e63f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_942dc897",
+        "filename": "tests/perf/10ge2p1x520-ethip4-ip4scale-snat-4000u-15p-ndrpdrdisc.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-05T06:27:48Z",
+      "side": 1,
+      "message": "One empty line at the end is enough\ncheck everywhere",
+      "range": {
+        "startLine": 127,
+        "startChar": 0,
+        "endLine": 127,
+        "endChar": 0
+      },
+      "revId": "e414366b42e055b61db1798379f466a98c88e63f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
