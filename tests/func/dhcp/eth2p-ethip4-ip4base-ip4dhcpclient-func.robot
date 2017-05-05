@@ -31,7 +31,7 @@
 | ${lease_time}= | ${15}
 
 *** Test Cases ***
-| VPP sends a DHCP DISCOVER
+| TC01: VPP sends a DHCP DISCOVER
 | | [Documentation] | Configure DHCPv4 client on interface to TG without
 | | ...             | hostname and check if DHCPv4 DISCOVER message contains all
 | | ...             | required fields with expected values.
@@ -43,7 +43,7 @@
 | | Then  Check DHCP DISCOVER header | ${tg_node}
 | |       ... | ${tg_to_dut_if1} | ${dut_to_tg_if1_mac}
 
-| VPP sends a DHCPv4 DISCOVER with hostname
+| TC02: VPP sends a DHCPv4 DISCOVER with hostname
 | | [Documentation] | Configure DHCPv4 client on interface to TG with hostname
 | | ...             | and check if DHCPv4 DISCOVER message contains all required
 | | ...             | fields with expected values.
@@ -56,7 +56,7 @@
 | | Then  Check DHCP DISCOVER header | ${tg_node}
 | |       ... | ${tg_to_dut_if1} | ${dut_to_tg_if1_mac} | ${client_hostname}
 
-| VPP sends DHCPv4 REQUEST after OFFER
+| TC03: VPP sends DHCPv4 REQUEST after OFFER
 | | [Documentation] | Configure DHCPv4 client on interface to TG and check if
 | | ...             | DHCPv4 REQUEST message contains all required fields.
 | | ...
@@ -70,7 +70,7 @@
 | |       ... | ${tg_to_dut_if1_mac} | ${server_ip}
 | |       ... | ${dut_to_tg_if1_mac} | ${client_ip} | ${client_mask}
 
-| VPP doesn't send DHCPv4 REQUEST after OFFER with wrong XID
+| TC04: VPP doesn't send DHCPv4 REQUEST after OFFER with wrong XID
 | | [ Tags ] | EXPECTED_FAILING
 | | [Documentation] | Configure DHCPv4 client on interface to TG. If server
 | | ...             | sends DHCPv4 OFFER with different XID as in DHCPv4
@@ -88,7 +88,7 @@
 | |       ... | ${dut_to_tg_if1_mac} | ${client_ip} | ${client_mask}
 | |       ... | offer_xid=${own_xid}
 
-| VPP honors DHCPv4 lease time
+| TC05: VPP honors DHCPv4 lease time
 | | [Documentation] | Send IP configuration to the VPP client via DHCPv4.
 | | ...             | Address is checked with ICMP echo request and there should
 | | ...             | be no reply for echo request when lease has expired.

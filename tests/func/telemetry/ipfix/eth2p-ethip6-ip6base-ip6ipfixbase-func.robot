@@ -157,6 +157,7 @@
 | | ... | ${dut2_to_dut1_ip}
 
 | TC04: DUT reports packet flow for traffic by source and destination port
+| | [Tags] | SKIP_VPP_PATCH
 | | [Documentation]
 | | ... | [Top] TG-DUT1-DUT2-TG. [Cfg] On DUT1 configure IPFIX with TG interface
 | | ... | address as collector and add classify session with TG source address
