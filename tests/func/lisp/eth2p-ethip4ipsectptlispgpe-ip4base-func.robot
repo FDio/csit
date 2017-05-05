@@ -33,7 +33,7 @@
 # Import configuration and test data:
 | Variables | resources/test_data/lisp/ipv4_ipsec_lispgpe_ipv4/ipv4_ipsec_lispgpe_ipv4.py
 | ...
-| Force Tags | 3_NODE_SINGLE_LINK_TOPO | VM_ENV | LISP
+| Force Tags | 3_NODE_SINGLE_LINK_TOPO | VM_ENV | LISP | SKIP_VPP_PATCH
 | ...
 | Test Setup | Func Test Setup
 | Test Teardown | Run Keywords | Show Packet Trace on All DUTs | ${nodes}

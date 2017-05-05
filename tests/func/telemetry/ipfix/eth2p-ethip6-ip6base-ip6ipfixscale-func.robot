@@ -23,6 +23,7 @@
 | Library | resources.libraries.python.Trace
 
 | Force Tags | HW_ENV | VM_ENV | 3_NODE_SINGLE_LINK_TOPO | EXPECTED_FAILING
+| ...        | SKIP_VPP_PATCH
 # TODO: Remove EXPECTED_FAILING tag once functionality is implemented (VPP-204)
 | Test Setup | Func Test Setup
 | Test Teardown | Func Test Teardown

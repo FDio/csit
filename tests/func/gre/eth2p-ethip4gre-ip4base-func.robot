@@ -19,7 +19,7 @@
 | Resource | resources/libraries/robot/traffic.robot
 | Library  | resources.libraries.python.IPUtil
 | Library  | resources.libraries.python.Trace
-| Force Tags | VM_ENV | HW_ENV
+| Force Tags | VM_ENV | HW_ENV | 3_NODE_DOUBLE_LINK_TOPO | SKIP_VPP_PATCH
 | Test Setup | Func Test Setup
 | Test Teardown | Func Test Teardown
 | Documentation | *GREoIPv4 test cases*
