@@ -17,6 +17,7 @@ Topology TAGs
     3 nodes connected in a circular topology with at least one link
     interconnecting devices.
 
+
 Objective TAGs
 --------------
 
@@ -24,6 +25,10 @@ Objective TAGs
 
     Test case(s) marked to not run in case of vpp-csit-verify (i.e. VPP patch)
     and csit-vpp-verify jobs (i.e. CSIT patch).
+
+.. topic:: SKIP_VPP_PATCH
+
+    Test case(s) marked to not run in case of vpp-csit-verify (i.e. VPP patch).
 
 
 Environment TAGs
