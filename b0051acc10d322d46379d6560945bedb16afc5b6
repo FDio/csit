@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a3291f1_d429109c",
+        "filename": "resources/tools/report_gen/run_robot_json_data.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 33,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2017-05-05T14:26:54Z",
+      "side": 1,
+      "message": "is throughput ever reported in \"percentage\" as a unit?\nif not, why do we need it here?",
+      "range": {
+        "startLine": 33,
+        "startChar": 0,
+        "endLine": 33,
+        "endChar": 52
+      },
+      "revId": "b0051acc10d322d46379d6560945bedb16afc5b6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_f42c0cae",
+        "filename": "resources/tools/report_gen/run_robot_json_data.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 71,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2017-05-05T14:26:54Z",
+      "side": 1,
+      "message": "should say \"lossTolerance\"",
+      "range": {
+        "startLine": 71,
+        "startChar": 0,
+        "endLine": 71,
+        "endChar": 52
+      },
+      "revId": "b0051acc10d322d46379d6560945bedb16afc5b6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
