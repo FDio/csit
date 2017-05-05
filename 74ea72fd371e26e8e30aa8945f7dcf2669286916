@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "3a3291f1_547f6066",
+        "filename": "resources/tools/report_gen/run_robot_json_data.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-05T08:45:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a3291f1_9454a8ff",
+      "range": {
+        "startLine": 21,
+        "startChar": 5,
+        "endLine": 21,
+        "endChar": 13
+      },
+      "revId": "74ea72fd371e26e8e30aa8945f7dcf2669286916",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a3291f1_2927e1cb",
         "filename": "resources/tools/report_gen/run_robot_json_data.py",
         "patchSetId": 1
@@ -59,6 +83,30 @@
       "writtenOn": "2017-05-05T05:43:09Z",
       "side": 1,
       "message": "int",
+      "range": {
+        "startLine": 31,
+        "startChar": 25,
+        "endLine": 31,
+        "endChar": 32
+      },
+      "revId": "74ea72fd371e26e8e30aa8945f7dcf2669286916",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_349854bf",
+        "filename": "resources/tools/report_gen/run_robot_json_data.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-05T08:45:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a3291f1_2927e1cb",
       "range": {
         "startLine": 31,
         "startChar": 25,
@@ -94,6 +142,30 @@
     },
     {
       "key": {
+        "uuid": "3a3291f1_34e974e6",
+        "filename": "resources/tools/report_gen/run_robot_json_data.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-05T08:45:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a3291f1_1440b832",
+      "range": {
+        "startLine": 91,
+        "startChar": 0,
+        "endLine": 91,
+        "endChar": 25
+      },
+      "revId": "74ea72fd371e26e8e30aa8945f7dcf2669286916",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a3291f1_7455bcf8",
         "filename": "resources/tools/report_gen/run_robot_json_data.py",
         "patchSetId": 1
@@ -105,6 +177,30 @@
       "writtenOn": "2017-05-05T07:32:55Z",
       "side": 1,
       "message": "Add ValueError",
+      "range": {
+        "startLine": 163,
+        "startChar": 12,
+        "endLine": 163,
+        "endChar": 18
+      },
+      "revId": "74ea72fd371e26e8e30aa8945f7dcf2669286916",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_14955886",
+        "filename": "resources/tools/report_gen/run_robot_json_data.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-05T08:45:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a3291f1_7455bcf8",
       "range": {
         "startLine": 163,
         "startChar": 12,
