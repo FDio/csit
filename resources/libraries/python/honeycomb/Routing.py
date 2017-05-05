@@ -92,7 +92,7 @@ class RoutingKeywords(object):
         if special:
             ip_version = "hc2vpp-ietf-{0}-unicast-routing:{0}".format(
                 ip_version)
-            protocol = "vpp-routing-ra:vpp-protocol-attributes"
+            protocol = "vpp-routing:vpp-protocol-attributes"
         else:
             ip_version = ip_version
             protocol = "vpp-protocol-attributes"
