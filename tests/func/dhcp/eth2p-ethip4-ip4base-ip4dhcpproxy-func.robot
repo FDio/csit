@@ -17,7 +17,7 @@
 | Resource | resources/libraries/robot/dhcp_proxy.robot
 | Resource | resources/libraries/robot/ipv4.robot
 | Library | resources.libraries.python.Trace
-| Force Tags | HW_ENV | VM_ENV | 3_NODE_DOUBLE_LINK_TOPO
+| Force Tags | HW_ENV | VM_ENV | 3_NODE_DOUBLE_LINK_TOPO | SKIP_VPP_PATCH
 | Test Setup | Func Test Setup
 | Test Teardown | Func Test Teardown
 | Documentation | *DHCPv4 proxy test cases*
