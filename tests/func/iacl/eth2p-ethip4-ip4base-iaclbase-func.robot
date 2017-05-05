@@ -22,7 +22,7 @@
 | Resource | resources/libraries/robot/traffic.robot
 | Library | resources.libraries.python.Classify.Classify
 | Library | resources.libraries.python.Trace
-| Force Tags | HW_ENV | VM_ENV | 3_NODE_SINGLE_LINK_TOPO
+| Force Tags | HW_ENV | VM_ENV | 3_NODE_SINGLE_LINK_TOPO | SKIP_VPP_PATCH
 | Test Setup | Func Test Setup
 | Test Teardown | Func Test Teardown
 | Documentation | *IPv4 routing with ingress ACL test cases*

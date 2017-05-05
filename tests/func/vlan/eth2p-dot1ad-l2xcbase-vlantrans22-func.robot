@@ -17,7 +17,7 @@
 | Resource | resources/libraries/robot/tagging.robot
 | Resource | resources/libraries/robot/l2_traffic.robot
 | Library  | resources.libraries.python.Trace
-| Force Tags | 3_NODE_SINGLE_LINK_TOPO | HW_ENV | VM_ENV
+| Force Tags | 3_NODE_SINGLE_LINK_TOPO | HW_ENV | VM_ENV | SKIP_VPP_PATCH
 | Test Setup | Func Test Setup
 | Test Teardown | Func Test Teardown
 | Documentation | *L2XC with VLAN tag rewrite test cases - translate-2-2*

@@ -21,7 +21,7 @@
 | Resource | resources/libraries/robot/qemu.robot
 | Library  | resources.libraries.python.Trace
 | Library | resources.libraries.python.NodePath
-| Force Tags | 3_NODE_SINGLE_LINK_TOPO | HW_ENV | VM_ENV
+| Force Tags | 3_NODE_SINGLE_LINK_TOPO | HW_ENV | VM_ENV | SKIP_VPP_PATCH
 | Test Setup | Func Test Setup
 | Test Teardown | Func Test Teardown
 | Documentation | *L2 cross-connect test cases*

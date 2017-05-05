@@ -23,6 +23,7 @@
 # import additional Lisp settings from resource file
 | Variables | resources/test_data/lisp/static_adjacency/lisp_static_adjacency.py
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | 3_NODE_DOUBLE_LINK_TOPO
+| ...        | SKIP_VPP_PATCH
 | ... | VM_ENV | HW_ENV
 | Test Setup | Func Test Setup
 | Test Teardown | Func Test Teardown

@@ -29,7 +29,7 @@
 # Import configuration and test data:
 | Variables | resources/test_data/lisp/ipv6_lispgpe_ipv6/ipv6_lispgpe_ipv6.py
 | ...
-| Force Tags | 3_NODE_SINGLE_LINK_TOPO | VM_ENV | LISP
+| Force Tags | 3_NODE_SINGLE_LINK_TOPO | VM_ENV | LISP | SKIP_VPP_PATCH
 | ...
 | Test Setup | Run Keywords | Func Test Setup
 | ... | AND | Vpp All Ra Suppress Link Layer | ${nodes}
