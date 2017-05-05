@@ -1,0 +1,44 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a3291f1_5423e0a6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-05T06:35:18Z",
+      "side": 1,
+      "message": "Create a CSIT task, Change the commit message to better describe the patch.",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 8,
+        "endChar": 67
+      },
+      "revId": "e95eaf033ca0f4c67331f6b3542f042f6d650c07",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a3291f1_343cd4c7",
+        "filename": "tests/perf/40ge2p1xl710-ethip4ipsecscale1000ip4-ip4base-interfaces-aes-gcm-ndrpdrdisc.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-05T06:35:18Z",
+      "side": 1,
+      "message": "Consider renaming to, e.g.: 40ge2p1xl710-ethip4ipsecscale1000tun-ip4base-interfaces-aes-gcm-ndrpdrdisc\nor\n40ge2p1xl710-ethip4ipsecscale1000-ip4base-interfaces-aes-gcm-ndrpdrdisc",
+      "revId": "e95eaf033ca0f4c67331f6b3542f042f6d650c07",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
