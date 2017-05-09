@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a2f8d8d_ae4817cd",
+        "filename": "docs/tag_documentation.rst",
+        "patchSetId": 7
+      },
+      "lineNbr": 352,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-09T08:23:03Z",
+      "side": 1,
+      "message": "Move to \"Scaling TAGs\" section.",
+      "range": {
+        "startLine": 350,
+        "startChar": 0,
+        "endLine": 352,
+        "endChar": 40
+      },
+      "revId": "f915ea0dbbbae5541d1aad209ba7224dabfbed9a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
