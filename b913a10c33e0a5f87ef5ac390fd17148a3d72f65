@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a2f8d8d_b14ab853",
+        "filename": "bootstrap-TLDK.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-09T11:04:29Z",
+      "side": 1,
+      "message": "2017",
+      "range": {
+        "startLine": 2,
+        "startChar": 16,
+        "endLine": 2,
+        "endChar": 20
+      },
+      "revId": "b913a10c33e0a5f87ef5ac390fd17148a3d72f65",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a2f8d8d_f16720e9",
+        "filename": "bootstrap-TLDK.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-09T11:04:29Z",
+      "side": 1,
+      "message": "Why do you use an older version?",
+      "range": {
+        "startLine": 34,
+        "startChar": 13,
+        "endLine": 34,
+        "endChar": 20
+      },
+      "revId": "b913a10c33e0a5f87ef5ac390fd17148a3d72f65",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a2f8d8d_7174509c",
+        "filename": "bootstrap-TLDK.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-09T11:04:29Z",
+      "side": 1,
+      "message": "${DPDK_VERSION} ?",
+      "range": {
+        "startLine": 115,
+        "startChar": 30,
+        "endLine": 115,
+        "endChar": 37
+      },
+      "revId": "b913a10c33e0a5f87ef5ac390fd17148a3d72f65",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a2f8d8d_51795492",
+        "filename": "bootstrap-TLDK.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-09T11:04:29Z",
+      "side": 1,
+      "message": "not needed",
+      "range": {
+        "startLine": 195,
+        "startChar": 0,
+        "endLine": 196,
+        "endChar": 26
+      },
+      "revId": "b913a10c33e0a5f87ef5ac390fd17148a3d72f65",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a2f8d8d_1173ccb2",
+        "filename": "bootstrap-TLDK.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 198,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-09T11:04:29Z",
+      "side": 1,
+      "message": "Consider moving the tests to csit/tests/TLDK/func or csit/tests/tldk/func",
+      "range": {
+        "startLine": 198,
+        "startChar": 4,
+        "endLine": 198,
+        "endChar": 15
+      },
+      "revId": "b913a10c33e0a5f87ef5ac390fd17148a3d72f65",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
