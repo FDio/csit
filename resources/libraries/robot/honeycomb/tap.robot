@@ -67,7 +67,7 @@
 | | [Arguments] | ${node} | ${interface}
 | | interfaceAPI.Delete interface | ${node} | ${interface}
 
-| TAP configuration from Honeycomb should be
+| TAP Operational Data From Honeycomb Should Be
 | | [Documentation] | Retrieves interface TAP configuration through Honeycomb\
 | | ... | and compares with settings supplied in argument.
 | | ...
@@ -78,7 +78,7 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| TAP configuration from Honeycomb should be \
+| | ... | \| TAP Operational Data From Honeycomb Should Be \
 | | ... | \| ${nodes['DUT1']} \| tap_int1 \| ${{'tap-name':'tap1',\
 | | ... | 'mac':'08:00:27:60:26:ab', 'device-instance':3}} \|
 | | ...
@@ -89,7 +89,7 @@
 | | ${api_mac}= | Set Variable | ${api_data['phys-address']}
 | | Should be equal | ${api_mac} | ${settings['mac']}
 
-| TAP configuration from VAT should be
+| TAP Operational Data From VAT Should Be
 | | [Documentation] | Retrieves interface TAP configuration through VAT and\
 | | ... | compares with settings supplied in argument.
 | | ...
@@ -99,7 +99,7 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| TAP configuration from Honeycomb should be \
+| | ... | \| TAP Operational Data From Honeycomb Should Be \
 | | ... | \| ${nodes['DUT1']} \| ${{'tap-name':'tap1',\
 | | ... | 'mac':'08:00:27:60:26:ab', 'device-instance':3}} \|
 | | ...
@@ -108,7 +108,7 @@
 | | Should be equal | ${vat_data['dev_name']} | ${settings['tap-name']}
 # other settings not accessible through VAT commands
 
-| TAP configuration from Honeycomb should be empty
+| TAP Operational Data From Honeycomb Should Be empty
 | | [Documentation] | Attempts to retrieve interface TAP configuration\
 | | ... | through Honeycomb and expects to recieve an empty dictionary.
 | | ...
@@ -118,7 +118,7 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| TAP configuration from Honeycomb should be empty\
+| | ... | \| TAP Operational Data From Honeycomb Should Be empty\
 | | ... | \| ${nodes['DUT1']} \| tap_int1 \|
 | | ...
 | | [Arguments] | ${node} | ${interface}
@@ -126,7 +126,7 @@
 | | Run keyword and expect error | *KeyError: 'v3po:tap' | Set Variable
 | | ... | ${api_data['v3po:tap']}
 
-| TAP configuration from VAT should be empty
+| TAP Operational Data From VAT Should Be empty
 | | [Documentation] | Attempts to retrieve interface TAP configuration\
 | | ... | through VAT and expects a "no data" error.
 | | ...
@@ -136,7 +136,7 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| TAP configuration from VAT should be empty\
+| | ... | \| TAP Operational Data From VAT Should Be empty\
 | | ... | \| ${nodes['DUT1']} \| tap_int1 \|
 | | ...
 | | [Arguments] | ${node} | ${interface}

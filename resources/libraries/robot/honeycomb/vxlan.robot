@@ -49,7 +49,7 @@
 | | [Arguments] | ${node} | ${interface}
 | | interfaceAPI.Delete interface | ${node} | ${interface}
 
-| VxLAN configuration from Honeycomb should be
+| VxLAN Operational Data From Honeycomb Should Be
 | | [Documentation] | Retrieves interface VxLAN configuration through Honeycomb\
 | | ... | and compares with settings supplied in argument.
 | | ...
@@ -60,7 +60,7 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| VxLAN configuration from Honeycomb should be \
+| | ... | \| VxLAN Operational Data From Honeycomb Should Be \
 | | ... | \|${nodes['DUT1']} \| vxlan_01 \| ${{'src':'192.168.0.2',\
 | | ... | 'dst':'192.168.0.3', 'vni':5, 'encap-vrf-id':0}} \|
 | | ...
@@ -70,7 +70,7 @@
 | | :FOR | ${key} | IN | @{settings.keys()}
 | | | Should be equal | ${api_vxlan['${key}']} | ${settings['${key}']}
 
-| VxLAN configuration from VAT should be
+| VxLAN Operational Data From VAT Should Be
 | | [Documentation] | Retrieves interface VxLAN configuration through VAT and\
 | | ... | compares with settings supplied in argument.
 | | ...
@@ -80,7 +80,7 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| VxLAN configuration from Honeycomb should be \
+| | ... | \| VxLAN Operational Data From Honeycomb Should Be \
 | | ... | \|${nodes['DUT1']} \| ${{'src':'192.168.0.2',\
 | | ... | 'dst':'192.168.0.3', 'vni':5, 'encap-vrf-id':0}} \|
 | | ...
@@ -97,7 +97,7 @@
 | | Should be equal
 | | ... | ${vat_data['encap_vrf_id']} | ${settings['encap-vrf-id']}
 
-| VxLAN configuration from Honeycomb should be empty
+| VxLAN Operational Data From Honeycomb Should Be empty
 | | [Documentation] | Attempts to retrieve interface VxLAN configuration\
 | | ... | through Honeycomb and expects to recieve an empty dictionary.
 | | ...
@@ -107,7 +107,7 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| VxLAN configuration from Honeycomb should be empty\
+| | ... | \| VxLAN Operational Data From Honeycomb Should Be empty\
 | | ... | \|${nodes['DUT1']} \| vxlan_01 \|
 | | ...
 | | [Arguments] | ${node} | ${interface}
@@ -115,7 +115,7 @@
 | | Run keyword and expect error | *KeyError: 'v3po:vxlan' | Set Variable
 | | ... | ${api_data['v3po:vxlan']}
 
-| VxLAN configuration from VAT should be empty
+| VxLAN Operational Data From VAT Should Be empty
 | | [Documentation] | Attempts to retrieve interface VxLAN configuration\
 | | ... | through VAT and expects a "no data" error.
 | | ...
@@ -125,7 +125,7 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| VxLAN configuration from VAT should be empty\
+| | ... | \| VxLAN Operational Data From VAT Should Be empty\
 | | ... | \| ${nodes['DUT1']} \|
 | | ...
 | | [Arguments] | ${node}

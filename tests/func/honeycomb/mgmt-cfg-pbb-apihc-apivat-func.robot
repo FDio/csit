@@ -22,7 +22,7 @@
 | Documentation | *Honeycomb provider backbone bridge test suite.*
 | Suite Teardown | Run Keyword If Any Tests Failed
 | ... | Restart Honeycomb and VPP | ${node}
-| Force Tags | honeycomb_sanity | honeycomb_odl
+| Force Tags | HC_FUNC
 
 *** Test Cases ***
 # TODO: add verifications once operational data or VPP dump is available.

@@ -17,7 +17,7 @@
 | Documentation | Keywords used to test Honeycomb DHCP features.
 
 *** Keywords ***
-| DHCP relay configuration from Honeycomb should be empty
+| DHCP relay Operational Data From Honeycomb Should Be empty
 | | [Documentation] | Uses Honeycomb API to retrieve DHCP relay configuration\
 | | ... | and expects to fail.
 | | ...
@@ -26,7 +26,7 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| DHCP relay configuration from Honeycomb should be empty \
+| | ... | \| DHCP relay Operational Data From Honeycomb Should Be empty \
 | | ... | \| ${nodes['DUT1']} \|
 | | [Arguments] | ${node}
 | | Run keyword and expect error | *Status code: 404*

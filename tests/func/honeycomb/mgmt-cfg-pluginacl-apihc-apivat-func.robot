@@ -46,7 +46,7 @@
 | Suite Teardown
 | ... | Restart Honeycomb and VPP | ${node}
 | Documentation | *Honeycomb access control lists test suite for ACL plugin.*
-| Force Tags | honeycomb_sanity | honeycomb_odl
+| Force Tags | HC_FUNC
 
 *** Test Cases ***
 | TC01: ACL MAC filtering through plugin-acl node - bridged

@@ -27,7 +27,7 @@
 | Documentation | *Honeycomb DHCP relay test suite.*
 | Test Setup | Clear Packet Trace on All DUTs | ${nodes}
 | Suite Teardown | Restart Honeycomb and VPP | ${node}
-| Force Tags | honeycomb_sanity | honeycomb_odl
+| Force Tags | HC_FUNC
 
 *** Test Cases ***
 | TC01: Honeycomb can configure DHCP relay entry
@@ -40,7 +40,7 @@
 | | ... | on the second TG interface and verify required fields.
 | | [Teardown] | Run Keywords | Show Packet Trace on All DUTs | ${nodes}
 | | ... | AND | Log DHCP relay configuration from VAT | ${node} | ipv4
-| | Given DHCP relay configuration from Honeycomb should be empty | ${node}
+| | Given DHCP relay Operational Data From Honeycomb Should Be empty | ${node}
 | | When Honeycomb configures DHCP relay | ${node} | ${relay1} | ipv4 | ${0}
 | | Then DHCP relay configuration from Honeycomb should contain
 | | ... | ${node} | ${relay1_oper}
@@ -55,13 +55,13 @@
 | | Given DHCP relay configuration from Honeycomb should contain
 | | ... | ${node} | ${relay1_oper}
 | | When Honeycomb clears DHCP relay configuration | ${node}
-| | Then DHCP relay configuration from Honeycomb should be empty | ${node}
+| | Then DHCP relay Operational Data From Honeycomb Should Be empty | ${node}
 
 | TC03: Honeycomb can configure multiple DHCP relay servers.
 | | [Documentation] | Configure multiple DHCP relay servers and verify\
 | | ... | their configuration using operational data.
 | | [Teardown] | Honeycomb clears DHCP relay configuration | ${node}
-| | Given DHCP relay configuration from Honeycomb should be empty | ${node}
+| | Given DHCP relay Operational Data From Honeycomb Should Be empty | ${node}
 | | And Honeycomb configures DHCP relay | ${node} | ${relay2} | ipv4 | ${0}
 | | Then DHCP relay configuration from Honeycomb should contain
 | | ... | ${node} | ${relay2_oper}
@@ -77,7 +77,7 @@
 | | [Teardown] | Run Keywords | Show Packet Trace on All DUTs | ${nodes}
 | | ... | AND | Log DHCP relay configuration from VAT | ${node} | ipv6
 | | ... | AND | Honeycomb clears DHCP relay configuration | ${node}
-| | Given DHCP relay configuration from Honeycomb should be empty | ${node}
+| | Given DHCP relay Operational Data From Honeycomb Should Be empty | ${node}
 | | When Honeycomb configures DHCP relay | ${node} | ${relay_v6} | ipv6 | ${0}
 | | Then DHCP relay configuration from Honeycomb should contain
 | | ... | ${node} | ${relay_v6_oper}

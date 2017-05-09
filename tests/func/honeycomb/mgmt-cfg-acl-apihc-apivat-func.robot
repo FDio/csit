@@ -22,7 +22,7 @@
 | Variables | resources/test_data/honeycomb/acl.py
 | Suite Teardown | Restart Honeycomb and VPP | ${node}
 | Documentation | *Honeycomb access control lists test suite.*
-| Force Tags | honeycomb_sanity | honeycomb_odl
+| Force Tags | HC_FUNC
 
 *** Test Cases ***
 | TC01: Honeycomb can create ACL classify table

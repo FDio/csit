@@ -220,7 +220,7 @@ fi
 PYTHONPATH=`pwd` pybot -L TRACE -W 136\
     -v TOPOLOGY_PATH:${SCRIPT_DIR}/topologies/enabled/topology.yaml \
     --suite "tests.func" \
-    --include honeycomb_sanity \
+    --include HC_FUNC \
     --noncritical EXPECTED_FAILING \
     tests/
 

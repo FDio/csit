@@ -27,7 +27,7 @@
 | Documentation | *Honeycomb Lisp test suite.*
 | Suite Teardown | Run Keyword If Any Tests Failed
 | ... | Restart Honeycomb and VPP | ${node}
-| Force Tags | honeycomb_sanity | honeycomb_odl
+| Force Tags | HC_FUNC
 
 *** Test Cases ***
 | TC01: Honeycomb enables Lisp feature
