@@ -1,0 +1,211 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a2f8d8d_aee497ac",
+        "filename": "bootstrap-nsh-sfc.sh",
+        "patchSetId": 13
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-09T10:36:13Z",
+      "side": 1,
+      "message": "2017",
+      "range": {
+        "startLine": 2,
+        "startChar": 16,
+        "endLine": 2,
+        "endChar": 20
+      },
+      "revId": "ce6c139b1228b4b1ea27c92e85dba921a8b2a19e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a2f8d8d_6eeeaf8d",
+        "filename": "bootstrap-nsh-sfc.sh",
+        "patchSetId": 13
+      },
+      "lineNbr": 227,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-09T10:36:13Z",
+      "side": 1,
+      "message": "Consider moving the tests to directory csit/tests/nsh_sfc_tests/func",
+      "range": {
+        "startLine": 226,
+        "startChar": 4,
+        "endLine": 227,
+        "endChar": 18
+      },
+      "revId": "ce6c139b1228b4b1ea27c92e85dba921a8b2a19e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a2f8d8d_2ee8a77b",
+        "filename": "nsh_sfc_tests/func/classifier/eth2p-ethip4-sfc-classifier-func.robot",
+        "patchSetId": 13
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-09T10:36:13Z",
+      "side": 1,
+      "message": "2017\ncheck everywhere",
+      "range": {
+        "startLine": 1,
+        "startChar": 16,
+        "endLine": 1,
+        "endChar": 20
+      },
+      "revId": "ce6c139b1228b4b1ea27c92e85dba921a8b2a19e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a2f8d8d_ee017f3a",
+        "filename": "nsh_sfc_tests/func/classifier/eth2p-ethip4-sfc-classifier-func.robot",
+        "patchSetId": 13
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-09T10:36:13Z",
+      "side": 1,
+      "message": "Add another tags. See doc/tag_documentation.rst\nUse them also in bootstrap",
+      "range": {
+        "startLine": 21,
+        "startChar": 15,
+        "endLine": 21,
+        "endChar": 21
+      },
+      "revId": "ce6c139b1228b4b1ea27c92e85dba921a8b2a19e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a2f8d8d_0eedeb8b",
+        "filename": "nsh_sfc_tests/func/classifier/eth2p-ethip4-sfc-classifier-func.robot",
+        "patchSetId": 13
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-09T10:36:13Z",
+      "side": 1,
+      "message": "you use VIRL in bootstrap - VM_ENV\nCheck everywhere",
+      "range": {
+        "startLine": 21,
+        "startChar": 15,
+        "endLine": 21,
+        "endChar": 21
+      },
+      "revId": "ce6c139b1228b4b1ea27c92e85dba921a8b2a19e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a2f8d8d_cefec338",
+        "filename": "nsh_sfc_tests/func/classifier/eth2p-ethip4-sfc-classifier-func.robot",
+        "patchSetId": 13
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-09T10:36:13Z",
+      "side": 1,
+      "message": "Move to \"Force tags\" section\nCheck everywhere",
+      "range": {
+        "startLine": 48,
+        "startChar": 13,
+        "endLine": 48,
+        "endChar": 36
+      },
+      "revId": "ce6c139b1228b4b1ea27c92e85dba921a8b2a19e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a2f8d8d_aefb7746",
+        "filename": "resources/libraries/python/SFC/SetupSFCTest.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-09T10:36:13Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 38,
+        "startChar": 0,
+        "endLine": 38,
+        "endChar": 4
+      },
+      "revId": "ce6c139b1228b4b1ea27c92e85dba921a8b2a19e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a2f8d8d_ae9257f4",
+        "filename": "resources/traffic_scripts/send_vxlan_for_proxy_test.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-09T10:36:13Z",
+      "side": 1,
+      "message": "Use \"raise\"",
+      "range": {
+        "startLine": 61,
+        "startChar": 8,
+        "endLine": 61,
+        "endChar": 41
+      },
+      "revId": "ce6c139b1228b4b1ea27c92e85dba921a8b2a19e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a2f8d8d_8e8f9bcc",
+        "filename": "resources/traffic_scripts/send_vxlangpe_nsh_for_proxy_test.py",
+        "patchSetId": 13
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-09T10:36:13Z",
+      "side": 1,
+      "message": "Use \"raise\"",
+      "range": {
+        "startLine": 61,
+        "startChar": 8,
+        "endLine": 61,
+        "endChar": 18
+      },
+      "revId": "ce6c139b1228b4b1ea27c92e85dba921a8b2a19e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
