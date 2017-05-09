@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a2f8d8d_9151fcda",
+        "filename": "docs/tag_documentation.rst",
+        "patchSetId": 8
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-09T11:49:37Z",
+      "side": 1,
+      "message": "move back to \"Test type tags\"",
+      "range": {
+        "startLine": 88,
+        "startChar": 0,
+        "endLine": 90,
+        "endChar": 21
+      },
+      "revId": "47bc6a137c48a5a6352da4467ba2acfad0eca06a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
