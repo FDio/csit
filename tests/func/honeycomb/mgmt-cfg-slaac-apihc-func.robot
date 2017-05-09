@@ -32,72 +32,72 @@
 *** Test Cases ***
 | TC01: Honeycomb can configure SLAAC
 | | [Documentation] | Checks if Honeycomb can congigure SLAAC.
-| | Given SLAAC configuration from Honeycomb should be empty | ${node}
+| | Given SLAAC Operational Data From Honeycomb Should Be empty | ${node}
 | | ... | ${interface}
 | | And InterfaceAPI.Set Interface State | ${node} | ${interface} | up
 | | And Honeycomb sets interface ipv6 address | ${node} | ${interface}
 | | ... | ${address} | ${prefix}
 | | When Honeycomb configures SLAAC | ${node} | ${interface} | ${slaac_data}
-| | Then SLAAC configuration from Honeycomb should be | ${node}
+| | Then SLAAC Operational Data From Honeycomb Should Be | ${node}
 | | ... | ${interface} | ${slaac_data}
 
 | TC02: Honeycomb can disable SLAAC
 | | [Documentation] | Checks if Honeycomb can disable SLAAC.
-| | Given SLAAC configuration from Honeycomb should be | ${node}
+| | Given SLAAC Operational Data From Honeycomb Should Be | ${node}
 | | ... | ${interface} | ${slaac_data}
 | | When Honeycomb removes SLAAC configuration | ${node} | ${interface}
-| | Then SLAAC configuration from Honeycomb should be empty | ${node}
+| | Then SLAAC Operational Data From Honeycomb Should Be empty | ${node}
 | | ... | ${interface}
 
 | TC03: Honeycomb can configure SLAAC with suppress link layer disabled
 | | [Documentation] | Checks if Honeycomb can congigure SLAAC.
 | | [Teardown] | SLAAC test teardown | ${node} | ${interface}
-| | Given SLAAC configuration from Honeycomb should be empty | ${node}
+| | Given SLAAC Operational Data From Honeycomb Should Be empty | ${node}
 | | ... | ${interface}
 | | And InterfaceAPI.Set Interface State | ${node} | ${interface} | up
 | | And Honeycomb sets interface ipv6 address | ${node} | ${interface}
 | | ... | ${address} | ${prefix}
 | | When Honeycomb configures SLAAC | ${node} | ${interface} | ${slaac_data}
-| | Then SLAAC configuration from Honeycomb should be | ${node}
+| | Then SLAAC Operational Data From Honeycomb Should Be | ${node}
 | | ... | ${interface} | ${slaac_data}
 
 | TC04: Honeycomb can configure SLAAC with sending RA packets disabled
 | | [Documentation] | Checks if Honeycomb can configure SLAAC\
 | | ... | with given settings.
 | | [Teardown] | SLAAC test teardown | ${node} | ${interface}
-| | Given SLAAC configuration from Honeycomb should be empty | ${node}
+| | Given SLAAC Operational Data From Honeycomb Should Be empty | ${node}
 | | ... | ${interface}
 | | And InterfaceAPI.Set Interface State | ${node} | ${interface} | up
 | | And Honeycomb sets interface ipv6 address | ${node} | ${interface}
 | | ... | ${address} | ${prefix}
 | | When Honeycomb configures SLAAC | ${node} | ${interface} | ${slaac_data_01}
-| | Then SLAAC configuration from Honeycomb should be | ${node} | ${interface}
+| | Then SLAAC Operational Data From Honeycomb Should Be | ${node} | ${interface}
 | | ... | ${slaac_data_01}
 
 | TC05: Honeycomb can configure SLAAC with min interval values
 | | [Documentation] | Checks if Honeycomb can configure SLAAC\
 | | ... | with given settings.
 | | [Teardown] | SLAAC test teardown | ${node} | ${interface}
-| | Given SLAAC configuration from Honeycomb should be empty | ${node}
+| | Given SLAAC Operational Data From Honeycomb Should Be empty | ${node}
 | | ... | ${interface}
 | | And InterfaceAPI.Set Interface State | ${node} | ${interface} | up
 | | And Honeycomb sets interface ipv6 address | ${node} | ${interface}
 | | ... | ${address} | ${prefix}
 | | When Honeycomb configures SLAAC | ${node} | ${interface} | ${slaac_data_02}
-| | Then SLAAC configuration from Honeycomb should be | ${node} | ${interface}
+| | Then SLAAC Operational Data From Honeycomb Should Be | ${node} | ${interface}
 | | ... | ${slaac_data_02}
 
 | TC06: Honeycomb can configure SLAAC with max interval values
 | | [Documentation] | Checks if Honeycomb can configure SLAAC\
 | | ... | with given settings.
 | | [Teardown] | SLAAC test teardown | ${node} | ${interface}
-| | Given SLAAC configuration from Honeycomb should be empty | ${node}
+| | Given SLAAC Operational Data From Honeycomb Should Be empty | ${node}
 | | ... | ${interface}
 | | And InterfaceAPI.Set Interface State | ${node} | ${interface} | up
 | | And Honeycomb sets interface ipv6 address | ${node} | ${interface}
 | | ... | ${address} | ${prefix}
 | | When Honeycomb configures SLAAC | ${node} | ${interface} | ${slaac_data_03}
-| | Then SLAAC configuration from Honeycomb should be | ${node} | ${interface}
+| | Then SLAAC Operational Data From Honeycomb Should Be | ${node} | ${interface}
 | | ... | ${slaac_data_03}
 
 | TC07: DUT retransmits RA on IPv6 enabled interface after a set interval

@@ -139,9 +139,9 @@
 | | ... | MTU value.
 | | When Honeycomb sets interface ethernet configuration
 | | ... | ${node} | ${interface} | ${ethernet}
-| | Then Interface ethernet configuration from Honeycomb should be
+| | Then Interface ethernet Operational Data From Honeycomb Should Be
 | | ... | ${node} | ${interface} | ${ethernet}
-| | And Interface ethernet configuration from VAT should be
+| | And Interface ethernet Operational Data From VAT Should Be
 | | ... | ${node} | ${interface} | ${ethernet['mtu']}
 
 | TC09: Honeycomb modifies interface configuration - vrf

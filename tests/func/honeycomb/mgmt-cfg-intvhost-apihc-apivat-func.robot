@@ -36,102 +36,102 @@
 | | [Documentation] | Check if Honeycomb creates a vhost-user interface, role:\
 | | ... | server.
 | | ...
-| | Given vhost-user configuration from Honeycomb should be empty
+| | Given vhost-user Operational Data From Honeycomb Should Be empty
 | | ... | ${node} | ${vhost_interface}
 | | When Honeycomb creates vhost-user interface
 | | ... | ${node} | ${vhost_interface} | ${vhost_user_server}
-| | Then vhost-user configuration from Honeycomb should be
+| | Then vhost-user Operational Data From Honeycomb Should Be
 | | ... | ${node} | ${vhost_interface} | ${vhost_user_server}
-| | And vhost-user configuration from VAT should be
+| | And vhost-user Operational Data From VAT Should Be
 | | ... | ${node} | ${vhost_user_server}
 
 | TC02: Honeycomb modifies vhost-user interface - server
 | | [Documentation] | Check if Honeycomb can modify properties of existing\
 | | ... | vhost-user interface, role: server.
 | | ...
-| | Given vhost-user configuration from Honeycomb should be
+| | Given vhost-user Operational Data From Honeycomb Should Be
 | | ... | ${node} | ${vhost_interface} | ${vhost_user_server}
 | | When Honeycomb configures vhost-user interface
 | | ... | ${node} | ${vhost_interface} | ${vhost_user_server_edit_1}
-| | Then vhost-user configuration from Honeycomb should be
+| | Then vhost-user Operational Data From Honeycomb Should Be
 | | ... | ${node} | ${vhost_interface} | ${vhost_user_server_edit_1}
-| | And vhost-user configuration from VAT should be
+| | And vhost-user Operational Data From VAT Should Be
 | | ... | ${node} | ${vhost_user_server_edit_1}
 | | When Honeycomb configures vhost-user interface
 | | ... | ${node} | ${vhost_interface} | ${vhost_user_server_edit_2}
-| | Then vhost-user configuration from Honeycomb should be
+| | Then vhost-user Operational Data From Honeycomb Should Be
 | | ... | ${node} | ${vhost_interface} | ${vhost_user_server_edit_2}
-| | And vhost-user configuration from VAT should be
+| | And vhost-user Operational Data From VAT Should Be
 | | ... | ${node} | ${vhost_user_server_edit_2}
 | | When Honeycomb configures vhost-user interface
 | | ... | ${node} | ${vhost_interface} | ${vhost_user_server}
-| | Then vhost-user configuration from Honeycomb should be
+| | Then vhost-user Operational Data From Honeycomb Should Be
 | | ... | ${node} | ${vhost_interface} | ${vhost_user_server}
-| | And vhost-user configuration from VAT should be
+| | And vhost-user Operational Data From VAT Should Be
 | | ... | ${node} | ${vhost_user_server}
 
 | TC03: Honeycomb deletes vhost-user interface - server
 | | [Documentation] | Check if Honeycomb can delete an existing vhost-user\
 | | ... | interface, role: server.
 | | ...
-| | Given vhost-user configuration from Honeycomb should be
+| | Given vhost-user Operational Data From Honeycomb Should Be
 | | ... | ${node} | ${vhost_interface} | ${vhost_user_server}
 | | When Honeycomb removes vhost-user interface
 | | ... | ${node} | ${vhost_interface}
-| | Then vhost-user configuration from Honeycomb should be empty
+| | Then vhost-user Operational Data From Honeycomb Should Be empty
 | | ... | ${node} | ${vhost_interface}
-| | And vhost-user configuration from VAT should be empty
+| | And vhost-user Operational Data From VAT Should Be empty
 | | ... | ${node}
 
 | TC04: Honeycomb creates vhost-user interface - client
 | | [Documentation] | Check if Honeycomb creates a vhost-user interface, role:\
 | | ... | client.
 | | ...
-| | Given vhost-user configuration from Honeycomb should be empty
+| | Given vhost-user Operational Data From Honeycomb Should Be empty
 | | ... | ${node} | ${vhost_interface}
 | | When Honeycomb creates vhost-user interface
 | | ... | ${node} | ${vhost_interface} | ${vhost_user_client}
-| | Then vhost-user configuration from Honeycomb should be
+| | Then vhost-user Operational Data From Honeycomb Should Be
 | | ... | ${node} | ${vhost_interface} | ${vhost_user_client}
-| | And vhost-user configuration from VAT should be
+| | And vhost-user Operational Data From VAT Should Be
 | | ... | ${node} | ${vhost_user_client}
 
 | TC05: Honeycomb modifies vhost-user interface - client
 | | [Documentation] | Check if Honeycomb can modify properties of existing\
 | | ... | vhost-user interface, role: client.
 | | ...
-| | Given vhost-user configuration from Honeycomb should be
+| | Given vhost-user Operational Data From Honeycomb Should Be
 | | ... | ${node} | ${vhost_interface} | ${vhost_user_client}
 | | When Honeycomb configures vhost-user interface
 | | ... | ${node} | ${vhost_interface} | ${vhost_user_client_edit_1}
-| | Then vhost-user configuration from Honeycomb should be
+| | Then vhost-user Operational Data From Honeycomb Should Be
 | | ... | ${node} | ${vhost_interface} | ${vhost_user_client_edit_1}
-| | And vhost-user configuration from VAT should be
+| | And vhost-user Operational Data From VAT Should Be
 | | ... | ${node} | ${vhost_user_client_edit_1}
 | | When Honeycomb configures vhost-user interface
 | | ... | ${node} | ${vhost_interface} | ${vhost_user_client_edit_2}
-| | Then vhost-user configuration from Honeycomb should be
+| | Then vhost-user Operational Data From Honeycomb Should Be
 | | ... | ${node} | ${vhost_interface} | ${vhost_user_client_edit_2}
-| | And vhost-user configuration from VAT should be
+| | And vhost-user Operational Data From VAT Should Be
 | | ... | ${node} | ${vhost_user_client_edit_2}
 | | When Honeycomb configures vhost-user interface
 | | ... | ${node} | ${vhost_interface} | ${vhost_user_client}
-| | Then vhost-user configuration from Honeycomb should be
+| | Then vhost-user Operational Data From Honeycomb Should Be
 | | ... | ${node} | ${vhost_interface} | ${vhost_user_client}
-| | And vhost-user configuration from VAT should be
+| | And vhost-user Operational Data From VAT Should Be
 | | ... | ${node} | ${vhost_user_client}
 
 | TC06: Honeycomb deletes vhost-user interface - client
 | | [Documentation] | Check if Honeycomb can delete an existing vhost-user\
 | | ... | interface, role: client.
 | | ...
-| | Given vhost-user configuration from Honeycomb should be
+| | Given vhost-user Operational Data From Honeycomb Should Be
 | | ... | ${node} | ${vhost_interface} | ${vhost_user_client}
 | | When Honeycomb removes vhost-user interface
 | | ... | ${node} | ${vhost_interface}
-| | Then vhost-user configuration from Honeycomb should be empty
+| | Then vhost-user Operational Data From Honeycomb Should Be empty
 | | ... | ${node} | ${vhost_interface}
-| | And vhost-user configuration from VAT should be empty
+| | And vhost-user Operational Data From VAT Should Be empty
 | | ... | ${node}
 
 | TC07: Honeycomb does not set vhost-user configuration on another interface type
@@ -140,20 +140,20 @@
 | | ...
 | | When Honeycomb fails setting vhost-user on different interface type
 | | ... | ${node} | ${interface} | ${vhost_user_server}
-| | Then vhost-user configuration from Honeycomb should be empty
+| | Then vhost-user Operational Data From Honeycomb Should Be empty
 | | ... | ${node} | ${interface}
-| | And vhost-user configuration from VAT should be empty
+| | And vhost-user Operational Data From VAT Should Be empty
 | | ... | ${node}
 
 | TC08: Honeycomb does not set invalid vhost-user configuration
 | | [Documentation] | Check if Honeycomb refuses to set invalid parameters to\
 | | ... | vhost-user interface.
 | | ...
-| | Given vhost-user configuration from Honeycomb should be empty
+| | Given vhost-user Operational Data From Honeycomb Should Be empty
 | | ... | ${node} | ${vhost_interface}
 | | When Honeycomb fails setting invalid vhost-user configuration
 | | ... | ${node} | ${vhost_interface} | ${vhost_user_wrong}
-| | Then vhost-user configuration from Honeycomb should be empty
+| | Then vhost-user Operational Data From Honeycomb Should Be empty
 | | ... | ${node} | ${vhost_interface}
-| | And vhost-user configuration from VAT should be empty
+| | And vhost-user Operational Data From VAT Should Be empty
 | | ... | ${node}

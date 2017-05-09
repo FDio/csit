@@ -544,7 +544,7 @@
 | | | interfaceAPI.Configure interface ethernet
 | | | ... | ${node} | ${interface} | ${key} | ${ethernet['${key}']}
 
-| Interface ethernet configuration from Honeycomb should be
+| Interface ethernet Operational Data From Honeycomb Should Be
 | | [Documentation] | Retrieves interface ethernet configuration\
 | | ... | through Honeycomb and compares with settings supplied in arguments.
 | | ...
@@ -555,7 +555,7 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Interface ethernet configuration from Honeycomb should be \
+| | ... | \| Interface ethernet Operational Data From Honeycomb Should Be \
 | | ... | should be \| ${nodes['DUT1']} \| GigabitEthernet0/8/0 \
 | | ... | \| ${{'mtu': 1500}} \|
 | | [Arguments] | ${node} | ${interface} | ${ethernet}
@@ -564,7 +564,7 @@
 | | | Should be equal
 | | | ... | ${api_data['v3po:ethernet']['${key}']} | ${ethernet['${key}']}
 
-| Interface ethernet configuration from VAT should be
+| Interface ethernet Operational Data From VAT Should Be
 | | [Documentation] | Retrieves interface ethernet configuration\
 | | ... | through VAT and compares with settings supplied in arguments.
 | | ...
@@ -575,7 +575,7 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Interface ethernet configuration from VAT should be \
+| | ... | \| Interface ethernet Operational Data From VAT Should Be \
 | | ... | should be \| ${nodes['DUT1']} \| GigabitEthernet0/8/0 \| ${1500} \|
 | | [Arguments] | ${node} | ${interface} | ${mtu}
 | | ${vat_data}= | InterfaceCLI.VPP get interface data | ${node} | ${interface}
@@ -636,7 +636,7 @@
 | | ... | ${node} | ${interface}
 | | Should be equal | ${vat_data} | ${vrf_id}
 
-| Interface configuration from Honeycomb should be empty
+| Interface Operational Data From Honeycomb Should Be empty
 | | [Documentation] | Attempts to retrieve interface configuration through\
 | | ... | Honeycomb and expects to get empty dictionary.
 | | ...
@@ -646,14 +646,14 @@
 | | ... | string
 | | ...
 | | ... | *Example:*
-| | ... | \| Interface configuration from Honeycomb should be empty\
+| | ... | \| Interface Operational Data From Honeycomb Should Be empty\
 | | ... | \| ${nodes['DUT1']} \| GigabitEthernet0/8/0 \|
 | | ...
 | | [Arguments] | ${node} | ${interface}
 | | ${api_data}= | interfaceAPI.Get interface oper data | ${node} | ${interface}
 | | Should be empty | ${api_data}
 
-| Interface configuration from VAT should be empty
+| Interface Operational Data From VAT Should Be empty
 | | [Documentation] | Attempts to retrieve Interface configuration through\
 | | ... | VAT and expects to get empty dictionary.
 | | ...
@@ -663,7 +663,7 @@
 | | ... | string
 | | ...
 | | ... | *Example:*
-| | ... | \| Interface configuration from VAT should be empty\
+| | ... | \| Interface Operational Data From VAT Should Be empty\
 | | ... | \| ${nodes['DUT1']} \| GigabitEthernet0/8/0 \|
 | | ...
 | | [Arguments] | ${node} | ${interface} |

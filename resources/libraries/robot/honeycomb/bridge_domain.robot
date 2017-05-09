@@ -52,7 +52,7 @@
 | | [Arguments] | ${node} | ${bd_name} | ${settings}
 | | Add BD | ${node} | ${bd_name} | &{settings}
 
-| Bridge domain configuration from Honeycomb should be
+| Bridge domain Operational Data From Honeycomb Should Be
 | | [Documentation] | Uses Honeycomb API to verify bridge domain settings\
 | | ... | against provided values.
 | | ...
@@ -63,14 +63,14 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Bridge domain configuration from Honeycomb should be \
+| | ... | \| Bridge domain Operational Data From Honeycomb Should Be \
 | | ... | \| ${nodes['DUT1']} \| bd-04 \| ${{flood:True,learn:False}} \|
 | | [Arguments] | ${node} | ${bd_name} | ${settings}
 | | ${api_data}= | Get bd oper data | ${node} | ${bd_name}
 | | :FOR | ${key} | IN | @{settings.keys()}
 | | | Should be equal | ${settings['${key}']} | ${api_data['${key}']}
 
-| Bridge domain configuration from VAT should be
+| Bridge domain Operational Data From VAT Should Be
 | | [Documentation] | Uses VAT to verify bridge domain settings\
 | | ... | against provided values.
 | | ...
@@ -81,7 +81,7 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Bridge domain configuration from VAT should be \
+| | ... | \| Bridge domain Operational Data From VAT Should Be \
 | | ... | \| ${nodes['DUT1']} \| bd-04 \| ${{flood:True,learn:False}} \|
 | | [Arguments] | ${node} | ${bd_index} | ${settings}
 | | ${vat_data}= | VPP get bridge domain data | ${node}
@@ -278,7 +278,7 @@
 | | ... | ${settings['split-horizon-group']}
 | | ... | ${settings['bridged-virtual-interface']}
 
-| Bridge domain configuration in interface operational data should be empty
+| Bridge domain Operational Interface Assignment should be empty
 | | [Documentation] | Get interface operational data and retrieve bridge
 | | ... | domain configuration from it. It should be empty.
 | | ...
@@ -288,7 +288,7 @@
 | | ... | will be checked.Type: string
 | | ...
 | | ... | *Example:*
-| | ... | \| Bridge domain configuration in interface operational data should \
+| | ... | \| Bridge domain Operational Interface Assignment should \
 | | ... | be empty \| ${nodes['DUT1']} \| GigabitEthernet0/8/0 \|
 | | ...
 | | [Arguments] | ${node} | ${interface}
@@ -297,7 +297,7 @@
 | | ... | ${node} | ${interface}
 | | Should be empty | ${if_data}
 
-| Bridge domain configuration in interface operational data should be
+| Bridge domain Operational Interface Assignment should be
 | | [Documentation] | Get interface operational data and retrieve bridge
 | | ... | domain configuration from it. Compare the data to the expected one.
 | | ...
@@ -308,7 +308,7 @@
 | | ... | - bd_settings - The referential bridge domain data. Type: dictionary
 | | ...
 | | ... | *Example:*
-| | ... | \| Bridge domain configuration in interface operational data should \
+| | ... | \| Bridge domain Operational Interface Assignment should \
 | | ... | be \| ${nodes['DUT1']} \| GigabitEthernet0/8/0 \| ${if_bd_settings} \|
 | | ...
 | | [Arguments] | ${node} | ${interface} | ${bd_settings}

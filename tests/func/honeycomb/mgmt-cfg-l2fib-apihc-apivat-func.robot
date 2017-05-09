@@ -52,13 +52,13 @@
 | | ... | ${node} | ${interface} | up
 | | When Honeycomb creates first l2 bridge domain
 | | ... | ${node} | ${bd_name} | ${bd_settings}
-| | Then Bridge domain configuration from Honeycomb should be
+| | Then Bridge domain Operational Data From Honeycomb Should Be
 | | ... | ${node} | ${bd_name} | ${bd_settings}
-| | Given Bridge domain configuration in interface operational data should be empty
+| | Given Bridge domain Operational Interface Assignment should be empty
 | | ... | ${node} | ${interface}
 | | When Honeycomb adds interface to bridge domain
 | | ... | ${node} | ${interface} | ${bd_name} | ${if_bd_settings}
-| | Then Bridge domain configuration in interface operational data should be
+| | Then Bridge domain Operational Interface Assignment should be
 | | ... | ${node} | ${interface} | ${if_bd_settings}
 | | Given L2 FIB Table from Honeycomb should be empty
 | | ... | ${node} | ${bd_name}
@@ -78,7 +78,7 @@
 | | [Teardown] | Honeycomb removes L2 FIB entry
 | | ... | ${node} | ${bd_name} | ${l2_fib_static_forward_oper['phys-address']}
 | | ...
-| | Given Bridge domain configuration in interface operational data should be
+| | Given Bridge domain Operational Interface Assignment should be
 | | ... | ${node} | ${interface} | ${if_bd_settings}
 | | And L2 FIB Table from Honeycomb should be empty
 | | ... | ${node} | ${bd_name}
@@ -98,7 +98,7 @@
 | | [Teardown] | Honeycomb removes L2 FIB entry
 | | ... | ${node} | ${bd_name} | ${l2_fib_filter_oper['phys-address']}
 | | ...
-| | Given Bridge domain configuration in interface operational data should be
+| | Given Bridge domain Operational Interface Assignment should be
 | | ... | ${node} | ${interface} | ${if_bd_settings}
 | | And L2 FIB Table from Honeycomb should be empty
 | | ... | ${node} | ${bd_name}
@@ -118,7 +118,7 @@
 | | [Teardown] | Honeycomb removes L2 FIB entry
 | | ... | ${node} | ${bd_name} | ${l2_fib_forward_oper['phys-address']}
 | | ...
-| | Given Bridge domain configuration in interface operational data should be
+| | Given Bridge domain Operational Interface Assignment should be
 | | ... | ${node} | ${interface} | ${if_bd_settings}
 | | And L2 FIB Table from Honeycomb should be empty
 | | ... | ${node} | ${bd_name}
@@ -143,7 +143,7 @@
 | | [Teardown] | Honeycomb removes all L2 FIB entries
 | | ... | ${node} | ${bd_name}
 | | ...
-| | Given Bridge domain configuration in interface operational data should be
+| | Given Bridge domain Operational Interface Assignment should be
 | | ... | ${node} | ${interface} | ${if_bd_settings}
 | | And L2 FIB Table from Honeycomb should be empty
 | | ... | ${node} | ${bd_name}
@@ -175,7 +175,7 @@
 | | [Teardown] | Honeycomb removes all L2 FIB entries
 | | ... | ${node} | ${bd_name}
 | | ...
-| | Given Bridge domain configuration in interface operational data should be
+| | Given Bridge domain Operational Interface Assignment should be
 | | ... | ${node} | ${interface} | ${if_bd_settings}
 | | And L2 FIB Table from Honeycomb should be empty
 | | ... | ${node} | ${bd_name}
@@ -207,7 +207,7 @@
 | | [Teardown] | Honeycomb removes all L2 FIB entries
 | | ... | ${node} | ${bd_name}
 | | ...
-| | Given Bridge domain configuration in interface operational data should be
+| | Given Bridge domain Operational Interface Assignment should be
 | | ... | ${node} | ${interface} | ${if_bd_settings}
 | | And L2 FIB Table from Honeycomb should be empty
 | | ... | ${node} | ${bd_name}

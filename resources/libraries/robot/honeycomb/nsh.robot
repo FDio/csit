@@ -19,7 +19,7 @@
 | Documentation | Keywords used to test Honeycomb NSH node.
 
 *** Keywords ***
-| NSH configuration from Honeycomb should be empty
+| NSH Operational Data From Honeycomb Should Be empty
 | | [Documentation] | Uses Honeycomb API to retrieve NSH configuration\
 | | ... | and expects to fail.
 | | ...
@@ -28,7 +28,7 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| NSH configuration from Honeycomb should be empty \
+| | ... | \| NSH Operational Data From Honeycomb Should Be empty \
 | | ... | \| ${nodes['DUT1']} \|
 | | [Arguments] | ${node}
 | | Run keyword and expect error | *Status code: 404*

@@ -38,34 +38,34 @@
 *** Test Cases ***
 | TC01: Honeycomb can configure Policer
 | | [Documentation] | Checks if Honeycomb can configure Policer.
-| | Given Policer configuration from Honeycomb should be empty | ${node}
+| | Given Policer Operational Data From Honeycomb Should Be empty | ${node}
 | | When Honeycomb configures Policer | ${node} | ${policer_data}
-| | Then Policer configuration from Honeycomb should be | ${node}
+| | Then Policer Operational Data From Honeycomb Should Be | ${node}
 | | ... | ${policer_data_oper}
 
 | TC02: Honeycomb can disable Policer
 | | [Documentation] | Checks if Honeycomb can disable Policer.
-| | Given Policer configuration from Honeycomb should be | ${node}
+| | Given Policer Operational Data From Honeycomb Should Be | ${node}
 | | ... | ${policer_data_oper}
 | | When Honeycomb removes Policer configuration | ${node}
-| | Then Policer configuration from Honeycomb should be empty | ${node}
+| | Then Policer Operational Data From Honeycomb Should Be empty | ${node}
 
 | TC03: Honeycomb can configure Policer with increased values of CIR (900kbps)
 | | [Documentation] | Checks if Honeycomb can configure Policer\
 | | ... | with increased values of CIR.
 | | [Teardown] | Policer test teardown | ${node}
-| | Given Policer configuration from Honeycomb should be empty | ${node}
+| | Given Policer Operational Data From Honeycomb Should Be empty | ${node}
 | | When Honeycomb configures Policer | ${node} | ${policer_data_2}
-| | Then Policer configuration from Honeycomb should be | ${node}
+| | Then Policer Operational Data From Honeycomb Should Be | ${node}
 | | ... | ${policer_data_oper_2}
 
 | TC04: Honeycomb can configure Packets-Per-Second Based Policer
 | | [Documentation] | Checks if Honeycomb can configure Policer\
 | | ... | based on rate-type measured in pps.
 | | [Teardown] | Policer test teardown | ${node}
-| | Given Policer configuration from Honeycomb should be empty | ${node}
+| | Given Policer Operational Data From Honeycomb Should Be empty | ${node}
 | | When Honeycomb configures Policer | ${node} | ${policer_data_3}
-| | Then Policer configuration from Honeycomb should be | ${node}
+| | Then Policer Operational Data From Honeycomb Should Be | ${node}
 | | ... | ${policer_data_oper_3}
 
 | TC05: Configure Policer on Interface

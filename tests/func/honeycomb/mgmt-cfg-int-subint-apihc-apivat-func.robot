@@ -36,15 +36,15 @@
 | | [Documentation] | Check if Honeycomb creates a sub-interface.
 | | ...
 | | Given Honeycomb sets interface state | ${node} | ${super_if} | down
-| | And sub-interface configuration from Honeycomb should be empty
+| | And sub-interface Operational Data From Honeycomb Should Be empty
 | | ... | ${node} | ${super_if} | ${sub_if_id}
-| | And interface configuration from VAT should be empty
+| | And interface Operational Data From VAT Should Be empty
 | | ... | ${node} | ${sub_if_name}
 | | When Honeycomb creates sub-interface | ${node} | ${super_if}
 | | ... | ${sub_if_1_match} | ${sub_if_1_tags} | ${sub_if_1_settings}
-| | Then Sub-interface configuration from Honeycomb should be
+| | Then Sub-interface Operational Data From Honeycomb Should Be
 | | ... | ${node} | ${super_if} | ${sub_if_id} | ${sub_if_1_oper}
-| | And Sub-interface configuration from VAT should be
+| | And Sub-interface Operational Data From VAT Should Be
 | | ... | ${node} | ${sub_if_name} | ${sub_if_1_oper}
 | | And sub-interface indices from Honeycomb and VAT should correspond
 | | ... | ${node} | ${super_if} | ${sub_if_id}
@@ -157,15 +157,15 @@
 | | [Setup] | Set super and sub interfaces down
 | | ... | ${node} | ${super_if} | ${sub_if_id}
 | | ...
-| | Given sub-interface configuration from Honeycomb should be
+| | Given sub-interface Operational Data From Honeycomb Should Be
 | | ... | ${node} | ${super_if} | ${sub_if_id} | ${sub_if_1_oper}
-| | And sub-interface configuration from VAT should be
+| | And sub-interface Operational Data From VAT Should Be
 | | ... | ${node} | ${sub_if_name} | ${sub_if_1_oper}
 | | When Honeycomb fails to remove all sub-interfaces
 | | ... | ${node} | ${super_if}
-| | Then sub-interface configuration from Honeycomb should be
+| | Then sub-interface Operational Data From Honeycomb Should Be
 | | ... | ${node} | ${super_if} | ${sub_if_id} | ${sub_if_1_oper}
-| | And sub-interface configuration from VAT should be
+| | And sub-interface Operational Data From VAT Should Be
 | | ... | ${node} | ${sub_if_name} | ${sub_if_1_oper}
 
 | TC07: Honeycomb adds sub-interface to new bridge domain
@@ -174,21 +174,21 @@
 | | [Setup] | Set super and sub interfaces down
 | | ... | ${node} | ${super_if} | ${sub_if_id}
 | | ...
-| | Given sub-interface configuration from Honeycomb should be
+| | Given sub-interface Operational Data From Honeycomb Should Be
 | | ... | ${node} | ${super_if} | ${sub_if_id} | ${sub_if_1_oper}
-| | And sub-interface configuration from VAT should be
+| | And sub-interface Operational Data From VAT Should Be
 | | ... | ${node} | ${sub_if_name} | ${sub_if_1_oper}
 | | When Honeycomb creates first L2 bridge domain
 | | ... | ${node} | ${bd_name} | ${bd_settings}
-| | Then bridge domain configuration from Honeycomb should be
+| | Then bridge domain Operational Data From Honeycomb Should Be
 | | ... | ${node} | ${bd_name} | ${bd_settings}
 | | When Honeycomb adds sub-interface to bridge domain
 | | ... | ${node} | ${super_if} | ${sub_if_id} | ${sub_bd_settings}
-| | Then sub-interface bridge domain configuration from Honeycomb should be
+| | Then sub-interface bridge domain Operational Data From Honeycomb Should Be
 | | ... | ${node} | ${super_if} | ${sub_if_id} | ${sub_bd_settings}
-| | And sub-interface bridge domain configuration from VAT should be
+| | And sub-interface bridge domain Operational Data From VAT Should Be
 | | ... | ${node} | ${sub_if_name} | ${sub_bd_settings}
-| | And sub-interface configuration from VAT should be
+| | And sub-interface Operational Data From VAT Should Be
 | | ... | ${node} | ${sub_if_name} | ${sub_if_1_oper}
 
 | TC08: Honeycomb enables tag-rewrite pop 1
@@ -387,15 +387,15 @@
 | | [Documentation] | Check if Honeycomb can modify a sub-interface with exact\
 | | ... | tag match.
 | | Given Honeycomb sets interface state | ${node} | ${super_if2} | down
-| | And sub-interface configuration from Honeycomb should be empty
+| | And sub-interface Operational Data From Honeycomb Should Be empty
 | | ... | ${node} | ${super_if2} | ${sub_if_id}
-| | And interface configuration from VAT should be empty
+| | And interface Operational Data From VAT Should Be empty
 | | ... | ${node} | ${sub_if2_name}
 | | When Honeycomb creates sub-interface | ${node} | ${super_if2}
 | | ... | ${sub_if_2_match} | ${sub_if_2_tags} | ${sub_if_2_settings}
-| | Then Sub-interface configuration from Honeycomb should be
+| | Then Sub-interface Operational Data From Honeycomb Should Be
 | | ... | ${node} | ${super_if2} | ${sub_if_id} | ${sub_if_2_oper}
-| | And Sub-interface configuration from VAT should be
+| | And Sub-interface Operational Data From VAT Should Be
 | | ... | ${node} | ${sub_if2_name} | ${sub_if_2_oper}
 | | And sub-interface indices from Honeycomb and VAT should correspond
 | | ... | ${node} | ${super_if2} | ${sub_if_id}

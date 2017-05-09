@@ -67,7 +67,7 @@
 | | interfaceAPI.Configure interface vhost user | ${node} | ${interface}
 | | ... | &{settings}
 
-| Vhost-user configuration from Honeycomb should be
+| Vhost-user Operational Data From Honeycomb Should Be
 | | [Documentation] | Retrieves interface vhost-user configuration through\
 | | ... | Honeycomb and compares it with settings supplied in argument.
 | | ...
@@ -78,7 +78,7 @@
 | | ... | Type: dictionary
 | | ...
 | | ... | *Example:*
-| | ... | \| Vhost-user configuration from Honeycomb should be\
+| | ... | \| Vhost-user Operational Data From Honeycomb Should Be\
 | | ... | \| ${nodes['DUT1']} \| vhost_test \| ${vhost_user_settings} \|
 | | ...
 | | [Arguments] | ${node} | ${interface} | ${settings}
@@ -87,7 +87,7 @@
 | | :FOR | ${key} | IN | @{settings.keys()}
 | | | Should be equal | ${api_vhost['${key}']} | ${settings['${key}']}
 
-| Vhost-user configuration from VAT should be
+| Vhost-user Operational Data From VAT Should Be
 | | [Documentation] | Retrieves interface vhost-user configuration through VAT\
 | | ... | and compares it with settings supplied in argument.
 | | ...
@@ -97,7 +97,7 @@
 | | ... | Type: dictionary
 | | ...
 | | ... | *Example:*
-| | ... | \| Vhost-user configuration from VAT should be\
+| | ... | \| Vhost-user Operational Data From VAT Should Be\
 | | ... | \| ${nodes['DUT1']} \| vhost_test \|
 | | ...
 | | ... | *Note:*
@@ -113,7 +113,7 @@
 | | should be equal as strings | ${vat_data['is_server']}
 | | ... | ${translate['${settings['role']}']}
 
-| Vhost-user configuration from Honeycomb should be empty
+| Vhost-user Operational Data From Honeycomb Should Be empty
 | | [Documentation] | Attempts to retrieve interface vhost-user configuration\
 | | ... | through Honeycomb and expects to recieve an empty dictionary.
 | | ...
@@ -122,7 +122,7 @@
 | | ... | - interface - name of an interface on the specified node. Type: string
 | | ...
 | | ... | *Example:*
-| | ... | \| Vhost-user configuration from Honeycomb should be empty\
+| | ... | \| Vhost-user Operational Data From Honeycomb Should Be empty\
 | | ... | \| ${nodes['DUT1']} \| vhost_test \|
 | | ...
 | | [Arguments] | ${node} | ${interface}
@@ -130,7 +130,7 @@
 | | Run keyword and expect error | *KeyError: 'v3po:vhost-user'
 | | ... | Should be empty | ${api_data['v3po:vhost-user']}
 
-| Vhost-user configuration from VAT should be empty
+| Vhost-user Operational Data From VAT Should Be empty
 | | [Documentation] | Attempts to retrieve interface vhost-user configuration\
 | | ... | through VAT and expects a "no data" error.
 | | ...
@@ -138,7 +138,7 @@
 | | ... | - node - information about a DUT node. Type: dictionary
 | | ...
 | | ... | *Example:*
-| | ... | \| Vhost-user configuration from VAT should be empty\
+| | ... | \| Vhost-user Operational Data From VAT Should Be empty\
 | | ... | \| ${nodes['DUT1']} \|
 | | ...
 | | [Arguments] | ${node}

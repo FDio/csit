@@ -50,9 +50,9 @@
 | TC02: Honeycomb sends notification on interface deletion
 | | [Documentation] | Check if Honeycomb sends an interface-deleted notification
 | | ... | when an interface is deleted.
-| | Given TAP configuration from Honeycomb should be
+| | Given TAP Operational Data From Honeycomb Should Be
 | | ... | ${node} | ${tap_interface} | ${tap_settings}
-| | And TAP configuration from VAT should be
+| | And TAP Operational Data From VAT Should Be
 | | ... | ${node} | ${tap_interface} | ${tap_settings}
 | | And Notification listener is established | ${node}
 | | When Honeycomb removes TAP interface | ${node} | ${tap_interface}

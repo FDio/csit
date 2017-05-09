@@ -87,7 +87,7 @@
 | | Setup DUT | ${node}
 | | Setup Honeycomb service on DUTs | ${node}
 
-| Honeycomb configures every setting
+| Generic Persistence Test Configuration
 | | [Documentation] | Uses Honeycomb to set basic settings for VxLAN,\
 | | ... | bridge domains, TAP, vhost-user and VLAN.
 | | ...
@@ -97,7 +97,7 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Honeycomb configures every setting \| ${nodes['DUT1']} \
+| | ... | \| Generic Persistence Test Configuration \| ${nodes['DUT1']} \
 | | ... | \| GigabitEthernet0/8/0 \|
 | | ...
 | | [Arguments] | ${node} | ${interface}
@@ -119,7 +119,7 @@
 | | Honeycomb configures tag rewrite
 | | ... | ${node} | ${interface} | ${sub_if_id} | ${tag_rewrite_pop_1}
 
-| Honeycomb and VPP should verify every setting
+| Generic persistence Test Verification
 | | [Documentation] | Uses Honeycomb and VAT to verify settings for VxLAN,\
 | | ... | bridge domains, TAP, vhost-user and VLAN.
 | | ...
@@ -129,40 +129,43 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Honeycomb and VPP should verify every setting \| ${nodes['DUT1']} \
+| | ... | \| Generic persistence Test Verification \| ${nodes['DUT1']} \
 | | ... | \| GigabitEthernet0/8/0 \|
 | | ...
 | | [Arguments] | ${node} | ${interface}
-| | VxLAN configuration from Honeycomb should be
+| | VxLAN Operational Data From Honeycomb Should Be
 | | ... | ${node} | ${vx_interface} | ${vxlan_settings}
-| | VxLAN configuration from VAT should be
+| | VxLAN Operational Data From VAT Should Be
 | | ... | ${node} | ${vxlan_settings}
-| | Bridge domain configuration from Honeycomb should be
+| | Bridge domain Operational Data From Honeycomb Should Be
 | | ... | ${node} | ${bd_name} | ${bd_settings}
-| | Bridge domain configuration from VAT should be
+| | Bridge domain Operational Data From VAT Should Be
 | | ... | ${node} | ${0} | ${bd_settings}
-| | TAP configuration from Honeycomb should be
+| | TAP Operational Data From Honeycomb Should Be
 | | ... | ${node} | ${tap_interface} | ${tap_settings}
-| | TAP configuration from VAT should be
+| | TAP Operational Data From VAT Should Be
 | | ... | ${node} | ${tap_interface} | ${tap_settings}
-| | Vhost-user configuration from Honeycomb should be
+| | Vhost-user Operational Data From Honeycomb Should Be
 | | ... | ${node} | ${vhost_interface} | ${vhost_user_client}
-| | Vhost-user configuration from VAT should be
+| | Vhost-user Operational Data From VAT Should Be
 | | ... | ${node} | ${vhost_user_client}
-| | Sub-interface configuration from Honeycomb should be
+| | Sub-interface Operational Data From Honeycomb Should Be
 | | ... | ${node} | ${interface} | ${sub_if_id} | ${sub_if_1_oper}
-| | Sub-interface configuration from VAT should be
+| | Sub-interface Operational Data From VAT Should Be
 | | ... | ${node} | ${sub_if_name} | ${sub_if_1_oper}
 | | Interface state from Honeycomb should be | ${node} | ${interface} | up
 | | Interface state from VAT should be | ${node} | ${interface} | up
-| | Sub-interface bridge domain configuration from Honeycomb should be
+| | Sub-interface bridge domain Operational Data From Honeycomb Should Be
 | | ... | ${node} | ${interface} | ${sub_if_id} | ${sub_bd_settings}
-| | Sub-interface bridge domain configuration from VAT should be
+| | Sub-interface bridge domain Operational Data From VAT Should Be
 | | ... | ${node} | ${sub_if_name} | ${sub_bd_settings}
 | | Rewrite tag from Honeycomb should be
 | | ... | ${node} | ${interface} | ${sub_if_id} | ${tag_rewrite_pop_1_oper}
 | | Rewrite tag from VAT should be
 | | ... | ${node} | ${sub_if_name} | ${tag_rewrite_pop_1_VAT}
+| | ${data_conf}= | InterfaceAPI.Get all interfaces cfg data | ${node}
+| | ${data_oper}= | InterfaceAPI.Get all interfaces oper data | ${node}
+| | Compare interface lists | ${data_conf} | ${data_oper}
 
 | Honeycomb and VPP should have default configuration
 | | [Documentation] | Uses Honeycomb and VAT to verify settings for VxLAN,\
@@ -178,56 +181,23 @@
 | | ... | ${nodes['DUT1']} \|
 | | ...
 | | [Arguments] | ${node}
-| | VxLAN configuration from Honeycomb should be empty
+| | VxLAN Operational Data From Honeycomb Should Be empty
 | | ... | ${node} | ${vx_interface}
-| | VxLAN configuration from VAT should be empty | ${node}
+| | VxLAN Operational Data From VAT Should Be empty | ${node}
 | | Honeycomb should show no bridge domains | ${node}
 | | VAT should show no bridge domains | ${node}
-| | TAP configuration from Honeycomb should be empty
+| | TAP Operational Data From Honeycomb Should Be empty
 | | ... | ${node} | ${tap_interface}
-| | TAP configuration from VAT should be empty
+| | TAP Operational Data From VAT Should Be empty
 | | ... | ${node} | ${tap_interface}
-| | Vhost-user configuration from Honeycomb should be empty
+| | Vhost-user Operational Data From Honeycomb Should Be empty
 | | ... | ${node} | ${vhost_interface}
-| | Vhost-user configuration from VAT should be empty
+| | Vhost-user Operational Data From VAT Should Be empty
 | | ... | ${node}
 | | interface state from Honeycomb should be
 | | ... | ${node} | ${interface} | down
 | | And interface state from VAT should be
 | | ... | ${node} | ${interface} | down
-
-| Honeycomb and VPP should not have default configuration
-| | [Documentation] | Uses Honeycomb and VAT to verify settings for VxLAN,\
-| | ... | bridge domains, TAP, vhost-user and VLAN. Expects any\
-| | ... | configuration other than default.
-| | ...
-| | ... | *Arguments:*
-| | ... | - node - information about a DUT node. Type: dictionary
-| | ...
-| | ... | *Example:*
-| | ...
-| | ... | \| Honeycomb and VPP should not have default configuration \
-| | ... | \| ${nodes['DUT1']} \|
-| | ...
-| | [Arguments] | ${node}
-| | Run keyword and expect error | *
-| | ... | Honeycomb and VPP should have default configuration | ${node}
-
-| Honeycomb should show no rogue interfaces
-| | [Documentation] | Checks if operational data contains interfaces not\
-| | ... | present in configuration and vice versa.
-| | ...
-| | ... | *Arguments:*
-| | ... | - node - information about a DUT node. Type: dictionary
-| | ...
-| | ... | *Example:*
-| | ...
-| | ... | \| Honeycomb should show no rogue interfaces \| ${nodes['DUT1']} \|
-| | ...
-| | [Arguments] | ${node}
-| | ${data_conf}= | InterfaceAPI.Get all interfaces cfg data | ${node}
-| | ${data_oper}= | InterfaceAPI.Get all interfaces oper data | ${node}
-| | Compare interface lists | ${data_conf} | ${data_oper}
 
 | Persistence file is damaged during restart
 | | [Documentation] | Shuts down Honeycomb, modifies persistence files to\

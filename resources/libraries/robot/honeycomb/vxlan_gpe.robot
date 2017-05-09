@@ -66,7 +66,7 @@
 | | ...
 | | interfaceAPI.Delete interface | ${node} | ${interface}
 
-| VxLAN GPE configuration from Honeycomb should be
+| VxLAN GPE Operational Data From Honeycomb Should Be
 | | [Documentation] | Uses Honeycomb API to get operational data about the\
 | | ... | given interface and compares them to the values provided as arguments.
 | | ...
@@ -78,7 +78,7 @@
 | | ... | - vxlan_gpe_settings - VxLAN GPE specific parameters. Type: dictionary
 | | ...
 | | ... | *Example:*
-| | ... | \| VxLAN GPE configuration from Honeycomb should be \
+| | ... | \| VxLAN GPE Operational Data From Honeycomb Should Be \
 | | ... | \| ${nodes['DUT1']} \| vxlan_gpe_tunnel0 \| ${base_params} \
 | | ... | \| ${vxlan_gpe_params} \|
 | | ...
@@ -101,7 +101,7 @@
 | | ... | AND
 | | ... | Should be equal as strings | ${api_data['oper-status']} | down
 
-| VxLAN GPE configuration from VAT should be
+| VxLAN GPE Operational Data From VAT Should Be
 | | [Documentation] | Uses VAT to get operational data about the given\
 | | ... | interface and compares them to the values provided as arguments.
 | | ...
@@ -111,7 +111,7 @@
 | | ... | - vxlan_gpe_settings - VxLAN GPE specific parameters. Type: dictionary
 | | ...
 | | ... | *Example:*
-| | ... | \| VxLAN GPE configuration from VAT should be \
+| | ... | \| VxLAN GPE Operational Data From VAT Should Be \
 | | ... | \| ${nodes['DUT1']} \| vxlan_gpe_tunnel0 \| ${vxlan_gpe_params} \|
 | | ...
 | | [Arguments] | ${node} | ${interface} | ${vxlan_gpe_params}
@@ -154,7 +154,7 @@
 | | Should be equal as strings
 | | ... | ${api_data['if-index']} | ${sw_if_index}
 
-| VxLAN GPE configuration from Honeycomb should be empty
+| VxLAN GPE Operational Data From Honeycomb Should Be empty
 | | [Documentation] | Uses Honeycomb API to get operational data about\
 | | ... | the given interface and expects to fail.
 | | ...
@@ -162,7 +162,7 @@
 | | ... | - node - information about a DUT node. Type: dictionary
 | | ...
 | | ... | *Example:*
-| | ... | \| VxLAN GPE configuration from Honeycomb should be empty\
+| | ... | \| VxLAN GPE Operational Data From Honeycomb Should Be empty\
 | | ... | \| ${nodes['DUT1']} \| vxlan_gpe_tunnel0 \|
 | | ...
 | | [Arguments] | ${node} | ${interface}
@@ -170,7 +170,7 @@
 | | ${api_data}= | interfaceAPI.Get interface oper data | ${node} | ${interface}
 | | Should be empty | ${api_data}
 
-| VxLAN GPE configuration from VAT should be empty
+| VxLAN GPE Operational Data From VAT Should Be empty
 | | [Documentation] | Uses VAT to get operational data about the given\
 | | ... | interface and expects an empty dictionary.
 | | ...
@@ -178,7 +178,7 @@
 | | ... | - node - information about a DUT node. Type: dictionary
 | | ...
 | | ... | *Example:*
-| | ... | \| VxLAN GPE configuration from VAT should be empty\
+| | ... | \| VxLAN GPE Operational Data From VAT Should Be empty\
 | | ... | \| ${nodes['DUT1']} \|
 | | ...
 | | [Arguments] | ${node}
