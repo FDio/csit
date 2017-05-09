@@ -32,7 +32,7 @@
 | ... | Run Keyword If Any Tests Failed
 | ... | Restart Honeycomb and VPP | ${node}
 | ... | AND | Honeycomb removes all bridge domains | ${node} | @{interfaces}
-| Force Tags | honeycomb_sanity | honeycomb_odl
+| Force Tags | HC_FUNC
 | Documentation | *Honeycomb bridge domain management test suite.*
 
 *** Test Cases ***
@@ -40,31 +40,31 @@
 | | [Documentation] | Check if Honeycomb can create bridge domains on VPP node.
 | | When Honeycomb creates first l2 bridge domain
 | | ... | ${node} | ${bd1_name} | ${bd_settings}
-| | Then Bridge domain configuration from Honeycomb should be
+| | Then Bridge domain Operational Data From Honeycomb Should Be
 | | ... | ${node} | ${bd1_name} | ${bd_settings}
-| | And Bridge domain configuration from VAT should be
+| | And Bridge domain Operational Data From VAT Should Be
 | | ... | ${node} | ${0} | ${bd_settings}
 
 | TC02: Honeycomb manages multiple bridge domains on node
 | | [Documentation] | Check if Honeycomb can manage multiple bridge domains on\
 | | ... | a single node.
-| | Given Bridge domain configuration from Honeycomb should be
+| | Given Bridge domain Operational Data From Honeycomb Should Be
 | | ... | ${node} | ${bd1_name} | ${bd_settings}
 | | When Honeycomb creates l2 bridge domain
 | | ... | ${node} | ${bd2_name} | ${bd_settings}
-| | Then Bridge domain configuration from Honeycomb should be
+| | Then Bridge domain Operational Data From Honeycomb Should Be
 | | ... | ${node} | ${bd1_name} | ${bd_settings}
-| | And Bridge domain configuration from Honeycomb should be
+| | And Bridge domain Operational Data From Honeycomb Should Be
 | | ... | ${node} | ${bd2_name} | ${bd_settings}
-| | And Bridge domain configuration from VAT should be
+| | And Bridge domain Operational Data From VAT Should Be
 | | ... | ${node} | ${0} | ${bd_settings}
-| | And Bridge domain configuration from VAT should be
+| | And Bridge domain Operational Data From VAT Should Be
 | | ... | ${node} | ${1} | ${bd_settings}
 
 | TC03: Honeycomb removes bridge domains
 | | [Documentation] | Check if Honeycomb can remove bridge domains from a VPP\
 | | ... | node.
-| | Given Bridge domain configuration from Honeycomb should be
+| | Given Bridge domain Operational Data From Honeycomb Should Be
 | | ... | ${node} | ${bd1_name} | ${bd_settings}
 | | When Honeycomb removes all bridge domains | ${node}
 | | Then Honeycomb should show no bridge domains | ${node}
@@ -77,9 +77,9 @@
 | | ... | ${node} | ${bd1_name} | ${bd_settings}
 | | When Honeycomb adds interfaces to bridge domain
 | | ... | ${node} | @{interfaces} | ${bd1_name} | ${if_settings}
-| | Then Bridge domain configuration from Honeycomb should be
+| | Then Bridge domain Operational Data From Honeycomb Should Be
 | | ... | ${node} | ${bd1_name} | ${bd_settings}
-| | And Bridge domain configuration from VAT should be
+| | And Bridge domain Operational Data From VAT Should Be
 | | ... | ${node} | ${0} | ${bd_settings}
 | | And Honeycomb should show interfaces assigned to bridge domain
 | | ... | ${node} | @{interfaces} | ${bd1_name} | ${if_settings}
@@ -89,9 +89,9 @@
 | TC05: Honeycomb cannot remove bridge domain with an interface assigned
 | | [Documentation] | Check if Honeycomb can remove a bridge domain that has an\
 | | ... | interface assigned to it. Expect to fail with code 500.
-| | Given Bridge domain configuration from Honeycomb should be
+| | Given Bridge domain Operational Data From Honeycomb Should Be
 | | ... | ${node} | ${bd1_name} | ${bd_settings}
-| | And Bridge domain configuration from VAT should be
+| | And Bridge domain Operational Data From VAT Should Be
 | | ... | ${node} | ${0} | ${bd_settings}
 | | And Honeycomb should show interfaces assigned to bridge domain
 | | ... | ${node} | @{interfaces} | ${bd1_name} | ${if_settings}
@@ -99,9 +99,9 @@
 | | ... | ${node} | ${0} | @{interfaces} | ${if_settings}
 | | When Run keyword and expect error | HoneycombError* Status code: 500.
 | | ... | Honeycomb removes all bridge domains | ${node}
-| | Then Bridge domain configuration from Honeycomb should be
+| | Then Bridge domain Operational Data From Honeycomb Should Be
 | | ... | ${node} | ${bd1_name} | ${bd_settings}
-| | And Bridge domain configuration from VAT should be
+| | And Bridge domain Operational Data From VAT Should Be
 | | ... | ${node} | ${0} | ${bd_settings}
 | | And Honeycomb should show interfaces assigned to bridge domain
 | | ... | ${node} | @{interfaces} | ${bd1_name} | ${if_settings}

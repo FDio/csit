@@ -26,7 +26,7 @@
 | Test Teardown | Honeycomb routing test teardown
 | ... | ${node} | ${table}
 | Documentation | *Honeycomb routing test suite.*
-| Force Tags | Honeycomb_sanity | honeycomb_odl
+| Force Tags | HC_FUNC
 
 *** Test Cases ***
 | TC01: Single hop IPv4 route

@@ -21,7 +21,7 @@
 | Variables | resources/test_data/honeycomb/spanrx-apihc-apivat.py
 | ... | ${node} | ${node['interfaces']['port1']['name']}
 | ... | ${node['interfaces']['port3']['name']} | local0
-| Force Tags | honeycomb_sanity
+| Force Tags | HC_FUNC
 | Suite Setup | Add Interface local0 To Topology | ${node}
 | Suite Teardown | Restart Honeycomb and VPP | ${node}
 | Documentation | *Honeycomb port mirroring test suite.*
@@ -33,7 +33,7 @@
 | | ...
 | | When Honeycomb Configures SPAN on interface
 | | ... | ${node} | ${interface1} | ${settings_1}
-| | Then Interface SPAN configuration from Honeycomb should be
+| | Then Interface SPAN Operational Data From Honeycomb Should Be
 | | ... | ${node} | ${interface1} | ${settings_1}
 
 | TC02: Honeycomb can configure SPAN on an interface transmit
@@ -42,7 +42,7 @@
 | | ...
 | | When Honeycomb Configures SPAN on interface
 | | ... | ${node} | ${interface1} | ${settings_2}
-| | Then Interface SPAN configuration from Honeycomb should be
+| | Then Interface SPAN Operational Data From Honeycomb Should Be
 | | ... | ${node} | ${interface1} | ${settings_2}
 
 | TC03: Honeycomb can configure SPAN on an interface both
@@ -51,7 +51,7 @@
 | | ...
 | | When Honeycomb Configures SPAN on interface
 | | ... | ${node} | ${interface1} | ${settings_3}
-| | Then Interface SPAN configuration from Honeycomb should be
+| | Then Interface SPAN Operational Data From Honeycomb Should Be
 | | ... | ${node} | ${interface1} | ${settings_3}
 
 | TC04: Honeycomb can configure SPAN on two interfaces
@@ -60,18 +60,18 @@
 | | ...
 | | When Honeycomb Configures SPAN on interface
 | | ... | ${node} | ${interface1} | ${settings_2} | ${settings_4}
-| | Then Interface SPAN configuration from Honeycomb should be
+| | Then Interface SPAN Operational Data From Honeycomb Should Be
 | | ... | ${node} | ${interface1} | ${settings_2} | ${settings_4}
 
 | TC05: Honeycomb can disable SPAN on interface
 | | [Documentation] | Honeycomb removes existing SPAN configuration
 | | ... | on interface.
 | | ...
-| | Given Interface SPAN configuration from Honeycomb should be
+| | Given Interface SPAN Operational Data From Honeycomb Should Be
 | | ... | ${node} | ${interface1} | ${settings_2} | ${settings_4}
 | | When Honeycomb removes interface SPAN configuration
 | | ... | ${node} | ${interface1}
-| | Then Interface SPAN configuration from Honeycomb should be empty
+| | Then Interface SPAN Operational Data From Honeycomb Should Be empty
 | | ... | ${node} | ${interface1}
 
 | TC06: DUT mirrors IPv4 packets from one interface to another

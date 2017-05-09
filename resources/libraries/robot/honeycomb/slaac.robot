@@ -35,7 +35,7 @@
 | | Configure interface SLAAC
 | | ... | ${node} | ${interface} | ${slaac_data}
 
-| SLAAC configuration from Honeycomb should be
+| SLAAC Operational Data From Honeycomb Should Be
 | | [Documentation] | Retrieves SLAAC operational data and verifies that\
 | | ... | SLAAC is configured with the provided interfaces.
 | | ...
@@ -47,14 +47,14 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| SLAAC configuration from Honeycomb should be \
+| | ... | \| SLAAC Operational Data From Honeycomb Should Be \
 | | ... | \| ${node} \| ${interface} \| ${slaac_data} \|
 | | ...
 | | [Arguments] | ${node} | ${interface} | ${slaac_data}
 | | ${data}= | Get interface SLAAC oper data | ${node} | ${interface}
 | | Dictionaries should be equal | ${data} | ${slaac_data}
 
-| SLAAC configuration from Honeycomb should be empty
+| SLAAC Operational Data From Honeycomb Should Be empty
 | | [Documentation] | Checks whether SLAAC configuration from Honeycomb \
 | | ... | is empty.
 | | ...
@@ -64,7 +64,7 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| SLAAC configuration from Honeycomb should be empty \
+| | ... | \| SLAAC Operational Data From Honeycomb Should Be empty \
 | | ... | \| ${node} \| ${interface} \|
 | | ...
 | | [Arguments] | ${node} | ${interface}

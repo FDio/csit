@@ -42,7 +42,7 @@
 | | InterfaceAPI.Configure interface SPAN
 | | ... | ${node} | ${dst_interface} | ${src_interfaces}
 
-| Interface SPAN configuration from Honeycomb should be
+| Interface SPAN Operational Data From Honeycomb Should Be
 | | [Documentation] | Retrieves interface operational data and verifies that\
 | | ... | SPAN mirroring is configured with the provided interfaces.
 | | ...
@@ -54,7 +54,7 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Interface SPAN configuration from Honeycomb should be \
+| | ... | \| Interface SPAN Operational Data From Honeycomb Should Be \
 | | ... | \| ${nodes['DUT1']} \| GigabitEthernet0/8/0 \| GigabitEthernet0/9/0 \|
 | | ...
 | | [Arguments] | ${node} | ${dst_interface} | @{src_interfaces}
@@ -65,7 +65,7 @@
 | | Sort list | ${src_interfaces}
 | | Lists should be equal | ${data} | ${src_interfaces}
 
-| Interface SPAN configuration from Honeycomb should be empty
+| Interface SPAN Operational Data From Honeycomb Should Be empty
 | | [Documentation] | Checks whether SPAN configuration from Honeycomb is empty.
 | | ...
 | | ... | *Arguments:*
@@ -74,7 +74,7 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Interface SPAN configuration from Honeycomb should be empty \
+| | ... | \| Interface SPAN Operational Data From Honeycomb Should Be empty \
 | | ... | \| ${node} \| GigabitEthernetO/8/0 \|
 | | ...
 | | [Arguments] | ${node} | ${dst_interface}
@@ -82,7 +82,7 @@
 | | Variable should not exist
 | | ... | ${data['v3po:span']['mirrored-interfaces']['mirrored-interface']}
 
-| Interface SPAN configuration from VAT should be
+| Interface SPAN Operational Data From VAT Should Be
 | | [Documentation] | Retrieves SPAN configuration from VAT dump and verifies\
 | | ... | that SPAN mirroring is configured with the provided interfaces.
 | | ...
@@ -94,7 +94,7 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Interface SPAN configuration from VAT should be \
+| | ... | \| Interface SPAN Operational Data From VAT Should Be \
 | | ... | \| ${nodes['DUT1']} \| GigabitEthernet0/8/0 \| GigabitEthernet0/9/0 \|
 | | ...
 | | [Arguments] | ${node} | ${dst_interface} | @{src_interfaces}

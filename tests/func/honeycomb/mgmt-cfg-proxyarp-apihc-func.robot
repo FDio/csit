@@ -33,7 +33,7 @@
 | Suite Teardown
 | ... | Run Keyword If Any Tests Failed
 | ... | Restart Honeycomb And VPP | ${node}
-| Force Tags | honeycomb_sanity | honeycomb_odl
+| Force Tags | HC_FUNC
 | Documentation | *Honeycomb proxyARP management test suite.*
 
 *** Test Cases ***

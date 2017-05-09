@@ -18,52 +18,125 @@
 *** Settings ***
 | Resource | resources/libraries/robot/default.robot
 | Resource | resources/libraries/robot/honeycomb/persistence.robot
+| Resource | resources/libraries/robot/honeycomb/interfaces.robot
+| Resource | resources/libraries/robot/honeycomb/bridge_domain.robot
+| Resource | resources/libraries/robot/honeycomb/l2_fib.robot
 | Suite Setup | Run Keywords
 | ... | Configure Persistence | ${node} | enable | AND
 | ... | Restart Honeycomb And VPP And Clear Persisted Configuration | ${node}
 | Suite Teardown | Configure Persistence | ${node} | disable
-| Force Tags | honeycomb_sanity
+| Force Tags | HC_PERSIST | HC_REST_ONLY
 | Documentation | *Honeycomb configuration persistence test suite.*
 
 *** Test Cases ***
+# multi-feature cases
+# ===================
 | TC01: Honeycomb persists configuration through restart of both Honeycomb and VPP
 | | [Documentation] | Checks if Honeycomb maintains configuration after both\
 | | ... | Honeycomb and VPP are restarted.
-# Vxlan tunnel name is sometimes not properly restored (HC2VPP-47)
-| | [Tags] | EXPECTED_FAILING
-| | Given Honeycomb configures every setting | ${node} | ${interface}
-| | And Honeycomb and VPP should verify every setting | ${node} | ${interface}
+| | [Tags] | HC_FUNC
+| | [Teardown]
+| | ... | Restart Honeycomb And VPP And Clear Persisted Configuration | ${node}
+| | Given Multi-Feature Persistence test configuration | ${node} | ${interface}
+| | And Multi-Feature persistence Test Verification | ${node} | ${interface}
 | | And Log persisted configuration on node | ${node}
 | | When Honeycomb and VPP are restarted | ${node}
-| | Then Honeycomb and VPP should verify every setting | ${node} | ${interface}
-| | And Honeycomb should show no rogue interfaces | ${node}
+| | Then Multi-Feature persistence Test Verification | ${node} | ${interface}
 
-| TC02: Honeycomb persists configuration through restart of Honeycomb
-| | [Documentation] | Checks if Honeycomb maintains configuration after it\
-| | ... | is restarted.
-# Vxlan tunnel name is sometimes not properly restored (HC2VPP-47)
-| | [Tags] | EXPECTED_FAILING
-| | Given Honeycomb and VPP should verify every setting | ${node} | ${interface}
-| | And Log persisted configuration on node | ${node}
-| | When Honeycomb is restarted | ${node}
-| | Then Honeycomb and VPP should verify every setting | ${node} | ${interface}
-| | And Honeycomb should show no rogue interfaces | ${node}
-
-| TC03: Honeycomb persists configuration through restart of VPP
-| | [Documentation] | Checks if Honeycomb updates VPP settings after VPP is\
-| | ... | restarted.
-# Vxlan tunnel name is sometimes not properly restored (HC2VPP-47)
-| | [Tags] | EXPECTED_FAILING
-| | Given Honeycomb and VPP should verify every setting | ${node} | ${interface}
-| | And Log persisted configuration on node | ${node}
-| | When VPP is restarted | ${node}
-| | Then Honeycomb and VPP should verify every setting | ${node} | ${interface}
-| | And Honeycomb should show no rogue interfaces | ${node}
-
-| TC04: Honeycomb reverts to defaults if persistence files are invalid
+| TC02: Honeycomb reverts to defaults if persistence files are invalid
 | | [Documentation] | Checks if Honeycomb reverts to default configuration when\
 | | ... | persistence files are damaged or invalid.
-| | [Teardown] | Run keyword if test failed
+| | [Tags] | HC_FUNC
+| | [Teardown]
 | | ... | Restart Honeycomb And VPP And Clear Persisted Configuration | ${node}
+| | Given Multi-Feature Persistence test configuration | ${node} | ${interface}
+| | And Multi-Feature persistence Test Verification | ${node} | ${interface}
 | | When Persistence file is damaged during restart | ${node}
 | | Then Honeycomb and VPP should have default configuration | ${node}
+
+| TC03: Honeycomb persists configuration through restart of Honeycomb
+| | [Documentation] | Checks if Honeycomb maintains configuration after it\
+| | ... | is restarted.
+| | [Teardown]
+| | ... | Restart Honeycomb And VPP And Clear Persisted Configuration | ${node}
+| | Given Multi-Feature Persistence test configuration | ${node} | ${interface}
+| | And Multi-Feature persistence Test Verification | ${node} | ${interface}
+| | And Log persisted configuration on node | ${node}
+| | When Honeycomb is restarted | ${node}
+| | Then Multi-Feature persistence Test Verification | ${node} | ${interface}
+
+| TC04: Honeycomb persists configuration through restart of VPP
+| | [Documentation] | Checks if Honeycomb updates VPP settings after VPP is\
+| | ... | restarted.
+| | [Teardown]
+| | ... | Restart Honeycomb And VPP And Clear Persisted Configuration | ${node}
+| | Given Multi-Feature Persistence test configuration | ${node} | ${interface}
+| | And Multi-Feature persistence Test Verification | ${node} | ${interface}
+| | And Log persisted configuration on node | ${node}
+| | When VPP is restarted | ${node}
+| | Then Multi-Feature persistence Test Verification | ${node} | ${interface}
+
+# single-feature cases
+# ====================
+
+| TC05: Persist configuration of IP addresses and neighbors - HC and VPP restart
+| | [Documentation] | Verify persistence of interface state, IPv4 address
+| | ... | and neighbor entries through restart of both Honeycomb and VPP.
+| | [Teardown]
+| | ... | Restart Honeycomb And VPP And Clear Persisted Configuration | ${node}
+| | Given Interface Persistence Setup | ${node}
+| | And Interface Persistence Check | ${node}
+| | When Honeycomb and VPP are restarted | ${node}
+| | Then Interface Persistence Check | ${node}
+
+| TC06: Persist configuration of IP addresses and neighbors - HC restart
+| | [Documentation] | Verify persistence of interface state, IPv4 address
+| | ... | and neighbor entries through restart of Honeycomb.
+| | [Teardown]
+| | ... | Restart Honeycomb And VPP And Clear Persisted Configuration | ${node}
+| | Given Interface Persistence Setup | ${node}
+| | And Interface Persistence Check | ${node}
+| | When Honeycomb is restarted | ${node}
+| | Then Interface Persistence Check | ${node}
+
+| TC07: Persist configuration of IP addresses and neighbors - VPP restart
+| | [Documentation] | Verify persistence of interface state, IPv4 address
+| | ... | and neighbor entries through restart of VPP.
+| | [Teardown]
+| | ... | Restart Honeycomb And VPP And Clear Persisted Configuration | ${node}
+| | Given Interface Persistence Setup | ${node}
+| | And Interface Persistence Check | ${node}
+| | When VPP is restarted | ${node}
+| | Then Interface Persistence Check | ${node}
+
+| TC08: Honeycomb persists configuration of bridge domains - HC and VPP restart
+| | [Documentation] | Verify persistence of bridge domain, L2-FIB entry
+| | ... | and Bridge domain Operational Interface Assignment through restart
+| | ... | of both Honeycomb and VPP.
+| | [Teardown]
+| | ... | Restart Honeycomb And VPP And Clear Persisted Configuration | ${node}
+| | Given Bridge Domain Persistence Setup | ${node}
+| | When Honeycomb and VPP are restarted | ${node}
+| | Then Bridge Domain Persistence Check | ${node}
+
+| TC09: Honeycomb persists configuration of bridge domains - HC restart
+| | [Documentation] | Verify persistence of bridge domain, L2-FIB entry
+| | ... | and Bridge domain Operational Interface Assignment through restart
+| | ... | of Honeycomb.
+| | [Teardown]
+| | ... | Restart Honeycomb And VPP And Clear Persisted Configuration | ${node}
+| | Given Bridge Domain Persistence Setup | ${node}
+| | When Honeycomb is restarted | ${node}
+| | Then Bridge Domain Persistence Check | ${node}
+
+| TC10: Honeycomb persists configuration of bridge domains - VPP restart
+| | [Documentation] | Verify persistence of bridge domain, L2-FIB entry
+| | ... | and Bridge domain Operational Interface Assignment through restart
+| | ... | of VPP.
+| | [Teardown]
+| | ... | Restart Honeycomb And VPP And Clear Persisted Configuration | ${node}
+| | Given Bridge Domain Persistence Setup | ${node}
+| | When VPP is restarted | ${node}
+| | Then Bridge Domain Persistence Check | ${node}
+
+#TODO: All other features

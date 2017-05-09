@@ -18,7 +18,7 @@
 | Documentation | Keywords used to test Honeycomb NAT node.
 
 *** Keywords ***
-| NAT configuration from Honeycomb should be empty
+| NAT Operational Data From Honeycomb Should Be empty
 | | [Documentation] | Uses Honeycomb API to retrieve NAT operational data\
 | | ... | and expects to find only default values.
 | | ...
@@ -28,7 +28,7 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| NAT configuration from Honeycomb should be empty \
+| | ... | \| NAT Operational Data From Honeycomb Should Be empty \
 | | ... | \| ${nodes['DUT1']} \| ${default_settings} \|
 | | [Arguments] | ${node} | ${default_settings}
 | | ${data}= | Get NAT Oper data | ${node}
@@ -120,7 +120,7 @@
 | | Configure NAT on interface
 | | ... | ${node} | ${interface} | ${direction} | ${True}
 
-| NAT interface configuration from Honeycomb should be
+| NAT interface Operational Data From Honeycomb Should Be
 | | [Documentation] | Uses Honeycomb API to retrieve interface operational data\
 | | ... | and compares the NAT section against expected settings.
 | | ...
@@ -132,13 +132,13 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| NAT interface configuration from Honeycomb should be \
+| | ... | \| NAT interface Operational Data From Honeycomb Should Be \
 | | ... | \| ${nodes['DUT1']} \| GigabitEthernet0/8/0 \| outbound \|
 | | [Arguments] | ${node} | ${interface} | ${direction}
 | | ${data}= | Get interface oper data | ${node} | ${interface}
 | | Variable should exist | ${data['interface-nat:nat']['${direction}']}
 
-| NAT interface configuration from Honeycomb should be empty
+| NAT interface Operational Data From Honeycomb Should Be empty
 | | [Documentation] | Uses Honeycomb API to retrieve interface operational data\
 | | ... | and expects to find no data for the given direction.
 | | ...
@@ -150,13 +150,13 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| NAT interface configuration from Honeycomb should be empty \
+| | ... | \| NAT interface Operational Data From Honeycomb Should Be empty \
 | | ... | \| ${nodes['DUT1']} \| GigabitEthernet0/8/0 \| outbound \|
 | | [Arguments] | ${node} | ${interface} | ${direction}
 | | ${data}= | Get interface oper data | ${node} | ${interface}
 | | Variable should not exist | ${data['interface-nat:nat']['${direction}']}
 
-| NAT interface configuration from VAT should be
+| NAT interface Operational Data From VAT Should Be
 | | [Documentation] | Uses Honeycomb API to retrieve NAT configured interfaces\
 | | ... | and compares with expected settings.
 | | ...
@@ -167,7 +167,7 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| NAT interface configuration from VAT should be \
+| | ... | \| NAT interface Operational Data From VAT Should Be \
 | | ... | \| ${nodes['DUT1']} \| ${settings} \|
 | | [Arguments] | ${node} | ${settings}
 | | ${data}= | VPP get NAT interfaces | ${node}

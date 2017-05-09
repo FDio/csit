@@ -21,7 +21,7 @@
 | Variables | resources/test_data/honeycomb/netconf/triggers.py
 | Documentation | *Netconf test suite. Contains test cases that need to bypass\
 | ... | REST API.*
-| Force Tags | honeycomb_sanity
+| Force Tags | HC_FUNC | HC_REST_ONLY
 | Suite Teardown
 | ... | Restart Honeycomb and VPP | ${node}
 
