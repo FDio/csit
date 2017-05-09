@@ -59,7 +59,6 @@ if [ "$jumbo_frames" = "yes" ]; then
         --txqflags=0 \
         --forward-mode=io \
         --rxq=${queue_nums} \
-        --txq=$((${nb_cores} + 1)) \
         --burst=64 \
         --rxd=1024 \
         --txd=1024 \
@@ -74,7 +73,6 @@ else
         --nb-cores=${nb_cores} \
         --forward-mode=io \
         --rxq=${queue_nums} \
-        --txq=$((${nb_cores} + 1)) \
         --burst=64 \
         --rxd=1024 \
         --txd=1024 \
