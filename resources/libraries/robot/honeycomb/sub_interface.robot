@@ -46,7 +46,7 @@
 | | interfaceAPI.Create sub interface | ${node} | ${super_interface}
 | | ... | ${match} | ${tags} | &{sub_interface_settings}
 
-| Sub-interface configuration from Honeycomb should be
+| Sub-interface Operational Data From Honeycomb Should Be
 | | [Documentation] | Retrieves sub-interface configuration through Honeycomb\
 | | ... | and compares it with settings supplied in argument.
 | | ...
@@ -58,7 +58,7 @@
 | | ... | Type: dictionary
 | | ...
 | | ... | *Example:*
-| | ... | \| Sub-interface configuration from Honeycomb should be\
+| | ... | \| Sub-interface Operational Data From Honeycomb Should Be\
 | | ... | \| ${nodes['DUT1']} \| GigabitEthernet0/8/0 \| 1\
 | | ... | \| ${sub_if_1_params} \|
 | | ...
@@ -69,7 +69,7 @@
 | | ... | ${node} | ${super_interface} | ${identifier}
 | | interfaceAPI.Compare Data Structures | ${api_data} | ${sub_if_settings}
 
-| Sub-interface configuration from Honeycomb should be empty
+| Sub-interface Operational Data From Honeycomb Should Be empty
 | | [Documentation] | Retrieves sub-interface configuration through Honeycomb \
 | | ... | and expects no data.
 | | ...
@@ -79,7 +79,7 @@
 | | ... | - identifier - Sub-interface ID. Type: integer or string
 | | ...
 | | ... | *Example:*
-| | ... | \| Sub-interface configuration from Honeycomb should be empty\
+| | ... | \| Sub-interface Operational Data From Honeycomb Should Be empty\
 | | ... | \| ${nodes['DUT1']} \| GigabitEthernet0/8/0 \| 1 \|
 | | ...
 | | [Arguments] | ${node} | ${super_interface} | ${identifier}
@@ -112,7 +112,7 @@
 | | Should be equal | ${api_data['admin-status']} | ${admin_state}
 | | Should be equal | ${api_data['oper-status']} | ${oper_state}
 
-| Sub-interface configuration from VAT should be
+| Sub-interface Operational Data From VAT Should Be
 | | [Documentation] | Retrieves sub-interface configuration through VAT and\
 | | ... | compares it with settings supplied in argument.
 | | ...
@@ -124,7 +124,7 @@
 | | ... | sub-interface to be checked. Type: dictionary
 | | ...
 | | ... | *Example:*
-| | ... | \| Sub-interface configuration from VAT should be\
+| | ... | \| Sub-interface Operational Data From VAT Should Be\
 | | ... | \| ${nodes['DUT1']} \| GigabitEthernet0/8/0.1 \| ${sub_if_1_params} \|
 | | ...
 | | [Arguments] | ${node} | ${sub_interface} | ${sub_interface_settings}
@@ -268,7 +268,7 @@
 | | interfaceAPI.Add bridge domain to sub interface
 | | ... | ${node} | ${super_if} | ${identifier} | ${sub_bd_setings}
 
-| Sub-interface bridge domain configuration from Honeycomb should be
+| Sub-interface bridge domain Operational Data From Honeycomb Should Be
 | | [Documentation] | Uses Honeycomb API to verify sub-interface assignment to\
 | | ... | a bridge domain.
 | | ...
@@ -279,7 +279,7 @@
 | | ... | - settings - Bridge domain parameters to be checked. Type: dictionary
 | | ...
 | | ... | *Example:*
-| | ... | \| Sub-interface bridge domain configuration from Honeycomb should be\
+| | ... | \| Sub-interface bridge domain Operational Data From Honeycomb Should Be\
 | | ... | \| ${nodes['DUT1']} \| GigabitEthernet0/8/0 \| 1 \| ${bd_settings} \|
 | | ...
 | | [Arguments] | ${node} | ${super_if} | ${identifier} | ${settings}
@@ -289,7 +289,7 @@
 | | Should be equal | ${if_data['bridge-domain']}
 | | ... | ${settings['bridge-domain']}
 
-| Sub-interface bridge domain configuration from VAT should be
+| Sub-interface bridge domain Operational Data From VAT Should Be
 | | [Documentation] | Uses VAT to verify sub-interface assignment to a bridge\
 | | ... | domain.
 | | ...
@@ -300,7 +300,7 @@
 | | ... | - setings - Parameters to be checked. Type: dictionary
 | | ...
 | | ... | *Example:*
-| | ... | \| Sub-interface bridge domain configuration from VAT should be\
+| | ... | \| Sub-interface bridge domain Operational Data From VAT Should Be\
 | | ... | \| ${nodes['DUT1']} \| GigabitEthernet0/8/0.1 \| ${sub_bd_setings} \|
 | | ...
 | | [Arguments] | ${node} | ${interface} | ${settings}

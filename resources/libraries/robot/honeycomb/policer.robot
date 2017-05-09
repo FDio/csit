@@ -36,7 +36,7 @@
 | | Configure Policer
 | | ... | ${node} | ${policer_data['name']} | ${policer_data}
 
-| Policer configuration from Honeycomb should be
+| Policer Operational Data From Honeycomb Should Be
 | | [Documentation] | Retrieves Policer operational data and verifies if\
 | | ... | Policer is configured correctly.
 | | ...
@@ -47,14 +47,14 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Policer configuration from Honeycomb should be \
+| | ... | \| Policer Operational Data From Honeycomb Should Be \
 | | ... | \| ${node} \| ${policer_data} \|
 | | ...
 | | [Arguments] | ${node} | ${policer_data}
 | | ${data}= | Get Policer oper data | ${node} | ${policer_data['name']}
 | | Compare data structures | ${data[0]} | ${policer_data}
 
-| Policer configuration from Honeycomb should be empty
+| Policer Operational Data From Honeycomb Should Be empty
 | | [Documentation] | Checks whether Policer configuration from Honeycomb \
 | | ... | is empty.
 | | ...
@@ -63,7 +63,7 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Policer configuration from Honeycomb should be empty \
+| | ... | \| Policer Operational Data From Honeycomb Should Be empty \
 | | ... | \| ${node} \|
 | | ...
 | | [Arguments] | ${node}

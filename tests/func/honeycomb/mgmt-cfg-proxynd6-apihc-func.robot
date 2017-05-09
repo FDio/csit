@@ -36,7 +36,7 @@
 | Library | resources.libraries.python.Trace
 | Test Setup | Clear Packet Trace on All DUTs | ${nodes}
 | Suite Teardown | Restart Honeycomb And VPP | ${node}
-| Force Tags | honeycomb_sanity | honeycomb_odl
+| Force Tags | HC_FUNC
 | Documentation | *Honeycomb IPv6 neighbor discovery proxy test suite.*
 
 *** Test Cases ***

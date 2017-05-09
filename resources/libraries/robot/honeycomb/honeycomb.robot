@@ -85,9 +85,9 @@
 | | ... | \| Restart Honeycomb and VPP and clear persisted configuration \
 | | ... | \| ${nodes['DUT1']} \|
 | | [Arguments] | ${node}
-| | Log | Performing clean restart of Honeycomb and VPP. | console=True
 | | Stop Honeycomb service on DUTs | ${node}
 | | Clear persisted Honeycomb configuration | ${node}
+| | Log | Persistence files cleared. | console=True
 | | Setup DUT | ${node}
 | | Setup Honeycomb service on DUTs | ${node}
 
@@ -101,7 +101,6 @@
 | | ...
 | | ... | \| Restart Honeycomb and VPP \| ${nodes['DUT1']} \|
 | | [Arguments] | ${node}
-| | Log | Performing clean restart of Honeycomb and VPP. | console=True
 | | Restart Honeycomb and VPP on DUTs | ${node}
 | | Wait until keyword succeeds | 4min | 16sec
 | | ... | Check honeycomb startup state | ${node}

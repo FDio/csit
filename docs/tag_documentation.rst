@@ -439,3 +439,20 @@ Multi-threading tags
 
     8 worker threads pinned to 8 dedicated physical cores. 4 receive queues per
     interface. Main thread pinned to core 0.
+
+
+Honeycomb tags
+--------------
+
+.. topic:: HC_FUNC
+
+    Honeycomb functional test cases.
+
+.. topic:: HC_PERSIST
+
+    Honeycomb persistence test cases.
+
+.. topic:: HC_REST_ONLY
+
+    (Exclusion tag) Honeycomb test cases that cannot be run in Netconf mode
+    using ODL client for Restfconf -> Netconf translation.

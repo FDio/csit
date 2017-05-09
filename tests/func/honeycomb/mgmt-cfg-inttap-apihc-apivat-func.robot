@@ -26,7 +26,7 @@
 | Resource | resources/libraries/robot/honeycomb/honeycomb.robot
 | Resource | resources/libraries/robot/honeycomb/interfaces.robot
 | Resource | resources/libraries/robot/honeycomb/tap.robot
-| Force Tags | honeycomb_sanity | honeycomb_odl
+| Force Tags | HC_FUNC
 | Suite Teardown | Run Keyword If Any Tests Failed
 | ... | Restart Honeycomb and VPP | ${node}
 | Documentation | *Honeycomb TAP management test suite.*
@@ -34,39 +34,39 @@
 *** Test Cases ***
 | TC01: Honeycomb configures TAP interface
 | | [Documentation] | Check if Honeycomb API can configure a TAP interface.
-| | Given TAP configuration from Honeycomb should be empty
+| | Given TAP Operational Data From Honeycomb Should Be empty
 | | ... | ${node} | ${tap_interface}
-| | And TAP configuration from VAT should be empty
+| | And TAP Operational Data From VAT Should Be empty
 | | ... | ${node} | ${tap_interface}
 | | When Honeycomb creates TAP interface
 | | ... | ${node} | ${tap_interface} | ${tap_settings}
-| | Then TAP configuration from Honeycomb should be
+| | Then TAP Operational Data From Honeycomb Should Be
 | | ... | ${node} | ${tap_interface} | ${tap_settings}
-| | And TAP configuration from VAT should be
+| | And TAP Operational Data From VAT Should Be
 | | ... | ${node} | ${tap_interface} | ${tap_settings}
 
 | TC02: Honeycomb modifies existing TAP interface configuration
 | | [Documentation] | Check if Honeycomb API can re-configure and existing TAP\
 | | ... | interface with new settings.
-| | Given TAP configuration from Honeycomb should be
+| | Given TAP Operational Data From Honeycomb Should Be
 | | ... | ${node} | ${tap_interface} | ${tap_settings}
-| | And TAP configuration from VAT should be
+| | And TAP Operational Data From VAT Should Be
 | | ... | ${node} | ${tap_interface} | ${tap_settings}
 | | When Honeycomb configures TAP interface
 | | ... | ${node} | ${tap_interface} | ${tap_settings2}
-| | Then TAP configuration from Honeycomb should be
+| | Then TAP Operational Data From Honeycomb Should Be
 | | ... | ${node} | ${tap_interface} | ${tap_settings2}
-| | And TAP configuration from VAT should be
+| | And TAP Operational Data From VAT Should Be
 | | ... | ${node} | ${tap_interface} | ${tap_settings2}
 
 | TC03: Honeycomb removes TAP interface
 | | [Documentation] | Check if Honeycomb API can remove TAP interface.
-| | Given TAP configuration from Honeycomb should be
+| | Given TAP Operational Data From Honeycomb Should Be
 | | ... | ${node} | ${tap_interface} | ${tap_settings2}
-| | And TAP configuration from VAT should be
+| | And TAP Operational Data From VAT Should Be
 | | ... | ${node} | ${tap_interface} | ${tap_settings2}
 | | When Honeycomb removes TAP interface | ${node} | ${tap_interface}
-| | Then TAP configuration from Honeycomb should be empty
+| | Then TAP Operational Data From Honeycomb Should Be empty
 | | ... | ${node} | ${tap_interface}
-| | And TAP configuration from VAT should be empty
+| | And TAP Operational Data From VAT Should Be empty
 | | ... | ${node} | ${tap_interface}
