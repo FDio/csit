@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a2f8d8d_11f86ce4",
+        "filename": "resources/libraries/robot/honeycomb/persistence.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-09T11:44:22Z",
+      "side": 1,
+      "message": "Multi-feature ?",
+      "range": {
+        "startLine": 90,
+        "startChar": 2,
+        "endLine": 90,
+        "endChar": 9
+      },
+      "revId": "c7025ed4100bc097ed1b6a0e849a9ac1a5b254a6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a2f8d8d_31f3680c",
+        "filename": "tests/func/honeycomb/mgmt-statepersist-apihc-func.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-09T11:44:22Z",
+      "side": 1,
+      "message": "Add to docs/tag_documentation.rst",
+      "range": {
+        "startLine": 28,
+        "startChar": 15,
+        "endLine": 28,
+        "endChar": 32
+      },
+      "revId": "c7025ed4100bc097ed1b6a0e849a9ac1a5b254a6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a2f8d8d_51eef423",
+        "filename": "tests/func/honeycomb/mgmt-statepersist-apihc-func.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-09T11:44:22Z",
+      "side": 1,
+      "message": "multi-feature cases",
+      "range": {
+        "startLine": 32,
+        "startChar": 2,
+        "endLine": 32,
+        "endChar": 15
+      },
+      "revId": "c7025ed4100bc097ed1b6a0e849a9ac1a5b254a6",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
