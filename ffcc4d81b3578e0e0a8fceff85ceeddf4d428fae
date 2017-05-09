@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a2f8d8d_915e9c11",
+        "filename": "tests/perf/10ge2p1x520-ethip4udp-ip4scale10-udpdstscale15-snat-ndrpdrdisc.robot",
+        "patchSetId": 5
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-09T11:11:15Z",
+      "side": 1,
+      "message": "Add SCALE\nCheck everywhere",
+      "range": {
+        "startLine": 19,
+        "startChar": 2,
+        "endLine": 19,
+        "endChar": 13
+      },
+      "revId": "ffcc4d81b3578e0e0a8fceff85ceeddf4d428fae",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
