@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a3291f1_f4464cbf",
+        "filename": "tests/perf/10ge2p1vic1227-eth-l2bdbasemaclrn-ndrpdrdisc.robot",
+        "patchSetId": 37
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-05-10T05:52:05Z",
+      "side": 1,
+      "message": "Can we rename to:\ntrex-stateless-eth-ip-3-node-bridge\n\nCan we put into variables section?",
+      "range": {
+        "startLine": 77,
+        "startChar": 10,
+        "endLine": 77,
+        "endChar": 53
+      },
+      "revId": "4def75b1de4a203ef9ffaf6efcc24759ec0e7eb3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
