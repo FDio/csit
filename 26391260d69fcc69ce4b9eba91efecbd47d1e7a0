@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a2f8d8d_658daa31",
+        "filename": "tests/func/lisp/eth2p-ethip4lisp-ip4base-func.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2017-05-10T16:43:00Z",
+      "side": 1,
+      "message": "Should include lisp tests for vpp patches, as they\u0027re not covered by vpp make test.",
+      "range": {
+        "startLine": 26,
+        "startChar": 15,
+        "endLine": 26,
+        "endChar": 29
+      },
+      "revId": "26391260d69fcc69ce4b9eba91efecbd47d1e7a0",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
