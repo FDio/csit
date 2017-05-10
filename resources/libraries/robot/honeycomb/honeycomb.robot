@@ -117,14 +117,9 @@
 | | [Arguments] | ${node}
 | | Archive Honeycomb log | ${node}
 
-| Find ODL client on node
+| Setup ODL Client Service On DUT
 | | [Arguments] | ${node}
-| | ${odl_present}= | Find ODL Client | ${node}
-| | Return from keyword | ${odl_present}
-
-| Start ODL client on node
-| | [Arguments] | ${node}
-| | Start ODL client | ${node}
+| | Setup ODL client | ${node}
 | | Wait until keyword succeeds | 4min | 16sec
 | | ... | Mount Honeycomb on ODL | ${node}
 | | Wait until keyword succeeds | 2min | 16sec

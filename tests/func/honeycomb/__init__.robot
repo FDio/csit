@@ -21,6 +21,7 @@
 | Resource | resources/libraries/robot/honeycomb/honeycomb.robot
 | Suite Setup | Run Keywords | Setup All DUTs Before Test | AND
 | ... | Configure Honeycomb for testing | ${node} | AND
+| ... | Configure ODL Client for testing | ${node} | AND
 | ... | Set Global Variable | ${node}
 | Suite Teardown
 | ... | Archive Honeycomb log file | ${node}
@@ -35,7 +36,13 @@
 | | Configure jVPP timeout | ${node} | ${14}
 | | Clear Persisted Honeycomb Configuration | ${node}
 | | Setup Honeycomb Service On DUTs | ${node}
-| | ${use_odl_client}= | Find ODL client on node | ${node}
-| | Set Global Variable | ${use_odl_client}
+
+| Configure ODL Client for testing
+| | [Arguments] | ${node}
+| | ${use_odl_client}= | Get Variable Value | ${HC_ODL}
 | | Run Keyword If | ${use_odl_client}
-| | ... | Start ODL Client on node | ${node}
+| | ... | Run Keywords
+| | ... | Set Global Variable | ${use_odl_client} | AND
+| | ... | Setup ODL Client Service On DUT | ${node}
+| | ... | ELSE | Log | Variable HC_ODL is not present. Not using ODL.
+| | ... | level=INFO

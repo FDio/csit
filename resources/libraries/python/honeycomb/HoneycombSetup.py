@@ -432,33 +432,27 @@ class HoneycombSetup(object):
                                      "node {0}, {1}".format(node, stderr))
 
     @staticmethod
-    def find_odl_client(node):
-        """Check if there is a karaf directory in home.
-
-        :param node: Honeycomb node.
-        :type node: dict
-        :returns: True if ODL client is present on node, else False.
-        :rtype: bool
-        """
-
-        ssh = SSH()
-        ssh.connect(node)
-        (ret_code, stdout, _) = ssh.exec_command_sudo(
-            "ls ~ | grep karaf")
-
-        logger.debug(stdout)
-        return not bool(ret_code)
-
-    @staticmethod
-    def start_odl_client(node):
+    def setup_odl_client(node):
         """Start ODL client on the specified node.
 
-        karaf should be located in home directory, and VPP and Honeycomb should
+        Karaf should be located in /nfs/common, and VPP and Honeycomb should
         already be running, otherwise the start will fail.
-        :param node: Nodes to start ODL client on.
+        :param node: Node to start ODL client on.
         :type node: dict
         :raises HoneycombError: If Honeycomb fails to start.
         """
+
+        logger.debug("Copying ODL Client to home dir.")
+
+        ssh = SSH()
+        ssh.connect(node)
+
+        cmd = "cp -r /nfs/common/*karaf* ~/"
+
+        (ret_code, _, _) = ssh.exec_command_sudo(cmd)
+        if int(ret_code) != 0:
+            raise HoneycombError(
+                "Failed to copy ODL client on node {0}".format(node["host"]))
 
         logger.console("\nStarting ODL client ...")
 
