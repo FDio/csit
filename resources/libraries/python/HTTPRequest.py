@@ -179,9 +179,12 @@ class HTTPRequest(object):
         """
         timeout = kwargs["timeout"]
 
-        if BuiltIn().get_variable_value("${use_odl_client}"):
-            # TODO: node["honeycomb"]["odl_port"]
+        use_odl = BuiltIn().get_variable_value("${use_odl_client}")
+
+        if use_odl:
             port = 8181
+            # Using default ODL Restconf port
+            # TODO: add node["honeycomb"]["odl_port"] to topology, use it here
             odl_url_part = "/network-topology:network-topology/topology/" \
                            "topology-netconf/node/vpp/yang-ext:mount"
         else:
