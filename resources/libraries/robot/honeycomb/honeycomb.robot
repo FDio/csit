@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2017 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -85,9 +85,9 @@
 | | ... | \| Restart Honeycomb and VPP and clear persisted configuration \
 | | ... | \| ${nodes['DUT1']} \|
 | | [Arguments] | ${node}
+| | Log | Performing clean restart of Honeycomb and VPP. | console=True
 | | Stop Honeycomb service on DUTs | ${node}
 | | Clear persisted Honeycomb configuration | ${node}
-| | Log | Persistence files cleared. | console=True
 | | Setup DUT | ${node}
 | | Setup Honeycomb service on DUTs | ${node}
 
@@ -101,6 +101,7 @@
 | | ...
 | | ... | \| Restart Honeycomb and VPP \| ${nodes['DUT1']} \|
 | | [Arguments] | ${node}
+| | Log | Performing clean restart of Honeycomb and VPP. | console=True
 | | Restart Honeycomb and VPP on DUTs | ${node}
 | | Wait until keyword succeeds | 4min | 16sec
 | | ... | Check honeycomb startup state | ${node}
@@ -117,14 +118,9 @@
 | | [Arguments] | ${node}
 | | Archive Honeycomb log | ${node}
 
-| Find ODL client on node
-| | [Arguments] | ${node}
-| | ${odl_present}= | Find ODL Client | ${node}
-| | Return from keyword | ${odl_present}
-
-| Start ODL client on node
-| | [Arguments] | ${node}
-| | Start ODL client | ${node}
+| Setup ODL Client Service On DUT
+| | [Arguments] | ${node} | ${odl_name}
+| | Setup ODL client | ${node} | ${odl_name}
 | | Wait until keyword succeeds | 4min | 16sec
 | | ... | Mount Honeycomb on ODL | ${node}
 | | Wait until keyword succeeds | 2min | 16sec
