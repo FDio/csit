@@ -14,18 +14,12 @@
 """Test variables for SPAN port mirroring test suite."""
 
 
-def get_variables(node,
-                  interface1,
-                  interface2,
-                  interface3
-                 ):
+def get_variables(interface1, interface2, interface3):
     """Create and return a dictionary of test variables.
 
-    :param node: Honeycomb node.
     :param interface1: Name of an interface.
     :param interface2: Name of an interface.
     :param interface3: Name of an interface.
-    :type node: dict
     :type interface1: string
     :type interface2: string
     :type interface3: string
@@ -38,28 +32,36 @@ def get_variables(node,
         "interface1": interface1,
         "interface2": interface2,
         "interface3": interface3,
-        "settings_1": {
+
+        # Interface 2 - ingress
+        "settings_receive": {
             "state": "receive",
             "iface-ref": interface2,
         },
 
-        "settings_2": {
+        # Interface 2 - egress
+        "settings_transmit": {
             "state": "transmit",
             "iface-ref": interface2,
         },
 
-        "settings_3": {
+        # Interface 2 - ingress/egress
+        "settings_both": {
             "state": "both",
             "iface-ref": interface2,
         },
 
-        "settings_4": {
+        # Interface 3 - ingress/egress
+        "settings_if2": {
             "state": "both",
             "iface-ref": interface3,
         },
 
+        # IP addresses for traffic test
         "tg_to_dut_if1_ip": "192.168.1.1",
         "dut_to_tg_if1_ip": "192.168.1.2",
+        "tg_to_dut_if2_ip": "192.168.2.1",
+        "dut_to_tg_if2_ip": "192.168.2.2",
         "prefix": 24,
     }
     return variables

@@ -105,7 +105,7 @@
 | | Lists should be equal | ${data} | ${src_interfaces}
 
 | Honeycomb removes interface SPAN configuration
-| | [Documentation] | Uses Honeycomb API to remove SPAN confirugation\
+| | [Documentation] | Uses Honeycomb API to remove SPAN configuration\
 | | ... | from the specified interface.
 | | ...
 | | ... | *Arguments:*
@@ -149,3 +149,108 @@
 | | [Arguments] | ${node}
 | | Run keyword and expect error | ValueError: No JSON object could be decoded
 | | ... | VPP get SPAN configuration by interface | ${node} | local0
+
+| Honeycomb Configures SPAN on sub-interface
+| | [Documentation] | Uses Honeycomb API to configure SPAN on the specified\
+| | ... | sub-interface, mirroring one or more interfaces.
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - information about a DUT node. Type: dictionary
+| | ... | - dst_interface - Mirroring destination super-interface. Type: string
+| | ... | - index - Index of mirroring destination sub-interface. Type: integer
+| | ... | - src_interfaces - Mirroring source interfaces. Type: list \
+| | ... | of dictionaries
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Honeycomb Configures SPAN on sub-interface \| ${nodes['DUT1']} \
+| | ... | \| GigabitEthernet0/8/0 \| ${1} \
+| | ... | \|[{'iface-ref': 'GigabitEthernet0/10/0', 'state': 'transmit'}, \
+| | ... | {'iface-ref': 'local0', 'state': 'both'}] \|
+| | ...
+| | [Arguments] | ${node} | ${dst_interface} | ${index} | @{src_interfaces}
+| | InterfaceAPI.Configure sub interface SPAN
+| | ... | ${node} | ${dst_interface} | ${index} | ${src_interfaces}
+
+| Sub-Interface SPAN configuration from Honeycomb should be
+| | [Documentation] | Retrieves sub-interface operational data and verifies\
+| | ... | that SPAN mirroring is configured with the provided interfaces.
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - information about a DUT node. Type: dictionary
+| | ... | - dst_interface - Mirroring destination super-interface. Type: string
+| | ... | - index - Index of mirroring destination sub-interface. Type: integer
+| | ... | - src_interfaces - Mirroring source interfaces. Type: Argument list -\
+| | ... | any number of strings
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Sub-Interface SPAN configuration from Honeycomb should be \
+| | ... | \| ${nodes['DUT1']} \| GigabitEthernet0/8/0 \| ${1} \
+| | ... | \| GigabitEthernet0/9/0 \|
+| | ...
+| | [Arguments] | ${node} | ${dst_interface} | ${index} | @{src_interfaces}
+| | ${data}= | InterfaceAPI.Get sub interface oper data
+| | ... | ${node} | ${dst_interface} | ${index}
+| | ${data}= | Set Variable
+| | ... | ${data['subinterface-span:span-state']['mirrored-interfaces']['mirrored-interface']}
+| | Sort list | ${data}
+| | Sort list | ${src_interfaces}
+| | Lists should be equal | ${data} | ${src_interfaces}
+
+| Sub-Interface SPAN configuration from Honeycomb should be empty
+| | [Documentation] | Checks whether SPAN configuration from Honeycomb is empty.
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - Information about a DUT node. Type: dictionary
+| | ... | - dst_interface - Mirroring destination super-interface. Type: string
+| | ... | - index - Index of mirroring destination sub-interface. Type: integer
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Interface SPAN configuration from Honeycomb should be empty \
+| | ... | \| ${node} \| GigabitEthernetO/8/0 \| ${1} \|
+| | ...
+| | [Arguments] | ${node} | ${dst_interface} | ${index}
+| | ${data}= | Get sub interface oper data
+| | ... | ${node} | ${dst_interface} | ${index}
+| | Variable should not exist
+| | ... | ${data['subinterface-span:span-state']['mirrored-interfaces']['mirrored-interface']}
+
+| Honeycomb removes sub-interface SPAN configuration
+| | [Documentation] | Uses Honeycomb API to remove SPAN configuration\
+| | ... | from the specified sub-interface.
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - information about a DUT node. Type: dictionary
+| | ... | - dst_interface - Mirroring destination super-interface. Type: string
+| | ... | - index - Index of mirroring destination sub-interface. Type: integer
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Honeycomb removes sub-interface SPAN configuration \
+| | ... | \| ${nodes['DUT1']} \| GigabitEthernet0/8/0 \| ${1} \|
+| | ...
+| | [Arguments] | ${node} | ${dst_interface} | ${index}
+| | InterfaceAPI.Configure sub interface SPAN
+| | ... | ${node} | ${dst_interface} | ${index}
+
+| Sub-Interface SPAN configuration from Honeycomb should not exist
+| | [Documentation] | Retrieves sub-interface operational data and verifies
+| | ... | that SPAN mirroring is not configured.
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - information about a DUT node. Type: dictionary
+| | ... | - dst_interface - Mirroring destination super-interface. Type: string
+| | ... | - index - Index of mirroring destination sub-interface. Type: integer
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Sub-Interface SPAN configuration from Honeycomb should not exist \
+| | ... | \| ${nodes['DUT1']} \| GigabitEthernet0/8/0 \| ${1} \|
+| | ...
+| | [Arguments] | ${node} | ${dst_interface} | ${index}
+| | ${data}= | InterfaceAPI.Get sub interface oper data
+| | ... | ${node} | ${dst_interface} | ${index}
+| | Run keyword and expect error | *KeyError* | Set Variable
+| | ... | ${data['subinterface-span:span-state']['mirrored-interfaces']['mirrored-interface']}
