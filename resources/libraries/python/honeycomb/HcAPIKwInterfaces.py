@@ -1162,6 +1162,9 @@ class InterfaceKeywords(object):
         :rtype: bytearray
         """
 
+        super_interface = Topology.convert_interface_reference(
+            node, super_interface, "name")
+
         intf_state = {"up": "true",
                       "down": "false"}
 
@@ -1706,7 +1709,7 @@ class InterfaceKeywords(object):
         :param dst_interface: Interface to mirror packets to.
         :param src_interfaces: List of interfaces to mirror packets from.
         :type node: dict
-        :type dst_interface: str
+        :type dst_interface: str or int
         :type src_interfaces: list of dict
         :returns: Content of response.
         :rtype: bytearray
@@ -1726,6 +1729,58 @@ class InterfaceKeywords(object):
                 src_interface["iface-ref"] = Topology.\
                     convert_interface_reference(
                         node, src_interface["iface-ref"], "name")
+            data = {
+                "span": {
+                    "mirrored-interfaces": {
+                        "mirrored-interface": src_interfaces
+                    }
+                }
+            }
+
+            status_code, _ = HcUtil.put_honeycomb_data(
+                node, "config_vpp_interfaces", data, path)
+
+        if status_code not in (HTTPCodes.OK, HTTPCodes.ACCEPTED):
+            raise HoneycombError(
+                "Configuring SPAN failed. Status code:{0}".format(status_code))
+
+    @staticmethod
+    def configure_sub_interface_span(node, super_interface, dst_interface_index,
+                                     src_interfaces=None):
+        """Configure SPAN port mirroring on the specified sub-interface. If no
+         source interface is provided, SPAN will be disabled.
+
+        Note: Does not support source sub-interfaces, only destination.
+
+        :param node: Honeycomb node.
+        :param super_interface: Name, link name or sw_if_index
+        of the destination interface's super-interface.
+        :param dst_interface_index: Index of sub-interface to mirror packets to.
+        :param src_interfaces: List of interfaces to mirror packets from.
+        :type node: dict
+        :type super_interface: str or int
+        :type dst_interface_index: int
+        :type src_interfaces: list of dict
+        :returns: Content of response.
+        :rtype: bytearray
+        :raises HoneycombError: If SPAN could not be configured.
+        """
+
+        super_interface = Topology.convert_interface_reference(
+            node, super_interface, "name")
+        super_interface = super_interface.replace("/", "%2F")
+
+        path = "/interface/{0}/vpp-vlan:sub-interfaces/sub-interface/{1}/span"\
+            .format(super_interface, dst_interface_index)
+
+        if not src_interfaces:
+            status_code, _ = HcUtil.delete_honeycomb_data(
+                node, "config_vpp_interfaces", path)
+        else:
+            for src_interface in src_interfaces:
+                src_interface["iface-ref"] = Topology. \
+                    convert_interface_reference(
+                    node, src_interface["iface-ref"], "name")
             data = {
                 "span": {
                     "mirrored-interfaces": {

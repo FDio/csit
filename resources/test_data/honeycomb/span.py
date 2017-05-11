@@ -60,6 +60,8 @@ def get_variables(node,
 
         "tg_to_dut_if1_ip": "192.168.1.1",
         "dut_to_tg_if1_ip": "192.168.1.2",
+        "tg_to_dut_if2_ip": "192.168.2.1",
+        "dut_to_tg_if2_ip": "192.168.2.2",
         "prefix": 24,
     }
     return variables
