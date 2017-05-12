@@ -13,10 +13,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+"""This script is handling starting of VIRL simulations."""
+
 __author__ = 'ckoester@cisco.com'
 
 import sys
-import requests
 import re
 import os
 import argparse
@@ -26,20 +27,43 @@ import time
 import paramiko
 import netifaces
 
-#
-# Helper function to indent a text string
-#
+import requests
+
 def indent(lines, amount, fillchar=' '):
+    """Indent the string by amount of fill chars.
+
+    :param lines: String to indent.
+    :param amount: Number of fill chars.
+    :param fillchar: Filling character.
+    :type lines: str
+    :type amount: int
+    :type fillchar: str
+    :returns: Indented string.
+    :rtype: str
+    """
     padding = amount * fillchar
     return padding + ('\n'+padding).join(lines.split('\n'))
 
+def print_to_stderr(msg, end='\n'):
+    """Writes any text to stderr.
+
+    :param msg: Message to print.
+    :param end: By default print new line at the end.
+    :type msg: str
+    :type end: str
+    """
+    try:
+        sys.stderr.write(str(msg) + end)
+    except ValueError:
+        pass
+
 #
-# Main function.
 # FIXME: Right now, this is really coded like a shell script, as one big
 # function executed in sequence. This should be broken down into multiple
 # functions.
 #
 def main():
+    """ Main function."""
     #
     # Get our default interface IP address. This will become the default
     # value for the "NFS Server IP" option.
@@ -66,14 +90,14 @@ def main():
                         "default is derived from routing table: " +
                         "{}".format(default_addr), default=default_addr)
     parser.add_argument("-ns", "--nfs-scratch-directory",
-                        help="Server location for NFS scratch diretory",
+                        help="Server location for NFS scratch directory",
                         default="/nfs/scratch")
     parser.add_argument("-nc", "--nfs-common-directory",
                         help="Server location for NFS common (read-only) " +
                         "directory", default="/nfs/common")
     parser.add_argument("-wc", "--wait-count",
                         help="number of intervals to wait for simulation to " +
-                        "be ready", type=int, default=24)
+                        "be ready", type=int, default=48)
     parser.add_argument("-wt", "--wait-time",
                         help="length of a single interval to wait for " +
                         "simulation to be ready", type=int, default=5)
@@ -82,10 +106,14 @@ def main():
                         default="127.0.0.1:19399")
     parser.add_argument("-u", "--username", help="VIRL username",
                         default="tb4-virl")
+    parser.add_argument("-au", "--admin-username", help="VIRL admin username",
+                        default="uwmadmin")
     parser.add_argument("-p", "--password", help="VIRL password",
                         default="Cisco1234")
     parser.add_argument("-su", "--ssh-user", help="SSH username",
                         default="cisco")
+    parser.add_argument("-e", "--expiry", help="Simulation expiry",
+                        default="120")
     parser.add_argument("-spr", "--ssh-privkey", help="SSH private keyfile",
                         default="/home/jenkins-in/.ssh/id_rsa_virl")
     parser.add_argument("-spu", "--ssh-pubkey", help="SSH public keyfile",
@@ -102,7 +130,8 @@ def main():
     # Check if topology and template exist
     #
     if args.verbosity >= 2:
-        print "DEBUG: Running with topology {}".format(args.topology)
+        print_to_stderr("DEBUG: Running with topology {}"
+                        .format(args.topology))
 
     topology_virl_filename = os.path.join(args.topology_directory,
                                           args.topology + ".virl")
@@ -110,12 +139,12 @@ def main():
                                           args.topology + ".yaml")
 
     if not os.path.isfile(topology_virl_filename):
-        print "ERROR: Topology VIRL file {} does not exist".\
-            format(topology_virl_filename)
+        print_to_stderr("ERROR: Topology VIRL file {} does not exist"
+                        .format(topology_virl_filename))
         sys.exit(1)
     if not os.path.isfile(topology_yaml_filename):
-        print "ERROR: Topology YAML file {} does not exist".\
-            format(topology_yaml_filename)
+        print_to_stderr("ERROR: Topology YAML file {} does not exist"
+                        .format(topology_yaml_filename))
         sys.exit(1)
 
     #
@@ -123,16 +152,18 @@ def main():
     #
     for package in args.packages:
         if args.verbosity >= 2:
-            print "DEBUG: Checking if file {} exists".format(package)
+            print_to_stderr("DEBUG: Checking if file {} exists"
+                            .format(package))
         if not os.path.isfile(package):
-            print "ERROR: Debian package {} does not exist.".format(package)
+            print_to_stderr("ERROR: Debian package {} does not exist"
+                            .format(package))
             sys.exit(1)
 
     #
     # Start VIRL topology
     #
     if args.verbosity >= 1:
-        print "DEBUG: Starting VIRL topology"
+        print_to_stderr("DEBUG: Starting VIRL topology")
     temp_handle, temp_topology = tempfile.mkstemp()
     with open(args.ssh_pubkey, 'r') as pubkey_file:
         pub_key = pubkey_file.read().replace('\n', '')
@@ -141,41 +172,75 @@ def main():
         for line in old_file:
             line = line.replace("  - VIRL-USER-SSH-PUBLIC-KEY", "  - "+pub_key)
             line = line.replace("$$NFS_SERVER_SCRATCH$$",
-                args.nfs_server_ip+":"+args.nfs_scratch_directory)
+                                args.nfs_server_ip+":"+args.nfs_scratch_directory)
             line = line.replace("$$NFS_SERVER_COMMON$$",
-                args.nfs_server_ip+":"+args.nfs_common_directory)
+                                args.nfs_server_ip+":"+args.nfs_common_directory)
             line = line.replace("$$VM_IMAGE$$", "server-"+args.release)
             new_file.write(line)
     os.close(temp_handle)
 
     try:
-        new_file = open(temp_topology, 'rb')
-        headers = {'Content-Type': 'text/xml'}
+        data = open(temp_topology, 'rb')
         req = requests.post('http://' + args.virl_ip + '/simengine/rest/launch',
-                            headers=headers,
-                            auth=(args.username, args.password), data=new_file)
+                            auth=(args.username, args.password),
+                            data=data)
         if args.verbosity >= 2:
-            print "DEBUG: - Response Code {}".format(req.status_code)
+            print_to_stderr("DEBUG: - Request URL {}"
+                            .format(req.url))
+            print_to_stderr("{}"
+                            .format(req.text))
+            print_to_stderr("DEBUG: - Response Code {}"
+                            .format(req.status_code))
         new_file.close()
-
-    except:
-        print "ERROR: Launching VIRL simulation - received invalid response"
-        print req
-        os.remove(temp_topology)
-        sys.exit(1)
-
-    if req.status_code != 200:
-        print "ERROR: Launching VIRL simulation - received status other " + \
-            "than 200 HTTP OK"
-        print "Status was: {} \n".format(req.status_code)
-        print "Response content was: "
-        print req.content
+        if req.status_code != 200:
+            raise RuntimeError("ERROR: Launching VIRL simulation - "
+                               "Status other than 200 HTTP OK:\n{}"
+                               .format(req.content))
+    except (requests.exceptions.RequestException,
+            RuntimeError) as ex_error:
+        print_to_stderr(ex_error)
         os.remove(temp_topology)
         sys.exit(1)
 
     # If we got here, we had a good response. The response content is the
     # session ID.
     session_id = req.content
+    if args.verbosity >= 1:
+        print_to_stderr("DEBUG: VIRL simulation session-id: {}"
+                        .format(session_id))
+
+    # Set session expiry to autokill sessions if not done from jenkins
+    if not args.keep:
+        if args.verbosity >= 1:
+            print_to_stderr("DEBUG: Setting expire for session-id: {}"
+                            .format(session_id))
+        try:
+            req = requests.put('http://' + args.virl_ip +
+                               '/simengine/rest/admin-update/' + session_id +
+                               '/expiry',
+                               auth=(args.admin_username, args.password),
+                               params={'user': args.username,
+                                       'expires': args.expiry})
+            if args.verbosity >= 2:
+                print_to_stderr("DEBUG: - Request URL {}"
+                                .format(req.url))
+                print_to_stderr("{}"
+                                .format(req.text))
+                print_to_stderr("DEBUG: - Response Code {}"
+                                .format(req.status_code))
+            if req.status_code != 200:
+                raise RuntimeError("ERROR: Setting expiry to simulation - "
+                                   "Status other than 200 HTTP OK:\n{}"
+                                   .format(req.content))
+        except (requests.exceptions.RequestException,
+                RuntimeError) as ex_error:
+            print_to_stderr(ex_error)
+            req = requests.get('http://' + args.virl_ip +
+                               '/simengine/rest/stop/' + session_id,
+                               auth=(args.username, args.password))
+            os.remove(temp_topology)
+            print "{}".format(session_id)
+            sys.exit(1)
 
     #
     # Create simulation scratch directory. Move topology file into that
@@ -198,7 +263,7 @@ def main():
     # Wait for simulation to become active
     #
     if args.verbosity >= 1:
-        print "DEBUG: Waiting for simulation to become active"
+        print_to_stderr("DEBUG: Waiting for simulation to become active")
 
     sim_is_started = False
     nodelist = []
@@ -227,32 +292,64 @@ def main():
             if data[session_id][key]['state'] == "ACTIVE":
                 active += 1
         if args.verbosity >= 2:
-            print "DEBUG: - Attempt {} out of {}, total {} hosts, {} active".\
-                format(args.wait_count-count, args.wait_count, total, active)
+            print_to_stderr("DEBUG: - Attempt {} out of {}, total {} hosts, "
+                            "{} active".format(args.wait_count-count,
+                                               args.wait_count, total, active))
         if active == total:
             sim_is_started = True
 
     if not sim_is_started:
-        print "ERROR: Simulation started OK but devices never changed to " + \
-            "ACTIVE state"
-        print "Last VIRL response:"
-        print data
+        print_to_stderr("ERROR: Simulation nodes never changed to ACTIVE state")
+        print_to_stderr("Last VIRL response:")
+        print_to_stderr(data)
         if not args.keep:
-            shutil.rmtree(scratch_directory)
             req = requests.get('http://' + args.virl_ip +
                                '/simengine/rest/stop/' + session_id,
                                auth=(args.username, args.password))
+            try:
+                shutil.rmtree(scratch_directory)
+            except shutil.Error:
+                print_to_stderr("ERROR: Removing scratch directory")
+        print "{}".format(session_id)
+        sys.exit(1)
 
     if args.verbosity >= 2:
-        print "DEBUG: Nodes: " + ", ".join(nodelist)
+        print_to_stderr("DEBUG: Nodes: {}"
+                        .format(", ".join(nodelist)))
 
     #
     # Fetch simulation's IPs and create files
     # (ansible hosts file, topology YAML file)
     #
-    req = requests.get('http://' + args.virl_ip +
-                       '/simengine/rest/interfaces/' + session_id +
-                       '?fetch-state=1', auth=(args.username, args.password))
+    try:
+        req = requests.get('http://' + args.virl_ip +
+                           '/simengine/rest/interfaces/' + session_id,
+                           auth=(args.username, args.password),
+                           params={'fetch-state': '1'})
+        if args.verbosity >= 2:
+            print_to_stderr("DEBUG: - Request URL {}"
+                            .format(req.url))
+            print_to_stderr("DEBUG: - Request Text")
+            print_to_stderr("{}".format(req.text))
+            print_to_stderr("DEBUG: - Response Code {}"
+                            .format(req.status_code))
+        if req.status_code != 200:
+            raise RuntimeError("ERROR:Fetching IP's of simulation - "
+                               "Status other than 200 HTTP OK:\n{}"
+                               .format(req.content))
+    except (requests.exceptions.RequestException,
+            RuntimeError) as ex_error:
+        print_to_stderr(ex_error)
+        if not args.keep:
+            req = requests.get('http://' + args.virl_ip +
+                               '/simengine/rest/stop/' + session_id,
+                               auth=(args.username, args.password))
+            try:
+                shutil.rmtree(scratch_directory)
+            except shutil.Error:
+                print_to_stderr("ERROR: Removing scratch directory")
+        print "{}".format(session_id)
+        sys.exit(1)
     data = req.json()
 
     # Populate node addresses
@@ -265,8 +362,8 @@ def main():
         nodeaddrs[nodetype][key] = re.split('\\/', \
             data[session_id][key]['management']['ip-address'])[0]
         if args.verbosity >= 2:
-            print "DEBUG: Node {} is of type {} and has management IP {}".\
-                format(key, nodetype, nodeaddrs[nodetype][key])
+            print_to_stderr("DEBUG: Node {} is of type {} and has mgmt IP {}"
+                            .format(key, nodetype, nodeaddrs[nodetype][key]))
 
         topology[key] = {}
         for key2 in data[session_id][key]:
@@ -298,7 +395,7 @@ def main():
     # Wait for hosts to become reachable over SSH
     #
     if args.verbosity >= 1:
-        print "DEBUG: Waiting for hosts to become reachable using SSH"
+        print_to_stderr("DEBUG: Waiting for hosts to become reachable over SSH")
 
     missing = -1
     count = args.wait_count
@@ -311,30 +408,37 @@ def main():
             if not os.path.exists(os.path.join(scratch_directory, key)):
                 missing += 1
         if args.verbosity >= 2:
-            print "DEBUG: - Attempt {} out of {}, waiting for {} hosts".\
-                format(args.wait_count-count, args.wait_count, missing)
+            print_to_stderr("DEBUG: Attempt {} out of {}, waiting for {} hosts"
+                            .format(args.wait_count-count, args.wait_count,
+                                    missing))
 
     if missing != 0:
-        print "ERROR: Simulation started OK but {} hosts ".format(missing) + \
-            "never mounted their NFS directory"
+        print_to_stderr("ERROR: Simulation started OK but {} hosts never "
+                        "mounted their NFS directory".format(missing))
         if not args.keep:
-            shutil.rmtree(scratch_directory)
             req = requests.get('http://' + args.virl_ip +
                                '/simengine/rest/stop/' + session_id,
                                auth=(args.username, args.password))
+            try:
+                shutil.rmtree(scratch_directory)
+            except shutil.Error:
+                print_to_stderr("ERROR: Removing scratch directory")
+        print "{}".format(session_id)
+        sys.exit(1)
 
     #
     # Upgrade VPP
     #
     if args.verbosity >= 1:
-        print "DEBUG: Uprading VPP"
+        print_to_stderr("DEBUG: Uprading VPP")
 
     for key1 in nodeaddrs:
         if not key1 == 'tg':
             for key2 in nodeaddrs[key1]:
                 ipaddr = nodeaddrs[key1][key2]
                 if args.verbosity >= 2:
-                    print "DEBUG: Upgrading VPP on node {}".format(ipaddr)
+                    print_to_stderr("DEBUG: Upgrading VPP on node {}"
+                                    .format(ipaddr))
                 paramiko.util.log_to_file(os.path.join(scratch_directory,
                                                        "ssh.log"))
                 client = paramiko.SSHClient()
@@ -345,26 +449,26 @@ def main():
                                key_filename=args.ssh_privkey)
                 if 'centos' in args.topology:
                     if args.verbosity >= 1:
-                        print "DEBUG: Installing RPM packages"
+                        print_to_stderr("DEBUG: Installing RPM packages")
                     vpp_install_command = 'sudo rpm -ivh /scratch/vpp/*.rpm'
                 elif 'trusty' in args.topology or 'xenial' in args.topology:
                     if args.verbosity >= 1:
-                        print "DEBUG: Installing DEB packages"
+                        print_to_stderr("DEBUG: Installing DEB packages")
                     vpp_install_command = 'sudo dpkg -i --force-all ' \
                                           '/scratch/vpp/*.deb'
                 else:
-                    print "ERROR: Unsupported OS requested: {}"\
-                        .format(args.topology)
+                    print_to_stderr("ERROR: Unsupported OS requested: {}"
+                                    .format(args.topology))
                     vpp_install_command = ''
-                stdin, stdout, stderr = \
+                _, stdout, stderr = \
                     client.exec_command(vpp_install_command)
                 c_stdout = stdout.read()
                 c_stderr = stderr.read()
                 if args.verbosity >= 2:
-                    print "DEBUG: Command output was:"
-                    print c_stdout
-                    print "DEBUG: Command stderr was:"
-                    print c_stderr
+                    print_to_stderr("DEBUG: Command output was:")
+                    print_to_stderr(c_stdout)
+                    print_to_stderr("DEBUG: Command stderr was:")
+                    print_to_stderr(c_stderr)
 
     #
     # Write a file with timestamp to scratch directory. We can use this to track
@@ -378,7 +482,7 @@ def main():
     # Declare victory
     #
     if args.verbosity >= 1:
-        print "SESSION ID: {}".format(session_id)
+        print_to_stderr("SESSION ID: {}".format(session_id))
 
     print "{}".format(session_id)
 

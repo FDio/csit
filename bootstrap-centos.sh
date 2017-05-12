@@ -195,7 +195,8 @@ for index in "${!VIRL_SERVER[@]}"; do
     echo "Starting simulation nr. ${index} on VIRL server ${VIRL_SERVER[${index}]}"
     VIRL_SID[${index}]=$(ssh ${SSH_OPTIONS} \
         ${VIRL_USERNAME}@${VIRL_SERVER[${index}]} \
-        "start-testcase -c ${VIRL_TOPOLOGY} -r ${VIRL_RELEASE} ${VPP_RPMS_FULL[@]}")
+        "start-testcase -vv --copy ${VIRL_TOPOLOGY} \
+        --release ${VIRL_RELEASE} ${VPP_RPMS_FULL[@]}")
     retval=$?
     if [ ${retval} -ne "0" ]; then
         echo "VIRL simulation start failed on ${VIRL_SERVER[${index}]}"
