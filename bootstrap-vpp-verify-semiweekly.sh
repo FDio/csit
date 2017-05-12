@@ -104,6 +104,7 @@ VIRL_USERNAME=jenkins-in
 VIRL_PKEY=priv_key
 VIRL_SERVER_STATUS_FILE="status"
 VIRL_SERVER_EXPECTED_STATUS="PRODUCTION"
+VIRL_SESSION_EXPIRY="500"
 
 case "$DISTRO" in
         CENTOS )
@@ -222,7 +223,8 @@ function stop_virl_simulation {
 
 VIRL_SID=$(ssh ${SSH_OPTIONS} \
     ${VIRL_USERNAME}@${VIRL_SERVER} \
-    "start-testcase -c ${VIRL_TOPOLOGY} -r ${VIRL_RELEASE} ${VPP_PKGS_VIRL[@]}")
+    "start-testcase --copy ${VIRL_TOPOLOGY} --expiry ${VIRL_SESSION_EXPIRY} \
+    --release ${VIRL_RELEASE} ${VPP_PKGS_VIRL[@]}")
 retval=$?
 if [ ${retval} -ne "0" ]; then
     echo "VIRL simulation start failed"
