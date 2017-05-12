@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a2f8d8d_ead96284",
+        "filename": "resources/libraries/robot/honeycomb/port_mirroring.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 250,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-12T10:19:10Z",
+      "side": 1,
+      "message": "add \"| | ...\" below",
+      "range": {
+        "startLine": 250,
+        "startChar": 0,
+        "endLine": 250,
+        "endChar": 64
+      },
+      "revId": "f5f17295bf1999c7e013eca5633f1da7cc531a25",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a2f8d8d_aa68fa87",
+        "filename": "resources/test_data/honeycomb/span.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-12T10:19:10Z",
+      "side": 1,
+      "message": "Consider renaming to e.g. \"state_receive\"",
+      "range": {
+        "startLine": 41,
+        "startChar": 9,
+        "endLine": 41,
+        "endChar": 19
+      },
+      "revId": "f5f17295bf1999c7e013eca5633f1da7cc531a25",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a2f8d8d_0ac4ae90",
+        "filename": "tests/func/honeycomb/mgmt-cfg-spanrx-apihc-apivat-func.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-12T10:19:10Z",
+      "side": 1,
+      "message": "interfaces",
+      "range": {
+        "startLine": 80,
+        "startChar": 55,
+        "endLine": 80,
+        "endChar": 64
+      },
+      "revId": "f5f17295bf1999c7e013eca5633f1da7cc531a25",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a2f8d8d_aa511ada",
+        "filename": "tests/func/honeycomb/mgmt-cfg-spanrx-apihc-apivat-func.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 165,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-12T10:19:10Z",
+      "side": 1,
+      "message": "the name is not correct",
+      "range": {
+        "startLine": 165,
+        "startChar": 8,
+        "endLine": 165,
+        "endChar": 54
+      },
+      "revId": "f5f17295bf1999c7e013eca5633f1da7cc531a25",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a2f8d8d_8a5e5ee8",
+        "filename": "tests/func/honeycomb/mgmt-cfg-spanrx-apihc-apivat-func.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-12T10:19:10Z",
+      "side": 1,
+      "message": "the name is not correct",
+      "range": {
+        "startLine": 189,
+        "startChar": 8,
+        "endLine": 189,
+        "endChar": 93
+      },
+      "revId": "f5f17295bf1999c7e013eca5633f1da7cc531a25",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
