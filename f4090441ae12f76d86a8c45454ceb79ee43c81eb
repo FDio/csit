@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a2f8d8d_f7f4ab88",
+        "filename": "resources/tools/virl/bin/start-testcase",
+        "patchSetId": 1
+      },
+      "lineNbr": 64,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-12T07:09:27Z",
+      "side": 1,
+      "message": "Use \"keep\" to ignore \"expiry\"",
+      "range": {
+        "startLine": 63,
+        "startChar": 4,
+        "endLine": 64,
+        "endChar": 75
+      },
+      "revId": "f4090441ae12f76d86a8c45454ceb79ee43c81eb",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
