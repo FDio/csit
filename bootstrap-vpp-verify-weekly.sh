@@ -24,6 +24,7 @@ VIRL_USERNAME=jenkins-in
 VIRL_PKEY=priv_key
 VIRL_SERVER_STATUS_FILE="status"
 VIRL_SERVER_EXPECTED_STATUS="PRODUCTION"
+VIRL_SESSION_EXPIRY="620"
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
@@ -186,7 +187,9 @@ function stop_virl_simulation {
 
 VIRL_SID=$(ssh ${SSH_OPTIONS} \
     ${VIRL_USERNAME}@${VIRL_SERVER} \
-    "start-testcase -c ${VIRL_TOPOLOGY} -r ${VIRL_RELEASE} ${VPP_PKGS_FULL[@]}")
+    "start-testcase -vv --copy ${VIRL_TOPOLOGY} \
+    --expiry ${VIRL_SESSION_EXPIRY} \
+    --release ${VIRL_RELEASE} ${VPP_PKGS_FULL[@]}")
 retval=$?
 if [ ${retval} -ne "0" ]; then
     echo "VIRL simulation start failed"
