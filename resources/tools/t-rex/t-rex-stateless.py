@@ -48,7 +48,7 @@ import string
 import struct
 import sys
 
-sys.path.insert(0, "/opt/trex-core-2.22/scripts/automation/"+\
+sys.path.insert(0, "/opt/trex-core-2.25/scripts/automation/"+\
                    "trex_control_plane/stl/")
 from trex_stl_lib.api import *
 
@@ -487,6 +487,8 @@ def simple_burst(stream_a, stream_b, stream_lat_a, stream_lat_b, duration, rate,
             # choose rate and start traffic
             client.start(ports=[0, 1], mult=rate, duration=warmup_time)
 
+            pgids = client.get_active_pgids()
+
             # block until done
             client.wait_on_traffic(ports=[0, 1], timeout=(warmup_time+30))
 
@@ -496,6 +498,7 @@ def simple_burst(stream_a, stream_b, stream_lat_a, stream_lat_b, duration, rate,
 
             # read the stats after the test
             stats = client.get_stats()
+            print client.get_pgid_stats()
 
             print "#####warmup statistics#####"
             print json.dumps(stats, indent=4,

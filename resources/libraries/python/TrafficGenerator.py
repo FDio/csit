@@ -184,7 +184,7 @@ class TrafficGenerator(object):
         self._node = tg_node
 
         if tg_node['subtype'] == NodeSubTypeTG.TREX:
-            trex_path = "/opt/trex-core-2.22"
+            trex_path = "/opt/trex-core-2.25"
 
             ssh = SSH()
             ssh.connect(tg_node)
@@ -322,9 +322,6 @@ class TrafficGenerator(object):
         (ret, stdout, stderr) = ssh.exec_command(
             "sh -c '{}/resources/tools/t-rex/"
             "t-rex-stateless-stop.py'".format(Constants.REMOTE_FW_DIR))
-        logger.trace(ret)
-        logger.trace(stdout)
-        logger.trace(stderr)
 
         if int(ret) != 0:
             raise RuntimeError('T-rex stateless runtime error')
@@ -716,10 +713,6 @@ class TrafficGenerator(object):
         else:
             raise NotImplementedError('Unsupported traffic type')
 
-        logger.trace(ret)
-        logger.trace(stdout)
-        logger.trace(stderr)
-
         if int(ret) != 0:
             raise RuntimeError('T-rex stateless runtime error')
         elif async_call:
@@ -828,8 +821,8 @@ class TrafficGenerator(object):
         elif loss_acceptance_type == 'frames':
             loss = float(self._loss)
         else:
+            raise Exception("Traffic loss {} above loss acceptance: {}".format(
+                loss, loss_acceptance))
             raise Exception('Loss acceptance type not supported')
 
         if loss > float(loss_acceptance):
-            raise Exception("Traffic loss {} above loss acceptance: {}".format(
-                loss, loss_acceptance))
