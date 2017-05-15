@@ -15,9 +15,7 @@
 set -x
 
 # Space separated list of available testbeds, described by topology files
-TOPOLOGIES="topologies/available/lf_testbed1.yaml \
-            topologies/available/lf_testbed2.yaml \
-            topologies/available/lf_testbed3.yaml"
+TOPOLOGIES="topologies/available/lf_testbed1.yaml"
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
@@ -312,6 +310,7 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s "tests.perf" \
+              -i ndrdiscANDbaseAND64bANDnic_intel-x520-da2AND1t1c \
               tests/
         RETURN_STATUS=$(echo $?)
 esac
