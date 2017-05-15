@@ -498,6 +498,8 @@ def simple_burst(stream_a, stream_b, stream_lat_a, stream_lat_b, duration, rate,
             stats = client.get_stats()
 
             print "#####warmup statistics#####"
+            print json.dumps(client.get_pgid_stats(), indent=4,
+                             separators=(',', ': '), sort_keys=True)
             print json.dumps(stats, indent=4,
                              separators=(',', ': '), sort_keys=True)
             lost_a = stats[0]["opackets"] - stats[1]["ipackets"]
@@ -526,6 +528,8 @@ def simple_burst(stream_a, stream_b, stream_lat_a, stream_lat_b, duration, rate,
             stats = client.get_stats()
 
             print "#####statistics#####"
+            print json.dumps(client.get_pgid_stats(), indent=4,
+                             separators=(',', ': '), sort_keys=True)
             print json.dumps(stats, indent=4,
                              separators=(',', ': '), sort_keys=True)
             lost_a = stats[0]["opackets"] - stats[1]["ipackets"]
