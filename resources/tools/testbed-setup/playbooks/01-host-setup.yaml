@@ -41,6 +41,26 @@
     copy: src=files/sudoers_virl dest=/etc/sudoers.d/virl owner=root group=root mode=660
   - name: Set VIRL user authorized key
     authorized_key: user=virl key="{{ lookup('file', '/home/testuser/.ssh/id_rsa.pub') }}"
+  - cron:
+    name: QEMU log garbage collector
+    minute: 0
+    hour: 0
+    job: "find /var/log/libvirt/qemu -type f -mtime +14 -name 'instance*.log' -delete"
+  - cron:
+    name: VPP deb package garbage collector
+    minute: 0
+    hour: 0
+    job: "find /tmp -type f -atime +14 -name "*.deb" -delete"
+  - cron:
+    name: VPP rpm package garbage collector
+    minute: 0
+    hour: 0
+    job: "find /tmp -type f -atime +14 -name "*.rpm" -delete"
+  - cron:
+    name: NFS scratch dir garbage collector
+    minute: 0
+    hour: 0
+    job: "find /nfs/scratch/ -type d -mtime +14 -name 'session-*'"
 - hosts: tg:sut
   remote_user: testuser
   sudo: yes
