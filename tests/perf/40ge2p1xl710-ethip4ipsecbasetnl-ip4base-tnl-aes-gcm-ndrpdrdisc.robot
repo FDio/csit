@@ -77,7 +77,7 @@
 | | ... | [Ver] Find NDR for 64 Byte frames\
 | | ... | using binary search start at 40GE linerate, step 100kpps.
 | | ...
-| | [Tags] | 64B | 1T1C | STHREAD | NDRDISC
+| | [Tags] | 64B | 1T1C | STHREAD | NDRDISC | THIS
 | | ...
 | | ${n_tunnels}= | Set Variable | ${1}
 | | ${framesize}= | Set Variable | ${64}
