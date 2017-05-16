@@ -236,7 +236,7 @@ do
         -v TOPOLOGY_PATH:${SCRIPT_DIR}/topologies/enabled/topology.yaml \
         --suite "tests.func" \
         --include vm_envAND3_node_single_link_topo \
-        --include vm_envAND3_nodePACAKGE_double_link_topo \
+        --include vm_envAND3_node_double_link_topo \
         --exclude PERFTEST \
         --noncritical EXPECTED_FAILING \
         --output log_test_set${test_set} \
