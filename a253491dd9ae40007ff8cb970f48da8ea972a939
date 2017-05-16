@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "1a2f8d8d_66d6c6c7",
+        "filename": "resources/tools/virl/bin/start-testcase",
+        "patchSetId": 4
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-16T11:57:58Z",
+      "side": 1,
+      "message": "requests.exceptions.RequestException",
+      "parentUuid": "1a2f8d8d_c679fafd",
+      "range": {
+        "startLine": 170,
+        "startChar": 11,
+        "endLine": 170,
+        "endChar": 20
+      },
+      "revId": "a253491dd9ae40007ff8cb970f48da8ea972a939",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a2f8d8d_c6121ab4",
         "filename": "resources/tools/virl/bin/start-testcase",
         "patchSetId": 4
