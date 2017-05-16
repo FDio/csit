@@ -61,6 +61,7 @@
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${neighbor_1_ip} | ${neighbor_1_mac}
 | | And Add Ip Neighbor
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${neighbor_2_ip} | ${neighbor_2_mac}
+| | And Vpp Nodes RA Suppress Link Layer | ${nodes}
 | | When Vpp Route Add
 | | ... | ${dut_node} | ${test_dst_ip} | ${prefix_length} | ${neighbor_1_ip}
 | | ... | ${dut_to_tg_if1} | resolve_attempts=${NONE} | multipath=${TRUE}
