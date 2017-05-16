@@ -1,0 +1,188 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a2f8d8d_c679fafd",
+        "filename": "resources/tools/virl/bin/start-testcase",
+        "patchSetId": 4
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-16T11:26:23Z",
+      "side": 1,
+      "message": "PEP8: Too broad exception Use exception(s) from requests.exceptions....",
+      "range": {
+        "startLine": 170,
+        "startChar": 11,
+        "endLine": 170,
+        "endChar": 20
+      },
+      "revId": "a253491dd9ae40007ff8cb970f48da8ea972a939",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a2f8d8d_c6121ab4",
+        "filename": "resources/tools/virl/bin/start-testcase",
+        "patchSetId": 4
+      },
+      "lineNbr": 200,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-16T11:26:23Z",
+      "side": 1,
+      "message": "PEP8: Too broad exception\nUse exception(s) from requests.exceptions....",
+      "range": {
+        "startLine": 200,
+        "startChar": 15,
+        "endLine": 200,
+        "endChar": 24
+      },
+      "revId": "a253491dd9ae40007ff8cb970f48da8ea972a939",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a2f8d8d_a6170ea3",
+        "filename": "resources/tools/virl/bin/start-testcase",
+        "patchSetId": 4
+      },
+      "lineNbr": 205,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-16T11:26:23Z",
+      "side": 1,
+      "message": "Unreachable code, remove",
+      "range": {
+        "startLine": 203,
+        "startChar": 16,
+        "endLine": 205,
+        "endChar": 71
+      },
+      "revId": "a253491dd9ae40007ff8cb970f48da8ea972a939",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a2f8d8d_860c1296",
+        "filename": "resources/tools/virl/bin/start-testcase",
+        "patchSetId": 4
+      },
+      "lineNbr": 275,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-16T11:26:23Z",
+      "side": 1,
+      "message": "PEP8: Too broad exception\nUse shutil.Error",
+      "range": {
+        "startLine": 275,
+        "startChar": 12,
+        "endLine": 275,
+        "endChar": 18
+      },
+      "revId": "a253491dd9ae40007ff8cb970f48da8ea972a939",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a2f8d8d_661126ac",
+        "filename": "resources/tools/virl/bin/start-testcase",
+        "patchSetId": 4
+      },
+      "lineNbr": 295,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-16T11:26:23Z",
+      "side": 1,
+      "message": "PEP8: Too broad exception Use exception(s) from requests.exceptions....",
+      "range": {
+        "startLine": 295,
+        "startChar": 4,
+        "endLine": 295,
+        "endChar": 10
+      },
+      "revId": "a253491dd9ae40007ff8cb970f48da8ea972a939",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a2f8d8d_46262a18",
+        "filename": "resources/tools/virl/bin/start-testcase",
+        "patchSetId": 4
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-16T11:26:23Z",
+      "side": 1,
+      "message": "Use: shutil.Error",
+      "range": {
+        "startLine": 303,
+        "startChar": 12,
+        "endLine": 303,
+        "endChar": 18
+      },
+      "revId": "a253491dd9ae40007ff8cb970f48da8ea972a939",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a2f8d8d_26231e07",
+        "filename": "resources/tools/virl/bin/start-testcase",
+        "patchSetId": 4
+      },
+      "lineNbr": 377,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-16T11:26:23Z",
+      "side": 1,
+      "message": "PEP8: Too broad exception\nUse shutil.Error",
+      "range": {
+        "startLine": 377,
+        "startChar": 12,
+        "endLine": 377,
+        "endChar": 18
+      },
+      "revId": "a253491dd9ae40007ff8cb970f48da8ea972a939",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a2f8d8d_062022f6",
+        "filename": "resources/tools/virl/bin/start-testcase",
+        "patchSetId": 4
+      },
+      "lineNbr": 379,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-16T11:26:23Z",
+      "side": 1,
+      "message": "Consider using \"Session ID: {}\"",
+      "range": {
+        "startLine": 379,
+        "startChar": 15,
+        "endLine": 379,
+        "endChar": 17
+      },
+      "revId": "a253491dd9ae40007ff8cb970f48da8ea972a939",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
