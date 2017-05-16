@@ -257,7 +257,7 @@ class VppConfigGenerator(object):
         """Add cryptodev configuration for node.
 
         :param node: DUT node.
-        :param count: Number of crypto device to add.
+        :param count: Number of crypto devices to add.
         :type node: dict
         :type count: int
         :returns: nothing
@@ -270,10 +270,10 @@ class VppConfigGenerator(object):
             self._nodeconfig[hostname] = {}
 
         cryptodev = Topology.get_cryptodev(node)
-        cryptodev_config = 'enable-cryptodev'
+        cryptodev_config = ''
 
         for i in range(count):
-            cryptodev_config += ' dev {}'.format(\
+            cryptodev_config += 'dev {}\n'.format(
                 re.sub(r'\d.\d$', '1.'+str(i), cryptodev))
 
         self._nodeconfig[hostname]['cryptodev_config'] = cryptodev_config
