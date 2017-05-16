@@ -270,10 +270,10 @@ class VppConfigGenerator(object):
             self._nodeconfig[hostname] = {}
 
         cryptodev = Topology.get_cryptodev(node)
-        cryptodev_config = 'enable-cryptodev'
+        cryptodev_config = ''
 
         for i in range(count):
-            cryptodev_config += ' dev {}'.format(\
+            cryptodev_config += ' dev {}'.format(
                 re.sub(r'\d.\d$', '1.'+str(i), cryptodev))
 
         self._nodeconfig[hostname]['cryptodev_config'] = cryptodev_config
