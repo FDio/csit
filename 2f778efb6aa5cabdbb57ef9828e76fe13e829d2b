@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a2f8d8d_c64a1a83",
+        "filename": "resources/libraries/python/TLDK/SetupTLDKTest.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-16T12:18:35Z",
+      "side": 1,
+      "message": "rtype",
+      "range": {
+        "startLine": 41,
+        "startChar": 5,
+        "endLine": 41,
+        "endChar": 11
+      },
+      "revId": "2f778efb6aa5cabdbb57ef9828e76fe13e829d2b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a2f8d8d_86441275",
+        "filename": "resources/libraries/python/TLDK/SetupTLDKTest.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-16T12:18:35Z",
+      "side": 1,
+      "message": "Add to doc this way:\n:raises RuntimeError: If the setup of virtualenv failed.\nCheck everywhere",
+      "range": {
+        "startLine": 135,
+        "startChar": 8,
+        "endLine": 135,
+        "endChar": 26
+      },
+      "revId": "2f778efb6aa5cabdbb57ef9828e76fe13e829d2b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a2f8d8d_6649268b",
+        "filename": "resources/libraries/python/TLDK/UdpTest.py",
+        "patchSetId": 15
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-16T12:18:35Z",
+      "side": 1,
+      "message": "rtype\ncheck everywhere",
+      "range": {
+        "startLine": 39,
+        "startChar": 9,
+        "endLine": 39,
+        "endChar": 15
+      },
+      "revId": "2f778efb6aa5cabdbb57ef9828e76fe13e829d2b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
