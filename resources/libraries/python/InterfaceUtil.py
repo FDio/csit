@@ -348,8 +348,14 @@ class InterfaceUtil(object):
         ssh = SSH()
         ssh.connect(node)
 
-        cmd = 'lspci -vmmks {0}'.format(pci_addr)
+        # First rescan PCI devices in the system
+        cmd = 'sh -c "echo 1 > /sys/bus/pci/rescan"'
+        (ret_code, _, _) = ssh.exec_command_sudo(cmd)
+        if int(ret_code) != 0:
+            raise RuntimeError("'{0}' failed on '{1}'"
+                               .format(cmd, node['host']))
 
+        cmd = 'lspci -vmmks {0}'.format(pci_addr)
         (ret_code, stdout, _) = ssh.exec_command(cmd)
         if int(ret_code) != 0:
             raise RuntimeError("'{0}' failed on '{1}'"
