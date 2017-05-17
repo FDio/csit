@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "1a2f8d8d_f2026cb3",
+        "filename": "bootstrap-vpp-verify-semiweekly.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-05-17T11:54:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a2f8d8d_5225c0a9",
+      "range": {
+        "startLine": 107,
+        "startChar": 21,
+        "endLine": 107,
+        "endChar": 24
+      },
+      "revId": "385868bfa97bcab437db314613068ce9c631872d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a2f8d8d_571132ab",
         "filename": "resources/tools/virl/bin/start-testcase",
         "patchSetId": 7
@@ -36,6 +60,30 @@
       "writtenOn": "2017-05-17T09:06:11Z",
       "side": 1,
       "message": "This function does not raise an exception.",
+      "range": {
+        "startLine": 54,
+        "startChar": 5,
+        "endLine": 54,
+        "endChar": 64
+      },
+      "revId": "385868bfa97bcab437db314613068ce9c631872d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a2f8d8d_720f9ce2",
+        "filename": "resources/tools/virl/bin/start-testcase",
+        "patchSetId": 7
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-05-17T11:54:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a2f8d8d_571132ab",
       "range": {
         "startLine": 54,
         "startChar": 5,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "1a2f8d8d_5214a0f4",
+        "filename": "resources/tools/virl/bin/start-testcase",
+        "patchSetId": 7
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-05-17T11:54:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a2f8d8d_3726a617",
+      "range": {
+        "startLine": 296,
+        "startChar": 28,
+        "endLine": 296,
+        "endChar": 29
+      },
+      "revId": "385868bfa97bcab437db314613068ce9c631872d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a2f8d8d_1723aa06",
         "filename": "resources/tools/virl/bin/start-testcase",
         "patchSetId": 7
@@ -94,6 +166,30 @@
     },
     {
       "key": {
+        "uuid": "1a2f8d8d_32f914c9",
+        "filename": "resources/tools/virl/bin/start-testcase",
+        "patchSetId": 7
+      },
+      "lineNbr": 303,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-05-17T11:54:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a2f8d8d_1723aa06",
+      "range": {
+        "startLine": 303,
+        "startChar": 24,
+        "endLine": 303,
+        "endChar": 25
+      },
+      "revId": "385868bfa97bcab437db314613068ce9c631872d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a2f8d8d_f71ffeb5",
         "filename": "resources/tools/virl/bin/start-testcase",
         "patchSetId": 7
@@ -105,6 +201,30 @@
       "writtenOn": "2017-05-17T09:06:11Z",
       "side": 1,
       "message": "not necessary\n\nprint_to_stderr(\"ERROR: Simulation started OK but {} hosts never \"\n                \"mounted their NFS directory\".format(missing))",
+      "range": {
+        "startLine": 418,
+        "startChar": 62,
+        "endLine": 418,
+        "endChar": 63
+      },
+      "revId": "385868bfa97bcab437db314613068ce9c631872d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a2f8d8d_12f618d8",
+        "filename": "resources/tools/virl/bin/start-testcase",
+        "patchSetId": 7
+      },
+      "lineNbr": 418,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-05-17T11:54:27Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a2f8d8d_f71ffeb5",
       "range": {
         "startLine": 418,
         "startChar": 62,
