@@ -435,7 +435,7 @@ class HoneycombSetup(object):
     def setup_odl_client(node, odl_name):
         """Start ODL client on the specified node.
 
-        Karaf should be located in /nfs/common, and VPP and Honeycomb should
+        Karaf should be located in /mnt/common, and VPP and Honeycomb should
         already be running, otherwise the start will fail.
         :param node: Node to start ODL client on.
         :param odl_name: Name of ODL client version to use.
@@ -449,7 +449,7 @@ class HoneycombSetup(object):
         ssh = SSH()
         ssh.connect(node)
 
-        cmd = "cp -r /nfs/common/*karaf_{name}* ~/karaf".format(name=odl_name)
+        cmd = "cp -r /mnt/common/*karaf_{name}* ~/karaf".format(name=odl_name)
 
         (ret_code, _, _) = ssh.exec_command_sudo(cmd)
         if int(ret_code) != 0:
