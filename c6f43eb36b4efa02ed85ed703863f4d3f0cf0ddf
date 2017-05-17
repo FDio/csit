@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a2f8d8d_77830ecd",
+        "filename": "bootstrap-TLDK.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-17T09:07:45Z",
+      "side": 1,
+      "message": "${DPDK_VERSION}",
+      "range": {
+        "startLine": 115,
+        "startChar": 30,
+        "endLine": 115,
+        "endChar": 42
+      },
+      "revId": "c6f43eb36b4efa02ed85ed703863f4d3f0cf0ddf",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
