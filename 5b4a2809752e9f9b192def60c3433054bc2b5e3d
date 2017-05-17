@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "1a2f8d8d_3772267d",
+        "filename": "resources/libraries/robot/honeycomb/port_mirroring.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-05-17T07:47:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a2f8d8d_17484a2c",
+      "range": {
+        "startLine": 169,
+        "startChar": 10,
+        "endLine": 169,
+        "endChar": 12
+      },
+      "revId": "5b4a2809752e9f9b192def60c3433054bc2b5e3d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a2f8d8d_97631ab1",
         "filename": "resources/libraries/robot/honeycomb/port_mirroring.robot",
         "patchSetId": 2
@@ -36,6 +60,30 @@
       "writtenOn": "2017-05-17T07:44:16Z",
       "side": 1,
       "message": "three dots are enough",
+      "range": {
+        "startLine": 251,
+        "startChar": 4,
+        "endLine": 251,
+        "endChar": 8
+      },
+      "revId": "5b4a2809752e9f9b192def60c3433054bc2b5e3d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a2f8d8d_176f2a94",
+        "filename": "resources/libraries/robot/honeycomb/port_mirroring.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 251,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-05-17T07:47:46Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a2f8d8d_97631ab1",
       "range": {
         "startLine": 251,
         "startChar": 4,
