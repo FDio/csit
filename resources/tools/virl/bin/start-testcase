@@ -73,7 +73,7 @@ def main():
                         "directory", default="/nfs/common")
     parser.add_argument("-wc", "--wait-count",
                         help="number of intervals to wait for simulation to " +
-                        "be ready", type=int, default=24)
+                        "be ready", type=int, default=48)
     parser.add_argument("-wt", "--wait-time",
                         help="length of a single interval to wait for " +
                         "simulation to be ready", type=int, default=5)
