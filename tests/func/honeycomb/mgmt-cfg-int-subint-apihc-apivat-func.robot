@@ -18,6 +18,7 @@
 | Resource | resources/libraries/robot/honeycomb/bridge_domain.robot
 | Resource | resources/libraries/robot/honeycomb/interfaces.robot
 | Variables | resources/test_data/honeycomb/sub_interfaces.py
+| Suite Setup | Add Interface local0 To Topology | ${node}
 | Suite Teardown
 | ... | Restart Honeycomb and VPP | ${node}
 | Force Tags | HC_FUNC
@@ -458,6 +459,82 @@
 | | ... | ${node} | ${sub_if_name}
 | | ... | ${ipv6_2['address']} | ${ipv6_2['prefix-length']}
 
+| TC22: Honeycomb can configure unnumbered sub-interface
+| | [Documentation] | Check if Honeycomb can configure an unnumbered interface\
+| | ... | on a sub-interface, borrowing the IP address of 'local0'.
+| | Given sub-interface ipv4 address from Honeycomb should be empty
+| | ... | ${node} | ${super_if} | ${sub_if_id}
+| | And sub-interface ipv4 address from VAT should be empty
+| | ... | ${node} | ${sub_if_name}
+| | And Honeycomb sets interface ipv4 address | ${node}
+| | ... | local0 | ${ipv4['address']} | ${ipv4['prefix-length']}
+| | When Honeycomb adds unnumbered configuration to interface
+| | ... | ${node} | ${super_if}.${sub_if_id} | local0
+| | Then IPv4 address from Honeycomb should be
+| | ... | ${node} | local0 | ${ipv4['address']} | ${ipv4['prefix-length']}
+| | And IPv4 address from VAT should be
+| | ... | ${node} | local0
+| | ... | ${ipv4['address']} | ${ipv4['prefix-length']} | ${ipv4['netmask']}
+| | And sub-interface ipv4 address from Honeycomb should be
+| | ... | ${node} | ${super_if} | ${sub_if_id}
+| | ... | ${ipv4['address']} | ${ipv4['prefix-length']}
+| | And sub-interface ipv4 address from VAT should be
+| | ... | ${node} | ${sub_if_name}
+| | ... | ${ipv4['address']} | ${ipv4['prefix-length']}
+
+| TC23: Honeycomb removes sub-interface unnumbered configuration
+| | [Documentation] | Check if Honeycomb can remove unnumbered configuration\
+| | ... | from a sub-interface.
+| | [Teardown] | Honeycomb removes interface ipv4 addresses | ${node}
+| | ... | local0
+| | Given IPv4 address from Honeycomb should be
+| | ... | ${node} | local0 | ${ipv4['address']} | ${ipv4['prefix-length']}
+| | And IPv4 address from VAT should be
+| | ... | ${node} | local0
+| | ... | ${ipv4['address']} | ${ipv4['prefix-length']} | ${ipv4['netmask']}
+| | And sub-interface ipv4 address from Honeycomb should be
+| | ... | ${node} | ${super_if} | ${sub_if_id}
+| | ... | ${ipv4['address']} | ${ipv4['prefix-length']}
+| | And sub-interface ipv4 address from VAT should be
+| | ... | ${node} | ${sub_if_name}
+| | ... | ${ipv4['address']} | ${ipv4['prefix-length']}
+| | When Honeycomb removes unnumbered configuration from interface
+| | ... | ${node} | ${super_if}.${sub_if_id}
+| | Then IPv4 address from Honeycomb should be
+| | ... | ${node} | local0 | ${ipv4['address']} | ${ipv4['prefix-length']}
+| | And IPv4 address from VAT should be
+| | ... | ${node} | local0
+| | ... | ${ipv4['address']} | ${ipv4['prefix-length']} | ${ipv4['netmask']}
+| | And sub-interface ipv4 address from Honeycomb should be empty
+| | ... | ${node} | ${super_if} | ${sub_if_id}
+| | And sub-interface ipv4 address from VAT should be empty
+| | ... | ${node} | ${sub_if_name}
+
+| TC24: Honeycomb can configure unnumbered interface using a sub-interface
+| | [Documentation] | Check if Honeycomb can configure an unnumbered interface\
+| | ... | on an interface, borrowing the IP address of a sub-interface.
+| | Given IPv4 address from Honeycomb should be empty | ${node} | local0
+| | And ipv4 address from VAT should be empty | ${node} | local0
+| | And sub-interface ipv4 address from Honeycomb should be empty
+| | ... | ${node} | ${super_if} | ${sub_if_id}
+| | And sub-interface ipv4 address from VAT should be empty
+| | ... | ${node} | ${sub_if_name}
+| | And Honeycomb sets sub-interface ipv4 address
+| | ... | ${node} | ${super_if} | ${sub_if_id}
+| | ... | ${ipv4['address']} | ${ipv4['prefix-length']}
+| | When Honeycomb adds unnumbered configuration to interface
+| | ... | ${node} | local0 | ${super_if}.${sub_if_id}
+| | Then IPv4 address from Honeycomb should be
+| | ... | ${node} | local0 | ${ipv4['address']} | ${ipv4['prefix-length']}
+| | And IPv4 address from VAT should be
+| | ... | ${node} | local0
+| | ... | ${ipv4['address']} | ${ipv4['prefix-length']} | ${ipv4['netmask']}
+| | And sub-interface ipv4 address from Honeycomb should be
+| | ... | ${node} | ${super_if} | ${sub_if_id}
+| | ... | ${ipv4['address']} | ${ipv4['prefix-length']}
+| | And sub-interface ipv4 address from VAT should be
+| | ... | ${node} | ${sub_if_name}
+| | ... | ${ipv4['address']} | ${ipv4['prefix-length']}
 
 *** Keywords ***
 | Set super and sub interfaces up

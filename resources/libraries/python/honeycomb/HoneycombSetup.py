@@ -438,7 +438,7 @@ class HoneycombSetup(object):
                                      "node {0}, {1}".format(node, stderr))
 
     @staticmethod
-    def setup_odl_client(node, odl_name):
+    def configure_odl_client(node, odl_name):
         """Start ODL client on the specified node.
 
         Karaf should be located in /mnt/common, and VPP and Honeycomb should

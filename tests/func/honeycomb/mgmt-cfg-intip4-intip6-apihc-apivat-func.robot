@@ -198,7 +198,7 @@
 | | ... | ${tg_to_dut_if1} | ${tg_to_dut_if1_mac}
 | | ... | ${tg_to_dut_if1} | ${dut_to_tg_if1_mac}
 
-TC11: Honeycomb fails to configure two IPv4 addresses from the same subnet
+| TC11: Honeycomb fails to configure two IPv4 addresses from the same subnet
 | | [Documentation] | Check if Honeycomb can configure two IPv4 addresses in\
 | | ... | the same subnet onto a single interface. It should not be possible.
 | | [Teardown] | Honeycomb removes interface ipv4 addresses | ${node}
@@ -212,7 +212,7 @@ TC11: Honeycomb fails to configure two IPv4 addresses from the same subnet
 | | And Honeycomb fails to add interface ipv4 address
 | | ... | ${node} | ${interface} | 192.232.0.2 | ${9}
 
-TC12: Honeycomb fails to configure two IPv6 addresses from the same subnet
+| TC12: Honeycomb fails to configure two IPv6 addresses from the same subnet
 | | [Documentation] | Check if Honeycomb can configure two IPv6 addresses in\
 | | ... | the same subnet onto a single interface. It should not be possible.
 | | [Tags] | EXPECTED_FAILING
@@ -225,3 +225,44 @@ TC12: Honeycomb fails to configure two IPv6 addresses from the same subnet
 | | ... | ${node} | ${interface} | 10::FF11 | ${64}
 | | And Honeycomb fails to add interface ipv6 address
 | | ... | ${node} | ${interface} | 10::FFFF | ${64}
+
+| TC13: Honeycomb can configure unnumbered interface
+| | [Documentation] | Check if Honeycomb can configure an unnumbered interface\
+| | ... | on a physical interface, borrowing the IP address of 'local0'.
+| | Given Honeycomb sets interface ipv4 address | ${node}
+| | ... | local0 | ${ipv4_address} | ${ipv4_prefix}
+| | When Honeycomb adds unnumbered configuration to interface
+| | ... | ${node} | ${interface} | local0
+| | Then IPv4 address from Honeycomb should be
+| | ... | ${node} | local0 | ${ipv4_address} | ${ipv4_prefix}
+| | And IPv4 address from VAT should be
+| | ... | ${node} | local0 | ${ipv4_address}
+| | ... | ${ipv4_prefix} | ${ipv4_mask}
+| | And IPv4 address from Honeycomb should be
+| | ... | ${node} | ${interface} | ${ipv4_address} | ${ipv4_prefix}
+| | And IPv4 address from VAT should be
+| | ... | ${node} | ${interface} | ${ipv4_address}
+| | ... | ${ipv4_prefix} | ${ipv4_mask}
+
+| TC14: Honeycomb removes interface unnumbered configuration
+| | [Documentation] | Check if Honeycomb can remove unnumbered configuration\
+| | ... | from an interface.
+| | Given IPv4 address from Honeycomb should be
+| | ... | ${node} | local0 | ${ipv4_address} | ${ipv4_prefix}
+| | And IPv4 address from VAT should be
+| | ... | ${node} | local0 | ${ipv4_address}
+| | ... | ${ipv4_prefix} | ${ipv4_mask}
+| | And IPv4 address from Honeycomb should be
+| | ... | ${node} | ${interface} | ${ipv4_address} | ${ipv4_prefix}
+| | And IPv4 address from VAT should be
+| | ... | ${node} | ${interface} | ${ipv4_address}
+| | ... | ${ipv4_prefix} | ${ipv4_mask}
+| | When Honeycomb removes unnumbered configuration from interface
+| | ... | ${node} | ${interface}
+| | Then IPv4 address from Honeycomb should be
+| | ... | ${node} | local0 | ${ipv4_address} | ${ipv4_prefix}
+| | And IPv4 address from VAT should be
+| | ... | ${node} | local0 | ${ipv4_address}
+| | ... | ${ipv4_prefix} | ${ipv4_mask}
+| | And IPv4 address from Honeycomb should be empty | ${node} | ${interface}
+| | And ipv4 address from VAT should be empty | ${node} | ${interface}
