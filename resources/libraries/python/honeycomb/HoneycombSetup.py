@@ -25,6 +25,7 @@ from resources.libraries.python.honeycomb.HoneycombUtil \
     import HoneycombUtil as HcUtil
 from resources.libraries.python.ssh import SSH
 from resources.libraries.python.topology import NodeType
+from resources.libraries.python.DUTSetup import DUTSetup
 
 
 class HoneycombSetup(object):
@@ -117,7 +118,7 @@ class HoneycombSetup(object):
         """
         logger.console("\nRestarting Honeycomb service ...")
 
-        cmd = "sudo service honeycomb restart && sudo service vpp restart"
+        cmd = "sudo service honeycomb restart "
         errors = []
 
         for node in nodes:
@@ -127,9 +128,14 @@ class HoneycombSetup(object):
                 (ret_code, _, _) = ssh.exec_command_sudo(cmd)
                 if int(ret_code) != 0:
                     errors.append(node['host'])
-                else:
-                    logger.info("Restart of Honeycomb and VPP on node {0} is "
-                                "in progress ...".format(node['host']))
+                try:
+                    DUTSetup.setup_dut(node)
+                except Exception as err:
+                    logger.debug(err)
+                    errors.append(node['host'])
+                    continue
+                logger.info("Restart of Honeycomb and VPP on node {0} is "
+                            "in progress ...".format(node['host']))
         if errors:
             raise HoneycombError('Node(s) {0} failed to restart Honeycomb'
                                  ' and/or VPP.'.
