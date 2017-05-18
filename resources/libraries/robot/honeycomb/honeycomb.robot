@@ -102,9 +102,9 @@
 | | ... | \| Restart Honeycomb and VPP \| ${nodes['DUT1']} \|
 | | [Arguments] | ${node}
 | | Log | Performing clean restart of Honeycomb and VPP. | console=True
-| | Restart Honeycomb and VPP on DUTs | ${node}
-| | Wait until keyword succeeds | 4min | 16sec
-| | ... | Check honeycomb startup state | ${node}
+| | Stop Honeycomb service on DUTs | ${node}
+| | Setup DUT | ${node}
+| | Setup Honeycomb service on DUTs | ${node}
 
 | Archive Honeycomb log file
 | | [Documentation] | Copy honeycomb.log file from Honeycomb node\

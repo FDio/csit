@@ -106,36 +106,6 @@ class HoneycombSetup(object):
                                  format(errors))
 
     @staticmethod
-    def restart_honeycomb_and_vpp_on_duts(*nodes):
-        """Restart the Honeycomb service on specified DUT nodes.
-
-        Use the keyword "Check Honeycomb Startup State" to check when Honeycomb
-        is fully restarted.
-        :param nodes: List of nodes to restart Honeycomb on.
-        :type nodes: list
-        :raises HoneycombError: If Honeycomb failed to restart.
-        """
-        logger.console("\nRestarting Honeycomb service ...")
-
-        cmd = "sudo service honeycomb restart && sudo service vpp restart"
-        errors = []
-
-        for node in nodes:
-            if node['type'] == NodeType.DUT:
-                ssh = SSH()
-                ssh.connect(node)
-                (ret_code, _, _) = ssh.exec_command_sudo(cmd)
-                if int(ret_code) != 0:
-                    errors.append(node['host'])
-                else:
-                    logger.info("Restart of Honeycomb and VPP on node {0} is "
-                                "in progress ...".format(node['host']))
-        if errors:
-            raise HoneycombError('Node(s) {0} failed to restart Honeycomb'
-                                 ' and/or VPP.'.
-                                 format(errors))
-
-    @staticmethod
     def check_honeycomb_startup_state(*nodes):
         """Check state of Honeycomb service during startup on specified nodes.
 
