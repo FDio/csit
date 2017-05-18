@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2017 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -21,6 +21,7 @@
 | Resource | resources/libraries/robot/honeycomb/honeycomb.robot
 | Suite Setup | Run Keywords | Setup All DUTs Before Test | AND
 | ... | Configure Honeycomb for testing | ${node} | AND
+| ... | Configure ODL Client for testing | ${node} | AND
 | ... | Set Global Variable | ${node}
 | Suite Teardown
 | ... | Archive Honeycomb log file | ${node}
@@ -35,7 +36,13 @@
 | | Configure Persistence | ${node} | disable
 | | Clear Persisted Honeycomb Configuration | ${node}
 | | Setup Honeycomb Service On DUTs | ${node}
-| | ${use_odl_client}= | Find ODL client on node | ${node}
-| | Set Global Variable | ${use_odl_client}
-| | Run Keyword If | ${use_odl_client}
-| | ... | Start ODL Client on node | ${node}
+
+| Configure ODL Client for testing
+| | [Arguments] | ${node}
+| | ${use_odl_client}= | Get Variable Value | ${HC_ODL}
+| | Run Keyword If | '${use_odl_client}' != ${NONE}
+| | ... | Run Keywords
+| | ... | Set Global Variable | ${use_odl_client} | AND
+| | ... | Configure ODL Client Service On DUT | ${node} | ${use_odl_client}
+| | ... | ELSE | Log | Variable HC_ODL is not present. Not using ODL.
+| | ... | level=INFO
