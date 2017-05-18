@@ -718,7 +718,7 @@
 | | ... | *Example:*
 | | ...
 | | ... | \| Honeycomb should show disabled interface in oper data \
-| | ... | \|${nodes['DUT1']} \| ${vx_interface} \|
+| | ... | \| ${nodes['DUT1']} \| ${vx_interface} \|
 | | [Arguments] | ${node} | ${index}
 | | interfaceAPI.check disabled interface | ${node} | ${index}
 
@@ -733,7 +733,7 @@
 | | ... | *Example:*
 | | ...
 | | ... | \| Honeycomb should not show disabled interface in oper data \
-| | ... | \|${nodes['DUT1']} \| ${vx_interface} \|
+| | ... | \| ${nodes['DUT1']} \| ${vx_interface} \|
 | | [Arguments] | ${node} | ${index}
 | | Run keyword and expect error | *
 | | ... | Honeycomb should show disabled interface in oper data
@@ -775,3 +775,37 @@
 | | ...                 | --timeout | ${5}
 | | Run Traffic Script On Node | send_icmp_wait_for_reply.py
 | | ... | ${tg_node} | ${args}
+
+| Honeycomb adds unnumbered configuration to interface
+| | [Documentation] | Adds unnumbered configuration to interface, borrowing IP
+| | ... | address from the other specified interface.
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - information about a DUT node. Type: dictionary
+| | ... | - interface - Name of the interface to be configured. Type: string
+| | ... | - interface_src - Name of the interface to borrow IP address from.\
+| | ... | Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Honeycomb adds unnumbered configuration to interface \
+| | ... | \| ${nodes['DUT1']} \| GigabitEthernet0/8/0 \| GigabitEthernet0/9/0 \|
+| | ...
+| | [Arguments] | ${node} | ${Interface} | ${interface_src}
+| | Configure interface unnumbered | ${node} | ${interface} | ${interface_src}
+
+| Honeycomb removes unnumbered configuration from interface
+| | [Documentation] | Removes unnumbered configuration from the specified
+| | ... | interface.
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - information about a DUT node. Type: dictionary
+| | ... | - interface - Name of the interface to be configured. Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Honeycomb adds unnumbered configuration to interface \
+| | ... | \| ${nodes['DUT1']} \| GigabitEthernet0/8/0 \|
+| | ...
+| | [Arguments] | ${node} | ${Interface}
+| | Configure interface unnumbered | ${node} | ${interface}
