@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2017 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -179,9 +179,12 @@ class HTTPRequest(object):
         """
         timeout = kwargs["timeout"]
 
-        if BuiltIn().get_variable_value("${use_odl_client}"):
-            # TODO: node["honeycomb"]["odl_port"]
+        use_odl = BuiltIn().get_variable_value("${use_odl_client}")
+
+        if use_odl:
             port = 8181
+            # Using default ODL Restconf port
+            # TODO: add node["honeycomb"]["odl_port"] to topology, use it here
             odl_url_part = "/network-topology:network-topology/topology/" \
                            "topology-netconf/node/vpp/yang-ext:mount"
         else:
