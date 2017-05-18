@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2017 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -408,33 +408,29 @@ class HoneycombSetup(object):
                                      "node {0}, {1}".format(node, stderr))
 
     @staticmethod
-    def find_odl_client(node):
-        """Check if there is a karaf directory in home.
+    def setup_odl_client(node, odl_name):
+        """Start ODL client on the specified node.
 
-        :param node: Honeycomb node.
+        Karaf should be located in /mnt/common, and VPP and Honeycomb should
+        already be running, otherwise the start will fail.
+        :param node: Node to start ODL client on.
+        :param odl_name: Name of ODL client version to use.
         :type node: dict
-        :returns: True if ODL client is present on node, else False.
-        :rtype: bool
+        :type odl_name: str
+        :raises HoneycombError: If Honeycomb fails to start.
         """
+
+        logger.debug("Copying ODL Client to home dir.")
 
         ssh = SSH()
         ssh.connect(node)
-        (ret_code, stdout, _) = ssh.exec_command_sudo(
-            "ls ~ | grep karaf")
 
-        logger.debug(stdout)
-        return not bool(ret_code)
+        cmd = "cp -r /mnt/common/*karaf_{name}* ~/karaf".format(name=odl_name)
 
-    @staticmethod
-    def start_odl_client(node):
-        """Start ODL client on the specified node.
-
-        karaf should be located in home directory, and VPP and Honeycomb should
-        already be running, otherwise the start will fail.
-        :param node: Nodes to start ODL client on.
-        :type node: dict
-        :raises HoneycombError: If Honeycomb fails to start.
-        """
+        (ret_code, _, _) = ssh.exec_command_sudo(cmd)
+        if int(ret_code) != 0:
+            raise HoneycombError(
+                "Failed to copy ODL client on node {0}".format(node["host"]))
 
         logger.console("\nStarting ODL client ...")
 
