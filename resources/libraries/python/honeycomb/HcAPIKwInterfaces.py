@@ -483,22 +483,32 @@ class InterfaceKeywords(object):
         :type network: str or int
         :returns: Content of response.
         :rtype: bytearray
-        :raises HoneycombError: If the provided netmask or prefix is not valid.
+        :raises ValueError: If the provided netmask or prefix is not valid.
+        :raises HoneycombError: If the operation fails.
         """
 
-        interface = Topology.convert_interface_reference(
-            node, interface, "name")
+        interface = InterfaceKeywords.handle_interface_reference(
+            node, interface)
 
-        path = ("interfaces", ("interface", "name", interface), "ietf-ip:ipv4")
+        path = "/interface/{0}/ietf-ip:ipv4".format(interface)
         if isinstance(network, basestring):
-            address = {"address": [{"ip": ip_addr, "netmask": network}, ]}
+            data = {
+                "ietf-ip:ipv4": {
+                    "address": [{"ip": ip_addr, "netmask": network}, ]}}
         elif isinstance(network, int) and (0 < network < 33):
-            address = {"address": [{"ip": ip_addr, "prefix-length": network}, ]}
+            data = {
+                "ietf-ip:ipv4": {
+                    "address": [{"ip": ip_addr, "prefix-length": network}, ]}}
         else:
-            raise HoneycombError("Value {0} is not a valid netmask or network "
-                                 "prefix length.".format(network))
-        return InterfaceKeywords._set_interface_properties(
-            node, interface, path, address)
+            raise ValueError("Value {0} is not a valid netmask or network "
+                             "prefix length.".format(network))
+        status_code, _ = HcUtil.put_honeycomb_data(
+            node, "config_vpp_interfaces", data, path)
+
+        if status_code not in (HTTPCodes.OK, HTTPCodes.ACCEPTED):
+            raise HoneycombError(
+                "Configuring IPv4 address failed. "
+                "Status code:{0}".format(status_code))
 
     @staticmethod
     def add_ipv4_address(node, interface, ip_addr, network):
@@ -1555,10 +1565,8 @@ class InterfaceKeywords(object):
 
         :param node: Honeycomb node.
         :param interface: The interface where policer will be disabled.
-        :param table_name: Name of the classify table.
         :type node: dict
         :type interface: str
-        :type table_name: str
         :returns: Content of response.
         :rtype: bytearray
         :raises HoneycombError: If the configuration of interface is not
@@ -1780,7 +1788,7 @@ class InterfaceKeywords(object):
             for src_interface in src_interfaces:
                 src_interface["iface-ref"] = Topology. \
                     convert_interface_reference(
-                    node, src_interface["iface-ref"], "name")
+                        node, src_interface["iface-ref"], "name")
             data = {
                 "span": {
                     "mirrored-interfaces": {
@@ -1809,3 +1817,72 @@ class InterfaceKeywords(object):
             local0_key = Topology.add_new_port(node, "localzero")
             Topology.update_interface_sw_if_index(node, local0_key, 0)
             Topology.update_interface_name(node, local0_key, "local0")
+
+    @staticmethod
+    def configure_interface_unnumbered(node, interface, interface_src=None):
+        """Configure the specified interface as unnumbered. The interface
+        borrows IP address from the specified source interface. If not source
+        interface is provided, unnumbered configuration will be removed.
+
+        :param node: Honeycomb node.
+        :param interface: Name, link name or sw_if_index of an interface.
+        :param interface_src: Name of source interface.
+        :type node: dict
+        :type interface: str or int
+        :type interface_src: str
+        :raises HoneycombError: If the configuration fails.
+        """
+
+        interface = InterfaceKeywords.handle_interface_reference(
+            node, interface)
+
+        path = "/interface/{0}/unnumbered-interfaces:unnumbered"\
+            .format(interface)
+
+        if interface_src:
+            data = {
+                "unnumbered": {
+                    "use": interface_src
+                }
+            }
+            status_code, _ = HcUtil.put_honeycomb_data(
+                node, "config_vpp_interfaces", data, path)
+        else:
+            status_code, _ = HcUtil.delete_honeycomb_data(
+                node, "config_vpp_interfaces", path)
+
+        if status_code not in (HTTPCodes.OK, HTTPCodes.ACCEPTED):
+            raise HoneycombError(
+                "Configuring unnumbered interface failed. "
+                "Status code:{0}".format(status_code))
+
+    @staticmethod
+    def handle_interface_reference(node, interface):
+        """Convert any interface reference to interface name used by Honeycomb.
+
+        :param node: Honeycomb node.
+        :param interface: Name, link name or sw_if_index of an interface,
+        name of a custom interface or name of a sub-interface.
+        :type node: Honeycomb node.
+        :type interface: str or int
+        :returns: Name of interface that can be used in Honeycomb requests.
+        :rtype: str
+        """
+
+        try:
+            interface = Topology.convert_interface_reference(
+                node, interface, "name")
+            interface = interface.replace("/", "%2F")
+        except RuntimeError:
+            # interface is not in topology
+            if "." in interface:
+                # Assume it's the name of a sub-interface
+                interface, index = interface.split(".")
+                interface = interface.replace("/", "%2F")
+                interface = "{0}/vpp-vlan:sub-interfaces/sub-interface/{1}".\
+                    format(interface, index)
+            else:
+                # Assume it's the name of a custom interface (pbb, vxlan, etc.)
+                interface = interface.replace("/", "%2F")
+
+        return interface

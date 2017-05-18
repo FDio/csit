@@ -148,7 +148,7 @@ class LispKeywords(object):
         if ret_code == HTTPCodes.OK:
             data["lisp"]["enable"] = bool(state)
         elif ret_code == HTTPCodes.NOT_FOUND:
-                data = {"lisp": {"enable": bool(state)}}
+            data = {"lisp": {"enable": bool(state)}}
         else:
             raise HoneycombError("Unexpected return code when getting existing"
                                  " Lisp configuration.")
@@ -340,7 +340,7 @@ class LispKeywords(object):
         data = {
             "map-request-mode": {
                 "mode": "source-destination" if src_dst
-                else "target-destination"
+                        else "target-destination"
             }
         }
 
