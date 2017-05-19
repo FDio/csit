@@ -30,28 +30,28 @@ nodes:
         link: link2
         model: Intel-XL710
       port3:
-        # t1-tg1-c2/p1 - 10GE port1 on Intel NIC x710 2p10GE.
-        mac_address: "3c:fd:fe:9c:ed:a0"
+        # t1-tg1-c3/p1 - 10GE port1 on Intel NIC x710 2p10GE.
+        mac_address: "3c:fd:fe:9c:ee:a0"
         pci_address: "0000:05:00.0"
         driver: i40e
         link: link3
         model: Intel-X710
       port4:
-        # t1-tg1-c2/p2 - 10GE port2 on Intel NIC x710 2p10GE.
-        mac_address: "3c:fd:fe:9c:ed:a1"
+        # t1-tg1-c3/p2 - 10GE port2 on Intel NIC x710 2p10GE.
+        mac_address: "3c:fd:fe:9c:ee:a1"
         pci_address: "0000:05:00.1"
         driver: i40e
         link: link4
         model: Intel-X710
       port5:
-        # t1-tg1-c3/p1 - 10GE port1 on Intel NIC x710 2p10GE.
+        # t1-tg1-c2/p1 - 10GE port1 on Intel NIC x710 2p10GE.
         mac_address: "3c:fd:fe:9c:ed:50"
         pci_address: "0000:07:00.0"
         driver: i40e
         link: link5
         model: Intel-X710
       port6:
-        # t1-tg1-c3/p2 - 10GE port2 on Intel NIC x710 2p10GE.
+        # t1-tg1-c2/p2 - 10GE port2 on Intel NIC x710 2p10GE.
         mac_address: "3c:fd:fe:9c:ed:51"
         pci_address: "0000:07:00.1"
         driver: i40e
@@ -110,13 +110,13 @@ nodes:
     interfaces:
       port1:
         # t1-sut1-c1/p1 - 10GE port1 on Intel NIC x520 2p10GE.
-        mac_address: "90:e2:ba:b5:0a:2c"
+        mac_address: "90:e2:ba:b5:0a:18"
         pci_address: "0000:0a:00.0"
         link: link21
         model: Intel-X520-DA2
       port2:
         # t1-sut1-c1/p2 - 10GE port2 on Intel NIC x520 2p10GE.
-        mac_address: "90:e2:ba:b5:0a:2d"
+        mac_address: "90:e2:ba:b5:0a:19"
         pci_address: "0000:0a:00.1"
         link: link3
         model: Intel-X520-DA2
@@ -179,13 +179,13 @@ nodes:
     interfaces:
       port1:
         # t1-sut2-c1/p1 - 10GE port1 on Intel NIC x520 2p10GE.
-        mac_address: "90:e2:ba:b5:12:30"
+        mac_address: "90:e2:ba:b5:05:e4"
         pci_address: "0000:0a:00.0"
         link: link4
         model: Intel-X520-DA2
       port2:
         # t1-sut2-c1/p2 - 10GE port2 on Intel NIC x520 2p10GE.
-        mac_address: "90:e2:ba:b5:12:31"
+        mac_address: "90:e2:ba:b5:05:e5"
         pci_address: "0000:0a:00.1"
         link: link21
         model: Intel-X520-DA2
@@ -237,3 +237,4 @@ nodes:
         pci_address: "0000:07:00.0"
         link: link25
         model: Cisco-VIC-1227
+
