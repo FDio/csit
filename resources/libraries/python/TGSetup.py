@@ -13,6 +13,8 @@
 
 """TG Setup library."""
 
+from resources.libraries.python.ssh import SSH
+
 from resources.libraries.python.topology import NodeType
 from resources.libraries.python.InterfaceUtil import InterfaceUtil
 
@@ -30,3 +32,33 @@ class TGSetup(object):
         for node in nodes.values():
             if node['type'] == NodeType.TG:
                 InterfaceUtil.tg_set_interfaces_default_driver(node)
+
+    @staticmethod
+    def all_tgs_disable_ipv6_global_forwarding(nodes):
+        """Disable IPv6 global forwarding between all interfaces of all TGs in
+        given topology.
+
+        :param nodes: Nodes in topology.
+        :type nodes: dict
+        """
+        for node in nodes.values():
+            if node['type'] == NodeType.TG:
+                tg_disable_ipv6_global_forwarding(node)
+
+    @staticmethod
+    def tg_disable_ipv6_global_forwarding(node):
+        """Disable IPv6 global forwarding between all interfaces of given TG
+        node.
+
+        :param node: Node to disable IPv6 global forwarding on (must be TG
+        node).
+        :type node: dict
+        """
+        ssh = SSH()
+        ssh.connect(node)
+
+        cmd = 'sh -c "echo 0 > /proc/sys/net/ipv6/conf/all/forwarding"'
+        (ret_code, _, _) = ssh.exec_command_sudo(cmd)
+        if int(ret_code) != 0:
+            raise RuntimeError("'{0}' failed on '{1}'"
+                               .format(cmd, node['host']))

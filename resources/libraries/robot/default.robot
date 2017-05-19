@@ -36,6 +36,11 @@
 | | ...
 | | All TGs Set Interface Default Driver | ${nodes}
 
+| Disable IPv6 Global Forwarding On All TGs
+| | [Documentation] | Disable IPv6 forwarding on all TGs.
+| | ...
+| | All TGs Disable IPv6 Global Forwarding | ${nodes}
+
 | Show Vpp Version On All DUTs
 | | [Documentation] | Show VPP version verbose on all DUTs.
 | | ...
@@ -371,6 +376,7 @@
 | | ...
 | | Setup all DUTs before test
 | | Save VPP PIDs
+| | Disable IPv6 Global Forwarding On All TGs
 | | Setup all TGs before traffic script
 | | Update All Interface Data On All Nodes | ${nodes}
 | | Reset VAT History On All DUTs | ${nodes}
