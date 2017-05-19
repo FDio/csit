@@ -17,79 +17,20 @@ set -x
 cat /etc/hostname
 cat /etc/hosts
 
-SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-export PYTHONPATH=${SCRIPT_DIR}
-
-if [ -f "/etc/redhat-release" ]; then
-    DISTRO="CENTOS"
-    sudo yum install -y python-devel python-virtualenv
-    VPP_ARTIFACTS="vpp vpp-debuginfo vpp-devel vpp-lib vpp-plugins"
-    DPDK_ARTIFACTS=""
-    PACKAGE="rpm"
-    VPP_CLASSIFIER=""
-    DPDK_STABLE_VER=$(cat ${SCRIPT_DIR}/DPDK_STABLE_VER).x86_64
-    VPP_REPO_URL=$(cat ${SCRIPT_DIR}/VPP_REPO_URL_CENTOS)
-    VPP_STABLE_VER=$(cat ${SCRIPT_DIR}/VPP_STABLE_VER_CENTOS)
-    VIRL_TOPOLOGY=$(cat ${SCRIPT_DIR}/VIRL_TOPOLOGY_CENTOS)
-    VIRL_RELEASE=$(cat ${SCRIPT_DIR}/VIRL_RELEASE_CENTOS)
-    SHARED_MEMORY_PATH="/dev/shm"
-else
-    DISTRO="UBUNTU"
-    export DEBIAN_FRONTEND=noninteractive
-    sudo apt-get -y update
-    sudo apt-get -y install libpython2.7-dev python-virtualenv
-    VPP_ARTIFACTS="vpp vpp-dbg vpp-dev vpp-lib vpp-plugins"
-    DPDK_ARTIFACTS="vpp-dpdk-dkms"
-    PACKAGE="deb"
-    VPP_CLASSIFIER="-deb"
-    DPDK_STABLE_VER=$(cat ${SCRIPT_DIR}/DPDK_STABLE_VER)_amd64
-    VPP_REPO_URL=$(cat ${SCRIPT_DIR}/VPP_REPO_URL_UBUNTU)
-    VPP_STABLE_VER=$(cat ${SCRIPT_DIR}/VPP_STABLE_VER_UBUNTU)
-    VIRL_TOPOLOGY=$(cat ${SCRIPT_DIR}/VIRL_TOPOLOGY_UBUNTU)
-    VIRL_RELEASE=$(cat ${SCRIPT_DIR}/VIRL_RELEASE_UBUNTU)
-    SHARED_MEMORY_PATH="/run/shm"
-fi
+sudo yum install -y python-devel python-virtualenv
 
 #VIRL_SERVERS=("10.30.51.28" "10.30.51.29" "10.30.51.30")
 VIRL_SERVERS=("10.30.51.28")
-IPS_PER_VIRL=( "10.30.51.28:252"
-               "10.30.51.29:74"
-               "10.30.51.30:74" )
-SIMS_PER_VIRL=( "10.30.51.28:13"
-               "10.30.51.29:13"
-               "10.30.51.30:13" )
-IPS_PER_SIMULATION=5
-
-function get_max_ip_nr() {
-    virl_server=$1
-    IP_VALUE="0"
-    for item in "${IPS_PER_VIRL[@]}" ; do
-        if [ "${item%%:*}" == "${virl_server}" ]
-        then
-            IP_VALUE=${item#*:}
-            break
-        fi
-    done
-    echo "$IP_VALUE"
-}
-
-function get_max_sim_nr() {
-    virl_server=$1
-    SIM_VALUE="0"
-    for item in "${SIMS_PER_VIRL[@]}" ; do
-        if [ "${item%%:*}" == "${virl_server}" ]
-        then
-            SIM_VALUE=${item#*:}
-            break
-        fi
-    done
-    echo "$SIM_VALUE"
-}
 
 VIRL_USERNAME=jenkins-in
 VIRL_PKEY=priv_key
 VIRL_SERVER_STATUS_FILE="status"
 VIRL_SERVER_EXPECTED_STATUS="TESTING"
+
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+VIRL_TOPOLOGY=$(cat ${SCRIPT_DIR}/VIRL_TOPOLOGY_CENTOS)
+VIRL_RELEASE=$(cat ${SCRIPT_DIR}/VIRL_RELEASE_CENTOS)
 
 SSH_OPTIONS="-i ${VIRL_PKEY} -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o BatchMode=yes -o LogLevel=error"
 
@@ -105,6 +46,8 @@ LOG_PATH="${SCRIPT_DIR}/tmp"
 
 # Use tmp dir for tarballs
 export TMPDIR="${SCRIPT_DIR}/tmp"
+
+SHARED_MEMORY_PATH="/dev/shm"
 
 function ssh_do() {
     echo
@@ -145,6 +88,9 @@ EOF
 chmod 600 ${VIRL_PKEY}
 
 #
+# Pick a random host from the array of VIRL servers for every test set run
+# and attempt to reach it and verify it's status.
+#
 # The server must be reachable and have a "status" file with
 # the content "PRODUCTION" to be selected.
 #
@@ -153,74 +99,60 @@ chmod 600 ${VIRL_PKEY}
 #
 # Abort if there are no more servers left in the array.
 #
-VIRL_PROD_SERVERS=()
-for index in "${!VIRL_SERVERS[@]}"; do
-    virl_server_status=$(ssh ${SSH_OPTIONS} ${VIRL_USERNAME}@${VIRL_SERVERS[$index]} cat $VIRL_SERVER_STATUS_FILE 2>&1)
-    echo VIRL HOST ${VIRL_SERVERS[$index]} status is \"$virl_server_status\"
-    if [ "$virl_server_status" == "$VIRL_SERVER_EXPECTED_STATUS" ]
-    then
-        # Candidate is in good status. Add to array.
-        VIRL_PROD_SERVERS+=(${VIRL_SERVERS[$index]})
-    fi
-done
-
-VIRL_SERVERS=("${VIRL_PROD_SERVERS[@]}")
-echo "VIRL servers in production: ${VIRL_SERVERS[@]}"
-num_hosts=${#VIRL_SERVERS[@]}
-if [ $num_hosts == 0 ]
-then
-    echo "No more VIRL candidate hosts available, failing."
-    exit 127
-fi
-
-# Get the LOAD of each server based on number of active simulations (testcases)
-VIRL_SERVER_LOAD=()
-for index in "${!VIRL_SERVERS[@]}"; do
-    VIRL_SERVER_LOAD[${index}]=$(ssh ${SSH_OPTIONS} ${VIRL_USERNAME}@${VIRL_SERVERS[$index]} "list-testcases | grep session | wc -l")
-done
-
-# Pick for each TEST_GROUP least loaded server
-VIRL_SERVER=()
 for index in "${!TEST_GROUPS[@]}"; do
-    least_load_server_idx=$(echo "${VIRL_SERVER_LOAD[*]}" | tr -s ' ' '\n' | awk '{print($0" "NR)}' | sort -g -k1,1 | head -1 | cut -f2 -d' ')
-    least_load_server=${VIRL_SERVERS[$least_load_server_idx-1]}
-    VIRL_SERVER+=($least_load_server)
-    # Adjusting load as we are not going run simulation immediately
-    VIRL_SERVER_LOAD[$least_load_server_idx-1]=$((VIRL_SERVER_LOAD[$least_load_server_idx-1]+1))
+    VIRL_SERVER[${index}]=""
+    while [[ ! "${VIRL_SERVER[${index}]}" ]]; do
+        num_hosts=${#VIRL_SERVERS[@]}
+        if [ $num_hosts == 0 ]
+        then
+            echo "No more VIRL candidate hosts available, failing."
+            exit 127
+        fi
+        element=$[ $RANDOM % $num_hosts ]
+        virl_server_candidate=${VIRL_SERVERS[$element]}
+        virl_server_status=$(ssh ${SSH_OPTIONS} ${VIRL_USERNAME}@${virl_server_candidate} cat $VIRL_SERVER_STATUS_FILE 2>&1)
+        echo VIRL HOST $virl_server_candidate status is \"$virl_server_status\"
+        if [ "$virl_server_status" == "$VIRL_SERVER_EXPECTED_STATUS" ]
+        then
+            # Candidate is in good status. Select this server.
+            VIRL_SERVER[${index}]="$virl_server_candidate"
+        else
+            # Candidate is in bad status. Remove from array.
+            VIRL_SERVERS=("${VIRL_SERVERS[@]:0:$element}" "${VIRL_SERVERS[@]:$[$element+1]}")
+        fi
+    done
 done
 
 echo "Selected VIRL servers: ${VIRL_SERVER[@]}"
 
-# Temporarily download VPP and DPDK packages from nexus.fd.io
+# Temporarily download VPP packages from nexus.fd.io
+VPP_REPO_URL=$(cat ${SCRIPT_DIR}/VPP_REPO_URL_CENTOS)
+VPP_CLASSIFIER=""
 if [ "${#}" -ne "0" ]; then
     arr=(${@})
     echo ${arr[0]}
     SKIP_PATCH="skip_patchORskip_vpp_patch"
-    # Download DPDK parts not included in dpdk plugin of vpp build
-    for ARTIFACT in ${DPDK_ARTIFACTS}; do
-        wget -q "${VPP_REPO_URL}/${ARTIFACT}/${DPDK_STABLE_VER}/${ARTIFACT}-${DPDK_STABLE_VER}${VPP_CLASSIFIER}.${PACKAGE}" || exit
-    done
 else
-    rm -f *.${PACKAGE}
-    for ARTIFACT in ${DPDK_ARTIFACTS}; do
-        wget -q "${VPP_REPO_URL}/${ARTIFACT}/${DPDK_STABLE_VER}/${ARTIFACT}-${DPDK_STABLE_VER}${VPP_CLASSIFIER}.${PACKAGE}" || exit
-    done
-    for ARTIFACT in ${VPP_ARTIFACTS}; do
-        wget -q "${VPP_REPO_URL}/${ARTIFACT}/${VPP_STABLE_VER}/${ARTIFACT}-${VPP_STABLE_VER}${VPP_CLASSIFIER}.${PACKAGE}" || exit
-    done
+    rm -f *.rpm
+    VPP_STABLE_VER=$(cat ${SCRIPT_DIR}/VPP_STABLE_VER_CENTOS)
+    wget -q "${VPP_REPO_URL}/vpp/${VPP_STABLE_VER}/vpp-${VPP_STABLE_VER}${VPP_CLASSIFIER}.rpm" || exit
+    wget -q "${VPP_REPO_URL}/vpp-debuginfo/${VPP_STABLE_VER}/vpp-debuginfo-${VPP_STABLE_VER}${VPP_CLASSIFIER}.rpm" || exit
+    wget -q "${VPP_REPO_URL}/vpp-devel/${VPP_STABLE_VER}/vpp-devel-${VPP_STABLE_VER}${VPP_CLASSIFIER}.rpm" || exit
+    wget -q "${VPP_REPO_URL}/vpp-lib/${VPP_STABLE_VER}/vpp-lib-${VPP_STABLE_VER}${VPP_CLASSIFIER}.rpm" || exit
+    wget -q "${VPP_REPO_URL}/vpp-plugins/${VPP_STABLE_VER}/vpp-plugins-${VPP_STABLE_VER}${VPP_CLASSIFIER}.rpm" || exit
 fi
 
-VPP_PKGS=(*.$PACKAGE)
-echo ${VPP_PKGS[@]}
+VPP_RPMS=(*.rpm)
+echo ${VPP_RPMS[@]}
 VIRL_DIR_LOC="/tmp"
-VPP_PKGS_FULL=(${VPP_PKGS[@]})
+VPP_RPMS_FULL=(${VPP_RPMS[@]})
 
-# Prepend directory location at remote host to package file list
-for index in "${!VPP_PKGS_FULL[@]}"; do
-    VPP_PKGS_FULL[${index}]=${VIRL_DIR_LOC}/${VPP_PKGS_FULL[${index}]}
+# Prepend directory location at remote host to rpm list
+for index in "${!VPP_RPMS_FULL[@]}"; do
+    VPP_RPMS_FULL[${index}]=${VIRL_DIR_LOC}/${VPP_RPMS_FULL[${index}]}
 done
 
-echo "Updated file names: " ${VPP_PKGS_FULL[@]}
+echo "Updated file names: " ${VPP_RPMS_FULL[@]}
 
 cat ${VIRL_PKEY}
 
@@ -231,18 +163,18 @@ for index in "${!VIRL_SERVER[@]}"; do
     [[ "${DONE[@]}" =~ "${VIRL_SERVER[${index}]}" ]] && copy=0 || copy=1
 
     if [ "${copy}" -eq "0" ]; then
-        echo "VPP packages have already been copied to the VIRL host ${VIRL_SERVER[${index}]}"
+        echo "VPP rpms have already been copied to the VIRL host ${VIRL_SERVER[${index}]}"
     else
-        scp ${SSH_OPTIONS} *.${PACKAGE} \
+        scp ${SSH_OPTIONS} *.rpm \
         ${VIRL_USERNAME}@${VIRL_SERVER[${index}]}:${VIRL_DIR_LOC}/
 
         result=$?
         if [ "${result}" -ne "0" ]; then
-            echo "Failed to copy VPP packages to VIRL host ${VIRL_SERVER[${index}]}"
+            echo "Failed to copy VPP rpms to VIRL host ${VIRL_SERVER[${index}]}"
             echo ${result}
             exit ${result}
         else
-            echo "VPP packages successfully copied to the VIRL host ${VIRL_SERVER[${index}]}"
+            echo "VPP rpms successfully copied to the VIRL host ${VIRL_SERVER[${index}]}"
         fi
         DONE+=(${VIRL_SERVER[${index}]})
     fi
@@ -262,16 +194,10 @@ function stop_virl_simulation {
 
 for index in "${!VIRL_SERVER[@]}"; do
     echo "Starting simulation nr. ${index} on VIRL server ${VIRL_SERVER[${index}]}"
-    # Get given VIRL server limits for max. number of VMs and IPs
-    max_ips=$(get_max_ip_nr ${VIRL_SERVER[${index}]})
-    max_ips_from_sims=$(($(get_max_sim_nr ${VIRL_SERVER[${index}]})*IPS_PER_SIMULATION))
-    # Set quota to lower value
-    IP_QUOTA=$([ $max_ips -le $max_ips_from_sims ] && echo "$max_ips" || echo "$max_ips_from_sims")
-    # Start the simulation
     VIRL_SID[${index}]=$(ssh ${SSH_OPTIONS} \
         ${VIRL_USERNAME}@${VIRL_SERVER[${index}]} \
-        "start-testcase -vv --quota ${IP_QUOTA} --copy ${VIRL_TOPOLOGY} \
-        --release ${VIRL_RELEASE} ${VPP_PKGS_FULL[@]}")
+        "start-testcase -vv --keep --copy ${VIRL_TOPOLOGY} \
+        --release ${VIRL_RELEASE} ${VPP_RPMS_FULL[@]}")
     retval=$?
     if [ ${retval} -ne "0" ]; then
         echo "VIRL simulation start failed on ${VIRL_SERVER[${index}]}"
@@ -281,7 +207,7 @@ for index in "${!VIRL_SERVER[@]}"; do
         echo "No VIRL session ID reported."
         exit 127
     fi
-    echo "VIRL simulation nr. ${index} started on ${VIRL_SERVER[${index}]}"
+    echo "VIRL simulation started on ${VIRL_SERVER[${index}]}"
 
     ssh_do ${VIRL_USERNAME}@${VIRL_SERVER[${index}]}\
      cat /scratch/${VIRL_SID[${index}]}/topology.yaml
