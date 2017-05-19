@@ -29,7 +29,7 @@ class QemuUtils(object):
     def __init__(self, qemu_id=1):
         self._qemu_id = qemu_id
         # Path to QEMU binary
-        self._qemu_bin = '/usr/bin/qemu-system-x86_64'
+        self._qemu_bin = '/usr/libexec/qemu-kvm'
         # QEMU Machine Protocol socket
         self._qmp_sock = '/tmp/qmp{0}.sock'.format(self._qemu_id)
         # QEMU Guest Agent socket
@@ -506,7 +506,7 @@ class QemuUtils(object):
             self._qemu_opt.get('ssh_fwd_port'))
         # Memory and huge pages
         mem = '-object memory-backend-file,id=mem,size={0}M,mem-path={1},' \
-            'share=on -m {0} -numa node,memdev=mem'.format(
+            'share=on -m {0} -mem-prealloc -numa node,memdev=mem'.format(
                 self._qemu_opt.get('mem_size'), self._qemu_opt.get('huge_mnt'))
 
         # By default check only if hugepages are available.

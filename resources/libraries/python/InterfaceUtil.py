@@ -356,7 +356,7 @@ class InterfaceUtil(object):
                 raise RuntimeError("'{0}' failed on '{1}'"
                                    .format(cmd, node['host']))
 
-            cmd = 'lspci -vmmks {0}'.format(pci_addr)
+            cmd = '/usr/sbin/lspci -vmmks {0}'.format(pci_addr)
             (ret_code, stdout, _) = ssh.exec_command(cmd)
             if int(ret_code) != 0:
                 raise RuntimeError("'{0}' failed on '{1}'"

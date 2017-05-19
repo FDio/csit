@@ -1,0 +1,8 @@
+[Unit]
+Before=vpp.service
+
+[Service]
+ExecStart=/root/setup.sh
+
+[Install]
+WantedBy=default.target

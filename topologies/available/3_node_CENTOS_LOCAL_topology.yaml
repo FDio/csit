@@ -1,0 +1,164 @@
+---
+metadata:
+  version: 0.1
+  schema:
+    - resources/topology_schemas/3_node_topology.sch.yaml
+    - resources/topology_schemas/topology.sch.yaml
+  tags: [hw, 3-node]
+
+nodes:
+  TG:
+    type: TG
+    host: "192.168.122.74"
+    port: 22
+    username: cisco
+    priv_key: |
+      -----BEGIN RSA PRIVATE KEY-----
+      MIIEpAIBAAKCAQEA3fbNDEzhgfr/T3o+JD8gk5j3dx4GUjn24e5ZjUPNQSvBSDYk
+      y/5MN4nqMrLcbGL9kiwwUgctx32c1c/1UESuL4VUuWq42O0ST0IHAa0eILWlNlp3
+      6TWA2b9LBBpEPvyqyWpEEHi4VyN9Hd7XO0fJltO+mTjt0viLRUegeP35wFxW7fes
+      ZFsyqfHM6Beh+/xEmOD8UcychNkub0b1AvPMWuGN8A4funLOm54LrF15X5wO+Ri/
+      B24puKvudE+Q9EhvRWdRBy8i0naFqJYedR4b8l7Do0zeaReWEEzv8Qek9plz6Kdp
+      kPylIo2D0IhwQBghTqqYPqHeNulXL5uH34UX+wIDAQABAoIBAGpbdzdco3Xv+mRv
+      89TUdtyioHlwZqEB612pIzoAchq3R589anZg/M5kBFeUwvAgotZm3CSCEhqUAxGk
+      2yxCLKDSp51NGRPAzVQzFD5mYJhV0btwsCKMI5izA9QMbgUsdv2aMNEft1zxwWMN
+      w15BcMQX5C1xTOwZckqZHri7IfBcqkexj8zhF6ItpgSybY2waGzCOpA5jrKuqcZ4
+      Pj7SCI/ymeGObNEKRvNGEaNnlkurQHNudcGo6O7oGgTHCm4OWlfTv2EMXCZnL2Ds
+      EBGsPyNBQcic44FuzmuCySy3ScUoMnhxn/+nXZsXopRlYRWRfJ83sMHSf/ff2LM7
+      t3QehdkCgYEA8YmEaZQKxF/dit5izBBW7zVqveMt8+X/TSfnihQOzNygktWmDdSN
+      KUmFZvdU13jD1elymY8aX/5x/1LsSd0uGEGm2wGfC85qqRQSqcTmJWY2J1HpE2qD
+      4eCwrycRY7oXZp1vOQkEF7ETzGLf/ddkDjBt1nX60sz0X9NcEBKV8e0CgYEA60FA
+      NWZjB5p9MKWN6l+FGWmJu565aANlX/HhstNvnwNszLuYYmE6ricu+xdJ+2Ss/+KN
+      aVGhzonmg6/YVPKwdRP9cfKFjkhkBSTgDjG+msA7H6pZGsa7jW2pkWiyEzCS2Sfv
+      vQWdtjEax6zacqmCAttrl0ZOg75p/jDut0g8FIcCgYEAoB3uhmLaZGW8opNb4TUv
+      vDGoCiswyk981/QNHM7BJPNZCx3Qj7iIv4b6hVCOkKyA/ixciQmBjYNKpNyewTR7
+      mx7icqp3eccjk+Q3nw1lGAPTAGvfW7yvoqxl1CbM81RosODK239rlB0SJ9qf7FG+
+      BV37YkEhvl6Z3XBqxkjb190CgYAXD1ZT5a1fWW1cD15R0vsg+o9drLlP0MVnGjad
+      aMxQMe3AQ8M0IYO2/nBEfIvr8HpkurhR0oah0DKgReRWr1NMpqD5QmSFBeOH/Y1Y
+      1tdwI9enyvLhBQntWwp8Dl8mMmSylI+TX7GN4lJVsEPZaXQtA4UQVvvrPgb1u6Yq
+      oRICkQKBgQCE8FMXIYAQPT+m97XWYg/hLg6Al0rXCXDXUWyOoKGK/SFU1FvRvruT
+      +9UV77NmTNofAKrsMAlC8HgO/NsEa3zvUTzeIbnUJ/AmqdNy60nut+7mU+XLuFCY
+      uy/QYike+mLsPuYH+zclrj9NdseJPJkdRkV3Gh61wyvKI9ZjL5GCpw==
+      -----END RSA PRIVATE KEY-----
+
+    interfaces:
+      port3:
+        mac_address: "52:54:00:db:cd:f3"
+        pci_address: "0000:00:09.0"
+        link: link1
+        driver: virtio-pci
+      port4:
+        mac_address: "52:54:00:9f:51:b6"
+        pci_address: "0000:00:0a.0"
+        link: link4
+        driver: virtio-pci
+      port5:
+        mac_address: "52:54:00:c9:68:f6"
+        pci_address: "0000:00:0b.0"
+        link: link2
+        driver: virtio-pci
+      port6:
+        mac_address: "52:54:00:a9:c2:4d"
+        pci_address: "0000:00:0c.0"
+        link: link5
+        driver: virtio-pci
+  DUT1:
+    type: DUT
+    host: "192.168.122.220"
+    port: 22
+    username: cisco
+    priv_key: |
+     -----BEGIN RSA PRIVATE KEY-----
+      MIIEpAIBAAKCAQEA3fbNDEzhgfr/T3o+JD8gk5j3dx4GUjn24e5ZjUPNQSvBSDYk
+      y/5MN4nqMrLcbGL9kiwwUgctx32c1c/1UESuL4VUuWq42O0ST0IHAa0eILWlNlp3
+      6TWA2b9LBBpEPvyqyWpEEHi4VyN9Hd7XO0fJltO+mTjt0viLRUegeP35wFxW7fes
+      ZFsyqfHM6Beh+/xEmOD8UcychNkub0b1AvPMWuGN8A4funLOm54LrF15X5wO+Ri/
+      B24puKvudE+Q9EhvRWdRBy8i0naFqJYedR4b8l7Do0zeaReWEEzv8Qek9plz6Kdp
+      kPylIo2D0IhwQBghTqqYPqHeNulXL5uH34UX+wIDAQABAoIBAGpbdzdco3Xv+mRv
+      89TUdtyioHlwZqEB612pIzoAchq3R589anZg/M5kBFeUwvAgotZm3CSCEhqUAxGk
+      2yxCLKDSp51NGRPAzVQzFD5mYJhV0btwsCKMI5izA9QMbgUsdv2aMNEft1zxwWMN
+      w15BcMQX5C1xTOwZckqZHri7IfBcqkexj8zhF6ItpgSybY2waGzCOpA5jrKuqcZ4
+      Pj7SCI/ymeGObNEKRvNGEaNnlkurQHNudcGo6O7oGgTHCm4OWlfTv2EMXCZnL2Ds
+      EBGsPyNBQcic44FuzmuCySy3ScUoMnhxn/+nXZsXopRlYRWRfJ83sMHSf/ff2LM7
+      t3QehdkCgYEA8YmEaZQKxF/dit5izBBW7zVqveMt8+X/TSfnihQOzNygktWmDdSN
+      KUmFZvdU13jD1elymY8aX/5x/1LsSd0uGEGm2wGfC85qqRQSqcTmJWY2J1HpE2qD
+      4eCwrycRY7oXZp1vOQkEF7ETzGLf/ddkDjBt1nX60sz0X9NcEBKV8e0CgYEA60FA
+      NWZjB5p9MKWN6l+FGWmJu565aANlX/HhstNvnwNszLuYYmE6ricu+xdJ+2Ss/+KN
+      aVGhzonmg6/YVPKwdRP9cfKFjkhkBSTgDjG+msA7H6pZGsa7jW2pkWiyEzCS2Sfv
+      vQWdtjEax6zacqmCAttrl0ZOg75p/jDut0g8FIcCgYEAoB3uhmLaZGW8opNb4TUv
+      vDGoCiswyk981/QNHM7BJPNZCx3Qj7iIv4b6hVCOkKyA/ixciQmBjYNKpNyewTR7
+      mx7icqp3eccjk+Q3nw1lGAPTAGvfW7yvoqxl1CbM81RosODK239rlB0SJ9qf7FG+
+      BV37YkEhvl6Z3XBqxkjb190CgYAXD1ZT5a1fWW1cD15R0vsg+o9drLlP0MVnGjad
+      aMxQMe3AQ8M0IYO2/nBEfIvr8HpkurhR0oah0DKgReRWr1NMpqD5QmSFBeOH/Y1Y
+      1tdwI9enyvLhBQntWwp8Dl8mMmSylI+TX7GN4lJVsEPZaXQtA4UQVvvrPgb1u6Yq
+      oRICkQKBgQCE8FMXIYAQPT+m97XWYg/hLg6Al0rXCXDXUWyOoKGK/SFU1FvRvruT
+      +9UV77NmTNofAKrsMAlC8HgO/NsEa3zvUTzeIbnUJ/AmqdNy60nut+7mU+XLuFCY
+      uy/QYike+mLsPuYH+zclrj9NdseJPJkdRkV3Gh61wyvKI9ZjL5GCpw==
+      -----END RSA PRIVATE KEY-----
+    interfaces:
+      port1:
+        mac_address: "52:54:00:a3:0d:6b"
+        pci_address: "0000:00:07.0"
+        link: link1
+      port2:
+        mac_address: "52:54:00:03:c0:b5"
+        pci_address: "0000:00:08.0"
+        link: link4
+      port3:
+        mac_address: "52:54:00:80:28:c1"
+        pci_address: "0000:00:09.0"
+        link: link3
+      port4:
+        mac_address: "52:54:00:7b:20:09"
+        pci_address: "0000:00:0a.0"
+        link: link6
+  DUT2:
+    type: DUT
+    host: "192.168.122.95"
+    port: 22
+    username: cisco
+    priv_key: |
+     -----BEGIN RSA PRIVATE KEY-----
+      MIIEpAIBAAKCAQEA3fbNDEzhgfr/T3o+JD8gk5j3dx4GUjn24e5ZjUPNQSvBSDYk
+      y/5MN4nqMrLcbGL9kiwwUgctx32c1c/1UESuL4VUuWq42O0ST0IHAa0eILWlNlp3
+      6TWA2b9LBBpEPvyqyWpEEHi4VyN9Hd7XO0fJltO+mTjt0viLRUegeP35wFxW7fes
+      ZFsyqfHM6Beh+/xEmOD8UcychNkub0b1AvPMWuGN8A4funLOm54LrF15X5wO+Ri/
+      B24puKvudE+Q9EhvRWdRBy8i0naFqJYedR4b8l7Do0zeaReWEEzv8Qek9plz6Kdp
+      kPylIo2D0IhwQBghTqqYPqHeNulXL5uH34UX+wIDAQABAoIBAGpbdzdco3Xv+mRv
+      89TUdtyioHlwZqEB612pIzoAchq3R589anZg/M5kBFeUwvAgotZm3CSCEhqUAxGk
+      2yxCLKDSp51NGRPAzVQzFD5mYJhV0btwsCKMI5izA9QMbgUsdv2aMNEft1zxwWMN
+      w15BcMQX5C1xTOwZckqZHri7IfBcqkexj8zhF6ItpgSybY2waGzCOpA5jrKuqcZ4
+      Pj7SCI/ymeGObNEKRvNGEaNnlkurQHNudcGo6O7oGgTHCm4OWlfTv2EMXCZnL2Ds
+      EBGsPyNBQcic44FuzmuCySy3ScUoMnhxn/+nXZsXopRlYRWRfJ83sMHSf/ff2LM7
+      t3QehdkCgYEA8YmEaZQKxF/dit5izBBW7zVqveMt8+X/TSfnihQOzNygktWmDdSN
+      KUmFZvdU13jD1elymY8aX/5x/1LsSd0uGEGm2wGfC85qqRQSqcTmJWY2J1HpE2qD
+      4eCwrycRY7oXZp1vOQkEF7ETzGLf/ddkDjBt1nX60sz0X9NcEBKV8e0CgYEA60FA
+      NWZjB5p9MKWN6l+FGWmJu565aANlX/HhstNvnwNszLuYYmE6ricu+xdJ+2Ss/+KN
+      aVGhzonmg6/YVPKwdRP9cfKFjkhkBSTgDjG+msA7H6pZGsa7jW2pkWiyEzCS2Sfv
+      vQWdtjEax6zacqmCAttrl0ZOg75p/jDut0g8FIcCgYEAoB3uhmLaZGW8opNb4TUv
+      vDGoCiswyk981/QNHM7BJPNZCx3Qj7iIv4b6hVCOkKyA/ixciQmBjYNKpNyewTR7
+      mx7icqp3eccjk+Q3nw1lGAPTAGvfW7yvoqxl1CbM81RosODK239rlB0SJ9qf7FG+
+      BV37YkEhvl6Z3XBqxkjb190CgYAXD1ZT5a1fWW1cD15R0vsg+o9drLlP0MVnGjad
+      aMxQMe3AQ8M0IYO2/nBEfIvr8HpkurhR0oah0DKgReRWr1NMpqD5QmSFBeOH/Y1Y
+      1tdwI9enyvLhBQntWwp8Dl8mMmSylI+TX7GN4lJVsEPZaXQtA4UQVvvrPgb1u6Yq
+      oRICkQKBgQCE8FMXIYAQPT+m97XWYg/hLg6Al0rXCXDXUWyOoKGK/SFU1FvRvruT
+      +9UV77NmTNofAKrsMAlC8HgO/NsEa3zvUTzeIbnUJ/AmqdNy60nut+7mU+XLuFCY
+      uy/QYike+mLsPuYH+zclrj9NdseJPJkdRkV3Gh61wyvKI9ZjL5GCpw==
+      -----END RSA PRIVATE KEY-----
+    interfaces:
+      port1:
+        mac_address: "52:54:00:10:ea:25"
+        pci_address: "0000:00:07.0"
+        link: link2
+      port2:
+        mac_address: "52:54:00:21:e7:6b"
+        pci_address: "0000:00:08.0"
+        link: link5
+      port3:
+        mac_address: "52:54:00:25:5f:e4"
+        pci_address: "0000:00:09.0"
+        link: link3
+      port4:
+        mac_address: "52:54:00:19:76:c7"
+        pci_address: "0000:00:0a.0"
+        link: link6
