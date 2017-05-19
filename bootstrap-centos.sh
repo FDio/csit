@@ -87,9 +87,6 @@ EOF
 chmod 600 ${VIRL_PKEY}
 
 #
-# Pick a random host from the array of VIRL servers for every test set run
-# and attempt to reach it and verify it's status.
-#
 # The server must be reachable and have a "status" file with
 # the content "PRODUCTION" to be selected.
 #
@@ -98,28 +95,40 @@ chmod 600 ${VIRL_PKEY}
 #
 # Abort if there are no more servers left in the array.
 #
+VIRL_PROD_SERVERS=()
+for index in "${!VIRL_SERVERS[@]}"; do
+    virl_server_status=$(ssh ${SSH_OPTIONS} ${VIRL_USERNAME}@${VIRL_SERVERS[$index]} cat $VIRL_SERVER_STATUS_FILE 2>&1)
+    echo VIRL HOST ${VIRL_SERVERS[$index]} status is \"$virl_server_status\"
+    if [ "$virl_server_status" == "$VIRL_SERVER_EXPECTED_STATUS" ]
+    then
+        # Candidate is in good status. Add to array.
+        VIRL_PROD_SERVERS+=(${VIRL_SERVERS[$index]})
+    fi
+done
+
+VIRL_SERVERS=("${VIRL_PROD_SERVERS[@]}")
+echo "VIRL servers in production: ${VIRL_SERVERS[@]}"
+num_hosts=${#VIRL_SERVERS[@]}
+if [ $num_hosts == 0 ]
+then
+    echo "No more VIRL candidate hosts available, failing."
+    exit 127
+fi
+
+# Get the LOAD of each server based on number of active simulations (testcases)
+VIRL_SERVER_LOAD=()
+for index in "${!VIRL_SERVERS[@]}"; do
+    VIRL_SERVER_LOAD[${index}]=$(ssh ${SSH_OPTIONS} ${VIRL_USERNAME}@${VIRL_SERVERS[$index]} "list-testcases | grep session | wc -l")
+done
+
+# Pick for each TEST_GROUP least loaded server
+VIRL_SERVER=()
 for index in "${!TEST_GROUPS[@]}"; do
-    VIRL_SERVER[${index}]=""
-    while [[ ! "${VIRL_SERVER[${index}]}" ]]; do
-        num_hosts=${#VIRL_SERVERS[@]}
-        if [ $num_hosts == 0 ]
-        then
-            echo "No more VIRL candidate hosts available, failing."
-            exit 127
-        fi
-        element=$[ $RANDOM % $num_hosts ]
-        virl_server_candidate=${VIRL_SERVERS[$element]}
-        virl_server_status=$(ssh ${SSH_OPTIONS} ${VIRL_USERNAME}@${virl_server_candidate} cat $VIRL_SERVER_STATUS_FILE 2>&1)
-        echo VIRL HOST $virl_server_candidate status is \"$virl_server_status\"
-        if [ "$virl_server_status" == "$VIRL_SERVER_EXPECTED_STATUS" ]
-        then
-            # Candidate is in good status. Select this server.
-            VIRL_SERVER[${index}]="$virl_server_candidate"
-        else
-            # Candidate is in bad status. Remove from array.
-            VIRL_SERVERS=("${VIRL_SERVERS[@]:0:$element}" "${VIRL_SERVERS[@]:$[$element+1]}")
-        fi
-    done
+    least_load_server_idx=$(echo "${VIRL_SERVER_LOAD[*]}" | tr -s ' ' '\n' | awk '{print($0" "NR)}' | sort -g -k1,1 | head -1 | cut -f2 -d' ')
+    least_load_server=${VIRL_SERVERS[$least_load_server_idx-1]}
+    VIRL_SERVER+=($least_load_server)
+    # Adjusting load as we are not going run simulation immediately
+    VIRL_SERVER_LOAD[$least_load_server_idx-1]=$((VIRL_SERVER_LOAD[$least_load_server_idx-1]+1))
 done
 
 echo "Selected VIRL servers: ${VIRL_SERVER[@]}"
