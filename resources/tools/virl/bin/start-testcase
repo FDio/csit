@@ -17,17 +17,20 @@
 
 __author__ = 'ckoester@cisco.com'
 
-import sys
-import re
-import os
 import argparse
-import tempfile
-import shutil
-import time
-import paramiko
 import netifaces
+import os
+import paramiko
+import random
+import re
+import shutil
+import sys
+import tempfile
+import time
 
 import requests
+
+IPS_PER_SIMULATION = 5
 
 def indent(lines, amount, fillchar=' '):
     """Indent the string by amount of fill chars.
@@ -56,6 +59,66 @@ def print_to_stderr(msg, end='\n'):
         sys.stderr.write(str(msg) + end)
     except ValueError:
         pass
+
+def get_assigned_interfaces(args, network="flat"):
+    """Retrieve assigned interfaces in openstack network.
+
+    :param args: Command line params.
+    :param network: Openstack network.
+    :type args: ArgumentParser
+    :type network: str
+    :returns: Assigned interfaces.
+    :rtype: list
+    :raises RuntimeError: If response is not 200.
+    """
+    req = requests.get('http://{}/openstack/rest/ports/{}'
+                       .format(args.virl_ip, network),
+                       auth=(args.username, args.password))
+    if req.status_code == 200:
+        return req.json()
+    else:
+        raise RuntimeError("ERROR: Retrieving ports in use - "
+                           "Status other than 200 HTTP OK:\n{}"
+                           .format(req.content))
+
+def get_assigned_interfaces_count(args, network="flat"):
+    """Count assigned interfaces in openstack network.
+
+    :param args: Command line params.
+    :param network: Openstack network.
+    :type args: ArgumentParser
+    :type network: str
+    :returns: Assigned interfaces count.
+    :rtype: int
+    """
+    return len(get_assigned_interfaces(args, network=network))
+
+def check_ip_addresses(args):
+    """Check IP address availability.
+
+    :param args: Command line params.
+    :type args: ArgumentParser
+    :raises RuntimeError: If not enough free addresses available.
+    """
+    for i in range(args.wait_count):
+        if (args.quota - \
+            get_assigned_interfaces_count(args) >= IPS_PER_SIMULATION):
+            break
+        if args.verbosity >= 2:
+            print_to_stderr("DEBUG: - Attempt {} out of {}, waiting for free "
+                            "IP addresses".format(i, args.wait_count))
+        # Wait random amount of time within range 1-3 minutes
+        time.sleep(random.randint(60,180))
+    else:
+        raise RuntimeError("ERROR: Not enough IP addresses to run simulation")
+
+def check_virl_resources(args):
+    """Check virl resources availability.
+
+    :param args: Command line params.
+    :type args: ArgumentParser
+    """
+    check_ip_addresses(args)
 
 #
 # FIXME: Right now, this is really coded like a shell script, as one big
@@ -123,6 +186,9 @@ def main():
                         default="csit-ubuntu-16.04.1_2016-12-19_1.6")
     parser.add_argument("--topology-directory", help="Topology directory",
                         default="/home/jenkins-in/testcase-infra/topologies")
+    parser.add_argument("-q", "--quota",
+                        help="VIRL quota for max number of allowed IPs",
+                        type=int, default=74)
 
     args = parser.parse_args()
 
@@ -181,6 +247,7 @@ def main():
 
     try:
         data = open(temp_topology, 'rb')
+        check_virl_resources(args)
         req = requests.post('http://' + args.virl_ip + '/simengine/rest/launch',
                             auth=(args.username, args.password),
                             data=data)
@@ -310,7 +377,7 @@ def main():
                 shutil.rmtree(scratch_directory)
             except shutil.Error:
                 print_to_stderr("ERROR: Removing scratch directory")
-        print "{}".format(session_id)
+            print "{}".format(session_id)
         sys.exit(1)
 
     if args.verbosity >= 2:
@@ -348,7 +415,7 @@ def main():
                 shutil.rmtree(scratch_directory)
             except shutil.Error:
                 print_to_stderr("ERROR: Removing scratch directory")
-        print "{}".format(session_id)
+            print "{}".format(session_id)
         sys.exit(1)
     data = req.json()
 
@@ -423,7 +490,7 @@ def main():
                 shutil.rmtree(scratch_directory)
             except shutil.Error:
                 print_to_stderr("ERROR: Removing scratch directory")
-        print "{}".format(session_id)
+            print "{}".format(session_id)
         sys.exit(1)
 
     #
