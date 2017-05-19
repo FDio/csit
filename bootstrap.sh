@@ -50,9 +50,10 @@ else
     SHARED_MEMORY_PATH="/run/shm"
 fi
 
-VIRL_SERVERS=("10.30.51.28" "10.30.51.29" "10.30.51.30")
+#VIRL_SERVERS=("10.30.51.28" "10.30.51.29" "10.30.51.30")
+VIRL_SERVERS=("10.30.51.29")
 IPS_PER_VIRL=( "10.30.51.28:252"
-               "10.30.51.29:74"
+               "10.30.51.29:252"
                "10.30.51.30:74" )
 VMS_PER_VIRL=( "10.30.51.28:36"
                "10.30.51.29:36"
@@ -88,7 +89,7 @@ function get_max_vm_nr() {
 VIRL_USERNAME=jenkins-in
 VIRL_PKEY=priv_key
 VIRL_SERVER_STATUS_FILE="status"
-VIRL_SERVER_EXPECTED_STATUS="PRODUCTION"
+VIRL_SERVER_EXPECTED_STATUS="TESTING"
 
 SSH_OPTIONS="-i ${VIRL_PKEY} -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o BatchMode=yes -o LogLevel=error"
 
@@ -257,7 +258,7 @@ function stop_virl_simulation {
 }
 
 # Upon script exit, cleanup the simulation execution
-trap stop_virl_simulation EXIT
+# trap stop_virl_simulation EXIT
 
 for index in "${!VIRL_SERVER[@]}"; do
     echo "Starting simulation nr. ${index} on VIRL server ${VIRL_SERVER[${index}]}"
