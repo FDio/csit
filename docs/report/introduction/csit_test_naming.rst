@@ -5,12 +5,12 @@ Background
 ----------
 
 CSIT |release| follows a common structured naming convention for all
-performance and system functional tests, introduced in CSIT rls1701.
+performance and system functional tests, introduced in CSIT |release-1|.
 
 The naming should be intuitive for majority of the tests. Complete
 description of CSIT test naming convention is provided on
-`CSIT test naming wiki page <https://wiki.fd.io/view/CSIT/csit-test-naming>`_. Below
-few illustrative examples of the naming usage for test suites across CSIT
+`CSIT test naming wiki page <https://wiki.fd.io/view/CSIT/csit-test-naming>`_.
+Below few illustrative examples of the naming usage for test suites across CSIT
 performance, functional and HoneyComb management test areas.
 
 Naming Convention

@@ -3497,11 +3497,11 @@ DUT Configuration - VPP
 
 **VPP Version**
 
-17.01-release_amd64
+|vpp-release|
 
 **VPP Compile Parameters**
 
-VPP Compile Job: https://jenkins.fd.io/view/vpp/job/vpp-merge-1701-ubuntu1604/
+`FD.io VPP compile job`_
 
 **VPP Install Parameters**
 
@@ -3539,6 +3539,7 @@ Tagged by **1T1C**::
         dev 0000:0a:00.0
         no-multi-seg
     }
+    heapsize 3G
     ip6 {
         hash-buckets 2000000
         heap-size 3G
@@ -3559,6 +3560,7 @@ Tagged by **2T1C**::
     cpu {
         main-core 0 corelist-workers 1,2
     }
+    heapsize 3G
     dpdk {
         socket-mem 1024,1024
         dev default {
@@ -3588,6 +3590,7 @@ Tagged by **4T4C**::
     cpu {
         main-core 0 corelist-workers 1,2,3,4
     }
+    heapsize 3G
     dpdk {
         socket-mem 1024,1024
         dev default {
@@ -3608,7 +3611,7 @@ TG Configuration - TRex
 
 **TG Version**
 
-TRex v2.22
+|trex-release|
 
 **DPDK version**
 
@@ -3616,7 +3619,7 @@ DPDK v17.02 (f4decdc59e9323ecff5ddb5de7ebf0c79d50a960 - in DPDK repo)
 
 **TG Build Script used**
 
-https://gerrit.fd.io/r/gitweb?p=csit.git;a=blob;f=resources/tools/t-rex/t-rex-installer.sh;h=8090b7568327ac5f869e82664bc51b24f89f603f;hb=refs/heads/rls1704
+`TRex intallation`_
 
 **TG Startup Configuration**
 
@@ -3634,4 +3637,4 @@ https://gerrit.fd.io/r/gitweb?p=csit.git;a=blob;f=resources/tools/t-rex/t-rex-in
 
 **TG common API - pointer to driver**
 
-https://gerrit.fd.io/r/gitweb?p=csit.git;a=blob;f=resources/tools/t-rex/t-rex-stateless.py;h=ae8d18767013ebecb0bec6c732ac66e483408661;hb=refs/heads/rls1704
+`TRex driver`_

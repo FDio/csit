@@ -194,7 +194,7 @@ Performance Tests Naming
 ------------------------
 
 CSIT |release| follows a common structured naming convention for all
-performance and system functional tests, introduced in CSIT rls1701.
+performance and system functional tests, introduced in CSIT |release-1|.
 
 The naming should be intuitive for majority of the tests. Complete
 description of CSIT test naming convention is provided on `CSIT test naming wiki
@@ -313,8 +313,8 @@ Methodology: KVM VM vhost
 -------------------------
 
 CSIT |release| introduced environment configuration changes to KVM Qemu vhost-
-user tests in order to more representatively measure VPP-17.04 performance in
-configurations with vhost-user interfaces and VMs.
+user tests in order to more representatively measure |vpp-release| performance
+in configurations with vhost-user interfaces and VMs.
 
 Current setup of CSIT FD.io performance lab is using tuned settings for more
 optimal performance of KVM Qemu:
@@ -357,7 +357,7 @@ specific configuration.
 TRex is installed and run on the TG compute node. The typical procedure is:
 
     - If the TRex is not already installed on TG, it is installed in the
-      suite setup phase - see `TRex intallation <https://gerrit.fd.io/r/gitweb?p=csit.git;a=blob;f=resources/tools/t-rex/t-rex-installer.sh;h=8090b7568327ac5f869e82664bc51b24f89f603f;hb=refs/heads/rls1704>`_.
+      suite setup phase - see `TRex intallation`_.
     - TRex configuration is set in its configuration file
       ::
 
@@ -366,7 +366,7 @@ TRex is installed and run on the TG compute node. The typical procedure is:
     - TRex is started in the background mode
       ::
 
-        sh -c 'cd /opt/trex-core-2.22/scripts/ && sudo nohup ./t-rex-64 -i -c 7 --iom 0 > /dev/null 2>&1 &' > /dev/null
+        sh -c 'cd /opt/trex-core-2.25/scripts/ && sudo nohup ./t-rex-64 -i -c 7 --iom 0 > /dev/null 2>&1 &' > /dev/null
 
     - There are traffic streams dynamically prepared for each test. The traffic
       is sent and the statistics obtained using trex_stl_lib.api.STLClient.
