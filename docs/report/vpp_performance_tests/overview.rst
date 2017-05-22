@@ -194,7 +194,7 @@ Performance Tests Naming
 ------------------------
 
 CSIT |release| follows a common structured naming convention for all
-performance and system functional tests, introduced in CSIT rls1701.
+performance and system functional tests, introduced in CSIT |release-1|.
 
 The naming should be intuitive for majority of the tests. Complete
 description of CSIT test naming convention is provided on `CSIT test naming wiki
@@ -313,7 +313,7 @@ Methodology: KVM VM vhost
 -------------------------
 
 CSIT |release| introduced environment configuration changes to KVM Qemu vhost-
-user tests in order to more representatively measure VPP-17.04 performance in
+user tests in order to more representatively measure |vpprelease| performance in
 configurations with vhost-user interfaces and VMs.
 
 Current setup of CSIT FD.io performance lab is using tuned settings for more
@@ -357,7 +357,7 @@ specific configuration.
 TRex is installed and run on the TG compute node. The typical procedure is:
 
     - If the TRex is not already installed on TG, it is installed in the
-      suite setup phase - see `TRex intallation <https://gerrit.fd.io/r/gitweb?p=csit.git;a=blob;f=resources/tools/t-rex/t-rex-installer.sh;h=8090b7568327ac5f869e82664bc51b24f89f603f;hb=refs/heads/rls1704>`_.
+      suite setup phase - see `TRex intallation <https://git.fd.io/csit/tree/resources/tools/t-rex/t-rex-installer.sh?h=rls1704`_.
     - TRex configuration is set in its configuration file
       ::
 

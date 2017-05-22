@@ -30,14 +30,14 @@ SUT Configuration - VIRL Guest VM
 Configuration of the SUT VMs is defined in file
 
    /csit/resources/tools/virl/topologies/double-ring-nested.xenial.virl
-   
+
 - List of SUT VM interfaces:::
 
     <interface id="0" name="GigabitEthernet0/4/0"/>
     <interface id="1" name="GigabitEthernet0/5/0"/>
     <interface id="2" name="GigabitEthernet0/6/0"/>
     <interface id="3" name="GigabitEthernet0/7/0"/>
-    
+
 - Number of 2MB hugepages: 1024
 
 - Maximum number of memory map areas: 20000
@@ -47,25 +47,24 @@ Configuration of the SUT VMs is defined in file
 SUT Configuration - VIRL Guest OS Linux
 ---------------------------------------
 
-In CSIT terminology, the VM operating system for both SUTs that VPP 17.01 has
+In CSIT terminology, the VM operating system for both SUTs that |vpprelease| has
 been tested with, is the following:
 
-**#. ubuntu-16.04.1_2016-12-19_1.6**
+**#. |virlu|**
 
-This image implies Ubuntu 16.04.1 LTS, current as of 2016/12/19 (that is,
+This image implies Ubuntu 16.04.1 LTS, current as of yyyy-mm-dd (that is,
 package versions are those that would have been installed by a "apt-get update",
-"apt-get upgrade" on December 19), produced by CSIT disk image build scripts
-version 1.6.
+"apt-get upgrade" on that day), produced by CSIT disk image build scripts.
 
 The exact list of installed packages and their versions (including the Linux
 kernel package version) are included in CSIT source repository:
 
-  resources/tools/disk-image-builder/ubuntu/lists/ubuntu-16.04.1_2016-12-19_1.6
+  resources/tools/disk-image-builder/ubuntu/lists/|virlu|
 
 A replica of this VM image can be built by running the "build.sh" script in CSIT
 repository resources/tools/disk-image-builder/ubuntu.
 
-**#. centos-7.3-1611_2017-01-24_1.2**
+**#. |virlc|**
 
 The Centos7.3 image is ready to be used but no tests running on it now.
 Corresponding Jenkins jobs are under preparation.
@@ -73,7 +72,7 @@ Corresponding Jenkins jobs are under preparation.
 The exact list of installed packages and their versions (including the Linux
 kernel package version) are included in CSIT source repository:
 
-  resources/tools/disk-image-builder/ubuntu/lists/centos-7.3-1611_2017-01-24_1.2
+  resources/tools/disk-image-builder/ubuntu/lists/|virlc|
 
 A replica of this VM image can be built by running the "build.sh" script in CSIT
 repository resources/tools/disk-image-builder/centos.
@@ -106,7 +105,7 @@ Port configuration of DUTs is defined in topology file that is generated per
 VIRL simulation based on the definition stored in file
 
    /csit/resources/tools/virl/topologies/double-ring-nested.xenial.yaml
-   
+
 Example of DUT nodes configuration:::
 
     DUT1:
@@ -224,7 +223,7 @@ Example of DUT nodes configuration:::
 
 **VPP Version**
 
-17.01-release_amd64
+|vpprelease|
 
 **VPP Installed Packages**
 ::
@@ -235,13 +234,13 @@ Example of DUT nodes configuration:::
     |/ Err?=(none)/Reinst-required (Status,Err: uppercase=bad)
     ||/ Name           Version       Architecture Description
     +++-==============-=============-============-=============================================
-    ii  vpp            17.01-release amd64        Vector Packet Processing--executables
-    ii  vpp-dbg        17.01-release amd64        Vector Packet Processing--debug symbols
-    ii  vpp-dev        17.01-release amd64        Vector Packet Processing--development support
-    ii  vpp-dpdk-dev   17.01-release amd64        Vector Packet Processing--development support
-    ii  vpp-dpdk-dkms  17.01-release amd64        DPDK 2.1 igb_uio_driver
-    ii  vpp-lib        17.01-release amd64        Vector Packet Processing--runtime libraries
-    ii  vpp-plugins    17.01-release amd64        Vector Packet Processing--runtime plugins
+    ii  vpp            17.07-release amd64        Vector Packet Processing--executables
+    ii  vpp-dbg        17.07-release amd64        Vector Packet Processing--debug symbols
+    ii  vpp-dev        17.07-release amd64        Vector Packet Processing--development support
+    ii  vpp-dpdk-dev   17.07-release amd64        Vector Packet Processing--development support
+    ii  vpp-dpdk-dkms  17.07-release amd64        DPDK 2.1 igb_uio_driver
+    ii  vpp-lib        17.07-release amd64        Vector Packet Processing--runtime libraries
+    ii  vpp-plugins    17.07-release amd64        Vector Packet Processing--runtime plugins
 
 **VPP Startup Configuration**
 
@@ -439,5 +438,5 @@ Example of TG node configuration:::
 **Traffic generator**
 
 Functional tests utilize Scapy as a traffic generator. There was used Scapy
-v2.3.1 for VPP 17.01 tests.
+v2.3.1 for |vpprelease| tests.
 
