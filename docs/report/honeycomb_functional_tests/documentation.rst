@@ -1,6 +1,5 @@
 Documentation
 =============
 
-`CSIT Honeycomb Functional Tests Documentation
-<https://docs.fd.io/csit/master/doc/tests.func.html>`_ contains detailed
+`CSIT Honeycomb Functional Tests Documentation`_ contains detailed
 functional description and input parameters for each test case.

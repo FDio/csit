@@ -3,17 +3,17 @@ Overview
 
 This is the **F**\ast **D**\ata **I**/**O** Project (**FD.io**) **C**\ontinuous
 **S**\ystem **I**\ntegration and **T**\esting (**CSIT**) project report for CSIT
-|release| system testing of VPP-17.04 release.
+|release| system testing of |vpp-release|.
 
 The report describes CSIT functional and performance tests and their
 continuous execution delivered in CSIT |release|. A high-level overview is
 provided for each CSIT test environment running in Linux Foundation (LF) FD.io
 Continuous Performance Labs. This is followed by summary of all executed tests
-against the VPP-17.04 release and associated FD.io projects and sub-systems (HoneyComb, DPDK),
-CSIT |release| release notes, result highlights and known issues discovered in CSIT. More
-detailed description of each environment, pointers to CSIT test code
-documentation and detailed test resuls with links to the source data files are
-also provided.
+against the |vpp-release| and associated FD.io projects and sub-systems
+(HoneyComb, DPDK), CSIT |release| release notes, result highlights and known
+issues discovered in CSIT. More detailed description of each environment,
+pointers to CSIT test code documentation and detailed test resuls with links to
+the source data files are also provided.
 
 CSIT |release| report contains following main sections and sub-sections:
 
