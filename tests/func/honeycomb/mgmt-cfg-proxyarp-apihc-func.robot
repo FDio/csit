@@ -16,10 +16,13 @@
 | ${interface}= | ${node['interfaces']['port1']['name']}
 | &{proxyarp_settings_ipv4}= | vrf-id=${0}
 | ... | low-addr=192.168.1.2 | high-addr=192.168.1.10
-| ${tg_to_dut_ip}= | 192.168.1.100
-| ${dut_to_tg_ip}= | 192.168.1.1
+| ${tg_to_dut_ip}= | 10.0.0.100
+| ${dut_to_tg_ip}= | 10.0.0.1
 | ${prefix_length}= | ${24}
-| ${test_ip}= | 192.168.1.5
+| ${test_ip}= | 192.168.2.5
+| ${lo_ip4_addr}= | 192.168.1.2
+| ${hi_ip4_addr}= | 192.168.1.10
+| ${pass_test_ip}= | 192.168.1.5
 
 *** Settings ***
 | Resource | resources/libraries/robot/default.robot
@@ -60,19 +63,21 @@
 | | ... | verify if DUT1 sends correct ARP reply on behalf of machine whose
 | | ... | IP is in the configured range.
 | | [Teardown] | Run Keywords
-| | ... | Honeycomb removes proxyARP configuration | ${node}
+| | ... | Show Packet Trace on all DUTs | ${nodes}
+| | ... | AND | Honeycomb removes proxyARP configuration | ${node}
 | | ... | AND | Honeycomb sets interface state
 | | ... | ${dut_node} | ${dut_to_tg_if1} | down
 | | ... | AND | Honeycomb removes interface ipv4 addresses
 | | ... | ${node} | ${interface}
 | | Given Path for 2-node testing is set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
-| | ${tg_to_dut_if1_name}= | Get interface name | ${tg_node} | ${tg_to_dut_if1}
+| | ${dut_to_tg_name}= | Get interface name | ${dut_node} | ${dut_to_tg_if1}
+| | ${tg_to_dut_name}= | Get interface name | ${tg_node} | ${tg_to_dut_if1}
 | | And Honeycomb sets interface state | ${dut_node} | ${dut_to_tg_if1} | up
 | | And Honeycomb sets interface ipv4 address with prefix | ${dut_node}
 | | ... | ${dut_to_tg_if1} | ${dut_to_tg_ip} | ${prefix_length}
 | | When Honeycomb configures proxyARP | ${dut_node} | ${proxyarp_settings_ipv4}
-| | And Honeycomb enables proxyARP on interface | ${node} | ${dut_to_tg_if1}
-| | Then Send ARP Request | ${tg_node} | ${tg_to_dut_if1_name}
+| | And Honeycomb enables proxyARP on interface | ${node} | ${dut_to_tg_name}
+| | Then Send ARP Request | ${tg_node} | ${tg_to_dut_name}
 | | ...                   | ${tg_to_dut_if1_mac} | ${dut_to_tg_if1_mac}
-| | ...                   | ${tg_to_dut_ip} | ${test_ip}
+| | ...                   | ${tg_to_dut_ip} | ${pass_test_ip}
