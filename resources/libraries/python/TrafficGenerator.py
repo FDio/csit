@@ -184,7 +184,7 @@ class TrafficGenerator(object):
         self._node = tg_node
 
         if tg_node['subtype'] == NodeSubTypeTG.TREX:
-            trex_path = "/opt/trex-core-2.22"
+            trex_path = "/opt/trex-core-2.25"
 
             ssh = SSH()
             ssh.connect(tg_node)
@@ -322,9 +322,6 @@ class TrafficGenerator(object):
         (ret, stdout, stderr) = ssh.exec_command(
             "sh -c '{}/resources/tools/t-rex/"
             "t-rex-stateless-stop.py'".format(Constants.REMOTE_FW_DIR))
-        logger.trace(ret)
-        logger.trace(stdout)
-        logger.trace(stderr)
 
         if int(ret) != 0:
             raise RuntimeError('T-rex stateless runtime error')
@@ -712,13 +709,9 @@ class TrafficGenerator(object):
                                                     duration, rate, framesize,
                                                     _p0, _p1, _async, _latency,
                                                     warmup_time),
-                timeout = int(duration) + 60)
+                timeout=int(duration) + 60)
         else:
             raise NotImplementedError('Unsupported traffic type')
-
-        logger.trace(ret)
-        logger.trace(stdout)
-        logger.trace(stderr)
 
         if int(ret) != 0:
             raise RuntimeError('T-rex stateless runtime error')
