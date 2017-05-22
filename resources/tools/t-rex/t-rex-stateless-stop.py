@@ -28,7 +28,7 @@ Functionality:
 
 import sys
 
-sys.path.insert(0, "/opt/trex-core-2.22/scripts/automation/"+\
+sys.path.insert(0, "/opt/trex-core-2.25/scripts/automation/"+\
                    "trex_control_plane/stl/")
 from trex_stl_lib.api import *
 
@@ -56,6 +56,8 @@ def stop_all_traffic_streams():
         stats = client.get_stats()
 
         print "#####statistics (approx.)#####"
+        print json.dumps(client.get_pgid_stats(), indent=4,
+                         separators=(',', ': '), sort_keys=True)
         print json.dumps(stats, indent=4,
                          separators=(',', ': '), sort_keys=True)
 
