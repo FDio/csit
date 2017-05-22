@@ -5,7 +5,7 @@ Overview
 
     This section includes an abbreviated version of the VPP Test Framework
     overview maintained within the VPP project. Complete overview can be found
-    in `VPP test framework documentation <https://docs.fd.io/vpp/17.04/vpp_make_test/html/>`_.
+    in `VPP test framework documentation`_.
 
 VPP Unit Test Framework
 -----------------------
@@ -27,7 +27,7 @@ Framework.
 
 For complete description of the VPP Test Framework including anatomy of a test
 case and detailed documentation of existing VPP unit test cases please refer
-to the `VPP test framework documentation <https://docs.fd.io/vpp/17.04/vpp_make_test/html/>`_
+to the `VPP test framework documentation`_
 
 Unit Tests Coverage
 -------------------

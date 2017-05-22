@@ -42,7 +42,8 @@ tested NIC models include:
 #. 2port40GE VIC1385 Cisco.
 #. 2port40GE XL710 Intel.
 
-For detailed LF FD.io test bed specification and physical topology please refer to `LF FDio CSIT testbed wiki page <https://wiki.fd.io/view/CSIT/CSIT_LF_testbed>`_.
+For detailed LF FD.io test bed specification and physical topology please refer
+to `LF FDio CSIT testbed wiki page <https://wiki.fd.io/view/CSIT/CSIT_LF_testbed>`_.
 
 Performance Tests Coverage
 --------------------------
