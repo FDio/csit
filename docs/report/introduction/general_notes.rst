@@ -40,9 +40,11 @@ is listed separately, as follows:
    functionality of VPP. Tests cover a range of CRUD operations executed
    against VPP.
 
-In addition to above, CSIT |release| report does also include VPP unit test results. VPP unit tests are developed within the FD.io VPP project and as they complement CSIT system functional tests, they are provided mainly as a reference and to
-provide a more complete view of automated testing executed against
-VPP-17.04 release.
+In addition to above, CSIT |release| report does also include VPP unit test
+results. VPP unit tests are developed within the FD.io VPP project and as they
+complement CSIT system functional tests, they are provided mainly as a reference
+and to provide a more complete view of automated testing executed against
+|vpprelease|.
 
 FD.io CSIT system is developed using two main coding platforms: Robot
 Framework (RF) and Python. CSIT |release| source code for the executed test

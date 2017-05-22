@@ -48,7 +48,7 @@ Performance Improvements
 Substantial improvements in measured packet throughput have been
 observed in a number of CSIT |release| tests listed below, with relative
 increase  of double-digit percentage points. Relative improvements are
-calculated against the test results listed in CSIT rls1701 report.
+calculated against the test results listed in CSIT |release-1| report.
 VPP-16.09 numbers are provided for reference.
 
 NDR Throughput
@@ -119,7 +119,7 @@ Other Performance Changes
 Other changes in measured packet throughput, with either minor relative
 increase or decrease, have been observed in a number of CSIT |release|
 tests listed below. Relative changes are calculated against the test
-results listed in CSIT rls1701 report.
+results listed in CSIT |release-1| report.
 
 NDR Throughput
 ~~~~~~~~~~~~~~
