@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a2f8d8d_78ff7135",
+        "filename": "resources/tools/virl/bin/start-testcase",
+        "patchSetId": 1
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-23T10:19:55Z",
+      "side": 1,
+      "message": "network",
+      "range": {
+        "startLine": 94,
+        "startChar": 53,
+        "endLine": 94,
+        "endChar": 59
+      },
+      "revId": "f840aeb5361fc00479af15952b04750afd1d799f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a2f8d8d_58fcb53e",
+        "filename": "resources/tools/virl/bin/start-testcase",
+        "patchSetId": 1
+      },
+      "lineNbr": 104,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-23T10:19:55Z",
+      "side": 1,
+      "message": "Avoid using hard coded constants, define it at the top of the file.",
+      "range": {
+        "startLine": 104,
+        "startChar": 12,
+        "endLine": 104,
+        "endChar": 15
+      },
+      "revId": "f840aeb5361fc00479af15952b04750afd1d799f",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
