@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "1a2f8d8d_d86d4506",
+        "filename": "resources/libraries/python/honeycomb/HoneycombSetup.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 411,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-05-23T10:45:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a2f8d8d_18bd0d69",
+      "range": {
+        "startLine": 411,
+        "startChar": 8,
+        "endLine": 411,
+        "endChar": 24
+      },
+      "revId": "37d4b73d55f846736d56040c8fb11c19ecfda2c7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a2f8d8d_f8c121e5",
         "filename": "resources/libraries/robot/honeycomb/honeycomb.robot",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2017-05-23T10:35:40Z",
       "side": 1,
       "message": "Configure",
+      "range": {
+        "startLine": 121,
+        "startChar": 2,
+        "endLine": 121,
+        "endChar": 7
+      },
+      "revId": "37d4b73d55f846736d56040c8fb11c19ecfda2c7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a2f8d8d_9877bdd4",
+        "filename": "resources/libraries/robot/honeycomb/honeycomb.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 121,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-05-23T10:45:29Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a2f8d8d_f8c121e5",
       "range": {
         "startLine": 121,
         "startChar": 2,
