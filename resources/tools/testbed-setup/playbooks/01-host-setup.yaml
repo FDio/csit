@@ -60,7 +60,7 @@
     name: NFS scratch dir garbage collector
     minute: 0
     hour: 0
-    job: "find /nfs/scratch/ -type d -mtime +14 -name 'session-*' -delete"
+    job: "find /nfs/scratch/ -type d -mtime +1 -name 'session-*' -exec rm -r "{}" \;"
 - hosts: tg:sut
   remote_user: testuser
   sudo: yes
