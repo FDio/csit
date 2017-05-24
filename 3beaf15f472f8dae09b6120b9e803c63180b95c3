@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa5d592f_ed3981d9",
+        "filename": "resources/libraries/python/DPDK/L3fwdTest.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-24T07:45:22Z",
+      "side": 1,
+      "message": "Unused import",
+      "range": {
+        "startLine": 19,
+        "startChar": 0,
+        "endLine": 19,
+        "endChar": 13
+      },
+      "revId": "3beaf15f472f8dae09b6120b9e803c63180b95c3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa5d592f_4d79ad92",
+        "filename": "resources/libraries/python/DPDK/L3fwdTest.py",
+        "patchSetId": 16
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-24T07:45:22Z",
+      "side": 1,
+      "message": "Which values are accepted? True/False? Yes/No? ...",
+      "range": {
+        "startLine": 40,
+        "startChar": 29,
+        "endLine": 40,
+        "endChar": 51
+      },
+      "revId": "3beaf15f472f8dae09b6120b9e803c63180b95c3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
