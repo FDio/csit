@@ -31,6 +31,10 @@
     apt: name=socat state=present
   - name: install qemu
     apt: name=qemu-system-x86 state=present
+  - name: Old interface naming
+    command: ln -s /dev/null /etc/udev/rules.d/80-net-setup-link.rules
+  - name: update init for old interface naming
+    command: update-initramfs -u
 - hosts: virl
   remote_user: testuser
   sudo: yes
