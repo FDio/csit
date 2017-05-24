@@ -13,7 +13,7 @@ expect "Which step are you on"
 send "1\r"
 
 expect "Salt master"
-send "us-1.virl.info,us-2.virl.info,us-4.virl.info\r"
+send "vsm-md.virl.info\r"
 
 expect "Which step are you on"
 send "2\r"
