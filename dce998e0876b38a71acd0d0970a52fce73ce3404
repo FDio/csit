@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa5d592f_538dce30",
+        "filename": "bootstrap-nsh_sfc-functional-virl.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2017-05-25T12:47:46Z",
+      "side": 1,
+      "message": "Does it mean that this script will always be run only on ubuntu executor?\n\nIf not and run on centos7 executor is expected too, move this commands to ubuntu flow of OS if statement and add\n\nsudo yum install -y python-devel python-virtualenv\n\nto centos7 flow.",
+      "range": {
+        "startLine": 20,
+        "startChar": 0,
+        "endLine": 22,
+        "endChar": 58
+      },
+      "revId": "dce998e0876b38a71acd0d0970a52fce73ce3404",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa5d592f_939b4672",
+        "filename": "bootstrap-nsh_sfc-functional-virl.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2017-05-25T12:47:46Z",
+      "side": 1,
+      "message": "I guess you always want to use versions from current csit master - please, use following here:\n\nVIRL_TOPOLOGY\u003d$(cat ${SCRIPT_DIR}/VIRL_TOPOLOGY_UBUNTU)\nVIRL_RELEASE\u003d$(cat ${SCRIPT_DIR}/VIRL_RELEASE_UBUNTU)\n\n\nYou will need to add also following setting befor this if statement:\n\nSCRIPT_DIR\u003d\"$( cd \"$( dirname \"${BASH_SOURCE[0]}\" )\" \u0026\u0026 pwd )\"\nexport PYTHONPATH\u003d${SCRIPT_DIR}",
+      "range": {
+        "startLine": 36,
+        "startChar": 4,
+        "endLine": 37,
+        "endChar": 51
+      },
+      "revId": "dce998e0876b38a71acd0d0970a52fce73ce3404",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa5d592f_7388d222",
+        "filename": "bootstrap-nsh_sfc-functional-virl.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2017-05-25T12:47:46Z",
+      "side": 1,
+      "message": "Same as above - please, use:\n\nVIRL_TOPOLOGY\u003d$(cat ${SCRIPT_DIR}/VIRL_TOPOLOGY_CENTOS)\nVIRL_RELEASE\u003d$(cat ${SCRIPT_DIR}/VIRL_RELEASE_CENTOS)",
+      "range": {
+        "startLine": 39,
+        "startChar": 4,
+        "endLine": 40,
+        "endChar": 52
+      },
+      "revId": "dce998e0876b38a71acd0d0970a52fce73ce3404",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa5d592f_934586b5",
+        "filename": "bootstrap-nsh_sfc-functional-virl.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 41,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2017-05-25T12:47:46Z",
+      "side": 1,
+      "message": "Please add else statement - something like this:\n\nelse\n    echo Unsupported OS, exiting\n    exit 1\nfi\n\nto avoid execution without set needed variables.",
+      "range": {
+        "startLine": 41,
+        "startChar": 0,
+        "endLine": 41,
+        "endChar": 2
+      },
+      "revId": "dce998e0876b38a71acd0d0970a52fce73ce3404",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa5d592f_53170ea4",
+        "filename": "bootstrap-nsh_sfc-functional-virl.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 117,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2017-05-25T12:47:46Z",
+      "side": 1,
+      "message": "Remove if comment on line 36 accepted.",
+      "range": {
+        "startLine": 117,
+        "startChar": 0,
+        "endLine": 117,
+        "endChar": 62
+      },
+      "revId": "dce998e0876b38a71acd0d0970a52fce73ce3404",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa5d592f_131196ac",
+        "filename": "bootstrap-nsh_sfc-functional-virl.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 179,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2017-05-25T12:47:46Z",
+      "side": 1,
+      "message": "Please, add there switch for verbosity to have all possible data in case of failure:\n\nstart-testcase -vv -c...",
+      "range": {
+        "startLine": 179,
+        "startChar": 5,
+        "endLine": 179,
+        "endChar": 20
+      },
+      "revId": "dce998e0876b38a71acd0d0970a52fce73ce3404",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
