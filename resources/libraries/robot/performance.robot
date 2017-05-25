@@ -2478,6 +2478,13 @@
 | | Show statistics on all DUTs
 | | Remove startup configuration of VPP from all DUTs
 
+| Performance pdrchk test teardown
+| | [Documentation] | Common test teardown for ndrchk performance tests.
+| | ...
+| | Show VAT History On All DUTs | ${nodes}
+| | Show statistics on all DUTs
+| | Remove startup configuration of VPP from all DUTs
+
 | Performance test with vhost and VM with dpdk-testpmd teardown
 | | [Documentation] | Common test teardown for performance tests which use
 | | ... | vhost(s) and VM(s) with dpdk-testpmd.
