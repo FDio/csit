@@ -10,7 +10,6 @@
   - name: copy vsetting file to /etc
     sudo: yes
     shell: cp /home/virl/virl-bootstrap/vsettings.ini /etc/virl.ini
-  - command: crudini --set /etc/virl.ini DEFAULT l2_network_gateway {{ l2_gateway }}
   - command: crudini --set /etc/virl.ini DEFAULT hostname {{ hostname }}
   - command: crudini --set /etc/virl.ini DEFAULT domain_name linuxfoundation.org
   - command: crudini --set /etc/virl.ini DEFAULT using_dhcp_on_the_public_port False
