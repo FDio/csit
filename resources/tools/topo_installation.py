@@ -85,14 +85,33 @@ def main():
                         help="Packages paths to copy")
     parser.add_argument("-c", "--cancel", help="Cancel installation",
                         action="store_true")
+    parser.add_argument("-hc", "--honeycomb", help="Include Honeycomb package.",
+                        required=False, default=False)
+
     args = parser.parse_args()
     topology_file = args.topo
     packages = args.packages
     install_dir = args.directory
     cancel_installation = args.cancel
+    honeycomb = args.honeycomb
 
     work_file = open(topology_file)
     topology = load(work_file.read())['nodes']
+
+    def fix_interrupted(package):
+        """If there are interrupted installations, clean them up."""
+
+        cmd = "dpkg -l | grep {0}".format(package)
+        ret, _, _ = ssh.exec_command(cmd)
+        if ret == 0:
+            # Try to fix interrupted installations
+            cmd = 'dpkg --configure -a'
+            stdout = ssh_no_error(ssh, cmd, sudo=True)
+            print "###TI {}".format(stdout)
+            # Try to remove installed packages
+            cmd = 'apt-get purge -y "{0}.*"'.format(package)
+            stdout = ssh_no_error(ssh, cmd, sudo=True)
+            print "###TI {}".format(stdout)
 
     ssh = SSH()
     for node in topology:
@@ -106,41 +125,40 @@ def main():
                 stdout = ssh_ignore_error(ssh, cmd)
                 print "###TI {}".format(stdout)
 
-                cmd = "dpkg -l | grep vpp"
-                ret, _, _ = ssh.exec_command(cmd)
-                if ret == 0:
-                    # Try to fix interrupted installations
-                    cmd = 'dpkg --configure -a'
-                    stdout = ssh_no_error(ssh, cmd, sudo=True)
-                    print "###TI {}".format(stdout)
-                    # Try to remove installed vpp.* packages
-                    cmd = 'apt-get purge -y "vpp.*"'
-                    stdout = ssh_no_error(ssh, cmd, sudo=True)
-                    print "###TI {}".format(stdout)
+                fix_interrupted("vpp")
+                if honeycomb:
+                    fix_interrupted("honeycomb")
+
             else:
                 # Create installation directory on DUT
                 cmd = "rm -r {0}; mkdir {0}".format(install_dir)
                 stdout = ssh_no_error(ssh, cmd)
                 print "###TI {}".format(stdout)
 
-                # Copy packages from local path to installation dir
-                for deb in packages:
-                    print "###TI scp: {}".format(deb)
-                    ssh.scp(local_path=deb, remote_path=install_dir)
+                if honeycomb:
+                    smd = "ls ~/honeycomb/ | grep *.deb"
+                    stdout = ssh_ignore_error(ssh, smd)
+                    if "honeycomb" in stdout:
+                        # If custom honeycomb packages exist, use them
+                        cmd = "cp ~/honeycomb/*.deb {0}".format(install_dir)
+                        stdout = ssh_no_error(ssh, cmd)
+                        print "###TI {}".format(stdout)
+                    else:
+                        # Copy packages from local path to installation dir
+                        for deb in packages:
+                            print "###TI scp: {}".format(deb)
+                            ssh.scp(local_path=deb, remote_path=install_dir)
+                else:
+                    # Copy packages from local path to installation dir
+                    for deb in packages:
+                        print "###TI scp: {}".format(deb)
+                        ssh.scp(local_path=deb, remote_path=install_dir)
 
-                cmd = "dpkg -l | grep vpp"
-                ret, _, _ = ssh.exec_command(cmd)
-                if ret == 0:
-                    # Try to fix interrupted installations
-                    cmd = 'dpkg --configure -a'
-                    stdout = ssh_no_error(ssh, cmd, sudo=True)
-                    print "###TI {}".format(stdout)
-                    # Try to remove installed vpp.* packages
-                    cmd = 'apt-get purge -y "vpp.*"'
-                    stdout = ssh_no_error(ssh, cmd, sudo=True)
-                    print "###TI {}".format(stdout)
+                fix_interrupted("vpp")
+                if honeycomb:
+                    fix_interrupted("honeycomb")
 
-                # Installation of VPP deb packages
+                # Installation of deb packages
                 cmd = "dpkg -i --force-all {}/*.deb".format(install_dir)
                 stdout = ssh_no_error(ssh, cmd, sudo=True)
                 print "###TI {}".format(stdout)
