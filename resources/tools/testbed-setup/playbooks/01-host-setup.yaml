@@ -127,3 +127,5 @@
     apt: name=lxc state=present
   - name: Disable 80-vpp.conf
     command: ln -s /dev/null /etc/sysctl.d/80-vpp.conf
+  - name: Install java
+    apt: name=openjdk-8-jdk state=present
