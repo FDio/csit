@@ -92,7 +92,8 @@
 | | Configure Honeycomb service on DUTs | ${node}
 
 | Restart Honeycomb and VPP
-| | [Documentation] | Restarts Honeycomb service and wait until it starts up.
+| | [Documentation] | Stops the Honeycomb service and verifies it is stopped.
+| | ... | Then restarts VPP, starts Honeycomb again and verifies it is running.
 | | ...
 | | ... | *Arguments:*
 | | ... | - node - information about a DUT node. Type: dictionary
@@ -104,6 +105,25 @@
 | | Stop Honeycomb service on DUTs | ${node}
 | | Setup DUT | ${node}
 | | Configure Honeycomb service on DUTs | ${node}
+
+| Restart Honeycomb and VPP in performance test
+| | [Documentation] | Stops the Honeycomb service and verifies it is stopped.
+| | ... | Then restarts VPP, starts Honeycomb again and verifies it is running.
+| | ... | Verify timeouts are shorter than functional test.
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - information about a DUT node. Type: dictionary
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Restart Honeycomb and VPP \| ${nodes['DUT1']} \|
+| | [Arguments] | ${node}
+| | Restart honeycomb on DUT | ${node}
+| | Setup DUT | ${node}
+| | Run Keyword and continue on Failure
+| | ... | Wait until keyword succeeds | 2min | 16sec
+| | ... | Check honeycomb startup state | ${node}
+| | Check Honeycomb startup log | ${node}
 
 | Archive Honeycomb log file
 | | [Documentation] | Copy honeycomb.log file from Honeycomb node\
@@ -241,3 +261,34 @@
 | | ... | \| Disable Honeycomb Feature \| ${nodes['DUT1']} \| NSH \|
 | | [arguments] | ${node} | ${feature}
 | | Manage Honeycomb Features | ${node} | ${feature} | disable=${True}
+
+| Stop VPP Service on DUT
+| | [Arguments] | ${node}
+| | Stop VPP Service | ${node}
+
+| Honeycomb Performance Suite Setup Generic
+| | [Documentation] | Generic test suite setup for Honeycomb performance tests.
+| | ... | Performs multiple attempts to enable Honeycomb.
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - information about a DUT node. Type: dictionary
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Honeycomb Performance Suite Setup Generic \| ${nodes['DUT1']} \|
+| | [Arguments] | ${node}
+| | Wait until keyword succeeds | 8min | 2min
+| | ... | Restart Honeycomb and VPP in Performance test | ${node}
+
+| Honeycomb Performance Suite Teardown Generic
+| | [Documentation] | Generic test suite teardown for Honeycomb performance
+| | ... | tests. Stops Honeycomb and verifies it is stopped.
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - information about a DUT node. Type: dictionary
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Honeycomb Performance Suite Setup Generic \| ${nodes['DUT1']} \|
+| | [Arguments] | ${node}
+| | Stop Honeycomb service on DUTs | ${node}
