@@ -307,17 +307,34 @@ class SSH(object):
         """
         chan.close()
 
-    def scp(self, local_path, remote_path):
-        """Copy files from local_path to remote_path.
+    def scp(self, local_path, remote_path, get=False):
+        """Copy files from local_path to remote_path or vice versa.
 
         connect() method has to be called first!
+        :param local_path: Path to local file that should be uploaded; or
+        path where to save remote file.
+        :param remote_path: Remote path where to place uploaded file; or
+        path to remote file which should be downloaded.
+        :param get: scp operation to perform. Default is put.
+        :type local_path: str
+        :type remote_path: str
+        :type get: bool
         """
-        logger.trace('SCP {0} to {1}:{2}'.format(
-            local_path, self._ssh.get_transport().getpeername(), remote_path))
+        if not get:
+            logger.trace('SCP {0} to {1}:{2}'.format(
+                local_path, self._ssh.get_transport().getpeername(),
+                remote_path))
+        else:
+            logger.trace('SCP {0}:{1} to {2}'.format(
+                self._ssh.get_transport().getpeername(), remote_path,
+                local_path))
         # SCPCLient takes a paramiko transport as its only argument
         scp = SCPClient(self._ssh.get_transport(), socket_timeout=10)
         start = time()
-        scp.put(local_path, remote_path)
+        if not get:
+            scp.put(local_path, remote_path)
+        else:
+            scp.get(remote_path, local_path)
         scp.close()
         end = time()
         logger.trace('SCP took {0} seconds'.format(end-start))
