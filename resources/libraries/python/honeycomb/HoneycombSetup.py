@@ -438,33 +438,46 @@ class HoneycombSetup(object):
                                      "node {0}, {1}".format(node, stderr))
 
     @staticmethod
-    def setup_odl_client(node, odl_name):
+    def copy_odl_client(node, odl_name, src_path, dst_path):
+        """Copy ODL Client from source path to destination path.
+
+        :param node: Honeycomb node.
+        :param odl_name: Name of ODL client version to use.
+        :param src_path: Source Path where to find ODl client.
+        :param dst_path: Destination path.
+        :type node: dict
+        :type odl_name: str
+        :type src_path: str
+        :type dst_path: str
+        """
+
+        ssh = SSH()
+        ssh.connect(node)
+
+        cmd = "cp -r {src}/*karaf_{odl_name}* {dst}/karaf".format(
+            src=src_path, odl_name=odl_name, dst=dst_path)
+
+        ret_code, _, _ = ssh.exec_command(cmd)
+        if int(ret_code) != 0:
+            raise HoneycombError(
+                "Failed to copy ODL client on node {0}".format(node["host"]))
+
+    @staticmethod
+    def setup_odl_client(node, path):
         """Start ODL client on the specified node.
 
         Karaf should be located in /mnt/common, and VPP and Honeycomb should
         already be running, otherwise the start will fail.
         :param node: Node to start ODL client on.
-        :param odl_name: Name of ODL client version to use.
+        :param path: Path to ODL client on node.
         :type node: dict
-        :type odl_name: str
+        :type path: str
         :raises HoneycombError: If Honeycomb fails to start.
         """
 
-        logger.debug("Copying ODL Client to home dir.")
-
-        ssh = SSH()
-        ssh.connect(node)
-
-        cmd = "cp -r /mnt/common/*karaf_{name}* ~/karaf".format(name=odl_name)
-
-        (ret_code, _, _) = ssh.exec_command_sudo(cmd)
-        if int(ret_code) != 0:
-            raise HoneycombError(
-                "Failed to copy ODL client on node {0}".format(node["host"]))
-
         logger.console("\nStarting ODL client ...")
 
-        cmd = "~/*karaf*/bin/start"
+        cmd = "{path}/*karaf*/bin/start".format(path=path)
 
         ssh = SSH()
         ssh.connect(node)
@@ -540,3 +553,46 @@ class HoneycombSetup(object):
             logger.warn("ODL mount point was already configured.")
         else:
             raise HoneycombError('Mount point configuration not successful')
+
+    @staticmethod
+    def stop_odl_client(node):
+        """Stop ODL client service on the specified node.
+
+        :param node: Node to start ODL client on.
+        :type node: dict
+        :raises HoneycombError: If ODL client fails to stop.
+        """
+
+        ssh = SSH()
+        ssh.connect(node)
+
+        cmd = "~/*karaf*/bin/stop"
+
+        ssh = SSH()
+        ssh.connect(node)
+        ret_code, _, _ = ssh.exec_command_sudo(cmd)
+        if int(ret_code) != 0:
+            logger.warn("ODL Client refused to shut down.")
+            cmd = "pkill -f \'karaf\'"
+            (ret_code, _, _) = ssh.exec_command_sudo(cmd)
+            if int(ret_code) != 0:
+                raise HoneycombError('Node {0} failed to stop ODL.'.
+                                     format(node['host']))
+
+        logger.info("ODL client service stopped.")
+
+    @staticmethod
+    def stop_vpp_service(node):
+        """stop VPP service on the specified node.
+
+        :param node: VPP node.
+        :type node: dict
+        """
+
+        ssh = SSH()
+        ssh.connect(node)
+        cmd = "service vpp stop"
+        ret_code, _, _ = ssh.exec_command_sudo(cmd)
+        if int(ret_code) != 0:
+            raise RuntimeError("Could not stop VPP service on node {0}".format(
+                node['host']))

@@ -284,10 +284,10 @@ class InterfaceUtil(object):
         return data
 
     @staticmethod
-    def tg_set_interface_driver(node, pci_addr, driver):
-        """Set interface driver on the TG node.
+    def set_interface_driver(node, pci_addr, driver):
+        """Set interface driver on the node.
 
-        :param node: Node to set interface driver on (must be TG node).
+        :param node: Node to set interface driver on.
         :param pci_addr: PCI address of the interface.
         :param driver: Driver name.
         :type node: dict
@@ -297,7 +297,7 @@ class InterfaceUtil(object):
         :raises RuntimeError: If unbinding from the current driver fails.
         :raises RuntimeError: If binding to the new driver fails.
         """
-        old_driver = InterfaceUtil.tg_get_interface_driver(node, pci_addr)
+        old_driver = InterfaceUtil.get_interface_driver(node, pci_addr)
         if old_driver == driver:
             return
 
@@ -322,10 +322,10 @@ class InterfaceUtil(object):
                                .format(cmd, node['host']))
 
     @staticmethod
-    def tg_get_interface_driver(node, pci_addr):
-        """Get interface driver from the TG node.
+    def get_interface_driver(node, pci_addr):
+        """Get interface driver from the node.
 
-        :param node: Node to get interface driver on (must be TG node).
+        :param node: Node to get interface driver on.
         :param pci_addr: PCI address of the interface.
         :type node: dict
         :type pci_addr: str
@@ -411,16 +411,16 @@ class InterfaceUtil(object):
         ssh.exec_command_sudo(cmd)
 
     @staticmethod
-    def tg_set_interfaces_default_driver(node):
+    def set_interfaces_default_driver(node):
         """Set interfaces default driver specified in topology yaml file.
 
-        :param node: Node to setup interfaces driver on (must be TG node).
+        :param node: Node to setup interfaces driver on.
         :type node: dict
         """
         for interface in node['interfaces'].values():
-            InterfaceUtil.tg_set_interface_driver(node,
-                                                  interface['pci_address'],
-                                                  interface['driver'])
+            InterfaceUtil.set_interface_driver(node,
+                                               interface['pci_address'],
+                                               interface['driver'])
 
     @staticmethod
     def update_vpp_interface_data_on_node(node):
@@ -460,7 +460,7 @@ class InterfaceUtil(object):
         .. todo:: parse lshw -json instead
         """
         # First setup interface driver specified in yaml file
-        InterfaceUtil.tg_set_interfaces_default_driver(node)
+        InterfaceUtil.set_interfaces_default_driver(node)
 
         # Get interface names
         ssh = SSH()
