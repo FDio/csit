@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2017 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -85,15 +85,12 @@ def main():
                         help="Packages paths to copy")
     parser.add_argument("-c", "--cancel", help="Cancel installation",
                         action="store_true")
-    parser.add_argument("-hc", "--honeycomb", help="Include Honeycomb package.",
-                        required=False, default=False)
 
     args = parser.parse_args()
     topology_file = args.topo
     packages = args.packages
     install_dir = args.directory
     cancel_installation = args.cancel
-    honeycomb = args.honeycomb
 
     work_file = open(topology_file)
     topology = load(work_file.read())['nodes']
@@ -125,9 +122,13 @@ def main():
                 stdout = ssh_ignore_error(ssh, cmd)
                 print "###TI {}".format(stdout)
 
+                # Remove ODL client directory on DUT
+                cmd = "rm -rf ~/*karaf*"
+                stdout = ssh_ignore_error(ssh, cmd)
+                print "###TI {}".format(stdout)
+
                 fix_interrupted("vpp")
-                if honeycomb:
-                    fix_interrupted("honeycomb")
+                fix_interrupted("honeycomb")
 
             else:
                 # Create installation directory on DUT
@@ -135,27 +136,26 @@ def main():
                 stdout = ssh_no_error(ssh, cmd)
                 print "###TI {}".format(stdout)
 
-                if honeycomb:
-                    # If custom honeycomb packages exist, use them
-                    smd = "ls ~/honeycomb/ | grep *.deb"
-                    stdout = ssh_no_error(ssh, smd)
-                    if "honeycomb" in stdout:
-                        cmd = "cp ~/honeycomb/*.deb {0}".format(install_dir)
-                        stdout = ssh_no_error(ssh, cmd)
-                        print "###TI {}".format(stdout)
-                # Copy packages from local path to installation dir
-                for deb in packages:
-                    print "###TI scp: {}".format(deb)
-                    ssh.scp(local_path=deb, remote_path=install_dir)
+                # If custom packages exist, use them
+                smd = "ls ~/honeycomb/ | grep *.deb"
+                stdout = ssh_no_error(ssh, smd)
+                if "honeycomb" in stdout:
+                    cmd = "cp ~/honeycomb/*.deb {0}".format(install_dir)
+                    stdout = ssh_no_error(ssh, cmd)
+                else:
+                    # Copy packages from local path to installation dir
+                    for deb in packages:
+                        print "###TI scp: {}".format(deb)
+                        ssh.scp(local_path=deb, remote_path=install_dir)
 
                 fix_interrupted("vpp")
-                if honeycomb:
-                    fix_interrupted("honeycomb")
+                fix_interrupted("honeycomb")
 
-                # Installation of deb packages
+                # Install of VPP and Honeycomb deb packages
                 cmd = "dpkg -i --force-all {}/*.deb".format(install_dir)
                 stdout = ssh_no_error(ssh, cmd, sudo=True)
                 print "###TI {}".format(stdout)
+
 
 if __name__ == "__main__":
     sys.exit(main())
