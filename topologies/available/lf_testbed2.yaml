@@ -6,6 +6,12 @@ metadata:
     - resources/topology_schemas/topology.sch.yaml
   tags: [hw, 3-node]
 
+honeycomb: &honeycomb
+    user: admin
+    passwd: admin
+    port: 8183
+    netconf_port: 2831
+
 nodes:
   TG:
     type: TG
@@ -107,6 +113,8 @@ nodes:
     password: Csit1234
     cryptodev: 0000:86:00.0
     uio_driver: igb_uio
+    honeycomb:
+      <<: *honeycomb
     interfaces:
       port1:
         # t2-sut1-c1/p1 - 10GE port1 on Intel NIC x520 2p10GE.
@@ -176,6 +184,8 @@ nodes:
     password: Csit1234
     cryptodev: 0000:86:00.0
     uio_driver: igb_uio
+    honeycomb:
+      <<: *honeycomb
     interfaces:
       port1:
         # t2-sut2-c1/p1 - 10GE port1 on Intel NIC x520 2p10GE.

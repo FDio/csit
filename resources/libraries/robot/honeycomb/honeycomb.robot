@@ -119,11 +119,21 @@
 | | Archive Honeycomb log | ${node}
 
 | Setup ODL Client Service On DUT
-| | [Arguments] | ${node} | ${odl_name}
-| | Setup ODL client | ${node} | ${odl_name}
+| | [Arguments] | ${node} | ${path}
+| | Setup ODL client | ${node} | ${path}
+| | Wait until keyword succeeds | 2min | 16sec
+| | ... | Install ODL features | ${node} | ${path}
 | | Wait until keyword succeeds | 4min | 16sec
 | | ... | Mount Honeycomb on ODL | ${node}
 | | Wait until keyword succeeds | 2min | 16sec
 | | ... | Check ODL startup state | ${node}
 | | Wait until keyword succeeds | 2min | 16sec
 | | ... | Check honeycomb startup state | ${node}
+
+| Stop ODL client service on DUT
+| | [Arguments] | ${node} | ${path}
+| | Stop ODL client | ${node} | ${path}
+
+| Stop VPP service on DUT
+| | [Arguments] | ${node}
+| | Stop VPP service | ${node}
