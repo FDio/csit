@@ -42,7 +42,8 @@
 | | ${use_odl_client}= | Get Variable Value | ${HC_ODL}
 | | Run Keyword If | '${use_odl_client}' != '${NONE}'
 | | ... | Run Keywords
-| | ... | Set Global Variable | ${use_odl_client} | AND
-| | ... | Setup ODL Client Service On DUT | ${node} | ${use_odl_client}
+| | ... | Set Global Variable | ${use_odl_client}
+| | ... | AND | Copy ODL Client | ${node} | ${HC_ODL} | /mnt/common | ~
+| | ... | AND | Setup ODL Client Service On DUT | ${node}
 | | ... | ELSE | Log | Variable HC_ODL is not present. Not using ODL.
 | | ... | level=INFO
