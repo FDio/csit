@@ -21,7 +21,7 @@
 | ...         | AND          | Setup All DUTs | ${nodes}
 | ...         | AND          | Get CPU Layout from all nodes | ${nodes}
 | ...         | AND          | Update All Interface Data On All Nodes
-| ...                        | ${nodes} | skip_tg=${True} | numa_node=${True}
+| ...                        | ${nodes} | skip_tg=${True} | numa_node=${False}
 
 *** Keywords ***
 | Setup performance global Variables
