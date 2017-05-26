@@ -242,6 +242,13 @@
 | | :FOR | ${dut} | IN | @{duts}
 | | | Run keyword | ${dut}.Add DPDK Cryptodev | ${count}
 
+| Apply startup configuration on VPP DUT
+| | [Documentation] | Write startup configuration and restart VPP on all DUTs.
+| | ...
+| | [Arguments] | ${node_name}
+| | Run keyword | ${node_name}.Apply Config
+| | Update All Interface Data On All Nodes | ${nodes} | skip_tg=${TRUE}
+
 | Apply startup configuration on all VPP DUTs
 | | [Documentation] | Write startup configuration and restart VPP on all DUTs.
 | | ...
