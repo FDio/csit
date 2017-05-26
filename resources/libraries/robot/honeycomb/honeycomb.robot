@@ -59,7 +59,7 @@
 | | ...
 | | [Arguments] | @{duts}
 | | Stop honeycomb on DUTs | @{duts}
-| | Wait until keyword succeeds | 60sec | 16sec
+| | Wait until keyword succeeds | 80sec | 16sec
 | | ... | Check honeycomb shutdown state | @{duts}
 
 | Clear persisted Honeycomb configuration
@@ -92,7 +92,8 @@
 | | Configure Honeycomb service on DUTs | ${node}
 
 | Restart Honeycomb and VPP
-| | [Documentation] | Restarts Honeycomb service and wait until it starts up.
+| | [Documentation] | Restarts Honeycomb service and VPP and wait until
+| | ... | Honeycomb starts up.
 | | ...
 | | ... | *Arguments:*
 | | ... | - node - information about a DUT node. Type: dictionary
@@ -101,7 +102,6 @@
 | | ...
 | | ... | \| Restart Honeycomb and VPP \| ${nodes['DUT1']} \|
 | | [Arguments] | ${node}
-| | Log | Performing clean restart of Honeycomb and VPP. | console=True
 | | Restart Honeycomb and VPP on DUTs | ${node}
 | | Wait until keyword succeeds | 4min | 16sec
 | | ... | Check honeycomb startup state | ${node}
@@ -119,11 +119,21 @@
 | | Archive Honeycomb log | ${node}
 
 | Configure ODL Client Service On DUT
-| | [Arguments] | ${node} | ${odl_name}
-| | Configure ODL client | ${node} | ${odl_name}
+| | [Arguments] | ${node} | ${path}
+| | Setup ODL client | ${node} | ${path}
+| | Wait until keyword succeeds | 2min | 16sec
+| | ... | Install ODL features | ${node} | ${path}
 | | Wait until keyword succeeds | 4min | 16sec
 | | ... | Mount Honeycomb on ODL | ${node}
 | | Wait until keyword succeeds | 2min | 16sec
 | | ... | Check ODL startup state | ${node}
 | | Wait until keyword succeeds | 2min | 16sec
 | | ... | Check honeycomb startup state | ${node}
+
+| Stop ODL client service on DUT
+| | [Arguments] | ${node} | ${path}
+| | Stop ODL client | ${node} | ${path}
+
+| Stop VPP service on DUT
+| | [Arguments] | ${node}
+| | Stop VPP service | ${node}
