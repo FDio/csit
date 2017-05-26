@@ -127,3 +127,7 @@
 | | ... | Check ODL startup state | ${node}
 | | Wait until keyword succeeds | 2min | 16sec
 | | ... | Check honeycomb startup state | ${node}
+
+| Stop ODL client service on DUT
+| | [Arguments] | ${node}
+| | Stop ODL client | ${node}
