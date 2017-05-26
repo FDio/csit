@@ -112,12 +112,14 @@ nodes:
         # t1-sut1-c1/p1 - 10GE port1 on Intel NIC x520 2p10GE.
         mac_address: "90:e2:ba:b5:0a:18"
         pci_address: "0000:0a:00.0"
+        driver: ixgbe
         link: link21
         model: Intel-X520-DA2
       port2:
         # t1-sut1-c1/p2 - 10GE port2 on Intel NIC x520 2p10GE.
         mac_address: "90:e2:ba:b5:0a:19"
         pci_address: "0000:0a:00.1"
+        driver: ixgbe
         link: link3
         model: Intel-X520-DA2
       port3:
@@ -181,12 +183,14 @@ nodes:
         # t1-sut2-c1/p1 - 10GE port1 on Intel NIC x520 2p10GE.
         mac_address: "90:e2:ba:b5:05:e4"
         pci_address: "0000:0a:00.0"
+        driver: ixgbe
         link: link4
         model: Intel-X520-DA2
       port2:
         # t1-sut2-c1/p2 - 10GE port2 on Intel NIC x520 2p10GE.
         mac_address: "90:e2:ba:b5:05:e5"
         pci_address: "0000:0a:00.1"
+        driver: ixgbe
         link: link21
         model: Intel-X520-DA2
       port3:

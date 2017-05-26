@@ -29,4 +29,4 @@ class TGSetup(object):
         """
         for node in nodes.values():
             if node['type'] == NodeType.TG:
-                InterfaceUtil.tg_set_interfaces_default_driver(node)
+                InterfaceUtil.set_interfaces_default_driver(node)

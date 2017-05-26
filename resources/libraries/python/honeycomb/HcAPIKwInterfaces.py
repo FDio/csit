@@ -346,8 +346,9 @@ class InterfaceKeywords(object):
         :raises HoneycombError: If the interface is not present on the node.
         """
 
-        interface = Topology.convert_interface_reference(
-            node, interface, "name")
+        if interface != "local0":
+            interface = Topology.convert_interface_reference(
+                node, interface, "name")
 
         v3po_l2 = {"bridge-domain": str(bd_name)}
         if split_horizon_group:
@@ -372,8 +373,9 @@ class InterfaceKeywords(object):
         :raises HoneycombError: If the operation fails.
         """
 
-        interface = Topology.convert_interface_reference(
-            node, interface, "name")
+        if interface != "local0":
+            interface = Topology.convert_interface_reference(
+                node, interface, "name")
 
         intf = interface.replace("/", "%2F")
 
