@@ -399,16 +399,23 @@ class HoneycombUtil(object):
         return HTTPRequest.delete(node, path)
 
     @staticmethod
-    def archive_honeycomb_log(node):
+    def archive_honeycomb_log(node, perf=False):
         """Copy honeycomb log file from DUT node to VIRL for archiving.
 
         :param node: Honeycomb node.
+        :param perf: Alternate handling, for use with performance test topology.
         :type node: dict
+        :type perf: bool
         """
 
         ssh = SSH()
         ssh.connect(node)
 
-        cmd = "cp /var/log/honeycomb/honeycomb.log /scratch/"
-
-        ssh.exec_command_sudo(cmd)
+        if not perf:
+            cmd = "cp /var/log/honeycomb/honeycomb.log /scratch/"
+            ssh.exec_command_sudo(cmd)
+        else:
+            ssh.scp(
+                ".",
+                "/var/log/honeycomb/honeycomb.log",
+                get=True)
