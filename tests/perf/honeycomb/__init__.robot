@@ -16,34 +16,43 @@
 | ${node}= | ${nodes['DUT1']}
 
 *** Settings ***
-| Library | resources/libraries/python/honeycomb/HcPersistence.py
 | Resource | resources/libraries/robot/default.robot
+| Resource | resources/libraries/robot/interfaces.robot
 | Resource | resources/libraries/robot/honeycomb/honeycomb.robot
-| Suite Setup | Run Keywords | Setup All DUTs Before Test | AND
-| ... | Configure Honeycomb for functional testing | ${node} | AND
-| ... | Configure ODL Client for functional testing | ${node} | AND
-| ... | Set Global Variable | ${node}
-| Suite Teardown
-| ... | Archive Honeycomb log file | ${node}
+| Resource | resources/libraries/robot/honeycomb/performance.robot
+| Library | resources.libraries.python.SetupFramework
+| Library | resources.libraries.python.CpuUtils
+| Suite Setup | Setup suite for Honeycomb performance tests
+| Suite Teardown | Run Keywords
+| ... | Stop VPP Service on DUT | ${node}
+| ... | AND | Stop honeycomb service on DUTs | ${node}
 
 *** Keywords ***
-| Configure Honeycomb for functional testing
+| Setup suite for Honeycomb performance tests
+| | Setup Framework | ${nodes}
+| | Setup All DUTs | ${nodes}
+| | Get CPU Layout from all nodes | ${nodes}
+| | Update All Interface Data On All Nodes | ${nodes} | skip_tg=${True}
+| | Configure Honeycomb for performance tests | ${node}
+| | Set Global Variable | ${node}
+
+| Configure Honeycomb for performance tests
 | | [Arguments] | ${node}
 | | Configure Restconf binding address | ${node}
 | | Enable Module Features | ${node}
-| | Configure Log Level | ${node} | TRACE
+| | Configure Log Level | ${node} | INFO
 | | Configure Persistence | ${node} | disable
 | | Configure jVPP timeout | ${node} | ${14}
 | | Clear Persisted Honeycomb Configuration | ${node}
 | | Setup Honeycomb Service On DUTs | ${node}
 
-| Configure ODL Client for functional testing
+| Configure ODL Client for performance tests
 | | [Arguments] | ${node}
 | | ${use_odl_client}= | Get Variable Value | ${HC_ODL}
 | | Run Keyword If | '${use_odl_client}' != '${NONE}'
 | | ... | Run Keywords
 | | ... | Set Global Variable | ${use_odl_client}
-| | ... | AND | Copy ODL Client | ${node} | ${HC_ODL} | /mnt/common | ~
-| | ... | AND | Configure ODL Client Service On DUT | ${node} | ~
+| | ... | AND | Copy ODL client | ${node} | ${HC_ODL} | ~ | ${install_dir}
+| | ... | AND | Configure ODL Client Service On DUT | ${node} | ${install_dir}
 | | ... | ELSE | Log | Variable HC_ODL is not present. Not using ODL.
 | | ... | level=INFO
