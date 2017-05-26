@@ -25,7 +25,6 @@ from resources.libraries.python.honeycomb.HoneycombUtil \
     import HoneycombUtil as HcUtil
 from resources.libraries.python.ssh import SSH
 from resources.libraries.python.topology import NodeType
-from resources.libraries.python.DUTSetup import DUTSetup
 
 
 class HoneycombSetup(object):
@@ -107,6 +106,34 @@ class HoneycombSetup(object):
                                  format(errors))
 
     @staticmethod
+    def restart_honeycomb_on_dut(node):
+        """Restart Honeycomb on specified DUT nodes.
+
+        This keyword restarts the Honeycomb service on specified DUTs. Use the
+        keyword "Check Honeycomb Startup State" to check if the Honeycomb is up
+        and running.
+
+        :param node: Node to restart Honeycomb on.
+        :type node: dict
+        :raises HoneycombError: If Honeycomb fails to start.
+        """
+
+        logger.console("\n(re)Starting Honeycomb service ...")
+
+        cmd = "sudo service honeycomb restart"
+
+        ssh = SSH()
+        ssh.connect(node)
+        (ret_code, _, _) = ssh.exec_command_sudo(cmd)
+        if int(ret_code) != 0:
+            raise HoneycombError('Node {0} failed to restart Honeycomb.'.
+                                 format(node['host']))
+        else:
+            logger.info(
+                "Honeycomb service restart is in progress on node {0}".format(
+                    node['host']))
+
+    @staticmethod
     def check_honeycomb_startup_state(*nodes):
         """Check state of Honeycomb service during startup on specified nodes.
 
@@ -130,8 +157,14 @@ class HoneycombSetup(object):
         for node in nodes:
             if node['type'] == NodeType.DUT:
                 HoneycombSetup.print_ports(node)
-                status_code, _ = HTTPRequest.get(node, path,
-                                                 enable_logging=False)
+                try:
+                    status_code, _ = HTTPRequest.get(node, path,
+                                                     enable_logging=False)
+                except HTTPRequestError:
+                    ssh = SSH()
+                    ssh.connect(node)
+                    ssh.exec_command("tail -n 100 /var/log/syslog")
+                    raise
                 if status_code == HTTPCodes.OK:
                     logger.info("Honeycomb on node {0} is up and running".
                                 format(node['host']))
@@ -479,7 +512,7 @@ class HoneycombSetup(object):
         for feature in features:
             cmd += " {0}".format(feature)
 
-        ret_code, _, stderr = ssh.exec_command_sudo(cmd, timeout=120)
+        ret_code, _, _ = ssh.exec_command_sudo(cmd, timeout=120)
 
         if int(ret_code) != 0:
             raise HoneycombError("Feature install did not succeed.")
@@ -590,7 +623,140 @@ class HoneycombSetup(object):
         ssh = SSH()
         ssh.connect(node)
         cmd = "service vpp stop"
-        ret_code, _, _ = ssh.exec_command_sudo(cmd)
+        ret_code, _, _ = ssh.exec_command_sudo(cmd, timeout=80)
         if int(ret_code) != 0:
             raise RuntimeError("Could not stop VPP service on node {0}".format(
                 node['host']))
+
+
+class HoneycombStartupConfig(object):
+    """Generator for Honeycomb startup configuration.
+    """
+    def __init__(self):
+        """Initializer."""
+
+        self.template = """
+        #!/bin/sh -
+        STATUS=100
+
+        while [ $STATUS -eq 100 ]
+        do
+          {java_call} -jar $(dirname $0)/{jar_filename}
+          STATUS=$?
+          echo "Honeycomb exited with status: $STATUS"
+          if [ $STATUS -eq 100 ]
+          then
+            echo "Restarting..."
+          fi
+        done
+        """
+
+        self.java_call = "{scheduler} {affinity} java {jit_mode} {params}"
+
+        self.scheduler = ""
+        self.core_affinity = ""
+        self.jit_mode = ""
+        self.params = ""
+        self.numa = ""
+
+        self.config = ""
+        self.ssh = SSH()
+
+    def apply_config(self, node):
+        """Generate configuration file /opt/honeycomb/honeycomb on the specified
+         node.
+
+         :param node: Honeycomb node.
+         :type node: dict
+         """
+
+        self.ssh.connect(node)
+        _, filename, _ = self.ssh.exec_command("ls /opt/honeycomb | grep .jar")
+
+        java_call = self.java_call.format(scheduler=self.scheduler,
+                                          affinity=self.core_affinity,
+                                          jit_mode=self.jit_mode,
+                                          params=self.params)
+        self.config = self.template.format(java_call=java_call,
+                                           jar_filename=filename)
+
+        self.ssh.connect(node)
+        cmd = "echo '{config}' > /tmp/honeycomb " \
+              "&& chmod +x /tmp/honeycomb " \
+              "&& sudo mv -f /tmp/honeycomb /opt/honeycomb".format(
+                config=self.config)
+        self.ssh.exec_command(cmd)
+
+    def set_cpu_scheduler(self, scheduler="FIFO"):
+        """Use alternate CPU scheduler.
+
+        Note: OTHER scheduler doesn't load-balance over isolcpus.
+
+        :param scheduler: CPU scheduler to use.
+        :type scheduler: str
+        """
+
+        schedulers = {"FIFO": "-f 99",  # First In, First Out
+                      "RR": "-r 99",  # Round Robin
+                      "OTHER": "-o",  # Ubuntu default
+                     }
+        self.scheduler = "chrt {0}".format(schedulers[scheduler])
+
+    def set_cpu_core_affinity(self, low, high=None):
+        """Set core affinity for the honeycomb process and subprocesses.
+
+        :param low: Lowest core ID number.
+        :param high: Highest core ID number. Leave empty to use a single core.
+        :type low: int
+        :type high: int
+        """
+
+        self.core_affinity = "taskset -c {low}-{high}".format(
+            low=low, high=high if high else low)
+
+    def set_jit_compiler_mode(self, jit_mode):
+        """Set running mode for Java's JIT compiler.
+
+        :param jit_mode: Desiret JIT mode.
+        :type jit_mode: str
+        """
+
+        modes = {"client": "-client",  # Default
+                 "server": "-server",  # Higher performance but longer warmup
+                 "classic": "-classic"  # Disables JIT compiler
+                }
+
+        self.jit_mode = modes[jit_mode]
+
+    def set_memory_size(self, mem_min, mem_max=None):
+        """Set minimum and maximum memory use for the JVM.
+
+        :param mem_min: Minimum amount of memory (MB).
+        :param mem_max: Maximum amount of memory (MB). Default is 4 times
+        minimum value.
+        :type mem_min: int
+        :type mem_max: int
+        """
+
+        self.params += " -Xms{min}m -Xmx{max}m".format(
+            min=mem_min, max=mem_max if mem_max else mem_min*4)
+
+    def set_metaspace_size(self, mem_min, mem_max=None):
+        """Set minimum and maximum memory used for class metadata in the JVM.
+
+        :param mem_min: Minimum metaspace size (MB).
+        :param mem_max: Maximum metaspace size (MB). Defailt is 4 times
+        minimum value.
+        :type mem_min: int
+        :type mem_max: int
+        """
+
+        self.params += " -XX:MetaspaceSize={min}m " \
+                       "-XX:MaxMetaspaceSize={max}m".format(
+                           min=mem_min, max=mem_max if mem_max else mem_min*4)
+
+    def set_numa_optimization(self):
+        """Use optimization of memory use and garbage collection for NUMA
+        architectures."""
+
+        self.params += " -XX:+UseNUMA -XX:+UseParallelGC"
