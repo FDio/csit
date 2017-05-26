@@ -107,6 +107,11 @@ nodes:
     password: Csit1234
     cryptodev: 0000:86:00.0
     uio_driver: igb_uio
+    honeycomb:
+      user: admin
+      passwd: admin
+      port: 8183
+      netconf_port: 2831
     interfaces:
       port1:
         # t3-sut1-c1/p1 - 10GE port1 on Intel NIC x520 2p10GE.
@@ -176,6 +181,11 @@ nodes:
     password: Csit1234
     cryptodev: 0000:86:00.0
     uio_driver: igb_uio
+    honeycomb:
+      user: admin
+      passwd: admin
+      port: 8183
+      netconf_port: 2831
     interfaces:
       port1:
         # t3-sut3-c1/p1 - 10GE port1 on Intel NIC x520 2p10GE.

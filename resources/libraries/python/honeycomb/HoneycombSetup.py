@@ -25,7 +25,6 @@ from resources.libraries.python.honeycomb.HoneycombUtil \
     import HoneycombUtil as HcUtil
 from resources.libraries.python.ssh import SSH
 from resources.libraries.python.topology import NodeType
-from resources.libraries.python.DUTSetup import DUTSetup
 
 
 class HoneycombSetup(object):
@@ -105,6 +104,35 @@ class HoneycombSetup(object):
         if errors:
             raise HoneycombError('Node(s) {0} failed to stop Honeycomb.'.
                                  format(errors))
+
+    @staticmethod
+    def restart_honeycomb_on_dut(node):
+        """Start Honeycomb on specified DUT nodes.
+
+        This keyword starts the Honeycomb service on specified DUTs.
+        The keyword just starts the Honeycomb and does not check its startup
+        state. Use the keyword "Check Honeycomb Startup State" to check if the
+        Honeycomb is up and running.
+        Honeycomb must be installed in "/opt" directory, otherwise the start
+        will fail.
+        :param node: Node to restart Honeycomb on.
+        :type node: dict
+        :raises HoneycombError: If Honeycomb fails to start.
+        """
+
+        logger.console("\n(re)Starting Honeycomb service ...")
+
+        cmd = "sudo service honeycomb restart"
+
+        ssh = SSH()
+        ssh.connect(node)
+        (ret_code, _, _) = ssh.exec_command_sudo(cmd)
+        if int(ret_code) != 0:
+            raise HoneycombError('Node {0} failed to restart Honeycomb.'.
+                                 format(node['host']))
+        else:
+            logger.info("Honeycomb service restart in progress on node {0} is "
+                        "in progress ...".format(node['host']))
 
     @staticmethod
     def check_honeycomb_startup_state(*nodes):
@@ -594,3 +622,92 @@ class HoneycombSetup(object):
         if int(ret_code) != 0:
             raise RuntimeError("Could not stop VPP service on node {0}".format(
                 node['host']))
+
+
+class HoneycombStartupConfig(object):
+    def __init__(self):
+
+        self.template = """
+        #!/bin/sh -
+        STATUS=100
+
+        while [ $STATUS -eq 100 ]
+        do
+          {java_call} -jar $(dirname $0)/{jar_filename}
+          STATUS=$?
+          echo "Honeycomb exited with status: $STATUS"
+          if [ $STATUS -eq 100 ]
+          then
+            echo "Restarting..."
+          fi
+        done
+        """
+
+        self.java_call = "{scheduler} {affinity} java {jit_mode} {params}"
+
+        self.scheduler = ""
+        self.core_affinity = ""
+        self.jit_mode = ""
+        self.params = ""
+        self.numa = ""
+
+        self.config = ""
+        self.ssh = SSH()
+
+    def generate_config(self, node):
+
+        self.ssh.connect(node)
+        _, filename, _ = self.ssh.exec_command("ls /opt/honeycomb | grep .jar")
+
+        java_call = self.java_call.format(scheduler=self.scheduler,
+                                          affinity=self.core_affinity,
+                                          jit_mode=self.jit_mode,
+                                          params=self.params)
+        self.config = self.template.format(java_call=java_call,
+                                           jar_filename=filename)
+
+    def deploy_config(self, node):
+
+        self.ssh.connect(node)
+        cmd = "echo '{config}' > /tmp/honeycomb " \
+              "&& chmod +x /tmp/honeycomb " \
+              "&& sudo mv -f /tmp/honeycomb /opt/honeycomb".format(config=self.config)
+        self.ssh.exec_command(cmd)
+
+    def set_cpu_scheduler(self, scheduler="FIFO"):
+
+        schedulers = {"FIFO": "-f 99",  # First In, First Out
+                      "RR": "-r 1",  # Round Robin
+        }
+        self.scheduler = "chrt {0}".format(schedulers[scheduler])
+
+    def set_cpu_core_affinity(self, low, high=None):
+
+        self.core_affinity = "taskset -c {low}-{high}".format(
+            low=low, high=high if high else low)
+
+    def set_jit_compiler_mode(self, jit_mode):
+
+        modes = {"client": "-client",  # Default
+                 "server": "-server",  # Higher performance after warmup
+                 "classic": "-classic"  # Disables JIT compiler
+                 }
+
+        self.jit_mode = modes[jit_mode]
+
+    def set_memory_size(self, mem_min, mem_max=None):
+
+        self.params += " -Xms{min}m -Xmx{max}m".format(
+            min=mem_min, max=mem_max if mem_max else mem_min*4)
+
+    def set_metaspace_size(self, mem_min, mem_max=None):
+
+        self.params += " -XX:MetaspaceSize={min}m " \
+                       "-XX:MaxMetaspaceSize={max}m".format(
+                        min=mem_min, max=mem_max if mem_max else mem_min*4)
+
+    def set_numa_optimization(self):
+        """Optimizes memory use and garbage collection for NUMA
+        architectures."""
+
+        self.params += " -XX:+UseNUMA -XX:+UseParallelGC"
