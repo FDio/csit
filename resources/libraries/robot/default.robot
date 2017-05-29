@@ -350,6 +350,12 @@
 | | ... | where the key is the host and the value is the PID.
 | | ...
 | | ${setup_vpp_pids}= | Get VPP PIDs | ${nodes}
+| | ${keys}= | Get Dictionary Keys | ${setup_vpp_pids}
+| | :FOR | ${key} | IN | @{keys}
+| | | ${pid}= | Get From Dictionary | ${setup_vpp_pids} | ${key}
+| | | Run Keyword If | $pid is None | FAIL | No VPP PID found on node ${key}
+| | | Run Keyword If | ',' in '${pid}'
+| | | ... | FAIL | More then one VPP PID found on node ${key}: ${pid}
 | | Set Test Variable | ${setup_vpp_pids}
 
 | Check VPP PID in Teardown
@@ -358,7 +364,8 @@
 | | ... | is printed on console and to log. The test will not fail.
 | | ...
 | | ${teardown_vpp_pids}= | Get VPP PIDs | ${nodes}
-| | ${err_msg}= | Catenate | \nThe VPP PIDs are not equal!\nTest Setup VPP PIDs:
+| | ${err_msg}= | Catenate | ${SUITE NAME} - ${TEST NAME}
+| | ... | \nThe VPP PIDs are not equal!\nTest Setup VPP PIDs:
 | | ... | ${setup_vpp_pids}\nTest Teardown VPP PIDs: ${teardown_vpp_pids}
 | | ${rc} | ${msg}= | Run keyword and ignore error
 | | ... | Dictionaries Should Be Equal
