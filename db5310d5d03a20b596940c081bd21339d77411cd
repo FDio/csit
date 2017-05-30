@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa5d592f_1f175753",
+        "filename": "tests/perf/10ge2p1x520-ethip4-ip4base-pdrchk.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 60,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-30T04:55:24Z",
+      "side": 1,
+      "message": "${wt}\\ - no white space (because of doc gen)\ncheck everywhere",
+      "range": {
+        "startLine": 60,
+        "startChar": 67,
+        "endLine": 60,
+        "endChar": 74
+      },
+      "revId": "db5310d5d03a20b596940c081bd21339d77411cd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa5d592f_9f2b4794",
+        "filename": "tests/perf/10ge2p1x520-ethip4-ip4base-pdrchk.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-30T04:55:24Z",
+      "side": 1,
+      "message": "Remove, see https://gerrit.fd.io/r/#/c/6875/ where \"And Add No Multi Seg to all DUTs\" is used only when needed.",
+      "range": {
+        "startLine": 78,
+        "startChar": 0,
+        "endLine": 95,
+        "endChar": 72
+      },
+      "revId": "db5310d5d03a20b596940c081bd21339d77411cd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa5d592f_3f121b63",
+        "filename": "tests/perf/10ge2p1x520-ethip4-ip4base-pdrchk.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 100,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-30T04:55:24Z",
+      "side": 1,
+      "message": "core,\\ - no white space (because of doc gen)\ncheck everywhere",
+      "range": {
+        "startLine": 100,
+        "startChar": 66,
+        "endLine": 100,
+        "endChar": 73
+      },
+      "revId": "db5310d5d03a20b596940c081bd21339d77411cd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa5d592f_7f189384",
+        "filename": "tests/perf/10ge2p1x520-ethip4-ip4base-pdrchk.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-30T04:55:24Z",
+      "side": 1,
+      "message": "Add \"| | ... | \" at the beginning of the line",
+      "range": {
+        "startLine": 102,
+        "startChar": 0,
+        "endLine": 102,
+        "endChar": 32
+      },
+      "revId": "db5310d5d03a20b596940c081bd21339d77411cd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa5d592f_5f1dcf72",
+        "filename": "tests/perf/10ge2p1x520-ethip4-ip4base-pdrchk.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-30T04:55:24Z",
+      "side": 1,
+      "message": "${rate}\nCheck everywhere",
+      "range": {
+        "startLine": 103,
+        "startChar": 58,
+        "endLine": 103,
+        "endChar": 65
+      },
+      "revId": "db5310d5d03a20b596940c081bd21339d77411cd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa5d592f_ff0b6329",
+        "filename": "tests/perf/10ge2p1x520-ethip4-ip4base-pdrchk.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 167,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-05-30T04:55:24Z",
+      "side": 1,
+      "message": "remove, see above\nCheck everywhere",
+      "range": {
+        "startLine": 167,
+        "startChar": 43,
+        "endLine": 167,
+        "endChar": 61
+      },
+      "revId": "db5310d5d03a20b596940c081bd21339d77411cd",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
