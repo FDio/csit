@@ -123,5 +123,7 @@
     apt: name=libtool state=present
   - name: Install screen
     apt: name=screen state=present
+  - name: Install lxc
+    apt: name=lxc state=present
   - name: Disable 80-vpp.conf
     command: ln -s /dev/null /etc/sysctl.d/80-vpp.conf
