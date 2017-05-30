@@ -207,6 +207,29 @@ class SSH(object):
             command = 'sudo -S {c} <<< "{i}"'.format(c=cmd, i=cmd_input)
         return self.exec_command(command, timeout)
 
+    def exec_command_lxc(self, lxc_cmd, lxc_name, lxc_params='', sudo=True,
+                         timeout=30):
+        """Execute command in LXC on a new SSH channel on the connected Node.
+
+        :param lxc_cmd: Command to be executed.
+        :param lxc_name: LXC name.
+        :param lxc_params: Additional parameters for LXC attach.
+        :param sudo: Run in privileged LXC mode. Default: privileged
+        :param timeout: Timeout.
+        :type lxc_cmd: str
+        :type lxc_name: str
+        :type lxc_params: str
+        :type sudo: bool
+        :type timeout: int
+        :return: return_code, stdout, stderr
+        """
+        command = "lxc-attach {p} --name {n} -- /bin/sh -c '{c}'"\
+            .format(p=lxc_params, n=lxc_name, c=lxc_cmd)
+
+        if sudo:
+            command = 'sudo -S {c}'.format(c=command)
+        return self.exec_command(command, timeout)
+
     def interactive_terminal_open(self, time_out=30):
         """Open interactive terminal on a new channel on the connected Node.
 

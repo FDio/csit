@@ -123,7 +123,6 @@ class VppConfigGenerator(object):
         """
         path = ['unix', 'cli-listen']
         self.add_config_item(self._nodeconfig, value, path)
-        self._nodeconfig = {'unix': {'nodaemon': ''}}
 
     def add_unix_nodaemon(self):
         """Add UNIX nodaemon configuration."""
@@ -228,7 +227,7 @@ class VppConfigGenerator(object):
     def add_api_trace(self):
         """Add API trace configuration."""
         path = ['api-trace', 'on']
-        self.add_config_item(self._nodeconfig, path, '')
+        self.add_config_item(self._nodeconfig, '', path)
 
     def add_ip6_hash_buckets(self, value):
         """Add IP6 hash buckets configuration.
@@ -247,6 +246,16 @@ class VppConfigGenerator(object):
         """
         path = ['ip6', 'heap-size']
         self.add_config_item(self._nodeconfig, value, path)
+
+    def add_plugin_disable(self, *plugins):
+        """Add plugin disable for specific plugin.
+
+        :param plugins: Plugin(s) to disable.
+        :type plugins: list
+        """
+        for plugin in plugins:
+            path = ['plugins', 'plugin {0}'.format(plugin), 'disable']
+            self.add_config_item(self._nodeconfig, ' ', path)
 
     def add_dpdk_no_multi_seg(self):
         """Add DPDK no-multi-seg configuration."""
@@ -316,3 +325,61 @@ class VppConfigGenerator(object):
         else:
             raise RuntimeError('VPP failed to restart on node {}'.
                                format(self._hostname))
+
+    def apply_config_lxc(self, lxc_name, waittime=5, retries=12):
+        """Generate and apply VPP configuration for node in a container.
+
+        Use data from calls to this class to form a startup.conf file and
+        replace /etc/vpp/startup.conf with it on node inside a container.
+
+        :param lxc_name: LXC container name.
+        :param waittime: Time to wait for VPP to restart (default 5 seconds).
+        :param retries: Number of times (default 12) to re-try waiting.
+        :type lxc_name: str
+        :type waittime: int
+        :type retries: int
+        :raises RuntimeError: If writing config file failed, or restarting of
+        VPP failed.
+        """
+        self.dump_config(self._nodeconfig)
+
+        ssh = SSH()
+        ssh.connect(self._node)
+
+        # We're using this "| sudo tee" construct because redirecting
+        # a sudo's output ("sudo echo xxx > /path/to/file") does not
+        # work on most platforms...
+        (ret, _, _) = \
+            ssh.exec_command_lxc('echo "{0}" | sudo tee {1}'.
+                                 format(self._vpp_config,
+                                        self._vpp_config_filename), lxc_name)
+
+        if ret != 0:
+            raise RuntimeError('Writing config file failed in {0} to node {1}'.
+                               format(lxc_name, self._hostname))
+
+        # Instead of restarting, we'll do separate start and stop
+        # actions. This way we don't care whether VPP was running
+        # to begin with.
+        ssh.exec_command_lxc('service {0} stop'.
+                             format(self._vpp_service_name), lxc_name)
+        (ret, _, _) = \
+            ssh.exec_command_lxc('service {0} start'.
+                                 format(self._vpp_service_name), lxc_name)
+        if ret != 0:
+            raise RuntimeError('Restarting VPP failed in {0} on node {1}'.
+                               format(lxc_name, self._hostname))
+
+        # Sleep <waittime> seconds, up to <retry> times,
+        # and verify if VPP is running.
+        for _ in range(retries):
+            time.sleep(waittime)
+            (ret, _, _) = \
+                ssh.exec_command_lxc('echo show hardware-interfaces | '
+                                     'nc 0 5002 || echo "VPP not yet running"',
+                                     lxc_name)
+            if ret == 0:
+                break
+        else:
+            raise RuntimeError('VPP failed to restart in {0} on node {1}'.
+                               format(lxc_name, self._hostname))
