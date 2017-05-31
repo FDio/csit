@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa5d592f_ea783c2d",
+        "filename": "bootstrap-nsh_sfc-functional-virl.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 196,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-05-31T05:13:50Z",
+      "side": 1,
+      "message": "This must be before starting simulation. Please move on line 180",
+      "range": {
+        "startLine": 195,
+        "startChar": 0,
+        "endLine": 196,
+        "endChar": 30
+      },
+      "revId": "d2d43f5a971c03953b21dd3cf40be789d2fb82bc",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
