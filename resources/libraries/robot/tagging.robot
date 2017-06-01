@@ -21,7 +21,7 @@
 
 *** Keywords ***
 
-| VLAN subinterfaces initialized on 3-node topology
+| Initialize VLAN sub-interfaces in 3-node circular topology
 | | [Arguments] | ${DUT1} | ${INT1} | ${DUT2} | ${INT2} | ${SUB_ID}
 | | ...         | ${OUTER_VLAN_ID} | ${INNER_VLAN_ID} | ${TYPE_SUBIF}
 | | [Documentation] | *Create two subinterfaces on DUTs.*
@@ -59,7 +59,7 @@
 | | Set Test Variable | ${subif_name_2}
 | | Set Test Variable | ${subif_index_2}
 
-| VLAN dot1q subinterfaces initialized on 3-node topology
+| Initialize VLAN dot1q sub-interfaces in 3-node circular topology
 | | [Arguments] | ${DUT1} | ${INT1} | ${DUT2} | ${INT2} | ${SUB_ID}
 | | [Documentation] | *Create two dot1q subinterfaces on DUTs.*
 | | ...
@@ -78,7 +78,7 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| VLAN dot1q subinterfaces initialized on 3-node topology \
+| | ... | \| Initialize VLAN dot1q sub-interfaces in 3-node circular topology \
 | | ... | \| ${nodes['DUT1']} \| ${dut1_if2} \| ${nodes['DUT2']} \
 | | ... | \| ${dut1_if2} \| 10 \|
 | | ...
@@ -95,7 +95,7 @@
 | | Set Test Variable | ${subif_name_2}
 | | Set Test Variable | ${subif_index_2}
 
-| L2 tag rewrite method setup on interfaces
+| Configure L2 tag rewrite method on interfaces
 | | [Arguments] | ${DUT1} | ${SUB_INT1} | ${DUT2} | ${SUB_INT2}
 | | ...         | ${TAG_REWRITE_METHOD}
 | | [Documentation] | *Setup tag rewrite on sub-interfaces on DUTs.*
@@ -110,7 +110,7 @@
 | | L2 Vlan tag rewrite | ${DUT1} | ${SUB_INT1} | ${TAG_REWRITE_METHOD}
 | | L2 Vlan tag rewrite | ${DUT2} | ${SUB_INT2} | ${TAG_REWRITE_METHOD}
 
-| Interfaces and VLAN sub-interfaces inter-connected using L2-xconnect
+| Connect interfaces and VLAN sub-interfaces using L2XC
 | | [Arguments] | ${DUT1} | ${INT1} | ${SUB_INT1}
 | | ...         | ${DUT2} | ${INT2} | ${SUB_INT2}
 | | [Documentation] | *Add interface and subinterface to bidirectional
@@ -124,10 +124,10 @@
 | | ... | - INT2 - Interface to add to the cross-connect.
 | | ... | - SUB_INT2 - Sub-interface to add to the cross-connect.
 | | ...
-| | L2 setup xconnect on DUT | ${DUT1} | ${INT1} | ${SUB_INT1}
-| | L2 setup xconnect on DUT | ${DUT2} | ${INT2} | ${SUB_INT2}
+| | Configure L2XC | ${DUT1} | ${INT1} | ${SUB_INT1}
+| | Configure L2XC | ${DUT2} | ${INT2} | ${SUB_INT2}
 
-| Vlan Subinterface Created
+| Create vlan sub-interface
 | | [Documentation] | Create VLAN sub-interface on DUT and set admin status up.
 | | ...
 | | ... | *Arguments:*
@@ -141,7 +141,7 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Vlan Subinterface Created \| ${nodes['DUT1']} \| port3 \| 100 \|
+| | ... | \| Create vlan sub-interface \| ${nodes['DUT1']} \| port3 \| 100 \|
 | | ...
 | | [Arguments] | ${dut_node} | ${interface} | ${vlan_id}
 | | [Return] | ${vlan_name} | ${vlan_index}
@@ -150,7 +150,7 @@
 | | ... | ${dut_node} | ${interface_name} | ${vlan_id}
 | | Set Interface State | ${dut_node} | ${vlan_index} | up
 
-| Tagged Subinterface Created
+| Create tagged sub-interface
 | | [Documentation] | Create tagged sub-interface on DUT. Type of tagged \
 | | ... | sub-intreface depends on type_subif value:
 | | ... | - one_tag -> VLAN
@@ -171,7 +171,7 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Tagged Subinterface Created \| ${nodes['DUT1']} \| port1 \| 10 \
+| | ... | \| Create tagged sub-interface \| ${nodes['DUT1']} \| port1 \| 10 \
 | | ... | \| outer_vlan_id=100 \| inner_vlan_id=200 \
 | | ... | \| type_subif=two_tags dot1ad \|
 | | ...
@@ -185,7 +185,7 @@
 | | ... | outer_vlan_id=${outer_vlan_id} | inner_vlan_id=${inner_vlan_id}
 | | ... | type_subif=${type_subif}
 
-| L2 Tag Rewrite Method Is Set On Interface
+| Configure L2 tag rewrite method on interface
 | | [Documentation] | Set L2 tag rewrite on (sub-)interface on DUT
 | | ...
 | | ... | *Arguments:*
@@ -204,9 +204,9 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| L2 Tag Rewrite Method Is Set On Interface \| ${nodes['DUT1']} \
+| | ... | \| Configure L2 tag rewrite method on interface \| ${nodes['DUT1']} \
 | | ... | \| 9 \| pop-1 \|
-| | ... | \| L2 Tag Rewrite Method Is Set On Interface \| ${nodes['DUT2']} \
+| | ... | \| Configure L2 tag rewrite method on interface \| ${nodes['DUT2']} \
 | | ... | \| 10 \| translate-1-2 \| push_dot1q=${False} \| tag1_id=10 \
 | | ... | \| tag1_id=20 \|
 | | ...

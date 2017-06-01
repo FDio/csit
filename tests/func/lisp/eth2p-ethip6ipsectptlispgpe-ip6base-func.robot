@@ -38,9 +38,9 @@
 | Variables | resources/test_data/lisp/ipv6_lispgpe_ipv6/ipv6_lispgpe_ipsec_ipv6.py
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | VM_ENV | LISP | SKIP_VPP_PATCH
 | ...
-| Test Setup | Run Keywords | Func Test Setup
+| Test Setup | Run Keywords | Set up functional test
 | ...        | AND          | Vpp All Ra Suppress Link Layer | ${nodes}
-| Test Teardown | Func Test Teardown
+| Test Teardown | Tear down functional test
 | ...
 | Documentation | *IPv6 - ip6-ipsec-lispgpe-ip6 - main fib,
 | ... | vrf (gpe_vni-to-vrf), phy2lisp, virt2lisp*
@@ -80,26 +80,26 @@
 | | ${encr_alg}= | Crypto Alg AES CBC 128
 | | ${auth_alg}= | Integ Alg SHA1 96
 | | Given Setup Topology
-| | And Set up LISP GPE topology
+| | And Configure LISP GPE topology in 3-node circular topology
 | | ... | ${dut1_node} | ${dut1_to_dut2} | ${NONE}
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${NONE}
 | | ... | ${duts_locator_set} | ${dut1_ip6_eid} | ${dut2_ip6_eid}
 | | ... | ${dut1_to_dut2_ip6_static_adjacency}
 | | ... | ${dut2_to_dut1_ip6_static_adjacency}
-| | And IPsec Generate Keys | ${encr_alg} | ${auth_alg}
-| | When VPP Setup IPsec Manual Keyed Connection
+| | And Generate keys for IPSec | ${encr_alg} | ${auth_alg}
+| | When Configure manual keyed connection for IPSec
 | | ... | ${dut1_node} | ${dut1_to_dut2} | ${encr_alg} | ${encr_key}
 | | ... | ${auth_alg} | ${auth_key} | ${dut1_spi} | ${dut2_spi}
 | | ... | ${dut1_to_dut2_ip6} | ${dut2_to_dut1_ip6}
-| | And VPP Setup IPsec Manual Keyed Connection
+| | And Configure manual keyed connection for IPSec
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${encr_alg} | ${encr_key}
 | | ... | ${auth_alg} | ${auth_key} | ${dut2_spi} | ${dut1_spi}
 | | ... | ${dut2_to_dut1_ip6} | ${dut1_to_dut2_ip6}
-| | Then Send Packet And Check Headers
+| | Then Send packet and verify headers
 | | ... | ${tg_node} | ${tg1_ip6} | ${tg2_ip6}
 | | ... | ${tg_to_dut1} | ${tg_to_dut1_mac} | ${dut1_to_tg_mac}
 | | ... | ${tg_to_dut2} | ${dut2_to_tg_mac} | ${tg_to_dut2_mac}
-| | And Send Packet And Check Headers
+| | And Send packet and verify headers
 | | ... | ${tg_node} | ${tg2_ip6} | ${tg1_ip6}
 | | ... | ${tg_to_dut2} | ${tg_to_dut2_mac} | ${dut2_to_tg_mac}
 | | ... | ${tg_to_dut1} | ${dut1_to_tg_mac} | ${tg_to_dut1_mac}
@@ -120,7 +120,7 @@
 | | ${encr_alg}= | Crypto Alg AES CBC 128
 | | ${auth_alg}= | Integ Alg SHA1 96
 | | Given Setup Topology
-| | And Set up LISP GPE topology
+| | And Configure LISP GPE topology in 3-node circular topology
 | | ... | ${dut1_node} | ${dut1_to_dut2} | ${NONE}
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${NONE}
 | | ... | ${duts_locator_set} | ${dut1_ip6_eid} | ${dut2_ip6_eid}
@@ -128,29 +128,29 @@
 | | ... | ${dut2_to_dut1_ip6_static_adjacency}
 | | ${lisp_if_idx}= | resources.libraries.python.InterfaceUtil.get sw if index
 | | ... | ${dut1_node} | lisp_gpe0
-| | And IPsec Generate Keys | ${encr_alg} | ${auth_alg}
-| | When VPP Setup IPsec Manual Keyed Connection
+| | And Generate keys for IPSec | ${encr_alg} | ${auth_alg}
+| | When Configure manual keyed connection for IPSec
 | | ... | ${dut1_node} | ${lisp_if_idx} | ${encr_alg} | ${encr_key}
 | | ... | ${auth_alg} | ${auth_key} | ${dut1_spi} | ${dut2_spi} | ${tg1_ip6}
 | | ... | ${tg2_ip6}
-| | And VPP Setup IPsec Manual Keyed Connection
+| | And Configure manual keyed connection for IPSec
 | | ... | ${dut2_node} | ${lisp_if_idx} | ${encr_alg} | ${encr_key}
 | | ... | ${auth_alg} | ${auth_key} | ${dut2_spi} | ${dut1_spi} | ${tg2_ip6}
 | | ... | ${tg1_ip6}
-| | Then Send Packet And Check Headers
+| | Then Send packet and verify headers
 | | ... | ${tg_node} | ${tg1_ip6} | ${tg2_ip6}
 | | ... | ${tg_to_dut1} | ${tg_to_dut1_mac} | ${dut1_to_tg_mac}
 | | ... | ${tg_to_dut2} | ${dut2_to_tg_mac} | ${tg_to_dut2_mac}
-| | And Send Packet And Check Headers
+| | And Send packet and verify headers
 | | ... | ${tg_node} | ${tg2_ip6} | ${tg1_ip6}
 | | ... | ${tg_to_dut2} | ${tg_to_dut2_mac} | ${dut2_to_tg_mac}
 | | ... | ${tg_to_dut1} | ${dut1_to_tg_mac} | ${tg_to_dut1_mac}
 
 *** Keywords ***
 | Setup Topology
-| | Path for 3-node testing is set
+| | Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
-| | Interfaces in 3-node path are up
+| | Set interfaces in 3-node circular topology up
 | | Vpp Set If IPv6 Addr | ${dut1_node} | ${dut1_to_dut2} | ${dut1_to_dut2_ip6}
 | | ... | ${prefix6}
 | | Vpp Set If IPv6 Addr | ${dut1_node} | ${dut1_to_dut2} | ${dut1_to_dut2_ip6}

@@ -28,8 +28,8 @@
 | Resource | resources/libraries/robot/qemu.robot
 | Resource | resources/libraries/robot/bridge_domain.robot
 | Force Tags | VM_ENV | HW_ENV | 3_NODE_DOUBLE_LINK_TOPO
-| Test Setup | Func Test Setup
-| Test Teardown | Func Test Teardown
+| Test Setup | Set up functional test
+| Test Teardown | Tear down functional test
 | Documentation | *IPv4 routing test cases with vhost user interface*
 | ...
 | ... | RFC791 IPv4, RFC826 ARP, RFC792 ICMPv4. Encapsulations: Eth-IPv4-ICMPv4
@@ -61,12 +61,12 @@
 | | ... | Both have IP addresses from same network. On VM is set bridge to pass
 | | ... | packet from a one vhost user interface to another one.
 | | [Teardown] | Run Keywords
-| | ... | Stop and Clear QEMU | ${dut_node} | ${vm_node} | AND
-| | ... | Func Test Teardown
+| | ... | Stop and clear QEMU | ${dut_node} | ${vm_node} | AND
+| | ... | Tear down functional test
 | |
-| | Given Path for 2-node testing is set
+| | Given Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
-| | And Interfaces in 2-node path are UP
+| | And Set interfaces in 2-node circular topology up
 | | ${vhost1}= | And Vpp Create Vhost User Interface | ${dut_node} | ${sock1}
 | | ${vhost2}= | And Vpp Create Vhost User Interface | ${dut_node} | ${sock2}
 | | And Set Interface State | ${dut_node} | ${vhost1} | up
@@ -75,7 +75,7 @@
 | | ... | ${vhost2} | ${fib_table_2}
 | | And Assign Interface To Fib Table | ${dut_node}
 | | ... | ${dut_to_tg_if2} | ${fib_table_2}
-| | And IP addresses are set on interfaces
+| | And Configure IP addresses on interfaces
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${net1_ip1} | ${prefix_length}
 | | ... | ${dut_node} | ${vhost1} | ${net2_ip1} | ${prefix_length}
 | | ... | ${dut_node} | ${vhost2} | ${net2_ip2} | ${prefix_length}
@@ -90,9 +90,9 @@
 | | Add IP Neighbor | ${dut_node} | ${vhost1} | ${net2_ip2} | ${vhost2_mac}
 | | Add IP Neighbor | ${dut_node} | ${dut_to_tg_if2} | ${net3_ip2}
 | | ... | ${tg_to_dut_if2_mac}
-| | When VM for Vhost L2BD forwarding is setup
+| | When Configure VM for vhost L2BD forwarding
 | | ... | ${dut_node} | ${sock1} | ${sock2}
-| | Then Send Packet And Check Headers
+| | Then Send packet and verify headers
 | | ... | ${tg_node} | ${net1_ip2} | ${net3_ip2}
 | | ... | ${tg_to_dut_if1} | ${tg_to_dut_if1_mac} | ${dut_to_tg_if1_mac}
 | | ... | ${tg_to_dut_if2} | ${dut_to_tg_if2_mac} | ${tg_to_dut_if2_mac}

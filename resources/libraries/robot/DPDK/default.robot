@@ -22,7 +22,7 @@
 | Library | Collections
 
 *** Keywords ***
-| Start L2FWD '${m}' worker threads and rxqueues '${n}' with jumbo frames '${b}'
+| Start L2FWD '${m}' worker threads and '${n}' rxqueues with jumbo frames '${b}'
 | | [Documentation] | Start the l2fwd with M worker threads without SMT
 | | ... | and rxqueues N and B (yes or no) jumbo frames in all DUTs.
 | | ...
@@ -44,7 +44,7 @@
 | | Start the l2fwd test | ${dut2} | ${dut2_cpus} | ${nb_cores} | ${rxqueues}
 | | ... | ${jumbo_frames}
 
-| Start L2FWD '${m}' worker threads using SMT and rxqueues '${n}' with jumbo frames '${b}'
+| Start L2FWD '${m}' worker threads using SMT and '${n}' rxqueues with jumbo frames '${b}'
 | | [Documentation] | Start the l2fwd with M worker threads with SMT
 | | ... | and rxqueues N and B (yes or no) jumbo frames in all DUTs.
 | | ...
@@ -67,8 +67,8 @@
 | | Start the l2fwd test | ${dut2} | ${dut2_cpus} | ${nb_cores} | ${rxqueues}
 | | ... | ${jumbo_frames}
 
-| Start L3FWD '${m}' worker threads and rxqueues '${n}' with jumbo frames '${b}'
-| | [Documentation] |  Start the l3fwd with M worker threads without SMT
+| Start L3FWD '${m}' worker threads and '${n}' rxqueues with jumbo frames '${b}'
+| | [Documentation] | Start the l3fwd with M worker threads without SMT
 | | ... | and rxqueues N and B(yes or no) jumbo frames in all DUTs.
 | | ${cpu_cnt}= | Convert To Integer | ${m}
 | | ${nb_cores}= | Convert to String | ${m}
@@ -87,8 +87,8 @@
 | | Start the l3fwd test | ${nodes} | ${dut2} | ${dut2_if1} | ${dut2_if2}
 | | ... | ${nb_cores} | ${dut2_cpus} | ${rxqueues} | ${jumbo_frames}
 
-| Start L3FWD '${m}' worker threads using SMT and rxqueues '${n}' with jumbo frames '${b}'
-| | [Documentation] |  Start the l3fwd with M worker threads with SMT
+| Start L3FWD '${m}' worker threads using SMT and '${n}' rxqueues with jumbo frames '${b}'
+| | [Documentation] | Start the l3fwd with M worker threads with SMT
 | | ... | and rxqueues N and B(yes or no) jumbo frames in all DUTs.
 | | ${cpu_cnt}= | Convert To Integer | ${m}
 | | ${nb_cores_int}= | Evaluate | ${cpu_cnt}*2

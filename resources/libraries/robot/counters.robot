@@ -21,12 +21,12 @@
 | | [Arguments] | ${nodes}
 | | Vpp Nodes Clear Interface Counters | ${nodes}
 
-| Vpp dump stats
+| Get interface statistics
 | | [Documentation] | Dump stats table on VPP node
 | | [Arguments] | ${node}
 | | Vpp Dump Stats Table | ${node}
 
-| Vpp get interface ipv6 counter
+| Get interface ipv6 counter
 | | [Documentation] | Return IPv6 statistics for node interface
 | | [Arguments] | ${node} | ${interface}
 | | ${ipv6_counter}= | Vpp Get Ipv6 Interface Counter | ${node} | ${interface}
@@ -43,9 +43,9 @@
 | | Sleep | 10 | Waiting for statistics to be collected
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
-| | | Vpp show stats | ${nodes['${dut}']}
+| | | Show vpp statistics | ${nodes['${dut}']}
 
-| Vpp show stats
+| Show vpp statistics
 | | [Documentation] | Show [error, hardware, interface] stats
 | | [Arguments] | ${node}
 | | Vpp Show Errors | ${node}
@@ -58,7 +58,7 @@
 | | Clear runtime counters on all DUTs
 | | Clear interface counters on all DUTs
 | | Clear hardware counters on all DUTs
-| | Clear errors counters on all DUTs
+| | Clear error counters on all DUTs
 
 | Clear runtime counters on all DUTs
 | | [Documentation] | Clear VPP runtime counters on all DUTs
@@ -78,7 +78,7 @@
 | | :FOR | ${dut} | IN | @{duts}
 | | | Vpp clear hardware counters | ${nodes['${dut}']}
 
-| Clear errors counters on all DUTs
+| Clear error counters on all DUTs
 | | [Documentation] | Clear VPP errors counters on all DUTs
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}

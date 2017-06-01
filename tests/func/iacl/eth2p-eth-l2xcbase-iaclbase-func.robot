@@ -21,8 +21,8 @@
 | Library | resources.libraries.python.Classify.Classify
 | Library | resources.libraries.python.Trace
 | Force Tags | HW_ENV | VM_ENV | 3_NODE_SINGLE_LINK_TOPO | SKIP_VPP_PATCH
-| Test Setup | Func Test Setup
-| Test Teardown | Func Test Teardown
+| Test Setup | Set up functional test
+| Test Teardown | Tear down functional test
 | Documentation | *Ingress ACL test cases*
 | ...
 | ... | *[Top] Network Topologies:* TG - DUT1 - DUT2 - TG
@@ -42,14 +42,14 @@
 | | ... | [Top] TG-DUT1-DUT2-TG.
 | | ... | [Cfg] On DUT1 add source MAC address to classify table with 'deny'.
 | | ... | [Ver] Make TG verify matching packets are dropped.
-| | Given Path for 3-node testing is set
+| | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
-| | And Interfaces in 3-node path are up
-| | And L2 setup xconnect on DUT
+| | And Set interfaces in 3-node circular topology up
+| | And Configure L2XC
 | | ... | ${dut1_node} | ${dut1_to_dut2} | ${dut1_to_tg}
-| | And L2 setup xconnect on DUT
+| | And Configure L2XC
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${dut2_to_tg}
-| | Then Send and receive ICMP Packet
+| | Then Send ICMP packet and verify received packet
 | | ... | ${tg_node} | ${tg_to_dut1} | ${tg_to_dut2}
 | | ${table_index} | ${skip_n} | ${match_n}=
 | | ... | When Vpp Creates Classify Table L2 | ${dut1_node} | src
@@ -58,7 +58,7 @@
 | | ... | src | ${tg_to_dut1_mac}
 | | And Vpp Enable Input ACL Interface
 | | ... | ${dut1_node} | ${dut1_to_tg} | ${l2_table} | ${table_index}
-| | Then Send and receive ICMP Packet should fail
+| | Then ICMP packet transmission should fail
 | | ... | ${tg_node} | ${tg_to_dut1} | ${tg_to_dut2}
 
 | TC02: DUT with iACL MAC dst-addr drops matching pkts
@@ -67,14 +67,14 @@
 | | ... | [Cfg] On DUT1 add destination MAC address to classify
 | | ... |       table with 'deny'.
 | | ... | [Ver] Make TG verify matching packets are dropped.
-| | Given Path for 3-node testing is set
+| | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
-| | And Interfaces in 3-node path are up
-| | And L2 setup xconnect on DUT
+| | And Set interfaces in 3-node circular topology up
+| | And Configure L2XC
 | | ... | ${dut1_node} | ${dut1_to_dut2} | ${dut1_to_tg}
-| | And L2 setup xconnect on DUT
+| | And Configure L2XC
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${dut2_to_tg}
-| | Then Send and receive ICMP Packet
+| | Then Send ICMP packet and verify received packet
 | | ... | ${tg_node} | ${tg_to_dut1} | ${tg_to_dut2}
 | | ${table_index} | ${skip_n} | ${match_n}=
 | | ... | When Vpp Creates Classify Table L2 | ${dut1_node} | dst
@@ -83,7 +83,7 @@
 | | ... | dst | ${tg_to_dut2_mac}
 | | And Vpp Enable Input ACL Interface
 | | ... | ${dut1_node} | ${dut1_to_tg} | ${l2_table} | ${table_index}
-| | Then Send and receive ICMP Packet should fail
+| | Then ICMP packet transmission should fail
 | | ... | ${tg_node} | ${tg_to_dut1} | ${tg_to_dut2}
 
 | TC03: DUT with iACL MAC src-addr and dst-addr drops matching pkts
@@ -92,14 +92,14 @@
 | | ... | [Cfg] On DUT1 add source and destination MAC address to classify
 | | ... |       table with 'deny'.
 | | ... | [Ver] Make TG verify matching packets are dropped.
-| | Given Path for 3-node testing is set
+| | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
-| | And Interfaces in 3-node path are up
-| | And L2 setup xconnect on DUT
+| | And Set interfaces in 3-node circular topology up
+| | And Configure L2XC
 | | ... | ${dut1_node} | ${dut1_to_dut2} | ${dut1_to_tg}
-| | And L2 setup xconnect on DUT
+| | And Configure L2XC
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${dut2_to_tg}
-| | Then Send and receive ICMP Packet
+| | Then Send ICMP packet and verify received packet
 | | ... | ${tg_node} | ${tg_to_dut1} | ${tg_to_dut2}
 | | ${table_index_1} | ${skip_n_1} | ${match_n_1}=
 | | ... | When Vpp Creates Classify Table L2 | ${dut1_node} | src
@@ -115,7 +115,7 @@
 | | ... | ${dut1_node} | ${dut1_to_tg} | ${l2_table} | ${table_index_1}
 | | And Vpp Enable Input ACL Interface
 | | ... | ${dut1_node} | ${dut1_to_tg} | ${l2_table} | ${table_index_2}
-| | Then Send and receive ICMP Packet should fail
+| | Then ICMP packet transmission should fail
 | | ... | ${tg_node} | ${tg_to_dut1} | ${tg_to_dut2}
 
 | TC04: DUT with iACL EtherType drops matching pkts
@@ -123,14 +123,14 @@
 | | ... | [Top] TG-DUT1-DUT2-TG.
 | | ... | [Cfg] On DUT1 add EtherType IPv4(0x0800) to classify table with 'deny'.
 | | ... | [Ver] Make TG verify matching packets are dropped.
-| | Given Path for 3-node testing is set
+| | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
-| | And Interfaces in 3-node path are up
-| | And L2 setup xconnect on DUT
+| | And Set interfaces in 3-node circular topology up
+| | And Configure L2XC
 | | ... | ${dut1_node} | ${dut1_to_dut2} | ${dut1_to_tg}
-| | And L2 setup xconnect on DUT
+| | And Configure L2XC
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${dut2_to_tg}
-| | Then Send and receive ICMP Packet
+| | Then Send ICMP packet and verify received packet
 | | ... | ${tg_node} | ${tg_to_dut1} | ${tg_to_dut2}
 | | ${table_index} | ${skip_n} | ${match_n}=
 | | ... | When Vpp Creates Classify Table Hex
@@ -140,5 +140,5 @@
 | | ... | 0000000000000000000000000800
 | | And Vpp Enable Input ACL Interface
 | | ... | ${dut1_node} | ${dut1_to_tg} | ${l2_table} | ${table_index}
-| | Then Send and receive ICMP Packet should fail
+| | Then ICMP packet transmission should fail
 | | ... | ${tg_node} | ${tg_to_dut1} | ${tg_to_dut2}

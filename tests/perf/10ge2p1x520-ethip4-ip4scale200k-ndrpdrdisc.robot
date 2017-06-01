@@ -17,12 +17,12 @@
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDRDISC
 | ... | NIC_Intel-X520-DA2 | ETH | IP4FWD | SCALE | FIB_200K
 | ...
-| Suite Setup | 3-node Performance Suite Setup with DUT's NIC model
+| Suite Setup | Set up 3-node performance topology with DUT's NIC model
 | ... | L3 | Intel-X520-DA2
-| Suite Teardown | 3-node Performance Suite Teardown
+| Suite Teardown | Tear down 3-node performance topology
 | ...
-| Test Setup | Performance test setup
-| Test Teardown | Performance test teardown | ${min_rate}pps | ${framesize}
+| Test Setup | Set up performance test
+| Test Teardown | Tear down performance discovery test | ${min_rate}pps | ${framesize}
 | ... | ${traffic_profile}
 | ...
 | Documentation | *RFC2544: Pkt throughput IPv4 routing test cases*
@@ -68,11 +68,11 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | And Scale IPv4 forwarding initialized in a 3-node circular topology
+| | And Initialize IPv4 forwarding with scaling in 3-node circular topology
 | | ... | ${rts_per_flow}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile}
@@ -90,11 +90,11 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | And Scale IPv4 forwarding initialized in a 3-node circular topology
+| | And Initialize IPv4 forwarding with scaling in 3-node circular topology
 | | ... | ${rts_per_flow}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile}
@@ -113,11 +113,11 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | And Scale IPv4 forwarding initialized in a 3-node circular topology
+| | And Initialize IPv4 forwarding with scaling in 3-node circular topology
 | | ... | ${rts_per_flow}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile}
@@ -135,11 +135,11 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | And Scale IPv4 forwarding initialized in a 3-node circular topology
+| | And Initialize IPv4 forwarding with scaling in 3-node circular topology
 | | ... | ${rts_per_flow}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile}
@@ -158,10 +158,10 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
+| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
 | | And Apply startup configuration on all VPP DUTs
-| | And Scale IPv4 forwarding initialized in a 3-node circular topology
+| | And Initialize IPv4 forwarding with scaling in 3-node circular topology
 | | ... | ${rts_per_flow}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile}
@@ -179,10 +179,10 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
+| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
 | | And Apply startup configuration on all VPP DUTs
-| | And Scale IPv4 forwarding initialized in a 3-node circular topology
+| | And Initialize IPv4 forwarding with scaling in 3-node circular topology
 | | ... | ${rts_per_flow}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile}
@@ -201,11 +201,11 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | And Scale IPv4 forwarding initialized in a 3-node circular topology
+| | And Initialize IPv4 forwarding with scaling in 3-node circular topology
 | | ... | ${rts_per_flow}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile}
@@ -223,11 +223,11 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | And Scale IPv4 forwarding initialized in a 3-node circular topology
+| | And Initialize IPv4 forwarding with scaling in 3-node circular topology
 | | ... | ${rts_per_flow}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile}
@@ -246,11 +246,11 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | And Scale IPv4 forwarding initialized in a 3-node circular topology
+| | And Initialize IPv4 forwarding with scaling in 3-node circular topology
 | | ... | ${rts_per_flow}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile}
@@ -268,11 +268,11 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | And Scale IPv4 forwarding initialized in a 3-node circular topology
+| | And Initialize IPv4 forwarding with scaling in 3-node circular topology
 | | ... | ${rts_per_flow}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile}
@@ -291,10 +291,10 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
+| | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
 | | And Apply startup configuration on all VPP DUTs
-| | And Scale IPv4 forwarding initialized in a 3-node circular topology
+| | And Initialize IPv4 forwarding with scaling in 3-node circular topology
 | | ... | ${rts_per_flow}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile}
@@ -312,10 +312,10 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
+| | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
 | | And Apply startup configuration on all VPP DUTs
-| | And Scale IPv4 forwarding initialized in a 3-node circular topology
+| | And Initialize IPv4 forwarding with scaling in 3-node circular topology
 | | ... | ${rts_per_flow}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile}
@@ -334,11 +334,11 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | And Scale IPv4 forwarding initialized in a 3-node circular topology
+| | And Initialize IPv4 forwarding with scaling in 3-node circular topology
 | | ... | ${rts_per_flow}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile}
@@ -356,11 +356,11 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | And Scale IPv4 forwarding initialized in a 3-node circular topology
+| | And Initialize IPv4 forwarding with scaling in 3-node circular topology
 | | ... | ${rts_per_flow}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile}
@@ -379,11 +379,11 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | And Scale IPv4 forwarding initialized in a 3-node circular topology
+| | And Initialize IPv4 forwarding with scaling in 3-node circular topology
 | | ... | ${rts_per_flow}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile}
@@ -401,11 +401,11 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | And Scale IPv4 forwarding initialized in a 3-node circular topology
+| | And Initialize IPv4 forwarding with scaling in 3-node circular topology
 | | ... | ${rts_per_flow}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile}
@@ -424,10 +424,10 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
+| | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
 | | And Apply startup configuration on all VPP DUTs
-| | And Scale IPv4 forwarding initialized in a 3-node circular topology
+| | And Initialize IPv4 forwarding with scaling in 3-node circular topology
 | | ... | ${rts_per_flow}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile}
@@ -445,10 +445,10 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
+| | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
 | | And Apply startup configuration on all VPP DUTs
-| | And Scale IPv4 forwarding initialized in a 3-node circular topology
+| | And Initialize IPv4 forwarding with scaling in 3-node circular topology
 | | ... | ${rts_per_flow}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile}

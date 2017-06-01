@@ -22,7 +22,7 @@
 | Resource | resources/libraries/robot/counters.robot
 | Suite Setup | Run Keywords | Setup Framework | ${nodes}
 | ...         | AND          | Setup All DUTs | ${nodes}
-| ...         | AND          | Setup all TGs before traffic script
+| ...         | AND          | Configure all TGs for traffic script
 | ...         | AND          | Update All Interface Data On All Nodes | ${nodes}
 | ...         | AND          | Setup nodes for macswap testing
 | Test Setup | Clear interface counters on all vpp nodes in topology | ${nodes}

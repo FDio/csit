@@ -16,13 +16,13 @@
 | Library | resources.libraries.python.QemuUtils
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDRDISC
 | ... | NIC_Intel-X520-DA2 | ETH | L2BDMACLRN | BASE | VHOST | VM
-| Suite Setup | 3-node Performance Suite Setup with DUT's NIC model
+| Suite Setup | Set up 3-node performance topology with DUT's NIC model
 | ... | L2 | Intel-X520-DA2
-| Suite Teardown | 3-node Performance Suite Teardown
-| Test Setup | Setup all DUTs before test
+| Suite Teardown | Tear down 3-node performance topology
+| Test Setup | Configure all DUTs before test
 | Test Teardown | Run Keywords
 | ... | Show Bridge Domain Data On All DUTs
-| ... | AND | Performance test with vhost and VM with dpdk-testpmd teardown
+| ... | AND | Tear down performance test with vhost and VM with dpdk-testpmd
 | ... | ${min_rate}pps | ${framesize}
 | ... | ${traffic_profile}
 | ... | dut1_node=${dut1} | dut1_vm_refs=${dut1_vm_refs}
@@ -81,12 +81,12 @@
 | | ${dut2_vm_refs}= | Create Dictionary
 | | Set Test Variable | ${dut1_vm_refs}
 | | Set Test Variable | ${dut2_vm_refs}
-| | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | When L2 bridge domains with Vhost-User for '2' VMs initialized in a 3-node circular topology
-| | And '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
+| | When Initialize L2 bridge domains with Vhost-User for '2' VMs in 3-node circular topology
+| | And Configure '2' guest VMs with dpdk-testpmd connected via vhost-user in 3-node circular topology
 | | Then Find NDR using binary search and pps
 | | ... | ${framesize} | ${binary_min} | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
@@ -107,12 +107,12 @@
 | | ${dut2_vm_refs}= | Create Dictionary
 | | Set Test Variable | ${dut1_vm_refs}
 | | Set Test Variable | ${dut2_vm_refs}
-| | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | When L2 bridge domains with Vhost-User for '2' VMs initialized in a 3-node circular topology
-| | And '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
+| | When Initialize L2 bridge domains with Vhost-User for '2' VMs in 3-node circular topology
+| | And Configure '2' guest VMs with dpdk-testpmd connected via vhost-user in 3-node circular topology
 | | Then Find PDR using binary search and pps
 | | ... | ${framesize} | ${binary_min} | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
@@ -134,12 +134,12 @@
 | | ${dut2_vm_refs}= | Create Dictionary
 | | Set Test Variable | ${dut1_vm_refs}
 | | Set Test Variable | ${dut2_vm_refs}
-| | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | When L2 bridge domains with Vhost-User for '2' VMs initialized in a 3-node circular topology
-| | And '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
+| | When Initialize L2 bridge domains with Vhost-User for '2' VMs in 3-node circular topology
+| | And Configure '2' guest VMs with dpdk-testpmd connected via vhost-user in 3-node circular topology
 | | Then Find NDR using binary search and pps
 | | ... | ${framesize} | ${binary_min} | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
@@ -160,12 +160,12 @@
 | | ${dut2_vm_refs}= | Create Dictionary
 | | Set Test Variable | ${dut1_vm_refs}
 | | Set Test Variable | ${dut2_vm_refs}
-| | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | When L2 bridge domains with Vhost-User for '2' VMs initialized in a 3-node circular topology
-| | And '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
+| | When Initialize L2 bridge domains with Vhost-User for '2' VMs in 3-node circular topology
+| | And Configure '2' guest VMs with dpdk-testpmd connected via vhost-user in 3-node circular topology
 | | Then Find PDR using binary search and pps
 | | ... | ${framesize} | ${binary_min} | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
@@ -188,12 +188,12 @@
 | | ${dut2_vm_refs}= | Create Dictionary
 | | Set Test Variable | ${dut1_vm_refs}
 | | Set Test Variable | ${dut2_vm_refs}
-| | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | When L2 bridge domains with Vhost-User for '2' VMs initialized in a 3-node circular topology
-| | And '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
+| | When Initialize L2 bridge domains with Vhost-User for '2' VMs in 3-node circular topology
+| | And Configure '2' guest VMs with dpdk-testpmd connected via vhost-user in 3-node circular topology
 | | Then Find NDR using binary search and pps
 | | ... | ${framesize} | ${binary_min} | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
@@ -215,12 +215,12 @@
 | | ${dut2_vm_refs}= | Create Dictionary
 | | Set Test Variable | ${dut1_vm_refs}
 | | Set Test Variable | ${dut2_vm_refs}
-| | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | When L2 bridge domains with Vhost-User for '2' VMs initialized in a 3-node circular topology
-| | And '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
+| | When Initialize L2 bridge domains with Vhost-User for '2' VMs in 3-node circular topology
+| | And Configure '2' guest VMs with dpdk-testpmd connected via vhost-user in 3-node circular topology
 | | Then Find PDR using binary search and pps
 | | ... | ${framesize} | ${binary_min} | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
@@ -242,12 +242,12 @@
 | | ${dut2_vm_refs}= | Create Dictionary
 | | Set Test Variable | ${dut1_vm_refs}
 | | Set Test Variable | ${dut2_vm_refs}
-| | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | When L2 bridge domains with Vhost-User for '2' VMs initialized in a 3-node circular topology
-| | And '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
+| | When Initialize L2 bridge domains with Vhost-User for '2' VMs in 3-node circular topology
+| | And Configure '2' guest VMs with dpdk-testpmd connected via vhost-user in 3-node circular topology
 | | Then Find NDR using binary search and pps
 | | ... | ${framesize} | ${binary_min} | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
@@ -268,12 +268,12 @@
 | | ${dut2_vm_refs}= | Create Dictionary
 | | Set Test Variable | ${dut1_vm_refs}
 | | Set Test Variable | ${dut2_vm_refs}
-| | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | When L2 bridge domains with Vhost-User for '2' VMs initialized in a 3-node circular topology
-| | And '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
+| | When Initialize L2 bridge domains with Vhost-User for '2' VMs in 3-node circular topology
+| | And Configure '2' guest VMs with dpdk-testpmd connected via vhost-user in 3-node circular topology
 | | Then Find PDR using binary search and pps
 | | ... | ${framesize} | ${binary_min} | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
@@ -295,12 +295,12 @@
 | | ${dut2_vm_refs}= | Create Dictionary
 | | Set Test Variable | ${dut1_vm_refs}
 | | Set Test Variable | ${dut2_vm_refs}
-| | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | When L2 bridge domains with Vhost-User for '2' VMs initialized in a 3-node circular topology
-| | And '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
+| | When Initialize L2 bridge domains with Vhost-User for '2' VMs in 3-node circular topology
+| | And Configure '2' guest VMs with dpdk-testpmd connected via vhost-user in 3-node circular topology
 | | Then Find NDR using binary search and pps
 | | ... | ${framesize} | ${binary_min} | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
@@ -321,12 +321,12 @@
 | | ${dut2_vm_refs}= | Create Dictionary
 | | Set Test Variable | ${dut1_vm_refs}
 | | Set Test Variable | ${dut2_vm_refs}
-| | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | When L2 bridge domains with Vhost-User for '2' VMs initialized in a 3-node circular topology
-| | And '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
+| | When Initialize L2 bridge domains with Vhost-User for '2' VMs in 3-node circular topology
+| | And Configure '2' guest VMs with dpdk-testpmd connected via vhost-user in 3-node circular topology
 | | Then Find PDR using binary search and pps
 | | ... | ${framesize} | ${binary_min} | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
@@ -349,12 +349,12 @@
 | | ${dut2_vm_refs}= | Create Dictionary
 | | Set Test Variable | ${dut1_vm_refs}
 | | Set Test Variable | ${dut2_vm_refs}
-| | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | When L2 bridge domains with Vhost-User for '2' VMs initialized in a 3-node circular topology
-| | And '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
+| | When Initialize L2 bridge domains with Vhost-User for '2' VMs in 3-node circular topology
+| | And Configure '2' guest VMs with dpdk-testpmd connected via vhost-user in 3-node circular topology
 | | Then Find NDR using binary search and pps
 | | ... | ${framesize} | ${binary_min} | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
@@ -376,12 +376,12 @@
 | | ${dut2_vm_refs}= | Create Dictionary
 | | Set Test Variable | ${dut1_vm_refs}
 | | Set Test Variable | ${dut2_vm_refs}
-| | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | When L2 bridge domains with Vhost-User for '2' VMs initialized in a 3-node circular topology
-| | And '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
+| | When Initialize L2 bridge domains with Vhost-User for '2' VMs in 3-node circular topology
+| | And Configure '2' guest VMs with dpdk-testpmd connected via vhost-user in 3-node circular topology
 | | Then Find PDR using binary search and pps
 | | ... | ${framesize} | ${binary_min} | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
@@ -403,12 +403,12 @@
 | | ${dut2_vm_refs}= | Create Dictionary
 | | Set Test Variable | ${dut1_vm_refs}
 | | Set Test Variable | ${dut2_vm_refs}
-| | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | When L2 bridge domains with Vhost-User for '2' VMs initialized in a 3-node circular topology
-| | And '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
+| | When Initialize L2 bridge domains with Vhost-User for '2' VMs in 3-node circular topology
+| | And Configure '2' guest VMs with dpdk-testpmd connected via vhost-user in 3-node circular topology
 | | Then Find NDR using binary search and pps
 | | ... | ${framesize} | ${binary_min} | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
@@ -429,12 +429,12 @@
 | | ${dut2_vm_refs}= | Create Dictionary
 | | Set Test Variable | ${dut1_vm_refs}
 | | Set Test Variable | ${dut2_vm_refs}
-| | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | When L2 bridge domains with Vhost-User for '2' VMs initialized in a 3-node circular topology
-| | And '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
+| | When Initialize L2 bridge domains with Vhost-User for '2' VMs in 3-node circular topology
+| | And Configure '2' guest VMs with dpdk-testpmd connected via vhost-user in 3-node circular topology
 | | Then Find PDR using binary search and pps
 | | ... | ${framesize} | ${binary_min} | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
@@ -456,12 +456,12 @@
 | | ${dut2_vm_refs}= | Create Dictionary
 | | Set Test Variable | ${dut1_vm_refs}
 | | Set Test Variable | ${dut2_vm_refs}
-| | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | When L2 bridge domains with Vhost-User for '2' VMs initialized in a 3-node circular topology
-| | And '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
+| | When Initialize L2 bridge domains with Vhost-User for '2' VMs in 3-node circular topology
+| | And Configure '2' guest VMs with dpdk-testpmd connected via vhost-user in 3-node circular topology
 | | Then Find NDR using binary search and pps
 | | ... | ${framesize} | ${binary_min} | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
@@ -482,12 +482,12 @@
 | | ${dut2_vm_refs}= | Create Dictionary
 | | Set Test Variable | ${dut1_vm_refs}
 | | Set Test Variable | ${dut2_vm_refs}
-| | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | When L2 bridge domains with Vhost-User for '2' VMs initialized in a 3-node circular topology
-| | And '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
+| | When Initialize L2 bridge domains with Vhost-User for '2' VMs in 3-node circular topology
+| | And Configure '2' guest VMs with dpdk-testpmd connected via vhost-user in 3-node circular topology
 | | Then Find PDR using binary search and pps
 | | ... | ${framesize} | ${binary_min} | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
@@ -510,12 +510,12 @@
 | | ${dut2_vm_refs}= | Create Dictionary
 | | Set Test Variable | ${dut1_vm_refs}
 | | Set Test Variable | ${dut2_vm_refs}
-| | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | When L2 bridge domains with Vhost-User for '2' VMs initialized in a 3-node circular topology
-| | And '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
+| | When Initialize L2 bridge domains with Vhost-User for '2' VMs in 3-node circular topology
+| | And Configure '2' guest VMs with dpdk-testpmd connected via vhost-user in 3-node circular topology
 | | Then Find NDR using binary search and pps
 | | ... | ${framesize} | ${binary_min} | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
@@ -537,12 +537,12 @@
 | | ${dut2_vm_refs}= | Create Dictionary
 | | Set Test Variable | ${dut1_vm_refs}
 | | Set Test Variable | ${dut2_vm_refs}
-| | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | When L2 bridge domains with Vhost-User for '2' VMs initialized in a 3-node circular topology
-| | And '2' Guest VMs with dpdk-testpmd connected via vhost-user is setup in a 3-node circular topology
+| | When Initialize L2 bridge domains with Vhost-User for '2' VMs in 3-node circular topology
+| | And Configure '2' guest VMs with dpdk-testpmd connected via vhost-user in 3-node circular topology
 | | Then Find PDR using binary search and pps
 | | ... | ${framesize} | ${binary_min} | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
