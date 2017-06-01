@@ -33,14 +33,14 @@
 # ===================
 | TC01: Honeycomb persists configuration through restart of both Honeycomb and VPP
 | | [Documentation] | Checks if Honeycomb maintains configuration after both\
-| | ... | Honeycomb and VPP are restarted.
+| | ... | Restart Honeycomb and VPP.
 | | [Tags] | HC_FUNC
 | | [Teardown]
 | | ... | Restart Honeycomb And VPP And Clear Persisted Configuration | ${node}
 | | Given Multi-Feature Persistence test configuration | ${node} | ${interface}
 | | And Multi-Feature persistence Test Verification | ${node} | ${interface}
 | | And Log persisted configuration on node | ${node}
-| | When Honeycomb and VPP are restarted | ${node}
+| | When Restart Honeycomb and VPP | ${node}
 | | Then Multi-Feature persistence Test Verification | ${node} | ${interface}
 
 | TC02: Honeycomb reverts to defaults if persistence files are invalid
@@ -62,7 +62,7 @@
 | | Given Multi-Feature Persistence test configuration | ${node} | ${interface}
 | | And Multi-Feature persistence Test Verification | ${node} | ${interface}
 | | And Log persisted configuration on node | ${node}
-| | When Honeycomb is restarted | ${node}
+| | When Restart Honeycomb | ${node}
 | | Then Multi-Feature persistence Test Verification | ${node} | ${interface}
 
 | TC04: Honeycomb persists configuration through restart of VPP
@@ -73,7 +73,7 @@
 | | Given Multi-Feature Persistence test configuration | ${node} | ${interface}
 | | And Multi-Feature persistence Test Verification | ${node} | ${interface}
 | | And Log persisted configuration on node | ${node}
-| | When VPP is restarted | ${node}
+| | When Restart VPP | ${node}
 | | Then Multi-Feature persistence Test Verification | ${node} | ${interface}
 
 # single-feature cases
@@ -86,7 +86,7 @@
 | | ... | Restart Honeycomb And VPP And Clear Persisted Configuration | ${node}
 | | Given Interface Persistence Setup | ${node}
 | | And Interface Persistence Check | ${node}
-| | When Honeycomb and VPP are restarted | ${node}
+| | When Restart Honeycomb and VPP | ${node}
 | | Then Interface Persistence Check | ${node}
 
 | TC06: Persist configuration of IP addresses and neighbors - HC restart
@@ -96,7 +96,7 @@
 | | ... | Restart Honeycomb And VPP And Clear Persisted Configuration | ${node}
 | | Given Interface Persistence Setup | ${node}
 | | And Interface Persistence Check | ${node}
-| | When Honeycomb is restarted | ${node}
+| | When Restart Honeycomb | ${node}
 | | Then Interface Persistence Check | ${node}
 
 | TC07: Persist configuration of IP addresses and neighbors - VPP restart
@@ -106,7 +106,7 @@
 | | ... | Restart Honeycomb And VPP And Clear Persisted Configuration | ${node}
 | | Given Interface Persistence Setup | ${node}
 | | And Interface Persistence Check | ${node}
-| | When VPP is restarted | ${node}
+| | When Restart VPP | ${node}
 | | Then Interface Persistence Check | ${node}
 
 | TC08: Honeycomb persists configuration of bridge domains - HC and VPP restart
@@ -116,7 +116,7 @@
 | | [Teardown]
 | | ... | Restart Honeycomb And VPP And Clear Persisted Configuration | ${node}
 | | Given Bridge Domain Persistence Setup | ${node}
-| | When Honeycomb and VPP are restarted | ${node}
+| | When Restart Honeycomb and VPP | ${node}
 | | Then Bridge Domain Persistence Check | ${node}
 
 | TC09: Honeycomb persists configuration of bridge domains - HC restart
@@ -126,7 +126,7 @@
 | | [Teardown]
 | | ... | Restart Honeycomb And VPP And Clear Persisted Configuration | ${node}
 | | Given Bridge Domain Persistence Setup | ${node}
-| | When Honeycomb is restarted | ${node}
+| | When Restart Honeycomb | ${node}
 | | Then Bridge Domain Persistence Check | ${node}
 
 | TC10: Honeycomb persists configuration of bridge domains - VPP restart
@@ -136,7 +136,7 @@
 | | [Teardown]
 | | ... | Restart Honeycomb And VPP And Clear Persisted Configuration | ${node}
 | | Given Bridge Domain Persistence Setup | ${node}
-| | When VPP is restarted | ${node}
+| | When Restart VPP | ${node}
 | | Then Bridge Domain Persistence Check | ${node}
 
 #TODO: All other features

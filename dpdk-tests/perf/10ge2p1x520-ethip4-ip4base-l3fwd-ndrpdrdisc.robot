@@ -20,9 +20,9 @@
 | Library | resources.libraries.python.DPDK.DPDKTools
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDRDISC | 1NUMA
 | ... | NIC_Intel-X520-DA2 | DPDK | IP4FWD | BASE | ETH
-| Suite Setup | DPDK 3-node Performance Suite Setup with DUT's NIC model
+| Suite Setup | Set up DPDK 3-node performance topology with DUT's NIC model
 | ... | L3 | Intel-X520-DA2
-| Suite Teardown | DPDK 3-node Performance Suite Teardown
+| Suite Teardown | Tear down DPDK 3-node performance topology
 | Documentation | *RFC2544: Pkt throughput IPv4 routing test cases*
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology
@@ -66,7 +66,7 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Start L3FWD '1' worker threads and rxqueues '1' with jumbo frames 'no'
+| | Given Start L3FWD '1' worker threads and '1' rxqueues with jumbo frames 'no'
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile} | ${min_rate} | ${max_rate}
 | | ... | ${threshold}
@@ -86,7 +86,7 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Start L3FWD '1' worker threads and rxqueues '1' with jumbo frames 'no'
+| | Given Start L3FWD '1' worker threads and '1' rxqueues with jumbo frames 'no'
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile} | ${min_rate} | ${max_rate}
 | | ... | ${threshold} | ${perf_pdr_loss_acceptance}
@@ -107,7 +107,7 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Start L3FWD '1' worker threads and rxqueues '1' with jumbo frames 'no'
+| | Given Start L3FWD '1' worker threads and '1' rxqueues with jumbo frames 'no'
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile} | ${min_rate} | ${max_rate}
 | | ... | ${threshold}
@@ -127,7 +127,7 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Start L3FWD '1' worker threads and rxqueues '1' with jumbo frames 'no'
+| | Given Start L3FWD '1' worker threads and '1' rxqueues with jumbo frames 'no'
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile} | ${min_rate} | ${max_rate}
 | | ... | ${threshold} | ${perf_pdr_loss_acceptance}
@@ -148,7 +148,7 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Start L3FWD '1' worker threads and rxqueues '1' with jumbo frames 'yes'
+| | Given Start L3FWD '1' worker threads and '1' rxqueues with jumbo frames 'yes'
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile} | ${min_rate} | ${max_rate}
 | | ... | ${threshold}
@@ -168,7 +168,7 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Start L3FWD '1' worker threads and rxqueues '1' with jumbo frames 'yes'
+| | Given Start L3FWD '1' worker threads and '1' rxqueues with jumbo frames 'yes'
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile} | ${min_rate} | ${max_rate}
 | | ... | ${threshold} | ${perf_pdr_loss_acceptance}
@@ -189,7 +189,7 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Start L3FWD '2' worker threads and rxqueues '1' with jumbo frames 'no'
+| | Given Start L3FWD '2' worker threads and '1' rxqueues with jumbo frames 'no'
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile} | ${min_rate} | ${max_rate}
 | | ... | ${threshold}
@@ -209,7 +209,7 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Start L3FWD '2' worker threads and rxqueues '1' with jumbo frames 'no'
+| | Given Start L3FWD '2' worker threads and '1' rxqueues with jumbo frames 'no'
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile} | ${min_rate} | ${max_rate}
 | | ... | ${threshold} | ${perf_pdr_loss_acceptance}
@@ -230,7 +230,7 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Start L3FWD '2' worker threads and rxqueues '1' with jumbo frames 'no'
+| | Given Start L3FWD '2' worker threads and '1' rxqueues with jumbo frames 'no'
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile} | ${min_rate} | ${max_rate}
 | | ... | ${threshold}
@@ -250,7 +250,7 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Start L3FWD '2' worker threads and rxqueues '1' with jumbo frames 'no'
+| | Given Start L3FWD '2' worker threads and '1' rxqueues with jumbo frames 'no'
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile} | ${min_rate} | ${max_rate}
 | | ... | ${threshold} | ${perf_pdr_loss_acceptance}
@@ -271,7 +271,7 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Start L3FWD '2' worker threads and rxqueues '1' with jumbo frames 'yes'
+| | Given Start L3FWD '2' worker threads and '1' rxqueues with jumbo frames 'yes'
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile} | ${min_rate} | ${max_rate}
 | | ... | ${threshold}
@@ -291,7 +291,7 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Start L3FWD '2' worker threads and rxqueues '1' with jumbo frames 'yes'
+| | Given Start L3FWD '2' worker threads and '1' rxqueues with jumbo frames 'yes'
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile} | ${min_rate} | ${max_rate}
 | | ... | ${threshold} | ${perf_pdr_loss_acceptance}
@@ -312,7 +312,7 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Start L3FWD '4' worker threads and rxqueues '2' with jumbo frames 'no'
+| | Given Start L3FWD '4' worker threads and '2' rxqueues with jumbo frames 'no'
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile} | ${min_rate} | ${max_rate}
 | | ... | ${threshold}
@@ -332,7 +332,7 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Start L3FWD '4' worker threads and rxqueues '2' with jumbo frames 'no'
+| | Given Start L3FWD '4' worker threads and '2' rxqueues with jumbo frames 'no'
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile} | ${min_rate} | ${max_rate}
 | | ... | ${threshold} | ${perf_pdr_loss_acceptance}
@@ -353,7 +353,7 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Start L3FWD '4' worker threads and rxqueues '2' with jumbo frames 'no'
+| | Given Start L3FWD '4' worker threads and '2' rxqueues with jumbo frames 'no'
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile} | ${min_rate} | ${max_rate}
 | | ... | ${threshold}
@@ -373,7 +373,7 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Start L3FWD '4' worker threads and rxqueues '2' with jumbo frames 'no'
+| | Given Start L3FWD '4' worker threads and '2' rxqueues with jumbo frames 'no'
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile} | ${min_rate} | ${max_rate}
 | | ... | ${threshold} | ${perf_pdr_loss_acceptance}
@@ -394,7 +394,7 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Start L3FWD '4' worker threads and rxqueues '2' with jumbo frames 'yes'
+| | Given Start L3FWD '4' worker threads and '2' rxqueues with jumbo frames 'yes'
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile} | ${min_rate} | ${max_rate}
 | | ... | ${threshold}
@@ -414,7 +414,7 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Start L3FWD '4' worker threads and rxqueues '2' with jumbo frames 'yes'
+| | Given Start L3FWD '4' worker threads and '2' rxqueues with jumbo frames 'yes'
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile} | ${min_rate} | ${max_rate}
 | | ... | ${threshold} | ${perf_pdr_loss_acceptance}

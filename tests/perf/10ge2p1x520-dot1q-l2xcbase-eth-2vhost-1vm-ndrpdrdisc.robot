@@ -18,12 +18,12 @@
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDRDISC
 | ... | NIC_Intel-X520-DA2 | DOT1Q | L2XCFWD | BASE | VHOST | VM
 | ...
-| Suite Setup | 3-node Performance Suite Setup with DUT's NIC model
+| Suite Setup | Set up 3-node performance topology with DUT's NIC model
 | ... | L2 | Intel-X520-DA2
-| Suite Teardown | 3-node Performance Suite Teardown
+| Suite Teardown | Tear down 3-node performance topology
 | ...
-| Test Setup | Performance test setup
-| Test Teardown | Performance test with vhost and VM with dpdk-testpmd teardown
+| Test Setup | Set up performance test
+| Test Teardown | Tear down performance test with vhost and VM with dpdk-testpmd
 | ... | ${min_rate}pps | ${framesize} | ${traffic_profile}
 | ... | dut1_node=${dut1} | dut1_vm_refs=${dut1_vm_refs}
 | ... | dut2_node=${dut2} | dut2_vm_refs=${dut2_vm_refs}
@@ -85,16 +85,16 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
-| | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | When L2 xconnect with Vhost-User and VLAN initialized in a 3-node circular topology
+| | When Initialize L2 xconnect with Vhost-User and VLAN in 3-node circular topology
 | | ... | ${sock1} | ${sock2} | ${subid} | ${tag_rewrite}
-| | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
+| | ${vm1}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
 | | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
-| | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
+| | ${vm2}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
@@ -118,16 +118,16 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
-| | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | When L2 xconnect with Vhost-User and VLAN initialized in a 3-node circular topology
+| | When Initialize L2 xconnect with Vhost-User and VLAN in 3-node circular topology
 | | ... | ${sock1} | ${sock2} | ${subid} | ${tag_rewrite}
-| | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
+| | ${vm1}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
 | | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
-| | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
+| | ${vm2}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
@@ -152,16 +152,16 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
-| | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | When L2 xconnect with Vhost-User and VLAN initialized in a 3-node circular topology
+| | When Initialize L2 xconnect with Vhost-User and VLAN in 3-node circular topology
 | | ... | ${sock1} | ${sock2} | ${subid} | ${tag_rewrite}
-| | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
+| | ${vm1}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
 | | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
-| | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
+| | ${vm2}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
@@ -185,16 +185,16 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
-| | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | When L2 xconnect with Vhost-User and VLAN initialized in a 3-node circular topology
+| | When Initialize L2 xconnect with Vhost-User and VLAN in 3-node circular topology
 | | ... | ${sock1} | ${sock2} | ${subid} | ${tag_rewrite}
-| | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
+| | ${vm1}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
 | | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
-| | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
+| | ${vm2}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
@@ -221,16 +221,16 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
-| | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | When L2 xconnect with Vhost-User and VLAN initialized in a 3-node circular topology
+| | When Initialize L2 xconnect with Vhost-User and VLAN in 3-node circular topology
 | | ... | ${sock1} | ${sock2} | ${subid} | ${tag_rewrite}
-| | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
+| | ${vm1}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
 | | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
-| | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
+| | ${vm2}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
@@ -256,16 +256,16 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
-| | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | When L2 xconnect with Vhost-User and VLAN initialized in a 3-node circular topology
+| | When Initialize L2 xconnect with Vhost-User and VLAN in 3-node circular topology
 | | ... | ${sock1} | ${sock2} | ${subid} | ${tag_rewrite}
-| | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
+| | ${vm1}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
 | | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
-| | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
+| | ${vm2}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
@@ -290,16 +290,16 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
-| | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | When L2 xconnect with Vhost-User and VLAN initialized in a 3-node circular topology
+| | When Initialize L2 xconnect with Vhost-User and VLAN in 3-node circular topology
 | | ... | ${sock1} | ${sock2} | ${subid} | ${tag_rewrite}
-| | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
+| | ${vm1}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
 | | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
-| | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
+| | ${vm2}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
@@ -323,16 +323,16 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
-| | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | When L2 xconnect with Vhost-User and VLAN initialized in a 3-node circular topology
+| | When Initialize L2 xconnect with Vhost-User and VLAN in 3-node circular topology
 | | ... | ${sock1} | ${sock2} | ${subid} | ${tag_rewrite}
-| | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
+| | ${vm1}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
 | | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
-| | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
+| | ${vm2}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
@@ -357,16 +357,16 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
-| | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | When L2 xconnect with Vhost-User and VLAN initialized in a 3-node circular topology
+| | When Initialize L2 xconnect with Vhost-User and VLAN in 3-node circular topology
 | | ... | ${sock1} | ${sock2} | ${subid} | ${tag_rewrite}
-| | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
+| | ${vm1}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
 | | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
-| | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
+| | ${vm2}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
@@ -390,16 +390,16 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
-| | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | When L2 xconnect with Vhost-User and VLAN initialized in a 3-node circular topology
+| | When Initialize L2 xconnect with Vhost-User and VLAN in 3-node circular topology
 | | ... | ${sock1} | ${sock2} | ${subid} | ${tag_rewrite}
-| | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
+| | ${vm1}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
 | | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
-| | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
+| | ${vm2}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
@@ -426,16 +426,16 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
-| | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | When L2 xconnect with Vhost-User and VLAN initialized in a 3-node circular topology
+| | When Initialize L2 xconnect with Vhost-User and VLAN in 3-node circular topology
 | | ... | ${sock1} | ${sock2} | ${subid} | ${tag_rewrite}
-| | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
+| | ${vm1}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
 | | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
-| | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
+| | ${vm2}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
@@ -461,16 +461,16 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
-| | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | When L2 xconnect with Vhost-User and VLAN initialized in a 3-node circular topology
+| | When Initialize L2 xconnect with Vhost-User and VLAN in 3-node circular topology
 | | ... | ${sock1} | ${sock2} | ${subid} | ${tag_rewrite}
-| | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
+| | ${vm1}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
 | | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
-| | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
+| | ${vm2}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
@@ -495,16 +495,16 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
-| | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | When L2 xconnect with Vhost-User and VLAN initialized in a 3-node circular topology
+| | When Initialize L2 xconnect with Vhost-User and VLAN in 3-node circular topology
 | | ... | ${sock1} | ${sock2} | ${subid} | ${tag_rewrite}
-| | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
+| | ${vm1}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
 | | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
-| | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
+| | ${vm2}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
@@ -528,16 +528,16 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
-| | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | When L2 xconnect with Vhost-User and VLAN initialized in a 3-node circular topology
+| | When Initialize L2 xconnect with Vhost-User and VLAN in 3-node circular topology
 | | ... | ${sock1} | ${sock2} | ${subid} | ${tag_rewrite}
-| | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
+| | ${vm1}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
 | | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
-| | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
+| | ${vm2}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
@@ -562,16 +562,16 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
-| | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | When L2 xconnect with Vhost-User and VLAN initialized in a 3-node circular topology
+| | When Initialize L2 xconnect with Vhost-User and VLAN in 3-node circular topology
 | | ... | ${sock1} | ${sock2} | ${subid} | ${tag_rewrite}
-| | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
+| | ${vm1}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
 | | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
-| | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
+| | ${vm2}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
@@ -595,16 +595,16 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
-| | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | When L2 xconnect with Vhost-User and VLAN initialized in a 3-node circular topology
+| | When Initialize L2 xconnect with Vhost-User and VLAN in 3-node circular topology
 | | ... | ${sock1} | ${sock2} | ${subid} | ${tag_rewrite}
-| | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
+| | ${vm1}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
 | | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
-| | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
+| | ${vm2}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
@@ -631,16 +631,16 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
-| | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | When L2 xconnect with Vhost-User and VLAN initialized in a 3-node circular topology
+| | When Initialize L2 xconnect with Vhost-User and VLAN in 3-node circular topology
 | | ... | ${sock1} | ${sock2} | ${subid} | ${tag_rewrite}
-| | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
+| | ${vm1}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
 | | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
-| | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
+| | ${vm2}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
@@ -666,16 +666,16 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${dut1_vm_refs}= | Create Dictionary
 | | ${dut2_vm_refs}= | Create Dictionary
-| | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | When L2 xconnect with Vhost-User and VLAN initialized in a 3-node circular topology
+| | When Initialize L2 xconnect with Vhost-User and VLAN in 3-node circular topology
 | | ... | ${sock1} | ${sock2} | ${subid} | ${tag_rewrite}
-| | ${vm1}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
+| | ${vm1}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
 | | Set To Dictionary | ${dut1_vm_refs} | DUT1_VM1 | ${vm1}
-| | ${vm2}= | And Guest VM with dpdk-testpmd connected via vhost-user is setup
+| | ${vm2}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}

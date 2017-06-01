@@ -16,7 +16,7 @@
 | Library | resources.libraries.python.InterfaceUtil
 
 *** Keywords ***
-| L2 setup xconnect on DUT
+| Configure L2XC
 | | [Documentation] | Setup Bidirectional Cross Connect on DUTs
 | | [Arguments] | ${node} | ${if1} | ${if2} |
 | | Set Interface State | ${node} | ${if1} | up

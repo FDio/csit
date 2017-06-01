@@ -21,8 +21,8 @@
 | Resource | resources/libraries/robot/traffic.robot
 | Library | resources.libraries.python.Trace
 | Force Tags | HW_ENV | VM_ENV | 3_NODE_SINGLE_LINK_TOPO
-| Test Setup | Func Test Setup
-| Test Teardown | Func Test Teardown
+| Test Setup | Set up functional test
+| Test Teardown | Tear down functional test
 | Documentation | *IPv4 ARP test cases*
 | ...
 | ... | RFC826 ARP: Eth-IPv4 and Eth-ARP on links TG-DUT1, TG-DUT2, DUT1-DUT2:
@@ -45,16 +45,16 @@
 | | ... | Make TG send test packet destined to IPv4 address of its other\
 | | ... | interface connected to DUT2. Make TG verify DUT2 sends ARP
 | | ... | Request for locally connected TG IPv4 address.
-| | Given Path for 3-node testing is set
+| | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
-| | And Interfaces in 3-node path are up
-| | And L2 setup xconnect on DUT
+| | And Set interfaces in 3-node circular topology up
+| | And Configure L2XC
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${dut2_to_tg}
 | | When Set Interface Address | ${dut1_node}
 | | ... | ${dut1_to_tg} | ${dut1_to_tg_ip} | ${prefix_length}
 | | And Set Interface Address | ${dut1_node}
 | | ... | ${dut1_to_dut2} | ${dut1_to_dut2_ip} | ${prefix_length}
-| | Then Send Packet And Check ARP Request | ${tg_node}
+| | Then Send packet and verify ARP request | ${tg_node}
 | | ... | ${test_src_ip} | ${dut1_to_dut2_ip_GW} | ${tg_to_dut1}
 | | ... | ${dut1_to_tg_mac} | ${tg_to_dut2} | ${dut1_to_dut2_mac}
 | | ... | ${dut1_to_dut2_ip} | ${dut1_to_dut2_ip_GW}
@@ -64,10 +64,10 @@
 | | ... | Make TG send test packet destined to IPv4 address matching\
 | | ... | static route on DUT2. Make TG verify DUT2 sends ARP Request for
 | | ... | next hop of the static route.
-| | Given Path for 3-node testing is set
+| | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
-| | And Interfaces in 3-node path are up
-| | And L2 setup xconnect on DUT
+| | And Set interfaces in 3-node circular topology up
+| | And Configure L2XC
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${dut2_to_tg}
 | | When Set Interface Address | ${dut1_node}
 | | ... | ${dut1_to_tg} | ${dut1_to_tg_ip} | ${prefix_length}
@@ -76,7 +76,7 @@
 | | And Vpp Route Add
 | | ... | ${dut1_node} | ${test_dst_ip} | ${prefix_length}
 | | ... | ${dut1_to_dut2_ip_GW} | ${dut1_to_dut2} | resolve_attempts=${NONE}
-| | Then Send Packet And Check ARP Request | ${tg_node}
+| | Then Send packet and verify ARP request | ${tg_node}
 | | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_to_dut1}
 | | ... | ${dut1_to_tg_mac} | ${tg_to_dut2} | ${dut1_to_dut2_mac}
 | | ... | ${dut1_to_dut2_ip} | ${dut1_to_dut2_ip_GW}
