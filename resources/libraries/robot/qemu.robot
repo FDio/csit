@@ -16,33 +16,33 @@
 
 *** Keywords ***
 
-| Exist QEMU Build List
+| QEMU build list should exist
 | | [Documentation] | Return TRUE if variable QEMU_BUILD exist, otherwise FALSE
 | | ${ret} | ${tmp}=  | Run Keyword And Ignore Error
 | | ... | Variable Should Exist | @{QEMU_BUILD}
 | | Return From Keyword If | "${ret}" == "PASS" | ${TRUE}
 | | Return From Keyword | ${FALSE}
 
-| Is QEMU Ready on Node
+| Is QEMU ready on node
 | | [Documentation] | Check if QEMU was built on the node before
 | | [Arguments] | ${node}
-| | ${ret}= | Exist QEMU Build List
+| | ${ret}= | QEMU build list should exist
 | | Return From Keyword If | ${ret} == ${FALSE} | ${FALSE}
 | | ${ret} | ${tmp}=  | Run Keyword And Ignore Error
 | | ... | Should Contain | ${QEMU_BUILD} | ${node['host']}
 | | Return From Keyword If | "${ret}" == "PASS" | ${TRUE}
 | | Return From Keyword | ${FALSE}
 
-| Add Node to QEMU Build List
+| Add node to QEMU build list
 | | [Documentation] | Add node to the list of nodes with builded QEMU (global
 | | ...             | variable QEMU_BUILD)
 | | [Arguments] | ${node}
-| | ${ret}= | Exist QEMU Build List
+| | ${ret}= | QEMU build list should exist
 | | Run Keyword If | ${ret} == ${TRUE}
 | | ... | Append To List | ${QEMU_BUILD} | ${node['host']}
 | | ... | ELSE | Set Global Variable | @{QEMU_BUILD} | ${node['host']}
 
-| Build QEMU on Node
+| Build QEMU on node
 | | [Documentation] | Build QEMU from sources on the Node. Nodes with successful
 | | ...             | QEMU build are stored in global variable list QEMU_BUILD
 | | ...
@@ -54,13 +54,13 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Build QEMU on Node \| ${node['DUT1']} \| False \| False \|
+| | ... | \| Build QEMU on node \| ${node['DUT1']} \| False \| False \|
 | | ...
 | | [Arguments] | ${node} | ${force_install}=${False} | ${apply_patch}=${False}
-| | ${ready}= | Is QEMU Ready on Node | ${node}
+| | ${ready}= | Is QEMU ready on node | ${node}
 | | Return From Keyword If | ${ready} == ${TRUE}
 | | Build QEMU | ${node}
-| | Add Node to QEMU Build List | ${node}
+| | Add node to QEMU build list | ${node}
 
 | Build QEMU on all DUTs
 | | [Documentation] | Build QEMU from sources on all DUTs. Nodes with successful
@@ -78,10 +78,10 @@
 | | [Arguments] | ${force_install}=${False} | ${apply_patch}=${False}
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
-| | | Build QEMU on Node | ${nodes['${dut}']} | ${force_install} |
+| | | Build QEMU on node | ${nodes['${dut}']} | ${force_install} |
 | | | ... | ${apply_patch}
 
-| Stop and Clear QEMU
+| Stop and clear QEMU
 | | [Documentation] | Stop QEMU, clear used sockets and close SSH connection
 | | ...             | running on ${dut}, ${vm} is VM node info dictionary
 | | ...             | returned by qemu_start or None.

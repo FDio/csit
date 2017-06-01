@@ -23,14 +23,14 @@
 
 *** Keywords ***
 
-| Setup IPv4 adresses on all DUT nodes in topology
+| Configure IPv4 addresses on all DUTs
 | | [Documentation] | Setup IPv4 address on all DUTs in topology
 | | [Arguments] | ${nodes} | ${nodes_addr}
 | | ${interfaces}= | VPP nodes set ipv4 addresses | ${nodes} | ${nodes_addr}
 | | :FOR | ${interface} | IN | @{interfaces}
 | | | Set Interface State | @{interface} | up | if_type=name
 
-| Routes are set up for IPv4 testing
+| Configure routes for IPv4 test
 | | [Documentation] | Setup routing on all VPP nodes required for IPv4 tests
 | | [Arguments] | ${nodes} | ${nodes_addr}
 | | Append Nodes | ${nodes['DUT1']} | ${nodes['DUT2']}
@@ -51,16 +51,16 @@
 | | | ${prefix}= | Get Link Prefix | ${link} | ${nodes_addr}
 | | | Vpp Route Add | ${dut1} | ${net} | ${prefix} | ${dut2_if_addr} | ${dut1_if}
 
-| Setup DUT nodes for IPv4 testing
-| | Setup IPv4 adresses on all DUT nodes in topology | ${nodes} | ${nodes_ipv4_addr}
+| Configure DUT nodes for IPv4 testing
+| | Configure IPv4 addresses on all DUTs | ${nodes} | ${nodes_ipv4_addr}
 | | Setup ARP on all DUTs | ${nodes} | ${nodes_ipv4_addr}
-| | Routes are set up for IPv4 testing | ${nodes} | ${nodes_ipv4_addr}
+| | Configure routes for IPv4 test | ${nodes} | ${nodes_ipv4_addr}
 | | All Vpp Interfaces Ready Wait | ${nodes}
 
 | TG interface "${tg_port}" can route to node "${node}" interface "${port}" "${hops}" hops away using IPv4
 | | Node "${nodes['TG']}" interface "${tg_port}" can route to node "${node}" interface "${port}" "${hops}" hops away using IPv4
 
-| Node "${from_node}" interface "${from_port}" can route to node "${to_node}" interface "${to_port}" ${hops} hops away using IPv4
+| Route traffic from interface '${from_port}' on node '${from_node}' to interface '${to_port}' on node '${to_node}' '${hops}' hops away using IPv4
 | | ${src_ip}= | Get IPv4 address of node "${from_node}" interface "${from_port}" from "${nodes_ipv4_addr}"
 | | ${dst_ip}= | Get IPv4 address of node "${to_node}" interface "${to_port}" from "${nodes_ipv4_addr}"
 | | ${src_mac}= | Get interface mac | ${from_node} | ${from_port}
@@ -76,7 +76,7 @@
 | |          | ...      | --is_dst_tg ${is_dst_tg}
 | | Run Traffic Script On Node | ipv4_ping_ttl_check.py | ${from_node} | ${args}
 
-| Ipv4 icmp echo sweep
+| Execute IPv4 ICMP echo sweep
 | | [Documentation] | Type of the src_node must be TG and dst_node must be DUT
 | | [Arguments] | ${src_node} | ${dst_node} | ${start_size} | ${end_size} | ${step}
 | | Append Nodes | ${src_node} | ${dst_node}
@@ -95,7 +95,7 @@
 | | Run Traffic Script On Node | ipv4_sweep_ping.py | ${src_node} | ${args}
 | | ... | timeout=${180}
 
-| Send ARP request and validate response
+| Send ARP request and verify response
 | | [Arguments] | ${tg_node} | ${vpp_node}
 | | ${link_name}= | Get first active connecting link between node "${tg_node}" and "${vpp_node}"
 | | ${src_if}= | Get interface by link name | ${tg_node} | ${link_name}
@@ -109,7 +109,7 @@
 | |          | ...                    | ${dst_mac} | ${src_ip} | ${dst_ip}
 | | Run Traffic Script On Node | arp_request.py | ${tg_node} | ${args}
 
-| IP addresses are set on interfaces
+| Configure IP addresses on interfaces
 | | [Documentation] | Iterates through @{args} list and Set Interface Address
 | | ...             | for every (${dut_node}, ${interface}, ${address},
 | | ...             | ${prefix}) tuple.
@@ -123,7 +123,7 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| IP addresses are set on interfaces \
+| | ... | \| Configure IP addresses on interfaces \
 | | ... | \| ${dut1_node} \| ${dut1_to_dut2} \| 192.168.1.1 \| 24 \|
 | | ... | \| ... \| ${dut1_node} \| ${dut1_to_tg}   \| 192.168.2.1 \| 24 \|
 | | ...
@@ -132,7 +132,7 @@
 | | | Set Interface Address | ${dut_node} | ${interface} | ${address}
 | | | ... | ${prefix}
 
-| Node replies to ICMP echo request
+| Send ICMP echo request and verify answer
 | | [Documentation] | Run traffic script that waits for ICMP reply and ignores
 | | ...             | all other packets.
 | | ...
@@ -148,7 +148,7 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Node replies to ICMP echo request \
+| | ... | \| Send ICMP echo request and verify answer \
 | | ... | \| ${nodes['TG']} \| eth2 \
 | | ... | \| 08:00:27:46:2b:4c \| 08:00:27:66:b8:57 \
 | | ... | \| 192.168.23.10 \| 192.168.23.1 \| 10 \|

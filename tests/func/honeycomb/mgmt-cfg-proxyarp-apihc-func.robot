@@ -62,16 +62,16 @@
 | | [Teardown] | Run Keywords
 | | ... | Show Packet Trace on all DUTs | ${nodes}
 | | ... | AND | Honeycomb removes proxyARP configuration | ${node}
-| | ... | AND | Honeycomb sets interface state
+| | ... | AND | Honeycomb configures interface state
 | | ... | ${dut_node} | ${dut_to_tg_if1} | down
-| | ... | AND | Honeycomb removes interface ipv4 addresses
+| | ... | AND | Honeycomb removes interface IPv4 addresses
 | | ... | ${node} | ${interface}
-| | Given Path for 2-node testing is set
+| | Given Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | ${dut_to_tg_name}= | Get interface name | ${dut_node} | ${dut_to_tg_if1}
 | | ${tg_to_dut_name}= | Get interface name | ${tg_node} | ${tg_to_dut_if1}
-| | And Honeycomb sets interface state | ${dut_node} | ${dut_to_tg_if1} | up
-| | And Honeycomb sets interface ipv4 address with prefix | ${dut_node}
+| | And Honeycomb configures interface state | ${dut_node} | ${dut_to_tg_if1} | up
+| | And Honeycomb sets interface IPv4 address with prefix | ${dut_node}
 | | ... | ${dut_to_tg_if1} | ${dut_to_tg_ip} | ${prefix_length}
 | | When Honeycomb configures proxyARP | ${dut_node} | ${proxyarp_settings_ipv4}
 | | And Honeycomb enables proxyARP on interface | ${node} | ${dut_to_tg_name}

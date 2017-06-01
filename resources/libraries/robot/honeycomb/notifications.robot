@@ -18,7 +18,7 @@
 | Documentation | Keywords used to test Honeycomb notifications over Netconf.
 
 *** Keywords ***
-| Notification listener is established
+| Notification listener should be established
 | | [Documentation] | Connects to Honeycomb notification service.
 | | ...
 | | ... | *Arguments:*
@@ -26,7 +26,7 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Notification listener is established \| ${nodes['DUT1']} \|
+| | ... | \| Notification listener should be established \| ${nodes['DUT1']} \|
 | | [Arguments] | ${node}
 | | Create session | ${node} | ${hello}
 | | Add notification listener | ${subscription}

@@ -19,10 +19,10 @@
 | Resource | resources/libraries/robot/vxlan.robot
 | Library  | resources.libraries.python.Trace
 | Force Tags | HW_ENV | VM_ENV | 3_NODE_DOUBLE_LINK_TOPO | VPP_VM_ENV
-| Test Setup | Func Test Setup
+| Test Setup | Set up functional test
 | Test Teardown | Run Keywords
 | ... | resources.libraries.python.QemuUtils.Qemu Kill All | ${dut_node} | AND
-| ... | Func Test Teardown
+| ... | Tear down functional test
 | Documentation | *Vhost-User Interface Traffic Tests*
 | ... | *[Top] Network Topologies:* TG=DUT1 2-node topology with two links
 | ... | between nodes.
@@ -51,9 +51,9 @@
 
 *** Test Cases ***
 | TC01:  Qemu reconnects to VPPs vhost-user when Qemu is killed and restarted
-| | Given Path for 2-node testing is set
+| | Given Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
-| | And Interfaces in 2-node path are up
+| | And Set interfaces in 2-node circular topology up
 | | And Set Interface Address | ${dut_node} | ${dut_to_tg_if1} | ${dut_if1_ip}
 | | ... | ${prefix_length}
 | | And Add IP Neighbor | ${dut_node} | ${dut_to_tg_if1} | ${tg_if1_ip}
@@ -90,9 +90,9 @@
 | | ... | ${vhost_if3}
 | | And Vpp Add L2 Bridge Domain | ${dut_node} | ${104} | ${vxlan4}
 | | ... | ${vhost_if4}
-| | And Setup QEMU Vhost and Run VM | ${dut_node} | ${sock_vm1_1} | ${sock_vm1_2}
+| | And Configure QEMU vhost and run it VM | ${dut_node} | ${sock_vm1_1} | ${sock_vm1_2}
 | | ... | ${1}
-| | And Setup QEMU Vhost and Run VM | ${dut_node} | ${sock_vm2_1} | ${sock_vm2_2}
+| | And Configure QEMU vhost and run it VM | ${dut_node} | ${sock_vm2_1} | ${sock_vm2_2}
 | | ... | ${2}
 | | And Check traffic through VM
 | | When Run keyword | qemu-1.Qemu Kill
@@ -107,13 +107,13 @@
 | | Then Check traffic through VM
 
 
-| TC02: VPP reconnects to Qemu vhost-user when VPP is restarted and reconfigured
+| TC02: VPP reconnects to Qemu vhost-user when Restart VPP and reconfigured
 | | [Tags] | EXPECTED_FAILING
 | | [Documentation]
 | | ... | *Failing:* Qemu doesn't support reconnect prior to version 2.7.
-| | Given Path for 2-node testing is set
+| | Given Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
-| | And Interfaces in 2-node path are up
+| | And Set interfaces in 2-node circular topology up
 | | And Set Interface Address | ${dut_node} | ${dut_to_tg_if1} | ${dut_if1_ip}
 | | ... | ${prefix_length}
 | | And Add IP Neighbor | ${dut_node} | ${dut_to_tg_if1} | ${tg_if1_ip}
@@ -150,15 +150,15 @@
 | | ... | ${vhost_if3}
 | | And Vpp Add L2 Bridge Domain | ${dut_node} | ${104} | ${vxlan4}
 | | ... | ${vhost_if4}
-| | And Setup QEMU Vhost and Run VM | ${dut_node} | ${sock_vm1_1} | ${sock_vm1_2}
+| | And Configure QEMU vhost and run it VM | ${dut_node} | ${sock_vm1_1} | ${sock_vm1_2}
 | | ... | ${1}
-| | And Setup QEMU Vhost and Run VM | ${dut_node} | ${sock_vm2_1} | ${sock_vm2_2}
+| | And Configure QEMU vhost and run it VM | ${dut_node} | ${sock_vm2_1} | ${sock_vm2_2}
 | | ... | ${2}
 | | And Check traffic through VM
-| | And Check VPP PID in Teardown
-| | When Setup All Duts ${nodes}
+| | And Verify VPP PID in Teardown
+| | When Setup All Duts | ${nodes}
 | | And Save VPP PIDs
-| | And Interfaces in 2-node path are up
+| | And Set interfaces in 2-node circular topology up
 | | And Set Interface Address | ${dut_node} | ${dut_to_tg_if1} | ${dut_if1_ip}
 | | ... | ${prefix_length}
 | | And Add IP Neighbor | ${dut_node} | ${dut_to_tg_if1} | ${tg_if1_ip}
@@ -199,7 +199,7 @@
 
 
 *** Keywords ***
-| Setup QEMU Vhost and Run VM
+| Configure QEMU vhost and run it VM
 | | [Arguments] | ${dut_node} | ${sock1} | ${sock2} | ${qemu_id}
 | | Import Library | resources.libraries.python.QemuUtils | qemu_id=${qemu_id}
 | | ... | WITH NAME | qemu-${qemu_id}
@@ -219,12 +219,12 @@
 
 | Check traffic through VM
 | | [Documentation] | Send VXLAN traffic through both configured VMs.
-| | Send VXLAN receive VXLAN Packet | ${tg_node}
+| | Send VXLAN encapsulated packet and verify received packet | ${tg_node}
 | | ... | ${tg_to_dut_if1} | ${tg_to_dut_if1}
 | | ... | ${tg_to_dut_if1_mac} | ${dut_to_tg_if1_mac}
 | | ... | ${tg_if1_ip} | ${dut_if1_ip} | ${101}
 | | ... | ${dut_if1_ip} | ${tg_if1_ip} | ${102}
-| | Send VXLAN receive VXLAN Packet | ${tg_node}
+| | Send VXLAN encapsulated packet and verify received packet | ${tg_node}
 | | ... | ${tg_to_dut_if1} | ${tg_to_dut_if1}
 | | ... | ${tg_to_dut_if1_mac} | ${dut_to_tg_if1_mac}
 | | ... | ${tg_if1_ip} | ${dut_if1_ip} | ${103}

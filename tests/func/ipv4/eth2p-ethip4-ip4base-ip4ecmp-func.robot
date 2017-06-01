@@ -21,8 +21,8 @@
 | Resource | resources/libraries/robot/traffic.robot
 | Library | resources.libraries.python.Trace
 | Force Tags | HW_ENV | VM_ENV | 3_NODE_DOUBLE_LINK_TOPO
-| Test Setup | Func Test Setup
-| Test Teardown | Func Test Teardown
+| Test Setup | Set up functional test
+| Test Teardown | Tear down functional test
 | Documentation | *Ipv4 Multipath routing test cases*
 | ...
 | ... | *[Top] Network topologies:* TG=DUT 2-node topology with two links\
@@ -51,9 +51,9 @@
 | | ... | [Cfg] On DUT configure multipath routing wiht two equal-cost paths.
 | | ... | [Ver] TG sends 100 IPv4 ICMP packets traffic on the first link to\
 | | ... | DUT. On second link to TG verify if traffic is divided into two paths.
-| | Given Path for 2-node testing is set
+| | Given Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
-| | And Interfaces in 2-node path are UP
+| | And Set interfaces in 2-node circular topology up
 | | And Set Interface Address | ${dut_node}
 | | ... | ${dut_to_tg_if2} | ${ip_1} | ${prefix_length}
 | | And Set Interface Address | ${dut_node}
@@ -68,7 +68,7 @@
 | | And Vpp Route Add
 | | ... | ${dut_node} | ${test_dst_ip} | ${prefix_length} | ${neighbor_2_ip}
 | | ... | ${dut_to_tg_if1} | resolve_attempts=${NONE} | multipath=${TRUE}
-| | Then Send Packets And Check Multipath Routing | ${tg_node}
+| | Then Send packets and verify multipath routing | ${tg_node}
 | | ... | ${tg_to_dut_if2} | ${tg_to_dut_if1} | ${test_src_ip} | ${test_dst_ip}
 | | ... | ${tg_to_dut_if2_mac} | ${dut_to_tg_if2_mac} | ${dut_to_tg_if1_mac}
 | | ... | ${neighbor_1_mac} | ${neighbor_2_mac}

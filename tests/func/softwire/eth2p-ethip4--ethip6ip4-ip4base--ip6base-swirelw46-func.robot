@@ -19,8 +19,8 @@
 | Resource | resources/libraries/robot/map.robot
 | Library  | resources.libraries.python.Trace
 | Force Tags | HW_ENV | VM_ENV | 3_NODE_DOUBLE_LINK_TOPO
-| Test Setup | Func Test Setup
-| Test Teardown | Func Test Teardown
+| Test Setup | Set up functional test
+| Test Teardown | Tear down functional test
 | Documentation | *Lightweight 4 over 6 test cases*
 | ...
 | ... | LW4o6 is a subset of MAP-E, with per-subscriber rules. It uses the
@@ -70,10 +70,10 @@
 | | ... |       IPv4oIPv6 encapsulated packet is correct.
 | | ... | [Ref] RFC7596 RFC7597
 | | ...
-| | Given Path for 2-node testing is set
+| | Given Configure path in 2-node circular topology
 | |       ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
-| | And   Interfaces in 2-node path are up
-| | And   IP addresses are set on interfaces
+| | And   Set interfaces in 2-node circular topology up
+| | And   Configure IP addresses on interfaces
 | |       ... | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4} | ${ipv4_prefix_len}
 | |       ... | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6} | ${ipv6_prefix_len}
 | | And   Add IP Neighbor
@@ -107,10 +107,10 @@ TC02: Encapsulate IPv4 ICMP into IPv6. IPv6 dst depends on IPv4 addr and ICMP ID
 | | ... |       destination based on ICMP Identifier field.
 | | ... | [Ref] RFC7596 section 8.1
 | | ...
-| | Given Path for 2-node testing is set
+| | Given Configure path in 2-node circular topology
 | |       ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
-| | And   Interfaces in 2-node path are up
-| | And   IP addresses are set on interfaces
+| | And   Set interfaces in 2-node circular topology up
+| | And   Configure IP addresses on interfaces
 | |       ... | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4} | ${ipv4_prefix_len}
 | |       ... | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6} | ${ipv6_prefix_len}
 | | And   Add IP Neighbor
@@ -142,10 +142,10 @@ TC03: Decapsulate IPv4 UDP from IPv6.
 | | ... |       IPv4 non-encapsulated packet is correct.
 | | ... | [Ref] RFC7596 RFC7597
 | | ...
-| | Given Path for 2-node testing is set
+| | Given Configure path in 2-node circular topology
 | |       ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
-| | And   Interfaces in 2-node path are up
-| | And   IP addresses are set on interfaces
+| | And   Set interfaces in 2-node circular topology up
+| | And   Configure IP addresses on interfaces
 | |       ... | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4} | ${ipv4_prefix_len}
 | |       ... | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6} | ${ipv6_prefix_len}
 | | And   Add Arp on DUT
@@ -176,10 +176,10 @@ TC04: Hairpinning of traffic between two lwB4
 | | ... |       encapsulated packet is correct.
 | | ... | [Ref] RFC7596 RFC7597
 | | ...
-| | Given Path for 2-node testing is set
+| | Given Configure path in 2-node circular topology
 | |       ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
-| | And   Interfaces in 2-node path are up
-| | And   IP addresses are set on interfaces
+| | And   Set interfaces in 2-node circular topology up
+| | And   Configure IP addresses on interfaces
 | |       ... | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4} | ${ipv4_prefix_len}
 | |       ... | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6} | ${ipv6_prefix_len}
 | | And   Add IP Neighbor

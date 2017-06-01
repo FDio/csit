@@ -18,8 +18,8 @@
 | Resource | resources/libraries/robot/l2_traffic.robot
 | Library  | resources.libraries.python.Trace
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | HW_ENV | VM_ENV | SKIP_VPP_PATCH
-| Test Setup | Func Test Setup
-| Test Teardown | Func Test Teardown
+| Test Setup | Set up functional test
+| Test Teardown | Tear down functional test
 | Documentation | *L2XC with VLAN tag rewrite test cases - translate-1-1*
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology
@@ -61,21 +61,21 @@
 | | ... | method. [Ver] Make TG send ICMPv4 Echo Req tagged with one Dot1q tag
 | | ... | from one of its interfaces to another one via DUT1 and DUT2; verify
 | | ... | that packet is received. [Ref] IEEE 802.1q
-| | Given Path for 3-node testing is set
+| | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
-| | And Interfaces in 3-node path are up
-| | ${vlan1_name} | ${vlan1_index}= | When Vlan Subinterface Created
+| | And Set interfaces in 3-node circular topology up
+| | ${vlan1_name} | ${vlan1_index}= | When Create vlan sub-interface
 | | ... | ${dut1_node} | ${dut1_to_tg} | ${outer_vlan_id1}
-| | ${vlan2_name} | ${vlan2_index}= | And Vlan Subinterface Created
+| | ${vlan2_name} | ${vlan2_index}= | And Create vlan sub-interface
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${outer_vlan_id2}
-| | And L2 Tag Rewrite Method Is Set On Interface | ${dut1_node}
+| | And Configure L2 tag rewrite method on interface | ${dut1_node}
 | | ... | ${vlan1_index} | translate-1-1 | tag1_id=${outer_vlan_id2}
-| | And L2 Tag Rewrite Method Is Set On Interface | ${dut2_node}
+| | And Configure L2 tag rewrite method on interface | ${dut2_node}
 | | ... | ${vlan2_index} | pop-1
-| | And Interfaces and VLAN sub-interfaces inter-connected using L2-xconnect
+| | And Connect interfaces and VLAN sub-interfaces using L2XC
 | | ... | ${dut1_node} | ${dut1_to_dut2} | ${vlan1_index}
 | | ... | ${dut2_node} | ${dut2_to_tg} | ${vlan2_index}
-| | Then Send and receive ICMP Packet
+| | Then Send ICMP packet and verify received packet
 | | ... | ${tg_node} | ${tg_to_dut1} | ${tg_to_dut2} | encaps=Dot1q
 | | ... | vlan1=${outer_vlan_id1}
 
@@ -91,22 +91,22 @@
 | | ... | tag from one of its interfaces to another one via DUT1 and DUT2;
 | | ... | verify that packet is not received. [Ref] IEEE 802.1q
 | | [Tags] | SKIP_PATCH
-| | Given Path for 3-node testing is set
+| | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
-| | And Interfaces in 3-node path are up
-| | ${vlan1_name} | ${vlan1_index}= | When Vlan Subinterface Created
+| | And Set interfaces in 3-node circular topology up
+| | ${vlan1_name} | ${vlan1_index}= | When Create vlan sub-interface
 | | ... | ${dut1_node} | ${dut1_to_tg} | ${outer_vlan_id1}
-| | ${vlan2_name} | ${vlan2_index}= | And Vlan Subinterface Created
+| | ${vlan2_name} | ${vlan2_index}= | And Create vlan sub-interface
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${outer_vlan_id2}
-| | And L2 Tag Rewrite Method Is Set On Interface | ${dut1_node}
+| | And Configure L2 tag rewrite method on interface | ${dut1_node}
 | | ... | ${vlan1_index} | translate-1-1 | tag1_id=${outer_vlan_wrong}
-| | And L2 Tag Rewrite Method Is Set On Interface | ${dut2_node}
+| | And Configure L2 tag rewrite method on interface | ${dut2_node}
 | | ... | ${vlan2_index} | pop-1
-| | And Interfaces and VLAN sub-interfaces inter-connected using L2-xconnect
+| | And Connect interfaces and VLAN sub-interfaces using L2XC
 | | ... | ${dut1_node} | ${dut1_to_dut2} | ${vlan1_index}
 | | ... | ${dut2_node} | ${dut2_to_tg} | ${vlan2_index}
 | | Then Run Keyword And Expect Error | ICMP echo Rx timeout
-| | ... | Send and receive ICMP Packet | ${tg_node} | ${tg_to_dut1}
+| | ... | Send ICMP packet and verify received packet | ${tg_node} | ${tg_to_dut1}
 | | ... | ${tg_to_dut2} | encaps=Dot1q | vlan1=${outer_vlan_id1}
 
 | TC03: DUT1 and DUT2 with L2XC and VLAN translate-1-1 (DUT1) switch ICMPv6 between two TG links
@@ -120,21 +120,21 @@
 | | ... | method. [Ver] Make TG send ICMPv6 Echo Req tagegd with one Dot1q tag
 | | ... | from one of its interfaces to another one via DUT1 and DUT2; verify
 | | ... | that packet is received. [Ref] IEEE 802.1q
-| | Given Path for 3-node testing is set
+| | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
-| | And Interfaces in 3-node path are up
-| | ${vlan1_name} | ${vlan1_index}= | When Vlan Subinterface Created
+| | And Set interfaces in 3-node circular topology up
+| | ${vlan1_name} | ${vlan1_index}= | When Create vlan sub-interface
 | | ... | ${dut1_node} | ${dut1_to_tg} | ${outer_vlan_id1}
-| | ${vlan2_name} | ${vlan2_index}= | And Vlan Subinterface Created
+| | ${vlan2_name} | ${vlan2_index}= | And Create vlan sub-interface
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${outer_vlan_id2}
-| | And L2 Tag Rewrite Method Is Set On Interface | ${dut1_node}
+| | And Configure L2 tag rewrite method on interface | ${dut1_node}
 | | ... | ${vlan1_index} | translate-1-1 | tag1_id=${outer_vlan_id2}
-| | And L2 Tag Rewrite Method Is Set On Interface | ${dut2_node}
+| | And Configure L2 tag rewrite method on interface | ${dut2_node}
 | | ... | ${vlan2_index} | pop-1
-| | And Interfaces and VLAN sub-interfaces inter-connected using L2-xconnect
+| | And Connect interfaces and VLAN sub-interfaces using L2XC
 | | ... | ${dut1_node} | ${dut1_to_dut2} | ${vlan1_index}
 | | ... | ${dut2_node} | ${dut2_to_tg} | ${vlan2_index}
-| | Then Send and receive ICMP Packet
+| | Then Send ICMP packet and verify received packet
 | | ... | ${tg_node} | ${tg_to_dut1} | ${tg_to_dut2} | src_ip=${src_ip}
 | | ... | dst_ip=${dst_ip} | encaps=Dot1q | vlan1=${outer_vlan_id1}
 
@@ -151,21 +151,21 @@
 | | ... | from one of its interfaces to another one via DUT1 and DUT2; verify
 | | ... | that packet is not received. [Ref] IEEE 802.1q
 | | [Tags] | SKIP_PATCH
-| | Given Path for 3-node testing is set
+| | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
-| | And Interfaces in 3-node path are up
-| | ${vlan1_name} | ${vlan1_index}= | When Vlan Subinterface Created
+| | And Set interfaces in 3-node circular topology up
+| | ${vlan1_name} | ${vlan1_index}= | When Create vlan sub-interface
 | | ... | ${dut1_node} | ${dut1_to_tg} | ${outer_vlan_id1}
-| | ${vlan2_name} | ${vlan2_index}= | And Vlan Subinterface Created
+| | ${vlan2_name} | ${vlan2_index}= | And Create vlan sub-interface
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${outer_vlan_id2}
-| | And L2 Tag Rewrite Method Is Set On Interface | ${dut1_node}
+| | And Configure L2 tag rewrite method on interface | ${dut1_node}
 | | ... | ${vlan1_index} | translate-1-1 | tag1_id=${outer_vlan_wrong}
-| | And L2 Tag Rewrite Method Is Set On Interface | ${dut2_node}
+| | And Configure L2 tag rewrite method on interface | ${dut2_node}
 | | ... | ${vlan2_index} | pop-1
-| | And Interfaces and VLAN sub-interfaces inter-connected using L2-xconnect
+| | And Connect interfaces and VLAN sub-interfaces using L2XC
 | | ... | ${dut1_node} | ${dut1_to_dut2} | ${vlan1_index}
 | | ... | ${dut2_node} | ${dut2_to_tg} | ${vlan2_index}
 | | Then Run Keyword And Expect Error | ICMP echo Rx timeout
-| | ... | Send and receive ICMP Packet | ${tg_node} | ${tg_to_dut1}
+| | ... | Send ICMP packet and verify received packet | ${tg_node} | ${tg_to_dut1}
 | | ... | ${tg_to_dut2} | src_ip=${src_ip} | dst_ip=${dst_ip} | encaps=Dot1q
 | | ... | vlan1=${outer_vlan_id1}

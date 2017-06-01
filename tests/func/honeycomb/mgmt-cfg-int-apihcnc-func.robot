@@ -34,7 +34,7 @@
 | TC01: Honeycomb can create and delete interfaces
 | | [Documentation] | Repeatedly create and delete an interface through Netconf\
 | | ... | and check the reply for any errors.
-| | Given Netconf session is established | ${node}
+| | Given Netconf session should be established | ${node}
 | | And Honeycomb creates first L2 bridge domain
 | | ... | ${node} | bd_netconf | ${bd_settings}
 | | :FOR | ${index} | IN RANGE | 20
@@ -44,7 +44,7 @@
 | TC02: Transaction revert test case 1
 | | [Documentation] | Configure two conflicting VxLAN tunnels, then verify\
 | | ... | that neither tunnel exists.
-| | Given Netconf session is established | ${node}
+| | Given Netconf session should be established | ${node}
 | | ${if_data}= | And InterfaceAPI.Get all interfaces oper data | ${node}
 | | When Error trigger is sent | ${trigger_revert1}
 | | ${if_data_new}= | And InterfaceAPI.Get all interfaces oper data | ${node}
@@ -53,7 +53,7 @@
 | TC03: Transaction revert test case 2
 | | [Documentation] | Configure two conflicting TAP interfaces, then verify\
 | | ... | that neither interface exists.
-| | Given Netconf session is established | ${node}
+| | Given Netconf session should be established | ${node}
 | | ${if_data}= | And InterfaceAPI.Get all interfaces oper data | ${node}
 | | When Error trigger is sent | ${trigger_revert1}
 | | ${if_data_new}= | And InterfaceAPI.Get all interfaces oper data | ${node}
@@ -61,7 +61,7 @@
 
 | TC04: Vlan subinterface creation
 | | [Documentation] | Configure a Vlan sub-interface under a physical interface.
-| | Given Netconf session is established | ${node}
+| | Given Netconf session should be established | ${node}
 | | When Error Trigger Is Sent
 | | ... | ${trigger_vlan} | interface=${interface}
 | | Then Replies should not contain RPC errors

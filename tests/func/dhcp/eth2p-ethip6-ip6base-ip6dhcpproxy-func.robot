@@ -18,8 +18,8 @@
 | Resource | resources/libraries/robot/ipv6.robot
 | Library | resources.libraries.python.Trace
 | Force Tags | HW_ENV | VM_ENV | 3_NODE_DOUBLE_LINK_TOPO | SKIP_VPP_PATCH
-| Test Setup | Func Test Setup
-| Test Teardown | Func Test Teardown
+| Test Setup | Set up functional test
+| Test Teardown | Tear down functional test
 | Documentation | *DHCPv6 proxy test cases*
 | ...
 | ... | *[Top] Network Topologies:* TG = DUT
@@ -47,9 +47,9 @@
 | | ... | DHCPv6 server through DHCPv6 proxy.
 | | ... | [Ref] RFC 3315
 | | ...
-| | Given Path for 2-node testing is set
+| | Given Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
-| | And Interfaces in 2-node path are up
+| | And Set interfaces in 2-node circular topology up
 | | And Vpp Set If Ipv6 Addr | ${dut_node}
 | | ... | ${dut_to_tg_if1} | ${dut_to_tg_if1_ip} | ${prefix_length}
 | | And Vpp Set If Ipv6 Addr | ${dut_node}

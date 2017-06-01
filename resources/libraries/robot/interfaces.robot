@@ -16,12 +16,12 @@
 | Resource | resources/libraries/robot/vat/interfaces.robot
 
 *** Keywords ***
-| VPP reports interfaces on | [Arguments] | ${node}
+| Report VPP interfaces | [Arguments] | ${node}
 | | VPP reports interfaces through VAT on | ${node}
 #| | VPP reports interfaces through ODL on | ${node}
 #| | VPP reports interfaces through DEBUGCLI on | ${node}
 
-| Setup MTU on TG based on MTU on DUT
+| Configure MTU on TG based on MTU on DUT
 | | [Documentation] | Type of the tg_node must be TG and dut_node must be DUT
 | | [Arguments] | ${tg_node} | ${dut_node}
 | | Append Nodes | ${tg_node} | ${dut_node}
