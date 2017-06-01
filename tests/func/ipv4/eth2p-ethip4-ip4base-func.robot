@@ -19,17 +19,17 @@
 | Resource | resources/libraries/robot/ipv4.robot
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | HW_ENV | SKIP_VPP_PATCH
 | Suite Setup | Run Keywords
-| ... | Setup all DUTs before test | AND
-| ... | Setup all TGs before traffic script | AND
+| ... | Configure all DUTs before test | AND
+| ... | Configure all TGs for traffic script | AND
 | ... | Update All Interface Data On All Nodes | ${nodes} | AND
-| ... | Setup DUT nodes for IPv4 testing
+| ... | Configure DUT nodes for IPv4 testing
 | Test Setup | Run Keywords | Save VPP PIDs | AND
 | ... | Reset VAT History On All DUTs | ${nodes} | AND
 | ... | Clear interface counters on all vpp nodes in topology | ${nodes}
 | Test Teardown | Run Keywords
 | ... | Show packet trace on all DUTs | ${nodes} | AND
 | ... | Show VAT History On All DUTs | ${nodes} | AND
-| ... | Check VPP PID in Teardown
+| ... | Verify VPP PID in Teardown
 | Documentation | *IPv4 routing test cases*
 | ...
 | ... | RFC791 IPv4, RFC826 ARP, RFC792 ICMPv4. Encapsulations: Eth-IPv4-ICMPv4
@@ -53,7 +53,7 @@
 | | ${src_port} | ${src_node}= | First Interface
 | | ${dst_port} | ${dst_node}= | Last Interface
 | | ${hops}= | Set Variable | ${0}
-| | Node "${src_node}" interface "${src_port}" can route to node "${dst_node}" interface "${dst_port}" ${hops} hops away using IPv4
+| | Route traffic from interface '${src_port}' on node '${src_node}' to interface '${dst_port}' on node '${dst_node}' '${hops}' hops away using IPv4
 
 | TC02: DUT routes IPv4 to its egress interface
 | | [Tags] | VM_ENV
@@ -65,7 +65,7 @@
 | | ${src_port} | ${src_node}= | First Interface
 | | ${dst_port} | ${dst_node}= | Last Egress Interface
 | | ${hops}= | Set Variable | ${0}
-| | Node "${src_node}" interface "${src_port}" can route to node "${dst_node}" interface "${dst_port}" ${hops} hops away using IPv4
+| | Route traffic from interface '${src_port}' on node '${src_node}' to interface '${dst_port}' on node '${dst_node}' '${hops}' hops away using IPv4
 
 | TC03: DUT1 routes IPv4 to DUT2 ingress interface
 | | [Tags] | VM_ENV
@@ -77,7 +77,7 @@
 | | ${src_port} | ${src_node}= | First Interface
 | | ${dst_port} | ${dst_node}= | Last Interface
 | | ${hops}= | Set Variable | ${1}
-| | Node "${src_node}" interface "${src_port}" can route to node "${dst_node}" interface "${dst_port}" ${hops} hops away using IPv4
+| | Route traffic from interface '${src_port}' on node '${src_node}' to interface '${dst_port}' on node '${dst_node}' '${hops}' hops away using IPv4
 
 | TC04: DUT1 routes IPv4 to DUT2 egress interface
 | | [Tags] | VM_ENV
@@ -89,7 +89,7 @@
 | | ${src_port} | ${src_node}= | First Interface
 | | ${dst_port} | ${dst_node}= | Last Egress Interface
 | | ${hops}= | Set Variable | ${1}
-| | Node "${src_node}" interface "${src_port}" can route to node "${dst_node}" interface "${dst_port}" ${hops} hops away using IPv4
+| | Route traffic from interface '${src_port}' on node '${src_node}' to interface '${dst_port}' on node '${dst_node}' '${hops}' hops away using IPv4
 
 | TC05: DUT1 and DUT2 route IPv4 between TG interfaces
 | | [Tags] | VM_ENV
@@ -101,7 +101,7 @@
 | | ${src_port} | ${src_node}= | First Interface
 | | ${dst_port} | ${dst_node}= | Last Interface
 | | ${hops}= | Set Variable | ${2}
-| | Node "${src_node}" interface "${src_port}" can route to node "${dst_node}" interface "${dst_port}" ${hops} hops away using IPv4
+| | Route traffic from interface '${src_port}' on node '${src_node}' to interface '${dst_port}' on node '${dst_node}' '${hops}' hops away using IPv4
 
 | TC06: DUT replies to ICMPv4 Echo Reqs with size 64B-to-1500B-incr-1B
 | | [Tags] | VM_ENV
@@ -109,17 +109,17 @@
 | | ... | Make TG send ICMPv4 Echo Reqs to DUT ingress interface,\
 | | ... | incrementating frame size from 64B to 1500B with increment step
 | | ... | of 1Byte. Make TG verify ICMP Echo Replies are correct.
-| | Ipv4 icmp echo sweep | ${nodes['TG']} | ${nodes['DUT1']} | 0 | 1452 | 1
+| | Execute IPv4 ICMP echo sweep | ${nodes['TG']} | ${nodes['DUT1']} | 0 | 1452 | 1
 
 | TC07: DUT replies to ICMPv4 Echo Reqs with size 1500B-to-9000B-incr-10B
 | | [Documentation]
 | | ... | Make TG send ICMPv4 Echo Reqs to DUT ingress interface,\
 | | ... | incrementating frame size from 1500B to 9000B with increment
 | | ... | step of 10Bytes. Make TG verify ICMPv4 Echo Replies are correct.
-| | [Setup] | Setup MTU on TG based on MTU on DUT | ${nodes['TG']} | ${nodes['DUT1']}
+| | [Setup] | Configure MTU on TG based on MTU on DUT | ${nodes['TG']} | ${nodes['DUT1']}
 | | [Teardown] | Run keywords
 | | ... | Set default Ethernet MTU on all interfaces on node | ${nodes['TG']}
-| | ... | AND | Check VPP PID in Teardown
+| | ... | AND | Verify VPP PID in Teardown
 | | Append Nodes | ${nodes['TG']} | ${nodes['DUT1']}
 | | Compute Path
 | | ${dut_port} | ${dut_node}= | Last Interface
@@ -128,11 +128,11 @@
 | | # IPv4 header and ICMP header
 | | ${end_size}= | Evaluate | ${mtu} - 14 - 4 - 20 - 8
 | | Run Keyword If | ${mtu} > 1518
-| | ... | Ipv4 icmp echo sweep | ${nodes['TG']} | ${nodes['DUT1']}
+| | ... | Execute IPv4 ICMP echo sweep | ${nodes['TG']} | ${nodes['DUT1']}
 | | ... | 1452 | ${end_size} | 10
 
 | TC08: DUT replies to ARP request
 | | [Tags] | VM_ENV | SKIP_VPP_PATCH
 | | [Documentation]
 | | ... | Make TG send ARP Request to DUT and verify ARP Reply is correct.\
-| | Send ARP request and validate response | ${nodes['TG']} | ${nodes['DUT1']}
+| | Send ARP request and verify response | ${nodes['TG']} | ${nodes['DUT1']}

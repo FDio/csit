@@ -254,7 +254,7 @@
 | | ... | Get classify session data
 | | ... | ${node} | ${table_index} | ${session_index}
 
-| Interface ACL settings from Honeycomb should be
+| Interface ACL configuration from Honeycomb should be
 | | [Documentation] | Retrieves ACL interface settings from Honeycomb\
 | | ... | and compares with expected settings.
 | | ...
@@ -265,7 +265,7 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Interface ACL settings from Honeycomb should be \
+| | ... | \| Interface ACL configuration from Honeycomb should be \
 | | ... | \| ${nodes['DUT1']} \| GigabithEthernet0/8/0 \| table0 \|
 | | [Arguments] | ${node} | ${interface} | ${table_name}
 | | ${data}= | InterfaceAPI.Get interface oper data | ${node} | ${interface}
@@ -274,7 +274,7 @@
 | | ... | ${data['vpp-interface-acl:acl']['ingress']['l2-acl']['classify-table']}
 | | ... | ${data['vpp-interface-acl:acl']['ingress']['ip4-acl']['classify-table']}
 
-| Interface ACL settings from VAT should be
+| Interface ACL configuration from VAT should be
 | | [Documentation] | Retrieves ACL interface settings from VAT\
 | | ... | and compares with expected settings.
 | | ...
@@ -285,14 +285,15 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Interface ACL settings from VAT should be \| ${nodes['DUT1']} \
-| | ... | \| GigabithEthernet0/8/0 \| ${0} \|
+| | ... | \| Interface ACL configuration from VAT should be \
+| | ... | \| ${nodes['DUT1']} \| GigabithEthernet0/8/0 \| ${0} \|
+| | ...
 | | [Arguments] | ${node} | ${interface} | ${table_index}
 | | ${data}= | Get interface classify table | ${node} | ${interface}
 | | Should be equal | ${table_index} | ${data['l2_table_id']}
 | | Should be equal | ${table_index} | ${data['ip4_table_id']}
 
-| Interface ACL settings from Honeycomb should be empty
+| Interface ACL configuration from Honeycomb should be empty
 | | [Documentation] | Retrieves ACL interface settings from Honeycomb\
 | | ... | and expects to fail.
 | | ...
@@ -302,7 +303,7 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Interface ACL settings from Honeycomb should be empty \
+| | ... | \| Interface ACL configuration from Honeycomb should be empty \
 | | ... | \| ${nodes['DUT1']} \| GigabithEthernet0/8/0 \|
 | | [Arguments] | ${node} | ${interface}
 | | ${data}= | InterfaceAPI.Get interface oper data | ${node} | ${interface}
@@ -310,7 +311,7 @@
 | | ... | Set Variable
 | | ... | ${data['vpp-interface-acl:acl']['l2-acl']['classify-table']}
 
-| Interface ACL settings from VAT should be empty
+| Interface ACL configuration from VAT should be empty
 | | [Documentation] | Retrieves ACL interface settings from VAT\
 | | ... | and expects to fail.
 | | ...
@@ -320,7 +321,7 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Interface ACL settings from Honeycomb should be empty \
+| | ... | \| Interface ACL configuration from Honeycomb should be empty \
 | | ... | \| ${nodes['DUT1']} \| GigabithEthernet0/8/0 \|
 | | [Arguments] | ${node} | ${interface}
 | | ${data}= | Get interface classify table | ${node} | ${interface}
@@ -379,7 +380,7 @@
 | | Set ACL plugin interface
 | | ... | ${node} | ${interface} | ${acl_list_name} | ${direction} | ${macip}
 
-| Clear plugin-ACL settings
+| Clear plugin-ACL configuration
 | | [Documentation] | Removes ACl assignment from interface, then deletes\
 | | ... | IETF-ACL chain.
 | | ...
@@ -389,7 +390,7 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Clear plugin-ACL settings | ${nodes['DUT1']} \
+| | ... | \| Clear plugin-ACL configuration | ${nodes['DUT1']} \
 | | ... | \| GigabitEthernet0/8/0 \|
 | | [Arguments] | ${node} | ${interface}
 | | Delete interface plugin ACLs | ${node} | ${interface}
@@ -409,7 +410,7 @@
 | | VPP log plugin acl settings | ${node}
 | | VPP log plugin acl interface assignment | ${node}
 
-| Send ICMP packet with type and code
+| Send ICMP packet with type and code and verify received packet
 | | [Documentation] | Sends an ICMP packet with specified code and type.
 | | ...
 | | ... | *Arguments:*
@@ -429,7 +430,7 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Send ICMP packet with type and code \| ${nodes['TG']} \
+| | ... | \| Send ICMP packet with type and code and verify received packet \| ${nodes['TG']} \
 | | ... | \| 16.0.0.1 \| 32.0.0.1 \| eth2 \| 08:00:27:cc:4f:54 \
 | | ... | \| eth4 \| 08:00:27:c9:6a:d5 \| ${1} \| ${1} \|
 | | ...

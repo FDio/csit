@@ -16,7 +16,7 @@
 | Library | resources.libraries.python.NodePath
 
 *** Keywords ***
-| Path for 2-node testing is set
+| Configure path in 2-node circular topology
 | | [Documentation] | Compute path for testing on two given nodes in circular
 | | ...             | topology and set corresponding test case variables.
 | | ...
@@ -43,7 +43,7 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Given Path for 2-node testing is set \| ${nodes['TG']} \
+| | ... | \| Given Configure path in 2-node circular topology \| ${nodes['TG']} \
 | | ... | \| ${nodes['DUT1']} \| ${nodes['TG']} \|
 | | ...
 | | [Arguments] | ${tg_node} | ${dut_node} | ${tg2_node}
@@ -69,7 +69,7 @@
 | | Set Test Variable | ${tg_node}
 | | Set Test Variable | ${dut_node}
 
-| Interfaces in 2-node path are up
+| Set interfaces in 2-node circular topology up
 | | [Documentation] | Set UP state on interfaces in 2-node path on nodes and
 | | ...             | wait for all interfaces are ready. Requires more than
 | | ...             | one link between nodes.
@@ -81,13 +81,13 @@
 | | ... | - No value returned.
 | | ...
 | | ... | _NOTE:_ This KW uses test variables sets in
-| | ... |         "Path for 2-node testing is set" KW.
+| | ... |         "Configure path in 2-node circular topology" KW.
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Given Path for 2-node testing is set \| ${nodes['TG']} \
+| | ... | \| Given Configure path in 2-node circular topology \| ${nodes['TG']} \
 | | ... | \| ${nodes['DUT1']} \| ${nodes['TG']} \|
-| | ... | \| And Interfaces in 2-node path are up \|
+| | ... | \| And Set interfaces in 2-node circular topology up \|
 | | ...
 | | Set Interface State | ${tg_node} | ${tg_to_dut_if1} | up
 | | Set Interface State | ${tg_node} | ${tg_to_dut_if2} | up
@@ -95,7 +95,7 @@
 | | Set Interface State | ${dut_node} | ${dut_to_tg_if2} | up
 | | Vpp Node Interfaces Ready Wait | ${dut_node}
 
-| Path for 3-node testing is set
+| Configure path in 3-node circular topology
 | | [Documentation] | Compute path for testing on three given nodes in circular
 | | ...             | topology and set corresponding test case variables.
 | | ...
@@ -128,7 +128,7 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Given Path for 3-node testing is set \| ${nodes['TG']} \
+| | ... | \| Given Configure path in 3-node circular topology \| ${nodes['TG']} \
 | | ... | \| ${nodes['DUT1']} \| ${nodes['DUT2']} \| ${nodes['TG']} \|
 | | ...
 | | [Arguments] | ${tg_node} | ${dut1_node} | ${dut2_node} | ${tg2_node}
@@ -163,7 +163,7 @@
 | | Set Test Variable | ${dut1_node}
 | | Set Test Variable | ${dut2_node}
 
-| Interfaces in 3-node path are up
+| Set interfaces in 3-node circular topology up
 | | [Documentation]
 | | ... | Set UP state on interfaces in 3-node path on nodes and \
 | | ... | wait until all interfaces are ready.
@@ -175,13 +175,13 @@
 | | ... | - No value returned.
 | | ...
 | | ... | _NOTE:_ This KW uses test variables sets in
-| | ... |         "Path for 3-node testing is set" KW.
+| | ... |         "Configure path in 3-node circular topology" KW.
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Given Path for 3-node testing is set \| ${nodes['TG']} \
+| | ... | \| Given Configure path in 3-node circular topology \| ${nodes['TG']} \
 | | ... | \| ${nodes['DUT1']} \| ${nodes['TG']} \|
-| | ... | \| And Interfaces in 3-node path are up \|
+| | ... | \| And Set interfaces in 3-node circular topology up \|
 | | ...
 | | Set Interface State | ${tg_node} | ${tg_to_dut1} | up
 | | Set Interface State | ${tg_node} | ${tg_to_dut2} | up
@@ -192,7 +192,7 @@
 | | Vpp Node Interfaces Ready Wait | ${dut1_node}
 | | Vpp Node Interfaces Ready Wait | ${dut2_node}
 
-| Path for Double-Link 3-node testing is set
+| Configure path in double-link 3-node circular topology
 | | [Documentation]
 | | ... | Compute path for testing on three given nodes in circular \
 | | ... | topology with double link and set corresponding \
@@ -239,7 +239,7 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Path for Double-Link 3-node testing is set \| ${nodes['TG']} \
+| | ... | \| Configure path in double-link 3-node circular topology \| ${nodes['TG']} \
 | | ... | \| ${nodes['DUT1']} \| ${nodes['DUT2']} \| ${nodes['TG']} \|
 | | ...
 | | [Arguments] | ${tg_node} | ${dut1_node} | ${dut2_node} | ${tg2_node}
@@ -317,7 +317,7 @@
 | | Set Test Variable | ${dut2_to_dut1_if1_mac}
 | | Set Test Variable | ${dut2_to_dut1_if2_mac}
 
-| Interfaces in Double-Link 3-node path are UP
+| Set interfaces in double-link 3-node circular topology up
 | | [Documentation]
 | | ... | Set UP state on interfaces in 3-node double link path \
 | | ... | wait until all interfaces are ready.
@@ -329,11 +329,11 @@
 | | ... | - No value returned.
 | | ...
 | | ... | _NOTE:_ This KW uses test variables sets in
-| | ... |         "Path for Double-Link 3-node testing is set" KW.
+| | ... |         "Configure path in double-link 3-node circular topology" KW.
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Path for Double-Link 3-node testing is set \| ${nodes['TG']} \
+| | ... | \| Configure path in double-link 3-node circular topology \| ${nodes['TG']} \
 | | ... | \| ${nodes['DUT1']} \| ${nodes['TG']} \|
 | | ... | \| Interfaces in Double-Link 3-node testing are UP \|
 | | ...

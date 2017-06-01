@@ -23,8 +23,8 @@
 | Library | resources.libraries.python.Classify.Classify
 | Library | resources.libraries.python.Trace
 | Force Tags | HW_ENV | VM_ENV | 3_NODE_SINGLE_LINK_TOPO | SKIP_VPP_PATCH
-| Test Setup | Func Test Setup
-| Test Teardown | Func Test Teardown
+| Test Setup | Set up functional test
+| Test Teardown | Tear down functional test
 | Documentation | *IPv4 routing with ingress ACL test cases*
 | ...
 | ... | Encapsulations: Eth-IPv4 on links TG-DUT1, TG-DUT2, DUT1-DUT2. IPv4
@@ -54,9 +54,9 @@
 | | [Documentation]
 | | ... | On DUT1 add source IPv4 address to classify table with 'deny'.\
 | | ... | Make TG verify matching packets are dropped.
-| | Given Path for 3-node testing is set
+| | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
-| | And Interfaces in 3-node path are up
+| | And Set interfaces in 3-node circular topology up
 | | And Set Interface Address | ${dut1_node}
 | | ... | ${dut1_to_tg} | ${dut1_to_tg_ip} | ${prefix_length}
 | | And Set Interface Address | ${dut1_node}
@@ -67,13 +67,13 @@
 | | And Vpp Route Add
 | | ... | ${dut1_node} | ${test_dst_ip} | ${prefix_length}
 | | ... | ${dut1_to_dut2_ip_GW} | ${dut1_to_dut2}
-| | And L2 setup xconnect on DUT
+| | And Configure L2XC
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${dut2_to_tg}
-| | Then Send Packet And Check Headers | ${tg_node}
+| | Then Send packet and verify headers | ${tg_node}
 | | ... | ${non_drop_src_ip} | ${test_dst_ip} | ${tg_to_dut1}
 | | ... | ${tg_to_dut1_mac} | ${dut1_to_tg_mac} | ${tg_to_dut2}
 | | ... | ${dut1_to_dut2_mac} | ${tg_to_dut2_mac}
-| | And Send Packet And Check Headers | ${tg_node}
+| | And Send packet and verify headers | ${tg_node}
 | | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
 | | ... | ${dut1_to_tg_mac} | ${tg_to_dut2}
 | | ... | ${dut1_to_dut2_mac} | ${tg_to_dut2_mac}
@@ -85,11 +85,11 @@
 | | ... | ${ip_version} | src | ${test_src_ip}
 | | And Vpp Enable Input Acl Interface
 | | ... | ${dut1_node} | ${dut1_to_tg} | ${ip_version} | ${table_index}
-| | Then Send packet from Port to Port should failed | ${tg_node}
+| | Then Packet transmission from port to port should fail | ${tg_node}
 | | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
 | | ... | ${dut1_to_tg_mac} | ${tg_to_dut2}
 | | ... | ${dut1_to_dut2_mac} | ${tg_to_dut2_mac}
-| | And Send Packet And Check Headers | ${tg_node}
+| | And Send packet and verify headers | ${tg_node}
 | | ... | ${non_drop_src_ip} | ${test_dst_ip} | ${tg_to_dut1}
 | | ... | ${tg_to_dut1_mac} | ${dut1_to_tg_mac} | ${tg_to_dut2}
 | | ... | ${dut1_to_dut2_mac} | ${tg_to_dut2_mac}
@@ -98,9 +98,9 @@
 | | [Documentation]
 | | ... | On DUT1 add destination IPv4 address to classify table with 'deny'.\
 | | ... | Make TG verify matching packets are dropped.
-| | Given Path for 3-node testing is set
+| | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
-| | And Interfaces in 3-node path are up
+| | And Set interfaces in 3-node circular topology up
 | | And Set Interface Address | ${dut1_node}
 | | ... | ${dut1_to_tg} | ${dut1_to_tg_ip} | ${prefix_length}
 | | And Set Interface Address | ${dut1_node}
@@ -114,13 +114,13 @@
 | | And Vpp Route Add
 | | ... | ${dut1_node} | ${non_drop_dst_ip} | ${prefix_length}
 | | ... | ${dut1_to_dut2_ip_GW} | ${dut1_to_dut2}
-| | And L2 setup xconnect on DUT
+| | And Configure L2XC
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${dut2_to_tg}
-| | Then Send Packet And Check Headers | ${tg_node}
+| | Then Send packet and verify headers | ${tg_node}
 | | ... | ${test_src_ip} | ${non_drop_dst_ip} | ${tg_to_dut1}
 | | ... | ${tg_to_dut1_mac} | ${dut1_to_tg_mac} | ${tg_to_dut2}
 | | ... | ${dut1_to_dut2_mac} | ${tg_to_dut2_mac}
-| | And Send Packet And Check Headers | ${tg_node}
+| | And Send packet and verify headers | ${tg_node}
 | | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
 | | ... | ${dut1_to_tg_mac} | ${tg_to_dut2}
 | | ... | ${dut1_to_dut2_mac} | ${tg_to_dut2_mac}
@@ -132,11 +132,11 @@
 | | ... | ${ip_version} | dst | ${test_dst_ip}
 | | And Vpp Enable Input Acl Interface
 | | ... | ${dut1_node} | ${dut1_to_tg} | ${ip_version} | ${table_index}
-| | Then Send packet from Port to Port should failed | ${tg_node}
+| | Then Packet transmission from port to port should fail | ${tg_node}
 | | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
 | | ... | ${dut1_to_tg_mac} | ${tg_to_dut2}
 | | ... | ${dut1_to_dut2_mac} | ${tg_to_dut2_mac}
-| | And Send Packet And Check Headers | ${tg_node}
+| | And Send packet and verify headers | ${tg_node}
 | | ... | ${test_src_ip} | ${non_drop_dst_ip} | ${tg_to_dut1}
 | | ... | ${tg_to_dut1_mac} | ${dut1_to_tg_mac} | ${tg_to_dut2}
 | | ... | ${dut1_to_dut2_mac} | ${tg_to_dut2_mac}
@@ -145,9 +145,9 @@
 | | [Documentation]
 | | ... | On DUT1 add source and destination IPv4 addresses to classify table\
 | | ... | with 'deny'. Make TG verify matching packets are dropped.
-| | Given Path for 3-node testing is set
+| | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
-| | And Interfaces in 3-node path are up
+| | And Set interfaces in 3-node circular topology up
 | | And Set Interface Address | ${dut1_node}
 | | ... | ${dut1_to_tg} | ${dut1_to_tg_ip} | ${prefix_length}
 | | And Set Interface Address | ${dut1_node}
@@ -161,13 +161,13 @@
 | | And Vpp Route Add
 | | ... | ${dut1_node} | ${non_drop_dst_ip} | ${prefix_length}
 | | ... | ${dut1_to_dut2_ip_GW} | ${dut1_to_dut2}
-| | And L2 setup xconnect on DUT
+| | And Configure L2XC
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${dut2_to_tg}
-| | Then Send Packet And Check Headers | ${tg_node}
+| | Then Send packet and verify headers | ${tg_node}
 | | ... | ${non_drop_src_ip} | ${non_drop_dst_ip} | ${tg_to_dut1}
 | | ... | ${tg_to_dut1_mac} | ${dut1_to_tg_mac} | ${tg_to_dut2}
 | | ... | ${dut1_to_dut2_mac} | ${tg_to_dut2_mac}
-| | And Send Packet And Check Headers | ${tg_node}
+| | And Send packet and verify headers | ${tg_node}
 | | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
 | | ... | ${dut1_to_tg_mac} | ${tg_to_dut2}
 | | ... | ${dut1_to_dut2_mac} | ${tg_to_dut2_mac}
@@ -186,11 +186,11 @@
 | | ... | ${dut1_node} | ${dut1_to_tg} | ${ip_version} | ${table_index_1}
 | | And Vpp Enable Input Acl Interface
 | | ... | ${dut1_node} | ${dut1_to_tg} | ${ip_version} | ${table_index_2}
-| | Then Send packet from Port to Port should failed | ${tg_node}
+| | Then Packet transmission from port to port should fail | ${tg_node}
 | | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
 | | ... | ${dut1_to_tg_mac} | ${tg_to_dut2}
 | | ... | ${dut1_to_dut2_mac} | ${tg_to_dut2_mac}
-| | And Send Packet And Check Headers | ${tg_node}
+| | And Send packet and verify headers | ${tg_node}
 | | ... | ${non_drop_src_ip} | ${non_drop_dst_ip} | ${tg_to_dut1}
 | | ... | ${tg_to_dut1_mac} | ${dut1_to_tg_mac} | ${tg_to_dut2}
 | | ... | ${dut1_to_dut2_mac} | ${tg_to_dut2_mac}
@@ -199,9 +199,9 @@
 | | [Documentation]
 | | ... | On DUT1 add protocol mask and TCP protocol (0x06) to classify table\
 | | ... | with 'deny'. Make TG verify matching packets are dropped.
-| | Given Path for 3-node testing is set
+| | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
-| | And Interfaces in 3-node path are up
+| | And Set interfaces in 3-node circular topology up
 | | And Set Interface Address | ${dut1_node}
 | | ... | ${dut1_to_tg} | ${dut1_to_tg_ip} | ${prefix_length}
 | | And Set Interface Address | ${dut1_node}
@@ -212,12 +212,12 @@
 | | And Vpp Route Add
 | | ... | ${dut1_node} | ${test_dst_ip} | ${prefix_length}
 | | ... | ${dut1_to_dut2_ip_GW} | ${dut1_to_dut2}
-| | And L2 setup xconnect on DUT
+| | And Configure L2XC
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${dut2_to_tg}
-| | Then Send TCP or UDP packet | ${tg_node}
+| | Then Send TCP or UDP packet and verify received packet | ${tg_node}
 | | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
 | | ... | ${tg_to_dut2} | ${dut1_to_tg_mac} | UDP | 80 | 20
-| | And Send TCP or UDP packet | ${tg_node}
+| | And Send TCP or UDP packet and verify received packet | ${tg_node}
 | | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
 | | ... | ${tg_to_dut2} | ${dut1_to_tg_mac} | TCP | 80 | 20
 | | ${table_index} | ${skip_n} | ${match_n}=
@@ -228,10 +228,10 @@
 | | ... | 000000000000000000000000000000000000000000000006
 | | And Vpp Enable Input Acl Interface
 | | ... | ${dut1_node} | ${dut1_to_tg} | ${ip_version} | ${table_index}
-| | Then Send TCP or UDP packet should failed | ${tg_node}
+| | Then TCP or UDP packet transmission should fail | ${tg_node}
 | | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
 | | ... | ${tg_to_dut2} | ${dut1_to_tg_mac} | TCP | 80 | 20
-| | And Send TCP or UDP packet | ${tg_node}
+| | And Send TCP or UDP packet and verify received packet | ${tg_node}
 | | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
 | | ... | ${tg_to_dut2} | ${dut1_to_tg_mac} | UDP | 80 | 20
 
@@ -239,9 +239,9 @@
 | | [Documentation]
 | | ... | On DUT1 add protocol mask and UDP protocol (0x11) to classify table\
 | | ... | with 'deny'. Make TG verify matching packets are dropped.
-| | Given Path for 3-node testing is set
+| | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
-| | And Interfaces in 3-node path are up
+| | And Set interfaces in 3-node circular topology up
 | | And Set Interface Address | ${dut1_node}
 | | ... | ${dut1_to_tg} | ${dut1_to_tg_ip} | ${prefix_length}
 | | And Set Interface Address | ${dut1_node}
@@ -252,12 +252,12 @@
 | | And Vpp Route Add
 | | ... | ${dut1_node} | ${test_dst_ip} | ${prefix_length}
 | | ... | ${dut1_to_dut2_ip_GW} | ${dut1_to_dut2}
-| | And L2 setup xconnect on DUT
+| | And Configure L2XC
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${dut2_to_tg}
-| | Then Send TCP or UDP packet | ${tg_node}
+| | Then Send TCP or UDP packet and verify received packet | ${tg_node}
 | | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
 | | ... | ${tg_to_dut2} | ${dut1_to_tg_mac} | TCP | 80 | 20
-| | And Send TCP or UDP packet | ${tg_node}
+| | And Send TCP or UDP packet and verify received packet | ${tg_node}
 | | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
 | | ... | ${tg_to_dut2} | ${dut1_to_tg_mac} | UDP | 80 | 20
 | | ${table_index} | ${skip_n} | ${match_n}=
@@ -268,10 +268,10 @@
 | | ... | 000000000000000000000000000000000000000000000011
 | | And Vpp Enable Input Acl Interface
 | | ... | ${dut1_node} | ${dut1_to_tg} | ${ip_version} | ${table_index}
-| | Then Send TCP or UDP packet should failed | ${tg_node}
+| | Then TCP or UDP packet transmission should fail | ${tg_node}
 | | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
 | | ... | ${tg_to_dut2} | ${dut1_to_tg_mac} | UDP | 80 | 20
-| | And Send TCP or UDP packet | ${tg_node}
+| | And Send TCP or UDP packet and verify received packet | ${tg_node}
 | | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
 | | ... | ${tg_to_dut2} | ${dut1_to_tg_mac} | TCP | 80 | 20
 
@@ -279,9 +279,9 @@
 | | [Documentation]
 | | ... | On DUT1 add TCP source ports to classify table with 'deny'.\
 | | ... | Make TG verify matching packets are dropped.
-| | Given Path for 3-node testing is set
+| | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
-| | And Interfaces in 3-node path are up
+| | And Set interfaces in 3-node circular topology up
 | | And Set Interface Address | ${dut1_node}
 | | ... | ${dut1_to_tg} | ${dut1_to_tg_ip} | ${prefix_length}
 | | And Set Interface Address | ${dut1_node}
@@ -292,12 +292,12 @@
 | | And Vpp Route Add
 | | ... | ${dut1_node} | ${test_dst_ip} | ${prefix_length}
 | | ... | ${dut1_to_dut2_ip_GW} | ${dut1_to_dut2}
-| | And L2 setup xconnect on DUT
+| | And Configure L2XC
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${dut2_to_tg}
-| | Then Send TCP or UDP packet | ${tg_node}
+| | Then Send TCP or UDP packet and verify received packet | ${tg_node}
 | | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
 | | ... | ${tg_to_dut2} | ${dut1_to_tg_mac} | TCP | 110 | 20
-| | And Send TCP or UDP packet | ${tg_node}
+| | And Send TCP or UDP packet and verify received packet | ${tg_node}
 | | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
 | | ... | ${tg_to_dut2} | ${dut1_to_tg_mac} | TCP | 80 | 20
 | | ${hex_mask}= | Compute Classify Hex Mask | ${ip_version} | TCP | source
@@ -309,10 +309,10 @@
 | | ... | ${hex_value}
 | | And Vpp Enable Input Acl Interface
 | | ... | ${dut1_node} | ${dut1_to_tg} | ${ip_version} | ${table_index}
-| | Then Send TCP or UDP packet should failed | ${tg_node}
+| | Then TCP or UDP packet transmission should fail | ${tg_node}
 | | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
 | | ... | ${tg_to_dut2} | ${dut1_to_tg_mac} | TCP | 80 | 20
-| | And Send TCP or UDP packet | ${tg_node}
+| | And Send TCP or UDP packet and verify received packet | ${tg_node}
 | | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
 | | ... | ${tg_to_dut2} | ${dut1_to_tg_mac} | TCP | 110 | 20
 
@@ -320,9 +320,9 @@
 | | [Documentation]
 | | ... | On DUT1 add TCP destination ports to classify table with 'deny'.\
 | | ... | Make TG verify matching packets are dropped.
-| | Given Path for 3-node testing is set
+| | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
-| | And Interfaces in 3-node path are up
+| | And Set interfaces in 3-node circular topology up
 | | And Set Interface Address | ${dut1_node}
 | | ... | ${dut1_to_tg} | ${dut1_to_tg_ip} | ${prefix_length}
 | | And Set Interface Address | ${dut1_node}
@@ -333,12 +333,12 @@
 | | And Vpp Route Add
 | | ... | ${dut1_node} | ${test_dst_ip} | ${prefix_length}
 | | ... | ${dut1_to_dut2_ip_GW} | ${dut1_to_dut2}
-| | And L2 setup xconnect on DUT
+| | And Configure L2XC
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${dut2_to_tg}
-| | Then Send TCP or UDP packet | ${tg_node}
+| | Then Send TCP or UDP packet and verify received packet | ${tg_node}
 | | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
 | | ... | ${tg_to_dut2} | ${dut1_to_tg_mac} | TCP | 20 | 110
-| | And Send TCP or UDP packet | ${tg_node}
+| | And Send TCP or UDP packet and verify received packet | ${tg_node}
 | | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
 | | ... | ${tg_to_dut2} | ${dut1_to_tg_mac} | TCP | 20 | 80
 | | ${hex_mask}= | Compute Classify Hex Mask | ${ip_version} | TCP | destination
@@ -350,10 +350,10 @@
 | | ... | ${hex_value}
 | | And Vpp Enable Input Acl Interface
 | | ... | ${dut1_node} | ${dut1_to_tg} | ${ip_version} | ${table_index}
-| | Then Send TCP or UDP packet should failed | ${tg_node}
+| | Then TCP or UDP packet transmission should fail | ${tg_node}
 | | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
 | | ... | ${tg_to_dut2} | ${dut1_to_tg_mac} | TCP | 20 | 80
-| | And Send TCP or UDP packet | ${tg_node}
+| | And Send TCP or UDP packet and verify received packet | ${tg_node}
 | | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
 | | ... | ${tg_to_dut2} | ${dut1_to_tg_mac} | TCP | 20 | 110
 
@@ -361,9 +361,9 @@
 | | [Documentation]
 | | ... | On DUT1 add TCP source and destination ports to classify table\
 | | ... | with 'deny'. Make TG verify matching packets are dropped.
-| | Given Path for 3-node testing is set
+| | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
-| | And Interfaces in 3-node path are up
+| | And Set interfaces in 3-node circular topology up
 | | And Set Interface Address | ${dut1_node}
 | | ... | ${dut1_to_tg} | ${dut1_to_tg_ip} | ${prefix_length}
 | | And Set Interface Address | ${dut1_node}
@@ -374,12 +374,12 @@
 | | And Vpp Route Add
 | | ... | ${dut1_node} | ${test_dst_ip} | ${prefix_length}
 | | ... | ${dut1_to_dut2_ip_GW} | ${dut1_to_dut2}
-| | And L2 setup xconnect on DUT
+| | And Configure L2XC
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${dut2_to_tg}
-| | Then Send TCP or UDP packet | ${tg_node}
+| | Then Send TCP or UDP packet and verify received packet | ${tg_node}
 | | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
 | | ... | ${tg_to_dut2} | ${dut1_to_tg_mac} | TCP | 110 | 25
-| | And Send TCP or UDP packet | ${tg_node}
+| | And Send TCP or UDP packet and verify received packet | ${tg_node}
 | | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
 | | ... | ${tg_to_dut2} | ${dut1_to_tg_mac} | TCP | 80 | 20
 | | ${hex_mask}= | Compute Classify Hex Mask | ${ip_version} | TCP
@@ -392,10 +392,10 @@
 | | ... | ${hex_value}
 | | And Vpp Enable Input Acl Interface
 | | ... | ${dut1_node} | ${dut1_to_tg} | ${ip_version} | ${table_index}
-| | Then Send TCP or UDP packet should failed | ${tg_node}
+| | Then TCP or UDP packet transmission should fail | ${tg_node}
 | | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
 | | ... | ${tg_to_dut2} | ${dut1_to_tg_mac} | TCP | 80 | 20
-| | And Send TCP or UDP packet | ${tg_node}
+| | And Send TCP or UDP packet and verify received packet | ${tg_node}
 | | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
 | | ... | ${tg_to_dut2} | ${dut1_to_tg_mac} | TCP | 110 | 25
 
@@ -403,9 +403,9 @@
 | | [Documentation]
 | | ... | On DUT1 add UDP source ports to classify table with 'deny'.\
 | | ... | Make TG verify matching packets are dropped.
-| | Given Path for 3-node testing is set
+| | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
-| | And Interfaces in 3-node path are up
+| | And Set interfaces in 3-node circular topology up
 | | And Set Interface Address | ${dut1_node}
 | | ... | ${dut1_to_tg} | ${dut1_to_tg_ip} | ${prefix_length}
 | | And Set Interface Address | ${dut1_node}
@@ -416,12 +416,12 @@
 | | And Vpp Route Add
 | | ... | ${dut1_node} | ${test_dst_ip} | ${prefix_length}
 | | ... | ${dut1_to_dut2_ip_GW} | ${dut1_to_dut2}
-| | And L2 setup xconnect on DUT
+| | And Configure L2XC
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${dut2_to_tg}
-| | Then Send TCP or UDP packet | ${tg_node}
+| | Then Send TCP or UDP packet and verify received packet | ${tg_node}
 | | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
 | | ... | ${tg_to_dut2} | ${dut1_to_tg_mac} | UDP | 110 | 20
-| | And Send TCP or UDP packet | ${tg_node}
+| | And Send TCP or UDP packet and verify received packet | ${tg_node}
 | | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
 | | ... | ${tg_to_dut2} | ${dut1_to_tg_mac} | UDP | 80 | 20
 | | ${hex_mask}= | Compute Classify Hex Mask | ${ip_version} | UDP | source
@@ -433,10 +433,10 @@
 | | ... | ${hex_value}
 | | And Vpp Enable Input Acl Interface
 | | ... | ${dut1_node} | ${dut1_to_tg} | ${ip_version} | ${table_index}
-| | Then Send TCP or UDP packet should failed | ${tg_node}
+| | Then TCP or UDP packet transmission should fail | ${tg_node}
 | | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
 | | ... | ${tg_to_dut2} | ${dut1_to_tg_mac} | UDP | 80 | 20
-| | And Send TCP or UDP packet | ${tg_node}
+| | And Send TCP or UDP packet and verify received packet | ${tg_node}
 | | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
 | | ... | ${tg_to_dut2} | ${dut1_to_tg_mac} | UDP | 110 | 20
 
@@ -444,9 +444,9 @@
 | | [Documentation]
 | | ... | On DUT1 add TCP destination ports to classify table with 'deny'.\
 | | ... | Make TG verify matching packets are dropped.
-| | Given Path for 3-node testing is set
+| | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
-| | And Interfaces in 3-node path are up
+| | And Set interfaces in 3-node circular topology up
 | | And Set Interface Address | ${dut1_node}
 | | ... | ${dut1_to_tg} | ${dut1_to_tg_ip} | ${prefix_length}
 | | And Set Interface Address | ${dut1_node}
@@ -457,12 +457,12 @@
 | | And Vpp Route Add
 | | ... | ${dut1_node} | ${test_dst_ip} | ${prefix_length}
 | | ... | ${dut1_to_dut2_ip_GW} | ${dut1_to_dut2}
-| | And L2 setup xconnect on DUT
+| | And Configure L2XC
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${dut2_to_tg}
-| | Then Send TCP or UDP packet | ${tg_node}
+| | Then Send TCP or UDP packet and verify received packet | ${tg_node}
 | | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
 | | ... | ${tg_to_dut2} | ${dut1_to_tg_mac} | UDP | 20 | 110
-| | And Send TCP or UDP packet | ${tg_node}
+| | And Send TCP or UDP packet and verify received packet | ${tg_node}
 | | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
 | | ... | ${tg_to_dut2} | ${dut1_to_tg_mac} | UDP | 20 | 80
 | | ${hex_mask}= | Compute Classify Hex Mask | ${ip_version} | UDP | destination
@@ -474,10 +474,10 @@
 | | ... | ${hex_value}
 | | And Vpp Enable Input Acl Interface
 | | ... | ${dut1_node} | ${dut1_to_tg} | ${ip_version} | ${table_index}
-| | Then Send TCP or UDP packet should failed | ${tg_node}
+| | Then TCP or UDP packet transmission should fail | ${tg_node}
 | | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
 | | ... | ${tg_to_dut2} | ${dut1_to_tg_mac} | UDP | 20 | 80
-| | And Send TCP or UDP packet | ${tg_node}
+| | And Send TCP or UDP packet and verify received packet | ${tg_node}
 | | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
 | | ... | ${tg_to_dut2} | ${dut1_to_tg_mac} | UDP | 20 | 110
 
@@ -485,9 +485,9 @@
 | | [Documentation]
 | | ... | On DUT1 add UDP source and destination ports to classify table\
 | | ... | with 'deny'. Make TG verify matching packets are dropped.
-| | Given Path for 3-node testing is set
+| | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
-| | And Interfaces in 3-node path are up
+| | And Set interfaces in 3-node circular topology up
 | | And Set Interface Address | ${dut1_node}
 | | ... | ${dut1_to_tg} | ${dut1_to_tg_ip} | ${prefix_length}
 | | And Set Interface Address | ${dut1_node}
@@ -498,12 +498,12 @@
 | | And Vpp Route Add
 | | ... | ${dut1_node} | ${test_dst_ip} | ${prefix_length}
 | | ... | ${dut1_to_dut2_ip_GW} | ${dut1_to_dut2}
-| | And L2 setup xconnect on DUT
+| | And Configure L2XC
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${dut2_to_tg}
-| | Then Send TCP or UDP packet | ${tg_node}
+| | Then Send TCP or UDP packet and verify received packet | ${tg_node}
 | | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
 | | ... | ${tg_to_dut2} | ${dut1_to_tg_mac} | UDP | 110 | 25
-| | And Send TCP or UDP packet | ${tg_node}
+| | And Send TCP or UDP packet and verify received packet | ${tg_node}
 | | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
 | | ... | ${tg_to_dut2} | ${dut1_to_tg_mac} | UDP | 80 | 20
 | | ${hex_mask}= | Compute Classify Hex Mask | ${ip_version} | UDP
@@ -516,9 +516,9 @@
 | | ... | ${hex_value}
 | | And Vpp Enable Input Acl Interface
 | | ... | ${dut1_node} | ${dut1_to_tg} | ${ip_version} | ${table_index}
-| | Then Send TCP or UDP packet should failed | ${tg_node}
+| | Then TCP or UDP packet transmission should fail | ${tg_node}
 | | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
 | | ... | ${tg_to_dut2} | ${dut1_to_tg_mac} | UDP | 80 | 20
-| | And Send TCP or UDP packet | ${tg_node}
+| | And Send TCP or UDP packet and verify received packet | ${tg_node}
 | | ... | ${test_src_ip} | ${test_dst_ip} | ${tg_to_dut1} | ${tg_to_dut1_mac}
 | | ... | ${tg_to_dut2} | ${dut1_to_tg_mac} | UDP | 110 | 25

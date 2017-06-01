@@ -33,16 +33,16 @@
 | Force Tags | HC_FUNC
 
 *** Test Cases ***
-| TC01: Honeycomb enables Lisp feature
+| TC01: Honeycomb enables LISP feature
 | | [Documentation] | Check if Honeycomb can enable the Lisp feature.
 | | Given Lisp Should Not Be Configured | ${node}
-| | When Honeycomb Enables Lisp | ${node}
-| | Then Lisp state From Honeycomb Should Be | ${node} | ${state}
-| | And Lisp state From VAT Should Be | ${node} | ${state}
+| | When Honeycomb enables LISP | ${node}
+| | Then LISP state from Honeycomb should be | ${node} | ${state}
+| | And LISP state from VAT should be | ${node} | ${state}
 
 | TC02: Honeycomb adds locator set and locator
 | | [Documentation] | Check if Honeycomb can configure a locator set.
-| | Given Lisp state From Honeycomb Should Be | ${node} | ${state}
+| | Given LISP state from Honeycomb should be | ${node} | ${state}
 | | When Honeycomb adds locator set | ${node} | ${interface} | ${locator_set}
 | | Then Locator Set From Honeycomb Should Be
 | | ... | ${node} | ${interface} | ${locator_set}
@@ -50,39 +50,39 @@
 | TC03: Honeycomb configures Lisp - remote mapping - Bridge Domain
 | | [Documentation] | Check if Honeycomb can configure a remote Lisp mapping\
 | | ... | with a bridge domain.
-| | Given Lisp state From Honeycomb Should Be | ${node} | ${state}
+| | Given LISP state from Honeycomb should be | ${node} | ${state}
 | | And Honeycomb creates first l2 bridge domain
 | | ... | ${node} | ${bd_name} | ${bd_settings}
-| | When Honeycomb adds Lisp mapping | ${node} | ${lisp_settings_remote_bd}
-| | Then Lisp mapping From Honeycomb Should Be
+| | When Honeycomb adds LISP mapping | ${node} | ${lisp_settings_remote_bd}
+| | Then LISP mapping from Honeycomb should be
 | | ... | ${node} | ${remote_bd_subtable}
-| | And Lisp mapping From VAT Should Be
+| | And LISP mapping from VAT should be
 | | ... | ${node} | ${vat_remote_bd}
 
 | TC04: Honeycomb can remove Lisp mapping
 | | [Documentation] | Check if Honeycomb can remove a configured Lisp mapping.
-| | Given Lisp mapping From Honeycomb Should Be
+| | Given LISP mapping from Honeycomb should be
 | | ... | ${node} | ${remote_bd_subtable}
-| | And Lisp mapping From VAT Should Be
+| | And LISP mapping from VAT should be
 | | ... | ${node} | ${vat_remote_bd}
 | | When Honeycomb removes all lisp mappings | ${node}
-| | Then Lisp mappings from Honeycomb should not exist
+| | Then LISP mappings from Honeycomb should not exist
 | | ... | ${node}
-| | And Lisp mappings from VAT should not exist
+| | And LISP mappings from VAT should not exist
 | | ... | ${node}
 
 | TC05: Honeycomb configures Lisp - remote mapping - VRF
 | | [Documentation] | Check if Honeycomb can configure a remote Lisp mapping\
 | | ... | with VRF.
 | | [Teardown] | Honeycomb removes all lisp mappings | ${node}
-| | Given Lisp mappings from Honeycomb should not exist
+| | Given LISP mappings from Honeycomb should not exist
 | | ... | ${node}
-| | And Lisp mappings from VAT should not exist
+| | And LISP mappings from VAT should not exist
 | | ... | ${node}
-| | When Honeycomb adds Lisp mapping | ${node} | ${lisp_settings_remote_vrf}
-| | Then Lisp mapping From Honeycomb Should Be
+| | When Honeycomb adds LISP mapping | ${node} | ${lisp_settings_remote_vrf}
+| | Then LISP mapping from Honeycomb should be
 | | ... | ${node} | ${remote_vrf_subtable}
-| | And Lisp mapping From VAT Should Be | ${node} | ${vat_remote_vrf}
+| | And LISP mapping from VAT should be | ${node} | ${vat_remote_vrf}
 
 | TC06: Honeycomb configures Lisp - local mapping - Bridge Domain
 | | [Documentation] | Check if Honeycomb can configure a local Lisp mapping\
@@ -90,15 +90,15 @@
 | | [Teardown] | Honeycomb removes all lisp mappings | ${node}
 | | Given Locator Set From Honeycomb Should Be
 | | ... | ${node} | ${interface} | ${locator_set}
-| | And Lisp mappings from Honeycomb should not exist
+| | And LISP mappings from Honeycomb should not exist
 | | ... | ${node}
-| | And Lisp mappings from VAT should not exist
+| | And LISP mappings from VAT should not exist
 | | ... | ${node}
 | | And Honeycomb creates first l2 bridge domain
 | | ... | ${node} | ${bd2_name} | ${bd_settings}
-| | When Honeycomb adds Lisp mapping | ${node} | ${lisp_settings_local_bd}
-| | Then Lisp mapping From Honeycomb Should Be | ${node} | ${local_bd_subtable}
-| | And Lisp mapping From VAT Should Be | ${node} | ${vat_local_bd}
+| | When Honeycomb adds LISP mapping | ${node} | ${lisp_settings_local_bd}
+| | Then LISP mapping from Honeycomb should be | ${node} | ${local_bd_subtable}
+| | And LISP mapping from VAT should be | ${node} | ${vat_local_bd}
 
 | TC07: Honeycomb configures Lisp - local mapping - VRF
 | | [Documentation] | Check if Honeycomb can configure a local Lisp mapping\
@@ -106,13 +106,13 @@
 | | [Teardown] | Honeycomb removes all lisp mappings | ${node}
 | | Given Locator Set From Honeycomb Should Be
 | | ... | ${node} | ${interface} | ${locator_set}
-| | And Lisp mappings from Honeycomb should not exist
+| | And LISP mappings from Honeycomb should not exist
 | | ... | ${node}
-| | And Lisp mappings from VAT should not exist
+| | And LISP mappings from VAT should not exist
 | | ... | ${node}
-| | When Honeycomb adds Lisp mapping | ${node} | ${lisp_settings_local_vrf}
-| | Then Lisp mapping From Honeycomb Should Be | ${node} | ${local_vrf_subtable}
-| | And Lisp mapping From VAT Should Be | ${node} | ${vat_local_vrf}
+| | When Honeycomb adds LISP mapping | ${node} | ${lisp_settings_local_vrf}
+| | Then LISP mapping from Honeycomb should be | ${node} | ${local_vrf_subtable}
+| | And LISP mapping from VAT should be | ${node} | ${vat_local_vrf}
 
 | TC08: Honeycomb configures Lisp mapping with adjacency
 | | [Documentation] | Check if Honeycomb can configure local and remote Lisp\
@@ -122,28 +122,28 @@
 | | ... | ${node} | ${interface} | ${locator_set}
 | | And Honeycomb creates first l2 bridge domain
 | | ... | ${node} | ${bd2_name} | ${bd_settings}
-| | And Lisp mappings from Honeycomb should not exist
+| | And LISP mappings from Honeycomb should not exist
 | | ... | ${node}
-| | And Lisp mappings from VAT should not exist
+| | And LISP mappings from VAT should not exist
 | | ... | ${node}
-| | And Honeycomb adds Lisp mapping | ${node} | ${lisp_settings_both_vrf}
-| | When Honeycomb adds Lisp adjacency | ${node} | ${7} | remote_map_vrf
+| | And Honeycomb adds LISP mapping | ${node} | ${lisp_settings_both_vrf}
+| | When Honeycomb adds LISP adjacency | ${node} | ${7} | remote_map_vrf
 | | ... | adj01 | ${vrf_adjacency}
 | | Then Lisp mapping from Honeycomb should be
 | | ... | ${node} | ${adj_subtable}
 
 | TC09: Honeycomb configures Lisp Map Resolver
 | | [Documentation] | Check if Honeycomb can configure a Lisp Map Resolver.
-| | Given Lisp state From Honeycomb Should Be | ${node} | ${state}
-| | And Lisp state From VAT Should Be | ${node} | ${state}
+| | Given LISP state from Honeycomb should be | ${node} | ${state}
+| | And LISP state from VAT should be | ${node} | ${state}
 | | When Honeycomb adds Lisp Map Resolver | ${node} | ${ip_address}
 | | Then Map Resolver from Honeycomb should be | ${node} | ${ip_address}
 | | And Map Resolver from VAT should be | ${node} | ${ip_address}
 
 | TC10: Honeycomb configures Lisp Map Server
 | | [Documentation] | Check if Honeycomb can configure a Lisp Map Server.
-| | Given Lisp state From Honeycomb Should Be | ${node} | ${state}
-| | And Lisp state From VAT Should Be | ${node} | ${state}
+| | Given LISP state from Honeycomb should be | ${node} | ${state}
+| | And LISP state from VAT should be | ${node} | ${state}
 | | When Honeycomb adds Lisp Map Server | ${node} | @{ip_addresses}
 | | Then Map Server from Honeycomb should be | ${node} | @{ip_addresses}
 | | And Map Server from VAT should be | ${node} | @{ip_addresses}
@@ -151,24 +151,24 @@
 | TC11: Honeycomb configures Lisp PETR configuration
 | | [Documentation] | Check if Honeycomb can configure Lisp
 | | ... | PETR configuration.
-| | Given Lisp state From Honeycomb Should Be | ${node} | ${state}
-| | And Lisp state From VAT Should Be | ${node} | ${state}
-| | When Honeycomb enables Lisp PETR feature | ${node} | ${ip_address}
+| | Given LISP state from Honeycomb should be | ${node} | ${state}
+| | And LISP state from VAT should be | ${node} | ${state}
+| | When Honeycomb enables LISP PETR feature | ${node} | ${ip_address}
 | | Then PETR configuration from Honeycomb should be | ${node} | ${ip_address}
 | | And PETR configuration from VAT should be | ${node} | enabled
 
 | TC12: Honeycomb configures Lisp RLOC Probing
 | | [Documentation] | Check if Honeycomb can configure Lisp RLOC Probing.
-| | Given Lisp state From Honeycomb Should Be | ${node} | ${state}
-| | And Lisp state From VAT Should Be | ${node} | ${state}
-| | When Honeycomb enables Lisp RLOC feature | ${node}
+| | Given LISP state from Honeycomb should be | ${node} | ${state}
+| | And LISP state from VAT should be | ${node} | ${state}
+| | When Honeycomb enables LISP RLOC feature | ${node}
 | | Then RLOC Probing from Honeycomb should be | ${node} | ${True}
 | | And RLOC Probing from VAT should be | ${node} | enabled
 
 | TC13: Honeycomb configures Lisp Map Register
 | | [Documentation] | Check if Honeycomb can configure a Lisp Map Register.
-| | Given Lisp state From Honeycomb Should Be | ${node} | ${state}
-| | And Lisp state From VAT Should Be | ${node} | ${state}
+| | Given LISP state from Honeycomb should be | ${node} | ${state}
+| | And LISP state from VAT should be | ${node} | ${state}
 | | When Honeycomb adds Lisp Map Register | ${node} | ${True}
 | | Then Map Register from Honeycomb should be | ${node} | ${True}
 | | And Map Register from VAT should be | ${node} | enabled
@@ -177,7 +177,7 @@
 | | [Documentation] | Check if Honeycomb can configure the Lisp PITR feature.
 | | Given Locator Set From Honeycomb Should Be
 | | ... | ${node} | ${interface} | ${locator_set}
-| | When Honeycomb enables Lisp PITR feature | ${node} | ${locator_set}
+| | When Honeycomb enables LISP PITR feature | ${node} | ${locator_set}
 | | Then PITR config from Honeycomb should be | ${node} | ${locator_set}
 | | And PITR config from VAT should be | ${node} | ${locator_set}
 
@@ -185,14 +185,14 @@
 | | [Documentation] | Check if Honeycomb can disable all Lisp features.
 | | Given Map resolver from Honeycomb should be | ${node} | ${ip_address}
 | | And PITR config from Honeycomb should be | ${node} | ${locator_set}
-| | When Honeycomb disables all Lisp features | ${node}
+| | When Honeycomb disables all LISP features | ${node}
 | | Then Lisp Should Not Be Configured | ${node}
 
 | TC16: Honeycomb configures Lisp Map Request Mode
 | | [Documentation] | Check if Honeycomb can configure Lisp Map Request mode.
 | | ... | Note: Map Request Mode cannot be removed once configured.
-| | [Teardown] | Honeycomb disables Lisp | ${node}
-| | Given Honeycomb Enables Lisp | ${node}
+| | [Teardown] | Honeycomb disables LISP | ${node}
+| | Given Honeycomb enables LISP | ${node}
 | | When Honeycomb sets Lisp Map Request Mode | ${node} | ${True}
 | | Then Map Request Mode from Honeycomb should be
 | | ... | ${node} | source-destination

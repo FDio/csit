@@ -36,7 +36,7 @@
 | TC01: Honeycomb creates sub-interface
 | | [Documentation] | Check if Honeycomb creates a sub-interface.
 | | ...
-| | Given Honeycomb sets interface state | ${node} | ${super_if} | down
+| | Given Honeycomb configures interface state | ${node} | ${super_if} | down
 | | And sub-interface Operational Data From Honeycomb Should Be empty
 | | ... | ${node} | ${super_if} | ${sub_if_id}
 | | And interface Operational Data From VAT Should Be empty
@@ -62,7 +62,7 @@
 | | ... | ${node} | ${super_if} | ${sub_if_id} | down | down
 | | Sub-interface state from VAT should be
 | | ... | ${node} | ${sub_if_name} | down | down
-| | When Honeycomb sets interface state
+| | When Honeycomb configures interface state
 | | ... | ${node} | ${super_if} | up
 | | Then interface state from Honeycomb should be
 | | ... | ${node} | ${super_if} | up
@@ -112,7 +112,7 @@
 | | ... | ${node} | ${super_if} | up
 | | And interface state from VAT should be
 | | ... | ${node} | ${super_if} | up
-| | When Honeycomb sets interface state
+| | When Honeycomb configures interface state
 | | ... | ${node} | ${super_if} | down
 | | Then interface state from Honeycomb should be
 | | ... | ${node} | ${super_if} | down
@@ -387,7 +387,7 @@
 | TC18: Honeycomb modifies sub-interface exact tag match
 | | [Documentation] | Check if Honeycomb can modify a sub-interface with exact\
 | | ... | tag match.
-| | Given Honeycomb sets interface state | ${node} | ${super_if2} | down
+| | Given Honeycomb configures interface state | ${node} | ${super_if2} | down
 | | And sub-interface Operational Data From Honeycomb Should Be empty
 | | ... | ${node} | ${super_if2} | ${sub_if_id}
 | | And interface Operational Data From VAT Should Be empty
@@ -466,7 +466,7 @@
 | | ... | ${node} | ${super_if} | ${sub_if_id}
 | | And sub-interface ipv4 address from VAT should be empty
 | | ... | ${node} | ${sub_if_name}
-| | And Honeycomb sets interface ipv4 address | ${node}
+| | And Honeycomb sets interface IPv4 address | ${node}
 | | ... | local0 | ${ipv4['address']} | ${ipv4['prefix-length']}
 | | When Honeycomb adds unnumbered configuration to interface
 | | ... | ${node} | ${super_if}.${sub_if_id} | local0
@@ -485,7 +485,7 @@
 | TC23: Honeycomb removes sub-interface unnumbered configuration
 | | [Documentation] | Check if Honeycomb can remove unnumbered configuration\
 | | ... | from a sub-interface.
-| | [Teardown] | Honeycomb removes interface ipv4 addresses | ${node}
+| | [Teardown] | Honeycomb removes interface IPv4 addresses | ${node}
 | | ... | local0
 | | Given IPv4 address from Honeycomb should be
 | | ... | ${node} | local0 | ${ipv4['address']} | ${ipv4['prefix-length']}
@@ -552,7 +552,7 @@
 | | ...
 | | [Arguments] | ${node} | ${super_interface} | ${identifier}
 | | ...
-| | Honeycomb sets interface state
+| | Honeycomb configures interface state
 | | ... | ${node} | ${super_interface} | up
 | | Honeycomb sets the sub-interface up
 | | ... | ${node} | ${super_interface} | ${identifier}
@@ -572,7 +572,7 @@
 | | ...
 | | [Arguments] | ${node} | ${super_interface} | ${identifier}
 | | ...
-| | Honeycomb sets interface state
+| | Honeycomb configures interface state
 | | ... | ${node} | ${super_interface} | down
 | | Honeycomb sets the sub-interface down
 | | ... | ${node} | ${super_interface} | ${identifier}

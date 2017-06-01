@@ -18,8 +18,8 @@
 | Resource | resources/libraries/robot/qemu.robot
 | Library  | resources.libraries.python.Trace
 | Force Tags | HW_ENV | VM_ENV
-| Test Setup | Func Test Setup
-| Test Teardown | Func Test Teardown
+| Test Setup | Set up functional test
+| Test Teardown | Tear down functional test
 | Documentation | *L2 bridge-domain test cases*
 | ...
 | ... | *[Top] Network Topologies:* TG=DUT1=DUT2=TG 3-node circular topology
@@ -53,41 +53,41 @@
 | | ... | are correct on receive; verify no pkts are switched thru SHG
 | | ... | isolated interfaces. [Ref]
 | | [Tags] | 3_NODE_DOUBLE_LINK_TOPO
-| | Given Path for 3-node BD-SHG testing is set | ${nodes['TG']}
+| | Given Configure path for 3-node BD-SHG test | ${nodes['TG']}
 | | ...                                         | ${nodes['DUT1']}
 | | ...                                         | ${nodes['DUT2']}
-| | And Interfaces in 3-node BD-SHG testing are up
-| | When Bridge domain on DUT node is created | ${dut1_node} | ${bd_id1}
-| | And Interface is added to bridge domain | ${dut1_node} | ${dut1_to_tg_if1}
+| | And Set interfaces in 3-node BD-SHG test up
+| | When Create bridge domain | ${dut1_node} | ${bd_id1}
+| | And Add interface to bridge domain | ${dut1_node} | ${dut1_to_tg_if1}
 | | ...                                     | ${bd_id1} | ${shg1}
-| | And Interface is added to bridge domain | ${dut1_node} | ${dut1_to_tg_if2}
+| | And Add interface to bridge domain | ${dut1_node} | ${dut1_to_tg_if2}
 | | ...                                     | ${bd_id1} | ${shg1}
-| | And Interface is added to bridge domain | ${dut1_node} | ${dut1_to_dut2}
+| | And Add interface to bridge domain | ${dut1_node} | ${dut1_to_dut2}
 | | ...                                     | ${bd_id1}
-| | And Bridge domain on DUT node is created | ${dut2_node} | ${bd_id2}
-| | And Interface is added to bridge domain | ${dut2_node} | ${dut2_to_tg_if1}
+| | And Create bridge domain | ${dut2_node} | ${bd_id2}
+| | And Add interface to bridge domain | ${dut2_node} | ${dut2_to_tg_if1}
 | | ...                                     | ${bd_id2} | ${shg2}
-| | And Interface is added to bridge domain | ${dut2_node} | ${dut2_to_tg_if2}
+| | And Add interface to bridge domain | ${dut2_node} | ${dut2_to_tg_if2}
 | | ...                                     | ${bd_id2} | ${shg2}
-| | And Interface is added to bridge domain | ${dut2_node} | ${dut2_to_dut1}
+| | And Add interface to bridge domain | ${dut2_node} | ${dut2_to_dut1}
 | | ...                                     | ${bd_id2}
-| | Then Send and receive ICMPv4 bidirectionally | ${tg_node}
+| | Then Send ICMPv4 bidirectionally and verify received packets | ${tg_node}
 | | ...                                          | ${tg_to_dut1_if1}
 | | ...                                          | ${tg_to_dut2_if1}
-| | And Send and receive ICMPv4 bidirectionally | ${tg_node}
+| | And Send ICMPv4 bidirectionally and verify received packets | ${tg_node}
 | | ...                                         | ${tg_to_dut1_if1}
 | | ...                                         | ${tg_to_dut2_if2}
-| | And Send and receive ICMPv4 bidirectionally | ${tg_node}
+| | And Send ICMPv4 bidirectionally and verify received packets | ${tg_node}
 | | ...                                         | ${tg_to_dut1_if2}
 | | ...                                         | ${tg_to_dut2_if1}
-| | And Send and receive ICMPv4 bidirectionally | ${tg_node}
+| | And Send ICMPv4 bidirectionally and verify received packets | ${tg_node}
 | | ...                                         | ${tg_to_dut1_if2}
 | | ...                                         | ${tg_to_dut2_if2}
 | | And Run Keyword And Expect Error | ICMP echo Rx timeout
-| | ...                              | Send and receive ICMPv4 bidirectionally
+| | ...                              | Send ICMPv4 bidirectionally and verify received packets
 | | | ...                            | ${tg_node} | ${tg_to_dut1_if1}
 | | | ...                            | ${tg_to_dut1_if2}
 | | And Run Keyword And Expect Error | ICMP echo Rx timeout
-| | ...                              | Send and receive ICMPv4 bidirectionally
+| | ...                              | Send ICMPv4 bidirectionally and verify received packets
 | | | ...                            | ${tg_node} | ${tg_to_dut2_if1}
 | | | ...                            | ${tg_to_dut2_if2}

@@ -15,9 +15,9 @@
 | Force Tags | 3_NODE_DOUBLE_LINK_TOPO | VM_ENV | HW_ENV
 | Resource | resources/libraries/robot/policer.robot
 | Library | resources.libraries.python.Trace
-| Test Setup | Run Keywords | Func Test Setup
-| ...        | AND          | Setup Topology for IPv6 policer testing
-| Test Teardown | Func Test Teardown
+| Test Setup | Run Keywords | Set up functional test
+| ...        | AND          | Configure topology for IPv6 policer test
+| Test Teardown | Tear down functional test
 | Documentation | *IPv6 policer test cases*
 | ...
 | ... | *[Top] Network topologies:* TG=DUT1 2-node topology with two links\
@@ -68,7 +68,7 @@
 | | And Policer Classify Set Interface | ${dut_to_tg_if1}
 | | And Policer Classify Set Match IP | ${tg_to_dut_if1_ip}
 | | When Policer Set Configuration
-| | Then Send Packet and Verify Marking | ${tg_node} | ${tg_to_dut_if1}
+| | Then Send packet and verify marking | ${tg_node} | ${tg_to_dut_if1}
 | | ... | ${tg_to_dut_if2} | ${tg_to_dut_if1_mac} | ${dut_to_tg_if1_mac}
 | | ... | ${tg_to_dut_if1_ip} | ${tg_to_dut_if2_ip} | ${dscp}
 
@@ -98,7 +98,7 @@
 | | And Policer Classify Set Interface | ${dut_to_tg_if1}
 | | And Policer Classify Set Match IP | ${tg_to_dut_if1_ip}
 | | When Policer Set Configuration
-| | Then Send Packet and Verify Marking | ${tg_node} | ${tg_to_dut_if1}
+| | Then Send packet and verify marking | ${tg_node} | ${tg_to_dut_if1}
 | | ... | ${tg_to_dut_if2} | ${tg_to_dut_if1_mac} | ${dut_to_tg_if1_mac}
 | | ... | ${tg_to_dut_if1_ip} | ${tg_to_dut_if2_ip} | ${dscp}
 
@@ -128,7 +128,7 @@
 | | And Policer Classify Set Interface | ${dut_to_tg_if1}
 | | And Policer Classify Set Match IP | ${tg_to_dut_if1_ip}
 | | When Policer Set Configuration
-| | Then Send Packet and Verify Marking | ${tg_node} | ${tg_to_dut_if1}
+| | Then Send packet and verify marking | ${tg_node} | ${tg_to_dut_if1}
 | | ... | ${tg_to_dut_if2} | ${tg_to_dut_if1_mac} | ${dut_to_tg_if1_mac}
 | | ... | ${tg_to_dut_if1_ip} | ${tg_to_dut_if2_ip} | ${dscp}
 
@@ -156,6 +156,6 @@
 | | And Policer Classify Set Interface | ${dut_to_tg_if1}
 | | And Policer Classify Set Match IP | ${tg_to_dut_if1_ip}
 | | When Policer Set Configuration
-| | Then Send Packet and Verify Marking | ${tg_node} | ${tg_to_dut_if1}
+| | Then Send packet and verify marking | ${tg_node} | ${tg_to_dut_if1}
 | | ... | ${tg_to_dut_if2} | ${tg_to_dut_if1_mac} | ${dut_to_tg_if1_mac}
 | | ... | ${tg_to_dut_if1_ip} | ${tg_to_dut_if2_ip} | ${dscp}

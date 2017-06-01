@@ -26,7 +26,7 @@
 | Documentation | Keywords used to test Honeycomb persistence.
 
 *** Keywords ***
-| Honeycomb is restarted
+| Restart Honeycomb
 | | [Documentation] | Restarts Honeycomb without clearing persistence data.
 | | ...
 | | ... | *Arguments:*
@@ -34,14 +34,14 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Honeycomb is restarted \| ${nodes['DUT1']} \|
+| | ... | \| Restart Honeycomb \| ${nodes['DUT1']} \|
 | | ...
 | | [Arguments] | ${node}
 | | Stop Honeycomb service on DUTs | ${node}
 | | Log Persisted Configuration | ${node}
-| | Setup Honeycomb service on DUTs | ${node}
+| | Configure Honeycomb service on DUTs | ${node}
 
-| VPP is restarted
+| Restart VPP
 | | [Documentation] | Restarts VPP and waits until it reconnects with Honeycomb.
 | | ...
 | | ... | *Arguments:*
@@ -49,7 +49,7 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| VPP is restarted \| ${nodes['DUT1']} \|
+| | ... | \| Restart VPP \| ${nodes['DUT1']} \|
 | | ...
 | | [Arguments] | ${node}
 | | Setup DUT | ${node}
@@ -70,7 +70,7 @@
 | | Wait until keyword succeeds | 2min | 20sec
 | | ... | Check Honeycomb startup state | ${node}
 
-| Honeycomb and VPP are restarted
+| Restart Honeycomb and VPP
 | | [Documentation] | Stops Honeycomb, restarts VPP and then starts Honeycomb\
 | | ... | again.
 | | ...
@@ -79,13 +79,13 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Honeycomb and VPP are restarted \| ${nodes['DUT1']} \|
+| | ... | \| Restart Honeycomb and VPP \| ${nodes['DUT1']} \|
 | | ...
 | | [Arguments] | ${node}
 | | Stop Honeycomb service on DUTs | ${node}
 | | Log Persisted Configuration | ${node}
 | | Setup DUT | ${node}
-| | Setup Honeycomb service on DUTs | ${node}
+| | Configure Honeycomb service on DUTs | ${node}
 
 | Multi-Feature Persistence Test Configuration
 | | [Documentation] | Uses Honeycomb to set basic settings for VxLAN,\
@@ -111,7 +111,7 @@
 | | ... | ${node} | ${vhost_interface} | ${vhost_user_client}
 | | Honeycomb creates sub-interface | ${node} | ${interface}
 | | ... | ${sub_if_1_match} | ${sub_if_1_tags} | ${sub_if_1_settings}
-| | Honeycomb sets interface state | ${node} | ${interface} | up
+| | Honeycomb configures interface state | ${node} | ${interface} | up
 | | Honeycomb sets the sub-interface up
 | | ... | ${node} | ${interface} | ${sub_if_id}
 | | Honeycomb adds sub-interface to bridge domain
@@ -214,7 +214,7 @@
 | | Stop Honeycomb service on DUTs | ${node}
 | | Modify persistence files | ${node} | { | abc
 | | Setup DUT | ${node}
-| | Setup Honeycomb service on DUTs | ${node}
+| | Configure Honeycomb service on DUTs | ${node}
 
 | Log persisted configuration on node
 | | [Documentation] | Logs the content of Honeycomb's persitence files.
@@ -243,14 +243,14 @@
 | | [Arguments] | ${node}
 | | Honeycomb and VPP should have default configuration | ${node}
 | | Import Variables | resources/test_data/honeycomb/interface_ip.py
-| | Honeycomb sets interface state | ${node} | ${interface} | up
-| | Honeycomb sets interface ipv4 address with prefix
+| | Honeycomb configures interface state | ${node} | ${interface} | up
+| | Honeycomb sets interface IPv4 address with prefix
 | | ... | ${node} | ${interface} | ${ipv4_address} | ${ipv4_prefix}
-| | Honeycomb adds interface ipv4 neighbor
+| | Honeycomb adds interface IPv4 neighbor
 | | ... | ${node} | ${interface} | ${ipv4_neighbor} | ${neighbor_mac}
-| | Honeycomb sets interface ipv6 address
+| | Honeycomb sets interface IPv6 address
 | | ... | ${node} | ${interface} | ${ipv6_address} | ${ipv6_prefix}
-| | Honeycomb adds interface ipv6 neighbor
+| | Honeycomb adds interface IPv6 neighbor
 | | ... | ${node} | ${interface} | ${ipv6_neighbor} | ${neighbor_mac}
 
 | Interface Persistence Check

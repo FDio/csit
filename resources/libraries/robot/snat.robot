@@ -17,8 +17,8 @@
 | Documentation | Keywords for SNAT feature in VPP.
 
 *** Keywords ***
-| Set inside and outside interfaces
-| | [Documentation] | Set inside and outside interfaces for SNAT.
+| Configure inside and outside interfaces
+| | [Documentation] | Configure inside and outside interfaces for SNAT.
 | | ...
 | | ... | *Arguments:*
 | | ... | - node - DUT node to set SNAT interfaces on. Type: dictionary
@@ -27,7 +27,7 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Set inside and outside interfaces \| ${nodes['DUT1']} \
+| | ... | \| Configure inside and outside interfaces \| ${nodes['DUT1']} \
 | | ... | \| FortyGigabitEtherneta/0/0 \| FortyGigabitEtherneta/0/1 \|
 | | ...
 | | [Arguments] | ${node} | ${int_in} | ${int_out}
@@ -36,7 +36,7 @@
 | | ${int_out_name}= | Set variable | ${node['interfaces']['${int_out}']['name']}
 | | Set SNAT Interfaces | ${node} | ${int_in_name} | ${int_out_name}
 
-| Set deterministic mode for SNAT
+| Configure deterministic mode for SNAT
 | | [Documentation] | Set deterministic behaviour of SNAT.
 | | ...
 | | ... | *Arguments:*
@@ -49,7 +49,7 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Set deterministic mode for SNAT \| ${nodes['DUT1']} \
+| | ... | \| Configure deterministic mode for SNAT \| ${nodes['DUT1']} \
 | | ... | \| 100.0.0.0 \| 12 \| 12.1.1.0 \| 24 \|
 | | ...
 | | [Arguments] | ${node} | ${ip_in} | ${subnet_in} | ${ip_out} | ${subnet_out}
@@ -57,8 +57,8 @@
 | | Set SNAT deterministic | ${node} | ${ip_in} | ${subnet_in} | ${ip_out}
 | | ... | ${subnet_out}
 
-| Set workers for SNAT
-| | [Documentation] | Set workers for SNAT.
+| Configure workers for SNAT
+| | [Documentation] | Configure workers for SNAT.
 | | ...
 | | ... | *Arguments:*
 | | ... | - node - DUT node to set SNAT workers on. Type: dictionary
@@ -67,7 +67,7 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Set workers for SNAT \| ${nodes['DUT1']} \| 12-23,36-47 \|
+| | ... | \| Configure workers for SNAT \| ${nodes['DUT1']} \| 12-23,36-47 \|
 | | ...
 | | [Arguments] | ${node} | ${lcores}
 | | ...

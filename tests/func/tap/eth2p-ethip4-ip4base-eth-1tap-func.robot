@@ -24,9 +24,9 @@
 | Library  | resources.libraries.python.Namespaces
 | Library  | resources.libraries.python.IPUtil
 | Force Tags | HW_ENV | VM_ENV | 3_NODE_DOUBLE_LINK_TOPO
-| Test Setup | Run Keywords | Func Test Setup
+| Test Setup | Run Keywords | Set up functional test
 | ...        | AND          | Clean Up Namespaces | ${nodes['DUT1']}
-| Test Teardown | Run Keywords | Func Test Teardown
+| Test Teardown | Run Keywords | Tear down functional test
 | ...           | AND          | Clean Up Namespaces | ${nodes['DUT1']}
 | Documentation | *Tap Interface Traffic Tests*
 | ... | *[Top] Network Topologies:* TG=DUT1 2-node topology with two links
@@ -65,9 +65,9 @@
 | | ... | and one is linux-TAP.
 | | ... | [Ver] Packet sent from TG gets to the destination and ICMP-reply is
 | | ... | received on TG.
-| | Given Path for 2-node testing is set | ${nodes['TG']} | ${nodes['DUT1']}
+| | Given Configure path in 2-node circular topology | ${nodes['TG']} | ${nodes['DUT1']}
 | | ... | ${nodes['TG']}
-| | And Interfaces in 2-node path are up
+| | And Set interfaces in 2-node circular topology up
 | | ${int1}= | And Add Tap Interface | ${dut_node} | ${tap_int1} |
 | | And Set Interface Address
 | | ... | ${dut_node} | ${int1} | ${tap1_VPP_ip} | ${prefix}
@@ -83,7 +83,7 @@
 | | ... | ${tg_ip_address} | ${tg_to_dut_if1_mac}
 | | And Add Arp On Dut | ${dut_node} | ${int1}
 | | ... | ${tap1_NM_ip} | ${tap1_NM_mac}
-| | Then Node replies to ICMP echo request | ${tg_node} | ${tg_to_dut_if1}
+| | Then Send ICMP echo request and verify answer | ${tg_node} | ${tg_to_dut_if1}
 | | ... | ${dut_to_tg_if1_mac} | ${tg_to_dut_if1_mac}
 | | ... | ${tap1_NM_ip} | ${tg_ip_address}
 
@@ -96,9 +96,9 @@
 | | ... | and one is linux-TAP in namespace.
 | | ... | [Ver] Packet sent from TG gets to the destination and ICMP-reply is
 | | ... | received on TG.
-| | Given Path for 2-node testing is set | ${nodes['TG']} | ${nodes['DUT1']}
+| | Given Configure path in 2-node circular topology | ${nodes['TG']} | ${nodes['DUT1']}
 | | ... | ${nodes['TG']}
-| | And Interfaces in 2-node path are up
+| | And Set interfaces in 2-node circular topology up
 | | ${int1}= | And Add Tap Interface | ${dut_node} | ${tap_int1} |
 | | And Set Interface Address
 | | ... | ${dut_node} | ${int1} | ${tap1_VPP_ip} | ${prefix}
@@ -118,6 +118,6 @@
 | | ... | ${tap1_NM_ip} | ${tap1_NM_mac}
 | | And Add Route | ${dut_node}
 | | ... | ${tg_ip_address_GW} | ${prefix} | ${tap1_VPP_ip} | ${namespace1}
-| | Then Node replies to ICMP echo request | ${tg_node} | ${tg_to_dut_if1}
+| | Then Send ICMP echo request and verify answer | ${tg_node} | ${tg_to_dut_if1}
 | | ... | ${dut_to_tg_if1_mac} | ${tg_to_dut_if1_mac}
 | | ... | ${tap1_NM_ip} | ${tg_ip_address}

@@ -15,8 +15,8 @@
 | Resource | resources/libraries/robot/interfaces.robot
 
 *** Keywords ***
-| GRE tunnel interface is created and up
-| | [Documentation] | Create GRE tunnel interface on defined VPP node and put \
+| Create GRE tunnel interface and set it up
+| | [Documentation] | Create GRE tunnel interface and set it up on defined VPP node and put \
 | | ... | the interface to UP state.
 | | ...
 | | ... | *Arguments:*
@@ -33,11 +33,11 @@
 | | ... | *Example:*
 | | ...
 | | ... | \| ${gre_name} \| ${gre_index}= \
-| | ... | \| GRE tunnel interface is created and up \| ${dut} \
+| | ... | \| Create GRE tunnel interface and set it up \| ${dut} \
 | | ... | \| 192.0.1.1 \| 192.0.1.2 \|
 | | ...
 | | [Arguments] | ${dut_node} | ${source_ip_address} | ${destination_ip_address}
-| | ${name} | ${index}= | Create GRE Tunnel Interface
+| | ${name} | ${index}= | Create GRE tunnel interface
 | | ... | ${dut_node} | ${source_ip_address} | ${destination_ip_address}
 | | Set Interface State | ${dut_node} | ${index} | up
 | | [Return] | ${name} | ${index}

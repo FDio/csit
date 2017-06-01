@@ -45,7 +45,7 @@
 | | Then DHCP relay configuration from Honeycomb should contain
 | | ... | ${node} | ${relay1_oper}
 | | When DHCP relay test setup
-| | Then Send DHCP Messages | ${tg_node} | ${tg_to_dut_if1} | ${tg_to_dut_if2}
+| | Then Send DHCP messages and check answer | ${tg_node} | ${tg_to_dut_if1} | ${tg_to_dut_if2}
 | | ... | ${dhcp_server1_ip} | ${tg_to_dut_if2_mac} | ${client_ip}
 | | ... | ${tg_to_dut_if1_mac} | ${dut_to_tg_if1_ip}
 
@@ -88,13 +88,13 @@
 
 *** Keywords ***
 | DHCP relay test setup
-| | Path for 2-node testing is set
+| | Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
-| | Honeycomb sets interface state | ${dut_node} | ${dut_to_tg_if1} | up
-| | Honeycomb sets interface state | ${dut_node} | ${dut_to_tg_if2} | up
-| | Honeycomb sets interface ipv4 address with prefix | ${dut_node}
+| | Honeycomb configures interface state | ${dut_node} | ${dut_to_tg_if1} | up
+| | Honeycomb configures interface state | ${dut_node} | ${dut_to_tg_if2} | up
+| | Honeycomb sets interface IPv4 address with prefix | ${dut_node}
 | | ... | ${dut_to_tg_if1} | ${dut_to_tg_if1_ip} | ${prefix_length}
-| | Honeycomb sets interface ipv4 address with prefix | ${dut_node}
+| | Honeycomb sets interface IPv4 address with prefix | ${dut_node}
 | | ... | ${dut_to_tg_if2} | ${dut_to_tg_if2_ip} | ${prefix_length}
 | | Add ARP on DUT
 | | ... | ${dut_node} | ${dut_to_tg_if2} | ${dhcp_server1_ip} | ${tg_to_dut_if2_mac}
@@ -104,14 +104,14 @@
 | | ... | ${FALSE} | ${NONE}
 
 | DHCP relay test setup IPv6
-| | Path for 2-node testing is set
+| | Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
-| | Honeycomb sets interface state | ${dut_node} | ${dut_to_tg_if1} | up
-| | Honeycomb sets interface state | ${dut_node} | ${dut_to_tg_if2} | up
+| | Honeycomb configures interface state | ${dut_node} | ${dut_to_tg_if1} | up
+| | Honeycomb configures interface state | ${dut_node} | ${dut_to_tg_if2} | up
 | | And Vpp All Ra Suppress Link Layer | ${nodes}
-| | Honeycomb sets interface ipv6 address | ${dut_node}
+| | Honeycomb sets interface IPv6 address | ${dut_node}
 | | ... | ${dut_to_tg_if1} | ${dut_to_tg_if1_ip6} | ${prefix_length_v6}
-| | Honeycomb sets interface ipv6 address | ${dut_node}
+| | Honeycomb sets interface IPv6 address | ${dut_node}
 | | ... | ${dut_to_tg_if2} | ${dut_to_tg_if2_ip6} | ${prefix_length_v6}
 | | And Add IP Neighbor | ${dut_node} | ${dut_to_tg_if2} | ${dhcp_server_ip6}
 | | ... | ${tg_to_dut_if2_mac}

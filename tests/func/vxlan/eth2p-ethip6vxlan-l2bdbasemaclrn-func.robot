@@ -21,8 +21,8 @@
 | Library  | resources.libraries.python.Trace
 | Library | resources.libraries.python.IPv6Setup
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | VM_ENV | HW_ENV
-| Test Setup | Func Test Setup
-| Test Teardown | Func Test Teardown
+| Test Setup | Set up functional test
+| Test Teardown | Tear down functional test
 | Documentation | *Bridge-domain with VXLAN test cases - IPv6*
 | ...
 | ... | *[Top] Network topologies:* TG-DUT1-DUT2-TG 3-node circular topology
@@ -58,9 +58,9 @@
 | | ... | interfaces to be switched by DUT1 and DUT2; verify all packets
 | | ... | are received. [Ref] RFC7348.
 | | [Tags] | 3_NODE_DOUBLE_LINK_TOPO
-| | Given Path for 3-node testing is set
+| | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
-| | And Interfaces in 3-node path are up
+| | And Set interfaces in 3-node circular topology up
 | | And Set Interface Address | ${dut1_node} | ${dut1_to_dut2} | ${ip6_addr1}
 | | ...                       | ${ip6_prefix}
 | | And Set Interface Address | ${dut2_node} | ${dut2_to_dut1} | ${ip6_addr2}
@@ -70,11 +70,11 @@
 | | And Vpp All RA Suppress Link Layer | ${nodes}
 | | ${dut1s_vxlan}= | When Create VXLAN interface | ${dut1_node} | ${vni_1}
 | | | ...                                         | ${ip6_addr1} | ${ip6_addr2}
-| | And Interfaces are added to BD | ${dut1_node} | ${bd_id1}
+| | And Add interfaces to L2BD | ${dut1_node} | ${bd_id1}
 | | ...                            | ${dut1_to_tg} | ${dut1s_vxlan}
 | | ${dut2s_vxlan}= | And Create VXLAN interface | ${dut2_node} | ${vni_1}
 | | | ...                                        | ${ip6_addr2} | ${ip6_addr1}
-| | And Interfaces are added to BD | ${dut2_node} | ${bd_id1}
+| | And Add interfaces to L2BD | ${dut2_node} | ${bd_id1}
 | | ...                            | ${dut2_to_tg} | ${dut2s_vxlan}
-| | Then Send and receive ICMPv6 bidirectionally
+| | Then Send ICMPv6 bidirectionally and verify received packets
 | | ... | ${tg_node} | ${tg_to_dut1} | ${tg_to_dut2}

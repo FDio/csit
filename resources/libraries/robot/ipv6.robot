@@ -26,7 +26,7 @@
 | Documentation | IPv6 keywords
 
 *** Keywords ***
-| Ipv6 icmp echo
+| Send IPv6 icmp echo request to DUT1 ingress inteface and verify answer
 | | [Documentation] | Type of the src_node must be TG and dst_node must be DUT
 | | [Arguments] | ${tg_node} | ${dut_node} | ${nodes_addr}
 | | Append Nodes | ${tg_node} | ${dut_node}
@@ -41,11 +41,11 @@
 | | ${args}= | Traffic Script Gen Arg | ${src_port_name} | ${src_port_name} | ${src_mac}
 | |          | ...                    | ${dst_mac} | ${src_ip} | ${dst_ip}
 | | Run Traffic Script On Node | icmpv6_echo.py | ${tg_node} | ${args}
-| | Vpp dump stats | ${dst_node}
-| | ${ipv6_counter}= | Vpp get interface ipv6 counter | ${dst_node} | ${dst_port}
+| | Get interface statistics | ${dst_node}
+| | ${ipv6_counter}= | Get interface ipv6 counter | ${dst_node} | ${dst_port}
 | | Should Be Equal | ${ipv6_counter} | ${2} | #ICMPv6 neighbor advertisement + ICMPv6 echo request
 
-| Ipv6 icmp echo sweep
+| Execute IPv6 ICMP echo sweep
 | | [Documentation] | Type of the src_node must be TG and dst_node must be DUT
 | | [Arguments] | ${src_node} | ${dst_node} | ${start_size} | ${end_size}
 | | ...         | ${step} | ${nodes_addr}
@@ -67,7 +67,7 @@
 | | Run Traffic Script On Node | ipv6_sweep_ping.py | ${src_node} | ${args}
 | | ... | timeout=${180}
 
-| Ipv6 tg to dut1 egress
+| Send IPv6 ICMP echo request to DUT1 egress interface and verify answer
 | | [Documentation] | Send traffic from TG to first DUT egress interface
 | | [Arguments] | ${tg_node} | ${first_dut} | ${second_dut} | ${nodes_addr}
 | | Append Nodes | ${tg_node} | ${first_dut} | ${second_dut}
@@ -85,7 +85,7 @@
 | | Run Traffic Script On Node | icmpv6_echo.py | ${tg_node} | ${args}
 
 
-| Ipv6 tg to dut2 via dut1
+| Send IPv6 ICMP echo request to DUT2 via DUT1 and verify answer
 | | [Documentation] | Send traffic from TG to second DUT through first DUT
 | | [Arguments] | ${tg_node} | ${first_dut} | ${second_dut} | ${nodes_addr}
 | | Append Nodes | ${tg_node} | ${first_dut} | ${second_dut}
@@ -102,7 +102,7 @@
 | |          | ...                    | ${dst_mac} | ${src_ip} | ${dst_ip}
 | | Run Traffic Script On Node | icmpv6_echo.py | ${tg_node} | ${args}
 
-| Ipv6 tg to dut2 egress via dut1
+| Send IPv6 ICMP echo request to DUT2 egress interface via DUT1 and verify answer
 | | [Documentation] | Send traffic from TG to second DUT egress interface through first DUT
 | | [Arguments] | ${tg_node} | ${first_dut} | ${second_dut} | ${nodes_addr}
 | | Append Nodes | ${tg_node} | ${first_dut} | ${second_dut} | ${tg_node}
@@ -143,7 +143,7 @@
 | |          | ...      | --dst_nh_mac ${dst_nh_mac} | --h_num 2
 | | Run Traffic Script On Node | icmpv6_echo_req_resp.py | ${tg_node} | ${args}
 
-| Ipv6 neighbor solicitation
+| Send IPv6 neighbor solicitation and verify answer
 | | [Documentation] | Send IPv6 neighbor solicitation from TG to DUT
 | | [Arguments] | ${tg_node} | ${dut_node} | ${nodes_addr}
 | | Append Nodes | ${tg_node} | ${dut_node}
@@ -159,10 +159,10 @@
 | |          | ...                    | ${dst_mac} | ${src_ip} | ${dst_ip}
 | | Run Traffic Script On Node | ipv6_ns.py | ${src_node} | ${args}
 
-| Setup ipv6 to all dut in topology
+| Configure IPv6 on all DUTs in topology
 | | [Documentation] | Setup IPv6 address on all DUTs
 | | [Arguments] | ${nodes} | ${nodes_addr}
-| | Setup all DUTs before test
+| | Configure all DUTs before test
 | | ${interfaces}= | Nodes Set Ipv6 Addresses | ${nodes} | ${nodes_addr}
 | | :FOR | ${interface} | IN | @{interfaces}
 | | | Set Interface State | @{interface} | up | if_type=name
@@ -173,12 +173,12 @@
 | | [Arguments] | ${nodes} | ${nodes_addr}
 | | Nodes Clear Ipv6 Addresses | ${nodes} | ${nodes_addr}
 
-| Vpp nodes ra suppress link layer
+| Suppress ICMPv6 router advertisement message
 | | [Documentation] | Suppress ICMPv6 router advertisement message for link scope address
 | | [Arguments] | ${nodes}
 | | Vpp All Ra Suppress Link Layer | ${nodes}
 
-| Vpp nodes setup ipv6 routing
+| Configure IPv6 routing on all DUTs
 | | [Documentation] | Setup routing on all VPP nodes required for IPv6 tests
 | | [Arguments] | ${nodes} | ${nodes_addr}
 | | Append Nodes | ${nodes['DUT1']} | ${nodes['DUT2']}

@@ -19,7 +19,7 @@
 | Documentation | DHCP Client specific keywords.
 
 *** Keywords ***
-| Check DHCP DISCOVER header
+| Verify DHCP DISCOVER header
 | | [Documentation] | Check if DHCP DISCOVER message contains all required
 | | ... | fields.
 | | ...
@@ -36,9 +36,9 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Check DHCP DISCOVER header \| ${nodes['TG']} \
+| | ... | \| Verify DHCP DISCOVER header \| ${nodes['TG']} \
 | | ... | \| eth2 \| 08:00:27:66:b8:57 \|
-| | ... | \| Check DHCP DISCOVER header \| ${nodes['TG']} \
+| | ... | \| Verify DHCP DISCOVER header \| ${nodes['TG']} \
 | | ... | \| eth2 \| 08:00:27:66:b8:57 \| client-hostname \|
 | | ...
 | | [Arguments] | ${tg_node} | ${interface} | ${src_mac} | ${hostname}=${EMPTY}
@@ -50,7 +50,7 @@
 | | ... | ${tg_node} | ${args}
 
 
-| Check DHCP REQUEST after OFFER
+| Verify DHCP REQUEST after OFFER
 | | [Documentation] | Check if DHCP REQUEST message contains all required
 | | ... | fields. DHCP REQUEST should be send by a client after DHCP OFFER
 | | ... | message sent by a server.
@@ -80,12 +80,12 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Check DHCP REQUEST after OFFER \| ${nodes['TG']} \
+| | ... | \| Verify DHCP REQUEST after OFFER \| ${nodes['TG']} \
 | | ... | \| eth2 \| 08:00:27:66:b8:57 \| 192.168.23.1 \
 | | ... | \| 08:00:27:46:2b:4c \| 192.168.23.10 \| 255.255.255.0 \|
 | | ...
 | | ... | \| Run Keyword And Expect Error \| DHCP REQUEST Rx timeout \
-| | ... | \| Check DHCP REQUEST after OFFER \
+| | ... | \| Verify DHCP REQUEST after OFFER \
 | | ... | \| ${nodes['TG']} \| eth2 \| 08:00:27:66:b8:57 \| 192.168.23.1 \
 | | ... | \| 08:00:27:46:2b:4c \| 192.168.23.10 \| 255.255.255.0 \
 | | ... | \| offer_xid=11113333 \|
@@ -106,7 +106,7 @@
 | | ... | ${tg_node} | ${args}
 
 
-| Send IP configuration to client via DHCP
+| Configure IP on client via DHCP
 | | [Documentation] | Run script that sends IP configuration to the DHCP client.
 | | ...
 | | ... | *Arguments:*
@@ -125,7 +125,7 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Send IP configuration to client via DHCP \| ${nodes['TG']} \
+| | ... | \| Configure IP on client via DHCP \| ${nodes['TG']} \
 | | ... | \| eth2 \| 08:00:27:66:b8:57 \| 192.168.23.1 \
 | | ... | \| 192.168.23.10 \| 255.255.255.0 \| 86400 \|
 | | ...
