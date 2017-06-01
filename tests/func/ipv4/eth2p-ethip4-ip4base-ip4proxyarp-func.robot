@@ -20,8 +20,8 @@
 | Library | resources.libraries.python.Trace
 | Library | resources.libraries.python.ProxyArp
 | Force Tags | HW_ENV | VM_ENV | 3_NODE_SINGLE_LINK_TOPO
-| Test Setup | Func Test Setup
-| Test Teardown | Func Test Teardown
+| Test Setup | Set up functional test
+| Test Teardown | Tear down functional test
 | Documentation | *RFC1027 Proxy ARP test cases*
 | ...
 | ... | *[Top] Network topologies:* TG-DUT1 2-node topology with
@@ -54,9 +54,9 @@
 | | ... | [Ver] Make TG send ARP request to DUT1 interface,
 | | ... | verify if DUT1 sends correct ARP reply on behalf of machine which
 | | ... | IP is in range.
-| | Given Path for 3-node testing is set
+| | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
-| | And Interfaces in 3-node path are up
+| | And Set interfaces in 3-node circular topology up
 | | ${dut1_to_tg_name}= | Get interface name | ${dut1_node} | ${dut1_to_tg}
 | | ${tg_to_dut1_name}= | Get interface name | ${tg_node} | ${tg_to_dut1}
 | | When Set Interface Address | ${dut1_node}
@@ -76,9 +76,9 @@
 | | ... | [Ver] Make TG send ARP request to DUT1 interface,
 | | ... | verify if DUT1 sends correct ARP reply on behalf of machine which
 | | ... | IP is from beginning of the IP range.
-| | Given Path for 3-node testing is set
+| | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
-| | And Interfaces in 3-node path are up
+| | And Set interfaces in 3-node circular topology up
 | | ${dut1_to_tg_name}= | Get interface name | ${dut1_node} | ${dut1_to_tg}
 | | ${tg_to_dut1_name}= | Get interface name | ${tg_node} | ${tg_to_dut1}
 | | When Set Interface Address | ${dut1_node}
@@ -98,9 +98,9 @@
 | | ... | [Ver] Make TG send ARP request to DUT1 interface,
 | | ... | verify if DUT1 sends correct ARP reply on behalf of machine which
 | | ... | IP is from end of the IP range.
-| | Given Path for 3-node testing is set
+| | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
-| | And Interfaces in 3-node path are up
+| | And Set interfaces in 3-node circular topology up
 | | ${dut1_to_tg_name}= | Get interface name | ${dut1_node} | ${dut1_to_tg}
 | | ${tg_to_dut1_name}= | Get interface name | ${tg_node} | ${tg_to_dut1}
 | | When Set Interface Address | ${dut1_node}
@@ -120,16 +120,16 @@
 | | ... | [Ver] Make TG send ARP request to DUT1 interface,
 | | ... | verify if DUT1 does not send ARP reply on behalf of machine which
 | | ... | IP is from below of the IP range.
-| | Given Path for 3-node testing is set
+| | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
-| | And Interfaces in 3-node path are up
+| | And Set interfaces in 3-node circular topology up
 | | ${dut1_to_tg_name}= | Get interface name | ${dut1_node} | ${dut1_to_tg}
 | | ${tg_to_dut1_name}= | Get interface name | ${tg_node} | ${tg_to_dut1}
 | | When Set Interface Address | ${dut1_node}
 | | ... | ${dut1_to_tg} | ${dut1_to_tg_ip} | ${prefix_length}
 | | And Vpp Add Proxy ARP | ${dut1_node} | ${lo_ip4_addr} | ${hi_ip4_addr}
 | | And Vpp Proxy ARP Interface Enable | ${dut1_node} | ${dut1_to_tg_name}
-| | Then Send ARP Request should failed | ${tg_node} | ${tg_to_dut1_name}
+| | Then ARP request should fail | ${tg_node} | ${tg_to_dut1_name}
 | | ...                                 | ${tg_to_dut1_mac} | ${dut1_to_tg_mac}
 | | ...                                 | ${tg_to_dut1_ip} | ${fail_test_lo_ip}
 
@@ -142,15 +142,15 @@
 | | ... | [Ver] Make TG send ARP request to DUT1 interface,
 | | ... | verify if DUT1 does not send ARP reply on behalf of machine which
 | | ... | IP is from above of the IP range.
-| | Given Path for 3-node testing is set
+| | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
-| | And Interfaces in 3-node path are up
+| | And Set interfaces in 3-node circular topology up
 | | ${dut1_to_tg_name}= | Get interface name | ${dut1_node} | ${dut1_to_tg}
 | | ${tg_to_dut1_name}= | Get interface name | ${tg_node} | ${tg_to_dut1}
 | | When Set Interface Address | ${dut1_node}
 | | ... | ${dut1_to_tg} | ${dut1_to_tg_ip} | ${prefix_length}
 | | And Vpp Add Proxy ARP | ${dut1_node} | ${lo_ip4_addr} | ${hi_ip4_addr}
 | | And Vpp Proxy ARP Interface Enable | ${dut1_node} | ${dut1_to_tg_name}
-| | Then Send ARP Request should failed | ${tg_node} | ${tg_to_dut1_name}
+| | Then ARP request should fail | ${tg_node} | ${tg_to_dut1_name}
 | | ...                                 | ${tg_to_dut1_mac} | ${dut1_to_tg_mac}
 | | ...                                 | ${tg_to_dut1_ip} | ${fail_test_hi_ip}

@@ -18,8 +18,8 @@
 | Resource | resources/libraries/robot/ipv4.robot
 | Library | resources.libraries.python.Trace
 | Force Tags | HW_ENV | VM_ENV | 3_NODE_DOUBLE_LINK_TOPO | SKIP_VPP_PATCH
-| Test Setup | Func Test Setup
-| Test Teardown | Func Test Teardown
+| Test Setup | Set up functional test
+| Test Teardown | Tear down functional test
 | Documentation | *DHCPv4 proxy test cases*
 | ...
 | ... | *[Top] Network Topologies:* TG = DUT
@@ -50,9 +50,9 @@
 | | ... | [Ver] Make TG verify matching DHCPv4 packets between client and DHCPv4
 | | ... | server through DHCP proxy.
 | | ...
-| | Given Path for 2-node testing is set
+| | Given Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
-| | And Interfaces in 2-node path are up
+| | And Set interfaces in 2-node circular topology up
 | | And VPP Route Add | ${dut_node} | 255.255.255.255 | 32 | ${NONE} | local
 | | ... | ${FALSE} | ${NONE}
 | | And Set Interface Address | ${dut_node}
@@ -63,7 +63,7 @@
 | | ... | ${tg_to_dut_if2_mac}
 | | When DHCP Proxy Config | ${dut_node} | ${dhcp_server_ip}
 | | ... | ${dut_to_tg_if1_ip}
-| | Then Send DHCP Messages | ${tg_node} | ${tg_to_dut_if1} | ${tg_to_dut_if2}
+| | Then Send DHCP messages and check answer | ${tg_node} | ${tg_to_dut_if1} | ${tg_to_dut_if2}
 | | ... | ${dhcp_server_ip} | ${tg_to_dut_if2_mac} | ${client_ip}
 | | ... | ${tg_to_dut_if1_mac} | ${dut_to_tg_if1_ip}
 
@@ -74,9 +74,9 @@
 | | ... | [Cfg] On DUT setup DHCPv4 proxy.
 | | ... | [Ver] Make TG verify matching invalid DHCPv4 packets are dropped.
 | | ...
-| | Given Path for 2-node testing is set
+| | Given Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
-| | And Interfaces in 2-node path are up
+| | And Set interfaces in 2-node circular topology up
 | | And VPP Route Add | ${dut_node} | 255.255.255.255 | 32 | ${NONE} | local
 | | ... | ${FALSE} | ${NONE}
 | | And Set Interface Address | ${dut_node}
@@ -87,7 +87,7 @@
 | | ... | ${tg_to_dut_if2_mac}
 | | When DHCP Proxy Config | ${dut_node} | ${dhcp_server_ip}
 | | ... | ${dut_to_tg_if1_ip}
-| | Then Send DHCP DISCOVER | ${tg_node} | ${tg_to_dut_if1}
+| | Then Send DHCP DISCOVER and check answer | ${tg_node} | ${tg_to_dut_if1}
 | | ... | ${tg_to_dut_if2} | ${discover_src_ip} | ${valid_discover_dst_ip}
-| | And Send DHCP DISCOVER should fail | ${tg_node} | ${tg_to_dut_if1}
+| | And DHCP DISCOVER should fail | ${tg_node} | ${tg_to_dut_if1}
 | | ... | ${tg_to_dut_if2} | ${discover_src_ip} | ${invalid_discover_dst_ip}

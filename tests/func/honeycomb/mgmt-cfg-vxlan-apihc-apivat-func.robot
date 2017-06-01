@@ -49,7 +49,7 @@
 | | ... | ${node} | ${vx_interface} | ${vxlan_settings}
 | | And VxLAN Operational Data From VAT Should Be
 | | ... | ${node} | ${vxlan_settings}
-| | ${vxlan_index}= | Get Interface index from oper data
+| | ${vxlan_index}= | Get interface index from oper data
 | | ... | ${node} | ${vx_interface}
 | | Set Suite Variable | ${vxlan_index}
 

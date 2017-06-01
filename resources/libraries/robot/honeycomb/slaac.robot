@@ -17,7 +17,7 @@
 | Documentation | Keywords used to test SLAAC using Honeycomb.
 
 *** Keywords ***
-| Honeycomb Configures SLAAC
+| Honeycomb configures SLAAC
 | | [Documentation] | Uses Honeycomb API to configure SLAAC on the specified\
 | | ... | interface.
 | | ...
@@ -28,7 +28,7 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Honeycomb Configures SLAAC \| ${node} \| ${interface} \
+| | ... | \| Honeycomb configures SLAAC \| ${node} \| ${interface} \
 | | ... | \| ${slaac_data} \|
 | | ...
 | | [Arguments] | ${node} | ${interface} | ${slaac_data}
@@ -103,4 +103,4 @@
 | | [Arguments] | ${node} | ${interface}
 | | Honeycomb removes SLAAC configuration | ${node} | ${interface}
 | | And InterfaceAPI.Set Interface State | ${node} | ${interface} | down
-| | Honeycomb removes interface ipv6 addresses | ${node} | ${interface}
+| | Honeycomb removes interface IPv6 addresses | ${node} | ${interface}

@@ -18,12 +18,12 @@
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDRDISC
 | ... | NIC_Intel-X520-DA2 | L2XCFWD | BASE | DOT1AD
 | ...
-| Suite Setup | 3-node Performance Suite Setup with DUT's NIC model
+| Suite Setup | Set up 3-node performance topology with DUT's NIC model
 | ... | L2 | Intel-X520-DA2
-| Suite Teardown | 3-node Performance Suite Teardown
+| Suite Teardown | Tear down 3-node performance topology
 | ...
-| Test Setup | Performance test setup
-| Test Teardown | Performance test teardown | ${min_rate}pps | ${framesize}
+| Test Setup | Set up performance test
+| Test Teardown | Tear down performance discovery test | ${min_rate}pps | ${framesize}
 | ... | ${traffic_profile}
 | ...
 | Documentation | *RFC2544: Pkt throughput L2XC with 802.1ad test cases*
@@ -73,18 +73,18 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | And VPP interfaces in path are up in a 3-node circular topology
-| | When VLAN subinterfaces initialized on 3-node topology
+| | And Set interfaces in path in 3-node circular topology up
+| | When Initialize VLAN sub-interfaces in 3-node circular topology
 | | ... | ${dut1} | ${dut1_if2} | ${dut2} | ${dut2_if1} | ${subid}
 | | ... | ${outer_vlan_id} | ${inner_vlan_id} | ${type_subif}
-| | And L2 tag rewrite method setup on interfaces
+| | And Configure L2 tag rewrite method on interfaces
 | | ... | ${dut1} | ${subif_index_1} | ${dut2} | ${subif_index_2}
 | | ... | ${tag_rewrite}
-| | And Interfaces and VLAN sub-interfaces inter-connected using L2-xconnect
+| | And Connect interfaces and VLAN sub-interfaces using L2XC
 | | ... | ${dut1} | ${dut1_if1} | ${subif_index_1}
 | | ... | ${dut2} | ${dut2_if2} | ${subif_index_2}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
@@ -103,18 +103,18 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | And VPP interfaces in path are up in a 3-node circular topology
-| | When VLAN subinterfaces initialized on 3-node topology
+| | And Set interfaces in path in 3-node circular topology up
+| | When Initialize VLAN sub-interfaces in 3-node circular topology
 | | ... | ${dut1} | ${dut1_if2} | ${dut2} | ${dut2_if1} | ${subid}
 | | ... | ${outer_vlan_id} | ${inner_vlan_id} | ${type_subif}
-| | And L2 tag rewrite method setup on interfaces
+| | And Configure L2 tag rewrite method on interfaces
 | | ... | ${dut1} | ${subif_index_1} | ${dut2} | ${subif_index_2}
 | | ... | ${tag_rewrite}
-| | And Interfaces and VLAN sub-interfaces inter-connected using L2-xconnect
+| | And Connect interfaces and VLAN sub-interfaces using L2XC
 | | ... | ${dut1} | ${dut1_if1} | ${subif_index_1}
 | | ... | ${dut2} | ${dut2_if2} | ${subif_index_2}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
@@ -134,18 +134,18 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | And VPP interfaces in path are up in a 3-node circular topology
-| | When VLAN subinterfaces initialized on 3-node topology
+| | And Set interfaces in path in 3-node circular topology up
+| | When Initialize VLAN sub-interfaces in 3-node circular topology
 | | ... | ${dut1} | ${dut1_if2} | ${dut2} | ${dut2_if1} | ${subid}
 | | ... | ${outer_vlan_id} | ${inner_vlan_id} | ${type_subif}
-| | And L2 tag rewrite method setup on interfaces
+| | And Configure L2 tag rewrite method on interfaces
 | | ... | ${dut1} | ${subif_index_1} | ${dut2} | ${subif_index_2}
 | | ... | ${tag_rewrite}
-| | And Interfaces and VLAN sub-interfaces inter-connected using L2-xconnect
+| | And Connect interfaces and VLAN sub-interfaces using L2XC
 | | ... | ${dut1} | ${dut1_if1} | ${subif_index_1}
 | | ... | ${dut2} | ${dut2_if2} | ${subif_index_2}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
@@ -164,18 +164,18 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | And VPP interfaces in path are up in a 3-node circular topology
-| | When VLAN subinterfaces initialized on 3-node topology
+| | And Set interfaces in path in 3-node circular topology up
+| | When Initialize VLAN sub-interfaces in 3-node circular topology
 | | ... | ${dut1} | ${dut1_if2} | ${dut2} | ${dut2_if1} | ${subid}
 | | ... | ${outer_vlan_id} | ${inner_vlan_id} | ${type_subif}
-| | And L2 tag rewrite method setup on interfaces
+| | And Configure L2 tag rewrite method on interfaces
 | | ... | ${dut1} | ${subif_index_1} | ${dut2} | ${subif_index_2}
 | | ... | ${tag_rewrite}
-| | And Interfaces and VLAN sub-interfaces inter-connected using L2-xconnect
+| | And Connect interfaces and VLAN sub-interfaces using L2XC
 | | ... | ${dut1} | ${dut1_if1} | ${subif_index_1}
 | | ... | ${dut2} | ${dut2_if2} | ${subif_index_2}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
@@ -195,17 +195,17 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
+| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
 | | And Apply startup configuration on all VPP DUTs
-| | And VPP interfaces in path are up in a 3-node circular topology
-| | When VLAN subinterfaces initialized on 3-node topology
+| | And Set interfaces in path in 3-node circular topology up
+| | When Initialize VLAN sub-interfaces in 3-node circular topology
 | | ... | ${dut1} | ${dut1_if2} | ${dut2} | ${dut2_if1} | ${subid}
 | | ... | ${outer_vlan_id} | ${inner_vlan_id} | ${type_subif}
-| | And L2 tag rewrite method setup on interfaces
+| | And Configure L2 tag rewrite method on interfaces
 | | ... | ${dut1} | ${subif_index_1} | ${dut2} | ${subif_index_2}
 | | ... | ${tag_rewrite}
-| | And Interfaces and VLAN sub-interfaces inter-connected using L2-xconnect
+| | And Connect interfaces and VLAN sub-interfaces using L2XC
 | | ... | ${dut1} | ${dut1_if1} | ${subif_index_1}
 | | ... | ${dut2} | ${dut2_if2} | ${subif_index_2}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
@@ -224,17 +224,17 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
+| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
 | | And Apply startup configuration on all VPP DUTs
-| | And VPP interfaces in path are up in a 3-node circular topology
-| | When VLAN subinterfaces initialized on 3-node topology
+| | And Set interfaces in path in 3-node circular topology up
+| | When Initialize VLAN sub-interfaces in 3-node circular topology
 | | ... | ${dut1} | ${dut1_if2} | ${dut2} | ${dut2_if1} | ${subid}
 | | ... | ${outer_vlan_id} | ${inner_vlan_id} | ${type_subif}
-| | And L2 tag rewrite method setup on interfaces
+| | And Configure L2 tag rewrite method on interfaces
 | | ... | ${dut1} | ${subif_index_1} | ${dut2} | ${subif_index_2}
 | | ... | ${tag_rewrite}
-| | And Interfaces and VLAN sub-interfaces inter-connected using L2-xconnect
+| | And Connect interfaces and VLAN sub-interfaces using L2XC
 | | ... | ${dut1} | ${dut1_if1} | ${subif_index_1}
 | | ... | ${dut2} | ${dut2_if2} | ${subif_index_2}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
@@ -254,18 +254,18 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | And VPP interfaces in path are up in a 3-node circular topology
-| | When VLAN subinterfaces initialized on 3-node topology
+| | And Set interfaces in path in 3-node circular topology up
+| | When Initialize VLAN sub-interfaces in 3-node circular topology
 | | ... | ${dut1} | ${dut1_if2} | ${dut2} | ${dut2_if1} | ${subid}
 | | ... | ${outer_vlan_id} | ${inner_vlan_id} | ${type_subif}
-| | And L2 tag rewrite method setup on interfaces
+| | And Configure L2 tag rewrite method on interfaces
 | | ... | ${dut1} | ${subif_index_1} | ${dut2} | ${subif_index_2}
 | | ... | ${tag_rewrite}
-| | And Interfaces and VLAN sub-interfaces inter-connected using L2-xconnect
+| | And Connect interfaces and VLAN sub-interfaces using L2XC
 | | ... | ${dut1} | ${dut1_if1} | ${subif_index_1}
 | | ... | ${dut2} | ${dut2_if2} | ${subif_index_2}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
@@ -284,18 +284,18 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | And VPP interfaces in path are up in a 3-node circular topology
-| | When VLAN subinterfaces initialized on 3-node topology
+| | And Set interfaces in path in 3-node circular topology up
+| | When Initialize VLAN sub-interfaces in 3-node circular topology
 | | ... | ${dut1} | ${dut1_if2} | ${dut2} | ${dut2_if1} | ${subid}
 | | ... | ${outer_vlan_id} | ${inner_vlan_id} | ${type_subif}
-| | And L2 tag rewrite method setup on interfaces
+| | And Configure L2 tag rewrite method on interfaces
 | | ... | ${dut1} | ${subif_index_1} | ${dut2} | ${subif_index_2}
 | | ... | ${tag_rewrite}
-| | And Interfaces and VLAN sub-interfaces inter-connected using L2-xconnect
+| | And Connect interfaces and VLAN sub-interfaces using L2XC
 | | ... | ${dut1} | ${dut1_if1} | ${subif_index_1}
 | | ... | ${dut2} | ${dut2_if2} | ${subif_index_2}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
@@ -315,18 +315,18 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | And VPP interfaces in path are up in a 3-node circular topology
-| | When VLAN subinterfaces initialized on 3-node topology
+| | And Set interfaces in path in 3-node circular topology up
+| | When Initialize VLAN sub-interfaces in 3-node circular topology
 | | ... | ${dut1} | ${dut1_if2} | ${dut2} | ${dut2_if1} | ${subid}
 | | ... | ${outer_vlan_id} | ${inner_vlan_id} | ${type_subif}
-| | And L2 tag rewrite method setup on interfaces
+| | And Configure L2 tag rewrite method on interfaces
 | | ... | ${dut1} | ${subif_index_1} | ${dut2} | ${subif_index_2}
 | | ... | ${tag_rewrite}
-| | And Interfaces and VLAN sub-interfaces inter-connected using L2-xconnect
+| | And Connect interfaces and VLAN sub-interfaces using L2XC
 | | ... | ${dut1} | ${dut1_if1} | ${subif_index_1}
 | | ... | ${dut2} | ${dut2_if2} | ${subif_index_2}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
@@ -345,18 +345,18 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | And VPP interfaces in path are up in a 3-node circular topology
-| | When VLAN subinterfaces initialized on 3-node topology
+| | And Set interfaces in path in 3-node circular topology up
+| | When Initialize VLAN sub-interfaces in 3-node circular topology
 | | ... | ${dut1} | ${dut1_if2} | ${dut2} | ${dut2_if1} | ${subid}
 | | ... | ${outer_vlan_id} | ${inner_vlan_id} | ${type_subif}
-| | And L2 tag rewrite method setup on interfaces
+| | And Configure L2 tag rewrite method on interfaces
 | | ... | ${dut1} | ${subif_index_1} | ${dut2} | ${subif_index_2}
 | | ... | ${tag_rewrite}
-| | And Interfaces and VLAN sub-interfaces inter-connected using L2-xconnect
+| | And Connect interfaces and VLAN sub-interfaces using L2XC
 | | ... | ${dut1} | ${dut1_if1} | ${subif_index_1}
 | | ... | ${dut2} | ${dut2_if2} | ${subif_index_2}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
@@ -376,17 +376,17 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
+| | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
 | | And Apply startup configuration on all VPP DUTs
-| | And VPP interfaces in path are up in a 3-node circular topology
-| | When VLAN subinterfaces initialized on 3-node topology
+| | And Set interfaces in path in 3-node circular topology up
+| | When Initialize VLAN sub-interfaces in 3-node circular topology
 | | ... | ${dut1} | ${dut1_if2} | ${dut2} | ${dut2_if1} | ${subid}
 | | ... | ${outer_vlan_id} | ${inner_vlan_id} | ${type_subif}
-| | And L2 tag rewrite method setup on interfaces
+| | And Configure L2 tag rewrite method on interfaces
 | | ... | ${dut1} | ${subif_index_1} | ${dut2} | ${subif_index_2}
 | | ... | ${tag_rewrite}
-| | And Interfaces and VLAN sub-interfaces inter-connected using L2-xconnect
+| | And Connect interfaces and VLAN sub-interfaces using L2XC
 | | ... | ${dut1} | ${dut1_if1} | ${subif_index_1}
 | | ... | ${dut2} | ${dut2_if2} | ${subif_index_2}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
@@ -405,17 +405,17 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
+| | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
 | | And Apply startup configuration on all VPP DUTs
-| | And VPP interfaces in path are up in a 3-node circular topology
-| | When VLAN subinterfaces initialized on 3-node topology
+| | And Set interfaces in path in 3-node circular topology up
+| | When Initialize VLAN sub-interfaces in 3-node circular topology
 | | ... | ${dut1} | ${dut1_if2} | ${dut2} | ${dut2_if1} | ${subid}
 | | ... | ${outer_vlan_id} | ${inner_vlan_id} | ${type_subif}
-| | And L2 tag rewrite method setup on interfaces
+| | And Configure L2 tag rewrite method on interfaces
 | | ... | ${dut1} | ${subif_index_1} | ${dut2} | ${subif_index_2}
 | | ... | ${tag_rewrite}
-| | And Interfaces and VLAN sub-interfaces inter-connected using L2-xconnect
+| | And Connect interfaces and VLAN sub-interfaces using L2XC
 | | ... | ${dut1} | ${dut1_if1} | ${subif_index_1}
 | | ... | ${dut2} | ${dut2_if2} | ${subif_index_2}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
@@ -435,18 +435,18 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | And VPP interfaces in path are up in a 3-node circular topology
-| | When VLAN subinterfaces initialized on 3-node topology
+| | And Set interfaces in path in 3-node circular topology up
+| | When Initialize VLAN sub-interfaces in 3-node circular topology
 | | ... | ${dut1} | ${dut1_if2} | ${dut2} | ${dut2_if1} | ${subid}
 | | ... | ${outer_vlan_id} | ${inner_vlan_id} | ${type_subif}
-| | And L2 tag rewrite method setup on interfaces
+| | And Configure L2 tag rewrite method on interfaces
 | | ... | ${dut1} | ${subif_index_1} | ${dut2} | ${subif_index_2}
 | | ... | ${tag_rewrite}
-| | And Interfaces and VLAN sub-interfaces inter-connected using L2-xconnect
+| | And Connect interfaces and VLAN sub-interfaces using L2XC
 | | ... | ${dut1} | ${dut1_if1} | ${subif_index_1}
 | | ... | ${dut2} | ${dut2_if2} | ${subif_index_2}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
@@ -465,18 +465,18 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | And VPP interfaces in path are up in a 3-node circular topology
-| | When VLAN subinterfaces initialized on 3-node topology
+| | And Set interfaces in path in 3-node circular topology up
+| | When Initialize VLAN sub-interfaces in 3-node circular topology
 | | ... | ${dut1} | ${dut1_if2} | ${dut2} | ${dut2_if1} | ${subid}
 | | ... | ${outer_vlan_id} | ${inner_vlan_id} | ${type_subif}
-| | And L2 tag rewrite method setup on interfaces
+| | And Configure L2 tag rewrite method on interfaces
 | | ... | ${dut1} | ${subif_index_1} | ${dut2} | ${subif_index_2}
 | | ... | ${tag_rewrite}
-| | And Interfaces and VLAN sub-interfaces inter-connected using L2-xconnect
+| | And Connect interfaces and VLAN sub-interfaces using L2XC
 | | ... | ${dut1} | ${dut1_if1} | ${subif_index_1}
 | | ... | ${dut2} | ${dut2_if2} | ${subif_index_2}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
@@ -496,18 +496,18 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | And VPP interfaces in path are up in a 3-node circular topology
-| | When VLAN subinterfaces initialized on 3-node topology
+| | And Set interfaces in path in 3-node circular topology up
+| | When Initialize VLAN sub-interfaces in 3-node circular topology
 | | ... | ${dut1} | ${dut1_if2} | ${dut2} | ${dut2_if1} | ${subid}
 | | ... | ${outer_vlan_id} | ${inner_vlan_id} | ${type_subif}
-| | And L2 tag rewrite method setup on interfaces
+| | And Configure L2 tag rewrite method on interfaces
 | | ... | ${dut1} | ${subif_index_1} | ${dut2} | ${subif_index_2}
 | | ... | ${tag_rewrite}
-| | And Interfaces and VLAN sub-interfaces inter-connected using L2-xconnect
+| | And Connect interfaces and VLAN sub-interfaces using L2XC
 | | ... | ${dut1} | ${dut1_if1} | ${subif_index_1}
 | | ... | ${dut2} | ${dut2_if2} | ${subif_index_2}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
@@ -526,18 +526,18 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | And VPP interfaces in path are up in a 3-node circular topology
-| | When VLAN subinterfaces initialized on 3-node topology
+| | And Set interfaces in path in 3-node circular topology up
+| | When Initialize VLAN sub-interfaces in 3-node circular topology
 | | ... | ${dut1} | ${dut1_if2} | ${dut2} | ${dut2_if1} | ${subid}
 | | ... | ${outer_vlan_id} | ${inner_vlan_id} | ${type_subif}
-| | And L2 tag rewrite method setup on interfaces
+| | And Configure L2 tag rewrite method on interfaces
 | | ... | ${dut1} | ${subif_index_1} | ${dut2} | ${subif_index_2}
 | | ... | ${tag_rewrite}
-| | And Interfaces and VLAN sub-interfaces inter-connected using L2-xconnect
+| | And Connect interfaces and VLAN sub-interfaces using L2XC
 | | ... | ${dut1} | ${dut1_if1} | ${subif_index_1}
 | | ... | ${dut2} | ${dut2_if2} | ${subif_index_2}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
@@ -557,17 +557,17 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
+| | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
 | | And Apply startup configuration on all VPP DUTs
-| | And VPP interfaces in path are up in a 3-node circular topology
-| | When VLAN subinterfaces initialized on 3-node topology
+| | And Set interfaces in path in 3-node circular topology up
+| | When Initialize VLAN sub-interfaces in 3-node circular topology
 | | ... | ${dut1} | ${dut1_if2} | ${dut2} | ${dut2_if1} | ${subid}
 | | ... | ${outer_vlan_id} | ${inner_vlan_id} | ${type_subif}
-| | And L2 tag rewrite method setup on interfaces
+| | And Configure L2 tag rewrite method on interfaces
 | | ... | ${dut1} | ${subif_index_1} | ${dut2} | ${subif_index_2}
 | | ... | ${tag_rewrite}
-| | And Interfaces and VLAN sub-interfaces inter-connected using L2-xconnect
+| | And Connect interfaces and VLAN sub-interfaces using L2XC
 | | ... | ${dut1} | ${dut1_if1} | ${subif_index_1}
 | | ... | ${dut2} | ${dut2_if2} | ${subif_index_2}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
@@ -586,17 +586,17 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
+| | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
 | | And Apply startup configuration on all VPP DUTs
-| | And VPP interfaces in path are up in a 3-node circular topology
-| | When VLAN subinterfaces initialized on 3-node topology
+| | And Set interfaces in path in 3-node circular topology up
+| | When Initialize VLAN sub-interfaces in 3-node circular topology
 | | ... | ${dut1} | ${dut1_if2} | ${dut2} | ${dut2_if1} | ${subid}
 | | ... | ${outer_vlan_id} | ${inner_vlan_id} | ${type_subif}
-| | And L2 tag rewrite method setup on interfaces
+| | And Configure L2 tag rewrite method on interfaces
 | | ... | ${dut1} | ${subif_index_1} | ${dut2} | ${subif_index_2}
 | | ... | ${tag_rewrite}
-| | And Interfaces and VLAN sub-interfaces inter-connected using L2-xconnect
+| | And Connect interfaces and VLAN sub-interfaces using L2XC
 | | ... | ${dut1} | ${dut1_if1} | ${subif_index_1}
 | | ... | ${dut2} | ${dut2_if2} | ${subif_index_2}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}

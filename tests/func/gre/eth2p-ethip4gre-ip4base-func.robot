@@ -20,8 +20,8 @@
 | Library  | resources.libraries.python.IPUtil
 | Library  | resources.libraries.python.Trace
 | Force Tags | VM_ENV | HW_ENV | 3_NODE_DOUBLE_LINK_TOPO | SKIP_VPP_PATCH
-| Test Setup | Func Test Setup
-| Test Teardown | Func Test Teardown
+| Test Setup | Set up functional test
+| Test Teardown | Tear down functional test
 | Documentation | *GREoIPv4 test cases*
 | ...
 | ... | *[Top] Network Topologies:* TG=DUT1 2-node topology with two links
@@ -72,10 +72,10 @@
 | | ... | both DUTs and GRE tunnel between them; verify IPv4 headers on
 | | ... | received packets are correct. [Ref] RFC2784.
 | | [Tags] | 3_NODE_SINGLE_LINK_TOPO | 3_NODE_DOUBLE_LINK_TOPO
-| | Given Path for 3-node testing is set | ${nodes['TG']} | ${nodes['DUT1']}
+| | Given Configure path in 3-node circular topology | ${nodes['TG']} | ${nodes['DUT1']}
 | | ... | ${nodes['DUT2']} | ${nodes['TG']}
-| | And Interfaces in 3-node path are up
-| | And IP addresses are set on interfaces
+| | And Set interfaces in 3-node circular topology up
+| | And Configure IP addresses on interfaces
 | | ... | ${dut1_node} | ${dut1_to_dut2} | ${dut1_ip_address} | ${prefix}
 | | ... | ${dut1_node} | ${dut1_to_tg}   | ${net1_gw_address} | ${prefix}
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${dut2_ip_address} | ${prefix}
@@ -85,17 +85,17 @@
 | | And Add Arp On Dut | ${dut2_node} | ${dut2_to_tg} | ${net2_host_address}
 | | ... | ${tg_to_dut2_mac}
 | | ${dut1_gre_interface} | ${dut1_gre_index}=
-| | ... | When GRE tunnel interface is created and up
+| | ... | When Create GRE tunnel interface and set it up
 | | ... | ${dut1_node} | ${dut1_ip_address} | ${dut2_ip_address}
 | | ${dut2_gre_interface} | ${dut2_gre_index}=
-| | ... | And  GRE tunnel interface is created and up
+| | ... | And  Create GRE tunnel interface and set it up
 | | ... | ${dut2_node} | ${dut2_ip_address} | ${dut1_ip_address}
-| | And IP addresses are set on interfaces
+| | And Configure IP addresses on interfaces
 | | ... | ${dut1_node} | ${dut1_gre_index} | ${dut1_gre_ip} | ${prefix}
 | | ... | ${dut2_node} | ${dut2_gre_index} | ${dut2_gre_ip} | ${prefix}
 | | And Vpp Route Add | ${dut1_node} | ${net2_address} | ${prefix}
 | | ... | ${dut2_gre_ip} | ${dut1_gre_index}
-| | Then Send Packet And Check Headers | ${tg_node}
+| | Then Send packet and verify headers | ${tg_node}
 | | ... | ${net1_host_address} | ${net2_host_address}
 | | ... | ${tg_to_dut1} | ${tg_to_dut1_mac} | ${dut1_to_tg_mac}
 | | ... | ${tg_to_dut2} | ${dut2_to_tg_mac} | ${tg_to_dut2_mac}
@@ -108,18 +108,18 @@
 | | ... | non-encapsulated ICMPv4 Echo Req to DUT; verify TG received
 | | ... | GREoIPv4 encapsulated packet is correct. [Ref] RFC2784.
 | | [Tags] | 3_NODE_DOUBLE_LINK_TOPO
-| | Given Path for 2-node testing is set
+| | Given Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
-| | And Interfaces in 2-node path are up
-| | And IP addresses are set on interfaces
+| | And Set interfaces in 2-node circular topology up
+| | And Configure IP addresses on interfaces
 | | ... | ${dut_node} | ${dut_to_tg_if2} | ${dut1_ip_address} | ${prefix}
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${net1_gw_address} | ${prefix}
 | | And Add Arp On Dut | ${dut_node} | ${dut_to_tg_if2} | ${dut2_ip_address}
 | | ... | ${tg_to_dut_if2_mac}
 | | ${dut1_gre_interface} | ${dut1_gre_index}=
-| | ... | When GRE tunnel interface is created and up
+| | ... | When Create GRE tunnel interface and set it up
 | | ... | ${dut_node} | ${dut1_ip_address} | ${dut2_ip_address}
-| | And IP addresses are set on interfaces
+| | And Configure IP addresses on interfaces
 | | ... | ${dut_node} | ${dut1_gre_index} | ${dut1_gre_ip} | ${prefix}
 | | And Vpp Route Add | ${dut_node} | ${net2_address} | ${prefix}
 | | ... | ${dut2_gre_ip} | ${dut1_gre_index}
@@ -137,18 +137,18 @@
 | | ... | encapsulated into GREoIPv4 towards VPP; verify TG received IPv4
 | | ... | de-encapsulated packet is correct. [Ref] RFC2784.
 | | [Tags] | 3_NODE_DOUBLE_LINK_TOPO
-| | Given Path for 2-node testing is set
+| | Given Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
-| | And Interfaces in 2-node path are up
-| | And IP addresses are set on interfaces
+| | And Set interfaces in 2-node circular topology up
+| | And Configure IP addresses on interfaces
 | | ... | ${dut_node} | ${dut_to_tg_if2} | ${dut1_ip_address} | ${prefix}
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${net1_gw_address} | ${prefix}
 | | And Add Arp On Dut | ${dut_node} | ${dut_to_tg_if1} | ${net1_host_address}
 | | ... | ${tg_to_dut_if1_mac}
 | | ${dut1_gre_interface} | ${dut1_gre_index}=
-| | ... | When GRE tunnel interface is created and up
+| | ... | When Create GRE tunnel interface and set it up
 | | ... | ${dut_node} | ${dut1_ip_address} | ${dut2_ip_address}
-| | And IP addresses are set on interfaces
+| | And Configure IP addresses on interfaces
 | | ... | ${dut_node} | ${dut1_gre_index} | ${dut1_gre_ip} | ${prefix}
 | | Then Send GRE and check received ICMPv4 header
 | | ... | ${tg_node} | ${tg_to_dut_if2} | ${tg_to_dut_if1}
@@ -167,12 +167,12 @@
 | | ... | non-encapsulated ICMPv4 Echo Req to DUT; verify TG received GREoIPv4
 | | ... | encapsulated packet is correct for each tunnel. [Ref] RFC2784.
 | | [Tags] | 3_NODE_DOUBLE_LINK_TOPO
-| | Given Path for 2-node testing is set
+| | Given Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
-| | And Interfaces in 2-node path are up
+| | And Set interfaces in 2-node circular topology up
 | | ${dut1_lo_index}= | And VPP Create loopback | ${dut_node}
 | | And Set Interface State |  ${dut_node} | ${dut1_lo_index} | up
-| | And IP addresses are set on interfaces
+| | And Configure IP addresses on interfaces
 | | ... | ${dut_node} | ${dut_to_tg_if2} | ${dut1_ip_address} | ${prefix}
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${net1_gw_address} | ${prefix}
 | | ... | ${dut_node} | ${dut1_lo_index} | ${dut1_lo_address} | ${32}
@@ -183,12 +183,12 @@
 | | And Vpp Route Add | ${dut_node} | ${tun1_dst} | ${32}
 | | ... | ${dut2_ip_address} | ${dut_to_tg_if2}
 | | ${dut1_gre0_interface} | ${dut1_gre0_index}=
-| | ... | When GRE tunnel interface is created and up
+| | ... | When Create GRE tunnel interface and set it up
 | | ... | ${dut_node} | ${dut1_lo_address} | ${tun0_dst}
 | | ${dut1_gre1_interface} | ${dut1_gre1_index}=
-| | ... | And GRE tunnel interface is created and up
+| | ... | And Create GRE tunnel interface and set it up
 | | ... | ${dut_node} | ${dut1_lo_address} | ${tun1_dst}
-| | And IP addresses are set on interfaces
+| | And Configure IP addresses on interfaces
 | | ... | ${dut_node} | ${dut1_gre0_index} | ${dut_tun0_ip1} | ${prefix}
 | | ... | ${dut_node} | ${dut1_gre1_index} | ${dut_tun1_ip1} | ${prefix}
 | | And Vpp Route Add | ${dut_node} | ${net2_address} | ${prefix}
@@ -218,12 +218,12 @@
 | | ... | configured tunnel same as destination; verify TG received GREoIPv4
 | | ... | encapsulated packet is correct. [Ref] RFC2784.
 | | [Tags] | 3_NODE_DOUBLE_LINK_TOPO
-| | Given Path for 2-node testing is set
+| | Given Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
-| | And Interfaces in 2-node path are up
+| | And Set interfaces in 2-node circular topology up
 | | ${dut1_lo_index}= | And VPP Create loopback | ${dut_node}
 | | And Set Interface State |  ${dut_node} | ${dut1_lo_index} | up
-| | And IP addresses are set on interfaces
+| | And Configure IP addresses on interfaces
 | | ... | ${dut_node} | ${dut_to_tg_if2} | ${dut1_ip_address} | ${prefix}
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${net1_gw_address} | ${prefix}
 | | ... | ${dut_node} | ${dut1_lo_index} | ${dut1_lo_address} | ${32}
@@ -234,12 +234,12 @@
 | | And Vpp Route Add | ${dut_node} | ${tun1_dst} | ${32}
 | | ... | ${dut2_ip_address} | ${dut_to_tg_if2}
 | | ${dut1_gre0_interface} | ${dut1_gre0_index}=
-| | ... | When GRE tunnel interface is created and up
+| | ... | When Create GRE tunnel interface and set it up
 | | ... | ${dut_node} | ${dut1_lo_address} | ${tun0_dst}
 | | ${dut1_gre1_interface} | ${dut1_gre1_index}=
-| | ... | And GRE tunnel interface is created and up
+| | ... | And Create GRE tunnel interface and set it up
 | | ... | ${dut_node} | ${dut1_lo_address} | ${tun1_dst}
-| | And IP addresses are set on interfaces
+| | And Configure IP addresses on interfaces
 | | ... | ${dut_node} | ${dut1_gre0_index} | ${dut_tun0_ip1} | ${prefix}
 | | ... | ${dut_node} | ${dut1_gre1_index} | ${dut_tun1_ip1} | ${prefix}
 | | And Vpp Route Add | ${dut_node} | ${net2_address} | ${prefix}
@@ -267,12 +267,12 @@
 | | ... | destination address. [Ref] RFC2784.
 | | ... |
 | | [Tags] | 3_NODE_DOUBLE_LINK_TOPO
-| | Given Path for 2-node testing is set
+| | Given Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
-| | And Interfaces in 2-node path are up
+| | And Set interfaces in 2-node circular topology up
 | | ${dut1_lo_index}= | And VPP Create loopback | ${dut_node}
 | | And Set Interface State |  ${dut_node} | ${dut1_lo_index} | up
-| | And IP addresses are set on interfaces
+| | And Configure IP addresses on interfaces
 | | ... | ${dut_node} | ${dut_to_tg_if2} | ${dut1_ip_address} | ${prefix}
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${net1_gw_address} | ${prefix}
 | | ... | ${dut_node} | ${dut1_lo_index} | ${dut1_lo_address} | ${32}
@@ -285,12 +285,12 @@
 | | And Vpp Route Add | ${dut_node} | ${tun1_dst} | ${32}
 | | ... | ${dut2_ip_address} | ${dut_to_tg_if2}
 | | ${dut1_gre0_interface} | ${dut1_gre0_index}=
-| | ... | When GRE tunnel interface is created and up
+| | ... | When Create GRE tunnel interface and set it up
 | | ... | ${dut_node} | ${dut1_lo_address} | ${tun0_dst}
 | | ${dut1_gre1_interface} | ${dut1_gre1_index}=
-| | ... | And GRE tunnel interface is created and up
+| | ... | And Create GRE tunnel interface and set it up
 | | ... | ${dut_node} | ${dut1_lo_address} | ${tun1_dst}
-| | And IP addresses are set on interfaces
+| | And Configure IP addresses on interfaces
 | | ... | ${dut_node} | ${dut1_gre0_index} | ${dut_tun0_ip1} | ${prefix}
 | | ... | ${dut_node} | ${dut1_gre1_index} | ${dut_tun1_ip1} | ${prefix}
 | | Then Send GRE and check received ICMPv4 header

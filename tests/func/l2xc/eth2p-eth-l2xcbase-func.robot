@@ -22,8 +22,8 @@
 | Library  | resources.libraries.python.Trace
 | Library | resources.libraries.python.NodePath
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | HW_ENV | VM_ENV | SKIP_VPP_PATCH
-| Test Setup | Func Test Setup
-| Test Teardown | Func Test Teardown
+| Test Setup | Set up functional test
+| Test Teardown | Tear down functional test
 | Documentation | *L2 cross-connect test cases*
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology
@@ -47,15 +47,15 @@
 | | ... | Make TG send ICMPv4 Echo Req in both directions between two of
 | | ... | its interfaces to be switched by DUT1 and DUT2; verify all
 | | ... | packets are received. [Ref]
-| | Given Path for 3-node testing is set
+| | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
-| | And Interfaces in 3-node path are up
-| | And L2 setup xconnect on DUT
+| | And Set interfaces in 3-node circular topology up
+| | And Configure L2XC
 | | ... | ${dut1_node} | ${dut1_to_tg} | ${dut1_to_dut2}
-| | And L2 setup xconnect on DUT
+| | And Configure L2XC
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${dut2_to_tg}
 | | When All Vpp Interfaces Ready Wait | ${nodes}
-| | Then Send and receive ICMPv4 bidirectionally
+| | Then Send ICMPv4 bidirectionally and verify received packets
 | | ... | ${tg_node} | ${tg_to_dut1} | ${tg_to_dut2}
 
 | TC02: DUT1 and DUT2 with L2XC switch ICMPv6 between two TG links
@@ -66,13 +66,13 @@
 | | ... | Make TG send ICMPv6 Echo Req in both directions between two of
 | | ... | its interfaces to be switched by DUT1 and DUT2; verify all
 | | ... | packets are received. [Ref]
-| | Given Path for 3-node testing is set
+| | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
-| | And Interfaces in 3-node path are up
-| | And L2 setup xconnect on DUT
+| | And Set interfaces in 3-node circular topology up
+| | And Configure L2XC
 | | ... | ${dut1_node} | ${dut1_to_tg} | ${dut1_to_dut2}
-| | And L2 setup xconnect on DUT
+| | And Configure L2XC
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${dut2_to_tg}
 | | When All Vpp Interfaces Ready Wait | ${nodes}
-| | Then Send and receive ICMPv6 bidirectionally
+| | Then Send ICMPv6 bidirectionally and verify received packets
 | | ... | ${tg_node} | ${tg_to_dut1} | ${tg_to_dut2}

@@ -43,7 +43,7 @@
 | | ... | ${node} | table1 | ipv4 | ${table1} | ${1}
 | | Then Routing data from Honeycomb should contain
 | | ... | ${node} | table1 | ipv4 | ${table1_oper}
-| | And Verify Route IPv4 | ${nodes['TG']}
+| | And Verify route IPv4 | ${nodes['TG']}
 | | ... | ${src_ip} | ${dst_ip}
 | | ... | ${tg_to_dut_if1} | ${tg_to_dut_if1_mac}
 | | ... | ${tg_to_dut_if2} | ${dut_to_tg_if1_mac}
@@ -60,9 +60,9 @@
 | | ... | Receive packet on the second TG interface.
 | | ${table}= | Set Variable | table2
 | | Given Setup interfaces and neighbors for IPv4 routing test
-| | And Honeycomb adds interface ipv4 neighbor | ${dut_node} | ${dut_to_tg_if2}
+| | And Honeycomb adds interface IPv4 neighbor | ${dut_node} | ${dut_to_tg_if2}
 | | ... | ${next_hop1} | ${next_hop_mac1}
-| | And Honeycomb adds interface ipv4 neighbor | ${dut_node} | ${dut_to_tg_if2}
+| | And Honeycomb adds interface IPv4 neighbor | ${dut_node} | ${dut_to_tg_if2}
 | | ... | ${next_hop2} | ${next_hop_mac2}
 | | When Honeycomb configures routing table
 | | ... | ${node} | table2 | ipv4 | ${table2} | ${1}
@@ -90,7 +90,7 @@
 | | Then Routing data from Honeycomb should contain
 | | ... | ${node} | table3 | ipv4 | ${table3_oper}
 | | And Run keyword and Expect Error | ICMP echo Rx timeout
-| | ... | Verify Route IPv4 | ${nodes['TG']}
+| | ... | Verify route IPv4 | ${nodes['TG']}
 | | ... | ${src_ip} | ${dst_ip}
 | | ... | ${tg_to_dut_if1} | ${tg_to_dut_if1_mac}
 | | ... | ${tg_to_dut_if2} | ${dut_to_tg_if1_mac}
@@ -109,7 +109,7 @@
 | | ... | ${node} | table4 | ipv6 | ${table4} | ${1}
 | | Then Routing data from Honeycomb should contain
 | | ... | ${node} | table4 | ipv6 | ${table4_oper}
-| | And Verify Route IPv6 | ${nodes['TG']}
+| | And Verify route IPv6 | ${nodes['TG']}
 | | ... | ${src_ip} | ${next_hop}
 | | ... | ${tg_to_dut_if1} | ${tg_to_dut_if1_mac}
 | | ... | ${tg_to_dut_if2} | ${dut_to_tg_if1_mac}
@@ -126,9 +126,9 @@
 | | ... | Receive packet on the second TG interface.
 | | ${table}= | Set Variable | table5
 | | Given Setup interfaces and neighbors for IPv6 routing test
-| | And Honeycomb adds interface ipv6 neighbor | ${dut_node} | ${dut_to_tg_if2}
+| | And Honeycomb adds interface IPv6 neighbor | ${dut_node} | ${dut_to_tg_if2}
 | | ... | ${next_hop1} | ${next_hop_mac1}
-| | And Honeycomb adds interface ipv6 neighbor | ${dut_node} | ${dut_to_tg_if2}
+| | And Honeycomb adds interface IPv6 neighbor | ${dut_node} | ${dut_to_tg_if2}
 | | ... | ${next_hop2} | ${next_hop_mac2}
 | | When Honeycomb configures routing table
 | | ... | ${node} | table5 | ipv6 | ${table5} | ${1}
@@ -156,48 +156,48 @@
 | | Then Routing data from Honeycomb should contain
 | | ... | ${node} | table6 | ipv6 | ${table6_oper}
 | | And Run keyword and Expect Error | ICMP echo Rx timeout
-| | ... | Verify Route IPv6 | ${nodes['TG']}
+| | ... | Verify route IPv6 | ${nodes['TG']}
 | | ... | ${src_ip} | ${dst_ip}
 | | ... | ${tg_to_dut_if1} | ${tg_to_dut_if1_mac}
 | | ... | ${tg_to_dut_if2} | ${dut_to_tg_if1_mac}
 
 *** Keywords ***
 | Setup interfaces and neighbors for IPv4 routing test
-| | Path for 2-node testing is set
+| | Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | Import Variables | resources/test_data/honeycomb/routing.py
 | | ... | ${nodes['DUT1']} | ipv4 | ${dut_to_tg_if2}
 | | Setup vrf IDs | ${dut_node} | ${dut_to_tg_if1} | ${1}
 | | Setup vrf IDs | ${dut_node} | ${dut_to_tg_if2} | ${1}
-| | Honeycomb sets interface state | ${dut_node} | ${dut_to_tg_if1} | up
-| | Honeycomb sets interface state | ${dut_node} | ${dut_to_tg_if2} | up
-| | Honeycomb sets interface ipv4 address with prefix | ${dut_node}
+| | Honeycomb configures interface state | ${dut_node} | ${dut_to_tg_if1} | up
+| | Honeycomb configures interface state | ${dut_node} | ${dut_to_tg_if2} | up
+| | Honeycomb sets interface IPv4 address with prefix | ${dut_node}
 | | ... | ${dut_to_tg_if1} | ${dut_to_tg_if1_ip} | ${prefix_len}
-| | Honeycomb sets interface ipv4 address with prefix | ${dut_node}
+| | Honeycomb sets interface IPv4 address with prefix | ${dut_node}
 | | ... | ${dut_to_tg_if2} | ${dut_to_tg_if2_ip} | ${prefix_len}
-| | Honeycomb adds interface ipv4 neighbor | ${dut_node} | ${dut_to_tg_if1}
+| | Honeycomb adds interface IPv4 neighbor | ${dut_node} | ${dut_to_tg_if1}
 | | ... | ${src_ip} | ${tg_to_dut_if1_mac}
-| | Honeycomb adds interface ipv4 neighbor | ${dut_node} | ${dut_to_tg_if2}
+| | Honeycomb adds interface IPv4 neighbor | ${dut_node} | ${dut_to_tg_if2}
 | | ... | ${next_hop} | ${tg_to_dut_if2_mac}
 
 | Setup interfaces and neighbors for IPv6 routing test
-| | Path for 2-node testing is set
+| | Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | Import Variables | resources/test_data/honeycomb/routing.py
 | | ... | ${nodes['DUT1']} | ipv6 | ${dut_to_tg_if2}
-| | Honeycomb sets interface vrf ID
+| | Honeycomb sets interface VRF ID
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${1} | ipv6
-| | Honeycomb sets interface vrf ID
+| | Honeycomb sets interface VRF ID
 | | ... | ${dut_node} | ${dut_to_tg_if2} | ${1} | ipv6
-| | Honeycomb sets interface state | ${dut_node} | ${dut_to_tg_if1} | up
-| | Honeycomb sets interface state | ${dut_node} | ${dut_to_tg_if2} | up
-| | Honeycomb sets interface ipv6 address | ${dut_node}
+| | Honeycomb configures interface state | ${dut_node} | ${dut_to_tg_if1} | up
+| | Honeycomb configures interface state | ${dut_node} | ${dut_to_tg_if2} | up
+| | Honeycomb sets interface IPv6 address | ${dut_node}
 | | ... | ${dut_to_tg_if1} | ${dut_to_tg_if1_ip} | ${prefix_len}
-| | Honeycomb sets interface ipv6 address | ${dut_node}
+| | Honeycomb sets interface IPv6 address | ${dut_node}
 | | ... | ${dut_to_tg_if2} | ${dut_to_tg_if2_ip} | ${prefix_len}
-| | Honeycomb adds interface ipv6 neighbor | ${dut_node} | ${dut_to_tg_if1}
+| | Honeycomb adds interface IPv6 neighbor | ${dut_node} | ${dut_to_tg_if1}
 | | ... | ${src_ip} | ${tg_to_dut_if1_mac}
-| | Honeycomb adds interface ipv6 neighbor | ${dut_node} | ${dut_to_tg_if2}
+| | Honeycomb adds interface IPv6 neighbor | ${dut_node} | ${dut_to_tg_if2}
 | | ... | ${next_hop} | ${tg_to_dut_if2_mac}
 | | Vpp all ra suppress link layer | ${nodes}
 
@@ -209,7 +209,7 @@
 
 | Setup vrf IDs
 | | [Arguments] | ${node} | ${interface} | ${vrf}
-| | Honeycomb sets interface vrf ID
+| | Honeycomb sets interface VRF ID
 | | ... | ${node} | ${interface} | ${vrf} | ipv4
-| | Honeycomb sets interface vrf ID
+| | Honeycomb sets interface VRF ID
 | | ... | ${node} | ${interface} | ${vrf} | ipv6
