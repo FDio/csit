@@ -44,7 +44,7 @@
 | | [Documentation] | Check if Honeycomb can configure the IPv6 ND proxy\
 | | ... | feature on an interface.
 | | Given IPv6 ND proxy from Honeycomb should be empty | ${node} | ${interface}
-| | And Honeycomb sets interface state | ${node} | ${interface} | up
+| | And Honeycomb configures interface state | ${node} | ${interface} | up
 | | When Honeycomb configures IPv6 ND proxy on interface
 | | ... | ${node} | ${interface} | ${test_dst_ip}
 | | Then IPv6 ND proxy from Honeycomb should be
@@ -64,7 +64,7 @@
 | | [Teardown] | Honeycomb disables IPv6 ND proxy on interface
 | | ... | ${node} | ${interface}
 | | Given IPv6 ND proxy from Honeycomb should be empty | ${node} | ${interface}
-| | And Honeycomb sets interface state | ${node} | ${interface} | up
+| | And Honeycomb configures interface state | ${node} | ${interface} | up
 | | When Honeycomb configures IPv6 ND proxy on interface
 | | ... | ${node} | ${interface} | ${test_dst_ip} | ${test_dst_ip2}
 | | Then IPv6 ND proxy from Honeycomb should be
@@ -85,23 +85,23 @@
 | | ... | Show Packet Trace on All DUTs | ${nodes} | AND
 | | ... | Honeycomb disables IPv6 ND proxy on interface
 | | ... | ${dut_node} | ${dut_to_tg_if2}
-| | Given Path for 2-node testing is set
+| | Given Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
-| | Honeycomb sets interface state | ${dut_node} | ${dut_to_tg_if1} | up
-| | Honeycomb sets interface state | ${dut_node} | ${dut_to_tg_if2} | up
-| | Honeycomb sets interface ipv6 address | ${dut_node}
+| | Honeycomb configures interface state | ${dut_node} | ${dut_to_tg_if1} | up
+| | Honeycomb configures interface state | ${dut_node} | ${dut_to_tg_if2} | up
+| | Honeycomb sets interface IPv6 address | ${dut_node}
 | | ... | ${dut_to_tg_if1} | ${dut_to_tg_if1_ip} | ${prefix_length}
-| | Honeycomb sets interface ipv6 address | ${dut_node}
+| | Honeycomb sets interface IPv6 address | ${dut_node}
 | | ... | ${dut_to_tg_if2} | ${dut_to_tg_if2_ip} | ${prefix_length}
 | | And Vpp Ra Suppress Link Layer | ${dut_node} | ${dut_to_tg_if1}
 | | And Vpp Ra Suppress Link Layer | ${dut_node} | ${dut_to_tg_if2}
-| | And Honeycomb adds interface ipv6 neighbor | ${dut_node} | ${dut_to_tg_if1}
+| | And Honeycomb adds interface IPv6 neighbor | ${dut_node} | ${dut_to_tg_if1}
 | | ... | ${test_src_ip} | ${tg_to_dut_if1_mac}
-| | And Honeycomb adds interface ipv6 neighbor | ${dut_node} | ${dut_to_tg_if2}
+| | And Honeycomb adds interface IPv6 neighbor | ${dut_node} | ${dut_to_tg_if2}
 | | ... | ${test_dst_ip} | ${tg_to_dut_if2_mac}
 | | When Honeycomb configures IPv6 ND proxy on interface
 | | ... | ${dut_node} | ${dut_to_tg_if2} | ${test_dst_ip}
-| | Then Verify IPv6ND Proxy | ${tg_node}
+| | Then Verify IPv6ND proxy | ${tg_node}
 | | ... | ${tg_to_dut_if1} | ${tg_to_dut_if2}
 | | ... | ${test_src_ip} | ${test_dst_ip}
 | | ... | ${tg_to_dut_if1_mac} | ${tg_to_dut_if2_mac}

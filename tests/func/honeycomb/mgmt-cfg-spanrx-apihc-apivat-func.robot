@@ -34,7 +34,7 @@
 | | [Documentation] | Honeycomb configures SPAN on interface and verifies
 | | ... | against VPP SPAN dump in state receive.
 | | ...
-| | When Honeycomb Configures SPAN on interface
+| | When Honeycomb configures SPAN on interface
 | | ... | ${node} | ${interface1} | ${settings_receive}
 | | Then Interface SPAN Operational Data from Honeycomb should be
 | | ... | ${node} | ${interface1} | ${settings_receive}
@@ -43,7 +43,7 @@
 | | [Documentation] | Honeycomb configures SPAN on interface and verifies
 | | ... | against VPP SPAN dump in state transmit.
 | | ...
-| | When Honeycomb Configures SPAN on interface
+| | When Honeycomb configures SPAN on interface
 | | ... | ${node} | ${interface1} | ${settings_transmit}
 | | Then Interface SPAN Operational Data from Honeycomb should be
 | | ... | ${node} | ${interface1} | ${settings_transmit}
@@ -52,7 +52,7 @@
 | | [Documentation] | Honeycomb configures SPAN on interface and verifies
 | | ... | against VPP SPAN dump in state both.
 | | ...
-| | When Honeycomb Configures SPAN on interface
+| | When Honeycomb configures SPAN on interface
 | | ... | ${node} | ${interface1} | ${settings_both}
 | | Then Interface SPAN Operational Data from Honeycomb should be
 | | ... | ${node} | ${interface1} | ${settings_both}
@@ -61,7 +61,7 @@
 | | [Documentation] | Honeycomb configures SPAN on interface and verifies
 | | ... | against VPP SPAN dump in state both.
 | | ...
-| | When Honeycomb Configures SPAN on interface
+| | When Honeycomb configures SPAN on interface
 | | ... | ${node} | ${interface1} | ${settings_both} | ${settings_if2}
 | | Then Interface SPAN Operational Data from Honeycomb should be
 | | ... | ${node} | ${interface1} | ${settings_both} | ${settings_if2}
@@ -86,9 +86,9 @@
 | | ... | ${node} | ${interface1} | AND
 | | ... | Honeycomb removes interface SPAN configuration
 | | ... | ${node} | ${interface2}
-| | When Honeycomb Configures SPAN on interface
+| | When Honeycomb configures SPAN on interface
 | | ... | ${node} | ${interface1} | ${settings_if2}
-| | And Honeycomb Configures SPAN on interface
+| | And Honeycomb configures SPAN on interface
 | | ... | ${node} | ${interface2} | ${settings_if2}
 | | Then Interface SPAN Operational Data from Honeycomb should be
 | | ... | ${node} | ${interface1} | ${settings_if2}
@@ -106,24 +106,24 @@
 | | ...
 | | [Teardown] | Run Keywords
 | | ... | Show Packet Trace on All DUTs | ${nodes} | AND
-| | ... | Honeycomb clears all interface ipv4 neighbors
+| | ... | Honeycomb clears all interface IPv4 neighbors
 | | ... | ${dut_node} | ${dut_to_tg_if1} | AND
-| | ... | Honeycomb removes interface ipv4 addresses
+| | ... | Honeycomb removes interface IPv4 addresses
 | | ... | ${dut_node} | ${dut_to_tg_if1} | AND
 | | ... | Honeycomb removes interface SPAN configuration
 | | ... | ${node} | ${dut_to_tg_if2}
-| | Given Path for 2-node testing is set
+| | Given Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
-| | And Honeycomb sets interface state | ${dut_node} | ${dut_to_tg_if1} | up
-| | And Honeycomb sets interface state | ${dut_node} | ${dut_to_tg_if2} | up
-| | And Honeycomb sets interface ipv4 address with prefix | ${dut_node}
+| | And Honeycomb configures interface state | ${dut_node} | ${dut_to_tg_if1} | up
+| | And Honeycomb configures interface state | ${dut_node} | ${dut_to_tg_if2} | up
+| | And Honeycomb sets interface IPv4 address with prefix | ${dut_node}
 | | ... | ${dut_to_tg_if1} | ${dut_to_tg_if1_ip} | ${prefix}
-| | And Honeycomb adds interface ipv4 neighbor | ${dut_node} | ${dut_to_tg_if1}
+| | And Honeycomb adds interface IPv4 neighbor | ${dut_node} | ${dut_to_tg_if1}
 | | ... | ${tg_to_dut_if1_ip} | ${tg_to_dut_if1_mac}
 | | ${settings_5}= | create dictionary | state=both
 | | ... | iface-ref=${dut_to_tg_if1}
 | | And InterfaceCLI.All Vpp Interfaces Ready Wait | ${nodes}
-| | When Honeycomb Configures SPAN on interface
+| | When Honeycomb configures SPAN on interface
 | | ... | ${node} | ${dut_to_tg_if2} | ${settings_5}
 | | Then Send Packet And Check Received Copies | ${tg_node}
 | | ... | ${tg_to_dut_if1} | ${tg_to_dut_if1_mac}
@@ -218,17 +218,17 @@
 | | ... | on the sub-interface.
 | | ...
 | | [Teardown] | Show Packet Trace on All DUTs | ${nodes}
-| | Given Path for 2-node testing is set
+| | Given Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | And Sub-interface state from Honeycomb should be
 | | ... | ${dut_node} | ${interface1} | ${1} | down | up
-| | And Honeycomb sets interface state | ${dut_node} | ${dut_to_tg_if1} | up
-| | And Honeycomb sets interface state | ${dut_node} | ${dut_to_tg_if2} | up
+| | And Honeycomb configures interface state | ${dut_node} | ${dut_to_tg_if1} | up
+| | And Honeycomb configures interface state | ${dut_node} | ${dut_to_tg_if2} | up
 | | And Honeycomb sets the sub-interface up
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${1}
-| | And Honeycomb sets interface ipv4 address with prefix | ${dut_node}
+| | And Honeycomb sets interface IPv4 address with prefix | ${dut_node}
 | | ... | ${dut_to_tg_if2} | ${dut_to_tg_if2_ip} | ${prefix}
-| | And And Honeycomb adds interface ipv4 neighbor
+| | And And Honeycomb adds interface IPv4 neighbor
 | | ... | ${dut_node} | ${dut_to_tg_if2}
 | | ... | ${tg_to_dut_if2_ip} | ${tg_to_dut_if2_mac}
 | | ${settings_5}= | create dictionary | state=both

@@ -24,8 +24,8 @@
 | Variables | resources/test_data/lisp/static_adjacency/lisp_static_adjacency.py
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | 3_NODE_DOUBLE_LINK_TOPO
 | ... | VM_ENV | HW_ENV
-| Test Setup | Func Test Setup
-| Test Teardown | Func Test Teardown
+| Test Setup | Set up functional test
+| Test Teardown | Tear down functional test
 | Documentation | *LISP static adjacency test cases*
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology\
@@ -55,10 +55,10 @@
 | | ... | [Cfg2] Reconf LISP.
 | | ... | [Ver2] Verify packets are received again via LISP tunnel.
 | | ... | [Ref] RFC6830.
-| | Given Path for 3-node testing is set
+| | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
-| | And   Interfaces in 3-node path are up
-| | And   IP addresses are set on interfaces
+| | And   Set interfaces in 3-node circular topology up
+| | And   Configure IP addresses on interfaces
 | |       ... | ${dut1_node} | ${dut1_to_dut2}
 | |       ... | ${dut1_to_dut2_ip4o6} | ${dut_prefix4o6}
 | |       ... | ${dut1_node} | ${dut1_to_tg}
@@ -74,30 +74,30 @@
 | | And   Add Arp On Dut | ${dut1_node} | ${dut1_to_tg} | ${tg1_ip4o6}
 | |       ... | ${tg_to_dut1_mac}
 | | And Vpp All RA Suppress Link Layer | ${nodes}
-| | When Set up Lisp topology
+| | When Configure LISP topology in 3-node circular topology
 | |      ... | ${dut1_node} | ${dut1_to_dut2} | ${NONE}
 | |      ... | ${dut2_node} | ${dut2_to_dut1} | ${NONE}
 | |      ... | ${duts_locator_set} | ${dut1_ip4o6_eid} | ${dut2_ip4o6_eid}
 | |      ... | ${dut1_ip4o6_static_adjacency} | ${dut2_ip4o6_static_adjacency}
-| | Then Send Packet And Check Headers
+| | Then Send packet and verify headers
 | |      ... | ${tg_node} | ${tg1_ip4o6} | ${tg2_ip4o6}
 | |      ... | ${tg_to_dut1} | ${tg_to_dut1_mac} | ${dut1_to_tg_mac}
 | |      ... | ${tg_to_dut2} | ${dut2_to_tg_mac} | ${tg_to_dut2_mac}
-| | And Send Packet And Check Headers
+| | And Send packet and verify headers
 | |      ... | ${tg_node} | ${tg2_ip4o6} | ${tg1_ip4o6}
 | |      ... | ${tg_to_dut2} | ${tg_to_dut2_mac} | ${dut2_to_tg_mac}
 | |      ... | ${tg_to_dut1} | ${dut1_to_tg_mac} | ${tg_to_dut1_mac}
-| | When Change Lisp Configuration | ${dut1_node} | ${dut2_node}
+| | When Change LISP Configuration | ${dut1_node} | ${dut2_node}
 | |      ... | ${dut1_to_dut2} | ${dut2_to_dut1} | ${dut1_to_dut2_mac}
 | |      ... | ${dut2_to_dut1_mac} | ${dut1_to_dut2_ip4o6}
 | |      ... | ${dut2_to_dut1_ip4o6_reconf} | ${dut_prefix4o6}
 | |      ... | ${dut1_ip4o6_static_adjacency}
 | |      ... | ${dut1_ip4o6_static_adjacency_reconf}
-| | Then Send Packet And Check Headers
+| | Then Send packet and verify headers
 | |      ... | ${tg_node} | ${tg1_ip4o6} | ${tg2_ip4o6}
 | |      ... | ${tg_to_dut1} | ${tg_to_dut1_mac} | ${dut1_to_tg_mac}
 | |      ... | ${tg_to_dut2} | ${dut2_to_tg_mac} | ${tg_to_dut2_mac}
-| | And Send Packet And Check Headers
+| | And Send packet and verify headers
 | |      ... | ${tg_node} | ${tg2_ip4o6} | ${tg1_ip4o6}
 | |      ... | ${tg_to_dut2} | ${tg_to_dut2_mac} | ${dut2_to_tg_mac}
 | |      ... | ${tg_to_dut1} | ${dut1_to_tg_mac} | ${tg_to_dut1_mac}

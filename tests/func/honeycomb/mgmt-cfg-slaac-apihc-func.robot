@@ -35,7 +35,7 @@
 | | Given SLAAC Operational Data From Honeycomb Should Be empty | ${node}
 | | ... | ${interface}
 | | And InterfaceAPI.Set Interface State | ${node} | ${interface} | up
-| | And Honeycomb sets interface ipv6 address | ${node} | ${interface}
+| | And Honeycomb sets interface IPv6 address | ${node} | ${interface}
 | | ... | ${address} | ${prefix}
 | | When Honeycomb configures SLAAC | ${node} | ${interface} | ${slaac_data}
 | | Then SLAAC Operational Data From Honeycomb Should Be | ${node}
@@ -55,7 +55,7 @@
 | | Given SLAAC Operational Data From Honeycomb Should Be empty | ${node}
 | | ... | ${interface}
 | | And InterfaceAPI.Set Interface State | ${node} | ${interface} | up
-| | And Honeycomb sets interface ipv6 address | ${node} | ${interface}
+| | And Honeycomb sets interface IPv6 address | ${node} | ${interface}
 | | ... | ${address} | ${prefix}
 | | When Honeycomb configures SLAAC | ${node} | ${interface} | ${slaac_data}
 | | Then SLAAC Operational Data From Honeycomb Should Be | ${node}
@@ -68,7 +68,7 @@
 | | Given SLAAC Operational Data From Honeycomb Should Be empty | ${node}
 | | ... | ${interface}
 | | And InterfaceAPI.Set Interface State | ${node} | ${interface} | up
-| | And Honeycomb sets interface ipv6 address | ${node} | ${interface}
+| | And Honeycomb sets interface IPv6 address | ${node} | ${interface}
 | | ... | ${address} | ${prefix}
 | | When Honeycomb configures SLAAC | ${node} | ${interface} | ${slaac_data_01}
 | | Then SLAAC Operational Data From Honeycomb Should Be | ${node} | ${interface}
@@ -81,7 +81,7 @@
 | | Given SLAAC Operational Data From Honeycomb Should Be empty | ${node}
 | | ... | ${interface}
 | | And InterfaceAPI.Set Interface State | ${node} | ${interface} | up
-| | And Honeycomb sets interface ipv6 address | ${node} | ${interface}
+| | And Honeycomb sets interface IPv6 address | ${node} | ${interface}
 | | ... | ${address} | ${prefix}
 | | When Honeycomb configures SLAAC | ${node} | ${interface} | ${slaac_data_02}
 | | Then SLAAC Operational Data From Honeycomb Should Be | ${node} | ${interface}
@@ -94,7 +94,7 @@
 | | Given SLAAC Operational Data From Honeycomb Should Be empty | ${node}
 | | ... | ${interface}
 | | And InterfaceAPI.Set Interface State | ${node} | ${interface} | up
-| | And Honeycomb sets interface ipv6 address | ${node} | ${interface}
+| | And Honeycomb sets interface IPv6 address | ${node} | ${interface}
 | | ... | ${address} | ${prefix}
 | | When Honeycomb configures SLAAC | ${node} | ${interface} | ${slaac_data_03}
 | | Then SLAAC Operational Data From Honeycomb Should Be | ${node} | ${interface}
@@ -107,13 +107,13 @@
 | | ... | [Ver] Make TG wait for two IPv6 Router Advertisement packets\
 | | ... | to be sent by DUT1 and verify the received RA packets are correct.
 | | [Teardown] | SLAAC test teardown | ${dut_node} | ${dut_to_tg_if1}
-| | Given Path for 2-node testing is set
+| | Given Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
-| | And Honeycomb sets interface ipv6 address
+| | And Honeycomb sets interface IPv6 address
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${address} | ${prefix}
-| | And Honeycomb sets interface state | ${dut_node} | ${dut_to_tg_if1} | up
+| | And Honeycomb configures interface state | ${dut_node} | ${dut_to_tg_if1} | up
 | | When Honeycomb configures SLAAC | ${dut_node} | ${dut_to_tg_if1}
 | | ... | ${slaac_data}
 | | :FOR | ${n} | IN RANGE | ${2}
-| | | Then Receive And Check Router Advertisement Packet
+| | | Then Receive and verify router advertisement packet
 | | | ... | ${tg_node} | ${tg_to_dut_if1} | ${dut_to_tg_if1_mac} | ${20}

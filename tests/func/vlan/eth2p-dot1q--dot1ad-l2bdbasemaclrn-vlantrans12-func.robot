@@ -19,8 +19,8 @@
 | Resource | resources/libraries/robot/l2_traffic.robot
 | Library  | resources.libraries.python.Trace
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | HW_ENV | VM_ENV | SKIP_VPP_PATCH
-| Test Setup | Func Test Setup
-| Test Teardown | Func Test Teardown
+| Test Setup | Set up functional test
+| Test Teardown | Tear down functional test
 | Documentation | *L2BD with VLAN tag rewrite test cases - translate-1-2*
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology
@@ -70,31 +70,31 @@
 | | ... | tagged with one Dot1q tag from one of its interfaces to another one
 | | ... | via DUT1 and DUT2; verify that packet is received.
 | | ... | [Ref] IEEE 802.1q, IEEE 802.1ad
-| | Given Path for 3-node testing is set
+| | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
-| | And Interfaces in 3-node path are up
-| | ${vlan1_name} | ${vlan1_index}= | When Vlan Subinterface Created
+| | And Set interfaces in 3-node circular topology up
+| | ${vlan1_name} | ${vlan1_index}= | When Create vlan sub-interface
 | | ... | ${dut1_node} | ${dut1_to_tg} | ${outer_vlan_id1}
-| | ${vlan2_name} | ${vlan2_index}= | And Tagged Subinterface Created
+| | ${vlan2_name} | ${vlan2_index}= | And Create tagged sub-interface
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${subid}
 | | ... | outer_vlan_id=${outer_vlan_id2} | inner_vlan_id=${inner_vlan_id1}
 | | ... | type_subif=two_tags dot1ad
-| | And L2 Tag Rewrite Method Is Set On Interface | ${dut1_node}
+| | And Configure L2 tag rewrite method on interface | ${dut1_node}
 | | ... | ${vlan1_index} | translate-1-2 | push_dot1q=${False}
 | | ... | tag1_id=${outer_vlan_id2} | tag2_id=${inner_vlan_id1}
-| | And L2 Tag Rewrite Method Is Set On Interface | ${dut2_node}
+| | And Configure L2 tag rewrite method on interface | ${dut2_node}
 | | ... | ${vlan2_index} | pop-2
-| | And Bridge domain on DUT node is created | ${dut1_node} | ${bd_id1}
-| | And Interface is added to bridge domain | ${dut1_node} | ${dut1_to_dut2}
+| | And Create bridge domain | ${dut1_node} | ${bd_id1}
+| | And Add interface to bridge domain | ${dut1_node} | ${dut1_to_dut2}
 | | ...                                     | ${bd_id1}
-| | And Interface is added to bridge domain | ${dut1_node} | ${vlan1_index}
+| | And Add interface to bridge domain | ${dut1_node} | ${vlan1_index}
 | | ...                                     | ${bd_id1}
-| | And Bridge domain on DUT node is created | ${dut2_node} | ${bd_id1}
-| | And Interface is added to bridge domain | ${dut2_node} | ${dut2_to_tg}
+| | And Create bridge domain | ${dut2_node} | ${bd_id1}
+| | And Add interface to bridge domain | ${dut2_node} | ${dut2_to_tg}
 | | ...                                     | ${bd_id1}
-| | And Interface is added to bridge domain | ${dut2_node} | ${vlan2_index}
+| | And Add interface to bridge domain | ${dut2_node} | ${vlan2_index}
 | | ...                                     | ${bd_id1}
-| | Then Send and receive ICMP Packet
+| | Then Send ICMP packet and verify received packet
 | | ... | ${tg_node} | ${tg_to_dut1} | ${tg_to_dut2} | encaps=Dot1q
 | | ... | vlan1=${outer_vlan_id1}
 
@@ -112,32 +112,32 @@
 | | ... | via DUT1 and DUT2; verify that packet is not received.
 | | ... | [Ref] IEEE 802.1q, IEEE 802.1ad
 | | [Tags] | SKIP_PATCH
-| | Given Path for 3-node testing is set
+| | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
-| | And Interfaces in 3-node path are up
-| | ${vlan1_name} | ${vlan1_index}= | When Vlan Subinterface Created
+| | And Set interfaces in 3-node circular topology up
+| | ${vlan1_name} | ${vlan1_index}= | When Create vlan sub-interface
 | | ... | ${dut1_node} | ${dut1_to_tg} | ${outer_vlan_id1}
-| | ${vlan2_name} | ${vlan2_index}= | And Tagged Subinterface Created
+| | ${vlan2_name} | ${vlan2_index}= | And Create tagged sub-interface
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${subid}
 | | ... | outer_vlan_id=${outer_vlan_id2} | inner_vlan_id=${inner_vlan_id1}
 | | ... | type_subif=two_tags dot1ad
-| | And L2 Tag Rewrite Method Is Set On Interface | ${dut1_node}
+| | And Configure L2 tag rewrite method on interface | ${dut1_node}
 | | ... | ${vlan1_index} | translate-1-2 | push_dot1q=${False}
 | | ... | tag1_id=${outer_vlan_id2} | tag2_id=${inner_vlan_wrong}
-| | And L2 Tag Rewrite Method Is Set On Interface | ${dut2_node}
+| | And Configure L2 tag rewrite method on interface | ${dut2_node}
 | | ... | ${vlan2_index} | pop-2
-| | And Bridge domain on DUT node is created | ${dut1_node} | ${bd_id1}
-| | And Interface is added to bridge domain | ${dut1_node} | ${dut1_to_dut2}
+| | And Create bridge domain | ${dut1_node} | ${bd_id1}
+| | And Add interface to bridge domain | ${dut1_node} | ${dut1_to_dut2}
 | | ...                                     | ${bd_id1}
-| | And Interface is added to bridge domain | ${dut1_node} | ${vlan1_index}
+| | And Add interface to bridge domain | ${dut1_node} | ${vlan1_index}
 | | ...                                     | ${bd_id1}
-| | And Bridge domain on DUT node is created | ${dut2_node} | ${bd_id1}
-| | And Interface is added to bridge domain | ${dut2_node} | ${dut2_to_tg}
+| | And Create bridge domain | ${dut2_node} | ${bd_id1}
+| | And Add interface to bridge domain | ${dut2_node} | ${dut2_to_tg}
 | | ...                                     | ${bd_id1}
-| | And Interface is added to bridge domain | ${dut2_node} | ${vlan2_index}
+| | And Add interface to bridge domain | ${dut2_node} | ${vlan2_index}
 | | ...                                     | ${bd_id1}
 | | Then Run Keyword And Expect Error | ICMP echo Rx timeout
-| | ... | Send and receive ICMP Packet | ${tg_node} | ${tg_to_dut1}
+| | ... | Send ICMP packet and verify received packet | ${tg_node} | ${tg_to_dut1}
 | | ... | ${tg_to_dut2} | encaps=Dot1q | vlan1=${outer_vlan_id1}
 
 | TC03: DUT1 and DUT2 with L2BD and VLAN translate-1-2 with wrong outer tag used (DUT1) switch ICMPv4 between two TG links
@@ -154,32 +154,32 @@
 | | ... | via DUT1 and DUT2; verify that packet is not received.
 | | ... | [Ref] IEEE 802.1q, IEEE 802.1ad
 | | [Tags] | SKIP_PATCH
-| | Given Path for 3-node testing is set
+| | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
-| | And Interfaces in 3-node path are up
-| | ${vlan1_name} | ${vlan1_index}= | When Vlan Subinterface Created
+| | And Set interfaces in 3-node circular topology up
+| | ${vlan1_name} | ${vlan1_index}= | When Create vlan sub-interface
 | | ... | ${dut1_node} | ${dut1_to_tg} | ${outer_vlan_id1}
-| | ${vlan2_name} | ${vlan2_index}= | And Tagged Subinterface Created
+| | ${vlan2_name} | ${vlan2_index}= | And Create tagged sub-interface
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${subid}
 | | ... | outer_vlan_id=${outer_vlan_id2} | inner_vlan_id=${inner_vlan_id1}
 | | ... | type_subif=two_tags dot1ad
-| | And L2 Tag Rewrite Method Is Set On Interface | ${dut1_node}
+| | And Configure L2 tag rewrite method on interface | ${dut1_node}
 | | ... | ${vlan1_index} | translate-1-2 | push_dot1q=${False}
 | | ... | tag1_id=${outer_vlan_wrong} | tag2_id=${inner_vlan_id1}
-| | And L2 Tag Rewrite Method Is Set On Interface | ${dut2_node}
+| | And Configure L2 tag rewrite method on interface | ${dut2_node}
 | | ... | ${vlan2_index} | pop-2
-| | And Bridge domain on DUT node is created | ${dut1_node} | ${bd_id1}
-| | And Interface is added to bridge domain | ${dut1_node} | ${dut1_to_dut2}
+| | And Create bridge domain | ${dut1_node} | ${bd_id1}
+| | And Add interface to bridge domain | ${dut1_node} | ${dut1_to_dut2}
 | | ...                                     | ${bd_id1}
-| | And Interface is added to bridge domain | ${dut1_node} | ${vlan1_index}
+| | And Add interface to bridge domain | ${dut1_node} | ${vlan1_index}
 | | ...                                     | ${bd_id1}
-| | And Bridge domain on DUT node is created | ${dut2_node} | ${bd_id1}
-| | And Interface is added to bridge domain | ${dut2_node} | ${dut2_to_tg}
+| | And Create bridge domain | ${dut2_node} | ${bd_id1}
+| | And Add interface to bridge domain | ${dut2_node} | ${dut2_to_tg}
 | | ...                                     | ${bd_id1}
-| | And Interface is added to bridge domain | ${dut2_node} | ${vlan2_index}
+| | And Add interface to bridge domain | ${dut2_node} | ${vlan2_index}
 | | ...                                     | ${bd_id1}
 | | Then Run Keyword And Expect Error | ICMP echo Rx timeout
-| | ... | Send and receive ICMP Packet | ${tg_node} | ${tg_to_dut1}
+| | ... | Send ICMP packet and verify received packet | ${tg_node} | ${tg_to_dut1}
 | | ... | ${tg_to_dut2} | encaps=Dot1q | vlan1=${outer_vlan_id1}
 
 | TC04: DUT1 and DUT2 with L2BD and VLAN translate-1-2 with wrong outer and inner tag used (DUT1) switch ICMPv4 between two TG links
@@ -196,32 +196,32 @@
 | | ... | to another one via DUT1 and DUT2; verify that packet is not received.
 | | ... | [Ref] IEEE 802.1q, IEEE 802.1ad
 | | [Tags] | SKIP_PATCH
-| | Given Path for 3-node testing is set
+| | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
-| | And Interfaces in 3-node path are up
-| | ${vlan1_name} | ${vlan1_index}= | When Vlan Subinterface Created
+| | And Set interfaces in 3-node circular topology up
+| | ${vlan1_name} | ${vlan1_index}= | When Create vlan sub-interface
 | | ... | ${dut1_node} | ${dut1_to_tg} | ${outer_vlan_id1}
-| | ${vlan2_name} | ${vlan2_index}= | And Tagged Subinterface Created
+| | ${vlan2_name} | ${vlan2_index}= | And Create tagged sub-interface
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${subid}
 | | ... | outer_vlan_id=${outer_vlan_id2} | inner_vlan_id=${inner_vlan_id1}
 | | ... | type_subif=two_tags dot1ad
-| | And L2 Tag Rewrite Method Is Set On Interface | ${dut1_node}
+| | And Configure L2 tag rewrite method on interface | ${dut1_node}
 | | ... | ${vlan1_index} | translate-1-2 | push_dot1q=${False}
 | | ... | tag1_id=${outer_vlan_wrong} | tag2_id=${inner_vlan_wrong}
-| | And L2 Tag Rewrite Method Is Set On Interface | ${dut2_node}
+| | And Configure L2 tag rewrite method on interface | ${dut2_node}
 | | ... | ${vlan2_index} | pop-2
-| | And Bridge domain on DUT node is created | ${dut1_node} | ${bd_id1}
-| | And Interface is added to bridge domain | ${dut1_node} | ${dut1_to_dut2}
+| | And Create bridge domain | ${dut1_node} | ${bd_id1}
+| | And Add interface to bridge domain | ${dut1_node} | ${dut1_to_dut2}
 | | ...                                     | ${bd_id1}
-| | And Interface is added to bridge domain | ${dut1_node} | ${vlan1_index}
+| | And Add interface to bridge domain | ${dut1_node} | ${vlan1_index}
 | | ...                                     | ${bd_id1}
-| | And Bridge domain on DUT node is created | ${dut2_node} | ${bd_id1}
-| | And Interface is added to bridge domain | ${dut2_node} | ${dut2_to_tg}
+| | And Create bridge domain | ${dut2_node} | ${bd_id1}
+| | And Add interface to bridge domain | ${dut2_node} | ${dut2_to_tg}
 | | ...                                     | ${bd_id1}
-| | And Interface is added to bridge domain | ${dut2_node} | ${vlan2_index}
+| | And Add interface to bridge domain | ${dut2_node} | ${vlan2_index}
 | | ...                                     | ${bd_id1}
 | | Then Run Keyword And Expect Error | ICMP echo Rx timeout
-| | ... | Send and receive ICMP Packet | ${tg_node} | ${tg_to_dut1}
+| | ... | Send ICMP packet and verify received packet | ${tg_node} | ${tg_to_dut1}
 | | ... | ${tg_to_dut2} | encaps=Dot1q | vlan1=${outer_vlan_id1}
 
 | TC05: DUT1 and DUT2 with L2BD and VLAN translate-1-2 (DUT1) switch ICMPv6 between two TG links
@@ -236,31 +236,31 @@
 | | ... | tagged with one Dot1q tag from one of its interfaces to another one
 | | ... | via DUT1 and DUT2; verify that packet is received.
 | | ... | [Ref] IEEE 802.1q, IEEE 802.1ad
-| | Given Path for 3-node testing is set
+| | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
-| | And Interfaces in 3-node path are up
-| | ${vlan1_name} | ${vlan1_index}= | When Vlan Subinterface Created
+| | And Set interfaces in 3-node circular topology up
+| | ${vlan1_name} | ${vlan1_index}= | When Create vlan sub-interface
 | | ... | ${dut1_node} | ${dut1_to_tg} | ${outer_vlan_id1}
-| | ${vlan2_name} | ${vlan2_index}= | And Tagged Subinterface Created
+| | ${vlan2_name} | ${vlan2_index}= | And Create tagged sub-interface
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${subid}
 | | ... | outer_vlan_id=${outer_vlan_id2} | inner_vlan_id=${inner_vlan_id2}
 | | ... | type_subif=two_tags dot1ad
-| | And L2 Tag Rewrite Method Is Set On Interface | ${dut1_node}
+| | And Configure L2 tag rewrite method on interface | ${dut1_node}
 | | ... | ${vlan1_index} | translate-1-2 | push_dot1q=${False}
 | | ... | tag1_id=${outer_vlan_id2} | tag2_id=${inner_vlan_id2}
-| | And L2 Tag Rewrite Method Is Set On Interface | ${dut2_node}
+| | And Configure L2 tag rewrite method on interface | ${dut2_node}
 | | ... | ${vlan2_index} | pop-2
-| | And Bridge domain on DUT node is created | ${dut1_node} | ${bd_id1}
-| | And Interface is added to bridge domain | ${dut1_node} | ${dut1_to_dut2}
+| | And Create bridge domain | ${dut1_node} | ${bd_id1}
+| | And Add interface to bridge domain | ${dut1_node} | ${dut1_to_dut2}
 | | ...                                     | ${bd_id1}
-| | And Interface is added to bridge domain | ${dut1_node} | ${vlan1_index}
+| | And Add interface to bridge domain | ${dut1_node} | ${vlan1_index}
 | | ...                                     | ${bd_id1}
-| | And Bridge domain on DUT node is created | ${dut2_node} | ${bd_id1}
-| | And Interface is added to bridge domain | ${dut2_node} | ${dut2_to_tg}
+| | And Create bridge domain | ${dut2_node} | ${bd_id1}
+| | And Add interface to bridge domain | ${dut2_node} | ${dut2_to_tg}
 | | ...                                     | ${bd_id1}
-| | And Interface is added to bridge domain | ${dut2_node} | ${vlan2_index}
+| | And Add interface to bridge domain | ${dut2_node} | ${vlan2_index}
 | | ...                                     | ${bd_id1}
-| | Then Send and receive ICMP Packet
+| | Then Send ICMP packet and verify received packet
 | | ... | ${tg_node} | ${tg_to_dut1} | ${tg_to_dut2} | src_ip=${src_ip6}
 | | ... | dst_ip=${dst_ip6} | encaps=Dot1q | vlan1=${outer_vlan_id1}
 
@@ -278,32 +278,32 @@
 | | ... | via DUT1 and DUT2; verify that packet is not received.
 | | ... | [Ref] IEEE 802.1q, IEEE 802.1ad
 | | [Tags] | SKIP_PATCH
-| | Given Path for 3-node testing is set
+| | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
-| | And Interfaces in 3-node path are up
-| | ${vlan1_name} | ${vlan1_index}= | When Vlan Subinterface Created
+| | And Set interfaces in 3-node circular topology up
+| | ${vlan1_name} | ${vlan1_index}= | When Create vlan sub-interface
 | | ... | ${dut1_node} | ${dut1_to_tg} | ${outer_vlan_id1}
-| | ${vlan2_name} | ${vlan2_index}= | And Tagged Subinterface Created
+| | ${vlan2_name} | ${vlan2_index}= | And Create tagged sub-interface
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${subid}
 | | ... | outer_vlan_id=${outer_vlan_id2} | inner_vlan_id=${inner_vlan_id2}
 | | ... | type_subif=two_tags dot1ad
-| | And L2 Tag Rewrite Method Is Set On Interface | ${dut1_node}
+| | And Configure L2 tag rewrite method on interface | ${dut1_node}
 | | ... | ${vlan1_index} | translate-1-2 | push_dot1q=${False}
 | | ... | tag1_id=${outer_vlan_id2} | tag2_id=${inner_vlan_wrong}
-| | And L2 Tag Rewrite Method Is Set On Interface | ${dut2_node}
+| | And Configure L2 tag rewrite method on interface | ${dut2_node}
 | | ... | ${vlan2_index} | pop-2
-| | And Bridge domain on DUT node is created | ${dut1_node} | ${bd_id1}
-| | And Interface is added to bridge domain | ${dut1_node} | ${dut1_to_dut2}
+| | And Create bridge domain | ${dut1_node} | ${bd_id1}
+| | And Add interface to bridge domain | ${dut1_node} | ${dut1_to_dut2}
 | | ...                                     | ${bd_id1}
-| | And Interface is added to bridge domain | ${dut1_node} | ${vlan1_index}
+| | And Add interface to bridge domain | ${dut1_node} | ${vlan1_index}
 | | ...                                     | ${bd_id1}
-| | And Bridge domain on DUT node is created | ${dut2_node} | ${bd_id1}
-| | And Interface is added to bridge domain | ${dut2_node} | ${dut2_to_tg}
+| | And Create bridge domain | ${dut2_node} | ${bd_id1}
+| | And Add interface to bridge domain | ${dut2_node} | ${dut2_to_tg}
 | | ...                                     | ${bd_id1}
-| | And Interface is added to bridge domain | ${dut2_node} | ${vlan2_index}
+| | And Add interface to bridge domain | ${dut2_node} | ${vlan2_index}
 | | ...                                     | ${bd_id1}
 | | Then Run Keyword And Expect Error | ICMP echo Rx timeout
-| | ... | Send and receive ICMP Packet | ${tg_node} | ${tg_to_dut1}
+| | ... | Send ICMP packet and verify received packet | ${tg_node} | ${tg_to_dut1}
 | | ... | ${tg_to_dut2} | src_ip=${src_ip6} | dst_ip=${dst_ip6} | encaps=Dot1q
 | | ... | vlan1=${outer_vlan_id1}
 
@@ -321,32 +321,32 @@
 | | ... | via DUT1 and DUT2; verify that packet is not received.
 | | ... | [Ref] IEEE 802.1q, IEEE 802.1ad
 | | [Tags] | SKIP_PATCH
-| | Given Path for 3-node testing is set
+| | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
-| | And Interfaces in 3-node path are up
-| | ${vlan1_name} | ${vlan1_index}= | When Vlan Subinterface Created
+| | And Set interfaces in 3-node circular topology up
+| | ${vlan1_name} | ${vlan1_index}= | When Create vlan sub-interface
 | | ... | ${dut1_node} | ${dut1_to_tg} | ${outer_vlan_id1}
-| | ${vlan2_name} | ${vlan2_index}= | And Tagged Subinterface Created
+| | ${vlan2_name} | ${vlan2_index}= | And Create tagged sub-interface
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${subid}
 | | ... | outer_vlan_id=${outer_vlan_id2} | inner_vlan_id=${inner_vlan_id2}
 | | ... | type_subif=two_tags dot1ad
-| | And L2 Tag Rewrite Method Is Set On Interface | ${dut1_node}
+| | And Configure L2 tag rewrite method on interface | ${dut1_node}
 | | ... | ${vlan1_index} | translate-1-2 | push_dot1q=${False}
 | | ... | tag1_id=${outer_vlan_wrong} | tag2_id=${inner_vlan_id2}
-| | And L2 Tag Rewrite Method Is Set On Interface | ${dut2_node}
+| | And Configure L2 tag rewrite method on interface | ${dut2_node}
 | | ... | ${vlan2_index} | pop-2
-| | And Bridge domain on DUT node is created | ${dut1_node} | ${bd_id1}
-| | And Interface is added to bridge domain | ${dut1_node} | ${dut1_to_dut2}
+| | And Create bridge domain | ${dut1_node} | ${bd_id1}
+| | And Add interface to bridge domain | ${dut1_node} | ${dut1_to_dut2}
 | | ...                                     | ${bd_id1}
-| | And Interface is added to bridge domain | ${dut1_node} | ${vlan1_index}
+| | And Add interface to bridge domain | ${dut1_node} | ${vlan1_index}
 | | ...                                     | ${bd_id1}
-| | And Bridge domain on DUT node is created | ${dut2_node} | ${bd_id1}
-| | And Interface is added to bridge domain | ${dut2_node} | ${dut2_to_tg}
+| | And Create bridge domain | ${dut2_node} | ${bd_id1}
+| | And Add interface to bridge domain | ${dut2_node} | ${dut2_to_tg}
 | | ...                                     | ${bd_id1}
-| | And Interface is added to bridge domain | ${dut2_node} | ${vlan2_index}
+| | And Add interface to bridge domain | ${dut2_node} | ${vlan2_index}
 | | ...                                     | ${bd_id1}
 | | Then Run Keyword And Expect Error | ICMP echo Rx timeout
-| | ... | Send and receive ICMP Packet | ${tg_node} | ${tg_to_dut1}
+| | ... | Send ICMP packet and verify received packet | ${tg_node} | ${tg_to_dut1}
 | | ... | ${tg_to_dut2} | src_ip=${src_ip6} | dst_ip=${dst_ip6} | encaps=Dot1q
 | | ... | vlan1=${outer_vlan_id1}
 
@@ -364,31 +364,31 @@
 | | ... | to another one via DUT1 and DUT2; verify that packet is not received.
 | | ... | [Ref] IEEE 802.1q, IEEE 802.1ad
 | | [Tags] | SKIP_PATCH
-| | Given Path for 3-node testing is set
+| | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
-| | And Interfaces in 3-node path are up
-| | ${vlan1_name} | ${vlan1_index}= | When Vlan Subinterface Created
+| | And Set interfaces in 3-node circular topology up
+| | ${vlan1_name} | ${vlan1_index}= | When Create vlan sub-interface
 | | ... | ${dut1_node} | ${dut1_to_tg} | ${outer_vlan_id1}
-| | ${vlan2_name} | ${vlan2_index}= | And Tagged Subinterface Created
+| | ${vlan2_name} | ${vlan2_index}= | And Create tagged sub-interface
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${subid}
 | | ... | outer_vlan_id=${outer_vlan_id2} | inner_vlan_id=${inner_vlan_id2}
 | | ... | type_subif=two_tags dot1ad
-| | And L2 Tag Rewrite Method Is Set On Interface | ${dut1_node}
+| | And Configure L2 tag rewrite method on interface | ${dut1_node}
 | | ... | ${vlan1_index} | translate-1-2 | push_dot1q=${False}
 | | ... | tag1_id=${outer_vlan_wrong} | tag2_id=${inner_vlan_wrong}
-| | And L2 Tag Rewrite Method Is Set On Interface | ${dut2_node}
+| | And Configure L2 tag rewrite method on interface | ${dut2_node}
 | | ... | ${vlan2_index} | pop-2
-| | And Bridge domain on DUT node is created | ${dut1_node} | ${bd_id1}
-| | And Interface is added to bridge domain | ${dut1_node} | ${dut1_to_dut2}
+| | And Create bridge domain | ${dut1_node} | ${bd_id1}
+| | And Add interface to bridge domain | ${dut1_node} | ${dut1_to_dut2}
 | | ...                                     | ${bd_id1}
-| | And Interface is added to bridge domain | ${dut1_node} | ${vlan1_index}
+| | And Add interface to bridge domain | ${dut1_node} | ${vlan1_index}
 | | ...                                     | ${bd_id1}
-| | And Bridge domain on DUT node is created | ${dut2_node} | ${bd_id1}
-| | And Interface is added to bridge domain | ${dut2_node} | ${dut2_to_tg}
+| | And Create bridge domain | ${dut2_node} | ${bd_id1}
+| | And Add interface to bridge domain | ${dut2_node} | ${dut2_to_tg}
 | | ...                                     | ${bd_id1}
-| | And Interface is added to bridge domain | ${dut2_node} | ${vlan2_index}
+| | And Add interface to bridge domain | ${dut2_node} | ${vlan2_index}
 | | ...                                     | ${bd_id1}
 | | Then Run Keyword And Expect Error | ICMP echo Rx timeout
-| | ... | Send and receive ICMP Packet | ${tg_node} | ${tg_to_dut1}
+| | ... | Send ICMP packet and verify received packet | ${tg_node} | ${tg_to_dut1}
 | | ... | ${tg_to_dut2} | src_ip=${src_ip6} | dst_ip=${dst_ip6} | encaps=Dot1q
 | | ... | vlan1=${outer_vlan_id1}

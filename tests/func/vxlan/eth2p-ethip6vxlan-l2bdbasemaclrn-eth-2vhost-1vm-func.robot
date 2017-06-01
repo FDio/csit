@@ -21,11 +21,11 @@
 | Library  | resources.libraries.python.Trace
 | Library | resources.libraries.python.IPv6Setup
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | VM_ENV | HW_ENV
-| Test Setup | Func Test Setup
-| Test Teardown | Run Keywords | Func Test Teardown
-| ... | AND | Run keyword | Qemu Teardown | ${dut1_node}
+| Test Setup | Set up functional test
+| Test Teardown | Run Keywords | Tear down functional test
+| ... | AND | Run keyword | Tear down QEMU | ${dut1_node}
 | ...                                     | ${${qemu1}} | ${qemu1}
-| ... | AND | Run keyword | Qemu Teardown | ${dut2_node}
+| ... | AND | Run keyword | Tear down QEMU | ${dut2_node}
 | ...                                     | ${${qemu2}} | ${qemu2}
 | Documentation | *L2BD with VM combined with VXLAN test cases - IPv6*
 | ...
@@ -79,22 +79,22 @@
 | | ... | these TG interfaces.
 | | ... | [Ref] RFC7348.
 | | [Tags] | VPP_VM_ENV
-| | Given Path for 3-node testing is set
+| | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
-| | And Interfaces in 3-node path are up
-| | When VPP Vhost interfaces for L2BD forwarding are setup | ${dut1_node}
+| | And Set interfaces in 3-node circular topology up
+| | When Configure vhost interfaces for L2BD forwarding | ${dut1_node}
 | | ...                                                     | ${sock1}
 | | ...                                                     | ${sock2}
 | | ...                                                     | ${dut1_vhost1}
 | | ...                                                     | ${dut1_vhost2}
-| | And VPP Vhost interfaces for L2BD forwarding are setup | ${dut2_node}
+| | And Configure vhost interfaces for L2BD forwarding | ${dut2_node}
 | | ...                                                    | ${sock1}
 | | ...                                                    | ${sock2}
 | | ...                                                    | ${dut2_vhost1}
 | | ...                                                    | ${dut2_vhost2}
-| | And VM for Vhost L2BD forwarding is setup | ${dut1_node} | ${sock1}
+| | And Configure VM for vhost L2BD forwarding | ${dut1_node} | ${sock1}
 | | ...                                       | ${sock2} | ${qemu1}
-| | And VM for Vhost L2BD forwarding is setup | ${dut2_node} | ${sock1}
+| | And Configure VM for vhost L2BD forwarding | ${dut2_node} | ${sock1}
 | | ...                                       | ${sock2} | ${qemu2}
 | | And Set Interface Address | ${dut1_node} | ${dut1_to_dut2} | ${ip6_addr1}
 | | ...                       | ${ip6_prefix}
@@ -107,13 +107,13 @@
 | |                 | ...                        | ${ip6_addr1} | ${ip6_addr2}
 | | ${dut2s_vxlan}= | And Create VXLAN interface | ${dut2_node} | ${vni_1}
 | |                 | ...                        | ${ip6_addr2} | ${ip6_addr1}
-| | And Interfaces are added to BD | ${dut1_node} | ${bd_id1}
+| | And Add interfaces to L2BD | ${dut1_node} | ${bd_id1}
 | | ...                            | ${dut1_to_tg} | ${${dut1_vhost1}}
-| | And Interfaces are added to BD | ${dut1_node} | ${bd_id2}
+| | And Add interfaces to L2BD | ${dut1_node} | ${bd_id2}
 | | ...                            | ${dut1s_vxlan} | ${${dut1_vhost2}}
-| | And Interfaces are added to BD | ${dut2_node} | ${bd_id1}
+| | And Add interfaces to L2BD | ${dut2_node} | ${bd_id1}
 | | ...                            | ${dut2_to_tg} | ${${dut2_vhost1}}
-| | And Interfaces are added to BD | ${dut2_node} | ${bd_id2}
+| | And Add interfaces to L2BD | ${dut2_node} | ${bd_id2}
 | | ...                            | ${dut2s_vxlan} | ${${dut2_vhost2}}
-| | Then Send and receive ICMPv6 bidirectionally
+| | Then Send ICMPv6 bidirectionally and verify received packets
 | | ... | ${tg_node} | ${tg_to_dut1} | ${tg_to_dut2}

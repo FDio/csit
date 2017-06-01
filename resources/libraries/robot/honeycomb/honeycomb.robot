@@ -17,7 +17,7 @@
 | Library | resources/libraries/python/honeycomb/HcPersistence.py
 
 *** Keywords ***
-| Setup Honeycomb service on DUTs
+| Configure Honeycomb service on DUTs
 | | [Documentation] | *Setup environment for honeycomb testing.*
 | | ...
 | | ... | _Setup steps:_
@@ -40,7 +40,7 @@
 | | Wait until keyword succeeds | 4min | 16sec
 | | ... | Check honeycomb startup state | @{duts}
 
-| Stop honeycomb service on DUTs
+| Stop Honeycomb service on DUTs
 | | [Documentation] | *Cleanup environment after honeycomb testing.*
 | | ...
 | | ... | _Teardown steps:_
@@ -89,7 +89,7 @@
 | | Stop Honeycomb service on DUTs | ${node}
 | | Clear persisted Honeycomb configuration | ${node}
 | | Setup DUT | ${node}
-| | Setup Honeycomb service on DUTs | ${node}
+| | Configure Honeycomb service on DUTs | ${node}
 
 | Restart Honeycomb and VPP
 | | [Documentation] | Restarts Honeycomb service and wait until it starts up.

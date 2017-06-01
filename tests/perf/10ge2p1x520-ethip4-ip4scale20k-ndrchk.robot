@@ -17,12 +17,12 @@
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRCHK
 | ... | NIC_Intel-X520-DA2 | ETH | IP4FWD | SCALE | FIB_20K
 | ...
-| Suite Setup | 3-node Performance Suite Setup with DUT's NIC model
+| Suite Setup | Set up 3-node performance topology with DUT's NIC model
 | ... | L3 | Intel-X520-DA2
-| Suite Teardown | 3-node Performance Suite Teardown
+| Suite Teardown | Tear down 3-node performance topology
 | ...
-| Test Setup | Performance test setup
-| Test Teardown | Performance ndrchk test teardown
+| Test Setup | Set up performance test
+| Test Teardown | Tear down performance ndrchk test
 | ...
 | Documentation | *Reference NDR throughput IPv4 routing verify test cases*
 | ...
@@ -58,11 +58,11 @@
 | | [Tags] | 64B | 1T1C | STHREAD
 | | ${framesize}= | Set Variable | ${64}
 | | ${rate}= | Set Variable | 4.3mpps
-| | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | And Scale IPv4 forwarding initialized in a 3-node circular topology
+| | And Initialize IPv4 forwarding with scaling in 3-node circular topology
 | | ... | ${rts_per_flow}
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
 | | ... | ${framesize}
@@ -76,11 +76,11 @@
 | | [Tags] | 1518B | 1T1C | STHREAD
 | | ${framesize}= | Set Variable | ${1518}
 | | ${rate}= | Set Variable | 812743pps
-| | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | And Scale IPv4 forwarding initialized in a 3-node circular topology
+| | And Initialize IPv4 forwarding with scaling in 3-node circular topology
 | | ... | ${rts_per_flow}
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
 | | ... | ${framesize}
@@ -94,10 +94,10 @@
 | | [Tags] | 9000B | 1T1C | STHREAD
 | | ${framesize}= | Set Variable | ${9000}
 | | ${rate}= | Set Variable | 138580pps
-| | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
+| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
 | | And Apply startup configuration on all VPP DUTs
-| | And Scale IPv4 forwarding initialized in a 3-node circular topology
+| | And Initialize IPv4 forwarding with scaling in 3-node circular topology
 | | ... | ${rts_per_flow}
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
 | | ... | ${framesize}
@@ -111,11 +111,11 @@
 | | [Tags] | 64B | 2T2C | MTHREAD
 | | ${framesize}= | Set Variable | ${64}
 | | ${rate}= | Set Variable | 9.0mpps
-| | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | And Scale IPv4 forwarding initialized in a 3-node circular topology
+| | And Initialize IPv4 forwarding with scaling in 3-node circular topology
 | | ... | ${rts_per_flow}
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
 | | ... | ${framesize}
@@ -129,11 +129,11 @@
 | | [Tags] | 1518B | 2T2C | MTHREAD
 | | ${framesize}= | Set Variable | ${1518}
 | | ${rate}= | Set Variable | 812743pps
-| | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | And Scale IPv4 forwarding initialized in a 3-node circular topology
+| | And Initialize IPv4 forwarding with scaling in 3-node circular topology
 | | ... | ${rts_per_flow}
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
 | | ... | ${framesize}
@@ -147,10 +147,10 @@
 | | [Tags] | 9000B | 2T2C | MTHREAD
 | | ${framesize}= | Set Variable | ${9000}
 | | ${rate}= | Set Variable | 138580pps
-| | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
+| | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
 | | And Apply startup configuration on all VPP DUTs
-| | And Scale IPv4 forwarding initialized in a 3-node circular topology
+| | And Initialize IPv4 forwarding with scaling in 3-node circular topology
 | | ... | ${rts_per_flow}
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
 | | ... | ${framesize}
@@ -164,11 +164,11 @@
 | | [Tags] | 64B | 4T4C | MTHREAD
 | | ${framesize}= | Set Variable | ${64}
 | | ${rate}= | Set Variable | 10.4mpps
-| | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | And Scale IPv4 forwarding initialized in a 3-node circular topology
+| | And Initialize IPv4 forwarding with scaling in 3-node circular topology
 | | ... | ${rts_per_flow}
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
 | | ... | ${framesize}
@@ -182,11 +182,11 @@
 | | [Tags] | 1518B | 4T4C | MTHREAD
 | | ${framesize}= | Set Variable | ${1518}
 | | ${rate}= | Set Variable | 812743pps
-| | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | And Scale IPv4 forwarding initialized in a 3-node circular topology
+| | And Initialize IPv4 forwarding with scaling in 3-node circular topology
 | | ... | ${rts_per_flow}
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
 | | ... | ${framesize}
@@ -200,10 +200,10 @@
 | | [Tags] | 9000B | 4T4C | MTHREAD
 | | ${framesize}= | Set Variable | ${9000}
 | | ${rate}= | Set Variable | 138580pps
-| | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
+| | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
 | | And Apply startup configuration on all VPP DUTs
-| | And Scale IPv4 forwarding initialized in a 3-node circular topology
+| | And Initialize IPv4 forwarding with scaling in 3-node circular topology
 | | ... | ${rts_per_flow}
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
 | | ... | ${framesize}

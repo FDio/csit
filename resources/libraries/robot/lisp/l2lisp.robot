@@ -24,7 +24,7 @@
 | Library  | resources.libraries.python.LispSetup.LispEidTableMap
 
 *** Keywords ***
-| Set up L2 Lisp on DUT
+| Configure L2 LISP on DUT
 | | [Documentation] | Set up LISP L2 topology.
 | | ...
 | | ... | *Arguments:*
@@ -36,7 +36,7 @@
 | | ... | - No value returned
 | | ...
 | | ... | *Example:*
-| | ... | \| Set up LISP GPE topology \| ${dut_node} \| ${adjacency} \
+| | ... | \| Configure LISP GPE topology in 3-node circular topology \| ${dut_node} \| ${adjacency} \
 | | ... | \| ${settings} \|
 | | ...
 | | [Arguments]

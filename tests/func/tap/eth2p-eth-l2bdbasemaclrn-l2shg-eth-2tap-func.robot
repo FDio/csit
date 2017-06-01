@@ -24,9 +24,9 @@
 | Library  | resources.libraries.python.Namespaces
 | Library  | resources.libraries.python.IPUtil
 | Force Tags | HW_ENV | VM_ENV | 3_NODE_DOUBLE_LINK_TOPO
-| Test Setup | Run Keywords | Func Test Setup
+| Test Setup | Run Keywords | Set up functional test
 | ...        | AND          | Clean Up Namespaces | ${nodes['DUT1']}
-| Test Teardown | Run Keywords | Func Test Teardown
+| Test Teardown | Run Keywords | Tear down functional test
 | ...           | AND          | Clean Up Namespaces | ${nodes['DUT1']}
 | Documentation | *Tap Interface Traffic Tests*
 | ... | *[Top] Network Topologies:* TG=DUT1 2-node topology with two links
@@ -73,9 +73,9 @@
 | | ... | and assign two linux-TAP interfaces to it respectively.
 | | ... | [Ver] Packet is sent from TG to both linux-TAP interfaces and reply
 | | ... | is checked. Ping from First linux-TAP to another should pass.
-| | Given Path for 2-node testing is set | ${nodes['TG']} | ${nodes['DUT1']}
+| | Given Configure path in 2-node circular topology | ${nodes['TG']} | ${nodes['DUT1']}
 | | ... | ${nodes['TG']}
-| | And Interfaces in 2-node path are up
+| | And Set interfaces in 2-node circular topology up
 | | ${int1}= | And Add Tap Interface | ${dut_node} | ${tap_int1}
 | | ${int2}= | And Add Tap Interface | ${dut_node} | ${tap_int2}
 | | And Set Interface State | ${dut_node} | ${int1} | up
@@ -98,18 +98,18 @@
 | | ... | ${tg_ip_address_SHG} | ${tg_to_dut_if1_mac} | ${namespace1}
 | | And Set Linux Interface ARP | ${dut_node} | ${tap_int2}
 | | ... | ${tg_ip_address_SHG} | ${tg_to_dut_if1_mac} | ${namespace2}
-| | And Bridge domain on DUT node is created | ${dut_node}
+| | And Create bridge domain | ${dut_node}
 | | ... | ${bd_id1} | learn=${TRUE}
-| | And Interface is added to bridge domain | ${dut_node} | ${dut_to_tg_if1}
+| | And Add interface to bridge domain | ${dut_node} | ${dut_to_tg_if1}
 | | ...                                     | ${bd_id1}
-| | And Interface is added to bridge domain | ${dut_node} | ${int1}
+| | And Add interface to bridge domain | ${dut_node} | ${int1}
 | | ...                                     | ${bd_id1} | ${shg1}
-| | And Interface is added to bridge domain | ${dut_node} | ${int2}
+| | And Add interface to bridge domain | ${dut_node} | ${int2}
 | | ...                                     | ${bd_id1} | ${shg2}
-| | Then Node replies to ICMP echo request | ${tg_node} | ${tg_to_dut_if1}
+| | Then Send ICMP echo request and verify answer | ${tg_node} | ${tg_to_dut_if1}
 | | ... | ${tap1_NM_mac} | ${tg_to_dut_if1_mac}
 | | ... | ${tap1_NM_ip} | ${tg_ip_address_SHG}
-| | And Node replies to ICMP echo request | ${tg_node} | ${tg_to_dut_if1}
+| | And Send ICMP echo request and verify answer | ${tg_node} | ${tg_to_dut_if1}
 | | ... | ${tap2_NM_mac} | ${tg_to_dut_if1_mac}
 | | ... | ${tap2_NM_SHG} | ${tg_ip_address_SHG}
 | | And Send Ping From Node To Dst | ${dut_node} | ${tap1_NM_ip} | namespace=${namespace2}
@@ -125,9 +125,9 @@
 | | ... | and assign two linux-TAP interfaces to it respectively.
 | | ... | [Ver] Packet is sent from TG to both linux-TAP interfaces and reply
 | | ... | is checked. Ping from First linux-TAP to another should fail.
-| | Given Path for 2-node testing is set | ${nodes['TG']} | ${nodes['DUT1']}
+| | Given Configure path in 2-node circular topology | ${nodes['TG']} | ${nodes['DUT1']}
 | | ... | ${nodes['TG']}
-| | And Interfaces in 2-node path are up
+| | And Set interfaces in 2-node circular topology up
 | | ${int1}= | And Add Tap Interface | ${dut_node} | ${tap_int1}
 | | ${int2}= | And Add Tap Interface | ${dut_node} | ${tap_int2}
 | | And Set Interface State | ${dut_node} | ${int1} | up
@@ -150,18 +150,18 @@
 | | ... | ${tg_ip_address_SHG} | ${tg_to_dut_if1_mac} | ${namespace1}
 | | And Set Linux Interface ARP | ${dut_node} | ${tap_int2}
 | | ... | ${tg_ip_address_SHG} | ${tg_to_dut_if1_mac} | ${namespace2}
-| | And Bridge domain on DUT node is created | ${dut_node}
+| | And Create bridge domain | ${dut_node}
 | | ... | ${bd_id1} | learn=${TRUE}
-| | And Interface is added to bridge domain | ${dut_node} | ${dut_to_tg_if1}
+| | And Add interface to bridge domain | ${dut_node} | ${dut_to_tg_if1}
 | | ...                                     | ${bd_id1}
-| | And Interface is added to bridge domain | ${dut_node} | ${int1}
+| | And Add interface to bridge domain | ${dut_node} | ${int1}
 | | ...                                     | ${bd_id1} | ${shg1}
-| | And Interface is added to bridge domain | ${dut_node} | ${int2}
+| | And Add interface to bridge domain | ${dut_node} | ${int2}
 | | ...                                     | ${bd_id1} | ${shg1}
-| | Then Node replies to ICMP echo request | ${tg_node} | ${tg_to_dut_if1}
+| | Then Send ICMP echo request and verify answer | ${tg_node} | ${tg_to_dut_if1}
 | | ... | ${tap1_NM_mac} | ${tg_to_dut_if1_mac}
 | | ... | ${tap1_NM_ip} | ${tg_ip_address_SHG}
-| | And Node replies to ICMP echo request | ${tg_node} | ${tg_to_dut_if1}
+| | And Send ICMP echo request and verify answer | ${tg_node} | ${tg_to_dut_if1}
 | | ... | ${tap2_NM_mac} | ${tg_to_dut_if1_mac}
 | | ... | ${tap2_NM_SHG} | ${tg_ip_address_SHG}
 | | And Run Keyword And Expect Error | Ping Not Successful | Send Ping From Node To Dst
