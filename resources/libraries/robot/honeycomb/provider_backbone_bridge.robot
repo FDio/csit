@@ -16,7 +16,7 @@
 | ...     | WITH NAME | IfAPI
 
 *** Keywords ***
-| Honeycomb Creates PBB Sub Interface
+| Honeycomb creates PBB sub-interface
 | | [Documentation] | Uses Honeycomb API to set PBB sub-interface on an\
 | | ... | interface.
 | | ...
@@ -37,7 +37,7 @@
 | | IfAPI.Create PBB Sub Interface
 | | ... | ${node} | ${super_if} | ${params}
 
-| Honeycomb Removes PBB Sub Interface
+| Honeycomb removes PBB sub-interface
 | | [Documentation] | Uses Honeycomb API to remove PBB sub-interface from its\
 | | ... | super interface.
 | | ...
@@ -94,7 +94,7 @@
 | | ... | ${node} | ${super_if} | ${sub_if_id}
 | | Should be empty | ${data}
 
-| Honeycomb Fails to Create PBB Sub Interface
+| Honeycomb fails to create PBB sub-interface
 | | [Documentation] | Uses Honeycomb API to set PBB sub-interface with wrong\
 | | ... | parameter(s) and expects to fail.
 | | ...

@@ -21,11 +21,11 @@
 | Resource | resources/libraries/robot/double_qemu_setup.robot
 | Library  | resources.libraries.python.Trace
 | Force Tags | 3_NODE_DOUBLE_LINK_TOPO | HW_ENV | VM_ENV | VPP_VM_ENV
-| Test Setup | Func Test Setup
+| Test Setup | Set up functional test
 | Test Teardown | Run Keywords | Show Packet Trace on All DUTs | ${nodes}
 | ...           | AND | Show vpp trace dump on all DUTs
-| ...           | AND | Stop and Clear QEMU | ${dut_node} | ${vm_node}
-| ...           | AND | Check VPP PID in Teardown
+| ...           | AND | Stop and clear QEMU | ${dut_node} | ${vm_node}
+| ...           | AND | Verify VPP PID in Teardown
 | Documentation | *L2 bridge domain with VLAN tag over VM test cases*
 | ...
 | ... | *[Top] Network Topologies:* TG=DUT 2-node circular topology
@@ -74,29 +74,29 @@
 | | ... | that packet is received.
 | | ... | [Ref] IEEE 802.1q
 | | ...
-| | Given Path for 2-node testing is set
+| | Given Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
-| | And Interfaces in 2-node path are up
-| | ${vlan1_name} | ${vlan1_index}= | When Vlan Subinterface Created
+| | And Set interfaces in 2-node circular topology up
+| | ${vlan1_name} | ${vlan1_index}= | When Create vlan sub-interface
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${vlan_id1}
-| | ${vlan2_name} | ${vlan2_index}= | And Vlan Subinterface Created
+| | ${vlan2_name} | ${vlan2_index}= | And Create vlan sub-interface
 | | ... | ${dut_node} | ${dut_to_tg_if2} | ${vlan_id1}
-| | And VPP Vhost interfaces for L2BD forwarding are setup
+| | And Configure vhost interfaces for L2BD forwarding
 | | ... | ${dut_node} | ${sock1} | ${sock2}
-| | And VM for Vhost L2BD forwarding is setup
+| | And Configure VM for vhost L2BD forwarding
 | | ... | ${dut_node} | ${sock1} | ${sock2}
-| | And Interface is added to bridge domain | ${dut_node} | ${vlan1_index}
+| | And Add interface to bridge domain | ${dut_node} | ${vlan1_index}
 | | ...                                     | ${bd_id1}
-| | And Interface is added to bridge domain | ${dut_node} | ${vhost_if1}
+| | And Add interface to bridge domain | ${dut_node} | ${vhost_if1}
 | | ...                                     | ${bd_id1}
-| | And Interface is added to bridge domain | ${dut_node} | ${vlan2_index}
+| | And Add interface to bridge domain | ${dut_node} | ${vlan2_index}
 | | ...                                     | ${bd_id2}
-| | And Interface is added to bridge domain | ${dut_node} | ${vhost_if2}
+| | And Add interface to bridge domain | ${dut_node} | ${vhost_if2}
 | | ...                                     | ${bd_id2}
-| | Then Send and receive ICMP Packet
+| | Then Send ICMP packet and verify received packet
 | | ... | ${tg_node} | ${tg_to_dut_if1} | ${tg_to_dut_if2} | ${ip4_1} | ${ip4_2}
 | | ... | encaps=Dot1q | vlan1=${vlan_id1} | encaps_rx=Dot1q
-| | And Send and receive ICMP Packet
+| | And Send ICMP packet and verify received packet
 | | ... | ${tg_node} | ${tg_to_dut_if2} | ${tg_to_dut_if1} | ${ip4_2} | ${ip4_1}
 | | ... | encaps=Dot1q | vlan1=${vlan_id1} | encaps_rx=Dot1q
 
@@ -114,29 +114,29 @@
 | | ... | that packet is received.
 | | ... | [Ref] IEEE 802.1q
 | | ...
-| | Given Path for 2-node testing is set
+| | Given Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
-| | And Interfaces in 2-node path are up
-| | ${vlan1_name} | ${vlan1_index}= | When Vlan Subinterface Created
+| | And Set interfaces in 2-node circular topology up
+| | ${vlan1_name} | ${vlan1_index}= | When Create vlan sub-interface
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${vlan_id1}
-| | ${vlan2_name} | ${vlan2_index}= | And Vlan Subinterface Created
+| | ${vlan2_name} | ${vlan2_index}= | And Create vlan sub-interface
 | | ... | ${dut_node} | ${dut_to_tg_if2} | ${vlan_id1}
-| | And VPP Vhost interfaces for L2BD forwarding are setup
+| | And Configure vhost interfaces for L2BD forwarding
 | | ... | ${dut_node} | ${sock1} | ${sock2}
-| | And VM for Vhost L2BD forwarding is setup
+| | And Configure VM for vhost L2BD forwarding
 | | ... | ${dut_node} | ${sock1} | ${sock2}
-| | And Interface is added to bridge domain | ${dut_node} | ${vlan1_index}
+| | And Add interface to bridge domain | ${dut_node} | ${vlan1_index}
 | | ...                                     | ${bd_id1}
-| | And Interface is added to bridge domain | ${dut_node} | ${vhost_if1}
+| | And Add interface to bridge domain | ${dut_node} | ${vhost_if1}
 | | ...                                     | ${bd_id1}
-| | And Interface is added to bridge domain | ${dut_node} | ${vlan2_index}
+| | And Add interface to bridge domain | ${dut_node} | ${vlan2_index}
 | | ...                                     | ${bd_id2}
-| | And Interface is added to bridge domain | ${dut_node} | ${vhost_if2}
+| | And Add interface to bridge domain | ${dut_node} | ${vhost_if2}
 | | ...                                     | ${bd_id2}
-| | Then Send and receive ICMP Packet
+| | Then Send ICMP packet and verify received packet
 | | ... | ${tg_node} | ${tg_to_dut_if1} | ${tg_to_dut_if2} | ${ip6_1} | ${ip6_2}
 | | ... | encaps=Dot1q | vlan1=${vlan_id1} | encaps_rx=Dot1q
-| | And Send and receive ICMP Packet
+| | And Send ICMP packet and verify received packet
 | | ... | ${tg_node} | ${tg_to_dut_if2} | ${tg_to_dut_if1} | ${ip6_2} | ${ip6_1}
 | | ... | encaps=Dot1q | vlan1=${vlan_id1} | encaps_rx=Dot1q
 

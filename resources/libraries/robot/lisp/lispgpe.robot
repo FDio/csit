@@ -23,8 +23,8 @@
 | Library  | resources.libraries.python.LispSetup.LispEidTableMap
 
 *** Keywords ***
-| Set up LISP GPE topology
-| | [Documentation] | Set up LISP GPE topology.
+| Configure LISP GPE topology in 3-node circular topology
+| | [Documentation] | Configure LISP GPE topology in 3-node circular topology.
 | | ...
 | | ... | *Arguments:*
 | | ... | - dut1_node - DUT1 node. Type: dictionary
@@ -43,7 +43,7 @@
 | | ... | - No value returned
 | | ...
 | | ... | *Example:*
-| | ... | \| Set up LISP GPE topology \| ${dut1_node} \| ${interface_name} \
+| | ... | \| Configure LISP GPE topology in 3-node circular topology \| ${dut1_node} \| ${interface_name} \
 | | ... | \| None \| ${dut2_node} \| ${interface_name} \| None \
 | | ... | \| ${locator_set} \| ${dut1_eid} \| ${dut2_eid} \
 | | ... | \| ${dut1_static_adjacency} \| ${dut2_static_adjacency} \|

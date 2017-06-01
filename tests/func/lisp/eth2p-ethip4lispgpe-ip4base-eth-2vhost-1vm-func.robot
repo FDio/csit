@@ -33,13 +33,13 @@
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | VM_ENV | LISP
 | ...
-| Test Setup | Func Test Setup
+| Test Setup | Set up functional test
 | Test Teardown | Run Keywords | Show Packet Trace on All DUTs | ${nodes}
 | ... | AND | Show VAT History On All DUTs | ${nodes}
 | ... | AND | Show Vpp Settings | ${nodes['DUT1']}
 | ... | AND | Show Vpp Settings | ${nodes['DUT2']}
-| ... | AND | Stop and Clear QEMU | ${nodes['DUT1']} | ${vm_node}
-| ... | AND | Check VPP PID in Teardown
+| ... | AND | Stop and clear QEMU | ${nodes['DUT1']} | ${vm_node}
+| ... | AND | Verify VPP PID in Teardown
 | ...
 | Documentation | *ip4-lispgpe-ip4 encapsulation test cases*
 | ...
@@ -68,10 +68,10 @@
 | | ... | DUTs and LISP GPE tunnel between them; verify IPv4 headers on\
 | | ... | received packets are correct.
 | | ...
-| | Given Path for 3-node testing is set
+| | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
-| | And Interfaces in 3-node path are up
-| | And IP addresses are set on interfaces
+| | And Set interfaces in 3-node circular topology up
+| | And Configure IP addresses on interfaces
 | | ... | ${dut1_node} | ${dut1_to_dut2} | ${dut1_to_dut2_ip4} | ${prefix4}
 | | ... | ${dut1_node} | ${dut1_to_tg} | ${dut1_to_tg_ip4} | ${prefix4}
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${dut2_to_dut1_ip4} | ${prefix4}
@@ -84,18 +84,18 @@
 | | ... | ${dut2_to_dut1_mac}
 | | And Add Arp On Dut | ${dut2_node} | ${dut2_to_dut1} | ${dut1_to_dut2_ip4}
 | | ... | ${dut1_to_dut2_mac}
-| | When Set up LISP GPE topology
+| | When Configure LISP GPE topology in 3-node circular topology
 | | ... | ${dut1_node} | ${dut1_to_dut2} | ${NONE}
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${NONE}
 | | ... | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
 | | ... | ${dut1_to_dut2_ip4_static_adjacency}
 | | ... | ${dut2_to_dut1_ip4_static_adjacency}
 | | And Setup Qemu DUT1
-| | Then Send Packet And Check Headers
+| | Then Send packet and verify headers
 | | ... | ${tg_node} | ${tg1_ip4} | ${tg2_ip4}
 | | ... | ${tg_to_dut1} | ${tg_to_dut1_mac} | ${dst_vhost_mac}
 | | ... | ${tg_to_dut2} | ${dut2_to_tg_mac} | ${tg_to_dut2_mac}
-| | And Send Packet And Check Headers
+| | And Send packet and verify headers
 | | ... | ${tg_node} | ${tg2_ip4} | ${tg1_ip4}
 | | ... | ${tg_to_dut2} | ${tg_to_dut2_mac} | ${dut2_to_tg_mac}
 | | ... | ${tg_to_dut1} | ${dut1_to_tg_mac} | ${tg_to_dut1_mac}
@@ -115,11 +115,11 @@
 | | Set Interface Address | ${dut1_node} | ${vhost2} | ${vhost_ip} | ${prefix4}
 | | Set Interface State | ${dut1_node} | ${vhost1} | up
 | | Set Interface State | ${dut1_node} | ${vhost2} | up
-| | Bridge domain on DUT node is created | ${dut1_node} | ${bid} | learn=${TRUE}
-| | Interface is added to bridge domain | ${dut1_node}
+| | Create bridge domain | ${dut1_node} | ${bid} | learn=${TRUE}
+| | Add interface to bridge domain | ${dut1_node}
 | | ... | ${dut1_to_tg} | ${bid} | 0
-| | Interface is added to bridge domain | ${dut1_node}
+| | Add interface to bridge domain | ${dut1_node}
 | | ... | ${vhost1} | ${bid} | 0
 | | ${vhost_mac}= | Get Vhost User Mac By SW Index | ${dut1_node} | ${vhost2}
 | | Set test variable | ${dst_vhost_mac} | ${vhost_mac}
-| | VM for Vhost L2BD forwarding is setup | ${dut1_node} | ${sock1} | ${sock2}
+| | Configure VM for vhost L2BD forwarding | ${dut1_node} | ${sock1} | ${sock2}

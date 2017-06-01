@@ -22,8 +22,8 @@
 | Library  | resources.libraries.python.Trace
 | Library  | resources.libraries.python.IPUtil
 | Force Tags | HW_ENV | VM_ENV | 3_NODE_DOUBLE_LINK_TOPO | SKIP_VPP_PATCH
-| Test Setup | Func Test Setup
-| Test Teardown | Func Test Teardown
+| Test Setup | Set up functional test
+| Test Teardown | Tear down functional test
 | Documentation | *Vpn routed forwarding - baseline IPv4*
 | ... | *[Top] Network Topologies:* TG=DUT1=DUT2=TG 3-node topology with two
 | ... | links in between nodes.
@@ -71,15 +71,15 @@
 | | ... | with one route.
 | | ... | [Ver] Packet is send from TG->DUT1-if1 to DUT1->TG-if1 and from
 | | ... | TG->DUT1-if2 to DUT1->TG-if2 and checked if arrived.
-| | Given Path for Double-Link 3-node testing is set
+| | Given Configure path in double-link 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']}
 | | ... | ${nodes['DUT2']} | ${nodes['TG']}
-| | And Interfaces in Double-Link 3-node path are UP
+| | And Set interfaces in double-link 3-node circular topology up
 | | When Setup Env - 2xVRF Each Node
-| | Then Node replies to ICMP echo request | ${tg_node}
+| | Then Send ICMP echo request and verify answer | ${tg_node}
 | | ... | ${tg_to_dut1_if1} | ${dut1_to_tg_if1_mac}
 | | ... | ${tg_to_dut1_if1_mac} | ${dut1_to_tg_ip1} | ${tg_dut1_ip1} | 5
-| | And Node replies to ICMP echo request | ${tg_node}
+| | And Send ICMP echo request and verify answer | ${tg_node}
 | | ... | ${tg_to_dut1_if2} | ${dut1_to_tg_if2_mac}
 | | ... | ${tg_to_dut1_if2_mac} | ${dut1_to_tg_ip2} | ${tg_dut1_ip2} | 5
 
@@ -94,15 +94,15 @@
 | | ... | with one route.
 | | ... | [Ver] Packet is send from TG->DUT1-if1 to DUT1->DUT2-if1 and from
 | | ... | TG->DUT1-if2 to DUT1->DUT2-if2 and checked if arrived.
-| | Given Path for Double-Link 3-node testing is set
+| | Given Configure path in double-link 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']}
 | | ... | ${nodes['DUT2']} | ${nodes['TG']}
-| | And Interfaces in Double-Link 3-node path are UP
+| | And Set interfaces in double-link 3-node circular topology up
 | | When Setup Env - 2xVRF Each Node
-| | Then Node replies to ICMP echo request | ${tg_node} | ${tg_to_dut1_if1}
+| | Then Send ICMP echo request and verify answer | ${tg_node} | ${tg_to_dut1_if1}
 | | ... | ${dut1_to_tg_if1_mac} | ${tg_to_dut1_if1_mac}
 | | ... | ${dut1_to_dut2_ip1} | ${tg_dut1_ip1} | 5
-| | And Node replies to ICMP echo request | ${tg_node} | ${tg_to_dut1_if2}
+| | And Send ICMP echo request and verify answer | ${tg_node} | ${tg_to_dut1_if2}
 | | ... | ${dut1_to_tg_if2_mac} | ${tg_to_dut1_if2_mac}
 | | ... | ${dut1_to_dut2_ip2} | ${tg_dut1_ip2} | 5
 
@@ -117,15 +117,15 @@
 | | ... | with one route.
 | | ... | [Ver] Packet is send from TG->DUT1-if1 to DUT2->DUT1-if1 and from
 | | ... | TG->DUT1-if2 to DUT2->DUT1-if2 and checked if arrived.
-| | Given Path for Double-Link 3-node testing is set
+| | Given Configure path in double-link 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']}
 | | ... | ${nodes['DUT2']} | ${nodes['TG']}
-| | And Interfaces in Double-Link 3-node path are UP
+| | And Set interfaces in double-link 3-node circular topology up
 | | When Setup Env - 2xVRF Each Node
-| | Then Node replies to ICMP echo request | ${tg_node} | ${tg_to_dut1_if1}
+| | Then Send ICMP echo request and verify answer | ${tg_node} | ${tg_to_dut1_if1}
 | | ... | ${dut1_to_tg_if1_mac} | ${tg_to_dut1_if1_mac}
 | | ... | ${dut2_to_dut1_ip1} | ${tg_dut1_ip1} | 5
-| | And Node replies to ICMP echo request | ${tg_node} | ${tg_to_dut1_if2}
+| | And Send ICMP echo request and verify answer | ${tg_node} | ${tg_to_dut1_if2}
 | | ... | ${dut1_to_tg_if2_mac} | ${tg_to_dut1_if2_mac}
 | | ... | ${dut2_to_dut1_ip2} | ${tg_dut1_ip2} | 5
 
@@ -140,15 +140,15 @@
 | | ... | with one route.
 | | ... | [Ver] Packet is send from TG->DUT1-if1 to DUT2->TG-if1 and from
 | | ... | TG->DUT1-if2 to DUT2->TG-if2 and checked if arrived.
-| | Given Path for Double-Link 3-node testing is set
+| | Given Configure path in double-link 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']}
 | | ... | ${nodes['DUT2']} | ${nodes['TG']}
-| | And Interfaces in Double-Link 3-node path are UP
+| | And Set interfaces in double-link 3-node circular topology up
 | | When Setup Env - 2xVRF Each Node
-| | Then Node replies to ICMP echo request | ${tg_node} | ${tg_to_dut1_if1}
+| | Then Send ICMP echo request and verify answer | ${tg_node} | ${tg_to_dut1_if1}
 | | ... | ${dut1_to_tg_if1_mac} | ${tg_to_dut1_if1_mac}
 | | ... | ${dut2_to_tg_ip1} | ${tg_dut1_ip1} | 5
-| | And Node replies to ICMP echo request | ${tg_node} | ${tg_to_dut1_if2}
+| | And Send ICMP echo request and verify answer | ${tg_node} | ${tg_to_dut1_if2}
 | | ... | ${dut1_to_tg_if2_mac} | ${tg_to_dut1_if2_mac}
 | | ... | ${dut2_to_tg_ip2} | ${tg_dut1_ip2} | 5
 
@@ -163,16 +163,16 @@
 | | ... | with one route.
 | | ... | [Ver] Packet is send from TG->DUT1-if1 to TG->DUT2-if1 and from
 | | ... | TG->DUT1-if2 to TG->DUT2-if2 and checked if arrived.
-| | Given Path for Double-Link 3-node testing is set
+| | Given Configure path in double-link 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']}
 | | ... | ${nodes['DUT2']} | ${nodes['TG']}
-| | And Interfaces in Double-Link 3-node path are UP
+| | And Set interfaces in double-link 3-node circular topology up
 | | When Setup Env - 2xVRF Each Node
-| | Then Send Packet And Check Headers | ${tg_node} | ${tg_dut1_ip1}
+| | Then Send packet and verify headers | ${tg_node} | ${tg_dut1_ip1}
 | | ... | ${tg_dut2_ip1} | ${tg_to_dut1_if1} | ${tg_to_dut1_if1_mac}
 | | ... | ${dut1_to_tg_if1_mac} | ${tg_to_dut2_if1} | ${dut2_to_tg_if1_mac}
 | | ... | ${tg_to_dut2_if1_mac}
-| | And Send Packet And Check Headers | ${tg_node}
+| | And Send packet and verify headers | ${tg_node}
 | | ... | ${tg_dut1_ip2} | ${tg_dut2_ip2} | ${tg_to_dut1_if2}
 | | ... | ${tg_to_dut1_if2_mac} | ${dut1_to_tg_if2_mac} | ${tg_to_dut2_if2}
 | | ... | ${dut2_to_tg_if2_mac} | ${tg_to_dut2_if2_mac}
@@ -189,13 +189,13 @@
 | | ... | [Ver] Packet is send from TG->DUT1-if1 to DUT1->TG-if2 where it
 | | ... | should not arrive.
 | | [Tags] | SKIP_PATCH
-| | Given Path for Double-Link 3-node testing is set
+| | Given Configure path in double-link 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']}
 | | ... | ${nodes['DUT2']} | ${nodes['TG']}
-| | And Interfaces in Double-Link 3-node path are UP
+| | And Set interfaces in double-link 3-node circular topology up
 | | When Setup Env - 2xVRF Each Node
 | | Then Run Keyword And Expect Error | ICMP echo Rx timeout
-| | ... | Node replies to ICMP echo request
+| | ... | Send ICMP echo request and verify answer
 | | ... | ${tg_node} | ${tg_to_dut1_if1}
 | | ... | ${dut1_to_tg_if1_mac} | ${tg_to_dut1_if1_mac}
 | | ... | ${dut1_to_tg_ip2} | ${tg_dut1_ip1} | 5
@@ -212,13 +212,13 @@
 | | ... | [Ver] Packet is send from TG->DUT1-if1 to DUT1->DUT2-if2 where it
 | | ... | should not arrive.
 | | [Tags] | SKIP_PATCH
-| | Given Path for Double-Link 3-node testing is set
+| | Given Configure path in double-link 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']}
 | | ... | ${nodes['DUT2']} | ${nodes['TG']}
-| | And Interfaces in Double-Link 3-node path are UP
+| | And Set interfaces in double-link 3-node circular topology up
 | | When Setup Env - 2xVRF Each Node
 | | Then Run Keyword And Expect Error | ICMP echo Rx timeout
-| | ... | Node replies to ICMP echo request
+| | ... | Send ICMP echo request and verify answer
 | | ... | ${tg_node} | ${tg_to_dut1_if1}
 | | ... | ${dut1_to_tg_if1_mac} | ${tg_to_dut1_if1_mac}
 | | ... | ${dut1_to_dut2_ip2} | ${tg_dut1_ip1} | 5
@@ -235,13 +235,13 @@
 | | ... | [Ver] Packet is send from TG->DUT1-if1 to DUT2->DUT1-if2 where it
 | | ... | should not arrive.
 | | [Tags] | SKIP_PATCH
-| | Given Path for Double-Link 3-node testing is set
+| | Given Configure path in double-link 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']}
 | | ... | ${nodes['DUT2']} | ${nodes['TG']}
-| | And Interfaces in Double-Link 3-node path are UP
+| | And Set interfaces in double-link 3-node circular topology up
 | | When Setup Env - 2xVRF Each Node
 | | Then Run Keyword And Expect Error | ICMP echo Rx timeout
-| | ... | Node replies to ICMP echo request
+| | ... | Send ICMP echo request and verify answer
 | | ... | ${tg_node} | ${tg_to_dut1_if1}
 | | ... | ${dut1_to_tg_if1_mac} | ${tg_to_dut1_if1_mac}
 | | ... | ${dut2_to_dut1_ip2} | ${tg_dut1_ip1} | 5
@@ -258,13 +258,13 @@
 | | ... | [Ver] Packet is send from TG->DUT1-if1 to DUT2->TG-if2 where it
 | | ... | should not arrive.
 | | [Tags] | SKIP_PATCH
-| | Given Path for Double-Link 3-node testing is set
+| | Given Configure path in double-link 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']}
 | | ... | ${nodes['DUT2']} | ${nodes['TG']}
-| | And Interfaces in Double-Link 3-node path are UP
+| | And Set interfaces in double-link 3-node circular topology up
 | | When Setup Env - 2xVRF Each Node
 | | Then Run Keyword And Expect Error | ICMP echo Rx timeout
-| | ... | Node replies to ICMP echo request
+| | ... | Send ICMP echo request and verify answer
 | | ... | ${tg_node} | ${tg_to_dut1_if1}
 | | ... | ${dut1_to_tg_if1_mac} | ${tg_to_dut1_if1_mac}
 | | ... | ${dut2_to_tg_ip2} | ${tg_dut1_ip1} | 5
@@ -281,13 +281,13 @@
 | | ... | [Ver] Packet is send from TG->DUT1-if1 to TG->DUT2-if2 where it
 | | ... | should not arrive.
 | | [Tags] | SKIP_PATCH
-| | Given Path for Double-Link 3-node testing is set
+| | Given Configure path in double-link 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']}
 | | ... | ${nodes['DUT2']} | ${nodes['TG']}
-| | And Interfaces in Double-Link 3-node path are UP
+| | And Set interfaces in double-link 3-node circular topology up
 | | When Setup Env - 2xVRF Each Node
 | | Then Run Keyword And Expect Error | ICMP echo Rx timeout
-| | ... | Send Packet And Check Headers | ${tg_node} | ${tg_dut1_ip1}
+| | ... | Send packet and verify headers | ${tg_node} | ${tg_dut1_ip1}
 | | ... | ${tg_dut2_ip2} | ${tg_to_dut1_if1}
 | | ... | ${tg_to_dut1_if1_mac} | ${dut1_to_tg_if1_mac} | ${tg_to_dut2_if2}
 | | ... | ${dut2_to_tg_if2_mac} | ${tg_to_dut2_if2_mac}

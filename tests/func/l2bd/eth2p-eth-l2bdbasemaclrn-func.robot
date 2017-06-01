@@ -18,8 +18,8 @@
 | Resource | resources/libraries/robot/qemu.robot
 | Library  | resources.libraries.python.Trace
 | Force Tags | HW_ENV | VM_ENV | SKIP_VPP_PATCH
-| Test Setup | Func Test Setup
-| Test Teardown | Func Test Teardown
+| Test Setup | Set up functional test
+| Test Teardown | Tear down functional test
 | Documentation | *L2 bridge-domain test cases*
 | ...
 | ... | *[Top] Network Topologies:* TG=DUT1 2-node topology with two links
@@ -46,7 +46,7 @@
 | | ... | [Top] TG=DUT1; TG-DUT1-DUT2-TG. [Enc] None. [Cfg] Discovered \
 | | ... | active interfaces. [Ver] Report active interfaces on DUT. [Ref]
 | | [Tags] | 3_NODE_DOUBLE_LINK_TOPO | 3_NODE_SINGLE_LINK_TOPO
-| | VPP reports interfaces on | ${nodes['DUT1']}
+| | Report VPP interfaces | ${nodes['DUT1']}
 
 | TC02: DUT with L2BD (MAC learning) switch ICMPv4 between two TG links
 | | [Documentation]
@@ -55,15 +55,15 @@
 | | ... | ICMPv4 Echo Req pkts are switched thru DUT1 in both directions
 | | ... | and are correct on receive. [Ref]
 | | [Tags] | 3_NODE_DOUBLE_LINK_TOPO
-| | Given Path for 2-node testing is set
+| | Given Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
-| | And Interfaces in 2-node path are up
-| | When Bridge domain on DUT node is created | ${dut_node} | ${bd_id1}
-| | And Interface is added to bridge domain | ${dut_node} | ${dut_to_tg_if1}
+| | And Set interfaces in 2-node circular topology up
+| | When Create bridge domain | ${dut_node} | ${bd_id1}
+| | And Add interface to bridge domain | ${dut_node} | ${dut_to_tg_if1}
 | | ...                                     | ${bd_id1}
-| | And Interface is added to bridge domain | ${dut_node} | ${dut_to_tg_if2}
+| | And Add interface to bridge domain | ${dut_node} | ${dut_to_tg_if2}
 | | ...                                     | ${bd_id1}
-| | Then Send and receive ICMPv4 bidirectionally | ${tg_node} | ${tg_to_dut_if1}
+| | Then Send ICMPv4 bidirectionally and verify received packets | ${tg_node} | ${tg_to_dut_if1}
 | | ...                                     | ${tg_to_dut_if2}
 
 | TC03: DUT1 and DUT2 with L2BD (MAC learning) switch between two TG links
@@ -73,18 +73,18 @@
 | | ... | verify ICMPv4 Echo Req pkts are switched thru DUT1 and DUT2 in
 | | ... | both directions and are correct on receive. [Ref]
 | | [Tags] | 3_NODE_SINGLE_LINK_TOPO
-| | Given Path for 3-node testing is set
+| | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
-| | And Interfaces in 3-node path are up
-| | When Bridge domain on DUT node is created | ${dut1_node} | ${bd_id1}
-| | And Interface is added to bridge domain | ${dut1_node} | ${dut1_to_tg}
+| | And Set interfaces in 3-node circular topology up
+| | When Create bridge domain | ${dut1_node} | ${bd_id1}
+| | And Add interface to bridge domain | ${dut1_node} | ${dut1_to_tg}
 | | ...                                     | ${bd_id1}
-| | And Interface is added to bridge domain | ${dut1_node} | ${dut1_to_dut2}
+| | And Add interface to bridge domain | ${dut1_node} | ${dut1_to_dut2}
 | | ...                                     | ${bd_id1}
-| | And Bridge domain on DUT node is created | ${dut2_node} | ${bd_id2}
-| | And Interface is added to bridge domain | ${dut2_node} | ${dut2_to_tg}
+| | And Create bridge domain | ${dut2_node} | ${bd_id2}
+| | And Add interface to bridge domain | ${dut2_node} | ${dut2_to_tg}
 | | ...                                     | ${bd_id2}
-| | And Interface is added to bridge domain | ${dut2_node} | ${dut2_to_dut1}
+| | And Add interface to bridge domain | ${dut2_node} | ${dut2_to_dut1}
 | | ...                                     | ${bd_id2}
-| | Then Send and receive ICMPv4 bidirectionally | ${tg_node} | ${tg_to_dut1}
+| | Then Send ICMPv4 bidirectionally and verify received packets | ${tg_node} | ${tg_to_dut1}
 | | ...                                          | ${tg_to_dut2}

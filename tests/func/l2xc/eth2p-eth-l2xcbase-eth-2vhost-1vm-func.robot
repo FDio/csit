@@ -22,8 +22,8 @@
 | Library  | resources.libraries.python.Trace
 | Library | resources.libraries.python.NodePath
 | Force Tags | 3_NODE_DOUBLE_LINK_TOPO | HW_ENV | VM_ENV | VPP_VM_ENV
-| Test Setup | Func Test Setup
-| Test Teardown | Func Test Teardown
+| Test Setup | Set up functional test
+| Test Teardown | Tear down functional test
 | Documentation | *L2 cross-connect test cases*
 | ...
 | ... | *[Top] Network Topologies:* TG=DUT=VM 3-node topology with VM and
@@ -52,20 +52,20 @@
 | | ... | i/fs to be switched by DUT to and from VM; verify all packets
 | | ... | are received. [Ref]
 | | ...
-| | [Teardown] | Run Keywords | Stop and Clear QEMU | ${dut_node} | ${vm_node}
-| | ... | AND | Func Test Teardown
+| | [Teardown] | Run Keywords | Stop and clear QEMU | ${dut_node} | ${vm_node}
+| | ... | AND | Tear down functional test
 | | ...
-| | Given Path for 2-node testing is set
+| | Given Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
-| | And Interfaces in 2-node path are up
-| | When VPP Vhost interfaces for L2BD forwarding are setup | ${dut_node}
+| | And Set interfaces in 2-node circular topology up
+| | When Configure vhost interfaces for L2BD forwarding | ${dut_node}
 | | ...                                                     | ${sock1}
 | | ...                                                     | ${sock2}
-| | And L2 Setup Xconnect on DUT | ${dut_node} | ${dut_to_tg_if1} | ${vhost_if1}
-| | And L2 Setup Xconnect on DUT | ${dut_node} | ${dut_to_tg_if2} | ${vhost_if2}
-| | And VM for Vhost L2BD forwarding is setup | ${dut_node} | ${sock1}
+| | And Configure L2XC | ${dut_node} | ${dut_to_tg_if1} | ${vhost_if1}
+| | And Configure L2XC | ${dut_node} | ${dut_to_tg_if2} | ${vhost_if2}
+| | And Configure VM for vhost L2BD forwarding | ${dut_node} | ${sock1}
 | | ...                                       | ${sock2}
-| | Then Send and receive ICMPv4 bidirectionally | ${tg_node} | ${tg_to_dut_if1}
+| | Then Send ICMPv4 bidirectionally and verify received packets | ${tg_node} | ${tg_to_dut_if1}
 | | ...                                          | ${tg_to_dut_if2}
 
 | TC02: DUT with two L2XCs switches ICMPv6 between TG and local VM links
@@ -77,19 +77,19 @@
 | | ... | be switched by DUT to and from VM; verify all packets are
 | | ... | received. [Ref]
 | | ...
-| | [Teardown] | Run Keywords | Stop and Clear QEMU | ${dut_node} | ${vm_node}
-| | ... | AND | Func Test Teardown
+| | [Teardown] | Run Keywords | Stop and clear QEMU | ${dut_node} | ${vm_node}
+| | ... | AND | Tear down functional test
 | | ...
-| | Given Path for 2-node testing is set
+| | Given Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
-| | And Interfaces in 2-node path are up
-| | When VPP Vhost interfaces for L2BD forwarding are setup | ${dut_node}
+| | And Set interfaces in 2-node circular topology up
+| | When Configure vhost interfaces for L2BD forwarding | ${dut_node}
 | | ...                                                     | ${sock1}
 | | ...                                                     | ${sock2}
-| | And L2 Setup Xconnect on DUT | ${dut_node} | ${dut_to_tg_if1} | ${vhost_if1}
-| | And L2 Setup Xconnect on DUT | ${dut_node} | ${dut_to_tg_if2} | ${vhost_if2}
-| | And VM for Vhost L2BD forwarding is setup | ${dut_node} | ${sock1}
+| | And Configure L2XC | ${dut_node} | ${dut_to_tg_if1} | ${vhost_if1}
+| | And Configure L2XC | ${dut_node} | ${dut_to_tg_if2} | ${vhost_if2}
+| | And Configure VM for vhost L2BD forwarding | ${dut_node} | ${sock1}
 | | ...                                       | ${sock2}
-| | Then Send and receive ICMPv6 bidirectionally | ${tg_node} | ${tg_to_dut_if1}
+| | Then Send ICMPv6 bidirectionally and verify received packets | ${tg_node} | ${tg_to_dut_if1}
 | | ...                                          | ${tg_to_dut_if2}
 

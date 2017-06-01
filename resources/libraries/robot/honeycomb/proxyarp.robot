@@ -149,7 +149,7 @@
 | | Variable Should Not Exist
 | | ... | ${oper_data['ietf-ip:ipv6']['nd-proxy:nd-proxies']['nd-proxy']}
 
-| Verify IPv6ND Proxy
+| Verify IPv6ND proxy
 | | [Documentation] | Send and receive ICMPv6 messages between TG interfaces
 | | ... | through Neighbor Discovery proxy.
 | | ...
@@ -171,7 +171,7 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Verify IPv6ND Proxy \| ${nodes['TG']} \
+| | ... | \| Verify IPv6ND proxy \| ${nodes['TG']} \
 | | ... | \| eth3 \| eth4 \| 3ffe:62::1 \| 3ffe:63::2 \
 | | ... | \| 08:00:27:cc:4f:54 \| 08:00:27:64:18:d2 \
 | | ... | \| 08:00:27:c9:6a:d5 \| 08:00:27:c4:75:3a \|

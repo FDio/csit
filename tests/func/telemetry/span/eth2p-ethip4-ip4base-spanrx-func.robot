@@ -20,8 +20,8 @@
 | Library  | resources.libraries.python.IPv4Setup
 | Library  | resources.libraries.python.telemetry.SPAN
 | Force Tags | HW_ENV | VM_ENV | 3_NODE_DOUBLE_LINK_TOPO
-| Test Setup | Func Test Setup
-| Test Teardown | Func Test Teardown
+| Test Setup | Set up functional test
+| Test Teardown | Tear down functional test
 | Documentation | *SPAN test suite*
 | ... | *[Top] Network Topologies:* TG=DUT1 2-node topology with two
 | ... | links between nodes.
@@ -46,9 +46,9 @@
 | | ... | [Ver] Make TG send an ARP packet to DUT through one interface,\
 | | ... | then receive a copy of sent packet and of DUT's ARP reply\
 | | ... | on the second interface.
-| | Given Path For 2-node Testing Is Set | ${nodes['TG']} | ${nodes['DUT1']}
+| | Given Configure path in 2-node circular topology | ${nodes['TG']} | ${nodes['DUT1']}
 | | ... | ${nodes['TG']}
-| | And Interfaces In 2-node Path Are Up
+| | And Set interfaces in 2-node circular topology up
 | | And Set interface Address | ${dut_node} | ${dut_to_tg_if1}
 | | ... | ${dut_to_tg_if1_ip4} | ${prefix}
 | | And Set SPAN Mirroring | ${dut_node} | ${dut_to_tg_if1} | ${dut_to_tg_if2}
@@ -65,9 +65,9 @@
 | | ... | [Ver] Make TG send an ICMP packet to DUT through one interface,\
 | | ... | then receive a copy of sent packet and of DUT's ICMP reply\
 | | ... | on the other interface.
-| | Given Path For 2-node Testing Is Set | ${nodes['TG']} | ${nodes['DUT1']}
+| | Given Configure path in 2-node circular topology | ${nodes['TG']} | ${nodes['DUT1']}
 | | ... | ${nodes['TG']}
-| | And Interfaces In 2-node Path Are Up
+| | And Set interfaces in 2-node circular topology up
 | | And Set interface Address | ${dut_node} | ${dut_to_tg_if1}
 | | ... | ${dut_to_tg_if1_ip4} | ${prefix}
 | | And Add ARP on DUT | ${dut_node} | ${dut_to_tg_if1} | ${tg_to_dut_if1_ip4}

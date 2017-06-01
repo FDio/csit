@@ -22,12 +22,12 @@
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRCHK
 | ... | NIC_Intel-X520-DA2 | IP4FWD | BASE | DOT1Q
 | ...
-| Suite Setup | 3-node Performance Suite Setup with DUT's NIC model
+| Suite Setup | Set up 3-node performance topology with DUT's NIC model
 | ... | L3 | Intel-X520-DA2
-| Suite Teardown | 3-node Performance Suite Teardown
+| Suite Teardown | Tear down 3-node performance topology
 | ...
-| Test Setup | Performance test setup
-| Test Teardown | Performance ndrchk test teardown
+| Test Setup | Set up performance test
+| Test Teardown | Tear down performance ndrchk test
 | ...
 | Documentation | *Reference NDR throughput IPv4 policer verify test cases*
 | ...
@@ -67,12 +67,12 @@
 | | ${rate}= | Set Variable | 3.6mpps
 | | Set Test Variable | ${cb} | ${framesize}
 | | Set Test Variable | ${eb} | ${framesize}
-| | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | And IPv4 forwarding initialized in a 3-node circular topology
-| | And IPv4 policer 2r3c-'ca' initialized in a 3-node circular topology
+| | And Initialize IPv4 forwarding in 3-node circular topology
+| | And Initialize IPv4 policer 2r3c-'ca' in 3-node circular topology
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
 | | ... | ${framesize} | ${traffic_profile}
 
@@ -86,12 +86,12 @@
 | | ${rate}= | Set Variable | 812743pps
 | | Set Test Variable | ${cb} | ${framesize}
 | | Set Test Variable | ${eb} | ${framesize}
-| | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | When IPv4 forwarding initialized in a 3-node circular topology
-| | And IPv4 policer 2r3c-'ca' initialized in a 3-node circular topology
+| | When Initialize IPv4 forwarding in 3-node circular topology
+| | And Initialize IPv4 policer 2r3c-'ca' in 3-node circular topology
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
 | | ... | ${framesize} | ${traffic_profile}
 
@@ -105,11 +105,11 @@
 | | ${rate}= | Set Variable | 138580pps
 | | Set Test Variable | ${cb} | ${framesize}
 | | Set Test Variable | ${eb} | ${framesize}
-| | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
+| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
 | | And Apply startup configuration on all VPP DUTs
-| | And IPv4 forwarding initialized in a 3-node circular topology
-| | And IPv4 policer 2r3c-'ca' initialized in a 3-node circular topology
+| | And Initialize IPv4 forwarding in 3-node circular topology
+| | And Initialize IPv4 policer 2r3c-'ca' in 3-node circular topology
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
 | | ... | ${framesize} | ${traffic_profile}
 
@@ -123,12 +123,12 @@
 | | ${rate}= | Set Variable | 6.2mpps
 | | Set Test Variable | ${cb} | ${framesize}
 | | Set Test Variable | ${eb} | ${framesize}
-| | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | And IPv4 forwarding initialized in a 3-node circular topology
-| | And IPv4 policer 2r3c-'ca' initialized in a 3-node circular topology
+| | And Initialize IPv4 forwarding in 3-node circular topology
+| | And Initialize IPv4 policer 2r3c-'ca' in 3-node circular topology
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
 | | ... | ${framesize} | ${traffic_profile}
 
@@ -142,12 +142,12 @@
 | | ${rate}= | Set Variable | 812743pps
 | | Set Test Variable | ${cb} | ${framesize}
 | | Set Test Variable | ${eb} | ${framesize}
-| | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | And IPv4 forwarding initialized in a 3-node circular topology
-| | And IPv4 policer 2r3c-'ca' initialized in a 3-node circular topology
+| | And Initialize IPv4 forwarding in 3-node circular topology
+| | And Initialize IPv4 policer 2r3c-'ca' in 3-node circular topology
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
 | | ... | ${framesize} | ${traffic_profile}
 
@@ -161,11 +161,11 @@
 | | ${rate}= | Set Variable | 138580pps
 | | Set Test Variable | ${cb} | ${framesize}
 | | Set Test Variable | ${eb} | ${framesize}
-| | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
+| | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
 | | And Apply startup configuration on all VPP DUTs
-| | And IPv4 forwarding initialized in a 3-node circular topology
-| | And IPv4 policer 2r3c-'ca' initialized in a 3-node circular topology
+| | And Initialize IPv4 forwarding in 3-node circular topology
+| | And Initialize IPv4 policer 2r3c-'ca' in 3-node circular topology
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
 | | ... | ${framesize} | ${traffic_profile}
 
@@ -179,12 +179,12 @@
 | | ${rate}= | Set Variable | 10.4mpps
 | | Set Test Variable | ${cb} | ${framesize}
 | | Set Test Variable | ${eb} | ${framesize}
-| | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | And IPv4 forwarding initialized in a 3-node circular topology
-| | And IPv4 policer 2r3c-'ca' initialized in a 3-node circular topology
+| | And Initialize IPv4 forwarding in 3-node circular topology
+| | And Initialize IPv4 policer 2r3c-'ca' in 3-node circular topology
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
 | | ... | ${framesize} | ${traffic_profile}
 
@@ -198,12 +198,12 @@
 | | ${rate}= | Set Variable | 812743pps
 | | Set Test Variable | ${cb} | ${framesize}
 | | Set Test Variable | ${eb} | ${framesize}
-| | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | And IPv4 forwarding initialized in a 3-node circular topology
-| | And IPv4 policer 2r3c-'ca' initialized in a 3-node circular topology
+| | And Initialize IPv4 forwarding in 3-node circular topology
+| | And Initialize IPv4 policer 2r3c-'ca' in 3-node circular topology
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
 | | ... | ${framesize} | ${traffic_profile}
 
@@ -217,10 +217,10 @@
 | | ${rate}= | Set Variable | 138580pps
 | | Set Test Variable | ${cb} | ${framesize}
 | | Set Test Variable | ${eb} | ${framesize}
-| | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
+| | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
 | | And Apply startup configuration on all VPP DUTs
-| | And IPv4 forwarding initialized in a 3-node circular topology
-| | And IPv4 policer 2r3c-'ca' initialized in a 3-node circular topology
+| | And Initialize IPv4 forwarding in 3-node circular topology
+| | And Initialize IPv4 policer 2r3c-'ca' in 3-node circular topology
 | | Then Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
 | | ... | ${framesize} | ${traffic_profile}
