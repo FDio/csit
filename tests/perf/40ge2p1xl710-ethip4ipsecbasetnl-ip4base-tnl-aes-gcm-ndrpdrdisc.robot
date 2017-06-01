@@ -19,13 +19,13 @@
 | ... | IP4FWD | IPSEC | IPSECHW | IPSECTUN | NIC_Intel-XL710 | BASE
 | ...
 | Suite Setup | Run Keywords
-| ... | 3-node Performance Suite Setup with DUT's NIC model | L3 | Intel-XL710
-| ... | AND | Verify Crypto Device On All DUTs | force_init=${True}
-| ... | AND | Verify Kernel Module On All DUTs | igb_uio | force_load=${True}
-| Suite Teardown | 3-node Performance Suite Teardown
+| ... | Set up 3-node performance topology with DUT's NIC model | L3 | Intel-XL710
+| ... | AND | Configure crypto device on all DUTs | force_init=${True}
+| ... | AND | Configure kernel module on all DUTs | igb_uio | force_load=${True}
+| Suite Teardown | Tear down 3-node performance topology
 | ...
-| Test Setup | Performance test setup
-| Test Teardown | Performance test teardown | ${min_rate}pps | ${framesize}
+| Test Setup | Set up performance test
+| Test Teardown | Tear down performance discovery test | ${min_rate}pps | ${framesize}
 | ... | ${traffic_profile}
 | ...
 | Documentation | *IPv4 IPsec tunnel mode performance test suite.*
@@ -90,13 +90,13 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${encr_alg}= | Crypto Alg AES GCM 128
 | | ${auth_alg}= | Integ Alg AES GCM 128
-| | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And IPsec Generate Keys | ${encr_alg} | ${auth_alg}
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
-| | And Add Cryptodev to all DUTs | ${1}
+| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Generate keys for IPSec | ${encr_alg} | ${auth_alg}
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
+| | And Add cryptodev to all DUTs | ${1}
 | | And Apply startup configuration on all VPP DUTs
-| | And IPsec initialized in a 3-node circular topology
+| | And Initialize IPSec in 3-node circular topology
 | | Vpp Route Add | ${dut1} | ${raddr_ip4} | 8 | ${dut2_if1_ip4} | ${dut1_if2}
 | | Vpp Route Add | ${dut2} | ${laddr_ip4} | 8 | ${dut1_if2_ip4} | ${dut2_if1}
 | | And VPP IPsec Add Multiple Tunnels
@@ -125,13 +125,13 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${encr_alg}= | Crypto Alg AES GCM 128
 | | ${auth_alg}= | Integ Alg AES GCM 128
-| | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And IPsec Generate Keys | ${encr_alg} | ${auth_alg}
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
-| | And Add Cryptodev to all DUTs | ${1}
+| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Generate keys for IPSec | ${encr_alg} | ${auth_alg}
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
+| | And Add cryptodev to all DUTs | ${1}
 | | And Apply startup configuration on all VPP DUTs
-| | And IPsec initialized in a 3-node circular topology
+| | And Initialize IPSec in 3-node circular topology
 | | Vpp Route Add | ${dut1} | ${raddr_ip4} | 8 | ${dut2_if1_ip4} | ${dut1_if2}
 | | Vpp Route Add | ${dut2} | ${laddr_ip4} | 8 | ${dut1_if2_ip4} | ${dut2_if1}
 | | And VPP IPsec Add Multiple Tunnels
@@ -162,12 +162,12 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${encr_alg}= | Crypto Alg AES GCM 128
 | | ${auth_alg}= | Integ Alg AES GCM 128
-| | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And IPsec Generate Keys | ${encr_alg} | ${auth_alg}
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add Cryptodev to all DUTs | ${1}
+| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Generate keys for IPSec | ${encr_alg} | ${auth_alg}
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add cryptodev to all DUTs | ${1}
 | | And Apply startup configuration on all VPP DUTs
-| | And IPsec initialized in a 3-node circular topology
+| | And Initialize IPSec in 3-node circular topology
 | | Vpp Route Add | ${dut1} | ${raddr_ip4} | 8 | ${dut2_if1_ip4} | ${dut1_if2}
 | | Vpp Route Add | ${dut2} | ${laddr_ip4} | 8 | ${dut1_if2_ip4} | ${dut2_if1}
 | | And VPP IPsec Add Multiple Tunnels
@@ -197,12 +197,12 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${encr_alg}= | Crypto Alg AES GCM 128
 | | ${auth_alg}= | Integ Alg AES GCM 128
-| | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And IPsec Generate Keys | ${encr_alg} | ${auth_alg}
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add Cryptodev to all DUTs | ${1}
+| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Generate keys for IPSec | ${encr_alg} | ${auth_alg}
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add cryptodev to all DUTs | ${1}
 | | And Apply startup configuration on all VPP DUTs
-| | And IPsec initialized in a 3-node circular topology
+| | And Initialize IPSec in 3-node circular topology
 | | Vpp Route Add | ${dut1} | ${raddr_ip4} | 8 | ${dut2_if1_ip4} | ${dut1_if2}
 | | Vpp Route Add | ${dut2} | ${laddr_ip4} | 8 | ${dut1_if2_ip4} | ${dut2_if1}
 | | And VPP IPsec Add Multiple Tunnels
@@ -235,12 +235,12 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${encr_alg}= | Crypto Alg AES GCM 128
 | | ${auth_alg}= | Integ Alg AES GCM 128
-| | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And IPsec Generate Keys | ${encr_alg} | ${auth_alg}
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add Cryptodev to all DUTs | ${1}
+| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Generate keys for IPSec | ${encr_alg} | ${auth_alg}
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add cryptodev to all DUTs | ${1}
 | | And Apply startup configuration on all VPP DUTs
-| | And IPsec initialized in a 3-node circular topology
+| | And Initialize IPSec in 3-node circular topology
 | | Vpp Route Add | ${dut1} | ${raddr_ip4} | 8 | ${dut2_if1_ip4} | ${dut1_if2}
 | | Vpp Route Add | ${dut2} | ${laddr_ip4} | 8 | ${dut1_if2_ip4} | ${dut2_if1}
 | | And VPP IPsec Add Multiple Tunnels
@@ -272,12 +272,12 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${encr_alg}= | Crypto Alg AES GCM 128
 | | ${auth_alg}= | Integ Alg AES GCM 128
-| | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And IPsec Generate Keys | ${encr_alg} | ${auth_alg}
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add Cryptodev to all DUTs | ${1}
+| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Generate keys for IPSec | ${encr_alg} | ${auth_alg}
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add cryptodev to all DUTs | ${1}
 | | And Apply startup configuration on all VPP DUTs
-| | And IPsec initialized in a 3-node circular topology
+| | And Initialize IPSec in 3-node circular topology
 | | Vpp Route Add | ${dut1} | ${raddr_ip4} | 8 | ${dut2_if1_ip4} | ${dut1_if2}
 | | Vpp Route Add | ${dut2} | ${laddr_ip4} | 8 | ${dut1_if2_ip4} | ${dut2_if1}
 | | And VPP IPsec Add Multiple Tunnels
@@ -307,13 +307,13 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${encr_alg}= | Crypto Alg AES GCM 128
 | | ${auth_alg}= | Integ Alg AES GCM 128
-| | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
-| | And IPsec Generate Keys | ${encr_alg} | ${auth_alg}
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
-| | And Add Cryptodev to all DUTs | ${2}
+| | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Generate keys for IPSec | ${encr_alg} | ${auth_alg}
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
+| | And Add cryptodev to all DUTs | ${2}
 | | And Apply startup configuration on all VPP DUTs
-| | And IPsec initialized in a 3-node circular topology
+| | And Initialize IPSec in 3-node circular topology
 | | Vpp Route Add | ${dut1} | ${raddr_ip4} | 8 | ${dut2_if1_ip4} | ${dut1_if2}
 | | Vpp Route Add | ${dut2} | ${laddr_ip4} | 8 | ${dut1_if2_ip4} | ${dut2_if1}
 | | And VPP IPsec Add Multiple Tunnels
@@ -342,13 +342,13 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | ${encr_alg}= | Crypto Alg AES GCM 128
 | | ${auth_alg}= | Integ Alg AES GCM 128
-| | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
-| | And IPsec Generate Keys | ${encr_alg} | ${auth_alg}
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
-| | And Add Cryptodev to all DUTs | ${2}
+| | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Generate keys for IPSec | ${encr_alg} | ${auth_alg}
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
+| | And Add cryptodev to all DUTs | ${2}
 | | And Apply startup configuration on all VPP DUTs
-| | And IPsec initialized in a 3-node circular topology
+| | And Initialize IPSec in 3-node circular topology
 | | Vpp Route Add | ${dut1} | ${raddr_ip4} | 8 | ${dut2_if1_ip4} | ${dut1_if2}
 | | Vpp Route Add | ${dut2} | ${laddr_ip4} | 8 | ${dut1_if2_ip4} | ${dut2_if1}
 | | And VPP IPsec Add Multiple Tunnels

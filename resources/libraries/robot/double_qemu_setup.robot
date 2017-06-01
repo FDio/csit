@@ -14,7 +14,7 @@
 | Library | resources.libraries.python.IPUtil
 
 *** Keywords ***
-| Setup QEMU Vhost and Run
+| Configure QEMU vhost and run it
 | | [Documentation] | Setup Qemu with 4 vhost-user interfaces and 4 namespaces.
 | | ...             | Each call will be different object instance.
 | | ...
@@ -72,7 +72,7 @@
 | | ... | ${vm} | nmspace4 | ${vhost4} | ${ip4} | ${prefix_length}
 | | Set Test Variable | ${${qemu_name}} | ${vm}
 
-| Qemu Teardown
+| Tear down QEMU
 | | [Documentation] | Stop specific qemu instance
 | | ...             | running on ${dut_node}, ${vm} is VM node info dictionary
 | | ...             | returned by qemu_start or None.
@@ -83,7 +83,7 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Qemu Teardown \| ${node['DUT1']} \| ${vm} \| qemu_node_1 \|
+| | ... | \| Tear down QEMU \| ${node['DUT1']} \| ${vm} \| qemu_node_1 \|
 | | ...
 | | [Arguments] | ${dut_node} | ${vm} | ${qemu_name}
 | | ${set_node}= | Replace Variables | ${qemu_name}.Qemu Set Node

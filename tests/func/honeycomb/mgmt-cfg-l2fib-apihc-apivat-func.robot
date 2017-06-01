@@ -46,7 +46,7 @@
 | | ...
 | | Given Interface state from Honeycomb should be
 | | ... | ${node} | ${interface} | down
-| | When Honeycomb sets interface state
+| | When Honeycomb configures interface state
 | | ... | ${node} | ${interface} | up
 | | Then Interface state from Honeycomb should be
 | | ... | ${node} | ${interface} | up
@@ -230,5 +230,5 @@
 | Set test interface down
 | | [Documentation] | Set the interface used in tests down.
 | | ...
-| | Honeycomb sets interface state
+| | Honeycomb configures interface state
 | | ... | ${node} | ${interface} | down

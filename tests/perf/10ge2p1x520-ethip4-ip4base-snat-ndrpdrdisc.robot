@@ -19,11 +19,11 @@
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDRDISC
 | ... | NIC_Intel-X520-DA2 | ETH | IP4FWD | FEATURE | SNAT | BASE
 | ...
-| Suite Setup | 3-node Performance Suite Setup with DUT's NIC model
+| Suite Setup | Set up 3-node performance topology with DUT's NIC model
 | ... | L3 | Intel-X520-DA2
-| Suite Teardown | 3-node Performance Suite Teardown
+| Suite Teardown | Tear down 3-node performance topology
 | ...
-| Test Setup | Performance test setup
+| Test Setup | Set up performance test
 | ...
 | Documentation | *SNAT performance test cases*
 | ...
@@ -72,7 +72,7 @@
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 100kpps.
 | | ...
-| | [Teardown] | Run keywords | Performance test teardown | ${min_rate}pps
+| | [Teardown] | Run keywords | Tear down performance discovery test | ${min_rate}pps
 | | ... | ${framesize} | ${traffic_profile}
 | | ... | AND | Show SNAT verbose | ${dut1}
 | | ... | AND | Show SNAT verbose | ${dut2}
@@ -85,12 +85,12 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Add SNAT to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | When SNAT is initialized in a 3-node circular topology
+| | When Initialize SNAT in 3-node circular topology
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
@@ -103,7 +103,7 @@
 | | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 100kpps.
 | | ...
-| | [Teardown] | Performance test teardown | ${min_rate}pps | ${framesize}
+| | [Teardown] | Tear down performance discovery test | ${min_rate}pps | ${framesize}
 | | ... | ${traffic_profile}
 | | ...
 | | [Tags] | 64B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
@@ -114,12 +114,12 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Add SNAT to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | When SNAT is initialized in a 3-node circular topology
+| | When Initialize SNAT in 3-node circular topology
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold} | ${perf_pdr_loss_acceptance}
@@ -133,7 +133,7 @@
 | | ... | [Ver] Find NDR for 1518 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 100kpps.
 | | ...
-| | [Teardown] | Run keywords | Performance test teardown | ${min_rate}pps
+| | [Teardown] | Run keywords | Tear down performance discovery test | ${min_rate}pps
 | | ... | ${framesize} | ${traffic_profile}
 | | ... | AND | Show SNAT verbose | ${dut1}
 | | ... | AND | Show SNAT verbose | ${dut2}
@@ -146,12 +146,12 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Add SNAT to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | When SNAT is initialized in a 3-node circular topology
+| | When Initialize SNAT in 3-node circular topology
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
@@ -164,7 +164,7 @@
 | | ... | [Ver] Find PDR for 1518 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 100kpps.
 | | ...
-| | [Teardown] | Performance test teardown | ${min_rate}pps | ${framesize}
+| | [Teardown] | Tear down performance discovery test | ${min_rate}pps | ${framesize}
 | | ... | ${traffic_profile}
 | | ...
 | | [Tags] | 1518B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
@@ -175,12 +175,12 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Add SNAT to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | When SNAT is initialized in a 3-node circular topology
+| | When Initialize SNAT in 3-node circular topology
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold} | ${perf_pdr_loss_acceptance}
@@ -194,7 +194,7 @@
 | | ... | [Ver] Find NDR for IMIX frames using binary search start at 10GE\
 | | ... | linerate, step 100kpps.
 | | ...
-| | [Teardown] | Run keywords | Performance test teardown | ${min_rate}pps
+| | [Teardown] | Run keywords | Tear down performance discovery test | ${min_rate}pps
 | | ... | ${framesize} | ${traffic_profile}
 | | ... | AND | Show SNAT verbose | ${dut1}
 | | ... | AND | Show SNAT verbose | ${dut2}
@@ -207,12 +207,12 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Add SNAT to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | When SNAT is initialized in a 3-node circular topology
+| | When Initialize SNAT in 3-node circular topology
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
@@ -225,7 +225,7 @@
 | | ... | [Ver] Find PDR for IMIX frames using binary search start at 10GE\
 | | ... | linerate, step 100kpps.
 | | ...
-| | [Teardown] | Performance test teardown | ${min_rate}pps | ${framesize}
+| | [Teardown] | Tear down performance discovery test | ${min_rate}pps | ${framesize}
 | | ... | ${traffic_profile}
 | | ...
 | | [Tags] | IMIX | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
@@ -236,12 +236,12 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Add SNAT to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | When SNAT is initialized in a 3-node circular topology
+| | When Initialize SNAT in 3-node circular topology
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold} | ${perf_pdr_loss_acceptance}

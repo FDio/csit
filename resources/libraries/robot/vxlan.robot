@@ -25,7 +25,7 @@
 | Library  | resources.libraries.python.NodePath
 
 *** Keywords ***
-| IP addresses are set on interfaces
+| Configure IP addresses and neighbors on interfaces
 | | [Documentation] | *Set IPv4 addresses on interfaces on DUTs.*
 | | ... | If interface index is None then is determines with Get Interface Sw Index
 | | ... | in this case it is required the interface to be present in topology dict.
@@ -64,15 +64,15 @@
 | | [Arguments] | ${DUT} | ${VNI} | ${SRC_IP} | ${DST_IP}
 | | Create VXLAN interface | ${DUT} | ${VNI} | ${SRC_IP} | ${DST_IP}
 
-| Interfaces are added to BD
+| Add interfaces to L2BD
 | | [Arguments] | ${DUT} | ${BID} | ${INTERFACE_1} | ${INTERFACE_2}
 | | Vpp Add L2 Bridge Domain | ${DUT} | ${BID} | ${INTERFACE_1} | ${INTERFACE_2}
 
-| Interfaces are added to xconnect
+| Add interfaces to L2XC
 | | [Arguments] | ${DUT} | ${INTERFACE_1} | ${INTERFACE_2}
-| | L2 setup xconnect on DUT | ${DUT} | ${INTERFACE_1} | ${INTERFACE_2}
+| | Configure L2XC | ${DUT} | ${INTERFACE_1} | ${INTERFACE_2}
 
-| Vlan interfaces for VXLAN are created
+| Create vlan interfaces for VXLAN
 | | [Documentation] | *Create VLAN subinterface on interfaces on DUTs with given VLAN ID.*
 | | ...
 | | ... | _Set testcase variables with name and index of created interfaces:_
@@ -95,7 +95,7 @@
 | | Set Test Variable | ${dut2s_vlan_name}
 | | Set Test Variable | ${dut2s_vlan_index}
 
-| Send VXLAN receive VXLAN Packet
+| Send VXLAN encapsulated packet and verify received packet
 | | [Documentation] | Send VXLAN encapsulated Ethernet frame and check \
 | | ... | received one.
 | | ...
@@ -119,7 +119,7 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Send VXLAN receive VXLAN Packet \| ${tg_node} \| port4 \| port4  \
+| | ... | \| Send VXLAN encapsulated packet and verify received packet \| ${tg_node} \| port4 \| port4  \
 | | ... | \| fa:16:3e:6d:f9:c5 \| fa:16:3e:e6:6d:9a \| 192.168.0.1  \
 | | ... | \| 192.168.0.2 \| ${101} \| 192.168.0.2 \| 192.168.0.1 \| ${102} \|
 | | ...

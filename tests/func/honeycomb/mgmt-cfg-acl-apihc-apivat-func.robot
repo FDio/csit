@@ -119,21 +119,21 @@
 | | ... | ${node} | ${table_index} | ${session_index} | ${vat_acl_session}
 | | When Honeycomb enables ACL on interface
 | | ... | ${node} | ${interface} | ${hc_acl_table['name']}
-| | Then Interface ACL settings from Honeycomb should be
+| | Then Interface ACL configuration from Honeycomb should be
 | | ... | ${node} | ${interface} | ${hc_acl_table['name']}
-| | And Interface ACL settings from VAT should be
+| | And Interface ACL configuration from VAT should be
 | | ... | ${node} | ${interface} | ${table_index}
 
 | TC08: Honeycomb disables ACL on interface
 | | [Documentation] | Check if Honeycomb API can disable ACL on an interface.
-| | Given Interface ACL settings from Honeycomb should be
+| | Given Interface ACL configuration from Honeycomb should be
 | | ... | ${node} | ${interface} | ${hc_acl_table['name']}
-| | And Interface ACL settings from VAT should be
+| | And Interface ACL configuration from VAT should be
 | | ... | ${node} | ${interface} | ${table_index}
 | | When Honeycomb disables ACL on interface | ${node} | ${interface}
-| | Then Interface ACL settings from Honeycomb should be empty
+| | Then Interface ACL configuration from Honeycomb should be empty
 | | ... | ${node} | ${interface}
-| | And Interface ACL settings from VAT should be empty
+| | And Interface ACL configuration from VAT should be empty
 | | ... | ${node} | ${interface}
 
 | TC09: Honeycomb can remove one out of multiple ACL tables

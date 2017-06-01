@@ -66,17 +66,17 @@
 | | And Honeycomb Assigns plugin-acl Chain To Interface
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${acl_name_macip}
 | | ... | ingress | macip=${True}
-| | When Send TCP Or UDP Packet | ${tg_node} | ${src_ip} | ${dst_ip}
+| | When Send TCP or UDP packet and verify received packet | ${tg_node} | ${src_ip} | ${dst_ip}
 | | ... | ${tg_to_dut_if1} | ${tg_to_dut_if1_mac}
 | | ... | ${tg_to_dut_if2} | ${dut_to_tg_if1_mac}
 | | ... | TCP | ${src_port} | ${dst_port}
 | | And Run Keyword And Expect Error | TCP/UDP Rx timeout
-| | ... | Send TCP Or UDP Packet | ${tg_node} | ${src_ip} | ${dst_ip}
+| | ... | Send TCP or UDP packet and verify received packet | ${tg_node} | ${src_ip} | ${dst_ip}
 | | ... | ${tg_to_dut_if1} | ${classify_src}
 | | ... | ${tg_to_dut_if2} | ${dut_to_tg_if1_mac}
 | | ... | TCP | ${src_port} | ${dst_port}
 | | And Run Keyword And Expect Error | TCP/UDP Rx timeout
-| | ... | Send TCP Or UDP Packet | ${tg_node} | ${src_ip} | ${dst_ip}
+| | ... | Send TCP or UDP packet and verify received packet | ${tg_node} | ${src_ip} | ${dst_ip}
 | | ... | ${tg_to_dut_if1} | ${classify_src2}
 | | ... | ${tg_to_dut_if2} | ${dut_to_tg_if1_mac}
 | | ... | TCP | ${src_port} | ${dst_port}
@@ -98,18 +98,18 @@
 | | ... | ${dut_node} | ${acl_name_l3_ip4} | ${acl_settings}
 | | And Honeycomb Assigns plugin-acl Chain To Interface
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${acl_name_l3_ip4} | ingress
-| | Then Send TCP Or UDP Packet | ${tg_node}
+| | Then Send TCP or UDP packet and verify received packet | ${tg_node}
 | | ... | ${src_ip} | ${dst_ip}
 | | ... | ${tg_to_dut_if1} | ${tg_to_dut_if1_mac}
 | | ... | ${tg_to_dut_if2} | ${dut_to_tg_if1_mac}
 | | ... | UDP | ${src_port} | ${dst_port}
-| | And Send TCP Or UDP Packet | ${tg_node}
+| | And Send TCP or UDP packet and verify received packet | ${tg_node}
 | | ... | ${classify_src} | ${classify_dst}
 | | ... | ${tg_to_dut_if1} | ${tg_to_dut_if1_mac}
 | | ... | ${tg_to_dut_if2} | ${dut_to_tg_if1_mac}
 | | ... | TCP | ${src_port} | ${dst_port}
 | | And Run Keyword And Expect Error | TCP/UDP Rx timeout
-| | ... | Send TCP Or UDP Packet | ${tg_node}
+| | ... | Send TCP or UDP packet and verify received packet | ${tg_node}
 | | ... | ${classify_src} | ${classify_dst}
 | | ... | ${tg_to_dut_if1} | ${tg_to_dut_if1_mac}
 | | ... | ${tg_to_dut_if2} | ${dut_to_tg_if1_mac}
@@ -132,18 +132,18 @@
 | | ... | ${dut_node} | ${acl_name_l3_ip6} | ${acl_settings}
 | | And Honeycomb Assigns plugin-acl Chain To Interface
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${acl_name_l3_ip6} | ingress
-| | Then Send TCP Or UDP Packet | ${tg_node}
+| | Then Send TCP or UDP packet and verify received packet | ${tg_node}
 | | ... | ${src_ip} | ${dst_ip}
 | | ... | ${tg_to_dut_if1} | ${tg_to_dut_if1_mac}
 | | ... | ${tg_to_dut_if2} | ${dut_to_tg_if1_mac}
 | | ... | UDP | ${src_port} | ${dst_port}
-| | And Send TCP Or UDP Packet | ${tg_node}
+| | And Send TCP or UDP packet and verify received packet | ${tg_node}
 | | ... | ${classify_src} | ${classify_dst}
 | | ... | ${tg_to_dut_if1} | ${tg_to_dut_if1_mac}
 | | ... | ${tg_to_dut_if2} | ${dut_to_tg_if1_mac}
 | | ... | TCP | ${src_port} | ${dst_port}
 | | And Run Keyword And Expect Error | TCP/UDP Rx timeout
-| | ... | Send TCP Or UDP Packet | ${tg_node}
+| | ... | Send TCP or UDP packet and verify received packet | ${tg_node}
 | | ... | ${classify_src} | ${classify_dst}
 | | ... | ${tg_to_dut_if1} | ${tg_to_dut_if1_mac}
 | | ... | ${tg_to_dut_if2} | ${dut_to_tg_if1_mac}
@@ -166,19 +166,19 @@
 | | ... | ${dut_node} | ${acl_name_l4} | ${acl_settings}
 | | And Honeycomb Assigns plugin-acl Chain To Interface
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${acl_name_l4} | ingress
-| | Then Send TCP Or UDP Packet | ${tg_node}
+| | Then Send TCP or UDP packet and verify received packet | ${tg_node}
 | | ... | ${src_ip} | ${dst_ip}
 | | ... | ${tg_to_dut_if1} | ${tg_to_dut_if1_mac}
 | | ... | ${tg_to_dut_if2} | ${dut_to_tg_if1_mac}
 | | ... | TCP | ${src_port} | ${dst_port}
 | | And Run Keyword And Expect Error | TCP/UDP Rx timeout
-| | ... | Send TCP Or UDP Packet | ${tg_node}
+| | ... | Send TCP or UDP packet and verify received packet | ${tg_node}
 | | ... | ${src_ip} | ${dst_ip}
 | | ... | ${tg_to_dut_if1} | ${tg_to_dut_if1_mac}
 | | ... | ${tg_to_dut_if2} | ${dut_to_tg_if1_mac}
 | | ... | TCP | ${classify_src} | ${classify_dst}
 | | And Run Keyword And Expect Error | TCP/UDP Rx timeout
-| | ... | Send TCP Or UDP Packet | ${tg_node}
+| | ... | Send TCP or UDP packet and verify received packet | ${tg_node}
 | | ... | ${src_ip} | ${dst_ip}
 | | ... | ${tg_to_dut_if1} | ${tg_to_dut_if1_mac}
 | | ... | ${tg_to_dut_if2} | ${dut_to_tg_if1_mac}
@@ -201,17 +201,17 @@
 | | ... | ${dut_node} | ${acl_name_mixed} | ${acl_settings}
 | | And Honeycomb Assigns plugin-acl Chain To Interface
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${acl_name_mixed} | ingress
-| | Then Send TCP Or UDP Packet | ${tg_node} | ${src_ip} | ${dst_ip}
+| | Then Send TCP or UDP packet and verify received packet | ${tg_node} | ${src_ip} | ${dst_ip}
 | | ... | ${tg_to_dut_if1} | ${tg_to_dut_if1_mac}
 | | ... | ${tg_to_dut_if2} | ${dut_to_tg_if1_mac}
 | | ... | TCP | ${src_port} | ${dst_port}
-| | Then Send TCP Or UDP Packet | ${tg_node}
+| | Then Send TCP or UDP packet and verify received packet | ${tg_node}
 | | ... | ${classify_src_ip} | ${classify_dst_ip}
 | | ... | ${tg_to_dut_if1} | ${tg_to_dut_if1_mac}
 | | ... | ${tg_to_dut_if2} | ${dut_to_tg_if1_mac}
 | | ... | TCP | ${src_port} | ${dst_port}
 | | And Run Keyword And Expect Error | TCP/UDP Rx timeout
-| | ... | Send TCP Or UDP Packet | ${tg_node}
+| | ... | Send TCP or UDP packet and verify received packet | ${tg_node}
 | | ... | ${classify_src_ip} | ${classify_dst_ip}
 | | ... | ${tg_to_dut_if1} | ${tg_to_dut_if1_mac}
 | | ... | ${tg_to_dut_if2} | ${dut_to_tg_if1_mac}
@@ -233,18 +233,18 @@
 | | ... | ${dut_node} | ${acl_name_icmp} | ${acl_settings}
 | | And Honeycomb Assigns plugin-acl Chain To Interface
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${acl_name_icmp} | ingress
-| | Then Send ICMP packet with type and code | ${tg_node}
+| | Then Send ICMP packet with type and code and verify received packet | ${tg_node}
 | | ... | ${src_ip} | ${dst_ip}
 | | ... | ${tg_to_dut_if1} | ${tg_to_dut_if1_mac}
 | | ... | ${tg_to_dut_if2} | ${dut_to_tg_if1_mac}
 | | ... | ${icmp_type} | ${icmp_code}
-| | Then Send ICMP packet with type and code | ${tg_node}
+| | Then Send ICMP packet with type and code and verify received packet | ${tg_node}
 | | ... | ${src_ip} | ${dst_ip}
 | | ... | ${tg_to_dut_if1} | ${tg_to_dut_if1_mac}
 | | ... | ${tg_to_dut_if2} | ${dut_to_tg_if1_mac}
 | | ... | ${classify_type} | ${icmp_code}
 | | And Run Keyword And Expect Error | ICMP echo Rx timeout
-| | ... | Send ICMP packet with type and code | ${tg_node}
+| | ... | Send ICMP packet with type and code and verify received packet | ${tg_node}
 | | ... | ${src_ip} | ${dst_ip}
 | | ... | ${tg_to_dut_if1} | ${tg_to_dut_if1_mac}
 | | ... | ${tg_to_dut_if2} | ${dut_to_tg_if1_mac}
@@ -266,18 +266,18 @@
 | | ... | ${dut_node} | ${acl_name_icmpv6} | ${acl_settings}
 | | And Honeycomb Assigns plugin-acl Chain To Interface
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${acl_name_icmpv6} | ingress
-| | Then Send ICMP packet with type and code | ${tg_node}
+| | Then Send ICMP packet with type and code and verify received packet | ${tg_node}
 | | ... | ${src_ip} | ${dst_ip}
 | | ... | ${tg_to_dut_if1} | ${tg_to_dut_if1_mac}
 | | ... | ${tg_to_dut_if2} | ${dut_to_tg_if1_mac}
 | | ... | ${icmp_type} | ${icmp_code}
-| | Then Send ICMP packet with type and code | ${tg_node}
+| | Then Send ICMP packet with type and code and verify received packet | ${tg_node}
 | | ... | ${src_ip} | ${dst_ip}
 | | ... | ${tg_to_dut_if1} | ${tg_to_dut_if1_mac}
 | | ... | ${tg_to_dut_if2} | ${dut_to_tg_if1_mac}
 | | ... | ${classify_type} | ${icmp_code}
 | | And Run Keyword And Expect Error | ICMP echo Rx timeout
-| | ... | Send ICMP packet with type and code | ${tg_node}
+| | ... | Send ICMP packet with type and code and verify received packet | ${tg_node}
 | | ... | ${src_ip} | ${dst_ip}
 | | ... | ${tg_to_dut_if1} | ${tg_to_dut_if1_mac}
 | | ... | ${tg_to_dut_if2} | ${dut_to_tg_if1_mac}
@@ -308,17 +308,17 @@
 | | And Honeycomb Assigns plugin-acl Chain To Interface
 | | ... | ${dut_node} | ${dut_to_tg_if1} | block_all | ingress
 | | And Run Keyword And Expect Error | TCP/UDP Rx timeout
-| | ... | Send TCP Or UDP Packet | ${tg_node}
+| | ... | Send TCP or UDP packet and verify received packet | ${tg_node}
 | | ... | ${classify_src} | ${classify_dst}
 | | ... | ${tg_to_dut_if1} | ${tg_to_dut_if1_mac}
 | | ... | ${tg_to_dut_if2} | ${dut_to_tg_if1_mac}
 | | ... | TCP | ${src_port} | ${dst_port}
-| | And Send TCP Or UDP Packet | ${tg_node}
+| | And Send TCP or UDP packet and verify received packet | ${tg_node}
 | | ... | ${classify_dst} | ${classify_src}
 | | ... | ${tg_to_dut_if2} | ${tg_to_dut_if2_mac}
 | | ... | ${tg_to_dut_if1} | ${dut_to_tg_if2_mac}
 | | ... | TCP | ${dst_port} | ${src_port}
-| | And Send TCP Or UDP Packet | ${tg_node}
+| | And Send TCP or UDP packet and verify received packet | ${tg_node}
 | | ... | ${classify_src} | ${classify_dst}
 | | ... | ${tg_to_dut_if1} | ${tg_to_dut_if1_mac}
 | | ... | ${tg_to_dut_if2} | ${dut_to_tg_if1_mac}
@@ -344,18 +344,18 @@
 | | ... | ${dut_node} | ${acl_name_l3_ip4} | ${acl_settings}
 | | And Honeycomb Assigns plugin-acl Chain To Interface
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${acl_name_l3_ip4} | ingress
-| | Then Send TCP Or UDP Packet | ${tg_node}
+| | Then Send TCP or UDP packet and verify received packet | ${tg_node}
 | | ... | ${src_ip} | ${dst_ip}
 | | ... | ${tg_to_dut_if1} | ${tg_to_dut_if1_mac}
 | | ... | ${tg_to_dut_if2} | ${dut_to_tg_if1_mac}
 | | ... | UDP | ${src_port} | ${dst_port}
-| | And Send TCP Or UDP Packet | ${tg_node}
+| | And Send TCP or UDP packet and verify received packet | ${tg_node}
 | | ... | ${classify_src} | ${classify_dst}
 | | ... | ${tg_to_dut_if1} | ${tg_to_dut_if1_mac}
 | | ... | ${tg_to_dut_if2} | ${dut_to_tg_if1_mac}
 | | ... | TCP | ${src_port} | ${dst_port}
 | | And Run Keyword And Expect Error | TCP/UDP Rx timeout
-| | ... | Send TCP Or UDP Packet | ${tg_node}
+| | ... | Send TCP or UDP packet and verify received packet | ${tg_node}
 | | ... | ${classify_src} | ${classify_dst}
 | | ... | ${tg_to_dut_if1} | ${tg_to_dut_if1_mac}
 | | ... | ${tg_to_dut_if2} | ${dut_to_tg_if1_mac}
@@ -372,18 +372,18 @@
 | | ... | to the other, using different IPv6 IPs. Receive all packets except\
 | | ... | those with IPs in the filtered ranges and UDP protocol payload.
 | | [Teardown] | Routed ACL test teardown - ipv6
-| | Given Path for 2-node testing is set
+| | Given Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | And Import Variables | resources/test_data/honeycomb/plugin_acl.py
 | | ... | L3_IP6 | ${acl_name_l3_ip6}
-| | And Honeycomb sets interface state | ${dut_node} | ${dut_to_tg_if1} | up
-| | And Honeycomb sets interface state | ${dut_node} | ${dut_to_tg_if2} | up
-| | And Honeycomb sets interface ipv6 address | ${dut_node}
+| | And Honeycomb configures interface state | ${dut_node} | ${dut_to_tg_if1} | up
+| | And Honeycomb configures interface state | ${dut_node} | ${dut_to_tg_if2} | up
+| | And Honeycomb sets interface IPv6 address | ${dut_node}
 | | ... | ${dut_to_tg_if1} | ${dut_to_tg_if1_ip} | ${prefix_length}
-| | And Honeycomb sets interface ipv6 address | ${dut_node}
+| | And Honeycomb sets interface IPv6 address | ${dut_node}
 | | ... | ${dut_to_tg_if2} | ${dut_to_tg_if2_ip} | ${prefix_length}
 | | And VPP RA suppress link layer | ${dut_node} | ${dut_to_tg_if2}
-| | And Honeycomb adds interface ipv6 neighbor
+| | And Honeycomb adds interface IPv6 neighbor
 | | ... | ${node} | ${dut_to_tg_if2} | ${gateway} | ${tg_to_dut_if2_mac}
 | | And VPP Route Add | ${node} | ${dst_net} | ${prefix_length}
 | | ... | ${gateway} | interface=${dut_to_tg_if2} | use_sw_index=False
@@ -393,18 +393,18 @@
 | | ... | ${dut_node} | ${acl_name_l3_ip6} | ${acl_settings}
 | | And Honeycomb Assigns plugin-acl Chain To Interface
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${acl_name_l3_ip6} | ingress
-| | Then Send TCP Or UDP Packet | ${tg_node}
+| | Then Send TCP or UDP packet and verify received packet | ${tg_node}
 | | ... | ${src_ip} | ${dst_ip}
 | | ... | ${tg_to_dut_if1} | ${tg_to_dut_if1_mac}
 | | ... | ${tg_to_dut_if2} | ${dut_to_tg_if1_mac}
 | | ... | UDP | ${src_port} | ${dst_port}
-| | And Send TCP Or UDP Packet | ${tg_node}
+| | And Send TCP or UDP packet and verify received packet | ${tg_node}
 | | ... | ${classify_src} | ${classify_dst}
 | | ... | ${tg_to_dut_if1} | ${tg_to_dut_if1_mac}
 | | ... | ${tg_to_dut_if2} | ${dut_to_tg_if1_mac}
 | | ... | TCP | ${src_port} | ${dst_port}
 | | And Run Keyword And Expect Error | TCP/UDP Rx timeout
-| | ... | Send TCP Or UDP Packet | ${tg_node}
+| | ... | Send TCP or UDP packet and verify received packet | ${tg_node}
 | | ... | ${classify_src} | ${classify_dst}
 | | ... | ${tg_to_dut_if1} | ${tg_to_dut_if1_mac}
 | | ... | ${tg_to_dut_if2} | ${dut_to_tg_if1_mac}
@@ -427,19 +427,19 @@
 | | ... | ${dut_node} | ${acl_name_l4} | ${acl_settings}
 | | And Honeycomb Assigns plugin-acl Chain To Interface
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${acl_name_l4} | ingress
-| | Then Send TCP Or UDP Packet | ${tg_node}
+| | Then Send TCP or UDP packet and verify received packet | ${tg_node}
 | | ... | ${src_ip} | ${dst_ip}
 | | ... | ${tg_to_dut_if1} | ${tg_to_dut_if1_mac}
 | | ... | ${tg_to_dut_if2} | ${dut_to_tg_if1_mac}
 | | ... | TCP | ${src_port} | ${dst_port}
 | | And Run Keyword And Expect Error | TCP/UDP Rx timeout
-| | ... | Send TCP Or UDP Packet | ${tg_node}
+| | ... | Send TCP or UDP packet and verify received packet | ${tg_node}
 | | ... | ${src_ip} | ${dst_ip}
 | | ... | ${tg_to_dut_if1} | ${tg_to_dut_if1_mac}
 | | ... | ${tg_to_dut_if2} | ${dut_to_tg_if1_mac}
 | | ... | TCP | ${classify_src} | ${classify_dst}
 | | And Run Keyword And Expect Error | TCP/UDP Rx timeout
-| | ... | Send TCP Or UDP Packet | ${tg_node}
+| | ... | Send TCP or UDP packet and verify received packet | ${tg_node}
 | | ... | ${src_ip} | ${dst_ip}
 | | ... | ${tg_to_dut_if1} | ${tg_to_dut_if1_mac}
 | | ... | ${tg_to_dut_if2} | ${dut_to_tg_if1_mac}
@@ -462,17 +462,17 @@
 | | ... | ${dut_node} | ${acl_name_mixed} | ${acl_settings}
 | | And Honeycomb Assigns plugin-acl Chain To Interface
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${acl_name_mixed} | ingress
-| | Then Send TCP Or UDP Packet | ${tg_node} | ${src_ip} | ${dst_ip}
+| | Then Send TCP or UDP packet and verify received packet | ${tg_node} | ${src_ip} | ${dst_ip}
 | | ... | ${tg_to_dut_if1} | ${tg_to_dut_if1_mac}
 | | ... | ${tg_to_dut_if2} | ${dut_to_tg_if1_mac}
 | | ... | TCP | ${src_port} | ${dst_port}
-| | Then Send TCP Or UDP Packet | ${tg_node}
+| | Then Send TCP or UDP packet and verify received packet | ${tg_node}
 | | ... | ${classify_src_ip} | ${classify_dst_ip}
 | | ... | ${tg_to_dut_if1} | ${tg_to_dut_if1_mac}
 | | ... | ${tg_to_dut_if2} | ${dut_to_tg_if1_mac}
 | | ... | TCP | ${src_port} | ${dst_port}
 | | And Run Keyword And Expect Error | TCP/UDP Rx timeout
-| | ... | Send TCP Or UDP Packet | ${tg_node}
+| | ... | Send TCP or UDP packet and verify received packet | ${tg_node}
 | | ... | ${classify_src_ip} | ${classify_dst_ip}
 | | ... | ${tg_to_dut_if1} | ${tg_to_dut_if1_mac}
 | | ... | ${tg_to_dut_if2} | ${dst_mac}
@@ -495,18 +495,18 @@
 | | ... | ${dut_node} | ${acl_name_icmp} | ${acl_settings}
 | | And Honeycomb Assigns plugin-acl Chain To Interface
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${acl_name_icmp} | ingress
-| | Then Send ICMP packet with type and code | ${tg_node}
+| | Then Send ICMP packet with type and code and verify received packet | ${tg_node}
 | | ... | ${src_ip} | ${dst_ip}
 | | ... | ${tg_to_dut_if1} | ${tg_to_dut_if1_mac}
 | | ... | ${tg_to_dut_if2} | ${dut_to_tg_if1_mac}
 | | ... | ${icmp_type} | ${icmp_code}
-| | Then Send ICMP packet with type and code | ${tg_node}
+| | Then Send ICMP packet with type and code and verify received packet | ${tg_node}
 | | ... | ${src_ip} | ${dst_ip}
 | | ... | ${tg_to_dut_if1} | ${tg_to_dut_if1_mac}
 | | ... | ${tg_to_dut_if2} | ${dut_to_tg_if1_mac}
 | | ... | ${classify_type} | ${icmp_code}
 | | And Run Keyword And Expect Error | ICMP echo Rx timeout
-| | ... | Send ICMP packet with type and code | ${tg_node}
+| | ... | Send ICMP packet with type and code and verify received packet | ${tg_node}
 | | ... | ${src_ip} | ${dst_ip}
 | | ... | ${tg_to_dut_if1} | ${tg_to_dut_if1_mac}
 | | ... | ${tg_to_dut_if2} | ${dut_to_tg_if1_mac}
@@ -523,17 +523,17 @@
 | | ... | to the other, using different codes and types. Receive all packets\
 | | ... | except those with the filtered type and code.
 | | [Teardown] | Routed ACL test teardown - ipv6
-| | Given Path for 2-node testing is set
+| | Given Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | And Import Variables | resources/test_data/honeycomb/plugin_acl.py
 | | ... | icmpv6 | ${acl_name_icmpv6}
-| | And Honeycomb sets interface state | ${dut_node} | ${dut_to_tg_if1} | up
-| | And Honeycomb sets interface state | ${dut_node} | ${dut_to_tg_if2} | up
-| | And Honeycomb sets interface ipv6 address | ${dut_node}
+| | And Honeycomb configures interface state | ${dut_node} | ${dut_to_tg_if1} | up
+| | And Honeycomb configures interface state | ${dut_node} | ${dut_to_tg_if2} | up
+| | And Honeycomb sets interface IPv6 address | ${dut_node}
 | | ... | ${dut_to_tg_if1} | ${dut_to_tg_if1_ip} | ${prefix_length}
-| | And Honeycomb sets interface ipv6 address | ${dut_node}
+| | And Honeycomb sets interface IPv6 address | ${dut_node}
 | | ... | ${dut_to_tg_if2} | ${dut_to_tg_if2_ip} | ${prefix_length}
-| | And Honeycomb adds interface ipv6 neighbor
+| | And Honeycomb adds interface IPv6 neighbor
 | | ... | ${node} | ${dut_to_tg_if2} | ${gateway} | ${tg_to_dut_if2_mac}
 | | And VPP RA suppress link layer | ${dut_node} | ${dut_to_tg_if2}
 | | And VPP Route Add | ${node} | ${dst_net} | ${prefix_length}
@@ -544,18 +544,18 @@
 | | ... | ${dut_node} | ${acl_name_icmpv6} | ${acl_settings}
 | | And Honeycomb Assigns plugin-acl Chain To Interface
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${acl_name_icmpv6} | ingress
-| | Then Send ICMP packet with type and code | ${tg_node}
+| | Then Send ICMP packet with type and code and verify received packet | ${tg_node}
 | | ... | ${src_ip} | ${dst_ip}
 | | ... | ${tg_to_dut_if1} | ${tg_to_dut_if1_mac}
 | | ... | ${tg_to_dut_if2} | ${dut_to_tg_if1_mac}
 | | ... | ${icmp_type} | ${icmp_code}
-| | Then Send ICMP packet with type and code | ${tg_node}
+| | Then Send ICMP packet with type and code and verify received packet | ${tg_node}
 | | ... | ${src_ip} | ${dst_ip}
 | | ... | ${tg_to_dut_if1} | ${tg_to_dut_if1_mac}
 | | ... | ${tg_to_dut_if2} | ${dut_to_tg_if1_mac}
 | | ... | ${classify_type} | ${icmp_code}
 | | And Run Keyword And Expect Error | ICMP echo Rx timeout
-| | ... | Send ICMP packet with type and code | ${tg_node}
+| | ... | Send ICMP packet with type and code and verify received packet | ${tg_node}
 | | ... | ${src_ip} | ${dst_ip}
 | | ... | ${tg_to_dut_if1} | ${tg_to_dut_if1_mac}
 | | ... | ${tg_to_dut_if2} | ${dut_to_tg_if1_mac}
@@ -595,17 +595,17 @@
 | | And Honeycomb Assigns plugin-acl Chain To Interface
 | | ... | ${dut_node} | ${dut_to_tg_if1} | block_all | ingress
 | | And Run Keyword And Expect Error | TCP/UDP Rx timeout
-| | ... | Send TCP Or UDP Packet | ${tg_node}
+| | ... | Send TCP or UDP packet and verify received packet | ${tg_node}
 | | ... | ${classify_src} | ${classify_dst}
 | | ... | ${tg_to_dut_if1} | ${tg_to_dut_if1_mac}
 | | ... | ${tg_to_dut_if2} | ${dut_to_tg_if1_mac}
 | | ... | TCP | ${src_port} | ${dst_port}
-| | And Send TCP Or UDP Packet | ${tg_node}
+| | And Send TCP or UDP packet and verify received packet | ${tg_node}
 | | ... | ${classify_dst} | ${classify_src}
 | | ... | ${tg_to_dut_if2} | ${tg_to_dut_if2_mac}
 | | ... | ${tg_to_dut_if1} | ${dut_to_tg_if2_mac}
 | | ... | TCP | ${dst_port} | ${src_port}
-| | And Send TCP Or UDP Packet | ${tg_node}
+| | And Send TCP or UDP packet and verify received packet | ${tg_node}
 | | ... | ${classify_src} | ${classify_dst}
 | | ... | ${tg_to_dut_if1} | ${tg_to_dut_if1_mac}
 | | ... | ${tg_to_dut_if2} | ${dut_to_tg_if1_mac}
@@ -616,17 +616,17 @@
 | | [Documentation] | Import test variables, set interfaces up,
 | | ... | configure IPv4 addresses, add neighbor entry and routes.
 | | [Arguments] | ${test_data_id} | ${acl_name}
-| | Path for 2-node testing is set
+| | Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | Import Variables | resources/test_data/honeycomb/plugin_acl.py
 | | ... | ${test_data_id} | ${acl_name}
-| | Honeycomb sets interface state | ${dut_node} | ${dut_to_tg_if1} | up
-| | Honeycomb sets interface state | ${dut_node} | ${dut_to_tg_if2} | up
-| | Honeycomb sets interface ipv4 address with prefix | ${dut_node}
+| | Honeycomb configures interface state | ${dut_node} | ${dut_to_tg_if1} | up
+| | Honeycomb configures interface state | ${dut_node} | ${dut_to_tg_if2} | up
+| | Honeycomb sets interface IPv4 address with prefix | ${dut_node}
 | | ... | ${dut_to_tg_if1} | ${dut_to_tg_if1_ip} | ${prefix_length}
-| | Honeycomb sets interface ipv4 address with prefix | ${dut_node}
+| | Honeycomb sets interface IPv4 address with prefix | ${dut_node}
 | | ... | ${dut_to_tg_if2} | ${dut_to_tg_if2_ip} | ${prefix_length}
-| | And Honeycomb adds interface ipv4 neighbor
+| | And Honeycomb adds interface IPv4 neighbor
 | | ... | ${node} | ${dut_to_tg_if2} | ${gateway} | ${tg_to_dut_if2_mac}
 | | VPP Route Add
 | | ... | ${node} | ${dst_net} | ${prefix_length} | ${gateway}
@@ -638,7 +638,7 @@
 | Setup interfaces and bridge domain for plugin-acl test
 | | [Documentation] | Import test variables, set interfaces up and bridge them.
 | | [Arguments] | ${test_data_id} | ${acl_name}
-| | Path For 2-node Testing Is Set
+| | Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | Import Variables | resources/test_data/honeycomb/plugin_acl.py
 | | ... | ${test_data_id} | ${acl_name}
@@ -665,8 +665,8 @@
 | | Show Packet Trace on All DUTs | ${nodes}
 | | Read plugin-ACL configuration from VAT | ${node}
 | | Clear plugin-acl Settings | ${node} | ${dut_to_tg_if1}
-| | Honeycomb removes interface ipv4 addresses | ${node} | ${dut_to_tg_if1}
-| | Honeycomb clears all interface ipv4 neighbors | ${node} | ${dut_to_tg_if1}
+| | Honeycomb removes interface IPv4 addresses | ${node} | ${dut_to_tg_if1}
+| | Honeycomb clears all interface IPv4 neighbors | ${node} | ${dut_to_tg_if1}
 
 | Routed ACL test teardown - ipv6
 | | [Documentation] | Log packet trace and ACL settings,
@@ -674,5 +674,5 @@
 | | Show Packet Trace on All DUTs | ${nodes}
 | | Clear plugin-acl Settings | ${node} | ${dut_to_tg_if1}
 | | Read plugin-ACL configuration from VAT | ${node}
-| | Honeycomb removes interface ipv6 addresses | ${node} | ${dut_to_tg_if1}
-| | Honeycomb clears all interface ipv6 neighbors | ${node} | ${dut_to_tg_if1}
+| | Honeycomb removes interface IPv6 addresses | ${node} | ${dut_to_tg_if1}
+| | Honeycomb clears all interface IPv6 neighbors | ${node} | ${dut_to_tg_if1}

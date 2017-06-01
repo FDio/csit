@@ -22,7 +22,7 @@
 | Library  | resources.libraries.python.IPv4Util.IPv4Util
 
 *** Keywords ***
-| Set up Lisp topology
+| Configure LISP topology in 3-node circular topology
 | | [Documentation] | Set up Lisp static adjacency topology.
 | | ...
 | | ... | *Arguments:*
@@ -42,7 +42,7 @@
 | | ... | - No value returned
 | | ...
 | | ... | *Example:*
-| | ... | \| Set up Lisp topology \| ${dut1_node} \| ${interface_name} \
+| | ... | \| Configure LISP topology in 3-node circular topology \| ${dut1_node} \| ${interface_name} \
 | | ... | \| None \| ${dut2_node} \| ${interface_name} \| None \
 | | ... | \| ${locator_set} \| ${dut1_eid} \| ${dut2_eid} \
 | | ... | \| ${dut1_static_adjacency} \| ${dut2_static_adjacency} \|
@@ -98,7 +98,7 @@
 | | ...                    | ${dut2_static_adjacency['seid']}
 | | ...                    | ${dut2_static_adjacency['prefix']}
 
-| Change Lisp Configuration
+| Change LISP Configuration
 | | [Documentation] | Change configuration of the Lisp protocol.
 | | ...
 | | ... | *Arguments:*
@@ -124,7 +124,7 @@
 | | ... | - No value returned
 | | ...
 | | ... | *Example:*
-| | ... | \| Change Lisp Configuration \| ${dut1_node} \| ${dut2_node} \
+| | ... | \| Change LISP Configuration \| ${dut1_node} \| ${dut2_node} \
 | | ... | \| ${dut1_to_dut2} \| ${dut2_to_dut1} | "08:00:27:20:e0:0d" \
 | | ... | \| "08:00:27:b1:94:b1" \| "6.3.0.1" \| "6.3.0.20" \| "24" \
 | | ... | \| ${old_dut1_static_adjacency} \| ${new_dut1_static_adjacency} \|
