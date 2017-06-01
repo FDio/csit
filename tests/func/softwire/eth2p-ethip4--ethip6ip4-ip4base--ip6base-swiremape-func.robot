@@ -22,8 +22,8 @@
 | Library  | resources.libraries.python.Trace
 | Variables | resources/test_data/softwire/map_e_domains.py | ${5}
 | Force Tags | HW_ENV | VM_ENV | 3_NODE_DOUBLE_LINK_TOPO | SKIP_VPP_PATCH
-| Test Setup | Func Test Setup
-| Test Teardown | Func Test Teardown
+| Test Setup | Set up functional test
+| Test Teardown | Tear down functional test
 | Documentation | *Test for Basic mapping rule for MAP-E*\
 | ... | *[Top] Network Topologies:* TG - DUT1 - TG with two links between the
 | ... | nodes.
@@ -71,7 +71,7 @@
 # TODO: replace setup when VPP-312 fixed
 #| | [Setup] | Set Interfaces IP Addresses And Routes
 | | [Setup] | Run Keywords
-| | ... | Func Test Setup | AND
+| | ... | Set up functional test | AND
 | | ... | Set Interfaces IP Addresses And Routes
 | | [Template] | Check MAP Configuration With Traffic Script
 # |=================|===============|================|============|=============|==========|================|==========|==================================|
@@ -108,7 +108,7 @@
 # TODO: replace setup when VPP-312 fixed
 #| | [Setup] | Set Interfaces IP Addresses And Routes
 | | [Setup] | Run Keywords
-| | ... | Func Test Setup | AND
+| | ... | Set up functional test | AND
 | | ... | Set Interfaces IP Addresses And Routes
 | | [Template] | Check MAP Configuration With Traffic Script
 # |===================|===============|================|============|=============|==========|================|==========|==================================|
@@ -148,7 +148,7 @@
 # TODO: replace setup when VPP-312 fixed
 #| | [Setup] | Set Interfaces IP Addresses And Routes
 | | [Setup] | Run Keywords
-| | ... | Func Test Setup | AND
+| | ... | Set up functional test | AND
 | | ... | Set Interfaces IP Addresses And Routes
 | | [Template] | Check MAP Configuration With Traffic Script
 # |===================|===============|================|============|=============|==========|================|==========|===================================|
@@ -206,7 +206,7 @@
 # TODO: replace setup when VPP-312 fixed
 #| | [Setup] | Set Interfaces IP Addresses And Routes
 | | [Setup] | Run Keywords
-| | ... | Func Test Setup | AND
+| | ... | Set up functional test | AND
 | | ... | Set Interfaces IP Addresses And Routes
 | | [Template] | Check MAP Configuration With Traffic Script
 # |===================|=========================|================|============|=============|==========|================|==========|
@@ -223,7 +223,7 @@
 # TODO: replace setup when VPP-312 fixed
 #| | [Setup] | Set Interfaces IP Addresses And Routes
 | | [Setup] | Run Keywords
-| | ... | Func Test Setup | AND
+| | ... | Set up functional test | AND
 | | ... | Set Interfaces IP Addresses And Routes
 | | [Template] | Check MAP Configuration With Traffic Script
 # |===================|=========================|================|============|=============|==========|================|==========|
@@ -247,7 +247,7 @@
 | | Given Path For 2-node Testing Is Set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | And Interfaces In 2-node Path Are Up
-| | And IP Addresses Are Set On Interfaces
+| | And Configure IP addresses on interfaces
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4} | ${ipv4_prefix_len}
 | | ... | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6} | ${ipv6_prefix_len}
 | | And Vpp Route Add | ${dut_node} | :: | 0 | ${dut_ip6_gw}
@@ -287,7 +287,7 @@
 | | Given Path For 2-node Testing Is Set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | And Interfaces In 2-node Path Are Up
-| | And IP Addresses Are Set On Interfaces
+| | And Configure IP addresses on interfaces
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4} | ${ipv4_prefix_len}
 | | ... | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6} | ${ipv6_prefix_len}
 | | And Vpp Route Add | ${dut_node} | :: | 0 | ${dut_ip6_gw}
@@ -333,7 +333,7 @@
 | | Given Path For 2-node Testing Is Set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | And Interfaces In 2-node Path Are Up
-| | And IP Addresses Are Set On Interfaces
+| | And Configure IP addresses on interfaces
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4} | ${ipv4_prefix_len}
 | | ... | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6} | ${ipv6_prefix_len}
 | | And Vpp Route Add | ${dut_node} | :: | 0 | ${dut_ip6_gw}
@@ -369,7 +369,7 @@
 | | Given Path For 2-node Testing Is Set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | And Interfaces In 2-node Path Are Up
-| | When IP Addresses Are Set On Interfaces
+| | When Configure IP addresses on interfaces
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4} | ${ipv4_prefix_len}
 | | ... | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6} | ${ipv6_prefix_len}
 | | And Vpp Route Add | ${dut_node} | 2001:: | 16 | ${dut_ip6_gw}
@@ -383,7 +383,7 @@
 | | Then Check MAP Configuration With Traffic Script
 | | ... | 20.0.0.0/8 | 2001::/16 | ${ipv6_br_src} | ${48} | ${6} | ${8}
 | | ... | 20.169.201.219 | ${1232} | 2001:a9c9:db34::14a9:c9db:34
-| | When IP Addresses Are Set On Interfaces
+| | When Configure IP addresses on interfaces
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4} | ${ipv4_prefix_len}
 | | ... | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6} | ${ipv6_prefix_len}
 | | And Vpp Route Add | ${dut_node} | 2001:: | 16 | ${dut_ip6_gw}
@@ -405,7 +405,7 @@
 | | Given Path For 2-node Testing Is Set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | And Interfaces In 2-node Path Are Up
-| | And IP Addresses Are Set On Interfaces
+| | And Configure IP addresses on interfaces
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4} | ${ipv4_prefix_len}
 | | ... | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6} | ${ipv6_prefix_len}
 | | Then Run Keyword And Expect Error | Unable to add map domain *
@@ -418,7 +418,7 @@
 | | Path For 2-node Testing Is Set
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | Interfaces In 2-node Path Are Up
-| | IP Addresses Are Set On Interfaces
+| | Configure IP addresses on interfaces
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4} | ${ipv4_prefix_len}
 | | ... | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6} | ${ipv6_prefix_len}
 | | Vpp Route Add | ${dut_node} | :: | 0 | ${dut_ip6_gw} | ${dut_to_tg_if2}
@@ -463,7 +463,7 @@
 | | ... | Map Del Domain | ${dut_node} | ${domain_index} | AND
 | | ... | Show Packet Trace On All DUTs | ${nodes} | AND
 | | ... | Clear Packet Trace On All DUTs | ${nodes} | AND
-| | ... | Check VPP PID in Teardown
+| | ... | Verify VPP PID in Teardown
 
 | Check Encapsulation With Traffic Script
 | | [Arguments] | ${ipv4_dst} | ${dst_port} | ${ipv6_dst}

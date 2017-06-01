@@ -22,8 +22,8 @@
 | Library | resources.libraries.python.Trace
 
 | Force Tags | HW_ENV | VM_ENV | 3_NODE_SINGLE_LINK_TOPO | EXPECTED_FAILING
-| Test Setup | Func Test Setup
-| Test Teardown | Func Test Teardown
+| Test Setup | Set up functional test
+| Test Teardown | Tear down functional test
 | Documentation | *IPFIX ipv4 test cases*
 | ...
 | ... | IPFIX tests use 3-node topology TG - DUT1 - DUT2 - TG with
@@ -49,9 +49,9 @@
 | | ... | [Ver] Make TG listen for IPFIX template and data packets, verify
 | | ... | that packet is received and correct. No packets are sent from TG.
 | | ... | [Ref] RFC 7011
-| | Given Path for 3-node testing is set
+| | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
-| | And Interfaces in 3-node path are up
+| | And Set interfaces in 3-node circular topology up
 | | And Set Interface Address | ${dut1_node}
 | | ... | ${dut1_to_tg} | ${dut1_to_tg_ip} | ${prefix_length}
 | | And Add ARP on DUT | ${dut1_node} | ${dut1_to_tg} | ${tg_to_dut1_ip}
@@ -79,9 +79,9 @@
 | | ... | [Ver] Make TG send a packet to DUT1, then listen for IPFIX template
 | | ... | and data packets, verify that IPFIX reported the received packet.
 | | ... | [Ref] RFC 7011
-| | Given Path for 3-node testing is set
+| | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
-| | And Interfaces in 3-node path are up
+| | And Set interfaces in 3-node circular topology up
 | | And Set Interface Address | ${dut1_node}
 | | ... | ${dut1_to_tg} | ${dut1_to_tg_ip} | ${prefix_length}
 | | And Add ARP on DUT | ${dut1_node} | ${dut1_to_tg} | ${tg_to_dut1_ip}
@@ -109,9 +109,9 @@
 | | ... | [Ver] Make TG send a packet to DUT1, then listen for IPFIX template
 | | ... | and data packets, verify that IPFIX reported the received packet.
 | | ... | [Ref] RFC 7011
-| | Given Path for 3-node testing is set
+| | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
-| | And Interfaces in 3-node path are up
+| | And Set interfaces in 3-node circular topology up
 | | And Set Interface Address | ${dut1_node}
 | | ... | ${dut1_to_tg} | ${dut1_to_tg_ip} | ${prefix_length}
 | | And Add ARP on DUT | ${dut1_node} | ${dut1_to_tg} | ${tg_to_dut1_ip}
@@ -140,9 +140,9 @@
 | | ... | for IPFIX template and data packets, verify that IPFIX reported
 | | ... | the received packet.
 | | ... | [Ref] RFC 7011
-| | Given Path for 3-node testing is set
+| | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
-| | And Interfaces in 3-node path are up
+| | And Set interfaces in 3-node circular topology up
 | | And Set Interface Address | ${dut1_node}
 | | ... | ${dut1_to_tg} | ${dut1_to_tg_ip} | ${prefix_length}
 | | And Add ARP on DUT | ${dut1_node} | ${dut1_to_tg} | ${tg_to_dut1_ip}
@@ -173,9 +173,9 @@
 | | ... | [Ver] Make TG send a packet to DUT1, then listen for IPFIX template
 | | ... | and data packets, verify that IPFIX reported the received packet.
 | | ... | [Ref] RFC 7011
-| | Given Path for 3-node testing is set
+| | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
-| | And Interfaces in 3-node path are up
+| | And Set interfaces in 3-node circular topology up
 | | And Set Interface Address | ${dut1_node}
 | | ... | ${dut1_to_tg} | ${dut1_to_tg_ip} | ${prefix_length}
 | | And Add ARP on DUT | ${dut1_node} | ${dut1_to_tg} | ${tg_to_dut1_ip}

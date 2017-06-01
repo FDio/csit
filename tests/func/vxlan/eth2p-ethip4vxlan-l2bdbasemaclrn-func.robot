@@ -20,8 +20,8 @@
 | Resource | resources/libraries/robot/double_qemu_setup.robot
 | Library  | resources.libraries.python.Trace
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | VM_ENV | HW_ENV
-| Test Setup | Func Test Setup
-| Test Teardown | Func Test Teardown
+| Test Setup | Set up functional test
+| Test Teardown | Tear down functional test
 | Documentation | *Bridge-domain with VXLAN test cases - IPv4*
 | ...
 | ... | *[Top] Network topologies:* TG-DUT1-DUT2-TG 3-node circular topology
@@ -59,20 +59,20 @@
 | | ... | configure two i/fs into L2BD with MAC learning. [Ver] Make TG
 | | ... | verify ICMPv4 Echo Req pkts are switched thru DUT1 and DUT2 in
 | | ... | both directions and are correct on receive. [Ref] RFC7348.
-| | Given Path for 3-node testing is set
+| | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
-| | And Interfaces in 3-node path are up
+| | And Set interfaces in 3-node circular topology up
 | | ${dut1_to_dut2_name}= | Get interface name | ${dut1_node} | ${dut1_to_dut2}
 | | ${dut2_to_dut1_name}= | Get interface name | ${dut2_node} | ${dut2_to_dut1}
-| | And IP addresses are set on interfaces | ${dut1_node} | ${dut1_to_dut2_name} | ${NONE}
+| | And Configure IP addresses and neighbors on interfaces | ${dut1_node} | ${dut1_to_dut2_name} | ${NONE}
 | | ...                                    | ${dut2_node} | ${dut2_to_dut1_name} | ${NONE}
 | | ${dut1s_vxlan}= | When Create VXLAN interface     | ${dut1_node} | ${vni_1}
 | |                 | ... | ${dut1s_ip_address} | ${dut2s_ip_address}
-| | And Interfaces are added to BD | ${dut1_node} | ${bd_id1}
+| | And Add interfaces to L2BD | ${dut1_node} | ${bd_id1}
 | | ...                            | ${dut1_to_tg} | ${dut1s_vxlan}
 | | ${dut2s_vxlan}= | And Create VXLAN interface | ${dut2_node} | ${vni_1}
 | |                 | ... | ${dut2s_ip_address} | ${dut1s_ip_address}
-| | And Interfaces are added to BD | ${dut2_node} | ${bd_id1}
+| | And Add interfaces to L2BD | ${dut2_node} | ${bd_id1}
 | | ...                            | ${dut2_to_tg} | ${dut2s_vxlan}
-| | Then Send and receive ICMPv4 bidirectionally
+| | Then Send ICMPv4 bidirectionally and verify received packets
 | | ... | ${tg_node} | ${tg_to_dut1} | ${tg_to_dut2}

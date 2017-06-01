@@ -20,17 +20,17 @@
 | Resource | resources/libraries/robot/qemu.robot
 | Library  | resources.libraries.python.Trace
 | Force Tags | HW_ENV | VM_ENV | SKIP_PATCH
-| Test Setup | Run Keywords | Setup all DUTs before test
+| Test Setup | Run Keywords | Configure all DUTs before test
 | ...        | AND          | Save VPP PIDs
-| ...        | AND          | Setup all TGs before traffic script
+| ...        | AND          | Configure all TGs for traffic script
 | ...        | AND          | Reset VAT History On All DUTs | ${nodes}
 | Test Teardown | Run Keywords | Show Packet Trace on All DUTs | ${nodes}
 | ...           | AND          | Show VAT History On All DUTs | ${nodes}
-| ...           | AND          | Qemu Teardown | ${dut1_node} | ${qemu_node1}
+| ...           | AND          | Tear down QEMU | ${dut1_node} | ${qemu_node1}
 | ...                          | qemu_node1
-| ...           | AND          | Qemu Teardown | ${dut2_node} | ${qemu_node2}
+| ...           | AND          | Tear down QEMU | ${dut2_node} | ${qemu_node2}
 | ...                          | qemu_node2
-| ...           | AND          | Check VPP PID in Teardown
+| ...           | AND          | Verify VPP PID in Teardown
 | Documentation | *Tenant network FDS related.*
 | ...
 | ... | Test suite uses 3-node topology TG - DUT1 - DUT2 - TG
@@ -80,7 +80,7 @@
 | | ...             | a) test l2 connectivity inside every network
 | | ...             | b) test l2 connectivity between networks
 | | [Tags] | 3_NODE_DOUBLE_LINK_TOPO | VPP_VM_ENV
-| | Given Path for 3-node testing is set
+| | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And Set Interface Address
 | | ... | ${dut1_node} | ${dut1_to_dut2} | ${dut1_if_ip} | ${prefix_length}
@@ -108,7 +108,7 @@
 | | ... | ${dut2_node} | ${sock4}
 | | ${dut2_vhosts}= | And Create List | ${vhost_if1_DUT2} | ${vhost_if2_DUT2}
 | | ... | ${vhost_if3_DUT2} | ${vhost_if4_DUT2}
-| | When Setup QEMU Vhost and Run | ${dut1_node}
+| | When Configure QEMU vhost and run it | ${dut1_node}
 | | ...                   | ${sock1}
 | | ...                   | ${sock2}
 | | ...                   | ${sock3}
@@ -120,7 +120,7 @@
 | | ...                   | ${prefix_length}
 | | ...                   | qemu_node1
 | | ...                   | 04
-| | And Setup QEMU Vhost and Run | ${dut2_node}
+| | And Configure QEMU vhost and run it | ${dut2_node}
 | | ...                   | ${sock1}
 | | ...                   | ${sock2}
 | | ...                   | ${sock3}
@@ -162,25 +162,25 @@
 | | ... | \| @{vhosts} \|
 | | ...
 | | [Arguments] | ${dut_node} | ${src_ip} | ${dst_ip} | @{vhosts}
-| | Bridge domain on DUT node is created
+| | Create bridge domain
 | | ... | ${dut_node} | ${bid_b} | learn=${TRUE}
-| | Bridge domain on DUT node is created
+| | Create bridge domain
 | | ... | ${dut_node} | ${bid_r} | learn=${TRUE}
 | | ${vxlan1_if}= | Create VXLAN interface     | ${dut_node} | ${vni_blue}
 | |                 | ...  | ${src_ip} | ${dst_ip}
 | | ${vxlan2_if}= | Create VXLAN interface     | ${dut_node} | ${vni_red}
 | |                 | ...  | ${src_ip} | ${dst_ip}
-| | Interface is added to bridge domain
+| | Add interface to bridge domain
 | | ... | ${dut_node} | ${vxlan1_if} | ${bid_b} | 0
-| | Interface is added to bridge domain
+| | Add interface to bridge domain
 | | ... | ${dut_node} | @{vhosts}[0] | ${bid_b} | 0
-| | Interface is added to bridge domain
+| | Add interface to bridge domain
 | | ... | ${dut_node} | @{vhosts}[1] | ${bid_b} | 0
-| | Interface is added to bridge domain
+| | Add interface to bridge domain
 | | ... | ${dut_node} | ${vxlan2_if} | ${bid_r} | 0
-| | Interface is added to bridge domain
+| | Add interface to bridge domain
 | | ... | ${dut_node} | @{vhosts}[2] | ${bid_r} | 0
-| | Interface is added to bridge domain
+| | Add interface to bridge domain
 | | ... | ${dut_node} | @{vhosts}[3] | ${bid_r} | 0
 
 | Positive Scenario Ping From DUT1 - Intra network

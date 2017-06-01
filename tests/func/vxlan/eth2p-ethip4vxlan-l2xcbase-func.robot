@@ -18,8 +18,8 @@
 | Resource | resources/libraries/robot/l2_traffic.robot
 | Library  | resources.libraries.python.Trace
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | VM_ENV | HW_ENV
-| Test Setup | Func Test Setup
-| Test Teardown | Func Test Teardown
+| Test Setup | Set up functional test
+| Test Teardown | Tear down functional test
 | Documentation | *RFC7348 VXLAN: L2 cross-connect with VXLAN test cases*
 | ...
 | ... | *[Top] Network topologies:* TG-DUT1-DUT2-TG 3-node circular topology
@@ -47,20 +47,20 @@
 | | ... | interface to TG and one VXLAN tunnel interface towards the other
 | | ... | DUT. [Ver] Make TG send ICMPv4 Echo Req between two of its
 | | ... | interfaces; verify all packets are received. [Ref] RFC7348.
-| | Given Path for 3-node testing is set
+| | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
-| | And   Interfaces in 3-node path are up
+| | And   Set interfaces in 3-node circular topology up
 | | ${dut1_to_dut2_name}= | Get interface name | ${dut1_node} | ${dut1_to_dut2}
 | | ${dut2_to_dut1_name}= | Get interface name | ${dut2_node} | ${dut2_to_dut1}
-| | And   IP addresses are set on interfaces | ${dut1_node} | ${dut1_to_dut2_name} | ${NONE}
+| | And   Configure IP addresses and neighbors on interfaces | ${dut1_node} | ${dut1_to_dut2_name} | ${NONE}
 | |       ...                                | ${dut2_node} | ${dut2_to_dut1_name} | ${NONE}
 | | ${dut1s_vxlan}= | When Create VXLAN interface     | ${dut1_node} | ${VNI}
 | |                 | ...  | ${dut1s_ip_address} | ${dut2s_ip_address}
-| |                   And  Interfaces are added to xconnect | ${dut1_node}
+| |                   And  Add interfaces to L2XC | ${dut1_node}
 | |                   ...  | ${dut1_to_tg} | ${dut1s_vxlan}
 | | ${dut2s_vxlan}= | And  Create VXLAN interface     | ${dut2_node} | ${VNI}
 | |                 | ...  | ${dut2s_ip_address} | ${dut1s_ip_address}
-| |                   And  Interfaces are added to xconnect | ${dut2_node}
+| |                   And  Add interfaces to L2XC | ${dut2_node}
 | |                   ...  | ${dut2_to_tg} | ${dut2s_vxlan}
-| | Then Send and receive ICMPv4 bidirectionally
+| | Then Send ICMPv4 bidirectionally and verify received packets
 | | ... | ${tg_node} | ${tg_to_dut1} | ${tg_to_dut2}

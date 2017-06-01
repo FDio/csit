@@ -25,7 +25,7 @@
 | Documentation | *Policer keywords*
 
 *** Keywords ***
-| Setup Topology for IPv4 policer testing
+| Configure topology for IPv4 policer test
 | | [Documentation] | Setup topology for IPv4 policer testing.
 | | ...
 | | ... | _NOTE:_ This KW sets following test case variables:
@@ -33,9 +33,9 @@
 | | ... | - dut_to_tg_if2_ip - DUT second interface IP address. Type: string
 | | ... | - tg_to_dut_if1_ip - TG first interface IP address. Type: string
 | | ... | - tg_to_dut_if2_ip - TG second interface IP address. Type: string
-| | Path for 2-node testing is set | ${nodes['TG']} | ${nodes['DUT1']}
+| | Configure path in 2-node circular topology | ${nodes['TG']} | ${nodes['DUT1']}
 | | ...                            | ${nodes['TG']}
-| | Interfaces in 2-node path are up
+| | Set interfaces in 2-node circular topology up
 | | Set Interface Address | ${dut_node} | ${dut_to_tg_if1}
 | | ...                   | ${dut_to_tg_if1_ip4} | ${ip4_plen}
 | | Set Interface Address | ${dut_node} | ${dut_to_tg_if2}
@@ -47,7 +47,7 @@
 | | Set Test Variable | ${tg_to_dut_if1_ip} | ${tg_to_dut_if1_ip4}
 | | Set Test Variable | ${tg_to_dut_if2_ip} | ${tg_to_dut_if2_ip4}
 
-| Setup Topology for IPv6 policer testing
+| Configure topology for IPv6 policer test
 | | [Documentation] | Setup topology for IPv6 policer testing.
 | | ...
 | | ... | _NOTE:_ This KW sets following test case variables:
@@ -55,9 +55,9 @@
 | | ... | - dut_to_tg_if2_ip - DUT second interface IP address. Type: string
 | | ... | - tg_to_dut_if1_ip - TG first interface IP address. Type: string
 | | ... | - tg_to_dut_if2_ip - TG second interface IP address. Type: string
-| | Path for 2-node testing is set | ${nodes['TG']} | ${nodes['DUT1']}
+| | Configure path in 2-node circular topology | ${nodes['TG']} | ${nodes['DUT1']}
 | | ...                            | ${nodes['TG']}
-| | Interfaces in 2-node path are up
+| | Set interfaces in 2-node circular topology up
 | | Vpp Set If IPv6 Addr | ${dut_node} | ${dut_to_tg_if1}
 | | ...                  | ${dut_to_tg_if1_ip6} | ${ip6_plen}
 | | Vpp Set If IPv6 Addr | ${dut_node} | ${dut_to_tg_if2}
@@ -70,7 +70,7 @@
 | | Set Test Variable | ${tg_to_dut_if1_ip} | ${tg_to_dut_if1_ip6}
 | | Set Test Variable | ${tg_to_dut_if2_ip} | ${tg_to_dut_if2_ip6}
 
-| Send Packet and Verify Marking
+| Send packet and verify marking
 | | [Documentation] | Send packet and verify DSCP of the received packet.
 | | ...
 | | ... | *Arguments:*
@@ -85,7 +85,7 @@
 | | ...
 | | ... | *Example:*
 | | ... | \| ${dscp}= \| DSCP AF22 \|
-| | ... | \| Send Packet and Verify Marking \| ${nodes['TG']} \| eth1 \| eth2 \
+| | ... | \| Send packet and verify marking \| ${nodes['TG']} \| eth1 \| eth2 \
 | | ... | \| 08:00:27:87:4d:f7 \| 52:54:00:d4:d8:22 \| 192.168.122.2 \
 | | ... | \| 192.168.122.1 \| ${dscp} \|
 | | [Arguments] | ${node} | ${tx_if} | ${rx_if} | ${src_mac} | ${dst_mac}

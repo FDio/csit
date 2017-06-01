@@ -18,8 +18,8 @@
 | Resource | resources/libraries/robot/ipv4.robot
 | Library | resources.libraries.python.Trace
 | Force Tags | HW_ENV | VM_ENV | 3_NODE_DOUBLE_LINK_TOPO
-| Test Setup | Func Test Setup
-| Test Teardown | Func Test Teardown
+| Test Setup | Set up functional test
+| Test Teardown | Tear down functional test
 | Documentation | *DHCPv4 Client related test cases*
 
 *** Variables ***
@@ -36,11 +36,11 @@
 | | ...             | hostname and check if DHCPv4 DISCOVER message contains all
 | | ...             | required fields with expected values.
 | | ...
-| | Given Path for 2-node testing is set
+| | Given Configure path in 2-node circular topology
 | |       ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
-| | And   Interfaces in 2-node path are up
+| | And   Set interfaces in 2-node circular topology up
 | | When  Set DHCP client on Interface | ${dut_node} | ${dut_to_tg_if1}
-| | Then  Check DHCP DISCOVER header | ${tg_node}
+| | Then  Verify DHCP DISCOVER header | ${tg_node}
 | |       ... | ${tg_to_dut_if1} | ${dut_to_tg_if1_mac}
 
 | TC02: VPP sends a DHCPv4 DISCOVER with hostname
@@ -48,25 +48,25 @@
 | | ...             | and check if DHCPv4 DISCOVER message contains all required
 | | ...             | fields with expected values.
 | | ...
-| | Given Path for 2-node testing is set
+| | Given Configure path in 2-node circular topology
 | |       ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
-| | And   Interfaces in 2-node path are up
+| | And   Set interfaces in 2-node circular topology up
 | | When  Set DHCP client on Interface | ${dut_node} | ${dut_to_tg_if1}
 | |       ... | ${client_hostname}
-| | Then  Check DHCP DISCOVER header | ${tg_node}
+| | Then  Verify DHCP DISCOVER header | ${tg_node}
 | |       ... | ${tg_to_dut_if1} | ${dut_to_tg_if1_mac} | ${client_hostname}
 
 | TC03: VPP sends DHCPv4 REQUEST after OFFER
 | | [Documentation] | Configure DHCPv4 client on interface to TG and check if
 | | ...             | DHCPv4 REQUEST message contains all required fields.
 | | ...
-| | Given Path for 2-node testing is set
+| | Given Configure path in 2-node circular topology
 | |       ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
-| | And   Interfaces in 2-node path are up
+| | And   Set interfaces in 2-node circular topology up
 | | And   VPP Route Add | ${dut_node} | 255.255.255.255 | 32 | ${NONE} | local
 | |       ... | ${FALSE} | ${NONE}
 | | When  Set DHCP client on Interface | ${dut_node} | ${dut_to_tg_if1}
-| | Then  Check DHCP REQUEST after OFFER | ${tg_node} | ${tg_to_dut_if1}
+| | Then  Verify DHCP REQUEST after OFFER | ${tg_node} | ${tg_to_dut_if1}
 | |       ... | ${tg_to_dut_if1_mac} | ${server_ip}
 | |       ... | ${dut_to_tg_if1_mac} | ${client_ip} | ${client_mask}
 
@@ -76,14 +76,14 @@
 | | ...             | sends DHCPv4 OFFER with different XID as in DHCPv4
 | | ...             | DISCOVER, DHCPv4 REQUEST message shouldn't be sent.
 | | ...
-| | Given Path for 2-node testing is set
+| | Given Configure path in 2-node circular topology
 | |       ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
-| | And   Interfaces in 2-node path are up
+| | And   Set interfaces in 2-node circular topology up
 | | And   VPP Route Add | ${dut_node} | 255.255.255.255 | 32 | ${NONE} | local
 | |       ... | ${FALSE} | ${NONE}
 | | When  Set DHCP client on Interface | ${dut_node} | ${dut_to_tg_if1}
 | | Then  Run Keyword And Expect Error | DHCP REQUEST Rx timeout
-| |       ... | Check DHCP REQUEST after OFFER | ${tg_node} | ${tg_to_dut_if1}
+| |       ... | Verify DHCP REQUEST after OFFER | ${tg_node} | ${tg_to_dut_if1}
 | |       ... | ${tg_to_dut_if1_mac} | ${server_ip}
 | |       ... | ${dut_to_tg_if1_mac} | ${client_ip} | ${client_mask}
 | |       ... | offer_xid=${own_xid}
@@ -93,24 +93,24 @@
 | | ...             | Address is checked with ICMP echo request and there should
 | | ...             | be no reply for echo request when lease has expired.
 | | ...
-| | Given Path for 2-node testing is set
+| | Given Configure path in 2-node circular topology
 | |       ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
-| | And   Interfaces in 2-node path are up
+| | And   Set interfaces in 2-node circular topology up
 | | And   VPP Route Add | ${dut_node} | 255.255.255.255 | 32 | ${NONE} | local
 | |       ... | ${FALSE} | ${NONE}
 | | When  Set DHCP client on Interface | ${dut_node} | ${dut_to_tg_if1}
-| | And   Send IP configuration to client via DHCP
+| | And   Configure IP on client via DHCP
 | |       ... | ${tg_node} | ${tg_to_dut_if1}
 | |       ... | ${tg_to_dut_if1_mac} | ${server_ip}
 | |       ... | ${client_ip} | ${client_mask}
 | |       ... | ${lease_time}
 | | And   Add Arp On Dut | ${dut_node} | ${dut_to_tg_if1} | ${server_ip}
 | |       ... | ${tg_to_dut_if1_mac}
-| | Then  Node replies to ICMP echo request | ${tg_node} | ${tg_to_dut_if1}
+| | Then  Send ICMP echo request and verify answer | ${tg_node} | ${tg_to_dut_if1}
 | |       ... | ${dut_to_tg_if1_mac} | ${tg_to_dut_if1_mac} | ${client_ip}
 | |       ... | ${server_ip}
 | | And   Sleep | ${lease_time}
 | | And   Run Keyword And Expect Error | ICMP echo Rx timeout
-| |       ... | Node replies to ICMP echo request | ${tg_node}
+| |       ... | Send ICMP echo request and verify answer | ${tg_node}
 | |       ... | ${tg_to_dut_if1} | ${dut_to_tg_if1_mac} | ${tg_to_dut_if1_mac}
 | |       ... | ${client_ip} | ${server_ip}

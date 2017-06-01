@@ -17,11 +17,11 @@
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | PDRCHK
 | ... | NIC_Intel-X520-DA2 | ETH | IP6FWD | SCALE | FIB_2M
 | ...
-| Suite Setup | 3-node Performance Suite Setup with DUT's NIC model
+| Suite Setup | Set up 3-node performance topology with DUT's NIC model
 | ... | L3 | Intel-X520-DA2
-| Suite Teardown | 3-node Performance Suite Teardown
+| Suite Teardown | Tear down 3-node performance topology
 | ...
-| Test Setup | Performance test setup
+| Test Setup | Set up performance test
 | Test Teardown | Performance pdrchk test teardown
 | ...
 | Documentation | *Reference PDR throughput IPv6 routing verify test cases*
@@ -65,12 +65,12 @@
 | | ${get_framesize}= | Get Frame Size | ${framesize}
 | | ...
 | | Given Add '${wt}' worker threads and rxqueues '${rxq}' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add PCI devices to DUTs in 3-node single link topology
 | | And Run Keyword If | ${get_framesize} < ${1522}
-| | ... | Add No Multi Seg to all DUTs
-| | And Add Heapsize Config to all DUTs | 3G
+| | ... | Add no multi seg to all DUTs
+| | And Add heapsize config to all DUTs | 3G
 | | And Apply startup configuration on all VPP DUTs
-| | And Scale IPv6 forwarding initialized in a 3-node circular topology
+| | And Initialize IPv6 forwarding with scaling in 3-node circular topology
 | | ... | ${rts_per_flow}
 | | Then Traffic should pass with partial loss | ${perf_trial_duration}
 | | ... | ${rate} | ${framesize} | ${traffic_profile}

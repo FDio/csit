@@ -17,11 +17,11 @@
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | PDRCHK
 | ... | NIC_Intel-X520-DA2 | ETH | IP6FWD | BASE | IP6BASE
 | ...
-| Suite Setup | 3-node Performance Suite Setup with DUT's NIC model
+| Suite Setup | Set up 3-node performance topology with DUT's NIC model
 | ... | L3 | Intel-X520-DA2
-| Suite Teardown | 3-node Performance Suite Teardown
+| Suite Teardown | Tear down 3-node performance topology
 | ...
-| Test Setup | Performance test setup
+| Test Setup | Set up performance test
 | Test Teardown | Performance pdrchk test teardown
 | ...
 | Documentation | *Reference PDR throughput IPv6 routing verify test cases*
@@ -64,11 +64,11 @@
 | | ${get_framesize}= | Get Frame Size | ${framesize}
 | | ...
 | | Given Add '${wt}' worker threads and rxqueues '${rxq}' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
+| | And Add PCI devices to DUTs in 3-node single link topology
 | | And Run Keyword If | ${get_framesize} < ${1522}
-| | ... | Add No Multi Seg to all DUTs
+| | ... | Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | And IPv6 forwarding initialized in a 3-node circular topology
+| | And Initialize IPv6 forwarding in 3-node circular topology
 | | Then Traffic should pass with partial loss | ${perf_trial_duration}
 | | ... | ${rate} | ${framesize} | ${traffic_profile}
 | | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}

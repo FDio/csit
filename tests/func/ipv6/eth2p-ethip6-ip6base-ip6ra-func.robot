@@ -20,8 +20,8 @@
 | Resource | resources/libraries/robot/traffic.robot
 | Library | resources.libraries.python.Trace
 | Force Tags | HW_ENV | VM_ENV | 3_NODE_SINGLE_LINK_TOPO
-| Test Setup | Func Test Setup
-| Test Teardown | Func Test Teardown
+| Test Setup | Set up functional test
+| Test Teardown | Tear down functional test
 | Documentation | *IPv6 Router Advertisement test cases*
 | ...
 | ... | RFC4861 Neighbor Discovery. Encapsulations: Eth-IPv6-RA on links
@@ -50,7 +50,7 @@
 | | And Vpp Set If Ipv6 Addr | ${dut1_node}
 | | ... | ${dut1_to_tg} | ${dut1_to_tg_ip} | ${prefix_length}
 | | When Vpp RA Send After Interval | ${dut1_node} | ${dut1_to_tg}
-| | Then Receive And Check Router Advertisement Packet
+| | Then Receive and verify router advertisement packet
 | | ... | ${tg_node} | ${tg_to_dut1} | ${dut1_to_tg_mac}
 
 | TC02: DUT retransmits RA on IPv6 enabled interface after a set interval
@@ -68,7 +68,7 @@
 | | When Vpp RA Send After Interval | ${dut1_node} | ${dut1_to_tg}
 | | ... | interval=${interval}
 | | :FOR | ${n} | IN RANGE | ${2}
-| | | Then Receive And Check Router Advertisement Packet
+| | | Then Receive and verify router advertisement packet
 | | | ... | ${tg_node} | ${tg_to_dut1} | ${dut1_to_tg_mac} | ${interval}
 
 | TC03: DUT responds to Router Solicitation request

@@ -21,8 +21,8 @@
 | Resource | resources/libraries/robot/traffic.robot
 | Library | resources.libraries.python.Trace
 | Force Tags | HW_ENV | VM_ENV | 3_NODE_SINGLE_LINK_TOPO
-| Test Setup | Func Test Setup
-| Test Teardown | Func Test Teardown
+| Test Setup | Set up functional test
+| Test Teardown | Tear down functional test
 | Documentation | *Source RPF check on IPv4 test cases*
 | ...
 | ... | *[Top] Network Topologies:* TG - DUT1 - DUT2 - TG
@@ -51,9 +51,9 @@
 | | ... | [Cfg] On DUT1 setup IP source check.
 | | ... | [Ver] Make TG verify matching packets which source address
 | | ... | is not in routes are dropped.
-| | Given Path for 3-node testing is set
+| | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
-| | And Interfaces in 3-node path are up
+| | And Set interfaces in 3-node circular topology up
 | | And Set Interface Address | ${dut1_node}
 | | ... | ${dut1_to_tg} | ${dut1_to_tg_ip} | ${prefix_length}
 | | And Set Interface Address | ${dut1_node}
@@ -70,27 +70,27 @@
 | | And Vpp Route Add
 | | ... | ${dut1_node} | ${pass_test_src_ip} | ${prefix_length}
 | | ... | ${dut1_to_tg_ip_GW} | ${dut1_to_tg} | resolve_attempts=${NONE}
-| | And L2 setup xconnect on DUT
+| | And Configure L2XC
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${dut2_to_tg}
-| | Then Send Packet And Check Headers | ${tg_node}
+| | Then Send packet and verify headers | ${tg_node}
 | | ... | ${pass_test_src_ip} | ${test_dst_ip} | ${tg_to_dut1}
 | | ... | ${tg_to_dut1_mac} | ${dut1_to_tg_mac} | ${tg_to_dut2}
 | | ... | ${dut1_to_dut2_mac} | ${tg_to_dut2_mac}
-| | And Send Packet And Check Headers | ${tg_node}
+| | And Send packet and verify headers | ${tg_node}
 | | ... | ${drop_test_src_ip} | ${test_dst_ip} | ${tg_to_dut1}
 | | ... | ${tg_to_dut1_mac} | ${dut1_to_tg_mac} | ${tg_to_dut2}
 | | ... | ${dut1_to_dut2_mac} | ${tg_to_dut2_mac}
 | | ${dut1_to_tg_name}= | Get Interface Name | ${dut1_node} | ${dut1_to_tg}
 | | When VPP IP Source Check Setup | ${dut1_node} | ${dut1_to_tg_name}
-| | Then Send Packet And Check Headers | ${tg_node}
+| | Then Send packet and verify headers | ${tg_node}
 | | ... | ${pass_test_src_ip} | ${test_dst_ip} | ${tg_to_dut1}
 | | ... | ${tg_to_dut1_mac} | ${dut1_to_tg_mac} | ${tg_to_dut2}
 | | ... | ${dut1_to_dut2_mac} | ${tg_to_dut2_mac}
-| | And Send Packet And Check Headers | ${tg_node}
+| | And Send packet and verify headers | ${tg_node}
 | | ... | ${dut1_to_tg_ip_GW} | ${test_dst_ip} | ${tg_to_dut1}
 | | ... | ${tg_to_dut1_mac} | ${dut1_to_tg_mac} | ${tg_to_dut2}
 | | ... | ${dut1_to_dut2_mac} | ${tg_to_dut2_mac}
-| | And Send packet from Port to Port should failed | ${tg_node}
+| | And Packet transmission from port to port should fail | ${tg_node}
 | | ... | ${drop_test_src_ip} | ${test_dst_ip} | ${tg_to_dut1}
 | | ... | ${tg_to_dut1_mac} | ${dut1_to_tg_mac} | ${tg_to_dut2}
 | | ... | ${dut1_to_dut2_mac} | ${tg_to_dut2_mac}
@@ -101,9 +101,9 @@
 | | ... | [Cfg] On DUT1 setup IP source check.
 | | ... | [Ver] Make TG verify matching packets on non-enabled RPF interface
 | | ... | are passed.
-| | Given Path for 3-node testing is set
+| | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
-| | And Interfaces in 3-node path are up
+| | And Set interfaces in 3-node circular topology up
 | | And Set Interface Address | ${dut1_node}
 | | ... | ${dut1_to_tg} | ${dut1_to_tg_ip} | ${prefix_length}
 | | And Set Interface Address | ${dut1_node}
@@ -120,15 +120,15 @@
 | | And Vpp Route Add
 | | ... | ${dut1_node} | ${pass_test_src_ip} | ${prefix_length}
 | | ... | ${dut1_to_tg_ip_GW} | ${dut1_to_tg} | resolve_attempts=${NONE}
-| | And L2 setup xconnect on DUT
+| | And Configure L2XC
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${dut2_to_tg}
 | | ${dut1_to_tg_name}= | Get Interface Name | ${dut1_node} | ${dut1_to_tg}
 | | When VPP IP Source Check Setup | ${dut1_node} | ${dut1_to_tg_name}
-| | Then Send Packet And Check Headers | ${tg_node}
+| | Then Send packet and verify headers | ${tg_node}
 | | ... | ${test_dst_ip} | ${pass_test_src_ip} | ${tg_to_dut2}
 | | ... | ${tg_to_dut2_mac} | ${dut1_to_dut2_mac} | ${tg_to_dut1}
 | | ... | ${dut1_to_tg_mac} | ${tg_to_dut1_mac}
-| | And Send Packet And Check Headers | ${tg_node}
+| | And Send packet and verify headers | ${tg_node}
 | | ... | ${test_dst_ip} | ${dut1_to_tg_ip_GW} | ${tg_to_dut2}
 | | ... | ${tg_to_dut2_mac} | ${dut1_to_dut2_mac} | ${tg_to_dut1}
 | | ... | ${dut1_to_tg_mac} | ${tg_to_dut1_mac}
