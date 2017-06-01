@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa5d592f_dbbd4c04",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-06-01T11:00:25Z",
+      "side": 1,
+      "message": "So it JSON or XML?",
+      "range": {
+        "startLine": 30,
+        "startChar": 72,
+        "endLine": 30,
+        "endChar": 97
+      },
+      "revId": "0fe61f336423cbfcb4dce0d73e7bc09c18741fd3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa5d592f_9b37d4b0",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 7
+      },
+      "lineNbr": 332,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-06-01T11:00:25Z",
+      "side": 1,
+      "message": "So it JSON or XML",
+      "range": {
+        "startLine": 332,
+        "startChar": 30,
+        "endLine": 332,
+        "endChar": 55
+      },
+      "revId": "0fe61f336423cbfcb4dce0d73e7bc09c18741fd3",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
