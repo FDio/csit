@@ -18,8 +18,8 @@
 | Resource | resources/libraries/robot/l2_traffic.robot
 | Library  | resources.libraries.python.Trace
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | HW_ENV | VM_ENV
-| Test Setup | Func Test Setup
-| Test Teardown | Func Test Teardown
+| Test Setup | Set up functional test
+| Test Teardown | Tear down functional test
 | Documentation | *L2 cross-connect with QinQ test cases*
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology with
@@ -53,17 +53,17 @@
 | | ... | Make TG send ICMPv4 Echo Req in both directions between two of
 | | ... | its interfaces to be switched by DUT1 and DUT2; verify all
 | | ... | packets are received. [Ref] IEEE 802.1ad.
-| | Given Path for 3-node testing is set
+| | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
-| | And Interfaces in 3-node path are up
-| | When VLAN subinterfaces initialized on 3-node topology
+| | And Set interfaces in 3-node circular topology up
+| | When Initialize VLAN sub-interfaces in 3-node circular topology
 | | ... | ${dut1_node} | ${dut1_to_dut2} | ${dut2_node} | ${dut2_to_dut1} | ${subid}
 | | ... | ${outer_vlan_id} | ${inner_vlan_id} | ${type_subif}
-| | And L2 tag rewrite method setup on interfaces
+| | And Configure L2 tag rewrite method on interfaces
 | | ... | ${dut1_node} | ${subif_index_1} | ${dut2_node} | ${subif_index_2}
 | | ... | ${tag_rewrite_method}
-| | And Interfaces and VLAN sub-interfaces inter-connected using L2-xconnect
+| | And Connect interfaces and VLAN sub-interfaces using L2XC
 | | ... | ${dut1_node} | ${dut1_to_tg} | ${subif_index_1}
 | | ... | ${dut2_node} | ${dut2_to_tg} | ${subif_index_2}
-| | Then Send and receive ICMP Packet
+| | Then Send ICMP packet and verify received packet
 | | ... | ${tg_node} | ${tg_to_dut1} | ${tg_to_dut2}

@@ -17,7 +17,7 @@
 | Documentation | Keywords for managing Netconf communication.
 
 *** Keywords ***
-| Netconf session is established
+| Netconf session should be established
 | | [Documentation] | Open a communication channel on the Netconf session\
 | | ... | and exchange hello messages.
 | | ...
@@ -26,7 +26,7 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Netconf session is established \| ${nodes['DUT1']} \|
+| | ... | \| Netconf session should be established \| ${nodes['DUT1']} \|
 | | [Arguments] | ${node}
 | | Create session | ${node} | ${hello}
 

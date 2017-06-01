@@ -53,7 +53,7 @@
 | TC03: Honeycomb can configure Policer with increased values of CIR (900kbps)
 | | [Documentation] | Checks if Honeycomb can configure Policer\
 | | ... | with increased values of CIR.
-| | [Teardown] | Policer test teardown | ${node}
+| | [Teardown] | Tear down policer test | ${node}
 | | Given Policer Operational Data From Honeycomb Should Be empty | ${node}
 | | When Honeycomb configures Policer | ${node} | ${policer_data_2}
 | | Then Policer Operational Data From Honeycomb Should Be | ${node}
@@ -62,7 +62,7 @@
 | TC04: Honeycomb can configure Packets-Per-Second Based Policer
 | | [Documentation] | Checks if Honeycomb can configure Policer\
 | | ... | based on rate-type measured in pps.
-| | [Teardown] | Policer test teardown | ${node}
+| | [Teardown] | Tear down policer test | ${node}
 | | Given Policer Operational Data From Honeycomb Should Be empty | ${node}
 | | When Honeycomb configures Policer | ${node} | ${policer_data_3}
 | | Then Policer Operational Data From Honeycomb Should Be | ${node}
@@ -78,7 +78,7 @@
 | | ... | ${acl_tables['hc_acl_session']['match']} | AND
 | | ... | Honeycomb removes ACL table | ${node}
 | | ... | ${acl_tables['hc_acl_table']['name']} | AND
-| | ... | Policer test teardown | ${node}
+| | ... | Tear down policer test | ${node}
 | | Given Honeycomb configures Policer | ${node} | ${policer_data}
 | | And ACL table from Honeycomb should not exist
 | | ... | ${node} | ${acl_tables['hc_acl_table']['name']}
@@ -100,7 +100,7 @@
 | | ... | Packet on DUT1 is marked with DSCP tag. Verifies if DUT1 sends\
 | | ... | correct IPv4 TCP packet with correct DSCP on the second link to TG.
 | | [Teardown] | Show Packet Trace on All DUTs | ${nodes}
-| | Given Path for 2-node testing is set
+| | Given Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | And Honeycomb configures Policer | ${dut_node} | ${policer_data_3}
 | | And ACL table from Honeycomb should not exist
@@ -112,17 +112,17 @@
 | | ... | ${acl_tables['hc_acl_session']}
 | | And Honeycomb enables policer on interface
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${acl_tables['hc_acl_table']['name']}
-| | And Honeycomb sets interface state | ${dut_node} | ${dut_to_tg_if1} | up
-| | And Honeycomb sets interface state | ${dut_node} | ${dut_to_tg_if2} | up
-| | And Honeycomb sets interface ipv4 address with prefix | ${dut_node}
+| | And Honeycomb configures interface state | ${dut_node} | ${dut_to_tg_if1} | up
+| | And Honeycomb configures interface state | ${dut_node} | ${dut_to_tg_if2} | up
+| | And Honeycomb sets interface IPv4 address with prefix | ${dut_node}
 | | ... | ${dut_to_tg_if1} | ${dut_to_tg_if1_ip} | ${prefix_length}
-| | And Honeycomb sets interface ipv4 address with prefix | ${dut_node}
+| | And Honeycomb sets interface IPv4 address with prefix | ${dut_node}
 | | ... | ${dut_to_tg_if2} | ${dut_to_tg_if2_ip} | ${prefix_length}
-| | And Honeycomb adds interface ipv4 neighbor
+| | And Honeycomb adds interface IPv4 neighbor
 | | ... | ${dut_node} | ${dut_to_tg_if2} | ${tg_to_dut_if2_ip}
 | | ... | ${tg_to_dut_if2_mac}
 | | And interfaceCLI.VPP Node Interfaces Ready Wait | ${dut_node}
-| | Then Honeycomb Send Packet and Verify Marking | ${tg_node}
+| | Then Honeycomb Send packet and verify marking | ${tg_node}
 | | ... | ${tg_to_dut_if1}
 | | ... | ${tg_to_dut_if2} | ${tg_to_dut_if1_mac} | ${dut_to_tg_if1_mac}
 | | ... | ${tg_to_dut_if1_ip} | ${tg_to_dut_if2_ip} | ${dscp_number}

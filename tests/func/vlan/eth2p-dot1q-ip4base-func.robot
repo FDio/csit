@@ -20,8 +20,8 @@
 | Library  | resources.libraries.python.Trace
 | Library | resources.libraries.python.IPv6Util
 | Force Tags | 3_NODE_DOUBLE_LINK_TOPO | VM_ENV | HW_ENV | VPP_VM_ENV
-| Test Setup | Func Test Setup
-| Test Teardown | Func Test Teardown
+| Test Setup | Set up functional test
+| Test Teardown | Tear down functional test
 | Documentation | *IPv4 with VLAN subinterfaces*
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-TG 2-node circular topology
@@ -48,7 +48,7 @@
 *** Test Cases ***
 | TC01: Process untagged send tagged
 | | Given Vlan Test Setup
-| | Then Send Packet And Check Headers
+| | Then Send packet and verify headers
 | | ... | ${tg_node} | ${ip4_net0_2} | ${ip4_net2_2} | ${tg_to_dut_if1}
 | | ... | ${tg_to_dut_if1_mac} | ${dut_to_tg_if1_mac} | ${tg_to_dut_if2}
 | | ... | ${dut_to_tg_if2_mac} | ${tg_to_dut_if2_mac}
@@ -58,7 +58,7 @@
 # It doesn't work with virtio
 | | [Tags] | EXPECTED_FAILING
 | | Given Vlan Test Setup
-| | Then Send Packet And Check Headers
+| | Then Send packet and verify headers
 | | ... | ${tg_node} | ${ip4_net2_2} | ${ip4_net0_2} | ${tg_to_dut_if2}
 | | ... | ${tg_to_dut_if2_mac} | ${dut_to_tg_if2_mac} | ${tg_to_dut_if1}
 | | ... | ${dut_to_tg_if1_mac} | ${tg_to_dut_if1_mac}
@@ -68,13 +68,13 @@
 # It doesn't work with virtio
 | | [Tags] | EXPECTED_FAILING
 | | Given Vlan Test Setup
-| | Then Send Packet And Check Headers
+| | Then Send packet and verify headers
 | | ... | ${tg_node} | ${ip4_net1_2} | ${ip4_net2_2} | ${tg_to_dut_if2}
 | | ... | ${tg_to_dut_if2_mac} | ${dut_to_tg_if2_mac} | ${tg_to_dut_if2}
 | | ... | ${dut_to_tg_if2_mac} | ${tg_to_dut_if2_mac}
 | | ... | encaps_tx=Dot1q | vlan_tx=${tag_1}
 | | ... | encaps_rx=Dot1q | vlan_rx=${tag_2}
-| | And Send Packet And Check Headers
+| | And Send packet and verify headers
 | | ... | ${tg_node} | ${ip4_net2_2} | ${ip4_net1_2} | ${tg_to_dut_if2}
 | | ... | ${tg_to_dut_if2_mac} | ${dut_to_tg_if2_mac} | ${tg_to_dut_if2}
 | | ... | ${dut_to_tg_if2_mac} | ${tg_to_dut_if2_mac}
@@ -83,13 +83,13 @@
 
 *** Keywords ***
 | Vlan Test Setup
-| | Path for 2-node testing is set
+| | Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
-| | Interfaces in 2-node path are up
+| | Set interfaces in 2-node circular topology up
 | |
-| | ${vlan1_name} | ${vlan1_index}= | Vlan Subinterface Created
+| | ${vlan1_name} | ${vlan1_index}= | Create vlan sub-interface
 | | ... | ${dut_node} | ${dut_to_tg_if2} | ${tag_1}
-| | ${vlan2_name} | ${vlan2_index}= | Vlan Subinterface Created
+| | ${vlan2_name} | ${vlan2_index}= | Create vlan sub-interface
 | | ... | ${dut_node} | ${dut_to_tg_if2} | ${tag_2}
 | |
 | | Set Interface Address | ${dut_node}

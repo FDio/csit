@@ -18,8 +18,8 @@
 | Resource | resources/libraries/robot/qemu.robot
 | Library  | resources.libraries.python.Trace
 | Force Tags | HW_ENV | VM_ENV | SKIP_VPP_PATCH
-| Test Setup | Func Test Setup
-| Test Teardown | Func Test Teardown
+| Test Setup | Set up functional test
+| Test Teardown | Tear down functional test
 | Documentation | *L2 bridge-domain test cases*
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology
@@ -47,40 +47,40 @@
 | | ... | TG verify ICMPv4 Echo Req pkts are switched thru DUT1 and DUT2
 | | ... | in both directions and are correct on receive. [Ref]
 | | [Tags] | 3_NODE_SINGLE_LINK_TOPO
-| | Given Path for 3-node testing is set
+| | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
-| | And Interfaces in 3-node path are up
-| | When Bridge domain on DUT node is created | ${dut1_node} | ${bd_id1}
+| | And Set interfaces in 3-node circular topology up
+| | When Create bridge domain | ${dut1_node} | ${bd_id1}
 | | ...                                       | learn=${FALSE}
-| | And Interface is added to bridge domain | ${dut1_node} | ${dut1_to_tg}
+| | And Add interface to bridge domain | ${dut1_node} | ${dut1_to_tg}
 | | ...                                     | ${bd_id1}
-| | And Interface is added to bridge domain | ${dut1_node} | ${dut1_to_dut2}
+| | And Add interface to bridge domain | ${dut1_node} | ${dut1_to_dut2}
 | | ...                                     | ${bd_id1}
-| | And Destination port is added to L2FIB on DUT node | ${tg_node}
+| | And Add destination port to L2FIB | ${tg_node}
 | | ...                                                | ${tg_to_dut1}
 | | ...                                                | ${dut1_node}
 | | ...                                                | ${dut1_to_tg}
 | | ...                                                | ${bd_id1}
-| | And Destination port is added to L2FIB on DUT node | ${tg_node}
+| | And Add destination port to L2FIB | ${tg_node}
 | | ...                                                | ${tg_to_dut2}
 | | ...                                                | ${dut1_node}
 | | ...                                                | ${dut1_to_dut2}
 | | ...                                                | ${bd_id1}
-| | And Bridge domain on DUT node is created | ${dut2_node} | ${bd_id2}
+| | And Create bridge domain | ${dut2_node} | ${bd_id2}
 | | ...                                      | learn=${FALSE}
-| | And Interface is added to bridge domain | ${dut2_node} | ${dut2_to_tg}
+| | And Add interface to bridge domain | ${dut2_node} | ${dut2_to_tg}
 | | ...                                     | ${bd_id2}
-| | And Interface is added to bridge domain | ${dut2_node} | ${dut2_to_dut1}
+| | And Add interface to bridge domain | ${dut2_node} | ${dut2_to_dut1}
 | | ...                                     | ${bd_id2}
-| | And Destination port is added to L2FIB on DUT node | ${tg_node}
+| | And Add destination port to L2FIB | ${tg_node}
 | | ...                                                | ${tg_to_dut1}
 | | ...                                                | ${dut2_node}
 | | ...                                                | ${dut2_to_dut1}
 | | ...                                                | ${bd_id2}
-| | And Destination port is added to L2FIB on DUT node | ${tg_node}
+| | And Add destination port to L2FIB | ${tg_node}
 | | ...                                                | ${tg_to_dut2}
 | | ...                                                | ${dut2_node}
 | | ...                                                | ${dut2_to_tg}
 | | ...                                                | ${bd_id2}
-| | Then Send and receive ICMPv4 bidirectionally | ${tg_node} | ${tg_to_dut1}
+| | Then Send ICMPv4 bidirectionally and verify received packets | ${tg_node} | ${tg_to_dut1}
 | | ...                                          | ${tg_to_dut2}

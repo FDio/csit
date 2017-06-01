@@ -26,7 +26,7 @@
 | Documentation | Traffic keywords
 
 *** Keywords ***
-| Send Packet And Check Headers
+| Send packet and verify headers
 | | [Documentation] | Sends packet from IP (with source mac) to IP
 | | ...             | (with dest mac). There has to be 4 MAC addresses
 | | ...             | when using 2 node +
@@ -62,7 +62,7 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Send Packet And Check Headers \| ${nodes['TG']} \| 10.0.0.1 \
+| | ... | \| Send packet and verify headers \| ${nodes['TG']} \| 10.0.0.1 \
 | | ... | \| 32.0.0.1 \| eth2 \| 08:00:27:ee:fd:b3 \| 08:00:27:a2:52:5b \
 | | ... | \| eth3 \| 08:00:27:4d:ca:7a \| 08:00:27:7d:fd:10 \|
 | | ...
@@ -94,7 +94,7 @@
 | | Run Traffic Script On Node | send_icmp_check_headers.py | ${tg_node} |
 | | ... | ${args}
 
-| Send packet from Port to Port should failed
+| Packet transmission from port to port should fail
 | | [Documentation] | Sends packet from ip (with specified mac) to ip
 | | ...             | (with dest mac). Using keyword : Send packet And Check
 | | ...             | Headers and subsequently checks the return value
@@ -119,7 +119,7 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Send packet from Port to Port should failed \| ${nodes['TG']} \
+| | ... | \| Packet transmission from port to port should fail \| ${nodes['TG']} \
 | | ... | \| 10.0.0.1 \ \| 32.0.0.1 \| eth2 \| 08:00:27:ee:fd:b3 \
 | | ... | \| 08:00:27:a2:52:5b \| eth3 \| 08:00:27:4d:ca:7a \
 | | ... | \| 08:00:27:7d:fd:10 \|
@@ -136,7 +136,7 @@
 | | ... | Run Traffic Script On Node | send_icmp_check_headers.py
 | | ... | ${tg_node} | ${args}
 
-| Send Packet And Check ARP Request
+| Send packet and verify ARP request
 | | [Documentation] | Send IP packet from tx_port and check if ARP Request\
 | | ...             | packet is received on rx_port.
 | | ...
@@ -183,7 +183,7 @@
 | | ... | --rx_arp_src_ip ${rx_arp_src_ip} | --rx_arp_dst_ip ${rx_arp_dst_ip}
 | | Run Traffic Script On Node | send_icmp_check_arp.py | ${tg_node} | ${args}
 
-| Send TCP or UDP packet
+| Send TCP or UDP packet and verify received packet
 | | [Documentation] | Sends TCP or UDP packet with specified source
 | | ...             | and destination port.
 | | ...
@@ -208,7 +208,7 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Send TCP or UDP packet \| ${nodes['TG']} \
+| | ... | \| Send TCP or UDP packet and verify received packet \| ${nodes['TG']} \
 | | ... | \| 16.0.0.1 \| 32.0.0.1 \| eth2 \| 08:00:27:cc:4f:54 \
 | | ... | \| eth4 \| 08:00:27:c9:6a:d5 \| TCP \| 20 \| 80 \|
 | | ...
@@ -229,7 +229,7 @@
 | | Run Traffic Script On Node | send_tcp_udp.py
 | | ... | ${tg_node} | ${args}
 
-| Send TCP or UDP packet should failed
+| TCP or UDP packet transmission should fail
 | | [Documentation] | Sends TCP or UDP packet with specified source
 | | ...             | and destination port.
 | | ...
@@ -254,7 +254,7 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Send TCP or UDP packet should failed \| ${nodes['TG']} \
+| | ... | \| TCP or UDP packet transmission should fail \| ${nodes['TG']} \
 | | ... | \| 16.0.0.1 \| 32.0.0.1 \| eth2 \| 08:00:27:cc:4f:54 \
 | | ... | \| eth4 \| 08:00:27:c9:6a:d5 \| TCP \| 20 \| 80 \|
 | | ...
@@ -276,7 +276,7 @@
 | | ... | Run Traffic Script On Node | send_tcp_udp.py
 | | ... | ${tg_node} | ${args}
 
-| Receive And Check Router Advertisement Packet
+| Receive and verify router advertisement packet
 | | [Documentation] | Wait until RA packet is received and then verify\
 | | ...             | specific fields of received RA packet.
 | | ...
@@ -293,7 +293,7 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Receive And Check Router Advertisement Packet \
+| | ... | \| Receive and verify router advertisement packet \
 | | ... | \| ${nodes['DUT1']} \| eth2 \| 08:00:27:cc:4f:54 \|
 | | ...
 | | [Arguments] | ${node} | ${rx_port} | ${src_mac} | ${interval}=${0}
@@ -304,7 +304,7 @@
 | | ... | --interval ${interval}
 | | Run Traffic Script On Node | check_ra_packet.py | ${node} | ${args}
 
-| Send Router Solicitation and check response
+| Send router solicitation and verify response
 | | [Documentation] | Send RS packet, wait for response and then verify\
 | | ...             | specific fields of received RA packet.
 | | ...
@@ -322,7 +322,7 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Send Router Solicitation and check response \
+| | ... | \| Send router solicitation and verify response \
 | | ... | \| ${nodes['TG']} \| ${nodes['DUT1']} \| eth2 \
 | | ... | \| GigabitEthernet0/8/0 \| 10::10 \|
 | | ...
@@ -376,7 +376,7 @@
 | | ...                 | --src_ip | ${src_ip} | --dst_ip | ${tgt_ip}
 | | Run Traffic Script On Node | arp_request.py | ${tg_node} | ${args}
 
-| Send ARP Request should failed
+| ARP request should fail
 | | [Documentation] | Send ARP Request and
 | | ...             | the ARP Response should not be received.
 | | ...
@@ -402,7 +402,7 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Send ARP Request should failed \| ${nodes['TG']} \| eth3 \
+| | ... | \| ARP request should fail \| ${nodes['TG']} \| eth3 \
 | | ... | \| 08:00:27:cc:4f:54 \| 08:00:27:c9:6a:d5 \
 | | ... | \| 10.0.0.100 \| 192.168.1.5 \|
 | | ...
@@ -415,7 +415,7 @@
 | | Run Keyword And Expect Error | ARP reply timeout
 | | ... | Run Traffic Script On Node | arp_request.py | ${tg_node} | ${args}
 
-| Send Packets And Check Multipath Routing
+| Send packets and verify multipath routing
 | | [Documentation] | Send 100 IP ICMP packets traffic and check if it is\
 | | ...             | divided into two paths.
 | | ...

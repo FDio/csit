@@ -25,7 +25,7 @@
 | Resource | resources/libraries/robot/honeycomb/tap.robot
 | Resource | resources/libraries/robot/honeycomb/notifications.robot
 | Suite Setup | Run keywords
-| ... | Honeycomb sets interface state
+| ... | Honeycomb configures interface state
 | ... | ${node} | ${interface} | down | AND
 | ... | Honeycomb creates TAP interface
 | ... | ${node} | ${tap_interface} | ${tap_settings}
@@ -41,10 +41,10 @@
 | | Given Interface state from Honeycomb should be
 | | ... | ${node} | ${interface} | down
 | | And Interface state from VAT should be | ${node} | ${interface} | down
-| | And Notification listener is established | ${node}
-| | When Honeycomb sets interface state | ${node} | ${interface} | up
+| | And Notification listener should be established | ${node}
+| | When Honeycomb configures interface state | ${node} | ${interface} | up
 | | Then Honeycomb should send interface state notification | ${interface} | up
-| | When Honeycomb sets interface state | ${node} | ${interface} | down
+| | When Honeycomb configures interface state | ${node} | ${interface} | down
 | | And Honeycomb should send interface state notification | ${interface} | down
 
 | TC02: Honeycomb sends notification on interface deletion
@@ -54,6 +54,6 @@
 | | ... | ${node} | ${tap_interface} | ${tap_settings}
 | | And TAP Operational Data From VAT Should Be
 | | ... | ${node} | ${tap_interface} | ${tap_settings}
-| | And Notification listener is established | ${node}
+| | And Notification listener should be established | ${node}
 | | When Honeycomb removes TAP interface | ${node} | ${tap_interface}
 | | Then Honeycomb should send interface deleted notification | ${tap_interface}

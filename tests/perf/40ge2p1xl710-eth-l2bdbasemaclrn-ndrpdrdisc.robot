@@ -17,12 +17,12 @@
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDRDISC
 | ... | NIC_Intel-XL710 | ETH | L2BDMACLRN | BASE
-| Suite Setup | 3-node Performance Suite Setup with DUT's NIC model
+| Suite Setup | Set up 3-node performance topology with DUT's NIC model
 | ... | L2 | Intel-XL710
-| Suite Teardown | 3-node Performance Suite Teardown
+| Suite Teardown | Tear down 3-node performance topology
 | ...
-| Test Setup | Performance test setup
-| Test Teardown | Performance test teardown | ${min_rate}pps | ${framesize}
+| Test Setup | Set up performance test
+| Test Teardown | Tear down performance discovery test | ${min_rate}pps | ${framesize}
 | ... | ${traffic_profile}
 | ...
 | Documentation | *RFC2544: Pkt throughput L2BD test cases*
@@ -64,12 +64,12 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Add '${wt}' worker threads and rxqueues '${rxq}' in 3-node single-link topo
-| | Add PCI devices to DUTs from 3-node single link topology
+| | Add '${wt}' worker threads and '${rxq}' rxqueues in 3-node single-link circular topology
+| | Add PCI devices to DUTs in 3-node single link topology
 | | ${get_framesize}= | Get Frame Size | ${framesize}
-| | Run Keyword If | ${get_framesize} < ${1522} | Add No Multi Seg to all DUTs
+| | Run Keyword If | ${get_framesize} < ${1522} | Add no multi seg to all DUTs
 | | Apply startup configuration on all VPP DUTs
-| | L2 bridge domain initialized in a 3-node circular topology
+| | Initialize L2 bridge domain in 3-node circular topology
 | | Find NDR using binary search and pps
 | | ... | ${framesize} | ${binary_min} | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
@@ -82,12 +82,12 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Add '${wt}' worker threads and rxqueues '${rxq}' in 3-node single-link topo
-| | Add PCI devices to DUTs from 3-node single link topology
+| | Add '${wt}' worker threads and '${rxq}' rxqueues in 3-node single-link circular topology
+| | Add PCI devices to DUTs in 3-node single link topology
 | | ${get_framesize}= | Get Frame Size | ${framesize}
-| | Run Keyword If | ${get_framesize} < ${1522} | Add No Multi Seg to all DUTs
+| | Run Keyword If | ${get_framesize} < ${1522} | Add no multi seg to all DUTs
 | | Apply startup configuration on all VPP DUTs
-| | L2 bridge domain initialized in a 3-node circular topology
+| | Initialize L2 bridge domain in 3-node circular topology
 | | Find NDR using binary search and pps
 | | ... | ${framesize} | ${binary_min} | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
@@ -100,12 +100,12 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Add '${wt}' worker threads and rxqueues '${rxq}' in 3-node single-link topo
-| | Add PCI devices to DUTs from 3-node single link topology
+| | Add '${wt}' worker threads and '${rxq}' rxqueues in 3-node single-link circular topology
+| | Add PCI devices to DUTs in 3-node single link topology
 | | ${get_framesize}= | Get Frame Size | ${framesize}
-| | Run Keyword If | ${get_framesize} < ${1522} | Add No Multi Seg to all DUTs
+| | Run Keyword If | ${get_framesize} < ${1522} | Add no multi seg to all DUTs
 | | Apply startup configuration on all VPP DUTs
-| | L2 bridge domain initialized in a 3-node circular topology
+| | Initialize L2 bridge domain in 3-node circular topology
 | | Find PDR using binary search and pps
 | | ... | ${framesize} | ${binary_min} | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
@@ -119,12 +119,12 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Add '${wt}' worker threads and rxqueues '${rxq}' in 3-node single-link topo
-| | Add PCI devices to DUTs from 3-node single link topology
+| | Add '${wt}' worker threads and '${rxq}' rxqueues in 3-node single-link circular topology
+| | Add PCI devices to DUTs in 3-node single link topology
 | | ${get_framesize}= | Get Frame Size | ${framesize}
-| | Run Keyword If | ${get_framesize} < ${1522} | Add No Multi Seg to all DUTs
+| | Run Keyword If | ${get_framesize} < ${1522} | Add no multi seg to all DUTs
 | | Apply startup configuration on all VPP DUTs
-| | L2 bridge domain initialized in a 3-node circular topology
+| | Initialize L2 bridge domain in 3-node circular topology
 | | Find PDR using binary search and pps
 | | ... | ${framesize} | ${binary_min} | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}

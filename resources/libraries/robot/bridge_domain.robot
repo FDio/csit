@@ -20,7 +20,7 @@
 | Resource | resources/libraries/robot/l2_traffic.robot
 
 *** Keywords ***
-| Vpp l2bd forwarding setup
+| Configure L2BD forwarding
 | | [Documentation] | Setup BD between 2 interfaces on VPP node and if learning
 | | ...             | is off set static L2FIB entry on second interface
 | | [Arguments] | ${node} | ${if1} | ${if2} | ${learn}=${TRUE} | ${mac}=${EMPTY}
@@ -31,7 +31,7 @@
 | | ... | Vpp Add L2fib Entry | ${node} | ${mac} | ${if2} | ${1}
 | | All Vpp Interfaces Ready Wait | ${nodes}
 
-| Path for 3-node BD-SHG testing is set
+| Configure path for 3-node BD-SHG test
 | | [Documentation] | Compute path for bridge domain split-horizon group testing
 | | ...             | on three given nodes with following interconnections
 | | ...             | TG - (2 links) - DUT1 - (1 link) - DUT2 - (2 links) - TG
@@ -62,7 +62,7 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Given Path for 3-node BD-SHG testing is set \| ${nodes['TG']} \
+| | ... | \| Given Configure path for 3-node BD-SHG test \| ${nodes['TG']} \
 | | ... | \| ${nodes['DUT1']} \| ${nodes['DUT2']} \|
 | | [Arguments] | ${tg_node} | ${dut1_node} | ${dut2_node}
 | | # Compute path TG - DUT1 with two links in between
@@ -101,7 +101,7 @@
 | | Set Test Variable | ${dut1_node}
 | | Set Test Variable | ${dut2_node}
 
-| Interfaces in 3-node BD-SHG testing are up
+| Set interfaces in 3-node BD-SHG test up
 | | [Documentation] | Set UP state on interfaces in 3-node path on nodes and
 | | ...             | wait for all interfaces are ready.
 | | ...
@@ -112,13 +112,13 @@
 | | ... | - No value returned.
 | | ...
 | | ... | _NOTE:_ This KW uses test variables sets in
-| | ... |         "Path for 3-node BD-SHG testing is set" KW.
+| | ... |         "Configure path for 3-node BD-SHG test" KW.
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Path for 3-node BD-SHG testing is set \| ${nodes['TG']} \
+| | ... | \| Configure path for 3-node BD-SHG test \| ${nodes['TG']} \
 | | ... | \| ${nodes['DUT1']} \| ${nodes['DUT2']} \|
-| | ... | \| Interfaces in 3-node BD-SHG testing are up \|
+| | ... | \| Set interfaces in 3-node BD-SHG test up \|
 | | ...
 | | Set Interface State | ${tg_node} | ${tg_to_dut1_if1} | up
 | | Set Interface State | ${tg_node} | ${tg_to_dut1_if2} | up
@@ -133,7 +133,7 @@
 | | Vpp Node Interfaces Ready Wait | ${dut1_node}
 | | Vpp Node Interfaces Ready Wait | ${dut2_node}
 
-| Bridge domain on DUT node is created
+| Create bridge domain
 | | [Documentation] | Create bridge domain on given VPP node with defined
 | | ...             | learning status.
 | | ...
@@ -148,14 +148,14 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Bridge domain on DUT node is created \| ${nodes['DUT1']} \| 2 \|
-| | ... | \| Bridge domain on DUT node is created \| ${nodes['DUT1']} \| 5 \
+| | ... | \| Create bridge domain \| ${nodes['DUT1']} \| 2 \|
+| | ... | \| Create bridge domain \| ${nodes['DUT1']} \| 5 \
 | | ... | \| learn=${FALSE} \|
 | | [Arguments] | ${dut_node} | ${bd_id} | ${learn}=${TRUE}
 | | ${learn} = | Set Variable If | ${learn} == ${TRUE} | ${1} | ${0}
 | | Create L2 BD | ${dut_node} | ${bd_id} | learn=${learn}
 
-| Interface is added to bridge domain
+| Add interface to bridge domain
 | | [Documentation] | Set given interface admin state to up and add this
 | | ...             | interface to required L2 bridge domain on defined
 | | ...             | VPP node.
@@ -171,13 +171,13 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Interface is added to bridge domain \| ${nodes['DUT2']} \
+| | ... | \| Add interface to bridge domain \| ${nodes['DUT2']} \
 | | ... | \| GigabitEthernet0/8/0 \| 3 \|
 | | [Arguments] | ${dut_node} | ${dut_if} | ${bd_id} | ${shg}=0
 | | Set Interface State | ${dut_node} | ${dut_if} | up
 | | Add Interface To L2 BD | ${dut_node} | ${dut_if} | ${bd_id} | ${shg}
 
-| Destination port is added to L2FIB on DUT node
+| Add destination port to L2FIB
 | | [Documentation] | Create a static L2FIB entry for required destination port
 | | ...             | on defined interface and bridge domain ID
 | | ...             | of the given VPP node.
@@ -194,14 +194,14 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Destination port is added to L2FIB on DUT node \| ${nodes['TG']} \
+| | ... | \| Add destination port to L2FIB \| ${nodes['TG']} \
 | | ... | \| eth1 \| ${nodes['DUT2']} \| GigabitEthernet0/8/0 \| 3 \|
 | | [Arguments] | ${dest_node} | ${dest_node_if} | ${vpp_node}
 | | ...         | ${vpp_node_if} | ${bd_id}
 | | ${mac}= | Get Interface Mac | ${dest_node} | ${dest_node_if}
 | | Vpp Add L2fib Entry | ${vpp_node} | ${mac} | ${vpp_node_if} | ${bd_id}
 
-| VM for Vhost L2BD forwarding is setup
+| Configure VM for vhost L2BD forwarding
 | | [Documentation] | Setup QEMU and start VM with two vhost interfaces.
 | | ...
 | | ... | *Arguments:*
@@ -216,9 +216,9 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| VM for Vhost L2BD forwarding is setup \| ${nodes['DUT1']} \
+| | ... | \| Configure VM for vhost L2BD forwarding \| ${nodes['DUT1']} \
 | | ... | \| /tmp/sock1 \| /tmp/sock2 \|
-| | ... | \| VM for Vhost L2BD forwarding is setup \| ${nodes['DUT2']} \
+| | ... | \| Configure VM for vhost L2BD forwarding \| ${nodes['DUT2']} \
 | | ... | \| /tmp/sock1 \| /tmp/sock2 \| qemu_instance_2 \|
 | | [Arguments] | ${dut_node} | ${sock1} | ${sock2} | ${qemu_name}=vm_node
 | | Run Keyword Unless | "${qemu_name}" == "vm_node" | Import Library
@@ -246,7 +246,7 @@
 | | Set Interface State | ${vm} | ${br} | up | if_type=name
 | | Set Test Variable | ${${qemu_name}} | ${vm}
 
-| VPP Vhost interfaces for L2BD forwarding are setup
+| Configure vhost interfaces for L2BD forwarding
 | | [Documentation] | Create two Vhost-User interfaces on defined VPP node.
 | | ...
 | | ... | *Arguments:*
@@ -264,9 +264,9 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| VPP Vhost interfaces for L2BD forwarding are setup \
+| | ... | \| Configure vhost interfaces for L2BD forwarding \
 | | ... | \| ${nodes['DUT1']} \| /tmp/sock1 \| /tmp/sock2 \|
-| | ... | \| VPP Vhost interfaces for L2BD forwarding are setup \
+| | ... | \| Configure vhost interfaces for L2BD forwarding \
 | | ... | \| ${nodes['DUT2']} \| /tmp/sock1 \| /tmp/sock2 \| dut2_vhost_if1 \
 | | ... | \| dut2_vhost_if2 \|
 | | [Arguments] | ${dut_node} | ${sock1} | ${sock2} | ${vhost_if1}=vhost_if1
