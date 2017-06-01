@@ -18,7 +18,7 @@
 | Library | resources.libraries.python.TrafficScriptExecutor
 
 *** Keywords ***
-| Send and receive ICMP Packet
+| Send ICMP packet and verify received packet
 | | [Documentation] | Send ICMPv4/ICMPv6 echo request from source interface to \
 | | ...             | destination interface. Packet can be set with Dot1q or
 | | ...             | Dot1ad tag(s) when required.
@@ -46,15 +46,15 @@
 | | ...
 | | ... | _NOTE:_ Default IP is IPv4
 | | ...
-| | ... | \| Send and receive ICMP Packet \| ${nodes['TG']} \
+| | ... | \| Send ICMP packet and verify received packet \| ${nodes['TG']} \
 | | ... | \| ${tg_to_dut_if1} \| ${tg_to_dut_if2} \|
-| | ... | \| Send and receive ICMP Packet \| ${nodes['TG']} \| ${tg_to_dut1} \
+| | ... | \| Send ICMP packet and verify received packet \| ${nodes['TG']} \| ${tg_to_dut1} \
 | | ... | \| ${tg_to_dut2} \| encaps=Dot1q \| vlan1=100 \|
-| | ... | \| Send and receive ICMP Packet \| ${nodes['TG']} \| ${tg_to_dut1} \
+| | ... | \| Send ICMP packet and verify received packet \| ${nodes['TG']} \| ${tg_to_dut1} \
 | | ... | \| ${tg_to_dut2} \| encaps=Dot1ad \| vlan1=110 \| vlan2=220 \|
-| | ... | \| Send and receive ICMP Packet \| ${nodes['TG']} \| ${tg_to_dut1} \
+| | ... | \| Send ICMP packet and verify received packet \| ${nodes['TG']} \| ${tg_to_dut1} \
 | | ... | \| ${tg_to_dut2} \| encaps=Dot1q \| vlan1=110 \| encaps_rx=Dot1q \|
-| | ... | \| Send and receive ICMP Packet \| ${nodes['TG']} \| ${tg_to_dut1} \
+| | ... | \| Send ICMP packet and verify received packet \| ${nodes['TG']} \| ${tg_to_dut1} \
 | | ... | \| ${tg_to_dut2} \| encaps=Dot1q \| vlan1=110 \| encaps_rx=Dot1q \
 | | ... | \| vlan1_rx=120 \|
 | | ...
@@ -85,7 +85,7 @@
 | | ... | ELSE | Catenate | ${args} | --vlan2_rx ${vlan2_rx}
 | | Run Traffic Script On Node | send_ip_icmp.py | ${tg_node} | ${args}
 
-| Send and receive ICMP Packet should fail
+| ICMP packet transmission should fail
 | | [Documentation] | Send ICMPv4/ICMPv6 echo request from source interface to
 | | ...             | destination interface and expect failure with
 | | ...             | ICMP echo Rx timeout error message.
@@ -106,7 +106,7 @@
 | | ...
 | | ... | _NOTE:_ Default IP is IPv4
 | | ...
-| | ... | \| Send and receive ICMP Packet should fail\| ${nodes['TG']} \
+| | ... | \| ICMP packet transmission should fail\| ${nodes['TG']} \
 | | ... | \| ${tg_to_dut_if1} \| ${tg_to_dut_if2} \|
 | | ...
 | | [Arguments] | ${tg_node} | ${src_int} | ${dst_int} |
@@ -120,7 +120,7 @@
 | | Run Keyword And Expect Error | ICMP echo Rx timeout |
 | | ... | Run Traffic Script On Node | send_ip_icmp.py | ${tg_node} | ${args}
 
-| Send and receive ICMPv4 bidirectionally
+| Send ICMPv4 bidirectionally and verify received packets
 | | [Documentation] | Send ICMPv4 echo request from both directions,
 | | ...             | from interface1 to interface2 and
 | | ...             | from interface2 to interface1.
@@ -139,17 +139,17 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Send and receive ICMPv4 bidirectionally \| ${nodes['TG']} \
+| | ... | \| Send ICMPv4 bidirectionally and verify received packets \| ${nodes['TG']} \
 | | ... | \| ${tg_to_dut_if1} \| ${tg_to_dut_if2} \|
 | | ...
 | | [Arguments] | ${tg_node} | ${int1} | ${int2} | ${src_ip}=192.168.100.1 |
 | | ... | ${dst_ip}=192.168.100.2
-| | Send and receive ICMP Packet | ${tg_node} | ${int1} | ${int2} |
+| | Send ICMP packet and verify received packet | ${tg_node} | ${int1} | ${int2} |
 | | ... | ${src_ip} | ${dst_ip}
-| | Send and receive ICMP Packet | ${tg_node} | ${int2} | ${int1} |
+| | Send ICMP packet and verify received packet | ${tg_node} | ${int2} | ${int1} |
 | | ... | ${dst_ip} | ${src_ip}
 
-| Send and receive ICMPv6 bidirectionally
+| Send ICMPv6 bidirectionally and verify received packets
 | | [Documentation] | Send ICMPv6 echo request from both directions,
 | | ...             | from interface1 to interface2 and
 | | ...             | from interface2 to interface1.
@@ -168,12 +168,12 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Send and receive ICMPv6 bidirectionally \| ${nodes['TG']} \
+| | ... | \| Send ICMPv6 bidirectionally and verify received packets \| ${nodes['TG']} \
 | | ... | \| ${tg_to_dut_if1} \| ${tg_to_dut_if2} \|
 | | ...
 | | [Arguments] | ${tg_node} | ${int1} | ${int2} | ${src_ip}=3ffe:63::1 |
 | | ... | ${dst_ip}=3ffe:63::2
-| | Send and receive ICMP Packet | ${tg_node} | ${int1} | ${int2} |
+| | Send ICMP packet and verify received packet | ${tg_node} | ${int1} | ${int2} |
 | | ... | ${src_ip} | ${dst_ip}
-| | Send and receive ICMP Packet | ${tg_node} | ${int2} | ${int1} |
+| | Send ICMP packet and verify received packet | ${tg_node} | ${int2} | ${int1} |
 | | ... | ${dst_ip} | ${src_ip}

@@ -29,8 +29,8 @@
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | VM_ENV | LISP
 | ...
-| Test Setup | Func Test Setup
-| Test Teardown | Func Test Teardown
+| Test Setup | Set up functional test
+| Test Teardown | Tear down functional test
 | ...
 | Documentation | *l2-lispgpe-ip6 encapsulation test cases*
 | ...
@@ -58,10 +58,10 @@
 | | ... | received packets are correct.
 | | ... | [Ref] RFC6830.
 | | ...
-| | Given Path for 3-node testing is set
+| | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
-| | And Interfaces in 3-node path are up
-| | And IP addresses are set on interfaces
+| | And Set interfaces in 3-node circular topology up
+| | And Configure IP addresses on interfaces
 | | ... | ${dut1_node} | ${dut1_to_dut2} | ${dut1_to_dut2_ip6} | ${prefix6}
 | | ... | ${dut1_node} | ${dut1_to_tg} | ${dut1_to_tg_ip6} | ${prefix6}
 | | ... | ${dut2_node} | ${dut2_to_dut1} | ${dut2_to_dut1_ip6} | ${prefix6}
@@ -79,17 +79,17 @@
 | | And Add Interface To L2 BD | ${dut1_node} | ${dut1_to_tg} | ${vpp_bd_id}
 | | And Create L2 BD | ${dut2_node} | ${vpp_bd_id}
 | | And Add Interface To L2 BD | ${dut2_node} | ${dut2_to_tg} | ${vpp_bd_id}
-| | And Set up L2 Lisp on DUT | ${dut1_node}
+| | And Configure L2 LISP on DUT | ${dut1_node}
 | | ... | ${dut1_to_dut2_ip6_static_adjacency}
 | | ... | ${lisp_dut_settings}
-| | And Set up L2 Lisp on DUT | ${dut2_node}
+| | And Configure L2 LISP on DUT | ${dut2_node}
 | | ... | ${dut2_to_dut1_ip6_static_adjacency}
 | | ... | ${lisp_dut_settings}
-| | Then Send Packet And Check Headers
+| | Then Send packet and verify headers
 | | ... | ${tg_node} | ${tg1_ip6} | ${tg2_ip6}
 | | ... | ${tg_to_dut1} | ${tg_if1_mac} | ${tg_if2_mac}
 | | ... | ${tg_to_dut2} | ${tg_if1_mac} | ${tg_if2_mac}
-| | And Send Packet And Check Headers
+| | And Send packet and verify headers
 | | ... | ${tg_node} | ${tg2_ip6} | ${tg1_ip6}
 | | ... | ${tg_to_dut2} | ${tg_if2_mac} | ${tg_if1_mac}
 | | ... | ${tg_to_dut1} | ${tg_if2_mac} | ${tg_if1_mac}

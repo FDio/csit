@@ -24,9 +24,9 @@
 | Library  | resources.libraries.python.Namespaces
 | Library  | resources.libraries.python.IPUtil
 | Force Tags | HW_ENV | VM_ENV | 3_NODE_DOUBLE_LINK_TOPO
-| Test Setup | Run Keywords | Func Test Setup
+| Test Setup | Run Keywords | Set up functional test
 | ...        | AND          | Clean Up Namespaces | ${nodes['DUT1']}
-| Test Teardown | Run Keywords | Func Test Teardown
+| Test Teardown | Run Keywords | Tear down functional test
 | ...           | AND          | Clean Up Namespaces | ${nodes['DUT1']}
 | Documentation | *Tap Interface CRUD Tests*
 | ... | *[Top] Network Topologies:* TG=DUT1 2-node topology with two links
@@ -49,9 +49,9 @@
 | | ... | [Cfg] Set two TAP interfaces.
 | | ... | [Ver] Verify that TAP interface can be modified, deleted, and no other
 | | ... | TAP interface is affected.
-| | Given Path for 2-node testing is set | ${nodes['TG']} | ${nodes['DUT1']}
+| | Given Configure path in 2-node circular topology | ${nodes['TG']} | ${nodes['DUT1']}
 | | ... | ${nodes['TG']}
-| | And Interfaces in 2-node path are up
+| | And Set interfaces in 2-node circular topology up
 | | ${int1}= | And Add Tap Interface | ${dut_node} | ${tap_int1}
 | | ${int2}= | And Add Tap Interface | ${dut_node} | ${tap_int2}
 | | And Set Interface State | ${dut_node} | ${int1} | up

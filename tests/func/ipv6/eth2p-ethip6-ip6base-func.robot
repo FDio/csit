@@ -20,17 +20,17 @@
 | Variables | resources/libraries/python/IPv6NodesAddr.py | ${nodes}
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | HW_ENV | SKIP_VPP_PATCH
 | Suite Setup | Run Keywords
-| ... | Setup ipv6 to all dut in topology | ${nodes} | ${nodes_ipv6_addr} | AND
-| ... | Vpp nodes ra suppress link layer | ${nodes} | AND
-| ... | Vpp nodes setup ipv6 routing | ${nodes} | ${nodes_ipv6_addr} | AND
-| ... | Setup all TGs before traffic script
+| ... | Configure IPv6 on all DUTs in topology | ${nodes} | ${nodes_ipv6_addr} | AND
+| ... | Suppress ICMPv6 router advertisement message | ${nodes} | AND
+| ... | Configure IPv6 routing on all DUTs | ${nodes} | ${nodes_ipv6_addr} | AND
+| ... | Configure all TGs for traffic script
 | Test Setup | Run Keywords | Save VPP PIDs | AND
 | ... | Reset VAT History On All DUTs | ${nodes} | AND
 | ... | Clear interface counters on all vpp nodes in topology | ${nodes}
 | Test Teardown | Run Keywords
 | ... | Show packet trace on all DUTs | ${nodes} | AND
 | ... | Show VAT History On All DUTs | ${nodes}  | AND
-| ... | Check VPP PID in Teardown
+| ... | Verify VPP PID in Teardown
 | Documentation | *IPv6 routing test cases*
 | ...
 | ... | RFC2460 IPv6, RFC4443 ICMPv6, RFC4861 Neighbor Discovery.
@@ -49,7 +49,7 @@
 | | [Documentation]
 | | ... | Make TG send ICMPv6 Echo Req to DUT ingress interface. Make TG\
 | | ... | verify ICMPv6 Echo Reply is correct.
-| | Ipv6 icmp echo | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes_ipv6_addr}
+| | Send IPv6 icmp echo request to DUT1 ingress inteface and verify answer | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes_ipv6_addr}
 
 | TC02: DUT replies to ICMPv6 Echo Req pkt with size 64B-to-1500B-incr-1B
 | | [Tags] | VM_ENV
@@ -57,17 +57,17 @@
 | | ... | Make TG send ICMPv6 Echo Reqs to DUT ingress interface,\
 | | ... | incrementating frame size from 64B to 1500B with increment step
 | | ... | of 1Byte. Make TG verify ICMP Echo Replies are correct.
-| | Ipv6 icmp echo sweep | ${nodes['TG']} | ${nodes['DUT1']} | 0 | 1452 | 1 | ${nodes_ipv6_addr}
+| | Execute IPv6 ICMP echo sweep | ${nodes['TG']} | ${nodes['DUT1']} | 0 | 1452 | 1 | ${nodes_ipv6_addr}
 
 | TC03: DUT replies to ICMPv6 Echo Req pkt with size 1500B-to-9000B-incr-10B
 | | [Documentation]
 | | ... | Make TG send ICMPv6 Echo Reqs to DUT ingress interface,\
 | | ... | incrementating frame size from 1500B to 9000B with increment
 | | ... | step of 10Bytes. Make TG verify ICMPv6 Echo Replies are correct.
-| | [Setup] | Setup MTU on TG based on MTU on DUT | ${nodes['TG']} | ${nodes['DUT1']}
+| | [Setup] | Configure MTU on TG based on MTU on DUT | ${nodes['TG']} | ${nodes['DUT1']}
 | | [Teardown] | Run keywords
 | | ... | Set default Ethernet MTU on all interfaces on node | ${nodes['TG']}
-| | ... | AND | Check VPP PID in Teardown
+| | ... | AND | Verify VPP PID in Teardown
 | | Append Nodes | ${nodes['TG']} | ${nodes['DUT1']}
 | | Compute Path
 | | ${dut_port} | ${dut_node}= | Last Interface
@@ -76,7 +76,7 @@
 | | # IPv6 header and ICMPv6 header
 | | ${end_size}= | Evaluate | ${mtu} - 14 - 4 - 40 - 8
 | | Run Keyword If | ${mtu} > 1518
-| | ...            | Ipv6 icmp echo sweep | ${nodes['TG']} | ${nodes['DUT1']}
+| | ...            | Execute IPv6 ICMP echo sweep | ${nodes['TG']} | ${nodes['DUT1']}
 | | ...            | 1452 | ${end_size} | 10 | ${nodes_ipv6_addr}
 
 | TC04: DUT routes to its egress interface
@@ -84,7 +84,7 @@
 | | [Documentation]
 | | ... | Make TG send ICMPv6 Echo Req towards DUT1 egress interface\
 | | ... | connected to DUT2. Make TG verify ICMPv6 Echo Reply is correct.
-| | Ipv6 tg to dut1 egress | ${nodes['TG']} | ${nodes['DUT1']} |
+| | Send IPv6 ICMP echo request to DUT1 egress interface and verify answer | ${nodes['TG']} | ${nodes['DUT1']} |
 | | ...                    | ${nodes['DUT2']} | ${nodes_ipv6_addr}
 
 | TC05: DUT1 routes to DUT2 ingress interface
@@ -92,7 +92,7 @@
 | | [Documentation]
 | | ... | Make TG send ICMPv6 Echo Req towards DUT2 ingress interface\
 | | ... | connected to DUT1. Make TG verify ICMPv6 Echo Reply is correct.
-| | Ipv6 tg to dut2 via dut1 | ${nodes['TG']} | ${nodes['DUT1']}
+| | Send IPv6 ICMP echo request to DUT2 via DUT1 and verify answer | ${nodes['TG']} | ${nodes['DUT1']}
 | | ...                      | ${nodes['DUT2']} | ${nodes_ipv6_addr}
 
 | TC06: DUT1 routes to DUT2 egress interface
@@ -100,7 +100,7 @@
 | | [Documentation]
 | | ... | Make TG send ICMPv6 Echo Req towards DUT2 egress interface\
 | | ... | connected to TG. Make TG verify ICMPv6 Echo Reply is correct.
-| | Ipv6 tg to dut2 egress via dut1 | ${nodes['TG']} | ${nodes['DUT1']}
+| | Send IPv6 ICMP echo request to DUT2 egress interface via DUT1 and verify answer | ${nodes['TG']} | ${nodes['DUT1']}
 | | ...                             | ${nodes['DUT2']} | ${nodes_ipv6_addr}
 
 | TC07: DUT1 and DUT2 route between TG interfaces
@@ -117,4 +117,4 @@
 | | ... | On DUT configure interface IPv6 address in the main routing\
 | | ... | domain. Make TG send Neighbor Solicitation message on the link
 | | ... | to DUT and verify DUT Neighbor Advertisement reply is correct.
-| | Ipv6 neighbor solicitation | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes_ipv6_addr}
+| | Send IPv6 neighbor solicitation and verify answer | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes_ipv6_addr}

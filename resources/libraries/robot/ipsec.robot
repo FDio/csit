@@ -27,7 +27,7 @@
 | Documentation | *IPsec keywords.*
 
 *** Keywords ***
-| IPsec Generate Keys
+| Generate keys for IPSec
 | | [Documentation] | Generate keys for IPsec.
 | | ...
 | | ... | *Arguments:*
@@ -41,7 +41,7 @@
 | | ... | *Example:*
 | | ... | \| ${encr_alg}= \| Crypto Alg AES CBC 128 \|
 | | ... | \| ${auth_alg}= \| Integ Alg SHA1 96 \|
-| | ... | \| IPsec Generate Keys \| ${encr_alg} \| ${auth_alg} \|
+| | ... | \| Generate keys for IPSec \| ${encr_alg} \| ${auth_alg} \|
 | | [Arguments] | ${crypto_alg} | ${integ_alg}
 | | ${encr_key_len}= | Get Crypto Alg Key Len | ${crypto_alg}
 | | ${encr_key}= | Generate Random String | ${encr_key_len}
@@ -50,7 +50,7 @@
 | | Set Test Variable | ${encr_key}
 | | Set Test Variable | ${auth_key}
 
-| Setup Path for IPsec testing
+| Configure path for IPSec test
 | | [Documentation] | Setup path for IPsec testing TG<-->DUT1.
 | | ...
 | | ... | _NOTE:_ This KW sets following test case variable:
@@ -63,7 +63,7 @@
 | | ... | - dut_lo - DUT loopback interface. Type: string
 | | ...
 | | ... | *Example:*
-| | ... | \| Setup Path for IPsec testing \|
+| | ... | \| Configure path for IPSec test \|
 | | Append Nodes | ${nodes['TG']} | ${nodes['DUT1']}
 | | Compute Path
 | | ${tg_if} | ${tg_node}= | Next Interface
@@ -82,7 +82,7 @@
 | | Set Test Variable | ${dut_if_mac}
 | | Set Test Variable | ${dut_lo}
 
-| Setup Topology for IPv4 IPsec testing
+| Configure topology for IPv4 IPsec testing
 | | [Documentation] | Setup topology for IPv4 IPsec testing.
 | | ...
 | | ... | _NOTE:_ This KW sets following test case variable:
@@ -92,8 +92,8 @@
 | | ... | - tg_src_ip - TG source IP address. Type: string
 | | ...
 | | ... | *Example:*
-| | ... | \| Setup Topology for IPv4 IPsec testing \|
-| | Setup Path for IPsec testing
+| | ... | \| Configure topology for IPv4 IPsec testing \|
+| | Configure path for IPSec test
 | | Set Interface Address | ${dut_node} | ${dut_if} | ${dut_if_ip4}
 | | ...                   | ${ip4_plen}
 | | Set Interface Address | ${dut_node} | ${dut_lo} | ${dut_lo_ip4}
@@ -106,7 +106,7 @@
 | | Set Test Variable | ${tg_tun_ip} | ${tg_if_ip4}
 | | Set Test Variable | ${tg_src_ip} | ${tg_lo_ip4}
 
-| Setup Topology for IPv6 IPsec testing
+| Configure topology for IPv6 IPsec testing
 | | [Documentation] | Setup topology fo IPv6 IPsec testing.
 | | ...
 | | ... | _NOTE:_ This KW sets following test case variable:
@@ -116,8 +116,8 @@
 | | ... | - tg_src_ip - TG source IP address. Type: string
 | | ...
 | | ... | *Example:*
-| | ... | \| Setup Topology for IPv6 IPsec testing \|
-| | Setup Path for IPsec testing
+| | ... | \| Configure topology for IPv6 IPsec testing \|
+| | Configure path for IPSec test
 | | VPP Set If IPv6 Addr | ${dut_node} | ${dut_if} | ${dut_if_ip6} | ${ip6_plen}
 | | VPP Set If IPv6 Addr | ${dut_node} | ${dut_lo} | ${dut_lo_ip6} | ${ip6_plen}
 | | Add IP Neighbor | ${dut_node} | ${dut_if} | ${tg_if_ip6} | ${tg_if_mac}
@@ -129,7 +129,7 @@
 | | Set Test Variable | ${tg_tun_ip} | ${tg_if_ip6}
 | | Set Test Variable | ${tg_src_ip} | ${tg_lo_ip6}
 
-| VPP Setup IPsec Manual Keyed Connection
+| Configure manual keyed connection for IPSec
 | | [Documentation] | Setup IPsec manual keyed connection on VPP node.
 | | ...
 | | ... | *Arguments:*
@@ -153,7 +153,7 @@
 | | ... | *Example:*
 | | ... | \| ${encr_alg}= \| Crypto Alg AES CBC 128 \|
 | | ... | \| ${auth_alg}= \| Integ Alg SHA1 96 \|
-| | ... | \| VPP Setup IPsec Manual Keyed Connection \| ${nodes['DUT1']} \
+| | ... | \| Configure manual keyed connection for IPSec \| ${nodes['DUT1']} \
 | | ... | \| GigabitEthernet0/8/0 \| ${encr_alg} \| sixteenbytes_key \
 | | ... | \| ${auth_alg} \| twentybytessecretkey \| ${1000} \| ${1001} \
 | | ... | \| 192.168.4.4 \| 192.168.3.3 \| 192.168.100.3 \| 192.168.100.2 \|
@@ -186,7 +186,7 @@
 | | ...                     | sa_id=${l_sa_id} | laddr_range=${l_ip}
 | | ...                     | raddr_range=${r_ip} | inbound=${FALSE}
 
-| VPP Update IPsec SA Keys
+| Update IPSec SA keys
 | | [Documentation] | Update IPsec SA keys on VPP node.
 | | ...
 | | ... | *Arguments:*
@@ -197,7 +197,7 @@
 | | ... | - integ_key - Integrity key. Type: string
 | | ...
 | | ... | *Example:*
-| | ... | \| VPP Update IPsec SA Keys \| ${nodes['DUT1']} \
+| | ... | \| Update IPSec SA keys \| ${nodes['DUT1']} \
 | | ... | \| 10 \| 20 \| sixteenbytes_key \| twentybytessecretkey \|
 | | [Arguments] | ${node} | ${l_sa_id} | ${r_sa_id} | ${crypto_key}
 | | ...         | ${integ_key}
@@ -206,7 +206,7 @@
 | | VPP IPsec SA Set Key | ${dut_node} | ${r_sa_id} | ${crypto_key}
 | | ...                  | ${integ_key}
 
-| Send and Receive IPsec Packet
+| Send IPsec Packet and verify ESP encapsulation in received packet
 | | [Documentation] | Send IPsec packet from TG to DUT. Receive IPsec packet\
 | | ...             | from DUT on TG and verify ESP encapsulation.
 | | ...
@@ -228,7 +228,7 @@
 | | ... | *Example:*
 | | ... | \| ${encr_alg}= \| Crypto Alg AES CBC 128 \|
 | | ... | \| ${auth_alg}= \| Integ Alg SHA1 96 \|
-| | ... | \| Send and Receive IPsec Packet \| ${nodes['TG']} \| eth1 \
+| | ... | \| Send IPsec Packet and verify ESP encapsulation in received packet \| ${nodes['TG']} \| eth1 \
 | | ... | \| 52:54:00:d4:d8:22 \| ${encr_alg} \| sixteenbytes_key \
 | | ... | \| ${auth_alg} \| twentybytessecretkey \| ${1001} \| ${1000} \
 | | ... | \| 192.168.3.3 \| 192.168.4.4 \| 192.168.100.2 \| 192.168.100.3 \|

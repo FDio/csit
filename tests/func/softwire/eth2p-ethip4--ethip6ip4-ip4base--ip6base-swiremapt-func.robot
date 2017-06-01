@@ -21,9 +21,9 @@
 | Library  | resources.libraries.python.IPUtil
 | Library  | resources.libraries.python.Trace
 | Force Tags | HW_ENV | VM_ENV | 3_NODE_DOUBLE_LINK_TOPO
-| Test Setup | Run Keywords | Func Test Setup
+| Test Setup | Run Keywords | Set up functional test
 | ... | AND | Set interfaces IP addresses and routes
-| Test Teardown | Func Test Teardown
+| Test Teardown | Tear down functional test
 | Documentation | *Test for Basic mapping rule for MAP-T*\
 | ... | *[Top] Network Topologies:* TG - DUT1 - TG with two links between the
 | ... | nodes.
@@ -78,10 +78,10 @@
 
 *** Keywords ***
 | Set interfaces IP addresses and routes
-| | Path for 2-node testing is set
+| | Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
-| | Interfaces in 2-node path are up
-| | IP addresses are set on interfaces
+| | Set interfaces in 2-node circular topology up
+| | Configure IP addresses on interfaces
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${dut_ip4} | ${ipv4_prefix_len}
 | | ... | ${dut_node} | ${dut_to_tg_if2} | ${dut_ip6} | ${ipv6_prefix_len}
 | | Vpp Route Add | ${dut_node} | :: | 0 | ${dut_ip6_gw} | ${dut_to_tg_if2}
@@ -132,4 +132,4 @@
 | | ... | Map Del Domain | ${dut_node} | ${domain_index} | AND
 | | ... | Show packet trace on all DUTs | ${nodes} | AND
 | | ... | Clear packet trace on all DUTs | ${nodes} | AND
-| | ... | Check VPP PID in Teardown
+| | ... | Verify VPP PID in Teardown

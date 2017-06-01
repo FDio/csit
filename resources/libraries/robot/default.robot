@@ -26,17 +26,17 @@
 | Library | Collections
 
 *** Keywords ***
-| Setup all DUTs before test
+| Configure all DUTs before test
 | | [Documentation] | Setup all DUTs in topology before test execution.
 | | ...
 | | Setup All DUTs | ${nodes}
 
-| Setup all TGs before traffic script
+| Configure all TGs for traffic script
 | | [Documentation] | Prepare all TGs before traffic scripts execution.
 | | ...
 | | All TGs Set Interface Default Driver | ${nodes}
 
-| Show Vpp Version On All DUTs
+| Show VPP version on all DUTs
 | | [Documentation] | Show VPP version verbose on all DUTs.
 | | ...
 | | ${duts}= | Get Matches | ${nodes} | DUT*
@@ -50,7 +50,7 @@
 | | :FOR | ${dut} | IN | @{duts}
 | | | Vpp Show Errors | ${nodes['${dut}']}
 
-| Show Vpp Trace Dump On All DUTs
+| Show VPP trace dump on all DUTs
 | | [Documentation] | Save API trace and dump output on all DUTs.
 | | ...
 | | ${duts}= | Get Matches | ${nodes} | DUT*
@@ -58,7 +58,7 @@
 | | | Vpp api trace save | ${nodes['${dut}']}
 | | | Vpp api trace dump | ${nodes['${dut}']}
 
-| Show Vpp Vhost On All DUTs
+| Show VPP vhost on all DUTs
 | | [Documentation] | Show Vhost User on all DUTs.
 | | ...
 | | ${duts}= | Get Matches | ${nodes} | DUT*
@@ -80,7 +80,7 @@
 | | :FOR | ${dut} | IN | @{duts}
 | | | Set VPP Scheduling rr | ${nodes['${dut}']}
 
-| Verify Crypto Device On All DUTs
+| Configure crypto device on all DUTs
 | | [Documentation] | Verify if Crypto QAT device virtual functions are
 | | ... | initialized on all DUTs. If parameter force_init is set to True, then
 | | ... | try to initialize.
@@ -90,7 +90,7 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Verify Crypto Device On All DUTs \| ${True} \|
+| | ... | \| Configure crypto device on all DUTs \| ${True} \|
 | | ...
 | | [Arguments] | ${force_init}=${False}
 | | ...
@@ -98,7 +98,7 @@
 | | :FOR | ${dut} | IN | @{duts}
 | | | Crypto Device Verify | ${nodes['${dut}']} | force_init=${force_init}
 
-| Verify Kernel Module On All DUTs
+| Configure kernel module on all DUTs
 | | [Documentation] | Verify if specific kernel module is loaded on all DUTs.
 | | ... | If parameter force_load is set to True, then try to initialize.
 | | ...
@@ -108,7 +108,7 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Verify Kernel Module On All DUTs \| ${True} \|
+| | ... | \| Configure kernel module on all DUTs \| ${True} \|
 | | ...
 | | [Arguments] | ${module} | ${force_load}=${False}
 | | ...
@@ -117,7 +117,7 @@
 | | | Kernel Module Verify | ${nodes['${dut}']} | ${module}
 | | | ... | force_load=${force_load}
 
-| Add '${m}' worker threads and rxqueues '${n}' in 3-node single-link topo
+| Add '${m}' worker threads and '${n}' rxqueues in 3-node single-link circular topology
 | | [Documentation] | Setup M worker threads and N rxqueues in vpp startup\
 | | ... | configuration on all DUTs in 3-node single-link topology.
 | | ...
@@ -144,7 +144,7 @@
 | | Add rxqueues config | ${dut1} | ${rxqueues}
 | | Add rxqueues config | ${dut2} | ${rxqueues}
 
-| Add '${m}' worker threads and rxqueues '${n}' in 2-node single-link topo
+| Add '${m}' worker threads and '${n}' rxqueues in 2-node single-link circular topology
 | | [Documentation] | Setup M worker threads and N rxqueues in vpp startup\
 | | ... | configuration on all DUTs in 2-node single-link topology.
 | | ...
@@ -161,7 +161,7 @@
 | | Add CPU config | ${dut1} | ${dut1_cpu}
 | | Add rxqueues config | ${dut1} | ${rxqueues}
 
-| Add '${m}' worker threads using SMT and rxqueues '${n}' in 3-node single-link topo
+| Add '${m}' worker threads using SMT and '${n}' rxqueues in 3-node single-link circular topology
 | | [Documentation] | Setup M worker threads using SMT and N rxqueues in vpp\
 | | ... | startup configuration on all DUTs in 3-node single-link topology.
 | | ...
@@ -188,7 +188,7 @@
 | | Add rxqueues config | ${dut1} | ${rxqueues}
 | | Add rxqueues config | ${dut2} | ${rxqueues}
 
-| Add '${m}' worker threads using SMT and rxqueues '${n}' in 2-node single-link topo
+| Add '${m}' worker threads using SMT and '${n}' rxqueues in 2-node single-link circular topology
 | | [Documentation] | Setup M worker threads and N rxqueues in vpp startup\
 | | ... | configuration on all DUTs in 2-node single-link topology.
 | | ...
@@ -249,7 +249,7 @@
 | | ...
 | | Add PCI device | ${node} | ${pci_address}
 
-| Add Heapsize Config to all DUTs
+| Add heapsize config to all DUTs
 | | [Documentation] | Add Add Heapsize Config to VPP startup configuration\
 | | ... | to all DUTs.
 | | ...
@@ -258,7 +258,7 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Add Heapsize Config to all DUTs \| 200M \|
+| | ... | \| Add heapsize config to all DUTs \| 200M \|
 | | ...
 | | [Arguments] | ${heapsize}
 | | ...
@@ -266,7 +266,7 @@
 | | :FOR | ${dut} | IN | @{duts}
 | | | Add Heapsize Config | ${nodes['${dut}']} | ${heapsize}
 
-| Add No Multi Seg to all DUTs
+| Add no multi seg to all DUTs
 | | [Documentation] | Add No Multi Seg to VPP startup configuration to all DUTs.
 | | ...
 | | ${duts}= | Get Matches | ${nodes} | DUT*
@@ -288,7 +288,7 @@
 | | :FOR | ${dut} | IN | @{duts}
 | | | Add SNAT Config | ${nodes['${dut}']}
 
-| Add Cryptodev to all DUTs
+| Add cryptodev to all DUTs
 | | [Documentation] | AddCryptodev to VPP startup configuration to all
 | | ...             | DUTs
 | | ...
@@ -297,7 +297,7 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Add Cryptodev to all DUTs \| ${4} \|
+| | ... | \| Add cryptodev to all DUTs \| ${4} \|
 | | ...
 | | [Arguments] | ${count}
 | | ${duts}= | Get Matches | ${nodes} | DUT*
@@ -323,7 +323,7 @@
 | | [Documentation] | Setup default startup configuration of VPP to all DUTs.
 | | ...
 | | Remove startup configuration of VPP from all DUTs
-| | Add '1' worker threads and rxqueues '1' in 3-node single-link topo
+| | Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
 | | Add all PCI devices to all DUTs
 | | Apply startup configuration on all VPP DUTs
 
@@ -331,7 +331,7 @@
 | | [Documentation] | Setup default startup configuration of VPP to all DUTs.
 | | ...
 | | Remove startup configuration of VPP from all DUTs
-| | Add '1' worker threads and rxqueues '1' in 2-node single-link topo
+| | Add '1' worker threads and '1' rxqueues in 2-node single-link circular topology
 | | Add all PCI devices to all DUTs
 | | Apply startup configuration on all VPP DUTs
 
@@ -358,7 +358,7 @@
 | | | ... | FAIL | More then one VPP PID found on node ${key}: ${pid}
 | | Set Test Variable | ${setup_vpp_pids}
 
-| Check VPP PID in Teardown
+| Verify VPP PID in Teardown
 | | [Documentation] | Check if the VPP PIDs on all DUTs are the same at the end\
 | | ... | of test as they were at the begining. If they are not, only a message\
 | | ... | is printed on console and to log. The test will not fail.
@@ -373,19 +373,19 @@
 | | Run Keyword And Return If | '${rc}'=='FAIL' | Log | ${err_msg}
 | | ... | console=yes | level=WARN
 
-| Func Test Setup
+| Set up functional test
 | | [Documentation] | Common test setup for functional tests.
 | | ...
-| | Setup all DUTs before test
+| | Configure all DUTs before test
 | | Save VPP PIDs
-| | Setup all TGs before traffic script
+| | Configure all TGs for traffic script
 | | Update All Interface Data On All Nodes | ${nodes}
 | | Reset VAT History On All DUTs | ${nodes}
 
-| Func Test Teardown
+| Tear down functional test
 | | [Documentation] | Common test teardown for functional tests.
 | | ...
 | | Show Packet Trace on All DUTs | ${nodes}
 | | Show VAT History On All DUTs | ${nodes}
 | | Vpp Show Errors On All DUTs | ${nodes}
-| | Check VPP PID in Teardown
+| | Verify VPP PID in Teardown

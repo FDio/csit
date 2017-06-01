@@ -18,8 +18,8 @@
 | Resource | resources/libraries/robot/qemu.robot
 | Library  | resources.libraries.python.Trace
 | Force Tags | 3_NODE_DOUBLE_LINK_TOPO | HW_ENV | VM_ENV | VPP_VM_ENV
-| Test Setup | Func Test Setup
-| Test Teardown | Func Test Teardown
+| Test Setup | Set up functional test
+| Test Teardown | Tear down functional test
 | Documentation | *L2 bridge-domain test cases*
 | ...
 | ... | *[Top] Network Topologies:* TG=DUT=VM 3-node topology with VM
@@ -52,50 +52,50 @@
 | | ... | switched thru DUT1 and VM in both directions and are correct on
 | | ... | receive. [Ref]
 | | ...
-| | [Teardown] | Run Keywords | Stop and Clear QEMU | ${dut_node} | ${vm_node}
-| | ... | AND | Func Test Teardown
+| | [Teardown] | Run Keywords | Stop and clear QEMU | ${dut_node} | ${vm_node}
+| | ... | AND | Tear down functional test
 | | ...
-| | Given Path for 2-node testing is set
+| | Given Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
-| | And Interfaces in 2-node path are up
-| | When VPP Vhost interfaces for L2BD forwarding are setup | ${dut_node}
+| | And Set interfaces in 2-node circular topology up
+| | When Configure vhost interfaces for L2BD forwarding | ${dut_node}
 | | ...                                                     | ${sock1}
 | | ...                                                     | ${sock2}
-| | And Bridge domain on DUT node is created | ${dut_node} | ${bd_id1}
+| | And Create bridge domain | ${dut_node} | ${bd_id1}
 | | ...                                      | learn=${FALSE}
-| | And Interface is added to bridge domain | ${dut_node} | ${dut_to_tg_if1}
+| | And Add interface to bridge domain | ${dut_node} | ${dut_to_tg_if1}
 | | ...                                     | ${bd_id1}
-| | And Interface is added to bridge domain | ${dut_node} | ${vhost_if1}
+| | And Add interface to bridge domain | ${dut_node} | ${vhost_if1}
 | | ...                                     | ${bd_id1}
-| | And Destination port is added to L2FIB on DUT node | ${tg_node}
+| | And Add destination port to L2FIB | ${tg_node}
 | | ...                                                | ${tg_to_dut_if1}
 | | ...                                                | ${dut_node}
 | | ...                                                | ${dut_to_tg_if1}
 | | ...                                                | ${bd_id1}
-| | And Destination port is added to L2FIB on DUT node | ${tg_node}
+| | And Add destination port to L2FIB | ${tg_node}
 | | ...                                                | ${tg_to_dut_if2}
 | | ...                                                | ${dut_node}
 | | ...                                                | ${vhost_if1}
 | | ...                                                | ${bd_id1}
-| | And Bridge domain on DUT node is created | ${dut_node} | ${bd_id2}
+| | And Create bridge domain | ${dut_node} | ${bd_id2}
 | | ...                                      | learn=${FALSE}
-| | And Interface is added to bridge domain | ${dut_node} | ${dut_to_tg_if2}
+| | And Add interface to bridge domain | ${dut_node} | ${dut_to_tg_if2}
 | | ...                                     | ${bd_id2}
-| | And Interface is added to bridge domain | ${dut_node} | ${vhost_if2}
+| | And Add interface to bridge domain | ${dut_node} | ${vhost_if2}
 | | ...                                     | ${bd_id2}
-| | And Destination port is added to L2FIB on DUT node | ${tg_node}
+| | And Add destination port to L2FIB | ${tg_node}
 | | ...                                                | ${tg_to_dut_if2}
 | | ...                                                | ${dut_node}
 | | ...                                                | ${dut_to_tg_if2}
 | | ...                                                | ${bd_id2}
-| | And Destination port is added to L2FIB on DUT node | ${tg_node}
+| | And Add destination port to L2FIB | ${tg_node}
 | | ...                                                | ${tg_to_dut_if1}
 | | ...                                                | ${dut_node}
 | | ...                                                | ${vhost_if2}
 | | ...                                                | ${bd_id2}
-| | And VM for Vhost L2BD forwarding is setup | ${dut_node} | ${sock1}
+| | And Configure VM for vhost L2BD forwarding | ${dut_node} | ${sock1}
 | | ...                                       | ${sock2}
-| | Then Send and receive ICMPv4 bidirectionally | ${tg_node} | ${tg_to_dut_if1}
+| | Then Send ICMPv4 bidirectionally and verify received packets | ${tg_node} | ${tg_to_dut_if1}
 | | ...                                          | ${tg_to_dut_if2}
 
 | TC02: DUT with two L2BDs (static MACs) switches ICMPv6 between TG and VM links
@@ -107,48 +107,48 @@
 | | ... | switched thru DUT1 and VM in both directions and are correct on
 | | ... | receive. [Ref]
 | | ...
-| | [Teardown] | Run Keywords | Stop and Clear QEMU | ${dut_node} | ${vm_node}
-| | ... | AND | Func Test Teardown
+| | [Teardown] | Run Keywords | Stop and clear QEMU | ${dut_node} | ${vm_node}
+| | ... | AND | Tear down functional test
 | | ...
-| | Given Path for 2-node testing is set
+| | Given Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
-| | And Interfaces in 2-node path are up
-| | When VPP Vhost interfaces for L2BD forwarding are setup | ${dut_node}
+| | And Set interfaces in 2-node circular topology up
+| | When Configure vhost interfaces for L2BD forwarding | ${dut_node}
 | | ...                                                     | ${sock1}
 | | ...                                                     | ${sock2}
-| | And Bridge domain on DUT node is created | ${dut_node} | ${bd_id1}
+| | And Create bridge domain | ${dut_node} | ${bd_id1}
 | | ...                                      | learn=${FALSE}
-| | And Interface is added to bridge domain | ${dut_node} | ${dut_to_tg_if1}
+| | And Add interface to bridge domain | ${dut_node} | ${dut_to_tg_if1}
 | | ...                                     | ${bd_id1}
-| | And Interface is added to bridge domain | ${dut_node} | ${vhost_if1}
+| | And Add interface to bridge domain | ${dut_node} | ${vhost_if1}
 | | ...                                     | ${bd_id1}
-| | And Destination port is added to L2FIB on DUT node | ${tg_node}
+| | And Add destination port to L2FIB | ${tg_node}
 | | ...                                                | ${tg_to_dut_if1}
 | | ...                                                | ${dut_node}
 | | ...                                                | ${dut_to_tg_if1}
 | | ...                                                | ${bd_id1}
-| | And Destination port is added to L2FIB on DUT node | ${tg_node}
+| | And Add destination port to L2FIB | ${tg_node}
 | | ...                                                | ${tg_to_dut_if2}
 | | ...                                                | ${dut_node}
 | | ...                                                | ${vhost_if1}
 | | ...                                                | ${bd_id1}
-| | And Bridge domain on DUT node is created | ${dut_node} | ${bd_id2}
+| | And Create bridge domain | ${dut_node} | ${bd_id2}
 | | ...                                      | learn=${FALSE}
-| | And Interface is added to bridge domain | ${dut_node} | ${dut_to_tg_if2}
+| | And Add interface to bridge domain | ${dut_node} | ${dut_to_tg_if2}
 | | ...                                     | ${bd_id2}
-| | And Interface is added to bridge domain | ${dut_node} | ${vhost_if2}
+| | And Add interface to bridge domain | ${dut_node} | ${vhost_if2}
 | | ...                                     | ${bd_id2}
-| | And Destination port is added to L2FIB on DUT node | ${tg_node}
+| | And Add destination port to L2FIB | ${tg_node}
 | | ...                                                | ${tg_to_dut_if2}
 | | ...                                                | ${dut_node}
 | | ...                                                | ${dut_to_tg_if2}
 | | ...                                                | ${bd_id2}
-| | And Destination port is added to L2FIB on DUT node | ${tg_node}
+| | And Add destination port to L2FIB | ${tg_node}
 | | ...                                                | ${tg_to_dut_if1}
 | | ...                                                | ${dut_node}
 | | ...                                                | ${vhost_if2}
 | | ...                                                | ${bd_id2}
-| | And VM for Vhost L2BD forwarding is setup | ${dut_node} | ${sock1}
+| | And Configure VM for vhost L2BD forwarding | ${dut_node} | ${sock1}
 | | ...                                       | ${sock2}
-| | Then Send and receive ICMPv6 bidirectionally | ${tg_node} | ${tg_to_dut_if1}
+| | Then Send ICMPv6 bidirectionally and verify received packets | ${tg_node} | ${tg_to_dut_if1}
 | | ...                                          | ${tg_to_dut_if2}

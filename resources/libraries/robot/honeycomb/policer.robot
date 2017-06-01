@@ -85,7 +85,7 @@
 | | [Arguments] | ${node}
 | | Configure Policer | ${node} | ${policer_data['name']}
 
-| Policer test teardown
+| Tear down policer test
 | | [Documentation] | Uses Honeycomb API to remove Policer configuration\
 | | ... | and reset interface state.
 | | ...
@@ -133,7 +133,7 @@
 | | Disable Policer on interface
 | | ... | ${node} | ${interface}
 
-| Honeycomb Send Packet and Verify Marking
+| Honeycomb Send packet and verify marking
 | | [Documentation] | Send packet and verify DSCP of the received packet.
 | | ...
 | | ... | *Arguments:*
@@ -149,7 +149,7 @@
 | | ... | *Example:*
 | | ...
 | | ... | \| ${dscp}= \| DSCP AF22 \|
-| | ... | \| Send Packet and Verify Marking \| ${nodes['TG']} \| eth1 \| eth2 \
+| | ... | \| Send packet and verify marking \| ${nodes['TG']} \| eth1 \| eth2 \
 | | ... | \| 08:00:27:87:4d:f7 \| 52:54:00:d4:d8:22 \| 192.168.122.2 \
 | | ... | \| 192.168.122.1 \| ${dscp} \|
 | | ...
