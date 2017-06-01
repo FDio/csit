@@ -24,9 +24,9 @@
 | Library  | resources.libraries.python.Namespaces
 | Library  | resources.libraries.python.IPUtil
 | Force Tags | HW_ENV | VM_ENV | 3_NODE_DOUBLE_LINK_TOPO
-| Test Setup | Run Keywords | Func Test Setup
+| Test Setup | Run Keywords | Set up functional test
 | ...        | AND          | Clean Up Namespaces | ${nodes['DUT1']}
-| Test Teardown | Run Keywords | Func Test Teardown
+| Test Teardown | Run Keywords | Tear down functional test
 | ... | AND | Linux Del Bridge | ${nodes['DUT1']} | ${bid_TAP}
 | ... | AND | Clean Up Namespaces | ${nodes['DUT1']}
 | Documentation | *Tap Interface Traffic Tests*
@@ -62,26 +62,26 @@
 | | ... | [Ver] Packet sent from TG is passed through all L2BD and received
 | | ... | back on TG. Then src_ip, dst_ip and MAC are checked.
 | | ...
-| | Given Path for 2-node testing is set | ${nodes['TG']} | ${nodes['DUT1']}
+| | Given Configure path in 2-node circular topology | ${nodes['TG']} | ${nodes['DUT1']}
 | | ... | ${nodes['TG']}
-| | And Interfaces in 2-node path are up
+| | And Set interfaces in 2-node circular topology up
 | | ${int1}= | And Add Tap Interface | ${dut_node} | ${tap_int1}
 | | ${int2}= | And Add Tap Interface | ${dut_node} | ${tap_int2}
 | | And Set Interface State | ${dut_node} | ${int1} | up
 | | And Set Interface State | ${dut_node} | ${int2} | up
-| | And Bridge domain on DUT node is created | ${dut_node}
+| | And Create bridge domain | ${dut_node}
 | | ... | ${bid_from_TG} | learn=${TRUE}
-| | And Bridge domain on DUT node is created | ${dut_node}
+| | And Create bridge domain | ${dut_node}
 | | ... | ${bid_to_TG} | learn=${TRUE}
 | | And Linux Add Bridge | ${dut_node}
 | | ... | ${bid_TAP} | ${tap_int1} | ${tap_int2}
-| | And Interface is added to bridge domain | ${dut_node}
+| | And Add interface to bridge domain | ${dut_node}
 | | ... | ${int1} | ${bid_to_TG} | 0
-| | And Interface is added to bridge domain | ${dut_node}
+| | And Add interface to bridge domain | ${dut_node}
 | | ... | ${dut_to_tg_if1} | ${bid_to_TG} | 0
-| | And Interface is added to bridge domain | ${dut_node}
+| | And Add interface to bridge domain | ${dut_node}
 | | ... | ${int2} | ${bid_from_TG} | 0
-| | And Interface is added to bridge domain | ${dut_node}
+| | And Add interface to bridge domain | ${dut_node}
 | | ... | ${dut_to_tg_if2} | ${bid_from_TG} | 0
-| | Then Send and receive ICMP Packet | ${tg_node}
+| | Then Send ICMP packet and verify received packet | ${tg_node}
 | | ... | ${tg_to_dut_if1} | ${tg_to_dut_if2}

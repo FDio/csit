@@ -21,8 +21,8 @@
 | Library  | resources.libraries.python.Trace
 | Library | resources.libraries.python.IPv6Setup
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | VM_ENV | HW_ENV
-| Test Setup | Func Test Setup
-| Test Teardown | Func Test Teardown
+| Test Setup | Set up functional test
+| Test Teardown | Tear down functional test
 | Documentation | *L2BD with SHG combined with VXLAN test cases - IPv6*
 | ...
 | ... | *[Top] Network topologies:* TG=DUT1=DUT2=TG 3-node circular topology
@@ -68,10 +68,10 @@
 | | ... | TG interfaces connected to DUT2 that are isolated by SHG on DUT1.
 | | ... | [Ref] RFC7348.
 | | [Tags] | 3_NODE_DOUBLE_LINK_TOPO
-| | Given Path for 3-node BD-SHG testing is set | ${nodes['TG']}
+| | Given Configure path for 3-node BD-SHG test | ${nodes['TG']}
 | | ...                                         | ${nodes['DUT1']}
 | | ...                                         | ${nodes['DUT2']}
-| | And Interfaces in 3-node BD-SHG testing are up
+| | And Set interfaces in 3-node BD-SHG test up
 | | And Set Interface Address | ${dut1_node} | ${dut1_to_dut2} | ${ip6_addr1}
 | | ...                       | ${ip6_prefix}
 | | And Set Interface Address | ${dut2_node} | ${dut2_to_dut1} | ${ip6_addr2}
@@ -93,39 +93,39 @@
 | | And Set Interface State | ${dut2_node} | ${dut2s_vxlan2} | up
 | | And Vpp Node Interfaces Ready Wait | ${dut1_node}
 | | And Vpp Node Interfaces Ready Wait | ${dut2_node}
-| | And Bridge domain on DUT node is created | ${dut1_node} | ${bd_id1}
-| | And Interface is added to bridge domain | ${dut1_node} | ${dut1_to_tg_if1}
+| | And Create bridge domain | ${dut1_node} | ${bd_id1}
+| | And Add interface to bridge domain | ${dut1_node} | ${dut1_to_tg_if1}
 | | ...                                     | ${bd_id1}
-| | And Interface is added to bridge domain | ${dut1_node} | ${dut1_to_tg_if2}
+| | And Add interface to bridge domain | ${dut1_node} | ${dut1_to_tg_if2}
 | | ...                                     | ${bd_id1}
-| | And Interface is added to bridge domain | ${dut1_node} | ${dut1s_vxlan1}
+| | And Add interface to bridge domain | ${dut1_node} | ${dut1s_vxlan1}
 | | ...                                     | ${bd_id1} | ${shg1}
-| | And Interface is added to bridge domain | ${dut1_node} | ${dut1s_vxlan2}
+| | And Add interface to bridge domain | ${dut1_node} | ${dut1s_vxlan2}
 | | ...                                     | ${bd_id1} | ${shg1}
-| | And Bridge domain on DUT node is created | ${dut2_node} | ${bd_id2}
-| | And Interface is added to bridge domain | ${dut2_node} | ${dut2_to_tg_if1}
+| | And Create bridge domain | ${dut2_node} | ${bd_id2}
+| | And Add interface to bridge domain | ${dut2_node} | ${dut2_to_tg_if1}
 | | ...                                     | ${bd_id2}
-| | And Interface is added to bridge domain | ${dut2_node} | ${dut2s_vxlan1}
+| | And Add interface to bridge domain | ${dut2_node} | ${dut2s_vxlan1}
 | | ...                                     | ${bd_id2}
-| | And Bridge domain on DUT node is created | ${dut2_node} | ${bd_id3}
-| | And Interface is added to bridge domain | ${dut2_node} | ${dut2_to_tg_if2}
+| | And Create bridge domain | ${dut2_node} | ${bd_id3}
+| | And Add interface to bridge domain | ${dut2_node} | ${dut2_to_tg_if2}
 | | ...                                     | ${bd_id3}
-| | And Interface is added to bridge domain | ${dut2_node} | ${dut2s_vxlan2}
+| | And Add interface to bridge domain | ${dut2_node} | ${dut2s_vxlan2}
 | | ...                                     | ${bd_id3}
-| | Then Send and receive ICMPv6 bidirectionally | ${tg_node}
+| | Then Send ICMPv6 bidirectionally and verify received packets | ${tg_node}
 | | ...                                          | ${tg_to_dut1_if1}
 | | ...                                          | ${tg_to_dut2_if1}
-| | And Send and receive ICMPv6 bidirectionally | ${tg_node}
+| | And Send ICMPv6 bidirectionally and verify received packets | ${tg_node}
 | | ...                                         | ${tg_to_dut1_if1}
 | | ...                                         | ${tg_to_dut2_if2}
-| | And Send and receive ICMPv6 bidirectionally | ${tg_node}
+| | And Send ICMPv6 bidirectionally and verify received packets | ${tg_node}
 | | ...                                         | ${tg_to_dut1_if2}
 | | ...                                         | ${tg_to_dut2_if1}
-| | And Send and receive ICMPv6 bidirectionally | ${tg_node}
+| | And Send ICMPv6 bidirectionally and verify received packets | ${tg_node}
 | | ...                                         | ${tg_to_dut1_if2}
 | | ...                                         | ${tg_to_dut2_if2}
 | | And Run Keyword And Expect Error | ICMP echo Rx timeout
-| | ...                              | Send and receive ICMPv6 bidirectionally
+| | ...                              | Send ICMPv6 bidirectionally and verify received packets
 | | | ...                            | ${tg_node} | ${tg_to_dut2_if1}
 | | | ...                            | ${tg_to_dut2_if2}
 
@@ -142,10 +142,10 @@
 | | ... | to be switched by DUT1 and DUT2; verify packets are switched between
 | | ... | all TG interfaces. [Ref] RFC7348.
 | | [Tags] | 3_NODE_DOUBLE_LINK_TOPO
-| | Given Path for 3-node BD-SHG testing is set | ${nodes['TG']}
+| | Given Configure path for 3-node BD-SHG test | ${nodes['TG']}
 | | ...                                         | ${nodes['DUT1']}
 | | ...                                         | ${nodes['DUT2']}
-| | And Interfaces in 3-node BD-SHG testing are up
+| | And Set interfaces in 3-node BD-SHG test up
 | | And Set Interface Address | ${dut1_node} | ${dut1_to_dut2} | ${ip6_addr1}
 | | ...                       | ${ip6_prefix}
 | | And Set Interface Address | ${dut2_node} | ${dut2_to_dut1} | ${ip6_addr2}
@@ -167,37 +167,37 @@
 | | And Set Interface State | ${dut2_node} | ${dut2s_vxlan2} | up
 | | And Vpp Node Interfaces Ready Wait | ${dut1_node}
 | | And Vpp Node Interfaces Ready Wait | ${dut2_node}
-| | And Bridge domain on DUT node is created | ${dut1_node} | ${bd_id1}
-| | And Interface is added to bridge domain | ${dut1_node} | ${dut1_to_tg_if1}
+| | And Create bridge domain | ${dut1_node} | ${bd_id1}
+| | And Add interface to bridge domain | ${dut1_node} | ${dut1_to_tg_if1}
 | | ...                                     | ${bd_id1}
-| | And Interface is added to bridge domain | ${dut1_node} | ${dut1_to_tg_if2}
+| | And Add interface to bridge domain | ${dut1_node} | ${dut1_to_tg_if2}
 | | ...                                     | ${bd_id1}
-| | And Interface is added to bridge domain | ${dut1_node} | ${dut1s_vxlan1}
+| | And Add interface to bridge domain | ${dut1_node} | ${dut1s_vxlan1}
 | | ...                                     | ${bd_id1} | ${shg1}
-| | And Interface is added to bridge domain | ${dut1_node} | ${dut1s_vxlan2}
+| | And Add interface to bridge domain | ${dut1_node} | ${dut1s_vxlan2}
 | | ...                                     | ${bd_id1} | ${shg2}
-| | And Bridge domain on DUT node is created | ${dut2_node} | ${bd_id2}
-| | And Interface is added to bridge domain | ${dut2_node} | ${dut2_to_tg_if1}
+| | And Create bridge domain | ${dut2_node} | ${bd_id2}
+| | And Add interface to bridge domain | ${dut2_node} | ${dut2_to_tg_if1}
 | | ...                                     | ${bd_id2}
-| | And Interface is added to bridge domain | ${dut2_node} | ${dut2s_vxlan1}
+| | And Add interface to bridge domain | ${dut2_node} | ${dut2s_vxlan1}
 | | ...                                     | ${bd_id2}
-| | And Bridge domain on DUT node is created | ${dut2_node} | ${bd_id3}
-| | And Interface is added to bridge domain | ${dut2_node} | ${dut2_to_tg_if2}
+| | And Create bridge domain | ${dut2_node} | ${bd_id3}
+| | And Add interface to bridge domain | ${dut2_node} | ${dut2_to_tg_if2}
 | | ...                                     | ${bd_id3}
-| | And Interface is added to bridge domain | ${dut2_node} | ${dut2s_vxlan2}
+| | And Add interface to bridge domain | ${dut2_node} | ${dut2s_vxlan2}
 | | ...                                     | ${bd_id3}
-| | Then Send and receive ICMPv6 bidirectionally | ${tg_node}
+| | Then Send ICMPv6 bidirectionally and verify received packets | ${tg_node}
 | | ...                                          | ${tg_to_dut1_if1}
 | | ...                                          | ${tg_to_dut2_if1}
-| | And Send and receive ICMPv6 bidirectionally | ${tg_node}
+| | And Send ICMPv6 bidirectionally and verify received packets | ${tg_node}
 | | ...                                         | ${tg_to_dut1_if1}
 | | ...                                         | ${tg_to_dut2_if2}
-| | And Send and receive ICMPv6 bidirectionally | ${tg_node}
+| | And Send ICMPv6 bidirectionally and verify received packets | ${tg_node}
 | | ...                                         | ${tg_to_dut1_if2}
 | | ...                                         | ${tg_to_dut2_if1}
-| | And Send and receive ICMPv6 bidirectionally | ${tg_node}
+| | And Send ICMPv6 bidirectionally and verify received packets | ${tg_node}
 | | ...                                         | ${tg_to_dut1_if2}
 | | ...                                         | ${tg_to_dut2_if2}
-| | And Send and receive ICMPv6 bidirectionally | ${tg_node}
+| | And Send ICMPv6 bidirectionally and verify received packets | ${tg_node}
 | | ...                                         | ${tg_to_dut2_if1}
 | | ...                                         | ${tg_to_dut2_if2}

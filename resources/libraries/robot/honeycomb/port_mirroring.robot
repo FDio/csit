@@ -21,7 +21,7 @@
 | Library  | resources.libraries.python.Trace
 
 *** Keywords ***
-| Honeycomb Configures SPAN on interface
+| Honeycomb configures SPAN on interface
 | | [Documentation] | Uses Honeycomb API to configure SPAN on the specified\
 | | ... | interface, mirroring one or more interfaces.
 | | ...
@@ -33,7 +33,7 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Honeycomb Configures SPAN on interface \| ${nodes['DUT1']} \
+| | ... | \| Honeycomb configures SPAN on interface \| ${nodes['DUT1']} \
 | | ... | \| GigabitEthernet0/8/0 \| [{'iface-ref': 'GigabitEthernet0/10/0', \
 | | ... | \| 'state': 'transmit'}, \
 | | ... | \| {'iface-ref': 'local0', 'state': 'both'}] \|

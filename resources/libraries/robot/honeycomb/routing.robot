@@ -83,7 +83,7 @@
 | | [Arguments] | ${node} | ${name}
 | | Delete routing table | ${node} | ${name}
 
-| Verify Route IPv4
+| Verify route IPv4
 | | [Documentation] | Send an ICMP packet from one TG interface and receive\
 | | ... | it on the other TG interface.
 | | ...
@@ -102,7 +102,7 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Verify Route IPv4 \| ${nodes['TG']} \
+| | ... | \| Verify route IPv4 \| ${nodes['TG']} \
 | | ... | \| 16.0.0.1 \| 32.0.0.1 \| eth1 \| 08:00:27:cc:4f:54 \
 | | ... | \| eth2 \| 08:00:27:c9:6a:d5 \|
 | | ...
@@ -118,7 +118,7 @@
 | | ...                 | --rx_if | ${rx_port_name}
 | | Run Traffic Script On Node | send_ip_icmp.py | ${tg_node} | ${args}
 
-| Verify Route IPv6
+| Verify route IPv6
 | | [Documentation] | Send an ICMPv6 packet from one TG interface and receive\
 | | ... | it on the other TG interface.
 | | ...
@@ -137,7 +137,7 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Verify Route IPv6 \| ${nodes['TG']} \
+| | ... | \| Verify route IPv6 \| ${nodes['TG']} \
 | | ... | \| 10::1 \| 11::1 \| eth2 \| 08:00:27:cc:4f:54 \
 | | ... | \| eth4 \| 08:00:27:c9:6a:d5 \|
 | | ...

@@ -19,12 +19,12 @@
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDRDISC
 | ... | NIC_Intel-X520-DA2 | IP4FWD | ENCAP | LISP | IP4UNRLAY | IP4OVRLAY
 | ...
-| Suite Setup | 3-node Performance Suite Setup with DUT's NIC model
+| Suite Setup | Set up 3-node performance topology with DUT's NIC model
 | ... | L3 | Intel-X520-DA2
-| Suite Teardown | 3-node Performance Suite Teardown
+| Suite Teardown | Tear down 3-node performance topology
 | ...
-| Test Setup | Performance test setup
-| Test Teardown | Performance test teardown | ${min_rate}pps | ${framesize}
+| Test Setup | Set up performance test
+| Test Teardown | Tear down performance discovery test | ${min_rate}pps | ${framesize}
 | ... | ${traffic_profile}
 | ...
 | Documentation | *RFC6830: Pkt throughput Lisp test cases*
@@ -64,14 +64,14 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | When Lisp IPv4 forwarding initialized in a 3-node circular topology
+| | When Initialize LISP IPv4 forwarding in 3-node circular topology
 | | ... | ${dut1_to_dut2_ip4} | ${dut1_to_tg_ip4} | ${dut2_to_dut1_ip4}
 | | ... | ${dut2_to_tg_ip4} | ${prefix4}
-| | And Set up Lisp topology
+| | And Configure LISP topology in 3-node circular topology
 | | ... | ${dut1} | ${dut1_if2} | ${NONE}
 | | ... | ${dut2} | ${dut2_if1} | ${NONE}
 | | ... | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
@@ -94,14 +94,14 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | When Lisp IPv4 forwarding initialized in a 3-node circular topology
+| | When Initialize LISP IPv4 forwarding in 3-node circular topology
 | | ... | ${dut1_to_dut2_ip4} | ${dut1_to_tg_ip4} | ${dut2_to_dut1_ip4}
 | | ... | ${dut2_to_tg_ip4} | ${prefix4}
-| | And Set up Lisp topology
+| | And Configure LISP topology in 3-node circular topology
 | | ... | ${dut1} | ${dut1_if2} | ${NONE}
 | | ... | ${dut2} | ${dut2_if1} | ${NONE}
 | | ... | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
@@ -125,14 +125,14 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | When Lisp IPv4 forwarding initialized in a 3-node circular topology
+| | When Initialize LISP IPv4 forwarding in 3-node circular topology
 | | ... | ${dut1_to_dut2_ip4} | ${dut1_to_tg_ip4} | ${dut2_to_dut1_ip4}
 | | ... | ${dut2_to_tg_ip4} | ${prefix4}
-| | And Set up Lisp topology
+| | And Configure LISP topology in 3-node circular topology
 | | ... | ${dut1} | ${dut1_if2} | ${NONE}
 | | ... | ${dut2} | ${dut2_if1} | ${NONE}
 | | ... | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
@@ -155,14 +155,14 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | When Lisp IPv4 forwarding initialized in a 3-node circular topology
+| | When Initialize LISP IPv4 forwarding in 3-node circular topology
 | | ... | ${dut1_to_dut2_ip4} | ${dut1_to_tg_ip4} | ${dut2_to_dut1_ip4}
 | | ... | ${dut2_to_tg_ip4} | ${prefix4}
-| | And Set up Lisp topology
+| | And Configure LISP topology in 3-node circular topology
 | | ... | ${dut1} | ${dut1_if2} | ${NONE}
 | | ... | ${dut2} | ${dut2_if1} | ${NONE}
 | | ... | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
@@ -186,13 +186,13 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
+| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
 | | And Apply startup configuration on all VPP DUTs
-| | When Lisp IPv4 forwarding initialized in a 3-node circular topology
+| | When Initialize LISP IPv4 forwarding in 3-node circular topology
 | | ... | ${dut1_to_dut2_ip4} | ${dut1_to_tg_ip4} | ${dut2_to_dut1_ip4}
 | | ... | ${dut2_to_tg_ip4} | ${prefix4}
-| | And Set up Lisp topology
+| | And Configure LISP topology in 3-node circular topology
 | | ... | ${dut1} | ${dut1_if2} | ${NONE}
 | | ... | ${dut2} | ${dut2_if1} | ${NONE}
 | | ... | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
@@ -215,13 +215,13 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '1' worker threads and rxqueues '1' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
+| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
 | | And Apply startup configuration on all VPP DUTs
-| | When Lisp IPv4 forwarding initialized in a 3-node circular topology
+| | When Initialize LISP IPv4 forwarding in 3-node circular topology
 | | ... | ${dut1_to_dut2_ip4} | ${dut1_to_tg_ip4} | ${dut2_to_dut1_ip4}
 | | ... | ${dut2_to_tg_ip4} | ${prefix4}
-| | And Set up Lisp topology
+| | And Configure LISP topology in 3-node circular topology
 | | ... | ${dut1} | ${dut1_if2} | ${NONE}
 | | ... | ${dut2} | ${dut2_if1} | ${NONE}
 | | ... | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
@@ -245,14 +245,14 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | When Lisp IPv4 forwarding initialized in a 3-node circular topology
+| | When Initialize LISP IPv4 forwarding in 3-node circular topology
 | | ... | ${dut1_to_dut2_ip4} | ${dut1_to_tg_ip4} | ${dut2_to_dut1_ip4}
 | | ... | ${dut2_to_tg_ip4} | ${prefix4}
-| | And Set up Lisp topology
+| | And Configure LISP topology in 3-node circular topology
 | | ... | ${dut1} | ${dut1_if2} | ${NONE}
 | | ... | ${dut2} | ${dut2_if1} | ${NONE}
 | | ... | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
@@ -275,14 +275,14 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | When Lisp IPv4 forwarding initialized in a 3-node circular topology
+| | When Initialize LISP IPv4 forwarding in 3-node circular topology
 | | ... | ${dut1_to_dut2_ip4} | ${dut1_to_tg_ip4} | ${dut2_to_dut1_ip4}
 | | ... | ${dut2_to_tg_ip4} | ${prefix4}
-| | And Set up Lisp topology
+| | And Configure LISP topology in 3-node circular topology
 | | ... | ${dut1} | ${dut1_if2} | ${NONE}
 | | ... | ${dut2} | ${dut2_if1} | ${NONE}
 | | ... | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
@@ -306,14 +306,14 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | When Lisp IPv4 forwarding initialized in a 3-node circular topology
+| | When Initialize LISP IPv4 forwarding in 3-node circular topology
 | | ... | ${dut1_to_dut2_ip4} | ${dut1_to_tg_ip4} | ${dut2_to_dut1_ip4}
 | | ... | ${dut2_to_tg_ip4} | ${prefix4}
-| | And Set up Lisp topology
+| | And Configure LISP topology in 3-node circular topology
 | | ... | ${dut1} | ${dut1_if2} | ${NONE}
 | | ... | ${dut2} | ${dut2_if1} | ${NONE}
 | | ... | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
@@ -336,14 +336,14 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | When Lisp IPv4 forwarding initialized in a 3-node circular topology
+| | When Initialize LISP IPv4 forwarding in 3-node circular topology
 | | ... | ${dut1_to_dut2_ip4} | ${dut1_to_tg_ip4} | ${dut2_to_dut1_ip4}
 | | ... | ${dut2_to_tg_ip4} | ${prefix4}
-| | And Set up Lisp topology
+| | And Configure LISP topology in 3-node circular topology
 | | ... | ${dut1} | ${dut1_if2} | ${NONE}
 | | ... | ${dut2} | ${dut2_if1} | ${NONE}
 | | ... | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
@@ -367,13 +367,13 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
+| | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
 | | And Apply startup configuration on all VPP DUTs
-| | When Lisp IPv4 forwarding initialized in a 3-node circular topology
+| | When Initialize LISP IPv4 forwarding in 3-node circular topology
 | | ... | ${dut1_to_dut2_ip4} | ${dut1_to_tg_ip4} | ${dut2_to_dut1_ip4}
 | | ... | ${dut2_to_tg_ip4} | ${prefix4}
-| | And Set up Lisp topology
+| | And Configure LISP topology in 3-node circular topology
 | | ... | ${dut1} | ${dut1_if2} | ${NONE}
 | | ... | ${dut2} | ${dut2_if1} | ${NONE}
 | | ... | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
@@ -396,13 +396,13 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '2' worker threads and rxqueues '1' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
+| | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
 | | And Apply startup configuration on all VPP DUTs
-| | When Lisp IPv4 forwarding initialized in a 3-node circular topology
+| | When Initialize LISP IPv4 forwarding in 3-node circular topology
 | | ... | ${dut1_to_dut2_ip4} | ${dut1_to_tg_ip4} | ${dut2_to_dut1_ip4}
 | | ... | ${dut2_to_tg_ip4} | ${prefix4}
-| | And Set up Lisp topology
+| | And Configure LISP topology in 3-node circular topology
 | | ... | ${dut1} | ${dut1_if2} | ${NONE}
 | | ... | ${dut2} | ${dut2_if1} | ${NONE}
 | | ... | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
@@ -426,14 +426,14 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | When Lisp IPv4 forwarding initialized in a 3-node circular topology
+| | When Initialize LISP IPv4 forwarding in 3-node circular topology
 | | ... | ${dut1_to_dut2_ip4} | ${dut1_to_tg_ip4} | ${dut2_to_dut1_ip4}
 | | ... | ${dut2_to_tg_ip4} | ${prefix4}
-| | And Set up Lisp topology
+| | And Configure LISP topology in 3-node circular topology
 | | ... | ${dut1} | ${dut1_if2} | ${NONE}
 | | ... | ${dut2} | ${dut2_if1} | ${NONE}
 | | ... | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
@@ -456,14 +456,14 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | When Lisp IPv4 forwarding initialized in a 3-node circular topology
+| | When Initialize LISP IPv4 forwarding in 3-node circular topology
 | | ... | ${dut1_to_dut2_ip4} | ${dut1_to_tg_ip4} | ${dut2_to_dut1_ip4}
 | | ... | ${dut2_to_tg_ip4} | ${prefix4}
-| | And Set up Lisp topology
+| | And Configure LISP topology in 3-node circular topology
 | | ... | ${dut1} | ${dut1_if2} | ${NONE}
 | | ... | ${dut2} | ${dut2_if1} | ${NONE}
 | | ... | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
@@ -487,14 +487,14 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | When Lisp IPv4 forwarding initialized in a 3-node circular topology
+| | When Initialize LISP IPv4 forwarding in 3-node circular topology
 | | ... | ${dut1_to_dut2_ip4} | ${dut1_to_tg_ip4} | ${dut2_to_dut1_ip4}
 | | ... | ${dut2_to_tg_ip4} | ${prefix4}
-| | And Set up Lisp topology
+| | And Configure LISP topology in 3-node circular topology
 | | ... | ${dut1} | ${dut1_if2} | ${NONE}
 | | ... | ${dut2} | ${dut2_if1} | ${NONE}
 | | ... | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
@@ -517,14 +517,14 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
-| | And Add No Multi Seg to all DUTs
+| | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | When Lisp IPv4 forwarding initialized in a 3-node circular topology
+| | When Initialize LISP IPv4 forwarding in 3-node circular topology
 | | ... | ${dut1_to_dut2_ip4} | ${dut1_to_tg_ip4} | ${dut2_to_dut1_ip4}
 | | ... | ${dut2_to_tg_ip4} | ${prefix4}
-| | And Set up Lisp topology
+| | And Configure LISP topology in 3-node circular topology
 | | ... | ${dut1} | ${dut1_if2} | ${NONE}
 | | ... | ${dut2} | ${dut2_if1} | ${NONE}
 | | ... | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
@@ -548,13 +548,13 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
+| | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
 | | And Apply startup configuration on all VPP DUTs
-| | When Lisp IPv4 forwarding initialized in a 3-node circular topology
+| | When Initialize LISP IPv4 forwarding in 3-node circular topology
 | | ... | ${dut1_to_dut2_ip4} | ${dut1_to_tg_ip4} | ${dut2_to_dut1_ip4}
 | | ... | ${dut2_to_tg_ip4} | ${prefix4}
-| | And Set up Lisp topology
+| | And Configure LISP topology in 3-node circular topology
 | | ... | ${dut1} | ${dut1_if2} | ${NONE}
 | | ... | ${dut2} | ${dut2_if1} | ${NONE}
 | | ... | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}
@@ -577,13 +577,13 @@
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '4' worker threads and rxqueues '2' in 3-node single-link topo
-| | And Add PCI devices to DUTs from 3-node single link topology
+| | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
+| | And Add PCI devices to DUTs in 3-node single link topology
 | | And Apply startup configuration on all VPP DUTs
-| | When Lisp IPv4 forwarding initialized in a 3-node circular topology
+| | When Initialize LISP IPv4 forwarding in 3-node circular topology
 | | ... | ${dut1_to_dut2_ip4} | ${dut1_to_tg_ip4} | ${dut2_to_dut1_ip4}
 | | ... | ${dut2_to_tg_ip4} | ${prefix4}
-| | And Set up Lisp topology
+| | And Configure LISP topology in 3-node circular topology
 | | ... | ${dut1} | ${dut1_if2} | ${NONE}
 | | ... | ${dut2} | ${dut2_if1} | ${NONE}
 | | ... | ${duts_locator_set} | ${dut1_ip4_eid} | ${dut2_ip4_eid}

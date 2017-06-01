@@ -19,7 +19,7 @@
 | Documentation | DHCP Proxy specific keywords.
 
 *** Keywords ***
-| Send DHCP Messages
+| Send DHCP messages and check answer
 | | [Documentation] | Send and receive DHCP messages between client
 | | ...             | and server through DHCP proxy.
 | | ...
@@ -38,7 +38,7 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Send DHCP Messages \| ${nodes['TG']} \
+| | ... | \| Send DHCP messages and check answer \| ${nodes['TG']} \
 | | ... | \| eth3 \| eth4 \| 192.168.0.100 \| 08:00:27:cc:4f:54 \
 | | ... | \| 172.16.0.2 \| 08:00:27:64:18:d2 \| 172.16.0.1 \|
 | | ...
@@ -57,7 +57,7 @@
 | | Run Traffic Script On Node | dhcp/send_and_check_proxy_messages.py
 | | ... | ${tg_node} | ${args}
 
-| Send DHCP DISCOVER
+| Send DHCP DISCOVER and check answer
 | | [Documentation] | Send and receive DHCP DISCOVER.
 | | ...
 | | ... | *Arguments:*
@@ -72,7 +72,7 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Send DHCP DISCOVER \| ${nodes['TG']} \
+| | ... | \| Send DHCP DISCOVER and check answer \| ${nodes['TG']} \
 | | ... | \| eth3 \| eth4 \| 0.0.0.0 \| 255.255.255.255 \|
 | | ...
 | | [Arguments] | ${tg_node} | ${tg_interface1} | ${tg_interface2}
@@ -86,7 +86,7 @@
 | | Run Traffic Script On Node | dhcp/send_and_check_proxy_discover.py
 | | ... | ${tg_node} | ${args}
 
-| Send DHCP DISCOVER should fail
+| DHCP DISCOVER should fail
 | | [Documentation] | Send and receive DHCP DISCOVER should fail.
 | | ...
 | | ... | *Arguments:*
@@ -101,7 +101,7 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Send DHCP DISCOVER should fail \| ${nodes['TG']} \
+| | ... | \| DHCP DISCOVER should fail \| ${nodes['TG']} \
 | | ... | \| eth3 \| eth4 \| 0.0.0.0 \| 255.255.255.1 \|
 | | ...
 | | [Arguments] | ${tg_node} | ${tg_interface1} | ${tg_interface2}
