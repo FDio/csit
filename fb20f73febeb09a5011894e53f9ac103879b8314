@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa5d592f_38d10bfc",
+        "filename": "resources/tools/virl/bin/start-testcase",
+        "patchSetId": 14
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2017-06-02T07:10:57Z",
+      "side": 1,
+      "message": "We should use dictionary with correct values per virl server as we have different configurations of virl servers at the moment (and it can happed again in the future).",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 18
+      },
+      "revId": "fb20f73febeb09a5011894e53f9ac103879b8314",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa5d592f_f8da5316",
+        "filename": "resources/tools/virl/bin/start-testcase",
+        "patchSetId": 14
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2017-06-02T07:10:57Z",
+      "side": 1,
+      "message": "1. Please, include also check for max. number of VMs - we need to get correct max. number of VMs for given virl server first (from dictionary).\n\n2. Get the max. number of IPs for given virl server.\n\n3. Then use min(VMs_per_virl*IPS_PER_SIMULATION, IPS_PER_VIRL) in the IF statement.",
+      "range": {
+        "startLine": 105,
+        "startChar": 11,
+        "endLine": 106,
+        "endChar": 70
+      },
+      "revId": "fb20f73febeb09a5011894e53f9ac103879b8314",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
