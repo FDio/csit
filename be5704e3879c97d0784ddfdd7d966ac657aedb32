@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa5d592f_7241da0a",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 378,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2017-06-05T21:01:57Z",
+      "side": 1,
+      "message": "cut \u0026 paste error -- should be: \"Get interface driver for\"",
+      "range": {
+        "startLine": 378,
+        "startChar": 32,
+        "endLine": 378,
+        "endChar": 59
+      },
+      "revId": "be5704e3879c97d0784ddfdd7d966ac657aedb32",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
