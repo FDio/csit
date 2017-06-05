@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa5d592f_a726f2b8",
+        "filename": "resources/traffic_scripts/honeycomb/read_vpp_version.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 170,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-06-05T14:52:27Z",
+      "side": 1,
+      "message": "add empty line",
+      "range": {
+        "startLine": 170,
+        "startChar": 48,
+        "endLine": 170,
+        "endChar": 53
+      },
+      "revId": "5c38144ac57d3f919480e37f95b6fccdb472f6be",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa5d592f_872bee81",
+        "filename": "resources/traffic_scripts/honeycomb/read_vpp_version.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 174,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-06-05T14:52:27Z",
+      "side": 1,
+      "message": "no empty line\nreturns",
+      "range": {
+        "startLine": 174,
+        "startChar": 9,
+        "endLine": 174,
+        "endChar": 15
+      },
+      "revId": "5c38144ac57d3f919480e37f95b6fccdb472f6be",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa5d592f_6720fa9b",
+        "filename": "resources/traffic_scripts/honeycomb/read_vpp_version.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 188,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-06-05T14:52:27Z",
+      "side": 1,
+      "message": "add empty line",
+      "range": {
+        "startLine": 188,
+        "startChar": 32,
+        "endLine": 188,
+        "endChar": 39
+      },
+      "revId": "5c38144ac57d3f919480e37f95b6fccdb472f6be",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa5d592f_0737fee4",
+        "filename": "resources/traffic_scripts/honeycomb/read_vpp_version.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 208,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-06-05T14:52:27Z",
+      "side": 1,
+      "message": "use print()",
+      "range": {
+        "startLine": 208,
+        "startChar": 12,
+        "endLine": 208,
+        "endChar": 18
+      },
+      "revId": "5c38144ac57d3f919480e37f95b6fccdb472f6be",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa5d592f_273a02ce",
+        "filename": "resources/traffic_scripts/honeycomb/read_vpp_version.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 229,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-06-05T14:52:27Z",
+      "side": 1,
+      "message": "no space\ncheck everywhere",
+      "range": {
+        "startLine": 229,
+        "startChar": 17,
+        "endLine": 229,
+        "endChar": 18
+      },
+      "revId": "5c38144ac57d3f919480e37f95b6fccdb472f6be",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa5d592f_c747a64a",
+        "filename": "resources/traffic_scripts/honeycomb/read_vpp_version.py",
+        "patchSetId": 18
+      },
+      "lineNbr": 301,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-06-05T14:52:27Z",
+      "side": 1,
+      "message": "returns, empty line",
+      "range": {
+        "startLine": 301,
+        "startChar": 5,
+        "endLine": 301,
+        "endChar": 11
+      },
+      "revId": "5c38144ac57d3f919480e37f95b6fccdb472f6be",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
