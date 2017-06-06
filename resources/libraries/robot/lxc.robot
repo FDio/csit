@@ -125,6 +125,7 @@
 | | ... | *Arguments:*
 | | ...
 | | ... | - dut_node - DUT node. Type: dictionary
+| | ... | - lxc_name - Name of LXC container. Type: dictionary
 | | ...
 | | ... | *Example:*
 | | ...
@@ -166,6 +167,7 @@
 | | ... | *Arguments:*
 | | ...
 | | ... | - dut_node - DUT node. Type: dictionary
+| | ... | - lxc_name - Name of LXC container. Type: dictionary
 | | ...
 | | ... | *Example:*
 | | ...
@@ -200,3 +202,53 @@
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
 | | | Install VPP on '${nr}' LXC containers on '${dut}' node
+
+| Create startup configuration of VPP on LXC container on DUT node
+| | [Documentation] | Create base startup configuration of VPP on LXC container
+| | ... | on DUT node.
+| | ...
+| | ... | *Arguments:*
+| | ...
+| | ... | - dut_node - DUT node. Type: dictionary
+| | ... | - lxc_name - Name of LXC container. Type: dictionary
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Create startup configuration of VPP on LXC container on DUT node \
+| | ... | \| ${nodes['DUT1']} \| DUT1_slave_1
+| | ...
+| | [Arguments] | ${dut_node} | ${lxc_name}
+| | ...
+| | Import Library | resources.libraries.python.VppConfigGenerator
+| | ... | WITH NAME | ${lxc_name}_conf
+| | Run keyword | ${lxc_name}_conf.Set Node | ${dut_node}
+| | Run keyword | ${lxc_name}_conf.Add Unix CLI Listen
+| | Run keyword | ${lxc_name}_conf.Add Unix Nodaemon
+| | Run keyword | ${lxc_name}_conf.Add Plugin Disable | "dpdk_plugin.so"
+| | Run Keyword | ${lxc_name}_conf.Apply Config LXC | ${lxc_name}
+
+| Create startup configuration of VPP on '${nr}' LXC containers on '${dut}' node
+| | [Documentation] | Create base startup configuration of VPP on multiple LXC
+| | ... | container on DUT node.
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Create startup configuration of VPP on 1 LXC containers on DUT1 \
+| | ... | node
+| | ...
+| | :FOR | ${number} | IN RANGE | 1 | ${nr}+1
+| | | Create startup configuration of VPP on LXC container on DUT node
+| | | ... | ${nodes['${dut}']} | ${dut}_${lxc_base_name}_${number}
+
+| Create startup configuration of VPP on '${nr}' LXC containers on all DUT nodes
+| | [Documentation] | Create base startup configuration of VPP on multiple LXC
+| | ... | container on all DUT nodes.
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Create startup configuration of VPP on 1 LXC containers on all \
+| | ... | DUT nodes
+| | ...
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | Create startup configuration of VPP on '${nr}' LXC containers on '${dut}' node

@@ -123,7 +123,6 @@ class VppConfigGenerator(object):
         """
         path = ['unix', 'cli-listen']
         self.add_config_item(self._nodeconfig, value, path)
-        self._nodeconfig = {'unix': {'nodaemon': ''}}
 
     def add_unix_nodaemon(self):
         """Add UNIX nodaemon configuration."""
@@ -247,6 +246,16 @@ class VppConfigGenerator(object):
         """
         path = ['ip6', 'heap-size']
         self.add_config_item(self._nodeconfig, value, path)
+
+    def add_plugin_disable(self, *plugins):
+        """Add plugin disable for specific plugin.
+
+        :param plugins: Plugin(s) to disable.
+        :type plugins: list
+        """
+        for plugin in plugins:
+            path = ['plugins', 'plugin {0}'.format(plugin), 'disable']
+            self.add_config_item(self._nodeconfig, ' ', path)
 
     def add_dpdk_no_multi_seg(self):
         """Add DPDK no-multi-seg configuration."""
