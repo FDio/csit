@@ -24,43 +24,36 @@
 | | ... | *Arguments:*
 | | ...
 | | ... | - dut_node - DUT node. Type: dictionary
-| | ... | - lxc_name - Container name. Type: string
-| | ...
-| | ... | *Return:*
-| | ...
-| | ... | - No value returned
+| | ... | - lxc_name - Name of LXC container. Type: dictionary
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Create LXC container on DUT node \| ${nodes['DUT1']} \| slave \|
+| | ... | \| Create LXC container on DUT node \| ${nodes['DUT1']}
+| | ... | \| DUT1_slave_1
 | | ...
 | | [Arguments] | ${dut_node} | ${lxc_name}
 | | ...
 | | Import Library | resources.libraries.python.LXCUtils
 | | ... | container_name=${lxc_name} | WITH NAME | ${lxc_name}
 | | Run keyword | ${lxc_name}.LXC Set Node | ${dut_node}
-| | Run keyword | ${lxc_name}.LXC Is Created
+| | Run keyword | ${lxc_name}.LXC Is Created | force_create=${TRUE}
 | | Run keyword | ${lxc_name}.LXC Host Dir Is Mounted
 | | Run keyword | ${lxc_name}.LXC Is Running
 
 | Create LXC container on DUT node with cpuset
-| | [Documentation] | Setup lxc container on DUT node with cpuset.
+| | [Documentation] | Create LXC container on DUT node with cpuset.
 | | ...
 | | ... | *Arguments:*
 | | ...
 | | ... | - dut_node - DUT node. Type: dictionary
-| | ... | - lxc_name - Container name. Type: string
+| | ... | - lxc_name - Name of LXC container. Type: dictionary
 | | ... | - skip - number of cpus which will be skipped. Type: int
 | | ... | - count - number of cpus which will be allocated for lxc. Type: int
-| | ...
-| | ... | *Return:*
-| | ...
-| | ... | - No value returned
 | | ...
 | | ... | *Example:*
 | | ...
 | | ... | \| Create LXC container on DUT node with cpuset \
-| | ... | \| ${nodes['DUT1']} \| slave \| 6 \| 1
+| | ... | \| ${nodes['DUT1']} \| DUT1_slave_1 \| 6 \| 1
 | | ...
 | | [Arguments] | ${dut_node} | ${lxc_name} | ${skip}=${6} | ${count}=${1}
 | | ...
@@ -68,104 +61,142 @@
 | | ... | container_name=${lxc_name} | WITH NAME | ${lxc_name}
 | | ${dut_numa}= | Get interfaces numa node | ${dut_node}
 | | ... | ${dut1_if1} | ${dut1_if2}
-| | ${lxc_cpus}= | Cpu slice of list per node | ${dut_node} | ${dut_numa}
+| | ${lxc_cpus}= | CPU list per node str | ${dut_node} | ${dut_numa}
 | | ... | skip_cnt=${skip} | cpu_cnt=${count} | smt_used=${False}
 | | Run keyword | ${lxc_name}.LXC Set Node | ${dut_node}
-| | Run keyword | ${lxc_name}.LXC Is Created
+| | Run keyword | ${lxc_name}.LXC Is Created | force_create=${TRUE}
 | | Run keyword | ${lxc_name}.LXC Host Dir Is Mounted
 | | Run keyword | ${lxc_name}.LXC Is Running
 | | Run keyword | ${lxc_name}.LXC Cpuset Cpus | ${lxc_cpus}
 
-| Create '${nr}' LXC containers on all DUT nodes
-| | [Documentation] | Create and start multiple lxc containers on all DUT nodes.
-| | ...
-| | ... | *Arguments:*
-| | ...
-| | ... | - lxc_name - Container base name. Type: string
-| | ...
-| | ... | *Return:*
-| | ...
-| | ... | - No value returned
+| Create '${nr}' LXC containers on '${dut}' node
+| | [Documentation] | Create and start multiple lxc containers on DUT node.
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Create 5 LXC containers on all DUT nodes \| slave \|
+| | ... | \| Create 5 LXC containers on DUT1 node
 | | ...
-| | [Arguments] | ${lxc_name}
+| | :FOR | ${number} | IN RANGE | 1 | ${nr}+1
+| | | Create LXC container on DUT node | ${nodes['${dut}']}
+| | | ... | ${dut}_${lxc_base_name}_${number}
+
+| Create '${nr}' LXC containers on all DUT nodes
+| | [Documentation] | Create and start multiple LXC containers on all DUT nodes.
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Create 5 LXC containers on all DUT nodes
 | | ...
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
-| | | :FOR | ${number} | IN RANGE | 1 | ${nr}+1
-| | | | Create LXC container on DUT node | ${nodes['${dut}']}
-| | | | ... | ${dut}_${lxc_name}_${number}
+| | | Create '${nr}' LXC containers on '${dut}' node
 
-| Create '${nr}' LXC containers on all DUT nodes with ${count} cpus
-| | [Documentation] | Create and start multiple lxc containers on all DUT nodes.
+| Create '${nr}' LXC containers on '${dut}' node with '${count}' cpus
+| | [Documentation] | Create and start multiple LXC containers on DUT node.
 | | ... | Set the cpuset.cpus cgroup profile for pin of cpus.
 | | ...
-| | ... | *Arguments:*
-| | ...
-| | ... | - lxc_name - Container base name. Type: string
-| | ...
-| | ... | *Return:*
-| | ...
-| | ... | - No value returned
-| | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Create 5 LXC containers on all DUT nodes \| slave \|
-| | ...
-| | [Arguments] | ${lxc_name}
+| | ... | \| Create 5 LXC containers on DUT1 node with 2 cpus
 | | ...
 | | ${skip_cpus}= | Evaluate | ${vpp_cpus}+${system_cpus}
+| | ${count_int}= | Convert To Integer | ${count}
 | | ${duts}= | Get Matches | ${nodes} | DUT*
-| | :FOR | ${dut} | IN | @{duts}
-| | | :FOR | ${number} | IN RANGE | 1 | ${nr}+1
-| | | | ${skip}= | Evaluate | ${skip_cpus} + (${nr} - 1) * ${count}
-| | | | Create LXC container on DUT node with cpuset | ${nodes['${dut}']}
-| | | | ... | ${dut}_${lxc_name}_${number} | ${skip} | ${count}
+| | :FOR | ${number} | IN RANGE | 1 | ${nr}+1
+| | | ${skip}= | Evaluate | ${skip_cpus} + (${nr} - 1) * ${count}
+| | | Create LXC container on DUT node with cpuset | ${nodes['${dut}']}
+| | | ... | ${dut}_${lxc_base_name}_${number} | ${skip} | ${count_int}
 
-| Destroy all LXC containers on all DUT nodes
-| | [Documentation] | Stop and destroy all lxc containers on all DUT nodes.
-| | ...
-| | ... | *Arguments:*
-| | ...
-| | ... | - lxc_name - Container base name. Type: string
-| | ...
-| | ... | *Return:*
-| | ...
-| | ... | - No value returned
+| Create '${nr}' LXC containers on all DUT nodes with '${count}' cpus
+| | [Documentation] | Create and start multiple LXC containers on all DUT nodes.
+| | ... | Set the cpuset.cpus cgroup profile for pin of cpus.
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Destroy all LXC containers on all DUT nodes \| slave \|
-| | ...
-| | [Arguments] | ${lxc_name}
+| | ... | \| Create 5 LXC containers on all DUT nodes with 2 cpus
 | | ...
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
-| | | :FOR | ${number} | IN RANGE | 1 | ${nr}+1
-| | | | ${dut}_${lxc_name}_${number}.LXC Is Destroyed
+| | | Create '${nr}' LXC containers on '${dut}' node with '${count}' cpus
 
-| Install VPP on all LXC containers on all DUT nodes
-| | [Documentation] | Install vpp on all lxc containers on all DUT nodes.
+| Destroy LXC container on DUT node
+| | [Documentation] | Stop and destroy LXC container on DUT node.
 | | ...
 | | ... | *Arguments:*
 | | ...
-| | ... | - lxc_name - Container base name. Type: string
-| | ...
-| | ... | *Return:*
-| | ...
-| | ... | - No value returned
+| | ... | - dut_node - DUT node. Type: dictionary
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Install VPP on all LXC containers on all DUT nodes \| slave \|
+| | ... | \| Destroy LXC container on DUT node \| ${nodes['DUT1']}
+| | ... | \| DUT1_slave_1
 | | ...
-| | [Arguments] | ${lxc_name}
+| | [Arguments] | ${dut_node} | ${lxc_name}
+| | ...
+| | Import Library | resources.libraries.python.LXCUtils
+| | ... | container_name=${lxc_name} | WITH NAME | ${lxc_name}
+| | Run keyword | ${lxc_name}.LXC Set Node | ${dut_node}
+| | Run keyword | ${lxc_name}.LXC Is Destroyed
+
+| Destroy '${nr}' LXC containers on '${dut}' node
+| | [Documentation] | Stop and destroy multiple LXC containers on DUT node.
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Destroy 5 LXC containers on DUT1 node
+| | ...
+| | :FOR | ${number} | IN RANGE | 1 | ${nr}+1
+| | | Destroy LXC container on DUT node | ${nodes['${dut}']}
+| | | ... | ${dut}_${lxc_base_name}_${number}
+
+| Destroy '${nr}' LXC containers on all DUT nodes
+| | [Documentation] | Stop and destroy multiple LXC containers on all DUT nodes.
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Destroy 5 LXC containers on all DUT nodes
 | | ...
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
-| | | :FOR | ${number} | IN RANGE | 1 | ${nr}+1
-| | | | ${dut}_${lxc_name}_${number}.LXC VPP Is Installed
+| | | Destroy '${nr}' LXC containers on '${dut}' node
 
+| Install VPP on LXC container on DUT node
+| | [Documentation] | Install vpp on LXC container on DUT node.
+| | ...
+| | ... | *Arguments:*
+| | ...
+| | ... | - dut_node - DUT node. Type: dictionary
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Install VPP on LXC container on DUT node \| ${nodes['DUT1']}
+| | ... | \| DUT1_slave_1
+| | ...
+| | [Arguments] | ${dut_node} | ${lxc_name}
+| | ...
+| | Import Library | resources.libraries.python.LXCUtils
+| | ... | container_name=${lxc_name} | WITH NAME | ${lxc_name}
+| | Run keyword | ${lxc_name}.LXC Set Node | ${dut_node}
+| | Run keyword | ${lxc_name}.LXC VPP Is Installed
+
+| Install VPP on '${nr}' LXC containers on '${dut}' node
+| | [Documentation] | Install VPP on multiple LXC containers on DUT node.
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Install VPP on 5 LXC containers on DUT1 node
+| | ...
+| | :FOR | ${number} | IN RANGE | 1 | ${nr}+1
+| | | Install VPP on LXC container on DUT node | ${nodes['${dut}']}
+| | | ... | ${dut}_${lxc_base_name}_${number}
+
+| Install VPP on '${nr}' LXC containers on all DUT nodes
+| | [Documentation] | Install VPP on multiple LXC containers on all DUT nodes.
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Install VPP on 5 LXC containers on all DUT nodes
+| | ...
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | Install VPP on '${nr}' LXC containers on '${dut}' node
