@@ -48,6 +48,30 @@
     },
     {
       "key": {
+        "uuid": "fa5d592f_ed8f2b74",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 371,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-06-06T08:31:33Z",
+      "side": 1,
+      "message": "\u003e try:\n \u003e (name, lvalue) \u003d line.split(\"\\t\", 1)\n \u003e except ValueError:\n \u003e if name !\u003d \"Driver\":\n \u003e pass\n \u003e else:\n \u003e return None\n\ntry:\n    (name, value) \u003d line.split(\"\\t\", 1)\nexcept ValueError:\n    if name !\u003d \"Driver:\":\n        pass\n    else:\n        return None",
+      "parentUuid": "fa5d592f_921d6e76",
+      "range": {
+        "startLine": 371,
+        "startChar": 16,
+        "endLine": 371,
+        "endChar": 52
+      },
+      "revId": "b5ef0fdcec1a3f91a3997533bbedc2aea0ed112c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa5d592f_5217f651",
         "filename": "resources/libraries/python/InterfaceUtil.py",
         "patchSetId": 9
@@ -59,6 +83,30 @@
       "writtenOn": "2017-06-06T07:51:06Z",
       "side": 1,
       "message": "return value",
+      "range": {
+        "startLine": 373,
+        "startChar": 20,
+        "endLine": 377,
+        "endChar": 21
+      },
+      "revId": "b5ef0fdcec1a3f91a3997533bbedc2aea0ed112c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa5d592f_0d939fa4",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 377,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-06-06T08:31:33Z",
+      "side": 1,
+      "message": "\u003e return value\n\nreturn value if value else None",
+      "parentUuid": "fa5d592f_5217f651",
       "range": {
         "startLine": 373,
         "startChar": 20,
