@@ -201,6 +201,14 @@
 | | ... | - sock1 - Sock path for first Vhost-User interface. Type: string
 | | ... | - sock2 - Sock path for second Vhost-User interface. Type: string
 | | ...
+| | ... | _NOTE:_ This KW uses following test case variables:
+| | ... | - ${dut1} - DUT1 node.
+| | ... | - ${dut2} - DUT2 node.
+| | ... | - ${dut1_if1} - DUT1 interface towards TG.
+| | ... | - ${dut1_if2} - DUT1 interface towards DUT2.
+| | ... | - ${dut2_if1} - DUT2 interface towards DUT1.
+| | ... | - ${dut2_if2} - DUT2 interface towards TG.
+| | ...
 | | ... | *Return:*
 | | ... | - No value returned
 | | ...
@@ -213,15 +221,15 @@
 | | ...
 | | Set interfaces in path in 3-node circular topology up
 | | Configure vhost interfaces for L2BD forwarding | ${dut1}
-| | ... | ${sock1} | ${sock2}
-| | ${dut1_vif1}= | Set Variable | ${vhost_if1}
-| | ${dut1_vif2}= | Set Variable | ${vhost_if2}
+| | ... | ${sock1} | ${sock2} | dut1_vhost_if1 | dut1_vhost_if2
+| | ${dut1_vif1}= | Set Variable | ${dut1_vhost_if1}
+| | ${dut1_vif2}= | Set Variable | ${dut1_vhost_if2}
 | | Set Interface State | ${dut1} | ${dut1_vif1} | up
 | | Set Interface State | ${dut1} | ${dut1_vif2} | up
 | | Configure vhost interfaces for L2BD forwarding | ${dut2}
-| | ... | ${sock1} | ${sock2}
-| | ${dut2_vif1}= | Set Variable | ${vhost_if1}
-| | ${dut2_vif2}= | Set Variable | ${vhost_if2}
+| | ... | ${sock1} | ${sock2} | dut2_vhost_if1 | dut2_vhost_if2
+| | ${dut2_vif1}= | Set Variable | ${dut2_vhost_if1}
+| | ${dut2_vif2}= | Set Variable | ${dut2_vhost_if2}
 | | Set Interface State | ${dut2} | ${dut2_vif1} | up
 | | Set Interface State | ${dut2} | ${dut2_vif2} | up
 | | ${dut1_vif1_idx}= | Get Interface SW Index | ${dut1} | ${dut1_vif1}
@@ -614,6 +622,14 @@
 | | ... | - sock1 - Socket path for first Vhost-User interface. Type: string
 | | ... | - sock2 - Socket path for second Vhost-User interface. Type: string
 | | ...
+| | ... | _NOTE:_ This KW uses following test case variables:
+| | ... | - ${dut1} - DUT1 node.
+| | ... | - ${dut2} - DUT2 node.
+| | ... | - ${dut1_if1} - DUT1 interface towards TG.
+| | ... | - ${dut1_if2} - DUT1 interface towards DUT2.
+| | ... | - ${dut2_if1} - DUT2 interface towards DUT1.
+| | ... | - ${dut2_if2} - DUT2 interface towards TG.
+| | ...
 | | ... | *Example:*
 | | ...
 | | ... | \| L2 xconnect with Vhost-User initialized in a 3-node \
@@ -622,13 +638,13 @@
 | | [Arguments] | ${sock1} | ${sock2}
 | | ...
 | | Configure vhost interfaces for L2BD forwarding | ${dut1}
-| | ... | ${sock1} | ${sock2}
-| | Configure L2XC | ${dut1} | ${dut1_if1} | ${vhost_if1}
-| | Configure L2XC | ${dut1} | ${dut1_if2} | ${vhost_if2}
+| | ... | ${sock1} | ${sock2} | dut1_vhost_if1 | dut1_vhost_if2
+| | Configure L2XC | ${dut1} | ${dut1_if1} | ${dut1_vhost_if1}
+| | Configure L2XC | ${dut1} | ${dut1_if2} | ${dut1_vhost_if2}
 | | Configure vhost interfaces for L2BD forwarding | ${dut2}
-| | ... | ${sock1} | ${sock2}
-| | Configure L2XC | ${dut2} | ${dut2_if1} | ${vhost_if1}
-| | Configure L2XC | ${dut2} | ${dut2_if2} | ${vhost_if2}
+| | ... | ${sock1} | ${sock2} | dut2_vhost_if1 | dut2_vhost_if2
+| | Configure L2XC | ${dut2} | ${dut2_if1} | ${dut2_vhost_if1}
+| | Configure L2XC | ${dut2} | ${dut2_if2} | ${dut2_vhost_if2}
 | | All Vpp Interfaces Ready Wait | ${nodes}
 
 | Initialize L2 xconnect with Vhost-User for '${nr}' in 3-node circular topology
@@ -727,8 +743,16 @@
 | | ... | *Arguments:*
 | | ... | - bd_id1 - Bridge domain ID. Type: integer
 | | ... | - bd_id2 - Bridge domain ID. Type: integer
-| | ... | - sock1 - Sock path for first Vhost-User interface. Type: string
-| | ... | - sock2 - Sock path for second Vhost-User interface. Type: string
+| | ... | - sock1 - Sock path for the first Vhost-User interface. Type: string
+| | ... | - sock2 - Sock path for the second Vhost-User interface. Type: string
+| | ...
+| | ... | _NOTE:_ This KW uses following test case variables:
+| | ... | - ${dut1} - DUT1 node.
+| | ... | - ${dut2} - DUT2 node.
+| | ... | - ${dut1_if1} - DUT1 interface towards TG.
+| | ... | - ${dut1_if2} - DUT1 interface towards DUT2.
+| | ... | - ${dut2_if1} - DUT2 interface towards DUT1.
+| | ... | - ${dut2_if2} - DUT2 interface towards TG.
 | | ...
 | | ... | *Example:*
 | | ...
@@ -738,17 +762,17 @@
 | | [Arguments] | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
 | | ...
 | | Configure vhost interfaces for L2BD forwarding | ${dut1}
-| | ... | ${sock1} | ${sock2}
+| | ... | ${sock1} | ${sock2} | dut1_vhost_if1 | dut1_vhost_if2
 | | Add interface to bridge domain | ${dut1} | ${dut1_if1} | ${bd_id1}
-| | Add interface to bridge domain | ${dut1} | ${vhost_if1} | ${bd_id1}
+| | Add interface to bridge domain | ${dut1} | ${dut1_vhost_if1} | ${bd_id1}
 | | Add interface to bridge domain | ${dut1} | ${dut1_if2} | ${bd_id2}
-| | Add interface to bridge domain | ${dut1} | ${vhost_if2} | ${bd_id2}
+| | Add interface to bridge domain | ${dut1} | ${dut1_vhost_if2} | ${bd_id2}
 | | Configure vhost interfaces for L2BD forwarding | ${dut2}
-| | ... | ${sock1} | ${sock2}
+| | ... | ${sock1} | ${sock2} | dut2_vhost_if1 | dut2_vhost_if2
 | | Add interface to bridge domain | ${dut2} | ${dut2_if1} | ${bd_id1}
-| | Add interface to bridge domain | ${dut2} | ${vhost_if1} | ${bd_id1}
+| | Add interface to bridge domain | ${dut2} | ${dut2_vhost_if1} | ${bd_id1}
 | | Add interface to bridge domain | ${dut2} | ${dut2_if2} | ${bd_id2}
-| | Add interface to bridge domain | ${dut2} | ${vhost_if2} | ${bd_id2}
+| | Add interface to bridge domain | ${dut2} | ${dut2_vhost_if2} | ${bd_id2}
 | | All Vpp Interfaces Ready Wait | ${nodes}
 
 | Initialize L2 bridge domains with Vhost-User for '${nr}' VMs in 3-node circular topology
@@ -1000,7 +1024,10 @@
 | | ... | skip_cnt=${skip_cnt} | cpu_cnt=${count} | smt_used=${False}
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock1}
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock2}
-| | Run Keyword | ${vm_name}.Build QEMU | ${dut_node} | apply_patch=${True}
+| | ${apply_patch}= | Set Variable If | "${perf_qemu_qsz}" == "256" | ${False}
+| | ... | ${True}
+| | Run Keyword | ${vm_name}.Build QEMU | ${dut_node}
+| | ... | apply_patch=${apply_patch}
 | | Run keyword | ${vm_name}.Qemu Set Bin | ${perf_qemu_bin}
 | | Run keyword | ${vm_name}.Qemu Set Node | ${dut_node}
 | | Run keyword | ${vm_name}.Qemu Set Smp | ${count} | ${count} | 1 | 1
@@ -1008,6 +1035,7 @@
 | | Run keyword | ${vm_name}.Qemu Set Disk Image | ${perf_vm_image}
 | | ${vm}= | Run keyword | ${vm_name}.Qemu Start
 | | Run keyword | ${vm_name}.Qemu Set Affinity | @{qemu_cpus}
+| | Run keyword If | ${use_tuned_cfs} | ${vm_name}.Qemu Set Scheduler Policy
 | | Dpdk Testpmd Start | ${vm} | eal_coremask=0x1f | eal_mem_channels=4
 | | ... | pmd_fwd_mode=io | pmd_disable_hw_vlan=${True}
 | | ... | pmd_txd=${perf_qemu_qsz} | pmd_rxd=${perf_qemu_qsz}
@@ -1077,7 +1105,10 @@
 | | ... | skip_cnt=${skip} | cpu_cnt=${count} | smt_used=${True}
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock1}
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock2}
-| | Run Keyword | ${vm_name}.Build QEMU | ${dut_node} | apply_patch=${True}
+| | ${apply_patch}= | Set Variable If | "${perf_qemu_qsz}" == "256" | ${False}
+| | ... | ${True}
+| | Run Keyword | ${vm_name}.Build QEMU | ${dut_node}
+| | ... | apply_patch=${apply_patch}
 | | Run keyword | ${vm_name}.Qemu Set Bin | ${perf_qemu_bin}
 | | Run keyword | ${vm_name}.Qemu Set Node | ${dut_node}
 | | Run keyword | ${vm_name}.Qemu Set Smp | ${count} | ${count} | 1 | 1
@@ -1085,6 +1116,7 @@
 | | Run keyword | ${vm_name}.Qemu Set Disk Image | ${perf_vm_image}
 | | ${vm}= | Run keyword | ${vm_name}.Qemu Start
 | | Run keyword | ${vm_name}.Qemu Set Affinity | @{qemu_cpus}
+| | Run keyword If | ${use_tuned_cfs} | ${vm_name}.Qemu Set Scheduler Policy
 | | Dpdk Testpmd Start | ${vm} | eal_coremask=0x1f | eal_mem_channels=4
 | | ... | pmd_fwd_mode=io | pmd_disable_hw_vlan=${True}
 | | ... | pmd_txd=${perf_qemu_qsz} | pmd_rxd=${perf_qemu_qsz}
@@ -1138,7 +1170,10 @@
 | | ... | skip_cnt=${skip_cnt} | cpu_cnt=${count} | smt_used=${False}
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock1}
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock2}
-| | Run Keyword | ${vm_name}.Build QEMU | ${dut_node} | apply_patch=${True}
+| | ${apply_patch}= | Set Variable If | "${perf_qemu_qsz}" == "256" | ${False}
+| | ... | ${True}
+| | Run Keyword | ${vm_name}.Build QEMU | ${dut_node}
+| | ... | apply_patch=${apply_patch}
 | | Run keyword | ${vm_name}.Qemu Set Bin | ${perf_qemu_bin}
 | | Run keyword | ${vm_name}.Qemu Set Node | ${dut_node}
 | | Run keyword | ${vm_name}.Qemu Set Smp | ${count} | ${count} | 1 | 1
@@ -1146,6 +1181,7 @@
 | | Run keyword | ${vm_name}.Qemu Set Disk Image | ${perf_vm_image}
 | | ${vm}= | Run keyword | ${vm_name}.Qemu Start
 | | Run keyword | ${vm_name}.Qemu Set Affinity | @{qemu_cpus}
+| | Run keyword If | ${use_tuned_cfs} | ${vm_name}.Qemu Set Scheduler Policy
 | | Dpdk Testpmd Start | ${vm} | eal_coremask=0x1f
 | | ... | eal_mem_channels=4 | pmd_fwd_mode=mac | pmd_eth_peer_0=0,${eth0_mac}
 | | ... | pmd_eth_peer_1=1,${eth1_mac} | pmd_disable_hw_vlan=${True}

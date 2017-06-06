@@ -39,7 +39,7 @@
 | ... | interconnecting vhost-user interfaces using 5 cores pinned to cpus 5-9
 | ... | and 2048M memory. Testpmd is using socket-mem=1024M (512x2M hugepages),
 | ... | 5 cores (1 main core and 4 cores dedicated for io), forwarding mode is
-| ... | set to mac, rxd/txd=256, burst=64. DUT1, DUT2 are tested with 2p10GE
+| ... | set to mac, rxd/txd=1024, burst=64. DUT1, DUT2 are tested with 2p10GE
 | ... | NIC X520 Niantic by Intel.
 | ... | *[Ver] TG verification:* TG finds and reports throughput NDR (Non Drop
 | ... | Rate) with zero packet loss tolerance or throughput PDR (Partial Drop
@@ -66,7 +66,7 @@
 | ${traffic_profile} | trex-sl-3n-ethip4-ip4src253
 
 *** Test Cases ***
-| tc01-64B-1t1c-ethip4-ip4base-eth-2vhost-1vm-ndrdisc
+| tc01-64B-1t1c-ethip4-ip4base-eth-2vhostvr1024-1vm-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 routing config with 1 thread, 1 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for 64 Byte frames \
@@ -98,7 +98,7 @@
 | | ... | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
 
-| tc02-64B-1t1c-ethip4-ip4base-eth-2vhost-1vm-pdrdisc
+| tc02-64B-1t1c-ethip4-ip4base-eth-2vhostvr1024-1vm-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 routing config with 1 thread, 1 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Find PDR for 64 Byte frames \
@@ -131,7 +131,7 @@
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
 | | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
-| tc03-1518B-1t1c-ethip4-ip4base-eth-2vhost-1vm-ndrdisc
+| tc03-1518B-1t1c-ethip4-ip4base-eth-2vhostvr1024-1vm-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 routing config with 1 thread, 1 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for 1518 Byte frames \
@@ -163,7 +163,7 @@
 | | ... | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
 
-| tc04-1518B-1t1c-ethip4-ip4base-eth-2vhost-1vm-pdrdisc
+| tc04-1518B-1t1c-ethip4-ip4base-eth-2vhostvr1024-1vm-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 routing config with 1 thread, 1 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Find PDR for 1518 Byte frames \
@@ -196,7 +196,7 @@
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
 | | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
-| tc05-IMIX-1t1c-ethip4-ip4base-eth-2vhost-1vm-ndrdisc
+| tc05-IMIX-1t1c-ethip4-ip4base-eth-2vhostvr1024-1vm-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 routing config with 1 thread, 1 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for IMIX_v4_1 frame \
@@ -229,7 +229,7 @@
 | | ... | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
 
-| tc06-IMIX-1t1c-ethip4-ip4base-eth-2vhost-1vm-pdrdisc
+| tc06-IMIX-1t1c-ethip4-ip4base-eth-2vhostvr1024-1vm-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 routing config with 1 thread, 1 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Find PDR for IMIX_v4_1 frame \
@@ -263,7 +263,7 @@
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
 | | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
-| tc07-64B-2t2c-ethip4-ip4base-eth-2vhost-1vm-ndrdisc
+| tc07-64B-2t2c-ethip4-ip4base-eth-2vhostvr1024-1vm-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 routing config with 2 threads, 2 phy cores, \
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for 64 Byte frames \
@@ -295,7 +295,7 @@
 | | ... | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
 
-| tc08-64B-2t2c-ethip4-ip4base-eth-2vhost-1vm-pdrdisc
+| tc08-64B-2t2c-ethip4-ip4base-eth-2vhostvr1024-1vm-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 routing config with 2 threads, 2 phy cores, \
 | | ... | 1 receive queue per NIC port. [Ver] Find PDR for 64 Byte frames \
@@ -328,7 +328,7 @@
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
 | | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
-| tc09-1518B-2t2c-ethip4-ip4base-eth-2vhost-1vm-ndrdisc
+| tc09-1518B-2t2c-ethip4-ip4base-eth-2vhostvr1024-1vm-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 routing config with 2 threads, 2 phy cores, \
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for 1518 Byte frames \
@@ -360,7 +360,7 @@
 | | ... | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
 
-| tc10-1518B-2t2c-ethip4-ip4base-eth-2vhost-1vm-pdrdisc
+| tc10-1518B-2t2c-ethip4-ip4base-eth-2vhostvr1024-1vm-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 routing config with 2 threads, 2 phy cores, \
 | | ... | 1 receive queue per NIC port. [Ver] Find PDR for 1518 Byte frames \
@@ -393,7 +393,7 @@
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
 | | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
-| tc11-IMIX-2t2c-ethip4-ip4base-eth-2vhost-1vm-ndrdisc
+| tc11-IMIX-2t2c-ethip4-ip4base-eth-2vhostvr1024-1vm-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 routing config with 2 threads, 2 phy cores, \
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for IMIX_v4_1 frame \
@@ -426,7 +426,7 @@
 | | ... | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
 
-| tc12-IMIX-2t2c-ethip4-ip4base-eth-2vhost-1vm-pdrdisc
+| tc12-IMIX-2t2c-ethip4-ip4base-eth-2vhostvr1024-1vm-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 routing config with 2 threads, 2 phy cores, \
 | | ... | 1 receive queue per NIC port. [Ver] Find PDR for IMIX_v4_1 frame \
@@ -460,7 +460,7 @@
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
 | | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
-| tc13-64B-4t4c-ethip4-ip4base-eth-2vhost-1vm-ndrdisc
+| tc13-64B-4t4c-ethip4-ip4base-eth-2vhostvr1024-1vm-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 routing config with 4 threads, 4 phy cores, \
 | | ... | 2 receive queues per NIC port. [Ver] Find NDR for 64 Byte frames \
@@ -492,7 +492,7 @@
 | | ... | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
 
-| tc14-64B-4t4c-ethip4-ip4base-eth-2vhost-1vm-pdrdisc
+| tc14-64B-4t4c-ethip4-ip4base-eth-2vhostvr1024-1vm-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 routing config with 4 threads, 4 phy cores, \
 | | ... | 2 receive queues per NIC port. [Ver] Find PDR for 64 Byte frames \
@@ -525,7 +525,7 @@
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
 | | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
-| tc15-1518B-4t4c-ethip4-ip4base-eth-2vhost-1vm-ndrdisc
+| tc15-1518B-4t4c-ethip4-ip4base-eth-2vhostvr1024-1vm-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 routing config with 4 threads, 4 phy cores, \
 | | ... | 2 receive queues per NIC port. [Ver] Find NDR for 1518 Byte frames \
@@ -557,7 +557,7 @@
 | | ... | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
 
-| tc16-1518B-4t4c-ethip4-ip4base-eth-2vhost-1vm-pdrdisc
+| tc16-1518B-4t4c-ethip4-ip4base-eth-2vhostvr1024-1vm-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 routing config with 4 threads, 4 phy cores, \
 | | ... | 2 receive queues per NIC port. [Ver] Find PDR for 1518 Byte frames \
@@ -590,7 +590,7 @@
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
 | | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
-| tc17-IMIX-4t4c-ethip4-ip4base-eth-2vhost-1vm-ndrdisc
+| tc17-IMIX-4t4c-ethip4-ip4base-eth-2vhostvr1024-1vm-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 routing config with 4 threads, 4 phy cores, \
 | | ... | 2 receive queues per NIC port. [Ver] Find NDR for IMIX_v4_1 frame \
@@ -623,7 +623,7 @@
 | | ... | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
 
-| tc18-IMIX-4t4c-ethip4-ip4base-eth-2vhost-1vm-pdrdisc
+| tc18-IMIX-4t4c-ethip4-ip4base-eth-2vhostvr1024-1vm-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 routing config with 4 threads, 4 phy cores, \
 | | ... | 2 receive queues per NIC port. [Ver] Find PDR for IMIX_v4_1 frame \
