@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa5d592f_2d13035e",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 352,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-06-06T07:51:06Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 351,
+        "startChar": 8,
+        "endLine": 352,
+        "endChar": 21
+      },
+      "revId": "b5ef0fdcec1a3f91a3997533bbedc2aea0ed112c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa5d592f_921d6e76",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 371,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-06-06T07:51:06Z",
+      "side": 1,
+      "message": "try:\n    (name, lvalue) \u003d line.split(\"\\t\", 1)\nexcept ValueError:\n    if name !\u003d \"Driver\":\n        pass\n    else:\n        return None",
+      "range": {
+        "startLine": 371,
+        "startChar": 16,
+        "endLine": 371,
+        "endChar": 52
+      },
+      "revId": "b5ef0fdcec1a3f91a3997533bbedc2aea0ed112c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa5d592f_5217f651",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 377,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-06-06T07:51:06Z",
+      "side": 1,
+      "message": "return value",
+      "range": {
+        "startLine": 373,
+        "startChar": 20,
+        "endLine": 377,
+        "endChar": 21
+      },
+      "revId": "b5ef0fdcec1a3f91a3997533bbedc2aea0ed112c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa5d592f_4d0e3736",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 9
+      },
+      "lineNbr": 382,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-06-06T07:51:06Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 382,
+        "startChar": 8,
+        "endLine": 382,
+        "endChar": 20
+      },
+      "revId": "b5ef0fdcec1a3f91a3997533bbedc2aea0ed112c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
