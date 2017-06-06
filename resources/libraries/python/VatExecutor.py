@@ -265,6 +265,7 @@ class VatTerminal(object):
         try:
             out = self._ssh.interactive_terminal_exec_command(self._tty, cmd,
                                                               self.__VAT_PROMPT)
+            self.vat_stdout = out
         except:
             self._exec_failure = True
             raise
