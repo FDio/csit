@@ -1000,7 +1000,10 @@
 | | ... | skip_cnt=${skip_cnt} | cpu_cnt=${count} | smt_used=${False}
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock1}
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock2}
-| | Run Keyword | ${vm_name}.Build QEMU | ${dut_node} | apply_patch=${True}
+| | ${apply_patch}= | Set Variable If | "${perf_qemu_qsz}" == "256" | ${False}
+| | ... | ${True}
+| | Run Keyword | ${vm_name}.Build QEMU | ${dut_node}
+| | ... | apply_patch=${apply_patch}
 | | Run keyword | ${vm_name}.Qemu Set Bin | ${perf_qemu_bin}
 | | Run keyword | ${vm_name}.Qemu Set Node | ${dut_node}
 | | Run keyword | ${vm_name}.Qemu Set Smp | ${count} | ${count} | 1 | 1
@@ -1008,6 +1011,9 @@
 | | Run keyword | ${vm_name}.Qemu Set Disk Image | ${perf_vm_image}
 | | ${vm}= | Run keyword | ${vm_name}.Qemu Start
 | | Run keyword | ${vm_name}.Qemu Set Affinity | @{qemu_cpus}
+#| | Run keyword If | "${use_tuned_cfs}" == "True"
+| | Run keyword If | ${use_tuned_cfs}
+| | ... | ${vm_name}.Qemu Set Scheduler Policy
 | | Dpdk Testpmd Start | ${vm} | eal_coremask=0x1f | eal_mem_channels=4
 | | ... | pmd_fwd_mode=io | pmd_disable_hw_vlan=${True}
 | | ... | pmd_txd=${perf_qemu_qsz} | pmd_rxd=${perf_qemu_qsz}
