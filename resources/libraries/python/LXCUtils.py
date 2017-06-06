@@ -14,7 +14,9 @@
 """Library to manipulate LXC."""
 
 from resources.libraries.python.ssh import SSH
+from resources.libraries.python.constants import Constants
 from resources.libraries.python.topology import NodeType
+
 
 __all__ = ["LXCUtils"]
 
@@ -25,6 +27,8 @@ class LXCUtils(object):
         # LXC container name
         self._container_name = container_name
         self._node = None
+        # Host hugepages dir that will be mounted inside LXC
+        self._host_hugepages_dir = '/dev/hugepages'
         # Host dir that will be mounted inside LXC
         self._host_dir = '/tmp/'
         # Guest dir to mount host dir to
@@ -251,7 +255,7 @@ class LXCUtils(object):
         """
         if self.is_container_present():
             if force_create:
-                self.container_destroy()
+                self.destroy_container()
             else:
                 return
 
@@ -296,7 +300,7 @@ class LXCUtils(object):
         self.stop_container()
         self.start_container()
 
-    def container_destroy(self):
+    def destroy_container(self):
         """Stop and destroy a container."""
 
         self._lxc_destroy()
@@ -329,17 +333,37 @@ class LXCUtils(object):
         ssh = SSH()
         ssh.connect(self._node)
 
-        self.lxc_attach('mkdir -p {0}'.format(self._guest_dir))
-
         mnt_cfg = 'lxc.mount.entry = {0} /var/lib/lxc/{1}/rootfs{2} ' \
-            'none bind 0 0'.format(self._host_dir, self._container_name,
-                                   self._guest_dir)
+            'none bind,create=dir 0 0'.format(self._host_dir,
+                                              self._container_name,
+                                              self._guest_dir)
         ret, _, _ = ssh.exec_command_sudo(
             "sh -c 'echo \"{0}\" >> /var/lib/lxc/{1}/config'"
             .format(mnt_cfg, self._container_name))
         if int(ret) != 0:
             raise RuntimeError('Failed to mount {0} in lxc: {1}'
                                .format(self._host_dir, self._container_name))
+
+        self.restart_container()
+
+    def mount_hugepages_in_container(self):
+        """Mount hugepages inside container.
+
+        :raises RuntimeError: If failed to mount hugepages in a container.
+        """
+
+        ssh = SSH()
+        ssh.connect(self._node)
+
+        mnt_cfg = 'lxc.mount.entry = {0} dev/hugepages ' \
+            'none bind,create=dir 0 0'.format(self._host_hugepages_dir)
+        ret, _, _ = ssh.exec_command_sudo(
+            "sh -c 'echo \"{0}\" >> /var/lib/lxc/{1}/config'"
+            .format(mnt_cfg, self._container_name))
+        if int(ret) != 0:
+            raise RuntimeError('Failed to mount {0} in lxc: {1}'
+                               .format(self._host_hugepages_dir,
+                                       self._container_name))
 
         self.restart_container()
 
@@ -373,3 +397,28 @@ class LXCUtils(object):
         ssh.connect(self._node)
 
         self.lxc_attach('service vpp restart')
+
+    def create_vpp_cfg_in_container(self, vat_template_file, **args):
+        """Create VPP exec config for a container on given node.
+
+        :param vat_template_file: Template file name of a VAT script.
+        :param args: Dictionary of parameters for VAT script.
+        :type vat_template_file: str
+        :type args: list
+        :return: nothing
+        """
+        ssh = SSH()
+        ssh.connect(self._node)
+
+        vat_file_path = '{}/{}'.format(Constants.RESOURCES_TPL_VAT,
+                                       vat_template_file)
+
+        with open(vat_file_path, 'r') as template_file:
+            cmd_template = template_file.readlines()
+            for line_tmpl in cmd_template:
+                vat_cmd = line_tmpl.format(**args)
+                ssh.exec_command('echo "{0}" | '
+                                 'sudo lxc-attach --name {1} -- '
+                                 '/bin/sh -c "/bin/cat >> /tmp/running.exec"'
+                                 .format(vat_cmd.replace('\n', ''),
+                                         self._container_name))
