@@ -251,7 +251,7 @@ class LXCUtils(object):
         """
         if self.is_container_present():
             if force_create:
-                self.container_destroy()
+                self.destroy_container()
             else:
                 return
 
@@ -296,7 +296,7 @@ class LXCUtils(object):
         self.stop_container()
         self.start_container()
 
-    def container_destroy(self):
+    def destroy_container(self):
         """Stop and destroy a container."""
 
         self._lxc_destroy()

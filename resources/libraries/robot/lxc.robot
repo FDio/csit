@@ -36,7 +36,7 @@
 | | Import Library | resources.libraries.python.LXCUtils
 | | ... | container_name=${lxc_name} | WITH NAME | ${lxc_name}
 | | Run keyword | ${lxc_name}.Set node | ${dut_node}
-| | Run keyword | ${lxc_name}.Container create | force_create=${TRUE}
+| | Run keyword | ${lxc_name}.Create container | force_create=${TRUE}
 | | Run keyword | ${lxc_name}.Mount host dir in container
 
 | Create LXC container on DUT node with cpuset
@@ -64,7 +64,7 @@
 | | ${lxc_cpus}= | CPU list per node str | ${dut_node} | ${dut_numa}
 | | ... | skip_cnt=${skip} | cpu_cnt=${count} | smt_used=${False}
 | | Run keyword | ${lxc_name}.Set node | ${dut_node}
-| | Run keyword | ${lxc_name}.Container create | force_create=${TRUE}
+| | Run keyword | ${lxc_name}.Create container | force_create=${TRUE}
 | | Run keyword | ${lxc_name}.Mount host dir in container
 | | Run keyword | ${lxc_name}.Container cpuset cpus | ${lxc_cpus}
 
@@ -136,7 +136,7 @@
 | | Import Library | resources.libraries.python.LXCUtils
 | | ... | container_name=${lxc_name} | WITH NAME | ${lxc_name}
 | | Run keyword | ${lxc_name}.Set node | ${dut_node}
-| | Run keyword | ${lxc_name}.Container destroy
+| | Run keyword | ${lxc_name}.Destroy container
 
 | Destroy '${nr}' LXC containers on '${dut}' node
 | | [Documentation] | Stop and destroy multiple LXC containers on DUT node.
