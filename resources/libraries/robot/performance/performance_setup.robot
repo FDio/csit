@@ -378,11 +378,25 @@
 | | ...
 | | Teardown traffic generator | ${tg}
 
+| Tear down 3-node performance topology with LXC
+| | [Documentation]
+| | ... | Suite teardown phase with traffic generator teardown and LXC destroy.
+| | ...
+| | Teardown traffic generator | ${tg}
+| | Destroy '${lxc_count}' LXC containers on all DUT nodes
+
 | Tear down 2-node performance topology
 | | [Documentation]
 | | ... | Suite teardown phase with traffic generator teardown.
 | | ...
 | | Teardown traffic generator | ${tg}
+
+| Tear down 2-node performance topology
+| | [Documentation]
+| | ... | Suite teardown phase with traffic generator teardown and LXC destroy.
+| | ...
+| | Teardown traffic generator | ${tg}
+| | Destroy '${lxc_count}' LXC containers on all DUT nodes
 
 # Tests setups
 
