@@ -1,0 +1,1 @@
+exec create memif key {key} socket {socket} {role}
