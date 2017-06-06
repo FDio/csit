@@ -499,3 +499,23 @@
 | | ... | ${traffic_profile}
 | | Show SNAT verbose | ${dut1}
 | | Show SNAT verbose | ${dut2}
+
+| Tear down performance discovery test with memif
+| | [Documentation] | Common test teardown for ndrdisc and pdrdisc performance \
+| | ... | tests with memif feature used.
+| | ...
+| | ... | *Arguments:*
+| | ... | - rate - Rate for sending packets. Type: string
+| | ... | - framesize - L2 Frame Size [B]. Type: integer
+| | ... | - topology_type - Topology type. Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Tear down performance discovery test with SNAT \| 4.0mpps \| 64 \
+| | ... | \| ${traffic_profile} \|
+| | ...
+| | [Arguments] | ${rate} | ${framesize} | ${traffic_profile}
+| | ...
+| | Tear down performance discovery test | ${rate}pps | ${framesize}
+| | ... | ${traffic_profile}
+| | Destroy '${lxc_count}' LXC containers on all DUT nodes

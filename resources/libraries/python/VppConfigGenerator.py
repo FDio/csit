@@ -129,6 +129,11 @@ class VppConfigGenerator(object):
         path = ['unix', 'nodaemon']
         self.add_config_item(self._nodeconfig, '', path)
 
+    def add_unix_exec(self, value):
+        """Add UNIX exec configuration."""
+        path = ['unix', 'exec']
+        self.add_config_item(self._nodeconfig, value, path)
+
     def add_dpdk_dev(self, *devices):
         """Add DPDK PCI device configuration.
 
