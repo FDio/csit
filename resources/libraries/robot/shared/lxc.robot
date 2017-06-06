@@ -227,7 +227,6 @@
 | | Run keyword | ${lxc_name}_conf.Add unix exec | "/tmp/running.exec"
 | | Run keyword | ${lxc_name}_conf.Add CPU main core | "0"
 | | Run keyword | ${lxc_name}_conf.Add CPU corelist workers | ${lxc_cpus}
-| | Run keyword | ${lxc_name}_conf.Add plugin disable | "dpdk_plugin.so"
 | | Run Keyword | ${lxc_name}_conf.Apply config LXC | ${lxc_name}
 
 | Create startup configuration of VPP on '${nr}' LXC containers on '${dut}' node
