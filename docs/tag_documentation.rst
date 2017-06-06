@@ -340,6 +340,9 @@ Interface tags
 
     All test cases which uses Netmap.
 
+.. topic:: MEMIF
+
+    All test cases which uses Memif.
 
 Feature tags
 ------------

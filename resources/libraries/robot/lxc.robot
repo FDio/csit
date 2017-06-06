@@ -99,7 +99,7 @@
 | | | | Create LXC container on DUT node | ${nodes['${dut}']}
 | | | | ... | ${dut}_${lxc_name}_${number}
 
-| Create '${nr}' LXC containers on all DUT nodes with ${count} cpus
+| Create '${nr}' LXC containers on all DUT nodes with '${count}' cpus
 | | [Documentation] | Create and start multiple lxc containers on all DUT nodes.
 | | ... | Set the cpuset.cpus cgroup profile for pin of cpus.
 | | ...
@@ -113,7 +113,7 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Create 5 LXC containers on all DUT nodes \| slave \|
+| | ... | \| Create 5 LXC containers on all DUT nodes with 2 cpus \| slave \|
 | | ...
 | | [Arguments] | ${lxc_name}
 | | ...

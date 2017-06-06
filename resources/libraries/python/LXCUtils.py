@@ -240,7 +240,7 @@ class LXCUtils(object):
 
         if lxc_exist():
             if force_create:
-                self._lxc_destroy()
+                self.lxc_is_destroyed()
             else:
                 return
 
