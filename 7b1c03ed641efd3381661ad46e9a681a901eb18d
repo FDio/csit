@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa5d592f_cdba270a",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 10
+      },
+      "lineNbr": 379,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-06-06T08:45:02Z",
+      "side": 1,
+      "message": "Undefined variable\nCheck indentation",
+      "range": {
+        "startLine": 379,
+        "startChar": 24,
+        "endLine": 379,
+        "endChar": 30
+      },
+      "revId": "7b1c03ed641efd3381661ad46e9a681a901eb18d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
