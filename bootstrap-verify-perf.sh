@@ -312,6 +312,7 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s "tests.perf" \
+              -i TEST \
               tests/
         RETURN_STATUS=$(echo $?)
 esac
@@ -336,7 +337,7 @@ if [ ! $? -eq 0 ]; then
 fi
 
 # Archive artifacts
-mkdir archive
+mkdir -p archive
 for i in ${ARCHIVE_ARTIFACTS[@]}; do
     cp $( readlink -f ${i} | tr '\n' ' ' ) archive/
 done
