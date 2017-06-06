@@ -1595,3 +1595,48 @@
 | | ... | ${dut1} | ${dut1_if1} | ${dut1_if2}
 | | Configure deterministic mode for SNAT
 | | ... | ${dut1} | 20.0.0.0 | 18 | 200.0.0.0 | 30
+
+| Initialize L2 xconnect for '${nr}' memif pairs in 3-node circular topology
+| | [Documentation]
+| | ... | Create pairs of Memif interfaces on all defined VPP nodes. Cross
+| | ... | connect each Memif interface with one physical interface or virtual
+| | ... | interface to create a chain accross DUT node.
+| | ...
+| | ... | *Arguments:*
+| | ... | _None_
+| | ...
+| | ... | *Note:*
+| | ... | Socket paths for Memif are defined in following format:
+| | ... | - /tmp/memif-${number}-1
+| | ... | - /tmp/memif-${number}-2
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Initialize L2 xconnect for 1 Memif in 3-node circular topology \|
+| | ...
+| | Set Interface State | ${dut1} | ${dut1_if1} | up
+| | Set Interface State | ${dut1} | ${dut1_if2} | up
+| | Set Interface State | ${dut2} | ${dut2_if1} | up
+| | Set Interface State | ${dut2} | ${dut2_if2} | up
+| | :FOR | ${number} | IN RANGE | 1 | ${nr}+1
+| |      | ${sock1}= | Set Variable | /tmp/memif-${number}-1
+| |      | ${sock2}= | Set Variable | /tmp/memif-${number}-2
+| |      | ${prev_index}= | Evaluate | ${number}-1
+| |      | Set up memif interfaces on DUT node | ${dut1}
+| |      | ... | ${sock1} | ${sock2} | ${number} | dut1-memif-${number}-if1
+| |      | ... | dut1-memif-${number}-if2
+| |      | ${dut1_xconnect_if1}= | Set Variable If | ${number}==1 | ${dut1_if1}
+| |      | ... | ${dut1-memif-${prev_index}-if2}
+| |      | Configure L2XC | ${dut1} | ${dut1_xconnect_if1}
+| |      | ... | ${dut1-memif-${number}-if1}
+| |      | Set up memif interfaces on DUT node | ${dut2}
+| |      | ... | ${sock1} | ${sock2} | ${number} | dut2-memif-${number}-if1
+| |      | ... | dut2-memif-${number}-if2
+| |      | ${dut2_xconnect_if1}= | Set Variable If | ${number}==1 | ${dut2_if1}
+| |      | ... | ${dut2-memif-${prev_index}-if2}
+| |      | Configure L2XC | ${dut2} | ${dut2_xconnect_if1}
+| |      | ... | ${dut2-memif-${number}-if1}
+| |      | Run Keyword If | ${number}==${nr} | Configure L2XC
+| |      | ... | ${dut1} | ${dut1-memif-${number}-if2} | ${dut1_if2}
+| |      | Run Keyword If | ${number}==${nr} | Configure L2XC
+| |      | ... | ${dut2} | ${dut2-memif-${number}-if2} | ${dut2_if2}
