@@ -1,0 +1,8 @@
+create memif id 0x1 socket {socket1} slave
+set int state memif0 up
+
+create memif id 0x2 socket {socket2} slave
+set int state memif1 up
+
+set interface l2 xconnect memif1 memif0
+set interface l2 xconnect memif0 memif1

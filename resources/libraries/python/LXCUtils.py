@@ -14,7 +14,9 @@
 """Library to manipulate LXC."""
 
 from resources.libraries.python.ssh import SSH
+from resources.libraries.python.constants import Constants
 from resources.libraries.python.topology import NodeType
+
 
 __all__ = ["LXCUtils"]
 
@@ -251,7 +253,7 @@ class LXCUtils(object):
         """
         if self.is_container_present():
             if force_create:
-                self.container_destroy()
+                self.destroy_container()
             else:
                 return
 
@@ -296,7 +298,7 @@ class LXCUtils(object):
         self.stop_container()
         self.start_container()
 
-    def container_destroy(self):
+    def destroy_container(self):
         """Stop and destroy a container."""
 
         self._lxc_destroy()
@@ -373,3 +375,27 @@ class LXCUtils(object):
         ssh.connect(self._node)
 
         self.lxc_attach('service vpp restart')
+
+    def create_vpp_cfg_in_container(self, vat_template_file, **args):
+        """Create VPP exec config for a container on given node.
+
+        :param vat_template_file: Template file name of a VAT script.
+        :param args: Dictionary of parameters for VAT script.
+        :type vat_template_file: str
+        :type args: list
+        :return: nothing
+        """
+        ssh = SSH()
+        ssh.connect(self._node)
+
+        vat_file_path = '{}/{}'.format(Constants.RESOURCES_TPL_VAT,
+                                       vat_template_file)
+
+        with open(vat_file_path, 'r') as template_file:
+            cmd_template = template_file.readlines()
+            for line_tmpl in cmd_template:
+                vat_cmd = line_tmpl.format(**args)
+                ssh.exec_command('echo "{0}" | '
+                                 'sudo lxc-attach --name {1} -- '
+                                 '/bin/sh -c "cat /tmp/running.exec"'
+                                 .format(vat_cmd, self._container_name))
