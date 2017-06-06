@@ -29,6 +29,8 @@
 | Resource | resources/libraries/robot/ipv6.robot
 | Resource | resources/libraries/robot/qemu.robot
 | Resource | resources/libraries/robot/tagging.robot
+| Resource | resources/libraries/robot/memif.robot
+| Resource | resources/libraries/robot/lxc.robot
 | Documentation | Performance suite keywords - utilities to find and verify NDR
 | ... | and PDR.
 
