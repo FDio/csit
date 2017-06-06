@@ -53,6 +53,7 @@ def main():
     if cancel_reservation:
         ret, _, err = ssh.exec_command("rm -r {}".format(RESERVATION_DIR))
     else:
+        return 0
         ret, _, err = ssh.exec_command("mkdir {}".format(RESERVATION_DIR))
 
     if ret != 0:
