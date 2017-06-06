@@ -1729,7 +1729,10 @@
 | | ... | skip_cnt=${skip_cnt} | cpu_cnt=${count} | smt_used=${False}
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock1}
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock2}
-| | Run Keyword | ${vm_name}.Build QEMU | ${dut_node} | apply_patch=${True}
+| | ${apply_patch}= | Set Variable If | "${perf_qemu_qsz}" == "256" | ${False}
+| | ... | ${True}
+| | Run Keyword | ${vm_name}.Build QEMU | ${dut_node}
+| | ... | apply_patch=${apply_patch}
 | | Run keyword | ${vm_name}.Qemu Set Bin | ${perf_qemu_bin}
 | | Run keyword | ${vm_name}.Qemu Set Node | ${dut_node}
 | | Run keyword | ${vm_name}.Qemu Set Smp | ${count} | ${count} | 1 | 1
