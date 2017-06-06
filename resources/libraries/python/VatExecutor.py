@@ -245,6 +245,7 @@ class VatTerminal(object):
             'sudo -S {}{}'.format(Constants.VAT_BIN_NAME, json_text),
             self.__VAT_PROMPT)
         self._exec_failure = False
+        self.vat_stdout = None
 
     def __enter__(self):
         return self
@@ -265,6 +266,7 @@ class VatTerminal(object):
         try:
             out = self._ssh.interactive_terminal_exec_command(self._tty, cmd,
                                                               self.__VAT_PROMPT)
+            self.vat_stdout = out
         except:
             self._exec_failure = True
             raise
