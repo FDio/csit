@@ -178,39 +178,6 @@
 | | | Should contain | ${if_indices} | ${interface['sw_if_index']}
 | | | Should be equal | ${interface['shg']} | ${settings['split_horizon_group']}
 
-| Honeycomb should not show interfaces assigned to bridge domain
-| | [Documentation] | Uses Honeycomb API to verify interfaces are not assigned\
-| | ... | to bridge domain.
-| | ...
-| | ... | *Arguments:*
-| | ... | - node - Information about a DUT node. Type: dictionary
-| | ... | - interface1, interface2 - Names of interfaces to check\
-| | ... | bridge domain assignment on. Type: string
-| | ... | - bd_name - Name of the bridge domain. Type: string
-| | ...
-| | ... | *Example:*
-| | ...
-| | ... | \| Honeycomb should not show interfaces assigned to bridge domain \
-| | ... | \| ${nodes['DUT1']} \| GigabitEthernet0/8/0 \| GigabitEthernet0/9/0 \
-| | ... | \| bd-04 \|
-| | [Arguments] | ${node} | ${interface1} | ${interface2} | ${bd_name}
-| | ${if1_data_oper}= | interfaceAPI.Get interface oper data
-| | ... | ${node} | ${interface1}
-| | ${if2_data_oper}= | interfaceAPI.Get interface oper data
-| | ... | ${node} | ${interface2}
-| | ${if1_data_cfg}=
-| | ... | interfaceAPI.Get interface cfg data | ${node} | ${interface1}
-| | ${if1_data_cfg}=
-| | ... | interfaceAPI.Get interface cfg data | ${node} | ${interface2}
-| | Run keyword and expect error | *KeyError: 'v3po:l2'*
-| | ... | Set Variable | ${if1_data_oper['v3po:l2']}
-| | Run keyword and expect error | *KeyError: 'v3po:l2'*
-| | ... | Set Variable | ${if2_data_oper['v3po:l2']}
-| | Run keyword and expect error | *KeyError: 'v3po:l2'*
-| | ... | Set Variable | ${if1_data_cfg['v3po:l2']}
-| | Run keyword and expect error | *KeyError: 'v3po:l2'*
-| | ... | Set Variable | ${if2_data_cfg['v3po:l2']}
-
 | Honeycomb removes all bridge domains
 | | [Documentation] | Uses Honeycomb API to remove all bridge domains from the \
 | | ... | VPP node.
@@ -316,18 +283,3 @@
 | | ${if_data}= | interfaceAPI.Get BD Oper Data From Interface
 | | ... | ${node} | ${interface}
 | | interfaceAPI.Compare Data Structures | ${if_data} | ${bd_settings}
-
-| VAT removes bridge domain
-| | [Documentation] Remove the specified bridge domain using VAT.
-| | ...
-| | ... | *Arguments:*
-| | ... | - node - Information about a DUT node. Type: dictionary
-| | ... | - bd_id - Bridge domain ID. Type: integer
-| | ...
-| | ... | *Example:*
-| | ... | \| VAT removes bridge domain \
-| | ... | \| ${nodes['DUT1']} \| 1 \|
-| | ...
-| | [Arguments] | ${node} | ${bd_id}
-| | ...
-| | Delete Bridge Domain VAT | ${node} | ${bd_id}

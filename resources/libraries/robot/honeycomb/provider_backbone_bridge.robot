@@ -54,46 +54,6 @@
 | | ...
 | | Delete PBB Sub Interface | ${node} | ${super_if}
 
-| PBB Sub Interface Operational Data From Honeycomb Should Be
-| | [Documentation] | Retrieves PBB sub-interface operational data from
-| | ... | Honeycomb and compares with expected configuration.
-| | ...
-| | ... | *Arguments:*
-| | ... | - node - Information about a DUT node. Type: dictionary
-| | ... | - super_if - Super-interface. Type: string
-| | ... | - sub_if_id - Sub-interface ID. Type: string
-| | ... | - expected_params - Expected operational data. Type: dictionary
-| | ...
-| | ... | *Example:*
-| | ... | \| PBB sub interface operational data from Honeycomb should be\
-| | ... | \| ${node} \| ${super_if} \| ${cfg_pbb_sub_if_1_ID}\
-| | ... | \| ${oper_pbb_sub_if_1} \|
-| | ...
-| | [Arguments] | ${node} | ${super_if} | ${sub_if_id} | ${expected_params}
-| | ...
-| | ${data}= | IfAPI.Get PBB Sub Interface Oper Data
-| | ... | ${node} | ${super_if} | ${sub_if_id}
-| | Compare data structures | ${data} | ${expected_params}
-
-| PBB Sub Interface Operational Data From Honeycomb Should Be Empty
-| | [Documentation] | Retrieves interface BPP configuration from Honeycomb,\
-| | ... | and expects an empty dictionary.
-| | ...
-| | ... | *Arguments:*
-| | ... | - node - Information about a DUT node. Type: dictionary
-| | ... | - super_if - Super-interface. Type: string
-| | ... | - sub_if_id - Sub-interface ID. Type: string
-| | ...
-| | ... | *Example:*
-| | ... | \| PBB sub interface operational data from Honeycomb should be empty\
-| | ... | \| ${node} \| ${super_if} \| ${cfg_pbb_sub_if_1_ID} \|
-| | ...
-| | [Arguments] | ${node} | ${super_if} | ${sub_if_id}
-| | ...
-| | ${data}= | IfAPI.Get PBB Sub Interface Oper Data
-| | ... | ${node} | ${super_if} | ${sub_if_id}
-| | Should be empty | ${data}
-
 | Honeycomb fails to create PBB sub-interface
 | | [Documentation] | Uses Honeycomb API to set PBB sub-interface with wrong\
 | | ... | parameter(s) and expects to fail.
