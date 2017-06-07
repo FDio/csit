@@ -52,7 +52,7 @@ sub_if_1_oper = {
                 "index": 0,
                 "dot1q-tag": {
                     "tag-type": "dot1q-types:s-vlan",
-                    "vlan-id": "100"
+                    "vlan-id": 100
                 }
             },
             {
