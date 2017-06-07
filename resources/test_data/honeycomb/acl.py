@@ -74,14 +74,14 @@ vat_acl_table2 = {
 hc_acl_session = {
     "match": "00:00:00:00:00:00:01:02:03:04:05:06:00:00:00:00",
     "hit_next": "permit",
-    "opaque_index": "1",
+    "opaque_index": 1,
     "advance": 1
 }
 
 hc_acl_session2 = {
     "match": "00:00:00:00:00:00:06:05:04:03:02:01:00:00:00:00",
     "hit_next": "deny",
-    "opaque_index": "2",
+    "opaque_index": 2,
     "advance": 1
 }
 # representation of session settings in VAT

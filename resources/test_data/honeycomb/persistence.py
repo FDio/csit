@@ -95,7 +95,7 @@ def get_variables(interface):
                         "index": 0,
                         "dot1q-tag": {
                             "tag-type": "dot1q-types:s-vlan",
-                            "vlan-id": "100"
+                            "vlan-id": 100
                         }
                     }
                 ]
