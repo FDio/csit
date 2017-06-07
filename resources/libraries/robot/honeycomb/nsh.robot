@@ -124,21 +124,6 @@
 | | ${oper_data}= | Get NSH oper data | ${node} | map_name=${name}
 | | Compare data structures | ${oper_data} | ${data}
 
-| NSH entry from Honeycomb should not exist
-| | [Documentation] | Retrieves oper data for NSH entry and expects to fail.
-| | ...
-| | ... | *Arguments:*
-| | ... | - node - information about a DUT node. Type: dict
-| | ... | - name - name of the NSH entry. Type: string
-| | ...
-| | ... | *Example:*
-| | ...
-| | ... | \| NSH entry from Honeycomb should not exist \| ${nodes['DUT1']} \
-| | ... | \| nsh_1 \|
-| | [Arguments] | ${node} | ${name}
-| | Run keyword and expect error | *Status code: 404*
-| | ... | Get NSH oper data | ${node} | entry_name=${name}
-
 | NSH map from Honeycomb should not exist
 | | [Documentation] | Retrieves oper data for NSH map and expects to fail.
 | | ...

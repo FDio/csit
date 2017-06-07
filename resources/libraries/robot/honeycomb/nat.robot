@@ -69,22 +69,6 @@
 | | ... | ${data['nat-instances']['nat-instance'][${instance}]['mapping-table']}
 | | Compare data structures | ${data} | ${settings}
 
-| NAT entries from VAT should be
-| | [Documentation] | Uses VPP test API to retrieve NAT entries\
-| | ... | and compares against expected settings.
-| | ...
-| | ... | *Arguments:*
-| | ... | - node - information about a DUT node. Type: dictionary
-| | ... | - settings - NAT entry to expect. Type: dictionary
-| | ...
-| | ... | *Example:*
-| | ...
-| | ... | \| NAT entries from VAT should be \| ${nodes['DUT1']} \
-| | ... | \| ${settings} \|
-| | [Arguments] | ${node} | ${settings}
-| | ${data}= | VPP get NAT static mappings | ${node}
-| | Compare data structures | ${data} | ${settings}
-
 | Honeycomb configures NAT on interface
 | | [Documentation] | Uses Honeycomb API to configure NAT on an interface.
 | | ...

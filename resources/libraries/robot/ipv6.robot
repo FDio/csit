@@ -48,7 +48,7 @@
 | Execute IPv6 ICMP echo sweep
 | | [Documentation] | Type of the src_node must be TG and dst_node must be DUT
 | | [Arguments] | ${src_node} | ${dst_node} | ${start_size} | ${end_size}
-| | ...         | ${step} | ${nodes_addr}
+| | ... | ${step} | ${nodes_addr}
 | | Append Nodes | ${src_node} | ${dst_node}
 | | Compute Path
 | | ${src_port} | ${src_node}= | First Interface
@@ -121,7 +121,7 @@
 
 | Ipv6 tg to tg routed
 | | [Documentation] | Send traffic from one TG port to another through DUT nodes
-| | ...             | and send reply back, also verify hop limit processing
+| | ... | and send reply back, also verify hop limit processing
 | | [Arguments] | ${tg_node} | ${first_dut} | ${second_dut} | ${nodes_addr}
 | | Append Nodes | ${tg_node} | ${first_dut} | ${second_dut} | ${tg_node}
 | | Compute Path
@@ -167,11 +167,6 @@
 | | :FOR | ${interface} | IN | @{interfaces}
 | | | Set Interface State | @{interface} | up | if_type=name
 | | All Vpp Interfaces Ready Wait | ${nodes}
-
-| Clear ipv6 on all dut in topology
-| | [Documentation] | Remove IPv6 address on all DUTs
-| | [Arguments] | ${nodes} | ${nodes_addr}
-| | Nodes Clear Ipv6 Addresses | ${nodes} | ${nodes_addr}
 
 | Suppress ICMPv6 router advertisement message
 | | [Documentation] | Suppress ICMPv6 router advertisement message for link scope address

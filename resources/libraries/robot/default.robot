@@ -205,26 +205,6 @@
 | | Add CPU config | ${dut1} | ${dut1_cpu}
 | | Add rxqueues config | ${dut1} | ${rxqueues}
 
-| Add worker threads and rxqueues to all DUTs
-| | [Documentation] | Setup worker threads and rxqueues in VPP startup\
-| | ... | configuration to all DUTs.
-| | ...
-| | ... | *Arguments:*
-| | ... | - ${cpu} - CPU configuration. Type: string
-| | ... | - ${rxqueues} - rxqueues configuration. Type: string
-| | ...
-| | ... | *Example:*
-| | ...
-| | ... | \| Add worker threads and rxqueues to all DUTs \| main-core 0 \
-| | ... | \| rxqueues 2 \|
-| | ...
-| | [Arguments] | ${cpu} | ${rxqueues}
-| | ...
-| | ${duts}= | Get Matches | ${nodes} | DUT*
-| | :FOR | ${dut} | IN | @{duts}
-| | | Add CPU config | ${nodes['${dut}']} | ${cpu}
-| | | Add rxqueues config | ${nodes['${dut}']} | ${rxqueues}
-
 | Add all PCI devices to all DUTs
 | | [Documentation] | Add all available PCI devices from topology file to VPP\
 | | ... | startup configuration to all DUTs.
@@ -289,8 +269,7 @@
 | | | Add SNAT Config | ${nodes['${dut}']}
 
 | Add cryptodev to all DUTs
-| | [Documentation] | AddCryptodev to VPP startup configuration to all
-| | ...             | DUTs
+| | [Documentation] | AddCryptodev to VPP startup configuration to all DUTs.
 | | ...
 | | ... | *Arguments:*
 | | ... | - ${count} - Number of QAT devices. Type: integer
@@ -324,14 +303,6 @@
 | | ...
 | | Remove startup configuration of VPP from all DUTs
 | | Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
-| | Add all PCI devices to all DUTs
-| | Apply startup configuration on all VPP DUTs
-
-| Setup 2-node startup configuration of VPP on all DUTs
-| | [Documentation] | Setup default startup configuration of VPP to all DUTs.
-| | ...
-| | Remove startup configuration of VPP from all DUTs
-| | Add '1' worker threads and '1' rxqueues in 2-node single-link circular topology
 | | Add all PCI devices to all DUTs
 | | Apply startup configuration on all VPP DUTs
 
