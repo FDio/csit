@@ -57,9 +57,6 @@
 | | Configure routes for IPv4 test | ${nodes} | ${nodes_ipv4_addr}
 | | All Vpp Interfaces Ready Wait | ${nodes}
 
-| TG interface "${tg_port}" can route to node "${node}" interface "${port}" "${hops}" hops away using IPv4
-| | Node "${nodes['TG']}" interface "${tg_port}" can route to node "${node}" interface "${port}" "${hops}" hops away using IPv4
-
 | Route traffic from interface '${from_port}' on node '${from_node}' to interface '${to_port}' on node '${to_node}' '${hops}' hops away using IPv4
 | | ${src_ip}= | Get IPv4 address of node "${from_node}" interface "${from_port}" from "${nodes_ipv4_addr}"
 | | ${dst_ip}= | Get IPv4 address of node "${to_node}" interface "${to_port}" from "${nodes_ipv4_addr}"
@@ -111,12 +108,12 @@
 
 | Configure IP addresses on interfaces
 | | [Documentation] | Iterates through @{args} list and Set Interface Address
-| | ...             | for every (${dut_node}, ${interface}, ${address},
-| | ...             | ${prefix}) tuple.
+| | ... | for every (${dut_node}, ${interface}, ${address},
+| | ... | ${prefix}) tuple.
 | | ...
 | | ... | *Arguments:*
 | | ... | - ${dut_node} - Node where IP address should be set to.
-| | ... |   Type: dictionary
+| | ... | Type: dictionary
 | | ... | - ${interface} - Interface name. Type: string
 | | ... | - ${address} - IP address. Type: string
 | | ... | - ${prefix} - Prefix length. Type: integer
@@ -134,12 +131,12 @@
 
 | Send ICMP echo request and verify answer
 | | [Documentation] | Run traffic script that waits for ICMP reply and ignores
-| | ...             | all other packets.
+| | ... | all other packets.
 | | ...
 | | ... | *Arguments:*
 | | ... | - tg_node - TG node where run traffic script. Type: dictionary
 | | ... | - tg_interface - TG interface where send ICMP echo request.
-| | ... |   Type: string
+| | ... | Type: string
 | | ... | - dst_mac - Destination MAC address. Type: string
 | | ... | - src_mac - Source MAC address. Type: string
 | | ... | - dst_ip - Destination IP address. Type: string
