@@ -432,23 +432,6 @@
 | | ... | interfaceAPI.Configure tag rewrite
 | | ... | ${node} | ${super_if} | ${identifier} | ${settings}
 
-| VAT disables tag-rewrite
-| | [Documentation] | The keyword disables the tag-rewrite using VAT.
-| | ...
-| | ... | *Arguments:*
-| | ... | - node - Information about a DUT node. Type: dictionary
-| | ... | - sub_interface - Name of an sub-interface on the specified node.\
-| | ... | Type: string
-| | ...
-| | ... | *Example:*
-| | ... | \| VAT disables tag-rewrite\
-| | ... | \| ${nodes['DUT1']} \| GigabitEthernet0/8/0.1 \|
-| | ...
-| | [Arguments] | ${node} | ${sub_interface}
-| | ...
-| | ${sw_if_index}= | interfaceCLI.Get sw if index | ${node} | ${sub_interface}
-| | L2 tag rewrite | ${node} | ${sw_if_index} | disable
-
 | Honeycomb sets sub-interface ipv4 address
 | | [Documentation] | Uses Honeycomb API to configure an ipv4 address on the\
 | | ... | spcified sub-interface. Replaces any existing ipv4 addresses.

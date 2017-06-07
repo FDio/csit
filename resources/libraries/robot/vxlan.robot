@@ -60,10 +60,6 @@
 | | Add IP Neighbor | ${DUT1} | ${DUT1_INT_INDEX} | ${dut2s_ip_address} | ${DUT2_INT_MAC}
 | | Add IP Neighbor | ${DUT2} | ${DUT2_INT_INDEX} | ${dut1s_ip_address} | ${DUT1_INT_MAC}
 
-| VXLAN interface is created
-| | [Arguments] | ${DUT} | ${VNI} | ${SRC_IP} | ${DST_IP}
-| | Create VXLAN interface | ${DUT} | ${VNI} | ${SRC_IP} | ${DST_IP}
-
 | Add interfaces to L2BD
 | | [Arguments] | ${DUT} | ${BID} | ${INTERFACE_1} | ${INTERFACE_2}
 | | Vpp Add L2 Bridge Domain | ${DUT} | ${BID} | ${INTERFACE_1} | ${INTERFACE_2}
@@ -107,11 +103,11 @@
 | | ... | - tx_dst_mac - Destination MAC address of sent packet. Type: string
 | | ... | - tx_src_ip - Source IP address of sent VXLAN packet. Type: string
 | | ... | - tx_dst_ip - Destination IP address of sent VXLAN packet.
-| | ... |   Type: string
+| | ... | Type: string
 | | ... | - tx_vni - VNI of sent VXLAN packet. Type: string
 | | ... | - rx_src_ip - Source IP address of received VXLAN packet. Type: string
 | | ... | - rx_dst_ip - Destination IP address of received VXLAN packet.
-| | ... |   Type: string
+| | ... | Type: string
 | | ... | - rx_vni - VNI of received VXLAN packet. Type: string
 | | ...
 | | ... | *Return:*

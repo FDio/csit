@@ -319,7 +319,7 @@ fi
 pybot ${PYBOT_ARGS} \
       -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
       -s "tests.perf" \
-      --include 64bAND1t1cOR78bAND1t1c \
+      --include 64bAND1t1cANDipsec \
       tests/
 RETURN_STATUS=$(echo $?)
 
