@@ -18,6 +18,7 @@ tar xJvf ${DPDK_PACKAGE} || \
 
 # Compile the DPDK
 cd ./${DPDK_DIR}
+sudo sed -i 's/^CONFIG_RTE_LIBRTE_I40E_16BYTE_RX_DESC=n/CONFIG_RTE_LIBRTE_I40E_16BYTE_RX_DESC=y/g' ./config/common_base
 make install T=x86_64-native-linuxapp-gcc -j || \
     { echo "Failed to compile $DPDK_VERSION"; exit 1; }
 cd ${PWDDIR}
