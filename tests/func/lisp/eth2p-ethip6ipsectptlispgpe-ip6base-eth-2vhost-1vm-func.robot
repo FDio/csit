@@ -36,16 +36,13 @@
 | Resource | resources/libraries/robot/bridge_domain.robot
 # Import configuration and test data:
 | Variables | resources/test_data/lisp/ipv6_lispgpe_ipv6/ipv6_lispgpe_ipsec_ipv6.py
+| ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | VM_ENV | LISP | SKIP_VPP_PATCH
 | ...
 | Test Setup | Run Keywords | Set up functional test
 | ...        | AND          | Vpp All Ra Suppress Link Layer | ${nodes}
-| Test Teardown | Run Keywords | Show Packet Trace on All DUTs | ${nodes}
-| ... | AND | Show VAT History On All DUTs | ${nodes}
-| ... | AND | Show Vpp Settings | ${nodes['DUT1']}
-| ... | AND | Show Vpp Settings | ${nodes['DUT2']}
-| ... | AND | Stop and clear QEMU | ${nodes['DUT1']} | ${vm_node}
-| ... | AND | Verify VPP PID in Teardown
+| ...
+| Test Teardown | Tear down LISP functional test with QEMU | ${vm_node}
 | ...
 | Documentation | *IPv6 - ip6-ipsec-lispgpe-ip6 - main fib,
 | ... | vrf (gpe_vni-to-vrf), phy2lisp, virt2lisp*

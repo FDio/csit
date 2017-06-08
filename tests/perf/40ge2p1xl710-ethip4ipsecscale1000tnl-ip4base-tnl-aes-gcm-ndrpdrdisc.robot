@@ -18,15 +18,14 @@
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | SCALE | NDRPDRDISC
 | ... | IP4FWD | IPSEC | IPSECHW | IPSECTUN | NIC_Intel-XL710 | TNL_1000
 | ...
-| Suite Setup | Run Keywords
-| ... | Set up 3-node performance topology with DUT's NIC model | L3 | Intel-XL710
-| ... | AND | Configure crypto device on all DUTs | force_init=${True}
-| ... | AND | Configure kernel module on all DUTs | igb_uio | force_load=${True}
+| Suite Setup | Set up IPSec performance test suite | L3 | Intel-XL710
+| ...
 | Suite Teardown | Tear down 3-node performance topology
 | ...
 | Test Setup | Set up performance test
-| Test Teardown | Tear down performance discovery test | ${min_rate}pps | ${framesize}
-| ... | ${traffic_profile}
+| ...
+| Test Teardown | Tear down performance discovery test | ${min_rate}pps
+| ... | ${framesize} | ${traffic_profile}
 | ...
 | Documentation | *IPv4 IPsec tunnel mode performance test suite.*
 | ...

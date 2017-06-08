@@ -32,12 +32,9 @@
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | VM_ENV | LISP
 | ...
 | Test Setup | Run Keywords | Set up functional test
-| ... | AND | Vpp All Ra Suppress Link Layer | ${nodes}
-| Test Teardown | Run Keywords | Show Packet Trace on All DUTs | ${nodes}
-| ... | AND | Show VAT History On All DUTs | ${nodes}
-| ... | AND | Show Vpp Settings | ${nodes['DUT1']}
-| ... | AND | Show Vpp Settings | ${nodes['DUT2']}
-| ... | AND | Verify VPP PID in Teardown
+| ... | AND  | Vpp All Ra Suppress Link Layer | ${nodes}
+| ...
+| Test Teardown | Tear down LISP functional test
 | ...
 | Documentation | *ip6-lispgpe-ip6 encapsulation test cases*
 | ...

@@ -33,12 +33,8 @@
 | ...
 | Test Setup | Run Keywords | Set up functional test
 | ... | AND | Vpp All Ra Suppress Link Layer | ${nodes}
-| Test Teardown | Run Keywords | Show Packet Trace on All DUTs | ${nodes}
-| ... | AND | Show VAT History On All DUTs | ${nodes}
-| ... | AND | Show Vpp Settings | ${nodes['DUT1']}
-| ... | AND | Show Vpp Settings | ${nodes['DUT2']}
-| ... | AND | Stop and clear QEMU | ${nodes['DUT1']} | ${vm_node}
-| ... | AND | Verify VPP PID in Teardown
+| ...
+| Test Teardown | Tear down LISP functional test with QEMU | ${vm_node}
 | ...
 | Documentation | *ip6-lispgpe-ip6 encapsulation test cases*
 | ...

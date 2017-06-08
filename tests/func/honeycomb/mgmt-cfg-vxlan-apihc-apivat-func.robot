@@ -32,14 +32,18 @@
 | Resource | resources/libraries/robot/honeycomb/vxlan.robot
 # import additional VxLAN settings from resource file
 | Variables | resources/test_data/honeycomb/vxlan.py
+| ...
 | Force Tags | HC_FUNC
+| ...
 | Suite Teardown | Run Keyword If Any Tests Failed
 | ... | Restart Honeycomb and VPP | ${node}
+| ...
 | Documentation | *Honeycomb VxLAN management test suite.*
 
 *** Test Cases ***
 | TC01: Honeycomb configures VxLAN tunnel
 | | [Documentation] | Check if Honeycomb API can configure VxLAN settings.
+| | ...
 | | Given VxLAN Operational Data From Honeycomb Should Be empty
 | | ... | ${node} | ${vx_interface}
 | | And VxLAN Operational Data From VAT Should Be empty | ${node}
@@ -55,6 +59,7 @@
 
 | TC02: Honeycomb disables VxLAN tunnel
 | | [Documentation] | Check if Honeycomb API can reset VxLAN configuration.
+| | ...
 | | Given VxLAN Operational Data From Honeycomb Should Be
 | | ... | ${node} | ${vx_interface} | ${vxlan_settings}
 | | And Honeycomb should not show disabled interface in oper data
@@ -71,8 +76,10 @@
 | TC03: Honeycomb can configure VXLAN tunnel after one has been disabled
 | | [Documentation] | Check if Honeycomb API can configure VxLAN settings again\
 | | ... | after previous settings have been removed.
+| | ...
 | | [Teardown] | Honeycomb removes VxLAN tunnel settings
 | | ... | ${node} | ${vx_interface}
+| | ...
 | | Given VxLAN Operational Data From Honeycomb Should Be empty
 | | ... | ${node} | ${vx_interface}
 | | And Honeycomb should show disabled interface in oper data
@@ -90,6 +97,7 @@
 | TC04: Honeycomb does not set VxLAN configuration on another interface type
 | | [Documentation] | Check if Honeycomb API prevents setting VxLAN\
 | | ... | on incorrect interface.
+| | ...
 | | Given VxLAN Operational Data From Honeycomb Should Be empty
 | | ... | ${node} | ${interface}
 | | And VxLAN Operational Data From VAT Should Be empty | ${node}
@@ -103,6 +111,7 @@
 | TC05: Honeycomb does not set invalid VxLAN configuration
 | | [Documentation] | Check if Honeycomb API prevents setting incorrect VxLAN\
 | | ... | settings.
+| | ...
 | | Given VxLAN Operational Data From Honeycomb Should Be empty
 | | ... | ${node} | ${vx_interface}
 | | And VxLAN Operational Data From VAT Should Be empty | ${node}
@@ -114,8 +123,10 @@
 | TC06: Honeycomb configures VxLAN tunnel with ipv6
 | | [Documentation] | Check if Honeycomb API can configure VxLAN with\
 | | ... | ipv6 settings.
+| | ...
 | | [Teardown] | Honeycomb removes VxLAN tunnel settings
 | | ... | ${node} | ${vx_interface}
+| | ...
 | | Given VxLAN Operational Data From Honeycomb Should Be empty
 | | ... | ${node} | ${vx_interface}
 | | And VxLAN Operational Data From VAT Should Be empty | ${node}

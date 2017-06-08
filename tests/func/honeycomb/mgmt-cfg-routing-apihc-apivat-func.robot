@@ -21,11 +21,15 @@
 | Resource | resources/libraries/robot/honeycomb/honeycomb.robot
 | Resource | resources/libraries/robot/honeycomb/interfaces.robot
 | Resource | resources/libraries/robot/honeycomb/routing.robot
+| ...
 | Test Setup | Clear Packet Trace on All DUTs | ${nodes}
+| ...
 | Suite Teardown | Restart Honeycomb And VPP | ${node}
-| Test Teardown | Honeycomb routing test teardown
-| ... | ${node} | ${table}
+| ...
+| Test Teardown | Honeycomb routing test teardown | ${node} | ${table}
+| ...
 | Documentation | *Honeycomb routing test suite.*
+| ...
 | Force Tags | HC_FUNC
 
 *** Test Cases ***
@@ -37,6 +41,7 @@
 | | ... | interfaces and configure route with TG-if2 as next-hop.
 | | ... | [Ver] Send ICMP packet from first TG interface to configured route
 | | ... | destination. Receive packet on the second TG interface.
+| | ...
 | | ${table}= | Set Variable | table1
 | | Given Setup interfaces and neighbors for IPv4 routing test
 | | When Honeycomb configures routing table
@@ -58,6 +63,7 @@
 | | ... | route destination. Receive all packets on the second TG interface and\
 | | ... | verify that each destination MAC was used by exactly 50 packets.
 | | ... | Receive packet on the second TG interface.
+| | ...
 | | ${table}= | Set Variable | table2
 | | Given Setup interfaces and neighbors for IPv4 routing test
 | | And Honeycomb adds interface IPv4 neighbor | ${dut_node} | ${dut_to_tg_if2}
@@ -83,6 +89,7 @@
 | | ... | [Ver] Send ICMP packet from first TG interface to configured route
 | | ... | destination. Make sure no packet is received on the second TG\
 | | ... | interface.
+| | ...
 | | ${table}= | Set Variable | table3
 | | Given Setup interfaces and neighbors for IPv4 routing test
 | | When Honeycomb configures routing table
@@ -103,6 +110,7 @@
 | | ... | interfaces and configure route with TG-if2 as next-hop.
 | | ... | [Ver] Send ICMP packet from first TG interface to configured route
 | | ... | destination. Receive packet on the second TG interface.
+| | ...
 | | ${table}= | Set Variable | table4
 | | Given Setup interfaces and neighbors for IPv6 routing test
 | | When Honeycomb configures routing table
@@ -124,6 +132,7 @@
 | | ... | route destination. Receive all packets on the second TG interface and\
 | | ... | verify that each destination MAC was used by exactly 50 packets.
 | | ... | Receive packet on the second TG interface.
+| | ...
 | | ${table}= | Set Variable | table5
 | | Given Setup interfaces and neighbors for IPv6 routing test
 | | And Honeycomb adds interface IPv6 neighbor | ${dut_node} | ${dut_to_tg_if2}
@@ -149,6 +158,7 @@
 | | ... | [Ver] Send ICMP packet from first TG interface to configured route
 | | ... | destination. Make sure no packet is received on the second TG\
 | | ... | interface.
+| | ...
 | | ${table}= | Set Variable | table6
 | | Given Setup interfaces and neighbors for IPv6 routing test
 | | When Honeycomb configures routing table
@@ -202,13 +212,17 @@
 | | Vpp all ra suppress link layer | ${nodes}
 
 | Honeycomb routing test teardown
+| | ...
 | | [arguments] | ${node} | ${routing_table}
+| | ...
 | | Show Packet Trace on All DUTs | ${nodes}
 | | Log routing configuration from VAT | ${node}
 | | Honeycomb removes routing configuration | ${node} | ${routing_table}
 
 | Setup vrf IDs
+| | ...
 | | [Arguments] | ${node} | ${interface} | ${vrf}
+| | ...
 | | Honeycomb sets interface VRF ID
 | | ... | ${node} | ${interface} | ${vrf} | ipv4
 | | Honeycomb sets interface VRF ID
