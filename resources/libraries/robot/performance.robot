@@ -2521,3 +2521,23 @@
 | | ... | Tear down guest VM with dpdk-testpmd | ${dut1} | ${dut1_vm_refs}
 | | Run keyword unless | ${dut2_node}==${None}
 | | ... | Tear down guest VM with dpdk-testpmd | ${dut2} | ${dut2_vm_refs}
+
+| | Set up IPSec performance test suite
+| | [Documentation]
+| | ... | Suite preparation phase that sets default startup configuration of
+| | ... | VPP on all DUTs. Updates interfaces on all nodes and sets global
+| | ... | variables used in test cases based on interface model provided as an
+| | ... | argument. Initializes traffic generator.
+| | ... | Then it configures crypto device and kernel module on all DUTs.
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Set up IPSec performance test suite \| L2 \
+| | ... | \| Intel-X520-DA2 \|
+| | ...
+| | [Arguments] | ${topology_type} | ${nic_model}
+| | ...
+| | Set up 3-node performance topology with DUT's NIC model
+| | ... | ${topology_type} | ${nic_model}
+| | Configure crypto device on all DUTs | force_init=${True}
+| | Configure kernel module on all DUTs | igb_uio | force_load=${True}
