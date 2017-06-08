@@ -23,12 +23,13 @@
 | Library  | resources.libraries.python.Tap
 | Library  | resources.libraries.python.Namespaces
 | Library  | resources.libraries.python.IPUtil
+| ...
 | Force Tags | HW_ENV | VM_ENV | 3_NODE_DOUBLE_LINK_TOPO
-| Test Setup | Run Keywords | Set up functional test
-| ...        | AND          | Clean Up Namespaces | ${nodes['DUT1']}
-| Test Teardown | Run Keywords | Tear down functional test
-| ... | AND | Linux Del Bridge | ${nodes['DUT1']} | ${bid_TAP}
-| ... | AND | Clean Up Namespaces | ${nodes['DUT1']}
+| ...
+| Test Setup | Set up TAP functional test
+| ...
+| Test Teardown | ear down TAP functional test with Linux bridge | ${bid_TAP}
+| ...
 | Documentation | *Tap Interface Traffic Tests*
 | ... | *[Top] Network Topologies:* TG=DUT1 2-node topology with two links
 | ... | between nodes.
@@ -56,14 +57,14 @@
 | | [Documentation]
 | | ... | [Top] TG-DUT1-TG.
 | | ... | [Enc] Eth-IPv4-ICMPv4.
-| | ... | [Cfg] On DUT1 configure two
-| | ... | L2BD with two if's for each L2BD with MAC learning and one L2BD
-| | ... | joining two linux-TAP interfaces created by VPP located in namespace.
-| | ... | [Ver] Packet sent from TG is passed through all L2BD and received
+| | ... | [Cfg] On DUT1 configure two L2BD with two if's for each L2BD with MAC\
+| | ... | learning and one L2BD joining two linux-TAP interfaces created by VPP\
+| | ... | located in namespace.
+| | ... | [Ver] Packet sent from TG is passed through all L2BD and received\
 | | ... | back on TG. Then src_ip, dst_ip and MAC are checked.
 | | ...
-| | Given Configure path in 2-node circular topology | ${nodes['TG']} | ${nodes['DUT1']}
-| | ... | ${nodes['TG']}
+| | Given Configure path in 2-node circular topology | ${nodes['TG']}
+| | ... | ${nodes['DUT1']} | ${nodes['TG']}
 | | And Set interfaces in 2-node circular topology up
 | | ${int1}= | And Add Tap Interface | ${dut_node} | ${tap_int1}
 | | ${int2}= | And Add Tap Interface | ${dut_node} | ${tap_int2}

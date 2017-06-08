@@ -23,8 +23,7 @@
 | Test Teardown | Run Keywords
 | ... | Show Bridge Domain Data On All DUTs
 | ... | AND | Tear down performance test with vhost and VM with dpdk-testpmd
-| ... | ${min_rate}pps | ${framesize}
-| ... | ${traffic_profile}
+| ... | ${min_rate}pps | ${framesize} | ${traffic_profile}
 | ... | dut1_node=${dut1} | dut1_vm_refs=${dut1_vm_refs}
 | ... | dut2_node=${dut2} | dut2_vm_refs=${dut2_vm_refs}
 | Documentation | *RFC2544: Pkt throughput L2BD test cases with vhost*

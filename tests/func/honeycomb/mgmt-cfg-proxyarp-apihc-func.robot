@@ -30,24 +30,31 @@
 | Resource | resources/libraries/robot/ipv4.robot
 | Resource | resources/libraries/robot/traffic.robot
 | Library | resources.libraries.python.Trace
+| ...
 | Suite Teardown
 | ... | Run Keyword If Any Tests Failed
 | ... | Restart Honeycomb And VPP | ${node}
+| ...
 | Force Tags | HC_FUNC
+| ...
 | Documentation | *Honeycomb proxyARP management test suite.*
 
 *** Test Cases ***
 # TODO: Add operational data and VAT dump verification if/when avaliable
 | TC01: Honeycomb can configure ipv4 proxyARP
 | | [Documentation] | Check if Honeycomb can configure the proxyARP feature.
+| | ...
 | | [Teardown] | Honeycomb removes proxyARP configuration | ${node}
+| | ...
 | | Honeycomb configures proxyARP | ${node} | ${proxyarp_settings_ipv4}
 
 | TC02: Honeycomb can enable proxyarp on an interface
 | | [Documentation] | Check if Honeycomb can enable the proxyARP feature\
 | | ... | on an interface.
+| | ...
 | | [Teardown] | Honeycomb disables proxyARP on interface
 | | ... | ${node} | ${interface}
+| | ...
 | | Honeycomb enables proxyARP on interface | ${node} | ${interface}
 
 | TC03: DUT sends ARP reply on behalf of another machine from the IP range
@@ -59,6 +66,7 @@
 | | ... | [Ver] Make TG send ARP request to DUT1 interface,
 | | ... | verify if DUT1 sends correct ARP reply on behalf of machine whose
 | | ... | IP is in the configured range.
+| | ...
 | | [Teardown] | Run Keywords
 | | ... | Show Packet Trace on all DUTs | ${nodes}
 | | ... | AND | Honeycomb removes proxyARP configuration | ${node}
@@ -66,6 +74,7 @@
 | | ... | ${dut_node} | ${dut_to_tg_if1} | down
 | | ... | AND | Honeycomb removes interface IPv4 addresses
 | | ... | ${node} | ${interface}
+| | ...
 | | Given Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | ${dut_to_tg_name}= | Get interface name | ${dut_node} | ${dut_to_tg_if1}
@@ -76,5 +85,5 @@
 | | When Honeycomb configures proxyARP | ${dut_node} | ${proxyarp_settings_ipv4}
 | | And Honeycomb enables proxyARP on interface | ${node} | ${dut_to_tg_name}
 | | Then Send ARP Request | ${tg_node} | ${tg_to_dut_name}
-| | ...                   | ${tg_to_dut_if1_mac} | ${dut_to_tg_if1_mac}
-| | ...                   | ${tg_to_dut_ip} | ${test_ip}
+| | ... | ${tg_to_dut_if1_mac} | ${dut_to_tg_if1_mac}
+| | ... | ${tg_to_dut_ip} | ${test_ip}

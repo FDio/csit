@@ -26,9 +26,12 @@
 | Resource | resources/libraries/robot/default.robot
 | Resource | resources/libraries/robot/honeycomb/honeycomb.robot
 | Resource | resources/libraries/robot/honeycomb/vhost_user.robot
+| ...
 | Force Tags | HC_FUNC
+| ...
 | Suite Teardown | Run Keyword If Any Tests Failed
 | ... | Restart Honeycomb and VPP | ${node}
+| ...
 | Documentation | *Honeycomb vhost-user interface management test suite.*
 
 *** Test Cases ***
