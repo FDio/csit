@@ -18,10 +18,13 @@
 | Resource | resources/libraries/robot/honeycomb/bridge_domain.robot
 | Resource | resources/libraries/robot/honeycomb/interfaces.robot
 | Variables | resources/test_data/honeycomb/sub_interfaces.py
+| ...
 | Suite Setup | Add Interface local0 To Topology | ${node}
-| Suite Teardown
-| ... | Restart Honeycomb and VPP | ${node}
+| ...
+| Suite Teardown | Restart Honeycomb and VPP | ${node}
+| ...
 | Force Tags | HC_FUNC
+| ...
 | Documentation | *Honeycomb sub-interface management test suite.*
 
 *** Variables ***
@@ -365,8 +368,10 @@
 | TC17: Honeycomb modifies existing sub-interface ipv4 address
 | | [Documentation] | Check if Honeycomb can modify an ipv4 address already\
 | | ... | configured on the sub-interface.
+| | ...
 | | [Teardown] | Honeycomb removes all sub-interface ipv4 addresses
 | | ... | ${node} | ${super_if} | ${sub_if_id}
+| | ...
 | | Given sub-interface ipv4 address from Honeycomb should be empty
 | | ... | ${node} | ${super_if} | ${sub_if_id}
 | | And sub-interface ipv4 address from VAT should be empty
@@ -387,6 +392,7 @@
 | TC18: Honeycomb modifies sub-interface exact tag match
 | | [Documentation] | Check if Honeycomb can modify a sub-interface with exact\
 | | ... | tag match.
+| | ...
 | | Given Honeycomb configures interface state | ${node} | ${super_if2} | down
 | | And sub-interface Operational Data From Honeycomb Should Be empty
 | | ... | ${node} | ${super_if2} | ${sub_if_id}
@@ -440,8 +446,10 @@
 | TC21: Honeycomb modifies existing sub-interface ipv6 address
 | | [Documentation] | Check if Honeycomb can modify an ipv6 address already\
 | | ... | configured on the sub-interface.
+| | ...
 | | [Teardown] | Honeycomb removes all sub-interface ipv6 addresses
 | | ... | ${node} | ${super_if} | ${sub_if_id}
+| | ...
 | | Given sub-interface ipv6 address from Honeycomb should be empty
 | | ... | ${node} | ${super_if} | ${sub_if_id}
 | | And sub-interface ipv6 address from VAT should be empty
@@ -462,6 +470,7 @@
 | TC22: Honeycomb can configure unnumbered sub-interface
 | | [Documentation] | Check if Honeycomb can configure an unnumbered interface\
 | | ... | on a sub-interface, borrowing the IP address of 'local0'.
+| | ...
 | | Given sub-interface ipv4 address from Honeycomb should be empty
 | | ... | ${node} | ${super_if} | ${sub_if_id}
 | | And sub-interface ipv4 address from VAT should be empty
@@ -485,8 +494,10 @@
 | TC23: Honeycomb removes sub-interface unnumbered configuration
 | | [Documentation] | Check if Honeycomb can remove unnumbered configuration\
 | | ... | from a sub-interface.
+| | ...
 | | [Teardown] | Honeycomb removes interface IPv4 addresses | ${node}
 | | ... | local0
+| | ...
 | | Given IPv4 address from Honeycomb should be
 | | ... | ${node} | local0 | ${ipv4['address']} | ${ipv4['prefix-length']}
 | | And IPv4 address from VAT should be
@@ -513,6 +524,7 @@
 | TC24: Honeycomb can configure unnumbered interface using a sub-interface
 | | [Documentation] | Check if Honeycomb can configure an unnumbered interface\
 | | ... | on an interface, borrowing the IP address of a sub-interface.
+| | ...
 | | Given IPv4 address from Honeycomb should be empty | ${node} | local0
 | | And ipv4 address from VAT should be empty | ${node} | local0
 | | And sub-interface ipv4 address from Honeycomb should be empty
