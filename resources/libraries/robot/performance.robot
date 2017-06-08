@@ -153,7 +153,7 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Set variables in 2-node circular topology with DUT interface model \
+| | ... | \| Set variables in 2-node circular topology with DUT interface model\
 | | ... | \| Intel-X520-DA2 \|
 | | ...
 | | [Arguments] | ${iface_model}
@@ -196,7 +196,7 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Set variables in 3-node circular topology with DUT interface model \
+| | ... | \| Set variables in 3-node circular topology with DUT interface model\
 | | ... | \| Intel-X520-DA2 \|
 | | ...
 | | [Arguments] | ${iface_model}
@@ -272,14 +272,14 @@
 | | Set Test Variable | ${dut1_if2_mac}
 | | Set Test Variable | ${dut2_if1_mac}
 | | Set Test Variable | ${dut2_if2_mac}
-| | Configure IP addresses on interfaces | ${dut1} | ${dut1_if1} | ${dut1_if1_ip4}
-| | ... | 24
-| | Configure IP addresses on interfaces | ${dut1} | ${dut1_if2} | ${dut1_if2_ip4}
-| | ... | 24
-| | Configure IP addresses on interfaces | ${dut2} | ${dut2_if1} | ${dut2_if1_ip4}
-| | ... | 24
-| | Configure IP addresses on interfaces | ${dut2} | ${dut2_if2} | ${dut2_if2_ip4}
-| | ... | 24
+| | Configure IP addresses on interfaces | ${dut1} | ${dut1_if1}
+| | ... | ${dut1_if1_ip4} | 24
+| | Configure IP addresses on interfaces | ${dut1} | ${dut1_if2}
+| | ... | ${dut1_if2_ip4} | 24
+| | Configure IP addresses on interfaces | ${dut2} | ${dut2_if1}
+| | ... | ${dut2_if1_ip4} | 24
+| | Configure IP addresses on interfaces | ${dut2} | ${dut2_if2}
+| | ... | ${dut2_if2_ip4} | 24
 | | Add arp on dut | ${dut1} | ${dut1_if1} | ${tg_if1_ip4} | ${tg_if1_mac}
 | | Add arp on dut | ${dut1} | ${dut1_if2} | ${dut2_if1_ip4} | ${dut2_if1_mac}
 | | Add arp on dut | ${dut2} | ${dut2_if2} | ${tg_if2_ip4} | ${tg_if2_mac}
@@ -346,8 +346,8 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Initialize IPv4 forwarding with scaling in 3-node circular topology \
-| | ... | \| 100000 \|
+| | ... | \| Initialize IPv4 forwarding with scaling in 3-node circular \
+| | ... | topology \| 100000 \|
 | | ...
 | | [Arguments] | ${count}
 | | ...
@@ -716,8 +716,8 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Initialize IPv6 forwarding with scaling in 3-node circular topology \
-| | ... | \| 100000 \|
+| | ... | \| Initialize IPv6 forwarding with scaling in 3-node circular \
+| | ... | topology \| 100000 \|
 | | ...
 | | [Arguments] | ${count}
 | | ...
@@ -2461,7 +2461,8 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Tear down performance discovery test \| 4.0mpps \| 64 \| 3-node-IPv4 \|
+| | ... | \| Tear down performance discovery test \| 4.0mpps \| 64 \
+| | ... | \| 3-node-IPv4 \|
 | | ...
 | | [Arguments] | ${rate} | ${framesize} | ${topology_type}
 | | ...
@@ -2520,3 +2521,23 @@
 | | ... | Tear down guest VM with dpdk-testpmd | ${dut1} | ${dut1_vm_refs}
 | | Run keyword unless | ${dut2_node}==${None}
 | | ... | Tear down guest VM with dpdk-testpmd | ${dut2} | ${dut2_vm_refs}
+
+| | Set up IPSec performance test suite
+| | [Documentation]
+| | ... | Suite preparation phase that sets default startup configuration of
+| | ... | VPP on all DUTs. Updates interfaces on all nodes and sets global
+| | ... | variables used in test cases based on interface model provided as an
+| | ... | argument. Initializes traffic generator.
+| | ... | Then it configures crypto device and kernel module on all DUTs.
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Set up IPSec performance test suite \| L2 \
+| | ... | \| Intel-X520-DA2 \|
+| | ...
+| | [Arguments] | ${topology_type} | ${nic_model}
+| | ...
+| | Set up 3-node performance topology with DUT's NIC model
+| | ... | ${topology_type} | ${nic_model}
+| | Configure crypto device on all DUTs | force_init=${True}
+| | Configure kernel module on all DUTs | igb_uio | force_load=${True}
