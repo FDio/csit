@@ -59,14 +59,13 @@
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | And Set interfaces in 2-node circular topology up
 | | When Configure vhost interfaces for L2BD forwarding | ${dut_node}
-| | ...                                                     | ${sock1}
-| | ...                                                     | ${sock2}
+| | ... | ${sock1} | ${sock2}
 | | And Configure L2XC | ${dut_node} | ${dut_to_tg_if1} | ${vhost_if1}
 | | And Configure L2XC | ${dut_node} | ${dut_to_tg_if2} | ${vhost_if2}
 | | And Configure VM for vhost L2BD forwarding | ${dut_node} | ${sock1}
-| | ...                                       | ${sock2}
-| | Then Send ICMPv4 bidirectionally and verify received packets | ${tg_node} | ${tg_to_dut_if1}
-| | ...                                          | ${tg_to_dut_if2}
+| | ... | ${sock2}
+| | Then Send ICMPv4 bidirectionally and verify received packets | ${tg_node}
+| | ... | ${tg_to_dut_if1} | ${tg_to_dut_if2}
 
 | TC02: DUT with two L2XCs switches ICMPv6 between TG and local VM links
 | | [Documentation]
@@ -84,12 +83,11 @@
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | And Set interfaces in 2-node circular topology up
 | | When Configure vhost interfaces for L2BD forwarding | ${dut_node}
-| | ...                                                     | ${sock1}
-| | ...                                                     | ${sock2}
+| | ... | ${sock1} | ${sock2}
 | | And Configure L2XC | ${dut_node} | ${dut_to_tg_if1} | ${vhost_if1}
 | | And Configure L2XC | ${dut_node} | ${dut_to_tg_if2} | ${vhost_if2}
 | | And Configure VM for vhost L2BD forwarding | ${dut_node} | ${sock1}
-| | ...                                       | ${sock2}
-| | Then Send ICMPv6 bidirectionally and verify received packets | ${tg_node} | ${tg_to_dut_if1}
-| | ...                                          | ${tg_to_dut_if2}
+| | ... | ${sock2}
+| | Then Send ICMPv6 bidirectionally and verify received packets | ${tg_node}
+| | ... | ${tg_to_dut_if1} | ${tg_to_dut_if2}
 

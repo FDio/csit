@@ -60,11 +60,11 @@
 | | And Set interfaces in 2-node circular topology up
 | | When Create bridge domain | ${dut_node} | ${bd_id1}
 | | And Add interface to bridge domain | ${dut_node} | ${dut_to_tg_if1}
-| | ...                                     | ${bd_id1}
+| | ... | ${bd_id1}
 | | And Add interface to bridge domain | ${dut_node} | ${dut_to_tg_if2}
-| | ...                                     | ${bd_id1}
-| | Then Send ICMPv4 bidirectionally and verify received packets | ${tg_node} | ${tg_to_dut_if1}
-| | ...                                     | ${tg_to_dut_if2}
+| | ... | ${bd_id1}
+| | Then Send ICMPv4 bidirectionally and verify received packets | ${tg_node}
+| | ... | ${tg_to_dut_if1} | ${tg_to_dut_if2}
 
 | TC03: DUT1 and DUT2 with L2BD (MAC learning) switch between two TG links
 | | [Documentation]
@@ -78,13 +78,13 @@
 | | And Set interfaces in 3-node circular topology up
 | | When Create bridge domain | ${dut1_node} | ${bd_id1}
 | | And Add interface to bridge domain | ${dut1_node} | ${dut1_to_tg}
-| | ...                                     | ${bd_id1}
+| | ... | ${bd_id1}
 | | And Add interface to bridge domain | ${dut1_node} | ${dut1_to_dut2}
-| | ...                                     | ${bd_id1}
+| | ... | ${bd_id1}
 | | And Create bridge domain | ${dut2_node} | ${bd_id2}
 | | And Add interface to bridge domain | ${dut2_node} | ${dut2_to_tg}
-| | ...                                     | ${bd_id2}
+| | ... | ${bd_id2}
 | | And Add interface to bridge domain | ${dut2_node} | ${dut2_to_dut1}
-| | ...                                     | ${bd_id2}
-| | Then Send ICMPv4 bidirectionally and verify received packets | ${tg_node} | ${tg_to_dut1}
-| | ...                                          | ${tg_to_dut2}
+| | ... | ${bd_id2}
+| | Then Send ICMPv4 bidirectionally and verify received packets | ${tg_node}
+| | ... | ${tg_to_dut1} | ${tg_to_dut2}
