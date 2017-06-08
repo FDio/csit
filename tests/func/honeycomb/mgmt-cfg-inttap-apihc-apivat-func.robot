@@ -26,14 +26,18 @@
 | Resource | resources/libraries/robot/honeycomb/honeycomb.robot
 | Resource | resources/libraries/robot/honeycomb/interfaces.robot
 | Resource | resources/libraries/robot/honeycomb/tap.robot
+| ...
 | Force Tags | HC_FUNC
+| ...
 | Suite Teardown | Run Keyword If Any Tests Failed
 | ... | Restart Honeycomb and VPP | ${node}
+| ...
 | Documentation | *Honeycomb TAP management test suite.*
 
 *** Test Cases ***
 | TC01: Honeycomb configures TAP interface
 | | [Documentation] | Check if Honeycomb API can configure a TAP interface.
+| | ...
 | | Given TAP Operational Data From Honeycomb Should Be empty
 | | ... | ${node} | ${tap_interface}
 | | And TAP Operational Data From VAT Should Be empty
@@ -48,6 +52,7 @@
 | TC02: Honeycomb modifies existing TAP interface configuration
 | | [Documentation] | Check if Honeycomb API can re-configure and existing TAP\
 | | ... | interface with new settings.
+| | ...
 | | Given TAP Operational Data From Honeycomb Should Be
 | | ... | ${node} | ${tap_interface} | ${tap_settings}
 | | And TAP Operational Data From VAT Should Be
@@ -61,6 +66,7 @@
 
 | TC03: Honeycomb removes TAP interface
 | | [Documentation] | Check if Honeycomb API can remove TAP interface.
+| | ...
 | | Given TAP Operational Data From Honeycomb Should Be
 | | ... | ${node} | ${tap_interface} | ${tap_settings2}
 | | And TAP Operational Data From VAT Should Be

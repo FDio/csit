@@ -28,7 +28,7 @@
 | | ... | Type - dictionary
 | | ...
 | | ... | *Example:*
-| | ... | \| Honeycomb creates PBB sub interface \| ${node} \| ${super_if}\
+| | ... | \| Honeycomb creates PBB sub-interface \| ${node} \| ${super_if}\
 | | ... | \| ${cfg_pbb_sub_if_1} \|
 | | ...
 | | [Arguments] | ${node} | ${super_if} | ${params}
@@ -47,7 +47,7 @@
 | | ... | - sub_if_id - Sub-interface ID. Type: string
 | | ...
 | | ... | *Example:*
-| | ... | \| Honeycomb Removes PBB sub interface\
+| | ... | \| Honeycomb removes PBB sub-interface\
 | | ... | \| ${node} \| ${super_if} \|
 | | ...
 | | [Arguments] | ${node} | ${super_if}
