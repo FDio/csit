@@ -24,8 +24,7 @@
 | ...
 | Test Setup | Set up performance test
 | Test Teardown | Tear down performance test with vhost and VM with dpdk-testpmd
-| ... | ${min_rate}pps | ${framesize}
-| ... | ${traffic_profile}
+| ... | ${min_rate}pps | ${framesize} | ${traffic_profile}
 | ... | dut1_node=${dut1} | dut1_vm_refs=${dut1_vm_refs}
 | ... | dut2_node=${dut2} | dut2_vm_refs=${dut2_vm_refs}
 | ...

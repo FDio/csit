@@ -28,16 +28,20 @@
 | Resource | resources/libraries/robot/honeycomb/honeycomb.robot
 | Resource | resources/libraries/robot/honeycomb/interfaces.robot
 | Resource | resources/libraries/robot/honeycomb/bridge_domain.robot
+| ...
 | Suite Teardown | Run keywords
 | ... | Run Keyword If Any Tests Failed
 | ... | Restart Honeycomb and VPP | ${node}
 | ... | AND | Honeycomb removes all bridge domains | ${node} | @{interfaces}
+| ...
 | Force Tags | HC_FUNC
+| ...
 | Documentation | *Honeycomb bridge domain management test suite.*
 
 *** Test Cases ***
 | TC01: Honeycomb sets up l2 bridge domain
 | | [Documentation] | Check if Honeycomb can create bridge domains on VPP node.
+| | ...
 | | When Honeycomb creates first l2 bridge domain
 | | ... | ${node} | ${bd1_name} | ${bd_settings}
 | | Then Bridge domain Operational Data From Honeycomb Should Be
@@ -48,6 +52,7 @@
 | TC02: Honeycomb manages multiple bridge domains on node
 | | [Documentation] | Check if Honeycomb can manage multiple bridge domains on\
 | | ... | a single node.
+| | ...
 | | Given Bridge domain Operational Data From Honeycomb Should Be
 | | ... | ${node} | ${bd1_name} | ${bd_settings}
 | | When Honeycomb creates l2 bridge domain
@@ -64,6 +69,7 @@
 | TC03: Honeycomb removes bridge domains
 | | [Documentation] | Check if Honeycomb can remove bridge domains from a VPP\
 | | ... | node.
+| | ...
 | | Given Bridge domain Operational Data From Honeycomb Should Be
 | | ... | ${node} | ${bd1_name} | ${bd_settings}
 | | When Honeycomb removes all bridge domains | ${node}
@@ -73,6 +79,7 @@
 | TC04: Honeycomb assigns interfaces to bridge domain
 | | [Documentation] | Check if Honeycomb can assign VPP interfaces to an\
 | | ... | existing bridge domain.
+| | ...
 | | Given Honeycomb creates first l2 bridge domain
 | | ... | ${node} | ${bd1_name} | ${bd_settings}
 | | When Honeycomb adds interfaces to bridge domain
@@ -89,6 +96,7 @@
 | TC05: Honeycomb cannot remove bridge domain with an interface assigned
 | | [Documentation] | Check if Honeycomb can remove a bridge domain that has an\
 | | ... | interface assigned to it. Expect to fail with code 500.
+| | ...
 | | Given Bridge domain Operational Data From Honeycomb Should Be
 | | ... | ${node} | ${bd1_name} | ${bd_settings}
 | | And Bridge domain Operational Data From VAT Should Be

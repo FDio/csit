@@ -20,13 +20,17 @@
 | Resource | resources/libraries/robot/honeycomb/honeycomb.robot
 | Resource | resources/libraries/robot/honeycomb/access_control_lists.robot
 | Variables | resources/test_data/honeycomb/acl.py
+| ...
 | Suite Teardown | Restart Honeycomb and VPP | ${node}
+| ...
 | Documentation | *Honeycomb access control lists test suite.*
+| ...
 | Force Tags | HC_FUNC
 
 *** Test Cases ***
 | TC01: Honeycomb can create ACL classify table
 | | [Documentation] | Check if Honeycomb API can create an ACL table.
+| | ...
 | | Given ACL table from Honeycomb should not exist
 | | ... | ${node} | ${hc_acl_table['name']}
 | | And ACL table from VAT should not exist
@@ -39,6 +43,7 @@
 
 | TC02: Honeycomb can remove ACL table
 | | [Documentation] | Check if Honeycomb API can delete an ACL table.
+| | ...
 | | Given ACL table from Honeycomb should be | ${node} | ${hc_acl_table_oper}
 | | And ACL table from VAT should be
 | | ... | ${node} | ${table_index} | ${vat_acl_table}
@@ -50,6 +55,7 @@
 
 | TC03: Honeycomb manages more than one ACL table
 | | [Documentation] | Check if Honeycomb API can create another ACL table.
+| | ...
 | | Given ACL table from Honeycomb should not exist
 | | ... | ${node} | ${hc_acl_table['name']}
 | | And ACL table from VAT should not exist
@@ -65,6 +71,7 @@
 
 | TC04: Honeycomb can add ACL session to table
 | | [Documentation] | Check if Honeycomb API can add an ACL session to a table.
+| | ...
 | | Given ACL table from Honeycomb should be | ${node} | ${hc_acl_table_oper}
 | | And ACL table from VAT should be
 | | ... | ${node} | ${table_index} | ${vat_acl_table}
@@ -77,6 +84,7 @@
 
 | TC05: Honeycomb can remove ACL session
 | | [Documentation] | Check if Honeycomb API can remove an ACL session.
+| | ...
 | | Given ACL session from Honeycomb should be
 | | ... | ${node} | ${hc_acl_table['name']} | ${hc_acl_session}
 | | And ACL session from VAT should be
@@ -91,6 +99,7 @@
 | TC06: Honeycomb manages more than one ACL session on one table
 | | [Documentation] | Check if Honeycomb API can add another ACL session\
 | | ... | to a table.
+| | ...
 | | Given ACL session from Honeycomb should not exist
 | | ... | ${node} | ${hc_acl_table['name']} | ${hc_acl_session['match']}
 | | And ACL session from VAT should not exist
@@ -110,6 +119,7 @@
 
 | TC07: Honeycomb enables ACL on interface
 | | [Documentation] | Check if Honeycomb API can enable ACL on an interface.
+| | ...
 | | Given ACL table from Honeycomb should be | ${node} | ${hc_acl_table_oper}
 | | And ACL table from VAT should be
 | | ... | ${node} | ${table_index} | ${vat_acl_table}
@@ -126,6 +136,7 @@
 
 | TC08: Honeycomb disables ACL on interface
 | | [Documentation] | Check if Honeycomb API can disable ACL on an interface.
+| | ...
 | | Given Interface ACL configuration from Honeycomb should be
 | | ... | ${node} | ${interface} | ${hc_acl_table['name']}
 | | And Interface ACL configuration from VAT should be
@@ -139,6 +150,7 @@
 | TC09: Honeycomb can remove one out of multiple ACL tables
 | | [Documentation] | Check if Honeycomb API can delete an ACL table if more\
 | | ... | than one table exists.
+| | ...
 | | Given ACL table from Honeycomb should be | ${node} | ${hc_acl_table_oper}
 | | And ACL table from VAT should be
 | | ... | ${node} | ${table_index} | ${vat_acl_table}

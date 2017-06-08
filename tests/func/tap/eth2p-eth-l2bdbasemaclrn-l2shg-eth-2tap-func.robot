@@ -23,11 +23,13 @@
 | Library  | resources.libraries.python.Tap
 | Library  | resources.libraries.python.Namespaces
 | Library  | resources.libraries.python.IPUtil
+| ...
 | Force Tags | HW_ENV | VM_ENV | 3_NODE_DOUBLE_LINK_TOPO
-| Test Setup | Run Keywords | Set up functional test
-| ...        | AND          | Clean Up Namespaces | ${nodes['DUT1']}
-| Test Teardown | Run Keywords | Tear down functional test
-| ...           | AND          | Clean Up Namespaces | ${nodes['DUT1']}
+| ...
+| Test Setup | Set up TAP functional test
+| ...
+| Test Teardown | Tear down TAP functional test
+| ...
 | Documentation | *Tap Interface Traffic Tests*
 | ... | *[Top] Network Topologies:* TG=DUT1 2-node topology with two links
 | ... | between nodes.
@@ -67,14 +69,14 @@
 | | [Documentation]
 | | ... | [Top] TG-DUT1-TG.
 | | ... | [Enc] Eth-IPv4-ICMPv4.
-| | ... | [Cfg] On DUT1
-| | ... | configure one if into L2BD with MAC learning. Add two TAP interfaces
-| | ... | into this L2BD and assign them different SHG. Setup two namespaces
-| | ... | and assign two linux-TAP interfaces to it respectively.
-| | ... | [Ver] Packet is sent from TG to both linux-TAP interfaces and reply
+| | ... | [Cfg] On DUT1 configure one if into L2BD with MAC learning. Add two\
+| | ... | TAP interfaces into this L2BD and assign them different SHG. Setup\
+| | ... | two namespaces and assign two linux-TAP interfaces to it respectively.
+| | ... | [Ver] Packet is sent from TG to both linux-TAP interfaces and reply\
 | | ... | is checked. Ping from First linux-TAP to another should pass.
-| | Given Configure path in 2-node circular topology | ${nodes['TG']} | ${nodes['DUT1']}
-| | ... | ${nodes['TG']}
+| | ...
+| | Given Configure path in 2-node circular topology | ${nodes['TG']}
+| | ... | ${nodes['DUT1']} | ${nodes['TG']}
 | | And Set interfaces in 2-node circular topology up
 | | ${int1}= | And Add Tap Interface | ${dut_node} | ${tap_int1}
 | | ${int2}= | And Add Tap Interface | ${dut_node} | ${tap_int2}
@@ -101,32 +103,34 @@
 | | And Create bridge domain | ${dut_node}
 | | ... | ${bd_id1} | learn=${TRUE}
 | | And Add interface to bridge domain | ${dut_node} | ${dut_to_tg_if1}
-| | ...                                     | ${bd_id1}
+| | ... | ${bd_id1}
 | | And Add interface to bridge domain | ${dut_node} | ${int1}
-| | ...                                     | ${bd_id1} | ${shg1}
+| | ... | ${bd_id1} | ${shg1}
 | | And Add interface to bridge domain | ${dut_node} | ${int2}
-| | ...                                     | ${bd_id1} | ${shg2}
-| | Then Send ICMP echo request and verify answer | ${tg_node} | ${tg_to_dut_if1}
-| | ... | ${tap1_NM_mac} | ${tg_to_dut_if1_mac}
+| | ... | ${bd_id1} | ${shg2}
+| | Then Send ICMP echo request and verify answer | ${tg_node}
+| | ... | ${tg_to_dut_if1} | ${tap1_NM_mac} | ${tg_to_dut_if1_mac}
 | | ... | ${tap1_NM_ip} | ${tg_ip_address_SHG}
 | | And Send ICMP echo request and verify answer | ${tg_node} | ${tg_to_dut_if1}
 | | ... | ${tap2_NM_mac} | ${tg_to_dut_if1_mac}
 | | ... | ${tap2_NM_SHG} | ${tg_ip_address_SHG}
-| | And Send Ping From Node To Dst | ${dut_node} | ${tap1_NM_ip} | namespace=${namespace2}
-| | And Send Ping From Node To Dst | ${dut_node} | ${tap2_NM_SHG} | namespace=${namespace1}
+| | And Send Ping From Node To Dst | ${dut_node} | ${tap1_NM_ip}
+| | ... | namespace=${namespace2}
+| | And Send Ping From Node To Dst | ${dut_node} | ${tap2_NM_SHG}
+| | ... | namespace=${namespace1}
 
 | TC02: Tap Interface BD - Same Split Horizon
 | | [Documentation]
 | | ... | [Top] TG-DUT1-TG.
 | | ... | [Enc] Eth-IPv4-ICMPv4.
-| | ... | [Cfg] On DUT1
-| | ... | configure one if into L2BD with MAC learning. Add two TAP interfaces
-| | ... | into this L2BD and assign them same SHG. Setup two namespaces
-| | ... | and assign two linux-TAP interfaces to it respectively.
-| | ... | [Ver] Packet is sent from TG to both linux-TAP interfaces and reply
+| | ... | [Cfg] On DUT1 configure one if into L2BD with MAC learning. Add two\
+| | ... | TAP interfaces into this L2BD and assign them same SHG. Setup two\
+| | ... | namespaces and assign two linux-TAP interfaces to it respectively.
+| | ... | [Ver] Packet is sent from TG to both linux-TAP interfaces and reply\
 | | ... | is checked. Ping from First linux-TAP to another should fail.
-| | Given Configure path in 2-node circular topology | ${nodes['TG']} | ${nodes['DUT1']}
-| | ... | ${nodes['TG']}
+| | ...
+| | Given Configure path in 2-node circular topology | ${nodes['TG']}
+| | ... | ${nodes['DUT1']} | ${nodes['TG']}
 | | And Set interfaces in 2-node circular topology up
 | | ${int1}= | And Add Tap Interface | ${dut_node} | ${tap_int1}
 | | ${int2}= | And Add Tap Interface | ${dut_node} | ${tap_int2}
@@ -153,18 +157,20 @@
 | | And Create bridge domain | ${dut_node}
 | | ... | ${bd_id1} | learn=${TRUE}
 | | And Add interface to bridge domain | ${dut_node} | ${dut_to_tg_if1}
-| | ...                                     | ${bd_id1}
+| | ... | ${bd_id1}
 | | And Add interface to bridge domain | ${dut_node} | ${int1}
-| | ...                                     | ${bd_id1} | ${shg1}
+| | ... | ${bd_id1} | ${shg1}
 | | And Add interface to bridge domain | ${dut_node} | ${int2}
-| | ...                                     | ${bd_id1} | ${shg1}
-| | Then Send ICMP echo request and verify answer | ${tg_node} | ${tg_to_dut_if1}
-| | ... | ${tap1_NM_mac} | ${tg_to_dut_if1_mac}
+| | ... | ${bd_id1} | ${shg1}
+| | Then Send ICMP echo request and verify answer | ${tg_node}
+| | ... | ${tg_to_dut_if1} | ${tap1_NM_mac} | ${tg_to_dut_if1_mac}
 | | ... | ${tap1_NM_ip} | ${tg_ip_address_SHG}
 | | And Send ICMP echo request and verify answer | ${tg_node} | ${tg_to_dut_if1}
 | | ... | ${tap2_NM_mac} | ${tg_to_dut_if1_mac}
 | | ... | ${tap2_NM_SHG} | ${tg_ip_address_SHG}
-| | And Run Keyword And Expect Error | Ping Not Successful | Send Ping From Node To Dst
-| | ... | ${dut_node} | ${tap2_NM_SHG} | namespace=${namespace1}
-| | And Run Keyword And Expect Error | Ping Not Successful | Send Ping From Node To Dst
-| | ... | ${dut_node} | ${tap1_NM_ip} | namespace=${namespace2}
+| | And Run Keyword And Expect Error | Ping Not Successful
+| | ... | Send Ping From Node To Dst | ${dut_node} | ${tap2_NM_SHG}
+| | ... | namespace=${namespace1}
+| | And Run Keyword And Expect Error | Ping Not Successful
+| | ... | Send Ping From Node To Dst | ${dut_node} | ${tap1_NM_ip}
+| | ... | namespace=${namespace2}

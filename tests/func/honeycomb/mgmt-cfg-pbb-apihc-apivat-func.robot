@@ -19,9 +19,12 @@
 | Resource | resources/libraries/robot/honeycomb/honeycomb.robot
 | Resource | resources/libraries/robot/honeycomb/provider_backbone_bridge.robot
 | Variables | resources/test_data/honeycomb/pbb/pbb.py
+| ...
 | Documentation | *Honeycomb provider backbone bridge test suite.*
+| ...
 | Suite Teardown | Run Keyword If Any Tests Failed
 | ... | Restart Honeycomb and VPP | ${node}
+| ...
 | Force Tags | HC_FUNC
 
 *** Test Cases ***

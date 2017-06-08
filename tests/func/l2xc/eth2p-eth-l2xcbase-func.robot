@@ -50,10 +50,8 @@
 | | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And Set interfaces in 3-node circular topology up
-| | And Configure L2XC
-| | ... | ${dut1_node} | ${dut1_to_tg} | ${dut1_to_dut2}
-| | And Configure L2XC
-| | ... | ${dut2_node} | ${dut2_to_dut1} | ${dut2_to_tg}
+| | And Configure L2XC | ${dut1_node} | ${dut1_to_tg} | ${dut1_to_dut2}
+| | And Configure L2XC | ${dut2_node} | ${dut2_to_dut1} | ${dut2_to_tg}
 | | When All Vpp Interfaces Ready Wait | ${nodes}
 | | Then Send ICMPv4 bidirectionally and verify received packets
 | | ... | ${tg_node} | ${tg_to_dut1} | ${tg_to_dut2}
@@ -69,10 +67,8 @@
 | | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And Set interfaces in 3-node circular topology up
-| | And Configure L2XC
-| | ... | ${dut1_node} | ${dut1_to_tg} | ${dut1_to_dut2}
-| | And Configure L2XC
-| | ... | ${dut2_node} | ${dut2_to_dut1} | ${dut2_to_tg}
+| | And Configure L2XC | ${dut1_node} | ${dut1_to_tg} | ${dut1_to_dut2}
+| | And Configure L2XC | ${dut2_node} | ${dut2_to_dut1} | ${dut2_to_tg}
 | | When All Vpp Interfaces Ready Wait | ${nodes}
 | | Then Send ICMPv6 bidirectionally and verify received packets
 | | ... | ${tg_node} | ${tg_to_dut1} | ${tg_to_dut2}

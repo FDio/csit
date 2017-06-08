@@ -30,6 +30,7 @@
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | VM_ENV | LISP
 | ...
 | Test Setup | Set up functional test
+| ...
 | Test Teardown | Tear down functional test
 | ...
 | Documentation | *ip4-lispgpe-ip4 encapsulation test cases*
@@ -92,5 +93,3 @@
 | | ... | ${tg_node} | ${tg2_ip4} | ${tg1_ip4}
 | | ... | ${tg_to_dut2} | ${tg_if2_mac} | ${tg_if1_mac}
 | | ... | ${tg_to_dut1} | ${tg_if2_mac} | ${tg_if1_mac}
-
-

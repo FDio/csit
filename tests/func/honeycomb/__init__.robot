@@ -19,12 +19,13 @@
 | Library | resources/libraries/python/honeycomb/HcPersistence.py
 | Resource | resources/libraries/robot/default.robot
 | Resource | resources/libraries/robot/honeycomb/honeycomb.robot
-| Suite Setup | Run Keywords | Setup All DUTs Before Test | AND
+| ...
+| Suite Setup | Run Keywords | Configure all DUTs before test | AND
 | ... | Configure Honeycomb for testing | ${node} | AND
 | ... | Configure ODL Client for testing | ${node} | AND
 | ... | Set Global Variable | ${node}
-| Suite Teardown
-| ... | Archive Honeycomb log file | ${node}
+| ...
+| Suite Teardown | Archive Honeycomb log file | ${node}
 
 *** Keywords ***
 | Configure Honeycomb for testing
