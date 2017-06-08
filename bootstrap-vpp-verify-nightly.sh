@@ -24,8 +24,14 @@ ARCHIVE_ARTIFACTS=(log.html output.xml report.html)
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 export PYTHONPATH=${SCRIPT_DIR}
 
+# Create tmp dir
+mkdir ${SCRIPT_DIR}/tmp
+
 # Use tmp dir to store log files
-LOG_PATH="${SCRIPT_DIR}"
+LOG_PATH="${SCRIPT_DIR}/tmp"
+
+# Use tmp dir for tarballs
+export TMPDIR="${SCRIPT_DIR}/tmp"
 
 if [ -f "/etc/redhat-release" ]; then
     DISTRO="CENTOS"
