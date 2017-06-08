@@ -25,6 +25,9 @@
 | ...
 | Test Setup | Set up performance test
 | ...
+| Test Teardown | Tear down performance discovery test with SNAT
+| ... | ${min_rate}pps | ${framesize} | ${traffic_profile}
+| ...
 | Documentation | *SNAT performance test cases*
 | ...
 | ... | *High level description*
@@ -74,11 +77,6 @@
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 100kpps.
 | | ...
-| | [Teardown] | Run keywords | Tear down performance discovery test | ${min_rate}pps
-| | ... | ${framesize} | ${traffic_profile}
-| | ... | AND | Show SNAT verbose | ${dut1}
-| | ... | AND | Show SNAT verbose | ${dut2}
-| | ...
 | | [Tags] | 64B | 1T1C | STHREAD | NDRDISC
 | | ...
 | | ${framesize}= | Set Variable | ${64}
@@ -104,9 +102,6 @@
 | | ... | 1 user and 15 ports (sessions) per user.
 | | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 100kpps.
-| | ...
-| | [Teardown] | Tear down performance discovery test | ${min_rate}pps | ${framesize}
-| | ... | ${traffic_profile}
 | | ...
 | | [Tags] | 64B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
 | | ...
@@ -135,11 +130,6 @@
 | | ... | [Ver] Find NDR for 1518 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 100kpps.
 | | ...
-| | [Teardown] | Run keywords | Tear down performance discovery test | ${min_rate}pps
-| | ... | ${framesize} | ${traffic_profile}
-| | ... | AND | Show SNAT verbose | ${dut1}
-| | ... | AND | Show SNAT verbose | ${dut2}
-| | ...
 | | [Tags] | 1518B | 1T1C | STHREAD | NDRDISC
 | | ...
 | | ${framesize}= | Set Variable | ${1518}
@@ -165,9 +155,6 @@
 | | ... | 1 user and 15 ports (sessions) per user.
 | | ... | [Ver] Find PDR for 1518 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 100kpps.
-| | ...
-| | [Teardown] | Tear down performance discovery test | ${min_rate}pps | ${framesize}
-| | ... | ${traffic_profile}
 | | ...
 | | [Tags] | 1518B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
 | | ...
@@ -196,11 +183,6 @@
 | | ... | [Ver] Find NDR for IMIX frames using binary search start at 10GE\
 | | ... | linerate, step 100kpps.
 | | ...
-| | [Teardown] | Run keywords | Tear down performance discovery test | ${min_rate}pps
-| | ... | ${framesize} | ${traffic_profile}
-| | ... | AND | Show SNAT verbose | ${dut1}
-| | ... | AND | Show SNAT verbose | ${dut2}
-| | ...
 | | [Tags] | IMIX | 1T1C | STHREAD | NDRDISC
 | | ...
 | | ${framesize}= | Set Variable | IMIX_v4_1
@@ -226,9 +208,6 @@
 | | ... | 1 user and 15 ports (sessions) per user.
 | | ... | [Ver] Find PDR for IMIX frames using binary search start at 10GE\
 | | ... | linerate, step 100kpps.
-| | ...
-| | [Teardown] | Tear down performance discovery test | ${min_rate}pps | ${framesize}
-| | ... | ${traffic_profile}
 | | ...
 | | [Tags] | IMIX | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
 | | ...

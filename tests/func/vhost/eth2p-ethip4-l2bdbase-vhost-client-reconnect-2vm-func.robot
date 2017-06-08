@@ -50,7 +50,7 @@
 | ${sock_vm2_2}= | /tmp/sock4
 
 *** Test Cases ***
-| TC01:  Qemu reconnects to VPPs vhost-user when Qemu is killed and restarted
+| TC01: Qemu reconnects to VPPs vhost-user when Qemu is killed and restarted
 | | Given Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | And Set interfaces in 2-node circular topology up
@@ -90,10 +90,10 @@
 | | ... | ${vhost_if3}
 | | And Vpp Add L2 Bridge Domain | ${dut_node} | ${104} | ${vxlan4}
 | | ... | ${vhost_if4}
-| | And Configure QEMU vhost and run it VM | ${dut_node} | ${sock_vm1_1} | ${sock_vm1_2}
-| | ... | ${1}
-| | And Configure QEMU vhost and run it VM | ${dut_node} | ${sock_vm2_1} | ${sock_vm2_2}
-| | ... | ${2}
+| | And Configure QEMU vhost and run it VM | ${dut_node} | ${sock_vm1_1}
+| | ... | ${sock_vm1_2} | ${1}
+| | And Configure QEMU vhost and run it VM | ${dut_node} | ${sock_vm2_1}
+| | ... | ${sock_vm2_2} | ${2}
 | | And Check traffic through VM
 | | When Run keyword | qemu-1.Qemu Kill
 | | ${vm1}= | And Run Keyword | qemu-1.Qemu Start
@@ -150,10 +150,10 @@
 | | ... | ${vhost_if3}
 | | And Vpp Add L2 Bridge Domain | ${dut_node} | ${104} | ${vxlan4}
 | | ... | ${vhost_if4}
-| | And Configure QEMU vhost and run it VM | ${dut_node} | ${sock_vm1_1} | ${sock_vm1_2}
-| | ... | ${1}
-| | And Configure QEMU vhost and run it VM | ${dut_node} | ${sock_vm2_1} | ${sock_vm2_2}
-| | ... | ${2}
+| | And Configure QEMU vhost and run it VM | ${dut_node} | ${sock_vm1_1}
+| | ... | ${sock_vm1_2} | ${1}
+| | And Configure QEMU vhost and run it VM | ${dut_node} | ${sock_vm2_1}
+| | ... | ${sock_vm2_2} | ${2}
 | | And Check traffic through VM
 | | And Verify VPP PID in Teardown
 | | When Setup All Duts | ${nodes}

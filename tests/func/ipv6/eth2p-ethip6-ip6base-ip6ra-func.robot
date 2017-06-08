@@ -85,7 +85,7 @@
 | | And Vpp Set If Ipv6 Addr | ${dut1_node}
 | | ... | ${dut1_to_tg} | ${dut1_to_tg_ip} | ${prefix_length}
 | | When VPP RA Suppress Link Layer | ${dut1_node} | ${dut1_to_tg}
-| | Then Send Router Solicitation And Check Response
+| | Then Send router solicitation and verify response
 | | ... | ${tg_node} | ${dut1_node} | ${tg_to_dut1} | ${dut1_to_tg}
 | | ... | ${tg_to_dut1_ip}
 
@@ -103,5 +103,5 @@
 | | And Vpp Set If Ipv6 Addr | ${dut1_node}
 | | ... | ${dut1_to_tg} | ${dut1_to_tg_ip} | ${prefix_length}
 | | When VPP RA Suppress Link Layer | ${dut1_node} | ${dut1_to_tg}
-| | Then Send Router Solicitation And Check Response
+| | Then Send router solicitation and verify response
 | | ... | ${tg_node} | ${dut1_node} | ${tg_to_dut1} | ${dut1_to_tg}

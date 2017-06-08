@@ -24,9 +24,13 @@
 | ... | ${node['interfaces']['port3']['name']}
 | ... | local0
 | Variables | resources/test_data/honeycomb/sub_interfaces.py
+| ...
 | Force Tags | HC_FUNC
+| ...
 | Suite Setup | Add Interface local0 To Topology | ${node}
+| ...
 | Suite Teardown | Restart Honeycomb and VPP | ${node}
+| ...
 | Documentation | *Honeycomb port mirroring test suite.*
 
 *** Test Cases ***
@@ -86,6 +90,7 @@
 | | ... | ${node} | ${interface1} | AND
 | | ... | Honeycomb removes interface SPAN configuration
 | | ... | ${node} | ${interface2}
+| | ...
 | | When Honeycomb configures SPAN on interface
 | | ... | ${node} | ${interface1} | ${settings_if2}
 | | And Honeycomb configures SPAN on interface
@@ -112,10 +117,13 @@
 | | ... | ${dut_node} | ${dut_to_tg_if1} | AND
 | | ... | Honeycomb removes interface SPAN configuration
 | | ... | ${node} | ${dut_to_tg_if2}
+| | ...
 | | Given Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
-| | And Honeycomb configures interface state | ${dut_node} | ${dut_to_tg_if1} | up
-| | And Honeycomb configures interface state | ${dut_node} | ${dut_to_tg_if2} | up
+| | And Honeycomb configures interface state | ${dut_node} | ${dut_to_tg_if1}
+| | ... | up
+| | And Honeycomb configures interface state | ${dut_node} | ${dut_to_tg_if2}
+| | ... | up
 | | And Honeycomb sets interface IPv4 address with prefix | ${dut_node}
 | | ... | ${dut_to_tg_if1} | ${dut_to_tg_if1_ip} | ${prefix}
 | | And Honeycomb adds interface IPv4 neighbor | ${dut_node} | ${dut_to_tg_if1}
@@ -196,6 +204,7 @@
 | | ... | ${node} | ${interface1} | ${1} | AND
 | | ... | Honeycomb removes sub-interface SPAN configuration
 | | ... | ${node} | ${interface2} | ${1}
+| | ...
 | | Given Honeycomb creates sub-interface | ${node} | ${interface2}
 | | ... | ${sub_if_2_match} | ${sub_if_2_tags} | ${sub_if_2_settings}
 | | When Honeycomb Configures SPAN on sub-interface
@@ -218,12 +227,15 @@
 | | ... | on the sub-interface.
 | | ...
 | | [Teardown] | Show Packet Trace on All DUTs | ${nodes}
+| | ...
 | | Given Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | And Sub-interface state from Honeycomb should be
 | | ... | ${dut_node} | ${interface1} | ${1} | down | up
-| | And Honeycomb configures interface state | ${dut_node} | ${dut_to_tg_if1} | up
-| | And Honeycomb configures interface state | ${dut_node} | ${dut_to_tg_if2} | up
+| | And Honeycomb configures interface state | ${dut_node} | ${dut_to_tg_if1}
+| | ... | up
+| | And Honeycomb configures interface state | ${dut_node} | ${dut_to_tg_if2}
+| | ... | up
 | | And Honeycomb sets the sub-interface up
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${1}
 | | And Honeycomb sets interface IPv4 address with prefix | ${dut_node}
