@@ -21,7 +21,9 @@
 | Resource | resources/libraries/robot/honeycomb/vxlan_gpe.robot
 | Variables | resources/test_data/honeycomb/nsh.py
 | Variables | resources/test_data/honeycomb/vxlan_gpe.py
+| ...
 | Documentation | *Honeycomb NSH test suite.*
+| ...
 | Suite Teardown | Run Keyword If Any Tests Failed
 | ... | Restart Honeycomb and VPP | ${node}
 # disabled pending NSH version 17.04
@@ -30,6 +32,7 @@
 *** Test Cases ***
 | TC01: Honeycomb can configure NSH entry
 | | [Documentation] | Check if Honeycomb can configure an NSH entry.
+| | ...
 | | Given NSH Operational Data From Honeycomb Should Be empty | ${node}
 | | When Honeycomb adds NSH entry | ${node} | entry1 | ${nsh_entry1}
 | | Then NSH entry from Honeycomb should be
@@ -37,6 +40,7 @@
 
 | TC02: Honeycomb can remove NSH entry
 | | [Documentation] | Check if Honeycomb can remove an existing NSH entry.
+| | ...
 | | Given NSH entry from Honeycomb should be
 | | ... | ${node} | entry1 | ${nsh_entry1_oper}
 | | When Honeycomb removes NSH entry | ${node} | entry1
@@ -45,7 +49,9 @@
 | TC03: Honeycomb can configure new NSH entry
 | | [Documentation] | Check if Honeycomb can configure an NSH antry after one\
 | | ... | has been deleted.
+| | ...
 | | [Teardown] | Honeycomb removes NSH entry | ${node} | entry2
+| | ...
 | | Given NSH Operational Data From Honeycomb Should Be empty | ${node}
 | | When Honeycomb adds NSH entry | ${node} | entry2 | ${nsh_entry2}
 | | Then NSH entry from Honeycomb should be
@@ -54,7 +60,9 @@
 | TC04: Honeycomb can configure multiple NSH entries at the same time
 | | [Documentation] | Check if Honeycomb can configure an NSH entry when one\
 | | ... | already exists.
+| | ...
 | | [Teardown] | Honeycomb clears NSH configuration | ${node}
+| | ...
 | | Given NSH Operational Data From Honeycomb Should Be empty | ${node}
 | | When Honeycomb adds NSH entry | ${node} | entry1 | ${nsh_entry1}
 | | And Honeycomb adds NSH entry | ${node} | entry2 | ${nsh_entry2}
@@ -65,6 +73,7 @@
 
 | TC05: Honeycomb can configure NSH map
 | | [Documentation] | Check if Honeycomb can configure an NSH map.
+| | ...
 | | Given NSH Operational Data From Honeycomb Should Be empty | ${node}
 | | And Honeycomb creates VxLAN GPE interface
 | | ... | ${node} | ${vxlan_gpe_if1}
@@ -75,6 +84,7 @@
 
 | TC06: Honeycomb can remove NSH map
 | | [Documentation] | Check if Honeycomb can remove an existing NSH map.
+| | ...
 | | Given NSH entry from Honeycomb should be
 | | ... | ${node} | entry1 | ${nsh_entry1_oper}
 | | And VxLAN GPE Operational Data From Honeycomb Should Be
@@ -89,7 +99,9 @@
 | TC07: Honeycomb can modify existing NSH map
 | | [Documentation] | Check if Honeycomb can configure an NSH map after one\
 | | ... | has been deleted.
+| | ...
 | | [Teardown] | Honeycomb removes NSH map | ${node} | map1_edit
+| | ...
 | | Given NSH map from Honeycomb should not exist | ${node} | map1_edit
 | | And NSH entry from Honeycomb should be
 | | ... | ${node} | entry1 | ${nsh_entry1_oper}
@@ -105,12 +117,14 @@
 | TC08: Honeycomb can configure multiple NSH maps at the same time
 | | [Documentation] | Check if Honeycomb can configure and NSH map when one\
 | | ... | already exists.
+| | ...
 | | [Teardown] | Run Keywords
 | | ... | Honeycomb clears NSH configuration | ${node} | AND
 | | ... | Honeycomb removes VxLAN GPE interface
 | | ... | ${node} | ${vxlan_gpe_if1} | AND
 | | ... | Honeycomb removes VxLAN GPE interface
 | | ... | ${node} | ${vxlan_gpe_if2}
+| | ...
 | | Given NSH map from Honeycomb should not exist | ${node} | map2
 | | And NSH entry from Honeycomb should be
 | | ... | ${node} | entry1 | ${nsh_entry1_oper}

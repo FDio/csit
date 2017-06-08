@@ -34,15 +34,20 @@
 | Resource | resources/libraries/robot/traffic.robot
 | Resource | resources/libraries/robot/dhcp_proxy.robot
 | Library | resources.libraries.python.Trace
+| ...
 | Test Setup | Clear Packet Trace on All DUTs | ${nodes}
+| ...
 | Suite Teardown | Restart Honeycomb And VPP | ${node}
+| ...
 | Force Tags | HC_FUNC
+| ...
 | Documentation | *Honeycomb IPv6 neighbor discovery proxy test suite.*
 
 *** Test Cases ***
 | TC01: Honeycomb can configure IPv6 ND proxy on an interface
 | | [Documentation] | Check if Honeycomb can configure the IPv6 ND proxy\
 | | ... | feature on an interface.
+| | ...
 | | Given IPv6 ND proxy from Honeycomb should be empty | ${node} | ${interface}
 | | And Honeycomb configures interface state | ${node} | ${interface} | up
 | | When Honeycomb configures IPv6 ND proxy on interface
@@ -53,6 +58,7 @@
 | TC02: Honeycomb can disable IPv6 ND proxy on an interface
 | | [Documentation] | Check if Honeycomb can remove IPv6 ND proxy feature\
 | | ... | configuration from an interface.
+| | ...
 | | Given IPv6 ND proxy from Honeycomb should be
 | | ... | ${node} | ${interface} | ${test_dst_ip}
 | | When Honeycomb disables IPv6 ND proxy on interface | ${node} | ${interface}
@@ -61,8 +67,10 @@
 | TC03: Honeycomb can configure multiple IPv6 ND proxies on an interface
 | | [Documentation] | Check if Honeycomb can configure two ND proxies\
 | | ... | on one interface.
+| | ...
 | | [Teardown] | Honeycomb disables IPv6 ND proxy on interface
 | | ... | ${node} | ${interface}
+| | ...
 | | Given IPv6 ND proxy from Honeycomb should be empty | ${node} | ${interface}
 | | And Honeycomb configures interface state | ${node} | ${interface} | up
 | | When Honeycomb configures IPv6 ND proxy on interface
@@ -85,6 +93,7 @@
 | | ... | Show Packet Trace on All DUTs | ${nodes} | AND
 | | ... | Honeycomb disables IPv6 ND proxy on interface
 | | ... | ${dut_node} | ${dut_to_tg_if2}
+| | ...
 | | Given Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | Honeycomb configures interface state | ${dut_node} | ${dut_to_tg_if1} | up

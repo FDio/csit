@@ -18,19 +18,16 @@
 | Resource | resources/libraries/robot/testing_path.robot
 | Resource | resources/libraries/robot/double_qemu_setup.robot
 | Resource | resources/libraries/robot/qemu.robot
+| Resource | resources/libraries/robot/fds/default.robot
 | Library  | resources.libraries.python.Trace
+| ...
 | Force Tags | HW_ENV | VM_ENV | SKIP_PATCH
-| Test Setup | Run Keywords | Configure all DUTs before test
-| ...        | AND          | Save VPP PIDs
-| ...        | AND          | Configure all TGs for traffic script
-| ...        | AND          | Reset VAT History On All DUTs | ${nodes}
-| Test Teardown | Run Keywords | Show Packet Trace on All DUTs | ${nodes}
-| ...           | AND          | Show VAT History On All DUTs | ${nodes}
-| ...           | AND          | Tear down QEMU | ${dut1_node} | ${qemu_node1}
-| ...                          | qemu_node1
-| ...           | AND          | Tear down QEMU | ${dut2_node} | ${qemu_node2}
-| ...                          | qemu_node2
-| ...           | AND          | Verify VPP PID in Teardown
+| ...
+| Test Setup | Set up FDS functional test | ${nodes}
+| ...
+| Test Teardown | Tear down FDS functional test | ${nodes}
+| ... | ${dut1_node} | ${qemu_node1} | ${dut2_node} | ${qemu_node2}
+| ...
 | Documentation | *Tenant network FDS related.*
 | ...
 | ... | Test suite uses 3-node topology TG - DUT1 - DUT2 - TG
@@ -77,8 +74,8 @@
 *** Test Cases ***
 | L2 test cases with tenant networks (VXLAN)
 | | [Documentation] | Ping among all ports inside the same network should pass.
-| | ...             | a) test l2 connectivity inside every network
-| | ...             | b) test l2 connectivity between networks
+| | ... | a) test l2 connectivity inside every network
+| | ... | b) test l2 connectivity between networks
 | | [Tags] | 3_NODE_DOUBLE_LINK_TOPO | VPP_VM_ENV
 | | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
@@ -109,29 +106,29 @@
 | | ${dut2_vhosts}= | And Create List | ${vhost_if1_DUT2} | ${vhost_if2_DUT2}
 | | ... | ${vhost_if3_DUT2} | ${vhost_if4_DUT2}
 | | When Configure QEMU vhost and run it | ${dut1_node}
-| | ...                   | ${sock1}
-| | ...                   | ${sock2}
-| | ...                   | ${sock3}
-| | ...                   | ${sock4}
-| | ...                   | ${dut1_blue1}
-| | ...                   | ${dut1_blue2}
-| | ...                   | ${dut1_red1}
-| | ...                   | ${dut1_red2}
-| | ...                   | ${prefix_length}
-| | ...                   | qemu_node1
-| | ...                   | 04
+| | ... | ${sock1}
+| | ... | ${sock2}
+| | ... | ${sock3}
+| | ... | ${sock4}
+| | ... | ${dut1_blue1}
+| | ... | ${dut1_blue2}
+| | ... | ${dut1_red1}
+| | ... | ${dut1_red2}
+| | ... | ${prefix_length}
+| | ... | qemu_node1
+| | ... | 04
 | | And Configure QEMU vhost and run it | ${dut2_node}
-| | ...                   | ${sock1}
-| | ...                   | ${sock2}
-| | ...                   | ${sock3}
-| | ...                   | ${sock4}
-| | ...                   | ${dut2_blue1}
-| | ...                   | ${dut2_blue2}
-| | ...                   | ${dut2_red1}
-| | ...                   | ${dut2_red2}
-| | ...                   | ${prefix_length}
-| | ...                   | qemu_node2
-| | ...                   | 06
+| | ... | ${sock1}
+| | ... | ${sock2}
+| | ... | ${sock3}
+| | ... | ${sock4}
+| | ... | ${dut2_blue1}
+| | ... | ${dut2_blue2}
+| | ... | ${dut2_red1}
+| | ... | ${dut2_red2}
+| | ... | ${prefix_length}
+| | ... | qemu_node2
+| | ... | 06
 | | And Setup VXLAN and BD on Dut | ${dut1_node} | ${dut1_if_ip} | ${dut2_if_ip}
 | | ... | @{dut1_vhosts}
 | | And Setup VXLAN and BD on Dut | ${dut2_node} | ${dut2_if_ip} | ${dut1_if_ip}
@@ -148,7 +145,7 @@
 *** Keywords ***
 | Setup VXLAN and BD on Dut
 | | [Documentation] | Setup VXLAN and bridge domain on specific DUT and
-| | ...             | subsequently interconnect them properly.
+| | ... | subsequently interconnect them properly.
 | | ...
 | | ... | *Arguments:*
 | | ... | - dut_node - Node where to setup vxlan and BD. Type: dict
@@ -166,10 +163,10 @@
 | | ... | ${dut_node} | ${bid_b} | learn=${TRUE}
 | | Create bridge domain
 | | ... | ${dut_node} | ${bid_r} | learn=${TRUE}
-| | ${vxlan1_if}= | Create VXLAN interface     | ${dut_node} | ${vni_blue}
-| |                 | ...  | ${src_ip} | ${dst_ip}
-| | ${vxlan2_if}= | Create VXLAN interface     | ${dut_node} | ${vni_red}
-| |                 | ...  | ${src_ip} | ${dst_ip}
+| | ${vxlan1_if}= | Create VXLAN interface | ${dut_node} | ${vni_blue}
+| | ... | ${src_ip} | ${dst_ip}
+| | ${vxlan2_if}= | Create VXLAN interface | ${dut_node} | ${vni_red}
+| | ... | ${src_ip} | ${dst_ip}
 | | Add interface to bridge domain
 | | ... | ${dut_node} | ${vxlan1_if} | ${bid_b} | 0
 | | Add interface to bridge domain
@@ -185,7 +182,7 @@
 
 | Positive Scenario Ping From DUT1 - Intra network
 | | [Documentation] | Send ping packets from specified namespaces to other in
-| | ...             | order to test connectivity.
+| | ... | order to test connectivity.
 | | Send Ping From Node To Dst | ${qemu_node1} | ${dut1_blue2} | ${namespace1}
 | | Send Ping From Node To Dst | ${qemu_node1} | ${dut1_blue1} | ${namespace2}
 | | Send Ping From Node To Dst | ${qemu_node1} | ${dut1_red2} | ${namespace3}
@@ -193,7 +190,7 @@
 
 | Positive Scenario Ping From DUT1 - Inter network
 | | [Documentation] | Send ping packets from specified namespaces to other in
-| | ...             | order to test connectivity.
+| | ... | order to test connectivity.
 | | Send Ping From Node To Dst | ${qemu_node1} | ${dut2_blue1} | ${namespace1}
 | | Send Ping From Node To Dst | ${qemu_node1} | ${dut2_blue2} | ${namespace1}
 | | Send Ping From Node To Dst | ${qemu_node1} | ${dut2_blue1} | ${namespace2}
@@ -205,7 +202,7 @@
 
 | Positive Scenario Ping From DUT2 - Intra network
 | | [Documentation] | Send ping packets from specified namespaces to other in
-| | ...             | order to test connectivity.
+| | ... | order to test connectivity.
 | | Send Ping From Node To Dst | ${qemu_node2} | ${dut2_blue2} | ${namespace1}
 | | Send Ping From Node To Dst | ${qemu_node2} | ${dut2_blue1} | ${namespace2}
 | | Send Ping From Node To Dst | ${qemu_node2} | ${dut2_red2} | ${namespace3}
@@ -213,7 +210,7 @@
 
 | Positive Scenario Ping From DUT2 - Inter network
 | | [Documentation] | Send ping packets from specified namespaces to other in
-| | ...             | order to test connectivity.
+| | ... | order to test connectivity.
 | | Send Ping From Node To Dst | ${qemu_node2} | ${dut1_blue1} | ${namespace1}
 | | Send Ping From Node To Dst | ${qemu_node2} | ${dut1_blue2} | ${namespace1}
 | | Send Ping From Node To Dst | ${qemu_node2} | ${dut1_blue1} | ${namespace2}
@@ -225,7 +222,7 @@
 
 | Negative Scenario Ping From DUT1 - Intra network
 | | [Documentation] | Send ping packets from specified namespaces to other in
-| | ...             | order to test unreachability of namespaces.
+| | ... | order to test unreachability of namespaces.
 | | Run keyword and expect error | Ping Not Successful
 | | ... | Send Ping From Node To Dst | ${qemu_node1} | ${dut1_red1}
 | | ... | ${namespace1}
@@ -250,11 +247,10 @@
 | | Run keyword and expect error | Ping Not Successful
 | | ... | Send Ping From Node To Dst | ${qemu_node1} | ${dut1_blue2}
 | | ... | ${namespace4}
-
 
 | Negative Scenario Ping From DUT1 - Inter network
 | | [Documentation] | Send ping packets from specified namespaces to other in
-| | ...             | order to test unreachability of namespaces.
+| | ... | order to test unreachability of namespaces.
 | | Run keyword and expect error | Ping Not Successful
 | | ... | Send Ping From Node To Dst | ${qemu_node1} | ${dut2_red1}
 | | ... | ${namespace1}
@@ -282,7 +278,7 @@
 
 | Negative Scenario Ping From DUT2 - Intra network
 | | [Documentation] | Send ping packets from specified namespaces to other in
-| | ...             | order to test unreachability of namespaces.
+| | ... | order to test unreachability of namespaces.
 | | Run keyword and expect error | Ping Not Successful
 | | ... | Send Ping From Node To Dst | ${qemu_node2} | ${dut2_red1}
 | | ... | ${namespace1}
@@ -307,11 +303,10 @@
 | | Run keyword and expect error | Ping Not Successful
 | | ... | Send Ping From Node To Dst | ${qemu_node2} | ${dut2_blue2}
 | | ... | ${namespace4}
-
 
 | Negative Scenario Ping From DUT2 - Inter network
 | | [Documentation] | Send ping packets from specified namespaces to other in
-| | ...             | order to test unreachability of namespaces.
+| | ... | order to test unreachability of namespaces.
 | | Run keyword and expect error | Ping Not Successful
 | | ... | Send Ping From Node To Dst | ${qemu_node2} | ${dut1_red1}
 | | ... | ${namespace1}

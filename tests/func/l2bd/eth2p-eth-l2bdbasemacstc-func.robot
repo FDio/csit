@@ -50,37 +50,36 @@
 | | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And Set interfaces in 3-node circular topology up
-| | When Create bridge domain | ${dut1_node} | ${bd_id1}
-| | ...                                       | learn=${FALSE}
+| | When Create bridge domain | ${dut1_node} | ${bd_id1} | learn=${FALSE}
 | | And Add interface to bridge domain | ${dut1_node} | ${dut1_to_tg}
-| | ...                                     | ${bd_id1}
+| | ... | ${bd_id1}
 | | And Add interface to bridge domain | ${dut1_node} | ${dut1_to_dut2}
-| | ...                                     | ${bd_id1}
+| | ... | ${bd_id1}
 | | And Add destination port to L2FIB | ${tg_node}
-| | ...                                                | ${tg_to_dut1}
-| | ...                                                | ${dut1_node}
-| | ...                                                | ${dut1_to_tg}
-| | ...                                                | ${bd_id1}
+| | ... | ${tg_to_dut1}
+| | ... | ${dut1_node}
+| | ... | ${dut1_to_tg}
+| | ... | ${bd_id1}
 | | And Add destination port to L2FIB | ${tg_node}
-| | ...                                                | ${tg_to_dut2}
-| | ...                                                | ${dut1_node}
-| | ...                                                | ${dut1_to_dut2}
-| | ...                                                | ${bd_id1}
+| | ... | ${tg_to_dut2}
+| | ... | ${dut1_node}
+| | ... | ${dut1_to_dut2}
+| | ... | ${bd_id1}
 | | And Create bridge domain | ${dut2_node} | ${bd_id2}
-| | ...                                      | learn=${FALSE}
+| | ... | learn=${FALSE}
 | | And Add interface to bridge domain | ${dut2_node} | ${dut2_to_tg}
-| | ...                                     | ${bd_id2}
+| | ... | ${bd_id2}
 | | And Add interface to bridge domain | ${dut2_node} | ${dut2_to_dut1}
-| | ...                                     | ${bd_id2}
+| | ... | ${bd_id2}
 | | And Add destination port to L2FIB | ${tg_node}
-| | ...                                                | ${tg_to_dut1}
-| | ...                                                | ${dut2_node}
-| | ...                                                | ${dut2_to_dut1}
-| | ...                                                | ${bd_id2}
+| | ... | ${tg_to_dut1}
+| | ... | ${dut2_node}
+| | ... | ${dut2_to_dut1}
+| | ... | ${bd_id2}
 | | And Add destination port to L2FIB | ${tg_node}
-| | ...                                                | ${tg_to_dut2}
-| | ...                                                | ${dut2_node}
-| | ...                                                | ${dut2_to_tg}
-| | ...                                                | ${bd_id2}
+| | ... | ${tg_to_dut2}
+| | ... | ${dut2_node}
+| | ... | ${dut2_to_tg}
+| | ... | ${bd_id2}
 | | Then Send ICMPv4 bidirectionally and verify received packets | ${tg_node} | ${tg_to_dut1}
-| | ...                                          | ${tg_to_dut2}
+| | ... | ${tg_to_dut2}

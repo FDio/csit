@@ -20,7 +20,7 @@
 | Resource | resources/libraries/robot/ipv4.robot
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | VM_ENV | FUNCTEST
 | Suite Setup | Run Keywords
-| ... | Setup all DUTs before test | AND
+| ... | Configure all DUTs before test | AND
 | ... | Setup all TGs before traffic script | AND
 | ... | Update All Interface Data On All Nodes | ${nodes} | AND
 | ... | Setup DUT nodes for 'SFF' functional testing

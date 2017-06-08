@@ -95,12 +95,12 @@
 | | ... | \| Configure topology for IPv4 IPsec testing \|
 | | Configure path for IPSec test
 | | Set Interface Address | ${dut_node} | ${dut_if} | ${dut_if_ip4}
-| | ...                   | ${ip4_plen}
+| | ... | ${ip4_plen}
 | | Set Interface Address | ${dut_node} | ${dut_lo} | ${dut_lo_ip4}
-| | ...                   | ${ip4_plen}
+| | ... | ${ip4_plen}
 | | dut1_v4.Set Arp | ${dut_if} | ${tg_if_ip4} | ${tg_if_mac}
 | | Vpp Route Add | ${dut_node} | ${tg_lo_ip4} | ${ip4_plen} | ${tg_if_ip4}
-| | ...           | ${dut_if}
+| | ... | ${dut_if}
 | | Set Test Variable | ${dut_tun_ip} | ${dut_if_ip4}
 | | Set Test Variable | ${dut_src_ip} | ${dut_lo_ip4}
 | | Set Test Variable | ${tg_tun_ip} | ${tg_if_ip4}
@@ -123,7 +123,7 @@
 | | Add IP Neighbor | ${dut_node} | ${dut_if} | ${tg_if_ip6} | ${tg_if_mac}
 | | Vpp All RA Suppress Link Layer | ${nodes}
 | | Vpp Route Add | ${dut_node} | ${tg_lo_ip6} | ${ip6_plen_rt} | ${tg_if_ip6}
-| | ...           | ${dut_if}
+| | ... | ${dut_if}
 | | Set Test Variable | ${dut_tun_ip} | ${dut_if_ip6}
 | | Set Test Variable | ${dut_src_ip} | ${dut_lo_ip6}
 | | Set Test Variable | ${tg_tun_ip} | ${tg_if_ip6}
@@ -158,33 +158,33 @@
 | | ... | \| ${auth_alg} \| twentybytessecretkey \| ${1000} \| ${1001} \
 | | ... | \| 192.168.4.4 \| 192.168.3.3 \| 192.168.100.3 \| 192.168.100.2 \|
 | | [Arguments] | ${node} | ${interface} | ${crypto_alg} | ${crypto_key}
-| | ...         | ${integ_alg} | ${integ_key} | ${l_spi} | ${r_spi} | ${l_ip}
-| | ...         | ${r_ip} | ${l_tunnel}=${None} | ${r_tunnel}=${None}
+| | ... | ${integ_alg} | ${integ_key} | ${l_spi} | ${r_spi} | ${l_ip}
+| | ... | ${r_ip} | ${l_tunnel}=${None} | ${r_tunnel}=${None}
 | | Set Test Variable | ${l_sa_id} | ${10}
 | | Set Test Variable | ${r_sa_id} | ${20}
 | | ${spd_id}= | Set Variable | ${1}
 | | ${p_hi}= | Set Variable | ${100}
 | | ${p_lo}= | Set Variable | ${10}
 | | VPP IPsec Add SAD Entry | ${node} | ${l_sa_id} | ${l_spi} | ${crypto_alg}
-| | ...                     | ${crypto_key} | ${integ_alg} | ${integ_key}
-| | ...                     | ${l_tunnel} | ${r_tunnel}
+| | ... | ${crypto_key} | ${integ_alg} | ${integ_key}
+| | ... | ${l_tunnel} | ${r_tunnel}
 | | VPP IPsec Add SAD Entry | ${node} | ${r_sa_id} | ${r_spi} | ${crypto_alg}
-| | ...                     | ${crypto_key} | ${integ_alg} | ${integ_key}
-| | ...                     | ${r_tunnel} | ${l_tunnel}
+| | ... | ${crypto_key} | ${integ_alg} | ${integ_key}
+| | ... | ${r_tunnel} | ${l_tunnel}
 | | VPP IPsec Add SPD | ${node} | ${spd_id}
 | | VPP IPsec SPD Add If | ${node} | ${spd_id} | ${interface}
 | | ${action}= | Policy Action Bypass
 | | VPP IPsec SPD Add Entry | ${node} | ${spd_id} | ${p_hi} | ${action}
-| | ...                     | inbound=${TRUE} | proto=${ESP_PROTO}
+| | ... | inbound=${TRUE} | proto=${ESP_PROTO}
 | | VPP IPsec SPD Add Entry | ${node} | ${spd_id} | ${p_hi} | ${action}
-| | ...                     | inbound=${FALSE} | proto=${ESP_PROTO}
+| | ... | inbound=${FALSE} | proto=${ESP_PROTO}
 | | ${action}= | Policy Action Protect
 | | VPP IPsec SPD Add Entry | ${node} | ${spd_id} | ${p_lo} | ${action}
-| | ...                     | sa_id=${r_sa_id} | laddr_range=${l_ip}
-| | ...                     | raddr_range=${r_ip} | inbound=${TRUE}
+| | ... | sa_id=${r_sa_id} | laddr_range=${l_ip}
+| | ... | raddr_range=${r_ip} | inbound=${TRUE}
 | | VPP IPsec SPD Add Entry | ${node} | ${spd_id} | ${p_lo} | ${action}
-| | ...                     | sa_id=${l_sa_id} | laddr_range=${l_ip}
-| | ...                     | raddr_range=${r_ip} | inbound=${FALSE}
+| | ... | sa_id=${l_sa_id} | laddr_range=${l_ip}
+| | ... | raddr_range=${r_ip} | inbound=${FALSE}
 
 | Update IPSec SA keys
 | | [Documentation] | Update IPsec SA keys on VPP node.
@@ -200,15 +200,15 @@
 | | ... | \| Update IPSec SA keys \| ${nodes['DUT1']} \
 | | ... | \| 10 \| 20 \| sixteenbytes_key \| twentybytessecretkey \|
 | | [Arguments] | ${node} | ${l_sa_id} | ${r_sa_id} | ${crypto_key}
-| | ...         | ${integ_key}
+| | ... | ${integ_key}
 | | VPP IPsec SA Set Key | ${dut_node} | ${l_sa_id} | ${crypto_key}
-| | ...                  | ${integ_key}
+| | ... | ${integ_key}
 | | VPP IPsec SA Set Key | ${dut_node} | ${r_sa_id} | ${crypto_key}
-| | ...                  | ${integ_key}
+| | ... | ${integ_key}
 
 | Send IPsec Packet and verify ESP encapsulation in received packet
 | | [Documentation] | Send IPsec packet from TG to DUT. Receive IPsec packet\
-| | ...             | from DUT on TG and verify ESP encapsulation.
+| | ... | from DUT on TG and verify ESP encapsulation.
 | | ...
 | | ... | *Arguments:*
 | | ... | - node - TG node. Type: dictionary
@@ -228,25 +228,53 @@
 | | ... | *Example:*
 | | ... | \| ${encr_alg}= \| Crypto Alg AES CBC 128 \|
 | | ... | \| ${auth_alg}= \| Integ Alg SHA1 96 \|
-| | ... | \| Send IPsec Packet and verify ESP encapsulation in received packet \| ${nodes['TG']} \| eth1 \
+| | ... | \| Send IPsec Packet and verify ESP encapsulation in received packet\
+| | ... | \| ${nodes['TG']} \| eth1 \
 | | ... | \| 52:54:00:d4:d8:22 \| ${encr_alg} \| sixteenbytes_key \
 | | ... | \| ${auth_alg} \| twentybytessecretkey \| ${1001} \| ${1000} \
 | | ... | \| 192.168.3.3 \| 192.168.4.4 \| 192.168.100.2 \| 192.168.100.3 \|
 | | [Arguments] | ${node} | ${interface} | ${dst_mac} | ${crypto_alg}
-| | ...         | ${crypto_key} | ${integ_alg} | ${integ_key} | ${l_spi}
-| | ...         | ${r_spi} | ${l_ip} | ${r_ip} | ${l_tunnel}=${None}
-| | ...         | ${r_tunnel}=${None}
+| | ... | ${crypto_key} | ${integ_alg} | ${integ_key} | ${l_spi}
+| | ... | ${r_spi} | ${l_ip} | ${r_ip} | ${l_tunnel}=${None}
+| | ... | ${r_tunnel}=${None}
 | | ${src_mac}= | Get Interface Mac | ${node} | ${interface}
 | | ${if_name}= | Get Interface Name | ${node} | ${interface}
 | | ${args}= | Traffic Script Gen Arg | ${if_name} | ${if_name} | ${src_mac}
-| | ...      | ${dst_mac} | ${l_ip} | ${r_ip}
+| | ... | ${dst_mac} | ${l_ip} | ${r_ip}
 | | ${crypto_alg_str}= | Get Crypto Alg Scapy Name | ${crypto_alg}
 | | ${integ_alg_str}= | Get Integ Alg Scapy Name | ${integ_alg}
 | | ${args}= | Catenate | ${args} | --crypto_alg ${crypto_alg_str}
-| | ...      | --crypto_key ${crypto_key} | --integ_alg ${integ_alg_str}
-| | ...      | --integ_key ${integ_key} | --l_spi ${l_spi} | --r_spi ${r_spi}
+| | ... | --crypto_key ${crypto_key} | --integ_alg ${integ_alg_str}
+| | ... | --integ_key ${integ_key} | --l_spi ${l_spi} | --r_spi ${r_spi}
 | | ${args}= | Set Variable If | "${l_tunnel}" == "${None}" | ${args}
 | | ... | ${args} --src_tun ${l_tunnel}
 | | ${args}= | Set Variable If | "${r_tunnel}" == "${None}" | ${args}
 | | ... | ${args} --dst_tun ${r_tunnel}
 | | Run Traffic Script On Node | ipsec.py | ${node} | ${args}
+
+| Set up IPv4 IPSec functional test
+| | [Documentation]
+| | ... | Set up IPv4 IPSec functional test
+| | ...
+| | Set up functional test
+| | Configure topology for IPv4 IPsec testing
+
+| Set up IPv6 IPSec functional test
+| | [Documentation]
+| | ... | Set up IPv6 IPSec functional test
+| | ...
+| | Set up functional test
+| | Configure topology for IPv6 IPsec testing
+
+| Tear down IPSec functional test
+| | [Documentation]
+| | ... | Tear down IPSec functional test
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Tear down IPSec functional test \| ${dut_node} \|
+| | ...
+| | [Arguments] | ${dut_node}
+| | ...
+| | VPP IPsec Show | ${dut_node}
+| | Tear down functional test

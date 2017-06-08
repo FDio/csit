@@ -54,40 +54,33 @@
 | | ... | isolated interfaces. [Ref]
 | | [Tags] | 3_NODE_DOUBLE_LINK_TOPO
 | | Given Configure path for 3-node BD-SHG test | ${nodes['TG']}
-| | ...                                         | ${nodes['DUT1']}
-| | ...                                         | ${nodes['DUT2']}
+| | ... | ${nodes['DUT1']} | ${nodes['DUT2']}
 | | And Set interfaces in 3-node BD-SHG test up
 | | When Create bridge domain | ${dut1_node} | ${bd_id1}
 | | And Add interface to bridge domain | ${dut1_node} | ${dut1_to_tg_if1}
-| | ...                                     | ${bd_id1} | ${shg1}
+| | ... | ${bd_id1} | ${shg1}
 | | And Add interface to bridge domain | ${dut1_node} | ${dut1_to_tg_if2}
-| | ...                                     | ${bd_id1} | ${shg1}
+| | ... | ${bd_id1} | ${shg1}
 | | And Add interface to bridge domain | ${dut1_node} | ${dut1_to_dut2}
-| | ...                                     | ${bd_id1}
+| | ... | ${bd_id1}
 | | And Create bridge domain | ${dut2_node} | ${bd_id2}
 | | And Add interface to bridge domain | ${dut2_node} | ${dut2_to_tg_if1}
-| | ...                                     | ${bd_id2} | ${shg2}
+| | ... | ${bd_id2} | ${shg2}
 | | And Add interface to bridge domain | ${dut2_node} | ${dut2_to_tg_if2}
-| | ...                                     | ${bd_id2} | ${shg2}
+| | ... | ${bd_id2} | ${shg2}
 | | And Add interface to bridge domain | ${dut2_node} | ${dut2_to_dut1}
-| | ...                                     | ${bd_id2}
+| | ... | ${bd_id2}
 | | Then Send ICMPv4 bidirectionally and verify received packets | ${tg_node}
-| | ...                                          | ${tg_to_dut1_if1}
-| | ...                                          | ${tg_to_dut2_if1}
+| | ... | ${tg_to_dut1_if1} | ${tg_to_dut2_if1}
 | | And Send ICMPv4 bidirectionally and verify received packets | ${tg_node}
-| | ...                                         | ${tg_to_dut1_if1}
-| | ...                                         | ${tg_to_dut2_if2}
+| | ... | ${tg_to_dut1_if1} | ${tg_to_dut2_if2}
 | | And Send ICMPv4 bidirectionally and verify received packets | ${tg_node}
-| | ...                                         | ${tg_to_dut1_if2}
-| | ...                                         | ${tg_to_dut2_if1}
+| | ... | ${tg_to_dut1_if2} | ${tg_to_dut2_if1}
 | | And Send ICMPv4 bidirectionally and verify received packets | ${tg_node}
-| | ...                                         | ${tg_to_dut1_if2}
-| | ...                                         | ${tg_to_dut2_if2}
+| | ... | ${tg_to_dut1_if2} | ${tg_to_dut2_if2}
 | | And Run Keyword And Expect Error | ICMP echo Rx timeout
-| | ...                              | Send ICMPv4 bidirectionally and verify received packets
-| | | ...                            | ${tg_node} | ${tg_to_dut1_if1}
-| | | ...                            | ${tg_to_dut1_if2}
+| | ... | Send ICMPv4 bidirectionally and verify received packets
+| | | ... | ${tg_node} | ${tg_to_dut1_if1} | ${tg_to_dut1_if2}
 | | And Run Keyword And Expect Error | ICMP echo Rx timeout
-| | ...                              | Send ICMPv4 bidirectionally and verify received packets
-| | | ...                            | ${tg_node} | ${tg_to_dut2_if1}
-| | | ...                            | ${tg_to_dut2_if2}
+| | ... | Send ICMPv4 bidirectionally and verify received packets
+| | | ... | ${tg_node} | ${tg_to_dut2_if1} | ${tg_to_dut2_if2}
