@@ -16,10 +16,11 @@
 | Library | resources.libraries.python.Trace
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | 3_NODE_DOUBLE_LINK_TOPO
 | ...        | VM_ENV | HW_ENV | SKIP_VPP_PATCH
-| Test Setup | Run Keywords | Set up functional test
-| ...        | AND          | Configure topology for IPv4 IPsec testing
-| Test Teardown | Run Keywords | VPP IPsec Show | ${dut_node}
-| ...           | AND          | Tear down functional test
+| ...
+| Test Setup | Set up IPv4 IPSec functional test
+| ...
+| Test Teardown | Tear down IPSec functional test | ${dut_node}
+| ...
 | Documentation | *IPv4 IPsec tunnel mode test suite.*
 | ...
 | ... | *[Top] Network topologies:* TG-DUT1 2-node topology with one link\
@@ -56,7 +57,8 @@
 | | ... | ${dut_node} | ${dut_if} | ${encr_alg} | ${encr_key} | ${auth_alg}
 | | ... | ${auth_key} | ${dut_spi} | ${tg_spi} | ${dut_src_ip} | ${tg_src_ip}
 | | ... | ${dut_tun_ip} | ${tg_tun_ip}
-| | Then Send IPsec Packet and verify ESP encapsulation in received packet | ${tg_node} | ${tg_if} | ${dut_if_mac}
+| | Then Send IPsec Packet and verify ESP encapsulation in received packet
+| | ... | ${tg_node} | ${tg_if} | ${dut_if_mac}
 | | ... | ${encr_alg} | ${encr_key} | ${auth_alg} | ${auth_key} | ${tg_spi}
 | | ... | ${dut_spi} | ${tg_src_ip} | ${dut_src_ip} | ${tg_tun_ip}
 | | ... | ${dut_tun_ip}
@@ -76,7 +78,8 @@
 | | ... | ${dut_node} | ${dut_if} | ${encr_alg} | ${encr_key} | ${auth_alg}
 | | ... | ${auth_key} | ${dut_spi} | ${tg_spi} | ${dut_src_ip} | ${tg_src_ip}
 | | ... | ${dut_tun_ip} | ${tg_tun_ip}
-| | Then Send IPsec Packet and verify ESP encapsulation in received packet | ${tg_node} | ${tg_if} | ${dut_if_mac}
+| | Then Send IPsec Packet and verify ESP encapsulation in received packet
+| | ... | ${tg_node} | ${tg_if} | ${dut_if_mac}
 | | ... | ${encr_alg} | ${encr_key} | ${auth_alg} | ${auth_key} | ${tg_spi}
 | | ... | ${dut_spi} | ${tg_src_ip} | ${dut_src_ip} | ${tg_tun_ip}
 | | ... | ${dut_tun_ip}
@@ -96,7 +99,8 @@
 | | ... | ${dut_node} | ${dut_if} | ${encr_alg} | ${encr_key} | ${auth_alg}
 | | ... | ${auth_key} | ${dut_spi} | ${tg_spi} | ${dut_src_ip} | ${tg_src_ip}
 | | ... | ${dut_tun_ip} | ${tg_tun_ip}
-| | Then Send IPsec Packet and verify ESP encapsulation in received packet | ${tg_node} | ${tg_if} | ${dut_if_mac}
+| | Then Send IPsec Packet and verify ESP encapsulation in received packet
+| | ... | ${tg_node} | ${tg_if} | ${dut_if_mac}
 | | ... | ${encr_alg} | ${encr_key} | ${auth_alg} | ${auth_key} | ${tg_spi}
 | | ... | ${dut_spi} | ${tg_src_ip} | ${dut_src_ip} | ${tg_tun_ip}
 | | ... | ${dut_tun_ip}
@@ -117,7 +121,8 @@
 | | ... | ${dut_node} | ${dut_if} | ${encr_alg} | ${encr_key} | ${auth_alg}
 | | ... | ${auth_key} | ${dut_spi} | ${tg_spi} | ${dut_src_ip} | ${tg_src_ip}
 | | ... | ${dut_tun_ip} | ${tg_tun_ip}
-| | Then Send IPsec Packet and verify ESP encapsulation in received packet | ${tg_node} | ${tg_if} | ${dut_if_mac}
+| | Then Send IPsec Packet and verify ESP encapsulation in received packet
+| | ... | ${tg_node} | ${tg_if} | ${dut_if_mac}
 | | ... | ${encr_alg} | ${encr_key} | ${auth_alg} | ${auth_key} | ${tg_spi}
 | | ... | ${dut_spi} | ${tg_src_ip} | ${dut_src_ip} | ${tg_tun_ip}
 | | ... | ${dut_tun_ip}
@@ -137,7 +142,8 @@
 | | ... | ${dut_node} | ${dut_if} | ${encr_alg} | ${encr_key} | ${auth_alg}
 | | ... | ${auth_key} | ${dut_spi} | ${tg_spi} | ${dut_src_ip} | ${tg_src_ip}
 | | ... | ${dut_tun_ip} | ${tg_tun_ip}
-| | Then Send IPsec Packet and verify ESP encapsulation in received packet | ${tg_node} | ${tg_if} | ${dut_if_mac}
+| | Then Send IPsec Packet and verify ESP encapsulation in received packet
+| | ... | ${tg_node} | ${tg_if} | ${dut_if_mac}
 | | ... | ${encr_alg} | ${encr_key} | ${auth_alg} | ${auth_key} | ${tg_spi}
 | | ... | ${dut_spi} | ${tg_src_ip} | ${dut_src_ip} | ${tg_tun_ip}
 | | ... | ${dut_tun_ip}
@@ -158,7 +164,8 @@
 | | ... | ${dut_node} | ${dut_if} | ${encr_alg} | ${encr_key} | ${auth_alg}
 | | ... | ${auth_key} | ${dut_spi} | ${tg_spi} | ${dut_src_ip} | ${tg_src_ip}
 | | ... | ${dut_tun_ip} | ${tg_tun_ip}
-| | Then Send IPsec Packet and verify ESP encapsulation in received packet | ${tg_node} | ${tg_if} | ${dut_if_mac}
+| | Then Send IPsec Packet and verify ESP encapsulation in received packet
+| | ... | ${tg_node} | ${tg_if} | ${dut_if_mac}
 | | ... | ${encr_alg} | ${encr_key} | ${auth_alg} | ${auth_key} | ${tg_spi}
 | | ... | ${dut_spi} | ${tg_src_ip} | ${dut_src_ip} | ${tg_tun_ip}
 | | ... | ${dut_tun_ip}
@@ -179,7 +186,8 @@
 | | ... | ${dut_node} | ${dut_if} | ${encr_alg} | ${encr_key} | ${auth_alg}
 | | ... | ${auth_key} | ${dut_spi} | ${tg_spi} | ${dut_src_ip} | ${tg_src_ip}
 | | ... | ${dut_tun_ip} | ${tg_tun_ip}
-| | Then Send IPsec Packet and verify ESP encapsulation in received packet | ${tg_node} | ${tg_if} | ${dut_if_mac}
+| | Then Send IPsec Packet and verify ESP encapsulation in received packet
+| | ... | ${tg_node} | ${tg_if} | ${dut_if_mac}
 | | ... | ${encr_alg} | ${encr_key} | ${auth_alg} | ${auth_key} | ${tg_spi}
 | | ... | ${dut_spi} | ${tg_src_ip} | ${dut_src_ip} | ${tg_tun_ip}
 | | ... | ${dut_tun_ip}
@@ -200,7 +208,8 @@
 | | ... | ${dut_node} | ${dut_if} | ${encr_alg} | ${encr_key} | ${auth_alg}
 | | ... | ${auth_key} | ${dut_spi} | ${tg_spi} | ${dut_src_ip} | ${tg_src_ip}
 | | ... | ${dut_tun_ip} | ${tg_tun_ip}
-| | Then Send IPsec Packet and verify ESP encapsulation in received packet | ${tg_node} | ${tg_if} | ${dut_if_mac}
+| | Then Send IPsec Packet and verify ESP encapsulation in received packet
+| | ... | ${tg_node} | ${tg_if} | ${dut_if_mac}
 | | ... | ${encr_alg} | ${encr_key} | ${auth_alg} | ${auth_key} | ${tg_spi}
 | | ... | ${dut_spi} | ${tg_src_ip} | ${dut_src_ip} | ${tg_tun_ip}
 | | ... | ${dut_tun_ip}
@@ -220,7 +229,8 @@
 | | ... | ${dut_node} | ${dut_if} | ${encr_alg} | ${encr_key} | ${auth_alg}
 | | ... | ${auth_key} | ${dut_spi} | ${tg_spi} | ${dut_src_ip} | ${tg_src_ip}
 | | ... | ${dut_tun_ip} | ${tg_tun_ip}
-| | Then Send IPsec Packet and verify ESP encapsulation in received packet | ${tg_node} | ${tg_if} | ${dut_if_mac}
+| | Then Send IPsec Packet and verify ESP encapsulation in received packet
+| | ... | ${tg_node} | ${tg_if} | ${dut_if_mac}
 | | ... | ${encr_alg} | ${encr_key} | ${auth_alg} | ${auth_key} | ${tg_spi}
 | | ... | ${dut_spi} | ${tg_src_ip} | ${dut_src_ip} | ${tg_tun_ip}
 | | ... | ${dut_tun_ip}
@@ -241,7 +251,8 @@
 | | ... | ${dut_node} | ${dut_if} | ${encr_alg} | ${encr_key} | ${auth_alg}
 | | ... | ${auth_key} | ${dut_spi} | ${tg_spi} | ${dut_src_ip} | ${tg_src_ip}
 | | ... | ${dut_tun_ip} | ${tg_tun_ip}
-| | Then Send IPsec Packet and verify ESP encapsulation in received packet | ${tg_node} | ${tg_if} | ${dut_if_mac}
+| | Then Send IPsec Packet and verify ESP encapsulation in received packet
+| | ... | ${tg_node} | ${tg_if} | ${dut_if_mac}
 | | ... | ${encr_alg} | ${encr_key} | ${auth_alg} | ${auth_key} | ${tg_spi}
 | | ... | ${dut_spi} | ${tg_src_ip} | ${dut_src_ip} | ${tg_tun_ip}
 | | ... | ${dut_tun_ip}
@@ -262,7 +273,8 @@
 | | ... | ${dut_node} | ${dut_if} | ${encr_alg} | ${encr_key} | ${auth_alg}
 | | ... | ${auth_key} | ${dut_spi} | ${tg_spi} | ${dut_src_ip} | ${tg_src_ip}
 | | ... | ${dut_tun_ip} | ${tg_tun_ip}
-| | Then Send IPsec Packet and verify ESP encapsulation in received packet | ${tg_node} | ${tg_if} | ${dut_if_mac}
+| | Then Send IPsec Packet and verify ESP encapsulation in received packet
+| | ... | ${tg_node} | ${tg_if} | ${dut_if_mac}
 | | ... | ${encr_alg} | ${encr_key} | ${auth_alg} | ${auth_key} | ${tg_spi}
 | | ... | ${dut_spi} | ${tg_src_ip} | ${dut_src_ip} | ${tg_tun_ip}
 | | ... | ${dut_tun_ip}
@@ -282,7 +294,8 @@
 | | ... | ${dut_node} | ${dut_if} | ${encr_alg} | ${encr_key} | ${auth_alg}
 | | ... | ${auth_key} | ${dut_spi} | ${tg_spi} | ${dut_src_ip} | ${tg_src_ip}
 | | ... | ${dut_tun_ip} | ${tg_tun_ip}
-| | Then Send IPsec Packet and verify ESP encapsulation in received packet | ${tg_node} | ${tg_if} | ${dut_if_mac}
+| | Then Send IPsec Packet and verify ESP encapsulation in received packet
+| | ... | ${tg_node} | ${tg_if} | ${dut_if_mac}
 | | ... | ${encr_alg} | ${encr_key} | ${auth_alg} | ${auth_key} | ${tg_spi}
 | | ... | ${dut_spi} | ${tg_src_ip} | ${dut_src_ip} | ${tg_tun_ip}
 | | ... | ${dut_tun_ip}
@@ -305,7 +318,8 @@
 | | ... | ${auth_key} | ${dut_spi} | ${tg_spi} | ${dut_src_ip} | ${tg_src_ip}
 | | ... | ${dut_tun_ip} | ${tg_tun_ip}
 | | Then Run Keyword And Expect Error | ESP packet Rx timeout
-| | ... | Send IPsec Packet and verify ESP encapsulation in received packet | ${tg_node} | ${tg_if} | ${dut_if_mac}
+| | ... | Send IPsec Packet and verify ESP encapsulation in received packet
+| | ... | ${tg_node} | ${tg_if} | ${dut_if_mac}
 | | ... | ${encr_alg} | ${encr_key2} | ${auth_alg} | ${auth_key} | ${tg_spi}
 | | ... | ${dut_spi} | ${tg_src_ip} | ${dut_src_ip} | ${tg_tun_ip}
 | | ... | ${dut_tun_ip}
@@ -328,7 +342,8 @@
 | | ... | ${auth_key} | ${dut_spi} | ${tg_spi} | ${dut_src_ip} | ${tg_src_ip}
 | | ... | ${dut_tun_ip} | ${tg_tun_ip}
 | | Then Run Keyword And Expect Error | ESP packet Rx timeout
-| | ... | Send IPsec Packet and verify ESP encapsulation in received packet | ${tg_node} | ${tg_if} | ${dut_if_mac}
+| | ... | Send IPsec Packet and verify ESP encapsulation in received packet
+| | ... | ${tg_node} | ${tg_if} | ${dut_if_mac}
 | | ... | ${encr_alg} | ${encr_key} | ${auth_alg} | ${auth_key2} | ${tg_spi}
 | | ... | ${dut_spi} | ${tg_src_ip} | ${dut_src_ip} | ${tg_tun_ip}
 | | ... | ${dut_tun_ip}
@@ -353,7 +368,8 @@
 | | ... | ${auth_key} | ${dut_spi} | ${tg_spi} | ${dut_src_ip} | ${tg_src_ip}
 | | ... | ${dut_tun_ip} | ${tg_tun_ip}
 | | Then Run Keyword And Expect Error | ESP packet Rx timeout
-| | ... | Send IPsec Packet and verify ESP encapsulation in received packet | ${tg_node} | ${tg_if} | ${dut_if_mac}
+| | ... | Send IPsec Packet and verify ESP encapsulation in received packet
+| | ... | ${tg_node} | ${tg_if} | ${dut_if_mac}
 | | ... | ${encr_alg} | ${encr_key2} | ${auth_alg} | ${auth_key2} | ${tg_spi}
 | | ... | ${dut_spi} | ${tg_src_ip} | ${dut_src_ip} | ${tg_tun_ip}
 | | ... | ${dut_tun_ip}
@@ -374,7 +390,8 @@
 | | ... | ${dut_node} | ${dut_if} | ${encr_alg} | ${encr_key} | ${auth_alg}
 | | ... | ${auth_key} | ${dut_spi} | ${tg_spi} | ${dut_src_ip} | ${tg_src_ip}
 | | ... | ${dut_tun_ip} | ${tg_tun_ip}
-| | Then Send IPsec Packet and verify ESP encapsulation in received packet | ${tg_node} | ${tg_if} | ${dut_if_mac}
+| | Then Send IPsec Packet and verify ESP encapsulation in received packet
+| | ... | ${tg_node} | ${tg_if} | ${dut_if_mac}
 | | ... | ${encr_alg} | ${encr_key} | ${auth_alg} | ${auth_key} | ${tg_spi}
 | | ... | ${dut_spi} | ${tg_src_ip} | ${dut_src_ip} | ${tg_tun_ip}
 | | ... | ${dut_tun_ip}
@@ -382,7 +399,8 @@
 | | ${new_auth_key}= | And Get Second Random String | ${auth_alg} | Integ
 | | When Update IPSec SA keys | ${dut_node} | ${l_sa_id} | ${r_sa_id}
 | | ... | ${new_encr_key} | ${new_auth_key}
-| | Then Send IPsec Packet and verify ESP encapsulation in received packet | ${tg_node} | ${tg_if} | ${dut_if_mac}
+| | Then Send IPsec Packet and verify ESP encapsulation in received packet
+| | ... | ${tg_node} | ${tg_if} | ${dut_if_mac}
 | | ... | ${encr_alg} | ${new_encr_key} | ${auth_alg} | ${new_auth_key}
 | | ... | ${tg_spi} | ${dut_spi} | ${tg_src_ip} | ${dut_src_ip} | ${tg_tun_ip}
 | | ... | ${dut_tun_ip}
@@ -406,7 +424,8 @@
 | | ... | ${dut_tun_ip} | ${tg_tun_ip}
 | | ${encr_key2}= | And Get Second Random String | ${encr_alg} | Crypto
 | | Then Run Keyword And Expect Error | ESP packet Rx timeout
-| | ... | Send IPsec Packet and verify ESP encapsulation in received packet | ${tg_node} | ${tg_if} | ${dut_if_mac}
+| | ... | Send IPsec Packet and verify ESP encapsulation in received packet
+| | ... | ${tg_node} | ${tg_if} | ${dut_if_mac}
 | | ... | ${encr_alg} | ${encr_key2} | ${auth_alg} | ${auth_key} | ${tg_spi}
 | | ... | ${dut_spi} | ${tg_src_ip} | ${dut_src_ip} | ${tg_tun_ip}
 | | ... | ${dut_tun_ip}
@@ -415,7 +434,8 @@
 | | When Update IPSec SA keys | ${dut_node} | ${l_sa_id} | ${r_sa_id}
 | | ... | ${new_encr_key} | ${new_auth_key}
 | | Then Run Keyword And Expect Error | ESP packet Rx timeout
-| | ... | Send IPsec Packet and verify ESP encapsulation in received packet | ${tg_node} | ${tg_if} | ${dut_if_mac}
+| | ... | Send IPsec Packet and verify ESP encapsulation in received packet
+| | ... | ${tg_node} | ${tg_if} | ${dut_if_mac}
 | | ... | ${encr_alg} | ${encr_key2} | ${auth_alg} | ${new_auth_key} | ${tg_spi}
 | | ... | ${dut_spi} | ${tg_src_ip} | ${dut_src_ip} | ${tg_tun_ip}
 | | ... | ${dut_tun_ip}
@@ -439,7 +459,8 @@
 | | ... | ${dut_tun_ip} | ${tg_tun_ip}
 | | ${auth_key2}= | And Get Second Random String | ${auth_alg} | Integ
 | | Then Run Keyword And Expect Error | ESP packet Rx timeout
-| | ... | Send IPsec Packet and verify ESP encapsulation in received packet | ${tg_node} | ${tg_if} | ${dut_if_mac}
+| | ... | Send IPsec Packet and verify ESP encapsulation in received packet
+| | ... | ${tg_node} | ${tg_if} | ${dut_if_mac}
 | | ... | ${encr_alg} | ${encr_key} | ${auth_alg} | ${auth_key2} | ${tg_spi}
 | | ... | ${dut_spi} | ${tg_src_ip} | ${dut_src_ip} | ${tg_tun_ip}
 | | ... | ${dut_tun_ip}
@@ -448,7 +469,8 @@
 | | When Update IPSec SA keys | ${dut_node} | ${l_sa_id} | ${r_sa_id}
 | | ... | ${new_encr_key} | ${new_auth_key}
 | | Then Run Keyword And Expect Error | ESP packet Rx timeout
-| | ... | Send IPsec Packet and verify ESP encapsulation in received packet | ${tg_node} | ${tg_if} | ${dut_if_mac}
+| | ... | Send IPsec Packet and verify ESP encapsulation in received packet
+| | ... | ${tg_node} | ${tg_if} | ${dut_if_mac}
 | | ... | ${encr_alg} | ${new_encr_key} | ${auth_alg} | ${auth_key2} | ${tg_spi}
 | | ... | ${dut_spi} | ${tg_src_ip} | ${dut_src_ip} | ${tg_tun_ip}
 | | ... | ${dut_tun_ip}
@@ -474,7 +496,8 @@
 | | ${encr_key2}= | And Get Second Random String | ${encr_alg} | Crypto
 | | ${auth_key2}= | And Get Second Random String | ${auth_alg} | Integ
 | | Then Run Keyword And Expect Error | ESP packet Rx timeout
-| | ... | Send IPsec Packet and verify ESP encapsulation in received packet | ${tg_node} | ${tg_if} | ${dut_if_mac}
+| | ... | Send IPsec Packet and verify ESP encapsulation in received packet
+| | ... | ${tg_node} | ${tg_if} | ${dut_if_mac}
 | | ... | ${encr_alg} | ${encr_key2} | ${auth_alg} | ${auth_key2} | ${tg_spi}
 | | ... | ${dut_spi} | ${tg_src_ip} | ${dut_src_ip} | ${tg_tun_ip}
 | | ... | ${dut_tun_ip}
@@ -483,7 +506,8 @@
 | | When Update IPSec SA keys | ${dut_node} | ${l_sa_id} | ${r_sa_id}
 | | ... | ${new_encr_key} | ${new_auth_key}
 | | Then Run Keyword And Expect Error | ESP packet Rx timeout
-| | ... | Send IPsec Packet and verify ESP encapsulation in received packet | ${tg_node} | ${tg_if} | ${dut_if_mac}
+| | ... | Send IPsec Packet and verify ESP encapsulation in received packet
+| | ... | ${tg_node} | ${tg_if} | ${dut_if_mac}
 | | ... | ${encr_alg} | ${encr_key2} | ${auth_alg} | ${auth_key2} | ${tg_spi}
 | | ... | ${dut_spi} | ${tg_src_ip} | ${dut_src_ip} | ${tg_tun_ip}
 | | ... | ${dut_tun_ip}
@@ -493,7 +517,7 @@
 | | [Arguments] | ${req_alg} | ${req_type}
 | | ${req_key_len}= | Run Keyword | Get ${req_type} Alg Key Len | ${req_alg}
 | | ${key}= | Set Variable If | '${req_type}' == 'Crypto' | ${encr_key}
-| | ...                       | '${req_type}' == 'Integ' | ${auth_key}
+| | ... | '${req_type}' == 'Integ' | ${auth_key}
 | | :FOR | ${index} | IN RANGE | 100
 | | | ${req_key}= | Generate Random String | ${req_key_len}
 | | | Return From Keyword If | '${req_key}' != '${key}' | ${req_key}

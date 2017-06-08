@@ -24,13 +24,17 @@
 | Resource | resources/libraries/robot/honeycomb/interfaces.robot
 | Resource | resources/libraries/robot/honeycomb/tap.robot
 | Resource | resources/libraries/robot/honeycomb/notifications.robot
+| ...
 | Suite Setup | Run keywords
 | ... | Honeycomb configures interface state
 | ... | ${node} | ${interface} | down | AND
 | ... | Honeycomb creates TAP interface
 | ... | ${node} | ${tap_interface} | ${tap_settings}
+| ...
 | Documentation | *Honeycomb notifications test suite.*
+| ...
 | Force Tags | HC_FUNC
+| ...
 | Suite Teardown | Run Keyword If Any Tests Failed
 | ... | Restart Honeycomb and VPP | ${node}
 
@@ -38,6 +42,7 @@
 | TC01: Honeycomb sends notification on interface state change
 | | [Documentation] | Check if Honeycomb sends a state-changed notification\
 | | ... | when the state of an interface is changed.
+| | ...
 | | Given Interface state from Honeycomb should be
 | | ... | ${node} | ${interface} | down
 | | And Interface state from VAT should be | ${node} | ${interface} | down
@@ -50,6 +55,7 @@
 | TC02: Honeycomb sends notification on interface deletion
 | | [Documentation] | Check if Honeycomb sends an interface-deleted notification
 | | ... | when an interface is deleted.
+| | ...
 | | Given TAP Operational Data From Honeycomb Should Be
 | | ... | ${node} | ${tap_interface} | ${tap_settings}
 | | And TAP Operational Data From VAT Should Be

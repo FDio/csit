@@ -23,11 +23,13 @@
 | Library  | resources.libraries.python.Tap
 | Library  | resources.libraries.python.Namespaces
 | Library  | resources.libraries.python.IPUtil
+| ...
 | Force Tags | HW_ENV | VM_ENV | 3_NODE_DOUBLE_LINK_TOPO
-| Test Setup | Run Keywords | Set up functional test
-| ...        | AND          | Clean Up Namespaces | ${nodes['DUT1']}
-| Test Teardown | Run Keywords | Tear down functional test
-| ...           | AND          | Clean Up Namespaces | ${nodes['DUT1']}
+| ...
+| Test Setup | Set up TAP functional test
+| ...
+| Test Teardown | Tear down TAP functional test
+| ...
 | Documentation | *Tap Interface Traffic Tests*
 | ... | *[Top] Network Topologies:* TG=DUT1 2-node topology with two links
 | ... | between nodes.
@@ -60,13 +62,13 @@
 | | [Documentation]
 | | ... | [Top] TG-DUT1-TG.
 | | ... | [Enc] Eth-IPv4-ICMPv4.
-| | ... | [Cfg] On DUT1 configure two interface addresses with IPv4 of which
-| | ... | one is TAP interface ( dut_to_tg_if and TAP ).
-| | ... | and one is linux-TAP.
-| | ... | [Ver] Packet sent from TG gets to the destination and ICMP-reply is
+| | ... | [Cfg] On DUT1 configure two interface addresses with IPv4 of which\
+| | ... | one is TAP interface (dut_to_tg_if and TAP) and one is linux-TAP.
+| | ... | [Ver] Packet sent from TG gets to the destination and ICMP-reply is\
 | | ... | received on TG.
-| | Given Configure path in 2-node circular topology | ${nodes['TG']} | ${nodes['DUT1']}
-| | ... | ${nodes['TG']}
+| | ...
+| | Given Configure path in 2-node circular topology | ${nodes['TG']}
+| | ... | ${nodes['DUT1']} | ${nodes['TG']}
 | | And Set interfaces in 2-node circular topology up
 | | ${int1}= | And Add Tap Interface | ${dut_node} | ${tap_int1} |
 | | And Set Interface Address
@@ -83,21 +85,22 @@
 | | ... | ${tg_ip_address} | ${tg_to_dut_if1_mac}
 | | And Add Arp On Dut | ${dut_node} | ${int1}
 | | ... | ${tap1_NM_ip} | ${tap1_NM_mac}
-| | Then Send ICMP echo request and verify answer | ${tg_node} | ${tg_to_dut_if1}
-| | ... | ${dut_to_tg_if1_mac} | ${tg_to_dut_if1_mac}
+| | Then Send ICMP echo request and verify answer | ${tg_node}
+| | ... | ${tg_to_dut_if1} | ${dut_to_tg_if1_mac} | ${tg_to_dut_if1_mac}
 | | ... | ${tap1_NM_ip} | ${tg_ip_address}
 
 | TC02: Tap Interface IP Ping With Namespace
 | | [Documentation]
 | | ... | [Top] TG-DUT1-TG.
 | | ... | [Enc] Eth-IPv4-ICMPv4.
-| | ... | [Cfg] On DUT1 configure two interface addresses with IPv4 of which
-| | ... | one is TAP interface ( dut_to_tg_if and TAP ).
-| | ... | and one is linux-TAP in namespace.
-| | ... | [Ver] Packet sent from TG gets to the destination and ICMP-reply is
+| | ... | [Cfg] On DUT1 configure two interface addresses with IPv4 of which\
+| | ... | one is TAP interface (dut_to_tg_if and TAP) and one is linux-TAP in\
+| | ... | namespace.
+| | ... | [Ver] Packet sent from TG gets to the destination and ICMP-reply is\
 | | ... | received on TG.
-| | Given Configure path in 2-node circular topology | ${nodes['TG']} | ${nodes['DUT1']}
-| | ... | ${nodes['TG']}
+| | ...
+| | Given Configure path in 2-node circular topology | ${nodes['TG']}
+| | ... | ${nodes['DUT1']} | ${nodes['TG']}
 | | And Set interfaces in 2-node circular topology up
 | | ${int1}= | And Add Tap Interface | ${dut_node} | ${tap_int1} |
 | | And Set Interface Address
@@ -118,6 +121,6 @@
 | | ... | ${tap1_NM_ip} | ${tap1_NM_mac}
 | | And Add Route | ${dut_node}
 | | ... | ${tg_ip_address_GW} | ${prefix} | ${tap1_VPP_ip} | ${namespace1}
-| | Then Send ICMP echo request and verify answer | ${tg_node} | ${tg_to_dut_if1}
-| | ... | ${dut_to_tg_if1_mac} | ${tg_to_dut_if1_mac}
+| | Then Send ICMP echo request and verify answer | ${tg_node}
+| | ... | ${tg_to_dut_if1} | ${dut_to_tg_if1_mac} | ${tg_to_dut_if1_mac}
 | | ... | ${tap1_NM_ip} | ${tg_ip_address}

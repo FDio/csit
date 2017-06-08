@@ -19,15 +19,18 @@
 | Resource | resources/libraries/robot/honeycomb/l2_fib.robot
 | Variables | resources/test_data/honeycomb/l2_fib.py | ${node} | ${interface}
 | ... | ${interface2}
+| ...
 | Documentation | *Honeycomb L2 FIB management test suite.*
-| Suite Setup | Run keywords
-| ... | Set test interface down
+| ...
+| Suite Setup | Run keywords | Set test interface down
+| ...
 | Suite Teardown | Run keywords
 | ... | Run Keyword If Any Tests Failed
 | ... | Restart Honeycomb and VPP | ${node}
 | ... | AND
 | ... | Honeycomb removes all bridge domains
 | ... | ${node} | ${interface} | ${interface2}
+| ...
 | Force tags | HC_FUNC
 
 *** Variables ***

@@ -12,6 +12,7 @@
 # limitations under the License.
 
 *** Settings ***
+| Resource | resources/libraries/robot/qemu.robot
 | Variables | resources/libraries/python/topology.py
 | Variables | resources/libraries/python/VatHistory.py
 | Library | resources.libraries.python.topology.Topology
@@ -21,6 +22,7 @@
 | Library | resources.libraries.python.SchedUtils
 | Library | resources.libraries.python.TGSetup
 | Library | resources.libraries.python.L2Util
+| Library | resources.libraries.python.Tap
 | Library | resources/libraries/python/VppConfigGenerator.py
 | Library | resources/libraries/python/VppCounters.py
 | Library | Collections
@@ -360,3 +362,63 @@
 | | Show VAT History On All DUTs | ${nodes}
 | | Vpp Show Errors On All DUTs | ${nodes}
 | | Verify VPP PID in Teardown
+
+| Tear down LISP functional test
+| | [Documentation] | Common test teardown for functional tests with LISP.
+| | ...
+| | Show Packet Trace on All DUTs | ${nodes}
+| | Show VAT History On All DUTs | ${nodes}
+| | Show Vpp Settings | ${nodes['DUT1']}
+| | Show Vpp Settings | ${nodes['DUT2']}
+| | Vpp Show Errors On All DUTs | ${nodes}
+| | Verify VPP PID in Teardown
+
+| Tear down LISP functional test with QEMU
+| | [Documentation] | Common test teardown for functional tests with LISP and\
+| | ... | QEMU.
+| | ...
+| | ... | *Arguments:*
+| | ... | - vm_node - VM to stop. Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Tear down LISP functional test with QEMU \| ${vm_node} \|
+| | ...
+| | [Arguments] | ${vm_node}
+| | ...
+| | Show Packet Trace on All DUTs | ${nodes}
+| | Show VAT History On All DUTs | ${nodes}
+| | Show Vpp Settings | ${nodes['DUT1']}
+| | Show Vpp Settings | ${nodes['DUT2']}
+| | Vpp Show Errors On All DUTs | ${nodes}
+| | Stop and clear QEMU | ${nodes['DUT1']} | ${vm_node}
+| | Verify VPP PID in Teardown
+
+| Set up TAP functional test
+| | [Documentation] | Common test setup for functional tests with TAP.
+| | ...
+| | Set up functional test
+| | Clean Up Namespaces | ${nodes['DUT1']}
+
+| Tear down TAP functional test
+| | [Documentation] | Common test teardown for functional tests with TAP.
+| | ...
+| | Tear down functional test
+| | Clean Up Namespaces | ${nodes['DUT1']}
+
+| Tear down TAP functional test with Linux bridge
+| | [Documentation] | Common test teardown for functional tests with TAP and
+| | ... | a Linux bridge.
+| | ...
+| | ... | *Arguments:*
+| | ... | - bid_TAP - Bridge name. Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Tear down TAP functional test with Linux bridge \| ${bid_TAP} \|
+| | ...
+| | [Arguments] | ${bid_TAP}
+| | ...
+| | Tear down functional test
+| | Linux Del Bridge | ${nodes['DUT1']} | ${bid_TAP}
+| | Clean Up Namespaces | ${nodes['DUT1']}

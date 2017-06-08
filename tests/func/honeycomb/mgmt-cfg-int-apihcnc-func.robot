@@ -19,11 +19,13 @@
 | Library | resources.libraries.python.honeycomb.HcAPIKwInterfaces.InterfaceKeywords
 | ...     | WITH NAME | InterfaceAPI
 | Variables | resources/test_data/honeycomb/netconf/triggers.py
+| ...
 | Documentation | *Netconf test suite. Contains test cases that need to bypass\
 | ... | REST API.*
+| ...
 | Force Tags | HC_FUNC | HC_REST_ONLY
-| Suite Teardown
-| ... | Restart Honeycomb and VPP | ${node}
+| ...
+| Suite Teardown | Restart Honeycomb and VPP | ${node}
 
 *** Variables ***
 | ${interface}= | ${node['interfaces']['port1']['name']}
@@ -34,6 +36,7 @@
 | TC01: Honeycomb can create and delete interfaces
 | | [Documentation] | Repeatedly create and delete an interface through Netconf\
 | | ... | and check the reply for any errors.
+| | ...
 | | Given Netconf session should be established | ${node}
 | | And Honeycomb creates first L2 bridge domain
 | | ... | ${node} | bd_netconf | ${bd_settings}
@@ -44,6 +47,7 @@
 | TC02: Transaction revert test case 1
 | | [Documentation] | Configure two conflicting VxLAN tunnels, then verify\
 | | ... | that neither tunnel exists.
+| | ...
 | | Given Netconf session should be established | ${node}
 | | ${if_data}= | And InterfaceAPI.Get all interfaces oper data | ${node}
 | | When Error trigger is sent | ${trigger_revert1}
@@ -53,6 +57,7 @@
 | TC03: Transaction revert test case 2
 | | [Documentation] | Configure two conflicting TAP interfaces, then verify\
 | | ... | that neither interface exists.
+| | ...
 | | Given Netconf session should be established | ${node}
 | | ${if_data}= | And InterfaceAPI.Get all interfaces oper data | ${node}
 | | When Error trigger is sent | ${trigger_revert1}
@@ -61,6 +66,7 @@
 
 | TC04: Vlan subinterface creation
 | | [Documentation] | Configure a Vlan sub-interface under a physical interface.
+| | ...
 | | Given Netconf session should be established | ${node}
 | | When Error Trigger Is Sent
 | | ... | ${trigger_vlan} | interface=${interface}
