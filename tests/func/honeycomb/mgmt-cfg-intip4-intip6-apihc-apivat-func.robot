@@ -22,15 +22,18 @@
 | Resource | resources/libraries/robot/testing_path.robot
 | Resource | resources/libraries/robot/ipv6.robot
 | Variables | resources/test_data/honeycomb/interface_ip.py
+| ...
 | Force Tags | HC_FUNC
-| Suite Teardown
-| | ... | Restart Honeycomb and VPP | ${node}
+| ...
+| Suite Teardown | Restart Honeycomb and VPP | ${node}
+| ...
 | Documentation | *Honeycomb interface management test suite.*
 
 *** Test Cases ***
 | TC01: Honeycomb configures and reads interface state
 | | [Documentation] | Check if Honeycomb API can modify the admin state of\
 | | ... | VPP interfaces.
+| | ...
 | | Given Interface state from Honeycomb should be
 | | ... | ${node} | ${interface} | down
 | | And Interface state from VAT should be | ${node} | ${interface} | down
@@ -46,6 +49,7 @@
 | TC02: Honeycomb modifies interface IPv4 address with netmask
 | | [Documentation] | Check if Honeycomb API can configure interfaces for ipv4\
 | | ... | with address and netmask provided.
+| | ...
 | | Given IPv4 address from Honeycomb should be empty | ${node} | ${interface}
 | | And ipv4 address from VAT should be empty | ${node} | ${interface}
 | | When Honeycomb sets interface IPv4 address | ${node} | ${interface}
@@ -59,6 +63,7 @@
 | TC03: Honeycomb removes IPv4 address from interface
 | | [Documentation] | Check if Honeycomb API can remove configured ipv4\
 | | ... | addresses from interface.
+| | ...
 | | Given IPv4 address from Honeycomb should be
 | | ... | ${node} | ${interface} | ${ipv4_address} | ${ipv4_prefix}
 | | And IPv4 address from VAT should be
@@ -71,8 +76,10 @@
 | TC04: Honeycomb modifies interface IPv4 address with prefix
 | | [Documentation] | Check if Honeycomb API can configure interfaces for ipv4\
 | | ... | with address and prefix provided.
+| | ...
 | | [Teardown] | Honeycomb removes interface IPv4 addresses | ${node}
 | | ... | ${interface}
+| | ...
 | | Given IPv4 address from Honeycomb should be empty | ${node} | ${interface}
 | | And ipv4 address from VAT should be empty | ${node} | ${interface}
 | | When Honeycomb sets interface IPv4 address with prefix
@@ -85,8 +92,10 @@
 
 | TC05: Honeycomb modifies IPv4 neighbor table
 | | [Documentation] | Check if Honeycomb API can add and remove ARP entries.
+| | ...
 | | [Teardown] | Honeycomb clears all interface IPv4 neighbors
 | | ... | ${node} | ${interface}
+| | ...
 | | Given IPv4 neighbor from Honeycomb should be empty
 | | ... | ${node} | ${interface}
 | | When Honeycomb adds interface IPv4 neighbor
@@ -96,8 +105,10 @@
 
 | TC06: Honeycomb modifies interface configuration - IPv6
 | | [Documentation] | Check if Honeycomb API can configure interfaces for ipv6.
+| | ...
 | | [Teardown] | Honeycomb removes interface IPv6 addresses | ${node}
 | | ... | ${interface}
+| | ...
 | | Given IPv6 address from Honeycomb should be empty
 | | ... | ${node} | ${interface}
 | | And IPv6 address from VAT should be empty
@@ -111,8 +122,10 @@
 
 | TC07: Honeycomb modifies IPv6 neighbor table
 | | [Documentation] | Check if Honeycomb API can add and remove ARP entries.
+| | ...
 | | [Teardown] | Honeycomb clears all interface IPv6 neighbors
 | | ... | ${node} | ${interface}
+| | ...
 | | Given IPv6 neighbor from Honeycomb should be empty
 | | ... | ${node} | ${interface}
 | | When Honeycomb adds interface IPv6 neighbor
@@ -123,6 +136,7 @@
 | TC08: Honeycomb modifies interface configuration - MTU
 | | [Documentation] | Check if Honeycomb API can configure interface\
 | | ... | MTU value.
+| | ...
 | | When Honeycomb sets interface ethernet configuration
 | | ... | ${node} | ${interface} | ${ethernet}
 | | Then Interface ethernet Operational Data From Honeycomb Should Be
@@ -133,8 +147,10 @@
 | TC09: Honeycomb modifies interface configuration - vrf
 | | [Documentation] | Check if Honeycomb API can configure interface\
 | | ... | vrf ID.
+| | ...
 | | [Teardown] | Honeycomb sets interface VRF ID
 | | ... | ${node} | ${interface} | ${0} | ipv4
+| | ...
 | | When Honeycomb sets interface VRF ID
 | | ... | ${node} | ${interface} | ${1} | ipv4
 | | Then Interface VRF ID from Honeycomb should be
@@ -201,9 +217,12 @@
 | TC11: Honeycomb fails to configure two IPv4 addresses from the same subnet
 | | [Documentation] | Check if Honeycomb can configure two IPv4 addresses in\
 | | ... | the same subnet onto a single interface. It should not be possible.
+| | ...
 | | [Teardown] | Honeycomb removes interface IPv4 addresses | ${node}
 | | ... | ${interface}
+| | ...
 | | [Tags] | EXPECTED_FAILING
+| | ...
 # VPP API does not configure the second address, but returns success. VPP-649
 | | When Honeycomb sets interface IPv4 address with prefix
 | | ... | ${node} | ${interface} | 192.168.0.1 | ${9}
@@ -215,7 +234,9 @@
 | TC12: Honeycomb fails to configure two IPv6 addresses from the same subnet
 | | [Documentation] | Check if Honeycomb can configure two IPv6 addresses in\
 | | ... | the same subnet onto a single interface. It should not be possible.
+| | ...
 | | [Tags] | EXPECTED_FAILING
+| | ...
 # VPP API does not configure the second address, but returns success. VPP-649
 | | [Teardown] | Honeycomb removes interface IPv6 addresses | ${node}
 | | ... | ${interface}
@@ -229,6 +250,7 @@
 | TC13: Honeycomb can configure unnumbered interface
 | | [Documentation] | Check if Honeycomb can configure an unnumbered interface\
 | | ... | on a physical interface, borrowing the IP address of 'local0'.
+| | ...
 | | Given Honeycomb sets interface IPv4 address | ${node}
 | | ... | local0 | ${ipv4_address} | ${ipv4_prefix}
 | | When Honeycomb adds unnumbered configuration to interface
@@ -247,6 +269,7 @@
 | TC14: Honeycomb removes interface unnumbered configuration
 | | [Documentation] | Check if Honeycomb can remove unnumbered configuration\
 | | ... | from an interface.
+| | ...
 | | Given IPv4 address from Honeycomb should be
 | | ... | ${node} | local0 | ${ipv4_address} | ${ipv4_prefix}
 | | And IPv4 address from VAT should be

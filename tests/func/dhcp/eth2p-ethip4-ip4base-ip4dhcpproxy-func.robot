@@ -63,9 +63,9 @@
 | | ... | ${tg_to_dut_if2_mac}
 | | When DHCP Proxy Config | ${dut_node} | ${dhcp_server_ip}
 | | ... | ${dut_to_tg_if1_ip}
-| | Then Send DHCP messages and check answer | ${tg_node} | ${tg_to_dut_if1} | ${tg_to_dut_if2}
-| | ... | ${dhcp_server_ip} | ${tg_to_dut_if2_mac} | ${client_ip}
-| | ... | ${tg_to_dut_if1_mac} | ${dut_to_tg_if1_ip}
+| | Then Send DHCP messages and check answer | ${tg_node} | ${tg_to_dut_if1}
+| | ... | ${tg_to_dut_if2} | ${dhcp_server_ip} | ${tg_to_dut_if2_mac}
+| | ... | ${client_ip} | ${tg_to_dut_if1_mac} | ${dut_to_tg_if1_ip}
 
 | TC02: VPP proxy ignores invalid DHCPv4 request
 | | [Documentation] |

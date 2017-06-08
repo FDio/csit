@@ -24,9 +24,14 @@
 | Library | resources.libraries.python.IPv6Util
 | Library | resources.libraries.python.Routing
 | Variables | resources/test_data/honeycomb/dhcp_relay.py
+| ...
+| ...
 | Documentation | *Honeycomb DHCP relay test suite.*
+| ...
 | Test Setup | Clear Packet Trace on All DUTs | ${nodes}
+| ...
 | Suite Teardown | Restart Honeycomb and VPP | ${node}
+| ...
 | Force Tags | HC_FUNC
 
 *** Test Cases ***
@@ -38,20 +43,23 @@
 | | ... | neighbors and configure DHCP relay.
 | | ... | [Ver] Send DHCP packets from TG interface to DUT. Receive all packets\
 | | ... | on the second TG interface and verify required fields.
+| | ...
 | | [Teardown] | Run Keywords | Show Packet Trace on All DUTs | ${nodes}
 | | ... | AND | Log DHCP relay configuration from VAT | ${node} | ipv4
+| | ...
 | | Given DHCP relay Operational Data From Honeycomb Should Be empty | ${node}
 | | When Honeycomb configures DHCP relay | ${node} | ${relay1} | ipv4 | ${0}
 | | Then DHCP relay configuration from Honeycomb should contain
 | | ... | ${node} | ${relay1_oper}
 | | When DHCP relay test setup
-| | Then Send DHCP messages and check answer | ${tg_node} | ${tg_to_dut_if1} | ${tg_to_dut_if2}
-| | ... | ${dhcp_server1_ip} | ${tg_to_dut_if2_mac} | ${client_ip}
-| | ... | ${tg_to_dut_if1_mac} | ${dut_to_tg_if1_ip}
+| | Then Send DHCP messages and check answer | ${tg_node} | ${tg_to_dut_if1}
+| | ... | ${tg_to_dut_if2} | ${dhcp_server1_ip} | ${tg_to_dut_if2_mac}
+| | ... | ${client_ip} | ${tg_to_dut_if1_mac} | ${dut_to_tg_if1_ip}
 
 | TC02: Honeycomb can remove DHCP relay entry
 | | [Documentation] | Remove DHCP relay configuration, and verify that\
 | | ... | it was removed.
+| | ...
 | | Given DHCP relay configuration from Honeycomb should contain
 | | ... | ${node} | ${relay1_oper}
 | | When Honeycomb clears DHCP relay configuration | ${node}
@@ -60,7 +68,9 @@
 | TC03: Honeycomb can configure multiple DHCP relay servers.
 | | [Documentation] | Configure multiple DHCP relay servers and verify\
 | | ... | their configuration using operational data.
+| | ...
 | | [Teardown] | Honeycomb clears DHCP relay configuration | ${node}
+| | ...
 | | Given DHCP relay Operational Data From Honeycomb Should Be empty | ${node}
 | | And Honeycomb configures DHCP relay | ${node} | ${relay2} | ipv4 | ${0}
 | | Then DHCP relay configuration from Honeycomb should contain
@@ -74,9 +84,11 @@
 | | ... | neighbors and configure DHCP relay.
 | | ... | [Ver] Send DHCPv6 packets from TG interface to DUT. Receive all\
 | | ... | packets on the second TG interface and verify required fields.
+| | ...
 | | [Teardown] | Run Keywords | Show Packet Trace on All DUTs | ${nodes}
 | | ... | AND | Log DHCP relay configuration from VAT | ${node} | ipv6
 | | ... | AND | Honeycomb clears DHCP relay configuration | ${node}
+| | ...
 | | Given DHCP relay Operational Data From Honeycomb Should Be empty | ${node}
 | | When Honeycomb configures DHCP relay | ${node} | ${relay_v6} | ipv6 | ${0}
 | | Then DHCP relay configuration from Honeycomb should contain
@@ -96,10 +108,10 @@
 | | ... | ${dut_to_tg_if1} | ${dut_to_tg_if1_ip} | ${prefix_length}
 | | Honeycomb sets interface IPv4 address with prefix | ${dut_node}
 | | ... | ${dut_to_tg_if2} | ${dut_to_tg_if2_ip} | ${prefix_length}
-| | Add ARP on DUT
-| | ... | ${dut_node} | ${dut_to_tg_if2} | ${dhcp_server1_ip} | ${tg_to_dut_if2_mac}
-| | Add ARP on DUT
-| | ... | ${dut_node} | ${dut_to_tg_if2} | ${dhcp_server2_ip} | ${tg_to_dut_if2_mac}
+| | Add ARP on DUT | ${dut_node} | ${dut_to_tg_if2} | ${dhcp_server1_ip}
+| | ... | ${tg_to_dut_if2_mac}
+| | Add ARP on DUT | ${dut_node} | ${dut_to_tg_if2} | ${dhcp_server2_ip}
+| | ... | ${tg_to_dut_if2_mac}
 | | And VPP Route Add | ${dut_node} | 255.255.255.255 | 32 | ${NONE} | local
 | | ... | ${FALSE} | ${NONE}
 

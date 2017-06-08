@@ -70,7 +70,7 @@
 | | Wait until keyword succeeds | 2min | 20sec
 | | ... | Check Honeycomb startup state | ${node}
 
-| Restart Honeycomb and VPP
+| Restart Honeycomb and VPP in pesistence test
 | | [Documentation] | Stops Honeycomb, restarts VPP and then starts Honeycomb\
 | | ... | again.
 | | ...

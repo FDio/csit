@@ -19,14 +19,18 @@
 | Resource | resources/libraries/robot/honeycomb/nat.robot
 | Resource | resources/libraries/robot/honeycomb/honeycomb.robot
 | Variables | resources/test_data/honeycomb/nat.py | ${node} | ${interface}
+| ...
 | Documentation | *Honeycomb NAT test suite.*
+| ...
 | Suite Teardown | Run Keyword If Any Tests Failed
 | ... | Restart Honeycomb and VPP | ${node}
+| ...
 | Force Tags | HC_FUNC
 
 *** Test Cases ***
 | TC01: Honeycomb configures NAT entry
 | | [Documentation] | Honeycomb configures a static NAT entry.
+| | ...
 | | Given NAT Operational Data From Honeycomb Should Be empty
 | | ... | ${node} | ${nat_empty}
 | | When Honeycomb Configures NAT Entry | ${node} | ${entry1}
@@ -34,6 +38,7 @@
 
 | TC02: Honeycomb removes NAT entry
 | | [Documentation] | Honeycomb removes a configured static NAT entry.
+| | ...
 | | Given NAT Entries From Honeycomb Should Be | ${node} | ${entry1}
 | | When Honeycomb Configures NAT Entry | ${node} | ${NONE}
 | | Then NAT Operational Data From Honeycomb Should Be empty
@@ -41,7 +46,9 @@
 
 | TC03: Honeycomb configures multiple NAT entries
 | | [Documentation] | Honeycomb configures two static NAT entries.
+| | ...
 | | [Teardown] | Honeycomb Configures NAT Entry | ${node} | ${NONE}
+| | ...
 | | Given NAT Operational Data From Honeycomb Should Be empty
 | | ... | ${node} | ${nat_empty}
 | | When Honeycomb Configures NAT Entry | ${node} | ${entry1} | ${0} | ${1}
@@ -52,6 +59,7 @@
 | TC04: Honeycomb enables NAT on interface - inbound
 | | [Documentation] | Honeycomb configures NAT on an interface\
 | | ... | in inbound direction.
+| | ...
 | | Given NAT Interface Operational Data From Honeycomb Should Be Empty
 | | ... | ${node} | ${interface} | inbound
 | | And NAT Interface Operational Data From Honeycomb Should Be Empty
@@ -65,6 +73,7 @@
 
 | TC05: Honeycomb removes NAT interface configuration
 | | [Documentation] | Honeycomb removes NAT configuration from an interface.
+| | ...
 | | Given NAT Interface Operational Data From Honeycomb Should Be
 | | ... | ${node} | ${interface} | inbound
 | | And NAT Interface Operational Data From Honeycomb Should Be empty
@@ -79,8 +88,10 @@
 | TC06: Honeycomb enables NAT on interface - outbound
 | | [Documentation] | Honeycomb configures NAT on an interface\
 | | ... | in outbound direction.
+| | ...
 | | [Teardown] | Honeycomb removes NAT interface configuration
 | | ... | ${node} | ${interface} | outbound
+| | ...
 | | Given NAT Interface Operational Data From Honeycomb Should Be empty
 | | ... | ${node} | ${interface} | inbound
 | | And NAT Interface Operational Data From Honeycomb Should Be empty
