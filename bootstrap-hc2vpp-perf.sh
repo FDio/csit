@@ -19,9 +19,7 @@ OS=$2
 ODL=$3
 
 # Space separated list of available testbeds, described by topology files
-TOPOLOGIES="topologies/available/lf_testbed1.yaml \
-            topologies/available/lf_testbed2.yaml \
-            topologies/available/lf_testbed3.yaml"
+TOPOLOGIES="topologies/available/lf_testbed1.yaml"
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
@@ -46,31 +44,33 @@ echo pip install
 pip install -r requirements.txt
 
 # We iterate over available topologies and wait until we reserve topology
-while :; do
-    for TOPOLOGY in ${TOPOLOGIES};
-    do
-        python ${SCRIPT_DIR}/resources/tools/topo_reservation.py -t ${TOPOLOGY}
-        if [ $? -eq 0 ]; then
-            WORKING_TOPOLOGY=${TOPOLOGY}
-            echo "Reserved: ${WORKING_TOPOLOGY}"
-            break
-        fi
-    done
+#while :; do
+#    for TOPOLOGY in ${TOPOLOGIES};
+#    do
+#        python ${SCRIPT_DIR}/resources/tools/topo_reservation.py -t ${TOPOLOGY}
+#        if [ $? -eq 0 ]; then
+#            WORKING_TOPOLOGY=${TOPOLOGY}
+#            echo "Reserved: ${WORKING_TOPOLOGY}"
+#            break
+#        fi
+#    done
+#
+#    if [ ! -z "${WORKING_TOPOLOGY}" ]; then
+#        # Exit the infinite while loop if we made a reservation
+#        break
+#    fi
+#
+#    # Wait ~3minutes before next try
+#    SLEEP_TIME=$[ ( $RANDOM % 20 ) + 180 ]s
+#    echo "Sleeping ${SLEEP_TIME}"
+#    sleep ${SLEEP_TIME}
+#done
 
-    if [ ! -z "${WORKING_TOPOLOGY}" ]; then
-        # Exit the infinite while loop if we made a reservation
-        break
-    fi
-
-    # Wait ~3minutes before next try
-    SLEEP_TIME=$[ ( $RANDOM % 20 ) + 180 ]s
-    echo "Sleeping ${SLEEP_TIME}"
-    sleep ${SLEEP_TIME}
-done
+WORKING_TOPOLOGY=${TOPOLOGIES}
 
 function cancel_all {
-    python ${SCRIPT_DIR}/resources/tools/topo_installation_hc.py -c -d ${INSTALLATION_DIR} -t $1
-    python ${SCRIPT_DIR}/resources/tools/topo_reservation.py -c -t $1
+    python ${SCRIPT_DIR}/resources/tools/topo_installation.py -c -d ${INSTALLATION_DIR} -t $1 -hc True
+#    python ${SCRIPT_DIR}/resources/tools/topo_reservation.py -c -t $1
 }
 
 # On script exit we cancel the reservation and installation and delete all vpp
@@ -91,7 +91,7 @@ echo ${VPP_PKGS[@]}
 # Install packages
 python ${SCRIPT_DIR}/resources/tools/topo_installation.py -t ${WORKING_TOPOLOGY} \
                                                        -d ${INSTALLATION_DIR} \
-                                                       -p ${VPP_PKGS} \
+                                                       -p ${VPP_PKGS[@]} \
                                                        -hc True
 if [ $? -eq 0 ]; then
     echo "VPP Installed on hosts from: ${WORKING_TOPOLOGY}"
@@ -113,9 +113,5 @@ mkdir archive
 for i in ${ARCHIVE_ARTIFACTS[@]}; do
     cp $( readlink -f ${i} | tr '\n' ' ' ) archive/
 done
-
-# temporary workaround until https://gerrit.fd.io/r/7052
-mkdir csit
-mv archive csit
 
 exit ${RETURN_STATUS}
