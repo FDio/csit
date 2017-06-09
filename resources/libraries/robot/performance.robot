@@ -1678,13 +1678,13 @@
 | | ${dut1_if2_pci}= | Get Interface PCI Addr | ${dut1} | ${dut1_if2}
 | | ${dut2_if1_pci}= | Get Interface PCI Addr | ${dut2} | ${dut2_if1}
 | | ${dut2_if2_pci}= | Get Interface PCI Addr | ${dut2} | ${dut2_if2}
-| | Add PCI device | ${dut1} | ${dut1_if1_pci} | ${dut1_if2_pci}
-| | Add PCI device | ${dut2} | ${dut2_if1_pci} | ${dut2_if2_pci}
+| | Run keyword | DUT1.Add DPDK Dev | ${dut1_if1_pci} | ${dut1_if2_pci}
+| | Run keyword | DUT2.Add DPDK Dev | ${dut2_if1_pci} | ${dut2_if2_pci}
 
 | Add PCI devices to DUTs in 2-node single link topology
 | | ${dut1_if1_pci}= | Get Interface PCI Addr | ${dut1} | ${dut1_if1}
 | | ${dut1_if2_pci}= | Get Interface PCI Addr | ${dut1} | ${dut1_if2}
-| | Add PCI device | ${dut1} | ${dut1_if1_pci} | ${dut1_if2_pci}
+| | Run keyword | DUT1.Add DPDK Dev | ${dut1_if1_pci} | ${dut1_if2_pci}
 
 | Configure guest VM with dpdk-testpmd connected via vhost-user
 | | [Documentation]
@@ -2449,6 +2449,7 @@
 | | [Documentation] | Common test setup for performance tests.
 | | ...
 | | Reset VAT History On All DUTs | ${nodes}
+| | Create base startup configuration of VPP on all DUTs
 
 | Tear down performance discovery test
 | | [Documentation] | Common test teardown for ndrdisc and pdrdisc performance \
@@ -2471,21 +2472,18 @@
 | | Run Keyword If Test Failed
 | | ... | Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
 | | ... | ${framesize} | ${topology_type} | fail_on_loss=${False}
-| | Remove startup configuration of VPP from all DUTs
 
 | Tear down performance ndrchk test
 | | [Documentation] | Common test teardown for ndrchk performance tests.
 | | ...
 | | Show VAT History On All DUTs | ${nodes}
 | | Show statistics on all DUTs
-| | Remove startup configuration of VPP from all DUTs
 
 | Performance pdrchk test teardown
 | | [Documentation] | Common test teardown for pdrchk performance tests.
 | | ...
 | | Show VAT History On All DUTs | ${nodes}
 | | Show statistics on all DUTs
-| | Remove startup configuration of VPP from all DUTs
 
 | Tear down performance test with vhost and VM with dpdk-testpmd
 | | [Documentation] | Common test teardown for performance tests which use
@@ -2516,7 +2514,6 @@
 | | Run Keyword If Test Failed
 | | ... | Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
 | | ... | ${framesize} | ${topology_type} | fail_on_loss=${False}
-| | Remove startup configuration of VPP from all DUTs
 | | Run keyword unless | ${dut1_node}==${None}
 | | ... | Tear down guest VM with dpdk-testpmd | ${dut1} | ${dut1_vm_refs}
 | | Run keyword unless | ${dut2_node}==${None}

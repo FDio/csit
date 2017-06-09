@@ -117,6 +117,22 @@
 | | | Kernel Module Verify | ${nodes['${dut}']} | ${module}
 | | | ... | force_load=${force_load}
 
+| Create base startup configuration of VPP on all DUTs
+| | [Documentation] | Create base startup configuration of VPP to all DUTs.
+| | ...
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | Import Library | resources.libraries.python.VppConfigGenerator
+| | | ... | WITH NAME | ${dut}
+| | | Run keyword | ${dut}.Set Node |  ${nodes['${dut}']}
+| | | Run keyword | ${dut}.Add Unix Log
+| | | Run keyword | ${dut}.Add Unix CLI Listen
+| | | Run keyword | ${dut}.Add Unix Nodaemon
+| | | Run keyword | ${dut}.Add DPDK Socketmem | "1024,1024"
+| | | Run keyword | ${dut}.Add Heapsize | "3G"
+| | | Run keyword | ${dut}.Add IP6 Hash Buckets | "2000000"
+| | | Run keyword | ${dut}.Add IP6 Heap Size | "3G"
+
 | Add '${m}' worker threads and '${n}' rxqueues in 3-node single-link circular topology
 | | [Documentation] | Setup M worker threads and N rxqueues in vpp startup\
 | | ... | configuration on all DUTs in 3-node single-link topology.
@@ -134,15 +150,12 @@
 | | ... | skip_cnt=${1} | cpu_cnt=${1}
 | | ${dut2_cpu_w}= | Cpu list per node str | ${dut2} | ${dut2_numa}
 | | ... | skip_cnt=${2} | cpu_cnt=${m_int}
-| | ${dut1_cpu}= | Catenate | main-core | ${dut1_cpu_main}
-| | ... | corelist-workers | ${dut1_cpu_w}
-| | ${dut2_cpu}= | Catenate | main-core | ${dut2_cpu_main}
-| | ... | corelist-workers | ${dut2_cpu_w}
-| | ${rxqueues}= | Catenate | num-rx-queues | ${n}
-| | Add CPU config | ${dut1} | ${dut1_cpu}
-| | Add CPU config | ${dut2} | ${dut2_cpu}
-| | Add rxqueues config | ${dut1} | ${rxqueues}
-| | Add rxqueues config | ${dut2} | ${rxqueues}
+| | Run keyword | DUT1.Add CPU Main Core | ${dut1_cpu_main}
+| | Run keyword | DUT2.Add CPU Main Core | ${dut2_cpu_main}
+| | Run keyword | DUT1.Add CPU Corelist Workers | ${dut1_cpu_w}
+| | Run keyword | DUT2.Add CPU Corelist Workers | ${dut2_cpu_w}
+| | Run keyword | DUT1.Add DPDK Dev Default RXQ | ${n}
+| | Run keyword | DUT2.Add DPDK Dev Default RXQ | ${n}
 
 | Add '${m}' worker threads and '${n}' rxqueues in 2-node single-link circular topology
 | | [Documentation] | Setup M worker threads and N rxqueues in vpp startup\
@@ -155,11 +168,9 @@
 | | ... | skip_cnt=${1} | cpu_cnt=${1}
 | | ${dut1_cpu_w}= | Cpu list per node str | ${dut1} | ${dut1_numa}
 | | ... | skip_cnt=${2} | cpu_cnt=${m_int}
-| | ${dut1_cpu}= | Catenate | main-core | ${dut1_cpu_main}
-| | ... | corelist-workers | ${dut1_cpu_w}
-| | ${rxqueues}= | Catenate | num-rx-queues | ${n}
-| | Add CPU config | ${dut1} | ${dut1_cpu}
-| | Add rxqueues config | ${dut1} | ${rxqueues}
+| | Run keyword | DUT1.Add CPU Main Core | ${dut1_cpu_main}
+| | Run keyword | DUT1.Add CPU Corelist Workers | ${dut1_cpu_w}
+| | Run keyword | DUT1.Add DPDK Dev Default RXQ | ${n}
 
 | Add '${m}' worker threads using SMT and '${n}' rxqueues in 3-node single-link circular topology
 | | [Documentation] | Setup M worker threads using SMT and N rxqueues in vpp\
@@ -178,15 +189,12 @@
 | | ... | skip_cnt=${1} | cpu_cnt=${1} | smt_used=${True}
 | | ${dut2_cpu_w}= | Cpu list per node str | ${dut2} | ${dut2_numa}
 | | ... | skip_cnt=${2} | cpu_cnt=${m_int} | smt_used=${True}
-| | ${dut1_cpu}= | Catenate | main-core | ${dut1_cpu_main}
-| | ... | corelist-workers | ${dut1_cpu_w}
-| | ${dut2_cpu}= | Catenate | main-core | ${dut2_cpu_main}
-| | ... | corelist-workers | ${dut2_cpu_w}
-| | ${rxqueues}= | Catenate | num-rx-queues | ${n}
-| | Add CPU config | ${dut1} | ${dut1_cpu}
-| | Add CPU config | ${dut2} | ${dut2_cpu}
-| | Add rxqueues config | ${dut1} | ${rxqueues}
-| | Add rxqueues config | ${dut2} | ${rxqueues}
+| | Run keyword | DUT1.Add CPU Main Core | ${dut1_cpu_main}
+| | Run keyword | DUT2.Add CPU Main Core | ${dut2_cpu_main}
+| | Run keyword | DUT1.Add CPU Corelist Workers | ${dut1_cpu_w}
+| | Run keyword | DUT2.Add CPU Corelist Workers | ${dut2_cpu_w}
+| | Run keyword | DUT1.Add DPDK Dev Default RXQ | ${n}
+| | Run keyword | DUT2.Add DPDK Dev Default RXQ | ${n}
 
 | Add '${m}' worker threads using SMT and '${n}' rxqueues in 2-node single-link circular topology
 | | [Documentation] | Setup M worker threads and N rxqueues in vpp startup\
@@ -199,77 +207,26 @@
 | | ... | skip_cnt=${1} | cpu_cnt=${1} | smt_used=${True}
 | | ${dut1_cpu_w}= | Cpu list per node str | ${dut1} | ${dut1_numa}
 | | ... | skip_cnt=${2} | cpu_cnt=${m_int} | smt_used=${True}
-| | ${dut1_cpu}= | Catenate | main-core | ${dut1_cpu_main}
-| | ... | corelist-workers | ${dut1_cpu_w}
-| | ${rxqueues}= | Catenate | num-rx-queues | ${n}
-| | Add CPU config | ${dut1} | ${dut1_cpu}
-| | Add rxqueues config | ${dut1} | ${rxqueues}
-
-| Add all PCI devices to all DUTs
-| | [Documentation] | Add all available PCI devices from topology file to VPP\
-| | ... | startup configuration to all DUTs.
-| | ...
-| | ${duts}= | Get Matches | ${nodes} | DUT*
-| | :FOR | ${dut} | IN | @{duts}
-| | | Add PCI all devices | ${nodes['${dut}']}
-
-| Add PCI device to DUT
-| | [Documentation] | Add PCI device to VPP startup configuration
-| | ... | to DUT specified as argument.
-| | ...
-| | ... | *Arguments:*
-| | ... | - ${node} - DUT node. Type: dictionary
-| | ... | - ${pci_address} - PCI address. Type: string
-| | ...
-| | ... | *Example:*
-| | ...
-| | ... | \| Add PCI device to DUT \| ${nodes['DUT1']} \| 0000:00:00.0 \|
-| | ...
-| | [Arguments] | ${node} | ${pci_address}
-| | ...
-| | Add PCI device | ${node} | ${pci_address}
-
-| Add heapsize config to all DUTs
-| | [Documentation] | Add Add Heapsize Config to VPP startup configuration\
-| | ... | to all DUTs.
-| | ...
-| | ... | *Arguments:*
-| | ... | - ${heapsize} - Heapsize string (5G, 200M, ...)
-| | ...
-| | ... | *Example:*
-| | ...
-| | ... | \| Add heapsize config to all DUTs \| 200M \|
-| | ...
-| | [Arguments] | ${heapsize}
-| | ...
-| | ${duts}= | Get Matches | ${nodes} | DUT*
-| | :FOR | ${dut} | IN | @{duts}
-| | | Add Heapsize Config | ${nodes['${dut}']} | ${heapsize}
+| | Run keyword | DUT1.Add CPU Main Core | ${dut1_cpu_main}
+| | Run keyword | DUT1.Add CPU Corelist Workers | ${dut1_cpu_w}
+| | Run keyword | DUT1.Add DPDK Dev Default RXQ | ${n}
 
 | Add no multi seg to all DUTs
 | | [Documentation] | Add No Multi Seg to VPP startup configuration to all DUTs.
 | | ...
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
-| | | Add No Multi Seg Config | ${nodes['${dut}']}
-
-| Add Enable Vhost User to all DUTs
-| | [Documentation] | Add Enable Vhost User to VPP startup configuration to all\
-| | ... | DUTs.
-| | ...
-| | ${duts}= | Get Matches | ${nodes} | DUT*
-| | :FOR | ${dut} | IN | @{duts}
-| | | Add Enable Vhost User Config | ${nodes['${dut}']}
+| | | Run keyword | ${dut}.Add DPDK No Multi Seg
 
 | Add SNAT to all DUTs
 | | [Documentation] | Add SNAT configuration to all DUTs.
 | | ...
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
-| | | Add SNAT Config | ${nodes['${dut}']}
+| | | Run keyword | ${dut}.Add SNAT
 
 | Add cryptodev to all DUTs
-| | [Documentation] | AddCryptodev to VPP startup configuration to all DUTs.
+| | [Documentation] | Add Cryptodev to VPP startup configuration to all DUTs.
 | | ...
 | | ... | *Arguments:*
 | | ... | - ${count} - Number of QAT devices. Type: integer
@@ -281,38 +238,14 @@
 | | [Arguments] | ${count}
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
-| | | Add Cryptodev Config | ${nodes['${dut}']} | ${count}
-
-| Remove startup configuration of VPP from all DUTs
-| | [Documentation] | Remove VPP startup configuration from all DUTs.
-| | ...
-| | ${duts}= | Get Matches | ${nodes} | DUT*
-| | :FOR | ${dut} | IN | @{duts}
-| | | Remove All PCI Devices | ${nodes['${dut}']}
-| | | Remove All CPU Config | ${nodes['${dut}']}
-| | | Remove Socketmem Config | ${nodes['${dut}']}
-| | | Remove Cryptodev Config | ${nodes['${dut}']}
-| | | Remove Heapsize Config | ${nodes['${dut}']}
-| | | Remove Rxqueues Config | ${nodes['${dut}']}
-| | | Remove No Multi Seg Config | ${nodes['${dut}']}
-| | | Remove Enable Vhost User Config | ${nodes['${dut}']}
-| | | Remove SNAT Config | ${nodes['${dut}']}
-
-| Setup default startup configuration of VPP on all DUTs
-| | [Documentation] | Setup default startup configuration of VPP to all DUTs.
-| | ...
-| | Remove startup configuration of VPP from all DUTs
-| | Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
-| | Add all PCI devices to all DUTs
-| | Apply startup configuration on all VPP DUTs
+| | | Run keyword | ${dut}.Add DPDK Cryptodev | ${count}
 
 | Apply startup configuration on all VPP DUTs
-| | [Documentation] | Apply startup configuration of VPP and restart VPP on all\
-| | ... | DUTs.
+| | [Documentation] | Write startup configuration and restart VPP on all DUTs.
 | | ...
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
-| | | Apply Config | ${nodes['${dut}']}
+| | | Run keyword | ${dut}.Apply Config
 | | Update All Interface Data On All Nodes | ${nodes} | skip_tg=${TRUE}
 
 | Save VPP PIDs
