@@ -52,6 +52,6 @@
 | | ... | \| Run base operational read performance trial \| ${nodes[DUT1]} \
 | | ... | \| ${3} \| ${4} \| ${10000} \|
 | | ...
-| | [Arguments] | ${node} | ${cycles} | ${threads} | ${requests}
-| | Run traffic script on DUT | ${node} | read_vpp_version.py
+| | [Arguments] | ${node} | ${cores} | ${cycles} | ${threads} | ${requests}
+| | Run traffic script on DUT | ${node} | read_vpp_version.py | ${cores}
 | | ... | cycles=${cycles} | threads=${threads} | requests=${requests}

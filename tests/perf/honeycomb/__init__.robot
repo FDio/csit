@@ -14,6 +14,7 @@
 *** Variables***
 # Honeycomb node to run tests on.
 | ${node}= | ${nodes['DUT1']}
+| ${cores}= | ${18}
 
 *** Settings ***
 | Resource | resources/libraries/robot/default.robot
@@ -22,6 +23,7 @@
 | Resource | resources/libraries/robot/honeycomb/performance.robot
 | Library | resources.libraries.python.SetupFramework
 | Library | resources.libraries.python.CpuUtils
+| Library | resources.libraries.python.honeycomb.Performance
 | Suite Setup | Setup suite for Honeycomb performance tests
 | Suite Teardown | Run Keywords
 | ... | Stop VPP Service on DUT | ${node}
@@ -31,6 +33,7 @@
 | Setup suite for Honeycomb performance tests
 | | Configure Honeycomb for performance tests | ${node}
 | | Set Global Variable | ${node}
+| | Set Global Variable | ${cores}
 
 | Configure Honeycomb for performance tests
 | | [Arguments] | ${node}
@@ -39,6 +42,7 @@
 | | Configure Log Level | ${node} | INFO
 | | Configure Persistence | ${node} | disable
 | | Configure jVPP timeout | ${node} | ${14}
+| | Configure Honeycomb CPU affinity | ${node} | ${cores}
 | | Clear Persisted Honeycomb Configuration | ${node}
 | | Setup Honeycomb Service On DUTs | ${node}
 
