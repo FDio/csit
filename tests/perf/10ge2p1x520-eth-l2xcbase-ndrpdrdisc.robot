@@ -60,21 +60,23 @@
 | | ... | [Cfg] DUT runs L2XC switching config with 1 thread, 1 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for 64 Byte frames
 | | ... | using binary search start at 10GE linerate, step 100kpps.
-| | [Tags] | 64B | 1T1C | STHREAD | NDRDISC
+| | [Tags] | 64B | 1T1C | STHREAD | NDRDISC | THIS
 | | ${framesize}= | Set Variable | ${64}
 | | ${min_rate}= | Set Variable | ${100000}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
-| | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
+| | Given Create base startup configuration of VPP on all DUTs
+| | And Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Add no multi seg to all DUTs
+| | And Add socketmem to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | And Initialize L2 xconnect in 3-node circular topology
-| | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
-| | ... | ${binary_max} | ${traffic_profile}
-| | ... | ${min_rate} | ${max_rate} | ${threshold}
+#| | And Initialize L2 xconnect in 3-node circular topology
+#| | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
+#| | ... | ${binary_max} | ${traffic_profile}
+#| | ... | ${min_rate} | ${max_rate} | ${threshold}
 
 | tc02-64B-1t1c-eth-l2xcbase-pdrdisc
 | | [Documentation]
