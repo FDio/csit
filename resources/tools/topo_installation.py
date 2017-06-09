@@ -140,7 +140,7 @@ def main():
                 print "###TI {}".format(stdout)
 
                 if honeycomb:
-                    smd = "ls ~/honeycomb/ | grep *.deb"
+                    smd = "ls ~/honeycomb | grep .deb"
                     stdout = ssh_ignore_error(ssh, smd)
                     if "honeycomb" in stdout:
                         # If custom honeycomb packages exist, use them
