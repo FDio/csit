@@ -14,6 +14,7 @@
 *** Variables***
 # Honeycomb node to run tests on.
 | ${node}= | ${nodes['DUT1']}
+| ${cores}= | ${18}
 
 *** Settings ***
 | Resource | resources/libraries/robot/default.robot
@@ -31,6 +32,7 @@
 | Setup suite for Honeycomb performance tests
 | | Configure Honeycomb for performance tests | ${node}
 | | Set Global Variable | ${node}
+| | Set Global Variable | ${cores}
 
 | Configure Honeycomb for performance tests
 | | [Arguments] | ${node}

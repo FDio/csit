@@ -14,6 +14,7 @@
 import socket
 import multiprocessing
 import argparse
+from psutil import Process
 from time import time
 
 
@@ -205,8 +206,9 @@ class ConfigBlaster(object):
         self.recv_buf = len(self.send_request(sock))
 
         with self.print_lock:
-            print("    Thread {0}:\n        Sending {1} requests,".format(
-                tid, self.nrequests))
+            print("\n    Thread {0}:\n"
+                  "        Sending {1} requests".format(tid,
+                                                        self.nrequests))
 
         replies = [None]*self.nrequests
         with timer() as t:

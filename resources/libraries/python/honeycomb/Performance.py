@@ -51,16 +51,18 @@ class Performance(object):
                                  "node {0}, {1}".format(node, stderr))
 
     @staticmethod
-    def run_traffic_script_on_dut(node, script, *args, **kwargs):
+    def run_traffic_script_on_dut(node, script, cores, *args, **kwargs):
         """Copy traffic script over to the specified node and execute with
         the provided arguments.
 
         :param node: Node in topology.
         :param script: Name of the script to execute.
+        :param cores: Number of processor cores to use.
         :param args: Sequential arguments for the script.
         :param kwargs: Named arguments for the script.
         :param node: dict
         :param script: str
+        :param cores: int
         :param args: list
         :param kwargs: dict
         """
@@ -78,5 +80,5 @@ class Performance(object):
         for key, value in kwargs.items():
             arguments += "--{0} {1} ".format(key, value)
 
-        ssh.exec_command("python /tmp/{0} {1}".format(
-            script, arguments), timeout=600)
+        ssh.exec_command("taskset -c 0-{0} python /tmp/{1} {2}".format(
+            cores-1, script, arguments), timeout=600)
