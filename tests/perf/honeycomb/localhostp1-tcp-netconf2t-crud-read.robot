@@ -80,4 +80,14 @@
 | | ${threads}= | Set Variable | ${16}
 | | ${entries}= | Set Variable | ${6250}
 | | Run base operational read performance trial
+
+| | ... | ${node} | ${cycles} | ${threads} | ${entries}
+| TC05: Base operational read with 16 TG threads
+| | [Documentation]
+| | ... | [Ver] Measure response time using single trial throughput test
+| | ... | with 100K requests generated in sixteen threads.
+| | ${cycles}= | Set Variable | ${1}
+| | ${threads}= | Set Variable | ${24}
+| | ${entries}= | Set Variable | ${6250}
+| | Run base operational read performance trial
 | | ... | ${node} | ${cycles} | ${threads} | ${entries}

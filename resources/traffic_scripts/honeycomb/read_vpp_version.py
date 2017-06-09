@@ -14,6 +14,7 @@
 import socket
 import multiprocessing
 import argparse
+from psutil import Process
 from time import time
 
 
@@ -182,7 +183,7 @@ class ConfigBlaster(object):
         except socket.error:
             return "error"
 
-    def send_requests(self, tid, stats):
+    def send_requests(self, tid, stats, cpu):
         """Read entries from the Honeycomb operational data store. This function
         is executed by a worker thread.
 
@@ -190,6 +191,11 @@ class ConfigBlaster(object):
         statistics for the thread are printed out.
         :type tid: int
         """
+
+        # set CPU affinity
+        proc = Process()
+        proc.cpu_affinity([cpu])
+        afi = proc.cpu_affinity()
 
         rqst_stats = {"OK": 0, "Error": 0, "Timeout": 0}
 
@@ -205,8 +211,9 @@ class ConfigBlaster(object):
         self.recv_buf = len(self.send_request(sock))
 
         with self.print_lock:
-            print("    Thread {0}:\n        Sending {1} requests,".format(
-                tid, self.nrequests))
+            print("    Thread {0} running on core {1}:\n"
+                  "        Sending {2} requests".format(tid, afi,
+                                                        self.nrequests))
 
         replies = [None]*self.nrequests
         with timer() as t:
@@ -251,7 +258,18 @@ class ConfigBlaster(object):
         :return: None
         """
 
+        n_cpus = multiprocessing.cpu_count()
         stats_queue = multiprocessing.Queue()
+
+        # If number of requested threads is greater than number of cores, reuse
+        # cores for multiple threads.
+        if self.nthreads > n_cpus:
+            cpus = []
+            a, b = divmod(self.nthreads, n_cpus)
+            for _ in range(a+b):
+                cpus += range(n_cpus)
+        else:
+            cpus = range(n_cpus)
 
         for c in range(self.ncycles):
             self.stats = self.Stats()
@@ -262,7 +280,7 @@ class ConfigBlaster(object):
             thread_stats = []
             for i in range(self.nthreads):
                 t = multiprocessing.Process(target=function,
-                                            args=(i, stats_queue))
+                                            args=(i, stats_queue, cpus.pop()))
                 threads.append(t)
                 t.start()
 
