@@ -40,7 +40,7 @@
 | | ${threads}= | Set Variable | ${1}
 | | ${entries}= | Set Variable | ${100000}
 | | Run base operational read performance trial
-| | ... | ${node} | ${cycles} | ${threads} | ${entries}
+| | ... | ${node} | ${cores} | ${cycles} | ${threads} | ${entries}
 
 | TC02: Base operational read with 2 TG threads
 | | [Documentation]
@@ -50,7 +50,7 @@
 | | ${threads}= | Set Variable | ${2}
 | | ${entries}= | Set Variable | ${50000}
 | | Run base operational read performance trial
-| | ... | ${node} | ${cycles} | ${threads} | ${entries}
+| | ... | ${node} | ${cores} | ${cycles} | ${threads} | ${entries}
 
 | TC03: Base operational read with 4 TG threads
 | | [Documentation]
@@ -60,7 +60,7 @@
 | | ${threads}= | Set Variable | ${4}
 | | ${entries}= | Set Variable | ${25000}
 | | Run base operational read performance trial
-| | ... | ${node} | ${cycles} | ${threads} | ${entries}
+| | ... | ${node} | ${cores} | ${cycles} | ${threads} | ${entries}
 
 | TC04: Base operational read with 8 TG threads
 | | [Documentation]
@@ -70,7 +70,7 @@
 | | ${threads}= | Set Variable | ${8}
 | | ${entries}= | Set Variable | ${12500}
 | | Run base operational read performance trial
-| | ... | ${node} | ${cycles} | ${threads} | ${entries}
+| | ... | ${node} | ${cores} | ${cycles} | ${threads} | ${entries}
 
 | TC05: Base operational read with 16 TG threads
 | | [Documentation]
@@ -80,4 +80,14 @@
 | | ${threads}= | Set Variable | ${16}
 | | ${entries}= | Set Variable | ${6250}
 | | Run base operational read performance trial
-| | ... | ${node} | ${cycles} | ${threads} | ${entries}
+| | ... | ${node} | ${cores} | ${cycles} | ${threads} | ${entries}
+
+| TC06: Base operational read with 24 TG threads
+| | [Documentation]
+| | ... | [Ver] Measure response time using single trial throughput test
+| | ... | with 100K requests generated in sixteen threads.
+| | ${cycles}= | Set Variable | ${1}
+| | ${threads}= | Set Variable | ${24}
+| | ${entries}= | Set Variable | ${3125}
+| | Run base operational read performance trial
+| | ... | ${node} | ${cores} | ${cycles} | ${threads} | ${entries}
