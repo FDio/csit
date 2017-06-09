@@ -15,6 +15,7 @@ import socket
 import multiprocessing
 import argparse
 from time import time
+from os import system
 
 
 class Counter(object):
@@ -158,6 +159,7 @@ class ConfigBlaster(object):
         self.nrequests = nrequests
 
         self.stats = self.Stats()
+        self.total_ok_rqsts = 0
 
         self.print_lock = multiprocessing.Lock()
         self.cond = multiprocessing.Condition()
@@ -205,8 +207,9 @@ class ConfigBlaster(object):
         self.recv_buf = len(self.send_request(sock))
 
         with self.print_lock:
-            print("    Thread {0}:\n        Sending {1} requests,".format(
-                tid, self.nrequests))
+            print("\n    Thread {0}:\n"
+                  "        Sending {1} requests".format(tid,
+                                                        self.nrequests))
 
         replies = [None]*self.nrequests
         with timer() as t:
@@ -251,6 +254,12 @@ class ConfigBlaster(object):
         :return: None
         """
 
+        cores = range(multiprocessing.cpu_count())
+        # If there are not enough cores, start reusing
+        while len(cores) < self.nthreads:
+            cores += cores
+
+        self.total_ok_rqsts = 0
         stats_queue = multiprocessing.Queue()
 
         for c in range(self.ncycles):
@@ -263,6 +272,7 @@ class ConfigBlaster(object):
             for i in range(self.nthreads):
                 t = multiprocessing.Process(target=function,
                                             args=(i, stats_queue))
+                system("taskset -pc {0} {1}".format(t, cores.pop()))
                 threads.append(t)
                 t.start()
 
@@ -291,7 +301,9 @@ class ConfigBlaster(object):
                         (self.stats.get_total_rqsts / t.secs * 100) /
                         self.stats.get_total_rqst_rate))
 
-                self.threads_done = 0
+            self.total_ok_rqsts += self.stats.get_ok_rqsts
+
+            self.threads_done = 0
 
     def add_blaster(self):
         """Run the test."""
