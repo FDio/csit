@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa5d592f_64cfcdb1",
+        "filename": "resources/libraries/robot/performance.robot",
+        "patchSetId": 23
+      },
+      "lineNbr": 913,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2017-06-09T09:21:56Z",
+      "side": 1,
+      "message": "consider putting it as a separate L2 KW for IPv4 ACL",
+      "range": {
+        "startLine": 913,
+        "startChar": 0,
+        "endLine": 913,
+        "endChar": 134
+      },
+      "revId": "fd48017f41b8d0e849ab99bbbe6f55f308d11d70",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa5d592f_24daf578",
+        "filename": "resources/libraries/robot/performance.robot",
+        "patchSetId": 23
+      },
+      "lineNbr": 924,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2017-06-09T09:21:56Z",
+      "side": 1,
+      "message": "prefix needs to be parameterized: start value, increment step.",
+      "range": {
+        "startLine": 924,
+        "startChar": 45,
+        "endLine": 924,
+        "endChar": 59
+      },
+      "revId": "fd48017f41b8d0e849ab99bbbe6f55f308d11d70",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa5d592f_a4d5c544",
+        "filename": "resources/libraries/robot/performance.robot",
+        "patchSetId": 23
+      },
+      "lineNbr": 925,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2017-06-09T09:21:56Z",
+      "side": 1,
+      "message": "dport needs to be parameterized: start value, increment step.",
+      "range": {
+        "startLine": 925,
+        "startChar": 61,
+        "endLine": 925,
+        "endChar": 66
+      },
+      "revId": "fd48017f41b8d0e849ab99bbbe6f55f308d11d70",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa5d592f_e4e3bd31",
+        "filename": "resources/libraries/robot/performance.robot",
+        "patchSetId": 23
+      },
+      "lineNbr": 925,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2017-06-09T09:21:56Z",
+      "side": 1,
+      "message": "prefix needs to be parameterized: start value, increment step.",
+      "range": {
+        "startLine": 925,
+        "startChar": 17,
+        "endLine": 925,
+        "endChar": 34
+      },
+      "revId": "fd48017f41b8d0e849ab99bbbe6f55f308d11d70",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa5d592f_c4d0b955",
+        "filename": "resources/libraries/robot/performance.robot",
+        "patchSetId": 23
+      },
+      "lineNbr": 925,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2017-06-09T09:21:56Z",
+      "side": 1,
+      "message": "sport needs to be parameterized: start value, increment step.",
+      "range": {
+        "startLine": 925,
+        "startChar": 47,
+        "endLine": 925,
+        "endChar": 52
+      },
+      "revId": "fd48017f41b8d0e849ab99bbbe6f55f308d11d70",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
