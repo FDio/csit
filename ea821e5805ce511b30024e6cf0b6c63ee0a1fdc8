@@ -1,0 +1,234 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa5d592f_ec528312",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-06-12T10:47:08Z",
+      "side": 1,
+      "message": "line too long",
+      "range": {
+        "startLine": 51,
+        "startChar": 12,
+        "endLine": 51,
+        "endChar": 81
+      },
+      "revId": "ea821e5805ce511b30024e6cf0b6c63ee0a1fdc8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa5d592f_ec796394",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-06-12T10:47:08Z",
+      "side": 1,
+      "message": "Add to doc",
+      "range": {
+        "startLine": 143,
+        "startChar": 16,
+        "endLine": 143,
+        "endChar": 32
+      },
+      "revId": "ea821e5805ce511b30024e6cf0b6c63ee0a1fdc8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa5d592f_cc6e9fc9",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-06-12T10:47:08Z",
+      "side": 1,
+      "message": "s",
+      "range": {
+        "startLine": 282,
+        "startChar": 17,
+        "endLine": 282,
+        "endChar": 18
+      },
+      "revId": "ea821e5805ce511b30024e6cf0b6c63ee0a1fdc8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa5d592f_4cb98f2d",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 282,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-06-12T10:47:08Z",
+      "side": 1,
+      "message": "output",
+      "range": {
+        "startLine": 282,
+        "startChar": 19,
+        "endLine": 282,
+        "endChar": 24
+      },
+      "revId": "ea821e5805ce511b30024e6cf0b6c63ee0a1fdc8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa5d592f_acaa4bd2",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 307,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-06-12T10:47:08Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 307,
+        "startChar": 8,
+        "endLine": 307,
+        "endChar": 30
+      },
+      "revId": "ea821e5805ce511b30024e6cf0b6c63ee0a1fdc8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa5d592f_8caf87e3",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 308,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-06-12T10:47:08Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 308,
+        "startChar": 8,
+        "endLine": 308,
+        "endChar": 30
+      },
+      "revId": "ea821e5805ce511b30024e6cf0b6c63ee0a1fdc8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa5d592f_cca57f05",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-06-12T10:47:08Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 309,
+        "startChar": 14,
+        "endLine": 309,
+        "endChar": 38
+      },
+      "revId": "ea821e5805ce511b30024e6cf0b6c63ee0a1fdc8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa5d592f_6cac53ee",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 309,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-06-12T10:47:08Z",
+      "side": 1,
+      "message": "for",
+      "range": {
+        "startLine": 309,
+        "startChar": 8,
+        "endLine": 309,
+        "endChar": 13
+      },
+      "revId": "ea821e5805ce511b30024e6cf0b6c63ee0a1fdc8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa5d592f_eca043f6",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-06-12T10:47:08Z",
+      "side": 1,
+      "message": "break / return",
+      "range": {
+        "startLine": 316,
+        "startChar": 16,
+        "endLine": 316,
+        "endChar": 37
+      },
+      "revId": "ea821e5805ce511b30024e6cf0b6c63ee0a1fdc8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa5d592f_0c9cb7bf",
+        "filename": "resources/libraries/python/VppConfigGenerator.py",
+        "patchSetId": 6
+      },
+      "lineNbr": 317,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-06-12T10:47:08Z",
+      "side": 1,
+      "message": "else:",
+      "range": {
+        "startLine": 317,
+        "startChar": 8,
+        "endLine": 317,
+        "endChar": 29
+      },
+      "revId": "ea821e5805ce511b30024e6cf0b6c63ee0a1fdc8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
