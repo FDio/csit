@@ -48,7 +48,7 @@ is available on the PXE bootstrap server in ~testuser/host-setup.
   - `sudo cp boot-screens_txt.cfg /var/lib/tftpboot/ubuntu-installer/amd64/boot-screens/txt.cfg`
   - `sudo cp syslinux.cfg /var/lib/tftpboot/ubuntu-installer/amd64/boot-screens/syslinux.cfg`
 
-### Prepare the PXE bootstrap server (alternative way without NGINX)
+### PREFERED: Prepare the PXE bootstrap server (alternative way without NGINX)
 
   - `sudo apt-get install isc-dhcp-server tftpd-hpa ansible`
   - edit dhcpd.conf and place it to /etc/dhcp/
@@ -102,7 +102,7 @@ While Ubuntu install is running:
 
 When installation is finished:
 
-  - `ssh-copy-id <>`
+  - `ssh-copy-id 10.30.51.x`
   - `cd ~testuser/host-setup/playbooks`
   - edit /etc/ansible/hosts; add the hosts you are installing. *REMOVE ANY HOSTS YOU ARE NOT CURRENTLY INSTALLING*.
 
