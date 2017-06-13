@@ -31,10 +31,6 @@
     apt: name=socat state=present
   - name: install qemu
     apt: name=qemu-system-x86 state=present
-  - name: Old interface naming
-    command: ln -s /dev/null /etc/udev/rules.d/80-net-setup-link.rules
-  - name: update init for old interface naming
-    command: update-initramfs -u
 - hosts: virl
   remote_user: testuser
   sudo: yes
@@ -47,26 +43,28 @@
     copy: src=files/ifup dest=/etc/network/if-up.d/virl owner=root group=root mode=755
   - name: Set VIRL user authorized key
     authorized_key: user=virl key="{{ lookup('file', '/home/testuser/.ssh/id_rsa.pub') }}"
-  - cron:
-    name: QEMU log garbage collector
-    minute: 0
-    hour: 0
-    job: "find /var/log/libvirt/qemu -type f -mtime +14 -name 'instance*.log' -delete"
-  - cron:
-    name: VPP deb package garbage collector
-    minute: 0
-    hour: 0
-    job: "find /tmp -type f -atime +14 -name '*.deb' -delete"
-  - cron:
-    name: VPP rpm package garbage collector
-    minute: 0
-    hour: 0
-    job: "find /tmp -type f -atime +14 -name '*.rpm' -delete"
-  - cron:
-    name: NFS scratch dir garbage collector
-    minute: 0
-    hour: 0
-    job: "find /nfs/scratch/ -type d -mtime +1 -name 'session-*' -exec rm -r "{}" \;"
+  - name: install bridge-utils
+    apt: name=bridge-utils state=present
+  - name: Old interface naming
+    command: ln -s /dev/null /etc/udev/rules.d/80-net-setup-link.rules
+  - name: update init for old interface naming
+    command: update-initramfs -u
+  - name: QEMU log garbage collector
+    cron: minute="0" hour="0"
+          name="QEMU log garbage collector"
+          job="find /var/log/libvirt/qemu -type f -mtime +14 -name 'instance*.log' -delete"
+  - name: VPP deb package garbage collector
+    cron: minute="0" hour="0"
+          name="VPP deb package garbage collector"
+          job="find /tmp -type f -atime +14 -name '*.deb' -delete"
+  - name: VPP rpm package garbage collector
+    cron: minute="0" hour="0"
+          name="VPP rpm package garbage collector"
+          job="find /tmp -type f -atime +14 -name '*.rpm' -delete"
+  - name: NFS scratch dir garbage collector
+    cron: minute="0" hour="0"
+          name="NFS scratch dir garbage collector"
+          job="find /nfs/scratch/ -type d -mtime +1 -name 'session-*' -exec rm -r '{}' \\;"
 - hosts: tg:sut
   remote_user: testuser
   sudo: yes
