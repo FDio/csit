@@ -12,7 +12,7 @@
 # limitations under the License.
 
 *** Settings ***
-| Resource | resources/libraries/robot/performance.robot
+| Resource | resources/libraries/robot/performance_setup.robot
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | PDRCHK
 | ... | NIC_Intel-X520-DA2 | ETH | IP6FWD | SCALE | FIB_2M
@@ -22,7 +22,7 @@
 | Suite Teardown | Tear down 3-node performance topology
 | ...
 | Test Setup | Set up performance test
-| Test Teardown | Performance pdrchk test teardown
+| Test Teardown | Tear down performance pdrchk test
 | ...
 | Documentation | *Reference PDR throughput IPv6 routing verify test cases*
 | ...
@@ -68,7 +68,6 @@
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Run Keyword If | ${get_framesize} < ${1522}
 | | ... | Add no multi seg to all DUTs
-| | And Add heapsize config to all DUTs | 3G
 | | And Apply startup configuration on all VPP DUTs
 | | And Initialize IPv6 forwarding with scaling in 3-node circular topology
 | | ... | ${rts_per_flow}
