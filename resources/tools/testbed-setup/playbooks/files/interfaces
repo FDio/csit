@@ -13,5 +13,5 @@ iface br1 inet static
     gateway {{ ansible_default_ipv4["gateway"] }}
     dns-nameservers 199.204.44.24 199.204.47.54
     bridge_maxwait 0
-    bridge_ports eth0
+    bridge_ports eth0 eth4
     bridge_stp off

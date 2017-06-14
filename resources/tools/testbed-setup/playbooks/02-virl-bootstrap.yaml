@@ -9,107 +9,107 @@
         version: xenial
   - name: copy vsetting file to /etc
     sudo: yes
-    shell: cp /home/virl/virl-bootstrap/vsettings.ini /etc/virl.ini
-  - command: crudini --set /etc/virl.ini DEFAULT hostname {{ hostname }}
-  - command: crudini --set /etc/virl.ini DEFAULT domain_name linuxfoundation.org
-  - command: crudini --set /etc/virl.ini DEFAULT using_dhcp_on_the_public_port False
-  - command: crudini --set /etc/virl.ini DEFAULT public_port dummy3
-  - command: crudini --set /etc/virl.ini DEFAULT Static_IP 10.30.49.28
-  - command: crudini --set /etc/virl.ini DEFAULT public_network 10.30.49.0
-  - command: crudini --set /etc/virl.ini DEFAULT public_netmask {{ ansible_default_ipv4["netmask"] }}
-  - command: crudini --set /etc/virl.ini DEFAULT public_gateway 10.30.49.1
-  - command: crudini --set /etc/virl.ini DEFAULT proxy False
-  - command: crudini --set /etc/virl.ini DEFAULT ntp_server pool.ntp.org
-  - command: crudini --set /etc/virl.ini DEFAULT first_nameserver 199.204.44.24
-  - command: crudini --set /etc/virl.ini DEFAULT second_nameserver 199.204.47.54
-  - command: crudini --set /etc/virl.ini DEFAULT salt_master vsm-md.virl.info
-  - command: crudini --set /etc/virl.ini DEFAULT salt_id {{ hostname }}
-  - command: crudini --set /etc/virl.ini DEFAULT salt_domain linuxfoundation.org
-  - command: crudini --set /etc/virl.ini DEFAULT salt_masterless false
-  - command: crudini --set /etc/virl.ini DEFAULT l2_port eth0
-  - command: crudini --set /etc/virl.ini DEFAULT l2_network {{ virl_l2_network }}
-  - command: crudini --set /etc/virl.ini DEFAULT l2_mask 255.255.255.0
-  - command: crudini --set /etc/virl.ini DEFAULT l2_network_gateway {{ virl_l2_gateway }}
-  - command: crudini --set /etc/virl.ini DEFAULT l2_start_address {{ virl_l2_start }}
-  - command: crudini --set /etc/virl.ini DEFAULT l2_end_address {{ virl_l2_end }}
-  - command: crudini --set /etc/virl.ini DEFAULT l2_address {{ ansible_default_ipv4["address"] }}/24
-  - command: crudini --set /etc/virl.ini DEFAULT first_flat_nameserver 199.204.44.24
-  - command: crudini --set /etc/virl.ini DEFAULT second_flat_nameserver 199.204.47.54
-  - command: crudini --set /etc/virl.ini DEFAULT l2_port2_enabled True
-  - command: crudini --set /etc/virl.ini DEFAULT l2_port2 dummy0
-  - command: crudini --set /etc/virl.ini DEFAULT l2_network2 172.16.2.0/24
-  - command: crudini --set /etc/virl.ini DEFAULT l2_mask2 255.255.255.0
-  - command: crudini --set /etc/virl.ini DEFAULT l2_network_gateway2 172.16.2.1
-  - command: crudini --set /etc/virl.ini DEFAULT l2_start_address2 172.16.2.50
-  - command: crudini --set /etc/virl.ini DEFAULT l2_end_address2 172.16.2.253
-  - command: crudini --set /etc/virl.ini DEFAULT l2_address2 172.16.2.254/24
-  - command: crudini --set /etc/virl.ini DEFAULT first_flat2_nameserver 199.204.44.24
-  - command: crudini --set /etc/virl.ini DEFAULT second_flat2_nameserver 199.204.47.54
-  - command: crudini --set /etc/virl.ini DEFAULT l3_port dummy1
-  - command: crudini --set /etc/virl.ini DEFAULT l3_network 172.16.3.0/24
-  - command: crudini --set /etc/virl.ini DEFAULT l3_mask 255.255.255.0
-  - command: crudini --set /etc/virl.ini DEFAULT l3_network_gateway 172.16.3.1
-  - command: crudini --set /etc/virl.ini DEFAULT l3_floating_start_address 172.16.3.50
-  - command: crudini --set /etc/virl.ini DEFAULT l3_floating_end_address 172.16.3.253
-  - command: crudini --set /etc/virl.ini DEFAULT l3_address 172.16.3.254/24
-  - command: crudini --set /etc/virl.ini DEFAULT first_snat_nameserver 199.204.44.24
-  - command: crudini --set /etc/virl.ini DEFAULT second_snat_nameserver 199.204.47.54
-  - command: crudini --set /etc/virl.ini DEFAULT ramdisk True
-  - command: crudini --set /etc/virl.ini DEFAULT ank 19401
-  - command: crudini --set /etc/virl.ini DEFAULT ank_live 19402
-  - command: crudini --set /etc/virl.ini DEFAULT virl_webservices 19399
-  - command: crudini --set /etc/virl.ini DEFAULT virl_user_management 19400
-  - command: crudini --set /etc/virl.ini DEFAULT virl_apache_port 80
-  - command: crudini --set /etc/virl.ini DEFAULT virl_webmux 19403
-  - command: crudini --set /etc/virl.ini DEFAULT Start_of_serial_port_range 17000
-  - command: crudini --set /etc/virl.ini DEFAULT End_of_serial_port_range 18000
-  - command: crudini --set /etc/virl.ini DEFAULT serial_port 19406
-  - command: crudini --set /etc/virl.ini DEFAULT vnc_port 19407
-  - command: crudini --set /etc/virl.ini DEFAULT location_region US
-  - command: crudini --set /etc/virl.ini DEFAULT vnc False
-  - command: crudini --set /etc/virl.ini DEFAULT guest_account True
-  - command: crudini --set /etc/virl.ini DEFAULT user_list tb4-virl:Cisco1234
-  - command: crudini --set /etc/virl.ini DEFAULT uwmadmin_password Cisco1234
-  - command: crudini --set /etc/virl.ini DEFAULT password password
-  - command: crudini --set /etc/virl.ini DEFAULT mysql_password password
-  - command: crudini --set /etc/virl.ini DEFAULT keystone_service_token fkgjhsdflkjh
-  - command: crudini --set /etc/virl.ini DEFAULT enable_cinder True
-  - command: crudini --set /etc/virl.ini DEFAULT cinder_file True
-  - command: crudini --set /etc/virl.ini DEFAULT cinder_size 20000
-  - command: crudini --set /etc/virl.ini DEFAULT cinder_location /var/lib/cinder/cinder-volumes.lvm
-  - command: crudini --set /etc/virl.ini DEFAULT dummy_int True
-  - command: crudini --set /etc/virl.ini DEFAULT this_node_is_the_controller True
-  - command: crudini --set /etc/virl.ini DEFAULT internalnet_controller_hostname controller
-  - command: crudini --set /etc/virl.ini DEFAULT internalnet_controller_IP 172.16.10.250
-  - command: crudini --set /etc/virl.ini DEFAULT internalnet_port dummy2
-  - command: crudini --set /etc/virl.ini DEFAULT internalnet_IP 172.16.10.250
-  - command: crudini --set /etc/virl.ini DEFAULT internalnet_network 172.16.10.0
-  - command: crudini --set /etc/virl.ini DEFAULT internalnet_netmask 255.255.255.0
-  - command: crudini --set /etc/virl.ini DEFAULT internalnet_gateway 172.16.10.1
-  - command: crudini --set /etc/virl.ini DEFAULT iosv True
-  - command: crudini --set /etc/virl.ini DEFAULT csr1000v True
-  - command: crudini --set /etc/virl.ini DEFAULT iosxrv432 False
-  - command: crudini --set /etc/virl.ini DEFAULT iosxrv52 False
-  - command: crudini --set /etc/virl.ini DEFAULT iosxrv True
-  - command: crudini --set /etc/virl.ini DEFAULT nxosv True
-  - command: crudini --set /etc/virl.ini DEFAULT vpagent True
-  - command: crudini --set /etc/virl.ini DEFAULT iosvl2 True
-  - command: crudini --set /etc/virl.ini DEFAULT asav True
-  - command: crudini --set /etc/virl.ini DEFAULT lxc_server True
-  - command: crudini --set /etc/virl.ini DEFAULT lxc_iperf True
-  - command: crudini --set /etc/virl.ini DEFAULT lxc_routem True
-  - command: crudini --set /etc/virl.ini DEFAULT lxc_ostinato True
-  - command: crudini --set /etc/virl.ini DEFAULT server True
-  - command: crudini --set /etc/virl.ini DEFAULT vmm_mac True
-  - command: crudini --set /etc/virl.ini DEFAULT vmm_win32 True
-  - command: crudini --set /etc/virl.ini DEFAULT vmm_win64 True
-  - command: crudini --set /etc/virl.ini DEFAULT vmm_linux True
-  - command: crudini --set /etc/virl.ini DEFAULT virl_clients True
-  - command: crudini --set /etc/virl.ini DEFAULT ram_overcommit 2
-  - command: crudini --set /etc/virl.ini DEFAULT web_editor True
-  - command: crudini --set /etc/virl.ini DEFAULT mitaka True
-  - command: crudini --set /etc/virl.ini DEFAULT kilo False
-  - command: crudini --set /etc/virl.ini DEFAULT libvirt_cpu_mode host-passthrough
-  - command: crudini --set /etc/virl.ini DEFAULT neutron_bridge_flooding True
+    shell: /usr/bin/install -m 666 /home/virl/virl-bootstrap/vsettings.ini /etc/virl.ini
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT hostname {{ hostname }}
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT domain_name linuxfoundation.org
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT using_dhcp_on_the_public_port False
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT public_port dummy3
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT Static_IP 10.30.49.28
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT public_network 10.30.49.0
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT public_netmask {{ ansible_default_ipv4["netmask"] }}
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT public_gateway 10.30.49.1
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT proxy False
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT ntp_server pool.ntp.org
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT first_nameserver 199.204.44.24
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT second_nameserver 199.204.47.54
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT salt_master vsm-md.virl.info
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT salt_id {{ hostname }}
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT salt_domain linuxfoundation.org
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT salt_masterless false
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT l2_port {{ virl_public_port }}
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT l2_network {{ virl_l2_network }}
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT l2_mask 255.255.255.0
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT l2_network_gateway {{ virl_l2_gateway }}
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT l2_start_address {{ virl_l2_start }}
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT l2_end_address {{ virl_l2_end }}
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT l2_address {{ ansible_default_ipv4["address"] }}/24
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT first_flat_nameserver 199.204.44.24
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT second_flat_nameserver 199.204.47.54
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT l2_port2_enabled True
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT l2_port2 dummy0
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT l2_network2 172.16.2.0/24
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT l2_mask2 255.255.255.0
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT l2_network_gateway2 172.16.2.1
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT l2_start_address2 172.16.2.50
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT l2_end_address2 172.16.2.253
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT l2_address2 172.16.2.254/24
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT first_flat2_nameserver 199.204.44.24
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT second_flat2_nameserver 199.204.47.54
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT l3_port dummy1
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT l3_network 172.16.3.0/24
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT l3_mask 255.255.255.0
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT l3_network_gateway 172.16.3.1
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT l3_floating_start_address 172.16.3.50
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT l3_floating_end_address 172.16.3.253
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT l3_address 172.16.3.254/24
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT first_snat_nameserver 199.204.44.24
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT second_snat_nameserver 199.204.47.54
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT ramdisk True
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT ank 19401
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT ank_live 19402
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT virl_webservices 19399
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT virl_user_management 19400
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT virl_apache_port 80
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT virl_webmux 19403
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT Start_of_serial_port_range 17000
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT End_of_serial_port_range 18000
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT serial_port 19406
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT vnc_port 19407
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT location_region US
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT vnc False
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT guest_account True
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT user_list tb4-virl:Cisco1234
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT uwmadmin_password Cisco1234
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT password password
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT mysql_password password
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT keystone_service_token fkgjhsdflkjh
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT enable_cinder True
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT cinder_file True
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT cinder_size 20000
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT cinder_location /var/lib/cinder/cinder-volumes.lvm
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT dummy_int True
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT this_node_is_the_controller True
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT internalnet_controller_hostname controller
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT internalnet_controller_IP 172.16.10.250
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT internalnet_port dummy2
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT internalnet_IP 172.16.10.250
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT internalnet_network 172.16.10.0
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT internalnet_netmask 255.255.255.0
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT internalnet_gateway 172.16.10.1
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT iosv True
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT csr1000v True
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT iosxrv432 False
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT iosxrv52 False
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT iosxrv True
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT nxosv True
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT vpagent True
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT iosvl2 True
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT asav True
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT lxc_server True
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT lxc_iperf True
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT lxc_routem True
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT lxc_ostinato True
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT server True
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT vmm_mac True
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT vmm_win32 True
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT vmm_win64 True
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT vmm_linux True
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT virl_clients True
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT ram_overcommit 2
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT web_editor True
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT mitaka True
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT kilo False
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT libvirt_cpu_mode host-passthrough
+  - command: crudini --inplace --set /etc/virl.ini DEFAULT neutron_bridge_flooding True
   - name: copy vinstall bootstrap wrapper script
     template: src=files/virl/virl-bootstrap-wrapper dest=/home/virl/virl-bootstrap/virl-bootstrap-wrapper owner=virl group=virl mode=775
