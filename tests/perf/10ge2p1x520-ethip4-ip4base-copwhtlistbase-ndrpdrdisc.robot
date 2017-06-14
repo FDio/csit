@@ -12,7 +12,7 @@
 # limitations under the License.
 
 *** Settings ***
-| Resource | resources/libraries/robot/performance.robot
+| Resource | resources/libraries/robot/performance_setup.robot
 | Library | resources.libraries.python.Cop
 | Library | resources.libraries.python.IPv4Setup.Dut | ${nodes['DUT1']}
 | ... | WITH NAME | dut1_v4
