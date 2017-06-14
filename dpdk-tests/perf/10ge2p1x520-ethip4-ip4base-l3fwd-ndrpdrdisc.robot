@@ -12,7 +12,7 @@
 # limitations under the License.
 
 *** Settings ***
-| Resource | resources/libraries/robot/performance.robot
+| Resource | resources/libraries/robot/performance_setup.robot
 | Resource | resources/libraries/robot/DPDK/default.robot
 | Library | resources.libraries.python.topology.Topology
 | Library | resources.libraries.python.NodePath

@@ -12,7 +12,7 @@
 # limitations under the License.
 
 *** Settings ***
-| Resource | resources/libraries/robot/performance.robot
+| Resource | resources/libraries/robot/performance_setup.robot
 | Library | resources.libraries.python.InterfaceUtil
 | Library | resources.libraries.python.NodePath
 | ...
@@ -24,7 +24,7 @@
 | Suite Teardown | Tear down 3-node performance topology
 | ...
 | Test Setup | Set up performance test
-| Test Teardown | Performance pdrchk test teardown
+| Test Teardown | Tear down performance pdrchk test
 | ...
 | Documentation | *Reference PDR throughput L2XC verify test cases*
 | ...
