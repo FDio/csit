@@ -12,14 +12,14 @@
 # limitations under the License.
 
 *** Settings ***
-| Resource | resources/libraries/robot/performance.robot
+| Resource | resources/libraries/robot/performance_setup.robot
 | Library | resources.libraries.python.QemuUtils
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDRDISC
 | ... | NIC_Intel-X520-DA2 | ETH | L2BDMACLRN | BASE | VHOST | VM
 | Suite Setup | Set up 3-node performance topology with DUT's NIC model
 | ... | L2 | Intel-X520-DA2
 | Suite Teardown | Tear down 3-node performance topology
-| Test Setup | Configure all DUTs before test
+| Test Setup | Set up performance test
 | Test Teardown | Run Keywords
 | ... | Show Bridge Domain Data On All DUTs
 | ... | AND | Tear down performance test with vhost and VM with dpdk-testpmd

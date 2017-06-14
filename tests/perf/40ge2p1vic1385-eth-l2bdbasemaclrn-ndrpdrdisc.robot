@@ -12,7 +12,7 @@
 # limitations under the License.
 
 *** Settings ***
-| Resource | resources/libraries/robot/performance.robot
+| Resource | resources/libraries/robot/performance_setup.robot
 | Library | resources.libraries.python.NodePath
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDRDISC
@@ -293,7 +293,7 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
-| | And Add all PCI devices to all DUTs
+| | And Add PCI devices to DUTs in 3-node single link topology
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | And Initialize L2 bridge domain in 3-node circular topology
@@ -318,7 +318,7 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
-| | And Add all PCI devices to all DUTs
+| | And Add PCI devices to DUTs in 3-node single link topology
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | And Initialize L2 bridge domain in 3-node circular topology
@@ -343,7 +343,7 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
-| | And Add all PCI devices to all DUTs
+| | And Add PCI devices to DUTs in 3-node single link topology
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | And Initialize L2 bridge domain in 3-node circular topology
