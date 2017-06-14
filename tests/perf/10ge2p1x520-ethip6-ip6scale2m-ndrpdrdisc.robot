@@ -12,7 +12,7 @@
 # limitations under the License.
 
 *** Settings ***
-| Resource | resources/libraries/robot/performance.robot
+| Resource | resources/libraries/robot/performance_setup.robot
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDRDISC
 | ... | NIC_Intel-X520-DA2 | ETH | IP6FWD | SCALE | FIB_2M
@@ -72,7 +72,6 @@
 | | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Add no multi seg to all DUTs
-| | And Add heapsize config to all DUTs | 3G
 | | And Apply startup configuration on all VPP DUTs
 | | And Initialize IPv6 forwarding with scaling in 3-node circular topology
 | | ... | ${rts_per_flow}
@@ -95,7 +94,6 @@
 | | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Add no multi seg to all DUTs
-| | And Add heapsize config to all DUTs | 3G
 | | And Apply startup configuration on all VPP DUTs
 | | And Initialize IPv6 forwarding with scaling in 3-node circular topology
 | | ... | ${rts_per_flow}
@@ -119,7 +117,6 @@
 | | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Add no multi seg to all DUTs
-| | And Add heapsize config to all DUTs | 3G
 | | And Apply startup configuration on all VPP DUTs
 | | And Initialize IPv6 forwarding with scaling in 3-node circular topology
 | | ... | ${rts_per_flow}
@@ -142,7 +139,6 @@
 | | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Add no multi seg to all DUTs
-| | And Add heapsize config to all DUTs | 3G
 | | And Apply startup configuration on all VPP DUTs
 | | And Initialize IPv6 forwarding with scaling in 3-node circular topology
 | | ... | ${rts_per_flow}
@@ -165,7 +161,6 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
-| | And Add heapsize config to all DUTs | 3G
 | | And Apply startup configuration on all VPP DUTs
 | | And Initialize IPv6 forwarding with scaling in 3-node circular topology
 | | ... | ${rts_per_flow}
@@ -187,7 +182,6 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
-| | And Add heapsize config to all DUTs | 3G
 | | And Apply startup configuration on all VPP DUTs
 | | And Initialize IPv6 forwarding with scaling in 3-node circular topology
 | | ... | ${rts_per_flow}
@@ -211,7 +205,6 @@
 | | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Add no multi seg to all DUTs
-| | And Add heapsize config to all DUTs | 3G
 | | And Apply startup configuration on all VPP DUTs
 | | And Initialize IPv6 forwarding with scaling in 3-node circular topology
 | | ... | ${rts_per_flow}
@@ -234,7 +227,6 @@
 | | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Add no multi seg to all DUTs
-| | And Add heapsize config to all DUTs | 3G
 | | And Apply startup configuration on all VPP DUTs
 | | And Initialize IPv6 forwarding with scaling in 3-node circular topology
 | | ... | ${rts_per_flow}
@@ -258,7 +250,6 @@
 | | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Add no multi seg to all DUTs
-| | And Add heapsize config to all DUTs | 3G
 | | And Apply startup configuration on all VPP DUTs
 | | And Initialize IPv6 forwarding with scaling in 3-node circular topology
 | | ... | ${rts_per_flow}
@@ -281,7 +272,6 @@
 | | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Add no multi seg to all DUTs
-| | And Add heapsize config to all DUTs | 3G
 | | And Apply startup configuration on all VPP DUTs
 | | And Initialize IPv6 forwarding with scaling in 3-node circular topology
 | | ... | ${rts_per_flow}
@@ -304,7 +294,6 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
-| | And Add heapsize config to all DUTs | 3G
 | | And Apply startup configuration on all VPP DUTs
 | | And Initialize IPv6 forwarding with scaling in 3-node circular topology
 | | ... | ${rts_per_flow}
@@ -326,7 +315,6 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
-| | And Add heapsize config to all DUTs | 3G
 | | And Apply startup configuration on all VPP DUTs
 | | And Initialize IPv6 forwarding with scaling in 3-node circular topology
 | | ... | ${rts_per_flow}
@@ -350,7 +338,6 @@
 | | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Add no multi seg to all DUTs
-| | And Add heapsize config to all DUTs | 3G
 | | And Apply startup configuration on all VPP DUTs
 | | And Initialize IPv6 forwarding with scaling in 3-node circular topology
 | | ... | ${rts_per_flow}
@@ -373,7 +360,6 @@
 | | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Add no multi seg to all DUTs
-| | And Add heapsize config to all DUTs | 3G
 | | And Apply startup configuration on all VPP DUTs
 | | And Initialize IPv6 forwarding with scaling in 3-node circular topology
 | | ... | ${rts_per_flow}
@@ -397,7 +383,6 @@
 | | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Add no multi seg to all DUTs
-| | And Add heapsize config to all DUTs | 3G
 | | And Apply startup configuration on all VPP DUTs
 | | And Initialize IPv6 forwarding with scaling in 3-node circular topology
 | | ... | ${rts_per_flow}
@@ -420,7 +405,6 @@
 | | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Add no multi seg to all DUTs
-| | And Add heapsize config to all DUTs | 3G
 | | And Apply startup configuration on all VPP DUTs
 | | And Initialize IPv6 forwarding with scaling in 3-node circular topology
 | | ... | ${rts_per_flow}
@@ -443,7 +427,6 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
-| | And Add heapsize config to all DUTs | 3G
 | | And Apply startup configuration on all VPP DUTs
 | | And Initialize IPv6 forwarding with scaling in 3-node circular topology
 | | ... | ${rts_per_flow}
@@ -465,7 +448,6 @@
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
-| | And Add heapsize config to all DUTs | 3G
 | | And Apply startup configuration on all VPP DUTs
 | | And Initialize IPv6 forwarding with scaling in 3-node circular topology
 | | ... | ${rts_per_flow}
