@@ -12,7 +12,7 @@
 # limitations under the License.
 
 *** Settings ***
-| Resource | resources/libraries/robot/performance.robot
+| Resource | resources/libraries/robot/performance_setup.robot
 | Resource | resources/libraries/robot/lisp/lisp_static_adjacency.robot
 | Variables | resources/test_data/lisp/performance/lisp_static_adjacency.py
 | ...
