@@ -14,6 +14,6 @@
 #By default, let's not touch the VIRL host. Any (unintended) configuration change on VIRL host
 #is a recipe for disaster.
 #[virl]
-#10.30.51.28 hostname=t4-virl1 virl_l2_start=10.30.52.2 virl_l2_end=10.30.52.253 ansible_python_interpreter=/usr/bin/python2.7 virl_l2_gateway=10.30.52.1 virl_l2_network=10.30.52.0/24
-#10.30.51.29 hostname=t4-virl2 virl_l2_start=10.30.53.2 virl_l2_end=10.30.53.253 ansible_python_interpreter=/usr/bin/python2.7 virl_l2_gateway=10.30.53.1 virl_l2_network=10.30.53.0/24
-#10.30.51.30 hostname=t4-virl3 virl_l2_start=10.30.54.2 virl_l2_end=10.30.54.253 ansible_python_interpreter=/usr/bin/python2.7 virl_l2_gateway=10.30.54.1 virl_l2_network=10.30.54.0/24
+#10.30.51.28 hostname=t4-virl1 virl_l2_start=10.30.52.2 virl_l2_end=10.30.52.253 ansible_python_interpreter=/usr/bin/python2.7 virl_l2_gateway=10.30.52.1 virl_l2_network=10.30.52.0/24 virl_l2_ip=10.30.52.254 virl_public_port=eth0
+#10.30.51.29 hostname=t4-virl2 virl_l2_start=10.30.53.2 virl_l2_end=10.30.53.253 ansible_python_interpreter=/usr/bin/python2.7 virl_l2_gateway=10.30.53.1 virl_l2_network=10.30.53.0/24 virl_l2_ip=10.30.53.254 virl_public_port=eth4
+#10.30.51.30 hostname=t4-virl3 virl_l2_start=10.30.54.2 virl_l2_end=10.30.54.253 ansible_python_interpreter=/usr/bin/python2.7 virl_l2_gateway=10.30.54.1 virl_l2_network=10.30.54.0/24 virl_l2_ip=10.30.54.254 virl_public_port=eth0

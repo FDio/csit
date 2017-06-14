@@ -120,7 +120,7 @@ When installation is finished:
 
     ~~~
     [virl]
-    10.30.51.28 hostname=t4-virl1 virl_l2_start=10.30.51.31 virl_l2_end=10.30.51.105
+    10.30.51.28 hostname=t4-virl1 virl_l2_start=10.30.52.2 virl_l2_end=10.30.52.253 virl_l2_network=10.30.52.0/24 virl_l2_ip=10.30.52.254 virl_public_port=eth0
     ~~~
 
   - `ansible-playbook --ask-sudo-pass 01-host-setup.yaml`
