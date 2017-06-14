@@ -70,7 +70,7 @@
   remote_user: virl
   tasks:
   - name: Create VIRL project
-    shell: virl_uwm_client project-create --name tb4-virl --enabled True --user-password Cisco1234 -i 400 -r 1024000 -c 500
+    shell: virl_uwm_client project-edit --name tb4-virl --enabled True  -i 400 -r 1024000 -c 500
     ignore_errors: true
 #  - name: Delete VIRL project user
 #    shell: virl_uwm_client user-delete --name tb4-virl

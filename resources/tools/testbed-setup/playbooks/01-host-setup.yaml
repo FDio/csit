@@ -43,6 +43,8 @@
     user: name=virl shell=/bin/bash comment="VIRL user" password="$6$mJPlK5FKLar6$xxXPP0LRhC7T1yhHtym18Z3nKZweTtfTxzi1WpvVHJ0U/Em1UWcHqfMhRApFp0rsY9jHRuL6FfeFbKPN..uDK."
   - name: Add VIRL user to sudoers
     copy: src=files/sudoers_virl dest=/etc/sudoers.d/virl owner=root group=root mode=660
+  - name: Add post up for additional address
+    copy: src=files/ifup dest=/etc/network/if-up.d/virl owner=root group=root mode=755
   - name: Set VIRL user authorized key
     authorized_key: user=virl key="{{ lookup('file', '/home/testuser/.ssh/id_rsa.pub') }}"
   - cron:
