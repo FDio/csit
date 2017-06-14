@@ -4,8 +4,24 @@
   tasks:
   - name: Create server image directory
     file: path=/home/virl/virl-server-image state=directory mode=0755
-  - name: Copy server image
-    copy: src=files/virl-server-image/server.qcow2 dest=/home/virl/virl-server-image/server.qcow2 mode=644
+  - name: Copy UBUNTU server image
+    copy: src=/home/virl/virl-server-image/packer-csit-ubuntu-16.04.1_2017-02-23_1.8-qemu dest=/home/virl/virl-server-image/packer-csit-ubuntu-16.04.1_2017-02-23_1.8-qemu owner=virl group=virl mode=644
+  - name: Copy CENTOS server image
+    copy: src=/home/virl/virl-server-image/packer-csit-centos-7.3-1611_2017-02-23_1.4-qemu dest=/home/virl/virl-server-image/packer-csit-centos-7.3-1611_2017-02-23_1.4-qemu owner=virl group=virl mode=644
 # TODO: Need to make this conditional, and find a good source for the image.
-  - name: Import server image into glance
-    shell: virl_uwm_client image-create --subtype server --version java-nested --release 14.04.03 --image-on-server /home/virl/virl-server-image/server.qcow2
+  - name: Import UBUNTU server image into glance
+    shell: virl_uwm_client image-create --subtype server --release csit-ubuntu-16.04.1_2017-02-23_1.8 --image-on-server /home/virl/virl-server-image/packer-csit-ubuntu-16.04.1_2017-02-23_1.8-qemu
+  - name: Import CENTOS server image into glance
+    shell: virl_uwm_client image-create --subtype server --release csit-centos-7.3-1611_2017-02-23_1.4 --image-on-server /home/virl/virl-server-image/packer-csit-centos-7.3-1611_2017-02-23_1.4-qemu
+- hosts: virl
+  remote_user: testuser
+  sudo: yes
+  tasks:
+  - name: Create common directory
+    file: path=/nfs/common state=directory mode=0755
+  - name: Create Nested VM directory
+    file: path=/nfs/common/nested-vm state=directory mode=0755
+  - name: Copy Nested VM image
+    copy: src=/home/virl/virl-server-image/csit-nested-1.6.img dest=/nfs/common/nested-vm/csit-nested-1.6.img owner=virl group=virl mode=644
+  - name: NFS symlink
+    shell: ln -s /nfs/common/nested-vm-current.img.disabled /nfs/common/nested-vm/csit-nested-1.6.img
