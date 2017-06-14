@@ -12,7 +12,7 @@
 # limitations under the License.
 
 *** Settings ***
-| Resource | resources/libraries/robot/performance.robot
+| Resource | resources/libraries/robot/performance_setup.robot
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | PDRCHK
 | ... | NIC_Intel-X520-DA2 | L2XCFWD | ENCAP | VXLAN | L2OVRLAY | IP4UNRLAY
@@ -22,7 +22,7 @@
 | Suite Teardown | Tear down 3-node performance topology
 | ...
 | Test Setup | Set up performance test
-| Test Teardown | Performance pdrchk test teardown
+| Test Teardown | Tear down performance pdrchk test
 | ...
 | Documentation | *Reference PDR throughput L2XC with VXLANoIPv4 verify test\
 | ... |  cases*

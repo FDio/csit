@@ -12,7 +12,7 @@
 # limitations under the License.
 
 *** Settings ***
-| Resource | resources/libraries/robot/performance.robot
+| Resource | resources/libraries/robot/performance_setup.robot
 | Resource | resources/libraries/robot/ipsec.robot
 | Resource | resources/libraries/robot/lisp/lispgpe.robot
 | ...

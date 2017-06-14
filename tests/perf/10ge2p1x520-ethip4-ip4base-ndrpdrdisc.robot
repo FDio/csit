@@ -12,7 +12,7 @@
 # limitations under the License.
 
 *** Settings ***
-| Resource | resources/libraries/robot/performance.robot
+| Resource | resources/libraries/robot/performance_setup.robot
 | Library | resources.libraries.python.topology.Topology
 | Library | resources.libraries.python.NodePath
 | Library | resources.libraries.python.InterfaceUtil
@@ -457,7 +457,7 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
-| | And Add all PCI devices to all DUTs
+| | And Add PCI devices to DUTs in 3-node single link topology
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | And Initialize IPv4 forwarding in 3-node circular topology
@@ -479,7 +479,7 @@
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
-| | And Add all PCI devices to all DUTs
+| | And Add PCI devices to DUTs in 3-node single link topology
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | And Initialize IPv4 forwarding in 3-node circular topology
