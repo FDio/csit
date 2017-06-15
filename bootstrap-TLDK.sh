@@ -33,7 +33,7 @@ SSH_OPTIONS="-i ${VIRL_PKEY} -o StrictHostKeyChecking=no -o UserKnownHostsFile=/
 
 DPDK_VERSION=16.11.1
 DPDK_DIR=dpdk
-DPDK_PACKAGE=${DPDK_DIR}.tar.xz
+DPDK_PACKAGE=${DPDK_DIR}"-"${DPDK_VERSION}.tar.xz
 
 function ssh_do() {
     echo
@@ -112,7 +112,7 @@ done
 VIRL_DIR_LOC="/tmp"
 TLDK_TAR_FILE="tldk_depends.tar.gz"
 
-tar zcf ${TLDK_TAR_FILE} dpdk-${DPDK_VERSION}.tar.xz ./tldk/ \
+tar zcf ${TLDK_TAR_FILE} ${DPDK_PACKAGE} ./tldk/ \
     ./TLDK-tests/tldk_testconfig/ ./TLDK-tests/tldk_deplibs/
 
 cat ${VIRL_PKEY}
