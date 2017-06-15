@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -x
+
 DPDK_VERSION=dpdk
 
 ROOTDIR=/tmp/TLDK-testing
@@ -8,13 +10,13 @@ DPDK_DIR=dpdk
 
 # compile and install the DPDK
 cd ${ROOTDIR}
-tar xvf dpdk-16.11.1.tar.xz
-mv dpdk-stable-16.11.1 dpdk
+sudo tar xvf dpdk-16.11.1.tar.xz
+sudo mv dpdk-stable-16.11.1 dpdk
 echo $PWD
 echo ${DPDK_PACKAGE}
 cd ./${DPDK_DIR}
-sed -i 's/^CONFIG_RTE_LIBRTE_PMD_PCAP=n/CONFIG_RTE_LIBRTE_PMD_PCAP=y/g' ./config/common_base
-make install T=x86_64-native-linuxapp-gcc
+sudo sed -i 's/^CONFIG_RTE_LIBRTE_PMD_PCAP=n/CONFIG_RTE_LIBRTE_PMD_PCAP=y/g' ./config/common_base
+sudo make install T=x86_64-native-linuxapp-gcc
 cd ${PWDDIR}
 
 # compile the TLDK
@@ -24,11 +26,13 @@ cd ${ROOTDIR}/tldk
 make all
 cd ${PWDDIR}
 
-sudo killall -9 udpfwd 2>/dev/null
+sudo killall -9 l4fwd 2>/dev/null
 
-pid=`pgrep udpfwd`
+sleep 5
+
+pid=`pgrep l4fwd`
 if [ "$pid" != "" ]; then
-    echo "terminate the udpfwd failed!"
+    echo "terminate the l4fwd failed!"
     exit 1
 fi
 
@@ -43,8 +47,8 @@ if [ ${SYS_HUGEPAGE} -lt 1024 ]; then
         MOUNT=$(mount | grep /mnt/huge)
     done
 
-    echo 1024 > /sys/devices/system/node/node0/hugepages/hugepages-2048kB/nr_hugepages
-    echo 1024 > /sys/devices/system/node/node1/hugepages/hugepages-2048kB/nr_hugepages
+    echo 1024 | sudo tee /sys/devices/system/node/node0/hugepages/hugepages-2048kB/nr_hugepages
+    echo 1024 | sudo tee /sys/devices/system/node/node1/hugepages/hugepages-2048kB/nr_hugepages
 
     sudo mkdir -p /mnt/huge
     sudo mount -t hugetlbfs nodev /mnt/huge/
