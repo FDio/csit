@@ -1,0 +1,165 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa5d592f_86e2bb01",
+        "filename": "resources/libraries/python/Memif.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-06-15T11:32:32Z",
+      "side": 1,
+      "message": "returns",
+      "range": {
+        "startLine": 37,
+        "startChar": 9,
+        "endLine": 37,
+        "endChar": 15
+      },
+      "revId": "870a91a8ef99461e1235e75d9c373595d4beb2de",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa5d592f_46e4c30c",
+        "filename": "resources/libraries/python/Memif.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-06-15T11:32:32Z",
+      "side": 1,
+      "message": "use more specific Exception",
+      "range": {
+        "startLine": 49,
+        "startChar": 8,
+        "endLine": 49,
+        "endChar": 14
+      },
+      "revId": "870a91a8ef99461e1235e75d9c373595d4beb2de",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa5d592f_26f1cfcd",
+        "filename": "resources/libraries/python/Memif.py",
+        "patchSetId": 14
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-06-15T11:32:32Z",
+      "side": 1,
+      "message": "returns",
+      "range": {
+        "startLine": 61,
+        "startChar": 9,
+        "endLine": 61,
+        "endChar": 15
+      },
+      "revId": "870a91a8ef99461e1235e75d9c373595d4beb2de",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa5d592f_06eecbec",
+        "filename": "resources/libraries/robot/memif.robot",
+        "patchSetId": 14
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-06-15T11:32:32Z",
+      "side": 1,
+      "message": "variables",
+      "range": {
+        "startLine": 30,
+        "startChar": 51,
+        "endLine": 30,
+        "endChar": 59
+      },
+      "revId": "870a91a8ef99461e1235e75d9c373595d4beb2de",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa5d592f_e6ba97e0",
+        "filename": "resources/libraries/robot/memif.robot",
+        "patchSetId": 14
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-06-15T11:32:32Z",
+      "side": 1,
+      "message": "Add an empty line below",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 30
+      },
+      "revId": "870a91a8ef99461e1235e75d9c373595d4beb2de",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa5d592f_c6bf93cf",
+        "filename": "resources/libraries/robot/memif.robot",
+        "patchSetId": 14
+      },
+      "lineNbr": 66,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-06-15T11:32:32Z",
+      "side": 1,
+      "message": "Initialize L2 xconnect for \u0027${nr}\u0027 memif pairs in 3-node circular topology \\|",
+      "range": {
+        "startLine": 66,
+        "startChar": 13,
+        "endLine": 66,
+        "endChar": 75
+      },
+      "revId": "870a91a8ef99461e1235e75d9c373595d4beb2de",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa5d592f_66cea785",
+        "filename": "tests/perf/10ge2p1x520-eth-l2xcbase-eth-2memif-1lxc-ndrpdrdisc.robot",
+        "patchSetId": 14
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-06-15T11:32:32Z",
+      "side": 1,
+      "message": "Consider creating Setup and Teardown keywords",
+      "range": {
+        "startLine": 26,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 57
+      },
+      "revId": "870a91a8ef99461e1235e75d9c373595d4beb2de",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
