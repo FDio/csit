@@ -68,7 +68,6 @@
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Run Keyword If | ${get_framesize} < ${1522}
 | | ... | Add no multi seg to all DUTs
-| | And Add heapsize config to all DUTs | 3G
 | | And Apply startup configuration on all VPP DUTs
 | | And Initialize IPv6 forwarding with scaling in 3-node circular topology
 | | ... | ${rts_per_flow}
