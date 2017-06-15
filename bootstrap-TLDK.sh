@@ -33,7 +33,7 @@ SSH_OPTIONS="-i ${VIRL_PKEY} -o StrictHostKeyChecking=no -o UserKnownHostsFile=/
 
 DPDK_VERSION=16.11.1
 DPDK_DIR=dpdk
-DPDK_PACKAGE=${DPDK_DIR}.tar.xz
+DPDK_PACKAGE=${DPDK_DIR}"-"${DPDK_VERSION}.tar.xz
 
 function ssh_do() {
     echo
