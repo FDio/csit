@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -x
+
 ROOTDIR=/tmp/TLDK-testing
 PWDDIR=$(pwd)
 
