@@ -16,6 +16,7 @@
 | Resource | resources/libraries/robot/bridge_domain.robot
 | Resource | resources/libraries/robot/testing_path.robot
 | Resource | resources/libraries/robot/qemu.robot
+| Resource | resources/libraries/robot/interfaces.robot
 | Library  | resources.libraries.python.Trace
 | Force Tags | HW_ENV | VM_ENV | SKIP_VPP_PATCH
 | Test Setup | Set up functional test
@@ -46,7 +47,7 @@
 | | ... | [Top] TG=DUT1; TG-DUT1-DUT2-TG. [Enc] None. [Cfg] Discovered \
 | | ... | active interfaces. [Ver] Report active interfaces on DUT. [Ref]
 | | [Tags] | 3_NODE_DOUBLE_LINK_TOPO | 3_NODE_SINGLE_LINK_TOPO
-| | Report VPP interfaces | ${nodes['DUT1']}
+| | VPP reports interfaces through VAT on '${nodes['DUT1']}'
 
 | TC02: DUT with L2BD (MAC learning) switch ICMPv4 between two TG links
 | | [Documentation]

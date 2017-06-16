@@ -12,16 +12,16 @@
 # limitations under the License.
 
 *** Settings ***
-| Documentation | Keywords to send and receive different types of traffic \
-| ...           | through L2 network.
 | Library | resources.libraries.python.topology.Topology
 | Library | resources.libraries.python.TrafficScriptExecutor
+| Documentation | Keywords to send and receive different types of traffic \
+| ... | through L2 network.
 
 *** Keywords ***
 | Send ICMP packet and verify received packet
 | | [Documentation] | Send ICMPv4/ICMPv6 echo request from source interface to \
-| | ...             | destination interface. Packet can be set with Dot1q or
-| | ...             | Dot1ad tag(s) when required.
+| | ... | destination interface. Packet can be set with Dot1q or
+| | ... | Dot1ad tag(s) when required.
 | | ...
 | | ... | *Arguments:*
 | | ...
@@ -48,20 +48,23 @@
 | | ...
 | | ... | \| Send ICMP packet and verify received packet \| ${nodes['TG']} \
 | | ... | \| ${tg_to_dut_if1} \| ${tg_to_dut_if2} \|
-| | ... | \| Send ICMP packet and verify received packet \| ${nodes['TG']} \| ${tg_to_dut1} \
-| | ... | \| ${tg_to_dut2} \| encaps=Dot1q \| vlan1=100 \|
-| | ... | \| Send ICMP packet and verify received packet \| ${nodes['TG']} \| ${tg_to_dut1} \
-| | ... | \| ${tg_to_dut2} \| encaps=Dot1ad \| vlan1=110 \| vlan2=220 \|
-| | ... | \| Send ICMP packet and verify received packet \| ${nodes['TG']} \| ${tg_to_dut1} \
-| | ... | \| ${tg_to_dut2} \| encaps=Dot1q \| vlan1=110 \| encaps_rx=Dot1q \|
-| | ... | \| Send ICMP packet and verify received packet \| ${nodes['TG']} \| ${tg_to_dut1} \
-| | ... | \| ${tg_to_dut2} \| encaps=Dot1q \| vlan1=110 \| encaps_rx=Dot1q \
-| | ... | \| vlan1_rx=120 \|
+| | ... | \| Send ICMP packet and verify received packet \| ${nodes['TG']} \
+| | ... | \| ${tg_to_dut1} \| ${tg_to_dut2} \| encaps=Dot1q \| vlan1=100 \|
+| | ... | \| Send ICMP packet and verify received packet \| ${nodes['TG']} \
+| | ... | \| ${tg_to_dut1} \| ${tg_to_dut2} \| encaps=Dot1ad \| vlan1=110 \
+| | ... | \| vlan2=220 \|
+| | ... | \| Send ICMP packet and verify received packet \| ${nodes['TG']} \
+| | ... | \| ${tg_to_dut1} \| ${tg_to_dut2} \| encaps=Dot1q \| vlan1=110 \
+| | ... | \| encaps_rx=Dot1q \|
+| | ... | \| Send ICMP packet and verify received packet \| ${nodes['TG']} \
+| | ... | \| ${tg_to_dut1} \| ${tg_to_dut2} \| encaps=Dot1q \| vlan1=110 \
+| | ... | \| encaps_rx=Dot1q \| vlan1_rx=120 \|
 | | ...
 | | [Arguments] | ${tg_node} | ${src_int} | ${dst_int}
 | | ... | ${src_ip}=192.168.100.1 | ${dst_ip}=192.168.100.2 | ${encaps}=${EMPTY}
 | | ... | ${vlan1}=${EMPTY} | ${vlan2}=${EMPTY} | ${encaps_rx}=${EMPTY}
 | | ... | ${vlan1_rx}=${EMPTY} | ${vlan2_rx}=${EMPTY}
+| | ...
 | | ${src_mac}= | Get Interface Mac | ${tg_node} | ${src_int}
 | | ${dst_mac}= | Get Interface Mac | ${tg_node} | ${dst_int}
 | | ${src_int_name}= | Get interface name | ${tg_node} | ${src_int}
@@ -69,26 +72,26 @@
 | | ${args}= | Traffic Script Gen Arg | ${dst_int_name} | ${src_int_name}
 | | ... | ${src_mac} | ${dst_mac} | ${src_ip} | ${dst_ip}
 | | ${args}= | Run Keyword If | '${encaps}' == '${EMPTY}'
-| | | ...                     | Set Variable | ${args}
+| | | ... | Set Variable | ${args}
 | | ... | ELSE | Catenate | ${args} | --encaps ${encaps} | --vlan1 ${vlan1}
 | | ${args}= | Run Keyword If | '${vlan2}' == '${EMPTY}'
-| | | ...                     | Set Variable | ${args}
+| | | ... | Set Variable | ${args}
 | | ... | ELSE | Catenate | ${args} | --vlan2 ${vlan2}
 | | ${args}= | Run Keyword If | '${encaps_rx}' == '${EMPTY}'
-| | | ...                     | Set Variable | ${args}
+| | | ... | Set Variable | ${args}
 | | ... | ELSE | Catenate | ${args} | --encaps_rx ${encaps_rx}
 | | ${args}= | Run Keyword If | '${vlan1_rx}' == '${EMPTY}'
-| | | ...                     | Set Variable | ${args}
+| | | ... | Set Variable | ${args}
 | | ... | ELSE | Catenate | ${args} | --vlan1_rx ${vlan1_rx}
 | | ${args}= | Run Keyword If | '${vlan2_rx}' == '${EMPTY}'
-| | | ...                     | Set Variable | ${args}
+| | | ... | Set Variable | ${args}
 | | ... | ELSE | Catenate | ${args} | --vlan2_rx ${vlan2_rx}
 | | Run Traffic Script On Node | send_ip_icmp.py | ${tg_node} | ${args}
 
 | ICMP packet transmission should fail
 | | [Documentation] | Send ICMPv4/ICMPv6 echo request from source interface to
-| | ...             | destination interface and expect failure with
-| | ...             | ICMP echo Rx timeout error message.
+| | ... | destination interface and expect failure with
+| | ... | ICMP echo Rx timeout error message.
 | | ...
 | | ... | *Arguments:*
 | | ...
@@ -111,6 +114,7 @@
 | | ...
 | | [Arguments] | ${tg_node} | ${src_int} | ${dst_int} |
 | | ... | ${src_ip}=192.168.100.1 | ${dst_ip}=192.168.100.2
+| | ...
 | | ${src_mac}= | Get Interface Mac | ${tg_node} | ${src_int}
 | | ${dst_mac}= | Get Interface Mac | ${tg_node} | ${dst_int}
 | | ${src_int_name}= | Get interface name | ${tg_node} | ${src_int}
@@ -122,8 +126,7 @@
 
 | Send ICMPv4 bidirectionally and verify received packets
 | | [Documentation] | Send ICMPv4 echo request from both directions,
-| | ...             | from interface1 to interface2 and
-| | ...             | from interface2 to interface1.
+| | ... | from interface1 to interface2 and from interface2 to interface1.
 | | ...
 | | ... | *Arguments:*
 | | ...
@@ -139,20 +142,20 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Send ICMPv4 bidirectionally and verify received packets \| ${nodes['TG']} \
-| | ... | \| ${tg_to_dut_if1} \| ${tg_to_dut_if2} \|
+| | ... | \| Send ICMPv4 bidirectionally and verify received packets \
+| | ... | \| ${nodes['TG']} \| ${tg_to_dut_if1} \| ${tg_to_dut_if2} \|
 | | ...
 | | [Arguments] | ${tg_node} | ${int1} | ${int2} | ${src_ip}=192.168.100.1 |
 | | ... | ${dst_ip}=192.168.100.2
-| | Send ICMP packet and verify received packet | ${tg_node} | ${int1} | ${int2} |
-| | ... | ${src_ip} | ${dst_ip}
-| | Send ICMP packet and verify received packet | ${tg_node} | ${int2} | ${int1} |
-| | ... | ${dst_ip} | ${src_ip}
+| | ...
+| | Send ICMP packet and verify received packet
+| | ... | ${tg_node} | ${int1} | ${int2} | ${src_ip} | ${dst_ip}
+| | Send ICMP packet and verify received packet
+| | ... | ${tg_node} | ${int2} | ${int1} | ${dst_ip} | ${src_ip}
 
 | Send ICMPv6 bidirectionally and verify received packets
 | | [Documentation] | Send ICMPv6 echo request from both directions,
-| | ...             | from interface1 to interface2 and
-| | ...             | from interface2 to interface1.
+| | ... | from interface1 to interface2 and from interface2 to interface1.
 | | ...
 | | ... | *Arguments:*
 | | ...
@@ -168,12 +171,13 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Send ICMPv6 bidirectionally and verify received packets \| ${nodes['TG']} \
-| | ... | \| ${tg_to_dut_if1} \| ${tg_to_dut_if2} \|
+| | ... | \| Send ICMPv6 bidirectionally and verify received packets \
+| | ... | \| ${nodes['TG']} \| ${tg_to_dut_if1} \| ${tg_to_dut_if2} \|
 | | ...
 | | [Arguments] | ${tg_node} | ${int1} | ${int2} | ${src_ip}=3ffe:63::1 |
 | | ... | ${dst_ip}=3ffe:63::2
-| | Send ICMP packet and verify received packet | ${tg_node} | ${int1} | ${int2} |
-| | ... | ${src_ip} | ${dst_ip}
-| | Send ICMP packet and verify received packet | ${tg_node} | ${int2} | ${int1} |
-| | ... | ${dst_ip} | ${src_ip}
+| | ...
+| | Send ICMP packet and verify received packet
+| | ... | ${tg_node} | ${int1} | ${int2} | ${src_ip} | ${dst_ip}
+| | Send ICMP packet and verify received packet
+| | ... | ${tg_node} | ${int2} | ${int1} | ${dst_ip} | ${src_ip}
