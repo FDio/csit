@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "fa5d592f_1c485e5a",
+        "filename": "TLDK-tests/tldk_scripts/install_tldk.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 580
+      },
+      "writtenOn": "2017-06-16T06:16:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa5d592f_dc52c612",
+      "range": {
+        "startLine": 15,
+        "startChar": 20,
+        "endLine": 15,
+        "endChar": 27
+      },
+      "revId": "6bf50d1a1d613ce3b7baac94339eab9592c87999",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa5d592f_9c5c4e27",
         "filename": "bootstrap-TLDK.sh",
         "patchSetId": 3
@@ -36,6 +60,30 @@
       "writtenOn": "2017-06-16T06:10:12Z",
       "side": 1,
       "message": "not used in this script",
+      "range": {
+        "startLine": 36,
+        "startChar": 0,
+        "endLine": 36,
+        "endChar": 12
+      },
+      "revId": "6bf50d1a1d613ce3b7baac94339eab9592c87999",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa5d592f_3c4b225b",
+        "filename": "bootstrap-TLDK.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 36,
+      "author": {
+        "id": 580
+      },
+      "writtenOn": "2017-06-16T06:16:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa5d592f_9c5c4e27",
       "range": {
         "startLine": 36,
         "startChar": 0,
