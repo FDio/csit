@@ -64,10 +64,6 @@
 | | [Arguments] | ${DUT} | ${BID} | ${INTERFACE_1} | ${INTERFACE_2}
 | | Vpp Add L2 Bridge Domain | ${DUT} | ${BID} | ${INTERFACE_1} | ${INTERFACE_2}
 
-| Add interfaces to L2XC
-| | [Arguments] | ${DUT} | ${INTERFACE_1} | ${INTERFACE_2}
-| | Configure L2XC | ${DUT} | ${INTERFACE_1} | ${INTERFACE_2}
-
 | Create vlan interfaces for VXLAN
 | | [Documentation] | *Create VLAN subinterface on interfaces on DUTs with given VLAN ID.*
 | | ...
