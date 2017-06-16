@@ -140,6 +140,29 @@
       "revId": "272c21911bfb1312c7b8a89dde180d8def5ea5ac",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa5d592f_06480b5a",
+        "filename": "TLDK-tests/tldk_scripts/install_tldk.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-06-16T08:20:00Z",
+      "side": 1,
+      "message": "Can you add to variable?",
+      "range": {
+        "startLine": 13,
+        "startChar": 13,
+        "endLine": 13,
+        "endChar": 25
+      },
+      "revId": "272c21911bfb1312c7b8a89dde180d8def5ea5ac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
