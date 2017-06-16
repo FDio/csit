@@ -16,6 +16,7 @@
 | Resource | resources/libraries/robot/testing_path.robot
 | Resource | resources/libraries/robot/vxlan.robot
 | Resource | resources/libraries/robot/l2_traffic.robot
+| Resource | resources/libraries/robot/l2_xconnect.robot
 | Library  | resources.libraries.python.Trace
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | VM_ENV | HW_ENV
 | Test Setup | Set up functional test
@@ -49,18 +50,17 @@
 | | ... | interfaces; verify all packets are received. [Ref] RFC7348.
 | | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
-| | And   Set interfaces in 3-node circular topology up
+| | And Set interfaces in 3-node circular topology up
 | | ${dut1_to_dut2_name}= | Get interface name | ${dut1_node} | ${dut1_to_dut2}
 | | ${dut2_to_dut1_name}= | Get interface name | ${dut2_node} | ${dut2_to_dut1}
-| | And   Configure IP addresses and neighbors on interfaces | ${dut1_node} | ${dut1_to_dut2_name} | ${NONE}
-| |       ...                                | ${dut2_node} | ${dut2_to_dut1_name} | ${NONE}
-| | ${dut1s_vxlan}= | When Create VXLAN interface     | ${dut1_node} | ${VNI}
-| |                 | ...  | ${dut1s_ip_address} | ${dut2s_ip_address}
-| |                   And  Add interfaces to L2XC | ${dut1_node}
-| |                   ...  | ${dut1_to_tg} | ${dut1s_vxlan}
-| | ${dut2s_vxlan}= | And  Create VXLAN interface     | ${dut2_node} | ${VNI}
-| |                 | ...  | ${dut2s_ip_address} | ${dut1s_ip_address}
-| |                   And  Add interfaces to L2XC | ${dut2_node}
-| |                   ...  | ${dut2_to_tg} | ${dut2s_vxlan}
+| | And Configure IP addresses and neighbors on interfaces
+| | ... | ${dut1_node} | ${dut1_to_dut2_name} | ${NONE}
+| | ... | ${dut2_node} | ${dut2_to_dut1_name} | ${NONE}
+| | ${dut1s_vxlan}= | When Create VXLAN interface | ${dut1_node} | ${VNI}
+| | | ... | ${dut1s_ip_address} | ${dut2s_ip_address}
+| | And Configure L2XC | ${dut1_node} | ${dut1_to_tg} | ${dut1s_vxlan}
+| | ${dut2s_vxlan}= | And Create VXLAN interface | ${dut2_node} | ${VNI}
+| | | ... | ${dut2s_ip_address} | ${dut1s_ip_address}
+| | And Configure L2XC | ${dut2_node} | ${dut2_to_tg} | ${dut2s_vxlan}
 | | Then Send ICMPv4 bidirectionally and verify received packets
 | | ... | ${tg_node} | ${tg_to_dut1} | ${tg_to_dut2}

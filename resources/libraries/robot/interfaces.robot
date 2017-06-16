@@ -13,13 +13,11 @@
 *** Settings ***
 | Library | resources.libraries.python.InterfaceUtil
 | Library | resources.libraries.python.NodePath
-| Resource | resources/libraries/robot/vat/interfaces.robot
 
 *** Keywords ***
-| Report VPP interfaces | [Arguments] | ${node}
-| | VPP reports interfaces through VAT on | ${node}
-#| | VPP reports interfaces through ODL on | ${node}
-#| | VPP reports interfaces through DEBUGCLI on | ${node}
+| VPP reports interfaces through VAT on '${node}'
+| | Execute Script | dump_interfaces.vat | ${node}
+| | Script Should Have Passed
 
 | Configure MTU on TG based on MTU on DUT
 | | [Documentation] | Type of the tg_node must be TG and dut_node must be DUT
