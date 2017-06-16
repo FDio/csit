@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "fa5d592f_211d39be",
+        "filename": "TLDK-tests/tldk_scripts/install_tldk.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 5,
+      "author": {
+        "id": 580
+      },
+      "writtenOn": "2017-06-16T00:37:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa5d592f_466f2393",
+      "range": {
+        "startLine": 5,
+        "startChar": 13,
+        "endLine": 5,
+        "endChar": 17
+      },
+      "revId": "272c21911bfb1312c7b8a89dde180d8def5ea5ac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa5d592f_06692b8b",
         "filename": "TLDK-tests/tldk_scripts/install_tldk.sh",
         "patchSetId": 1
@@ -59,6 +83,54 @@
       "writtenOn": "2017-06-15T11:02:59Z",
       "side": 1,
       "message": "use variable",
+      "range": {
+        "startLine": 13,
+        "startChar": 18,
+        "endLine": 13,
+        "endChar": 25
+      },
+      "revId": "272c21911bfb1312c7b8a89dde180d8def5ea5ac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa5d592f_41202df7",
+        "filename": "TLDK-tests/tldk_scripts/install_tldk.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 580
+      },
+      "writtenOn": "2017-06-16T00:37:11Z",
+      "side": 1,
+      "message": "changed to use the variable of DPDK_PACKAGE",
+      "parentUuid": "fa5d592f_06692b8b",
+      "range": {
+        "startLine": 13,
+        "startChar": 0,
+        "endLine": 13,
+        "endChar": 4
+      },
+      "revId": "272c21911bfb1312c7b8a89dde180d8def5ea5ac",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "fa5d592f_017a35f1",
+        "filename": "TLDK-tests/tldk_scripts/install_tldk.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 580
+      },
+      "writtenOn": "2017-06-16T00:37:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa5d592f_e605f7c2",
       "range": {
         "startLine": 13,
         "startChar": 18,
