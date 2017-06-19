@@ -16,6 +16,7 @@
 | Library | resources.libraries.python.topology.Topology
 | Library | resources.libraries.python.InterfaceUtil
 | Library | resources.libraries.python.SFC.SFCTest
+| Library | resources.libraries.python.SFC.PerformanceTest
 | Library | Collections
 
 *** Keywords ***
@@ -65,3 +66,16 @@
 | | | | | ... | send_vxlan_for_proxy_test.py | ${from_node} | ${args}
 | | ... | ELSE | Run Traffic Script On Node | send_vxlangpe_nsh_for_sff_test.py
 | | | | | ... | ${from_node} | ${args}
+
+| Start NSH SFC "${type}" performance test in a 3-node circular topology
+| | [Documentation] | Configure and Start the SFC performance test
+| | ... | on the DUT node.
+| | ${testtype}= | Convert to String | ${type}
+| | ${dut1_to_tg_mac}= | Get interface mac | ${tg} | ${tg_if1}
+| | ${dut1_to_dut2_mac}= | Get interface mac | ${dut2} | ${dut2_if1}
+| | ${dut2_to_tg_mac}= | Get interface mac | ${tg} | ${tg_if2}
+| | ${dut2_to_dut1_mac}= | Get interface mac | ${dut1} | ${dut1_if2}
+| | Start performance test on DUT | ${dut1} | ${dut1_if1}
+| | ... | ${dut1_if2} | ${dut1_to_tg_mac} | ${dut2_to_tg_mac} | ${testtype} | "DUT1"
+| | Start performance test on DUT | ${dut2} | ${dut2_if1}
+| | ... | ${dut2_if2} | ${dut1_to_tg_mac} | ${dut2_to_tg_mac} | ${testtype} | "DUT2"
