@@ -48,7 +48,7 @@
 # X520-DA2 bandwidth limit
 | ${s_limit} | ${10000000000}
 # Traffic profile:
-| ${traffic_profile} | trex-sl-3n-ethip4-ip4dst253
+| ${traffic_profile} | trex-sl-3n-ethip4-ip4dst253_l3fwd
 
 *** Test Cases ***
 | tc01-64B-1t1c-ethip4-ip4base-l3fwd-ndrdisc
