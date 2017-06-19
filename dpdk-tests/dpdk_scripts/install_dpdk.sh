@@ -27,6 +27,8 @@ cd ${PWDDIR}
 export RTE_SDK=${ROOTDIR}/${DPDK_DIR}/
 export RTE_TARGET=x86_64-native-linuxapp-gcc
 cd ${RTE_SDK}/examples/l3fwd
+sudo sed -i 's/^#define RTE_TEST_RX_DESC_DEFAULT 128/#define RTE_TEST_RX_DESC_DEFAULT 2048/g' ./main.c
+sudo sed -i 's/^#define RTE_TEST_TX_DESC_DEFAULT 512/#define RTE_TEST_TX_DESC_DEFAULT 2048/g' ./main.c
 make -j || \
     { echo "Failed to compile l3fwd"; exit 1; }
 cd ${PWDDIR}
