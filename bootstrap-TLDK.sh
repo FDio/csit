@@ -17,6 +17,9 @@ set -x
 cat /etc/hostname
 cat /etc/hosts
 
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+export PYTHONPATH=${SCRIPT_DIR}
+
 export DEBIAN_FRONTEND=noninteractive
 sudo apt-get -y update
 sudo apt-get -y install libpython2.7-dev python-virtualenv
@@ -111,6 +114,8 @@ done
 #we will pack all the TLDK depend files and copy it to the VIRL_SERVER
 VIRL_DIR_LOC="/tmp"
 TLDK_TAR_FILE="tldk_depends.tar.gz"
+
+wget "fast.dpdk.org/rel/${DPDK_PACKAGE}"
 
 tar zcf ${TLDK_TAR_FILE} ${DPDK_PACKAGE} ./tldk/ \
     ./TLDK-tests/tldk_testconfig/ ./TLDK-tests/tldk_deplibs/
