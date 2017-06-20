@@ -195,7 +195,7 @@ fi
 
 PYTHONPATH=`pwd` pybot -L TRACE -W 150 \
     -v TOPOLOGY_PATH:${SCRIPT_DIR}/topologies/enabled/topology.yaml \
-    --suite "TLDK-tests.func" \
+    --suite "tests.tldk.func" \
     --include vm_envAND3_node_single_link_topo \
     --noncritical EXPECTED_FAILING \
-    TLDK-tests/
+    tests/

@@ -55,7 +55,7 @@ else
     # Download the latest VPP build install packages
     rm -f *.${PACKAGE}
     echo Downloading VPP packages...
-    bash ${SCRIPT_DIR}/resources/tools/download_install_vpp_pkgs.sh --skip-install
+    bash ${SCRIPT_DIR}/resources/tools/scripts/download_install_vpp_pkgs.sh --skip-install
 fi
 
 # Take vpp package and get the vpp version
@@ -278,7 +278,7 @@ do
 
     pybot -L TRACE -W 136\
         -v TOPOLOGY_PATH:${SCRIPT_DIR}/topologies/enabled/topology_VIRL.yaml \
-        --suite "tests.func" \
+        --suite "tests.vpp.func" \
         --include vm_envAND3_node_single_link_topo \
         --include vm_envAND3_node_double_link_topo \
         --exclude PERFTEST \

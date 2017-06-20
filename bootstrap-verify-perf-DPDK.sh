@@ -46,7 +46,7 @@ pip install -r requirements.txt
 while :; do
     for TOPOLOGY in ${TOPOLOGIES};
     do
-        python ${SCRIPT_DIR}/resources/tools/topo_reservation.py -t ${TOPOLOGY}
+        python ${SCRIPT_DIR}/resources/tools/scripts/topo_reservation.py -t ${TOPOLOGY}
         if [ $? -eq 0 ]; then
             WORKING_TOPOLOGY=${TOPOLOGY}
             echo "Reserved: ${WORKING_TOPOLOGY}"
@@ -67,7 +67,7 @@ done
 
 #for DPDK test, we don't need to install the VPP deb
 function cancel_all {
-    python ${SCRIPT_DIR}/resources/tools/topo_reservation.py -c -t $1
+    python ${SCRIPT_DIR}/resources/tools/scripts/topo_reservation.py -c -t $1
 }
 
 # On script exit we cancel the reservation
@@ -80,10 +80,10 @@ case "$TEST_TAG" in
               -L TRACE \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -v DPDK_TEST:True \
-              -s "dpdk-tests.perf" \
+              -s "tests.dpdk.perf" \
               --exclude SKIP_PATCH \
               -i NDRPDRDISC \
-              dpdk-tests/
+              tests/
         RETURN_STATUS=$(echo $?)
         ;;
     PERFTEST_SHORT )
@@ -91,9 +91,9 @@ case "$TEST_TAG" in
               -L TRACE \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -v DPDK_TEST:True \
-              -s "dpdk-tests.perf" \
+              -s "tests.dpdk.perf" \
               -i NDRCHK \
-              dpdk-tests/
+              tests/
         RETURN_STATUS=$(echo $?)
         ;;
    PERFTEST_NIGHTLY )
@@ -102,8 +102,8 @@ case "$TEST_TAG" in
               -L TRACE \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -v DPDK_TEST:True \
-              -s "dpdk-tests.perf" \
-              dpdk-tests/
+              -s "tests.dpdk.perf" \
+              tests/
         RETURN_STATUS=$(echo $?)
         ;;
     * )
@@ -112,15 +112,15 @@ case "$TEST_TAG" in
               -L TRACE \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -v DPDK_TEST:True \
-              -s "dpdk-tests.perf" \
-              dpdk-tests/
+              -s "tests.dpdk.perf" \
+              tests/
         RETURN_STATUS=$(echo $?)
 esac
 
 # Pybot output post-processing
 echo Post-processing test data...
 
-python ${SCRIPT_DIR}/resources/tools/robot_output_parser.py \
+python ${SCRIPT_DIR}/resources/tools/scripts/robot_output_parser.py \
        -i ${SCRIPT_DIR}/output.xml \
        -o ${SCRIPT_DIR}/output_perf_data.xml
 if [ ! $? -eq 0 ]; then

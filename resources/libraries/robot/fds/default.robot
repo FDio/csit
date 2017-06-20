@@ -12,8 +12,8 @@
 # limitations under the License.
 
 *** Settings ***
-| Resource | resources/libraries/robot/default.robot
-| Resource | resources/libraries/robot/double_qemu_setup.robot
+| Resource | resources/libraries/robot/shared/default.robot
+| Resource | resources/libraries/robot/vm/double_qemu_setup.robot
 | Library | resources.libraries.python.VatHistory
 | Library | resources.libraries.python.Trace
 | ...

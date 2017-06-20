@@ -190,11 +190,11 @@ class TrafficGenerator(object):
             ssh.connect(tg_node)
 
             (ret, stdout, stderr) = ssh.exec_command(
-                "sudo -E sh -c '{}/resources/tools/t-rex/"
-                "t-rex-installer.sh'".format(Constants.REMOTE_FW_DIR),
+                "sudo -E sh -c '{}/resources/tools/trex/"
+                "trex_installer.sh'".format(Constants.REMOTE_FW_DIR),
                 timeout=1800)
             if int(ret) != 0:
-                logger.error('trex installation failed: {0}'.format(
+                logger.error('TRex installation failed: {0}'.format(
                     stdout + stderr))
                 raise RuntimeError('Installation of TG failed')
 
@@ -274,7 +274,7 @@ class TrafficGenerator(object):
                 # get T-rex server info
                 (ret, _, _) = ssh.exec_command(
                     "sh -c 'sleep 3; "
-                    "{0}/resources/tools/t-rex/t-rex-server-info.py'"\
+                    "{0}/resources/tools/trex/trex_server_info.py'"\
                     .format(Constants.REMOTE_FW_DIR),
                     timeout=120)
                 if int(ret) == 0:
@@ -320,8 +320,8 @@ class TrafficGenerator(object):
         ssh.connect(node)
 
         (ret, _, _) = ssh.exec_command(
-            "sh -c '{}/resources/tools/t-rex/"
-            "t-rex-stateless-stop.py'".format(Constants.REMOTE_FW_DIR))
+            "sh -c '{}/resources/tools/trex/"
+            "trex_stateless_stop.py'".format(Constants.REMOTE_FW_DIR))
 
         if int(ret) != 0:
             raise RuntimeError('T-rex stateless runtime error')
@@ -355,12 +355,12 @@ class TrafficGenerator(object):
         _latency = "--latency" if latency else ""
         _p0, _p1 = (2, 1) if self._ifaces_reordered else (1, 2)
 
-        profile_path = ("{0}/resources/tools/t-rex/stream_profiles/"
+        profile_path = ("{0}/resources/traffic_profiles/trex/"
                         "{1}.py".format(Constants.REMOTE_FW_DIR,
                                         traffic_type))
         (ret, stdout, _) = ssh.exec_command(
             "sh -c "
-            "'{0}/resources/tools/t-rex/t-rex-stateless-profile.py "
+            "'{0}/resources/tools/trex/trex_stateless_profile.py "
             "--profile {1} "
             "--duration {2} "
             "--frame_size {3} "
