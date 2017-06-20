@@ -71,7 +71,7 @@
 | | And Honeycomb Assigns plugin-acl Chain To Interface
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${acl_name_macip}
 | | ... | ingress | macip=${True}
-| | When Send TCP or UDP packet and verify received packet | ${tg_node} | ${src_ip} | ${dst_ip}
+| | Then Send TCP or UDP packet and verify received packet | ${tg_node} | ${src_ip} | ${dst_ip}
 | | ... | ${tg_to_dut_if1} | ${tg_to_dut_if1_mac}
 | | ... | ${tg_to_dut_if2} | ${dut_to_tg_if1_mac}
 | | ... | TCP | ${src_port} | ${dst_port}
