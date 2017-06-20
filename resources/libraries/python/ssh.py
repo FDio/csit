@@ -81,7 +81,7 @@ class SSH(object):
                                   password=node.get('password'), pkey=pkey,
                                   port=node['port'])
 
-                self._ssh.get_transport().set_keepalive(10)
+                self._ssh.get_transport().set_keepalive(120)
 
                 SSH.__existing_connections[node_hash] = self._ssh
 
