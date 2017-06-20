@@ -223,12 +223,12 @@ cp /nfs/common/karaf_${ODL} ~
 
 PYTHONPATH=`pwd` pybot -L TRACE -W 136\
     -v TOPOLOGY_PATH:${SCRIPT_DIR}/topologies/enabled/topology.yaml \
-    --suite "tests.func" \
+    --suite "tests.vpp.func" \
     --include HC_FUNC \
     --exclude HC_REST_ONLY \
     --noncritical EXPECTED_FAILING \
     --variable HC_ODL:${ODL} \
-    tests/
+    tests/vpp/
 
 # Get Honeycomb log file from virl host
 scp ${SSH_OPTIONS} \

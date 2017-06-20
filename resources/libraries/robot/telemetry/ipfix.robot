@@ -16,7 +16,7 @@
 *** Settings ***
 | Library | resources.libraries.python.TrafficScriptExecutor
 | Library | resources.libraries.python.InterfaceUtil
-| Resource | resources/libraries/robot/default.robot
+| Resource | resources/libraries/robot/shared/default.robot
 | Documentation | Traffic keywords
 
 *** Keywords ***
