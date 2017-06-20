@@ -67,8 +67,8 @@ rst_epilog = """
 .. |virl-image-centos| replace:: centos-7.3-1611_2017-02-23_1.4
 
 .. _tag documentation rst file: https://git.fd.io/csit/tree/docs/tag_documentation.rst?h=rls1704
-.. _TRex intallation: https://git.fd.io/csit/tree/resources/tools/t-rex/t-rex-installer.sh?h=rls1704
-.. _TRex driver: https://git.fd.io/csit/tree/resources/tools/t-rex/t-rex-stateless-profile.py?h=rls1704
+.. _TRex intallation: https://git.fd.io/csit/tree/resources/tools/trex/trex_installer.sh?h=rls1704
+.. _TRex driver: https://git.fd.io/csit/tree/resources/tools/trex/trex_stateless_profile.py?h=rls1704
 .. _CSIT Honeycomb Functional Tests Documentation: https://docs.fd.io/csit/rls1704/doc/tests.func.html
 .. _CSIT Testpmd Performance Tests Documentation: https://docs.fd.io/csit/rls1704/doc/tests.perf.html
 .. _CSIT VPP Functional Tests Documentation: https://docs.fd.io/csit/rls1704/doc/tests.func.html
