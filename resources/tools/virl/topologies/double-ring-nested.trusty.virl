@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<topology xmlns="http://www.cisco.com/VIRL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" schemaVersion="0.9" xsi:schemaLocation="http://www.cisco.com/VIRL https://raw.github.com/CiscoVIRL/schema/v0.9/virl.xsd">
+<topology xmlns="http://www.cisco.com/VIRL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" schemaVersion="0.95" xsi:schemaLocation="http://www.cisco.com/VIRL https://raw.github.com/CiscoVIRL/schema/v0.95/virl.xsd">
     <extensions>
         <entry key="management_network" type="String">flat</entry>
+        <entry key="management_lxc" type="Boolean">false</entry>
     </extensions>
     <node name="tg1" type="SIMPLE" subtype="server" location="570,238" vmImage="$$VM_IMAGE$$">
         <extensions>
@@ -201,7 +202,7 @@ write_files:
 
     mkdir /scratch/$(hostname)
     cp /VERSION /scratch/$(hostname)/
-    cat /var/lib/vm/vhost-nested.img | strings | grep NESTED_VERSION= > /scratch/$(hostname)/NESTED_VERSION
+    cat /var/lib/vm/vhost-nested.img | strings | grep NESTED_VERSION= &gt; /scratch/$(hostname)/NESTED_VERSION
 
     exit 0&#xD;
 </entry>
@@ -308,7 +309,7 @@ write_files:
 
     mkdir /scratch/$(hostname)
     cp /VERSION /scratch/$(hostname)/
-    cat /var/lib/vm/vhost-nested.img | strings | grep NESTED_VERSION= > /scratch/$(hostname)/NESTED_VERSION
+    cat /var/lib/vm/vhost-nested.img | strings | grep NESTED_VERSION= &gt; /scratch/$(hostname)/NESTED_VERSION
 
     exit 0&#xD;
 </entry>
@@ -318,6 +319,7 @@ write_files:
         <interface id="2" name="GigabitEthernet0/6/0"/>
         <interface id="3" name="GigabitEthernet0/7/0"/>
     </node>
+    <annotations/>
     <connection dst="/virl:topology/virl:node[1]/virl:interface[3]" src="/virl:topology/virl:node[2]/virl:interface[1]"/>
     <connection dst="/virl:topology/virl:node[1]/virl:interface[4]" src="/virl:topology/virl:node[2]/virl:interface[2]"/>
     <connection dst="/virl:topology/virl:node[2]/virl:interface[3]" src="/virl:topology/virl:node[3]/virl:interface[3]"/>
