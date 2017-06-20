@@ -219,10 +219,10 @@ fi
 
 PYTHONPATH=`pwd` pybot -L TRACE -W 136\
     -v TOPOLOGY_PATH:${SCRIPT_DIR}/topologies/enabled/topology.yaml \
-    --suite "tests.func" \
+    --suite "tests.vpp.func" \
     --include HC_FUNC \
     --noncritical EXPECTED_FAILING \
-    tests/
+    tests/vpp/
 
 # Get Honeycomb log file from virl host
 scp ${SSH_OPTIONS} \
