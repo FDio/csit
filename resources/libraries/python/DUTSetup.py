@@ -113,30 +113,31 @@ class DUTSetup(object):
 
         ssh = SSH()
         ssh.connect(node)
-        ret_code, stdout, stderr = ssh.exec_command('pidof vpp')
 
-        logger.trace(stdout)
-        logger.trace(stderr)
+        for i in range(3):
+            logger.trace('Try {}: Get VPP PID'.format(i))
+            ret_code, stdout, stderr = ssh.exec_command('pidof vpp')
 
-        if int(ret_code) != 0:
-            logger.debug('Not possible to get PID of VPP process on node: '
-                         '{0}\n {1}'.format(node['host'], stdout + stderr))
-            raise RuntimeError('Not possible to get PID of VPP process on node:'
-                               ' {}'.format(node['host']))
+            if int(ret_code) != 0:
+                raise RuntimeError('Not possible to get PID of VPP process '
+                                   'on node: {0}\n {1}'.
+                                   format(node['host'], stdout + stderr))
 
-        if len(stdout.splitlines()) == 1:
-            return int(stdout)
-        elif len(stdout.splitlines()) == 0:
-            logger.debug("No VPP PID found on node {0}".
-                         format(node['host']))
-            return None
-        else:
-            logger.debug("More then one VPP PID found on node {0}".
-                         format(node['host']))
-            ret_list = ()
-            for line in stdout.splitlines():
-                ret_list.append(int(line))
-            return ret_list
+            if len(stdout.splitlines()) == 1:
+                return int(stdout)
+            elif len(stdout.splitlines()) == 0:
+                logger.debug("No VPP PID found on node {0}".
+                             format(node['host']))
+                continue
+            else:
+                logger.debug("More then one VPP PID found on node {0}".
+                             format(node['host']))
+                ret_list = ()
+                for line in stdout.splitlines():
+                    ret_list.append(int(line))
+                return ret_list
+
+        return None
 
     @staticmethod
     def get_vpp_pids(nodes):
