@@ -25,7 +25,7 @@ URL="https://nexus.fd.io/service/local/artifact/maven/content"
 VER="RELEASE"
 GROUP="io.fd.vpp"
 NSH_GROUP="io.fd.nsh_sfc"
-VPP_ARTIFACTS="vpp vpp-dbg vpp-dev vpp-dpdk-dev vpp-dpdk-dkms vpp-lib vpp-plugins vpp-api-java"
+VPP_ARTIFACTS="vpp vpp-dbg vpp-dev vpp-dpdk-dkms vpp-lib vpp-plugins vpp-api-java vpp-api-python vpp-api-lua"
 NSH_ARTIFACTS="vpp-nsh-plugin"
 
 if [ "${OS}" == "ubuntu1404" ]; then

@@ -21,6 +21,12 @@ export DEBIAN_FRONTEND=noninteractive
 sudo apt-get -y update
 sudo apt-get -y install libpython2.7-dev python-virtualenv
 
+if [ -f "/etc/redhat-release" ]; then
+    OS="centos7"
+else
+    OS="ubuntu1604"
+fi
+
 VIRL_SERVERS=("10.30.51.28" "10.30.51.29" "10.30.51.30")
 VIRL_SERVER=""
 
@@ -29,8 +35,7 @@ VIRL_PKEY=priv_key
 VIRL_SERVER_STATUS_FILE="status"
 VIRL_SERVER_EXPECTED_STATUS="PRODUCTION"
 
-STREAM=$1
-OS=$2
+STREAM="master"
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 export PYTHONPATH=${SCRIPT_DIR}
