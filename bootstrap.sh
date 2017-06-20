@@ -92,8 +92,8 @@ VIRL_SERVER_EXPECTED_STATUS="PRODUCTION"
 
 SSH_OPTIONS="-i ${VIRL_PKEY} -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o BatchMode=yes -o LogLevel=error"
 
-TEST_GROUPS=("gre,ipv6,lisp,policer,rpf,softwire" "dhcp,ipsec,l2bd,l2xc,telemetry,vrf,vxlan" "cop,fds,honeycomb,iacl,ipv4,tap,vhost,vlan")
-SUITE_PATH="tests.func"
+TEST_GROUPS=("crypto,ip4_tunnels.softwire,ip4_tunnels.vxlan,telemetry" "ip4,ip4_tunnels.gre,ip4_tunnels.lisp,ip6_tunnels.vxlan,vm_vhost.ip4,vm_vhost.ip6" "interfaces,ip6,ip6_tunnels.lisp,l2bd,l2xc,vm_vhost.l2bd,vm_vhost.l2xc")
+SUITE_PATH="tests.vpp.func"
 SKIP_PATCH="SKIP_PATCH"
 
 # Create tmp dir
