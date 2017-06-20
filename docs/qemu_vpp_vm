@@ -28,13 +28,13 @@ because ttyS0 is used by serial console and ttyS1 is dedicated for
 qemu-guest-agent in QEMU setup.
 There is python library for QEMU setup, start and some utilities
 "resources/libraries/python/QemuUtils.py" and keyword "Stop and Clear QEMU" for
-teardown in resources/libraries/robot/qemu.robot. "Qemu Start" setup one
+teardown in resources/libraries/robot/vm/qemu.robot. "Qemu Start" setup one
 management interface by default. You can add Vhost-user interfaces by
 "Qemu Add Vhost User If" keyword.
 Example usage in robot framework test:
 
 *** Settings ***
-| Resource | resources/libraries/robot/qemu.robot
+| Resource | resources/libraries/robot/vm/qemu.robot
 
 *** Test Cases ***
 | VM test
@@ -45,5 +45,5 @@ Example usage in robot framework test:
 | | ${vm}= | Qemu Start
 | | [Teardown] | Stop and Clear QEMU | ${dut1} | ${vm}
 
-Note that VPP must be started and cofigured before starting the VM when using
+Note that VPP must be started and configured before starting the VM when using
 Vhost-user interfaces.

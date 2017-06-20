@@ -17,9 +17,9 @@
 | Library | resources.libraries.python.TrafficScriptExecutor
 | Library | resources.libraries.python.MacSwap
 | Library | resources.libraries.python.SetupFramework
-| Resource | resources/libraries/robot/default.robot
-| Resource | resources/libraries/robot/interfaces.robot
-| Resource | resources/libraries/robot/counters.robot
+| Resource | resources/libraries/robot/shared/default.robot
+| Resource | resources/libraries/robot/shared/interfaces.robot
+| Resource | resources/libraries/robot/shared/counters.robot
 | Suite Setup | Run Keywords | Setup Framework | ${nodes}
 | ...         | AND          | Setup All DUTs | ${nodes}
 | ...         | AND          | Configure all TGs for traffic script

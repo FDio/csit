@@ -118,7 +118,7 @@ TLDK_TAR_FILE="tldk_depends.tar.gz"
 wget "fast.dpdk.org/rel/${DPDK_PACKAGE}"
 
 tar zcf ${TLDK_TAR_FILE} ${DPDK_PACKAGE} ./tldk/ \
-    ./TLDK-tests/tldk_testconfig/ ./TLDK-tests/tldk_deplibs/
+    ./tests/tldk/tldk_testconfig/ ./tests/tldk/tldk_deplibs/
 
 cat ${VIRL_PKEY}
 # Copy the files to VIRL host
@@ -195,7 +195,7 @@ fi
 
 PYTHONPATH=`pwd` pybot -L TRACE -W 150 \
     -v TOPOLOGY_PATH:${SCRIPT_DIR}/topologies/enabled/topology.yaml \
-    --suite "TLDK-tests.func" \
+    --suite "tests.tldk.func" \
     --include vm_envAND3_node_single_link_topo \
     --noncritical EXPECTED_FAILING \
-    TLDK-tests/
+    tests/tldk/
