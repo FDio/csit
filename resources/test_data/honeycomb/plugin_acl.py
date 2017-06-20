@@ -486,8 +486,7 @@ def get_variables(test_case, name):
                             }
                         },
                         "actions": {
-                            # TODO: will be renamed in HC2VPP-57
-                            "vpp-acl:permit": {}
+                            "vpp-acl:permit-and-reflect": {}
                         },
                     },
                 ]}
