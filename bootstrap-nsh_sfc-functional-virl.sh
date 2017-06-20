@@ -127,7 +127,7 @@ done
 
 # Download VPP and NSH SFC packages from the current branch
 echo Downloading packages...
-bash ${SCRIPT_DIR}/resources/tools/download_nsh_sfc_pkgs.sh ${STREAM} ${OS}
+bash ${SCRIPT_DIR}/resources/tools/scripts/download_nsh_sfc_pkgs.sh ${STREAM} ${OS}
 
 if [ "${OS}" == "centos7" ]; then
     VPP_PKGS=(*.rpm)
@@ -233,8 +233,8 @@ fi
 
 PYTHONPATH=`pwd` pybot -L TRACE -W 136\
     -v TOPOLOGY_PATH:${SCRIPT_DIR}/topologies/enabled/topology.yaml \
-    --suite "nsh_sfc_tests.func" \
+    --suite "tests.nsh_sfc.func" \
     --include vm_envAND3_node_single_link_topo \
     --exclude PERFTEST \
     --exclude SKIP_PATCH \
-    nsh_sfc_tests/
+    tests/
