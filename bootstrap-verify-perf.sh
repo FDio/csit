@@ -278,7 +278,7 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s "tests.perf" \
-              --include ndrchkANDnic_intel-x520-da2AND1t1cANDvhost \
+              --include pdrchkANDnic_intel-x520-da2ANDvhost \
               tests/
         RETURN_STATUS=$(echo $?)
         ;;
