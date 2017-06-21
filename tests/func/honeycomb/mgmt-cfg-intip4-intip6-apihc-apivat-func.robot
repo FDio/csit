@@ -25,7 +25,9 @@
 | ...
 | Force Tags | HC_FUNC
 | ...
-| Suite Teardown | Restart Honeycomb and VPP | ${node}
+| Suite Setup | Set Up Honeycomb Functional Test Suite | ${node}
+| ...
+| Suite Teardown | Tear Down Honeycomb Functional Test Suite | ${node}
 | ...
 | Documentation | *Honeycomb interface management test suite.*
 
@@ -214,40 +216,7 @@
 | | ... | ${tg_to_dut_if1} | ${tg_to_dut_if1_mac}
 | | ... | ${tg_to_dut_if1} | ${dut_to_tg_if1_mac}
 
-| TC11: Honeycomb fails to configure two IPv4 addresses from the same subnet
-| | [Documentation] | Check if Honeycomb can configure two IPv4 addresses in\
-| | ... | the same subnet onto a single interface. It should not be possible.
-| | ...
-| | [Teardown] | Honeycomb removes interface IPv4 addresses | ${node}
-| | ... | ${interface}
-| | ...
-| | [Tags] | EXPECTED_FAILING
-| | ...
-# VPP API does not configure the second address, but returns success. VPP-649
-| | When Honeycomb sets interface IPv4 address with prefix
-| | ... | ${node} | ${interface} | 192.168.0.1 | ${9}
-| | Then Honeycomb fails to add interface IPv4 address
-| | ... | ${node} | ${interface} | 192.168.0.2 | ${9}
-| | And Honeycomb fails to add interface IPv4 address
-| | ... | ${node} | ${interface} | 192.232.0.2 | ${9}
-
-| TC12: Honeycomb fails to configure two IPv6 addresses from the same subnet
-| | [Documentation] | Check if Honeycomb can configure two IPv6 addresses in\
-| | ... | the same subnet onto a single interface. It should not be possible.
-| | ...
-| | [Tags] | EXPECTED_FAILING
-| | ...
-# VPP API does not configure the second address, but returns success. VPP-649
-| | [Teardown] | Honeycomb removes interface IPv6 addresses | ${node}
-| | ... | ${interface}
-| | When Honeycomb sets interface IPv6 address
-| | ... | ${node} | ${interface} | 10::FF10 | ${64}
-| | Then Honeycomb fails to add interface IPv6 address
-| | ... | ${node} | ${interface} | 10::FF11 | ${64}
-| | And Honeycomb fails to add interface IPv6 address
-| | ... | ${node} | ${interface} | 10::FFFF | ${64}
-
-| TC13: Honeycomb can configure unnumbered interface
+| TC11: Honeycomb can configure unnumbered interface
 | | [Documentation] | Check if Honeycomb can configure an unnumbered interface\
 | | ... | on a physical interface, borrowing the IP address of 'local0'.
 | | ...
@@ -266,7 +235,7 @@
 | | ... | ${node} | ${interface} | ${ipv4_address}
 | | ... | ${ipv4_prefix} | ${ipv4_mask}
 
-| TC14: Honeycomb removes interface unnumbered configuration
+| TC12: Honeycomb removes interface unnumbered configuration
 | | [Documentation] | Check if Honeycomb can remove unnumbered configuration\
 | | ... | from an interface.
 | | ...
@@ -289,3 +258,36 @@
 | | ... | ${ipv4_prefix} | ${ipv4_mask}
 | | And IPv4 address from Honeycomb should be empty | ${node} | ${interface}
 | | And ipv4 address from VAT should be empty | ${node} | ${interface}
+
+| TC13: Honeycomb fails to configure two IPv4 addresses from the same subnet
+| | [Documentation] | Check if Honeycomb can configure two IPv4 addresses in\
+| | ... | the same subnet onto a single interface. It should not be possible.
+| | ...
+| | [Teardown] | Honeycomb removes interface IPv4 addresses | ${node}
+| | ... | ${interface}
+| | ...
+| | [Tags] | EXPECTED_FAILING
+| | ...
+# VPP API does not configure the second address, but returns success. VPP-649
+| | When Honeycomb sets interface IPv4 address with prefix
+| | ... | ${node} | ${interface} | 192.168.0.1 | ${9}
+| | Then Honeycomb fails to add interface IPv4 address
+| | ... | ${node} | ${interface} | 192.168.0.2 | ${9}
+| | And Honeycomb fails to add interface IPv4 address
+| | ... | ${node} | ${interface} | 192.232.0.2 | ${9}
+
+| TC14: Honeycomb fails to configure two IPv6 addresses from the same subnet
+| | [Documentation] | Check if Honeycomb can configure two IPv6 addresses in\
+| | ... | the same subnet onto a single interface. It should not be possible.
+| | ...
+| | [Tags] | EXPECTED_FAILING
+| | ...
+# VPP API does not configure the second address, but returns success. VPP-649
+| | [Teardown] | Honeycomb removes interface IPv6 addresses | ${node}
+| | ... | ${interface}
+| | When Honeycomb sets interface IPv6 address
+| | ... | ${node} | ${interface} | 10::FF10 | ${64}
+| | Then Honeycomb fails to add interface IPv6 address
+| | ... | ${node} | ${interface} | 10::FF11 | ${64}
+| | And Honeycomb fails to add interface IPv6 address
+| | ... | ${node} | ${interface} | 10::FFFF | ${64}
