@@ -30,9 +30,9 @@
 | Library | resources.libraries.python.Trace
 | Variables | resources/test_data/honeycomb/policer_variables.py
 | ...
-| Suite Teardown
-| ... | Run Keyword If Any Tests Failed
-| ... | Restart Honeycomb and VPP | ${node}
+| Suite Setup | Set Up Honeycomb Functional Test Suite | ${node}
+| ...
+| Suite Teardown | Tear Down Honeycomb Functional Test Suite | ${node}
 | ...
 | Force Tags | HC_FUNC
 | ...
@@ -101,6 +101,8 @@
 | | ... | ${node} | ${interface} | ${acl_tables['hc_acl_table']['name']}
 
 | TC06: VPP policer 2R3C Color-aware marks packet
+# Traffic test failing in VIRL
+| | [Tags] | EXPECTED_FAILING
 | | [Documentation]
 | | ... | [Top] TG=DUT1.
 | | ... | [Ref] RFC2474, RFC2698.
