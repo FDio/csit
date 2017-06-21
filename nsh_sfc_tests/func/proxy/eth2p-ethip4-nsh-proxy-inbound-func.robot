@@ -21,7 +21,7 @@
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | VM_ENV | FUNCTEST
 | Suite Setup | Run Keywords
 | ... | Configure all DUTs before test | AND
-| ... | Setup all TGs before traffic script | AND
+| ... | Configure all TGs for traffic script | AND
 | ... | Update All Interface Data On All Nodes | ${nodes} | AND
 | ... | Setup DUT nodes for 'Proxy Inbound' functional testing
 | Test Setup | Run Keywords | Save VPP PIDs | AND
@@ -30,7 +30,7 @@
 | Test Teardown | Run Keywords
 | ... | Show packet trace on all DUTs | ${nodes} | AND
 | ... | Show VAT History On All DUTs | ${nodes} | AND
-| ... | Check VPP PID in Teardown
+| ... | Verify VPP PID in Teardown
 | Documentation | *NSH SFC Proxy Inbound test cases*
 | ...
 | ... | Test the SFC Proxy Inbound functional. DUT run the VPP with NSH
