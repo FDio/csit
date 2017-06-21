@@ -85,7 +85,6 @@
 | | ... | \| Restart Honeycomb and VPP and clear persisted configuration \
 | | ... | \| ${nodes['DUT1']} \|
 | | [Arguments] | ${node}
-| | Log | Performing clean restart of Honeycomb and VPP. | console=True
 | | Stop Honeycomb service on DUTs | ${node}
 | | Clear persisted Honeycomb configuration | ${node}
 | | Setup DUT | ${node}
@@ -101,10 +100,9 @@
 | | ...
 | | ... | \| Restart Honeycomb and VPP \| ${nodes['DUT1']} \|
 | | [Arguments] | ${node}
-| | Log | Performing clean restart of Honeycomb and VPP. | console=True
-| | Restart Honeycomb and VPP on DUTs | ${node}
-| | Wait until keyword succeeds | 4min | 16sec
-| | ... | Check honeycomb startup state | ${node}
+| | Stop Honeycomb service on DUTs | ${node}
+| | Setup DUT | ${node}
+| | Configure Honeycomb service on DUTs | ${node}
 
 | Archive Honeycomb log file
 | | [Documentation] | Copy honeycomb.log file from Honeycomb node\
@@ -120,10 +118,52 @@
 
 | Configure ODL Client Service On DUT
 | | [Arguments] | ${node} | ${odl_name}
-| | Configure ODL client | ${node} | ${odl_name}
+| | Copy ODL Client | ${node} | ${odl_name} | /mnt/common | /tmp
+| | Setup ODL Client | ${node} | /tmp
+| | Wait until keyword succeeds | 2min | 30sec
+| | ... | Install ODL Features | ${node} | /tmp
 | | Wait until keyword succeeds | 4min | 16sec
 | | ... | Mount Honeycomb on ODL | ${node}
 | | Wait until keyword succeeds | 2min | 16sec
 | | ... | Check ODL startup state | ${node}
 | | Wait until keyword succeeds | 2min | 16sec
 | | ... | Check honeycomb startup state | ${node}
+
+| Configure Honeycomb for functional testing
+| | [Arguments] | ${node}
+| | Configure Restconf binding address | ${node}
+| | Configure Log Level | ${node} | TRACE
+| | Configure Persistence | ${node} | disable
+| | Configure jVPP timeout | ${node} | ${14}
+| | Clear Persisted Honeycomb Configuration | ${node}
+| | Configure Honeycomb service on DUTs | ${node}
+
+| Configure ODL Client for functional testing
+| | [Arguments] | ${node}
+| | ${use_odl_client}= | Get Variable Value | ${HC_ODL}
+| | Run Keyword If | '${use_odl_client}' != '${NONE}'
+| | ... | Run Keywords
+| | ... | Set Global Variable | ${use_odl_client} | AND
+| | ... | Configure ODL Client Service On DUT | ${node} | ${use_odl_client}
+| | ... | ELSE | Log | Variable HC_ODL is not present. Not using ODL.
+| | ... | level=INFO
+
+| Honeycomb Functional Suite Setup Generic
+| | [Arguments] | ${node}
+| | Configure Honeycomb for functional testing | ${node}
+| | Configure ODL Client for functional testing | ${node}
+
+| Honeycomb Functional Suite Teardown Generic
+| | [Arguments] | ${node}
+| | Stop ODL Client | ${node} | /tmp
+| | ${use_odl_client}= | Set Variable | ${NONE}
+| | Set Global Variable | ${use_odl_client}
+| | Stop Honeycomb service on DUTs | ${node}
+
+| Enable Honeycomb Feature
+| | [arguments] | ${node} | ${feature}
+| | Manage Honeycomb Features | ${node} | ${feature}
+
+| Disable Honeycomb Feature
+| | [arguments] | ${node} | ${feature}
+| | Manage Honeycomb Features | ${node} | ${feature} | enable=${False}

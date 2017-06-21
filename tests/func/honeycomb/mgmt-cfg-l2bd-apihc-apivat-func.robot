@@ -29,10 +29,9 @@
 | Resource | resources/libraries/robot/honeycomb/interfaces.robot
 | Resource | resources/libraries/robot/honeycomb/bridge_domain.robot
 | ...
-| Suite Teardown | Run keywords
-| ... | Run Keyword If Any Tests Failed
-| ... | Restart Honeycomb and VPP | ${node}
-| ... | AND | Honeycomb removes all bridge domains | ${node} | @{interfaces}
+| Suite Setup | Honeycomb Functional Suite Setup Generic | ${node}
+| ...
+| Suite Teardown | Honeycomb Functional Suite Teardown Generic | ${node}
 | ...
 | Force Tags | HC_FUNC
 | ...

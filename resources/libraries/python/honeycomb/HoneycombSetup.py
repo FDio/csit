@@ -59,7 +59,7 @@ class HoneycombSetup(object):
 
         HoneycombSetup.print_environment(nodes)
 
-        logger.console("\nStarting Honeycomb service ...")
+        logger.console("\n(re)Starting Honeycomb service ...")
 
         cmd = "sudo service honeycomb start"
 
@@ -104,41 +104,6 @@ class HoneycombSetup(object):
                                 "in progress ...".format(node['host']))
         if errors:
             raise HoneycombError('Node(s) {0} failed to stop Honeycomb.'.
-                                 format(errors))
-
-    @staticmethod
-    def restart_honeycomb_and_vpp_on_duts(*nodes):
-        """Restart the Honeycomb service on specified DUT nodes.
-
-        Use the keyword "Check Honeycomb Startup State" to check when Honeycomb
-        is fully restarted.
-        :param nodes: List of nodes to restart Honeycomb on.
-        :type nodes: list
-        :raises HoneycombError: If Honeycomb failed to restart.
-        """
-        logger.console("\nRestarting Honeycomb service ...")
-
-        cmd = "sudo service honeycomb restart "
-        errors = []
-
-        for node in nodes:
-            if node['type'] == NodeType.DUT:
-                ssh = SSH()
-                ssh.connect(node)
-                (ret_code, _, _) = ssh.exec_command_sudo(cmd)
-                if int(ret_code) != 0:
-                    errors.append(node['host'])
-                try:
-                    DUTSetup.setup_dut(node)
-                except Exception as err:
-                    logger.debug(err)
-                    errors.append(node['host'])
-                    continue
-                logger.info("Restart of Honeycomb and VPP on node {0} is "
-                            "in progress ...".format(node['host']))
-        if errors:
-            raise HoneycombError('Node(s) {0} failed to restart Honeycomb'
-                                 ' and/or VPP.'.
                                  format(errors))
 
     @staticmethod
@@ -362,16 +327,19 @@ class HoneycombSetup(object):
                                  "node {0}, {1}".format(node, stderr))
 
     @staticmethod
-    def enable_module_features(node, *features):
-        """Configure Honeycomb to use VPP modules that are disabled by default.
+    def manage_honeycomb_features(node, feature, enable=True):
+        """Configure Honeycomb to use features that are disabled by default, or
+        disable previously enabled features.
 
         ..Note:: If the module is not enabled in VPP, Honeycomb will
         be unable to establish VPP connection.
 
         :param node: Honeycomb node.
         :param features: Features to enable.
+        :param disable: Disable the specified feature instead of enabling it.
         :type node: dict
         :type features: string
+        :type disable: bool
         :raises HoneycombError: If the configuration could not be changed.
          """
 
@@ -382,23 +350,24 @@ class HoneycombSetup(object):
         ssh = SSH()
         ssh.connect(node)
 
-        for feature in features:
-            if feature in disabled_features.keys():
-                # uncomment by replacing the entire line
-                find = replace = "{0}".format(disabled_features[feature])
+        if feature in disabled_features.keys():
+            # uncomment by replacing the entire line
+            find = replace = "{0}".format(disabled_features[feature])
+            if not enable:
+                replace = {"// {0}".format(find)}
 
-                argument = '"/{0}/c\\ {1}"'.format(find, replace)
-                path = "{0}/modules/*module-config"\
-                    .format(Const.REMOTE_HC_DIR)
-                command = "sed -i {0} {1}".format(argument, path)
+            argument = '"/{0}/c\\ {1}"'.format(find, replace)
+            path = "{0}/modules/*module-config"\
+                .format(Const.REMOTE_HC_DIR)
+            command = "sed -i {0} {1}".format(argument, path)
 
-                (ret_code, _, stderr) = ssh.exec_command_sudo(command)
-                if ret_code != 0:
-                    raise HoneycombError("Failed to modify configuration on "
-                                         "node {0}, {1}".format(node, stderr))
-            else:
-                raise HoneycombError(
-                    "Unrecognized feature {0}.".format(feature))
+            (ret_code, _, stderr) = ssh.exec_command_sudo(command)
+            if ret_code != 0:
+                raise HoneycombError("Failed to modify configuration on "
+                                     "node {0}, {1}".format(node, stderr))
+        else:
+            raise HoneycombError(
+                "Unrecognized feature {0}.".format(feature))
 
     @staticmethod
     def copy_java_libraries(node):
@@ -438,43 +407,82 @@ class HoneycombSetup(object):
                                      "node {0}, {1}".format(node, stderr))
 
     @staticmethod
-    def configure_odl_client(node, odl_name):
-        """Start ODL client on the specified node.
+    def copy_odl_client(node, odl_name, src_path, dst_path):
+        """Copy ODL Client from source path to destination path.
 
-        Karaf should be located in /mnt/common, and VPP and Honeycomb should
-        already be running, otherwise the start will fail.
-        :param node: Node to start ODL client on.
+        :param node: Honeycomb node.
         :param odl_name: Name of ODL client version to use.
+        :param src_path: Source Path where to find ODl client.
+        :param dst_path: Destination path.
         :type node: dict
         :type odl_name: str
-        :raises HoneycombError: If Honeycomb fails to start.
+        :type src_path: str
+        :type dst_path: str
+        :raises HoneycombError: If the operation fails.
         """
-
-        logger.debug("Copying ODL Client to home dir.")
 
         ssh = SSH()
         ssh.connect(node)
 
-        cmd = "cp -r /mnt/common/*karaf_{name}* ~/karaf".format(name=odl_name)
+        cmd = "cp -r {src}/*karaf_{odl_name}* {dst}".format(
+            src=src_path, odl_name=odl_name, dst=dst_path)
 
-        (ret_code, _, _) = ssh.exec_command_sudo(cmd)
+        ret_code, _, _ = ssh.exec_command(cmd, timeout=30)
         if int(ret_code) != 0:
             raise HoneycombError(
                 "Failed to copy ODL client on node {0}".format(node["host"]))
 
+    @staticmethod
+    def setup_odl_client(node, path):
+        """Start ODL client on the specified node.
+
+        Karaf should be located in the provided path, and VPP and Honeycomb
+        should already be running, otherwise the start will fail.
+        :param node: Node to start ODL client on.
+        :param path: Path to ODL client on node.
+        :type node: dict
+        :type path: str
+        :raises HoneycombError: If Honeycomb fails to start.
+        """
+
         logger.console("\nStarting ODL client ...")
-
-        cmd = "~/*karaf*/bin/start"
-
         ssh = SSH()
         ssh.connect(node)
-        (ret_code, _, _) = ssh.exec_command_sudo(cmd)
+
+        cmd = "{path}/*karaf*/bin/start clean".format(path=path)
+        ret_code, _, _ = ssh.exec_command_sudo(cmd)
+
         if int(ret_code) != 0:
             raise HoneycombError('Node {0} failed to start ODL.'.
                                  format(node['host']))
         else:
             logger.info("Starting the ODL client on node {0} is "
                         "in progress ...".format(node['host']))
+
+    @staticmethod
+    def install_odl_features(node, path, *features):
+        """Install required features on a running ODL client.
+
+        :param node: Honeycomb node.
+        :param path: Path to ODL client on node.
+        :param features: Optional, list of additional features to install.
+        :type node: dict
+        :type path: str
+        :type features: list
+        """
+
+        ssh = SSH()
+        ssh.connect(node)
+
+        cmd = "{path}/*karaf*/bin/client -u karaf feature:install " \
+              "odl-restconf-all odl-netconf-connector-all".format(path=path)
+        for feature in features:
+            cmd += " {0}".format(feature)
+
+        ret_code, _, stderr = ssh.exec_command_sudo(cmd, timeout=120)
+
+        if int(ret_code) != 0:
+            raise HoneycombError("Feature install did not succeed.")
 
     @staticmethod
     def check_odl_startup_state(node):
@@ -537,6 +545,52 @@ class HoneycombSetup(object):
         if status_code == HTTPCodes.OK:
             logger.info("ODL mount point configured successfully.")
         elif status_code == HTTPCodes.CONFLICT:
-            logger.warn("ODL mount point was already configured.")
+            logger.info("ODL mount point was already configured.")
         else:
             raise HoneycombError('Mount point configuration not successful')
+
+    @staticmethod
+    def stop_odl_client(node, path):
+        """Stop ODL client service on the specified node.
+
+        :param node: Node to start ODL client on.
+        :param path: Path to ODL client.
+        :type node: dict
+        :type path: str
+        :raises HoneycombError: If ODL client fails to stop.
+        """
+
+        ssh = SSH()
+        ssh.connect(node)
+
+        cmd = "{0}/*karaf*/bin/stop".format(path)
+
+        ssh = SSH()
+        ssh.connect(node)
+        ret_code, _, _ = ssh.exec_command_sudo(cmd)
+        if int(ret_code) != 0:
+            logger.warn("ODL Client refused to shut down.")
+            cmd = "pkill -f 'karaf'"
+            (ret_code, _, _) = ssh.exec_command_sudo(cmd)
+            if int(ret_code) != 0:
+                raise HoneycombError('Node {0} failed to stop ODL.'.
+                                     format(node['host']))
+
+        logger.info("ODL client service stopped.")
+
+    @staticmethod
+    def stop_vpp_service(node):
+        """Stop VPP service on the specified node.
+
+        :param node: VPP node.
+        :type node: dict
+        :raises RuntimeError: If VPP fails to stop.
+        """
+
+        ssh = SSH()
+        ssh.connect(node)
+        cmd = "service vpp stop"
+        ret_code, _, _ = ssh.exec_command_sudo(cmd)
+        if int(ret_code) != 0:
+            raise RuntimeError("Could not stop VPP service on node {0}".format(
+                node['host']))
