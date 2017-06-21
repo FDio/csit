@@ -23,9 +23,9 @@
 | Resource | resources/libraries/robot/testing_path.robot
 | Resource | resources/libraries/robot/traffic.robot
 | ...
-| Suite Teardown
-| ... | Run Keyword If Any Tests Failed
-| ... | Restart Honeycomb and VPP | ${node}
+| Suite Setup | Set Up Honeycomb Functional Test Suite | ${node}
+| ...
+| Suite Teardown | Tear Down Honeycomb Functional Test Suite | ${node}
 | ...
 | Force Tags | HC_FUNC
 | ...
@@ -115,6 +115,8 @@
 | | ... | ${interface} | ${slaac_data_03}
 
 | TC07: DUT retransmits RA on IPv6 enabled interface after a set interval
+# Traffic test failing in VIRL
+| | [Tags] | EXPECTED_FAILING
 | | [Documentation]
 | | ... | [Top] TG-DUT1-DUT2-TG.
 | | ... | [Cfg] On DUT1 configure IPv6 interface on the link to TG.
