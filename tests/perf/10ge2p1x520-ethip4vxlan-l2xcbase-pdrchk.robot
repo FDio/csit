@@ -14,7 +14,7 @@
 *** Settings ***
 | Resource | resources/libraries/robot/performance_setup.robot
 | ...
-| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | PDRCHK
+| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | PDRCHK | THIS
 | ... | NIC_Intel-X520-DA2 | L2XCFWD | ENCAP | VXLAN | L2OVRLAY | IP4UNRLAY
 | ...
 | Suite Setup | Set up 3-node performance topology with DUT's NIC model
@@ -47,6 +47,7 @@
 | ... | *[Ref] Applicable standard specifications:* RFC2544, RFC7348.
 
 *** Variables ***
+| ${vxlan_overhead} | ${50}
 # Traffic profile:
 | ${traffic_profile} | trex-sl-3n-ethip4-ip4src254
 
@@ -86,7 +87,7 @@
 | | [Tags] | 64B | 1T1C | STHREAD
 | | ...
 | | [Template] | Check PDR for L2 xconnect with VXLAN over IPv4
-| | framesize=${64} | rate=2.4mpps | wt=1 | rxq=1
+| | framesize=${64 + ${vxlan_overhead}} | rate=2.0mpps | wt=1 | rxq=1
 
 | tc02-1518B-1t1c-ethip4vxlan-l2xcbase-pdrchk
 | | [Documentation]
@@ -98,7 +99,7 @@
 | | [Tags] | 1518B | 1T1C | STHREAD
 | | ...
 | | [Template] | Check PDR for L2 xconnect with VXLAN over IPv4
-| | framesize=${1518} | rate=787153pps | wt=1 | rxq=1
+| | framesize=${1518 + ${vxlan_overhead}} | rate=500000pps | wt=1 | rxq=1
 
 | tc03-9000B-1t1c-ethip4vxlan-l2xcbase-pdrchk
 | | [Documentation]
@@ -110,7 +111,7 @@
 | | [Tags] | 9000B | 1T1C | STHREAD
 | | ...
 | | [Template] | Check PDR for L2 xconnect with VXLAN over IPv4
-| | framesize=${9000} | rate=137816pps | wt=1 | rxq=1
+| | framesize=${9000 + ${vxlan_overhead}} | rate=100000pps | wt=1 | rxq=1
 
 | tc04-64B-2t2c-ethip4vxlan-l2xcbase-pdrchk
 | | [Documentation]
@@ -122,7 +123,7 @@
 | | [Tags] | 64B | 2T2C | MTHREAD
 | | ...
 | | [Template] | Check PDR for L2 xconnect with VXLAN over IPv4
-| | framesize=${64} | rate=5.2mpps | wt=2 | rxq=1
+| | framesize=${64 + ${vxlan_overhead}} | rate=5.0mpps | wt=2 | rxq=1
 
 | tc05-1518B-2t2c-ethip4vxlan-l2xcbase-pdrchk
 | | [Documentation]
@@ -134,7 +135,7 @@
 | | [Tags] | 1518B | 2T2C | MTHREAD
 | | ...
 | | [Template] | Check PDR for L2 xconnect with VXLAN over IPv4
-| | framesize=${1518} | rate=787153pps | wt=2 | rxq=1
+| | framesize=${1518 + ${vxlan_overhead}} | rate=500000pps | wt=2 | rxq=1
 
 | tc06-9000B-2t2c-ethip4vxlan-l2xcbase-pdrchk
 | | [Documentation]
@@ -146,7 +147,7 @@
 | | [Tags] | 9000B | 2T2C | MTHREAD
 | | ...
 | | [Template] | Check PDR for L2 xconnect with VXLAN over IPv4
-| | framesize=${9000} | rate=137816pps | wt=2 | rxq=1
+| | framesize=${9000 + ${vxlan_overhead}} | rate=100000pps | wt=2 | rxq=1
 
 | tc07-64B-4t4c-ethip4vxlan-l2xcbase-pdrchk
 | | [Documentation]
@@ -158,7 +159,7 @@
 | | [Tags] | 64B | 4T4C | MTHREAD
 | | ...
 | | [Template] | Check PDR for L2 xconnect with VXLAN over IPv4
-| | framesize=${64} | rate=8.4mpps | wt=4 | rxq=2
+| | framesize=${64 + ${vxlan_overhead}} | rate=6.5mpps | wt=4 | rxq=2
 
 | tc08-1518B-4t4c-ethip4vxlan-l2xcbase-pdrchk
 | | [Documentation]
@@ -170,7 +171,7 @@
 | | [Tags] | 1518B | 4T4C | MTHREAD
 | | ...
 | | [Template] | Check PDR for L2 xconnect with VXLAN over IPv4
-| | framesize=${1518} | rate=787153pps | wt=4 | rxq=2
+| | framesize=${1518 + ${vxlan_overhead}} | rate=500000pps | wt=4 | rxq=2
 
 | tc09-9000B-4t4c-ethip4vxlan-l2xcbase-pdrchk
 | | [Documentation]
@@ -182,4 +183,4 @@
 | | [Tags] | 9000B | 4T4C | MTHREAD
 | | ...
 | | [Template] | Check PDR for L2 xconnect with VXLAN over IPv4
-| | framesize=${9000} | rate=137816pps | wt=4 | rxq=2
+| | framesize=${9000 + ${vxlan_overhead}} | rate=100000pps | wt=4 | rxq=2

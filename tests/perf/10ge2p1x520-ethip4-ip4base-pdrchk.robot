@@ -103,7 +103,7 @@
 | | [Tags] | 1518B | 1T1C | STHREAD
 | | ...
 | | [Template] | Check PDR for IPv4 routing
-| | framesize=${1518} | rate=812743pps | wt=1 | rxq=1
+| | framesize=${1518} | rate=400000pps | wt=1 | rxq=1
 
 | tc03-9000B-1t1c-ethip4-ip4base-pdrchk
 | | [Documentation]
@@ -115,7 +115,7 @@
 | | [Tags] | 9000B | 1T1C | STHREAD
 | | ...
 | | [Template] | Check PDR for IPv4 routing
-| | framesize=${9000} | rate=138580pps | wt=1 | rxq=1
+| | framesize=${9000} | rate=60000pps | wt=1 | rxq=1
 
 | tc04-64B-2t2c-ethip4-ip4base-pdrchk
 | | [Documentation]
@@ -127,7 +127,7 @@
 | | [Tags] | 64B | 2T2C | STHREAD
 | | ...
 | | [Template] | Check PDR for IPv4 routing
-| | framesize=${64} | rate=9.4mpps | wt=2 | rxq=1
+| | framesize=${64} | rate=7.4mpps | wt=2 | rxq=1
 
 | tc05-1518B-2t2c-ethip4-ip4base-pdrchk
 | | [Documentation]
@@ -139,7 +139,7 @@
 | | [Tags] | 1518B | 2T2C | MTHREAD
 | | ...
 | | [Template] | Check PDR for IPv4 routing
-| | framesize=${1518} | rate=812743pps | wt=2 | rxq=1
+| | framesize=${1518} | rate=400000pps | wt=2 | rxq=1
 
 | tc06-9000B-2t2c-ethip4-ip4base-pdrchk
 | | [Documentation]
@@ -151,7 +151,7 @@
 | | [Tags] | 9000B | 2T2C | MTHREAD
 | | ...
 | | [Template] | Check PDR for IPv4 routing
-| | framesize=${9000} | rate=138580pps | wt=2 | rxq=1
+| | framesize=${9000} | rate=60000pps | wt=2 | rxq=1
 
 | tc07-64B-4t4c-ethip4-ip4base-pdrchk
 | | [Documentation]
@@ -163,7 +163,7 @@
 | | [Tags] | 64B | 4T4C | MTHREAD
 | | ...
 | | [Template] | Check PDR for IPv4 routing
-| | framesize=${64} | rate=13.4mpps | wt=4 | rxq=2
+| | framesize=${64} | rate=7.6mpps | wt=4 | rxq=2
 
 | tc08-1518B-4t4c-ethip4-ip4base-pdrchk
 | | [Documentation]
@@ -175,7 +175,7 @@
 | | [Tags] | 1518B | 4T4C | MTHREAD
 | | ...
 | | [Template] | Check PDR for IPv4 routing
-| | framesize=${1518} | rate=812743pps | wt=4 | rxq=2
+| | framesize=${1518} | rate=400000pps | wt=4 | rxq=2
 
 | tc08-9000B-4t4c-ethip4-ip4base-pdrchk
 | | [Documentation]
@@ -186,5 +186,5 @@
 | | ...
 | | [Tags] | 9000B | 4T4C | MTHREAD
 | | ...
-| | [Template] | Check PDR for IPv4 routing with
-| | framesize=${9000} | rate=138580pps | wt=4 | rxq=2
+| | [Template] | Check PDR for IPv4 routing
+| | framesize=${9000} | rate=60000pps | wt=4 | rxq=2

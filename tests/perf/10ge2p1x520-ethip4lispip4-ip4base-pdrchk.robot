@@ -106,7 +106,7 @@
 | | [Tags] | 1480B | 1T1C | STHREAD
 | | ...
 | | [Template] | Check PDR for Lisp IPv4 over IPv4 forwarding
-| | framesize=${1480} | rate=740000pps | wt=1 | rxq=1
+| | framesize=${1480} | rate=370000pps | wt=1 | rxq=1
 
 | tc03-9000B-1t1c-ethip4lispip4-ip4base-pdrchk
 | | [Documentation]
@@ -118,7 +118,7 @@
 | | [Tags] | 9000B | 1T1C | STHREAD
 | | ...
 | | [Template] | Check PDR for Lisp IPv4 over IPv4 forwarding
-| | framesize=${9000} | rate=120000pps | wt=1 | rxq=1
+| | framesize=${9000} | rate=60000pps | wt=1 | rxq=1
 
 | tc04-64B-2t2c-ethip4lispip4-ip4base-pdrchk
 | | [Documentation]
@@ -142,7 +142,7 @@
 | | [Tags] | 1480B | 2T2C | MTHREAD
 | | ...
 | | [Template] | Check PDR for Lisp IPv4 over IPv4 forwarding
-| | framesize=${1480} | rate=740000pps | wt=2 | rxq=1
+| | framesize=${1480} | rate=370000pps | wt=2 | rxq=1
 
 | tc06-9000B-2t2c-ethip4lispip4-ip4base-pdrchk
 | | [Documentation]
@@ -154,7 +154,7 @@
 | | [Tags] | 9000B | 2T2C | MTHREAD
 | | ...
 | | [Template] | Check PDR for Lisp IPv4 over IPv4 forwarding
-| | framesize=${9000} | rate=120000pps | wt=2 | rxq=1
+| | framesize=${9000} | rate=60000pps | wt=2 | rxq=1
 
 | tc07-64B-4t4c-ethip4lispip4-ip4base-pdrchk
 | | [Documentation]
@@ -178,7 +178,7 @@
 | | [Tags] | 1480B | 4T4C | MTHREAD
 | | ...
 | | [Template] | Check PDR for Lisp IPv4 over IPv4 forwarding
-| | framesize=${1480} | rate=740000pps | wt=4 | rxq=2
+| | framesize=${1480} | rate=370000pps | wt=4 | rxq=2
 
 | tc09-9000B-4t4c-ethip4lispip4-ip4base-pdrchk
 | | [Documentation]
@@ -190,4 +190,4 @@
 | | [Tags] | 9000B | 4T4C | MTHREAD
 | | ...
 | | [Template] | Check PDR for Lisp IPv4 over IPv4 forwarding
-| | framesize=${9000} | rate=120000pps | wt=4 | rxq=2
+| | framesize=${9000} | rate=60000pps | wt=4 | rxq=2
