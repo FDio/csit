@@ -21,29 +21,6 @@
 | Resource | resources/libraries/robot/honeycomb/honeycomb.robot
 | ...
 | Suite Setup | Run Keywords | Configure all DUTs before test | AND
-| ... | Configure Honeycomb for testing | ${node} | AND
-| ... | Configure ODL Client for testing | ${node} | AND
 | ... | Set Global Variable | ${node}
 | ...
 | Suite Teardown | Archive Honeycomb log file | ${node}
-
-*** Keywords ***
-| Configure Honeycomb for testing
-| | [Arguments] | ${node}
-| | Configure Restconf binding address | ${node}
-| | Enable Module Features | ${node}
-| | Configure Log Level | ${node} | TRACE
-| | Configure Persistence | ${node} | disable
-| | Configure jVPP timeout | ${node} | ${14}
-| | Clear Persisted Honeycomb Configuration | ${node}
-| | Configure Honeycomb service on DUTs | ${node}
-
-| Configure ODL Client for testing
-| | [Arguments] | ${node}
-| | ${use_odl_client}= | Get Variable Value | ${HC_ODL}
-| | Run Keyword If | '${use_odl_client}' != '${NONE}'
-| | ... | Run Keywords
-| | ... | Set Global Variable | ${use_odl_client} | AND
-| | ... | Configure ODL Client Service On DUT | ${node} | ${use_odl_client}
-| | ... | ELSE | Log | Variable HC_ODL is not present. Not using ODL.
-| | ... | level=INFO

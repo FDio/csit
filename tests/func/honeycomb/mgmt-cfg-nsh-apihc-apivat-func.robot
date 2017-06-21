@@ -24,10 +24,15 @@
 | ...
 | Documentation | *Honeycomb NSH test suite.*
 | ...
-| Suite Teardown | Run Keyword If Any Tests Failed
-| ... | Restart Honeycomb and VPP | ${node}
-# disabled pending NSH version 17.04
-#| Force Tags | honeycomb_sanity | honeycomb_odl
+| Suite Setup | Run Keywords
+| ... | Enable Honeycomb Feature | ${node} | NSH | AND
+| ... | Honeycomb Functional Suite Setup Generic | ${node}
+| ...
+| Suite Teardown | Run Keywords
+| ... | Honeycomb Functional Suite Teardown Generic | ${node} | AND
+| ... | Disable Honeycomb Feature | ${node} | NSH
+| ...
+| Force Tags | honeycomb_sanity | honeycomb_odl
 
 *** Test Cases ***
 | TC01: Honeycomb can configure NSH entry
