@@ -96,7 +96,7 @@
 | | [Tags] | 1518B | 1T1C | STHREAD
 | | ...
 | | [Template] | Check PDR for IPv6 routing
-| | framesize=${1518} | rate=812743pps | wt=1 | rxq=1
+| | framesize=${1518} | rate=400000pps | wt=1 | rxq=1
 
 | tc03-9000B-1t1c-ethip6-ip6base-pdrchk
 | | [Documentation]
@@ -108,7 +108,7 @@
 | | [Tags] | 9000B | 1T1C | STHREAD
 | | ...
 | | [Template] | Check PDR for IPv6 routing
-| | framesize=${9000} | rate=138580pps | wt=1 | rxq=1
+| | framesize=${9000} | rate=60000pps | wt=1 | rxq=1
 
 | tc04-78B-2t2c-ethip6-ip6base-pdrchk
 | | [Documentation]
@@ -120,7 +120,7 @@
 | | [Tags] | 78B | 2T2C | MTHREAD
 | | ...
 | | [Template] | Check PDR for IPv6 routing
-| | framesize=${78} | rate=8.1mpps | wt=2 | rxq=1
+| | framesize=${78} | rate=6.0mpps | wt=2 | rxq=1
 
 | tc05-1518B-2t2c-ethip6-ip6base-pdrchk
 | | [Documentation]
@@ -132,7 +132,7 @@
 | | [Tags] | 1518B | 2T2C | MTHREAD
 | | ...
 | | [Template] | Check PDR for IPv6 routing
-| | framesize=${1518} | rate=812743pps | wt=2 | rxq=1
+| | framesize=${1518} | rate=400000pps | wt=2 | rxq=1
 
 | tc06-9000B-2t2c-ethip6-ip6base-pdrchk
 | | [Documentation]
@@ -144,7 +144,7 @@
 | | [Tags] | 9000B | 2T2C | MTHREAD
 | | ...
 | | [Template] | Check PDR for IPv6 routing
-| | framesize=${9000} | rate=138580pps | wt=2 | rxq=1
+| | framesize=${9000} | rate=60000pps | wt=2 | rxq=1
 
 | tc07-78B-4t4c-ethip6-ip6base-pdrchk
 | | [Documentation]
@@ -156,7 +156,7 @@
 | | [Tags] | 78B | 4T4C | MTHREAD
 | | ...
 | | [Template] | Check PDR for IPv6 routing
-| | framesize=${78} | rate=9.4mpps | wt=4 | rxq=2
+| | framesize=${78} | rate=6.1mpps | wt=4 | rxq=2
 
 | tc08-1518B-4t4c-ethip6-ip6base-pdrchk
 | | [Documentation]
@@ -168,7 +168,7 @@
 | | [Tags] | 1518B | 4T4C | MTHREAD
 | | ...
 | | [Template] | Check PDR for IPv6 routing
-| | framesize=${1518} | rate=812743pps | wt=4 | rxq=2
+| | framesize=${1518} | rate=400000pps | wt=4 | rxq=2
 
 | tc09-9000B-4t4c-ethip6-ip6base-pdrchk
 | | [Documentation]
@@ -180,4 +180,4 @@
 | | [Tags] | 9000B | 4T4C | MTHREAD
 | | ...
 | | [Template] | Check PDR for IPv6 routing
-| | framesize=${9000} | rate=138580pps | wt=4 | rxq=2
+| | framesize=${9000} | rate=60000pps | wt=4 | rxq=2
