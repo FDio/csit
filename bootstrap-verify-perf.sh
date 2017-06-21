@@ -238,7 +238,7 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s "tests.perf" \
-              --include ndrchkANDnic_intel-x520-da2AND1t1cANDip4baseORndrchkANDnic_intel-x520-da2AND1t1cANDip4fwdANDfib_2m \
+              --include pdrchkANDnic_intel-x520-da2AND1t1cANDip4baseORpdrchkANDnic_intel-x520-da2AND1t1cANDip4fwdANDfib_2m \
               tests/
         RETURN_STATUS=$(echo $?)
         ;;
@@ -246,7 +246,7 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s "tests.perf" \
-              --include ndrchkANDnic_intel-x520-da2AND1t1cANDip6baseORndrchkANDnic_intel-x520-da2AND1t1cANDip6fwdANDfib_2m \
+              --include pdrchkANDnic_intel-x520-da2AND1t1cANDip6baseORpdrchkANDnic_intel-x520-da2AND1t1cANDip6fwdANDfib_2m \
               tests/
         RETURN_STATUS=$(echo $?)
         ;;
@@ -254,7 +254,7 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s "tests.perf" \
-              --include ndrchkANDnic_intel-x520-da2AND1t1cANDl2xcbaseORndrchkANDnic_intel-x520-da2AND1t1cANDl2bdbase \
+              --include pdrchkANDnic_intel-x520-da2AND1t1cANDl2xcbaseORpdrchkANDnic_intel-x520-da2AND1t1cANDl2bdbase \
               tests/
         RETURN_STATUS=$(echo $?)
         ;;
@@ -262,7 +262,7 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s "tests.perf" \
-              --include ndrchkANDnic_intel-x520-da2AND1t1cANDlisp \
+              --include pdrchkANDnic_intel-x520-da2AND1t1cANDlisp \
               tests/
         RETURN_STATUS=$(echo $?)
         ;;
@@ -270,7 +270,7 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s "tests.perf" \
-              --include ndrchkANDnic_intel-x520-da2AND1t1cANDvxlan \
+              --include pdrchkANDnic_intel-x520-da2AND1t1cANDvxlan \
               tests/
         RETURN_STATUS=$(echo $?)
         ;;
@@ -278,7 +278,7 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s "tests.perf" \
-              --include ndrchkANDnic_intel-x520-da2AND1t1cANDvhost \
+              --include pdrchkANDnic_intel-x520-da2AND1t1cANDvhost \
               tests/
         RETURN_STATUS=$(echo $?)
         ;;
