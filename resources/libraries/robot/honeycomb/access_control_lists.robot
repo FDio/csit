@@ -18,7 +18,6 @@
 | Library | resources.libraries.python.InterfaceUtil
 | Library | resources.libraries.python.honeycomb.HcAPIKwACL.ACLKeywords
 | Library | resources.libraries.python.honeycomb.HcAPIKwInterfaces.InterfaceKeywords
-| ...     | WITH NAME | InterfaceAPI
 | Documentation | Keywords used to manage ACLs.
 
 *** Keywords ***
@@ -92,7 +91,7 @@
 | | ... | \| Honeycomb enables ACL on interface \| ${nodes['DUT1']} \
 | | ... | \| GigabithEthernet0/8/0 \| table0 \|
 | | [Arguments] | ${node} | ${interface} | ${table_name}
-| | InterfaceAPI.Enable ACL on interface
+| | Enable ACL on interface
 | | ... | ${node} | ${interface} | ${table_name}
 
 | Honeycomb disables ACL on interface
@@ -107,7 +106,7 @@
 | | ... | \| Honeycomb disables ACL on interface \| ${nodes['DUT1']} \
 | | ... | \| GigabithEthernet0/8/0 \|
 | | [Arguments] | ${node} | ${interface}
-| | InterfaceAPI.Disable ACL on interface | ${node} | ${interface}
+| | Disable ACL on interface | ${node} | ${interface}
 
 | ACL table from Honeycomb should be
 | | [Documentation] | Retrieves ACL table information from Honeycomb\
@@ -268,7 +267,7 @@
 | | ... | \| Interface ACL configuration from Honeycomb should be \
 | | ... | \| ${nodes['DUT1']} \| GigabithEthernet0/8/0 \| table0 \|
 | | [Arguments] | ${node} | ${interface} | ${table_name}
-| | ${data}= | InterfaceAPI.Get interface oper data | ${node} | ${interface}
+| | ${data}= | Get interface oper data | ${node} | ${interface}
 | | Should be equal
 | | ... | ${table_name}
 | | ... | ${data['vpp-interface-acl:acl']['ingress']['l2-acl']['classify-table']}
@@ -306,7 +305,7 @@
 | | ... | \| Interface ACL configuration from Honeycomb should be empty \
 | | ... | \| ${nodes['DUT1']} \| GigabithEthernet0/8/0 \|
 | | [Arguments] | ${node} | ${interface}
-| | ${data}= | InterfaceAPI.Get interface oper data | ${node} | ${interface}
+| | ${data}= | Get interface oper data | ${node} | ${interface}
 | | Run keyword and expect error | *KeyError: 'vpp-interface-acl:acl'
 | | ... | Set Variable
 | | ... | ${data['vpp-interface-acl:acl']['l2-acl']['classify-table']}

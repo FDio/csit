@@ -13,9 +13,7 @@
 
 *** Settings ***
 | Library | resources.libraries.python.InterfaceUtil
-| ...     | WITH NAME | interfaceCLI
 | Library | resources.libraries.python.honeycomb.HcAPIKwInterfaces.InterfaceKeywords
-| ...     | WITH NAME | InterfaceAPI
 | Documentation | Keywords used to manipulate TAP interfaces.
 
 *** Keywords ***
@@ -33,7 +31,7 @@
 | | ... | 'mac':'08:00:27:60:26:ab', 'device-instance':3}} \|
 | | ...
 | | [Arguments] | ${node} | ${interface} | ${settings}
-| | interfaceAPI.Create TAP interface | ${node} | ${interface}
+| | Create TAP interface | ${node} | ${interface}
 | | ... | &{settings}
 
 | Honeycomb configures TAP interface
@@ -50,7 +48,7 @@
 | | ... | 'mac':'08:00:27:60:26:ab', 'device-instance':3}} \|
 | | ...
 | | [Arguments] | ${node} | ${interface} | ${settings}
-| | interfaceAPI.Configure interface TAP | ${node} | ${interface}
+| | Configure interface TAP | ${node} | ${interface}
 | | ... | &{settings}
 
 | Honeycomb removes TAP interface
@@ -65,7 +63,7 @@
 | | ... | \| Honeycomb removes TAP interface \
 | | ... | \| ${nodes['DUT1']} \| tap_int1 \|
 | | [Arguments] | ${node} | ${interface}
-| | interfaceAPI.Delete interface | ${node} | ${interface}
+| | Delete interface | ${node} | ${interface}
 
 | TAP Operational Data From Honeycomb Should Be
 | | [Documentation] | Retrieves interface TAP configuration through Honeycomb\
@@ -83,7 +81,7 @@
 | | ... | 'mac':'08:00:27:60:26:ab', 'device-instance':3}} \|
 | | ...
 | | [Arguments] | ${node} | ${interface} | ${settings}
-| | ${api_data}= | interfaceAPI.Get interface oper data | ${node} | ${interface}
+| | ${api_data}= | Get interface oper data | ${node} | ${interface}
 | | ${api_tap}= | Set Variable | ${api_data['v3po:tap']}
 | | Should be equal | ${api_tap['tap-name']} | ${settings['tap-name']}
 | | ${api_mac}= | Set Variable | ${api_data['phys-address']}
@@ -122,7 +120,7 @@
 | | ... | \| ${nodes['DUT1']} \| tap_int1 \|
 | | ...
 | | [Arguments] | ${node} | ${interface}
-| | ${api_data}= | interfaceAPI.Get interface oper data | ${node} | ${interface}
+| | ${api_data}= | Get interface oper data | ${node} | ${interface}
 | | Run keyword and expect error | *KeyError: 'v3po:tap' | Set Variable
 | | ... | ${api_data['v3po:tap']}
 

@@ -252,7 +252,7 @@ class InterfaceKeywords(object):
         return InterfaceKeywords._configure_interface(node, interface, new_data)
 
     @staticmethod
-    def set_interface_state(node, interface, state="up"):
+    def honeycomb_set_interface_state(node, interface, state="up"):
         """Set VPP interface state.
 
         The keyword changes the administration state of interface to up or down
@@ -310,7 +310,8 @@ class InterfaceKeywords(object):
         :rtype: bytearray
         """
 
-        return InterfaceKeywords.set_interface_state(node, interface, "up")
+        return InterfaceKeywords.honeycomb_set_interface_state(
+            node, interface, "up")
 
     @staticmethod
     def set_interface_down(node, interface):
@@ -324,7 +325,8 @@ class InterfaceKeywords(object):
         :rtype: bytearray
         """
 
-        return InterfaceKeywords.set_interface_state(node, interface, "down")
+        return InterfaceKeywords.honeycomb_set_interface_state(
+            node, interface, "down")
 
     @staticmethod
     def add_bridge_domain_to_interface(node, interface, bd_name,

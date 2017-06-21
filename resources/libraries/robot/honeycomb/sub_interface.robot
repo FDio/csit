@@ -13,10 +13,8 @@
 
 *** Settings ***
 | Library | resources.libraries.python.InterfaceUtil
-| ...     | WITH NAME | interfaceCLI
 | Library | resources.libraries.python.L2Util
 | Library | resources.libraries.python.honeycomb.HcAPIKwInterfaces.InterfaceKeywords
-| ...     | WITH NAME | InterfaceAPI
 | Resource | resources/libraries/robot/honeycomb/bridge_domain.robot
 | Documentation | Keywords used to manipulate sub-interfaces.
 
@@ -43,7 +41,7 @@
 | | [Arguments] | ${node} | ${super_interface}
 | | ... | ${match} | ${tags} | ${sub_interface_settings}
 | | ...
-| | interfaceAPI.Create sub interface | ${node} | ${super_interface}
+| | Create sub interface | ${node} | ${super_interface}
 | | ... | ${match} | ${tags} | &{sub_interface_settings}
 
 | Sub-interface Operational Data From Honeycomb Should Be
@@ -65,9 +63,9 @@
 | | [Arguments] | ${node} | ${super_interface} | ${identifier}
 | | ... | ${sub_if_settings}
 | | ...
-| | ${api_data}= | interfaceAPI.Get sub interface oper data
+| | ${api_data}= | Get sub interface oper data
 | | ... | ${node} | ${super_interface} | ${identifier}
-| | interfaceAPI.Compare Data Structures | ${api_data} | ${sub_if_settings}
+| | Compare Data Structures | ${api_data} | ${sub_if_settings}
 
 | Sub-interface Operational Data From Honeycomb Should Be empty
 | | [Documentation] | Retrieves sub-interface configuration through Honeycomb \
@@ -85,7 +83,7 @@
 | | [Arguments] | ${node} | ${super_interface} | ${identifier}
 | | ...
 | | Run keyword and expect error | *KeyError: 'vpp-vlan:sub-interfaces'*
-| | ... | interfaceAPI.Get sub interface oper data
+| | ... | Get sub interface oper data
 | | ... | ${node} | ${super_interface} | ${identifier}
 
 | Sub-interface state from Honeycomb should be
@@ -107,7 +105,7 @@
 | | [Arguments] | ${node} | ${super_interface} | ${identifier}
 | | ... | ${admin_state} | ${oper_state}
 | | ...
-| | ${api_data}= | interfaceAPI.Get sub interface oper data
+| | ${api_data}= | Get sub interface oper data
 | | ... | ${node} | ${super_interface} | ${identifier}
 | | Should be equal | ${api_data['admin-status']} | ${admin_state}
 | | Should be equal | ${api_data['oper-status']} | ${oper_state}
@@ -129,7 +127,7 @@
 | | ...
 | | [Arguments] | ${node} | ${sub_interface} | ${sub_interface_settings}
 | | ...
-| | ${vat_data}= | InterfaceCLI.VPP get interface data
+| | ${vat_data}= | .VPP get interface data
 | | ... | ${node} | ${sub_interface}
 | | Should be equal as strings | ${vat_data['sub_id']}
 | | ... | ${sub_interface_settings['identifier']}
@@ -160,7 +158,7 @@
 | | ...
 | | [Arguments] | ${node} | ${sub_interface} | ${admin_state} | ${oper_state}
 | | ...
-| | ${vat_data}= | InterfaceCLI.VPP get interface data
+| | ${vat_data}= | .VPP get interface data
 | | ... | ${node} | ${sub_interface}
 | | Run keyword if | '${admin_state}' == 'down'
 | | ... | Should be equal as strings | ${vat_data['admin_up_down']} | 0
@@ -189,9 +187,9 @@
 | | ...
 | | [Arguments] | ${node} | ${super_interface} | ${identifier}
 | | ...
-| | ${api_data}= | interfaceAPI.Get sub interface oper data
+| | ${api_data}= | Get sub interface oper data
 | | ... | ${node} | ${super_interface} | ${identifier}
-| | ${vat_data}= | InterfaceCLI.VPP get interface data
+| | ${vat_data}= | .VPP get interface data
 | | ... | ${node} | ${super_interface}.${identifier}
 | | ${sw_if_index}= | EVALUATE | ${vat_data['sw_if_index']} + 1
 | | Should be equal as strings
@@ -211,7 +209,7 @@
 | | ...
 | | [Arguments] | ${node} | ${super_interface} | ${identifier}
 | | ...
-| | interfaceAPI.Set sub interface state
+| | Set sub interface state
 | | ... | ${node} | ${super_interface} | ${identifier} | up
 
 | Honeycomb sets the sub-interface down
@@ -228,7 +226,7 @@
 | | ...
 | | [Arguments] | ${node} | ${super_interface} | ${identifier}
 | | ...
-| | interfaceAPI.Set sub interface state
+| | Set sub interface state
 | | ... | ${node} | ${super_interface} | ${identifier} | down
 
 | Honeycomb fails to set sub-interface up
@@ -246,7 +244,7 @@
 | | [Arguments] | ${node} | ${super_interface} | ${identifier}
 | | ...
 | | Run keyword and expect error | *HoneycombError: * was not successful. * 500.
-| | ... | interfaceAPI.Set sub interface state
+| | ... | Set sub interface state
 | | ... | ${node} | ${super_interface} | ${identifier} | up
 
 | Honeycomb adds sub-interface to bridge domain
@@ -265,7 +263,7 @@
 | | ...
 | | [Arguments] | ${node} | ${super_if} | ${identifier} | ${sub_bd_setings}
 | | ...
-| | interfaceAPI.Add bridge domain to sub interface
+| | Add bridge domain to sub interface
 | | ... | ${node} | ${super_if} | ${identifier} | ${sub_bd_setings}
 
 | Sub-interface bridge domain Operational Data From Honeycomb Should Be
@@ -284,7 +282,7 @@
 | | ...
 | | [Arguments] | ${node} | ${super_if} | ${identifier} | ${settings}
 | | ...
-| | ${if_data}= | interfaceAPI.Get BD data from sub interface
+| | ${if_data}= | Get BD data from sub interface
 | | ... | ${node} | ${super_if} | ${identifier}
 | | Should be equal | ${if_data['bridge-domain']}
 | | ... | ${settings['bridge-domain']}
@@ -330,7 +328,7 @@
 | | [Arguments] | ${node} | ${super_if}
 | | ...
 | | Run keyword and expect error | *HoneycombError:*not successful. * code: 500.
-| | ... | interfaceAPI.Remove all sub interfaces
+| | ... | Remove all sub interfaces
 | | ... | ${node} | ${super_if}
 
 | Honeycomb configures tag rewrite
@@ -349,7 +347,7 @@
 | | ...
 | | [Arguments] | ${node} | ${super_if} | ${identifier} | ${settings}
 | | ...
-| | interfaceAPI.Configure tag rewrite
+| | Configure tag rewrite
 | | ... | ${node} | ${super_if} | ${identifier} | ${settings}
 
 | Rewrite tag from Honeycomb should be empty
@@ -367,7 +365,7 @@
 | | [Arguments] | ${node} | ${super_if} | ${identifier}
 | | ...
 | | Run keyword and expect error | *Hon*Error*oper*does not contain*tag-rewrite*
-| | ... | interfaceAPI.Get tag rewrite oper data
+| | ... | Get tag rewrite oper data
 | | ... | ${node} | ${super_if} | ${identifier}
 
 | Rewrite tag from Honeycomb should be
@@ -387,9 +385,9 @@
 | | ... | \| ${tag_rewrite_push_oper} \|
 | | ...
 | | [Arguments] | ${node} | ${super_if} | ${identifier} | ${settings}
-| | ${api_data}= | interfaceAPI.Get tag rewrite oper data
+| | ${api_data}= | Get tag rewrite oper data
 | | ... | ${node} | ${super_if} | ${identifier}
-| | interfaceAPI.Compare Data Structures
+| | Compare Data Structures
 | | ... | ${api_data} | ${settings}
 
 | Rewrite tag from VAT should be
@@ -409,8 +407,8 @@
 | | ... | \| ${nodes['DUT1']} \| GigabitEthernet0/8/0.1 \| ${rw_params} \|
 | | ...
 | | [Arguments] | ${node} | ${interface} | ${rw_settings}
-| | ${vat_data}= | InterfaceCLI.VPP get interface data | ${node} | ${interface}
-| | interfaceAPI.Compare Data Structures | ${vat_data} | ${rw_settings}
+| | ${vat_data}= | .VPP get interface data | ${node} | ${interface}
+| | Compare Data Structures | ${vat_data} | ${rw_settings}
 
 | Honeycomb fails to set wrong rewrite tag
 | | [Documentation] | Honeycomb tries to set wrong rewrite tag and expects\
@@ -429,7 +427,7 @@
 | | ...
 | | [Arguments] | ${node} | ${super_if} | ${identifier} | ${settings}
 | | Run keyword and expect error | *HoneycombError: * was not successful. *00.
-| | ... | interfaceAPI.Configure tag rewrite
+| | ... | Configure tag rewrite
 | | ... | ${node} | ${super_if} | ${identifier} | ${settings}
 
 | Honeycomb sets sub-interface ipv4 address
@@ -469,7 +467,7 @@
 | | ... | \| 192.168.0.2 \| ${24} \|
 | | ...
 | | [Arguments] | ${node} | ${super_if} | ${identifier} | ${address} | ${prefix}
-| | ${if_data}= | interfaceAPI.Get sub interface oper data
+| | ${if_data}= | Get sub interface oper data
 | | ... | ${node} | ${super_if} | ${identifier}
 | | Should be equal
 | | ... | ${if_data['ipv4']['address'][0]['ip']} | ${address}
@@ -492,7 +490,7 @@
 | | ... | \| ${nodes['DUT1']} \| GigabitEthernet0/8/0.1 \|
 | | ...
 | | [Arguments] | ${node} | ${sub_interface} | ${address} | ${prefix}
-| | ${data}= | interfaceCLI.VPP get interface ip addresses
+| | ${data}= | .VPP get interface ip addresses
 | | ... | ${node} | ${sub_interface} | ipv4
 | | Should be equal | ${data[0]['ip']} | ${address}
 | | Should be equal | ${data[0]['prefix_length']} | ${prefix}
@@ -528,7 +526,7 @@
 | | ... | \| ${nodes['DUT1']} \| GigabitEthernet0/8/0 \| ${1} \|
 | | ...
 | | [Arguments] | ${node} | ${super_if} | ${identifier}
-| | ${if_data}= | interfaceAPI.Get sub interface oper data
+| | ${if_data}= | Get sub interface oper data
 | | ... | ${node} | ${super_if} | ${identifier}
 | | Run keyword and expect error | *KeyError: 'ipv4'*
 | | ... | Set Variable | ${if_data['ipv4']['address'][0]['ip']}
@@ -548,7 +546,7 @@
 | | ...
 | | [Arguments] | ${node} | ${sub_interface}
 | | Run keyword and expect error | *No JSON object could be decoded*
-| | ... | interfaceCLI.VPP get interface ip addresses
+| | ... | .VPP get interface ip addresses
 | | ... | ${node} | ${sub_interface} | ipv4
 
 | Honeycomb sets sub-interface ipv6 address
@@ -588,7 +586,7 @@
 | | ... | \| 10::10 \| ${64} \|
 | | ...
 | | [Arguments] | ${node} | ${super_if} | ${identifier} | ${address} | ${prefix}
-| | ${if_data}= | interfaceAPI.Get sub interface oper data
+| | ${if_data}= | Get sub interface oper data
 | | ... | ${node} | ${super_if} | ${identifier}
 | | ${settings}= | Create Dictionary
 | | ... | ip=${address} | prefix-length=${prefix}
@@ -610,7 +608,7 @@
 | | ... | \| ${nodes['DUT1']} \| GigabitEthernet0/8/0.1 \|
 | | ...
 | | [Arguments] | ${node} | ${sub_interface} | ${address} | ${prefix}
-| | ${data}= | interfaceCLI.VPP get interface ip addresses
+| | ${data}= | .VPP get interface ip addresses
 | | ... | ${node} | ${sub_interface} | ipv6
 | | Should be equal | ${data[0]['ip']} | ${address}
 | | Should be equal | ${data[0]['prefix_length']} | ${prefix}
@@ -646,7 +644,7 @@
 | | ... | \| ${nodes['DUT1']} \| GigabitEthernet0/8/0 \| ${1} \|
 | | ...
 | | [Arguments] | ${node} | ${super_if} | ${identifier}
-| | ${if_data}= | interfaceAPI.Get sub interface oper data
+| | ${if_data}= | Get sub interface oper data
 | | ... | ${node} | ${super_if} | ${identifier}
 | | Run keyword and expect error | *KeyError: 'ipv6'*
 | | ... | Set Variable | ${if_data['ipv6']['address'][0]['ip']}
@@ -666,5 +664,5 @@
 | | ...
 | | [Arguments] | ${node} | ${sub_interface}
 | | Run keyword and expect error | *No JSON object could be decoded*
-| | ... | interfaceCLI.VPP get interface ip addresses
+| | ... | .VPP get interface ip addresses
 | | ... | ${node} | ${sub_interface} | ipv6
