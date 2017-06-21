@@ -14,7 +14,7 @@
 *** Settings ***
 | Library | resources.libraries.python.honeycomb.HcAPIKwInterfaces.InterfaceKeywords
 | ...     | WITH NAME | InterfaceAPI
-| Library | resources/libraries/python/honeycomb/HcPersistence.py
+| Library | resources.libraries.python.honeycomb.HcPersistence
 | Resource | resources/libraries/robot/honeycomb/honeycomb.robot
 | Resource | resources/libraries/robot/honeycomb/interfaces.robot
 | Resource | resources/libraries/robot/honeycomb/vxlan.robot
