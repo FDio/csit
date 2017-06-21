@@ -27,9 +27,11 @@
 | ...
 | Force Tags | HC_FUNC
 | ...
-| Suite Setup | Add Interface local0 To Topology | ${node}
+| Suite Setup | Run Keywords
+| ... | Set Up Honeycomb Functional Test Suite | ${node} | AND
+| ... | Add Interface local0 To Topology | ${node}
 | ...
-| Suite Teardown | Restart Honeycomb and VPP | ${node}
+| Suite Teardown | Tear Down Honeycomb Functional Test Suite | ${node}
 | ...
 | Documentation | *Honeycomb port mirroring test suite.*
 
