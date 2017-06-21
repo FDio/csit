@@ -22,14 +22,9 @@
 | ...
 | Documentation | *Honeycomb L2 FIB management test suite.*
 | ...
-| Suite Setup | Run keywords | Set test interface down
+| Suite Setup | Honeycomb Functional Suite Setup Generic | ${node}
 | ...
-| Suite Teardown | Run keywords
-| ... | Run Keyword If Any Tests Failed
-| ... | Restart Honeycomb and VPP | ${node}
-| ... | AND
-| ... | Honeycomb removes all bridge domains
-| ... | ${node} | ${interface} | ${interface2}
+| Suite Teardown | Honeycomb Functional Suite Teardown Generic | ${node}
 | ...
 | Force tags | HC_FUNC
 
