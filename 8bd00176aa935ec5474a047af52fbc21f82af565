@@ -105,6 +105,30 @@
       "revId": "8bd00176aa935ec5474a047af52fbc21f82af565",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da6255ed_f2c39e88",
+        "filename": "bootstrap-vpp-verify-nightly.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 10
+      },
+      "writtenOn": "2017-06-21T15:35:55Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "da6255ed_32ca56a2",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 18
+      },
+      "revId": "8bd00176aa935ec5474a047af52fbc21f82af565",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
