@@ -41,9 +41,11 @@
 | ...
 | Documentation | *Honeycomb VxLAN-GPE management test suite.*
 | ...
-#| Force Tags | HC_FUNC
+| Suite Setup | Honeycomb Functional Suite Setup Generic | ${node}
 | ...
-| Suite Setup | Restart Honeycomb and VPP | ${node}
+| Suite Teardown | Honeycomb Functional Suite Teardown Generic | ${node}
+| ...
+| Force Tags | HC_FUNC
 
 *** Test Cases ***
 | TC01: Honeycomb creates VxLAN GPE tunnel

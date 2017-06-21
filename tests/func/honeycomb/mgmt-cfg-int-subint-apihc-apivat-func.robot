@@ -19,9 +19,11 @@
 | Resource | resources/libraries/robot/honeycomb/interfaces.robot
 | Variables | resources/test_data/honeycomb/sub_interfaces.py
 | ...
-| Suite Setup | Add Interface local0 To Topology | ${node}
+| Suite Setup | Run Keywords
+| ... | Honeycomb Functional Suite Setup Generic | ${node} | AND
+| ... | Add Interface local0 To Topology | ${node}
 | ...
-| Suite Teardown | Restart Honeycomb and VPP | ${node}
+| Suite Teardown | Honeycomb Functional Suite Teardown Generic | ${node}
 | ...
 | Force Tags | HC_FUNC
 | ...
