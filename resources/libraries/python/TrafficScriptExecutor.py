@@ -85,7 +85,8 @@ class TrafficScriptExecutor(object):
             elif "RuntimeError: ESP packet Rx timeout" in stderr:
                 raise RuntimeError("ESP packet Rx timeout")
             else:
-                raise RuntimeError("Traffic script execution failed")
+                raise RuntimeError("Traffic script execution failed, " \
+                                   "ErrorInfo: {0}".format(stdout + stderr))
 
     @staticmethod
     def traffic_script_gen_arg(rx_if, tx_if, src_mac, dst_mac, src_ip, dst_ip):
