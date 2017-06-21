@@ -145,7 +145,7 @@
 | | [Tags] | 9000B | 2T2C | MTHREAD
 | | ...
 | | [Template] | Check PDR for L2 xconnect
-| | framesize=${9000} | rate=138580pps | wt=2 | rxq=1
+| | framesize=${9000} | rate=100000pps | wt=2 | rxq=1
 
 | tc07-64B-4t4c-eth-l2xcbase-pdrchk
 | | [Documentation]
