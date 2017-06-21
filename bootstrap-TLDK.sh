@@ -116,6 +116,7 @@ VIRL_DIR_LOC="/tmp"
 TLDK_TAR_FILE="tldk_depends.tar.gz"
 
 wget "fast.dpdk.org/rel/${DPDK_PACKAGE}"
+git clone https://gerrit.fd.io/r/tldk
 
 tar zcf ${TLDK_TAR_FILE} ${DPDK_PACKAGE} ./tldk/ \
     ./TLDK-tests/tldk_testconfig/ ./TLDK-tests/tldk_deplibs/
