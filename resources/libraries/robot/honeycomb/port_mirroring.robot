@@ -13,7 +13,6 @@
 
 *** Settings ***
 | Library | resources.libraries.python.honeycomb.HcAPIKwInterfaces.InterfaceKeywords
-| ...     | WITH NAME | InterfaceAPI
 | Library | resources.libraries.python.telemetry.SPAN
 | Library  | resources.libraries.python.InterfaceUtil
 | Library  | resources.libraries.python.IPv4Util
@@ -39,7 +38,7 @@
 | | ... | \| {'iface-ref': 'local0', 'state': 'both'}] \|
 | | ...
 | | [Arguments] | ${node} | ${dst_interface} | @{src_interfaces}
-| | InterfaceAPI.Configure interface SPAN
+| | Configure interface SPAN
 | | ... | ${node} | ${dst_interface} | ${src_interfaces}
 
 | Interface SPAN Operational Data From Honeycomb Should Be
@@ -58,7 +57,7 @@
 | | ... | \| ${nodes['DUT1']} \| GigabitEthernet0/8/0 \| GigabitEthernet0/9/0 \|
 | | ...
 | | [Arguments] | ${node} | ${dst_interface} | @{src_interfaces}
-| | ${data}= | InterfaceAPI.Get interface oper data | ${node} | ${dst_interface}
+| | ${data}= | Get interface oper data | ${node} | ${dst_interface}
 | | ${data}= | Set Variable
 | | ... | ${data['v3po:span']['mirrored-interfaces']['mirrored-interface']}
 | | Sort list | ${data}
@@ -118,7 +117,7 @@
 | | ... | \| ${nodes['DUT1']} \| GigabitEthernet0/8/0 \|
 | | ...
 | | [Arguments] | ${node} | ${dst_interface}
-| | InterfaceAPI.Configure interface SPAN | ${node} | ${dst_interface}
+| | Configure interface SPAN | ${node} | ${dst_interface}
 
 | Interface SPAN Operational Data from Honeycomb should not exist
 | | [Documentation] | Retrieves interface operational data and verifies that\
@@ -132,7 +131,7 @@
 | | ...
 | | ... | \|
 | | [Arguments] | ${node} | ${dst_interface}
-| | ${data}= | InterfaceAPI.Get interface oper data | ${node} | ${dst_interface}
+| | ${data}= | Get interface oper data | ${node} | ${dst_interface}
 | | Run keyword and expect error | *KeyError* | Set Variable
 | | ... | ${data['span']['mirrored-interfaces']['mirrored-interface']}
 
@@ -169,7 +168,7 @@
 | | ... | \| {'iface-ref': 'local0', 'state': 'both'}] \|
 | | ...
 | | [Arguments] | ${node} | ${dst_interface} | ${index} | @{src_interfaces}
-| | InterfaceAPI.Configure sub interface SPAN
+| | Configure sub interface SPAN
 | | ... | ${node} | ${dst_interface} | ${index} | ${src_interfaces}
 
 | Sub-Interface SPAN Operational Data from Honeycomb should be
@@ -190,7 +189,7 @@
 | | ... | \| GigabitEthernet0/9/0 \|
 | | ...
 | | [Arguments] | ${node} | ${dst_interface} | ${index} | @{src_interfaces}
-| | ${data}= | InterfaceAPI.Get sub interface oper data
+| | ${data}= | Get sub interface oper data
 | | ... | ${node} | ${dst_interface} | ${index}
 | | ${data}= | Set Variable
 | | ... | ${data['subinterface-span:span-state']['mirrored-interfaces']['mirrored-interface']}
@@ -232,7 +231,7 @@
 | | ... | \| ${nodes['DUT1']} \| GigabitEthernet0/8/0 \| ${1} \|
 | | ...
 | | [Arguments] | ${node} | ${dst_interface} | ${index}
-| | InterfaceAPI.Configure sub interface SPAN
+| | Configure sub interface SPAN
 | | ... | ${node} | ${dst_interface} | ${index}
 
 | Sub-Interface SPAN Operational Data from Honeycomb should not exist
@@ -250,7 +249,7 @@
 | | ... | \| ${nodes['DUT1']} \| GigabitEthernet0/8/0 \| ${1} \|
 | | ....
 | | [Arguments] | ${node} | ${dst_interface} | ${index}
-| | ${data}= | InterfaceAPI.Get sub interface oper data
+| | ${data}= | Get sub interface oper data
 | | ... | ${node} | ${dst_interface} | ${index}
 | | Run keyword and expect error | *KeyError* | Set Variable
 | | ... | ${data['subinterface-span:span-state']['mirrored-interfaces']['mirrored-interface']}

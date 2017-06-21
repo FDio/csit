@@ -15,9 +15,7 @@
 | Library | resources.libraries.python.L2Util
 | Library | resources.libraries.python.honeycomb.HcAPIKwBridgeDomain.BridgeDomainKeywords
 | Library | resources.libraries.python.honeycomb.HcAPIKwInterfaces.InterfaceKeywords
-| ...     | WITH NAME | InterfaceAPI
 | Library | resources.libraries.python.InterfaceUtil
-| ...     | WITH NAME | interfaceCLI
 
 *** Keywords ***
 | Honeycomb creates first L2 bridge domain
@@ -109,9 +107,9 @@
 | | ... | \| ${{split_horizon_group:2, bvi:False}} \|
 | | [Arguments] | ${node} | ${interface1} | ${interface2} | ${bd_name}
 | | ... | ${settings}
-| | interfaceAPI.Add bridge domain to interface
+| | Add bridge domain to interface
 | | ... | ${node} | ${interface1} | ${bd_name} | &{settings}
-| | interfaceAPI.Add bridge domain to interface
+| | Add bridge domain to interface
 | | ... | ${node} | ${interface2} | ${bd_name} | &{settings}
 
 | Honeycomb should show interfaces assigned to bridge domain
@@ -133,9 +131,9 @@
 | | ... | \| bd-04 \| ${{split_horizon_group:2, bvi:False}} \|
 | | [Arguments] | ${node} | ${interface1} | ${interface2} | ${bd_name}
 | | ... | ${settings}
-| | ${if1_data}= | interfaceAPI.Get interface oper data
+| | ${if1_data}= | Get interface oper data
 | | ... | ${node} | ${interface1}
-| | ${if2_data}= | interfaceAPI.Get interface oper data
+| | ${if2_data}= | Get interface oper data
 | | ... | ${node} | ${interface2}
 | | Should be equal | ${if1_data['v3po:l2']['bridge-domain']}
 | | ... | ${if2_data['v3po:l2']['bridge-domain']} | ${bd_name}
@@ -240,7 +238,7 @@
 | | ...
 | | [Arguments] | ${node} | ${interface} | ${bd_name} | ${settings}
 | | ...
-| | interfaceAPI.Add bridge domain to interface
+| | Add bridge domain to interface
 | | ... | ${node} | ${interface} | ${bd_name}
 | | ... | ${settings['split-horizon-group']}
 | | ... | ${settings['bridged-virtual-interface']}
@@ -260,7 +258,7 @@
 | | ...
 | | [Arguments] | ${node} | ${interface}
 | | ...
-| | ${if_data}= | interfaceAPI.Get BD Oper Data From Interface
+| | ${if_data}= | Get BD Oper Data From Interface
 | | ... | ${node} | ${interface}
 | | Should be empty | ${if_data}
 
@@ -280,6 +278,6 @@
 | | ...
 | | [Arguments] | ${node} | ${interface} | ${bd_settings}
 | | ...
-| | ${if_data}= | interfaceAPI.Get BD Oper Data From Interface
+| | ${if_data}= | Get BD Oper Data From Interface
 | | ... | ${node} | ${interface}
-| | interfaceAPI.Compare Data Structures | ${if_data} | ${bd_settings}
+| | Compare Data Structures | ${if_data} | ${bd_settings}

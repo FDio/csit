@@ -13,9 +13,7 @@
 
 *** Settings ***
 | Library | resources.libraries.python.InterfaceUtil
-| ...     | WITH NAME | interfaceCLI
 | Library | resources.libraries.python.honeycomb.HcAPIKwInterfaces.InterfaceKeywords
-| ...     | WITH NAME | InterfaceAPI
 | Documentation | Keywords used to manipulate vhost-user unterfaces.
 
 *** Keywords ***
@@ -33,7 +31,7 @@
 | | ... | \| ${nodes['DUT1']} \| vhost_test \| ${vhost_user_settings} \|
 | | ...
 | | [Arguments] | ${node} | ${interface} | ${settings}
-| | interfaceAPI.Create vhost user interface | ${node} | ${interface}
+| | Create vhost user interface | ${node} | ${interface}
 | | ... | &{settings}
 
 | Honeycomb removes vhost-user interface
@@ -48,7 +46,7 @@
 | | ... | \| ${nodes['DUT1']} \| vhost_test \|
 | | ...
 | | [Arguments] | ${node} | ${interface}
-| | interfaceAPI.Delete interface | ${node} | ${interface}
+| | Delete interface | ${node} | ${interface}
 
 | Honeycomb configures vhost-user interface
 | | [Documentation] | Configure a vhost-user interface using Honeycomb API.
@@ -64,7 +62,7 @@
 | | ... | \| ${nodes['DUT1']} \| vhost_test \| ${new_vhost_user_settings} \|
 | | ...
 | | [Arguments] | ${node} | ${interface} | ${settings}
-| | interfaceAPI.Configure interface vhost user | ${node} | ${interface}
+| | Configure interface vhost user | ${node} | ${interface}
 | | ... | &{settings}
 
 | Vhost-user Operational Data From Honeycomb Should Be
@@ -82,7 +80,7 @@
 | | ... | \| ${nodes['DUT1']} \| vhost_test \| ${vhost_user_settings} \|
 | | ...
 | | [Arguments] | ${node} | ${interface} | ${settings}
-| | ${api_data}= | interfaceAPI.Get interface oper data | ${node} | ${interface}
+| | ${api_data}= | Get interface oper data | ${node} | ${interface}
 | | ${api_vhost}= | Set Variable | ${api_data['v3po:vhost-user']}
 | | :FOR | ${key} | IN | @{settings.keys()}
 | | | Should be equal | ${api_vhost['${key}']} | ${settings['${key}']}
@@ -126,7 +124,7 @@
 | | ... | \| ${nodes['DUT1']} \| vhost_test \|
 | | ...
 | | [Arguments] | ${node} | ${interface}
-| | ${api_data}= | interfaceAPI.Get interface oper data | ${node} | ${interface}
+| | ${api_data}= | Get interface oper data | ${node} | ${interface}
 | | Run keyword and expect error | *KeyError: 'v3po:vhost-user'
 | | ... | Should be empty | ${api_data['v3po:vhost-user']}
 
@@ -160,7 +158,7 @@
 | | ...
 | | [Arguments] | ${node} | ${interface} | ${settings}
 | | Run Keyword And Expect Error | HoneycombError: * Status code: 500.
-| | ... | interfaceAPI.Configure interface vhost user | ${node} | ${interface}
+| | ... | Configure interface vhost user | ${node} | ${interface}
 | | ... | &{settings}
 
 | Honeycomb fails setting invalid vhost-user configuration
@@ -178,5 +176,5 @@
 | | ...
 | | [Arguments] | ${node} | ${interface} | ${settings}
 | | Run Keyword And Expect Error | HoneycombError: * Status code: 400.
-| | ... | interfaceAPI.Configure interface vhost user | ${node} | ${interface}
+| | ... | Configure interface vhost user | ${node} | ${interface}
 | | ... | &{settings}

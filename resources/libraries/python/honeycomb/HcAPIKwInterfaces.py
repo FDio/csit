@@ -252,7 +252,7 @@ class InterfaceKeywords(object):
         return InterfaceKeywords._configure_interface(node, interface, new_data)
 
     @staticmethod
-    def set_interface_state(node, interface, state="up"):
+    def honeycomb_set_interface_state(node, interface, state="up"):
         """Set VPP interface state.
 
         The keyword changes the administration state of interface to up or down
@@ -310,7 +310,8 @@ class InterfaceKeywords(object):
         :rtype: bytearray
         """
 
-        return InterfaceKeywords.set_interface_state(node, interface, "up")
+        return InterfaceKeywords.honeycomb_set_interface_state(
+            node, interface, "up")
 
     @staticmethod
     def set_interface_down(node, interface):
@@ -324,7 +325,8 @@ class InterfaceKeywords(object):
         :rtype: bytearray
         """
 
-        return InterfaceKeywords.set_interface_state(node, interface, "down")
+        return InterfaceKeywords.honeycomb_set_interface_state(
+            node, interface, "down")
 
     @staticmethod
     def add_bridge_domain_to_interface(node, interface, bd_name,
@@ -796,7 +798,7 @@ class InterfaceKeywords(object):
             node, interface, path, value)
 
     @staticmethod
-    def create_vxlan_interface(node, interface, **kwargs):
+    def honeycomb_create_vxlan_interface(node, interface, **kwargs):
         """Create a new VxLAN interface.
 
         :param node: Honeycomb node.
@@ -860,7 +862,7 @@ class InterfaceKeywords(object):
         return resp
 
     @staticmethod
-    def configure_interface_vxlan(node, interface, **kwargs):
+    def honeycomb_configure_interface_vxlan(node, interface, **kwargs):
         """Configure VxLAN on the interface.
 
         The keyword configures VxLAN parameters on the given interface. The type
@@ -1052,7 +1054,8 @@ class InterfaceKeywords(object):
             node, interface, path, new_vhost_structure)
 
     @staticmethod
-    def create_sub_interface(node, super_interface, match, tags=None, **kwargs):
+    def honeycomb_create_sub_interface(node, super_interface, match, tags=None,
+                                       **kwargs):
         """Create a new sub-interface.
 
         :param node: Honeycomb node.

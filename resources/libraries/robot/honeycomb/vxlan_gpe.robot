@@ -13,9 +13,7 @@
 
 *** Settings ***
 | Library | resources.libraries.python.InterfaceUtil
-| ...     | WITH NAME | interfaceCLI
 | Library | resources.libraries.python.honeycomb.HcAPIKwInterfaces.InterfaceKeywords
-| ...     | WITH NAME | InterfaceAPI
 
 *** Variables ***
 # Translation table used to convert values received from Honeycomb to values
@@ -46,7 +44,7 @@
 | | [Arguments] | ${node} | ${interface}
 | | ... | ${base_settings} | ${vxlan_gpe_settings}
 | | ...
-| | interfaceAPI.Create VxLAN GPE interface
+| | Create VxLAN GPE interface
 | | ... | ${node} | ${interface} | &{base_settings} | &{vxlan_gpe_settings}
 
 | Honeycomb removes VxLAN GPE interface
@@ -64,7 +62,7 @@
 | | ...
 | | [Arguments] | ${node} | ${interface}
 | | ...
-| | interfaceAPI.Delete interface | ${node} | ${interface}
+| | Delete interface | ${node} | ${interface}
 
 | VxLAN GPE Operational Data From Honeycomb Should Be
 | | [Documentation] | Uses Honeycomb API to get operational data about the\
@@ -85,7 +83,7 @@
 | | [Arguments] | ${node} | ${interface}
 | | ... | ${base_settings} | ${vxlan_gpe_settings}
 | | ...
-| | ${api_data}= | interfaceAPI.Get interface oper data | ${node} | ${interface}
+| | ${api_data}= | Get interface oper data | ${node} | ${interface}
 | | Should be equal as strings
 | | ... | ${api_data['name']} | ${base_settings['name']}
 | | Should be equal as strings
@@ -148,7 +146,7 @@
 | | ...
 | | [Arguments] | ${node} | ${interface}
 | | ...
-| | ${api_data}= | interfaceAPI.Get interface oper data | ${node} | ${interface}
+| | ${api_data}= | Get interface oper data | ${node} | ${interface}
 | | ${vat_data}= | VxLAN GPE Dump | ${node} | ${interface}
 | | ${sw_if_index}= | EVALUATE | ${vat_data['sw_if_index']} + 1
 | | Should be equal as strings
@@ -167,7 +165,7 @@
 | | ...
 | | [Arguments] | ${node} | ${interface}
 | | ...
-| | ${api_data}= | interfaceAPI.Get interface oper data | ${node} | ${interface}
+| | ${api_data}= | Get interface oper data | ${node} | ${interface}
 | | Should be empty | ${api_data}
 
 | VxLAN GPE Operational Data From VAT Should Be empty
@@ -206,5 +204,5 @@
 | | ... | ${base_settings} | ${vxlan_gpe_settings}
 | | ...
 | | Run keyword and expect error | *HoneycombError*not successful. * code: *00.
-| | ... | interfaceAPI.Create VxLAN GPE interface
+| | ... | Create VxLAN GPE interface
 | | ... | ${node} | ${interface} | &{base_settings} | &{vxlan_gpe_settings}

@@ -15,7 +15,6 @@
 | Library | resources.libraries.python.InterfaceUtil
 | Library | resources.libraries.python.honeycomb.HcAPIKwNSH.NSHKeywords
 | Library | resources.libraries.python.honeycomb.HcAPIKwInterfaces.InterfaceKeywords
-| ...     | WITH NAME | InterfaceAPI
 | Documentation | Keywords used to test Honeycomb NSH node.
 
 *** Keywords ***

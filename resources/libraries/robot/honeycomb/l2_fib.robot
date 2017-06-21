@@ -15,7 +15,6 @@
 | Library | resources.libraries.python.L2Util
 | Library | resources.libraries.python.honeycomb.HcAPIKwBridgeDomain.BridgeDomainKeywords
 | Library | resources.libraries.python.honeycomb.HcAPIKwInterfaces.InterfaceKeywords
-| ...     | WITH NAME | InterfaceAPI
 
 *** Keywords ***
 | Honeycomb adds L2 FIB entry to bridge domain
@@ -70,7 +69,7 @@
 | | ...
 | | ${l2_fib_data}= | Get L2 FIB Entry | ${node} | ${bd_name}
 | | ... | ${l2_fib_ref_data['phys-address']}
-| | interfaceAPI.Compare Data Structures | ${l2_fib_data} | ${l2_fib_ref_data}
+| | Compare Data Structures | ${l2_fib_data} | ${l2_fib_ref_data}
 
 | Honeycomb removes L2 FIB entry
 | | [Documentation] | Remove the specified L2 FIB entry from the bridge \
@@ -167,7 +166,7 @@
 | | ...
 | | ${l2_fib_data}= | Get L2 FIB entry VAT | ${node} | ${bd_index}
 | | ... | ${l2_fib_ref_data['mac']}
-| | interfaceAPI.Compare Data Structures | ${l2_fib_data} | ${l2_fib_ref_data}
+| | Compare Data Structures | ${l2_fib_data} | ${l2_fib_ref_data}
 
 | L2 FIB Table from VAT should be empty
 | | [Documentation] | Check if the L2 FIB table in the specified bridge domain \

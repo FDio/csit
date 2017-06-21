@@ -27,9 +27,11 @@
 | ...
 | Force Tags | HC_FUNC
 | ...
-| Suite Setup | Add Interface local0 To Topology | ${node}
+| Suite Setup | Run Keywords
+| ... | Set Up Honeycomb Functional Test Suite | ${node} | AND
+| ... | Add Interface local0 To Topology | ${node}
 | ...
-| Suite Teardown | Restart Honeycomb and VPP | ${node}
+| Suite Teardown | Tear Down Honeycomb Functional Test Suite | ${node}
 | ...
 | Documentation | *Honeycomb port mirroring test suite.*
 
@@ -101,6 +103,8 @@
 | | ... | ${node} | ${interface2} | ${settings_if2}
 
 | TC07: DUT mirrors IPv4 packets from one interface to another
+# Pending rework
+| | [Tags] | EXPECTED_FAILING
 | | [Documentation]
 | | ... | [Top] TG=DUT1
 | | ... | [Cfg] (using Honeycomb) On DUT1 configure IPv4 address and set SPAN\
@@ -130,7 +134,7 @@
 | | ... | ${tg_to_dut_if1_ip} | ${tg_to_dut_if1_mac}
 | | ${settings_5}= | create dictionary | state=both
 | | ... | iface-ref=${dut_to_tg_if1}
-| | And InterfaceCLI.All Vpp Interfaces Ready Wait | ${nodes}
+| | And All Vpp Interfaces Ready Wait | ${nodes}
 | | When Honeycomb configures SPAN on interface
 | | ... | ${node} | ${dut_to_tg_if2} | ${settings_5}
 | | Then Send Packet And Check Received Copies | ${tg_node}
@@ -216,7 +220,9 @@
 | | Then Sub-Interface SPAN Operational Data from Honeycomb should be
 | | ... | ${node} | ${interface2} | ${1} | ${settings_if2}
 
-| TC14: DUT mirrors IPv4 packets from one interface to another
+| TC14: DUT mirrors IPv4 packets from an interface to a sub-interface
+# Pending rework
+| | [Tags] | EXPECTED_FAILING
 | | [Documentation]
 | | ... | [Top] TG=DUT1
 | | ... | [Cfg] (using Honeycomb) On DUT1 configure IPv4 address and set SPAN\
@@ -245,7 +251,7 @@
 | | ... | ${tg_to_dut_if2_ip} | ${tg_to_dut_if2_mac}
 | | ${settings_5}= | create dictionary | state=both
 | | ... | iface-ref=${dut_to_tg_if2}
-| | And InterfaceCLI.All Vpp Interfaces Ready Wait | ${nodes}
+| | And All Vpp Interfaces Ready Wait | ${nodes}
 | | When Honeycomb Configures SPAN on sub-interface
 | | ... | ${node} | ${dut_to_tg_if1} | ${1} | ${settings_5}
 | | Then Send Packet And Check Received Copies | ${tg_node}

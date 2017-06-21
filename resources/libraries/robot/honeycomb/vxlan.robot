@@ -13,9 +13,7 @@
 
 *** Settings ***
 | Library | resources.libraries.python.InterfaceUtil
-| ...     | WITH NAME | interfaceCLI
 | Library | resources.libraries.python.honeycomb.HcAPIKwInterfaces.InterfaceKeywords
-| ...     | WITH NAME | InterfaceAPI
 
 *** Keywords ***
 | Honeycomb sets interface VxLAN configuration
@@ -32,7 +30,7 @@
 | | ... | 'dst':'192.168.0.3', 'vni':5, 'encap-vrf-id':0}} \|
 | | ...
 | | [Arguments] | ${node} | ${interface} | ${settings}
-| | interfaceAPI.Create VxLAN interface | ${node} | ${interface}
+| | Honeycomb Create VxLAN interface | ${node} | ${interface}
 | | ... | &{settings}
 
 | Honeycomb removes VxLAN tunnel settings
@@ -47,7 +45,7 @@
 | | ...
 | | ... | \| Honeycomb removes VxLAN tunnel \| ${nodes['DUT1']} \| vxlan_01 \|
 | | [Arguments] | ${node} | ${interface}
-| | interfaceAPI.Delete interface | ${node} | ${interface}
+| | Delete interface | ${node} | ${interface}
 
 | VxLAN Operational Data From Honeycomb Should Be
 | | [Documentation] | Retrieves interface VxLAN configuration through Honeycomb\
@@ -65,7 +63,7 @@
 | | ... | 'dst':'192.168.0.3', 'vni':5, 'encap-vrf-id':0}} \|
 | | ...
 | | [Arguments] | ${node} | ${interface} | ${settings}
-| | ${api_data}= | interfaceAPI.Get interface oper data | ${node} | ${interface}
+| | ${api_data}= | Get interface oper data | ${node} | ${interface}
 | | ${api_vxlan}= | Set Variable | ${api_data['v3po:vxlan']}
 | | :FOR | ${key} | IN | @{settings.keys()}
 | | | Should be equal | ${api_vxlan['${key}']} | ${settings['${key}']}
@@ -111,7 +109,7 @@
 | | ... | \|${nodes['DUT1']} \| vxlan_01 \|
 | | ...
 | | [Arguments] | ${node} | ${interface}
-| | ${api_data}= | interfaceAPI.Get interface oper data | ${node} | ${interface}
+| | ${api_data}= | Get interface oper data | ${node} | ${interface}
 | | Run keyword and expect error | *KeyError: 'v3po:vxlan' | Set Variable
 | | ... | ${api_data['v3po:vxlan']}
 
@@ -149,7 +147,7 @@
 | | ...
 | | [Arguments] | ${node} | ${interface} | ${settings}
 | | Run Keyword And Expect Error | HoneycombError: * Status code: 500.
-| | ... | interfaceAPI.Configure interface vxlan
+| | ... | Honeycomb Configure interface vxlan
 | | ... | ${node} | ${interface} | &{settings}
 
 | Honeycomb fails setting invalid VxLAN configuration
@@ -169,5 +167,5 @@
 | | [Arguments] | ${node} | ${interface} | ${settings_list}
 | | :FOR | ${settings} | IN | @{settings_list}
 | | | Run Keyword And Expect Error | HoneycombError: * Status code: 500.
-| | | ... | interfaceAPI.Create VxLAN interface
+| | | ... | Honeycomb Create VxLAN interface
 | | | ... | ${node} | ${interface} | &{settings}
