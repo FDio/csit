@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da6255ed_cc647fe7",
+        "filename": "bootstrap-TLDK.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 118,
+      "author": {
+        "id": 118
+      },
+      "writtenOn": "2017-06-21T09:05:32Z",
+      "side": 1,
+      "message": "you probably don\u0027t need that - tldk make will do \u0027git clone\u0027 for dpdk and build it.",
+      "revId": "28e640943cc0c4ed7e896f6c2d933c88f969c7c5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
