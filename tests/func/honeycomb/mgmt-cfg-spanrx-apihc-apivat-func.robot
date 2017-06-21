@@ -27,9 +27,11 @@
 | ...
 | Force Tags | HC_FUNC
 | ...
-| Suite Setup | Add Interface local0 To Topology | ${node}
+| Suite Setup | Run Keywords
+| ... | Set Up Honeycomb Functional Test Suite | ${node} | AND
+| ... | Add Interface local0 To Topology | ${node}
 | ...
-| Suite Teardown | Restart Honeycomb and VPP | ${node}
+| Suite Teardown | Tear Down Honeycomb Functional Test Suite | ${node}
 | ...
 | Documentation | *Honeycomb port mirroring test suite.*
 
@@ -101,6 +103,8 @@
 | | ... | ${node} | ${interface2} | ${settings_if2}
 
 | TC07: DUT mirrors IPv4 packets from one interface to another
+# Traffic test failing in VIRL
+| | [Tags] | EXPECTED_FAILING
 | | [Documentation]
 | | ... | [Top] TG=DUT1
 | | ... | [Cfg] (using Honeycomb) On DUT1 configure IPv4 address and set SPAN\
@@ -216,7 +220,9 @@
 | | Then Sub-Interface SPAN Operational Data from Honeycomb should be
 | | ... | ${node} | ${interface2} | ${1} | ${settings_if2}
 
-| TC14: DUT mirrors IPv4 packets from one interface to another
+| TC14: DUT mirrors IPv4 packets from an interface to a sub-interface
+# Traffic test failing in VIRL
+| | [Tags] | EXPECTED_FAILING
 | | [Documentation]
 | | ... | [Top] TG=DUT1
 | | ... | [Cfg] (using Honeycomb) On DUT1 configure IPv4 address and set SPAN\
