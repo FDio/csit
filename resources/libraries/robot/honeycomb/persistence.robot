@@ -13,8 +13,7 @@
 
 *** Settings ***
 | Library | resources.libraries.python.honeycomb.HcAPIKwInterfaces.InterfaceKeywords
-| ...     | WITH NAME | InterfaceAPI
-| Library | resources/libraries/python/honeycomb/HcPersistence.py
+| Library | resources.libraries.python.honeycomb.HcPersistence
 | Resource | resources/libraries/robot/honeycomb/honeycomb.robot
 | Resource | resources/libraries/robot/honeycomb/interfaces.robot
 | Resource | resources/libraries/robot/honeycomb/vxlan.robot
@@ -163,8 +162,8 @@
 | | ... | ${node} | ${interface} | ${sub_if_id} | ${tag_rewrite_pop_1_oper}
 | | Rewrite tag from VAT should be
 | | ... | ${node} | ${sub_if_name} | ${tag_rewrite_pop_1_VAT}
-| | ${data_conf}= | InterfaceAPI.Get all interfaces cfg data | ${node}
-| | ${data_oper}= | InterfaceAPI.Get all interfaces oper data | ${node}
+| | ${data_conf}= | Get all interfaces cfg data | ${node}
+| | ${data_oper}= | Get all interfaces oper data | ${node}
 | | Compare interface lists | ${data_conf} | ${data_oper}
 
 | Honeycomb and VPP should have default configuration

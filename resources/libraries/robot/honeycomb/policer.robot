@@ -14,7 +14,6 @@
 *** Settings ***
 | Resource | resources/libraries/robot/traffic.robot
 | Library | resources.libraries.python.honeycomb.Routing.RoutingKeywords
-| ...     | WITH NAME | RoutingKeywordsAPI
 | Variables | resources/test_data/honeycomb/policer_variables.py
 | Documentation | Keywords used to test Policer using Honeycomb.
 

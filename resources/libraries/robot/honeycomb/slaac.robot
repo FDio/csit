@@ -102,5 +102,5 @@
 | | ...
 | | [Arguments] | ${node} | ${interface}
 | | Honeycomb removes SLAAC configuration | ${node} | ${interface}
-| | And InterfaceAPI.Set Interface State | ${node} | ${interface} | down
+| | And Honeycomb configures interface state | ${node} | ${interface} | down
 | | Honeycomb removes interface IPv6 addresses | ${node} | ${interface}

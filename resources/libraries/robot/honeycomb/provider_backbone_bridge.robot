@@ -13,7 +13,6 @@
 
 *** Settings ***
 | Library | resources.libraries.python.honeycomb.HcAPIKwInterfaces.InterfaceKeywords
-| ...     | WITH NAME | IfAPI
 
 *** Keywords ***
 | Honeycomb creates PBB sub-interface
@@ -33,8 +32,8 @@
 | | ...
 | | [Arguments] | ${node} | ${super_if} | ${params}
 | | ...
-| | IfAPI.Set Interface Up | ${node} | ${super_if}
-| | IfAPI.Create PBB Sub Interface
+| | Set Interface Up | ${node} | ${super_if}
+| | Create PBB Sub Interface
 | | ... | ${node} | ${super_if} | ${params}
 
 | Honeycomb removes PBB sub-interface
@@ -71,7 +70,7 @@
 | | ...
 | | [Arguments] | ${node} | ${super_if} | ${params}
 | | ...
-| | IfAPI.Set Interface Up | ${node} | ${super_if}
+| | Set Interface Up | ${node} | ${super_if}
 | | Run keyword and expect error | *HoneycombError*not successful*.
-| | ... | IfAPI.Create PBB Sub Interface
+| | ... | Create PBB Sub Interface
 | | ... | ${node} | ${super_if} | ${params}

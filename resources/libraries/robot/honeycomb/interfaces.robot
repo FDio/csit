@@ -13,9 +13,7 @@
 
 *** Settings ***
 | Library | resources.libraries.python.InterfaceUtil
-| ...     | WITH NAME | interfaceCLI
 | Library | resources.libraries.python.honeycomb.HcAPIKwInterfaces.InterfaceKeywords
-| ...     | WITH NAME | InterfaceAPI
 | Library | resources.libraries.python.IPv4Util
 | Library | resources.libraries.python.TrafficScriptExecutor
 
@@ -34,7 +32,7 @@
 | | ... | \| Honeycomb configures interface state \| ${nodes['DUT1']} \
 | | ... | \| GigabitEthernet0/8/0 \| up \|
 | | [Arguments] | ${node} | ${interface} | ${state}
-| | interfaceAPI.Set interface state | ${node} | ${interface} | ${state}
+| | Honeycomb Set Interface State | ${node} | ${interface} | ${state}
 
 | Interface state from Honeycomb should be
 | | [Documentation] | Retrieves interface admin state through Honeycomb and\
@@ -50,7 +48,7 @@
 | | ... | \| Interface state from Honeycomb should be \| ${nodes['DUT1']} \
 | | ... | \| GigabitEthernet0/8/0 \| up \|
 | | [Arguments] | ${node} | ${interface} | ${state}
-| | ${api_data}= | interfaceAPI.Get interface oper data | ${node} | ${interface}
+| | ${api_data}= | Get interface oper data | ${node} | ${interface}
 | | ${api_state}= | Set Variable | ${api_data['admin-status']}
 | | Should be equal | ${api_state} | ${state}
 
@@ -71,7 +69,7 @@
 | | ... | \| Interface state from VAT should be \| ${nodes['DUT1']} \
 | | ... | \| GigabitEthernet0/8/0 \| up \|
 | | [Arguments] | ${node} | ${interface} | ${state}
-| | ${vat_data}= | InterfaceCLI.VPP get interface data | ${node} | ${interface}
+| | ${vat_data}= | VPP get interface data | ${node} | ${interface}
 | | ${vat_state}= | Set Variable if
 | | ... | ${vat_data['admin_up_down']} == 1 | up | down
 | | Should be equal | ${vat_state} | ${state}
@@ -91,7 +89,7 @@
 | | ... | \| Honeycomb sets interface IPv4 address \| ${nodes['DUT1']} \
 | | ... | \| GigabitEthernet0/8/0 \| 192.168.0.2 \| 255.255.255.0 \|
 | | [Arguments] | ${node} | ${interface} | ${address} | ${netmask}
-| | interfaceAPI.Add first ipv4 address
+| | Add first ipv4 address
 | | ... | ${node} | ${interface} | ${address} | ${netmask}
 
 | Honeycomb sets interface IPv4 address with prefix
@@ -109,7 +107,7 @@
 | | ... | \| Honeycomb sets interface IPv4 address with prefix \
 | | ... | \| ${nodes['DUT1']} \| GigabitEthernet0/8/0 \| 192.168.0.2 \| 24 \|
 | | [Arguments] | ${node} | ${interface} | ${address} | ${prefix}
-| | interfaceAPI.Add first ipv4 address
+| | Add first ipv4 address
 | | ... | ${node} | ${interface} | ${address} | ${prefix}
 
 | Honeycomb adds interface IPv4 address
@@ -127,7 +125,7 @@
 | | ... | \| Honeycomb adds interface IPv4 address \
 | | ... | \| ${nodes['DUT1']} \| GigabitEthernet0/8/0 \| 192.168.0.2 \| 24 \|
 | | [Arguments] | ${node} | ${interface} | ${address} | ${prefix}
-| | interfaceAPI.Add ipv4 address
+| | Add ipv4 address
 | | ... | ${node} | ${interface} | ${address} | ${prefix}
 
 | Honeycomb fails to add interface IPv4 address
@@ -164,7 +162,7 @@
 | | ... | \| IPv4 address from Honeycomb should be \| ${nodes['DUT1']} \
 | | ... | \| GigabitEthernet0/8/0 \| 192.168.0.2 \| ${24} \|
 | | [Arguments] | ${node} | ${interface} | ${address} | ${prefix}
-| | ${api_data}= | interfaceAPI.Get interface oper data | ${node} | ${interface}
+| | ${api_data}= | Get interface oper data | ${node} | ${interface}
 | | ${settings}= | Create Dictionary
 | | ... | ip=${address} | prefix-length=${prefix}
 | | Should contain | ${api_data['ietf-ip:ipv4']['address']} | ${settings}
@@ -185,7 +183,7 @@
 | | ... | \| IPv4 address from VAT should be \| ${nodes['DUT1']} \
 | | ... | \| GigabitEthernet0/8/0 \| 192.168.0.2 \| ${24} \| 255.255.255.0 \|
 | | [Arguments] | ${node} | ${interface} | ${address} | ${prefix} | ${netmask}
-| | ${vpp_data}= | interfaceCLI.VPP get interface ip addresses
+| | ${vpp_data}= | VPP get interface ip addresses
 | | ... | ${node} | ${interface} | ipv4
 | | ${settings}= | Create Dictionary
 | | ... | ip=${address} | netmask=${netmask} | prefix_length=${prefix}
@@ -219,7 +217,7 @@
 | | ... | \| IPv4 address from Honeycomb should be empty\| ${nodes['DUT1']} \
 | | ... | \| GigabitEthernet0/8/0 \|
 | | [Arguments] | ${node} | ${interface}
-| | ${api_data}= | interfaceAPI.Get interface oper data | ${node} | ${interface}
+| | ${api_data}= | Get interface oper data | ${node} | ${interface}
 | | Run keyword and expect error | *KeyError:*
 | | ... | Set Variable | ${api_data['ietf-ip:ipv4']['address']}
 
@@ -237,7 +235,7 @@
 | | ... | \| GigabitEthernet0/8/0 \|
 | | [Arguments] | ${node} | ${interface}
 | | Run keyword and expect error | *No JSON object could be decoded*
-| | ... | InterfaceCLI.VPP get interface ip addresses
+| | ... | VPP get interface ip addresses
 | | ... | ${node} | ${interface} | ipv4
 
 | Honeycomb adds interface IPv4 neighbor
@@ -255,7 +253,7 @@
 | | ... | \| Honeycomb adds interface IPv4 neighbor \| ${nodes['DUT1']} \
 | | ... | \| GigabitEthernet0/8/0 \| 192.168.0.3 \| 08:00:27:c0:5d:37 \
 | | [Arguments] | ${node} | ${interface} | ${fib_address} | ${fib_mac}
-| | interfaceAPI.Add ipv4 neighbor
+| | Add ipv4 neighbor
 | | ... | ${node} | ${interface} | ${fib_address} | ${fib_mac}
 
 | IPv4 neighbor from Honeycomb should be
@@ -273,7 +271,7 @@
 | | ... | \| IPv4 neighbor from Honeycomb should be \| ${nodes['DUT1']} \
 | | ... | \| GigabitEthernet0/8/0 \| 192.168.0.4 \| 08:00:27:60:26:ab \|
 | | [Arguments] | ${node} | ${interface} | ${ip_address} | ${mac_address}
-| | ${api_data}= | interfaceAPI.Get interface oper data | ${node} | ${interface}
+| | ${api_data}= | Get interface oper data | ${node} | ${interface}
 | | ${settings}= | Create Dictionary
 | | ... | ip=${ip_address} | link-layer-address=${mac_address} | origin=static
 | | Should contain | ${api_data['ietf-ip:ipv4']['neighbor']} | ${settings}
@@ -291,7 +289,7 @@
 | | ... | \| Honeycomb clears all interface IPv4 neighbors \| ${nodes['DUT1']} \
 | | ... | \| GigabitEthernet0/8/0 \|
 | | [Arguments] | ${node} | ${interface}
-| | interfaceAPI.Remove all ipv4 neighbors | ${node} | ${interface}
+| | Remove all ipv4 neighbors | ${node} | ${interface}
 
 | IPv4 neighbor from Honeycomb should be empty
 | | [Documentation] | Retrieves ipv4 neighbor list through Honeycomb\
@@ -306,7 +304,7 @@
 | | ... | \| IPv4 neighbor from Honeycomb should be empty \| ${nodes['DUT1']} \
 | | ... | \| GigabitEthernet0/8/0 \|
 | | [Arguments] | ${node} | ${interface}
-| | ${api_data}= | interfaceAPI.Get interface oper data | ${node} | ${interface}
+| | ${api_data}= | Get interface oper data | ${node} | ${interface}
 | | Run keyword and expect error | *KeyError:*
 | | ... | Set Variable | ${api_data['ietf-ip:ipv4']['neighbor'][0]['ip']}
 
@@ -326,7 +324,7 @@
 | | ... | \| Honeycomb sets interface IPv6 address \| ${nodes['DUT1']} \
 | | ... | \| GigabitEthernet0/8/0 \| 10::10 \| 64 \|
 | | [Arguments] | ${node} | ${interface} | ${address} | ${prefix}
-| | interfaceAPI.Add first ipv6 address
+| | Add first ipv6 address
 | | ... | ${node} | ${interface} | ${address} | ${prefix}
 
 | Honeycomb adds interface IPv6 address
@@ -344,7 +342,7 @@
 | | ... | \| Honeycomb adds interface IPv6 address \| ${nodes['DUT1']} \
 | | ... | \| GigabitEthernet0/8/0 \| 10::10 \| 64 \|
 | | [Arguments] | ${node} | ${interface} | ${address} | ${prefix}
-| | interfaceAPI.Add ipv6 address
+| | Add ipv6 address
 | | ... | ${node} | ${interface} | ${address} | ${prefix}
 
 | Honeycomb fails to add interface IPv6 address
@@ -381,7 +379,7 @@
 | | ... | \| IPv6 address from Honeycomb should contain \| ${nodes['DUT1']} \
 | | ... | \| GigabitEthernet0/8/0 \| 10::10 \| 64 \|
 | | [Arguments] | ${node} | ${interface} | ${address} | ${prefix}
-| | ${api_data}= | interfaceAPI.Get interface oper data | ${node} | ${interface}
+| | ${api_data}= | Get interface oper data | ${node} | ${interface}
 | | ${settings}= | Create Dictionary
 | | ... | ip=${address} | prefix-length=${prefix}
 | | Should contain | ${api_data['ietf-ip:ipv6']['address']} | ${settings}
@@ -401,7 +399,7 @@
 | | ... | \| IPv6 address from VAT should contain \| ${nodes['DUT1']} \
 | | ... | \| GigabitEthernet0/8/0 \| 10::10 \| 64 \|
 | | [Arguments] | ${node} | ${interface} | ${address} | ${prefix}
-| | ${vpp_data}= | interfaceCLI.VPP get interface ip addresses
+| | ${vpp_data}= | VPP get interface ip addresses
 | | ... | ${node} | ${interface} | ipv6
 | | ${settings}= | Create Dictionary
 | | ... | ip=${address} | prefix_length=${prefix}
@@ -435,7 +433,7 @@
 | | ... | \| IPv6 address from Honeycomb should be empty\| ${nodes['DUT1']} \
 | | ... | \| GigabitEthernet0/8/0 \|
 | | [Arguments] | ${node} | ${interface}
-| | ${api_data}= | interfaceAPI.Get interface oper data | ${node} | ${interface}
+| | ${api_data}= | Get interface oper data | ${node} | ${interface}
 | | Run keyword and expect error | *KeyError:*
 | | ... | Set Variable | ${api_data['ietf-ip:ipv6']['address']}
 
@@ -453,7 +451,7 @@
 | | ... | \| GigabitEthernet0/8/0 \|
 | | [Arguments] | ${node} | ${interface}
 | | Run keyword and expect error | *No JSON object could be decoded*
-| | ... | InterfaceCLI.VPP get interface ip addresses
+| | ... | VPP get interface ip addresses
 | | ... | ${node} | ${interface} | ipv6
 
 | Honeycomb adds interface IPv6 neighbor
@@ -471,7 +469,7 @@
 | | ... | \| Honeycomb adds interface IPv6 neighbor \| ${nodes['DUT1']} \
 | | ... | \| GigabitEthernet0/8/0 \| 192.168.0.3 \| 08:00:27:c0:5d:37 \|
 | | [Arguments] | ${node} | ${interface} | ${fib_address} | ${fib_mac}
-| | InterfaceAPI.Add ipv6 neighbor
+| | Add ipv6 neighbor
 | | ... | ${node} | ${interface} | ${fib_address} | ${fib_mac}
 
 | IPv6 neighbor from Honeycomb should be
@@ -489,7 +487,7 @@
 | | ... | \| IPv6 neighbor from Honeycomb should be \| ${nodes['DUT1']} \
 | | ... | \| GigabitEthernet0/8/0 \| 192.168.0.4 \| 08:00:27:60:26:ab \|
 | | [Arguments] | ${node} | ${interface} | ${ip_address} | ${mac_address}
-| | ${api_data}= | interfaceAPI.Get interface oper data | ${node} | ${interface}
+| | ${api_data}= | Get interface oper data | ${node} | ${interface}
 | | ${settings}= | Create Dictionary
 | | ... | ip=${ip_address} | link-layer-address=${mac_address} | origin=static
 | | Should contain | ${api_data['ietf-ip:ipv6']['neighbor']} | ${settings}
@@ -507,7 +505,7 @@
 | | ... | \| Honeycomb clears all interface IPv6 neighbors \| ${nodes['DUT1']} \
 | | ... | \| GigabitEthernet0/8/0 \|
 | | [Arguments] | ${node} | ${interface}
-| | interfaceAPI.Remove all ipv6 neighbors | ${node} | ${interface}
+| | Remove all ipv6 neighbors | ${node} | ${interface}
 
 | IPv6 neighbor from Honeycomb should be empty
 | | [Documentation] | Retrieves ipv6 neighbor list through Honeycomb\
@@ -522,7 +520,7 @@
 | | ... | \| IPv6 neighbor from Honeycomb should be empty \| ${nodes['DUT1']} \
 | | ... | \| GigabitEthernet0/8/0 \|
 | | [Arguments] | ${node} | ${interface}
-| | ${api_data}= | interfaceAPI.Get interface oper data | ${node} | ${interface}
+| | ${api_data}= | Get interface oper data | ${node} | ${interface}
 | | Run keyword and expect error | *KeyError:*
 | | ... | Set Variable | ${api_data['ietf-ip:ipv6']['neighbor'][0]['ip']}
 
@@ -541,7 +539,7 @@
 | | ... | \| ${nodes['DUT1']} \| GigabitEthernet0/8/0 \| ${{'mtu': 1500}} \
 | | [Arguments] | ${node} | ${interface} | ${ethernet}
 | | :FOR | ${key} | IN | @{ethernet.keys()}
-| | | interfaceAPI.Configure interface ethernet
+| | | Configure interface ethernet
 | | | ... | ${node} | ${interface} | ${key} | ${ethernet['${key}']}
 
 | Interface ethernet Operational Data From Honeycomb Should Be
@@ -559,7 +557,7 @@
 | | ... | should be \| ${nodes['DUT1']} \| GigabitEthernet0/8/0 \
 | | ... | \| ${{'mtu': 1500}} \|
 | | [Arguments] | ${node} | ${interface} | ${ethernet}
-| | ${api_data}= | interfaceAPI.Get interface oper data | ${node} | ${interface}
+| | ${api_data}= | Get interface oper data | ${node} | ${interface}
 | | :FOR | ${key} | IN | @{ethernet.keys()}
 | | | Should be equal
 | | | ... | ${api_data['v3po:ethernet']['${key}']} | ${ethernet['${key}']}
@@ -578,7 +576,7 @@
 | | ... | \| Interface ethernet Operational Data From VAT Should Be \
 | | ... | should be \| ${nodes['DUT1']} \| GigabitEthernet0/8/0 \| ${1500} \|
 | | [Arguments] | ${node} | ${interface} | ${mtu}
-| | ${vat_data}= | InterfaceCLI.VPP get interface data | ${node} | ${interface}
+| | ${vat_data}= | VPP get interface data | ${node} | ${interface}
 | | Should be equal | ${vat_data['mtu']} | ${mtu}
 
 | Honeycomb sets interface VRF ID
@@ -595,7 +593,7 @@
 | | ... | \| Honeycomb sets interface VRF ID \
 | | ... | \| ${nodes['DUT1']} \| GigabitEthernet0/8/0 \| ${1} \| ipv4 \|
 | | [Arguments] | ${node} | ${interface} | ${vrf_id} | ${ip_version}
-| | interfaceAPI.Configure interface routing
+| | Configure interface routing
 | | ... | ${node} | ${interface} | ${ip_version}-vrf-id | ${vrf_id}
 
 | Interface VRF ID from Honeycomb should be
@@ -614,7 +612,7 @@
 | | ... | should be \| ${nodes['DUT1']} \| GigabitEthernet0/8/0 \| ${1} \
 | | ... | \| ipv4 \|
 | | [Arguments] | ${node} | ${interface} | ${vrf_id} | ${ip_version}
-| | ${api_data}= | interfaceAPI.Get interface oper data | ${node} | ${interface} |
+| | ${api_data}= | Get interface oper data | ${node} | ${interface} |
 | | Should be equal
 | | ... | ${api_data['v3po:routing']['${ip_version}-vrf-id']} | ${vrf_id}
 
@@ -632,7 +630,7 @@
 | | ... | \| Interface VRF ID from VAT should be \
 | | ... | \| ${nodes['DUT1']} \| GigabitEthernet0/8/0 \| ${1} \|
 | | [Arguments] | ${node} | ${interface} | ${vrf_id}
-| | ${vat_data}= | InterfaceCLI.get interface vrf table
+| | ${vat_data}= | get interface vrf table
 | | ... | ${node} | ${interface}
 | | Should be equal | ${vat_data} | ${vrf_id}
 
@@ -650,7 +648,7 @@
 | | ... | \| ${nodes['DUT1']} \| GigabitEthernet0/8/0 \|
 | | ...
 | | [Arguments] | ${node} | ${interface}
-| | ${api_data}= | interfaceAPI.Get interface oper data | ${node} | ${interface}
+| | ${api_data}= | Get interface oper data | ${node} | ${interface}
 | | Should be empty | ${api_data}
 
 | Interface Operational Data From VAT Should Be empty
@@ -667,7 +665,7 @@
 | | ... | \| ${nodes['DUT1']} \| GigabitEthernet0/8/0 \|
 | | ...
 | | [Arguments] | ${node} | ${interface} |
-| | ${vat_data}= | InterfaceCLI.VPP get interface data | ${node} | ${interface}
+| | ${vat_data}= | VPP get interface data | ${node} | ${interface}
 | | Should be empty | ${vat_data}
 
 | Interface indices from Honeycomb and VAT should correspond
@@ -686,8 +684,8 @@
 | | ...
 | | [Arguments] | ${node} | ${interface}
 | | ...
-| | ${api_data}= | interfaceAPI.Get interface oper data | ${node} | ${interface}
-| | ${vat_data}= | InterfaceCLI.VPP get interface data | ${node} | ${interface}
+| | ${api_data}= | Get interface oper data | ${node} | ${interface}
+| | ${vat_data}= | VPP get interface data | ${node} | ${interface}
 | | ${sw_if_index}= | EVALUATE | ${vat_data['sw_if_index']} + 1
 | | Should be equal as strings
 | | ... | ${api_data['if-index']} | ${sw_if_index}
@@ -704,7 +702,7 @@
 | | ...
 | | ... | \| Get interface index from oper data \| ${nodes['DUT1']} \| local0 \|
 | | [Arguments] | ${node} | ${interface}
-| | ${data}= | interfaceAPI.Get interface oper data | ${node} | ${interface}
+| | ${data}= | Get interface oper data | ${node} | ${interface}
 | | Return from keyword | ${data['if-index']}
 
 | Honeycomb should show disabled interface in oper data
@@ -720,7 +718,7 @@
 | | ... | \| Honeycomb should show disabled interface in oper data \
 | | ... | \| ${nodes['DUT1']} \| ${vx_interface} \|
 | | [Arguments] | ${node} | ${index}
-| | interfaceAPI.check disabled interface | ${node} | ${index}
+| | check disabled interface | ${node} | ${index}
 
 | Honeycomb should not show disabled interface in oper data
 | | [Documentation] | Retrieves list of disabled interfaces\

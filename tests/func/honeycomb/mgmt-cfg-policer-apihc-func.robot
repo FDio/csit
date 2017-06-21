@@ -30,9 +30,9 @@
 | Library | resources.libraries.python.Trace
 | Variables | resources/test_data/honeycomb/policer_variables.py
 | ...
-| Suite Teardown
-| ... | Run Keyword If Any Tests Failed
-| ... | Restart Honeycomb and VPP | ${node}
+| Suite Setup | Set Up Honeycomb Functional Test Suite | ${node}
+| ...
+| Suite Teardown | Tear Down Honeycomb Functional Test Suite | ${node}
 | ...
 | Force Tags | HC_FUNC
 | ...
@@ -101,6 +101,8 @@
 | | ... | ${node} | ${interface} | ${acl_tables['hc_acl_table']['name']}
 
 | TC06: VPP policer 2R3C Color-aware marks packet
+# Pending rework
+| | [Tags] | EXPECTED_FAILING
 | | [Documentation]
 | | ... | [Top] TG=DUT1.
 | | ... | [Ref] RFC2474, RFC2698.
@@ -135,7 +137,7 @@
 | | And Honeycomb adds interface IPv4 neighbor
 | | ... | ${dut_node} | ${dut_to_tg_if2} | ${tg_to_dut_if2_ip}
 | | ... | ${tg_to_dut_if2_mac}
-| | And interfaceCLI.VPP Node Interfaces Ready Wait | ${dut_node}
+| | And VPP Node Interfaces Ready Wait | ${dut_node}
 | | Then Honeycomb Send packet and verify marking | ${tg_node}
 | | ... | ${tg_to_dut_if1}
 | | ... | ${tg_to_dut_if2} | ${tg_to_dut_if1_mac} | ${dut_to_tg_if1_mac}
