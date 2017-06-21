@@ -118,7 +118,7 @@ TLDK_TAR_FILE="tldk_depends.tar.gz"
 wget "fast.dpdk.org/rel/${DPDK_PACKAGE}"
 
 tar zcf ${TLDK_TAR_FILE} ${DPDK_PACKAGE} ./tldk/ \
-    ./tests/tldk/tldk_testconfig/ ./tests/tldk/tldk_deplibs/
+    ./tests/tldk/tldk_testconfig/
 
 cat ${VIRL_PKEY}
 # Copy the files to VIRL host
