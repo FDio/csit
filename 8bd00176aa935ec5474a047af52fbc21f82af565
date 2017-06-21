@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "da6255ed_d2641ae7",
+        "filename": "bootstrap-vpp-verify-nightly.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2017-06-21T15:10:11Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fa5d592f_2c2c1bab",
+      "revId": "8bd00176aa935ec5474a047af52fbc21f82af565",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "fa5d592f_4f34e1dd",
         "filename": "bootstrap-vpp-verify-nightly.sh",
         "patchSetId": 4
@@ -30,6 +48,30 @@
       "writtenOn": "2017-06-12T12:26:02Z",
       "side": 1,
       "message": "What is this case supposed to do?",
+      "range": {
+        "startLine": 51,
+        "startChar": 0,
+        "endLine": 53,
+        "endChar": 18
+      },
+      "revId": "8bd00176aa935ec5474a047af52fbc21f82af565",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da6255ed_729b2eca",
+        "filename": "bootstrap-vpp-verify-nightly.sh",
+        "patchSetId": 4
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2017-06-21T15:10:11Z",
+      "side": 1,
+      "message": "The plan is to create manual trigger to vpp project to perform csit verification from vpp patch when centos tests are stable. Then we will need this case.",
+      "parentUuid": "fa5d592f_4f34e1dd",
       "range": {
         "startLine": 51,
         "startChar": 0,
