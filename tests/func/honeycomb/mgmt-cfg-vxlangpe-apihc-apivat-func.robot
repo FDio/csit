@@ -41,9 +41,12 @@
 | ...
 | Documentation | *Honeycomb VxLAN-GPE management test suite.*
 | ...
-#| Force Tags | HC_FUNC
+| Suite Setup | Set Up Honeycomb Functional Test Suite | ${node}
 | ...
-| Suite Setup | Restart Honeycomb and VPP | ${node}
+| Suite Teardown | Tear Down Honeycomb Functional Test Suite | ${node}
+| ...
+# Disabled due to VPP-875: Configuring VxLAN GPE tunnel crashes VPP
+#| Force Tags | HC_FUNC
 
 *** Test Cases ***
 | TC01: Honeycomb creates VxLAN GPE tunnel

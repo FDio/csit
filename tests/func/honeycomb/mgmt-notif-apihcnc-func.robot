@@ -25,18 +25,13 @@
 | Resource | resources/libraries/robot/honeycomb/tap.robot
 | Resource | resources/libraries/robot/honeycomb/notifications.robot
 | ...
-| Suite Setup | Run keywords
-| ... | Honeycomb configures interface state
-| ... | ${node} | ${interface} | down | AND
-| ... | Honeycomb creates TAP interface
-| ... | ${node} | ${tap_interface} | ${tap_settings}
-| ...
 | Documentation | *Honeycomb notifications test suite.*
 | ...
-| Force Tags | HC_FUNC
+| Suite Setup | Set Up Honeycomb Notifications Functional Test Suite
 | ...
-| Suite Teardown | Run Keyword If Any Tests Failed
-| ... | Restart Honeycomb and VPP | ${node}
+| Suite Teardown | Tear Down Honeycomb Functional Test Suite | ${node}
+| ...
+| Force Tags | HC_FUNC
 
 *** Test Cases ***
 | TC01: Honeycomb sends notification on interface state change
@@ -63,3 +58,11 @@
 | | And Notification listener should be established | ${node}
 | | When Honeycomb removes TAP interface | ${node} | ${tap_interface}
 | | Then Honeycomb should send interface deleted notification | ${tap_interface}
+
+*** Keywords ***
+| Set Up Honeycomb Notifications Functional Test Suite
+| | Set Up Honeycomb Functional Test Suite | ${node}
+| | Honeycomb configures interface state
+| | ... | ${node} | ${interface} | down
+| | Honeycomb creates TAP interface
+| | ... | ${node} | ${tap_interface} | ${tap_settings}
