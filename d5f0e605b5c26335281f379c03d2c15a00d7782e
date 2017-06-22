@@ -22,6 +22,30 @@
       "revId": "d5f0e605b5c26335281f379c03d2c15a00d7782e",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da6255ed_bd4857cd",
+        "filename": "bootstrap-TLDK.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 580
+      },
+      "writtenOn": "2017-06-22T06:16:52Z",
+      "side": 1,
+      "message": "I would like to download here first to check functionality and change to include-raw-csit-tldk-functional-virl.sh later",
+      "parentUuid": "da6255ed_dd1c2b16",
+      "range": {
+        "startLine": 119,
+        "startChar": 0,
+        "endLine": 119,
+        "endChar": 37
+      },
+      "revId": "d5f0e605b5c26335281f379c03d2c15a00d7782e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
