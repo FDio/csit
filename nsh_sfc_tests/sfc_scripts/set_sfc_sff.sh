@@ -20,8 +20,8 @@ sudo vppctl create nsh entry nsp 185 nsi 255 md-type 1 c1 3232248395 c2 9 c3 323
 sudo vppctl create nsh entry nsp 185 nsi 254 md-type 1 c1 3232248395 c2 9 c3 3232248392 c4 50336437 next-ethernet
 
 sleep 2
-vxlan_gpe_index0=`sudo vppctl sh interfaces | grep "vxlan_gpe_tunnel0" | awk '{print $2}'`
-vxlan_gpe_index1=`sudo vppctl sh interfaces | grep "vxlan_gpe_tunnel1" | awk '{print $2}'`
+vxlan_gpe_index0=`sudo vppctl sh int | grep "vxlan_gpe_tunnel0" | awk '{print $2}'`
+vxlan_gpe_index1=`sudo vppctl sh int | grep "vxlan_gpe_tunnel1" | awk '{print $2}'`
 sudo vppctl create nsh map nsp 185 nsi 255 mapped-nsp 185 mapped-nsi 254 nsh_action swap encap-vxlan-gpe-intf ${vxlan_gpe_index0}
 
 sudo vppctl ip route add 192.168.50.71/32 via 192.168.50.76 $1
