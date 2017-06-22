@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da6255ed_f87b7d27",
+        "filename": "nsh_sfc_tests/sfc_scripts/start_tcpdump.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-06-22T08:56:39Z",
+      "side": 1,
+      "message": "if [ ! $? -eq 0 ]; then \nis better",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 21
+      },
+      "revId": "aee738e1382cf75418d605193ce889df1d156914",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
