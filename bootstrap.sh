@@ -54,9 +54,9 @@ VIRL_SERVERS=("10.30.51.28" "10.30.51.29" "10.30.51.30")
 IPS_PER_VIRL=( "10.30.51.28:252"
                "10.30.51.29:74"
                "10.30.51.30:74" )
-VMS_PER_VIRL=( "10.30.51.28:36"
-               "10.30.51.29:36"
-               "10.30.51.30:36" )
+SIMS_PER_VIRL=( "10.30.51.28:13"
+               "10.30.51.29:13"
+               "10.30.51.30:13" )
 IPS_PER_SIMULATION=5
 
 function get_max_ip_nr() {
@@ -72,17 +72,17 @@ function get_max_ip_nr() {
     echo "$IP_VALUE"
 }
 
-function get_max_vm_nr() {
+function get_max_sim_nr() {
     virl_server=$1
-    VM_VALUE="0"
-    for item in "${VMS_PER_VIRL[@]}" ; do
+    SIM_VALUE="0"
+    for item in "${SIMS_PER_VIRL[@]}" ; do
         if [ "${item%%:*}" == "${virl_server}" ]
         then
-            VM_VALUE=${item#*:}
+            SIM_VALUE=${item#*:}
             break
         fi
     done
-    echo "$VM_VALUE"
+    echo "$SIM_VALUE"
 }
 
 VIRL_USERNAME=jenkins-in
@@ -263,9 +263,9 @@ for index in "${!VIRL_SERVER[@]}"; do
     echo "Starting simulation nr. ${index} on VIRL server ${VIRL_SERVER[${index}]}"
     # Get given VIRL server limits for max. number of VMs and IPs
     max_ips=$(get_max_ip_nr ${VIRL_SERVER[${index}]})
-    max_ips_from_vms=$(($(get_max_vm_nr ${VIRL_SERVER[${index}]})*IPS_PER_SIMULATION))
+    max_ips_from_sims=$(($(get_max_sim_nr ${VIRL_SERVER[${index}]})*IPS_PER_SIMULATION))
     # Set quota to lower value
-    IP_QUOTA=$([ $max_ips -le $max_ips_from_vms ] && echo "$max_ips" || echo "$max_ips_from_vms")
+    IP_QUOTA=$([ $max_ips -le $max_ips_from_sims ] && echo "$max_ips" || echo "$max_ips_from_sims")
     # Start the simulation
     VIRL_SID[${index}]=$(ssh ${SSH_OPTIONS} \
         ${VIRL_USERNAME}@${VIRL_SERVER[${index}]} \
