@@ -43,3 +43,4 @@
 | | Set Global Variable | ${perf_qemu_bin}
 | | ...                 | /opt/qemu-2.5.0/bin/qemu-system-x86_64
 | | Set Global Variable | ${perf_qemu_qsz} | 1024
+| | Set Global Variable | ${use_tuned_cfs} | ${False}
