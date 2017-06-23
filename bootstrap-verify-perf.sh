@@ -15,9 +15,11 @@
 set -x
 
 # Space separated list of available testbeds, described by topology files
-TOPOLOGIES="topologies/available/lf_testbed1.yaml \
-            topologies/available/lf_testbed2.yaml \
-            topologies/available/lf_testbed3.yaml"
+#TOPOLOGIES="topologies/available/lf_testbed1.yaml \
+#            topologies/available/lf_testbed2.yaml \
+#            topologies/available/lf_testbed3.yaml"
+
+TOPOLOGIES="topologies/available/lf_testbed3.yaml"
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
@@ -71,12 +73,6 @@ then
     VPP_DEBS="$( readlink -f $@ | tr '\n' ' ' )"
     # Take vpp package and get the vpp version
     VPP_STABLE_VER="$( expr match $1 'vpp-\(.*\)-deb.deb' )"
-    # Download DPDK parts not included in dpdk plugin of vpp build
-    DPDK_STABLE_VER=$(cat ${SCRIPT_DIR}/DPDK_STABLE_VER)_amd64
-    VPP_REPO_URL=$(cat ${SCRIPT_DIR}/VPP_REPO_URL_UBUNTU)
-    VPP_CLASSIFIER="-deb"
-    wget -q "${VPP_REPO_URL}/vpp-dpdk-dkms/${DPDK_STABLE_VER}/vpp-dpdk-dkms-${DPDK_STABLE_VER}${VPP_CLASSIFIER}.deb" || exit
-    VPP_DEBS+=($( readlink -f vpp-dpdk-dkms-${DPDK_STABLE_VER}${VPP_CLASSIFIER}.deb ))
 else
     echo "Unable to identify job type based on JOB_NAME variable: ${JOB_NAME}"
     exit 1
@@ -312,6 +308,7 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s "tests.vpp.perf" \
+              -i TEST \
               tests/
         RETURN_STATUS=$(echo $?)
 esac
@@ -336,7 +333,7 @@ if [ ! $? -eq 0 ]; then
 fi
 
 # Archive artifacts
-mkdir archive
+mkdir -p archive
 for i in ${ARCHIVE_ARTIFACTS[@]}; do
     cp $( readlink -f ${i} | tr '\n' ' ' ) archive/
 done
