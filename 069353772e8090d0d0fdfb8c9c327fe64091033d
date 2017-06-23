@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da6255ed_de7301e6",
+        "filename": "resources/libraries/python/LXCUtils.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 408,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-06-23T07:32:38Z",
+      "side": 1,
+      "message": "\"returns\" or remove",
+      "range": {
+        "startLine": 408,
+        "startChar": 9,
+        "endLine": 408,
+        "endChar": 15
+      },
+      "revId": "069353772e8090d0d0fdfb8c9c327fe64091033d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
