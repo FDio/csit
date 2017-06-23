@@ -1056,8 +1056,8 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| '2' Configure guest VM with dpdk-testpmd connected via vhost-user \
-| | ... | in a 3-node circular topology \|
+| | ... | \| Configure '2' guest VMs with dpdk-testpmd connected via vhost-user \
+| | ... | in 3-node circular topology \|
 | | ...
 | | :FOR | ${number} | IN RANGE | 1 | ${nr}+1
 | | | ${sock1}= | Set Variable | /tmp/sock-${number}-1
@@ -1090,8 +1090,8 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Guest VM with dpdk-testpmd using SMT connected via vhost-user is \
-| | ... | setup \| ${nodes['DUT1']} \| /tmp/sock1 \| /tmp/sock2 \| DUT1_VM \
+| | ... | \| Configure guest VM with dpdk-testpmd using SMT connected via \
+| | ... | vhost-user \| ${nodes['DUT1']} \| /tmp/sock1 \| /tmp/sock2 \| DUT1_VM \
 | | ... | \| ${6} \| ${5} \|
 | | ...
 | | [Arguments] | ${dut_node} | ${sock1} | ${sock2} | ${vm_name} | ${skip}=${6}
@@ -1145,10 +1145,10 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Guest VM with dpdk-testpmd for Vhost L2BD forwarding is setup \
+| | ... | \| Configure guest VM with dpdk-testpmd-mac connected via vhost-user \
 | | ... | \| ${nodes['DUT1']} \| /tmp/sock1 \| /tmp/sock2 \| DUT1_VM \
 | | ... | \| 00:00:00:00:00:01 \| 00:00:00:00:00:02 \| ${6} \| ${5} \|
-| | ... | \| Guest VM with dpdk-testpmd for Vhost L2BD forwarding is setup \
+| | ... | \| Configure guest VM with dpdk-testpmd-mac connected via vhost-user \
 | | ... | \| ${nodes['DUT1']} \| /tmp/sock-2-1 \| /tmp/sock-2-2 \| DUT1_VM2 \
 | | ... | \| 00:00:00:00:02:01 \| 00:00:00:00:02:02 \| ${6} \| ${5} \
 | | ... | \| qemu_id=${2} \|
@@ -1204,8 +1204,8 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| '2' Guest VMs with dpdk-testpmd-mac connected via vhost-user is \
-| | ... | setup in a 3-node circular topology \|
+| | ... | \| Configure '2' guest VMs with dpdk-testpmd-mac connected via vhost-user \
+| | ... | in 3-node circular topology \|
 | | ...
 | | :FOR | ${number} | IN RANGE | 1 | ${nr}+1
 | | | ${sock1}= | Set Variable | /tmp/sock-${number}-1
@@ -1261,7 +1261,10 @@
 | | ... | skip_cnt=${skip} | cpu_cnt=${count} | smt_used=${True}
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock1}
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock2}
-| | Run Keyword | ${vm_name}.Build QEMU | ${dut_node} | apply_patch=${True}
+| | ${apply_patch}= | Set Variable If | "${perf_qemu_qsz}" == "256" | ${False}
+| | ... | ${True}
+| | Run Keyword | ${vm_name}.Build QEMU | ${dut_node}
+| | ... | apply_patch=${apply_patch}
 | | Run keyword | ${vm_name}.Qemu Set Bin | ${perf_qemu_bin}
 | | Run keyword | ${vm_name}.Qemu Set Node | ${dut_node}
 | | Run keyword | ${vm_name}.Qemu Set Smp | ${count} | ${count} | 1 | 1
@@ -1269,6 +1272,7 @@
 | | Run keyword | ${vm_name}.Qemu Set Disk Image | ${perf_vm_image}
 | | ${vm}= | Run keyword | ${vm_name}.Qemu Start
 | | Run keyword | ${vm_name}.Qemu Set Affinity | @{qemu_cpus}
+| | Run keyword If | ${use_tuned_cfs} | ${vm_name}.Qemu Set Scheduler Policy
 | | Dpdk Testpmd Start | ${vm} | eal_coremask=0x1f
 | | ... | eal_mem_channels=4 | pmd_fwd_mode=mac | pmd_eth_peer_0=0,${eth0_mac}
 | | ... | pmd_eth_peer_1=1,${eth1_mac} | pmd_disable_hw_vlan=${True}
