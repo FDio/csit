@@ -70,6 +70,30 @@
       "revId": "d5f0e605b5c26335281f379c03d2c15a00d7782e",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da6255ed_9ef8e94a",
+        "filename": "bootstrap-TLDK.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 580
+      },
+      "writtenOn": "2017-06-23T06:20:48Z",
+      "side": 1,
+      "message": "May I know the redline between git with csit code or ci-management code?",
+      "parentUuid": "da6255ed_5e1711a4",
+      "range": {
+        "startLine": 119,
+        "startChar": 0,
+        "endLine": 119,
+        "endChar": 37
+      },
+      "revId": "d5f0e605b5c26335281f379c03d2c15a00d7782e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
