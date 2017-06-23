@@ -1,0 +1,274 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da6255ed_722b2983",
+        "filename": "nsh_sfc_tests/perf/classifier/10ge2p1x520-ethip4-ip4base-classifier-ndrpdrdisc.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-06-23T07:54:55Z",
+      "side": 1,
+      "message": "This library was split, re-base, please",
+      "range": {
+        "startLine": 15,
+        "startChar": 39,
+        "endLine": 15,
+        "endChar": 56
+      },
+      "revId": "235dafb37b7fc86b4adc988319ddc2a457fb6a6c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da6255ed_1213cd5d",
+        "filename": "nsh_sfc_tests/perf/classifier/10ge2p1x520-ethip4-ip4base-classifier-ndrpdrdisc.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-06-23T07:54:55Z",
+      "side": 1,
+      "message": "The keywords were renamed, re-base, please",
+      "range": {
+        "startLine": 28,
+        "startChar": 0,
+        "endLine": 34,
+        "endChar": 19
+      },
+      "revId": "235dafb37b7fc86b4adc988319ddc2a457fb6a6c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da6255ed_be2e0da4",
+        "filename": "nsh_sfc_tests/sfc_scripts/set_sfc_classifier_perf.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-06-23T07:54:55Z",
+      "side": 1,
+      "message": "Why do you configure vpp this way? There is a functionality implemented in CSIT (VAT Executor) to configure and read state info from VPP.",
+      "revId": "235dafb37b7fc86b4adc988319ddc2a457fb6a6c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da6255ed_9e02290a",
+        "filename": "resources/libraries/python/SFC/PerformanceTest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-06-23T07:54:55Z",
+      "side": 1,
+      "message": "2017",
+      "range": {
+        "startLine": 1,
+        "startChar": 16,
+        "endLine": 1,
+        "endChar": 20
+      },
+      "revId": "235dafb37b7fc86b4adc988319ddc2a457fb6a6c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da6255ed_5e1dd172",
+        "filename": "resources/libraries/python/SFC/PerformanceTest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-06-23T07:54:55Z",
+      "side": 1,
+      "message": "starts",
+      "range": {
+        "startLine": 15,
+        "startChar": 57,
+        "endLine": 15,
+        "endChar": 62
+      },
+      "revId": "235dafb37b7fc86b4adc988319ddc2a457fb6a6c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da6255ed_7e189584",
+        "filename": "resources/libraries/python/SFC/PerformanceTest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-06-23T07:54:55Z",
+      "side": 1,
+      "message": "configures",
+      "range": {
+        "startLine": 15,
+        "startChar": 43,
+        "endLine": 15,
+        "endChar": 52
+      },
+      "revId": "235dafb37b7fc86b4adc988319ddc2a457fb6a6c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da6255ed_1e175953",
+        "filename": "resources/libraries/python/SFC/PerformanceTest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-06-23T07:54:55Z",
+      "side": 1,
+      "message": "dut_type",
+      "range": {
+        "startLine": 28,
+        "startChar": 44,
+        "endLine": 28,
+        "endChar": 51
+      },
+      "revId": "235dafb37b7fc86b4adc988319ddc2a457fb6a6c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da6255ed_3e121d63",
+        "filename": "resources/libraries/python/SFC/PerformanceTest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-06-23T07:54:55Z",
+      "side": 1,
+      "message": "PEP8: test_type",
+      "range": {
+        "startLine": 28,
+        "startChar": 34,
+        "endLine": 28,
+        "endChar": 42
+      },
+      "revId": "235dafb37b7fc86b4adc988319ddc2a457fb6a6c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da6255ed_fe0b6529",
+        "filename": "resources/libraries/python/SFC/PerformanceTest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-06-23T07:54:55Z",
+      "side": 1,
+      "message": "type or name?",
+      "range": {
+        "startLine": 40,
+        "startChar": 9,
+        "endLine": 40,
+        "endChar": 50
+      },
+      "revId": "235dafb37b7fc86b4adc988319ddc2a457fb6a6c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da6255ed_de08a12f",
+        "filename": "resources/libraries/python/SFC/PerformanceTest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-06-23T07:54:55Z",
+      "side": 1,
+      "message": "execution",
+      "range": {
+        "startLine": 49,
+        "startChar": 44,
+        "endLine": 49,
+        "endChar": 51
+      },
+      "revId": "235dafb37b7fc86b4adc988319ddc2a457fb6a6c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da6255ed_92ffbd01",
+        "filename": "resources/libraries/python/SFC/PerformanceTest.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-06-23T07:54:55Z",
+      "side": 1,
+      "message": "PEP8: Line too long, indentation",
+      "range": {
+        "startLine": 67,
+        "startChar": 8,
+        "endLine": 69,
+        "endChar": 81
+      },
+      "revId": "235dafb37b7fc86b4adc988319ddc2a457fb6a6c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da6255ed_9e2b4994",
+        "filename": "resources/libraries/robot/nsh_sfc/default.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-06-23T07:54:55Z",
+      "side": 1,
+      "message": "Set up",
+      "range": {
+        "startLine": 23,
+        "startChar": 2,
+        "endLine": 23,
+        "endChar": 7
+      },
+      "revId": "235dafb37b7fc86b4adc988319ddc2a457fb6a6c",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
