@@ -94,6 +94,30 @@
       "revId": "d5f0e605b5c26335281f379c03d2c15a00d7782e",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da6255ed_bea96d26",
+        "filename": "bootstrap-TLDK.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-06-23T07:13:21Z",
+      "side": 1,
+      "message": "I agree with Peter. It should be in ci-management. Move it there, I will review it and ask people from ci-mgmt to merge it.",
+      "parentUuid": "da6255ed_9ef8e94a",
+      "range": {
+        "startLine": 119,
+        "startChar": 0,
+        "endLine": 119,
+        "endChar": 37
+      },
+      "revId": "d5f0e605b5c26335281f379c03d2c15a00d7782e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
