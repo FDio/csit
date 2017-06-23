@@ -46,6 +46,30 @@
       "revId": "d5f0e605b5c26335281f379c03d2c15a00d7782e",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da6255ed_5e1711a4",
+        "filename": "bootstrap-TLDK.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-06-23T04:26:07Z",
+      "side": 1,
+      "message": "I would prefer to do it from jenkins jjb scripts",
+      "parentUuid": "da6255ed_bd4857cd",
+      "range": {
+        "startLine": 119,
+        "startChar": 0,
+        "endLine": 119,
+        "endChar": 37
+      },
+      "revId": "d5f0e605b5c26335281f379c03d2c15a00d7782e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
