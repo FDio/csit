@@ -139,7 +139,7 @@ def install_sfc_test(node):
     ssh.connect(node)
 
     (ret_code, _, stderr) = ssh.exec_command(
-        'cd {0}/nsh_sfc_tests/sfc_scripts/ && ./install_sfc.sh {1} {2}'
+        'cd {0}/tests/nsh_sfc/sfc_scripts/ && ./install_sfc.sh {1} {2}'
         .format(con.REMOTE_FW_DIR, if_name_list[0], if_name_list[1]), \
         timeout=600)
 
