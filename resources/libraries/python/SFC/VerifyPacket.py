@@ -157,7 +157,7 @@ class VerifyPacket(object):
 
 
     @staticmethod
-    def check_the_nsh_sfc_packet(frame_size, test_type):
+    def check_the_nsh_sfc_packet(ether, frame_size, test_type):
         """
         verify the NSH SFC functional test loopback packet field
         is correct.
@@ -171,16 +171,20 @@ class VerifyPacket(object):
         :raises RuntimeError: If the packet field verify fails.
         """
 
-        rx_pcapfile = '{0}/nsh_sfc_tests/sfc_scripts/temp_packet.pcap' \
-                      .format(con.REMOTE_FW_DIR)
+        #rx_pcapfile = '{0}/nsh_sfc_tests/sfc_scripts/temp_packet.pcap' \
+        #              .format(con.REMOTE_FW_DIR)
 
-        logger.trace('read pcap file:{0}'.format(rx_pcapfile))
+        #logger.trace('read pcap file:{0}'.format(rx_pcapfile))
 
-        packets = rdpcap(rx_pcapfile)
-        if len(packets) < 1:
-            raise RuntimeError("No packet is received!")
+        #packets = rdpcap(rx_pcapfile)
+        #if len(packets) < 1:
+        #    raise RuntimeError("No packet is received!")
 
-        ether = packets[0]
+        #ether = packets[0]
+
+        #logger.console("Hexdump the packet:------")
+        #logger.console("{0}".format(hexdump(ether)))
+        #logger.console("-------------------------")
 
         origin_size = int(frame_size)
         if test_type == "Classifier":

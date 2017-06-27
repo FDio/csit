@@ -26,6 +26,7 @@ from scapy.all import sendp
 from resources.libraries.python.SFC.VerifyPacket import *
 from resources.libraries.python.SFC.SFCConstants import SFCConstants as sfccon
 from resources.libraries.python.TrafficScriptArg import TrafficScriptArg
+from resources.libraries.python.PacketVerifier import RxQueue, TxQueue
 
 from robot.api import logger
 
@@ -47,6 +48,10 @@ def main():
     timeout = int(args.get_arg('timeout'))
     frame_size = int(args.get_arg('framesize'))
     test_type = args.get_arg('testtype')
+
+    rxq = RxQueue(rx_if)
+    txq = TxQueue(tx_if)
+    sent_packets = []
 
     protocol = TCP
     source_port = sfccon.DEF_SRC_PORT
@@ -81,12 +86,21 @@ def main():
 
     pkt_raw = pkt_header / Raw(load=pad_data)
 
-    sendp(pkt_raw, iface=tx_if, count=3)
+    #sendp(pkt_raw, iface=tx_if, count=3)
 
-    time.sleep(timeout)
+    #time.sleep(timeout)
+
+    # Send created packet on one interface and receive on the other
+    sent_packets.append(pkt_raw)
+    txq.send(pkt_raw)
+
+    ether = rxq.recv(2)
+
+    if ether is None:
+        raise RuntimeError("No packet is received!")
 
     # let us begin to check the proxy inbound packet
-    VerifyPacket.check_the_nsh_sfc_packet(frame_size, test_type)
+    VerifyPacket.check_the_nsh_sfc_packet(ether, frame_size, test_type)
 
     # we check all the fields about the proxy inbound, this test will pass
     sys.exit(0)

@@ -24,7 +24,8 @@ class SFCTest(object):
     """Configure and Start the NSH SFC functional tests."""
 
     @staticmethod
-    def config_and_start_SFC_test(dut_node, dut_port, adj_mac, testtype):
+    def config_and_start_SFC_test(dut_node, dut_if1, dut_if2, if1_adj_mac,
+                                  if2_adj_mac, testtype):
         """
         Start the SFC functional on the dut_node.
 
@@ -41,7 +42,8 @@ class SFCTest(object):
         :raises RuntimeError: If the script execute fails.
         """
 
-        vpp_intf_name = Topology.get_interface_name(dut_node, dut_port)
+        vpp_intf_name1 = Topology.get_interface_name(dut_node, dut_if1)
+        vpp_intf_name2 = Topology.get_interface_name(dut_node, dut_if2)
 
         ssh = SSH()
         ssh.connect(dut_node)
@@ -56,8 +58,8 @@ class SFCTest(object):
             exec_shell = "set_sfc_sff.sh"
 
         cmd = 'cd {0}/nsh_sfc_tests/sfc_scripts/ && sudo ./{1} {2} ' \
-              '{3} {4}'.format(con.REMOTE_FW_DIR, exec_shell, vpp_intf_name,
-                               adj_mac, dut_port)
+             '{3} {4} {5}'.format(con.REMOTE_FW_DIR, exec_shell, vpp_intf_name1,
+                               vpp_intf_name2, if1_adj_mac, if2_adj_mac)
 
         (ret_code, _, _) = ssh.exec_command(cmd, timeout=600)
         if ret_code != 0:
