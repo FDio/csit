@@ -48,39 +48,39 @@
 | | ... | Make TG send 128 Bytes VxLAN packet to DUT ingress interface.\
 | | ... | Make TG verify SFC Proxy Outbound functional is correct.
 | | ${frame_size}= | Set Variable | ${128}
-| | Node "${src_node}" interface "${src_port}" send "${frame_size}" Bytes packet to node "${dst_node}" interface "${dst_port}" for "Proxy Outbound" test
+| | Node "${tg_node}" interface "${tg_to_dut_if1}" send "${frame_size}" Bytes packet to node "${dut_node}" interface "${dut_to_tg_if1}" for "Proxy Outbound" test
 
 | TC02: NSH SFC Proxy Outbound functional test with 256B frame size
 | | [Documentation]
 | | ... | Make TG send 256 Bytes VxLAN packet to DUT ingress interface.\
 | | ... | Make TG verify SFC Proxy Outbound functional is correct.
 | | ${frame_size}= | Set Variable | ${256}
-| | Node "${src_node}" interface "${src_port}" send "${frame_size}" Bytes packet to node "${dst_node}" interface "${dst_port}" for "Proxy Outbound" test
+| | Node "${tg_node}" interface "${tg_to_dut_if1}" send "${frame_size}" Bytes packet to node "${dut_node}" interface "${dut_to_tg_if1}" for "Proxy Outbound" test
 
 | TC03: NSH SFC Proxy Outbound functional test with 512B frame size
 | | [Documentation]
 | | ... | Make TG send 512 Bytes VxLAN packet to DUT ingress interface.\
 | | ... | Make TG verify SFC Proxy Outbound functional is correct.
 | | ${frame_size}= | Set Variable | ${512}
-| | Node "${src_node}" interface "${src_port}" send "${frame_size}" Bytes packet to node "${dst_node}" interface "${dst_port}" for "Proxy Outbound" test
+| | Node "${tg_node}" interface "${tg_to_dut_if1}" send "${frame_size}" Bytes packet to node "${dut_node}" interface "${dut_to_tg_if1}" for "Proxy Outbound" test
 
 | TC04: NSH SFC Proxy Outbound functional test with 1024B frame size
 | | [Documentation]
 | | ... | Make TG send 1024 Bytes VxLAN packet to DUT ingress interface.\
 | | ... | Make TG verify SFC Proxy Outbound functional is correct.
 | | ${frame_size}= | Set Variable | ${1024}
-| | Node "${src_node}" interface "${src_port}" send "${frame_size}" Bytes packet to node "${dst_node}" interface "${dst_port}" for "Proxy Outbound" test
+| | Node "${tg_node}" interface "${tg_to_dut_if1}" send "${frame_size}" Bytes packet to node "${dut_node}" interface "${dut_to_tg_if1}" for "Proxy Outbound" test
 
 | TC05: NSH SFC Proxy Outbound functional test with 1280B frame size
 | | [Documentation]
 | | ... | Make TG send 1280 Bytes VxLAN packet to DUT ingress interface.\
 | | ... | Make TG verify SFC Proxy Outbound functional is correct.
 | | ${frame_size}= | Set Variable | ${1280}
-| | Node "${src_node}" interface "${src_port}" send "${frame_size}" Bytes packet to node "${dst_node}" interface "${dst_port}" for "Proxy Outbound" test
+| | Node "${tg_node}" interface "${tg_to_dut_if1}" send "${frame_size}" Bytes packet to node "${dut_node}" interface "${dut_to_tg_if1}" for "Proxy Outbound" test
 
 | TC06: NSH SFC Proxy Outbound functional test with 1518B frame size
 | | [Documentation]
 | | ... | Make TG send 1518 Bytes VxLAN packet to DUT ingress interface.\
 | | ... | Make TG verify SFC Proxy Outbound functional is correct.
 | | ${frame_size}= | Set Variable | ${1518}
-| | Node "${src_node}" interface "${src_port}" send "${frame_size}" Bytes packet to node "${dst_node}" interface "${dst_port}" for "Proxy Outbound" test
+| | Node "${tg_node}" interface "${tg_to_dut_if1}" send "${frame_size}" Bytes packet to node "${dut_node}" interface "${dut_to_tg_if1}" for "Proxy Outbound" test

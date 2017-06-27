@@ -20,7 +20,6 @@ import ipaddress
 
 from scapy.layers.inet import IP, UDP
 from scapy.all import Raw
-from scapy.utils import rdpcap
 from resources.libraries.python.constants import Constants as con
 from resources.libraries.python.SFC.SFCConstants import SFCConstants as sfccon
 from resources.libraries.python.SFC.TunnelProtocol import VxLAN, VxLANGPE, NSH
@@ -157,30 +156,22 @@ class VerifyPacket(object):
 
 
     @staticmethod
-    def check_the_nsh_sfc_packet(frame_size, test_type):
+    def check_the_nsh_sfc_packet(ether, frame_size, test_type):
         """
         verify the NSH SFC functional test loopback packet field
         is correct.
 
-        :param frame_size: the origin frame size.
-        :param test_type: the test type.
+        :param ether: The Ethernet packet data.
+        :param frame_size: The origin frame size.
+        :param test_type: The test type.
                          (Classifier, Proxy Inbound, Proxy Outbound, SFF).
+
+        :type ether: scapy.Ether 
         :type frame_size: Integer
         :type test_type: str
         :returns: none
         :raises RuntimeError: If the packet field verify fails.
         """
-
-        rx_pcapfile = '{0}/nsh_sfc_tests/sfc_scripts/temp_packet.pcap' \
-                      .format(con.REMOTE_FW_DIR)
-
-        logger.trace('read pcap file:{0}'.format(rx_pcapfile))
-
-        packets = rdpcap(rx_pcapfile)
-        if len(packets) < 1:
-            raise RuntimeError("No packet is received!")
-
-        ether = packets[0]
 
         origin_size = int(frame_size)
         if test_type == "Classifier":

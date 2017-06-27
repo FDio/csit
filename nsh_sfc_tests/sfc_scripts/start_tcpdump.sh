@@ -6,7 +6,7 @@ PWDDIR=$(pwd)
 cd ${ROOTDIR}/nsh_sfc_tests/sfc_scripts/
 sudo rm -f temp_packet.pcap
 
-sudo /usr/sbin/tcpdump -i $1 -c 1 -w temp_packet.pcap dst host $2 &
+sudo /usr/sbin/tcpdump -i $1 -c 1 -w temp_packet.pcap &
 
 if [ ! $? -eq 0 ]; then
     echo "Start the tcpdump failed!!!"

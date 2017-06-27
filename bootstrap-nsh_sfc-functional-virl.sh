@@ -17,6 +17,8 @@ set -x
 cat /etc/hostname
 cat /etc/hosts
 
+ARCHIVE_ARTIFACTS=(log.html output.xml report.html)
+
 export DEBIAN_FRONTEND=noninteractive
 sudo apt-get -y update
 sudo apt-get -y install libpython2.7-dev python-virtualenv
@@ -238,3 +240,10 @@ PYTHONPATH=`pwd` pybot -L TRACE -W 136\
     --exclude PERFTEST \
     --exclude SKIP_PATCH \
     nsh_sfc_tests/
+
+# Archive artifacts
+mkdir archive
+for i in ${ARCHIVE_ARTIFACTS[@]}; do
+    cp $( readlink -f ${i} | tr '\n' ' ' ) archive/
+done
+
