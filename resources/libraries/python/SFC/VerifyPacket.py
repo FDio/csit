@@ -182,6 +182,10 @@ class VerifyPacket(object):
 
         ether = packets[0]
 
+        logger.console("Hexdump the packet:------")
+        logger.console("{0}".format(hexdump(ether)))
+        logger.console("-------------------------")
+
         origin_size = int(frame_size)
         if test_type == "Classifier":
             expect_pkt_len = origin_size + 74 - 4
