@@ -63,7 +63,7 @@
 | | ... | [Cfg] DUT runs L2XC switching config with 1 thread, 1 phy core, \
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for 64 Byte frames
 | | ... | using binary search start at 18.75Mpps rate, step 100kpps.
-| | [Tags] | 64B | 1T1C | STHREAD | NDRDISC
+| | [Tags] | 64B | 1T1C | STHREAD | NDRDISC | THIS
 | | ${framesize}= | Set Variable | 64
 | | ${min_rate}= | Set Variable | ${100000}
 | | ${max_rate}= | Set Variable | ${s_18.75Mpps}
@@ -73,6 +73,8 @@
 | | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Add no multi seg to all DUTs
+| | And Add DPDK dev default RXD to all DUTs | 2048
+| | And Add DPDK dev default TXD to all DUTs | 2048
 | | And Apply startup configuration on all VPP DUTs
 | | And Initialize L2 xconnect in 3-node circular topology
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
@@ -94,6 +96,8 @@
 | | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Add no multi seg to all DUTs
+| | And Add DPDK dev default RXD to all DUTs | 2048
+| | And Add DPDK dev default TXD to all DUTs | 2048
 | | And Apply startup configuration on all VPP DUTs
 | | And Initialize L2 xconnect in 3-node circular topology
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
@@ -105,7 +109,7 @@
 | | ... | [Cfg] DUT runs L2XC switching config with 2 threads, 2 phy cores, \
 | | ... | 1 receive queue per NIC port. [Ver] Find NDR for 64 Byte frames
 | | ... | using binary search start at 18.75Mpps rate, step 100kpps.
-| | [Tags] | 64B | 2T2C | MTHREAD | NDRDISC
+| | [Tags] | 64B | 2T2C | MTHREAD | NDRDISC | THIS
 | | ${framesize}= | Set Variable | 64
 | | ${min_rate}= | Set Variable | ${100000}
 | | ${max_rate}= | Set Variable | ${s_18.75Mpps}
@@ -115,6 +119,8 @@
 | | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Add no multi seg to all DUTs
+| | And Add DPDK dev default RXD to all DUTs | 2048
+| | And Add DPDK dev default TXD to all DUTs | 2048
 | | And Apply startup configuration on all VPP DUTs
 | | And Initialize L2 xconnect in 3-node circular topology
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
@@ -136,6 +142,8 @@
 | | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Add no multi seg to all DUTs
+| | And Add DPDK dev default RXD to all DUTs | 2048
+| | And Add DPDK dev default TXD to all DUTs | 2048
 | | And Apply startup configuration on all VPP DUTs
 | | And Initialize L2 xconnect in 3-node circular topology
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
@@ -157,6 +165,8 @@
 | | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Add no multi seg to all DUTs
+| | And Add DPDK dev default RXD to all DUTs | 2048
+| | And Add DPDK dev default TXD to all DUTs | 2048
 | | And Apply startup configuration on all VPP DUTs
 | | And Initialize L2 xconnect in 3-node circular topology
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
@@ -178,6 +188,8 @@
 | | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Add no multi seg to all DUTs
+| | And Add DPDK dev default RXD to all DUTs | 2048
+| | And Add DPDK dev default TXD to all DUTs | 2048
 | | And Apply startup configuration on all VPP DUTs
 | | And Initialize L2 xconnect in 3-node circular topology
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
@@ -200,6 +212,8 @@
 | | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Add no multi seg to all DUTs
+| | And Add DPDK dev default RXD to all DUTs | 2048
+| | And Add DPDK dev default TXD to all DUTs | 2048
 | | And Apply startup configuration on all VPP DUTs
 | | And Initialize L2 xconnect in 3-node circular topology
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
@@ -222,6 +236,8 @@
 | | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Add no multi seg to all DUTs
+| | And Add DPDK dev default RXD to all DUTs | 2048
+| | And Add DPDK dev default TXD to all DUTs | 2048
 | | And Apply startup configuration on all VPP DUTs
 | | And Initialize L2 xconnect in 3-node circular topology
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
@@ -244,6 +260,8 @@
 | | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Add no multi seg to all DUTs
+| | And Add DPDK dev default RXD to all DUTs | 2048
+| | And Add DPDK dev default TXD to all DUTs | 2048
 | | And Apply startup configuration on all VPP DUTs
 | | And Initialize L2 xconnect in 3-node circular topology
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
