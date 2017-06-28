@@ -220,6 +220,22 @@
 | | :FOR | ${dut} | IN | @{duts}
 | | | Run keyword | ${dut}.Add DPDK No Multi Seg
 
+| Add DPDK dev default RXD to all DUTs
+| | [Documentation] | Add DPDK num-rx-desc to VPP startup configuration to all
+| | ... | DUTs.
+| | ...
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | Run keyword | ${dut}.Add DPDK Dev Default RXD | '2048'
+
+| Add DPDK dev default TXD to all DUTs
+| | [Documentation] | Add DPDK num-tx-desc to VPP startup configuration to all
+| | ... | DUTs.
+| | ...
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | Run keyword | ${dut}.Add DPDK Dev Default TXD | '2048'
+
 | Add SNAT to all DUTs
 | | [Documentation] | Add SNAT configuration to all DUTs.
 | | ...
