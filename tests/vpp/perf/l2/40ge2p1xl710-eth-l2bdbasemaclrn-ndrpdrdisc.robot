@@ -57,8 +57,9 @@
 | ${traffic_profile} | trex-sl-3n-ethip4-ip4src254
 
 *** Keywords ***
-| L2 Bridge Domain NDR Binary Search BW limit
+| L2 Bridge Domain Binary Search BW limit
 | | [Arguments] | ${framesize} | ${min_rate} | ${wt} | ${rxq} | ${s_limit}
+| | ... | ${search_type}
 | | Set Test Variable | ${framesize}
 | | Set Test Variable | ${min_rate}
 | | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
@@ -69,14 +70,23 @@
 | | Add PCI devices to DUTs in 3-node single link topology
 | | ${get_framesize}= | Get Frame Size | ${framesize}
 | | Run Keyword If | ${get_framesize} < ${1522} | Add no multi seg to all DUTs
+| | Add DPDK dev default RXD to all DUTs | 2048
+| | Add DPDK dev default TXD to all DUTs | 2048
 | | Apply startup configuration on all VPP DUTs
 | | Initialize L2 bridge domain in 3-node circular topology
-| | Find NDR using binary search and pps
+| | Run Keyword If | '${search_type}' == 'NDR'
+| | ... | Find NDR using binary search and pps
 | | ... | ${framesize} | ${binary_min} | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
+| | ... | ELSE IF | '${search_type}' == 'PDR'
+| | ... | Find PDR using binary search and pps
+| | ... | ${framesize} | ${binary_min} | ${binary_max} | ${traffic_profile}
+| | ... | ${min_rate} | ${max_rate} | ${threshold}
+| | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
-| L2 Bridge Domain NDR Binary Search
+| L2 Bridge Domain Binary Search
 | | [Arguments] | ${framesize} | ${min_rate} | ${wt} | ${rxq} | ${s_limit}
+| | ... | ${search_type}
 | | Set Test Variable | ${framesize}
 | | Set Test Variable | ${min_rate}
 | | ${max_rate}= | Set Variable | ${s_limit}
@@ -87,146 +97,117 @@
 | | Add PCI devices to DUTs in 3-node single link topology
 | | ${get_framesize}= | Get Frame Size | ${framesize}
 | | Run Keyword If | ${get_framesize} < ${1522} | Add no multi seg to all DUTs
+| | Add DPDK dev default RXD to all DUTs | 2048
+| | Add DPDK dev default TXD to all DUTs | 2048
 | | Apply startup configuration on all VPP DUTs
 | | Initialize L2 bridge domain in 3-node circular topology
-| | Find NDR using binary search and pps
+| | Run Keyword If | '${search_type}' == 'NDR'
+| | ... | Find NDR using binary search and pps
 | | ... | ${framesize} | ${binary_min} | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
-
-| L2 Bridge Domain PDR Binary Search BW limit
-| | [Arguments] | ${framesize} | ${min_rate} | ${wt} | ${rxq} | ${s_limit}
-| | Set Test Variable | ${framesize}
-| | Set Test Variable | ${min_rate}
-| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
-| | ${binary_min}= | Set Variable | ${min_rate}
-| | ${binary_max}= | Set Variable | ${max_rate}
-| | ${threshold}= | Set Variable | ${min_rate}
-| | Add '${wt}' worker threads and '${rxq}' rxqueues in 3-node single-link circular topology
-| | Add PCI devices to DUTs in 3-node single link topology
-| | ${get_framesize}= | Get Frame Size | ${framesize}
-| | Run Keyword If | ${get_framesize} < ${1522} | Add no multi seg to all DUTs
-| | Apply startup configuration on all VPP DUTs
-| | Initialize L2 bridge domain in 3-node circular topology
-| | Find PDR using binary search and pps
-| | ... | ${framesize} | ${binary_min} | ${binary_max} | ${traffic_profile}
-| | ... | ${min_rate} | ${max_rate} | ${threshold}
-| | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
-
-| L2 Bridge Domain PDR Binary Search
-| | [Arguments] | ${framesize} | ${min_rate} | ${wt} | ${rxq} | ${s_limit}
-| | Set Test Variable | ${framesize}
-| | Set Test Variable | ${min_rate}
-| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
-| | ${binary_min}= | Set Variable | ${min_rate}
-| | ${binary_max}= | Set Variable | ${max_rate}
-| | ${threshold}= | Set Variable | ${min_rate}
-| | Add '${wt}' worker threads and '${rxq}' rxqueues in 3-node single-link circular topology
-| | Add PCI devices to DUTs in 3-node single link topology
-| | ${get_framesize}= | Get Frame Size | ${framesize}
-| | Run Keyword If | ${get_framesize} < ${1522} | Add no multi seg to all DUTs
-| | Apply startup configuration on all VPP DUTs
-| | Initialize L2 bridge domain in 3-node circular topology
-| | Find PDR using binary search and pps
+| | ... | ELSE IF | '${search_type}' == 'PDR'
+| | ... | Find PDR using binary search and pps
 | | ... | ${framesize} | ${binary_min} | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
 | | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
 *** Test Cases ***
 | tc01-64B-1t1c-eth-l2bdbasemaclrn-ndrdisc
-| | ... | framesize=${64} | min_rate=${100000} | wt=1 | rxq=1
-| | ... | s_limit=${s_18.75Mpps}
-| | [Tags] | 64B | 1T1C | STHREAD | NDRDISC
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start at\
 | | ... | 18.75Mpps rate, step 100kpps.
-| | [Template] | L2 Bridge Domain NDR Binary Search
+| | [Tags] | 64B | 1T1C | STHREAD | NDRDISC
+| | [Template] | L2 Bridge Domain Binary Search
+| | framesize=${64} | min_rate=${100000} | wt=1 | rxq=1
+| | s_limit=${s_18.75Mpps} | search_type=NDR
 
 | tc03-1518B-1t1c-eth-l2bdbasemaclrn-ndrdisc
-| | ... | framesize=${1518} | min_rate=${10000} | wt=1 | rxq=1
-| | ... | s_limit=${s_24.5G}
-| | [Tags] | 1518B | 1T1C | STHREAD | NDRDISC
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for 1518 Byte frames using binary search start at\
 | | ... | 24.5G rate, step 10kpps.
-| | [Template] | L2 Bridge Domain NDR Binary Search BW limit
+| | [Tags] | 1518B | 1T1C | STHREAD | NDRDISC
+| | [Template] | L2 Bridge Domain Binary Search BW limit
+| | framesize=${1518} | min_rate=${10000} | wt=1 | rxq=1
+| | s_limit=${s_24.5G} | search_type=NDR
 
 | tc07-64B-2t2c-eth-l2bdbasemaclrn-ndrdisc
-| | ... | framesize=${64} | min_rate=${100000} | wt=2 | rxq=1
-| | ... | s_limit=${s_18.75Mpps}
-| | [Tags] | 64B | 2T2C | MTHREAD | NDRDISC
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start at\
 | | ... | 18.75Mpps rate, step 100kpps.
-| | [Template] | L2 Bridge Domain NDR Binary Search
+| | [Tags] | 64B | 2T2C | MTHREAD | NDRDISC
+| | [Template] | L2 Bridge Domain Binary Search
+| | framesize=${64} | min_rate=${100000} | wt=2 | rxq=1
+| | s_limit=${s_18.75Mpps} | search_type=NDR
 
 | tc09-1518B-2t2c-eth-l2bdbasemaclrn-ndrdisc
-| | ... | framesize=${1518} | min_rate=${10000} | wt=2 | rxq=1
-| | ... | s_limit=${s_24.5G}
-| | [Tags] | 1518B | 2T2C | MTHREAD | NDRDISC | SKIP_PATCH
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start at\
 | | ... | 24.5G rate, step 10kpps.
-| | [Template] | L2 Bridge Domain NDR Binary Search BW limit
+| | [Tags] | 1518B | 2T2C | MTHREAD | NDRDISC | SKIP_PATCH
+| | [Template] | L2 Bridge Domain Binary Search BW limit
+| | framesize=${1518} | min_rate=${10000} | wt=2 | rxq=1
+| | s_limit=${s_24.5G} | search_type=NDR
 
 | tc13-64B-4t4c-eth-l2bdbasemaclrn-ndrdisc
-| | ... | framesize=${64} | min_rate=${100000} | wt=4 | rxq=2
-| | ... | s_limit=${s_18.75Mpps}
-| | [Tags] | 64B | 4T4C | MTHREAD | NDRDISC
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 4 threads, 4 phy cores, 2 receive queues per NIC port.
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start at\
 | | ... | 18.75Mpps rate, step 100kpps.
-| | [Template] | L2 Bridge Domain NDR Binary Search
+| | [Tags] | 64B | 4T4C | MTHREAD | NDRDISC
+| | [Template] | L2 Bridge Domain Binary Search
+| | framesize=${64} | min_rate=${100000} | wt=4 | rxq=2
+| | s_limit=${s_18.75Mpps} | search_type=NDR
 
 | tc15-1518B-4t4c-eth-l2bdbasemaclrn-ndrdisc
-| | ... | framesize=${1518} | min_rate=${10000} | wt=4 | rxq=2
-| | ... | s_limit=${s_24.5G}
-| | [Tags] | 1518B | 4T4C | MTHREAD | NDRDISC | SKIP_PATCH
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 4 threads, 4 phy cores, 2 receive queues per NIC port.
 | | ... | [Ver] Find NDR for 1518 Byte frames using binary search start at\
 | | ... | 24.5G rate, step 10kpps.
-| | [Template] | L2 Bridge Domain NDR Binary Search BW limit
+| | [Tags] | 1518B | 4T4C | MTHREAD | NDRDISC | SKIP_PATCH
+| | [Template] | L2 Bridge Domain Binary Search BW limit
+| | framesize=${1518} | min_rate=${10000} | wt=4 | rxq=2
+| | s_limit=${s_24.5G} | search_type=NDR
 
 | tc19-IMIX-1t1c-eth-l2bdbasemaclrn-ndrdisc
-| | ... | framesize=IMIX_v4_1 | min_rate=${100000} | wt=1 | rxq=1
-| | ... | s_limit=${s_24.5G}
-| | [Tags] | IMIX | 1T1C | STHREAD | NDRDISC
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for IMIX_v4_1 frames using binary search start at\
 | | ... | 24.5G rate, step 100kpps.
+| | [Tags] | IMIX | 1T1C | STHREAD | NDRDISC
 | | [Template] | L2 Bridge Domain NDR Binary Search BW limit
+| | framesize=IMIX_v4_1 | min_rate=${100000} | wt=1 | rxq=1
+| | s_limit=${s_24.5G} | search_type=NDR
 
 | tc20-IMIX-2t2c-eth-l2bdbasemaclrn-ndrdisc
-| | ... | framesize=IMIX_v4_1 | min_rate=${100000} | wt=2 | rxq=1
-| | ... | s_limit=${s_24.5G}
-| | [Tags] | IMIX | 2T2C | MTHREAD | NDRDISC | SKIP_PATCH
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for IMIX_v4_1 frames using binary search start at\
 | | ... | 24.5G rate, step 100kpps.
-| | [Template] | L2 Bridge Domain NDR Binary Search BW limit
+| | [Tags] | IMIX | 2T2C | MTHREAD | NDRDISC | SKIP_PATCH
+| | [Template] | L2 Bridge Domain Binary Search BW limit
+| | framesize=IMIX_v4_1 | min_rate=${100000} | wt=2 | rxq=1
+| | s_limit=${s_24.5G} | search_type=NDR
 
 | tc21-IMIX-4t4c-eth-l2bdbasemaclrn-ndrdisc
-| | ... | framesize=IMIX_v4_1 | min_rate=${100000} | wt=4 | rxq=2
-| | ... | s_limit=${s_24.5G}
-| | [Tags] | IMIX | 4T4C | MTHREAD | NDRDISC | SKIP_PATCH
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with with\
 | | ... | 4 threads, 4 phy cores, 2 receive queues per NIC port.
 | | ... | [Ver] Find NDR for IMIX_v4_1 frames using binary search start at\
 | | ... | 24.5G rate, step 100kpps.
-| | [Template] | L2 Bridge Domain NDR Binary Search BW limit
+| | [Tags] | IMIX | 4T4C | MTHREAD | NDRDISC | SKIP_PATCH
+| | [Template] | L2 Bridge Domain Binary Search BW limit
+| | framesize=IMIX_v4_1 | min_rate=${100000} | wt=4 | rxq=2
+| | s_limit=${s_24.5G} | search_type=NDR
+

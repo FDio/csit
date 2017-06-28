@@ -220,6 +220,40 @@
 | | :FOR | ${dut} | IN | @{duts}
 | | | Run keyword | ${dut}.Add DPDK No Multi Seg
 
+| Add DPDK dev default RXD to all DUTs
+| | [Documentation] | Add DPDK num-rx-desc to VPP startup configuration to all
+| | ... | DUTs.
+| | ...
+| | ... | *Arguments:*
+| | ... | - rxd - Number of RX descriptors. Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Add DPDK dev default RXD to all DUTs \| ${rxd} \|
+| | ...
+| | [Arguments] | ${rxd}
+| | ...
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | Run keyword | ${dut}.Add DPDK Dev Default RXD | ${rxd}
+
+| Add DPDK dev default TXD to all DUTs
+| | [Documentation] | Add DPDK num-tx-desc to VPP startup configuration to all
+| | ... | DUTs.
+| | ...
+| | ... | *Arguments:*
+| | ... | - txd - Number of TX descriptors. Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Add DPDK dev default TXD to all DUTs \| ${txd} \|
+| | ...
+| | [Arguments] | ${txd}
+| | ...
+| | ${duts}= | Get Matches | ${nodes} | DUT*
+| | :FOR | ${dut} | IN | @{duts}
+| | | Run keyword | ${dut}.Add DPDK Dev Default TXD | ${txd}
+
 | Add SNAT to all DUTs
 | | [Documentation] | Add SNAT configuration to all DUTs.
 | | ...

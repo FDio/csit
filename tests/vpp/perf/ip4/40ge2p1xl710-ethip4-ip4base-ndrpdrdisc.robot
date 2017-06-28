@@ -79,6 +79,8 @@
 | | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Add no multi seg to all DUTs
+| | And Add DPDK dev default RXD to all DUTs | 2048
+| | And Add DPDK dev default TXD to all DUTs | 2048
 | | And Apply startup configuration on all VPP DUTs
 | | And Initialize IPv4 forwarding in 3-node circular topology
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
@@ -100,6 +102,8 @@
 | | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Add no multi seg to all DUTs
+| | And Add DPDK dev default RXD to all DUTs | 2048
+| | And Add DPDK dev default TXD to all DUTs | 2048
 | | And Apply startup configuration on all VPP DUTs
 | | And Initialize IPv4 forwarding in 3-node circular topology
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
@@ -121,6 +125,8 @@
 | | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Add no multi seg to all DUTs
+| | And Add DPDK dev default RXD to all DUTs | 2048
+| | And Add DPDK dev default TXD to all DUTs | 2048
 | | And Apply startup configuration on all VPP DUTs
 | | And Initialize IPv4 forwarding in 3-node circular topology
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
@@ -142,6 +148,8 @@
 | | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Add no multi seg to all DUTs
+| | And Add DPDK dev default RXD to all DUTs | 2048
+| | And Add DPDK dev default TXD to all DUTs | 2048
 | | And Apply startup configuration on all VPP DUTs
 | | And Initialize IPv4 forwarding in 3-node circular topology
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
@@ -163,6 +171,8 @@
 | | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Add no multi seg to all DUTs
+| | And Add DPDK dev default RXD to all DUTs | 2048
+| | And Add DPDK dev default TXD to all DUTs | 2048
 | | And Apply startup configuration on all VPP DUTs
 | | And Initialize IPv4 forwarding in 3-node circular topology
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
@@ -184,6 +194,8 @@
 | | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Add no multi seg to all DUTs
+| | And Add DPDK dev default RXD to all DUTs | 2048
+| | And Add DPDK dev default TXD to all DUTs | 2048
 | | And Apply startup configuration on all VPP DUTs
 | | And Initialize IPv4 forwarding in 3-node circular topology
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
@@ -206,6 +218,8 @@
 | | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Add no multi seg to all DUTs
+| | And Add DPDK dev default RXD to all DUTs | 2048
+| | And Add DPDK dev default TXD to all DUTs | 2048
 | | And Apply startup configuration on all VPP DUTs
 | | And Initialize IPv4 forwarding in 3-node circular topology
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
@@ -228,6 +242,8 @@
 | | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Add no multi seg to all DUTs
+| | And Add DPDK dev default RXD to all DUTs | 2048
+| | And Add DPDK dev default TXD to all DUTs | 2048
 | | And Apply startup configuration on all VPP DUTs
 | | And Initialize IPv4 forwarding in 3-node circular topology
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
@@ -250,6 +266,8 @@
 | | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Add no multi seg to all DUTs
+| | And Add DPDK dev default RXD to all DUTs | 2048
+| | And Add DPDK dev default TXD to all DUTs | 2048
 | | And Apply startup configuration on all VPP DUTs
 | | And Initialize IPv4 forwarding in 3-node circular topology
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
