@@ -15,7 +15,7 @@
 | Resource | resources/libraries/robot/performance/performance_setup.robot
 | Library | resources.libraries.python.QemuUtils
 | ...
-| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | PDRCHK
+| Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | PDRCHK | THIS
 | ... | NIC_Intel-X520-DA2 | ETH | IP4FWD | BASE | VHOST | VM
 | ...
 | Suite Setup | Set up 3-node performance topology with DUT's NIC model
@@ -98,6 +98,7 @@
 | | Then Traffic should pass with partial loss | ${perf_trial_duration}
 | | ... | ${rate} | ${framesize} | ${traffic_profile}
 | | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
+| | ... | warmup_time=${5}
 
 *** Test Cases ***
 | tc01-64B-1t1c-eth-ip4base-eth-2vhost-1vm-pdrchk
@@ -111,6 +112,18 @@
 | | ...
 | | [Template] | Check PDR for IPv4 routing with vhost and VM with dpdk-testpmd
 | | framesize=${64} | rate=2.5mpps | wt=1 | rxq=1
+
+| tc01-64B-1t1c-eth-ip4base-eth-2vhost-1vm-pdrchk2
+| | [Documentation]
+| | ... | [Cfg] DUT runs IPv4 routing config with 1 thread, 1 phy\
+| | ... | core, 1 receive queue per NIC port.
+| | ... | [Ver] Verify ref-PDR for 64 Byte frames using single trial\
+| | ... | throughput test at 2x ${rate}.
+| | ...
+| | [Tags] | 64B | 1T1C | STHREAD
+| | ...
+| | [Template] | Check PDR for IPv4 routing with vhost and VM with dpdk-testpmd
+| | framesize=${64} | rate=5.0mpps | wt=1 | rxq=1
 
 | tc02-1518B-1t1c-eth-ip4base-eth-2vhost-1vm-pdrchk
 | | [Documentation]
