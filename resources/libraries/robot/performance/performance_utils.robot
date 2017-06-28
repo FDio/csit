@@ -497,6 +497,7 @@
 | | ... | - topology_type - Topology type. Type: string
 | | ... | - loss_acceptance - Accepted loss during search. Type: float
 | | ... | - loss_acceptance_type - Percentage or frames. Type: string
+| | ... | - warmup_time - Warm-up time of the traffic generator. Type: integer
 | | ...
 | | ... | *Example:*
 | | ...
@@ -505,14 +506,14 @@
 | | ...
 | | [Arguments] | ${duration} | ${rate} | ${framesize} | ${topology_type}
 | | ... | ${loss_acceptance} | ${loss_acceptance_type}
-| | ... | ${fail_on_loss}=${True}
+| | ... | ${fail_on_loss}=${True} | ${warmup_time}=${0}
 | | ...
 | | Clear and show runtime counters with running traffic | ${duration}
 | | ... | ${rate} | ${framesize} | ${topology_type}
 | | ${ret}= | Is DPDK performance test
 | | Run Keyword If | ${ret}==${FALSE} | Clear all counters on all DUTs
 | | Send traffic on tg | ${duration} | ${rate} | ${framesize}
-| | ... | ${topology_type} | warmup_time=0
+| | ... | ${topology_type} | warmup_time=${warmup_time}
 | | Run Keyword If | ${ret}==${FALSE} | Show statistics on all DUTs
 | | Run Keyword If | ${fail_on_loss} | Partial traffic loss accepted
 | | ... | ${loss_acceptance} | ${loss_acceptance_type}
