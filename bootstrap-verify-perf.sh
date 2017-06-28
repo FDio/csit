@@ -312,6 +312,7 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s "tests.vpp.perf" \
+              -i NIC_Intel-XL710 \
               tests/
         RETURN_STATUS=$(echo $?)
 esac

@@ -94,6 +94,8 @@
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Add no multi seg to all DUTs
 | | And Add cryptodev to all DUTs | ${1}
+| | And Add DPDK dev default RXD to all DUTs | 2048
+| | And Add DPDK dev default TXD to all DUTs | 2048
 | | And Apply startup configuration on all VPP DUTs
 | | And Initialize IPSec in 3-node circular topology
 | | And VPP IPsec Create Tunnel Interfaces
@@ -126,6 +128,8 @@
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Add no multi seg to all DUTs
 | | And Add cryptodev to all DUTs | ${1}
+| | And Add DPDK dev default RXD to all DUTs | 2048
+| | And Add DPDK dev default TXD to all DUTs | 2048
 | | And Apply startup configuration on all VPP DUTs
 | | And Initialize IPSec in 3-node circular topology
 | | And VPP IPsec Create Tunnel Interfaces
@@ -158,6 +162,8 @@
 | | And Generate keys for IPSec | ${encr_alg} | ${auth_alg}
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Add cryptodev to all DUTs | ${1}
+| | And Add DPDK dev default RXD to all DUTs | 2048
+| | And Add DPDK dev default TXD to all DUTs | 2048
 | | And Apply startup configuration on all VPP DUTs
 | | And Initialize IPSec in 3-node circular topology
 | | And VPP IPsec Create Tunnel Interfaces
@@ -189,6 +195,8 @@
 | | And Generate keys for IPSec | ${encr_alg} | ${auth_alg}
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Add cryptodev to all DUTs | ${1}
+| | And Add DPDK dev default RXD to all DUTs | 2048
+| | And Add DPDK dev default TXD to all DUTs | 2048
 | | And Apply startup configuration on all VPP DUTs
 | | And Initialize IPSec in 3-node circular topology
 | | And VPP IPsec Create Tunnel Interfaces
@@ -223,6 +231,8 @@
 | | And Generate keys for IPSec | ${encr_alg} | ${auth_alg}
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Add cryptodev to all DUTs | ${1}
+| | And Add DPDK dev default RXD to all DUTs | 2048
+| | And Add DPDK dev default TXD to all DUTs | 2048
 | | And Apply startup configuration on all VPP DUTs
 | | And Initialize IPSec in 3-node circular topology
 | | And VPP IPsec Create Tunnel Interfaces
@@ -256,6 +266,8 @@
 | | And Generate keys for IPSec | ${encr_alg} | ${auth_alg}
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Add cryptodev to all DUTs | ${1}
+| | And Add DPDK dev default RXD to all DUTs | 2048
+| | And Add DPDK dev default TXD to all DUTs | 2048
 | | And Apply startup configuration on all VPP DUTs
 | | And Initialize IPSec in 3-node circular topology
 | | And VPP IPsec Create Tunnel Interfaces
@@ -289,6 +301,8 @@
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Add no multi seg to all DUTs
 | | And Add cryptodev to all DUTs | ${2}
+| | And Add DPDK dev default RXD to all DUTs | 2048
+| | And Add DPDK dev default TXD to all DUTs | 2048
 | | And Apply startup configuration on all VPP DUTs
 | | And Initialize IPSec in 3-node circular topology
 | | And VPP IPsec Create Tunnel Interfaces
@@ -321,6 +335,8 @@
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Add no multi seg to all DUTs
 | | And Add cryptodev to all DUTs | ${2}
+| | And Add DPDK dev default RXD to all DUTs | 2048
+| | And Add DPDK dev default TXD to all DUTs | 2048
 | | And Apply startup configuration on all VPP DUTs
 | | And Initialize IPSec in 3-node circular topology
 | | And VPP IPsec Create Tunnel Interfaces
