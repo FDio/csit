@@ -195,10 +195,6 @@ if [ "${#}" -ne "0" ]; then
     arr=(${@})
     echo ${arr[0]}
     SKIP_PATCH="skip_patchORskip_vpp_patch"
-    # Download DPDK parts not included in dpdk plugin of vpp build
-    for ARTIFACT in ${DPDK_ARTIFACTS}; do
-        wget -q "${VPP_REPO_URL}/${ARTIFACT}/${DPDK_STABLE_VER}/${ARTIFACT}-${DPDK_STABLE_VER}${VPP_CLASSIFIER}.${PACKAGE}" || exit
-    done
 else
     rm -f *.${PACKAGE}
     for ARTIFACT in ${DPDK_ARTIFACTS}; do
