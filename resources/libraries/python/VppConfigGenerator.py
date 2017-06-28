@@ -184,6 +184,25 @@ class VppConfigGenerator(object):
         path = ['dpdk', 'dev default', 'num-tx-queues']
         self.add_config_item(self._nodeconfig, value, path)
 
+    def add_dpdk_dev_default_rxd(self, value):
+        """Add DPDK dev default rxd configuration.
+
+        :param value: Default number of rxds.
+        :type value: str
+        """
+        path = ['dpdk', 'dev default', 'num-rx-desc']
+        self.add_config_item(self._nodeconfig, value, path)
+
+    def add_dpdk_dev_default_txd(self, value):
+        """Add DPDK dev default txd configuration.
+
+        :param value: Default number of txds.
+        :type value: str
+        """
+        path = ['dpdk', 'dev default', 'num-tx-desc']
+        self.add_config_item(self._nodeconfig, value, path)
+
+
     def add_dpdk_socketmem(self, value):
         """Add DPDK socket memory configuration.
 
