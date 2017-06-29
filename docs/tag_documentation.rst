@@ -288,12 +288,8 @@ Overlay tags
 
     IPv6 overlay (IPv6 payload).
 
-Encapsulation tags
-------------------
-
-.. topic:: ETH
-
-    All test cases with base Ethernet (no encapsulation).
+Tagging tags
+------------
 
 .. topic:: DOT1Q
 
@@ -302,6 +298,13 @@ Encapsulation tags
 .. topic:: DOT1AD
 
     All test cases with dot1ad.
+
+Encapsulation tags
+------------------
+
+.. topic:: ETH
+
+    All test cases with base Ethernet (no encapsulation).
 
 .. topic:: LISP
 
