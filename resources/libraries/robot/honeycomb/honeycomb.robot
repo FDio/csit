@@ -213,9 +213,8 @@
 | | ${use_odl_client}= | Get Variable Value | ${HC_ODL}
 | | Run Keyword If | '${use_odl_client}' != '${NONE}'
 | | ... | Run Keywords
-| | ... | Stop ODL Client | ${node} | /tmp
-| | ... | ${use_odl_client}= | Set Variable | ${NONE}
-| | ... | Set Global Variable | ${use_odl_client}
+| | ... | Stop ODL Client | ${node} | /tmp | AND
+| | ... | Set Global Variable | ${use_odl_client} | ${NONE}
 | | Stop Honeycomb service on DUTs | ${node}
 
 | Enable Honeycomb Feature

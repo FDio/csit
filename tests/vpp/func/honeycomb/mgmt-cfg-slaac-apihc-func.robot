@@ -35,7 +35,7 @@
 
 *** Test Cases ***
 | TC01: Honeycomb can configure SLAAC
-| | [Documentation] | Checks if Honeycomb can congigure SLAAC.
+| | [Documentation] | Checks if Honeycomb can configure SLAAC.
 | | ...
 | | Given SLAAC Operational Data From Honeycomb Should Be empty | ${node}
 | | ... | ${interface}
@@ -56,7 +56,7 @@
 | | ... | ${interface}
 
 | TC03: Honeycomb can configure SLAAC with suppress link layer disabled
-| | [Documentation] | Checks if Honeycomb can congigure SLAAC.
+| | [Documentation] | Checks if Honeycomb can configure SLAAC.
 | | ...
 | | [Teardown] | SLAAC test teardown | ${node} | ${interface}
 | | ...
