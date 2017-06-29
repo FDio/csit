@@ -68,7 +68,7 @@
 | | ... | \| ${node} \| ${interface} \|
 | | ...
 | | [Arguments] | ${node} | ${interface}
-| | Run keyword and expect error | HoneycombError*404*
+| | Run keyword and expect error | HoneycombError*40*
 | | ... | Get interface SLAAC oper data | ${node} | ${interface}
 
 | Honeycomb removes SLAAC configuration
