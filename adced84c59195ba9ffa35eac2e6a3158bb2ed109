@@ -1,0 +1,95 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da6255ed_7a3bf7eb",
+        "filename": "nsh_sfc_tests/sfc_scripts/set_nsh_proxy_inbound.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-06-29T06:41:35Z",
+      "side": 1,
+      "message": "Why do you configure vpp this way? There is a functionality implemented in CSIT (VAT Executor) to configure and read state info from VPP.",
+      "revId": "adced84c59195ba9ffa35eac2e6a3158bb2ed109",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da6255ed_5a403356",
+        "filename": "nsh_sfc_tests/sfc_scripts/set_nsh_proxy_outbound.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-06-29T06:41:35Z",
+      "side": 1,
+      "message": "Why do you configure vpp this way? There is a functionality implemented in CSIT (VAT Executor) to configure and read state info from VPP.",
+      "revId": "adced84c59195ba9ffa35eac2e6a3158bb2ed109",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da6255ed_3a257fc2",
+        "filename": "nsh_sfc_tests/sfc_scripts/set_sfc_classifier.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-06-29T06:41:35Z",
+      "side": 1,
+      "message": "Why do you configure vpp this way? There is a functionality implemented in CSIT (VAT Executor) to configure and read state info from VPP.",
+      "revId": "adced84c59195ba9ffa35eac2e6a3158bb2ed109",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da6255ed_1a22bbb9",
+        "filename": "nsh_sfc_tests/sfc_scripts/set_sfc_sff.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-06-29T06:41:35Z",
+      "side": 1,
+      "message": "Why do you configure vpp this way? There is a functionality implemented in CSIT (VAT Executor) to configure and read state info from VPP.",
+      "revId": "adced84c59195ba9ffa35eac2e6a3158bb2ed109",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da6255ed_fa2ec7a4",
+        "filename": "resources/libraries/python/SFC/VerifyPacket.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 169,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-06-29T06:41:35Z",
+      "side": 1,
+      "message": "remove white space",
+      "range": {
+        "startLine": 169,
+        "startChar": 32,
+        "endLine": 169,
+        "endChar": 33
+      },
+      "revId": "adced84c59195ba9ffa35eac2e6a3158bb2ed109",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
