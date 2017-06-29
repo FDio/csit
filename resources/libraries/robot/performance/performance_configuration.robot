@@ -893,6 +893,37 @@
 | | Add interface to bridge domain | ${dut1} | ${vhost_if2} | ${bd_id2}
 | | All Vpp Interfaces Ready Wait | ${nodes}
 
+| Initialize L2 bridge domains with VLAN dot1q sub-interfaces in a 3-node circular topology
+| | [Documentation]
+| | ... | Setup L2 bridge domain topology with learning enabled with VLAN
+| | ... | between DUTs by connecting physical and vlan interfaces on each DUT.
+| | ... | All interfaces are brought up.
+| | ...
+| | ... | *Arguments:*
+| | ... | - bd_id1 - Bridge domain ID. Type: integer
+| | ... | - bd_id2 - Bridge domain ID. Type: integer
+| | ... | - subid - ID of the sub-interface to be created. Type: string
+| | ... | - tag_rewrite - Method of tag rewrite. Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| L2 bridge domains with VLAN dot1q sub-interfaces initialized\
+| | ... | in a 3-node circular topology \| 1 \| 2 \| 10 \| pop-1 \|
+| | ...
+| | [Arguments] | ${bd_id1} | ${bd_id2} | ${subid} | ${tag_rewrite}
+| | ...
+| | Set interfaces in path in 3-node circular topology up
+| | Initialize VLAN dot1q sub-interfaces in 3-node circular topology
+| | ... | ${dut1} | ${dut1_if2} | ${dut2} | ${dut2_if1} | ${subid}
+| | Configure L2 tag rewrite method on interfaces
+| | ... | ${dut1} | ${subif_index_1} | ${dut2} | ${subif_index_2}
+| | ... | ${tag_rewrite}
+| | Add interface to bridge domain | ${dut1} | ${dut1_if1} | ${bd_id1}
+| | Add interface to bridge domain | ${dut1} | ${subif_index_1} | ${bd_id1}
+| | Add interface to bridge domain | ${dut2} | ${subif_index_2} | ${bd_id2}
+| | Add interface to bridge domain | ${dut2} | ${dut2_if2} | ${bd_id2}
+| | All Vpp Interfaces Ready Wait | ${nodes}
+
 | Initialize L2 bridge domains with Vhost-User and VLAN in a 3-node circular topology
 | | [Documentation]
 | | ... | Create two Vhost-User interfaces on all defined VPP nodes. Add each
