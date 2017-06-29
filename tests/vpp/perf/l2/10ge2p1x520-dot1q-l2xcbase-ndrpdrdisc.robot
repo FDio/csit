@@ -16,7 +16,7 @@
 | Resource | resources/libraries/robot/l2/tagging.robot
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDRDISC
-| ... | NIC_Intel-X520-DA2 | L2XCFWD | BASE | DOT1Q
+| ... | NIC_Intel-X520-DA2 | L2XCFWD | ENCAP | DOT1Q
 | Suite Setup | Set up 3-node performance topology with DUT's NIC model
 | ... | L2 | Intel-X520-DA2
 | Suite Teardown | Tear down 3-node performance topology
