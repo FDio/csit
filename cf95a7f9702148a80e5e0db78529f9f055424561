@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da6255ed_c00552c3",
+        "filename": "resources/libraries/python/honeycomb/HoneycombSetup.py",
+        "patchSetId": 62
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-06-30T11:00:27Z",
+      "side": 1,
+      "message": "Restart",
+      "range": {
+        "startLine": 110,
+        "startChar": 11,
+        "endLine": 110,
+        "endChar": 16
+      },
+      "revId": "cf95a7f9702148a80e5e0db78529f9f055424561",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da6255ed_a00a5ed0",
+        "filename": "resources/libraries/python/honeycomb/HoneycombSetup.py",
+        "patchSetId": 62
+      },
+      "lineNbr": 112,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-06-30T11:00:27Z",
+      "side": 1,
+      "message": "restarts",
+      "range": {
+        "startLine": 112,
+        "startChar": 21,
+        "endLine": 112,
+        "endChar": 27
+      },
+      "revId": "cf95a7f9702148a80e5e0db78529f9f055424561",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da6255ed_800f5ae1",
+        "filename": "resources/libraries/python/honeycomb/HoneycombSetup.py",
+        "patchSetId": 62
+      },
+      "lineNbr": 135,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-06-30T11:00:27Z",
+      "side": 1,
+      "message": "change",
+      "range": {
+        "startLine": 134,
+        "startChar": 25,
+        "endLine": 135,
+        "endChar": 36
+      },
+      "revId": "cf95a7f9702148a80e5e0db78529f9f055424561",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da6255ed_601466f5",
+        "filename": "resources/libraries/python/honeycomb/HoneycombSetup.py",
+        "patchSetId": 62
+      },
+      "lineNbr": 633,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-06-30T11:00:27Z",
+      "side": 1,
+      "message": "add doc",
+      "range": {
+        "startLine": 633,
+        "startChar": 0,
+        "endLine": 633,
+        "endChar": 37
+      },
+      "revId": "cf95a7f9702148a80e5e0db78529f9f055424561",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
