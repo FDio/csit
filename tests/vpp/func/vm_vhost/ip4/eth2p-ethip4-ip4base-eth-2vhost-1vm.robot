@@ -24,7 +24,6 @@
 | Resource | resources/libraries/robot/shared/interfaces.robot
 | Resource | resources/libraries/robot/shared/testing_path.robot
 | Resource | resources/libraries/robot/ip/ip4.robot
-| Resource | resources/libraries/robot/vrf.robot
 | Resource | resources/libraries/robot/vm/qemu.robot
 | Resource | resources/libraries/robot/l2/l2_bridge_domain.robot
 | Force Tags | VM_ENV | HW_ENV | 3_NODE_DOUBLE_LINK_TOPO
