@@ -41,6 +41,14 @@ CSIT |release| report contains following main sections and sub-sections:
    executions; *Test Environment* - environment description; *Documentation* -
    CSIT source code documentation for Testpmd performance tests.
 
+#. **L3FWD Performance Tests** - L3FWD performance tests executed in
+   physical FD.io testbeds; *Overview* - tested topologies, test coverage;
+   *CSIT Release Notes* - changes in CSIT |release|, any known CSIT issues;
+   *Packet Throughput Graphs* and *Packet Latency Graphs*
+   - plotted NDR, PDR throughput and latency results from multiple test job
+   executions; *Test Environment* - environment description; *Documentation* -
+   CSIT source code documentation for Testpmd performance tests.
+
 #. **VPP Functional Tests** - VPP functional tests executed in virtual
    FD.io testbeds; *Overview* - tested virtual topologies, test coverage and
    naming specifics; *CSIT Release Notes* - changes in CSIT |release|, added

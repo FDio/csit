@@ -20,6 +20,7 @@ Topology TAGs
     3 nodes connected in a circular topology with at least one link
     interconnecting devices.
 
+
 Objective TAGs
 --------------
 
@@ -27,6 +28,9 @@ Objective TAGs
 
     Test case(s) marked to not run in case of vpp-csit-verify (i.e. VPP patch)
     and csit-vpp-verify jobs (i.e. CSIT patch).
+.. topic:: SKIP_VPP_PATCH
+
+    Test case(s) marked to not run in case of vpp-csit-verify (i.e. VPP patch).
 
 
 Environment TAGs
@@ -83,6 +87,30 @@ Scaling TAGs
 .. topic:: FIB_2M
 
     2x1,000,000 entries in single fib table
+
+.. topic:: TNL_1000
+
+    IPSec in tunnel mode - 1000 tunnels.
+
+.. topic:: SRC_USER_10
+
+    Traffic flow with 10 unique IPs (users) in one direction.
+
+.. topic:: SRC_USER_100
+
+    Traffic flow with 100 unique IPs (users) in one direction.
+
+.. topic:: SRC_USER_1000
+
+    Traffic flow with 1000 unique IPs (users) in one direction.
+
+.. topic:: SRC_USER_2000
+
+    Traffic flow with 2000 unique IPs (users) in one direction.
+
+.. topic:: SRC_USER_4000
+
+    Traffic flow with 4000 unique IPs (users) in one direction.
 
 
 Tags marking functional vs. performance of tests
@@ -193,6 +221,10 @@ Test type tags
 .. topic:: FEATURE
 
     At least one feature is configured in test cases. Use also feature tag(s).
+
+.. topic:: TLDK
+
+    Functional test cases for TLDK.
 
 
 Forwarding mode tags
@@ -367,6 +399,7 @@ Client-workload tags
     All test cases with specific APP use.
 
 
+
 Multi-threading tags
 --------------------
 
@@ -418,3 +451,20 @@ Multi-threading tags
 
     8 worker threads pinned to 8 dedicated physical cores. 4 receive queues per
     interface. Main thread pinned to core 0.
+
+
+Honeycomb tags
+--------------
+
+.. topic:: HC_FUNC
+
+    Honeycomb functional test cases.
+
+.. topic:: HC_PERSIST
+
+    Honeycomb persistence test cases.
+
+.. topic:: HC_REST_ONLY
+
+    (Exclusion tag) Honeycomb test cases that cannot be run in Netconf mode
+    using ODL client for Restfconf -> Netconf translation.

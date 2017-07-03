@@ -29,6 +29,8 @@ is listed separately, as follows:
    range of multi-thread and multi-core configurations. Testpmd application runs
    in host user-mode. TRex is used as a traffic generator.
 
+#. **L3FWD Performance Tests** - TODO
+
 #. **VPP Functional Tests** - VPP functional tests are executed in virtual
    FD.io testbeds focusing on VPP packet processing functionality, including
    network data plane and in -line control plane. Tests cover vNIC-to-vNIC
@@ -39,6 +41,10 @@ is listed separately, as follows:
    virtual FD.io testbeds focusing on HoneyComb management and programming
    functionality of VPP. Tests cover a range of CRUD operations executed
    against VPP.
+
+#. **TLDK Tests** - TODO
+
+#. **NSH_SFC Tests** - TODO
 
 In addition to above, CSIT |release| report does also include VPP unit test
 results. VPP unit tests are developed within the FD.io VPP project and as they
