@@ -25,7 +25,7 @@ git repository:
 
 .. code-block:: bash
 
-    $ cd $CSIT/tests/perf
+    $ cd $CSIT/tests/vpp/perf/ipv4_tunnels
     $ grep -E "64B-1t1c-ethip4[a-z0-9]+-[a-z0-9]*-ndrdisc" *
 
     10ge2p1x520-ethip4lispip4-ip4base-ndrpdrdisc.robot:| tc01-64B-1t1c-ethip4lispip4-ip4base-ndrdisc
@@ -47,7 +47,7 @@ git repository:
 
 .. code-block:: bash
 
-    $ cd $CSIT/tests/perf
+    $ cd $CSIT/tests/vpp/perf/ipv4_tunnels
     $ grep -E "64B-2t2c-ethip4[a-z0-9]+-[a-z0-9]*-ndrdisc" *
 
     10ge2p1x520-ethip4lispip4-ip4base-ndrpdrdisc.robot:| tc07-64B-2t2c-ethip4lispip4-ip4base-ndrdisc
@@ -73,7 +73,7 @@ git repository:
 
 .. code-block:: bash
 
-    $ cd $CSIT/tests/perf
+    $ cd $CSIT/tests/vpp/perf/ipv4_tunnels
     $ grep -E "64B-1t1c-ethip4[a-z0-9]+-[a-z0-9]*-pdrdisc" *
 
     10ge2p1x520-ethip4lispip4-ip4base-ndrpdrdisc.robot:| tc02-64B-1t1c-ethip4lispip4-ip4base-pdrdisc
@@ -95,7 +95,7 @@ git repository:
 
 .. code-block:: bash
 
-    $ cd $CSIT/tests/perf
+    $ cd $CSIT/tests/vpp/perf/ipv4_tunnels
     $ grep -E "64B-2t2c-ethip4[a-z0-9]+-[a-z0-9]*-pdrdisc" *
 
     10ge2p1x520-ethip4lispip4-ip4base-ndrpdrdisc.robot:| tc08-64B-2t2c-ethip4lispip4-ip4base-pdrdisc

@@ -4,9 +4,11 @@ CSIT Release Notes
 Changes in CSIT |release|
 -------------------------
 
-#. Added Testpmd tests
+#. Improved Testpmd tests
 
-    - new NICs - 2p40GE Intel xl710, 2p10GE Intel x710
+    - Performance of NICs - 2p40GE Intel xl710, 2p10GE Intel x710
+
+#. Added L3FWD tests on 2p10GE Intel x520-DA2
 
 Known Issues
 ------------

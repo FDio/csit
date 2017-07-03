@@ -21,7 +21,7 @@ git repository:
 
 .. code-block:: bash
 
-    $ cd $CSIT/tests/perf
+    $ cd $CSIT/tests/vpp/perf/vm_vhost
     $ grep -E "64B-1t1c-.*vhost.*-ndrdisc" *
 
     10ge2p1x520-dot1q-l2bdbasemaclrn-eth-2vhost-1vm-ndrpdrdisc.robot:| tc01-64B-1t1c-dot1q-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc
@@ -52,7 +52,7 @@ git repository:
 
 .. code-block:: bash
 
-    $ cd $CSIT/tests/perf
+    $ cd $CSIT/tests/vpp/perf/vm_vhost
     $ grep -E "64B-2t2c-.*vhost.*-ndrdisc" *
 
     10ge2p1x520-dot1q-l2bdbasemaclrn-eth-2vhost-1vm-ndrpdrdisc.robot:| tc07-64B-2t2c-dot1q-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc

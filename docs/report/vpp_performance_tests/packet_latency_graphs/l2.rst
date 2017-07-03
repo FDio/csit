@@ -20,7 +20,7 @@ git repository:
 
 .. code-block:: bash
 
-    $ cd $CSIT/tests/perf
+    $ cd $CSIT/tests/vpp/perf/l2
     $ grep -E "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc" *
 
     10ge2p1vic1227-eth-l2bdbasemaclrn-ndrdisc.robot:| tc01-64B-1t1c-eth-l2bdbasemaclrn-ndrdisc
@@ -46,7 +46,7 @@ git repository:
 
 .. code-block:: bash
 
-    $ cd $CSIT/tests/perf
+    $ cd $CSIT/tests/vpp/perf/l2
     $ grep -E "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc" *
 
     10ge2p1vic1227-eth-l2bdbasemaclrn-ndrdisc.robot:| tc07-64B-2t2c-eth-l2bdbasemaclrn-ndrdisc

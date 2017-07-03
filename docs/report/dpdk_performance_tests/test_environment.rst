@@ -1888,128 +1888,64 @@ Below a subset of the configuration:
      [ + ]  uuidd
      [ - ]  x11-common
 
-DUT Configuration - VPP
------------------------
+DUT Configuration - DPDK
+------------------------
 
-**VPP Version**
+**DPDK Version**
 
-|vpp-release|
+|dpdk-release|
 
-**VPP Compile Parameters**
+**DPDK Compile Parameters**
 
-`FD.io VPP compile job`_
+.. code-block:: bash
 
-**VPP Install Parameters**
+    make install T=x86_64-native-linuxapp-gcc -j
 
-::
+**Testpmd Startup Configuration**
 
-    $ dpkg -i --force-all
-
-**VPP Startup Configuration**
-
-VPP startup configuration changes per test case with different settings for CPU
-cores, rx-queues and no-multi-seg parameter. Startup config is aligned with
-applied test case tag:
+Testpmd startup configuration changes per test case with different settings for CPU
+cores, rx-queues. Startup config is aligned with applied test case tag:
 
 Tagged by **1T1C**
 
-::
+.. code-block:: bash
 
-    unix
-    {
-        cli-listen localhost:5002
-        log /tmp/vpe.log
-        nodaemon
-    }
-    cpu
-    {
-        corelist-workers 2
-        main-core 1
-    }
-    ip6
-    {
-        heap-size 3G
-        hash-buckets 2000000
-    }
-    heapsize 3G
-    dpdk
-    {
-        dev default
-        {
-            num-rx-queues 1
-        }
-        dev 0000:0a:00.0
-        dev 0000:0a:00.1
-        socket-mem 1024,1024
-        no-multi-seg
-    }
+    testpmd -c 0x3 -n 4 -- --numa --nb-ports=2 --portmask=0x3 --nb-cores=1 --max-pkt-len=9000 --txqflags=0 --forward-mode=io --rxq=1 --txq=1 --burst=64 --rxd=1024 --txd=1024 --disable-link-check --auto-start
 
-Tagged by **2T1C**
+Tagged by **2T2C**
 
-::
+.. code-block:: bash
 
-    unix
-    {
-        cli-listen localhost:5002
-        log /tmp/vpe.log
-        nodaemon
-    }
-    cpu
-    {
-        corelist-workers 2,3
-        main-core 1
-    }
-    ip6
-    {
-        heap-size 3G
-        hash-buckets 2000000
-    }
-    heapsize 3G
-    dpdk
-    {
-        dev default
-        {
-            num-rx-queues 1
-        }
-        dev 0000:0a:00.0
-        dev 0000:0a:00.1
-        socket-mem 1024,1024
-        no-multi-seg
-    }
+    testpmd -c 0x403 -n 4 -- --numa --nb-ports=2 --portmask=0x3 --nb-cores=2 --max-pkt-len=9000 --txqflags=0 --forward-mode=io --rxq=1 --txq=1 --burst=64  --burst=64 --rxd=1024 --txd=1024 --disable-link-check --auto-start
 
 Tagged by **4T4C**
 
-::
+.. code-block:: bash
 
-    unix
-    {
-        cli-listen localhost:5002
-        log /tmp/vpe.log
-        nodaemon
-    }
-    cpu
-    {
-        corelist-workers 2,3,4,5
-        main-core 1
-    }
-    ip6
-    {
-        heap-size 3G
-        hash-buckets 2000000
-    }
-    heapsize 3G
-    dpdk
-    {
-        dev default
-        {
-            num-rx-queues 2
-        }
-        dev 0000:0a:00.0
-        dev 0000:0a:00.1
-        socket-mem 1024,1024
-        no-multi-seg
-    }
+    testpmd -c 0xc07 -n 4 -- --numa --nb-ports=2 --portmask=0x3 --nb-cores=4 --max-pkt-len=9000 --txqflags=0 --forward-mode=io --rxq=2 --txq=2 --burst=64  --burst=64 --rxd=1024 --txd=1024 --disable-link-check --auto-start
 
+**L3FWD Startup Configuration**
+
+L3FWD startup configuration changes per test case with different settings for CPU
+cores, rx-queues. Startup config is aligned with applied test case tag:
+
+Tagged by **1T1C**
+
+.. code-block:: bash
+
+    l3fwd -l 1 -n 4 -- -P -L -p 0x3 --config='${port_config}' --enable-jumbo --max-pkt-len=9000 --eth-dest=0,${adj_mac0} --eth-dest=1,${adj_mac1} --parse-ptype
+
+Tagged by **2T2C**
+
+.. code-block:: bash
+
+    l3fwd -l 1,2 -n 4 -- -P -L -p 0x3 --config='${port_config}' --enable-jumbo --max-pkt-len=9000 --eth-dest=0,${adj_mac0} --eth-dest=1,${adj_mac1} --parse-ptype
+
+Tagged by **4T4C**
+
+.. code-block:: bash
+
+    l3fwd -l 1,2,3,4 -n 4 -- -P -L -p 0x3 --config='${port_config}' --enable-jumbo --max-pkt-len=9000 --eth-dest=0,${adj_mac0} --eth-dest=1,${adj_mac1} --parse-ptype
 
 TG Configuration - TRex
 -----------------------
@@ -2043,3 +1979,4 @@ DPDK v17.05
 **TG common API - pointer to driver**
 
 `TRex driver`_
+

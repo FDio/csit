@@ -1,8 +1,10 @@
 CSIT TAGs Descriptions
 ======================
 
-Documentation for tags used to select and identify test cases.
-
+All CSIT test cases are labelled with Robot Framework tags used to allow for
+easy test case type identification, test case grouping and selection for
+execution. Following sections list currently used CSIT TAGs and their
+documentation.
 
 Topology TAGs
 -------------
@@ -17,7 +19,6 @@ Topology TAGs
     3 nodes connected in a circular topology with at least one link
     interconnecting devices.
 
-
 Objective TAGs
 --------------
 
@@ -29,7 +30,6 @@ Objective TAGs
 .. topic:: SKIP_VPP_PATCH
 
     Test case(s) marked to not run in case of vpp-csit-verify (i.e. VPP patch).
-
 
 Environment TAGs
 ----------------
@@ -45,7 +45,6 @@ Environment TAGs
 .. topic:: VPP_VM_ENV
 
     DUTs with VPP and capable of running Virtual Machine.
-
 
 NIC model tags
 --------------
@@ -69,7 +68,6 @@ NIC model tags
 .. topic:: NIC_Cisco-VIC-1385
 
     VIC-1385 by Cisco.
-
 
 Scaling TAGs
 ------------
@@ -110,7 +108,6 @@ Scaling TAGs
 
     Traffic flow with 4000 unique IPs (users) in one direction.
 
-
 Tags marking functional vs. performance of tests
 ------------------------------------------------
 
@@ -121,7 +118,6 @@ Tags marking functional vs. performance of tests
 .. topic:: PERFTEST
 
     All performance test cases.
-
 
 Performance testing tags
 ------------------------
@@ -221,9 +217,8 @@ Test type tags
     At least one feature is configured in test cases. Use also feature tag(s).
 
 .. topic:: TLDK
-    
-    Functional test cases for TLDK.
 
+    Functional test cases for TLDK.
 
 Forwarding mode tags
 --------------------
@@ -248,7 +243,6 @@ Forwarding mode tags
 
     VPP IPv6 routed forwarding.
 
-
 Underlay tags
 -------------
 
@@ -264,7 +258,6 @@ Underlay tags
 
     MPLS underlay.
 
-
 Overlay tags
 ------------
 
@@ -279,7 +272,6 @@ Overlay tags
 .. topic:: IP6OVRLAY
 
     IPv6 overlay (IPv6 payload).
-
 
 Encapsulation tags
 ------------------
@@ -319,7 +311,6 @@ Encapsulation tags
 .. topic:: IPSEC
 
     All test cases with IPSEC.
-
 
 Interface tags
 --------------
@@ -363,7 +354,6 @@ Feature tags
 
     SNAT configured and tested.
 
-
 Encryption tags
 ---------------
 
@@ -383,7 +373,6 @@ Encryption tags
 
     IPSec in tunnel mode.
 
-
 Client-workload tags
 --------------------
 
@@ -398,7 +387,6 @@ Client-workload tags
 .. topic:: APP
 
     All test cases with specific APP use.
-
 
 Multi-threading tags
 --------------------
@@ -451,7 +439,6 @@ Multi-threading tags
 
     8 worker threads pinned to 8 dedicated physical cores. 4 receive queues per
     interface. Main thread pinned to core 0.
-
 
 Honeycomb tags
 --------------

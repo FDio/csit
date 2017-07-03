@@ -15,7 +15,7 @@ in the graph below.
 
 .. raw:: html
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/testpmd/64B-1t1c-l2-ndrdisc.html"></iframe>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/dpdk/64B-1t1c-l2-ndrdisc.html"></iframe>
 
 *Figure 1. Testpmd 1thread 1core - NDR Throughput for Phy-to-Phy L2 Ethernet
 Looping.*
@@ -25,7 +25,7 @@ git repository:
 
 .. code-block:: bash
 
-    $ $CSIT/dpdk-tests/perf
+    $ $CSIT/tests/dpdk/perf
     $ grep -E "64B-1t1c-eth-l2xcbase-testpmd-ndrdisc" *
 
     10ge2p1x520-eth-l2xcbase-testpmd-ndrpdrdisc.robot:| tc01-64B-1t1c-eth-l2xcbase-testpmd-ndrdisc
@@ -37,7 +37,7 @@ in the graph below.
 
 .. raw:: html
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/testpmd/64B-2t2c-l2-ndrdisc.html"></iframe>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/dpdk/64B-2t2c-l2-ndrdisc.html"></iframe>
 
 *Figure 2. Testpmd 2threads 2cores - NDR Throughput for Phy-to-Phy L2 Ethernet
 Looping.*
@@ -47,7 +47,7 @@ git repository:
 
 .. code-block:: bash
 
-    $ $CSIT/dpdk-tests/perf
+    $ $CSIT/tests/dpdk/perf
     $ grep -E "64B-2t2c-eth-l2xcbase-testpmd-ndrdisc" *
 
     10ge2p1x520-eth-l2xcbase-testpmd-ndrpdrdisc.robot:| tc07-64B-2t2c-eth-l2xcbase-testpmd-ndrdisc
@@ -62,7 +62,7 @@ in the graph below. PDR measured for 0.5% packet loss ratio.
 
 .. raw:: html
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/testpmd/64B-1t1c-l2-pdrdisc.html"></iframe>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/dpdk/64B-1t1c-l2-pdrdisc.html"></iframe>
 
 *Figure 3. Testpmd 1thread 1core - PDR Throughput for Phy-to-Phy L2 Ethernet
 Looping.*
@@ -72,7 +72,7 @@ git repository:
 
 .. code-block:: bash
 
-    $ csit/tests/perf
+    $ $CSIT/tests/dpdk/perf
     $ grep -E "64B-1t1c-eth-l2xcbase-testpmd-pdrdisc" *
 
     10ge2p1x520-eth-l2xcbase-testpmd-ndrpdrdisc.robot:| tc02-64B-1t1c-eth-l2xcbase-testpmd-pdrdisc
@@ -84,7 +84,7 @@ in the graph below. PDR measured for 0.5% packet loss ratio.
 
 .. raw:: html
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/testpmd/64B-2t2c-l2-pdrdisc.html"></iframe>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/dpdk/64B-2t2c-l2-pdrdisc.html"></iframe>
 
 *Figure 4. Testpmd 2thread 2core - PDR Throughput for Phy-to-Phy L2 Ethernet
 Looping.*
@@ -94,7 +94,7 @@ git repository:
 
 .. code-block:: bash
 
-    $ csit/tests/perf
+    $ $CSIT/tests/dpdk/perf
     $ grep -E "64B-2t2c-eth-l2xcbase-testpmd-pdrdisc" *
 
         10ge2p1x520-eth-l2xcbase-testpmd-ndrpdrdisc.robot:| tc08-64B-2t2c-eth-l2xcbase-testpmd-pdrdisc
