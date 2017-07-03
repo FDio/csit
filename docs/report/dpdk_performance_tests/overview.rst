@@ -4,7 +4,7 @@ Overview
 Tested Physical Topologies
 --------------------------
 
-CSIT Testpmd performance tests are executed on physical baremetal servers hosted
+CSIT DPDK performance tests are executed on physical baremetal servers hosted
 by LF FD.io project. Testbed physical topology is shown in the figure below.
 
 ::
@@ -29,7 +29,7 @@ by LF FD.io project. Testbed physical topology is shown in the figure below.
 
 SUT1 and SUT2 are two System Under Test servers (currently Cisco UCS C240,
 each with two Intel XEON CPUs), TG is a Traffic Generator (TG, currently
-another Cisco UCS C240, with two Intel XEON CPUs). SUTs run Testpmd SW
+another Cisco UCS C240, with two Intel XEON CPUs). SUTs run Testpmd/L3FWD SW
 application in Linux user-mode as a Device Under Test (DUT). TG runs TRex SW
 application as a packet Traffic Generator. Physical connectivity between SUTs
 and to TG is provided using direct links (no L2 switches) connecting different
@@ -76,6 +76,11 @@ CSIT |release| includes following performance test suites, listed per NIC type:
   - **L2IntLoop** - L2 Interface Loop forwarding any Ethernet frames between
     two Interfaces.
 
+- 2port10GE X520-DA2 Intel
+
+  - **IPv4 Routed Forwarding** - L3 IP forwarding of Ethernet frames between
+    two Interfaces.
+
 Execution of performance tests takes time, especially the throughput discovery
 tests. Due to limited HW testbed resources available within FD.io labs hosted
 by Linux Foundation, the number of tests for NICs other than X520 (a.k.a.
@@ -95,12 +100,12 @@ Subsequent releases of CSIT will add performance tests with Intel
 HyperThreading Enabled (requires BIOS settings change and hard reboot).
 
 **Multi-core Test** - CSIT |release| multi-core tests are executed in the
-following Testpmd thread and core configurations:
+following thread and core configurations:
 
-#. 1t1c - 1 Testpmd pmd thread on 1 CPU physical core.
-#. 2t2c - 2 Testpmd pmd threads on 2 CPU physical cores.
+#. 1t1c - 1 pmd thread on 1 CPU physical core.
+#. 2t2c - 2 pmd threads on 2 CPU physical cores.
 
-Note that in many tests running Testpmd reaches tested NIC I/O bandwidth
+Note that in many tests running Testpmd/L3FWD reaches tested NIC I/O bandwidth
 or packets-per-second limit.
 
 Methodology: Packet Throughput

@@ -18,7 +18,8 @@ placement.
     with Robot Framework result files csit-vpp-perf-1704-all-<id>.zip
     `archived here <../../_static/archive/>`_.
 
-VPP packet latency in 1t1c setup (1thread, 1core) is presented in the graph below.
+VPP packet latency in 1t1c setup (1thread, 1core) is presented in the graph
+below.
 
 .. raw:: html
 
@@ -31,7 +32,7 @@ git repository:
 
 .. code-block:: bash
 
-    $ cd $CSIT/tests/perf
+    $ cd $CSIT/tests/vpp/perf/crypto
     $ grep -E "64B-1t1c-.*ipsec.*-ndrdisc" *
 
     40ge2p1xl710-ethip4ipsecscaleip4-ip4base-interfaces-aes-gcm-ndrpdrdisc.robot:| tc01-64B-1t1c-ethip4ipsecscale1ip4-ip4base-interfaces-aes-gcm-ndrdisc
@@ -58,7 +59,7 @@ git repository:
 
 .. code-block:: bash
 
-    $ cd $CSIT/tests/perf
+    $ cd $CSIT/tests/vpp/perf/crypto
     $ grep -E "64B-2t2c-.*ipsec.*-ndrdisc" *
 
     40ge2p1xl710-ethip4ipsecscaleip4-ip4base-interfaces-aes-gcm-ndrpdrdisc.robot:| tc13-64B-2t2c-ethip4ipsecscale1ip4-ip4base-interfaces-aes-gcm-ndrdisc

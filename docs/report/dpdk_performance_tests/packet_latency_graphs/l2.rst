@@ -12,7 +12,7 @@ physical core (1c)** - is presented in the figure below.
 
 .. raw:: html
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/testpmd/64B-1t1c-l2-ndrdisc-lat50.html"></iframe>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/dpdk/64B-1t1c-l2-ndrdisc-lat50.html"></iframe>
 
 *Figure 1. Testpmd 1thread 1core - packet latency for Phy-to-Phy L2 Ethernet Looping.*
 
@@ -21,7 +21,7 @@ git repository by filtering with specified regex as follows:
 
 .. code-block:: bash
 
-    $ $CSIT/dpdk-tests/perf
+    $ $CSIT/tests/dpdk/perf
     $ grep -E "64B-1t1c-eth-l2xcbase-testpmd-ndrdisc" *
 
     10ge2p1x520-eth-l2xcbase-testpmd-ndrpdrdisc.robot:| tc01-64B-1t1c-eth-l2xcbase-testpmd-ndrdisc
@@ -33,7 +33,7 @@ on two physical cores (2c)** - is presented in the figure below.
 
 .. raw:: html
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/testpmd/64B-2t2c-l2-ndrdisc-lat50.html"></iframe>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/dpdk/64B-2t2c-l2-ndrdisc-lat50.html"></iframe>
 
 *Figure 2. Testpmd 2thread 2core - packet latency for Phy-to-Phy L2 Ethernet Looping.*
 
@@ -42,7 +42,7 @@ git repository by filtering with specified regex as follows:
 
 .. code-block:: bash
 
-    $ $CSIT/dpdk-tests/perf
+    $ $CSIT/tests/dpdk/perf
     $ grep -E "64B-2t2c-eth-l2xcbase-testpmd-ndrdisc" *
 
     10ge2p1x520-eth-l2xcbase-testpmd-ndrpdrdisc.robot:| tc07-64B-2t2c-eth-l2xcbase-testpmd-ndrdisc

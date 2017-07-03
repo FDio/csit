@@ -32,7 +32,7 @@ git repository:
 
 .. code-block:: bash
 
-    $ cd $CSIT/tests/perf
+    $ cd $CSIT/tests/vpp/perf/crypto
     $ grep -E "64B-1t1c-.*ipsec.*-ndrdisc" *
 
     40ge2p1xl710-ethip4ipsecscaleip4-ip4base-interfaces-aes-gcm-ndrpdrdisc.robot:| tc01-64B-1t1c-ethip4ipsecscale1ip4-ip4base-interfaces-aes-gcm-ndrdisc
@@ -60,7 +60,7 @@ git repository:
 
 .. code-block:: bash
 
-    $ cd $CSIT/tests/perf
+    $ cd $CSIT/tests/vpp/perf/crypto
     $ grep -E "64B-2t2c-.*ipsec.*-ndrdisc" *
 
     40ge2p1xl710-ethip4ipsecscaleip4-ip4base-interfaces-aes-gcm-ndrpdrdisc.robot:| tc13-64B-2t2c-ethip4ipsecscale1ip4-ip4base-interfaces-aes-gcm-ndrdisc
@@ -90,7 +90,7 @@ git repository:
 
 .. code-block:: bash
 
-    $ cd $CSIT/tests/perf
+    $ cd $CSIT/tests/vpp/perf/crypto
     $ grep -E "64B-1t1c-.*ipsec.*-pdrdisc" *
 
     40ge2p1xl710-ethip4ipsecscaleip4-ip4base-interfaces-aes-gcm-ndrpdrdisc.robot:| tc02-64B-1t1c-ethip4ipsecscale1ip4-ip4base-interfaces-aes-gcm-pdrdisc
@@ -118,7 +118,7 @@ git repository:
 
 .. code-block:: bash
 
-    $ cd $CSIT/tests/perf
+    $ cd $CSIT/tests/vpp/perf/crypto
     $ grep -E "64B-2t2c-.*ipsec.*-pdrdisc" *
 
     40ge2p1xl710-ethip4ipsecscaleip4-ip4base-interfaces-aes-gcm-ndrpdrdisc.robot:| tc14-64B-2t2c-ethip4ipsecscale1ip4-ip4base-interfaces-aes-gcm-pdrdisc

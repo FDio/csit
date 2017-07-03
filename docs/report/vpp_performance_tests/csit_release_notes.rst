@@ -13,7 +13,8 @@ Changes in CSIT |release|
 
 #. VPP performance test framework changes
 
-    - Added VAT command history collection for every test case as part of teardown.
+    - Added VAT command history collection for every test case as part of
+      teardown.
 
 #. Added VPP performance tests
 
@@ -25,14 +26,16 @@ Changes in CSIT |release|
 
     - **vhost-user tests with one VM**
 
-      - L2 Bridge Domain switched-forwarding with Intel x710 NIC, Intel x520 NIC,
-        Intel xl710 NIC.
+      - L2 Bridge Domain switched-forwarding with Intel x710 NIC, Intel x520
+        NIC, Intel xl710 NIC.
       - VXLAN and L2 Bridge Domain switched-forwarding with Intel x520 NIC.
 
     - **vhost-user tests with two VMs service chain**
 
-      - L2 cross-connect switched-forwarding with Intel x520 NIC, Intel xl710 NIC.
-      - L2 Bridge Domain switched-forwarding with Intel x520 NIC, Intel xl710 NIC.
+      - L2 cross-connect switched-forwarding with Intel x520 NIC, Intel xl710
+        NIC.
+      - L2 Bridge Domain switched-forwarding with Intel x520 NIC, Intel xl710
+        NIC.
       - IPv4 routed-forwarding with Intel x520 NIC, Intel xl710 NIC.
 
     - **IPSec encryption with**
@@ -211,22 +214,17 @@ Here is the list of known issues in CSIT |release| for VPP performance tests:
 |   | for ip4scale200k, ip4scale2m scale IPv4 routed- |            | Observed frequency: all test runs.                              |
 |   | forwarding tests. ip4scale20k tests are fine.   |            |                                                                 |
 +---+-------------------------------------------------+------------+-----------------------------------------------------------------+
-| 2 | Sporadic VAT API timeouts during ip6scale2m     | VPP-712    | Needs fixing VPP VAT API timeouts for large volume of IPv6      |
-|   | scale IPv6  routed-forwarding tests when volume |            | routes.                                                         |
-|   | adding IPv6 routes - 2M in this case.           |            |                                                                 |
-|   | ip6scale200k works.                             |            |                                                                 |
-+---+-------------------------------------------------+------------+-----------------------------------------------------------------+
-| 3 | Vic1385 and Vic1227 low performance.            | VPP-664    | Low NDR performance.                                            |
+| 2 | Vic1385 and Vic1227 low performance.            | VPP-664    | Low NDR performance.                                            |
 |   |                                                 |            |                                                                 |
 +---+-------------------------------------------------+------------+-----------------------------------------------------------------+
-| 4 | Sporadic NDR discovery test failures on x520.   | CSIT-750   | Suspected issue with HW settings (BIOS, FW) in LF               |
+| 3 | Sporadic NDR discovery test failures on x520.   | CSIT-750   | Suspected issue with HW settings (BIOS, FW) in LF               |
 |   |                                                 |            | infrastructure. Issue can't be replicated outside LF.           |
 +---+-------------------------------------------------+------------+-----------------------------------------------------------------+
-| 5 | VPP in 2t2c setups - large variation            | CSIT-568   | Suspected NIC firmware or DPDK driver issue affecting NDR       |
+| 4 | VPP in 2t2c setups - large variation            | CSIT-568   | Suspected NIC firmware or DPDK driver issue affecting NDR       |
 |   | of discovered NDR throughput values across      |            | throughput. Applies to XL710 and X710 NICs, x520 NICs are fine. |
 |   | multiple test runs with xl710 and x710 NICs.    |            |                                                                 |
 +---+-------------------------------------------------+------------+-----------------------------------------------------------------+
-| 6 | Lower than expected NDR and PDR throughput with | CSIT-569   | Suspected NIC firmware or DPDK driver issue affecting NDR and   |
+| 5 | Lower than expected NDR and PDR throughput with | CSIT-569   | Suspected NIC firmware or DPDK driver issue affecting NDR and   |
 |   | xl710 and x710 NICs, compared to x520 NICs.     |            | PDR throughput. Applies to XL710 and X710 NICs.                 |
 +---+-------------------------------------------------+------------+-----------------------------------------------------------------+
 

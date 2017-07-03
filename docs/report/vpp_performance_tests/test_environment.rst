@@ -21,8 +21,9 @@ described in detail in
   - TurboBoost disabled.
   - Power Technology: Performance.
 
-- Hosts run Ubuntu 16.04.1, kernel 4.4.0-42-generic.
-- Linux kernel boot command line option "intel_pstate=disable" is applied to
+- Hosts run Ubuntu 16.04.1, kernel 4.4.0-72-generic.
+- Linux kernel boot command line option "isolcpus=1-17,19-35
+  nohz_full=1-17,19-35 rcu_nocbs=1-17,19-35 intel_pstate=disable" is applied to
   both SUTs and TG. In addition, on SUTs, only cores 0 and 18 (the first core on
   each socket) are available to the Linux operating system and generic tasks,
   all other CPU cores are isolated and reserved for VPP.
@@ -3517,92 +3518,95 @@ applied test case tag:
 
 Tagged by **1T1C**::
 
-    $ cat /etc/vpp/startup.conf
-    unix {
-        nodaemon
-        log /tmp/vpe.log
+    unix
+    {
         cli-listen localhost:5002
-        full-coredump
+        log /tmp/vpe.log
+        nodaemon 
     }
-    api-trace {
-        on
+    cpu
+    {
+        corelist-workers 2
+        main-core 1
     }
-    cpu {
-        main-core 0 corelist-workers 1
-    }
-    dpdk {
-        socket-mem 1024,1024
-        dev default {
-            num-rx-queues 1
-        }
-        dev 0000:0a:00.1
-        dev 0000:0a:00.0
-        no-multi-seg
+    ip6
+    {
+        heap-size 3G
+        hash-buckets 2000000
     }
     heapsize 3G
-    ip6 {
-        hash-buckets 2000000
-        heap-size 3G
+    dpdk
+    {
+        dev default
+        {
+            num-rx-queues 1
+        }
+        dev 0000:0a:00.0 
+        dev 0000:0a:00.1 
+        socket-mem 1024,1024
+        no-multi-seg 
     }
 
 Tagged by **2T1C**::
 
-    $ cat /etc/vpp/startup.conf
-    unix {
-        nodaemon
-        log /tmp/vpe.log
+    unix
+    {
         cli-listen localhost:5002
-        full-coredump
+        log /tmp/vpe.log
+        nodaemon 
     }
-    api-trace {
-        on
+    cpu
+    {
+        corelist-workers 2,3
+        main-core 1
     }
-    cpu {
-        main-core 0 corelist-workers 1,2
+    ip6
+    {
+        heap-size 3G
+        hash-buckets 2000000
     }
     heapsize 3G
-    dpdk {
-        socket-mem 1024,1024
-        dev default {
+    dpdk
+    {
+        dev default
+        {
             num-rx-queues 1
         }
-        dev 0000:0a:00.1
-        dev 0000:0a:00.0
-        no-multi-seg
-    }
-    ip6 {
-        hash-buckets 2000000
-        heap-size 3G
+        dev 0000:0a:00.0 
+        dev 0000:0a:00.1 
+        socket-mem 1024,1024
+        no-multi-seg 
     }
 
 Tagged by **4T4C**::
 
-    $ cat /etc/vpp/startup.conf
-    unix {
-        nodaemon
-        log /tmp/vpe.log
+    unix
+    {
         cli-listen localhost:5002
-        full-coredump
+        log /tmp/vpe.log
+        nodaemon 
     }
-    api-trace {
-        on
+    cpu
+    {
+        corelist-workers 2,3,4,5
+        main-core 1
     }
-    cpu {
-        main-core 0 corelist-workers 1,2,3,4
+    ip6
+    {
+        heap-size 3G
+        hash-buckets 2000000
     }
     heapsize 3G
-    dpdk {
-        socket-mem 1024,1024
-        dev default {
-            num-rx-queues 1
+    dpdk
+    {
+        dev default
+        {
+            num-rx-queues 2
         }
-        dev 0000:0a:00.1
-        dev 0000:0a:00.0
-        no-multi-seg
-    }
-    ip6 {
-        hash-buckets 2000000
-        heap-size 3G
+        dev 0000:0a:00.0 
+        dev 0000:0a:00.1 
+        socket-mem 1024,1024
+        no-multi-seg 
     }
 
 
@@ -3615,7 +3619,7 @@ TG Configuration - TRex
 
 **DPDK version**
 
-DPDK v17.02 (f4decdc59e9323ecff5ddb5de7ebf0c79d50a960 - in DPDK repo)
+DPDK v17.05
 
 **TG Build Script used**
 

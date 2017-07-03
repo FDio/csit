@@ -1,4 +1,4 @@
-Testpmd Performance Results
+DPDK Performance Results
 ===========================
 
 .. note::
@@ -11,4 +11,4 @@ Testpmd Performance Results
 
 .. toctree::
 
-    testpmd_performance_results
+    dpdk_performance_results
