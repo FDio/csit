@@ -1,5 +1,5 @@
-Testpmd Performance Tests
-=========================
+DPDK Performance Tests
+======================
 
 .. toctree::
 

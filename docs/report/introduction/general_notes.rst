@@ -3,10 +3,10 @@ General Notes
 
 All CSIT test results listed in this report are sourced and auto-generated
 from output.xml Robot Framework (RF) files resulting from LF FD.io Jenkins
-jobs execution against VPP-17.04 release artifacts. References are provided
-to the original LF FD.io Jenkins job results. However, as LF FD.io Jenkins
-infrastructure does not automatically archive all jobs (history record is
-provided for the last 30 days or 40 jobs only), additional references are
+jobs execution against |vpp-release| release artifacts. References are
+provided to the original LF FD.io Jenkins job results. However, as LF FD.io
+Jenkins infrastructure does not automatically archive all jobs (history record
+is provided for the last 30 days or 40 jobs only), additional references are
 provided to the RF result files that got archived in FD.io nexus online
 storage system.
 
@@ -21,13 +21,14 @@ is listed separately, as follows:
    interfaces, range of multi-thread and multi-core configurations. VPP
    application runs in host user- mode. TRex is used as a traffic generator.
 
-#. **Testpmd Performance Tests** - VPP is using DPDK code to control and drive
+#. **DPDK Performance Tests** - VPP is using DPDK code to control and drive
    the NICs and physical interfaces. Testpmd tests are used as a baseline to
-   profile the DPDK sub-system of VPP. Testpmd performance tests executed in
-   physical FD.io testbeds, focusing on Testpmd data plane performance for Phy-
-   to-Phy (NIC-to-NIC). Tests cover a range of NICs, 10GE and 40GE interfaces,
-   range of multi-thread and multi-core configurations. Testpmd application runs
-   in host user-mode. TRex is used as a traffic generator.
+   profile the DPDK sub-system of VPP. DPDK performance tests executed in
+   physical FD.io testbeds, focusing on Testpmd/L3FWD data plane performance for
+   Phy-to-Phy (NIC-to-NIC). Tests cover a range of NICs, 10GE and 40GE
+   interfaces, range of multi-thread and multi-core configurations.
+   Testpmd/L3FWD application runs in host user-mode. TRex is used as a traffic
+   generator.
 
 #. **VPP Functional Tests** - VPP functional tests are executed in virtual
    FD.io testbeds focusing on VPP packet processing functionality, including
@@ -39,6 +40,10 @@ is listed separately, as follows:
    virtual FD.io testbeds focusing on HoneyComb management and programming
    functionality of VPP. Tests cover a range of CRUD operations executed
    against VPP.
+
+#. **TLDK Tests** - TODO
+
+#. **NSH_SFC Tests** - TODO
 
 In addition to above, CSIT |release| report does also include VPP unit test
 results. VPP unit tests are developed within the FD.io VPP project and as they

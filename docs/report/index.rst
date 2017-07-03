@@ -1,4 +1,4 @@
-CSIT 17.04
+CSIT 17.07
 ==========
 
 .. toctree::
@@ -6,7 +6,7 @@ CSIT 17.04
 
     introduction/index
     vpp_performance_tests/index
-    testpmd_performance_tests/index
+    dpdk_performance_tests/index
     vpp_functional_tests/index
     honeycomb_functional_tests/index
     vpp_unit_tests/index
