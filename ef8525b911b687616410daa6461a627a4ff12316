@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da6255ed_63dd8b70",
+        "filename": "bootstrap-TLDK.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-07-04T17:24:54Z",
+      "side": 1,
+      "message": "Please put to CI-management script where TLDK job definition is.",
+      "range": {
+        "startLine": 119,
+        "startChar": 0,
+        "endLine": 119,
+        "endChar": 37
+      },
+      "revId": "ef8525b911b687616410daa6461a627a4ff12316",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
