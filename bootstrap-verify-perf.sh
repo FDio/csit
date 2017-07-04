@@ -306,6 +306,7 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s "tests.vpp.perf" \
+              --include ndrdiscAND1t1cAND64bORndrdiscAND2t2cAND64b \
               tests/
         RETURN_STATUS=$(echo $?)
 esac
