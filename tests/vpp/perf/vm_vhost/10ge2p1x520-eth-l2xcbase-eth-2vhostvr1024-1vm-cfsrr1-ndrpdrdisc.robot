@@ -28,20 +28,20 @@
 | ... | dut1_node=${dut1} | dut1_vm_refs=${dut1_vm_refs}
 | ... | dut2_node=${dut2} | dut2_vm_refs=${dut2_vm_refs}
 | ...
-| Documentation | *RFC2544: Packet throughput L2XC test cases with vhost*
+| Documentation | *RFC2544: Packet throughput L2BD test cases with vhost*
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology
 | ... | with single links between nodes.
 | ... | *[Enc] Packet Encapsulations:* Eth-IPv4 for L2 switching of IPv4. 802.1q
 | ... | tagging is applied on link between DUT1 and DUT2.
-| ... | *[Cfg] DUT configuration:* DUT1 and DUT2 are configured with L2 cross-
-| ... | connect. Qemu Guest is connected to VPP via vhost-user interfaces.
-| ... | Guest is running DPDK testpmd interconnecting vhost-user interfaces
-| ... | using 5 cores pinned to cpus 5-9 and 2048M memory. Testpmd is using
-| ... | socket-mem=1024M (512x2M hugepages), 5 cores (1 main core and 4 cores
-| ... | dedicated for io), forwarding mode is set to io, rxd/txd=256,
-| ... | burst=64. Scheduler policy is set to SCHED_RR with priority 1 for all
-| ... | Qemu CPUs. DUT1, DUT2 are tested with 2p10GE NIC X520 Niantic by Intel.
+| ... | *[Cfg] DUT configuration:* DUT1 and DUT2 are configured with L2 bridge-
+| ... | domain and MAC learning enabled. Qemu Guest is connected to VPP via
+| ... | vhost-user interfaces. Guest is running DPDK testpmd interconnecting
+| ... | vhost-user interfaces using 5 cores pinned to cpus 5-9 and 2048M
+| ... | memory. Testpmd is using socket-mem=1024M (512x2M hugepages), 5 cores
+| ... | (1 main core and 4 cores dedicated for io), forwarding mode is set to
+| ... | io, rxd/txd=256, burst=64. DUT1, DUT2 are tested with 2p10GE NIC X520
+| ... | Niantic by Intel.
 | ... | *[Ver] TG verification:* TG finds and reports throughput NDR (Non Drop
 | ... | Rate) with zero packet loss tolerance or throughput PDR (Partial Drop
 | ... | Rate) with non-zero packet loss tolerance (LT) expressed in percentage
@@ -70,21 +70,6 @@
 | Discover NDR or PDR for L2 xconnect with VM
 | | [Arguments] | ${wt} | ${rxq} | ${framesize} | ${min_rate} | ${search_type}
 | | ...
-| | [Documentation]
-| | ... | [Cfg] DUT runs L2XC switching config with required number of threads,\
-| | ... | phy cores and receive queues per NIC port.
-| | ... | [Ver] Find NDR or PDR for defined frame size using binary search\
-| | ... | start at 10GE linerate with specified step.
-| | ...
-| | ... | *Arguments:*
-| | ... | - wt - Number of worker threads to be used. Type: integer
-| | ... | - rxq - Number of Rx queues to be used. Type: integer
-| | ... | - framesize - L2 Frame Size [B]. Type: integer
-| | ... | - min_rate - Lower limit of search [pps]. Type: float
-| | ... | - search_type - Type of the search - non drop rate (NDR) or partial
-| | ... | drop rare (PDR). Type: string
-| | ...
-| | Set Test Variable | ${perf_qemu_qsz} | 256
 | | Set Test Variable | ${use_tuned_cfs} | ${True}
 | | Set Test Variable | ${framesize}
 | | Set Test Variable | ${min_rate}
@@ -122,9 +107,9 @@
 | | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
 *** Test Cases ***
-| tc01-64B-1t1c-eth-l2xcbase-eth-2vhostvr256-1vm-cfsrr1-ndrdisc
+| tc01-64B-1t1c-eth-l2xcbase-eth-2vhostvr1024-1vm-cfsrr1-ndrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2XC switching config with 1 thread, 1 phy core,\
+| | ... | [Cfg] DUT runs L2BD switching config with 1 thread, 1 phy core,\
 | | ... | 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 10kpps.
@@ -134,9 +119,9 @@
 | | [Template] | Discover NDR or PDR for L2 xconnect with VM
 | | wt=1 | rxq=1 | framesize=${64} | min_rate=${10000} | search_type=NDR
 
-| tc02-64B-1t1c-eth-l2xcbase-eth-2vhostvr256-1vm-cfsrr1-pdrdisc
+| tc02-64B-1t1c-eth-l2xcbase-eth-2vhostvr1024-1vm-cfsrr1-pdrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2XC switching config with 1 thread, 1 phy core,\
+| | ... | [Cfg] DUT runs L2BD switching config with 1 thread, 1 phy core,\
 | | ... | 1 receive queue per NIC port.
 | | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 10kpps, LT=0.5%.
@@ -146,9 +131,9 @@
 | | [Template] | Discover NDR or PDR for L2 xconnect with VM
 | | wt=1 | rxq=1 | framesize=${64} | min_rate=${10000} | search_type=PDR
 
-#| tc03-1518B-1t1c-etc-l2xcbase-eth-2vhostvr256-1vm-cfsrr1-ndrdisc
+#| tc03-1518B-1t1c-etc-l2xcbase-eth-2vhostvr1024-1vm-cfsrr1-ndrdisc
 #| | [Documentation]
-#| | ... | [Cfg] DUT runs L2XC switching config with 1 thread, 1 phy core,\
+#| | ... | [Cfg] DUT runs L2BD switching config with 1 thread, 1 phy core,\
 #| | ... | 1 receive queue per NIC port.
 #| | ... | [Ver] Find NDR for 1518 Byte frames using binary search start at 10GE\
 #| | ... | linerate, step 10kpps.
@@ -158,9 +143,9 @@
 #| | [Template] | Discover NDR or PDR for L2 xconnect with VM
 #| | wt=1 | rxq=1 | framesize=${1518} | min_rate=${10000} | search_type=NDR
 #
-#| tc04-1518B-1t1c-eth-l2xcbase-eth-2vhostvr256-1vm-cfsrr1-pdrdisc
+#| tc04-1518B-1t1c-eth-l2xcbase-eth-2vhostvr1024-1vm-cfsrr1-pdrdisc
 #| | [Documentation]
-#| | ... | [Cfg] DUT runs L2XC switching config with 1 thread, 1 phy core,\
+#| | ... | [Cfg] DUT runs L2BD switching config with 1 thread, 1 phy core,\
 #| | ... | 1 receive queue per NIC port.
 #| | ... | [Ver] Find PDR for 1518 Byte frames using binary search start at 10GE\
 #| | ... | linerate, step 10kpps, LT=0.5%.
@@ -170,9 +155,9 @@
 #| | [Template] | Discover NDR or PDR for L2 xconnect with VM
 #| | wt=1 | rxq=1 | framesize=${1518} | min_rate=${10000} | search_type=PDR
 #
-#| tc05-IMIX-1t1c-eth-l2xcbase-eth-2vhostvr256-1vm-cfsrr1-ndrdisc
+#| tc05-IMIX-1t1c-eth-l2xcbase-eth-2vhostvr1024-1vm-cfsrr1-ndrdisc
 #| | [Documentation]
-#| | ... | [Cfg] DUT runs L2XC switching config with 1 thread, 1 phy core,\
+#| | ... | [Cfg] DUT runs L2BD switching config with 1 thread, 1 phy core,\
 #| | ... | 1 receive queue per NIC port.
 #| | ... | [Ver] Find NDR for IMIX_v4_1 framesize using binary search start at\
 #| | ... | 10GE linerate, step 10kpps.
@@ -183,9 +168,9 @@
 #| | [Template] | Discover NDR or PDR for L2 xconnect with VM
 #| | wt=1 | rxq=1 | framesize=IMIX_v4_1 | min_rate=${10000} | search_type=NDR
 #
-#| tc06-IMIX-1t1c-eth-l2xcbase-eth-2vhostvr256-1vm-cfsrr1-pdrdisc
+#| tc06-IMIX-1t1c-eth-l2xcbase-eth-2vhostvr1024-1vm-cfsrr1-pdrdisc
 #| | [Documentation]
-#| | ... | [Cfg] DUT runs L2XC switching config with 1 thread, 1 phy core,\
+#| | ... | [Cfg] DUT runs L2BD switching config with 1 thread, 1 phy core,\
 #| | ... | 1 receive queue per NIC port.
 #| | ... | [Ver] Find PDR for IMIX_v4_1 framesize using binary search start at\
 #| | ... | 10GE linerate, step 10kpps, LT=0.5%.
@@ -196,9 +181,9 @@
 #| | [Template] | Discover NDR or PDR for L2 xconnect with VM
 #| | wt=1 | rxq=1 | framesize=IMIX_v4_1 | min_rate=${10000} | search_type=PDR
 
-| tc07-64B-2t2c-eth-l2xcbase-eth-2vhostvr256-1vm-cfsrr1-ndrdisc
+| tc07-64B-2t2c-eth-l2xcbase-eth-2vhostvr1024-1vm-cfsrr1-ndrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2XC switching config with 2 threads, 2 phy cores,\
+| | ... | [Cfg] DUT runs L2BD switching config with 2 threads, 2 phy cores,\
 | | ... | 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 10kpps.
@@ -208,9 +193,9 @@
 | | [Template] | Discover NDR or PDR for L2 xconnect with VM
 | | wt=2 | rxq=1 | framesize=${64} | min_rate=${10000} | search_type=NDR
 
-| tc08-64B-2t2c-eth-l2xcbase-eth-2vhostvr256-1vm-cfsrr1-pdrdisc
+| tc08-64B-2t2c-eth-l2xcbase-eth-2vhostvr1024-1vm-cfsrr1-pdrdisc
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2XC switching config with 2 threads, 2 phy cores,\
+| | ... | [Cfg] DUT runs L2BD switching config with 2 threads, 2 phy cores,\
 | | ... | 1 receive queue per NIC port.
 | | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 10kpps, LT=0.5%.
@@ -220,9 +205,9 @@
 | | [Template] | Discover NDR or PDR for L2 xconnect with VM
 | | wt=2 | rxq=1 | framesize=${64} | min_rate=${10000} | search_type=PDR
 
-#| tc09-1518B-2t2c-eth-l2xcbase-eth-2vhostvr256-1vm-cfsrr1-ndrdisc
+#| tc09-1518B-2t2c-eth-l2xcbase-eth-2vhostvr1024-1vm-cfsrr1-ndrdisc
 #| | [Documentation]
-#| | ... | [Cfg] DUT runs L2XC switching config with 2 threads, 2 phy cores,\
+#| | ... | [Cfg] DUT runs L2BD switching config with 2 threads, 2 phy cores,\
 #| | ... | 1 receive queue per NIC port.
 #| | ... | [Ver] Find NDR for 1518 Byte frames using binary search start at 10GE\
 #| | ... | linerate, step 10kpps.
@@ -232,9 +217,9 @@
 #| | [Template] | Discover NDR or PDR for L2 xconnect with VM
 #| | wt=2 | rxq=1 | framesize=${1518} | min_rate=${10000} | search_type=NDR
 #
-#| tc10-1518B-2t2c-eth-l2xcbase-eth-2vhostvr256-1vm-cfsrr1-pdrdisc
+#| tc10-1518B-2t2c-eth-l2xcbase-eth-2vhostvr1024-1vm-cfsrr1-pdrdisc
 #| | [Documentation]
-#| | ... | [Cfg] DUT runs L2XC switching config with 2 threads, 2 phy cores,\
+#| | ... | [Cfg] DUT runs L2BD switching config with 2 threads, 2 phy cores,\
 #| | ... | 1 receive queue per NIC port.
 #| | ... | [Ver] Find PDR for 1518 Byte frames using binary search start at 10GE\
 #| | ... | linerate, step 10kpps, LT=0.5%.
@@ -244,9 +229,9 @@
 #| | [Template] | Discover NDR or PDR for L2 xconnect with VM
 #| | wt=2 | rxq=1 | framesize=${1518} | min_rate=${10000} | search_type=PDR
 #
-#| tc11-IMIX-2t2c-eth-l2xcbase-eth-2vhostvr256-1vm-cfsrr1-ndrdisc
+#| tc11-IMIX-2t2c-eth-l2xcbase-eth-2vhostvr1024-1vm-cfsrr1-ndrdisc
 #| | [Documentation]
-#| | ... | [Cfg] DUT runs L2XC switching config with 2 threads, 2 phy cores,\
+#| | ... | [Cfg] DUT runs L2BD switching config with 2 threads, 2 phy cores,\
 #| | ... | 1 receive queue per NIC port.
 #| | ... | [Ver] Find NDR for IMIX_v4_1 framesize using binary search start at\
 #| | ... | 10GE linerate, step 10kpps.
@@ -257,9 +242,9 @@
 #| | [Template] | Discover NDR or PDR for L2 xconnect with VM
 #| | wt=2 | rxq=1 | framesize=IMIX_v4_1 | min_rate=${10000} | search_type=NDR
 #
-#| tc12-IMIX-2t2c-eth-l2xcbase-eth-2vhostvr256-1vm-cfsrr1-pdrdisc
+#| tc12-IMIX-2t2c-eth-l2xcbase-eth-2vhostvr1024-1vm-cfsrr1-pdrdisc
 #| | [Documentation]
-#| | ... | [Cfg] DUT runs L2XC switching config with 2 threads, 2 phy cores,\
+#| | ... | [Cfg] DUT runs L2BD switching config with 2 threads, 2 phy cores,\
 #| | ... | 1 receive queue per NIC port.
 #| | ... | [Ver] Find PDR for IMIX_v4_1 framesize using binary search start at\
 #| | ... | 10GE linerate, step 10kpps.
@@ -270,9 +255,9 @@
 #| | [Template] | Discover NDR or PDR for L2 xconnect with VM
 #| | wt=2 | rxq=1 | framesize=IMIX_v4_1 | min_rate=${10000} | search_type=PDR
 #
-#| tc13-64B-4t4c-eth-l2xcbase-eth-2vhostvr256-1vm-cfsrr1-ndrdisc
+#| tc13-64B-4t4c-eth-l2xcbase-eth-2vhostvr1024-1vm-cfsrr1-ndrdisc
 #| | [Documentation]
-#| | ... | [Cfg] DUT runs L2XC switching config with 4 threads, 4 phy cores,\
+#| | ... | [Cfg] DUT runs L2BD switching config with 4 threads, 4 phy cores,\
 #| | ... | 2 receive queues per NIC port.
 #| | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 10GE\
 #| | ... | linerate, step 10kpps.
@@ -282,9 +267,9 @@
 #| | [Template] | Discover NDR or PDR for L2 xconnect with VM
 #| | wt=4 | rxq=2 | framesize=${64} | min_rate=${10000} | search_type=NDR
 #
-#| tc14-64B-4t4c-eth-l2xcbase-eth-2vhostvr256-1vm-cfsrr1-pdrdisc
+#| tc14-64B-4t4c-eth-l2xcbase-eth-2vhostvr1024-1vm-cfsrr1-pdrdisc
 #| | [Documentation]
-#| | ... | [Cfg] DUT runs L2XC switching config with 4 threads, 4 phy cores,\
+#| | ... | [Cfg] DUT runs L2BD switching config with 4 threads, 4 phy cores,\
 #| | ... | 2 receive queues per NIC port.
 #| | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 10GE\
 #| | ... | linerate, step 10kpps, LT=0.5%.
@@ -294,9 +279,9 @@
 #| | [Template] | Discover NDR or PDR for L2 xconnect with VM
 #| | wt=4 | rxq=2 | framesize=${64} | min_rate=${10000} | search_type=PDR
 #
-#| tc15-1518B-4t4c-eth-l2xcbase-eth-2vhostvr256-1vm-cfsrr1-ndrdisc
+#| tc15-1518B-4t4c-eth-l2xcbase-eth-2vhostvr1024-1vm-cfsrr1-ndrdisc
 #| | [Documentation]
-#| | ... | [Cfg] DUT runs L2XC switching config with 4 threads, 4 phy cores,\
+#| | ... | [Cfg] DUT runs L2BD switching config with 4 threads, 4 phy cores,\
 #| | ... | 2 receive queues per NIC port.
 #| | ... | [Ver] Find NDR for 1518 Byte frames using binary search start at 10GE\
 #| | ... | linerate, step 10kpps.
@@ -306,9 +291,9 @@
 #| | [Template] | Discover NDR or PDR for L2 xconnect with VM
 #| | wt=4 | rxq=2 | framesize=${1518} | min_rate=${10000} | search_type=NDR
 #
-#| tc16-1518B-4t4c-eth-l2xcbase-eth-2vhostvr256-1vm-cfsrr1-pdrdisc
+#| tc16-1518B-4t4c-eth-l2xcbase-eth-2vhostvr1024-1vm-cfsrr1-pdrdisc
 #| | [Documentation]
-#| | ... | [Cfg] DUT runs L2XC switching config with 4 threads, 4 phy cores,\
+#| | ... | [Cfg] DUT runs L2BD switching config with 4 threads, 4 phy cores,\
 #| | ... | 2 receive queues per NIC port.
 #| | ... | [Ver] Find PDR for 1518 Byte frames using binary search start at 10GE\
 #| | ... | linerate, step 10kpps, LT=0.5%.
@@ -318,9 +303,9 @@
 #| | [Template] | Discover NDR or PDR for L2 xconnect with VM
 #| | wt=4 | rxq=2 | framesize=${1518} | min_rate=${10000} | search_type=PDR
 #
-#| tc17-IMIX-4t4c-eth-l2xcbase-eth-2vhostvr256-1vm-cfsrr1-ndrdisc
+#| tc17-IMIX-4t4c-eth-l2xcbase-eth-2vhostvr1024-1vm-cfsrr1-ndrdisc
 #| | [Documentation]
-#| | ... | [Cfg] DUT runs L2XC switching config with 4 threads, 4 phy cores,\
+#| | ... | [Cfg] DUT runs L2BD switching config with 4 threads, 4 phy cores,\
 #| | ... | 2 receive queues per NIC port.
 #| | ... | [Ver] Find NDR for IMIX_v4_1 framesize using binary search start at\
 #| | ... | 10GE linerate, step 10kpps.
@@ -331,9 +316,9 @@
 #| | [Template] | Discover NDR or PDR for L2 xconnect with VM
 #| | wt=4 | rxq=2 | framesize=IMIX_v4_1 | min_rate=${10000} | search_type=NDR
 #
-#| tc18-IMIX-4t4c-eth-l2xcbase-eth-2vhostvr256-1vm-cfsrr1-pdrdisc
+#| tc18-IMIX-4t4c-eth-l2xcbase-eth-2vhostvr1024-1vm-cfsrr1-pdrdisc
 #| | [Documentation]
-#| | ... | [Cfg] DUT runs L2XC switching config with 4 threads, 4 phy cores,\
+#| | ... | [Cfg] DUT runs L2BD switching config with 4 threads, 4 phy cores,\
 #| | ... | 2 receive queues per NIC port.
 #| | ... | [Ver] Find PDR for IMIX_v4_1 framesize using binary search start at\
 #| | ... | 10GE linerate, step 10kpps, LT=0.5%.
