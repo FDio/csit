@@ -3,7 +3,7 @@
 set -x
 
 # Build locally without jenkins integrations
-DEBUG=1
+DEBUG=0
 
 # Build directories
 WORKING_DIR='_tmp'
