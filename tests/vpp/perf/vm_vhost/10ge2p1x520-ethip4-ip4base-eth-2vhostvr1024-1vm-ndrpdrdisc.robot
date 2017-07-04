@@ -57,7 +57,7 @@
 
 *** Variables ***
 # X520-DA2 bandwidth limit
-| ${s_limit} | ${10000000000}
+| ${s_limit} | ${2500000000}
 | ${sock1}= | /tmp/sock-1
 | ${sock2}= | /tmp/sock-2
 | ${fib_table_1}= | 100

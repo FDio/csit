@@ -57,7 +57,7 @@
 
 *** Variables ***
 # X520-DA2 bandwidth limit
-| ${s_limit} | ${10000000000}
+| ${s_limit} | ${2500000000}
 # Socket names
 | ${bd_id1}= | 1
 | ${bd_id2}= | 2
