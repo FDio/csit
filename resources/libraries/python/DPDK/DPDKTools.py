@@ -46,7 +46,7 @@ class DPDKTools(object):
         ssh = SSH()
         ssh.connect(dut_node)
 
-        cmd = 'cd {0}/dpdk-tests/dpdk_scripts/ && sudo ./init_dpdk.sh {1} {2}' \
+        cmd = 'cd {0}/tests/dpdk/dpdk_scripts/ && sudo ./init_dpdk.sh {1} {2}' \
               .format(con.REMOTE_FW_DIR, pci_address1, pci_address2)
 
         (ret_code, _, _) = ssh.exec_command(cmd, timeout=600)
@@ -77,7 +77,7 @@ class DPDKTools(object):
         ssh = SSH()
         ssh.connect(dut_node)
 
-        cmd = 'cd {0}/dpdk-tests/dpdk_scripts/ && sudo ./cleanup_dpdk.sh ' \
+        cmd = 'cd {0}/tests/dpdk/dpdk_scripts/ && sudo ./cleanup_dpdk.sh ' \
               '{1} {2} {3} {4}'.format(con.REMOTE_FW_DIR, if1_driver,
                                        pci_address1, if2_driver, pci_address2)
 

@@ -91,7 +91,7 @@ class L3fwdTest(object):
         ssh = SSH()
         ssh.connect(dut_node)
 
-        cmd = 'cd {0}/dpdk-tests/dpdk_scripts/ && ./run_l3fwd.sh ' \
+        cmd = 'cd {0}/tests/dpdk/dpdk_scripts/ && ./run_l3fwd.sh ' \
               '"{1}" "{2}" {3} {4} {5}'.format(con.REMOTE_FW_DIR, lcores_list, \
               port_config_param, adj_mac0, adj_mac1, jumbo_frames)
 

@@ -131,7 +131,7 @@ def install_dpdk_test(node):
     ssh.connect(node)
 
     (ret_code, _, stderr) = ssh.exec_command(
-        'cd {0}/dpdk-tests/dpdk_scripts/ && ./install_dpdk.sh'
+        'cd {0}/tests/dpdk/dpdk_scripts/ && ./install_dpdk.sh'
         .format(con.REMOTE_FW_DIR), timeout=600)
 
     if ret_code != 0:
