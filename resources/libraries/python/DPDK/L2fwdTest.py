@@ -45,7 +45,7 @@ class L2fwdTest(object):
         ssh = SSH()
         ssh.connect(dut_node)
 
-        cmd = 'cd {0}/dpdk-tests/dpdk_scripts/ && sudo ./run_l2fwd.sh {1} ' \
+        cmd = 'cd {0}/tests/dpdk/dpdk_scripts/ && sudo ./run_l2fwd.sh {1} ' \
               '{2} {3} {4}'.format(con.REMOTE_FW_DIR, cpu_cores, nb_cores,
                                    queue_nums, jumbo_frames)
 
