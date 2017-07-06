@@ -49,7 +49,7 @@ pip install -r requirements.txt
 while :; do
     for TOPOLOGY in ${TOPOLOGIES};
     do
-        python ${SCRIPT_DIR}/resources/tools/topo_reservation.py -t ${TOPOLOGY}
+        python ${SCRIPT_DIR}/resources/tools/scripts/topo_reservation.py -t ${TOPOLOGY}
         if [ $? -eq 0 ]; then
             WORKING_TOPOLOGY=${TOPOLOGY}
             echo "Reserved: ${WORKING_TOPOLOGY}"
@@ -69,8 +69,8 @@ while :; do
 done
 
 function cancel_all {
-    python ${SCRIPT_DIR}/resources/tools/topo_installation.py -c -d ${INSTALLATION_DIR} -t $1 -hc True
-    python ${SCRIPT_DIR}/resources/tools/topo_reservation.py -c -t $1
+    python ${SCRIPT_DIR}/resources/tools/scripts/topo_installation.py -c -d ${INSTALLATION_DIR} -t $1 -hc True
+    python ${SCRIPT_DIR}/resources/tools/scripts/topo_reservation.py -c -t $1
 }
 
 # On script exit we cancel the reservation and installation and delete all vpp
@@ -79,7 +79,7 @@ trap "cancel_all ${WORKING_TOPOLOGY}" EXIT
 
 # Download VPP and HC packages from the current branch
 echo Downloading packages...
-bash ${SCRIPT_DIR}/resources/tools/download_hc_pkgs.sh ${STREAM} 'ubuntu1604'
+bash ${SCRIPT_DIR}/resources/tools/scripts/download_hc_pkgs.sh ${STREAM} 'ubuntu1604'
 
 if [ "${OS}" == "centos7" ]; then
     VPP_PKGS=(*.rpm)
@@ -89,7 +89,7 @@ fi
 echo ${VPP_PKGS[@]}
 
 # Install packages
-python ${SCRIPT_DIR}/resources/tools/topo_installation.py -t ${WORKING_TOPOLOGY} \
+python ${SCRIPT_DIR}/resources/tools/scripts/topo_installation.py -t ${WORKING_TOPOLOGY} \
                                                        -d ${INSTALLATION_DIR} \
                                                        -p ${VPP_PKGS[@]} \
                                                        -hc True
