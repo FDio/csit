@@ -460,7 +460,7 @@ class HoneycombSetup(object):
         cmd = "cp -r {src}/*karaf_{odl_name}* {dst}".format(
             src=src_path, odl_name=odl_name, dst=dst_path)
 
-        ret_code, _, _ = ssh.exec_command(cmd, timeout=30)
+        ret_code, _, _ = ssh.exec_command(cmd, timeout=60)
         if int(ret_code) != 0:
             raise HoneycombError(
                 "Failed to copy ODL client on node {0}".format(node["host"]))
@@ -602,7 +602,7 @@ class HoneycombSetup(object):
         ssh.connect(node)
         ret_code, _, _ = ssh.exec_command_sudo(cmd)
         if int(ret_code) != 0:
-            logger.warn("ODL Client refused to shut down.")
+            logger.debug("ODL Client refused to shut down.")
             cmd = "pkill -f 'karaf'"
             (ret_code, _, _) = ssh.exec_command_sudo(cmd)
             if int(ret_code) != 0:
