@@ -16,7 +16,7 @@
 | Library | resources.libraries.python.Classify
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDRDISC
-| ... | NIC_Intel-X520-DA2 | ETH | L2BDMACLRN | TEST
+| ... | NIC_Intel-X520-DA2 | ETH | L2BDMACLRN
 | ...
 | Suite Setup | Set up 3-node performance topology with DUT's NIC model
 | ... | L2 | Intel-X520-DA2
@@ -230,7 +230,7 @@
 | | ... | min_rate=${10000} | search_type=PDR
 
 | tc11-64B-1t1c-eth-l2bdbasemaclrn-iacl50-stateful-flows10k-ndrdisc
-| | [Tags] | 1T1C | STHREAD | NDRDISC | FEATURE | ACL | SRC_USER_10
+| | [Tags] | 1T1C | STHREAD | NDRDISC | FEATURE | ACL | SRC_USER_10 | TEST
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with ACL with\
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
@@ -242,7 +242,7 @@
 | | ... | min_rate=${10000} | search_type=NDR
 
 | tc12-64B-1t1c-eth-l2bdbasemaclrn-iacl50-stateful-flows10k-pdrdisc
-| | [Tags] | 1T1C | STHREAD | PDRDISC | FEATURE | ACL | SRC_USER_10
+| | [Tags] | 1T1C | STHREAD | PDRDISC | FEATURE | ACL | SRC_USER_10 | TEST
 | | ... | SKIP_PATCH
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with ACL with\
@@ -305,7 +305,7 @@
 | | ... | min_rate=${10000} | search_type=PDR
 
 | tc17-64B-1t1c-eth-l2bdbasemaclrn-iacl50-stateful-flows100k-ndrdisc
-| | [Tags] | 1T1C | STHREAD | NDRDISC | FEATURE | ACL | SRC_USER_100
+| | [Tags] | 1T1C | STHREAD | NDRDISC | FEATURE | ACL | SRC_USER_100 | TEST
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with ACL with\
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
@@ -317,7 +317,7 @@
 | | ... | min_rate=${10000} | search_type=NDR
 
 | tc18-64B-1t1c-eth-l2bdbasemaclrn-iacl50-stateful-flows100k-pdrdisc
-| | [Tags] | 1T1C | STHREAD | PDRDISC | FEATURE | ACL | SRC_USER_100
+| | [Tags] | 1T1C | STHREAD | PDRDISC | FEATURE | ACL | SRC_USER_100 | TEST
 | | ... | SKIP_PATCH
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with ACL with\
@@ -461,7 +461,7 @@
 
 | tc29-64B-2t2c-eth-l2bdbasemaclrn-iacl50-stateful-flows10k-ndrdisc
 | | ...
-| | [Tags] | 2T2C | MTHREAD | NDRDISC | FEATURE | ACL | SRC_USER_10
+| | [Tags] | 2T2C | MTHREAD | NDRDISC | FEATURE | ACL | SRC_USER_10 | TEST
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with ACL with\
 | | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
@@ -473,7 +473,7 @@
 | | ... | min_rate=${10000} | search_type=NDR
 
 | tc30-64B-2t2c-eth-l2bdbasemaclrn-iacl50-stateful-flows10k-pdrdisc
-| | [Tags] | 2T2C | MTHREAD | PDRDISC | FEATURE | ACL | SRC_USER_10
+| | [Tags] | 2T2C | MTHREAD | PDRDISC | FEATURE | ACL | SRC_USER_10 | TEST
 | | ... | SKIP_PATCH
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with ACL with\
@@ -539,7 +539,7 @@
 
 | tc35-64B-2t2c-eth-l2bdbasemaclrn-iacl50-stateful-flows100k-ndrdisc
 | | ...
-| | [Tags] | 2T2C | MTHREAD | NDRDISC | FEATURE | ACL | SRC_USER_100
+| | [Tags] | 2T2C | MTHREAD | NDRDISC | FEATURE | ACL | SRC_USER_100 | TEST
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with ACL with\
 | | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
@@ -551,7 +551,7 @@
 | | ... | min_rate=${10000} | search_type=NDR
 
 | tc36-64B-2t2c-eth-l2bdbasemaclrn-iacl50-stateful-flows100k-pdrdisc
-| | [Tags] | 2T2C | MTHREAD | PDRDISC | FEATURE | ACL | SRC_USER_100
+| | [Tags] | 2T2C | MTHREAD | PDRDISC | FEATURE | ACL | SRC_USER_100 | TEST
 | | ... | SKIP_PATCH
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with ACL with\
