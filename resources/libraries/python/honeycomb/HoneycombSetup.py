@@ -163,7 +163,11 @@ class HoneycombSetup(object):
                 except HTTPRequestError:
                     ssh = SSH()
                     ssh.connect(node)
-                    ssh.exec_command("tail -n 100 /var/log/syslog")
+                    ret_code, _, _ = ssh.exec_command(
+                        "tail -n 100 /var/log/syslog")
+                    if ret_code != 0:
+                        # It's probably Centos
+                        ssh.exec_command_sudo("tail -n 100 /var/log/messages")
                     raise
                 if status_code == HTTPCodes.OK:
                     logger.info("Honeycomb on node {0} is up and running".
@@ -554,6 +558,35 @@ class HoneycombSetup(object):
         return True
 
     @staticmethod
+    def check_odl_shutdown_state(node):
+        """Check the status of ODL client shutdown.
+
+        :param node: Honeycomb node.
+        :type node: dict
+        :returns: True when ODL is stopped.
+        :rtype: bool
+        :raises HoneycombError: When the response is not code 200: OK.
+        """
+
+        cmd = "pgrep -f karaf"
+        path = HcUtil.read_path_from_url_file(
+            "odl_client/odl_netconf_connector")
+
+        try:
+            status_code, _ = HTTPRequest.get(node, path, timeout=10,
+                                             enable_logging=False)
+            raise HoneycombError("ODL client is still running.")
+        except HTTPRequestError:
+            logger.debug("Connection refused, checking process state....")
+            ssh = SSH()
+            ssh.connect(node)
+            ret_code, _, _ = ssh.exec_command(cmd)
+            if ret_code == 0:
+                raise HoneycombError("ODL client is still running.")
+
+        return True
+
+    @staticmethod
     def mount_honeycomb_on_odl(node):
         """Tell ODL client to mount Honeycomb instance over netconf.
 
@@ -625,9 +658,7 @@ class HoneycombSetup(object):
         cmd = "service vpp stop"
         ret_code, _, _ = ssh.exec_command_sudo(cmd, timeout=80)
         if int(ret_code) != 0:
-            raise RuntimeError("Could not stop VPP service on node {0}".format(
-                node['host']))
-
+            logger.debug("VPP service refused to shut down.")
 
 class HoneycombStartupConfig(object):
     """Generator for Honeycomb startup configuration.

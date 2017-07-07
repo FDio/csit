@@ -41,6 +41,7 @@
 | | Start honeycomb on DUTs | @{duts}
 | | Wait until keyword succeeds | 4min | 16sec
 | | ... | Check honeycomb startup state | @{duts}
+| | Sleep | 5s | Make sure all modules are loaded and ready.
 
 | Stop Honeycomb service on DUTs
 | | [Documentation] | *Cleanup environment after honeycomb testing.*
@@ -247,8 +248,11 @@
 | | Run Keyword If | '${use_odl_client}' != '${NONE}'
 | | ... | Run Keywords
 | | ... | Stop ODL Client | ${node} | /tmp | AND
+| | ... | Wait until keyword succeeds | 2min | 15sec
+| | ... | Check ODL shutdown state | ${node} | AND
 | | ... | Set Global Variable | ${use_odl_client} | ${NONE}
 | | Stop Honeycomb service on DUTs | ${node}
+| | Stop VPP Service on DUT | ${node}
 
 | Enable Honeycomb Feature
 | | [Documentation] | Enable the specified feature in Honeycomb configuration.
@@ -320,3 +324,4 @@
 | | [Arguments] | ${node}
 | | Log Honeycomb and VPP process distribution on cores | ${node}
 | | Stop Honeycomb service on DUTs | ${node}
+| | Stop VPP Service on DUT | ${node}
