@@ -20,7 +20,7 @@
 | ... | WITH NAME | dut2_v4
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDRDISC
-| ... | NIC_Intel-X520-DA2 | ETH | IP4FWD | TEST
+| ... | NIC_Intel-X520-DA2 | ETH | IP4FWD
 | ...
 | Suite Setup | Set up 3-node performance topology with DUT's NIC model
 | ... | L3 | Intel-X520-DA2
@@ -238,7 +238,7 @@
 | | ... | min_rate=${10000} | search_type=PDR
 
 | tc11-64B-1t1c-ethip4-ip4base-iacl50-stateless-flows10k-ndrdisc
-| | [Tags] | 1T1C | STHREAD | NDRDISC | FEATURE | ACL | SRC_USER_10
+| | [Tags] | 1T1C | STHREAD | NDRDISC | FEATURE | ACL | SRC_USER_10 | TEST
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 routing config with ACL with\
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
@@ -250,7 +250,7 @@
 | | ... | min_rate=${10000} | search_type=NDR
 
 | tc12-64B-1t1c-ethip4-ip4base-iacl50-stateless-flows10k-pdrdisc
-| | [Tags] | 1T1C | STHREAD | PDRDISC | FEATURE | ACL | SRC_USER_10
+| | [Tags] | 1T1C | STHREAD | PDRDISC | FEATURE | ACL | SRC_USER_10 | TEST
 | | ... | SKIP_PATCH
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 routing config with ACL with\
@@ -313,7 +313,7 @@
 | | ... | min_rate=${10000} | search_type=PDR
 
 | tc17-64B-1t1c-ethip4-ip4base-iacl50-stateless-flows100k-ndrdisc
-| | [Tags] | 1T1C | STHREAD | NDRDISC | FEATURE | ACL | SRC_USER_100
+| | [Tags] | 1T1C | STHREAD | NDRDISC | FEATURE | ACL | SRC_USER_100 | TEST
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 routing config with ACL with\
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
@@ -325,7 +325,7 @@
 | | ... | min_rate=${10000} | search_type=NDR
 
 | tc18-64B-1t1c-ethip4-ip4base-iacl50-stateless-flows100k-pdrdisc
-| | [Tags] | 1T1C | STHREAD | PDRDISC | FEATURE | ACL | SRC_USER_100
+| | [Tags] | 1T1C | STHREAD | PDRDISC | FEATURE | ACL | SRC_USER_100 | TEST
 | | ... | SKIP_PATCH
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 routing config with ACL with\
@@ -469,7 +469,7 @@
 
 | tc29-64B-2t2c-ethip4-ip4base-iacl50-stateless-flows10k-ndrdisc
 | | ...
-| | [Tags] | 2T2C | MTHREAD | NDRDISC | FEATURE | ACL | SRC_USER_10
+| | [Tags] | 2T2C | MTHREAD | NDRDISC | FEATURE | ACL | SRC_USER_10 | TEST
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 routing config with ACL with\
 | | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
@@ -481,7 +481,7 @@
 | | ... | min_rate=${10000} | search_type=NDR
 
 | tc30-64B-2t2c-ethip4-ip4base-iacl50-stateless-flows10k-pdrdisc
-| | [Tags] | 2T2C | MTHREAD | PDRDISC | FEATURE | ACL | SRC_USER_10
+| | [Tags] | 2T2C | MTHREAD | PDRDISC | FEATURE | ACL | SRC_USER_10 | TEST
 | | ... | SKIP_PATCH
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 routing config with ACL with\
@@ -547,7 +547,7 @@
 
 | tc35-64B-2t2c-ethip4-ip4base-iacl50-stateless-flows100k-ndrdisc
 | | ...
-| | [Tags] | 2T2C | MTHREAD | NDRDISC | FEATURE | ACL | SRC_USER_100
+| | [Tags] | 2T2C | MTHREAD | NDRDISC | FEATURE | ACL | SRC_USER_100 | TEST
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 routing config with ACL with\
 | | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
@@ -559,7 +559,7 @@
 | | ... | min_rate=${10000} | search_type=NDR
 
 | tc36-64B-2t2c-ethip4-ip4base-iacl50-stateless-flows100k-pdrdisc
-| | [Tags] | 2T2C | MTHREAD | PDRDISC | FEATURE | ACL | SRC_USER_100
+| | [Tags] | 2T2C | MTHREAD | PDRDISC | FEATURE | ACL | SRC_USER_100 | TEST
 | | ... | SKIP_PATCH
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 routing config with ACL with\
