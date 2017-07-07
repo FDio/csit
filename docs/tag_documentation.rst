@@ -108,6 +108,21 @@ Scaling TAGs
 
     Traffic flow with 4000 unique IPs (users) in one direction.
 
+.. topic:: 100_FLOWS
+
+    Traffic stream with 100 unique flows (10 IPs/users x 10 UDP ports) in one
+    direction.
+
+.. topic:: 10k_FLOWS
+
+    Traffic stream with 10 000 unique flows (10 IPs/users x 1000 UDP ports) in
+    one direction.
+
+.. topic:: 100k_FLOWS
+
+    Traffic stream with 100 000 unique flows (100 IPs/users x 1000 UDP ports) in
+    one direction.
+
 Tags marking functional vs. performance of tests
 ------------------------------------------------
 
@@ -365,6 +380,38 @@ Feature tags
 .. topic:: SNAT
 
     SNAT configured and tested.
+
+.. topic:: ACL
+
+    ACL plugin configured and tested.
+
+.. topic:: IACL
+
+    ACL plugin configured and tested on input path.
+
+.. topic:: OACL
+
+    ACL plugin configured and tested on output path.
+
+.. topic:: ACL_STATELESS
+
+    ACL plugin configured and tested in stateless mode (permit action).
+
+.. topic:: ACL_STATEFUL
+
+    ACL plugin configured and tested in stateful mode (permit+reflect action).
+
+.. topic:: ACL1
+
+    ACL plugin configured and tested with 1 not-hitting ACE.
+
+.. topic:: ACL10
+
+    ACL plugin configured and tested with 10 not-hitting ACEs.
+
+.. topic:: ACL50
+
+    ACL plugin configured and tested with 50 not-hitting ACEs.
 
 Encryption tags
 ---------------
