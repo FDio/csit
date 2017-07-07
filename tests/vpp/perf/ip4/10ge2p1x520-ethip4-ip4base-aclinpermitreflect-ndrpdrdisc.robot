@@ -14,12 +14,16 @@
 *** Settings ***
 | Resource | resources/libraries/robot/performance/performance_setup.robot
 | Library | resources.libraries.python.Classify
+| Library | resources.libraries.python.IPv4Setup.Dut | ${nodes['DUT1']}
+| ... | WITH NAME | dut1_v4
+| Library | resources.libraries.python.IPv4Setup.Dut | ${nodes['DUT2']}
+| ... | WITH NAME | dut2_v4
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDRDISC
-| ... | NIC_Intel-X520-DA2 | ETH | L2BDMACLRN
+| ... | NIC_Intel-X520-DA2 | ETH | IP4FWD
 | ...
 | Suite Setup | Set up 3-node performance topology with DUT's NIC model
-| ... | L2 | Intel-X520-DA2
+| ... | L3 | Intel-X520-DA2
 | Suite Teardown | Tear down 3-node performance topology
 | ...
 | Test Setup | Set up performance test
@@ -30,14 +34,14 @@
 | ... | AND | Run Keyword And Ignore Error
 |     | ... | Vpp Log Plugin Acl Interface Assignment | ${dut1}
 | ...
-| Documentation | *RFC2544: Packet throughput L2BD test cases with ACL*
+| Documentation | *RFC2544: Packet throughput IPv4 test cases with ACL*
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology\
 | ... | with single links between nodes.
 | ... | *[Enc] Packet Encapsulations:* Eth-IPv4 for L2 switching of IPv4.
 | ... | *[Cfg] DUT configuration:* DUT1 is configured with L2 bridge domain\
 | ... | and MAC learning enabled. DUT2 is configured with L2 cross-connects.\
-| ... | Required ACL rules are applied to output paths of both DUT1 intefaces.\
+| ... | Required ACL rules are applied to input paths of both DUT1 intefaces.\
 | ... | DUT1 and DUT2 are tested with 2p10GE NIC X520 Niantic by Intel.\
 | ... | *[Ver] TG verification:* TG finds and reports throughput NDR (Non Drop\
 | ... | Rate) with zero packet loss tolerance or throughput PDR (Partial Drop\
@@ -68,7 +72,7 @@
 | ${trex_stream2_subnet}= | 20.20.20.0/24
 
 *** Keywords ***
-| Discover NDR or PDR for L2 Bridge Domain with ACLs
+| Discover NDR or PDR for IPv4 routing with ACLs
 | | [Arguments] | ${wt} | ${rxq} | ${no_hit_aces_number} | ${acl_apply_type}
 | | ...         | ${acl_action} | ${flows_per_dir} | ${framesize} | ${min_rate}
 | | ...         | ${search_type}
@@ -86,7 +90,11 @@
 | | ${get_framesize}= | Get Frame Size | ${framesize}
 | | And Run Keyword If | ${get_framesize} < ${1522} | Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | When Initialize L2 bridge domain with IPv4 ACLs on DUT1 in 3-node circular topology
+| | ${ip_nr}= | Set Variable If
+| | ... | '${flows_per_dir}' == '100' | 10
+| | ... | '${flows_per_dir}' == '10k' | 10
+| | ... | '${flows_per_dir}' == '100k' | 100
+| | When Initialize IPv4 routing for '${ip_nr}' addresses with IPv4 ACLs on DUT1 in 3-node circular topology
 | | ${traffic_profile}= | Set Variable If
 | | ... | '${flows_per_dir}' == '100' | trex-sl-3n-ethip4udp-10u10p-conc
 | | ... | '${flows_per_dir}' == '10k' | trex-sl-3n-ethip4udp-10u1000p-conc
@@ -103,462 +111,462 @@
 | | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
 
 *** Test Cases ***
-| tc01-64B-1t1c-eth-l2bdbasemaclrn-oacl1-stateless-flows100-ndrdisc
+| tc01-64B-1t1c-ethip4-ip4base-iacl1-stateful-flows100-ndrdisc
 | | ...
 | | [Tags] | 1T1C | STHREAD | NDRDISC | FEATURE | ACL | SRC_USER_100
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2BD switching config with ACL with\
+| | ... | [Cfg] DUT runs IPv4 routing config with ACL with\
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 10kpps.
-| | [Template] | Discover NDR or PDR for L2 Bridge Domain with ACLs
-| | wt=1 | rxq=1 | no_hit_aces_number=1 | acl_apply_type=output
-| | ... | acl_action=permit | flows_per_dir=100 | framesize=${64}
+| | [Template] | Discover NDR or PDR for IPv4 routing with ACLs
+| | wt=1 | rxq=1 | no_hit_aces_number=1 | acl_apply_type=input
+| | ... | acl_action=permit+reflect | flows_per_dir=100 | framesize=${64}
 | | ... | min_rate=${10000} | search_type=NDR
 
-| tc02-64B-1t1c-eth-l2bdbasemaclrn-oacl1-stateless-flows100-pdrdisc
+| tc02-64B-1t1c-ethip4-ip4base-iacl1-stateful-flows100-pdrdisc
 | | [Tags] | 1T1C | STHREAD | PDRDISC | FEATURE | ACL | SRC_USER_100
 | | ... | SKIP_PATCH
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2BD switching config with ACL with\
+| | ... | [Cfg] DUT runs IPv4 routing config with ACL with\
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
 | | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 10kpps, LT=0.5%.
-| | [Template] | Discover NDR or PDR for L2 Bridge Domain with ACLs
-| | wt=1 | rxq=1 | no_hit_aces_number=1 | acl_apply_type=output
-| | ... | acl_action=permit | flows_per_dir=100 | framesize=${64}
+| | [Template] | Discover NDR or PDR for IPv4 routing with ACLs
+| | wt=1 | rxq=1 | no_hit_aces_number=1 | acl_apply_type=input
+| | ... | acl_action=permit+reflect | flows_per_dir=100 | framesize=${64}
 | | ... | min_rate=${10000} | search_type=PDR
 
-| tc03-64B-1t1c-eth-l2bdbasemaclrn-oacl10-stateless-flows100-ndrdisc
+| tc03-64B-1t1c-ethip4-ip4base-iacl10-stateful-flows100-ndrdisc
 | | [Tags] | 1T1C | STHREAD | NDRDISC | FEATURE | ACL | SRC_USER_100
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2BD switching config with ACL with\
+| | ... | [Cfg] DUT runs IPv4 routing config with ACL with\
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 10kpps.
-| | [Template] | Discover NDR or PDR for L2 Bridge Domain with ACLs
-| | wt=1 | rxq=1 | no_hit_aces_number=10 | acl_apply_type=output
-| | ... | acl_action=permit | flows_per_dir=100 | framesize=${64}
+| | [Template] | Discover NDR or PDR for IPv4 routing with ACLs
+| | wt=1 | rxq=1 | no_hit_aces_number=10 | acl_apply_type=input
+| | ... | acl_action=permit+reflect | flows_per_dir=100 | framesize=${64}
 | | ... | min_rate=${10000} | search_type=NDR
 
-| tc04-64B-1t1c-eth-l2bdbasemaclrn-oacl10-stateless-flows100-pdrdisc
+| tc04-64B-1t1c-ethip4-ip4base-iacl10-stateful-flows100-pdrdisc
 | | [Tags] | 1T1C | STHREAD | PDRDISC | FEATURE | ACL | SRC_USER_100
 | | ... | SKIP_PATCH
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2BD switching config with ACL with\
+| | ... | [Cfg] DUT runs IPv4 routing config with ACL with\
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
 | | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 10kpps, LT=0.5%.
-| | [Template] | Discover NDR or PDR for L2 Bridge Domain with ACLs
-| | wt=1 | rxq=1 | no_hit_aces_number=10 | acl_apply_type=output
-| | ... | acl_action=permit | flows_per_dir=100 | framesize=${64}
+| | [Template] | Discover NDR or PDR for IPv4 routing with ACLs
+| | wt=1 | rxq=1 | no_hit_aces_number=10 | acl_apply_type=input
+| | ... | acl_action=permit+reflect | flows_per_dir=100 | framesize=${64}
 | | ... | min_rate=${10000} | search_type=PDR
 
-| tc05-64B-1t1c-eth-l2bdbasemaclrn-oacl50-stateless-flows100-ndrdisc
+| tc05-64B-1t1c-ethip4-ip4base-iacl50-stateful-flows100-ndrdisc
 | | [Tags] | 1T1C | STHREAD | NDRDISC | FEATURE | ACL | SRC_USER_100
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2BD switching config with ACL with\
+| | ... | [Cfg] DUT runs IPv4 routing config with ACL with\
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 10kpps.
-| | [Template] | Discover NDR or PDR for L2 Bridge Domain with ACLs
-| | wt=1 | rxq=1 | no_hit_aces_number=50 | acl_apply_type=output
-| | ... | acl_action=permit | flows_per_dir=100 | framesize=${64}
+| | [Template] | Discover NDR or PDR for IPv4 routing with ACLs
+| | wt=1 | rxq=1 | no_hit_aces_number=50 | acl_apply_type=input
+| | ... | acl_action=permit+reflect | flows_per_dir=100 | framesize=${64}
 | | ... | min_rate=${10000} | search_type=NDR
 
-| tc06-64B-1t1c-eth-l2bdbasemaclrn-oacl50-stateless-flows100-pdrdisc
+| tc06-64B-1t1c-ethip4-ip4base-iacl50-stateful-flows100-pdrdisc
 | | [Tags] | 1T1C | STHREAD | PDRDISC | FEATURE | ACL | SRC_USER_100
 | | ... | SKIP_PATCH
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2BD switching config with ACL with\
+| | ... | [Cfg] DUT runs IPv4 routing config with ACL with\
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
 | | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 10kpps, LT=0.5%.
-| | [Template] | Discover NDR or PDR for L2 Bridge Domain with ACLs
-| | wt=1 | rxq=1 | no_hit_aces_number=50 | acl_apply_type=output
-| | ... | acl_action=permit | flows_per_dir=100 | framesize=${64}
+| | [Template] | Discover NDR or PDR for IPv4 routing with ACLs
+| | wt=1 | rxq=1 | no_hit_aces_number=50 | acl_apply_type=input
+| | ... | acl_action=permit+reflect | flows_per_dir=100 | framesize=${64}
 | | ... | min_rate=${10000} | search_type=PDR
 
-| tc07-64B-1t1c-eth-l2bdbasemaclrn-oacl1-stateless-flows10k-ndrdisc
+| tc07-64B-1t1c-ethip4-ip4base-iacl1-stateful-flows10k-ndrdisc
 | | [Tags] | 1T1C | STHREAD | NDRDISC | FEATURE | ACL | SRC_USER_10
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2BD switching config with ACL with\
+| | ... | [Cfg] DUT runs IPv4 routing config with ACL with\
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 10kpps.
-| | [Template] | Discover NDR or PDR for L2 Bridge Domain with ACLs
-| | wt=1 | rxq=1 | no_hit_aces_number=1 | acl_apply_type=output
-| | ... | acl_action=permit | flows_per_dir=10k | framesize=${64}
+| | [Template] | Discover NDR or PDR for IPv4 routing with ACLs
+| | wt=1 | rxq=1 | no_hit_aces_number=1 | acl_apply_type=input
+| | ... | acl_action=permit+reflect | flows_per_dir=10k | framesize=${64}
 | | ... | min_rate=${10000} | search_type=NDR
 
-| tc08-64B-1t1c-eth-l2bdbasemaclrn-oacl1-stateless-flows10k-pdrdisc
+| tc08-64B-1t1c-ethip4-ip4base-iacl1-stateful-flows10k-pdrdisc
 | | [Tags] | 1T1C | STHREAD | PDRDISC | FEATURE | ACL | SRC_USER_10
 | | ... | SKIP_PATCH
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2BD switching config with ACL with\
+| | ... | [Cfg] DUT runs IPv4 routing config with ACL with\
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
 | | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 10kpps, LT=0.5%.
-| | [Template] | Discover NDR or PDR for L2 Bridge Domain with ACLs
-| | wt=1 | rxq=1 | no_hit_aces_number=1 | acl_apply_type=output
-| | ... | acl_action=permit | flows_per_dir=10k | framesize=${64}
+| | [Template] | Discover NDR or PDR for IPv4 routing with ACLs
+| | wt=1 | rxq=1 | no_hit_aces_number=1 | acl_apply_type=input
+| | ... | acl_action=permit+reflect | flows_per_dir=10k | framesize=${64}
 | | ... | min_rate=${10000} | search_type=PDR
 
-| tc09-64B-1t1c-eth-l2bdbasemaclrn-oacl10-stateless-flows10k-ndrdisc
+| tc09-64B-1t1c-ethip4-ip4base-iacl10-stateful-flows10k-ndrdisc
 | | [Tags] | 1T1C | STHREAD | NDRDISC | FEATURE | ACL | SRC_USER_10
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2BD switching config with ACL with\
+| | ... | [Cfg] DUT runs IPv4 routing config with ACL with\
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 10kpps.
-| | [Template] | Discover NDR or PDR for L2 Bridge Domain with ACLs
-| | wt=1 | rxq=1 | no_hit_aces_number=10 | acl_apply_type=output
-| | ... | acl_action=permit | flows_per_dir=10k | framesize=${64}
+| | [Template] | Discover NDR or PDR for IPv4 routing with ACLs
+| | wt=1 | rxq=1 | no_hit_aces_number=10 | acl_apply_type=input
+| | ... | acl_action=permit+reflect | flows_per_dir=10k | framesize=${64}
 | | ... | min_rate=${10000} | search_type=NDR
 
-| tc10-64B-1t1c-eth-l2bdbasemaclrn-oacl10-stateless-flows10k-pdrdisc
+| tc10-64B-1t1c-ethip4-ip4base-iacl10-stateful-flows10k-pdrdisc
 | | [Tags] | 1T1C | STHREAD | PDRDISC | FEATURE | ACL | SRC_USER_10
 | | ... | SKIP_PATCH
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2BD switching config with ACL with\
+| | ... | [Cfg] DUT runs IPv4 routing config with ACL with\
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
 | | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 10kpps, LT=0.5%.
-| | [Template] | Discover NDR or PDR for L2 Bridge Domain with ACLs
-| | wt=1 | rxq=1 | no_hit_aces_number=10 | acl_apply_type=output
-| | ... | acl_action=permit | flows_per_dir=10k | framesize=${64}
+| | [Template] | Discover NDR or PDR for IPv4 routing with ACLs
+| | wt=1 | rxq=1 | no_hit_aces_number=10 | acl_apply_type=input
+| | ... | acl_action=permit+reflect | flows_per_dir=10k | framesize=${64}
 | | ... | min_rate=${10000} | search_type=PDR
 
-| tc11-64B-1t1c-eth-l2bdbasemaclrn-oacl50-stateless-flows10k-ndrdisc
+| tc11-64B-1t1c-ethip4-ip4base-iacl50-stateful-flows10k-ndrdisc
 | | [Tags] | 1T1C | STHREAD | NDRDISC | FEATURE | ACL | SRC_USER_10
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2BD switching config with ACL with\
+| | ... | [Cfg] DUT runs IPv4 routing config with ACL with\
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 10kpps.
-| | [Template] | Discover NDR or PDR for L2 Bridge Domain with ACLs
-| | wt=1 | rxq=1 | no_hit_aces_number=50 | acl_apply_type=output
-| | ... | acl_action=permit | flows_per_dir=10k | framesize=${64}
+| | [Template] | Discover NDR or PDR for IPv4 routing with ACLs
+| | wt=1 | rxq=1 | no_hit_aces_number=50 | acl_apply_type=input
+| | ... | acl_action=permit+reflect | flows_per_dir=10k | framesize=${64}
 | | ... | min_rate=${10000} | search_type=NDR
 
-| tc12-64B-1t1c-eth-l2bdbasemaclrn-oacl50-stateless-flows10k-pdrdisc
+| tc12-64B-1t1c-ethip4-ip4base-iacl50-stateful-flows10k-pdrdisc
 | | [Tags] | 1T1C | STHREAD | PDRDISC | FEATURE | ACL | SRC_USER_10
 | | ... | SKIP_PATCH
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2BD switching config with ACL with\
+| | ... | [Cfg] DUT runs IPv4 routing config with ACL with\
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
 | | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 10kpps, LT=0.5%.
-| | [Template] | Discover NDR or PDR for L2 Bridge Domain with ACLs
-| | wt=1 | rxq=1 | no_hit_aces_number=50 | acl_apply_type=output
-| | ... | acl_action=permit | flows_per_dir=10k | framesize=${64}
+| | [Template] | Discover NDR or PDR for IPv4 routing with ACLs
+| | wt=1 | rxq=1 | no_hit_aces_number=50 | acl_apply_type=input
+| | ... | acl_action=permit+reflect | flows_per_dir=10k | framesize=${64}
 | | ... | min_rate=${10000} | search_type=PDR
 
-| tc13-64B-1t1c-eth-l2bdbasemaclrn-oacl1-stateless-flows100k-ndrdisc
+| tc13-64B-1t1c-ethip4-ip4base-iacl1-stateful-flows100k-ndrdisc
 | | [Tags] | 1T1C | STHREAD | NDRDISC | FEATURE | ACL | SRC_USER_100
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2BD switching config with ACL with\
+| | ... | [Cfg] DUT runs IPv4 routing config with ACL with\
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 10kpps.
-| | [Template] | Discover NDR or PDR for L2 Bridge Domain with ACLs
-| | wt=1 | rxq=1 | no_hit_aces_number=1 | acl_apply_type=output
-| | ... | acl_action=permit | flows_per_dir=100k | framesize=${64}
+| | [Template] | Discover NDR or PDR for IPv4 routing with ACLs
+| | wt=1 | rxq=1 | no_hit_aces_number=1 | acl_apply_type=input
+| | ... | acl_action=permit+reflect | flows_per_dir=100k | framesize=${64}
 | | ... | min_rate=${10000} | search_type=NDR
 
-| tc14-64B-1t1c-eth-l2bdbasemaclrn-oacl1-stateless-flows100k-pdrdisc
+| tc14-64B-1t1c-ethip4-ip4base-iacl1-stateful-flows100k-pdrdisc
 | | [Tags] | 1T1C | STHREAD | PDRDISC | FEATURE | ACL | SRC_USER_100
 | | ... | SKIP_PATCH
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2BD switching config with ACL with\
+| | ... | [Cfg] DUT runs IPv4 routing config with ACL with\
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
 | | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 10kpps, LT=0.5%.
-| | [Template] | Discover NDR or PDR for L2 Bridge Domain with ACLs
-| | wt=1 | rxq=1 | no_hit_aces_number=1 | acl_apply_type=output
-| | ... | acl_action=permit | flows_per_dir=100k | framesize=${64}
+| | [Template] | Discover NDR or PDR for IPv4 routing with ACLs
+| | wt=1 | rxq=1 | no_hit_aces_number=1 | acl_apply_type=input
+| | ... | acl_action=permit+reflect | flows_per_dir=100k | framesize=${64}
 | | ... | min_rate=${10000} | search_type=PDR
 
-| tc15-64B-1t1c-eth-l2bdbasemaclrn-oacl10-stateless-flows100k-ndrdisc
+| tc15-64B-1t1c-ethip4-ip4base-iacl10-stateful-flows100k-ndrdisc
 | | [Tags] | 1T1C | STHREAD | NDRDISC | FEATURE | ACL | SRC_USER_100
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2BD switching config with ACL with\
+| | ... | [Cfg] DUT runs IPv4 routing config with ACL with\
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 10kpps.
-| | [Template] | Discover NDR or PDR for L2 Bridge Domain with ACLs
-| | wt=1 | rxq=1 | no_hit_aces_number=10 | acl_apply_type=output
-| | ... | acl_action=permit | flows_per_dir=100k | framesize=${64}
+| | [Template] | Discover NDR or PDR for IPv4 routing with ACLs
+| | wt=1 | rxq=1 | no_hit_aces_number=10 | acl_apply_type=input
+| | ... | acl_action=permit+reflect | flows_per_dir=100k | framesize=${64}
 | | ... | min_rate=${10000} | search_type=NDR
 
-| tc16-64B-1t1c-eth-l2bdbasemaclrn-oacl10-stateless-flows100k-pdrdisc
+| tc16-64B-1t1c-ethip4-ip4base-iacl10-stateful-flows100k-pdrdisc
 | | [Tags] | 1T1C | STHREAD | PDRDISC | FEATURE | ACL | SRC_USER_100
 | | ... | SKIP_PATCH
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2BD switching config with ACL with\
+| | ... | [Cfg] DUT runs IPv4 routing config with ACL with\
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
 | | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 10kpps, LT=0.5%.
-| | [Template] | Discover NDR or PDR for L2 Bridge Domain with ACLs
-| | wt=1 | rxq=1 | no_hit_aces_number=10 | acl_apply_type=output
-| | ... | acl_action=permit | flows_per_dir=100k | framesize=${64}
+| | [Template] | Discover NDR or PDR for IPv4 routing with ACLs
+| | wt=1 | rxq=1 | no_hit_aces_number=10 | acl_apply_type=input
+| | ... | acl_action=permit+reflect | flows_per_dir=100k | framesize=${64}
 | | ... | min_rate=${10000} | search_type=PDR
 
-| tc17-64B-1t1c-eth-l2bdbasemaclrn-oacl50-stateless-flows100k-ndrdisc
+| tc17-64B-1t1c-ethip4-ip4base-iacl50-stateful-flows100k-ndrdisc
 | | [Tags] | 1T1C | STHREAD | NDRDISC | FEATURE | ACL | SRC_USER_100
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2BD switching config with ACL with\
+| | ... | [Cfg] DUT runs IPv4 routing config with ACL with\
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 10kpps.
-| | [Template] | Discover NDR or PDR for L2 Bridge Domain with ACLs
-| | wt=1 | rxq=1 | no_hit_aces_number=50 | acl_apply_type=output
-| | ... | acl_action=permit | flows_per_dir=100k | framesize=${64}
+| | [Template] | Discover NDR or PDR for IPv4 routing with ACLs
+| | wt=1 | rxq=1 | no_hit_aces_number=50 | acl_apply_type=input
+| | ... | acl_action=permit+reflect | flows_per_dir=100k | framesize=${64}
 | | ... | min_rate=${10000} | search_type=NDR
 
-| tc18-64B-1t1c-eth-l2bdbasemaclrn-oacl50-stateless-flows100k-pdrdisc
+| tc18-64B-1t1c-ethip4-ip4base-iacl50-stateful-flows100k-pdrdisc
 | | [Tags] | 1T1C | STHREAD | PDRDISC | FEATURE | ACL | SRC_USER_100
 | | ... | SKIP_PATCH
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2BD switching config with ACL with\
+| | ... | [Cfg] DUT runs IPv4 routing config with ACL with\
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
 | | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 10kpps, LT=0.5%.
-| | [Template] | Discover NDR or PDR for L2 Bridge Domain with ACLs
-| | wt=1 | rxq=1 | no_hit_aces_number=50 | acl_apply_type=output
-| | ... | acl_action=permit | flows_per_dir=100k | framesize=${64}
+| | [Template] | Discover NDR or PDR for IPv4 routing with ACLs
+| | wt=1 | rxq=1 | no_hit_aces_number=50 | acl_apply_type=input
+| | ... | acl_action=permit+reflect | flows_per_dir=100k | framesize=${64}
 | | ... | min_rate=${10000} | search_type=PDR
 
-| tc19-64B-2t2c-eth-l2bdbasemaclrn-oacl1-stateless-flows100-ndrdisc
+| tc19-64B-2t2c-ethip4-ip4base-iacl1-stateful-flows100-ndrdisc
 | | ...
 | | [Tags] | 2T2C | MTHREAD | NDRDISC | FEATURE | ACL | SRC_USER_100
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2BD switching config with ACL with\
+| | ... | [Cfg] DUT runs IPv4 routing config with ACL with\
 | | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 10kpps.
-| | [Template] | Discover NDR or PDR for L2 Bridge Domain with ACLs
-| | wt=2 | rxq=1 | no_hit_aces_number=1 | acl_apply_type=output
-| | ... | acl_action=permit | flows_per_dir=100 | framesize=${64}
+| | [Template] | Discover NDR or PDR for IPv4 routing with ACLs
+| | wt=2 | rxq=1 | no_hit_aces_number=1 | acl_apply_type=input
+| | ... | acl_action=permit+reflect | flows_per_dir=100 | framesize=${64}
 | | ... | min_rate=${10000} | search_type=NDR
 
-| tc20-64B-2t2c-eth-l2bdbasemaclrn-oacl1-stateless-flows100-pdrdisc
+| tc20-64B-2t2c-ethip4-ip4base-iacl1-stateful-flows100-pdrdisc
 | | [Tags] | 2T2C | MTHREAD | PDRDISC | FEATURE | ACL | SRC_USER_100
 | | ... | SKIP_PATCH
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2BD switching config with ACL with\
+| | ... | [Cfg] DUT runs IPv4 routing config with ACL with\
 | | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
 | | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 10kpps, LT=0.5%.
-| | [Template] | Discover NDR or PDR for L2 Bridge Domain with ACLs
-| | wt=2 | rxq=1 | no_hit_aces_number=1 | acl_apply_type=output
-| | ... | acl_action=permit | flows_per_dir=100 | framesize=${64}
+| | [Template] | Discover NDR or PDR for IPv4 routing with ACLs
+| | wt=2 | rxq=1 | no_hit_aces_number=1 | acl_apply_type=input
+| | ... | acl_action=permit+reflect | flows_per_dir=100 | framesize=${64}
 | | ... | min_rate=${10000} | search_type=PDR
 
-| tc21-64B-2t2c-eth-l2bdbasemaclrn-oacl10-stateless-flows100-ndrdisc
+| tc21-64B-2t2c-ethip4-ip4base-iacl10-stateful-flows100-ndrdisc
 | | ...
 | | [Tags] | 2T2C | MTHREAD | NDRDISC | FEATURE | ACL | SRC_USER_100
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2BD switching config with ACL with\
+| | ... | [Cfg] DUT runs IPv4 routing config with ACL with\
 | | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 10kpps.
-| | [Template] | Discover NDR or PDR for L2 Bridge Domain with ACLs
-| | wt=2 | rxq=1 | no_hit_aces_number=10 | acl_apply_type=output
-| | ... | acl_action=permit | flows_per_dir=100 | framesize=${64}
+| | [Template] | Discover NDR or PDR for IPv4 routing with ACLs
+| | wt=2 | rxq=1 | no_hit_aces_number=10 | acl_apply_type=input
+| | ... | acl_action=permit+reflect | flows_per_dir=100 | framesize=${64}
 | | ... | min_rate=${10000} | search_type=NDR
 
-| tc22-64B-2t2c-eth-l2bdbasemaclrn-oacl10-stateless-flows100-pdrdisc
+| tc22-64B-2t2c-ethip4-ip4base-iacl10-stateful-flows100-pdrdisc
 | | [Tags] | 2T2C | MTHREAD | PDRDISC | FEATURE | ACL | SRC_USER_100
 | | ... | SKIP_PATCH
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2BD switching config with ACL with\
+| | ... | [Cfg] DUT runs IPv4 routing config with ACL with\
 | | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
 | | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 10kpps, LT=0.5%.
-| | [Template] | Discover NDR or PDR for L2 Bridge Domain with ACLs
-| | wt=2 | rxq=1 | no_hit_aces_number=10 | acl_apply_type=output
-| | ... | acl_action=permit | flows_per_dir=100 | framesize=${64}
+| | [Template] | Discover NDR or PDR for IPv4 routing with ACLs
+| | wt=2 | rxq=1 | no_hit_aces_number=10 | acl_apply_type=input
+| | ... | acl_action=permit+reflect | flows_per_dir=100 | framesize=${64}
 | | ... | min_rate=${10000} | search_type=PDR
 
-| tc23-64B-2t2c-eth-l2bdbasemaclrn-oacl50-stateless-flows100-ndrdisc
+| tc23-64B-2t2c-ethip4-ip4base-iacl50-stateful-flows100-ndrdisc
 | | ...
 | | [Tags] | 2T2C | MTHREAD | NDRDISC | FEATURE | ACL | SRC_USER_100
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2BD switching config with ACL with\
+| | ... | [Cfg] DUT runs IPv4 routing config with ACL with\
 | | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 10kpps.
-| | [Template] | Discover NDR or PDR for L2 Bridge Domain with ACLs
-| | wt=2 | rxq=1 | no_hit_aces_number=50 | acl_apply_type=output
-| | ... | acl_action=permit | flows_per_dir=100 | framesize=${64}
+| | [Template] | Discover NDR or PDR for IPv4 routing with ACLs
+| | wt=2 | rxq=1 | no_hit_aces_number=50 | acl_apply_type=input
+| | ... | acl_action=permit+reflect | flows_per_dir=100 | framesize=${64}
 | | ... | min_rate=${10000} | search_type=NDR
 
-| tc24-64B-2t2c-eth-l2bdbasemaclrn-oacl50-stateless-flows100-pdrdisc
+| tc24-64B-2t2c-ethip4-ip4base-iacl50-stateful-flows100-pdrdisc
 | | [Tags] | 2T2C | MTHREAD | PDRDISC | FEATURE | ACL | SRC_USER_100
 | | ... | SKIP_PATCH
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2BD switching config with ACL with\
+| | ... | [Cfg] DUT runs IPv4 routing config with ACL with\
 | | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
 | | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 10kpps, LT=0.5%.
-| | [Template] | Discover NDR or PDR for L2 Bridge Domain with ACLs
-| | wt=2 | rxq=1 | no_hit_aces_number=50 | acl_apply_type=output
-| | ... | acl_action=permit | flows_per_dir=100 | framesize=${64}
+| | [Template] | Discover NDR or PDR for IPv4 routing with ACLs
+| | wt=2 | rxq=1 | no_hit_aces_number=50 | acl_apply_type=input
+| | ... | acl_action=permit+reflect | flows_per_dir=100 | framesize=${64}
 | | ... | min_rate=${10000} | search_type=PDR
 
-| tc25-64B-2t2c-eth-l2bdbasemaclrn-oacl1-stateless-flows10k-ndrdisc
+| tc25-64B-2t2c-ethip4-ip4base-iacl1-stateful-flows10k-ndrdisc
 | | ...
 | | [Tags] | 2T2C | MTHREAD | NDRDISC | FEATURE | ACL | SRC_USER_10
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2BD switching config with ACL with\
+| | ... | [Cfg] DUT runs IPv4 routing config with ACL with\
 | | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 10kpps.
-| | [Template] | Discover NDR or PDR for L2 Bridge Domain with ACLs
-| | wt=2 | rxq=1 | no_hit_aces_number=1 | acl_apply_type=output
-| | ... | acl_action=permit | flows_per_dir=10k | framesize=${64}
+| | [Template] | Discover NDR or PDR for IPv4 routing with ACLs
+| | wt=2 | rxq=1 | no_hit_aces_number=1 | acl_apply_type=input
+| | ... | acl_action=permit+reflect | flows_per_dir=10k | framesize=${64}
 | | ... | min_rate=${10000} | search_type=NDR
 
-| tc26-64B-2t2c-eth-l2bdbasemaclrn-oacl1-stateless-flows10k-pdrdisc
+| tc26-64B-2t2c-ethip4-ip4base-iacl1-stateful-flows10k-pdrdisc
 | | [Tags] | 2T2C | MTHREAD | PDRDISC | FEATURE | ACL | SRC_USER_10
 | | ... | SKIP_PATCH
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2BD switching config with ACL with\
+| | ... | [Cfg] DUT runs IPv4 routing config with ACL with\
 | | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
 | | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 10kpps, LT=0.5%.
-| | [Template] | Discover NDR or PDR for L2 Bridge Domain with ACLs
-| | wt=2 | rxq=1 | no_hit_aces_number=1 | acl_apply_type=output
-| | ... | acl_action=permit | flows_per_dir=10k | framesize=${64}
+| | [Template] | Discover NDR or PDR for IPv4 routing with ACLs
+| | wt=2 | rxq=1 | no_hit_aces_number=1 | acl_apply_type=input
+| | ... | acl_action=permit+reflect | flows_per_dir=10k | framesize=${64}
 | | ... | min_rate=${10000} | search_type=PDR
 
-| tc27-64B-2t2c-eth-l2bdbasemaclrn-oacl10-stateless-flows10k-ndrdisc
+| tc27-64B-2t2c-ethip4-ip4base-iacl10-stateful-flows10k-ndrdisc
 | | ...
 | | [Tags] | 2T2C | MTHREAD | NDRDISC | FEATURE | ACL | SRC_USER_10
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2BD switching config with ACL with\
+| | ... | [Cfg] DUT runs IPv4 routing config with ACL with\
 | | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 10kpps.
-| | [Template] | Discover NDR or PDR for L2 Bridge Domain with ACLs
-| | wt=2 | rxq=1 | no_hit_aces_number=10 | acl_apply_type=output
-| | ... | acl_action=permit | flows_per_dir=10k | framesize=${64}
+| | [Template] | Discover NDR or PDR for IPv4 routing with ACLs
+| | wt=2 | rxq=1 | no_hit_aces_number=10 | acl_apply_type=input
+| | ... | acl_action=permit+reflect | flows_per_dir=10k | framesize=${64}
 | | ... | min_rate=${10000} | search_type=NDR
 
-| tc28-64B-2t2c-eth-l2bdbasemaclrn-oacl10-stateless-flows10k-pdrdisc
+| tc28-64B-2t2c-ethip4-ip4base-iacl10-stateful-flows10k-pdrdisc
 | | [Tags] | 2T2C | MTHREAD | PDRDISC | FEATURE | ACL | SRC_USER_10
 | | ... | SKIP_PATCH
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2BD switching config with ACL with\
+| | ... | [Cfg] DUT runs IPv4 routing config with ACL with\
 | | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
 | | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 10kpps, LT=0.5%.
-| | [Template] | Discover NDR or PDR for L2 Bridge Domain with ACLs
-| | wt=2 | rxq=1 | no_hit_aces_number=10 | acl_apply_type=output
-| | ... | acl_action=permit | flows_per_dir=10k | framesize=${64}
+| | [Template] | Discover NDR or PDR for IPv4 routing with ACLs
+| | wt=2 | rxq=1 | no_hit_aces_number=10 | acl_apply_type=input
+| | ... | acl_action=permit+reflect | flows_per_dir=10k | framesize=${64}
 | | ... | min_rate=${10000} | search_type=PDR
 
-| tc29-64B-2t2c-eth-l2bdbasemaclrn-oacl50-stateless-flows10k-ndrdisc
+| tc29-64B-2t2c-ethip4-ip4base-iacl50-stateful-flows10k-ndrdisc
 | | ...
 | | [Tags] | 2T2C | MTHREAD | NDRDISC | FEATURE | ACL | SRC_USER_10
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2BD switching config with ACL with\
+| | ... | [Cfg] DUT runs IPv4 routing config with ACL with\
 | | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 10kpps.
-| | [Template] | Discover NDR or PDR for L2 Bridge Domain with ACLs
-| | wt=2 | rxq=1 | no_hit_aces_number=50 | acl_apply_type=output
-| | ... | acl_action=permit | flows_per_dir=10k | framesize=${64}
+| | [Template] | Discover NDR or PDR for IPv4 routing with ACLs
+| | wt=2 | rxq=1 | no_hit_aces_number=50 | acl_apply_type=input
+| | ... | acl_action=permit+reflect | flows_per_dir=10k | framesize=${64}
 | | ... | min_rate=${10000} | search_type=NDR
 
-| tc30-64B-2t2c-eth-l2bdbasemaclrn-oacl50-stateless-flows10k-pdrdisc
+| tc30-64B-2t2c-ethip4-ip4base-iacl50-stateful-flows10k-pdrdisc
 | | [Tags] | 2T2C | MTHREAD | PDRDISC | FEATURE | ACL | SRC_USER_10
 | | ... | SKIP_PATCH
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2BD switching config with ACL with\
+| | ... | [Cfg] DUT runs IPv4 routing config with ACL with\
 | | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
 | | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 10kpps, LT=0.5%.
-| | [Template] | Discover NDR or PDR for L2 Bridge Domain with ACLs
-| | wt=2 | rxq=1 | no_hit_aces_number=50 | acl_apply_type=output
-| | ... | acl_action=permit | flows_per_dir=10k | framesize=${64}
+| | [Template] | Discover NDR or PDR for IPv4 routing with ACLs
+| | wt=2 | rxq=1 | no_hit_aces_number=50 | acl_apply_type=input
+| | ... | acl_action=permit+reflect | flows_per_dir=10k | framesize=${64}
 | | ... | min_rate=${10000} | search_type=PDR
 
-| tc31-64B-2t2c-eth-l2bdbasemaclrn-oacl1-stateless-flows100k-ndrdisc
+| tc31-64B-2t2c-ethip4-ip4base-iacl1-stateful-flows100k-ndrdisc
 | | ...
 | | [Tags] | 2T2C | MTHREAD | NDRDISC | FEATURE | ACL | SRC_USER_100
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2BD switching config with ACL with\
+| | ... | [Cfg] DUT runs IPv4 routing config with ACL with\
 | | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 10kpps.
-| | [Template] | Discover NDR or PDR for L2 Bridge Domain with ACLs
-| | wt=2 | rxq=1 | no_hit_aces_number=1 | acl_apply_type=output
-| | ... | acl_action=permit | flows_per_dir=100k | framesize=${64}
+| | [Template] | Discover NDR or PDR for IPv4 routing with ACLs
+| | wt=2 | rxq=1 | no_hit_aces_number=1 | acl_apply_type=input
+| | ... | acl_action=permit+reflect | flows_per_dir=100k | framesize=${64}
 | | ... | min_rate=${10000} | search_type=NDR
 
-| tc32-64B-2t2c-eth-l2bdbasemaclrn-oacl1-stateless-flows100k-pdrdisc
+| tc32-64B-2t2c-ethip4-ip4base-iacl1-stateful-flows100k-pdrdisc
 | | [Tags] | 2T2C | MTHREAD | PDRDISC | FEATURE | ACL | SRC_USER_100
 | | ... | SKIP_PATCH
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2BD switching config with ACL with\
+| | ... | [Cfg] DUT runs IPv4 routing config with ACL with\
 | | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
 | | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 10kpps, LT=0.5%.
-| | [Template] | Discover NDR or PDR for L2 Bridge Domain with ACLs
-| | wt=2 | rxq=1 | no_hit_aces_number=1 | acl_apply_type=output
-| | ... | acl_action=permit | flows_per_dir=100k | framesize=${64}
+| | [Template] | Discover NDR or PDR for IPv4 routing with ACLs
+| | wt=2 | rxq=1 | no_hit_aces_number=1 | acl_apply_type=input
+| | ... | acl_action=permit+reflect | flows_per_dir=100k | framesize=${64}
 | | ... | min_rate=${10000} | search_type=PDR
 
-| tc33-64B-2t2c-eth-l2bdbasemaclrn-oacl10-stateless-flows100k-ndrdisc
+| tc33-64B-2t2c-ethip4-ip4base-iacl10-stateful-flows100k-ndrdisc
 | | ...
 | | [Tags] | 2T2C | MTHREAD | NDRDISC | FEATURE | ACL | SRC_USER_100
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2BD switching config with ACL with\
+| | ... | [Cfg] DUT runs IPv4 routing config with ACL with\
 | | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 10kpps.
-| | [Template] | Discover NDR or PDR for L2 Bridge Domain with ACLs
-| | wt=2 | rxq=1 | no_hit_aces_number=10 | acl_apply_type=output
-| | ... | acl_action=permit | flows_per_dir=100k | framesize=${64}
+| | [Template] | Discover NDR or PDR for IPv4 routing with ACLs
+| | wt=2 | rxq=1 | no_hit_aces_number=10 | acl_apply_type=input
+| | ... | acl_action=permit+reflect | flows_per_dir=100k | framesize=${64}
 | | ... | min_rate=${10000} | search_type=NDR
 
-| tc34-64B-2t2c-eth-l2bdbasemaclrn-oacl10-stateless-flows100k-pdrdisc
+| tc34-64B-2t2c-ethip4-ip4base-iacl10-stateful-flows100k-pdrdisc
 | | [Tags] | 2T2C | MTHREAD | PDRDISC | FEATURE | ACL | SRC_USER_100
 | | ... | SKIP_PATCH
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2BD switching config with ACL with\
+| | ... | [Cfg] DUT runs IPv4 routing config with ACL with\
 | | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
 | | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 10kpps, LT=0.5%.
-| | [Template] | Discover NDR or PDR for L2 Bridge Domain with ACLs
-| | wt=2 | rxq=1 | no_hit_aces_number=10 | acl_apply_type=output
-| | ... | acl_action=permit | flows_per_dir=100k | framesize=${64}
+| | [Template] | Discover NDR or PDR for IPv4 routing with ACLs
+| | wt=2 | rxq=1 | no_hit_aces_number=10 | acl_apply_type=input
+| | ... | acl_action=permit+reflect | flows_per_dir=100k | framesize=${64}
 | | ... | min_rate=${10000} | search_type=PDR
 
-| tc35-64B-2t2c-eth-l2bdbasemaclrn-oacl50-stateless-flows100k-ndrdisc
+| tc35-64B-2t2c-ethip4-ip4base-iacl50-stateful-flows100k-ndrdisc
 | | ...
 | | [Tags] | 2T2C | MTHREAD | NDRDISC | FEATURE | ACL | SRC_USER_100
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2BD switching config with ACL with\
+| | ... | [Cfg] DUT runs IPv4 routing config with ACL with\
 | | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 10kpps.
-| | [Template] | Discover NDR or PDR for L2 Bridge Domain with ACLs
-| | wt=2 | rxq=1 | no_hit_aces_number=50 | acl_apply_type=output
-| | ... | acl_action=permit | flows_per_dir=100k | framesize=${64}
+| | [Template] | Discover NDR or PDR for IPv4 routing with ACLs
+| | wt=2 | rxq=1 | no_hit_aces_number=50 | acl_apply_type=input
+| | ... | acl_action=permit+reflect | flows_per_dir=100k | framesize=${64}
 | | ... | min_rate=${10000} | search_type=NDR
 
-| tc36-64B-2t2c-eth-l2bdbasemaclrn-oacl50-stateless-flows100k-pdrdisc
+| tc36-64B-2t2c-ethip4-ip4base-iacl50-stateful-flows100k-pdrdisc
 | | [Tags] | 2T2C | MTHREAD | PDRDISC | FEATURE | ACL | SRC_USER_100
 | | ... | SKIP_PATCH
 | | [Documentation]
-| | ... | [Cfg] DUT runs L2BD switching config with ACL with\
+| | ... | [Cfg] DUT runs IPv4 routing config with ACL with\
 | | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
 | | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 10kpps, LT=0.5%.
-| | [Template] | Discover NDR or PDR for L2 Bridge Domain with ACLs
-| | wt=2 | rxq=1 | no_hit_aces_number=50 | acl_apply_type=output
-| | ... | acl_action=permit | flows_per_dir=100k | framesize=${64}
+| | [Template] | Discover NDR or PDR for IPv4 routing with ACLs
+| | wt=2 | rxq=1 | no_hit_aces_number=50 | acl_apply_type=input
+| | ... | acl_action=permit+reflect | flows_per_dir=100k | framesize=${64}
 | | ... | min_rate=${10000} | search_type=PDR

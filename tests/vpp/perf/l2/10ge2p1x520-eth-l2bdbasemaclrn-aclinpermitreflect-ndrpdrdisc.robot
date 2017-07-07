@@ -16,7 +16,7 @@
 | Library | resources.libraries.python.Classify
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDRDISC
-| ... | NIC_Intel-X520-DA2 | ETH | L2BDMACLRN | TEST
+| ... | NIC_Intel-X520-DA2 | ETH | L2BDMACLRN
 | ...
 | Suite Setup | Set up 3-node performance topology with DUT's NIC model
 | ... | L2 | Intel-X520-DA2
