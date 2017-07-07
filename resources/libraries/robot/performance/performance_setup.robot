@@ -531,16 +531,38 @@
 | | ... | *Arguments:*
 | | ... | - rate - Rate for sending packets. Type: string
 | | ... | - framesize - L2 Frame Size [B]. Type: integer
-| | ... | - topology_type - Topology type. Type: string
+| | ... | - traffic_profile - Traffic profile. Type: string
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Tear down performance discovery test with SNAT \| 4.0mpps \| 64 \
+| | ... | \| Tear down performance discovery test with SNAT \| 100000pps \| 64 \
 | | ... | \| ${traffic_profile} \|
 | | ...
 | | [Arguments] | ${rate} | ${framesize} | ${traffic_profile}
 | | ...
-| | Tear down performance discovery test | ${rate}pps | ${framesize}
+| | Tear down performance discovery test | ${rate} | ${framesize}
 | | ... | ${traffic_profile}
 | | Show SNAT verbose | ${dut1}
 | | Show SNAT verbose | ${dut2}
+
+| Tear down performance test with ACL
+| | [Documentation] | Common test teardown for ndrdisc and pdrdisc performance \
+| | ... | tests with ACL feature used.
+| | ...
+| | ... | *Arguments:*
+| | ... | - rate - Rate for sending packets. Type: string
+| | ... | - framesize - L2 Frame Size [B]. Type: integer
+| | ... | - traffic_profile - Traffic profile. Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Tear down performance test with ACL \| 100000pps \| 64 \
+| | ... | \| ${traffic_profile} \|
+| | ...
+| | [Arguments] | ${rate} | ${framesize} | ${traffic_profile}
+| | ...
+| | Tear down performance discovery test | ${rate} | ${framesize}
+| ... | ${traffic_profile}
+| | Vpp Log Plugin Acl Settings | ${dut1}
+| | Run Keyword And Ignore Error | Vpp Log Plugin Acl Interface Assignment
+| ... | ${dut1}
