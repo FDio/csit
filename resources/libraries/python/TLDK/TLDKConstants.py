@@ -22,10 +22,10 @@ class TLDKConstants(object):
     REMOTE_FW_DIR = '/tmp/TLDK-testing'
 
     # Shell scripts location
-    TLDK_SCRIPTS = 'TLDK-tests/tldk_scripts'
+    TLDK_SCRIPTS = 'tests/tldk/tldk_scripts'
 
     # Libraries location
-    TLDK_DEPLIBS = 'TLDK-tests/tldk_deplibs'
+    TLDK_DEPLIBS = 'tests/tldk/tldk_deplibs'
 
     # Config files location for the TLDK test
-    TLDK_TESTCONFIG = 'TLDK-tests/tldk_testconfig'
+    TLDK_TESTCONFIG = 'tests/tldk/tldk_testconfig'
