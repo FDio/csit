@@ -17,13 +17,13 @@ Stream profile:
  - Two streams sent in directions 0 --> 1 and 1 --> 0 at the same time.
  - Packet: ETH / IP / UDP
  - Direction 0 --> 1:
-   - Source IP address range:      10.10.10.0 - 10.10.10.9
-   - Destination IP address range: 20.20.20.0 - 20.20.20.9
+   - Source IP address range:      10.10.10.2 - 10.10.10.11
+   - Destination IP address range: 20.20.20.2 - 20.20.2011
    - Source UDP port range:        1001 - 1010
    - Destination UDP port range:   2001 - 2010
  - Direction 1 --> 0:
-   - Source IP address range:      20.20.20.0 - 20.20.20.9
-   - Destination IP address range: 10.10.10.0 - 10.10.10.9
+   - Source IP address range:      20.20.20.2 - 20.20.20.11
+   - Destination IP address range: 10.10.10.2 - 10.10.10.11
    - Source UDP port range:        2001-2010
    - Destination UDP port range:   1001 - 1010
 """
@@ -41,15 +41,15 @@ class TrafficStreams(TrafficStreamsBaseClass):
         super(TrafficStreamsBaseClass, self).__init__()
 
         # IPs used in packet headers.
-        self.p1_src_start_ip = '10.10.10.0'
-        self.p1_src_end_ip = '10.10.10.9'
-        self.p1_dst_start_ip = '20.20.20.0'
-        self.p1_dst_end_ip = '20.20.20.9'
+        self.p1_src_start_ip = '10.10.10.2'
+        self.p1_src_end_ip = '10.10.10.11'
+        self.p1_dst_start_ip = '20.20.20.2'
+        self.p1_dst_end_ip = '20.20.20.11'
 
-        self.p2_src_start_ip = '20.20.20.0'
-        self.p2_src_end_ip = '20.20.20.9'
-        self.p2_dst_start_ip = '10.10.10.0'
-        self.p2_dst_end_ip = '10.10.10.9'
+        self.p2_src_start_ip = '20.20.20.2'
+        self.p2_src_end_ip = '20.20.20.11'
+        self.p2_dst_start_ip = '10.10.10.2'
+        self.p2_dst_end_ip = '10.10.10.11'
 
         # UDP ports used in packet headers.
         self.p1_src_start_udp_port = 1001

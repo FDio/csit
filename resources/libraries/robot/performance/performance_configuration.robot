@@ -840,6 +840,45 @@
 | | All Vpp Interfaces Ready Wait | ${nodes}
 | | Configure IPv4 ACLs | ${dut1} | ${dut1_if1} | ${dut1_if2}
 
+| Initialize IPv4 routing for '${ip_nr}' with IPv4 ACLs on DUT1 in 3-node circular topology
+| | [Documentation]
+| | ... | Set UP state on VPP interfaces in path on nodes in 3-node circular
+| | ... | topology. Get the interface MAC addresses and setup ARP on all VPP
+| | ... | interfaces. Setup IPv4 addresses with /24 prefix on DUT-TG links and
+| | ... | /30 prefix on DUT1-DUT2 link. Set routing on both DUT nodes with
+| | ... | prefix /24 and next hops of neighbour DUT interface IPv4 address.
+| | ... | Apply required ACL rules to DUT1 interfaces.
+| | ...
+| | ... | _NOTE:_ This KW uses following test case variables:
+| | ... | - ${dut1} - DUT1 node.
+| | ... | - ${dut2} - DUT2 node.
+| | ... | - ${dut1_if1} - DUT1 interface towards TG.
+| | ... | - ${dut1_if2} - DUT1 interface towards DUT2.
+| | ... | - ${dut2_if1} - DUT2 interface towards DUT1.
+| | ... | - ${dut2_if2} - DUT2 interface towards TG.
+| | ...
+| | Set Interface State | ${dut1} | ${dut1_if1} | up
+| | Set Interface State | ${dut1} | ${dut1_if2} | up
+| | Set Interface State | ${dut2} | ${dut2_if1} | up
+| | Set Interface State | ${dut2} | ${dut2_if2} | up
+| | ${tg1_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
+| | ${tg1_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
+| | ${dut1_if2_mac}= | Get Interface MAC | ${dut1} | ${dut1_if2}
+| | ${dut2_if1_mac}= | Get Interface MAC | ${dut2} | ${dut2_if1}
+| | :FOR | ${number} | IN RANGE | 2 | ${ip_nr}+2
+| | | dut1_v4.set_arp | ${dut1_if1} | 10.10.10.${number} | ${tg1_if1_mac}
+| | | dut2_v4.set_arp | ${dut2_if2} | 20.20.20.${number} | ${tg1_if2_mac}
+| | dut1_v4.set_arp | ${dut1_if2} | 1.1.1.2 | ${dut2_if1_mac}
+| | dut2_v4.set_arp | ${dut2_if1} | 1.1.1.1 | ${dut1_if2_mac}
+| | dut1_v4.set_ip | ${dut1_if1} | 10.10.10.1 | 24
+| | dut1_v4.set_ip | ${dut1_if2} | 1.1.1.1 | 30
+| | dut2_v4.set_ip | ${dut2_if1} | 1.1.1.2 | 30
+| | dut2_v4.set_ip | ${dut2_if2} | 20.20.20.1 | 24
+| | dut1_v4.set_route | 20.20.20.0 | 24 | 1.1.1.2 | ${dut1_if2}
+| | dut2_v4.set_route | 10.10.10.0 | 24 | 1.1.1.1 | ${dut2_if1}
+| | All Vpp Interfaces Ready Wait | ${nodes}
+| | Configure IPv4 ACLs | ${dut1} | ${dut1_if1} | ${dut1_if2}
+
 | Initialize L2 bridge domains with Vhost-User in 3-node circular topology
 | | [Documentation]
 | | ... | Create two Vhost-User interfaces on all defined VPP nodes. Add each
