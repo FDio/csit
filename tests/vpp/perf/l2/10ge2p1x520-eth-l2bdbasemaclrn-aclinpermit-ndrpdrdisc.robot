@@ -16,7 +16,7 @@
 | Library | resources.libraries.python.Classify
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDRDISC
-| ... | NIC_Intel-X520-DA2 | ETH | L2BDMACLRN
+| ... | NIC_Intel-X520-DA2 | ETH | L2BDMACLRN | TEST
 | ...
 | Suite Setup | Set up 3-node performance topology with DUT's NIC model
 | ... | L2 | Intel-X520-DA2
@@ -117,7 +117,8 @@
 | | ... | min_rate=${10000} | search_type=NDR
 
 | tc02-64B-1t1c-eth-l2bdbasemaclrn-iacl1-stateless-flows100-pdrdisc
-| | [Tags] | 1T1C | STHREAD | PDRDISC | FEATURE | ACL | SRC_USER_100 | SKIP_PATCH
+| | [Tags] | 1T1C | STHREAD | PDRDISC | FEATURE | ACL | SRC_USER_100
+| | ... | SKIP_PATCH
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with ACL with\
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
@@ -141,7 +142,8 @@
 | | ... | min_rate=${10000} | search_type=NDR
 
 | tc04-64B-1t1c-eth-l2bdbasemaclrn-iacl10-stateless-flows100-pdrdisc
-| | [Tags] | 1T1C | STHREAD | PDRDISC | FEATURE | ACL | SRC_USER_100 | SKIP_PATCH
+| | [Tags] | 1T1C | STHREAD | PDRDISC | FEATURE | ACL | SRC_USER_100
+| | ... | SKIP_PATCH
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with ACL with\
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
@@ -165,7 +167,8 @@
 | | ... | min_rate=${10000} | search_type=NDR
 
 | tc06-64B-1t1c-eth-l2bdbasemaclrn-iacl50-stateless-flows100-pdrdisc
-| | [Tags] | 1T1C | STHREAD | PDRDISC | FEATURE | ACL | SRC_USER_100 | SKIP_PATCH
+| | [Tags] | 1T1C | STHREAD | PDRDISC | FEATURE | ACL | SRC_USER_100
+| | ... | SKIP_PATCH
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with ACL with\
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
@@ -177,7 +180,7 @@
 | | ... | min_rate=${10000} | search_type=PDR
 
 | tc07-64B-1t1c-eth-l2bdbasemaclrn-iacl1-stateless-flows10k-ndrdisc
-| | [Tags] | 1T1C | STHREAD | NDRDISC | FEATURE | ACL | SRC_USER_100
+| | [Tags] | 1T1C | STHREAD | NDRDISC | FEATURE | ACL | SRC_USER_10
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with ACL with\
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
@@ -189,7 +192,8 @@
 | | ... | min_rate=${10000} | search_type=NDR
 
 | tc08-64B-1t1c-eth-l2bdbasemaclrn-iacl1-stateless-flows10k-pdrdisc
-| | [Tags] | 1T1C | STHREAD | PDRDISC | FEATURE | ACL | SRC_USER_100 | SKIP_PATCH
+| | [Tags] | 1T1C | STHREAD | PDRDISC | FEATURE | ACL | SRC_USER_10
+| | ... | SKIP_PATCH
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with ACL with\
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
@@ -201,7 +205,7 @@
 | | ... | min_rate=${10000} | search_type=PDR
 
 | tc09-64B-1t1c-eth-l2bdbasemaclrn-iacl10-stateless-flows10k-ndrdisc
-| | [Tags] | 1T1C | STHREAD | NDRDISC | FEATURE | ACL | SRC_USER_100
+| | [Tags] | 1T1C | STHREAD | NDRDISC | FEATURE | ACL | SRC_USER_10
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with ACL with\
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
@@ -213,7 +217,8 @@
 | | ... | min_rate=${10000} | search_type=NDR
 
 | tc10-64B-1t1c-eth-l2bdbasemaclrn-iacl10-stateless-flows10k-pdrdisc
-| | [Tags] | 1T1C | STHREAD | PDRDISC | FEATURE | ACL | SRC_USER_100 | SKIP_PATCH
+| | [Tags] | 1T1C | STHREAD | PDRDISC | FEATURE | ACL | SRC_USER_10
+| | ... | SKIP_PATCH
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with ACL with\
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
@@ -225,7 +230,7 @@
 | | ... | min_rate=${10000} | search_type=PDR
 
 | tc11-64B-1t1c-eth-l2bdbasemaclrn-iacl50-stateless-flows10k-ndrdisc
-| | [Tags] | 1T1C | STHREAD | NDRDISC | FEATURE | ACL | SRC_USER_100
+| | [Tags] | 1T1C | STHREAD | NDRDISC | FEATURE | ACL | SRC_USER_10
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with ACL with\
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
@@ -237,7 +242,8 @@
 | | ... | min_rate=${10000} | search_type=NDR
 
 | tc12-64B-1t1c-eth-l2bdbasemaclrn-iacl50-stateless-flows10k-pdrdisc
-| | [Tags] | 1T1C | STHREAD | PDRDISC | FEATURE | ACL | SRC_USER_100 | SKIP_PATCH
+| | [Tags] | 1T1C | STHREAD | PDRDISC | FEATURE | ACL | SRC_USER_10
+| | ... | SKIP_PATCH
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with ACL with\
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
@@ -261,7 +267,8 @@
 | | ... | min_rate=${10000} | search_type=NDR
 
 | tc14-64B-1t1c-eth-l2bdbasemaclrn-iacl1-stateless-flows100k-pdrdisc
-| | [Tags] | 1T1C | STHREAD | PDRDISC | FEATURE | ACL | SRC_USER_100 | SKIP_PATCH
+| | [Tags] | 1T1C | STHREAD | PDRDISC | FEATURE | ACL | SRC_USER_100
+| | ... | SKIP_PATCH
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with ACL with\
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
@@ -285,7 +292,8 @@
 | | ... | min_rate=${10000} | search_type=NDR
 
 | tc16-64B-1t1c-eth-l2bdbasemaclrn-iacl10-stateless-flows100k-pdrdisc
-| | [Tags] | 1T1C | STHREAD | PDRDISC | FEATURE | ACL | SRC_USER_100 | SKIP_PATCH
+| | [Tags] | 1T1C | STHREAD | PDRDISC | FEATURE | ACL | SRC_USER_100
+| | ... | SKIP_PATCH
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with ACL with\
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
@@ -309,7 +317,8 @@
 | | ... | min_rate=${10000} | search_type=NDR
 
 | tc18-64B-1t1c-eth-l2bdbasemaclrn-iacl50-stateless-flows100k-pdrdisc
-| | [Tags] | 1T1C | STHREAD | PDRDISC | FEATURE | ACL | SRC_USER_100 | SKIP_PATCH
+| | [Tags] | 1T1C | STHREAD | PDRDISC | FEATURE | ACL | SRC_USER_100
+| | ... | SKIP_PATCH
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with ACL with\
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
@@ -317,5 +326,239 @@
 | | ... | linerate, step 10kpps, LT=0.5%.
 | | [Template] | Discover NDR or PDR for L2 Bridge Domain with ACLs
 | | wt=1 | rxq=1 | no_hit_aces_number=50 | acl_apply_type=input
+| | ... | acl_action=permit | flows_per_dir=100k | framesize=${64}
+| | ... | min_rate=${10000} | search_type=PDR
+
+| tc19-64B-2t2c-eth-l2bdbasemaclrn-iacl1-stateless-flows100-ndrdisc
+| | ...
+| | [Tags] | 2T2C | MTHREAD | NDRDISC | FEATURE | ACL | SRC_USER_100
+| | [Documentation]
+| | ... | [Cfg] DUT runs L2BD switching config with ACL with\
+| | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
+| | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 10GE\
+| | ... | linerate, step 10kpps.
+| | [Template] | Discover NDR or PDR for L2 Bridge Domain with ACLs
+| | wt=2 | rxq=1 | no_hit_aces_number=1 | acl_apply_type=input
+| | ... | acl_action=permit | flows_per_dir=100 | framesize=${64}
+| | ... | min_rate=${10000} | search_type=NDR
+
+| tc20-64B-2t2c-eth-l2bdbasemaclrn-iacl1-stateless-flows100-pdrdisc
+| | [Tags] | 2T2C | MTHREAD | PDRDISC | FEATURE | ACL | SRC_USER_100
+| | ... | SKIP_PATCH
+| | [Documentation]
+| | ... | [Cfg] DUT runs L2BD switching config with ACL with\
+| | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
+| | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 10GE\
+| | ... | linerate, step 10kpps, LT=0.5%.
+| | [Template] | Discover NDR or PDR for L2 Bridge Domain with ACLs
+| | wt=2 | rxq=1 | no_hit_aces_number=1 | acl_apply_type=input
+| | ... | acl_action=permit | flows_per_dir=100 | framesize=${64}
+| | ... | min_rate=${10000} | search_type=PDR
+
+| tc21-64B-2t2c-eth-l2bdbasemaclrn-iacl10-stateless-flows100-ndrdisc
+| | ...
+| | [Tags] | 2T2C | MTHREAD | NDRDISC | FEATURE | ACL | SRC_USER_100
+| | [Documentation]
+| | ... | [Cfg] DUT runs L2BD switching config with ACL with\
+| | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
+| | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 10GE\
+| | ... | linerate, step 10kpps.
+| | [Template] | Discover NDR or PDR for L2 Bridge Domain with ACLs
+| | wt=2 | rxq=1 | no_hit_aces_number=10 | acl_apply_type=input
+| | ... | acl_action=permit | flows_per_dir=100 | framesize=${64}
+| | ... | min_rate=${10000} | search_type=NDR
+
+| tc22-64B-2t2c-eth-l2bdbasemaclrn-iacl10-stateless-flows100-pdrdisc
+| | [Tags] | 2T2C | MTHREAD | PDRDISC | FEATURE | ACL | SRC_USER_100
+| | ... | SKIP_PATCH
+| | [Documentation]
+| | ... | [Cfg] DUT runs L2BD switching config with ACL with\
+| | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
+| | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 10GE\
+| | ... | linerate, step 10kpps, LT=0.5%.
+| | [Template] | Discover NDR or PDR for L2 Bridge Domain with ACLs
+| | wt=2 | rxq=1 | no_hit_aces_number=10 | acl_apply_type=input
+| | ... | acl_action=permit | flows_per_dir=100 | framesize=${64}
+| | ... | min_rate=${10000} | search_type=PDR
+
+| tc23-64B-2t2c-eth-l2bdbasemaclrn-iacl50-stateless-flows100-ndrdisc
+| | ...
+| | [Tags] | 2T2C | MTHREAD | NDRDISC | FEATURE | ACL | SRC_USER_100
+| | [Documentation]
+| | ... | [Cfg] DUT runs L2BD switching config with ACL with\
+| | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
+| | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 10GE\
+| | ... | linerate, step 10kpps.
+| | [Template] | Discover NDR or PDR for L2 Bridge Domain with ACLs
+| | wt=2 | rxq=1 | no_hit_aces_number=50 | acl_apply_type=input
+| | ... | acl_action=permit | flows_per_dir=100 | framesize=${64}
+| | ... | min_rate=${10000} | search_type=NDR
+
+| tc24-64B-2t2c-eth-l2bdbasemaclrn-iacl50-stateless-flows100-pdrdisc
+| | [Tags] | 2T2C | MTHREAD | PDRDISC | FEATURE | ACL | SRC_USER_100
+| | ... | SKIP_PATCH
+| | [Documentation]
+| | ... | [Cfg] DUT runs L2BD switching config with ACL with\
+| | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
+| | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 10GE\
+| | ... | linerate, step 10kpps, LT=0.5%.
+| | [Template] | Discover NDR or PDR for L2 Bridge Domain with ACLs
+| | wt=2 | rxq=1 | no_hit_aces_number=50 | acl_apply_type=input
+| | ... | acl_action=permit | flows_per_dir=100 | framesize=${64}
+| | ... | min_rate=${10000} | search_type=PDR
+
+| tc25-64B-2t2c-eth-l2bdbasemaclrn-iacl1-stateless-flows10k-ndrdisc
+| | ...
+| | [Tags] | 2T2C | MTHREAD | NDRDISC | FEATURE | ACL | SRC_USER_10
+| | [Documentation]
+| | ... | [Cfg] DUT runs L2BD switching config with ACL with\
+| | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
+| | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 10GE\
+| | ... | linerate, step 10kpps.
+| | [Template] | Discover NDR or PDR for L2 Bridge Domain with ACLs
+| | wt=2 | rxq=1 | no_hit_aces_number=1 | acl_apply_type=input
+| | ... | acl_action=permit | flows_per_dir=10k | framesize=${64}
+| | ... | min_rate=${10000} | search_type=NDR
+
+| tc26-64B-2t2c-eth-l2bdbasemaclrn-iacl1-stateless-flows10k-pdrdisc
+| | [Tags] | 2T2C | MTHREAD | PDRDISC | FEATURE | ACL | SRC_USER_10
+| | ... | SKIP_PATCH
+| | [Documentation]
+| | ... | [Cfg] DUT runs L2BD switching config with ACL with\
+| | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
+| | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 10GE\
+| | ... | linerate, step 10kpps, LT=0.5%.
+| | [Template] | Discover NDR or PDR for L2 Bridge Domain with ACLs
+| | wt=2 | rxq=1 | no_hit_aces_number=1 | acl_apply_type=input
+| | ... | acl_action=permit | flows_per_dir=10k | framesize=${64}
+| | ... | min_rate=${10000} | search_type=PDR
+
+| tc27-64B-2t2c-eth-l2bdbasemaclrn-iacl10-stateless-flows10k-ndrdisc
+| | ...
+| | [Tags] | 2T2C | MTHREAD | NDRDISC | FEATURE | ACL | SRC_USER_10
+| | [Documentation]
+| | ... | [Cfg] DUT runs L2BD switching config with ACL with\
+| | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
+| | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 10GE\
+| | ... | linerate, step 10kpps.
+| | [Template] | Discover NDR or PDR for L2 Bridge Domain with ACLs
+| | wt=2 | rxq=1 | no_hit_aces_number=10 | acl_apply_type=input
+| | ... | acl_action=permit | flows_per_dir=10k | framesize=${64}
+| | ... | min_rate=${10000} | search_type=NDR
+
+| tc28-64B-2t2c-eth-l2bdbasemaclrn-iacl10-stateless-flows10k-pdrdisc
+| | [Tags] | 2T2C | MTHREAD | PDRDISC | FEATURE | ACL | SRC_USER_10
+| | ... | SKIP_PATCH
+| | [Documentation]
+| | ... | [Cfg] DUT runs L2BD switching config with ACL with\
+| | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
+| | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 10GE\
+| | ... | linerate, step 10kpps, LT=0.5%.
+| | [Template] | Discover NDR or PDR for L2 Bridge Domain with ACLs
+| | wt=2 | rxq=1 | no_hit_aces_number=10 | acl_apply_type=input
+| | ... | acl_action=permit | flows_per_dir=10k | framesize=${64}
+| | ... | min_rate=${10000} | search_type=PDR
+
+| tc29-64B-2t2c-eth-l2bdbasemaclrn-iacl50-stateless-flows10k-ndrdisc
+| | ...
+| | [Tags] | 2T2C | MTHREAD | NDRDISC | FEATURE | ACL | SRC_USER_10
+| | [Documentation]
+| | ... | [Cfg] DUT runs L2BD switching config with ACL with\
+| | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
+| | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 10GE\
+| | ... | linerate, step 10kpps.
+| | [Template] | Discover NDR or PDR for L2 Bridge Domain with ACLs
+| | wt=2 | rxq=1 | no_hit_aces_number=50 | acl_apply_type=input
+| | ... | acl_action=permit | flows_per_dir=10k | framesize=${64}
+| | ... | min_rate=${10000} | search_type=NDR
+
+| tc30-64B-2t2c-eth-l2bdbasemaclrn-iacl50-stateless-flows10k-pdrdisc
+| | [Tags] | 2T2C | MTHREAD | PDRDISC | FEATURE | ACL | SRC_USER_10
+| | ... | SKIP_PATCH
+| | [Documentation]
+| | ... | [Cfg] DUT runs L2BD switching config with ACL with\
+| | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
+| | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 10GE\
+| | ... | linerate, step 10kpps, LT=0.5%.
+| | [Template] | Discover NDR or PDR for L2 Bridge Domain with ACLs
+| | wt=2 | rxq=1 | no_hit_aces_number=50 | acl_apply_type=input
+| | ... | acl_action=permit | flows_per_dir=10k | framesize=${64}
+| | ... | min_rate=${10000} | search_type=PDR
+
+| tc31-64B-2t2c-eth-l2bdbasemaclrn-iacl1-stateless-flows100k-ndrdisc
+| | ...
+| | [Tags] | 2T2C | MTHREAD | NDRDISC | FEATURE | ACL | SRC_USER_100
+| | [Documentation]
+| | ... | [Cfg] DUT runs L2BD switching config with ACL with\
+| | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
+| | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 10GE\
+| | ... | linerate, step 10kpps.
+| | [Template] | Discover NDR or PDR for L2 Bridge Domain with ACLs
+| | wt=2 | rxq=1 | no_hit_aces_number=1 | acl_apply_type=input
+| | ... | acl_action=permit | flows_per_dir=100k | framesize=${64}
+| | ... | min_rate=${10000} | search_type=NDR
+
+| tc32-64B-2t2c-eth-l2bdbasemaclrn-iacl1-stateless-flows100k-pdrdisc
+| | [Tags] | 2T2C | MTHREAD | PDRDISC | FEATURE | ACL | SRC_USER_100
+| | ... | SKIP_PATCH
+| | [Documentation]
+| | ... | [Cfg] DUT runs L2BD switching config with ACL with\
+| | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
+| | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 10GE\
+| | ... | linerate, step 10kpps, LT=0.5%.
+| | [Template] | Discover NDR or PDR for L2 Bridge Domain with ACLs
+| | wt=2 | rxq=1 | no_hit_aces_number=1 | acl_apply_type=input
+| | ... | acl_action=permit | flows_per_dir=100k | framesize=${64}
+| | ... | min_rate=${10000} | search_type=PDR
+
+| tc33-64B-2t2c-eth-l2bdbasemaclrn-iacl10-stateless-flows100k-ndrdisc
+| | ...
+| | [Tags] | 2T2C | MTHREAD | NDRDISC | FEATURE | ACL | SRC_USER_100
+| | [Documentation]
+| | ... | [Cfg] DUT runs L2BD switching config with ACL with\
+| | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
+| | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 10GE\
+| | ... | linerate, step 10kpps.
+| | [Template] | Discover NDR or PDR for L2 Bridge Domain with ACLs
+| | wt=2 | rxq=1 | no_hit_aces_number=10 | acl_apply_type=input
+| | ... | acl_action=permit | flows_per_dir=100k | framesize=${64}
+| | ... | min_rate=${10000} | search_type=NDR
+
+| tc34-64B-2t2c-eth-l2bdbasemaclrn-iacl10-stateless-flows100k-pdrdisc
+| | [Tags] | 2T2C | MTHREAD | PDRDISC | FEATURE | ACL | SRC_USER_100
+| | ... | SKIP_PATCH
+| | [Documentation]
+| | ... | [Cfg] DUT runs L2BD switching config with ACL with\
+| | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
+| | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 10GE\
+| | ... | linerate, step 10kpps, LT=0.5%.
+| | [Template] | Discover NDR or PDR for L2 Bridge Domain with ACLs
+| | wt=2 | rxq=1 | no_hit_aces_number=10 | acl_apply_type=input
+| | ... | acl_action=permit | flows_per_dir=100k | framesize=${64}
+| | ... | min_rate=${10000} | search_type=PDR
+
+| tc35-64B-2t2c-eth-l2bdbasemaclrn-iacl50-stateless-flows100k-ndrdisc
+| | ...
+| | [Tags] | 2T2C | MTHREAD | NDRDISC | FEATURE | ACL | SRC_USER_100
+| | [Documentation]
+| | ... | [Cfg] DUT runs L2BD switching config with ACL with\
+| | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
+| | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 10GE\
+| | ... | linerate, step 10kpps.
+| | [Template] | Discover NDR or PDR for L2 Bridge Domain with ACLs
+| | wt=2 | rxq=1 | no_hit_aces_number=50 | acl_apply_type=input
+| | ... | acl_action=permit | flows_per_dir=100k | framesize=${64}
+| | ... | min_rate=${10000} | search_type=NDR
+
+| tc36-64B-2t2c-eth-l2bdbasemaclrn-iacl50-stateless-flows100k-pdrdisc
+| | [Tags] | 2T2C | MTHREAD | PDRDISC | FEATURE | ACL | SRC_USER_100
+| | ... | SKIP_PATCH
+| | [Documentation]
+| | ... | [Cfg] DUT runs L2BD switching config with ACL with\
+| | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
+| | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 10GE\
+| | ... | linerate, step 10kpps, LT=0.5%.
+| | [Template] | Discover NDR or PDR for L2 Bridge Domain with ACLs
+| | wt=2 | rxq=1 | no_hit_aces_number=50 | acl_apply_type=input
 | | ... | acl_action=permit | flows_per_dir=100k | framesize=${64}
 | | ... | min_rate=${10000} | search_type=PDR
