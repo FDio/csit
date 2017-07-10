@@ -674,3 +674,5 @@ class QemuUtils(object):
         if int(ret_code) != 0:
             logger.debug('QEMU build failed {0}'.format(stdout + stderr))
             raise RuntimeError('QEMU build failed on {0}'.format(node['host']))
+        else:
+            logger.info('QEMU patch and build succeeded!!')

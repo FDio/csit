@@ -1,0 +1,150 @@
+# Copyright (c) 2016 Cisco and/or its affiliates.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at:
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+"""VPP Grub Utility Library."""
+
+import re
+
+from robot.api import logger
+from resources.libraries.python.ssh import SSH
+
+__all__ = ['VppGrubUtil']
+
+
+class VppGrubUtil(object):
+    """ VPP Grub Utilities."""
+
+    def _get_current_cmdline(self):
+
+        ssh = SSH()
+        ssh.connect(self._node)
+
+        # Get the memory information using /proc/meminfo
+        (ret, stdout, stderr) = \
+            ssh.exec_command('sudo cat /proc/cmdline')
+        if ret != 0:
+            logger.debug('Writing config file failed to node {}'.
+                         format(self._node['host']))
+            logger.debug('stdout: {}'.format(stdout))
+            logger.debug('stderr: {}'.format(stderr))
+            raise RuntimeError('Failed to get Grub cmdline on node {}'.
+                               format(self._node['host']))
+
+        self._current_cmdline = stdout.strip('\n')
+
+    def _get_default_cmdline(self):
+
+        ssh = SSH()
+        ssh.connect(self._node)
+
+        # Get the default grub cmdline
+        gfile = self._node['cpu']['grub_config_file']
+        (ret, stdout, stderr) = \
+            ssh.exec_command('cat {}'.format(gfile))
+        if ret != 0:
+            logger.debug('stdout: {}'.format(stdout))
+            logger.debug('stderr: {}'.format(stderr))
+            raise RuntimeError('Executing cat command failed to node {}'.
+                               format(self._node['host']))
+        self._default_cmdline = re.findall(r'GRUB_CMDLINE_LINUX_DEFAULT=.+\n', stdout)[0].rstrip('\n')
+
+    def get_current_cmdline(self):
+        return self._current_cmdline
+
+    def get_default_cmdline(self):
+        return self._default_cmdline
+
+    def create_cmdline(self, isolated_cpu_list):
+
+        cmdline = ""
+        iommu = re.findall(r'iommu=\w+', self._default_cmdline)
+        if not iommu:
+            cmdline = "iommu=pt intel_iommu=on"
+        isolcpus = re.findall(r'isolcpus=\w+', self._default_cmdline)
+        if not isolcpus:
+            cmdline = "{} isolcpus={}".format(cmdline, isolated_cpu_list)
+        self._vpp_cmdline = cmdline
+
+        return self._vpp_cmdline
+
+    def apply_cmdline(self, node):
+
+        isolated_cpus = self._node['cpu']['list']
+        vpp_cmdline = self.create_cmdline(isolated_cpus)
+        default_cmdline = self._node['grub']['default_cmdline']
+
+        # Update grub
+        # Save the original file
+        ofilename = node['cpu']['grub_config_file'] + '.orig'
+        filename = node['cpu']['grub_config_file']
+
+        ssh = SSH()
+        ssh.connect(self._node)
+
+        # Write the output file
+        # Does a copy of the original file exist, if not create one
+        (ret, stdout, stderr) = \
+            ssh.exec_command('ls {}'.format(ofilename))
+        if ret != 0:
+            logger.debug(stderr)
+        if stdout.strip('\n') != ofilename:
+            (ret, stdout, stderr) = \
+                ssh.exec_command('sudo cp {} {}'.format(filename, ofilename))
+            if ret != 0:
+                logger.debug('stdout: {}'.format(stdout))
+                logger.debug('stderr: {}'.format(stderr))
+                raise RuntimeError('Executing cp command failed to node {}'.
+                                   format(self._node['host']))
+
+        # Get the contents of the current grub config file
+        (ret, stdout, stderr) = \
+            ssh.exec_command('cat {}'.format(filename))
+        if ret != 0:
+            raise RuntimeError('Executing cat command failed to node {}'.
+                               format(self._node['host']))
+
+        # Write the new contents
+        if vpp_cmdline != '':
+            dl = default_cmdline.split("=")
+            d1 = dl[1].replace('"', '')
+            if d1 == '':
+                d1 = vpp_cmdline
+            else:
+                d1 += ' {}'.format(vpp_cmdline)
+            new_default_cmdline = 'GRUB_CMDLINE_LINUX_DEFAULT="{}"'.format(d1)
+            content = re.sub(r'GRUB_CMDLINE_LINUX_DEFAULT=.+', new_default_cmdline, stdout.rstrip('\n'))
+            content = content.replace("`", "\`")
+            cmd = "sudo cat > {0} << EOF\n{1}\n".format(filename, content)
+            (ret, stdout, stderr) = ssh.exec_command(cmd)
+            if ret != 0:
+                logger.debug('stdout: {}'.format(stdout))
+                logger.debug('stderr: {}'.format(stderr))
+                raise RuntimeError('Writing config failed to node {}'.format(self._node['host']))
+
+        # Update Grub
+        cmd = "sudo update-grub"
+        (ret, stdout, stderr) = ssh.exec_command(cmd)
+        if ret != 0:
+            logger.debug('stdout: {}'.format(stdout))
+            logger.debug('stderr: {}'.format(stderr))
+            raise RuntimeError('Executing update-grub failed to node {}'.format(self._node['host']))
+
+        return self._vpp_cmdline
+
+    def __init__(self, node):
+        self._node = node
+        self._current_cmdline = ""
+        self._default_cmdline = ""
+        self._vpp_cmdline = ""
+        self._get_current_cmdline()
+        self._get_default_cmdline()
