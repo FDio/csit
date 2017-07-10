@@ -1,0 +1,35 @@
+metadata:
+  system_config_file: ./system-config.yaml
+  version: 0.1
+nodes:
+  DUT1:
+    cpu:
+      grub_config_file: ./grub
+      isolated_cores: 8
+      skip_cores: 2
+      vpp_worker_cores: 4
+    host: localhost
+    hugepages:
+      hugepage_config_file: ./80-vpp.conf
+      total: 1024
+    interfaces:
+      port0:
+        mac_address: 90:e2:ba:96:cd:4d
+        pci_address: 0000:86:00.1
+    password: cto;wheel
+    port: 22
+    type: DUT
+    username: cto
+    vpp:
+      api-segment:
+        gid: vpp
+      api-trace: true
+      dpdk:
+        rx-queues: 2
+      startup_config_file: /etc/vpp/startup.conf
+      unix:
+        cli-listen: localhost:5002
+        full-coredump: true
+        interactive: true
+        log: /tmp/vpp.log
+        nodaemon: true
