@@ -39,6 +39,13 @@ class VppConfigGenerator(object):
         # VPP Configuration file path
         self._vpp_config_filename = '/etc/vpp/startup.conf'
 
+    def get_node(self):
+        """Get DUT node.
+
+        :return  The Node: dict
+        """
+        return self._node
+
     def set_node(self, node):
         """Set DUT node.
 
@@ -106,6 +113,15 @@ class VppConfigGenerator(object):
         if level >= 0:
             self._vpp_config += '{}}}\n'.format(level * indent)
 
+    def add_api_segment_gid(self, value='vpp'):
+        """Add UNIX log configuration.
+
+        :param value: gid
+        :type value: str
+        """
+        path = ['api-segment', 'gid']
+        self.add_config_item(self._nodeconfig, value, path)
+
     def add_unix_log(self, value='/tmp/vpe.log'):
         """Add UNIX log configuration.
 
@@ -133,6 +149,16 @@ class VppConfigGenerator(object):
         """Add UNIX exec configuration."""
         path = ['unix', 'exec']
         self.add_config_item(self._nodeconfig, value, path)
+
+    def add_unix_interactive(self):
+        """Add UNIX interactive configuration."""
+        path = ['unix', 'interactive']
+        self.add_config_item(self._nodeconfig, '', path)
+
+    def add_unix_full_coredump(self):
+        """Add UNIX full coredump configuration."""
+        path = ['unix', 'full-coredump']
+        self.add_config_item(self._nodeconfig, '', path)
 
     def add_dpdk_dev(self, *devices):
         """Add DPDK PCI device configuration.
