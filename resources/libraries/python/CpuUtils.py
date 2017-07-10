@@ -13,6 +13,8 @@
 
 """CPU utilities library."""
 
+import re
+
 from resources.libraries.python.ssh import SSH
 
 __all__ = ["CpuUtils"]
@@ -246,3 +248,44 @@ class CpuUtils(object):
             cpu_range = "{}{}{}".format(cpu_list[0], sep, cpu_list[-1])
 
         return cpu_range
+
+    @staticmethod
+    def get_cpu_info_per_node(node):
+        """Return node related list of CPU numbers.
+
+        :param node: Node dictionary with cpuinfo.
+        :type node: dict
+        :returns: Important CPU information.
+        :rtype: dict
+        """
+
+        ssh = SSH()
+        ssh.connect(node)
+        cmd = "lscpu"
+        ret, stdout, stderr = ssh.exec_command(cmd)
+        if ret != 0:
+            raise RuntimeError("lscpu command failed on node {} {}.".format(node['host'], stderr))
+
+        cpuinfo = {}
+        lines = stdout.split('\n')
+        for l in lines:
+            if l != '':
+                ll = re.split(r':\s+', l)
+                cpuinfo[ll[0]] = ll[1]
+
+        cpuinfo['smt_enabled'] = node['cpu']['smt_enabled']
+
+        cmd = "cat /proc/*/task/*/stat | awk '{print $1" "$2" "$39}'"
+        ret, stdout, stderr = ssh.exec_command(cmd)
+        if ret != 0:
+            raise RuntimeError("cat command failed on node {} {}.".format(node['host'], stderr))
+
+        vpp_processes = {}
+        vpp_lines = re.findall(r'\w+\(vpp_\w+\)\w+', stdout)
+        for l in vpp_lines:
+            ll = re.split(r'\w+\(', l)[1].split(')')
+            vpp_processes[ll[0]] = ll[1]
+
+        cpuinfo['vpp_processes'] = vpp_processes
+
+        return cpuinfo

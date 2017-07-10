@@ -239,7 +239,8 @@ class VatTerminal(object):
         self._node = node
         self._ssh = SSH()
         self._ssh.connect(self._node)
-        self._tty = self._ssh.interactive_terminal_open()
+        if node['host'] != 'localhost':
+            self._tty = self._ssh.interactive_terminal_open()
         self._ssh.interactive_terminal_exec_command(
             self._tty,
             'sudo -S {}{}'.format(Constants.VAT_BIN_NAME, json_text),
