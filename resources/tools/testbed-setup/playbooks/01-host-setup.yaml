@@ -101,6 +101,21 @@
     copy: src=files/requirements.txt dest=/tmp/requirements.txt
   - name: Install PIP requirements
     pip: requirements=/tmp/requirements.txt
+  - name: IRQ pinning
+    lineinfile:
+        dest: /etc/rc.local
+        insertbefore: '^exit 0'
+        line: 'for l in `ls /proc/irq`; do echo 1 | sudo tee /proc/irq/$l/smp_affinity; done'
+  - name: RCU pinning
+    lineinfile:
+        dest: /etc/rc.local
+        insertbefore: '^exit 0'
+        line: 'for i in `pgrep rcu[^c]` ; do sudo taskset -pc 0 $i ; done'
+  - name: CPU writeback mask
+    lineinfile:
+        dest: /etc/rc.local
+        insertbefore: '^exit 0'
+        line: 'echo 1 | sudo tee /sys/bus/workqueue/devices/writeback/cpumask'
 - hosts: tg
   remote_user: testuser
   sudo: yes
