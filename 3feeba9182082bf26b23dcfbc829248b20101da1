@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a51691d_0fbbad73",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 119,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-07-12T05:11:46Z",
+      "side": 1,
+      "message": "This is not working on Ubuntu",
+      "range": {
+        "startLine": 119,
+        "startChar": 57,
+        "endLine": 119,
+        "endChar": 68
+      },
+      "revId": "3feeba9182082bf26b23dcfbc829248b20101da1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a51691d_2fb6698b",
+        "filename": "resources/libraries/python/InterfaceUtil.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 359,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-07-12T05:11:46Z",
+      "side": 1,
+      "message": "this is not working on Ubuntu",
+      "range": {
+        "startLine": 359,
+        "startChar": 19,
+        "endLine": 359,
+        "endChar": 34
+      },
+      "revId": "3feeba9182082bf26b23dcfbc829248b20101da1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a51691d_6fbc616d",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-07-12T05:11:46Z",
+      "side": 1,
+      "message": "this is not working on Ubuntu",
+      "range": {
+        "startLine": 32,
+        "startChar": 26,
+        "endLine": 32,
+        "endChar": 47
+      },
+      "revId": "3feeba9182082bf26b23dcfbc829248b20101da1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a51691d_4fc1a5e3",
+        "filename": "resources/libraries/python/QemuUtils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 509,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-07-12T05:11:46Z",
+      "side": 1,
+      "message": "This is not working on LF VIRL",
+      "range": {
+        "startLine": 509,
+        "startChar": 29,
+        "endLine": 509,
+        "endChar": 44
+      },
+      "revId": "3feeba9182082bf26b23dcfbc829248b20101da1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a51691d_8f8f9dcc",
+        "filename": "resources/libraries/python/SchedUtils.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-07-12T05:11:46Z",
+      "side": 1,
+      "message": "This is not working on ubuntu.",
+      "range": {
+        "startLine": 35,
+        "startChar": 26,
+        "endLine": 35,
+        "endChar": 41
+      },
+      "revId": "3feeba9182082bf26b23dcfbc829248b20101da1",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
