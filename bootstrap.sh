@@ -22,17 +22,17 @@ export PYTHONPATH=${SCRIPT_DIR}
 
 if [ -f "/etc/redhat-release" ]; then
     DISTRO="CENTOS"
-    sudo yum install -y python-devel python-virtualenv
-    VPP_ARTIFACTS="vpp vpp-debuginfo vpp-devel vpp-lib vpp-plugins"
-    DPDK_ARTIFACTS=""
-    PACKAGE="rpm"
-    VPP_CLASSIFIER=""
-    DPDK_STABLE_VER=$(cat ${SCRIPT_DIR}/DPDK_STABLE_VER).x86_64
-    VPP_REPO_URL=$(cat ${SCRIPT_DIR}/VPP_REPO_URL_CENTOS)
-    VPP_STABLE_VER=$(cat ${SCRIPT_DIR}/VPP_STABLE_VER_CENTOS)
-    VIRL_TOPOLOGY=$(cat ${SCRIPT_DIR}/VIRL_TOPOLOGY_CENTOS)
-    VIRL_RELEASE=$(cat ${SCRIPT_DIR}/VIRL_RELEASE_CENTOS)
-    SHARED_MEMORY_PATH="/dev/shm"
+#   sudo yum install -y python-devel python-virtualenv
+#   VPP_ARTIFACTS="vpp vpp-debuginfo vpp-devel vpp-lib vpp-plugins"
+#   DPDK_ARTIFACTS=""
+#   PACKAGE="rpm"
+#   VPP_CLASSIFIER=""
+#   DPDK_STABLE_VER=$(cat ${SCRIPT_DIR}/DPDK_STABLE_VER).x86_64
+#   VPP_REPO_URL=$(cat ${SCRIPT_DIR}/VPP_REPO_URL_CENTOS)
+#   VPP_STABLE_VER=$(cat ${SCRIPT_DIR}/VPP_STABLE_VER_CENTOS)
+#   VIRL_TOPOLOGY=$(cat ${SCRIPT_DIR}/VIRL_TOPOLOGY_CENTOS)
+#   VIRL_RELEASE=$(cat ${SCRIPT_DIR}/VIRL_RELEASE_CENTOS)
+#   SHARED_MEMORY_PATH="/dev/shm"
 else
     DISTRO="UBUNTU"
     export DEBIAN_FRONTEND=noninteractive
@@ -50,7 +50,7 @@ else
     SHARED_MEMORY_PATH="/run/shm"
 fi
 
-VIRL_SERVERS=("10.30.51.28" "10.30.51.29" "10.30.51.30")
+VIRL_SERVERS=("10.30.51.28")
 IPS_PER_VIRL=( "10.30.51.28:252"
                "10.30.51.29:74"
                "10.30.51.30:74" )
@@ -88,7 +88,7 @@ function get_max_sim_nr() {
 VIRL_USERNAME=jenkins-in
 VIRL_PKEY=priv_key
 VIRL_SERVER_STATUS_FILE="status"
-VIRL_SERVER_EXPECTED_STATUS="PRODUCTION"
+VIRL_SERVER_EXPECTED_STATUS="TESTING"
 
 SSH_OPTIONS="-i ${VIRL_PKEY} -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o BatchMode=yes -o LogLevel=error"
 
