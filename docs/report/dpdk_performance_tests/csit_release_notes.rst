@@ -4,7 +4,7 @@ CSIT Release Notes
 Changes in CSIT |release|
 -------------------------
 
-#. Improved Testpmd tests
+#. Improved performance of testpmd tests
 
     - Performance of NICs - 2p40GE Intel xl710, 2p10GE Intel x710
 
