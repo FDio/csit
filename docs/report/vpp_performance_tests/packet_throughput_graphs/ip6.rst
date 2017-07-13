@@ -25,7 +25,7 @@ git repository:
 
 .. code-block:: bash
 
-    $ cd $CSIT/tests/vpp/perf/ipv6
+    $ cd $CSIT/tests/vpp/perf/ip6
     $ grep -E "78B-1t1c-ethip6-ip6[a-z0-9]+-[a-z-]*ndrdisc" *
 
     10ge2p1x520-ethip6-ip6base-copwhtlistbase-ndrpdrdisc.robot:| tc01-78B-1t1c-ethip6-ip6base-copwhtlistbase-ndrdisc
@@ -51,7 +51,7 @@ git repository:
 
 .. code-block:: bash
 
-    $ cd $CSIT/tests/vpp/perf/ipv6
+    $ cd $CSIT/tests/vpp/perf/ip6
     $ grep -E "78B-2t2c-ethip6-ip6[a-z0-9]+-[a-z-]*ndrdisc" *
 
     10ge2p1x520-ethip6-ip6base-copwhtlistbase-ndrpdrdisc.robot:| tc07-78B-2t2c-ethip6-ip6base-copwhtlistbase-ndrdisc
@@ -80,7 +80,7 @@ git repository:
 
 .. code-block:: bash
 
-    $ cd $CSIT/tests/vpp/perf/ipv6
+    $ cd $CSIT/tests/vpp/perf/ip6
     $ grep -E "78B-1t1c-ethip6-ip6[a-z0-9]+-[a-z-]*pdrdisc" *
 
     10ge2p1x520-ethip6-ip6base-copwhtlistbase-ndrpdrdisc.robot:| tc02-78B-1t1c-ethip6-ip6base-copwhtlistbase-pdrdisc
@@ -105,7 +105,7 @@ git repository:
 
 .. code-block:: bash
 
-    $ cd $CSIT/tests/vpp/perf/ipv6
+    $ cd $CSIT/tests/vpp/perf/ip6
     $ grep -E "78B-2t2c-ethip6-ip6[a-z0-9]+-[a-z-]*pdrdisc" *
 
     10ge2p1x520-ethip6-ip6base-copwhtlistbase-ndrpdrdisc.robot:| tc08-78B-2t2c-ethip6-ip6base-copwhtlistbase-pdrdisc
@@ -114,4 +114,3 @@ git repository:
     10ge2p1x520-ethip6-ip6scale200k-ndrpdrdisc.robot:| tc08-78B-2t2c-ethip6-ip6scale200k-pdrdisc
     10ge2p1x520-ethip6-ip6scale20k-ndrpdrdisc.robot:| tc08-78B-2t2c-ethip6-ip6scale20k-pdrdisc
     10ge2p1x520-ethip6-ip6scale2m-ndrpdrdisc.robot:| tc08-78B-2t2c-ethip6-ip6scale2m-pdrdisc
-

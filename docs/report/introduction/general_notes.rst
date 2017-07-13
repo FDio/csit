@@ -41,9 +41,9 @@ is listed separately, as follows:
    functionality of VPP. Tests cover a range of CRUD operations executed
    against VPP.
 
-#. **TLDK Tests** - TODO
-
-#. **NSH_SFC Tests** - TODO
+#. **NSH_SFC Functional Tests** - NSH_SFC functional tests are executed in
+   virtual FD.io testbeds focusing onNSH_SFC of VPP. Tests cover a range of
+   CRUD operations executed against VPP.
 
 In addition to above, CSIT |release| report does also include VPP unit test
 results. VPP unit tests are developed within the FD.io VPP project and as they

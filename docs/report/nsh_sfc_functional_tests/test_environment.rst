@@ -1,8 +1,8 @@
 Test Environment
 ================
 
-CSIT functional tests are currently executed in FD.IO VIRL testbed. The physical
-VIRL testbed infrastructure consists of three identical VIRL hosts:
+CSIT NSH_SFC functional tests are currently executed in FD.IO VIRL testbed. The
+physical VIRL testbed infrastructure consists of three identical VIRL hosts:
 
 - All hosts are Cisco UCS C240-M4 (2x Intel(R) Xeon(R) CPU E5-2699 v3 @2.30GHz,
   18c, 512GB RAM)
@@ -12,11 +12,8 @@ VIRL testbed infrastructure consists of three identical VIRL hosts:
   - STD server version 0.10.24.7
   - UWM server version 0.10.24.7
 
-Whenever a patch is submitted to gerrit for review, parallel VIRL simulations
-are started to reduce the time of execution of all functional tests. The number
-of parallel VIRL simulations is equal to number of test groups defined by
-TEST_GROUPS variable in csit/bootstrap.sh file. The VIRL host to run VIRL
-simulation is selected based on least load algorithm per VIRL simulation.
+The VIRL host to run VIRL simulation is selected based on least load algorithm
+per VIRL simulation.
 
 Every VIRL simulation uses the same three-node - Traffic Generator (TG node) and
 two Systems Under Test (SUT1 and SUT2) - "double-ring" topology. The appropriate
