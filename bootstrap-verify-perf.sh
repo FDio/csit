@@ -15,9 +15,11 @@
 set -x
 
 # Space separated list of available testbeds, described by topology files
-TOPOLOGIES="topologies/available/lf_testbed1.yaml \
-            topologies/available/lf_testbed2.yaml \
-            topologies/available/lf_testbed3.yaml"
+#TOPOLOGIES="topologies/available/lf_testbed1.yaml \
+#            topologies/available/lf_testbed2.yaml \
+#            topologies/available/lf_testbed3.yaml"
+
+TOPOLOGIES="topologies/available/lf_testbed1.yaml"
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
@@ -305,6 +307,7 @@ case "$TEST_TAG" in
         # run full performance test suite and exit on fail
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
+              -i TEST \
               -s "tests.vpp.perf" \
               tests/
         RETURN_STATUS=$(echo $?)
