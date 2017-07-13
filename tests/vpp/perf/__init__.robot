@@ -35,6 +35,8 @@
 | | ... | - perf_vm_image - Guest VM disk image
 | | ... | - perf_qemu_bin - Path to QEMU binary
 | | ... | - perf_qemu_qsz - QEMU virtio queue size
+| | ... | - use_tuned_cfs - Switch to set scheduler policy
+| | ... | - qemu_built - Information if QEMU build is already prepared
 | | ...
 | | Set Global Variable | ${perf_trial_duration} | 10
 | | Set Global Variable | ${perf_pdr_loss_acceptance} | 0.5
@@ -44,3 +46,4 @@
 | | ... | /opt/qemu-2.5.0/bin/qemu-system-x86_64
 | | Set Global Variable | ${perf_qemu_qsz} | 1024
 | | Set Global Variable | ${use_tuned_cfs} | ${False}
+| | Set Global Variable | ${qemu_built} | ${False}
