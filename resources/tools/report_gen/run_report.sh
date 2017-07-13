@@ -3,7 +3,7 @@
 set -x
 
 # Build locally without jenkins integrations
-DEBUG=0
+DEBUG=1
 
 # Build directories
 WORKING_DIR='_tmp'
@@ -72,22 +72,22 @@ mkdir -p ${PLOT_DPDK_SOURCE_DIR}
 ### VPP PERFORMANCE SOURCE DATA
 
 JEN_FILE_PERF='output_perf_data.xml'
-JEN_JOB='csit-vpp-perf-1704-all'
-JEN_BUILD=(6 7 8 9 10 12 14 15 16 17)
+JEN_JOB='csit-vpp-perf-trend-daily-master'
+JEN_BUILD=(75)
 
 for i in "${JEN_BUILD[@]}"; do
     curl --fail -fs ${CSIT_JEN_URL}/${JEN_JOB}/${i}/robot/report/output_perf_data.xml \
         -o ${PLOT_VPP_SOURCE_DIR}/${JEN_JOB}-${i}.xml
     if [[ ${DEBUG} -eq 1 ]] ;
     then
-        cp ./${JEN_JOB}-10.zip ${STATIC_DIR_ARCH}/${JEN_JOB}-10.zip
+        cp ./${JEN_JOB}-75.zip ${STATIC_DIR_ARCH}/${JEN_JOB}-75.zip
     else
         curl --fail -fs ${CSIT_JEN_URL}/${JEN_JOB}/${i}/robot/report/\*zip\*/robot-plugin.zip \
             -o ${STATIC_DIR_ARCH}/${JEN_JOB}-${i}.zip
     fi
 done
 
-unzip -o ${STATIC_DIR_ARCH}/${JEN_JOB}-10.zip -d ${WORKING_DIR}/
+unzip -o ${STATIC_DIR_ARCH}/${JEN_JOB}-75.zip -d ${WORKING_DIR}/
 python run_robot_data.py -i ${WORKING_DIR}/robot-plugin/output.xml \
     --output ${DTR_PERF_SOURCE_DIR}/vpp_performance_results.rst \
     --formatting rst --start 4 --level 2
@@ -97,48 +97,52 @@ python run_robot_teardown_data.py -i ${WORKING_DIR}/robot-plugin/output.xml \
 python run_robot_teardown_data.py -i ${WORKING_DIR}/robot-plugin/output.xml \
     -o ${DTO_PERF_SOURCE_OPER_DIR}/vpp_performance_operational_data.rst \
     --data "SH_RUN" -f "rst" --start 4 --level 2
-sed -i -e "s@###JOB###@${JEN_JOB}\/75@g" \
-    ${DTR_PERF_SOURCE_DIR}/index.rst
-sed -i -e "s@###LINK###@${CSIT_JEN_URL}\/${JEN_JOB}\/75@g" \
-    ${DTR_PERF_SOURCE_DIR}/index.rst
-sed -i -e "s@###JOB###@${JEN_JOB}\/75@g" \
-    ${DTC_PERF_SOURCE_DIR}/index.rst
-sed -i -e "s@###LINK###@${CSIT_JEN_URL}\/${JEN_JOB}\/75@g" \
-    ${DTC_PERF_SOURCE_DIR}/index.rst
-sed -i -e "s@###JOB###@${JEN_JOB}\/75@g" \
-    ${DTO_PERF_SOURCE_OPER_DIR}/index.rst
-sed -i -e "s@###LINK###@${CSIT_JEN_URL}\/${JEN_JOB}\/75@g" \
-    ${DTO_PERF_SOURCE_OPER_DIR}/index.rst
+if [[ ${DEBUG} -eq 0 ]] ;
+then
+    sed -i -e "s@###JOB###@${JEN_JOB}\/75@g" \
+        ${DTR_PERF_SOURCE_DIR}/index.rst
+    sed -i -e "s@###LINK###@${CSIT_JEN_URL}\/${JEN_JOB}\/75@g" \
+        ${DTR_PERF_SOURCE_DIR}/index.rst
+    sed -i -e "s@###JOB###@${JEN_JOB}\/75@g" \
+        ${DTC_PERF_SOURCE_DIR}/index.rst
+    sed -i -e "s@###LINK###@${CSIT_JEN_URL}\/${JEN_JOB}\/75@g" \
+        ${DTC_PERF_SOURCE_DIR}/index.rst
+    sed -i -e "s@###JOB###@${JEN_JOB}\/75@g" \
+        ${DTO_PERF_SOURCE_OPER_DIR}/index.rst
+    sed -i -e "s@###LINK###@${CSIT_JEN_URL}\/${JEN_JOB}\/75@g" \
+        ${DTO_PERF_SOURCE_OPER_DIR}/index.rst
+fi
 
 ### DPDK PERFORMANCE SOURCE DATA
 
-JEN_JOB='csit-dpdk-perf-master-all'
-JEN_BUILD=(13 14 15 16)
+JEN_JOB='csit-dpdk-perf-1707-all'
+JEN_BUILD=(1)
 
 for i in "${JEN_BUILD[@]}"; do
     curl --fail -fs ${CSIT_JEN_URL}/${JEN_JOB}/${i}/robot/report/output_perf_data.xml \
         -o ${PLOT_DPDK_SOURCE_DIR}/${JEN_JOB}-${i}.xml
     if [[ ${DEBUG} -eq 1 ]] ;
     then
-        cp ./${JEN_JOB}-16.zip ${STATIC_DIR_ARCH}/${JEN_JOB}-16.zip
+        cp ./${JEN_JOB}-${JEN_BUILD[-1]}.zip ${STATIC_DIR_ARCH}/${JEN_JOB}-${JEN_BUILD[-1]}.zip
     else
         curl --fail -fs ${CSIT_JEN_URL}/${JEN_JOB}/${i}/robot/report/\*zip\*/robot-plugin.zip \
             -o ${STATIC_DIR_ARCH}/${JEN_JOB}-${i}.zip
+
+        sed -i -e "s@###JOB###@${JEN_JOB}\/${JEN_BUILD[-1]}@g" \
+            ${DTR_DPDK_SOURCE_DIR}/index.rst
+        sed -i -e "s@###LINK###@${CSIT_JEN_URL}\/${JEN_JOB}\/${JEN_BUILD[-1]}@g" \
+            ${DTR_DPDK_SOURCE_DIR}/index.rst
     fi
 done
 
-unzip -o ${STATIC_DIR_ARCH}/${JEN_JOB}-16.zip -d ${WORKING_DIR}/
+unzip -o ${STATIC_DIR_ARCH}/${JEN_JOB}-${JEN_BUILD[-1]}.zip -d ${WORKING_DIR}/
 python run_robot_data.py -i ${WORKING_DIR}/robot-plugin/output.xml \
     --output ${DTR_DPDK_SOURCE_DIR}/dpdk_performance_results.rst \
-    --formatting rst --start 3 --level 2
-sed -i -e "s@###JOB###@${JEN_JOB}\/16@g" \
-    ${DTR_DPDK_SOURCE_DIR}/index.rst
-sed -i -e "s@###LINK###@${CSIT_JEN_URL}\/${JEN_JOB}\/16@g" \
-    ${DTR_DPDK_SOURCE_DIR}/index.rst
+    --formatting rst --start 4 --level 2
 
 ### FUNCTIONAL SOURCE DATA
 
-JEN_JOB='csit-vpp-functional-master-ubuntu1604-virl'
+JEN_JOB='csit-vpp-functional-1707-ubuntu1604-virl'
 JEN_BUILD='lastSuccessfulBuild'
 
 if [[ ${DEBUG} -eq 1 ]] ;
@@ -147,6 +151,15 @@ then
 else
     curl -fs ${CSIT_JEN_URL}/${JEN_JOB}/${JEN_BUILD}/robot/report/\*zip\*/robot-plugin.zip \
         -o ${STATIC_DIR_ARCH}/${JEN_JOB}-${JEN_BUILD}.zip
+
+    sed -i -e "s@###JOB###@${JEN_JOB}\/${JEN_BUILD}@g" \
+        ${DTR_FUNC_SOURCE_DIR}/index.rst
+    sed -i -e "s@###LINK###@${CSIT_JEN_URL}\/${JEN_JOB}\/${JEN_BUILD}@g" \
+        ${DTR_FUNC_SOURCE_DIR}/index.rst
+    sed -i -e "s@###JOB###@${JEN_JOB}\/${JEN_BUILD}@g" \
+        ${DTC_FUNC_SOURCE_DIR}/index.rst
+    sed -i -e "s@###LINK###@${CSIT_JEN_URL}\/${JEN_JOB}\/${JEN_BUILD}@g" \
+        ${DTC_FUNC_SOURCE_DIR}/index.rst
 fi
 
 unzip -o ${STATIC_DIR_ARCH}/${JEN_JOB}-${JEN_BUILD}.zip -d ${WORKING_DIR}/
@@ -156,18 +169,10 @@ python run_robot_data.py -i ${WORKING_DIR}/robot-plugin/output.xml \
 python run_robot_teardown_data.py -i ${WORKING_DIR}/robot-plugin/output.xml \
     --output ${DTC_FUNC_SOURCE_DIR}/vpp_functional_configuration.rst \
     --data "VAT_H" -f "rst" --start 5 --level 2
-sed -i -e "s@###JOB###@${JEN_JOB}\/${JEN_BUILD}@g" \
-    ${DTR_FUNC_SOURCE_DIR}/index.rst
-sed -i -e "s@###LINK###@${CSIT_JEN_URL}\/${JEN_JOB}\/${JEN_BUILD}@g" \
-    ${DTR_FUNC_SOURCE_DIR}/index.rst
-sed -i -e "s@###JOB###@${JEN_JOB}\/${JEN_BUILD}@g" \
-    ${DTC_FUNC_SOURCE_DIR}/index.rst
-sed -i -e "s@###LINK###@${CSIT_JEN_URL}\/${JEN_JOB}\/${JEN_BUILD}@g" \
-    ${DTC_FUNC_SOURCE_DIR}/index.rst
 
 ### HONEYCOMB SOURCE DATA
 
-JEN_JOB='hc2vpp-csit-integration-master-ubuntu1604'
+JEN_JOB='hc2vpp-csit-integration-1707-ubuntu1604'
 JEN_BUILD='lastSuccessfulBuild'
 
 if [[ ${DEBUG} -eq 1 ]] ;
@@ -176,16 +181,17 @@ then
 else
     curl -fs ${HC_JEN_URL}/${JEN_JOB}/${JEN_BUILD}/robot/report/\*zip\*/robot-plugin.zip \
         -o ${STATIC_DIR_ARCH}/${JEN_JOB}-${JEN_BUILD}.zip
+
+    sed -i -e "s@###JOB###@${JEN_JOB}\/${JEN_BUILD}@g" \
+        ${DTR_HONEYCOMB_SOURCE_DIR}/index.rst
+    sed -i -e "s@###LINK###@${HC_JEN_URL}\/${JEN_JOB}\/${JEN_BUILD}@g" \
+        ${DTR_HONEYCOMB_SOURCE_DIR}/index.rst
 fi
 
 unzip -o ${STATIC_DIR_ARCH}/${JEN_JOB}-${JEN_BUILD}.zip -d ${WORKING_DIR}/
 python run_robot_data.py -i ${WORKING_DIR}/robot-plugin/output.xml \
     --output ${DTR_HONEYCOMB_SOURCE_DIR}/honeycomb_functional_results.rst \
-    --formatting rst --start 3 --level 2
-sed -i -e "s@###JOB###@${JEN_JOB}\/${JEN_BUILD}@g" \
-    ${DTR_HONEYCOMB_SOURCE_DIR}/index.rst
-sed -i -e "s@###LINK###@${HC_JEN_URL}\/${JEN_JOB}\/${JEN_BUILD}@g" \
-    ${DTR_HONEYCOMB_SOURCE_DIR}/index.rst
+    --formatting rst --start 5 --level 2
 
 # Delete temporary json files
 find ${SOURCE_DIR} -name "*.json" -type f -delete
@@ -354,11 +360,13 @@ python run_plot.py --input ${PLOT_DPDK_SOURCE_DIR} \
 python run_plot.py --input ${PLOT_DPDK_SOURCE_DIR} \
     --output ${STATIC_DIR_DPDK}/64B-1t1c-ipv4-ndrdisc \
     --title "64B-1t1c-ethip4-ip4base-l3fwd-ndrdisc" \
-    --xpath '//*[@framesize="64B" and contains(@tags,"BASE") and contains(@tags,"NDRDISC") and contains(@tags,"1T1C") and contains(@tags,"IP4FWD")]'
+    --xpath '//*[@framesize="64B" and contains(@tags,"BASE") and contains(@tags,"NDRDISC") and contains(@tags,"1T1C") and contains(@tags,"IP4FWD")]' \
+    --lower 2000000 --upper 12000000
 python run_plot.py --input ${PLOT_DPDK_SOURCE_DIR} \
     --output ${STATIC_DIR_DPDK}/64B-2t2c-ipv4-ndrdisc \
     --title "64B-2t2c-ethip4-ip4base-l3fwd-ndrdisc" \
-    --xpath '//*[@framesize="64B" and contains(@tags,"BASE") and contains(@tags,"NDRDISC") and contains(@tags,"2T2C") and contains(@tags,"IP4FWD")]'
+    --xpath '//*[@framesize="64B" and contains(@tags,"BASE") and contains(@tags,"NDRDISC") and contains(@tags,"2T2C") and contains(@tags,"IP4FWD")]' \
+    --lower 2000000 --upper 12000000
 
 python run_plot.py --input ${PLOT_DPDK_SOURCE_DIR} \
     --output ${STATIC_DIR_DPDK}/64B-1t1c-l2-pdrdisc \
@@ -371,11 +379,13 @@ python run_plot.py --input ${PLOT_DPDK_SOURCE_DIR} \
 python run_plot.py --input ${PLOT_DPDK_SOURCE_DIR} \
     --output ${STATIC_DIR_DPDK}/64B-1t1c-ipv4-pdrdisc \
     --title "64B-1t1c-ethip4-ip4base-l3fwd-pdrdisc" \
-    --xpath '//*[@framesize="64B" and contains(@tags,"BASE") and contains(@tags,"PDRDISC") and not(contains(@tags,"NDRDISC")) and contains(@tags,"1T1C") and contains(@tags,"IP4FWD")]'
+    --xpath '//*[@framesize="64B" and contains(@tags,"BASE") and contains(@tags,"PDRDISC") and not(contains(@tags,"NDRDISC")) and contains(@tags,"1T1C") and contains(@tags,"IP4FWD")]' \
+    --lower 20000000 --upper 30000000
 python run_plot.py --input ${PLOT_DPDK_SOURCE_DIR} \
     --output ${STATIC_DIR_DPDK}/64B-2t2c-ipv4-pdrdisc \
     --title "64B-2t2c-ethip4-ip4base-l3fwd-pdrdisc" \
-    --xpath '//*[@framesize="64B" and contains(@tags,"BASE") and contains(@tags,"PDRDISC") and not(contains(@tags,"NDRDISC")) and contains(@tags,"2T2C") and contains(@tags,"IP4FWD")]'
+    --xpath '//*[@framesize="64B" and contains(@tags,"BASE") and contains(@tags,"PDRDISC") and not(contains(@tags,"NDRDISC")) and contains(@tags,"2T2C") and contains(@tags,"IP4FWD")]' \
+    --lower 20000000 --upper 30000000
 
 # Plot latency
 

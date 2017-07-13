@@ -50,7 +50,7 @@ SUT Configuration - VIRL Guest OS Linux
 In CSIT terminology, the VM operating system for both SUTs that |vpp-release| has
 been tested with, is the following:
 
-**#. |virl-image-ubuntu|**
+**#. Ubuntu VIRL image**
 
 This image implies Ubuntu 16.04.1 LTS, current as of yyyy-mm-dd (that is,
 package versions are those that would have been installed by a "apt-get update",
@@ -64,7 +64,7 @@ kernel package version) are included in CSIT source repository:
 A replica of this VM image can be built by running the "build.sh" script in CSIT
 repository resources/tools/disk-image-builder/ubuntu.
 
-**#. |virl-image-centos|**
+**#. CentOS VIRL image**
 
 The Centos7.3 image is ready to be used but no tests running on it now.
 Corresponding Jenkins jobs are under preparation.

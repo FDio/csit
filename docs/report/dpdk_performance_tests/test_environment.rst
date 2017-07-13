@@ -1916,13 +1916,13 @@ Tagged by **2T2C**
 
 .. code-block:: bash
 
-    testpmd -c 0x403 -n 4 -- --numa --nb-ports=2 --portmask=0x3 --nb-cores=2 --max-pkt-len=9000 --txqflags=0 --forward-mode=io --rxq=1 --txq=1 --burst=64  --burst=64 --rxd=1024 --txd=1024 --disable-link-check --auto-start
+    testpmd -c 0x403 -n 4 -- --numa --nb-ports=2 --portmask=0x3 --nb-cores=2 --max-pkt-len=9000 --txqflags=0 --forward-mode=io --rxq=1 --txq=1 --burst=64 --rxd=1024 --txd=1024 --disable-link-check --auto-start
 
 Tagged by **4T4C**
 
 .. code-block:: bash
 
-    testpmd -c 0xc07 -n 4 -- --numa --nb-ports=2 --portmask=0x3 --nb-cores=4 --max-pkt-len=9000 --txqflags=0 --forward-mode=io --rxq=2 --txq=2 --burst=64  --burst=64 --rxd=1024 --txd=1024 --disable-link-check --auto-start
+    testpmd -c 0xc07 -n 4 -- --numa --nb-ports=2 --portmask=0x3 --nb-cores=4 --max-pkt-len=9000 --txqflags=0 --forward-mode=io --rxq=2 --txq=2 --burst=64 --rxd=1024 --txd=1024 --disable-link-check --auto-start
 
 **L3FWD Startup Configuration**
 
