@@ -61,6 +61,13 @@ CSIT |release| report contains following main sections and sub-sections:
    *Overview* - short overview of unit test framework and executed tests;
    *Documentation* - source code documentation of VPP unit tests.
 
+#. **NSH_SFC Functional Tests** - NSH_SFC functional tests executed in
+   virtual FD.io testbeds; *Overview* - tested virtual topologies, test
+   coverage and naming specifics; *CSIT Release Notes* - changes in CSIT
+   |release|, added tests, environment or methodology changes, known CSIT issues;
+   *Test Environment* - environment description ;
+   *Documentation* - source code documentation for NSH_SFC functional tests.
+
 #. **Detailed Test Results** - auto-generated results from CSIT jobs
    executions using CSIT Robot Framework output files as source data; *VPP
    Performance Results*, *DPDK Performance Results*, *VPP Functional

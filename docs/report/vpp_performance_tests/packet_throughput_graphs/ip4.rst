@@ -24,7 +24,7 @@ git repository:
 
 .. code-block:: bash
 
-    $ cd $CSIT/tests/vpp/perf/ipv4
+    $ cd $CSIT/tests/vpp/perf/ip4
     $ grep -P '64B-1t1c-ethip4-ip4(base|scale)[a-z0-9]*(?!-eth-[0-9]vhost).*-ndrdisc' *
 
     10ge2p1x520-ethip4-ip4base-copwhtlistbase-ndrpdrdisc.robot:| tc01-64B-1t1c-ethip4-ip4base-copwhtlistbase-ndrdisc
@@ -35,7 +35,6 @@ git repository:
     10ge2p1x520-ethip4-ip4scale200k-ndrpdrdisc.robot:| tc01-64B-1t1c-ethip4-ip4scale200k-ndrdisc
     10ge2p1x520-ethip4-ip4scale20k-ndrpdrdisc.robot:| tc01-64B-1t1c-ethip4-ip4scale20k-ndrdisc
     10ge2p1x520-ethip4-ip4scale2m-ndrpdrdisc.robot:| tc01-64B-1t1c-ethip4-ip4scale2m-ndrdisc
-    10ge2p1x520-ethip4-ip4scale-snat-ndrpdrdisc.robot:| tc11-64B-1t1c-ethip4-ip4base-snat-4000u-15p-ndrdisc
     40ge2p1xl710-ethip4-ip4base-ndrpdrdisc.robot:| tc01-64B-1t1c-ethip4-ip4base-ndrdisc
 
 VPP NDR 64B packet throughput in 2t2c setup (2thread, 2core) is presented
@@ -53,7 +52,7 @@ git repository:
 
 .. code-block:: bash
 
-    $ cd $CSIT/tests/vpp/perf/ipv4
+    $ cd $CSIT/tests/vpp/perf/ip4
     $ grep -P '64B-2t2c-ethip4-ip4(base|scale)[a-z0-9]*(?!-eth-[0-9]vhost).*-ndrdisc' *
 
     10ge2p1x520-ethip4-ip4base-copwhtlistbase-ndrpdrdisc.robot:| tc07-64B-2t2c-ethip4-ip4base-copwhtlistbase-ndrdisc
@@ -83,19 +82,17 @@ git repository:
 
 .. code-block:: bash
 
-    $ cd $CSIT/tests/vpp/perf/ipv4
+    $ cd $CSIT/tests/vpp/perf/ip4
     $ grep -P '64B-1t1c-ethip4-ip4(base|scale)[a-z0-9]*(?!-eth-[0-9]vhost).*-pdrdisc' *
 
-    10ge2p1x520-ethip4-ip4base-copwhtlistbase-ndrpdrdisc.robot:| tc01-64B-1t1c-ethip4-ip4base-copwhtlistbase-pdrdisc
-    10ge2p1x520-ethip4-ip4base-iacldstbase-ndrpdrdisc.robot:| tc01-64B-1t1c-ethip4-ip4base-iacldstbase-pdrdisc
-    10ge2p1x520-ethip4-ip4base-ipolicemarkbase-ndrpdrdisc.robot:| tc01-64B-1t1c-ethip4-ip4base-ipolicemarkbase-pdrdisc
-    10ge2p1x520-ethip4-ip4base-ndrpdrdisc.robot:| tc01-64B-1t1c-ethip4-ip4base-pdrdisc
-    10ge2p1x520-ethip4-ip4base-snat-ndrpdrdisc.robot:| tc01-64B-1t1c-ethip4-ip4base-snat-1u-1p-pdrdisc
-    10ge2p1x520-ethip4-ip4scale200k-ndrpdrdisc.robot:| tc01-64B-1t1c-ethip4-ip4scale200k-pdrdisc
-    10ge2p1x520-ethip4-ip4scale20k-ndrpdrdisc.robot:| tc01-64B-1t1c-ethip4-ip4scale20k-pdrdisc
-    10ge2p1x520-ethip4-ip4scale2m-ndrpdrdisc.robot:| tc01-64B-1t1c-ethip4-ip4scale2m-pdrdisc
-    10ge2p1x520-ethip4-ip4scale-snat-ndrpdrdisc.robot:| tc11-64B-1t1c-ethip4-ip4base-snat-4000u-15p-pdrdisc
-    40ge2p1xl710-ethip4-ip4base-ndrpdrdisc.robot:| tc01-64B-1t1c-ethip4-ip4base-pdrdisc
+    10ge2p1x520-ethip4-ip4base-copwhtlistbase-ndrpdrdisc.robot:| tc02-64B-1t1c-ethip4-ip4base-copwhtlistbase-pdrdisc
+    10ge2p1x520-ethip4-ip4base-iacldstbase-ndrpdrdisc.robot:| tc02-64B-1t1c-ethip4-ip4base-iacldstbase-pdrdisc
+    10ge2p1x520-ethip4-ip4base-ipolicemarkbase-ndrpdrdisc.robot:| tc02-64B-1t1c-ethip4-ip4base-ipolicemarkbase-pdrdisc
+    10ge2p1x520-ethip4-ip4base-ndrpdrdisc.robot:| tc02-64B-1t1c-ethip4-ip4base-pdrdisc
+    10ge2p1x520-ethip4-ip4base-snat-ndrpdrdisc.robot:| tc02-64B-1t1c-ethip4-ip4base-snat-1u-1p-pdrdisc
+    10ge2p1x520-ethip4-ip4scale200k-ndrpdrdisc.robot:| tc02-64B-1t1c-ethip4-ip4scale200k-pdrdisc
+    10ge2p1x520-ethip4-ip4scale20k-ndrpdrdisc.robot:| tc02-64B-1t1c-ethip4-ip4scale20k-pdrdisc
+    10ge2p1x520-ethip4-ip4scale2m-ndrpdrdisc.robot:| tc02-64B-1t1c-ethip4-ip4scale2m-pdrdisc
 
 VPP PDR 64B packet throughput in 2t2c setup (2thread, 2core) is presented
 in the graph below. PDR measured for 0.5% packet loss ratio.

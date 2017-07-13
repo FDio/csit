@@ -37,9 +37,9 @@ and their indices.
 .. toctree::
 
     l2
-    ipv4
-    ipv6
-    ipv4_tunnels
-    ipv6_tunnels
+    ip4
+    ip6
+    ip4_tunnels
+    ip6_tunnels
     vm_vhost
     ipsec

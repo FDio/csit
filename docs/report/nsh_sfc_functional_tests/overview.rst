@@ -4,12 +4,12 @@ Overview
 Tested Virtual Topologies
 -------------------------
 
-CSIT VPP functional tests are executed on virtualized topologies created using
-Virtual Internet Routing Lab (VIRL) simulation platform contributed by Cisco.
-VIRL runs on physical baremetal servers hosted by LF FD.io project.  Majority
-of the tests are executed in the three node logical test topology - Traffic
-Generator (TG) node and two Systems Under Test (SUT) nodes connected in a
-loop. Some tests use two node logical test topology - TG node and SUT1 node.
+CSIT NSH_SFC functional tests are executed on virtualized topologies created
+using Virtual Internet Routing Lab (VIRL) simulation platform contributed by
+Cisco. VIRL runs on physical baremetal servers hosted by LF FD.io project.
+Majority,of the tests are executed in the three node logical test topology -
+Traffic Generator (TG) node and two Systems Under Test (SUT) nodes connected in
+a loop. Some tests use two node logical test topology - TG node and SUT1 node.
 Both logical test topologies are shown in the figures below.
 
 ::
@@ -94,61 +94,12 @@ is shown in the figure below including the applicable packet flow thru the VM
          ******************* |           |********************
                              +-----------+
 
-Functional Tests Coverage
--------------------------
+NSH_SFC Functional Tests Coverage
+---------------------------------
 
-Following VPP functional test areas are covered in the CSIT |release| with
+Following NSH_SFC functional test areas are covered in the CSIT |release| with
 results listed in this report:
 
-- **DHCP - Client and Proxy** - Dynamic Host Control Protocol Client and Proxy
-  for IPv4, IPv6.
-- **GRE Overlay Tunnels** - Generic Routing Encapsulation for IPv4.
-- **L2BD Ethernet Switching** - L2 Bridge-Domain switched-forwarding for
-  untagged Ethernet, dot1q and dot1ad tagged.
-- **L2XC Ethernet Switching** - L2 Cross-Connect switched-forwarding for
-  untagged Ethernet, dot1q and dot1ad tagged.
-- **LISP Overlay Tunnels** - Locator/ID Separation Protocol overlay tunnels and
-  locator/id mapping control.
-- **Softwire Tunnels** - IPv4-in-IPv6 softwire tunnels.
-- **Cop Address Security** - address white-list and black-list filtering for
-  IPv4, IPv6.
-- **IPSec - Tunnels and Transport** - IPSec tunnel and transport modes.
-- **IPv6 Routed-Forwarding** - IPv6 routed-forwarding, NS/ND, RA, ICMPv6.
-- **uRPF Source Security** - unicast Reverse Path Forwarding security.
-- **Tap Interface** - baseline Linux tap interface tests.
-- **Telemetry - IPFIX and SPAN** - IPFIX netflow statistics and SPAN port
-  mirroring.
-- **VRF Routed-Forwarding** - multi-context IPVPN routed-forwarding for IPv4,
-  IPv6.
-- **iACL Security** - ingress Access Control List security for IPv4, IPv6, MAC.
-- **IPv4 Routed-Forwarding** - IPv4 routed-forwarding, RPF, ARP, Proxy ARP,
-  ICMPv4.
-- **QoS Policer Metering** - ingress packet rate measuring and marking for IPv4,
-  IPv6.
-- **VLAN Tag Translation** - L2 VLAN tag translation 2to2, 2to1, 1to2, 1to1.
-- **VXLAN Overlay Tunnels** - VXLAN tunneling for L2-over-IP, for IPv4, IPv6.
+- TODO
 
-Functional Tests Naming
------------------------
 
-CSIT |release| follows a common structured naming convention for all
-performance and system functional tests, introduced in CSIT |release-1|.
-
-The naming should be intuitive for majority of the tests. Complete
-description of CSIT test naming convention is provided on 
-`CSIT test naming wiki page <https://wiki.fd.io/view/CSIT/csit-test-naming>`_.
-
-Here few illustrative examples of the new naming usage for functional test
-suites:
-
-#. **Physical port to physical port - a.k.a. NIC-to-NIC, Phy-to-Phy, P2P**
-
-   - *eth2p-ethip4-ip4base-func.robot* => 2 ports of Ethernet, IPv4 baseline
-     routed forwarding, functional tests.
-
-#. **Physical port to VM (or VM chain) to physical port - a.k.a. NIC2VM2NIC,
-   P2V2P, NIC2VMchain2NIC, P2V2V2P**
-
-   - *eth2p-ethip4vxlan-l2bdbasemaclrn-eth-2vhost-1vm-func.robot* => 2 ports of
-     Ethernet, IPv4 VXLAN Ethernet, L2 bridge-domain switching to/from two vhost
-     interfaces and one VM, functional tests.

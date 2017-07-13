@@ -20,7 +20,7 @@ git repository:
 
 .. code-block:: bash
 
-    $ cd $CSIT/tests/vpp/perf/ipv4
+    $ cd $CSIT/tests/vpp/perf/ip4
     $ grep -P '64B-1t1c-ethip4-ip4(base|scale)[a-z0-9]*(?!-eth-[0-9]vhost).*-ndrdisc' *
 
     10ge2p1x520-ethip4-ip4base-copwhtlistbase-ndrpdrdisc.robot:| tc01-64B-1t1c-ethip4-ip4base-copwhtlistbase-ndrdisc
@@ -47,7 +47,7 @@ git repository:
 
 .. code-block:: bash
 
-    $ cd $CSIT/tests/vpp/perf/ipv4
+    $ cd $CSIT/tests/vpp/perf/ip4
     $ grep -P '64B-2t2c-ethip4-ip4(base|scale)[a-z0-9]*(?!-eth-[0-9]vhost).*-ndrdisc' *
 
     10ge2p1x520-ethip4-ip4base-copwhtlistbase-ndrpdrdisc.robot:| tc07-64B-2t2c-ethip4-ip4base-copwhtlistbase-ndrdisc

@@ -6,12 +6,12 @@ Changes in CSIT |release|
 
 #. Added Honeycomb functional tests
 
-    - ACL plugin
-    - Routing
-    - SLAAC
-    - Proxy ARP
-    - DHCP Relay
-    - Neighbor Discovery Proxy
+   - ACL plugin
+   - Routing
+   - SLAAC
+   - Proxy ARP
+   - DHCP Relay
+   - Neighbor Discovery Proxy
 
 #. Changed execution environment from Ubuntu14.04 to Ubuntu16.04
 

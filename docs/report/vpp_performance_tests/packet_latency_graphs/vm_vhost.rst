@@ -26,12 +26,21 @@ git repository:
 
     10ge2p1x520-dot1q-l2bdbasemaclrn-eth-2vhost-1vm-ndrpdrdisc.robot:| tc01-64B-1t1c-dot1q-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc
     10ge2p1x520-dot1q-l2xcbase-eth-2vhost-1vm-ndrpdrdisc.robot:| tc01-64B-1t1c-eth-l2xcbase-eth-2vhost-1vm-ndrdisc
-    10ge2p1x520-ethip4-ip4base-eth-2vhost-1vm-ndrpdrdisc.robot:| tc01-64B-1t1c-ethip4-ip4base-eth-2vhost-1vm-ndrdisc
+    10ge2p1x520-ethip4-ip4base-eth-2vhostvr1024-1vm-cfsrr1-ndrpdrdisc.robot:| tc01-64B-1t1c-ethip4-ip4base-eth-2vhostvr1024-1vm-cfsrr1-ndrdisc
+    10ge2p1x520-ethip4-ip4base-eth-2vhostvr1024-1vm-ndrpdrdisc.robot:| tc01-64B-1t1c-ethip4-ip4base-eth-2vhostvr1024-1vm-ndrdisc
+    10ge2p1x520-ethip4-ip4base-eth-2vhostvr256-1vm-cfsrr1-ndrpdrdisc.robot:| tc01-64B-1t1c-ethip4-ip4base-eth-2vhostvr256-1vm-cfsrr1-ndrdisc
+    10ge2p1x520-ethip4-ip4base-eth-2vhostvr256-1vm-ndrpdrdisc.robot:| tc01-64B-1t1c-ethip4-ip4base-eth-2vhostvr256-1vm-ndrdisc
     10ge2p1x520-ethip4-ip4base-eth-4vhost-2vm-ndrpdrdisc.robot:| tc01-64B-1t1c-ethip4-ip4base-eth-4vhost-2vm-ndrdisc
     10ge2p1x520-ethip4vxlan-l2bdbasemaclrn-eth-2vhost-1vm-ndrpdrdisc.robot:| tc01-64B-1t1c-ethip4vxlan-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc
-    10ge2p1x520-eth-l2bdbasemaclrn-eth-2vhost-1vm-ndrpdrdisc.robot:| tc01-64B-1t1c-eth-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc
+    10ge2p1x520-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-cfsrr1-ndrpdrdisc.robot:| tc01-64B-1t1c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-cfsrr1-ndrdisc
+    10ge2p1x520-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdrdisc.robot:| tc01-64B-1t1c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrdisc
+    10ge2p1x520-eth-l2bdbasemaclrn-eth-2vhostvr256-1vm-cfsrr1-ndrpdrdisc.robot:| tc01-64B-1t1c-eth-l2bdbasemaclrn-eth-2vhostvr256-1vm-cfsrr1-ndrdisc
+    10ge2p1x520-eth-l2bdbasemaclrn-eth-2vhostvr256-1vm-ndrpdrdisc.robot:| tc01-64B-1t1c-eth-l2bdbasemaclrn-eth-2vhostvr256-1vm-ndrdisc
     10ge2p1x520-eth-l2bdbasemaclrn-eth-4vhost-2vm-ndrpdrdisc.robot:| tc01-64B-1t1c-eth-l2bdbasemaclrn-eth-4vhost-2vm-ndrdisc
-    10ge2p1x520-eth-l2xcbase-eth-2vhost-1vm-ndrpdrdisc.robot:| tc01-64B-1t1c-eth-l2xcbase-eth-2vhost-1vm-ndrdisc
+    10ge2p1x520-eth-l2xcbase-eth-2vhostvr1024-1vm-cfsrr1-ndrpdrdisc.robot:| tc01-64B-1t1c-eth-l2xcbase-eth-2vhostvr1024-1vm-cfsrr1-ndrdisc
+    10ge2p1x520-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdrdisc.robot:| tc01-64B-1t1c-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrdisc
+    10ge2p1x520-eth-l2xcbase-eth-2vhostvr256-1vm-cfsrr1-ndrpdrdisc.robot:| tc01-64B-1t1c-eth-l2xcbase-eth-2vhostvr256-1vm-cfsrr1-ndrdisc
+    10ge2p1x520-eth-l2xcbase-eth-2vhostvr256-1vm-ndrpdrdisc.robot:| tc01-64B-1t1c-eth-l2xcbase-eth-2vhostvr256-1vm-ndrdisc
     10ge2p1x520-eth-l2xcbase-eth-4vhost-2vm-ndrpdrdisc.robot:| tc01-64B-1t1c-eth-l2xcbase-eth-4vhost-2vm-ndrdisc
     10ge2p1x710-eth-l2bdbasemaclrn-eth-2vhost-1vm-ndrpdrdisc.robot:| tc01-64B-1t1c-eth-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc
     40ge2p1xl710-ethip4-ip4base-eth-4vhost-2vm-ndrpdrdisc.robot:| tc01-64B-1t1c-eth-ip4base-eth-4vhost-2vm-ndrdisc
@@ -57,12 +66,21 @@ git repository:
 
     10ge2p1x520-dot1q-l2bdbasemaclrn-eth-2vhost-1vm-ndrpdrdisc.robot:| tc07-64B-2t2c-dot1q-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc
     10ge2p1x520-dot1q-l2xcbase-eth-2vhost-1vm-ndrpdrdisc.robot:| tc07-64B-2t2c-eth-l2xcbase-eth-2vhost-1vm-ndrdisc
-    10ge2p1x520-ethip4-ip4base-eth-2vhost-1vm-ndrpdrdisc.robot:| tc07-64B-2t2c-ethip4-ip4base-eth-2vhost-1vm-ndrdisc
+    10ge2p1x520-ethip4-ip4base-eth-2vhostvr1024-1vm-cfsrr1-ndrpdrdisc.robot:| tc07-64B-2t2c-ethip4-ip4base-eth-2vhostvr1024-1vm-cfsrr1-ndrdisc
+    10ge2p1x520-ethip4-ip4base-eth-2vhostvr1024-1vm-ndrpdrdisc.robot:| tc07-64B-2t2c-ethip4-ip4base-eth-2vhostvr1024-1vm-ndrdisc
+    10ge2p1x520-ethip4-ip4base-eth-2vhostvr256-1vm-cfsrr1-ndrpdrdisc.robot:| tc07-64B-2t2c-ethip4-ip4base-eth-2vhostvr256-1vm-cfsrr1-ndrdisc
+    10ge2p1x520-ethip4-ip4base-eth-2vhostvr256-1vm-ndrpdrdisc.robot:| tc07-64B-2t2c-ethip4-ip4base-eth-2vhostvr256-1vm-ndrdisc
     10ge2p1x520-ethip4-ip4base-eth-4vhost-2vm-ndrpdrdisc.robot:| tc07-64B-2t2c-ethip4-ip4base-eth-4vhost-2vm-ndrdisc
     10ge2p1x520-ethip4vxlan-l2bdbasemaclrn-eth-2vhost-1vm-ndrpdrdisc.robot:| tc07-64B-2t2c-ethip4vxlan-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc
-    10ge2p1x520-eth-l2bdbasemaclrn-eth-2vhost-1vm-ndrpdrdisc.robot:| tc07-64B-2t2c-eth-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc
+    10ge2p1x520-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-cfsrr1-ndrpdrdisc.robot:| tc07-64B-2t2c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-cfsrr1-ndrdisc
+    10ge2p1x520-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrpdrdisc.robot:| tc07-64B-2t2c-eth-l2bdbasemaclrn-eth-2vhostvr1024-1vm-ndrdisc
+    10ge2p1x520-eth-l2bdbasemaclrn-eth-2vhostvr256-1vm-cfsrr1-ndrpdrdisc.robot:| tc07-64B-2t2c-eth-l2bdbasemaclrn-eth-2vhostvr256-1vm-cfsrr1-ndrdisc
+    10ge2p1x520-eth-l2bdbasemaclrn-eth-2vhostvr256-1vm-ndrpdrdisc.robot:| tc07-64B-2t2c-eth-l2bdbasemaclrn-eth-2vhostvr256-1vm-ndrdisc
     10ge2p1x520-eth-l2bdbasemaclrn-eth-4vhost-2vm-ndrpdrdisc.robot:| tc07-64B-2t2c-eth-l2bdbasemaclrn-eth-4vhost-2vm-ndrdisc
-    10ge2p1x520-eth-l2xcbase-eth-2vhost-1vm-ndrpdrdisc.robot:| tc07-64B-2t2c-eth-l2xcbase-eth-2vhost-1vm-ndrdisc
+    10ge2p1x520-eth-l2xcbase-eth-2vhostvr1024-1vm-cfsrr1-ndrpdrdisc.robot:| tc07-64B-2t2c-eth-l2xcbase-eth-2vhostvr1024-1vm-cfsrr1-ndrdisc
+    10ge2p1x520-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrpdrdisc.robot:| tc07-64B-2t2c-eth-l2xcbase-eth-2vhostvr1024-1vm-ndrdisc
+    10ge2p1x520-eth-l2xcbase-eth-2vhostvr256-1vm-cfsrr1-ndrpdrdisc.robot:| tc07-64B-2t2c-eth-l2xcbase-eth-2vhostvr256-1vm-cfsrr1-ndrdisc
+    10ge2p1x520-eth-l2xcbase-eth-2vhostvr256-1vm-ndrpdrdisc.robot:| tc07-64B-2t2c-eth-l2xcbase-eth-2vhostvr256-1vm-ndrdisc
     10ge2p1x520-eth-l2xcbase-eth-4vhost-2vm-ndrpdrdisc.robot:| tc07-64B-2t2c-eth-l2xcbase-eth-4vhost-2vm-ndrdisc
     10ge2p1x710-eth-l2bdbasemaclrn-eth-2vhost-1vm-ndrpdrdisc.robot:| tc07-64B-2t2c-eth-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc
     40ge2p1xl710-ethip4-ip4base-eth-4vhost-2vm-ndrpdrdisc.robot:| tc07-64B-2t2c-eth-ip4base-eth-4vhost-2vm-ndrdisc
