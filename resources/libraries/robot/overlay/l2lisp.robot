@@ -36,7 +36,7 @@
 | | ... | - No value returned
 | | ...
 | | ... | *Example:*
-| | ... | \| Configure LISP GPE topology in 3-node circular topology \| ${dut_node} \| ${adjacency} \
+| | ... | \| Configure L2 LISP on DUT \| ${dut_node} \| ${adjacency} \
 | | ... | \| ${settings} \|
 | | ...
 | | [Arguments]
