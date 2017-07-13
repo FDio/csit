@@ -22,11 +22,15 @@
 | ... | unknown-unicast-flood=${True} | arp-termination=${True}
 
 *** Settings ***
+| Library | resources.libraries.python.Trace.Trace
 | Resource | resources/libraries/robot/shared/default.robot
+| Resource | resources/libraries/robot/shared/testing_path.robot
+| Resource | resources/libraries/robot/shared/traffic.robot
 | Resource | resources/libraries/robot/honeycomb/honeycomb.robot
+| Resource | resources/libraries/robot/honeycomb/interfaces.robot
 | Resource | resources/libraries/robot/honeycomb/lisp.robot
 | Resource | resources/libraries/robot/honeycomb/bridge_domain.robot
-| Variables | resources/test_data/honeycomb/lisp.py
+| Variables | resources/test_data/honeycomb/lisp/lisp.py
 | ...
 | Documentation | *Honeycomb Lisp test suite.*
 | ...
@@ -136,8 +140,6 @@
 | | ...
 | | Given Locator Set From Honeycomb Should Be
 | | ... | ${node} | ${interface} | ${locator_set}
-| | And Honeycomb creates first l2 bridge domain
-| | ... | ${node} | ${bd2_name} | ${bd_settings}
 | | And LISP mappings from Honeycomb should not exist
 | | ... | ${node}
 | | And LISP mappings from VAT should not exist
@@ -206,18 +208,85 @@
 | TC15: Honeycomb can remove configuration of Lisp features
 | | [Documentation] | Check if Honeycomb can disable all Lisp features.
 | | ...
-| | Given Map resolver from Honeycomb should be | ${node} | ${ip_address}
+| | Given Map Resolver from Honeycomb should be | ${node} | ${ip_address}
 | | And PITR config from Honeycomb should be | ${node} | ${locator_set}
+| | And Map Register from Honeycomb should be | ${node} | ${True}
 | | When Honeycomb disables all LISP features | ${node}
 | | Then Lisp Should Not Be Configured | ${node}
 
-| TC16: Honeycomb configures Lisp Map Request Mode
+| TC16: Honeycomb can configure Lisp for traffic test - IPv4
+| | [Documentation]
+| | ... | [Top] TG-DUT1-TG.
+| | ... | [Enc] Eth-IPv4-LISP.
+| | ... | [Cfg] On DUT1 configure IPv4 LISP static adjacencies with TG.
+| | ... | [Ver] Make TG send ICMPv4 Echo Req between its interfaces through\
+| | ... | DUT1 and verify Lisp encapsulation of received packet.
+| | ... | [Ref] RFC6830.
+| | ...
+| | [Teardown] | Lisp Functional Traffic Test Teardown
+| | Given Configure path in 2-node circular topology
+| | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
+| | And Honeycomb configures interface state
+| | ... | ${dut_node} | ${dut_to_tg_if1} | up
+| | And Honeycomb configures interface state
+| | ... | ${dut_node} | ${dut_to_tg_if2} | up
+| | And Honeycomb sets interface IPv4 address with prefix | ${dut_node}
+| | ... | ${dut_to_tg_if1} | ${dut_to_tg_if1_ip4} | ${prefix_len4}
+| | And Honeycomb sets interface IPv4 address with prefix | ${dut_node}
+| | ... | ${dut_to_tg_if2} | ${dut_to_tg_if2_ip4} | ${prefix_len4}
+| | And Honeycomb adds interface IPv4 neighbor | ${dut_node} | ${dut_to_tg_if1}
+| | ... | ${src_ip4} | ${tg_to_dut_if1_mac}
+| | And Honeycomb adds interface IPv4 neighbor | ${dut_node} | ${dut_to_tg_if2}
+| | ... | ${tg_to_dut_if2_ip4} | ${tg_to_dut_if2_mac}
+| | When Honeycomb enables LISP | ${node}
+| | And Honeycomb adds locator set | ${node} | ${dut_to_tg_if2} | ${locator_set}
+| | And Honeycomb adds LISP mapping | ${node} | ${lisp_traffic_ip4}
+| | Then send packet and verify LISP encap
+| | ... | ${tg_node} | ${src_ip4} | ${dst_ip4}
+| | ... | ${tg_to_dut_if1} | ${tg_to_dut_if1_mac} | ${dut_to_tg_if1_mac}
+| | ... | ${tg_to_dut_if2} | ${dut_to_tg_if2_mac} | ${tg_to_dut_if2_mac}
+| | ... | ${src_rloc4} | ${dst_rloc4}
+
+| TC17: Honeycomb can configure Lisp for traffic test - IPv6
+| | [Documentation]
+| | ... | [Top] TG-DUT1-TG.
+| | ... | [Enc] Eth-IPv6-LISP.
+| | ... | [Cfg] On DUT1 configure IPv6 LISP static adjacencies with TG.
+| | ... | [Ver] Make TG send ICMPv6 Echo Req between its interfaces through\
+| | ... | DUT1 and verify Lisp encapsulation of received packet.
+| | ... | [Ref] RFC6830.
+| | ...
+| | [Teardown] | Lisp Functional Traffic Test Teardown
+| | Given Configure path in 2-node circular topology
+| | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
+| | And Honeycomb configures interface state
+| | ... | ${dut_node} | ${dut_to_tg_if1} | up
+| | And Honeycomb configures interface state
+| | ... | ${dut_node} | ${dut_to_tg_if2} | up
+| | And Honeycomb sets interface IPv6 address | ${dut_node}
+| | ... | ${dut_to_tg_if1} | ${dut_to_tg_if1_ip6} | ${prefix_len6}
+| | And Honeycomb sets interface IPv6 address | ${dut_node}
+| | ... | ${dut_to_tg_if2} | ${dut_to_tg_if2_ip6} | ${prefix_len6}
+| | And Honeycomb adds interface IPv6 neighbor | ${dut_node} | ${dut_to_tg_if1}
+| | ... | ${src_ip6} | ${tg_to_dut_if1_mac}
+| | And Honeycomb adds interface IPv6 neighbor | ${dut_node} | ${dut_to_tg_if2}
+| | ... | ${tg_to_dut_if2_ip6} | ${tg_to_dut_if2_mac}
+| | When Honeycomb enables LISP | ${node}
+| | And Honeycomb adds locator set | ${node} | ${dut_to_tg_if2} | ${locator_set}
+| | And Honeycomb adds LISP mapping | ${node} | ${lisp_traffic_ip6}
+| | Then send packet and verify LISP encap
+| | ... | ${tg_node} | ${src_ip6} | ${dst_ip6}
+| | ... | ${tg_to_dut_if1} | ${tg_to_dut_if1_mac} | ${dut_to_tg_if1_mac}
+| | ... | ${tg_to_dut_if2} | ${dut_to_tg_if2_mac} | ${tg_to_dut_if2_mac}
+| | ... | ${src_rloc6} | ${dst_rloc6}
+
+| TC18: Honeycomb configures Lisp Map Request Mode
 | | [Documentation] | Check if Honeycomb can configure Lisp Map Request mode.
 | | ... | Note: Map Request Mode cannot be removed once configured.
 | | ...
 | | [Teardown] | Honeycomb disables LISP | ${node}
 | | ...
-| | Given Honeycomb enables LISP | ${node}
+| | Given Honeycomb Enables Lisp | ${node}
 | | When Honeycomb sets Lisp Map Request Mode | ${node} | ${True}
 | | Then Map Request Mode from Honeycomb should be
 | | ... | ${node} | source-destination

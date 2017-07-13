@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2017 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -664,4 +664,54 @@
 | | ...
 | | [Arguments] | ${node}
 | | ...
+| | Disable Lisp | ${node}
+
+| Send packet and verify LISP encap
+| | [Documentation] | Send ICMP packet to DUT out one interface and receive\
+| | ... | a LISP encapsulated packet on the other interface.
+| | ...
+| | ... | *Arguments:*
+| | ...
+| | ... | _NOTE:_ Arguments are based on topology:
+| | ...             | TG(if1)->(if1)DUT(if2)->TG(if2)
+| | ...
+| | ... | - tg_node - Node to execute scripts on (TG). Type: dictionary
+| | ... | - src_ip - IP of source interface (TG-if1). Type: string
+| | ... | - dst_ip - IP of destination interface (TG-if2). Type: string
+| | ... | - tx_src_port - Interface of TG-if1. Type: string
+| | ... | - tx_src_mac - MAC address of TG-if1. Type: string
+| | ... | - tx_dst_mac - MAC address of DUT-if1. Type: string
+| | ... | - rx_port - Interface of TG-if1. Type: string
+| | ... | - rx_src_mac - MAC address of DUT1-if2. Type: string
+| | ... | - rx_dst_mac - MAC address of TG-if2. Type: string
+| | ... | - src_rloc - configured RLOC source address. Type: string
+| | ... | - dst_rloc - configured RLOC destination address. Type: string
+| | ...
+| | ... | *Return:*
+| | ... | - No value returned
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Send packet and verify LISP encap \| ${nodes['TG']} \| 10.0.0.1 \
+| | ... | \| 32.0.0.1 \| eth2 \| 08:00:27:ee:fd:b3 \| 08:00:27:a2:52:5b \
+| | ... | \| eth3 \| 08:00:27:4d:ca:7a \| 08:00:27:7d:fd:10 \| 10.0.1.1 \
+| | ... | \| 10.0.1.2 \|
+| | ...
+| | [Arguments] | ${tg_node} | ${src_ip} | ${dst_ip} | ${tx_src_port} |
+| | ... | ${tx_src_mac} | ${tx_dst_mac} | ${rx_port} | ${rx_src_mac}
+| | ... | ${rx_dst_mac} | ${src_rloc} | ${dst_rloc}
+| | ${tx_port_name}= | Get interface name | ${tg_node} | ${tx_src_port}
+| | ${rx_port_name}= | Get interface name | ${tg_node} | ${rx_port}
+| | ${args}= | Catenate | --tg_src_mac | ${tx_src_mac} | --tg_dst_mac
+| | ... | ${rx_dst_mac} | --dut_if1_mac | ${tx_dst_mac} | --dut_if2_mac
+| | ... | ${rx_src_mac} | --src_ip | ${src_ip} | --dst_ip | ${dst_ip}
+| | ... | --tx_if | ${tx_port_name} | --rx_if | ${rx_port_name}
+| | ... | --src_rloc | ${src_rloc} | --dst_rloc | ${dst_rloc}
+| | Run Traffic Script On Node | lisp/lisp_check.py | ${tg_node}
+| | ... | ${args}
+
+| Lisp Functional Traffic Test Teardown
+| | [Documentation] | Teardown for LISP functional traffic test
+| | Show Packet Trace on all DUTs | ${nodes}
+| | VPP Show LISP EID Table | ${node}
 | | Disable Lisp | ${node}

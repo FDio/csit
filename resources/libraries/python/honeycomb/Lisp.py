@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2017 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -20,6 +20,7 @@ from resources.libraries.python.honeycomb.HoneycombUtil \
     import HoneycombUtil as HcUtil
 from resources.libraries.python.honeycomb.HoneycombUtil \
     import DataRepresentation
+from resources.libraries.python.topology import Topology
 
 
 class LispKeywords(object):
@@ -194,6 +195,9 @@ class LispKeywords(object):
         :returns: Content of response.
         :rtype: bytearray
         """
+
+        interface = Topology.convert_interface_reference(
+            node, interface, "name")
 
         path = "/lisp-feature-data/locator-sets/locator-set" \
                "/{0}".format(locator_set)
@@ -461,3 +465,198 @@ class LispKeywords(object):
         """
 
         return LispKeywords._set_lisp_properties(node, "")
+
+
+class LispGPEKeywords(object):
+    """Implementation of keywords which make it possible to:
+    - enable/disable Lisp GPE feature
+    - configure Lisp GPE forwarding entries
+    - read operational data for all of the above
+    """
+
+    def __init__(self):
+        """Initializer."""
+        pass
+
+    @staticmethod
+    def _set_lispgpe_properties(node, path, data=None):
+        """Set Lisp GPE properties and check the return code.
+
+        :param node: Honeycomb node.
+        :param path: Path which is added to the base path to identify the data.
+        :param data: The new data to be set. If None, the item will be removed.
+        :type node: dict
+        :type path: str
+        :type data: dict
+        :returns: Content of response.
+        :rtype: bytearray
+        :raises HoneycombError: If the status code in response to PUT is not
+        200 = OK or 201 = ACCEPTED.
+        """
+
+        if data:
+            status_code, resp = HcUtil.\
+                put_honeycomb_data(node, "config_lisp_gpe", data, path,
+                                   data_representation=DataRepresentation.JSON)
+        else:
+            status_code, resp = HcUtil.\
+                delete_honeycomb_data(node, "config_lisp_gpe", path)
+
+        if status_code not in (HTTPCodes.OK, HTTPCodes.ACCEPTED):
+            raise HoneycombError(
+                "Lisp GPE configuration unsuccessful. "
+                "Status code: {0}.".format(status_code))
+        else:
+            return resp
+
+    @staticmethod
+    def get_lispgpe_operational_data(node):
+        """Retrieve Lisp GPE properties from Honeycomb operational data.
+
+        :param node: Honeycomb node.
+        :type node: dict
+        :returns: Lisp GPE operational data.
+        :rtype: bytearray
+        :raises HoneycombError: If the status code in response to GET is not
+        200 = OK.
+        """
+
+        status_code, resp = HcUtil.get_honeycomb_data(node, "oper_lisp_gpe")
+
+        if status_code != HTTPCodes.OK:
+            raise HoneycombError("Could not retrieve Lisp GPE operational data."
+                                 "Status code: {0}.".format(status_code))
+        else:
+            return resp
+
+    @staticmethod
+    def get_lispgpe_mapping(node, name):
+        """Retrieve Lisp GPE operational data and parse for a specific mapping.
+
+        :param node: Honeycomb node.
+        :param name: Name of the mapping to look for.
+        :type node: dict
+        :type name: str
+        :returns: Lisp GPE mapping.
+        :rtype: dict
+        """
+
+        data = LispGPEKeywords.get_lispgpe_operational_data(node)
+        for item in data["gpe-state"]["gpe-feature-data"]["gpe-entry-table"]\
+            ["gpe-entry"]:
+            if item["id"] == name:
+                return item
+        else:
+            raise HoneycombError("Mapping with name {name} not found in "
+                                 "operational data.".format(name=name))
+
+    @staticmethod
+    def get_lispgpe_config_data(node):
+        """Retrieve Lisp GPE properties from Honeycomb config data.
+
+        :param node: Honeycomb node.
+        :type node: dict
+        :returns: Lisp GPE config data.
+        :rtype: bytearray
+        :raises HoneycombError: If the status code in response to GET is not
+        200 = OK.
+        """
+
+        status_code, resp = HcUtil.get_honeycomb_data(node, "config_lisp_gpe")
+
+        if status_code != HTTPCodes.OK:
+            raise HoneycombError("Could not retrieve Lisp GPE config data."
+                                 "Status code: {0}.".format(status_code))
+        else:
+            return resp
+
+    @staticmethod
+    def set_lispgpe_state(node, state=True):
+        """Enable or disable the Lisp GPE feature.
+
+        :param node: Honeycomb node.
+        :param state: Enable or disable Lisp.
+        :type node: dict
+        :type state: bool
+        :returns: Content of response.
+        :rtype: bytearray
+        :raises HoneycombError: If the return code is not 200:OK
+        or 404:NOT FOUND.
+        """
+
+        ret_code, data = HcUtil.get_honeycomb_data(node, "config_lisp_gpe")
+        if ret_code == HTTPCodes.OK:
+            data["gpe"]["gpe-feature-data"]["enable"] = bool(state)
+        elif ret_code == HTTPCodes.NOT_FOUND:
+            data = {"gpe": {"gpe-feature-data": {"enable": bool(state)}}}
+        else:
+            raise HoneycombError("Unexpected return code when getting existing"
+                                 " Lisp GPE configuration.")
+
+        return LispGPEKeywords._set_lispgpe_properties(node, '', data)
+
+    @staticmethod
+    def configure_lispgpe_mapping(node, data=None):
+        """Modify Lisp GPE mapping configuration to the data provided.
+
+        :param node: Honeycomb node.
+        :param data: Settings for the Lisp GPE mappings.
+        :type node: dict
+        :type data: dict
+        :returns: Content of response.
+        :rtype: bytearray
+        """
+
+        path = "/gpe-feature-data/gpe-entry-table"
+        if data:
+            data = {"gpe-entry-table": {"gpe-entry": data}}
+            return LispGPEKeywords._set_lispgpe_properties(node, path, data)
+        else:
+            return LispGPEKeywords._set_lispgpe_properties(node, path)
+
+    @staticmethod
+    def add_lispgpe_mapping(node, name, data):
+        """Add the specified Lisp GPE mapping.
+
+        :param node: Honeycomb node.
+        :param name: Name for the mapping.
+        :param data: Mapping details.
+        :type node: dict
+        :type name: str
+        :type data: dict
+        :returns: Content of response.
+        :rtype: bytearray
+        """
+
+        path = "/gpe-feature-data/gpe-entry-table/gpe-entry/{name}".format(
+            name=name)
+
+        data = {"gpe-entry": data}
+        return LispGPEKeywords._set_lispgpe_properties(node, path, data)
+
+    @staticmethod
+    def delete_lispgpe_mapping(node, mapping):
+        """Delete the specified Lisp GPE mapping from configuration.
+
+        :param node: Honeycomb node.
+        :param mapping: Name of the mapping to remove.
+        :type node: dict
+        :type mapping: str
+        :returns: Content of response.
+        :rtype: bytearray
+        """
+
+        path = "/gpe-feature-data/gpe-entry-table/gpe-entry/{0}".format(mapping)
+        return LispGPEKeywords._set_lispgpe_properties(node, path)
+
+    @staticmethod
+    def disable_lispgpe(node):
+        """Remove all Lisp GPE settings on the node.
+
+        :param node: Honeycomb node.
+        :type node: dict
+        :returns: Content of response.
+        :rtype: bytearray
+        """
+
+        return LispGPEKeywords._set_lispgpe_properties(node, "")
