@@ -4,6 +4,132 @@ Test Environment
 To execute performance tests, there are three identical testbeds, each testbed
 consists of two SUTs and one TG.
 
+Naming Convention
+-----------------
+
+Following naming convention is used within this page to specify physical
+connectivity and wiring across defined CSIT testbeds:
+
+- testbedname: testbedN.
+- hostname:
+
+  - traffic-generator: tN-tgW.
+  - system-under-testX: tN-sutX.
+
+- portnames:
+
+  - tN-tgW-cY/pZ.
+  - tN-sutX-cY/pZ.
+
+- where:
+
+  - N - testbed number.
+  - tgW - server acts as traffic-generator with W index.
+  - sutX - server acts as system-under-test with X index.
+  - Y - PCIe slot number denoting a NIC card number within the host.
+
+    - Y=1,2,3 - slots in Riser 1, Right PCIe Riser Board, NUMA node 0.
+    - Y=4,5,6 - slots in Riser 2, Left PCIe Riser Board, NUMA node 1.
+    - Y=m - the MLOM slot.
+
+  - Z - port number on the NIC card.
+
+Server HW Configuration
+-----------------------
+
+CSIT testbed contains following three HW configuration types of UCS x86 servers,
+across total of ten servers provided:
+
+#. Type-1: Purpose - VPP functional and performance conformance testing.
+
+   - Quantity: 6 computers as SUT hosts (Systems Under Test).
+   - Physical connectivity:
+
+     - CIMC and host management ports.
+     - NIC ports connected in 3-node topologies.
+
+   - Main HW configuration:
+
+     - Chassis: UCSC-C240-M4SX with 6 PCIe3.0 slots.
+     - Processors: 2* E5-2699 2.3 GHz.
+     - RAM Memory: 16* 32GB DDR4-2133MHz.
+     - Disks: 2* 2TB 12G SAS 7.2K RPM SFF HDD.
+
+   - NICs configuration:
+
+     - Right PCIe Riser Board (Riser 1) (x8, x8, x8 PCIe3.0 lanes)
+
+       - PCIe Slot1: Cisco VIC 1385 2p40GE.
+
+         - PCIe Slot2: Intel NIC x520 2p10GE.
+         - PCIe Slot3: empty.
+
+     - Left PCIe Riser Board (Riser 2) (x8, x16, x8 PCIe3.0 lanes)
+
+       - PCIe Slot4: Intel NIC xl710 2p40GE.
+       - PCIe Slot5: Intel NIC x710 2p10GE.
+       - PCIe Slot6: Intel QAT 8950 50G (Walnut Hill)
+
+     - MLOM slot: Cisco VIC 1227 2p10GE (x8 PCIe2.0 lanes).
+
+#. Type-2: Purpose - VPP functional and performance conformance testing.
+
+   - Quantity: 3 computers as TG hosts (Traffic Generators).
+   - Physical connectivity:
+
+     - CIMC and host management ports.
+     - NIC ports connected in 3-node topologies.
+
+   - Main HW configuration:
+
+     - Chassis: UCSC-C240-M4SX with 6 PCIe3.0 slots.
+     - Processors: 2* E5-2699 2.3 GHz.
+     - RAM Memory: 16* 32GB DDR4-2133MHz.
+     - Disks: 2* 2TB 12G SAS 7.2K RPM SFF HDD.
+
+   - NICs configuration:
+
+     - Right PCIe Riser Board (Riser 1) (x8, x8, x8 lanes)
+
+       - PCIe Slot1: Intel NIC xl710 2p40GE.
+       - PCIe Slot2: Intel NIC x710 2p10GE.
+       - PCIe Slot3: Intel NIC x710 2p10GE.
+
+     - Left PCIe Riser Board (Riser 2) (x8, x16, x8 lanes)
+
+       - PCIe Slot4: Intel NIC xl710 2p40GE.
+       - PCIe Slot5: Intel NIC x710 2p10GE.
+       - PCIe Slot6: Intel NIC x710 2p10GE.
+
+     - MLOM slot: empty.
+
+#. Type-3: Purpose - VIRL functional conformance.
+
+   - Quantity: 3 computers as VIRL hosts.
+   - Physical connectivity:
+
+     - CIMC and host management ports.
+     - no NIC ports, standalone setup.
+
+   - Main HW configuration:
+
+     - Chassis: UCSC-C240-M4SX with 6 PCIe3.0 slots.
+     - Processors: 2* E5-2699 2.3 GHz.
+     - RAM Memory: 16* 32GB DDR4-2133MHz.
+     - Disks: 2* 480 GB 2.5inch 6G SATA SSD.
+
+   - NICs configuration:
+
+     - Right PCIe Riser Board (Riser 1) (x8, x8, x8 lanes)
+
+       - no cards.
+
+     - Left PCIe Riser Board (Riser 2) (x8, x16, x8 lanes)
+
+       - no cards.
+
+     - MLOM slot: empty.
+
 SUT Configuration - Host HW
 ---------------------------
 Host hardware details (CPU, memory, NIC layout) and physical topology are
@@ -12,9 +138,10 @@ described in detail in
 
 **Host configuration**
 
-- All hosts are Cisco UCS C240-M4 (2x Intel(R) Xeon(R) CPU E5-2699 v3 @ 2.30GHz,
-  18c, 512GB RAM)
-  ::
+All hosts are Cisco UCS C240-M4 (2x Intel(R) Xeon(R) CPU E5-2699 v3 @ 2.30GHz,
+18c, 512GB RAM)
+
+::
 
     $ lscpu
     Architecture:          x86_64
@@ -42,8 +169,9 @@ described in detail in
     NUMA node1 CPU(s):     18-35
     Flags:                 fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc aperfmperf eagerfpu pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm epb tpr_shadow vnmi flexpriority ept vpid fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid cqm xsaveopt cqm_llc cqm_occup_llc dtherm arat pln pts
 
-- BIOS settings
-  ::
+**BIOS settings**
+
+::
 
     C240 /bios # show advanced detail
     Set-up parameters:
@@ -114,18 +242,19 @@ described in detail in
         CDN Support for VIC: Disabled
         Out-of-Band Management: Disabled
 
-- In addition to CIMC and Management, each TG has 4x Intel X710 10GB NIC
-  (=8 ports) and 2x Intel XL710 40GB NIC (=4 ports), whereas each SUT has:
-
-  - 1x Intel X520 NIC (10GB, 2 ports),
-  - 1x Cisco VIC 1385 (40GB, 2 ports),
-  - 1x Intel XL710 NIC (40GB, 2 ports),
-  - 1x Intel X710 NIC (10GB, 2 ports),
-  - 1x Cisco VIC 1227 (10GB, 2 ports).
-  - This allows for a total of five ring topologies, each using ports on
-    specific NIC model, enabling per NIC model benchmarking.
-
 **NIC models and placement**
+
+In addition to CIMC and Management, each TG has 4x Intel X710 10GB NIC
+(=8 ports) and 2x Intel XL710 40GB NIC (=4 ports), whereas each SUT has:
+
+- 1x Intel X520 NIC (10GB, 2 ports),
+- 1x Cisco VIC 1385 (40GB, 2 ports),
+- 1x Intel XL710 NIC (40GB, 2 ports),
+- 1x Intel X710 NIC (10GB, 2 ports),
+- 1x Cisco VIC 1227 (10GB, 2 ports).
+
+This allows for a total of five ring topologies, each using ports on specific
+NIC model, enabling per NIC model benchmarking.
 
 - 0a:00.0 Ethernet controller: Intel Corporation 82599ES 10-Gigabit SFI/SFP+
   Network Connection (rev 01) Subsystem: Intel Corporation Ethernet Server
@@ -157,10 +286,13 @@ described in detail in
 SUT Configuration - Host OS Linux
 ---------------------------------
 
-Software details (OS, configuration) are described in
-`CSIT/CSIT_LF_testbed <https://wiki.fd.io/view/CSIT/CSIT_LF_testbed>`_.
+Software details (OS, configuration) are described in `LF FDio CSIT testbed
+wiki page <https://wiki.fd.io/view/CSIT/CSIT_LF_testbed>`_.
 
-Below a subset of the configuration:
+System provisioning is done by combination of PXE boot unattented install and
+`Ansible <https://www.ansible.com>`_ described in `CSIT Testbed Setup`_.
+
+Below a subset of the running configuration:
 
 ::
 
@@ -233,10 +365,38 @@ Below a subset of the configuration:
     Node 1 HugePages_Free:   2048
     Node 1 HugePages_Surp:      0
 
+**Kernel boot parameters used in CSIT performance testbeds**
+
+- **isolcpus=<cpu number>-<cpu number>** used for all cpu cores apart from
+  first core of each socket used for running VPP worker threads and Qemu/LXC
+  processes https://www.kernel.org/doc/Documentation/kernel-parameters.txt
+- **intel_pstate=disable** - [X86] Do not enable intel_pstate as the default
+  scaling driver for the supported processors. Intel P-State driver decide what
+  P-state (CPU core power state) to use based on requesting policy from the
+  cpufreq core. [X86 - Either 32-bit or 64-bit x86]
+  https://www.kernel.org/doc/Documentation/cpu-freq/intel-pstate.txt
+- **nohz_full=<cpu number>-<cpu number>** - [KNL,BOOT] In kernels built with
+  CONFIG_NO_HZ_FULL=y, set the specified list of CPUs whose tick will be stopped
+  whenever possible. The boot CPU will be forced outside the range to maintain
+  the timekeeping. The CPUs in this range must also be included in the
+  rcu_nocbs= set. Specifies the adaptive-ticks CPU cores, causing kernel to
+  avoid sending scheduling-clock interrupts to listed cores as long as they have
+  a single runnable task. [KNL - Is a kernel start-up parameter, SMP - The
+  kernel is an SMP kernel].
+  https://www.kernel.org/doc/Documentation/timers/NO_HZ.txt
+- **rcu_nocbs** - [KNL] In kernels built with CONFIG_RCU_NOCB_CPU=y, set the
+  specified list of CPUs to be no-callback CPUs, that never queue RCU callbacks
+  (read-copy update).
+  https://www.kernel.org/doc/Documentation/kernel-parameters.txt
+
+**Applied command line boot parameters:**
+
 ::
 
     $ cat /proc/cmdline
     BOOT_IMAGE=/vmlinuz-4.4.0-72-generic root=UUID=35ea11e4-e44f-4f67-8cbe-12f09c49ed90 ro isolcpus=1-17,19-35 nohz_full=1-17,19-35 rcu_nocbs=1-17,19-35 intel_pstate=disable console=tty0 console=ttyS0,115200n8
+
+**Mount listing**
 
 ::
 
@@ -272,6 +432,8 @@ Below a subset of the configuration:
     /dev/sda1 /boot ext4 rw,relatime,data=ordered 0 0
     none /mnt/huge hugetlbfs rw,relatime,pagesize=2048k 0 0
     lxcfs /var/lib/lxcfs fuse.lxcfs rw,nosuid,nodev,relatime,user_id=0,group_id=0,allow_other 0 0
+
+**Package listing**
 
 ::
 
@@ -808,6 +970,8 @@ Below a subset of the configuration:
     ii  zlib1g:amd64                                                      1:1.2.8.dfsg-2ubuntu4                 amd64                                 compression library - runtime
     ii  zlib1g-dev:amd64                                                  1:1.2.8.dfsg-2ubuntu4                 amd64                                 compression library - development
 
+**Kernel module listing**
+
 ::
 
     $ lsmod | sort
@@ -896,6 +1060,8 @@ Below a subset of the configuration:
     x_tables               36864  6 xt_CHECKSUM,ip_tables,xt_tcpudp,ipt_MASQUERADE,iptable_filter,iptable_mangle
     xt_CHECKSUM            16384  1
     xt_tcpudp              16384  5
+
+**Sysctl listing**
 
 ::
 
@@ -1841,6 +2007,8 @@ Below a subset of the configuration:
     vm.vfs_cache_pressure = 100
     vm.zone_reclaim_mode = 0
 
+**Services listing**
+
 ::
 
     $ service --status-all
@@ -1888,6 +2056,72 @@ Below a subset of the configuration:
      [ + ]  uuidd
      [ - ]  x11-common
 
+**Host CFS optimizations (QEMU+VPP)**
+
+Applying CFS scheduler tuning on all Qemu vcpu worker threads (those are
+handling testpmd - pmd threads) and VPP PMD worker threads. List of VPP PMD
+threads can be obtained e.g. from:
+
+::
+
+    $ for psid in $(pgrep vpp)
+    $ do
+    $     for tid in $(ps -Lo tid --pid $psid | grep -v TID)
+    $     do
+    $         echo $tid
+    $     done
+    $ done
+
+Or:
+
+::
+
+    $ cat /proc/`pidof vpp`/task/*/stat | awk '{print $1" "$2" "$39}'
+
+Applying Round-robin scheduling with highest priority
+
+::
+
+    $ for psid in $(pgrep vpp)
+    $ do
+    $     for tid in $(ps -Lo tid --pid $psid | grep -v TID)
+    $     do
+    $         chrt -r -p 1 $tid
+    $     done
+    $ done
+
+More information about Linux CFS can be found in: `Sched manual pages
+<http://man7.org/linux/man-pages/man7/sched.7.html>`_.
+
+
+**Host IRQ affinity**
+
+Changing the default pinning of every IRQ to core 0. (Same does apply on both
+guest VM and host OS)
+
+::
+
+    $ for l in `ls /proc/irq`; do echo 1 | sudo tee /proc/irq/$l/smp_affinity; done
+
+**Host RCU affinity**
+
+Changing the default pinning of RCU to core 0. (Same does apply on both guest VM
+and host OS)
+
+::
+
+    $ for i in `pgrep rcu[^c]` ; do sudo taskset -pc 0 $i ; done
+
+**Host Writeback affinity**
+
+Changing the default pinning of writebacks to core 0. (Same does apply on both
+guest VM and host OS)
+
+::
+
+    $ echo 1 | sudo tee /sys/bus/workqueue/devices/writeback/cpumask
+
+
 DUT Configuration - VPP
 -----------------------
 
@@ -1903,7 +2137,7 @@ DUT Configuration - VPP
 
 ::
 
-    $ dpkg -i --force-all
+    $ dpkg -i --force-all vpp*
 
 **VPP Startup Configuration**
 
@@ -2039,6 +2273,12 @@ DPDK v17.05
           src_mac         :   [0x3c,0xfd,0xfe,0x9c,0xee,0xf4]
         - dest_mac        :   [0x3c,0xfd,0xfe,0x9c,0xee,0xf4]
           src_mac         :   [0x3c,0xfd,0xfe,0x9c,0xee,0xf5]
+
+**TG Startup Command**
+
+::
+
+    $ sh -c 'cd <t-rex-install-dir>/scripts/ && sudo nohup ./t-rex-64 -i -c 7 --iom 0 > /dev/null 2>&1 &'> /dev/null
 
 **TG common API - pointer to driver**
 

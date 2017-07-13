@@ -6,19 +6,19 @@ Changes in CSIT |release|
 
 #. VPP functional test environment changes
 
-    - Implemented VAT command history collection for every test case as part of teardown.
-    - Introduction of Centos7 tests in VIRL environment.
+   - Implemented VAT command history collection for every test case as part of teardown.
+   - Introduction of Centos7 tests in VIRL environment.
 
 #. VPP functional test framework changes
 
-    - Added VAT command history collection for every test case as part of teardown.
+   - Added VAT command history collection for every test case as part of teardown.
 
 #. Added VPP functional tests
 
-    - IPv4 routed-forwarding with dot1q VLAN sub-interfaces.
-    - L2BD switched-forwarding with dot1q VLAN sub-interfaces and vhost-user to VM.
-    - IPv4 routed-forwarding with vhost-user interfaces to VM.
-    - Vhost-user interface re-connect tests.
+   - IPv4 routed-forwarding with dot1q VLAN sub-interfaces.
+   - L2BD switched-forwarding with dot1q VLAN sub-interfaces and vhost-user to VM.
+   - IPv4 routed-forwarding with vhost-user interfaces to VM.
+   - Vhost-user interface re-connect tests.
 
 Known Issues
 ------------

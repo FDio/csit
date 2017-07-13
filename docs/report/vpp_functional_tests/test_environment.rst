@@ -16,7 +16,7 @@ Whenever a patch is submitted to gerrit for review, parallel VIRL simulations
 are started to reduce the time of execution of all functional tests. The number
 of parallel VIRL simulations is equal to number of test groups defined by
 TEST_GROUPS variable in csit/bootstrap.sh file. The VIRL host to run VIRL
-simulation is selected randomly per VIRL simulation.
+simulation is selected based on least load algorithm per VIRL simulation.
 
 Every VIRL simulation uses the same three-node - Traffic Generator (TG node) and
 two Systems Under Test (SUT1 and SUT2) - "double-ring" topology. The appropriate
@@ -50,7 +50,7 @@ SUT Configuration - VIRL Guest OS Linux
 In CSIT terminology, the VM operating system for both SUTs that |vpp-release| has
 been tested with, is the following:
 
-**#. |virl-image-ubuntu|**
+**#. Ubuntu VIRL image**
 
 This image implies Ubuntu 16.04.1 LTS, current as of yyyy-mm-dd (that is,
 package versions are those that would have been installed by a "apt-get update",
@@ -64,7 +64,7 @@ kernel package version) are included in CSIT source repository:
 A replica of this VM image can be built by running the "build.sh" script in CSIT
 repository resources/tools/disk-image-builder/ubuntu.
 
-**#. |virl-image-centos|**
+**#. CentOS VIRL image**
 
 The Centos7.3 image is ready to be used but no tests running on it now.
 Corresponding Jenkins jobs are under preparation.
@@ -85,8 +85,8 @@ VM over a vhost-user interface, utilize a "nested" VM image.
 This "nested" VM is dynamically created and destroyed as part of a test case,
 and therefore the "nested" VM image is optimized to be small, lightweight and
 have a short boot time. The "nested" VM image is not built around any
-established Linux distribution, but is based on BuildRoot
-(https://buildroot.org/), a tool for building embedded Linux systems. Just as
+established Linux distribution, but is based on `BuildRoot
+<https://buildroot.org/>`_, a tool for building embedded Linux systems. Just as
 for the "main" image, scripts to produce an identical replica of the "nested"
 image are included in CSIT GIT repository, and the image can be rebuilt using
 the "build.sh" script at:
@@ -146,7 +146,7 @@ Example of DUT nodes configuration:::
           EqrzZXl7ACUuo1dH0Eipm41j2+BZWlQjiUgq5uj8+yzy+EU1ZRRyJcOKzbDACeuD
           BpWWSXGBI5G4CppeYLjMUHZpJYeX1USULJQd2c4crLJKb76E8gz3Z9kN
           -----END RSA PRIVATE KEY-----
-          
+
         interfaces:
           port1:
             mac_address: "fa:16:3e:9b:89:52"
@@ -202,7 +202,7 @@ Example of DUT nodes configuration:::
           EqrzZXl7ACUuo1dH0Eipm41j2+BZWlQjiUgq5uj8+yzy+EU1ZRRyJcOKzbDACeuD
           BpWWSXGBI5G4CppeYLjMUHZpJYeX1USULJQd2c4crLJKb76E8gz3Z9kN
           -----END RSA PRIVATE KEY-----
-          
+
         interfaces:
           port1:
             mac_address: "fa:16:3e:ad:6c:7d"
@@ -245,6 +245,7 @@ Example of DUT nodes configuration:::
 **VPP Startup Configuration**
 
 VPP startup configuration is common for all test cases.
+
 ::
 
     $ cat /etc/vpp/startup.conf
@@ -253,95 +254,95 @@ VPP startup configuration is common for all test cases.
       log /tmp/vpp.log
       full-coredump
     }
-    
+
     api-trace {
       on
     }
-    
+
     api-segment {
       gid vpp
     }
-    
+
     cpu {
         ## In the VPP there is one main thread and optionally the user can create worker(s)
         ## The main thread and worker thread(s) can be pinned to CPU core(s) manually or automatically
-    
+
         ## Manual pinning of thread(s) to CPU core(s)
-    
+
         ## Set logical CPU core where main thread runs
         # main-core 1
-    
+
         ## Set logical CPU core(s) where worker threads are running
         # corelist-workers 2-3,18-19
-    
+
         ## Automatic pinning of thread(s) to CPU core(s)
-    
+
         ## Sets number of CPU core(s) to be skipped (1 ... N-1)
         ## Skipped CPU core(s) are not used for pinning main thread and working thread(s).
         ## The main thread is automatically pinned to the first available CPU core and worker(s)
         ## are pinned to next free CPU core(s) after core assigned to main thread
         # skip-cores 4
-    
+
         ## Specify a number of workers to be created
         ## Workers are pinned to N consecutive CPU cores while skipping "skip-cores" CPU core(s)
         ## and main thread's CPU core
         # workers 2
-    
+
         ## Set scheduling policy and priority of main and worker threads
-    
+
         ## Scheduling policy options are: other (SCHED_OTHER), batch (SCHED_BATCH)
         ## idle (SCHED_IDLE), fifo (SCHED_FIFO), rr (SCHED_RR)
         # scheduler-policy fifo
-    
+
         ## Scheduling priority is used only for "real-time policies (fifo and rr),
         ## and has to be in the range of priorities supported for a particular policy
         # scheduler-priority 50
     }
-    
+
     dpdk {
         ## Change default settings for all intefaces
         # dev default {
             ## Number of receive queues, enables RSS
             ## Default is 1
             # num-rx-queues 3
-    
+
             ## Number of transmit queues, Default is equal
             ## to number of worker threads or 1 if no workers treads
             # num-tx-queues 3
-    
+
             ## Number of descriptors in transmit and receive rings
             ## increasing or reducing number can impact performance
             ## Default is 1024 for both rx and tx
             # num-rx-desc 512
             # num-tx-desc 512
-    
+
             ## VLAN strip offload mode for interface
             ## Default is off
             # vlan-strip-offload on
         # }
-    
+
         ## Whitelist specific interface by specifying PCI address
         # dev 0000:02:00.0
-    
+
         ## Whitelist specific interface by specifying PCI address and in
         ## addition specify custom parameters for this interface
         # dev 0000:02:00.1 {
         #	num-rx-queues 2
         # }
-    
+
         ## Change UIO driver used by VPP, Options are: uio_pci_generic, vfio-pci
         ## and igb_uio (default)
         # uio-driver uio_pci_generic
-    
+
         ## Disable mutli-segment buffers, improves performance but
         ## disables Jumbo MTU support
         # no-multi-seg
-    
+
         ## Increase number of buffers allocated, needed only in scenarios with
         ## large number of interfaces and worker threads. Value is per CPU socket.
         ## Default is 32768
         # num-mbufs 128000
-    
+
         ## Change hugepages allocation per-socket, needed only if there is need for
         ## larger number of mbufs. Default is 256M on each detected CPU socket
         # socket-mem 2048,2048
@@ -360,7 +361,7 @@ Traffic scripts of test cases are executed on this VM.
 Configuration of the TG VMs is defined in file
 
    /csit/resources/tools/virl/topologies/double-ring-nested.xenial.virl
-   
+
 - List of TG VM interfaces:::
 
     <interface id="0" name="eth1"/>
@@ -412,7 +413,7 @@ Example of TG node configuration:::
           EqrzZXl7ACUuo1dH0Eipm41j2+BZWlQjiUgq5uj8+yzy+EU1ZRRyJcOKzbDACeuD
           BpWWSXGBI5G4CppeYLjMUHZpJYeX1USULJQd2c4crLJKb76E8gz3Z9kN
           -----END RSA PRIVATE KEY-----
-          
+
         interfaces:
           port3:
             mac_address: "fa:16:3e:b9:e1:27"
