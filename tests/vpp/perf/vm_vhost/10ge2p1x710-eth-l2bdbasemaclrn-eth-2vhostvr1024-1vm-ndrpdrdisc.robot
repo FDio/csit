@@ -16,11 +16,10 @@
 | Library | resources.libraries.python.QemuUtils
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDRDISC
-| ... | NIC_Intel-X520-DA2 | L2BDMACLRN | ENCAP | VXLAN | L2OVRLAY | IP4UNRLAY
-| ... | VHOST | VM
+| ... | NIC_Intel-X710 | ETH | L2BDMACLRN | BASE | VHOST | VM | VHOST_1024
 | ...
 | Suite Setup | Set up 3-node performance topology with DUT's NIC model
-| ... | L2 | Intel-X520-DA2
+| ... | L2 | Intel-X710
 | Suite Teardown | Tear down 3-node performance topology
 | ...
 | Test Setup | Set up performance test
@@ -29,21 +28,19 @@
 | ... | dut1_node=${dut1} | dut1_vm_refs=${dut1_vm_refs}
 | ... | dut2_node=${dut2} | dut2_vm_refs=${dut2_vm_refs}
 | ...
-| Documentation | *RFC2544: Packet throughput L2BD test cases with VXLANoIPv4
-| ... | and vhost*
+| Documentation | *RFC2544: Pkt throughput L2BD test cases with vhost*
 | ...
 | ... | *[Top] Network Topologies:* TG-DUT1-DUT2-TG 3-node circular topology
 | ... | with single links between nodes.
 | ... | *[Enc] Packet Encapsulations:* Eth-IPv4 for L2 switching of IPv4.
-| ... | Eth-IPv4-VXLAN-Eth-IPv4 is applied on link between DUT1 and DUT2.
 | ... | *[Cfg] DUT configuration:* DUT1 and DUT2 are configured with L2 bridge-
 | ... | domain and MAC learning enabled. Qemu Guest is connected to VPP via
 | ... | vhost-user interfaces. Guest is running DPDK testpmd interconnecting
-| ... | vhost-user interfaces using 5 cores pinned to cpus 5-9 and 2048M
+| ... | vhost-user interfaces using 5 cores pinned to cpus on NUMA1 and 2048M
 | ... | memory. Testpmd is using socket-mem=1024M (512x2M hugepages), 5 cores
 | ... | (1 main core and 4 cores dedicated for io), forwarding mode is set to
-| ... | io, rxd/txd=256, burst=64. DUT1, DUT2 are tested with 2p10GE NIC X520
-| ... | Niantic by Intel.
+| ... | io, rxd/txd=256, burst=64. DUT1, DUT2 are tested with 2p10GE NIC X710
+| ... | by Intel.
 | ... | *[Ver] TG verification:* TG finds and reports throughput NDR (Non Drop
 | ... | Rate) with zero packet loss tolerance or throughput PDR (Partial Drop
 | ... | Rate) with non-zero packet loss tolerance (LT) expressed in percentage
@@ -56,12 +53,11 @@
 | ... | containing Ethernet header, IPv4 header with IP protocol=61 and static
 | ... | payload. MAC addresses are matching MAC addresses of the TG node
 | ... | interfaces.
-| ... | *[Ref] Applicable standard specifications:* RFC2544, RFC7348.
+| ... | *[Ref] Applicable standard specifications:* RFC2544.
 
 *** Variables ***
-# X520-DA2 bandwidth limit
+# X710 bandwidth limit
 | ${s_limit} | ${10000000000}
-| ${vxlan_overhead} | ${50}
 # Socket names
 | ${bd_id1}= | 1
 | ${bd_id2}= | 2
@@ -71,18 +67,17 @@
 | ${traffic_profile} | trex-sl-3n-ethip4-ip4src254
 
 *** Test Cases ***
-| tc01-64B-1t1c-ethip4vxlan-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc
+| tc01-64B-1t1c-eth-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with 1 thread, 1 phy core,\
-| | ... | 1 receive queue per NIC port.
-| | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 10GE\
-| | ... | linerate, step 10kpps.
+| | ... | 1 receive queue per NIC port. [Ver] Find NDR for 64 Byte frames\
+| | ... | using binary search start at 10GE linerate, step 10kpps.
 | | ...
 | | [Tags] | 64B | 1T1C | STHREAD | NDRDISC
 | | ...
 | | ${framesize}= | Set Variable | ${64}
 | | ${min_rate}= | Set Variable | ${10000}
-| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + ${vxlan_overhead}}
+| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
@@ -92,7 +87,7 @@
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | When Initialize L2 bridge domains with Vhost-User and VXLANoIPv4 in 3-node circular topology
+| | When Initialize L2 bridge domains with Vhost-User in 3-node circular topology
 | | ... | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
 | | ${vm1}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
@@ -100,22 +95,23 @@
 | | ${vm2}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
+| | Run Keyword Unless | ${qemu_built} | Set Suite Variable | ${qemu_built}
+| | ... | ${True}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
 
-| tc02-64B-1t1c-ethip4vxlan-l2bdbasemaclrn-eth-2vhost-1vm-pdrdisc
+| tc02-64B-1t1c-eth-l2bdbasemaclrn-eth-2vhost-1vm-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with 1 thread, 1 phy core,\
-| | ... | 1 receive queue per NIC port.
-| | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 10GE\
-| | ... | linerate, step 10kpps, LT=0.5%.
+| | ... | 1 receive queue per NIC port. [Ver] Find PDR for 64 Byte frames\
+| | ... | using binary search start at 10GE linerate, step 10kpps, LT=0.5%.
 | | ...
 | | [Tags] | 64B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
 | | ...
 | | ${framesize}= | Set Variable | ${64}
 | | ${min_rate}= | Set Variable | ${10000}
-| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + ${vxlan_overhead}}
+| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
@@ -125,7 +121,7 @@
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | When Initialize L2 bridge domains with Vhost-User and VXLANoIPv4 in 3-node circular topology
+| | When Initialize L2 bridge domains with Vhost-User in 3-node circular topology
 | | ... | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
 | | ${vm1}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
@@ -133,23 +129,24 @@
 | | ${vm2}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
+| | Run Keyword Unless | ${qemu_built} | Set Suite Variable | ${qemu_built}
+| | ... | ${True}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold} | ${perf_pdr_loss_acceptance}
 | | ... | ${perf_pdr_loss_acceptance_type}
 
-| tc03-1518B-1t1c-ethip4vxlan-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc
+| tc03-1518B-1t1c-eth-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with 1 thread, 1 phy core,\
-| | ... | 1 receive queue per NIC port.
-| | ... | [Ver] Find NDR for 1518 Byte frames using binary search start at 10GE\
-| | ... | linerate, step 10kpps.
+| | ... | 1 receive queue per NIC port. [Ver] Find NDR for 1518 Byte frames\
+| | ... | using binary search start at 10GE linerate, step 10kpps.
 | | ...
 | | [Tags] | 1518B | 1T1C | STHREAD | NDRDISC
 | | ...
 | | ${framesize}= | Set Variable | ${1518}
 | | ${min_rate}= | Set Variable | ${10000}
-| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + ${vxlan_overhead}}
+| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
@@ -157,8 +154,9 @@
 | | ${dut2_vm_refs}= | Create Dictionary
 | | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | When Initialize L2 bridge domains with Vhost-User and VXLANoIPv4 in 3-node circular topology
+| | When Initialize L2 bridge domains with Vhost-User in 3-node circular topology
 | | ... | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
 | | ${vm1}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
@@ -166,22 +164,23 @@
 | | ${vm2}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
+| | Run Keyword Unless | ${qemu_built} | Set Suite Variable | ${qemu_built}
+| | ... | ${True}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
 
-| tc04-1518B-1t1c-ethip4vxlan-l2bdbasemaclrn-eth-2vhost-1vm-pdrdisc
+| tc04-1518B-1t1c-eth-l2bdbasemaclrn-eth-2vhost-1vm-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with 1 thread, 1 phy core,\
-| | ... | 1 receive queue per NIC port.
-| | ... | [Ver] Find PDR for 1518 Byte frames using binary search start at 10GE\
+| | ... | 1 receive queue per NIC port. [Ver] Find PDR for 1518 Byte frames\
 | | ... | using binary search start at 10GE linerate, step 10kpps, LT=0.5%.
 | | ...
 | | [Tags] | 1518B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
 | | ...
 | | ${framesize}= | Set Variable | ${1518}
 | | ${min_rate}= | Set Variable | ${10000}
-| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + ${vxlan_overhead}}
+| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
@@ -189,8 +188,9 @@
 | | ${dut2_vm_refs}= | Create Dictionary
 | | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | When Initialize L2 bridge domains with Vhost-User and VXLANoIPv4 in 3-node circular topology
+| | When Initialize L2 bridge domains with Vhost-User in 3-node circular topology
 | | ... | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
 | | ${vm1}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
@@ -198,25 +198,25 @@
 | | ${vm2}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
+| | Run Keyword Unless | ${qemu_built} | Set Suite Variable | ${qemu_built}
+| | ... | ${True}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold} | ${perf_pdr_loss_acceptance}
 | | ... | ${perf_pdr_loss_acceptance_type}
 
-| tc05-IMIX-1t1c-ethip4vxlan-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc
+| tc05-IMIX-1t1c-eth-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with 1 thread, 1 phy core,\
-| | ... | 1 receive queue per NIC port.
-| | ... | [Ver] Find NDR for IMIX_v4_1 framesize using binary search start at\
-| | ... | 10GE linerate, step 5kpps.
-| | ... | IMIX_v4_1 = (28x64B;16x570B;4x1518B)
+| | ... | 1 receive queue per NIC port. [Ver] Find NDR for IMIX_v4_1 frame\
+| | ... | size using binary search start at 10GE linerate, step 5kpps.
+| | ... | IMIX_v4_1 = (28x64B; 16x570B; 4x1518B)
 | | ...
 | | [Tags] | IMIX | 1T1C | STHREAD | NDRDISC
 | | ...
 | | ${framesize}= | Set Variable | IMIX_v4_1
-| | ${avg_framesize}= | Set Variable | ${403.833}
 | | ${min_rate}= | Set Variable | ${10000}
-| | ${max_rate}= | Calculate pps | ${s_limit} | ${avg_framesize}
+| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
@@ -224,8 +224,9 @@
 | | ${dut2_vm_refs}= | Create Dictionary
 | | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | When Initialize L2 bridge domains with Vhost-User and VXLANoIPv4 in 3-node circular topology
+| | When Initialize L2 bridge domains with Vhost-User in 3-node circular topology
 | | ... | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
 | | ${vm1}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
@@ -233,24 +234,24 @@
 | | ${vm2}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
+| | Run Keyword Unless | ${qemu_built} | Set Suite Variable | ${qemu_built}
+| | ... | ${True}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
 
-| tc06-IMIX-1t1c-ethip4vxlan-l2bdbasemaclrn-eth-2vhost-1vm-pdrdisc
+| tc06-IMIX-1t1c-eth-l2bdbasemaclrn-eth-2vhost-1vm-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with 1 thread, 1 phy core,\
-| | ... | 1 receive queue per NIC port.
-| | ... | [Ver] Find PDR for IMIX_v4_1 frame size using binary search start at\
-| | ... | 10GE linerate, step 5kpps, LT=0.5%.
-| | ... | IMIX_v4_1 = (28x64B;16x570B;4x1518B)
+| | ... | 1 receive queue per NIC port. [Ver] Find PDR for IMIX_v4_1 frame\
+| | ... | size using binary search start at 10GE linerate, step 5kpps, LT=0.5%.
+| | ... | IMIX_v4_1 = (28x64B; 16x570B; 4x1518B)
 | | ...
 | | [Tags] | IMIX | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
 | | ...
 | | ${framesize}= | Set Variable | IMIX_v4_1
-| | ${avg_framesize}= | Set Variable | ${403.833}
 | | ${min_rate}= | Set Variable | ${10000}
-| | ${max_rate}= | Calculate pps | ${s_limit} | ${avg_framesize}
+| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
@@ -259,7 +260,7 @@
 | | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Apply startup configuration on all VPP DUTs
-| | When Initialize L2 bridge domains with Vhost-User and VXLANoIPv4 in 3-node circular topology
+| | When Initialize L2 bridge domains with Vhost-User in 3-node circular topology
 | | ... | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
 | | ${vm1}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
@@ -267,23 +268,24 @@
 | | ${vm2}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
+| | Run Keyword Unless | ${qemu_built} | Set Suite Variable | ${qemu_built}
+| | ... | ${True}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold} | ${perf_pdr_loss_acceptance}
 | | ... | ${perf_pdr_loss_acceptance_type}
 
-| tc07-64B-2t2c-ethip4vxlan-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc
+| tc07-64B-2t2c-eth-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with 2 threads, 2 phy cores,\
-| | ... | 1 receive queue per NIC port.
-| | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 10GE\
-| | ... | linerate, step 10kpps.
+| | ... | 1 receive queue per NIC port. [Ver] Find NDR for 64 Byte frames\
+| | ... | using binary search start at 10GE linerate, step 10kpps.
 | | ...
 | | [Tags] | 64B | 2T2C | MTHREAD | NDRDISC
 | | ...
 | | ${framesize}= | Set Variable | ${64}
 | | ${min_rate}= | Set Variable | ${10000}
-| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + ${vxlan_overhead}}
+| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
@@ -293,7 +295,7 @@
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | When Initialize L2 bridge domains with Vhost-User and VXLANoIPv4 in 3-node circular topology
+| | When Initialize L2 bridge domains with Vhost-User in 3-node circular topology
 | | ... | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
 | | ${vm1}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
@@ -301,22 +303,23 @@
 | | ${vm2}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
+| | Run Keyword Unless | ${qemu_built} | Set Suite Variable | ${qemu_built}
+| | ... | ${True}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
 
-| tc08-64B-2t2c-ethip4vxlan-l2bdbasemaclrn-eth-2vhost-1vm-pdrdisc
+| tc08-64B-2t2c-eth-l2bdbasemaclrn-eth-2vhost-1vm-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with 2 threads, 2 phy cores,\
-| | ... | 1 receive queue per NIC port.
-| | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 10GE\
-| | ... | linerate, step 10kpps, LT=0.5%.
+| | ... | 1 receive queue per NIC port. [Ver] Find PDR for 64 Byte frames\
+| | ... | using binary search start at 10GE linerate, step 10kpps, LT=0.5%.
 | | ...
 | | [Tags] | 64B | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
 | | ...
 | | ${framesize}= | Set Variable | ${64}
 | | ${min_rate}= | Set Variable | ${10000}
-| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + ${vxlan_overhead}}
+| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
@@ -326,7 +329,7 @@
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | When Initialize L2 bridge domains with Vhost-User and VXLANoIPv4 in 3-node circular topology
+| | When Initialize L2 bridge domains with Vhost-User in 3-node circular topology
 | | ... | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
 | | ${vm1}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
@@ -334,23 +337,24 @@
 | | ${vm2}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
+| | Run Keyword Unless | ${qemu_built} | Set Suite Variable | ${qemu_built}
+| | ... | ${True}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold} | ${perf_pdr_loss_acceptance}
 | | ... | ${perf_pdr_loss_acceptance_type}
 
-| tc09-1518B-2t2c-ethip4vxlan-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc
+| tc09-1518B-2t2c-eth-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with 2 threads, 2 phy cores,\
-| | ... | 1 receive queue per NIC port.
-| | ... | [Ver] Find NDR for 1518 Byte frames using binary search start at 10GE\
-| | ... | linerate, step 10kpps.
+| | ... | 1 receive queue per NIC port. [Ver] Find NDR for 1518 Byte frames\
+| | ... | using binary search start at 10GE linerate, step 10kpps.
 | | ...
 | | [Tags] | 1518B | 2T2C | MTHREAD | NDRDISC | SKIP_PATCH
 | | ...
 | | ${framesize}= | Set Variable | ${1518}
 | | ${min_rate}= | Set Variable | ${10000}
-| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + ${vxlan_overhead}}
+| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
@@ -358,8 +362,9 @@
 | | ${dut2_vm_refs}= | Create Dictionary
 | | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | When Initialize L2 bridge domains with Vhost-User and VXLANoIPv4 in 3-node circular topology
+| | When Initialize L2 bridge domains with Vhost-User in 3-node circular topology
 | | ... | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
 | | ${vm1}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
@@ -367,22 +372,23 @@
 | | ${vm2}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
+| | Run Keyword Unless | ${qemu_built} | Set Suite Variable | ${qemu_built}
+| | ... | ${True}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
 
-| tc10-1518B-2t2c-ethip4vxlan-l2bdbasemaclrn-eth-2vhost-1vm-pdrdisc
+| tc10-1518B-2t2c-eth-l2bdbasemaclrn-eth-2vhost-1vm-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with 2 threads, 2 phy cores,\
-| | ... | 1 receive queue per NIC port.
-| | ... | [Ver] Find PDR for 1518 Byte frames using binary search start at 10GE\
-| | ... | linerate, step 10kpps, LT=0.5%.
+| | ... | 1 receive queue per NIC port. [Ver] Find PDR for 1518 Byte frames\
+| | ... | using binary search start at 10GE linerate, step 10kpps, LT=0.5%.
 | | ...
 | | [Tags] | 1518B | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
 | | ...
 | | ${framesize}= | Set Variable | ${1518}
 | | ${min_rate}= | Set Variable | ${10000}
-| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + ${vxlan_overhead}}
+| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
@@ -390,8 +396,9 @@
 | | ${dut2_vm_refs}= | Create Dictionary
 | | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | When Initialize L2 bridge domains with Vhost-User and VXLANoIPv4 in 3-node circular topology
+| | When Initialize L2 bridge domains with Vhost-User in 3-node circular topology
 | | ... | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
 | | ${vm1}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
@@ -399,25 +406,25 @@
 | | ${vm2}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
+| | Run Keyword Unless | ${qemu_built} | Set Suite Variable | ${qemu_built}
+| | ... | ${True}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold} | ${perf_pdr_loss_acceptance}
 | | ... | ${perf_pdr_loss_acceptance_type}
 
-| tc11-IMIX-2t2c-ethip4vxlan-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc
+| tc11-IMIX-2t2c-eth-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with 2 threads, 2 phy cores,\
-| | ... | 1 receive queue per NIC port.
-| | ... | [Ver] Find NDR for IMIX_v4_1 frame size using binary search start at\
-| | ... | 10GE linerate, step 5kpps.
-| | ... | IMIX_v4_1 = (28x64B;16x570B;4x1518B)
+| | ... | 1 receive queue per NIC port. [Ver] Find NDR for IMIX_v4_1 frame\
+| | ... | size using binary search start at 10GE linerate, step 5kpps.
+| | ... | IMIX_v4_1 = (28x64B; 16x570B; 4x1518B)
 | | ...
 | | [Tags] | IMIX | 2T2C | MTHREAD | NDRDISC | SKIP_PATCH
 | | ...
 | | ${framesize}= | Set Variable | IMIX_v4_1
-| | ${avg_framesize}= | Set Variable | ${403.833}
 | | ${min_rate}= | Set Variable | ${10000}
-| | ${max_rate}= | Calculate pps | ${s_limit} | ${avg_framesize}
+| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
@@ -425,8 +432,9 @@
 | | ${dut2_vm_refs}= | Create Dictionary
 | | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | When Initialize L2 bridge domains with Vhost-User and VXLANoIPv4 in 3-node circular topology
+| | When Initialize L2 bridge domains with Vhost-User in 3-node circular topology
 | | ... | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
 | | ${vm1}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
@@ -434,24 +442,24 @@
 | | ${vm2}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
+| | Run Keyword Unless | ${qemu_built} | Set Suite Variable | ${qemu_built}
+| | ... | ${True}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
 
-| tc12-IMIX-2t2c-ethip4vxlan-l2bdbasemaclrn-eth-2vhost-1vm-pdrdisc
+| tc12-IMIX-2t2c-eth-l2bdbasemaclrn-eth-2vhost-1vm-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with 2 threads, 2 phy cores,\
-| | ... | 1 receive queue per NIC port.
-| | ... | [Ver] Find PDR for IMIX_v4_1 frame size using binary search start at\
-| | ... | 10GE linerate, step 5kpps, LT=0.5%.
-| | ... | IMIX_v4_1 = (28x64B;16x570B;4x1518B)
+| | ... | 1 receive queue per NIC port. [Ver] Find PDR for IMIX_v4_1 frame\
+| | ... | size using binary search start at 10GE linerate, step 5kpps, LT=0.5%.
+| | ... | IMIX_v4_1 = (28x64B; 16x570B; 4x1518B)
 | | ...
 | | [Tags] | IMIX | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
 | | ...
 | | ${framesize}= | Set Variable | IMIX_v4_1
-| | ${avg_framesize}= | Set Variable | ${403.833}
 | | ${min_rate}= | Set Variable | ${10000}
-| | ${max_rate}= | Calculate pps | ${s_limit} | ${avg_framesize}
+| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
@@ -459,8 +467,9 @@
 | | ${dut2_vm_refs}= | Create Dictionary
 | | Given Add '2' worker threads and '1' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | When Initialize L2 bridge domains with Vhost-User and VXLANoIPv4 in 3-node circular topology
+| | When Initialize L2 bridge domains with Vhost-User in 3-node circular topology
 | | ... | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
 | | ${vm1}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
@@ -468,23 +477,24 @@
 | | ${vm2}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
+| | Run Keyword Unless | ${qemu_built} | Set Suite Variable | ${qemu_built}
+| | ... | ${True}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold} | ${perf_pdr_loss_acceptance}
 | | ... | ${perf_pdr_loss_acceptance_type}
 
-| tc13-64B-4t4c-ethip4vxlan-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc
+| tc13-64B-4t4c-eth-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with 4 threads, 4 phy cores,\
-| | ... | 2 receive queues per NIC port.
-| | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 10GE\
-| | ... | linerate, step 10kpps.
+| | ... | 2 receive queues per NIC port. [Ver] Find NDR for 64 Byte frames\
+| | ... | using binary search start at 10GE linerate, step 10kpps.
 | | ...
 | | [Tags] | 64B | 4T4C | MTHREAD | NDRDISC
 | | ...
 | | ${framesize}= | Set Variable | ${64}
 | | ${min_rate}= | Set Variable | ${10000}
-| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + ${vxlan_overhead}}
+| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
@@ -494,7 +504,7 @@
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | When Initialize L2 bridge domains with Vhost-User and VXLANoIPv4 in 3-node circular topology
+| | When Initialize L2 bridge domains with Vhost-User in 3-node circular topology
 | | ... | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
 | | ${vm1}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
@@ -502,22 +512,23 @@
 | | ${vm2}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
+| | Run Keyword Unless | ${qemu_built} | Set Suite Variable | ${qemu_built}
+| | ... | ${True}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
 
-| tc14-64B-4t4c-ethip4vxlan-l2bdbasemaclrn-eth-2vhost-1vm-pdrdisc
+| tc14-64B-4t4c-eth-l2bdbasemaclrn-eth-2vhost-1vm-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with 4 threads, 4 phy cores,\
-| | ... | 2 receive queues per NIC port.
-| | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 10GE\
-| | ... | linerate, step 10kpps, LT=0.5%.
+| | ... | 2 receive queues per NIC port. [Ver] Find PDR for 64 Byte frames\
+| | ... | using binary search start at 10GE linerate, step 10kpps, LT=0.5%.
 | | ...
 | | [Tags] | 64B | 4T4C | MTHREAD | PDRDISC | SKIP_PATCH
 | | ...
 | | ${framesize}= | Set Variable | ${64}
 | | ${min_rate}= | Set Variable | ${10000}
-| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + ${vxlan_overhead}}
+| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
@@ -527,7 +538,7 @@
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | When Initialize L2 bridge domains with Vhost-User and VXLANoIPv4 in 3-node circular topology
+| | When Initialize L2 bridge domains with Vhost-User in 3-node circular topology
 | | ... | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
 | | ${vm1}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
@@ -535,23 +546,24 @@
 | | ${vm2}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
+| | Run Keyword Unless | ${qemu_built} | Set Suite Variable | ${qemu_built}
+| | ... | ${True}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold} | ${perf_pdr_loss_acceptance}
 | | ... | ${perf_pdr_loss_acceptance_type}
 
-| tc15-1518B-4t4c-ethip4vxlan-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc
+| tc15-1518B-4t4c-eth-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with 4 threads, 4 phy cores,\
-| | ... | 2 receive queues per NIC port.
-| | ... | [Ver] Find NDR for 1518 Byte frames using binary search start at 10GE\
-| | ... | linerate, step 10kpps.
+| | ... | 2 receive queues per NIC port. [Ver] Find NDR for 1518 Byte frames\
+| | ... | using binary search start at 10GE linerate, step 10kpps.
 | | ...
 | | [Tags] | 1518B | 4T4C | MTHREAD | NDRDISC | SKIP_PATCH
 | | ...
 | | ${framesize}= | Set Variable | ${1518}
 | | ${min_rate}= | Set Variable | ${10000}
-| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + ${vxlan_overhead}}
+| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
@@ -559,8 +571,9 @@
 | | ${dut2_vm_refs}= | Create Dictionary
 | | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | When Initialize L2 bridge domains with Vhost-User and VXLANoIPv4 in 3-node circular topology
+| | When Initialize L2 bridge domains with Vhost-User in 3-node circular topology
 | | ... | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
 | | ${vm1}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
@@ -568,22 +581,23 @@
 | | ${vm2}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
+| | Run Keyword Unless | ${qemu_built} | Set Suite Variable | ${qemu_built}
+| | ... | ${True}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
 
-| tc16-1518B-4t4c-ethip4vxlan-l2bdbasemaclrn-eth-2vhost-1vm-pdrdisc
+| tc16-1518B-4t4c-eth-l2bdbasemaclrn-eth-2vhost-1vm-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with 4 threads, 4 phy cores,\
-| | ... | 2 receive queues per NIC port.
-| | ... | [Ver] Find PDR for 1518 Byte frames using binary search start at 10GE\
-| | ... | linerate, step 10kpps, LT=0.5%.
+| | ... | 2 receive queues per NIC port. [Ver] Find PDR for 1518 Byte frames\
+| | ... | using binary search start at 10GE linerate, step 10kpps, LT=0.5%.
 | | ...
 | | [Tags] | 1518B | 4T4C | MTHREAD | PDRDISC | SKIP_PATCH
 | | ...
 | | ${framesize}= | Set Variable | ${1518}
 | | ${min_rate}= | Set Variable | ${10000}
-| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize + ${vxlan_overhead}}
+| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
@@ -591,8 +605,9 @@
 | | ${dut2_vm_refs}= | Create Dictionary
 | | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | When Initialize L2 bridge domains with Vhost-User and VXLANoIPv4 in 3-node circular topology
+| | When Initialize L2 bridge domains with Vhost-User in 3-node circular topology
 | | ... | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
 | | ${vm1}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
@@ -600,25 +615,25 @@
 | | ${vm2}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
+| | Run Keyword Unless | ${qemu_built} | Set Suite Variable | ${qemu_built}
+| | ... | ${True}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold} | ${perf_pdr_loss_acceptance}
 | | ... | ${perf_pdr_loss_acceptance_type}
 
-| tc17-IMIX-4t4c-ethip4vxlan-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc
+| tc17-IMIX-4t4c-eth-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with 4 threads, 4 phy cores,\
-| | ... | 2 receive queues per NIC port.
-| | ... | [Ver] Find NDR for IMIX_v4_1 frame size using binary search start at\
-| | ... | 10GE linerate, step 5kpps.
-| | ... | IMIX_v4_1 = (28x64B;16x570B;4x1518B)
+| | ... | 2 receive queues per NIC port. [Ver] Find NDR for IMIX_v4_1 frame\
+| | ... | size using binary search start at 10GE linerate, step 5kpps.
+| | ... | IMIX_v4_1 = (28x64B; 16x570B; 4x1518B)
 | | ...
 | | [Tags] | IMIX | 4T4C | MTHREAD | NDRDISC | SKIP_PATCH
 | | ...
 | | ${framesize}= | Set Variable | IMIX_v4_1
-| | ${avg_framesize}= | Set Variable | ${403.833}
 | | ${min_rate}= | Set Variable | ${10000}
-| | ${max_rate}= | Calculate pps | ${s_limit} | ${avg_framesize}
+| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
@@ -626,8 +641,9 @@
 | | ${dut2_vm_refs}= | Create Dictionary
 | | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | When Initialize L2 bridge domains with Vhost-User and VXLANoIPv4 in 3-node circular topology
+| | When Initialize L2 bridge domains with Vhost-User in 3-node circular topology
 | | ... | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
 | | ${vm1}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
@@ -635,24 +651,24 @@
 | | ${vm2}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
+| | Run Keyword Unless | ${qemu_built} | Set Suite Variable | ${qemu_built}
+| | ... | ${True}
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
 
-| tc18-IMIX-4t4c-ethip4vxlan-l2bdbasemaclrn-eth-2vhost-1vm-pdrdisc
+| tc18-IMIX-4t4c-eth-l2bdbasemaclrn-eth-2vhost-1vm-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with 4 threads, 4 phy cores,\
-| | ... | 2 receive queues per NIC port.
-| | ... | [Ver] Find PDR for IMIX_v4_1 frame size using binary search start at\
-| | ... | 10GE linerate, step 5kpps, LT=0.5%.
-| | ... | IMIX_v4_1 = (28x64B;16x570B;4x1518B)
+| | ... | 2 receive queues per NIC port. [Ver] Find PDR for IMIX_v4_1 frame\
+| | ... | size using binary search start at 10GE linerate, step 5kpps, LT=0.5%.
+| | ... | IMIX_v4_1 = (28x64B; 16x570B; 4x1518B)
 | | ...
 | | [Tags] | IMIX | 4T4C | MTHREAD | PDRDISC | SKIP_PATCH
 | | ...
 | | ${framesize}= | Set Variable | IMIX_v4_1
-| | ${avg_framesize}= | Set Variable | ${403.833}
 | | ${min_rate}= | Set Variable | ${10000}
-| | ${max_rate}= | Calculate pps | ${s_limit} | ${avg_framesize}
+| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
@@ -660,8 +676,9 @@
 | | ${dut2_vm_refs}= | Create Dictionary
 | | Given Add '4' worker threads and '2' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
+| | And Add no multi seg to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | When Initialize L2 bridge domains with Vhost-User and VXLANoIPv4 in 3-node circular topology
+| | When Initialize L2 bridge domains with Vhost-User in 3-node circular topology
 | | ... | ${bd_id1} | ${bd_id2} | ${sock1} | ${sock2}
 | | ${vm1}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut1} | ${sock1} | ${sock2} | DUT1_VM1
@@ -669,6 +686,8 @@
 | | ${vm2}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
+| | Run Keyword Unless | ${qemu_built} | Set Suite Variable | ${qemu_built}
+| | ... | ${True}
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold} | ${perf_pdr_loss_acceptance}
