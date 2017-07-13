@@ -95,6 +95,8 @@
 | | ${vm2}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
+| | Run Keyword If | Not $qemu_built | Set Suite Variable | ${qemu_built}
+| | ... | ${True}
 | | Then Traffic should pass with partial loss | ${perf_trial_duration}
 | | ... | ${rate} | ${framesize} | ${traffic_profile}
 | | ... | ${perf_pdr_loss_acceptance} | ${perf_pdr_loss_acceptance_type}
