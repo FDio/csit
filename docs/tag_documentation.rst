@@ -323,6 +323,18 @@ Interface tags
 
     All test cases which uses VHOST.
 
+.. topic:: VHOST_256
+
+    All test cases which uses VHOST with qemu queue size set to 256.
+
+.. topic:: VHOST_1024
+
+    All test cases which uses VHOST with qemu queue size set to 1024.
+
+.. topic:: CFS_OPT
+
+    All test cases which uses VM with optimised scheduler policy.
+
 .. topic:: TUNTAP
 
     All test cases which uses TUN and TAP.
