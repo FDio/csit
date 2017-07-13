@@ -1,4 +1,4 @@
-# Copyright (c) 2016 Cisco and/or its affiliates.
+# Copyright (c) 2017 Cisco and/or its affiliates.
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at:
@@ -18,7 +18,7 @@
 
 *** Keywords ***
 | Honeycomb enables LISP
-| | [Documentation] | Uses Honeycomb API to enable Lisp.
+| | [Documentation] | Uses Honeycomb API to enable LISP.
 | | ...
 | | ... | *Arguments:*
 | | ... | - node - Information about a DUT node. Type: dictionary
@@ -29,10 +29,10 @@
 | | ...
 | | [Arguments] | ${node}
 | | ...
-| | Set Lisp state | ${node} | ${TRUE}
+| | Set LISP state | ${node} | ${TRUE}
 
 | Honeycomb disables LISP
-| | [Documentation] | Uses Honeycomb API to disable Lisp.
+| | [Documentation] | Uses Honeycomb API to disable LISP.
 | | ...
 | | ... | *Arguments:*
 | | ... | - node - Information about a DUT node. Type: dictionary
@@ -43,10 +43,10 @@
 | | ...
 | | [Arguments] | ${node}
 | | ...
-| | Set Lisp state | ${node} | ${FALSE}
+| | Set LISP state | ${node} | ${FALSE}
 
 | Honeycomb adds locator set
-| | [Documentation] | Uses Honeycomb API to enable Lisp.
+| | [Documentation] | Uses Honeycomb API to enable LISP.
 | | ...
 | | ... | *Arguments:*
 | | ... | - node - Information about a DUT node. Type: dictionary
@@ -62,20 +62,20 @@
 | | ...
 | | Add locator | ${node} | ${interface} | ${locator_set}
 
-| Honeycomb adds Lisp Mapping
-| | [Documentation] | Uses Honeycomb API to configure a Lisp mapping.
+| Honeycomb adds LISP Mapping
+| | [Documentation] | Uses Honeycomb API to configure a LISP mapping.
 | | ...
 | | ... | *Arguments:*
 | | ... | - node - Information about a DUT node. Type: dictionary
-| | ... | - data - Lisp settings to use. Type: dictionary
+| | ... | - data - LISP settings to use. Type: dictionary
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Honeycomb adds Lisp Mapping \| ${nodes['DUT1']} \| ${data} \|
+| | ... | \| Honeycomb adds LISP Mapping \| ${nodes['DUT1']} \| ${data} \|
 | | ...
 | | [Arguments] | ${node} | ${data}
 | | ...
-| | Configure Lisp Mapping | ${node} | ${data}
+| | Configure LISP Mapping | ${node} | ${data}
 
 | Honeycomb removes all LISP mappings
 | | [Documentation] | Uses Honeycomb API to clear the eid-table.
@@ -89,10 +89,10 @@
 | | ...
 | | [Arguments] | ${node}
 | | ...
-| | Configure lisp mapping | ${node} | ${NONE}
+| | Configure LISP mapping | ${node} | ${NONE}
 
 | LISP should not be configured
-| | [Documentation] | Retrieves Lisp configuration from Honeycomb operational\
+| | [Documentation] | Retrieves LISP configuration from Honeycomb operational\
 | | ... | data, and expects an empty dictionary.
 | | ...
 | | ... | *Arguments:*
@@ -105,15 +105,15 @@
 | | [Arguments] | ${node}
 | | ...
 | | Run keyword and Expect Error | KeyError: 'lisp-feature-data'
-| | ... | Get Lisp operational data | ${node}
+| | ... | Get LISP operational data | ${node}
 
 | LISP state from Honeycomb should be
-| | [Documentation] | Retrieves Lisp state from Honeycomb operational\
-| | ... | data, and compares Lisp state with expected value.
+| | [Documentation] | Retrieves LISP state from Honeycomb operational\
+| | ... | data, and compares LISP state with expected value.
 | | ...
 | | ... | *Arguments:*
 | | ... | - node - Information about a DUT node. Type: dictionary
-| | ... | - state - Expected Lisp state. Type: string
+| | ... | - state - Expected LISP state. Type: string
 | | ...
 | | ... | *Example:*
 | | ...
@@ -121,7 +121,7 @@
 | | ... | \| enabled \|
 | | ...
 | | [Arguments] | ${node} | ${state}
-| | ${data}= | Get Lisp operational data | ${node}
+| | ${data}= | Get LISP operational data | ${node}
 | | ...
 | | Run keyword if | $state == 'enabled'
 | | ... | Should be equal as strings
@@ -131,12 +131,12 @@
 | | ... | ${data['lisp-state']['enable']} | ${False}
 
 | LISP state from VAT should be
-| | [Documentation] | Retrieves Lisp state from VAT,\
-| | ... | and compares Lisp state with expected value.
+| | [Documentation] | Retrieves LISP state from VAT,\
+| | ... | and compares LISP state with expected value.
 | | ...
 | | ... | *Arguments:*
 | | ... | - node - Information about a DUT node. Type: dictionary
-| | ... | - state - Expected Lisp state. Type: string
+| | ... | - state - Expected LISP state. Type: string
 | | ...
 | | ... | *Example:*
 | | ...
@@ -144,16 +144,16 @@
 | | ...
 | | [Arguments] | ${node} | ${state}
 | | ...
-| | ${status}= | VPP show Lisp State | ${node}
+| | ${status}= | VPP show LISP State | ${node}
 | | Should match | ${status['feature_status']} | ${state}
 
 | LISP mapping from Honeycomb should be
-| | [Documentation] | Retrieves Lisp mapping from Honeycomb operational\
+| | [Documentation] | Retrieves LISP mapping from Honeycomb operational\
 | | ... | data, and compares with expected data.
 | | ...
 | | ... | *Arguments:*
 | | ... | - node - Information about a DUT node. Type: dictionary
-| | ... | - settings - Expected Lisp mapping data. Type: dictionary
+| | ... | - settings - Expected LISP mapping data. Type: dictionary
 | | ...
 | | ... | *Example:*
 | | ...
@@ -162,18 +162,18 @@
 | | ...
 | | [Arguments] | ${node} | ${settings}
 | | ...
-| | ${data}= | Get Lisp operational data | ${node}
+| | ${data}= | Get LISP operational data | ${node}
 | | ${data}= | Set Variable | ${data['lisp-state']['lisp-feature-data']}
 | | ${data}= | Set Variable | ${data['eid-table']['vni-table'][0]}
 | | Compare data structures | ${data} | ${settings}
 
 | LISP mapping from VAT should be
-| | [Documentation] | Retrieves Lisp mapping from VAT,\
+| | [Documentation] | Retrieves LISP mapping from VAT,\
 | | ... | and compares with expected data.
 | | ...
 | | ... | *Arguments:*
 | | ... | - node - Information about a DUT node. Type: dictionary
-| | ... | - settings - Expected Lisp mapping data. Type: dictionary
+| | ... | - settings - Expected LISP mapping data. Type: dictionary
 | | ...
 | | ... | *Example:*
 | | ...
@@ -182,11 +182,11 @@
 | | ...
 | | [Arguments] | ${node} | ${settings}
 | | ...
-| | ${data}= | VPP show Lisp eid table | ${node}
+| | ${data}= | VPP show LISP eid table | ${node}
 | | Compare data structures | ${data[0]} | ${settings}
 
 | LISP mappings from Honeycomb should not exist
-| | [Documentation] | Retrieves Lisp mappings from operational\
+| | [Documentation] | Retrieves LISP mappings from operational\
 | | ... | data, and expects to find none.
 | | ...
 | | ... | *Arguments:*
@@ -199,12 +199,12 @@
 | | ...
 | | [Arguments] | ${node}
 | | ...
-| | ${data}= | Get Lisp operational data | ${node}
+| | ${data}= | Get LISP operational data | ${node}
 | | ${data}= | Set Variable | ${data['lisp-state']['lisp-feature-data']}
 | | Should be empty | ${data['eid-table']['vni-table']}
 
 | LISP mappings from VAT should not exist
-| | [Documentation] | Retrieves Lisp mappings from VAT,\
+| | [Documentation] | Retrieves LISP mappings from VAT,\
 | | ... | and expects to receive an empty list.
 | | ...
 | | ... | *Arguments:*
@@ -216,11 +216,11 @@
 | | ...
 | | [Arguments] | ${node}
 | | ...
-| | ${data}= | VPP show Lisp eid table | ${node}
+| | ${data}= | VPP show LISP eid table | ${node}
 | | Should be empty | ${data}
 
 | Locator set from Honeycomb should be
-| | [Documentation] | Retrieves Lisp locator set from Honeycomb operational\
+| | [Documentation] | Retrieves LISP locator set from Honeycomb operational\
 | | ... | data, and compares with expected data.
 | | ...
 | | ... | *Arguments:*
@@ -236,7 +236,7 @@
 | | ...
 | | [Arguments] | ${node} | ${interface} | ${locator_set}
 | | ...
-| | ${data}= | Get Lisp operational data | ${node}
+| | ${data}= | Get LISP operational data | ${node}
 | | ${loc_data}= | Set Variable
 | | ... | ${data['lisp-state']['lisp-feature-data']['locator-sets']}
 | | Should be equal
@@ -247,14 +247,14 @@
 | | ... | ${interface}
 
 | Honeycomb adds LISP adjacency
-| | [Documentation] | Uses Honeycomb API to configure Lisp adjacency.
+| | [Documentation] | Uses Honeycomb API to configure LISP adjacency.
 | | ...
 | | ... | *Arguments:*
 | | ... | - node - Information about a DUT node. Type: dictionary
 | | ... | - vni - Virtual network identifier number. Type: integer
 | | ... | - map - Name of an existing remote mapping. Type: string
 | | ... | - adjacency - Name for the new adjacency. Type: string
-| | ... | - data - Lisp adjacency settings to use. Type: dictionary
+| | ... | - data - LISP adjacency settings to use. Type: dictionary
 | | ...
 | | ... | *Example:*
 | | ...
@@ -263,11 +263,11 @@
 | | ...
 | | [Arguments] | ${node} | ${vni} | ${map} | ${adjacency} | ${data}
 | | ...
-| | Add Lisp adjacency
+| | Add LISP adjacency
 | | ... | ${node} | ${vni} | ${map} | ${adjacency} | ${data}
 
 | Honeycomb adds LISP map resolver
-| | [Documentation] | Uses Honeycomb API to configure Lisp map resolver.
+| | [Documentation] | Uses Honeycomb API to configure LISP map resolver.
 | | ...
 | | ... | *Arguments:*
 | | ... | - node - Information about a DUT node. Type: dictionary
@@ -282,8 +282,8 @@
 | | ...
 | | Add map resolver | ${node} | ${ip_address}
 
-| Honeycomb adds Lisp Map register
-| | [Documentation] | Uses Honeycomb API to configure Lisp map register.
+| Honeycomb adds LISP Map register
+| | [Documentation] | Uses Honeycomb API to configure LISP map register.
 | | ...
 | | ... | *Arguments:*
 | | ... | - node - Information about a DUT node. Type: dictionary
@@ -291,15 +291,15 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Honeycomb adds Lisp Map register \| ${nodes['DUT1']} \
+| | ... | \| Honeycomb adds LISP Map register \| ${nodes['DUT1']} \
 | | ... | \| ${True} \|
 | | ...
 | | [Arguments] | ${node} | ${add_map_register}
 | | ...
 | | Set Map Register | ${node} | ${add_map_register}
 
-| Honeycomb sets Lisp Map request Mode
-| | [Documentation] | Uses Honeycomb API to configure Lisp map request mode.
+| Honeycomb sets LISP Map request Mode
+| | [Documentation] | Uses Honeycomb API to configure LISP map request mode.
 | | ...
 | | ... | *Arguments:*
 | | ... | - node - Information about a DUT node. Type: dictionary
@@ -307,7 +307,7 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Honeycomb adds Lisp Map Request Mode \| ${nodes['DUT1']} \
+| | ... | \| Honeycomb adds LISP Map Request Mode \| ${nodes['DUT1']} \
 | | ... | \| ${True} \|
 | | ...
 | | [Arguments] | ${node} | ${set_map_request}
@@ -315,7 +315,7 @@
 | | Set Map Request Mode | ${node} | ${set_map_request}
 
 | Map resolver from Honeycomb should be
-| | [Documentation] | Retrieves Lisp map resolver from Honeycomb operational\
+| | [Documentation] | Retrieves LISP map resolver from Honeycomb operational\
 | | ... | data, and compares with expected data.
 | | ...
 | | ... | *Arguments:*
@@ -330,13 +330,13 @@
 | | ...
 | | [Arguments] | ${node} | ${ip_address}
 | | ...
-| | ${data}= | Get Lisp operational data | ${node}
+| | ${data}= | Get LISP operational data | ${node}
 | | ${data}= | Set Variable | ${data['lisp-state']['lisp-feature-data']}
 | | ${data}= | Set Variable | ${data['map-resolvers']['map-resolver'][0]}
 | | Should be equal | ${data['ip-address']} | ${ip_address}
 
 | Map resolver from VAT should be
-| | [Documentation] | Retrieves Lisp mapping from VAT,\
+| | [Documentation] | Retrieves LISP mapping from VAT,\
 | | ... | and compares with expected data.
 | | ...
 | | ... | *Arguments:*
@@ -351,11 +351,11 @@
 | | ...
 | | [Arguments] | ${node} | ${ip_address}
 | | ...
-| | ${data}= | Vpp show Lisp map resolver | ${node}
+| | ${data}= | Vpp show LISP map resolver | ${node}
 | | Should be equal | ${data[0]['map resolver']} | ${ip_address}
 
-| Honeycomb adds Lisp Map Server
-| | [Documentation] | Uses Honeycomb API to configure Lisp Map Server.
+| Honeycomb adds LISP Map Server
+| | [Documentation] | Uses Honeycomb API to configure LISP Map Server.
 | | ...
 | | ... | *Arguments:*
 | | ... | - node - Information about a DUT node. Type: dictionary
@@ -364,7 +364,7 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Honeycomb adds Lisp Map Server \| ${nodes['DUT1']} \
+| | ... | \| Honeycomb adds LISP Map Server \| ${nodes['DUT1']} \
 | | ... | \| 192.168.0.2 \| 192.168.0.3 \|
 | | ...
 | | [Arguments] | ${node} | @{ip_addresses}
@@ -372,7 +372,7 @@
 | | Add Map Server | ${node} | @{ip_addresses}
 
 | Map Register from Honeycomb should be
-| | [Documentation] | Retrieves Lisp Map Register from Honeycomb operational\
+| | [Documentation] | Retrieves LISP Map Register from Honeycomb operational\
 | | ... | data, and compares with expected data.
 | | ...
 | | ... | *Arguments:*
@@ -386,13 +386,13 @@
 | | ...
 | | [Arguments] | ${node} | ${state}
 | | ...
-| | ${data}= | Get Lisp operational data | ${node}
+| | ${data}= | Get LISP operational data | ${node}
 | | ${data}= | Set Variable | ${data['lisp-state']['lisp-feature-data']}
 | | ${data}= | Set Variable | ${data['map-register']}
 | | Should be equal | ${data['enabled']} | ${state}
 
 | Map Server from Honeycomb should be
-| | [Documentation] | Retrieves Lisp Map Server from Honeycomb operational\
+| | [Documentation] | Retrieves LISP Map Server from Honeycomb operational\
 | | ... | data, and compares with expected data.
 | | ...
 | | ... | *Arguments:*
@@ -407,12 +407,12 @@
 | | ...
 | | [Arguments] | ${node} | @{ip_addresses}
 | | ...
-| | ${data}= | Get Lisp operational data | ${node}
+| | ${data}= | Get LISP operational data | ${node}
 | | Verify Map Server Data from Honeycomb | ${data} | ${ip_addresses}
 
 
 | Map Server from VAT should be
-| | [Documentation] | Retrieves Lisp mapping from VAT,\
+| | [Documentation] | Retrieves LISP mapping from VAT,\
 | | ... | and compares with expected data.
 | | ...
 | | ... | *Arguments:*
@@ -427,11 +427,11 @@
 | | ...
 | | [Arguments] | ${node} | @{ip_addresses}
 | | ...
-| | ${data}= | Vpp show Lisp Map Server | ${node}
+| | ${data}= | Vpp show LISP Map Server | ${node}
 | | Verify Map Server Data from VAT | ${data} | ${ip_addresses}
 
 | Map Register from VAT should be
-| | [Documentation] | Retrieves Lisp mapping from VAT,\
+| | [Documentation] | Retrieves LISP mapping from VAT,\
 | | ... | and compares with expected data.
 | | ...
 | | ... | *Arguments:*
@@ -445,11 +445,11 @@
 | | ...
 | | [Arguments] | ${node} | ${state}
 | | ...
-| | ${data}= | Vpp show Lisp Map Register | ${node}
+| | ${data}= | Vpp show LISP Map Register | ${node}
 | | Should be equal | ${data['state']} | ${state}
 
 | Map Request Mode from VAT should be
-| | [Documentation] | Retrieves Lisp Request Mode from VAT,\
+| | [Documentation] | Retrieves LISP Request Mode from VAT,\
 | | ... | and compares with expected data.
 | | ...
 | | ... | *Arguments:*
@@ -464,11 +464,11 @@
 | | ...
 | | [Arguments] | ${node} | ${destination}
 | | ...
-| | ${data}= | Vpp show Lisp Map Request Mode | ${node}
+| | ${data}= | Vpp show LISP Map Request Mode | ${node}
 | | Should be equal | ${data['map_request_mode']} | ${destination}
 
 | Honeycomb enables LISP PITR feature
-| | [Documentation] | Uses Honeycomb API to configure Lisp PITR feature.
+| | [Documentation] | Uses Honeycomb API to configure LISP PITR feature.
 | | ...
 | | ... | *Arguments:*
 | | ... | - node - Information about a DUT node. Type: dictionary
@@ -483,7 +483,7 @@
 | | Configure PITR | ${node} | ${locator_set}
 
 | Honeycomb enables LISP PETR feature
-| | [Documentation] | Uses Honeycomb API to configure Lisp PETR feature.
+| | [Documentation] | Uses Honeycomb API to configure LISP PETR feature.
 | | ...
 | | ... | *Arguments:*
 | | ... | - node - Information about a DUT node. Type: dictionary
@@ -499,7 +499,7 @@
 | | Configure PETR | ${node} | ${ip_address}
 
 | Honeycomb enables LISP RLOC feature
-| | [Documentation] | Uses Honeycomb API to enable the Lisp RLOC feature.
+| | [Documentation] | Uses Honeycomb API to enable the LISP RLOC feature.
 | | ...
 | | ... | *Arguments:*
 | | ... | - node - Information about a DUT node. Type: dictionary
@@ -529,7 +529,7 @@
 | | ...
 | | [Arguments] | ${node} | ${locator_set}
 | | ...
-| | ${data}= | Get Lisp operational data | ${node}
+| | ${data}= | Get LISP operational data | ${node}
 | | ${data}= | Set Variable | ${data['lisp-state']['lisp-feature-data']}
 | | ${data}= | Set Variable | ${data['pitr-cfg']}
 | | Should be equal | ${data['locator-set']} | ${locator_set}
@@ -549,7 +549,7 @@
 | | ...
 | | [Arguments] | ${node} | ${ip_address}
 | | ...
-| | ${data}= | Get Lisp operational data | ${node}
+| | ${data}= | Get LISP operational data | ${node}
 | | ${data}= | Set Variable | ${data['lisp-state']['lisp-feature-data']}
 | | ${data}= | Set Variable | ${data['petr-cfg']['petr-address']}
 | | Should be equal | ${data} | ${ip_address}
@@ -569,7 +569,7 @@
 | | ...
 | | [Arguments] | ${node} | ${destination}
 | | ...
-| | ${data}= | Get Lisp operational data | ${node}
+| | ${data}= | Get LISP operational data | ${node}
 | | ${data}= | Set Variable | ${data['lisp-state']['lisp-feature-data']}
 | | ${data}= | Set Variable | ${data['map-request-mode']['mode']}
 | | Should be equal | ${data} | ${destination}
@@ -589,13 +589,13 @@
 | | ...
 | | [Arguments] | ${node} | ${state}
 | | ...
-| | ${data}= | Get Lisp operational data | ${node}
+| | ${data}= | Get LISP operational data | ${node}
 | | ${data}= | Set Variable | ${data['lisp-state']['lisp-feature-data']}
 | | ${data}= | Set Variable | ${data['rloc-probe']['enabled']}
 | | Should be equal | ${data} | ${state}
 
 | PETR configuration from VAT should be
-| | [Documentation] | Retrieves Lisp mapping from VAT,\
+| | [Documentation] | Retrieves LISP mapping from VAT,\
 | | ... | and compares with expected data.
 | | ...
 | | ... | *Arguments:*
@@ -610,11 +610,11 @@
 | | ...
 | | [Arguments] | ${node} | ${state}
 | | ...
-| | ${data}= | Vpp show Lisp PETR config | ${node}
+| | ${data}= | Vpp show LISP PETR config | ${node}
 | | Should be equal | ${data['status']} | ${state}
 
 | RLOC probing from VAT should be
-| | [Documentation] | Retrieves Lisp mapping from VAT,\
+| | [Documentation] | Retrieves LISP mapping from VAT,\
 | | ... | and compares with expected data.
 | | ...
 | | ... | *Arguments:*
@@ -629,7 +629,7 @@
 | | ...
 | | [Arguments] | ${node} | ${state}
 | | ...
-| | ${data}= | Vpp show Lisp RLOC config | ${node}
+| | ${data}= | Vpp show LISP RLOC config | ${node}
 | | Should be equal | ${data['state']} | ${state}
 
 | PITR config from VAT should be
@@ -648,12 +648,12 @@
 | | ...
 | | [Arguments] | ${node} | ${locator_set}
 | | ...
-| | ${data}= | VPP show Lisp PITR | ${node}
+| | ${data}= | VPP show LISP PITR | ${node}
 | | Should be equal | ${data['status']} | enabled
 | | Should be equal | ${data['locator_set']} | ${locator_set}
 
 | Honeycomb disables all LISP features
-| | [Documentation] | Uses Honeycomb API to remove all Lisp configuration.
+| | [Documentation] | Uses Honeycomb API to remove all LISP configuration.
 | | ...
 | | ... | *Arguments:*
 | | ... | - node - Information about a DUT node. Type: dictionary
@@ -664,4 +664,55 @@
 | | ...
 | | [Arguments] | ${node}
 | | ...
-| | Disable Lisp | ${node}
+| | Disable LISP | ${node}
+
+| Send packet and verify LISP encap
+| | [Documentation] | Send ICMP packet to DUT out one interface and receive\
+| | ... | a LISP encapsulated packet on the other interface.
+| | ...
+| | ... | *Arguments:*
+| | ...
+| | ... | _NOTE:_ Arguments are based on topology:
+| | ...             | TG(if1)->(if1)DUT(if2)->TG(if2)
+| | ...
+| | ... | - tg_node - Node to execute scripts on (TG). Type: dictionary
+| | ... | - src_ip - IP of source interface (TG-if1). Type: string
+| | ... | - dst_ip - IP of destination interface (TG-if2). Type: string
+| | ... | - tx_src_port - Interface of TG-if1. Type: string
+| | ... | - tx_src_mac - MAC address of TG-if1. Type: string
+| | ... | - tx_dst_mac - MAC address of DUT-if1. Type: string
+| | ... | - rx_port - Interface of TG-if1. Type: string
+| | ... | - rx_src_mac - MAC address of DUT1-if2. Type: string
+| | ... | - rx_dst_mac - MAC address of TG-if2. Type: string
+| | ... | - src_rloc - configured RLOC source address. Type: string
+| | ... | - dst_rloc - configured RLOC destination address. Type: string
+| | ...
+| | ... | *Return:*
+| | ... | - No value returned
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Send packet and verify LISP encap \| ${nodes['TG']} \| 10.0.0.1 \
+| | ... | \| 32.0.0.1 \| eth2 \| 08:00:27:ee:fd:b3 \| 08:00:27:a2:52:5b \
+| | ... | \| eth3 \| 08:00:27:4d:ca:7a \| 08:00:27:7d:fd:10 \| 10.0.1.1 \
+| | ... | \| 10.0.1.2 \|
+| | ...
+| | [Arguments] | ${tg_node} | ${src_ip} | ${dst_ip} | ${tx_src_port}
+| | ... | ${tx_src_mac} | ${tx_dst_mac} | ${rx_port} | ${rx_src_mac}
+| | ... | ${rx_dst_mac} | ${src_rloc} | ${dst_rloc}
+| | ...
+| | ${tx_port_name}= | Get interface name | ${tg_node} | ${tx_src_port}
+| | ${rx_port_name}= | Get interface name | ${tg_node} | ${rx_port}
+| | ${args}= | Catenate | --tg_src_mac | ${tx_src_mac} | --tg_dst_mac
+| | ... | ${rx_dst_mac} | --dut_if1_mac | ${tx_dst_mac} | --dut_if2_mac
+| | ... | ${rx_src_mac} | --src_ip | ${src_ip} | --dst_ip | ${dst_ip}
+| | ... | --tx_if | ${tx_port_name} | --rx_if | ${rx_port_name}
+| | ... | --src_rloc | ${src_rloc} | --dst_rloc | ${dst_rloc}
+| | Run Traffic Script On Node | lisp/lisp_check.py | ${tg_node}
+| | ... | ${args}
+
+| LISP Functional Traffic Test Teardown
+| | [Documentation] | Teardown for LISP functional traffic test.
+| | Show Packet Trace on all DUTs | ${nodes}
+| | VPP Show LISP EID Table | ${node}
+| | Disable LISP | ${node}
