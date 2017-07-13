@@ -42,8 +42,9 @@
 | | ... | - No value returned
 | | ...
 | | ... | *Example:*
-| | ... | \| Configure LISP topology in 3-node circular topology \| ${dut1_node} \| ${interface_name} \
-| | ... | \| None \| ${dut2_node} \| ${interface_name} \| None \
+| | ... | \| Configure LISP topology in 3-node circular topology \
+| | ... | \| ${dut1_node} \| ${interface_name} \| None \
+| | ... | \| ${dut2_node} \| ${interface_name} \| None \
 | | ... | \| ${locator_set} \| ${dut1_eid} \| ${dut2_eid} \
 | | ... | \| ${dut1_static_adjacency} \| ${dut2_static_adjacency} \|
 | | ...
