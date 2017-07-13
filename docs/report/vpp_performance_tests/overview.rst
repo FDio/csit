@@ -104,7 +104,8 @@ sensitivity to Linux kernel scheduler settings and behaviour, this estimation
 may not always yield good enough accuracy.
 
 For detailed LF FD.io test bed specification and physical topology please refer
-to `LF FDio CSIT testbed wiki page <https://wiki.fd.io/view/CSIT/CSIT_LF_testbed>`_.
+to `LF FDio CSIT testbed wiki page
+<https://wiki.fd.io/view/CSIT/CSIT_LF_testbed>`_.
 
 Performance Tests Coverage
 --------------------------
@@ -205,38 +206,38 @@ suites:
 
 #. **Physical port to physical port - a.k.a. NIC-to-NIC, Phy-to-Phy, P2P**
 
-    - *PortNICConfig-WireEncapsulation-PacketForwardingFunction-
-      PacketProcessingFunction1-...-PacketProcessingFunctionN-TestType*
-    - *10ge2p1x520-dot1q-l2bdbasemaclrn-ndrdisc.robot* => 2 ports of 10GE on
-      Intel x520 NIC, dot1q tagged Ethernet, L2 bridge-domain baseline switching
-      with MAC learning, NDR throughput discovery.
-    - *10ge2p1x520-ethip4vxlan-l2bdbasemaclrn-ndrchk.robot* => 2 ports of 10GE
-      on Intel x520 NIC, IPv4 VXLAN Ethernet, L2 bridge-domain baseline
-      switching with MAC learning, NDR throughput discovery.
-    - *10ge2p1x520-ethip4-ip4base-ndrdisc.robot* => 2 ports of 10GE on Intel
-      x520 NIC, IPv4 baseline routed forwarding, NDR throughput discovery.
-    - *10ge2p1x520-ethip6-ip6scale200k-ndrdisc.robot* => 2 ports of 10GE on
-      Intel x520 NIC, IPv6 scaled up routed forwarding, NDR throughput
-      discovery.
+   - *PortNICConfig-WireEncapsulation-PacketForwardingFunction-
+     PacketProcessingFunction1-...-PacketProcessingFunctionN-TestType*
+   - *10ge2p1x520-dot1q-l2bdbasemaclrn-ndrdisc.robot* => 2 ports of 10GE on
+     Intel x520 NIC, dot1q tagged Ethernet, L2 bridge-domain baseline switching
+     with MAC learning, NDR throughput discovery.
+   - *10ge2p1x520-ethip4vxlan-l2bdbasemaclrn-ndrchk.robot* => 2 ports of 10GE
+     on Intel x520 NIC, IPv4 VXLAN Ethernet, L2 bridge-domain baseline
+     switching with MAC learning, NDR throughput discovery.
+   - *10ge2p1x520-ethip4-ip4base-ndrdisc.robot* => 2 ports of 10GE on Intel
+     x520 NIC, IPv4 baseline routed forwarding, NDR throughput discovery.
+   - *10ge2p1x520-ethip6-ip6scale200k-ndrdisc.robot* => 2 ports of 10GE on
+     Intel x520 NIC, IPv6 scaled up routed forwarding, NDR throughput
+     discovery.
 
 #. **Physical port to VM (or VM chain) to physical port - a.k.a. NIC2VM2NIC,
    P2V2P, NIC2VMchain2NIC, P2V2V2P**
 
-    - *PortNICConfig-WireEncapsulation-PacketForwardingFunction-
-      PacketProcessingFunction1-...-PacketProcessingFunctionN-VirtEncapsulation-
-      VirtPortConfig-VMconfig-TestType*
-    - *10ge2p1x520-dot1q-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc.robot* => 2 ports
-      of 10GE on Intel x520 NIC, dot1q tagged Ethernet, L2 bridge-domain
-      switching to/from two vhost interfaces and one VM, NDR throughput
-      discovery.
-    - *10ge2p1x520-ethip4vxlan-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc.robot* => 2
-      ports of 10GE on Intel x520 NIC, IPv4 VXLAN Ethernet, L2 bridge-domain
-      switching to/from two vhost interfaces and one VM, NDR throughput
-      discovery.
-    - *10ge2p1x520-ethip4vxlan-l2bdbasemaclrn-eth-4vhost-2vm-ndrdisc.robot* => 2
-      ports of 10GE on Intel x520 NIC, IPv4 VXLAN Ethernet, L2 bridge-domain
-      switching to/from four vhost interfaces and two VMs, NDR throughput
-      discovery.
+   - *PortNICConfig-WireEncapsulation-PacketForwardingFunction-
+     PacketProcessingFunction1-...-PacketProcessingFunctionN-VirtEncapsulation-
+     VirtPortConfig-VMconfig-TestType*
+   - *10ge2p1x520-dot1q-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc.robot* => 2 ports
+     of 10GE on Intel x520 NIC, dot1q tagged Ethernet, L2 bridge-domain
+     switching to/from two vhost interfaces and one VM, NDR throughput
+     discovery.
+   - *10ge2p1x520-ethip4vxlan-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc.robot* => 2
+     ports of 10GE on Intel x520 NIC, IPv4 VXLAN Ethernet, L2 bridge-domain
+     switching to/from two vhost interfaces and one VM, NDR throughput
+     discovery.
+   - *10ge2p1x520-ethip4vxlan-l2bdbasemaclrn-eth-4vhost-2vm-ndrdisc.robot* => 2
+     ports of 10GE on Intel x520 NIC, IPv4 VXLAN Ethernet, L2 bridge-domain
+     switching to/from four vhost interfaces and two VMs, NDR throughput
+     discovery.
 
 Methodology: Multi-Thread and Multi-Core
 ----------------------------------------
@@ -356,29 +357,29 @@ specific configuration.
 
 TRex is installed and run on the TG compute node. The typical procedure is:
 
-    - If the TRex is not already installed on TG, it is installed in the
-      suite setup phase - see `TRex intallation`_.
-    - TRex configuration is set in its configuration file
-      ::
+- If the TRex is not already installed on TG, it is installed in the
+  suite setup phase - see `TRex intallation`_.
+- TRex configuration is set in its configuration file
+  ::
 
-        /etc/trex_cfg.yaml
+  /etc/trex_cfg.yaml
 
-    - TRex is started in the background mode
-      ::
+- TRex is started in the background mode
+  ::
 
-        sh -c 'cd /opt/trex-core-2.25/scripts/ && sudo nohup ./t-rex-64 -i -c 7 --iom 0 > /dev/null 2>&1 &' > /dev/null
+  $ sh -c 'cd /opt/trex-core-2.25/scripts/ && sudo nohup ./t-rex-64 -i -c 7 --iom 0 > /dev/null 2>&1 &' > /dev/null
 
-    - There are traffic streams dynamically prepared for each test. The traffic
-      is sent and the statistics obtained using trex_stl_lib.api.STLClient.
+- There are traffic streams dynamically prepared for each test. The traffic
+  is sent and the statistics obtained using trex_stl_lib.api.STLClient.
 
 **Measuring packet loss**
 
-    - Create an instance of STLClient
-    - Connect to the client
-    - Add all streams
-    - Clear statistics
-    - Send the traffic for defined time
-    - Get the statistics
+- Create an instance of STLClient
+- Connect to the client
+- Add all streams
+- Clear statistics
+- Send the traffic for defined time
+- Get the statistics
 
 If there is a warm-up phase required, the traffic is sent also before test and
 the statistics are ignored.
