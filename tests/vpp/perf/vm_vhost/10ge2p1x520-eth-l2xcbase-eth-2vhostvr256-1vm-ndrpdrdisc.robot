@@ -109,7 +109,7 @@
 | | ${vm2}= | And Configure guest VM with dpdk-testpmd connected via vhost-user
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
-| | Run Keyword If | Not $qemu_built | Set Suite Variable | ${qemu_built}
+| | Run Keyword Unless | ${qemu_built} | Set Suite Variable | ${qemu_built}
 | | ... | ${True}
 | | Run Keyword If | '${search_type}' == 'NDR'
 | | ... | Find NDR using binary search and pps
@@ -129,7 +129,7 @@
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 10kpps.
 | | ...
-| | [Tags] | 64B | 1T1C | STHREAD | NDRDISC
+| | [Tags] | 64B | 1T1C | STHREAD | NDRDISC | TEST
 | | ...
 | | [Template] | Discover NDR or PDR for L2 xconnect with VM
 | | wt=1 | rxq=1 | framesize=${64} | min_rate=${10000} | search_type=NDR
@@ -141,7 +141,7 @@
 | | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 10kpps, LT=0.5%.
 | | ...
-| | [Tags] | 64B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 64B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH | TEST
 | | ...
 | | [Template] | Discover NDR or PDR for L2 xconnect with VM
 | | wt=1 | rxq=1 | framesize=${64} | min_rate=${10000} | search_type=PDR
@@ -203,7 +203,7 @@
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 10kpps.
 | | ...
-| | [Tags] | 64B | 2T2C | STHREAD | NDRDISC
+| | [Tags] | 64B | 2T2C | STHREAD | NDRDISC | TEST
 | | ...
 | | [Template] | Discover NDR or PDR for L2 xconnect with VM
 | | wt=2 | rxq=1 | framesize=${64} | min_rate=${10000} | search_type=NDR
@@ -215,7 +215,7 @@
 | | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 10kpps, LT=0.5%.
 | | ...
-| | [Tags] | 64B | 2T2C | STHREAD | PDRDISC | SKIP_PATCH
+| | [Tags] | 64B | 2T2C | STHREAD | PDRDISC | SKIP_PATCH | TEST
 | | ...
 | | [Template] | Discover NDR or PDR for L2 xconnect with VM
 | | wt=2 | rxq=1 | framesize=${64} | min_rate=${10000} | search_type=PDR
