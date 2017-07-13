@@ -82,7 +82,7 @@
 | | ... | KW locator_set data is prepared, which are expected from VPP via VAT.
 | | ...
 | | ... | *Example:*
-| | ... | \| Then LISP locator_set shpuld be configured correctly \
+| | ... | \| Then LISP locator_set should be configured correctly \
 | | ... | \| ${nodes['DUT1']} \|
 | | ...
 | | [Arguments] | ${dut_node}
