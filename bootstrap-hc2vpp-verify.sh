@@ -29,6 +29,9 @@ VIRL_PKEY=priv_key
 VIRL_SERVER_STATUS_FILE="status"
 VIRL_SERVER_EXPECTED_STATUS="PRODUCTION"
 
+ARCHIVE_ARTIFACTS=(log.html output.xml report.html honeycomb.log)
+
+
 OS=$1
 
 if [ "${OS}" == "ubuntu1604" ]; then
@@ -227,3 +230,9 @@ PYTHONPATH=`pwd` pybot -L TRACE -W 136\
 # Get Honeycomb log file from virl host
 scp ${SSH_OPTIONS} \
     ${VIRL_USERNAME}@${VIRL_SERVER}:/scratch/${VIRL_SID}/honeycomb.log . || true
+
+# Archive artifacts
+mkdir archive
+for i in ${ARCHIVE_ARTIFACTS[@]}; do
+    cp $( readlink -f ${i} | tr '\n' ' ' ) archive/
+done
