@@ -185,12 +185,12 @@ suites:
 
 #. **Physical port to physical port - a.k.a. NIC-to-NIC, Phy-to-Phy, P2P**
 
-    - *eth2p-ethip4-ip4base-func.robot* => 2 ports of Ethernet, IPv4 baseline
-      routed forwarding, functional tests.
+   - *eth2p-ethip4-ip4base-func.robot* => 2 ports of Ethernet, IPv4 baseline
+     routed forwarding, functional tests.
 
 #. **Physical port to VM (or VM chain) to physical port - a.k.a. NIC2VM2NIC,
    P2V2P, NIC2VMchain2NIC, P2V2V2P**
 
-    - *eth2p-ethip4vxlan-l2bdbasemaclrn-eth-2vhost-1vm-func.robot* => 2 ports of
-      Ethernet, IPv4 VXLAN Ethernet, L2 bridge-domain switching to/from two vhost
-      interfaces and one VM, functional tests.
+   - *eth2p-ethip4vxlan-l2bdbasemaclrn-eth-2vhost-1vm-func.robot* => 2 ports of
+     Ethernet, IPv4 VXLAN Ethernet, L2 bridge-domain switching to/from two vhost
+     interfaces and one VM, functional tests.

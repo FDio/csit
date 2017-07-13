@@ -50,7 +50,7 @@ SUT Configuration - VIRL Guest OS Linux
 In CSIT terminology, the VM operating system for both SUTs that |vpp-release| has
 been tested with, is the following:
 
-**#. |virl-image-ubuntu|**
+**#. Ubuntu VIRL image**
 
 This image implies Ubuntu 16.04.1 LTS, current as of yyyy-mm-dd (that is,
 package versions are those that would have been installed by a "apt-get update",
@@ -64,7 +64,7 @@ kernel package version) are included in CSIT source repository:
 A replica of this VM image can be built by running the "build.sh" script in CSIT
 repository resources/tools/disk-image-builder/ubuntu.
 
-**#. |virl-image-centos|**
+**#. CentOS VIRL image**
 
 The Centos7.3 image is ready to be used but no tests running on it now.
 Corresponding Jenkins jobs are under preparation.
@@ -85,8 +85,8 @@ VM over a vhost-user interface, utilize a "nested" VM image.
 This "nested" VM is dynamically created and destroyed as part of a test case,
 and therefore the "nested" VM image is optimized to be small, lightweight and
 have a short boot time. The "nested" VM image is not built around any
-established Linux distribution, but is based on BuildRoot
-(https://buildroot.org/), a tool for building embedded Linux systems. Just as
+established Linux distribution, but is based on `BuildRoot
+<https://buildroot.org/>`_, a tool for building embedded Linux systems. Just as
 for the "main" image, scripts to produce an identical replica of the "nested"
 image are included in CSIT GIT repository, and the image can be rebuilt using
 the "build.sh" script at:
@@ -245,6 +245,7 @@ Example of DUT nodes configuration:::
 **VPP Startup Configuration**
 
 VPP startup configuration is common for all test cases.
+
 ::
 
     $ cat /etc/vpp/startup.conf
