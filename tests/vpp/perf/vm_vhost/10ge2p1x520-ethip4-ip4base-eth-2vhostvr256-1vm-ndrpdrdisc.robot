@@ -114,7 +114,7 @@
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1 | ${dut2_vif1_mac}
 | | ... | ${dut2_vif2_mac}
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
-| | Run Keyword If | Not $qemu_built | Set Suite Variable | ${qemu_built}
+| | Run Keyword Unless | ${qemu_built} | Set Suite Variable | ${qemu_built}
 | | ... | ${True}
 | | Run Keyword If | '${search_type}' == 'NDR'
 | | ... | Find NDR using binary search and pps
