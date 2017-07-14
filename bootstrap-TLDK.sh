@@ -17,6 +17,8 @@ set -x
 cat /etc/hostname
 cat /etc/hosts
 
+ARCHIVE_ARTIFACTS=(log.html output.xml report.html)
+
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 export PYTHONPATH=${SCRIPT_DIR}
 
@@ -199,3 +201,13 @@ PYTHONPATH=`pwd` pybot -L TRACE -W 150 \
     --include vm_envAND3_node_single_link_topo \
     --noncritical EXPECTED_FAILING \
     tests/
+
+RETURN_STATUS=$(echo $?)
+
+# Archive artifacts
+mkdir archive
+for i in ${ARCHIVE_ARTIFACTS[@]}; do
+    cp $( readlink -f ${i} | tr '\n' ' ' ) archive/
+done
+
+exit ${RETURN_STATUS}
