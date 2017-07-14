@@ -114,8 +114,8 @@ class UdpTest(object):
         """
         ssh = SSH()
         ssh.connect(dut_node)
-        cmd = 'cd {0}; tcpdump -nnnn -vvv -r ./{2}/{1}_tx.pcap | ' \
-            'grep \'udp sum ok\' | wc -l' \
+        cmd = 'cd {0}; sudo /usr/sbin/tcpdump -nnnn -vvv -r ./{2}/{1}_tx.pcap' \
+              ' | grep \'udp sum ok\' | wc -l' \
             .format(con.REMOTE_FW_DIR, file_prefix, con.TLDK_TESTCONFIG)
 
         (ret_code, stdout, _) = ssh.exec_command(cmd, timeout=100)
