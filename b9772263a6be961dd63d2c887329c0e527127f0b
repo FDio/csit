@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a51691d_50b4a1f1",
+        "filename": "tests/vpp/perf/__init__.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-07-14T05:27:58Z",
+      "side": 1,
+      "message": "| | Set Global Variable | ${qemu_built} | ${False}\n\nYou are setting by default to not build it Qemu via global variable. But you are building it anyway. Is it possible to reverse the logic there? So we will have qemu_build \u003d True and it will once per suite install Qemu (just for the first testcase). And if user setup qemu_build \u003d False then no build will be done at all?\n\nSuggestions?",
+      "revId": "b9772263a6be961dd63d2c887329c0e527127f0b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
