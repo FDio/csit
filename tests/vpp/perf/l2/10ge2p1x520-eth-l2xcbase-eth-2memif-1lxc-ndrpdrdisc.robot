@@ -73,15 +73,14 @@
 | | [Arguments] | ${framesize} | ${min_rate} | ${wt} | ${rxq} | ${search_type}
 | | Set Test Variable | ${framesize}
 | | Set Test Variable | ${min_rate}
-| | ${frame_size}= | Set Variable If
+| | ${get_framesize}= | Set Variable If
 | | ... | "${framesize}" == "IMIX_v4_1" | ${avg_imix_framesize} | ${framesize}
-| | ${max_rate}= | Calculate pps | ${s_limit} | ${framesize}
+| | ${max_rate}= | Calculate pps | ${s_limit} | ${get_framesize}
 | | ${binary_min}= | Set Variable | ${min_rate}
 | | ${binary_max}= | Set Variable | ${max_rate}
 | | ${threshold}= | Set Variable | ${min_rate}
 | | Add '${wt}' worker threads and '${rxq}' rxqueues in 3-node single-link circular topology
 | | Add PCI Devices To DUTs In 3-node Single Link Topology
-| | ${get_framesize}= | Get Frame Size | ${framesize}
 | | Run Keyword If | ${get_framesize} < ${1522} | Add No Multi Seg to all DUTs
 | | Apply startup configuration on all VPP DUTs
 | | Initialize L2 xconnect for '1' memif pairs in 3-node circular topology
