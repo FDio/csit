@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a51691d_902b39eb",
+        "filename": "bootstrap-TLDK.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 209,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-07-14T09:54:27Z",
+      "side": 1,
+      "message": "Please note down the exit code of PYBOT:\n\nRETURN_STATUS\u003d$(echo $?)\n\nSo jenkins job knows to mark the build as failed or passed.\n\nFull snippet:\n\nPYTHONPATH\u003d`pwd` pybot -L TRACE -W 150 \\\n    -v TOPOLOGY_PATH:${SCRIPT_DIR}/topologies/enabled/topology.yaml \\\n    --suite \"tests.tldk.func\" \\\n    --include vm_envAND3_node_single_link_topo \\\n    --noncritical EXPECTED_FAILING \\\n    tests/\nRETURN_STATUS\u003d$(echo $?)\n\n# Archive artifacts\nmkdir archive\nfor i in ${ARCHIVE_ARTIFACTS[@]}; do\n    cp $( readlink -f ${i} | tr \u0027\\n\u0027 \u0027 \u0027 ) archive/\ndone\n\nexit ${RETURN_STATUS}",
+      "range": {
+        "startLine": 204,
+        "startChar": 0,
+        "endLine": 209,
+        "endChar": 4
+      },
+      "revId": "fc9cee1bfbefeae13592edf042b2d83a3a3fc2f8",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
