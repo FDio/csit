@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a51691d_23d67dc6",
+        "filename": "resources/libraries/python/honeycomb/HoneycombSetup.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-07-15T06:58:03Z",
+      "side": 1,
+      "message": "ret_code !\u003d 0?",
+      "range": {
+        "startLine": 168,
+        "startChar": 20,
+        "endLine": 168,
+        "endChar": 48
+      },
+      "revId": "33d549c37f23638cac4bae17ee56cf56976f8835",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a51691d_a34a6daa",
+        "filename": "resources/libraries/python/honeycomb/HoneycombSetup.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 565,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-07-15T06:58:03Z",
+      "side": 1,
+      "message": "type",
+      "range": {
+        "startLine": 565,
+        "startChar": 9,
+        "endLine": 565,
+        "endChar": 14
+      },
+      "revId": "33d549c37f23638cac4bae17ee56cf56976f8835",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a51691d_83c77112",
+        "filename": "resources/libraries/python/honeycomb/HoneycombSetup.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 571,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-07-15T06:58:03Z",
+      "side": 1,
+      "message": "\"pgrep karaf\"?",
+      "range": {
+        "startLine": 571,
+        "startChar": 15,
+        "endLine": 571,
+        "endChar": 49
+      },
+      "revId": "33d549c37f23638cac4bae17ee56cf56976f8835",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a51691d_63cc7536",
+        "filename": "resources/libraries/python/honeycomb/HoneycombSetup.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 663,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-07-15T06:58:03Z",
+      "side": 1,
+      "message": "I think if service vpp stop would not help then pkill not either.\n?",
+      "range": {
+        "startLine": 661,
+        "startChar": 0,
+        "endLine": 663,
+        "endChar": 38
+      },
+      "revId": "33d549c37f23638cac4bae17ee56cf56976f8835",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
