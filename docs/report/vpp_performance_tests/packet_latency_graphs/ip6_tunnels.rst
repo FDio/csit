@@ -18,13 +18,8 @@ VPP packet latency in 1t1c setup (1thread, 1core) is presented in the graph belo
 CSIT source code for the test cases used for above plots can be found in CSIT
 git repository:
 
-.. code-block:: bash
-
-    $ cd $CSIT/tests/vpp/perf/ipv6_tunnels
-    $ grep -E "78B-1t1c-ethip6[a-z0-9]+-[a-z0-9]*-ndrdisc" *
-
-    10ge2p1x520-ethip6lispip4-ip6base-ndrdisc.robot:| tc01-78B-1t1c-ethip6lispip4-ip6base-ndrdisc
-    10ge2p1x520-ethip6lispip6-ip6base-ndrdisc.robot:| tc01-78B-1t1c-ethip6lispip6-ip6base-ndrdisc
+.. program-output:: cd ../../ && set -x && cd tests/vpp/perf/ip6_tunnels && grep -E "78B-1t1c-ethip6[a-z0-9]+-[a-z0-9]*-ndrdisc" *
+   :shell:
 
 VPP packet latency in 2t2c setup (2thread, 2core) is presented in the graph below.
 
@@ -37,11 +32,5 @@ VPP packet latency in 2t2c setup (2thread, 2core) is presented in the graph belo
 CSIT source code for the test cases used for above plots can be found in CSIT
 git repository:
 
-.. code-block:: bash
-
-    $ cd $CSIT/tests/vpp/perf/ipv6_tunnels
-    $ grep -E "78B-2t2c-ethip6[a-z0-9]+-[a-z0-9]*-ndrdisc" *
-
-    10ge2p1x520-ethip6lispip4-ip6base-ndrdisc.robot:| tc07-78B-2t2c-ethip6lispip4-ip6base-ndrdisc
-    10ge2p1x520-ethip6lispip6-ip6base-ndrdisc.robot:| tc07-78B-2t2c-ethip6lispip6-ip6base-ndrdisc
-
+.. program-output:: cd ../../ && set -x && cd tests/vpp/perf/ip6_tunnels && grep -E "78B-2t2c-ethip6[a-z0-9]+-[a-z0-9]*-ndrdisc" *
+   :shell:
