@@ -9,6 +9,9 @@ Contents
    overview
    resources.libraries.python
    resources.libraries.robot
-   tests.func
-   tests.perf
+   tests.dpdk.perf
+   tests.nsh_sfc.func
+   tests.tldk.func
+   tests.vpp.func
+   tests.vpp.perf
    indices
