@@ -22,20 +22,8 @@ in the graph below.
 CSIT source code for the test cases used for above plots can be found in CSIT
 git repository:
 
-.. code-block:: bash
-
-    $ cd $CSIT/tests/vpp/perf/ip4
-    $ grep -P '64B-1t1c-ethip4-ip4(base|scale)[a-z0-9]*(?!-eth-[0-9]vhost).*-ndrdisc' *
-
-    10ge2p1x520-ethip4-ip4base-copwhtlistbase-ndrpdrdisc.robot:| tc01-64B-1t1c-ethip4-ip4base-copwhtlistbase-ndrdisc
-    10ge2p1x520-ethip4-ip4base-iacldstbase-ndrpdrdisc.robot:| tc01-64B-1t1c-ethip4-ip4base-iacldstbase-ndrdisc
-    10ge2p1x520-ethip4-ip4base-ipolicemarkbase-ndrpdrdisc.robot:| tc01-64B-1t1c-ethip4-ip4base-ipolicemarkbase-ndrdisc
-    10ge2p1x520-ethip4-ip4base-ndrpdrdisc.robot:| tc01-64B-1t1c-ethip4-ip4base-ndrdisc
-    10ge2p1x520-ethip4-ip4base-snat-ndrpdrdisc.robot:| tc01-64B-1t1c-ethip4-ip4base-snat-1u-1p-ndrdisc
-    10ge2p1x520-ethip4-ip4scale200k-ndrpdrdisc.robot:| tc01-64B-1t1c-ethip4-ip4scale200k-ndrdisc
-    10ge2p1x520-ethip4-ip4scale20k-ndrpdrdisc.robot:| tc01-64B-1t1c-ethip4-ip4scale20k-ndrdisc
-    10ge2p1x520-ethip4-ip4scale2m-ndrpdrdisc.robot:| tc01-64B-1t1c-ethip4-ip4scale2m-ndrdisc
-    40ge2p1xl710-ethip4-ip4base-ndrpdrdisc.robot:| tc01-64B-1t1c-ethip4-ip4base-ndrdisc
+.. program-output:: cd ../../ && set -x && cd tests/vpp/perf/ip4 && grep -P '64B-1t1c-ethip4(udp)*-ip4(base|scale[a-z0-9]*)(-iacl50-state(ful|less)-flows10k.*|-oacl50-state(ful|less)-flows10k.*|-snat.*|-udp.*|-cop.*|-iacldst.*|-ipolice.*)*-ndrdisc' *
+   :shell:
 
 VPP NDR 64B packet throughput in 2t2c setup (2thread, 2core) is presented
 in the graph below.
@@ -50,19 +38,8 @@ Routed-Forwarding.*
 CSIT source code for the test cases used for above plots can be found in CSIT
 git repository:
 
-.. code-block:: bash
-
-    $ cd $CSIT/tests/vpp/perf/ip4
-    $ grep -P '64B-2t2c-ethip4-ip4(base|scale)[a-z0-9]*(?!-eth-[0-9]vhost).*-ndrdisc' *
-
-    10ge2p1x520-ethip4-ip4base-copwhtlistbase-ndrpdrdisc.robot:| tc07-64B-2t2c-ethip4-ip4base-copwhtlistbase-ndrdisc
-    10ge2p1x520-ethip4-ip4base-iacldstbase-ndrpdrdisc.robot:| tc07-64B-2t2c-ethip4-ip4base-iacldstbase-ndrdisc
-    10ge2p1x520-ethip4-ip4base-ipolicemarkbase-ndrpdrdisc.robot:| tc07-64B-2t2c-ethip4-ip4base-ipolicemarkbase-ndrdisc
-    10ge2p1x520-ethip4-ip4base-ndrpdrdisc.robot:| tc07-64B-2t2c-ethip4-ip4base-ndrdisc
-    10ge2p1x520-ethip4-ip4scale200k-ndrpdrdisc.robot:| tc07-64B-2t2c-ethip4-ip4scale200k-ndrdisc
-    10ge2p1x520-ethip4-ip4scale20k-ndrpdrdisc.robot:| tc07-64B-2t2c-ethip4-ip4scale20k-ndrdisc
-    10ge2p1x520-ethip4-ip4scale2m-ndrpdrdisc.robot:| tc07-64B-2t2c-ethip4-ip4scale2m-ndrdisc
-    40ge2p1xl710-ethip4-ip4base-ndrpdrdisc.robot:| tc07-64B-2t2c-ethip4-ip4base-ndrdisc
+.. program-output:: cd ../../ && set -x && cd tests/vpp/perf/ip4 && grep -P '64B-2t2c-ethip4(udp)*-ip4(base|scale[a-z0-9]*)(-iacl50-state(ful|less)-flows10k.*|-oacl50-state(ful|less)-flows10k.*|-snat.*|-udp.*|-cop.*|-iacldst.*|-ipolice.*)*-ndrdisc' *
+   :shell:
 
 PDR Throughput
 ~~~~~~~~~~~~~~
@@ -80,19 +57,8 @@ Routed-Forwarding.*
 CSIT source code for the test cases used for above plots can be found in CSIT
 git repository:
 
-.. code-block:: bash
-
-    $ cd $CSIT/tests/vpp/perf/ip4
-    $ grep -P '64B-1t1c-ethip4-ip4(base|scale)[a-z0-9]*(?!-eth-[0-9]vhost).*-pdrdisc' *
-
-    10ge2p1x520-ethip4-ip4base-copwhtlistbase-ndrpdrdisc.robot:| tc02-64B-1t1c-ethip4-ip4base-copwhtlistbase-pdrdisc
-    10ge2p1x520-ethip4-ip4base-iacldstbase-ndrpdrdisc.robot:| tc02-64B-1t1c-ethip4-ip4base-iacldstbase-pdrdisc
-    10ge2p1x520-ethip4-ip4base-ipolicemarkbase-ndrpdrdisc.robot:| tc02-64B-1t1c-ethip4-ip4base-ipolicemarkbase-pdrdisc
-    10ge2p1x520-ethip4-ip4base-ndrpdrdisc.robot:| tc02-64B-1t1c-ethip4-ip4base-pdrdisc
-    10ge2p1x520-ethip4-ip4base-snat-ndrpdrdisc.robot:| tc02-64B-1t1c-ethip4-ip4base-snat-1u-1p-pdrdisc
-    10ge2p1x520-ethip4-ip4scale200k-ndrpdrdisc.robot:| tc02-64B-1t1c-ethip4-ip4scale200k-pdrdisc
-    10ge2p1x520-ethip4-ip4scale20k-ndrpdrdisc.robot:| tc02-64B-1t1c-ethip4-ip4scale20k-pdrdisc
-    10ge2p1x520-ethip4-ip4scale2m-ndrpdrdisc.robot:| tc02-64B-1t1c-ethip4-ip4scale2m-pdrdisc
+.. program-output:: cd ../../ && set -x && cd tests/vpp/perf/ip4 && grep -P '64B-1t1c-ethip4(udp)*-ip4(base|scale[a-z0-9]*)(-iacl50-state(ful|less)-flows10k.*|-oacl50-state(ful|less)-flows10k.*|-snat.*|-udp.*|-cop.*|-iacldst.*|-ipolice.*)*-pdrdisc' *
+   :shell:
 
 VPP PDR 64B packet throughput in 2t2c setup (2thread, 2core) is presented
 in the graph below. PDR measured for 0.5% packet loss ratio.
@@ -107,17 +73,6 @@ Routed-Forwarding.*
 CSIT source code for the test cases used for above plots can be found in CSIT
 git repository:
 
-.. code-block:: bash
-
-    $ cd $CSIT/tests/vpp/perf/ipv4
-    $ grep -P '64B-2t2c-ethip4-ip4(base|scale)[a-z0-9]*(?!-eth-[0-9]vhost).*-pdrdisc' *
-
-    10ge2p1x520-ethip4-ip4base-copwhtlistbase-ndrpdrdisc.robot:| tc07-64B-2t2c-ethip4-ip4base-copwhtlistbase-pdrdisc
-    10ge2p1x520-ethip4-ip4base-iacldstbase-ndrpdrdisc.robot:| tc07-64B-2t2c-ethip4-ip4base-iacldstbase-pdrdisc
-    10ge2p1x520-ethip4-ip4base-ipolicemarkbase-ndrpdrdisc.robot:| tc07-64B-2t2c-ethip4-ip4base-ipolicemarkbase-pdrdisc
-    10ge2p1x520-ethip4-ip4base-ndrpdrdisc.robot:| tc07-64B-2t2c-ethip4-ip4base-pdrdisc
-    10ge2p1x520-ethip4-ip4scale200k-ndrpdrdisc.robot:| tc07-64B-2t2c-ethip4-ip4scale200k-pdrdisc
-    10ge2p1x520-ethip4-ip4scale20k-ndrpdrdisc.robot:| tc07-64B-2t2c-ethip4-ip4scale20k-pdrdisc
-    10ge2p1x520-ethip4-ip4scale2m-ndrpdrdisc.robot:| tc07-64B-2t2c-ethip4-ip4scale2m-pdrdisc
-    40ge2p1xl710-ethip4-ip4base-ndrpdrdisc.robot:| tc07-64B-2t2c-ethip4-ip4base-pdrdisc
+.. program-output:: cd ../../ && set -x && cd tests/vpp/perf/ip4 && grep -P '64B-2t2c-ethip4(udp)*-ip4(base|scale[a-z0-9]*)(-iacl50-state(ful|less)-flows10k.*|-oacl50-state(ful|less)-flows10k.*|-snat.*|-udp.*|-cop.*|-iacldst.*|-ipolice.*)*-pdrdisc' *
+   :shell:
 

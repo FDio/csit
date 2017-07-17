@@ -18,12 +18,8 @@ physical core (1c)** - is presented in the figure below.
 CSIT test cases used to generate results presented above can be found in CSIT
 git repository by filtering with specified regex as follows:
 
-.. code-block:: bash
-
-    $ $CSIT/tests/dpdk/perf
-    $ grep -E "64B-1t1c-ethip4-ip4base-l3fwd-ndrdisc" *
-
-    10ge2p1x520-ethip4-ip4base-l3fwd-ndrpdrdisc.robot:| tc01-64B-1t1c-ethip4-ip4base-l3fwd-ndrdisc
+.. program-output:: cd ../../ && set -x && cd tests/dpdk/perf && grep -E '64B-1t1c-ethip4-ip4base-l3fwd-ndrdisc' *
+   :shell:
 
 Testpmd packet latency - running in configuration of **two worker threads (2t)
 on two physical cores (2c)** - is presented in the figure below.
@@ -37,10 +33,5 @@ on two physical cores (2c)** - is presented in the figure below.
 CSIT test cases used to generate results presented above can be found in CSIT
 git repository by filtering with specified regex as follows:
 
-.. code-block:: bash
-
-    $ $CSIT/tests/dpdk/perf
-    $ grep -E "64B-2t2c-ethip4-ip4base-l3fwd-ndrdisc" *
-
-    10ge2p1x520-ethip4-ip4base-l3fwd-ndrpdrdisc.robot:| tc07-64B-2t2c-ethip4-ip4base-l3fwd-ndrdisc
-
+.. program-output:: cd ../../ && set -x && cd tests/dpdk/perf && grep -E '64B-2t2c-ethip4-ip4base-l3fwd-ndrdisc' *
+   :shell:

@@ -74,9 +74,9 @@ mkdir -p ${PLOT_DPDK_SOURCE_DIR}
 ### VPP PERFORMANCE SOURCE DATA
 
 JEN_FILE_PERF='output_perf_data.xml'
-JEN_JOB='csit-vpp-perf-master-all'
-JEN_BUILD=(1567)
-JEN_FBUILD=1567
+JEN_JOB='csit-vpp-perf-1707-all'
+JEN_BUILD=(1)
+JEN_FBUILD=1
 
 for i in "${JEN_BUILD[@]}"; do
     curl --fail -fs ${CSIT_JEN_URL}/${JEN_JOB}/${i}/robot/report/output_perf_data.xml \
@@ -251,6 +251,8 @@ _EOF
 
 # Plot packets per second
 
+# VPP L2
+
 python run_plot.py --input ${PLOT_VPP_SOURCE_DIR} \
     --output ${STATIC_DIR_VPP}/64B-1t1c-l2-ndrdisc \
     --title "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc" \
@@ -259,6 +261,17 @@ python run_plot.py --input ${PLOT_VPP_SOURCE_DIR} \
     --output ${STATIC_DIR_VPP}/64B-2t2c-l2-ndrdisc \
     --title "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc" \
     --xpath '//*[@framesize="64B" and contains(@tags,"BASE") and contains(@tags,"NDRDISC") and contains(@tags,"2T2C") and (contains(@tags,"L2BDMACSTAT") or contains(@tags,"L2BDMACLRN") or contains(@tags,"L2XCFWD")) and not(contains(@tags,"VHOST"))]'
+
+python run_plot.py --input ${PLOT_VPP_SOURCE_DIR} \
+    --output ${STATIC_DIR_VPP}/64B-1t1c-l2-pdrdisc \
+    --title "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-pdrdisc" \
+    --xpath '//*[@framesize="64B" and contains(@tags,"BASE") and contains(@tags,"PDRDISC") and not(contains(@tags,"NDRDISC")) and contains(@tags,"1T1C") and (contains(@tags,"L2BDMACSTAT") or contains(@tags,"L2BDMACLRN") or contains(@tags,"L2XCFWD")) and not(contains(@tags,"VHOST"))]'
+python run_plot.py --input ${PLOT_VPP_SOURCE_DIR} \
+    --output ${STATIC_DIR_VPP}/64B-2t2c-l2-pdrdisc \
+    --title "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-pdrdisc" \
+    --xpath '//*[@framesize="64B" and contains(@tags,"BASE") and contains(@tags,"PDRDISC") and not(contains(@tags,"NDRDISC")) and contains(@tags,"2T2C") and (contains(@tags,"L2BDMACSTAT") or contains(@tags,"L2BDMACLRN") or contains(@tags,"L2XCFWD")) and not(contains(@tags,"VHOST"))]'
+
+# VPP IP4
 
 python run_plot.py --input ${PLOT_VPP_SOURCE_DIR} \
     --output ${STATIC_DIR_VPP}/64B-1t1c-ethip4-ip4-ndrdisc \
@@ -270,6 +283,17 @@ python run_plot.py --input ${PLOT_VPP_SOURCE_DIR} \
     --xpath '//*[@framesize="64B" and (contains(@tags,"BASE") or contains(@tags,"SCALE") or contains(@tags,"FEATURE")) and contains(@tags,"NDRDISC") and contains(@tags,"2T2C") and contains(@tags,"IP4FWD") and not(contains(@tags,"IPSEC")) and not(contains(@tags,"VHOST"))]'
 
 python run_plot.py --input ${PLOT_VPP_SOURCE_DIR} \
+    --output ${STATIC_DIR_VPP}/64B-1t1c-ethip4-ip4-pdrdisc \
+    --title "64B-1t1c-ethip4-ip4[a-z0-9]+-[a-z-]*pdrdisc" \
+    --xpath '//*[@framesize="64B" and (contains(@tags,"BASE") or contains(@tags,"SCALE") or contains(@tags,"FEATURE")) and contains(@tags,"PDRDISC") and not(contains(@tags,"NDRDISC")) and contains(@tags,"1T1C") and contains(@tags,"IP4FWD") and not(contains(@tags,"IPSEC")) and not(contains(@tags,"VHOST"))]'
+python run_plot.py --input ${PLOT_VPP_SOURCE_DIR} \
+    --output ${STATIC_DIR_VPP}/64B-2t2c-ethip4-ip4-pdrdisc \
+    --title "64B-2t2c-ethip4-ip4[a-z0-9]+-[a-z-]*pdrdisc" \
+    --xpath '//*[@framesize="64B" and (contains(@tags,"BASE") or contains(@tags,"SCALE") or contains(@tags,"FEATURE")) and contains(@tags,"PDRDISC") and not(contains(@tags,"NDRDISC")) and contains(@tags,"2T2C") and contains(@tags,"IP4FWD") and not(contains(@tags,"IPSEC")) and not(contains(@tags,"VHOST"))]'
+
+# VPP IP6
+
+python run_plot.py --input ${PLOT_VPP_SOURCE_DIR} \
     --output ${STATIC_DIR_VPP}/78B-1t1c-ethip6-ip6-ndrdisc \
     --title "78B-1t1c-ethip6-ip6[a-z0-9]+-[a-z-]*ndrdisc" \
     --xpath '//*[@framesize="78B" and (contains(@tags,"BASE") or contains(@tags,"SCALE") or contains(@tags,"FEATURE")) and contains(@tags,"NDRDISC") and contains(@tags,"1T1C") and contains(@tags,"IP6FWD") and not(contains(@tags,"IPSEC")) and not(contains(@tags,"VHOST"))]'
@@ -277,6 +301,17 @@ python run_plot.py --input ${PLOT_VPP_SOURCE_DIR} \
     --output ${STATIC_DIR_VPP}/78B-2t2c-ethip6-ip6-ndrdisc \
     --title "78B-2t2c-ethip6-ip6[a-z0-9]+-[a-z-]*ndrdisc" \
     --xpath '//*[@framesize="78B" and (contains(@tags,"BASE") or contains(@tags,"SCALE") or contains(@tags,"FEATURE")) and contains(@tags,"NDRDISC") and contains(@tags,"2T2C") and contains(@tags,"IP6FWD") and not(contains(@tags,"IPSEC")) and not(contains(@tags,"VHOST"))]'
+
+python run_plot.py --input ${PLOT_VPP_SOURCE_DIR} \
+    --output ${STATIC_DIR_VPP}/78B-1t1c-ethip6-ip6-pdrdisc \
+    --title "78B-1t1c-ethip6-ip6[a-z0-9]+-[a-z-]*pdrdisc" \
+    --xpath '//*[@framesize="78B" and (contains(@tags,"BASE") or contains(@tags,"SCALE") or contains(@tags,"FEATURE")) and contains(@tags,"PDRDISC") and not(contains(@tags,"NDRDISC")) and contains(@tags,"1T1C") and contains(@tags,"IP6FWD") and not(contains(@tags,"IPSEC")) and not(contains(@tags,"VHOST"))]'
+python run_plot.py --input ${PLOT_VPP_SOURCE_DIR} \
+    --output ${STATIC_DIR_VPP}/78B-2t2c-ethip6-ip6-pdrdisc \
+    --title "78B-2t2c-ethip6-ip6[a-z0-9]+-[a-z-]*pdrdisc" \
+    --xpath '//*[@framesize="78B" and (contains(@tags,"BASE") or contains(@tags,"SCALE") or contains(@tags,"FEATURE")) and contains(@tags,"PDRDISC") and not(contains(@tags,"NDRDISC")) and contains(@tags,"2T2C") and contains(@tags,"IP6FWD") and not(contains(@tags,"IPSEC")) and not(contains(@tags,"VHOST"))]'
+
+# VPP IP4_overlay
 
 python run_plot.py --input ${PLOT_VPP_SOURCE_DIR} \
     --output ${STATIC_DIR_VPP}/64B-1t1c-ethip4-ndrdisc \
@@ -288,6 +323,17 @@ python run_plot.py --input ${PLOT_VPP_SOURCE_DIR} \
     --xpath '//*[@framesize="64B" and contains(@tags,"ENCAP") and contains(@tags,"NDRDISC") and contains(@tags,"2T2C") and (contains(@tags,"VXLAN") or contains(@tags,"VXLANGPE") or contains(@tags,"LISP") or contains(@tags,"LISPGPE") or contains(@tags,"GRE")) and not(contains(@tags,"VHOST"))]'
 
 python run_plot.py --input ${PLOT_VPP_SOURCE_DIR} \
+    --output ${STATIC_DIR_VPP}/64B-1t1c-ethip4-pdrdisc \
+    --title "64B-1t1c-ethip4[a-z0-9]+-[a-z0-9]*-pdrdisc" \
+    --xpath '//*[@framesize="64B" and contains(@tags,"ENCAP") and contains(@tags,"PDRDISC") and not(contains(@tags,"NDRDISC")) and contains(@tags,"1T1C") and (contains(@tags,"VXLAN") or contains(@tags,"VXLANGPE") or contains(@tags,"LISP") or contains(@tags,"LISPGPE") or contains(@tags,"GRE")) and not(contains(@tags,"VHOST"))]'
+python run_plot.py --input ${PLOT_VPP_SOURCE_DIR} \
+    --output ${STATIC_DIR_VPP}/64B-2t2c-ethip4-pdrdisc \
+    --title "64B-2t2c-ethip4[a-z0-9]+-[a-z0-9]*-pdrdisc" \
+    --xpath '//*[@framesize="64B" and contains(@tags,"ENCAP") and contains(@tags,"PDRDISC") and not(contains(@tags,"NDRDISC")) and contains(@tags,"2T2C") and (contains(@tags,"VXLAN") or contains(@tags,"VXLANGPE") or contains(@tags,"LISP") or contains(@tags,"LISPGPE") or contains(@tags,"GRE")) and not(contains(@tags,"VHOST"))]'
+
+# VPP IP6_overlay
+
+python run_plot.py --input ${PLOT_VPP_SOURCE_DIR} \
     --output ${STATIC_DIR_VPP}/78B-1t1c-ethip6-ndrdisc \
     --title "78B-1t1c-ethip6[a-z0-9]+-[a-z0-9]*-ndrdisc" \
     --xpath '//*[@framesize="78B" and contains(@tags,"ENCAP") and contains(@tags,"NDRDISC") and contains(@tags,"1T1C") and (contains(@tags,"VXLAN") or contains(@tags,"VXLANGPE") or contains(@tags,"LISP") or contains(@tags,"LISPGPE") or contains(@tags,"GRE")) and not(contains(@tags,"VHOST"))]'
@@ -295,6 +341,17 @@ python run_plot.py --input ${PLOT_VPP_SOURCE_DIR} \
     --output ${STATIC_DIR_VPP}/78B-2t2c-ethip6-ndrdisc \
     --title "78B-2t2c-ethip6[a-z0-9]+-[a-z0-9]*-ndrdisc" \
     --xpath '//*[@framesize="78B" and contains(@tags,"ENCAP") and contains(@tags,"NDRDISC") and contains(@tags,"2T2C") and (contains(@tags,"VXLAN") or contains(@tags,"VXLANGPE") or contains(@tags,"LISP") or contains(@tags,"LISPGPE") or contains(@tags,"GRE")) and not(contains(@tags,"VHOST"))]'
+
+python run_plot.py --input ${PLOT_VPP_SOURCE_DIR} \
+    --output ${STATIC_DIR_VPP}/78B-1t1c-ethip6-pdrdisc \
+    --title "78B-1t1c-ethip6[a-z0-9]+-[a-z0-9]*-pdrdisc" \
+    --xpath '//*[@framesize="78B" and contains(@tags,"ENCAP") and contains(@tags,"PDRDISC") and not(contains(@tags,"NDRDISC")) and contains(@tags,"1T1C") and (contains(@tags,"VXLAN") or contains(@tags,"VXLANGPE") or contains(@tags,"LISP") or contains(@tags,"LISPGPE") or contains(@tags,"GRE")) and not(contains(@tags,"VHOST"))]'
+python run_plot.py --input ${PLOT_VPP_SOURCE_DIR} \
+    --output ${STATIC_DIR_VPP}/78B-2t2c-ethip6-pdrdisc \
+    --title "78B-2t2c-ethip6[a-z0-9]+-[a-z0-9]*-pdrdisc" \
+    --xpath '//*[@framesize="78B" and contains(@tags,"ENCAP") and contains(@tags,"PDRDISC") and not(contains(@tags,"NDRDISC")) and contains(@tags,"2T2C") and (contains(@tags,"VXLAN") or contains(@tags,"VXLANGPE") or contains(@tags,"LISP") or contains(@tags,"LISPGPE") or contains(@tags,"GRE")) and not(contains(@tags,"VHOST"))]'
+
+# VPP VM VHOST
 
 python run_plot.py --input ${PLOT_VPP_SOURCE_DIR} \
     --output ${STATIC_DIR_VPP}/64B-1t1c-vhost-ndrdisc \
@@ -306,6 +363,37 @@ python run_plot.py --input ${PLOT_VPP_SOURCE_DIR} \
     --xpath '//*[@framesize="64B" and contains(@tags,"NDRDISC") and contains(@tags,"2T2C") and contains(@tags,"VHOST")]'
 
 python run_plot.py --input ${PLOT_VPP_SOURCE_DIR} \
+    --output ${STATIC_DIR_VPP}/64B-1t1c-vhost-pdrdisc \
+    --title "64B-1t1c-.*vhost.*-pdrdisc" \
+    --xpath '//*[@framesize="64B" and contains(@tags,"PDRDISC") and contains(@tags,"1T1C") and not(contains(@tags,"NDRDISC")) and contains(@tags,"VHOST")]'
+python run_plot.py --input ${PLOT_VPP_SOURCE_DIR} \
+    --output ${STATIC_DIR_VPP}/64B-2t2c-vhost-pdrdisc \
+    --title "64B-2t2c-.*vhost.*-pdrdisc" \
+    --xpath '//*[@framesize="64B" and contains(@tags,"PDRDISC") and contains(@tags,"2T2C") and not(contains(@tags,"NDRDISC")) and contains(@tags,"VHOST")]'
+
+# VPP VM VHOST SELECTION
+
+python run_plot.py --input ${PLOT_VPP_SOURCE_DIR} \
+    --output ${STATIC_DIR_VPP}/64B-1t1c-vhost-sel1-ndrdisc \
+    --title "64B-1t1c-.*vhost.*-ndrdisc" \
+    --xpath '//*[@framesize="64B" and contains(@tags,"NDRDISC") and contains(@tags,"1T1C") and contains(@tags,"VHOST") and not(contains(@tags,"VXLAN")) and not(contains(@tags,"IP4FWD")) and not(contains(@tags,"DOT1Q")) and not(contains(name(), "2Vm"))]'
+python run_plot.py --input ${PLOT_VPP_SOURCE_DIR} \
+    --output ${STATIC_DIR_VPP}/64B-2t2c-vhost-sel1-ndrdisc \
+    --title "64B-2t2c-.*vhost.*-ndrdisc" \
+    --xpath '//*[@framesize="64B" and contains(@tags,"NDRDISC") and contains(@tags,"2T2C") and contains(@tags,"VHOST") and not(contains(@tags,"VXLAN")) and not(contains(@tags,"IP4FWD")) and not(contains(@tags,"DOT1Q")) and not(contains(name(), "2Vm"))]'
+
+python run_plot.py --input ${PLOT_VPP_SOURCE_DIR} \
+    --output ${STATIC_DIR_VPP}/64B-1t1c-vhost-sel1-pdrdisc \
+    --title "64B-1t1c-.*vhost.*-pdrdisc" \
+    --xpath '//*[@framesize="64B" and contains(@tags,"PDRDISC") and contains(@tags,"1T1C") and not(contains(@tags,"NDRDISC")) and contains(@tags,"VHOST") and not(contains(@tags,"VXLAN")) and not(contains(@tags,"IP4FWD")) and not(contains(@tags,"DOT1Q")) and not(contains(name(), "2Vm"))]'
+python run_plot.py --input ${PLOT_VPP_SOURCE_DIR} \
+    --output ${STATIC_DIR_VPP}/64B-2t2c-vhost-sel1-pdrdisc \
+    --title "64B-2t2c-.*vhost.*-pdrdisc" \
+    --xpath '//*[@framesize="64B" and contains(@tags,"PDRDISC") and contains(@tags,"2T2C") and not(contains(@tags,"NDRDISC")) and contains(@tags,"VHOST") and not(contains(@tags,"VXLAN")) and not(contains(@tags,"IP4FWD")) and not(contains(@tags,"DOT1Q")) and not(contains(name(), "2Vm"))]'
+
+# VPP CRYPTO
+
+python run_plot.py --input ${PLOT_VPP_SOURCE_DIR} \
     --output ${STATIC_DIR_VPP}/64B-1t1c-ipsechw-ndrdisc \
     --title "64B-1t1c-.*ipsec.*-ndrdisc" \
     --xpath '//*[@framesize="64B" and not(contains(@tags, "VHOST")) and contains(@tags, "IP4FWD") and contains(@tags, "NDRDISC") and contains(@tags, "1T1C") and contains(@tags, "IPSECHW") and (contains(@tags, "IPSECTRAN") or contains(@tags, "IPSECTUN"))]'
@@ -315,60 +403,6 @@ python run_plot.py --input ${PLOT_VPP_SOURCE_DIR} \
     --xpath '//*[@framesize="64B" and not(contains(@tags, "VHOST")) and contains(@tags, "IP4FWD") and contains(@tags, "NDRDISC") and contains(@tags, "2T2C") and contains(@tags, "IPSECHW") and (contains(@tags, "IPSECTRAN") or contains(@tags, "IPSECTUN"))]'
 
 python run_plot.py --input ${PLOT_VPP_SOURCE_DIR} \
-    --output ${STATIC_DIR_VPP}/64B-1t1c-l2-pdrdisc \
-    --title "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-pdrdisc" \
-    --xpath '//*[@framesize="64B" and contains(@tags,"BASE") and contains(@tags,"PDRDISC") and not(contains(@tags,"NDRDISC")) and contains(@tags,"1T1C") and (contains(@tags,"L2BDMACSTAT") or contains(@tags,"L2BDMACLRN") or contains(@tags,"L2XCFWD")) and not(contains(@tags,"VHOST"))]'
-python run_plot.py --input ${PLOT_VPP_SOURCE_DIR} \
-    --output ${STATIC_DIR_VPP}/64B-2t2c-l2-pdrdisc \
-    --title "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-pdrdisc" \
-    --xpath '//*[@framesize="64B" and contains(@tags,"BASE") and contains(@tags,"PDRDISC") and not(contains(@tags,"NDRDISC")) and contains(@tags,"2T2C") and (contains(@tags,"L2BDMACSTAT") or contains(@tags,"L2BDMACLRN") or contains(@tags,"L2XCFWD")) and not(contains(@tags,"VHOST"))]'
-
-python run_plot.py --input ${PLOT_VPP_SOURCE_DIR} \
-    --output ${STATIC_DIR_VPP}/64B-1t1c-ethip4-ip4-pdrdisc \
-    --title "64B-1t1c-ethip4-ip4[a-z0-9]+-[a-z-]*pdrdisc" \
-    --xpath '//*[@framesize="64B" and (contains(@tags,"BASE") or contains(@tags,"SCALE") or contains(@tags,"FEATURE")) and contains(@tags,"PDRDISC") and not(contains(@tags,"NDRDISC")) and contains(@tags,"1T1C") and contains(@tags,"IP4FWD") and not(contains(@tags,"IPSEC")) and not(contains(@tags,"VHOST"))]'
-python run_plot.py --input ${PLOT_VPP_SOURCE_DIR} \
-    --output ${STATIC_DIR_VPP}/64B-2t2c-ethip4-ip4-pdrdisc \
-    --title "64B-2t2c-ethip4-ip4[a-z0-9]+-[a-z-]*pdrdisc" \
-    --xpath '//*[@framesize="64B" and (contains(@tags,"BASE") or contains(@tags,"SCALE") or contains(@tags,"FEATURE")) and contains(@tags,"PDRDISC") and not(contains(@tags,"NDRDISC")) and contains(@tags,"2T2C") and contains(@tags,"IP4FWD") and not(contains(@tags,"IPSEC")) and not(contains(@tags,"VHOST"))]'
-
-python run_plot.py --input ${PLOT_VPP_SOURCE_DIR} \
-    --output ${STATIC_DIR_VPP}/78B-1t1c-ethip6-ip6-pdrdisc \
-    --title "78B-1t1c-ethip6-ip6[a-z0-9]+-[a-z-]*pdrdisc" \
-    --xpath '//*[@framesize="78B" and (contains(@tags,"BASE") or contains(@tags,"SCALE") or contains(@tags,"FEATURE")) and contains(@tags,"PDRDISC") and not(contains(@tags,"NDRDISC")) and contains(@tags,"1T1C") and contains(@tags,"IP6FWD") and not(contains(@tags,"IPSEC")) and not(contains(@tags,"VHOST"))]'
-python run_plot.py --input ${PLOT_VPP_SOURCE_DIR} \
-    --output ${STATIC_DIR_VPP}/78B-2t2c-ethip6-ip6-pdrdisc \
-    --title "78B-2t2c-ethip6-ip6[a-z0-9]+-[a-z-]*pdrdisc" \
-    --xpath '//*[@framesize="78B" and (contains(@tags,"BASE") or contains(@tags,"SCALE") or contains(@tags,"FEATURE")) and contains(@tags,"PDRDISC") and not(contains(@tags,"NDRDISC")) and contains(@tags,"2T2C") and contains(@tags,"IP6FWD") and not(contains(@tags,"IPSEC")) and not(contains(@tags,"VHOST"))]'
-
-python run_plot.py --input ${PLOT_VPP_SOURCE_DIR} \
-    --output ${STATIC_DIR_VPP}/64B-1t1c-ethip4-pdrdisc \
-    --title "64B-1t1c-ethip4[a-z0-9]+-[a-z0-9]*-pdrdisc" \
-    --xpath '//*[@framesize="64B" and contains(@tags,"ENCAP") and contains(@tags,"PDRDISC") and not(contains(@tags,"NDRDISC")) and contains(@tags,"1T1C") and (contains(@tags,"VXLAN") or contains(@tags,"VXLANGPE") or contains(@tags,"LISP") or contains(@tags,"LISPGPE") or contains(@tags,"GRE")) and not(contains(@tags,"VHOST"))]'
-python run_plot.py --input ${PLOT_VPP_SOURCE_DIR} \
-    --output ${STATIC_DIR_VPP}/64B-2t2c-ethip4-pdrdisc \
-    --title "64B-2t2c-ethip4[a-z0-9]+-[a-z0-9]*-pdrdisc" \
-    --xpath '//*[@framesize="64B" and contains(@tags,"ENCAP") and contains(@tags,"PDRDISC") and not(contains(@tags,"NDRDISC")) and contains(@tags,"2T2C") and (contains(@tags,"VXLAN") or contains(@tags,"VXLANGPE") or contains(@tags,"LISP") or contains(@tags,"LISPGPE") or contains(@tags,"GRE")) and not(contains(@tags,"VHOST"))]'
-
-python run_plot.py --input ${PLOT_VPP_SOURCE_DIR} \
-    --output ${STATIC_DIR_VPP}/78B-1t1c-ethip6-pdrdisc \
-    --title "78B-1t1c-ethip6[a-z0-9]+-[a-z0-9]*-pdrdisc" \
-    --xpath '//*[@framesize="78B" and contains(@tags,"ENCAP") and contains(@tags,"PDRDISC") and not(contains(@tags,"NDRDISC")) and contains(@tags,"1T1C") and (contains(@tags,"VXLAN") or contains(@tags,"VXLANGPE") or contains(@tags,"LISP") or contains(@tags,"LISPGPE") or contains(@tags,"GRE")) and not(contains(@tags,"VHOST"))]'
-python run_plot.py --input ${PLOT_VPP_SOURCE_DIR} \
-    --output ${STATIC_DIR_VPP}/78B-2t2c-ethip6-pdrdisc \
-    --title "78B-2t2c-ethip6[a-z0-9]+-[a-z0-9]*-pdrdisc" \
-    --xpath '//*[@framesize="78B" and contains(@tags,"ENCAP") and contains(@tags,"PDRDISC") and not(contains(@tags,"NDRDISC")) and contains(@tags,"2T2C") and (contains(@tags,"VXLAN") or contains(@tags,"VXLANGPE") or contains(@tags,"LISP") or contains(@tags,"LISPGPE") or contains(@tags,"GRE")) and not(contains(@tags,"VHOST"))]'
-
-python run_plot.py --input ${PLOT_VPP_SOURCE_DIR} \
-    --output ${STATIC_DIR_VPP}/64B-1t1c-vhost-pdrdisc \
-    --title "64B-1t1c-.*vhost.*-pdrdisc" \
-    --xpath '//*[@framesize="64B" and contains(@tags,"PDRDISC") and contains(@tags,"1T1C") and not(contains(@tags,"NDRDISC")) and contains(@tags,"VHOST")]'
-python run_plot.py --input ${PLOT_VPP_SOURCE_DIR} \
-    --output ${STATIC_DIR_VPP}/64B-2t2c-vhost-pdrdisc \
-    --title "64B-2t2c-.*vhost.*-pdrdisc" \
-    --xpath '//*[@framesize="64B" and contains(@tags,"PDRDISC") and contains(@tags,"2T2C") and not(contains(@tags,"NDRDISC")) and contains(@tags,"VHOST")]'
-
-python run_plot.py --input ${PLOT_VPP_SOURCE_DIR} \
     --output ${STATIC_DIR_VPP}/64B-1t1c-ipsechw-pdrdisc \
     --title "64B-1t1c-.*ipsec.*-pdrdisc" \
     --xpath '//*[@framesize="64B" and not(contains(@tags, "VHOST")) and contains(@tags, "IP4FWD") and contains(@tags, "PDRDISC") and not(contains(@tags,"NDRDISC")) and contains(@tags, "1T1C") and contains(@tags, "IPSECHW") and (contains(@tags, "IPSECTRAN") or contains(@tags, "IPSECTUN"))]'
@@ -376,6 +410,8 @@ python run_plot.py --input ${PLOT_VPP_SOURCE_DIR} \
     --output ${STATIC_DIR_VPP}/64B-2t2c-ipsechw-pdrdisc \
     --title "64B-2t2c-.*ipsec.*-pdrdisc" \
     --xpath '//*[@framesize="64B" and not(contains(@tags, "VHOST")) and contains(@tags, "IP4FWD") and contains(@tags, "PDRDISC") and not(contains(@tags,"NDRDISC")) and contains(@tags, "2T2C") and contains(@tags, "IPSECHW") and (contains(@tags, "IPSECTRAN") or contains(@tags, "IPSECTUN"))]'
+
+# DPDK
 
 python run_plot.py --input ${PLOT_DPDK_SOURCE_DIR} \
     --output ${STATIC_DIR_DPDK}/64B-1t1c-l2-ndrdisc \
@@ -500,3 +536,4 @@ python run_plot.py --input ${PLOT_DPDK_SOURCE_DIR} \
 # Create archive
 echo Creating csit.report.tar.gz ...
 tar -czvf ./csit.report.tar.gz ${BUILD_DIR}
+
