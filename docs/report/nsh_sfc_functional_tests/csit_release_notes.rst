@@ -4,7 +4,12 @@ CSIT Release Notes
 Changes in CSIT |release|
 -------------------------
 
-#. TODO
+#. Added NSH SFC functional tests
+
+   - NSH SFC Classifier.
+   - NSH SFC Proxy Inbound.
+   - NSH SFC Proxy Outbound.
+   - NSH SFC SFF.
 
 Known Issues
 ------------
@@ -14,5 +19,5 @@ Here is the list of known issues in CSIT |release| for NSH_SFC functional tests 
 +---+-------------------------------------------------+----------+------------------------------------------------------+
 | # | Issue                                           | Jira ID  | Description                                          |
 +---+-------------------------------------------------+----------+------------------------------------------------------+
-| 1 | TODO                                            | CSIT-??? | TODO                                                 |
+| 1 | None                                            | None     | None                                                 |
 +---+-------------------------------------------------+----------+------------------------------------------------------+
