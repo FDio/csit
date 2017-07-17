@@ -101,6 +101,7 @@
 | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM1 | ${dut2_vif1_mac}
 | | ... | ${dut2_vif2_mac}
 | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM1 | ${vm2}
+| | Setup Scheduler Policy for Vpp On All DUTs
 | | Run Keyword If | '${search_type}' == 'NDR'
 | | ... | Find NDR using binary search and pps
 | | ... | ${framesize} | ${binary_min} | ${binary_max} | ${traffic_profile}
