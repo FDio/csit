@@ -3,7 +3,7 @@
 set -x
 
 # Build locally without jenkins integrations
-DEBUG=0
+DEBUG=1
 
 # Build directories
 WORKING_DIR='_tmp'
@@ -21,17 +21,19 @@ PLOT_VPP_SOURCE_DIR=${WORKING_DIR}/vpp_plot
 PLOT_DPDK_SOURCE_DIR=${WORKING_DIR}/dpdk_plot
 
 DTR_SOURCE_DIR=${SOURCE_DIR}/detailed_test_results
-DTR_PERF_SOURCE_DIR=${DTR_SOURCE_DIR}/vpp_performance_results
 DTR_DPDK_SOURCE_DIR=${DTR_SOURCE_DIR}/dpdk_performance_results
-DTR_FUNC_SOURCE_DIR=${DTR_SOURCE_DIR}/vpp_functional_results
-DTR_HONEYCOMB_SOURCE_DIR=${DTR_SOURCE_DIR}/honeycomb_functional_results
+DTR_VPP_PERF_SOURCE_DIR=${DTR_SOURCE_DIR}/vpp_performance_results
+DTR_VPP_FUNC_SOURCE_DIR=${DTR_SOURCE_DIR}/vpp_functional_results
+DTR_HC_PERF_SOURCE_DIR=${DTR_SOURCE_DIR}/honeycomb_performance_results
+DTR_HC_FUNC_SOURCE_DIR=${DTR_SOURCE_DIR}/honeycomb_functional_results
+DTR_NSHSFC_FUNC_SOURCE_DIR=${DTR_SOURCE_DIR}/nshsfc_functional_results
 
 DTC_SOURCE_DIR=${SOURCE_DIR}/test_configuration
-DTC_PERF_SOURCE_DIR=${DTC_SOURCE_DIR}/vpp_performance_configuration
-DTC_FUNC_SOURCE_DIR=${DTC_SOURCE_DIR}/vpp_functional_configuration
+DTC_VPP_PERF_SOURCE_DIR=${DTC_SOURCE_DIR}/vpp_performance_configuration
+DTC_VPP_FUNC_SOURCE_DIR=${DTC_SOURCE_DIR}/vpp_functional_configuration
 
 DTO_SOURCE_DIR=${SOURCE_DIR}/test_operational_data
-DTO_PERF_SOURCE_OPER_DIR=${DTO_SOURCE_DIR}/vpp_performance_operational_data
+DTO_VPP_PERF_SOURCE_OPER_DIR=${DTO_SOURCE_DIR}/vpp_performance_operational_data
 
 # Jenkins links
 CSIT_JEN_URL='https://jenkins.fd.io/view/csit/job'
@@ -90,34 +92,34 @@ done
 
 unzip -o ${STATIC_DIR_ARCH}/${JEN_JOB}-${JEN_FBUILD}.zip -d ${WORKING_DIR}/
 python run_robot_data.py -i ${WORKING_DIR}/robot-plugin/output.xml \
-    --output ${DTR_PERF_SOURCE_DIR}/vpp_performance_results.rst \
+    --output ${DTR_VPP_PERF_SOURCE_DIR}/vpp_performance_results.rst \
     --formatting rst --start 4 --level 2
 python run_robot_teardown_data.py -i ${WORKING_DIR}/robot-plugin/output.xml \
-    --output ${DTC_PERF_SOURCE_DIR}/vpp_performance_configuration.rst \
+    --output ${DTC_VPP_PERF_SOURCE_DIR}/vpp_performance_configuration.rst \
     --data "VAT_H" -f "rst" --start 4 --level 2
 python run_robot_teardown_data.py -i ${WORKING_DIR}/robot-plugin/output.xml \
-    -o ${DTO_PERF_SOURCE_OPER_DIR}/vpp_performance_operational_data.rst \
+    -o ${DTO_VPP_PERF_SOURCE_OPER_DIR}/vpp_performance_operational_data.rst \
     --data "SH_RUN" -f "rst" --start 4 --level 2
 if [[ ${DEBUG} -eq 0 ]] ;
 then
     sed -i -e "s@###JOB###@${JEN_JOB}\/${JEN_FBUILD}@g" \
-        ${DTR_PERF_SOURCE_DIR}/index.rst
+        ${DTR_VPP_PERF_SOURCE_DIR}/index.rst
     sed -i -e "s@###LINK###@${CSIT_JEN_URL}\/${JEN_JOB}\/${JEN_FBUILD}@g" \
-        ${DTR_PERF_SOURCE_DIR}/index.rst
+        ${DTR_VPP_PERF_SOURCE_DIR}/index.rst
     sed -i -e "s@###JOB###@${JEN_JOB}\/${JEN_FBUILD}@g" \
-        ${DTC_PERF_SOURCE_DIR}/index.rst
+        ${DTC_VPP_PERF_SOURCE_DIR}/index.rst
     sed -i -e "s@###LINK###@${CSIT_JEN_URL}\/${JEN_JOB}\/${JEN_FBUILD}@g" \
-        ${DTC_PERF_SOURCE_DIR}/index.rst
+        ${DTC_VPP_PERF_SOURCE_DIR}/index.rst
     sed -i -e "s@###JOB###@${JEN_JOB}\/${JEN_FBUILD}@g" \
-        ${DTO_PERF_SOURCE_OPER_DIR}/index.rst
+        ${DTO_VPP_PERF_SOURCE_OPER_DIR}/index.rst
     sed -i -e "s@###LINK###@${CSIT_JEN_URL}\/${JEN_JOB}\/${JEN_FBUILD}@g" \
-        ${DTO_PERF_SOURCE_OPER_DIR}/index.rst
+        ${DTO_VPP_PERF_SOURCE_OPER_DIR}/index.rst
 fi
 
 ### DPDK PERFORMANCE SOURCE DATA
 
 JEN_JOB='csit-dpdk-perf-1707-all'
-JEN_BUILD=(1 2 3 4)
+JEN_BUILD=(1 2 3 4 5 6 7 8 9 10)
 
 for i in "${JEN_BUILD[@]}"; do
     curl --fail -fs ${CSIT_JEN_URL}/${JEN_JOB}/${i}/robot/report/output_perf_data.xml \
@@ -154,21 +156,21 @@ else
         -o ${STATIC_DIR_ARCH}/${JEN_JOB}-${JEN_BUILD}.zip
 
     sed -i -e "s@###JOB###@${JEN_JOB}\/${JEN_BUILD}@g" \
-        ${DTR_FUNC_SOURCE_DIR}/index.rst
+        ${DTR_VPP_FUNC_SOURCE_DIR}/index.rst
     sed -i -e "s@###LINK###@${CSIT_JEN_URL}\/${JEN_JOB}\/${JEN_BUILD}@g" \
-        ${DTR_FUNC_SOURCE_DIR}/index.rst
+        ${DTR_VPP_FUNC_SOURCE_DIR}/index.rst
     sed -i -e "s@###JOB###@${JEN_JOB}\/${JEN_BUILD}@g" \
-        ${DTC_FUNC_SOURCE_DIR}/index.rst
+        ${DTC_VPP_FUNC_SOURCE_DIR}/index.rst
     sed -i -e "s@###LINK###@${CSIT_JEN_URL}\/${JEN_JOB}\/${JEN_BUILD}@g" \
-        ${DTC_FUNC_SOURCE_DIR}/index.rst
+        ${DTC_VPP_FUNC_SOURCE_DIR}/index.rst
 fi
 
 unzip -o ${STATIC_DIR_ARCH}/${JEN_JOB}-${JEN_BUILD}.zip -d ${WORKING_DIR}/
 python run_robot_data.py -i ${WORKING_DIR}/robot-plugin/output.xml \
-    --output ${DTR_FUNC_SOURCE_DIR}/vpp_functional_results.rst \
+    --output ${DTR_VPP_FUNC_SOURCE_DIR}/vpp_functional_results.rst \
     --formatting rst --start 5 --level 2
 python run_robot_teardown_data.py -i ${WORKING_DIR}/robot-plugin/output.xml \
-    --output ${DTC_FUNC_SOURCE_DIR}/vpp_functional_configuration.rst \
+    --output ${DTC_VPP_FUNC_SOURCE_DIR}/vpp_functional_configuration.rst \
     --data "VAT_H" -f "rst" --start 5 --level 2
 
 ### HONEYCOMB SOURCE DATA
@@ -184,15 +186,40 @@ else
         -o ${STATIC_DIR_ARCH}/${JEN_JOB}-${JEN_BUILD}.zip
 
     sed -i -e "s@###JOB###@${JEN_JOB}\/${JEN_BUILD}@g" \
-        ${DTR_HONEYCOMB_SOURCE_DIR}/index.rst
+        ${DTR_HC_FUNC_SOURCE_DIR}/index.rst
     sed -i -e "s@###LINK###@${HC_JEN_URL}\/${JEN_JOB}\/${JEN_BUILD}@g" \
-        ${DTR_HONEYCOMB_SOURCE_DIR}/index.rst
+        ${DTR_HC_FUNC_SOURCE_DIR}/index.rst
 fi
 
 unzip -o ${STATIC_DIR_ARCH}/${JEN_JOB}-${JEN_BUILD}.zip -d ${WORKING_DIR}/
 python run_robot_data.py -i ${WORKING_DIR}/robot-plugin/output.xml \
-    --output ${DTR_HONEYCOMB_SOURCE_DIR}/honeycomb_functional_results.rst \
+    --output ${DTR_HC_FUNC_SOURCE_DIR}/honeycomb_functional_results.rst \
     --formatting rst --start 5 --level 2
+
+### NSH_SFC SOURCE DATA
+
+JEN_JOB='csit-nsh_sfc-verify-func-1707-ubuntu1604-virl'
+JEN_BUILD='lastSuccessfulBuild'
+
+if [[ ${DEBUG} -eq 1 ]] ;
+then
+    cp ./${JEN_JOB}-${JEN_BUILD}.zip ${STATIC_DIR_ARCH}/${JEN_JOB}-${JEN_BUILD}.zip
+else
+    curl -fs ${CSIT_JEN_URL}/${JEN_JOB}/${JEN_BUILD}/robot/report/\*zip\*/robot-plugin.zip \
+        -o ${STATIC_DIR_ARCH}/${JEN_JOB}-${JEN_BUILD}.zip
+
+    sed -i -e "s@###JOB###@${JEN_JOB}\/${JEN_BUILD}@g" \
+        ${DTR_NSHSFC_FUNC_SOURCE_DIR}/index.rst
+    sed -i -e "s@###LINK###@${HC_JEN_URL}\/${JEN_JOB}\/${JEN_BUILD}@g" \
+        ${DTR_NSHSFC_FUNC_SOURCE_DIR}/index.rst
+fi
+
+unzip -o ${STATIC_DIR_ARCH}/${JEN_JOB}-${JEN_BUILD}.zip -d ${WORKING_DIR}/
+python run_robot_data.py -i ${WORKING_DIR}/robot-plugin/output.xml \
+    --output ${DTR_NSHSFC_FUNC_SOURCE_DIR}/nshsfc_functional_results.rst \
+    --formatting rst --start 5 --level 2
+
+
 
 # Delete temporary json files
 find ${SOURCE_DIR} -name "*.json" -type f -delete
