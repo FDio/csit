@@ -100,6 +100,23 @@ NSH_SFC Functional Tests Coverage
 Following NSH_SFC functional test areas are covered in the CSIT |release| with
 results listed in this report:
 
-- TODO
+- **NSH SFC Classifier** - TG send some TCP packets to test NSH SFC
+  Classifier functional. DUT1 will receive these packets from one NIC and loopback
+  the VXLAN-GPE-NSH encapsulated packets to the TG from other NIC.
+  - Test case count: 7
+- **NSH SFC Proxy Inbound** - TG send some VXLAN-GPE-NSH encapsulated packets
+  to test NSH SFC Proxy Inbound functional. DUT1 will receive these packets from one
+  NIC and loopback the VXLAN encapsulated packets to the TG from other NIC.
+  - Test case count: 6
+- **NSH SFC Proxy Outbound** - TG send some VXLAN encapsulated packets to test
+  NSH SFC Proxy Outbound functional. DUT1 will receive these packets from one NIC
+  and loopback the VXLAN-GPE-NSH encapsulated packets to the TG from other NIC.
+  - Test case count: 6
+- **NSH SFC Service Function Forward** - TG send some VXLAN-GPE-NSH encapsulated
+  packets to test NSH SFC Service Function Forward functional. DUT1 will receive these
+  packets from one NIC and swap the VXLAN-GPE-NSH header, after that DUT1 loopback the
+  VXLAN-GPE-NSH encapsulated packtes to the TG from other NIC.
+  - Test case count: 6
 
+Total 25 NSH SFC functional tests in the CSIT |release|.
 

@@ -42,7 +42,7 @@ is listed separately, as follows:
    against VPP.
 
 #. **NSH_SFC Functional Tests** - NSH_SFC functional tests are executed in
-   virtual FD.io testbeds focusing onNSH_SFC of VPP. Tests cover a range of
+   virtual FD.io testbeds focusing on NSH_SFC of VPP. Tests cover a range of
    CRUD operations executed against VPP.
 
 In addition to above, CSIT |release| report does also include VPP unit test
