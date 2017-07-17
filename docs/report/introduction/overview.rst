@@ -10,8 +10,8 @@ continuous execution delivered in CSIT |release|. A high-level overview is
 provided for each CSIT test environment running in Linux Foundation (LF) FD.io
 Continuous Performance Labs. This is followed by summary of all executed tests
 against the |vpp-release| and associated FD.io projects and sub-systems
-(HoneyComb, DPDK), CSIT |release| release notes, result highlights and known
-issues discovered in CSIT. More detailed description of each environment,
+(HoneyComb, DPDK, NSH_SFC), CSIT |release| release notes, result highlights and
+known issues discovered in CSIT. More detailed description of each environment,
 pointers to CSIT test code documentation and detailed test resuls with links to
 the source data files are also provided.
 
