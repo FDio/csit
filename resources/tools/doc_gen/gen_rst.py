@@ -198,7 +198,8 @@ def generate_py_rst_files():
             for file in files:
                 module_name = file.split('.')[0]
                 write_module_title(fh, module_name)
-                fh.write(rst_py_module.format('.'.join(module_path), module_name))
+                fh.write(rst_py_module.format('.'.join(module_path),
+                                              module_name))
 
 
 def generate_rf_rst_files(file_names, incl_tests=True, incl_keywords=True):
