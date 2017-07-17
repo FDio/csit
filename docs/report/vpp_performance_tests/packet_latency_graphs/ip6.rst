@@ -18,18 +18,8 @@ VPP packet latency in 1t1c setup (1thread, 1core) is presented in the graph belo
 CSIT source code for the test cases used for above plots can be found in CSIT
 git repository:
 
-.. code-block:: bash
-
-    $ cd $CSIT/tests/vpp/perf/ip6
-    $ grep -E "78B-1t1c-ethip6-ip6[a-z0-9]+-[a-z-]*ndrdisc" *
-
-    10ge2p1x520-ethip6-ip6base-copwhtlistbase-ndrpdrdisc.robot:| tc01-78B-1t1c-ethip6-ip6base-copwhtlistbase-ndrdisc
-    10ge2p1x520-ethip6-ip6base-iacldstbase-ndrpdrdisc.robot:| tc01-78B-1t1c-ethip6-ip6base-iacldstbase-ndrdisc
-    10ge2p1x520-ethip6-ip6base-ndrpdrdisc.robot:| tc01-78B-1t1c-ethip6-ip6base-ndrdisc
-    10ge2p1x520-ethip6-ip6scale200k-ndrpdrdisc.robot:| tc01-78B-1t1c-ethip6-ip6scale200k-ndrdisc
-    10ge2p1x520-ethip6-ip6scale20k-ndrpdrdisc.robot:| tc01-78B-1t1c-ethip6-ip6scale20k-ndrdisc
-    10ge2p1x520-ethip6-ip6scale2m-ndrpdrdisc.robot:| tc01-78B-1t1c-ethip6-ip6scale2m-ndrdisc
-    40ge2p1xl710-ethip6-ip6base-ndrpdrdisc.robot:| tc01-78B-1t1c-ethip6-ip6base-ndrdisc
+.. program-output:: cd ../../ && set -x && cd tests/vpp/perf/ip6 && grep -E "78B-1t1c-ethip6-ip6[a-z0-9]+-[a-z-]*ndrdisc" *
+   :shell:
 
 VPP packet latency in 2t2c setup (2thread, 2core) is presented in the graph below.
 
@@ -42,16 +32,5 @@ VPP packet latency in 2t2c setup (2thread, 2core) is presented in the graph belo
 CSIT source code for the test cases used for above plots can be found in CSIT
 git repository:
 
-.. code-block:: bash
-
-    $ cd $CSIT/tests/vpp/perf/ip6
-    $ grep -E "78B-2t2c-ethip6-ip6[a-z0-9]+-[a-z-]*ndrdisc" *
-
-    10ge2p1x520-ethip6-ip6base-copwhtlistbase-ndrpdrdisc.robot:| tc07-78B-2t2c-ethip6-ip6base-copwhtlistbase-ndrdisc
-    10ge2p1x520-ethip6-ip6base-iacldstbase-ndrpdrdisc.robot:| tc07-78B-2t2c-ethip6-ip6base-iacldstbase-ndrdisc
-    10ge2p1x520-ethip6-ip6base-ndrpdrdisc.robot:| tc07-78B-2t2c-ethip6-ip6base-ndrdisc
-    10ge2p1x520-ethip6-ip6scale200k-ndrpdrdisc.robot:| tc07-78B-2t2c-ethip6-ip6scale200k-ndrdisc
-    10ge2p1x520-ethip6-ip6scale20k-ndrpdrdisc.robot:| tc07-78B-2t2c-ethip6-ip6scale20k-ndrdisc
-    10ge2p1x520-ethip6-ip6scale2m-ndrpdrdisc.robot:| tc07-78B-2t2c-ethip6-ip6scale2m-ndrdisc
-    40ge2p1xl710-ethip6-ip6base-ndrpdrdisc.robot:| tc07-78B-2t2c-ethip6-ip6base-ndrdisc
-
+.. program-output:: cd ../../ && set -x && cd tests/vpp/perf/ip6 && grep -E "78B-2t2c-ethip6-ip6[a-z0-9]+-[a-z-]*ndrdisc" *
+   :shell:

@@ -23,12 +23,8 @@ Looping.*
 CSIT source code for the test cases used for above plots can be found in CSIT
 git repository:
 
-.. code-block:: bash
-
-    $ $CSIT/tests/dpdk/perf
-    $ grep -E "64B-1t1c-ethip4-ip4base-l3fwd-ndrdisc" *
-
-    10ge2p1x520-ethip4-ip4base-l3fwd-ndrpdrdisc.robot:| tc01-64B-1t1c-ethip4-ip4base-l3fwd-ndrdisc
+.. program-output:: cd ../../ && set -x && cd tests/dpdk/perf && grep -P '64B-1t1c-ethip4-ip4base-l3fwd-ndrdisc' *
+   :shell:
 
 Testpmd NDR 64B packet throughput in 2t2c setup (2thread, 2core) is presented
 in the graph below.
@@ -43,12 +39,8 @@ Looping.*
 CSIT source code for the test cases used for above plots can be found in CSIT
 git repository:
 
-.. code-block:: bash
-
-    $ $CSIT/tests/dpdk/perf
-    $ grep -E "64B-2t2c-ethip4-ip4base-l3fwd-ndrdisc" *
-
-    10ge2p1x520-ethip4-ip4base-l3fwd-ndrpdrdisc.robot:| tc07-64B-2t2c-ethip4-ip4base-l3fwd-ndrdisc
+.. program-output:: cd ../../ && set -x && cd tests/dpdk/perf && grep -P '64B-2t2c-ethip4-ip4base-l3fwd-ndrdisc' *
+   :shell:
 
 PDR Throughput
 ~~~~~~~~~~~~~~
@@ -66,12 +58,8 @@ Looping.*
 CSIT source code for the test cases used for above plots can be found in CSIT
 git repository:
 
-.. code-block:: bash
-
-    $ $CSIT/tests/dpdk/perf
-    $ grep -E "64B-1t1c-ethip4-ip4base-l3fwd-pdrdisc" *
-
-    10ge2p1x520-ethip4-ip4base-l3fwd-ndrpdrdisc.robot:| tc02-64B-1t1c-ethip4-ip4base-l3fwd-pdrdisc
+.. program-output:: cd ../../ && set -x && cd tests/dpdk/perf && grep -P '64B-1t1c-ethip4-ip4base-l3fwd-pdrdisc' *
+   :shell:
 
 L3FWD PDR 64B packet throughput in 2t2c setup (2thread, 2core) is presented
 in the graph below. PDR measured for 0.5% packet loss ratio.
@@ -86,10 +74,5 @@ Looping.*
 CSIT source code for the test cases used for above plots can be found in CSIT
 git repository:
 
-.. code-block:: bash
-
-    $ $CSIT/tests/dpdk/perf
-    $ grep -E "64B-2t2c-ethip4-ip4base-l3fwd-pdrdisc" *
-
-    10ge2p1x520-ethip4-ip4base-l3fwd-ndrpdrdisc.robot:| tc08-64B-2t2c-ethip4-ip4base-l3fwd-pdrdisc
-
+.. program-output:: cd ../../ && set -x && cd tests/dpdk/perf && grep -P '64B-2t2c-ethip4-ip4base-l3fwd-pdrdisc' *
+   :shell:

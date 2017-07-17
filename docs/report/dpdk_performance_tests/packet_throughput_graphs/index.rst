@@ -36,4 +36,4 @@ and their indices.
 .. toctree::
 
     l2
-    ipv4
+    ip4
