@@ -22,21 +22,8 @@ below.
 CSIT source code for the test cases used for above plots can be found in CSIT
 git repository:
 
-.. code-block:: bash
-
-    $ cd $CSIT/tests/vpp/perf/crypto
-    $ grep -E "64B-1t1c-.*ipsec.*-ndrdisc" *
-
-    40ge2p1xl710-ethip4ipsecbasetnl-ip4base-int-aes-gcm-ndrpdrdisc.robot:| tc01-64B-1t1c-ethip4ipsecbasetnl-ip4base-int-aes-gcm-ndrdisc
-    40ge2p1xl710-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-ndrpdrdisc.robot:| tc01-64B-1t1c-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-ndrdisc
-    40ge2p1xl710-ethip4ipsecbasetnl-ip4base-tnl-aes-gcm-ndrpdrdisc.robot:| tc01-64B-1t1c-ethip4ipsecbasetnl-ip4base-tnl-aes-gcm-ndrdisc
-    40ge2p1xl710-ethip4ipsecbasetnl-ip4base-tnl-cbc-sha1-ndrpdrdisc.robot:| tc01-64B-1t1c-ethip4ipsecbasetnl-ip4base-tnl-cbc-sha1-ndrdisc
-    40ge2p1xl710-ethip4ipsecscale1000tnl-ip4base-int-aes-gcm-ndrpdrdisc.robot:| tc01-64B-1t1c-ethip4ipsecscale1000tnl-ip4base-int-aes-gcm-ndrdisc
-    40ge2p1xl710-ethip4ipsecscale1000tnl-ip4base-int-cbc-sha1-ndrpdrdisc.robot:| tc01-64B-1t1c-ethip4ipsecscale1000tnl-ip4base-int-cbc-sha1-ndrdisc
-    40ge2p1xl710-ethip4ipsecscale1000tnl-ip4base-tnl-aes-gcm-ndrpdrdisc.robot:| tc01-64B-1t1c-ethip4ipsecscale1000tnl-ip4base-tnl-aes-gcm-ndrdisc
-    40ge2p1xl710-ethip4ipsecscale1000tnl-ip4base-tnl-cbc-sha1-ndrpdrdisc.robot:| tc01-64B-1t1c-ethip4ipsecscale1000tnl-ip4base-tnl-cbc-sha1-ndrdisc
-    40ge2p1xl710-ethip4ipsectptlispgpe-ip4base-cbc-sha1-ndrpdrdisc.robot:| tc01-64B-1t1c-ethip4ipsectptlispgpe-ip4base-cbc-sha1-ndrdisc
-
+.. program-output:: cd ../../ && set -x && cd tests/vpp/perf/crypto && grep -E "64B-1t1c-.*ipsec.*-ndrdisc" *
+   :shell:
 
 VPP packet latency in 2t2c setup (2thread, 2core) is presented in the graph below.
 
@@ -49,18 +36,6 @@ VPP packet latency in 2t2c setup (2thread, 2core) is presented in the graph belo
 CSIT source code for the test cases used for above plots can be found in CSIT
 git repository:
 
-.. code-block:: bash
-
-    $ cd $CSIT/tests/vpp/perf/crypto
-    $ grep -E "64B-2t2c-.*ipsec.*-ndrdisc" *
-
-    40ge2p1xl710-ethip4ipsecbasetnl-ip4base-int-aes-gcm-ndrpdrdisc.robot:| tc07-64B-2t2c-ethip4ipsecbasetnl-ip4base-int-aes-gcm-ndrdisc
-    40ge2p1xl710-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-ndrpdrdisc.robot:| tc07-64B-2t2c-ethip4ipsecbasetnl-ip4base-int-cbc-sha1-ndrdisc
-    40ge2p1xl710-ethip4ipsecbasetnl-ip4base-tnl-aes-gcm-ndrpdrdisc.robot:| tc07-64B-2t2c-ethip4ipsecbasetnl-ip4base-tnl-aes-gcm-ndrdisc
-    40ge2p1xl710-ethip4ipsecbasetnl-ip4base-tnl-cbc-sha1-ndrpdrdisc.robot:| tc07-64B-2t2c-ethip4ipsecbasetnl-ip4base-tnl-cbc-sha1-ndrdisc
-    40ge2p1xl710-ethip4ipsecscale1000tnl-ip4base-int-aes-gcm-ndrpdrdisc.robot:| tc07-64B-2t2c-ethip4ipsecscale1000tnl-ip4base-int-aes-gcm-ndrdisc
-    40ge2p1xl710-ethip4ipsecscale1000tnl-ip4base-int-cbc-sha1-ndrpdrdisc.robot:| tc07-64B-2t2c-ethip4ipsecscale1000tnl-ip4base-int-cbc-sha1-ndrdisc
-    40ge2p1xl710-ethip4ipsecscale1000tnl-ip4base-tnl-aes-gcm-ndrpdrdisc.robot:| tc07-64B-2t2c-ethip4ipsecscale1000tnl-ip4base-tnl-aes-gcm-ndrdisc
-    40ge2p1xl710-ethip4ipsecscale1000tnl-ip4base-tnl-cbc-sha1-ndrpdrdisc.robot:| tc07-64B-2t2c-ethip4ipsecscale1000tnl-ip4base-tnl-cbc-sha1-ndrdisc
-    40ge2p1xl710-ethip4ipsectptlispgpe-ip4base-cbc-sha1-ndrpdrdisc.robot:| tc07-64B-2t2c-ethip4ipsectptlispgpe-ip4base-cbc-sha1-ndrdisc
+.. program-output:: cd ../../ && set -x && cd tests/vpp/perf/crypto && grep -E "64B-2t2c-.*ipsec.*-ndrdisc" *
+   :shell:
 

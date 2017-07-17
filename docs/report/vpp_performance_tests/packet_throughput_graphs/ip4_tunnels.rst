@@ -23,15 +23,8 @@ Tunnels.*
 CSIT source code for the test cases used for above plots can be found in CSIT
 git repository:
 
-.. code-block:: bash
-
-    $ cd $CSIT/tests/vpp/perf/ip4_tunnels
-    $ grep -E "64B-1t1c-ethip4[a-z0-9]+-[a-z0-9]*-ndrdisc" *
-
-    10ge2p1x520-ethip4lispip4-ip4base-ndrpdrdisc.robot:| tc01-64B-1t1c-ethip4lispip4-ip4base-ndrdisc
-    10ge2p1x520-ethip4lispip6-ip4base-ndrpdrdisc.robot:| tc01-64B-1t1c-ethip4lispip6-ip4base-ndrdisc
-    10ge2p1x520-ethip4vxlan-l2bdbasemaclrn-ndrpdrdisc.robot:| tc01-64B-1t1c-ethip4vxlan-l2bdbasemaclrn-ndrdisc
-    10ge2p1x520-ethip4vxlan-l2xcbase-ndrpdrdisc.robot:| tc01-64B-1t1c-ethip4vxlan-l2xcbase-ndrdisc
+.. program-output:: cd ../../ && set -x && cd tests/vpp/perf/ip4_tunnels && grep -E "64B-1t1c-ethip4[a-z0-9]+-[a-z0-9]*-ndrdisc" *
+   :shell:
 
 VPP NDR 64B packet throughput in 2t2c setup (2thread, 2core) is presented
 in the graph below.
@@ -45,15 +38,8 @@ in the graph below.
 CSIT source code for the test cases used for above plots can be found in CSIT
 git repository:
 
-.. code-block:: bash
-
-    $ cd $CSIT/tests/vpp/perf/ip4_tunnels
-    $ grep -E "64B-2t2c-ethip4[a-z0-9]+-[a-z0-9]*-ndrdisc" *
-
-    10ge2p1x520-ethip4lispip4-ip4base-ndrpdrdisc.robot:| tc07-64B-2t2c-ethip4lispip4-ip4base-ndrdisc
-    10ge2p1x520-ethip4lispip6-ip4base-ndrpdrdisc.robot:| tc07-64B-2t2c-ethip4lispip6-ip4base-ndrdisc
-    10ge2p1x520-ethip4vxlan-l2bdbasemaclrn-ndrpdrdisc.robot:| tc07-64B-2t2c-ethip4vxlan-l2bdbasemaclrn-ndrdisc
-    10ge2p1x520-ethip4vxlan-l2xcbase-ndrpdrdisc.robot:| tc07-64B-2t2c-ethip4vxlan-l2xcbase-ndrdisc
+.. program-output:: cd ../../ && set -x && cd tests/vpp/perf/ip4_tunnels && grep -E "64B-2t2c-ethip4[a-z0-9]+-[a-z0-9]*-ndrdisc" *
+   :shell:
 
 PDR Throughput
 ~~~~~~~~~~~~~~
@@ -71,15 +57,8 @@ Tunnels.*
 CSIT source code for the test cases used for above plots can be found in CSIT
 git repository:
 
-.. code-block:: bash
-
-    $ cd $CSIT/tests/vpp/perf/ip4_tunnels
-    $ grep -E "64B-1t1c-ethip4[a-z0-9]+-[a-z0-9]*-pdrdisc" *
-
-    10ge2p1x520-ethip4lispip4-ip4base-ndrpdrdisc.robot:| tc02-64B-1t1c-ethip4lispip4-ip4base-pdrdisc
-    10ge2p1x520-ethip4lispip6-ip4base-ndrpdrdisc.robot:| tc02-64B-1t1c-ethip4lispip6-ip4base-pdrdisc
-    10ge2p1x520-ethip4vxlan-l2bdbasemaclrn-ndrpdrdisc.robot:| tc02-64B-1t1c-ethip4vxlan-l2bdbasemaclrn-pdrdisc
-    10ge2p1x520-ethip4vxlan-l2xcbase-ndrpdrdisc.robot:| tc02-64B-1t1c-ethip4vxlan-l2xcbase-pdrdisc
+.. program-output:: cd ../../ && set -x && cd tests/vpp/perf/ip4_tunnels && grep -E "64B-1t1c-ethip4[a-z0-9]+-[a-z0-9]*-pdrdisc" *
+   :shell:
 
 VPP PDR 64B packet throughput in 2t2c setup (2thread, 2core) is presented
 in the graph below. PDR measured for 0.5% packet loss ratio.
@@ -93,13 +72,6 @@ in the graph below. PDR measured for 0.5% packet loss ratio.
 CSIT source code for the test cases used for above plots can be found in CSIT
 git repository:
 
-.. code-block:: bash
-
-    $ cd $CSIT/tests/vpp/perf/ip4_tunnels
-    $ grep -E "64B-2t2c-ethip4[a-z0-9]+-[a-z0-9]*-pdrdisc" *
-
-    10ge2p1x520-ethip4lispip4-ip4base-ndrpdrdisc.robot:| tc08-64B-2t2c-ethip4lispip4-ip4base-pdrdisc
-    10ge2p1x520-ethip4lispip6-ip4base-ndrpdrdisc.robot:| tc08-64B-2t2c-ethip4lispip6-ip4base-pdrdisc
-    10ge2p1x520-ethip4vxlan-l2bdbasemaclrn-ndrpdrdisc.robot:| tc08-64B-2t2c-ethip4vxlan-l2bdbasemaclrn-pdrdisc
-    10ge2p1x520-ethip4vxlan-l2xcbase-ndrpdrdisc.robot:| tc08-64B-2t2c-ethip4vxlan-l2xcbase-pdrdisc
+.. program-output:: cd ../../ && set -x && cd tests/vpp/perf/ip4_tunnels && grep -E "64B-2t2c-ethip4[a-z0-9]+-[a-z0-9]*-pdrdisc" *
+   :shell:
 

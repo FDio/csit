@@ -18,57 +18,8 @@ VPP packet latency in 1t1c setup (1thread, 1core) is presented in the graph belo
 CSIT source code for the test cases used for above plots can be found in CSIT
 git repository:
 
-.. code-block:: bash
-
-    $ cd $CSIT/tests/vpp/perf/l2
-    $ grep -E "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-(iacl.*|oacl.*|eth.*)*ndrdisc" *
-
-    10ge2p1vic1227-eth-l2bdbasemaclrn-ndrpdrdisc.robot:| tc01-64B-1t1c-eth-l2bdbasemaclrn-ndrdisc
-    10ge2p1x520-dot1ad-l2xcbase-ndrpdrdisc.robot:| tc01-64B-1t1c-dot1ad-l2xcbase-ndrdisc
-    10ge2p1x520-dot1q-l2xcbase-ndrpdrdisc.robot:| tc01-64B-1t1c-dot1q-l2xcbase-ndrdisc
-    10ge2p1x520-eth-l2bdbasemaclrn-aclinpermit-ndrpdrdisc.robot:| tc01-64B-1t1c-eth-l2bdbasemaclrn-iacl1-stateless-flows100-ndrdisc
-    10ge2p1x520-eth-l2bdbasemaclrn-aclinpermit-ndrpdrdisc.robot:| tc03-64B-1t1c-eth-l2bdbasemaclrn-iacl10-stateless-flows100-ndrdisc
-    10ge2p1x520-eth-l2bdbasemaclrn-aclinpermit-ndrpdrdisc.robot:| tc05-64B-1t1c-eth-l2bdbasemaclrn-iacl50-stateless-flows100-ndrdisc
-    10ge2p1x520-eth-l2bdbasemaclrn-aclinpermit-ndrpdrdisc.robot:| tc07-64B-1t1c-eth-l2bdbasemaclrn-iacl1-stateless-flows10k-ndrdisc
-    10ge2p1x520-eth-l2bdbasemaclrn-aclinpermit-ndrpdrdisc.robot:| tc09-64B-1t1c-eth-l2bdbasemaclrn-iacl10-stateless-flows10k-ndrdisc
-    10ge2p1x520-eth-l2bdbasemaclrn-aclinpermit-ndrpdrdisc.robot:| tc11-64B-1t1c-eth-l2bdbasemaclrn-iacl50-stateless-flows10k-ndrdisc
-    10ge2p1x520-eth-l2bdbasemaclrn-aclinpermit-ndrpdrdisc.robot:| tc13-64B-1t1c-eth-l2bdbasemaclrn-iacl1-stateless-flows100k-ndrdisc
-    10ge2p1x520-eth-l2bdbasemaclrn-aclinpermit-ndrpdrdisc.robot:| tc15-64B-1t1c-eth-l2bdbasemaclrn-iacl10-stateless-flows100k-ndrdisc
-    10ge2p1x520-eth-l2bdbasemaclrn-aclinpermit-ndrpdrdisc.robot:| tc17-64B-1t1c-eth-l2bdbasemaclrn-iacl50-stateless-flows100k-ndrdisc
-    10ge2p1x520-eth-l2bdbasemaclrn-aclinpermitreflect-ndrpdrdisc.robot:| tc01-64B-1t1c-eth-l2bdbasemaclrn-iacl1-statefull-flows100-ndrdisc
-    10ge2p1x520-eth-l2bdbasemaclrn-aclinpermitreflect-ndrpdrdisc.robot:| tc03-64B-1t1c-eth-l2bdbasemaclrn-iacl10-statefull-flows100-ndrdisc
-    10ge2p1x520-eth-l2bdbasemaclrn-aclinpermitreflect-ndrpdrdisc.robot:| tc05-64B-1t1c-eth-l2bdbasemaclrn-iacl50-statefull-flows100-ndrdisc
-    10ge2p1x520-eth-l2bdbasemaclrn-aclinpermitreflect-ndrpdrdisc.robot:| tc07-64B-1t1c-eth-l2bdbasemaclrn-iacl1-statefull-flows10k-ndrdisc
-    10ge2p1x520-eth-l2bdbasemaclrn-aclinpermitreflect-ndrpdrdisc.robot:| tc09-64B-1t1c-eth-l2bdbasemaclrn-iacl10-statefull-flows10k-ndrdisc
-    10ge2p1x520-eth-l2bdbasemaclrn-aclinpermitreflect-ndrpdrdisc.robot:| tc11-64B-1t1c-eth-l2bdbasemaclrn-iacl50-statefull-flows10k-ndrdisc
-    10ge2p1x520-eth-l2bdbasemaclrn-aclinpermitreflect-ndrpdrdisc.robot:| tc13-64B-1t1c-eth-l2bdbasemaclrn-iacl1-statefull-flows100k-ndrdisc
-    10ge2p1x520-eth-l2bdbasemaclrn-aclinpermitreflect-ndrpdrdisc.robot:| tc15-64B-1t1c-eth-l2bdbasemaclrn-iacl10-statefull-flows100k-ndrdisc
-    10ge2p1x520-eth-l2bdbasemaclrn-aclinpermitreflect-ndrpdrdisc.robot:| tc17-64B-1t1c-eth-l2bdbasemaclrn-iacl50-statefull-flows100k-ndrdisc
-    10ge2p1x520-eth-l2bdbasemaclrn-acloutpermit-ndrpdrdisc.robot:| tc01-64B-1t1c-eth-l2bdbasemaclrn-oacl1-stateless-flows100-ndrdisc
-    10ge2p1x520-eth-l2bdbasemaclrn-acloutpermit-ndrpdrdisc.robot:| tc03-64B-1t1c-eth-l2bdbasemaclrn-oacl10-stateless-flows100-ndrdisc
-    10ge2p1x520-eth-l2bdbasemaclrn-acloutpermit-ndrpdrdisc.robot:| tc05-64B-1t1c-eth-l2bdbasemaclrn-oacl50-stateless-flows100-ndrdisc
-    10ge2p1x520-eth-l2bdbasemaclrn-acloutpermit-ndrpdrdisc.robot:| tc07-64B-1t1c-eth-l2bdbasemaclrn-oacl1-stateless-flows10k-ndrdisc
-    10ge2p1x520-eth-l2bdbasemaclrn-acloutpermit-ndrpdrdisc.robot:| tc09-64B-1t1c-eth-l2bdbasemaclrn-oacl10-stateless-flows10k-ndrdisc
-    10ge2p1x520-eth-l2bdbasemaclrn-acloutpermit-ndrpdrdisc.robot:| tc11-64B-1t1c-eth-l2bdbasemaclrn-oacl50-stateless-flows10k-ndrdisc
-    10ge2p1x520-eth-l2bdbasemaclrn-acloutpermit-ndrpdrdisc.robot:| tc13-64B-1t1c-eth-l2bdbasemaclrn-oacl1-stateless-flows100k-ndrdisc
-    10ge2p1x520-eth-l2bdbasemaclrn-acloutpermit-ndrpdrdisc.robot:| tc15-64B-1t1c-eth-l2bdbasemaclrn-oacl10-stateless-flows100k-ndrdisc
-    10ge2p1x520-eth-l2bdbasemaclrn-acloutpermit-ndrpdrdisc.robot:| tc17-64B-1t1c-eth-l2bdbasemaclrn-oacl50-stateless-flows100k-ndrdisc
-    10ge2p1x520-eth-l2bdbasemaclrn-acloutpermitreflect-ndrpdrdisc.robot:| tc01-64B-1t1c-eth-l2bdbasemaclrn-oacl1-statefull-flows100-ndrdisc
-    10ge2p1x520-eth-l2bdbasemaclrn-acloutpermitreflect-ndrpdrdisc.robot:| tc03-64B-1t1c-eth-l2bdbasemaclrn-oacl10-statefull-flows100-ndrdisc
-    10ge2p1x520-eth-l2bdbasemaclrn-acloutpermitreflect-ndrpdrdisc.robot:| tc05-64B-1t1c-eth-l2bdbasemaclrn-oacl50-statefull-flows100-ndrdisc
-    10ge2p1x520-eth-l2bdbasemaclrn-acloutpermitreflect-ndrpdrdisc.robot:| tc07-64B-1t1c-eth-l2bdbasemaclrn-oacl1-statefull-flows10k-ndrdisc
-    10ge2p1x520-eth-l2bdbasemaclrn-acloutpermitreflect-ndrpdrdisc.robot:| tc09-64B-1t1c-eth-l2bdbasemaclrn-oacl10-statefull-flows10k-ndrdisc
-    10ge2p1x520-eth-l2bdbasemaclrn-acloutpermitreflect-ndrpdrdisc.robot:| tc11-64B-1t1c-eth-l2bdbasemaclrn-oacl50-statefull-flows10k-ndrdisc
-    10ge2p1x520-eth-l2bdbasemaclrn-acloutpermitreflect-ndrpdrdisc.robot:| tc13-64B-1t1c-eth-l2bdbasemaclrn-oacl1-statefull-flows100k-ndrdisc
-    10ge2p1x520-eth-l2bdbasemaclrn-acloutpermitreflect-ndrpdrdisc.robot:| tc15-64B-1t1c-eth-l2bdbasemaclrn-oacl10-statefull-flows100k-ndrdisc
-    10ge2p1x520-eth-l2bdbasemaclrn-acloutpermitreflect-ndrpdrdisc.robot:| tc17-64B-1t1c-eth-l2bdbasemaclrn-oacl50-statefull-flows100k-ndrdisc
-    10ge2p1x520-eth-l2bdbasemaclrn-ndrpdrdisc.robot:| tc01-64B-1t1c-eth-l2bdbasemaclrn-ndrdisc
-    10ge2p1x520-eth-l2xcbase-eth-2memif-1lxc-ndrpdrdisc.robot:| tc01-64B-1t1c-eth-l2xcbase-eth-2memif-1lxc-ndrdisc
-    10ge2p1x520-eth-l2xcbase-ndrpdrdisc.robot:| tc01-64B-1t1c-eth-l2xcbase-ndrdisc
-    10ge2p1x710-eth-l2bdbasemaclrn-ndrpdrdisc.robot:| tc01-64B-1t1c-eth-l2bdbasemaclrn-ndrdisc
-    40ge2p1vic1385-eth-l2bdbasemaclrn-ndrpdrdisc.robot:| tc01-64B-1t1c-eth-l2bdbasemaclrn-ndrdisc
-    40ge2p1xl710-eth-l2bdbasemaclrn-ndrpdrdisc.robot:| tc01-64B-1t1c-eth-l2bdbasemaclrn-ndrdisc
-    40ge2p1xl710-eth-l2xcbase-ndrpdrdisc.robot:| tc01-64B-1t1c-eth-l2xcbase-ndrdisc
+.. program-output:: cd ../../ && set -x && cd tests/vpp/perf/l2 && grep -E "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-(iacl50-state(ful|less)-flows10k.*|oacl50-state(ful|less)-flows10k.*|eth.*)*ndrdisc" *
+   :shell:
 
 VPP packet latency in 2t2c setup (2thread, 2core) is presented in the graph below.
 
@@ -81,19 +32,6 @@ VPP packet latency in 2t2c setup (2thread, 2core) is presented in the graph belo
 CSIT source code for the test cases used for above plots can be found in CSIT
 git repository:
 
-.. code-block:: bash
-
-    $ cd $CSIT/tests/vpp/perf/l2
-    $ grep -E "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-(iacl.*|oacl.*|eth.*)*ndrdisc" *
-
-    10ge2p1vic1227-eth-l2bdbasemaclrn-ndrpdrdisc.robot:| tc07-64B-2t2c-eth-l2bdbasemaclrn-ndrdisc
-    10ge2p1x520-dot1ad-l2xcbase-ndrpdrdisc.robot:| tc07-64B-2t2c-dot1ad-l2xcbase-ndrdisc
-    10ge2p1x520-dot1q-l2xcbase-ndrpdrdisc.robot:| tc07-64B-2t2c-dot1q-l2xcbase-ndrdisc
-    10ge2p1x520-eth-l2bdbasemaclrn-ndrpdrdisc.robot:| tc07-64B-2t2c-eth-l2bdbasemaclrn-ndrdisc
-    10ge2p1x520-eth-l2xcbase-eth-2memif-1lxc-ndrpdrdisc.robot:| tc07-64B-2t2c-eth-l2xcbase-eth-2memif-1lxc-ndrdisc
-    10ge2p1x520-eth-l2xcbase-ndrpdrdisc.robot:| tc07-64B-2t2c-eth-l2xcbase-ndrdisc
-    10ge2p1x710-eth-l2bdbasemaclrn-ndrpdrdisc.robot:| tc07-64B-2t2c-eth-l2bdbasemaclrn-ndrdisc
-    40ge2p1vic1385-eth-l2bdbasemaclrn-ndrpdrdisc.robot:| tc07-64B-2t2c-eth-l2bdbasemaclrn-ndrdisc
-    40ge2p1xl710-eth-l2bdbasemaclrn-ndrpdrdisc.robot:| tc07-64B-2t2c-eth-l2bdbasemaclrn-ndrdisc
-    40ge2p1xl710-eth-l2xcbase-ndrpdrdisc.robot:| tc07-64B-2t2c-eth-l2xcbase-ndrdisc
+.. program-output:: cd ../../ && set -x && cd tests/vpp/perf/l2 && grep -E "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-(iacl50-state(ful|less)-flows10k.*|oacl50-state(ful|less)-flows10k.*|eth.*)*ndrdisc" *
+   :shell:
 
