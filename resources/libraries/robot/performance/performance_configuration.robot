@@ -731,8 +731,19 @@
 | | ... | that is created automatically with index 1. Learning is enabled.
 | | ... | Interfaces are brought up.
 | | ...
-| | Configure L2BD forwarding | ${dut1} | ${dut1_if1} | ${dut1_if2}
-| | Configure L2BD forwarding | ${dut2} | ${dut2_if1} | ${dut2_if2}
+| | ... | *Arguments:*
+| | ... | - bd_id - Bridge domain ID. Type: integer
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Initialize L2 bridge domain in 3-node circular topology \| 1 \|
+| | ...
+| | [Arguments] | ${bd_id}=${1}
+| | ...
+| | Add interface to bridge domain | ${dut1} | ${dut1_if1} | ${bd_id}
+| | Add interface to bridge domain | ${dut1} | ${dut1_if2} | ${bd_id}
+| | Add interface to bridge domain | ${dut2} | ${dut2_if1} | ${bd_id}
+| | Add interface to bridge domain | ${dut2} | ${dut2_if2} | ${bd_id}
 | | All Vpp Interfaces Ready Wait | ${nodes}
 
 | Configure IPv4 ACLs
