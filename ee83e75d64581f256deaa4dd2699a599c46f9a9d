@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a51691d_1c208248",
+        "filename": "tests/vpp/perf/l2/10ge2p1x520-eth-l2bdbasemaclrn-aclinpermit-ndrpdrdisc.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 120,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-07-18T07:26:59Z",
+      "side": 1,
+      "message": "Is this label (and the others) in tags_documentation.doc?",
+      "range": {
+        "startLine": 120,
+        "startChar": 56,
+        "endLine": 120,
+        "endChar": 68
+      },
+      "revId": "ee83e75d64581f256deaa4dd2699a599c46f9a9d",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
