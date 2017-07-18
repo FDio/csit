@@ -138,7 +138,7 @@ fi
 echo "Starting simulation on VIRL server"
 
 VIRL_TOPOLOGY=double-ring-nested.xenial
-VIRL_RELEASE=csit-ubuntu-16.04.1_2016-12-19_1.6
+VIRL_RELEASE=csit-ubuntu-16.04.1_2017-07-26_1.9
 
 function stop_virl_simulation {
     ssh ${SSH_OPTIONS} ${VIRL_USERNAME}@${VIRL_SERVER}\
