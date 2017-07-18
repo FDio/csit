@@ -15,15 +15,31 @@ IPv6_addr=$7
 
 echo $IPv4_addr
 
-#kill the l4fwd
-sudo killall -9 l4fwd 2>/dev/null
-
-sleep 2
-
-pid=`pgrep l4fwd`
-if [ "$pid" != "" ]; then
-    echo "terminate the l4fwd failed!"
-    exit 1
+# Try to kill the l4fwd
+sudo pgrep l4fwd
+if [ $? -eq "0" ]; then
+    success=false
+    sudo pkill l4fwd
+    echo "RC = $?"
+    for attempt in {1..5}; do
+        echo "Checking if l4fwd is still alive, attempt nr ${attempt}"
+        sudo pgrep l4fwd
+        if [ $? -eq "1" ]; then
+            echo "l4fwd is dead"
+            success=true
+            break
+        fi
+        echo "l4fwd is still alive, waiting 1 second"
+        sleep 1
+    done
+    if [ "$success" = false ]; then
+        echo "The command sudo pkill l4fwd failed"
+        sudo pkill -9 l4fwd
+        echo "RC = $?"
+        exit 1
+    fi
+else
+    echo "l4fwd is not running"
 fi
 
 #mount the hugepages again
@@ -49,5 +65,7 @@ sudo sh -c "nohup ./tldk/x86_64-native-linuxapp-gcc/app/l4fwd --lcore='0' \
 fi
 
 cd ${PWDDIR}
+
+ps -elf | grep l4fwd
 
 sleep 10
