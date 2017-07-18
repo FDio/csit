@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "7a51691d_37cfd7b2",
+        "filename": "resources/libraries/python/honeycomb/HoneycombSetup.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 168,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-07-18T12:35:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a51691d_23d67dc6",
+      "range": {
+        "startLine": 168,
+        "startChar": 20,
+        "endLine": 168,
+        "endChar": 48
+      },
+      "revId": "33d549c37f23638cac4bae17ee56cf56976f8835",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a51691d_a34a6daa",
         "filename": "resources/libraries/python/honeycomb/HoneycombSetup.py",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2017-07-15T06:58:03Z",
       "side": 1,
       "message": "type",
+      "range": {
+        "startLine": 565,
+        "startChar": 9,
+        "endLine": 565,
+        "endChar": 14
+      },
+      "revId": "33d549c37f23638cac4bae17ee56cf56976f8835",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a51691d_f7c01f7e",
+        "filename": "resources/libraries/python/honeycomb/HoneycombSetup.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 565,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-07-18T12:35:16Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "7a51691d_a34a6daa",
       "range": {
         "startLine": 565,
         "startChar": 9,
@@ -71,6 +119,30 @@
     },
     {
       "key": {
+        "uuid": "7a51691d_773c2f94",
+        "filename": "resources/libraries/python/honeycomb/HoneycombSetup.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 571,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-07-18T12:35:16Z",
+      "side": 1,
+      "message": "pgrep -f karaf\n\nThe process\u0027 name is Java, which is too ambiguous. -f matches the path at /tmp/karaf_something",
+      "parentUuid": "7a51691d_83c77112",
+      "range": {
+        "startLine": 571,
+        "startChar": 15,
+        "endLine": 571,
+        "endChar": 49
+      },
+      "revId": "33d549c37f23638cac4bae17ee56cf56976f8835",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a51691d_63cc7536",
         "filename": "resources/libraries/python/honeycomb/HoneycombSetup.py",
         "patchSetId": 1
@@ -82,6 +154,30 @@
       "writtenOn": "2017-07-15T06:58:03Z",
       "side": 1,
       "message": "I think if service vpp stop would not help then pkill not either.\n?",
+      "range": {
+        "startLine": 661,
+        "startChar": 0,
+        "endLine": 663,
+        "endChar": 38
+      },
+      "revId": "33d549c37f23638cac4bae17ee56cf56976f8835",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a51691d_f747ff1b",
+        "filename": "resources/libraries/python/honeycomb/HoneycombSetup.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 663,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-07-18T12:35:16Z",
+      "side": 1,
+      "message": "Yes, systemd \"should\" kill it after service stop times out.",
+      "parentUuid": "7a51691d_63cc7536",
       "range": {
         "startLine": 661,
         "startChar": 0,
