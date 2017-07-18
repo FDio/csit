@@ -18,7 +18,7 @@ echo $IPv4_addr
 #kill the l4fwd
 sudo killall -9 l4fwd 2>/dev/null
 
-sleep 2
+sleep 10
 
 pid=`pgrep l4fwd`
 if [ "$pid" != "" ]; then
@@ -49,5 +49,7 @@ sudo sh -c "nohup ./tldk/x86_64-native-linuxapp-gcc/app/l4fwd --lcore='0' \
 fi
 
 cd ${PWDDIR}
+
+ps -elf | grep l4fwd
 
 sleep 10
