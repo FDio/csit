@@ -1,0 +1,15 @@
+VPP Functionality,Test Name,VPP-16.09 [Mpps],VPP-17.01 [Mpps],VPP-17.04 [Mpps],VPP-17.07 mean value [Mpps],VPP-17.07 standard deviation [Mpps],17.04 to 17.07 Relative Change
+L2XC,10ge2p1x520: 64B-1t1c-eth-l2xcbase-pdrdisc,9.4,12.7,13.4,0.0,0.0,0%
+L2XC dot1ad,10ge2p1x520: 64B-1t1c-dot1ad-l2xcbase-pdrdisc,7.4,8.8,9.3,0.0,0.0,0%
+L2XC dot1q,10ge2p1x520: 64B-1t1c-dot1q-l2xcbase-pdrdisc,7.5,8.8,9.2,0.0,0.0,0%
+L2XC VxLAN,10ge2p1x520: 64B-1t1c-ethip4vxlan-l2xcbase-pdrdisc,5.4,6.5,6.8,0.0,0.0,0%
+L2BD,10ge2p1x520: 64B-1t1c-eth-l2bdbasemaclrn-pdrdisc,7.8,10.6,10.8,0.0,0.0,0%
+IPv4,10ge2p1x520: 64B-1t1c-ethip4-ip4base-pdrdisc,8.7,9.7,10.6,0.0,0.0,0%
+IPv4 COP,10ge2p1x520: 64B-1t1c-ethip4-ip4base-copwhtlistbase-pdrdisc,7.1,8.3,9.2,0.0,0.0,0%
+IPv4 iAcl,10ge2p1x520: 64B-1t1c-ethip4-ip4base-iacldstbase-pdrdisc,7.1,7.6,8.3,0.0,0.0,0%
+IPv4 FIB 200k,10ge2p1x520: 64B-1t1c-ethip4-ip4scale200k-pdrdisc,8.5,9.0,9.7,0.0,0.0,0%
+IPv4 FIB 20k,10ge2p1x520: 64B-1t1c-ethip4-ip4scale20k-pdrdisc,8.5,9.0,9.7,0.0,0.0,0%
+IPv4 FIB 2M,10ge2p1x520: 64B-1t1c-ethip4-ip4scale2m-pdrdisc,8.3,8.1,8.1,0.0,0.0,0%
+IPv4 Policer,10ge2p1x520: 64B-1t1c-ethip4-ip4base-ipolicemarkbase-pdrdisc,7.1,7.4,8.1,0.0,0.0,0%
+IPv6 FIB 200k,10ge2p1x520: 78B-1t1c-ethip6-ip6scale200k-pdrdisc,6.9,5.3,5.3,0.0,0.0,0%
+IPv6 FIB 20k,10ge2p1x520: 78B-1t1c-ethip6-ip6scale20k-pdrdisc,6.9,6.5,6.9,0.0,0.0,0%
