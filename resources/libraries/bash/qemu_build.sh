@@ -56,12 +56,14 @@ else
         { echo "Qemu already installed: ${QEMU_INSTALL_DIR}"; exit 0; }
 fi
 
-# Download QEMU source code
-wget -P ${WORKING_DIR} -q ${QEMU_PACKAGE_URL} || \
-    { echo "Failed to download ${QEMU_VERSION}"; exit 1; }
+# Download QEMU source code if no local copy exists
+if [ ! -f /opt/${QEMU_DOWNLOAD_PACKAGE} ]; then
+    wget -P /opt -q ${QEMU_PACKAGE_URL} || \
+        { echo "Failed to download ${QEMU_VERSION}"; exit 1; }
+fi
 
 # Extract archive into temp directory
-tar --strip-components 1 -xf ${WORKING_DIR}/${QEMU_DOWNLOAD_PACKAGE} -C ${WORKING_DIR} || \
+tar --strip-components 1 -xf /opt/${QEMU_DOWNLOAD_PACKAGE} -C ${WORKING_DIR} || \
     { echo "Failed to extract ${QEMU_VERSION}.tar.xz"; exit 1; }
 
 cd ${WORKING_DIR}
