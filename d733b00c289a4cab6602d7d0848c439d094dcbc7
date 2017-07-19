@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a51691d_34959240",
+        "filename": "tests/vpp/perf/ip4/10ge2p1x520-ethip4udp-ip4base-iacl10sf-100flows-ndrpdrdisc.robot",
+        "patchSetId": 8
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-07-19T07:58:13Z",
+      "side": 1,
+      "message": "is it necessary here?\ncheck everywhere",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 47
+      },
+      "revId": "d733b00c289a4cab6602d7d0848c439d094dcbc7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a51691d_f49eda62",
+        "filename": "tests/vpp/perf/ip4/10ge2p1x520-ethip4udp-ip4base-iacl10sf-100flows-ndrpdrdisc.robot",
+        "patchSetId": 8
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-07-19T07:58:13Z",
+      "side": 1,
+      "message": "Consider creating a keyword",
+      "range": {
+        "startLine": 27,
+        "startChar": 0,
+        "endLine": 32,
+        "endChar": 63
+      },
+      "revId": "d733b00c289a4cab6602d7d0848c439d094dcbc7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a51691d_14929657",
+        "filename": "tests/vpp/perf/ip4/10ge2p1x520-ethip4udp-ip4base-iacl10sf-100flows-ndrpdrdisc.robot",
+        "patchSetId": 8
+      },
+      "lineNbr": 107,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-07-19T07:58:13Z",
+      "side": 1,
+      "message": "The order is:\ndoc, tags, template, args\ncheck everywhere",
+      "range": {
+        "startLine": 107,
+        "startChar": 5,
+        "endLine": 107,
+        "endChar": 12
+      },
+      "revId": "d733b00c289a4cab6602d7d0848c439d094dcbc7",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
