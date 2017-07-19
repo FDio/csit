@@ -52,20 +52,21 @@ Going forward CSIT project will be looking to add more hardware into FD.io
 performance labs to address larger scale multi-interface and multi-NIC
 performance testing scenarios.
 
-For test cases that require DUT (VPP) to communicate with VM(s) over vhost-user
-interfaces, N of VM instances are created on SUT1 and SUT2. For N=1 DUT (VPP)
-forwards packets between vhostuser and physical interfaces. For N>1 DUT (VPP) a
-logical service chain forwarding topology is created on DUT (VPP) by applying L2
-or IPv4/IPv6 configuration depending on the test suite.
-DUT (VPP) test topology with N VM instances
-is shown in the figure below including applicable packet flow thru the DUTs and
-VMs (marked in the figure with ``***``).
+For test cases that require DUT (VPP) to communicate with
+VirtualMachines(VMs)/LinuxContainers(LXCs) over vhost-user/memif
+interfaces, N of VM/LXC instances are created on SUT1 and SUT2. For N=1
+DUT forwards packets between vhost/memif and physical interfaces. For
+N>1 DUT a logical service chain forwarding topology is created on DUT by
+applying L2 or IPv4/IPv6 configuration depending on the test suite. DUT
+test topology with N VM/LXC instances is shown in the figure below
+including applicable packet flow thru the DUTs and VMs/LXCs (marked in
+the figure with ``***``).
 
 ::
 
     +-------------------------+           +-------------------------+
     | +---------+ +---------+ |           | +---------+ +---------+ |
-    | |  VM[1]  | |  VM[N]  | |           | |  VM[1]  | |  VM[N]  | |
+    | |VM/LXC[1]| |VM/LXC[N]| |           | |VM/LXC[1]| |VM/LXC[N]| |
     | |  *****  | |  *****  | |           | |  *****  | |  *****  | |
     | +--^---^--+ +--^---^--+ |           | +--^---^--+ +--^---^--+ |
     |   *|   |*     *|   |*   |           |   *|   |*     *|   |*   |
@@ -85,27 +86,28 @@ VMs (marked in the figure with ``***``).
         **********************|           |**********************
                               +-----------+
 
-For VM tests, packets are switched by DUT (VPP) multiple times: twice for a
-single VM, three times for two VMs, N+1 times for N VMs.
-Hence the external
-throughput rates measured by TG and listed in this report must be multiplied
-by (N+1) to represent the actual DUT aggregate packet forwarding rate.
+For VM/LXC tests, packets are switched by DUT multiple times: twice for
+a single VM/LXC, three times for two VMs/LXCs, N+1 times for N VMs/LXCs.
+Hence the external throughput rates measured by TG and listed in this
+report must be multiplied by (N+1) to represent the actual DUT aggregate
+packet forwarding rate.
 
-Note that reported VPP performance results are specific to the SUTs tested.
-Current LF FD.io SUTs are based on Intel XEON E5-2699v3 2.3GHz CPUs. SUTs with
-other CPUs are likely to yield different results. A good rule of thumb, that
-can be applied to estimate VPP packet thoughput for Phy-to-Phy (NIC-to-NIC,
-PCI-to-PCI) topology, is to expect the forwarding performance to be
-proportional to CPU core frequency, assuming CPU is the only limiting factor
-and all other SUT parameters equivalent to FD.io CSIT environment. The same rule
-of thumb can be also applied for Phy-to-VM-to-Phy (NIC-to-VM-to-NIC) topology,
-but due to much higher dependency on intensive memory operations and
-sensitivity to Linux kernel scheduler settings and behaviour, this estimation
-may not always yield good enough accuracy.
+Note that reported DUT (VPP) performance results are specific to the
+SUTs tested. Current LF FD.io SUTs are based on Intel XEON E5-2699v3
+2.3GHz CPUs. SUTs with other CPUs are likely to yield different results.
+A good rule of thumb, that can be applied to estimate VPP packet
+thoughput for Phy-to-Phy (NIC-to-NIC, PCI-to-PCI) topology, is to expect
+the forwarding performance to be proportional to CPU core frequency,
+assuming CPU is the only limiting factor and all other SUT parameters
+equivalent to FD.io CSIT environment. The same rule of thumb can be also
+applied for Phy-to-VM/LXC-to-Phy (NIC-to-VM/LXC-to-NIC) topology, but
+due to much higher dependency on intensive memory operations and
+sensitivity to Linux kernel scheduler settings and behaviour, this
+estimation may not always yield good enough accuracy.
 
-For detailed LF FD.io test bed specification and physical topology please refer
-to `LF FDio CSIT testbed wiki page
-<https://wiki.fd.io/view/CSIT/CSIT_LF_testbed>`_.
+For detailed LF FD.io test bed specification and physical topology
+please refer to
+`LF FD.io CSIT testbed wiki page <https://wiki.fd.io/view/CSIT/CSIT_LF_testbed>`_.
 
 Performance Tests Coverage
 --------------------------
