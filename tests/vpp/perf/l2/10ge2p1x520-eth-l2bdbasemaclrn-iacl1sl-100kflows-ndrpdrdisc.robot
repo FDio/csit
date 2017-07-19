@@ -13,7 +13,6 @@
 
 *** Settings ***
 | Resource | resources/libraries/robot/performance/performance_setup.robot
-| Library | resources.libraries.python.Classify
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDRDISC
 | ... | NIC_Intel-X520-DA2 | ETH | L2BDMACLRN | FEATURE | ACL | ACL_STATELESS
@@ -24,12 +23,8 @@
 | Suite Teardown | Tear down 3-node performance topology
 | ...
 | Test Setup | Set up performance test
-| Test Teardown | Run Keywords | Tear down performance discovery test
-| ... | ${min_rate}pps | ${framesize} | ${traffic_profile}
-| ... | AND | Vpp Log Plugin Acl Settings | ${dut1}
-| ... | AND | Cli Show Acl | ${dut1}
-| ... | AND | Run Keyword And Ignore Error
-|     | ... | Vpp Log Plugin Acl Interface Assignment | ${dut1}
+| Test Teardown | Tear down performance test with ACL | ${min_rate}pps
+| ... | ${framesize} | ${traffic_profile}
 | ...
 | Documentation | *RFC2544: Packet throughput L2BD test cases with ACL*
 | ...
@@ -103,45 +98,49 @@
 
 *** Test Cases ***
 | tc01-64B-1t1c-eth-l2bdbasemaclrn-iacl1-stateless-flows100k-ndrdisc
-| | [Tags] | 64B | 1T1C | STHREAD | NDRDISC
-| | ...
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with ACL with\
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 10kpps.
+| | ...
+| | [Tags] | 64B | 1T1C | STHREAD | NDRDISC
+| | ...
 | | [Template] | Discover NDR or PDR for L2 Bridge Domain with ACLs
 | | wt=1 | rxq=1 | framesize=${64} | min_rate=${10000} | search_type=NDR
 
 | tc02-64B-1t1c-eth-l2bdbasemaclrn-iacl1-stateless-flows100k-pdrdisc
-| | [Tags] | 64B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
-| | ...
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with ACL with\
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
 | | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 10kpps, LT=0.5%.
+| | ...
+| | [Tags] | 64B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
+| | ...
 | | [Template] | Discover NDR or PDR for L2 Bridge Domain with ACLs
 | | wt=1 | rxq=1 | framesize=${64} | min_rate=${10000} | search_type=PDR
 
 | tc03-64B-2t2c-eth-l2bdbasemaclrn-iacl1-stateless-flows100k-ndrdisc
-| | [Tags] | 64B | 2T2C | MTHREAD | NDRDISC
-| | ...
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with ACL with\
 | | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 10kpps.
+| | ...
+| | [Tags] | 64B | 2T2C | MTHREAD | NDRDISC
+| | ...
 | | [Template] | Discover NDR or PDR for L2 Bridge Domain with ACLs
 | | wt=2 | rxq=1 | framesize=${64} | min_rate=${10000} | search_type=NDR
 
 | tc04-64B-2t2c-eth-l2bdbasemaclrn-iacl1-stateless-flows100k-pdrdisc
-| | [Tags] | 64B | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
-| | ...
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with ACL with\
 | | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
 | | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 10kpps, LT=0.5%.
+| | ...
+| | [Tags] | 64B | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
+| | ...
 | | [Template] | Discover NDR or PDR for L2 Bridge Domain with ACLs
 | | wt=2 | rxq=1 | framesize=${64} | min_rate=${10000} | search_type=PDR
