@@ -1,140 +1,20 @@
 Test Environment
 ================
 
-To execute performance tests, there are three identical testbeds, each testbed
-consists of two SUTs and one TG.
+CSIT performance tests are executed on the three identical physical
+testbeds hosted by Linux Foundation for FD.io project. Each testbed
+consists of two servers acting as Systems Under Test (SUT) and one
+server acting as Traffic Generator (TG).
 
-Naming Convention
+Server Specification and Configuration
+--------------------------------------
+
+Complete specification and configuration of compute servers used in CSIT
+physical testbeds is maintained on wiki page
+`CSIT LF Testbeds <https://wiki.fd.io/view/CSIT/CSIT_LF_testbed>`_.
+
+SUT Configuration
 -----------------
-
-Following naming convention is used within this page to specify physical
-connectivity and wiring across defined CSIT testbeds:
-
-- testbedname: testbedN.
-- hostname:
-
-  - traffic-generator: tN-tgW.
-  - system-under-testX: tN-sutX.
-
-- portnames:
-
-  - tN-tgW-cY/pZ.
-  - tN-sutX-cY/pZ.
-
-- where:
-
-  - N - testbed number.
-  - tgW - server acts as traffic-generator with W index.
-  - sutX - server acts as system-under-test with X index.
-  - Y - PCIe slot number denoting a NIC card number within the host.
-
-    - Y=1,2,3 - slots in Riser 1, Right PCIe Riser Board, NUMA node 0.
-    - Y=4,5,6 - slots in Riser 2, Left PCIe Riser Board, NUMA node 1.
-    - Y=m - the MLOM slot.
-
-  - Z - port number on the NIC card.
-
-Server HW Configuration
------------------------
-
-CSIT testbed contains following three HW configuration types of UCS x86 servers,
-across total of ten servers provided:
-
-#. Type-1: Purpose - VPP functional and performance conformance testing.
-
-   - Quantity: 6 computers as SUT hosts (Systems Under Test).
-   - Physical connectivity:
-
-     - CIMC and host management ports.
-     - NIC ports connected in 3-node topologies.
-
-   - Main HW configuration:
-
-     - Chassis: UCSC-C240-M4SX with 6 PCIe3.0 slots.
-     - Processors: 2* E5-2699 2.3 GHz.
-     - RAM Memory: 16* 32GB DDR4-2133MHz.
-     - Disks: 2* 2TB 12G SAS 7.2K RPM SFF HDD.
-
-   - NICs configuration:
-
-     - Right PCIe Riser Board (Riser 1) (x8, x8, x8 PCIe3.0 lanes)
-
-       - PCIe Slot1: Cisco VIC 1385 2p40GE.
-
-         - PCIe Slot2: Intel NIC x520 2p10GE.
-         - PCIe Slot3: empty.
-
-     - Left PCIe Riser Board (Riser 2) (x8, x16, x8 PCIe3.0 lanes)
-
-       - PCIe Slot4: Intel NIC xl710 2p40GE.
-       - PCIe Slot5: Intel NIC x710 2p10GE.
-       - PCIe Slot6: Intel QAT 8950 50G (Walnut Hill)
-
-     - MLOM slot: Cisco VIC 1227 2p10GE (x8 PCIe2.0 lanes).
-
-#. Type-2: Purpose - VPP functional and performance conformance testing.
-
-   - Quantity: 3 computers as TG hosts (Traffic Generators).
-   - Physical connectivity:
-
-     - CIMC and host management ports.
-     - NIC ports connected in 3-node topologies.
-
-   - Main HW configuration:
-
-     - Chassis: UCSC-C240-M4SX with 6 PCIe3.0 slots.
-     - Processors: 2* E5-2699 2.3 GHz.
-     - RAM Memory: 16* 32GB DDR4-2133MHz.
-     - Disks: 2* 2TB 12G SAS 7.2K RPM SFF HDD.
-
-   - NICs configuration:
-
-     - Right PCIe Riser Board (Riser 1) (x8, x8, x8 lanes)
-
-       - PCIe Slot1: Intel NIC xl710 2p40GE.
-       - PCIe Slot2: Intel NIC x710 2p10GE.
-       - PCIe Slot3: Intel NIC x710 2p10GE.
-
-     - Left PCIe Riser Board (Riser 2) (x8, x16, x8 lanes)
-
-       - PCIe Slot4: Intel NIC xl710 2p40GE.
-       - PCIe Slot5: Intel NIC x710 2p10GE.
-       - PCIe Slot6: Intel NIC x710 2p10GE.
-
-     - MLOM slot: empty.
-
-#. Type-3: Purpose - VIRL functional conformance.
-
-   - Quantity: 3 computers as VIRL hosts.
-   - Physical connectivity:
-
-     - CIMC and host management ports.
-     - no NIC ports, standalone setup.
-
-   - Main HW configuration:
-
-     - Chassis: UCSC-C240-M4SX with 6 PCIe3.0 slots.
-     - Processors: 2* E5-2699 2.3 GHz.
-     - RAM Memory: 16* 32GB DDR4-2133MHz.
-     - Disks: 2* 480 GB 2.5inch 6G SATA SSD.
-
-   - NICs configuration:
-
-     - Right PCIe Riser Board (Riser 1) (x8, x8, x8 lanes)
-
-       - no cards.
-
-     - Left PCIe Riser Board (Riser 2) (x8, x16, x8 lanes)
-
-       - no cards.
-
-     - MLOM slot: empty.
-
-SUT Configuration - Host HW
----------------------------
-Host hardware details (CPU, memory, NIC layout) and physical topology are
-described in detail in
-`LF FDio CSIT testbed wiki page <https://wiki.fd.io/view/CSIT/CSIT_LF_testbed>`_.
 
 **Host configuration**
 
@@ -253,8 +133,8 @@ In addition to CIMC and Management, each TG has 4x Intel X710 10GB NIC
 - 1x Intel X710 NIC (10GB, 2 ports),
 - 1x Cisco VIC 1227 (10GB, 2 ports).
 
-This allows for a total of five ring topologies, each using ports on specific
-NIC model, enabling per NIC model benchmarking.
+This allows for a total of five ring topologies, each using ports on
+specific NIC model, enabling per NIC model benchmarking.
 
 - 0a:00.0 Ethernet controller: Intel Corporation 82599ES 10-Gigabit SFI/SFP+
   Network Connection (rev 01) Subsystem: Intel Corporation Ethernet Server
@@ -286,10 +166,12 @@ NIC model, enabling per NIC model benchmarking.
 SUT Configuration - Host OS Linux
 ---------------------------------
 
-Software details (OS, configuration) are described in `LF FDio CSIT testbed
-wiki page <https://wiki.fd.io/view/CSIT/CSIT_LF_testbed>`_.
+Software details (OS, configuration) of physical testbeds are maintained
+on wiki page
+`CSIT LF Testbeds <https://wiki.fd.io/view/CSIT/CSIT_LF_testbed>`_.
 
-System provisioning is done by combination of PXE boot unattented install and
+System provisioning is done by combination of PXE boot unattented
+install and
 `Ansible <https://www.ansible.com>`_ described in `CSIT Testbed Setup`_.
 
 Below a subset of the running configuration:
