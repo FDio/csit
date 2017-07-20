@@ -141,12 +141,12 @@ if [[ ${DEBUG} -eq 0 ]] ;
 then
     curl --fail --silent ${CSIT_JEN_URL}/${JEN_JOB}/${JEN_BUILD}/robot/report/\*zip\*/robot-plugin.zip \
         --output ${STATIC_DIR_ARCH}/${JEN_JOB}-${JEN_BUILD}.zip
-    unzip -o ${static_dir_arch}/${jen_job}-${jen_build}.zip -d ${working_dir}/
-    python run_robot_data.py -i ${working_dir}/robot-plugin/output.xml \
-        --output ${dtr_vpp_func_source_dir}/vpp_functional_results.rst \
+    unzip -o ${STATIC_DIR_ARCH}/${JEN_JOB}-${JEN_BUILD}.zip -d ${WORKING_DIR}/
+    python run_robot_data.py -i ${WORKING_DIR}/robot-plugin/output.xml \
+        --output ${DTR_VPP_FUNC_SOURCE_DIR}/vpp_functional_results.rst \
         --formatting rst --start 5 --level 2
-    python run_robot_teardown_data.py -i ${working_dir}/robot-plugin/output.xml \
-        --output ${dtc_vpp_func_source_dir}/vpp_functional_configuration.rst \
+    python run_robot_teardown_data.py -i ${WORKING_DIR}/robot-plugin/output.xml \
+        --output ${DTR_VPP_FUNC_SOURCE_DIR}/vpp_functional_configuration.rst \
         --data "vat_h" -f "rst" --start 5 --level 2
 #else
 #    cp ./${JEN_JOB}-${JEN_BUILD}.zip ${STATIC_DIR_ARCH}/${JEN_JOB}-${JEN_BUILD}.zip
