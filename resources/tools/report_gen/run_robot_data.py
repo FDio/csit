@@ -101,6 +101,8 @@ class ExecutionChecker(ResultVisitor):
             if suite.tests:
                 if "ndrdisc" in suite.longname.lower():
                     hdr = '["Name","Documentation","Message"]'
+                elif "perf/honeycomb" in suite.longname.lower():
+                    hdr = '["Name","Documentation","Message"]'
                 else:
                     hdr = '["Name","Documentation","Status"]'
                 sys.stdout.write(hdr + ']},')

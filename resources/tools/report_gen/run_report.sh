@@ -3,7 +3,7 @@
 set -x
 
 # Build locally without jenkins integrations
-DEBUG=0
+DEBUG=1
 
 # Script directory
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
@@ -103,7 +103,7 @@ then
         --output ${DIR[STATIC,ARCH]}/${JOB[FUNC,VPP]}-${JOB[FUNC,VPP,BLD]}.zip
 fi
 
-### HONEYCOMB SOURCE DATA
+### HONEYCOMB FUNCTIONAL SOURCE DATA
 
 #if [[ ${DEBUG} -eq 1 ]] ;
 #    cp ./${JOB[FUNC,HC]}-${JOB[FUNC,HC,BLD]}.zip ${DIR[STATIC,ARCH]}/${JOB[FUNC,HC]}-${JOB[FUNC,HC,BLD]}.zip
@@ -113,6 +113,21 @@ if [[ ${DEBUG} -eq 0 ]] ;
 then
     curl --fail --silent ${URL[JENKINS,HC]}/${JOB[FUNC,HC]}/${JOB[FUNC,HC,BLD]}/robot/report/\*zip\*/robot-plugin.zip \
         --output ${DIR[STATIC,ARCH]}/${JOB[FUNC,HC]}-${JOB[FUNC,HC,BLD]}.zip
+fi
+
+### HONEYCOMB PERFORMANCE SOURCE DATA
+
+#if [[ ${DEBUG} -eq 1 ]] ;
+#    cp ./${JOB[PERF,HC]}-${JOB[PERF,HC,BLD]}.zip ${DIR[STATIC,ARCH]}/${JOB[PERF,HC]}-${JOB[PERF,HC,BLD]}.zip
+#fi
+
+if [[ ${DEBUG} -eq 0 ]] ;
+then
+    blds=${JOB[PERF,HC,BLD]}
+    for i in ${blds[@]}; do
+        curl --silent ${URL[JENKINS,HC]}/${JOB[PERF,HC]}/${JOB[PERF,HC,BLD]}/robot/report/\*zip\*/robot-plugin.zip \
+            --output ${DIR[STATIC,ARCH]}/${JOB[PERF,HC]}-${JOB[PERF,HC,BLD]}.zip
+done
 fi
 
 ### NSH_SFC SOURCE DATA
@@ -171,6 +186,12 @@ then
     unzip -o ${DIR[STATIC,ARCH]}/${JOB[FUNC,HC]}-${JOB[FUNC,HC,BLD]}.zip -d ${DIR[WORKING]}/
     python run_robot_data.py -i ${DIR[WORKING]}/robot-plugin/output.xml \
         --output ${DIR[DTR,FUNC,HC]}/honeycomb_functional_results.rst \
+        --formatting rst --start 5 --level 2
+
+    # HC PERF
+    unzip -o ${DIR[STATIC,ARCH]}/${JOB[PERF,HC]}-${JOB[PERF,HC,BLD]}.zip -d ${DIR[WORKING]}/
+    python run_robot_data.py -i ${DIR[WORKING]}/robot-plugin/output.xml \
+        --output ${DIR[DTR,PERF,HC]}/honeycomb_performance_results.rst \
         --formatting rst --start 5 --level 2
 
     # NSHSFC FUNC

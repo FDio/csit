@@ -53,7 +53,7 @@ with results listed in this report:
 
 - **Basic interface management** - CRUD for interface state,
   - ipv4/ipv6 address, ipv4 neighbor, MTU value.
-  - Test case count: 7
+  - Test case count: 14
 - **L2BD** - CRUD for L2 Bridge-Domain, interface assignment.
   - Create up to two bridge domains with all implemented functions turned on.
   - (flooding, unknown-unicast flooding, forwarding, learning, arp-termination)
@@ -86,7 +86,7 @@ with results listed in this report:
   - Toggle interface state separately for super-interface and sub-interface.
   - Configure IP address and bridge domain assignment on sub-interface.
   - Configure VLAN tag rewrite on sub-interface.
-  - Test case count: 17
+  - Test case count: 24
 - **ACL** - CRD for low-level classifiers: table and session management,
   - interface assignment.
   - Configure up to 2 classify tables.
@@ -96,7 +96,7 @@ with results listed in this report:
   - Test case count: 9
 - **PBB** - CRD for provider backbone bridge sub-interface.
   - Configure, modify and remove a PBB sub-interface over a physical interface.
-  - Test case count: 9
+  - Test case count: 8
 - **NSH_SFC** - CRD for NSH maps and entries, using NSH_SFC plugin.
   - Configure up to 2 NSH entries.
   - Configure up to 2 NSH maps.
@@ -107,7 +107,7 @@ with results listed in this report:
   - Configure and delete Lisp mapping as local and remote.
   - Configure and delete Lisp adjacency mapping
   - Configure and delete Lisp map resolver, proxy ITR.
-  - Test case count: 11
+  - Test case count: 16
 - **NAT** - CRD for NAT entries, interface assignment.
   - Configure and delete up to two NAT entries.
   - Assign NAT entries to a physical interface.
@@ -116,7 +116,7 @@ with results listed in this report:
   - Configure SPAN port mirroring on a physical interface, mirroring
   - up to 2 interfaces.
   - Remove SPAN configuration from interfaces.
-  - Test case count: 3
+  - Test case count: 14
 - **ACL-PLUGIN** - CRD for high-level classifier
   - MAC + IP address classification.
   - IPv4, IPv6 address classification.
@@ -144,11 +144,15 @@ with results listed in this report:
   - Configure blackhole route.
   - IPv4 and IPv6 variants.
   - Test case count: 6
+- **Policer** - CRD for traffic policing feature.
+  - Configure Policing rules.
+  - Assign to interface.
+  - Test case count: 6
 - **Honeycomb Infractructure** - configuration persistence,
   - Netconf notifications for interface events,
   - Netconf negative tests aimed at specific issues
 
-Total 158 Honeycomb tests in the CSIT |release|.
+Total 173 Honeycomb functional tests in the CSIT |release|.
 
 Operational data in Honeycomb should mirror configuration data at all times.
 Because of this, test cases follow this general pattern:
@@ -158,7 +162,7 @@ Because of this, test cases follow this general pattern:
 #. modify configuration of the feature using restconf.
 #. verify changes to operational data using restconf.
 #. verify changes using VPP API dump, OR
-#. send a packet to VPP node and observe behaviour to verify configuration
+#. send a packet to VPP node and observe behaviour to verify configuration.
 
 Test cases involving network interfaces utilize the first two interfaces on
 the DUT node.
