@@ -73,47 +73,36 @@ mkdir -p ${PLOT_DPDK_SOURCE_DIR}
 
 ### VPP PERFORMANCE SOURCE DATA
 
-JEN_FILE_PERF='output_perf_data.xml'
 JEN_JOB='csit-vpp-perf-1707-all'
 JEN_BUILD=(1)
 JEN_FBUILD=1
 
 for i in "${JEN_BUILD[@]}"; do
-    curl --fail -fs ${CSIT_JEN_URL}/${JEN_JOB}/${i}/robot/report/output_perf_data.xml \
-        -o ${PLOT_VPP_SOURCE_DIR}/${JEN_JOB}-${i}.xml
-    if [[ ${DEBUG} -eq 1 ]] ;
+    curl --silent ${CSIT_JEN_URL}/${JEN_JOB}/${i}/robot/report/output_perf_data.xml \
+        --output ${PLOT_VPP_SOURCE_DIR}/${JEN_JOB}-${i}.xml
+    curl --silent ${CSIT_JEN_URL}/${JEN_JOB}/${i}/robot/report/output_perf_data.json \
+        --output ${PLOT_VPP_SOURCE_DIR}/${JEN_JOB}-${i}.json
+    if [[ ${DEBUG} -eq 0 ]] ;
     then
-        cp ./${JEN_JOB}-${JEN_FBUILD}.zip ${STATIC_DIR_ARCH}/${JEN_JOB}-${JEN_FBUILD}.zip
-    else
-        curl --fail -fs ${CSIT_JEN_URL}/${JEN_JOB}/${i}/robot/report/\*zip\*/robot-plugin.zip \
+        curl --fail --silent ${CSIT_JEN_URL}/${JEN_JOB}/${i}/robot/report/\*zip\*/robot-plugin.zip \
             -o ${STATIC_DIR_ARCH}/${JEN_JOB}-${i}.zip
     fi
 done
 
-unzip -o ${STATIC_DIR_ARCH}/${JEN_JOB}-${JEN_FBUILD}.zip -d ${WORKING_DIR}/
-python run_robot_data.py -i ${WORKING_DIR}/robot-plugin/output.xml \
-    --output ${DTR_VPP_PERF_SOURCE_DIR}/vpp_performance_results.rst \
-    --formatting rst --start 4 --level 2
-python run_robot_teardown_data.py -i ${WORKING_DIR}/robot-plugin/output.xml \
-    --output ${DTC_VPP_PERF_SOURCE_DIR}/vpp_performance_configuration.rst \
-    --data "VAT_H" -f "rst" --start 4 --level 2
-python run_robot_teardown_data.py -i ${WORKING_DIR}/robot-plugin/output.xml \
-    -o ${DTO_VPP_PERF_SOURCE_OPER_DIR}/vpp_performance_operational_data.rst \
-    --data "SH_RUN" -f "rst" --start 4 --level 2
 if [[ ${DEBUG} -eq 0 ]] ;
 then
-    sed -i -e "s@###JOB###@${JEN_JOB}\/${JEN_FBUILD}@g" \
-        ${DTR_VPP_PERF_SOURCE_DIR}/index.rst
-    sed -i -e "s@###LINK###@${CSIT_JEN_URL}\/${JEN_JOB}\/${JEN_FBUILD}@g" \
-        ${DTR_VPP_PERF_SOURCE_DIR}/index.rst
-    sed -i -e "s@###JOB###@${JEN_JOB}\/${JEN_FBUILD}@g" \
-        ${DTC_VPP_PERF_SOURCE_DIR}/index.rst
-    sed -i -e "s@###LINK###@${CSIT_JEN_URL}\/${JEN_JOB}\/${JEN_FBUILD}@g" \
-        ${DTC_VPP_PERF_SOURCE_DIR}/index.rst
-    sed -i -e "s@###JOB###@${JEN_JOB}\/${JEN_FBUILD}@g" \
-        ${DTO_VPP_PERF_SOURCE_OPER_DIR}/index.rst
-    sed -i -e "s@###LINK###@${CSIT_JEN_URL}\/${JEN_JOB}\/${JEN_FBUILD}@g" \
-        ${DTO_VPP_PERF_SOURCE_OPER_DIR}/index.rst
+    unzip -o ${STATIC_DIR_ARCH}/${JEN_JOB}-${JEN_FBUILD}.zip -d ${WORKING_DIR}/
+    python run_robot_data.py -i ${WORKING_DIR}/robot-plugin/output.xml \
+        --output ${DTR_VPP_PERF_SOURCE_DIR}/vpp_performance_results.rst \
+        --formatting rst --start 4 --level 2
+    python run_robot_teardown_data.py -i ${WORKING_DIR}/robot-plugin/output.xml \
+        --output ${DTC_VPP_PERF_SOURCE_DIR}/vpp_performance_configuration.rst \
+        --data "VAT_H" -f "rst" --start 4 --level 2
+    python run_robot_teardown_data.py -i ${WORKING_DIR}/robot-plugin/output.xml \
+        --output ${DTO_VPP_PERF_SOURCE_OPER_DIR}/vpp_performance_operational_data.rst \
+        --data "SH_RUN" -f "rst" --start 4 --level 2
+#else
+#    cp ./${JEN_JOB}-${JEN_FBUILD}.zip ${STATIC_DIR_ARCH}/${JEN_JOB}-${JEN_FBUILD}.zip
 fi
 
 ### DPDK PERFORMANCE SOURCE DATA
@@ -122,104 +111,80 @@ JEN_JOB='csit-dpdk-perf-1707-all'
 JEN_BUILD=(1 2 3 4 5 6 7 8 9 10)
 
 for i in "${JEN_BUILD[@]}"; do
-    curl --fail -fs ${CSIT_JEN_URL}/${JEN_JOB}/${i}/robot/report/output_perf_data.xml \
-        -o ${PLOT_DPDK_SOURCE_DIR}/${JEN_JOB}-${i}.xml
-    if [[ ${DEBUG} -eq 1 ]] ;
+    curl --silent ${CSIT_JEN_URL}/${JEN_JOB}/${i}/robot/report/output_perf_data.xml \
+        --output ${PLOT_DPDK_SOURCE_DIR}/${JEN_JOB}-${i}.xml
+    curl --silent ${CSIT_JEN_URL}/${JEN_JOB}/${i}/robot/report/output_perf_data.json \
+        --output ${PLOT_DPDK_SOURCE_DIR}/${JEN_JOB}-${i}.json
+    if [[ ${DEBUG} -eq 0 ]] ;
     then
-        cp ./${JEN_JOB}-${JEN_BUILD[-1]}.zip ${STATIC_DIR_ARCH}/${JEN_JOB}-${JEN_BUILD[-1]}.zip
-    else
-        curl --fail -fs ${CSIT_JEN_URL}/${JEN_JOB}/${i}/robot/report/\*zip\*/robot-plugin.zip \
-            -o ${STATIC_DIR_ARCH}/${JEN_JOB}-${i}.zip
-
-        sed -i -e "s@###JOB###@${JEN_JOB}\/${JEN_BUILD[-1]}@g" \
-            ${DTR_DPDK_SOURCE_DIR}/index.rst
-        sed -i -e "s@###LINK###@${CSIT_JEN_URL}\/${JEN_JOB}\/${JEN_BUILD[-1]}@g" \
-            ${DTR_DPDK_SOURCE_DIR}/index.rst
+        curl --fail --silent ${CSIT_JEN_URL}/${JEN_JOB}/${i}/robot/report/\*zip\*/robot-plugin.zip \
+            --output ${STATIC_DIR_ARCH}/${JEN_JOB}-${i}.zip
     fi
 done
 
-unzip -o ${STATIC_DIR_ARCH}/${JEN_JOB}-${JEN_BUILD[-1]}.zip -d ${WORKING_DIR}/
-python run_robot_data.py -i ${WORKING_DIR}/robot-plugin/output.xml \
-    --output ${DTR_DPDK_SOURCE_DIR}/dpdk_performance_results.rst \
-    --formatting rst --start 4 --level 2
+if [[ ${DEBUG} -eq 0 ]] ;
+then
+    unzip -o ${STATIC_DIR_ARCH}/${JEN_JOB}-${JEN_BUILD[-1]}.zip -d ${WORKING_DIR}/
+    python run_robot_data.py -i ${WORKING_DIR}/robot-plugin/output.xml \
+        --output ${DTR_DPDK_SOURCE_DIR}/dpdk_performance_results.rst \
+        --formatting rst --start 4 --level 2
+#else
+#    cp ./${JEN_JOB}-${JEN_FBUILD}.zip ${STATIC_DIR_ARCH}/${JEN_JOB}-${JEN_FBUILD}.zip
+fi
 
 ### FUNCTIONAL SOURCE DATA
 
 JEN_JOB='csit-vpp-functional-1707-ubuntu1604-virl'
 JEN_BUILD='lastSuccessfulBuild'
 
-if [[ ${DEBUG} -eq 1 ]] ;
+if [[ ${DEBUG} -eq 0 ]] ;
 then
-    cp ./${JEN_JOB}-${JEN_BUILD}.zip ${STATIC_DIR_ARCH}/${JEN_JOB}-${JEN_BUILD}.zip
-else
-    curl -fs ${CSIT_JEN_URL}/${JEN_JOB}/${JEN_BUILD}/robot/report/\*zip\*/robot-plugin.zip \
-        -o ${STATIC_DIR_ARCH}/${JEN_JOB}-${JEN_BUILD}.zip
-
-    sed -i -e "s@###JOB###@${JEN_JOB}\/${JEN_BUILD}@g" \
-        ${DTR_VPP_FUNC_SOURCE_DIR}/index.rst
-    sed -i -e "s@###LINK###@${CSIT_JEN_URL}\/${JEN_JOB}\/${JEN_BUILD}@g" \
-        ${DTR_VPP_FUNC_SOURCE_DIR}/index.rst
-    sed -i -e "s@###JOB###@${JEN_JOB}\/${JEN_BUILD}@g" \
-        ${DTC_VPP_FUNC_SOURCE_DIR}/index.rst
-    sed -i -e "s@###LINK###@${CSIT_JEN_URL}\/${JEN_JOB}\/${JEN_BUILD}@g" \
-        ${DTC_VPP_FUNC_SOURCE_DIR}/index.rst
+    curl --fail --silent ${CSIT_JEN_URL}/${JEN_JOB}/${JEN_BUILD}/robot/report/\*zip\*/robot-plugin.zip \
+        --output ${STATIC_DIR_ARCH}/${JEN_JOB}-${JEN_BUILD}.zip
+    unzip -o ${static_dir_arch}/${jen_job}-${jen_build}.zip -d ${working_dir}/
+    python run_robot_data.py -i ${working_dir}/robot-plugin/output.xml \
+        --output ${dtr_vpp_func_source_dir}/vpp_functional_results.rst \
+        --formatting rst --start 5 --level 2
+    python run_robot_teardown_data.py -i ${working_dir}/robot-plugin/output.xml \
+        --output ${dtc_vpp_func_source_dir}/vpp_functional_configuration.rst \
+        --data "vat_h" -f "rst" --start 5 --level 2
+#else
+#    cp ./${JEN_JOB}-${JEN_BUILD}.zip ${STATIC_DIR_ARCH}/${JEN_JOB}-${JEN_BUILD}.zip
 fi
-
-unzip -o ${STATIC_DIR_ARCH}/${JEN_JOB}-${JEN_BUILD}.zip -d ${WORKING_DIR}/
-python run_robot_data.py -i ${WORKING_DIR}/robot-plugin/output.xml \
-    --output ${DTR_VPP_FUNC_SOURCE_DIR}/vpp_functional_results.rst \
-    --formatting rst --start 5 --level 2
-python run_robot_teardown_data.py -i ${WORKING_DIR}/robot-plugin/output.xml \
-    --output ${DTC_VPP_FUNC_SOURCE_DIR}/vpp_functional_configuration.rst \
-    --data "VAT_H" -f "rst" --start 5 --level 2
 
 ### HONEYCOMB SOURCE DATA
 
 JEN_JOB='hc2vpp-csit-integration-1707-ubuntu1604'
 JEN_BUILD='lastSuccessfulBuild'
 
-if [[ ${DEBUG} -eq 1 ]] ;
+if [[ ${DEBUG} -eq 0 ]] ;
 then
-    cp ./${JEN_JOB}-${JEN_BUILD}.zip ${STATIC_DIR_ARCH}/${JEN_JOB}-${JEN_BUILD}.zip
-else
-    curl -fs ${HC_JEN_URL}/${JEN_JOB}/${JEN_BUILD}/robot/report/\*zip\*/robot-plugin.zip \
-        -o ${STATIC_DIR_ARCH}/${JEN_JOB}-${JEN_BUILD}.zip
-
-    sed -i -e "s@###JOB###@${JEN_JOB}\/${JEN_BUILD}@g" \
-        ${DTR_HC_FUNC_SOURCE_DIR}/index.rst
-    sed -i -e "s@###LINK###@${HC_JEN_URL}\/${JEN_JOB}\/${JEN_BUILD}@g" \
-        ${DTR_HC_FUNC_SOURCE_DIR}/index.rst
+    curl --fail --silent ${HC_JEN_URL}/${JEN_JOB}/${JEN_BUILD}/robot/report/\*zip\*/robot-plugin.zip \
+        --output ${STATIC_DIR_ARCH}/${JEN_JOB}-${JEN_BUILD}.zip
+    unzip -o ${STATIC_DIR_ARCH}/${JEN_JOB}-${JEN_BUILD}.zip -d ${WORKING_DIR}/
+    python run_robot_data.py -i ${WORKING_DIR}/robot-plugin/output.xml \
+        --output ${DTR_HC_FUNC_SOURCE_DIR}/honeycomb_functional_results.rst \
+        --formatting rst --start 5 --level 2
+#else
+#    cp ./${JEN_JOB}-${JEN_BUILD}.zip ${STATIC_DIR_ARCH}/${JEN_JOB}-${JEN_BUILD}.zip
 fi
-
-unzip -o ${STATIC_DIR_ARCH}/${JEN_JOB}-${JEN_BUILD}.zip -d ${WORKING_DIR}/
-python run_robot_data.py -i ${WORKING_DIR}/robot-plugin/output.xml \
-    --output ${DTR_HC_FUNC_SOURCE_DIR}/honeycomb_functional_results.rst \
-    --formatting rst --start 5 --level 2
 
 ### NSH_SFC SOURCE DATA
 
 JEN_JOB='csit-nsh_sfc-verify-func-1707-ubuntu1604-virl'
 JEN_BUILD='lastSuccessfulBuild'
 
-if [[ ${DEBUG} -eq 1 ]] ;
+if [[ ${DEBUG} -eq 0 ]] ;
 then
-    cp ./${JEN_JOB}-${JEN_BUILD}.zip ${STATIC_DIR_ARCH}/${JEN_JOB}-${JEN_BUILD}.zip
-else
-    curl -fs ${CSIT_JEN_URL}/${JEN_JOB}/${JEN_BUILD}/robot/report/\*zip\*/robot-plugin.zip \
-        -o ${STATIC_DIR_ARCH}/${JEN_JOB}-${JEN_BUILD}.zip
-
-    sed -i -e "s@###JOB###@${JEN_JOB}\/${JEN_BUILD}@g" \
-        ${DTR_NSHSFC_FUNC_SOURCE_DIR}/index.rst
-    sed -i -e "s@###LINK###@${HC_JEN_URL}\/${JEN_JOB}\/${JEN_BUILD}@g" \
-        ${DTR_NSHSFC_FUNC_SOURCE_DIR}/index.rst
+    curl --fail --silent ${CSIT_JEN_URL}/${JEN_JOB}/${JEN_BUILD}/robot/report/\*zip\*/robot-plugin.zip \
+        --output ${STATIC_DIR_ARCH}/${JEN_JOB}-${JEN_BUILD}.zip
+    unzip -o ${STATIC_DIR_ARCH}/${JEN_JOB}-${JEN_BUILD}.zip -d ${WORKING_DIR}/
+    python run_robot_data.py -i ${WORKING_DIR}/robot-plugin/output.xml \
+        --output ${DTR_NSHSFC_FUNC_SOURCE_DIR}/nshsfc_functional_results.rst \
+        --formatting rst --start 5 --level 2
+#else
+#    cp ./${JEN_JOB}-${JEN_BUILD}.zip ${STATIC_DIR_ARCH}/${JEN_JOB}-${JEN_BUILD}.zip
 fi
-
-unzip -o ${STATIC_DIR_ARCH}/${JEN_JOB}-${JEN_BUILD}.zip -d ${WORKING_DIR}/
-python run_robot_data.py -i ${WORKING_DIR}/robot-plugin/output.xml \
-    --output ${DTR_NSHSFC_FUNC_SOURCE_DIR}/nshsfc_functional_results.rst \
-    --formatting rst --start 5 --level 2
-
-
 
 # Delete temporary json files
 find ${SOURCE_DIR} -name "*.json" -type f -delete
@@ -354,40 +319,40 @@ python run_plot.py --input ${PLOT_VPP_SOURCE_DIR} \
 # VPP VM VHOST
 
 python run_plot.py --input ${PLOT_VPP_SOURCE_DIR} \
-    --output ${STATIC_DIR_VPP}/64B-1t1c-vhost-ndrdisc \
-    --title "64B-1t1c-.*vhost.*-ndrdisc" \
-    --xpath '//*[@framesize="64B" and contains(@tags,"NDRDISC") and contains(@tags,"1T1C") and contains(@tags,"VHOST")]'
-python run_plot.py --input ${PLOT_VPP_SOURCE_DIR} \
-    --output ${STATIC_DIR_VPP}/64B-2t2c-vhost-ndrdisc \
-    --title "64B-2t2c-.*vhost.*-ndrdisc" \
-    --xpath '//*[@framesize="64B" and contains(@tags,"NDRDISC") and contains(@tags,"2T2C") and contains(@tags,"VHOST")]'
-
-python run_plot.py --input ${PLOT_VPP_SOURCE_DIR} \
-    --output ${STATIC_DIR_VPP}/64B-1t1c-vhost-pdrdisc \
-    --title "64B-1t1c-.*vhost.*-pdrdisc" \
-    --xpath '//*[@framesize="64B" and contains(@tags,"PDRDISC") and contains(@tags,"1T1C") and not(contains(@tags,"NDRDISC")) and contains(@tags,"VHOST")]'
-python run_plot.py --input ${PLOT_VPP_SOURCE_DIR} \
-    --output ${STATIC_DIR_VPP}/64B-2t2c-vhost-pdrdisc \
-    --title "64B-2t2c-.*vhost.*-pdrdisc" \
-    --xpath '//*[@framesize="64B" and contains(@tags,"PDRDISC") and contains(@tags,"2T2C") and not(contains(@tags,"NDRDISC")) and contains(@tags,"VHOST")]'
-
-# VPP VM VHOST SELECTION
-
-python run_plot.py --input ${PLOT_VPP_SOURCE_DIR} \
     --output ${STATIC_DIR_VPP}/64B-1t1c-vhost-sel1-ndrdisc \
     --title "64B-1t1c-.*vhost.*-ndrdisc" \
-    --xpath '//*[@framesize="64B" and contains(@tags,"NDRDISC") and contains(@tags,"1T1C") and contains(@tags,"VHOST") and not(contains(@tags,"VXLAN")) and not(contains(@tags,"IP4FWD")) and not(contains(@tags,"DOT1Q")) and not(contains(name(), "2Vm"))]'
+    --xpath '//*[@framesize="64B" and contains(@tags,"NDRDISC") and contains(@tags,"1T1C") and contains(@tags,"VHOST") and (contains(@tags,"VXLAN") or contains(@tags,"IP4FWD") or contains(@tags,"DOT1Q"))]'
 python run_plot.py --input ${PLOT_VPP_SOURCE_DIR} \
     --output ${STATIC_DIR_VPP}/64B-2t2c-vhost-sel1-ndrdisc \
     --title "64B-2t2c-.*vhost.*-ndrdisc" \
-    --xpath '//*[@framesize="64B" and contains(@tags,"NDRDISC") and contains(@tags,"2T2C") and contains(@tags,"VHOST") and not(contains(@tags,"VXLAN")) and not(contains(@tags,"IP4FWD")) and not(contains(@tags,"DOT1Q")) and not(contains(name(), "2Vm"))]'
+    --xpath '//*[@framesize="64B" and contains(@tags,"NDRDISC") and contains(@tags,"2T2C") and contains(@tags,"VHOST") and (contains(@tags,"VXLAN") or contains(@tags,"IP4FWD") or contains(@tags,"DOT1Q"))]'
 
 python run_plot.py --input ${PLOT_VPP_SOURCE_DIR} \
     --output ${STATIC_DIR_VPP}/64B-1t1c-vhost-sel1-pdrdisc \
     --title "64B-1t1c-.*vhost.*-pdrdisc" \
-    --xpath '//*[@framesize="64B" and contains(@tags,"PDRDISC") and contains(@tags,"1T1C") and not(contains(@tags,"NDRDISC")) and contains(@tags,"VHOST") and not(contains(@tags,"VXLAN")) and not(contains(@tags,"IP4FWD")) and not(contains(@tags,"DOT1Q")) and not(contains(name(), "2Vm"))]'
+    --xpath '//*[@framesize="64B" and contains(@tags,"PDRDISC") and contains(@tags,"1T1C") and not(contains(@tags,"NDRDISC")) and contains(@tags,"VHOST") and (contains(@tags,"VXLAN") or contains(@tags,"IP4FWD") or contains(@tags,"DOT1Q"))]'
 python run_plot.py --input ${PLOT_VPP_SOURCE_DIR} \
     --output ${STATIC_DIR_VPP}/64B-2t2c-vhost-sel1-pdrdisc \
+    --title "64B-2t2c-.*vhost.*-pdrdisc" \
+    --xpath '//*[@framesize="64B" and contains(@tags,"PDRDISC") and contains(@tags,"2T2C") and not(contains(@tags,"NDRDISC")) and contains(@tags,"VHOST") and (contains(@tags,"VXLAN") or contains(@tags,"IP4FWD") or contains(@tags,"DOT1Q"))]'
+
+# VPP VM VHOST SELECTION
+
+python run_plot.py --input ${PLOT_VPP_SOURCE_DIR} \
+    --output ${STATIC_DIR_VPP}/64B-1t1c-vhost-sel2-ndrdisc \
+    --title "64B-1t1c-.*vhost.*-ndrdisc" \
+    --xpath '//*[@framesize="64B" and contains(@tags,"NDRDISC") and contains(@tags,"1T1C") and contains(@tags,"VHOST") and not(contains(@tags,"VXLAN")) and not(contains(@tags,"IP4FWD")) and not(contains(@tags,"DOT1Q")) and not(contains(name(), "2Vm"))]'
+python run_plot.py --input ${PLOT_VPP_SOURCE_DIR} \
+    --output ${STATIC_DIR_VPP}/64B-2t2c-vhost-sel2-ndrdisc \
+    --title "64B-2t2c-.*vhost.*-ndrdisc" \
+    --xpath '//*[@framesize="64B" and contains(@tags,"NDRDISC") and contains(@tags,"2T2C") and contains(@tags,"VHOST") and not(contains(@tags,"VXLAN")) and not(contains(@tags,"IP4FWD")) and not(contains(@tags,"DOT1Q")) and not(contains(name(), "2Vm"))]'
+
+python run_plot.py --input ${PLOT_VPP_SOURCE_DIR} \
+    --output ${STATIC_DIR_VPP}/64B-1t1c-vhost-sel2-pdrdisc \
+    --title "64B-1t1c-.*vhost.*-pdrdisc" \
+    --xpath '//*[@framesize="64B" and contains(@tags,"PDRDISC") and contains(@tags,"1T1C") and not(contains(@tags,"NDRDISC")) and contains(@tags,"VHOST") and not(contains(@tags,"VXLAN")) and not(contains(@tags,"IP4FWD")) and not(contains(@tags,"DOT1Q")) and not(contains(name(), "2Vm"))]'
+python run_plot.py --input ${PLOT_VPP_SOURCE_DIR} \
+    --output ${STATIC_DIR_VPP}/64B-2t2c-vhost-sel2-pdrdisc \
     --title "64B-2t2c-.*vhost.*-pdrdisc" \
     --xpath '//*[@framesize="64B" and contains(@tags,"PDRDISC") and contains(@tags,"2T2C") and not(contains(@tags,"NDRDISC")) and contains(@tags,"VHOST") and not(contains(@tags,"VXLAN")) and not(contains(@tags,"IP4FWD")) and not(contains(@tags,"DOT1Q")) and not(contains(name(), "2Vm"))]'
 
@@ -453,6 +418,8 @@ python run_plot.py --input ${PLOT_DPDK_SOURCE_DIR} \
 
 # Plot latency
 
+# VPP L2
+
 python run_plot.py --input ${PLOT_VPP_SOURCE_DIR} \
     --output ${STATIC_DIR_VPP}/64B-1t1c-l2-ndrdisc-lat50 \
     --title "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc" \
@@ -461,6 +428,8 @@ python run_plot.py --input ${PLOT_VPP_SOURCE_DIR} \
     --output ${STATIC_DIR_VPP}/64B-2t2c-l2-ndrdisc-lat50 \
     --title "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc" \
     --xpath '//*[@framesize="64B" and contains(@tags,"BASE") and contains(@tags,"NDRDISC") and contains(@tags,"2T2C") and (contains(@tags,"L2BDMACSTAT") or contains(@tags,"L2BDMACLRN") or contains(@tags,"L2XCFWD")) and not(contains(@tags,"VHOST"))]' --latency lat_50
+
+# VPP IP4
 
 python run_plot.py --input ${PLOT_VPP_SOURCE_DIR} \
     --output ${STATIC_DIR_VPP}/64B-1t1c-ethip4-ip4-ndrdisc-lat50 \
@@ -471,6 +440,8 @@ python run_plot.py --input ${PLOT_VPP_SOURCE_DIR} \
     --title "64B-2t2c-ethip4-ip4[a-z0-9]+-[a-z-]*ndrdisc" \
     --xpath '//*[@framesize="64B" and (contains(@tags,"BASE") or contains(@tags,"SCALE") or contains(@tags,"FEATURE")) and contains(@tags,"NDRDISC") and contains(@tags,"2T2C") and contains(@tags,"IP4FWD") and not(contains(@tags,"IPSEC")) and not(contains(@tags,"VHOST"))]' --latency lat_50
 
+# VPP IP6
+
 python run_plot.py --input ${PLOT_VPP_SOURCE_DIR} \
     --output ${STATIC_DIR_VPP}/78B-1t1c-ethip6-ip6-ndrdisc-lat50 \
     --title "78B-1t1c-ethip6-ip6[a-z0-9]+-[a-z-]*ndrdisc" \
@@ -479,6 +450,8 @@ python run_plot.py --input ${PLOT_VPP_SOURCE_DIR} \
     --output ${STATIC_DIR_VPP}/78B-2t2c-ethip6-ip6-ndrdisc-lat50 \
     --title "78B-2t2c-ethip6-ip6[a-z0-9]+-[a-z-]*ndrdisc" \
     --xpath '//*[@framesize="78B" and (contains(@tags,"BASE") or contains(@tags,"SCALE") or contains(@tags,"FEATURE")) and contains(@tags,"NDRDISC") and contains(@tags,"2T2C") and contains(@tags,"IP6FWD") and not(contains(@tags,"IPSEC")) and not(contains(@tags,"VHOST"))]' --latency lat_50
+
+# VPP IP4_overlay
 
 python run_plot.py --input ${PLOT_VPP_SOURCE_DIR} \
     --output ${STATIC_DIR_VPP}/64B-1t1c-ethip4-ndrdisc-lat50 \
@@ -489,6 +462,8 @@ python run_plot.py --input ${PLOT_VPP_SOURCE_DIR} \
     --title "64B-2t2c-ethip4[a-z0-9]+-[a-z0-9]*-ndrdisc" \
     --xpath '//*[@framesize="64B" and contains(@tags,"ENCAP") and contains(@tags,"NDRDISC") and contains(@tags,"2T2C") and (contains(@tags,"VXLAN") or contains(@tags,"VXLANGPE") or contains(@tags,"LISP") or contains(@tags,"LISPGPE") or contains(@tags,"GRE")) and not(contains(@tags,"VHOST"))]' --latency lat_50
 
+# VPP IP6_overlay
+
 python run_plot.py --input ${PLOT_VPP_SOURCE_DIR} \
     --output ${STATIC_DIR_VPP}/78B-1t1c-ethip6-ndrdisc-lat50 \
     --title "78B-1t1c-ethip6[a-z0-9]+-[a-z0-9]*-ndrdisc" \
@@ -498,14 +473,27 @@ python run_plot.py --input ${PLOT_VPP_SOURCE_DIR} \
     --title "78B-2t2c-ethip6[a-z0-9]+-[a-z0-9]*-ndrdisc" \
     --xpath '//*[@framesize="78B" and contains(@tags,"ENCAP") and contains(@tags,"NDRDISC") and contains(@tags,"2T2C") and (contains(@tags,"VXLAN") or contains(@tags,"VXLANGPE") or contains(@tags,"LISP") or contains(@tags,"LISPGPE") or contains(@tags,"GRE")) and not(contains(@tags,"VHOST"))]' --latency lat_50
 
+# VPP VM VHOST latency
+
 python run_plot.py --input ${PLOT_VPP_SOURCE_DIR} \
-    --output ${STATIC_DIR_VPP}/64B-1t1c-vhost-ndrdisc-lat50 \
+    --output ${STATIC_DIR_VPP}/64B-1t1c-vhost-sel1-ndrdisc-lat50 \
     --title "64B-1t1c-.*vhost.*-ndrdisc" \
-    --xpath '//*[@framesize="64B" and contains(@tags,"NDRDISC") and contains(@tags,"1T1C") and contains(@tags,"VHOST")]' --latency lat_50
+    --xpath '//*[@framesize="64B" and contains(@tags,"NDRDISC") and contains(@tags,"1T1C") and contains(@tags,"VHOST") and (contains(@tags,"VXLAN") or contains(@tags,"IP4FWD") or contains(@tags,"DOT1Q"))]' --latency lat_50
 python run_plot.py --input ${PLOT_VPP_SOURCE_DIR} \
-    --output ${STATIC_DIR_VPP}/64B-2t2c-vhost-ndrdisc-lat50 \
+    --output ${STATIC_DIR_VPP}/64B-2t2c-vhost-sel1-ndrdisc-lat50 \
     --title "64B-2t2c-.*vhost.*-ndrdisc" \
-    --xpath '//*[@framesize="64B" and contains(@tags,"NDRDISC") and contains(@tags,"2T2C") and contains(@tags,"VHOST")]' --latency lat_50
+    --xpath '//*[@framesize="64B" and contains(@tags,"NDRDISC") and contains(@tags,"2T2C") and contains(@tags,"VHOST") and (contains(@tags,"VXLAN") or contains(@tags,"IP4FWD") or contains(@tags,"DOT1Q"))]' --latency lat_50
+
+python run_plot.py --input ${PLOT_VPP_SOURCE_DIR} \
+    --output ${STATIC_DIR_VPP}/64B-1t1c-vhost-sel2-ndrdisc-lat50 \
+    --title "64B-1t1c-.*vhost.*-ndrdisc" \
+    --xpath '//*[@framesize="64B" and contains(@tags,"NDRDISC") and contains(@tags,"1T1C") and contains(@tags,"VHOST") and not(contains(@tags,"VXLAN")) and not(contains(@tags,"IP4FWD")) and not(contains(@tags,"DOT1Q")) and not(contains(name(), "2Vm"))]' --latency lat_50
+python run_plot.py --input ${PLOT_VPP_SOURCE_DIR} \
+    --output ${STATIC_DIR_VPP}/64B-2t2c-vhost-sel2-ndrdisc-lat50 \
+    --title "64B-2t2c-.*vhost.*-ndrdisc" \
+    --xpath '//*[@framesize="64B" and contains(@tags,"NDRDISC") and contains(@tags,"2T2C") and contains(@tags,"VHOST") and not(contains(@tags,"VXLAN")) and not(contains(@tags,"IP4FWD")) and not(contains(@tags,"DOT1Q")) and not(contains(name(), "2Vm"))]' --latency lat_50
+
+# VPP CRYPTO
 
 python run_plot.py --input ${PLOT_VPP_SOURCE_DIR} \
     --output ${STATIC_DIR_VPP}/64B-1t1c-ipsechw-ndrdisc-lat50 \
@@ -515,6 +503,8 @@ python run_plot.py --input ${PLOT_VPP_SOURCE_DIR} \
     --output ${STATIC_DIR_VPP}/64B-2t2c-ipsechw-ndrdisc-lat50 \
     --title "64B-2t2c-.*ipsec.*-ndrdisc" \
     --xpath '//*[@framesize="64B" and not(contains(@tags, "VHOST")) and contains(@tags, "IP4FWD") and contains(@tags, "NDRDISC") and contains(@tags, "2T2C") and contains(@tags, "IPSECHW") and (contains(@tags, "IPSECTRAN") or contains(@tags, "IPSECTUN"))]' --latency lat_50
+
+# DPDK
 
 python run_plot.py --input ${PLOT_DPDK_SOURCE_DIR} \
     --output ${STATIC_DIR_DPDK}/64B-1t1c-l2-ndrdisc-lat50 \
@@ -536,4 +526,3 @@ python run_plot.py --input ${PLOT_DPDK_SOURCE_DIR} \
 # Create archive
 echo Creating csit.report.tar.gz ...
 tar -czvf ./csit.report.tar.gz ${BUILD_DIR}
-
