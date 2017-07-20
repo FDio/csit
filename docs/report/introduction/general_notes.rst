@@ -37,7 +37,12 @@ is listed separately, as follows:
    generator.
 
 #. **HoneyComb Functional Tests** - HoneyComb functional tests are executed in
-   virtual FD.io testbeds focusing on HoneyComb management and programming
+   virtual FD.io testbeds, focusing on HoneyComb management and programming
+   functionality of VPP. Tests cover a range of CRUD operations executed
+   against VPP.
+
+#. **HoneyComb Performance Tests** - HoneyComb performance tests are executed in
+   physical FD.io testbeds, focusing on HoneyComb management and programming
    functionality of VPP. Tests cover a range of CRUD operations executed
    against VPP.
 
