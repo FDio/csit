@@ -21,6 +21,7 @@ PLOT_VPP_SOURCE_DIR=${WORKING_DIR}/vpp_plot
 PLOT_DPDK_SOURCE_DIR=${WORKING_DIR}/dpdk_plot
 
 DTR_SOURCE_DIR=${SOURCE_DIR}/detailed_test_results
+DTR_PERF_IMPROVEMENTS=${SOURCE_DIR}/vpp_performance_tests/performance_improvements
 DTR_DPDK_SOURCE_DIR=${DTR_SOURCE_DIR}/dpdk_performance_results
 DTR_VPP_PERF_SOURCE_DIR=${DTR_SOURCE_DIR}/vpp_performance_results
 DTR_VPP_FUNC_SOURCE_DIR=${DTR_SOURCE_DIR}/vpp_functional_results
@@ -188,6 +189,10 @@ fi
 
 # Delete temporary json files
 find ${SOURCE_DIR} -name "*.json" -type f -delete
+
+# Generate tables for performance improvements
+./run_improvments_tables.py --input ${PLOT_VPP_SOURCE_DIR} \
+    --output ${DTR_PERF_IMPROVEMENTS}
 
 # Generate the documentation
 

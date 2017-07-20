@@ -1,0 +1,14 @@
+tests.vpp.perf.l2.10ge2p1x520-eth-l2xcbase-ndrpdrdisc.tc02-64b-1t1c-eth-l2xcbase-pdrdisc,L2XC,10ge2p1x520: 64B-1t1c-eth-l2xcbase-pdrdisc,9.4,12.7,13.4
+tests.vpp.perf.l2.10ge2p1x520-dot1ad-l2xcbase-ndrpdrdisc.tc02-64b-1t1c-dot1ad-l2xcbase-pdrdisc,L2XC dot1ad,10ge2p1x520: 64B-1t1c-dot1ad-l2xcbase-pdrdisc,7.4,8.8,9.3
+tests.vpp.perf.l2.10ge2p1x520-dot1q-l2xcbase-ndrpdrdisc.tc02-64b-1t1c-dot1q-l2xcbase-pdrdisc,L2XC dot1q,10ge2p1x520: 64B-1t1c-dot1q-l2xcbase-pdrdisc,7.5,8.8,9.2
+tests.vpp.perf.ip4_tunnels.10ge2p1x520-ethip4vxlan-l2xcbase-ndrpdrdisc.tc02-64b-1t1c-ethip4vxlan-l2xcbase-pdrdisc,L2XC VxLAN,10ge2p1x520: 64B-1t1c-ethip4vxlan-l2xcbase-pdrdisc,5.4,6.5,6.8
+tests.vpp.perf.l2.10ge2p1x520-eth-l2bdbasemaclrn-ndrpdrdisc.tc02-64b-1t1c-eth-l2bdbasemaclrn-pdrdisc,L2BD,10ge2p1x520: 64B-1t1c-eth-l2bdbasemaclrn-pdrdisc,7.8,10.6,10.9
+tests.vpp.perf.ip4.10ge2p1x520-ethip4-ip4base-ndrpdrdisc.tc02-64b-1t1c-ethip4-ip4base-pdrdisc,IPv4,10ge2p1x520: 64B-1t1c-ethip4-ip4base-pdrdisc,8.7,9.7,10.6
+tests.vpp.perf.ip4.10ge2p1x520-ethip4-ip4base-copwhtlistbase-ndrpdrdisc.tc02-64b-1t1c-ethip4-ip4base-copwhtlistbase-pdrdisc,IPv4 COP,10ge2p1x520: 64B-1t1c-ethip4-ip4base-copwhtlistbase-pdrdisc,7.1,8.3,9.2
+tests.vpp.perf.ip4.10ge2p1x520-ethip4-ip4base-iacldstbase-ndrpdrdisc.tc02-64b-1t1c-ethip4-ip4base-iacldstbase-pdrdisc,IPv4 iAcl,10ge2p1x520: 64B-1t1c-ethip4-ip4base-iacldstbase-pdrdisc,7.1,7.6,8.3
+tests.vpp.perf.ip4.10ge2p1x520-ethip4-ip4scale200k-ndrpdrdisc.tc02-64b-1t1c-ethip4-ip4scale200k-pdrdisc,IPv4 FIB 200k,10ge2p1x520: 64B-1t1c-ethip4-ip4scale200k-pdrdisc,8.5,9.0,9.7
+tests.vpp.perf.ip4.10ge2p1x520-ethip4-ip4scale20k-ndrpdrdisc.tc02-64b-1t1c-ethip4-ip4scale20k-pdrdisc,IPv4 FIB 20k,10ge2p1x520: 64B-1t1c-ethip4-ip4scale20k-pdrdisc,8.5,9.0,9.7
+tests.vpp.perf.ip4.10ge2p1x520-ethip4-ip4scale2m-ndrpdrdisc.tc02-64b-1t1c-ethip4-ip4scale2m-pdrdisc,IPv4 FIB 2M,10ge2p1x520: 64B-1t1c-ethip4-ip4scale2m-pdrdisc,8.3,8.1,8.3
+tests.vpp.perf.ip4.10ge2p1x520-ethip4-ip4base-ipolicemarkbase-ndrpdrdisc.tc02-64b-1t1c-ethip4-ip4base-ipolicemarkbase-pdrdisc,IPv4 Policer,10ge2p1x520: 64B-1t1c-ethip4-ip4base-ipolicemarkbase-pdrdisc,7.1,7.4,8.1
+tests.vpp.perf.ip6.10ge2p1x520-ethip6-ip6scale200k-ndrpdrdisc.tc02-78b-1t1c-ethip6-ip6scale200k-pdrdisc,IPv6 FIB 200k,10ge2p1x520: 78B-1t1c-ethip6-ip6scale200k-pdrdisc,6.9,5.3,5.3
+tests.vpp.perf.ip6.10ge2p1x520-ethip6-ip6scale20k-ndrpdrdisc.tc02-78b-1t1c-ethip6-ip6scale20k-pdrdisc,IPv6 FIB 20k,10ge2p1x520: 78B-1t1c-ethip6-ip6scale20k-pdrdisc,6.9,6.5,6.9
