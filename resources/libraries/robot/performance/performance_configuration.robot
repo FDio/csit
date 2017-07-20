@@ -1186,9 +1186,8 @@
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock2}
 | | ${apply_patch}= | Set Variable If | "${perf_qemu_qsz}" == "256" | ${False}
 | | ... | ${True}
-| | ${force_install}= | Set Variable If | ${qemu_built} | ${False} | ${True}
-| | Run Keyword | ${vm_name}.Build QEMU | ${dut_node}
-| | ... | force_install=${force_install} | apply_patch=${apply_patch}
+| | Run Keyword Unless | ${qemu_built} | ${vm_name}.Build QEMU | ${dut_node}
+| | ... | force_install=${True} | apply_patch=${apply_patch}
 | | Run keyword | ${vm_name}.Qemu Set Bin | ${perf_qemu_bin}
 | | Run keyword | ${vm_name}.Qemu Set Node | ${dut_node}
 | | Run keyword | ${vm_name}.Qemu Set Smp | ${count} | ${count} | 1 | 1
@@ -1232,8 +1231,8 @@
 | | | ... | ${dut2} | ${sock1} | ${sock2} | DUT2_VM${number}
 | | | ... | skip=${skip_cpus} | count=${vm_cpus} | qemu_id=${number}
 | | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM${number} | ${vm2}
-| | Run Keyword Unless | ${qemu_built} | Set Suite Variable | ${qemu_built}
-| | ... | ${True}
+| | | Run Keyword Unless | ${qemu_built} | Set Suite Variable | ${qemu_built}
+| | | ... | ${True}
 
 | Configure guest VM with dpdk-testpmd using SMT connected via vhost-user
 | | [Documentation]
@@ -1270,9 +1269,8 @@
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock2}
 | | ${apply_patch}= | Set Variable If | "${perf_qemu_qsz}" == "256" | ${False}
 | | ... | ${True}
-| | ${force_install}= | Set Variable If | ${qemu_built} | ${False} | ${True}
-| | Run Keyword | ${vm_name}.Build QEMU | ${dut_node}
-| | ... | force_install=${force_install} | apply_patch=${apply_patch}
+| | Run Keyword Unless | ${qemu_built} | ${vm_name}.Build QEMU | ${dut_node}
+| | ... | force_install=${True} | apply_patch=${apply_patch}
 | | Run keyword | ${vm_name}.Qemu Set Bin | ${perf_qemu_bin}
 | | Run keyword | ${vm_name}.Qemu Set Node | ${dut_node}
 | | Run keyword | ${vm_name}.Qemu Set Smp | ${count} | ${count} | 1 | 1
@@ -1336,9 +1334,8 @@
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock2}
 | | ${apply_patch}= | Set Variable If | "${perf_qemu_qsz}" == "256" | ${False}
 | | ... | ${True}
-| | ${force_install}= | Set Variable If | ${qemu_built} | ${False} | ${True}
-| | Run Keyword | ${vm_name}.Build QEMU | ${dut_node}
-| | ... | force_install=${force_install} | apply_patch=${apply_patch}
+| | Run Keyword Unless | ${qemu_built} | ${vm_name}.Build QEMU | ${dut_node}
+| | ... | force_install=${True} | apply_patch=${apply_patch}
 | | Run keyword | ${vm_name}.Qemu Set Bin | ${perf_qemu_bin}
 | | Run keyword | ${vm_name}.Qemu Set Node | ${dut_node}
 | | Run keyword | ${vm_name}.Qemu Set Smp | ${count} | ${count} | 1 | 1
@@ -1390,8 +1387,8 @@
 | | | ... | ${dut2-vhost-${number}-if2_mac} | skip=${skip_cpus}
 | | | ... | count=${vm_cpus} | qemu_id=${number}
 | | | Set To Dictionary | ${dut2_vm_refs} | DUT2_VM${number} | ${vm2}
-| | Run Keyword Unless | ${qemu_built} | Set Suite Variable | ${qemu_built}
-| | ... | ${True}
+| | | Run Keyword Unless | ${qemu_built} | Set Suite Variable | ${qemu_built}
+| | | ... | ${True}
 
 | Configure guest VM with dpdk-testpmd-mac using SMT connected via vhost-user
 | | [Documentation]
@@ -1430,9 +1427,8 @@
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock2}
 | | ${apply_patch}= | Set Variable If | "${perf_qemu_qsz}" == "256" | ${False}
 | | ... | ${True}
-| | ${force_install}= | Set Variable If | ${qemu_built} | ${False} | ${True}
-| | Run Keyword | ${vm_name}.Build QEMU | ${dut_node}
-| | ... | force_install=${force_install} | apply_patch=${apply_patch}
+| | Run Keyword Unless | ${qemu_built} | ${vm_name}.Build QEMU | ${dut_node}
+| | ... | force_install=${True} | apply_patch=${apply_patch}
 | | Run keyword | ${vm_name}.Qemu Set Bin | ${perf_qemu_bin}
 | | Run keyword | ${vm_name}.Qemu Set Node | ${dut_node}
 | | Run keyword | ${vm_name}.Qemu Set Smp | ${count} | ${count} | 1 | 1
@@ -1477,7 +1473,10 @@
 | | ... | skip_cnt=${skip} | cpu_cnt=${count} | smt_used=${False}
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock1}
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock2}
-| | Run Keyword | ${vm_name}.Build QEMU | ${dut_node} | apply_patch=${True}
+| | ${apply_patch}= | Set Variable If | "${perf_qemu_qsz}" == "256" | ${False}
+| | ... | ${True}
+| | Run Keyword Unless | ${qemu_built} | ${vm_name}.Build QEMU | ${dut_node}
+| | ... | force_install=${True} | apply_patch=${apply_patch}
 | | Run keyword | ${vm_name}.Qemu Set Bin | ${perf_qemu_bin}
 | | Run keyword | ${vm_name}.Qemu Set Node | ${dut_node}
 | | Run keyword | ${vm_name}.Qemu Set Smp | ${count} | ${count} | 1 | 1
@@ -1524,7 +1523,10 @@
 | | ... | skip_cnt=${skip} | cpu_cnt=${count} | smt_used=${True}
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock1}
 | | Run keyword | ${vm_name}.Qemu Add Vhost User If | ${sock2}
-| | Run Keyword | ${vm_name}.Build QEMU | ${dut_node} | apply_patch=${True}
+| | ${apply_patch}= | Set Variable If | "${perf_qemu_qsz}" == "256" | ${False}
+| | ... | ${True}
+| | Run Keyword Unless | ${qemu_built} | ${vm_name}.Build QEMU | ${dut_node}
+| | ... | force_install=${True} | apply_patch=${apply_patch}
 | | Run keyword | ${vm_name}.Qemu Set Bin | ${perf_qemu_bin}
 | | Run keyword | ${vm_name}.Qemu Set Node | ${dut_node}
 | | Run keyword | ${vm_name}.Qemu Set Smp | ${count} | ${count} | 1 | 1
