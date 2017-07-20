@@ -112,7 +112,7 @@ please refer to
 Performance Tests Coverage
 --------------------------
 
-Performance tests are split into the two main categories:
+Performance tests are split into two main categories:
 
 - Throughput discovery - discovery of packet forwarding rate using binary search
   in accordance to RFC2544.
@@ -185,13 +185,13 @@ CSIT |release| includes following performance test suites, listed per NIC type:
   - **L2BD** - L2 Bridge-Domain switched-forwarding of untagged Ethernet frames
      with MAC learning.
 
-Execution of performance tests takes time, especially the throughput discovery
-tests. Due to limited HW testbed resources available within FD.io labs hosted
-by Linux Foundation, the number of tests for NICs other than X520 (a.k.a.
-Niantic) has been limited to few baseline tests. Over time we expect the HW
-testbed resources to grow, and will be adding complete set of performance
-tests for all models of hardware to be executed regularly and(or)
-continuously.
+Execution of performance tests takes time, especially the throughput
+discovery tests. Due to limited HW testbed resources available within
+FD.io labs hosted by Linux Foundation, the number of tests for NICs
+other than X520 (a.k.a. Niantic) has been limited to few baseline tests.
+CSIT team expect the HW testbed resources to grow over time, so that
+complete set of performance tests can be regularly and(or) continuously
+executed against all models of hardware present in FD.io labs.
 
 Performance Tests Naming
 ------------------------
@@ -203,62 +203,28 @@ The naming should be intuitive for majority of the tests. Complete
 description of CSIT test naming convention is provided on `CSIT test naming wiki
 <https://wiki.fd.io/view/CSIT/csit-test-naming>`_.
 
-Here few illustrative examples of the new naming usage for performance test
-suites:
+Methodology: Multi-Core and Multi-Threading
+-------------------------------------------
 
-#. **Physical port to physical port - a.k.a. NIC-to-NIC, Phy-to-Phy, P2P**
+**Intel Hyper-Threading** - CSIT |release| performance tests are
+executed with SUT servers' Intel XEON processors configured in Intel
+Hyper-Threading Disabled mode (BIOS setting). This is the simplest
+configuration used to establish baseline single-thread single-core
+application packet processing and forwarding performance. Subsequent
+releases of CSIT will add performance tests with Intel Hyper-Threading
+Enabled (requires BIOS settings change and hard reboot of server).
 
-   - *PortNICConfig-WireEncapsulation-PacketForwardingFunction-
-     PacketProcessingFunction1-...-PacketProcessingFunctionN-TestType*
-   - *10ge2p1x520-dot1q-l2bdbasemaclrn-ndrdisc.robot* => 2 ports of 10GE on
-     Intel x520 NIC, dot1q tagged Ethernet, L2 bridge-domain baseline switching
-     with MAC learning, NDR throughput discovery.
-   - *10ge2p1x520-ethip4vxlan-l2bdbasemaclrn-ndrchk.robot* => 2 ports of 10GE
-     on Intel x520 NIC, IPv4 VXLAN Ethernet, L2 bridge-domain baseline
-     switching with MAC learning, NDR throughput discovery.
-   - *10ge2p1x520-ethip4-ip4base-ndrdisc.robot* => 2 ports of 10GE on Intel
-     x520 NIC, IPv4 baseline routed forwarding, NDR throughput discovery.
-   - *10ge2p1x520-ethip6-ip6scale200k-ndrdisc.robot* => 2 ports of 10GE on
-     Intel x520 NIC, IPv6 scaled up routed forwarding, NDR throughput
-     discovery.
-
-#. **Physical port to VM (or VM chain) to physical port - a.k.a. NIC2VM2NIC,
-   P2V2P, NIC2VMchain2NIC, P2V2V2P**
-
-   - *PortNICConfig-WireEncapsulation-PacketForwardingFunction-
-     PacketProcessingFunction1-...-PacketProcessingFunctionN-VirtEncapsulation-
-     VirtPortConfig-VMconfig-TestType*
-   - *10ge2p1x520-dot1q-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc.robot* => 2 ports
-     of 10GE on Intel x520 NIC, dot1q tagged Ethernet, L2 bridge-domain
-     switching to/from two vhost interfaces and one VM, NDR throughput
-     discovery.
-   - *10ge2p1x520-ethip4vxlan-l2bdbasemaclrn-eth-2vhost-1vm-ndrdisc.robot* => 2
-     ports of 10GE on Intel x520 NIC, IPv4 VXLAN Ethernet, L2 bridge-domain
-     switching to/from two vhost interfaces and one VM, NDR throughput
-     discovery.
-   - *10ge2p1x520-ethip4vxlan-l2bdbasemaclrn-eth-4vhost-2vm-ndrdisc.robot* => 2
-     ports of 10GE on Intel x520 NIC, IPv4 VXLAN Ethernet, L2 bridge-domain
-     switching to/from four vhost interfaces and two VMs, NDR throughput
-     discovery.
-
-Methodology: Multi-Thread and Multi-Core
-----------------------------------------
-
-**HyperThreading** - CSIT |release| performance tests are executed with SUT
-servers' Intel XEON CPUs configured in HyperThreading Disabled mode (BIOS
-settings). This is the simplest configuration used to establish baseline
-single-thread single-core SW packet processing and forwarding performance.
-Subsequent releases of CSIT will add performance tests with Intel
-HyperThreading Enabled (requires BIOS settings change and hard reboot).
-
-**Multi-core Test** - CSIT |release| multi-core tests are executed in the
-following VPP thread and core configurations:
+**Multi-core Tests** - CSIT |release| multi-core tests are executed in
+the following VPP thread and core configurations:
 
 #. 1t1c - 1 VPP worker thread on 1 CPU physical core.
 #. 2t2c - 2 VPP worker threads on 2 CPU physical cores.
 
-Note that in quite a few test cases running VPP on 2 physical cores hits
-the tested NIC I/O bandwidth or packets-per-second limit.
+VPP worker threads are the data plane threads. VPP control thread is
+running on a separate non-isolated core together with other Linux
+processes. Note that in quite a few test cases running VPP workers on 2
+physical cores hits the tested NIC I/O bandwidth or packets-per-second
+limit.
 
 Methodology: Packet Throughput
 ------------------------------
@@ -286,6 +252,7 @@ Following values are measured and reported for packet throughput tests:
   - IPv4: 64B, IMIX_v4_1 (28x64B,16x570B,4x1518B), 1518B, 9000B.
   - IPv6: 78B, 1518B, 9000B.
 
+All rates are reported from external Traffic Generator perspective.
 
 Methodology: Packet Latency
 ---------------------------
@@ -315,23 +282,46 @@ latency values are measured using following methodology:
 Methodology: KVM VM vhost
 -------------------------
 
-CSIT |release| introduced environment configuration changes to KVM Qemu vhost-
+CSIT |release| introduced test environment configuration changes to KVM Qemu vhost-
 user tests in order to more representatively measure |vpp-release| performance
-in configurations with vhost-user interfaces and VMs.
+in configurations with vhost-user interfaces and different Qemu settings.
 
-Current setup of CSIT FD.io performance lab is using tuned settings for more
-optimal performance of KVM Qemu:
+FD.io CSIT performance lab is testing VPP vhost with KVM VMs using following environment settings
 
-- Qemu virtio queue size has been increased from default value of 256 to 1024
-  descriptors.
-- Adjusted Linux kernel CFS scheduler settings, as detailed on this CSIT wiki
-  page: https://wiki.fd.io/view/CSIT/csit-perf-env-tuning-ubuntu1604.
+- Tests with varying Qemu virtio queue (a.k.a. vring) sizes:
+  [vr256] default 256 descriptors, [vr1024] 1024 descriptors to
+  optimize for packet throughput;
 
-Adjusted Linux kernel CFS settings make the NDR and PDR throughput performance
-of VPP+VM system less sensitive to other Linux OS system tasks by reducing
-their interference on CPU cores that are designated for critical software
-tasks under test, namely VPP worker threads in host and Testpmd threads in
-guest dealing with data plan.
+- Tests with varying Linux CFS (Completely Fair Scheduler)
+  settings: [cfs] default settings, [cfsrr1] CFS RoundRobin(1)
+  policy applied to all data plane threads handling test packet
+  path including all VPP worker threads and all Qemu testpmd
+  poll-mode threads;
+
+- Resulting test cases are all combinations with [vr256,vr1024] and
+  [cfs,cfsrr1] settings;
+
+- Adjusted Linux kernel CFS scheduler policy for data plane threads used
+  in CSIT is documented in
+  `CSIT Performance Environment Tuning wiki <https://wiki.fd.io/view/CSIT/csit-perf-env-tuning-ubuntu1604>`_.
+  The purpose is to verify performance impact (NDR, PDR throughput) and
+  same test measurements repeatability, by making VPP and VM data plane
+  threads less susceptible to other Linux OS system tasks hijacking CPU
+  cores running those data plane threads.
+
+Methodology: LXC Container memif
+--------------------------------
+
+CSIT |release| introduced new tests - VPP Memif virtual interface
+(shared memory interface) tests  interconnecting VPP instances over
+memif. VPP vswitch  instance runs in bare-metal user-mode handling Intel
+x520 NIC  10GbE interfaces and connecting over memif (Master side)
+virtual  interfaces to another instance of VPP running in bare-metal
+Linux  Container (LXC) with memif virtual interfaces (Slave side). LXC
+runs in a priviliged mode with VPP data plane worker threads  pinned to
+dedicated physical CPU cores per usual CSIT practice.  Both VPP run the
+same version of software. This test topology is  equivalent to existing
+tests with vhost-user and VMs.
 
 Methodology: IPSec with Intel QAT HW cards
 ------------------------------------------
