@@ -306,6 +306,11 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s "tests.vpp.perf" \
+              --exclude 4T4C \
+              --exclude HC_PERF \
+              --exclude 100k_FLOWS \
+              --exclude PDRCHK \
+              --exclude NDRCHK \
               tests/
         RETURN_STATUS=$(echo $?)
 esac
