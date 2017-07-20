@@ -85,7 +85,7 @@ for i in "${JEN_BUILD[@]}"; do
     if [[ ${DEBUG} -eq 0 ]] ;
     then
         curl --fail --silent ${CSIT_JEN_URL}/${JEN_JOB}/${i}/robot/report/\*zip\*/robot-plugin.zip \
-            -o ${STATIC_DIR_ARCH}/${JEN_JOB}-${i}.zip
+            --output ${STATIC_DIR_ARCH}/${JEN_JOB}-${i}.zip
     fi
 done
 
@@ -97,10 +97,10 @@ then
         --formatting rst --start 4 --level 2
     python run_robot_teardown_data.py -i ${WORKING_DIR}/robot-plugin/output.xml \
         --output ${DTC_VPP_PERF_SOURCE_DIR}/vpp_performance_configuration.rst \
-        --data "VAT_H" -f "rst" --start 4 --level 2
+        --data "VAT_H" --formatting rst --start 4 --level 2
     python run_robot_teardown_data.py -i ${WORKING_DIR}/robot-plugin/output.xml \
         --output ${DTO_VPP_PERF_SOURCE_OPER_DIR}/vpp_performance_operational_data.rst \
-        --data "SH_RUN" -f "rst" --start 4 --level 2
+        --data "SH_RUN" --formatting rst --start 4 --level 2
 #else
 #    cp ./${JEN_JOB}-${JEN_FBUILD}.zip ${STATIC_DIR_ARCH}/${JEN_JOB}-${JEN_FBUILD}.zip
 fi
@@ -147,7 +147,7 @@ then
         --formatting rst --start 5 --level 2
     python run_robot_teardown_data.py -i ${WORKING_DIR}/robot-plugin/output.xml \
         --output ${DTR_VPP_FUNC_SOURCE_DIR}/vpp_functional_configuration.rst \
-        --data "vat_h" -f "rst" --start 5 --level 2
+        --data "VAT_H" --formatting rst --start 5 --level 2
 #else
 #    cp ./${JEN_JOB}-${JEN_BUILD}.zip ${STATIC_DIR_ARCH}/${JEN_JOB}-${JEN_BUILD}.zip
 fi
