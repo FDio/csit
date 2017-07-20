@@ -4,21 +4,27 @@ CSIT Release Notes
 Changes in CSIT |release|
 -------------------------
 
-#. VPP functional test environment changes
-
-   - Implemented VAT command history collection for every test case as part of teardown.
-   - Introduction of Centos7 tests in VIRL environment.
-
 #. VPP functional test framework changes
 
-   - Added VAT command history collection for every test case as part of teardown.
+   - Upgrade of tb4-virl1 and tb4-virl2 hosts+
 
-#. Added VPP functional tests
+     - OS version to Ubuntu 16.04.02,
 
-   - IPv4 routed-forwarding with dot1q VLAN sub-interfaces.
-   - L2BD switched-forwarding with dot1q VLAN sub-interfaces and vhost-user to VM.
-   - IPv4 routed-forwarding with vhost-user interfaces to VM.
-   - Vhost-user interface re-connect tests.
+     - VIRL version to Mitaka.
+
+   - Implemented load balance mechanism for VIRL hosts.
+
+   - Implemented waiting mechanism on VIRL host if there is not enough resources
+     available to successfully start simulation.
+
+#. Code updates and optimizations in CSIT functional framework:
+
+   - Complete CSIT framework code revision and optimizations as descried
+     on CSIT wiki page
+     _`Design_Optimizations <https://wiki.fd.io/view/CSIT/Design_Optimizations>`_.
+
+   - For more detail see the CSIT Framework Design section in this
+     report;
 
 Known Issues
 ------------

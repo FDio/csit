@@ -2,7 +2,7 @@ Test Environment
 ================
 
 CSIT functional tests are currently executed in FD.IO VIRL testbed. The physical
-VIRL testbed infrastructure consists of three identical VIRL hosts:
+VIRL testbed infrastructure consists of three VIRL hosts:
 
 - All hosts are Cisco UCS C240-M4 (2x Intel(R) Xeon(R) CPU E5-2699 v3 @2.30GHz,
   18c, 512GB RAM)
