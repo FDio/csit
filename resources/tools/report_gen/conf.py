@@ -79,6 +79,7 @@ rst_epilog = """
 .. _FD.io test executor vpp functional jobs: https://jenkins.fd.io/view/csit/job/csit-vpp-functional-1707-ubuntu1604-virl/lastSuccessfulBuild
 .. _FD.io test executor dpdk performance jobs: https://jenkins.fd.io/view/csit/job/csit-dpdk-perf-1707-all
 .. _FD.io test executor HoneyComb functional jobs: https://jenkins.fd.io/view/csit/job/hc2vpp-csit-integration-1707-ubuntu1604/lastSuccessfulBuild
+.. _FD.io test executor honeycomb performance jobs: https://jenkins.fd.io/view/hc2vpp/job/hc2vpp-csit-perf-master-ubuntu1604/lastSuccessfulBuild
 .. _FD.io test executor NSH_SFC functional jobs: https://jenkins.fd.io/view/csit/job/csit-nsh_sfc-verify-func-1707-ubuntu1604-virl/lastSuccessfulBuild
 .. _FD.io VPP compile job: https://jenkins.fd.io/view/vpp/job/vpp-merge-1707-ubuntu1604/
 .. _FD.io VPP compile job: https://jenkins.fd.io/view/vpp/job/vpp-merge-1707-ubuntu1604/
