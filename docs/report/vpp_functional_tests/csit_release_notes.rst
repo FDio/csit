@@ -4,21 +4,27 @@ CSIT Release Notes
 Changes in CSIT |release|
 -------------------------
 
-#. VPP functional test environment changes
+#. VPP functional test framework changes:
 
-   - Implemented VAT command history collection for every test case as part of teardown.
-   - Introduction of Centos7 tests in VIRL environment.
+   - Upgrade of tb4-virl1 and tb4-virl2 hosts;
 
-#. VPP functional test framework changes
+     - OS version to Ubuntu 16.04.02;
 
-   - Added VAT command history collection for every test case as part of teardown.
+     - VIRL version to Mitaka;
 
-#. Added VPP functional tests
+   - Implemented load balance mechanism for VIRL hosts;
 
-   - IPv4 routed-forwarding with dot1q VLAN sub-interfaces.
-   - L2BD switched-forwarding with dot1q VLAN sub-interfaces and vhost-user to VM.
-   - IPv4 routed-forwarding with vhost-user interfaces to VM.
-   - Vhost-user interface re-connect tests.
+   - Implemented waiting mechanism on VIRL host if there is not enough resources
+     available to successfully start simulation;
+
+#. Code updates and optimizations in CSIT functional framework:
+
+   - Complete CSIT framework code revision and optimizations as descried
+     on CSIT wiki page
+     _`Design_Optimizations <https://wiki.fd.io/view/CSIT/Design_Optimizations>`_;
+
+   - For more detail see the CSIT Framework Design section in this
+     report;
 
 Known Issues
 ------------
@@ -47,20 +53,11 @@ Here is the list of known issues in CSIT |release| for VPP functional tests in V
 |   |                                                 |          | response to received  ICMPv6 Router Solicitation     |
 |   |                                                 |          | packet.                                              |
 +---+-------------------------------------------------+----------+------------------------------------------------------+
-| 5 | IPFIX: IPv6_src key name reported instead of    | CSIT-402 | The report contains IPv6_src key name instead of     |
-|   | IPv6_dst.                                       |          | IPv6_dst when classify session is configured with    |
-|   |                                                 |          | IPv6 destination address. Anyhow the correct IPv6    |
-|   |                                                 |          | destination address is reported.                     |
-+---+-------------------------------------------------+----------+------------------------------------------------------+
-| 6 | IPv4 + VLAN: Processing of tagged frame does    | CSIT-564 | Dot1q tagged packets are thrown away in case of IPv4 |
-|   | not work with virtio driver.                    |          | routing on interface binded to virtio driver. Issue  |
-|   |                                                 |          | with VIRL test simulation environment.               |
-+---+-------------------------------------------------+----------+------------------------------------------------------+
-| 7 | Vhost-user: QEMU reconnect does not work.       | CSIT-565 | Using QEMU 2.5.0 that does not support vhost-user    |
+| 5 | Vhost-user: QEMU reconnect does not work.       | CSIT-565 | Using QEMU 2.5.0 that does not support vhost-user    |
 |   |                                                 |          | reconnect. It requires moving CSIT VIRL environment  |
 |   |                                                 |          | to QEMU 2.7.0.                                       |
 +---+-------------------------------------------------+----------+------------------------------------------------------+
-| 8 | Centos7: LISP and VXLAN sporadic test failures. | CSIT-566 | Observing sporadic crashes of DUT1 VM during LISP    |
+| 6 | Centos7: LISP and VXLAN sporadic test failures. | CSIT-566 | Observing sporadic crashes of DUT1 VM during LISP    |
 |   |                                                 |          | and VXLAN test executions, what leads to failure of  |
 |   |                                                 |          | all other tests in the suite. NOTE: After upgrading  |
 |   |                                                 |          | one of the VIRL servers host from Ubuntu14.04 to     |
@@ -70,4 +67,7 @@ Here is the list of known issues in CSIT |release| for VPP functional tests in V
 |   |                                                 |          | some test component. Currently suspecting            |
 |   |                                                 |          | environment or CSIT issue, but can not exclude VPP,  |
 |   |                                                 |          | further troubleshooting in progress.                 |
++---+-------------------------------------------------+----------+------------------------------------------------------+
+| 7 | IPSEC: Tests cover old crypto code path         |    --    | There are used default conf settings so IPSEC tests  |
+|   |                                                 |          | use old security code not the new Crypto SW code.    |
 +---+-------------------------------------------------+----------+------------------------------------------------------+
