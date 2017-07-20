@@ -143,6 +143,15 @@ then
         --output ${DIR[DTO,PERF,VPP]}/vpp_performance_operational_data.rst \
         --data "SH_RUN" --formatting rst --start 4 --level 2
 
+    blds=${JOB[PERF,VPP,BLD]}
+    for i in ${blds[@]}; do
+        unzip -o ${DIR[STATIC,ARCH]}/${JOB[PERF,VPP]}-${i}.zip -d ${DIR[WORKING]}/
+        ./run_robot_json_data.py \
+            --input ${DIR[WORKING]}/output.xml \
+            --output ${DIR[DTR,PERF,VPP,IMPRV]}/${JOB[PERF,VPP]}-${i}.json \
+            --vdevice ${i}
+    done
+
     # DPDK PERF
     unzip -o ${DIR[STATIC,ARCH]}/${JOB[PERF,DPDK]}-${JOB[PERF,DPDK,FBLD]}.zip -d ${DIR[WORKING]}/
     python run_robot_data.py -i ${DIR[WORKING]}/robot-plugin/output.xml \
@@ -170,6 +179,11 @@ then
         --output ${DIR[DTR,FUNC,NSHSFC]}/nshsfc_functional_results.rst \
         --formatting rst --start 5 --level 2
 fi
+
+# Generate tables for performance improvements
+./run_improvments_tables.py \
+    --input ${DIR[DTR,PERF,VPP,IMPRV]} \
+    --output ${DIR[DTR,PERF,VPP,IMPRV]}
 
 # Delete temporary json files
 find ${DIR[RST]} -name "*.json" -type f -delete
