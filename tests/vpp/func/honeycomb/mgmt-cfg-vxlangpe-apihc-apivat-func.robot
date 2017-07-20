@@ -44,14 +44,12 @@
 | Suite Setup | Set Up Honeycomb Functional Test Suite | ${node}
 | ...
 | Suite Teardown | Tear Down Honeycomb Functional Test Suite | ${node}
-| ...
-# Disabled due to VPP-875: Configuring VxLAN GPE tunnel crashes VPP
-#| Force Tags | HC_FUNC
 
 *** Test Cases ***
 | TC01: Honeycomb creates VxLAN GPE tunnel
 | | [Documentation] | Check if Honeycomb API can configure a VxLAN GPE tunnel.
 | | ...
+| | [Tags] | HC_FUNC
 | | Given interface Operational Data From Honeycomb Should Be empty
 | | ... | ${node} | ${vxlan_gpe_if1}
 | | And interface Operational Data From VAT Should Be empty
@@ -70,6 +68,7 @@
 | TC02: Honeycomb removes VxLAN GPE tunnel
 | | [Documentation] | Check if Honeycomb API can remove VxLAN GPE tunnel.
 | | ...
+| | [Tags] | HC_FUNC
 | | Given VxLAN GPE Operational Data From Honeycomb Should Be
 | | ... | ${node} | ${vxlan_gpe_if1}
 | | ... | ${vxlan_gpe_base_settings} | ${vxlan_gpe_settings}
@@ -86,6 +85,7 @@
 | | [Documentation] | Check if Honeycomb refuses to create a VxLAN GPE tunnel\
 | | ... | with a wrong interface type set.
 | | ...
+| | [Tags] | HC_FUNC
 | | Given interface Operational Data From Honeycomb Should Be empty
 | | ... | ${node} | ${vxlan_gpe_if2}
 | | And interface Operational Data From VAT Should Be empty
@@ -102,6 +102,7 @@
 | | [Documentation] | Check if Honeycomb refuses to create a VxLAN GPE tunnel\
 | | ... | with a wrong next-protocol set.
 | | ...
+| | [Tags] | HC_FUNC
 | | Given interface Operational Data From Honeycomb Should Be empty
 | | ... | ${node} | ${vxlan_gpe_if3}
 | | And interface Operational Data From VAT Should Be empty
@@ -119,6 +120,7 @@
 | | [Documentation] | Check if Honeycomb refuses to create a VxLAN GPE tunnel\
 | | ... | on existing interface with wrong type.
 | | ...
+| | [Tags] | HC_FUNC
 | | Given VxLAN GPE Operational Data From VAT Should Be empty
 | | ... | ${node}
 | | When Honeycomb fails to create VxLAN GPE interface
@@ -132,6 +134,8 @@
 | | [Documentation] | Check if Honeycomb API can configure a VxLAN GPE tunnel\
 | | ... | with IPv6 addresses.
 | | ...
+# Disabled due to VPP-875
+#| | [Tags] | HC_FUNC
 | | Given VxLAN GPE Operational Data From VAT Should Be empty
 | | ... | ${node}
 | | And VxLAN GPE Operational Data From Honeycomb Should Be empty
@@ -152,6 +156,8 @@
 | | [Documentation] | Check if Honeycomb API can configure another VxLAN\
 | | ... | GPE tunnel with IPv6 addresses.
 | | ...
+# Disabled due to VPP-875
+#| | [Tags] | HC_FUNC
 | | Given interface Operational Data From Honeycomb Should Be empty
 | | ... | ${node} | ${vxlan_gpe_if6}
 | | And interface Operational Data From VAT Should Be empty
