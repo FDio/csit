@@ -50,16 +50,23 @@ in VPP rls1704 with results listed in this report:
 - SPAN Test - Switched Port Analyzer packet mirroring.
 - GRE Tests - GRE tunnel tests.
 - SNAT Test Cases - SNAT44 tests.
+- Deterministic NAT Test Cases - Carrier Grade NAT tests.
+- NAT64 Test Cases - NAT64 static and dynamic translation tests.
 - L2XC Multi-instance - L2 cross-connect multi-instance tests.
 - IPv4 Tests - baseline FIB tests.
 - IPv4 FIB CRUD - add/update/delete IPv4 routes.
 - IRB Tests - Integrated Routing and Bridging tests.
-- ACL plugin tests.
+- ACL plugin - stateful and stateless security-groups access-control-lists.
 - MPLS Tests - MPLS baseline tests.
+- MPLS PIC edge convergence - prefix independent convergence tests for MPLS PE.
 - L2XC Tests - L2 cross-connect baseline tests incl. single- and dual-loop.
 - MFIB Unit Tests.
 - IP Multicast Tests - IPv4/IPv6 multicast replication, connected source check.
 - Classifier - classification with IP ACL, MAC ACL, IP PBR.
 - VXLAN Tests - baseline VXLAN tunneling.
+- VXLAN-GPE Test Cases - baseline VXLAN-GPE tunneling tests including multicast.
+- VTR Test Case - VLAN tag manipulation tests.
 - L2 FIB CRUD - add/update/delete L2 MAC entries.
 - L2BD Tests - L2 Bridge-Domain baseline tests incl. single- and dual-loop.
+- Flowprobe tests.
+- GTPU Test Cases - baseline GTPU tests.
