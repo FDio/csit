@@ -10,7 +10,7 @@ continuous execution delivered in CSIT |release|. A high-level overview is
 provided for each CSIT test environment running in Linux Foundation (LF) FD.io
 Continuous Performance Labs. This is followed by summary of all executed tests
 against the |vpp-release| and associated FD.io projects and sub-systems
-(HoneyComb, DPDK, NSH_SFC), CSIT |release| release notes, result highlights and
+(Honeycomb, DPDK, NSH_SFC), CSIT |release| release notes, result highlights and
 known issues discovered in CSIT. More detailed description of each environment,
 pointers to CSIT test code documentation and detailed test resuls with links to
 the source data files are also provided.
@@ -48,12 +48,19 @@ CSIT |release| report contains following main sections and sub-sections:
    added; *Test Environment* - environment description ; *Documentation* -
    source code documentation for VPP functional tests.
 
-#. **HoneyComb Functional Tests** - HoneyComb functional tests executed in
+#. **Honeycomb Functional Tests** - Honeycomb functional tests executed in
    virtual FD.io testbeds; *Overview* - tested virtual topologies, test
    coverage and naming specifics; *CSIT Release Notes* - changes in CSIT
    |release|, added tests, environment or methodology changes, known CSIT issues;
    *Test Environment* - environment description ;
    *Documentation* - source code documentation for Honeycomb functional tests.
+
+#. **Honeycomb Performance Tests** - Honeycomb performance tests executed in
+   physical FD.io testbeds; *Overview* - tested topologies, test
+   coverage and naming specifics; *CSIT Release Notes* - changes in CSIT
+   |release|, added tests, environment or methodology changes, known CSIT issues;
+   *Test Environment* - environment description ;
+   *Documentation* - source code documentation for Honeycomb performance tests.
 
 #. **VPP Unit Tests** - refers to VPP functional unit tests executed as
    part of vpp make test verify option within the FD.io VPP project; listed in
@@ -71,7 +78,7 @@ CSIT |release| report contains following main sections and sub-sections:
 #. **Detailed Test Results** - auto-generated results from CSIT jobs
    executions using CSIT Robot Framework output files as source data; *VPP
    Performance Results*, *DPDK Performance Results*, *VPP Functional
-   Results*, *HoneyComb Functional Results*, *VPPtest Functional Results*.
+   Results*, *Honeycomb Functional Results*, *VPPtest Functional Results*.
 
 #. **Test Configuration** - auto-generated DUT configuration data from CSIT jobs
    executions using CSIT Robot Framework output files as source data; *VPP

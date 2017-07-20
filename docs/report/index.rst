@@ -7,6 +7,7 @@ CSIT 17.07
     introduction/index
     vpp_performance_tests/index
     dpdk_performance_tests/index
+    honeycomb_performance_tests/index
     vpp_functional_tests/index
     honeycomb_functional_tests/index
     vpp_unit_tests/index

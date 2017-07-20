@@ -1,5 +1,5 @@
-Honeycomb Functional Tests
-==========================
+Honeycomb Performance Tests
+===========================
 
 .. toctree::
 
@@ -7,4 +7,5 @@ Honeycomb Functional Tests
     csit_release_notes
     test_environment
     documentation
+    test_result_data
 

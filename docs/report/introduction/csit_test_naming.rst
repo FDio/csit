@@ -11,7 +11,7 @@ The naming should be intuitive for majority of the tests. Complete
 description of CSIT test naming convention is provided on
 `CSIT test naming wiki page <https://wiki.fd.io/view/CSIT/csit-test-naming>`_.
 Below few illustrative examples of the naming usage for test suites across CSIT
-performance, functional and HoneyComb management test areas.
+performance, functional and Honeycomb management test areas.
 
 Naming Convention
 -----------------
@@ -106,13 +106,13 @@ topologies:
    * *mgmt-cfg-lisp-apivat-func* => configuration of LISP with VAT API calls,
      functional tests.
    * *mgmt-cfg-l2bd-apihc-apivat-func* => configuration of L2 Bridge-Domain with
-     HoneyComb API and VAT API calls, functional tests.
+     Honeycomb API and VAT API calls, functional tests.
    * *mgmt-oper-int-apihcnc-func* => reading status and operational data of
-     interface with HoneyComb NetConf API calls, functional tests.
+     interface with Honeycomb NetConf API calls, functional tests.
    * *mgmt-cfg-int-tap-apihcnc-func* => configuration of tap interfaces with
-     HoneyComb NetConf API calls, functional tests.
+     Honeycomb NetConf API calls, functional tests.
    * *mgmt-notif-int-subint-apihcnc-func* => notifications of interface and
-     sub-interface events with HoneyComb NetConf Notifications, functional tests.
+     sub-interface events with Honeycomb NetConf Notifications, functional tests.
 
 For complete description of CSIT test naming convention please refer to `CSIT
 test naming wiki page <https://wiki.fd.io/view/CSIT/csit-test-naming>`_.
