@@ -13,7 +13,6 @@
 
 *** Settings ***
 | Resource | resources/libraries/robot/performance/performance_setup.robot
-| Library | resources.libraries.python.Classify.Classify
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRCHK
 | ... | NIC_Intel-X520-DA2 | ETH | IP6FWD | FEATURE | IACLDST
