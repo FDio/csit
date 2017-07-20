@@ -6,9 +6,24 @@ VIRL testbed infrastructure consists of three identical VIRL hosts:
 
 - All hosts are Cisco UCS C240-M4 (2x Intel(R) Xeon(R) CPU E5-2699 v3 @2.30GHz,
   18c, 512GB RAM)
-- Hosts run Ubuntu 14.04.3
-- VIRL software versions:
+- tb4-virl1:
 
+  - Status: Production
+  - OS: Ubuntu 16.04.2
+  - STD server version 0.10.32.16
+  - UWM server version 0.10.32.16
+
+- tb4-virl2:
+
+  - Status: Production
+  - OS: Ubuntu 16.04.2
+  - STD server version 0.10.32.16
+  - UWM server version 0.10.32.16
+
+- tb4-virl3:
+
+  - Status: Production
+  - OS: Ubuntu 14.04.3
   - STD server version 0.10.24.7
   - UWM server version 0.10.24.7
 

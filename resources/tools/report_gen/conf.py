@@ -76,7 +76,10 @@ rst_epilog = """
 .. _CSIT NSH_SFC Functional Tests Documentation: https://docs.fd.io/csit/rls1707/doc/tests.nsh_sfc.func.html
 .. _VPP test framework documentation: https://docs.fd.io/vpp/17.07/vpp_make_test/html/
 .. _FD.io test executor vpp performance jobs: https://jenkins.fd.io/view/csit/job/csit-vpp-perf-1707-all
+.. _FD.io test executor vpp functional jobs: https://jenkins.fd.io/view/csit/job/csit-vpp-functional-1707-ubuntu1604-virl/lastSuccessfulBuild
 .. _FD.io test executor dpdk performance jobs: https://jenkins.fd.io/view/csit/job/csit-dpdk-perf-1707-all
+.. _FD.io test executor HoneyComb functional jobs: https://jenkins.fd.io/view/csit/job/hc2vpp-csit-integration-1707-ubuntu1604/lastSuccessfulBuild
+.. _FD.io test executor NSH_SFC functional jobs: https://jenkins.fd.io/view/csit/job/csit-nsh_sfc-verify-func-1707-ubuntu1604-virl/lastSuccessfulBuild
 .. _FD.io VPP compile job: https://jenkins.fd.io/view/vpp/job/vpp-merge-1707-ubuntu1604/
 .. _FD.io VPP compile job: https://jenkins.fd.io/view/vpp/job/vpp-merge-1707-ubuntu1604/
 .. _CSIT Testbed Setup: https://git.fd.io/csit/tree/resources/tools/testbed-setup/README.md?h=rls1707
