@@ -4,8 +4,7 @@ VPP Performance Operational Data
 .. note::
 
     Data sources for reported test results: i) FD.io test executor jobs
-    `###JOB###
-    <###LINK###>`_
+    `FD.io test executor vpp performance jobs`_
     , ii) archived FD.io jobs test result `output files
     <../../_static/archive/>`_.
 
