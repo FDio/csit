@@ -55,6 +55,13 @@ CSIT |release| report contains following main sections and sub-sections:
    *Test Environment* - environment description ;
    *Documentation* - source code documentation for Honeycomb functional tests.
 
+#. **HoneyComb Performance Tests** - HoneyComb performance tests executed in
+   physical FD.io testbeds; *Overview* - tested topologies, test
+   coverage and naming specifics; *CSIT Release Notes* - changes in CSIT
+   |release|, added tests, environment or methodology changes, known CSIT issues;
+   *Test Environment* - environment description ;
+   *Documentation* - source code documentation for Honeycomb performance tests.
+
 #. **VPP Unit Tests** - refers to VPP functional unit tests executed as
    part of vpp make test verify option within the FD.io VPP project; listed in
    this report to give a more complete view about executed VPP functional tests;
