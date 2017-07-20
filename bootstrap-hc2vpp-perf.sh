@@ -103,7 +103,7 @@ fi
 # run full performance test suite and exit on fail
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
-              -s "tests.perf.honeycomb" \
+              -s "tests.vpp.perf.honeycomb" \
               --variable install_dir:${INSTALLATION_DIR} \
               tests/
         RETURN_STATUS=$(echo $?)
