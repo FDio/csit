@@ -1,0 +1,8 @@
+tests.vpp.perf.ip6.10ge2p1x520-ethip6-ip6base-ndrpdrdisc.tc01-78b-1t1c-ethip6-ip6base-ndrdisc,IPv6,10ge2p1x520: 78B-1t1c-ethip6-ip6base-ndrdisc,3.0,7.3,8.1
+tests.vpp.perf.ip6.10ge2p1x520-ethip6-ip6base-copwhtlistbase-ndrpdrdisc.tc01-78b-1t1c-ethip6-ip6base-copwhtlistbase-ndrdisc,IPv6 COP,10ge2p1x520: 78B-1t1c-ethip6-ip6base-copwhtlistbase-ndrdisc,6.1,6.1,6.9
+tests.vpp.perf.ip6.10ge2p1x520-ethip6-ip6base-iacldstbase-ndrpdrdisc.tc01-78b-1t1c-ethip6-ip6base-iacldstbase-ndrdisc,IPv6 iAcl,10ge2p1x520: 78B-1t1c-ethip6-ip6base-iacldstbase-ndrdisc,6.5,6.1,6.9
+tests.vpp.perf.ip6.10ge2p1x520-ethip6-ip6scale2m-ndrpdrdisc.tc01-78b-1t1c-ethip6-ip6scale2m-ndrdisc,IPv6 FIB 2M,10ge2p1x520: 78B-1t1c-ethip6-ip6scale2m-ndrdisc,5.3,4.2,4.6
+tests.vpp.perf.l2.40ge2p1xl710-eth-l2xcbase-ndrpdrdisc.tc01-64b-1t1c-eth-l2xcbase-ndrdisc,L2XC,10ge2p1xl710: 64B-1t1c-eth-l2xcbase-ndrdisc,9.5,12.2,12.4
+tests.vpp.perf.ip4.10ge2p1x520-ethip4-ip4base-copwhtlistbase-ndrpdrdisc.tc01-64b-1t1c-ethip4-ip4base-copwhtlistbase-ndrdisc,IPv4 COP,10ge2p1x520: 64B-1t1c-ethip4-ip4base-copwhtlistbase-ndrdisc,7.1,8.3,9.0
+tests.vpp.perf.ip4.10ge2p1x520-ethip4-ip4scale2m-ndrpdrdisc.tc01-64b-1t1c-ethip4-ip4scale2m-ndrdisc,IPv4 FIB 2M,10ge2p1x520: 64B-1t1c-ethip4-ip4scale2m-ndrdisc,8.5,7.8,8.1
+tests.vpp.perf.ip6.10ge2p1x520-ethip6-ip6scale20k-ndrpdrdisc.tc01-78b-1t1c-ethip6-ip6scale20k-ndrdisc,IPv6 FIB 20k,10ge2p1x520: 78B-1t1c-ethip6-ip6scale20k-ndrdisc,6.9,6.5,6.9
