@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a51691d_1a863fba",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 79,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-07-20T05:39:57Z",
+      "side": 1,
+      "message": "Wrong indentation -1 space char to align with upper level start of text.",
+      "range": {
+        "startLine": 79,
+        "startChar": 5,
+        "endLine": 79,
+        "endChar": 6
+      },
+      "revId": "73083a4381e1d3ffed4c7b532ba3848e8e34b22e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a51691d_fa9243f5",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-07-20T05:39:57Z",
+      "side": 1,
+      "message": "Wrong indentation -1 space char to align with upper level start of text.",
+      "range": {
+        "startLine": 83,
+        "startChar": 5,
+        "endLine": 83,
+        "endChar": 6
+      },
+      "revId": "73083a4381e1d3ffed4c7b532ba3848e8e34b22e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a51691d_da8f87cb",
+        "filename": "docs/report/vpp_performance_tests/csit_release_notes.rst",
+        "patchSetId": 2
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-07-20T05:39:57Z",
+      "side": 1,
+      "message": "I think we should rewrite this as per our latest discussion with Tibor and introduce of statistical samples per release and trending across releases.",
+      "range": {
+        "startLine": 88,
+        "startChar": 0,
+        "endLine": 92,
+        "endChar": 59
+      },
+      "revId": "73083a4381e1d3ffed4c7b532ba3848e8e34b22e",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
