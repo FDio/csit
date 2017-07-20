@@ -13,7 +13,6 @@
 
 *** Settings ***
 | Resource | resources/libraries/robot/performance/performance_setup.robot
-| Library | resources.libraries.python.Classify.Classify
 | Library | resources.libraries.python.IPv4Setup.Dut | ${nodes['DUT1']}
 | ... | WITH NAME | dut1_v4
 | Library | resources.libraries.python.IPv4Setup.Dut | ${nodes['DUT2']}

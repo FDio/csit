@@ -13,7 +13,6 @@
 
 *** Settings ***
 | Resource | resources/libraries/robot/performance/performance_setup.robot
-| Library | resources.libraries.python.Classify
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDRDISC
 | ... | NIC_Intel-X520-DA2 | ETH | IP4FWD | FEATURE | ACL | ACL_STATELESS
 | ... | IACL | ACL1 | 10k_FLOWS
@@ -23,8 +22,9 @@
 | Suite Teardown | Tear down 3-node performance topology
 | ...
 | Test Setup | Set up performance test
-| Test Teardown | Tear down performance test with ACL | ${min_rate}pps
-| ... | ${framesize} | ${traffic_profile}
+| ...
+| Test Teardown | Tear down performance test with ACL
+| ... | ${min_rate}pps | ${framesize} | ${traffic_profile}
 | ...
 | Documentation | *RFC2544: Packet throughput IPv4 test cases with ACL*
 | ...
