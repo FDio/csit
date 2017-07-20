@@ -85,7 +85,7 @@ A brief bottom-up description is provided here:
    - Functional tests using VIRL environment:
 
      - VPP;
-     - HoneyComb;
+     - Honeycomb;
      - NSH_SFC;
 
    - Performance tests using physical testbed environment:

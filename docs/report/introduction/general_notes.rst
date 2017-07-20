@@ -36,8 +36,13 @@ is listed separately, as follows:
    vNIC-to-VM-to-vNIC forwarding topologies. Scapy is used as a traffic
    generator.
 
-#. **HoneyComb Functional Tests** - HoneyComb functional tests are executed in
-   virtual FD.io testbeds focusing on HoneyComb management and programming
+#. **Honeycomb Functional Tests** - Honeycomb functional tests are executed in
+   virtual FD.io testbeds, focusing on Honeycomb management and programming
+   functionality of VPP. Tests cover a range of CRUD operations executed
+   against VPP.
+
+#. **Honeycomb Performance Tests** - Honeycomb performance tests are executed in
+   physical FD.io testbeds, focusing on the performance of Honeycomb management and programming
    functionality of VPP. Tests cover a range of CRUD operations executed
    against VPP.
 
