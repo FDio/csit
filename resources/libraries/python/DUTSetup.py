@@ -106,7 +106,7 @@ class DUTSetup(object):
 
         :param node: DUT node.
         :type node: dict
-        :return: PID
+        :returns: PID
         :rtype: int
         :raises RuntimeError if it is not possible to get the PID.
         """
@@ -132,7 +132,7 @@ class DUTSetup(object):
             else:
                 logger.debug("More then one VPP PID found on node {0}".
                              format(node['host']))
-                ret_list = ()
+                ret_list = list()
                 for line in stdout.splitlines():
                     ret_list.append(int(line))
                 return ret_list
@@ -145,7 +145,7 @@ class DUTSetup(object):
 
         :param nodes: DUT nodes.
         :type nodes: dict
-        :return: PIDs
+        :returns: PIDs
         :rtype: dict
         """
 
@@ -186,8 +186,8 @@ class DUTSetup(object):
         ssh.connect(node)
 
         cryptodev = Topology.get_cryptodev(node)
-        cmd = 'cat /sys/bus/pci/devices/{}/sriov_numvfs'.format(
-            cryptodev.replace(':', r'\:'))
+        cmd = 'cat /sys/bus/pci/devices/{}/sriov_numvfs'.\
+            format(cryptodev.replace(':', r'\:'))
 
         # Try to read number of VFs from PCI address of QAT device
         for _ in range(3):
@@ -196,8 +196,8 @@ class DUTSetup(object):
                 try:
                     sriov_numvfs = int(stdout)
                 except ValueError:
-                    logger.trace('Reading sriov_numvfs info failed on: {}'\
-                        .format(node['host']))
+                    logger.trace('Reading sriov_numvfs info failed on: {}'.
+                                 format(node['host']))
                 else:
                     if sriov_numvfs != numvfs:
                         if force_init:
@@ -205,9 +205,10 @@ class DUTSetup(object):
                             # with numvfs
                             DUTSetup.crypto_device_init(node, numvfs)
                         else:
-                            raise RuntimeError('QAT device {} is not '\
-                                'initialized to {} on host: {}'.format(\
-                                cryptodev, numvfs, node['host']))
+                            raise RuntimeError('QAT device {} is not '
+                                               'initialized to {} on host: {}'.
+                                               format(cryptodev, numvfs,
+                                                      node['host']))
                     break
 
     @staticmethod
@@ -314,8 +315,8 @@ class DUTSetup(object):
                 # Module is not loaded and we want to load it
                 DUTSetup.kernel_module_load(node, module)
             else:
-                raise RuntimeError('Kernel module {} is not loaded on host: '\
-                    '{}'.format(module, node['host']))
+                raise RuntimeError('Kernel module {} is not loaded on host: {}'.
+                                   format(module, node['host']))
 
     @staticmethod
     def kernel_module_load(node, module):
@@ -335,5 +336,5 @@ class DUTSetup(object):
         ret_code, _, _ = ssh.exec_command_sudo("modprobe {}".format(module))
 
         if int(ret_code) != 0:
-            raise RuntimeError('Failed to load {} kernel module on host: '\
-                '{}'.format(module, node['host']))
+            raise RuntimeError('Failed to load {} kernel module on host: {}'.
+                               format(module, node['host']))

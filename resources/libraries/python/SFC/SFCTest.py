@@ -20,11 +20,12 @@ from resources.libraries.python.ssh import SSH
 from resources.libraries.python.constants import Constants as con
 from resources.libraries.python.topology import Topology
 
+
 class SFCTest(object):
     """Configure and Start the NSH SFC functional tests."""
 
     @staticmethod
-    def config_and_start_SFC_test(dut_node, dut_if1, dut_if2, if1_adj_mac,
+    def config_and_start_sfc_test(dut_node, dut_if1, dut_if2, if1_adj_mac,
                                   if2_adj_mac, testtype):
         """
         Start the SFC functional on the dut_node.
@@ -61,9 +62,9 @@ class SFCTest(object):
         else:
             exec_shell = "set_sfc_sff.sh"
 
-        cmd = 'cd {0}/tests/nsh_sfc/sfc_scripts/ && sudo ./{1} {2} ' \
-             '{3} {4} {5}'.format(con.REMOTE_FW_DIR, exec_shell, vpp_intf_name1,
-                               vpp_intf_name2, if1_adj_mac, if2_adj_mac)
+        cmd = 'cd {0}/tests/nsh_sfc/sfc_scripts/ && sudo ./{1} {2} {3} {4} ' \
+              '{5}'.format(con.REMOTE_FW_DIR, exec_shell, vpp_intf_name1,
+                           vpp_intf_name2, if1_adj_mac, if2_adj_mac)
 
         (ret_code, _, _) = ssh.exec_command(cmd, timeout=600)
         if ret_code != 0:
