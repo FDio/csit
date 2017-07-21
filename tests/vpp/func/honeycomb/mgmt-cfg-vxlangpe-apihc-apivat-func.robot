@@ -46,7 +46,7 @@
 | Suite Teardown | Tear Down Honeycomb Functional Test Suite | ${node}
 | ...
 # Disabled due to VPP-875: Configuring VxLAN GPE tunnel crashes VPP
-#| Force Tags | HC_FUNC
+#| Force Tags |
 
 *** Test Cases ***
 | TC01: Honeycomb creates VxLAN GPE tunnel

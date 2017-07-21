@@ -40,7 +40,7 @@ class Performance(object):
         replace = '\\"netconf-netty-threads\\": {0},'.format(threads)
 
         argument = '"/{0}/c\\ {1}"'.format(find, replace)
-        path = "{0}/config/honeycomb.json".format(Const.REMOTE_HC_DIR)
+        path = "{0}/config/netconf.json".format(Const.REMOTE_HC_DIR)
         command = "sed -i {0} {1}".format(argument, path)
 
         ssh = SSH()

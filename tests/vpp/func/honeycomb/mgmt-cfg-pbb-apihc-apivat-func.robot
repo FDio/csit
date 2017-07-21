@@ -26,7 +26,7 @@
 | ...
 | Suite Teardown | Tear Down Honeycomb Functional Test Suite | ${node}
 | ...
-| Force Tags | HC_FUNC
+| Force Tags |
 
 *** Test Cases ***
 # TODO: add verifications once operational data or VPP dump is available.

@@ -255,7 +255,7 @@ class HoneycombSetup(object):
             replace = '\\"restconf-binding-address\\": \\"0.0.0.0\\",'
 
         argument = '"/{0}/c\\ {1}"'.format(find, replace)
-        path = "{0}/config/honeycomb.json".format(Const.REMOTE_HC_DIR)
+        path = "{0}/config/restconf.json".format(Const.REMOTE_HC_DIR)
         command = "sed -i {0} {1}".format(argument, path)
 
         ssh = SSH()

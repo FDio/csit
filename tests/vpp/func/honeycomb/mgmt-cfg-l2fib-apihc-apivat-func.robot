@@ -26,7 +26,7 @@
 | ...
 | Suite Teardown | Tear Down Honeycomb Functional Test Suite | ${node}
 | ...
-| Force tags | HC_FUNC
+| Force tags |
 
 *** Variables ***
 # Interface to run tests on.
