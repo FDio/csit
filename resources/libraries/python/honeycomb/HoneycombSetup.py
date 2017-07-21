@@ -573,8 +573,7 @@ class HoneycombSetup(object):
             "odl_client/odl_netconf_connector")
 
         try:
-            status_code, _ = HTTPRequest.get(node, path, timeout=10,
-                                             enable_logging=False)
+            HTTPRequest.get(node, path, timeout=10, enable_logging=False)
             raise HoneycombError("ODL client is still running.")
         except HTTPRequestError:
             logger.debug("Connection refused, checking process state....")
@@ -714,8 +713,8 @@ class HoneycombStartupConfig(object):
         self.ssh.connect(node)
         cmd = "echo '{config}' > /tmp/honeycomb " \
               "&& chmod +x /tmp/honeycomb " \
-              "&& sudo mv -f /tmp/honeycomb /opt/honeycomb".format(
-                config=self.config)
+              "&& sudo mv -f /tmp/honeycomb /opt/honeycomb".\
+            format(config=self.config)
         self.ssh.exec_command(cmd)
 
     def set_cpu_scheduler(self, scheduler="FIFO"):
