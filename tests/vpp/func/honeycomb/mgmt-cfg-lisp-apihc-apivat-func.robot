@@ -34,7 +34,7 @@
 | ...
 | Suite Teardown | Tear Down Honeycomb Functional Test Suite | ${node}
 | ...
-| Force Tags | HC_FUNC
+| Force Tags |
 
 *** Test Cases ***
 | TC01: Honeycomb enables LISP feature

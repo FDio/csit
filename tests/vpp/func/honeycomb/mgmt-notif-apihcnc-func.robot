@@ -31,7 +31,7 @@
 | ...
 | Suite Teardown | Tear Down Honeycomb Functional Test Suite | ${node}
 | ...
-| Force Tags | HC_FUNC
+| Force Tags |
 
 *** Test Cases ***
 | TC01: Honeycomb sends notification on interface state change

@@ -25,7 +25,7 @@
 | ... | local0
 | Variables | resources/test_data/honeycomb/sub_interfaces.py
 | ...
-| Force Tags | HC_FUNC
+| Force Tags |
 | ...
 | Suite Setup | Run Keywords
 | ... | Set Up Honeycomb Functional Test Suite | ${node} | AND
