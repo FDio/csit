@@ -375,7 +375,7 @@ class InterfaceUtil(object):
                 if name == 'Driver:':
                     return value if value else None
         else:
-            raise RuntimeError('Get interface driver for: {0}'\
+            raise RuntimeError('Get interface driver for: {0}'
                                .format(pci_addr))
 
     @staticmethod

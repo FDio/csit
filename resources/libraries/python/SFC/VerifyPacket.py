@@ -20,11 +20,9 @@ import ipaddress
 
 from scapy.layers.inet import IP, UDP
 from scapy.all import Raw
-from resources.libraries.python.constants import Constants as con
 from resources.libraries.python.SFC.SFCConstants import SFCConstants as sfccon
 from resources.libraries.python.SFC.TunnelProtocol import VxLAN, VxLANGPE, NSH
 
-from robot.api import logger
 
 def valid_ipv4(ipaddr):
     """Check if IP address has the correct IPv4 address format.
@@ -185,9 +183,9 @@ class VerifyPacket(object):
 
         recv_pkt_len = len(ether)
         if recv_pkt_len != expect_pkt_len:
-            raise RuntimeError("Received packet size {0} not " \
-                               "the expect size {1}".format(recv_pkt_len, \
-                               expect_pkt_len))
+            raise RuntimeError("Received packet size {0} not "
+                               "the expect size {1}".format(recv_pkt_len,
+                                                            expect_pkt_len))
 
         if not ether.haslayer(IP):
             raise RuntimeError("Not a IPv4 packet")
