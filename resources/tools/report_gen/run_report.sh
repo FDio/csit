@@ -152,10 +152,10 @@ then
     # VPP FUNC
     unzip -o ${DIR[STATIC,ARCH]}/${JOB[FUNC,VPP]}-${JOB[FUNC,VPP,BLD]}.zip -d ${DIR[WORKING]}/
     python run_robot_data.py -i ${DIR[WORKING]}/robot-plugin/output.xml \
-        --output ${DIR[DTR,FUNC,VPP}/vpp_functional_results.rst \
+        --output ${DIR[DTR,FUNC,VPP]}/vpp_functional_results.rst \
         --formatting rst --start 5 --level 2
     python run_robot_teardown_data.py -i ${DIR[WORKING]}/robot-plugin/output.xml \
-        --output ${DIR[DTC,FUNC,VPP}/vpp_functional_configuration.rst \
+        --output ${DIR[DTC,FUNC,VPP]}/vpp_functional_configuration.rst \
         --data "VAT_H" --formatting rst --start 5 --level 2
 
     # HC FUNC
