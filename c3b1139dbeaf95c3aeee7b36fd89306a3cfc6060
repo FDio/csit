@@ -1,0 +1,119 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a51691d_e3c73a63",
+        "filename": "docs/report/vpp_functional_tests/csit_release_notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-07-21T05:17:01Z",
+      "side": 1,
+      "message": ";",
+      "range": {
+        "startLine": 11,
+        "startChar": 36,
+        "endLine": 11,
+        "endChar": 37
+      },
+      "revId": "c3b1139dbeaf95c3aeee7b36fd89306a3cfc6060",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a51691d_03cb7673",
+        "filename": "docs/report/vpp_functional_tests/csit_release_notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-07-21T05:17:01Z",
+      "side": 1,
+      "message": ";",
+      "range": {
+        "startLine": 13,
+        "startChar": 29,
+        "endLine": 13,
+        "endChar": 30
+      },
+      "revId": "c3b1139dbeaf95c3aeee7b36fd89306a3cfc6060",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a51691d_23ce7284",
+        "filename": "docs/report/vpp_functional_tests/csit_release_notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 15,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-07-21T05:17:01Z",
+      "side": 1,
+      "message": ";",
+      "range": {
+        "startLine": 15,
+        "startChar": 54,
+        "endLine": 15,
+        "endChar": 55
+      },
+      "revId": "c3b1139dbeaf95c3aeee7b36fd89306a3cfc6060",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a51691d_43b96ee8",
+        "filename": "docs/report/vpp_functional_tests/csit_release_notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 18,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-07-21T05:17:01Z",
+      "side": 1,
+      "message": ";",
+      "range": {
+        "startLine": 18,
+        "startChar": 47,
+        "endLine": 18,
+        "endChar": 48
+      },
+      "revId": "c3b1139dbeaf95c3aeee7b36fd89306a3cfc6060",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a51691d_63b46af2",
+        "filename": "docs/report/vpp_functional_tests/csit_release_notes.rst",
+        "patchSetId": 1
+      },
+      "lineNbr": 24,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-07-21T05:17:01Z",
+      "side": 1,
+      "message": ";",
+      "range": {
+        "startLine": 24,
+        "startChar": 81,
+        "endLine": 24,
+        "endChar": 82
+      },
+      "revId": "c3b1139dbeaf95c3aeee7b36fd89306a3cfc6060",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
