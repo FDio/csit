@@ -94,13 +94,13 @@ cp ${DIR[PLOT,DPDK]}/* ${DIR[STATIC,TREND]}
 ### FUNCTIONAL SOURCE DATA
 
 #if [[ ${DEBUG} -eq 1 ]] ;
-#    cp ./${JOB[FUNC,DPDK]}-${JOB[FUNC,VPP,BLD]}.zip ${DIR[STATIC,ARCH]}/${JOB[FUNC,DPDK]}-${JOB[FUNC,VPP,BLD]}.zip
+#    cp ./${JOB[FUNC,VPP]}-${JOB[FUNC,VPP,BLD]}.zip ${DIR[STATIC,ARCH]}/${JOB[FUNC,VPP]}-${JOB[FUNC,VPP,BLD]}.zip
 #fi
 
 if [[ ${DEBUG} -eq 0 ]] ;
 then
-    curl --fail --silent ${URL[JENKINS,CSIT]}/${JOB[FUNC,DPDK]}/${JOB[FUNC,VPP,BLD]}/robot/report/\*zip\*/robot-plugin.zip \
-        --output ${DIR[STATIC,ARCH]}/${JOB[FUNC,DPDK]}-${JOB[FUNC,VPP,BLD]}.zip
+    curl --fail --silent ${URL[JENKINS,CSIT]}/${JOB[FUNC,VPP]}/${JOB[FUNC,VPP,BLD]}/robot/report/\*zip\*/robot-plugin.zip \
+        --output ${DIR[STATIC,ARCH]}/${JOB[FUNC,VPP]}-${JOB[FUNC,VPP,BLD]}.zip
 fi
 
 ### HONEYCOMB SOURCE DATA
@@ -144,18 +144,18 @@ then
         --data "SH_RUN" --formatting rst --start 4 --level 2
 
     # DPDK PERF
-    unzip -o ${DIR[STATIC,ARCH]}/${JOB[PERF,DPDK]}-${JOB[PERF,DPDK,FBLD]}.zip -d ${DIR[STATIC,ARCH]}/
+    unzip -o ${DIR[STATIC,ARCH]}/${JOB[PERF,DPDK]}-${JOB[PERF,DPDK,FBLD]}.zip -d ${DIR[WORKING]}/
     python run_robot_data.py -i ${DIR[WORKING]}/robot-plugin/output.xml \
         --output ${DIR[DTR,PERF,DPDK]}/dpdk_performance_results.rst \
         --formatting rst --start 4 --level 2
 
     # VPP FUNC
-    unzip -o ${DIR[STATIC,ARCH]}/${JOB[FUNC,DPDK]}-${JOB[FUNC,VPP,BLD]}.zip -d ${DIR[WORKING]}/
+    unzip -o ${DIR[STATIC,ARCH]}/${JOB[FUNC,VPP]}-${JOB[FUNC,VPP,BLD]}.zip -d ${DIR[WORKING]}/
     python run_robot_data.py -i ${DIR[WORKING]}/robot-plugin/output.xml \
         --output ${DIR[DTR,FUNC,VPP}/vpp_functional_results.rst \
         --formatting rst --start 5 --level 2
     python run_robot_teardown_data.py -i ${DIR[WORKING]}/robot-plugin/output.xml \
-        --output ${DIR[DTR,FUNC,VPP}/vpp_functional_configuration.rst \
+        --output ${DIR[DTC,FUNC,VPP}/vpp_functional_configuration.rst \
         --data "VAT_H" --formatting rst --start 5 --level 2
 
     # HC FUNC
