@@ -26,83 +26,118 @@ including CSIT framework is depicted in the figure below.
 
 A brief bottom-up description is provided here:
 
-#. SUTs, DUTs, TGs
+TESTBEDS
+~~~~~~~~
 
-   - SUTs - Systems Under Test;
-   - DUTs - Devices Under Test;
-   - TGs - Traffic Generators;
+.. figure:: csit_design-1.png
+   :alt: FD.io CSIT system Testbeds
+   :align: center
 
-#. Level-1 libraries - Robot and Python
+* *SUTs* - Systems Under Test; a system under test is a running operating
+  system running a DUT. A SUT may be a physical server, a virtual
+  machine...
+* *DUTs* - Devices Under Test; a device under test is a process or a set
+  of processes running inside a system;
+* *TGs* - Traffic Generators; a traffic generator is a system running a
+  process responsible for generating traffic stimulating a DUT;
 
-   - Lowest level CSIT libraries abstracting underlying test environment, SUT,
-     DUT and TG specifics;
-   - Used commonly across multiple L2 KWs;
-   - Performance and functional tests:
+CSIT FRAMEWORK
+~~~~~~~~~~~~~~
 
-     - L1 KWs (KeyWords) are implemented as RF libraries and Python
-       libraries;
+#. Level-1 libraries - Robot and Python:
 
-   - Performance TG L1 KWs:
+  .. figure:: csit_design-2.png
+     :alt: FD.io CSIT system Level 1
+     :align: center
+				   
+  - Lowest level CSIT libraries abstracting underlying test environment, SUT,
+    DUT and TG specifics;
+  - Used commonly across multiple L2 KWs;
+  - Performance and functional tests:
+   
+    - L1 KWs (KeyWords) are implemented as RF libraries and Python libraries;
+     
+  - Performance TG L1 KWs:
+   
+    - All L1 KWs are implemented as Python libraries:
+     
+      - Support for TRex only today;
+      - CSIT IXIA drivers in progress;
 
-     - All L1 KWs are implemented as Python libraries:
 
-       - Support for TRex only today;
-       - CSIT IXIA drivers in progress;
+  - Performance data plane traffic profiles:
 
-   - Performance data plane traffic profiles:
+    .. figure:: csit_design-4.png
+       :alt: FD.io CSIT system Level 1 TG
+       :align: center
 
-     - TG-specific stream profiles provide full control of:
+    - TG-specific stream profiles provide full control of:
+    
+      - Packet definition – layers, MACs, IPs, ports, combinations thereof 
+	e.g. IPs and UDP ports;
+      - Stream definitions - different streams can run together, delayed, 
+	one after each other;
+      - Stream profiles are independent of CSIT framework and can be used
+        in any T-rex setup, can be sent anywhere to repeat tests with 
+        exactly the same setup; 
+      - Easily extensible – one can create a new stream profile that meets 
+        tests requirements;
+      - Same stream profile can be used for different tests with the same 
+        traffic needs;
 
-       - Packet definition – layers, MACs, IPs, ports, combinations thereof
-         e.g. IPs and UDP ports;
-       - Stream definitions - different streams can run together, delayed,
-         one after each other;
-       - Stream profiles are independent of CSIT framework and can be used
-         in any T-rex setup, can be sent anywhere to repeat tests with
-         exactly the same setup;
-       - Easily extensible – one can create a new stream profile that meets
-         tests requirements;
-       - Same stream profile can be used for different tests with the same
-         traffic needs;
-
-   - Functional data plane traffic scripts:
-
-     - Scapy specific traffic scripts;
+  - Functional data plane traffic scripts:
+    
+    .. figure:: csit_design-5.png
+       :alt: FD.io CSIT system Level 1 Scapy
+       :align: center
+    
+    - Scapy specific traffic scripts;
 
 #. Level-2 libraries - Robot resource files:
+   
+  .. figure:: csit_design-3.png
+     :alt: FD.io CSIT system Level 2
+     :align: center
+	     
+  - Higher level CSIT libraries abstracting required functions for executing tests;
+  - L2 KWs are classified into the following functional categories:
+    
+    - Configuration, test, verification, state report;
+    - Suite setup, suite teardown;
+    - Test setup, test teardown;
 
-   - Higher level CSIT libraries abstracting required functions for executing
-     tests;
-   - L2 KWs are classified into the following functional categories:
+CSIT TESTS
+~~~~~~~~~~
 
-     - Configuration, test, verification, state report;
-     - Suite setup, suite teardown;
-     - Test setup, test teardown;
+- Tests - Robot:
 
-#. Tests - Robot:
+   .. figure:: csit_design-6.png
+      :alt: FD.io CSIT system Tests
+      :align: center
+	     
+  - Test suites with test cases;
+  - Functional tests using VIRL environment:
 
-   - Test suites with test cases;
-   - Functional tests using VIRL environment:
+    - VPP;
+    - HoneyComb;
+    - NSH_SFC;
 
-     - VPP;
-     - HoneyComb;
-     - NSH_SFC;
+  - Performance tests using physical testbed environment:
 
-   - Performance tests using physical testbed environment:
+    - VPP;
+    - DPDK-Testpmd;
+    - DPDK-L3Fwd;
 
-     - VPP;
-     - DPDK-Testpmd;
-     - DPDK-L3Fwd;
+- Tools:
 
-   - Tools:
+  .. figure:: csit_design-7.png
+     :alt: FD.io CSIT system Tools
+     :align: center
 
-     - Documentation generator;
-     - Report generator;
-     - Testbed environment setup ansible playbooks;
-     - Operational debugging scripts;
-
-Test Lifecycle Abstraction
---------------------------
+  - Documentation generator;
+  - Report generator;
+  - Testbed environment setup ansible playbooks;
+  - Operational debugging scripts;
 
 A well coded test must follow a disciplined abstraction of the test
 lifecycles that includes setup, configuration, test and verification. In
