@@ -117,7 +117,7 @@
 | | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 10kpps, LT=0.5%.
 | | ...
-| | [Tags] | 64B | 1T1C | STHREAD | PDRDISC  | SKIP_PATCH
+| | [Tags] | 64B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for L2 Bridge Domain with ACLs
 | | wt=1 | rxq=1 | framesize=${64} | min_rate=${10000} | search_type=PDR
@@ -141,7 +141,7 @@
 | | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 10kpps, LT=0.5%.
 | | ...
-| | [Tags] | 64B | 2T2C | MTHREAD | SKIP_PATCH
+| | [Tags] | 64B | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for L2 Bridge Domain with ACLs
 | | wt=2 | rxq=1 | framesize=${64} | min_rate=${10000} | search_type=PDR
