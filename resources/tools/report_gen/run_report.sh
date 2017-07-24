@@ -162,7 +162,7 @@ then
     for i in ${blds[@]}; do
         unzip -o ${DIR[STATIC,ARCH]}/${JOB[PERF,VPP]}-${i}.zip -d ${DIR[WORKING]}/
         python run_robot_json_data.py \
-            --input ${DIR[WORKING]}/output.xml \
+            --input ${DIR[WORKING]}/robot-plugin/output.xml \
             --output ${DIR[DTR,PERF,VPP,IMPRV]}/${JOB[PERF,VPP]}-${i}.json \
             --vdevice ${i}
     done
