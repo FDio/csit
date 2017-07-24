@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "7a51691d_bb304a57",
+        "filename": "resources/libraries/python/DUTSetup.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 189,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-07-24T12:38:02Z",
+      "side": 1,
+      "message": "in compliance with PEP8",
+      "parentUuid": "7a51691d_8e7e6de3",
+      "range": {
+        "startLine": 189,
+        "startChar": 57,
+        "endLine": 189,
+        "endChar": 58
+      },
+      "revId": "14e7ade112072499b407b4981835a7dcdfe4daba",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "7a51691d_ae7929fe",
         "filename": "resources/libraries/python/honeycomb/HoneycombSetup.py",
         "patchSetId": 1
@@ -36,6 +60,30 @@
       "writtenOn": "2017-07-21T14:03:22Z",
       "side": 1,
       "message": "inconsistent backslash usage",
+      "range": {
+        "startLine": 716,
+        "startChar": 60,
+        "endLine": 716,
+        "endChar": 61
+      },
+      "revId": "14e7ade112072499b407b4981835a7dcdfe4daba",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a51691d_db2b06ea",
+        "filename": "resources/libraries/python/honeycomb/HoneycombSetup.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 716,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-07-24T12:38:02Z",
+      "side": 1,
+      "message": "in compliance with PEP8",
+      "parentUuid": "7a51691d_ae7929fe",
       "range": {
         "startLine": 716,
         "startChar": 60,
