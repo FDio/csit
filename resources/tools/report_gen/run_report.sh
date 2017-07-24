@@ -55,8 +55,8 @@ blds=${JOB[PERF,VPP,BLD]}
 for i in ${blds[@]}; do
     curl --silent ${URL[JENKINS,CSIT]}/${JOB[PERF,VPP]}/${i}/robot/report/output_perf_data.xml \
         --output ${DIR[PLOT,VPP]}/${JOB[PERF,VPP]}-${i}.xml
-    curl --silent ${URL[JENKINS,CSIT]}/${JOB[PERF,VPP]}/${i}/robot/report/output_perf_data.json \
-        --output ${DIR[PLOT,VPP]}/${JOB[PERF,VPP]}-${i}.json
+    #curl --silent ${URL[JENKINS,CSIT]}/${JOB[PERF,VPP]}/${i}/robot/report/output_perf_data.json \
+    #    --output ${DIR[PLOT,VPP]}/${JOB[PERF,VPP]}-${i}.json
     if [[ ${DEBUG} -eq 0 ]] ;
     then
         curl --fail --silent ${URL[JENKINS,CSIT]}/${JOB[PERF,VPP]}/${i}/robot/report/\*zip\*/robot-plugin.zip \
@@ -81,8 +81,8 @@ blds=${JOB[PERF,DPDK,BLD]}
 for i in ${blds[@]}; do
     curl --silent ${URL[JENKINS,CSIT]}/${JOB[PERF,DPDK]}/${i}/robot/report/output_perf_data.xml \
         --output ${DIR[PLOT,DPDK]}/${JOB[PERF,DPDK]}-${i}.xml
-    curl --silent ${URL[JENKINS,CSIT]}/${JOB[PERF,DPDK]}/${i}/robot/report/output_perf_data.json \
-        --output ${DIR[PLOT,DPDK]}/${JOB[PERF,DPDK]}-${i}.json
+    #curl --silent ${URL[JENKINS,CSIT]}/${JOB[PERF,DPDK]}/${i}/robot/report/output_perf_data.json \
+    #    --output ${DIR[PLOT,DPDK]}/${JOB[PERF,DPDK]}-${i}.json
     if [[ ${DEBUG} -eq 0 ]] ;
     then
         curl --fail --silent ${URL[JENKINS,CSIT]}/${JOB[PERF,DPDK]}/${i}/robot/report/\*zip\*/robot-plugin.zip \
@@ -214,25 +214,45 @@ _EOF
 
 # Plot packets per second
 
-# VPP L2
+# VPP L2 sel1
 
 python run_plot.py --input ${DIR[PLOT,VPP]} \
-    --output ${DIR[STATIC,VPP]}/64B-1t1c-l2-ndrdisc \
+    --output ${DIR[STATIC,VPP]}/64B-1t1c-l2-sel1-ndrdisc \
     --title "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc" \
-    --xpath '//*[@framesize="64B" and (contains(@tags,"BASE") or (contains(@tags,"FEATURE") and contains(@tags,"ACL50") and contains(@tags,"10k_FLOWS"))) and contains(@tags,"NDRDISC") and contains(@tags,"1T1C") and (contains(@tags,"L2BDMACSTAT") or contains(@tags,"L2BDMACLRN") or contains(@tags,"L2XCFWD")) and not(contains(@tags,"VHOST"))]'
+    --xpath '//*[@framesize="64B" and contains(@tags,"BASE") and contains(@tags,"NDRDISC") and contains(@tags,"1T1C") and (contains(@tags,"L2BDMACSTAT") or contains(@tags,"L2BDMACLRN") or contains(@tags,"L2XCFWD")) and not(contains(@tags,"VHOST"))]'
 python run_plot.py --input ${DIR[PLOT,VPP]} \
-    --output ${DIR[STATIC,VPP]}/64B-2t2c-l2-ndrdisc \
+    --output ${DIR[STATIC,VPP]}/64B-2t2c-l2-sel1-ndrdisc \
     --title "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc" \
-    --xpath '//*[@framesize="64B" and (contains(@tags,"BASE") or (contains(@tags,"FEATURE") and contains(@tags,"ACL50") and contains(@tags,"10k_FLOWS"))) and contains(@tags,"NDRDISC") and contains(@tags,"2T2C") and (contains(@tags,"L2BDMACSTAT") or contains(@tags,"L2BDMACLRN") or contains(@tags,"L2XCFWD")) and not(contains(@tags,"VHOST"))]'
+    --xpath '//*[@framesize="64B" and contains(@tags,"BASE") and contains(@tags,"NDRDISC") and contains(@tags,"2T2C") and (contains(@tags,"L2BDMACSTAT") or contains(@tags,"L2BDMACLRN") or contains(@tags,"L2XCFWD")) and not(contains(@tags,"VHOST"))]'
 
 python run_plot.py --input ${DIR[PLOT,VPP]} \
-    --output ${DIR[STATIC,VPP]}/64B-1t1c-l2-pdrdisc \
+    --output ${DIR[STATIC,VPP]}/64B-1t1c-l2-sel1-pdrdisc \
     --title "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-pdrdisc" \
-    --xpath '//*[@framesize="64B" and (contains(@tags,"BASE") or (contains(@tags,"FEATURE") and contains(@tags,"ACL50") and contains(@tags,"10k_FLOWS"))) and contains(@tags,"PDRDISC") and not(contains(@tags,"NDRDISC")) and contains(@tags,"1T1C") and (contains(@tags,"L2BDMACSTAT") or contains(@tags,"L2BDMACLRN") or contains(@tags,"L2XCFWD")) and not(contains(@tags,"VHOST"))]'
+    --xpath '//*[@framesize="64B" and contains(@tags,"BASE") and contains(@tags,"PDRDISC") and not(contains(@tags,"NDRDISC")) and contains(@tags,"1T1C") and (contains(@tags,"L2BDMACSTAT") or contains(@tags,"L2BDMACLRN") or contains(@tags,"L2XCFWD")) and not(contains(@tags,"VHOST"))]'
 python run_plot.py --input ${DIR[PLOT,VPP]} \
-    --output ${DIR[STATIC,VPP]}/64B-2t2c-l2-pdrdisc \
+    --output ${DIR[STATIC,VPP]}/64B-2t2c-l2-sel1-pdrdisc \
     --title "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-pdrdisc" \
-    --xpath '//*[@framesize="64B" and (contains(@tags,"BASE") or (contains(@tags,"FEATURE") and contains(@tags,"ACL50") and contains(@tags,"10k_FLOWS"))) and contains(@tags,"PDRDISC") and not(contains(@tags,"NDRDISC")) and contains(@tags,"2T2C") and (contains(@tags,"L2BDMACSTAT") or contains(@tags,"L2BDMACLRN") or contains(@tags,"L2XCFWD")) and not(contains(@tags,"VHOST"))]'
+    --xpath '//*[@framesize="64B" and contains(@tags,"BASE") and contains(@tags,"PDRDISC") and not(contains(@tags,"NDRDISC")) and contains(@tags,"2T2C") and (contains(@tags,"L2BDMACSTAT") or contains(@tags,"L2BDMACLRN") or contains(@tags,"L2XCFWD")) and not(contains(@tags,"VHOST"))]'
+
+# VPP L2 sel2
+
+python run_plot.py --input ${DIR[PLOT,VPP]} \
+    --output ${DIR[STATIC,VPP]}/64B-1t1c-l2-sel2-ndrdisc \
+    --title "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc" \
+    --xpath '//*[@framesize="64B" and ((contains(@tags,"FEATURE") and contains(@tags,"ACL50") and contains(@tags,"10k_FLOWS"))) and contains(@tags,"NDRDISC") and contains(@tags,"1T1C") and (contains(@tags,"L2BDMACSTAT") or contains(@tags,"L2BDMACLRN") or contains(@tags,"L2XCFWD")) and not(contains(@tags,"VHOST"))]' --lower 0 --upper 8000000
+python run_plot.py --input ${DIR[PLOT,VPP]} \
+    --output ${DIR[STATIC,VPP]}/64B-2t2c-l2-sel2-ndrdisc \
+    --title "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc" \
+    --xpath '//*[@framesize="64B" and ((contains(@tags,"FEATURE") and contains(@tags,"ACL50") and contains(@tags,"10k_FLOWS"))) and contains(@tags,"NDRDISC") and contains(@tags,"2T2C") and (contains(@tags,"L2BDMACSTAT") or contains(@tags,"L2BDMACLRN") or contains(@tags,"L2XCFWD")) and not(contains(@tags,"VHOST"))]' --lower 5000000 --upper 12000000
+
+python run_plot.py --input ${DIR[PLOT,VPP]} \
+    --output ${DIR[STATIC,VPP]}/64B-1t1c-l2-sel2-pdrdisc \
+    --title "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-pdrdisc" \
+    --xpath '//*[@framesize="64B" and ((contains(@tags,"FEATURE") and contains(@tags,"ACL50") and contains(@tags,"10k_FLOWS"))) and contains(@tags,"PDRDISC") and not(contains(@tags,"NDRDISC")) and contains(@tags,"1T1C") and (contains(@tags,"L2BDMACSTAT") or contains(@tags,"L2BDMACLRN") or contains(@tags,"L2XCFWD")) and not(contains(@tags,"VHOST"))]' --lower 0 --upper 8000000
+python run_plot.py --input ${DIR[PLOT,VPP]} \
+    --output ${DIR[STATIC,VPP]}/64B-2t2c-l2-sel2-pdrdisc \
+    --title "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-pdrdisc" \
+    --xpath '//*[@framesize="64B" and ((contains(@tags,"FEATURE") and contains(@tags,"ACL50") and contains(@tags,"10k_FLOWS"))) and contains(@tags,"NDRDISC") and contains(@tags,"2T2C") and (contains(@tags,"L2BDMACSTAT") or contains(@tags,"L2BDMACLRN") or contains(@tags,"L2XCFWD")) and not(contains(@tags,"VHOST"))]' --lower 5000000 --upper 12000000
 
 # VPP IP4
 
@@ -416,16 +436,27 @@ python run_plot.py --input ${DIR[PLOT,DPDK]} \
 
 # Plot latency
 
-# VPP L2
+# VPP L2 sel1
 
 python run_plot.py --input ${DIR[PLOT,VPP]} \
-    --output ${DIR[STATIC,VPP]}/64B-1t1c-l2-ndrdisc-lat50 \
+    --output ${DIR[STATIC,VPP]}/64B-1t1c-l2-sel1-ndrdisc-lat50 \
     --title "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc" \
-    --xpath '//*[@framesize="64B" and (contains(@tags,"BASE") or (contains(@tags,"FEATURE") and contains(@tags,"ACL50") and contains(@tags,"10k_FLOWS"))) and contains(@tags,"NDRDISC") and contains(@tags,"1T1C") and (contains(@tags,"L2BDMACSTAT") or contains(@tags,"L2BDMACLRN") or contains(@tags,"L2XCFWD")) and not(contains(@tags,"VHOST"))]' --latency lat_50
+    --xpath '//*[@framesize="64B" and contains(@tags,"BASE") and contains(@tags,"NDRDISC") and contains(@tags,"1T1C") and (contains(@tags,"L2BDMACSTAT") or contains(@tags,"L2BDMACLRN") or contains(@tags,"L2XCFWD")) and not(contains(@tags,"VHOST"))]' --latency lat_50
 python run_plot.py --input ${DIR[PLOT,VPP]} \
-    --output ${DIR[STATIC,VPP]}/64B-2t2c-l2-ndrdisc-lat50 \
+    --output ${DIR[STATIC,VPP]}/64B-2t2c-l2-sel1-ndrdisc-lat50 \
     --title "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc" \
-    --xpath '//*[@framesize="64B" and (contains(@tags,"BASE") or (contains(@tags,"FEATURE") and contains(@tags,"ACL50") and contains(@tags,"10k_FLOWS"))) and contains(@tags,"NDRDISC") and contains(@tags,"2T2C") and (contains(@tags,"L2BDMACSTAT") or contains(@tags,"L2BDMACLRN") or contains(@tags,"L2XCFWD")) and not(contains(@tags,"VHOST"))]' --latency lat_50
+    --xpath '//*[@framesize="64B" and contains(@tags,"BASE") and contains(@tags,"NDRDISC") and contains(@tags,"2T2C") and (contains(@tags,"L2BDMACSTAT") or contains(@tags,"L2BDMACLRN") or contains(@tags,"L2XCFWD")) and not(contains(@tags,"VHOST"))]' --latency lat_50
+
+# VPP L2 sel2
+
+python run_plot.py --input ${DIR[PLOT,VPP]} \
+    --output ${DIR[STATIC,VPP]}/64B-1t1c-l2-sel2-ndrdisc-lat50 \
+    --title "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc" \
+    --xpath '//*[@framesize="64B" and ((contains(@tags,"FEATURE") and contains(@tags,"ACL50") and contains(@tags,"10k_FLOWS"))) and contains(@tags,"NDRDISC") and contains(@tags,"1T1C") and (contains(@tags,"L2BDMACSTAT") or contains(@tags,"L2BDMACLRN") or contains(@tags,"L2XCFWD")) and not(contains(@tags,"VHOST"))]' --latency lat_50
+python run_plot.py --input ${DIR[PLOT,VPP]} \
+    --output ${DIR[STATIC,VPP]}/64B-2t2c-l2-sel2-ndrdisc-lat50 \
+    --title "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc" \
+    --xpath '//*[@framesize="64B" and ((contains(@tags,"FEATURE") and contains(@tags,"ACL50") and contains(@tags,"10k_FLOWS"))) and contains(@tags,"NDRDISC") and contains(@tags,"2T2C") and (contains(@tags,"L2BDMACSTAT") or contains(@tags,"L2BDMACLRN") or contains(@tags,"L2XCFWD")) and not(contains(@tags,"VHOST"))]' --latency lat_50
 
 # VPP IP4
 

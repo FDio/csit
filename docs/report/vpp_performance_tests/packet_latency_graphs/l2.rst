@@ -11,9 +11,15 @@ VPP packet latency in 1t1c setup (1thread, 1core) is presented in the graph belo
 
 .. raw:: html
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/64B-1t1c-l2-ndrdisc-lat50.html"></iframe>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/64B-1t1c-l2-sel1-ndrdisc-lat50.html"></iframe>
 
-*Figure 1. VPP 1thread 1core - packet latency for Phy-to-Phy L2 Ethernet Switching.*
+*Figure 1a. VPP 1thread 1core - packet latency for Phy-to-Phy L2 Ethernet Switching.*
+
+.. raw:: html
+
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/64B-1t1c-l2-sel2-ndrdisc-lat50.html"></iframe>
+
+*Figure 1b. VPP 1thread 1core - packet latency for Phy-to-Phy L2 Ethernet Switching.*
 
 CSIT source code for the test cases used for above plots can be found in CSIT
 git repository:
@@ -25,9 +31,15 @@ VPP packet latency in 2t2c setup (2thread, 2core) is presented in the graph belo
 
 .. raw:: html
 
-    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/64B-2t2c-l2-ndrdisc-lat50.html"></iframe>
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/64B-2t2c-l2-sel1-ndrdisc-lat50.html"></iframe>
 
-*Figure 2. VPP 2threads 2cores - packet latency for Phy-to-Phy L2 Ethernet Switching.*
+*Figure 2a. VPP 2threads 2cores - packet latency for Phy-to-Phy L2 Ethernet Switching.*
+
+.. raw:: html
+
+    <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/64B-2t2c-l2-sel2-ndrdisc-lat50.html"></iframe>
+
+*Figure 2b. VPP 2threads 2cores - packet latency for Phy-to-Phy L2 Ethernet Switching.*
 
 CSIT source code for the test cases used for above plots can be found in CSIT
 git repository:
