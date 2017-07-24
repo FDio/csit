@@ -21,7 +21,7 @@ Changes in CSIT |release|
 
    - Complete CSIT framework code revision and optimizations as descried
      on CSIT wiki page
-     _`Design_Optimizations <https://wiki.fd.io/view/CSIT/Design_Optimizations>`_;
+     `Design_Optimizations <https://wiki.fd.io/view/CSIT/Design_Optimizations>`_;
 
    - For more detail see the CSIT Framework Design section in this
      report;
