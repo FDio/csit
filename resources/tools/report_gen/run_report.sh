@@ -198,7 +198,7 @@ fi
 # Generate tables for performance improvements
 if [[ ${DEBUG} -eq 0 ]] ;
 then
-    ./run_improvments_tables.py \
+    python run_improvments_tables.py \
         --input ${DIR[DTR,PERF,VPP,IMPRV]} \
         --output ${DIR[DTR,PERF,VPP,IMPRV]}
 fi
