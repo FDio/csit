@@ -10,11 +10,6 @@ Performance is reported for VPP running in multiple configurations of
 VPP worker thread(s), a.k.a. VPP data plane thread(s), and their
 physical CPU core(s) placement.
 
-Note: only 1,000 scale IPSec tunnel test cases are plotted. Single IPSec
-tunnel test cases are listed in regex outputs, but marked {NOT PLOTTED}
-due to the current limitation of auto-plotting scripts. For all test
-result data please refere to **Detailed Test Results** section.
-
 NDR Throughput
 ~~~~~~~~~~~~~~
 
