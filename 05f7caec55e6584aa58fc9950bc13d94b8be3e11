@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a51691d_9b358e48",
+        "filename": "resources/tools/report_gen/run_report.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 192,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-07-24T13:07:34Z",
+      "side": 1,
+      "message": "FBLD",
+      "range": {
+        "startLine": 192,
+        "startChar": 63,
+        "endLine": 192,
+        "endChar": 66
+      },
+      "revId": "05f7caec55e6584aa58fc9950bc13d94b8be3e11",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
