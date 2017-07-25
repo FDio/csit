@@ -13,7 +13,7 @@ versions:
 Current VPP tests have been executed on a single VM operating system and
 version only, as described in the following paragraphs.
 
-In CSIT terminology, the VM operating system for both SUTs and TG that
+In CSIT terminology, the VM operating system for both DUTs and TG that
 |vpp-release| has been tested with, is the following:
 
   |virl-image-ubuntu|
@@ -23,10 +23,8 @@ package versions are those that would have been installed by a "apt-get update",
 "apt-get upgrade" on that day), produced by CSIT disk image build scripts.
 
 The exact list of installed packages and their versions (including the Linux
-kernel package version) are included in CSIT source repository:
+kernel package version) are included in `VIRL images lists`_.
 
-  resources/tools/disk-image-builder/ubuntu/lists/|virl-image-ubuntu|
-
-A replica of this VM image can be built by running the "build.sh" script in CSIT
-repository resources/tools/disk-image-builder/ubuntu.
+A replica of this VM image can be built by running the "build.sh" script in
+`VIRL nested`_.
 

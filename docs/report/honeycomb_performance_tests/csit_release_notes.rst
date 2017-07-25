@@ -4,7 +4,7 @@ CSIT Release Notes
 Changes in CSIT |release|
 -------------------------
 
-#. First release with honeycomb performance testing
+#. First release with Honeycomb performance testing.
 
 Known Issues
 ------------

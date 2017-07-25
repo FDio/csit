@@ -23,8 +23,8 @@ Changes in CSIT |release|
      on CSIT wiki page
      `Design_Optimizations <https://wiki.fd.io/view/CSIT/Design_Optimizations>`_;
 
-   - For more detail see the CSIT Framework Design section in this
-     report;
+   - For more detail see the :ref:`CSIT Framework Design <csit-design>` section
+     in this report;
 
 Known Issues
 ------------
@@ -68,6 +68,6 @@ Here is the list of known issues in CSIT |release| for VPP functional tests in V
 |   |                                                 |          | environment or CSIT issue, but can not exclude VPP,  |
 |   |                                                 |          | further troubleshooting in progress.                 |
 +---+-------------------------------------------------+----------+------------------------------------------------------+
-| 7 | IPSEC: Tests cover old crypto code path         |    --    | There are used default conf settings so IPSEC tests  |
+| 7 | IPSEC: Tests cover old crypto code path         | CSIT-733 | There are used default conf settings so IPSEC tests  |
 |   |                                                 |          | use old security code not the new Crypto SW code.    |
 +---+-------------------------------------------------+----------+------------------------------------------------------+
