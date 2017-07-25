@@ -116,7 +116,7 @@ def write_line_to_file(file_handler, item):
 
     mean = "" if item["mean"] is None else "{:.1f}".format(item["mean"])
     stdev = "" if item["stdev"] is None else "{:.1f}".format(item["stdev"])
-    change = "" if item["change"] is None else "{:.0f}%".format(item["change"])
+    change = "" if item["change"] is None else "{:.1f}%".format(item["change"])
     file_handler.write("{},{},{},{}\n".format(item["old"], mean, stdev, change))
 
 
@@ -172,7 +172,7 @@ def main():
     for item in csv_data:
         mean, stdev = calculate_stats(item["rates"])
         if mean is not None:
-            mean = mean / 1000000
+            mean = float(mean) / 1000000
             old = float(item["last_old"])
             item["mean"] = mean
             item["change"] = ((mean - old) / old) * 100
