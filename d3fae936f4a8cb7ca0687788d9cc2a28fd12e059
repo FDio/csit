@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7a51691d_f4b5af31",
+        "filename": "resources/tools/report_gen/run_report.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-07-25T12:17:27Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 128,
+        "startChar": 57,
+        "endLine": 128,
+        "endChar": 77
+      },
+      "revId": "d3fae936f4a8cb7ca0687788d9cc2a28fd12e059",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "7a51691d_d482b351",
+        "filename": "resources/tools/report_gen/run_report.sh",
+        "patchSetId": 2
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-07-25T12:17:27Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 129,
+        "startChar": 57,
+        "endLine": 129,
+        "endChar": 77
+      },
+      "revId": "d3fae936f4a8cb7ca0687788d9cc2a28fd12e059",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
