@@ -1,3 +1,5 @@
+.. _csit-design:
+
 CSIT Design
 ===========
 

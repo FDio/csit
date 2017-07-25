@@ -2,7 +2,7 @@ Test Environment
 ================
 
 To execute performance tests, there are three identical testbeds, each testbed
-consists of two SUTs and one TG.
+consists of two DUTs and one TG.
 
 Server HW Configuration
 -----------------------

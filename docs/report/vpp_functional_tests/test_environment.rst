@@ -42,9 +42,7 @@ VIRL simulations.
 SUT Configuration - VIRL Guest VM
 ---------------------------------
 
-Configuration of the SUT VMs is defined in file
-
-   /csit/resources/tools/virl/topologies/double-ring-nested.xenial.virl
+Configurations of the SUT VMs is defined in `VIRL topologies directory`_
 
 - List of SUT VM interfaces:::
 
@@ -65,48 +63,43 @@ SUT Configuration - VIRL Guest OS Linux
 In CSIT terminology, the VM operating system for both SUTs that |vpp-release| has
 been tested with, is the following:
 
-**#. Ubuntu VIRL image**
+#. **Ubuntu VIRL image**
 
-This image implies Ubuntu 16.04.1 LTS, current as of yyyy-mm-dd (that is,
-package versions are those that would have been installed by a "apt-get update",
-"apt-get upgrade" on that day), produced by CSIT disk image build scripts.
+   This image implies Ubuntu 16.04.1 LTS, current as of yyyy-mm-dd (that is,
+   package versions are those that would have been installed by a "apt-get
+   update", "apt-get upgrade" on that day), produced by CSIT disk image build
+   scripts.
+   
+   The exact list of installed packages and their versions (including the Linux
+   kernel package version) are included in `VIRL images lists`_.
+   
+   A replica of this VM image can be built by running the "build.sh" script in
+   CSIT repository.
 
-The exact list of installed packages and their versions (including the Linux
-kernel package version) are included in CSIT source repository:
+#. **CentOS VIRL image**
 
-  resources/tools/disk-image-builder/ubuntu/lists/|virl-image-ubuntu|
+   The Centos7.3 image is ready to be used but no tests running on it now.
+   Corresponding Jenkins jobs are under preparation.
+   
+   The exact list of installed packages and their versions (including the Linux
+   kernel package version) are included in `VIRL images lists`_.
+   
+   A replica of this VM image can be built by running the "build.sh" script in
+   CSIT repository.
 
-A replica of this VM image can be built by running the "build.sh" script in CSIT
-repository resources/tools/disk-image-builder/ubuntu.
+#. **Nested VM image**
 
-**#. CentOS VIRL image**
+   In addition to the "main" VM image, tests which require VPP to communicate to
+   a VM over a vhost-user interface, utilize a "nested" VM image.
 
-The Centos7.3 image is ready to be used but no tests running on it now.
-Corresponding Jenkins jobs are under preparation.
-
-The exact list of installed packages and their versions (including the Linux
-kernel package version) are included in CSIT source repository:
-
-  resources/tools/disk-image-builder/ubuntu/lists/|virl-image-centos|
-
-A replica of this VM image can be built by running the "build.sh" script in CSIT
-repository resources/tools/disk-image-builder/centos.
-
-**#. Nested VM image**
-
-In addition to the "main" VM image, tests which require VPP to communicate to a
-VM over a vhost-user interface, utilize a "nested" VM image.
-
-This "nested" VM is dynamically created and destroyed as part of a test case,
-and therefore the "nested" VM image is optimized to be small, lightweight and
-have a short boot time. The "nested" VM image is not built around any
-established Linux distribution, but is based on `BuildRoot
-<https://buildroot.org/>`_, a tool for building embedded Linux systems. Just as
-for the "main" image, scripts to produce an identical replica of the "nested"
-image are included in CSIT GIT repository, and the image can be rebuilt using
-the "build.sh" script at:
-
-   resources/tools/disk-image-builder/ubuntu/lists/nested
+   This "nested" VM is dynamically created and destroyed as part of a test case,
+   and therefore the "nested" VM image is optimized to be small, lightweight and
+   have a short boot time. The "nested" VM image is not built around any
+   established Linux distribution, but is based on `BuildRoot
+   <https://buildroot.org/>`_, a tool for building embedded Linux systems. Just
+   as for the "main" image, scripts to produce an identical replica of the
+   "nested" image are included in CSIT GIT repository, and the image can be
+   rebuilt using the "build.sh" script at `VIRL nested`_.
 
 DUT Configuration - VPP
 -----------------------
@@ -117,9 +110,7 @@ Under Test (DUT) node.
 **DUT port configuration**
 
 Port configuration of DUTs is defined in topology file that is generated per
-VIRL simulation based on the definition stored in file
-
-   /csit/resources/tools/virl/topologies/double-ring-nested.xenial.yaml
+VIRL simulation based on the definition stored in `VIRL topologies directory`_.
 
 Example of DUT nodes configuration:::
 
@@ -373,7 +364,7 @@ Traffic scripts of test cases are executed on this VM.
 
 **TG VM configuration**
 
-Configuration of the TG VMs is defined in file
+Configuration of the TG VMs is defined in `VIRL topologies directory`_.
 
    /csit/resources/tools/virl/topologies/double-ring-nested.xenial.virl
 
@@ -389,9 +380,7 @@ Configuration of the TG VMs is defined in file
 **TG node port configuration**
 
 Port configuration of TG is defined in topology file that is generated per VIRL
-simulation based on the definition stored in file
-
-   /csit/resources/tools/virl/topologies/double-ring-nested.xenial.yaml
+simulation based on the definition stored in `VIRL topologies directory`_.
 
 Example of TG node configuration:::
 
