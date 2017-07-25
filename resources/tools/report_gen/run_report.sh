@@ -125,8 +125,8 @@ if [[ ${DEBUG} -eq 0 ]] ;
 then
     blds=${JOB[PERF,HC,BLD]}
     for i in ${blds[@]}; do
-        curl --silent ${URL[JENKINS,HC]}/${JOB[PERF,HC]}/${JOB[PERF,HC,BLD]}/robot/report/\*zip\*/robot-plugin.zip \
-            --output ${DIR[STATIC,ARCH]}/${JOB[PERF,HC]}-${JOB[PERF,HC,BLD]}.zip
+        curl --silent ${URL[JENKINS,HC]}/${JOB[PERF,HC]}/${JOB[PERF,HC,BLD]}/${i}/robot/report/\*zip\*/robot-plugin.zip \
+            --output ${DIR[STATIC,ARCH]}/${JOB[PERF,HC]}-${JOB[PERF,HC,BLD]}-${i}.zip
 done
 fi
 
