@@ -69,8 +69,11 @@ rst_epilog = """
 .. _tag documentation rst file: https://git.fd.io/csit/tree/docs/tag_documentation.rst?h=rls1707
 .. _TRex intallation: https://git.fd.io/csit/tree/resources/tools/trex/trex_installer.sh?h=rls1707
 .. _TRex driver: https://git.fd.io/csit/tree/resources/tools/trex/trex_stateless_profile.py?h=rls1707
-.. _CSIT Honeycomb Functional Tests Documentation: https://docs.fd.io/csit/rls1707/doc/tests.vpp.func.html
-.. _CSIT Honeycomb Performance Tests Documentation: https://docs.fd.io/csit/rls1707/doc/tests.vpp.perf.html
+.. _VIRL topologies directory: https://git.fd.io/csit/tree/resources/tools/virl/topologies/?h=rls1707
+.. _VIRL images lists: https://git.fd.io/csit/tree/resources/tools/disk-image-builder/ubuntu/lists/?h=rls1707
+.. _VIRL nested: https://git.fd.io/csit/tree/resources/tools/disk-image-builder/nested/?h=rls1707
+.. _CSIT Honeycomb Functional Tests Documentation: https://docs.fd.io/csit/rls1707/doc/tests.vpp.func.honeycomb.html
+.. _CSIT Honeycomb Performance Tests Documentation: https://docs.fd.io/csit/rls1707/doc/tests.vpp.perf.honeycomb.html
 .. _CSIT DPDK Performance Tests Documentation: https://docs.fd.io/csit/rls1707/doc/tests.dpdk.perf.html
 .. _CSIT VPP Functional Tests Documentation: https://docs.fd.io/csit/rls1707/doc/tests.vpp.func.html
 .. _CSIT VPP Performance Tests Documentation: https://docs.fd.io/csit/rls1707/doc/tests.vpp.perf.html
@@ -82,7 +85,6 @@ rst_epilog = """
 .. _FD.io test executor Honeycomb functional jobs: https://jenkins.fd.io/view/csit/job/hc2vpp-csit-integration-1707-ubuntu1604/lastSuccessfulBuild
 .. _FD.io test executor honeycomb performance jobs: https://jenkins.fd.io/view/hc2vpp/job/hc2vpp-csit-perf-master-ubuntu1604/lastSuccessfulBuild
 .. _FD.io test executor NSH_SFC functional jobs: https://jenkins.fd.io/view/csit/job/csit-nsh_sfc-verify-func-1707-ubuntu1604-virl/lastSuccessfulBuild
-.. _FD.io VPP compile job: https://jenkins.fd.io/view/vpp/job/vpp-merge-1707-ubuntu1604/
 .. _FD.io VPP compile job: https://jenkins.fd.io/view/vpp/job/vpp-merge-1707-ubuntu1604/
 .. _CSIT Testbed Setup: https://git.fd.io/csit/tree/resources/tools/testbed-setup/README.md?h=rls1707
 """

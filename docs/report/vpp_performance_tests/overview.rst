@@ -361,8 +361,9 @@ TRex is installed and run on the TG compute node. The typical procedure is:
 
   $ sh -c 'cd /opt/trex-core-2.25/scripts/ && sudo nohup ./t-rex-64 -i -c 7 --iom 0 > /dev/null 2>&1 &' > /dev/null
 
-- There are traffic streams dynamically prepared for each test. The traffic
-  is sent and the statistics obtained using trex_stl_lib.api.STLClient.
+- There are traffic streams dynamically prepared for each test, based on traffic
+  profiles. The traffic is sent and the statistics obtained using
+  trex_stl_lib.api.STLClient.
 
 **Measuring packet loss**
 

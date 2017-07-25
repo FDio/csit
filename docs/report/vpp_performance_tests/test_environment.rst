@@ -251,7 +251,8 @@ Below a subset of the running configuration:
 
 - **isolcpus=<cpu number>-<cpu number>** used for all cpu cores apart from
   first core of each socket used for running VPP worker threads and Qemu/LXC
-  processes https://www.kernel.org/doc/Documentation/kernel-parameters.txt
+  processes
+  https://www.kernel.org/doc/Documentation/admin-guide/kernel-parameters.txt
 - **intel_pstate=disable** - [X86] Do not enable intel_pstate as the default
   scaling driver for the supported processors. Intel P-State driver decide what
   P-state (CPU core power state) to use based on requesting policy from the
@@ -269,7 +270,7 @@ Below a subset of the running configuration:
 - **rcu_nocbs** - [KNL] In kernels built with CONFIG_RCU_NOCB_CPU=y, set the
   specified list of CPUs to be no-callback CPUs, that never queue RCU callbacks
   (read-copy update).
-  https://www.kernel.org/doc/Documentation/kernel-parameters.txt
+  https://www.kernel.org/doc/Documentation/admin-guide/kernel-parameters.txt
 
 **Applied command line boot parameters:**
 
