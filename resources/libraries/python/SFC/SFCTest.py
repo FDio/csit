@@ -58,8 +58,12 @@ class SFCTest(object):
             exec_shell = "set_nsh_proxy_inbound.sh"
         elif testtype == "Proxy Outbound":
             exec_shell = "set_nsh_proxy_outbound.sh"
-        else:
+        elif testtype == "SFF":
             exec_shell = "set_sfc_sff.sh"
+        elif testtype == "NSH Over Ethernet":
+            exec_shell = "set_nsh_over_eth.sh"
+        else:
+            raise RuntimeError('Unsupport test type: {0}'.format(testtype))
 
         cmd = 'cd {0}/tests/nsh_sfc/sfc_scripts/ && sudo ./{1} {2} ' \
              '{3} {4} {5}'.format(con.REMOTE_FW_DIR, exec_shell, vpp_intf_name1,
