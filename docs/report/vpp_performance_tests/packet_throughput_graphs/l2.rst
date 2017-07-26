@@ -18,14 +18,14 @@ in the graph below.
     <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/64B-1t1c-l2-sel1-ndrdisc.html"></iframe>
 
 *Figure 1a. VPP 1thread 1core - NDR Throughput for Phy-to-Phy L2 Ethernet
-Switching.*
+Switching (base).*
 
 .. raw:: html
 
     <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/64B-1t1c-l2-sel2-ndrdisc.html"></iframe>
 
 *Figure 1b. VPP 1thread 1core - NDR Throughput for Phy-to-Phy L2 Ethernet
-Switching.*
+Switching (feature).*
 
 CSIT source code for the test cases used for above plots can be found in CSIT
 git repository:
@@ -41,14 +41,14 @@ in the graph below.
     <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/64B-2t2c-l2-sel1-ndrdisc.html"></iframe>
 
 *Figure 2a. VPP 2threads 2cores - NDR Throughput for Phy-to-Phy L2 Ethernet
-Switching.*
+Switching (base).*
 
 .. raw:: html
 
     <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/64B-2t2c-l2-sel2-ndrdisc.html"></iframe>
 
 *Figure 2b. VPP 2threads 2cores - NDR Throughput for Phy-to-Phy L2 Ethernet
-Switching.*
+Switching (feature).*
 
 CSIT source code for the test cases used for above plots can be found in CSIT
 git repository:
@@ -67,14 +67,14 @@ in the graph below. PDR measured for 0.5% packet loss ratio.
     <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/64B-1t1c-l2-sel1-pdrdisc.html"></iframe>
 
 *Figure 3a. VPP 1thread 1core - PDR Throughput for Phy-to-Phy L2 Ethernet
-Switching.*
+Switching (base).*
 
 .. raw:: html
 
     <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/64B-1t1c-l2-sel2-pdrdisc.html"></iframe>
 
 *Figure 3b. VPP 1thread 1core - PDR Throughput for Phy-to-Phy L2 Ethernet
-Switching.*
+Switching (feature).*
 
 CSIT source code for the test cases used for above plots can be found in CSIT
 git repository:
@@ -90,9 +90,11 @@ in the graph below. PDR measured for 0.5% packet loss ratio.
     <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/64B-2t2c-l2-sel1-pdrdisc.html"></iframe>
 
 *Figure 4a. VPP 2thread 2core - PDR Throughput for Phy-to-Phy L2 Ethernet
-Switching.*
+Switching (base).*
 
 .. raw:: html
 
     <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/64B-2t2c-l2-sel2-pdrdisc.html"></iframe>
 
+*Figure 4b. VPP 2thread 2core - PDR Throughput for Phy-to-Phy L2 Ethernet
+Switching (feature).*
