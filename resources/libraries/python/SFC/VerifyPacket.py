@@ -91,21 +91,25 @@ class VerifyPacket(object):
         :raises RuntimeError: If the vxlangpe and nsh protocol
                               field verify fails.
         """
-        # get the vxlan-gpe packet and check it
-        vxlangpe_pkt = VxLANGPE(payload_data[0:8])
-        if vxlangpe_pkt.flags != sfccon.VxLANGPE_FLAGS:
-            raise RuntimeError("Unexpected Vxlan-GPE flags: {0}".
-                               format(vxlangpe_pkt.flags))
+        # get the vxlan-gpe protocol if have and check it
+        if test_type != "NSH Over Ethernet":
+            vxlangpe_pkt = VxLANGPE(payload_data[0:8])
+            if vxlangpe_pkt.flags != sfccon.VxLANGPE_FLAGS:
+                raise RuntimeError("Unexpected Vxlan-GPE flags: {0}".
+                                   format(vxlangpe_pkt.flags))
 
-        if vxlangpe_pkt.nextproto != sfccon.VxLANGPE_NEXT_PROTOCOL:
-            raise RuntimeError("next protocol not the NSH")
+            if vxlangpe_pkt.nextproto != sfccon.VxLANGPE_NEXT_PROTOCOL:
+                raise RuntimeError("next protocol not the NSH")
 
-        if vxlangpe_pkt.vni != sfccon.VxLANGPE_DEFAULT_VNI:
-            raise RuntimeError("Unexpected VNI flag: {0}".
-                               format(vxlangpe_pkt.vni))
+            if vxlangpe_pkt.vni != sfccon.VxLANGPE_DEFAULT_VNI:
+                raise RuntimeError("Unexpected VNI flag: {0}".
+                                   format(vxlangpe_pkt.vni))
 
-        # get the NSH packet and check it
-        nsh_pkt = NSH(payload_data[8:32])
+        # get the NSH protocol and check it
+        if test_type == "NSH Over Ethernet":
+            nsh_pkt = NSH(payload_data[0:24])
+        else:
+            nsh_pkt = NSH(payload_data[8:32])
         if nsh_pkt.flags != sfccon.NSH_FLAGS:
             raise RuntimeError("Unexpected NSH flags: {0}".
                                format(nsh_pkt.flags))
@@ -122,7 +126,8 @@ class VerifyPacket(object):
             raise RuntimeError("NSH next protocol {0} incorrect".
                                format(nsh_pkt.nextproto))
 
-        if test_type == "Proxy Outbound" or test_type == "SFF":
+        if test_type == "Proxy Outbound" or test_type == "SFF" or \
+            test_type == "NSH Over Ethernet":
             expect_nsi = sfccon.NSH_DEFAULT_NSI - 1
         else:
             expect_nsi = sfccon.NSH_DEFAULT_NSI
@@ -186,6 +191,11 @@ class VerifyPacket(object):
             raise RuntimeError("Received packet size {0} not "
                                "the expect size {1}".format(recv_pkt_len,
                                                             expect_pkt_len))
+
+        if test_type == "NSH Over Ethernet":
+            payload_data = ether[Raw].load
+            VerifyPacket.check_vxlangpe_nsh_protocol(payload_data, test_type)
+            return None
 
         if not ether.haslayer(IP):
             raise RuntimeError("Not a IPv4 packet")
