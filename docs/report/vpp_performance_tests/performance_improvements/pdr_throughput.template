@@ -6,3 +6,4 @@ tests.vpp.perf.ip6.10ge2p1x520-ethip6-ip6base-ndrpdrdisc.tc02-78b-1t1c-ethip6-ip
 tests.vpp.perf.ip6.10ge2p1x520-ethip6-ip6base-copwhtlistbase-ndrpdrdisc.tc02-78b-1t1c-ethip6-ip6base-copwhtlistbase-pdrdisc,IPv6 COP,10ge2p1x520: 78B-1t1c-ethip6-ip6base-copwhtlistbase-pdrdisc,6.1,6.1,6.9
 tests.vpp.perf.ip6.10ge2p1x520-ethip6-ip6base-iacldstbase-ndrpdrdisc.tc02-78b-1t1c-ethip6-ip6base-iacldstbase-pdrdisc,IPv6 iAcl,10ge2p1x520: 78B-1t1c-ethip6-ip6base-iacldstbase-pdrdisc,6.5,6.1,6.9
 tests.vpp.perf.ip6.10ge2p1x520-ethip6-ip6scale2m-ndrpdrdisc.tc02-78b-1t1c-ethip6-ip6scale2m-pdrdisc,IPv6 FIB 2M,10ge2p1x520: 78B-1t1c-ethip6-ip6scale2m-pdrdisc,5.3,4.2,4.6
+tests.vpp.perf.l2.10ge2p1x520-eth-l2xcbase-eth-2memif-1lxc-ndrpdrdisc.tc02-64b-1t1c-eth-l2xcbase-eth-2memif-1lxc-pdrdisc,LXC MEMIF,10ge2p1x520: 64B-1t1c-eth-l2xcbase-eth-2memif-1lxc-pdrdisc,,,

@@ -173,10 +173,10 @@ def main():
         mean, stdev = calculate_stats(item["rates"])
         if mean is not None:
             mean = float(mean) / 1000000
-            old = float(item["last_old"])
+            old = float(item["last_old"]) if item["last_old"] else None
             item["mean"] = mean
             item["change"] = ((round(mean, 1) - round(old, 1)) / round(old, 1))\
-                             * 100
+                * 100 if old else None
             item["stdev"] = stdev / 1000000
 
     # Sort the list, key = change
