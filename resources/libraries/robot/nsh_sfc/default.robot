@@ -77,5 +77,7 @@
 | | | | | ... | send_vxlangpe_nsh_for_proxy_test.py | ${from_node} | ${args}
 | | ... | ELSE IF | "${type}" == "Proxy Outbound" | Run Traffic Script On Node
 | | | | | ... | send_vxlan_for_proxy_test.py | ${from_node} | ${args}
+| | ... | ELSE IF | "${type}" == "NSH Over Ethernet" | Run Traffic Script On Node
+| | | | | ... | send_nsh_over_ethernet_test.py | ${from_node} | ${args}
 | | ... | ELSE | Run Traffic Script On Node | send_vxlangpe_nsh_for_sff_test.py
 | | | | | ... | ${from_node} | ${args}
