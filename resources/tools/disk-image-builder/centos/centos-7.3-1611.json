@@ -1,6 +1,6 @@
 {
-  "_c": "CentOS-7 ISO URL at the time of creation of this file (05/2016)",
-  "_c": "was http://centos.chicago.waneq.com/7/isos/x86_64/CentOS-7-x86_64-Minimal-1611.iso.",
+  "_c": "CentOS-7 ISO URL at the time of creation of this file (08/2017)",
+  "_c": "was http://buildlogs.centos.org/rolling/7/isos/x86_64/CentOS-7-x86_64-Minimal.iso.",
   "_c": "",
   "variables": {
     "release": null,
@@ -15,8 +15,8 @@
       "name": "{{user `release`}}-virtualbox",
       "type": "virtualbox-iso",
       "guest_os_type": "RedHat_64",
-      "iso_url": "http://centos.chicago.waneq.com/7/isos/x86_64/CentOS-7-x86_64-Minimal-1611.iso",
-      "iso_checksum": "71a7aa147877b413497cdff5b1e0aa5bc0c9484f",
+      "iso_url": "http://buildlogs.centos.org/rolling/7/isos/x86_64/CentOS-7-x86_64-Minimal.iso",
+      "iso_checksum": "c93c4a9755ebff419ac0a4d5052ed1f8b6fb84f9",
       "iso_checksum_type": "sha1",
       "output_directory": "{{user `output_dir`}}",
       "ssh_username": "root",
@@ -35,8 +35,8 @@
     {
       "name": "{{user `release`}}-qemu",
       "type": "qemu",
-      "iso_url": "http://centos.chicago.waneq.com/7/isos/x86_64/CentOS-7-x86_64-Minimal-1611.iso",
-      "iso_checksum": "71a7aa147877b413497cdff5b1e0aa5bc0c9484f",
+      "iso_url": "http://buildlogs.centos.org/rolling/7/isos/x86_64/CentOS-7-x86_64-Minimal.iso",
+      "iso_checksum": "c93c4a9755ebff419ac0a4d5052ed1f8b6fb84f9",
       "iso_checksum_type": "sha1",
       "output_directory": "{{user `output_dir`}}",
       "ssh_username": "root",
