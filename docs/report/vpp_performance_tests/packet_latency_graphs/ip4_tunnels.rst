@@ -13,13 +13,31 @@ VPP packet latency in 1t1c setup (1thread, 1core) is presented in the graph belo
 
     <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/64B-1t1c-ethip4-ndrdisc-lat50.html"></iframe>
 
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{64B-1t1c-ethip4-ndrdisc-lat50}
+            \label{fig:64B-1t1c-ethip4-ndrdisc-lat50}
+    \end{figure}
+
 *Figure 1. VPP 1thread 1core - packet latency for Phy-to-Phy IPv4 Overlay Tunnels.*
 
 CSIT source code for the test cases used for above plots can be found in CSIT
 git repository:
 
-.. program-output:: cd ../../ && set -x && cd tests/vpp/perf/ip4_tunnels && grep -E "64B-1t1c-ethip4[a-z0-9]+-[a-z0-9]*-ndrdisc" *
-   :shell:
+.. only:: html
+
+   .. program-output:: cd ../../ && set -x && cd tests/vpp/perf/ip4_tunnels && grep -E "64B-1t1c-ethip4[a-z0-9]+-[a-z0-9]*-ndrdisc" *
+      :shell:
+
+.. only:: latex
+
+   .. code-block:: bash
+
+      $ cd tests/vpp/perf/ip4_tunnels
+      $ grep -E "64B-1t1c-ethip4[a-z0-9]+-[a-z0-9]*-ndrdisc" *
 
 VPP packet latency in 2t2c setup (2thread, 2core) is presented in the graph below.
 
@@ -27,10 +45,28 @@ VPP packet latency in 2t2c setup (2thread, 2core) is presented in the graph belo
 
     <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/vpp/64B-2t2c-ethip4-ndrdisc-lat50.html"></iframe>
 
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/vpp/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{64B-2t2c-ethip4-ndrdisc-lat50}
+            \label{fig:64B-2t2c-ethip4-ndrdisc-lat50}
+    \end{figure}
+
 *Figure 2. VPP 2threads 2cores - packet latency for Phy-to-Phy IPv4 Overlay Tunnels.*
 
 CSIT source code for the test cases used for above plots can be found in CSIT
 git repository:
 
-.. program-output:: cd ../../ && set -x && cd tests/vpp/perf/ip4_tunnels && grep -E "64B-2t2c-ethip4[a-z0-9]+-[a-z0-9]*-ndrdisc" *
-   :shell:
+.. only:: html
+
+   .. program-output:: cd ../../ && set -x && cd tests/vpp/perf/ip4_tunnels && grep -E "64B-2t2c-ethip4[a-z0-9]+-[a-z0-9]*-ndrdisc" *
+      :shell:
+
+.. only:: latex
+
+   .. code-block:: bash
+
+      $ cd tests/vpp/perf/ip4_tunnels
+      $ grep -E "64B-2t2c-ethip4[a-z0-9]+-[a-z0-9]*-ndrdisc" *

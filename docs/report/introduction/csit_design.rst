@@ -20,7 +20,15 @@ bottom level of the hierarchy, presentation level at the top level and a
 number of functional layers in-between. The current CSIT system design
 including CSIT framework is depicted in the figure below.
 
-.. figure:: csit_design.png
+.. raw:: latex
+
+    \begin{figure}[H]
+    \centering
+        \includesvg[width=0.90\textwidth]{csit_design_picture}
+        \label{fig:csit_design_picture}
+    \end{figure}
+
+.. figure:: csit_design_picture.svg
    :alt: FD.io CSIT system design
    :align: center
 
