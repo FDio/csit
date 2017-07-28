@@ -3,7 +3,7 @@
     <extensions>
         <entry key="management_network" type="String">flat</entry>
     </extensions>
-    <node name="listmaker" type="SIMPLE" subtype="server" location="570,238" vmImage="server-csit-centos-7-1511-listmaker">
+    <node name="listmaker" type="SIMPLE" subtype="server" location="570,238" vmImage="server-csit-centos-7.3-1611-listmaker">
         <extensions>
             <entry key="config" type="String">UNUSED</entry>
             <entry key="Auto-generate config" type="Boolean">false</entry>

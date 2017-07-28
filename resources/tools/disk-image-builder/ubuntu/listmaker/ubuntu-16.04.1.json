@@ -4,7 +4,7 @@
   "_c": "",
   "_c": "If and when 16.04.1 becomes superseded, this URL will likely change",
   "_c": "to:",
-  "_c": "http://old-releases.ubuntu.com/releases/16.04.1/ubuntu-16.04.1-server-amd64.iso",
+  "_c": "http://old-releases.ubuntu.com/releases/xenial/ubuntu-16.04.1-server-amd64.iso",
   "variables": {
     "release": null,
     "outputdir": null,
@@ -15,7 +15,7 @@
     {
       "name": "{{user `release`}}",
       "type": "qemu",
-      "iso_url": "http://releases.ubuntu.com/16.04.1/ubuntu-16.04.1-server-amd64.iso",
+      "iso_url": "http://old-releases.ubuntu.com/releases/xenial/ubuntu-16.04.1-server-amd64.iso",
       "iso_checksum": "d2d939ca0e65816790375f6826e4032f",
       "iso_checksum_type": "md5",
       "ssh_username": "root",
