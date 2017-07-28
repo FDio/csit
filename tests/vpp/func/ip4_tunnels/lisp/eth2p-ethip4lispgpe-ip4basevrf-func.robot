@@ -24,7 +24,6 @@
 | Resource | resources/libraries/robot/shared/interfaces.robot
 | Resource | resources/libraries/robot/shared/testing_path.robot
 | Resource | resources/libraries/robot/ip/ip4.robot
-| Resource | resources/libraries/robot/vrf.robot
 | Resource | resources/libraries/robot/vm/qemu.robot
 | Resource | resources/libraries/robot/l2/l2_bridge_domain.robot
 | Resource | resources/libraries/robot/overlay/lispgpe.robot
