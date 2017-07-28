@@ -62,6 +62,7 @@ echo "Storing data in ${OUTPUT_DIR}/."
 
 RPM_WANTLIST_INFRA="nfs-utils cloud-init pkgconfig yum-utils"
 RPM_WANTLIST_CSIT="python-devel python-pip python-virtualenv python-setuptools python-pip openssl-devel git strongswan"
+RPM_WANTLIST_TLDK="tcpdump"
 RPM_WANTLIST_VPP="dkms bridge-utils"
 RPM_WANTLIST_TREX="zlib-devel unzip"
 RPM_WANTLIST_MISC="socat psmisc gperftools glusterfs glusterfs-api libiscsi libibverbs libpcap libpcap-devel pixman libpng pulseaudio-libs librados2 librbd1 librdmacm libseccomp spice-server libusb usbredir glusterfs-devel seavgabios-bin sgabios-bin ipxe-roms-qemu nss-devel seabios-bin"
@@ -73,7 +74,7 @@ RPM_WANTLIST_JAVA="java-1.8.0-openjdk-headless java-1.8.0-openjdk-devel"
 ### For now, do not include WANTLIST_NESTED in the main list. We're installing qemu
 ### separately because of the possible need for specific versions but the supported version seem to be ok for Centos 7.3
 ##
-RPM_WANTLIST="$RPM_WANTLIST_INFRA $RPM_WANTLIST_CSIT $RPM_WANTLIST_VPP $RPM_WANTLIST_TREX $RPM_WANTLIST_MISC $RPM_WANTLIST_JAVA"
+RPM_WANTLIST="$RPM_WANTLIST_INFRA $RPM_WANTLIST_CSIT $RPM_WANTLIST_VPP $RPM_WANTLIST_TREX $RPM_WANTLIST_MISC $RPM_WANTLIST_JAVA $RPM_WANTLIST_TLDK"
 
 RPM_OUTPUTFILE="${OUTPUT_DIR}/rpm-packages.txt"
 
