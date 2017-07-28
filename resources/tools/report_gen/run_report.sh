@@ -2,8 +2,23 @@
 
 set -x
 
-# Build locally without jenkins integrations
+# Process parameters
 DEBUG=0
+LATEX=0
+for i in "$@"
+do
+case $i in
+    --debug)
+        DEBUG=1
+    ;;
+    --latex)
+        LATEX=1
+    ;;
+    *)
+        # unknown option
+    ;;
+esac
+done
 
 # Script directory
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
@@ -15,6 +30,12 @@ source ${SCRIPT_DIR}/run_report.cfg
 sudo apt-get -y update
 sudo apt-get -y install libxml2 libxml2-dev libxslt-dev build-essential \
     zlib1g-dev unzip
+if [[ ${LATEX} -eq 1 ]] ;
+then
+    sudo apt-get -y librsvg2-bin install texlive-latex-recommended \
+        texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra latexmk wkhtmltopdf
+    sudo sed -i.bak 's/^\(main_memory\s=\s\).*/\110000000/' /usr/share/texlive/texmf-dist/web2c/texmf.cnf
+fi
 
 # Clean-up when finished
 trap 'rm -rf ${DIR[WORKING]}; exit' EXIT
@@ -22,6 +43,7 @@ trap 'rm -rf ${DIR[WORKING]}; exit' ERR
 
 # Remove the old build
 rm -rf ${DIR[BUILD]} || true
+rm -rf ${DIR[BUILD,LATEX]} || true
 rm -rf ${DIR[WORKING]} || true
 
 # Create working directories
@@ -63,6 +85,11 @@ for i in ${blds[@]}; do
             --output ${DIR[STATIC,ARCH]}/${JOB[PERF,VPP]}-${i}.zip
     fi
 done
+if [[ ${DEBUG} -eq 0 ]] ;
+then
+    curl --fail --silent ${URL[JENKINS,CSIT]}/${JOB[PERF,VPP]}/${JOB[PERF,VPP,FBLD]}/robot/report/\*zip\*/robot-plugin.zip \
+        --output ${DIR[STATIC,ARCH]}/${JOB[PERF,VPP]}-${JOB[PERF,VPP,FBLD]}.zip
+fi
 # Archive trending
 cp ${DIR[PLOT,VPP]}/* ${DIR[STATIC,TREND]}
 blds=${JOB[1704,VPP,BLD]}
@@ -206,7 +233,7 @@ fi
 # Delete temporary json files
 find ${DIR[RST]} -name "*.json" -type f -delete
 
-# Generate the documentation
+# Generate the HTML documentation
 DATE=$(date -u '+%d-%b-%Y')
 sphinx-build -v -c . -a -b html -E \
     -D release=$1 -D version="$1 report - $DATE" \
@@ -237,6 +264,7 @@ python run_plot.py --input ${DIR[PLOT,VPP]} \
     --output ${DIR[STATIC,VPP]}/64B-1t1c-l2-sel1-ndrdisc \
     --title "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc" \
     --xpath '//*[@framesize="64B" and contains(@tags,"BASE") and contains(@tags,"NDRDISC") and contains(@tags,"1T1C") and (contains(@tags,"L2BDMACSTAT") or contains(@tags,"L2BDMACLRN") or contains(@tags,"L2XCFWD")) and not(contains(@tags,"VHOST"))]'
+
 python run_plot.py --input ${DIR[PLOT,VPP]} \
     --output ${DIR[STATIC,VPP]}/64B-2t2c-l2-sel1-ndrdisc \
     --title "64B-2t2c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-ndrdisc" \
@@ -570,6 +598,29 @@ python run_plot.py --input ${DIR[PLOT,DPDK]} \
     --output ${DIR[STATIC,DPDK]}/64B-2t2c-ipv4-ndrdisc-lat50 \
     --title "64B-2t2c-ethip4-ip4base-l3fwd-ndrdisc" \
     --xpath '//*[@framesize="64B" and contains(@tags,"BASE") and contains(@tags,"NDRDISC") and contains(@tags,"2T2C") and contains(@tags,"IP4FWD")]' --latency lat_50
+
+if [[ ${LATEX} -eq 1 ]] ;
+then
+    # Convert PyPLOT graphs in HTML format to PDF.
+    for f in ${DIR[STATIC,VPP]}/*; do
+        wkhtmltopdf ${f} ${f%.html}.pdf
+    done
+    for f in ${DIR[STATIC,DPDK]}/*; do
+        wkhtmltopdf ${f} ${f%.html}.pdf
+    done
+    rsvg-convert -z 1 -f pdf -o fdio.pdf fdio.svg
+
+    # Generate the LaTeX documentation
+    sphinx-build -v -c . -a -b latex -E \
+        -D release=$1 -D version="$1 report - $DATE" \
+        ${DIR[RST]} ${DIR[BUILD,LATEX]}
+    cd ${DIR[BUILD,LATEX]} && \
+        pdflatex -shell-escape -interaction nonstopmode csit.tex
+    pdflatex -interaction nonstopmode csit.tex
+    cp csit.pdf ../${DIR[STATIC,ARCH]}/csit_$1.pdf
+    cd ${SCRIPT_DIR}
+    rm fdio.pdf
+fi
 
 # Create archive
 echo Creating csit.report.tar.gz ...
