@@ -63,7 +63,7 @@ echo "Storing data in ${OUTPUT_DIR}/."
 
 APT_WANTLIST_INFRA="nfs-common cloud-init"
 APT_WANTLIST_CSIT="python-dev python-pip python-virtualenv git strongswan"
-APT_WANTLIST_TLDK="libpcap0.8-dev libpcap-dev cmake"
+APT_WANTLIST_TLDK="libpcap0.8-dev libpcap-dev cmake tcpdump"
 APT_WANTLIST_VPP="dkms bridge-utils"
 APT_WANTLIST_TREX="zlib1g-dev unzip"
 APT_WANTLIST_NESTED="socat qemu-system-x86"
