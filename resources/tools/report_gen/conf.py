@@ -30,7 +30,8 @@ sys.path.insert(0, os.path.abspath('.'))
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = ['sphinxcontrib.programoutput']
+extensions = ['sphinxcontrib.programoutput',
+              'sphinx.ext.ifconfig']
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -109,7 +110,6 @@ todo_include_todos = False
 
 # pdf_documents = [('index', u'rst2pdf', u'Sample rst2pdf doc', u'Your Name'),]
 
-
 # -- Options for HTML output ----------------------------------------------
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
@@ -135,3 +135,65 @@ html_context = {
         '_static/theme_overrides.css',  # overrides for wide tables in RTD theme
         ],
     }
+
+# -- Options for LaTeX output ---------------------------------------------
+
+latex_engine = 'pdflatex'
+
+latex_elements = {
+     # The paper size ('letterpaper' or 'a4paper').
+     #
+     #'papersize': 'a4paper',
+
+     # The font size ('10pt', '11pt' or '12pt').
+     #
+     #'pointsize': '10pt',
+
+     # Additional stuff for the LaTeX preamble.
+     #
+     'preamble': r'\usepackage{pdfpages}\usepackage{svg}',
+
+     # Latex figure (float) alignment
+     #
+     'figure_align': 'H',
+}
+
+# Grouping the document tree into LaTeX files. List of tuples
+# (source start file, target name, title,
+#  author, documentclass [howto, manual, or own class]).
+latex_documents = [
+    (master_doc, 'csit.tex', u'CSIT Report',
+     u'', 'manual'),
+]
+
+# The name of an image file (relative to this directory) to place at the top of
+# the title page.
+#
+latex_logo = 'fdio.pdf'
+
+# For "manual" documents, if this is true, then toplevel headings are parts,
+# not chapters.
+#
+# latex_use_parts = False
+
+# If true, show page references after internal links.
+#
+latex_show_pagerefs = True
+
+# If true, show URL addresses after external links.
+#
+# latex_show_urls = False
+
+# Documents to append as an appendix to all manuals.
+#
+# latex_appendices = []
+
+# It false, will not define \strong, \code, 	itleref, \crossref ... but only
+# \sphinxstrong, ..., \sphinxtitleref, ... To help avoid clash with user added
+# packages.
+#
+# latex_keep_old_macro_names = True
+
+# If false, no module index is generated.
+#
+# latex_domain_indices = True
