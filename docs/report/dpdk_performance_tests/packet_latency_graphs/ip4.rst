@@ -13,13 +13,31 @@ physical core (1c)** - is presented in the figure below.
 
     <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/dpdk/64B-1t1c-ipv4-ndrdisc-lat50.html"></iframe>
 
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/dpdk/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{64B-1t1c-ipv4-ndrdisc-lat50}
+            \label{fig:64B-1t1c-ipv4-ndrdisc-lat50-dpdk}
+    \end{figure}
+
 *Figure 1. L3FWD 1thread 1core - packet latency for Phy-to-Phy IPv4 Routed-Forwarding.*
 
 CSIT test cases used to generate results presented above can be found in CSIT
 git repository by filtering with specified regex as follows:
 
-.. program-output:: cd ../../ && set -x && cd tests/dpdk/perf && grep -E '64B-1t1c-ethip4-ip4base-l3fwd-ndrdisc' *
-   :shell:
+.. only:: html
+
+   .. program-output:: cd ../../ && set -x && cd tests/dpdk/perf && grep -E '64B-1t1c-ethip4-ip4base-l3fwd-ndrdisc' *
+      :shell:
+
+.. only:: latex
+
+   .. code-block:: bash
+
+      $ cd tests/dpdk/perf
+      $ grep -E '64B-1t1c-ethip4-ip4base-l3fwd-ndrdisc' *
 
 Testpmd packet latency - running in configuration of **two worker threads (2t)
 on two physical cores (2c)** - is presented in the figure below.
@@ -28,10 +46,28 @@ on two physical cores (2c)** - is presented in the figure below.
 
     <iframe width="700" height="1000" frameborder="0" scrolling="no" src="../../_static/dpdk/64B-2t2c-ipv4-ndrdisc-lat50.html"></iframe>
 
+.. raw:: latex
+
+    \begin{figure}[H]
+        \centering
+            \graphicspath{{../_build/_static/dpdk/}}
+            \includegraphics[clip, trim=0cm 8cm 5cm 0cm, width=0.70\textwidth]{64B-2t2c-ipv4-ndrdisc-lat50}
+            \label{fig:64B-2t2c-ipv4-ndrdisc-lat50-dpdk}
+    \end{figure}
+
 *Figure 2. L3FWD 2thread 2core - packet latency for Phy-to-Phy IPv4 Routed-Forwarding.*
 
 CSIT test cases used to generate results presented above can be found in CSIT
 git repository by filtering with specified regex as follows:
 
-.. program-output:: cd ../../ && set -x && cd tests/dpdk/perf && grep -E '64B-2t2c-ethip4-ip4base-l3fwd-ndrdisc' *
-   :shell:
+.. only:: html
+
+   .. program-output:: cd ../../ && set -x && cd tests/dpdk/perf && grep -E '64B-2t2c-ethip4-ip4base-l3fwd-ndrdisc' *
+      :shell:
+
+.. only:: latex
+
+   .. code-block:: bash
+
+      $ cd tests/dpdk/perf
+      $ grep -E '64B-2t2c-ethip4-ip4base-l3fwd-ndrdisc' *
