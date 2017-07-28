@@ -1,6 +1,6 @@
 Sphinx
 sphinx-rtd-theme
-plotly==2.0.12
+plotly
 lxml==3.5.0
 robotframework==2.9.2
 sphinxcontrib-programoutput
