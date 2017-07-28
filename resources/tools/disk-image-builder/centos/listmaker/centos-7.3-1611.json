@@ -1,6 +1,6 @@
 {
-  "_c": "Centos7 ISO URL at the time of creation of this file (12/2016)",
-  "_c": "http://centos.chicago.waneq.com/7/isos/x86_64/CentOS-7-x86_64-Minimal-1611.iso",
+  "_c": "Centos7 ISO URL at the time of creation of this file (8/2017)",
+  "_c": "http://buildlogs.centos.org/rolling/7/isos/x86_64/CentOS-7-x86_64-Minimal.iso",
   "_c": "",
   "variables": {
     "release": null,
@@ -13,8 +13,8 @@
     {
       "name": "{{user `release`}}",
       "type": "qemu",
-      "iso_url": "http://centos.chicago.waneq.com/7/isos/x86_64/CentOS-7-x86_64-Minimal-1611.iso",
-      "iso_checksum": "71a7aa147877b413497cdff5b1e0aa5bc0c9484f",
+      "iso_url": "http://buildlogs.centos.org/rolling/7/isos/x86_64/CentOS-7-x86_64-Minimal.iso",
+      "iso_checksum": "c93c4a9755ebff419ac0a4d5052ed1f8b6fb84f9",
       "iso_checksum_type": "sha1",
       "output_directory": "{{user `outputdir`}}",
       "ssh_username": "root",
