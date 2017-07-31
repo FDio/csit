@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a4e6583_ee5df349",
+        "filename": "resources/tools/report_gen/run_robot_xml_data.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 106,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-07-31T15:02:41Z",
+      "side": 1,
+      "message": "XML",
+      "range": {
+        "startLine": 106,
+        "startChar": 60,
+        "endLine": 106,
+        "endChar": 64
+      },
+      "revId": "9701eaffbf1588eface2193dbe0b2a3f81ebab11",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a4e6583_ce5a3750",
+        "filename": "resources/tools/report_gen/run_robot_xml_data.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 331,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-07-31T15:02:41Z",
+      "side": 1,
+      "message": "XML",
+      "range": {
+        "startLine": 331,
+        "startChar": 58,
+        "endLine": 331,
+        "endChar": 62
+      },
+      "revId": "9701eaffbf1588eface2193dbe0b2a3f81ebab11",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a4e6583_ae57fb25",
+        "filename": "resources/tools/report_gen/run_robot_xml_data.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 335,
+      "author": {
+        "id": 197
+      },
+      "writtenOn": "2017-07-31T15:02:41Z",
+      "side": 1,
+      "message": "XML",
+      "range": {
+        "startLine": 335,
+        "startChar": 14,
+        "endLine": 335,
+        "endChar": 18
+      },
+      "revId": "9701eaffbf1588eface2193dbe0b2a3f81ebab11",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
