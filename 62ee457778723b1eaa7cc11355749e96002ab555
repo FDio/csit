@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a4e6583_74ff9602",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 283,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-08-01T11:00:26Z",
+      "side": 1,
+      "message": "this is not gonna work. Logical and will not found anything. It is boolean algebra.",
+      "range": {
+        "startLine": 283,
+        "startChar": 25,
+        "endLine": 283,
+        "endChar": 73
+      },
+      "revId": "62ee457778723b1eaa7cc11355749e96002ab555",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
