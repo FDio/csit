@@ -7,9 +7,9 @@ This is the **F**\ast **D**\ata **I**/**O** Project (**FD.io**) **C**\ontinuous
 
 The report describes CSIT functional and performance tests and their
 continuous execution delivered in CSIT |release|. A high-level overview is
-provided for each CSIT test environment running in Linux Foundation (LF) FD.io
-Continuous Performance Labs. This is followed by summary of all executed tests
-against the |vpp-release| and associated FD.io projects and sub-systems
+provided for each CSIT test environment running in :abbr:`LF (Linux Foundation)`
+FD.io Continuous Performance Labs. This is followed by summary of all executed
+tests against the |vpp-release| and associated FD.io projects and sub-systems
 (Honeycomb, DPDK, NSH_SFC), CSIT |release| release notes, result highlights and
 known issues discovered in CSIT. More detailed description of each environment,
 pointers to CSIT test code documentation and detailed test resuls with links to

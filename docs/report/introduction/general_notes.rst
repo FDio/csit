@@ -2,13 +2,14 @@ General Notes
 =============
 
 All CSIT test results listed in this report are sourced and auto-generated
-from output.xml Robot Framework (RF) files resulting from LF FD.io Jenkins
-jobs execution against |vpp-release| release artifacts. References are
-provided to the original LF FD.io Jenkins job results. However, as LF FD.io
-Jenkins infrastructure does not automatically archive all jobs (history record
-is provided for the last 30 days or 40 jobs only), additional references are
-provided to the RF result files that got archived in FD.io nexus online
-storage system.
+from :file:`output.xml` :abbr:`RF (Robot Framework)` files resulting from
+:abbr:`LF (Linux Foundation)` FD.io Jenkins jobs execution against |vpp-release|
+release artifacts. References are provided to the original :abbr:`LF (Linux
+Foundation)` FD.io Jenkins job results. However, as :abbr:`LF (Linux
+Foundation)` FD.io Jenkins infrastructure does not automatically archive all jobs
+(history record is provided for the last 30 days or 40 jobs only), additional
+references are provided to the :abbr:`RF (Robot Framework)` result files that
+got archived in FD.io nexus online storage system.
 
 FD.io CSIT project currently covers multiple FD.io system and sub-system
 testing areas and this is  reflected in this report, where each testing area
@@ -42,9 +43,9 @@ is listed separately, as follows:
    against VPP.
 
 #. **Honeycomb Performance Tests** - Honeycomb performance tests are executed in
-   physical FD.io testbeds, focusing on the performance of Honeycomb management and programming
-   functionality of VPP. Tests cover a range of CRUD operations executed
-   against VPP.
+   physical FD.io testbeds, focusing on the performance of Honeycomb management
+   and programming functionality of VPP. Tests cover a range of CRUD operations
+   executed against VPP.
 
 #. **NSH_SFC Functional Tests** - NSH_SFC functional tests are executed in
    virtual FD.io testbeds focusing on NSH_SFC of VPP. Tests cover a range of
@@ -56,12 +57,12 @@ complement CSIT system functional tests, they are provided mainly as a reference
 and to provide a more complete view of automated testing executed against
 |vpp-release|.
 
-FD.io CSIT system is developed using two main coding platforms: Robot
-Framework (RF) and Python. CSIT |release| source code for the executed test
+FD.io CSIT system is developed using two main coding platforms :abbr:`RF (Robot
+Framework)` and Python. CSIT |release| source code for the executed test
 suites is available in CSIT branch |release| in the directory
-"./tests/<name_of_the_test_suite>". A local copy of CSIT source code can be
-obtained by cloning CSIT git repository - "git clone
-https://gerrit.fd.io/r/csit". The CSIT testing virtual environment can be run
+:file:`./tests/<name_of_the_test_suite>`. A local copy of CSIT source code
+can be obtained by cloning CSIT git repository - :command:`git clone
+https://gerrit.fd.io/r/csit`. The CSIT testing virtual environment can be run
 on a local computer workstation (laptop, server) using Vagrant by following
 the instructions in `CSIT tutorials
 <https://wiki.fd.io/view/CSIT#Tutorials>`_.

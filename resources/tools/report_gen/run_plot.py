@@ -200,6 +200,7 @@ def main():
                         name=str(i+1)+'. '+suite.lower().replace('-ndrdisc',''),
                         hoverinfo='x+y',
                         boxpoints='outliers',
+                        whiskerwidth=0,
                     ))
                 elif args.plot == 'scatter':
                     traces.append(plgo.Scatter(

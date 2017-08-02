@@ -5,9 +5,8 @@ Tested Physical Topologies
 --------------------------
 
 CSIT VPP performance tests are executed on physical baremetal servers hosted by
-LF FD.io project. Testbed physical topology is shown in the figure below.
-
-::
+:abbr:`LF (Linux Foundation)` FD.io project. Testbed physical topology is shown
+in the figure below.::
 
     +------------------------+           +------------------------+
     |                        |           |                        |
@@ -60,9 +59,7 @@ N>1 DUT a logical service chain forwarding topology is created on DUT by
 applying L2 or IPv4/IPv6 configuration depending on the test suite. DUT
 test topology with N VM/LXC instances is shown in the figure below
 including applicable packet flow thru the DUTs and VMs/LXCs (marked in
-the figure with ``***``).
-
-::
+the figure with ``***``).::
 
     +-------------------------+           +-------------------------+
     | +---------+ +---------+ |           | +---------+ +---------+ |
@@ -92,22 +89,22 @@ Hence the external throughput rates measured by TG and listed in this
 report must be multiplied by (N+1) to represent the actual DUT aggregate
 packet forwarding rate.
 
-Note that reported DUT (VPP) performance results are specific to the
-SUTs tested. Current LF FD.io SUTs are based on Intel XEON E5-2699v3
-2.3GHz CPUs. SUTs with other CPUs are likely to yield different results.
-A good rule of thumb, that can be applied to estimate VPP packet
+Note that reported DUT (VPP) performance results are specific to the SUTs
+tested. Current :abbr:`LF (Linux Foundation)` FD.io SUTs are based on Intel
+XEON E5-2699v3 2.3GHz CPUs. SUTs with other CPUs are likely to yield different
+results. A good rule of thumb, that can be applied to estimate VPP packet
 thoughput for Phy-to-Phy (NIC-to-NIC, PCI-to-PCI) topology, is to expect
 the forwarding performance to be proportional to CPU core frequency,
 assuming CPU is the only limiting factor and all other SUT parameters
 equivalent to FD.io CSIT environment. The same rule of thumb can be also
-applied for Phy-to-VM/LXC-to-Phy (NIC-to-VM/LXC-to-NIC) topology, but
-due to much higher dependency on intensive memory operations and
-sensitivity to Linux kernel scheduler settings and behaviour, this
-estimation may not always yield good enough accuracy.
+applied for Phy-to-VM/LXC-to-Phy (NIC-to-VM/LXC-to-NIC) topology, but due to
+much higher dependency on intensive memory operations and sensitivity to Linux
+kernel scheduler settings and behaviour, this estimation may not always yield
+good enough accuracy.
 
-For detailed LF FD.io test bed specification and physical topology
-please refer to
-`LF FD.io CSIT testbed wiki page <https://wiki.fd.io/view/CSIT/CSIT_LF_testbed>`_.
+For detailed :abbr:`LF (Linux Foundation)` FD.io test bed specification and
+physical topology please refer to `LF FD.io CSIT testbed wiki page
+<https://wiki.fd.io/view/CSIT/CSIT_LF_testbed>`_.
 
 Performance Tests Coverage
 --------------------------
@@ -115,7 +112,7 @@ Performance Tests Coverage
 Performance tests are split into two main categories:
 
 - Throughput discovery - discovery of packet forwarding rate using binary search
-  in accordance to RFC2544.
+  in accordance to :rfc:`2544`.
 
   - NDR - discovery of Non Drop Rate packet throughput, at zero packet loss;
     followed by one-way packet latency measurements at 10%, 50% and 100% of
@@ -185,60 +182,59 @@ CSIT |release| includes following performance test suites, listed per NIC type:
   - **L2BD** - L2 Bridge-Domain switched-forwarding of untagged Ethernet frames
      with MAC learning.
 
-Execution of performance tests takes time, especially the throughput
-discovery tests. Due to limited HW testbed resources available within
-FD.io labs hosted by Linux Foundation, the number of tests for NICs
-other than X520 (a.k.a. Niantic) has been limited to few baseline tests.
-CSIT team expect the HW testbed resources to grow over time, so that
-complete set of performance tests can be regularly and(or) continuously
-executed against all models of hardware present in FD.io labs.
+Execution of performance tests takes time, especially the throughput discovery
+tests. Due to limited HW testbed resources available within FD.io labs hosted
+by :abbr:`LF (Linux Foundation)`, the number of tests for NICs other than X520
+(a.k.a. Niantic) has been limited to few baseline tests. CSIT team expect the
+HW testbed resources to grow over time, so that complete set of performance
+tests can be regularly and(or) continuously executed against all models of
+hardware present in FD.io labs.
 
 Performance Tests Naming
 ------------------------
 
-CSIT |release| follows a common structured naming convention for all
-performance and system functional tests, introduced in CSIT |release-1|.
+CSIT |release| follows a common structured naming convention for all performance
+and system functional tests, introduced in CSIT |release-1|.
 
-The naming should be intuitive for majority of the tests. Complete
-description of CSIT test naming convention is provided on `CSIT test naming wiki
+The naming should be intuitive for majority of the tests. Complete description
+of CSIT test naming convention is provided on `CSIT test naming wiki
 <https://wiki.fd.io/view/CSIT/csit-test-naming>`_.
 
 Methodology: Multi-Core and Multi-Threading
 -------------------------------------------
 
-**Intel Hyper-Threading** - CSIT |release| performance tests are
-executed with SUT servers' Intel XEON processors configured in Intel
-Hyper-Threading Disabled mode (BIOS setting). This is the simplest
-configuration used to establish baseline single-thread single-core
-application packet processing and forwarding performance. Subsequent
-releases of CSIT will add performance tests with Intel Hyper-Threading
-Enabled (requires BIOS settings change and hard reboot of server).
+**Intel Hyper-Threading** - CSIT |release| performance tests are executed with
+SUT servers' Intel XEON processors configured in Intel Hyper-Threading Disabled
+mode (BIOS setting). This is the simplest configuration used to establish
+baseline single-thread single-core application packet processing and forwarding
+performance. Subsequent releases of CSIT will add performance tests with Intel
+Hyper-Threading Enabled (requires BIOS settings change and hard reboot of
+server).
 
-**Multi-core Tests** - CSIT |release| multi-core tests are executed in
-the following VPP thread and core configurations:
+**Multi-core Tests** - CSIT |release| multi-core tests are executed in the
+following VPP thread and core configurations:
 
 #. 1t1c - 1 VPP worker thread on 1 CPU physical core.
 #. 2t2c - 2 VPP worker threads on 2 CPU physical cores.
 
-VPP worker threads are the data plane threads. VPP control thread is
-running on a separate non-isolated core together with other Linux
-processes. Note that in quite a few test cases running VPP workers on 2
-physical cores hits the tested NIC I/O bandwidth or packets-per-second
-limit.
+VPP worker threads are the data plane threads. VPP control thread is running on
+a separate non-isolated core together with other Linux processes. Note that in
+quite a few test cases running VPP workers on 2 physical cores hits the tested
+NIC I/O bandwidth or packets-per-second limit.
 
 Methodology: Packet Throughput
 ------------------------------
 
 Following values are measured and reported for packet throughput tests:
 
-- NDR binary search per RFC2544:
+- NDR binary search per :rfc:`2544`:
 
   - Packet rate: "RATE: <aggregate packet rate in packets-per-second> pps
     (2x <per direction packets-per-second>)"
   - Aggregate bandwidth: "BANDWIDTH: <aggregate bandwidth in Gigabits per
     second> Gbps (untagged)"
 
-- PDR binary search per RFC2544:
+- PDR binary search per :rfc:`2544`:
 
   - Packet rate: "RATE: <aggregate packet rate in packets-per-second> pps (2x
     <per direction packets-per-second>)"
@@ -282,27 +278,27 @@ latency values are measured using following methodology:
 Methodology: KVM VM vhost
 -------------------------
 
-CSIT |release| introduced test environment configuration changes to KVM Qemu vhost-
-user tests in order to more representatively measure |vpp-release| performance
-in configurations with vhost-user interfaces and different Qemu settings.
+CSIT |release| introduced test environment configuration changes to KVM Qemu
+vhost-user tests in order to more representatively measure |vpp-release|
+performance in configurations with vhost-user interfaces and different Qemu
+settings.
 
-FD.io CSIT performance lab is testing VPP vhost with KVM VMs using following environment settings
+FD.io CSIT performance lab is testing VPP vhost with KVM VMs using following
+environment settings:
 
-- Tests with varying Qemu virtio queue (a.k.a. vring) sizes:
-  [vr256] default 256 descriptors, [vr1024] 1024 descriptors to
-  optimize for packet throughput;
+- Tests with varying Qemu virtio queue (a.k.a. vring) sizes: [vr256] default 256
+  descriptors, [vr1024] 1024 descriptors to optimize for packet throughput;
 
-- Tests with varying Linux CFS (Completely Fair Scheduler)
-  settings: [cfs] default settings, [cfsrr1] CFS RoundRobin(1)
-  policy applied to all data plane threads handling test packet
-  path including all VPP worker threads and all Qemu testpmd
-  poll-mode threads;
+- Tests with varying Linux :abbr:`CFS (Completely Fair Scheduler)` settings:
+  [cfs] default settings, [cfsrr1] CFS RoundRobin(1) policy applied to all data
+  plane threads handling test packet path including all VPP worker threads and
+  all Qemu testpmd poll-mode threads;
 
 - Resulting test cases are all combinations with [vr256,vr1024] and
   [cfs,cfsrr1] settings;
 
-- Adjusted Linux kernel CFS scheduler policy for data plane threads used
-  in CSIT is documented in
+- Adjusted Linux kernel :abbr:`CFS (Completely Fair Scheduler)` scheduler policy
+  for data plane threads used in CSIT is documented in
   `CSIT Performance Environment Tuning wiki <https://wiki.fd.io/view/CSIT/csit-perf-env-tuning-ubuntu1604>`_.
   The purpose is to verify performance impact (NDR, PDR throughput) and
   same test measurements repeatability, by making VPP and VM data plane
@@ -312,15 +308,14 @@ FD.io CSIT performance lab is testing VPP vhost with KVM VMs using following env
 Methodology: LXC Container memif
 --------------------------------
 
-CSIT |release| introduced new tests - VPP Memif virtual interface
-(shared memory interface) tests  interconnecting VPP instances over
-memif. VPP vswitch  instance runs in bare-metal user-mode handling Intel
-x520 NIC  10GbE interfaces and connecting over memif (Master side)
-virtual  interfaces to another instance of VPP running in bare-metal
-Linux  Container (LXC) with memif virtual interfaces (Slave side). LXC
-runs in a priviliged mode with VPP data plane worker threads  pinned to
-dedicated physical CPU cores per usual CSIT practice.  Both VPP run the
-same version of software. This test topology is  equivalent to existing
+CSIT |release| introduced new tests - VPP Memif virtual interface (shared memory
+interface) tests interconnecting VPP instances over memif. VPP vswitch instance
+runs in bare-metal user-mode handling Intel x520 NIC 10GbE interfaces and
+connecting over memif (Master side) virtual interfaces to another instance of
+VPP running in bare-metal :abbr:`LXC (Linux Container)` with memif virtual
+interfaces (Slave side). LXC runs in a priviliged mode with VPP data plane worker
+threads pinned to dedicated physical CPU cores per usual CSIT practice. Both VPP
+run the same version of software. This test topology is equivalent to existing
 tests with vhost-user and VMs.
 
 Methodology: IPSec with Intel QAT HW cards
@@ -363,7 +358,7 @@ TRex is installed and run on the TG compute node. The typical procedure is:
 
 - There are traffic streams dynamically prepared for each test, based on traffic
   profiles. The traffic is sent and the statistics obtained using
-  trex_stl_lib.api.STLClient.
+  :command:`trex_stl_lib.api.STLClient`.
 
 **Measuring packet loss**
 

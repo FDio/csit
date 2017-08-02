@@ -5,13 +5,11 @@ Tested Virtual Topologies
 -------------------------
 
 CSIT Honeycomb functional tests are executed on virtualized topologies created
-using Virtual Internet Routing Lab (VIRL) simulation platform contributed by
-Cisco. VIRL runs on physical baremetal servers hosted by LF FD.io project. All
-tests are executed in two node logical test topology - Traffic Generator (TG)
-node and Systems Under Test (SUT1) node connected in a loop. Logical test
-topology is shown in the figure below.
-
-::
+using :abbr:`VIRL (Virtual Internet Routing Lab)` simulation platform
+contributed by Cisco. VIRL runs on physical baremetal servers hosted by LF FD.io
+project. All tests are executed in two node logical test topology - Traffic
+Generator (TG) node and Systems Under Test (SUT1) node connected in a loop.
+Logical test topology is shown in the figure below.::
 
                      +------------------------+
                      |                        |

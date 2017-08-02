@@ -2,26 +2,6 @@
 
 set -x
 
-# Process parameters
-# Debugging
-DEBUG=0
-# Latex Builder
-LATEX=0
-
-for i in "$@"; do
-case $i in
-    --debug)
-        DEBUG=1
-    ;;
-    --latex)
-        LATEX=1
-    ;;
-    *)
-        # unknown option
-    ;;
-esac
-done
-
 # Script directory
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
@@ -31,11 +11,29 @@ DATE=$(date -u '+%d-%b-%Y')
 # Load configuration
 source ${SCRIPT_DIR}/run_report.cfg
 
+# Process parameters
+for i in "$@"; do
+case $i in
+    --debug)
+        CFG[DEBUG]=1
+    ;;
+    --no_latex)
+        CFG[BLD_LATEX]=0
+    ;;
+    --no_html)
+        CFG[BLD_HTML]=0
+    ;;
+    *)
+        # unknown option
+    ;;
+esac
+done
+
 # Install system dependencies
 sudo apt-get -y update
 sudo apt-get -y install libxml2 libxml2-dev libxslt-dev build-essential \
     zlib1g-dev unzip
-if [[ ${LATEX} -eq 1 ]] ;
+if [[ ${CFG[BLD_LATEX]} -eq 1 ]] ;
 then
     sudo apt-get -y install librsvg2-bin texlive-latex-recommended \
         texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra latexmk wkhtmltopdf
@@ -47,7 +45,7 @@ trap 'rm -rf ${DIR[WORKING]}; exit' EXIT
 trap 'rm -rf ${DIR[WORKING]}; exit' ERR
 
 # Remove the old build
-rm -rf ${DIR[BUILD]} || true
+rm -rf ${DIR[BUILD,HTML]} || true
 rm -rf ${DIR[BUILD,LATEX]} || true
 rm -rf ${DIR[WORKING]} || true
 
@@ -74,7 +72,7 @@ mkdir -p ${DIR[PLOT,DPDK]}
 
 ### VPP PERFORMANCE SOURCE DATA
 
-#if [[ ${DEBUG} -eq 1 ]] ;
+#if [[ ${CFG[DEBUG]} -eq 1 ]] ;
 #    cp ./${JOB[PERF,VPP]}-${JOB[PERF,VPP,FBLD]}.zip ${DIR[STATIC,ARCH]}/${JOB[PERF,VPP]}-${JOB[PERF,VPP,FBLD]}.zip
 #fi
 
@@ -82,13 +80,13 @@ blds=${JOB[PERF,VPP,BLD]}
 for i in ${blds[@]}; do
     curl --silent ${URL[JENKINS,CSIT]}/${JOB[PERF,VPP]}/${i}/robot/report/output_perf_data.xml \
         --output ${DIR[PLOT,VPP]}/${JOB[PERF,VPP]}-${i}.xml
-    if [[ ${DEBUG} -eq 0 ]] ;
+    if [[ ${CFG[DEBUG]} -eq 0 ]] ;
     then
         curl --fail --silent ${URL[JENKINS,CSIT]}/${JOB[PERF,VPP]}/${i}/robot/report/\*zip\*/robot-plugin.zip \
             --output ${DIR[STATIC,ARCH]}/${JOB[PERF,VPP]}-${i}.zip
     fi
 done
-if [[ ${DEBUG} -eq 0 ]] ;
+if [[ ${CFG[DEBUG]} -eq 0 ]] ;
 then
     curl --fail --silent ${URL[JENKINS,CSIT]}/${JOB[PERF,VPP]}/${JOB[PERF,VPP,FBLD]}/robot/report/\*zip\*/robot-plugin.zip \
         --output ${DIR[STATIC,ARCH]}/${JOB[PERF,VPP]}-${JOB[PERF,VPP,FBLD]}.zip
@@ -103,7 +101,7 @@ done
 
 ### DPDK PERFORMANCE SOURCE DATA
 
-#if [[ ${DEBUG} -eq 1 ]] ;
+#if [[ ${CFG[DEBUG]} -eq 1 ]] ;
 #    cp ./${JOB[PERF,DPDK]}-${JOB[PERF,DPDK,FBLD]}.zip ${DIR[STATIC,ARCH]}/${JOB[PERF,DPDK]}-${JOB[PERF,DPDK,FBLD]}.zip
 #fi
 
@@ -111,7 +109,7 @@ blds=${JOB[PERF,DPDK,BLD]}
 for i in ${blds[@]}; do
     curl --silent ${URL[JENKINS,CSIT]}/${JOB[PERF,DPDK]}/${i}/robot/report/output_perf_data.xml \
         --output ${DIR[PLOT,DPDK]}/${JOB[PERF,DPDK]}-${i}.xml
-    if [[ ${DEBUG} -eq 0 ]] ;
+    if [[ ${CFG[DEBUG]} -eq 0 ]] ;
     then
         curl --fail --silent ${URL[JENKINS,CSIT]}/${JOB[PERF,DPDK]}/${i}/robot/report/\*zip\*/robot-plugin.zip \
             --output ${DIR[STATIC,ARCH]}/${JOB[PERF,DPDK]}-${i}.zip
@@ -121,11 +119,11 @@ cp ${DIR[PLOT,DPDK]}/* ${DIR[STATIC,TREND]}
 
 ### FUNCTIONAL SOURCE DATA
 
-#if [[ ${DEBUG} -eq 1 ]] ;
+#if [[ ${CFG[DEBUG]} -eq 1 ]] ;
 #    cp ./${JOB[FUNC,VPP]}-${JOB[FUNC,VPP,BLD]}.zip ${DIR[STATIC,ARCH]}/${JOB[FUNC,VPP]}-${JOB[FUNC,VPP,BLD]}.zip
 #fi
 
-if [[ ${DEBUG} -eq 0 ]] ;
+if [[ ${CFG[DEBUG]} -eq 0 ]] ;
 then
     curl --fail --silent ${URL[JENKINS,CSIT]}/${JOB[FUNC,VPP]}/${JOB[FUNC,VPP,BLD]}/robot/report/\*zip\*/robot-plugin.zip \
         --output ${DIR[STATIC,ARCH]}/${JOB[FUNC,VPP]}-${JOB[FUNC,VPP,BLD]}.zip
@@ -133,11 +131,11 @@ fi
 
 ### HONEYCOMB FUNCTIONAL SOURCE DATA
 
-#if [[ ${DEBUG} -eq 1 ]] ;
+#if [[ ${CFG[DEBUG]} -eq 1 ]] ;
 #    cp ./${JOB[FUNC,HC]}-${JOB[FUNC,HC,BLD]}.zip ${DIR[STATIC,ARCH]}/${JOB[FUNC,HC]}-${JOB[FUNC,HC,BLD]}.zip
 #fi
 
-if [[ ${DEBUG} -eq 0 ]] ;
+if [[ ${CFG[DEBUG]} -eq 0 ]] ;
 then
     curl --fail --silent ${URL[JENKINS,HC]}/${JOB[FUNC,HC]}/${JOB[FUNC,HC,BLD]}/robot/report/\*zip\*/robot-plugin.zip \
         --output ${DIR[STATIC,ARCH]}/${JOB[FUNC,HC]}-${JOB[FUNC,HC,BLD]}.zip
@@ -145,11 +143,11 @@ fi
 
 ### HONEYCOMB PERFORMANCE SOURCE DATA
 
-#if [[ ${DEBUG} -eq 1 ]] ;
+#if [[ ${CFG[DEBUG]} -eq 1 ]] ;
 #    cp ./${JOB[PERF,HC]}-${JOB[PERF,HC,BLD]}.zip ${DIR[STATIC,ARCH]}/${JOB[PERF,HC]}-${JOB[PERF,HC,BLD]}.zip
 #fi
 
-if [[ ${DEBUG} -eq 0 ]] ;
+if [[ ${CFG[DEBUG]} -eq 0 ]] ;
 then
     blds=${JOB[PERF,HC,BLD]}
     for i in ${blds[@]}; do
@@ -160,11 +158,11 @@ fi
 
 ### NSH_SFC SOURCE DATA
 
-#if [[ ${DEBUG} -eq 1 ]] ;
+#if [[ ${CFG[DEBUG]} -eq 1 ]] ;
 #    cp ./${JOB[FUNC,NSH]}-${JOB[FUNC,NSH,BLD]}.zip ${DIR[STATIC,ARCH]}/${JOB[FUNC,NSH]}-${JOB[FUNC,NSH,BLD]}.zip
 #fi
 
-if [[ ${DEBUG} -eq 0 ]] ;
+if [[ ${CFG[DEBUG]} -eq 0 ]] ;
 then
     curl --fail --silent ${URL[JENKINS,CSIT]}/${JOB[FUNC,NSH]}/${JOB[FUNC,NSH,BLD]}/robot/report/\*zip\*/robot-plugin.zip \
         --output ${DIR[STATIC,ARCH]}/${JOB[FUNC,NSH]}-${JOB[FUNC,NSH,BLD]}.zip
@@ -172,7 +170,7 @@ fi
 
 # Data post processing
 
-if [[ ${DEBUG} -eq 0 ]] ;
+if [[ ${CFG[DEBUG]} -eq 0 ]] ;
 then
     # VPP PERF
     unzip -o ${DIR[STATIC,ARCH]}/${JOB[PERF,VPP]}-${JOB[PERF,VPP,FBLD]}.zip -d ${DIR[WORKING]}/
@@ -224,7 +222,7 @@ then
 fi
 
 # Generate tables for performance improvements
-if [[ ${DEBUG} -eq 0 ]] ;
+if [[ ${CFG[DEBUG]} -eq 0 ]] ;
 then
     python run_improvments_tables.py \
         --input ${DIR[DTR,PERF,VPP,IMPRV]} \
@@ -578,12 +576,14 @@ python run_plot.py --input ${DIR[PLOT,DPDK]} \
     --xpath '//*[@framesize="64B" and contains(@tags,"BASE") and contains(@tags,"NDRDISC") and contains(@tags,"2T2C") and contains(@tags,"IP4FWD")]' --latency lat_50
 
 # HTML BUILDER
-sphinx-build -v -c . -a -b html -E \
-    -D release=$1 -D version="$1 report - $DATE" \
-    ${DIR[RST]} ${DIR[BUILD]}/
+if [[ ${CFG[BLD_HTML]} -eq 1 ]] ;
+then
+    sphinx-build -v -c . -a -b html -E \
+        -D release=$1 -D version="$1 report - $DATE" \
+        ${DIR[RST]} ${DIR[BUILD,HTML]}/
 
-# Patch the CSS for tables layout
-cat - > ${DIR[CSS_PATCH_FILE]} <<"_EOF"
+    # Patch the CSS for tables layout
+    cat - > ${DIR[CSS_PATCH_FILE]} <<"_EOF"
 /* override table width restrictions */
 @media screen and (min-width: 767px) {
     .wy-table-responsive table td, .wy-table-responsive table th {
@@ -598,9 +598,10 @@ cat - > ${DIR[CSS_PATCH_FILE]} <<"_EOF"
     }
 }
 _EOF
+fi
 
 # LATEX BUILDER
-if [[ ${LATEX} -eq 1 ]] ;
+if [[ ${CFG[BLD_LATEX]} -eq 1 ]] ;
 then
     # Convert PyPLOT graphs in HTML format to PDF.
     for f in ${DIR[STATIC,VPP]}/*; do
@@ -609,7 +610,7 @@ then
     for f in ${DIR[STATIC,DPDK]}/*; do
         wkhtmltopdf ${f} ${f%.html}.pdf
     done
-    rsvg-convert -z 10 -f pdf -o fdio.pdf fdio.svg
+    #rsvg-convert -z 10 -f pdf -o fdio.pdf fdio.svg
 
     # Generate the LaTeX documentation
     sphinx-build -v -c . -a -b latex -E \
@@ -620,9 +621,9 @@ then
     pdflatex -interaction nonstopmode csit.tex || true
     cp csit.pdf ../${DIR[STATIC,ARCH]}/csit_$1.pdf
     cd ${SCRIPT_DIR}
-    rm -f fdio.pdf
+    #rm -f fdio.pdf
 fi
 
 # Create archive
 echo Creating csit.report.tar.gz ...
-tar -czvf ./csit.report.tar.gz ${DIR[BUILD]}
+tar -czvf ./csit.report.tar.gz ${DIR[BUILD,HTML]}

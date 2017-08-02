@@ -154,7 +154,7 @@ Performance testing tags
 
 .. topic:: NDRPDRDISC
 
-    Find performance of DUT based on RFC2544 with linear / binary / combined
+    Find performance of DUT based on :rfc:`2544` with linear / binary / combined
     search. (Previous LONG tests.)
 
 Ethernet frame size tags for performance tests
