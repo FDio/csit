@@ -5,9 +5,8 @@ Tested Physical Topologies
 --------------------------
 
 CSIT DPDK performance tests are executed on physical baremetal servers hosted
-by LF FD.io project. Testbed physical topology is shown in the figure below.
-
-::
+by :abbr:`LF (Linux Foundation)` FD.io project. Testbed physical topology is
+shown in the figure below.::
 
     +------------------------+           +------------------------+
     |                        |           |                        |
@@ -27,14 +26,13 @@ by LF FD.io project. Testbed physical topology is shown in the figure below.
                              |           |
                              +-----------+
 
-SUT1 and SUT2 are two System Under Test servers (currently Cisco UCS C240,
-each with two Intel XEON CPUs), TG is a Traffic Generator (TG, currently
-another Cisco UCS C240, with two Intel XEON CPUs). SUTs run Testpmd/L3FWD SW
-application in Linux user-mode as a Device Under Test (DUT). TG runs TRex SW
-application as a packet Traffic Generator. Physical connectivity between SUTs
-and to TG is provided using direct links (no L2 switches) connecting different
-NIC models that need to be tested for performance. Currently installed and
-tested NIC models include:
+SUT1 and SUT2 are two System Under Test servers (Cisco UCS C240, each with two
+Intel XEON CPUs), TG is a Traffic Generator (TG, another Cisco UCS C240, with
+two Intel XEON CPUs). SUTs run VPP SW application in Linux user-mode as a
+Device Under Test (DUT). TG runs TRex SW application as a packet Traffic
+Generator. Physical connectivity between SUTs and to TG is provided using
+different NIC models that need to be tested for performance. Currently
+installed and tested NIC models include:
 
 #. 2port10GE X520-DA2 Intel.
 #. 2port10GE X710 Intel.
@@ -42,26 +40,51 @@ tested NIC models include:
 #. 2port40GE VIC1385 Cisco.
 #. 2port40GE XL710 Intel.
 
-For detailed LF FD.io test bed specification and physical topology please refer
-to `LF FDio CSIT testbed wiki page <https://wiki.fd.io/view/CSIT/CSIT_LF_testbed>`_.
+From SUT and DUT perspective, all performance tests involve forwarding packets
+between two physical Ethernet ports (10GE or 40GE). Due to the number of
+listed NIC models tested and available PCI slot capacity in SUT servers, in
+all of the above cases both physical ports are located on the same NIC. In
+some test cases this results in measured packet throughput being limited not
+by VPP DUT but by either the physical interface or the NIC capacity.
+
+Going forward CSIT project will be looking to add more hardware into FD.io
+performance labs to address larger scale multi-interface and multi-NIC
+performance testing scenarios.
+
+Note that reported DUT (DPDK) performance results are specific to the SUTs
+tested. Current :abbr:`LF (Linux Foundation)` FD.io SUTs are based on Intel
+XEON E5-2699v3 2.3GHz CPUs. SUTs with other CPUs are likely to yield different
+results. A good rule of thumb, that can be applied to estimate DPDK packet
+thoughput for Phy-to-Phy (NIC-to-NIC, PCI-to-PCI) topology, is to expect
+the forwarding performance to be proportional to CPU core frequency,
+assuming CPU is the only limiting factor and all other SUT parameters
+equivalent to FD.io CSIT environment. The same rule of thumb can be also
+applied for Phy-to-VM/LXC-to-Phy (NIC-to-VM/LXC-to-NIC) topology, but due to
+much higher dependency on intensive memory operations and sensitivity to Linux
+kernel scheduler settings and behaviour, this estimation may not always yield
+good enough accuracy.
+
+For detailed :abbr:`LF (Linux Foundation)` FD.io test bed specification and
+physical topology please refer to `LF FD.io CSIT testbed wiki page
+<https://wiki.fd.io/view/CSIT/CSIT_LF_testbed>`_.
 
 Performance Tests Coverage
 --------------------------
 
-Performance tests are split into the two main categories:
+Performance tests are split into two main categories:
 
 - Throughput discovery - discovery of packet forwarding rate using binary search
-  in accordance with RFC2544.
+  in accordance to :rfc:`2544`.
 
   - NDR - discovery of Non Drop Rate packet throughput, at zero packet loss;
-    followed by packet one-way latency measurements at 10%, 50% and 100% of
+    followed by one-way packet latency measurements at 10%, 50% and 100% of
     discovered NDR throughput.
   - PDR - discovery of Partial Drop Rate, with specified non-zero packet loss
-    currently set to 0.5%; followed by packet one-way latency measurements at
+    currently set to 0.5%; followed by one-way packet latency measurements at
     100% of discovered PDR throughput.
 
 - Throughput verification - verification of packet forwarding rate against
-  previously discovered NDR throughput. These tests are currently done against
+  previously discovered throughput rate. These tests are currently done against
   0.9 of reference NDR, with reference rates updated periodically.
 
 CSIT |release| includes following performance test suites, listed per NIC type:
@@ -89,21 +112,32 @@ testbed resources to grow, and will be adding complete set of performance
 tests for all models of hardware to be executed regularly and(or)
 continuously.
 
-Methodology: Multi-Thread and Multi-Core
-----------------------------------------
+Performance Tests Naming
+------------------------
 
-**HyperThreading** - CSIT |release| performance tests are executed with SUT
-servers' Intel XEON CPUs configured in HyperThreading Disabled mode (BIOS
-settings). This is the simplest configuration used to establish baseline
-single-thread single-core SW packet processing and forwarding performance.
-Subsequent releases of CSIT will add performance tests with Intel
-HyperThreading Enabled (requires BIOS settings change and hard reboot).
+CSIT |release| follows a common structured naming convention for all performance
+and system functional tests, introduced in CSIT |release-1|.
 
-**Multi-core Test** - CSIT |release| multi-core tests are executed in the
-following thread and core configurations:
+The naming should be intuitive for majority of the tests. Complete description
+of CSIT test naming convention is provided on `CSIT test naming wiki
+<https://wiki.fd.io/view/CSIT/csit-test-naming>`_.
 
-#. 1t1c - 1 pmd thread on 1 CPU physical core.
-#. 2t2c - 2 pmd threads on 2 CPU physical cores.
+Methodology: Multi-Core and Multi-Threading
+-------------------------------------------
+
+**Intel Hyper-Threading** - CSIT |release| performance tests are executed with
+SUT servers' Intel XEON processors configured in Intel Hyper-Threading Disabled
+mode (BIOS setting). This is the simplest configuration used to establish
+baseline single-thread single-core application packet processing and forwarding
+performance. Subsequent releases of CSIT will add performance tests with Intel
+Hyper-Threading Enabled (requires BIOS settings change and hard reboot of
+server).
+
+**Multi-core Tests** - CSIT |release| multi-core tests are executed in the
+following VPP thread and core configurations:
+
+#. 1t1c - 1 VPP worker thread on 1 CPU physical core.
+#. 2t2c - 2 VPP worker threads on 2 CPU physical cores.
 
 Note that in many tests running Testpmd/L3FWD reaches tested NIC I/O bandwidth
 or packets-per-second limit.
@@ -113,14 +147,14 @@ Methodology: Packet Throughput
 
 Following values are measured and reported for packet throughput tests:
 
-- NDR binary search per RFC2544:
+- NDR binary search per :rfc:`2544`:
 
   - Packet rate: "RATE: <aggregate packet rate in packets-per-second> pps
     (2x <per direction packets-per-second>)"
   - Aggregate bandwidth: "BANDWIDTH: <aggregate bandwidth in Gigabits per
     second> Gbps (untagged)"
 
-- PDR binary search per RFC2544:
+- PDR binary search per :rfc:`2544`:
 
   - Packet rate: "RATE: <aggregate packet rate in packets-per-second> pps (2x
     <per direction packets-per-second>)"
@@ -131,7 +165,10 @@ Following values are measured and reported for packet throughput tests:
 
 - NDR and PDR are measured for the following L2 frame sizes:
 
-  - IPv4: 64B, 1518B, 9000B.
+  - IPv4: 64B, IMIX_v4_1 (28x64B,16x570B,4x1518B), 1518B, 9000B.
+  - IPv6: 78B, 1518B, 9000B.
+
+All rates are reported from external Traffic Generator perspective.
 
 
 Methodology: Packet Latency
@@ -157,3 +194,48 @@ Reported latency values are measured using following methodology:
   additonal Tx/Rx interface latency induced by TRex SW writing and reading
   packet timestamps on CPU cores without HW acceleration on NICs closer to the
   interface line.
+
+Methodology: TRex Traffic Generator Usage
+-----------------------------------------
+
+The `TRex traffic generator <https://wiki.fd.io/view/TRex>`_ is used for all
+CSIT performance tests. TRex stateless mode is used to measure NDR and PDR
+throughputs using binary search (NDR and PDR discovery tests) and for quick
+checks of DUT performance against the reference NDRs (NDR check tests) for
+specific configuration.
+
+TRex is installed and run on the TG compute node. The typical procedure is:
+
+- If the TRex is not already installed on TG, it is installed in the
+  suite setup phase - see `TRex intallation`_.
+- TRex configuration is set in its configuration file
+  ::
+
+  /etc/trex_cfg.yaml
+
+- TRex is started in the background mode
+  ::
+
+  $ sh -c 'cd /opt/trex-core-2.25/scripts/ && sudo nohup ./t-rex-64 -i -c 7 --iom 0 > /dev/null 2>&1 &' > /dev/null
+
+- There are traffic streams dynamically prepared for each test, based on traffic
+  profiles. The traffic is sent and the statistics obtained using
+  :command:`trex_stl_lib.api.STLClient`.
+
+**Measuring packet loss**
+
+- Create an instance of STLClient
+- Connect to the client
+- Add all streams
+- Clear statistics
+- Send the traffic for defined time
+- Get the statistics
+
+If there is a warm-up phase required, the traffic is sent also before test and
+the statistics are ignored.
+
+**Measuring latency**
+
+If measurement of latency is requested, two more packet streams are created (one
+for each direction) with TRex flow_stats parameter set to STLFlowLatencyStats. In
+that case, returned statistics will also include min/avg/max latency values.

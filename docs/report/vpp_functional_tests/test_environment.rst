@@ -30,14 +30,14 @@ VIRL testbed infrastructure consists of three VIRL hosts:
 Whenever a patch is submitted to gerrit for review, parallel VIRL simulations
 are started to reduce the time of execution of all functional tests. The number
 of parallel VIRL simulations is equal to number of test groups defined by
-TEST_GROUPS variable in csit/bootstrap.sh file. The VIRL host to run VIRL
-simulation is selected based on least load algorithm per VIRL simulation.
+TEST_GROUPS variable in :file:`csit/bootstrap.sh` file. The VIRL host to run
+VIRL simulation is selected based on least load algorithm per VIRL simulation.
 
 Every VIRL simulation uses the same three-node - Traffic Generator (TG node) and
 two Systems Under Test (SUT1 and SUT2) - "double-ring" topology. The appropriate
 pre-built VPP packages built by Jenkins for the patch under review are then
-installed on the two SUTs, along with their /etc/vpp/startup.conf file, in all
-VIRL simulations.
+installed on the two SUTs, along with their :file:`/etc/vpp/startup.conf` file,
+in all VIRL simulations.
 
 SUT Configuration - VIRL Guest VM
 ---------------------------------
@@ -66,26 +66,26 @@ been tested with, is the following:
 #. **Ubuntu VIRL image**
 
    This image implies Ubuntu 16.04.1 LTS, current as of yyyy-mm-dd (that is,
-   package versions are those that would have been installed by a "apt-get
-   update", "apt-get upgrade" on that day), produced by CSIT disk image build
-   scripts.
-   
+   package versions are those that would have been installed by a
+   :command:`apt-get update`, :command:`apt-get upgrade` on that day), produced
+   by CSIT disk image build scripts.
+
    The exact list of installed packages and their versions (including the Linux
    kernel package version) are included in `VIRL images lists`_.
-   
-   A replica of this VM image can be built by running the "build.sh" script in
-   CSIT repository.
+
+   A replica of this VM image can be built by running the :command:`build.sh`
+   script in CSIT repository.
 
 #. **CentOS VIRL image**
 
    The Centos7.3 image is ready to be used but no tests running on it now.
    Corresponding Jenkins jobs are under preparation.
-   
+
    The exact list of installed packages and their versions (including the Linux
    kernel package version) are included in `VIRL images lists`_.
-   
-   A replica of this VM image can be built by running the "build.sh" script in
-   CSIT repository.
+
+   A replica of this VM image can be built by running the :command:`build.sh`
+   script in CSIT repository.
 
 #. **Nested VM image**
 

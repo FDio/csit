@@ -6,18 +6,18 @@ Changes in CSIT |release|
 
 #. Test environment changes in VPP data plane performance tests:
 
-   - Further characterization and optimizations of VPP vhost-user and VM
-     test methodology and test environment;
+   - Further characterization and optimizations of VPP vhost-user and VM test
+     methodology and test environment;
 
      - Tests with varying Qemu virtio queue (a.k.a. vring) sizes:
        [vr256] default 256 descriptors, [vr1024] 1024 descriptors to
        optimize for packet throughput;
 
-     - Tests with varying Linux CFS (Completely Fair Scheduler)
-       settings: [cfs] default settings, [cfsrr1] CFS RoundRobin(1)
-       policy applied to all data plane threads handling test packet
-       path including all VPP worker threads and all Qemu testpmd
-       poll-mode threads;
+     - Tests with varying Linux :abbr:`CFS (Completely Fair Scheduler)`
+       settings: [cfs] default settings, [cfsrr1] :abbr:`CFS (Completely Fair
+       Scheduler)` RoundRobin(1) policy applied to all data plane threads
+       handling test packet path including all VPP worker threads and all Qemu
+       testpmd poll-mode threads;
 
      - Resulting test cases are all combinations with [vr256,vr1024] and
        [cfs,cfsrr1] settings;
@@ -28,8 +28,8 @@ Changes in CSIT |release|
 #. Code updates and optimizations in CSIT performance framework:
 
    - Complete CSIT framework code revision and optimizations as descried
-     on CSIT wiki page
-     `Design_Optimizations <https://wiki.fd.io/view/CSIT/Design_Optimizations>`_.
+     on CSIT wiki page `Design_Optimizations
+     <https://wiki.fd.io/view/CSIT/Design_Optimizations>`_.
 
    - For more detail see the :ref:`CSIT Framework Design <csit-design>` section
      in this report;
@@ -85,14 +85,14 @@ Changes in CSIT |release|
 Performance Improvements
 ------------------------
 
-Substantial improvements in measured packet throughput have been
-observed in a number of CSIT |release| tests listed below, with relative
-increase  of double-digit percentage points. Relative improvements for
-this release are calculated against the test results listed in CSIT
-|release-1| report. The comparison is calculated between the mean values
-based on collected and archived test results' samples for involved VPP
-releases. Standard deviation has been also listed for CSIT |release|.
-VPP-16.09 and VPP-17.01 numbers are provided for reference.
+Substantial improvements in measured packet throughput have been observed in a
+number of CSIT |release| tests listed below, with relative increase of
+double-digit percentage points. Relative improvements for this release are
+calculated against the test results listed in CSIT |release-1| report. The
+comparison is calculated between the mean values based on collected and
+archived test results' samples for involved VPP releases. Standard deviation
+has been also listed for CSIT |release|. VPP-16.09 and VPP-17.01 numbers are
+provided for reference.
 
 NDR Throughput
 ~~~~~~~~~~~~~~
@@ -121,10 +121,10 @@ Measured improvements are in line with VPP code optimizations listed in
 Other Performance Changes
 -------------------------
 
-Other changes in measured packet throughput, with either minor relative
-increase or decrease, have been observed in a number of CSIT |release|
-tests listed below. Relative changes are calculated against the test
-results listed in CSIT |release-1| report.
+Other changes in measured packet throughput, with either minor relative increase
+or decrease, have been observed in a number of CSIT |release| tests listed
+below. Relative changes are calculated against the test results listed in CSIT
+|release-1| report.
 
 NDR Throughput
 ~~~~~~~~~~~~~~

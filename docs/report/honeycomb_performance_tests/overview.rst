@@ -5,9 +5,7 @@ Tested Physical Topologies
 --------------------------
 
 CSIT VPP performance tests are executed on physical baremetal servers hosted by
-LF FD.io project. Testbed physical topology is shown in the figure below.
-
-::
+LF FD.io project. Testbed physical topology is shown in the figure below.::
 
     +------------------------+           +------------------------+
     |                        |           |                        |
