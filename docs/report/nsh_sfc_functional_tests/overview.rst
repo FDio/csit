@@ -4,15 +4,13 @@ Overview
 Tested Virtual Topologies
 -------------------------
 
-CSIT NSH_SFC functional tests are executed on virtualized topologies created
-using Virtual Internet Routing Lab (VIRL) simulation platform contributed by
+CSIT NSH_SFC functional tests are executed on virtualized topologies created using
+:abbr:`VIRL (Virtual Internet Routing Lab)` simulation platform contributed by
 Cisco. VIRL runs on physical baremetal servers hosted by LF FD.io project.
-Majority,of the tests are executed in the three node logical test topology -
+Majority of the tests are executed in the three node logical test topology -
 Traffic Generator (TG) node and two Systems Under Test (SUT) nodes connected in
 a loop. Some tests use two node logical test topology - TG node and SUT1 node.
-Both logical test topologies are shown in the figures below.
-
-::
+Both logical test topologies are shown in the figures below.::
 
     +------------------------+           +------------------------+
     |                        |           |                        |
@@ -68,9 +66,7 @@ For the test cases that require DUT (VPP) to communicate with VM over the
 vhost-user interfaces, a nested VM is created on SUT1 and/or SUT2 for the
 duration of these particular test cases only. DUT (VPP) test topology with VM
 is shown in the figure below including the applicable packet flow thru the VM
-(marked in the figure with ``***``).
-
-::
+(marked in the figure with ``***``).::
 
     +------------------------+           +------------------------+
     |      +----------+      |           |      +----------+      |

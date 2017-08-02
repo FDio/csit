@@ -32,7 +32,7 @@ including CSIT framework is depicted in the figure below.
    :alt: FD.io CSIT system design
    :align: center
 
-   *Figure 1. FD.io CSIT system design*
+   *FD.io CSIT system design*
 
 A brief bottom-up description is provided here:
 
@@ -161,14 +161,15 @@ RF Keywords Naming Guidelines
 
 Readability counts: "..code is read much more often than it is written."
 Hence following a good and consistent grammar practice is important when
-writing RF KeyWords and Tests. All CSIT test cases are coded using
-Gherkin style and include only L2 KWs references. L2 KWs are coded using
-simple style and include L2 KWs, L1 KWs, and L1 python references. To
-improve readability, the proposal is to use the same grammar for both RF
-KW styles, and to formalize the grammar of English sentences used for
-naming the RF KWs. RF KWs names are short sentences expressing
-functional description of the command. They must follow English sentence
-grammar in one of the following forms:
+writing :abbr:`RF (Robot Framework)` KeyWords and Tests. All CSIT test cases
+are coded using Gherkin style and include only L2 KWs references. L2 KWs are
+coded using simple style and include L2 KWs, L1 KWs, and L1 python references.
+To improve readability, the proposal is to use the same grammar for both
+:abbr:`RF (Robot Framework)` KW styles, and to formalize the grammar of English
+sentences used for naming the :abbr:`RF (Robot Framework)` KWs. :abbr:`RF (Robot
+Framework)` KWs names are short sentences expressing functional description of
+the command. They must follow English sentence grammar in one of the following
+forms:
 
 #. **Imperative** - verb-object(s): *"Do something"*, verb in base form.
 #. **Declarative** - subject–verb–object(s): *"Subject does something"*, verb in
@@ -181,8 +182,8 @@ grammar in one of the following forms:
 Passive form MUST NOT be used. However a usage of past participle as an
 adjective is okay. See usage examples provided in the Coding guidelines
 section below. Following sections list applicability of the above
-grammar forms to different RF KW categories. Usage examples are
-provided, both good and bad.
+grammar forms to different :abbr:`RF (Robot Framework)` KW categories. Usage
+examples are provided, both good and bad.
 
 Coding guidelines
 -----------------

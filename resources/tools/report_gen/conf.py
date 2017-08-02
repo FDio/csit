@@ -108,8 +108,6 @@ pygments_style = 'sphinx'
 # If true, `todo` and `todoList` produce output, else they produce nothing.
 todo_include_todos = False
 
-# pdf_documents = [('index', u'rst2pdf', u'Sample rst2pdf doc', u'Your Name'),]
-
 # -- Options for HTML output ----------------------------------------------
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
@@ -143,7 +141,7 @@ latex_engine = 'pdflatex'
 latex_elements = {
      # The paper size ('letterpaper' or 'a4paper').
      #
-     #'papersize': 'a4paper',
+     'papersize': 'a4paper',
 
      # The font size ('10pt', '11pt' or '12pt').
      #
@@ -163,6 +161,12 @@ latex_elements = {
      #
      'figure_align': 'H',
 
+     # Latex font setup
+     #
+     'fontpkg': r'''
+         \renewcommand{\familydefault}{\sfdefault}
+     ''',
+
      # Latex other setup
      #
      'extraclassoptions': 'openany',
@@ -173,9 +177,6 @@ latex_elements = {
          shadowsep=0pt,
          shadowsize=0pt,
          shadowrule=0pt
-     ''',
-     'fontpkg': r'''
-         \renewcommand{\familydefault}{\sfdefault}
      '''
 }
 
@@ -183,19 +184,19 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'csit.tex', u'CSIT Report',
+    (master_doc, 'csit.tex', u'CSIT REPORT',
      u'', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
 # the title page.
 #
-latex_logo = 'fdio.pdf'
+# latex_logo = 'fdio.pdf'
 
 # For "manual" documents, if this is true, then toplevel headings are parts,
 # not chapters.
 #
-latex_use_parts = True
+# latex_use_parts = True
 
 # If true, show page references after internal links.
 #
@@ -203,7 +204,7 @@ latex_show_pagerefs = True
 
 # If true, show URL addresses after external links.
 #
-# latex_show_urls = False
+latex_show_urls = 'footnote'
 
 # Documents to append as an appendix to all manuals.
 #
