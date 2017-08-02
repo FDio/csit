@@ -1,0 +1,291 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a4e6583_bf33a7f5",
+        "filename": "bootstrap-verify-perf-nsh_sfc.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-08-02T07:06:13Z",
+      "side": 1,
+      "message": "there is no CentOS and no plan to introduce in the near future. Keep in mind that there cannot be centOS jobs in Jenkins for physical TB.",
+      "range": {
+        "startLine": 83,
+        "startChar": 0,
+        "endLine": 84,
+        "endChar": 20
+      },
+      "revId": "8e487314f704203ba7dd35fbb29d37a3a28306b2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a4e6583_9f30ebe9",
+        "filename": "bootstrap-verify-perf-nsh_sfc.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 102,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-08-02T07:06:13Z",
+      "side": 1,
+      "message": "remove indentation",
+      "range": {
+        "startLine": 102,
+        "startChar": 0,
+        "endLine": 102,
+        "endChar": 8
+      },
+      "revId": "8e487314f704203ba7dd35fbb29d37a3a28306b2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a4e6583_7f5e4feb",
+        "filename": "resources/libraries/python/SFC/PerformanceTest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-08-02T07:06:13Z",
+      "side": 1,
+      "message": "line too long",
+      "range": {
+        "startLine": 68,
+        "startChar": 0,
+        "endLine": 68,
+        "endChar": 85
+      },
+      "revId": "8e487314f704203ba7dd35fbb29d37a3a28306b2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a4e6583_5f527314",
+        "filename": "resources/libraries/robot/nsh_sfc/default.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-08-02T07:06:13Z",
+      "side": 1,
+      "message": "Line too long",
+      "range": {
+        "startLine": 93,
+        "startChar": 0,
+        "endLine": 93,
+        "endChar": 84
+      },
+      "revId": "8e487314f704203ba7dd35fbb29d37a3a28306b2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a4e6583_3f57b704",
+        "filename": "resources/libraries/robot/nsh_sfc/default.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-08-02T07:06:13Z",
+      "side": 1,
+      "message": "Line too long",
+      "range": {
+        "startLine": 95,
+        "startChar": 0,
+        "endLine": 95,
+        "endChar": 84
+      },
+      "revId": "8e487314f704203ba7dd35fbb29d37a3a28306b2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a4e6583_9f510bdb",
+        "filename": "tests/nsh_sfc/perf/classifier/10ge2p1x520-ethip4-ip4base-classifier-ndrpdrdisc.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-08-02T07:06:13Z",
+      "side": 1,
+      "message": "I think it would be fine to have NSH_SFC tag here.",
+      "revId": "8e487314f704203ba7dd35fbb29d37a3a28306b2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a4e6583_bfbde704",
+        "filename": "tests/nsh_sfc/perf/classifier/10ge2p1x520-ethip4-ip4base-classifier-ndrpdrdisc.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-08-02T07:06:13Z",
+      "side": 1,
+      "message": "This will fail. Please use the traffic profiles:\n\n| Test Teardown | Tear down performance discovery test | ${min_rate}pps\n| ... | ${framesize} | ${traffic_profile}",
+      "range": {
+        "startLine": 34,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 19
+      },
+      "revId": "8e487314f704203ba7dd35fbb29d37a3a28306b2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a4e6583_ff4a3f26",
+        "filename": "tests/nsh_sfc/perf/classifier/10ge2p1x520-ethip4-ip4base-classifier-ndrpdrdisc.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-08-02T07:06:13Z",
+      "side": 1,
+      "message": "Please describe closer what is the test doing. This test is C\u0026P from ipv4 but NSF add classifier. So please add to this how the packets are classified.",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 55,
+        "endChar": 72
+      },
+      "revId": "8e487314f704203ba7dd35fbb29d37a3a28306b2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a4e6583_9fba2b09",
+        "filename": "tests/nsh_sfc/perf/classifier/10ge2p1x520-ethip4-ip4base-classifier-ndrpdrdisc.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-08-02T07:06:13Z",
+      "side": 1,
+      "message": "Add traffic profile:\n\n# Traffic profile:\n| ${traffic_profile} | trex-sl-3n-ethip4-ip4src253",
+      "revId": "8e487314f704203ba7dd35fbb29d37a3a28306b2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a4e6583_df47831c",
+        "filename": "tests/nsh_sfc/perf/classifier/10ge2p1x520-ethip4-ip4base-classifier-ndrpdrdisc.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 67,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-08-02T07:06:13Z",
+      "side": 1,
+      "message": "72 Bytes? Please fix everywhere.",
+      "range": {
+        "startLine": 67,
+        "startChar": 59,
+        "endLine": 67,
+        "endChar": 66
+      },
+      "revId": "8e487314f704203ba7dd35fbb29d37a3a28306b2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a4e6583_1f463b24",
+        "filename": "tests/nsh_sfc/perf/classifier/10ge2p1x520-ethip4-ip4base-classifier-ndrpdrdisc.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-08-02T07:06:13Z",
+      "side": 1,
+      "message": "No space needed",
+      "range": {
+        "startLine": 77,
+        "startChar": 8,
+        "endLine": 77,
+        "endChar": 10
+      },
+      "revId": "8e487314f704203ba7dd35fbb29d37a3a28306b2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a4e6583_3f41f70b",
+        "filename": "tests/nsh_sfc/perf/classifier/10ge2p1x520-ethip4-ip4base-classifier-ndrpdrdisc.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-08-02T07:06:13Z",
+      "side": 1,
+      "message": "| | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}\n| | ... | ${binary_max} | ${traffic_profile}\n| | ... | ${min_rate} | ${max_rate} | ${threshold}",
+      "range": {
+        "startLine": 81,
+        "startChar": 0,
+        "endLine": 84,
+        "endChar": 60
+      },
+      "revId": "8e487314f704203ba7dd35fbb29d37a3a28306b2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a4e6583_bf8f2775",
+        "filename": "tests/nsh_sfc/sfc_scripts/set_sfc_classifier_perf.sh",
+        "patchSetId": 3
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-08-02T07:06:13Z",
+      "side": 1,
+      "message": "Please use CSIT kw inventory to configure VPP. There is no easy way to debug this.",
+      "range": {
+        "startLine": 1,
+        "startChar": 0,
+        "endLine": 87,
+        "endChar": 2
+      },
+      "revId": "8e487314f704203ba7dd35fbb29d37a3a28306b2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
