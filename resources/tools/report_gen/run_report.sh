@@ -35,7 +35,7 @@ sudo apt-get -y install libxml2 libxml2-dev libxslt-dev build-essential \
     zlib1g-dev unzip
 if [[ ${CFG[BLD_LATEX]} -eq 1 ]] ;
 then
-    sudo apt-get -y install librsvg2-bin texlive-latex-recommended \
+    sudo apt-get -y install xvfb texlive-latex-recommended \
         texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra latexmk wkhtmltopdf
     sudo sed -i.bak 's/^\(main_memory\s=\s\).*/\110000000/' /usr/share/texlive/texmf-dist/web2c/texmf.cnf
 fi
@@ -605,12 +605,11 @@ if [[ ${CFG[BLD_LATEX]} -eq 1 ]] ;
 then
     # Convert PyPLOT graphs in HTML format to PDF.
     for f in ${DIR[STATIC,VPP]}/*; do
-        wkhtmltopdf ${f} ${f%.html}.pdf
+        xvfb-run -a wkhtmltopdf ${f} ${f%.html}.pdf
     done
     for f in ${DIR[STATIC,DPDK]}/*; do
-        wkhtmltopdf ${f} ${f%.html}.pdf
+        xvfb-run -a wkhtmltopdf ${f} ${f%.html}.pdf
     done
-    #rsvg-convert -z 10 -f pdf -o fdio.pdf fdio.svg
 
     # Generate the LaTeX documentation
     sphinx-build -v -c . -a -b latex -E \
@@ -621,7 +620,6 @@ then
     pdflatex -interaction nonstopmode csit.tex || true
     cp csit.pdf ../${DIR[STATIC,ARCH]}/csit_$1.pdf
     cd ${SCRIPT_DIR}
-    #rm -f fdio.pdf
 fi
 
 # Create archive
