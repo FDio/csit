@@ -48,6 +48,29 @@
     },
     {
       "key": {
+        "uuid": "5a4e6583_7fd3ef38",
+        "filename": "resources/libraries/python/SFC/PerformanceTest.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-08-02T09:18:28Z",
+      "side": 1,
+      "message": "remove the white space",
+      "range": {
+        "startLine": 39,
+        "startChar": 8,
+        "endLine": 39,
+        "endChar": 25
+      },
+      "revId": "8e487314f704203ba7dd35fbb29d37a3a28306b2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a4e6583_7f5e4feb",
         "filename": "resources/libraries/python/SFC/PerformanceTest.py",
         "patchSetId": 3
@@ -111,6 +134,23 @@
         "endLine": 95,
         "endChar": 84
       },
+      "revId": "8e487314f704203ba7dd35fbb29d37a3a28306b2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a4e6583_bff16797",
+        "filename": "tests/nsh_sfc/perf/classifier/10ge2p1x520-ethip4-ip4base-classifier-ndrpdrdisc.robot",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-08-02T09:18:28Z",
+      "side": 1,
+      "message": "Implement using templates. see https://wiki.fd.io/view/CSIT/Design_Optimizations",
       "revId": "8e487314f704203ba7dd35fbb29d37a3a28306b2",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
