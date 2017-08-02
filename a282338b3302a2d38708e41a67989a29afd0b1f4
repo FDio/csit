@@ -2,6 +2,138 @@
   "comments": [
     {
       "key": {
+        "uuid": "5a4e6583_df3b0337",
+        "filename": "resources/libraries/python/SFC/SFCTest.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-08-02T09:36:14Z",
+      "side": 1,
+      "message": "remove white spaces",
+      "range": {
+        "startLine": 39,
+        "startChar": 8,
+        "endLine": 39,
+        "endChar": 25
+      },
+      "revId": "a282338b3302a2d38708e41a67989a29afd0b1f4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a4e6583_bf4847cd",
+        "filename": "resources/libraries/python/SFC/SFCTest.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-08-02T09:36:14Z",
+      "side": 1,
+      "message": "Be more specific, please.",
+      "range": {
+        "startLine": 48,
+        "startChar": 30,
+        "endLine": 48,
+        "endChar": 58
+      },
+      "revId": "a282338b3302a2d38708e41a67989a29afd0b1f4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a4e6583_9f458bb5",
+        "filename": "resources/libraries/python/SFC/VerifyPacket.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-08-02T09:36:14Z",
+      "side": 1,
+      "message": "None",
+      "range": {
+        "startLine": 90,
+        "startChar": 18,
+        "endLine": 90,
+        "endChar": 22
+      },
+      "revId": "a282338b3302a2d38708e41a67989a29afd0b1f4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a4e6583_1f3abb36",
+        "filename": "resources/traffic_scripts/send_nsh_over_ethernet_test.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 65,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-08-02T09:36:14Z",
+      "side": 1,
+      "message": "add to \"raises:\"",
+      "range": {
+        "startLine": 65,
+        "startChar": 14,
+        "endLine": 65,
+        "endChar": 24
+      },
+      "revId": "a282338b3302a2d38708e41a67989a29afd0b1f4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a4e6583_ff3ebf28",
+        "filename": "resources/traffic_scripts/send_nsh_over_ethernet_test.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 93,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-08-02T09:36:14Z",
+      "side": 1,
+      "message": "add to \"raises:\"",
+      "range": {
+        "startLine": 93,
+        "startChar": 14,
+        "endLine": 93,
+        "endChar": 26
+      },
+      "revId": "a282338b3302a2d38708e41a67989a29afd0b1f4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a4e6583_3f357746",
+        "filename": "tests/nsh_sfc/func/nsh_over_eth/eth2p-ethip4-nsh-over-eth-func.robot",
+        "patchSetId": 8
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-08-02T09:36:14Z",
+      "side": 1,
+      "message": "Better to implement using the templates.",
+      "revId": "a282338b3302a2d38708e41a67989a29afd0b1f4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a4e6583_bf1cc76b",
         "filename": "tests/nsh_sfc/sfc_scripts/install_sfc.sh",
         "patchSetId": 8
