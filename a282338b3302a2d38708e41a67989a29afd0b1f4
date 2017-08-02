@@ -1,0 +1,113 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a4e6583_bf1cc76b",
+        "filename": "tests/nsh_sfc/sfc_scripts/install_sfc.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-08-02T06:28:44Z",
+      "side": 1,
+      "message": "not needed as you are defining it later",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 18
+      },
+      "revId": "a282338b3302a2d38708e41a67989a29afd0b1f4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a4e6583_9f190b7c",
+        "filename": "tests/nsh_sfc/sfc_scripts/install_sfc.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 22,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-08-02T06:28:44Z",
+      "side": 1,
+      "message": "not needed as you are defining it later",
+      "revId": "a282338b3302a2d38708e41a67989a29afd0b1f4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a4e6583_1f251bab",
+        "filename": "tests/nsh_sfc/sfc_scripts/set_nsh_over_eth.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-08-02T06:28:44Z",
+      "side": 1,
+      "message": "Why sleep 5 ? How do you know this is enough or how do you know this is not wasting of test time?",
+      "range": {
+        "startLine": 11,
+        "startChar": 0,
+        "endLine": 11,
+        "endChar": 7
+      },
+      "revId": "a282338b3302a2d38708e41a67989a29afd0b1f4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a4e6583_5f2b9382",
+        "filename": "tests/nsh_sfc/sfc_scripts/set_nsh_over_eth.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-08-02T06:28:44Z",
+      "side": 1,
+      "message": "Why sleep 10? How do you now if this is enough? I suggest you to start using CSIT-VPP keywords to configure VPP where this method is implemented.",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 14,
+        "endChar": 8
+      },
+      "revId": "a282338b3302a2d38708e41a67989a29afd0b1f4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a4e6583_7f264fbc",
+        "filename": "tests/nsh_sfc/sfc_scripts/set_nsh_over_eth.sh",
+        "patchSetId": 8
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-08-02T06:28:44Z",
+      "side": 1,
+      "message": "Why are you not using CSIT functionality to configure VPP? This is not easy to debug in case of failure.",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 35,
+        "endChar": 36
+      },
+      "revId": "a282338b3302a2d38708e41a67989a29afd0b1f4",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
