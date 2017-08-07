@@ -1,0 +1,326 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a4e6583_07b02d8a",
+        "filename": "resources/libraries/python/honeycomb/Lisp.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 548,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-08-07T08:21:28Z",
+      "side": 1,
+      "message": "What if \"KeyError\" occurs?",
+      "range": {
+        "startLine": 545,
+        "startChar": 8,
+        "endLine": 548,
+        "endChar": 27
+      },
+      "revId": "80a7356df950b44c6f679980649eed67179d189a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a4e6583_e7acf137",
+        "filename": "resources/libraries/python/honeycomb/Lisp.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 615,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-08-07T08:21:28Z",
+      "side": 1,
+      "message": "if data:\n    data \u003d {\"gpe-entry-table\": {\"gpe-entry\": data}}\nreturn LispGPEKeywords._set_lispgpe_properties(node, path, data)",
+      "range": {
+        "startLine": 611,
+        "startChar": 8,
+        "endLine": 615,
+        "endChar": 70
+      },
+      "revId": "80a7356df950b44c6f679980649eed67179d189a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a4e6583_c7a9f525",
+        "filename": "resources/libraries/robot/honeycomb/lisp.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 700,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-08-07T08:21:28Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 700,
+        "startChar": 69,
+        "endLine": 700,
+        "endChar": 71
+      },
+      "revId": "80a7356df950b44c6f679980649eed67179d189a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a4e6583_a7a6f951",
+        "filename": "resources/libraries/robot/honeycomb/lisp_gpe.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-08-07T08:21:28Z",
+      "side": 1,
+      "message": "close the table",
+      "range": {
+        "startLine": 88,
+        "startChar": 71,
+        "endLine": 88,
+        "endChar": 79
+      },
+      "revId": "80a7356df950b44c6f679980649eed67179d189a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a4e6583_8763fd19",
+        "filename": "resources/libraries/robot/honeycomb/lisp_gpe.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-08-07T08:21:28Z",
+      "side": 1,
+      "message": "exchange the lines",
+      "range": {
+        "startLine": 125,
+        "startChar": 0,
+        "endLine": 126,
+        "endChar": 7
+      },
+      "revId": "80a7356df950b44c6f679980649eed67179d189a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a4e6583_676801f6",
+        "filename": "resources/traffic_scripts/lisp/lisp_check.py",
+        "patchSetId": 2
+      },
+      "lineNbr": 69,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-08-07T08:21:28Z",
+      "side": 1,
+      "message": "add raises part",
+      "range": {
+        "startLine": 69,
+        "startChar": 4,
+        "endLine": 69,
+        "endChar": 80
+      },
+      "revId": "80a7356df950b44c6f679980649eed67179d189a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a4e6583_277209e6",
+        "filename": "tests/vpp/func/honeycomb/mgmt-cfg-lispgpe-apihc-apivat-func.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 84,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-08-07T08:21:28Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 84,
+        "startChar": 23,
+        "endLine": 84,
+        "endChar": 27
+      },
+      "revId": "80a7356df950b44c6f679980649eed67179d189a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a4e6583_07770dd6",
+        "filename": "tests/vpp/func/honeycomb/mgmt-cfg-lispgpe-apihc-apivat-func.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 115,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-08-07T08:21:28Z",
+      "side": 1,
+      "message": "???",
+      "range": {
+        "startLine": 114,
+        "startChar": 0,
+        "endLine": 115,
+        "endChar": 66
+      },
+      "revId": "80a7356df950b44c6f679980649eed67179d189a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a4e6583_2749e98b",
+        "filename": "tests/vpp/func/honeycomb/mgmt-cfg-lispgpe-apihc-apivat-func.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-08-07T08:21:28Z",
+      "side": 1,
+      "message": "missing doc",
+      "range": {
+        "startLine": 126,
+        "startChar": 4,
+        "endLine": 126,
+        "endChar": 19
+      },
+      "revId": "80a7356df950b44c6f679980649eed67179d189a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a4e6583_075eed45",
+        "filename": "tests/vpp/func/honeycomb/mgmt-cfg-lispgpe-apihc-apivat-func.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-08-07T08:21:28Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 126,
+        "startChar": 20,
+        "endLine": 126,
+        "endChar": 21
+      },
+      "revId": "80a7356df950b44c6f679980649eed67179d189a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a4e6583_a77dd9b3",
+        "filename": "tests/vpp/func/honeycomb/mgmt-cfg-lispgpe-apihc-apivat-func.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-08-07T08:21:28Z",
+      "side": 1,
+      "message": "missing doc",
+      "range": {
+        "startLine": 143,
+        "startChar": 4,
+        "endLine": 143,
+        "endChar": 19
+      },
+      "revId": "80a7356df950b44c6f679980649eed67179d189a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a4e6583_c780d58d",
+        "filename": "tests/vpp/func/honeycomb/mgmt-cfg-lispgpe-apihc-apivat-func.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 143,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-08-07T08:21:28Z",
+      "side": 1,
+      "message": "not necessary",
+      "range": {
+        "startLine": 143,
+        "startChar": 19,
+        "endLine": 143,
+        "endChar": 21
+      },
+      "revId": "80a7356df950b44c6f679980649eed67179d189a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a4e6583_874add81",
+        "filename": "tests/vpp/func/honeycomb/mgmt-cfg-lispgpe-apihc-apivat-func.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-08-07T08:21:28Z",
+      "side": 1,
+      "message": "missing doc",
+      "range": {
+        "startLine": 162,
+        "startChar": 4,
+        "endLine": 162,
+        "endChar": 19
+      },
+      "revId": "80a7356df950b44c6f679980649eed67179d189a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a4e6583_e773d1e5",
+        "filename": "tests/vpp/func/honeycomb/mgmt-cfg-lispgpe-apihc-apivat-func.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-08-07T08:21:28Z",
+      "side": 1,
+      "message": "not necessary",
+      "range": {
+        "startLine": 162,
+        "startChar": 19,
+        "endLine": 162,
+        "endChar": 21
+      },
+      "revId": "80a7356df950b44c6f679980649eed67179d189a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
