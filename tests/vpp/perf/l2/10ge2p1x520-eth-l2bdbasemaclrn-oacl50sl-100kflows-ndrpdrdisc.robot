@@ -103,45 +103,45 @@
 | | ... | [Cfg] DUT runs L2BD switching config with ACL with\
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 10GE\
-| | ... | linerate, step 10kpps.
+| | ... | linerate, step 100kpps.
 | | ...
 | | [Tags] | 64B | 1T1C | STHREAD | NDRDISC
 | | ...
 | | [Template] | Discover NDR or PDR for L2 Bridge Domain with ACLs
-| | wt=1 | rxq=1 | framesize=${64} | min_rate=${10000} | search_type=NDR
+| | wt=1 | rxq=1 | framesize=${64} | min_rate=${100000} | search_type=NDR
 
 | tc02-64B-1t1c-eth-l2bdbasemaclrn-oacl50-stateless-flows100k-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with ACL with\
 | | ... | 1 thread, 1 phy core, 1 receive queue per NIC port.
 | | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 10GE\
-| | ... | linerate, step 10kpps, LT=0.5%.
+| | ... | linerate, step 100kpps, LT=0.5%.
 | | ...
 | | [Tags] | 64B | 1T1C | STHREAD | PDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for L2 Bridge Domain with ACLs
-| | wt=1 | rxq=1 | framesize=${64} | min_rate=${10000} | search_type=PDR
+| | wt=1 | rxq=1 | framesize=${64} | min_rate=${100000} | search_type=PDR
 
 | tc03-64B-2t2c-eth-l2bdbasemaclrn-oacl50-stateless-flows100k-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with ACL with\
 | | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 10GE\
-| | ... | linerate, step 10kpps.
+| | ... | linerate, step 100kpps.
 | | ...
 | | [Tags] | 64B | 2T2C | MTHREAD | NDRDISC
 | | ...
 | | [Template] | Discover NDR or PDR for L2 Bridge Domain with ACLs
-| | wt=2 | rxq=1 | framesize=${64} | min_rate=${10000} | search_type=NDR
+| | wt=2 | rxq=1 | framesize=${64} | min_rate=${100000} | search_type=NDR
 
 | tc04-64B-2t2c-eth-l2bdbasemaclrn-oacl50-stateless-flows100k-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs L2BD switching config with ACL with\
 | | ... | 2 threads, 2 phy cores, 1 receive queue per NIC port.
 | | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 10GE\
-| | ... | linerate, step 10kpps, LT=0.5%.
+| | ... | linerate, step 100kpps, LT=0.5%.
 | | ...
 | | [Tags] | 64B | 2T2C | MTHREAD | PDRDISC | SKIP_PATCH
 | | ...
 | | [Template] | Discover NDR or PDR for L2 Bridge Domain with ACLs
-| | wt=2 | rxq=1 | framesize=${64} | min_rate=${10000} | search_type=PDR
+| | wt=2 | rxq=1 | framesize=${64} | min_rate=${100000} | search_type=PDR
