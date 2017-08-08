@@ -145,3 +145,27 @@
 | | ...
 | | [Template] | Discover NDR or PDR for L2 Bridge Domain with ACLs
 | | wt=2 | rxq=1 | framesize=${64} | min_rate=${100000} | search_type=PDR
+
+| tc05-64B-4t4c-eth-l2bdbasemaclrn-oacl1-stateful-flows10k-ndrdisc
+| | [Documentation]
+| | ... | [Cfg] DUT runs L2BD switching config with ACL with\
+| | ... | 4 threads, 4 phy cores, 2 receive queues per NIC port.
+| | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 10GE\
+| | ... | linerate, step 100kpps.
+| | ...
+| | [Tags] | 64B | 4T4C | MTHREAD | NDRDISC
+| | ...
+| | [Template] | Discover NDR or PDR for L2 Bridge Domain with ACLs
+| | wt=4 | rxq=2 | framesize=${64} | min_rate=${100000} | search_type=NDR
+
+| tc06-64B-4t4c-eth-l2bdbasemaclrn-oacl1-stateful-flows10k-pdrdisc
+| | [Documentation]
+| | ... | [Cfg] DUT runs L2BD switching config with ACL with\
+| | ... | 4 threads, 4 phy cores, 2 receive queues per NIC port.
+| | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 10GE\
+| | ... | linerate, step 100kpps, LT=0.5%.
+| | ...
+| | [Tags] | 64B | 4T4C | MTHREAD | PDRDISC | SKIP_PATCH
+| | ...
+| | [Template] | Discover NDR or PDR for L2 Bridge Domain with ACLs
+| | wt=4 | rxq=2 | framesize=${64} | min_rate=${100000} | search_type=PDR
