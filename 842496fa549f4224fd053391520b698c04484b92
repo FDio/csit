@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a4e6583_3df8dae4",
+        "filename": "resources/libraries/python/honeycomb/Lisp.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 72,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-08-08T08:28:51Z",
+      "side": 1,
+      "message": "lowercase",
+      "range": {
+        "startLine": 72,
+        "startChar": 8,
+        "endLine": 72,
+        "endChar": 33
+      },
+      "revId": "842496fa549f4224fd053391520b698c04484b92",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
