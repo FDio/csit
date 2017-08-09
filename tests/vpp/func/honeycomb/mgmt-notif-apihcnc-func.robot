@@ -31,7 +31,8 @@
 | ...
 | Suite Teardown | Tear Down Honeycomb Functional Test Suite | ${node}
 | ...
-| Force Tags | HC_FUNC
+# HC2VPP-203 Notifications are not being sent since VPP 17.10
+| Force Tags | HC_FUNC | EXPECTED_FAILING
 
 *** Test Cases ***
 | TC01: Honeycomb sends notification on interface state change
