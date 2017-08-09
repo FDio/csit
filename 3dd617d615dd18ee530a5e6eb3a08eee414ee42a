@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a4e6583_b374fa9c",
+        "filename": "bootstrap-verify-perf.sh",
+        "patchSetId": 1
+      },
+      "lineNbr": 318,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-08-09T12:46:15Z",
+      "side": 1,
+      "message": "remove",
+      "range": {
+        "startLine": 318,
+        "startChar": 14,
+        "endLine": 318,
+        "endChar": 22
+      },
+      "revId": "3dd617d615dd18ee530a5e6eb3a08eee414ee42a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
