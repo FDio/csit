@@ -14,6 +14,7 @@
 *** Variables ***
 # Interface to run tests on.
 | ${interface}= | ${node['interfaces']['port1']['name']}
+| ${interface2}= | ${node['interfaces']['port3']['name']}
 
 *** Settings ***
 | Resource | resources/libraries/robot/shared/default.robot
@@ -218,16 +219,18 @@
 
 | TC11: Honeycomb can configure unnumbered interface
 | | [Documentation] | Check if Honeycomb can configure an unnumbered interface\
-| | ... | on a physical interface, borrowing the IP address of 'local0'.
+| | ... | on a physical interface, borrowing the IP address of another physical\
+| | ... | interface.
 | | ...
 | | Given Honeycomb sets interface IPv4 address | ${node}
-| | ... | local0 | ${ipv4_address} | ${ipv4_prefix}
+| | ... | ${interface2} | ${ipv4_address} | ${ipv4_prefix}
 | | When Honeycomb adds unnumbered configuration to interface
-| | ... | ${node} | ${interface} | local0
-| | Then IPv4 address from Honeycomb should be
-| | ... | ${node} | local0 | ${ipv4_address} | ${ipv4_prefix}
+| | ... | ${node} | ${interface} | ${interface2}
+| | Then Wait until Keyword succeeds | 10s | 2s
+| | ... | IPv4 address from Honeycomb should be
+| | ... | ${node} | ${interface2} | ${ipv4_address} | ${ipv4_prefix}
 | | And IPv4 address from VAT should be
-| | ... | ${node} | local0 | ${ipv4_address}
+| | ... | ${node} | ${interface2} | ${ipv4_address}
 | | ... | ${ipv4_prefix} | ${ipv4_mask}
 | | And IPv4 address from Honeycomb should be
 | | ... | ${node} | ${interface} | ${ipv4_address} | ${ipv4_prefix}
@@ -240,9 +243,9 @@
 | | ... | from an interface.
 | | ...
 | | Given IPv4 address from Honeycomb should be
-| | ... | ${node} | local0 | ${ipv4_address} | ${ipv4_prefix}
+| | ... | ${node} | ${interface2} | ${ipv4_address} | ${ipv4_prefix}
 | | And IPv4 address from VAT should be
-| | ... | ${node} | local0 | ${ipv4_address}
+| | ... | ${node} | ${interface2} | ${ipv4_address}
 | | ... | ${ipv4_prefix} | ${ipv4_mask}
 | | And IPv4 address from Honeycomb should be
 | | ... | ${node} | ${interface} | ${ipv4_address} | ${ipv4_prefix}
@@ -251,10 +254,11 @@
 | | ... | ${ipv4_prefix} | ${ipv4_mask}
 | | When Honeycomb removes unnumbered configuration from interface
 | | ... | ${node} | ${interface}
-| | Then IPv4 address from Honeycomb should be
-| | ... | ${node} | local0 | ${ipv4_address} | ${ipv4_prefix}
+| | Then Wait until Keyword succeeds | 10s | 2s
+| | ... | IPv4 address from Honeycomb should be
+| | ... | ${node} | ${interface2} | ${ipv4_address} | ${ipv4_prefix}
 | | And IPv4 address from VAT should be
-| | ... | ${node} | local0 | ${ipv4_address}
+| | ... | ${node} | ${interface2} | ${ipv4_address}
 | | ... | ${ipv4_prefix} | ${ipv4_mask}
 | | And IPv4 address from Honeycomb should be empty | ${node} | ${interface}
 | | And ipv4 address from VAT should be empty | ${node} | ${interface}
