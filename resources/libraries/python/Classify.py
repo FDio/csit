@@ -421,7 +421,7 @@ class Classify(object):
                 vat.vat_terminal_exec_cmd_from_template(
                     "acl_plugin/acl_interface_set_acl_list.vat",
                     interface=sw_if_index, acl_list=acl_list)
-        except:
+        except RuntimeError:
             raise RuntimeError("Setting of ACL list for interface {0} failed "
                                "on node {1}".format(interface, node['host']))
 
@@ -480,7 +480,7 @@ class Classify(object):
                     "acl_plugin/acl_add_replace.vat", acl_idx=acl_idx,
                     ip_ver=ip_ver, action=action, src=src, dst=dst, sport=sport,
                     dport=dport, proto=proto, tcpflags=tcpflags)
-        except:
+        except RuntimeError:
             raise RuntimeError("Adding or replacing of ACL failed on "
                                "node {0}".format(node['host']))
 
@@ -507,7 +507,7 @@ class Classify(object):
                     "acl_plugin/acl_add_replace.vat", acl_idx=acl_idx,
                     ip_ver=rules, action='', src='', dst='', sport='',
                     dport='', proto='', tcpflags='')
-        except:
+        except RuntimeError:
             raise RuntimeError("Adding or replacing of ACL failed on "
                                "node {0}".format(node['host']))
 
@@ -525,7 +525,7 @@ class Classify(object):
             with VatTerminal(node, json_param=False) as vat:
                 vat.vat_terminal_exec_cmd_from_template(
                     "acl_plugin/acl_delete.vat", idx=idx)
-        except:
+        except RuntimeError:
             raise RuntimeError("Deletion of ACL failed on node {0}".
                                format(node['host']))
 
@@ -545,6 +545,139 @@ class Classify(object):
             with VatTerminal(node, json_param=False) as vat:
                 vat.vat_terminal_exec_cmd_from_template(
                     "acl_plugin/show_acl.vat", idx=acl_idx)
-        except:
+        except RuntimeError:
             raise RuntimeError("Failed to show ACL on node {0}".
                                format(node['host']))
+
+    @staticmethod
+    def add_macip_acl(node, ip_ver="ipv4", action="permit", src_ip=None,
+                      src_mac=None, src_mac_mask=None):
+        """Add a new MACIP ACL.
+
+        :param node: VPP node to set MACIP ACL on.
+        :param ip_ver: IP version. (Optional)
+        :param action: ACL action. (Optional)
+        :param src_ip: Source IP in format IP/plen. (Optional)
+        :param src_mac: Source MAC address in format with colons. (Optional)
+        :param src_mac_mask: Source MAC address mask in format with colons.
+         00:00:00:00:00:00 is a wildcard mask. (Optional)
+        :type node: dict
+        :type ip_ver: str
+        :type action: str
+        :type src_ip: str
+        :type src_mac: str
+        :type src_mac_mask: str
+        :raises RuntimeError: If unable to add MACIP ACL.
+        """
+        src_ip = 'ip {0}'.format(src_ip) if src_ip else ''
+
+        src_mac = 'mac {0}'.format(src_mac) if src_mac else ''
+
+        src_mac_mask = 'mask {0}'.format(src_mac_mask) if src_mac_mask else ''
+
+        try:
+            with VatTerminal(node, json_param=False) as vat:
+                vat.vat_terminal_exec_cmd_from_template(
+                    "acl_plugin/macip_acl_add.vat", ip_ver=ip_ver,
+                    action=action, src_ip=src_ip, src_mac=src_mac,
+                    src_mac_mask=src_mac_mask)
+        except RuntimeError:
+            raise RuntimeError("Adding of MACIP ACL failed on node {0}".
+                               format(node['host']))
+
+    @staticmethod
+    def add_macip_acl_multi_entries(node, rules=None):
+        """Add a new MACIP ACL.
+
+        :param node: VPP node to set MACIP ACL on.
+        :param rules: Required MACIP rules. (Optional)
+        :type node: dict
+        :type rules: str
+        :raises RuntimeError: If unable to add MACIP ACL.
+        """
+        rules = '{0}'.format(rules) if rules else ''
+
+        try:
+            with VatTerminal(node, json_param=False) as vat:
+                vat.vat_terminal_exec_cmd_from_template(
+                    "acl_plugin/macip_acl_add.vat", ip_ver=rules, action='',
+                    src_ip='', src_mac='', src_mac_mask='')
+        except RuntimeError:
+            raise RuntimeError("Adding of MACIP ACL failed on node {0}".
+                               format(node['host']))
+
+    @staticmethod
+    def delete_macip_acl(node, idx):
+        """Delete required MACIP ACL.
+
+        :param node: VPP node to delete MACIP ACL on.
+        :param idx: Index of ACL to be deleted.
+        :type node: dict
+        :type idx: int or str
+        :raises RuntimeError: If unable to delete MACIP ACL.
+        """
+        try:
+            with VatTerminal(node, json_param=False) as vat:
+                vat.vat_terminal_exec_cmd_from_template(
+                    "acl_plugin/macip_acl_delete.vat", idx=idx)
+        except RuntimeError:
+            raise RuntimeError("Deletion of MACIP ACL failed on node {0}".
+                               format(node['host']))
+
+    @staticmethod
+    def vpp_log_macip_acl_settings(node):
+        """Retrieve configured MACIP settings from the ACL plugin
+         and write to robot log.
+
+        :param node: VPP node.
+        :type node: dict
+        """
+        try:
+            VatExecutor.cmd_from_template(
+                node, "acl_plugin/macip_acl_dump.vat")
+        except (ValueError, RuntimeError):
+            # Fails to parse JSON data in response, but it is still logged
+            pass
+
+    @staticmethod
+    def add_del_macip_acl_interface(node, interface, action, acl_idx):
+        """Apply/un-apply the MACIP ACL to/from a given interface.
+
+        :param node: VPP node to set MACIP ACL on.
+        :param interface: Interface name or sw_if_index.
+        :param action: Required action - add or del.
+        :param acl_idx: ACL index to be applied on the interface.
+        :type node: dict
+        :type interface: str or int
+        :type action: str
+        :type acl_idx: str or int
+        :raises RuntimeError: If unable to set MACIP ACL for the interface.
+        """
+        if isinstance(interface, basestring):
+            sw_if_index = Topology.get_interface_sw_index(node, interface)
+        else:
+            sw_if_index = interface
+
+        try:
+            with VatTerminal(node, json_param=False) as vat:
+                vat.vat_terminal_exec_cmd_from_template(
+                    "acl_plugin/macip_acl_interface_add_del.vat",
+                    sw_if_index=sw_if_index, action=action, acl_idx=acl_idx)
+        except RuntimeError:
+            raise RuntimeError("Setting of MACIP ACL index for interface {0} "
+                               "failed on node {1}".
+                               format(interface, node['host']))
+
+    @staticmethod
+    def vpp_log_macip_acl_interface_assignment(node):
+        """Get interface list and associated MACIP ACLs and write to robot log.
+
+        :param node: VPP node.
+        :type node: dict
+        """
+        try:
+            VatExecutor.cmd_from_template(
+                node, "acl_plugin/macip_acl_interface_get.vat", json_out=False)
+        except RuntimeError:
+            # Fails to parse response, but it is still logged
+            pass
