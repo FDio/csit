@@ -29,7 +29,7 @@ git repository:
 
 .. only:: html
 
-   .. program-output:: cd ../../ && set -x && cd tests/vpp/perf/ip6_tunnels && grep -E "78B-1t1c-ethip6[a-z0-9]+-[a-z0-9]*-ndrdisc" *
+   .. program-output:: cd ../../../../../ && set -x && cd tests/vpp/perf/ip6_tunnels && grep -E "78B-1t1c-ethip6[a-z0-9]+-[a-z0-9]*-ndrdisc" *
       :shell:
 
 .. only:: latex
@@ -61,7 +61,7 @@ git repository:
 
 .. only:: html
 
-   .. program-output:: cd ../../ && set -x && cd tests/vpp/perf/ip6_tunnels && grep -E "78B-2t2c-ethip6[a-z0-9]+-[a-z0-9]*-ndrdisc" *
+   .. program-output:: cd ../../../../../ && set -x && cd tests/vpp/perf/ip6_tunnels && grep -E "78B-2t2c-ethip6[a-z0-9]+-[a-z0-9]*-ndrdisc" *
       :shell:
 
 .. only:: latex
