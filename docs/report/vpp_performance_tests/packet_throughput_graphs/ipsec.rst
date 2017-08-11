@@ -36,7 +36,7 @@ git repository:
 
 .. only:: html
 
-   .. program-output:: cd ../../ && set -x && cd tests/vpp/perf/crypto && grep -E "64B-1t1c-.*ipsec.*-ndrdisc" *
+   .. program-output:: cd ../../../../../ && set -x && cd tests/vpp/perf/crypto && grep -E "64B-1t1c-.*ipsec.*-ndrdisc" *
       :shell:
 
 .. only:: latex
@@ -69,7 +69,7 @@ git repository:
 
 .. only:: html
 
-   .. program-output:: cd ../../ && set -x && cd tests/vpp/perf/crypto && grep -E "64B-2t2c-.*ipsec.*-ndrdisc" *
+   .. program-output:: cd ../../../../../ && set -x && cd tests/vpp/perf/crypto && grep -E "64B-2t2c-.*ipsec.*-ndrdisc" *
       :shell:
 
 .. only:: latex
@@ -105,7 +105,7 @@ git repository:
 
 .. only:: html
 
-   .. program-output:: cd ../../ && set -x && cd tests/vpp/perf/crypto && grep -E "64B-1t1c-.*ipsec.*-pdrdisc" *
+   .. program-output:: cd ../../../../../ && set -x && cd tests/vpp/perf/crypto && grep -E "64B-1t1c-.*ipsec.*-pdrdisc" *
       :shell:
 
 .. only:: latex
@@ -138,7 +138,7 @@ git repository:
 
 .. only:: html
 
-   .. program-output:: cd ../../ && set -x && cd tests/vpp/perf/crypto && grep -E "64B-2t2c-.*ipsec.*-pdrdisc" *
+   .. program-output:: cd ../../../../../ && set -x && cd tests/vpp/perf/crypto && grep -E "64B-2t2c-.*ipsec.*-pdrdisc" *
       :shell:
 
 .. only:: latex
