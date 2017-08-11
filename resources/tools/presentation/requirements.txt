@@ -1,0 +1,10 @@
+Sphinx
+sphinx-rtd-theme
+robotframework==2.9.2
+sphinxcontrib-programoutput
+PyYAML
+pytz
+python-dateutil
+numpy
+pandas
+plotly
