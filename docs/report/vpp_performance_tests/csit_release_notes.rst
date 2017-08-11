@@ -101,8 +101,7 @@ Non-Drop Rate Throughput discovery tests:
 
 .. csv-table::
     :align: center
-    :header: VPP Functionality,Test Name,VPP-16.09 [Mpps],VPP-17.01 [Mpps],VPP-17.04 mean [Mpps],VPP-17.07 mean [Mpps],VPP-17.07 stdev [Mpps],17.04 to 17.07 change
-    :file: ../../../docs/report/vpp_performance_tests/performance_improvements/ndr_throughput.csv
+    :file: performance_improvements/performance_improvements_ndr_top.csv
 
 PDR Throughput
 ~~~~~~~~~~~~~~
@@ -111,8 +110,7 @@ Partial Drop Rate thoughput discovery tests with packet Loss Tolerance of 0.5%:
 
 .. csv-table::
     :align: center
-    :header: VPP Functionality,Test Name,VPP-16.09 [Mpps],VPP-17.01 [Mpps],VPP-17.04 mean [Mpps],VPP-17.07 mean [Mpps],VPP-17.07 stdev [Mpps],17.04 to 17.07 change
-    :file: ../../../docs/report/vpp_performance_tests/performance_improvements/pdr_throughput.csv
+    :file: performance_improvements/performance_improvements_pdr_top.csv
 
 Measured improvements are in line with VPP code optimizations listed in
 `VPP-17.07 release notes
@@ -133,8 +131,7 @@ Non-Drop Rate Throughput discovery tests:
 
 .. csv-table::
     :align: center
-    :header: VPP Functionality,Test Name,VPP-16.09 [Mpps],VPP-17.01 [Mpps],VPP-17.04 mean [Mpps],VPP-17.07 mean [Mpps],VPP-17.07 stdev [Mpps],17.04 to 17.07 change
-    :file: ../../../docs/report/vpp_performance_tests/performance_improvements/ndr_throughput_others.csv
+    :file: performance_improvements/performance_improvements_ndr_low.csv
 
 PDR Throughput
 ~~~~~~~~~~~~~~
@@ -143,8 +140,7 @@ Partial Drop Rate thoughput discovery tests with packet Loss Tolerance of 0.5%:
 
 .. csv-table::
     :align: center
-    :header: VPP Functionality,Test Name,VPP-16.09 [Mpps],VPP-17.01 [Mpps],VPP-17.04 mean [Mpps],VPP-17.07 mean [Mpps],VPP-17.07 stdev [Mpps],17.04 to 17.07 change
-    :file: ../../../docs/report/vpp_performance_tests/performance_improvements/pdr_throughput_others.csv
+    :file: performance_improvements/performance_improvements_pdr_low.csv
 
 
 Known Issues
