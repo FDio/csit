@@ -190,6 +190,7 @@
 | | Configure Persistence | ${node} | disable
 | | Configure jVPP timeout | ${node} | ${14}
 | | Clear Persisted Honeycomb Configuration | ${node}
+| | Generate Honeycomb startup configuration for ODL test | ${node}
 | | Configure Honeycomb service on DUTs | ${node}
 
 | Configure ODL Client for functional testing
@@ -248,7 +249,7 @@
 | | Run Keyword If | '${use_odl_client}' != '${NONE}'
 | | ... | Run Keywords
 | | ... | Stop ODL Client | ${node} | /tmp | AND
-| | ... | Wait until keyword succeeds | 2min | 15sec
+| | ... | Wait until keyword succeeds | 3min | 15sec
 | | ... | Check ODL shutdown state | ${node} | AND
 | | ... | Set Global Variable | ${use_odl_client} | ${NONE}
 | | Stop Honeycomb service on DUTs | ${node}
@@ -325,3 +326,23 @@
 | | Log Honeycomb and VPP process distribution on cores | ${node}
 | | Stop Honeycomb service on DUTs | ${node}
 | | Stop VPP Service on DUT | ${node}
+
+| Generate Honeycomb startup configuration for ODL test
+| | [Documentation] | Create HC startup configuration and apply to config
+| | ... | file on DUT. Requires Honeycomb restart to take effect.
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - Honeycomb node. Type: dictionary
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Generate Honeycomb startup configuration for ODL test \
+| | ... | \| ${nodes[DUT1]} \|
+| | ...
+| | [Arguments] | ${node}
+| | Import Library | resources.libraries.python.honeycomb.HoneycombSetup.HoneycombStartupConfig
+| | ... | WITH NAME | HC_config
+| | Run Keyword | HC_config.Set SSH Security provider
+| | Run Keyword | HC_config.Set Memory Size | ${32}
+| | Run Keyword | HC_config.Set Metaspace Size | ${32}
+| | Run Keyword | HC_config.Apply config | ${node}

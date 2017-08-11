@@ -13,6 +13,8 @@
 
 """Implementation of keywords for Honeycomb setup."""
 
+from json import loads
+
 from ipaddress import IPv6Address, AddressValueError
 
 from robot.api import logger
@@ -461,8 +463,9 @@ class HoneycombSetup(object):
         ssh = SSH()
         ssh.connect(node)
 
-        cmd = "cp -r {src}/*karaf_{odl_name}* {dst}".format(
-            src=src_path, odl_name=odl_name, dst=dst_path)
+        cmd = "sudo rm -rf {dst}/*karaf_{odl_name} && " \
+              "cp -r {src}/*karaf_{odl_name}* {dst}".format(
+                  src=src_path, odl_name=odl_name, dst=dst_path)
 
         ret_code, _, _ = ssh.exec_command_sudo(cmd, timeout=120)
         if int(ret_code) != 0:
@@ -512,11 +515,13 @@ class HoneycombSetup(object):
         ssh.connect(node)
 
         cmd = "{path}/*karaf*/bin/client -u karaf feature:install " \
-              "odl-restconf-all odl-netconf-connector-all".format(path=path)
+              "odl-restconf-all " \
+              "odl-netconf-connector-all " \
+              "odl-netconf-topology".format(path=path)
         for feature in features:
             cmd += " {0}".format(feature)
 
-        ret_code, _, _ = ssh.exec_command_sudo(cmd, timeout=180)
+        ret_code, _, _ = ssh.exec_command_sudo(cmd, timeout=250)
 
         if int(ret_code) != 0:
             raise HoneycombError("Feature install did not succeed.")
@@ -598,14 +603,21 @@ class HoneycombSetup(object):
             "odl_client/odl_netconf_connector")
 
         url_file = "{0}/{1}".format(Const.RESOURCES_TPL_HC,
-                                    "odl_client/mount_honeycomb.xml")
+                                    "odl_client/mount_honeycomb.json")
 
         with open(url_file) as template:
             data = template.read()
 
+        data = loads(data)
+
         status_code, _ = HTTPRequest.post(
-            node, path, headers={"Content-Type": "application/xml"},
-            payload=data, timeout=10, enable_logging=False)
+            node,
+            path,
+            headers={"Content-Type": "application/json",
+                     "Accept": "text/plain"},
+            json=data,
+            timeout=10,
+            enable_logging=False)
 
         if status_code == HTTPCodes.OK:
             logger.info("ODL mount point configured successfully.")
@@ -659,6 +671,7 @@ class HoneycombSetup(object):
         if int(ret_code) != 0:
             logger.debug("VPP service refused to shut down.")
 
+
 class HoneycombStartupConfig(object):
     """Generator for Honeycomb startup configuration.
     """
@@ -681,7 +694,7 @@ class HoneycombStartupConfig(object):
         done
         """
 
-        self.java_call = "{scheduler} {affinity} java {jit_mode} {params}"
+        self.java_call = "{scheduler} {affinity} java{jit_mode}{params}"
 
         self.scheduler = ""
         self.core_affinity = ""
@@ -751,9 +764,9 @@ class HoneycombStartupConfig(object):
         :type jit_mode: str
         """
 
-        modes = {"client": "-client",  # Default
-                 "server": "-server",  # Higher performance but longer warmup
-                 "classic": "-classic"  # Disables JIT compiler
+        modes = {"client": " -client",  # Default
+                 "server": " -server",  # Higher performance but longer warmup
+                 "classic": " -classic"  # Disables JIT compiler
                 }
 
         self.jit_mode = modes[jit_mode]
@@ -790,3 +803,10 @@ class HoneycombStartupConfig(object):
         architectures."""
 
         self.params += " -XX:+UseNUMA -XX:+UseParallelGC"
+
+    def set_ssh_security_provider(self):
+        """Disables BouncyCastle for SSHD."""
+        # Workaround for issue described in:
+        # https://wiki.fd.io/view/Honeycomb/Releases/1609/Honeycomb_and_ODL
+
+        self.params += " -Dorg.apache.sshd.registerBouncyCastle=false"
