@@ -30,7 +30,7 @@ git repository by filtering with specified regex as follows:
 
 .. only:: html
 
-   .. program-output:: cd ../../ && set -x && cd tests/dpdk/perf && grep -P '64B-1t1c-eth-l2xcbase-testpmd-ndrdisc' *
+   .. program-output:: cd ../../../../../ && set -x && cd tests/dpdk/perf && grep -P '64B-1t1c-eth-l2xcbase-testpmd-ndrdisc' *
       :shell:
 
 .. only:: latex
@@ -63,7 +63,7 @@ git repository by filtering with specified regex as follows:
 
 .. only:: html
 
-   .. program-output:: cd ../../ && set -x && cd tests/dpdk/perf && grep -P '64B-2t2c-eth-l2xcbase-testpmd-ndrdisc' *
+   .. program-output:: cd ../../../../../ && set -x && cd tests/dpdk/perf && grep -P '64B-2t2c-eth-l2xcbase-testpmd-ndrdisc' *
       :shell:
 
 .. only:: latex
