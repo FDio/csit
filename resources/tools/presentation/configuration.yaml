@@ -1,0 +1,230 @@
+# NOTE: This is only an example. The work is in progress so it can be changed.
+-
+  type: "environment"
+  configuration:
+    # Debug mode:
+    # - Skip:
+    #   - Download of input data files
+    # - Do:
+    #   - Read data from given zip / xml files
+    #   - Set the configuration as it is done in normal mode
+    # If the section "type: debug" is missing, CFG[DEBUG] is set to 0.
+    CFG[DEBUG]: 1
+
+    CFG[BLD_LATEX]: 1  # Remove?
+    CFG[BLD_HTML]: 1  # Remove?
+
+  paths:
+    DIR[WORKING]: "_tmp"
+    DIR[BUILD,HTML]: "_build"
+    DIR[BUILD,LATEX]: "_build_latex"
+    DIR[RST]: "../../../docs/report"
+
+    DIR[WORKING,DATA]: "{DIR[WORKING]}/data"
+    
+    DIR[STATIC]: "{DIR[BUILD,HTML]}/_static"
+    DIR[STATIC,VPP]: "{DIR[STATIC]}/vpp"
+    DIR[STATIC,DPDK]: "{DIR[STATIC]}/dpdk"
+    DIR[STATIC,ARCH]: "{DIR[STATIC]}/archive"
+    DIR[STATIC,TREND]: "{DIR[STATIC]}/trending"
+
+    DIR[PLOT,VPP]: "{DIR[WORKING]}/vpp_plot"
+    DIR[PLOT,DPDK]: "{DIR[WORKING]}/dpdk_plot"
+
+    DIR[DTR]: "{DIR[RST]}/detailed_test_results"
+    DIR[DTR,PERF,DPDK]: "{DIR[DTR]}/dpdk_performance_results"
+    DIR[DTR,PERF,VPP]: "{DIR[DTR]}/vpp_performance_results"
+    DIR[DTR,PERF,HC]: "{DIR[DTR]}/honeycomb_performance_results"
+    DIR[DTR,FUNC,VPP]: "{DIR[DTR]}/vpp_functional_results"
+    DIR[DTR,FUNC,HC]: "{DIR[DTR]}/honeycomb_functional_results"
+    DIR[DTR,FUNC,NSHSFC]: "{DIR[DTR]}/nshsfc_functional_results"
+    DIR[DTR,PERF,VPP,IMPRV]: "{DIR[RST]}/vpp_performance_tests/performance_improvements"
+
+    DIR[DTC]: "{DIR[RST]}/test_configuration"
+    DIR[DTC,PERF,VPP]: "{DIR[DTC]}/vpp_performance_configuration"
+    DIR[DTC,FUNC,VPP]: "{DIR[DTC]}/vpp_functional_configuration"
+    
+    DIR[DTO]: "{DIR[RST]}/test_operational_data"
+    DIR[DTO,PERF,VPP]: "{DIR[DTO]}/vpp_performance_operational_data"
+
+    DIR[CSS_PATCH_FILE]: "{DIR[STATIC]}/theme_overrides.css"
+
+  urls:
+    URL[JENKINS,CSIT]: "https://jenkins.fd.io/view/csit/job"
+    URL[JENKINS,HC]: "https://jenkins.fd.io/view/hc2vpp/job"
+
+  make-dirs:
+  # List the directories which are created while preparing the environment.
+  # All directories MUST be defined in "paths" section.
+  - "DIR[WORKING,DATA]"
+  - "DIR[STATIC,VPP]"
+  - "DIR[STATIC,DPDK]"
+  - "DIR[STATIC,ARCH]"
+  - "DIR[STATIC,TREND]"
+  - "DIR[PLOT,VPP]"
+  - "DIR[PLOT,DPDK]"
+  - "DIR[BUILD,LATEX]"
+
+  remove-dirs:
+  # List the directories which are deleted while cleaning the environment.
+  # All directories MUST be defined in "paths" section.
+  - "DIR[WORKING]"
+
+  build-dirs:
+  # List the directories where the results (build) is stored.
+  # All directories MUST be defined in "paths" section.
+  - "DIR[BUILD,HTML]"
+  - "DIR[BUILD,LATEX]"
+
+-
+  type: "debug"
+  general:
+    input-format: "xml"  # zip or xml
+    extract: "output.xml"  # Only for zip
+  builds:
+    # The files must be in the directory DIR[WORKING,DATA]
+    csit-vpp-perf-1707-all:
+    -
+      build: 13
+      file: "{DIR[WORKING,DATA]}/csit-vpp-perf-1707-all__13__output.xml"
+    -
+      build: 16
+      file: "{DIR[WORKING,DATA]}/csit-vpp-perf-1707-all__16__output.xml"
+    -
+      build: 17
+      file: "{DIR[WORKING,DATA]}/csit-vpp-perf-1707-all__17__output.xml"
+
+-
+  type: "input"  # Ignored in debug mode
+  general:
+    file-name: "robot-plugin.zip"
+    download-path: "{job}/{build}/robot/report/*zip*/{filename}"
+#    file-name: "output_perf_data.xml"
+#    download-file-name: "{job}/{build}/robot/report/{filename}"
+    extract: "output.xml"
+  builds:
+    csit-vpp-perf-1707-all:
+    - 9
+    - 10
+    - 13
+    - 14
+    - 15
+    - 16
+    - 17
+    - 18
+    - 19
+    - 21
+    - 22
+    csit-dpdk-perf-1704-all:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    csit-vpp-functional-1707-ubuntu1604-virl:
+    - lastSuccessfulBuild
+    hc2vpp-csit-perf-master-ubuntu1604:
+    - 8
+    - 9
+    hc2vpp-csit-integration-1707-ubuntu1604:
+    - lastSuccessfulBuild
+    csit-nsh_sfc-verify-func-1707-ubuntu1604-virl:
+    - 2
+    csit-vpp-perf-1704-all:
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 12
+    - 14
+    - 15
+    - 16
+    - 17
+    csit-dpdk-perf-1704-all:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+
+-
+  type: "output"
+  format:
+    html:
+    - full
+    pdf:
+    - full
+    - marketing
+
+-
+# Example
+  type: "table"
+  title: "Performance improvments"
+  algoritm: "performance-improvements"
+  template: "templates/tmpl_performance_improvements.csv"
+  output-file-format: "csv"
+  output-file: "{DIR[WORKING]}/path/to/my_table.csv"
+  columns:
+  -
+    title: "VPP Functionality"
+    data: "template 2"
+  -
+    title: "Test Name"
+    data: "template 3"
+  -
+    title: "VPP-17.04 mean [Mpps]"
+    data: "vpp 1704 performance mean"
+  -
+    title: "VPP-17.07 mean [Mpps]"
+    data: "vpp 1707 performance mean"
+  -
+    title: "VPP-17.07 stdev [Mpps]"
+    data: "vpp 1707 performance stdev"
+  -
+    title: "17.04 to 17.07 change"
+    data: "change-relative 4 5"
+  rows: "generated"
+  data:
+    csit-vpp-perf-1707-all:
+    - 13
+    - 16
+    - 17
+  # Keep this formatting, the filter is enclosed with " (quotation mark) and
+  # each tag is enclosed with ' (apostrophe).
+  filter: "'64B' and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
+  parameters:
+  - "throughput"
+
+-
+  type: "plot"
+  output-file-type: "html"
+  output-file: "{DIR[WORKING]}/path/to/my_plot.html"
+  plot-type: "performance-box"   # box, line
+  plot-title: "plot title"
+  x-axis: "x-axis title"
+  y-axis: "y-axis title"
+  data:
+    csit-vpp-perf-1707-all:
+    - 9
+    - 10
+    - 13
+    - 14
+    - 15
+    - 16
+    - 17
+    - 18
+    - 19
+    - 21
+  filter:
+    - "'64B' and '1T1C' and ('L2BDMACSTAT' or 'L2BDMACLRN' or 'L2XCFWD') and not 'VHOST'"
