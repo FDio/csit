@@ -1,0 +1,95 @@
+# Copyright (c) 2017 Cisco and/or its affiliates.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at:
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+"""CSIT Presentation and analytics layer.
+
+TODO: Write the description.
+
+TODO: Write the description and specification of YAML configuration file.
+
+"""
+
+import sys
+import argparse
+import logging
+
+from errors import PresentationError
+from environment import Environment, clean_environment
+from configuration_parser import Configuration
+
+
+def parse_args():
+    """Parse arguments from cmd line.
+
+    :returns: Parsed arguments.
+    :rtype: ArgumentParser
+    """
+
+    parser = argparse.ArgumentParser(description=__doc__,
+                                     formatter_class=argparse.
+                                     RawDescriptionHelpFormatter)
+    parser.add_argument("-c", "--configuration",
+                        required=True,
+                        type=argparse.FileType('r'),
+                        help="Configuration YAML file.")
+    parser.add_argument("-l", "--logging",
+                        choices=["DEBUG", "INFO", "WARNING",
+                                 "ERROR", "CRITICAL"],
+                        default="ERROR",
+                        help="Logging level.")
+    parser.add_argument("-f", "--force",
+                        action='store_true',
+                        help="Force removing the old build(s) if present.")
+
+    return parser.parse_args()
+
+
+def main():
+    """Main function."""
+
+    log_levels = {"NOTSET": logging.NOTSET,
+                  "DEBUG": logging.DEBUG,
+                  "INFO": logging.INFO,
+                  "WARNING": logging.WARNING,
+                  "ERROR": logging.ERROR,
+                  "CRITICAL": logging.CRITICAL}
+
+    args = parse_args()
+    logging.basicConfig(format='%(asctime)s: %(levelname)s: %(message)s',
+                        datefmt='%Y/%m/%d %H:%M:%S',
+                        level=log_levels[args.logging])
+
+    try:
+        logging.info("Application started.")
+        config = Configuration(args.configuration)
+        config.parse_cfg()
+    except PresentationError:
+        logging.critical("Finished with error.")
+        sys.exit(1)
+
+    try:
+        env = Environment(config.environment, args.force)
+        env.set_environment()
+
+        logging.info("Successfully finished.")
+
+    except PresentationError:
+        pass
+    finally:
+        if config is not None:
+            clean_environment(config.environment)
+        sys.exit(1)
+
+
+if __name__ == '__main__':
+    main()
