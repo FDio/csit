@@ -29,7 +29,7 @@ git repository:
 
 .. only:: html
 
-   .. program-output:: cd ../../ && set -x && cd tests/vpp/perf/ip4 && grep -P '64B-1t1c-ethip4(udp)*-ip4(base|scale[a-z0-9]*)(-iacl50-state(ful|less)-flows10k.*|-oacl50-state(ful|less)-flows10k.*|-snat.*|-udp.*|-cop.*|-iacldst.*|-ipolice.*)*-ndrdisc' *
+   .. program-output:: cd ../../../../../ && set -x && cd tests/vpp/perf/ip4 && grep -P '64B-1t1c-ethip4(udp)*-ip4(base|scale[a-z0-9]*)(-iacl50-state(ful|less)-flows10k.*|-oacl50-state(ful|less)-flows10k.*|-snat.*|-udp.*|-cop.*|-iacldst.*|-ipolice.*)*-ndrdisc' *
       :shell:
 
 .. only:: latex
@@ -61,7 +61,7 @@ git repository:
 
 .. only:: html
 
-   .. program-output:: cd ../../ && set -x && cd tests/vpp/perf/ip4 && grep -P '64B-2t2c-ethip4(udp)*-ip4(base|scale[a-z0-9]*)(-iacl50-state(ful|less)-flows10k.*|-oacl50-state(ful|less)-flows10k.*|-snat.*|-udp.*|-cop.*|-iacldst.*|-ipolice.*)*-ndrdisc' *
+   .. program-output:: cd ../../../../../ && set -x && cd tests/vpp/perf/ip4 && grep -P '64B-2t2c-ethip4(udp)*-ip4(base|scale[a-z0-9]*)(-iacl50-state(ful|less)-flows10k.*|-oacl50-state(ful|less)-flows10k.*|-snat.*|-udp.*|-cop.*|-iacldst.*|-ipolice.*)*-ndrdisc' *
       :shell:
 
 .. only:: latex
