@@ -7,5 +7,5 @@ execution. Following sections list currently used CSIT TAGs and their
 documentation based on the content of
 `tag documentation rst file`_.
 
-.. include:: ../../tag_documentation.rst
+.. include:: ../../../../../../docs/tag_documentation.rst
    :start-line: 8
