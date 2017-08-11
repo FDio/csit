@@ -46,7 +46,7 @@ git repository:
 
 .. only:: html
 
-   .. program-output:: cd ../../ && set -x && cd tests/vpp/perf/l2 && grep -E "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-(iacl50-state(ful|less)-flows10k.*|oacl50-state(ful|less)-flows10k.*|eth.*)*ndrdisc" *
+   .. program-output:: cd ../../../../../ && set -x && cd tests/vpp/perf/l2 && grep -E "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-(iacl50-state(ful|less)-flows10k.*|oacl50-state(ful|less)-flows10k.*|eth.*)*ndrdisc" *
       :shell:
 
 .. only:: latex
@@ -95,7 +95,7 @@ git repository:
 
 .. only:: html
 
-   .. program-output:: cd ../../ && set -x && cd tests/vpp/perf/l2 && grep -E "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-(iacl50-state(ful|less)-flows10k.*|oacl50-state(ful|less)-flows10k.*|eth.*)*ndrdisc" *
+   .. program-output:: cd ../../../../../ && set -x && cd tests/vpp/perf/l2 && grep -E "64B-1t1c-(eth|dot1q|dot1ad)-(l2xcbase|l2bdbasemaclrn)-(iacl50-state(ful|less)-flows10k.*|oacl50-state(ful|less)-flows10k.*|eth.*)*ndrdisc" *
       :shell:
 
 .. only:: latex
