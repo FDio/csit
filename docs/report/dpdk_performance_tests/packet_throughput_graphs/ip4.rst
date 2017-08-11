@@ -34,7 +34,7 @@ git repository:
 
 .. only:: html
 
-   .. program-output:: cd ../../ && set -x && cd tests/dpdk/perf && grep -P '64B-1t1c-ethip4-ip4base-l3fwd-ndrdisc' *
+   .. program-output:: cd ../../../../../ && set -x && cd tests/dpdk/perf && grep -P '64B-1t1c-ethip4-ip4base-l3fwd-ndrdisc' *
       :shell:
 
 .. only:: latex
@@ -68,7 +68,7 @@ git repository:
 
 .. only:: html
 
-   .. program-output:: cd ../../ && set -x && cd tests/dpdk/perf && grep -P '64B-2t2c-ethip4-ip4base-l3fwd-ndrdisc' *
+   .. program-output:: cd ../../../../../ && set -x && cd tests/dpdk/perf && grep -P '64B-2t2c-ethip4-ip4base-l3fwd-ndrdisc' *
       :shell:
 
 .. only:: latex
@@ -105,7 +105,7 @@ git repository:
 
 .. only:: html
 
-   .. program-output:: cd ../../ && set -x && cd tests/dpdk/perf && grep -P '64B-1t1c-ethip4-ip4base-l3fwd-pdrdisc' *
+   .. program-output:: cd ../../../../../ && set -x && cd tests/dpdk/perf && grep -P '64B-1t1c-ethip4-ip4base-l3fwd-pdrdisc' *
       :shell:
 
 .. only:: latex
@@ -139,7 +139,7 @@ git repository:
 
 .. only:: html
 
-   .. program-output:: cd ../../ && set -x && cd tests/dpdk/perf && grep -P '64B-2t2c-ethip4-ip4base-l3fwd-pdrdisc' *
+   .. program-output:: cd ../../../../../ && set -x && cd tests/dpdk/perf && grep -P '64B-2t2c-ethip4-ip4base-l3fwd-pdrdisc' *
       :shell:
 
 .. only:: latex
