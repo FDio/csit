@@ -22,6 +22,8 @@
 | Library | resources.libraries.python.TrafficGenerator
 | Library | resources.libraries.python.TrafficGenerator.TGDropRateSearchImpl
 | Library | resources.libraries.python.Classify
+| Library | resources.libraries.python.IPUtil
+| Library | resources.libraries.python.L2Util
 | Resource | resources/libraries/robot/shared/default.robot
 | Resource | resources/libraries/robot/shared/interfaces.robot
 | Resource | resources/libraries/robot/shared/counters.robot
@@ -934,10 +936,6 @@
 | | ... | \| GigabitEthernet0/8/0 \|
 | | ...
 | | ... | _NOTE:_ This KW uses following test case variables:
-| | ... | - ${tg_if1_mac} - MAC address of TG interface towards DUT1.
-| | ... | Type: string
-| | ... | - ${tg_if2_mac} - MAC address of TG interface towards DUT2.
-| | ... | Type: string
 | | ... | - ${src_ip_start} - Source IP address start. Type: string
 | | ... | - ${ip_step} - IP address step. Type: string
 | | ... | - ${src_mac_start} - Source MAC address start in format with colons.
@@ -949,62 +947,68 @@
 | | ... | Type: integer
 | | ... | - ${acl_action} - Action for the rule - deny, permit, permit+reflect.
 | | ... | Type: string
-| | ... | - ${trex_stream1_subnet} - IP subnet used by T-Rex in direction 0->1.
+| | ... | - ${tg_stream1_subnet} - IP subnet used by TG in direction 0->1.
 | | ... | Type: string
-| | ... | - ${trex_stream2_subnet} - IP subnet used by T-Rex in direction 1->0.
+| | ... | - ${tg_stream2_subnet} - IP subnet used by TG in direction 1->0.
+| | ... | Type: string
+| | ... | - ${tg_stream1_mac} - Source MAC address of traffic stream 1.
+| | ... | Type: string
+| | ... | - ${tg_stream2_mac} - Source MAC address of traffic stream 2.
 | | ... | Type: string
 | | ... | - ${tg_mac_mask} - MAC address mask for traffic streams.
 | | ... | 00:00:00:00:00:00 is a wildcard mask. Type: string
 | | ...
 | | [Arguments] | ${dut} | ${dut_if1}=${None} | ${dut_if2}=${None}
-| | ${src_ip_int} = | Evaluate
-| | ... | int(ipaddress.ip_address(unicode($src_ip_start))) - $ip_step
-| | ... | modules=ipaddress
+| | ...
+| | ${src_ip_int} = | IP To Int | ${src_ip_start}
+| | ${src_ip_int} = | Evaluate | ${src_ip_int} - ${ip_step}
+| | ...
 | | ${ip_limit} = | Set Variable | 255.255.255.255
-| | ${ip_limit_int} = | Evaluate
-| | ... | int(ipaddress.ip_address(unicode($ip_limit))) | modules=ipaddress
-| | ${src_mac_int} = | Evaluate
-| | ... | int($src_mac_start.replace(':', ''), 16) - $src_mac_step
+| | ${ip_limit_int} = | IP To Int | ${ip_limit}
+| | ...
+| | ${src_mac_int} = | Mac To Int | ${src_mac_start}
+| | ${src_mac_int} = | Evaluate | ${src_mac_int} - ${src_mac_step}
+| | ...
 | | ${mac_limit} = | Set Variable | ff:ff:ff:ff:ff:ff
-| | ${mac_limit_int} = | Evaluate
-| | ... | int($mac_limit.replace(':', ''), 16)
+| | ${mac_limit_int} = | Mac To Int | ${mac_limit}
+| | ...
 | | ${acl}= | Set Variable | ipv4 permit
 | | :FOR | ${nr} | IN RANGE | 0 | ${no_hit_aces_number}
-| |      | ${src_ip_int} = | Evaluate | $src_ip_int + $ip_step
-| |      | ${src_mac_int} = | Evaluate | $src_mac_int + $src_mac_step
-| |      | ${ipv4_limit_reached}= | Set Variable If
-| |      | ... | $src_ip_int > $ip_limit_int | ${True}
-| |      | ${mac_limit_reached}= | Set Variable If
-| |      | ... | $src_mac_int > $mac_limit_int | ${True}
-| |      | Run Keyword If | $ipv4_limit_reached is True | Log
-| |      | ... | Can't do more iterations - IPv4 address limit has been reached.
-| |      | ... | WARN
-| |      | Run Keyword If | $mac_limit_reached is True | Log
-| |      | ... | Can't do more iterations - MAC address limit has been reached.
-| |      | ... | WARN
-| |      | ${src_ip} = | Run Keyword If | $ipv4_limit_reached is True
-| |      | ... | Set Variable | ${ip_limit}
-| |      | ... | ELSE | Evaluate | str(ipaddress.ip_address($src_ip_int))
-| |      | ... | modules=ipaddress
-| |      | ${src_mac}= | Run Keyword If | $mac_limit_reached is True
-| |      | ... | Set Variable | ${mac_limit}
-| |      | ... | ELSE | Evaluate
-| |      | ... | ':'.join(textwrap.wrap("{:012x}".format($src_mac_int), width=2))
-| |      | ... | modules=textwrap
-| |      | ${acl}= | Catenate | ${acl} | ip ${src_ip}/32
-| |      | ... | mac ${src_mac} | mask ${src_mac_mask},
-| |      | Exit For Loop If
-| |      | ... | $ipv4_limit_reached is True or $mac_limit_reached is True
-| | ${acl}= | Catenate | ${acl}
-| | ...     | ipv4 ${acl_action} ip ${trex_stream1_subnet} mac ${tg_if1_mac}
-| | ...     | mask ${tg_mac_mask},
-| | ...     | ipv4 ${acl_action} ip ${trex_stream2_subnet} mac ${tg_if2_mac}
-| | ...     | mask ${tg_mac_mask}
-| | Add Macip Acl Multi Entries | ${dut} | rules=${acl}
+| | | ${src_ip_int} = | Evaluate | ${src_ip_int} + ${ip_step}
+| | | ${src_mac_int} = | Evaluate | ${src_mac_int} + ${src_mac_step}
+| | | ${ipv4_limit_reached}= | Set Variable If
+| | | ... | ${src_ip_int} > ${ip_limit_int} | ${TRUE}
+| | | ${mac_limit_reached}= | Set Variable If
+| | | ... | ${src_mac_int} > ${mac_limit_int} | ${TRUE}
+| | | Run Keyword If | ${ipv4_limit_reached} == ${TRUE} | Log
+| | | ... | Can't do more iterations - IPv4 address limit has been reached.
+| | | ... | WARN
+| | | Run Keyword If | ${mac_limit_reached} == ${TRUE} | Log
+| | | ... | Can't do more iterations - MAC address limit has been reached.
+| | | ... | WARN
+| | | ${src_ip} = | Run Keyword If | ${ipv4_limit_reached} == ${TRUE}
+| | | ... | Set Variable | ${ip_limit}
+| | | ... | ELSE | Int To IP | ${src_ip_int}
+| | | ${src_mac}= | Run Keyword If | ${mac_limit_reached} == ${TRUE}
+| | | ... | Set Variable | ${mac_limit}
+| | | ... | ELSE | Int To Mac | ${src_mac_int}
+| | | ${acl}= | Catenate | ${acl} | ip ${src_ip}/32
+| | | ... | mac ${src_mac} | mask ${src_mac_mask},
+| | | Exit For Loop If
+| | | ... | ${ipv4_limit_reached} == ${TRUE} OR ${mac_limit_reached} == ${TRUE}
+| | ${acl0}= | Catenate | ${acl}
+| | ... | ipv4 ${acl_action} ip ${tg_stream1_subnet} mac ${tg_stream1_mac}
+| | ... | mask ${tg_mac_mask}
+| | ${acl1}= | Catenate | ${acl}
+| | ... | ipv4 ${acl_action} ip ${tg_stream2_subnet} mac ${tg_stream2_mac}
+| | ... | mask ${tg_mac_mask}
+| | Add Macip Acl Multi Entries | ${dut} | rules=${acl0}
+| | Add Macip Acl Multi Entries | ${dut} | rules=${acl1}
 | | ${acl_idx}= | Set Variable | 0
-| | Run Keyword If | $dut_if1 is not None
+| | Run Keyword Unless | ${dut_if1} == ${NONE}
 | | ... | Add Del Macip Acl Interface | ${dut} | ${dut_if1} | add | ${acl_idx}
-| | Run Keyword If | $dut_if2 is not None
+| | ${acl_idx}= | Set Variable | 1
+| | Run Keyword Unless | ${dut_if2} == ${NONE}
 | | ... | Add Del Macip Acl Interface | ${dut} | ${dut_if2} | add | ${acl_idx}
 
 | Initialize L2 bridge domain with MACIP ACLs on DUT1 in 3-node circular topology
@@ -1033,17 +1037,9 @@
 | | ... | - ${dut2_if1} - DUT2 interface towards DUT1.
 | | ... | - ${dut2_if2} - DUT2 interface towards TG.
 | | ...
-| | ... | _NOTE 2:_ This KW sets following test case variables:
-| | ... | - ${tg_if1_mac} - MAC address of TG interface towards DUT1.
-| | ... | - ${tg_if2_mac} - MAC address of TG interface towards DUT2.
-| | ...
 | | Configure L2BD forwarding | ${dut1} | ${dut1_if1} | ${dut1_if2}
 | | Configure L2XC | ${dut2} | ${dut2_if1} | ${dut2_if2}
 | | All Vpp Interfaces Ready Wait | ${nodes}
-| | ${tg_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
-| | Set Test Variable | ${tg_if1_mac}
-| | ${tg_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
-| | Set Test Variable | ${tg_if2_mac}
 | | Configure MACIP ACLs | ${dut1} | ${dut1_if1} | ${dut1_if2}
 
 | Initialize L2 bridge domains with Vhost-User in 3-node circular topology
