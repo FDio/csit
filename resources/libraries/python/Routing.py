@@ -90,26 +90,20 @@ class Routing(object):
                                                     weight=weight)
 
     @staticmethod
-    def add_fib_table(node, network, prefix_len, fib_id, place):
+    def add_fib_table(node, table_id, ipv6=False):
         """Create new FIB table according to ID.
 
         :param node: Node to add FIB on.
-        :param network: IP address to add to the FIB table.
-        :param prefix_len: IP address prefix length.
-        :param fib_id: FIB table ID.
-        :param place: Possible variants are local, drop.
+        :param table_id: FIB table ID.
+        :param ipv6: Is this an IPv6 table
         :type node: dict
-        :type network: str
-        :type prefix_len: int
-        :type fib_id: int
-        :type place: str
+        :type table_id: int
+        :type bool: ipv6
         """
         with VatTerminal(node) as vat:
             vat.vat_terminal_exec_cmd_from_template('add_fib_table.vat',
-                                                    network=network,
-                                                    prefix_length=prefix_len,
-                                                    fib_number=fib_id,
-                                                    where=place)
+                                                    table_id=table_id,
+                                                    ipv6="ipv6" if ipv6 else "")
 
     @staticmethod
     def add_route(node, ip_addr, prefix, gateway, namespace=None):
