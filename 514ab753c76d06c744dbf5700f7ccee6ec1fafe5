@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a4b7175_7331ea0a",
+        "filename": "resources/libraries/robot/performance/performance_configuration.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 935,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-08-14T08:03:20Z",
+      "side": 1,
+      "message": "Is it possible to load these variables from a python \"Variables\" file?",
+      "range": {
+        "startLine": 925,
+        "startChar": 0,
+        "endLine": 935,
+        "endChar": 46
+      },
+      "revId": "514ab753c76d06c744dbf5700f7ccee6ec1fafe5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
