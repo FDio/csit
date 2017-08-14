@@ -25,6 +25,30 @@ class IPUtil(object):
     """Common IP utilities"""
 
     @staticmethod
+    def ip_to_int(ip_str):
+        """Convert IP address from string format (e.g. 10.0.0.1) to integer
+        representation (167772161).
+
+        :param ip_str: IP address in string representation.
+        :type ip_str: str
+        :returns: Integer representation of IP address.
+        :rtype: int
+        """
+        return int(ip_address(unicode(ip_str)))
+
+    @staticmethod
+    def int_to_ip(ip_int):
+        """Convert IP address from integer representation (e.g. 167772161) to
+        string format (10.0.0.1).
+
+        :param ip_int: IP address in integer representation.
+        :type ip_int: int
+        :returns: String representation of IP address.
+        :rtype: str
+        """
+        return str(ip_address(ip_int))
+
+    @staticmethod
     def vpp_ip_probe(node, interface, addr, if_type="key"):
         """Run ip probe on VPP node.
 

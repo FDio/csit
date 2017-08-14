@@ -13,6 +13,8 @@
 
 """L2 Utilities Library."""
 
+from textwrap import wrap
+
 from robot.api.deco import keyword
 
 from resources.libraries.python.topology import Topology
@@ -22,6 +24,30 @@ from resources.libraries.python.ssh import exec_cmd_no_error
 
 class L2Util(object):
     """Utilities for l2 configuration."""
+
+    @staticmethod
+    def mac_to_int(mac_str):
+        """Convert MAC address from string format (e.g. 01:02:03:04:05:06) to
+        integer representation (1108152157446).
+
+        :param mac_str: MAC address in string representation.
+        :type mac_str: str
+        :returns: Integer representation of MAC address.
+        :rtype: int
+        """
+        return int(mac_str.replace(':', ''), 16)
+
+    @staticmethod
+    def int_to_mac(mac_int):
+        """Convert MAC address from integer representation (e.g. 1108152157446)
+        to string format (01:02:03:04:05:06).
+
+        :param mac_int: MAC address in integer representation.
+        :type mac_int: str
+        :returns: String representation of MAC address.
+        :rtype: int
+        """
+        return ':'.join(wrap("{:012x}".format(mac_int), width=2))
 
     @staticmethod
     def vpp_add_l2fib_entry(node, mac, interface, bd_id):
