@@ -13,6 +13,8 @@
 
 """L2 Utilities Library."""
 
+from textwrap import wrap
+
 from robot.api.deco import keyword
 
 from resources.libraries.python.topology import Topology
@@ -22,6 +24,14 @@ from resources.libraries.python.ssh import exec_cmd_no_error
 
 class L2Util(object):
     """Utilities for l2 configuration."""
+
+    @staticmethod
+    def mac_to_int(mac_str):
+        return int(mac_str.replace(':', ''), 16)
+
+    @staticmethod
+    def int_to_mac(mac_int):
+        return ':'.join(wrap("{:012x}".format(mac_int), width=2))
 
     @staticmethod
     def vpp_add_l2fib_entry(node, mac, interface, bd_id):

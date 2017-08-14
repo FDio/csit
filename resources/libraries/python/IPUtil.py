@@ -25,6 +25,14 @@ class IPUtil(object):
     """Common IP utilities"""
 
     @staticmethod
+    def ip_to_int(ip_str):
+        return int(ip_address(unicode(ip_str)))
+
+    @staticmethod
+    def int_to_ip(ip_int):
+        return str(ip_address(ip_int))
+
+    @staticmethod
     def vpp_ip_probe(node, interface, addr, if_type="key"):
         """Run ip probe on VPP node.
 
