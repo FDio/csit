@@ -25,7 +25,7 @@ class Routing(object):
     def vpp_route_add(node, network, prefix_len, gateway=None,
                       interface=None, use_sw_index=True, resolve_attempts=10,
                       count=1, vrf=None, lookup_vrf=None, multipath=False,
-                      weight=None):
+                      weight=None, local=False):
         """Add route to the VPP node.
 
         :param node: Node to add route on.
@@ -37,6 +37,7 @@ class Routing(object):
         :param use_sw_index: Use sw_if_index in VAT command.
         :param resolve_attempts: Resolve attempts IP route add parameter.
         :param count: number of IP addresses to add starting from network IP
+        :param local: The route is local
         with same prefix (increment is 1). If None, then is not used.
         :param lookup_vrf: VRF table ID for lookup.
         :param multipath: Enable multipath routing.
@@ -53,12 +54,16 @@ class Routing(object):
         :type lookup_vrf: int
         :type multipath: bool
         :type weight: int
+        :type local: bool
         """
-        if use_sw_index:
-            int_cmd = ('sw_if_index {}'.
-                       format(Topology.get_interface_sw_index(node, interface)))
+        if interface:
+            if use_sw_index:
+                int_cmd = ('sw_if_index {}'.
+                           format(Topology.get_interface_sw_index(node, interface)))
+            else:
+                int_cmd = interface
         else:
-            int_cmd = interface
+            int_cmd = ''
 
         rap = 'resolve-attempts {}'.format(resolve_attempts) \
             if resolve_attempts else ''
@@ -76,6 +81,8 @@ class Routing(object):
 
         weight = 'weight {}'.format(weight) if weight else ''
 
+        local = 'local' if local else ''
+
         with VatTerminal(node, json_param=False) as vat:
             vat.vat_terminal_exec_cmd_from_template('add_route.vat',
                                                     network=network,
@@ -87,29 +94,24 @@ class Routing(object):
                                                     count=cnt,
                                                     lookup_vrf=lookup_vrf,
                                                     multipath=multipath,
-                                                    weight=weight)
+                                                    weight=weight,
+                                                    local=local)
 
     @staticmethod
-    def add_fib_table(node, network, prefix_len, fib_id, place):
+    def add_fib_table(node, table_id, ipv6=False):
         """Create new FIB table according to ID.
 
         :param node: Node to add FIB on.
-        :param network: IP address to add to the FIB table.
-        :param prefix_len: IP address prefix length.
-        :param fib_id: FIB table ID.
-        :param place: Possible variants are local, drop.
+        :param table_id: FIB table ID.
+        :param ipv6: Is this an IPv6 table
         :type node: dict
-        :type network: str
-        :type prefix_len: int
-        :type fib_id: int
-        :type place: str
+        :type table_id: int
+        :type ipv6: bool
         """
         with VatTerminal(node) as vat:
             vat.vat_terminal_exec_cmd_from_template('add_fib_table.vat',
-                                                    network=network,
-                                                    prefix_length=prefix_len,
-                                                    fib_number=fib_id,
-                                                    where=place)
+                                                    table_id=table_id,
+                                                    ipv6="ipv6" if ipv6 else "")
 
     @staticmethod
     def add_route(node, ip_addr, prefix, gateway, namespace=None):

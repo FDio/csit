@@ -67,6 +67,8 @@
 | | Given Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | And Set interfaces in 3-node circular topology up
+| | And Add Fib Table | ${dut1_node} | ${fib_table_1}
+| | And Add Fib Table | ${dut2_node} | ${fib_table_1}
 | | And Assign Interface To Fib Table | ${dut1_node}
 | | ... | ${dut1_to_tg} | ${fib_table_1}
 | | And Assign Interface To Fib Table | ${dut2_node}
@@ -104,6 +106,7 @@
 | | ...
 | | ${vhost1}= | Vpp Create Vhost User Interface | ${dut1_node} | ${sock1}
 | | ${vhost2}= | Vpp Create Vhost User Interface | ${dut1_node} | ${sock2}
+| | And Add Fib Table | ${dut1_node} | ${fib_table}
 | | Assign Interface To Fib Table | ${dut1_node}
 | | ... | ${vhost2} | ${fib_table}
 | | Set Interface Address | ${dut1_node} | ${vhost2} | ${vhost_ip} | ${prefix4}
