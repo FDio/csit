@@ -90,8 +90,7 @@
 | | And Vpp Route Add | ${dut1_node}
 | | ... | ${test_dst_ip} | ${ip_prefix} | ${dut1_if2_ip_GW} | ${dut1_to_dut2}
 | | And Vpp All Ra Suppress Link Layer | ${nodes}
-| | And Add fib table | ${dut1_node}
-| | ... | ${cop_dut_ip} | ${ip_prefix} | ${fib_table_number} | drop
+| | And Add fib table | ${dut1_node} | ${fib_table_number} | ipv6=${TRUE}
 | | When COP Add whitelist Entry
 | | ... | ${dut1_node} | ${dut1_to_tg} | ip6 | ${fib_table_number}
 | | And COP interface enable or disable | ${dut1_node} | ${dut1_to_tg} | enable
