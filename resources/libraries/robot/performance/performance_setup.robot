@@ -566,3 +566,24 @@
 | | Vpp Log Plugin Acl Settings | ${dut1}
 | | Run Keyword If Test Failed | Run Keyword And Ignore Error
 | | ... | Vpp Log Plugin Acl Interface Assignment | ${dut1}
+
+| Tear down performance test with MACIP ACL
+| | [Documentation] | Common test teardown for ndrdisc and pdrdisc performance \
+| | ... | tests with MACIP ACL feature used.
+| | ...
+| | ... | *Arguments:*
+| | ... | - rate - Rate for sending packets. Type: string
+| | ... | - framesize - L2 Frame Size [B]. Type: integer
+| | ... | - traffic_profile - Traffic profile. Type: string
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Tear down performance test with MACIP ACL \| 100000pps \| 64 \
+| | ... | \| ${traffic_profile} \|
+| | ...
+| | [Arguments] | ${rate} | ${framesize} | ${traffic_profile}
+| | ...
+| | Tear down performance discovery test | ${rate} | ${framesize}
+| | ... | ${traffic_profile}
+| | Vpp Log Macip Acl Settings | ${dut1}
+| | Vpp Log Macip Acl Interface Assignment | ${dut1}
