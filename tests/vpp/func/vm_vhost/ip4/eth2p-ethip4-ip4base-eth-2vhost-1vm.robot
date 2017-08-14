@@ -70,6 +70,7 @@
 | | ${vhost2}= | And Vpp Create Vhost User Interface | ${dut_node} | ${sock2}
 | | And Set Interface State | ${dut_node} | ${vhost1} | up
 | | And Set Interface State | ${dut_node} | ${vhost2} | up
+| | And Add Fib Table | ${dut_node} | ${fib_table_2}
 | | And Assign Interface To Fib Table | ${dut_node}
 | | ... | ${vhost2} | ${fib_table_2}
 | | And Assign Interface To Fib Table | ${dut_node}
