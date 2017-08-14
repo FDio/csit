@@ -903,23 +903,23 @@
 | | ... | - ${tg} - TG node.
 | | ... | - ${tg_if1} - TG interface towards DUT1.
 | | ... | - ${tg_if2} - TG interface towards DUT2.
-| | ... | - ${src_ip_start} - Source IP address start. Type: string.
-| | ... | - ${ip_step} - IP address step. Type: string.
+| | ... | - ${src_ip_start} - Source IP address start. Type: string
+| | ... | - ${ip_step} - IP address step. Type: string
 | | ... | - ${src_mac_start} - Source MAC address start in format with colons.
-| | ... | Type: string.
-| | ... | - ${src_mac_step} - Source MAC address step. Type: string.
+| | ... | Type: string
+| | ... | - ${src_mac_step} - Source MAC address step. Type: string
 | | ... | - ${src_mac_mask} - Source MAC address mask. 00:00:00:00:00:00 is a
-| | ... | wildcard mask. Type: string.
+| | ... | wildcard mask. Type: string
 | | ... | - ${no_hit_aces_number} - Number of not-hitting ACEs to be configured.
 | | ... | Type: integer
-| | ... | - ${acl_apply_type} - To what path aplly the ACL - input or output.
-| | ... | Type: string
 | | ... | - ${acl_action} - Action for the rule - deny, permit, permit+reflect.
 | | ... | Type: string
 | | ... | - ${trex_stream1_subnet} - IP subnet used by T-Rex in direction 0->1.
 | | ... | Type: string
 | | ... | - ${trex_stream2_subnet} - IP subnet used by T-Rex in direction 1->0.
 | | ... | Type: string
+| | ... | - ${tg_mac_mask} - MAC address mask for traffic streams.
+| | ... | 00:00:00:00:00:00 is a wildcard mask. Type: string
 | | ...
 | | [Arguments] | ${dut} | ${dut_if1}=${None} | ${dut_if2}=${None}
 | | ${src_ip_int} = | Evaluate
@@ -958,7 +958,7 @@
 | |      | ... | ELSE | Evaluate
 | |      | ... | ':'.join(textwrap.wrap("{:012x}".format($src_mac_int), width=2))
 | |      | ... | modules=textwrap
-| |      | ${acl}= | Catenate | ${acl} | ip ${src_ip}/32 mac
+| |      | ${acl}= | Catenate | ${acl} | ip ${src_ip}/32
 | |      | ... | mac ${src_mac} | mask ${src_mac_mask},
 | |      | Exit For Loop If
 | |      | ... | $ipv4_limit_reached is True or $mac_limit_reached is True
@@ -969,16 +969,8 @@
 | | ...     | mask ${tg_mac_mask}
 | | Add Macip Acl Multi Entries | ${dut} | rules=${acl}
 | | ${acl_idx}= | Set Variable | 0
-| | Run Keyword If | 'input' in $acl_apply_type and $dut_if1 is not None
-| | ... | Add Del Macip Acl Interface | ${dut} | ${dut_if1} | input | ${acl_idx}
-| | Run Keyword If | 'input' in $acl_apply_type and $dut_if2 is not None
-| | ... | Add Del Macip Acl Interface | ${dut} | ${dut_if2} | input | ${acl_idx}
-| | Run Keyword If | 'output' in $acl_apply_type and $dut_if1 is not None
-| | ... | Add Del Macip Acl Interface | ${dut} | ${dut_if1} | output
-| | ... | ${acl_idx}
-| | Run Keyword If | 'output' in $acl_apply_type and $dut_if2 is not None
-| | ... | Add Del Macip Acl Interface | ${dut} | ${dut_if2} | output
-| | ... | ${acl_idx}
+| | Add Del Macip Acl Interface | ${dut} | ${dut_if1} | add | ${acl_idx}
+| | Add Del Macip Acl Interface | ${dut} | ${dut_if2} | add | ${acl_idx}
 
 | Initialize L2 bridge domain with MACIP ACLs on DUT1 in 3-node circular topology
 | | [Documentation]
