@@ -903,13 +903,13 @@
 | | ... | - ${tg} - TG node.
 | | ... | - ${tg_if1} - TG interface towards DUT1.
 | | ... | - ${tg_if2} - TG interface towards DUT2.
-| | ... | - ${src_ip_start} - Source IP address start. Type: string.
-| | ... | - ${ip_step} - IP address step. Type: string.
+| | ... | - ${src_ip_start} - Source IP address start. Type: string
+| | ... | - ${ip_step} - IP address step. Type: string
 | | ... | - ${src_mac_start} - Source MAC address start in format with colons.
-| | ... | Type: string.
-| | ... | - ${src_mac_step} - Source MAC address step. Type: string.
+| | ... | Type: string
+| | ... | - ${src_mac_step} - Source MAC address step. Type: string
 | | ... | - ${src_mac_mask} - Source MAC address mask. 00:00:00:00:00:00 is a
-| | ... | wildcard mask. Type: string.
+| | ... | wildcard mask. Type: string
 | | ... | - ${no_hit_aces_number} - Number of not-hitting ACEs to be configured.
 | | ... | Type: integer
 | | ... | - ${acl_apply_type} - To what path aplly the ACL - input or output.
@@ -920,6 +920,8 @@
 | | ... | Type: string
 | | ... | - ${trex_stream2_subnet} - IP subnet used by T-Rex in direction 1->0.
 | | ... | Type: string
+| | ... | - ${tg_mac_mask} - MAC address mask for traffic streams.
+| | ... | 00:00:00:00:00:00 is a wildcard mask. Type: string
 | | ...
 | | [Arguments] | ${dut} | ${dut_if1}=${None} | ${dut_if2}=${None}
 | | ${src_ip_int} = | Evaluate
