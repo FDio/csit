@@ -22,6 +22,30 @@
       "revId": "514ab753c76d06c744dbf5700f7ccee6ec1fafe5",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a4b7175_7e4d3172",
+        "filename": "resources/libraries/robot/performance/performance_configuration.robot",
+        "patchSetId": 1
+      },
+      "lineNbr": 935,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2017-08-14T08:22:18Z",
+      "side": 1,
+      "message": "Variables $src_ip_start, $ip_step, src_mac_start and $src_mac_step can vary from test to test and they will be defined in the test suite file. Implementing them in separate python variable files would lead to less readibility of the test case.",
+      "parentUuid": "3a4b7175_7331ea0a",
+      "range": {
+        "startLine": 925,
+        "startChar": 0,
+        "endLine": 935,
+        "endChar": 46
+      },
+      "revId": "514ab753c76d06c744dbf5700f7ccee6ec1fafe5",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
