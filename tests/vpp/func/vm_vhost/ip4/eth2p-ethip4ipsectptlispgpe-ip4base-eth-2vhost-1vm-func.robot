@@ -163,6 +163,8 @@
 | | Configure path in 3-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['DUT2']} | ${nodes['TG']}
 | | Set interfaces in 3-node circular topology up
+| | And Add Fib Table | ${dut1_node} | ${fib_table}
+| | And Add Fib Table | ${dut2_node} | ${fib_table}
 | | Assign Interface To Fib Table | ${dut1_node}
 | | ... | ${dut1_to_tg} | ${fib_table}
 | | Assign Interface To Fib Table | ${dut2_node}
