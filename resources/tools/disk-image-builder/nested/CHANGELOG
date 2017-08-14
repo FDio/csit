@@ -1,3 +1,10 @@
+## [1.7] - 2017-08-14
+
+### Changes
+- update buildroot to 2017.05.2
+- add htop, perf, screen, msr_tools, memstat
+
+
 ## [1.6] - 2017-02-20
 
 ### Changes

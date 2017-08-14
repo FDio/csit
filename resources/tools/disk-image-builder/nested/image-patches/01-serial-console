@@ -8,9 +8,9 @@ patch boot/grub/menu.lst <<"_EOF"
 > serial --unit=0 --speed=115200 --word=8 --parity=no --stop=1
 > terminal --timeout=0 serial console
 15c17
-< 	kernel /boot/bzImage rw root=/dev/sda1
+< 	kernel /boot/bzImage rw root=/dev/sda1 rootwait
 ---
-> 	kernel /boot/bzImage rw root=/dev/sda1 console=ttyS0,115200n8
+> 	kernel /boot/bzImage rw root=/dev/sda1 rootwait console=ttyS0,115200n8
 _EOF
 
 patch etc/inittab <<"_EOF"
