@@ -410,8 +410,10 @@ class Classify(object):
         :type acl_idx: list
         :raises RuntimeError: If unable to set ACL list for the interface.
         """
-        sw_if_index = Topology.get_interface_sw_index(node, interface) \
-            if isinstance(interface, basestring) else interface
+        if isinstance(interface, basestring):
+            sw_if_index = Topology.get_interface_sw_index(node, interface)
+        else:
+            sw_if_index = interface
 
         acl_list = acl_type + ' ' + ' '.join(str(idx) for idx in acl_idx) \
             if acl_idx else acl_type

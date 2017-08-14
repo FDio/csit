@@ -753,18 +753,18 @@
 | | ... | hitting ACEs for both traffic directions.
 | | ...
 | | ... | _NOTE:_ This KW uses following test case variables:
-| | ... | - ${src_ip_start} - Source IP address start. Type: string.
-| | ... | - ${dst_ip_start} - Destination IP address start. Type: string.
-| | ... | - ${ip_step} - IP address step. Type: string.
-| | ... | - ${sport_start} - Source port number start. Type: string.
-| | ... | - ${dport_start} - Destination port number start. Type: string.
-| | ... | - ${port_step} - Port number step. Type: string.
+| | ... | - ${src_ip_start} - Source IP address start. Type: string
+| | ... | - ${dst_ip_start} - Destination IP address start. Type: string
+| | ... | - ${ip_step} - IP address step. Type: string
+| | ... | - ${sport_start} - Source port number start. Type: string
+| | ... | - ${dport_start} - Destination port number start. Type: string
+| | ... | - ${port_step} - Port number step. Type: string
 | | ... | - ${no_hit_aces_number} - Number of not-hitting ACEs to be configured.
 | | ... | Type: integer
 | | ... | - ${acl_apply_type} - To what path aplly the ACL - input or output.
 | | ... | Type: string
 | | ... | - ${acl_action} - Action for the rule - deny, permit, permit+reflect.
-| | ... | Type: stringe
+| | ... | Type: string
 | | ... | - ${trex_stream1_subnet} - IP subnet used by T-Rex in direction 0->1.
 | | ... | Type: string
 | | ... | - ${trex_stream2_subnet} - IP subnet used by T-Rex in direction 1->0.
@@ -893,6 +893,106 @@
 | | Vpp Route Add | ${dut2} | 10.10.10.0 | 24 | 1.1.1.1 | ${dut2_if1}
 | | All Vpp Interfaces Ready Wait | ${nodes}
 | | Configure IPv4 ACLs | ${dut1} | ${dut1_if1} | ${dut1_if2}
+
+| Configure MACIP ACLs
+| | [Documentation]
+| | ... | Configure MACIP ACL with required number of not-hitting permit ACEs
+| | ... | plus two hitting ACEs for both traffic directions.
+| | ...
+| | ... | _NOTE:_ This KW uses following test case variables:
+| | ... | - ${tg} - TG node.
+| | ... | - ${tg_if1} - TG interface towards DUT1.
+| | ... | - ${tg_if2} - TG interface towards DUT2.
+| | ... | - ${src_ip_start} - Source IP address start. Type: string
+| | ... | - ${ip_step} - IP address step. Type: string
+| | ... | - ${src_mac_start} - Source MAC address start in format with colons.
+| | ... | Type: string
+| | ... | - ${src_mac_step} - Source MAC address step. Type: string
+| | ... | - ${src_mac_mask} - Source MAC address mask. 00:00:00:00:00:00 is a
+| | ... | wildcard mask. Type: string
+| | ... | - ${no_hit_aces_number} - Number of not-hitting ACEs to be configured.
+| | ... | Type: integer
+| | ... | - ${acl_apply_type} - To what path aplly the ACL - input or output.
+| | ... | Type: string
+| | ... | - ${acl_action} - Action for the rule - deny, permit, permit+reflect.
+| | ... | Type: string
+| | ... | - ${trex_stream1_subnet} - IP subnet used by T-Rex in direction 0->1.
+| | ... | Type: string
+| | ... | - ${trex_stream2_subnet} - IP subnet used by T-Rex in direction 1->0.
+| | ... | Type: string
+| | ... | - ${tg_mac_mask} - MAC address mask for traffic streams.
+| | ... | 00:00:00:00:00:00 is a wildcard mask. Type: string
+| | ...
+| | [Arguments] | ${dut} | ${dut_if1}=${None} | ${dut_if2}=${None}
+| | ${src_ip_int} = | Evaluate
+| | ... | int(ipaddress.ip_address(unicode($src_ip_start))) - $ip_step
+| | ... | modules=ipaddress
+| | ${ip_limit} = | Set Variable | 255.255.255.255
+| | ${ip_limit_int} = | Evaluate
+| | ... | int(ipaddress.ip_address(unicode($ip_limit))) | modules=ipaddress
+| | ${src_mac_int} = | Evaluate
+| | ... | int($src_mac_start.replace(':', ''), 16) - $src_mac_step
+| | ${mac_limit} = | Set Variable | ff:ff:ff:ff:ff:ff
+| | ${mac_limit_int} = | Evaluate
+| | ... | int($mac_limit.replace(':', ''), 16)
+| | ${tg_if1_mac}= | Get Interface MAC | ${tg} | ${tg_if1}
+| | ${tg_if2_mac}= | Get Interface MAC | ${tg} | ${tg_if2}
+| | ${acl}= | Set Variable | ipv4 permit
+| | :FOR | ${nr} | IN RANGE | 0 | ${no_hit_aces_number}
+| |      | ${src_ip_int} = | Evaluate | $src_ip_int + $ip_step
+| |      | ${src_mac_int} = | Evaluate | $src_mac_int + $src_mac_step
+| |      | ${ipv4_limit_reached}= | Set Variable If
+| |      | ... | $src_ip_int > $ip_limit_int | ${True}
+| |      | ${mac_limit_reached}= | Set Variable If
+| |      | ... | $src_mac_int > $mac_limit_int | ${True}
+| |      | Run Keyword If | $ipv4_limit_reached is True | Log
+| |      | ... | Can't do more iterations - IPv4 address limit has been reached.
+| |      | ... | WARN
+| |      | Run Keyword If | $mac_limit_reached is True | Log
+| |      | ... | Can't do more iterations - MAC address limit has been reached.
+| |      | ... | WARN
+| |      | ${src_ip} = | Run Keyword If | $ipv4_limit_reached is True
+| |      | ... | Set Variable | ${ip_limit}
+| |      | ... | ELSE | Evaluate | str(ipaddress.ip_address($src_ip_int))
+| |      | ... | modules=ipaddress
+| |      | ${src_mac}= | Run Keyword If | $mac_limit_reached is True
+| |      | ... | Set Variable | ${mac_limit}
+| |      | ... | ELSE | Evaluate
+| |      | ... | ':'.join(textwrap.wrap("{:012x}".format($src_mac_int), width=2))
+| |      | ... | modules=textwrap
+| |      | ${acl}= | Catenate | ${acl} | ip ${src_ip}/32
+| |      | ... | mac ${src_mac} | mask ${src_mac_mask},
+| |      | Exit For Loop If
+| |      | ... | $ipv4_limit_reached is True or $mac_limit_reached is True
+| | ${acl}= | Catenate | ${acl}
+| | ...     | ipv4 ${acl_action} ip ${trex_stream1_subnet} mac ${tg_if1_mac}
+| | ...     | mask ${tg_mac_mask},
+| | ...     | ipv4 ${acl_action} ip ${trex_stream2_subnet} mac ${tg_if2_mac}
+| | ...     | mask ${tg_mac_mask}
+| | Add Macip Acl Multi Entries | ${dut} | rules=${acl}
+| | ${acl_idx}= | Set Variable | 0
+| | Add Del Macip Acl Interface | ${dut} | ${dut_if1} | add | ${acl_idx}
+| | Add Del Macip Acl Interface | ${dut} | ${dut_if2} | add | ${acl_idx}
+
+| Initialize L2 bridge domain with MACIP ACLs on DUT1 in 3-node circular topology
+| | [Documentation]
+| | ... | Setup L2BD topology by adding two interfaces on DUT1 into bridge
+| | ... | domain that is created automatically with index 1. Learning is
+| | ... | enabled. Interfaces are brought up. Apply required MACIP ACL rules to
+| | ... | DUT1 interfaces.
+| | ...
+| | ... | _NOTE:_ This KW uses following test case variables:
+| | ... | - ${dut1} - DUT1 node.
+| | ... | - ${dut2} - DUT2 node.
+| | ... | - ${dut1_if1} - DUT1 interface towards TG.
+| | ... | - ${dut1_if2} - DUT1 interface towards DUT2.
+| | ... | - ${dut2_if1} - DUT2 interface towards DUT1.
+| | ... | - ${dut2_if2} - DUT2 interface towards TG.
+| | ...
+| | Configure L2BD forwarding | ${dut1} | ${dut1_if1} | ${dut1_if2}
+| | Configure L2XC | ${dut2} | ${dut2_if1} | ${dut2_if2}
+| | All Vpp Interfaces Ready Wait | ${nodes}
+| | Configure MACIP ACLs | ${dut1} | ${dut1_if1} | ${dut1_if2}
 
 | Initialize L2 bridge domains with Vhost-User in 3-node circular topology
 | | [Documentation]
