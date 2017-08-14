@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a4b7175_93eea6b3",
+        "filename": "resources/libraries/python/Classify.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 584,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-08-14T05:01:01Z",
+      "side": 1,
+      "message": "PEP8: Too broad exception. \nCheck everywhere.",
+      "range": {
+        "startLine": 584,
+        "startChar": 8,
+        "endLine": 584,
+        "endChar": 14
+      },
+      "revId": "47668a3ae439b24d8e81be68f4ebfcd84dfa7604",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a4b7175_732b2aec",
+        "filename": "resources/libraries/python/Classify.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 657,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-08-14T05:01:01Z",
+      "side": 1,
+      "message": "# More readable: \nif isinstance(interface, basestring):\n    sw_if_index \u003d Topology.get_interface_sw_index(node, interface)\nelse:\n    sw_if_index \u003d interface",
+      "range": {
+        "startLine": 656,
+        "startChar": 8,
+        "endLine": 657,
+        "endChar": 63
+      },
+      "revId": "47668a3ae439b24d8e81be68f4ebfcd84dfa7604",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
