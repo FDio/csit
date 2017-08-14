@@ -972,40 +972,43 @@
 | | ... | int($mac_limit.replace(':', ''), 16)
 | | ${acl}= | Set Variable | ipv4 permit
 | | :FOR | ${nr} | IN RANGE | 0 | ${no_hit_aces_number}
-| |      | ${src_ip_int} = | Evaluate | $src_ip_int + $ip_step
-| |      | ${src_mac_int} = | Evaluate | $src_mac_int + $src_mac_step
-| |      | ${ipv4_limit_reached}= | Set Variable If
-| |      | ... | $src_ip_int > $ip_limit_int | ${True}
-| |      | ${mac_limit_reached}= | Set Variable If
-| |      | ... | $src_mac_int > $mac_limit_int | ${True}
-| |      | Run Keyword If | $ipv4_limit_reached is True | Log
-| |      | ... | Can't do more iterations - IPv4 address limit has been reached.
-| |      | ... | WARN
-| |      | Run Keyword If | $mac_limit_reached is True | Log
-| |      | ... | Can't do more iterations - MAC address limit has been reached.
-| |      | ... | WARN
-| |      | ${src_ip} = | Run Keyword If | $ipv4_limit_reached is True
-| |      | ... | Set Variable | ${ip_limit}
-| |      | ... | ELSE | Evaluate | str(ipaddress.ip_address($src_ip_int))
-| |      | ... | modules=ipaddress
-| |      | ${src_mac}= | Run Keyword If | $mac_limit_reached is True
-| |      | ... | Set Variable | ${mac_limit}
-| |      | ... | ELSE | Evaluate
-| |      | ... | ':'.join(textwrap.wrap("{:012x}".format($src_mac_int), width=2))
-| |      | ... | modules=textwrap
-| |      | ${acl}= | Catenate | ${acl} | ip ${src_ip}/32
-| |      | ... | mac ${src_mac} | mask ${src_mac_mask},
-| |      | Exit For Loop If
-| |      | ... | $ipv4_limit_reached is True or $mac_limit_reached is True
-| | ${acl}= | Catenate | ${acl}
-| | ...     | ipv4 ${acl_action} ip ${trex_stream1_subnet} mac ${tg_if1_mac}
-| | ...     | mask ${tg_mac_mask},
-| | ...     | ipv4 ${acl_action} ip ${trex_stream2_subnet} mac ${tg_if2_mac}
-| | ...     | mask ${tg_mac_mask}
-| | Add Macip Acl Multi Entries | ${dut} | rules=${acl}
+| | | ${src_ip_int} = | Evaluate | $src_ip_int + $ip_step
+| | | ${src_mac_int} = | Evaluate | $src_mac_int + $src_mac_step
+| | | ${ipv4_limit_reached}= | Set Variable If
+| | | ... | $src_ip_int > $ip_limit_int | ${True}
+| | | ${mac_limit_reached}= | Set Variable If
+| | | ... | $src_mac_int > $mac_limit_int | ${True}
+| | | Run Keyword If | $ipv4_limit_reached is True | Log
+| | | ... | Can't do more iterations - IPv4 address limit has been reached.
+| | | ... | WARN
+| | | Run Keyword If | $mac_limit_reached is True | Log
+| | | ... | Can't do more iterations - MAC address limit has been reached.
+| | | ... | WARN
+| | | ${src_ip} = | Run Keyword If | $ipv4_limit_reached is True
+| | | ... | Set Variable | ${ip_limit}
+| | | ... | ELSE | Evaluate | str(ipaddress.ip_address($src_ip_int))
+| | | ... | modules=ipaddress
+| | | ${src_mac}= | Run Keyword If | $mac_limit_reached is True
+| | | ... | Set Variable | ${mac_limit}
+| | | ... | ELSE | Evaluate
+| | | ... | ':'.join(textwrap.wrap("{:012x}".format($src_mac_int), width=2))
+| | | ... | modules=textwrap
+| | | ${acl}= | Catenate | ${acl} | ip ${src_ip}/32
+| | | ... | mac ${src_mac} | mask ${src_mac_mask},
+| | | Exit For Loop If
+| | | ... | $ipv4_limit_reached is True or $mac_limit_reached is True
+| | ${acl0}= | Catenate | ${acl}
+| | ... | ipv4 ${acl_action} ip ${trex_stream1_subnet} mac ${tg_if1_mac}
+| | ... | mask ${tg_mac_mask}
+| | ${acl1}= | Catenate | ${acl}
+| | ... | ipv4 ${acl_action} ip ${trex_stream2_subnet} mac ${tg_if2_mac}
+| | ... | mask ${tg_mac_mask}
+| | Add Macip Acl Multi Entries | ${dut} | rules=${acl0}
+| | Add Macip Acl Multi Entries | ${dut} | rules=${acl1}
 | | ${acl_idx}= | Set Variable | 0
 | | Run Keyword If | $dut_if1 is not None
 | | ... | Add Del Macip Acl Interface | ${dut} | ${dut_if1} | add | ${acl_idx}
+| | ${acl_idx}= | Set Variable | 1
 | | Run Keyword If | $dut_if2 is not None
 | | ... | Add Del Macip Acl Interface | ${dut} | ${dut_if2} | add | ${acl_idx}
 
