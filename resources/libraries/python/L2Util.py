@@ -13,11 +13,21 @@
 
 """L2 Utilities Library."""
 
+from textwrap import wrap
+
 from robot.api.deco import keyword
 
 from resources.libraries.python.topology import Topology
 from resources.libraries.python.VatExecutor import VatExecutor, VatTerminal
 from resources.libraries.python.ssh import exec_cmd_no_error
+
+
+def mac_to_int(mac_str):
+    return int(mac_str.replace(':', ''), 16)
+
+
+def int_to_mac(mac_int):
+    return ':'.join(wrap("{:012x}".format(mac_int), width=2))
 
 
 class L2Util(object):

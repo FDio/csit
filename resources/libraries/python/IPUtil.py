@@ -21,6 +21,14 @@ from resources.libraries.python.ssh import exec_cmd_no_error, exec_cmd
 from resources.libraries.python.topology import Topology
 
 
+def ip_to_int(ip_str):
+    return int(ip_address(unicode(ip_str)))
+
+
+def int_to_ip(ip_int):
+    return str(ip_address(ip_int))
+
+
 class IPUtil(object):
     """Common IP utilities"""
 
