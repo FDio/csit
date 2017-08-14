@@ -81,8 +81,9 @@
 | | ... | ${dut1_node} | ${dut1_to_dut2} | ${dut1_if2_ip_GW} | ${tg_to_dut2_mac}
 | | And Vpp Route Add | ${dut1_node}
 | | ... | ${test_dst_ip} | ${ip_prefix} | ${dut1_if2_ip_GW} | ${dut1_to_dut2}
-| | And Add fib table | ${dut1_node}
-| | ... | ${cop_dut_ip} | ${ip_prefix} | ${fib_table_number} | local
+| | And Add fib table | ${dut1_node} | ${fib_table_number}
+| | And Vpp Route Add | ${dut1_node}
+| | ... | ${cop_dut_ip} | ${ip_prefix} | vrf=${fib_table_number} | use_sw_index=False | local=1
 | | When COP Add whitelist Entry
 | | ... | ${dut1_node} | ${dut1_to_tg} | ip4 | ${fib_table_number}
 | | And COP interface enable or disable | ${dut1_node} | ${dut1_to_tg} | enable
