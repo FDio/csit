@@ -26,7 +26,7 @@
 #
 BUILD_DIR="$(dirname $0)/build"
 
-BUILDROOT_NAME='buildroot-2016.02'
+BUILDROOT_NAME='buildroot-2017.05.2'
 BUILDROOT_DIR="${BUILD_DIR}/${BUILDROOT_NAME}"
 BUILDROOT_TARBALL="${BUILDROOT_NAME}.tar.gz"
 BUILDROOT_URL="https://buildroot.org/downloads/${BUILDROOT_TARBALL}"
@@ -170,7 +170,7 @@ echo "Disk has ${disk_cylinders} cylinders"
 # Install GRUB bootloader on the disk image
 ${BUILDROOT_DIR}/output/host/sbin/grub --device-map=/dev/null <<_EOF
 device (hd0) ${img_name}
-geometry (hd0) ${disk_cylinders} ${DISK_HEADS} ${DISK_SECT_PER_TRACK}
+geometry (hd0)
 root (hd0,0)
 setup (hd0)
 quit
