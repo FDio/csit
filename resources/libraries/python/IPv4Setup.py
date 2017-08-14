@@ -92,6 +92,30 @@ class IPv4Node(object):
         pass
 
     @abstractmethod
+    def set_table(self, table_id, ipv6):
+        """Create an IPv4 Table.
+
+        :param table_id: Value of the Table Identifier.
+        :param ipv6: Is it an IPv6 Table
+        :type table_id: int
+        :type ipv6: bool
+        :returns: nothing
+        """
+        pass
+
+    @abstractmethod
+    def unset_table(self, table_id, ipv6):
+        """Delete an IPv4 Table.
+
+        :param table_id: Value of the Table Identifier.
+        :param ipv6: Is it an IPv6 Table
+        :type table_id: int
+        :type ipv6: bool
+        :returns: nothing
+        """
+        pass
+
+    @abstractmethod
     def flush_ip_addresses(self, interface):
         """Flush all IPv4 addresses from specified interface.
 
@@ -174,6 +198,12 @@ class Tg(IPv4Node):
     def flush_ip_addresses(self, interface):
         self._sudo_execute('ip addr flush dev {}'.format(interface))
 
+    def set_table(self, table_id, ipv6):
+        pass
+
+    def unset_table(self, table_id, ipv6):
+        pass
+
 
 class Dut(IPv4Node):
     """Device under test"""
@@ -230,6 +260,12 @@ class Dut(IPv4Node):
         self.exec_vat('del_route.vat', network=network,
                       prefix_length=prefix_length, gateway=gateway,
                       sw_if_index=self.get_sw_if_index(interface))
+
+    def set_table(self, table_id, ipv6):
+        self.exec_vat('add_table.vat', table_id=table_id, ipv6=ipv6)
+
+    def unset_table(self, table_id):
+        self.exec_vat('del_table.vat', table_id=table_id, ipv6=ipv6)
 
     def arp_ping(self, destination_address, source_interface):
         """Does nothing."""

@@ -83,6 +83,22 @@ class IPv4Util(object):
                                  gateway, interface)
 
     @staticmethod
+    def add_fib_table(node, table_id, ipv6=False):
+        """Add a VRF/FIB table.
+
+        :param node: VPP node where the FIB and interface are located.
+        :param table_id: VRF table ID.
+        :param ipv6: Assign to IPv6 table. Default False.
+        :type node: dict
+        :type table_id: int
+        :type ipv6: bool
+        """
+        log.debug('Node {} adds table {} for {} '
+                  .format(Topology.get_node_hostname(node),
+                          table_id, ipv6))
+        get_node(node).set_table(table_id, ipv6)
+
+    @staticmethod
     @keyword('Get IPv4 address prefix of node "${node}" interface "${port}" '
              'from "${nodes_addr}"')
     def get_ip_addr_prefix_length(node, port, nodes_addr):
