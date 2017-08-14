@@ -26,7 +26,7 @@
 #
 BUILD_DIR="$(dirname $0)/build"
 
-BUILDROOT_NAME='buildroot-2016.02'
+BUILDROOT_NAME='buildroot-2017.05.2'
 BUILDROOT_DIR="${BUILD_DIR}/${BUILDROOT_NAME}"
 BUILDROOT_TARBALL="${BUILDROOT_NAME}.tar.gz"
 BUILDROOT_URL="https://buildroot.org/downloads/${BUILDROOT_TARBALL}"
