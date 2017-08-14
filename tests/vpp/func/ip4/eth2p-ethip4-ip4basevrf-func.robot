@@ -322,6 +322,8 @@
 | | ... | ${tg_dut1_ip2} | ${ip_prefix} | ${fib_table_2}
 | | ... | via ${dut2_to_dut1_ip2} sw_if_index ${dut2_if2_idx} multipath
 
+| | And Add Fib Table | ${dut1_node} | ${fib_table_1}
+| | And Add Fib Table | ${dut1_node} | ${fib_table_2}
 | | Assign Interface To Fib Table
 | | ... | ${dut1_node} | ${dut1_to_dut2_if1} | ${fib_table_1}
 | | Assign Interface To Fib Table
@@ -331,6 +333,8 @@
 | | Assign Interface To Fib Table
 | | ... | ${dut1_node} | ${dut1_to_tg_if2} | ${fib_table_2}
 
+| | And Add Fib Table | ${dut2_node} | ${fib_table_1}
+| | And Add Fib Table | ${dut2_node} | ${fib_table_2}
 | | Assign Interface To Fib Table
 | | ... | ${dut2_node} | ${dut2_to_dut1_if1} | ${fib_table_1}
 | | Assign Interface To Fib Table

@@ -338,6 +338,8 @@
 | | ${dut2_if2_idx}= | Get Interface SW Index
 | | ... | ${dut2_node} | ${dut2_to_dut1_if2}
 
+| | And Add Fib Table | ${dut1_node} | ${fib_table_1} | ipv6=${TRUE}
+| | And Add Fib Table | ${dut1_node} | ${fib_table_2} | ipv6=${TRUE}
 | | Assign Interface To Fib Table
 | | ... | ${dut1_node} | ${dut1_to_dut2_if1} | ${fib_table_1} | ipv6=${TRUE}
 | | Assign Interface To Fib Table
@@ -347,6 +349,8 @@
 | | Assign Interface To Fib Table
 | | ... | ${dut1_node} | ${dut1_to_tg_if2} | ${fib_table_2} | ipv6=${TRUE}
 
+| | And Add Fib Table | ${dut2_node} | ${fib_table_1} | ipv6=${TRUE}
+| | And Add Fib Table | ${dut2_node} | ${fib_table_2} | ipv6=${TRUE}
 | | Assign Interface To Fib Table
 | | ... | ${dut2_node} | ${dut2_to_dut1_if1} | ${fib_table_1} | ipv6=${TRUE}
 | | Assign Interface To Fib Table

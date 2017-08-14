@@ -101,6 +101,7 @@
 | | ...
 | | ${vhost1}= | Vpp Create Vhost User Interface | ${dut1_node} | ${sock1}
 | | ${vhost2}= | Vpp Create Vhost User Interface | ${dut1_node} | ${sock2}
+| | And Add Fib Table | ${dut1_node} | ${fib_table} | ipv6={TRUE}
 | | Assign Interface To Fib Table | ${dut1_node}
 | | ... | ${vhost2} | ${fib_table} | ipv6=${TRUE}
 | | Vpp Set If IPv6 Addr | ${dut1_node} | ${vhost2} | ${vhost_ip}
