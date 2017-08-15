@@ -284,19 +284,6 @@
 | | [arguments] | ${node} | ${feature}
 | | Manage Honeycomb Features | ${node} | ${feature} | disable=${True}
 
-| Stop VPP Service on DUT
-| | [Documentation] | Stop the VPP service on the specified node.
-| | ...
-| | ... | *Arguments:*
-| | ... | - node - information about a DUT node. Type: dictionary
-| | ...
-| | ... | *Example:*
-| | ...
-| | ... | \| Stop VPP Service on DUT \| ${nodes['DUT1']} \|
-| | ...
-| | [Arguments] | ${node}
-| | Stop VPP Service | ${node}
-
 | Honeycomb Performance Suite Setup Generic
 | | [Documentation] | Generic test suite setup for Honeycomb performance tests.
 | | ... | Performs multiple attempts to start Honeycomb+VPP stack.
