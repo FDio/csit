@@ -295,6 +295,19 @@
 | | [Arguments] | ${node}
 | | Stop VPP Service | ${node}
 
+| Start VPP Service on DUT
+| | [Documentation] | Start the VPP service on the specified node.
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - information about a DUT node. Type: dictionary
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Start VPP Service on DUT \| ${nodes['DUT1']} \|
+| | ...
+| | [Arguments] | ${node}
+| | Start VPP Service | ${node}
+
 | Honeycomb Performance Suite Setup Generic
 | | [Documentation] | Generic test suite setup for Honeycomb performance tests.
 | | ... | Performs multiple attempts to start Honeycomb+VPP stack.
