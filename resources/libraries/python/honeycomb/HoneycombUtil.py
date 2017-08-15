@@ -413,7 +413,7 @@ class HoneycombUtil(object):
 
         if not perf:
             cmd = "cp /var/log/honeycomb/honeycomb.log /scratch/"
-            ssh.exec_command_sudo(cmd)
+            ssh.exec_command_sudo(cmd, timeout=20)
         else:
             ssh.scp(
                 ".",
