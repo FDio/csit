@@ -46,3 +46,35 @@ class VPPUtil(object):
         ssh.connect(node)
         for _, value in def_setting_tb_displayed.items():
             ssh.exec_command_sudo('vppctl sh {}'.format(value))
+
+    @staticmethod
+    def stop_vpp_service(node):
+        """Stop VPP service on the specified node.
+
+        :param node: VPP node.
+        :type node: dict
+        :raises RuntimeError: If VPP fails to stop.
+        """
+
+        ssh = SSH()
+        ssh.connect(node)
+        cmd = "service vpp stop"
+        ret_code, _, _ = ssh.exec_command_sudo(cmd, timeout=80)
+        if int(ret_code) != 0:
+            raise RuntimeError("VPP service refused to shut down.")
+
+    @staticmethod
+    def start_vpp_service(node):
+        """start VPP service on the specified node.
+
+        :param node: VPP node.
+        :type node: dict
+        :raises RuntimeError: If VPP fails to start.
+        """
+
+        ssh = SSH()
+        ssh.connect(node)
+        cmd = "service vpp start"
+        ret_code, _, _ = ssh.exec_command_sudo(cmd)
+        if int(ret_code) != 0:
+            raise RuntimeError("VPP service did not start.")
