@@ -32,7 +32,7 @@
 | ...
 | Documentation | *Honeycomb routing test suite.*
 | ...
-| Force Tags | HC_FUNC
+| Force Tags |
 
 *** Test Cases ***
 | TC01: Single hop IPv4 route

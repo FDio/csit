@@ -32,7 +32,7 @@
 | ... | Tear Down Honeycomb Functional Test Suite | ${node} | AND
 | ... | Disable Honeycomb Feature | ${node} | NSH
 | ...
-| Force Tags | HC_FUNC
+| Force Tags |
 
 
 *** Test Cases ***

@@ -14,7 +14,6 @@
 *** Settings ***
 | Library | resources.libraries.python.honeycomb.HcAPIKwInterfaces.InterfaceKeywords
 | Library | resources.libraries.python.honeycomb.NAT.NATKeywords
-| Library | resources.libraries.python.NAT.NATUtil
 | Documentation | Keywords used to test Honeycomb NAT node.
 
 *** Keywords ***

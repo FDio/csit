@@ -52,7 +52,7 @@
 | Documentation | *Honeycomb access control lists test suite for ACL plugin.*
 | ...
 # Failing due to HC2VPP-173: cannot clean up ACLs in test teardown
-| Force Tags | HC_FUNC | EXPECTED_FAILING
+| Force Tags |  | EXPECTED_FAILING
 
 *** Test Cases ***
 | TC01: ACL MAC filtering through plugin-acl node - bridged
