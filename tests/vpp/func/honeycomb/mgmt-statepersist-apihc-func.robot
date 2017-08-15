@@ -40,7 +40,7 @@
 | | ... | Restart Honeycomb and VPP.
 | | ...
 # Failing due to HC2VPP-47
-| | [Tags] | HC_FUNC | EXPECTED_FAILING
+| | [Tags] |  | EXPECTED_FAILING
 | | ...
 | | [Teardown]
 | | ... | Restart Honeycomb And VPP And Clear Persisted Configuration | ${node}
@@ -55,7 +55,7 @@
 | | [Documentation] | Checks if Honeycomb reverts to default configuration when\
 | | ... | persistence files are damaged or invalid.
 | | ...
-| | [Tags] | HC_FUNC
+| | [Tags] |
 | | ...
 | | [Teardown]
 | | ... | Restart Honeycomb And VPP And Clear Persisted Configuration | ${node}

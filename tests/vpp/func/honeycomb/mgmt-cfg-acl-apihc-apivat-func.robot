@@ -27,7 +27,7 @@
 | ...
 | Documentation | *Honeycomb access control lists test suite.*
 | ...
-| Force Tags | HC_FUNC
+| Force Tags |
 
 *** Test Cases ***
 | TC01: Honeycomb can create ACL classify table

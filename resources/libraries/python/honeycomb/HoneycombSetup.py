@@ -643,21 +643,6 @@ class HoneycombSetup(object):
 
         logger.info("ODL client service stopped.")
 
-    @staticmethod
-    def stop_vpp_service(node):
-        """Stop VPP service on the specified node.
-
-        :param node: VPP node.
-        :type node: dict
-        :raises RuntimeError: If VPP fails to stop.
-        """
-
-        ssh = SSH()
-        ssh.connect(node)
-        cmd = "service vpp stop"
-        ret_code, _, _ = ssh.exec_command_sudo(cmd, timeout=80)
-        if int(ret_code) != 0:
-            logger.debug("VPP service refused to shut down.")
 
 class HoneycombStartupConfig(object):
     """Generator for Honeycomb startup configuration.
