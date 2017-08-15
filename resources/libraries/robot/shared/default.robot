@@ -25,6 +25,7 @@
 | Library | resources.libraries.python.Tap
 | Library | resources.libraries.python.VppConfigGenerator
 | Library | resources.libraries.python.VppCounters
+| Library | resources.libraries.python.VPPUtil
 | Library | Collections
 
 *** Keywords ***
@@ -375,3 +376,29 @@
 | | Tear down functional test
 | | Linux Del Bridge | ${nodes['DUT1']} | ${bid_TAP}
 | | Clean Up Namespaces | ${nodes['DUT1']}
+
+| Stop VPP Service on DUT
+| | [Documentation] | Stop the VPP service on the specified node.
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - information about a DUT node. Type: dictionary
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Stop VPP Service on DUT \| ${nodes['DUT1']} \|
+| | ...
+| | [Arguments] | ${node}
+| | Stop VPP Service | ${node}
+
+| Start VPP Service on DUT
+| | [Documentation] | Start the VPP service on the specified node.
+| | ...
+| | ... | *Arguments:*
+| | ... | - node - information about a DUT node. Type: dictionary
+| | ...
+| | ... | *Example:*
+| | ...
+| | ... | \| Start VPP Service on DUT \| ${nodes['DUT1']} \|
+| | ...
+| | [Arguments] | ${node}
+| | Start VPP Service | ${node}

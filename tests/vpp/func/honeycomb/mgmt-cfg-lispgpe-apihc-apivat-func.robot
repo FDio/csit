@@ -90,7 +90,6 @@
 | | [Documentation] | Check if Honeycomb can configure a LISP mapping\
 | | ... | with VRF.
 | | ...
-| | [Tags] | HC_FUNC
 | | [Teardown] | Honeycomb removes LISP GPE mapping
 | | ... | ${node} | ${negative_mapping_ip6['id']}
 | | Given LISP GPE mappings from Honeycomb should not exist
