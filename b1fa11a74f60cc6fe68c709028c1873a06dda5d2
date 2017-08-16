@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "3a4b7175_a48f17cc",
+        "filename": "resources/libraries/robot/performance/performance_configuration.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 915,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2017-08-16T12:39:36Z",
+      "side": 1,
+      "message": "Removed as this parameter is not used in this KW.",
+      "parentUuid": "3a4b7175_04d14bfb",
+      "range": {
+        "startLine": 915,
+        "startChar": 45,
+        "endLine": 915,
+        "endChar": 50
+      },
+      "revId": "b1fa11a74f60cc6fe68c709028c1873a06dda5d2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a4b7175_64091f95",
         "filename": "resources/libraries/robot/performance/performance_configuration.robot",
         "patchSetId": 4
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "3a4b7175_a42b9793",
+        "filename": "resources/libraries/robot/performance/performance_configuration.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 925,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2017-08-16T12:39:36Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3a4b7175_64091f95",
+      "range": {
+        "startLine": 925,
+        "startChar": 0,
+        "endLine": 925,
+        "endChar": 7
+      },
+      "revId": "b1fa11a74f60cc6fe68c709028c1873a06dda5d2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "3a4b7175_04f82b7b",
         "filename": "resources/libraries/robot/performance/performance_configuration.robot",
         "patchSetId": 4
@@ -59,6 +107,30 @@
       "writtenOn": "2017-08-16T09:29:07Z",
       "side": 1,
       "message": "Are you sure this is not set during test setup? I do see them in test setup variables in performance_configuration.robot",
+      "range": {
+        "startLine": 938,
+        "startChar": 0,
+        "endLine": 939,
+        "endChar": 58
+      },
+      "revId": "b1fa11a74f60cc6fe68c709028c1873a06dda5d2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a4b7175_641d9f73",
+        "filename": "resources/libraries/robot/performance/performance_configuration.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 939,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2017-08-16T12:39:36Z",
+      "side": 1,
+      "message": "MAC addresses for TG interfaces are set only in some Initialize KWs when necessary. To aling with this implemetnation these setting will be moved to KW \u0027Initialize L2 bridge domain with MACIP ACLs on DUT1 in 3-node circular topology\u0027.",
+      "parentUuid": "3a4b7175_04f82b7b",
       "range": {
         "startLine": 938,
         "startChar": 0,
