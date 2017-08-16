@@ -9,8 +9,6 @@
     template: src=files/hosts dest=/etc/hosts owner=root group=root mode=644
   - name: copy hostname file
     template: src=files/hostname dest=/etc/hostname owner=root group=root mode=644
-  - name: interfaces file
-    template: src=files/interfaces dest=/etc/network/interfaces owner=root group=root mode=644
   - name: copy grub file
     template: src=files/grub dest=/etc/default/grub owner=root group=root mode=644
   - name: update grub
@@ -31,10 +29,14 @@
     apt: name=socat state=present
   - name: install qemu
     apt: name=qemu-system-x86 state=present
+  - name: Install packages to allow apt to use a repository over HTTPS
+    apt: name=apt-transport-https state=present
 - hosts: virl
   remote_user: testuser
   sudo: yes
   tasks:
+  - name: interfaces file
+    template: src=files/interfaces_virl dest=/etc/network/interfaces owner=root group=root mode=644
   - name: Add VIRL user
     user: name=virl shell=/bin/bash comment="VIRL user" password="$6$mJPlK5FKLar6$xxXPP0LRhC7T1yhHtym18Z3nKZweTtfTxzi1WpvVHJ0U/Em1UWcHqfMhRApFp0rsY9jHRuL6FfeFbKPN..uDK."
   - name: Add VIRL user to sudoers
@@ -69,6 +71,8 @@
   remote_user: testuser
   sudo: yes
   tasks:
+  - name: interfaces file
+    template: src=files/interfaces_physical dest=/etc/network/interfaces owner=root group=root mode=644
   - name: copy sysctl file
     template: src=files/90-csit dest=/etc/sysctl.d/90-csit.conf owner=root group=root mode=644
   - name: isolcpus and pstate parameter
@@ -89,8 +93,6 @@
     copy: src=files/cpufrequtils dest=/etc/default/cpufrequtils owner=root group=root mode=0644
   - name: Disable IRQ load balancing
     copy: src=files/irqbalance dest=/etc/default/irqbalance owner=root group=root mode=0644
-  - name: Pinning of IRQs
-    command: for l in `ls /proc/irq`; do echo 1 | sudo tee /proc/irq/$l/smp_affinity; done
   - name: Disable ondemand
     service: name=ondemand enabled=no
   - name: Install cgroup-support
@@ -141,6 +143,31 @@
   - name: Install lxc
     apt: name=lxc state=present
   - name: Disable 80-vpp.conf
-    command: ln -s /dev/null /etc/sysctl.d/80-vpp.conf
+    file:
+        src: /dev/null
+        dest: /etc/sysctl.d/80-vpp.conf
+        state: link
   - name: Install java
     apt: name=openjdk-8-jdk state=present
+  - name: Add Docker's official GPG key
+    apt_key:
+        url: "https://download.docker.com/linux/ubuntu/gpg"
+        state: present
+  - name: Add Docker's stable repository
+    apt_repository:
+        repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable
+        state: present
+  - name: Install Docker CE
+    apt: name=docker-ce state=present
+  - name: Add Kubernetes's official GPG key
+    apt_key:
+        url: "https://packages.cloud.google.com/apt/doc/apt-key.gpg"
+        state: present
+  - name: Add Kubernetes's stable repository
+    apt_repository:
+        repo: deb http://apt.kubernetes.io/ kubernetes-xenial main
+        state: present
+  - name: Install Kubernetes kubelet
+    apt: name=kubelet state=present
+  - name: Install Kubernetes kubeadm
+    apt: name=kubeadm state=present
