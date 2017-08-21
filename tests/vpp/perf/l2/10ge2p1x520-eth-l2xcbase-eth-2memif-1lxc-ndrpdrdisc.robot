@@ -19,11 +19,9 @@
 | ...
 | Suite Setup | Run Keywords | Set up 3-node performance topology with DUT's NIC model
 | ... | L2 | Intel-X520-DA2
-| ... | AND | Create '${lxc_count}' LXC containers on all DUT nodes with '${lxc_cpu}' cpus
-| ... | AND | Install VPP on '${lxc_count}' LXC containers on all DUT nodes
-| ... | AND | Create memif VPP configuration on '${lxc_count}' LXC containers on all DUT nodes
-| ... | AND | Create startup configuration of VPP on '${lxc_count}' LXC containers on all DUT nodes
-| Suite Teardown | Tear down 3-node performance topology with LXC
+| ... | AND | Set up performance topology with containers
+| ...
+| Suite Teardown | Tear down 3-node performance topology with container
 | ...
 | Test Setup | Set up performance test
 | ...
@@ -61,15 +59,16 @@
 # Traffic profile:
 | ${traffic_profile} | trex-sl-3n-ethip4-ip4src254
 # LXC container
-| ${lxc_base_name} | slave
-| ${lxc_count} | ${1}
-| ${lxc_cpu} | ${4}
+| ${container_count}= | ${1}
+| ${container_engine}= | LXC
+| ${container_image}= | ${EMPTY}
 # CPU settings
 | ${system_cpus}= | ${1}
 | ${vpp_cpus}= | ${5}
+| ${container_cpus}= | ${3}
 
 *** Keywords ***
-| L2 Cross Connect with Memif Binary Search
+| L2 Cross Connect over Memif Binary Search
 | | [Arguments] | ${framesize} | ${min_rate} | ${wt} | ${rxq} | ${search_type}
 | | Set Test Variable | ${framesize}
 | | Set Test Variable | ${min_rate}
@@ -103,7 +102,7 @@
 | | ... | linerate, step 100kpps.
 | | ...
 | | [Tags] | 64B | 1T1C | STHREAD | NDRDISC
-| | [Template] | L2 Cross Connect with Memif Binary Search
+| | [Template] | L2 Cross Connect over Memif Binary Search
 | | framesize=${64} | min_rate=${100000} | wt=1 | rxq=1 | search_type=NDR
 
 | tc02-64B-1t1c-eth-l2xcbase-eth-2memif-1lxc-pdrdisc
@@ -114,7 +113,7 @@
 | | ... | linerate, step 100kpps, LT=0.5%.
 | | ...
 | | [Tags] | 64B | 1T1C | STHREAD | PDRDISC
-| | [Template] | L2 Cross Connect with Memif Binary Search
+| | [Template] | L2 Cross Connect over Memif Binary Search
 | | framesize=${64} | min_rate=${100000} | wt=1 | rxq=1 | search_type=PDR
 
 | tc03-IMIX-1t1c-eth-l2xcbase-eth-2memif-1lxc-ndrdisc
@@ -126,7 +125,7 @@
 | | ... | IMIX_v4_1 = (28x64B;16x570B;4x1518B)
 | | ...
 | | [Tags] | IMIX | 1T1C | STHREAD | NDRDISC
-| | [Template] | L2 Cross Connect with Memif Binary Search
+| | [Template] | L2 Cross Connect over Memif Binary Search
 | | framesize=IMIX_v4_1 | min_rate=${10000} | wt=1 | rxq=1 | search_type=NDR
 
 | tc04-IMIX-1t1c-eth-l2xcbase-eth-2memif-1lxc-pdrdisc
@@ -138,7 +137,7 @@
 | | ... | IMIX_v4_1 = (28x64B;16x570B;4x1518B)
 | | ...
 | | [Tags] | IMIX | 1T1C | STHREAD | PDRDISC
-| | [Template] | L2 Cross Connect with Memif Binary Search
+| | [Template] | L2 Cross Connect over Memif Binary Search
 | | framesize=IMIX_v4_1 | min_rate=${10000} | wt=1 | rxq=1 | search_type=PDR
 
 | tc05-1518B-1t1c-eth-l2xcbase-eth-2memif-1lxc-ndrdisc
@@ -149,7 +148,7 @@
 | | ... | linerate, step 10kpps.
 | | ...
 | | [Tags] | 1518B | 1T1C | STHREAD | NDRDISC
-| | [Template] | L2 Cross Connect with Memif Binary Search
+| | [Template] | L2 Cross Connect over Memif Binary Search
 | | framesize=${1518} | min_rate=${10000} | wt=1 | rxq=1 | search_type=NDR
 
 | tc06-1518B-1t1c-eth-l2xcbase-eth-2memif-1lxc-pdrdisc
@@ -160,7 +159,7 @@
 | | ... | linerate, step 10kpps, LT=0.5%.
 | | ...
 | | [Tags] | 1518B | 1T1C | STHREAD | PDRDISC
-| | [Template] | L2 Cross Connect with Memif Binary Search
+| | [Template] | L2 Cross Connect over Memif Binary Search
 | | framesize=${1518} | min_rate=${10000} | wt=1 | rxq=1 | search_type=PDR
 
 | tc07-64B-2t2c-eth-l2xcbase-eth-2memif-1lxc-ndrdisc
@@ -171,7 +170,7 @@
 | | ... | linerate, step 100kpps.
 | | ...
 | | [Tags] | 64B | 2T2C | MTHREAD | NDRDISC
-| | [Template] | L2 Cross Connect with Memif Binary Search
+| | [Template] | L2 Cross Connect over Memif Binary Search
 | | framesize=${64} | min_rate=${100000} | wt=2 | rxq=1 | search_type=NDR
 
 | tc08-64B-2t2c-eth-l2xcbase-eth-2memif-1lxc-pdrdisc
@@ -182,7 +181,7 @@
 | | ... | linerate, step 100kpps, LT=0.5%.
 | | ...
 | | [Tags] | 64B | 2T2C | MTHREAD | PDRDISC
-| | [Template] | L2 Cross Connect with Memif Binary Search
+| | [Template] | L2 Cross Connect over Memif Binary Search
 | | framesize=${64} | min_rate=${100000} | wt=2 | rxq=1 | search_type=PDR
 
 | tc09-IMIX-2t2c-eth-l2xcbase-eth-2memif-1lxc-ndrdisc
@@ -194,7 +193,7 @@
 | | ... | IMIX_v4_1 = (28x64B;16x570B;4x1518B)
 | | ...
 | | [Tags] | IMIX | 2T2C | MTHREAD | NDRDISC
-| | [Template] | L2 Cross Connect with Memif Binary Search
+| | [Template] | L2 Cross Connect over Memif Binary Search
 | | framesize=IMIX_v4_1 | min_rate=${10000} | wt=2 | rxq=1 | search_type=NDR
 
 | tc10-IMIX-2t2c-eth-l2xcbase-eth-2memif-1lxc-pdrdisc
@@ -206,7 +205,7 @@
 | | ... | IMIX_v4_1 = (28x64B;16x570B;4x1518B)
 | | ...
 | | [Tags] | IMIX | 2T2C | MTHREAD | PDRDISC
-| | [Template] | L2 Cross Connect with Memif Binary Search
+| | [Template] | L2 Cross Connect over Memif Binary Search
 | | framesize=IMIX_v4_1 | min_rate=${10000} | wt=2 | rxq=1 | search_type=PDR
 
 | tc11-1518B-2t2c-eth-l2xcbase-eth-2memif-1lxc-ndrdisc
@@ -217,7 +216,7 @@
 | | ... | linerate, step 10kpps.
 | | ...
 | | [Tags] | 1518B | 2T2C | MTHREAD | NDRDISC
-| | [Template] | L2 Cross Connect with Memif Binary Search
+| | [Template] | L2 Cross Connect over Memif Binary Search
 | | framesize=${1518} | min_rate=${10000} | wt=2 | rxq=1 | search_type=NDR
 
 | tc12-1518B-2t2c-eth-l2xcbase-eth-2memif-1lxc-pdrdisc
@@ -228,5 +227,5 @@
 | | ... | linerate, step 10kpps, LT=0.5%.
 | | ...
 | | [Tags] | 1518B | 2T2C | MTHREAD | PDRDISC
-| | [Template] | L2 Cross Connect with Memif Binary Search
+| | [Template] | L2 Cross Connect over Memif Binary Search
 | | framesize=${1518} | min_rate=${10000} | wt=2 | rxq=1 | search_type=PDR
