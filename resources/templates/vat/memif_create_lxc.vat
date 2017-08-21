@@ -1,8 +1,8 @@
-create memif id 1 socket /mnt/host/{socket1} slave
-set int state memif0/1 up
+create memif id {memif_id1} socket /mnt/host/{socket1} slave
+set int state memif0/{memif_id1} up
 
-create memif id 2 socket /mnt/host/{socket2} slave
-set int state memif1/2 up
+create memif id {memif_id2} socket /mnt/host/{socket2} slave
+set int state memif1/{memif_id2} up
 
-set interface l2 xconnect memif1/2 memif0/1
-set interface l2 xconnect memif0/1 memif1/2
+set interface l2 xconnect memif1/{memif_id2} memif0/{memif_id1}
+set interface l2 xconnect memif0/{memif_id1} memif1/{memif_id2}
