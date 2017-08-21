@@ -35,6 +35,9 @@ class Constants(object):
     # QEMU install directory
     QEMU_INSTALL_DIR = '/opt/qemu-2.5.0'
 
+    # Container host shared directory
+    CONTAINER_HOST_DIR = ''
+
     # Honeycomb directory location at topology nodes:
     REMOTE_HC_DIR = '/opt/honeycomb'
 
