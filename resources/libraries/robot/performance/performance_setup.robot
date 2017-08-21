@@ -372,6 +372,23 @@
 | | Configure crypto device on all DUTs | force_init=${True}
 | | Configure kernel module on all DUTs | igb_uio | force_load=${True}
 
+| Set up performance topology with containers
+| | [Documentation]
+| | ... | Suite preparation phase that starts containers
+| | ...
+| | Set Suite Variable | @{container_groups} | @{EMPTY}
+| | Create ETCD containers on all DUTs
+| | Start all 'ETCD' containers
+#| | Create Kafka containers on all DUTs
+#| | Start all 'Kafka' containers
+#| | Create VNF containers on all DUTs | Docker
+#| | ... | ubuntu | ${container_cpus} | ${container_count}
+#| | Create VNF containers on all DUTs | LXC
+#| | ... | -d ubuntu -r xenial -a amd64 | ${container_cpus} | ${container_count}
+#| | Start all 'VNF' containers
+#| | Install VPP in all 'VNF' containers
+#| | Configure VPP in all 'VNF' containers
+
 # Suite teardowns
 
 | Tear down 3-node performance topology
@@ -387,6 +404,15 @@
 | | Teardown traffic generator | ${tg}
 | | Destroy '${lxc_count}' LXC containers on all DUT nodes
 
+| Tear down 3-node performance topology with container
+| | [Documentation]
+| | ... | Suite teardown phase with traffic generator teardown and container
+| | ... | destroy.
+| | ...
+| | Teardown traffic generator | ${tg}
+| | :FOR | ${group} | IN | @{container_groups}
+| | | Destroy all '${group}' containers
+
 | Tear down 2-node performance topology
 | | [Documentation]
 | | ... | Suite teardown phase with traffic generator teardown.
@@ -399,6 +425,15 @@
 | | ...
 | | Teardown traffic generator | ${tg}
 | | Destroy '${lxc_count}' LXC containers on all DUT nodes
+
+| Tear down 2-node performance topology with container
+| | [Documentation]
+| | ... | Suite teardown phase with traffic generator teardown and container
+| | ... | destroy.
+| | ...
+| | Teardown traffic generator | ${tg}
+| | :FOR | ${group} | IN | @{container_groups}
+| | | Destroy all '${group}' containers
 
 # Tests setups
 
