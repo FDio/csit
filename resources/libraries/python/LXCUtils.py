@@ -102,8 +102,9 @@ class LXCUtils(object):
         ssh.connect(self._node)
 
         ret, _, _ = ssh.exec_command_sudo(
-            'lxc-create -t download --name {0} -- -d {1} -r {2} -a {3}'
-            .format(self._container_name, distro, release, arch), timeout=1800)
+            'lxc-create -t download --name {0} -- -d {1} -r {2} -a {3}'\
+            ' --no-validate'.format(self._container_name, distro, release,
+                                    arch), timeout=1800)
         if int(ret) != 0:
             raise RuntimeError('Failed to create LXC container.')
 
