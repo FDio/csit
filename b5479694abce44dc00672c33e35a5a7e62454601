@@ -1,0 +1,142 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a4b7175_caee95b4",
+        "filename": "resources/traffic_profiles/trex/trex-sl-3n-ethip4-macdst5000.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2017-08-21T14:50:25Z",
+      "side": 1,
+      "message": "current filename: /trex-sl-3n-ethip4-macdst5000.py\nproposed filename: /trex-sl-3n-ethip4-macsrc5kdst5k.py",
+      "range": {
+        "startLine": 16,
+        "startChar": 0,
+        "endLine": 16,
+        "endChar": 15
+      },
+      "revId": "b5479694abce44dc00672c33e35a5a7e62454601",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a4b7175_6ae7a1e5",
+        "filename": "resources/traffic_profiles/trex/trex-sl-3n-ethip4-macdst5000.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2017-08-21T14:50:25Z",
+      "side": 1,
+      "message": "Source MAC address range for 5k MACs:",
+      "range": {
+        "startLine": 20,
+        "startChar": 5,
+        "endLine": 20,
+        "endChar": 30
+      },
+      "revId": "b5479694abce44dc00672c33e35a5a7e62454601",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a4b7175_4aece5c7",
+        "filename": "resources/traffic_profiles/trex/trex-sl-3n-ethip4-macdst5000.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2017-08-21T14:50:25Z",
+      "side": 1,
+      "message": "Destination MAC address range for 5k MACs:",
+      "range": {
+        "startLine": 21,
+        "startChar": 5,
+        "endLine": 21,
+        "endChar": 35
+      },
+      "revId": "b5479694abce44dc00672c33e35a5a7e62454601",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a4b7175_0aceed5a",
+        "filename": "resources/traffic_profiles/trex/trex-sl-3n-ethip4-macdst5000.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2017-08-21T14:50:25Z",
+      "side": 1,
+      "message": "Source MAC address range for 5k MACs in opposite direction:",
+      "range": {
+        "startLine": 25,
+        "startChar": 5,
+        "endLine": 25,
+        "endChar": 30
+      },
+      "revId": "b5479694abce44dc00672c33e35a5a7e62454601",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a4b7175_cad7b5ec",
+        "filename": "resources/traffic_profiles/trex/trex-sl-3n-ethip4-macdst5000.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 26,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2017-08-21T14:50:25Z",
+      "side": 1,
+      "message": "Destination MAC address range for 5k MACs in opposite direction:",
+      "range": {
+        "startLine": 26,
+        "startChar": 5,
+        "endLine": 26,
+        "endChar": 35
+      },
+      "revId": "b5479694abce44dc00672c33e35a5a7e62454601",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a4b7175_2af8897b",
+        "filename": "resources/traffic_profiles/trex/trex-sl-3n-ethip4-macdst5000.py",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 45
+      },
+      "writtenOn": "2017-08-21T14:50:25Z",
+      "side": 1,
+      "message": "s/125/135/",
+      "range": {
+        "startLine": 28,
+        "startChar": 55,
+        "endLine": 28,
+        "endChar": 58
+      },
+      "revId": "b5479694abce44dc00672c33e35a5a7e62454601",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
