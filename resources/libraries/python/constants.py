@@ -17,6 +17,9 @@
 class Constants(object):
     """Constants used in CSIT."""
 
+    # Using of Simultaneous multithreading technology
+    SMT_USED = False
+
     # OpenVPP testing directory location at topology nodes
     REMOTE_FW_DIR = '/tmp/openvpp-testing'
 
@@ -34,6 +37,9 @@ class Constants(object):
 
     # QEMU install directory
     QEMU_INSTALL_DIR = '/opt/qemu-2.5.0'
+
+    # Container host shared directory
+    CONTAINER_GUEST_DIR = '/mnt/host'
 
     # Honeycomb directory location at topology nodes:
     REMOTE_HC_DIR = '/opt/honeycomb'
