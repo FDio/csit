@@ -61,6 +61,23 @@ class VppConfigGenerator(object):
         """
         self._vpp_config_filename = filename
 
+    def get_config_filename(self):
+        """Get startup configuration filename.
+
+        :returns: Startup configuration filename.
+        :rtype: str
+        """
+        return self._vpp_config_filename
+
+    def get_config_str(self):
+        """Get dumped startup configuration in VPP config format.
+
+        :returns: Startup configuration in VPP config format.
+        :rtype: str
+        """
+        self.dump_config(self._nodeconfig)
+        return self._vpp_config
+
     def add_config_item(self, config, value, path):
         """Add startup configuration item.
 
@@ -385,10 +402,10 @@ class VppConfigGenerator(object):
         # Instead of restarting, we'll do separate start and stop
         # actions. This way we don't care whether VPP was running
         # to begin with.
-        ssh.exec_command_lxc('service {0} stop'.
+        ssh.exec_command_lxc('service {0} stop && sleep 3'.
                              format(self._vpp_service_name), lxc_name)
         (ret, _, _) = \
-            ssh.exec_command_lxc('service {0} start'.
+            ssh.exec_command_lxc('service {0} start && sleep 3'.
                                  format(self._vpp_service_name), lxc_name)
         if ret != 0:
             raise RuntimeError('Restarting VPP failed in {0} on node {1}'.

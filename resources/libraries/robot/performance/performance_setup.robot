@@ -387,6 +387,17 @@
 | | Teardown traffic generator | ${tg}
 | | Destroy '${lxc_count}' LXC containers on all DUT nodes
 
+| Tear down 3-node performance topology with container
+| | [Documentation]
+| | ... | Suite teardown phase with traffic generator teardown and container
+| | ... | destroy.
+| | ...
+| | Teardown traffic generator | ${tg}
+| | :FOR | ${group} | IN | @{container_groups}
+| | | ${lib}= | Get Library Instance | ${group}
+#| | | ${lib.destroy all containers}
+| | | Destroy all '${group}' containers
+
 | Tear down 2-node performance topology
 | | [Documentation]
 | | ... | Suite teardown phase with traffic generator teardown.
@@ -399,6 +410,15 @@
 | | ...
 | | Teardown traffic generator | ${tg}
 | | Destroy '${lxc_count}' LXC containers on all DUT nodes
+
+| Tear down 2-node performance topology with container
+| | [Documentation]
+| | ... | Suite teardown phase with traffic generator teardown and container
+| | ... | destroy.
+| | ...
+| | Teardown traffic generator | ${tg}
+| | :FOR | ${group} | IN | @{container_groups}
+| | | Destroy all '${group}' containers
 
 # Tests setups
 
