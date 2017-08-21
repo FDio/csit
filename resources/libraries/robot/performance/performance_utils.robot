@@ -24,6 +24,7 @@
 | Resource | resources/libraries/robot/shared/interfaces.robot
 | Resource | resources/libraries/robot/shared/counters.robot
 | Resource | resources/libraries/robot/shared/lxc.robot
+| Resource | resources/libraries/robot/shared/container.robot
 | Resource | resources/libraries/robot/shared/memif.robot
 | Resource | resources/libraries/robot/l2/l2_bridge_domain.robot
 | Resource | resources/libraries/robot/l2/l2_xconnect.robot
