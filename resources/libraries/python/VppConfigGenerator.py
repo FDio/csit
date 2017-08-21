@@ -61,6 +61,23 @@ class VppConfigGenerator(object):
         """
         self._vpp_config_filename = filename
 
+    def get_config_filename(self):
+        """Get startup configuration filename.
+
+        :returns: Startup configuration filename.
+        :rtype: str
+        """
+        return self._vpp_config_filename
+
+    def get_config_str(self):
+        """Get dumped startup configuration in VPP config format.
+
+        :returns: Startup configuration in VPP config format.
+        :rtype: str
+        """
+        self.dump_config(self._nodeconfig)
+        return self._vpp_config
+
     def add_config_item(self, config, value, path):
         """Add startup configuration item.
 

@@ -2020,8 +2020,8 @@
 | | Set Interface State | ${dut2} | ${dut2_if1} | up
 | | Set Interface State | ${dut2} | ${dut2_if2} | up
 | | :FOR | ${number} | IN RANGE | 1 | ${nr}+1
-| |      | ${sock1}= | Set Variable | /tmp/memif-${number}-1
-| |      | ${sock2}= | Set Variable | /tmp/memif-${number}-2
+| |      | ${sock1}= | Set Variable | /tmp/memif-DUT1_VNF${number}-1
+| |      | ${sock2}= | Set Variable | /tmp/memif-DUT1_VNF${number}-2
 | |      | ${prev_index}= | Evaluate | ${number}-1
 | |      | Set up memif interfaces on DUT node | ${dut1}
 | |      | ... | ${sock1} | ${sock2} | ${number} | dut1-memif-${number}-if1
@@ -2030,6 +2030,8 @@
 | |      | ... | ${dut1-memif-${prev_index}-if2}
 | |      | Configure L2XC | ${dut1} | ${dut1_xconnect_if1}
 | |      | ... | ${dut1-memif-${number}-if1}
+| |      | ${sock1}= | Set Variable | /tmp/memif-DUT2_VNF${number}-1
+| |      | ${sock2}= | Set Variable | /tmp/memif-DUT2_VNF${number}-2
 | |      | Set up memif interfaces on DUT node | ${dut2}
 | |      | ... | ${sock1} | ${sock2} | ${number} | dut2-memif-${number}-if1
 | |      | ... | dut2-memif-${number}-if2
