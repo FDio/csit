@@ -125,6 +125,9 @@ def simple_burst(profile_file, duration, framesize, rate, warmup_time, port_0,
         client.reset(ports=[port_0, port_1])
         client.remove_all_streams(ports=[port_0, port_1])
 
+        if "macsrc" in profile_file:
+            client.set_port_attr(ports=[port_0, port_1], promiscuous=True,
+                                 resolve=False)
         if isinstance(framesize, int):
             client.add_streams(streams[0], ports=[port_0])
             client.add_streams(streams[1], ports=[port_1])
