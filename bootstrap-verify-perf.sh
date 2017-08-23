@@ -312,9 +312,11 @@ case "$TEST_TAG" in
         ;;
     * )
         # run full performance test suite and exit on fail
+#              -i l2bdbaseANDfib_100kAND64bAND1t1cORl2bdbaseANDfib_100kAND64bAND2t2cORl2bdmaclrnANDfib_100kANDvhostAND64bAND1t1cORl2bdmaclrnANDfib_100kANDvhostAND64bAND2t2cORl2bdbaseANDfib_1mAND64bAND1t1cORl2bdbaseANDfib_1mAND64bAND2t2cORl2bdmaclrnANDfib_1mANDvhostAND64bAND1t1cORl2bdmaclrnANDfib_1mANDvhostAND64bAND2t2c \
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s "tests.vpp.perf" \
+              -i l2bdmaclrnANDfib_10kAND64bAND1t1cANDvhostORl2bdmaclrnANDfib_10kAND64bAND2t2cANDvhostORl2bdmaclrnANDfib_100kAND64bAND1t1cANDvhostORl2bdmaclrnANDfib_100kAND64bAND2t2cANDvhostORl2bdmaclrnANDfib_1mAND64bAND1t1cANDvhostORl2bdmaclrnANDfib_1mAND64bAND2t2cANDvhost
               tests/
         RETURN_STATUS=$(echo $?)
 esac
