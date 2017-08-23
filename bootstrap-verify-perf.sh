@@ -315,6 +315,7 @@ case "$TEST_TAG" in
         pybot ${PYBOT_ARGS} \
               -v TOPOLOGY_PATH:${WORKING_TOPOLOGY} \
               -s "tests.vpp.perf" \
+              -i l2bdbaseANDfib_10kAND64bAND1t1cORl2bdbaseANDfib_10kAND64bAND2t2cORl2bdbaseANDfib_100kAND64bAND1t1cORl2bdbaseANDfib_100kAND64bAND2t2cORl2bdbaseANDfib_1mAND64bAND1t1cORl2bdbaseANDfib_1mAND64bAND2t2cORl2bdmaclrnANDfib_10kAND64bAND1t1cANDvhostORl2bdmaclrnANDfib_10kAND64bAND2t2cANDvhostORl2bdmaclrnANDfib_100kAND64bAND1t1cANDvhostORl2bdmaclrnANDfib_100kAND64bAND2t2cANDvhostORl2bdmaclrnANDfib_1mAND64bAND1t1cANDvhostORl2bdmaclrnANDfib_1mAND64bAND2t2cANDvhost \
               tests/
         RETURN_STATUS=$(echo $?)
 esac
