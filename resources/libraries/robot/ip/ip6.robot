@@ -41,8 +41,8 @@
 | | ${args}= | Traffic Script Gen Arg | ${src_port_name} | ${src_port_name} | ${src_mac}
 | |          | ...                    | ${dst_mac} | ${src_ip} | ${dst_ip}
 | | Run Traffic Script On Node | icmpv6_echo.py | ${tg_node} | ${args}
-| | Get interface statistics | ${dst_node}
-| | ${ipv6_counter}= | Get interface ipv6 counter | ${dst_node} | ${dst_port}
+| | VppCounters.Vpp Dump Stats Table | ${dst_node}
+| | ${ipv6_counter}= | VppCounters.Vpp Get Ipv6 Interface Counter | ${dst_node} | ${dst_port}
 | | Should Be Equal | ${ipv6_counter} | ${2} | #ICMPv6 neighbor advertisement + ICMPv6 echo request
 
 | Execute IPv6 ICMP echo sweep

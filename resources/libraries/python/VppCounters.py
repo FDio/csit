@@ -16,7 +16,6 @@
 import time
 
 from robot.api import logger
-
 from resources.libraries.python.topology import NodeType, Topology
 from resources.libraries.python.VatExecutor import VatExecutor, VatTerminal
 
@@ -85,6 +84,17 @@ class VppCounters(object):
         vat.execute_script("show_runtime.vat", node, json_out=False)
 
     @staticmethod
+    def show_runtime_counters_on_all_duts(nodes):
+        """Clear VPP runtime counters on all DUTs.
+
+        :param nodes: VPP nodes
+        :type nodes: dict
+        """
+        for node in nodes.values():
+            if node['type'] == NodeType.DUT:
+                VppCounters.vpp_show_runtime(node)
+
+    @staticmethod
     def vpp_show_runtime_verbose(node):
         """Run "show runtime verbose" CLI command.
 
@@ -115,6 +125,17 @@ class VppCounters(object):
         vat.execute_script("clear_runtime.vat", node, json_out=False)
 
     @staticmethod
+    def clear_runtime_counters_on_all_duts(nodes):
+        """Run "clear runtime" CLI command on all DUTs.
+
+        :param nodes: VPP nodes
+        :type nodes: dict
+        """
+        for node in nodes.values():
+            if node['type'] == NodeType.DUT:
+                VppCounters.vpp_clear_runtime(node)
+
+    @staticmethod
     def vpp_clear_interface_counters(node):
         """Clear interface counters on VPP node.
 
@@ -124,6 +145,17 @@ class VppCounters(object):
         vat = VatExecutor()
         vat.execute_script('clear_interface.vat', node)
         vat.script_should_have_passed()
+
+    @staticmethod
+    def clear_interface_counters_on_all_duts(nodes):
+        """Clear interface counters on all DUTs.
+
+        :param nodes: VPP nodes
+        :type nodes: dict
+        """
+        for node in nodes.values():
+            if node['type'] == NodeType.DUT:
+                VppCounters.vpp_clear_interface_counters(node)
 
     @staticmethod
     def vpp_clear_hardware_counters(node):
@@ -137,6 +169,17 @@ class VppCounters(object):
         vat.script_should_have_passed()
 
     @staticmethod
+    def clear_hardware_counters_on_all_duts(nodes):
+        """Clear hardware counters on all DUTs.
+
+        :param nodes: VPP nodes
+        :type nodes: dict
+        """
+        for node in nodes.values():
+            if node['type'] == NodeType.DUT:
+                VppCounters.vpp_clear_hardware_counters(node)
+
+    @staticmethod
     def vpp_clear_errors_counters(node):
         """Clear errors counters on VPP node.
 
@@ -146,6 +189,17 @@ class VppCounters(object):
         vat = VatExecutor()
         vat.execute_script('clear_errors.vat', node)
         vat.script_should_have_passed()
+
+    @staticmethod
+    def clear_error_counters_on_all_duts(nodes):
+        """Clear VPP errors counters on all DUTs.
+
+        :param nodes: VPP nodes
+        :type nodes: dict
+        """
+        for node in nodes.values():
+            if node['type'] == NodeType.DUT:
+                VppCounters.vpp_clear_errors_counters(node)
 
     def vpp_dump_stats_table(self, node):
         """Dump stats table on VPP node.
@@ -219,3 +273,27 @@ class VppCounters(object):
         logger.trace('{i} {v} counter not found.'.format(i=interface,
                                                          v=version))
         return 0
+
+    @staticmethod
+    def show_vpp_statistics(node):
+        """Show [error, hardware, interface] stats.
+
+        :param node: VPP node
+        :type node: dict
+        """
+        VppCounters.vpp_show_errors(node)
+        VppCounters.vpp_show_hardware_detail(node)
+        VppCounters.vpp_show_runtime(node)
+
+    @staticmethod
+    def show_statistics_on_all_duts(nodes):
+        """Show VPP statistics on all DUTs.
+
+        :param nodes: VPP nodes
+        :type nodes: dict
+        """
+        logger.trace('Waiting for statistics to be collected')
+        time.sleep(10)
+        for node in nodes.values():
+            if node['type'] == NodeType.DUT:
+                VppCounters.show_vpp_statistics(node)
