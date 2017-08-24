@@ -20,6 +20,7 @@
 | Library | resources.libraries.python.VhostUser
 | Library | resources.libraries.python.TrafficGenerator
 | Library | resources.libraries.python.TrafficGenerator.TGDropRateSearchImpl
+| Library | resources.libraries.python.VppCounters
 | Resource | resources/libraries/robot/shared/default.robot
 | Resource | resources/libraries/robot/shared/interfaces.robot
 | Resource | resources/libraries/robot/shared/counters.robot

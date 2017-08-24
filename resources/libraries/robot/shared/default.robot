@@ -38,12 +38,12 @@
 | | ...
 | | All TGs Set Interface Default Driver | ${nodes}
 
-| Show VPP version on all DUTs
-| | [Documentation] | Show VPP version verbose on all DUTs.
-| | ...
-| | ${duts}= | Get Matches | ${nodes} | DUT*
-| | :FOR | ${dut} | IN | @{duts}
-| | | Vpp show version verbose | ${nodes['${dut}']}
+#| Show VPP version on all DUTs
+#| | [Documentation] | Show VPP version verbose on all DUTs.
+#| | ...
+#| | ${duts}= | Get Matches | ${nodes} | DUT*
+#| | :FOR | ${dut} | IN | @{duts}
+#| | | Vpp show version verbose | ${nodes['${dut}']}
 
 | Show Vpp Errors On All DUTs
 | | [Documentation] | Show VPP errors verbose on all DUTs.
@@ -60,12 +60,12 @@
 | | | Vpp api trace save | ${nodes['${dut}']}
 | | | Vpp api trace dump | ${nodes['${dut}']}
 
-| Show VPP vhost on all DUTs
-| | [Documentation] | Show Vhost User on all DUTs.
-| | ...
-| | ${duts}= | Get Matches | ${nodes} | DUT*
-| | :FOR | ${dut} | IN | @{duts}
-| | | Vpp Show Vhost | ${nodes['${dut}']}
+#| Show VPP vhost on all DUTs
+#| | [Documentation] | Show Vhost User on all DUTs.
+#| | ...
+#| | ${duts}= | Get Matches | ${nodes} | DUT*
+#| | :FOR | ${dut} | IN | @{duts}
+#| | | Vpp Show Vhost | ${nodes['${dut}']}
 
 | Show Bridge Domain Data On All DUTs
 | | [Documentation] | Show Bridge Domain data on all DUTs.
