@@ -29,7 +29,7 @@ Functionality:
 import sys
 import json
 
-sys.path.insert(0, "/opt/trex-core-2.25/scripts/automation/"+\
+sys.path.insert(0, "/opt/trex-core-2.28/scripts/automation/"+\
                    "trex_control_plane/stl/")
 from trex_stl_lib.api import *
 
