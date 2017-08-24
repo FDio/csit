@@ -23,8 +23,8 @@
 | Library | resources.libraries.python.TGSetup
 | Library | resources.libraries.python.L2Util
 | Library | resources.libraries.python.Tap
-| Library | resources/libraries/python/VppConfigGenerator.py
-| Library | resources/libraries/python/VppCounters.py
+| Library | resources.libraries.python.VppConfigGenerator
+| Library | resources.libraries.python.VppCounters | WITH NAME | VppCounters
 | Library | Collections
 
 *** Keywords ***
@@ -38,12 +38,12 @@
 | | ...
 | | All TGs Set Interface Default Driver | ${nodes}
 
-| Show VPP version on all DUTs
-| | [Documentation] | Show VPP version verbose on all DUTs.
-| | ...
-| | ${duts}= | Get Matches | ${nodes} | DUT*
-| | :FOR | ${dut} | IN | @{duts}
-| | | Vpp show version verbose | ${nodes['${dut}']}
+#| Show VPP version on all DUTs
+#| | [Documentation] | Show VPP version verbose on all DUTs.
+#| | [[Arguments] | ${nodes}
+#| | ${duts}= | Get Matches | ${nodes} | DUT*
+#| | :FOR | ${dut} | IN | @{duts}
+#| | | Vpp show version verbose | ${nodes['${dut}']}
 
 | Show Vpp Errors On All DUTs
 | | [Documentation] | Show VPP errors verbose on all DUTs.
@@ -60,12 +60,12 @@
 | | | Vpp api trace save | ${nodes['${dut}']}
 | | | Vpp api trace dump | ${nodes['${dut}']}
 
-| Show VPP vhost on all DUTs
-| | [Documentation] | Show Vhost User on all DUTs.
-| | ...
-| | ${duts}= | Get Matches | ${nodes} | DUT*
-| | :FOR | ${dut} | IN | @{duts}
-| | | Vpp Show Vhost | ${nodes['${dut}']}
+#| Show VPP vhost on all DUTs
+#| | [Documentation] | Show Vhost User on all DUTs.
+#| | [[Arguments] | ${nodes}
+#| | ${duts}= | Get Matches | ${nodes} | DUT*
+#| | :FOR | ${dut} | IN | @{duts}
+#| | | Vpp Show Vhost | ${nodes['${dut}']}
 
 | Show Bridge Domain Data On All DUTs
 | | [Documentation] | Show Bridge Domain data on all DUTs.
@@ -327,7 +327,7 @@
 | | ...
 | | Show Packet Trace on All DUTs | ${nodes}
 | | Show VAT History On All DUTs | ${nodes}
-| | Vpp Show Errors On All DUTs | ${nodes}
+| | VppCounters.Vpp Show Errors On All DUTs | ${nodes}
 | | Verify VPP PID in Teardown
 
 | Tear down LISP functional test
@@ -337,7 +337,7 @@
 | | Show VAT History On All DUTs | ${nodes}
 | | Show Vpp Settings | ${nodes['DUT1']}
 | | Show Vpp Settings | ${nodes['DUT2']}
-| | Vpp Show Errors On All DUTs | ${nodes}
+| | VppCounters.Vpp Show Errors On All DUTs | ${nodes}
 | | Verify VPP PID in Teardown
 
 | Tear down LISP functional test with QEMU
@@ -357,7 +357,7 @@
 | | Show VAT History On All DUTs | ${nodes}
 | | Show Vpp Settings | ${nodes['DUT1']}
 | | Show Vpp Settings | ${nodes['DUT2']}
-| | Vpp Show Errors On All DUTs | ${nodes}
+| | VppCounters.Vpp Show Errors On All DUTs | ${nodes}
 | | Stop and clear QEMU | ${nodes['DUT1']} | ${vm_node}
 | | Verify VPP PID in Teardown
 
