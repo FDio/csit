@@ -13,79 +13,85 @@
 
 *** Settings ***
 | Documentation | VPP counters keywords
-| Library | resources/libraries/python/VppCounters.py
+| Library | resources.libraries.python.VppCounters | WITH NAME | VppCounters
 
 *** Keywords ***
 | Clear interface counters on all vpp nodes in topology
 | | [Documentation] | Clear interface counters on all VPP nodes in topology
 | | [Arguments] | ${nodes}
-| | Vpp Nodes Clear Interface Counters | ${nodes}
+| | VppCounters.Vpp Nodes Clear Interface Counters | ${nodes}
 
-| Get interface statistics
-| | [Documentation] | Dump stats table on VPP node
-| | [Arguments] | ${node}
-| | Vpp Dump Stats Table | ${node}
+#| Get interface statistics
+#| | [Documentation] | Dump stats table on VPP node
+#| | [Arguments] | ${node}
+#| | VppCounters.Vpp Dump Stats Table | ${node}
 
-| Get interface ipv6 counter
-| | [Documentation] | Return IPv6 statistics for node interface
-| | [Arguments] | ${node} | ${interface}
-| | ${ipv6_counter}= | Vpp Get Ipv6 Interface Counter | ${node} | ${interface}
-| | [Return] | ${ipv6_counter}
+#| Get interface ipv6 counter
+#| | [Documentation] | Return IPv6 statistics for node interface
+#| | [Arguments] | ${node} | ${interface}
+#| | ${ipv6_counter}= | VppCounters.Vpp Get Ipv6 Interface Counter | ${node} | ${interface}
+#| | [Return] | ${ipv6_counter}
 
 | Check ipv4 interface counter
 | | [Documentation] | Check that ipv4 interface counter has right value
 | | [Arguments] | ${node} | ${interface} | ${value}
-| | ${ipv4_counter}= | Vpp get ipv4 interface counter | ${node} | ${interface}
+| | ${ipv4_counter}= | VppCounters.Vpp get ipv4 interface counter | ${node} | ${interface}
 | | Should Be Equal | ${ipv4_counter} | ${value}
-
-| Show statistics on all DUTs
-| | [Documentation] | Show VPP statistics on all DUTs
-| | Sleep | 10 | Waiting for statistics to be collected
-| | ${duts}= | Get Matches | ${nodes} | DUT*
-| | :FOR | ${dut} | IN | @{duts}
-| | | Show vpp statistics | ${nodes['${dut}']}
-
-| Show vpp statistics
-| | [Documentation] | Show [error, hardware, interface] stats
-| | [Arguments] | ${node}
-| | Vpp Show Errors | ${node}
-| | Vpp Show Hardware Detail | ${node}
-| | Vpp Show Runtime | ${node}
+#
+#| Show statistics on all DUTs
+#| | [Documentation] | Show VPP statistics on all DUTs
+#| | [Arguments] | ${nodes}
+#| | Sleep | 10 | Waiting for statistics to be collected
+#| | ${duts}= | Get Matches | ${nodes} | DUT*
+#| | :FOR | ${dut} | IN | @{duts}
+#| | | VppCounters.Show vpp statistics | ${nodes['${dut}']}
+#
+#| Show vpp statistics
+#| | [Documentation] | Show [error, hardware, interface] stats
+#| | [Arguments] | ${node}
+#| | VppCounters.Vpp Show Errors | ${node}
+#| | VppCounters.Vpp Show Hardware Detail | ${node}
+#| | VppCounters.Vpp Show Runtime | ${node}
 
 | Clear all counters on all DUTs
 | | [Documentation] | Clear runtime, interface, hardware and error counters
 | | ... | on all DUTs with VPP instance
-| | Clear runtime counters on all DUTs
-| | Clear interface counters on all DUTs
-| | Clear hardware counters on all DUTs
-| | Clear error counters on all DUTs
+| | VppCounters.Clear runtime counters on all DUTs | ${nodes}
+| | VppCounters.Clear interface counters on all DUTs | ${nodes}
+| | VppCounters.Clear hardware counters on all DUTs | ${nodes}
+| | VppCounters.Clear error counters on all DUTs | ${nodes}
 
-| Clear runtime counters on all DUTs
-| | [Documentation] | Clear VPP runtime counters on all DUTs
-| | ${duts}= | Get Matches | ${nodes} | DUT*
-| | :FOR | ${dut} | IN | @{duts}
-| | | Vpp clear runtime | ${nodes['${dut}']}
+#| Clear runtime counters on all DUTs
+#| | [Documentation] | Clear VPP runtime counters on all DUTs
+#| | [Arguments] | ${nodes}
+#| | ${duts}= | Get Matches | ${nodes} | DUT*
+#| | :FOR | ${dut} | IN | @{duts}
+#| | | VppCounters.Vpp clear runtime | ${nodes['${dut}']}
 
-| Clear interface counters on all DUTs
-| | [Documentation] | Clear VPP interface counters on all DUTs
-| | ${duts}= | Get Matches | ${nodes} | DUT*
-| | :FOR | ${dut} | IN | @{duts}
-| | | Vpp clear interface counters | ${nodes['${dut}']}
+#| Clear interface counters on all DUTs
+#| | [Documentation] | Clear VPP interface counters on all DUTs
+#| | [Arguments] | ${nodes}
+#| | ${duts}= | Get Matches | ${nodes} | DUT*
+#| | :FOR | ${dut} | IN | @{duts}
+#| | | VppCounters.Vpp clear interface counters | ${nodes['${dut}']}
 
-| Clear hardware counters on all DUTs
-| | [Documentation] | Clear VPP hardware counters on all DUTs
-| | ${duts}= | Get Matches | ${nodes} | DUT*
-| | :FOR | ${dut} | IN | @{duts}
-| | | Vpp clear hardware counters | ${nodes['${dut}']}
+#| Clear hardware counters on all DUTs
+#| | [Documentation] | Clear VPP hardware counters on all DUTs
+#| | [Arguments] | ${nodes}
+#| | ${duts}= | Get Matches | ${nodes} | DUT*
+#| | :FOR | ${dut} | IN | @{duts}
+#| | | VppCounters.Vpp clear hardware counters | ${nodes['${dut}']}
 
-| Clear error counters on all DUTs
-| | [Documentation] | Clear VPP errors counters on all DUTs
-| | ${duts}= | Get Matches | ${nodes} | DUT*
-| | :FOR | ${dut} | IN | @{duts}
-| | | Vpp clear errors counters | ${nodes['${dut}']}
+#| Clear error counters on all DUTs
+#| | [Documentation] | Clear VPP errors counters on all DUTs
+#| | [Arguments] | ${nodes}
+#| | ${duts}= | Get Matches | ${nodes} | DUT*
+#| | :FOR | ${dut} | IN | @{duts}
+#| | | VppCounters.Vpp clear errors counters | ${nodes['${dut}']}
 
-| Show runtime counters on all DUTs
-| | [Documentation] | Show VPP runtime counters on all DUTs
-| | ${duts}= | Get Matches | ${nodes} | DUT*
-| | :FOR | ${dut} | IN | @{duts}
-| | | Vpp show runtime | ${nodes['${dut}']}
+#| Show runtime counters on all DUTs
+#| | [Documentation] | Show VPP runtime counters on all DUTs
+#| | [Arguments] | ${nodes}
+#| | ${duts}= | Get Matches | ${nodes} | DUT*
+#| | :FOR | ${dut} | IN | @{duts}
+#| | | VppCounters.Vpp show runtime | ${nodes['${dut}']}

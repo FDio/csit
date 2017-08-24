@@ -20,6 +20,7 @@
 | Library | resources.libraries.python.VhostUser
 | Library | resources.libraries.python.TrafficGenerator
 | Library | resources.libraries.python.TrafficGenerator.TGDropRateSearchImpl
+| Library | resources.libraries.python.VppCounters | WITH NAME | VppCounters
 | Resource | resources/libraries/robot/shared/default.robot
 | Resource | resources/libraries/robot/shared/interfaces.robot
 | Resource | resources/libraries/robot/shared/counters.robot
@@ -454,7 +455,7 @@
 | | Run Keyword If | ${ret}==${FALSE} | Clear all counters on all DUTs
 | | Send traffic on tg | ${duration} | ${rate}pps | ${framesize}
 | | ... | ${topology_type} | warmup_time=0
-| | Run Keyword If | ${ret}==${FALSE} | Show statistics on all DUTs
+| | Run Keyword If | ${ret}==${FALSE} | VppCounters.Show statistics on all DUTs | ${nodes}
 | | Run keyword and return | Get latency
 
 | Traffic should pass with no loss
@@ -484,7 +485,7 @@
 | | Run Keyword If | ${ret}==${FALSE} | Clear all counters on all DUTs
 | | Send traffic on tg | ${duration} | ${rate} | ${framesize}
 | | ... | ${topology_type} | warmup_time=0
-| | Run Keyword If | ${ret}==${FALSE} | Show statistics on all DUTs
+| | Run Keyword If | ${ret}==${FALSE} | VppCounters.Show statistics on all DUTs | ${nodes}
 | | Run Keyword If | ${fail_on_loss} | No traffic loss occurred
 
 | Traffic should pass with partial loss
@@ -515,7 +516,7 @@
 | | Run Keyword If | ${ret}==${FALSE} | Clear all counters on all DUTs
 | | Send traffic on tg | ${duration} | ${rate} | ${framesize}
 | | ... | ${topology_type} | warmup_time=0
-| | Run Keyword If | ${ret}==${FALSE} | Show statistics on all DUTs
+| | Run Keyword If | ${ret}==${FALSE} | VppCounters.Show statistics on all DUTs | ${nodes}
 | | Run Keyword If | ${fail_on_loss} | Partial traffic loss accepted
 | | ... | ${loss_acceptance} | ${loss_acceptance_type}
 
@@ -541,7 +542,7 @@
 | | Send traffic on tg | -1 | ${rate} | ${framesize} | ${topology_type}
 | | ... | warmup_time=0 | async_call=${True} | latency=${False}
 | | ${ret}= | Is DPDK performance test
-| | Run Keyword If | ${ret}==${FALSE} | Clear runtime counters on all DUTs
+| | Run Keyword If | ${ret}==${FALSE} | VppCounters.Clear runtime counters on all DUTs | ${nodes}
 | | Sleep | ${duration}
-| | Run Keyword If | ${ret}==${FALSE} | Show runtime counters on all DUTs
+| | Run Keyword If | ${ret}==${FALSE} | VppCounters.Show runtime counters on all DUTs | ${nodes}
 | | Stop traffic on tg
