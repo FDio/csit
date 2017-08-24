@@ -14,6 +14,7 @@
 """Vhost-user interfaces library."""
 
 from resources.libraries.python.VatExecutor import VatExecutor, VatTerminal
+from resources.libraries.python.topology import NodeType
 
 
 class VhostUser(object):
@@ -86,3 +87,14 @@ class VhostUser(object):
         """
         vat = VatExecutor()
         vat.execute_script("show_vhost.vat", node, json_out=False)
+
+    @staticmethod
+    def show_vpp_vhost_on_all_duts(nodes):
+        """Show Vhost User on all DUTs.
+
+        :param nodes: VPP nodes.
+        :type nodes: dict
+        """
+        for node in nodes.values():
+            if node['type'] == NodeType.DUT:
+                VhostUser.vpp_show_vhost(node)

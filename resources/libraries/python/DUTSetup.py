@@ -15,8 +15,7 @@
 
 from robot.api import logger
 
-from resources.libraries.python.topology import NodeType
-from resources.libraries.python.topology import Topology
+from resources.libraries.python.topology import NodeType, Topology
 from resources.libraries.python.ssh import SSH
 from resources.libraries.python.constants import Constants
 from resources.libraries.python.VatExecutor import VatExecutor
@@ -48,6 +47,17 @@ class DUTSetup(object):
         """
         vat = VatExecutor()
         vat.execute_script("show_version_verbose.vat", node, json_out=False)
+
+    @staticmethod
+    def show_vpp_version_on_all_duts(nodes):
+        """Show VPP version verbose on all DUTs.
+
+        :param nodes: VPP nodes
+        :type nodes: dict
+        """
+        for node in nodes.values():
+            if node['type'] == NodeType.DUT:
+                DUTSetup.vpp_show_version_verbose(node)
 
     @staticmethod
     def vpp_api_trace_save(node):

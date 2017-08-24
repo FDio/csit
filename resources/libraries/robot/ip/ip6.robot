@@ -39,11 +39,13 @@
 | | ${dst_mac}= | Get Interface Mac | ${dst_node} | ${dst_port}
 | | ${src_port_name}= | Get interface name | ${src_node} | ${src_port}
 | | ${args}= | Traffic Script Gen Arg | ${src_port_name} | ${src_port_name} | ${src_mac}
-| |          | ...                    | ${dst_mac} | ${src_ip} | ${dst_ip}
+| | ... | ${dst_mac} | ${src_ip} | ${dst_ip}
 | | Run Traffic Script On Node | icmpv6_echo.py | ${tg_node} | ${args}
-| | Get interface statistics | ${dst_node}
-| | ${ipv6_counter}= | Get interface ipv6 counter | ${dst_node} | ${dst_port}
-| | Should Be Equal | ${ipv6_counter} | ${2} | #ICMPv6 neighbor advertisement + ICMPv6 echo request
+| | Vpp Dump Stats Table | ${dst_node}
+| | ${ipv6_counter}= | Vpp Get Ipv6 Interface Counter | ${dst_node}
+| | ... | ${dst_port}
+| | Should Be Equal | ${ipv6_counter} | ${2}
+| | ... | #ICMPv6 neighbor advertisement + ICMPv6 echo request
 
 | Execute IPv6 ICMP echo sweep
 | | [Documentation] | Type of the src_node must be TG and dst_node must be DUT
@@ -61,9 +63,9 @@
 | | ${dst_mac}= | Get Interface Mac | ${dst_node} | ${dst_port}
 | | ${src_port_name}= | Get interface name | ${src_node} | ${src_port}
 | | ${args}= | Traffic Script Gen Arg | ${src_port_name} | ${src_port_name}
-| |          | ... | ${src_mac} | ${dst_mac} | ${src_ip} | ${dst_ip}
+| | ... | ${src_mac} | ${dst_mac} | ${src_ip} | ${dst_ip}
 | | ${args}= | Set Variable
-| | ...      | ${args} --start_size ${start_size} --end_size ${end_size} --step ${step}
+| | ... | ${args} --start_size ${start_size} --end_size ${end_size} --step ${step}
 | | Run Traffic Script On Node | ipv6_sweep_ping.py | ${src_node} | ${args}
 | | ... | timeout=${180}
 
@@ -81,7 +83,7 @@
 | | ${dst_mac}= | Get Interface Mac | ${hop_node} | ${hop_port}
 | | ${src_port_name}= | Get interface name | ${src_node} | ${src_port}
 | | ${args}= | Traffic Script Gen Arg | ${src_port_name} | ${src_port_name} | ${src_mac}
-| |          | ...                    | ${dst_mac} | ${src_ip} | ${dst_ip}
+| | ... | ${dst_mac} | ${src_ip} | ${dst_ip}
 | | Run Traffic Script On Node | icmpv6_echo.py | ${tg_node} | ${args}
 
 
@@ -99,7 +101,7 @@
 | | ${dst_mac}= | Get Interface Mac | ${hop_node} | ${hop_port}
 | | ${src_port_name}= | Get interface name | ${src_node} | ${src_port}
 | | ${args}= | Traffic Script Gen Arg | ${src_port_name} | ${src_port_name} | ${src_mac}
-| |          | ...                    | ${dst_mac} | ${src_ip} | ${dst_ip}
+| | ... | ${dst_mac} | ${src_ip} | ${dst_ip}
 | | Run Traffic Script On Node | icmpv6_echo.py | ${tg_node} | ${args}
 
 | Send IPv6 ICMP echo request to DUT2 egress interface via DUT1 and verify answer
@@ -116,7 +118,7 @@
 | | ${dst_mac}= | Get Interface Mac | ${hop_node} | ${hop_port}
 | | ${src_port_name}= | Get interface name | ${src_node} | ${src_port}
 | | ${args}= | Traffic Script Gen Arg | ${src_port_name} | ${src_port_name} | ${src_mac}
-| |          | ...                    | ${dst_mac} | ${src_ip} | ${dst_ip}
+| | ... | ${dst_mac} | ${src_ip} | ${dst_ip}
 | | Run Traffic Script On Node | icmpv6_echo.py | ${tg_node} | ${args}
 
 | Ipv6 tg to tg routed
@@ -138,9 +140,9 @@
 | | ${src_port_name}= | Get interface name | ${src_node} | ${src_port}
 | | ${dst_port_name}= | Get interface name | ${dst_node} | ${dst_port}
 | | ${args}= | Traffic Script Gen Arg | ${src_port_name} | ${dst_port_name} | ${src_mac}
-| |          | ...                    | ${dst_mac} | ${src_ip} | ${dst_ip}
+| | ... | ${dst_mac} | ${src_ip} | ${dst_ip}
 | | ${args}= | Catenate | ${args} | --src_nh_mac ${src_nh_mac}
-| |          | ...      | --dst_nh_mac ${dst_nh_mac} | --h_num 2
+| | ... | --dst_nh_mac ${dst_nh_mac} | --h_num 2
 | | Run Traffic Script On Node | icmpv6_echo_req_resp.py | ${tg_node} | ${args}
 
 | Send IPv6 neighbor solicitation and verify answer
@@ -156,7 +158,7 @@
 | | ${dst_mac}= | Get Interface Mac | ${dst_node} | ${dst_port}
 | | ${src_port_name}= | Get interface name | ${src_node} | ${src_port}
 | | ${args}= | Traffic Script Gen Arg | ${src_port_name} | ${src_port_name} | ${src_mac}
-| |          | ...                    | ${dst_mac} | ${src_ip} | ${dst_ip}
+| | ... | ${dst_mac} | ${src_ip} | ${dst_ip}
 | | Run Traffic Script On Node | ipv6_ns.py | ${src_node} | ${args}
 
 | Configure IPv6 on all DUTs in topology

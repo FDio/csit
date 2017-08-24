@@ -23,8 +23,8 @@
 | Library | resources.libraries.python.TGSetup
 | Library | resources.libraries.python.L2Util
 | Library | resources.libraries.python.Tap
-| Library | resources/libraries/python/VppConfigGenerator.py
-| Library | resources/libraries/python/VppCounters.py
+| Library | resources.libraries.python.VppConfigGenerator
+| Library | resources.libraries.python.VppCounters
 | Library | Collections
 
 *** Keywords ***
@@ -37,13 +37,6 @@
 | | [Documentation] | Prepare all TGs before traffic scripts execution.
 | | ...
 | | All TGs Set Interface Default Driver | ${nodes}
-
-| Show VPP version on all DUTs
-| | [Documentation] | Show VPP version verbose on all DUTs.
-| | ...
-| | ${duts}= | Get Matches | ${nodes} | DUT*
-| | :FOR | ${dut} | IN | @{duts}
-| | | Vpp show version verbose | ${nodes['${dut}']}
 
 | Show Vpp Errors On All DUTs
 | | [Documentation] | Show VPP errors verbose on all DUTs.
@@ -59,13 +52,6 @@
 | | :FOR | ${dut} | IN | @{duts}
 | | | Vpp api trace save | ${nodes['${dut}']}
 | | | Vpp api trace dump | ${nodes['${dut}']}
-
-| Show VPP vhost on all DUTs
-| | [Documentation] | Show Vhost User on all DUTs.
-| | ...
-| | ${duts}= | Get Matches | ${nodes} | DUT*
-| | :FOR | ${dut} | IN | @{duts}
-| | | Vpp Show Vhost | ${nodes['${dut}']}
 
 | Show Bridge Domain Data On All DUTs
 | | [Documentation] | Show Bridge Domain data on all DUTs.
