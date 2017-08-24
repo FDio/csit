@@ -12,6 +12,8 @@
 # limitations under the License.
 
 *** Settings ***
+| Library | resources.libraries.python.DUTSetup
+| Library | resources.libraries.python.VhostUser
 | Resource | resources/libraries/robot/performance/performance_configuration.robot
 | Resource | resources/libraries/robot/performance/performance_utils.robot
 | Documentation | Performance suite keywords - Suite and test setups and
@@ -240,7 +242,7 @@
 | | ...
 | | [Arguments] | ${topology_type} | ${nic_model}
 | | ...
-| | Show vpp version on all DUTs
+| | Show vpp version on all DUTs | ${nodes}
 | | Set variables in 2-node circular topology with DUT interface model
 | | ... | ${nic_model}
 | | Initialize traffic generator | ${tg} | ${tg_if1} | ${tg_if2}
@@ -267,7 +269,7 @@
 | | [Arguments] | ${topology_type} | ${nic_model} | ${tg_if1_dest_mac}
 | | ... | ${tg_if2_dest_mac}
 | | ...
-| | Show vpp version on all DUTs
+| | Show vpp version on all DUTs | ${nodes}
 | | Set variables in 2-node circular topology with DUT interface model
 | | ... | ${nic_model}
 | | Initialize traffic generator | ${tg} | ${tg_if1} | ${tg_if2}
@@ -292,7 +294,7 @@
 | | ...
 | | [Arguments] | ${topology_type} | ${nic_model}
 | | ...
-| | Show vpp version on all DUTs
+| | Show vpp version on all DUTs | ${nodes}
 | | Set variables in 3-node circular topology with DUT interface model
 | | ... | ${nic_model}
 | | Initialize traffic generator | ${tg} | ${tg_if1} | ${tg_if2}
@@ -425,7 +427,7 @@
 | | [Arguments] | ${rate} | ${framesize} | ${topology_type}
 | | ...
 | | Show VAT History On All DUTs | ${nodes}
-| | Show statistics on all DUTs
+| | Show statistics on all DUTs | ${nodes}
 | | Run Keyword If Test Failed
 | | ... | Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
 | | ... | ${framesize} | ${topology_type} | fail_on_loss=${False}
@@ -434,13 +436,13 @@
 | | [Documentation] | Common test teardown for ndrchk performance tests.
 | | ...
 | | Show VAT History On All DUTs | ${nodes}
-| | Show statistics on all DUTs
+| | Show statistics on all DUTs | ${nodes}
 
 | Tear down performance pdrchk test
 | | [Documentation] | Common test teardown for pdrchk performance tests.
 | | ...
 | | Show VAT History On All DUTs | ${nodes}
-| | Show statistics on all DUTs
+| | Show statistics on all DUTs | ${nodes}
 
 | Tear down performance test with vhost and VM with dpdk-testpmd
 | | [Documentation] | Common test teardown for performance tests which use
@@ -466,8 +468,8 @@
 | | ... | ${dut2_node}=${None} | ${dut2_vm_refs}=${None}
 | | ...
 | | Show VAT History On All DUTs | ${nodes}
-| | Show VPP vhost on all DUTs
-| | Show statistics on all DUTs
+| | Show VPP vhost on all DUTs | ${nodes}
+| | Show statistics on all DUTs | ${nodes}
 | | Run Keyword If Test Failed
 | | ... | Traffic should pass with no loss | ${perf_trial_duration} | ${rate}
 | | ... | ${framesize} | ${topology_type} | fail_on_loss=${False}
@@ -500,8 +502,8 @@
 | | ... | ${dut2_node}=${None} | ${dut2_vm_refs}=${None}
 | | ...
 | | Show VAT History On All DUTs | ${nodes}
-| | Show VPP vhost on all DUTs
-| | Show statistics on all DUTs
+| | Show VPP vhost on all DUTs | ${nodes}
+| | Show statistics on all DUTs | ${nodes}
 | | Run keyword unless | ${dut1_node}==${None}
 | | ... | Tear down guest VM with dpdk-testpmd | ${dut1} | ${dut1_vm_refs}
 | | Run keyword unless | ${dut2_node}==${None}
