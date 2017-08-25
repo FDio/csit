@@ -88,7 +88,7 @@
 | | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Add no multi seg to all DUTs
-| | And Add SNAT to all DUTs
+| | And Add NAT to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize SNAT in 3-node circular topology
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
@@ -114,7 +114,7 @@
 | | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Add no multi seg to all DUTs
-| | And Add SNAT to all DUTs
+| | And Add NAT to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize SNAT in 3-node circular topology
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
@@ -141,7 +141,7 @@
 | | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Add no multi seg to all DUTs
-| | And Add SNAT to all DUTs
+| | And Add NAT to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize SNAT in 3-node circular topology
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
@@ -167,7 +167,7 @@
 | | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Add no multi seg to all DUTs
-| | And Add SNAT to all DUTs
+| | And Add NAT to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize SNAT in 3-node circular topology
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
@@ -194,7 +194,7 @@
 | | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Add no multi seg to all DUTs
-| | And Add SNAT to all DUTs
+| | And Add NAT to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize SNAT in 3-node circular topology
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
@@ -220,7 +220,7 @@
 | | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Add no multi seg to all DUTs
-| | And Add SNAT to all DUTs
+| | And Add NAT to all DUTs
 | | And Apply startup configuration on all VPP DUTs
 | | When Initialize SNAT in 3-node circular topology
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
