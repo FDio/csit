@@ -32,7 +32,9 @@
 | ... | Tear Down Honeycomb Functional Test Suite | ${node} | AND
 | ... | Disable Honeycomb Feature | ${node} | NSH
 | ...
-| Force Tags | HC_FUNC
+# NSHSFC-34: Having NSH plugin installed crashes VPP
+#| Force Tags | HC_FUNC
+
 
 *** Test Cases ***
 | TC01: Honeycomb can configure NSH entry

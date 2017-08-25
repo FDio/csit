@@ -50,11 +50,12 @@ for ART in ${VPP_ARTIFACTS}; do
     done
 done
 
-for ART in ${NSH_ARTIFACTS}; do
-    for PAC in ${PACKAGE}; do
-        curl "${URL}?r=${REPO}&g=${NSH_GROUP}&a=${ART}&p=${PAC}&v=${VER}&c=${CLASS}" -O -J || exit
-    done
-done
+# NSHSFC-34: Having NSH plugin installed crashes VPP
+#for ART in ${NSH_ARTIFACTS}; do
+#    for PAC in ${PACKAGE}; do
+#        curl "${URL}?r=${REPO}&g=${NSH_GROUP}&a=${ART}&p=${PAC}&v=${VER}&c=${CLASS}" -O -J || exit
+#    done
+#done
 
 # verify downloaded packages
 if [ "${OS}" == "centos7" ]; then
