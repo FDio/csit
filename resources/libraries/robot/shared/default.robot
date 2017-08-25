@@ -254,12 +254,12 @@
 | | :FOR | ${dut} | IN | @{duts}
 | | | Run keyword | ${dut}.Add DPDK Dev Default TXD | ${txd}
 
-| Add SNAT to all DUTs
-| | [Documentation] | Add SNAT configuration to all DUTs.
+| Add NAT to all DUTs
+| | [Documentation] | Add NAT configuration to all DUTs.
 | | ...
 | | ${duts}= | Get Matches | ${nodes} | DUT*
 | | :FOR | ${dut} | IN | @{duts}
-| | | Run keyword | ${dut}.Add SNAT
+| | | Run keyword | ${dut}.Add NAT
 
 | Add cryptodev to all DUTs
 | | [Documentation] | Add Cryptodev to VPP startup configuration to all DUTs.

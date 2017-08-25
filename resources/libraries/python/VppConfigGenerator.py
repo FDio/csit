@@ -286,13 +286,13 @@ class VppConfigGenerator(object):
         path = ['dpdk', 'no-multi-seg']
         self.add_config_item(self._nodeconfig, '', path)
 
-    def add_snat(self, value='deterministic'):
-        """Add SNAT configuration.
+    def add_nat(self, value='deterministic'):
+        """Add NAT configuration.
 
-        :param value: SNAT mode.
+        :param value: NAT mode.
         :type value: str
         """
-        path = ['snat']
+        path = ['nat']
         self.add_config_item(self._nodeconfig, value, path)
 
     def apply_config(self, waittime=5, retries=12):

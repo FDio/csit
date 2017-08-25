@@ -1958,13 +1958,13 @@
 | | Add arp on dut | ${dut2} | ${dut2_if1} | ${dut1_dut2_ip4_address}
 | | ... | ${dut1_if2_mac}
 
-| Initialize SNAT in 3-node circular topology
-| | [Documentation] | Initialization of 3-node topology with SNAT between DUTs:
+| Initialize NAT44 in 3-node circular topology
+| | [Documentation] | Initialization of 3-node topology with NAT44 between DUTs:
 | | ... | - set interfaces up
 | | ... | - set IP addresses
 | | ... | - set ARP
 | | ... | - create routes
-| | ... | - set SNAT - only on DUT1
+| | ... | - set NAT44 - only on DUT1
 | | ...
 | | Set Interface State | ${dut1} | ${dut1_if1} | up
 | | Set Interface State | ${dut1} | ${dut1_if2} | up
@@ -1994,7 +1994,7 @@
 | | ...
 | | Configure inside and outside interfaces
 | | ... | ${dut1} | ${dut1_if1} | ${dut1_if2}
-| | Configure deterministic mode for SNAT
+| | Configure deterministic mode for NAT44
 | | ... | ${dut1} | 20.0.0.0 | 18 | 200.0.0.0 | 30
 
 | Initialize L2 xconnect for '${nr}' memif pairs in 3-node circular topology

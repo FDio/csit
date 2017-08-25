@@ -13,11 +13,12 @@
 
 *** Settings ***
 | Resource | resources/libraries/robot/performance/performance_setup.robot
-| Resource | resources/libraries/robot/ip/snat.robot
+| Resource | resources/libraries/robot/ip/nat.robot
 | Resource | resources/libraries/robot/shared/traffic.robot
 | ...
 | Force Tags | 3_NODE_SINGLE_LINK_TOPO | PERFTEST | HW_ENV | NDRPDRDISC
-| ... | NIC_Intel-X520-DA2 | ETH | IP4FWD | FEATURE | SNAT | BASE
+| ... | NIC_Intel-X520-DA2 | ETH | IP4FWD | FEATURE | NAT44 | SRC_USER_100
+| ... | SCALE
 | ...
 | Suite Setup | Set up 3-node performance topology with DUT's NIC model
 | ... | L3 | Intel-X520-DA2
@@ -25,15 +26,15 @@
 | ...
 | Test Setup | Set up performance test
 | ...
-| Test Teardown | Tear down performance discovery test with SNAT
+| Test Teardown | Tear down performance discovery test with NAT
 | ... | ${min_rate}pps | ${framesize} | ${traffic_profile}
 | ...
-| Documentation | *SNAT performance test cases*
+| Documentation | *NAT44 performance test cases*
 | ...
 | ... | *High level description*
 | ...
 | ... | - NDR and PDR tests
-| ... | - 3-node topology, TG-DUT1-DUT2-TG, SNAT is enabled between DUTs.
+| ... | - 3-node topology, TG-DUT1-DUT2-TG, NAT44 is enabled between DUTs.
 | ... | - Cores / threads: 1t1c and 2t2c
 | ... | - Framesize: 64B, 1518B, IMIX
 | ... | - Packet: ETH / IP(src, dst) / UDP(src_port, dst_port) / payload
@@ -66,14 +67,14 @@
 # X520-DA2 bandwidth limit
 | ${s_limit} | ${10000000000}
 # Traffic profile:
-| ${traffic_profile} | trex-sl-3n-ethip4udp-1u15p
+| ${traffic_profile} | trex-sl-3n-ethip4udp-100u15p
 
 *** Test Cases ***
-| tc01-64B-1t1c-ethip4udp-ip4base-udpsrcscale15-snat-ndrdisc
+| tc01-64B-1t1c-ethip4udp-ip4scale100-udpsrcscale15-snat-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 routing config with 1 thread, 1 phy core,\
-| | ... | 1 receive queue per NIC port. SNAT is configured between DUTs -\
-| | ... | 1 user and 15 ports (sessions) per user.
+| | ... | 1 receive queue per NIC port. NAT44 is configured between DUTs -\
+| | ... | 100 users and 15 ports (sessions) per user.
 | | ... | [Ver] Find NDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 100kpps.
 | | ...
@@ -88,18 +89,18 @@
 | | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Add no multi seg to all DUTs
-| | And Add SNAT to all DUTs
+| | And Add NAT to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | When Initialize SNAT in 3-node circular topology
+| | When Initialize NAT44 in 3-node circular topology
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
 
-| tc02-64B-1t1c-ethip4udp-ip4base-udpsrcscale15-snat-pdrdisc
+| tc02-64B-1t1c-ethip4udp-ip4scale100-udpsrcscale15-snat-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 routing config with 1 thread, 1 phy core,\
-| | ... | 1 receive queue per NIC port. SNAT is configured between DUTs -\
-| | ... | 1 user and 15 ports (sessions) per user.
+| | ... | 1 receive queue per NIC port. NAT44 is configured between DUTs -\
+| | ... | 100 users and 15 ports (sessions) per user.
 | | ... | [Ver] Find PDR for 64 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 100kpps.
 | | ...
@@ -114,19 +115,19 @@
 | | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Add no multi seg to all DUTs
-| | And Add SNAT to all DUTs
+| | And Add NAT to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | When Initialize SNAT in 3-node circular topology
+| | When Initialize NAT44 in 3-node circular topology
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold} | ${perf_pdr_loss_acceptance}
 | | ... | ${perf_pdr_loss_acceptance_type}
 
-| tc03-1518B-1t1c-ethip4udp-ip4base-udpsrcscale15-snat-ndrdisc
+| tc03-1518B-1t1c-ethip4udp-ip4scale100-udpsrcscale15-snat-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 routing config with 1 thread, 1 phy core,\
-| | ... | 1 receive queue per NIC port. SNAT is configured between DUTs -\
-| | ... | 1 user and 15 ports (sessions) per user.
+| | ... | 1 receive queue per NIC port. NAT44 is configured between DUTs -\
+| | ... | 100 users and 15 ports (sessions) per user.
 | | ... | [Ver] Find NDR for 1518 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 100kpps.
 | | ...
@@ -141,18 +142,18 @@
 | | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Add no multi seg to all DUTs
-| | And Add SNAT to all DUTs
+| | And Add NAT to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | When Initialize SNAT in 3-node circular topology
+| | When Initialize NAT44 in 3-node circular topology
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
 
-| tc04-1518B-1t1c-ethip4udp-ip4base-udpsrcscale15-snat-pdrdisc
+| tc04-1518B-1t1c-ethip4udp-ip4scale100-udpsrcscale15-snat-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 routing config with 1 thread, 1 phy core,\
-| | ... | 1 receive queue per NIC port. SNAT is configured between DUTs -\
-| | ... | 1 user and 15 ports (sessions) per user.
+| | ... | 1 receive queue per NIC port. NAT44 is configured between DUTs -\
+| | ... | 100 users and 15 ports (sessions) per user.
 | | ... | [Ver] Find PDR for 1518 Byte frames using binary search start at 10GE\
 | | ... | linerate, step 100kpps.
 | | ...
@@ -167,19 +168,19 @@
 | | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Add no multi seg to all DUTs
-| | And Add SNAT to all DUTs
+| | And Add NAT to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | When Initialize SNAT in 3-node circular topology
+| | When Initialize NAT44 in 3-node circular topology
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold} | ${perf_pdr_loss_acceptance}
 | | ... | ${perf_pdr_loss_acceptance_type}
 
-| tc05-IMIX-1t1c-ethip4udp-ip4base-udpsrcscale15-snat-ndrdisc
+| tc05-IMIX-1t1c-ethip4udp-ip4scale100-udpsrcscale15-snat-ndrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 routing config with 1 thread, 1 phy core,\
-| | ... | 1 receive queue per NIC port. SNAT is configured between DUTs -\
-| | ... | 1 user and 15 ports (sessions) per user.
+| | ... | 1 receive queue per NIC port. NAT44 is configured between DUTs -\
+| | ... | 100 users and 15 ports (sessions) per user.
 | | ... | [Ver] Find NDR for IMIX frames using binary search start at 10GE\
 | | ... | linerate, step 100kpps.
 | | ...
@@ -194,18 +195,18 @@
 | | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Add no multi seg to all DUTs
-| | And Add SNAT to all DUTs
+| | And Add NAT to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | When Initialize SNAT in 3-node circular topology
+| | When Initialize NAT44 in 3-node circular topology
 | | Then Find NDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold}
 
-| tc06-IMIX-1t1c-ethip4udp-ip4base-udpsrcscale15-snat-pdrdisc
+| tc06-IMIX-1t1c-ethip4udp-ip4scale100-udpsrcscale15-snat-pdrdisc
 | | [Documentation]
 | | ... | [Cfg] DUT runs IPv4 routing config with 1 thread, 1 phy core,\
-| | ... | 1 receive queue per NIC port. SNAT is configured between DUTs -\
-| | ... | 1 user and 15 ports (sessions) per user.
+| | ... | 1 receive queue per NIC port. NAT44 is configured between DUTs -\
+| | ... | 100 users and 15 ports (sessions) per user.
 | | ... | [Ver] Find PDR for IMIX frames using binary search start at 10GE\
 | | ... | linerate, step 100kpps.
 | | ...
@@ -220,9 +221,9 @@
 | | Given Add '1' worker threads and '1' rxqueues in 3-node single-link circular topology
 | | And Add PCI devices to DUTs in 3-node single link topology
 | | And Add no multi seg to all DUTs
-| | And Add SNAT to all DUTs
+| | And Add NAT to all DUTs
 | | And Apply startup configuration on all VPP DUTs
-| | When Initialize SNAT in 3-node circular topology
+| | When Initialize NAT44 in 3-node circular topology
 | | Then Find PDR using binary search and pps | ${framesize} | ${binary_min}
 | | ... | ${binary_max} | ${traffic_profile}
 | | ... | ${min_rate} | ${max_rate} | ${threshold} | ${perf_pdr_loss_acceptance}
