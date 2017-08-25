@@ -1,1 +1,0 @@
-exec set snat workers {lcores}

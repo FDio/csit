@@ -1,0 +1,1 @@
+exec nat44 deterministic add in {ip_in}/{subnet_in} out {ip_out}/{subnet_out}

@@ -524,9 +524,9 @@
 | | Teardown traffic generator | ${tg}
 | | Cleanup DPDK Environment | ${dut1} | ${dut1_if1} | ${dut1_if2}
 
-| Tear down performance discovery test with SNAT
+| Tear down performance discovery test with NAT
 | | [Documentation] | Common test teardown for ndrdisc and pdrdisc performance \
-| | ... | tests with SNAT feature used.
+| | ... | tests with NAT feature used.
 | | ...
 | | ... | *Arguments:*
 | | ... | - rate - Rate for sending packets. Type: string
@@ -535,15 +535,15 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Tear down performance discovery test with SNAT \| 100000pps \| 64 \
+| | ... | \| Tear down performance discovery test with NAT \| 100000pps \| 64 \
 | | ... | \| ${traffic_profile} \|
 | | ...
 | | [Arguments] | ${rate} | ${framesize} | ${traffic_profile}
 | | ...
 | | Tear down performance discovery test | ${rate} | ${framesize}
 | | ... | ${traffic_profile}
-| | Show SNAT verbose | ${dut1}
-| | Show SNAT verbose | ${dut2}
+| | Show NAT verbose | ${dut1}
+| | Show NAT verbose | ${dut2}
 
 | Tear down performance test with ACL
 | | [Documentation] | Common test teardown for ndrdisc and pdrdisc performance \

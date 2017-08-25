@@ -380,9 +380,13 @@ Feature tags
 
     COP whitelist.
 
-.. topic:: SNAT
+.. topic:: NAT44
 
-    SNAT configured and tested.
+    NAT44 configured and tested.
+
+.. topic:: NAT64
+
+    NAT44 configured and tested.
 
 .. topic:: ACL
 
