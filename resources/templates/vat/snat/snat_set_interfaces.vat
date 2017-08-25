@@ -1,1 +1,0 @@
-exec set interface snat in {int_in} out {int_out}

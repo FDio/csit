@@ -12,16 +12,15 @@
 # limitations under the License.
 
 *** Settings ***
-| Library | resources.libraries.python.SNATUtil
-| Library | resources.libraries.python.NAT.NATUtil
-| Documentation | Keywords for SNAT feature in VPP.
+| Library | resources.libraries.python.NATUtil
+| Documentation | Keywords for NAT feature in VPP.
 
 *** Keywords ***
 | Configure inside and outside interfaces
-| | [Documentation] | Configure inside and outside interfaces for SNAT.
+| | [Documentation] | Configure inside and outside interfaces for NAT44.
 | | ...
 | | ... | *Arguments:*
-| | ... | - node - DUT node to set SNAT interfaces on. Type: dictionary
+| | ... | - node - DUT node to set NAT44 interfaces on. Type: dictionary
 | | ... | - int_in - Inside interface. Type: string
 | | ... | - int_out - Outside interface. Type: string
 | | ...
@@ -34,13 +33,13 @@
 | | ...
 | | ${int_in_name}= | Set variable | ${node['interfaces']['${int_in}']['name']}
 | | ${int_out_name}= | Set variable | ${node['interfaces']['${int_out}']['name']}
-| | Set SNAT Interfaces | ${node} | ${int_in_name} | ${int_out_name}
+| | Set NAT44 Interfaces | ${node} | ${int_in_name} | ${int_out_name}
 
-| Configure deterministic mode for SNAT
-| | [Documentation] | Set deterministic behaviour of SNAT.
+| Configure deterministic mode for NAT44
+| | [Documentation] | Set deterministic behaviour of NAT44.
 | | ...
 | | ... | *Arguments:*
-| | ... | - node - DUT node to set deterministic mode for SNAT on.
+| | ... | - node - DUT node to set deterministic mode for NAT44 on.
 | | ... | Type: dictionary
 | | ... | - ip_in - Inside IP. Type: string
 | | ... | - subnet_in - Inside IP subnet. Type: string
@@ -49,83 +48,83 @@
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Configure deterministic mode for SNAT \| ${nodes['DUT1']} \
+| | ... | \| Configure deterministic mode for NAT44 \| ${nodes['DUT1']} \
 | | ... | \| 100.0.0.0 \| 12 \| 12.1.1.0 \| 24 \|
 | | ...
 | | [Arguments] | ${node} | ${ip_in} | ${subnet_in} | ${ip_out} | ${subnet_out}
 | | ...
-| | Set SNAT deterministic | ${node} | ${ip_in} | ${subnet_in} | ${ip_out}
+| | Set NAT44 deterministic | ${node} | ${ip_in} | ${subnet_in} | ${ip_out}
 | | ... | ${subnet_out}
 
-| Configure workers for SNAT
-| | [Documentation] | Configure workers for SNAT.
+| Configure workers for NAT
+| | [Documentation] | Configure workers for NAT.
 | | ...
 | | ... | *Arguments:*
-| | ... | - node - DUT node to set SNAT workers on. Type: dictionary
+| | ... | - node - DUT node to set NAT workers on. Type: dictionary
 | | ... | - lcores - list of cores, format: range e.g. 1-5 or list of ranges \
 | | ... | e.g.: 1-5,18-22. Type: string
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Configure workers for SNAT \| ${nodes['DUT1']} \| 12-23,36-47 \|
+| | ... | \| Configure workers for NAT \| ${nodes['DUT1']} \| 12-23,36-47 \|
 | | ...
 | | [Arguments] | ${node} | ${lcores}
 | | ...
-| | Set SNAT workers | ${node} | ${lcores}
+| | Set NAT workers | ${node} | ${lcores}
 
-| Show SNAT verbose
-| | [Documentation] | Get the SNAT settings on the node.
+| Show NAT verbose
+| | [Documentation] | Get the NAT settings on the node.
 | | ...
 | | ... | *Arguments:*
-| | ... | - node - DUT node to show SNAT. Type: dictionary
+| | ... | - node - DUT node to show NAT. Type: dictionary
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Show SNAT verbose \| ${nodes['DUT1']} \|
+| | ... | \| Show NAT verbose \| ${nodes['DUT1']} \|
 | | ...
 | | [Arguments] | ${node}
 | | ...
-| | Show SNAT | ${node}
+| | Show NAT | ${node}
 
-| Get SNAT deterministic forward
+| Get NAT44 deterministic forward
 | | [Documentation] | Show forward IP address and port(s).
 | | ...
 | | ... | *Arguments:*
-| | ... | - node - DUT node to get SNAT deterministic forward on.
+| | ... | - node - DUT node to get NAT44 deterministic forward on.
 | | ... | Type: dictionary
 | | ... | - ip - IP address. Type: string
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Get SNAT deterministic forward \| ${nodes['DUT1']} \| 10.0.0.2 \|
+| | ... | \| Get NAT44 deterministic forward \| ${nodes['DUT1']} \| 10.0.0.2 \|
 | | ...
 | | [Arguments] | ${node} | ${ip}
 | | ...
-| | Show SNAT deterministic forward | ${node} | ${ip}
+| | Show NAT44 deterministic forward | ${node} | ${ip}
 
-| Get SNAT deterministic reverse
+| Get NAT44 deterministic reverse
 | | [Documentation] | Show reverse IP address.
 | | ...
 | | ... | *Arguments:*
-| | ... | - node - DUT node to get SNAT deterministic reverse on.
+| | ... | - node - DUT node to get NAT44 deterministic reverse on.
 | | ... | Type: dictionary
 | | ... | - ip - IP address. Type: string
 | | ... | - port - Port. Type: string or integer
 | | ...
 | | ... | *Example:*
 | | ...
-| | ... | \| Get SNAT deterministic reverse \| ${nodes['DUT1']} \| 10.0.0.2 \
+| | ... | \| Get NAT44 deterministic reverse \| ${nodes['DUT1']} \| 10.0.0.2 \
 | | ... | \| 1025 \|
 | | ...
 | | [Arguments] | ${node} | ${ip} | ${port}
 | | ...
-| | Show SNAT deterministic reverse | ${node} | ${ip} | ${port}
+| | Show NAT44 deterministic reverse | ${node} | ${ip} | ${port}
 
 | Get NAT interfaces
 | | [Documentation] | Get list of interfaces configured with NAT from VPP node.
 | | ...
 | | ... | *Arguments:*
-| | ... | - node - DUT node to get SNAT interfaces on. Type: dictionary
+| | ... | - node - DUT node to get NAT interfaces on. Type: dictionary
 | | ...
 | | ... | *Example:*
 | | ...
@@ -133,13 +132,13 @@
 | | ...
 | | [Arguments] | ${node}
 | | ...
-| | VPP get NAT interfaces | ${node}
+| | Get NAT interfaces | ${node}
 
 | Get NAT static mappings
 | | [Documentation] | Get NAT static mappings from VPP node.
 | | ...
 | | ... | *Arguments:*
-| | ... | - node - DUT node to get SNAT static mappings on. Type: dictionary
+| | ... | - node - DUT node to get NAT static mappings on. Type: dictionary
 | | ...
 | | ... | *Example:*
 | | ...
@@ -147,4 +146,4 @@
 | | ...
 | | [Arguments] | ${node}
 | | ...
-| | VPP get NAT static mappings | ${node}
+| | Get NAT static mappings | ${node}
