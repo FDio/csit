@@ -556,6 +556,9 @@ class InterfaceKeywords(object):
         :rtype: bytearray
         """
 
+        interface = Topology.convert_interface_reference(
+            node, interface, "name")
+
         path = ("interfaces", ("interface", "name", interface), "ietf-ip:ipv4",
                 "address")
         return InterfaceKeywords._set_interface_properties(
@@ -597,6 +600,9 @@ class InterfaceKeywords(object):
         :returns: Content of response.
         :rtype: bytearray
         """
+
+        interface = Topology.convert_interface_reference(
+            node, interface, "name")
 
         path = ("interfaces", ("interface", "name", interface), "ietf-ip:ipv4",
                 "neighbor")
@@ -696,6 +702,9 @@ class InterfaceKeywords(object):
         :rtype: bytearray
         """
 
+        interface = Topology.convert_interface_reference(
+            node, interface, "name")
+
         path = ("interfaces", ("interface", "name", interface), "ietf-ip:ipv6",
                 "address")
         return InterfaceKeywords._set_interface_properties(
@@ -737,6 +746,9 @@ class InterfaceKeywords(object):
         :returns: Content of response.
         :rtype: bytearray
         """
+
+        interface = Topology.convert_interface_reference(
+            node, interface, "name")
 
         path = ("interfaces", ("interface", "name", interface), "ietf-ip:ipv6",
                 "neighbor")
