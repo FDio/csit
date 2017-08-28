@@ -39,7 +39,7 @@
 | | ...
 | | [Arguments] | @{duts}
 | | Start honeycomb on DUTs | @{duts}
-| | Wait until keyword succeeds | 4min | 16sec
+| | Wait until keyword succeeds | 4min | 20sec
 | | ... | Check honeycomb startup state | @{duts}
 | | Sleep | 5s | Make sure all modules are loaded and ready.
 
@@ -188,7 +188,7 @@
 | | Configure Restconf binding address | ${node}
 | | Configure Log Level | ${node} | TRACE
 | | Configure Persistence | ${node} | disable
-| | Configure jVPP timeout | ${node} | ${14}
+| | Configure jVPP timeout | ${node} | ${10}
 | | Clear Persisted Honeycomb Configuration | ${node}
 | | Configure Honeycomb service on DUTs | ${node}
 
