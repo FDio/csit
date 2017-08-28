@@ -36,7 +36,6 @@
 | TC01: Honeycomb enables LISP GPE feature
 | | [Documentation] | Check if Honeycomb can enable the LISP GPE feature.
 | | ...
-| | [Tags] | HC_FUNC | test
 | | Given LISP GPE Should Not Be Configured | ${node}
 | | When Honeycomb enables LISP GPE | ${node}
 | | Then LISP GPE state from Honeycomb should be | ${node} | enabled
@@ -45,7 +44,6 @@
 | TC02: Honeycomb disable LISP GPE feature
 | | [Documentation] | Check if Honeycomb can enable the LISP GPE feature.
 | | ...
-| | [Tags] | HC_FUNC
 | | [Teardown] | Honeycomb enables LISP GPE | ${node}
 | | Given LISP GPE state from Honeycomb should be | ${node} | enabled
 | | And LISP GPE state from VAT should be | ${node} | enabled
@@ -57,7 +55,6 @@
 | | [Documentation] | Check if Honeycomb can configure a LISP mapping\
 | | ... | with VRF.
 | | ...
-| | [Tags] | HC_FUNC
 | | Given LISP GPE mappings from Honeycomb should not exist
 | | ... | ${node}
 | | When Honeycomb adds first LISP GPE mapping
@@ -69,7 +66,6 @@
 | | [Documentation] | Check if Honeycomb can remove a configured LISP GPE\
 | | ... | mapping.
 | | ...
-| | [Tags] | HC_FUNC
 | | Given LISP GPE mapping from Honeycomb should be
 | | ... | ${node} | ${negative_mapping_ip4}
 | | When Honeycomb removes LISP GPE mapping
@@ -81,8 +77,6 @@
 | | [Documentation] | Check if Honeycomb can configure a LISP mapping\
 | | ... | with VRF.
 | | ...
-# | | [Tags] | HC_FUNC
-# Disabled due to VPP-915 - configuring positive entry crashes VPP
 | | [Teardown] | Honeycomb removes LISP GPE mapping
 | | ... | ${node} | ${positive_mapping_ip4['id']}
 | | Given LISP GPE mappings from Honeycomb should not exist
@@ -110,8 +104,6 @@
 | | [Documentation] | Check if Honeycomb can configure a LISP mapping\
 | | ... | with VRF.
 | | ...
-# | | [Tags] | HC_FUNC
-# Disabled due to VPP-915 - configuring positive entry crashes VPP
 | | [Teardown] | Honeycomb removes LISP GPE mapping
 | | ... | ${node} | ${positive_mapping_ip6['id']}
 | | Given LISP GPE mappings from Honeycomb should not exist
@@ -125,7 +117,6 @@
 | | [Documentation] | Check if Honeycomb can modify and existing LISP GPE\
 | | ... | mapping.
 | | ...
-| | [Tags] | HC_FUNC
 | | [Teardown] | Honeycomb removes LISP GPE mapping
 | | ... | ${node} | ${negative_mapping_ip4_edit['id']}
 | | Given LISP GPE mappings from Honeycomb should not exist
@@ -143,7 +134,6 @@
 | | [Documentation] | Check if Honeycomb can configure multiple LISP GPE\
 | | ... | mappings at the same time.
 | | ...
-| | [Tags] | HC_FUNC
 | | [Teardown] | Run Keywords
 | | ... | Honeycomb removes LISP GPE mapping
 | | ... | ${node} | ${negative_mapping_ip4['id']}
@@ -162,7 +152,6 @@
 | TC10: Honeycomb can disable all LISP GPE features
 | | [Documentation] | Check if Honeycomb can disable all LISP GPE features.
 | | ...
-| | [Tags] | HC_FUNC
 | | Given Honeycomb adds first LISP GPE mapping
 | | ... | ${node} | ${negative_mapping_ip4}
 | | When Honeycomb disables all LISP GPE features | ${node}
@@ -181,7 +170,6 @@
 | | ... | LISP GPE tunnel verify LISP encapsulation of received packet.
 | | ... | [Ref] RFC6830.
 | | ...
-| | [Tags] | test
 | | [Teardown] | LISPGPE functional traffic test teardown
 | | Given Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
@@ -215,7 +203,6 @@
 | | ... | LISP GPE tunnel verify LISP encapsulation of received packet.
 | | ... | [Ref] RFC6830.
 | | ...
-| | [Tags] | test
 | | [Teardown] | LISPGPE functional traffic test teardown
 | | Given Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}

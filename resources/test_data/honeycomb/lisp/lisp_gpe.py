@@ -80,23 +80,19 @@ positive_mapping_ip4 = {
         "virtual-network-id": 0,
         "ipv4-prefix": "192.168.5.0/24"
     },
-    "locator-pairs": [
+    "locator-pair": [
       {
-        "id": "gpe-entry-locator-1",
-        "locator-pair": {
             "local-locator": "192.168.6.2",
             "remote-locator": "192.168.7.3",
             "weight": 0
-        }
+
       },
-      {
-        "id": "gpe-entry-locator-2",
-        "locator-pair": {
+    {
             "local-locator": "192.168.5.2",
             "remote-locator": "192.168.5.3",
             "weight": 1
         }
-      }
+
     ]
 }
 
@@ -131,22 +127,16 @@ positive_mapping_ip6 = {
         "virtual-network-id": 0,
         "ipv6-prefix": "13::/64"
     },
-    "locator-pairs": [
+    "locator-pair": [
       {
-        "id": "gpe-entry-locator-1",
-        "locator-pair": {
             "local-locator": "13::10",
             "remote-locator": "13::11",
             "weight": 0
-        }
       },
       {
-        "id": "gpe-entry-locator-2",
-        "locator-pair": {
             "local-locator": "14::10",
             "remote-locator": "14::11",
             "weight": 1
-        }
       }
     ]
 }
@@ -178,14 +168,11 @@ lisp_traffic_ip4 = {
         "virtual-network-id": 0,
         "ipv4-prefix": remote_eid4
     },
-    "locator-pairs": [
+    "locator-pair": [
       {
-        "id": "gpe-entry-locator-1",
-        "locator-pair": {
             "local-locator": src_rloc4,
             "remote-locator": dst_rloc4,
             "weight": 0
-        }
       }
     ]
 }
@@ -216,14 +203,11 @@ lisp_traffic_ip6 = {
         "virtual-network-id": 0,
         "ipv6-prefix": remote_eid6
     },
-    "locator-pairs": [
+    "locator-pair": [
       {
-        "id": "gpe-entry-locator-1",
-        "locator-pair": {
             "local-locator": src_rloc6,
             "remote-locator": dst_rloc6,
             "weight": 0
-        }
       }
     ]
 }
