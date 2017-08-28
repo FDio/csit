@@ -171,6 +171,10 @@
 | | ... | of source and destination IP addresses. Receive an ICMP reply\
 | | ... | for every packet sent.
 | | ...
+| | [Teardown] | Run Keywords
+| | ... | Honeycomb removes interface IPv4 addresses | ${node} | ${interface}
+| | ... | AND
+| | ... | Honeycomb removes interface IPv6 addresses | ${node} | ${interface}
 | | Given Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | When Honeycomb sets interface IPv4 address with prefix
