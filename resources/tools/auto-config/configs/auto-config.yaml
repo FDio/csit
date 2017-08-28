@@ -1,0 +1,17 @@
+metadata:
+  system_config_file: ./configs/system-config.yaml
+  version: 0.1
+nodes:
+  DUT1:
+    cpu:
+      grub_config_file: ./dryrun/etc/default/grub
+        host: localhost
+    hugepages:
+      hugepage_config_file: ./dryrun/etc/sysctl.d/80-vpp.conf
+      total: '1024'
+    interfaces:
+    type: DUT
+    vpp:
+      startup_config_file: ./dryrun/etc/vpp/startup.conf
+      unix:
+        interactive: true
