@@ -202,6 +202,8 @@
 | | [Documentation] | Honeycomb tries to modify an existing L2 FIB entry. It \
 | | ... | must fail.
 | | ...
+# HC2VPP-228 - operation does not revert on error
+| | [Tags] | EXPECTED_FAILING
 | | [Teardown] | Honeycomb removes all L2 FIB entries
 | | ... | ${node} | ${bd_name}
 | | ...
