@@ -471,8 +471,6 @@
 | | [Documentation] | Check if Honeycomb can configure an unnumbered interface\
 | | ... | on a sub-interface, borrowing the IP address of a physical interface.
 | | ...
-# CSIT-734: Intermittent failures of all unnumbered interface cases
-| | [Tags] | EXPECTED_FAILING
 | | Given sub-interface ipv4 address from Honeycomb should be empty
 | | ... | ${node} | ${super_if} | ${sub_if_id}
 | | And sub-interface ipv4 address from VAT should be empty
@@ -497,8 +495,6 @@
 | | [Documentation] | Check if Honeycomb can remove unnumbered configuration\
 | | ... | from a sub-interface.
 | | ...
-# CSIT-734: Intermittent failures of all unnumbered interface cases
-| | [Tags] | EXPECTED_FAILING
 | | [Teardown] | Honeycomb removes interface IPv4 addresses | ${node}
 | | ... | ${super_if2}
 | | ...
@@ -528,8 +524,6 @@
 | TC24: Honeycomb can configure unnumbered interface using a sub-interface
 | | [Documentation] | Check if Honeycomb can configure an unnumbered interface\
 | | ... | on an interface, borrowing the IP address of a sub-interface.
-| | ...# CSIT-734: Intermittent failures of all unnumbered interface cases
-| | [Tags] | EXPECTED_FAILING
 | | Given IPv4 address from Honeycomb should be empty | ${node} | ${super_if2}
 | | And ipv4 address from VAT should be empty | ${node} | ${super_if2}
 | | And sub-interface ipv4 address from Honeycomb should be empty

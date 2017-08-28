@@ -171,6 +171,10 @@
 | | ... | of source and destination IP addresses. Receive an ICMP reply\
 | | ... | for every packet sent.
 | | ...
+| | [Teardown] | Run Keywords
+| | ... | Honeycomb removes interface IPv4 addresses | ${node} | ${interface}
+| | ... | AND
+| | ... | Honeycomb removes interface IPv6 addresses | ${node} | ${interface}
 | | Given Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | When Honeycomb sets interface IPv4 address with prefix
@@ -190,7 +194,8 @@
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${ipv6_address} | ${ipv6_prefix}
 | | And IPv6 address from VAT should contain
 | | ... | ${dut_node} | ${dut_to_tg_if1} | ${ipv6_address} | ${ipv6_prefix}
-| | And Honeycomb configures interface state | ${dut_node} | ${dut_to_tg_if1} | up
+| | And Honeycomb configures interface state
+| | ... | ${dut_node} | ${dut_to_tg_if1} | up
 | | And Honeycomb adds interface IPv4 neighbor | ${dut_node} | ${dut_to_tg_if1}
 | | ... | ${ipv4_neighbor} | ${neighbor_mac}
 | | And Honeycomb adds interface IPv4 neighbor | ${dut_node} | ${dut_to_tg_if1}
@@ -222,8 +227,6 @@
 | | ... | on a physical interface, borrowing the IP address of another physical\
 | | ... | interface.
 | | ...
-# CSIT-734: Intermittent failures of all unnumbered interface cases
-| | [Tags] | EXPECTED_FAILING
 | | Given Honeycomb sets interface IPv4 address | ${node}
 | | ... | ${interface2} | ${ipv4_address} | ${ipv4_prefix}
 | | When Honeycomb adds unnumbered configuration to interface
@@ -244,8 +247,6 @@
 | | [Documentation] | Check if Honeycomb can remove unnumbered configuration\
 | | ... | from an interface.
 | | ...
-# CSIT-734: Intermittent failures of all unnumbered interface cases
-| | [Tags] | EXPECTED_FAILING
 | | Given IPv4 address from Honeycomb should be
 | | ... | ${node} | ${interface2} | ${ipv4_address} | ${ipv4_prefix}
 | | And IPv4 address from VAT should be
