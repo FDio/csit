@@ -170,6 +170,7 @@
 | | ... | of source and destination IP addresses. Receive an ICMP reply\
 | | ... | for every packet sent.
 | | ...
+| | [Teardown] | Multiple IP Address Test Teardown | ${node} | ${dut_to_tg_if1}
 | | Given Configure path in 2-node circular topology
 | | ... | ${nodes['TG']} | ${nodes['DUT1']} | ${nodes['TG']}
 | | When Honeycomb sets interface IPv4 address with prefix
@@ -291,3 +292,11 @@
 | | ... | ${node} | ${interface} | 10::FF11 | ${64}
 | | And Honeycomb fails to add interface IPv6 address
 | | ... | ${node} | ${interface} | 10::FFFF | ${64}
+
+*** Keywords ***
+| Multiple IP Address Test Teardown
+| | [Arguments] | ${node} | ${interface}
+| | Honeycomb removes interface IPv4 addresses | ${node} | ${interface}
+| | Honeycomb removes interface IPv6 addresses | ${node} | ${interface}
+| | Honeycomb clears all interface IPv4 neighbors | ${node} | ${interface}
+| | Honeycomb clears all interface IPv6 neighbors | ${node} | ${interface}
