@@ -161,7 +161,7 @@ class VppConfigGenerator(object):
         cryptodev = Topology.get_cryptodev(self._node)
         for i in range(count):
             cryptodev_config = 'dev {0}'.format(
-                re.sub(r'\d.\d$', '1.'+str(i), cryptodev))
+                re.sub(r'\d.\d$', '1.' + str(i), cryptodev))
             path = ['dpdk', cryptodev_config]
             self.add_config_item(self._nodeconfig, '', path)
         self.add_dpdk_uio_driver('igb_uio')
@@ -201,7 +201,6 @@ class VppConfigGenerator(object):
         """
         path = ['dpdk', 'dev default', 'num-tx-desc']
         self.add_config_item(self._nodeconfig, value, path)
-
 
     def add_dpdk_socketmem(self, value):
         """Add DPDK socket memory configuration.
@@ -313,26 +312,24 @@ class VppConfigGenerator(object):
         ssh = SSH()
         ssh.connect(self._node)
 
+        # Instead of restarting, we'll do separate start and stop
+        # actions. This way we don't care whether VPP was running
+        # to begin with.
+        ssh.exec_command('sudo service {} stop'.format(self._vpp_service_name))
+        time.sleep(waittime)
+
         # We're using this "| sudo tee" construct because redirecting
         # a sudo's output ("sudo echo xxx > /path/to/file") does not
         # work on most platforms...
-        (ret, _, _) = \
-            ssh.exec_command('echo "{0}" | sudo tee {1}'.
-                             format(self._vpp_config,
-                                    self._vpp_config_filename))
-
+        cmd = 'echo "{0}" | sudo tee {1}'.format(self._vpp_config,
+                                                 self._vpp_config_filename)
+        (ret, _, _) = ssh.exec_command(cmd)
         if ret != 0:
             raise RuntimeError('Writing config file failed to node {}'.
                                format(self._hostname))
 
-        # Instead of restarting, we'll do separate start and stop
-        # actions. This way we don't care whether VPP was running
-        # to begin with.
-        ssh.exec_command('sudo service {} stop'
-                         .format(self._vpp_service_name))
-        (ret, _, _) = \
-            ssh.exec_command('sudo service {} start'
-                             .format(self._vpp_service_name))
+        cmd = 'sudo service {} start'.format(self._vpp_service_name)
+        (ret, _, _) = ssh.exec_command(cmd)
         if ret != 0:
             raise RuntimeError('Restarting VPP failed on node {}'.
                                format(self._hostname))

@@ -16,6 +16,7 @@
 import StringIO
 from time import time, sleep
 
+import subprocess
 import socket
 import paramiko
 from paramiko import RSAKey
@@ -61,6 +62,12 @@ class SSH(object):
 
         If there already is a connection to the node, this method reuses it.
         """
+
+        # If we are using the localhost we will write the command directly
+        if node['host'] == 'localhost':
+            self._node = node
+            return
+
         try:
             self._node = node
             node_hash = self._node_hash(node)
@@ -104,6 +111,9 @@ class SSH(object):
         :param node: The node to disconnect from.
         :type node: dict
         """
+        if node['host'] == 'localhost':
+            return
+
         node_hash = self._node_hash(node)
         if node_hash in SSH.__existing_connections:
             logger.debug('Disconnecting peer: {}, {}'.
@@ -120,6 +130,37 @@ class SSH(object):
         logger.debug('Reconnecting peer done: {}'.
                      format(self._ssh.get_transport().getpeername()))
 
+    @staticmethod
+    def _exec_local_command(cmd):
+        """Execute a command on the local node.
+
+        :param cmd: Command to run locally.
+        :type cmd: str
+        :type timeout: int
+        :return return_code, stdout, stderr
+        :rtype: tuple(int, str, str)
+        """
+
+        logger.debug("Executing local command: {}".format(cmd))
+        out = ''
+        err = ''
+        prc = subprocess.Popen(cmd, shell=True, bufsize=1,
+                               stdin=subprocess.PIPE,
+                               stdout=subprocess.PIPE,
+                               stderr=subprocess.PIPE)
+        with prc.stdout:
+            for line in iter(prc.stdout.readline, b''):
+                logger.info(line.strip('\n'))
+                out += line
+
+        with prc.stderr:
+            for line in iter(prc.stderr.readline, b''):
+                logger.debug(line.strip('\n'))
+                err += line
+
+        ret = prc.wait()
+        return ret, out, err
+
     def exec_command(self, cmd, timeout=10):
         """Execute SSH command on a new channel on the connected Node.
 
@@ -132,6 +173,12 @@ class SSH(object):
         :rtype: tuple(int, str, str)
         :raise SSHTimeout: If command is not finished in timeout time.
         """
+
+        # if the command is local, we execute the command directly
+        if self._node['host'] == 'localhost':
+            return self._exec_local_command(cmd)
+
+        # Execute the command on the remote node
         start = time()
         stdout = StringIO.StringIO()
         stderr = StringIO.StringIO()

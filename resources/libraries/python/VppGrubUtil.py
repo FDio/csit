@@ -1,0 +1,211 @@
+# Copyright (c) 2016 Cisco and/or its affiliates.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at:
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+"""VPP Grub Utility Library."""
+
+import re
+
+from resources.libraries.python.ssh import SSH
+
+__all__ = ['VppGrubUtil']
+
+
+class VppGrubUtil(object):
+    """ VPP Grub Utilities."""
+
+    def _get_current_cmdline(self):
+        """
+        Using /proc/cmdline return the current grub cmdline
+
+        :returns: The current grub cmdline
+        :rtype: string
+        """
+
+        ssh = SSH()
+        ssh.connect(self._node)
+
+        # Get the memory information using /proc/meminfo
+        cmd = 'sudo cat /proc/cmdline'
+        (ret, stdout, stderr) = ssh.exec_command(cmd)
+        if ret != 0:
+            raise RuntimeError('{} on node {} {} {}'.
+                               format(cmd, self._node['host'],
+                                      stdout, stderr))
+
+        self._current_cmdline = stdout.strip('\n')
+
+    def _get_default_cmdline(self):
+        """
+        Using /etc/default/grub return the default grub cmdline
+
+        :returns: The default grub cmdline
+        :rtype: string
+        """
+
+        ssh = SSH()
+        ssh.connect(self._node)
+
+        # Get the default grub cmdline
+        gfile = self._node['cpu']['grub_config_file']
+        cmd = 'cat {}'.format(gfile)
+        (ret, stdout, stderr) = \
+            ssh.exec_command(cmd)
+        if ret != 0:
+            raise RuntimeError('{} Executing failed on node {} {}'.
+                               format(cmd, self._node['host'], stderr))
+
+        # Get the Default Linux command line, ignoring commented lines
+        lines = stdout.split('\n')
+        for line in lines:
+            if (len(line) == 0) or (line[0] == '#'):
+                continue
+            ldefault = re.findall(r'GRUB_CMDLINE_LINUX_DEFAULT=.+', line)
+            if len(ldefault) > 0:
+                self._default_cmdline = ldefault[0]
+                break
+
+    def get_current_cmdline(self):
+        """
+        Returns the saved grub cmdline
+
+        :returns: The saved grub cmdline
+        :rtype: string
+        """
+        return self._current_cmdline
+
+    def get_default_cmdline(self):
+        """
+        Returns the default grub cmdline
+
+        :returns: The default grub cmdline
+        :rtype: string
+        """
+        return self._default_cmdline
+
+    def create_cmdline(self, isolated_cpus):
+        """
+        Create the new grub cmdline
+
+        :param isolated_cpus: The isolated cpu string
+        :type isolated_cpus: string
+        :returns: The command line
+        :rtype: string
+        """
+
+        cmdline = self._default_cmdline
+        value = cmdline.split('GRUB_CMDLINE_LINUX_DEFAULT=')[1]
+        value = value.rstrip('"').lstrip('"')
+
+        iommu = re.findall(r'iommu=\w+', value)
+        # If there is already some iommu commands set, leave them,
+        # if not use ours
+        if not iommu:
+            value = '{} iommu=pt intel_iommu=on'.format(value)
+
+        # Replace isolcpus with ours
+        isolcpus = re.findall(r'isolcpus=[\w+\-,]+', value)
+        if not isolcpus:
+            if isolated_cpus is not '':
+                value = "{} isolcpus={}".format(value, isolated_cpus)
+        else:
+            if isolated_cpus is not '':
+                value = re.sub(r'isolcpus=[\w+\-,]+',
+                               'isolcpus={}'.format(isolated_cpus),
+                               value)
+            else:
+                value = re.sub(r'isolcpus=[\w+\-,]+', '', value)
+
+        value = value.lstrip(' ').rstrip(' ')
+        cmdline = 'GRUB_CMDLINE_LINUX_DEFAULT="{}"'.format(value)
+        return cmdline
+
+    def apply_cmdline(self, node, isolated_cpus):
+        """
+        Apply cmdline to the default grub file
+
+        :param node: Node dictionary with cpuinfo.
+        :param isolated_cpus: The isolated cpu string
+        :type node: dict
+        :type isolated_cpus: string
+        :return The vpp cmdline
+        :rtype string
+        """
+
+        vpp_cmdline = self.create_cmdline(isolated_cpus)
+        if vpp_cmdline == '':
+            return vpp_cmdline
+
+        # Update grub
+        # Save the original file
+        ofilename = node['cpu']['grub_config_file'] + '.orig'
+        filename = node['cpu']['grub_config_file']
+
+        ssh = SSH()
+        ssh.connect(self._node)
+
+        # Write the output file
+        # Does a copy of the original file exist, if not create one
+        (ret, stdout, stderr) = ssh.exec_command('ls {}'.format(ofilename))
+        if ret != 0:
+            if stdout.strip('\n') != ofilename:
+                cmd = 'sudo cp {} {}'.format(filename, ofilename)
+                (ret, stdout, stderr) = ssh.exec_command(cmd)
+                if ret != 0:
+                    raise RuntimeError('{} failed on node {} {}'.
+                                       format(cmd, self._node['host'], stderr))
+
+        # Get the contents of the current grub config file
+        cmd = 'cat {}'.format(filename)
+        (ret, stdout, stderr) = ssh.exec_command(cmd)
+        if ret != 0:
+            raise RuntimeError('{} failed on node {} {}'.format(
+                cmd,
+                self._node['host'],
+                stderr))
+
+        # Write the new contents
+        # Get the Default Linux command line, ignoring commented lines
+        content = ""
+        lines = stdout.split('\n')
+        for line in lines:
+            if len(line) == 0:
+                content += line + '\n'
+                continue
+            if line[0] == '#':
+                content += line + '\n'
+                continue
+
+            ldefault = re.findall(r'GRUB_CMDLINE_LINUX_DEFAULT=.+', line)
+            if len(ldefault) > 0:
+                content += vpp_cmdline + '\n'
+            else:
+                content += line + '\n'
+
+        content = content.replace(r"`", r"\`")
+        content = content.rstrip('\n')
+        cmd = "sudo cat > {0} << EOF\n{1}\n".format(filename, content)
+        (ret, stdout, stderr) = ssh.exec_command(cmd)
+        if ret != 0:
+            raise RuntimeError('{} failed on node {} {}'.format(
+                cmd,
+                self._node['host'],
+                stderr))
+
+        return vpp_cmdline
+
+    def __init__(self, node):
+        self._node = node
+        self._current_cmdline = ""
+        self._default_cmdline = ""
+        self._get_current_cmdline()
+        self._get_default_cmdline()

@@ -13,6 +13,8 @@
 
 """CPU utilities library."""
 
+import re
+
 from resources.libraries.python.ssh import SSH
 
 __all__ = ["CpuUtils"]
@@ -72,10 +74,10 @@ class CpuUtils(object):
             ssh.connect(node)
             cmd = "lscpu -p"
             ret, stdout, stderr = ssh.exec_command(cmd)
-#           parsing of "lscpu -p" output:
-#           # CPU,Core,Socket,Node,,L1d,L1i,L2,L3
-#           0,0,0,0,,0,0,0,0
-#           1,1,0,0,,1,1,1,0
+            #           parsing of "lscpu -p" output:
+            #           # CPU,Core,Socket,Node,,L1d,L1i,L2,L3
+            #           0,0,0,0,,0,0,0,0
+            #           1,1,0,0,,1,1,1,0
             if ret != 0:
                 raise RuntimeError(
                     "Failed to execute ssh command, ret: {} err: {}".format(
@@ -246,3 +248,44 @@ class CpuUtils(object):
             cpu_range = "{}{}{}".format(cpu_list[0], sep, cpu_list[-1])
 
         return cpu_range
+
+    @staticmethod
+    def get_cpu_info_per_node(node):
+        """Return node related list of CPU numbers.
+
+        :param node: Node dictionary with cpuinfo.
+        :type node: dict
+        :returns: Important CPU information.
+        :rtype: dict
+        """
+
+        ssh = SSH()
+        ssh.connect(node)
+        cmd = "lscpu"
+        ret, stdout, stderr = ssh.exec_command(cmd)
+        if ret != 0:
+            raise RuntimeError("lscpu command failed on node {} {}."
+                               .format(node['host'], stderr))
+
+        cpuinfo = {}
+        lines = stdout.split('\n')
+        for line in lines:
+            if line != '':
+                linesplit = re.split(r':\s+', line)
+                cpuinfo[linesplit[0]] = linesplit[1]
+
+        cmd = "cat /proc/*/task/*/stat | awk '{print $1" "$2" "$39}'"
+        ret, stdout, stderr = ssh.exec_command(cmd)
+        if ret != 0:
+            raise RuntimeError("cat command failed on node {} {}."
+                               .format(node['host'], stderr))
+
+        vpp_processes = {}
+        vpp_lines = re.findall(r'\w+\(vpp_\w+\)\w+', stdout)
+        for line in vpp_lines:
+            linesplit = re.split(r'\w+\(', line)[1].split(')')
+            vpp_processes[linesplit[0]] = linesplit[1]
+
+        cpuinfo['vpp_processes'] = vpp_processes
+
+        return cpuinfo
