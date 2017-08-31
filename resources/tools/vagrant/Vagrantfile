@@ -27,12 +27,13 @@ SHELL
 $install_prereqs = <<-SHELL
     sudo apt-get -y update
     sudo apt-get -y -f install
-    sudo apt-get -y install python-virtualenv python-dev iproute2 debhelper dkms
+    sudo apt-get -y install python-virtualenv python-dev iproute2 debhelper dkms python-cffi libpcap-dev
     sudo update-alternatives --install /bin/sh sh /bin/bash 100
 SHELL
 
 $install_vpp = <<-SHELL
     sudo apt-get -y purge vpp\*
+    mkdir -p /mnt/huge
     cd /vagrant
     vpp_pkgs="$(echo vpp*.deb)"
     if [ "$vpp_pkgs" != "vpp*.deb" ]; then
@@ -44,7 +45,7 @@ SHELL
 def add_dut(config, name, mgmt_ip, port1, port2, port3, port4)
   config.vm.box_check_update = false
   config.vm.define name do |node|
-    node.vm.box = "fdio-csit/ubuntu-14.04.4_2016-05-25_1.0"
+    node.vm.box = "puppetlabs/ubuntu-16.04-64-nocm"
     node.vm.hostname = name
     node.vm.provision "shell", inline: $user_addition
     node.vm.provision "shell", inline: $install_prereqs
@@ -84,7 +85,7 @@ def add_tg(config, name, mgmt_ip, port1, port2, port3, port4, port5, port6)
         config.proxy.no_proxy = ENV["no_proxy"]
       end
     end
-    node.vm.box = "fdio-csit/ubuntu-14.04.4_2016-05-25_1.0"
+    node.vm.box = "puppetlabs/ubuntu-16.04-64-nocm"
     node.vm.hostname = name
     node.vm.provision "shell", inline: $user_addition
     node.vm.provision "shell", inline: $install_prereqs
