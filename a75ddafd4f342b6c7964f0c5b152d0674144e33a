@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a4b7175_8881b04c",
+        "filename": "resources/libraries/robot/performance/performance_setup.robot",
+        "patchSetId": 4
+      },
+      "lineNbr": 570,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2017-09-04T12:25:41Z",
+      "side": 0,
+      "message": "Please, keed this KW here. It is used in new MACIP perf tests that are in progress: https://gerrit.fd.io/r/#/c/8038/.",
+      "range": {
+        "startLine": 569,
+        "startChar": 0,
+        "endLine": 570,
+        "endChar": 43
+      },
+      "revId": "a75ddafd4f342b6c7964f0c5b152d0674144e33a",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
