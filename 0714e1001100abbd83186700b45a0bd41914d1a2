@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a4b7175_f94a3482",
+        "filename": "tests/vpp/func/honeycomb/mgmt-cfg-intip4-intip6-apihc-apivat-func.robot",
+        "patchSetId": 2
+      },
+      "lineNbr": 297,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-09-06T10:16:46Z",
+      "side": 1,
+      "message": "Tear Down Multiple IP Address Test",
+      "range": {
+        "startLine": 297,
+        "startChar": 2,
+        "endLine": 297,
+        "endChar": 35
+      },
+      "revId": "0714e1001100abbd83186700b45a0bd41914d1a2",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
