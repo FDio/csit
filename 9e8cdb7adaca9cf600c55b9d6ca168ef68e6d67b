@@ -92,6 +92,29 @@
       "revId": "9e8cdb7adaca9cf600c55b9d6ca168ef68e6d67b",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a4b7175_20e88cb3",
+        "filename": "resources/libraries/robot/ip/ip6.robot",
+        "patchSetId": 8
+      },
+      "lineNbr": 48,
+      "author": {
+        "id": 180
+      },
+      "writtenOn": "2017-09-07T12:14:57Z",
+      "side": 1,
+      "message": "improve the formatting of the source code.",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 48,
+        "endChar": 74
+      },
+      "revId": "9e8cdb7adaca9cf600c55b9d6ca168ef68e6d67b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
