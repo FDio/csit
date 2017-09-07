@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a4b7175_20f40cf1",
+        "filename": "resources/libraries/python/VhostUser.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 95,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2017-09-07T11:34:49Z",
+      "side": 1,
+      "message": "Dot at the end, please.",
+      "range": {
+        "startLine": 95,
+        "startChar": 26,
+        "endLine": 95,
+        "endChar": 31
+      },
+      "revId": "9e8cdb7adaca9cf600c55b9d6ca168ef68e6d67b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a4b7175_00f910e9",
+        "filename": "resources/libraries/python/VppCounters.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2017-09-07T11:34:49Z",
+      "side": 1,
+      "message": "Dot at the end, please.\n\n- all occurances",
+      "range": {
+        "startLine": 90,
+        "startChar": 26,
+        "endLine": 90,
+        "endChar": 31
+      },
+      "revId": "9e8cdb7adaca9cf600c55b9d6ca168ef68e6d67b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a4b7175_001590f0",
+        "filename": "resources/libraries/python/VppCounters.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 207
+      },
+      "writtenOn": "2017-09-07T11:34:49Z",
+      "side": 1,
+      "message": "What about to use it as function argument with default value 10? Maybe in some cases we will need increase/decrase  the wait time to e.g. tune overall test execution time (10s multiplied by tens or hundreds of tests leads to additional minutes in test execution time).",
+      "range": {
+        "startLine": 296,
+        "startChar": 19,
+        "endLine": 296,
+        "endChar": 21
+      },
+      "revId": "9e8cdb7adaca9cf600c55b9d6ca168ef68e6d67b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
+    }
+  ]
+}
