@@ -68,6 +68,30 @@
       "revId": "9e8cdb7adaca9cf600c55b9d6ca168ef68e6d67b",
       "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a4b7175_e0ca744e",
+        "filename": "resources/libraries/python/VppCounters.py",
+        "patchSetId": 8
+      },
+      "lineNbr": 296,
+      "author": {
+        "id": 76
+      },
+      "writtenOn": "2017-09-07T12:06:13Z",
+      "side": 1,
+      "message": "+1 for making it as argument. Default can be 10. This is there from simple reason to wait for traffic to arrive back to TG. As the TG driver design does implement this waiting on its own (and is synchronous - we can safely disable is from outside. Safely it can be lowered to 5s.",
+      "parentUuid": "3a4b7175_001590f0",
+      "range": {
+        "startLine": 296,
+        "startChar": 19,
+        "endLine": 296,
+        "endChar": 21
+      },
+      "revId": "9e8cdb7adaca9cf600c55b9d6ca168ef68e6d67b",
+      "serverId": "6d2eb258-4fe2-443e-8a38-ca81da23d4c2",
+      "unresolved": false
     }
   ]
 }
