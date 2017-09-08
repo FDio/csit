@@ -19,13 +19,18 @@ import logging
 import os
 import sys
 
+# pylint: disable=no-name-in-module
+# pylint: disable=import-error
 logging.getLogger("scapy.runtime").setLevel(logging.ERROR)
-from resources.libraries.python.PacketVerifier import RxQueue, TxQueue, \
-    checksum_equal
-from resources.libraries.python.TrafficScriptArg import TrafficScriptArg
-from scapy.layers.inet6 import IPv6, ICMPv6ND_NA, ICMPv6NDOptDstLLAddr
-from scapy.layers.inet6 import ICMPv6EchoRequest, ICMPv6EchoReply
+
 from scapy.all import Ether
+from scapy.layers.inet6 import IPv6, ICMPv6ND_NA, ICMPv6ND_NS
+from scapy.layers.inet6 import ICMPv6NDOptDstLLAddr
+from scapy.layers.inet6 import ICMPv6EchoRequest, ICMPv6EchoReply
+
+from resources.libraries.python.PacketVerifier import RxQueue, TxQueue
+from resources.libraries.python.PacketVerifier import checksum_equal
+from resources.libraries.python.TrafficScriptArg import TrafficScriptArg
 
 
 def main():
@@ -68,37 +73,43 @@ def main():
         sent_packets.append(pkt_send)
         txq.send(pkt_send)
 
-        ether = rxq.recv(ignore=sent_packets)
-        if ether is None:
-            raise RuntimeError(
-                'ICMPv6 echo reply seq {0} Rx timeout'.format(echo_seq))
+        while True:
+            ether = rxq.recv(ignore=sent_packets)
+            if ether is None:
+                raise RuntimeError('ICMPv6 echo reply seq {0} '
+                                   'Rx timeout'.format(echo_seq))
+
+            if ether.haslayer(ICMPv6ND_NS):
+                # read another packet in the queue in case of ICMPv6ND_NS packet
+                continue
+            else:
+                # otherwise process the current packet
+                break
 
         if not ether.haslayer(IPv6):
-            raise RuntimeError(
-                'Unexpected packet with no IPv6 received {0}'.format(
-                    ether.__repr__()))
+            raise RuntimeError('Unexpected packet with no IPv6 layer '
+                               'received: {0}'.format(ether.__repr__()))
 
-        ipv6 = ether['IPv6']
+        ipv6 = ether[IPv6]
 
         if not ipv6.haslayer(ICMPv6EchoReply):
-            raise RuntimeError(
-                'Unexpected packet with no IPv6 ICMP received {0}'.format(
-                    ipv6.__repr__()))
+            raise RuntimeError('Unexpected packet with no ICMPv6 echo reply '
+                               'layer received: {0}'.format(ipv6.__repr__()))
 
-        icmpv6 = ipv6['ICMPv6 Echo Reply']
+        icmpv6 = ipv6[ICMPv6EchoReply]
 
         if icmpv6.id != echo_id or icmpv6.seq != echo_seq:
-            raise RuntimeError(
-                'Invalid ICMPv6 echo reply received ID {0} seq {1} should be '
-                'ID {2} seq {3}, {0}'.format(icmpv6.id, icmpv6.seq, echo_id,
-                                             echo_seq))
+            raise RuntimeError('ICMPv6 echo reply with invalid data received: '
+                               'ID {0} seq {1} should be ID {2} seq {3}, {0}'.
+                               format(icmpv6.id, icmpv6.seq, echo_id,
+                                      echo_seq))
 
         cksum = icmpv6.cksum
         del icmpv6.cksum
         tmp = ICMPv6EchoReply(str(icmpv6))
         if not checksum_equal(tmp.cksum, cksum):
-            raise RuntimeError(
-                'Invalid checksum {0} should be {1}'.format(cksum, tmp.cksum))
+            raise RuntimeError('Invalid checksum: {0} should be {1}'.
+                               format(cksum, tmp.cksum))
 
         sent_packets.remove(pkt_send)
 

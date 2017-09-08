@@ -24,8 +24,8 @@ from scapy.layers.l2 import Ether
 
 from resources.libraries.python.PacketVerifier import RxQueue, TxQueue, auto_pad
 from resources.libraries.python.TrafficScriptArg import TrafficScriptArg
-from resources.libraries.python.telemetry.IPFIXUtil import IPFIXHandler, \
-    IPFIXData
+from resources.libraries.python.telemetry.IPFIXUtil import IPFIXHandler
+from resources.libraries.python.telemetry.IPFIXUtil import IPFIXData
 
 
 def valid_ipv4(ip):
@@ -123,6 +123,11 @@ def main():
         pkt = rxq.recv(10, ignore=ignore, verbose=verbose)
         if pkt is None:
             raise RuntimeError("RX timeout")
+
+        if pkt.haslayer("ICMPv6ND_NS"):
+            # read another packet in the queue if the current one is ICMPv6ND_NS
+            continue
+
         if pkt.haslayer("IPFIXHeader"):
             if pkt.haslayer("IPFIXTemplate"):
                 # create or update template for IPFIX data packets
@@ -138,9 +143,9 @@ def main():
 
     # verify packet count
     if data["packetTotalCount"] != count:
-        raise RuntimeError(
-            "IPFIX reported wrong packet count. Count was {0},"
-            " but should be {1}".format(data["packetTotalCount"], count))
+        raise RuntimeError("IPFIX reported wrong packet count. Count was {0},"
+                           "but should be {1}".format(data["packetTotalCount"],
+                                                      count))
     # verify IP addresses
     keys = data.keys()
     err = "{0} mismatch. Packets used {1}, but were classified as {2}."

@@ -17,27 +17,24 @@ Traffic script that sends an TCP packet
 from TG to DUT.
 """
 import sys
-import time
 
-from scapy.layers.inet import IP, UDP, TCP
-from scapy.layers.inet6 import IPv6
 from scapy.all import Ether, Packet, Raw
+from scapy.layers.inet import IP, TCP
+from scapy.layers.inet6 import IPv6, ICMPv6ND_NS
 
 from resources.libraries.python.SFC.VerifyPacket import *
-from resources.libraries.python.SFC.SFCConstants import SFCConstants as sfccon
+from resources.libraries.python.SFC.SFCConstants import SFCConstants as SfcCon
 from resources.libraries.python.TrafficScriptArg import TrafficScriptArg
 from resources.libraries.python.PacketVerifier import RxQueue, TxQueue
 
-from robot.api import logger
 
 def main():
     """Send TCP packet from one traffic generator interface to DUT.
 
     :raises: If the IP address is invalid.
     """
-    args = TrafficScriptArg(
-        ['src_mac', 'dst_mac', 'src_ip', 'dst_ip',
-        'timeout', 'framesize', 'testtype'])
+    args = TrafficScriptArg(['src_mac', 'dst_mac', 'src_ip', 'dst_ip',
+                             'timeout', 'framesize', 'testtype'])
 
     src_mac = args.get_arg('src_mac')
     dst_mac = args.get_arg('dst_mac')
@@ -54,10 +51,9 @@ def main():
     sent_packets = []
 
     protocol = TCP
-    source_port = sfccon.DEF_SRC_PORT
-    destination_port = sfccon.DEF_DST_PORT
+    source_port = SfcCon.DEF_SRC_PORT
+    destination_port = SfcCon.DEF_DST_PORT
 
-    ip_version = None
     if valid_ipv4(src_ip) and valid_ipv4(dst_ip):
         ip_version = IP
     elif valid_ipv6(src_ip) and valid_ipv6(dst_ip):
@@ -66,8 +62,8 @@ def main():
         raise ValueError("Invalid IP version!")
 
     pkt_header = (Ether(src=src_mac, dst=dst_mac) /
-               ip_version(src=src_ip, dst=dst_ip) /
-               protocol(sport=int(source_port), dport=int(destination_port)))
+                  ip_version(src=src_ip, dst=dst_ip) /
+                  protocol(sport=int(source_port), dport=int(destination_port)))
 
     fsize_no_fcs = frame_size - 4
     pad_len = max(0, fsize_no_fcs - len(pkt_header))
@@ -79,10 +75,17 @@ def main():
     sent_packets.append(pkt_raw)
     txq.send(pkt_raw)
 
-    ether = rxq.recv(timeout)
+    while True:
+        ether = rxq.recv(timeout)
+        if ether is None:
+            raise RuntimeError('No packet is received!')
 
-    if ether is None:
-        raise RuntimeError("No packet is received!")
+        if ether.haslayer(ICMPv6ND_NS):
+            # read another packet in the queue if the current one is ICMPv6ND_NS
+            continue
+        else:
+            # otherwise process the current packet
+            break
 
     # let us begin to check the NSH SFC loopback  packet
     VerifyPacket.check_the_nsh_sfc_packet(ether, frame_size, test_type)
