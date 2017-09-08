@@ -55,6 +55,8 @@
 | | ... | ${dut_to_tg_if1_ip6} | ${prefix}
 | | And Add Ip Neighbor | ${dut_node} | ${dut_to_tg_if1} | ${tg_to_dut_if1_ip6}
 | | ... | ${tg_to_dut_if1_mac}
+| | And Add Ip Neighbor | ${dut_node} | ${dut_to_tg_if2} | ${tg_to_dut_if1_ip6}
+| | ... | ${tg_to_dut_if1_mac}
 | | And Vpp Route Add | ${dut_node} | ${tg_to_dut_if1_ip6} | ${prefix}
 | | ... | ${dut_to_tg_if1_ip6} | ${dut_to_tg_if1}
 | | And Set SPAN Mirroring | ${dut_node} | ${dut_to_tg_if1} | ${dut_to_tg_if2}

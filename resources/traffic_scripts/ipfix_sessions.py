@@ -192,6 +192,11 @@ def main():
         pkt = rxq.recv(5)
         if pkt is None:
             raise RuntimeError("RX timeout")
+
+        if pkt.haslayer("ICMPv6ND_NS"):
+            # read another packet in the queue if the current one is ICMPv6ND_NS
+            continue
+
         if pkt.haslayer("IPFIXHeader"):
             if pkt.haslayer("IPFIXTemplate"):
                 # create or update template for IPFIX data packets
@@ -219,6 +224,6 @@ def main():
             raise RuntimeError("Received non-IPFIX packet or IPFIX header was"
                                "not recognized.")
 
-if __name__ == "__main__":
 
+if __name__ == "__main__":
     main()

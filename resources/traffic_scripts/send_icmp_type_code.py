@@ -19,10 +19,9 @@ the other one. Dot1q or Dot1ad tagging of the ethernet frame can be set.
 import sys
 import ipaddress
 
-from scapy.layers.inet import ICMP, IP
 from scapy.layers.l2 import Ether
-from scapy.layers.inet6 import ICMPv6EchoRequest
-from scapy.layers.inet6 import IPv6
+from scapy.layers.inet import ICMP, IP
+from scapy.layers.inet6 import IPv6, ICMPv6EchoRequest, ICMPv6ND_NS
 
 from resources.libraries.python.PacketVerifier import RxQueue, TxQueue
 from resources.libraries.python.TrafficScriptArg import TrafficScriptArg
@@ -88,13 +87,13 @@ def main():
         pkt_raw = (Ether(src=src_mac, dst=dst_mac) /
                    IP(src=src_ip, dst=dst_ip) /
                    ICMP(code=icmp_code, type=icmp_type))
-        ip_format = 'IP'
-        icmp_format = 'ICMP'
+        ip_format = IP
+        icmp_format = ICMP
     elif valid_ipv6(src_ip) and valid_ipv6(dst_ip):
         pkt_raw = (Ether(src=src_mac, dst=dst_mac) /
                    IPv6(src=src_ip, dst=dst_ip) /
                    ICMPv6EchoRequest(code=icmp_code, type=icmp_type))
-        ip_format = 'IPv6'
+        ip_format = IPv6
         icmp_format = 'ICMPv6'
     else:
         raise ValueError("IP(s) not in correct format")
@@ -103,23 +102,31 @@ def main():
     sent_packets.append(pkt_raw)
     txq.send(pkt_raw)
 
-    ether = rxq.recv(2)
+    while True:
+        ether = rxq.recv(2)
+        if ether is None:
+            raise RuntimeError('ICMP echo Rx timeout')
 
-    # Check whether received packet contains layers Ether, IP and ICMP
-    if ether is None:
-        raise RuntimeError('ICMP echo Rx timeout')
+        if ether.haslayer(ICMPv6ND_NS):
+            # read another packet in the queue if the current one is ICMPv6ND_NS
+            continue
+        else:
+            # otherwise process the current packet
+            break
 
+    # Check whether received packet contains layers IP and ICMP
     if not ether.haslayer(ip_format):
-        raise RuntimeError('Not an IP packet received {0}'
-                           .format(ether.__repr__()))
+        raise RuntimeError('Not an IP packet received {0}'.
+                           format(ether.__repr__()))
 
     # Cannot use haslayer for ICMPv6, every type of ICMPv6 is a separate layer
     # Next header value of 58 means the next header is ICMPv6
     if not ether.haslayer(icmp_format) and ether[ip_format].nh != 58:
-        raise RuntimeError('Not an ICMP packet received {0}'
-                           .format(ether.__repr__()))
+        raise RuntimeError('Not an ICMP packet received {0}'.
+                           format(ether.__repr__()))
 
     sys.exit(0)
+
 
 if __name__ == "__main__":
     main()

@@ -18,7 +18,7 @@ import sys
 import ipaddress
 
 from scapy.layers.l2 import Ether
-from scapy.layers.inet6 import IPv6, ICMPv6ND_RS
+from scapy.layers.inet6 import IPv6, ICMPv6ND_RA, ICMPv6ND_RS, ICMPv6ND_NS
 
 from resources.libraries.python.PacketVerifier import RxQueue, TxQueue
 from resources.libraries.python.TrafficScriptArg import TrafficScriptArg
@@ -72,24 +72,29 @@ def main():
     sent_packets = [pkt_raw]
     txq.send(pkt_raw)
 
-    ether = rxq.recv(8, ignore=sent_packets)
+    while True:
+        ether = rxq.recv(2, sent_packets)
+        if ether is None:
+            raise RuntimeError('ICMP echo Rx timeout')
+
+        if ether.haslayer(ICMPv6ND_NS):
+            # read another packet in the queue if the current one is ICMPv6ND_NS
+            continue
+        else:
+            # otherwise process the current packet
+            break
 
     # Check whether received packet contains layer RA and check other values
-    if ether is None:
-        raise RuntimeError('ICMP echo Rx timeout')
-
     if ether.src != router_mac:
-        raise RuntimeError(
-            'Packet source MAC ({0}) does not match '
-            'router MAC ({1}).'.format(ether.src, router_mac))
+        raise RuntimeError('Packet source MAC ({0}) does not match router MAC '
+                           '({1}).'.format(ether.src, router_mac))
     if ether.dst != src_mac:
-        raise RuntimeError(
-            'Packet destination MAC ({0}) does not match '
-            'RS source MAC ({1}).'.format(ether.dst, src_mac))
+        raise RuntimeError('Packet destination MAC ({0}) does not match RS '
+                           'source MAC ({1}).'.format(ether.dst, src_mac))
 
-    if not ether.haslayer('ICMPv6ND_RA'):
-        raise RuntimeError('Not an RA packet received {0}'
-                           .format(ether.__repr__()))
+    if not ether.haslayer(ICMPv6ND_RA):
+        raise RuntimeError('Not an RA packet received {0}'.
+                           format(ether.__repr__()))
 
     src_address = ipaddress.IPv6Address(unicode(ether['IPv6'].src))
     dst_address = ipaddress.IPv6Address(unicode(ether['IPv6'].dst))
@@ -98,24 +103,25 @@ def main():
     rs_src_address = ipaddress.IPv6Address(unicode(src_ip))
 
     if src_address != router_link_local:
-        raise RuntimeError(
-            'Packet source address ({0}) does not match '
-            'link local address({1})'.format(src_address, router_link_local))
+        raise RuntimeError('Packet source address ({0}) does not match link '
+                           'local address({1})'.
+                           format(src_address, router_link_local))
 
     if dst_address != rs_src_address:
-        raise RuntimeError(
-            'Packet destination address ({0}) does not match '
-            'RS source address ({1}).'.format(dst_address, rs_src_address))
+        raise RuntimeError('Packet destination address ({0}) does not match '
+                           'RS source address ({1}).'.
+                           format(dst_address, rs_src_address))
 
     if ether['IPv6'].hlim != 255:
-        raise RuntimeError('Hop limit not correct: {0}!=255'.format(
-            ether['IPv6'].hlim))
+        raise RuntimeError('Hop limit not correct: {0}!=255'.
+                           format(ether['IPv6'].hlim))
 
-    ra_code = ether['ICMPv6 Neighbor Discovery - Router Advertisement'].code
+    ra_code = ether[ICMPv6ND_RA].code
     if ra_code != 0:
         raise RuntimeError('ICMP code: {0} not correct. '.format(ra_code))
 
     sys.exit(0)
+
 
 if __name__ == "__main__":
     main()
